@@ -135,7 +135,7 @@ export default function TechCardCollection({ userId }: { userId: string }) {
                     <Lock className="w-5 h-5" />
                   </div>
                   <h4 className="font-bold text-stone-700 dark:text-stone-400">{card.name}</h4>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-1">
+                  <p className="text-[10px] text-ink-faint mt-1">
                     {t.cardCollection.lockedHint}
                   </p>
                 </div>
@@ -145,14 +145,14 @@ export default function TechCardCollection({ userId }: { userId: string }) {
                     <h4 className="font-extrabold text-stone-900 dark:text-white flex items-center gap-1.5">
                       {card.name} 
                     </h4>
-                    <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5 leading-relaxed">
+                    <p className="text-[11px] text-ink-muted mt-0.5 leading-relaxed">
                       {card.description}
                     </p>
                   </div>
 
                   <div className="bg-white dark:bg-stone-900/60 p-2.5 rounded-xl border dark:border-stone-800 space-y-1">
                     <span className="text-[9px] uppercase font-bold text-stone-400 block">{t.cardCollection.advantageLabel}</span>
-                    <p className="text-[10px] text-stone-700 dark:text-stone-300 font-medium leading-normal">
+                    <p className="text-[10px] text-ink-body font-medium leading-normal">
                       {card.advantage}
                     </p>
                   </div>
@@ -161,7 +161,7 @@ export default function TechCardCollection({ userId }: { userId: string }) {
                     <span className="text-[9px] uppercase font-bold text-stone-400 block mb-1">{t.cardCollection.metricsLabel}</span>
                     <div className="flex flex-wrap gap-1">
                       {card.metrics.map((m, i) => (
-                        <span key={i} className="text-[9px] bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 px-2 py-0.5 rounded">
+                        <span key={i} className="text-[9px] bg-surface-raised text-stone-600 dark:text-stone-400 px-2 py-0.5 rounded">
                           {m}
                         </span>
                       ))}

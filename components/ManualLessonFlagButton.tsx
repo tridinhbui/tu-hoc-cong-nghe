@@ -90,7 +90,7 @@ export default function ManualLessonFlagButton({
   };
 
   if (loading) {
-    return <div className="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 animate-pulse" />;
+    return <div className="w-10 h-10 rounded-full bg-surface-raised animate-pulse" />;
   }
 
   return (
@@ -106,10 +106,10 @@ export default function ManualLessonFlagButton({
       }
       className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
         completed
-          ? "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400"
+          ? "bg-emerald-100 dark:bg-emerald-900/30 text-accent"
           : flagged
             ? "bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400"
-            : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+            : "bg-surface-raised text-ink-muted hover:bg-stone-200 dark:hover:bg-stone-700"
       } ${toggling ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}`}
       aria-label={t.manualLessonFlag.ariaLabel}
     >

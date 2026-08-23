@@ -199,7 +199,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
         onClick={() => void toggleOpen()}
         aria-label={t.notifications.ariaLabel}
         aria-expanded={open}
-        className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
+        className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
       >
         <Bell className="w-4.5 h-4.5" />
         {unreadCount > 0 && (
@@ -213,15 +213,15 @@ export default function NotificationBell({ userId }: { userId: string }) {
         <div
           ref={panelRef}
           style={panelStyle}
-          className="overflow-y-auto overscroll-contain rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xl z-[60]"
+          className="overflow-y-auto overscroll-contain rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-xl z-[60]"
         >
-          <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-stone-100 dark:border-stone-800">
-            <p className="text-xs font-black uppercase tracking-wide text-stone-500 dark:text-stone-400">{t.notifications.title}</p>
+          <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-line-soft">
+            <p className="text-xs font-black uppercase tracking-wide text-ink-muted">{t.notifications.title}</p>
             {unreadCount > 0 && (
               <button
                 type="button"
                 onClick={() => void handleMarkAllRead()}
-                className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                className="text-[11px] font-bold text-accent hover:underline"
               >
                 {t.notifications.markAllRead}
               </button>
@@ -275,7 +275,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                         này: ô ghi chú admin gõ vào trước đây không có đường
                         nào đến được người đọc nó. */}
                     {n.detail && (
-                      <p className="mt-1 rounded-lg bg-stone-100 dark:bg-stone-800 px-2 py-1 text-[11px] font-medium text-stone-600 dark:text-stone-300 leading-snug whitespace-pre-wrap">
+                      <p className="mt-1 rounded-lg bg-surface-raised px-2 py-1 text-[11px] font-medium text-stone-600 dark:text-stone-300 leading-snug whitespace-pre-wrap">
                         {n.detail}
                       </p>
                     )}

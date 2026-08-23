@@ -28,7 +28,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
 
   if (status === "sent") {
     return (
-      <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 rounded-[20px] p-6 text-center shadow-[0_10px_24px_-24px_rgba(16,185,129,0.18)]">
+      <div className="bg-accent-soft/50 border border-accent-line rounded-[20px] p-6 text-center shadow-[0_10px_24px_-24px_rgba(16,185,129,0.18)]">
         <div className="text-4xl mb-3">🎉</div>
         <p className="font-bold text-emerald-900 dark:text-emerald-400 text-lg mb-2">{t.lessonFeedback.thanksTitle}</p>
         <p className="text-emerald-700 dark:text-emerald-500 text-sm">{t.lessonFeedback.thanksSubtitle}</p>
@@ -37,13 +37,13 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[20px] p-6 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.18)]">
+    <div className="bg-white dark:bg-stone-900 border border-line rounded-[20px] p-6 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.18)]">
       <div className="flex items-start gap-4 mb-5">
-        <div className="w-12 h-12 rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center flex-shrink-0">
+        <div className="w-12 h-12 rounded-full bg-surface-raised flex items-center justify-center flex-shrink-0">
           <span className="text-2xl">💬</span>
         </div>
         <div className="flex-1">
-          <h3 className="font-bold text-stone-900 dark:text-stone-100 text-lg mb-1">{t.lessonFeedback.title}</h3>
+          <h3 className="font-bold text-ink text-lg mb-1">{t.lessonFeedback.title}</h3>
           <p className="text-stone-600 dark:text-stone-400 text-sm">
             {t.lessonFeedback.subtitle}
           </p>
@@ -73,7 +73,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
         onChange={(e) => setComment(e.target.value)}
         rows={4}
         placeholder={t.lessonFeedback.commentPlaceholder}
-        className="input-premium w-full px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-500 dark:bg-stone-800 resize-none mb-4"
+        className="input-premium w-full px-4 py-3 text-base text-ink placeholder:text-stone-500 dark:bg-stone-800 resize-none mb-4"
       />
 
       <button
@@ -82,7 +82,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
         className={`w-full py-3 rounded-[18px] text-sm font-bold transition-all cursor-pointer focus-visible:outline-none ${
           rating > 0 && status !== "sending"
             ? "bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white dark:text-stone-950 shadow-md active:scale-98"
-            : "bg-stone-200 dark:bg-stone-800 text-stone-400 dark:text-stone-500 cursor-not-allowed"
+            : "bg-stone-200 dark:bg-stone-800 text-ink-faint cursor-not-allowed"
         }`}
       >
         {status === "sending" ? t.lessonFeedback.sendingButton : t.lessonFeedback.submitButton}

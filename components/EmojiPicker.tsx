@@ -31,12 +31,12 @@ export default function EmojiPicker({ onSelect }: { onSelect: (emoji: string) =>
         type="button"
         onClick={() => setOpen((v) => !v)}
         title={t.miscUi.emojiPicker.selectEmoji}
-        className="p-2 border border-stone-100 dark:border-stone-800/50 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 rounded-xl transition flex-shrink-0 active:scale-95"
+        className="p-2 border border-line-soft/50 text-ink-muted hover:text-stone-900 dark:hover:text-stone-100 rounded-xl transition flex-shrink-0 active:scale-95"
       >
         <Smile className="w-4.5 h-4.5" />
       </button>
       {open && (
-        <div className="absolute bottom-full left-0 mb-2 w-64 max-h-48 overflow-y-auto grid grid-cols-8 gap-1 p-2 bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 rounded-xl shadow-xl z-20">
+        <div className="absolute bottom-full left-0 mb-2 w-64 max-h-48 overflow-y-auto grid grid-cols-8 gap-1 p-2 bg-white dark:bg-stone-900 border border-line-soft rounded-xl shadow-xl z-20">
           {EMOJIS.map((emoji) => (
             <button
               key={emoji}

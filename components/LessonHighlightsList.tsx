@@ -32,8 +32,8 @@ export default function LessonHighlightsList({
   }
 
   return (
-    <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5">
-      <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-3">
+    <div className="rounded-2xl border border-line bg-white dark:bg-stone-900 p-5">
+      <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest mb-3">
         {t.miscUi.lessonHighlightsList.title}
       </p>
       <div className="space-y-2.5">
@@ -53,7 +53,7 @@ export default function LessonHighlightsList({
               ) : (
                 <Highlighter className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
               )}
-              <p className="flex-1 min-w-0 text-stone-700 dark:text-stone-300 italic">&quot;{h.quote}&quot;</p>
+              <p className="flex-1 min-w-0 text-ink-body italic">&quot;{h.quote}&quot;</p>
               <button
                 type="button"
                 onClick={() => handleDelete(h.id)}

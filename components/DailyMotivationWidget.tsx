@@ -122,7 +122,7 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
 
         <div className="min-w-0">
           {lateNight && (
-            <p className="mb-1.5 text-[11px] font-semibold leading-relaxed text-stone-500 dark:text-stone-400">
+            <p className="mb-1.5 text-[11px] font-semibold leading-relaxed text-ink-muted">
               {lateNight}
             </p>
           )}

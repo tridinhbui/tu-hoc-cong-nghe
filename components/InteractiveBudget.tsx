@@ -51,7 +51,7 @@ export default function InteractiveBudget() {
 
       <div>
         <div className="flex justify-between text-sm mb-2">
-          <span className="font-medium text-stone-700 dark:text-stone-300">💵 {t.budgetSim.incomeLabel}</span>
+          <span className="font-medium text-ink-body">💵 {t.budgetSim.incomeLabel}</span>
           <span className="font-bold text-stone-800 dark:text-stone-100">
             {format(t.budgetSim.incomeAmount, { amount: income })}
           </span>
@@ -70,7 +70,7 @@ export default function InteractiveBudget() {
       <div className="space-y-4">
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">{t.budgetSim.categoryNeedsLabel}</span>
+            <span className="font-medium text-ink-body">{t.budgetSim.categoryNeedsLabel}</span>
             <span className="font-bold text-sky-600 dark:text-sky-400">{needs}%</span>
           </div>
           <input
@@ -85,8 +85,8 @@ export default function InteractiveBudget() {
         </div>
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">{t.budgetSim.categoryWantsLabel}</span>
-            <span className="font-bold text-amber-600 dark:text-amber-400">{wants}%</span>
+            <span className="font-medium text-ink-body">{t.budgetSim.categoryWantsLabel}</span>
+            <span className="font-bold text-warn">{wants}%</span>
           </div>
           <input
             type="range"
@@ -117,10 +117,10 @@ export default function InteractiveBudget() {
         {CATEGORIES.map((c) => (
           <div key={c.key} className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-800/60">
             <p className="text-xs font-bold text-stone-600 dark:text-stone-300">{c.label}</p>
-            <p className="text-lg font-extrabold text-stone-900 dark:text-stone-100">
+            <p className="text-lg font-extrabold text-ink">
               {format(t.budgetSim.categoryAmount, { amount: ((income * share[c.key]) / 100).toFixed(1) })}
             </p>
-            <p className="mt-0.5 text-[11px] leading-snug text-stone-400 dark:text-stone-500">{c.hint}</p>
+            <p className="mt-0.5 text-[11px] leading-snug text-ink-faint">{c.hint}</p>
           </div>
         ))}
       </div>
@@ -130,8 +130,8 @@ export default function InteractiveBudget() {
           save === 0
             ? "bg-rose-50 dark:bg-rose-950/30"
             : months <= 12
-              ? "bg-emerald-50 dark:bg-emerald-950/30"
-              : "bg-amber-50 dark:bg-amber-950/30"
+              ? "bg-accent-soft/30"
+              : "bg-warn-soft/30"
         }`}
       >
         {save === 0 ? (
@@ -146,7 +146,7 @@ export default function InteractiveBudget() {
             <b>{format(t.budgetSim.savingsMonths, { months })}</b>{t.budgetSim.savingsPart4}
           </p>
         )}
-        <p className="mt-1.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
+        <p className="mt-1.5 text-[11px] leading-relaxed text-ink-muted">
           {t.budgetSim.footerNote}
         </p>
       </div>

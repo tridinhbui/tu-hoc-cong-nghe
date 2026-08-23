@@ -95,13 +95,13 @@ export default function ScrollytellingPinnedSection() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 sm:mb-8">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+            <span className="text-xs font-black uppercase tracking-widest text-accent">
               {t.miscUi.scrollytellingPinnedSection.exploreProduct}
             </span>
           </div>
 
           {/* Interactive 3 Tab Switcher */}
-          <div className="flex items-center gap-1.5 p-1 bg-stone-100 dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 shadow-xs">
+          <div className="flex items-center gap-1.5 p-1 bg-stone-100 dark:bg-stone-900 rounded-2xl border border-line shadow-xs">
             {PANELS.map((panel, idx) => {
               const isActive = activeTab === idx;
               return (
@@ -115,7 +115,7 @@ export default function ScrollytellingPinnedSection() {
                   className={`relative px-3.5 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
                     isActive
                       ? "text-stone-950 dark:text-stone-900 shadow-sm"
-                      : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
+                      : "text-ink-muted hover:text-stone-800 dark:hover:text-stone-200"
                   }`}
                 >
                   {isActive && (
@@ -150,7 +150,7 @@ export default function ScrollytellingPinnedSection() {
             >
               {/* Panel Header */}
               <div className="text-center max-w-2xl mx-auto mb-6">
-                <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/50 mb-2">
+                <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-accent-line/50 mb-2">
                   {currentPanel.tag}
                 </span>
                 <h2 className="text-xl sm:text-3xl font-black text-stone-950 dark:text-stone-100 tracking-tight leading-snug">
@@ -177,17 +177,17 @@ export default function ScrollytellingPinnedSection() {
                             <Icon className="w-4 h-4" />
                           </div>
                           {"step" in item && item.step && (
-                            <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-900/50">
+                            <span className="text-[10px] font-black text-accent bg-accent-soft/60 px-2 py-0.5 rounded-md border border-accent-line/50">
                               {format(t.miscUi.scrollytellingPinnedSection.stepLabel, { step: item.step })}
                             </span>
                           )}
                           {"tag" in item && item.tag && (
-                            <span className="text-[9px] font-black uppercase text-emerald-600 dark:text-emerald-400 tracking-wider">
+                            <span className="text-[9px] font-black uppercase text-accent tracking-wider">
                               {item.tag}
                             </span>
                           )}
                         </div>
-                        <h3 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100">
+                        <h3 className="text-xs sm:text-sm font-black text-ink">
                           {item.title}
                         </h3>
                         <p className="mt-1 text-[11px] sm:text-xs text-stone-600 dark:text-stone-400 font-medium leading-snug">

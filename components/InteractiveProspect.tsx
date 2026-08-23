@@ -87,7 +87,7 @@ export default function InteractiveProspect() {
       {done && (
         <div
           className={`rounded-2xl p-4 ${
-            flipped ? "bg-amber-50 dark:bg-amber-950/30" : "bg-emerald-50 dark:bg-emerald-950/30"
+            flipped ? "bg-warn-soft/30" : "bg-accent-soft/30"
           }`}
         >
           <p className="text-sm text-stone-700 dark:text-stone-200">

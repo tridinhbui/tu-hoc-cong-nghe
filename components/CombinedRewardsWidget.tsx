@@ -264,7 +264,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
       <div className={`w-full flex items-center ${compact ? "px-4 py-3" : "px-3.5 py-2"}`}>
         <div className="flex items-center gap-2 min-w-0">
           <Gift className="w-4.5 h-4.5 text-stone-500" />
-          <span className={`${compact ? "text-sm" : "text-[15px]"} font-bold text-stone-900 dark:text-stone-100`}>{t.rewards.title}</span>
+          <span className={`${compact ? "text-sm" : "text-[15px]"} font-bold text-ink`}>{t.rewards.title}</span>
           {chestCount > 0 && (
             <span className="text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100 px-2 py-0.5 rounded-full">
               {format(t.rewards.chestBadge, { count: chestCount })}
@@ -273,17 +273,17 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
         </div>
       </div>
 
-      <div className={`border-t border-stone-100 dark:border-stone-800 ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
+      <div className={`border-t border-line-soft ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
           {/* Tabs */}
           <div className={`flex gap-1 bg-stone-50/50 dark:bg-stone-950/35 overflow-x-auto scrollbar-none ${compact ? "p-2" : "p-1.5"}`}>
             <button
               onClick={() => setActiveTab("daily")}
               className={`flex-1 text-[10px] sm:text-[10.5px] px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1 ${
                 activeTab === "daily"
-                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm font-black"
+                  ? "bg-white dark:bg-stone-900 text-ink shadow-sm font-black"
                   : dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed)
                   ? "bg-amber-50/70 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border border-amber-200/60 dark:border-amber-900/50 font-black"
-                  : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 font-bold"
+                  : "text-ink-muted hover:text-stone-700 dark:hover:text-stone-300 font-bold"
               }`}
             >
               <span>{t.rewards.tabDaily}</span>
@@ -295,10 +295,10 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
               onClick={() => setActiveTab("chests")}
               className={`flex-1 text-[10px] sm:text-[10.5px] font-black px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1.5 ${
                 activeTab === "chests"
-                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm border border-stone-200 dark:border-stone-800"
+                  ? "bg-white dark:bg-stone-900 text-ink shadow-sm border border-line"
                   : chestCount > 0
                   ? "bg-rose-50/70 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/50 font-black"
-                  : "text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-500/5"
+                  : "text-ink-muted hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-500/5"
               }`}
             >
               <span>{t.rewards.tabChests}</span>
@@ -311,8 +311,8 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
               onClick={() => setActiveTab("weekly")}
               className={`flex-1 text-[10px] sm:text-[10.5px] font-black px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1.5 ${
                 activeTab === "weekly"
-                  ? "bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 shadow-sm border border-stone-200 dark:border-stone-800"
-                  : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 font-bold"
+                  ? "bg-white dark:bg-stone-900 text-ink shadow-sm border border-line"
+                  : "text-ink-muted hover:text-stone-700 dark:hover:text-stone-300 font-bold"
               }`}
             >
               <span>{t.rewards.tabWeekly}</span>
@@ -352,7 +352,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 `}</style>
 
                 {chestCount > 0 ? (
-                  <div className="text-center py-4 bg-stone-50 dark:bg-stone-950 rounded-2xl border border-stone-100 dark:border-stone-800/80 space-y-3">
+                  <div className="text-center py-4 bg-stone-50 dark:bg-stone-950 rounded-2xl border border-line-soft/80 space-y-3">
                     <button
                       onClick={handleOpenChest}
                       disabled={opening}
@@ -364,17 +364,17 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     </button>
                     <div className="space-y-1">
                       <p className="text-xs font-bold text-stone-800 dark:text-stone-200">{t.rewards.hasUnopenedChest}</p>
-                      <p className="text-[10px] text-stone-400 dark:text-stone-500">{t.rewards.openChestHint}</p>
+                      <p className="text-[10px] text-ink-faint">{t.rewards.openChestHint}</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-5 text-stone-400 dark:text-stone-500 text-[10px] leading-relaxed">
+                  <div className="text-center py-5 text-ink-faint text-[10px] leading-relaxed">
                     {t.rewards.noChests}
                   </div>
                 )}
 
                 {/* Rương tri thức tuần - Weekly Chest Tracker inside Chests Tab */}
-                <div className="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/80 flex items-center justify-between gap-3">
+                <div className="mt-4 pt-4 border-t border-line-soft/80 flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent animate-pulse mb-1">
                       <Gift className="w-3.5 h-3.5 text-rose-500" /> {t.rewards.weeklyChestTitle}
@@ -388,10 +388,10 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     disabled={weeklyClaimed || dailyQuests.filter((q) => q.current >= q.target).length < WEEKLY_CHEST_QUESTS_REQUIRED}
                     className={`px-4 py-2 text-[10px] font-black rounded-xl transition-all duration-200 border shrink-0 flex items-center justify-center gap-1.5 ${
                       weeklyClaimed
-                        ? "bg-stone-100 dark:bg-stone-950 text-stone-400 border-stone-200 dark:border-stone-800"
+                        ? "bg-stone-100 dark:bg-stone-950 text-stone-400 border-line"
                         : dailyQuests.filter((q) => q.current >= q.target).length >= 3
                         ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white border-rose-500 shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 cursor-pointer animate-pulse"
-                        : "bg-stone-50 dark:bg-stone-900 text-stone-400 border-stone-200 dark:border-stone-800 cursor-not-allowed"
+                        : "bg-surface text-stone-400 border-line cursor-not-allowed"
                     }`}
                   >
                     {weeklyClaimed ? t.rewards.weeklyChestOpened : t.rewards.weeklyChestLocked}
@@ -404,31 +404,31 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
               <>
                 <div className="space-y-3">
                   <div className="space-y-1.5">
-                    <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
+                    <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
                       <span className="flex items-center gap-1"><Flame className="w-3 h-3 text-orange-500" /> {t.rewards.streakQuest}</span>
                       <span>{streakProgress}/5</span>
                     </div>
-                    <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
+                    <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
                       <div className={`h-full rounded-full transition-all duration-500 ${quest1Done ? "bg-orange-500" : "bg-orange-400"}`} style={{ width: `${(streakProgress / 5) * 100}%` }} />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
+                    <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
                       <span className="flex items-center gap-1"><BookOpen className="w-3 h-3 text-sky-500" /> {t.rewards.lessonsQuest}</span>
                       <span>{lessonsProgress}/10</span>
                     </div>
-                    <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
+                    <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
                       <div className={`h-full rounded-full transition-all duration-500 ${quest2Done ? "bg-sky-500" : "bg-sky-400"}`} style={{ width: `${(lessonsProgress / 10) * 100}%` }} />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
+                    <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
                       <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-emerald-500" /> {t.rewards.perfectQuizQuest}</span>
                       <span>{quizProgress}/3</span>
                     </div>
-                    <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
+                    <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
                       <div className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-emerald-500" : "bg-emerald-400"}`} style={{ width: `${(quizProgress / 3) * 100}%` }} />
                     </div>
                   </div>
@@ -436,7 +436,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
                 {allQuestsDone ? (
                   isEpicClaimed ? (
-                    <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold flex items-center justify-center gap-1.5">
+                    <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-500" /> {t.rewards.epicClaimed}
                     </div>
                   ) : (
@@ -449,7 +449,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     </button>
                   )
                 ) : (
-                  <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold">
+                  <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold">
                     {t.rewards.epicLocked}
                   </div>
                 )}
@@ -461,18 +461,18 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
       {/* Reward Reveal Overlay */}
       {opening && rewardReveal && mounted && createPortal(
         <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center z-[9999] overflow-y-auto p-4 animate-[fadeIn_0.2s_ease-out]">
-          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl w-full max-w-sm my-auto p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
+          <div className="bg-white dark:bg-stone-900 border border-line rounded-3xl w-full max-w-sm my-auto p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
             <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
               {rewardReveal.type === "xp" ? <Zap className="w-8 h-8 text-white" /> : <Sparkles className="w-8 h-8 text-white" />}
             </div>
             <div className="space-y-1">
-              <span className="text-[9px] font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400">{t.rewards.youReceived}</span>
-              <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 flex items-center justify-center gap-1.5">
+              <span className="text-[9px] font-extrabold uppercase tracking-widest text-warn">{t.rewards.youReceived}</span>
+              <h3 className="text-lg font-black text-ink flex items-center justify-center gap-1.5">
                 {rewardReveal.type === "title" && <Trophy className="w-5 h-5 text-amber-500" />}
                 {t.chestTitles[rewardReveal.value] ?? rewardReveal.value}
                 {rewardReveal.type === "xp" && ` ${t.miscUi.combinedRewardsWidget.xpUnit}`}
               </h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400">{t.chestDescriptions[rewardReveal.desc] ?? rewardReveal.desc}</p>
+              <p className="text-xs text-ink-muted">{t.chestDescriptions[rewardReveal.desc] ?? rewardReveal.desc}</p>
             </div>
             <button
               onClick={handleClaimReward}

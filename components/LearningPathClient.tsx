@@ -161,7 +161,7 @@ export default function LearningPathClient({
           <ArrowLeft className="h-4 w-4" />
           {p.backToDashboard}
         </Link>
-        <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100">{p.title}</h1>
+        <h1 className="text-2xl font-black text-ink">{p.title}</h1>
         <p className="text-sm leading-relaxed text-stone-600 dark:text-stone-400">{p.subtitle}</p>
       </header>
 
@@ -172,7 +172,7 @@ export default function LearningPathClient({
           một trang, và next/link sẽ chạy qua router cho một việc mà trình duyệt
           làm sẵn tốt hơn - kèm cả `scroll-margin` khi quay lại bằng nút Back. */}
       <nav aria-label={p.tocTitle} className="rounded-2xl border border-stone-200 bg-white p-3.5 dark:border-stone-800 dark:bg-stone-900">
-        <p className="text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
+        <p className="text-xs font-black uppercase tracking-wider text-ink-muted">
           {p.tocTitle}
         </p>
         <div className="mt-2 flex flex-wrap gap-1.5">
@@ -199,19 +199,19 @@ export default function LearningPathClient({
       <section className="rounded-2xl border border-emerald-200 bg-gradient-to-b from-emerald-50 to-white p-5 dark:border-emerald-900 dark:from-emerald-950/40 dark:to-stone-900">
         <div className="flex items-center gap-2">
           <Flame className="h-5 w-5 shrink-0 text-orange-500" />
-          <p className="text-xl font-black text-stone-900 dark:text-stone-100">{p.heroMinutes}</p>
+          <p className="text-xl font-black text-ink">{p.heroMinutes}</p>
         </div>
-        <p className="mt-1.5 text-sm leading-relaxed text-stone-700 dark:text-stone-300">{p.heroBody}</p>
+        <p className="mt-1.5 text-sm leading-relaxed text-ink-body">{p.heroBody}</p>
 
         <div className="mt-4 rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
           {loading ? (
-            <p className="text-sm text-stone-500 dark:text-stone-400">{p.heroLoading}</p>
+            <p className="text-sm text-ink-muted">{p.heroLoading}</p>
           ) : !nextLesson ? (
             <p className="text-sm leading-relaxed text-stone-600 dark:text-stone-400">{p.heroNoLesson}</p>
           ) : (
             <>
-              <p className="text-xs font-bold text-stone-500 dark:text-stone-400">{p.heroTodayLabel}</p>
-              <p className="mt-1 text-base font-bold leading-snug text-stone-900 dark:text-stone-100">
+              <p className="text-xs font-bold text-ink-muted">{p.heroTodayLabel}</p>
+              <p className="mt-1 text-base font-bold leading-snug text-ink">
                 {getLessonShortTitle({ title: nextLesson.title })}
               </p>
               <Link
@@ -242,7 +242,7 @@ export default function LearningPathClient({
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
-                  <span className="text-base font-black text-stone-900 dark:text-stone-100">
+                  <span className="text-base font-black text-ink">
                     {id === "personal" ? p.trackPersonalName : p.trackProfessionalName}
                   </span>
                   {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-500" />}
@@ -259,7 +259,7 @@ export default function LearningPathClient({
                     Thẻ CHƯA chọn vẫn dùng tổng, và đó không phải cẩu thả: câu
                     hỏi ở đó là "hướng này to cỡ nào", không phải "tôi còn bao
                     nhiêu" - người đọc chưa học bài nào của nó. */}
-                <p className="mt-3 text-xs font-bold text-stone-500 dark:text-stone-400">
+                <p className="mt-3 text-xs font-bold text-ink-muted">
                   {picked
                     ? format(p.trackLessonsLeft, { count: Math.max(0, counts[id] - done[id]) })
                     : format(p.trackLessons, { count: counts[id] })}{" "}
@@ -326,7 +326,7 @@ export default function LearningPathClient({
           <p className="text-sm font-bold text-stone-800 dark:text-stone-200">
             {format(p.paceEstimate, { count: remaining, weeks })}
           </p>
-          <p className="mt-0.5 text-sm text-stone-500 dark:text-stone-400">
+          <p className="mt-0.5 text-sm text-ink-muted">
             {format(p.paceMinutes, { minutes: pace.perDay * MEDIAN_LESSON_MINUTES })}
           </p>
           {/* Một ngày cụ thể, cạnh con số tuần. "Khoảng 28 tuần" đòi người đọc
@@ -341,7 +341,7 @@ export default function LearningPathClient({
               Anh dùng en-GB để giữ thứ tự ngày trước tháng, nếu không thì 03/04
               đổi nghĩa giữa hai ngôn ngữ mà không ai thấy. */}
           {finishAt && (
-            <p className="mt-0.5 text-sm text-stone-500 dark:text-stone-400">
+            <p className="mt-0.5 text-sm text-ink-muted">
               {format(p.paceFinishBy, {
                 date: finishAt.toLocaleDateString(intlLocale(locale), { month: "long", year: "numeric" }),
               })}
@@ -378,7 +378,7 @@ export default function LearningPathClient({
                 {i + 1}
               </span>
               <div>
-                <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{title}</p>
+                <p className="text-sm font-bold text-ink">{title}</p>
                 <p className="mt-1 text-sm leading-relaxed text-stone-600 dark:text-stone-400">{body}</p>
               </div>
             </li>
@@ -407,7 +407,7 @@ export default function LearningPathClient({
 
       <Card id="adjust" icon={<Flame className="h-4 w-4" />} title={p.stepAdjustTitle}>
         {loading ? (
-          <p className="text-sm text-stone-500 dark:text-stone-400">{p.adjustLoading}</p>
+          <p className="text-sm text-ink-muted">{p.adjustLoading}</p>
         ) : !nextLesson ? (
           <p className="text-sm leading-relaxed text-stone-600 dark:text-stone-400">{p.adjustNoData}</p>
         ) : (
@@ -435,7 +435,7 @@ export default function LearningPathClient({
             <div>
               <p className="text-sm font-bold text-stone-800 dark:text-stone-200">{p.adjustWeakest}</p>
               {gaps.length === 0 ? (
-                <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{p.adjustEmptyGaps}</p>
+                <p className="mt-1 text-sm text-ink-muted">{p.adjustEmptyGaps}</p>
               ) : (
                 <>
                   {/* Mỗi viên dẫn thẳng tới bài CHƯA HỌC đầu tiên của chủ đề
@@ -471,7 +471,7 @@ export default function LearningPathClient({
                       );
                     })}
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-stone-500 dark:text-stone-400">
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
                     {p.adjustWeakestHint}
                   </p>
                 </>
@@ -506,7 +506,7 @@ function Card({
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300">
           {icon}
         </span>
-        <h2 className="text-base font-black text-stone-900 dark:text-stone-100">{title}</h2>
+        <h2 className="text-base font-black text-ink">{title}</h2>
       </div>
       {hint && <p className="mt-2 text-sm leading-relaxed text-stone-600 dark:text-stone-400">{hint}</p>}
       <div className="mt-4">{children}</div>
@@ -517,7 +517,7 @@ function Card({
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="mb-2 text-xs font-bold text-stone-500 dark:text-stone-400">{label}</p>
+      <p className="mb-2 text-xs font-bold text-ink-muted">{label}</p>
       <div className="flex flex-wrap gap-1.5">{children}</div>
     </div>
   );

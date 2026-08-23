@@ -159,7 +159,7 @@ export default function RigorousLevelExamModal({
         className="relative w-full max-w-3xl overflow-hidden rounded-3xl border-2 border-emerald-500/40 bg-white dark:bg-stone-900 shadow-2xl flex flex-col max-h-[90vh]"
       >
         {/* Top Header */}
-        <div className="border-b border-stone-200 dark:border-stone-800 bg-gradient-to-r from-emerald-950 via-stone-900 to-teal-950 px-6 py-4 text-white flex items-center justify-between shrink-0">
+        <div className="border-b border-line bg-gradient-to-r from-emerald-950 via-stone-900 to-teal-950 px-6 py-4 text-white flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
             <span className="text-3xl">{levelMeta.emoji || fallbackConfig.badgeEmoji || "🏆"}</span>
             <div>
@@ -194,7 +194,7 @@ export default function RigorousLevelExamModal({
                 })}
             </span>
           </div>
-          <div className={`flex items-center gap-1.5 font-mono px-3 py-1 rounded-full border shadow-xs ${timeLeft < 60 ? "bg-rose-500 text-white border-rose-400 animate-pulse font-black" : "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 border-stone-200 dark:border-stone-700"}`}>
+          <div className={`flex items-center gap-1.5 font-mono px-3 py-1 rounded-full border shadow-xs ${timeLeft < 60 ? "bg-rose-500 text-white border-rose-400 animate-pulse font-black" : "bg-white dark:bg-stone-800 text-ink border-stone-200 dark:border-stone-700"}`}>
             <Clock className="w-3.5 h-3.5" />
             <span>{formatTime(timeLeft)}</span>
           </div>
@@ -216,15 +216,15 @@ export default function RigorousLevelExamModal({
           ) : !exam ? (
             <div className="py-16 flex flex-col items-center justify-center gap-3">
               <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
-              <p className="text-xs font-semibold text-stone-500 dark:text-stone-400">{t.levelExam.loading}</p>
+              <p className="text-xs font-semibold text-ink-muted">{t.levelExam.loading}</p>
             </div>
           ) : !submitted ? (
             questions.map((q, qIdx) => (
               <div
                 key={q.id || qIdx}
-                className="p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-950/40 space-y-3"
+                className="p-5 rounded-2xl border border-line bg-stone-50/60 dark:bg-stone-950/40 space-y-3"
               >
-                <p className="text-sm font-black text-stone-900 dark:text-stone-100 flex items-start gap-2.5">
+                <p className="text-sm font-black text-ink flex items-start gap-2.5">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-black text-stone-950 mt-0.5">
                     {qIdx + 1}
                   </span>
@@ -242,7 +242,7 @@ export default function RigorousLevelExamModal({
                         className={`w-full text-left p-3.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-between border ${
                           isSelected
                             ? "bg-emerald-500 text-stone-950 border-emerald-400 shadow-md font-black"
-                            : "bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 border-stone-200 dark:border-stone-800 hover:border-emerald-400 hover:bg-emerald-50/30 dark:hover:bg-stone-800"
+                            : "bg-white dark:bg-stone-900 text-ink-body border-line hover:border-emerald-400 hover:bg-emerald-50/30 dark:hover:bg-stone-800"
                         }`}
                       >
                         <span className="leading-snug">{opt}</span>
@@ -260,11 +260,11 @@ export default function RigorousLevelExamModal({
                 <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 text-4xl shadow-xl">
                   {passed ? "🏆" : "❌"}
                 </div>
-                <h3 className="text-2xl font-black text-stone-900 dark:text-stone-100">
+                <h3 className="text-2xl font-black text-ink">
                   {passed ? t.levelExam.resultPassed : t.levelExam.resultFailed}
                 </h3>
                 <p className="text-sm text-stone-600 dark:text-stone-400">
-                  {t.levelExam.resultPart1}<span className="font-black text-emerald-600 dark:text-emerald-400 text-lg">{format(t.levelExam.resultScore, { correct: correctCount, total: result?.total ?? questions.length })}{format(t.levelExam.resultPart2, { percent: scorePercentage })}</span>{format(t.levelExam.resultRequired, { percent: result?.minPassPercentage ?? minPassPercentage })}
+                  {t.levelExam.resultPart1}<span className="font-black text-accent text-lg">{format(t.levelExam.resultScore, { correct: correctCount, total: result?.total ?? questions.length })}{format(t.levelExam.resultPart2, { percent: scorePercentage })}</span>{format(t.levelExam.resultRequired, { percent: result?.minPassPercentage ?? minPassPercentage })}
                 </p>
 
                 {result?.expired && (
@@ -274,7 +274,7 @@ export default function RigorousLevelExamModal({
                 )}
 
                 {passed ? (
-                  <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 space-y-3 font-medium text-left">
+                  <div className="p-4 rounded-2xl bg-accent-soft/60 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 space-y-3 font-medium text-left">
                     <div>
                       <p className="font-black text-sm text-emerald-900 dark:text-emerald-200">{format(t.levelExam.promotedTitle, { level: levelToTest, name: t.levelTitles[levelToTest] ?? levelMeta.name })}</p>
                       <p className="mt-0.5">{t.levelExam.promotedBody}</p>
@@ -319,8 +319,8 @@ export default function RigorousLevelExamModal({
               </div>
 
               {/* Detailed Question Review */}
-              <div className="space-y-4 pt-2 border-t border-stone-200 dark:border-stone-800">
-                <h4 className="text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
+              <div className="space-y-4 pt-2 border-t border-line">
+                <h4 className="text-xs font-black uppercase tracking-wider text-ink-muted">
                   {t.levelExam.answerAnalysis}
                 </h4>
                 {questions.map((q, qIdx) => {
@@ -336,12 +336,12 @@ export default function RigorousLevelExamModal({
                       key={q.id || qIdx}
                       className={`p-4 rounded-2xl border text-xs space-y-2 ${
                         isCorrect
-                          ? "bg-emerald-50/50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-900/60"
+                          ? "bg-emerald-50/50 dark:bg-emerald-950/20 border-accent-line/60"
                           : "bg-rose-50/50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-900/60"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-2 font-bold">
-                        <p className="text-stone-900 dark:text-stone-100">
+                        <p className="text-ink">
                           {format(t.levelExam.questionLine, { index: qIdx + 1, question: q.question })}
                         </p>
                         <span className={`shrink-0 px-2 py-0.5 rounded-full font-black text-[10px] ${isCorrect ? "bg-emerald-500 text-stone-950" : "bg-rose-500 text-white"}`}>
@@ -349,7 +349,7 @@ export default function RigorousLevelExamModal({
                         </span>
                       </div>
 
-                      <div className="space-y-1 text-stone-700 dark:text-stone-300 pt-1">
+                      <div className="space-y-1 text-ink-body pt-1">
                         <p>
                           {t.levelExam.youChose}<span className={`font-extrabold ${isCorrect ? "text-emerald-700 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>{userAns !== undefined ? q.options[userAns] : t.levelExam.notChosen}</span>
                         </p>
@@ -361,7 +361,7 @@ export default function RigorousLevelExamModal({
                       </div>
 
                       {explanation && (
-                        <div className="mt-2 p-2.5 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-[11px] text-stone-600 dark:text-stone-400 italic">
+                        <div className="mt-2 p-2.5 rounded-xl bg-white dark:bg-stone-900 border border-line text-[11px] text-stone-600 dark:text-stone-400 italic">
                           💡 <strong>{t.levelExam.explanationLabel}</strong> {explanation}
                         </div>
                       )}
@@ -374,7 +374,7 @@ export default function RigorousLevelExamModal({
         </div>
 
         {/* Footer Action Buttons */}
-        <div className="border-t border-stone-200 dark:border-stone-800 px-6 py-4 bg-stone-50 dark:bg-stone-950 flex items-center justify-between shrink-0">
+        <div className="border-t border-line px-6 py-4 bg-stone-50 dark:bg-stone-950 flex items-center justify-between shrink-0">
           {!submitted ? (
             <>
               <p className="text-xs text-stone-500 font-semibold">
@@ -403,7 +403,7 @@ export default function RigorousLevelExamModal({
               {!passed && (
                 <button
                   onClick={retryExam}
-                  className="px-4 py-2.5 rounded-xl bg-stone-200 dark:bg-stone-800 text-stone-900 dark:text-stone-100 font-bold text-xs hover:bg-stone-300 dark:hover:bg-stone-700 cursor-pointer flex items-center gap-1.5"
+                  className="px-4 py-2.5 rounded-xl bg-stone-200 dark:bg-stone-800 text-ink font-bold text-xs hover:bg-stone-300 dark:hover:bg-stone-700 cursor-pointer flex items-center gap-1.5"
                 >
                   <RefreshCw className="w-4 h-4" />
                   <span>{t.levelExam.retakeNow}</span>

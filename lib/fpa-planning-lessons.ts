@@ -878,172 +878,175 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
     ],
   },
   {
-    id: 1516,
-    slug: "bo-bao-cao-quan-tri-hang-thang",
-    title: "Kế hoạch, Bài 6: Nhịp tháng của FP&A - đóng sổ, giải thích và ngồi cùng phòng ban",
-    subtitle: "Bộ báo cáo quản trị gồm gì, viết phần bình luận thế nào, và vì sao phần lớn giá trị nằm ngoài bảng số",
-    duration: "11 phút",
-    difficulty: "Trung bình",
-    emoji: "🗓️",
-    track: "professional",
-    whyItMatters:
-      "Ngân sách lập một lần mỗi năm, còn nhịp tháng thì lặp lại mười hai lần. Chất lượng của một bộ phận FP&A thể hiện ở nhịp này nhiều hơn ở bản ngân sách, và đây cũng là phần công việc mà người mới vào nghề sẽ làm ngay từ tháng đầu tiên.",
-    openingQuestion:
-      "Phần nào của bộ báo cáo quản trị hằng tháng tạo ra nhiều giá trị nhất?",
-    openingOptions: [
-      "Bảng số liệu đầy đủ và chính xác đến từng đồng",
-      "Phần bình luận giải thích vì sao số lệch",
-      "Các biểu đồ trực quan hóa xu hướng",
-      "Phần so sánh với cùng kỳ năm trước",
+    "id": 1516,
+    "slug": "nhip-thang-cua-doi-van-hanh",
+    "title": "Kế hoạch, Bài 6: Nhịp tháng của đội vận hành - chốt số, giải thích và ngồi cùng đội sản phẩm",
+    "subtitle": "Một bộ báo cáo tháng không ai đọc là bộ báo cáo trả lời câu hỏi mà không ai hỏi.",
+    "duration": "11 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "🗓️",
+    "whyItMatters": "Nhịp tháng là chỗ duy nhất mà số liệu vận hành gặp quyết định sản phẩm, và phần lớn nó bị làm thành một nghi thức báo cáo.",
+    "openingQuestion": "Phần nào của bộ báo cáo tháng tạo ra giá trị lớn nhất?",
+    "openingOptions": [
+      "Phần bình luận: giải thích vì sao con số đổi và điều đó nghĩa là gì",
+      "Phần số liệu: bảng chỉ số đầy đủ của chính tháng so với chính tất cả các tháng trước",
+      "Phần biểu đồ: trực quan hoá xu hướng để người đọc nắm nhanh",
+      "Phần tóm tắt: các điểm chính được rút gọn ở đầu tài liệu"
     ],
-    correctOption: 1,
-    explanation:
-      "Bảng số ai cũng xuất được từ hệ thống, và với công cụ ngày nay việc đó ngày càng tự động. Thứ không tự động được là câu trả lời cho câu hỏi vì sao: doanh thu hụt vì mất một khách lớn hay vì cả thị trường chậm lại, và hai nguyên nhân đó dẫn tới hai hành động khác nhau. Một bộ báo cáo chỉ có số mà không có phần này đẩy toàn bộ việc diễn giải sang người đọc - những người có ít thời gian hơn và ít dữ liệu hơn bạn.",
-    diagram: [
-      { label: "Đóng sổ và chốt số", arrow: true },
-      { label: "So thực tế với kế hoạch, tách nguyên nhân", arrow: true },
-      { label: "Hỏi phòng ban để hiểu chuyện đằng sau số", arrow: true },
-      { label: "Viết bình luận và cập nhật dự báo" },
+    "correctOption": 0,
+    "explanation": "Ba phần kia đều tự động hoá được, và tự động hoá được nghĩa là chúng không cần một buổi họp. Phần bình luận là phần duy nhất đòi một người đã nhìn cả số liệu lẫn những gì đã xảy ra trong tháng - và nó là phần đầu tiên bị cắt khi bận, chính vì nó tốn công nhất.",
+    "diagram": [
+      {
+        "label": "Số liệu tự động hoá được; BÌNH LUẬN thì không",
+        "arrow": true
+      },
+      {
+        "label": "Bình luận là phần đầu tiên bị cắt khi bận, và là phần duy nhất đáng giữ",
+        "arrow": true
+      },
+      {
+        "label": "Chốt số rồi mới bình luận - đừng vừa chốt vừa giải thích",
+        "arrow": true
+      },
+      {
+        "label": "Và mỗi tháng phải kết bằng một quyết định, không bằng một bản trình bày"
+      }
     ],
-    realWorldExample: {
-      company: "Hai kiểu bình luận cho cùng một chênh lệch",
-      description:
-        "Kiểu thứ nhất: chi phí bán hàng vượt kế hoạch 12%, tương đương 3,2 tỷ đồng. Đây là mô tả lại con số mà người đọc vừa nhìn thấy. Kiểu thứ hai: chi phí bán hàng vượt 3,2 tỷ, trong đó 2,5 tỷ là do chương trình khuyến mãi tháng 9 được kéo dài thêm hai tuần theo quyết định ngày 8/9, phần còn lại là chi phí vận chuyển tăng theo giá xăng. Chương trình khuyến mãi đã mang về thêm 9 tỷ doanh thu, nên xét riêng thì có hiệu quả, nhưng phần vượt chi này chưa nằm trong dự báo quý bốn và cần được duyệt bổ sung. Kiểu thứ hai mất thêm hai cuộc gọi và tạo ra một quyết định.",
+    "realWorldExample": {
+      "company": "Kết bằng một quyết định",
+      "description": "Một buổi rà soát tháng kết thúc bằng cái gật đầu là một buổi họp đã lãng phí một giờ của tám người. Kết bằng một quyết định - dừng cái gì, đổi ngưỡng nào, ai làm gì trước ngày nào - là thứ duy nhất biện minh được cho nhịp này."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "Vì sao FP&A cần trao đổi trực tiếp với các phòng ban trước khi viết bình luận?",
-        options: [
-          "Vì nguyên nhân thật đằng sau một chênh lệch thường không nằm trong bất kỳ hệ thống số liệu nào",
-          "Vì các phòng ban phải ký xác nhận vào số liệu trước khi bộ báo cáo được phát hành ra bên ngoài",
-          "Vì hệ thống kế toán thường ghi nhận sai và cần phòng ban đối chiếu lại từng khoản mục",
-          "Vì đây là yêu cầu bắt buộc trong quy trình kiểm soát nội bộ của phần lớn doanh nghiệp",
+        "question": "Vì sao phần bình luận hay bị cắt đầu tiên?",
+        "options": [
+          "Vì nó tốn công nhất và là phần duy nhất không tự động hoá được",
+          "Vì nó mang tính chủ quan nên dễ gây tranh cãi trong buổi rà soát",
+          "Vì người đọc thường chỉ nhìn số liệu và bỏ qua phần diễn giải",
+          "Vì nó đòi hỏi người viết phải hiểu cả nghiệp vụ lẫn kỹ thuật"
         ],
-        correct: 0,
-        explanation:
-          "Hệ thống ghi lại rằng chi phí tăng 3,2 tỷ. Chuyện một chương trình khuyến mãi được kéo dài theo quyết định miệng trong cuộc họp thì không hệ thống nào ghi.",
+        "correct": 0,
+        "explanation": "Lựa chọn cuối mô tả đúng yêu cầu và nó là lý do phần này KHÓ, không phải lý do nó bị cắt. Bị cắt là vì nó là thứ duy nhất còn lại sau khi mọi phần khác đã được máy làm - nên khi thiếu thời gian, nó là chỗ duy nhất có thể cắt."
       },
       {
-        question: "Bình luận variance tốt cần có gì ngoài con số chênh lệch?",
-        options: [
-          "Nguyên nhân cụ thể, đánh giá đây là chênh lệch một lần hay còn lặp lại, và việc cần làm tiếp",
-          "So sánh với cùng kỳ của ít nhất ba năm trước để thấy được xu hướng dài hạn",
-          "Danh sách đầy đủ tất cả các khoản mục có phát sinh chênh lệch dù lớn hay nhỏ trong kỳ báo cáo",
-          "Tỷ lệ phần trăm chênh lệch tính trên cả số kế hoạch lẫn số thực tế của kỳ trước",
+        "question": "Vì sao nên chốt số trước rồi mới bình luận?",
+        "options": [
+          "Vì vừa chốt vừa giải thích thì con số dễ bị chỉnh cho khớp với câu chuyện",
+          "Vì việc chốt số thật sự cần tập trung nên hoàn toàn không nên làm cùng lúc với việc khác",
+          "Vì bình luận cần thời gian suy nghĩ nên phải tách khỏi việc chốt số",
+          "Vì hai công việc này thường do hai người khác nhau thực hiện"
         ],
-        correct: 0,
-        explanation:
-          "Phần phân biệt một lần hay lặp lại là quan trọng nhất và hay bị bỏ sót: nó quyết định dự báo các kỳ sau có phải sửa hay không.",
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia là lý do về quy trình. Cái này là lý do về tính đúng đắn, và nó xảy ra một cách vô thức: khi đang có sẵn một câu chuyện trong đầu, một con số hơi lệch rất dễ được coi là lỗi đo và bị sửa lại."
       },
       {
-        question: "Vì sao nên đặt ngưỡng trọng yếu cho việc giải thích chênh lệch?",
-        options: [
-          "Để tập trung vào các khoản đủ lớn để đáng hành động, thay vì giải thích mọi dòng",
-          "Vì chuẩn mực kế toán có quy định mức trọng yếu bắt buộc cho báo cáo quản trị nội bộ",
-          "Để giảm số trang của bộ báo cáo xuống mức mà ban lãnh đạo yêu cầu tối đa",
-          "Vì các khoản chênh lệch nhỏ thường là do lỗi hệ thống nên không cần giải thích",
+        "question": "Một buổi rà soát tháng nên kết thúc bằng gì?",
+        "options": [
+          "Một quyết định cụ thể: dừng gì, đổi ngưỡng nào, ai làm gì trước ngày nào",
+          "Một bản tóm tắt các điểm chính đã được thảo luận trong buổi",
+          "Sự thống nhất của các bên về tình hình hiện tại của hệ thống",
+          "Danh sách các vấn đề cần theo dõi trong tháng tiếp theo"
         ],
-        correct: 0,
-        explanation:
-          "Giải thích cả trăm dòng khiến ba dòng thực sự quan trọng chìm mất. Ngưỡng thường đặt theo cả giá trị tuyệt đối lẫn tỷ lệ, vì một khoản nhỏ lệch 80% cũng đáng chú ý.",
+        "correct": 0,
+        "explanation": "Lựa chọn cuối nghe gần với một quyết định và nó không có người và không có ngày, nên nó không tạo ra việc gì. Một buổi kết thúc bằng cái gật đầu là một giờ của tám người đã bị tiêu."
       },
       {
-        question: "Sau khi phân tích tháng, dự báo các kỳ còn lại nên xử lý thế nào?",
-        options: [
-          "Cập nhật nếu nguyên nhân chênh lệch còn tiếp diễn, và giữ nguyên nếu đó là việc một lần",
-          "Luôn giữ nguyên theo kế hoạch đã duyệt để bảo đảm tính nhất quán trong so sánh cả năm",
-          "Luôn cập nhật lại toàn bộ theo số thực tế mới nhất của tháng vừa kết thúc",
-          "Chỉ cập nhật vào cuối mỗi quý theo đúng lịch phê duyệt của ban lãnh đạo",
+        "question": "Vì sao đội vận hành nên ngồi cùng đội sản phẩm trong nhịp này?",
+        "options": [
+          "Vì phần lớn thứ làm số liệu đổi đến từ quyết định sản phẩm, không từ hạ tầng",
+          "Vì hai đội cần thống nhất về mức độ ưu tiên của các công việc chung",
+          "Vì đội sản phẩm cần hiểu các ràng buộc kỹ thuật khi lập kế hoạch",
+          "Vì việc gặp nhau định kỳ giúp hai đội phối hợp tốt hơn trong tháng"
         ],
-        correct: 0,
-        explanation:
-          "Đây chính là cơ chế của rolling forecast đã học ở chặng Kỹ sư trưởng & Vận hành, và cũng là chỗ phán đoán một lần hay lặp lại ở trên phát huy tác dụng.",
+        "correct": 0,
+        "explanation": "Ba lý do kia đều đúng và đều chung chung. Cái này chỉ ra vì sao nhịp này KHÔNG chạy được nếu thiếu họ: một tính năng mới ra mắt giải thích được phần lớn biến động, và không ai trong đội vận hành có thông tin đó."
       },
-    
-    {
-      "question": "Sau khi phân tích kết quả tháng, phần dự báo cho các kỳ còn lại nên xử lý thế nào?",
+      {
+        "question": "Dấu hiệu nào cho thấy bộ báo cáo tháng đang thành nghi thức?",
+        "options": [
+          "Nội dung gần như không đổi giữa các tháng ngoài phần con số",
+          "Bộ báo cáo ngày càng dài thêm qua từng tháng vì được bổ sung liên tục",
+          "Thời gian chuẩn bị bộ báo cáo chiếm phần lớn tuần đầu của tháng",
+          "Ít người tham dự buổi rà soát so với số người được mời"
+        ],
+        "correct": 0,
+        "explanation": "Ba dấu hiệu kia đều là triệu chứng và có nhiều nguyên nhân. Cái này chỉ thẳng vào bản chất: nếu chỉ có con số đổi mà phần diễn giải không đổi, thì phần diễn giải đang không đọc số liệu - nó chỉ đang lặp lại."
+      }
+    ],
+    "keyTakeaways": [
+      "Số liệu và biểu đồ tự động hoá được; BÌNH LUẬN thì không - và nó bị cắt đầu tiên.",
+      "Chốt số TRƯỚC rồi mới bình luận, nếu không con số bị chỉnh cho khớp câu chuyện.",
+      "Kết bằng một QUYẾT ĐỊNH có người và có ngày, không bằng một cái gật đầu.",
+      "Đội sản phẩm phải có mặt: phần lớn biến động đến từ quyết định của họ.",
+      "Nội dung không đổi giữa các tháng ngoài con số = phần diễn giải đang không đọc số liệu."
+    ],
+    "practicePrompt": {
+      "question": "Bộ báo cáo tháng của bạn dài hai mươi trang. Cắt phần nào trước?",
       "options": [
-        "Cập nhật lại nếu nguyên nhân chênh lệch còn ảnh hưởng tới các kỳ sau",
-        "Giữ nguyên để bảo toàn tính so sánh với kế hoạch đã được phê duyệt",
-        "Điều chỉnh các kỳ còn lại để bù đúng phần đã hụt trong tháng vừa rồi",
-        "Chỉ cập nhật một lần vào giữa năm theo lịch rà soát ngân sách"
+        "Mọi bảng số mà không có dòng bình luận nào đi kèm",
+        "Các biểu đồ trùng lặp thông tin với những biểu đồ khác",
+        "Phần phụ lục chứa số liệu chi tiết mà ít người tra tới",
+        "Các chỉ số ít thay đổi giữa các tháng nên không cần theo dõi hằng tháng"
       ],
       "correct": 0,
-      "explanation": "Mất một khách hàng lớn không phải sự kiện của riêng tháng này. Câu hỏi phải trả lời sau mỗi lần đóng sổ là nguyên nhân đó có kéo dài không - còn việc điều chỉnh các kỳ sau để tổng năm vẫn khớp kế hoạch chỉ là dời vấn đề sang tháng Mười hai."
-    }
-    ],
-    keyTakeaways: [
-      "Bảng số ai cũng xuất được; phần bình luận vì sao mới là thứ không tự động hóa được",
-      "Nguyên nhân thật thường không nằm trong hệ thống - phải hỏi phòng ban",
-      "Bình luận tốt nêu nguyên nhân, phân biệt một lần hay lặp lại, và đề xuất việc cần làm",
-      "Đặt ngưỡng trọng yếu để ba dòng quan trọng không chìm giữa cả trăm dòng",
-      "Chênh lệch còn tiếp diễn thì phải sửa dự báo các kỳ sau",
-    ],
-    practicePrompt: {
-      question:
-        "Doanh thu tháng vượt kế hoạch 15% nhờ một hợp đồng lớn ký sớm hơn dự kiến một quý. Bình luận nên viết thế nào?",
-      options: [
-        "Doanh thu vượt kế hoạch 15%, kết quả tích cực",
-        "Vượt 15% do hợp đồng X ký sớm một quý, nên quý sau sẽ hụt",
-        "Doanh thu vượt kế hoạch, đề nghị nâng chỉ tiêu các quý còn lại",
-        "Cần thêm thời gian để đánh giá xu hướng",
-      ],
-      correct: 1,
-      explanation:
-        "Đây là dạng chênh lệch nguy hiểm nhất vì nó trông như tin tốt. Doanh thu không hề tăng thêm, nó chỉ chuyển từ quý sau về quý này. Bình luận không chỉ ra điều đó sẽ dẫn tới việc nâng chỉ tiêu các quý còn lại - đúng lúc quý sau sắp hụt vì chính hợp đồng đã được ghi nhận sớm.",
+      "explanation": "Ba cách kia cắt theo mức trùng lặp hoặc mức quan tâm. Cách này cắt theo một tiêu chí rõ ràng hơn: một bảng số không có ai giải thích nghĩa là chưa ai đọc nó, và nó vào bộ báo cáo vì thói quen chứ không vì có người cần."
     },
-    summary: {
-      keyIdea: "Giá trị của FP&A nằm ở phần giải thích và phần ngồi cùng phòng ban, không nằm ở bảng số",
-      commonMistake: "Viết bình luận bằng cách diễn đạt lại con số mà người đọc vừa nhìn thấy",
-      action: "Với mỗi chênh lệch vượt ngưỡng, viết đủ ba phần: vì sao, một lần hay lặp lại, và cần làm gì.",
+    "summary": {
+      "keyIdea": "Nhịp tháng là chỗ duy nhất số liệu vận hành gặp quyết định sản phẩm.",
+      "formula": "Chốt số → bình luận → ngồi cùng đội sản phẩm → kết bằng một quyết định.",
+      "commonMistake": "Cắt phần bình luận khi bận, giữ lại đúng phần máy đã làm hộ.",
+      "action": "Đếm số bảng trong báo cáo tháng không có dòng bình luận nào."
     },
-    application: {
-      title: "Việc cần làm",
-      message:
-        "Lấy báo cáo tháng gần nhất và viết lại phần bình luận cho ba khoản chênh lệch lớn nhất. Với mỗi khoản, gọi điện cho người phụ trách trước khi viết. So bản mới với bản cũ xem có thêm được thông tin gì mà hệ thống không có.",
-      secondary: "Nếu cuộc gọi không mang lại thông tin nào mới, khả năng cao là bạn chưa hỏi đúng người.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Mở bộ báo cáo tháng gần nhất và đếm xem có bao nhiêu bảng số không có dòng bình luận nào đi kèm.",
+      "secondary": "Mỗi bảng như vậy là một bảng chưa ai đọc. Cắt chúng đi thì bộ báo cáo ngắn lại và không mất thông tin nào - vì thông tin chỉ tồn tại khi có người đọc ra nó."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Ngân sách là sự kiện mỗi năm một lần. Nhịp tháng lặp lại mười hai lần, và đó là nơi một bộ phận FP&A thực sự được đánh giá.",
+        "type": "lead",
+        "text": "Nhịp tháng là chỗ duy nhất mà số liệu vận hành gặp quyết định sản phẩm, và phần lớn nó bị làm thành một nghi thức báo cáo."
       },
       {
-        type: "heading",
-        text: "Bốn bước của một chu kỳ tháng",
+        "type": "heading",
+        "text": "Phần duy nhất không tự động hoá được"
       },
       {
-        type: "list",
-        items: [
-          "Đóng sổ và chốt số: phối hợp với kế toán để có số cuối cùng, thường trong 3 đến 7 ngày làm việc đầu tháng",
-          "So sánh và tách nguyên nhân: thực tế với kế hoạch và với dự báo gần nhất, tách chênh lệch theo yếu tố như bài đầu chặng đã dựng",
-          "Hỏi phòng ban: phần chiếm nhiều thời gian nhất và tạo ra nhiều giá trị nhất, vì nguyên nhân thật không nằm trong hệ thống",
-          "Viết bình luận và cập nhật dự báo: chốt lại thành tài liệu và sửa dự báo các kỳ còn lại nếu nguyên nhân còn tiếp diễn",
-        ],
-      },
-      {
-        type: "comparison",
-        left: {
-          label: "Bình luận yếu",
-          text: "Diễn đạt lại con số bằng lời: chi phí vượt 12%. Không nêu nguyên nhân, không phân biệt một lần hay lặp lại, không dẫn tới việc gì. Người đọc vẫn phải tự đi tìm hiểu.",
+        "type": "comparison",
+        "left": {
+          "label": "Số liệu, biểu đồ, tóm tắt",
+          "text": "Máy làm được. Và làm được nghĩa là chúng không cần một buổi họp."
         },
-        right: {
-          label: "Bình luận mạnh",
-          text: "Tách chênh lệch thành các nguyên nhân cụ thể có tên và có ngày, nói rõ phần nào sẽ lặp lại, và kết thúc bằng một đề xuất cần được quyết định.",
-        },
+        "right": {
+          "label": "Bình luận",
+          "text": "Đòi một người đã nhìn cả số liệu lẫn những gì đã xảy ra trong tháng. Tốn công nhất, nên là phần đầu tiên bị cắt khi bận."
+        }
       },
       {
-        type: "callout",
-        label: "Business partnering là phần nghề, không phải phần mềm",
-        text: "Người làm FP&A giỏi được các phòng ban chủ động gọi trước khi ra quyết định, thay vì bị xem là bộ phận đi đòi số liệu và cắt ngân sách. Khác biệt đó không đến từ mô hình hay công cụ, mà từ việc có mặt đủ nhiều để hiểu hoạt động thật, và từ việc mang tới câu trả lời cho vấn đề của họ chứ không chỉ mang tới câu hỏi về chênh lệch.",
+        "type": "heading",
+        "text": "Thứ tự quan trọng"
       },
       {
-        type: "closing",
-        lines: [
-          "Bảng số là điều kiện cần. Việc ai đó thay đổi quyết định vì bảng số ấy mới là kết quả.",
-          "Chặng này khép lại phần lập kế hoạch: từ dựng con số, tới thử nó chịu được gì, tới giải thích khi nó lệch.",
-        ],
+        "type": "callout",
+        "label": "Chốt số trước, bình luận sau",
+        "text": "Vừa chốt vừa giải thích thì con số bị chỉnh cho khớp với câu chuyện - và điều đó xảy ra một cách vô thức: khi đã có sẵn một câu chuyện trong đầu, một con số hơi lệch rất dễ được coi là lỗi đo."
       },
-    ],
+      {
+        "type": "heading",
+        "text": "Ai phải có mặt"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đội sản phẩm. Phần lớn thứ làm số liệu đổi đến từ quyết định của họ - một tính năng mới ra mắt giải thích được phần lớn biến động, và không ai trong đội vận hành có thông tin đó."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Và mỗi tháng phải kết bằng một QUYẾT ĐỊNH: dừng cái gì, đổi ngưỡng nào, ai làm gì trước ngày nào.",
+          "Một buổi kết thúc bằng cái gật đầu là một giờ của tám người đã bị tiêu, và nó là dấu hiệu rõ nhất cho thấy nhịp này đã thành nghi thức."
+        ]
+      }
+    ]
   },
 ];

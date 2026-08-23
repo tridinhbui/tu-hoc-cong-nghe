@@ -37,7 +37,7 @@ export default function ConfirmDialog({
           <button
             onClick={onCancel}
             disabled={loading}
-            className="px-4 py-2 text-sm font-semibold rounded-lg border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-50"
+            className="px-4 py-2 text-sm font-semibold rounded-lg border border-line-strong text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-50"
           >
             {tc.cancel}
           </button>

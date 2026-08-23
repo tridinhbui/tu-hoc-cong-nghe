@@ -37,14 +37,14 @@ export default function ProfileWallPosts({ userId }: { userId: string }) {
     return (
       <div className="space-y-2">
         {[0, 1].map((i) => (
-          <div key={i} className="h-16 rounded-xl bg-stone-100 dark:bg-stone-800 animate-pulse" />
+          <div key={i} className="h-16 rounded-xl bg-surface-raised animate-pulse" />
         ))}
       </div>
     );
   }
 
   if (posts.length === 0) {
-    return <p className="text-sm text-stone-500 dark:text-stone-400">{t.finalTwo.profileWallPosts.noPosts}</p>;
+    return <p className="text-sm text-ink-muted">{t.finalTwo.profileWallPosts.noPosts}</p>;
   }
 
   return (
@@ -53,7 +53,7 @@ export default function ProfileWallPosts({ userId }: { userId: string }) {
         <Link
           key={post.id}
           href={`/bang-tin?post=${post.id}`}
-          className="block rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
+          className="block rounded-xl border border-line px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
         >
           {post.content && (
             <p className="text-sm text-stone-800 dark:text-stone-200 leading-relaxed line-clamp-3 whitespace-pre-wrap break-words">
@@ -74,7 +74,7 @@ export default function ProfileWallPosts({ userId }: { userId: string }) {
               className="mt-2 max-h-32 w-full rounded-lg object-cover"
             />
           )}
-          <div className="mt-2 flex items-center gap-3 text-xs text-stone-400 dark:text-stone-500">
+          <div className="mt-2 flex items-center gap-3 text-xs text-ink-faint">
             <span>{timeAgo(post.created_at, t.libData.timeAgo)}</span>
             <span className="inline-flex items-center gap-1">
               <Heart className="h-3 w-3" /> {post.reaction_count}

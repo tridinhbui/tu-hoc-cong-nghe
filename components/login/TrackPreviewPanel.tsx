@@ -40,7 +40,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
   return (
     <div className={`border border-stone-200/90 dark:border-stone-800 rounded-2xl overflow-hidden bg-white dark:bg-stone-900 shadow-md ${compact ? "mb-8" : ""}`}>
       {/* Top Track Selection Tabs */}
-      <div className={`grid ${Object.keys(TRACKS).length === 3 ? "grid-cols-3" : "grid-cols-2"} border-b border-stone-100 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40`}>
+      <div className={`grid ${Object.keys(TRACKS).length === 3 ? "grid-cols-3" : "grid-cols-2"} border-b border-line-soft bg-stone-50/50 dark:bg-stone-950/40`}>
         {TRACK_IDS.map((id, index) => {
           const trackData = TRACKS[id];
           const isActive = previewTrack === id;
@@ -53,7 +53,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
               className={`relative text-left transition-all cursor-pointer ${compact ? "px-3.5 py-2.5" : "px-5 py-3.5"} ${
                 isActive
                   ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-900 shadow-xs"
-                  : "bg-white/80 dark:bg-stone-900/60 text-stone-500 dark:text-stone-400 hover:bg-stone-100/60 dark:hover:bg-stone-800"
+                  : "bg-white/80 dark:bg-stone-900/60 text-ink-muted hover:bg-stone-100/60 dark:hover:bg-stone-800"
               }`}
             >
               {id === "cfa" && (
@@ -95,7 +95,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-300">
               {t.trackPanel.standardised}
             </span>
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900/50">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-warn bg-warn-soft/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900/50">
               <Flame className="w-3 h-3 text-amber-500" />
               {format(t.trackPanel.xpPerLesson, { xp: XP_PER_LESSON })}
             </span>
@@ -108,7 +108,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           {/* Animated Stage List with Checkmarks */}
           {!compact && t.tracks[previewTrack].stages.length > 0 && (
             <div className="space-y-1.5 pt-1">
-              <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.trackPanel.stagesTitle}</p>
+              <p className="text-[10px] font-black uppercase tracking-wider text-ink-faint">{t.trackPanel.stagesTitle}</p>
               <div className="grid gap-1.5 sm:grid-cols-2">
                 {t.tracks[previewTrack].stages.map((s, idx) => (
                   <motion.div
@@ -116,7 +116,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.25, delay: idx * 0.04 }}
-                    className="flex items-center gap-2 rounded-xl border border-stone-100 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/40 px-3 py-2 text-xs font-semibold text-stone-700 dark:text-stone-300"
+                    className="flex items-center gap-2 rounded-xl border border-line-soft bg-stone-50/70 dark:bg-stone-950/40 px-3 py-2 text-xs font-semibold text-ink-body"
                   >
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                     <span className="truncate">{s}</span>

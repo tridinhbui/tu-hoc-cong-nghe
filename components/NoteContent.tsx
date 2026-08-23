@@ -138,9 +138,9 @@ function KatexSegment({ tex, displayMode }: { tex: string; displayMode: boolean 
   // there's never a blank gap - just briefly unformatted.
   if (html === null) {
     return displayMode ? (
-      <div className="my-2 overflow-x-auto font-mono text-xs text-stone-500 dark:text-stone-400">{tex}</div>
+      <div className="my-2 overflow-x-auto font-mono text-xs text-ink-muted">{tex}</div>
     ) : (
-      <span className="font-mono text-xs text-stone-500 dark:text-stone-400">{tex}</span>
+      <span className="font-mono text-xs text-ink-muted">{tex}</span>
     );
   }
 

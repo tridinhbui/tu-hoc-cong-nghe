@@ -156,7 +156,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                 <span className="block text-xs font-semibold text-stone-400 line-through decoration-stone-300 dark:text-stone-500 dark:decoration-stone-600">
                   “{t.worryReframes[item.id]?.worry ?? item.worry}”
                 </span>
-                <span className="mt-0.5 block text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
+                <span className="mt-0.5 block text-[11px] leading-relaxed text-ink-faint">
                   {t.worrySetDown.done}
                 </span>
               </motion.button>
@@ -184,7 +184,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-2 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 px-4 py-3.5 dark:from-stone-800 dark:to-stone-800/60"
               >
-                <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+                <p className="text-sm leading-relaxed text-ink-body">
                   {t.worryReframes[item.id]?.reframe ?? item.reframe}
                 </p>
                 <div className="mt-3 flex justify-end">
@@ -270,7 +270,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                 // đồng hồ máy người dùng ở đây không gây lệch hydrate.
                 <p
                   key="greeting"
-                  className="text-xs font-semibold leading-relaxed text-stone-500 dark:text-stone-400"
+                  className="text-xs font-semibold leading-relaxed text-ink-muted"
                 >
                   {t.quietGreeting[getQuietGreetingKey(new Date().getHours())]}
                 </p>,
@@ -317,7 +317,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         <h2 className="text-center text-base font-extrabold text-stone-800 dark:text-stone-100">
           {t.quietCorner.breatheTitle}
         </h2>
-        <p className="mx-auto mt-1.5 max-w-md text-center text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+        <p className="mx-auto mt-1.5 max-w-md text-center text-xs leading-relaxed text-ink-muted">
           {t.quietCorner.breatheBlurb}
         </p>
         <BreathingCircle />
@@ -329,7 +329,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           <h2 className="text-base font-extrabold text-stone-800 dark:text-stone-100">
             {t.quietCorner.burdenTitle}
           </h2>
-          <p className="mx-auto mt-1.5 max-w-md text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+          <p className="mx-auto mt-1.5 max-w-md text-xs leading-relaxed text-ink-muted">
             {t.quietCorner.burdenBlurb}
           </p>
         </div>
@@ -368,7 +368,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               </button>
             )}
           </div>
-          <p className="mt-2 text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
+          <p className="mt-2 text-[11px] leading-relaxed text-ink-faint">
             {t.worryThemePrompt.note}
           </p>
         </div>
@@ -377,7 +377,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           <ul className="mt-4 space-y-2.5">{matchedWorries.map(renderWorry)}</ul>
         )}
         {matchedWorries.length > 0 && (
-          <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.18em] text-stone-400 dark:text-stone-500">
+          <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.18em] text-ink-faint">
             {t.worryThemePrompt.restHeading}
           </p>
         )}
@@ -393,7 +393,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         <h2 className="text-center text-base font-extrabold text-stone-800 dark:text-stone-100">
           {t.quietQuestions.title}
         </h2>
-        <p className="mx-auto mt-1.5 max-w-md text-center text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+        <p className="mx-auto mt-1.5 max-w-md text-center text-xs leading-relaxed text-ink-muted">
           {t.quietQuestions.intro}
         </p>
         <ol className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -408,7 +408,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               <p className="mt-1 text-sm font-bold leading-snug text-stone-800 dark:text-stone-100">
                 {t.quietQuestionItems[item.id]?.question ?? item.question}
               </p>
-              <p className="mt-2 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">
                 {t.quietQuestionItems[item.id]?.note ?? item.note}
               </p>
             </li>
@@ -422,7 +422,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           nhưng ấn tượng khép lại nên là một lời cho phép, không phải một lời
           cảnh báo. */}
       <section className="mt-10 px-6 text-center">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-stone-400 dark:text-stone-500">
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-ink-faint">
           {t.quietClosing.title}
         </p>
         {[t.quietClosing.line1, t.quietClosing.line2].map((line) => (
@@ -445,7 +445,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
             <h2 className="text-sm font-extrabold text-stone-700 dark:text-stone-200">
               {t.quietLimits.title}
             </h2>
-            <p className="mt-1.5 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+            <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
               {t.quietLimits.body}
             </p>
           </div>

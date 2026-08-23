@@ -92,7 +92,7 @@ export default function DashboardRecommendations() {
           cho một thông tin mà cái chấm nói xong. */}
       <div className="flex items-center gap-2">
         <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-emerald-500" aria-hidden />
-        <p className="truncate text-[11px] font-semibold tracking-wide text-stone-500 dark:text-stone-400">
+        <p className="truncate text-[11px] font-semibold tracking-wide text-ink-muted">
           {t.recommendations.liveTitle}
         </p>
       </div>
@@ -101,12 +101,12 @@ export default function DashboardRecommendations() {
         <span className="text-[34px] font-black leading-none tracking-tight tabular-nums text-stone-900 dark:text-stone-50">
           {liveCompletedCount.toLocaleString(intlLocale(locale))}
         </span>
-        <span className="text-xs font-semibold text-stone-400 dark:text-stone-500">
+        <span className="text-xs font-semibold text-ink-faint">
           {t.recommendations.lessonsUnit}
         </span>
       </p>
 
-      <p className="mt-2 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+      <p className="mt-2 text-xs leading-relaxed text-ink-muted">
         {t.recommendations.liveSubtitle}
       </p>
     </section>

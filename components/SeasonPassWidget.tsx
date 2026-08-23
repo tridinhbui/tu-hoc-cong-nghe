@@ -61,25 +61,25 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
       {/* Top Banner */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
-          <span className="text-[10px] font-black uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-0.5 rounded-full border border-amber-200 dark:border-amber-900">
+          <span className="text-[10px] font-black uppercase tracking-widest text-warn bg-warn-soft/40 px-2.5 py-0.5 rounded-full border border-amber-200 dark:border-amber-900">
             {t.seasonPass.badge}
           </span>
           <h3 className="text-lg font-black text-stone-900 dark:text-white mt-1">
             {t.seasonPass.title}
           </h3>
-          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+          <p className="text-xs text-ink-muted mt-0.5">
             {t.seasonPass.subtitle}
           </p>
         </div>
 
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/30 border border-amber-300 dark:border-amber-700 px-4 py-2 rounded-2xl text-right">
-          <span className="text-[9px] font-black uppercase text-amber-600 dark:text-amber-400 block">{t.seasonPass.levelLabel}</span>
-          <span className="text-xl font-black text-amber-600 dark:text-amber-400">{format(t.seasonPass.levelValue, { level: currentPassLevel })}</span>
+          <span className="text-[9px] font-black uppercase text-warn block">{t.seasonPass.levelLabel}</span>
+          <span className="text-xl font-black text-warn">{format(t.seasonPass.levelValue, { level: currentPassLevel })}</span>
         </div>
       </div>
 
       {/* Progress Bar */}
-      <div className="w-full bg-stone-100 dark:bg-stone-800 rounded-full h-3 mb-6 overflow-hidden relative">
+      <div className="w-full bg-surface-raised rounded-full h-3 mb-6 overflow-hidden relative">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${(currentPassLevel / 30) * 100}%` }}
@@ -95,10 +95,10 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
             key={r.level}
             className={`border-2 rounded-2xl p-4 transition-all relative overflow-hidden flex flex-col justify-between ${
               r.isClaimed
-                ? "bg-stone-50 dark:bg-stone-950/40 border-stone-200 dark:border-stone-800 opacity-70"
+                ? "bg-stone-50 dark:bg-stone-950/40 border-line opacity-70"
                 : r.isUnlocked
                 ? "bg-gradient-to-b from-amber-50/80 to-white dark:from-amber-950/30 dark:to-stone-900 border-amber-400 dark:border-amber-700 shadow-md"
-                : "bg-stone-50 dark:bg-stone-900/40 border-stone-200 dark:border-stone-800 opacity-60"
+                : "bg-surface/40 border-line opacity-60"
             }`}
           >
             <div className="flex items-center justify-between mb-3">
@@ -116,18 +116,18 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
 
             {/* Reward Items */}
             <div className="space-y-2 mb-4">
-              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 p-2 rounded-xl flex items-center gap-2">
+              <div className="bg-white dark:bg-stone-900 border border-line p-2 rounded-xl flex items-center gap-2">
                 <span className="text-xl">{r.freeEmoji}</span>
                 <div className="min-w-0 flex-1">
                   <span className="text-[9px] font-black uppercase text-stone-400 block">{t.seasonPass.freeLabel}</span>
-                  <p className="text-xs font-black text-stone-900 dark:text-stone-100 truncate">{r.freeReward}</p>
+                  <p className="text-xs font-black text-ink truncate">{r.freeReward}</p>
                 </div>
               </div>
 
               <div className="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-950/40 dark:to-yellow-950/30 border border-amber-300 dark:border-amber-700/60 p-2 rounded-xl flex items-center gap-2">
                 <span className="text-xl">{r.vipEmoji}</span>
                 <div className="min-w-0 flex-1">
-                  <span className="text-[9px] font-black uppercase text-amber-600 dark:text-amber-400 block">{t.seasonPass.vipLabel}</span>
+                  <span className="text-[9px] font-black uppercase text-warn block">{t.seasonPass.vipLabel}</span>
                   <p className="text-xs font-black text-amber-700 dark:text-amber-300 truncate">{r.vipReward}</p>
                 </div>
               </div>

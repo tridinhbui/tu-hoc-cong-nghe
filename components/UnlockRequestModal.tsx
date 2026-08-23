@@ -53,7 +53,7 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
         sent ? (
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold"
+            className="px-4 py-2 rounded-lg bg-surface-invert text-white dark:text-stone-900 text-sm font-bold"
           >
             {t.unlockRequest.close}
           </button>
@@ -61,14 +61,14 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
           <>
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-lg border border-stone-200 dark:border-stone-800 text-sm font-bold text-stone-700 dark:text-stone-300"
+              className="px-4 py-2 rounded-lg border border-line text-sm font-bold text-ink-body"
             >
               {t.unlockRequest.cancel}
             </button>
             <button
               onClick={handleSubmit}
               disabled={submitting}
-              className="px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold disabled:opacity-50"
+              className="px-4 py-2 rounded-lg bg-surface-invert text-white dark:text-stone-900 text-sm font-bold disabled:opacity-50"
             >
               {submitting ? t.unlockRequest.submittingButton : t.unlockRequest.submitButton}
             </button>
@@ -82,7 +82,7 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
         </p>
       ) : (
         <div className="space-y-3">
-          <p className="text-sm text-stone-700 dark:text-stone-300">
+          <p className="text-sm text-ink-body">
             {t.unlockRequest.requiresPrereqPart1} <strong>{lesson.title}</strong> {t.unlockRequest.requiresPrereqPart2}
             {prerequisiteLesson ? (
               <>
@@ -101,7 +101,7 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
             onChange={(e) => setNote(e.target.value)}
             placeholder={t.unlockRequest.notePlaceholder}
             rows={3}
-            className="w-full rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-3 py-2 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400"
+            className="w-full rounded-lg border border-line bg-white dark:bg-stone-900 px-3 py-2 text-sm text-ink placeholder:text-stone-400"
           />
         </div>
       )}

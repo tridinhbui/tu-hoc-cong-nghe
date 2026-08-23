@@ -59,16 +59,16 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
 
   if (done) {
     return (
-      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 text-center">
-        <p className="text-2xl font-black text-stone-900 dark:text-stone-100">
+      <div className="rounded-2xl border border-line bg-white dark:bg-stone-900 p-6 text-center">
+        <p className="text-2xl font-black text-ink">
           {recalled}/{deck.length}
         </p>
-        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{t.highlightReview.recalledSuffix}</p>
+        <p className="text-xs text-ink-muted mt-1">{t.highlightReview.recalledSuffix}</p>
         <div className="flex items-center justify-center gap-2 mt-4">
           <button
             type="button"
             onClick={restart}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2 text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2 text-xs font-bold text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             {t.highlightReview.restart}
@@ -76,7 +76,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
           <button
             type="button"
             onClick={onExit}
-            className="rounded-xl bg-stone-900 dark:bg-stone-100 px-3 py-2 text-xs font-bold text-white dark:text-stone-900 hover:opacity-90 transition-opacity cursor-pointer"
+            className="rounded-xl bg-surface-invert px-3 py-2 text-xs font-bold text-white dark:text-stone-900 hover:opacity-90 transition-opacity cursor-pointer"
           >
             {t.highlightReview.done}
           </button>
@@ -91,7 +91,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+        <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest">
           {format(t.highlightReview.reviewProgress, { current: index + 1, total: deck.length })}
         </p>
         <button
@@ -104,7 +104,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
         </button>
       </div>
 
-      <div className="h-1 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+      <div className="h-1 rounded-full bg-surface-raised overflow-hidden">
         <div
           className="h-full bg-amber-500 transition-all duration-300"
           style={{ width: `${(index / deck.length) * 100}%` }}
@@ -112,13 +112,13 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
       </div>
 
       <div className="rounded-2xl border border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/20 p-4">
-        <p className="text-base leading-relaxed text-stone-900 dark:text-stone-100">{current.quote}</p>
+        <p className="text-base leading-relaxed text-ink">{current.quote}</p>
       </div>
 
       {revealed ? (
-        <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 space-y-3">
+        <div className="rounded-2xl border border-line bg-white dark:bg-stone-900 p-4 space-y-3">
           <div>
-            <p className="text-[11px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
+            <p className="text-[11px] font-black uppercase tracking-wider text-ink-faint">
               {stage.label} · {stage.name}
             </p>
             <Link
@@ -153,7 +153,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
         <button
           type="button"
           onClick={() => setRevealed(true)}
-          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2.5 text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2.5 text-xs font-bold text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
         >
           <Eye className="w-3.5 h-3.5" />
           {t.highlightReview.revealPrompt}

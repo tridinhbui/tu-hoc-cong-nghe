@@ -146,16 +146,16 @@ export default function DiagnosticPlacementModal({
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="relative w-full max-w-lg my-auto rounded-3xl bg-white dark:bg-stone-900 shadow-2xl border border-stone-200 dark:border-stone-800 overflow-hidden"
+          className="relative w-full max-w-lg my-auto rounded-3xl bg-white dark:bg-stone-900 shadow-2xl border border-line overflow-hidden"
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-stone-100 dark:border-stone-800">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-line-soft">
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400">
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-accent">
                 <Compass className="w-4 h-4" />
               </span>
               <div>
-                <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">
+                <h3 className="text-sm font-black text-ink">
                   {t.diagnostic.modalTitle}
                 </h3>
                 <p className="text-[11px] font-bold text-stone-400">{t.diagnostic.modalSubtitle}</p>
@@ -189,7 +189,7 @@ export default function DiagnosticPlacementModal({
                       </button>
                     </div>
 
-                    <p className="font-extrabold text-base text-stone-900 dark:text-stone-100 leading-snug">
+                    <p className="font-extrabold text-base text-ink leading-snug">
                       {q.question}
                     </p>
 
@@ -199,7 +199,7 @@ export default function DiagnosticPlacementModal({
                           key={idx}
                           type="button"
                           onClick={() => handleSelectOption(opt.scoreTrack)}
-                          className="w-full text-left p-3.5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-xs sm:text-sm font-semibold text-stone-800 dark:text-stone-200 transition-all cursor-pointer flex items-center justify-between"
+                          className="w-full text-left p-3.5 rounded-2xl border border-line bg-stone-50 dark:bg-stone-950/60 hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-xs sm:text-sm font-semibold text-stone-800 dark:text-stone-200 transition-all cursor-pointer flex items-center justify-between"
                         >
                           <span>{opt.text}</span>
                           <ArrowRight className="w-4 h-4 text-stone-400 shrink-0" />
@@ -217,10 +217,10 @@ export default function DiagnosticPlacementModal({
                   <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-[10px] font-black uppercase tracking-wider border border-emerald-300 dark:border-emerald-800">
                     {t.diagnostic.resultBadge}
                   </span>
-                  <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 mt-2">
+                  <h3 className="text-lg font-black text-ink mt-2">
                     {rec.title}
                   </h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 max-w-sm mx-auto leading-relaxed">
+                  <p className="text-xs text-ink-muted mt-1 max-w-sm mx-auto leading-relaxed">
                     {rec.desc}
                   </p>
                 </div>

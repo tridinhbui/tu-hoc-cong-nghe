@@ -16,170 +16,183 @@ import type { Lesson } from "./lesson-types";
 
 export const IR_LESSONS: Lesson[] = [
   {
-    id: 1711,
-    interactiveType: "ethics-case",
-    slug: "ir-cong-viec-that-su-la-gi",
-    title: "IR, Bài 1: Quan hệ cổ đông làm gì - và vì sao đó không phải PR",
-    subtitle: "Ba nhóm người IR phục vụ, thứ họ thực sự mua, và ranh giới giữa truyền thông doanh nghiệp với công bố thông tin",
-    duration: "10 phút",
-    difficulty: "Trung bình",
-    emoji: "📣",
-    track: "professional",
-    whyItMatters:
-      "Người mới vào nghề IR thường nghĩ việc của mình là làm doanh nghiệp trông đẹp. Nghĩ vậy sẽ hỏng ngay quý đầu tiên có tin xấu, vì nhà đầu tư không mua câu chuyện đẹp - họ mua khả năng dự đoán được, và một công ty giấu tin xấu là công ty không dự đoán được.",
-    openingQuestion: "Khác biệt cốt lõi giữa IR và PR là gì?",
-    openingOptions: [
-      "IR nói với người bỏ vốn và bị ràng buộc bởi các quy định công bố thông tin chặt",
-      "IR chỉ làm việc với báo chí tài chính còn PR làm việc với báo chí phổ thông",
-      "IR thuộc phòng tài chính còn PR thuộc phòng marketing của doanh nghiệp",
-      "IR dùng số liệu còn PR dùng hình ảnh và câu chuyện thương hiệu để truyền tải",
+    "id": 1711,
+    "slug": "devrel-cong-viec-that-su-la-gi",
+    "title": "DevRel, Bài 1: Quan hệ nhà phát triển làm gì - và vì sao đó không phải tiếp thị",
+    "subtitle": "Ba nhóm người DevRel phục vụ, và thứ mà mỗi nhóm thực sự cần từ bạn.",
+    "duration": "10 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "📣",
+    "interactiveType": "ethics-case",
+    "whyItMatters": "Một đội quan hệ nhà phát triển bị đo bằng chỉ số tiếp thị sẽ làm việc của tiếp thị, và mất đúng thứ khiến nó tồn tại: lòng tin của kỹ sư bên ngoài.",
+    "openingQuestion": "Điều gì phân biệt quan hệ nhà phát triển với tiếp thị sản phẩm?",
+    "openingOptions": [
+      "Nó phải nói được cả những chỗ sản phẩm không dùng được, và nói trước khi bị hỏi",
+      "Nó nhắm tới đối tượng kỹ sư nên nội dung có tính kỹ thuật cao hơn",
+      "Nó tập trung vào xây dựng cộng đồng thay vì thúc đẩy doanh số ngắn hạn",
+      "Nó do người có nền tảng kỹ thuật thực hiện chứ không do người làm truyền thông"
     ],
-    correctOption: 0,
-    explanation:
-      "Khác biệt không nằm ở phòng ban hay ở việc dùng số hay dùng chữ. Nó nằm ở người nghe và ở hậu quả: người nghe của IR đang quyết định bỏ tiền vào hoặc rút tiền ra, và mọi điều IR nói đều nằm dưới quy định công bố thông tin. Một câu PR nói sai thì mất uy tín thương hiệu; một câu IR nói sai thời điểm là công bố thông tin không đúng quy định, và nếu nói riêng cho một nhóm trước khi nói với thị trường thì đó là cung cấp thông tin không công bằng. Đó là lý do IR không được phép làm điều PR làm hằng ngày: chọn thời điểm đẹp nhất để kể một câu chuyện.",
-    diagram: [
-      { label: "Số liệu và kế hoạch từ nội bộ", arrow: true },
-      { label: "IR chuyển thành thông điệp có thể kiểm chứng", arrow: true },
-      { label: "Công bố ĐỒNG THỜI cho toàn thị trường", arrow: true },
-      { label: "Nhà đầu tư định giá lại", arrow: true },
-      { label: "Phản hồi thị trường quay ngược về ban điều hành" },
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều mô tả hình thức và đều đúng ở bề mặt. Điểm phân biệt thật nằm ở nghĩa vụ: một bài viết tiếp thị không cần nói ra giới hạn của sản phẩm, còn một bài viết cho kỹ sư mà giấu giới hạn sẽ bị phát hiện ngay lần đầu có người thử - và lần đó bạn mất nhiều hơn phần đã giành được.",
+    "diagram": [
+      {
+        "label": "Ba nhóm: người đang cân nhắc, người đang dùng, người đang gặp sự cố",
+        "arrow": true
+      },
+      {
+        "label": "Mỗi nhóm cần một thứ khác nhau, và nhóm ba cần nhất",
+        "arrow": true
+      },
+      {
+        "label": "Nghĩa vụ riêng: nói giới hạn TRƯỚC khi bị hỏi",
+        "arrow": true
+      },
+      {
+        "label": "Đo bằng thứ kỹ sư làm được, không bằng lượt xem"
+      }
     ],
-    realWorldExample: {
-      company: "Bộ phận IR của các công ty niêm yết trên HOSE",
-      description:
-        "Ở phần lớn công ty Việt Nam, IR nằm dưới giám đốc tài chính chứ không dưới phòng truyền thông - chính vì nội dung công việc là số liệu và nghĩa vụ công bố, không phải hình ảnh. Nơi nào để IR dưới marketing thường lộ ra ở chỗ báo cáo thường niên đọc như một tờ quảng cáo, và nhà đầu tư tổ chức sẽ hỏi thẳng những gì tờ đó tránh nói.",
+    "realWorldExample": {
+      "company": "Nhóm đang gặp sự cố",
+      "description": "Nhóm ít được đầu tư nhất lại là nhóm quyết định nhiều nhất: người đang gặp sự cố lúc hai giờ sáng. Thứ họ cần không phải một bài giới thiệu mà là một trang nói rõ lỗi này nghĩa là gì và bước tiếp theo là gì."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "Người nghe chính của IR là ai?",
-        options: [
-          "Nhà đầu tư và chuyên viên phân tích",
-          "Khách hàng và những người tiêu dùng cuối",
-          "Nhân viên và ứng viên tuyển dụng của công ty",
-          "Cơ quan báo chí và các kênh truyền thông đại chúng",
+        "question": "Vì sao giấu giới hạn của sản phẩm lại đắt hơn với đối tượng kỹ sư?",
+        "options": [
+          "Vì họ sẽ thử và phát hiện ra, và lần đó bạn mất nhiều hơn phần đã giành được",
+          "Vì kỹ sư có xu hướng hoài nghi hơn so với người mua thông thường",
+          "Vì thông tin sai lan nhanh trong các cộng đồng kỹ thuật trực tuyến",
+          "Vì các giới hạn kỹ thuật thường được ghi trong tài liệu chính thức"
         ],
-        correct: 0,
-        explanation:
-          "IR nói với bên bỏ vốn. Báo chí là kênh, không phải đích - và thông tin tới báo chí trước khi tới thị trường là một vấn đề chứ không phải một thành tích.",
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là yếu tố làm nó tệ thêm. Cơ chế gốc đơn giản hơn: đối tượng này KIỂM ĐƯỢC, và một lần bị bắt nói thiếu làm mọi thứ bạn nói sau đó phải được kiểm lại."
       },
       {
-        question: "Vì sao IR không được chọn thời điểm đẹp để công bố tin xấu?",
-        options: [
-          "Vì quy định buộc công bố khi thông tin phát sinh",
-          "Vì tin xấu công bố muộn sẽ bị báo chí phát hiện và đưa tin trước",
-          "Vì ban điều hành thường muốn công bố sớm để giảm áp lực nội bộ",
-          "Vì nhà đầu tư tổ chức luôn biết trước qua các kênh riêng của họ",
+        "question": "Nhóm nào ít được đầu tư nhất mà lại quyết định nhiều nhất?",
+        "options": [
+          "Người đang gặp sự cố, vì trải nghiệm lúc đó quyết định họ có ở lại không",
+          "Người đang cân nhắc, vì họ là nguồn tăng trưởng của sản phẩm",
+          "Người đang dùng hằng ngày, vì họ tạo ra phần lớn khối lượng thực tế",
+          "Người có ảnh hưởng trong cộng đồng, bởi vì họ lan toả thông tin tương đối nhanh nhất"
         ],
-        correct: 0,
-        explanation:
-          "Thông tin trọng yếu phải được công bố trong thời hạn quy định kể từ khi phát sinh. Chọn thời điểm là đặc quyền của truyền thông thương hiệu, không phải của IR.",
+        "correct": 0,
+        "explanation": "Phần lớn nội dung được làm cho nhóm đang cân nhắc vì nhóm đó dễ đo. Người đang gặp sự cố lúc hai giờ sáng thì không cần một bài giới thiệu - họ cần một trang nói rõ lỗi này nghĩa là gì và bước tiếp theo là gì."
       },
       {
-        question: "Nhà đầu tư tổ chức đánh giá cao điều gì nhất ở một bộ phận IR?",
-        options: [
-          "Tính nhất quán giữa các quý báo cáo",
-          "Khả năng trình bày trực quan và bộ tài liệu được thiết kế đẹp",
-          "Tốc độ phản hồi email và số buổi gặp gỡ tổ chức trong năm",
-          "Quan hệ tốt với công ty chứng khoán đang khuyến nghị mua",
+        "question": "Chỉ số nào phù hợp để đo công việc này?",
+        "options": [
+          "Số kỹ sư đi tới được kết quả đầu tiên, và thời gian họ cần để tới đó",
+          "Lượt xem bài viết và đồng thời số người theo dõi kênh cộng đồng của sản phẩm",
+          "Số sự kiện đã tổ chức và số người tham dự mỗi sự kiện trong quý",
+          "Số câu hỏi được trả lời trong các kênh hỗ trợ cộng đồng mỗi tháng"
         ],
-        correct: 0,
-        explanation:
-          "Đổi thước đo giữa các kỳ là cách nhanh nhất để mất niềm tin, vì nó khiến người ngoài không so sánh được và ai cũng hiểu vì sao thước đo được đổi.",
+        "correct": 0,
+        "explanation": "Ba chỉ số kia đo hoạt động và đều tăng được bằng cách làm nhiều hơn mà không đổi kết quả. Chỉ số này đo thứ kỹ sư LÀM ĐƯỢC, nên nó chỉ cải thiện khi sản phẩm hoặc tài liệu thật sự tốt lên."
       },
       {
-        question: "Cung cấp thông tin trọng yếu riêng cho một quỹ lớn trước khi công bố là gì?",
-        options: [
-          "Vi phạm nguyên tắc công bằng thông tin",
-          "Chăm sóc nhà đầu tư lớn, ngành vẫn chấp nhận",
-          "Rủi ro truyền thông nhưng chưa vi phạm quy định nào",
-          "Hợp lệ nếu bên nhận có cam kết bảo mật",
+        "question": "Vì sao nghĩa vụ công bố thay đổi lại thuộc về đội này?",
+        "options": [
+          "Vì họ là kênh mà người dùng bên ngoài tin, nên im lặng ở đây bị đọc là che giấu",
+          "Vì họ nắm được thông tin sớm nhất về các thay đổi sắp diễn ra",
+          "Vì các quy định về minh bạch yêu cầu có một kênh công bố chính thức",
+          "Vì họ có kỹ năng viết nội dung kỹ thuật rõ ràng cho người ngoài đọc"
         ],
-        correct: 0,
-        explanation:
-          "Đây là lỗi nặng nhất của nghề. Thông tin trọng yếu phải đến với mọi nhà đầu tư cùng lúc, bất kể quy mô tài khoản.",
+        "correct": 0,
+        "explanation": "Lựa chọn cuối mô tả năng lực, không phải nghĩa vụ. Vế then chốt là niềm tin đã được xây: một kênh mà người ta tin thì im lặng ở đó cũng là một thông điệp, và nó là thông điệp xấu nhất."
       },
       {
-        question: "Dấu hiệu nào cho thấy IR đang bị vận hành như PR?",
-        options: [
-          "Báo cáo thường niên không nhắc tới bất kỳ rủi ro cụ thể nào",
-          "Công ty tổ chức nhiều buổi gặp gỡ nhà đầu tư hơn năm trước",
-          "Bộ tài liệu được thiết kế lại theo thương hiệu mới",
-          "Ban điều hành trả lời thay cho IR",
+        "question": "Điều gì xảy ra khi đội này bị đo bằng chỉ số tiếp thị?",
+        "options": [
+          "Họ làm việc của tiếp thị, và mất đúng thứ khiến vai trò này tồn tại",
+          "Họ tập trung vào các kênh có lượng người xem lớn thay vì kênh chuyên sâu",
+          "Họ giảm thời gian dành cho việc hỗ trợ kỹ thuật trực tiếp cho người dùng",
+          "Họ phải báo cáo cho bộ phận tiếp thị thay vì bộ phận kỹ thuật"
         ],
-        correct: 0,
-        explanation:
-          "Một hồ sơ không có rủi ro nào là hồ sơ đang bán hàng. Nhà đầu tư chuyên nghiệp đọc phần rủi ro trước, và phần đó trống nghĩa là họ phải tự đi tìm.",
-      },
+        "correct": 0,
+        "explanation": "Hai lựa chọn giữa là biểu hiện cụ thể của cùng một chuyện. Cách nói này gọn hơn và nó chỉ ra cái mất: lòng tin của kỹ sư bên ngoài là tài sản duy nhất mà vai trò này có, và nó không mua lại được bằng ngân sách."
+      }
     ],
-    practicePrompt: {
-      question:
-        "Một công ty tổ chức buổi gặp riêng với năm quỹ lớn nhất, chia sẻ trước định hướng chiến lược sẽ công bố tuần sau. Đây là gì?",
-      options: [
-        "Công bố thông tin chọn lọc, lỗi nặng nhất của nghề IR",
-        "Thực hành tốt, vì cổ đông lớn xứng đáng được biết trước",
-        "Chấp nhận được nếu năm quỹ đó cam kết không giao dịch",
-        "Vấn đề của bộ phận pháp chế chứ không thuộc phạm vi IR",
+    "keyTakeaways": [
+      "Điểm phân biệt là NGHĨA VỤ nói giới hạn trước khi bị hỏi, không phải hình thức.",
+      "Đối tượng này KIỂM ĐƯỢC - một lần nói thiếu làm mọi thứ sau đó phải kiểm lại.",
+      "Nhóm đang gặp sự cố ít được đầu tư nhất và quyết định nhiều nhất.",
+      "Đo bằng thứ kỹ sư LÀM ĐƯỢC, không bằng lượt xem hay số lần công bố nội dung.",
+      "Bị đo bằng chỉ số tiếp thị thì mất lòng tin - tài sản duy nhất của vai trò này."
+    ],
+    "practicePrompt": {
+      "question": "Sản phẩm của bạn không làm được một việc mà người dùng hay hỏi. Nên làm gì?",
+      "options": [
+        "Viết ra rõ ràng là không làm được, và nêu cách người ta thường xoay xở",
+        "Tránh nhắc tới việc đó và tập trung giới thiệu những gì sản phẩm làm tốt",
+        "Nói rằng tính năng đó đang được cân nhắc cho các phiên bản trong tương lai",
+        "Chuyển câu hỏi sang bộ phận sản phẩm để họ trả lời chính thức"
       ],
-      correct: 0,
-      explanation:
-        "Nói riêng cho một nhóm trước thị trường là lỗi nặng nhất của nghề, và nó không phụ thuộc vào việc nhóm đó có giao dịch hay không: thiệt hại nằm ở chỗ một phần thị trường có thông tin mà phần còn lại không có, và mọi giao dịch xảy ra trong khoảng đó đều diễn ra trên một sân không phẳng. Lời cam kết không giao dịch cũng không giải quyết được, vì thông tin đã ra khỏi công ty thì không thu về được. Quyền của cổ đông lớn nằm ở lá phiếu và ở việc được gặp ban lãnh đạo, không nằm ở việc biết trước - và IR là bộ phận phải nói không, chứ không phải pháp chế.",
+      "correct": 0,
+      "explanation": "Lựa chọn thứ ba là cách phổ biến nhất và nó là một lời hứa ngầm mà bạn không kiểm soát được. Nói thẳng là không làm được kèm cách xoay xở thì người ta ra quyết định được ngay - và họ nhớ rằng bạn nói thật."
     },
-    keyTakeaways: [
-      "IR nói với người bỏ vốn, và mọi câu nói nằm dưới quy định công bố thông tin.",
-      "Không được chọn thời điểm: thông tin trọng yếu công bố khi phát sinh, không khi thuận lợi.",
-      "Nói riêng cho một nhóm trước thị trường là lỗi nặng nhất của nghề.",
-      "Thứ nhà đầu tư mua là tính nhất quán và khả năng dự đoán, không phải câu chuyện đẹp.",
-    ],
-    summary: {
-      keyIdea: "IR nói với người bỏ vốn, và mọi câu nói nằm dưới quy định công bố thông tin",
-      commonMistake: "Coi IR là một nhánh của truyền thông, nên chọn thời điểm nói theo hướng thuận lợi.",
-      action: "Trước mỗi phát ngôn, hỏi: nếu chỉ một nhóm nhà đầu tư nghe được điều này thì có ai bị thiệt không.",
+    "summary": {
+      "keyIdea": "Điểm phân biệt với tiếp thị là nghĩa vụ nói giới hạn trước khi bị hỏi.",
+      "formula": "Ba nhóm người + nói giới hạn trước + đo bằng thứ kỹ sư làm được.",
+      "commonMistake": "Bị đo bằng lượt xem, nên làm việc của tiếp thị và mất lòng tin.",
+      "action": "Viết một trang về một việc sản phẩm bạn KHÔNG làm được."
     },
-    application: {
-      title: "Kiểm tra một bản tin doanh nghiệp",
-      message: "Lấy một thông cáo bất kỳ của doanh nghiệp niêm yết và tách nó làm hai phần: phần là dữ kiện có con số, và phần là tính từ. Tỷ lệ giữa hai phần cho biết đó là công bố thông tin hay quảng cáo.",
-      secondary: "Thứ nhà đầu tư dài hạn mua là tính nhất quán và khả năng dự đoán, không phải câu chuyện đẹp.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một việc mà sản phẩm của bạn không làm được và người dùng hay hỏi, rồi viết một trang nói thẳng điều đó kèm cách người ta thường xoay xở.",
+      "secondary": "Trang đó thường được đọc và được cảm ơn nhiều hơn mọi bài giới thiệu - vì nó là thứ duy nhất giúp người đọc ra quyết định ngay lập tức."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Nghề này bị hiểu nhầm nhiều nhất ở đúng một chỗ: người ta tưởng việc của IR là làm công ty trông hấp dẫn. Việc của IR là làm công ty trở nên dự đoán được - và hai thứ đó thường xung đột nhau.",
-      },
-      { type: "heading", text: "Ba nhóm người nghe" },
-      {
-        type: "conceptTable",
-        title: "IR nói với ai, và họ cần gì",
-        concepts: [
-          { vi: "Nhà đầu tư tổ chức", en: "Institutional investors", def: "Quỹ, công ty bảo hiểm. Cần mô hình dự báo được: họ dựng bảng tính về công ty bạn và cần các giả định của họ không bị phá vỡ mỗi quý." },
-          { vi: "Chuyên viên phân tích", en: "Sell-side analysts", def: "Viết báo cáo cho người khác đọc. Nếu bạn không cấp đủ thông tin, họ vẫn viết - chỉ là viết bằng giả định của riêng họ." },
-          { vi: "Nhà đầu tư cá nhân", en: "Retail investors", def: "Đọc bản tin và mạng xã hội. Nhóm này nhạy nhất với tin đồn, nên khoảng lặng của IR bị lấp bằng thứ khác." },
-        ],
-      },
-      { type: "heading", text: "Ranh giới với truyền thông" },
-      {
-        type: "comparison",
-        left: { label: "PR", text: "Chọn thời điểm, chọn góc kể, nhấn phần mạnh. Sai lầm gây thiệt hại về hình ảnh." },
-        right: { label: "IR", text: "Công bố khi phát sinh, nói cả phần yếu, nói với mọi người cùng lúc. Sai lầm là vấn đề pháp lý và là mất niềm tin dài hạn." },
+        "type": "lead",
+        "text": "Một đội quan hệ nhà phát triển bị đo bằng chỉ số tiếp thị sẽ làm việc của tiếp thị, và mất đúng thứ khiến nó tồn tại: lòng tin của kỹ sư bên ngoài."
       },
       {
-        type: "callout",
-        label: "Câu thử một bộ phận IR",
-        text: "Đọc phần rủi ro trong báo cáo thường niên. Nếu nó liệt kê những rủi ro chung chung mà công ty nào cũng có - biến động vĩ mô, cạnh tranh gay gắt - thì bộ phận đó đang viết cho xong. Phần rủi ro viết nghiêm túc luôn nêu được điều gì đó cụ thể mà chỉ công ty này gặp phải.",
+        "type": "heading",
+        "text": "Ba nhóm người"
       },
       {
-        type: "closing",
-        lines: [
-          "Nhà đầu tư không phạt một công ty vì có quý xấu. Họ phạt một công ty vì quý xấu đến bất ngờ.",
-          "Toàn bộ nghề IR nằm trong khoảng cách giữa hai điều đó.",
-        ],
+        "type": "list",
+        "items": [
+          "NGƯỜI ĐANG CÂN NHẮC: cần biết sản phẩm làm được gì và KHÔNG làm được gì. Nhóm dễ đo nhất, nên phần lớn nội dung được làm cho họ.",
+          "NGƯỜI ĐANG DÙNG hằng ngày: cần tài liệu tra cứu nhanh và ví dụ chạy được.",
+          "NGƯỜI ĐANG GẶP SỰ CỐ: ít được đầu tư nhất, quyết định nhiều nhất."
+        ]
       },
-    ],
+      {
+        "type": "callout",
+        "label": "Nhóm thứ ba cần gì",
+        "text": "Người đang gặp sự cố lúc hai giờ sáng không cần một bài giới thiệu. Họ cần một trang nói rõ lỗi này nghĩa là gì và bước tiếp theo là gì - và trải nghiệm lúc đó quyết định họ có ở lại hay không."
+      },
+      {
+        "type": "heading",
+        "text": "Nghĩa vụ riêng của vai trò này"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Tiếp thị",
+          "text": "Không cần nói ra giới hạn của sản phẩm. Người nghe hiếm khi kiểm được ngay."
+        },
+        "right": {
+          "label": "Quan hệ nhà phát triển",
+          "text": "Đối tượng KIỂM ĐƯỢC. Một lần bị bắt nói thiếu làm mọi thứ bạn nói sau đó phải được kiểm lại."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Hệ quả cho việc đo: đếm số kỹ sư ĐI TỚI ĐƯỢC kết quả đầu tiên và thời gian họ cần, thay vì đếm lượt xem và số sự kiện.",
+          "Ba chỉ số hoạt động kia đều tăng được bằng cách làm nhiều hơn mà không đổi kết quả gì; chỉ số kia chỉ cải thiện khi sản phẩm hoặc tài liệu thật sự tốt lên."
+        ]
+      }
+    ]
   },
 
   {
     id: 1712,
     slug: "ir-cong-bo-thong-tin-va-thoi-diem",
-    title: "IR, Bài 2: Trọng yếu và thời điểm - biết gì thì phải nói, và nói lúc nào",
+    title: "DevRel, Bài 2: Trọng yếu và thời điểm - biết gì thì phải nói, và nói lúc nào",
     subtitle: "Cách nhận ra một thông tin là trọng yếu, thời hạn công bố, và vì sao im lặng cũng là một lựa chọn có hậu quả",
     duration: "11 phút",
     difficulty: "Khó",
@@ -363,7 +376,7 @@ export const IR_LESSONS: Lesson[] = [
     id: 1713,
     interactiveType: "ethics-case",
     slug: "ir-guidance-va-ky-vong-thi-truong",
-    title: "IR, Bài 3: Guidance - đưa ra con số rồi phải sống với nó",
+    title: "DevRel, Bài 3: Lộ trình công bố - đưa ra con số rồi phải sống với nó",
     subtitle: "Vì sao doanh nghiệp công bố kế hoạch, cái giá của việc hụt kế hoạch, và cách đặt khoảng thay vì đặt điểm",
     duration: "11 phút",
     difficulty: "Khó",
@@ -525,187 +538,179 @@ export const IR_LESSONS: Lesson[] = [
   },
 
   {
-    id: 1714,
-    slug: "ir-bo-tai-lieu-va-buoi-gap-nha-dau-tu",
-    title: "IR, Bài 4: Bộ tài liệu và buổi gặp - trả lời câu hỏi khó mà không hứa gì thêm",
-    subtitle: "Cấu trúc một bộ tài liệu nhà đầu tư, chuẩn bị cho câu hỏi bất lợi, và ranh giới không được vượt trong phòng họp kín",
-    duration: "10 phút",
-    difficulty: "Trung bình",
-    emoji: "📊",
-    track: "professional",
-    whyItMatters:
-      "Buổi gặp nhà đầu tư là nơi duy nhất công ty phải trả lời câu hỏi mình không chọn. Chuẩn bị sai ở đây thì hoặc lộ thông tin chưa công bố, hoặc để lại ấn tượng đang né - và cả hai đều đắt hơn một buổi trình bày vụng về.",
-    openingQuestion:
-      "Trong buổi gặp riêng, một quỹ hỏi doanh thu tháng này so với cùng kỳ. Số đó chưa công bố. IR nên làm gì?",
-    openingOptions: [
-      "Từ chối và nói rõ vì sao",
-      "Trả lời chung chung theo hướng tích cực mà không đưa con số cụ thể",
-      "Đưa con số nhưng yêu cầu quỹ giữ kín cho tới ngày công bố chính thức",
-      "Hẹn trả lời sau khi xin ý kiến giám đốc tài chính về mức độ nhạy cảm",
+    "id": 1714,
+    "slug": "devrel-bo-tai-lieu-va-buoi-gap",
+    "title": "DevRel, Bài 4: Bộ tài liệu và buổi gặp - trả lời câu hỏi khó mà không hứa quá",
+    "subtitle": "Một câu trả lời mơ hồ trong buổi gặp sẽ được trích lại nguyên văn ba tháng sau.",
+    "duration": "10 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "📊",
+    "interactiveType": "prompt-craft",
+    "whyItMatters": "Trong một buổi gặp kỹ thuật, thứ gây thiệt hại lâu nhất không phải câu trả lời sai mà là câu trả lời nghe như một lời hứa.",
+    "openingQuestion": "Có người hỏi khi nào tính năng X ra mắt, mà bạn không biết. Trả lời thế nào?",
+    "openingOptions": [
+      "Nói rõ là chưa có mốc, và nói điều kiện nào sẽ làm nó được ưu tiên",
+      "Nói rằng tính năng đó đang trong lộ trình và sẽ có thông tin sau",
+      "Đưa ra một mốc ước lượng để có thể người hỏi có cơ sở lập kế hoạch của họ",
+      "Chuyển câu hỏi cho đội sản phẩm và hẹn trả lời trong thời gian tới"
     ],
-    correctOption: 0,
-    explanation:
-      "Từ chối là câu trả lời đúng, và nói rõ lý do làm nó thành một câu trả lời chuyên nghiệp chứ không phải một cú né: chúng tôi không bình luận về số liệu chưa công bố, và khi công bố thì mọi nhà đầu tư nhận cùng lúc. Phương án trả lời chung chung theo hướng tích cực nghe an toàn nhưng thực chất vẫn truyền tải thông tin trọng yếu - người nghe chuyên nghiệp đọc được rất nhiều từ giọng điệu và mức độ tự tin. Ràng buộc bảo mật không cứu được gì, vì vi phạm nằm ở chỗ thông tin đến với một người trước, không ở chỗ người đó có giữ kín hay không.",
-    diagram: [
-      { label: "Câu hỏi về thông tin chưa công bố", arrow: true },
-      { label: "Từ chối + nêu nguyên tắc", arrow: true },
-      { label: "Ghi lại câu hỏi", arrow: true },
-      { label: "Nếu nhiều người cùng hỏi → đưa vào nội dung công bố kỳ tới" },
+    "correctOption": 0,
+    "explanation": "Lựa chọn thứ hai nghe an toàn nhất và nó là câu nguy hiểm nhất: người nghe sẽ lập kế hoạch dựa trên nó, và ba tháng sau họ trích lại chính câu đó. Nói rõ chưa có mốc thì khó chịu trong ba giây, còn nói ĐIỀU KIỆN ưu tiên thì cho họ thứ dùng được ngay - họ biết cần làm gì để đẩy nó lên.",
+    "diagram": [
+      {
+        "label": "Câu trả lời nghe như lời hứa gây thiệt hại lâu nhất",
+        "arrow": true
+      },
+      {
+        "label": "Chưa có mốc + ĐIỀU KIỆN ưu tiên = câu dùng được ngay",
+        "arrow": true
+      },
+      {
+        "label": "Bộ tài liệu: một trang cho mỗi nhóm câu hỏi, không một bộ chung",
+        "arrow": true
+      },
+      {
+        "label": "Và ghi lại mọi câu chưa trả lời được, kèm ngày trả lời"
+      }
     ],
-    interactiveType: "prompt-craft",
-    realWorldExample: {
-      company: "Buổi gặp nhà đầu tư của doanh nghiệp niêm yết",
-      description:
-        "Bộ tài liệu nhà đầu tư ở nhiều công ty Việt Nam vẫn là bản trình bày bán hàng: thành tích, tăng trưởng, kế hoạch mở rộng. Bộ tài liệu được nhà đầu tư tổ chức đánh giá cao thường có thêm phần ít gặp - những gì đã không diễn ra như dự kiến trong kỳ và công ty đã điều chỉnh thế nào.",
+    "realWorldExample": {
+      "company": "Danh sách câu chưa trả lời được",
+      "description": "Sau mỗi buổi gặp, danh sách những câu bạn không trả lời được là sản phẩm giá trị nhất của buổi đó. Nó vừa là việc cần làm, vừa là dữ liệu về chỗ tài liệu đang thiếu - và nó chỉ tồn tại nếu có người ghi ngay tại chỗ."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "Được hỏi số liệu chưa công bố trong buổi gặp riêng, cách xử lý đúng là gì?",
-        options: [
-          "Từ chối và nêu nguyên tắc công bằng thông tin",
-          "Trả lời theo hướng chung chung, tránh đưa con số cụ thể",
-          "Cung cấp kèm cam kết bảo mật",
-          "Chuyển câu hỏi cho giám đốc tài chính trả lời trực tiếp",
+        "question": "Vì sao câu đang trong lộ trình lại nguy hiểm?",
+        "options": [
+          "Vì người nghe lập kế hoạch dựa trên nó và trích lại nguyên văn về sau",
+          "Vì nó không cung cấp thông tin gì hữu ích cho người đặt câu hỏi",
+          "Vì nó có thể mâu thuẫn với thông tin từ bộ phận khác trong công ty",
+          "Vì nó tạo cảm giác né tránh và làm giảm mức độ tin cậy của người nói"
         ],
-        correct: 0,
-        explanation:
-          "Trả lời chung chung vẫn là truyền tải thông tin - người nghe chuyên nghiệp đọc được nhiều điều từ mức độ tự tin trong câu trả lời.",
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai đúng và nó vô hại. Vấn đề là câu đó nghe như một cam kết mềm: người nghe không phân biệt được lộ trình nội bộ với một lời hứa, và họ không có lý do gì để phân biệt."
       },
       {
-        question: "Phần nào của bộ tài liệu nhà đầu tư tổ chức đọc kỹ nhất?",
-        options: [
-          "Phần nói về những gì đã không diễn ra như dự kiến",
-          "Phần chiến lược và tầm nhìn",
-          "Phần giới thiệu đội ngũ lãnh đạo và kinh nghiệm của từng thành viên",
-          "Phần so sánh các chỉ số tăng trưởng với những doanh nghiệp cùng ngành",
+        "question": "Vì sao nói điều kiện ưu tiên lại hữu ích hơn một mốc thời gian?",
+        "options": [
+          "Vì nó cho người hỏi biết cần làm gì để đẩy tính năng đó lên",
+          "Vì nó tránh được rủi ro pháp lý khi cam kết không được thực hiện",
+          "Vì điều kiện dễ giải thích hơn so với một mốc thời gian cụ thể",
+          "Vì nó cho phép đội linh hoạt điều chỉnh thứ tự công việc về sau"
         ],
-        correct: 0,
-        explanation:
-          "Thành tích thì báo cáo tài chính đã nói. Cách công ty xử lý phần chệch kế hoạch mới cho biết ban điều hành có nhìn rõ hoạt động của mình không.",
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là lợi ích cho PHÍA BẠN. Cái này là lợi ích cho người hỏi, và đó là lý do nó biến một câu từ chối thành một câu dùng được ngay."
       },
       {
-        question: "Chuẩn bị cho một buổi gặp nên bắt đầu từ đâu?",
-        options: [
-          "Liệt kê những câu hỏi bất lợi nhất có thể bị hỏi",
-          "Hoàn thiện bản trình bày và tập thuyết trình cho trôi chảy",
-          "Rà soát lại toàn bộ số liệu tài chính của bốn quý gần nhất",
-          "Tìm hiểu quỹ sắp gặp",
+        "question": "Bộ tài liệu cho buổi gặp nên được tổ chức thế nào?",
+        "options": [
+          "Một trang cho mỗi nhóm câu hỏi hay gặp, thay vì một bộ chung cho mọi buổi",
+          "Một bộ đầy đủ bao quát mọi khía cạnh để dùng được cho mọi tình huống",
+          "Một bản tóm tắt ngắn kèm các tài liệu chi tiết để tham chiếu khi cần",
+          "Một bộ theo cấp độ, từ giới thiệu tổng quan tới chi tiết kỹ thuật sâu"
         ],
-        correct: 0,
-        explanation:
-          "Phần trình bày do công ty kiểm soát nên hiếm khi hỏng. Phần hỏi đáp thì không, và đó là phần quyết định ấn tượng để lại.",
+        "correct": 0,
+        "explanation": "Ba cách kia đều tổ chức theo NỘI DUNG. Tổ chức theo CÂU HỎI thì lúc bị hỏi bạn tìm ra ngay, và mỗi trang cũng gửi lại được cho người hỏi mà không cần cắt gọt gì."
       },
       {
-        question: "Nhiều nhà đầu tư khác nhau cùng hỏi một câu chưa được công bố. Điều đó nghĩa là gì?",
-        options: [
-          "Có một khoảng trống thông tin cần được đưa vào công bố kỳ tới",
-          "Thông tin đó đã bị rò rỉ ra thị trường qua một kênh nào đó",
-          "Các nhà đầu tư phối hợp gây sức ép",
-          "Bộ tài liệu quá dài nên người đọc bỏ sót",
+        "question": "Sản phẩm giá trị nhất của một buổi gặp là gì?",
+        "options": [
+          "Danh sách những câu bạn không trả lời được, ghi ngay tại chỗ",
+          "Danh sách người tham dự và mối quan tâm của từng người",
+          "Bản ghi nội dung buổi gặp để chia sẻ lại cho những người vắng mặt",
+          "Các phản hồi về sản phẩm mà người tham dự đưa ra trong buổi"
         ],
-        correct: 0,
-        explanation:
-          "Câu hỏi lặp lại là dữ liệu quý nhất IR thu được. Nó chỉ ra chính xác chỗ thị trường đang phải tự đoán, và đó là chỗ nên chủ động lấp.",
+        "correct": 0,
+        "explanation": "Ba thứ kia đều hữu ích và đều được ghi. Danh sách câu chưa trả lời được thì vừa là việc cần làm vừa là dữ liệu về chỗ tài liệu đang thiếu - và nó biến mất nếu không ghi ngay tại chỗ."
       },
       {
-        question: "Không biết câu trả lời thì nên làm gì?",
-        options: [
-          "Nói thẳng là chưa có thông tin và hẹn trả lời sau qua kênh công khai",
-          "Đưa ra ước lượng của bản thân và nói rõ đó chỉ là ước lượng",
-          "Chuyển hướng sang một chỉ số khác mà công ty đang làm tốt",
-          "Trả lời theo số liệu của kỳ gần nhất đã được công bố chính thức",
+        "question": "Khi bị hỏi một câu mà câu trả lời trung thực làm sản phẩm trông kém, nên làm gì?",
+        "options": [
+          "Trả lời thẳng, vì nhóm này sẽ tự kiểm được và mất niềm tin thì đắt hơn nhiều",
+          "Trả lời chung chung rồi hẹn cung cấp thông tin chi tiết sau buổi gặp",
+          "Nêu bối cảnh để câu trả lời được hiểu đúng thay vì trả lời trực tiếp",
+          "Chuyển hướng sang những khía cạnh mà sản phẩm làm tốt hơn đối thủ"
         ],
-        correct: 0,
-        explanation:
-          "Ước lượng nói trong phòng họp kín vẫn là thông tin ra riêng cho một nhóm. Hẹn trả lời qua kênh công khai giữ được cả tính công bằng lẫn quan hệ.",
-      },
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba nghe hợp lý và nó rất dễ trượt thành né tránh - người nghe phân biệt được hai chuyện đó ngay. Với đối tượng kiểm được, trả lời thẳng là lựa chọn rẻ nhất tính theo tổng thời gian."
+      }
     ],
-    practicePrompt: {
-      question:
-        "Trong buổi gặp riêng, một quỹ hỏi biên lợi nhuận gộp quý này - số chưa công bố. Cách trả lời đúng là gì?",
-      options: [
-        "Từ chối và nêu nguyên tắc chỉ nói số đã công bố ra công chúng",
-        "Trả lời chung chung theo hướng tích cực để giữ quan hệ với quỹ",
-        "Cho biết xu hướng nhưng không nêu con số cụ thể của quý này",
-        "Trả lời đầy đủ, vì quỹ này đã ký thoả thuận bảo mật với công ty",
+    "keyTakeaways": [
+      "Câu trả lời nghe như LỜI HỨA gây thiệt hại lâu hơn câu trả lời sai.",
+      "Đang trong lộ trình là câu nguy hiểm nhất - người nghe không phân biệt được nó với cam kết.",
+      "Nói ĐIỀU KIỆN ưu tiên: nó cho người hỏi biết cần làm gì để đẩy lên.",
+      "Tổ chức tài liệu theo CÂU HỎI, không theo nội dung - lúc bị hỏi mới tìm ra ngay.",
+      "Ghi ngay danh sách câu chưa trả lời được: vừa là việc cần làm vừa là chỗ tài liệu thiếu."
+    ],
+    "practicePrompt": {
+      "question": "Bạn vừa xong một buổi gặp. Việc đầu tiên trong mười phút sau đó là gì?",
+      "options": [
+        "Ghi lại mọi câu chưa trả lời được, kèm ngày bạn sẽ quay lại trả lời",
+        "Gửi lời cảm ơn và bộ tài liệu cho những người đã tham dự buổi gặp",
+        "Tóm tắt các phản hồi về sản phẩm và chuyển cho đội sản phẩm xử lý",
+        "Ghi lại thông tin liên hệ của những người quan tâm để có thể theo dõi tiếp"
       ],
-      correct: 0,
-      explanation:
-        "Từ chối có nêu lý do là một câu trả lời hợp lệ và không ai mất điểm vì nó - nhà đầu tư tổ chức hiểu quy định công bố thông tin và thường đánh giá cao một bộ phận IR có nguyên tắc rõ ràng, vì nó nghĩa là họ cũng không được kể riêng cho người khác. Nói 'xu hướng nhưng không con số' vẫn là truyền tải thông tin trọng yếu, chỉ ở dạng khó chứng minh hơn; nói chung chung theo hướng tích cực cũng vậy. Và thoả thuận bảo mật không cứu được: vấn đề không phải quỹ đó có giữ kín không, mà là các nhà đầu tư khác không có cùng thông tin tại cùng thời điểm.",
+      "correct": 0,
+      "explanation": "Ba việc kia đều nên làm và đều làm được sau vài giờ. Danh sách câu chưa trả lời thì phai rất nhanh - sau một buổi chiều bạn chỉ còn nhớ hai trong năm câu, và ba câu mất đi thường là ba câu khó nhất."
     },
-    keyTakeaways: [
-      "Từ chối trả lời số chưa công bố, và nêu nguyên tắc - từ chối có lý do không phải là né tránh.",
-      "Trả lời chung chung theo hướng tích cực vẫn là truyền tải thông tin.",
-      "Chuẩn bị bắt đầu từ danh sách câu hỏi bất lợi, không từ bản trình bày.",
-      "Câu hỏi lặp lại nhiều lần là bản đồ chỉ chỗ nên chủ động công bố.",
-    ],
-    summary: {
-      keyIdea: "Từ chối trả lời số chưa công bố là câu trả lời hợp lệ, và nêu rõ nguyên tắc thì không ai mất điểm",
-      commonMistake: "Trả lời chung chung theo hướng tích cực để tránh mất lòng - đó vẫn là truyền tải thông tin chưa công bố.",
-      action: "Trước buổi gặp, viết ra năm câu hỏi bạn ít muốn bị hỏi nhất và chuẩn bị câu trả lời ba phần cho từng câu.",
+    "summary": {
+      "keyIdea": "Một câu trả lời mơ hồ sẽ được trích lại nguyên văn ba tháng sau.",
+      "formula": "Chưa có mốc + điều kiện ưu tiên; tài liệu theo câu hỏi; ghi câu chưa trả lời ngay.",
+      "commonMistake": "Nói đang trong lộ trình - câu nghe an toàn nhất và là cam kết mềm.",
+      "action": "Lập một trang tài liệu cho nhóm câu hỏi bạn hay bị hỏi nhất."
     },
-    application: {
-      title: "Lập nhật ký câu hỏi",
-      message: "Ghi lại mọi câu hỏi ở mọi buổi gặp. Khi cùng một câu xuất hiện lần thứ ba, đó là khoảng trống trong cách công ty đang kể câu chuyện của mình, và cách xử lý là bổ sung vào tài liệu chuẩn.",
-      secondary: "Nhật ký này thường là thứ giá trị nhất mà bộ phận IR mang về cho ban điều hành.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn nhóm câu hỏi mà bạn bị hỏi nhiều nhất và làm một trang riêng cho nó - viết theo câu hỏi, không theo chủ đề.",
+      "secondary": "Trang đó vừa dùng được lúc đang bị hỏi, vừa gửi lại được cho người hỏi ngay sau buổi gặp mà không cần cắt gọt gì."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Phần trình bày là phần công ty kiểm soát, nên nó hiếm khi hỏng. Buổi gặp nhà đầu tư được nhớ hay bị nhớ nằm ở nửa sau, nơi câu hỏi do người khác chọn.",
-      },
-      { type: "heading", text: "Bộ tài liệu nên có gì" },
-      {
-        type: "list",
-        items: [
-          "Mô hình kinh doanh nói bằng con số: doanh thu đến từ đâu, biên bao nhiêu, cái gì đang đổi.",
-          "Kết quả kỳ này so với kế hoạch đã công bố - cả phần đạt lẫn phần không.",
-          "Những gì đã không diễn ra như dự kiến, và công ty điều chỉnh thế nào.",
-          "Rủi ro cụ thể của riêng doanh nghiệp này, không phải rủi ro ngành chung chung.",
-          "Các chỉ số vận hành giữ nguyên định nghĩa qua các kỳ, để so sánh được.",
-        ],
-      },
-      { type: "heading", text: "Ranh giới trong phòng họp kín" },
-      {
-        type: "callout",
-        label: "Câu từ chối chuẩn",
-        text: "\"Chúng tôi không bình luận về số liệu chưa công bố. Khi công bố, mọi nhà đầu tư sẽ nhận cùng một lúc.\" Câu này không làm mất lòng ai - một quỹ chuyên nghiệp hiểu ngay, và thực ra họ đang kiểm tra xem bạn có giữ ranh giới hay không, vì một công ty rò rỉ cho bạn hôm nay sẽ rò rỉ cho người khác vào ngày bạn ở phía bên kia.",
+        "type": "lead",
+        "text": "Trong một buổi gặp kỹ thuật, thứ gây thiệt hại lâu nhất không phải câu trả lời sai mà là câu trả lời nghe như một lời hứa."
       },
       {
-        type: "paragraph",
-        text: "Ghi lại mọi câu hỏi được hỏi. Khi cùng một câu xuất hiện ở ba buổi gặp khác nhau, đó không còn là câu hỏi của ba nhà đầu tư - đó là một khoảng trống trong những gì công ty đang công bố, và lấp nó chủ động luôn rẻ hơn để thị trường tự đoán.",
+        "type": "heading",
+        "text": "Câu nguy hiểm nhất"
       },
       {
-        type: "heading",
-        text: "Chuẩn bị cho câu hỏi bất lợi là phần công việc thật"
+        "type": "callout",
+        "label": "Đang trong lộ trình",
+        "text": "Nó nghe an toàn nhất và nó là một cam kết mềm. Người nghe không phân biệt được lộ trình nội bộ với một lời hứa - và họ không có lý do gì để phân biệt. Ba tháng sau, họ trích lại chính câu đó."
       },
       {
-        type: "paragraph",
-        text: "Phần trình bày là phần công ty kiểm soát nên nó hiếm khi hỏng. Buổi gặp được nhớ hay bị nhớ nằm ở phần hỏi đáp. Cách chuẩn bị hiệu quả nhất là ngồi lại trước buổi gặp và viết ra năm câu hỏi mà mình ít muốn bị hỏi nhất - thường là biên lợi nhuận đang giảm, một khách hàng lớn vừa rời đi, dòng tiền âm quý thứ ba liên tiếp, hoặc một lời hứa năm ngoái chưa thực hiện được. Với mỗi câu, chuẩn bị một câu trả lời có ba phần: thừa nhận đúng vấn đề, nêu con số thật, nói đang làm gì. Câu trả lời né tránh làm người hỏi tin rằng vấn đề còn tệ hơn họ nghĩ."
+        "type": "comparison",
+        "left": {
+          "label": "Chưa có mốc",
+          "text": "Khó chịu trong ba giây, và trung thực."
+        },
+        "right": {
+          "label": "Chưa có mốc + điều kiện ưu tiên",
+          "text": "Dùng được ngay: người hỏi biết cần làm gì để đẩy tính năng đó lên. Đây là lợi ích cho HỌ, không phải cho bạn."
+        }
       },
       {
-        type: "callout",
-        label: "Ranh giới trong phòng họp kín",
-        text: "Trong một buổi gặp riêng, áp lực nói thêm một chút là rất thật - người đối diện đang chăm chú, quan hệ thì quan trọng, và một câu hé lộ nghe như vô hại. Nhưng bất kỳ thông tin trọng yếu nào chưa công bố mà được nói ở đó đều tạo ra lợi thế thông tin cho một nhóm nhà đầu tư. Câu từ chối chuẩn nên thuộc lòng và dùng nguyên văn: chúng tôi không bình luận về số liệu chưa công bố, khi công bố thì mọi nhà đầu tư sẽ nhận cùng một lúc. Nó không làm mất lòng ai, vì người hỏi chuyên nghiệp biết chính xác vì sao bạn phải nói vậy."
+        "type": "heading",
+        "text": "Tổ chức tài liệu theo câu hỏi"
       },
       {
-        type: "paragraph",
-        text: "Ghi lại mọi câu hỏi được hỏi, ở mọi buổi gặp. Khi cùng một câu xuất hiện ở ba buổi khác nhau, đó không còn là mối quan tâm của một nhà đầu tư mà là một khoảng trống trong cách công ty đang kể câu chuyện của mình - và cách xử lý đúng là bổ sung nó vào bộ tài liệu chuẩn, chứ không phải trả lời tốt hơn ở buổi thứ tư. Nhật ký câu hỏi này là sản phẩm giá trị nhất mà bộ phận quan hệ nhà đầu tư mang về cho ban điều hành."
+        "type": "paragraph",
+        "text": "Một trang cho mỗi nhóm câu hỏi hay gặp, thay vì một bộ chung tổ chức theo nội dung. Lúc bị hỏi bạn tìm ra ngay, và mỗi trang cũng gửi lại được cho người hỏi mà không cần cắt gọt."
       },
       {
-        type: "closing",
-        lines: [
-          "Không ai mất điểm vì nói \"chúng tôi chưa công bố con số đó\".",
-          "Người ta mất điểm vì trả lời một câu mà lẽ ra phải từ chối.",
-        ],
-      },
-    ],
+        "type": "closing",
+        "lines": [
+          "Sản phẩm giá trị nhất của một buổi gặp là DANH SÁCH NHỮNG CÂU BẠN KHÔNG TRẢ LỜI ĐƯỢC - nó vừa là việc cần làm, vừa là dữ liệu về chỗ tài liệu đang thiếu.",
+          "Ghi nó NGAY TẠI CHỖ. Sau một buổi chiều bạn chỉ còn nhớ hai trong năm câu, và ba câu mất đi thường là ba câu khó nhất."
+        ]
+      }
+    ]
   },
 
   {
     id: 1715,
     slug: "ir-khung-hoang-va-tin-xau",
-    title: "IR, Bài 5: Tin xấu và khủng hoảng - nói trước khi bị hỏi",
+    title: "DevRel, Bài 5: Tin xấu và khủng hoảng - nói trước khi bị hỏi",
     subtitle: "Trình tự xử lý khi có sự cố, cách viết một thông cáo về tin xấu, và vì sao nhỏ giọt là cách tệ nhất",
     duration: "11 phút",
     difficulty: "Khó",

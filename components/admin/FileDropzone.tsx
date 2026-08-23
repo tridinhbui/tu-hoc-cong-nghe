@@ -81,14 +81,14 @@ export default function FileDropzone({ name, accept, required, label, currentFil
         tabIndex={0}
         className={`flex items-center gap-3 px-4 py-4 rounded-lg border-2 border-dashed cursor-pointer transition-colors ${
           isDragging
-            ? "border-stone-500 bg-stone-100 dark:bg-stone-800"
-            : "border-stone-300 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-600"
+            ? "border-stone-500 bg-surface-raised"
+            : "border-line-strong hover:border-stone-400 dark:hover:border-stone-600"
         }`}
       >
         {displayName ? (
           <>
-            <FileText className="w-5 h-5 text-stone-500 dark:text-stone-400 flex-shrink-0" />
-            <span className="flex-1 min-w-0 text-sm text-stone-700 dark:text-stone-300 truncate">{displayName}</span>
+            <FileText className="w-5 h-5 text-ink-muted flex-shrink-0" />
+            <span className="flex-1 min-w-0 text-sm text-ink-body truncate">{displayName}</span>
             <button
               type="button"
               onClick={clearFile}
@@ -101,7 +101,7 @@ export default function FileDropzone({ name, accept, required, label, currentFil
         ) : (
           <>
             <UploadCloud className="w-5 h-5 text-stone-400 flex-shrink-0" />
-            <span className="text-sm text-stone-500 dark:text-stone-400">
+            <span className="text-sm text-ink-muted">
               {tf.dropHint}
             </span>
           </>

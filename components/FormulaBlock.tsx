@@ -136,7 +136,7 @@ export default function FormulaBlock({
       {/* Variables Explanation Table */}
       {variables.length > 0 && (
         <div className="p-5 bg-stone-50/50 dark:bg-stone-900/60 border-b border-stone-200/80 dark:border-stone-800">
-          <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+          <p className="text-[11px] font-extrabold text-ink-muted uppercase tracking-widest mb-3 flex items-center gap-1.5">
             <HelpCircle className="w-3.5 h-3.5 text-amber-500" />
             {t.formulaBlock.variablesTitle}
           </p>
@@ -146,13 +146,13 @@ export default function FormulaBlock({
                 key={v.symbol}
                 className="flex items-start gap-2.5 bg-white/95 dark:bg-stone-800 p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-700/80 text-xs shadow-2xs"
               >
-                <span className="font-mono font-bold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/60 shrink-0">
+                <span className="font-mono font-bold text-amber-700 dark:text-amber-300 bg-warn-soft/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/60 shrink-0">
                   {v.symbol}
                 </span>
                 <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100">{v.name}</p>
+                  <p className="font-bold text-ink">{v.name}</p>
                   {v.description && (
-                    <p className="text-stone-500 dark:text-stone-400 mt-0.5 leading-normal">
+                    <p className="text-ink-muted mt-0.5 leading-normal">
                       {v.description}
                     </p>
                   )}
@@ -174,14 +174,14 @@ export default function FormulaBlock({
 
           <div className="bg-white dark:bg-stone-900 p-3.5 rounded-xl border border-emerald-200/60 dark:border-emerald-800/60 text-xs space-y-1.5 shadow-2xs">
             <div className="flex items-baseline justify-between gap-2 flex-wrap font-mono font-bold">
-              <span className="text-stone-700 dark:text-stone-300">{format(t.formulaBlock.calculationPrefix, { calculation: example.calculation })}</span>
-              <span className="text-emerald-600 dark:text-emerald-400 text-sm font-extrabold bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-lg border border-emerald-200 dark:border-emerald-800">
+              <span className="text-ink-body">{format(t.formulaBlock.calculationPrefix, { calculation: example.calculation })}</span>
+              <span className="text-accent text-sm font-extrabold bg-accent-soft/60 px-2.5 py-0.5 rounded-lg border border-emerald-200 dark:border-emerald-800">
                 = {example.result}
               </span>
             </div>
 
             {example.explanation && (
-              <p className="text-stone-600 dark:text-stone-400 text-xs pt-1 leading-relaxed border-t border-stone-100 dark:border-stone-800 mt-2">
+              <p className="text-stone-600 dark:text-stone-400 text-xs pt-1 leading-relaxed border-t border-line-soft mt-2">
                 💡 <span className="font-semibold">{example.explanation}</span>
               </p>
             )}

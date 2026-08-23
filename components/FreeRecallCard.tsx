@@ -146,7 +146,7 @@ export default function FreeRecallCard({
         <AnimatePresence mode="wait">
           {phase === "idle" && (
             <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
-              <p className="text-stone-700 dark:text-stone-300 leading-relaxed">
+              <p className="text-ink-body leading-relaxed">
                 {t.freeRecall.idleInstructions}
               </p>
               <div className="flex flex-wrap gap-3">
@@ -158,7 +158,7 @@ export default function FreeRecallCard({
                 </button>
                 <button
                   onClick={skip}
-                  className="text-sm font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline transition"
+                  className="text-sm font-bold text-ink-muted hover:text-stone-900 dark:hover:text-stone-100 underline transition"
                 >
                   {t.freeRecall.skipButton}
                 </button>
@@ -174,12 +174,12 @@ export default function FreeRecallCard({
                 </span>
                 <button
                   onClick={finishWriting}
-                  className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline"
+                  className="text-xs font-bold text-ink-muted hover:text-stone-900 dark:hover:text-stone-100 underline"
                 >
                   {t.freeRecall.finishEarly}
                 </button>
               </div>
-              <div className="h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
+              <div className="h-1.5 bg-surface-raised rounded-full overflow-hidden">
                 <div
                   className="h-full bg-amber-500 rounded-full transition-all duration-1000 ease-linear"
                   style={{ width: `${progressPct}%` }}
@@ -194,7 +194,7 @@ export default function FreeRecallCard({
                 aria-label={t.freeRecall.textareaAriaLabel}
                 className="w-full rounded-xl border-2 border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-950 p-4 text-stone-800 dark:text-stone-100 leading-relaxed focus:outline-hidden focus:border-stone-900 dark:focus:border-stone-400 resize-none"
               />
-              <p className="text-xs text-stone-400 dark:text-stone-500">
+              <p className="text-xs text-ink-faint">
                 {t.freeRecall.privacyNote}
               </p>
             </motion.div>
@@ -202,7 +202,7 @@ export default function FreeRecallCard({
 
           {phase === "scoring" && (
             <motion.div key="scoring" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
-              <p className="text-stone-700 dark:text-stone-300 leading-relaxed">
+              <p className="text-ink-body leading-relaxed">
                 {t.freeRecall.scoringIntro}
               </p>
               <div className="space-y-2">
@@ -215,7 +215,7 @@ export default function FreeRecallCard({
                       aria-pressed={isTicked}
                       className={`w-full text-left flex items-start gap-3 px-4 py-3 rounded-xl border-2 transition-all ${
                         isTicked
-                          ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40"
+                          ? "border-emerald-500 bg-accent-soft/40"
                           : "border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-950 hover:border-stone-400 dark:hover:border-stone-600"
                       }`}
                     >

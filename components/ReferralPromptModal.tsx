@@ -110,7 +110,7 @@ export default function ReferralPromptModal({
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-42 sm:right-[5.5rem] z-50 sm:w-96 bg-white dark:bg-stone-900 rounded-2xl shadow-2xl border border-stone-200 dark:border-stone-800 p-6"
+            className="fixed inset-x-4 bottom-4 sm:inset-x-auto sm:bottom-42 sm:right-[5.5rem] z-50 sm:w-96 bg-white dark:bg-stone-900 rounded-2xl shadow-2xl border border-line p-6"
           >
             <button
               onClick={() => setOpen(false)}
@@ -119,15 +119,15 @@ export default function ReferralPromptModal({
               <X className="w-4 h-4" />
             </button>
 
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-3">
+            <div className="w-12 h-12 rounded-2xl bg-accent-soft/40 text-accent flex items-center justify-center mb-3">
               <Gift className="w-6 h-6" />
             </div>
-            <h2 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">{t.referralPrompt.title}</h2>
-            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1.5 leading-relaxed">
+            <h2 className="text-lg font-extrabold text-ink">{t.referralPrompt.title}</h2>
+            <p className="text-sm text-ink-muted mt-1.5 leading-relaxed">
               {t.referralPrompt.descPart1}{" "}
-              <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.referralPrompt.descBonus, { xp: REFERRER_BONUS_XP })}</span>
+              <span className="font-bold text-accent">{format(t.referralPrompt.descBonus, { xp: REFERRER_BONUS_XP })}</span>
               {t.referralPrompt.descPart2}{" "}
-              <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.referralPrompt.descBonus, { xp: REFERRED_BONUS_XP })}</span>{" "}
+              <span className="font-bold text-accent">{format(t.referralPrompt.descBonus, { xp: REFERRED_BONUS_XP })}</span>{" "}
               {t.referralPrompt.descPart3}
             </p>
 
@@ -143,21 +143,21 @@ export default function ReferralPromptModal({
                 title={t.referralPrompt.copyButtonTitle}
                 className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
-                {copied ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                {copied ? <Check className="w-4 h-4 text-accent" /> : <Copy className="w-4 h-4" />}
               </button>
             </div>
 
             <div className="flex gap-2 mt-4">
               <button
                 onClick={() => setOpen(false)}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-800 text-sm font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-lg border border-line text-sm font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
                 {t.referralPrompt.later}
               </button>
               <Link
                 href="/ban-be"
                 onClick={() => setOpen(false)}
-                className="flex-1 px-4 py-2.5 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold text-center hover:opacity-90 transition-opacity"
+                className="flex-1 px-4 py-2.5 rounded-lg bg-surface-invert text-white dark:text-stone-900 text-sm font-bold text-center hover:opacity-90 transition-opacity"
               >
                 {t.referralPrompt.viewMore}
               </Link>

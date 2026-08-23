@@ -161,7 +161,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           the subtitle shown in the hero above, so there's nothing to
           duplicate here. */}
       {lesson.whyItMatters && (
-        <div className="rounded-xl border-2 border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-5 sm:p-6">
+        <div className="rounded-xl border-2 border-amber-200 dark:border-amber-900 bg-warn-soft/30 p-5 sm:p-6">
           <p className="text-xs font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-500 mb-2">
             {t.lessonPage.whyItMattersTitle}
           </p>
@@ -172,9 +172,9 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       )}
 
       {/* Feynman ELI5 Mode Toggle */}
-      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/80 p-4.5 flex items-center justify-between gap-4">
+      <div className="rounded-2xl border border-line bg-stone-50/60 dark:bg-stone-900/80 p-4.5 flex items-center justify-between gap-4">
         <div className="min-w-0 flex-1">
-          <h4 className="text-xs font-bold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+          <h4 className="text-xs font-bold text-ink flex items-center gap-1.5">
             {t.lessonPage.feynmanTitle}
           </h4>
           <p className="text-[10px] text-stone-600 dark:text-stone-300 mt-1 leading-relaxed">
@@ -206,10 +206,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             <span className="text-2xl animate-bounce">🦖</span>
             <div>
               <h5 className="text-xs font-extrabold text-amber-700 dark:text-amber-300">{t.lessonPage.feynmanCardTitle}</h5>
-              <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wider">{t.lessonPage.feynmanCardSubtitle}</p>
+              <p className="text-[10px] text-ink-muted font-bold uppercase tracking-wider">{t.lessonPage.feynmanCardSubtitle}</p>
             </div>
           </div>
-          <div className="text-xs leading-relaxed text-stone-700 dark:text-stone-300 space-y-3 font-medium">
+          <div className="text-xs leading-relaxed text-ink-body space-y-3 font-medium">
             <p>
               {t.lessonPage.feynmanIntroPart1} <strong>&quot;{lesson.title}&quot;</strong> {t.lessonPage.feynmanIntroPart2}
             </p>
@@ -219,8 +219,8 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             </div>
             {metaphorTyped && (
               <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
-                <p className="font-semibold text-stone-900 dark:text-stone-100">{t.lessonPage.feynmanTakeawaysTitle}</p>
-                <ul className="list-disc pl-4 space-y-1.5 text-stone-700 dark:text-stone-300">
+                <p className="font-semibold text-ink">{t.lessonPage.feynmanTakeawaysTitle}</p>
+                <ul className="list-disc pl-4 space-y-1.5 text-ink-body">
                   {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => (
                     <li key={idx}>
                       <strong>{takeaway.split(" - ")[0]}</strong>: {takeaway.split(" - ")[1] || takeaway}
@@ -263,10 +263,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       ) : (
         lesson.explanation && (
           <div className="space-y-3">
-            <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+            <div className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">
               {t.lessonPage.explanationTitle}
             </div>
-            <p className="text-stone-700 dark:text-stone-300 leading-relaxed text-base">
+            <p className="text-ink-body leading-relaxed text-base">
               {highlightGlossaryTerms(lesson.explanation, new Set())}
             </p>
           </div>
@@ -282,13 +282,13 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 3. Diagram block */}
       {lesson.diagram && lesson.diagram.length > 0 && (
         <div className="space-y-4">
-          <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+          <div className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">
             {t.lessonPage.diagramTitle}
           </div>
-          <div className="flex flex-col items-center py-4 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-stone-100 dark:border-stone-800">
+          <div className="flex flex-col items-center py-4 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-line-soft">
             {lesson.diagram.map((node: { label: string; arrow?: boolean }, i: number) => (
               <React.Fragment key={i}>
-                <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-xl px-5 py-3.5 text-stone-700 dark:text-stone-300 font-semibold text-sm text-center w-full max-w-xs shadow-sm">
+                <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-xl px-5 py-3.5 text-ink-body font-semibold text-sm text-center w-full max-w-xs shadow-sm">
                   {node.label}
                 </div>
                 {node.arrow && i < lesson.diagram.length - 1 && (
@@ -308,7 +308,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           không khớp đó khỏi TypeScript. */}
       {hasInteractiveWidget(lesson.interactiveType) && (
         <div className="space-y-3">
-          <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+          <div className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">
             {t.lessonPage.interactiveTitle}
           </div>
           <InteractiveWidget type={lesson.interactiveType} />
@@ -318,10 +318,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 4.5. Visual summary image (optional hand-crafted infographic recap) */}
       {lesson.summaryImage && (
         <div className="space-y-3">
-          <div className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+          <div className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">
             {t.lessonPage.summaryImageTitle}
           </div>
-          <div className="rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-lg">
+          <div className="rounded-2xl overflow-hidden border border-line shadow-lg">
             <Image
               src={lesson.summaryImage}
               alt={format(t.lessonPage.summaryImageAlt, { title: lesson.title })}
@@ -335,11 +335,11 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
 
       {/* 5. Real-life Example block */}
       {lesson.realWorldExample && lesson.realWorldExample.company && (
-        <div className="border border-stone-200 dark:border-stone-800 rounded-2xl p-6 bg-stone-50 dark:bg-stone-900/50 space-y-3">
-          <p className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+        <div className="border border-line rounded-2xl p-6 bg-surface/50 space-y-3">
+          <p className="text-xs font-bold text-ink-muted uppercase tracking-widest">
             {format(t.lessonPage.realWorldExampleTitle, { company: lesson.realWorldExample.company })}
           </p>
-          <p className="text-stone-700 dark:text-stone-300 text-base leading-relaxed">
+          <p className="text-ink-body text-base leading-relaxed">
             {lesson.realWorldExample.description}
           </p>
         </div>

@@ -86,12 +86,12 @@ function FeedSkeleton() {
             <div className="min-w-0 flex-1">
               <div className="h-4 w-36 animate-pulse rounded-full bg-stone-200 dark:bg-stone-800" />
               <div className="mt-4 space-y-2">
-                <div className="h-3 w-full animate-pulse rounded-full bg-stone-100 dark:bg-stone-800" />
-                <div className="h-3 w-4/5 animate-pulse rounded-full bg-stone-100 dark:bg-stone-800" />
+                <div className="h-3 w-full animate-pulse rounded-full bg-surface-raised" />
+                <div className="h-3 w-4/5 animate-pulse rounded-full bg-surface-raised" />
               </div>
               <div className="mt-5 flex gap-2">
-                <div className="h-8 w-28 animate-pulse rounded-full bg-stone-100 dark:bg-stone-800" />
-                <div className="h-8 w-24 animate-pulse rounded-full bg-stone-100 dark:bg-stone-800" />
+                <div className="h-8 w-28 animate-pulse rounded-full bg-surface-raised" />
+                <div className="h-8 w-24 animate-pulse rounded-full bg-surface-raised" />
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
       className="rounded-full object-cover ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0"
     />
   ) : (
-    <div className="w-11 h-11 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 font-extrabold flex items-center justify-center ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0">
+    <div className="w-11 h-11 rounded-full bg-stone-200 dark:bg-stone-700 text-ink-body font-extrabold flex items-center justify-center ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0">
       {initials}
     </div>
   );
@@ -394,7 +394,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
   const totalVotes = options.reduce((acc, curr) => acc + curr.votes, 0);
 
   return (
-    <div className="mt-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-teal-500/10 border border-amber-500/30 text-stone-900 dark:text-stone-100 font-sans space-y-3 shadow-xs">
+    <div className="mt-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-teal-500/10 border border-amber-500/30 text-ink font-sans space-y-3 shadow-xs">
       <div className="flex items-center justify-between">
         <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[10px] font-black uppercase tracking-wider">
           {t.feed.pollTitle}
@@ -402,7 +402,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
         <span className="text-[10px] font-bold text-stone-400">{format(t.feed.pollVoteCount, { count: totalVotes })}</span>
       </div>
 
-      <p className="font-black text-sm text-stone-900 dark:text-stone-100 leading-snug">
+      <p className="font-black text-sm text-ink leading-snug">
         {metadata.question}
       </p>
 
@@ -420,7 +420,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
               className={`relative w-full text-left p-3 rounded-xl border text-xs font-bold transition-all overflow-hidden cursor-pointer ${
                 isMyChoice
                   ? "border-emerald-500 bg-emerald-500/15 text-emerald-900 dark:text-emerald-200 ring-2 ring-emerald-400/40"
-                  : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-400"
+                  : "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-stone-400"
               }`}
             >
               {/* Animated Progress Fill Bar */}
@@ -435,7 +435,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
                   {isMyChoice && <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />}
                   {opt.text}
                 </span>
-                <span className="font-black text-stone-500 dark:text-stone-400">{pct}% ({opt.votes})</span>
+                <span className="font-black text-ink-muted">{pct}% ({opt.votes})</span>
               </div>
             </button>
           );
@@ -1082,13 +1082,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <button
                   type="button"
                   onClick={() => setIsComposeModalOpen(true)}
-                  className="flex-1 rounded-full bg-stone-100 dark:bg-stone-800/80 px-4 py-2.5 text-left text-xs sm:text-sm font-medium text-stone-500 dark:text-stone-400 hover:bg-stone-200/70 dark:hover:bg-stone-700 transition-colors cursor-pointer"
+                  className="flex-1 rounded-full bg-surface-raised/80 px-4 py-2.5 text-left text-xs sm:text-sm font-medium text-ink-muted hover:bg-stone-200/70 dark:hover:bg-stone-700 transition-colors cursor-pointer"
                 >
                   {format(t.feed.composerPrompt, { name: (user.user_metadata?.full_name || t.feed.composerFallbackName).split(" ").pop() ?? "" })}
                 </button>
               </div>
 
-              <div className="mt-3 pt-2.5 border-t border-stone-100 dark:border-stone-800 flex items-center justify-around sm:justify-between px-1">
+              <div className="mt-3 pt-2.5 border-t border-line-soft flex items-center justify-around sm:justify-between px-1">
                 <button
                   type="button"
                   onClick={() => setIsComposeModalOpen(true)}
@@ -1125,11 +1125,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 12 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="relative w-full max-w-lg rounded-2xl bg-white dark:bg-stone-900 shadow-2xl border border-stone-200 dark:border-stone-800 overflow-hidden flex flex-col max-h-[90vh]"
+                    className="relative w-full max-w-lg rounded-2xl bg-white dark:bg-stone-900 shadow-2xl border border-line overflow-hidden flex flex-col max-h-[90vh]"
                   >
                     {/* Modal Header */}
-                    <div className="flex items-center justify-between px-4 py-3 border-b border-stone-100 dark:border-stone-800 relative">
-                      <h3 className="w-full text-center text-base font-black text-stone-900 dark:text-stone-100">
+                    <div className="flex items-center justify-between px-4 py-3 border-b border-line-soft relative">
+                      <h3 className="w-full text-center text-base font-black text-ink">
                         {t.feed.createPost}
                       </h3>
                       <button
@@ -1147,12 +1147,12 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       <div className="flex items-center gap-3">
                         <Avatar name={user?.user_metadata?.full_name || t.feed.anonMember} avatarUrl={user?.user_metadata?.avatar_url} />
                         <div>
-                          <p className="text-sm font-black text-stone-900 dark:text-stone-100">
+                          <p className="text-sm font-black text-ink">
                             {user?.user_metadata?.full_name || t.feed.memberRole}
                           </p>
                           <div className="flex flex-wrap items-center gap-1.5 mt-1">
 
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/50">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-accent-soft/40 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 border border-accent-line/50">
                               {t.feed.visibilityPublic}
                             </span>
                           </div>
@@ -1166,12 +1166,12 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         placeholder={format(t.feed.composerPlaceholder, { name: (user?.user_metadata?.full_name || t.feed.composerFallbackName).split(" ").pop() ?? "" })}
                         rows={6}
                         autoFocus
-                        className="w-full resize-none border-0 text-base sm:text-lg text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none bg-transparent"
+                        className="w-full resize-none border-0 text-base sm:text-lg text-ink placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none bg-transparent"
                       />
 
                       {/* Image Preview Area */}
                       {imagePreview && (
-                        <div className="relative overflow-hidden rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 max-h-60">
+                        <div className="relative overflow-hidden rounded-xl border border-line bg-stone-50 dark:bg-stone-950/60 max-h-60">
                           <img src={imagePreview} alt={t.feed.previewAlt} className="w-full h-auto max-h-56 object-cover rounded-xl" />
                           <button
                             type="button"
@@ -1205,7 +1205,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             value={pollQuestion}
                             onChange={(e) => setPollQuestion(e.target.value)}
                             placeholder={t.feed.pollQuestionPlaceholder}
-                            className="w-full px-3 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs font-semibold text-stone-900 dark:text-stone-100 focus:outline-none"
+                            className="w-full px-3 py-2 rounded-xl border border-line bg-white dark:bg-stone-900 text-xs font-semibold text-ink focus:outline-none"
                           />
 
                           <div className="space-y-2">
@@ -1219,7 +1219,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                     setPollOptions((prev) => prev.map((o, i) => (i === idx ? val : o)));
                                   }}
                                   placeholder={format(t.feed.pollOptionPlaceholder, { index: idx + 1 })}
-                                  className="flex-1 px-3 py-1.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs text-stone-900 dark:text-stone-100 focus:outline-none"
+                                  className="flex-1 px-3 py-1.5 rounded-xl border border-line bg-white dark:bg-stone-900 text-xs text-ink focus:outline-none"
                                 />
                                 {pollOptions.length > 2 && (
                                   <button
@@ -1246,8 +1246,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       )}
 
                       {/* Add-ons Toolbar Box (Facebook Style "Thêm vào bài viết của bạn") */}
-                      <div className="flex items-center justify-between rounded-xl border border-stone-200 dark:border-stone-800 p-3 bg-stone-50/70 dark:bg-stone-950/40">
-                        <span className="text-xs font-black text-stone-700 dark:text-stone-300">
+                      <div className="flex items-center justify-between rounded-xl border border-line p-3 bg-stone-50/70 dark:bg-stone-950/40">
+                        <span className="text-xs font-black text-ink-body">
                           {t.feed.addToPost}
                         </span>
                         <div className="flex items-center gap-1.5">
@@ -1255,7 +1255,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="p-2 rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 transition-colors cursor-pointer"
+                            className="p-2 rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-accent transition-colors cursor-pointer"
                             title={t.feed.addImageTitle}
                           >
                             <ImageIcon className="w-5 h-5" />
@@ -1269,7 +1269,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             className={`p-2 rounded-full transition-colors cursor-pointer ${
                               isPollMode
                                 ? "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300"
-                                : "hover:bg-amber-50 dark:hover:bg-amber-950/40 text-amber-600 dark:text-amber-400"
+                                : "hover:bg-amber-50 dark:hover:bg-amber-950/40 text-warn"
                             }`}
                             title={t.feed.addPollTitle}
                           >
@@ -1281,7 +1281,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     </div>
 
                     {/* Modal Footer / Submit Button */}
-                    <div className="p-3 border-t border-stone-100 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/20">
+                    <div className="p-3 border-t border-line-soft bg-stone-50/40 dark:bg-stone-950/20">
                       <button
                         type="button"
                         onClick={handlePost}
@@ -1303,7 +1303,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
           <FeedSkeleton />
         ) : visiblePosts.length === 0 ? (
           <div className="py-12 text-center">
-            <p className="text-sm text-stone-500 dark:text-stone-400">
+            <p className="text-sm text-ink-muted">
               {t.feed.feedEmptyNoPosts}
             </p>
             {/* Không còn ô tìm kiếm nên dòng rỗng CHỈ có thể vì chưa ai đăng
@@ -1354,11 +1354,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         {badge.label}
                       </span>
                       {post.kind === "streak" && (
-                        <span className="flex items-center gap-1 text-[10px] font-bold text-red-600 dark:text-red-300 bg-red-50 dark:bg-red-950/30 px-2 py-0.5 rounded-full">
+                        <span className="flex items-center gap-1 text-[10px] font-bold text-red-600 dark:text-red-300 bg-danger-soft/30 px-2 py-0.5 rounded-full">
                           <Flame className="flame-burn w-3 h-3 fill-current" /> {t.feed.streak}
                         </span>
                       )}
-                      <span className="flex items-center gap-1 text-xs text-stone-400 dark:text-stone-500">
+                      <span className="flex items-center gap-1 text-xs text-ink-faint">
                         <Clock3 className="h-3 w-3" />
                         {timeAgo(post.created_at, t.libData.timeAgo)}
                       </span>
@@ -1366,7 +1366,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         // Readers who already reacted deserve to know the text
                         // moved after they did.
                         <span
-                          className="text-xs text-stone-400 dark:text-stone-500"
+                          className="text-xs text-ink-faint"
                           title={format(t.feed.editedAt, { when: timeAgo(post.edited_at, t.libData.timeAgo) })}
                         >
                           {t.feed.edited}
@@ -1396,7 +1396,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           className="w-full resize-none rounded-2xl border border-stone-200 bg-white p-3 text-[15px] leading-7 text-stone-800 outline-none focus:border-emerald-400 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
                         />
                         <div className="mt-2 flex items-center justify-between gap-3">
-                          <span className="text-[11px] font-bold tabular-nums text-stone-400 dark:text-stone-500">
+                          <span className="text-[11px] font-bold tabular-nums text-ink-faint">
                             {editDraft.trim().length}/{MANUAL_POST_MAX_LENGTH}
                           </span>
                           <div className="flex items-center gap-2">
@@ -1570,7 +1570,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 hover:scale-105 active:scale-95 cursor-pointer shrink-0 ${
                                   post.my_reaction === item
                                     ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800"
-                                    : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-700"
+                                    : "bg-surface-raised text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-700"
                                 }`}
                               >
                                 <span>{item}</span>
@@ -1667,7 +1667,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 <Avatar name={comment.user_name} avatarUrl={comment.user_avatar} />
                                 <div className="min-w-0 flex-1">
                                   <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="text-sm font-black text-stone-900 dark:text-stone-100">{comment.user_name}</span>
+                                    <span className="text-sm font-black text-ink">{comment.user_name}</span>
                                     <span className="text-xs text-stone-400">{timeAgo(comment.created_at, t.libData.timeAgo)}</span>
                                     {comment.edited_at && (
                                       <span className="text-xs text-stone-400" title={format(t.feed.editedAt, { when: timeAgo(comment.edited_at, t.libData.timeAgo) })}>
@@ -1787,7 +1787,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               >
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-5 w-5 text-emerald-600" />
-                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.rulesTitle}</h2>
+                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-ink">{t.feed.rulesTitle}</h2>
                 </div>
                 {rulesOpen ? <ChevronUp className="h-4 w-4 text-stone-400" /> : <ChevronDown className="h-4 w-4 text-stone-400" />}
               </button>
@@ -1798,7 +1798,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="overflow-hidden mt-3 pt-3 border-t border-stone-100 dark:border-stone-800 space-y-2 text-xs font-medium text-stone-600 dark:text-stone-300"
+                    className="overflow-hidden mt-3 pt-3 border-t border-line-soft space-y-2 text-xs font-medium text-stone-600 dark:text-stone-300"
                   >
                     <p>{t.feed.rule1}</p>
                     <p>{t.feed.rule2}</p>
@@ -1810,7 +1810,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.streakBoardTitle}</h2>
+                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-ink">{t.feed.streakBoardTitle}</h2>
                 <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[11px] font-black text-red-600 dark:bg-red-950/40 dark:text-red-300">
                   <Flame className="flame-burn h-3.5 w-3.5 fill-current" />
                   {todayStreakPosts.length}
@@ -1830,8 +1830,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     >
                       <Avatar name={post.user_name} avatarUrl={post.user_avatar} />
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{post.user_name}</p>
-                        <p className="truncate text-[11px] font-medium text-stone-500 dark:text-stone-400">
+                        <p className="truncate text-xs font-bold text-ink">{post.user_name}</p>
+                        <p className="truncate text-[11px] font-medium text-ink-muted">
                           {timeAgo(post.created_at, t.libData.timeAgo)}
                         </p>
                       </div>
@@ -1844,7 +1844,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.trendingTitle}</h2>
+                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-ink">{t.feed.trendingTitle}</h2>
                 <TrendingUp className="h-5 w-5 text-amber-500" />
               </div>
               {hotPosts.length === 0 ? (
@@ -1857,9 +1857,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-xs font-black text-white dark:bg-stone-100 dark:text-stone-900">
                           {index + 1}
                         </span>
-                        <p className="truncate text-sm font-bold text-stone-900 dark:text-stone-100">{post.user_name}</p>
+                        <p className="truncate text-sm font-bold text-ink">{post.user_name}</p>
                       </div>
-                      <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-stone-500 dark:text-stone-400">
+                      <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-ink-muted">
                         {post.content || t.feed.postWithImage}
                       </p>
                       <div className="mt-2 flex items-center gap-3 text-[11px] font-bold text-stone-400">
@@ -1875,7 +1875,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <div className="flex items-center gap-2">
                 <Bookmark className="h-5 w-5 text-sky-600" />
-                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.promptsTitle}</h2>
+                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-ink">{t.feed.promptsTitle}</h2>
               </div>
               <div className="mt-4 grid gap-2">
                 {[

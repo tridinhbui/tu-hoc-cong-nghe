@@ -57,10 +57,10 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
 
   if (rows.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 p-6 text-center">
+      <div className="rounded-2xl border border-dashed border-line-strong p-6 text-center">
         <Highlighter className="w-6 h-6 mx-auto text-stone-300 dark:text-stone-600 mb-2" />
-        <p className="text-sm font-bold text-stone-700 dark:text-stone-300">{t.highlightNotebook.emptyTitle}</p>
-        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
+        <p className="text-sm font-bold text-ink-body">{t.highlightNotebook.emptyTitle}</p>
+        <p className="text-xs text-ink-muted mt-1 leading-relaxed">
           {t.highlightNotebook.emptySubtitle}
         </p>
       </div>
@@ -81,7 +81,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
   return (
     <div className="space-y-3.5">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+        <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest">
           {format(t.highlightNotebook.countLabel, { count: rows.length })}
         </p>
         <button

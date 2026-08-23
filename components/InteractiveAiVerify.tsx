@@ -62,7 +62,7 @@ export default function InteractiveAiVerify() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
+      <h3 className="text-sm font-extrabold text-ink">
         {tr.title}
       </h3>
       <p className="mt-2 whitespace-pre-line rounded-2xl bg-stone-50 p-3 text-[11px] leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">

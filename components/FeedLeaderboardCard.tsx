@@ -53,10 +53,10 @@ export default function FeedLeaderboardCard() {
       <div className="flex items-center gap-2">
         <Trophy className="h-5 w-5 text-amber-500" />
         <div className="min-w-0">
-          <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">
+          <h2 className="text-sm font-black uppercase tracking-[0.14em] text-ink">
             {t.feed.rankTitle}
           </h2>
-          <p className="text-[11px] font-medium text-stone-500 dark:text-stone-400">{t.feed.rankSub}</p>
+          <p className="text-[11px] font-medium text-ink-muted">{t.feed.rankSub}</p>
         </div>
       </div>
 
@@ -78,10 +78,10 @@ export default function FeedLeaderboardCard() {
               {index + 1}
             </span>
             <Avatar key={row.avatarUrl ?? row.user_id} name={row.name} url={row.avatarUrl} size={28} />
-            <p className="min-w-0 flex-1 truncate text-xs font-bold text-stone-900 dark:text-stone-100">
+            <p className="min-w-0 flex-1 truncate text-xs font-bold text-ink">
               {row.name}
             </p>
-            <span className="shrink-0 text-[11px] font-black tabular-nums text-emerald-600 dark:text-emerald-400">
+            <span className="shrink-0 text-[11px] font-black tabular-nums text-accent">
               {row.value.toLocaleString()} {t.feed.rankXpUnit}
             </span>
           </div>

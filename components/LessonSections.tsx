@@ -21,7 +21,7 @@ function renderFormattedText(text: string, seenTerms: Set<string>): React.ReactN
           if (part.startsWith("**") && part.endsWith("**")) {
             const inner = part.slice(2, -2);
             return (
-              <strong key={pIdx} className="font-extrabold text-stone-900 dark:text-stone-100">
+              <strong key={pIdx} className="font-extrabold text-ink">
                 {highlightGlossaryTerms(inner, seenTerms)}
               </strong>
             );
@@ -100,7 +100,7 @@ export default function LessonSections({
 
       case "callout":
         return (
-          <div key={i} className="border-l-4 border-l-stone-900 dark:border-l-amber-400 bg-stone-50 dark:bg-stone-900/80 rounded-r-2xl p-5 sm:p-6 space-y-2 border border-stone-200 dark:border-stone-800 my-6">
+          <div key={i} className="border-l-4 border-l-stone-900 dark:border-l-amber-400 bg-surface/80 rounded-r-2xl p-5 sm:p-6 space-y-2 border border-line my-6">
             <p className="text-xs font-black text-stone-500 dark:text-stone-300 uppercase tracking-widest">{block.label}</p>
             <div className="text-stone-800 dark:text-stone-100 text-base leading-relaxed">{renderFormattedText(block.text, seenTerms)}</div>
           </div>
@@ -110,7 +110,7 @@ export default function LessonSections({
         return (
           <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
             {[block.left, block.right].map((side) => (
-              <div key={side.label} className="border border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-stone-900 rounded-2xl p-5 space-y-2 shadow-2xs">
+              <div key={side.label} className="border border-line bg-white/95 dark:bg-stone-900 rounded-2xl p-5 space-y-2 shadow-2xs">
                 <p className="text-xs font-black text-stone-500 dark:text-stone-300 uppercase tracking-widest">{side.label}</p>
                 <div className="text-base text-stone-700 dark:text-stone-100 leading-relaxed">{renderFormattedText(side.text, seenTerms)}</div>
               </div>
@@ -133,8 +133,8 @@ export default function LessonSections({
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-3 flex-wrap">
-                      <span className="font-bold text-stone-900 dark:text-stone-100 text-base group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-colors">{vi}</span>
-                      <span className="text-sm text-stone-500 dark:text-stone-300 font-mono bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded group-hover:bg-stone-200 dark:group-hover:bg-stone-700 transition-colors">{en}</span>
+                      <span className="font-bold text-ink text-base group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-colors">{vi}</span>
+                      <span className="text-sm text-stone-500 dark:text-stone-300 font-mono bg-surface-raised px-2 py-0.5 rounded group-hover:bg-stone-200 dark:group-hover:bg-stone-700 transition-colors">{en}</span>
                     </div>
                     <p className="text-stone-500 dark:text-stone-300 text-base mt-1 leading-relaxed group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-colors">{def}</p>
                   </div>

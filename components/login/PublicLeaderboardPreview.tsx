@@ -112,7 +112,7 @@ export default function PublicLeaderboardPreview() {
   return (
     <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-sm relative font-sans">
       {/* Header Bar with Live Indicator & Metric Tabs */}
-      <div className="border-b border-stone-100 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-950/40 px-4 py-3 sm:px-6">
+      <div className="border-b border-line-soft bg-stone-50/60 dark:bg-stone-950/40 px-4 py-3 sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <span className="relative flex h-2.5 w-2.5">
@@ -169,10 +169,10 @@ export default function PublicLeaderboardPreview() {
         <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/40 p-2.5 sm:p-3 relative overflow-hidden">
           <div className="mb-1.5 flex items-center justify-between">
             <div>
-              <p className="text-[9px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+              <p className="text-[9px] font-black uppercase tracking-widest text-accent">
                 {t.leaderboardPreview.podiumBadge}
               </p>
-              <p className="text-xs font-black text-stone-900 dark:text-stone-100 mt-0.5">
+              <p className="text-xs font-black text-ink mt-0.5">
                 {metric === "xp" && t.leaderboardPreview.podiumTitleXp}
                 {metric === "streak" && t.leaderboardPreview.podiumTitleStreak}
                 {metric === "lessons" && t.leaderboardPreview.podiumTitleLessons}
@@ -226,10 +226,10 @@ export default function PublicLeaderboardPreview() {
                       </span>
                     </div>
 
-                    <p className="mt-1 text-[11px] font-black text-stone-900 dark:text-stone-100 text-center truncate max-w-[80px] sm:max-w-[100px] leading-none">
+                    <p className="mt-1 text-[11px] font-black text-ink text-center truncate max-w-[80px] sm:max-w-[100px] leading-none">
                       {entry.name}
                     </p>
-                    <p className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">
+                    <p className="text-[9px] font-bold text-accent mt-0.5">
                       {getMetricUnit(entry.value)}
                     </p>
 
@@ -335,10 +335,10 @@ export default function PublicLeaderboardPreview() {
                     </span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs font-black text-stone-900 dark:text-stone-100 truncate">
+                    <p className="text-xs font-black text-ink truncate">
                       {entry.name}
                     </p>
-                    <p className="text-[10px] font-bold text-stone-500 dark:text-stone-400 truncate">
+                    <p className="text-[10px] font-bold text-ink-muted truncate">
                       {getMetricUnit(entry.value)}
                     </p>
                   </div>
@@ -349,7 +349,7 @@ export default function PublicLeaderboardPreview() {
                   className={`p-1.5 rounded-xl border transition-all cursor-pointer ${
                     isCheers
                       ? "bg-rose-50 dark:bg-rose-950 border-rose-400 text-rose-500"
-                      : "bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-400 hover:text-rose-500"
+                      : "bg-surface border-line text-stone-400 hover:text-rose-500"
                   }`}
                   title={t.leaderboardPreview.cheerShortTitle}
                 >
@@ -369,7 +369,7 @@ export default function PublicLeaderboardPreview() {
 
           <Link
             href="/login?mode=signup"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 px-5 py-2.5 font-black transition-all hover:scale-102 shadow-md cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-surface-invert hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 px-5 py-2.5 font-black transition-all hover:scale-102 shadow-md cursor-pointer"
           >
             <span>{t.leaderboardPreview.footerCta}</span>
             <ArrowRight className="w-4 h-4" />

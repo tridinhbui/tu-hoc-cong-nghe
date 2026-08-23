@@ -65,7 +65,7 @@ export default function InteractiveEsgScore() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
+      <h3 className="text-sm font-extrabold text-ink">
         {tr.title}
       </h3>
 
@@ -74,7 +74,7 @@ export default function InteractiveEsgScore() {
         <Weight label={tr.socialLabel} value={ws} onChange={(v) => setWs(Math.min(v, 100 - we))} />
         <div className="flex items-baseline justify-between gap-2">
           <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{tr.governanceLabel}</span>
-          <span className="text-[11px] font-semibold tabular-nums text-stone-500 dark:text-stone-400">
+          <span className="text-[11px] font-semibold tabular-nums text-ink-muted">
             {format(tr.remainderValue, { value: wg })}
           </span>
         </div>
@@ -104,14 +104,14 @@ export default function InteractiveEsgScore() {
           >
             <div className="min-w-0">
               <p className="text-xs font-bold text-stone-800 dark:text-stone-100">
-                <span className="text-stone-400 dark:text-stone-500">#{i + 1} </span>
+                <span className="text-ink-faint">#{i + 1} </span>
                 {c.name}
               </p>
-              <p className="text-[10px] text-stone-400 dark:text-stone-500">
+              <p className="text-[10px] text-ink-faint">
                 {format(tr.rankNoteParts, { note: c.note, e: c.e, s: c.s, g: c.g })}
               </p>
             </div>
-            <p className="shrink-0 text-base font-extrabold tabular-nums text-stone-900 dark:text-stone-100">
+            <p className="shrink-0 text-base font-extrabold tabular-nums text-ink">
               {score(c).toFixed(1)}
             </p>
           </li>
@@ -130,7 +130,7 @@ function Weight({ label, value, onChange }: { label: string; value: number; onCh
     <label className="block">
       <div className="flex items-baseline justify-between gap-2">
         <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{label}</span>
-        <span className="text-[11px] font-semibold tabular-nums text-stone-500 dark:text-stone-400">{value}%</span>
+        <span className="text-[11px] font-semibold tabular-nums text-ink-muted">{value}%</span>
       </div>
       <input
         type="range"

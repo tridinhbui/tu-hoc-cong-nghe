@@ -35,10 +35,10 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
   return (
     <div className="mt-4 rounded-[24px] border border-stone-200/90 bg-white/95 p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
       <div className="mb-3">
-        <p className="text-[13px] font-extrabold text-stone-900 dark:text-stone-100">
+        <p className="text-[13px] font-extrabold text-ink">
           {t.dashboardArena.title}
         </p>
-        <p className="text-[10px] text-stone-500 dark:text-stone-400">
+        <p className="text-[10px] text-ink-muted">
           {t.dashboardArena.subtitle}
         </p>
       </div>
@@ -56,7 +56,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
             <span className="block truncate text-xs font-bold text-stone-800 dark:text-stone-200">
               {t.dashboardArena.quizTitle}
             </span>
-            <span className="block truncate text-[10px] text-stone-500 dark:text-stone-400">
+            <span className="block truncate text-[10px] text-ink-muted">
               {t.dashboardArena.quizSub}
             </span>
           </span>
@@ -77,7 +77,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
             <span className="block truncate text-xs font-bold text-stone-800 dark:text-stone-200">
               {t.dashboardArena.bossTitle}
             </span>
-            <span className="block truncate text-[10px] text-stone-500 dark:text-stone-400">
+            <span className="block truncate text-[10px] text-ink-muted">
               {t.dashboardArena.bossSub}
             </span>
           </span>
@@ -98,7 +98,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
             <span className="block truncate text-xs font-bold text-stone-800 dark:text-stone-200">
               {t.dashboardArena.soloTitle}
             </span>
-            <span className="block truncate text-[10px] text-stone-500 dark:text-stone-400">
+            <span className="block truncate text-[10px] text-ink-muted">
               {t.dashboardArena.soloSub}
             </span>
           </span>

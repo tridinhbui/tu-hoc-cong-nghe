@@ -344,7 +344,7 @@ export default function HomePage() {
               <Logo size={28} />
               <span className="text-sm sm:text-base font-black text-stone-800 dark:text-stone-200 uppercase tracking-widest flex items-center gap-2">
                 {t.home.brand}
-                <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200/50 hidden xs:inline-block">
+                <span className="text-[9px] font-black text-accent bg-accent-soft/40 px-2 py-0.5 rounded border border-emerald-200/50 hidden xs:inline-block">
                   {t.home.brandBadge}
                 </span>
               </span>
@@ -399,7 +399,7 @@ export default function HomePage() {
                     mà không dựng thêm một cái hộp nào. */}
                 <motion.div
                   {...heroReveal(0)}
-                  className="eyebrow mb-5 flex items-center gap-3 text-stone-500 dark:text-stone-400"
+                  className="eyebrow mb-5 flex items-center gap-3 text-ink-muted"
                 >
                   <span aria-hidden className="h-px w-8 bg-emerald-600 dark:bg-emerald-500" />
                   {t.home.hero.badge}
@@ -410,7 +410,7 @@ export default function HomePage() {
                   className="mb-4 text-[2.5rem] sm:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tight text-stone-950 dark:text-stone-50"
                 >
                   {t.home.hero.titlePart1}{" "}
-                  <span className="text-emerald-600 dark:text-emerald-400 font-black">
+                  <span className="text-accent font-black">
                     {t.home.hero.titleHighlight}
                   </span>
                   ,<br />
@@ -430,7 +430,7 @@ export default function HomePage() {
                 >
                   <Link
                     href="/login?mode=signup"
-                    className="group inline-flex items-center gap-2 rounded-lg bg-stone-950 px-6 py-3.5 text-base font-black text-white transition-colors hover:bg-stone-800 active:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
+                    className="group inline-flex items-center gap-2 rounded-lg bg-stone-950 px-6 py-3.5 text-base font-black text-white transition-colors hover:bg-stone-800 active:bg-surface-invert dark:text-stone-900 dark:hover:bg-white"
                   >
                     {t.home.hero.ctaPrimary}
                     <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -465,15 +465,15 @@ export default function HomePage() {
                   <div className="flex items-stretch divide-x divide-stone-300/70 dark:divide-stone-700/70">
                     <div className="min-w-0 pr-3 sm:pr-6">
                       <LiveNumber value={displayedUserCount} className="text-lg sm:text-2xl" />
-                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:text-[11px]">{t.home.hero.statLearners}</p>
+                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-ink-muted sm:text-[11px]">{t.home.hero.statLearners}</p>
                     </div>
                     <div className="min-w-0 px-3 sm:px-6">
                       <LiveNumber value={displayedLessonCount} className="text-lg sm:text-2xl" />
-                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:text-[11px]">{t.home.hero.statLessons}</p>
+                      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-ink-muted sm:text-[11px]">{t.home.hero.statLessons}</p>
                     </div>
                     <div className="min-w-0 pl-3 sm:pl-6">
                       <LiveNumber value={displayedCompletedCount} className="text-lg sm:text-2xl" />
-                      <p className="mt-0.5 whitespace-nowrap text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:whitespace-normal sm:text-[11px]">{t.home.hero.statCompleted}</p>
+                      <p className="mt-0.5 whitespace-nowrap text-[10px] font-bold uppercase tracking-wide text-ink-muted sm:whitespace-normal sm:text-[11px]">{t.home.hero.statCompleted}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -764,13 +764,13 @@ export default function HomePage() {
             <div className="border-t border-stone-300/70 pt-8 dark:border-stone-700/70">
               <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(300px,0.95fr)] lg:items-center">
                 <div>
-                  <p className="mb-2 inline-flex items-center gap-2 text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
+                  <p className="mb-2 inline-flex items-center gap-2 text-xs font-black text-accent uppercase tracking-widest">
                     <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50 text-xs shadow-xs border border-emerald-200/80 dark:bg-emerald-950/40 dark:border-emerald-900/50">
                       🇻🇳
                     </span>
                     {t.home.vision.eyebrow}
                   </p>
-                  <h2 className="max-w-xl text-xl sm:text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100 leading-snug">
+                  <h2 className="max-w-xl text-xl sm:text-2xl font-black tracking-tight text-ink leading-snug">
                     {t.home.vision.title}
                   </h2>
 
@@ -798,7 +798,7 @@ export default function HomePage() {
                       <div className="text-[9px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
                         {t.home.vision.stat1Label}
                       </div>
-                      <div className="mt-1 text-2xl font-black text-emerald-600 dark:text-emerald-400">
+                      <div className="mt-1 text-2xl font-black text-accent">
                         11%
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
@@ -806,7 +806,7 @@ export default function HomePage() {
                       </p>
                     </div>
                     <div className="sm:px-5">
-                      <div className="text-[9px] font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                      <div className="text-[9px] font-black uppercase tracking-wider text-ink-muted">
                         {t.home.vision.stat2Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
@@ -817,7 +817,7 @@ export default function HomePage() {
                       </p>
                     </div>
                     <div className="sm:pl-5">
-                      <div className="text-[9px] font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                      <div className="text-[9px] font-black uppercase tracking-wider text-ink-muted">
                         {t.home.vision.stat3Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
@@ -836,7 +836,7 @@ export default function HomePage() {
                       <span>🇻🇳</span>
                       {t.home.vision.missionLabel}
                     </p>
-                    <p className="text-xs leading-relaxed text-stone-700 dark:text-stone-300 font-medium">
+                    <p className="text-xs leading-relaxed text-ink-body font-medium">
                       {t.home.vision.missionBody}
                     </p>
                     <div className="mt-3">

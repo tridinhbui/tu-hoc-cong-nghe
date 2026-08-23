@@ -62,44 +62,44 @@ export default function LessonStatsHover() {
         }}
         aria-label={t.lessonStatsHover.quickStatsAria}
         title={t.lessonStatsHover.statsTitle}
-        className="w-10 h-10 rounded-full flex items-center justify-center bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-200 transition-all cursor-pointer"
+        className="w-10 h-10 rounded-full flex items-center justify-center bg-surface-raised text-ink-muted hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-200 transition-all cursor-pointer"
       >
         <BarChart3 className="w-4 h-4" />
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 z-50 w-56 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl shadow-lg p-4">
+        <div className="absolute right-0 top-full mt-2 z-50 w-56 bg-white dark:bg-stone-900 border-2 border-line rounded-xl shadow-lg p-4">
           {loading && !stats ? (
-            <p className="text-xs text-stone-400 dark:text-stone-500">{t.lessonStatsHover.loading}</p>
+            <p className="text-xs text-ink-faint">{t.lessonStatsHover.loading}</p>
           ) : stats ? (
             <div className="space-y-2">
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">{t.lessonStatsHover.level}</p>
-                  <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{stats.currentLevel}</p>
+                  <p className="text-[10px] font-bold text-ink-faint uppercase tracking-wide">{t.lessonStatsHover.level}</p>
+                  <p className="text-sm font-extrabold text-ink">{stats.currentLevel}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">{t.lessonStatsHover.xp}</p>
-                  <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{stats.totalXpEarned}</p>
+                  <p className="text-[10px] font-bold text-ink-faint uppercase tracking-wide">{t.lessonStatsHover.xp}</p>
+                  <p className="text-sm font-extrabold text-ink">{stats.totalXpEarned}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">{t.lessonStatsHover.lessonsDone}</p>
-                  <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{stats.totalLessonsCompleted}</p>
+                  <p className="text-[10px] font-bold text-ink-faint uppercase tracking-wide">{t.lessonStatsHover.lessonsDone}</p>
+                  <p className="text-sm font-extrabold text-ink">{stats.totalLessonsCompleted}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wide">{t.lessonStatsHover.streakDays}</p>
-                  <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{stats.streakDays}</p>
+                  <p className="text-[10px] font-bold text-ink-faint uppercase tracking-wide">{t.lessonStatsHover.streakDays}</p>
+                  <p className="text-sm font-extrabold text-ink">{stats.streakDays}</p>
                 </div>
               </div>
               <Link
                 href="/analytics"
-                className="block text-center text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 pt-2 mt-1 border-t border-stone-100 dark:border-stone-800"
+                className="block text-center text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 pt-2 mt-1 border-t border-line-soft"
               >
                 {t.lessonStatsHover.viewFull}
               </Link>
             </div>
           ) : (
-            <p className="text-xs text-stone-400 dark:text-stone-500">{t.lessonStatsHover.loginPrompt}</p>
+            <p className="text-xs text-ink-faint">{t.lessonStatsHover.loginPrompt}</p>
           )}
         </div>
       )}

@@ -53,7 +53,7 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
 
   if (openAlbum) {
     return (
-      <div className="mb-6 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm overflow-hidden animate-[fadeIn_0.2s_ease-out]">
+      <div className="mb-6 rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-sm overflow-hidden animate-[fadeIn_0.2s_ease-out]">
         <div className={`bg-gradient-to-br ${openAlbum.gradient} p-5 text-white relative`}>
           <button
             onClick={() => setOpenAlbumId(null)}
@@ -74,17 +74,17 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
         <div className="max-h-72 overflow-y-auto divide-y divide-stone-100 dark:divide-stone-800">
           {openAlbum.cards.map((c, i) => (
             <div key={i} className="px-5 py-3">
-              <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{c.term}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5 line-clamp-2">{c.definition}</p>
+              <p className="text-sm font-bold text-ink">{c.term}</p>
+              <p className="text-xs text-ink-muted mt-0.5 line-clamp-2">{c.definition}</p>
             </div>
           ))}
         </div>
 
-        <div className="p-4 border-t border-stone-100 dark:border-stone-800">
+        <div className="p-4 border-t border-line-soft">
           <button
             onClick={() => handleImport(openAlbum)}
             disabled={importing}
-            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer"
+            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-surface-invert text-white dark:text-stone-900 font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer"
           >
             <Download className="w-4 h-4" />
             {importing
@@ -103,7 +103,7 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
           <button
             key={album.id}
             onClick={() => setOpenAlbumId(album.id)}
-            className="group text-left rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+            className="group text-left rounded-2xl border border-line bg-white dark:bg-stone-900 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
           >
             <div className={`bg-gradient-to-br ${album.gradient} h-20 flex items-center justify-center relative overflow-hidden`}>
               <span className="text-4xl transition-transform duration-300 group-hover:scale-110">{album.emoji}</span>
@@ -112,8 +112,8 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
               </span>
             </div>
             <div className="p-3.5">
-              <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{album.title}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5 line-clamp-2">{album.description}</p>
+              <p className="text-sm font-bold text-ink">{album.title}</p>
+              <p className="text-xs text-ink-muted mt-0.5 line-clamp-2">{album.description}</p>
             </div>
           </button>
         ))}

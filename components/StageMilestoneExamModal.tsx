@@ -138,15 +138,15 @@ export default function StageMilestoneExamModal({
 
   return createPortal(
     <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center z-[9999] p-4 animate-[fadeIn_0.2s_ease-out]">
-      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+      <div className="bg-white dark:bg-stone-900 border border-line rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4.5 border-b border-stone-100 dark:border-stone-800/80">
+        <div className="flex items-center justify-between px-6 py-4.5 border-b border-line-soft/80">
           <div>
-            <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 uppercase tracking-wider">
+            <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-warn-soft/40 text-amber-700 dark:text-amber-400 uppercase tracking-wider">
               {format(t.stageExam.badgeLabel, { stageLabel })}
             </span>
-            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mt-1">{stageName}</h3>
+            <h3 className="text-sm font-extrabold text-ink mt-1">{stageName}</h3>
           </div>
           <button onClick={onClose} className="p-1.5 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-xl text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">
             <X className="w-5 h-5" />
@@ -164,11 +164,11 @@ export default function StageMilestoneExamModal({
             <div className="text-center py-8 space-y-6">
               {correctCount / questions.length >= 0.8 ? (
                 <div className="space-y-4">
-                  <div className="w-20 h-20 bg-amber-50 dark:bg-amber-950/40 rounded-3xl text-amber-500 flex items-center justify-center mx-auto shadow-inner animate-[bounce_1s_infinite]">
+                  <div className="w-20 h-20 bg-warn-soft/40 rounded-3xl text-amber-500 flex items-center justify-center mx-auto shadow-inner animate-[bounce_1s_infinite]">
                     <Trophy className="w-10 h-10" />
                   </div>
                   <h4 className="text-lg font-extrabold text-stone-900 dark:text-stone-50">{t.stageExam.passedTitle}</h4>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed max-w-sm mx-auto">
+                  <p className="text-xs text-ink-muted leading-relaxed max-w-sm mx-auto">
                     {t.stageExam.passedBodyPart1} <strong>{correctCount}/{questions.length}</strong> {t.stageExam.passedBodyPart2} <strong>{t.stageExam.xpAmountLabel}</strong> {t.stageExam.passedBodyPart3}
                   </p>
                 </div>
@@ -178,7 +178,7 @@ export default function StageMilestoneExamModal({
                     <XCircle className="w-10 h-10" />
                   </div>
                   <h4 className="text-lg font-extrabold text-stone-900 dark:text-stone-50">{t.stageExam.failedTitle}</h4>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed max-w-sm mx-auto">
+                  <p className="text-xs text-ink-muted leading-relaxed max-w-sm mx-auto">
                     {t.stageExam.failedBodyPart1} <strong>{correctCount}/{questions.length}</strong> {format(t.stageExam.failedBodyPart2, { percent: Math.round((correctCount / questions.length) * 100) })} <strong>{format(t.stageExam.minPercentLabel, { total: questions.length })}</strong> {t.stageExam.failedBodyPart3}
                   </p>
                 </div>
@@ -186,14 +186,14 @@ export default function StageMilestoneExamModal({
 
               <button
                 onClick={onClose}
-                className="w-full bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest cursor-pointer active:scale-95 transition-all shadow-md"
+                className="w-full bg-surface-invert hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest cursor-pointer active:scale-95 transition-all shadow-md"
               >
                 {t.stageExam.closeWindow}
               </button>
             </div>
           ) : (
             <div className="space-y-5">
-              <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest bg-stone-50 dark:bg-stone-950 px-3 py-1.5 rounded-lg border border-stone-100 dark:border-stone-800">
+              <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-faint uppercase tracking-widest bg-stone-50 dark:bg-stone-950 px-3 py-1.5 rounded-lg border border-line-soft">
                 <span>{format(t.stageExam.questionCounter, { current: currentQIndex + 1, total: questions.length })}</span>
                 <span>{t.stageExam.minCorrectRequired}</span>
               </div>
@@ -207,17 +207,17 @@ export default function StageMilestoneExamModal({
 
               <div className="space-y-2.5">
                 {questions[currentQIndex].options.map((opt: string, i: number) => {
-                  let btnCls = "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700";
+                  let btnCls = "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-stone-300 dark:hover:border-stone-700";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
-                      btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-400 font-bold";
+                      btnCls = "border-emerald-500 bg-accent-soft/40 text-emerald-800 dark:text-emerald-400 font-bold";
                     } else if (i === selectedOpt) {
                       btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-400";
                     } else {
-                      btnCls = "border-stone-100 dark:border-stone-800 opacity-60";
+                      btnCls = "border-line-soft opacity-60";
                     }
                   } else if (selectedOpt === i) {
-                    btnCls = "border-stone-900 dark:border-stone-100 bg-stone-50 dark:bg-stone-800 text-stone-900 dark:text-stone-100 border-2 font-bold";
+                    btnCls = "border-stone-900 dark:border-stone-100 bg-stone-50 dark:bg-stone-800 text-ink border-2 font-bold";
                   }
 
                   return (
@@ -227,7 +227,7 @@ export default function StageMilestoneExamModal({
                       onClick={() => handleOptionSelect(i)}
                       className={`w-full text-left p-3.5 rounded-2xl border text-xs sm:text-sm transition-all flex items-center gap-3 cursor-pointer ${btnCls}`}
                     >
-                      <span className="w-5 h-5 rounded-lg text-[10px] font-bold flex items-center justify-center border bg-stone-50 dark:bg-stone-800 text-stone-500 dark:text-stone-400">
+                      <span className="w-5 h-5 rounded-lg text-[10px] font-bold flex items-center justify-center border bg-stone-50 dark:bg-stone-800 text-ink-muted">
                         {["A", "B", "C", "D"][i]}
                       </span>
                       <span className="line-clamp-2">{opt}</span>

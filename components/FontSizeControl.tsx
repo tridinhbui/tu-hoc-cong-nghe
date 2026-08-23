@@ -39,7 +39,7 @@ export default function FontSizeControl({ scale, onChange }: Props) {
   }
 
   return (
-    <div className="hidden sm:flex items-center gap-1 bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800 rounded-full px-1.5 py-1">
+    <div className="hidden sm:flex items-center gap-1 bg-surface/50 border border-line rounded-full px-1.5 py-1">
       <button
         onClick={() => set(index - 1)}
         disabled={index === 0}
@@ -49,7 +49,7 @@ export default function FontSizeControl({ scale, onChange }: Props) {
       >
         {t.fontSize.smaller}
       </button>
-      <span className="text-[11px] font-bold text-stone-500 dark:text-stone-400 w-9 text-center tabular-nums">
+      <span className="text-[11px] font-bold text-ink-muted w-9 text-center tabular-nums">
         {Math.round(scale * 100)}%
       </span>
       <button

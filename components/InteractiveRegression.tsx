@@ -49,7 +49,7 @@ export default function InteractiveRegression() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
+      <h3 className="text-sm font-extrabold text-ink">
         {t.regressionCalc.title}
       </h3>
 
@@ -98,7 +98,7 @@ export default function InteractiveRegression() {
           />
         </svg>
       </div>
-      <p className="mt-1.5 text-[10px] text-stone-500 dark:text-stone-400">
+      <p className="mt-1.5 text-[10px] text-ink-muted">
         {t.regressionCalc.chartHint}
       </p>
 
@@ -110,7 +110,7 @@ export default function InteractiveRegression() {
         >
           {t.regressionCalc.resampleButton}
         </button>
-        <span className="text-[11px] text-stone-500 dark:text-stone-400">
+        <span className="text-[11px] text-ink-muted">
           {t.regressionCalc.resampleHint}
         </span>
       </div>
@@ -148,7 +148,7 @@ function Row({ label, value, children }: { label: string; value: string; childre
     <div>
       <div className="flex items-baseline justify-between gap-2">
         <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{label}</span>
-        <span className="text-[11px] font-semibold tabular-nums text-stone-500 dark:text-stone-400">{value}</span>
+        <span className="text-[11px] font-semibold tabular-nums text-ink-muted">{value}</span>
       </div>
       <div className="mt-1.5">{children}</div>
     </div>
@@ -158,13 +158,13 @@ function Row({ label, value, children }: { label: string; value: string; childre
 function Card({ label, value, tone }: { label: string; value: string; tone: "good" | "bad" | "neutral" }) {
   const color =
     tone === "good"
-      ? "text-emerald-600 dark:text-emerald-400"
+      ? "text-accent"
       : tone === "bad"
-        ? "text-amber-600 dark:text-amber-400"
+        ? "text-warn"
         : "text-stone-800 dark:text-stone-100";
   return (
     <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
-      <p className="text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400">{label}</p>
+      <p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">{label}</p>
       <p className={`mt-0.5 text-base font-extrabold tabular-nums ${color}`}>{value}</p>
     </div>
   );

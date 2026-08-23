@@ -44,7 +44,7 @@ export default function ScrollPinnedSection({
           {/* Section Header (Pinned at Top) */}
           <div className="mb-6 max-w-2xl">
             {badge && <div className="mb-1.5">{badge}</div>}
-            <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100 leading-snug">
+            <h2 className="text-2xl sm:text-3xl font-black text-ink leading-snug">
               {title}
             </h2>
             {description && (

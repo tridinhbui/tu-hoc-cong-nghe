@@ -190,7 +190,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
 
   if (loading) {
     return (
-      <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-4 animate-pulse">
+      <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-4 animate-pulse">
         <div className="h-4 bg-stone-200 dark:bg-stone-800 rounded w-1/4 mb-2"></div>
         <div className="h-8 bg-stone-200 dark:bg-stone-800 rounded"></div>
       </div>
@@ -198,13 +198,13 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
   }
 
   return (
-    <div className="bg-white/95 dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+    <div className="bg-white/95 dark:bg-stone-900 border-2 border-line rounded-xl overflow-hidden">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-line flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-lg">📝</span>
-          <h3 className="font-bold text-stone-900 dark:text-stone-100">{t.notes.heading}</h3>
-          <span className="text-xs text-stone-500 dark:text-stone-400">({notes.length})</span>
+          <h3 className="font-bold text-ink">{t.notes.heading}</h3>
+          <span className="text-xs text-ink-muted">({notes.length})</span>
         </div>
         {!isOpen && (
           <button
@@ -220,11 +220,11 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
         <div className="p-5">
           {/* Notes List */}
           {notes.length === 0 && !isEditing ? (
-            <div className="text-center py-8 text-stone-500 dark:text-stone-400">
+            <div className="text-center py-8 text-ink-muted">
               <p className="mb-4">{t.notes.lessonEmptyTitle}</p>
               <button
                 onClick={() => startEditing()}
-                className="text-stone-900 dark:text-stone-100 font-semibold hover:underline"
+                className="text-ink font-semibold hover:underline"
               >
                 {t.notes.addFirstNote}
               </button>
@@ -247,12 +247,12 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                             void handleUpdateNote(note.id);
                           }
                         }}
-                        className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 text-sm resize-y min-h-[80px]"
+                        className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-ink text-sm resize-y min-h-[80px]"
                         rows={4}
                         autoFocus
                       />
                       {hasMathContent(noteContent) && (
-                        <div className="px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
+                        <div className="px-3 py-2 rounded-lg bg-surface-raised border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
                           <NoteContent content={noteContent} />
                         </div>
                       )}
@@ -266,7 +266,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                         <button
                           onClick={() => void handleUpdateNote(note.id)}
                           disabled={saving || !noteContent.trim()}
-                          className="px-3 py-1 text-sm bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg hover:opacity-90 disabled:opacity-50 inline-flex items-center gap-1.5"
+                          className="px-3 py-1 text-sm bg-surface-invert text-white dark:text-stone-900 rounded-lg hover:opacity-90 disabled:opacity-50 inline-flex items-center gap-1.5"
                         >
                           {saving && <Loader2 className="w-3 h-3 animate-spin" />}
                           {saving ? t.notes.saving : t.notes.save}
@@ -295,7 +295,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                             </button>
                             <button
                               onClick={() => setDeletingNoteId(null)}
-                              className="font-bold text-stone-500 dark:text-stone-400 hover:underline"
+                              className="font-bold text-ink-muted hover:underline"
                             >
                               {t.notes.cancel}
                             </button>
@@ -321,7 +321,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
           {isEditing && editingNoteId === null && (
             <div className="mt-4 pt-4 border-t border-stone-200 dark:border-stone-700">
               {hasRecoveredDraft && (
-                <div className="mb-2 flex items-center justify-between gap-2 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 px-3 py-2">
+                <div className="mb-2 flex items-center justify-between gap-2 rounded-lg bg-warn-soft/40 border border-amber-200 dark:border-amber-900 px-3 py-2">
                   <p className="text-xs font-bold text-amber-800 dark:text-amber-300">
                     📄 {t.notes.recoveredDraft}
                   </p>
@@ -343,17 +343,17 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                   }
                 }}
                 placeholder={t.notes.writePlaceholder}
-                className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 text-sm resize-y min-h-[90px]"
+                className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-ink text-sm resize-y min-h-[90px]"
                 rows={4}
                 autoFocus
               />
-              <p className="text-xs text-stone-400 dark:text-stone-500 mt-1">
+              <p className="text-xs text-ink-faint mt-1">
                 {t.notes.tipPart1}
                 {"\\frac{a}{b}"}
                 {t.notes.tipPart2}
               </p>
               {hasMathContent(noteContent) && (
-                <div className="mt-2 px-3 py-2 rounded-lg bg-stone-100 dark:bg-stone-800 border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
+                <div className="mt-2 px-3 py-2 rounded-lg bg-surface-raised border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
                   <NoteContent content={noteContent} />
                 </div>
               )}
@@ -367,7 +367,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                 <button
                   onClick={() => void handleCreateNote()}
                   disabled={saving || !noteContent.trim()}
-                  className="px-3 py-1 text-sm bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg hover:opacity-90 disabled:opacity-50 flex items-center gap-1"
+                  className="px-3 py-1 text-sm bg-surface-invert text-white dark:text-stone-900 rounded-lg hover:opacity-90 disabled:opacity-50 flex items-center gap-1"
                 >
                   {saving ? <Loader2 className="w-3 h-3 animate-spin" /> : <Plus className="w-3 h-3" />}
                   {saving ? t.notes.saving : t.notes.add}
@@ -380,7 +380,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
           {!isEditing && (
             <button
               onClick={() => startEditing()}
-              className="mt-4 w-full py-2 border-2 border-dashed border-stone-300 dark:border-stone-600 rounded-lg text-stone-500 dark:text-stone-400 hover:border-stone-400 dark:hover:border-stone-500 hover:text-stone-700 dark:hover:text-stone-300 text-sm font-semibold flex items-center justify-center gap-2"
+              className="mt-4 w-full py-2 border-2 border-dashed border-stone-300 dark:border-stone-600 rounded-lg text-ink-muted hover:border-stone-400 dark:hover:border-stone-500 hover:text-stone-700 dark:hover:text-stone-300 text-sm font-semibold flex items-center justify-center gap-2"
             >
               <Plus className="w-4 h-4" />
               {t.notes.addNote}
@@ -390,7 +390,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
       )}
 
       {isOpen && (
-        <div className="px-5 py-3 border-t border-stone-200 dark:border-stone-800">
+        <div className="px-5 py-3 border-t border-line">
           <button
             onClick={() => setIsOpen(false)}
             className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200 text-sm font-semibold flex items-center gap-1"

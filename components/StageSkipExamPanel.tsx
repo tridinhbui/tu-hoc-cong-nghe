@@ -167,14 +167,14 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
   return (
     <div className="rounded-3xl border border-violet-200 dark:border-violet-900/60 bg-violet-50/50 dark:bg-stone-900 p-5 sm:p-6 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-        <h3 className="text-sm font-black uppercase tracking-widest text-stone-900 dark:text-stone-100 flex items-center gap-2">
+        <h3 className="text-sm font-black uppercase tracking-widest text-ink flex items-center gap-2">
           <Rocket className="w-4 h-4 text-violet-500" />
           {t.stageSkip.title}
         </h3>
         {view !== "pick" && (
           <button
             onClick={() => setView("pick")}
-            className="inline-flex items-center gap-1 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer"
+            className="inline-flex items-center gap-1 text-xs font-bold text-ink-muted hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer"
           >
             <ChevronLeft className="w-3.5 h-3.5" />
             {t.stageSkip.chooseAnotherStage}
@@ -196,7 +196,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
                 className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
                   track === trackOption.id
                     ? "border-violet-500 bg-violet-500 text-white"
-                    : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
+                    : "border-line bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
                 }`}
               >
                 {trackOption.label}
@@ -205,7 +205,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
           </div>
 
           {listLoading ? (
-            <div className="py-8 flex items-center justify-center gap-2 text-stone-500 dark:text-stone-400">
+            <div className="py-8 flex items-center justify-center gap-2 text-ink-muted">
               <Loader2 className="w-4 h-4 animate-spin" />
               <span className="text-xs font-bold">{t.stageSkip.loadingStages}</span>
             </div>
@@ -216,19 +216,19 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
                 return (
                   <div
                     key={s.stageLabel}
-                    className="flex items-center justify-between gap-3 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 px-3.5 py-3"
+                    className="flex items-center justify-between gap-3 rounded-xl border border-line bg-white dark:bg-stone-950 px-3.5 py-3"
                   >
                     <div className="min-w-0">
-                      <p className="text-xs font-black text-stone-900 dark:text-stone-100 truncate">
+                      <p className="text-xs font-black text-ink truncate">
                         {s.stageLabel}: {s.stageName}
                       </p>
-                      <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">
+                      <p className="text-[11px] text-ink-muted mt-0.5">
                         {format(t.stageSkip.completedLessonsCount, { completed: s.completedCount, total: s.lessonCount, questionCount: s.questionCount })}
                         {!s.eligible && t.stageSkip.notEnoughToTake}
                       </p>
                     </div>
                     {done ? (
-                      <span className="shrink-0 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+                      <span className="shrink-0 inline-flex items-center gap-1 text-[11px] font-bold text-accent">
                         <CheckCircle2 className="w-3.5 h-3.5" /> {t.stageSkip.done}
                       </span>
                     ) : (
@@ -249,7 +249,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
       )}
 
       {view === "loading" && (
-        <div className="py-10 flex items-center justify-center gap-2 text-stone-500 dark:text-stone-400">
+        <div className="py-10 flex items-center justify-center gap-2 text-ink-muted">
           <Loader2 className="w-5 h-5 animate-spin" />
           <span className="text-xs font-bold">{t.stageSkip.preparingExam}</span>
         </div>
@@ -257,7 +257,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
 
       {view === "exam" && questions[activeQ] && (
         <div className="space-y-4">
-          <div className="flex items-center justify-between text-xs font-bold text-stone-500 dark:text-stone-400">
+          <div className="flex items-center justify-between text-xs font-bold text-ink-muted">
             <span>
               {format(t.stageSkip.questionCounter, { stageLabel: activeStage?.stageLabel ?? "", current: activeQ + 1, total: questions.length })}
             </span>
@@ -270,7 +270,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
             />
           </div>
 
-          <p className="font-bold text-base leading-relaxed text-stone-900 dark:text-stone-100">
+          <p className="font-bold text-base leading-relaxed text-ink">
             {questions[activeQ].question}
           </p>
 
@@ -293,7 +293,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
                   className={`w-full text-left px-4 py-3 rounded-xl border-2 text-sm transition-colors cursor-pointer ${
                     picked
                       ? "border-violet-500 bg-violet-50 dark:bg-violet-950/40 text-stone-900 dark:text-violet-200 font-semibold"
-                      : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-700 dark:text-stone-300 hover:border-violet-300"
+                      : "border-line bg-white dark:bg-stone-950 text-ink-body hover:border-violet-300"
                   }`}
                 >
                   {opt}
@@ -306,14 +306,14 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
             <button
               onClick={() => setActiveQ((i) => Math.max(0, i - 1))}
               disabled={activeQ === 0}
-              className="px-3.5 py-2 rounded-xl border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-600 dark:text-stone-400 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="px-3.5 py-2 rounded-xl border border-line text-xs font-bold text-stone-600 dark:text-stone-400 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
               {t.stageSkip.previousQuestion}
             </button>
             {activeQ < questions.length - 1 ? (
               <button
                 onClick={() => setActiveQ((i) => i + 1)}
-                className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-surface-invert text-white dark:text-stone-900 text-xs font-black cursor-pointer"
               >
                 {t.stageSkip.nextQuestion}
               </button>
@@ -338,11 +338,11 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
           ) : (
             <XCircle className="w-10 h-10 text-rose-400 mx-auto" />
           )}
-          <p className="text-2xl font-black text-stone-900 dark:text-stone-100 tabular-nums">
+          <p className="text-2xl font-black text-ink tabular-nums">
             {result.score}/{result.total}
           </p>
           {result.passed ? (
-            <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+            <p className="text-sm font-bold text-accent">
               {t.stageSkip.passedResultPart1} {result.creditedLessons} {t.stageSkip.passedResultPart2}
               {result.alreadyCompleted ? format(t.stageSkip.alreadyCompletedSuffix, { count: result.alreadyCompleted }) : ""}.
             </p>
@@ -355,7 +355,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
           )}
           <button
             onClick={() => setView("pick")}
-            className="px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs font-black cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-surface-invert text-white dark:text-stone-900 text-xs font-black cursor-pointer"
           >
             {t.stageSkip.backToStageList}
           </button>

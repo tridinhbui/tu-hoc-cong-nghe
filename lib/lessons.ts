@@ -32401,7 +32401,7 @@ export const lessons: Lesson[] = [
       "Hàng đợi: một tin nhắn cho một người xử lý. Xuất bản: một sự kiện cho mọi người đăng ký",
       "Hàng đợi lưu tin nhắn trên đĩa còn xuất bản chỉ giữ chúng trong bộ nhớ tạm",
       "Hàng đợi bảo đảm thứ tự còn xuất bản thì không đảm bảo thứ tự các sự kiện",
-      "Hàng đợi dùng cho việc nội bộ còn xuất bản dùng để có thể giao tiếp giữa tất cả các hệ thống"
+      "Hàng đợi dùng cho việc nội bộ, xuất bản dùng để giao tiếp giữa các hệ thống"
     ],
     "correctOption": 0,
     "explanation": "Đây là khác biệt về ngữ nghĩa chứ không về công cụ: hàng đợi phân chia công việc, xuất bản thông báo một chuyện đã xảy ra. Ba lựa chọn kia mô tả các đặc điểm kỹ thuật có thể khác nhau giữa các sản phẩm cụ thể, nhưng chúng không phải điểm phân biệt hai mô hình - nhiều hệ thống hiện đại hỗ trợ cả hai với cùng cơ chế lưu trữ.",
@@ -33326,7 +33326,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Sự kiện nên chứa dữ liệu đầy đủ hay chỉ một mã định danh?",
     "openingOptions": [
       "Dữ liệu đủ để làm việc, vì tham chiếu buộc người nghe gọi ngược lại và có thể đọc ra trạng thái đã đổi",
-      "Chỉ mã định danh, vì như vậy sự kiện nhỏ gọn và người nghe luôn lấy được dữ liệu mới nhất",
+      "Chỉ mã định danh, vì như vậy sự kiện nhỏ gọn và người nghe thì luôn lấy được dữ liệu mới nhất",
       "Chỉ mã định danh, vì dữ liệu đầy đủ sẽ nhanh chóng lỗi thời khi bản ghi gốc thay đổi",
       "Tuỳ vào kích thước dữ liệu, vì sự kiện quá lớn sẽ ảnh hưởng tới thông lượng hàng đợi"
     ],
@@ -35517,7 +35517,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Bất đồng bộ đổi độ trễ lấy khả năng chịu lỗi, và cái giá trả bằng độ phức tạp khi quan sát",
       "Bất đồng bộ giúp hệ thống xử lý được khối lượng lớn hơn so với gọi trực tiếp",
-      "Bất đồng bộ là cách tách rời tất cả các dịch vụ để chúng có thể phát triển độc lập với nhau",
+      "Bất đồng bộ là cách tách rời các dịch vụ để chúng phát triển độc lập với nhau",
       "Bất đồng bộ đảm bảo công việc không bị mất khi một thành phần gặp sự cố"
     ],
     "correctOption": 0,
@@ -35901,7 +35901,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Tuỳ ý nghĩa: là tiêu đề của một phần thì dùng thẻ tiêu đề, chỉ muốn chữ to thì dùng CSS",
       "Luôn dùng thẻ tiêu đề, vì nó cho ra chữ to và đậm mà không cần viết thêm CSS",
-      "Luôn dùng thẻ đoạn văn kèm CSS, vì như vậy bạn kiểm soát được kích thước một cách chính xác",
+      "Luôn dùng thẻ đoạn văn kèm CSS, vì như vậy kiểm soát được kích thước chính xác",
       "Tuỳ độ dài: dòng ngắn thì dùng thẻ tiêu đề, dòng dài thì dùng thẻ đoạn văn kèm CSS"
     ],
     "correctOption": 0,
@@ -37921,7 +37921,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Trang của bạn cuộn ngang được trên điện thoại dù bạn không đặt chiều rộng nào vượt màn hình. Nên tìm nguyên nhân thế nào?",
     "openingOptions": [
       "Tìm phần tử rộng hơn màn hình bằng cách viền tạm mọi phần tử hoặc dùng công cụ nhà phát triển",
-      "Đặt cho toàn trang thuộc tính ẩn phần tràn theo chiều ngang để chặn hẳn việc cuộn ngang lại từ đầu",
+      "Đặt cho toàn trang thuộc tính ẩn phần tràn theo chiều ngang để chặn việc cuộn ngang",
       "Giảm cỡ chữ và đệm của mọi thành phần cho tới khi thanh cuộn ngang biến mất",
       "Đặt chiều rộng cố định cho thẻ gốc bằng đúng chiều rộng màn hình điện thoại"
     ],
@@ -48110,7 +48110,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Vì đường dẫn tương đối được tính từ thư mục bạn đang đứng, không phải từ chỗ chương trình nằm",
       "Vì tệp có đuôi .txt chỉ được chương trình đọc sau khi bạn cấp thêm quyền riêng cho nó",
-      "Vì mỗi chương trình chỉ được phép đọc những tệp nằm ngay trong thư mục gốc của ổ đĩa hệ thống chính",
+      "Vì mỗi chương trình chỉ được phép đọc những tệp nằm ngay trong thư mục gốc của ổ đĩa",
       "Vì tên tệp có dấu gạch ngang, ký tự này bị hệ điều hành hiểu thành một lệnh khác"
     ],
     "correctOption": 0,
@@ -48325,7 +48325,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Vì sao hướng dẫn kỹ thuật gần như luôn đưa lệnh để gõ, thay vì chỉ bạn bấm vào đâu trên màn hình?",
     "openingOptions": [
       "Vì một dòng lệnh mô tả thao tác chính xác và lặp lại được, còn mô tả nút bấm thì lệ thuộc phiên bản giao diện",
-      "Vì dòng lệnh chạy nhanh hơn hẳn so với giao diện đồ hoạ nên tiết kiệm được nhiều thời gian cho người dùng cuối",
+      "Vì dòng lệnh chạy nhanh hơn hẳn giao diện đồ hoạ nên tiết kiệm được thời gian cho người dùng cuối",
       "Vì phần lớn máy chủ lẫn máy cá nhân của lập trình viên đều không cài đặt được giao diện đồ hoạ",
       "Vì các công cụ lập trình được thiết kế để cố ý khó dùng, nhằm sàng lọc người mới vào nghề"
     ],
@@ -48753,8 +48753,8 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Bạn cài một công cụ bằng sudo, sau đó chạy nó bình thường thì gặp lỗi không ghi được vào thư mục cấu hình của chính nó. Nguyên nhân có khả năng nhất là gì?",
     "openingOptions": [
       "Thư mục đó được tạo lúc chạy sudo nên chủ sở hữu là root, còn bạn thì chạy bằng tài khoản thường",
-      "Công cụ đó bị cài thiếu mất vài tệp quan trọng nên phải gỡ hẳn nó ra rồi cài lại từ đầu một lần nữa",
-      "Ổ đĩa đã đầy tới mức hệ điều hành phải từ chối mọi thao tác ghi thêm dữ liệu mới xuống",
+      "Công cụ đó cài thiếu vài tệp quan trọng nên phải gỡ ra rồi cài lại từ đầu nữa",
+      "Ổ đĩa đã đầy tới mức hệ điều hành phải từ chối mọi thao tác ghi thêm dữ liệu mới xuống đó",
       "Phần mềm diệt virus của máy đang chặn công cụ vừa cài ghi vào thư mục hệ thống"
     ],
     "correctOption": 0,
@@ -50907,7 +50907,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Nên tự viết hay dùng dịch vụ ngoài?",
     "openingOptions": [
       "Dùng dịch vụ ngoài cho thứ không phải giá trị cốt lõi của bạn, tự viết cho thứ là cốt lõi",
-      "Luôn dùng dịch vụ ngoài khi có sẵn, vì viết lại thứ người khác đã làm là lãng phí thời gian",
+      "Luôn dùng dịch vụ ngoài khi có sẵn, vì viết lại thứ người khác đã làm là lãng phí",
       "Luôn tự viết để không phụ thuộc vào bên ngoài và kiểm soát được toàn bộ hệ thống",
       "Tự viết nếu chi phí dịch vụ ngoài trong một năm vượt quá chi phí nhân sự để tự làm"
     ],
@@ -68556,188 +68556,176 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1221,
-    "track": "professional",
-    "slug": "investment-thesis-research-report-structure",
-    "title": "Investment Thesis & Research Report - Cách thuyết phục nhà đầu tư",
-    "subtitle": "Một investment thesis tốt không chỉ là 'công ty này sẽ lên tiền', mà phải có logic rõ ràng.",
+    "slug": "doc-mot-bao-cao-nghien-cuu-ky-thuat",
+    "title": "Đọc một báo cáo nghiên cứu kỹ thuật: tìm chỗ lập luận yếu",
+    "subtitle": "Một báo cáo được viết để thuyết phục, nên đọc nó cần một quy trình khác với đọc tài liệu.",
     "duration": "7 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "💡",
-    "openingQuestion": "Một investment thesis là gì?",
+    "whyItMatters": "Quyết định kỹ thuật lớn thường dựa trên một báo cáo do người khác viết, và người viết luôn đã chọn xong kết luận trước khi chọn bằng chứng.",
+    "openingQuestion": "Đọc một báo cáo đề xuất công nghệ mới, nên tìm gì trước?",
     "openingOptions": [
-      "Một dự đoán về giá cổ phiếu trong tương lai",
-      "Tuyên bố rõ: vì sao đáng đầu tư và ở mức giá nào",
-      "Một danh sách các sự kiện trong lịch sử của công ty"
+      "Điều kiện nào sẽ chứng minh kết luận sai, và báo cáo có nêu nó không",
+      "Các số liệu được dẫn ra và nguồn của từng số liệu đó",
+      "Kinh nghiệm và mức độ am hiểu của người viết về lĩnh vực này",
+      "Các phương án thay thế mà báo cáo đã cân nhắc và loại bỏ"
     ],
-    "correctOption": 1,
-    "explanation": "Investment thesis là một câu chuyện logic: (1) Vật chủ (công ty/ngành) sẽ phát triển vì sao; (2) Giá hiện tại không phản ánh giá trị thực - 'bị định giá thấp'; (3) Catalyst (xúc tác) là gì sẽ kích hoạt giá tăng; (4) Rủi ro là gì có thể làm vỡ câu chuyện. Một thesis tốt không dự đoán chính xác giá, mà giải thích logic tại sao nó nên tăng.",
+    "correctOption": 0,
+    "explanation": "Ba thứ kia đều nên kiểm và đều đến sau. Một báo cáo không nêu điều kiện bác bỏ thì bạn không có cách nào phân biệt một lập luận chắc với một lập luận được chọn lọc bằng chứng - và phần lớn báo cáo không nêu, vì người viết đã chọn kết luận trước khi đi tìm bằng chứng.",
+    "diagram": [
+      {
+        "label": "Tìm ĐIỀU KIỆN BÁC BỎ trước mọi thứ khác",
+        "arrow": true
+      },
+      {
+        "label": "Không có nó thì không phân biệt được lập luận chắc với chọn lọc bằng chứng",
+        "arrow": true
+      },
+      {
+        "label": "Hỏi bằng chứng nào KHÔNG có trong báo cáo mà lẽ ra phải có",
+        "arrow": true
+      },
+      {
+        "label": "Và tìm chỗ chuyển từ tương quan sang nhân quả không có gì đỡ"
+      }
+    ],
     "realWorldExample": {
-      "company": "Tesla 2010",
-      "description": "Investment thesis: 'Xe điện sẽ thay thế xe xăng, Tesla là công ty dẫn đầu về công nghệ pin và hệ thống điều khiển, giá $17/cổ phiếu quá rẻ so với tiềm năng doanh thu trong tương lai. Catalyst: sản xuất Model S năm 2012, quy mô sản xuất tăng, khách hàng yêu thích. **Rủi ro:** công nghệ pin chưa chắc chắn, cạnh tranh từ các hãng xe lớn.' Thesis này giải thích logic, không dự đoán 'giá sẽ lên 900x'."
+      "company": "Bằng chứng vắng mặt",
+      "description": "Câu hỏi mạnh nhất khi đọc một báo cáo không phải về những gì có trong đó mà về những gì không có: nếu kết luận đúng thì phải có một loại bằng chứng nào đó, và việc nó vắng mặt là một thông tin."
     },
     "quiz": [
       {
-        "question": "Các phần chính của investment thesis là gì?",
+        "question": "Vì sao thiếu điều kiện bác bỏ lại là dấu hiệu quan trọng nhất?",
         "options": [
-          "Tên công ty, giá cổ phiếu, lịch sử CEO",
-          "Luận điểm chính, bằng chứng, tính bị định giá thấp, catalyst, rủi ro",
-          "Chỉ là một dự đoán về giá tăng hay giảm"
+          "Vì không có nó thì không phân biệt được lập luận chắc với việc chọn lọc bằng chứng",
+          "Vì nó cho thấy người viết chưa suy nghĩ đủ kỹ về chính phương án mà mình đang đề nghị",
+          "Vì nó khiến người đọc không biết khi nào cần xem lại quyết định",
+          "Vì các báo cáo tốt trong ngành đều có phần này theo thông lệ"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba đúng và nó là hệ quả SAU khi quyết định. Cái này là vấn đề ngay lúc đọc: mọi báo cáo đều dẫn bằng chứng ủng hộ kết luận của nó, nên bằng chứng ủng hộ không phân biệt được hai loại báo cáo."
       },
       {
-        "question": "Catalyst trong investment là gì?",
+        "question": "Câu hỏi nào mạnh nhất khi đánh giá một báo cáo?",
         "options": [
-          "Nguyên nhân lịch sử của công ty",
-          "Sự kiện hoặc thay đổi sẽ kích hoạt giá cổ phiếu tăng - ví dụ, ra sản phẩm mới, merger, hay thị trường mở ra",
-          "Một loại thuốc"
+          "Bằng chứng nào KHÔNG có trong báo cáo mà lẽ ra phải có nếu kết luận đúng",
+          "Các số liệu trong báo cáo có được dẫn nguồn đầy đủ vàxác không",
+          "Người viết có lợi ích nào liên quan trực tiếp tới kết luận của báo cáo không",
+          "Báo cáo có được rà soát bởi người khác trước khi công bố không"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Ba câu kia kiểm tra thứ CÓ trong báo cáo. Câu này kiểm thứ vắng mặt, và nó khó né hơn nhiều: người viết kiểm soát được những gì mình đưa vào, không kiểm soát được việc bạn biết cái gì lẽ ra phải có."
       },
       {
-        "question": "Cấu trúc của research report là gì?",
+        "question": "Chỗ nào trong một báo cáo hay có lỗi lập luận nhất?",
         "options": [
-          "Chỉ cần viết giá target là đủ",
-          "Executive Summary, Investment Thesis, Industry Analysis, Company Analysis, Valuation, Risk Assessment, Recommendation",
-          "Chỉ danh sách các con số tài chính"
+          "Chỗ chuyển từ một tương quan quan sát được sang một kết luận nhân quả",
+          "Chỗ trình bày số liệu định lượng để có thể hỗ trợ cho luận điểm chính",
+          "Chỗ so sánh với các phương án thay thế đã được cân nhắc",
+          "Chỗ ước lượng chi phí và thời gian cần thiết để triển khai"
         ],
-        "correct": 1
-      }
-    ],
-    "sections": [
-      {
-        "type": "heading",
-        "text": "Investment Thesis - Câu chuyện logic"
+        "correct": 0,
+        "explanation": "Ba chỗ kia thường được kiểm kỹ vì chúng có con số. Bước chuyển sang nhân quả thì thường được viết bằng một từ nối - nên, do đó - và người đọc lướt qua nó như một chỗ chuyển ý bình thường."
       },
       {
-        "type": "paragraph",
-        "text": "Investment thesis là câu chuyện: 'Tại sao công ty này sẽ tạo ra giá trị' (hay 'mất giá trị' nếu short). Nó phải có ba yếu tố: (1) Fundamental: Doanh nghiệp sẽ phát triển vì sao - sản phẩm tốt, thị trường tăng, lợi thế cạnh tranh. (2) Valuation: Giá hiện tại so với giá trị thực - bị định giá thấp hay cao? (3) Catalyst: Sự kiện cụ thể nào sẽ làm nhà đầu tư nhận ra giá trị này, kích hoạt giá tăng."
+        "question": "Khi báo cáo dẫn một kết quả đo, nên hỏi gì?",
+        "options": [
+          "Nó được đo trong điều kiện nào, và điều kiện đó giống hệ thống của bạn tới đâu",
+          "Phép đo đó được thực hiện bởi bên nào và có độc lập hay không",
+          "Kết quả đó có được lặp lại nhiều lần trên nhiều máy khác nhau để đảm bảo độ tin cậy không",
+          "Có kết quả đo nào khác cho kết luận trái ngược hay không"
+        ],
+        "correct": 0,
+        "explanation": "Ba câu kia đều đúng và đều về CHẤT LƯỢNG phép đo. Câu này về PHẠM VI ÁP DỤNG, và nó là chỗ hỏng phổ biến hơn nhiều: một phép đo hoàn hảo trong một điều kiện khác vẫn không nói gì về hệ thống của bạn."
       },
       {
-        "type": "heading",
-        "text": "Phân tích Fundamental - Công ty này thực sự có tốt không?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Bây giờ, phân tích sâu: (1) Sản phẩm/dịch vụ: Tốt hơn đối thủ ở điểm nào? Khách hàng có yêu thích không? (2) Thị trường: Ngành đó đang tăng hay giảm? Kích thước thị trường bao lớn? (3) Lợi thế cạnh tranh: Tại sao công ty không bị mất khách cho đối thủ? (4) Lợi nhuận: Công ty có sinh lợi nhuận hay chỉ có doanh thu? Lợi nhuận sẽ tăng hay giảm?"
-      },
-      {
-        "type": "heading",
-        "text": "Valuation - Giá có hợp lý không?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Dùng DCF, Comparable Companies, hoặc Precedent Transactions để định giá. Sau đó so sánh: giá thị trường hiện tại so với giá hợp lý. Nếu giá thị trường $50 nhưng giá hợp lý $100 → công ty bị định giá thấp, là cơ hội. Nếu ngược lại → cẩn thận, giá quá cao."
-      },
-      {
-        "type": "heading",
-        "text": "Catalyst - Sự kiện sẽ làm giá tăng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Catalyst không phải là 'hy vọng' mà là sự kiện cụ thể, có lịch trình: (1) Sản phẩm mới sắp ra mắt (ví dụ, iPhone mới, Tesla Cybertruck); (2) Kết quả kinh doanh vượt kỳ vọng (quarterly earnings); (3) Merger/IPO/khác liên doanh; (4) Thay đổi quy định ủng hộ công ty; (5) Phát hiện mới về công nghệ. Catalyst phải có 'timeline' - 'trong 6 tháng tới, Apple sẽ công bố iPhone 16 và doanh số sẽ vượt kỳ vọng'."
-      },
-      {
-        "type": "heading",
-        "text": "Rủi ro - Tại sao thesis có thể sai"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một thesis tốt phải thừa nhận rủi ro: (1) Operational risks: Công ty không đạt target sản xuất, chất lượng sản phẩm kém. (2) Market risks: Thị trường không tăng như dự báo, hoặc đối thủ mạnh hơn. (3) Regulatory risks: Chính phủ thay đổi chính sách, cấm sản phẩm. (4) Valuation risks: Ngay cả khi công ty phát triển, giá trị cũng có thể không tăng nếu thị trường 'mất hứng'. (5) Downside risks: Trong trường hợp xấu nhất, giá có thể giảm bao nhiêu?"
-      },
-      {
-        "type": "heading",
-        "text": "Cấu trúc Research Report"
-      },
-      {
-        "type": "paragraph",
-        "text": "1. Executive Summary (1-2 trang): Investment thesis, giá target, rating (Buy/Hold/Sell). 2. Investment Thesis (1 trang): Luận điểm chính, bằng chứng. 3. Industry Analysis: Ngành thế nào, xu hướng. 4. Company Analysis: Công ty phân tích chi tiết. 5. Valuation (1-2 trang): DCF, Comparable, giá target. 6. Risk Assessment: Rủi ro chính. 7. Catalysts: Sự kiện sắp tới. 8. Conclusion: Tóm tắt."
-      },
-      {
-        "type": "heading",
-        "text": "Đúc kết lại - 'What if' analysis"
-      },
-      {
-        "type": "paragraph",
-        "text": "Phần cuối của research là 'What if' analysis: Nếu catalyst không xảy ra? Nếu đối thủ ra sản phẩm tốt hơn? Nếu nền kinh tế rơi vào suy thoái? Giá target sẽ là bao nhiêu? Điều này giúp nhà đầu tư biết 'downside risk' là gì, hay nói cách khác, 'tôi có thể mất tối đa bao nhiêu nếu thesis bị sai'."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Bốn mảnh của một investment thesis",
-        "subtitle": "Thiếu mảnh nào thì báo cáo vẫn đọc trôi chảy và vẫn không dùng được để ra quyết định",
-        "concepts": [
-          {
-            "vi": "Nền tảng doanh nghiệp",
-            "en": "Fundamentals",
-            "def": "Doanh nghiệp này có tốt không, và lợi thế của nó bền tới đâu."
-          },
-          {
-            "vi": "Định giá",
-            "en": "Valuation",
-            "def": "Giá hiện tại đang trả cho kỳ vọng nào - doanh nghiệp tốt ở giá quá cao vẫn là khoản đầu tư tệ."
-          },
-          {
-            "vi": "Chất xúc tác",
-            "en": "Catalyst",
-            "def": "Điều gì sẽ khiến thị trường nhận ra khoảng chênh, và trong khoảng thời gian nào."
-          },
-          {
-            "vi": "Rủi ro",
-            "en": "Risk",
-            "def": "Điều gì làm luận điểm này sai. Không viết được phần này nghĩa là chưa hiểu luận điểm của chính mình."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Cái bẫy",
-        "text": "Một thesis không có chất xúc tác thì không phải thesis, chỉ là một nhận xét đúng. Cổ phiếu rẻ có thể rẻ thêm nhiều năm nữa, và 'thị trường sẽ nhận ra' không phải một mốc thời gian."
+        "question": "Nên làm gì khi báo cáo thuyết phục nhưng bạn không kiểm chứng được?",
+        "options": [
+          "Đề nghị một phép thử nhỏ trước khi cam kết, thay vì tin hoặc bác",
+          "Tìm thêm nguồn độc lập để đối chiếu các luận điểm chính của báo cáo",
+          "Chấp nhận kết luận nhưng ghi lại rủi ro để theo dõi trong quá trình triển khai",
+          "Yêu cầu người viết bổ sung bằng chứng cho những phần chưa rõ ràng"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều tốn thời gian và đều kết thúc bằng việc bạn vẫn phải tin ai đó. Một phép thử nhỏ thì tạo ra bằng chứng CỦA CHÍNH BẠN, trong điều kiện của chính hệ thống bạn - thứ mà không báo cáo nào thay thế được."
       }
     ],
     "keyTakeaways": [
-      "Investment thesis là câu chuyện logic: fundamental (công ty sẽ phát triển), valuation (bị định giá thấp), catalyst (sự kiện sẽ kích hoạt)",
-      "Catalyst phải cụ thể và có lịch trình, không phải chỉ 'hy vọng' mơ hồ",
-      "Research report bao gồm: Executive Summary, Thesis, Industry/Company Analysis, Valuation, Risk, Catalysts",
-      "Một thesis tốt phải nhận diện được rủi ro và 'downside' nếu thesis bị sai"
+      "Tìm ĐIỀU KIỆN BÁC BỎ trước - bằng chứng ủng hộ thì báo cáo nào cũng có.",
+      "Hỏi bằng chứng nào VẮNG MẶT mà lẽ ra phải có - người viết không kiểm soát được câu đó.",
+      "Chỗ hỏng hay gặp nhất: bước chuyển từ tương quan sang nhân quả bằng một từ nối.",
+      "Với mỗi kết quả đo, hỏi PHẠM VI ÁP DỤNG chứ không chỉ chất lượng phép đo.",
+      "Không kiểm chứng được thì đề nghị một phép thử nhỏ - bằng chứng của chính bạn."
     ],
     "practicePrompt": {
-      "question": "Công ty công nghệ: sản phẩm tốt, giá thị trường $100 (định giá công bằng ước tính $150), catalyst là IPO trong 6 tháng. Investment thesis nào đầy đủ nhất?",
+      "question": "Báo cáo dẫn một phép đo cho thấy công nghệ mới nhanh gấp ba. Hỏi gì?",
       "options": [
-        "\"Sản phẩm tốt, giá $100 dưới giá trị $150, IPO 6 tháng là catalyst, rủi ro IPO trễ.\"",
-        "\"Cổ phiếu này chắc chắn sẽ tăng giá, nên mua ngay.\" - không có luận điểm hay bằng chứng cụ thể",
-        "\"Giá hiện tại là $100.\" - chỉ nêu sự kiện, không có luận điểm đầu tư nào",
-        "\"Sản phẩm của công ty khá tốt.\" - chỉ có fundamental, thiếu valuation và catalyst"
+        "Phép đo đó chạy trên tải và dữ liệu như thế nào so với hệ thống của chúng ta",
+        "Phép đo đó do ai thực hiện và họ có lợi ích gì liên quan tới kết quả không",
+        "Con số gấp ba là so với phiên bản nào của công nghệ hiện tại",
+        "Có phép đo độc lập nào khác xác nhận được con số đó không"
       ],
       "correct": 0,
-      "explanation": "Investment thesis hoàn chỉnh cần đủ 3 yếu tố: fundamental (tại sao công ty tốt), valuation (tại sao giá hiện tại chưa phản ánh đúng giá trị), và catalyst (sự kiện cụ thể sẽ kích hoạt thị trường định giá lại) - đồng thời phải thừa nhận rủi ro có thể khiến thesis sai."
+      "explanation": "Ba câu kia đều hợp lý và đều giả định rằng nếu phép đo đúng thì kết luận áp dụng được. Phần lớn khoảng cách giữa một kết quả đo và hệ thống thật nằm ở điều kiện đo, không ở độ tin cậy của phép đo."
     },
     "summary": {
-      "keyIdea": "Investment thesis không phải là dự đoán, mà là logic dựa trên fundamental, valuation, và catalyst. Một thesis tốt sẽ giải thích 'tại sao' và 'khi nào', và thừa nhận rủi ro."
+      "keyIdea": "Báo cáo được viết để thuyết phục, nên đọc nó cần một quy trình khác.",
+      "formula": "Điều kiện bác bỏ → bằng chứng vắng mặt → chỗ chuyển sang nhân quả → phạm vi áp dụng.",
+      "commonMistake": "Kiểm kỹ những gì có trong báo cáo và không hỏi những gì lẽ ra phải có.",
+      "action": "Với báo cáo gần nhất bạn đọc, tìm xem nó có nêu điều kiện bác bỏ không."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Trong công việc analyst hay portfolio manager, bạn sẽ phải viết investment thesis hàng ngày. Mỗi khoá quyết định mua/bán cổ phiếu phải dựa trên thesis rõ ràng, không phải 'có cảm giác' hoặc 'xu hướng ngắn hạn'. Khi bị chỉ trích, bạn phải có thể giải thích logic của thesis."
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy một báo cáo hoặc đề xuất kỹ thuật bạn đang cân nhắc và tìm một câu: điều kiện nào sẽ chứng minh kết luận này sai?",
+      "secondary": "Nếu không có, hỏi thẳng người viết. Câu trả lời của họ thường cho bạn nhiều thông tin hơn cả bản báo cáo."
     },
-    "diagram": [
+    "sections": [
       {
-        "label": "Luận điểm đầu tư: vì sao thị trường đang định giá sai",
-        "arrow": true
+        "type": "lead",
+        "text": "Quyết định kỹ thuật lớn thường dựa trên một báo cáo do người khác viết, và người viết luôn đã chọn xong kết luận trước khi chọn bằng chứng."
       },
       {
-        "label": "Bằng chứng cơ bản từ số liệu doanh nghiệp",
-        "arrow": true
+        "type": "heading",
+        "text": "Thứ cần tìm trước tiên"
       },
       {
-        "label": "Định giá: giá hiện tại so với giá trị",
-        "arrow": true
+        "type": "callout",
+        "label": "Điều kiện bác bỏ",
+        "text": "Mọi báo cáo đều dẫn bằng chứng ủng hộ kết luận của nó, nên bằng chứng ủng hộ không phân biệt được một lập luận chắc với một lập luận được chọn lọc bằng chứng. Điều kiện bác bỏ thì phân biệt được."
       },
       {
-        "label": "Catalyst: sự kiện làm khoảng cách thu hẹp",
-        "arrow": true
+        "type": "heading",
+        "text": "Câu hỏi khó né nhất"
       },
       {
-        "label": "Rủi ro và điều kiện khiến luận điểm sai",
-        "arrow": false
+        "type": "comparison",
+        "left": {
+          "label": "Kiểm thứ CÓ trong báo cáo",
+          "text": "Số liệu, nguồn, phương án đã cân nhắc. Người viết kiểm soát được toàn bộ phần này."
+        },
+        "right": {
+          "label": "Hỏi thứ VẮNG MẶT",
+          "text": "Nếu kết luận đúng thì phải có một loại bằng chứng nào đó. Người viết không kiểm soát được việc bạn biết cái gì lẽ ra phải có."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Hai chỗ hỏng hay gặp"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Bước chuyển từ TƯƠNG QUAN sang NHÂN QUẢ. Nó thường được viết bằng một từ nối - nên, do đó - và người đọc lướt qua như một chỗ chuyển ý.",
+          "PHẠM VI ÁP DỤNG của một kết quả đo. Một phép đo hoàn hảo trong một điều kiện khác vẫn không nói gì về hệ thống của bạn."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Khi báo cáo thuyết phục nhưng bạn không kiểm chứng được, đừng chọn giữa tin và bác.",
+          "Đề nghị một PHÉP THỬ NHỎ. Nó tạo ra bằng chứng của chính bạn, trong điều kiện của chính hệ thống bạn - thứ mà không báo cáo nào thay thế được."
+        ]
       }
     ]
   },
@@ -70717,190 +70705,172 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "title": "Chuẩn nội bộ về mức dự phòng tối thiểu",
-    "subtitle": "Đặt sàn cho cả tổ chức, và vì sao mọi chuẩn đều bị chơi lách",
-    "duration": "9 phút",
+    "id": 1234,
+    "slug": "nguong-an-toan-toi-thieu-va-quy-dinh-luu-tru",
+    "title": "Ngưỡng an toàn tối thiểu và quy định lưu trữ dữ liệu",
+    "subtitle": "Quy định cho bạn một sàn; sàn đó không phải mức an toàn, nó là mức thấp nhất còn hợp pháp.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "📏",
-    "whyItMatters": "Khi mỗi đội tự quyết mức dự phòng của mình thì mức ấy luôn trôi xuống, vì cắt nó không gây hậu quả nào trong quý ấy. Một chuẩn chung là cách duy nhất chặn được, và nó có cái giá riêng.",
-    "openingQuestion": "Đặt chuẩn: mọi dịch vụ phải giữ ít nhất 30% dung lượng dự phòng. Hệ quả đầu tiên là gì?",
+    "track": "professional",
+    "emoji": "⚖️",
+    "whyItMatters": "Nhiều đội đặt chính sách lưu trữ bằng đúng mức quy định yêu cầu, và mức đó được thiết kế cho trường hợp trung bình chứ không cho hệ thống của họ.",
+    "openingQuestion": "Quy định yêu cầu giữ nhật ký giao dịch năm năm. Nên giữ bao lâu?",
     "openingOptions": [
-      "Các đội sẽ khai lại mức tải đỉnh cho vừa với chuẩn",
-      "Mọi dịch vụ trở nên an toàn hơn",
-      "Chi phí hạ tầng của toàn công ty tăng lên khoảng ba mươi phần trăm trong kỳ tiếp theo",
-      "Những dịch vụ đang thiếu dự phòng sẽ được ưu tiên cấp thêm tài nguyên trong quý tới"
+      "Ít nhất năm năm, và xem lại xem hệ thống của bạn có lý do riêng để giữ lâu hơn",
+      "Đúng năm năm, vì giữ lâu hơn làm tăng chi phí và bề mặt rủi ro",
+      "Lâu hơn năm năm để có biên an toàn phòng khi quy định thay đổi",
+      "Tuỳ vào dung lượng dữ liệu và ngân sách lưu trữ mà đội được cấp"
     ],
     "correctOption": 0,
-    "explanation": "Ba mươi phần trăm dự phòng được tính trên một mẫu số, và mẫu số ấy do đội tự khai. Khai mức đỉnh thấp hơn thực tế thì con số ba mươi phần trăm đạt được mà không thêm một máy nào. Đây không phải gian lận mà là phản ứng bình thường trước một chuẩn đặt trên đại lượng không được kiểm chứng độc lập.",
+    "explanation": "Quy định đặt một SÀN, không phải một mức tối ưu - nó được viết cho trường hợp trung bình của cả ngành. Lựa chọn thứ hai đúng về chi phí và nó bỏ qua câu hỏi liệu hệ thống của bạn có tranh chấp nào cần tra lại sau sáu năm không. Câu trả lời có thể vẫn là năm năm, nhưng nó phải là một quyết định chứ không phải một phép sao chép.",
     "diagram": [
       {
-        "label": "Chuẩn đặt sàn cho toàn tổ chức",
+        "label": "Quy định là SÀN, không phải mức tối ưu",
         "arrow": true
       },
       {
-        "label": "Sàn tính trên một mẫu số nào đó",
+        "label": "Giữ lâu hơn = thêm bề mặt rủi ro; giữ ngắn hơn = mất khả năng tra lại",
         "arrow": true
       },
       {
-        "label": "Mẫu số do bên bị đo tự khai",
+        "label": "Xoá đúng hạn cũng là một NGHĨA VỤ, không chỉ là tiết kiệm",
         "arrow": true
       },
       {
-        "label": "Chuẩn được đạt mà không đổi gì"
+        "label": "Và chính sách chỉ có thật khi có cơ chế tự động thi hành nó"
       }
     ],
     "realWorldExample": {
-      "company": "Ba mươi phần trăm trên giấy",
-      "description": "Một công ty áp chuẩn dự phòng ba mươi phần trăm sau một sự cố lớn. Sáu tháng sau, mọi bảng đều xanh. Khi một đội đo lại mức đỉnh thật bằng dữ liệu thay vì bằng con số đã khai, họ phát hiện mức đỉnh thật cao hơn con số khai khoảng bốn mươi phần trăm ở phần lớn dịch vụ - không ai khai sai cố ý, họ chỉ lấy mức đỉnh của tháng gần nhất thay vì của cả năm."
+      "company": "Chính sách không có cơ chế",
+      "description": "Một chính sách lưu trữ ghi trong tài liệu mà không có công việc tự động xoá dữ liệu quá hạn thì không tồn tại. Sau ba năm, hệ thống giữ mọi thứ - vừa vi phạm phần nghĩa vụ xoá, vừa tích tụ một kho dữ liệu mà không ai định giữ."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao mức quy định yêu cầu không phải mức tối ưu?",
+        "options": [
+          "Vì nó được viết cho trường hợp trung bình của cả ngành, không cho hệ thống của bạn",
+          "Vì các quy định thường lạc hậu so với thực tế công nghệ hiện tại",
+          "Vì cơ quan quản lý đặt mức thấp để mọi doanh nghiệp đều đáp ứng được",
+          "Vì quy định chỉ quan tâm tới việc tuân thủ chứ không tới hiệu quả vận hành"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là nhận định về cơ quan quản lý và đều có thể đúng hoặc sai. Cái này là tính chất của mọi quy định: một con số áp cho nhiều tổ chức khác nhau không thể tối ưu cho tổ chức nào."
+      },
+      {
+        "question": "Vì sao giữ dữ liệu lâu hơn mức cần cũng là một rủi ro?",
+        "options": [
+          "Vì mỗi năm giữ thêm là thêm một năm dữ liệu đó có thể bị lộ",
+          "Vì chi phí lưu trữ tích luỹ lại thành một khoản đáng kể theo thời gian",
+          "Vì dữ liệu cũ làm chậm các truy vấn trên hệ thống đang chạy",
+          "Vì việc quản lý dữ liệu cũ tốn công của đội vận hành hằng tháng"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia là chi phí và đều trả được bằng tiền. Cái này không trả được: một kho dữ liệu bị lộ gây thiệt hại tỷ lệ với lượng dữ liệu trong đó, và lượng đó chỉ tăng nếu không có ai xoá."
+      },
+      {
+        "question": "Vì sao xoá đúng hạn là một nghĩa vụ chứ không chỉ là tiết kiệm?",
+        "options": [
+          "Vì nhiều quy định vừa đặt thời hạn giữ tối thiểu vừa đặt thời hạn xoá tối đa",
+          "Vì người dùng có quyền yêu cầu xoá dữ liệu của họ bất cứ lúc nào",
+          "Vì dữ liệu quá hạn không còn giá trị dùng cho hoạt động của tổ chức",
+          "Vì các tiêu chuẩn bảo mật khuyến nghị giảm thiểu lượng dữ liệu lưu giữ"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai là một quyền riêng và nó không phụ thuộc vào thời hạn. Nhiều đội chỉ đọc vế giữ tối thiểu và bỏ qua vế xoá tối đa - nên họ tuân thủ một nửa quy định và vi phạm nửa còn lại."
+      },
+      {
+        "question": "Điều gì làm một chính sách lưu trữ trở nên có thật?",
+        "options": [
+          "Một công việc tự động xoá dữ liệu quá hạn, chạy theo lịch và có cảnh báo khi lỗi",
+          "Một tài liệu chính sách được phê duyệt và phổ biến cho toàn bộ đội",
+          "Một đợt rà soát định kỳ để kiểm tra mức độ tuân thủ chính sách",
+          "Một người được chỉ định chịu trách nhiệm về việc quản lý dữ liệu lưu trữ"
+        ],
+        "correct": 0,
+        "explanation": "Ba thứ kia đều dựa vào việc có người nhớ và có người làm. Một công việc tự động thì chạy dù không ai nhớ, và vế CẢNH BÁO KHI LỖI là phần quyết định - không có nó thì công việc dừng ba tháng mà không ai biết."
+      },
+      {
+        "question": "Nên làm gì khi hệ thống của bạn có lý do giữ dữ liệu lâu hơn mức quy định?",
+        "options": [
+          "Ghi lại lý do đó cùng chính sách, để lần rà soát sau biết nó là quyết định",
+          "Giữ ở mức quy định để giảm rủi ro và chấp nhận mất khả năng tra lại",
+          "Giữ lâu hơn hẳn nhưng ở đúng một hệ thống lưu trữ tách biệt với chính quyền truy cập hẹp",
+          "Xin ý kiến bộ phận pháp lý trước khi quyết định giữ lâu hơn mức yêu cầu"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba là cách triển khai tốt và nó là bước sau. Ghi lý do là bước trước và nó rẻ hơn nhiều: không có nó, người rà soát ba năm sau chỉ thấy một chính sách vượt mức quy định mà không biết vì sao, và họ sẽ cắt nó về mức sàn."
+      }
+    ],
+    "keyTakeaways": [
+      "Quy định là SÀN, viết cho trường hợp trung bình của cả ngành.",
+      "Giữ lâu hơn mức cần là thêm bề mặt rủi ro - thiệt hại tỷ lệ với lượng dữ liệu.",
+      "Nhiều quy định có CẢ hai vế: giữ tối thiểu VÀ xoá tối đa. Đội hay chỉ đọc vế đầu.",
+      "Chính sách chỉ có thật khi có công việc tự động thi hành nó, kèm cảnh báo khi lỗi.",
+      "Vượt mức sàn thì GHI LÝ DO, nếu không người rà soát sau sẽ cắt nó về sàn."
+    ],
+    "practicePrompt": {
+      "question": "Chính sách lưu trữ của bạn ghi rõ thời hạn. Kiểm gì để biết nó có thật?",
+      "options": [
+        "Tìm công việc tự động xoá dữ liệu quá hạn và xem lần cuối nó chạy thành công",
+        "Đối chiếu tài liệu chính sách với yêu cầu của quy định hiện hành",
+        "Hỏi người chịu trách nhiệm xem chính sách có đang được áp dụng không",
+        "Kiểm tra xem đội đã được phổ biến về chính sách đó hay chưa"
+      ],
+      "correct": 0,
+      "explanation": "Ba cách kia kiểm tài liệu và kiểm con người. Vế LẦN CUỐI CHẠY THÀNH CÔNG là phần quyết định: nhiều đội có công việc đó và nó đã dừng từ lâu, mà không cảnh báo nào kêu."
+    },
+    "summary": {
+      "keyIdea": "Quy định cho bạn một sàn, không phải mức an toàn.",
+      "formula": "Sàn quy định → lý do riêng của hệ thống → ghi lý do → cơ chế tự động thi hành.",
+      "commonMistake": "Chỉ đọc vế giữ tối thiểu và bỏ qua vế xoá tối đa của cùng một quy định.",
+      "action": "Tìm công việc tự động xoá dữ liệu quá hạn và xem nó chạy lần cuối khi nào."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm trong hệ thống bạn công việc tự động xoá dữ liệu quá hạn, và xem nó chạy thành công lần cuối vào lúc nào.",
+      "secondary": "Nếu không tìm thấy công việc đó, chính sách lưu trữ của bạn chỉ tồn tại trong tài liệu. Nếu tìm thấy mà nó đã dừng, bạn vừa phát hiện một khoản nợ tích tụ suốt thời gian đó."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Chuẩn chung tồn tại vì một lý do đơn giản: thứ không ai đo thì trôi xuống. Bài này về cách đặt một chuẩn thật sự chặn được, và ba cách mọi chuẩn đều bị lách."
+        "text": "Nhiều đội đặt chính sách lưu trữ bằng đúng mức quy định yêu cầu, và mức đó được thiết kế cho trường hợp trung bình chứ không cho hệ thống của họ."
       },
       {
         "type": "heading",
-        "text": "Vì sao cần một sàn chung"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mức dự phòng là khoản dễ cắt nhất trong mọi ngân sách: cắt nó không gây hậu quả nào trong quý cắt, và hậu quả xuất hiện ở lần sự cố tiếp theo khi không ai còn nối được hai việc với nhau. Mỗi đội tự quyết thì mọi đội đều trôi xuống theo cùng một cơ chế, và không đội nào sai."
-      },
-      {
-        "type": "heading",
-        "text": "Ba cách một chuẩn bị lách"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Khai lại mẫu số: đạt tỷ lệ bằng cách hạ con số đem chia, không bằng cách thêm dự phòng",
-          "Chuyển phân loại: xếp dịch vụ vào nhóm có yêu cầu thấp hơn thay vì đáp ứng yêu cầu cao",
-          "Đạt đúng vào ngày đo: mượn dung lượng trong kỳ kiểm rồi trả lại ngay sau đó"
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Cả ba đều không phải gian lận và đều được thực hiện bởi những người đang cố làm đúng. Chúng xảy ra vì một chuẩn đo tỷ lệ luôn có hai vế, và bên bị đo thường kiểm soát được ít nhất một vế."
+        "text": "Quy định là một sàn"
       },
       {
         "type": "callout",
-        "label": "Đặt chuẩn trên đại lượng bên ngoài kiểm chứng được",
-        "text": "Cách sửa không phải là thêm quy định mà là chọn lại đại lượng. Ba mươi phần trăm trên mức đỉnh tự khai thì lách được; ba mươi phần trăm trên mức đỉnh đo từ hệ thống giám sát trung tâm trong mười hai tháng thì không. Một chuẩn chỉ mạnh bằng mức độ độc lập của mẫu số nó dùng, và đó là điều cần quyết trước khi bàn tới con số phần trăm."
+        "label": "Một con số cho nhiều tổ chức",
+        "text": "Một mức áp cho cả ngành không thể tối ưu cho tổ chức nào. Câu trả lời của bạn có thể vẫn trùng với mức đó - nhưng nó phải là một QUYẾT ĐỊNH, không phải một phép sao chép."
       },
       {
         "type": "heading",
-        "text": "Cái giá của một chuẩn chung"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một sàn áp cho tất cả sẽ quá cao với một số dịch vụ và quá thấp với một số khác, vì mức dự phòng đúng phụ thuộc vào hậu quả khi hỏng chứ không vào loại dịch vụ. Chuẩn chia nhóm theo mức độ quan trọng thì đúng hơn nhưng lại mở ra cách lách thứ hai. Không có phương án nào không có cái giá, và việc chọn là chọn cái giá nào dễ phát hiện hơn."
+        "text": "Hai chiều rủi ro"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Chuẩn chặn được",
-          "text": "Mẫu số đo từ hệ thống giám sát trung tâm, chu kỳ dài, và một lần kiểm bất ngờ mỗi năm."
+          "label": "Giữ ngắn hơn mức cần",
+          "text": "Mất khả năng tra lại khi có tranh chấp, và cửa sổ để tra thì bạn không chọn được."
         },
         "right": {
-          "label": "Chuẩn trên giấy",
-          "text": "Tỷ lệ tính trên số liệu đội tự khai, kiểm theo lịch báo trước. Mọi bảng đều xanh và không gì thay đổi."
+          "label": "Giữ lâu hơn mức cần",
+          "text": "Mỗi năm thêm là thêm một năm dữ liệu đó có thể bị lộ, và thiệt hại tỷ lệ với lượng dữ liệu trong kho."
         }
+      },
+      {
+        "type": "paragraph",
+        "text": "Và một vế hay bị bỏ hẳn: nhiều quy định đặt CẢ hai thời hạn - giữ tối thiểu VÀ xoá tối đa. Đội chỉ đọc vế đầu thì tuân thủ một nửa quy định và vi phạm nửa còn lại, trong khi vẫn tin rằng mình đang làm đúng."
       },
       {
         "type": "closing",
         "lines": [
-          "Một chuẩn chỉ mạnh bằng mức độ độc lập của mẫu số nó dùng.",
-          "Ba cách lách đều không phải gian lận, và đều do người đang cố làm đúng thực hiện."
+          "Một chính sách chỉ có thật khi có CƠ CHẾ TỰ ĐỘNG thi hành nó, kèm cảnh báo khi cơ chế đó lỗi. Không có vế cảnh báo thì công việc dừng ba tháng mà không ai biết.",
+          "Và nếu bạn quyết định vượt mức sàn, GHI LÝ DO cùng chính sách. Không có nó, người rà soát ba năm sau chỉ thấy một con số vượt mức quy định và họ sẽ cắt nó về sàn."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Vì sao mức dự phòng luôn trôi xuống khi mỗi đội tự quyết?",
-        "options": [
-          "Vì cắt nó không gây hậu quả nào trong quý cắt",
-          "Vì các đội luôn chịu áp lực cắt giảm chi phí hạ tầng",
-          "Vì phần lớn đội không có công cụ để đo chính xác mức dự phòng mình đang thực sự giữ",
-          "Vì mức dự phòng cần thiết thường bị đánh giá thấp khi hệ thống chưa từng gặp sự cố lớn"
-        ],
-        "correct": 0,
-        "explanation": "Ba lý do kia đều góp phần. Lý do đầu là cơ chế: quyết định cắt và hậu quả của nó cách nhau nhiều tháng, nên vòng phản hồi bị đứt và không ai học được rằng lần cắt trước đã tốn bao nhiêu."
-      },
-      {
-        "question": "Cách lách phổ biến nhất với một chuẩn dạng tỷ lệ là gì?",
-        "options": [
-          "Hạ con số đem chia thay vì thêm phần dự phòng",
-          "Xin miễn trừ cho dịch vụ của mình",
-          "Trì hoãn việc báo cáo cho tới khi đội kịp bổ sung phần dung lượng còn thiếu",
-          "Gộp nhiều dịch vụ nhỏ lại thành một để mức dự phòng chung dễ đạt chuẩn hơn"
-        ],
-        "correct": 0,
-        "explanation": "Một tỷ lệ có hai vế và bên bị đo thường kiểm soát được mẫu số. Đây cũng là cách lách khó phát hiện nhất, vì nó không để lại dấu vết nào ngoài một con số hơi thấp mà không ai đối chiếu."
-      },
-      {
-        "question": "Cách làm một chuẩn thật sự chặn được là gì?",
-        "options": [
-          "Chọn mẫu số đo được độc lập bởi hệ thống giám sát trung tâm",
-          "Tăng mức phần trăm yêu cầu lên cao hơn",
-          "Bổ sung quy định xử lý đối với những đội không đáp ứng được chuẩn đã đề ra",
-          "Yêu cầu mỗi đội giải trình bằng văn bản về cách họ tính ra con số của mình"
-        ],
-        "correct": 0,
-        "explanation": "Ba cách kia đều thêm áp lực lên một phép đo vẫn do bên bị đo cung cấp. Đổi mẫu số sang một nguồn độc lập thì đóng luôn cách lách, và nó phải được quyết trước khi bàn tới con số phần trăm."
-      },
-      {
-        "question": "Vì sao một sàn duy nhất áp cho mọi dịch vụ là chưa đủ đúng?",
-        "options": [
-          "Vì mức dự phòng đúng phụ thuộc vào hậu quả khi hỏng",
-          "Vì các dịch vụ có quy mô khác nhau",
-          "Vì những dịch vụ mới chưa có đủ dữ liệu lịch sử để xác định được mức đỉnh đáng tin",
-          "Vì chi phí của cùng một tỷ lệ dự phòng chênh nhau nhiều giữa các loại hạ tầng khác nhau"
-        ],
-        "correct": 0,
-        "explanation": "Một dịch vụ nội bộ ba người dùng và một dịch vụ nằm trên đường đi của mọi giao dịch không cần cùng một mức dự phòng. Chia nhóm theo hậu quả thì đúng hơn, nhưng nó mở ra cách lách thứ hai là chuyển phân loại."
-      },
-      {
-        "question": "Ba cách lách chuẩn có điểm chung gì?",
-        "options": [
-          "Đều được thực hiện bởi người đang cố làm đúng",
-          "Đều cần được người quản lý trực tiếp phê duyệt trước",
-          "Đều để lại dấu vết trong hệ thống nên có thể phát hiện được khi rà soát kỹ lưỡng",
-          "Đều chỉ xảy ra ở những đội đang chịu áp lực lớn về chi phí trong kỳ báo cáo đó"
-        ],
-        "correct": 0,
-        "explanation": "Đây là điểm quyết định cách xử lý. Nếu chúng là gian lận thì giải pháp là kỷ luật; nếu chúng là phản ứng bình thường trước một phép đo lỏng thì giải pháp là sửa phép đo, và thực tế luôn là vế thứ hai."
-      }
-    ],
-    "keyTakeaways": [
-      "Thứ không ai đo thì trôi xuống, và không đội nào sai khi nó trôi",
-      "Một chuẩn chỉ mạnh bằng mức độ độc lập của mẫu số nó dùng",
-      "Ba cách lách đều do người đang cố làm đúng thực hiện",
-      "Mức dự phòng đúng phụ thuộc vào hậu quả khi hỏng, không vào loại dịch vụ"
-    ],
-    "practicePrompt": {
-      "question": "Chuẩn 30% trên mức đỉnh. Đội khai đỉnh 1.000, thật là 1.400, và đang giữ 1.300 dung lượng. Dự phòng thật là bao nhiêu?",
-      "options": [
-        "Âm, vì 1.300 còn thấp hơn mức đỉnh thật",
-        "30%, đúng bằng mức chuẩn yêu cầu",
-        "0% (= coi như vừa đủ vì dung lượng đang giữ nằm giữa hai con số đỉnh)",
-        "7% (= lấy chênh lệch 100 chia cho mức đỉnh đã khai là 1.400)"
-      ],
-      "correct": 0,
-      "explanation": "Đỉnh thật 1.400 mà chỉ giữ 1.300 nghĩa là thiếu 100 ngay ở mức đỉnh, chưa nói tới dự phòng. Trên giấy đội này vượt chuẩn 30%; trên thực tế họ không đủ dung lượng cho chính ngày bận nhất của mình."
-    },
-    "summary": {
-      "keyIdea": "Chọn mẫu số độc lập trước khi bàn tới con số phần trăm",
-      "commonMistake": "Đặt chuẩn trên đại lượng do bên bị đo tự khai",
-      "action": "Kiểm mức đỉnh khai báo của một dịch vụ với dữ liệu giám sát mười hai tháng."
-    },
-    "application": {
-      "title": "Ba câu trước khi đặt một chuẩn",
-      "message": "Mẫu số đến từ đâu? Ai kiểm chứng được nó? Kỳ đo có báo trước không?",
-      "secondary": "Nếu mẫu số do bên bị đo cung cấp thì con số phần trăm gần như không quan trọng."
-    },
-    "id": 1234,
-    "slug": "solvency-ii-quy-dinh-bao-hiem",
-    "track": "professional"
+    ]
   },
   {
     "id": 1235,
@@ -71682,7 +71652,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Vì chi phí trả ngay hôm nay còn lợi ích thì rải ra trong tương lai, nên nó luôn thua việc gấp",
       "Vì phần lớn lập trình viên không đủ kinh nghiệm để nhận ra đâu là nợ kỹ thuật thật sự",
-      "Vì người quản lý không cho phép dành thời gian cho những việc không tạo ra tính năng mới",
+      "Vì người quản lý không cho phép dành thời gian cho những việc không tạo ra tính năng gì mới",
       "Vì việc dọn nợ kỹ thuật có rủi ro làm hỏng những phần đang chạy ổn định trong hệ thống"
     ],
     "correctOption": 0,
@@ -73015,496 +72985,475 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "title": "Quyền sở hữu mã và cách nó loãng dần",
-    "subtitle": "Ai chịu trách nhiệm phần nào, và điều gì xảy ra khi đội lớn lên gấp ba",
-    "duration": "9 phút",
+    "id": 1247,
+    "slug": "quyen-so-huu-ma-va-ranh-gioi-trach-nhiem",
+    "title": "Quyền sở hữu mã và ranh giới trách nhiệm giữa các đội",
+    "subtitle": "Một phần mã không ai sở hữu là một phần mã ai cũng sửa được và không ai sửa nổi.",
+    "duration": "8 phút",
     "difficulty": "Khó",
-    "emoji": "🗂️",
-    "whyItMatters": "Quyền sở hữu mã không phải chuyện thủ tục. Nó quyết định ai được gọi lúc hai giờ sáng, ai duyệt thay đổi, và phần nào của hệ thống sẽ mục dần vì không ai thấy nó là của mình.",
-    "openingQuestion": "Đội tăng từ 5 lên 15 người. Quyền sở hữu mã nên đổi thế nào?",
+    "track": "professional",
+    "emoji": "📋",
+    "whyItMatters": "Quyền sở hữu quyết định ai bị gọi lúc ba giờ sáng, và nó thường được xác lập bằng thói quen chứ không bằng một quyết định.",
+    "openingQuestion": "Sở hữu một phần mã nghĩa là gì?",
     "openingOptions": [
-      "Phải viết ra",
-      "Giữ nguyên, vì mọi người vẫn quen với cách làm việc chung như trước đây",
-      "Chia theo thư mục, mỗi nhóm nhỏ nhận một phần của kho mã và tự chịu trách nhiệm",
-      "Giao cho người có kinh nghiệm nhất trong mỗi mảng làm đầu mối duyệt mọi thay đổi"
+      "Chịu trách nhiệm khi nó hỏng, và có quyền từ chối thay đổi làm nó khó bảo trì",
+      "Là đội duy nhất được phép sửa đổi phần mã đó trong kho chung",
+      "Là đội đã viết ra phần mã đó và hiểu nó rõ nhất hiện nay",
+      "Là đội được phân công phụ trách phần mã đó theo sơ đồ tổ chức"
     ],
     "correctOption": 0,
-    "explanation": "Với năm người thì quyền sở hữu tồn tại trong trí nhớ chung và nó hoạt động tốt: ai cũng biết ai hiểu phần nào. Với mười lăm người thì trí nhớ chung không còn phủ hết, nhưng nó không biến mất - nó chỉ trở nên sai. Hai phương án chia theo thư mục và giao đầu mối đều là cách viết ra cụ thể, và cả hai đều tốt hơn việc để nguyên.",
+    "explanation": "Hai vế phải đi cùng nhau. Chịu trách nhiệm mà không có quyền từ chối thì đội sở hữu chỉ là đội bị gọi lúc sự cố, trong khi người khác vẫn đẩy vào đó những thay đổi làm nó khó bảo trì hơn. Có quyền từ chối mà không chịu trách nhiệm thì thành một cửa ải mà không ai muốn đi qua.",
     "diagram": [
       {
-        "label": "Đội nhỏ: quyền sở hữu nằm trong trí nhớ chung",
+        "label": "Hai vế: chịu trách nhiệm VÀ có quyền từ chối",
         "arrow": true
       },
       {
-        "label": "Đội lớn: trí nhớ chung không còn phủ hết",
+        "label": "Thiếu vế hai: đội sở hữu chỉ là đội bị gọi lúc sự cố",
         "arrow": true
       },
       {
-        "label": "Phần không ai nhận bắt đầu mục dần",
+        "label": "Thiếu vế một: thành một cửa ải không ai muốn đi qua",
         "arrow": true
       },
       {
-        "label": "Nó lộ ra ở lần sự cố tiếp theo"
+        "label": "Không ai sở hữu = ai cũng sửa được và không ai sửa nổi"
       }
     ],
     "realWorldExample": {
       "company": "Phần mã không ai nhận",
-      "description": "Một đội lớn từ sáu lên hai mươi người trong hai năm mà không viết lại quyền sở hữu. Khi rà soát, có bốn thành phần mà không ai trong đội nhận là của mình - cả bốn đều do những người đã rời đi viết, và cả bốn đều nằm trên đường đi của mọi yêu cầu. Không thành phần nào từng gây sự cố, và đó chính là lý do không ai để ý tới chúng."
+      "description": "Phần mã không ai sở hữu thường nằm ở ranh giới giữa hai đội và làm một việc mà cả hai đều cần. Nó tích tụ những thay đổi nhỏ từ nhiều phía, không có ai giữ tính nhất quán, và sau hai năm không ai đủ hiểu để đổi nó một cách an toàn."
+    },
+    "quiz": [
+      {
+        "question": "Điều gì xảy ra khi đội sở hữu chịu trách nhiệm mà không có quyền từ chối?",
+        "options": [
+          "Người khác vẫn đẩy vào những thay đổi làm nó khó bảo trì, còn họ chịu hậu quả",
+          "Đội sở hữu mất động lực cải thiện phần mã mà mình phụ trách",
+          "Chất lượng phần mã giảm dần vì không có ai kiểm soát các thay đổi",
+          "Đội sở hữu phải dành nhiều thời gian hơn hẳn để có thể rà soát các thay đổi từ bên ngoài"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia là hệ quả và đều đúng. Cái này chỉ ra bất công về cấu trúc, và nó là lý do một đội ở tình trạng này sớm muộn cũng ngừng nhận trách nhiệm - họ chỉ đang trả giá cho quyết định của người khác."
+      },
+      {
+        "question": "Vì sao phần mã không ai sở hữu thường nằm ở ranh giới giữa hai đội?",
+        "options": [
+          "Vì nó làm một việc mà cả hai đều cần nên không đội nào thấy nó là của mình",
+          "Vì các cả đội khá thường xuyên tránh nhận những phần mã phức tạp và tương đối khó bảo trì",
+          "Vì ranh giới giữa tất cả các đội thường xuyên hoàn toàn không được xác định rõ ràng từ đầu",
+          "Vì phần mã ở ranh giới khá thường xuyên tương đối ít được thay đổi nên ít ai chú ý tới"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ tư mô tả ngược thực tế: phần mã này thường bị thay đổi từ NHIỀU phía chứ không ít. Chính điều đó làm nó tích tụ các thay đổi nhỏ không nhất quán, và sau hai năm không ai đủ hiểu để đổi nó an toàn."
+      },
+      {
+        "question": "Cách xác lập quyền sở hữu nào đáng tin nhất?",
+        "options": [
+          "Ghi rõ trong kho mã, và người ghi là người sẽ bị gọi khi nó hỏng",
+          "Ghi trong tài liệu kiến trúc và phổ biến cho các đội liên quan",
+          "Xác định theo đội đã viết phần lớn mã trong phần đó",
+          "Phân công theo sơ đồ tổ chức và cập nhật khi tổ chức thay đổi"
+        ],
+        "correct": 0,
+        "explanation": "Vế thứ hai làm cho việc ghi trở nên nghiêm túc: một cái tên trong tệp cấu hình mà không nối với lịch trực thì chỉ là một dòng chữ. Lựa chọn thứ ba là cách xác lập bằng thói quen, và nó lỗi thời ngay khi có người đổi việc."
+      },
+      {
+        "question": "Đội sở hữu nên từ chối một thay đổi khi nào?",
+        "options": [
+          "Khi nó làm phần mã khó bảo trì hơn mà không giải quyết vấn đề nào của phần đó",
+          "Khi đội đề xuất không có đủ hiểu biết về phần mã mà họ muốn sửa",
+          "Khi thay đổi đó nằm ngoài kế hoạch công việc đã thống nhất của quý",
+          "Khi họ không có thời gian rà soát kỹ đổi trong thời hạn được yêu cầu"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều là lý do về nguồn lực hoặc về quy trình và chúng làm quyền từ chối thành một rào cản hành chính. Quyền này tồn tại để bảo vệ khả năng bảo trì, nên nó chỉ chính đáng khi được dùng đúng vào việc đó."
+      },
+      {
+        "question": "Nên làm gì với một phần mã hiện không ai sở hữu?",
+        "options": [
+          "Giao cho một đội kèm thời gian để họ dọn dẹp nó, không giao suông",
+          "Chia nhỏ nó và giao từng phần cho các đội đang sử dụng phần đó",
+          "Để mọi đội cùng chịu trách nhiệm và thống nhất quy tắc thay đổi chung",
+          "Giữ nguyên và bổ sung tài liệu để mọi người hiểu nó rõ hơn"
+        ],
+        "correct": 0,
+        "explanation": "Vế KÈM THỜI GIAN là phần quyết định: giao suông một phần mã đã tích tụ hai năm nợ thì đội nhận sẽ chịu toàn bộ chi phí của những quyết định họ không tham gia. Lựa chọn thứ ba là chính tình trạng hiện tại nói theo cách khác."
+      }
+    ],
+    "keyTakeaways": [
+      "Sở hữu = chịu trách nhiệm VÀ có quyền từ chối. Thiếu vế nào cũng hỏng theo một kiểu.",
+      "Phần mã không ai sở hữu nằm ở ranh giới và bị sửa từ nhiều phía, không phải ít.",
+      "Ghi quyền sở hữu trong KHO MÃ, và nối nó với lịch trực - nếu không nó là dòng chữ.",
+      "Quyền từ chối chỉ chính đáng khi dùng để bảo vệ khả năng bảo trì.",
+      "Giao một phần mã vô chủ thì KÈM THỜI GIAN dọn dẹp, đừng giao suông."
+    ],
+    "practicePrompt": {
+      "question": "Bạn sắp nhận sở hữu một phần mã từ đội khác. Hỏi gì trước?",
+      "options": [
+        "Nợ kỹ thuật đã biết là gì, và tôi có quyền từ chối thay đổi từ bên ngoài không",
+        "Phần mã đó hiện đang được những đội nào sử dụng và với tần suất ra sao",
+        "Có tài liệu nào mô tả kiến trúc và cách vận hành phần mã đó không",
+        "Đội cũ sẽ hỗ trợ trong bao lâu sau khi bàn giao xong phần mã này"
+      ],
+      "correct": 0,
+      "explanation": "Ba câu kia đều nên hỏi và đều về thông tin. Câu này hỏi hai điều kiện làm quyền sở hữu có nghĩa - và nếu vế thứ hai là không, thì thứ bạn đang nhận là trách nhiệm chứ không phải quyền sở hữu."
+    },
+    "summary": {
+      "keyIdea": "Quyền sở hữu quyết định ai bị gọi lúc ba giờ sáng.",
+      "formula": "Chịu trách nhiệm + quyền từ chối, ghi trong kho mã, nối với lịch trực.",
+      "commonMistake": "Giao trách nhiệm mà không giao quyền từ chối thay đổi từ bên ngoài.",
+      "action": "Kiểm xem phần mã bạn đang giữ có ghi chủ sở hữu trong kho mã không."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Kiểm xem kho mã của bạn có ghi chủ sở hữu cho từng phần không, và tên đó có trùng với người thật sự bị gọi khi phần đó hỏng không.",
+      "secondary": "Nếu hai danh sách khác nhau, danh sách trong kho mã là danh sách sai - và nó sẽ tiếp tục sai cho tới khi có người đối chiếu chúng."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Quyền sở hữu là một dạng phân bổ, và như mọi phân bổ, nó loãng đi khi số người tăng lên. Điều nguy hiểm không phải sự loãng mà là việc nó xảy ra âm thầm."
+        "text": "Quyền sở hữu quyết định ai bị gọi lúc ba giờ sáng, và nó thường được xác lập bằng thói quen chứ không bằng một quyết định."
       },
       {
         "type": "heading",
-        "text": "Quyền sở hữu gồm ba thứ khác nhau"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Trách nhiệm khi hỏng: ai được gọi, và ai có đủ hiểu biết để sửa trong đêm",
-          "Quyền duyệt thay đổi: ai phải đồng ý trước khi một thay đổi được đưa vào",
-          "Trách nhiệm về hướng đi: ai quyết định phần này nên tiến hoá theo hướng nào"
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Ba thứ này thường được gộp làm một và chúng không nhất thiết thuộc về cùng một người. Người trực giỏi nhất chưa chắc là người nên quyết hướng đi, và việc gộp chúng là nguyên nhân khiến nhiều đội không dám giao quyền sở hữu cho ai."
-      },
-      {
-        "type": "heading",
-        "text": "Loãng dần theo hai cách"
-      },
-      {
-        "type": "paragraph",
-        "text": "Cách thứ nhất là đội lớn lên: cùng một lượng mã chia cho nhiều người hơn thì phần mỗi người thật sự hiểu nhỏ đi. Cách thứ hai âm thầm hơn: người viết ban đầu rời đi và phần của họ không được giao lại cho ai, chỉ được coi như đã có sẵn. Cách thứ hai tạo ra những vùng không ai nhận, và chúng luôn là những vùng cũ nhất, tức là những vùng nằm sâu nhất trong đường đi."
-      },
-      {
-        "type": "callout",
-        "label": "Quyền sở hữu chỉ có thật khi có tên người",
-        "text": "Ghi tên một đội thay vì tên người nghe công bằng hơn và nó gần như luôn nghĩa là không ai. Một đội mười người sở hữu một thành phần thì lúc có sự cố sẽ có mười người cùng nghĩ ai đó khác đang xử lý. Ghi tên hai người cụ thể - hai chứ không một, để còn có người thứ hai khi người đầu nghỉ - là hình dạng duy nhất hoạt động được."
-      },
-      {
-        "type": "heading",
-        "text": "Bàn giao có điều kiện, không bàn giao theo ngày"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi một người rời đi, phần của họ không nên được coi là đã chuyển vào ngày họ nghỉ. Điều kiện đúng giống điều kiện của mọi cuộc bàn giao: người nhận đã tự xử lý được một sự cố, đã tự phát hành được một thay đổi, và đã đi qua một chu kỳ đầy đủ của thành phần đó. Trước khi đủ ba điều kiện ấy thì thành phần đó vẫn đang không có chủ, dù bảng phân công nói khác."
+        "text": "Hai vế phải đi cùng nhau"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Có chủ thật",
-          "text": "Hai tên người cụ thể, đã tự xử lý sự cố, và biết vì sao phần này được viết như hiện tại."
+          "label": "Trách nhiệm không có quyền từ chối",
+          "text": "Người khác vẫn đẩy vào những thay đổi làm phần mã khó bảo trì hơn, còn đội sở hữu chịu hậu quả. Sớm muộn họ cũng ngừng nhận."
         },
         "right": {
-          "label": "Có chủ trên bảng",
-          "text": "Tên một đội trong một bảng phân công không ai đọc. Lúc có sự cố, mọi người cùng chờ người khác."
+          "label": "Quyền từ chối không có trách nhiệm",
+          "text": "Thành một cửa ải mà không ai muốn đi qua, và các đội khác sẽ tìm đường vòng."
         }
+      },
+      {
+        "type": "heading",
+        "text": "Phần mã không ai nhận"
+      },
+      {
+        "type": "callout",
+        "label": "Nó nằm ở ranh giới",
+        "text": "Nó làm một việc mà cả hai đội đều cần, nên không đội nào thấy nó là của mình. Nó bị sửa từ NHIỀU phía chứ không ít - và chính điều đó làm nó tích tụ những thay đổi nhỏ không nhất quán."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau hai năm, không ai đủ hiểu để đổi nó một cách an toàn. Lúc đó giao nó cho một đội mà không kèm thời gian dọn dẹp thì đội nhận sẽ chịu toàn bộ chi phí của những quyết định họ không tham gia."
       },
       {
         "type": "closing",
         "lines": [
-          "Trí nhớ chung không biến mất khi đội lớn lên, nó chỉ trở nên sai.",
-          "Vùng không ai nhận luôn là vùng cũ nhất, tức là vùng nằm sâu nhất trong đường đi."
+          "Cách xác lập đáng tin nhất: ghi rõ trong KHO MÃ, và nối cái tên đó với lịch trực. Một cái tên trong tệp cấu hình mà không nối với lịch trực thì chỉ là một dòng chữ.",
+          "Và quyền từ chối chỉ chính đáng khi được dùng để bảo vệ khả năng bảo trì - dùng nó vì thiếu thời gian rà soát hay vì thay đổi nằm ngoài kế hoạch quý thì nó thành một rào cản hành chính."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Ba thành phần của quyền sở hữu là gì?",
-        "options": [
-          "Trách nhiệm khi hỏng, quyền duyệt, và hướng đi",
-          "Quyền đọc, quyền ghi, và quyền phát hành thay đổi lên môi trường thật",
-          "Người viết ban đầu, người đang bảo trì, và người quản lý trực tiếp của cả hai",
-          "Trách nhiệm về chất lượng, về hiệu năng, và về chi phí hạ tầng mà thành phần đó tiêu"
-        ],
-        "correct": 0,
-        "explanation": "Ba thứ này thường bị gộp làm một dù chúng không nhất thiết thuộc về cùng một người. Người trực giỏi nhất chưa chắc nên quyết hướng đi, và việc gộp chúng là lý do nhiều đội không dám giao quyền sở hữu cho ai."
-      },
-      {
-        "question": "Vì sao ghi tên một đội thay vì tên người thường nghĩa là không ai?",
-        "options": [
-          "Vì lúc có sự cố mọi người cùng nghĩ người khác đang xử lý",
-          "Vì thành viên trong đội thay đổi theo thời gian nên trách nhiệm bị đứt đoạn",
-          "Vì không có cơ chế nào buộc một đội phải phân công cụ thể khi sự cố thực sự xảy ra",
-          "Vì các đội thường có nhiều thành phần cùng lúc nên không đủ nguồn lực cho tất cả"
-        ],
-        "correct": 0,
-        "explanation": "Đây là hiệu ứng đã được quan sát rất rộng và nó không phụ thuộc vào việc đội có kỷ luật hay không. Trách nhiệm chia cho mười người thì mỗi người mang một phần mười, và một phần mười của trách nhiệm không đủ để ai đó hành động trước."
-      },
-      {
-        "question": "Cách loãng nào âm thầm hơn?",
-        "options": [
-          "Người viết rời đi và phần của họ không được giao lại",
-          "Đội lớn lên nên phần mỗi người hiểu nhỏ đi",
-          "Mã được viết thêm liên tục nên khối lượng cần hiểu tăng nhanh hơn số người trong đội",
-          "Các thành phần được tách nhỏ ra nên ranh giới sở hữu giữa chúng trở nên mờ dần đi"
-        ],
-        "correct": 0,
-        "explanation": "Đội lớn lên là một sự kiện ai cũng thấy và thường kéo theo một lần phân công lại. Người rời đi thì phần của họ được coi như đã có sẵn, và những vùng ấy luôn là vùng cũ nhất, tức là vùng nằm sâu nhất trong đường đi."
-      },
-      {
-        "question": "Điều kiện để coi một cuộc bàn giao quyền sở hữu là đã xong là gì?",
-        "options": [
-          "Người nhận đã tự xử lý được một sự cố, tự phát hành được một thay đổi, và đã đi qua một chu kỳ đầy đủ của thành phần đó",
-          "Người nhận đã đọc hết mã nguồn",
-          "Người bàn giao đã viết xong tài liệu và tổ chức một buổi trao đổi với người nhận",
-          "Bảng phân công đã được cập nhật và các bên liên quan đã được thông báo về thay đổi"
-        ],
-        "correct": 0,
-        "explanation": "Ba phương án kia đều đo hoạt động của người bàn giao hoặc của thủ tục. Chỉ điều kiện đầu đo thứ cần biết - người nhận đã làm được việc hay chưa - và trước khi đủ ba điều ấy thì thành phần vẫn đang không có chủ dù bảng nói khác."
-      },
-      {
-        "question": "Vì sao nên ghi hai tên người thay vì một?",
-        "options": [
-          "Để còn người thứ hai khi người đầu nghỉ",
-          "Để hai người kiểm tra chéo cho nhau",
-          "Để chia sẻ khối lượng công việc trực và giảm áp lực cho từng người trong đội",
-          "Để đảm bảo luôn có người sẵn sàng dù một trong hai đang nghỉ phép hoặc bận việc khác"
-        ],
-        "correct": 0,
-        "explanation": "Ba lý do kia đều là lợi ích hằng ngày. Lý do đầu là lý do về rủi ro: một tên duy nhất nghĩa là toàn bộ hiểu biết về thành phần đó rời khỏi công ty cùng một lá đơn, và đó chính là cách các vùng không ai nhận ra đời."
-      }
-    ],
-    "keyTakeaways": [
-      "Trí nhớ chung không biến mất khi đội lớn lên, nó chỉ trở nên sai",
-      "Quyền sở hữu gồm ba thứ và chúng không nhất thiết thuộc cùng một người",
-      "Ghi tên một đội gần như luôn nghĩa là không ai",
-      "Bàn giao xong khi người nhận đã làm được việc, không khi bảng được cập nhật"
-    ],
-    "practicePrompt": {
-      "question": "Đội 20 người, 40 thành phần, mỗi thành phần cần 2 người hiểu. Trung bình mỗi người phải hiểu bao nhiêu thành phần?",
-      "options": [
-        "4",
-        "2 (= chia số thành phần cho số người, quên nhân với yêu cầu hai người mỗi thành phần)",
-        "40 (= giả định mọi người đều phải hiểu toàn bộ các thành phần trong hệ thống)",
-        "8 (= nhân đôi con số đúng, tính nhầm rằng mỗi thành phần cần bốn người hiểu)"
-      ],
-      "correct": 0,
-      "explanation": "40 thành phần nhân 2 người ra 80 lượt, chia cho 20 người ra 4 thành phần mỗi người. Con số ấy khả thi; điều đáng chú ý là nó chỉ khả thi khi có ai đó cố ý phân bổ, còn để tự nhiên thì phân bố luôn lệch và vài thành phần rơi vào số không."
-    },
-    "summary": {
-      "keyIdea": "Quyền sở hữu loãng theo số người và theo người rời đi, và cách thứ hai âm thầm hơn",
-      "commonMistake": "Ghi tên một đội và coi như đã có chủ",
-      "action": "Liệt kê thành phần trong hệ thống bạn giữ và ghi hai tên người cho mỗi cái."
-    },
-    "application": {
-      "title": "Ba câu cho một bảng phân công",
-      "message": "Mỗi thành phần có hai tên người chưa? Có thành phần nào không tên không? Người mới nhận đã tự xử lý được một sự cố chưa?",
-      "secondary": "Câu thứ hai thường cho ra vài cái tên trống, và chúng luôn là những phần cũ nhất."
-    },
-    "id": 1247,
-    "slug": "cap-table-va-vesting-cau-truc-von-startup",
-    "track": "professional"
+    ]
   },
   {
     "id": 1248,
-    "track": "professional",
-    "slug": "ban-cheo-san-pham-va-kpi-cua-rm-ngan-hang",
-    "title": "Bán chéo sản phẩm ngân hàng & KPI của RM: Cân bằng doanh số và lợi ích khách hàng",
-    "subtitle": "Làm sao để đạt chỉ tiêu bán hàng mà vẫn thực sự tư vấn đúng nhu cầu, không phải chỉ 'nhét' sản phẩm cho khách",
+    "slug": "khi-chi-tieu-cua-doi-xung-dot-voi-loi-ich-nguoi-dung",
+    "title": "Khi chỉ tiêu của đội xung đột với lợi ích người dùng",
+    "subtitle": "Không ai chọn làm hại người dùng; người ta chọn đạt chỉ tiêu, và chỉ tiêu chọn hộ phần còn lại.",
     "duration": "7 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "🤝",
-    "openingQuestion": "Một khách hàng đến ngân hàng chỉ để mở sổ tiết kiệm 50 triệu. Chuyên viên Quan hệ Khách hàng (RM) nhận thấy khách hàng này có dòng tiền ổn định hàng tháng nhưng chưa có bảo hiểm nhân thọ và chưa từng đầu tư. Cách tiếp cận 'bán chéo' (cross-selling) chuyên nghiệp và có đạo đức nên như thế nào?",
+    "whyItMatters": "Một chỉ tiêu đặt sai không tạo ra người xấu; nó tạo ra một loạt quyết định nhỏ hợp lý mà tổng của chúng là thứ không ai muốn.",
+    "openingQuestion": "Đội được đo bằng số lượt bật thông báo. Chuyện gì sẽ xảy ra?",
     "openingOptions": [
-      "Cố gắng bán ngay bảo hiểm và sản phẩm đầu tư trong cùng buổi gặp, tập trung vào việc đạt KPI tháng",
-      "Tìm hiểu nhu cầu tài chính tổng thể của khách hàng trước, rồi chỉ giới thiệu sản phẩm thực sự phù hợp",
-      "Không bao giờ đề cập đến bất kỳ sản phẩm nào khác ngoài những gì khách hàng yêu cầu",
-      "Chỉ nên giới thiệu sản phẩm có hoa hồng cao nhất cho RM, bất kể phù hợp với khách hàng hay không"
+      "Số lượt bật tăng, và một phần trong đó đến từ việc làm người dùng khó từ chối hơn",
+      "Đội sẽ tập trung cải thiện chất lượng thông báo để phía người dùng muốn bật",
+      "Chỉ tiêu sẽ đạt được trong ngắn hạn rồi chững lại khi hết dư địa dễ",
+      "Số lượt bật tăng nhưng tỷ lệ người dùng tắt lại sau đó cũng tăng theo"
     ],
-    "correctOption": 1,
-    "explanation": "Bán chéo chuyên nghiệp (needs-based cross-selling) khác hoàn toàn với 'nhồi nhét sản phẩm' (product pushing): cách tiếp cận đúng bắt đầu từ việc THỰC SỰ HIỂU nhu cầu khách hàng qua đối thoại (fact-finding), sau đó chỉ đề xuất sản phẩm thực sự giải quyết vấn đề của họ. Cách tiếp cận này không chỉ đạo đức hơn mà còn HIỆU QUẢ HƠN về lâu dài - khách hàng cảm thấy được tư vấn thực sự (không bị 'bán hàng') có xu hướng tin tưởng và gắn bó lâu dài, tạo ra giá trị vòng đời khách hàng (customer lifetime value) cao hơn nhiều so với một giao dịch bán chéo ép buộc một lần.",
+    "correctOption": 0,
+    "explanation": "Lựa chọn thứ tư mô tả một hậu quả thật và nó chỉ xuất hiện nếu có ai đo nó, mà thường thì không ai đo. Điểm cần thấy là cơ chế: khi một chỉ số thành mục tiêu, mọi cách làm nó tăng đều trở nên hợp lý với người bị đo - kể cả những cách mà chính họ sẽ không chọn nếu được hỏi thẳng.",
+    "diagram": [
+      {
+        "label": "Chỉ số thành mục tiêu thì mọi cách làm nó tăng đều thành hợp lý",
+        "arrow": true
+      },
+      {
+        "label": "Không ai chọn làm hại người dùng - họ chọn đạt chỉ tiêu",
+        "arrow": true
+      },
+      {
+        "label": "Cách chữa: ghép chỉ tiêu với một chỉ số ĐỐI TRỌNG",
+        "arrow": true
+      },
+      {
+        "label": "Và đối trọng phải được đo bởi cùng một người bị đo"
+      }
+    ],
     "realWorldExample": {
-      "company": "Vụ bê bối Wells Fargo Cross-Selling (2016)",
-      "description": "Wells Fargo, một trong những ngân hàng lớn nhất Mỹ, đối mặt với vụ bê bối nghiêm trọng khi bị phát hiện nhân viên đã mở hàng triệu tài khoản giả mạo không có sự đồng ý của khách hàng để đạt chỉ tiêu bán chéo (cross-selling) cực kỳ áp lực từ ban lãnh đạo. Vụ việc dẫn đến khoản phạt hàng tỷ USD, sa thải hàng nghìn nhân viên, và tổn hại nghiêm trọng danh tiếng ngân hàng - một bài học kinh điển về hậu quả khi hệ thống KPI/incentive được thiết kế sai, khuyến khích nhân viên ưu tiên đạt chỉ tiêu hơn lợi ích thực sự của khách hàng."
+      "company": "Chỉ số đối trọng",
+      "description": "Số lượt bật thông báo ghép với tỷ lệ tắt lại trong ba mươi ngày cho ra một cặp mà không cách nào làm đẹp cả hai bằng thủ thuật. Đối trọng chỉ có tác dụng khi cùng một người chịu trách nhiệm cho cả hai con số."
     },
     "quiz": [
       {
-        "question": "'Customer Lifetime Value' (CLV - giá trị vòng đời khách hàng) là khái niệm quan trọng như thế nào đối với chiến lược bán chéo dài hạn của một RM, so với việc chỉ tập trung vào doanh số giao dịch đơn lẻ?",
+        "question": "Vì sao một chỉ tiêu đặt sai không tạo ra người xấu?",
         "options": [
-          "CLV không có ý nghĩa thực tế nào trong công việc hàng ngày của RM",
-          "CLV đo lường tổng giá trị lợi nhuận một khách hàng mang lại cho ngân hàng trong SUỐT MỐI QUAN HỆ (nhiều năm), không chỉ một giao dịch - một khách hàng được tư vấn đúng nhu cầu, hài lòng, và tin tưởng có xu hướng sử dụng nhiều sản phẩm hơn qua thời gian VÀ giới thiệu khách hàng mới (referral), tạo ra giá trị lớn hơn nhiều so với việc ép bán một sản phẩm không phù hợp trong một lần gặp rồi mất lòng tin",
-          "CLV chỉ áp dụng cho khách hàng doanh nghiệp lớn, không áp dụng cho khách hàng cá nhân",
-          "Doanh số giao dịch đơn lẻ luôn quan trọng hơn CLV trong mọi trường hợp"
+          "Vì mỗi quyết định nhỏ đều hợp lý riêng lẻ, chỉ tổng của chúng mới là vấn đề",
+          "Vì người thực hiện khá thường xuyên không nhận ra hậu quả với phía người dùng cuối",
+          "Vì trách nhiệm đã được chia nhỏ nên cũng không ai thấy mình là người quyết định",
+          "Vì áp lực đạt chỉ đơn thuần tiêu khiến cho người ta bỏ qua các cân nhắc về đạo đức"
         ],
-        "correct": 1,
-        "explanation": "Tư duy CLV là nền tảng của bán chéo chuyên nghiệp bền vững: một RM giỏi hiểu rằng tối ưu hóa cho MỘT giao dịch (bán được sản phẩm hoa hồng cao nhất ngay lúc này) có thể phá hủy giá trị dài hạn nếu khách hàng cảm thấy bị 'bán hàng' thay vì được tư vấn - dẫn đến mất niềm tin, rời bỏ ngân hàng, hoặc không giới thiệu người quen. Ngược lại, tư vấn đúng nhu cầu xây dựng niềm tin, tạo ra nhiều giao dịch tự nhiên hơn qua nhiều năm và referral từ khách hàng hài lòng."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều mô tả tâm lý của người thực hiện. Cái này mô tả cấu trúc, và nó quan trọng hơn vì nó nói rằng thay người không sửa được vấn đề - người mới sẽ đi tới cùng những quyết định đó."
       },
       {
-        "question": "Khi hệ thống KPI của ngân hàng đặt áp lực doanh số rất cao lên RM (như trường hợp Wells Fargo), rủi ro đạo đức nghề nghiệp nào có thể phát sinh, và làm sao một RM có trách nhiệm có thể cân bằng giữa áp lực KPI và lợi ích khách hàng?",
+        "question": "Chỉ số đối trọng hoạt động thế nào?",
         "options": [
-          "Không có rủi ro đạo đức nào, RM chỉ cần làm theo đúng KPI được giao",
-          "Áp lực KPI quá cao có thể dẫn đến hành vi 'mis-selling' (bán sai) - tư vấn sản phẩm không phù hợp, che giấu rủi ro/phí, hoặc thậm chí gian lận (như trường hợp Wells Fargo mở tài khoản giả); RM có trách nhiệm nên tập trung vào việc XÂY DỰNG DANH MỤC KHÁCH HÀNG chất lượng qua tư vấn đúng nhu cầu (đạt KPI một cách bền vững qua thời gian), đồng thời báo cáo lên cấp quản lý nếu nhận thấy hệ thống incentive đang khuyến khích hành vi sai trái mang tính hệ thống",
-          "RM nên luôn ưu tiên đạt KPI bằng mọi giá vì đây là thước đo duy nhất về hiệu suất công việc",
-          "Vấn đề đạo đức trong bán chéo chỉ xảy ra ở các ngân hàng nước ngoài, không xảy ra tại Việt Nam"
+          "Nó tạo ra một cặp mà không thủ thuật nào làm đẹp được cả hai cùng lúc",
+          "Nó cho phép phát hiện sớm khi chỉ tiêu chính đang được đạt bằng cách sai",
+          "Nó cân bằng giữa mục tiêu ngắn hạn và mục tiêu dài hạn của sản phẩm",
+          "Nó buộc đội phải cân nhắc nhiều khía cạnh trước khi ra quyết định"
         ],
-        "correct": 1,
-        "explanation": "Đây là tình huống đạo đức nghề nghiệp thực tế mà nhiều RM phải đối mặt: nhận diện được ranh giới giữa 'bán chéo có trách nhiệm' và 'mis-selling do áp lực KPI' là kỹ năng quan trọng - không chỉ vì rủi ro pháp lý (nhiều quốc gia có quy định bảo vệ người tiêu dùng tài chính ngày càng chặt chẽ), mà còn vì hậu quả dài hạn đến uy tín cá nhân và tổ chức khi mis-selling bị phát hiện."
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai mô tả cách dùng và nó vẫn cần ai đó nhìn và phản ứng. Cặp chỉ số thì chặn ngay từ đầu: cách làm chỉ tiêu chính tăng bằng thủ thuật cũng chính là cách làm chỉ số đối trọng xấu đi."
       },
       {
-        "question": "'Fact-Finding' (tìm hiểu thông tin khách hàng) trước khi tư vấn sản phẩm nên bao gồm những khía cạnh nào để đảm bảo đề xuất thực sự phù hợp?",
+        "question": "Điều kiện nào làm chỉ số đối trọng có tác dụng?",
         "options": [
-          "Chỉ cần biết khách hàng có bao nhiêu tiền để xác định sản phẩm nào bán được nhiều nhất",
-          "Cần tìm hiểu toàn diện: mục tiêu tài chính ngắn/dài hạn (mua nhà, học phí con cái, hưu trí), tình hình thu nhập/chi tiêu hiện tại, các khoản nợ/tài sản hiện có, khẩu vị rủi ro, và hoàn cảnh gia đình (số người phụ thuộc, tình trạng sức khỏe) - những yếu tố này quyết định sản phẩm nào (tiết kiệm, bảo hiểm, đầu tư, vay) thực sự phù hợp, không chỉ dựa vào số tiền khách hàng đang có",
-          "Fact-finding không cần thiết nếu khách hàng đã tự nói rõ họ muốn mua sản phẩm gì",
-          "Chỉ cần hỏi tuổi của khách hàng là đủ để xác định sản phẩm phù hợp"
+          "Cùng một người chịu trách nhiệm cho cả hai con số",
+          "Chỉ số đối trọng được đo chính xác và cập nhật thường xuyên",
+          "Cả hai chỉ số đều xuất hiện trên cùng một bảng theo dõi",
+          "Chỉ số đối trọng có trọng số tương đương với chỉ tiêu chính"
         ],
-        "correct": 1,
-        "explanation": "Fact-finding toàn diện là bước nền tảng của tư vấn tài chính có trách nhiệm - tương tự quy trình mà các Certified Financial Planner (CFP) được đào tạo bài bản: hiểu đầy đủ bối cảnh tài chính và cuộc sống của khách hàng trước khi đề xuất bất kỳ sản phẩm nào, đảm bảo lời khuyên thực sự dựa trên NHU CẦU của khách hàng, không phải dựa trên sản phẩm nào ngân hàng đang cần đẩy doanh số."
+        "correct": 0,
+        "explanation": "Ba điều kiện kia đều cần và đều là kỹ thuật. Nếu hai con số thuộc về hai người thì mỗi người tối ưu phần của mình, và cặp chỉ số quay về thành hai chỉ tiêu độc lập - đúng tình trạng mà nó sinh ra để tránh."
+      },
+      {
+        "question": "Vì sao thay người không sửa được vấn đề chỉ tiêu?",
+        "options": [
+          "Vì người mới đứng trước cùng cấu trúc sẽ đi tới cùng những quyết định đó",
+          "Vì người mới cần thời gian để hiểu bối cảnh nên hiệu quả giảm trong ngắn hạn",
+          "Vì vấn đề nằm ở quy trình chứ không nằm ở năng lực của cá nhân",
+          "Vì việc thay người làm mất kinh nghiệm tích luỹ của đội về sản phẩm"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba gần đúng và nó nói chung chung về quy trình. Cái này cụ thể hơn: cấu trúc khuyến khích là thứ quyết định, và nó không đổi khi người đổi."
+      },
+      {
+        "question": "Kỹ sư trong đội có thể làm gì khi thấy chỉ tiêu đang xung đột với người dùng?",
+        "options": [
+          "Đề xuất một chỉ số đối trọng cụ thể, thay vì phản đối chỉ tiêu hiện tại",
+          "Nêu vấn đề với người quản lý và đề nghị xem lại chỉ tiêu của đội",
+          "Từ chối triển khai những thay đổi mà mình cho là gây hại cho người dùng",
+          "Ghi lại lo ngại của mình để có bằng chứng nếu vấn đề xảy ra về sau"
+        ],
+        "correct": 0,
+        "explanation": "Phản đối một chỉ tiêu đặt bạn vào thế đối lập với mục tiêu của đội và hiếm khi thắng. Đề xuất một đối trọng cụ thể thì không đối lập với ai - nó chỉ thêm một điều kiện, và nó cho người quyết định một lựa chọn dễ nói đồng ý."
       }
     ],
     "keyTakeaways": [
-      "Bán chéo chuyên nghiệp (needs-based selling) khác biệt hoàn toàn với 'nhồi nhét sản phẩm' - bắt đầu từ việc hiểu nhu cầu thực sự qua fact-finding, không phải từ sản phẩm cần đẩy doanh số",
-      "Customer Lifetime Value (giá trị vòng đời khách hàng) thường lớn hơn nhiều so với lợi ích một giao dịch bán chéo ép buộc - tư vấn đúng xây dựng niềm tin và referral dài hạn",
-      "Vụ bê bối Wells Fargo minh họa hậu quả nghiêm trọng khi hệ thống KPI/incentive được thiết kế sai, khuyến khích hành vi mis-selling",
-      "Fact-finding toàn diện (mục tiêu, thu nhập, nợ, khẩu vị rủi ro, hoàn cảnh gia đình) là nền tảng bắt buộc trước khi đề xuất bất kỳ sản phẩm tài chính nào"
+      "Chỉ số thành mục tiêu thì mọi cách làm nó tăng đều trở nên hợp lý với người bị đo.",
+      "Mỗi quyết định nhỏ đều hợp lý riêng lẻ - chỉ TỔNG của chúng mới là vấn đề.",
+      "Cặp chỉ số đối trọng chặn ngay từ đầu, không cần ai nhìn và phản ứng.",
+      "Đối trọng chỉ có tác dụng khi CÙNG MỘT NGƯỜI chịu trách nhiệm cho cả hai.",
+      "Đề xuất một đối trọng cụ thể - nó không đối lập với ai và dễ được đồng ý."
     ],
     "practicePrompt": {
-      "question": "Bạn là RM và đang chịu áp lực KPI cao về bán bảo hiểm liên kết đầu tư trong quý này. Một khách hàng lớn tuổi (65 tuổi), đã nghỉ hưu, thu nhập chính từ lương hưu ổn định, đến hỏi về gửi tiết kiệm. Sản phẩm bảo hiểm liên kết đầu tư có kỳ hạn cam kết 10 năm và phí rút trước hạn cao. Bạn nên xử lý tình huống này như thế nào?",
+      "question": "Đội bạn bị đo bằng thời gian xử lý mỗi phiếu hỗ trợ. Đối trọng nào phù hợp?",
       "options": [
-        "Cố thuyết phục khách mua để đạt KPI, vì khách lớn tuổi có tiền nhàn rỗi là cơ hội hiếm",
-        "Kỳ hạn 10 năm và phí rút sớm cao không phù hợp khách 65 tuổi đã nghỉ hưu",
-        "Từ chối phục vụ khách hàng này vì họ không phù hợp với sản phẩm cần bán",
-        "Bán sản phẩm bảo hiểm nhưng không giải thích rõ về phí rút trước hạn để tránh khách hàng từ chối"
+        "Tỷ lệ phiếu được mở lại trong bảy ngày, đo bởi cùng đội đó",
+        "Mức độ hài lòng của chính người dùng sau mỗi khi phiếu đã được đóng lại",
+        "Số lượng phiếu mà mỗi người trong đội xử lý được mỗi ngày",
+        "Thời gian chờ trung bình trước khi phiếu được nhận xử lý"
       ],
-      "correct": 1,
-      "explanation": "Đây là tình huống kinh điển kiểm tra đạo đức nghề nghiệp của RM: một khách hàng 65 tuổi đã nghỉ hưu thường cần ưu tiên thanh khoản và bảo toàn vốn hơn là cam kết dài hạn với phí rút sớm cao - đề xuất sản phẩm không phù hợp chỉ vì áp lực KPI là hành vi mis-selling, có thể gây thiệt hại thực sự cho khách hàng và rủi ro pháp lý/danh tiếng cho cả RM lẫn ngân hàng về lâu dài."
+      "correct": 0,
+      "explanation": "Lựa chọn thứ hai là đối trọng đúng hướng và nó phụ thuộc vào việc người dùng có phản hồi hay không - phần lớn không. Tỷ lệ mở lại thì đo tự động, không né được, và nó xấu đi đúng khi người ta đóng phiếu vội để rút ngắn thời gian xử lý."
     },
     "summary": {
-      "keyIdea": "Bán chéo hiệu quả và có đạo đức xuất phát từ việc thực sự hiểu và giải quyết nhu cầu khách hàng (needs-based selling), không phải từ áp lực đạt KPI ngắn hạn - tư duy Customer Lifetime Value giúp cân bằng giữa mục tiêu kinh doanh và lợi ích khách hàng.",
-      "commonMistake": "Ưu tiên đạt KPI ngắn hạn bằng cách đề xuất sản phẩm không phù hợp với nhu cầu/giai đoạn cuộc đời thực sự của khách hàng",
-      "action": "Trước khi đề xuất bất kỳ sản phẩm nào, thực hiện fact-finding đầy đủ về mục tiêu, giai đoạn cuộc đời, và nhu cầu thanh khoản của khách hàng - chỉ đề xuất sản phẩm thực sự phù hợp"
+      "keyIdea": "Chỉ tiêu đặt sai không tạo ra người xấu; nó tạo ra một loạt quyết định nhỏ hợp lý.",
+      "formula": "Ghép mỗi chỉ tiêu với một đối trọng, và giao cả hai cho cùng một người.",
+      "commonMistake": "Phản đối chỉ tiêu thay vì đề xuất một đối trọng cụ thể.",
+      "action": "Với chỉ tiêu của đội bạn, nghĩ ra một chỉ số đối trọng đo tự động được."
     },
     "application": {
-      "title": "Áp dụng vào công việc RM thực tế",
-      "message": "Xây dựng một bộ câu hỏi fact-finding chuẩn (5-7 câu) bạn sẽ hỏi mọi khách hàng mới trước khi đề xuất bất kỳ sản phẩm nào, bao gồm mục tiêu tài chính, giai đoạn cuộc đời, và khẩu vị rủi ro.",
-      "secondary": "Bài tiếp theo sẽ đi vào kỹ năng xử lý từ chối và tư vấn phù hợp khẩu vị rủi ro - một phần quan trọng khác của công việc RM chuyên nghiệp."
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy chỉ tiêu chính của đội bạn và nghĩ ra một cách làm nó tăng mà không tạo ra giá trị nào cho người dùng. Cách đó luôn tồn tại.",
+      "secondary": "Rồi tìm một chỉ số sẽ xấu đi nếu có ai làm theo cách đó. Đó chính là chỉ số đối trọng cần thêm vào - và nó phải thuộc về cùng người đang bị đo."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "KPI bán chéo là thực tế không thể tránh khỏi trong nghề RM ngân hàng - nhưng cách đạt được KPI đó, có đạo đức hay không, tạo ra sự khác biệt lớn giữa một sự nghiệp bền vững và rủi ro pháp lý/danh tiếng nghiêm trọng."
+        "text": "Một chỉ tiêu đặt sai không tạo ra người xấu; nó tạo ra một loạt quyết định nhỏ hợp lý mà tổng của chúng là thứ không ai muốn."
       },
       {
         "type": "heading",
-        "text": "Needs-based Selling vs Product Pushing"
+        "text": "Cơ chế"
+      },
+      {
+        "type": "callout",
+        "label": "Chỉ số thành mục tiêu",
+        "text": "Lúc đó mọi cách làm nó tăng đều trở nên hợp lý với người bị đo - kể cả những cách mà chính họ sẽ không chọn nếu được hỏi thẳng. Không ai chọn làm hại người dùng; người ta chọn đạt chỉ tiêu."
       },
       {
         "type": "paragraph",
-        "text": "Bán chéo chuyên nghiệp bắt đầu từ CÂU HỎI, không phải từ SẢN PHẨM: thay vì nghĩ 'tôi cần bán bảo hiểm này cho ai', RM giỏi nghĩ 'khách hàng này đang thiếu gì trong bức tranh tài chính tổng thể của họ, và có sản phẩm nào của ngân hàng thực sự giải quyết vấn đề đó không'. Cách tiếp cận này đòi hỏi kỹ năng lắng nghe và đặt câu hỏi (fact-finding) tốt hơn nhiều so với kỹ năng thuyết phục đơn thuần."
+        "text": "Hệ quả quan trọng: thay người không sửa được. Người mới đứng trước cùng cấu trúc khuyến khích sẽ đi tới cùng những quyết định đó, và họ cũng sẽ thấy từng quyết định là hợp lý."
       },
       {
         "type": "heading",
-        "text": "Bài học từ Wells Fargo - Khi Incentive Đi Sai Hướng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Vụ bê bối Wells Fargo là lời cảnh báo nghiêm túc cho toàn ngành ngân hàng bán lẻ: khi hệ thống KPI đặt áp lực quá cao mà không có cơ chế kiểm soát/giám sát phù hợp, ngay cả những nhân viên vốn có đạo đức tốt cũng có thể bị đẩy vào hành vi sai trái để đáp ứng chỉ tiêu. Đây là lý do các ngân hàng hiện đại ngày càng chú trọng thiết kế KPI cân bằng giữa doanh số và chất lượng dịch vụ (như đo lường customer satisfaction, tỷ lệ khiếu nại, tỷ lệ khách hàng rời bỏ sau khi mua sản phẩm)."
-      },
-      {
-        "type": "heading",
-        "text": "Customer Lifetime Value - Tư duy dài hạn"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một RM giỏi hiểu rằng giá trị thực sự không nằm ở một giao dịch bán chéo đơn lẻ, mà ở mối quan hệ lâu dài: một khách hàng hài lòng có thể mang lại nhiều giao dịch tự nhiên qua các giai đoạn cuộc đời khác nhau (mở tài khoản → vay mua nhà → bảo hiểm cho gia đình → đầu tư hưu trí), cộng thêm giá trị từ việc giới thiệu bạn bè/người thân - tổng giá trị này thường lớn hơn nhiều so với một sản phẩm bán ép trong một lần gặp."
+        "text": "Cách chữa"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Bán theo nhu cầu",
-          "text": "Bắt đầu từ tình huống của khách hàng rồi mới tới sản phẩm. Chậm hơn, và tạo ra doanh thu lặp lại vì khách quay lại."
+          "label": "Theo dõi và phản ứng",
+          "text": "Thêm một chỉ số cảnh báo và trông chờ có người nhìn nó. Phụ thuộc vào việc ai đó chú ý đúng lúc."
         },
         "right": {
-          "label": "Đẩy sản phẩm theo chỉ tiêu",
-          "text": "Bắt đầu từ chỉ tiêu của tháng. Đạt số nhanh, và ăn vào chính nguồn doanh thu tương lai khi khách hàng mất niềm tin."
+          "label": "Cặp chỉ số đối trọng",
+          "text": "Chặn ngay từ đầu: cách làm chỉ tiêu chính tăng bằng thủ thuật cũng chính là cách làm chỉ số đối trọng xấu đi."
         }
       },
       {
-        "type": "callout",
-        "label": "Đáng nhớ",
-        "text": "Vụ Wells Fargo không phải câu chuyện về vài nhân viên xấu mà về một hệ chỉ tiêu. Khi KPI đếm số sản phẩm mở mới và không đếm sản phẩm được dùng, hệ thống đang trả tiền cho việc mở tài khoản chứ không cho việc phục vụ ai."
+        "type": "paragraph",
+        "text": "Điều kiện để đối trọng có tác dụng: CÙNG MỘT NGƯỜI chịu trách nhiệm cho cả hai con số. Nếu chúng thuộc về hai người thì mỗi người tối ưu phần của mình, và cặp chỉ số quay về thành hai chỉ tiêu độc lập."
       },
       {
         "type": "closing",
         "lines": [
-          "Kỹ năng bán chéo có đạo đức không chỉ là 'làm điều đúng' về mặt lý thuyết - nó là chiến lược kinh doanh bền vững đã được chứng minh tạo ra giá trị lớn hơn về dài hạn so với cách tiếp cận ép buộc ngắn hạn.",
-          "Đây là kỹ năng phân biệt một RM xuất sắc, được khách hàng tin tưởng giới thiệu, với một RM chỉ tồn tại nhờ áp lực và may mắn ngắn hạn."
+          "Với một kỹ sư trong đội, cách can thiệp hiệu quả nhất không phải phản đối chỉ tiêu - việc đó đặt bạn vào thế đối lập với mục tiêu của đội và hiếm khi thắng.",
+          "Đề xuất một ĐỐI TRỌNG CỤ THỂ thì không đối lập với ai. Nó chỉ thêm một điều kiện, và nó cho người quyết định một lựa chọn dễ nói đồng ý."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Tìm hiểu nhu cầu thực của khách hàng",
-        "arrow": true
-      },
-      {
-        "label": "Đề xuất sản phẩm phù hợp nhu cầu đó",
-        "arrow": true
-      },
-      {
-        "label": "KPI đo cả doanh số lẫn chất lượng và mức độ giữ khách",
-        "arrow": true
-      },
-      {
-        "label": "Cơ chế thưởng lệch → bán ép sản phẩm, mất khách dài hạn",
-        "arrow": false
       }
     ]
   },
   {
     "id": 1249,
     "track": "professional",
-    "slug": "quy-trinh-hoach-dinh-tai-chinh-6-buoc",
-    "title": "Quy trình Hoạch định Tài chính 6 bước: Khung làm việc chuẩn của mọi Financial Advisor",
-    "subtitle": "Từ thu thập thông tin đến giám sát thực hiện - quy trình có hệ thống đằng sau mỗi lời khuyên tài chính chuyên nghiệp",
-    "duration": "8 phút",
+    "slug": "sau-buoc-khi-duoc-nho-tu-van-ky-thuat",
+    "title": "Sáu bước khi ai đó nhờ bạn tư vấn kỹ thuật",
+    "subtitle": "Câu trả lời hay nhất cho câu hỏi được đặt ra vẫn có thể vô dụng, nếu đó không phải câu hỏi thật",
+    "duration": "7 phút",
     "difficulty": "Trung bình",
-    "emoji": "🗺️",
-    "openingQuestion": "Theo quy trình hoạch định tài chính chuẩn quốc tế (được các tổ chức như CFP Board áp dụng), bước ĐẦU TIÊN trước khi một chuyên viên tư vấn tài chính đưa ra bất kỳ khuyến nghị sản phẩm nào cho khách hàng là gì?",
+    "emoji": "🧭",
+    "whyItMatters": "Người có kinh nghiệm được hỏi ý kiến rất nhiều, và phần lớn lời khuyên trôi qua mà không đổi được gì. Nguyên nhân hiếm khi là nội dung sai; nó là bỏ qua bước đầu và bước cuối.",
+    "openingQuestion": "Việc đầu tiên nên làm khi ai đó nhờ tư vấn kỹ thuật là gì?",
     "openingOptions": [
-      "Giới thiệu ngay các sản phẩm đầu tư/bảo hiểm có sẵn của công ty",
-      "Thiết lập quan hệ tư vấn, rồi thu thập dữ liệu toàn diện trước khi đề xuất bất kỳ giải pháp nào",
-      "Yêu cầu khách hàng ký hợp đồng sử dụng dịch vụ trước khi thảo luận bất kỳ điều gì",
-      "Đánh giá ngay khả năng tài chính của khách hàng để xác định họ có đủ tiền mua sản phẩm không"
+      "Hỏi họ đang cố đạt được điều gì, trước khi bàn về phương án",
+      "Tìm hiểu kỹ về hệ thống và bối cảnh kỹ thuật hiện tại của họ",
+      "Nêu vài phương án khả dĩ để họ có cơ sở so sánh và lựa chọn",
+      "Xác định rõ những ràng buộc về thời gian và nguồn lực mà họ đang có"
     ],
-    "correctOption": 1,
-    "explanation": "Quy trình hoạch định tài chính chuẩn quốc tế (financial planning process, được CFP Board và các tổ chức nghề nghiệp tương tự chuẩn hóa) luôn bắt đầu từ việc THIẾT LẬP MỐI QUAN HỆ và THU THẬP DỮ LIỆU toàn diện - không phải bán sản phẩm. Việc nhảy thẳng vào đề xuất sản phẩm mà chưa hiểu đầy đủ bối cảnh tài chính, mục tiêu, và khẩu vị rủi ro của khách hàng đi ngược lại hoàn toàn với vai trò 'cố vấn' (advisor) thực sự - đây chính là ranh giới phân biệt financial planning chuyên nghiệp với bán hàng sản phẩm tài chính thông thường.",
+    "correctOption": 0,
+    "explanation": "Câu hỏi được mang tới gần như luôn là một câu hỏi về phương án - nên dùng cái này hay cái kia - và người hỏi đã tự thu hẹp không gian trước khi tới gặp bạn. Rất thường xuyên, việc thu hẹp ấy chính là chỗ sai: họ hỏi nên chọn cơ chế xếp hàng nào trong khi vấn đề thật là một truy vấn chậm, và mọi câu trả lời cho câu hỏi ban đầu đều không giúp được gì. Ba bước kia đều cần thiết và đều nên đến sau, vì chúng giả định rằng câu hỏi đang được hỏi là câu hỏi đúng. Bước đầu tiên tốn hai phút và nó là bước duy nhất kiểm được giả định đó.",
+    "diagram": [
+      { "label": "Hỏi họ đang cố đạt được điều gì", "arrow": true },
+      { "label": "Làm rõ ràng buộc thật, không phải ràng buộc giả định", "arrow": true },
+      { "label": "Nêu hai tới ba phương án kèm đánh đổi", "arrow": true },
+      { "label": "Khuyến nghị một cái, ghi lại, và hẹn xem lại" }
+    ],
     "realWorldExample": {
-      "company": "Chuẩn nghề nghiệp CFP (Certified Financial Planner)",
-      "description": "Chứng chỉ CFP - một trong những chứng chỉ uy tín nhất trong ngành tư vấn tài chính cá nhân toàn cầu - yêu cầu ứng viên không chỉ có kiến thức sản phẩm tài chính, mà phải thành thạo TOÀN BỘ quy trình hoạch định tài chính có hệ thống, bao gồm cả các khía cạnh phi tài chính như tâm lý học quyết định và giao tiếp với khách hàng. CFP Board (tổ chức cấp chứng chỉ tại Mỹ) đưa quy trình 6-7 bước này vào chương trình đào tạo và thi cử bắt buộc, phản ánh tầm quan trọng của quy trình có hệ thống hơn là chỉ 'biết nhiều sản phẩm'."
+      "company": "Câu hỏi mang tới và câu hỏi thật",
+      "description": "Một đội hỏi nên chọn cơ chế xếp hàng nào cho phần xử lý nền. Hỏi lại họ đang cố đạt điều gì thì hoá ra màn hình danh sách đang chậm và họ định đẩy phần tính toán sang chạy nền. Nguyên nhân thật là một truy vấn thiếu chỉ mục. Không cơ chế xếp hàng nào trong ba lựa chọn ban đầu giải quyết được điều đó."
     },
     "quiz": [
       {
-        "question": "Sau bước 'thu thập dữ liệu', bước tiếp theo trong quy trình hoạch định tài chính là 'phân tích và đánh giá tình hình tài chính' (analyze and assess). Bước này bao gồm những phân tích cụ thể nào?",
+        "question": "Vì sao nên nêu nhiều hơn một phương án?",
         "options": [
-          "Chỉ cần tính tổng tài sản trừ tổng nợ để ra giá trị tài sản ròng",
-          "Phân tích toàn diện: dòng tiền hiện tại (thu nhập - chi tiêu), giá trị tài sản ròng (net worth), mức độ bảo vệ rủi ro hiện có (bảo hiểm), tiến độ so với mục tiêu đã đặt ra (như quỹ hưu trí, quỹ học phí con cái), và các điểm yếu/rủi ro tiềm ẩn trong bức tranh tài chính tổng thể (như thiếu quỹ khẩn cấp, nợ lãi cao, thiếu bảo hiểm nhân thọ khi có người phụ thuộc)",
-          "Chỉ cần xem xét số dư tài khoản ngân hàng hiện tại",
-          "Phân tích này không cần thiết, có thể bỏ qua để tiết kiệm thời gian"
+          "Vì nó buộc bạn nói ra đánh đổi, thứ mà một khuyến nghị đơn lẻ giấu đi",
+          "Vì người hỏi cần có lựa chọn để cảm thấy mình tham gia vào quyết định",
+          "Vì bạn không đủ thông tin về bối cảnh nên không nên quyết định thay họ",
+          "Vì các phương án khác nhau phù hợp với các mức ngân sách khác nhau"
         ],
-        "correct": 1,
-        "explanation": "Bước phân tích là nơi advisor thực sự tạo ra giá trị chuyên môn: không chỉ liệt kê con số, mà đánh giá TOÀN DIỆN sức khỏe tài chính - từ dòng tiền, tài sản ròng, mức độ bảo vệ rủi ro, đến khoảng cách giữa tình hình hiện tại và mục tiêu đã đặt ra. Đây là bước tạo nền tảng cho các khuyến nghị cụ thể ở bước tiếp theo, và là lý do một financial plan chất lượng thường dày nhiều trang phân tích, không chỉ là danh sách sản phẩm được đề xuất."
+        "correct": 0,
+        "explanation": "Một khuyến nghị đơn lẻ nghe dứt khoát và nó giấu đi phần quan trọng nhất là bạn đã đổi cái gì lấy cái gì. Hai phương án đặt cạnh nhau buộc phần đánh đổi hiện ra, và người hỏi - vốn biết bối cảnh của họ hơn bạn - có thể thấy rằng đánh đổi ấy sai với hoàn cảnh của họ."
       },
       {
-        "question": "Tại sao bước cuối cùng của quy trình - 'giám sát và cập nhật kế hoạch' (monitor and update) - lại quan trọng không kém các bước phân tích/đề xuất ban đầu, dù nhiều khách hàng (và cả advisor thiếu kinh nghiệm) có xu hướng bỏ qua bước này?",
+        "question": "Sau khi nêu các phương án, có nên đưa ra khuyến nghị không?",
         "options": [
-          "Bước giám sát không thực sự cần thiết một khi kế hoạch đã được lập ra hoàn chỉnh",
-          "Hoàn cảnh tài chính và mục tiêu của khách hàng thay đổi liên tục theo thời gian (kết hôn, sinh con, thay đổi công việc, biến động thị trường) - một kế hoạch tài chính 'hoàn hảo' tại thời điểm lập ra có thể trở nên không còn phù hợp chỉ sau 1-2 năm nếu không được xem xét và điều chỉnh định kỳ, khiến khách hàng dần lệch xa khỏi mục tiêu ban đầu mà không nhận ra",
-          "Giám sát chỉ cần thiết cho khách hàng có tài sản rất lớn",
-          "Kế hoạch tài chính một khi đã lập ra sẽ tự động điều chỉnh theo thị trường mà không cần can thiệp"
+          "Có, vì để người hỏi tự chọn giữa các phương án ngang nhau là đẩy việc lại",
+          "Không, vì họ hiểu bối cảnh của mình hơn nên nên để họ tự quyết định",
+          "Có, nhưng chỉ khi bạn chắc chắn về phương án tốt nhất cho trường hợp đó",
+          "Không, vì đưa khuyến nghị sẽ khiến họ không cân nhắc kỹ các phương án khác"
         ],
-        "correct": 1,
-        "explanation": "Đây là điểm khác biệt giữa 'lập kế hoạch tài chính một lần' và 'quản lý tài chính liên tục' (ongoing financial planning relationship) - giá trị thực sự của một advisor chuyên nghiệp không chỉ nằm ở bản kế hoạch ban đầu, mà ở việc đồng hành và điều chỉnh kế hoạch đó qua các giai đoạn cuộc đời và biến động thị trường của khách hàng, đảm bảo kế hoạch luôn phù hợp với thực tế đang thay đổi."
+        "correct": 0,
+        "explanation": "Trình bày ba phương án rồi để đó nghe khách quan và thực chất là trả lại nguyên vẹn câu hỏi ban đầu kèm thêm việc phải đọc. Người hỏi tới vì bạn đã gặp những tình huống này; phần giá trị nằm ở chỗ bạn nói cái nào và vì sao, kể cả khi bạn không chắc chắn."
       },
       {
-        "question": "'Fiduciary Duty' (nghĩa vụ ủy thác) trong nghề tư vấn tài chính có ý nghĩa gì, và tại sao nó khác biệt quan trọng so với tiêu chuẩn 'suitability' (phù hợp) thấp hơn?",
+        "question": "Ràng buộc nào hay bị giả định sai nhất?",
         "options": [
-          "Hai tiêu chuẩn này hoàn toàn giống nhau về mức độ trách nhiệm",
-          "Fiduciary Duty yêu cầu advisor phải đặt LỢI ÍCH CỦA KHÁCH HÀNG LÊN TRÊN LỢI ÍCH CỦA BẢN THÂN/CÔNG TY một cách tuyệt đối (kể cả khi điều đó có nghĩa là đề xuất sản phẩm mang lại hoa hồng thấp hơn cho advisor) - trong khi tiêu chuẩn 'suitability' chỉ yêu cầu sản phẩm 'phù hợp' với khách hàng, không nhất thiết phải là lựa chọn TỐT NHẤT cho khách hàng, tạo ra khoảng trống cho xung đột lợi ích tiềm ẩn (như ưu tiên sản phẩm hoa hồng cao hơn dù có lựa chọn tốt hơn với phí thấp hơn)",
-          "Fiduciary Duty chỉ áp dụng cho luật sư, không áp dụng cho tư vấn tài chính",
-          "Suitability là tiêu chuẩn cao hơn Fiduciary Duty"
+          "Những ràng buộc mà người hỏi tưởng là cố định nhưng thật ra thương lượng được",
+          "Ràng buộc về thời gian vì thời hạn thường được đặt ra một cách tuỳ tiện",
+          "Ràng buộc về công nghệ vì các lựa chọn cũ thường không còn phù hợp nữa",
+          "Ràng buộc về nhân sự vì việc phân bổ người thay đổi liên tục theo dự án"
         ],
-        "correct": 1,
-        "explanation": "Sự khác biệt giữa Fiduciary Standard và Suitability Standard là một trong những tranh luận quan trọng nhất trong ngành tư vấn tài chính hiện đại: Fiduciary Duty (áp dụng cho Registered Investment Advisors - RIA và CFP tại nhiều thị trường) đòi hỏi mức độ trách nhiệm cao nhất - luôn đặt lợi ích khách hàng lên trên, trong khi Suitability Standard (áp dụng cho nhiều broker-dealer) chỉ yêu cầu sản phẩm 'không gây hại rõ ràng' và 'phù hợp' với khách hàng, cho phép advisor vẫn ưu tiên sản phẩm có lợi cho họ hơn miễn là vẫn 'phù hợp' về mặt kỹ thuật."
+        "correct": 0,
+        "explanation": "Không được đổi cơ sở dữ liệu, phải xong trong quý này, phải dùng công nghệ của đội kia - rất nhiều ràng buộc kiểu này chưa từng được ai hỏi lại. Một câu hỏi điều này có thật sự cố định không đôi khi mở ra một phương án đơn giản hơn hẳn mọi thứ đang bàn."
+      },
+      {
+        "question": "Vì sao nên ghi lại quyết định và lý do?",
+        "options": [
+          "Vì sáu tháng sau chỉ còn quyết định, và không còn lý do",
+          "Vì cần có tài liệu để những người mới tham gia dự án có thể nắm được",
+          "Vì việc ghi lại giúp bạn kiểm tra lại lập luận của mình một cách kỹ hơn",
+          "Vì nó là căn cứ để đánh giá lại chất lượng của quyết định về sau này"
+        ],
+        "correct": 0,
+        "explanation": "Quyết định tự nó tồn tại trong mã và trong hệ thống. Lý do thì chỉ tồn tại trong đầu vài người và biến mất theo họ, nên người sau nhìn thấy một lựa chọn kỳ lạ mà không biết nó từng là lựa chọn hợp lý duy nhất dưới những ràng buộc lúc đó."
+      },
+      {
+        "question": "Bước cuối cùng hay bị bỏ nhất là gì?",
+        "options": [
+          "Hẹn một mốc để xem lại xem lời khuyên có dùng được không",
+          "Tổng kết lại nội dung đã trao đổi để đảm bảo hai bên hiểu giống nhau",
+          "Chuyển giao tài liệu và các nguồn tham khảo liên quan cho người hỏi",
+          "Giới thiệu người khác có thể hỗ trợ thêm nếu vấn đề vượt quá phạm vi"
+        ],
+        "correct": 0,
+        "explanation": "Không có bước này thì bạn không bao giờ biết lời khuyên của mình đúng hay sai, và tỷ lệ đúng của bạn dừng lại ở mức hiện tại vĩnh viễn. Nó cũng là bước rẻ nhất: một câu hỏi sau vài tuần, và nó là nguồn phản hồi duy nhất mà công việc tư vấn có."
       }
-    ],
-    "keyTakeaways": [
-      "Quy trình hoạch định tài chính chuẩn luôn bắt đầu từ thiết lập mối quan hệ và thu thập dữ liệu toàn diện - TRƯỚC KHI đề xuất bất kỳ sản phẩm cụ thể nào",
-      "Bước phân tích đánh giá toàn diện (dòng tiền, tài sản ròng, bảo vệ rủi ro, khoảng cách với mục tiêu) là nơi advisor tạo ra giá trị chuyên môn thực sự",
-      "Giám sát và cập nhật kế hoạch định kỳ quan trọng không kém việc lập kế hoạch ban đầu, vì hoàn cảnh khách hàng luôn thay đổi theo thời gian",
-      "Fiduciary Duty (đặt lợi ích khách hàng lên trên) là tiêu chuẩn đạo đức nghề nghiệp cao hơn Suitability Standard (chỉ yêu cầu 'phù hợp') - hiểu sự khác biệt này quan trọng cho cả advisor và khách hàng"
     ],
     "practicePrompt": {
-      "question": "Một khách hàng mới 35 tuổi đến gặp bạn (advisor) và nói ngay: 'Tôi muốn đầu tư 500 triệu vào quỹ mở, anh/chị tư vấn giúp quỹ nào tốt nhất.' Áp dụng quy trình hoạch định tài chính 6 bước, phản ứng chuyên nghiệp đầu tiên của bạn nên là gì, thay vì trả lời ngay câu hỏi về quỹ?",
+      "question": "Một đội hỏi bạn nên dùng công nghệ A hay B cho một bài toán. Nên làm gì trước?",
       "options": [
-        "Trả lời ngay tên quỹ 'tốt nhất' theo đánh giá cá nhân để đáp ứng khách hàng",
-        "Fact-finding trước: mục tiêu, thời hạn, quỹ khẩn cấp, nợ lãi cao, khẩu vị rủi ro",
-        "Giới thiệu quỹ có phí quản lý mang lại hoa hồng cao nhất cho advisor",
-        "Từ chối tư vấn vì khách hàng đã tự quyết, advisor không thêm được giá trị"
+        "Hỏi họ đang cố đạt được điều gì và tại sao lại chỉ có hai lựa chọn này",
+        "Tìm hiểu ưu nhược điểm của cả hai công nghệ trong bối cảnh cụ thể của họ",
+        "Hỏi về quy mô hệ thống và các ràng buộc kỹ thuật hiện tại của đội đó",
+        "Đề nghị họ thử nghiệm cả hai ở quy mô nhỏ rồi so sánh kết quả thực tế"
       ],
-      "correct": 1,
-      "explanation": "Đây là tình huống kiểm tra trực tiếp việc tuân thủ quy trình chuẩn: dù khách hàng có vẻ đã 'quyết định' (muốn đầu tư vào quỹ mở), một advisor có trách nhiệm vẫn cần thực hiện fact-finding trước khi đề xuất cụ thể - có thể phát hiện khách hàng chưa có quỹ khẩn cấp (nên ưu tiên xây dựng trước khi đầu tư dài hạn), hoặc mục tiêu thực sự (mua nhà trong 2 năm) không phù hợp với quỹ đầu tư dài hạn biến động cao - đây chính là giá trị của một advisor thực thụ so với chỉ đơn giản thực hiện yêu cầu bề mặt của khách hàng."
+      "correct": 0,
+      "explanation": "Vế thứ hai của câu hỏi mới là vế quan trọng: danh sách hai lựa chọn đã là một kết luận, và nó được rút ra trước khi bạn có mặt. Rất thường xuyên phương án tốt nhất không nằm trong danh sách đó, và bạn chỉ thấy được nó nếu hỏi vì sao danh sách chỉ có hai dòng."
     },
+    "keyTakeaways": [
+      "Câu hỏi được mang tới đã là một kết luận thu hẹp từ trước",
+      "Hai phương án đặt cạnh nhau buộc phần đánh đổi hiện ra",
+      "Nhiều ràng buộc tưởng cố định thật ra chưa ai hỏi lại",
+      "Không hẹn xem lại thì tỷ lệ đúng của bạn dừng ở mức hiện tại vĩnh viễn"
+    ],
     "summary": {
-      "keyIdea": "Quy trình hoạch định tài chính chuyên nghiệp là một khung làm việc có hệ thống (thiết lập quan hệ → thu thập dữ liệu → phân tích → đề xuất → thực hiện → giám sát), đảm bảo mọi khuyến nghị đều dựa trên hiểu biết toàn diện về khách hàng, không phải chỉ đáp ứng yêu cầu bề mặt.",
-      "commonMistake": "Nhảy thẳng vào đề xuất sản phẩm cụ thể ngay khi khách hàng đề cập đến một nhu cầu, bỏ qua các bước thu thập dữ liệu và phân tích toàn diện",
-      "action": "Với mọi khách hàng mới, dù họ đã có yêu cầu cụ thể, luôn dành thời gian thực hiện fact-finding đầy đủ trước khi đưa ra bất kỳ khuyến nghị nào"
+      "keyIdea": "Câu trả lời hay nhất cho câu hỏi được đặt ra vẫn vô dụng nếu đó không phải câu hỏi thật",
+      "commonMistake": "Nhảy thẳng vào so sánh phương án, chấp nhận nguyên vẹn cách người hỏi đã thu hẹp vấn đề",
+      "action": "Bắt đầu bằng bạn đang cố đạt được điều gì, và kết thúc bằng một mốc để xem lại."
     },
     "application": {
-      "title": "Áp dụng vào công việc Financial Advisory",
-      "message": "Xây dựng một bộ mẫu (mẫu điền chỗ trống) fact-finding form theo đúng 6 bước quy trình hoạch định tài chính, sử dụng cho mọi buổi gặp khách hàng mới, đảm bảo không bỏ sót thông tin quan trọng nào trước khi đưa ra khuyến nghị.",
-      "secondary": "Bài học tiếp theo về đánh giá khẩu vị rủi ro (risk tolerance assessment) sẽ đi sâu vào một trong những bước quan trọng nhất của quy trình fact-finding - cách xác định chính xác mức độ chấp nhận rủi ro thực sự của khách hàng."
+      "title": "Bước đầu và bước cuối là hai bước hay bị bỏ",
+      "message": "Mở bằng câu hỏi họ đang cố đạt được điều gì và vì sao danh sách chỉ có bấy nhiêu lựa chọn. Đóng bằng một mốc thời gian để hỏi lại xem nó có dùng được không.",
+      "secondary": "Ghi quyết định kèm lý do và các ràng buộc lúc đó - sáu tháng sau chỉ còn quyết định."
     },
     "sections": [
-      {
-        "type": "lead",
-        "text": "Một lời khuyên tài chính tốt không phải đến từ việc 'biết nhiều sản phẩm', mà từ việc tuân theo một quy trình có hệ thống đảm bảo mọi khuyến nghị đều thực sự phù hợp với hoàn cảnh riêng của từng khách hàng."
-      },
-      {
-        "type": "heading",
-        "text": "6 bước của Quy trình Hoạch định Tài chính Chuẩn"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Bước 1 - Thiết lập mối quan hệ: Xác định phạm vi dịch vụ, kỳ vọng hai bên, và cam kết nghề nghiệp (như Fiduciary Duty nếu áp dụng)",
-          "Bước 2 - Thu thập dữ liệu: Fact-finding toàn diện về tài sản, nợ, thu nhập, chi tiêu, mục tiêu, khẩu vị rủi ro, hoàn cảnh gia đình",
-          "Bước 3 - Phân tích và đánh giá: Đánh giá sức khỏe tài chính tổng thể, xác định khoảng cách giữa hiện tại và mục tiêu",
-          "Bước 4 - Xây dựng và trình bày khuyến nghị: Đề xuất giải pháp cụ thể, giải thích rõ lý do và đánh đổi (trade-off) của từng lựa chọn",
-          "Bước 5 - Thực hiện kế hoạch: Triển khai các hành động cụ thể (mở tài khoản, mua sản phẩm, điều chỉnh ngân sách)",
-          "Bước 6 - Giám sát và cập nhật: Xem xét định kỳ (thường hàng năm hoặc khi có thay đổi lớn trong cuộc sống), điều chỉnh kế hoạch phù hợp với thực tế mới"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Fiduciary Duty vs Suitability Standard"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một khía cạnh quan trọng của nghề tư vấn tài chính hiện đại là hiểu rõ TIÊU CHUẨN TRÁCH NHIỆM mà advisor đang hoạt động theo: Fiduciary Duty đòi hỏi luôn đặt lợi ích khách hàng lên hàng đầu tuyệt đối, trong khi Suitability Standard chỉ yêu cầu sản phẩm 'phù hợp' - một khoảng cách có thể tạo ra xung đột lợi ích tiềm ẩn nếu không được nhận thức và quản lý đúng cách."
-      },
-      {
-        "type": "heading",
-        "text": "Giá trị của Giám sát Liên tục"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nhiều advisor mới vào nghề tập trung phần lớn năng lượng vào việc 'chốt' kế hoạch ban đầu, nhưng giá trị thực sự lâu dài của mối quan hệ tư vấn nằm ở việc ĐỒNG HÀNH qua các giai đoạn cuộc đời - một kế hoạch tài chính không phải là văn bản tĩnh, mà là một quá trình sống, cần điều chỉnh khi khách hàng kết hôn, sinh con, đổi việc, hay khi thị trường biến động mạnh."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Quy trình 6 bước này không phải là thủ tục hành chính cứng nhắc - đó là khung tư duy đảm bảo mỗi lời khuyên tài chính đều xuất phát từ sự hiểu biết thực sự, không phải từ giả định hay áp lực bán hàng.",
-          "Đây là nền tảng phân biệt một Financial Advisor chuyên nghiệp, đáng tin cậy với một người chỉ đơn thuần bán sản phẩm tài chính."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Thiết lập phạm vi quan hệ tư vấn",
-        "arrow": true
-      },
-      {
-        "label": "Thu thập dữ liệu và mục tiêu của khách hàng",
-        "arrow": true
-      },
-      {
-        "label": "Phân tích tình hình hiện tại",
-        "arrow": true
-      },
-      {
-        "label": "Xây dựng và trình bày khuyến nghị",
-        "arrow": true
-      },
-      {
-        "label": "Thực hiện rồi giám sát, điều chỉnh định kỳ",
-        "arrow": false
-      }
+      { "type": "lead", "text": "Người có kinh nghiệm được hỏi ý kiến rất nhiều, và phần lớn lời khuyên trôi qua mà không đổi được gì. Nguyên nhân hiếm khi nằm ở nội dung." },
+      { "type": "heading", "text": "Câu hỏi mang tới đã là một kết luận" },
+      { "type": "list", "items": [
+        "Hỏi họ đang cố đạt được điều gì, trước khi bàn phương án nào",
+        "Hỏi vì sao danh sách lựa chọn chỉ có bấy nhiêu dòng",
+        "Kiểm lại các ràng buộc: cái nào thật sự cố định, cái nào chưa ai hỏi",
+        "Nêu hai tới ba phương án kèm đánh đổi, rồi khuyến nghị một cái",
+        "Ghi lại quyết định cùng lý do và ràng buộc lúc đó",
+        "Hẹn một mốc để xem lại nó có dùng được không"
+      ]},
+      { "type": "paragraph", "text": "Bước một và bước sáu là hai bước hay bị bỏ nhất, và chúng là hai bước quyết định lời khuyên có tác dụng hay không. Bỏ bước một thì bạn trả lời rất tốt một câu hỏi sai. Bỏ bước sáu thì bạn không bao giờ biết mình đã trả lời đúng hay sai, nên tỷ lệ đúng không cải thiện theo thời gian dù bạn tư vấn thêm bao nhiêu lần." },
+      { "type": "callout", "label": "Ba phương án rồi để đó không phải sự khách quan", "text": "Trình bày đủ các lựa chọn rồi để người hỏi tự quyết nghe như tôn trọng họ, và thực chất là trả lại nguyên vẹn câu hỏi ban đầu kèm thêm việc phải đọc. Họ tới vì bạn đã gặp những tình huống này rồi. Phần giá trị nằm ở chỗ bạn nói cái nào và vì sao - và nói kèm mức độ chắc chắn của mình, chứ không phải im lặng vì chưa chắc." },
+      { "type": "closing", "lines": [
+        "Lời khuyên tốt không phải lời khuyên đúng nhất, mà là lời khuyên trả lời đúng câu hỏi và có đường quay lại kiểm.",
+        "Bài sau: giá trị mặc định trong sản phẩm, và ranh giới giữa giúp đỡ với thao túng."
+      ]}
     ]
   },
   {
@@ -73845,330 +73794,258 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1252,
-    "slug": "nudge-theory-thiet-ke-san-pham-tai-chinh",
-    "title": "Nudge Theory & Choice Architecture: Thiết kế sản phẩm tài chính có trách nhiệm",
-    "subtitle": "Từ auto-enrollment đến robo-advisor - cách các thiên kiến hành vi được ứng dụng có chủ đích để giúp khách hàng đưa ra quyết định tốt hơn",
-    "duration": "8 phút",
-    "difficulty": "Khó",
-    "emoji": "🎛️",
     "track": "professional",
-    "openingQuestion": "'Choice Architecture' (kiến trúc lựa chọn) trong thiết kế sản phẩm tài chính đề cập đến điều gì, và tại sao nó quan trọng ngay cả khi không thay đổi các lựa chọn thực tế có sẵn cho khách hàng?",
+    "slug": "kien-truc-lua-chon-va-gia-tri-mac-dinh",
+    "title": "Kiến trúc lựa chọn: giá trị mặc định quyết định hành vi",
+    "subtitle": "Không có thiết kế trung lập - mọi cách sắp xếp lựa chọn đều đẩy người dùng về một phía",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🎚️",
+    "interactiveType": "prospect",
+    "whyItMatters": "Phần lớn người dùng không đổi giá trị mặc định, nên người đặt mặc định đang quyết định thay cho phần lớn người dùng. Đó là quyền lực có thật và nó thường được trao cho người viết dòng mã đó mà không ai bàn tới.",
+    "openingQuestion": "Vì sao không tồn tại một thiết kế trung lập về mặt lựa chọn?",
     "openingOptions": [
-      "Chỉ đơn giản là thiết kế giao diện đẹp mắt cho ứng dụng ngân hàng",
-      "Cách trình bày, sắp xếp và đặt mặc định ảnh hưởng tới quyết định cuối",
-      "Choice Architecture chỉ là thuật ngữ marketing không có cơ sở khoa học thực sự",
-      "Khái niệm này chỉ áp dụng cho các quyết định không liên quan đến tiền bạc"
+      "Vì mọi cách sắp xếp đều tạo ra một phương án dễ chọn hơn các phương án khác",
+      "Vì người thiết kế luôn có định kiến riêng ảnh hưởng tới cách họ trình bày",
+      "Vì các công ty đều có động cơ thương mại chi phối cách sản phẩm được thiết kế",
+      "Vì người dùng có thói quen và kỳ vọng khác nhau nên không thể trung lập với tất cả"
     ],
-    "correctOption": 1,
-    "explanation": "Choice Architecture (Thaler & Sunstein, 'Nudge', 2008) là insight cốt lõi: MỌI cách trình bày lựa chọn đều có ảnh hưởng (không có cách trình bày 'trung lập' hoàn toàn) - việc thiết kế lựa chọn mặc định, thứ tự hiển thị, hay cách đóng khung thông tin luôn tác động đến quyết định cuối cùng, dù về mặt kỹ thuật khách hàng vẫn hoàn toàn tự do lựa chọn khác. Điều này đặt ra trách nhiệm đạo đức quan trọng cho người thiết kế sản phẩm tài chính: sử dụng ảnh hưởng này để giúp khách hàng đưa ra quyết định tốt hơn cho chính họ (libertarian paternalism), không phải để thao túng vì lợi ích của tổ chức.",
+    "correctOption": 0,
+    "explanation": "Một hộp thoại phải có thứ tự các nút, một biểu mẫu phải có ô nào được điền sẵn, một danh sách phải có mục nào đứng đầu. Không có phiên bản nào của những quyết định ấy là trung lập - mỗi cách sắp xếp đều làm một phương án tốn ít công hơn để chọn, và với phần lớn người dùng thì chênh lệch công sức nhỏ ấy quyết định kết quả. Vì vậy câu hỏi không phải có nên tác động tới lựa chọn của người dùng hay không, vì bạn đang tác động dù muốn hay không. Câu hỏi là tác động về phía nào, và ai được lợi từ phía đó. Ba lý do kia đều mô tả động cơ của người thiết kế; điều ở đây là một tính chất của chính hành động thiết kế.",
+    "diagram": [
+      { "label": "Mọi cách sắp xếp đều có một phương án dễ chọn hơn", "arrow": true },
+      { "label": "Phần lớn người dùng đi theo phương án dễ nhất", "arrow": true },
+      { "label": "Không có phiên bản trung lập để chọn", "arrow": true },
+      { "label": "Câu hỏi là đẩy về phía nào và ai được lợi" }
+    ],
     "realWorldExample": {
-      "company": "Save More Tomorrow (SMarT) Program",
-      "description": "Chương trình 'Save More Tomorrow' do Richard Thaler và Shlomo Benartzi thiết kế là một trong những ứng dụng nudge theory thành công nhất trong lịch sử tài chính cá nhân: thay vì yêu cầu nhân viên tăng mức đóng góp hưu trí NGAY LẬP TỨC (khó khăn do present bias), chương trình cho phép họ cam kết TRƯỚC rằng mức đóng góp sẽ tự động tăng lên mỗi khi họ được TĂNG LƯƠNG trong tương lai - kết quả là tỷ lệ tiết kiệm tăng gấp nhiều lần so với các chương trình thông thường, vì nó tận dụng cả hiệu ứng mặc định lẫn tránh cảm giác 'mất tiền' của lương hiện tại (loss aversion không bị kích hoạt vì tăng đóng góp trùng với thời điểm tăng lương)."
+      "company": "Một ô tích sẵn",
+      "description": "Một biểu mẫu đăng ký có ô đồng ý nhận thông báo được tích sẵn, và tỷ lệ đồng ý gần như tuyệt đối. Bỏ dấu tích đi, tỷ lệ rơi xuống dưới một phần tư. Cùng một câu hỏi, cùng một nhóm người dùng, cùng một dòng chữ - khác biệt duy nhất là ai phải bỏ công ra để đổi ý."
     },
     "quiz": [
       {
-        "question": "'Libertarian Paternalism' - triết lý nền tảng của Nudge Theory - cố gắng cân bằng giữa hai giá trị nào tưởng chừng đối lập nhau?",
+        "question": "Nguyên tắc nào giúp chọn giá trị mặc định một cách có trách nhiệm?",
         "options": [
-          "Không có sự cân bằng nào, đây chỉ là một thuật ngữ mâu thuẫn không có ý nghĩa thực tế",
-          "Cân bằng giữa TỰ DO LỰA CHỌN (libertarian - khách hàng luôn có quyền chọn khác với gợi ý mặc định, không bị ép buộc) và HƯỚNG DẪN CÓ TRÁCH NHIỆM (paternalism - thiết kế hệ thống theo hướng có lợi cho khách hàng dựa trên hiểu biết về thiên kiến hành vi phổ biến, thay vì để mặc định trung lập có thể dẫn đến kết quả tệ hơn cho đa số người dùng)",
-          "Chỉ tập trung hoàn toàn vào tự do lựa chọn, không quan tâm đến kết quả cho khách hàng",
-          "Chỉ tập trung hoàn toàn vào việc kiểm soát khách hàng, không quan tâm đến quyền tự do lựa chọn"
+          "Đặt mặc định là thứ mà phần lớn người dùng sẽ chọn nếu họ hiểu đầy đủ",
+          "Đặt mặc định là phương án an toàn nhất về mặt kỹ thuật cho hệ thống",
+          "Đặt mặc định là phương án mà đa số người dùng hiện tại đang sử dụng",
+          "Không đặt mặc định nào và buộc người dùng phải tự chọn một cách chủ động"
         ],
-        "correct": 1,
-        "explanation": "Libertarian Paternalism là triết lý cố tình mang tính nghịch lý: nó thừa nhận rằng THIẾT KẾ nào cũng có ảnh hưởng đến hành vi (không có lựa chọn 'trung lập'), nên thay vì giả vờ trung lập, nhà thiết kế nên chủ động chọn thiết kế có lợi cho đa số người dùng (dựa trên nghiên cứu hành vi) - trong khi vẫn bảo toàn hoàn toàn quyền tự do lựa chọn khác (opt-out) cho những ai có sở thích/hoàn cảnh khác biệt. Đây là điểm khác biệt quan trọng so với paternalism truyền thống (ép buộc, không cho lựa chọn khác)."
+        "correct": 0,
+        "explanation": "Buộc chọn nghe công bằng nhất và nó chỉ chuyển vấn đề sang chỗ khác: người dùng bị chặn ở một câu hỏi họ chưa đủ thông tin để trả lời, và họ chọn bừa. Nguyên tắc ở phương án đầu giữ được cả hai: người không quan tâm nhận được lựa chọn đúng, người quan tâm vẫn đổi được."
       },
       {
-        "question": "Robo-advisor (nền tảng tư vấn đầu tư tự động) thường sử dụng các nguyên lý behavioral finance nào trong thiết kế sản phẩm để giúp nhà đầu tư tránh các sai lầm hành vi phổ biến?",
+        "question": "Vì sao thu tiền theo chu kỳ với gia hạn tự động lại nằm ở vùng xám?",
         "options": [
-          "Robo-advisor không áp dụng bất kỳ nguyên lý hành vi nào, chỉ đơn thuần tự động hóa các quyết định đầu tư truyền thống",
-          "Nhiều tính năng được thiết kế có chủ đích: tự động tái cân bằng danh mục theo lịch cố định (loại bỏ market timing theo cảm xúc), giới hạn tần suất khách hàng có thể thay đổi danh mục (giảm thiểu overtrading do overconfidence), và trình bày hiệu suất theo khung thời gian dài hạn thay vì biến động hàng ngày (giảm phản ứng thái quá với loss aversion trong ngắn hạn)",
-          "Robo-advisor chỉ tập trung vào việc giảm phí giao dịch, không liên quan gì đến thiết kế hành vi",
-          "Các tính năng của robo-advisor hoàn toàn ngẫu nhiên, không dựa trên nghiên cứu hành vi nào"
+          "Vì mặc định tiếp tục có lợi cho một bên và bên kia phải chủ động thoát ra",
+          "Vì người dùng thường quên mất rằng họ đang trả tiền cho dịch vụ đó",
+          "Vì việc huỷ thường phức tạp hơn nhiều so với việc đăng ký ban đầu",
+          "Vì nhiều dịch vụ không gửi thông báo nào trước mỗi lần gia hạn cho người dùng"
         ],
-        "correct": 1,
-        "explanation": "Robo-advisor hiện đại là ví dụ ứng dụng thực tế phong phú của Choice Architecture trong fintech: từ việc tự động hóa tái cân bằng (loại bỏ yếu tố cảm xúc trong thời điểm biến động), đến cách trình bày biểu đồ hiệu suất (thường mặc định khung thời gian dài để giảm cảm giác lo lắng từ biến động ngắn hạn), đến các cơ chế 'cooling-off' trước khi cho phép rút tiền/thay đổi lớn - mỗi thiết kế đều dựa trên hiểu biết cụ thể về thiên kiến hành vi phổ biến của nhà đầu tư cá nhân."
+        "correct": 0,
+        "explanation": "Bản thân cơ chế gia hạn tự động là tiện lợi thật với người muốn dùng tiếp. Vùng xám hình thành vì sự bất động - trạng thái không làm gì - lại chính là trạng thái có lợi cho bên bán. Ba yếu tố kia làm tình hình tệ thêm và không tạo ra vùng xám ấy."
       },
       {
-        "question": "Ranh giới đạo đức nào phân biệt việc sử dụng Choice Architecture 'có trách nhiệm' (giúp khách hàng) với việc lạm dụng nó thành 'dark pattern' (thao túng vì lợi ích của tổ chức, gây hại cho khách hàng)?",
+        "question": "Ma sát trong thiết kế nên được đặt ở đâu?",
         "options": [
-          "Không có ranh giới rõ ràng nào, mọi hình thức choice architecture đều như nhau",
-          "Ranh giới quan trọng nằm ở việc: (1) thiết kế có thực sự phục vụ LỢI ÍCH của khách hàng hay chỉ lợi ích của tổ chức (ví dụ đẩy khách hàng vào sản phẩm phí cao không cần thiết); (2) tính MINH BẠCH - khách hàng có dễ dàng nhận ra và thực hiện lựa chọn khác (opt-out) hay bị cố tình làm khó/che giấu; (3) liệu thiết kế có khai thác điểm yếu tâm lý để gây hại (như tạo cảm giác khẩn cấp giả để thúc ép mua sản phẩm không phù hợp) hay để hỗ trợ quyết định tốt hơn",
-          "Ranh giới chỉ phụ thuộc vào việc sản phẩm có hợp pháp hay không, không liên quan đến đạo đức",
-          "Mọi công ty tài chính đều tự động thiết kế có trách nhiệm, không cần cân nhắc ranh giới này"
+          "Trước những hành động khó hoàn tác, không phải trước hành động rời đi",
+          "Ở mức thấp nhất có thể trên toàn bộ sản phẩm để tối ưu trải nghiệm",
+          "Ở những nơi cần người dùng cân nhắc kỹ trước khi đưa ra quyết định",
+          "Đều nhau giữa các hành động để không tạo ra cảm giác thiên lệch nào cả"
         ],
-        "correct": 1,
-        "explanation": "Đây là câu hỏi đạo đức nghề nghiệp quan trọng nhất khi ứng dụng behavioral finance vào thiết kế sản phẩm: 'dark patterns' (thiết kế lừa dối/thao túng) khai thác CÙNG những nguyên lý tâm lý học như nudge có trách nhiệm, nhưng với mục đích ngược lại - ví dụ, làm phức tạp hóa quy trình hủy dịch vụ (trong khi đăng ký rất dễ dàng), hay dùng thiết kế tạo áp lực FOMO giả để thúc ép mua sản phẩm không phù hợp. Ranh giới cốt lõi là liệu thiết kế có thực sự vì lợi ích dài hạn của khách hàng, với sự minh bạch và tự do lựa chọn thực sự, hay chỉ đơn thuần khai thác điểm yếu tâm lý vì lợi nhuận ngắn hạn của tổ chức."
+        "correct": 0,
+        "explanation": "Ma sát không phải thứ xấu và nó cũng không phải thứ nên trải đều. Đặt trước hành động xoá vĩnh viễn là bảo vệ; đặt trước hành động huỷ đăng ký là giữ chân. Cùng một kỹ thuật, và vị trí quyết định nó phục vụ ai."
+      },
+      {
+        "question": "Cách trình bày giá theo hướng tiết kiệm được bao nhiêu có vấn đề gì?",
+        "options": [
+          "Nó chọn sẵn điểm tham chiếu, và điểm tham chiếu quyết định cảm nhận",
+          "Nó làm người dùng khó so sánh giá thực tế giữa các gói khác nhau",
+          "Nó tạo áp lực khiến người dùng quyết định nhanh hơn mức cần thiết",
+          "Nó thường dựa trên một mức giá gốc không hề phản ánh giá bán thực tế"
+        ],
+        "correct": 0,
+        "explanation": "So với gói đắt nhất thì mọi gói khác trông rẻ; so với miễn phí thì mọi gói đều là một khoản chi. Cùng bộ giá, hai điểm tham chiếu, hai cảm nhận khác hẳn - đây chính là hiệu ứng đóng khung đã nói ở bài trước, áp dụng vào thiết kế giá."
+      },
+      {
+        "question": "Phép thử nào phân biệt giúp đỡ với thao túng trong thiết kế?",
+        "options": [
+          "Cho người dùng biết cơ chế đang hoạt động thì họ có phiền không",
+          "Thiết kế đó có làm tăng chỉ số kinh doanh không",
+          "Người dùng có đổi được mặc định dễ dàng không",
+          "Thiết kế đó có tuân thủ quy định hiện hành không"
+        ],
+        "correct": 0,
+        "explanation": "Nói cho người dùng biết rằng chúng tôi đặt gói phổ biến nhất làm mặc định thì không ai phiền. Nói rằng chúng tôi làm nút huỷ khó tìm để bạn nản thì ai cũng phiền. Phép thử này không cần tranh luận về ý định và trả lời được ngay trong buổi thiết kế."
       }
-    ],
-    "keyTakeaways": [
-      "Choice Architecture: mọi cách trình bày lựa chọn đều có ảnh hưởng đến quyết định - không có thiết kế 'trung lập' hoàn toàn, đặt ra trách nhiệm đạo đức cho người thiết kế sản phẩm",
-      "Libertarian Paternalism cân bằng giữa tự do lựa chọn (luôn có opt-out) và hướng dẫn có trách nhiệm (thiết kế mặc định có lợi cho đa số)",
-      "Save More Tomorrow minh họa nudge hiệu quả: tận dụng thời điểm tăng lương để tăng tiết kiệm, tránh kích hoạt loss aversion",
-      "Ranh giới đạo đức giữa nudge có trách nhiệm và dark pattern nằm ở: lợi ích thực sự cho khách hàng, tính minh bạch, và việc có khai thác điểm yếu tâm lý để gây hại hay không"
     ],
     "practicePrompt": {
-      "question": "Bạn đang thiết kế một ứng dụng đầu tư mới. Team marketing đề xuất: hiển thị đồng hồ đếm ngược 'Ưu đãi phí 0% chỉ còn 2 giờ' mỗi khi người dùng mở app (dù thực tế mức phí này áp dụng vĩnh viễn cho mọi người dùng, không có giới hạn thời gian thực sự). Đây có phải là ứng dụng Nudge Theory có trách nhiệm không?",
+      "question": "Bạn phải chọn giá trị mặc định cho một tuỳ chọn quyền riêng tư. Nên dựa vào đâu?",
       "options": [
-        "Có, vì đây chỉ là một kỹ thuật marketing thông thường được nhiều công ty sử dụng",
-        "Không - đồng hồ đếm ngược giả là dark pattern, tạo khẩn cấp sai sự thật",
-        "Đây là một nudge tốt vì nó giúp người dùng quyết định nhanh hơn, tiết kiệm thời gian",
-        "Không quan trọng vì cuối cùng người dùng vẫn được hưởng mức phí 0% thực sự"
+        "Thứ mà phần lớn người dùng sẽ chọn nếu họ hiểu đầy đủ hệ quả",
+        "Thứ tạo ra trải nghiệm tốt nhất cho người dùng mới khi họ bắt đầu dùng",
+        "Thứ mà các sản phẩm cùng loại đang đặt làm mặc định trên thị trường",
+        "Thứ giúp sản phẩm thu thập được nhiều dữ liệu hữu ích nhất cho việc cải thiện"
       ],
-      "correct": 1,
-      "explanation": "Đây là ví dụ kinh điển của dark pattern giả dạng nudge: điểm khác biệt cốt lõi không nằm ở việc có 'khai thác tâm lý' hay không (mọi thiết kế đều làm vậy ở mức độ nào đó), mà ở tính TRUNG THỰC của thông tin được trình bày - đồng hồ đếm ngược giả tạo cảm giác khẩn cấp không có thật để thao túng quyết định, hoàn toàn khác với các nudge có trách nhiệm (như auto-enrollment) vốn minh bạch về sự thật và chỉ đơn giản thay đổi lựa chọn MẶC ĐỊNH, không lừa dối về thông tin thực tế."
+      "correct": 0,
+      "explanation": "Với tuỳ chọn quyền riêng tư, khoảng cách giữa phương án đầu và phương án cuối thường rất lớn, và cả hai đều biện minh được bằng những lời hợp lý. Phép thử hiểu đầy đủ cắt qua chỗ đó, và nó cũng là phép thử bạn sẽ phải trả lời khi có người hỏi công khai."
     },
+    "keyTakeaways": [
+      "Không có thiết kế trung lập; mọi cách sắp xếp đều đẩy về một phía",
+      "Đặt mặc định là quyết định thay cho phần lớn người dùng",
+      "Ma sát trước hành động khó hoàn tác là bảo vệ; trước hành động rời đi là giữ chân",
+      "Phép thử: nói ra cơ chế thì người dùng có phiền không"
+    ],
     "summary": {
-      "keyIdea": "Choice Architecture là công cụ mạnh mẽ trong thiết kế sản phẩm tài chính - mọi thiết kế đều ảnh hưởng đến quyết định khách hàng, đặt ra trách nhiệm đạo đức để sử dụng ảnh hưởng này vì lợi ích thực sự của khách hàng (libertarian paternalism), không phải để thao túng (dark patterns).",
-      "commonMistake": "Cho rằng có thể thiết kế giao diện/quy trình 'trung lập hoàn toàn' không ảnh hưởng đến quyết định, hoặc lạm dụng hiểu biết về thiên kiến hành vi để thao túng khách hàng vì lợi ích ngắn hạn của tổ chức",
-      "action": "Khi thiết kế bất kỳ sản phẩm/quy trình tài chính nào, tự hỏi: thiết kế mặc định này có thực sự phục vụ lợi ích dài hạn của khách hàng không, và họ có dễ dàng lựa chọn khác nếu muốn không?"
+      "keyIdea": "Người đặt giá trị mặc định đang quyết định thay cho phần lớn người dùng, dù có ý thức về điều đó hay không",
+      "commonMistake": "Coi việc buộc người dùng chọn là giải pháp trung lập, trong khi nó chỉ chuyển vấn đề sang chỗ khác",
+      "action": "Với mỗi giá trị mặc định, hỏi: người hiểu đầy đủ có chọn nó không, và nói ra cơ chế thì họ có phiền không."
     },
     "application": {
-      "title": "Áp dụng vào công việc Product Design/FinTech",
-      "message": "Xem xét một sản phẩm tài chính bạn đang sử dụng (ứng dụng ngân hàng, đầu tư) - xác định 2-3 ví dụ về choice architecture trong đó (lựa chọn mặc định, cách trình bày thông tin) và đánh giá liệu chúng phục vụ lợi ích của bạn hay lợi ích của tổ chức.",
-      "secondary": "Đây là bài học cuối của chặng Behavioral Finance chuyên ngành - kết hợp với 3 bài đầu (Prospect Theory, thiên kiến trong equity/corporate finance), bạn đã có nền tảng toàn diện để áp dụng tài chính hành vi vào cả phân tích thị trường lẫn thiết kế sản phẩm có trách nhiệm."
+      "title": "Hai câu hỏi cho mỗi giá trị mặc định",
+      "message": "Người hiểu đầy đủ hệ quả có chọn nó không. Và nếu ta nói thẳng ra cơ chế này trong giao diện, người dùng có phiền không.",
+      "secondary": "Rà lại vị trí của ma sát trong sản phẩm: nó đang đứng trước hành động khó hoàn tác, hay đứng trước cửa ra."
     },
     "sections": [
-      {
-        "type": "lead",
-        "text": "Behavioral finance không chỉ giúp bạn hiểu tại sao thị trường/nhà đầu tư đôi khi phi lý - nó còn là công cụ để THIẾT KẾ sản phẩm và dịch vụ tài chính giúp khách hàng đưa ra quyết định tốt hơn, một cách có chủ đích và có đạo đức."
-      },
-      {
-        "type": "heading",
-        "text": "Choice Architecture - Không có Thiết kế Trung lập"
-      },
-      {
-        "type": "paragraph",
-        "text": "Insight cốt lõi của Thaler và Sunstein: bất kỳ cách trình bày lựa chọn nào - thứ tự hiển thị, giá trị mặc định, cách đóng khung thông tin - đều ảnh hưởng đến quyết định cuối cùng, ngay cả khi tập hợp lựa chọn thực tế không thay đổi. Vì 'trung lập hoàn toàn' là bất khả thi, câu hỏi quan trọng không phải là 'có nên ảnh hưởng đến lựa chọn hay không', mà là 'nên thiết kế ảnh hưởng đó theo hướng nào'."
-      },
-      {
-        "type": "heading",
-        "text": "Libertarian Paternalism - Triết lý Cân bằng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nudge Theory đề xuất một triết lý trung dung: thiết kế hệ thống với LỰA CHỌN MẶC ĐỊNH có lợi cho đa số người dùng (dựa trên nghiên cứu hành vi vững chắc), trong khi luôn bảo toàn quyền tự do lựa chọn khác một cách dễ dàng (không có rào cản nhân tạo). Đây là cách tiếp cận khác biệt hoàn toàn so với ép buộc (không cho lựa chọn khác) hay 'trung lập giả tạo' (giả vờ không có ảnh hưởng nào)."
-      },
-      {
-        "type": "heading",
-        "text": "Ranh giới Đạo đức: Nudge vs Dark Pattern"
-      },
-      {
-        "type": "paragraph",
-        "text": "Sức mạnh của Choice Architecture đi kèm trách nhiệm đạo đức lớn: cùng những nguyên lý tâm lý học có thể được dùng để GIÚP khách hàng (như auto-enrollment tiết kiệm hưu trí) hoặc để THAO TÚNG họ (như tạo cảm giác khẩn cấp giả, làm phức tạp quy trình hủy dịch vụ). Ranh giới quan trọng nằm ở tính trung thực của thông tin, sự dễ dàng của việc lựa chọn khác, và việc thiết kế có thực sự phục vụ lợi ích dài hạn của khách hàng hay chỉ lợi nhuận ngắn hạn của tổ chức."
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Nudge",
-          "text": "Đổi cách trình bày lựa chọn nhưng giữ nguyên mọi lựa chọn, và làm lợi cho chính người dùng. Rời khỏi mặc định phải dễ."
-        },
-        "right": {
-          "label": "Dark pattern",
-          "text": "Cũng đổi cách trình bày, nhưng làm lợi cho bên thiết kế và khiến việc thoát ra tốn công. Cùng một kỹ thuật, ngược hướng lợi ích."
-        }
-      },
-      {
-        "type": "callout",
-        "label": "Ranh giới",
-        "text": "Không có thiết kế trung lập - phải chọn một lựa chọn mặc định nào đó, và lựa chọn ấy sẽ quyết định hành vi của phần lớn người dùng. Câu hỏi đạo đức vì thế không phải có nên tác động hay không, mà là tác động theo hướng có lợi cho ai và thoát ra có dễ không."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Với 6 bài học của chặng Behavioral Finance chuyên ngành - từ Prospect Theory làm nền tảng, đến ứng dụng trong equity research, corporate finance, market anomalies, portfolio management, và cuối cùng là product design - bạn đã có một bức tranh toàn diện về cách tài chính hành vi vận hành ở mọi cấp độ của ngành tài chính chuyên nghiệp.",
-          "Kiến thức này không chỉ giúp bạn phân tích tốt hơn - nó còn là la bàn đạo đức khi bạn ở vị trí có thể ảnh hưởng đến quyết định tài chính của người khác, dù là qua một báo cáo nghiên cứu, một khuyến nghị đầu tư, hay một sản phẩm tài chính được hàng triệu người sử dụng."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Mọi kiến trúc lựa chọn đều có ảnh hưởng, không có thiết kế trung lập",
-        "arrow": true
-      },
-      {
-        "label": "Đặt mặc định theo hướng có lợi cho khách hàng",
-        "arrow": true
-      },
-      {
-        "label": "Giữ quyền tự do chọn khác (libertarian paternalism)",
-        "arrow": true
-      },
-      {
-        "label": "Ranh giới đạo đức: nudge giúp khách vs dark pattern gài bẫy",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
+      { "type": "lead", "text": "Mọi hộp thoại đều phải có thứ tự nút, mọi biểu mẫu đều phải có ô nào điền sẵn. Không quyết định nào trong số đó có phiên bản trung lập." },
+      { "type": "heading", "text": "Quyền lực được trao mà không ai bàn tới" },
+      { "type": "paragraph", "text": "Phần lớn người dùng không đổi giá trị mặc định, không phải vì họ đồng ý mà vì đổi tốn công và họ đang bận làm việc khác. Nghĩa là người viết dòng mã đặt mặc định đang quyết định thay cho phần lớn người dùng của sản phẩm. Đó là quyền lực thật, và nó thường không xuất hiện trong bất kỳ cuộc thảo luận nào về thiết kế." },
+      { "type": "comparison", "left": { "label": "Ma sát đúng chỗ", "text": "Một bước xác nhận trước khi xoá vĩnh viễn. Người dùng phải dừng lại đúng lúc hậu quả không hoàn tác được, và họ biết ơn nó khi bấm nhầm." }, "right": { "label": "Ma sát sai chỗ", "text": "Ba bước xác nhận trước khi huỷ đăng ký. Cùng một kỹ thuật, đặt ở cửa ra thay vì trước hành động nguy hiểm - và nó phục vụ bên bán." } },
+      { "type": "callout", "label": "Buộc chọn không phải là trung lập", "text": "Bỏ hết giá trị mặc định và bắt người dùng chọn nghe như cách thoát khỏi vấn đề. Thực tế nó chặn người dùng ở một câu hỏi họ chưa đủ thông tin để trả lời, vào đúng lúc họ đang muốn làm việc khác - và phần lớn sẽ chọn bừa hoặc bỏ đi. Trung lập không tồn tại; chỉ có việc chọn phía một cách có ý thức." },
+      { "type": "closing", "lines": [
+        "Câu hỏi không phải có nên tác động tới lựa chọn hay không - bạn đang tác động dù muốn hay không.",
+        "Bài sau: khi sản phẩm của bạn trở thành một phần trong sản phẩm của người khác."
+      ]}
+    ]
   },
   {
     "id": 1253,
     "track": "professional",
-    "slug": "embedded-finance-banking-as-a-service",
-    "title": "Embedded Finance & Banking-as-a-Service: Mô hình kinh doanh mới của FinTech",
-    "subtitle": "Vì sao Grab, Shopee có thể cho vay và bán bảo hiểm mà không cần giấy phép ngân hàng",
-    "duration": "7 phút",
-    "difficulty": "Khó",
+    "slug": "nhung-dich-vu-vao-san-pham-nguoi-khac",
+    "title": "Nhúng dịch vụ vào sản phẩm của người khác",
+    "subtitle": "Khách hàng của bạn là lập trình viên, còn người chịu hậu quả khi bạn hỏng thì không biết bạn tồn tại",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
     "emoji": "🔌",
-    "openingQuestion": "Một ứng dụng gọi xe (không phải ngân hàng) cho phép tài xế 'ứng lương' ngay trong app, và một sàn thương mại điện tử cho phép người mua 'mua trước trả sau' (BNPL) ngay tại trang thanh toán. Mô hình kinh doanh đằng sau cả hai tính năng này được gọi là gì?",
+    "whyItMatters": "Một dịch vụ được nhúng vào sản phẩm khác có mô hình vận hành khác hẳn một sản phẩm cuối: mỗi thay đổi ảnh hưởng tới người bạn không liên lạc được, và mỗi sự cố xảy ra dưới thương hiệu của người khác.",
+    "openingQuestion": "Khác biệt lớn nhất giữa dịch vụ nhúng và sản phẩm cuối là gì?",
     "openingOptions": [
-      "Cả hai công ty này đã tự xin được giấy phép ngân hàng đầy đủ để tự cung cấp dịch vụ tài chính",
-      "Embedded Finance - công ty phi tài chính nhúng dịch vụ tài chính vào ngay sản phẩm cốt lõi của họ",
-      "Đây chỉ là chiêu marketing, không có cơ chế tài chính thực sự đằng sau",
-      "Các công ty này vi phạm pháp luật vì cung cấp dịch vụ tài chính không phép"
+      "Người chịu hậu quả khi bạn hỏng không phải người bạn có thể liên lạc",
+      "Dịch vụ nhúng cần giao diện lập trình ổn định hơn so với sản phẩm cuối",
+      "Doanh thu đến từ số ít khách hàng lớn nên rủi ro tập trung cao hơn",
+      "Yêu cầu về hiệu năng khắt khe hơn vì dịch vụ nằm trên đường đi chính"
     ],
-    "correctOption": 1,
-    "explanation": "Embedded Finance là xu hướng lớn nhất trong FinTech hiện đại: thay vì người dùng phải rời khỏi app quen thuộc để đến một ngân hàng riêng biệt, dịch vụ tài chính được 'nhúng' trực tiếp vào trải nghiệm sản phẩm chính (gọi xe, mua sắm, quản lý nhân sự). Mô hình BaaS (Banking-as-a-Service) là hạ tầng phía sau: một ngân hàng đối tác cấp phép cung cấp 'API ngân hàng' cho công ty FinTech, công ty FinTech xây dựng trải nghiệm người dùng và sở hữu mối quan hệ khách hàng, còn ngân hàng đối tác xử lý phần tuân thủ pháp lý, quản lý vốn, và rủi ro tín dụng cốt lõi.",
+    "correctOption": 0,
+    "explanation": "Ba khác biệt kia đều đúng và đều là hệ quả kỹ thuật. Khác biệt gốc nằm ở chuỗi liên lạc: khi dịch vụ của bạn hỏng, người dùng cuối thấy sản phẩm của khách hàng bạn hỏng, họ khiếu nại với khách hàng của bạn, và khách hàng của bạn mới liên lạc với bạn. Bạn không nói được gì với người thật sự đang chịu hậu quả, và họ không biết bạn tồn tại. Điều đó đổi hẳn cách thiết kế: thông báo sự cố phải viết cho người sẽ chuyển tiếp nó chứ không phải cho người đọc cuối, và mọi thay đổi phá vỡ tương thích đều nhân lên qua từng khách hàng đang tích hợp.",
+    "diagram": [
+      { "label": "Dịch vụ của bạn hỏng", "arrow": true },
+      { "label": "Sản phẩm của khách hàng hỏng theo", "arrow": true },
+      { "label": "Người dùng cuối khiếu nại với khách hàng của bạn", "arrow": true },
+      { "label": "Bạn nghe tin sau cùng, và không nói được với ai" }
+    ],
     "realWorldExample": {
-      "company": "Grab Financial Group và mô hình Super App",
-      "description": "Grab đã mở rộng từ ứng dụng gọi xe thành một 'super app' tài chính: GrabPay (ví điện tử), GrabFinance (cho vay cho tài xế/đối tác), và bảo hiểm vi mô - phần lớn được xây dựng thông qua hợp tác với các ngân hàng/tổ chức tài chính được cấp phép tại từng quốc gia, thay vì Grab tự xin giấy phép ngân hàng đầy đủ ở mọi thị trường. Đây là chiến lược điển hình giúp công ty công nghệ mở rộng nhanh sang dịch vụ tài chính mà không phải chịu gánh nặng vốn và quy định của một ngân hàng truyền thống."
+      "company": "Một thay đổi nhỏ, bốn mươi tích hợp",
+      "description": "Một dịch vụ đổi định dạng trả về của một trường từ chuỗi sang số, thay đổi hợp lý và được ghi trong nhật ký phát hành. Bốn mươi tích hợp đang chạy, và khoảng một phần ba trong số đó xử lý trường ấy theo cách vỡ ngay. Đội dịch vụ biết chuyện qua các vé hỗ trợ trong hai tuần tiếp theo, mỗi vé từ một khách hàng khác nhau."
     },
     "quiz": [
       {
-        "question": "Trong mô hình BaaS (Banking-as-a-Service), ai chịu trách nhiệm pháp lý CHÍNH về việc tuân thủ quy định ngân hàng (như KYC, chống rửa tiền, dự trữ vốn), công ty FinTech hay ngân hàng đối tác cấp phép?",
+        "question": "Vì sao thay đổi phá vỡ tương thích đắt hơn nhiều ở dịch vụ nhúng?",
         "options": [
-          "Công ty FinTech luôn chịu trách nhiệm pháp lý chính vì họ sở hữu trải nghiệm khách hàng",
-          "Ngân hàng đối tác cấp phép (licensed bank partner) chịu trách nhiệm pháp lý CHÍNH về tuân thủ quy định ngân hàng, vì họ là bên nắm giữ giấy phép chính thức và chịu sự giám sát trực tiếp của cơ quan quản lý ngân hàng - dù công ty FinTech vẫn có trách nhiệm hợp đồng và vận hành đối với phần trải nghiệm khách hàng của họ",
-          "Không ai chịu trách nhiệm pháp lý trong mô hình này vì đây là lỗ hổng quy định",
-          "Trách nhiệm pháp lý hoàn toàn thuộc về khách hàng sử dụng dịch vụ"
+          "Vì chi phí nhân với số tích hợp, và bạn không kiểm soát lịch của họ",
+          "Vì các khách hàng tích hợp thường không đọc nhật ký phát hành đầy đủ",
+          "Vì việc thông báo trước cho tất cả khách hàng tốn nhiều công sức",
+          "Vì mỗi khách hàng dùng dịch vụ theo một cách khác nhau nên khó dự đoán"
         ],
-        "correct": 1,
-        "explanation": "Đây là cấu trúc cốt lõi của BaaS: ngân hàng đối tác - dù 'ẩn mình' phía sau giao diện FinTech - vẫn là thực thể chịu trách nhiệm pháp lý chính trước cơ quan quản lý về các nghĩa vụ ngân hàng cốt lõi (KYC/AML, tỷ lệ an toàn vốn, bảo vệ tiền gửi khách hàng). Đây là lý do các ngân hàng BaaS phải thực hiện due diligence rất kỹ lưỡng với đối tác FinTech trước khi hợp tác, vì rủi ro tuân thủ của đối tác có thể ảnh hưởng trực tiếp đến giấy phép của chính ngân hàng."
+        "correct": 0,
+        "explanation": "Trong một sản phẩm cuối, bạn đổi và triển khai cùng lúc. Ở đây mỗi tích hợp là một đội riêng với thứ tự ưu tiên riêng, nên khoảng thời gian từ lúc bạn đổi tới lúc tất cả cập nhật xong có thể là nhiều quý - và trong khoảng đó bạn phải chạy cả hai phiên bản."
       },
       {
-        "question": "'Unit Economics' của một sản phẩm BNPL (Mua trước Trả sau) cần phân tích những yếu tố nào để đánh giá tính bền vững của mô hình kinh doanh?",
+        "question": "Phiên bản hoá giao diện lập trình giải quyết được điều gì?",
         "options": [
-          "Chỉ cần nhìn vào tổng số lượng giao dịch (GMV) xử lý qua nền tảng",
-          "Cần phân tích: doanh thu trên mỗi giao dịch (phí merchant, lãi suất nếu có), chi phí vốn (cost of capital để tài trợ khoản ứng trước cho merchant), tỷ lệ nợ xấu/vỡ nợ (default rate) của người mua, và chi phí vận hành/thu hồi nợ - một sản phẩm BNPL có thể có GMV rất lớn nhưng vẫn thua lỗ nếu tỷ lệ nợ xấu cao hơn biên lợi nhuận từ phí merchant",
-          "Unit economics không áp dụng được cho các sản phẩm tài chính FinTech",
-          "Chỉ cần đánh giá mức độ hài lòng của khách hàng, không cần phân tích tài chính"
+          "Nó tách lịch của bạn khỏi lịch của từng khách hàng tích hợp",
+          "Nó cho phát triển tính năng mới không đụng bản cũ",
+          "Nó cho khách biết mình dùng phiên bản nào",
+          "Nó giảm lỗi phát sinh khi dịch vụ đổi"
         ],
-        "correct": 1,
-        "explanation": "Đây là bài học quan trọng đã được chứng minh qua nhiều thất bại thực tế trong ngành BNPL toàn cầu: tăng trưởng GMV (tổng giá trị giao dịch) ấn tượng có thể che giấu unit economics yếu kém - nếu tỷ lệ nợ xấu tăng nhanh hơn biên lợi nhuận từ phí, mô hình kinh doanh về cơ bản đang 'mua tăng trưởng bằng cách chấp nhận lỗ trên mỗi giao dịch', không bền vững về dài hạn dù số liệu tăng trưởng bề mặt trông ấn tượng."
+        "correct": 0,
+        "explanation": "Đây là toàn bộ giá trị của nó, và cũng là toàn bộ chi phí: bạn được tự do đổi phiên bản mới, đổi lại phải nuôi phiên bản cũ cho tới khi khách hàng cuối cùng rời khỏi nó. Nhiều dịch vụ phát hiện ra rằng khách hàng cuối cùng ấy không bao giờ rời."
       },
       {
-        "question": "Tại sao nhiều ngân hàng truyền thống lớn chọn hợp tác với FinTech qua mô hình BaaS thay vì coi họ hoàn toàn là đối thủ cạnh tranh cần loại bỏ?",
+        "question": "Thông báo sự cố của dịch vụ nhúng nên viết cho ai?",
         "options": [
-          "Ngân hàng truyền thống không có lựa chọn nào khác ngoài hợp tác",
-          "BaaS cho phép ngân hàng tận dụng cơ sở hạ tầng và giấy phép sẵn có để tiếp cận LƯỢNG KHÁCH HÀNG MỚI mà FinTech đã xây dựng được (thường là phân khúc trẻ, số hóa cao mà ngân hàng truyền thống khó tiếp cận trực tiếp), tạo ra nguồn doanh thu mới (phí BaaS) mà không cần tự đầu tư xây dựng trải nghiệm sản phẩm số từ đầu - một chiến lược 'nếu không thể đánh bại, hãy hợp tác' mang lại lợi ích cho cả hai bên",
-          "Hợp tác BaaS luôn mang lại lợi nhuận cao hơn nhiều so với kinh doanh ngân hàng truyền thống",
-          "Các ngân hàng truyền thống chỉ hợp tác vì bị pháp luật bắt buộc"
+          "Cho người sẽ chuyển tiếp nó tới người dùng cuối của họ",
+          "Cho đội kỹ thuật của khách hàng vì họ là người trực tiếp tích hợp",
+          "Cho người dùng cuối vì họ là người đang chịu ảnh hưởng thực tế",
+          "Cho tất cả các bên với cùng một nội dung để đảm bảo tính nhất quán"
         ],
-        "correct": 1,
-        "explanation": "Mô hình BaaS tạo ra tình huống win-win chiến lược: ngân hàng đối tác kiếm doanh thu từ phí hạ tầng (infrastructure fees) mà không phải gánh chi phí marketing/thu hút khách hàng tốn kém, trong khi tiếp cận được phân khúc khách hàng mới thông qua trải nghiệm sản phẩm hấp dẫn của FinTech - đây là lý do nhiều ngân hàng lớn trên thế giới đã xây dựng bộ phận BaaS chuyên biệt, coi đây là dòng doanh thu chiến lược mới thay vì chỉ phòng thủ trước cạnh tranh FinTech."
+        "correct": 0,
+        "explanation": "Khách hàng của bạn đang có người dùng của họ khiếu nại và cần một câu trả lời để đưa ra ngay. Một thông báo kỹ thuật thuần tuý buộc họ phải tự dịch sang ngôn ngữ của người dùng cuối trong lúc đang gấp - viết sẵn phần đó là phần hỗ trợ có giá trị nhất bạn cung cấp được trong một sự cố."
+      },
+      {
+        "question": "Chỉ số nào quan trọng nhất với một dịch vụ nhúng?",
+        "options": [
+          "Tỷ lệ lỗi và độ trễ ở mức mà khách hàng tệ nhất đang trải qua",
+          "Tỷ lệ lỗi và độ trễ trung bình trên toàn bộ các yêu cầu nhận được",
+          "Số lượng khách hàng đang tích hợp và tốc độ tăng trưởng của con số đó",
+          "Mức độ hài lòng của khách hàng đo qua các khảo sát định kỳ"
+        ],
+        "correct": 0,
+        "explanation": "Trung bình trên toàn bộ yêu cầu bị chi phối bởi vài khách hàng lớn nhất, nên một khách hàng nhỏ có trải nghiệm rất tệ vẫn không làm con số nhúc nhích. Với dịch vụ nhúng, mỗi khách hàng là một sản phẩm riêng đang hỏng, nên phải đo theo từng khách hàng chứ không gộp."
+      },
+      {
+        "question": "Môi trường thử cho khách hàng tích hợp nên đáp ứng điều gì?",
+        "options": [
+          "Hành xử giống môi trường thật, kể cả ở các trường hợp lỗi",
+          "Cho thử mọi tính năng như môi trường thật",
+          "Có dữ liệu mẫu phong phú cho dễ hình dung",
+          "Luôn sẵn sàng và không giới hạn số yêu cầu"
+        ],
+        "correct": 0,
+        "explanation": "Môi trường thử luôn trả về thành công là môi trường không dạy khách hàng cách xử lý thất bại, nên mọi tích hợp đi qua nó đều chưa từng chạy nhánh lỗi cho tới lần đầu gặp lỗi thật. Khả năng mô phỏng lỗi là tính năng quan trọng nhất của một môi trường thử, và cũng là thứ hay thiếu nhất."
       }
-    ],
-    "keyTakeaways": [
-      "Embedded Finance: dịch vụ tài chính được tích hợp trực tiếp vào sản phẩm phi tài chính (gọi xe, thương mại điện tử) thay vì yêu cầu người dùng chuyển sang ứng dụng ngân hàng riêng",
-      "BaaS (Banking-as-a-Service): ngân hàng đối tác cấp phép cung cấp hạ tầng/API, FinTech sở hữu trải nghiệm khách hàng - ngân hàng vẫn chịu trách nhiệm pháp lý chính về tuân thủ",
-      "Unit economics của sản phẩm tài chính nhúng (như BNPL) phải cân bằng giữa doanh thu phí, chi phí vốn, và tỷ lệ nợ xấu - tăng trưởng GMV ấn tượng không đảm bảo mô hình bền vững",
-      "BaaS là chiến lược win-win: ngân hàng tiếp cận khách hàng mới qua trải nghiệm FinTech, FinTech tận dụng giấy phép/hạ tầng ngân hàng mà không cần tự xin giấy phép"
     ],
     "practicePrompt": {
-      "question": "Một startup FinTech công bố GMV (tổng giá trị giao dịch BNPL) tăng 300% trong năm qua, nhưng biên lợi nhuận gộp giảm từ 3% xuống 1%. Là chuyên viên tài chính sản phẩm FinTech, bạn nên đặt câu hỏi gì để đánh giá đúng sức khỏe thực sự của mô hình kinh doanh?",
+      "question": "Dịch vụ của bạn có ba mươi tích hợp và bạn cần đổi định dạng một trường trả về. Nên làm thế nào?",
       "options": [
-        "GMV tăng 300% đã chứng minh mô hình chạy được, biên rồi sẽ tự cải thiện",
-        "Biên giảm do nợ xấu tăng nhanh hơn doanh thu phí, hay do chi phí mở thị trường mới?",
-        "Biên gộp 1% là mức chuẩn của ngành BNPL nên không cần điều tra thêm",
-        "Biên lợi nhuận không quan trọng, chỉ cần tập trung vào tăng trưởng GMV"
+        "Trả về cả hai dạng một thời gian, đo xem còn ai dùng dạng cũ, rồi mới bỏ",
+        "Thông báo trước ba tháng rồi đổi vào ngày đã hẹn với tất cả khách hàng",
+        "Tạo một phiên bản mới của giao diện lập trình và giữ phiên bản cũ song song",
+        "Đổi trực tiếp vì đây là thay đổi nhỏ và đã được ghi trong nhật ký phát hành"
       ],
-      "correct": 1,
-      "explanation": "Đây là kỹ năng phân tích cốt lõi của chuyên viên tài chính sản phẩm FinTech: phân biệt giữa 'tăng trưởng đầu tư có chủ đích' (biên lợi nhuận giảm tạm thời do chi phí mở rộng, có thể cải thiện) và 'tăng trưởng không bền vững' (biên lợi nhuận giảm do rủi ro tín dụng gia tăng khi mở rộng sang phân khúc khách hàng kém chất lượng hơn để đạt chỉ tiêu tăng trưởng) - hai nguyên nhân này đòi hỏi hành động quản lý hoàn toàn khác nhau."
+      "correct": 0,
+      "explanation": "Thông báo trước ba tháng vẫn để phần lớn khách hàng cập nhật vào tuần cuối hoặc quên hẳn. Tạo phiên bản mới thì đúng cho thay đổi lớn và quá nặng cho một trường. Trả về cả hai dạng rồi đo là cách duy nhất biết được thật sự còn ai dùng dạng cũ, thay vì đoán."
     },
+    "keyTakeaways": [
+      "Người chịu hậu quả khi bạn hỏng không phải người bạn liên lạc được",
+      "Chi phí thay đổi phá vỡ tương thích nhân với số tích hợp",
+      "Đo theo từng khách hàng, vì trung bình bị chi phối bởi vài khách lớn nhất",
+      "Môi trường thử luôn thành công thì không dạy được cách xử lý thất bại"
+    ],
     "summary": {
-      "keyIdea": "Embedded Finance và BaaS là mô hình kinh doanh cho phép công ty phi tài chính tích hợp dịch vụ tài chính vào sản phẩm cốt lõi thông qua hợp tác với ngân hàng cấp phép - tạo ra cơ hội tăng trưởng lớn nhưng đòi hỏi phân tích unit economics cẩn thận để tránh 'tăng trưởng ảo' che giấu rủi ro tín dụng.",
-      "commonMistake": "Đánh giá thành công của sản phẩm tài chính nhúng chỉ qua chỉ số tăng trưởng bề mặt (GMV, số người dùng) mà không phân tích sâu unit economics và chất lượng tín dụng đằng sau",
-      "action": "Khi phân tích một sản phẩm embedded finance, luôn tách biệt tăng trưởng doanh thu/GMV khỏi biên lợi nhuận thực và tỷ lệ nợ xấu để đánh giá tính bền vững thực sự"
+      "keyIdea": "Dịch vụ nhúng có một chuỗi liên lạc dài hơn một mắt xích, và mắt xích cuối không biết bạn tồn tại",
+      "commonMistake": "Đo tỷ lệ lỗi trung bình toàn hệ thống, không thấy khách hàng nhỏ đang có trải nghiệm rất tệ",
+      "action": "Đo tỷ lệ lỗi và độ trễ theo từng khách hàng, và viết sẵn phần thông báo mà họ chuyển tiếp được."
     },
     "application": {
-      "title": "Áp dụng vào công việc FinTech Product Finance",
-      "message": "Nghiên cứu một sản phẩm embedded finance bạn từng sử dụng (BNPL, ví điện tử tích hợp trong app khác) - thử xác định ngân hàng/tổ chức tài chính đối tác đứng sau cung cấp hạ tầng BaaS cho sản phẩm đó.",
-      "secondary": "Kỹ năng phân tích unit economics của sản phẩm tài chính nhúng là một trong những kỹ năng được săn đón nhất hiện nay khi ngành FinTech tiếp tục mở rộng mô hình embedded finance ra nhiều lĩnh vực mới."
+      "title": "Đo theo từng khách hàng, không gộp",
+      "message": "Dựng bảng tỷ lệ lỗi và độ trễ tách theo từng tích hợp. Khách hàng tệ nhất là con số đáng nhìn, không phải mức trung bình.",
+      "secondary": "Trong mỗi thông báo sự cố, viết sẵn một đoạn mà khách hàng có thể chuyển thẳng cho người dùng của họ."
     },
     "sections": [
-      {
-        "type": "lead",
-        "text": "Bạn không cần mở ứng dụng ngân hàng riêng để vay tiền hay mua bảo hiểm nữa - dịch vụ tài chính giờ đây 'ẩn mình' ngay trong những ứng dụng bạn dùng hàng ngày. Đây là cuộc cách mạng Embedded Finance."
-      },
-      {
-        "type": "heading",
-        "text": "Embedded Finance - Tài chính 'biến mất' vào trải nghiệm sản phẩm"
-      },
-      {
-        "type": "paragraph",
-        "text": "Thay vì tài chính là một điểm đến riêng biệt (phải mở app ngân hàng, đến chi nhánh), Embedded Finance tích hợp trực tiếp các dịch vụ tài chính vào hành trình sử dụng sản phẩm chính của khách hàng: mua sắm và thanh toán trả góp ngay tại trang checkout, tài xế công nghệ ứng lương ngay trong app quản lý ca làm việc, hay doanh nghiệp nhỏ vay vốn ngay trong nền tảng quản lý bán hàng họ đang sử dụng."
-      },
-      {
-        "type": "heading",
-        "text": "Banking-as-a-Service (BaaS) - Hạ tầng phía sau"
-      },
-      {
-        "type": "paragraph",
-        "text": "BaaS là mô hình 'phân lớp' cho phép Embedded Finance vận hành: Ngân hàng đối tác cấp phép cung cấp API cho phép công ty FinTech truy cập các chức năng ngân hàng cốt lõi (mở tài khoản, xử lý thanh toán, cấp tín dụng) mà không cần tự FinTech phải xin giấy phép ngân hàng đầy đủ (một quá trình tốn kém, mất nhiều năm, đòi hỏi vốn lớn). Đổi lại, ngân hàng đối tác nhận phí dịch vụ và tiếp cận được phân khúc khách hàng mới thông qua trải nghiệm sản phẩm của FinTech."
-      },
-      {
-        "type": "heading",
-        "text": "Unit Economics - Thước đo sức khỏe thực sự"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ngành BNPL toàn cầu đã chứng kiến nhiều bài học đắt giá: tăng trưởng GMV ấn tượng không đồng nghĩa với mô hình kinh doanh bền vững nếu tỷ lệ nợ xấu tăng nhanh hơn biên lợi nhuận. Chuyên viên tài chính sản phẩm FinTech cần thành thạo phân tích unit economics: doanh thu trên mỗi giao dịch, chi phí vốn để tài trợ khoản ứng trước, và quan trọng nhất - tỷ lệ vỡ nợ thực tế của người dùng cuối."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba lớp của tài chính nhúng",
-        "subtitle": "Người dùng chỉ thấy lớp trên cùng, còn rủi ro và giấy phép nằm ở lớp dưới cùng",
-        "concepts": [
-          {
-            "vi": "Trải nghiệm nhúng",
-            "en": "Embedded Experience",
-            "def": "Dịch vụ tài chính biến mất vào sản phẩm chính - trả góp ngay tại trang thanh toán, không rời khỏi ứng dụng."
-          },
-          {
-            "vi": "Hạ tầng dịch vụ",
-            "en": "Banking-as-a-Service",
-            "def": "Lớp API và vận hành nối doanh nghiệp phi tài chính với ngân hàng có giấy phép."
-          },
-          {
-            "vi": "Ngân hàng cấp phép",
-            "en": "Sponsor Bank",
-            "def": "Bên giữ giấy phép và chịu trách nhiệm tuân thủ cuối cùng - kể cả khi người dùng không bao giờ thấy tên họ."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Đáng nhớ",
-        "text": "Unit economics mới là thước đo, không phải số lượng người dùng. Một sản phẩm nhúng có thể tăng trưởng rất nhanh và lỗ trên mỗi giao dịch - và tăng trưởng khi đó chỉ làm khoản lỗ lớn thêm."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Embedded Finance đang định hình lại toàn bộ ranh giới giữa 'công ty công nghệ' và 'công ty tài chính' - hiểu được cả cơ hội kinh doanh lẫn rủi ro tài chính đằng sau mô hình này là kỹ năng cốt lõi cho bất kỳ ai làm việc trong lĩnh vực tài chính sản phẩm FinTech.",
-          "Câu hỏi quan trọng nhất không phải là 'tăng trưởng bao nhiêu' mà là 'tăng trưởng có được xây dựng trên nền tảng unit economics vững chắc hay không'."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Nền tảng phi ngân hàng (gọi xe, thương mại điện tử) có tệp khách hàng và dữ liệu hành vi",
-        "arrow": true
-      },
-      {
-        "label": "Ngân hàng/công ty được cấp phép cung cấp hạ tầng và giấy phép (BaaS)",
-        "arrow": true
-      },
-      {
-        "label": "Sản phẩm tài chính nhúng vào trải nghiệm sẵn có: trả sau, vay, bảo hiểm",
-        "arrow": true
-      },
-      {
-        "label": "Doanh thu chia giữa nền tảng và bên cấp phép",
-        "arrow": true
-      },
-      {
-        "label": "Đo sức khỏe thật bằng unit economics, không bằng số người dùng",
-        "arrow": false
-      }
+      { "type": "lead", "text": "Khi sản phẩm của bạn nằm bên trong sản phẩm của người khác, mô hình vận hành đổi ở một chỗ căn bản: người chịu hậu quả khi bạn hỏng không biết bạn tồn tại." },
+      { "type": "heading", "text": "Chuỗi liên lạc dài thêm một mắt xích" },
+      { "type": "paragraph", "text": "Dịch vụ hỏng, sản phẩm của khách hàng hỏng theo, người dùng cuối khiếu nại với khách hàng của bạn, và bạn nghe tin sau cùng. Trong toàn bộ chuỗi đó bạn không nói được câu nào với người đang chịu hậu quả. Hệ quả rất cụ thể: thông báo sự cố phải viết cho người sẽ chuyển tiếp nó, và tốc độ bạn phản hồi quyết định khách hàng của bạn có gì để nói với người dùng của họ." },
+      { "type": "conceptTable", "title": "Bốn thứ khác hẳn so với sản phẩm cuối", "concepts": [
+        { "vi": "Thay đổi phá vỡ tương thích", "en": "Breaking change", "def": "Chi phí nhân với số tích hợp, và bạn không kiểm soát lịch cập nhật của họ." },
+        { "vi": "Chỉ số theo khách hàng", "en": "Per-tenant metrics", "def": "Trung bình bị chi phối bởi vài khách lớn; khách nhỏ có thể đang hỏng hoàn toàn." },
+        { "vi": "Thông báo sự cố", "en": "Incident comms", "def": "Viết cho người chuyển tiếp, kèm sẵn một đoạn dùng được cho người dùng cuối." },
+        { "vi": "Môi trường thử", "en": "Sandbox", "def": "Phải mô phỏng được lỗi. Môi trường luôn thành công tạo ra tích hợp chưa từng chạy nhánh lỗi." }
+      ]},
+      { "type": "callout", "label": "Phiên bản cũ không bao giờ hết người dùng", "text": "Phiên bản hoá giao diện lập trình tách được lịch của bạn khỏi lịch của khách hàng, và cái giá là phải nuôi phiên bản cũ tới khi người cuối cùng rời khỏi nó. Rất nhiều dịch vụ phát hiện ra rằng người cuối cùng ấy không rời - họ là một khách hàng lớn, tích hợp từ lâu, và không có động lực nào để cập nhật. Kế hoạch dừng một phiên bản cần một ngày cụ thể ngay từ lúc phát hành nó." },
+      { "type": "closing", "lines": [
+        "Khách hàng của bạn là lập trình viên, nhưng người đánh giá bạn là người dùng của họ.",
+        "Mọi quyết định thiết kế ở đây đều phải đi qua một mắt xích mà bạn không nói chuyện được."
+      ]}
     ]
   },
   {
@@ -75446,7 +75323,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Những việc bạn đánh giá được kết quả nhanh: đọc mã lạ, sinh khuôn mẫu, đề xuất trường hợp biên",
       "Những việc tốn thời gian nhất trong ngày làm việc của bạn, bất kể loại việc gì",
-      "Những việc bạn chưa biết làm, vì AI có kiến thức rộng hơn một người trong nhiều lĩnh vực",
+      "Những việc bạn chưa biết làm, vì AI có kiến thức rộng hơn hẳn một người trong nhiều lĩnh vực",
       "Những việc lặp đi lặp lại theo đúng một khuôn mà bạn đã làm nhiều lần trước đây"
     ],
     "correctOption": 0,
@@ -80213,391 +80090,352 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1287,
-    "track": "professional",
-    "slug": "cau-truc-family-office-single-vs-multi",
-    "title": "Cấu trúc Family Office: Single-family, Multi-family và khi nào nên chọn cái nào",
-    "subtitle": "Vì sao một gia đình rất giàu vẫn có thể không nên lập văn phòng gia đình riêng",
+    "slug": "doi-chuyen-trach-dung-chung-hay-rieng",
+    "title": "Đội chuyên trách: dùng chung hay riêng cho từng sản phẩm",
+    "subtitle": "Một đội chuyên trách dùng chung rẻ hơn tính trên đầu người và đắt hơn tính trên thời gian chờ.",
     "duration": "9 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🏛️",
-    "openingQuestion": "Một gia đình có tài sản khoảng 300 tỷ đồng đang cân nhắc lập văn phòng gia đình riêng với đội ngũ chuyên trách gồm giám đốc đầu tư, kế toán và trợ lý pháp lý. Yếu tố quyết định nhất nên là gì?",
+    "whyItMatters": "Quyết định này quyết định tốc độ của mọi đội sản phẩm, và nó thường được đưa ra dựa trên chi phí nhân sự - con số duy nhất dễ đo trong cả bài toán.",
+    "openingQuestion": "Khi nào một năng lực nên có đội chuyên trách dùng chung?",
     "openingOptions": [
-      "Mức độ uy tín và hình ảnh mà việc có văn phòng riêng mang lại cho gia đình",
-      "So sánh chi phí vận hành cố định hằng năm với chi phí thuê dịch vụ dùng chung",
-      "Số lượng thành viên trong gia đình muốn tham gia điều hành",
-      "Việc gia đình có sẵn người thân làm trong ngành tài chính hay không"
+      "Khi nhu cầu ổn định và đủ lớn để một đội riêng luôn có việc, ở mọi sản phẩm",
+      "Khi năng lực đó đòi hỏi chuyên môn sâu mà tất cả các cả đội từng sản phẩm hoàn toàn không có",
+      "Khi chi phí duy trì năng lực đó ở từng đội cao hơn ở một đội chung",
+      "Khi cần đảm bảo tính nhất quán trong cách làm giữa các sản phẩm"
     ],
-    "correctOption": 1,
-    "explanation": "Chi phí vận hành một văn phòng gia đình riêng - lương đội ngũ chuyên trách, hệ thống, tuân thủ, kiểm toán, mặt bằng - mang tính cố định và không giảm theo quy mô tài sản. Với tài sản đủ lớn, chi phí đó chiếm tỷ lệ nhỏ và hoàn toàn hợp lý so với lợi ích kiểm soát, bảo mật và may đo theo nhu cầu riêng. Với tài sản nhỏ hơn, cùng khoản chi phí đó chiếm tỷ lệ đáng kể và thường vượt phần giá trị tăng thêm, khiến mô hình dùng chung trở nên hợp lý hơn. Đây là phép so sánh cần làm trước tiên, trước cả câu hỏi về nhân sự hay hình ảnh.",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia là lý do người ta thường nêu và cả ba đều đúng ở một mức nào đó. Điều kiện quyết định là HÌNH DẠNG NHU CẦU: nếu nhu cầu tới theo đợt - hai tháng dồn dập rồi sáu tháng im lặng - thì đội chung sẽ vừa quá tải lúc dồn vừa rảnh lúc im, và cả hai trạng thái đều tốn.",
+    "diagram": [
+      {
+        "label": "Điều kiện quyết định là HÌNH DẠNG nhu cầu, không phải mức chuyên môn",
+        "arrow": true
+      },
+      {
+        "label": "Nhu cầu theo đợt → đội chung vừa quá tải vừa rảnh",
+        "arrow": true
+      },
+      {
+        "label": "Chi phí thật của đội chung là THỜI GIAN CHỜ của các đội sản phẩm",
+        "arrow": true
+      },
+      {
+        "label": "Và thời gian chờ không có hoá đơn nên không vào bảng tính"
+      }
+    ],
     "realWorldExample": {
-      "company": "Vì sao chi phí cố định quyết định lựa chọn cấu trúc",
-      "description": "Giả sử một văn phòng gia đình riêng tối thiểu cần khoảng 8 tỷ đồng mỗi năm để vận hành ở mức chuyên nghiệp. Với gia đình có 3.000 tỷ tài sản, khoản đó tương đương khoảng 0,27% mỗi năm - hoàn toàn cạnh tranh so với phí quản lý của các dịch vụ bên ngoài, và đổi lại gia đình có toàn quyền kiểm soát cùng mức bảo mật cao nhất. Với gia đình có 300 tỷ, cùng khoản 8 tỷ đó tương đương khoảng 2,7% mỗi năm - một mức phí mà rất ít chiến lược đầu tư có thể vượt qua một cách bền vững. Cùng một mô hình vận hành, cùng một chất lượng đội ngũ, nhưng kết luận về tính hợp lý hoàn toàn trái ngược chỉ vì mẫu số khác nhau."
+      "company": "Nhúng người thay vì lập đội",
+      "description": "Có một lựa chọn thứ ba giữa đội chung và mỗi đội tự làm: nhúng một người chuyên trách vào đội sản phẩm trong một giai đoạn. Nó tránh được thời gian chờ mà vẫn giữ được chiều sâu chuyên môn - và nó là lựa chọn ít được cân nhắc nhất."
     },
     "quiz": [
       {
-        "question": "Khác biệt cơ bản giữa single-family office và multi-family office là gì?",
+        "question": "Vì sao hình dạng nhu cầu quan trọng hơn mức độ chuyên môn?",
         "options": [
-          "Single-family office chỉ đầu tư trong nước còn multi-family office đầu tư quốc tế",
-          "Single-family office phục vụ duy nhất một gia đình với đội ngũ riêng nên kiểm soát và may đo cao nhất nhưng gánh toàn bộ chi phí cố định; multi-family office phục vụ nhiều gia đình nên chia sẻ chi phí và tiếp cận được đội ngũ chuyên môn rộng hơn, đổi lại mức may đo và bảo mật thấp hơn",
-          "Single-family office không được phép thuê nhân sự bên ngoài gia đình",
-          "Multi-family office chỉ dành cho các gia đình chưa đủ giàu"
+          "Vì nhu cầu theo đợt làm đội chung vừa quá tải lúc dồn vừa rảnh lúc im",
+          "Vì chuyên môn có thể học được còn nhu cầu thì không kiểm soát được",
+          "Vì mức chuyên môn thật sự cần thiết thay đổi theo từng giai đoạn của chính sản phẩm",
+          "Vì các đội sản phẩm có thể thuê ngoài khi cần chuyên môn đặc thù"
         ],
-        "correct": 1,
-        "explanation": "Đây là đánh đổi cốt lõi: kiểm soát và may đo đổi lấy chi phí và bề rộng chuyên môn. Không mô hình nào tốt hơn tuyệt đối - lựa chọn phụ thuộc vào quy mô tài sản và mức độ phức tạp của nhu cầu."
+        "correct": 0,
+        "explanation": "Chuyên môn sâu là lý do CẦN một năng lực tập trung; hình dạng nhu cầu quyết định nó có VẬN HÀNH được hay không. Hai câu hỏi khác nhau, và câu thứ hai thường không được hỏi."
       },
       {
-        "question": "Vì sao quản trị gia đình (family governance) lại là một cấu phần bắt buộc của văn phòng gia đình, không chỉ là việc quản lý đầu tư?",
+        "question": "Chi phí thật của một đội chuyên trách dùng chung là gì?",
         "options": [
-          "Vì luật pháp yêu cầu mọi văn phòng gia đình phải có hội đồng quản trị chính thức",
-          "Vì phần lớn thất bại của tài sản gia đình qua các thế hệ đến từ xung đột giữa các thành viên và thiếu cơ chế ra quyết định rõ ràng, chứ không đến từ việc chọn sai danh mục đầu tư",
-          "Vì quản trị gia đình giúp giảm thuế thu nhập cho các thành viên",
-          "Vì các thành viên gia đình cần được đào tạo để tự quản lý đầu tư"
+          "Thời gian chờ của các đội sản phẩm, một khoản không có hoá đơn",
+          "Chi phí nhân sự của đội đó cộng với chi phí quản lý đi kèm",
+          "Sự phụ thuộc của chính các đội sản phẩm vào đúng một điểm nghẽn duy nhất",
+          "Việc các đội sản phẩm mất dần khả năng tự làm những việc đó"
         ],
-        "correct": 1,
-        "explanation": "Đây là điểm phân biệt văn phòng gia đình với một công ty quản lý tài sản thông thường. Thiếu cơ chế quyết định và giải quyết xung đột, một danh mục đầu tư tốt vẫn có thể bị phân rã khi chuyển sang thế hệ sau."
+        "correct": 0,
+        "explanation": "Hai lựa chọn cuối là hậu quả thật và đến sau. Thời gian chờ là chi phí trực tiếp và nó bị bỏ khỏi mọi bảng tính vì cùng lý do với chi phí phối hợp: nó trả bằng thời gian của người khác, và thời gian không có hoá đơn."
       },
       {
-        "question": "Dịch vụ nào sau đây thuộc phạm vi của một văn phòng gia đình nhưng thường KHÔNG có ở một công ty quản lý quỹ thông thường?",
+        "question": "Lựa chọn thứ ba giữa đội chung và mỗi đội tự làm là gì?",
         "options": [
-          "Phân bổ tài sản và quản lý danh mục đầu tư",
-          "Phối hợp kế hoạch chuyển giao tài sản giữa các thế hệ, quản trị xung đột gia đình, giáo dục tài chính cho thế hệ sau, và điều phối hoạt động thiện nguyện của gia đình",
-          "Báo cáo hiệu suất đầu tư định kỳ",
-          "Đánh giá và lựa chọn các quỹ đầu tư bên ngoài"
+          "Nhúng một người chuyên trách vào đội sản phẩm trong một giai đoạn",
+          "Lập một đội chung nhưng phân bổ cố định theo tỷ lệ cho từng sản phẩm",
+          "Duy trì đội chung và đào tạo thêm người trong các đội sản phẩm",
+          "Thuê ngoài phần việc chuyên môn khi các đội sản phẩm cần tới"
         ],
-        "correct": 1,
-        "explanation": "Ba phương án còn lại là nghiệp vụ quản lý tài sản tiêu chuẩn. Phần khác biệt của văn phòng gia đình nằm ở các chức năng phi đầu tư gắn với gia đình như một thực thể nhiều thế hệ."
+        "correct": 0,
+        "explanation": "Ba cách kia đều là biến thể của hai cực. Nhúng người thì tránh được thời gian chờ mà vẫn giữ chiều sâu chuyên môn, và nó là lựa chọn ít được cân nhắc nhất vì nó không gọn trên sơ đồ tổ chức."
+      },
+      {
+        "question": "Dấu hiệu nào cho thấy đội chung đang là điểm nghẽn?",
+        "options": [
+          "Các đội sản phẩm bắt đầu tự làm phần việc đó dù chất lượng kém hơn",
+          "Đội chung báo cáo khối lượng công việc vượt quá năng lực hiện có",
+          "Thời gian xử lý trung bình mỗi yêu cầu của đội chung tăng lên",
+          "Số lượng yêu cầu gửi tới đội chung tăng theo từng quý"
+        ],
+        "correct": 0,
+        "explanation": "Ba dấu hiệu kia đến từ chính đội chung và chúng có thể được giải thích bằng nhiều lý do. Việc các đội sản phẩm chọn làm kém hơn thay vì chờ là bằng chứng mạnh nhất: họ đã tính và thấy chờ đắt hơn."
+      },
+      {
+        "question": "Điều gì nên đi kèm khi lập một đội chuyên trách dùng chung?",
+        "options": [
+          "Một cam kết về thời gian chờ, và một đường đi vòng khi cam kết đó không giữ được",
+          "Một quy trình rõ ràng để các đội sản phẩm gửi yêu cầu tới đội chung",
+          "Một cơ chế ưu tiên để các yêu cầu quan trọng được xử lý trước",
+          "Một bảng theo dõi khối lượng công việc và tiến độ của đội chung"
+        ],
+        "correct": 0,
+        "explanation": "Ba thứ kia đều là công cụ quản lý hàng chờ và chúng giả định hàng chờ là chuyện bình thường. Vế ĐƯỜNG ĐI VÒNG là phần quyết định: không có nó, các đội sản phẩm sẽ tự tạo ra một đường vòng mà không ai theo dõi."
       }
     ],
     "keyTakeaways": [
-      "Chi phí vận hành văn phòng gia đình mang tính cố định, nên tỷ lệ chi phí trên tài sản là phép thử đầu tiên khi chọn cấu trúc.",
-      "Single-family cho kiểm soát và bảo mật cao nhất; multi-family cho chi phí chia sẻ và bề rộng chuyên môn.",
-      "Quản trị gia đình là cấu phần bắt buộc, vì thất bại qua các thế hệ thường đến từ xung đột chứ không từ đầu tư.",
-      "Văn phòng gia đình khác công ty quản lý tài sản ở các chức năng phi đầu tư: chuyển giao thế hệ, giáo dục, thiện nguyện."
+      "Điều kiện quyết định là HÌNH DẠNG nhu cầu, không phải mức chuyên môn cần thiết.",
+      "Nhu cầu theo đợt thì đội chung vừa quá tải lúc dồn vừa rảnh lúc im - cả hai đều tốn.",
+      "Chi phí thật là THỜI GIAN CHỜ, và nó không có hoá đơn nên không vào bảng tính.",
+      "Lựa chọn thứ ba ít được cân nhắc: nhúng một người vào đội sản phẩm một giai đoạn.",
+      "Kèm một CAM KẾT về thời gian chờ và một ĐƯỜNG ĐI VÒNG khi cam kết không giữ được."
     ],
     "practicePrompt": {
-      "question": "Một gia đình có 800 tỷ tài sản, ba nhánh gia đình với nhu cầu khác nhau, sở hữu một doanh nghiệp đang vận hành và bất động sản ở hai quốc gia. Cấu trúc nào phù hợp nhất để cân bằng chi phí và độ phức tạp?",
+      "question": "Đội sản phẩm phải chờ đội chung ba tuần cho mỗi yêu cầu. Sửa gì trước?",
       "options": [
-        "Tự quản lý hoàn toàn bằng người trong gia đình để tiết kiệm chi phí",
-        "Lập single-family office đầy đủ với đội ngũ chuyên trách toàn diện ngay từ đầu",
-        "Mô hình lai: thuê ngoài phần kỹ thuật, giữ đội nội bộ lo quản trị",
-        "Giao toàn bộ cho ngân hàng nơi gia đình có quan hệ lâu năm"
+        "Cho phép đội sản phẩm tự làm với một bộ quy tắc, giữ đội chung cho việc khó",
+        "Bổ sung người cho đội chung để rút ngắn thời gian chờ xuống mức chấp nhận được",
+        "Thiết lập cơ chế ưu tiên để các yêu cầu gấp được xử lý trước các yêu cầu khác",
+        "Chia cả đội chung thành nhiều nhóm tương đối nhỏ phục vụ từng nhóm sản phẩm riêng"
       ],
-      "correct": 2,
-      "explanation": "Ở quy mô này, chi phí một văn phòng đầy đủ vẫn khá nặng nhưng độ phức tạp lại đủ lớn để không thể thuê ngoài hoàn toàn. Mô hình lai giữ lại phần cần kiểm soát và bối cảnh gia đình, đồng thời chia sẻ chi phí ở phần mang tính kỹ thuật thuần túy."
+      "correct": 0,
+      "explanation": "Ba cách kia đều giữ nguyên cấu trúc hàng chờ và chỉ làm nó ngắn hơn hoặc công bằng hơn. Cách này bỏ hàng chờ cho phần lớn yêu cầu - và bộ quy tắc là thứ giữ lại được phần giá trị mà đội chung mang lại."
     },
     "summary": {
-      "keyIdea": "Chọn cấu trúc văn phòng gia đình là bài toán so chi phí cố định với quy mô tài sản và mức độ phức tạp của nhu cầu, không phải bài toán về địa vị.",
-      "commonMistake": "Lập văn phòng riêng vì lý do hình ảnh hoặc vì gia đình khác đã làm, mà chưa tính tỷ lệ chi phí vận hành trên tài sản.",
-      "action": "Với một gia đình cụ thể, ước tính chi phí vận hành hằng năm rồi chia cho tổng tài sản - so con số đó với mức phí của dịch vụ dùng chung tương đương."
+      "keyIdea": "Đội chung rẻ hơn tính trên đầu người và đắt hơn tính trên thời gian chờ.",
+      "formula": "Nhu cầu ổn định và đủ lớn → đội chung. Theo đợt → nhúng người theo giai đoạn.",
+      "commonMistake": "Quyết định dựa trên chi phí nhân sự, con số duy nhất dễ đo trong cả bài toán.",
+      "action": "Đo thời gian chờ trung bình mà các đội sản phẩm đang trả cho đội chung."
     },
     "application": {
-      "title": "Áp dụng vào tư vấn",
-      "message": "Trước khi bàn cấu trúc, hãy trả lời ba câu: tổng tài sản là bao nhiêu, có bao nhiêu nhánh gia đình với nhu cầu khác nhau, và có tài sản nào đòi hỏi chuyên môn đặc thù như doanh nghiệp đang vận hành hoặc tài sản ở nhiều quốc gia.",
-      "secondary": "Ba câu này quyết định cấu trúc rõ hơn nhiều so với việc so sánh danh mục dịch vụ mà các nhà cung cấp giới thiệu."
+      "title": "Làm ngay hôm nay",
+      "message": "Nếu tổ chức bạn có đội chuyên trách dùng chung, đo một con số: từ lúc một đội sản phẩm gửi yêu cầu tới lúc việc đó xong, mất bao lâu?",
+      "secondary": "Nhân con số đó với số yêu cầu mỗi quý và bạn có chi phí thật của mô hình này - khoản mà không bảng tính nhân sự nào đang tính tới."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Văn phòng gia đình thường được nhắc tới như một biểu tượng của sự giàu có. Nhưng dưới góc nhìn tài chính, nó chỉ là một quyết định về cấu trúc chi phí và mức độ kiểm soát - và như mọi quyết định cấu trúc, nó có ngưỡng quy mô để trở nên hợp lý."
+        "text": "Quyết định này quyết định tốc độ của mọi đội sản phẩm, và nó thường được đưa ra dựa trên chi phí nhân sự - con số duy nhất dễ đo trong cả bài toán."
       },
       {
         "type": "heading",
-        "text": "Ba mô hình và đánh đổi của từng mô hình"
+        "text": "Câu hỏi quyết định"
       },
       {
-        "type": "conceptTable",
-        "title": "Từ thuê ngoài hoàn toàn đến văn phòng riêng",
-        "subtitle": "Trục đánh đổi chính là kiểm soát so với chi phí",
-        "concepts": [
-          {
-            "vi": "Thuê dịch vụ bên ngoài",
-            "en": "Private banking / wealth management",
-            "def": "Không có đội ngũ riêng, dùng dịch vụ của ngân hàng hoặc công ty quản lý tài sản. Chi phí thấp nhất và linh hoạt nhất, nhưng mức may đo hạn chế và có xung đột lợi ích tiềm ẩn khi nhà cung cấp cũng bán sản phẩm của chính mình."
-          },
-          {
-            "vi": "Văn phòng gia đình dùng chung",
-            "en": "Multi-family office",
-            "def": "Một tổ chức phục vụ nhiều gia đình, chia sẻ đội ngũ và hạ tầng. Chi phí thấp hơn hẳn văn phòng riêng, tiếp cận được chuyên môn rộng hơn, nhưng mức ưu tiên và bảo mật thấp hơn vì phải phân bổ nguồn lực cho nhiều khách hàng."
-          },
-          {
-            "vi": "Văn phòng gia đình riêng",
-            "en": "Single-family office",
-            "def": "Đội ngũ chuyên trách chỉ phục vụ một gia đình. Kiểm soát, bảo mật và may đo cao nhất; phù hợp khi có tài sản phức tạp và nhiều nhánh gia đình. Đổi lại gánh toàn bộ chi phí cố định và chịu rủi ro phụ thuộc vào một vài nhân sự chủ chốt."
-          }
-        ]
+        "type": "callout",
+        "label": "Hình dạng nhu cầu, không phải mức chuyên môn",
+        "text": "Chuyên môn sâu là lý do CẦN một năng lực tập trung. Hình dạng nhu cầu quyết định nó có VẬN HÀNH được hay không - và nếu nhu cầu tới theo đợt thì đội chung vừa quá tải lúc dồn vừa rảnh lúc im."
       },
       {
         "type": "heading",
-        "text": "Phép thử đầu tiên: tỷ lệ chi phí trên tài sản"
-      },
-      {
-        "type": "formula",
-        "title": "So sánh chi phí cấu trúc",
-        "equation": "Tỷ lệ chi phí = Chi phí vận hành hằng năm ÷ Tổng tài sản quản lý",
-        "example": {
-          "title": "Cùng chi phí 8 tỷ/năm, hai quy mô tài sản",
-          "calculation": "8 tỷ ÷ 3.000 tỷ so với 8 tỷ ÷ 300 tỷ",
-          "result": "Khoảng 0,27% so với khoảng 2,7%",
-          "explanation": "Ở mức 0,27%, văn phòng riêng cạnh tranh trực tiếp với phí dịch vụ bên ngoài và còn có thêm lợi ích kiểm soát. Ở mức 2,7%, chi phí này cao hơn nhiều so với các lựa chọn thay thế, và rất ít chiến lược đầu tư vượt được mức đó một cách bền vững để bù lại."
-        }
-      },
-      {
-        "type": "paragraph",
-        "text": "Điểm quan trọng là chi phí vận hành không co giãn nhiều theo quy mô tài sản: một giám đốc đầu tư có năng lực không nhận lương thấp hơn chỉ vì gia đình có ít tài sản hơn. Đây là lý do quy mô tài sản gần như là biến số quyết định đầu tiên, trước mọi cân nhắc khác."
-      },
-      {
-        "type": "heading",
-        "text": "Quản trị gia đình - phần dễ bị bỏ qua nhất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một văn phòng gia đình khác công ty quản lý tài sản ở chỗ nó phục vụ một gia đình như một thực thể nhiều thế hệ, không phải một tài khoản đầu tư. Điều đó kéo theo những chức năng không liên quan gì đến việc chọn tài sản: xây cơ chế ra quyết định khi các nhánh gia đình không đồng thuận, chuẩn bị thế hệ sau về cả kiến thức và trách nhiệm, điều phối kế hoạch chuyển giao tài sản, và tổ chức hoạt động thiện nguyện."
+        "text": "Chi phí không có hoá đơn"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Thiếu cơ chế quản trị",
-          "text": "Quyết định lớn phụ thuộc vào một người, thường là thế hệ sáng lập. Khi người đó không còn tham gia, các nhánh gia đình không có quy tắc nào để giải quyết bất đồng, và tài sản thường bị phân chia hoặc thanh lý dưới áp lực thay vì theo kế hoạch."
+          "label": "Chi phí được tính",
+          "text": "Lương của đội chung, chia cho số sản phẩm nó phục vụ. Con số này luôn trông đẹp."
         },
         "right": {
-          "label": "Có cơ chế quản trị",
-          "text": "Có quy tắc thành văn về ai quyết định gì, ngưỡng nào cần đồng thuận, cách xử lý khi một nhánh muốn rút phần của mình, và lộ trình chuẩn bị cho thế hệ tiếp theo. Tài sản chuyển giao theo thiết kế, không theo tình thế."
+          "label": "Chi phí bị bỏ",
+          "text": "THỜI GIAN CHỜ của các đội sản phẩm. Trả bằng thời gian của người khác, nên nó không vào bảng tính - cùng lý do với chi phí phối hợp."
         }
       },
       {
         "type": "heading",
-        "text": "Bốn câu hỏi trước khi chọn cấu trúc"
+        "text": "Lựa chọn thứ ba"
       },
       {
-        "type": "list",
-        "items": [
-          "Tổng tài sản là bao nhiêu, và chi phí vận hành dự kiến chiếm bao nhiêu phần trăm trong đó?",
-          "Có bao nhiêu nhánh gia đình, và nhu cầu của họ khác nhau đến mức nào - vì càng nhiều nhánh với mục tiêu khác biệt thì càng cần cơ chế quản trị riêng.",
-          "Có tài sản nào đòi hỏi chuyên môn đặc thù không: doanh nghiệp đang vận hành, bất động sản ở nhiều quốc gia, hoặc các khoản đầu tư tư nhân cần theo dõi sát.",
-          "Mức bảo mật cần thiết đến đâu - một số gia đình có lý do chính đáng để không muốn thông tin tài sản đi qua tổ chức phục vụ nhiều khách hàng."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Mô hình lai thường là lựa chọn thực tế nhất",
-        "text": "Nhiều gia đình ở quy mô trung bình chọn giữ một đội ngũ nội bộ rất tinh gọn - thường chỉ một hoặc hai người - phụ trách điều phối, quản trị gia đình và ra quyết định phân bổ tổng thể, đồng thời thuê ngoài các chức năng mang tính kỹ thuật như quản lý danh mục, kế toán, thuế và pháp lý. Cách này giữ lại phần cần bối cảnh gia đình và kiểm soát, trong khi vẫn chia sẻ được chi phí ở phần có thể chuẩn hóa."
+        "type": "paragraph",
+        "text": "Giữa đội chung và mỗi đội tự làm còn một cách: NHÚNG một người chuyên trách vào đội sản phẩm trong một giai đoạn. Nó tránh được thời gian chờ mà vẫn giữ chiều sâu chuyên môn, và nó ít được cân nhắc nhất vì nó không gọn trên sơ đồ tổ chức."
       },
       {
         "type": "closing",
         "lines": [
-          "Văn phòng gia đình riêng không phải bước tiến tất yếu khi tài sản tăng - nó là một quyết định về cấu trúc chi phí có ngưỡng quy mô riêng.",
-          "Và dù chọn cấu trúc nào, phần quyết định tài sản có bền qua các thế hệ thường là cơ chế quản trị, không phải hiệu suất danh mục."
+          "Nếu vẫn lập đội chung, kèm hai thứ: một CAM KẾT về thời gian chờ, và một ĐƯỜNG ĐI VÒNG khi cam kết đó không giữ được.",
+          "Không có đường đi vòng thì các đội sản phẩm sẽ tự tạo ra một cái - và đường đó không ai theo dõi, không ai đặt quy tắc, và nó chính là thứ mà đội chung sinh ra để tránh."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Xác định tổng tài sản và mức độ phức tạp của nhu cầu",
-        "arrow": true
-      },
-      {
-        "label": "Ước tính chi phí vận hành cố định hằng năm",
-        "arrow": true
-      },
-      {
-        "label": "So tỷ lệ chi phí trên tài sản với phí dịch vụ thay thế",
-        "arrow": true
-      },
-      {
-        "label": "Chọn cấu trúc: thuê ngoài · dùng chung · mô hình lai · văn phòng riêng",
-        "arrow": true
-      },
-      {
-        "label": "Thiết lập cơ chế quản trị gia đình song song với quản lý đầu tư",
-        "arrow": false
       }
     ]
   },
   {
-    "title": "Cơ chế tự sửa: vì sao bản sao không lệch xa bản gốc",
-    "subtitle": "Một vòng phản hồi tốt hơn mọi quy trình rà soát thủ công",
+    "id": 1288,
+    "slug": "co-che-giu-hai-ban-sao-khong-lech-xa-nhau",
+    "title": "Cơ chế giữ hai bản sao dữ liệu không lệch xa nhau",
+    "subtitle": "Hai bản sao luôn lệch; câu hỏi là lệch bao nhiêu và có ai đang kéo chúng lại không.",
     "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "♻️",
-    "whyItMatters": "Mọi hệ thống có bản sao đều có nguy cơ lệch, và cách xử lý thường thấy là rà soát định kỳ. Có một cách khác rẻ hơn nhiều: làm cho việc lệch tự sinh ra lực kéo nó về.",
-    "openingQuestion": "Bản sao dữ liệu có thể lệch bản gốc. Cách nào giữ nó gần nhất?",
+    "track": "professional",
+    "emoji": "🔄",
+    "whyItMatters": "Gần như mọi hệ thống thật đều có cùng một dữ liệu ở hai chỗ, và mức lệch giữa chúng chỉ được phát hiện khi có người so.",
+    "openingQuestion": "Hệ thống của bạn giữ cùng một dữ liệu ở hai nơi. Điều gì là đúng?",
     "openingOptions": [
-      "Làm cho việc phát hiện lệch tự động sinh ra hành động sửa",
-      "Rà soát định kỳ và sửa khi phát hiện",
-      "Tăng tần suất đồng bộ giữa bản sao và bản gốc để khoảng lệch không kịp lớn lên",
-      "Ghi lại mọi thay đổi ở bản gốc rồi phát lại theo đúng thứ tự trên từng bản sao"
+      "Chúng sẽ lệch nhau; việc cần làm là giới hạn mức lệch và phát hiện được nó",
+      "Có thể giữ chúng đồng bộ hoàn toàn nếu cơ chế cập nhật được thiết kế đúng",
+      "Chỉ lệch khi có lỗi trong quá trình đồng bộ giữa hai hệ thống",
+      "Mức lệch phụ thuộc vào tần suất mà cơ chế đồng bộ được chạy"
     ],
     "correctOption": 0,
-    "explanation": "Ba cách kia đều làm khoảng lệch nhỏ hơn và đều dựa vào một quy trình chạy đúng. Cách đầu khác về bản chất: nó không cần ai nhớ chạy gì, vì chính sự lệch là thứ kích hoạt việc sửa. Một cơ chế như vậy vẫn hoạt động vào ngày mọi người quên mất nó tồn tại, và đó là thứ không quy trình nào làm được.",
+    "explanation": "Lựa chọn thứ tư đúng một phần và nó giả định lệch chỉ do độ trễ. Thực tế còn ba nguồn nữa: một lượt cập nhật thất bại ở một bên, hai bên nhận hai thay đổi khác nhau cùng lúc, và một bên bị sửa tay. Không cơ chế nào loại được cả bốn, nên mục tiêu là giới hạn và phát hiện chứ không phải triệt tiêu.",
     "diagram": [
       {
-        "label": "Bản sao lệch khỏi bản gốc",
+        "label": "Bốn nguồn lệch: độ trễ, cập nhật lỗi, ghi đồng thời, sửa tay",
         "arrow": true
       },
       {
-        "label": "Lệch bị phát hiện tự động",
+        "label": "Không cơ chế nào loại được cả bốn",
         "arrow": true
       },
       {
-        "label": "Phát hiện tự sinh ra hành động sửa",
+        "label": "Nên đặt mục tiêu: mức lệch tối đa chấp nhận được, và đo nó",
         "arrow": true
       },
       {
-        "label": "Khoảng lệch bị kéo về mà không ai can thiệp"
+        "label": "Cơ chế kéo lại phải chạy được nhiều lần mà không hại"
       }
     ],
     "realWorldExample": {
-      "company": "Quy trình đối soát hằng tuần bị bỏ quên",
-      "description": "Một hệ thống có bản sao đọc và một quy trình đối soát hằng tuần do một người chạy tay. Người đó chuyển đội, và quy trình ngừng chạy trong bốn tháng mà không ai nhận ra vì nó chưa bao giờ báo lỗi. Khi có người chạy lại, khoảng lệch đã lớn tới mức không sửa được bằng cách đồng bộ - phải dựng lại toàn bộ bản sao từ đầu, mất hai ngày ngừng đọc."
+      "company": "Kéo lại phải bất biến khi lặp",
+      "description": "Một lượt đồng bộ lại chạy nửa chừng rồi chết là chuyện bình thường, nên nó sẽ được chạy lại. Nếu lượt chạy lại tạo ra bản ghi trùng hoặc cộng dồn thêm lần nữa thì cơ chế sửa lệch trở thành nguồn lệch mới."
+    },
+    "quiz": [
+      {
+        "question": "Bốn nguồn làm hai bản sao lệch nhau là gì?",
+        "options": [
+          "Độ trễ đồng bộ, một lượt cập nhật thất bại, ghi đồng thời hai phía, và sửa tay",
+          "Lỗi mạng, lỗi phần mềm, lỗi cấu hình, và lỗi thao tác của con người",
+          "Khối lượng dữ liệu lớn, tần suất cập nhật cao, độ trễ mạng, và tài nguyên hạn chế",
+          "Thiết kế cơ chế đồng bộ, chất lượng dữ liệu nguồn, quyền truy cập, và giám sát"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia phân loại theo nguyên nhân kỹ thuật hoặc theo yếu tố ảnh hưởng. Bốn nguồn này phân loại theo CƠ CHẾ tạo ra lệch, và cách phân loại đó quan trọng vì mỗi nguồn cần một cách xử lý khác nhau."
+      },
+      {
+        "question": "Vì sao mục tiêu nên là giới hạn và phát hiện thay vì triệt tiêu lệch?",
+        "options": [
+          "Vì không cơ chế nào loại được cả bốn nguồn cùng lúc",
+          "Vì chi phí để đạt đồng bộ hoàn toàn cao hơn giá trị mà nó mang lại",
+          "Vì đồng bộ hoàn toàn làm giảm hiệu năng của cả hai hệ thống",
+          "Vì các hệ thống phân tán về bản chất không thể đạt nhất quán tuyệt đối"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ tư là một phát biểu lý thuyết đúng và nó rộng hơn mức cần. Bốn nguồn cụ thể thì cho bạn một danh sách kiểm được: với mỗi nguồn, hỏi cơ chế hiện tại xử lý nó thế nào."
+      },
+      {
+        "question": "Vì sao cơ chế kéo lại phải bất biến khi lặp lại?",
+        "options": [
+          "Vì nó sẽ được chạy lại sau khi chết nửa chừng, và chạy lại phải vô hại",
+          "Vì thật sự cần chạy nó định kỳ nên rốt cuộc mỗi lượt không được ảnh hưởng lượt trước",
+          "Vì nhiều tiến trình có thể cùng chạy nó trong một số tình huống",
+          "Vì kết quả của nó cần ổn định để có thể kiểm chứng được"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là lý do thật. Cái này là lý do thường xảy ra nhất: nếu lượt chạy lại tạo bản ghi trùng hoặc cộng dồn thêm lần nữa thì cơ chế sửa lệch trở thành nguồn lệch mới - và nó là nguồn khó tìm nhất."
+      },
+      {
+        "question": "Điều gì phải quyết định trước khi dựng cơ chế đồng bộ?",
+        "options": [
+          "Bên nào là nguồn chuẩn khi hai bên bất đồng, cho từng loại dữ liệu",
+          "Tần suất mà cơ chế đồng bộ sẽ chạy để có thể giữ mức lệch trong giới hạn",
+          "Cách xử lý khi cơ chế đồng bộ gặp lỗi trong quá trình chạy",
+          "Cơ chế theo dõi và cảnh báo khi mức lệch vượt ngưỡng cho phép"
+        ],
+        "correct": 0,
+        "explanation": "Ba thứ kia đều là thiết kế và đổi được. Nguồn chuẩn thì không: nếu chưa quyết, mỗi lần bất đồng sẽ được xử lý tại chỗ bởi người đang trực - và hai lần bất đồng giống nhau có thể được giải theo hai hướng ngược nhau."
+      },
+      {
+        "question": "Vì sao lệch do sửa tay khó xử lý nhất?",
+        "options": [
+          "Vì nó không đi qua cơ chế nào nên không có bản ghi về việc nó đã xảy ra",
+          "Vì người sửa tay thường có quyền cao nên rốt cuộc cũng không bị các kiểm tra chặn lại",
+          "Vì sửa tay khá thường xuyên diễn ra trong lúc xử lý sự cố nên không được ghi lại",
+          "Vì dữ liệu bị sửa tay không tuân theo các ràng buộc mà hệ thống áp dụng"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là hệ quả của cùng một điều. Không có bản ghi nghĩa là cơ chế kéo lại không biết bên nào mới đúng: nó thấy hai giá trị khác nhau và không có thông tin nào để chọn."
+      }
+    ],
+    "keyTakeaways": [
+      "Bốn nguồn lệch: độ trễ, cập nhật thất bại, ghi đồng thời, và SỬA TAY.",
+      "Không cơ chế nào loại được cả bốn - mục tiêu là giới hạn và phát hiện.",
+      "Quyết định NGUỒN CHUẨN trước, cho từng loại dữ liệu, không để người trực quyết.",
+      "Cơ chế kéo lại phải BẤT BIẾN khi lặp, nếu không nó thành nguồn lệch mới.",
+      "Sửa tay khó nhất vì không có bản ghi, nên cơ chế kéo lại không biết bên nào đúng."
+    ],
+    "practicePrompt": {
+      "question": "Đối chiếu báo hai bên lệch 0,4%. Việc đầu tiên?",
+      "options": [
+        "Phân nhóm các bản ghi lệch theo bốn nguồn để biết cần chữa cơ chế nào",
+        "Chạy cơ chế đồng bộ lại để kéo hai bên về khớp nhau",
+        "Kiểm tra nhật ký của cơ chế đồng bộ trong khoảng thời gian gần đây",
+        "Xác định bên nào đang đúng để lấy đó làm cơ sở sửa bên còn lại"
+      ],
+      "correct": 0,
+      "explanation": "Lựa chọn thứ hai sửa triệu chứng và chúng lệch lại ngay chu kỳ sau. Bốn nguồn cần bốn cách chữa khác nhau, nên phân nhóm trước là bước duy nhất dẫn tới một sửa chữa còn hiệu lực ở lần sau."
+    },
+    "summary": {
+      "keyIdea": "Hai bản sao luôn lệch; câu hỏi là lệch bao nhiêu và có ai đang kéo lại không.",
+      "formula": "Bốn nguồn → nguồn chuẩn cho từng loại → cơ chế kéo lại bất biến → đo mức lệch.",
+      "commonMistake": "Chạy đồng bộ lại để chữa lệch mà không phân loại nguồn gây ra nó.",
+      "action": "Với một cặp dữ liệu song song, hỏi bên nào là nguồn chuẩn khi bất đồng."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Với một loại dữ liệu tồn tại ở hai chỗ trong hệ thống bạn, trả lời một câu: khi hai bên bất đồng, bên nào là nguồn chuẩn?",
+      "secondary": "Nếu chưa có câu trả lời được ghi ở đâu, thì mỗi lần bất đồng đang được xử lý bởi người đang trực - và hai lần giống nhau có thể được giải theo hai hướng ngược nhau."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Có hai cách giữ hai thứ khớp nhau: kiểm tra rồi sửa, hoặc thiết kế sao cho việc lệch tự tạo ra lực kéo về. Cách thứ hai ít gặp hơn nhiều và bền hơn hẳn."
+        "text": "Gần như mọi hệ thống thật đều có cùng một dữ liệu ở hai chỗ, và mức lệch giữa chúng chỉ được phát hiện khi có người so."
       },
       {
         "type": "heading",
-        "text": "Vì sao quy trình rà soát luôn mục dần"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một quy trình chạy tay phụ thuộc vào việc có người nhớ chạy nó, và trong phần lớn trường hợp nó chưa bao giờ báo lỗi - nên việc nó ngừng chạy cũng không báo gì. Đây là hình dạng thất bại tệ nhất: hệ thống mất một lớp bảo vệ và mọi tín hiệu vẫn bình thường, vì tín hiệu duy nhất mà lớp ấy tạo ra là sự im lặng."
-      },
-      {
-        "type": "heading",
-        "text": "Ba hình dạng của một cơ chế tự sửa"
+        "text": "Bốn nguồn lệch"
       },
       {
         "type": "list",
         "items": [
-          "Đọc rồi so: mỗi lần đọc bản sao, một phần nhỏ được đối chiếu với bản gốc và lệch thì kích hoạt đồng bộ",
-          "Hết hạn theo thời gian: mọi bản sao có tuổi thọ, quá hạn thì tự bị bỏ đi chứ không chờ ai xoá",
-          "Dựng lại định kỳ: bản sao được tạo lại từ đầu theo lịch, nên mọi lệch tích luỹ đều bị xoá sạch"
+          "ĐỘ TRỄ đồng bộ - nguồn duy nhất mà ai cũng nghĩ tới.",
+          "Một lượt CẬP NHẬT THẤT BẠI ở một bên mà không ai biết.",
+          "Hai bên nhận hai thay đổi khác nhau CÙNG LÚC.",
+          "Một bên bị SỬA TAY."
         ]
       },
       {
-        "type": "paragraph",
-        "text": "Hình dạng thứ hai là hình dạng rẻ nhất và ít được dùng nhất. Một bản sao có hạn sử dụng thì không bao giờ lệch quá thời gian ấy, bất kể chuyện gì xảy ra với quy trình đồng bộ - và nó không cần ai theo dõi."
-      },
-      {
         "type": "callout",
-        "label": "Cơ chế tốt là cơ chế vẫn chạy khi mọi người quên nó",
-        "text": "Đây là phép thử duy nhất đáng dùng cho loại thiết kế này. Hỏi xem nếu cả đội nghỉ ba tháng thì cơ chế này còn hoạt động không. Một quy trình rà soát thì không; một bản sao có hạn sử dụng thì có. Câu hỏi ấy tách được thứ bền khỏi thứ chỉ đang được nuôi bằng sự chú ý của ai đó."
+        "label": "Vì sao nguồn thứ tư khó nhất",
+        "text": "Sửa tay không đi qua cơ chế nào, nên không có bản ghi về việc nó đã xảy ra. Cơ chế kéo lại thấy hai giá trị khác nhau và không có thông tin nào để chọn bên nào mới đúng."
       },
       {
         "type": "heading",
-        "text": "Cái giá của cơ chế tự sửa"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nó không miễn phí. Một cơ chế tự động sửa cũng có thể tự động sửa nhầm, và khi nó nhầm thì nó nhầm ở quy mô lớn và nhanh. Điều kiện đi kèm là phải có một giới hạn tốc độ - sửa tối đa bao nhiêu bản ghi mỗi phút - và một cảnh báo khi lượng sửa vượt mức thường ngày. Không có hai thứ đó thì một lỗi ở bản gốc sẽ được nhân bản đi khắp nơi với tốc độ tối đa."
+        "text": "Hai quyết định phải có trước"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Tự sửa",
-          "text": "Lệch kích hoạt sửa, không cần ai nhớ. Cần giới hạn tốc độ và cảnh báo khi lượng sửa bất thường."
+          "label": "Nguồn chuẩn",
+          "text": "Bên nào thắng khi hai bên bất đồng, cho TỪNG loại dữ liệu. Chưa quyết thì người đang trực quyết, và hai lần giống nhau có thể được giải ngược nhau."
         },
         "right": {
-          "label": "Rà soát định kỳ",
-          "text": "Đơn giản, dễ hiểu, và mục dần từ ngày người phụ trách chuyển đội. Sự im lặng của nó không phân biệt được với thành công."
+          "label": "Mức lệch chấp nhận được",
+          "text": "Một con số, và một phép đo chạy theo lịch để biết mình đang ở đâu so với nó."
         }
+      },
+      {
+        "type": "paragraph",
+        "text": "Và cơ chế kéo lại phải BẤT BIẾN khi lặp lại. Một lượt đồng bộ chạy nửa chừng rồi chết là chuyện bình thường, nên nó sẽ được chạy lại - nếu lượt chạy lại tạo bản ghi trùng thì cơ chế sửa lệch trở thành nguồn lệch mới."
       },
       {
         "type": "closing",
         "lines": [
-          "Quy trình rà soát báo thành công bằng sự im lặng, nên việc nó chết cũng im lặng.",
-          "Một cơ chế tự sửa cần giới hạn tốc độ, vì nó nhầm ở quy mô lớn và nhanh."
+          "Khi đối chiếu báo lệch, đừng chạy đồng bộ lại ngay: đó là sửa triệu chứng, và chúng lệch lại ngay chu kỳ sau.",
+          "Phân nhóm các bản ghi lệch theo bốn nguồn trên. Bốn nguồn cần bốn cách chữa khác nhau, và phân nhóm là bước duy nhất dẫn tới một sửa chữa còn hiệu lực ở lần sau."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Vì sao một quy trình rà soát chạy tay là hình dạng thất bại tệ?",
-        "options": [
-          "Vì tín hiệu duy nhất nó tạo ra là sự im lặng",
-          "Vì nó phụ thuộc vào một người cụ thể",
-          "Vì tần suất chạy tay thường thấp hơn tốc độ mà khoảng lệch tích luỹ trong hệ thống",
-          "Vì kết quả của nó không được ghi lại ở đâu nên không ai đối chiếu được giữa các lần"
-        ],
-        "correct": 0,
-        "explanation": "Việc phụ thuộc vào một người là vấn đề thật nhưng nó sửa được bằng cách phân công lại. Việc thành công và việc chết cùng trông giống nhau thì không sửa được bằng phân công - nó là một lỗ hổng trong chính thiết kế của lớp bảo vệ ấy."
-      },
-      {
-        "question": "Hình dạng tự sửa nào rẻ nhất và ít được dùng nhất?",
-        "options": [
-          "Cho bản sao một hạn sử dụng",
-          "Đối chiếu một phần nhỏ ở mỗi lần đọc",
-          "Dựng lại toàn bộ bản sao theo lịch để xoá sạch mọi khoảng lệch đã tích luỹ được",
-          "Ghi nhật ký mọi thay đổi rồi phát lại chúng theo thứ tự lên từng bản sao một"
-        ],
-        "correct": 0,
-        "explanation": "Một bản sao có hạn thì không bao giờ lệch quá thời gian ấy, bất kể chuyện gì xảy ra với quy trình đồng bộ, và nó không cần ai theo dõi. Ba cách kia đều cần một thành phần đang chạy đúng."
-      },
-      {
-        "question": "Phép thử nào tách được cơ chế bền khỏi cơ chế đang được nuôi bằng sự chú ý?",
-        "options": [
-          "Nếu cả đội nghỉ ba tháng thì nó còn hoạt động không",
-          "Nó đã chạy được bao lâu mà không có sự cố",
-          "Có bao nhiêu người trong đội hiểu được cách nó hoạt động và sửa được khi nó hỏng",
-          "Nó có được ghi vào tài liệu vận hành và được rà soát trong các kỳ kiểm tra định kỳ không"
-        ],
-        "correct": 0,
-        "explanation": "Ba câu kia đều đo mức độ trưởng thành của cách vận hành quanh cơ chế. Câu đầu đo chính cơ chế, và nó cho ra câu trả lời rõ ràng: quy trình rà soát thì không, bản sao có hạn sử dụng thì có."
-      },
-      {
-        "question": "Điều kiện bắt buộc đi kèm một cơ chế tự sửa là gì?",
-        "options": [
-          "Một giới hạn tốc độ sửa và một cảnh báo khi lượng sửa vượt mức thường ngày, vì một cơ chế tự động sai sẽ sai ở quy mô lớn và rất nhanh",
-          "Một bản ghi lại mọi lần nó đã sửa",
-          "Một cơ chế cho phép tắt nó đi nhanh chóng khi phát hiện nó đang hoạt động sai",
-          "Một quy trình kiểm tra định kỳ để xác nhận rằng nó vẫn đang chạy đúng như thiết kế"
-        ],
-        "correct": 0,
-        "explanation": "Ba phương án kia đều hữu ích và đều là biện pháp sau khi phát hiện. Giới hạn tốc độ là biện pháp duy nhất giới hạn được thiệt hại trong khoảng thời gian trước khi ai đó kịp phát hiện."
-      },
-      {
-        "question": "Khác biệt bản chất giữa tự sửa và rà soát định kỳ là gì?",
-        "options": [
-          "Tự sửa không cần ai nhớ chạy nó",
-          "Tự sửa nhanh hơn",
-          "Tự sửa phát hiện được nhiều loại khoảng lệch hơn so với một lần rà soát thủ công",
-          "Tự sửa không cần dừng hệ thống nên nó không ảnh hưởng tới người dùng đang truy cập"
-        ],
-        "correct": 0,
-        "explanation": "Ba khác biệt kia đều là khác biệt về mức. Việc không cần ai nhớ là khác biệt về loại: nó quyết định cơ chế còn tồn tại hay không sau khi người dựng nó chuyển đội, và đó là biến số lớn nhất trong vòng đời của mọi lớp bảo vệ."
-      }
-    ],
-    "keyTakeaways": [
-      "Quy trình rà soát báo thành công bằng im lặng nên việc nó chết cũng im lặng",
-      "Bản sao có hạn sử dụng là cơ chế tự sửa rẻ nhất và ít dùng nhất",
-      "Phép thử: cả đội nghỉ ba tháng thì nó còn chạy không",
-      "Cơ chế tự sửa cần giới hạn tốc độ, vì nó sai ở quy mô lớn và nhanh"
-    ],
-    "practicePrompt": {
-      "question": "Bản sao có hạn 10 phút. Quy trình đồng bộ chết lúc 9h00. Bản sao lệch tối đa bao lâu trước khi bị bỏ?",
-      "options": [
-        "10 phút",
-        "Không giới hạn, vì quy trình đồng bộ đã chết nên không còn gì cập nhật bản sao nữa",
-        "20 phút (= cộng thêm một chu kỳ hạn nữa cho khoảng thời gian phát hiện ra sự cố)",
-        "5 phút (= lấy một nửa hạn sử dụng làm khoảng lệch trung bình thay vì tối đa)"
-      ],
-      "correct": 0,
-      "explanation": "Hạn sử dụng đặt trần cứng cho khoảng lệch bất kể quy trình đồng bộ còn sống hay không - quá mười phút thì bản sao tự bị bỏ đi và yêu cầu đọc phải đi tới bản gốc. Đó chính là điều khiến nó bền hơn mọi quy trình cần người nhớ chạy."
-    },
-    "summary": {
-      "keyIdea": "Thiết kế sao cho việc lệch tự sinh ra lực kéo về, thay vì kiểm rồi sửa",
-      "commonMistake": "Dựa vào một quy trình rà soát mà sự im lặng của nó không phân biệt được với thành công",
-      "action": "Tìm một quy trình đối soát chạy tay ở đội bạn và hỏi lần cuối nó chạy là khi nào."
-    },
-    "application": {
-      "title": "Hai câu cho mọi lớp bảo vệ",
-      "message": "Nếu cả đội nghỉ ba tháng thì nó còn chạy không? Nếu nó chết thì có gì báo không?",
-      "secondary": "Nếu câu thứ hai trả lời là không, lớp bảo vệ ấy đang bảo vệ bằng sự tin tưởng chứ không bằng cơ chế."
-    },
-    "id": 1288,
-    "slug": "co-che-tao-hoan-etf-authorized-participants",
-    "track": "professional"
+    ]
   },
   {
     "id": 1289,

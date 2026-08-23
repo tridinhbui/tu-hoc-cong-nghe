@@ -151,12 +151,12 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
   if (!activeQuiz) return null;
 
   return (
-    <div className={`bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 overflow-hidden shadow-sm ${compact ? "rounded-2xl" : "rounded-3xl"}`}>
+    <div className={`bg-white dark:bg-stone-900 border border-line overflow-hidden shadow-sm ${compact ? "rounded-2xl" : "rounded-3xl"}`}>
       {/* Header */}
       <button
         onClick={() => setCollapsed(!collapsed)}
         className={`w-full flex items-center justify-between cursor-pointer text-left focus:outline-none ${
-          collapsed ? "" : "border-b border-stone-100 dark:border-stone-800"
+          collapsed ? "" : "border-b border-line-soft"
         } ${compact ? "px-4 py-3" : "px-6 py-4"}`}
       >
         <div className="flex items-center gap-2.5">
@@ -164,20 +164,20 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
             <Newspaper className="w-4.5 h-4.5" />
           </div>
           <div>
-            <h3 className="font-bold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 text-base">
+            <h3 className="font-bold text-ink flex items-center gap-1.5 text-base">
               {compact ? t.newsQuiz.titleCompact : t.newsQuiz.titleFull}
               {!activeIsAnswered && (
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
               )}
             </h3>
             {!compact && (
-              <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold">
+              <p className="text-[10px] text-ink-muted font-bold">
                 {t.newsQuiz.subtitle}
               </p>
             )}
           </div>
         </div>
-        <span className="text-xs text-stone-400 dark:text-stone-500 shrink-0">
+        <span className="text-xs text-ink-faint shrink-0">
           {collapsed ? t.newsQuiz.collapseOpen : t.newsQuiz.collapseClose}
         </span>
       </button>
@@ -186,7 +186,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
       {!collapsed && (
         <div className={compact ? "p-4 space-y-3" : "p-6 space-y-4"}>
           {/* News snippet box */}
-          <div className={`bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800/80 ${compact ? "rounded-xl p-3" : "rounded-2xl p-4"}`}>
+          <div className={`bg-stone-50 dark:bg-stone-950 border border-line-soft/80 ${compact ? "rounded-xl p-3" : "rounded-2xl p-4"}`}>
             <div className="flex items-center gap-1.5 mb-2 flex-wrap">
               <span className="text-[9px] font-extrabold bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-400 px-2 py-0.5 rounded uppercase">
                 {practiceMode ? t.newsQuiz.badgePractice : t.newsQuiz.badgeToday}
@@ -195,11 +195,11 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                   set of scenarios (not a live news feed) - flagging that
                   explicitly so the specific-looking numbers (CPI %, tỷ giá,
                   lãi suất...) never get mistaken for real reported news. */}
-              <span className="text-[9px] font-bold text-stone-400 dark:text-stone-500">
+              <span className="text-[9px] font-bold text-ink-faint">
                 {t.newsQuiz.simulatedNotice}
               </span>
             </div>
-            <h4 className={`font-black text-stone-900 dark:text-stone-100 leading-snug ${compact ? "text-[11px]" : "text-xs"}`}>
+            <h4 className={`font-black text-ink leading-snug ${compact ? "text-[11px]" : "text-xs"}`}>
               {activeQuiz.newsTitle}
             </h4>
             {!compact && (
@@ -211,8 +211,8 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
 
           {/* Question and Options */}
           <div className={compact ? "space-y-2" : "space-y-3"}>
-            <h4 className={`font-black text-stone-900 dark:text-stone-100 flex items-start gap-1.5 ${compact ? "text-[11px]" : "text-xs"}`}>
-              <HelpCircle className="w-4 h-4 text-stone-400 dark:text-stone-500 mt-0.5 shrink-0" />
+            <h4 className={`font-black text-ink flex items-start gap-1.5 ${compact ? "text-[11px]" : "text-xs"}`}>
+              <HelpCircle className="w-4 h-4 text-ink-faint mt-0.5 shrink-0" />
               <span>{activeQuiz.question}</span>
             </h4>
 
@@ -236,7 +236,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                         ? "border-rose-500 bg-rose-500/[0.04] dark:bg-rose-950/20 text-rose-900 dark:text-rose-400"
                         : isSelected
                         ? "border-sky-500 bg-sky-500/[0.02] text-sky-900 dark:text-sky-400 font-bold"
-                        : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300"
+                        : "border-line hover:border-stone-300 dark:hover:border-stone-700 bg-white dark:bg-stone-900 text-ink-body"
                     }`}
                   >
                     <span className="mt-0.5 shrink-0">
@@ -246,7 +246,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                         <XCircle className="w-4 h-4 text-rose-500" />
                       ) : (
                         <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center text-[9px] font-black ${
-                          isSelected ? "border-sky-500 text-sky-500" : "border-stone-300 dark:border-stone-700 text-stone-400"
+                          isSelected ? "border-sky-500 text-sky-500" : "border-line-strong text-stone-400"
                         }`}>
                           {String.fromCharCode(65 + idx)}
                         </span>
@@ -272,7 +272,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
             </button>
           ) : (
             <div className={`rounded-2xl bg-stone-50 dark:bg-stone-950 border border-stone-200/60 dark:border-stone-800/80 animate-[fadeIn_0.35s_ease-out] ${compact ? "p-3" : "p-4.5"}`}>
-              <h5 className="text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 text-stone-700 dark:text-stone-300 mb-2">
+              <h5 className="text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 text-ink-body mb-2">
                 <Award className={`w-4 h-4 ${activeIsCorrect ? "text-emerald-500" : "text-stone-400"}`} />
                 <span>{activeIsCorrect ? t.newsQuiz.correctAnswerLabel : format(t.newsQuiz.wrongAnswerLabel, { letter: String.fromCharCode(65 + activeQuiz.correctIndex) })}</span>
               </h5>
@@ -286,7 +286,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           {practiceMode ? (
             <div className="flex items-center gap-2">
               {practiceStreak > 1 && (
-                <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 shrink-0">
+                <span className="text-[10px] font-extrabold text-accent flex items-center gap-1 shrink-0">
                   <Flame className="w-3.5 h-3.5" />
                   {format(t.newsQuiz.streakLabel, { count: practiceStreak })}
                 </span>
@@ -301,7 +301,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
               )}
               <button
                 onClick={() => setPracticeMode(false)}
-                className={`text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 font-bold shrink-0 ${compact ? "text-[10px]" : "text-xs"}`}
+                className={`text-ink-muted hover:text-stone-800 dark:hover:text-stone-200 font-bold shrink-0 ${compact ? "text-[10px]" : "text-xs"}`}
               >
                 {t.newsQuiz.exitPractice}
               </button>

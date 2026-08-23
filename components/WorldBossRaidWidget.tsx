@@ -250,7 +250,7 @@ export default function WorldBossRaidWidget({
         <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-auto">
           <button
             onClick={() => setShowBossGuide((prev) => !prev)}
-            className="w-full sm:w-auto bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-bold text-xs px-4 py-3.5 rounded-2xl hover:bg-stone-200 cursor-pointer flex items-center justify-center gap-1.5 shrink-0"
+            className="w-full sm:w-auto bg-surface-raised text-ink-body font-bold text-xs px-4 py-3.5 rounded-2xl hover:bg-stone-200 cursor-pointer flex items-center justify-center gap-1.5 shrink-0"
           >
             {t.worldBoss.guideToggle}
           </button>
@@ -266,11 +266,11 @@ export default function WorldBossRaidWidget({
 
       {/* World Boss How-to-Play Guide Box */}
       {showBossGuide && (
-        <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 border border-red-200 dark:border-red-900/50 text-xs text-stone-800 dark:text-stone-200 space-y-2">
+        <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 border border-danger-line/50 text-xs text-stone-800 dark:text-stone-200 space-y-2">
           <h4 className="font-black text-sm text-red-700 dark:text-red-300 flex items-center gap-1.5">
             {t.worldBoss.rulesTitle}
           </h4>
-          <ul className="list-disc list-inside space-y-1 font-semibold text-stone-700 dark:text-stone-300">
+          <ul className="list-disc list-inside space-y-1 font-semibold text-ink-body">
             <li><strong>{t.worldBoss.rule1Label}</strong>: {t.worldBoss.rule1Body}</li>
             <li><strong>{t.worldBoss.rule2Label}</strong>: {t.worldBoss.rule2Body}</li>
             <li><strong>{t.worldBoss.rule3Label}</strong>: {t.worldBoss.rule3Body}</li>

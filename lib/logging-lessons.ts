@@ -75,7 +75,7 @@ export const LOGGING_LESSONS: Lesson[] = [
         "question": "Điều gì không bao giờ được ghi vào log?",
         "options": [
           "Mật khẩu, khoá truy cập và dữ liệu cá nhân của người dùng hệ thống",
-          "Nội dung đầy đủ của các yêu cầu và phản hồi giữa các dịch vụ nội bộ",
+          "Nội dung đầy đủ của yêu cầu và phản hồi giữa các dịch vụ nội bộ",
           "Thông tin về phiên bản mã và cấu hình đang chạy trên từng máy chủ",
           "Các giá trị tham số đầu vào mà hàm nhận được khi có lỗi xảy ra"
         ],
@@ -97,7 +97,7 @@ export const LOGGING_LESSONS: Lesson[] = [
         "question": "Vì sao không nên ghi log trong vòng lặp nóng?",
         "options": [
           "Vì chi phí ghi và lưu trữ tăng theo cấp số, và tín hiệu hữu ích bị chôn vùi",
-          "Vì việc ghi dòng log làm thay đổi hành vi thời gian của đoạn mã đang được đo",
+          "Vì việc ghi log làm thay đổi hành vi thời gian của đoạn mã đang được đo",
           "Vì các công cụ lập chỉ mục có giới hạn số dòng nhận được mỗi giây",
           "Vì dữ liệu ghi ra sẽ trùng lặp nên không cung cấp thêm thông tin mới"
         ],

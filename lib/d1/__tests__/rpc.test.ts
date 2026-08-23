@@ -333,7 +333,13 @@ describe.skipIf(!hasLocalData)("getDailyActiveUsers", () => {
     expect(got.at(-1)!.date).toBe(new Date().toISOString().slice(0, 10));
   });
 
-  it("kẹp tham số days để CTE đệ quy không chạy vô hạn", async () => {
+  // 20 giây thay vì mặc định 5: nhánh 365 ngày quét `user_progress` (27.412
+  // dòng) một lần cho MỖI ngày, vì lược đồ chưa có chỉ mục nào trên
+  // `completed_at`. Trên máy rảnh mất ~1,5 giây; lúc có dev server và một
+  // phiên khác cùng chạy thì lên 6-16 giây. Đây là một phép đo THẬT về việc
+  // thiếu chỉ mục, không phải bộ kiểm hỏng - nên nới thời gian chờ và ghi lại
+  // lý do, thay vì rút ngắn phép kiểm cho nó nhanh.
+  it("kẹp tham số days để CTE đệ quy không chạy vô hạn", { timeout: 20000 }, async () => {
     // Tính chất cần gác là CHẶN TRÊN và CHẶN DƯỚI, không phải một con số cụ
     // thể: bản gốc dựa vào generate_series tự trả rỗng với đầu vào vô lý, còn
     // CTE đệ quy thì phải tự chặn, nếu không nó chạy tới khi hết bộ nhớ.

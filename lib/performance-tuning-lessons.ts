@@ -55,7 +55,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
           "Thời gian riêng là phần hàm tự tiêu; thời gian gộp tính cả các hàm nó gọi",
           "Thời gian riêng đo trên một luồng còn thời gian gộp cộng mọi luồng lại",
           "Thời gian riêng không tính thời gian chờ còn thời gian gộp thì có tính",
-          "Thời gian riêng đo bằng đồng hồ CPU còn thời gian gộp đo bằng đồng hồ thật"
+          "Thời gian riêng đo bằng đồng hồ CPU, thời gian gộp đo bằng đồng hồ thật"
         ],
         "correct": 0,
         "explanation": "Nhìn nhầm cột là sai lầm phổ biến nhất khi đọc hồ sơ. Hàm chính luôn có thời gian gộp gần một trăm phần trăm, và nếu bạn xếp hạng theo cột đó thì danh sách đầu bảng toàn là các hàm gọi ngoài cùng."

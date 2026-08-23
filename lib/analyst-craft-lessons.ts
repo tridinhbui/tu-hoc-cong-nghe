@@ -10,365 +10,355 @@ import type { Lesson } from "./lesson-types";
 
 export const ANALYST_CRAFT_LESSONS: Lesson[] = [
   {
-    id: 1481,
-    slug: "viet-memo-dau-tu-mot-trang",
-    title: "Kỹ năng nghề, Bài 1: Viết memo đầu tư một trang - kết luận trước, bằng chứng sau",
-    subtitle: "Cấu trúc kim tự tháp, luận điểm kiểm chứng được và cách viết cho người chỉ đọc ba dòng đầu",
-    duration: "11 phút",
-    difficulty: "Trung bình",
-    emoji: "✍️",
-    track: "professional",
-    whyItMatters:
-      "Phân tích tốt mà trình bày kém thì không tồn tại. Người ra quyết định đọc mười memo mỗi tuần và dừng lại ở ba dòng đầu của mỗi cái; nếu ba dòng đó không nói được bạn khuyến nghị gì và vì sao, toàn bộ công sức phân tích phía sau không có ai đọc.",
-    openingQuestion:
-      "Memo đầu tư nên bắt đầu bằng gì?",
-    openingOptions: [
-      "Bối cảnh ngành và lịch sử hình thành của doanh nghiệp được phân tích",
-      "Khuyến nghị cụ thể kèm ba lý do chính, ngay ở đoạn đầu tiên",
-      "Phương pháp luận và các nguồn dữ liệu đã sử dụng trong quá trình phân tích",
-      "Danh sách các rủi ro chính để người đọc hiểu giới hạn của phân tích",
+    "id": 1481,
+    "slug": "viet-tai-lieu-thiet-ke-mot-trang",
+    "title": "Kỹ năng nghề, Bài 1: Viết tài liệu thiết kế một trang - kết luận trước, bằng chứng sau",
+    "subtitle": "Người đọc quyết định trong ba mươi giây đầu là đọc tiếp hay lướt xuống cuối.",
+    "duration": "11 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "✍️",
+    "whyItMatters": "Một phương án tốt trình bày dở bị bác nhiều hơn một phương án tầm thường trình bày rõ, và khoảng cách đó nằm hoàn toàn ở cấu trúc.",
+    "openingQuestion": "Tài liệu thiết kế nên bắt đầu bằng gì?",
+    "openingOptions": [
+      "Kết luận: đề nghị làm gì, và điều gì sẽ đổi nếu làm",
+      "Bối cảnh: hệ thống hiện tại đang hoạt động thế nào",
+      "Vấn đề: mô tả chi tiết khó khăn mà đội đang gặp phải",
+      "Các phương án đã cân nhắc và tiêu chí để so sánh chúng"
     ],
-    correctOption: 1,
-    explanation:
-      "Đây là nguyên tắc kim tự tháp: kết luận trước, lập luận sau, dữ liệu cuối. Nó ngược với cách viết ở trường, nơi bạn dẫn dắt dần tới kết luận. Lý do rất thực dụng: người đọc memo của bạn là người ra quyết định và có mười phút, không phải người chấm điểm và có cả buổi. Nếu họ đồng ý ngay sau đoạn đầu, phần còn lại chỉ là để họ kiểm tra khi cần. Nếu họ không đồng ý, họ biết ngay phải phản biện chỗ nào.",
-    diagram: [
-      { label: "Khuyến nghị và ba lý do chính", arrow: true },
-      { label: "Luận điểm: điều gì thị trường đang bỏ sót", arrow: true },
-      { label: "Bằng chứng và định giá", arrow: true },
-      { label: "Rủi ro và điều gì sẽ chứng minh tôi sai" },
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia là thứ tự mà người viết đi qua khi suy nghĩ, nên viết theo thứ tự đó là tự nhiên nhất. Người đọc thì đi ngược: họ cần biết bạn đề nghị gì trước, rồi mới quyết định có đọc phần lập luận hay không. Viết theo trình tự suy nghĩ của mình là bắt người đọc đi hết con đường bạn đã đi.",
+    "diagram": [
+      {
+        "label": "Kết luận trước, bằng chứng sau - người đọc đi ngược người viết",
+        "arrow": true
+      },
+      {
+        "label": "Một trang: giới hạn buộc bạn bỏ phần không quyết định gì",
+        "arrow": true
+      },
+      {
+        "label": "Nêu phương án đã bỏ VÀ lý do bỏ - đó là phần khó làm giả",
+        "arrow": true
+      },
+      {
+        "label": "Và nêu điều kiện nào chứng minh mình sai"
+      }
     ],
-    realWorldExample: {
-      company: "Memo trên bàn của giám đốc đầu tư",
-      description:
-        "Một giám đốc đầu tư điển hình nhận nhiều memo mỗi tuần từ các chuyên viên phân tích. Cách họ đọc gần như giống nhau: lướt đoạn đầu để biết khuyến nghị, nhảy xuống phần rủi ro để xem người viết có tự nhận thức không, rồi mới quay lại phần lập luận nếu thấy đáng. Memo dẫn dắt dài dòng trước khi tới kết luận thường bị đặt xuống ở đoạn thứ hai - không phải vì phân tích kém mà vì người đọc không tìm thấy thứ họ cần.",
+    "realWorldExample": {
+      "company": "Giới hạn một trang làm gì",
+      "description": "Một trang không phải để tiết kiệm thời gian người đọc mà để buộc người viết chọn. Khi phải bỏ đi hai phần ba nội dung, thứ bị bỏ luôn là phần không quyết định gì - và việc nhận ra phần nào là phần đó chính là công việc chính."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "Luận điểm đầu tư khác mô tả doanh nghiệp ở điểm nào?",
-        options: [
-          "Luận điểm nêu điều thị trường đang định giá sai và vì sao bạn nghĩ khác",
-          "Luận điểm trình bày đầy đủ hơn về lịch sử và mô hình kinh doanh của doanh nghiệp",
-          "Luận điểm sử dụng nhiều số liệu định lượng hơn phần mô tả thông thường",
-          "Luận điểm được viết ở cuối memo sau khi đã trình bày hết các bằng chứng",
+        "question": "Vì sao viết theo trình tự suy nghĩ của mình lại là sai cấu trúc?",
+        "options": [
+          "Vì nó bắt người đọc đi hết con đường bạn đã đi trước khi biết đích là gì",
+          "Vì trình tự suy nghĩ thường lộn xộn và không logic khi viết ra",
+          "Vì người đọc không quan tâm tới quá trình mà chỉ quan tâm kết quả",
+          "Vì tài liệu dài hơn mức cần thiết nên người đọc bỏ dở giữa chừng"
         ],
-        correct: 0,
-        explanation:
-          "Nói doanh nghiệp có thương hiệu mạnh và tăng trưởng tốt không phải luận điểm, vì thị trường cũng biết điều đó và đã trả giá cho nó. Luận điểm phải trả lời được: tôi thấy gì mà người đang bán cổ phiếu này cho tôi không thấy.",
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba nghe gần đúng và nó quá mạnh - người đọc CÓ quan tâm tới lập luận, nhưng chỉ sau khi biết kết luận. Không có đích thì họ không biết mỗi đoạn đang phục vụ cái gì."
       },
       {
-        question: "Vì sao phần rủi ro không nên viết chung chung?",
-        options: [
-          "Vì người đọc dùng phần này để đánh giá mức độ tự nhận thức của người viết",
-          "Vì quy định nội bộ yêu cầu liệt kê đầy đủ mọi rủi ro có thể xảy ra với khoản đầu tư",
-          "Vì phần rủi ro là căn cứ pháp lý bảo vệ người viết nếu khuyến nghị sai",
-          "Vì rủi ro chung chung làm memo dài hơn giới hạn một trang cho phép",
+        "question": "Giới hạn một trang phục vụ ai?",
+        "options": [
+          "Người viết, vì nó buộc phải chọn và bỏ phần không quyết định gì",
+          "Người đọc, vì họ tiết kiệm được thời gian khi đọc tài liệu ngắn",
+          "Cả hai, bởi vì tài liệu ngắn thì tương đối dễ viết và cũng dễ đọc hơn",
+          "Người phê duyệt, vì họ có nhiều tài liệu phải xem trong một tuần"
         ],
-        correct: 0,
-        explanation:
-          "Viết rủi ro thị trường có thể biến động là không nói gì cả. Viết nếu biên lợi nhuận gộp giảm dưới 18% thì luận điểm này sai mới là rủi ro thật: nó cụ thể, kiểm chứng được, và cho người đọc biết cần theo dõi cái gì.",
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều nói về việc tiết kiệm thời gian. Cái này nói về CHẤT LƯỢNG SUY NGHĨ: khi phải bỏ hai phần ba nội dung, việc nhận ra phần nào không quyết định gì chính là công việc chính của tài liệu."
       },
       {
-        question: "Nguyên tắc kim tự tháp áp dụng thế nào trong một memo?",
-        options: [
-          "Kết luận ở trên cùng, các lập luận chính đỡ nó, dữ liệu chi tiết ở dưới",
-          "Trình bày dữ liệu trước, phân tích sau, và kết luận ở phần cuối cùng của memo",
-          "Chia memo thành ba phần bằng nhau về độ dài để đảm bảo cân đối nội dung",
-          "Bắt đầu bằng phần dài nhất rồi thu hẹp dần tới phần ngắn nhất ở cuối memo",
+        "question": "Vì sao nêu phương án đã bỏ lại tăng sức thuyết phục?",
+        "options": [
+          "Vì nó cho thấy bạn đã cân nhắc, và đó là phần khó làm giả nhất",
+          "Vì người đọc thường nghĩ tới những phương án đó và cần được trả lời trước",
+          "Vì nó chứng minh rằng phương án được chọn là phương án tốt nhất",
+          "Vì các quy trình rà soát thiết kế thường yêu cầu phần này"
         ],
-        correct: 0,
-        explanation:
-          "Cấu trúc này cho phép người đọc dừng ở bất kỳ tầng nào mà vẫn nắm được điều quan trọng nhất. Nó cũng buộc chính người viết phải biết rõ mình kết luận gì - điều nhiều người chỉ phát hiện là mình chưa rõ khi thử viết câu đầu tiên.",
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai là lợi ích thực dụng và nó đúng. Vế khó làm giả là vế mạnh hơn: ai cũng viết được câu chúng tôi đã cân nhắc kỹ, nhưng nêu ba phương án cụ thể kèm lý do bỏ từng cái thì phải thật sự đã cân nhắc."
       },
       {
-        question: "Vì sao nên nêu rõ điều gì sẽ chứng minh mình sai?",
-        options: [
-          "Vì nó biến luận điểm thành thứ kiểm chứng được và tạo kỷ luật thoát vị thế",
-          "Vì người đọc sẽ đánh giá cao sự khiêm tốn của người viết trong lập luận",
-          "Vì đó là yêu cầu bắt buộc trong mọi báo cáo phân tích được công bố ra thị trường",
-          "Vì nó giúp giảm trách nhiệm của người viết nếu khuyến nghị không đúng như dự kiến",
+        "question": "Vì sao tài liệu cần nêu điều kiện chứng minh mình sai?",
+        "options": [
+          "Vì nó cho người đọc một cách kiểm chứng thay vì chỉ có tin hoặc không tin",
+          "Vì nó thể hiện sự khiêm tốn và tăng thiện cảm của người đọc",
+          "Vì nó giúp đội biết khi nào cần dừng phương án đang triển khai",
+          "Vì nó là yêu cầu bắt buộc trong các mẫu tài liệu thiết kế chuẩn"
         ],
-        correct: 0,
-        explanation:
-          "Không có tiêu chí phủ định, một luận điểm sai có thể được biện minh vô thời hạn bằng cách đổi lý do - đúng cơ chế thiên kiến xác nhận đã học ở chặng tài chính hành vi. Nêu trước điều kiện sai là cách duy nhất để sau này bạn thừa nhận được.",
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba đúng và nó là lợi ích SAU khi được duyệt. Cái này là lợi ích TRƯỚC: không có nó, người đọc chỉ còn cách tin hoặc không tin, và mặc định của tổ chức là giữ nguyên hiện trạng."
       },
-    
-    {
-      "question": "Vì sao memo nên nêu rõ điều gì sẽ chứng minh luận điểm là sai?",
+      {
+        "question": "Phần nào thường nên bị cắt đầu tiên khi tài liệu quá dài?",
+        "options": [
+          "Phần mô tả chi tiết cách triển khai, vì nó không đổi được quyết định",
+          "Phần bối cảnh, vì người đọc thường đã biết hệ thống hiện tại",
+          "Phần các phương án đã cân nhắc, vì chỉ phương án được chọn mới quan trọng",
+          "Phần rủi ro, vì chúng có thể được trình bày trong buổi thảo luận"
+        ],
+        "correct": 0,
+        "explanation": "Ba phần kia đều tham gia vào quyết định. Chi tiết triển khai thì không: người đọc duyệt phương án chứ không duyệt cách viết mã, và phần đó thuộc về một tài liệu khác đọc bởi người khác."
+      }
+    ],
+    "keyTakeaways": [
+      "Kết luận TRƯỚC - người đọc đi ngược con đường người viết đã đi.",
+      "Giới hạn một trang phục vụ NGƯỜI VIẾT: nó buộc phải nhận ra phần nào không quyết định gì.",
+      "Nêu phương án ĐÃ BỎ kèm lý do - đó là phần khó làm giả nhất.",
+      "Nêu điều kiện chứng minh mình sai: nó cho người đọc cách kiểm chứng.",
+      "Cắt phần CHI TIẾT TRIỂN KHAI trước - nó không đổi được quyết định."
+    ],
+    "practicePrompt": {
+      "question": "Tài liệu của bạn dài ba trang và cần rút xuống một. Cắt thế nào?",
       "options": [
-        "Vì nó biến luận điểm thành thứ kiểm chứng được thay vì một niềm tin",
-        "Vì hội đồng đầu tư yêu cầu mọi memo phải có phần đánh giá rủi ro đầy đủ",
-        "Vì nó giúp người viết tránh trách nhiệm nếu khoản đầu tư diễn biến xấu",
-        "Vì phần này thay cho việc liệt kê rủi ro"
+        "Bỏ mọi đoạn không đổi được quyết định, kể cả những đoạn viết hay nhất",
+        "Rút gọn từng đoạn để có thể giữ lại đủ mọi nội dung trong độ dài ngắn hơn",
+        "Chuyển các phần chi tiết sang phụ lục và giữ phần chính một trang",
+        "Bỏ phần bối cảnh vì người đọc đã quen với hệ thống hiện tại rồi"
       ],
       "correct": 0,
-      "explanation": "Một luận điểm không nói được điều gì làm nó sai thì không thể sai - và cũng không thể đúng theo cách có ích. Viết ra trước còn giúp bạn nhận ra khi nào nên thoát, thay vì diễn giải lại mọi tin xấu thành tin trung tính."
-    }
-    ],
-    keyTakeaways: [
-      "Kết luận trước, lập luận sau, dữ liệu cuối - ngược với cách viết ở trường",
-      "Luận điểm phải nói được thị trường đang bỏ sót điều gì, không chỉ mô tả doanh nghiệp",
-      "Rủi ro phải cụ thể và kiểm chứng được, kèm ngưỡng số liệu rõ ràng",
-      "Luôn nêu trước điều gì sẽ chứng minh mình sai - đó là kỷ luật, không phải sự yếu thế",
-    ],
-    practicePrompt: {
-      question:
-        "Câu mở đầu nào phù hợp nhất cho một memo khuyến nghị mua?",
-      options: [
-        "Doanh nghiệp X là một trong những đơn vị dẫn đầu ngành bán lẻ tại Việt Nam",
-        "Khuyến nghị mua X, giá mục tiêu cao hơn 35%, vì thị trường đang định giá mảng mới bằng 0",
-        "Báo cáo này phân tích triển vọng của doanh nghiệp X trong giai đoạn ba năm tới",
-        "Ngành bán lẻ Việt Nam đang trải qua giai đoạn chuyển đổi với nhiều cơ hội mới",
-      ],
-      correct: 1,
-      explanation:
-        "Chỉ phương án này chứa cả ba thành phần: khuyến nghị cụ thể, mức lợi nhuận kỳ vọng, và luận điểm về điều thị trường đang bỏ sót. Ba phương án còn lại đều đúng nhưng không mang thông tin - người đọc vẫn chưa biết bạn muốn họ làm gì.",
+      "explanation": "Lựa chọn thứ hai giữ nguyên cấu trúc và làm mọi phần yếu đi đều nhau. Lựa chọn thứ ba là cách né tránh phổ biến nhất - phụ lục không ai đọc, nên nó chỉ giấu phần thừa chứ không loại nó."
     },
-    summary: {
-      keyIdea: "Người đọc chỉ có ba dòng cho bạn; hãy dùng chúng cho kết luận, không cho bối cảnh",
-      commonMistake: "Dẫn dắt dài dòng rồi mới tới khuyến nghị, khiến người đọc bỏ dở giữa chừng",
-      action: "Lấy một phân tích bạn từng làm và viết lại thành một trang theo cấu trúc kim tự tháp.",
+    "summary": {
+      "keyIdea": "Người đọc quyết định trong ba mươi giây đầu là đọc tiếp hay lướt xuống cuối.",
+      "formula": "Kết luận → bằng chứng → phương án đã bỏ → điều kiện chứng minh mình sai.",
+      "commonMistake": "Viết theo trình tự mình đã suy nghĩ, bắt người đọc đi hết con đường đó.",
+      "action": "Lấy tài liệu gần nhất và chuyển kết luận lên dòng đầu."
     },
-    application: {
-      title: "Bài kiểm tra một câu",
-      message:
-        "Trước khi viết bất cứ gì, hãy viết ra một câu duy nhất: tôi khuyến nghị làm gì, và vì sao. Nếu chưa viết được câu đó, bạn chưa sẵn sàng viết memo - vấn đề nằm ở phân tích chứ không ở câu chữ.",
-      secondary: "Câu đó sau này thành dòng đầu tiên của memo, và thường là dòng duy nhất được nhớ.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy tài liệu thiết kế gần nhất của bạn và chuyển kết luận lên thành dòng đầu tiên - đề nghị làm gì, và điều gì sẽ đổi nếu làm.",
+      "secondary": "Rồi đọc lại từng đoạn còn lại và hỏi: đoạn này có đổi được quyết định không? Những đoạn trả lời không chính là phần cần cắt, kể cả khi chúng viết hay nhất."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Có một khoảng cách ít được nói tới giữa việc phân tích đúng và việc được người khác hành động theo phân tích của mình. Khoảng cách đó gọi là cách trình bày, và trong nghề phân tích tài chính nó có một bộ quy tắc khá cụ thể.",
+        "type": "lead",
+        "text": "Một phương án tốt trình bày dở bị bác nhiều hơn một phương án tầm thường trình bày rõ, và khoảng cách đó nằm hoàn toàn ở cấu trúc."
       },
       {
-        type: "heading",
-        text: "Bốn phần của một memo một trang",
+        "type": "heading",
+        "text": "Người đọc đi ngược người viết"
       },
       {
-        type: "list",
-        items: [
-          "Khuyến nghị: mua hay bán, mức giá mục tiêu, khung thời gian - trong hai đến ba câu",
-          "Luận điểm: điều thị trường đang định giá sai và vì sao bạn nghĩ khác - đây là phần có giá trị nhất",
-          "Bằng chứng: hai đến ba dữ kiện then chốt cùng phép định giá tóm tắt",
-          "Rủi ro và tiêu chí phủ định: điều gì phải xảy ra để bạn thừa nhận mình sai",
-        ],
-      },
-      {
-        type: "comparison",
-        left: {
-          label: "Mô tả",
-          text: "Doanh nghiệp có thương hiệu mạnh, biên lợi nhuận tốt, ban điều hành giàu kinh nghiệm. Đúng, nhưng thị trường đã biết và đã trả tiền cho những điều này.",
+        "type": "comparison",
+        "left": {
+          "label": "Trình tự suy nghĩ",
+          "text": "Bối cảnh → vấn đề → các phương án → kết luận. Đây là đường bạn đã đi, và viết theo nó là tự nhiên nhất."
         },
-        right: {
-          label: "Luận điểm",
-          text: "Thị trường đang định giá mảng mới bằng 0 vì chưa có lãi, trong khi biên đóng góp đã dương từ quý trước và điểm hòa vốn dự kiến trong bốn quý tới.",
-        },
-      },
-      {
-        type: "callout",
-        label: "Bài kiểm tra khắc nghiệt",
-        text: "Đọc lại memo của bạn và hỏi: câu nào ở đây mà một người thông minh có quyền không đồng ý? Nếu mọi câu đều là sự thật hiển nhiên không ai phản đối, bạn chưa đưa ra luận điểm nào - bạn vừa viết một bản tóm tắt.",
-      },
-      {
-        type: "heading",
-        text: "Luận điểm kiểm chứng được trông khác luận điểm nghe hay"
-      },
-      {
-        type: "comparison",
-        left: {
-          label: "Câu nghe hay nhưng không kiểm chứng được",
-          text: "Doanh nghiệp có vị thế dẫn đầu ngành, ban lãnh đạo giàu kinh nghiệm và tiềm năng tăng trưởng lớn trong bối cảnh chuyển đổi số. Không ai phản đối được câu này, và đó chính là vấn đề - một câu không ai phản đối được là một câu không mang thông tin nào."
-        },
-        right: {
-          label: "Câu kiểm chứng được",
-          text: "Biên lợi nhuận gộp sẽ tăng từ 32% lên 38% trong 8 quý tới, vì hợp đồng nguyên liệu giá cao ký năm 2023 hết hạn vào quý sau và giá thị trường hiện thấp hơn 20%. Câu này có thể sai, và biết được nó sai vào lúc nào - đó là điều làm nó có giá trị."
+        "right": {
+          "label": "Trình tự đọc",
+          "text": "Kết luận trước. Không có đích thì người đọc không biết mỗi đoạn đang phục vụ cái gì."
         }
       },
       {
-        type: "callout",
-        label: "Bài kiểm tra khắc nghiệt",
-        text: "Đọc lại memo và hỏi từng câu một: câu này có phải là câu mà một người thông minh, đọc cùng dữ liệu, có quyền không đồng ý không. Nếu mọi câu đều là câu ai cũng gật đầu, bạn chưa đưa ra khuyến nghị nào - bạn đang mô tả doanh nghiệp. Một memo tốt luôn có ít nhất một câu khiến người đọc dừng lại và nghĩ tôi không chắc điều đó đúng, vì đó chính là chỗ bạn đang nói điều thị trường chưa định giá vào."
+        "type": "heading",
+        "text": "Giới hạn một trang"
       },
       {
-        type: "paragraph",
-        text: "Cấu trúc kim tự tháp có lý do rất thực dụng đứng sau: người nhận memo thường đọc ba dòng đầu rồi quyết định có đọc tiếp không. Nên khuyến nghị phải nằm ở dòng đầu tiên, kèm mức giá mục tiêu và khung thời gian - không phải ở cuối như một kết luận đến sau lập luận. Trật tự đó ngược với cách chúng ta được dạy viết ở trường, và cũng ngược với cách bạn đã thực sự đi tới kết luận. Nhưng memo không phải bản ghi quá trình suy nghĩ của bạn; nó là công cụ để người khác ra quyết định."
+        "type": "callout",
+        "label": "Nó phục vụ người viết",
+        "text": "Không phải để tiết kiệm thời gian người đọc mà để buộc người viết CHỌN. Khi phải bỏ hai phần ba nội dung, thứ bị bỏ luôn là phần không quyết định gì - và việc nhận ra phần nào là phần đó chính là công việc chính."
       },
       {
-        type: "closing",
-        lines: [
-          "Viết rõ là hệ quả của nghĩ rõ; câu văn lộn xộn hầu như luôn tố cáo một lập luận chưa xong.",
-          "Bài sau nói về phần khó hơn: bảo vệ chính memo đó khi ngồi trước hội đồng đầu tư.",
-        ],
+        "type": "heading",
+        "text": "Hai phần làm tài liệu kiểm chứng được"
       },
-    ],
+      {
+        "type": "list",
+        "items": [
+          "PHƯƠNG ÁN ĐÃ BỎ, kèm lý do bỏ từng cái. Ai cũng viết được câu chúng tôi đã cân nhắc kỹ; nêu ba phương án cụ thể thì phải thật sự đã cân nhắc.",
+          "ĐIỀU KIỆN CHỨNG MINH MÌNH SAI. Không có nó, người đọc chỉ còn cách tin hoặc không tin - và mặc định của tổ chức là giữ nguyên hiện trạng."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Khi cần cắt, cắt phần CHI TIẾT TRIỂN KHAI trước. Người đọc duyệt phương án chứ không duyệt cách viết mã, và phần đó thuộc về một tài liệu khác đọc bởi người khác.",
+          "Và đừng chuyển phần thừa xuống phụ lục: phụ lục không ai đọc, nên nó chỉ giấu phần thừa chứ không loại nó."
+        ]
+      }
+    ]
   },
   {
-    id: 1482,
-    slug: "trinh-bay-va-phan-bien-truoc-hoi-dong-dau-tu",
-    title: "Kỹ năng nghề, Bài 2: Bảo vệ luận điểm trước hội đồng đầu tư",
-    subtitle: "Trả lời câu hỏi khó, thừa nhận giới hạn, và phân biệt bị chất vấn với bị bác bỏ",
-    duration: "11 phút",
-    difficulty: "Trung bình",
-    emoji: "🎯",
-    track: "professional",
-    whyItMatters:
-      "Buổi bảo vệ trước hội đồng là nơi phân tích của bạn được thử lửa, và cách bạn phản ứng với câu hỏi khó ảnh hưởng tới uy tín nghề nghiệp nhiều hơn cả nội dung phân tích. Đây cũng chính là kỹ năng được kiểm tra trong vòng phỏng vấn cuối của gần như mọi vị trí đầu tư.",
-    openingQuestion:
-      "Bạn bị hỏi một con số mà bạn không nhớ chính xác. Cách xử lý tốt nhất là gì?",
-    openingOptions: [
-      "Đưa ra một con số gần đúng để giữ nhịp trình bày và tránh tạo khoảng lặng",
-      "Nói rõ không nhớ chính xác và cam kết kiểm tra lại",
-      "Chuyển hướng sang một khía cạnh khác mà bạn nắm chắc hơn về mặt số liệu",
-      "Giải thích rằng con số đó không quan trọng với luận điểm chính của bạn",
+    "id": 1482,
+    "slug": "bao-ve-phuong-an-truoc-hoi-dong-kien-truc",
+    "title": "Kỹ năng nghề, Bài 2: Bảo vệ phương án trước hội đồng kiến trúc",
+    "subtitle": "Câu hỏi khó nhất thường không nhắm vào phương án mà nhắm vào chỗ bạn chưa nghĩ tới.",
+    "duration": "11 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "🎯",
+    "whyItMatters": "Một buổi bảo vệ hỏng không phải vì phương án sai mà vì người trình bày phản ứng sai với một câu hỏi mà họ chưa chuẩn bị.",
+    "openingQuestion": "Bạn bị hỏi một câu mà bạn chưa nghĩ tới. Phản ứng đúng là gì?",
+    "openingOptions": [
+      "Nói thẳng là chưa nghĩ tới, và nói bạn sẽ kiểm điều gì để trả lời",
+      "Đưa ra một câu trả lời hợp lý dựa trên hiểu biết hiện tại của mình",
+      "Hỏi lại để làm rõ câu hỏi và có thêm thời gian suy nghĩ về nó",
+      "Ghi nhận câu hỏi và hẹn trả lời bằng văn bản sau buổi họp"
     ],
-    correctOption: 1,
-    explanation:
-      "Người ngồi đối diện gần như luôn phát hiện được khi bạn đoán, và một lần bị bắt gặp đoán số sẽ khiến mọi con số khác trong bài của bạn bị nghi ngờ. Thừa nhận giới hạn kèm một khoảng ước lượng cho thấy bạn phân biệt được điều mình biết chắc với điều mình phỏng đoán - đó chính là phẩm chất mà hội đồng đang tìm. Điều duy nhất không được phép là bịa, và điều thứ hai không nên làm là né tránh câu hỏi.",
-    diagram: [
-      { label: "Nghe hết câu hỏi, không cắt ngang", arrow: true },
-      { label: "Xác định câu hỏi thật đằng sau", arrow: true },
-      { label: "Trả lời thẳng trước, giải thích sau", arrow: true },
-      { label: "Phân biệt điều biết chắc với điều đang giả định" },
+    "correctOption": 0,
+    "explanation": "Lựa chọn thứ hai là phản xạ tự nhiên nhất và nó là cách nhanh nhất để mất buổi họp: một câu trả lời ứng khẩu về chỗ bạn chưa nghĩ tới thường sai, và khi nó bị bắt sai thì mọi phần bạn đã chuẩn bị kỹ cũng bị nghi ngờ theo. Vế thứ hai - nói sẽ kiểm điều gì - là phần biến một câu chưa biết thành một việc cụ thể.",
+    "diagram": [
+      {
+        "label": "Chưa nghĩ tới thì nói thẳng, kèm việc bạn sẽ kiểm",
+        "arrow": true
+      },
+      {
+        "label": "Ứng khẩu một câu sai làm mọi phần đã chuẩn bị bị nghi theo",
+        "arrow": true
+      },
+      {
+        "label": "Chuẩn bị: viết ra ba câu hỏi khó nhất và tự trả lời trước",
+        "arrow": true
+      },
+      {
+        "label": "Và phân biệt phản đối về PHƯƠNG ÁN với phản đối về RỦI RO"
+      }
     ],
-    realWorldExample: {
-      company: "Buổi họp hội đồng đầu tư",
-      description:
-        "Trong một buổi bảo vệ điển hình, phần trình bày chiếm mười phút còn phần hỏi đáp kéo dài gấp ba. Các thành viên hội đồng thường không hỏi để làm khó mà hỏi để tìm chỗ yếu nhất của luận điểm, vì đó là việc của họ. Chuyên viên có kinh nghiệm hiểu điều đó nên không phòng thủ; họ còn chủ động nêu ra điểm yếu trước khi bị hỏi, và điều này gần như luôn làm tăng độ tin cậy chứ không giảm.",
+    "realWorldExample": {
+      "company": "Hai loại phản đối",
+      "description": "Phản đối về phương án nói rằng có cách tốt hơn; phản đối về rủi ro nói rằng cách này có thể hỏng theo một kiểu bạn chưa tính. Trả lời loại thứ hai bằng cách bảo vệ phương án là trả lời sai câu hỏi, và nó làm người hỏi phải hỏi lại."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "Vì sao nên chủ động nêu điểm yếu của luận điểm trước khi bị hỏi?",
-        options: [
-          "Cho thấy bạn đã tự phản biện, và tránh việc người khác tìm ra trước bạn",
-          "Giúp rút ngắn thời gian hỏi đáp vì hội đồng sẽ không hỏi thêm về điểm đó nữa",
-          "Chuyển trách nhiệm về quyết định đầu tư sang cho hội đồng thay vì người phân tích",
-          "Làm cho phần trình bày cân đối hơn giữa các luận điểm ủng hộ và phản đối",
+        "question": "Vì sao ứng khẩu một câu trả lời lại nguy hiểm?",
+        "options": [
+          "Vì nếu nó sai thì mọi phần bạn đã chuẩn bị kỹ cũng bị nghi ngờ theo",
+          "Vì câu trả lời ứng khẩu thường thiếu chi tiết nên rốt cuộc cũng không thuyết phục",
+          "Vì bạn có thể mâu thuẫn với những gì đã trình bày ở phần trước",
+          "Vì người hỏi sẽ tiếp tục đào sâu vào chỗ bạn không nắm vững"
         ],
-        correct: 0,
-        explanation:
-          "Nếu hội đồng phát hiện một lỗ hổng mà bạn không nhắc tới, họ sẽ tự hỏi bạn còn bỏ sót gì nữa. Nêu trước cho thấy bạn đã đi hết con đường và đã cân nhắc, nên phần còn lại của phân tích đáng tin hơn.",
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là hậu quả trực tiếp và đều giới hạn trong câu hỏi đó. Cái này lan ra toàn bộ: người nghe không có cách nào biết phần nào bạn nắm chắc, nên họ hạ mức tin cho tất cả."
       },
       {
-        question: "Câu hỏi khó nhất thường nhắm vào đâu?",
-        options: [
-          "Giả định quan trọng nhất mà toàn bộ định giá phụ thuộc vào nó",
-          "Các chi tiết kỹ thuật về công thức và cách trình bày trong bảng tính",
-          "Lịch sử hình thành và cơ cấu cổ đông của doanh nghiệp được phân tích",
-          "Nguồn dữ liệu và thời điểm cập nhật của các số liệu được sử dụng",
+        "question": "Vế nào biến một câu chưa biết thành một việc cụ thể?",
+        "options": [
+          "Nói bạn sẽ kiểm điều gì để trả lời, và bao giờ có kết quả",
+          "Thừa nhận rằng đây là một điểm quan trọng mà bạn chưa cân nhắc",
+          "Đề nghị người hỏi chia sẻ thêm về mối lo cụ thể của họ",
+          "Ghi lại câu hỏi vào biên bản để theo dõi trong lần họp sau"
         ],
-        correct: 0,
-        explanation:
-          "Người có kinh nghiệm không đi soi từng ô công thức; họ tìm giả định nào mà nếu sai sẽ làm sập cả kết luận. Vì vậy trước buổi bảo vệ, hãy tự xác định giả định đó và chuẩn bị bảng độ nhạy cho riêng nó.",
+        "correct": 0,
+        "explanation": "Lựa chọn cuối cũng tạo ra một việc và nó là việc của người khác. Nói rõ bạn sẽ kiểm gì thì vừa cho thấy bạn biết cách trả lời, vừa cho người hỏi cơ hội chỉnh lại phép kiểm ngay tại chỗ."
       },
       {
-        question: "Khi hội đồng phản đối luận điểm của bạn, phản ứng phù hợp là gì?",
-        options: [
-          "Phân biệt phản đối về dữ kiện với phản đối về cách diễn giải, rồi xử lý riêng từng loại",
-          "Bảo vệ đến cùng vì thay đổi quan điểm giữa buổi họp sẽ làm giảm uy tín cá nhân",
-          "Rút lại khuyến nghị ngay để tránh kéo dài tranh luận không cần thiết",
-          "Đề nghị hoãn quyết định sang buổi họp sau để có thêm thời gian chuẩn bị",
+        "question": "Cách chuẩn bị hiệu quả nhất trước buổi bảo vệ là gì?",
+        "options": [
+          "Viết ra ba câu hỏi khó nhất về phương án của mình và tự trả lời trước",
+          "Chuẩn bị thêm tài liệu chi tiết cho những phần có thể bị hỏi sâu",
+          "Trình bày thử với chính một đồng nghiệp để có thể nhận phản hồi về cách diễn đạt",
+          "Rà soát lại toàn bộ số liệu để đảm bảo không có sai sót nào"
         ],
-        correct: 0,
-        explanation:
-          "Nếu họ chỉ ra một dữ kiện bạn sai, hãy tiếp nhận ngay và nói rõ nó ảnh hưởng thế nào tới kết luận. Nếu họ diễn giải cùng dữ kiện theo cách khác, đó là tranh luận hợp lệ và bạn nên nêu vì sao cách của mình hợp lý hơn. Gộp hai loại làm một là nguyên nhân khiến các buổi họp trở nên căng thẳng vô ích.",
+        "correct": 0,
+        "explanation": "Ba cách kia đều củng cố phần bạn ĐÃ nghĩ tới. Cách này tìm phần bạn CHƯA nghĩ tới, và đó là chỗ mà một buổi bảo vệ thật sự hỏng."
       },
       {
-        question: "Vì sao trả lời thẳng trước rồi mới giải thích lại quan trọng?",
-        options: [
-          "Vì người nghe cần biết câu trả lời trước khi đủ kiên nhẫn nghe lý do",
-          "Vì quy tắc trình bày trong ngành yêu cầu mọi câu trả lời phải ngắn gọn dưới ba câu",
-          "Vì giải thích dài sẽ làm lộ ra những điểm yếu khác trong phân tích của bạn",
-          "Vì hội đồng thường chỉ có thời gian nghe câu trả lời chứ không nghe phần giải thích",
+        "question": "Phản đối về rủi ro khác phản đối về phương án ở chỗ nào?",
+        "options": [
+          "Nó nói cách này có thể hỏng theo một kiểu bạn chưa tính, không nói có cách tốt hơn",
+          "Nó thường được nêu bởi những người không nắm chi tiết kỹ thuật",
+          "Nó khó trả lời hơn vì liên quan tới những điều chưa xảy ra",
+          "Nó nhắm vào giai đoạn triển khai chứ không vào bản thân thiết kế"
         ],
-        correct: 0,
-        explanation:
-          "Đây là nguyên tắc kim tự tháp áp dụng cho lời nói. Bắt đầu bằng bối cảnh dài rồi mới tới câu trả lời khiến người nghe phải chờ, và trong một buổi họp căng thẳng điều đó bị đọc thành né tránh.",
+        "correct": 0,
+        "explanation": "Phân biệt này quyết định cách trả lời: bảo vệ phương án khi người ta đang hỏi về rủi ro là trả lời sai câu hỏi, và nó buộc người hỏi phải hỏi lại - lần này gay gắt hơn."
       },
-    
-    {
-      "question": "Bị hỏi một con số bạn không nhớ chính xác. Cách xử lý tốt nhất là gì?",
+      {
+        "question": "Khi hội đồng nghiêng về một phương án bạn cho là kém hơn, nên làm gì?",
+        "options": [
+          "Nêu điều kiện nào sẽ cho thấy lựa chọn đó sai, rồi chấp nhận quyết định",
+          "Trình bày lại các lập luận của mình một cách rõ ràng hơn",
+          "Đề nghị hoãn quyết định để có thêm thời gian thu thập dữ liệu",
+          "Chấp nhận quyết định và đồng thời ghi lại ý kiến bảo lưu của chính mình vào biên bản"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là hình thức và nó không tạo ra việc gì. Nêu điều kiện thì biến một bất đồng thành một phép kiểm có thời hạn - và nếu bạn đúng, nó sẽ tự chứng minh mà không cần ai phải nhận sai."
+      }
+    ],
+    "keyTakeaways": [
+      "Chưa nghĩ tới thì NÓI THẲNG, kèm việc bạn sẽ kiểm và bao giờ có kết quả.",
+      "Một câu ứng khẩu sai làm người nghe hạ mức tin cho TẤT CẢ phần còn lại.",
+      "Chuẩn bị bằng cách tìm phần mình CHƯA nghĩ tới, không củng cố phần đã nghĩ.",
+      "Phản đối về RỦI RO khác phản đối về PHƯƠNG ÁN - trả lời nhầm thì bị hỏi lại.",
+      "Bất đồng chưa giải được thì biến thành một PHÉP KIỂM có thời hạn."
+    ],
+    "practicePrompt": {
+      "question": "Ai đó chỉ ra một rủi ro bạn chưa tính, và nó có thật. Nên nói gì?",
       "options": [
-        "Nói rõ khoảng ước lượng và cam kết gửi lại con số chính xác",
-        "Đưa ra con số gần đúng nhất mà bạn nhớ được để duy trì mạch trình bày",
-        "Chuyển sang phần khác và quay lại câu hỏi này ở cuối buổi",
-        "Trả lời rằng con số đó có trong phụ lục của tài liệu đã gửi trước"
+        "Xác nhận nó có thật, rồi nói phương án đổi thế nào hoặc cần đo gì để biết",
+        "Giải thích vì sao rủi ro đó ít có khả năng xảy ra trong thực tế",
+        "Nêu các biện pháp giảm nhẹ đã có trong thiết kế để có thể xử lý tình huống đó",
+        "Ghi nhận và đề nghị đưa rủi ro đó vào danh sách theo dõi của dự án"
       ],
       "correct": 0,
-      "explanation": "Người ngồi đối diện gần như luôn nhận ra khi bạn đoán, và một lần bị bắt gặp sẽ khiến mọi con số khác của bạn bị nghi ngờ. Nói rõ khoảng ước lượng cho thấy bạn phân biệt được điều mình biết chắc với điều mình chỉ áng chừng."
-    }
-    ],
-    keyTakeaways: [
-      "Không bao giờ đoán số - thừa nhận giới hạn kèm khoảng ước lượng đáng tin hơn nhiều",
-      "Chủ động nêu điểm yếu trước khi bị hỏi làm tăng độ tin cậy của phần còn lại",
-      "Phân biệt phản đối về dữ kiện với phản đối về cách diễn giải, xử lý riêng từng loại",
-      "Trả lời thẳng trước, giải thích sau - kim tự tháp áp dụng cho cả lời nói",
-    ],
-    practicePrompt: {
-      question:
-        "Một thành viên hội đồng nói: giả định tăng trưởng 15% của bạn là quá lạc quan. Phản ứng tốt nhất là gì?",
-      options: [
-        "Bảo vệ con số 15% bằng cách dẫn lại toàn bộ lập luận đã trình bày trước đó",
-        "Hỏi mức nào họ cho là hợp lý, rồi trình bày kết quả định giá ở mức đó",
-        "Chấp nhận hạ xuống mức thấp hơn để buổi họp không kéo dài thêm nữa",
-        "Giải thích rằng giả định này lấy từ báo cáo của một tổ chức nghiên cứu uy tín",
-      ],
-      correct: 1,
-      explanation:
-        "Cách này chuyển cuộc tranh luận từ đúng sai sang định lượng: nếu ở mức 10% mà khuyến nghị vẫn đứng vững thì tranh cãi về con số đã trở nên không quan trọng. Nếu ở mức 10% luận điểm sụp đổ, đó là thông tin cực kỳ giá trị cho cả bạn lẫn hội đồng, và bảng độ nhạy chuẩn bị sẵn sẽ trả lời trong vài giây.",
+      "explanation": "Hai lựa chọn giữa là bảo vệ phương án khi người ta đang hỏi về rủi ro - trả lời sai câu hỏi. Xác nhận thẳng thì rẻ hơn nhiều so với vẻ ngoài của nó: nó kết thúc phần tranh luận và chuyển buổi họp sang phần có ích."
     },
-    summary: {
-      keyIdea: "Hội đồng đánh giá cách bạn suy nghĩ dưới áp lực nhiều hơn đánh giá kết luận của bạn",
-      commonMistake: "Đoán một con số để lấp khoảng lặng, và mất độ tin cậy cho toàn bộ phần còn lại",
-      action: "Trước buổi bảo vệ tiếp theo, xác định giả định dễ bị tấn công nhất và chuẩn bị bảng độ nhạy riêng cho nó.",
+    "summary": {
+      "keyIdea": "Buổi bảo vệ hỏng vì phản ứng sai với câu hỏi chưa chuẩn bị, không vì phương án sai.",
+      "formula": "Chưa biết thì nói thẳng + nói sẽ kiểm gì; phân biệt phản đối rủi ro với phản đối phương án.",
+      "commonMistake": "Ứng khẩu một câu trả lời cho chỗ mình chưa nghĩ tới.",
+      "action": "Viết ba câu hỏi khó nhất về phương án của bạn và tự trả lời."
     },
-    application: {
-      title: "Chuẩn bị bằng cách tự tấn công",
-      message:
-        "Trước mỗi buổi bảo vệ, hãy viết ra năm câu hỏi khó nhất mà bạn sợ bị hỏi, rồi trả lời chúng bằng văn bản. Phần lớn câu hỏi thực tế sẽ nằm trong năm câu đó, và bạn đã có câu trả lời được cân nhắc thay vì phản ứng tức thời.",
-      secondary: "Nếu có câu nào bạn không trả lời nổi trên giấy, đó là chỗ cần làm thêm việc trước khi vào phòng họp.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Trước buổi bảo vệ tới, viết ra ba câu hỏi khó nhất mà một người phản đối sẽ hỏi, rồi tự trả lời từng câu bằng văn bản.",
+      "secondary": "Câu nào bạn không tự trả lời được chính là câu sẽ làm hỏng buổi họp. Biết trước nó thì bạn có lựa chọn - hoặc đi tìm câu trả lời, hoặc chuẩn bị nói thẳng là chưa biết."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Memo đưa bạn vào phòng họp. Phần hỏi đáp mới quyết định khuyến nghị của bạn có được thực hiện hay không. Và khác với phần trình bày, phần này không chuẩn bị được bằng cách học thuộc - chỉ chuẩn bị được bằng cách tự phản biện trước.",
+        "type": "lead",
+        "text": "Một buổi bảo vệ hỏng không phải vì phương án sai mà vì người trình bày phản ứng sai với một câu hỏi mà họ chưa chuẩn bị."
       },
       {
-        type: "heading",
-        text: "Ba loại câu hỏi và ba cách xử lý",
+        "type": "heading",
+        "text": "Phản xạ tự nhiên và vì sao nó đắt"
       },
       {
-        type: "conceptTable",
-        title: "Nhận diện câu hỏi thật đằng sau",
-        subtitle: "Cùng một câu hỏi có thể mang ba ý định khác nhau",
-        concepts: [
-          { vi: "Hỏi để kiểm tra dữ kiện", en: "Fact check", def: "Người hỏi muốn xác nhận một con số. Trả lời ngắn, chính xác, và nói rõ nguồn. Nếu không nhớ, nói không nhớ." },
-          { vi: "Hỏi để thử độ chắc", en: "Stress test", def: "Người hỏi muốn biết luận điểm có sống sót khi giả định thay đổi. Trả lời bằng độ nhạy chứ không bằng lời khẳng định." },
-          { vi: "Hỏi vì bất đồng", en: "Disagreement", def: "Người hỏi có quan điểm khác. Xác định chính xác chỗ hai bên tách nhau, rồi tranh luận đúng chỗ đó thay vì lặp lại toàn bộ lập luận." },
-        ],
+        "type": "callout",
+        "label": "Ứng khẩu một câu trả lời",
+        "text": "Một câu về chỗ bạn chưa nghĩ tới thường sai, và khi nó bị bắt sai thì người nghe không có cách nào biết phần nào bạn nắm chắc - nên họ hạ mức tin cho TẤT CẢ những gì bạn đã chuẩn bị kỹ."
       },
       {
-        type: "callout",
-        label: "Điều duy nhất không được phép",
-        text: "Bịa một con số. Trong nghề này uy tín được xây rất chậm và mất trong một câu. Nói tôi không nhớ chính xác, khoảng từ đây tới đây, tôi kiểm tra lại và trả lời trong chiều nay - câu này không bao giờ làm bạn mất điểm.",
+        "type": "paragraph",
+        "text": "Cách thay thế có hai vế, và vế thứ hai mới là phần quan trọng: nói thẳng là chưa nghĩ tới, RỒI nói bạn sẽ kiểm điều gì để trả lời. Vế đó biến một câu chưa biết thành một việc cụ thể, và nó cho người hỏi cơ hội chỉnh lại phép kiểm ngay tại chỗ."
       },
       {
-        type: "comparison",
-        left: {
-          label: "Phòng thủ",
-          text: "Coi mọi câu hỏi là công kích, lặp lại lập luận cũ to hơn. Kết quả: hội đồng kết luận bạn chưa tự phản biện.",
+        "type": "heading",
+        "text": "Hai loại phản đối"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Về phương án",
+          "text": "Có cách tốt hơn. Trả lời bằng cách so sánh hai cách theo tiêu chí đã nêu."
         },
-        right: {
-          label: "Hợp tác",
-          text: "Coi câu hỏi là phần kiểm định miễn phí cho luận điểm của mình. Ghi nhận, định lượng, và nói rõ điều gì sẽ làm bạn đổi ý.",
-        },
+        "right": {
+          "label": "Về rủi ro",
+          "text": "Cách này có thể hỏng theo một kiểu bạn chưa tính. Bảo vệ phương án ở đây là trả lời SAI câu hỏi, và người hỏi sẽ hỏi lại - lần này gay gắt hơn."
+        }
       },
       {
-        type: "closing",
-        lines: [
-          "Mục tiêu của buổi bảo vệ không phải thắng cuộc tranh luận mà là ra được quyết định đúng.",
-          "Bài sau chuyển sang bài kiểm tra cụ thể nhất trong tuyển dụng: bài dựng mô hình.",
-        ],
+        "type": "heading",
+        "text": "Chuẩn bị đúng hướng"
       },
-    ],
+      {
+        "type": "paragraph",
+        "text": "Viết ra ba câu hỏi khó nhất về phương án của mình và tự trả lời TRƯỚC. Chuẩn bị thêm tài liệu và rà soát số liệu đều củng cố phần bạn ĐÃ nghĩ tới; cách này tìm phần bạn CHƯA nghĩ tới, và đó là chỗ buổi bảo vệ thật sự hỏng."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Và khi hội đồng nghiêng về một phương án bạn cho là kém hơn: nêu điều kiện nào sẽ cho thấy lựa chọn đó sai, rồi chấp nhận quyết định.",
+          "Nó biến một bất đồng thành một phép kiểm có thời hạn - và nếu bạn đúng, nó tự chứng minh mà không cần ai phải nhận sai."
+        ]
+      }
+    ]
   },
   {
     id: 1483,

@@ -50,16 +50,16 @@ export default function NotesShortcutCard() {
 
       <div className="flex items-start gap-3">
         {/* Biểu tượng nét - xem chú thích cùng chỗ trong LearningPathSummary. */}
-        <StickyNote className="mt-0.5 h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400" />
+        <StickyNote className="mt-0.5 h-4 w-4 shrink-0 text-warn" />
 
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-400 dark:text-stone-500">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
             {p.notesEyebrow}
           </p>
           {/* Cùng cỡ, cùng độ đậm với tiêu đề hàng trên. Trước đây hàng này
               text-lg còn hàng kia text-base, nên hai hàng ngang cấp trong cùng
               một bảng lại đọc ra như một mục chính và một mục phụ. */}
-          <h2 className="mt-0.5 text-[17px] font-black tracking-tight text-stone-900 dark:text-stone-100">{p.notesTitle}</h2>
+          <h2 className="mt-0.5 text-[17px] font-black tracking-tight text-ink">{p.notesTitle}</h2>
 
           {/* Cùng cách gấp với LearningPathSummary - xem chú thích ở đó về lý do
               dùng grid-rows thay cho max-height. */}

@@ -72,18 +72,18 @@ export default function LearningPathSummary({
             thước đó nó cũng nặng ngang tiêu đề, nên mắt dừng ở màu trước rồi
             mới đọc chữ. Nét 16px giữ nguyên chức năng phân biệt hai hàng (xanh
             / hổ phách) mà không tranh phần với dòng chữ nó đang chú thích. */}
-        <Compass className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+        <Compass className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
 
         <div className="min-w-0 flex-1">
           {/* Nhãn mào lùi về màu trung tính và bỏ font-black: hai hàng này
               trước đây có tới ba mức nhấn (nhãn mào đậm màu, tiêu đề đậm, ô
               biểu tượng đặc màu) nên không mức nào còn nhấn được gì. Giữ đúng
               một: tiêu đề. */}
-          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-400 dark:text-stone-500">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
             {p.summaryEyebrow}
           </p>
 
-          <p className="mt-0.5 text-[17px] font-black tracking-tight text-stone-900 dark:text-stone-100">{trackName}</p>
+          <p className="mt-0.5 text-[17px] font-black tracking-tight text-ink">{trackName}</p>
 
           {/* Phần gấp được. `grid-rows-[0fr]` → `[1fr]` chứ không phải max-height:
               chiều cao thật do nội dung quyết định, nên không phải đoán một con
@@ -101,7 +101,7 @@ export default function LearningPathSummary({
                 trình đọc màn hình vẫn đọc cả đoạn người dùng vừa thu gọn. Một
                 thuộc tính lo cả hai; React 19 nhận nó như boolean. */}
             <div className="min-h-0 overflow-hidden" inert={collapsed}>
-              <p className="mt-0.5 text-xs font-semibold text-stone-500 dark:text-stone-400">
+              <p className="mt-0.5 text-xs font-semibold text-ink-muted">
                 {format(p.summaryDone, { done, total })}
                 {" · "}
                 {format(p.summaryPace, { perDay: pace.perDay, days: pace.daysPerWeek })}
@@ -111,11 +111,11 @@ export default function LearningPathSummary({
                   Dùng chung chuỗi paceEstimate với trang /lo-trinh nên hai nơi
                   không thể nói hai con số khác nhau. */}
               {remaining > 0 && (
-                <p className="mt-2 text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+                <p className="mt-2 text-sm leading-relaxed text-ink-body">
                   {format(p.paceEstimate, { count: remaining, weeks })}
                 </p>
               )}
-              <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+              <p className="mt-1 text-xs text-ink-muted">
                 {format(p.paceMinutes, { minutes: minutesPerDay(pace) })}
               </p>
 

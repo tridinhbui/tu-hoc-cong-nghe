@@ -62,11 +62,11 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
                 let stateClass = "border-stone-200 dark:border-stone-700 hover:border-amber-300 dark:hover:border-amber-800";
                 if (answered) {
                   if (isCorrect(optIndex)) {
-                    stateClass = "border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40";
+                    stateClass = "border-emerald-300 dark:border-emerald-800 bg-accent-soft/40";
                   } else if (chosen) {
                     stateClass = "border-rose-300 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/40";
                   } else {
-                    stateClass = "border-stone-200 dark:border-stone-800 opacity-60";
+                    stateClass = "border-line opacity-60";
                   }
                 }
                 return (
@@ -79,9 +79,9 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
                     className={`w-full text-left text-sm rounded-lg border px-3 py-2.5 transition-colors ${stateClass} disabled:cursor-default`}
                   >
                     <span className="flex items-start gap-2">
-                      {answered && isCorrect(optIndex) && <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />}
+                      {answered && isCorrect(optIndex) && <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />}
                       {answered && chosen && !isCorrect(optIndex) && <X className="w-4 h-4 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5" />}
-                      <span className="text-stone-700 dark:text-stone-300">{opt.text}</span>
+                      <span className="text-ink-body">{opt.text}</span>
                     </span>
                   </button>
                 );

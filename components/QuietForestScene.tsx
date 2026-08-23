@@ -310,7 +310,7 @@ export default function QuietForestScene({
             // bề ngang thì trên màn 375px dòng này chạy thẳng xuống dưới vòng
             // điều khiển và đè lên nhãn "kéo để đi" của nó - hai câu chữ nhỏ
             // chồng lên nhau, cả hai đều không đọc được.
-            <p className="pointer-events-none absolute bottom-3 left-4 right-28 max-w-[16rem] text-left text-[10px] font-semibold leading-relaxed text-stone-400 dark:text-stone-500">
+            <p className="pointer-events-none absolute bottom-3 left-4 right-28 max-w-[16rem] text-left text-[10px] font-semibold leading-relaxed text-ink-faint">
               {t.quietForest.signsHint}
             </p>
           )}

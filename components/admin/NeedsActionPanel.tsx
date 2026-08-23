@@ -47,24 +47,24 @@ export default async function NeedsActionPanel({
   const totalPending = items.reduce((sum, item) => sum + item.count, 0);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-5">
+    <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-5">
       <div className="flex items-center justify-between mb-1">
-        <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest flex items-center gap-2">
+        <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest flex items-center gap-2">
           <AlertCircle className="w-4 h-4 text-amber-500" />
           {ta.title}
         </h2>
         {totalPending > 0 && (
-          <span className="text-xs text-stone-500 dark:text-stone-400">
+          <span className="text-xs text-ink-muted">
             {format(ta.pendingCount, { count: totalPending })}
           </span>
         )}
       </div>
-      <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">{ta.subtitle}</p>
+      <p className="text-xs text-ink-muted mb-4">{ta.subtitle}</p>
 
       {totalPending === 0 ? (
         <div className="py-8 flex flex-col items-center gap-2 text-center">
           <PartyPopper className="w-8 h-8 text-emerald-500" />
-          <p className="text-sm font-bold text-stone-700 dark:text-stone-300">{ta.allClear}</p>
+          <p className="text-sm font-bold text-ink-body">{ta.allClear}</p>
         </div>
       ) : (
         <div className="space-y-2">
@@ -76,13 +76,13 @@ export default async function NeedsActionPanel({
                 key={item.key}
                 className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-3 ${
                   pending
-                    ? "bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50"
-                    : "bg-stone-50 dark:bg-stone-950/40 border border-stone-100 dark:border-stone-800"
+                    ? "bg-warn-soft/20 border border-amber-200 dark:border-amber-900/50"
+                    : "bg-stone-50 dark:bg-stone-950/40 border border-line-soft"
                 }`}
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <Icon className={`w-4 h-4 shrink-0 ${pending ? "text-amber-600 dark:text-amber-400" : "text-stone-400 dark:text-stone-600"}`} />
-                  <span className="text-sm font-semibold text-stone-700 dark:text-stone-300 truncate">{item.label}</span>
+                  <Icon className={`w-4 h-4 shrink-0 ${pending ? "text-warn" : "text-stone-400 dark:text-stone-600"}`} />
+                  <span className="text-sm font-semibold text-ink-body truncate">{item.label}</span>
                   <span
                     className={`text-sm font-extrabold shrink-0 ${
                       pending ? "text-amber-700 dark:text-amber-400" : "text-stone-400 dark:text-stone-600"
@@ -94,7 +94,7 @@ export default async function NeedsActionPanel({
                 {pending ? (
                   <Link
                     href={item.href}
-                    className="shrink-0 inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:opacity-90 transition-opacity"
+                    className="shrink-0 inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-lg bg-surface-invert text-white dark:text-stone-900 hover:opacity-90 transition-opacity"
                   >
                     {ta.actionNow}
                   </Link>

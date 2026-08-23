@@ -87,7 +87,7 @@ export default function FormulaBreakdown({
                   <span className="font-mono text-[12px] text-stone-600 dark:text-stone-400">
                     {step.expression}
                   </span>
-                  <span className="font-mono text-[12px] font-bold text-stone-900 dark:text-stone-100">
+                  <span className="font-mono text-[12px] font-bold text-ink">
                     = {step.value}
                   </span>
                 </div>

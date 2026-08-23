@@ -76,7 +76,7 @@ export default function MessageUserButton({ targetUserId }: { targetUserId: stri
     return (
       <button
         disabled
-        className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-400 dark:text-stone-600"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl border border-line text-stone-400 dark:text-stone-600"
       >
         <MessageCircle className="w-4 h-4" />
         {t.miscUi.messageUserButton.message}
@@ -99,7 +99,7 @@ export default function MessageUserButton({ targetUserId }: { targetUserId: stri
     <button
       onClick={handleMessage}
       disabled={busy}
-      className="inline-flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:opacity-90 transition-opacity disabled:opacity-60"
+      className="inline-flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-xl bg-surface-invert text-white dark:text-stone-900 hover:opacity-90 transition-opacity disabled:opacity-60"
     >
       <Icon className="w-4 h-4" />
       {label}

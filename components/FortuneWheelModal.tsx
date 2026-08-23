@@ -106,13 +106,13 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
           <X className="w-5 h-5" />
         </button>
 
-        <span className="text-xs font-black uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-3 py-1 rounded-full border border-amber-200 dark:border-amber-900">
+        <span className="text-xs font-black uppercase tracking-widest text-warn bg-warn-soft/40 px-3 py-1 rounded-full border border-amber-200 dark:border-amber-900">
           {t.fortuneWheel.badge}
         </span>
         <h2 className="text-xl font-black text-stone-900 dark:text-white mt-2">
           {t.fortuneWheel.title}
         </h2>
-        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
+        <p className="text-xs text-ink-muted mt-1">
           {t.fortuneWheel.subtitle}
         </p>
 
@@ -173,7 +173,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
             className="mb-4 bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/10 border border-amber-300 rounded-2xl p-3 text-stone-900 dark:text-white"
           >
             <p className="text-xs font-black">
-              {t.fortuneWheel.receivedPrefix} <span className="text-amber-600 dark:text-amber-400">{wonSector.emoji} {wonSector.label}</span>
+              {t.fortuneWheel.receivedPrefix} <span className="text-warn">{wonSector.emoji} {wonSector.label}</span>
             </p>
           </motion.div>
         )}

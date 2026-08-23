@@ -137,7 +137,7 @@ export default function InteractiveJournalEntry() {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
+        <h3 className="text-sm font-extrabold text-ink">
           {format(dict.journalEntry.transactionCounter, { current: index + 1, total: transactions.length })}
         </h3>
         <div className="flex gap-1">
@@ -149,7 +149,7 @@ export default function InteractiveJournalEntry() {
               aria-label={format(dict.journalEntry.transactionAriaLabel, { n: i + 1 })}
               aria-current={i === index}
               className={`h-2 w-6 cursor-pointer rounded-full ${
-                i === index ? "bg-stone-900 dark:bg-stone-100" : "bg-stone-200 dark:bg-stone-700"
+                i === index ? "bg-surface-invert" : "bg-stone-200 dark:bg-stone-700"
               }`}
             />
           ))}
@@ -211,7 +211,7 @@ export default function InteractiveJournalEntry() {
           </p>
 
           <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
-            <p className="text-[10px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">
+            <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">
               {dict.journalEntry.equationTitle}
             </p>
             <p className="mt-1 font-mono text-[12px] text-stone-700 dark:text-stone-200">
@@ -220,7 +220,7 @@ export default function InteractiveJournalEntry() {
                 claimsSign: sign(dict, delta.claims),
               })}
             </p>
-            <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400">
+            <p className="mt-1 text-[11px] text-ink-muted">
               {delta.assets === 0 && delta.claims === 0
                 ? dict.journalEntry.equationUnchangedHint
                 : dict.journalEntry.equationBalancedHint}
@@ -275,7 +275,7 @@ function Side({
     <label className="block">
       <span className="text-xs font-bold text-stone-700 dark:text-stone-200">
         {t.journalEntry.recordSidePrefix} {side}{" "}
-        <span className="font-normal text-stone-400 dark:text-stone-500">— {hint}</span>
+        <span className="font-normal text-ink-faint">— {hint}</span>
       </span>
       <select
         value={value}
@@ -283,7 +283,7 @@ function Side({
         aria-label={format(t.journalEntry.selectAccountAriaLabel, { side })}
         className={`mt-1.5 w-full cursor-pointer rounded-xl border bg-white px-3 py-2 text-xs text-stone-800 dark:bg-stone-900 dark:text-stone-100 ${
           !checked
-            ? "border-stone-300 dark:border-stone-700"
+            ? "border-line-strong"
             : ok
               ? "border-emerald-400 dark:border-emerald-600"
               : "border-rose-400 dark:border-rose-700"
@@ -297,7 +297,7 @@ function Side({
         ))}
       </select>
       {checked && !ok && (
-        <span className="mt-1 block text-[11px] text-stone-500 dark:text-stone-400">
+        <span className="mt-1 block text-[11px] text-ink-muted">
           {format(t.journalEntry.answerPrefix, { label: accounts.find((a) => a.id === answer)!.label })}
         </span>
       )}

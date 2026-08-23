@@ -147,15 +147,15 @@ export default function StreakReminderManager({
 
   return (
     <div className="max-w-6xl mx-auto mb-6">
-      <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl px-4 py-3.5 flex items-center gap-3 flex-wrap">
-        <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+      <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl px-4 py-3.5 flex items-center gap-3 flex-wrap">
+        <div className="w-9 h-9 rounded-xl bg-accent-soft/30 text-accent flex items-center justify-center flex-shrink-0">
           <Bell className="w-4 h-4" />
         </div>
         <div className="flex-1 min-w-[200px]">
-          <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
+          <p className="text-sm font-bold text-ink">
             {t.streakReminder.title}
           </p>
-          <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+          <p className="text-xs text-ink-muted mt-0.5">
             {t.streakReminder.note}
           </p>
         </div>
@@ -168,7 +168,7 @@ export default function StreakReminderManager({
           </button>
           <button
             onClick={dismissBanner}
-            className="px-3 py-2 text-sm font-bold rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
+            className="px-3 py-2 text-sm font-bold rounded-lg border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
           >
             {t.streakReminder.later}
           </button>

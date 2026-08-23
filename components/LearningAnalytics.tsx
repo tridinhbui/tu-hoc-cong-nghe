@@ -62,7 +62,7 @@ function formatHour(hour: number) {
 function metricTone(score: number) {
   if (score >= 75) return "text-emerald-700 dark:text-emerald-300";
   if (score >= 45) return "text-amber-700 dark:text-amber-300";
-  return "text-stone-700 dark:text-stone-300";
+  return "text-ink-body";
 }
 
 const panelClass =
@@ -71,7 +71,7 @@ const panelSoftClass =
   "rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-stone-50/50 dark:bg-stone-800/40";
 type AnalyticsSection = "overview" | "knowledge" | "memory" | "competency" | "leaderboard";
 
-const sectionLabelClass = "text-xs font-extrabold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400";
+const sectionLabelClass = "text-xs font-extrabold uppercase tracking-[0.22em] text-ink-muted";
 
 /** Recharts truyền vào tooltip nhiều trường hơn ba trường dưới đây, nhưng đây
  *  là toàn bộ phần component này đọc - khai đúng phần dùng thì đổi phiên bản
@@ -97,9 +97,9 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: Cu
   if (active && payload && payload.length) {
     const formattedLabel = labelFormatter && label !== undefined ? labelFormatter(label) : label;
     return (
-      <div className="bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-stone-200 dark:border-stone-800 rounded-xl p-3 shadow-xl text-xs space-y-1.5 z-50">
+      <div className="bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-line rounded-xl p-3 shadow-xl text-xs space-y-1.5 z-50">
         {formattedLabel && (
-          <p className="font-extrabold text-stone-900 dark:text-stone-100 border-b border-stone-100 dark:border-stone-800/80 pb-1 mb-1.5">
+          <p className="font-extrabold text-ink border-b border-line-soft/80 pb-1 mb-1.5">
             {formattedLabel}
           </p>
         )}
@@ -108,8 +108,8 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: Cu
           const displayName = item.name === "lessonsCompleted" ? t.analytics.seriesLessons : item.name === "minutesSpent" ? t.analytics.seriesMinutes : item.name;
           return (
             <div key={idx} className="flex items-center gap-4 justify-between">
-              <span className="text-stone-500 dark:text-stone-400 font-medium">{displayName}:</span>
-              <span className="font-bold text-stone-900 dark:text-stone-100" style={{ color: item.color || undefined }}>
+              <span className="text-ink-muted font-medium">{displayName}:</span>
+              <span className="font-bold text-ink" style={{ color: item.color || undefined }}>
                 {displayVal}
               </span>
             </div>
@@ -177,9 +177,9 @@ function MetricCard({
             {label}
           </p>
           <p className="mt-3 text-2xl sm:text-3xl font-extrabold text-stone-950 dark:text-stone-50 tracking-tight">{value}</p>
-          <p className="mt-2 text-xs text-stone-500 dark:text-stone-400 leading-relaxed truncate">{hint}</p>
+          <p className="mt-2 text-xs text-ink-muted leading-relaxed truncate">{hint}</p>
         </div>
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-stone-50 dark:bg-stone-800/60 text-stone-500 dark:text-stone-400 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-stone-50 dark:bg-stone-800/60 text-ink-muted group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
           {icon}
         </div>
       </div>
@@ -198,9 +198,9 @@ function SummaryStat({
 }) {
   return (
     <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4">
-      <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-stone-400 dark:text-stone-500">{label}</p>
-      <p className="mt-2 text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100">{value}</p>
-      <p className="mt-1 text-xs leading-5 text-stone-500 dark:text-stone-400">{hint}</p>
+      <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-ink-faint">{label}</p>
+      <p className="mt-2 text-2xl font-black tracking-tight text-ink">{value}</p>
+      <p className="mt-1 text-xs leading-5 text-ink-muted">{hint}</p>
     </div>
   );
 }
@@ -208,19 +208,19 @@ function SummaryStat({
 function AnalyticsSkeleton() {
   return (
     <div className="space-y-6 animate-pulse">
-      <div className="rounded-2xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-8">
+      <div className="rounded-2xl border-2 border-line bg-white dark:bg-stone-900 p-5 sm:p-8">
         <div className="h-6 w-40 rounded-full bg-stone-200 dark:bg-stone-800" />
         <div className="mt-4 h-10 w-72 rounded-2xl bg-stone-200 dark:bg-stone-800" />
         <div className="mt-3 h-5 w-full max-w-2xl rounded-full bg-stone-200 dark:bg-stone-800" />
       </div>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {Array.from({ length: 8 }).map((_, index) => (
-          <div key={index} className="h-36 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-200 dark:bg-stone-800" />
+          <div key={index} className="h-36 rounded-2xl border border-line bg-stone-200 dark:bg-stone-800" />
         ))}
       </div>
       <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="h-96 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-200 dark:bg-stone-800" />
-        <div className="h-96 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-200 dark:bg-stone-800" />
+        <div className="h-96 rounded-2xl border border-line bg-stone-200 dark:bg-stone-800" />
+        <div className="h-96 rounded-2xl border border-line bg-stone-200 dark:bg-stone-800" />
       </div>
     </div>
   );
@@ -294,7 +294,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
 
   if (!analytics) {
     return (
-      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-6 sm:p-8 text-center text-stone-500 dark:text-stone-400">
+      <div className="rounded-2xl border border-line bg-white dark:bg-stone-900 p-6 sm:p-8 text-center text-ink-muted">
         {t.analytics.noData}
       </div>
     );
@@ -311,10 +311,10 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
         <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500" />
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0 flex-1">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-accent-line bg-accent-soft/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
               {t.analytics.personal}
             </div>
-            <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-stone-900 dark:text-stone-100">
+            <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-ink">
               {t.analytics.currentRhythm}
             </h2>
 
@@ -322,7 +322,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               {insights.map((insight, index) => (
                 <div
                   key={index}
-                  className="rounded-xl border border-stone-200/90 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-800/80 px-2.5 py-1 text-xs font-bold text-stone-700 dark:text-stone-300 shadow-2xs"
+                  className="rounded-xl border border-stone-200/90 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-800/80 px-2.5 py-1 text-xs font-bold text-ink-body shadow-2xs"
                 >
                   {insight}
                 </div>
@@ -334,19 +334,19 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           <div className="grid grid-cols-3 gap-1.5 sm:gap-3 shrink-0">
             <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
               <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">{t.analytics.streakLabel}</p>
-              <p className="mt-1 text-base sm:text-lg font-black text-stone-900 dark:text-stone-100 whitespace-nowrap">{format(t.analytics.streakDays, { count: analytics.streakDays })}</p>
-              <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400 truncate">{format(t.analytics.streakRecord, { count: analytics.longestStreak })}</p>
+              <p className="mt-1 text-base sm:text-lg font-black text-ink whitespace-nowrap">{format(t.analytics.streakDays, { count: analytics.streakDays })}</p>
+              <p className="text-[9px] font-semibold text-ink-muted truncate">{format(t.analytics.streakRecord, { count: analytics.longestStreak })}</p>
             </div>
 
             <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
               <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">{t.analytics.quizScoreLabel}</p>
-              <p className="mt-1 text-base sm:text-lg font-black text-emerald-600 dark:text-emerald-400 whitespace-nowrap">{analytics.averageQuizScore}%</p>
-              <p className="text-[9px] font-semibold text-stone-500 dark:text-stone-400 truncate">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</p>
+              <p className="mt-1 text-base sm:text-lg font-black text-accent whitespace-nowrap">{analytics.averageQuizScore}%</p>
+              <p className="text-[9px] font-semibold text-ink-muted truncate">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</p>
             </div>
 
             <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
               <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">{t.analytics.studyHourLabel}</p>
-              <p className="mt-1 text-base sm:text-lg font-black text-stone-900 dark:text-stone-100 whitespace-nowrap">
+              <p className="mt-1 text-base sm:text-lg font-black text-ink whitespace-nowrap">
                 {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown}
               </p>
               <p className="text-[9px] font-semibold text-stone-500 truncate">{t.analytics.peakWindow[analytics.peakStudyWindow]}</p>
@@ -356,7 +356,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
       </motion.section>
 
       {/* Premium Tab Selector */}
-      <div className="flex border-b border-stone-200 dark:border-stone-800 gap-6 mt-2 pb-0 overflow-x-auto scrollbar-none">
+      <div className="flex border-b border-line gap-6 mt-2 pb-0 overflow-x-auto scrollbar-none">
         {([
           { id: "overview", label: t.analytics.tabOverview },
           { id: "knowledge", label: t.analytics.tabKnowledge },
@@ -371,7 +371,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               onClick={() => setActiveSection(tab.id)}
               className="relative pb-3 text-sm font-bold transition-all cursor-pointer focus:outline-none whitespace-nowrap shrink-0"
             >
-              <span className={`transition-colors duration-200 ${isActive ? "text-stone-900 dark:text-stone-50" : "text-stone-400 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300"}`}>
+              <span className={`transition-colors duration-200 ${isActive ? "text-stone-900 dark:text-stone-50" : "text-ink-faint hover:text-stone-700 dark:hover:text-stone-300"}`}>
                 {tab.label}
               </span>
               {isActive && (
@@ -482,10 +482,10 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               <div className="mb-6">
                 <p className={sectionLabelClass}>{t.analytics.hoursEyebrow}</p>
                 <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.hoursTitle}</h3>
-                <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">{t.analytics.hoursSub}</p>
+                <p className="mt-1 text-xs text-ink-muted">{t.analytics.hoursSub}</p>
               </div>
               {studyHourData.length === 0 ? (
-                <div className="flex h-[300px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-800/40 text-xs text-stone-400 dark:text-stone-500 border border-stone-200/50 dark:border-stone-800/80">
+                <div className="flex h-[300px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-800/40 text-xs text-ink-faint border border-stone-200/50 dark:border-stone-800/80">
                   {t.analytics.hoursEmpty}
                 </div>
               ) : (
@@ -569,7 +569,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                 <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.trackTitle}</h3>
               </div>
               {trackPieData.length === 0 ? (
-                <div className="flex h-[260px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-800/40 text-xs text-stone-400 dark:text-stone-500 border border-stone-200/50 dark:border-stone-800/80">
+                <div className="flex h-[260px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-800/40 text-xs text-ink-faint border border-stone-200/50 dark:border-stone-800/80">
                   {t.analytics.trackEmpty}
                 </div>
               ) : (
@@ -593,7 +593,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       </PieChart>
                     </ResponsiveContainer>
                     <div className="absolute flex flex-col items-center justify-center">
-                      <span className="text-[10px] uppercase font-extrabold tracking-widest text-stone-400 dark:text-stone-500">{t.analytics.total}</span>
+                      <span className="text-[10px] uppercase font-extrabold tracking-widest text-ink-faint">{t.analytics.total}</span>
                       <span className="text-xl font-extrabold text-stone-900 dark:text-stone-50">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</span>
                     </div>
                   </div>
@@ -643,7 +643,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                         </div>
                         <span className="font-extrabold text-stone-900 dark:text-stone-50">{format(t.analytics.lessonsWithPercent, { count: item.value, percent: Math.round(width) })}</span>
                       </div>
-                      <div className="h-2.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                      <div className="h-2.5 rounded-full bg-surface-raised overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${width}%` }}
@@ -705,7 +705,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                 </div>
                 <Link
                   href="/ghi-chu"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline"
                 >
                   {t.analytics.seeAll}
                   <ChevronRight className="h-3.5 w-3.5" />
@@ -713,7 +713,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               </div>
 
               {analytics.notes.topLessons.length === 0 ? (
-                <div className="rounded-xl border border-stone-200/50 dark:border-stone-800/80 bg-stone-50/50 dark:bg-stone-800/40 px-5 py-8 text-xs text-stone-400 dark:text-stone-500 text-center leading-relaxed">
+                <div className="rounded-xl border border-stone-200/50 dark:border-stone-800/80 bg-stone-50/50 dark:bg-stone-800/40 px-5 py-8 text-xs text-ink-faint text-center leading-relaxed">
                   {t.analytics.notesEmpty}
                 </div>
               ) : (
@@ -725,14 +725,14 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       className="group flex items-center justify-between gap-4 rounded-xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/30 px-3.5 py-3 transition-all hover:bg-emerald-50/20 dark:hover:bg-emerald-950/10 hover:border-emerald-500/20"
                     >
                       <div className="flex min-w-0 items-center gap-3">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-stone-900 text-xs font-bold text-stone-900 dark:text-stone-100 border border-stone-200 dark:border-stone-800">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-stone-900 text-xs font-bold text-ink border border-line">
                           {index + 1}
                         </div>
                         <div className="min-w-0">
-                          <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                          <p className="truncate text-xs font-bold text-ink group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                             {lesson.title}
                           </p>
-                          <p className="mt-1 text-[10px] text-stone-400 dark:text-stone-500 font-medium">
+                          <p className="mt-1 text-[10px] text-ink-faint font-medium">
                             {format(t.analytics.notesSaved, { count: lesson.notesCount })}
                           </p>
                         </div>
@@ -759,10 +759,10 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               <div className="space-y-3">
                 <div className="rounded-xl border border-stone-200/65 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/30 p-3.5 text-xs">
                   <div className="flex items-start gap-2.5">
-                    <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 text-accent shrink-0" />
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">{t.analytics.tipFinishTitle}</p>
-                      <p className="mt-1 text-stone-500 dark:text-stone-400 leading-relaxed">
+                      <p className="font-bold text-ink">{t.analytics.tipFinishTitle}</p>
+                      <p className="mt-1 text-ink-muted leading-relaxed">
                         {format(t.analytics.tipFinishBody, { rate: analytics.completionRate })}
                       </p>
                     </div>
@@ -773,8 +773,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   <div className="flex items-start gap-2.5">
                     <BarChart3 className="mt-0.5 h-4.5 w-4.5 text-blue-500 dark:text-blue-400 shrink-0" />
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">{t.analytics.tipHoursTitle}</p>
-                      <p className="mt-1 text-stone-500 dark:text-stone-400 leading-relaxed">
+                      <p className="font-bold text-ink">{t.analytics.tipHoursTitle}</p>
+                      <p className="mt-1 text-ink-muted leading-relaxed">
                         {format(t.analytics.tipHoursBody, { hour: analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.tipHoursFallback })}
                       </p>
                     </div>
@@ -785,8 +785,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   <div className="flex items-start gap-2.5">
                     <NotebookPen className="mt-0.5 h-4.5 w-4.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">{t.analytics.tipNotesTitle}</p>
-                      <p className="mt-1 text-stone-500 dark:text-stone-400 leading-relaxed">
+                      <p className="font-bold text-ink">{t.analytics.tipNotesTitle}</p>
+                      <p className="mt-1 text-ink-muted leading-relaxed">
                         {format(t.analytics.tipNotesBody, { count: analytics.notes.totalNotes })}
                       </p>
                     </div>
@@ -804,7 +804,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                 </Link>
                 <Link
                   href="/ghi-chu"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-2.5 text-xs font-bold text-stone-800 dark:text-stone-100 transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/50 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-line bg-white dark:bg-stone-900 px-4 py-2.5 text-xs font-bold text-stone-800 dark:text-stone-100 transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/50 cursor-pointer"
                 >
                   {t.analytics.openNotes}
                   <ArrowRight className="h-3.5 w-3.5" />

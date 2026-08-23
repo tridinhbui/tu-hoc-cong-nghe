@@ -62,9 +62,9 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
   };
 
   return (
-    <div className="p-4 sm:p-6 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 rounded-3xl border border-stone-200/80 dark:border-stone-800 shadow-lg space-y-6 w-full">
+    <div className="p-4 sm:p-6 bg-white dark:bg-stone-900 text-ink rounded-3xl border border-stone-200/80 dark:border-stone-800 shadow-lg space-y-6 w-full">
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-200 dark:border-stone-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-line">
         <div className="flex items-center gap-3">
           <div className="w-14 h-14 rounded-2xl overflow-hidden relative border-2 border-amber-400 shadow-md shrink-0">
             <Image src="/rpg/fed_reserve.jpg" alt={t.fedVault.buildingAlt} fill className="object-cover" />
@@ -80,14 +80,14 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
                 </span>
               )}
             </div>
-            <h3 className="text-xl font-extrabold text-stone-900 dark:text-stone-100 mt-1">{t.fedVault.title}</h3>
-            <p className="text-xs text-stone-500 dark:text-stone-400">{t.fedVault.subtitle}</p>
+            <h3 className="text-xl font-extrabold text-ink mt-1">{t.fedVault.title}</h3>
+            <p className="text-xs text-ink-muted">{t.fedVault.subtitle}</p>
           </div>
         </div>
 
         <button
           onClick={handleReset}
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-300 text-xs font-bold border border-stone-200/80 dark:border-stone-700 transition-colors self-start sm:self-auto cursor-pointer shadow-2xs"
+          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-ink-body text-xs font-bold border border-stone-200/80 dark:border-stone-700 transition-colors self-start sm:self-auto cursor-pointer shadow-2xs"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           <span>{t.fedVault.resetButton}</span>
@@ -96,11 +96,11 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
 
       {/* Objective Card */}
       <div className="bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 rounded-2xl p-4 flex items-start gap-3">
-        <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+        <AlertTriangle className="w-5 h-5 text-warn shrink-0 mt-0.5" />
         <div className="text-xs space-y-1">
           <p className="font-extrabold text-amber-900 dark:text-amber-300 uppercase tracking-wider">{t.fedVault.objectiveLabel}</p>
-          <p className="text-stone-700 dark:text-stone-300 leading-relaxed font-semibold">
-            {t.fedVault.objectivePart1}<strong className="text-rose-600 dark:text-rose-400">6.5%</strong>{t.fedVault.objectivePart2}<strong className="text-emerald-600 dark:text-emerald-400">3.0%</strong>{t.fedVault.objectivePart3}<strong className="text-emerald-600 dark:text-emerald-400">1.5%</strong>{t.fedVault.objectivePart4}
+          <p className="text-ink-body leading-relaxed font-semibold">
+            {t.fedVault.objectivePart1}<strong className="text-rose-600 dark:text-rose-400">6.5%</strong>{t.fedVault.objectivePart2}<strong className="text-accent">3.0%</strong>{t.fedVault.objectivePart3}<strong className="text-accent">1.5%</strong>{t.fedVault.objectivePart4}
           </p>
         </div>
       </div>
@@ -112,27 +112,27 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
           <div className="my-2">
             <span className="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-300">{fedRate}%</span>
           </div>
-          <span className="text-[10px] text-stone-500 dark:text-stone-400 font-medium">{t.fedVault.rateDesc}</span>
+          <span className="text-[10px] text-ink-muted font-medium">{t.fedVault.rateDesc}</span>
         </div>
 
         <div className="bg-stone-50/80 dark:bg-stone-950/60 p-4.5 rounded-2xl border border-stone-200/80 dark:border-stone-800 flex flex-col justify-between shadow-2xs">
           <span className="text-[10px] font-black text-rose-700 dark:text-rose-400 uppercase tracking-widest">{t.fedVault.inflationLabel}</span>
           <div className="my-2 flex items-baseline gap-1">
-            <span className={`text-2xl sm:text-3xl font-black ${inflation <= 3.0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
+            <span className={`text-2xl sm:text-3xl font-black ${inflation <= 3.0 ? "text-accent" : "text-rose-600 dark:text-rose-400"}`}>
               {inflation}%
             </span>
           </div>
-          <span className="text-[10px] text-stone-500 dark:text-stone-400 font-medium">{t.fedVault.inflationTarget}</span>
+          <span className="text-[10px] text-ink-muted font-medium">{t.fedVault.inflationTarget}</span>
         </div>
 
         <div className="bg-stone-50/80 dark:bg-stone-950/60 p-4.5 rounded-2xl border border-stone-200/80 dark:border-stone-800 flex flex-col justify-between shadow-2xs">
           <span className="text-[10px] font-black text-teal-700 dark:text-sky-400 uppercase tracking-widest">{t.fedVault.gdpLabel}</span>
           <div className="my-2">
-            <span className={`text-2xl sm:text-3xl font-black ${gdp >= 1.5 ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400"}`}>
+            <span className={`text-2xl sm:text-3xl font-black ${gdp >= 1.5 ? "text-accent" : "text-warn"}`}>
               {gdp}%
             </span>
           </div>
-          <span className="text-[10px] text-stone-500 dark:text-stone-400 font-medium">{t.fedVault.gdpTarget}</span>
+          <span className="text-[10px] text-ink-muted font-medium">{t.fedVault.gdpTarget}</span>
         </div>
 
         <div className="bg-stone-50/80 dark:bg-stone-950/60 p-4.5 rounded-2xl border border-stone-200/80 dark:border-stone-800 flex flex-col justify-between shadow-2xs">
@@ -140,7 +140,7 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
           <div className="my-2">
             <span className="text-2xl sm:text-3xl font-black text-indigo-600 dark:text-purple-300">{marketIndex}</span>
           </div>
-          <span className="text-[10px] text-stone-500 dark:text-stone-400 font-medium">{t.fedVault.marketDesc}</span>
+          <span className="text-[10px] text-ink-muted font-medium">{t.fedVault.marketDesc}</span>
         </div>
       </div>
 
@@ -150,7 +150,7 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
           <span className="text-xs font-extrabold uppercase text-stone-800 dark:text-stone-200 tracking-wider">
             {t.fedVault.fomcLabel}
           </span>
-          <span className="text-xs text-stone-500 dark:text-stone-400 font-mono font-bold">{format(t.fedVault.meetingsCount, { turns })}</span>
+          <span className="text-xs text-ink-muted font-mono font-bold">{format(t.fedVault.meetingsCount, { turns })}</span>
         </div>
 
         <div className="flex items-center justify-center gap-3 flex-wrap">

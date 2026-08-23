@@ -43,8 +43,13 @@ export const ROTUNDA_COLUMNS: Array<[number, number]> = [
   [3.6, ROTUNDA_Z + 3.6],
 ];
 
-/** Quả địa cầu đồng giữa sảnh tròn. Chủ đề tài chính toàn cầu, và cũng là mốc
- *  định hướng: đứng ở đâu nhìn về phía nam cũng thấy nó. */
+/** Quả địa cầu đồng giữa sảnh tròn.
+ *
+ *  Lý do đặt nó ở đây từng là "chủ đề tài chính toàn cầu"; lý do đó không còn
+ *  sau khi kho nội dung chuyển sang công nghệ, nhưng VẬT THỂ thì vẫn đúng chỗ -
+ *  một quả địa cầu hợp với thư viện công nghệ chẳng kém gì thư viện tài chính.
+ *  Điều giữ nó lại là chức năng thứ hai, thứ không phụ thuộc chủ đề: mốc định
+ *  hướng, đứng ở đâu nhìn về phía nam cũng thấy nó. */
 export const GLOBE_POS: [number, number] = [0, ROTUNDA_Z];
 
 /** Tủ phiếu mục lục dọc hai tường dài - vật dụng đặc trưng của thư viện cũ.

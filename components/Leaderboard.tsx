@@ -249,7 +249,7 @@ function RankBadgePill({ rank, badgeText }: { rank: number; badgeText: string })
     );
   }
   return (
-    <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-800 border border-stone-300 dark:border-stone-700 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-stone-700 dark:text-stone-300 shadow-2xs">
+    <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-800 border border-line-strong px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-ink-body shadow-2xs">
       <Star className="h-2.5 w-2.5 shrink-0 text-stone-500" />
       <span className="truncate">{badgeText}</span>
     </div>
@@ -298,7 +298,7 @@ function getPodiumTone(rank: number) {
     };
   }
   return {
-    card: "border-emerald-200 dark:border-emerald-900 bg-gradient-to-b from-emerald-50/70 via-white to-emerald-50/30 dark:from-emerald-950/40 dark:via-stone-900 dark:to-stone-900 shadow-sm",
+    card: "border-accent-line bg-gradient-to-b from-emerald-50/70 via-white to-emerald-50/30 dark:from-emerald-950/40 dark:via-stone-900 dark:to-stone-900 shadow-sm",
     pedestal: "from-emerald-400/20 via-emerald-300/10 to-transparent border-emerald-200/70",
     chip: "bg-emerald-600 text-white font-black",
     name: "text-stone-900 dark:text-emerald-200",
@@ -401,13 +401,13 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
       <div className="rounded-[28px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.18)]">
         <div className="flex items-start justify-between gap-3 border-b border-stone-200/80 dark:border-stone-800 pb-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-amber-700 dark:text-amber-400 shadow-xs">
-              <Trophy className="h-3.5 w-3.5 fill-amber-400 text-amber-600 dark:text-amber-400" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 dark:border-amber-700 bg-warn-soft/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-amber-700 dark:text-amber-400 shadow-xs">
+              <Trophy className="h-3.5 w-3.5 fill-amber-400 text-warn" />
               {t.leaderboard.eyebrowCompact}
             </div>
-            <h2 className="mt-2.5 text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100">{t.leaderboard.titleCompact}</h2>
+            <h2 className="mt-2.5 text-2xl font-black tracking-tight text-ink">{t.leaderboard.titleCompact}</h2>
           </div>
-          <div className="inline-flex items-center gap-1.5 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 shadow-xs">
+          <div className="inline-flex items-center gap-1.5 rounded-2xl border border-accent-line bg-accent-soft/60 px-3 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 shadow-xs">
             {t.leaderboard[activeTab.labelKey]}
           </div>
         </div>
@@ -446,7 +446,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                   className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition-all cursor-pointer ${
                     isActive
                       ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-white shadow-md ring-1 ring-stone-200/60 dark:ring-stone-700 font-extrabold"
-                      : "text-stone-500 dark:text-stone-400 hover:bg-white/50 dark:hover:bg-stone-800/50 hover:text-stone-800 dark:hover:text-stone-200"
+                      : "text-ink-muted hover:bg-white/50 dark:hover:bg-stone-800/50 hover:text-stone-800 dark:hover:text-stone-200"
                   }`}
                 >
                   <Icon className={`h-3.5 w-3.5 ${isActive ? "text-amber-500" : "text-stone-400"}`} />
@@ -464,8 +464,8 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                 <ShieldCheck className="h-4 w-4" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-black text-stone-900 dark:text-stone-100">{t.leaderboard.compositeTitle}</p>
-                <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-stone-500 dark:text-stone-400">
+                <p className="text-xs font-black text-ink">{t.leaderboard.compositeTitle}</p>
+                <p className="mt-0.5 text-[11px] font-medium leading-relaxed text-ink-muted">
                   {t.leaderboard.compositeDescPrefix} <strong>35%</strong> {t.leaderboard.compositeDescXp}{" "}
                   <strong>30%</strong> {t.leaderboard.compositeDescExam} <strong>20%</strong> {t.leaderboard.compositeDescAccuracy}{" "}
                   <strong>15%</strong> {t.leaderboard.compositeDescStreak}
@@ -480,12 +480,12 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     ].map((item) => (
                       <div
                         key={item.label}
-                        className="rounded-xl border border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/80 px-2 py-1.5"
+                        className="rounded-xl border border-line bg-white/80 dark:bg-stone-900/80 px-2 py-1.5"
                       >
-                        <p className="text-[9px] font-extrabold uppercase tracking-wide text-stone-400 dark:text-stone-500">
+                        <p className="text-[9px] font-extrabold uppercase tracking-wide text-ink-faint">
                           {item.label}
                         </p>
-                        <p className="text-[11px] font-black text-stone-900 dark:text-stone-100">{item.value}</p>
+                        <p className="text-[11px] font-black text-ink">{item.value}</p>
                       </div>
                     ))}
                   </div>
@@ -498,10 +498,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         {loading ? (
           <div className="mt-8 flex flex-col items-center justify-center py-10">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-400 border-t-transparent" />
-            <p className="mt-3 text-xs font-semibold text-stone-500 dark:text-stone-400">{t.leaderboard.loadingCompact}</p>
+            <p className="mt-3 text-xs font-semibold text-ink-muted">{t.leaderboard.loadingCompact}</p>
           </div>
         ) : entries.length === 0 ? (
-          <p className="mt-6 py-8 text-center text-sm text-stone-500 dark:text-stone-400">{t.leaderboard.empty}</p>
+          <p className="mt-6 py-8 text-center text-sm text-ink-muted">{t.leaderboard.empty}</p>
         ) : (
           <div className={`mt-5 space-y-4 transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
             {/* Podium Top 5 */}
@@ -534,7 +534,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                         </div>
 
                         <p className={`text-xs font-black leading-tight line-clamp-1 break-words ${tone.name}`}>{entry.name}</p>
-                        <p className="mt-0.5 text-[8px] font-extrabold uppercase leading-tight text-emerald-600 dark:text-emerald-400 line-clamp-1 break-words">
+                        <p className="mt-0.5 text-[8px] font-extrabold uppercase leading-tight text-accent line-clamp-1 break-words">
                           {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(t, metric, rank).nickname}
                         </p>
                         <p className={`mt-1 text-[11px] font-black leading-tight ${tone.value}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
@@ -553,8 +553,8 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             {/* Sub-ranks #6+ Framed Cards */}
             <div className="border-t border-stone-200/80 dark:border-stone-800 pt-3">
               <div className="mb-3 flex items-center justify-between">
-                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-stone-500 dark:text-stone-400">{t.leaderboard.nextRanks}</p>
-                <span className="text-[10px] font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800">
+                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-ink-muted">{t.leaderboard.nextRanks}</p>
+                <span className="text-[10px] font-black text-warn bg-warn-soft/60 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800">
                   {t.leaderboard.rangeCompact}
                 </span>
               </div>
@@ -587,8 +587,8 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <AvatarWithFrame rank={actualRank} name={entry.name} avatarUrl={entry.avatarUrl} size={36} />
 
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-xs font-black text-stone-900 dark:text-stone-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{entry.name}</p>
-                        <p className="truncate text-[9px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                        <p className="truncate text-xs font-black text-ink group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{entry.name}</p>
+                        <p className="truncate text-[9px] font-extrabold uppercase tracking-wider text-accent">
                           {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
                         </p>
                       </div>
@@ -600,7 +600,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                         <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
                         <span>{honor.badge}</span>
                       </div>
-                      <p className="text-xs font-black text-stone-900 dark:text-stone-100">{activeTab.format(entry.value, t.leaderboard.units)}</p>
+                      <p className="text-xs font-black text-ink">{activeTab.format(entry.value, t.leaderboard.units)}</p>
                     </div>
                   </Link>
                 );
@@ -616,15 +616,15 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <Trophy className="h-4 w-4 fill-amber-950 text-amber-950" />
                     </div>
                     <div>
-                      <p className="text-xs font-black text-stone-900 dark:text-stone-100">{t.leaderboard.yourRank}</p>
-                      <p className="text-[10px] font-semibold text-stone-500 dark:text-stone-400">
+                      <p className="text-xs font-black text-ink">{t.leaderboard.yourRank}</p>
+                      <p className="text-[10px] font-semibold text-ink-muted">
                         {formatI18n(t.leaderboard.byMetricCompact, { metric: t.leaderboard[activeTab.labelKey].toLowerCase() })}
                       </p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-black text-amber-600 dark:text-amber-400">#{myRank.rank}</p>
-                    <p className="text-xs font-extrabold text-stone-700 dark:text-stone-300">{activeTab.format(myRank.value, t.leaderboard.units)}</p>
+                    <p className="text-sm font-black text-warn">#{myRank.rank}</p>
+                    <p className="text-xs font-extrabold text-ink-body">{activeTab.format(myRank.value, t.leaderboard.units)}</p>
                   </div>
                 </div>
               </div>
@@ -713,7 +713,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       </div>
 
                       <p className="text-sm font-black leading-tight text-stone-900 line-clamp-1 break-words">{entry.name}</p>
-                      <p className="mt-1 text-[9px] font-extrabold uppercase leading-tight text-emerald-600 dark:text-emerald-400 line-clamp-1 break-words">
+                      <p className="mt-1 text-[9px] font-extrabold uppercase leading-tight text-accent line-clamp-1 break-words">
                         {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(t, metric, rank).nickname}
                       </p>
                       <p className={`mt-1.5 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
@@ -769,7 +769,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                       <div className="min-w-0">
                         <p className="truncate font-black text-stone-900 group-hover:text-amber-700 transition-colors">{entry.name}</p>
-                        <p className="truncate text-[11px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                        <p className="truncate text-[11px] font-extrabold uppercase tracking-wider text-accent">
                           {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
                         </p>
                       </div>

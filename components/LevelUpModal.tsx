@@ -171,13 +171,13 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
           <Sparkles className="absolute -top-1 -right-1 w-7 h-7 text-amber-400 animate-pulse" />
         </div>
 
-        <p className="text-xs font-extrabold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-1.5">
+        <p className="text-xs font-extrabold uppercase tracking-widest text-accent mb-1.5">
           {t.levelUp.kicker}
         </p>
-        <h2 className="text-2xl font-extrabold text-stone-900 dark:text-stone-100 mb-1">
+        <h2 className="text-2xl font-extrabold text-ink mb-1">
           {levelInfo ? format(t.levelUp.headingWithName, { level, name: t.levelTitles[level] ?? levelInfo.name }) : format(t.levelUp.heading, { level })}
         </h2>
-        <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
+        <p className="text-sm text-ink-muted mb-6">
           {t.levelUp.subtitle}
         </p>
 
@@ -185,7 +185,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
           <button
             onClick={handleDownload}
             disabled={downloading}
-            className="flex-1 py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold text-xs hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
+            className="flex-1 py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-ink-body font-bold text-xs hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
           >
             {downloading ? (
               <span className="w-3.5 h-3.5 border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200 rounded-full animate-spin" />
@@ -199,7 +199,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
           <button
             onClick={handleShare}
             disabled={sharing}
-            className="flex-1 py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold text-xs hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
+            className="flex-1 py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-ink-body font-bold text-xs hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
           >
             {sharing ? (
               <span className="w-3.5 h-3.5 border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200 rounded-full animate-spin" />
@@ -212,7 +212,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
 
         <button
           onClick={onClose}
-          className="w-full py-3.5 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-bold text-sm hover:bg-stone-800 dark:hover:bg-white transition-colors"
+          className="w-full py-3.5 rounded-xl bg-surface-invert text-white dark:text-stone-900 font-bold text-sm hover:bg-stone-800 dark:hover:bg-white transition-colors"
         >
           {t.levelUp.confirm}
         </button>

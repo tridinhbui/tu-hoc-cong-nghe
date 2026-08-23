@@ -168,7 +168,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
               hasWarning
                 ? 'bg-red-100 dark:bg-red-950/50 text-red-700 dark:text-red-300 animate-pulse'
-                : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 animate-spin-slow'
+                : 'bg-accent-soft/40 text-accent animate-spin-slow'
           }`}>
             {hasWarning ? <AlertCircle className="w-4 h-4" /> : <RefreshCw className="w-4 h-4" />}
           </div>
@@ -176,7 +176,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             <h3 className={`text-sm font-extrabold truncate ${
               hasWarning
                 ? 'text-red-800 dark:text-red-200'
-                : 'text-stone-900 dark:text-stone-100'
+                : 'text-ink'
             }`}>
               {t.recallWidget.heading}
               {hasWarning && format(t.recallWidget.headingCount, { count: dueRecalls.length })}
@@ -184,7 +184,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             <p className={`text-[10px] mt-0.5 truncate ${
               hasWarning
                 ? 'text-red-700 dark:text-red-300'
-                : 'text-stone-500 dark:text-stone-400'
+                : 'text-ink-muted'
             }`}>
               {hasWarning ? t.recallWidget.warningSubtitle : t.recallWidget.normalSubtitle}
             </p>
@@ -210,10 +210,10 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                 className="flex items-center justify-between gap-3 p-3 bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 hover:border-stone-300 dark:hover:border-stone-600 transition-all"
               >
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-extrabold text-stone-900 dark:text-stone-100 truncate">
+                  <p className="text-xs font-extrabold text-ink truncate">
                     {item.lessonTitle}
                   </p>
-                  <p className="text-[9px] text-stone-500 dark:text-stone-400 mt-0.5">
+                  <p className="text-[9px] text-ink-muted mt-0.5">
                     {format(t.recallWidget.stageLine, { stage: item.recallStage })}
                   </p>
                 </div>
@@ -226,7 +226,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
               </div>
             ))}
             {dueRecalls.length > 3 && (
-              <p className="text-[10px] text-stone-400 dark:text-stone-500 text-center font-bold">
+              <p className="text-[10px] text-ink-faint text-center font-bold">
                 {format(t.recallWidget.moreWaiting, { count: dueRecalls.length - 3 })}
               </p>
             )}
@@ -235,18 +235,18 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
       ) : (
         // Active Quiz modal/card view inside widget
         <div className="space-y-4">
-          <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800/80 pb-2">
-            <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100 truncate max-w-[70%]">
+          <div className="flex items-center justify-between border-b border-line-soft/80 pb-2">
+            <span className="text-xs font-extrabold text-ink truncate max-w-[70%]">
               {format(t.recallWidget.reviewingLesson, { title: activeItem.lessonTitle })}
             </span>
-            <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md shrink-0">
+            <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-300 bg-surface-raised px-2 py-0.5 rounded-md shrink-0">
               {format(t.recallWidget.questionCounter, { index: currentQIndex + 1, total: questions.length })}
             </span>
           </div>
 
           {questions[currentQIndex] && (
             <div className="space-y-4">
-              <p className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-relaxed">
+              <p className="text-xs font-bold text-ink leading-relaxed">
                 {questions[currentQIndex].question}
               </p>
 
@@ -255,14 +255,14 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                   let btnCls = "border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-100 hover:border-stone-300 dark:hover:border-stone-500";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
-                      btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-200 font-bold";
+                      btnCls = "border-emerald-500 bg-accent-soft/50 text-emerald-900 dark:text-emerald-200 font-bold";
                     } else if (i === selectedOpt) {
                       btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200";
                     } else {
-                      btnCls = "border-stone-100 dark:border-stone-800 opacity-60";
+                      btnCls = "border-line-soft opacity-60";
                     }
                   } else if (selectedOpt === i) {
-                    btnCls = "border-stone-900 dark:border-stone-100 bg-stone-100 dark:bg-stone-800 text-stone-950 dark:text-white border-2 font-bold";
+                    btnCls = "border-stone-900 dark:border-stone-100 bg-surface-raised text-stone-950 dark:text-white border-2 font-bold";
                   }
 
                   return (

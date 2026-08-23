@@ -72,7 +72,7 @@ export default function InteractivePromptCraft() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
+      <h3 className="text-sm font-extrabold text-ink">
         {tr.title}
       </h3>
 
@@ -118,7 +118,7 @@ export default function InteractivePromptCraft() {
       </div>
 
       <div className="mt-5 rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
-        <p className="text-[10px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">
+        <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">
           {tr.assembledLabel}
         </p>
         {assembled ? (
@@ -126,7 +126,7 @@ export default function InteractivePromptCraft() {
             {assembled}
           </pre>
         ) : (
-          <p className="mt-1.5 text-[11px] italic text-stone-400 dark:text-stone-500">
+          <p className="mt-1.5 text-[11px] italic text-ink-faint">
             {tr.assembledEmpty}
           </p>
         )}

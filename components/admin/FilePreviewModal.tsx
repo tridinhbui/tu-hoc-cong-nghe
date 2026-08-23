@@ -55,12 +55,12 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/50">
-      <div className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 w-full max-w-2xl max-h-[80vh] flex flex-col">
+      <div className="bg-white dark:bg-stone-900 rounded-2xl border border-line w-full max-w-2xl max-h-[80vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-stone-200 dark:border-stone-800">
+        <div className="flex items-center justify-between p-5 border-b border-line">
           <div className="flex items-center gap-2">
             <Eye className="w-5 h-5 text-stone-600 dark:text-stone-400" />
-            <h3 className="font-bold text-stone-900 dark:text-stone-100">
+            <h3 className="font-bold text-ink">
               {format(tp.previewOf, { name: file.name })}
             </h3>
           </div>
@@ -98,22 +98,22 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
                 <p className="text-sm text-stone-600 dark:text-stone-400 mb-2">{tp.fileInfoTitle}</p>
                 <div className="space-y-2 text-sm">
                   <p>
-                    <span className="font-semibold text-stone-700 dark:text-stone-300">{tp.nameLabel}</span>{" "}
+                    <span className="font-semibold text-ink-body">{tp.nameLabel}</span>{" "}
                     <span className="text-stone-600 dark:text-stone-400">{file.name}</span>
                   </p>
                   <p>
-                    <span className="font-semibold text-stone-700 dark:text-stone-300">{tp.typeLabel}</span>{" "}
+                    <span className="font-semibold text-ink-body">{tp.typeLabel}</span>{" "}
                     <span className="text-stone-600 dark:text-stone-400">
                       {fileInfo.type || tp.excelSpreadsheetFallback}
                     </span>
                   </p>
                   <p>
-                    <span className="font-semibold text-stone-700 dark:text-stone-300">{tp.sizeLabel}</span>{" "}
+                    <span className="font-semibold text-ink-body">{tp.sizeLabel}</span>{" "}
                     <span className="text-stone-600 dark:text-stone-400">{fileInfo.size}</span>
                   </p>
                 </div>
               </div>
-              <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 text-sm text-amber-800 dark:text-amber-200">
+              <div className="bg-warn-soft/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 text-sm text-amber-800 dark:text-amber-200">
                 {tp.excelCannotPreview}
               </div>
             </div>
@@ -121,9 +121,9 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
 
           {!isImage && !isPdf && !isExcel && fileInfo && (
             <div className="space-y-4">
-              <div className="bg-stone-100 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 rounded-lg p-6 text-center">
+              <div className="bg-surface-raised border border-line-strong rounded-lg p-6 text-center">
                 <p className="text-2xl mb-2">📄</p>
-                <p className="font-semibold text-stone-900 dark:text-stone-100 mb-2">{file.name}</p>
+                <p className="font-semibold text-ink mb-2">{file.name}</p>
                 <p className="text-sm text-stone-600 dark:text-stone-400">
                   {tp.unsupportedPreview}
                 </p>
@@ -131,13 +131,13 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-stone-50 dark:bg-stone-800 rounded-lg p-3">
                   <p className="text-xs text-stone-600 dark:text-stone-400">{tp.typeCaption}</p>
-                  <p className="font-semibold text-stone-900 dark:text-stone-100 text-sm">
+                  <p className="font-semibold text-ink text-sm">
                     {fileInfo.type || tp.unknownFallback}
                   </p>
                 </div>
                 <div className="bg-stone-50 dark:bg-stone-800 rounded-lg p-3">
                   <p className="text-xs text-stone-600 dark:text-stone-400">{tp.sizeCaption}</p>
-                  <p className="font-semibold text-stone-900 dark:text-stone-100 text-sm">
+                  <p className="font-semibold text-ink text-sm">
                     {fileInfo.size}
                   </p>
                 </div>
@@ -147,13 +147,13 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between p-5 border-t border-stone-200 dark:border-stone-800">
+        <div className="flex items-center justify-between p-5 border-t border-line">
           <a
             href={previewUrl || "#"}
             download={file.name}
             className={`inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg transition-colors ${
               previewUrl
-                ? "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700"
+                ? "bg-surface-raised text-ink-body hover:bg-stone-200 dark:hover:bg-stone-700"
                 : "opacity-50 cursor-not-allowed"
             }`}
           >

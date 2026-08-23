@@ -106,26 +106,26 @@ export default function ProductPreview() {
         <div className="preview-scan-line absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.28),transparent)] opacity-40" />
       </div>
       {/* Browser chrome */}
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-stone-100 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line-soft bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <div className="flex gap-1.5 shrink-0">
             <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
             <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
             <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
           </div>
-          <div className="flex-1 min-w-0 text-[11px] font-semibold text-stone-400 dark:text-stone-500 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full px-4 py-1 text-center truncate">
+          <div className="flex-1 min-w-0 text-[11px] font-semibold text-ink-faint bg-white dark:bg-stone-900 border border-line rounded-full px-4 py-1 text-center truncate">
             tuhoccongnghe.vn/{tab === "dashboard" ? "dashboard" : "bai-hoc"}
           </div>
         </div>
-        <div className="flex gap-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full p-0.5 shrink-0 mx-auto sm:mx-0">
+        <div className="flex gap-1 bg-white dark:bg-stone-900 border border-line rounded-full p-0.5 shrink-0 mx-auto sm:mx-0">
           {tabs.map((tabItem) => (
             <button
               key={tabItem.id}
               onClick={() => setTab(tabItem.id)}
               className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all duration-200 whitespace-nowrap ${
                 tab === tabItem.id
-                  ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-[0_8px_18px_-14px_rgba(15,23,42,0.45)]"
-                  : "text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300"
+                  ? "bg-surface-invert text-white dark:text-stone-900 shadow-[0_8px_18px_-14px_rgba(15,23,42,0.45)]"
+                  : "text-ink-faint hover:text-stone-600 dark:hover:text-stone-300"
               }`}
             >
               {tabItem.label}
@@ -152,15 +152,15 @@ export default function ProductPreview() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500">{t.productPreview.level}</p>
-                    <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.productPreview.role}</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-ink-faint">{t.productPreview.level}</p>
+                    <p className="text-sm font-extrabold text-ink">{t.productPreview.role}</p>
                   </div>
                   <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full px-2.5 py-1">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-white/90" />
                     {format(t.productPreview.xpLabel, { xp: "1,240" })}
                   </span>
                 </div>
-                <div className="h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden mb-4">
+                <div className="h-2 rounded-full bg-surface-raised overflow-hidden mb-4">
                   <motion.div
                     className="preview-progress-live h-full w-2/3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
                     animate={{ boxShadow: ["0 0 0 rgba(16,185,129,0)", "0 0 18px rgba(16,185,129,0.35)", "0 0 0 rgba(16,185,129,0)"] }}
@@ -173,8 +173,8 @@ export default function ProductPreview() {
                       key={l.title}
                       className={`flex items-center gap-2.5 min-w-0 rounded-xl border px-3 py-2.5 text-xs font-semibold ${
                         l.done
-                          ? "border-emerald-200 dark:border-emerald-900 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300"
-                          : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400"
+                          ? "border-accent-line bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300"
+                          : "border-line text-stone-600 dark:text-stone-400"
                       }`}
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -204,7 +204,7 @@ export default function ProductPreview() {
                     <p className="text-lg font-black text-orange-600 dark:text-orange-400 leading-none">
                       {format(t.productPreview.streakLabel, { days: 18 })}
                     </p>
-                    <p className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 mt-0.5">{t.productPreview.streakCaption}</p>
+                    <p className="text-[11px] font-semibold text-ink-muted mt-0.5">{t.productPreview.streakCaption}</p>
                   </div>
                 </motion.div>
                 <motion.div
@@ -212,7 +212,7 @@ export default function ProductPreview() {
                   animate={{ y: [0, 2, 0] }}
                   transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
                 >
-                  <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2.5 flex items-center gap-1.5">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-ink-faint mb-2.5 flex items-center gap-1.5">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
                     {t.productPreview.topWeek}
                   </p>
@@ -225,10 +225,10 @@ export default function ProductPreview() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.25, delay: 0.05 + i * 0.06 }}
                       >
-                        <span className={`font-bold ${row.isYou ? "text-emerald-700 dark:text-emerald-400" : "text-stone-700 dark:text-stone-300"}`}>
+                        <span className={`font-bold ${row.isYou ? "text-emerald-700 dark:text-emerald-400" : "text-ink-body"}`}>
                           {i + 1}. {row.name}
                         </span>
-                        <span className="text-stone-400 dark:text-stone-500 font-semibold">
+                        <span className="text-ink-faint font-semibold">
                           {format(t.productPreview.xpLabel, { xp: row.xp })}
                         </span>
                       </motion.div>
@@ -246,18 +246,18 @@ export default function ProductPreview() {
               transition={{ duration: 0.28, ease: "easeOut" }}
               className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]"
             >
-              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">
                 {t.productPreview.chapterBadge}
               </p>
-              <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100 mb-3">
+              <h3 className="text-base font-extrabold text-ink mb-3">
                 {t.productPreview.lessonTitle}
               </h3>
               <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed mb-4">
                 {t.productPreview.lessonBody}
               </p>
               <div className="rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/40 p-4 mb-4">
-                <p className="text-[11px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2">{t.productPreview.quickQuestion}</p>
-                <p className="text-xs font-bold text-stone-900 dark:text-stone-100 mb-3">
+                <p className="text-[11px] font-black uppercase tracking-widest text-ink-faint mb-2">{t.productPreview.quickQuestion}</p>
+                <p className="text-xs font-bold text-ink mb-3">
                   {t.productPreview.quizQuestion}
                 </p>
                 <div className="space-y-1.5">
@@ -267,8 +267,8 @@ export default function ProductPreview() {
                         key={opt}
                         className={`text-[11px] font-semibold rounded-lg px-3 py-2 border ${
                           i === 1
-                            ? "border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300"
-                            : "border-stone-200 dark:border-stone-800 text-stone-500 dark:text-stone-400"
+                            ? "border-emerald-300 dark:border-emerald-800 bg-accent-soft/30 text-emerald-800 dark:text-emerald-300"
+                            : "border-line text-ink-muted"
                         }`}
                         initial={{ opacity: 0, x: -6 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -280,8 +280,8 @@ export default function ProductPreview() {
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-2 text-[11px] font-bold text-stone-400 dark:text-stone-500">
-                <div className="h-1.5 flex-1 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+              <div className="flex items-center gap-2 text-[11px] font-bold text-ink-faint">
+                <div className="h-1.5 flex-1 rounded-full bg-surface-raised overflow-hidden">
                   <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500" />
                 </div>
                 {format(t.productPreview.readTime, { min: 5 })}

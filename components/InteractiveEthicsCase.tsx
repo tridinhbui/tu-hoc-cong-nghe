@@ -108,7 +108,7 @@ export default function InteractiveEthicsCase() {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
+        <h3 className="text-sm font-extrabold text-ink">
           {format(tr.caseCounter, { current: index + 1, total: CASES.length })}
         </h3>
         <div className="flex gap-1">
@@ -120,17 +120,17 @@ export default function InteractiveEthicsCase() {
               aria-label={format(tr.caseAriaLabel, { n: i + 1 })}
               aria-current={i === index}
               className={`h-2 w-6 cursor-pointer rounded-full ${
-                i === index ? "bg-stone-900 dark:bg-stone-100" : "bg-stone-200 dark:bg-stone-700"
+                i === index ? "bg-surface-invert" : "bg-stone-200 dark:bg-stone-700"
               }`}
             />
           ))}
         </div>
       </div>
 
-      <p className="mt-3 text-sm leading-relaxed text-stone-700 dark:text-stone-300">{c.scenario}</p>
+      <p className="mt-3 text-sm leading-relaxed text-ink-body">{c.scenario}</p>
 
       {/* Bước 1: có vi phạm không. */}
-      <p className="mt-4 text-xs font-bold text-stone-500 dark:text-stone-400">
+      <p className="mt-4 text-xs font-bold text-ink-muted">
         {tr.violatesQuestion}
       </p>
       <div className="mt-2 flex gap-2">
@@ -159,7 +159,7 @@ export default function InteractiveEthicsCase() {
           không là làm ngược thứ tự suy nghĩ mà đề thi kiểm tra. */}
       {verdict !== null && (
         <>
-          <p className="mt-4 text-xs font-bold text-stone-500 dark:text-stone-400">
+          <p className="mt-4 text-xs font-bold text-ink-muted">
             {c.violates ? tr.standardQuestionViolated : tr.standardQuestionClean}
           </p>
           <div className="mt-2 space-y-1.5">

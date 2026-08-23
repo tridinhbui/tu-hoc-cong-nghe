@@ -38,7 +38,7 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4 bg-black/50" onClick={onClose}>
       <div
-        className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 w-full max-w-sm my-auto p-5 space-y-4"
+        className="bg-white dark:bg-stone-900 rounded-2xl border border-line w-full max-w-sm my-auto p-5 space-y-4"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-3">
@@ -47,8 +47,8 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
               <ShieldQuestion className="w-4.5 h-4.5" />
             </span>
             <div>
-              <h3 className="font-bold text-stone-900 dark:text-stone-100 text-sm">{t.lessonAppeal.title}</h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5 line-clamp-1">{lesson.title}</p>
+              <h3 className="font-bold text-ink text-sm">{t.lessonAppeal.title}</h3>
+              <p className="text-xs text-ink-muted mt-0.5 line-clamp-1">{lesson.title}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 flex-shrink-0">
@@ -66,7 +66,7 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
           placeholder={t.lessonAppeal.notePlaceholder}
           rows={3}
           maxLength={500}
-          className="w-full px-3 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-stone-400 resize-none"
+          className="w-full px-3 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-ink placeholder:text-stone-400 focus:outline-none focus:border-stone-400 resize-none"
         />
 
         <button

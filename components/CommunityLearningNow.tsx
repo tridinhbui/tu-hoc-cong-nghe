@@ -80,10 +80,10 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
       <div className="mb-3 flex items-center gap-2">
         <Users className="h-4.5 w-4.5 text-emerald-500" />
         <div className="min-w-0">
-          <h2 className="text-sm font-black uppercase tracking-[0.12em] text-stone-900 dark:text-stone-100">
+          <h2 className="text-sm font-black uppercase tracking-[0.12em] text-ink">
             {t.communityLearning.title}
           </h2>
-          <p className="mt-0.5 text-[11px] font-medium text-stone-500 dark:text-stone-400">
+          <p className="mt-0.5 text-[11px] font-medium text-ink-muted">
             {learners.length === 1
               ? t.communityLearning.subtitleOne
               : format(t.communityLearning.subtitle, { count: learners.length })}
@@ -122,8 +122,8 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
               <div className="flex items-center gap-2">
                 <Avatar key={learner.avatarUrl ?? learner.userId} name={name} url={learner.avatarUrl} size={28} />
                 <div className="min-w-0">
-                  <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{name}</p>
-                  <span className="mt-0.5 inline-flex items-center gap-0.5 text-[10px] font-black text-amber-600 dark:text-amber-400">
+                  <p className="truncate text-xs font-bold text-ink">{name}</p>
+                  <span className="mt-0.5 inline-flex items-center gap-0.5 text-[10px] font-black text-warn">
                     <Flame className="h-3 w-3" />
                     {format(t.communityLearning.streakDays, { days: learner.streak })}
                   </span>

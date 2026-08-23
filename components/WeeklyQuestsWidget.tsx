@@ -131,19 +131,19 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
   };
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl p-5 shadow-sm space-y-4">
+    <div className="bg-white dark:bg-stone-900 border border-line rounded-3xl p-5 shadow-sm space-y-4">
       {/* Title */}
-      <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-3">
+      <div className="flex items-center justify-between border-b border-line-soft pb-3">
         <div>
-          <h4 className="text-xs font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+          <h4 className="text-xs font-extrabold text-ink flex items-center gap-1.5">
             <Trophy className="w-4 h-4 text-amber-500" />
             {t.weeklyQuests.title}
           </h4>
-          <p className="text-[9px] text-stone-400 dark:text-stone-500 font-semibold mt-0.5">
+          <p className="text-[9px] text-ink-faint font-semibold mt-0.5">
             {t.weeklyQuests.subtitle}
           </p>
         </div>
-        <span className="text-[10px] font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded">
+        <span className="text-[10px] font-black text-warn bg-warn-soft/40 px-2 py-0.5 rounded">
           {format(t.weeklyQuests.questCount, { done: (quest1Done ? 1 : 0) + (quest2Done ? 1 : 0) + (quest3Done ? 1 : 0) })}
         </span>
       </div>
@@ -152,14 +152,14 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       <div className="space-y-3.5">
         {/* Quest 1: Streak */}
         <div className="space-y-1.5">
-          <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
+          <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
             <span className="flex items-center gap-1">
               <Flame className="w-3.5 h-3.5 text-orange-500" />
               {t.weeklyQuests.streakLabel}
             </span>
             <span>{format(t.weeklyQuests.streakProgress, { progress: streakProgress })}</span>
           </div>
-          <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full transition-all duration-500 ${quest1Done ? "bg-orange-500" : "bg-orange-400"}`}
               style={{ width: `${(streakProgress / 5) * 100}%` }}
@@ -169,14 +169,14 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
 
         {/* Quest 2: Lesson counts */}
         <div className="space-y-1.5">
-          <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
+          <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
             <span className="flex items-center gap-1">
               <BookOpen className="w-3.5 h-3.5 text-sky-500" />
               {t.weeklyQuests.lessonsLabel}
             </span>
             <span>{format(t.weeklyQuests.lessonsProgress, { progress: lessonsProgress })}</span>
           </div>
-          <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full transition-all duration-500 ${quest2Done ? "bg-sky-500" : "bg-sky-400"}`}
               style={{ width: `${(lessonsProgress / 10) * 100}%` }}
@@ -186,13 +186,13 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
 
         {/* Quest 3: Perfect quizzes */}
         <div className="space-y-1.5">
-          <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
+          <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
             <span className="flex items-center gap-1">
               {t.weeklyQuests.quizLabel}
             </span>
             <span>{format(t.weeklyQuests.quizProgress, { progress: quizProgress })}</span>
           </div>
-          <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-emerald-500" : "bg-emerald-400"}`}
               style={{ width: `${(quizProgress / 3) * 100}%` }}
@@ -204,7 +204,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       {/* Epic Chest Claim Button */}
       {allQuestsDone ? (
         isEpicClaimed ? (
-          <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold flex items-center justify-center gap-1.5">
+          <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             {t.weeklyQuests.claimedMessage}
           </div>
@@ -219,7 +219,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
           </button>
         )
       ) : (
-        <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800 rounded-2xl text-center text-[10px] text-stone-400 dark:text-stone-500 font-bold">
+        <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold">
           {t.weeklyQuests.locked}
         </div>
       )}

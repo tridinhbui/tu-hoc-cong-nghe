@@ -59,7 +59,7 @@ export default function InteractiveRisk() {
 
       <div>
         <div className="flex justify-between text-sm mb-2">
-          <span className="font-medium text-stone-700 dark:text-stone-300">{t.riskCalc.riskLevelLabel}</span>
+          <span className="font-medium text-ink-body">{t.riskCalc.riskLevelLabel}</span>
           <span className="font-bold text-stone-800 dark:text-stone-100">{profile.label}</span>
         </div>
         <input
@@ -71,14 +71,14 @@ export default function InteractiveRisk() {
           className="w-full"
           aria-label={t.riskCalc.riskLevelAriaLabel}
         />
-        <p className="mt-1 text-[11px] text-stone-400 dark:text-stone-500">
+        <p className="mt-1 text-[11px] text-ink-faint">
           {format(t.riskCalc.expectedReturnLine, { ret: profile.ret, vol: profile.vol })}
         </p>
       </div>
 
       <div>
         <div className="flex justify-between text-sm mb-2">
-          <span className="font-medium text-stone-700 dark:text-stone-300">{t.riskCalc.holdingYearsLabel}</span>
+          <span className="font-medium text-ink-body">{t.riskCalc.holdingYearsLabel}</span>
           <span className="font-bold text-stone-800 dark:text-stone-100">{format(t.riskCalc.holdingYearsValue, { years })}</span>
         </div>
         <input
@@ -93,21 +93,21 @@ export default function InteractiveRisk() {
       </div>
 
       <div className="rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
-        <p className="text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
+        <p className="text-xs font-bold uppercase tracking-wider text-ink-muted">
           {t.riskCalc.rangeTitle}
         </p>
         <div className="mt-3 flex items-end justify-between gap-2 text-center">
           <div className="flex-1">
-            <p className="text-[11px] text-stone-500 dark:text-stone-400">{t.riskCalc.worstCaseLabel}</p>
+            <p className="text-[11px] text-ink-muted">{t.riskCalc.worstCaseLabel}</p>
             <p className="text-base font-extrabold text-rose-600 dark:text-rose-400">{money(band.low)}</p>
           </div>
           <div className="flex-1">
-            <p className="text-[11px] text-stone-500 dark:text-stone-400">{t.riskCalc.midCaseLabel}</p>
-            <p className="text-lg font-extrabold text-stone-900 dark:text-stone-100">{money(band.mid)}</p>
+            <p className="text-[11px] text-ink-muted">{t.riskCalc.midCaseLabel}</p>
+            <p className="text-lg font-extrabold text-ink">{money(band.mid)}</p>
           </div>
           <div className="flex-1">
-            <p className="text-[11px] text-stone-500 dark:text-stone-400">{t.riskCalc.bestCaseLabel}</p>
-            <p className="text-base font-extrabold text-emerald-600 dark:text-emerald-400">
+            <p className="text-[11px] text-ink-muted">{t.riskCalc.bestCaseLabel}</p>
+            <p className="text-base font-extrabold text-accent">
               {money(band.high)}
             </p>
           </div>
@@ -125,7 +125,7 @@ export default function InteractiveRisk() {
         </div>
       </div>
 
-      <p className="text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
+      <p className="text-[11px] leading-relaxed text-ink-muted">
         {t.riskCalc.footerText}
       </p>
     </div>

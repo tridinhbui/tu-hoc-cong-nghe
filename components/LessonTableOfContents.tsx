@@ -64,10 +64,10 @@ export default function LessonTableOfContents({ sections }: LessonTableOfContent
 
   return (
     <div className="hidden xl:block sticky top-24 h-fit">
-      <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-4">
+      <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-4">
         <div className="flex items-center gap-2 mb-3">
-          <List className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-          <p className="text-xs font-extrabold uppercase tracking-widest text-stone-500 dark:text-stone-400">
+          <List className="w-4 h-4 text-ink-muted" />
+          <p className="text-xs font-extrabold uppercase tracking-widest text-ink-muted">
             {t.miscUi.lessonTableOfContents.title}
           </p>
         </div>
@@ -78,7 +78,7 @@ export default function LessonTableOfContents({ sections }: LessonTableOfContent
               onClick={() => handleClick(item.id)}
               className={`block w-full text-left text-xs font-semibold px-2 py-1.5 rounded-lg transition-colors ${
                 activeId === item.id
-                  ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300"
+                  ? "bg-accent-soft/40 text-emerald-700 dark:text-emerald-300"
                   : "text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-stone-100"
               }`}
             >

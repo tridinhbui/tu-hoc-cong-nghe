@@ -50,7 +50,7 @@ export default function OnlineUsersWidget() {
           <Users className="h-4.5 w-4.5" />
         </div>
         <div className="min-w-0">
-          <h3 className="flex items-center gap-1.5 text-base font-bold text-stone-900 dark:text-stone-100">
+          <h3 className="flex items-center gap-1.5 text-base font-bold text-ink">
             {/* Chấm "đang sống" chỉ hiện khi thực sự có người. Một chấm nhấp
                 nháy bên cạnh số 0 là đúng loại tín hiệu giả đang gỡ bỏ. */}
             {!empty && (
@@ -61,7 +61,7 @@ export default function OnlineUsersWidget() {
             )}
             {t.miscUi.onlineUsersWidget.communityLibrary}
           </h3>
-          <p className="truncate text-[10px] font-bold text-stone-500 dark:text-stone-400">
+          <p className="truncate text-[10px] font-bold text-ink-muted">
             {empty
               ? t.miscUi.onlineUsersWidget.emptyLobby
               : format(t.miscUi.onlineUsersWidget.peopleInLobby, { count })}

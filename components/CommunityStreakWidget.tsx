@@ -57,10 +57,10 @@ export default function CommunityStreakWidget() {
             <Flame className="h-4 w-4" />
           </span>
           <div>
-            <p className="text-[13px] font-extrabold text-stone-900 dark:text-stone-100">
+            <p className="text-[13px] font-extrabold text-ink">
               {t.dashboard.streakFeedTitle}
             </p>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400">
+            <p className="text-[10px] text-ink-muted">
               {t.dashboard.streakFeedSub}
             </p>
           </div>

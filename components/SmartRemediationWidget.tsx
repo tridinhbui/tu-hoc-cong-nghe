@@ -68,10 +68,10 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
               </span>
             </div>
 
-            <h4 className="text-xs font-bold text-stone-900 dark:text-stone-100 mt-1.5 leading-snug">
+            <h4 className="text-xs font-bold text-ink mt-1.5 leading-snug">
               {t.smartRemediation.titlePart1} {row.wrong_count} {t.smartRemediation.titlePart2} &quot;{lesson.title}&quot;
             </h4>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
+            <p className="text-[10px] text-ink-muted mt-1 leading-relaxed">
               {t.smartRemediation.description}
             </p>
           </div>
@@ -79,13 +79,13 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
           <div className="flex gap-2">
             <Link
               href={`/bai-hoc/${lesson.slug}`}
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:scale-105 active:scale-95 transition-all shadow-sm"
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-surface-invert text-white dark:text-stone-900 hover:scale-105 active:scale-95 transition-all shadow-sm"
             >
               {t.smartRemediation.reviewNow} <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <Link
               href="/game"
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all"
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-line bg-white dark:bg-stone-900 text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800 transition-all"
             >
               {t.smartRemediation.playMiniGame}
             </Link>

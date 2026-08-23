@@ -121,16 +121,33 @@ function Weapon({ assetKey }: { assetKey: string }) {
       </group>
     );
   }
-  // Bút định giá
+  // Bàn phím cơ (weapon_valuation_pen).
+  //
+  // Khoá `weapon_valuation_pen` giữ nguyên có chủ ý dù vật phẩm đã đổi tên và
+  // đổi hình: nó được ghi vào `user_equipments.asset_key` trên Supabase, nên
+  // đổi khoá là làm mồ côi trang bị của mọi người đã mua. Chỉ phần NHÌN THẤY
+  // đổi - tên ở lib/rpg-items.ts, và hình ở đây.
+  //
+  // Hai mặt phẳng thay vì một hộp: bàn phím cơ có mặt phím nghiêng so với đế,
+  // và ở cỡ này thì độ nghiêng ấy là thứ duy nhất phân biệt nó với một viên
+  // gạch. Không dựng từng phím - avatar này render nhiều bản cùng lúc trong
+  // cảnh, nên mỗi mesh thừa là chi phí nhân lên.
   return (
-    <group position={[0.4, 1.16, 0.06]} rotation={[0, 0, -0.5]}>
+    <group position={[0.4, 1.1, 0.06]} rotation={[0, 0, -0.35]}>
+      {/* đế */}
       <mesh castShadow>
-        <cylinderGeometry args={[0.022, 0.022, 0.3, 8]} />
-        <meshStandardMaterial color="#1e293b" roughness={0.35} metalness={0.6} />
+        <boxGeometry args={[0.28, 0.035, 0.12]} />
+        <meshStandardMaterial color="#1e293b" roughness={0.5} metalness={0.4} />
       </mesh>
-      <mesh position={[0, -0.17, 0]}>
-        <coneGeometry args={[0.022, 0.06, 8]} />
-        <meshStandardMaterial color="#f5c542" metalness={0.9} roughness={0.2} />
+      {/* mặt phím, nhô lên và hơi ngửa */}
+      <mesh position={[0, 0.028, -0.006]} rotation={[-0.18, 0, 0]}>
+        <boxGeometry args={[0.26, 0.014, 0.1]} />
+        <meshStandardMaterial color="#334155" roughness={0.75} />
+      </mesh>
+      {/* dải sáng dưới đáy - thứ khiến người ta nhận ra ngay là bàn phím cơ */}
+      <mesh position={[0, -0.02, 0.055]}>
+        <boxGeometry args={[0.24, 0.008, 0.01]} />
+        <meshStandardMaterial color="#38bdf8" emissive="#38bdf8" emissiveIntensity={2} toneMapped={false} />
       </mesh>
     </group>
   );
@@ -169,7 +186,13 @@ function Armor({ assetKey, shirt }: { assetKey: string; shirt: string }) {
 /** Linh vật đi theo: lượn quanh chân nhân vật, nhấp nhô. */
 function Companion({ assetKey, still }: { assetKey: string; still: boolean }) {
   const ref = useRef<THREE.Group>(null);
-  const bull = assetKey === "pet_bull";
+  // `pet_bull` dựng con bốn chân CÓ SỪNG (hai hình nón), nhánh còn lại dựng
+  // con có tai tròn. Tên hiển thị của hai vật phẩm này bị ràng buộc bởi hình:
+  // đổi tên thành thứ không có sừng - "cá heo" chẳng hạn - thì cửa hàng bán
+  // một đằng còn nhân vật đeo một nẻo, và không cổng nào bắt được vì tên nằm
+  // ở lib/rpg-items.ts còn hình nằm ở đây. Khoá `pet_bull` giữ nguyên vì nó
+  // đã được ghi vào user_equipments trên Supabase.
+  const horned = assetKey === "pet_bull";
   useFrame((state) => {
     if (!ref.current || still) return;
     const t = state.clock.elapsedTime * 0.8;
@@ -182,17 +205,17 @@ function Companion({ assetKey, still }: { assetKey: string; still: boolean }) {
     <group ref={ref} position={[0.75, 0.3, -0.2]}>
       <mesh castShadow>
         <boxGeometry args={[0.3, 0.22, 0.42]} />
-        <meshStandardMaterial color={bull ? "#7f1d1d" : "#78350f"} roughness={0.85} />
+        <meshStandardMaterial color={horned ? "#7f1d1d" : "#78350f"} roughness={0.85} />
       </mesh>
       <mesh position={[0, 0.1, 0.24]} castShadow>
         <boxGeometry args={[0.22, 0.2, 0.2]} />
-        <meshStandardMaterial color={bull ? "#991b1b" : "#92400e"} roughness={0.85} />
+        <meshStandardMaterial color={horned ? "#991b1b" : "#92400e"} roughness={0.85} />
       </mesh>
-      {/* sừng bò / tai gấu */}
+      {/* sừng rồng / tai gấu trúc */}
       {[-0.09, 0.09].map((x) => (
         <mesh key={x} position={[x, 0.22, 0.24]}>
-          {bull ? <coneGeometry args={[0.035, 0.13, 6]} /> : <sphereGeometry args={[0.06, 8, 8]} />}
-          <meshStandardMaterial color={bull ? "#e7e5e4" : "#78350f"} roughness={0.6} />
+          {horned ? <coneGeometry args={[0.035, 0.13, 6]} /> : <sphereGeometry args={[0.06, 8, 8]} />}
+          <meshStandardMaterial color={horned ? "#e7e5e4" : "#78350f"} roughness={0.6} />
         </mesh>
       ))}
       {[-0.1, 0.1].map((x) =>

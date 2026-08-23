@@ -630,7 +630,7 @@ export default function AppNavbar() {
             aria-controls={panelId}
             className="group flex w-full items-center gap-1.5 rounded-xl px-3 py-1 text-left transition-colors hover:bg-stone-100/70 dark:hover:bg-stone-900/70 cursor-pointer"
           >
-            <span className="flex-1 text-[10px] font-black uppercase tracking-[0.14em] text-stone-400 dark:text-stone-500">
+            <span className="flex-1 text-[10px] font-black uppercase tracking-[0.14em] text-ink-faint">
               {t.nav[section.titleKey]}
             </span>
             {/* A folded section holding the current page still needs to say so,
@@ -662,7 +662,7 @@ export default function AppNavbar() {
 
   return (
     <>
-      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-white/96 dark:bg-stone-950/96 border-r border-stone-200 dark:border-stone-800 backdrop-blur">
+      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-white/96 dark:bg-stone-950/96 border-r border-line backdrop-blur">
         {/* Cột này KHÔNG cuộn. Trước đây nó mang `overflow-y-auto`, nên khi danh
             sách mục dài hơn màn hình thì logo và ô tìm kiếm cuộn mất theo, còn
             thẻ người dùng ở đáy chỉ tới được sau khi cuộn hết - tức hai thứ
@@ -675,13 +675,13 @@ export default function AppNavbar() {
         <div className="flex h-full w-full min-h-0 flex-col px-3.5 py-4">
           <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-xl shrink-0">
             <Logo size={30} />
-            <span className="text-base font-bold text-stone-900 dark:text-stone-100">{t.nav.brand}</span>
+            <span className="text-base font-bold text-ink">{t.nav.brand}</span>
           </Link>
 
           <button
             type="button"
             onClick={() => setSearchModalOpen(true)}
-            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-xl bg-stone-100 dark:bg-stone-900 border border-line text-xs font-bold text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <span className="flex items-center gap-2">
               <Search className="w-3.5 h-3.5 text-stone-400" />
@@ -734,8 +734,8 @@ export default function AppNavbar() {
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{profile.full_name || t.nav.user}</p>
-                    <p className="truncate text-[11px] text-stone-500 dark:text-stone-400">{profile.email}</p>
+                    <p className="truncate text-xs font-bold text-ink">{profile.full_name || t.nav.user}</p>
+                    <p className="truncate text-[11px] text-ink-muted">{profile.email}</p>
                   </div>
                 </button>
               </div>
@@ -767,23 +767,23 @@ export default function AppNavbar() {
         {dropdownOpen && profile && (
           <div
             ref={desktopDropdownPanelRef}
-            className="absolute bottom-4 left-full ml-2 w-64 z-50 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-2 shadow-lg animate-[fadeIn_0.15s_ease-out]"
+            className="absolute bottom-4 left-full ml-2 w-64 z-50 space-y-1 rounded-2xl border border-line bg-white dark:bg-stone-900 p-2 shadow-lg animate-[fadeIn_0.15s_ease-out]"
           >
             <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-xs font-bold transition text-stone-800 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
-              <User className="h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
+              <User className="h-4 w-4 shrink-0 text-ink-muted" />
               {t.nav.menuProfile}
             </button>
             <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-xs font-bold transition text-stone-800 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
-              <Users className="h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
+              <Users className="h-4 w-4 shrink-0 text-ink-muted" />
               {t.nav.menuFriends}
             </button>
             <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-xs font-bold transition text-stone-800 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
-              <Settings className="h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
+              <Settings className="h-4 w-4 shrink-0 text-ink-muted" />
               {t.nav.menuSettings}
             </button>
             <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2">
               <span className="flex items-center gap-2.5 text-xs font-bold text-stone-800 dark:text-stone-200">
-                <Globe className="h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
+                <Globe className="h-4 w-4 shrink-0 text-ink-muted" />
                 {t.language.label}
               </span>
               <LanguageSwitcher compact />
@@ -807,11 +807,11 @@ export default function AppNavbar() {
           themselves to one screen subtract exactly this height on mobile
           (see APP_MOBILE_HEADER_H in app/(app)/kiem-tra/page.tsx). Keep the
           two in step. */}
-      <header className="lg:hidden h-14 shrink-0 border-b border-stone-200 dark:border-stone-800 sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
+      <header className="lg:hidden h-14 shrink-0 border-b border-line sticky top-0 bg-white/95 dark:bg-stone-950/95 backdrop-blur z-50">
         <div className="max-w-6xl mx-auto h-full px-3 sm:px-6 flex items-center justify-between gap-1.5 sm:gap-4 w-full overflow-hidden">
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
             <Logo size={28} />
-            <span className="hidden sm:inline text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100 whitespace-nowrap">{t.nav.brand}</span>
+            <span className="hidden sm:inline text-sm sm:text-base font-bold text-ink whitespace-nowrap">{t.nav.brand}</span>
           </Link>
 
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
@@ -819,8 +819,8 @@ export default function AppNavbar() {
               href="/tai-lieu"
               className={`flex items-center gap-1 text-xs font-bold px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl border transition-colors duration-200 whitespace-nowrap ${
                 pathname === "/tai-lieu"
-                  ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
-                  : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-800"
+                  ? "bg-accent-soft/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
+                  : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border-line hover:bg-stone-100 dark:hover:bg-stone-800"
               }`}
             >
               <FileText className="w-3.5 h-3.5 shrink-0" />
@@ -831,11 +831,11 @@ export default function AppNavbar() {
             {profile && (
               <button
                 onClick={() => setShowQuickShop(true)}
-                className="flex items-center gap-1 text-xs font-black px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 transition-colors cursor-pointer whitespace-nowrap"
+                className="flex items-center gap-1 text-xs font-black px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-xl bg-warn-soft/40 text-warn border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 transition-colors cursor-pointer whitespace-nowrap"
                 title={t.nav.coinBalanceTitle}
               >
                 <GoldCoinIcon className="w-4 h-4" />
-                <span className="font-black text-amber-600 dark:text-amber-400">{profile.coins ?? 0}</span>
+                <span className="font-black text-warn">{profile.coins ?? 0}</span>
               </button>
             )}
 
@@ -843,7 +843,7 @@ export default function AppNavbar() {
 
             <button
               onClick={toggleMobileMenu}
-              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
+              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
               aria-label={t.nav.openMenu}
               aria-expanded={mobileMenuOpen}
             >
@@ -888,31 +888,31 @@ export default function AppNavbar() {
         {dropdownOpen && profile && (
           <div
             ref={mobileDropdownPanelRef}
-            className="absolute right-3 sm:right-6 top-full mt-2 w-[min(16rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 shadow-lg z-50 p-3.5"
+            className="absolute right-3 sm:right-6 top-full mt-2 w-[min(16rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-2xl border border-line shadow-lg z-50 p-3.5"
           >
-            <div className="flex gap-2.5 mb-3 pb-3 border-b border-stone-100 dark:border-stone-800 items-center">
+            <div className="flex gap-2.5 mb-3 pb-3 border-b border-line-soft items-center">
               {isValidAvatar(profile.avatar_url) ? (
                 <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
               ) : (
                 <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs shrink-0">{initials || "?"}</div>
               )}
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-stone-900 dark:text-stone-100 truncate text-xs">{profile.full_name || t.nav.user}</p>
-                <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">{profile.email}</p>
+                <p className="font-bold text-ink truncate text-xs">{profile.full_name || t.nav.user}</p>
+                <p className="text-[11px] text-ink-muted truncate">{profile.email}</p>
               </div>
             </div>
 
             <div className="space-y-1 mb-2">
               <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2 rounded-xl px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                <User className="h-3.5 w-3.5 shrink-0 text-stone-500 dark:text-stone-400" />
+                <User className="h-3.5 w-3.5 shrink-0 text-ink-muted" />
                 {t.nav.menuProfileShort}
               </button>
               <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2 rounded-xl px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                <Users className="h-3.5 w-3.5 shrink-0 text-stone-500 dark:text-stone-400" />
+                <Users className="h-3.5 w-3.5 shrink-0 text-ink-muted" />
                 {t.nav.menuFriendsShort}
               </button>
               <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2 rounded-xl px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
-                <Settings className="h-3.5 w-3.5 shrink-0 text-stone-500 dark:text-stone-400" />
+                <Settings className="h-3.5 w-3.5 shrink-0 text-ink-muted" />
                 {t.nav.menuSettingsShort}
               </button>
             </div>
@@ -945,9 +945,9 @@ export default function AppNavbar() {
               onClick={() => setMobileMenuOpen(false)}
             />
 
-            <div className="absolute left-0 right-0 top-full bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-lg max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain z-40 lg:hidden backdrop-blur-md">
+            <div className="absolute left-0 right-0 top-full bg-white/98 dark:bg-stone-950/98 border-b border-line px-4 sm:px-6 py-3.5 space-y-1.5 shadow-lg max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain z-40 lg:hidden backdrop-blur-md">
               {profile && (
-                <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800">
+                <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-xl bg-surface border border-stone-200/80 dark:border-stone-800">
                   <div className="flex items-center gap-2.5 min-w-0">
                     {isValidAvatar(profile.avatar_url) ? (
                       <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
@@ -957,8 +957,8 @@ export default function AppNavbar() {
                       </div>
                     )}
                     <div className="min-w-0">
-                      <p className="font-bold text-xs text-stone-900 dark:text-stone-100 truncate">{profile.full_name || t.nav.user}</p>
-                      <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate">{format(t.nav.levelXp, { level: profile.current_level ?? 1, xp: profile.total_xp ?? 0 })}</p>
+                      <p className="font-bold text-xs text-ink truncate">{profile.full_name || t.nav.user}</p>
+                      <p className="text-[10px] text-ink-muted truncate">{format(t.nav.levelXp, { level: profile.current_level ?? 1, xp: profile.total_xp ?? 0 })}</p>
                     </div>
                   </div>
                   <button

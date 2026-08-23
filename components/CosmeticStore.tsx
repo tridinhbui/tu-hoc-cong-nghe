@@ -232,7 +232,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
   if (loading) return <div className="text-center p-4">{t.cosmeticStore.loadingText}</div>;
 
   return (
-    <div className={`bg-white dark:bg-stone-900 rounded-2xl ${onBack ? "p-2 sm:p-4 mt-0 shadow-none border-0" : "p-6 mt-6 border border-stone-200 dark:border-stone-800 shadow-sm"}`}>
+    <div className={`bg-white dark:bg-stone-900 rounded-2xl ${onBack ? "p-2 sm:p-4 mt-0 shadow-none border-0" : "p-6 mt-6 border border-line shadow-sm"}`}>
       
       {onBack && (
         <div className="mb-4">
@@ -246,7 +246,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
       )}
 
       {/* Wolf of Wall Street Hero Banner */}
-      <div className="relative w-full h-36 sm:h-44 rounded-2xl overflow-hidden mb-6 border border-stone-200 dark:border-stone-800 shadow-md">
+      <div className="relative w-full h-36 sm:h-44 rounded-2xl overflow-hidden mb-6 border border-line shadow-md">
         <Image
           src="/rpg/wolf_of_wall_street.jpg"
           alt={t.cosmeticStore.storeAlt}
@@ -267,17 +267,17 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
       {/* Top Banner & RPG Character Preview */}
       <div className="flex flex-col lg:flex-row items-center justify-between gap-6 border-b pb-6 mb-6">
         <div>
-          <span className="text-[10px] font-black uppercase tracking-wider text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-lg border border-amber-200 dark:border-amber-900">
+          <span className="text-[10px] font-black uppercase tracking-wider text-amber-500 bg-warn-soft/40 px-2.5 py-1 rounded-lg border border-amber-200 dark:border-amber-900">
             {t.cosmeticStore.arsenalTitle}
           </span>
-          <h3 className="text-xl font-black text-stone-900 dark:text-stone-100 mt-2 flex items-center gap-2">
+          <h3 className="text-xl font-black text-ink mt-2 flex items-center gap-2">
             {t.cosmeticStore.sectionTitle}
           </h3>
-          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 max-w-md">
+          <p className="text-xs text-ink-muted mt-1 max-w-md">
             {t.cosmeticStore.sectionDesc}
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 px-4 py-2 rounded-xl">
-            <span className="text-xs font-bold text-stone-700 dark:text-stone-300">{t.cosmeticStore.coinBalanceLabel}</span>
+          <div className="mt-4 inline-flex items-center gap-2 bg-warn-soft/40 border border-amber-200 dark:border-amber-900 px-4 py-2 rounded-xl">
+            <span className="text-xs font-bold text-ink-body">{t.cosmeticStore.coinBalanceLabel}</span>
             <div className="flex items-center gap-1">
               <GoldCoinIcon className="w-5 h-5" />
               <span className="text-base font-black text-amber-500">{format(t.cosmeticStore.coinsSuffix, { coins })}</span>
@@ -308,7 +308,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
       />
 
       {/* Shop Category Tabs */}
-      <div className="flex flex-wrap items-center gap-2 mb-6 border-b border-stone-200 dark:border-stone-800 pb-3">
+      <div className="flex flex-wrap items-center gap-2 mb-6 border-b border-line pb-3">
         {[
           { id: "all", label: t.cosmeticStore.categoryAll },
           { id: "booster", label: t.cosmeticStore.categoryBooster },
@@ -323,7 +323,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
             className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
               selectedCategory === tab.id
                 ? "bg-amber-500 text-stone-950 shadow-sm"
-                : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700"
+                : "bg-surface-raised text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700"
             }`}
           >
             {tab.label}
@@ -360,10 +360,10 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
                   </span>
                   <span className="text-xl">{meta?.icon || "✨"}</span>
                 </div>
-                <h4 className="font-extrabold text-stone-900 dark:text-stone-100 mt-3 flex items-center gap-1.5">
+                <h4 className="font-extrabold text-ink mt-3 flex items-center gap-1.5">
                   {item.name}
                 </h4>
-                <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">{item.description}</p>
+                <p className="text-xs text-ink-muted mt-1 leading-relaxed">{item.description}</p>
               </div>
 
               <div className="mt-4 pt-3 border-t dark:border-stone-800 flex items-center justify-between">
@@ -377,7 +377,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
                     className={`flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-xl transition-all ${
                       isEquipped
                         ? "bg-amber-500 text-white shadow-sm hover:bg-amber-600"
-                        : "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-200 hover:bg-emerald-100"
+                        : "bg-accent-soft/40 text-accent border border-emerald-200 hover:bg-emerald-100"
                     }`}
                   >
                     {isEquipped ? <Zap className="w-3.5 h-3.5" /> : <Check className="w-3.5 h-3.5" />}

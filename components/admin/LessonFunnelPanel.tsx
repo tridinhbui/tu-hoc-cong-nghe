@@ -45,7 +45,7 @@ export default async function LessonFunnelPanel({ funnel }: { funnel: LessonFunn
                 return (
                   <div key={label} className="rounded-xl bg-stone-100 p-3 dark:bg-stone-800">
                     <p className="text-[11px] font-bold text-stone-500">{label}</p>
-                    <p className="font-mono text-2xl font-black text-stone-900 dark:text-stone-100">
+                    <p className="font-mono text-2xl font-black text-ink">
                       {(rate * 100).toFixed(0)}%
                     </p>
                     <p className="text-[11px] text-stone-500">
@@ -77,7 +77,7 @@ export default async function LessonFunnelPanel({ funnel }: { funnel: LessonFunn
             </thead>
             <tbody>
               {funnel.rows.slice(0, 20).map((r) => (
-                <tr key={r.slug} className="border-t border-stone-100 dark:border-stone-800">
+                <tr key={r.slug} className="border-t border-line-soft">
                   <td className="py-1.5 pr-2">
                     <span className="font-medium text-stone-800 dark:text-stone-200">{r.title}</span>
                     <span className="ml-1 font-mono text-[10px] text-stone-400">{r.slug}</span>

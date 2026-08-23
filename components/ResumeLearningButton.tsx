@@ -83,11 +83,11 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
   if (loading) {
     return (
-      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-3 flex items-center gap-3">
+      <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-3 flex items-center gap-3">
         <div className="relative w-8 h-8 flex-shrink-0">
           <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping" />
           <span className="absolute -inset-0.5 rounded-full border border-emerald-400/60 border-t-transparent animate-spin" />
-          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-stone-100 dark:bg-stone-800">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-surface-raised">
             <TaiTaiAvatar size={32} />
           </div>
         </div>
@@ -173,19 +173,19 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   if (completedCount === 0) {
     return (
       <div className="flex flex-col h-full justify-between">
-        <div className="relative bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-4 sm:p-5">
+        <div className="relative bg-white dark:bg-stone-900 border border-line rounded-2xl p-4 sm:p-5">
 
           <div className="flex items-start gap-3.5 pr-6">
             <div className="relative w-11 h-11 flex-shrink-0 mt-0.5">
               <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
-              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-stone-100 dark:bg-stone-800">
+              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-surface-raised">
                 <TaiTaiAvatar size={44} />
               </div>
               <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
             </div>
 
             <div className="flex-1 min-w-0">
-              <span className="text-[9px] font-extrabold text-emerald-700 dark:text-emerald-300 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
+              <span className="text-[9px] font-extrabold text-emerald-700 dark:text-emerald-300 uppercase tracking-widest bg-accent-soft/40 px-2 py-0.5 rounded-md">
                 {t.resume.quickGuideTitle}
               </span>
               <p className="mt-1.5 text-stone-800 dark:text-stone-100 text-sm sm:text-[15px] font-bold leading-relaxed">
@@ -200,10 +200,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               onClick={() => trackFeatureClick("beginner_cta_click", { label: "step1_chon_lo_trinh" })}
               className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-emerald-300 dark:hover:border-emerald-800 rounded-xl p-3 transition-colors"
             >
-              <span className="shrink-0 w-6 h-6 rounded-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">1</span>
+              <span className="shrink-0 w-6 h-6 rounded-full bg-surface-invert text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">1</span>
               <div className="flex-1 min-w-0">
                 <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">{t.resume.step1Title}</p>
-                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">{t.resume.step1Body}</p>
+                <p className="text-[10px] text-ink-faint font-bold mt-0.5">{t.resume.step1Body}</p>
               </div>
               <Map className="w-4 h-4 text-stone-400 group-hover:text-emerald-500 shrink-0" />
             </a>
@@ -216,7 +216,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-600 text-white text-[11px] font-extrabold flex items-center justify-center">2</span>
               <div className="flex-1 min-w-0">
                 <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50 truncate">{format(t.resume.step2Title, { lesson: nextLessonShortTitle ?? "" })}</p>
-                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">{format(t.resume.step2Body, { duration: nextLesson.duration })}</p>
+                <p className="text-[10px] text-ink-faint font-bold mt-0.5">{format(t.resume.step2Body, { duration: nextLesson.duration })}</p>
               </div>
               <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl transition-all">{t.resume.study}</span>
             </Link>
@@ -226,10 +226,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               onClick={() => trackFeatureClick("beginner_cta_click", { label: "step3_bang_xep_hang" })}
               className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-amber-300 dark:hover:border-amber-800 rounded-xl p-3 transition-colors"
             >
-              <span className="shrink-0 w-6 h-6 rounded-full bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">3</span>
+              <span className="shrink-0 w-6 h-6 rounded-full bg-surface-invert text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">3</span>
               <div className="flex-1 min-w-0">
                 <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">{t.resume.step3Title}</p>
-                <p className="text-[10px] text-stone-400 dark:text-stone-500 font-bold mt-0.5">{t.resume.step3Body}</p>
+                <p className="text-[10px] text-ink-faint font-bold mt-0.5">{t.resume.step3Body}</p>
               </div>
               <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-amber-500 shrink-0" />
             </Link>
@@ -254,7 +254,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           {/* Avatar with soft energetic halo */}
           <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 mt-0.5">
             <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
-            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-stone-200 dark:border-stone-700 shadow-sm bg-stone-100 dark:bg-stone-800 flex items-center justify-center">
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-stone-200 dark:border-stone-700 shadow-sm bg-surface-raised flex items-center justify-center">
               <TaiTaiAvatar size={44} />
             </div>
             {/* Online status indicator */}
@@ -264,10 +264,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           <div className="flex-1 min-w-0 pr-5 sm:pr-8">
             {/* Header Labels */}
             <div className="flex items-center gap-2 flex-wrap mb-2">
-              <span className="text-[10px] font-black text-stone-600 dark:text-stone-300 uppercase tracking-widest bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 px-2.5 py-0.5 rounded-lg shadow-2xs">
+              <span className="text-[10px] font-black text-stone-600 dark:text-stone-300 uppercase tracking-widest bg-surface-raised border border-stone-200 dark:border-stone-700 px-2.5 py-0.5 rounded-lg shadow-2xs">
                 {t.resume.heroBanner}
               </span>
-              <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-amber-50 dark:bg-amber-950/50 border border-amber-200/80 dark:border-amber-800/80 px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-2xs">
+              <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-warn-soft/50 border border-amber-200/80 dark:border-amber-800/80 px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-2xs">
                 {format(t.resume.xpIfNow, { xp: XP_PER_LESSON })}
               </span>
             </div>
@@ -282,9 +282,9 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               <div className="mt-3.5">
                 <div className="flex items-center justify-between text-[11px] font-bold text-stone-600 dark:text-stone-400 mb-1">
                   <span>{format(t.resume.trackProgress, { done: trackProgress.completed, total: trackProgress.total })}</span>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-extrabold">{trackProgress.percent}%</span>
+                  <span className="text-accent font-extrabold">{trackProgress.percent}%</span>
                 </div>
-                <div className="w-full h-2 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden shadow-inner">
+                <div className="w-full h-2 bg-surface-raised rounded-full overflow-hidden shadow-inner">
                   <div
                     className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
                     style={{ width: `${Math.max(5, trackProgress.percent)}%` }}
@@ -296,13 +296,13 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             {/* Lesson Target Sub-Card inside the hero banner */}
             <div className="mt-3.5 bg-stone-50/80 dark:bg-stone-950/60 border border-stone-200/80 dark:border-stone-800 group-hover:border-stone-300 dark:group-hover:border-stone-700 rounded-2xl p-3 sm:p-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 transition-all duration-300">
               <div className="min-w-0 flex-1">
-                <span className="text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block mb-0.5">
+                <span className="text-[9px] font-black text-ink-muted uppercase tracking-wider block mb-0.5">
                   {t.resume.continuingLesson}
                 </span>
                 <p className="text-stone-950 dark:text-white text-xs sm:text-sm font-extrabold truncate">
                   {nextLessonLabel}: {nextLessonShortTitle}
                 </p>
-                <p className="text-[10px] text-stone-500 dark:text-stone-400 font-bold mt-0.5">
+                <p className="text-[10px] text-ink-muted font-bold mt-0.5">
                   {totalMinutes > 0 ? format(t.resume.minutesStudied, { minutes: totalMinutes }) : t.resume.readyToStart}
                 </p>
               </div>
@@ -317,10 +317,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
       </Link>
 
       {(stageReviewInsight || criticalMistake || topicGapSummary.length > 0) && (
-        <div className="mt-2 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 shadow-sm">
+        <div className="mt-2 rounded-2xl border border-line bg-white dark:bg-stone-900 p-4 shadow-sm">
           <div className="flex items-start gap-3">
             <div className="relative w-9 h-9 flex-shrink-0 mt-0.5">
-              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-stone-100 dark:bg-stone-800">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-surface-raised">
                 <TaiTaiAvatar size={36} />
               </div>
               <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
@@ -332,7 +332,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                   {t.resume.feedbackTitle}
                 </span>
                 {stageReviewInsight && (
-                  <span className="text-[9px] font-extrabold text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-md">
+                  <span className="text-[9px] font-extrabold text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-warn-soft/40 px-2 py-0.5 rounded-md">
                     {t.resume.reviewOnTime}
                   </span>
                 )}
@@ -340,7 +340,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
               {stageReviewInsight && (
                 <div className="rounded-xl border border-amber-200/80 dark:border-amber-900/40 bg-amber-50/70 dark:bg-amber-950/20 p-3 mb-3">
-                  <p className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-relaxed">
+                  <p className="text-xs font-bold text-ink leading-relaxed">
                     {format(t.resume.coachReminder, {
                       message: format(t.resume.stageReviewMessage, { stage: stageReviewInsight.stageLabel }),
                     })}
@@ -356,7 +356,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
               {topicGapSummary.length > 0 && (
                 <div className="mb-3">
-                  <p className="text-[11px] font-bold text-stone-700 dark:text-stone-300 mb-2">
+                  <p className="text-[11px] font-bold text-ink-body mb-2">
                     {t.resume.gapsLeaning}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -375,13 +375,13 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
               {criticalMistake && (
                 <div className="rounded-xl border border-stone-200/80 dark:border-stone-800/80 bg-stone-50/70 dark:bg-stone-950/40 p-3">
-                  <p className="text-[11px] font-extrabold text-stone-900 dark:text-stone-100">
+                  <p className="text-[11px] font-extrabold text-ink">
                     {format(t.resume.stumblingMost, { topic: t.topics[criticalMistake.topicId] })}
                   </p>
                   <p className="text-[11px] text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
                     {format(t.resume.wrongCount, { count: criticalMistake.wrongCount, lesson: getLessonShortTitle({ title: criticalMistake.lessonTitle }) })}
                   </p>
-                  <p className="text-[11px] text-stone-700 dark:text-stone-300 mt-2 leading-relaxed">
+                  <p className="text-[11px] text-ink-body mt-2 leading-relaxed">
                     {criticalMistake.explanation ?? t.resume.explanationFallback}
                   </p>
                   <p className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300 mt-2 leading-relaxed">
@@ -390,13 +390,13 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                   <div className="flex flex-wrap gap-2 mt-3">
                     <Link
                       href={`/bai-hoc/${criticalMistake.lessonSlug}`}
-                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-surface-invert text-white dark:text-stone-900"
                     >
                       {t.resume.reviewThisLesson} <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                     <Link
                       href="/ghi-chu"
-                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-line bg-white dark:bg-stone-900 text-ink-body"
                     >
                       {t.resume.makeFlashcard}
                     </Link>

@@ -121,10 +121,10 @@ export default function GlobalSearchModal({
           initial={{ opacity: 0, scale: 0.95, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: -10 }}
-          className="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-stone-900 shadow-2xl border border-stone-200 dark:border-stone-800 overflow-hidden"
+          className="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-stone-900 shadow-2xl border border-line overflow-hidden"
         >
           {/* Search Input Header */}
-          <div className="relative border-b border-stone-100 dark:border-stone-800 p-4">
+          <div className="relative border-b border-line-soft p-4">
             <Search className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-stone-400" />
             <input
               type="text"
@@ -132,7 +132,7 @@ export default function GlobalSearchModal({
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t.globalSearch.inputPlaceholder}
               autoFocus
-              className="w-full bg-transparent pl-9 pr-10 text-base font-bold text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none"
+              className="w-full bg-transparent pl-9 pr-10 text-base font-bold text-ink placeholder:text-stone-400 focus:outline-none"
             />
             <button
               type="button"
@@ -159,7 +159,7 @@ export default function GlobalSearchModal({
                       key={kw}
                       type="button"
                       onClick={() => setQuery(kw)}
-                      className="px-2.5 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 font-bold hover:bg-stone-200 cursor-pointer"
+                      className="px-2.5 py-1 rounded-full bg-surface-raised text-stone-600 dark:text-stone-300 font-bold hover:bg-stone-200 cursor-pointer"
                     >
                       {kw}
                     </button>
@@ -181,17 +181,17 @@ export default function GlobalSearchModal({
                       onClose();
                       router.push(item.url);
                     }}
-                    className="w-full text-left p-3 rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-emerald-500 hover:bg-stone-50 dark:hover:bg-stone-800/60 transition-all cursor-pointer flex items-center justify-between group"
+                    className="w-full text-left p-3 rounded-2xl border border-line hover:border-emerald-500 hover:bg-stone-50 dark:hover:bg-stone-800/60 transition-all cursor-pointer flex items-center justify-between group"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-raised text-ink-body">
                         {item.category === "lesson" && <BookOpen className="w-4 h-4 text-emerald-500" />}
                         {item.category === "tool" && <Calculator className="w-4 h-4 text-sky-500" />}
                         {item.category === "glossary" && <HelpCircle className="w-4 h-4 text-amber-500" />}
                       </span>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400">
+                          <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-surface-raised text-ink-muted">
                             {item.category === "lesson"
                               ? t.globalSearch.categoryLesson
                               : item.category === "tool"
@@ -199,10 +199,10 @@ export default function GlobalSearchModal({
                               : t.globalSearch.categoryGlossary}
                           </span>
                         </div>
-                        <h4 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 mt-0.5">
+                        <h4 className="text-xs sm:text-sm font-black text-ink mt-0.5">
                           {item.title}
                         </h4>
-                        <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-1">{item.desc}</p>
+                        <p className="text-[11px] text-ink-muted line-clamp-1">{item.desc}</p>
                       </div>
                     </div>
                     <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all shrink-0" />

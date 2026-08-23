@@ -103,8 +103,8 @@ export default function UserProfile() {
       </button>
 
       {showDropdown && (
-        <div className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-lg z-50 p-4">
-          <div className="flex gap-3 mb-4 pb-4 border-b border-stone-100 dark:border-stone-800">
+        <div className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-line shadow-lg z-50 p-4">
+          <div className="flex gap-3 mb-4 pb-4 border-b border-line-soft">
             {isValidAvatar(profile.avatar_url) ? (
               <Image
                 src={profile.avatar_url}
@@ -119,23 +119,23 @@ export default function UserProfile() {
               </div>
             )}
             <div className="flex-1">
-              <p className="font-bold text-stone-900 dark:text-stone-100">{profile.full_name || t.userProfile.fallbackName}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400">{profile.email}</p>
+              <p className="font-bold text-ink">{profile.full_name || t.userProfile.fallbackName}</p>
+              <p className="text-xs text-ink-muted">{profile.email}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-stone-100 dark:border-stone-800 text-center">
+          <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-line-soft text-center">
             <div>
               <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{profile.current_level}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400">{t.userProfile.level}</p>
+              <p className="text-xs text-ink-muted">{t.userProfile.level}</p>
             </div>
             <div>
-              <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{profile.total_xp}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400">{t.userProfile.xp}</p>
+              <p className="text-lg font-bold text-accent">{profile.total_xp}</p>
+              <p className="text-xs text-ink-muted">{t.userProfile.xp}</p>
             </div>
             <div>
-              <p className="text-lg font-bold text-stone-900 dark:text-stone-100">{profile.lessons_completed}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400">{t.userProfile.lessons}</p>
+              <p className="text-lg font-bold text-ink">{profile.lessons_completed}</p>
+              <p className="text-xs text-ink-muted">{t.userProfile.lessons}</p>
             </div>
           </div>
 
@@ -145,35 +145,35 @@ export default function UserProfile() {
                 setShowDropdown(false);
                 setShowCustomizer(true);
               }}
-              className="w-full text-left px-3 py-2 text-sm font-black text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100/80 rounded-lg transition border border-amber-200 dark:border-amber-900/60 flex items-center gap-1.5"
+              className="w-full text-left px-3 py-2 text-sm font-black text-warn bg-warn-soft/40 hover:bg-amber-100/80 rounded-lg transition border border-amber-200 dark:border-amber-900/60 flex items-center gap-1.5"
             >
               {t.userProfile.customizeAvatar}
             </button>
             <Link
               href="/analytics"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
               {t.userProfile.analytics}
             </Link>
             <Link
               href="/tai-lieu"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
               {t.userProfile.documents}
             </Link>
             <Link
               href="/profile"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
               {t.userProfile.profile}
             </Link>
             <Link
               href="/settings"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
             >
               {t.userProfile.settings}
             </Link>

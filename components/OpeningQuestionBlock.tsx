@@ -36,13 +36,13 @@ export default function OpeningQuestionBlock({
 
       <div className="space-y-2.5">
         {options.map((opt, i) => {
-          let btnCls = "border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-stone-900 text-stone-800 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800/60 font-medium";
+          let btnCls = "border-line bg-white/95 dark:bg-stone-900 text-stone-800 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800/60 font-medium";
           if (submitted) {
-            if (i === correct) btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-300 font-bold";
+            if (i === correct) btnCls = "border-emerald-500 bg-accent-soft/50 text-emerald-900 dark:text-emerald-300 font-bold";
             else if (i === selected) btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-300 font-bold";
-            else btnCls = "border-stone-100 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/20 text-stone-500 dark:text-stone-400 opacity-60";
+            else btnCls = "border-line-soft bg-stone-50/20 dark:bg-stone-900/20 text-ink-muted opacity-60";
           } else if (selected === i) {
-            btnCls = "border-stone-900 dark:border-stone-100 bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 font-bold border-2";
+            btnCls = "border-stone-900 dark:border-stone-100 bg-surface-raised text-ink font-bold border-2";
           }
 
           return (
@@ -53,7 +53,7 @@ export default function OpeningQuestionBlock({
               className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm transition-all flex items-center gap-3 cursor-pointer ${btnCls}`}
             >
               <span className={`w-6 h-6 rounded-lg text-xs font-black flex items-center justify-center border shrink-0 ${
-                selected === i ? "bg-white/80 dark:bg-stone-900/80 border-current" : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200 border-stone-200 dark:border-stone-700"
+                selected === i ? "bg-white/80 dark:bg-stone-900/80 border-current" : "bg-surface-raised text-stone-700 dark:text-stone-200 border-stone-200 dark:border-stone-700"
               }`}>
                 {["A", "B", "C", "D"][i]}
               </span>

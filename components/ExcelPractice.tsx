@@ -239,13 +239,13 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
               {solved.includes(i) ? "✓" : i + 1}
             </button>
           ))}
-          <span className="ml-auto text-[11px] text-stone-400 dark:text-stone-500">
+          <span className="ml-auto text-[11px] text-ink-faint">
             {solved.length}/{set.tasks.length}
           </span>
         </div>
 
         <p className="text-sm text-stone-700 leading-relaxed dark:text-stone-200">
-          <span className="font-mono font-bold text-amber-600 dark:text-amber-400">{normalizeRef(task.target)}</span>{" "}
+          <span className="font-mono font-bold text-warn">{normalizeRef(task.target)}</span>{" "}
           {task.prompt}
         </p>
 
@@ -352,7 +352,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                 <thead>
                   <tr>
                     {table.columns.map((c) => (
-                      <th key={c} className="px-2 py-1 text-left font-semibold text-stone-500 dark:text-stone-400">
+                      <th key={c} className="px-2 py-1 text-left font-semibold text-ink-muted">
                         {c}
                       </th>
                     ))}
@@ -360,7 +360,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                 </thead>
                 <tbody>
                   {table.rows.map((row, i) => (
-                    <tr key={i} className="border-t border-stone-100 dark:border-stone-800">
+                    <tr key={i} className="border-t border-line-soft">
                       {table.columns.map((c) => (
                         <td key={c} className="px-2 py-1 text-stone-700 dark:text-stone-200">
                           {row[c] === null ? t.excelPractice.nullValue : String(row[c])}
@@ -395,7 +395,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
               {solved.includes(i) ? "✓" : i + 1}
             </button>
           ))}
-          <span className="ml-auto text-[11px] text-stone-400 dark:text-stone-500">
+          <span className="ml-auto text-[11px] text-ink-faint">
             {solved.length}/{set.tasks.length}
           </span>
         </div>
@@ -427,7 +427,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
               <thead>
                 <tr className="bg-stone-50 dark:bg-stone-800">
                   {result.columns.map((c) => (
-                    <th key={c} className="px-2 py-1 text-left font-semibold text-stone-500 dark:text-stone-400">
+                    <th key={c} className="px-2 py-1 text-left font-semibold text-ink-muted">
                       {c}
                     </th>
                   ))}
@@ -435,7 +435,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
               </thead>
               <tbody>
                 {result.rows.map((row, i) => (
-                  <tr key={i} className="border-t border-stone-100 dark:border-stone-800">
+                  <tr key={i} className="border-t border-line-soft">
                     {row.map((v, j) => (
                       <td key={j} className="px-2 py-1 text-stone-700 dark:text-stone-200">
                         {v === null ? (
@@ -449,7 +449,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                 ))}
               </tbody>
             </table>
-            <div className="px-2 py-1 text-[10px] text-stone-400 dark:text-stone-500">
+            <div className="px-2 py-1 text-[10px] text-ink-faint">
               {format(t.excelPractice.rowsCount, { n: result.rows.length })}
             </div>
           </div>
@@ -550,7 +550,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
                     : "border-stone-200 dark:border-stone-700",
               ].join(" ")}
             >
-              <span className="w-5 shrink-0 text-xs font-bold text-stone-400 dark:text-stone-500">{i + 1}</span>
+              <span className="w-5 shrink-0 text-xs font-bold text-ink-faint">{i + 1}</span>
               <span className="flex-1 text-xs leading-relaxed text-stone-700 dark:text-stone-200">{step}</span>
               <span className="flex flex-col shrink-0">
                 <button

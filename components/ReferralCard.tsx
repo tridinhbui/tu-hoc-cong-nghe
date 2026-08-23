@@ -48,18 +48,18 @@ export default function ReferralCard() {
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-5">
       <div className="flex items-center gap-2 mb-1.5">
-        <Gift className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-        <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest">
+        <Gift className="w-4 h-4 text-accent" />
+        <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest">
           {t.referralCard.title}
         </h2>
       </div>
-      <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">
+      <p className="text-xs text-ink-muted mb-4">
         {t.referralCard.descPart1}{" "}
-        <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.referralCard.descBonus, { xp: REFERRER_BONUS_XP })}</span>
+        <span className="font-bold text-accent">{format(t.referralCard.descBonus, { xp: REFERRER_BONUS_XP })}</span>
         {t.referralCard.descPart2}{" "}
-        <span className="font-bold text-emerald-600 dark:text-emerald-400">{format(t.referralCard.descBonus, { xp: REFERRED_BONUS_XP })}</span>{" "}
+        <span className="font-bold text-accent">{format(t.referralCard.descBonus, { xp: REFERRED_BONUS_XP })}</span>{" "}
         {t.referralCard.descPart3}
       </p>
 
@@ -75,7 +75,7 @@ export default function ReferralCard() {
           title={t.referralCard.copyButtonTitle}
           className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
         >
-          {copied ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
+          {copied ? <Check className="w-4 h-4 text-accent" /> : <Copy className="w-4 h-4" />}
         </button>
       </div>
 
@@ -91,12 +91,12 @@ export default function ReferralCard() {
       </button>
 
       {stats.totalInvited > 0 && (
-        <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-3 text-center">
+        <p className="text-[11px] text-ink-faint mt-3 text-center">
           {t.referralCard.invitedPrefix} <span className="font-bold text-stone-600 dark:text-stone-300">{stats.totalInvited}</span> {t.referralCard.invitedUnit}
           {stats.totalRewarded > 0 && (
             <>
               {" · "}
-              <span className="font-bold text-emerald-600 dark:text-emerald-400">{stats.totalRewarded}</span> {t.referralCard.rewardedUnit}
+              <span className="font-bold text-accent">{stats.totalRewarded}</span> {t.referralCard.rewardedUnit}
             </>
           )}
         </p>

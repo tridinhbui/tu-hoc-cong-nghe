@@ -77,7 +77,7 @@ interface Props {
 }
 
 const ACCENTS: Record<string, { bg: string; text: string; border: string; badge: string; bar: string; btn: string }> = {
-  emerald: { bg: "bg-emerald-50 dark:bg-emerald-950/40",  text: "text-emerald-700 dark:text-emerald-400", border: "border-emerald-200 dark:border-emerald-900", badge: "bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400", bar: "bg-emerald-500", btn: "bg-emerald-600 hover:bg-emerald-700" },
+  emerald: { bg: "bg-accent-soft/40",  text: "text-emerald-700 dark:text-emerald-400", border: "border-accent-line", badge: "bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400", bar: "bg-emerald-500", btn: "bg-emerald-600 hover:bg-emerald-700" },
   blue:    { bg: "bg-blue-50 dark:bg-blue-950/40",     text: "text-blue-700 dark:text-blue-400",    border: "border-blue-200 dark:border-blue-900",    badge: "bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400",    bar: "bg-blue-500",    btn: "bg-blue-600 hover:bg-blue-700" },
   violet:  { bg: "bg-violet-50 dark:bg-violet-950/40",   text: "text-violet-700 dark:text-violet-400",  border: "border-violet-200 dark:border-violet-900",  badge: "bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-400", bar: "bg-violet-500",  btn: "bg-violet-600 hover:bg-violet-700" },
   orange:  { bg: "bg-orange-50 dark:bg-orange-950/40",   text: "text-orange-700 dark:text-orange-400",  border: "border-orange-200 dark:border-orange-900",  badge: "bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-400", bar: "bg-orange-500",  btn: "bg-orange-600 hover:bg-orange-700" },
@@ -85,9 +85,9 @@ const ACCENTS: Record<string, { bg: string; text: string; border: string; badge:
   cyan:    { bg: "bg-cyan-50 dark:bg-cyan-950/40",     text: "text-cyan-700 dark:text-cyan-400",    border: "border-cyan-200 dark:border-cyan-900",    badge: "bg-cyan-100 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-400",    bar: "bg-cyan-500",    btn: "bg-cyan-600 hover:bg-cyan-700" },
   rose:    { bg: "bg-rose-50 dark:bg-rose-950/40",     text: "text-rose-700 dark:text-rose-400",    border: "border-rose-200 dark:border-rose-900",    badge: "bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400",    bar: "bg-rose-500",    btn: "bg-rose-600 hover:bg-rose-700" },
   indigo:  { bg: "bg-indigo-50 dark:bg-indigo-950/40",   text: "text-indigo-700 dark:text-indigo-400",  border: "border-indigo-200 dark:border-indigo-900",  badge: "bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400", bar: "bg-indigo-500",  btn: "bg-indigo-600 hover:bg-indigo-700" },
-  amber:   { bg: "bg-amber-50 dark:bg-amber-950/40",    text: "text-amber-700 dark:text-amber-400",   border: "border-amber-200 dark:border-amber-900",   badge: "bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400",  bar: "bg-amber-500",   btn: "bg-amber-600 hover:bg-amber-700" },
+  amber:   { bg: "bg-warn-soft/40",    text: "text-amber-700 dark:text-amber-400",   border: "border-amber-200 dark:border-amber-900",   badge: "bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400",  bar: "bg-amber-500",   btn: "bg-amber-600 hover:bg-amber-700" },
   purple:  { bg: "bg-purple-50 dark:bg-purple-950/40",   text: "text-purple-700 dark:text-purple-400",  border: "border-purple-200 dark:border-purple-900",  badge: "bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400", bar: "bg-purple-500",  btn: "bg-purple-600 hover:bg-purple-700" },
-  stone:   { bg: "bg-stone-100 dark:bg-stone-900",   text: "text-stone-600 dark:text-stone-400",   border: "border-stone-200 dark:border-stone-800",   badge: "bg-stone-200 dark:bg-stone-800 text-stone-600 dark:text-stone-400",  bar: "bg-stone-500",   btn: "bg-stone-700 hover:bg-stone-800" },
+  stone:   { bg: "bg-stone-100 dark:bg-stone-900",   text: "text-stone-600 dark:text-stone-400",   border: "border-line",   badge: "bg-stone-200 dark:bg-stone-800 text-stone-600 dark:text-stone-400",  bar: "bg-stone-500",   btn: "bg-stone-700 hover:bg-stone-800" },
 };
 
 // A set of older hand-written pages still declare their pre-resync lesson id
@@ -780,9 +780,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       </div>
 
       {/* Sticky header */}
-      <header className="bg-white dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-50">
+      <header className="bg-white dark:bg-stone-900 border-b border-line sticky top-0 z-50">
         {/* Scroll progress bar: full width, 4px, sits at very top of header */}
-        <div className="h-1.5 w-full bg-stone-100 dark:bg-stone-800">
+        <div className="h-1.5 w-full bg-surface-raised">
           <div
             className={`h-full ${c.bar} transition-all duration-150`}
             style={{ width: `${readPct}%` }}
@@ -794,14 +794,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <Link
               href="/hoc-bai"
               aria-label={t.lessonLayout.backAria}
-              className="inline-flex flex-shrink-0 items-center gap-1.5 whitespace-nowrap w-9 h-9 sm:w-auto sm:px-4 sm:py-2 justify-center rounded-full sm:rounded-lg border-2 border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 font-bold hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-100 bg-white dark:bg-stone-900 transition-all"
+              className="inline-flex flex-shrink-0 items-center gap-1.5 whitespace-nowrap w-9 h-9 sm:w-auto sm:px-4 sm:py-2 justify-center rounded-full sm:rounded-lg border-2 border-line-strong text-ink-body font-bold hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-100 bg-white dark:bg-stone-900 transition-all"
             >
               <ArrowLeft className="w-4 h-4 flex-shrink-0" />
               <span className="hidden sm:inline">{t.lessonLayout.back}</span>
             </Link>
             <div className="min-w-0">
-              <p className="font-extrabold text-stone-900 dark:text-stone-100 text-base sm:text-lg leading-tight line-clamp-1">{lesson.title}</p>
-              <p className="text-sm text-stone-500 dark:text-stone-400 hidden sm:block font-semibold">{lessonLabel}</p>
+              <p className="font-extrabold text-ink text-base sm:text-lg leading-tight line-clamp-1">{lesson.title}</p>
+              <p className="text-sm text-ink-muted hidden sm:block font-semibold">{lessonLabel}</p>
             </div>
           </div>
 
@@ -831,7 +831,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <LessonStatsHover />
 
             {/* Reading progress badge */}
-            <div className="hidden sm:flex items-center gap-2 bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800 rounded-full px-3 py-1.5">
+            <div className="hidden sm:flex items-center gap-2 bg-surface/50 border border-line rounded-full px-3 py-1.5">
               <div className="w-4 h-4 rounded-full bg-stone-200 dark:bg-stone-700 overflow-hidden flex-shrink-0 relative">
                 <div
                   className={`absolute bottom-0 left-0 right-0 ${c.bar} transition-all duration-150`}
@@ -848,10 +848,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             </div>
 
             <div className="hidden sm:flex items-center gap-2">
-              <div className="h-2 w-28 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
+              <div className="h-2 w-28 bg-surface-raised rounded-full overflow-hidden">
                 <div className={`h-full ${c.bar} rounded-full transition-all duration-500`} style={{ width: `${pct}%` }} />
               </div>
-              <span className="text-xs text-stone-500 dark:text-stone-400 font-semibold">{submittedCount}/{quiz.length}</span>
+              <span className="text-xs text-ink-muted font-semibold">{submittedCount}/{quiz.length}</span>
             </div>
             <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full ${c.badge}`}>
               {lessonLabel}
@@ -883,7 +883,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 {lesson.title}
               </h1>
               <p className="text-stone-700 dark:text-stone-100 text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
-              <div className="mt-7 pt-5 border-t-2 border-stone-300 dark:border-stone-700 space-y-4">
+              <div className="mt-7 pt-5 border-t-2 border-line-strong space-y-4">
                 <div className="flex items-center gap-4 text-base text-stone-700 dark:text-stone-100 font-semibold">
                   <span>{format(t.lessonLayout.durationRead, { duration: lesson.duration })}</span>
                   <span>·</span>
@@ -936,7 +936,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   const allDoneNow = checklistItems.every((it) => it.done);
 
                   return (
-                    <div className={`rounded-xl border-2 ${allDoneNow ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30" : c.border} ${allDoneNow ? "" : c.bg} px-4 py-3.5 space-y-2.5`}>
+                    <div className={`rounded-xl border-2 ${allDoneNow ? "border-emerald-500 bg-accent-soft/30" : c.border} ${allDoneNow ? "" : c.bg} px-4 py-3.5 space-y-2.5`}>
                       <p className={`text-xs font-extrabold uppercase tracking-widest flex items-center gap-1.5 ${allDoneNow ? "text-emerald-700 dark:text-emerald-400" : c.text}`}>
                         <span>{allDoneNow ? "✅" : "⚠️"}</span>
                         {t.lessonLayout.checklistTitle}
@@ -945,7 +945,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         {checklistItems.map((item, i) => (
                           <li key={i} className="flex items-center gap-2">
                             {item.done ? (
-                              <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                              <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0" />
                             ) : (
                               <Circle className="w-4 h-4 text-stone-400 dark:text-stone-600 flex-shrink-0" />
                             )}
@@ -1044,13 +1044,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             </div>
 
             {/* Feedback form at the bottom */}
-            <div className="mt-12 pt-8 border-t border-stone-200 dark:border-stone-800">
+            <div className="mt-12 pt-8 border-t border-line">
               <LessonFeedbackInline lessonId={persistedLessonId} userId={userId} />
             </div>
 
             {/* Mobile quiz prompt */}
-            <div className="lg:hidden mt-8 border-t border-stone-200 dark:border-stone-800 pt-6">
-              <p className="text-base text-stone-500 dark:text-stone-400 text-center">{t.lessonLayout.scrollForQuiz}</p>
+            <div className="lg:hidden mt-8 border-t border-line pt-6">
+              <p className="text-base text-ink-muted text-center">{t.lessonLayout.scrollForQuiz}</p>
             </div>
 
             {/* Bottom-of-article sentinel for IntersectionObserver-based
@@ -1102,16 +1102,16 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             />
 
             {/* Quiz progress - collapsible */}
-            <div className="bg-white/95 dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 overflow-hidden">
+            <div className="bg-white/95 dark:bg-stone-900 rounded-2xl border-2 border-line-strong overflow-hidden">
               <button
                 onClick={() => setQuizCollapsed(!quizCollapsed)}
                 className="w-full flex items-center justify-between p-4 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-base font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-wide">{t.lessonLayout.quickCheck}</span>
-                  <span className="text-base font-bold text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
+                  <span className="text-base font-extrabold text-ink uppercase tracking-wide">{t.lessonLayout.quickCheck}</span>
+                  <span className="text-base font-bold text-ink-body bg-surface-raised px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
                 </div>
-                {quizCollapsed ? <ChevronDown className="w-5 h-5 text-stone-500 dark:text-stone-400" /> : <ChevronUp className="w-5 h-5 text-stone-500 dark:text-stone-400" />}
+                {quizCollapsed ? <ChevronDown className="w-5 h-5 text-ink-muted" /> : <ChevronUp className="w-5 h-5 text-ink-muted" />}
               </button>
               {!quizCollapsed && (
                 <div className="p-6 pt-0">
@@ -1135,10 +1135,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
             {/* Active question */}
             {!finished || reviewMode ? (
-              <div className="bg-white/95 dark:bg-stone-900 rounded-2xl border-2 border-stone-300 dark:border-stone-700 p-8 space-y-6">
+              <div className="bg-white/95 dark:bg-stone-900 rounded-2xl border-2 border-line-strong p-8 space-y-6">
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-extrabold text-stone-700 dark:text-stone-300 uppercase tracking-wider bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-lg">
+                    <span className="text-sm font-extrabold text-ink-body uppercase tracking-wider bg-surface-raised px-3 py-1 rounded-lg">
                       {format(t.lessonLayout.questionCounter, { current: activeQ + 1, total: quiz.length })}
                     </span>
                     {qSubmitted && (
@@ -1147,24 +1147,24 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       </span>
                     )}
                   </div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100 text-lg leading-relaxed select-text">{q.question}</p>
+                  <p className="font-bold text-ink text-lg leading-relaxed select-text">{q.question}</p>
                 </div>
 
                 <div className="space-y-3">
                   {q.options.map((opt, oi) => {
                     const isSelected = qSelected === oi;
                     const isCorrectOpt = oi === q.correct;
-                    let cls = "border-2 border-stone-300 dark:border-stone-700 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800";
+                    let cls = "border-2 border-line-strong bg-white/95 dark:bg-stone-900 text-ink hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800";
                     if (qSubmitted) {
-                      if (isCorrectOpt) cls = "border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-400 font-semibold";
+                      if (isCorrectOpt) cls = "border-2 border-emerald-500 bg-accent-soft/50 text-emerald-900 dark:text-emerald-400 font-semibold";
                       else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-400 font-semibold";
-                      else cls = "border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 text-stone-500 dark:text-stone-400";
+                      else cls = "border-2 border-line bg-surface/50 text-ink-muted";
                     } else if (isSelected) {
                       // Fixed high-contrast style, independent of the lesson's decorative
                       // accent color - the "stone" accent (most common) was nearly
                       // identical to the unselected style, leaving no visible confirmation
                       // that a tap registered before the user hits "Kiểm tra".
-                      cls = "border-2 border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-semibold";
+                      cls = "border-2 border-stone-900 dark:border-stone-100 bg-surface-invert text-white dark:text-stone-900 font-semibold";
                     }
                     return (
                       <button
@@ -1177,7 +1177,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                           {["A", "B", "C", "D"][oi]}
                         </span>
                         <span className="flex-1 text-base leading-snug select-text">{opt}</span>
-                        {qSubmitted && isCorrectOpt && <span className="text-emerald-600 dark:text-emerald-400 font-bold text-xl">✓</span>}
+                        {qSubmitted && isCorrectOpt && <span className="text-accent font-bold text-xl">✓</span>}
                         {qSubmitted && isSelected && !isCorrectOpt && <span className="text-rose-600 dark:text-rose-400 font-bold text-xl">✗</span>}
                       </button>
                     );
@@ -1185,7 +1185,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 </div>
 
                 {qSubmitted && (
-                  <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"}`}>
+                  <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-accent-soft/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"}`}>
                     <p className="font-bold mb-1.5">{qCorrect ? t.lessonLayout.exactly : t.lessonLayout.explanation}</p>
                     {/* Contrast the learner's own wrong pick against the correct
                         one before explaining - naming the exact misconception
@@ -1218,7 +1218,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       disabled={qSelected === null}
                       onClick={() => verify(activeQ)}
                       className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white transition-all cursor-pointer shadow-lg ${
-                        qSelected !== null ? `${c.btn}` : "bg-stone-200 dark:bg-stone-700 text-stone-500 dark:text-stone-400 cursor-not-allowed shadow-none"
+                        qSelected !== null ? `${c.btn}` : "bg-stone-200 dark:bg-stone-700 text-ink-muted cursor-not-allowed shadow-none"
                       }`}
                     >
                       {t.lessonLayout.check}
@@ -1228,7 +1228,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       {!qCorrect && (
                         <button
                           onClick={() => retry(activeQ)}
-                          className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer shadow-lg"
+                          className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-line-strong bg-white dark:bg-stone-900 text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer shadow-lg"
                         >
                           {t.lessonLayout.tryAgain}
                         </button>
@@ -1263,16 +1263,16 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               </div>
             ) : (
               /* Completion card */
-              <div className={`rounded-2xl border p-7 text-center space-y-4 ${score === quiz.length ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900" : "bg-indigo-50 dark:bg-indigo-950/50 border-indigo-200 dark:border-indigo-900"}`}>
+              <div className={`rounded-2xl border p-7 text-center space-y-4 ${score === quiz.length ? "bg-accent-soft/50 border-accent-line" : "bg-indigo-50 dark:bg-indigo-950/50 border-indigo-200 dark:border-indigo-900"}`}>
                 <div className="text-5xl">{score === quiz.length ? "★" : score >= quiz.length * 0.7 ? "+" : "↑"}</div>
                 <div>
-                  <h3 className="font-bold text-stone-900 dark:text-stone-100 text-xl">{t.lessonLayout.doneTitle}</h3>
-                  <p className="text-stone-500 dark:text-stone-400 text-sm mt-1">{format(t.lessonLayout.doneScore, { score, total: quiz.length })}</p>
+                  <h3 className="font-bold text-ink text-xl">{t.lessonLayout.doneTitle}</h3>
+                  <p className="text-ink-muted text-sm mt-1">{format(t.lessonLayout.doneScore, { score, total: quiz.length })}</p>
                   {/* Hai con số, và nói rõ con số nào được ghi lại.
                       Chỉ hiện khi chúng khác nhau: người làm đúng hết ngay lần
                       đầu không cần đọc một dòng giải thích về việc thử lại. */}
                   {firstScore !== score && (
-                    <p className="text-stone-500 dark:text-stone-400 text-xs mt-2 leading-relaxed">
+                    <p className="text-ink-muted text-xs mt-2 leading-relaxed">
                       <strong className="text-stone-700 dark:text-stone-200">
                         {format(t.lessonLayout.firstAttemptScore, { score: firstScore, total: quiz.length })}
                       </strong>{" "}
@@ -1307,7 +1307,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     lời mời nói thẳng thứ họ sẽ mất nếu bỏ đi: bài vừa đọc.
                     Bài kế tiếp chỉ hiện khi nó cũng là bài xem thử. */}
                 {authState === "guest" ? (
-                  <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/70 dark:bg-emerald-950/30 p-4 space-y-2.5">
+                  <div className="rounded-2xl border border-accent-line/60 bg-emerald-50/70 dark:bg-emerald-950/30 p-4 space-y-2.5">
                     <p className="text-sm font-black text-emerald-800 dark:text-emerald-300">
                       {t.lessonLayout.guestSaveTitle}
                     </p>
@@ -1340,7 +1340,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                           {t.lessonLayout.nextLesson}
                         </Link>
                       ) : (
-                        <div className="py-3.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm font-bold text-center">{t.lessonLayout.comingSoon}</div>
+                        <div className="py-3.5 rounded-xl bg-surface-raised text-ink-muted text-sm font-bold text-center">{t.lessonLayout.comingSoon}</div>
                       )}
                     </div>
                     <ShareCompletionButton
@@ -1352,7 +1352,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 )}
                 <button
                   onClick={restartQuiz}
-                  className="text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 uppercase tracking-wide transition-colors cursor-pointer"
+                  className="text-xs font-bold text-ink-muted hover:text-stone-700 dark:hover:text-stone-200 uppercase tracking-wide transition-colors cursor-pointer"
                 >
                   {t.lessonLayout.restart}
                 </button>
@@ -1361,8 +1361,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
             {/* Mini nav between questions */}
             {(!finished || reviewMode) && quiz.length > 1 && (
-              <div className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 p-4">
-                <div className="text-xs text-stone-500 dark:text-stone-400 font-bold uppercase tracking-wide mb-3">{t.lessonLayout.questionList}</div>
+              <div className="bg-white dark:bg-stone-900 rounded-2xl border border-line p-4">
+                <div className="text-xs text-ink-muted font-bold uppercase tracking-wide mb-3">{t.lessonLayout.questionList}</div>
                 <div className="grid grid-cols-5 gap-2">
                   {quiz.map((_, i) => (
                     <button
@@ -1373,7 +1373,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                           ? `${c.bar} text-white`
                           : submitted[i]
                           ? results[i] ? "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400" : "bg-rose-100 dark:bg-rose-950/50 text-rose-700 dark:text-rose-400"
-                          : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+                          : "bg-surface-raised text-ink-muted hover:bg-stone-200 dark:hover:bg-stone-700"
                       }`}
                     >
                       {i + 1}

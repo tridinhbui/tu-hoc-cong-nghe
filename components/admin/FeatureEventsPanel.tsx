@@ -24,32 +24,32 @@ export default async function FeatureEventsPanel({ stats }: { stats: FeatureEven
   const maxCount = Math.max(...top.map((s) => s.count), 1);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-5">
+    <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-5">
       <div className="flex items-center justify-between mb-1">
-        <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest flex items-center gap-2">
+        <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest flex items-center gap-2">
           <MousePointerClick className="w-4 h-4 text-stone-400" />
           {tf.title}
         </h2>
-        <span className="text-xs text-stone-500 dark:text-stone-400">
+        <span className="text-xs text-ink-muted">
           {format(tf.clickCount, { count: total })}
         </span>
       </div>
-      <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">{tf.subtitle}</p>
+      <p className="text-xs text-ink-muted mb-4">{tf.subtitle}</p>
 
       {top.length === 0 ? (
-        <p className="text-xs text-stone-400 dark:text-stone-500 py-6 text-center">{tf.noData}</p>
+        <p className="text-xs text-ink-faint py-6 text-center">{tf.noData}</p>
       ) : (
         <div className="space-y-2.5">
           {top.map((stat) => (
             <div key={`${stat.eventName}::${stat.label ?? ""}`} className="text-xs">
               <div className="flex items-center justify-between mb-1">
-                <span className="font-bold text-stone-700 dark:text-stone-300 truncate">
+                <span className="font-bold text-ink-body truncate">
                   {eventLabel(t, stat.eventName)}
-                  {stat.label && <span className="text-stone-400 dark:text-stone-500"> · {stat.label}</span>}
+                  {stat.label && <span className="text-ink-faint"> · {stat.label}</span>}
                 </span>
-                <span className="font-extrabold text-stone-900 dark:text-stone-100 shrink-0 ml-2">{stat.count}</span>
+                <span className="font-extrabold text-ink shrink-0 ml-2">{stat.count}</span>
               </div>
-              <div className="h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+              <div className="h-1.5 rounded-full bg-surface-raised overflow-hidden">
                 <div
                   className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
                   style={{ width: `${(stat.count / maxCount) * 100}%` }}

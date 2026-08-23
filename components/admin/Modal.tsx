@@ -34,13 +34,13 @@ export default function Modal({ open, onClose, title, children, footer, maxWidth
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className={`relative w-full ${maxWidth} bg-white dark:bg-stone-900 rounded-2xl shadow-2xl border border-stone-200 dark:border-stone-800 max-h-[90vh] flex flex-col`}
+        className={`relative w-full ${maxWidth} bg-white dark:bg-stone-900 rounded-2xl shadow-2xl border border-line max-h-[90vh] flex flex-col`}
       >
-        <div className="flex items-center justify-between px-5 py-4 border-b border-stone-200 dark:border-stone-800 flex-shrink-0">
-          <h2 className="font-bold text-stone-900 dark:text-stone-100">{title}</h2>
+        <div className="flex items-center justify-between px-5 py-4 border-b border-line flex-shrink-0">
+          <h2 className="font-bold text-ink">{title}</h2>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
+            className="p-1.5 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-ink-muted"
             aria-label={tm.close}
           >
             <X className="w-4 h-4" />
@@ -48,7 +48,7 @@ export default function Modal({ open, onClose, title, children, footer, maxWidth
         </div>
         <div className="px-5 py-4 overflow-y-auto">{children}</div>
         {footer && (
-          <div className="px-5 py-4 border-t border-stone-200 dark:border-stone-800 flex justify-end gap-2 flex-shrink-0">
+          <div className="px-5 py-4 border-t border-line flex justify-end gap-2 flex-shrink-0">
             {footer}
           </div>
         )}

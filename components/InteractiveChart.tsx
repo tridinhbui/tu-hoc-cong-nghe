@@ -90,8 +90,8 @@ export default function InteractiveChart() {
       <div className="space-y-4">
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">{t.chartDemo.rateLabel}</span>
-            <span className="font-bold text-emerald-600 dark:text-emerald-400">{rate}%</span>
+            <span className="font-medium text-ink-body">{t.chartDemo.rateLabel}</span>
+            <span className="font-bold text-accent">{rate}%</span>
           </div>
           <input
             type="range"
@@ -105,7 +105,7 @@ export default function InteractiveChart() {
         </div>
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700 dark:text-stone-300">{t.chartDemo.yearsLabel}</span>
+            <span className="font-medium text-ink-body">{t.chartDemo.yearsLabel}</span>
             <span className="font-bold text-stone-800 dark:text-stone-100">{format(t.chartDemo.yearsValueSuffix, { years })}</span>
           </div>
           <input
@@ -130,7 +130,7 @@ export default function InteractiveChart() {
           <b>{format(t.chartDemo.summaryGap, { gap: (gap * 100).toFixed(0) })}</b>{" "}
           {t.chartDemo.summaryPart4}
         </p>
-        <p className="mt-1.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
+        <p className="mt-1.5 text-[11px] leading-relaxed text-ink-muted">
           {t.chartDemo.summaryHint}
         </p>
       </div>

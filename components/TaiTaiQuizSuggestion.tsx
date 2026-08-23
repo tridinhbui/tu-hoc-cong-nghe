@@ -68,7 +68,7 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
 
   if (loading) {
     return (
-      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 animate-pulse">
+      <div className="rounded-2xl border border-line bg-white dark:bg-stone-900 p-4 sm:p-5 animate-pulse">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-stone-200 dark:bg-stone-800" />
           <div className="h-4 flex-1 rounded-full bg-stone-200 dark:bg-stone-800" />
@@ -79,14 +79,14 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
 
   if (!suggestion) {
     return (
-      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5">
+      <div className="rounded-2xl border border-line bg-white dark:bg-stone-900 p-4 sm:p-5">
         <div className="flex items-start gap-3">
           <TaiTaiAvatar size={40} />
           <div className="min-w-0">
-            <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
+            <p className="text-sm font-bold text-ink">
               {t.quizSuggestion.greeting}
             </p>
-            <p className="mt-1 text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+            <p className="mt-1 text-xs text-ink-muted leading-relaxed">
               {t.quizSuggestion.noSuggestionMessage}
             </p>
           </div>
@@ -96,15 +96,15 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
   }
 
   return (
-    <section className="rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/40 dark:bg-emerald-950/20 p-4 sm:p-5 shadow-sm">
+    <section className="rounded-2xl border border-accent-line/50 bg-emerald-50/40 dark:bg-emerald-950/20 p-4 sm:p-5 shadow-sm">
       <div className="flex items-start gap-3">
         <TaiTaiAvatar size={44} />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5">
-            <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.quizSuggestion.suggestionLabel}</p>
+            <p className="text-sm font-extrabold text-ink">{t.quizSuggestion.suggestionLabel}</p>
           </div>
-          <p className="mt-1.5 text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
-            {t.quizSuggestion.messagePart1} <span className="font-bold text-stone-900 dark:text-stone-100">{t.quizSuggestion.quoteOpen}{suggestion.lessonTitle}{t.quizSuggestion.quoteClose}</span> {t.quizSuggestion.messagePart2}{" "}
+          <p className="mt-1.5 text-sm text-ink-body leading-relaxed">
+            {t.quizSuggestion.messagePart1} <span className="font-bold text-ink">{t.quizSuggestion.quoteOpen}{suggestion.lessonTitle}{t.quizSuggestion.quoteClose}</span> {t.quizSuggestion.messagePart2}{" "}
             <span className="font-bold text-emerald-700 dark:text-emerald-400">{TRACK_LABEL[suggestion.track]}</span>
             {" "}({DIFFICULTY_LABEL[suggestion.difficulty]}) {t.quizSuggestion.messagePart3}
           </p>
@@ -118,7 +118,7 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
             </button>
             <button
               onClick={() => void loadSuggestion()}
-              className="p-2 rounded-xl text-stone-500 dark:text-stone-400 hover:bg-white dark:hover:bg-stone-900 hover:text-stone-700 dark:hover:text-stone-200 transition-colors cursor-pointer"
+              className="p-2 rounded-xl text-ink-muted hover:bg-white dark:hover:bg-stone-900 hover:text-stone-700 dark:hover:text-stone-200 transition-colors cursor-pointer"
               aria-label={t.quizSuggestion.refreshAria}
               title={t.quizSuggestion.refreshAria}
             >

@@ -220,7 +220,7 @@ export default function UserStats({
       className={`relative overflow-hidden transition-all duration-300 group ${
         embedded
           ? `${sidebar ? "p-0" : "p-0"}`
-          : `bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm hover:shadow-lg ${sidebar ? "p-4" : "p-4 sm:p-5"}`
+          : `bg-white dark:bg-stone-900 border border-line rounded-3xl shadow-sm hover:shadow-lg ${sidebar ? "p-4" : "p-4 sm:p-5"}`
       }`}
     >
       {/* Subtle background glow bubbles for gamified accent */}
@@ -283,14 +283,14 @@ export default function UserStats({
                     title={format(t.userStats.levelTooltip, { level: lvl.level, name: t.levelTitles[lvl.level] ?? lvl.name, xp: lvl.minXp })}
                     className={`flex flex-col items-center gap-1 rounded-xl px-2.5 py-2 border transition-all ${
                       isCurrent
-                        ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 shadow-sm scale-105"
+                        ? "border-emerald-500 bg-accent-soft/40 shadow-sm scale-105"
                         : reached
-                        ? "border-emerald-200 dark:border-emerald-900 bg-emerald-50/40 dark:bg-emerald-950/10"
-                        : "border-stone-200 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-900/30 opacity-60"
+                        ? "border-accent-line bg-emerald-50/40 dark:bg-emerald-950/10"
+                        : "border-line bg-stone-50/60 dark:bg-stone-900/30 opacity-60"
                     }`}
                   >
                     <span className="text-base leading-none">{LEVEL_EMOJIS[lvl.level] || "🌱"}</span>
-                    <span className={`text-[8px] font-black uppercase tracking-wide ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : "text-stone-500 dark:text-stone-400"}`}>
+                    <span className={`text-[8px] font-black uppercase tracking-wide ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : "text-ink-muted"}`}>
                       L{lvl.level}
                     </span>
                   </div>
@@ -310,11 +310,11 @@ export default function UserStats({
           sidebar ? "p-1.5" : "p-3"
         }`}>
           <div className="min-w-0 rounded-xl bg-sky-50/50 dark:bg-sky-950/15 border border-sky-100/70 dark:border-sky-900/30 px-2.5 py-1.5">
-            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">{t.userStats.lessons}</span>
+            <span className="text-[8px] sm:text-[9px] font-black text-ink-muted uppercase tracking-wider block">{t.userStats.lessons}</span>
             <div className="flex items-center gap-1 mt-1 truncate">
               <BookOpen className="w-3.5 h-3.5 text-sky-500 dark:text-sky-400 shrink-0" />
               <span className={`font-black text-stone-950 dark:text-stone-50 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{lessonsCompleted}</span>
-              <span className="text-[9px] font-bold text-stone-400 dark:text-stone-500">/ {totalLessons}</span>
+              <span className="text-[9px] font-bold text-ink-faint">/ {totalLessons}</span>
             </div>
           </div>
         </div>
@@ -322,10 +322,10 @@ export default function UserStats({
           sidebar ? "p-1.5" : "p-3"
         }`}>
           <div className="min-w-0 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/15 border border-emerald-100/70 dark:border-emerald-900/30 px-2.5 py-1.5">
-            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">{t.userStats.quizAvg}</span>
+            <span className="text-[8px] sm:text-[9px] font-black text-ink-muted uppercase tracking-wider block">{t.userStats.quizAvg}</span>
             <div className="flex items-center gap-1 mt-1">
               <Target className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 shrink-0" />
-              <span className={`font-black text-emerald-600 dark:text-emerald-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}%</span>
+              <span className={`font-black text-accent ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}%</span>
             </div>
           </div>
         </div>
@@ -338,10 +338,10 @@ export default function UserStats({
         <div className="mt-2.5 p-3 bg-orange-50/60 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-900 rounded-xl flex items-center gap-3 relative z-10">
           <span className="text-xl shrink-0">💔</span>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-extrabold text-stone-900 dark:text-stone-100">
+            <p className="text-xs font-extrabold text-ink">
               {format(t.userStats.lostStreak, { days: restoreOffer.lostStreak })}
             </p>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">{t.userStats.restoreHint}</p>
+            <p className="text-[10px] text-ink-muted mt-0.5">{t.userStats.restoreHint}</p>
           </div>
           <button
             onClick={handleRestoreStreak}
@@ -378,9 +378,9 @@ export default function UserStats({
 
       {/* Level Progress Bar & Alert Banner */}
       {nextLevel && (
-        <div className="mt-0.5 pt-2 border-t border-stone-100 dark:border-stone-800/80 relative z-10">
-          <div className="flex items-center justify-between text-[10px] mb-1 font-bold text-stone-500 dark:text-stone-400">
-            <span>{format(t.userStats.progressLabel, { level: currentLevel.level })} <span className="text-emerald-600 dark:text-emerald-400">({Math.round(progress)}%)</span></span>
+        <div className="mt-0.5 pt-2 border-t border-line-soft/80 relative z-10">
+          <div className="flex items-center justify-between text-[10px] mb-1 font-bold text-ink-muted">
+            <span>{format(t.userStats.progressLabel, { level: currentLevel.level })} <span className="text-accent">({Math.round(progress)}%)</span></span>
             <span className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-300">
               {format(t.userStats.nextLevelLabel, { level: nextLevel.level, name: t.levelTitles[nextLevel.level] ?? nextLevel.name })} <span>{LEVEL_EMOJIS[nextLevel.level] || "🌱"}</span>
               {/* Số XP còn thiếu đứng CẠNH tên cấp sắp tới, không còn là một ô
@@ -394,7 +394,7 @@ export default function UserStats({
               )}
             </span>
           </div>
-          <div className="w-full h-2 bg-stone-100 dark:bg-stone-800/70 rounded-full overflow-hidden relative shadow-inner">
+          <div className="w-full h-2 bg-surface-raised/70 rounded-full overflow-hidden relative shadow-inner">
             <div
               className="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 rounded-full transition-all duration-500 relative shadow-[0_0_8px_rgba(16,185,129,0.5)]"
               style={{ width: `${progress}%` }}
@@ -409,7 +409,7 @@ export default function UserStats({
                 <span className="text-sm shrink-0">🎯</span>
                 <span>
                   {t.userStats.lessonsToLevelUpPart1}{" "}
-                  <span className="font-extrabold text-stone-900 dark:text-stone-100">
+                  <span className="font-extrabold text-ink">
                     {format(t.userStats.lessonsToLevelUpBold, { count: Math.max(1, Math.ceil(xpToNext / 20)) })}
                   </span>{" "}
                   {format(t.userStats.lessonsToLevelUpPart2, { xp: xpToNext })}
@@ -418,7 +418,7 @@ export default function UserStats({
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-stone-600 dark:text-stone-300">
                 <span className="text-sm shrink-0">🏆</span>
                 <span>
-                  {t.userStats.upcomingTitlePart1} <span className="font-extrabold text-amber-600 dark:text-amber-400">{t.levelTitles[nextLevel.level] ?? nextLevel.name}</span>
+                  {t.userStats.upcomingTitlePart1} <span className="font-extrabold text-warn">{t.levelTitles[nextLevel.level] ?? nextLevel.name}</span>
                 </span>
               </div>
               {cfaGateRemaining > 0 && (
@@ -435,7 +435,7 @@ export default function UserStats({
       )}
 
       {!nextLevel && (
-        <div className="mt-2.5 pt-2.5 border-t border-stone-100 dark:border-stone-800/80 relative z-10">
+        <div className="mt-2.5 pt-2.5 border-t border-line-soft/80 relative z-10">
           <div className="p-3 bg-amber-50/40 dark:bg-amber-950/10 border border-amber-200/50 dark:border-amber-900/30 rounded-xl flex items-center gap-2 text-xs text-amber-700 dark:text-amber-300 font-bold">
             <span>👑 {format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
           </div>
@@ -444,7 +444,7 @@ export default function UserStats({
 
       {/* Level Exam Gatekeeper Banner */}
       {nextLevel && (
-        <div className="mt-3 relative z-10 pt-2 border-t border-stone-100 dark:border-stone-800">
+        <div className="mt-3 relative z-10 pt-2 border-t border-line-soft">
           <button
             onClick={() => {
               setSelectedExamLevel(nextLevel.level);

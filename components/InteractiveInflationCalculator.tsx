@@ -26,8 +26,8 @@ export default function InteractiveInflationCalculator() {
   const result = calculatePurchasingPower();
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-6">
-      <h3 className="font-bold text-lg text-stone-900 dark:text-stone-100 mb-4">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-6">
+      <h3 className="font-bold text-lg text-ink mb-4">
         {t.inflationCalc.title}
       </h3>
       <p className="text-sm text-stone-600 dark:text-stone-400 mb-6">
@@ -37,7 +37,7 @@ export default function InteractiveInflationCalculator() {
       {/* Input Controls */}
       <div className="space-y-4 mb-6">
         <div>
-          <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
+          <label className="text-sm font-semibold text-ink-body mb-2 block">
             {format(t.inflationCalc.amountLabel, { amount })}
           </label>
           <input
@@ -52,7 +52,7 @@ export default function InteractiveInflationCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
+          <label className="text-sm font-semibold text-ink-body mb-2 block">
             {format(t.inflationCalc.yearsLabel, { years })}
           </label>
           <input
@@ -66,7 +66,7 @@ export default function InteractiveInflationCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-semibold text-stone-700 dark:text-stone-300 mb-2 block">
+          <label className="text-sm font-semibold text-ink-body mb-2 block">
             {format(t.inflationCalc.rateLabel, { rate: inflationRate })}
           </label>
           <input
@@ -89,7 +89,7 @@ export default function InteractiveInflationCalculator() {
               {t.inflationCalc.currentValueLabel}
             </span>
           </div>
-          <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">
+          <p className="text-2xl font-bold text-ink">
             {format(t.inflationCalc.millionSuffix, { amount })}
           </p>
         </div>
@@ -108,9 +108,9 @@ export default function InteractiveInflationCalculator() {
       </div>
 
       {/* Loss Summary */}
-      <div className="p-4 bg-amber-50 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-900 mb-6">
+      <div className="p-4 bg-warn-soft/30 rounded-xl border border-amber-200 dark:border-amber-900 mb-6">
         <div className="flex items-center gap-2 mb-2">
-          <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+          <AlertTriangle className="w-4 h-4 text-warn" />
           <span className="text-sm font-bold text-amber-800 dark:text-amber-300">
             {t.inflationCalc.lossTitle}
           </span>
@@ -125,14 +125,14 @@ export default function InteractiveInflationCalculator() {
 
       {/* Explanation */}
       <div className="p-4 bg-stone-50 dark:bg-stone-800 rounded-xl">
-        <h4 className="font-semibold text-sm text-stone-900 dark:text-stone-100 mb-3">
+        <h4 className="font-semibold text-sm text-ink mb-3">
           {t.inflationCalc.formulaTitle}
         </h4>
         <div className="space-y-2 text-sm">
-          <p className="text-stone-700 dark:text-stone-300 font-mono">
+          <p className="text-ink-body font-mono">
             {t.inflationCalc.formulaLine}
           </p>
-          <p className="text-stone-700 dark:text-stone-300">
+          <p className="text-ink-body">
             {format(t.inflationCalc.formulaApplied, {
               amount,
               rate: inflationRate / 100,
@@ -143,7 +143,7 @@ export default function InteractiveInflationCalculator() {
         </div>
 
         <div className="mt-4 pt-4 border-t border-stone-200 dark:border-stone-700">
-          <h4 className="font-semibold text-sm text-stone-900 dark:text-stone-100 mb-2">
+          <h4 className="font-semibold text-sm text-ink mb-2">
             {t.inflationCalc.meaningTitle}
           </h4>
           <p className="text-sm text-stone-600 dark:text-stone-400">

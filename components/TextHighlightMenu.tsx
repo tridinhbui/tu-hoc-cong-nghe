@@ -170,8 +170,8 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
       }}
       className="w-64 rounded-2xl border border-stone-200 dark:border-stone-700 bg-white/95 dark:bg-stone-900/95 backdrop-blur-md shadow-2xl overflow-hidden p-1.5 animate-in fade-in zoom-in-95 duration-150 select-none"
     >
-      <div className="px-3 py-1.5 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between mb-1">
-        <span className="text-[10px] font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1">
+      <div className="px-3 py-1.5 border-b border-line-soft flex items-center justify-between mb-1">
+        <span className="text-[10px] font-black uppercase tracking-wider text-warn flex items-center gap-1">
           {t.textHighlight.title}
         </span>
         <span className="text-[9px] text-stone-400 font-medium">
@@ -183,7 +183,7 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
         type="button"
         disabled={saving}
         onClick={() => void handleChoose("important")}
-        className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold text-stone-900 dark:text-stone-100 hover:bg-amber-50 dark:hover:bg-amber-950/40 disabled:opacity-50 transition-all cursor-pointer group"
+        className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold text-ink hover:bg-amber-50 dark:hover:bg-amber-950/40 disabled:opacity-50 transition-all cursor-pointer group"
       >
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg bg-amber-500 text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
@@ -198,7 +198,7 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
         type="button"
         disabled={saving}
         onClick={() => void handleChoose("ai_flag")}
-        className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 disabled:opacity-50 transition-all cursor-pointer group mt-0.5"
+        className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-ink-body hover:bg-rose-50 dark:hover:bg-rose-950/40 disabled:opacity-50 transition-all cursor-pointer group mt-0.5"
       >
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-lg bg-rose-500 text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">

@@ -26,7 +26,7 @@ export function LessonQuestionCard({
 
   return (
     <div className="space-y-4 rounded-[24px] border border-stone-200/90 bg-gradient-to-br from-white via-stone-50 to-white p-5 shadow-[0_10px_40px_rgba(15,23,42,0.06)] dark:border-stone-800 dark:from-stone-900 dark:via-stone-900 dark:to-stone-950">
-      <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.28em] text-stone-500 dark:text-stone-400">
+      <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.28em] text-ink-muted">
         <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
         {resolvedTitle}
       </div>

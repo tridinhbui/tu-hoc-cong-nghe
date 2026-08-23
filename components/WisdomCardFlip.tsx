@@ -24,7 +24,7 @@ const TONE_VISUAL = {
   },
   steady: {
     face: "from-emerald-500 to-teal-600 border-emerald-400/50",
-    revealBorder: "border-emerald-200 dark:border-emerald-900",
+    revealBorder: "border-accent-line",
     icon: "text-emerald-500",
   },
 } as const;
@@ -48,7 +48,7 @@ export default function WisdomCardFlip({
 
   return (
     <div className="py-2">
-      <p className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-2 text-center">
+      <p className="text-[10px] font-bold text-ink-muted uppercase tracking-wide mb-2 text-center">
         {style.label}
       </p>
       <div className="mx-auto max-w-xs" style={{ perspective: 1000 }}>

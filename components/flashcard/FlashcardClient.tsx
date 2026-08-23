@@ -418,18 +418,18 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         )}
 
         {showBulkPanel && (
-          <div className="mb-6 p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
+          <div className="mb-6 p-5 rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
             <div className="flex items-center justify-between gap-3">
-              <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.flashcards.bulkTitle}</h3>
+              <h3 className="text-sm font-extrabold text-ink">{t.flashcards.bulkTitle}</h3>
               <button
                 onClick={handleExport}
-                className="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors"
+                className="inline-flex items-center gap-1.5 text-[11px] font-bold text-ink-muted hover:text-stone-800 dark:hover:text-stone-200 transition-colors"
               >
                 <Download className="w-3.5 h-3.5" /> {format(t.flashcards.bulkExport, { count: cards.length })}
               </button>
             </div>
             <div>
-              <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">
+              <label className="block text-[10px] font-extrabold text-ink-faint uppercase tracking-widest mb-1.5">
                 {t.flashcards.bulkLabel}
               </label>
               <textarea
@@ -437,10 +437,10 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 placeholder={t.flashcards.bulkPlaceholder}
                 value={bulkText}
                 onChange={(e) => setBulkText(e.target.value)}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500 font-mono"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-emerald-500 font-mono"
               />
               {bulkText.trim() && (
-                <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1.5">
+                <p className="text-[11px] text-ink-faint mt-1.5">
                   {format(t.flashcards.bulkParsed, { count: parseBulkLines(bulkText).length })}
                 </p>
               )}
@@ -449,14 +449,14 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
               <button
                 type="button"
                 onClick={handleExport}
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors sm:hidden"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors sm:hidden"
               >
                 <Copy className="w-3.5 h-3.5" /> {t.flashcards.exportShort}
               </button>
               <button
                 type="button"
                 onClick={() => setShowBulkPanel(false)}
-                className="px-4 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+                className="px-4 py-2 text-xs font-bold rounded-xl border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
                 {t.flashcards.cancel}
               </button>
@@ -473,29 +473,29 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         )}
 
         {showAddForm && (
-          <form onSubmit={handleAddCard} className="mb-6 p-5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
-            <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.flashcards.newCardTitle}</h3>
+          <form onSubmit={handleAddCard} className="mb-6 p-5 rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
+            <h3 className="text-sm font-extrabold text-ink">{t.flashcards.newCardTitle}</h3>
             <div className="space-y-3">
               <div>
-                <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">{t.flashcards.termLabel}</label>
+                <label className="block text-[10px] font-extrabold text-ink-faint uppercase tracking-widest mb-1.5">{t.flashcards.termLabel}</label>
                 <input
                   type="text"
                   required
                   placeholder={t.flashcards.termPlaceholder}
                   value={newTerm}
                   onChange={(e) => setNewTerm(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-emerald-500"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-1.5">{t.flashcards.definitionLabel}</label>
+                <label className="block text-[10px] font-extrabold text-ink-faint uppercase tracking-widest mb-1.5">{t.flashcards.definitionLabel}</label>
                 <textarea
                   required
                   rows={3}
                   placeholder={t.flashcards.definitionPlaceholder}
                   value={newDef}
                   onChange={(e) => setNewDef(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/40 dark:bg-stone-950/30 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-emerald-500"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-emerald-500"
                 />
               </div>
             </div>
@@ -503,7 +503,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
               <button
                 type="button"
                 onClick={() => setShowAddForm(false)}
-                className="px-4 py-2 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+                className="px-4 py-2 text-xs font-bold rounded-xl border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
               >
                 {t.flashcards.cancel}
               </button>
@@ -524,10 +524,10 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             <p className="text-xs text-stone-500">{t.flashcards.loading}</p>
           </div>
         ) : cards.length === 0 ? (
-          <div className="text-center py-16 px-6 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm max-w-md mx-auto">
+          <div className="text-center py-16 px-6 bg-white dark:bg-stone-900 border border-line rounded-3xl shadow-sm max-w-md mx-auto">
             <span className="text-4xl mb-4 block animate-pulse">🗂️</span>
             <h2 className="text-lg font-extrabold text-stone-900 dark:text-stone-50">{t.flashcards.emptyTitle}</h2>
-            <p className="text-xs text-stone-500 dark:text-stone-400 mt-2 leading-relaxed">
+            <p className="text-xs text-ink-muted mt-2 leading-relaxed">
               {t.flashcards.emptyBody}
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center items-center">
@@ -552,11 +552,11 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             <div className="flex flex-col items-center">
               {currentCard && (
                 <div className="w-full max-w-sm mb-3">
-                  <div className="flex items-center justify-between text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-1.5 px-0.5">
+                  <div className="flex items-center justify-between text-[10px] font-extrabold text-ink-faint uppercase tracking-wider mb-1.5 px-0.5">
                     <span>{t.flashcards.reviewing}</span>
                     <span>{format(t.flashcards.cardsLeft, { count: dueCards.length })}</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-surface-raised overflow-hidden">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
                       style={{
@@ -597,7 +597,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                         ? "border-red-400 bg-red-50/[0.04] dark:bg-red-950/[0.05]"
                         : isFlipped
                           ? "border-teal-300 dark:border-teal-800"
-                          : "border-stone-200 dark:border-stone-800"
+                          : "border-line"
                     }`}
                   >
                     {/* Swipe Overlay Hints */}
@@ -616,7 +616,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                       className={`text-[10px] font-extrabold uppercase tracking-widest absolute top-6 px-2.5 py-1 rounded-full ${
                         isFlipped
                           ? "text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/40"
-                          : "text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40"
+                          : "text-emerald-700 dark:text-emerald-300 bg-accent-soft/40"
                       }`}
                     >
                       {isFlipped ? t.flashcards.faceDefinition : t.flashcards.faceTerm}
@@ -635,7 +635,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                       )}
                     </div>
 
-                    <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500 absolute bottom-6 hover:text-emerald-500 transition-colors flex items-center gap-1">
+                    <span className="text-[10px] font-bold text-ink-faint absolute bottom-6 hover:text-emerald-500 transition-colors flex items-center gap-1">
                       {isFlipped ? t.flashcards.flipToTerm : t.flashcards.flipToDefinition}
                     </span>
                   </div>
@@ -644,29 +644,29 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   <div className="grid grid-cols-3 gap-2.5 mt-6 w-full max-w-sm">
                     <button
                       onClick={() => handleSM2Action(1)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-red-200 dark:border-red-900 bg-red-50/40 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-danger-line bg-red-50/40 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
                       <span className="text-lg leading-none">❌</span> {t.flashcards.gradeForgot}
                     </button>
                     <button
                       onClick={() => handleSM2Action(3)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-stone-200 dark:border-stone-800 bg-white/95 dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-line bg-white/95 dark:bg-stone-900 text-ink-body hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
                       <span className="text-lg leading-none">👍</span> {t.flashcards.gradeMedium}
                     </button>
                     <button
                       onClick={() => handleSM2Action(5)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50/40 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-accent-line bg-emerald-50/40 dark:bg-emerald-950/20 text-accent hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
                       <span className="text-lg leading-none">⭐️</span> {t.flashcards.gradeEasy}
                     </button>
                   </div>
                 </div>
               ) : (
-                <div className="w-full text-center py-10 px-6 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm">
+                <div className="w-full text-center py-10 px-6 bg-white dark:bg-stone-900 border border-line rounded-3xl shadow-sm">
                   <span className="text-3xl mb-2.5 block animate-bounce">🎉</span>
                   <p className="text-base font-extrabold text-stone-900 dark:text-stone-50">{t.flashcards.doneTitle}</p>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 max-w-sm mx-auto">
+                  <p className="text-xs text-ink-muted mt-1 max-w-sm mx-auto">
                     {t.flashcards.doneBody}
                   </p>
                 </div>
@@ -674,10 +674,10 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             </div>
 
             {/* Manage Cards Zone */}
-            <div className="border-t border-stone-100 dark:border-stone-800/80 pt-6">
+            <div className="border-t border-line-soft/80 pt-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">{t.flashcards.listTitle}</h3>
-                <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500">{format(t.flashcards.cardCount, { count: cards.length })}</span>
+                <h3 className="text-xs font-extrabold text-ink-muted uppercase tracking-widest">{t.flashcards.listTitle}</h3>
+                <span className="text-[10px] font-bold text-ink-faint">{format(t.flashcards.cardCount, { count: cards.length })}</span>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {cards.map((c) => {
@@ -686,24 +686,24 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   return (
                     <div
                       key={c.term}
-                      className="group p-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm hover:shadow-md hover:border-stone-300 dark:hover:border-stone-700 transition-all"
+                      className="group p-4 rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-sm hover:shadow-md hover:border-stone-300 dark:hover:border-stone-700 transition-all"
                     >
                       <div className="flex justify-between gap-4 items-start">
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <p className="font-extrabold text-xs sm:text-sm text-stone-900 dark:text-stone-100">{c.term}</p>
+                            <p className="font-extrabold text-xs sm:text-sm text-ink">{c.term}</p>
                             {isDue ? (
-                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border border-amber-200/50">{t.flashcards.badgeDue}</span>
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-warn-soft/40 text-amber-700 dark:text-amber-400 border border-amber-200/50">{t.flashcards.badgeDue}</span>
                             ) : (
                               <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-stone-50 dark:bg-stone-950/40 text-stone-500 border border-stone-100">{t.flashcards.badgeReviewed}</span>
                             )}
                             {c.repetitions >= 5 && (
-                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200/50 flex items-center gap-0.5">
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-accent-soft/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200/50 flex items-center gap-0.5">
                                 <Trophy className="w-2.5 h-2.5" /> {t.flashcards.badgeMastered}
                               </span>
                             )}
                           </div>
-                          <p className="text-xs text-stone-500 dark:text-stone-400 mt-1.5 line-clamp-2 leading-relaxed">{c.definition}</p>
+                          <p className="text-xs text-ink-muted mt-1.5 line-clamp-2 leading-relaxed">{c.definition}</p>
                         </div>
                         <button
                           onClick={() => handleDeleteCard(c.term)}
@@ -714,7 +714,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                         </button>
                       </div>
                       {/* Mastery progress (repetitions towards 5 = "mastered") */}
-                      <div className="h-1 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden mt-3">
+                      <div className="h-1 rounded-full bg-surface-raised overflow-hidden mt-3">
                         <div
                           className={`h-full rounded-full transition-all duration-300 ${mastery >= 100 ? "bg-emerald-500" : "bg-teal-400"}`}
                           style={{ width: `${mastery}%` }}

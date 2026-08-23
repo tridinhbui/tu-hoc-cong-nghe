@@ -205,7 +205,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
   if (loading) {
     return (
       <div className={embedded ? "flex items-center justify-center py-16" : "min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center"}>
-        <p className="text-stone-500 dark:text-stone-400">{t.notes.loading}</p>
+        <p className="text-ink-muted">{t.notes.loading}</p>
       </div>
     );
   }
@@ -213,14 +213,14 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
   const content = (
     <>
       {!embedded && (
-        <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+        <div className="border-b border-line bg-white dark:bg-stone-950">
           <div className="max-w-2xl mx-auto px-6 py-4">
             <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
               <ArrowLeft className="w-4 h-4" />
               {t.notes.back}
             </Link>
             <div className="flex items-center justify-between mt-2 gap-3 flex-wrap">
-              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">
+              <h1 className="text-xl font-bold text-ink">
                 {format(t.notes.overviewTitle, { count: `${notes.length}${hasMore ? "+" : ""}` })}
               </h1>
             </div>
@@ -228,7 +228,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
         </div>
       )}
       {embedded && (
-        <h2 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-4">
+        <h2 className="text-lg font-bold text-ink mb-4">
           {format(t.notes.embeddedTitle, { count: `${notes.length}${hasMore ? "+" : ""}` })}
         </h2>
       )}
@@ -241,7 +241,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t.notes.searchPlaceholder}
-            className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-sm text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
           {search && (
             <button
@@ -255,7 +255,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
         </div>
 
         {isSearching && (
-          <p className="mb-4 text-xs font-semibold text-stone-500 dark:text-stone-400">
+          <p className="mb-4 text-xs font-semibold text-ink-muted">
             {awaitingResults
               ? t.notes.searching
               : format(t.notes.searchResultsCount, { count: visibleNotes.length, query: trimmedSearch })}
@@ -266,16 +266,16 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
           visibleNotes.length === 0 ? (
             <div className="text-center py-16 text-stone-600 dark:text-stone-300">
               {awaitingResults ? (
-                <p className="text-sm text-stone-500 dark:text-stone-400">{t.notes.searching}</p>
+                <p className="text-sm text-ink-muted">{t.notes.searching}</p>
               ) : isSearching ? (
                 <>
                   <p className="mb-2 font-semibold">{t.notes.noResultsTitle}</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400">{t.notes.noResultsHint}</p>
+                  <p className="text-sm text-ink-muted">{t.notes.noResultsHint}</p>
                 </>
               ) : (
                 <>
                   <p className="mb-2 font-semibold">{t.notes.emptyTitle}</p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400">{t.notes.emptyHint}</p>
+                  <p className="text-sm text-ink-muted">{t.notes.emptyHint}</p>
                 </>
               )}
             </div>
@@ -285,10 +285,10 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                 const lessonInfo = lessonsById[lessonId];
                 const lessonNotes = grouped.get(lessonId)!;
                 return (
-                  <div key={lessonId} className="bg-white/95 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden shadow-xs">
-                    <div className="px-5 py-3.5 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between bg-stone-50/80 dark:bg-stone-850/80">
+                  <div key={lessonId} className="bg-white/95 dark:bg-stone-900 border border-line rounded-2xl overflow-hidden shadow-xs">
+                    <div className="px-5 py-3.5 border-b border-line flex items-center justify-between bg-stone-50/80 dark:bg-stone-850/80">
                       {lessonInfo ? (
-                        <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-extrabold text-stone-900 dark:text-stone-100 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                        <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-extrabold text-ink hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
                           {lessonInfo.title}
                         </Link>
                       ) : (
@@ -304,12 +304,12 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                               <textarea
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
-                                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-ink text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500"
                                 rows={3}
                                 autoFocus
                               />
                               {hasMathContent(editContent) && (
-                                <div className="px-3.5 py-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-dashed border-stone-300 dark:border-stone-700 overflow-x-auto">
+                                <div className="px-3.5 py-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-dashed border-line-strong overflow-x-auto">
                                   <NoteContent content={editContent} />
                                 </div>
                               )}
@@ -376,7 +376,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                 <button
                   onClick={() => void loadMore()}
                   disabled={loadingMore}
-                  className="w-full py-2.5 rounded-xl border-2 border-dashed border-stone-300 dark:border-stone-700 text-sm font-bold text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors disabled:opacity-50 inline-flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded-xl border-2 border-dashed border-line-strong text-sm font-bold text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors disabled:opacity-50 inline-flex items-center justify-center gap-2"
                 >
                   {loadingMore && <Loader2 className="w-4 h-4 animate-spin" />}
                   {loadingMore ? t.notes.loadingMore : t.notes.loadMore}

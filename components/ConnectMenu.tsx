@@ -170,7 +170,7 @@ export default function ConnectMenu({
               className="fixed bottom-24 right-4 sm:right-6 z-50 w-[17.5rem] overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-900"
             >
               <div className="flex items-center justify-between border-b border-stone-100 px-4 py-3 dark:border-stone-800">
-                <p className="text-sm font-black text-stone-900 dark:text-stone-100">{t.connectMenu.title}</p>
+                <p className="text-sm font-black text-ink">{t.connectMenu.title}</p>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
@@ -193,10 +193,10 @@ export default function ConnectMenu({
                         )}
                       </span>
                       <span className="min-w-0 flex-1 text-left">
-                        <span className="block truncate text-sm font-bold text-stone-900 dark:text-stone-100">
+                        <span className="block truncate text-sm font-bold text-ink">
                           {item.label}
                         </span>
-                        <span className="block truncate text-[11px] text-stone-500 dark:text-stone-400">
+                        <span className="block truncate text-[11px] text-ink-muted">
                           {item.sub}
                         </span>
                       </span>

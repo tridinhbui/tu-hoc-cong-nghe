@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { ROOM } from "./ReadingRoom";
-import { ROTUNDA_Z } from "./room-obstacles";
 import { boardTexture } from "./room-textures";
 import { getCommunityFeed } from "@/lib/supabase-community";
 import { getLeaderboardByMetric, type LeaderboardMetric } from "@/lib/supabase-user";
@@ -226,19 +225,21 @@ function Gate({
   );
 }
 
-/** Hai cánh cổng của phòng đọc: đầu bắc sang phòng học nhóm, tường tây cạnh
- *  sảnh tròn sang Phố nghề. Đặt hai đầu đối nhau để không ai đi nhầm, và cổng
- *  Phố nghề nằm ngay chỗ người chơi xuất hiện - thứ đầu tiên nhìn thấy khi vào
- *  thư viện là còn một thành phố nữa ở ngoài kia. */
-// Labels come from the dictionary at render time; module scope has no
-// useI18n() to call, so ./gates keeps only the ids/hrefs/accents and fills
-// the label in from the dictionary handed to gatesOf().
+/** Cổng của phòng đọc: đầu bắc sang phòng học nhóm.
+ *
+ *  Trước đây có HAI cổng - cổng thứ hai ở tường tây sang Phố nghề - và bản này
+ *  gỡ nó cùng route /pho-nghe. Cách gỡ quan trọng ở đây: `gatesOf(t)[1]` phải
+ *  biến mất chứ không được để lại. Truy cập mảng theo chỉ số trong TypeScript
+ *  trả về `GateTarget` chứ không phải `GateTarget | undefined`, nên khi danh
+ *  sách rút còn một phần tử thì `tsc` vẫn xanh, mọi bộ kiểm vẫn xanh, và
+ *  /cong-dong nổ lúc chạy: "Cannot read properties of undefined (reading
+ *  'accent')". Một cảnh 3D chỉ dựng trong trình duyệt là chỗ không cổng tĩnh
+ *  nào với tới - nên đừng để lại chỉ số cứng trỏ vào danh sách có thể ngắn đi.
+ *
+ *  Nhãn lấy từ từ điển lúc render; module scope không gọi được useI18n(), nên
+ *  ./gates chỉ giữ id/href/accent và nhận nhãn từ từ điển truyền vào gatesOf(). */
 function gateStudy(t: Dictionary): GateTarget {
   return gatesOf(t)[0];
-}
-
-function gateDistrict(t: Dictionary): GateTarget {
-  return gatesOf(t)[1];
 }
 
 export default function RoomFixtures({
@@ -252,7 +253,6 @@ export default function RoomFixtures({
   const { posts, ranking, otherBoards } = useBoardData(t);
   const halfW = ROOM.width / 2;
   const GATE_STUDY = gateStudy(t);
-  const GATE_DISTRICT = gateDistrict(t);
 
   return (
     <group>
@@ -307,13 +307,6 @@ export default function RoomFixtures({
         onProximity={onPortalProximity}
         target={GATE_STUDY}
         position={[0, 0, -ROOM.length / 2 + 0.4]}
-      />
-      <Gate
-        playerRef={playerRef}
-        onProximity={onPortalProximity}
-        target={GATE_DISTRICT}
-        position={[-halfW + 0.4, 0, ROTUNDA_Z]}
-        rotationY={Math.PI / 2}
       />
     </group>
   );
