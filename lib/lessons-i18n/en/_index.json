@@ -4,6 +4,11 @@
     "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
     "duration": "12 min"
   },
+  "bao-hiem-la-gi-mo-hinh-kinh-doanh": {
+    "title": "Pooled spare capacity: why no team should hold its own",
+    "subtitle": "Gathering several services' spare capacity into one pool, and the condition for it to work",
+    "duration": "9 min"
+  },
   "bien-va-phep-gan": {
     "title": "Lesson 2: Variables and assignment",
     "subtitle": "A variable is not a box holding a value. Getting this right early saves you a lot of trouble.",
@@ -248,6 +253,11 @@
     "title": "Data Thinking, Lesson 4: Correlation is not causation - and three ways to be fooled",
     "subtitle": "Confounding, reverse causality, survivorship bias: three mechanisms that turn real data into a wrong conclusion",
     "duration": "11 min"
+  },
+  "value-at-risk-var-stress-testing": {
+    "title": "Load testing and extreme scenarios",
+    "subtitle": "Designing a test for the worst day, not for an average day multiplied by two",
+    "duration": "9 min"
   },
   "wealth-management": {
     "title": "An internal platform as a service for other teams",

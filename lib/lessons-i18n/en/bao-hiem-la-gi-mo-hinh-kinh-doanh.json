@@ -1,0 +1,172 @@
+{
+  "title": "Pooled spare capacity: why no team should hold its own",
+  "subtitle": "Gathering several services' spare capacity into one pool, and the condition for it to work",
+  "duration": "9 min",
+  "whyItMatters": "Every service holding its own spare capacity costs many times what is actually needed, but pooling it is only safe when one condition holds - and that is the condition most often skipped.",
+  "openingQuestion": "Ten services, each needing 20% spare capacity. Pooled together, how much is needed?",
+  "openingOptions": [
+    "Much less, if they do not all need it at the same moment",
+    "Still 20% of the total, because each service's requirement does not change by being pooled",
+    "About 10% of the total, since the risk is halved by spreading it over twice as many services",
+    "Not determinable without knowing the average load of each service in the group"
+  ],
+  "explanation": "This is the entire reason pooled spare capacity exists: the chance that ten services all hit peak in the same instant is far lower than the chance that one does. But it only holds when the peaks are independent, and if all ten peak at nine on a Monday morning then pooling saves nothing at all.",
+  "diagram": [
+    {
+      "label": "Each service has its own peak"
+    },
+    {
+      "label": "Peaks that do not coincide mean the total peak is below the sum of peaks"
+    },
+    {
+      "label": "Pool the spare capacity in one place"
+    },
+    {
+      "label": "Condition: the peaks must be independent"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Nine o'clock on a Monday",
+    "description": "A company pooled the spare capacity of twelve services and cut its spare-capacity cost by forty percent. That figure held for six months. Then a campaign sent notifications at nine on a Monday morning and all twelve hit peak within three minutes - exactly the condition the pooling model assumed would not occur, and the pool was not enough for even one service."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Pooling spare capacity is one of the largest savings available in infrastructure operations, and it has exactly one condition. This lesson is about that condition."
+    },
+    {
+      "type": "heading",
+      "text": "Why pooling is cheaper"
+    },
+    {
+      "type": "paragraph",
+      "text": "Each service holding its own spare capacity means each one must hold enough for its own peak, and that share sits idle almost all of the time. Pooled, you only need enough for the total peak that occurs simultaneously, and that figure is smaller than the sum of the individual peaks by exactly the degree to which the peaks do not coincide."
+    },
+    {
+      "type": "heading",
+      "text": "Three things that make peaks coincide"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A shared user rhythm: opening hours, the start of the month, the aftermath of a notification send",
+        "A shared dependency: every service slows at once when something they all call slows down",
+        "Scheduled jobs set to the same moment: midnight is a default common enough to be dangerous"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The third is the easiest to fix and the most often overlooked. There is no technical reason for every scheduled job to run at exactly midnight; it is simply the default value nobody changed. Spreading them across a few hours is the cheapest way to make peaks more independent."
+    },
+    {
+      "type": "callout",
+      "label": "Check the condition with data, not with argument",
+      "text": "Whether the peaks are independent sounds abstract and is directly measurable: plot each service's usage by hour over a month and see whether the peaks land in the same place. That measurement takes an afternoon and replaces the entire debate, because it also names which service should be pulled out of the pool."
+    },
+    {
+      "type": "heading",
+      "text": "Who draws first when the pool runs short"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the design element every pooled model needs and almost nowhere writes down in advance. When the pool runs dry, the priority order has to have been decided beforehand by an explicit rule, because deciding it while it is running dry always favours whichever team shouts loudest rather than whichever service matters most."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Pooling with the condition checked",
+        "text": "Peaks measured by hour, scheduled jobs spread out, priority order written down. Real savings, and it holds when an event arrives."
+      },
+      "right": {
+        "label": "Pooling by argument",
+        "text": "Correct in theory and nobody measured. Saves money for a few months, then everything fails at once during a single event."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Pooling saves exactly as much as the peaks fail to coincide.",
+        "The priority order for a dry pool must be written in advance, not decided while it is drying."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the condition for pooled spare capacity to save anything?",
+      "options": [
+        "Each service's peaks must be independent of the others",
+        "The services must be roughly comparable in size to one another",
+        "The pool must be large enough to hold the peak of the largest single service in the group",
+        "The services must run on the same kind of infrastructure so capacity can move between them"
+      ],
+      "explanation": "The last option is the technical condition for pooling to be possible at all. The first is the condition for it to be useful: if every peak coincides then the pool has to equal the sum of the individual peaks, and nothing is saved."
+    },
+    {
+      "question": "Which cause of coinciding peaks is easiest to fix?",
+      "options": [
+        "Users having a shared daily rhythm of activity",
+        "Scheduled jobs all set to midnight",
+        "Services calling one shared dependency, so they all slow when it slows",
+        "Release windows for several teams landing in the same slot each week"
+      ],
+      "explanation": "There is no technical reason for every scheduled job to run at exactly midnight - it is a default nobody changed. Spreading them over a few hours makes peaks more independent and requires no architectural change at all."
+    },
+    {
+      "question": "How do you check the independence condition?",
+      "options": [
+        "Ask each team which hours of the week their service usually sees its heaviest load",
+        "Compute the correlation between the performance metrics of the services in the pool",
+        "Plot each service's usage by hour and see whether the peaks land together",
+        "Review the history of times the shared pool ran dry and look for a repeating pattern"
+      ],
+      "explanation": "The last option also uses data but waits for the problem to occur first. Plotting by hour answers it today, takes an afternoon, and also names which service should be pulled out of the pool."
+    },
+    {
+      "question": "Why must the priority order for a dry pool be written in advance?",
+      "options": [
+        "Because changing the priority order during an incident risks introducing further faults",
+        "Because there is no time left to hold a meeting at that point",
+        "Because teams need to know their guaranteed share in advance in order to plan their own work",
+        "Because deciding it while it is drying favours whoever shouts loudest"
+      ],
+      "explanation": "The other three are true and practical reasons. The first is decisive: under pressure the real ordering is set by volume rather than by importance, and nobody notices that is what is happening."
+    },
+    {
+      "question": "Twelve services hit peak together because of a notification campaign. What was wrong in the design?",
+      "options": [
+        "The model assumed independent peaks and nobody ever checked that assumption",
+        "The shared pool was sized too small for the number of services drawing on it",
+        "The notification campaign was not announced in advance to the infrastructure team",
+        "The services had no rate limiting to protect themselves when request volume spiked"
+      ],
+      "explanation": "The other three are real problems and all are consequences. The root error is that a quantitative assumption was used as the foundation of the whole model without ever being measured, so nobody knew how far it held."
+    }
+  ],
+  "keyTakeaways": [
+    "Pooling saves exactly as much as the peaks fail to coincide",
+    "Scheduled jobs on a shared clock are the easiest cause to fix",
+    "Check independence with hourly data - it takes an afternoon",
+    "Write the priority order for a dry pool before it runs dry"
+  ],
+  "practicePrompt": {
+    "question": "10 services each with a peak of 100 units, peaks independent and about 3 hitting peak at once. How large does the pool need to be?",
+    "options": [
+      "About 300",
+      "1,000",
+      "500, half the sum of the peaks, to leave a wide safety margin for unusual circumstances",
+      "100, the peak of a single service, since only one needs spare capacity at any moment"
+    ],
+    "explanation": "Three services at peak times 100 units is 300, which is under a third of 1,000. The distance between 300 and 1,000 is the whole of the saving, and it vanishes completely on the day all ten peak together."
+  },
+  "summary": {
+    "keyIdea": "Pooling only saves when peaks are independent, and that is measurable",
+    "commonMistake": "Accepting the independence assumption by argument rather than by data",
+    "action": "Plot hourly usage for three services your team holds and see whether the peaks overlap."
+  },
+  "application": {
+    "title": "Three things before pooling",
+    "message": "Measure each service's peak by hour. Move scheduled jobs off a shared clock. Write the priority order for when the pool runs dry.",
+    "secondary": "The second one alone usually does more for the model than the other two together."
+  },
+  "slug": "bao-hiem-la-gi-mo-hinh-kinh-doanh"
+}

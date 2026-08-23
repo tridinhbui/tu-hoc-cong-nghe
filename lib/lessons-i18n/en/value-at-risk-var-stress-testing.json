@@ -1,0 +1,173 @@
+{
+  "title": "Load testing and extreme scenarios",
+  "subtitle": "Designing a test for the worst day, not for an average day multiplied by two",
+  "duration": "9 min",
+  "whyItMatters": "Most load tests measure what the system is good at and miss what brings it down, because they are designed by multiplying normal traffic rather than by asking how it fails.",
+  "openingQuestion": "You are designing a load test. Where do you start?",
+  "openingOptions": [
+    "From how the system has failed before",
+    "From current traffic multiplied by some factor to see how much headroom there is",
+    "From next year's projected load, plus a margin for the busiest periods of the year",
+    "From the hardware limits, so you know the theoretical ceiling the system could reach"
+  ],
+  "explanation": "Multiplying traffic is the most natural approach and it tests exactly one direction: can the system take more. Real incidents rarely have that shape - they come from misshapen load, from a dependency slowing down, or from data of an unusual shape. The incident history is the only list describing the shapes that have actually brought this system down.",
+  "diagram": [
+    {
+      "label": "Incident history: how it has failed"
+    },
+    {
+      "label": "Rebuild each shape as a test"
+    },
+    {
+      "label": "Add scenarios that have not happened but could"
+    },
+    {
+      "label": "Measure the time to come back, not just the breaking point"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Survived five times the peak, fell over at normal load",
+    "description": "A system passed a test at five times peak traffic and was approved for release. The first incident came at ordinary load, when a dependency responded about two seconds slower than usual. Waiting connections piled up, memory filled, and the system fell over. The test was never wrong - it had simply never tried that shape, because it was designed by multiplication."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A load test answers how much the system can take. An extreme scenario answers a different and more important question: how it fails, and how long it takes to come back."
+    },
+    {
+      "type": "heading",
+      "text": "Four shapes worth more than a multiplier"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A dependency slowing down without dying - the shape that causes most collapses and is rarely tested",
+        "Load arriving inside a few seconds instead of spread out, for instance after a notification send",
+        "Data of unusual shape: one user holding a thousand times the average amount of data",
+        "Part of the infrastructure disappearing mid-flight, with the rest having to carry it without time to scale"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The first shape deserves attention because it is counterintuitive. A dependency that dies outright means the system gets an error immediately and can handle it; a dependency that slows down means every request waits, resources stay held, and the system dies of exhausted connections rather than of any error at all. This is why a maximum wait time matters more than most other settings."
+    },
+    {
+      "type": "heading",
+      "text": "Measure the time to come back, not just the breaking point"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most tests stop at finding the threshold where the system starts to fail, and that is half an answer. The other half is what happens next: does it recover on its own once load drops, or does it stay in the broken state until somebody restarts it. Those two behaviours differ in severity far more than they differ in threshold."
+    },
+    {
+      "type": "callout",
+      "label": "A system that does not recover doubles every incident",
+      "text": "If load exceeds the threshold for three minutes and the system needs human intervention to work again, then every short traffic spike becomes a long incident. A test finds this with one extra step: after forcing the system to break, drop the load back to normal and watch. That step costs five minutes and is rarely in the script."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Testing by shape",
+        "text": "Rebuild the ways this system has failed, plus a few that have not happened. The result says how it fails and how long it takes to return."
+      },
+      "right": {
+        "label": "Testing by multiplier",
+        "text": "Normal traffic times five. The result is a threshold number, and it predicts none of the real incidents."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "How often"
+    },
+    {
+      "type": "paragraph",
+      "text": "A test run once before release is only true for that version. The system changes every week, and most changes shift the shape of how it handles load in ways nobody anticipates. Rerunning on a schedule, even one scenario a month, is worth more than one comprehensive test and then nothing."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Real incidents rarely have the shape of normal traffic multiplied up.",
+        "A dependency that slows down is more dangerous than one that dies outright."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why is designing a load test by multiplying traffic not enough?",
+      "options": [
+        "Because running it consumes a large amount of infrastructure resources for the duration",
+        "Because real incidents rarely have that shape",
+        "Because the multiplier is chosen arbitrarily, so results are not comparable between runs",
+        "Because it only measures the compute path and not storage or data transfer"
+      ],
+      "explanation": "Multiplying tests one direction: can it take more. Real incidents come from misshapen load, a dependency slowing down, or unusual data - three shapes an even multiplier never produces."
+    },
+    {
+      "question": "Why is a dependency that slows down more dangerous than one that dies?",
+      "options": [
+        "Because automatic retry logic multiplies the requests being sent to the slow dependency",
+        "Because the system cannot detect that anything is wrong at all in that situation",
+        "Because every request waits, so resources stay held until they run out",
+        "Because the delay usually grows gradually, making the moment to intervene hard to pick"
+      ],
+      "explanation": "Dying outright means the system gets an error immediately and handles it. Slowing down means there is no error to handle, only connections held longer - and the system dies of exhausted connections rather than of anything that got logged."
+    },
+    {
+      "question": "Which step is often missing from the test script and costs five minutes to add?",
+      "options": [
+        "Comparing this run's results against the results of the most recent previous run",
+        "Capturing the full logs throughout the duration of the test run itself",
+        "Running the test at several load levels to find exactly where degradation begins",
+        "Dropping load back to normal and watching whether it recovers on its own"
+      ],
+      "explanation": "Most tests stop at the breaking point, which is half an answer. A system that does not recover by itself turns every short spike into a long incident, and that is a far bigger difference than a few percent on the threshold."
+    },
+    {
+      "question": "What is the best source for designing test scenarios?",
+      "options": [
+        "The incident history of this system itself",
+        "Published material on the failure patterns that commonly affect systems of this kind",
+        "The experience of other teams running systems with a similar architecture in the company",
+        "Performance measurements taken in the test environment during recent releases"
+      ],
+      "explanation": "The other three are all useful for adding scenarios that have not happened. Incident history is different in kind: it is the only list describing shapes that have genuinely brought down this system, with its architecture and its dependencies."
+    },
+    {
+      "question": "Why is one comprehensive test before release not enough?",
+      "options": [
+        "Because results from a test environment do not carry over to production conditions",
+        "Because the system changes weekly and each change shifts how it handles load",
+        "Because a comprehensive test takes so long that it gets cut under schedule pressure",
+        "Because actual load after release is usually very different from what was tested"
+      ],
+      "explanation": "A test result is a statement about one specific version. After ten releases that statement describes a system that no longer exists, so one scenario rerun monthly is worth more than one thorough test and then nothing."
+    }
+  ],
+  "keyTakeaways": [
+    "Real incidents rarely have the shape of normal traffic multiplied up",
+    "A dependency that slows down is more dangerous than one that dies",
+    "Measure the time to come back, not only the breaking point",
+    "Incident history gives scenarios matched to this system's own architecture"
+  ],
+  "practicePrompt": {
+    "question": "A dependency adds 2 seconds, the system has 200 connections, each request holds one. At 150 requests per second, how long until connections run out?",
+    "options": [
+      "About 1.3 seconds",
+      "2 seconds",
+      "It does not run out, because each connection is released as soon as the dependency replies",
+      "About 30 seconds (= dividing the connection count by the delay rather than by the arrival rate)"
+    ],
+    "explanation": "150 requests per second each holding a connection for 2 seconds means held connections grow by 150 every second. 200 divided by 150 is about 1.3 seconds to exhaustion. Two seconds of added delay is enough to bring down a system nowhere near any processing limit."
+  },
+  "summary": {
+    "keyIdea": "Test the shapes that have broken the system, not a multiplier",
+    "commonMistake": "Stopping the test at the breaking point without checking recovery",
+    "action": "Take your three most recent incident write-ups and turn each into a test scenario."
+  },
+  "application": {
+    "title": "Four minimum scenarios",
+    "message": "A dependency slowing down. Load arriving in seconds. One user with a thousand times the data. Losing part of the infrastructure mid-flight.",
+    "secondary": "After each one, drop the load back to normal and see whether the system returns on its own."
+  },
+  "slug": "value-at-risk-var-stress-testing"
+}
