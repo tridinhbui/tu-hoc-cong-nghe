@@ -364,173 +364,176 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
     ],
   },
   {
-    id: 1513,
-    slug: "du-bao-dong-tien-13-tuan",
-    title: "Kế hoạch, Bài 3: Dự báo dòng tiền 13 tuần - công cụ dùng khi tiền mặt trở thành ràng buộc",
-    subtitle: "Vì sao một doanh nghiệp đang có lãi vẫn phải đếm tiền theo tuần, và bảng đó gồm những gì",
-    duration: "12 phút",
-    difficulty: "Trung bình",
-    emoji: "📅",
-    track: "professional",
-    whyItMatters:
-      "Doanh nghiệp không phá sản vì lỗ, mà vì hết tiền. Khi thanh khoản căng, báo cáo tháng đến quá muộn và ngân sách năm trở nên vô nghĩa. Bảng dòng tiền 13 tuần là công cụ tiêu chuẩn trong tình huống đó, và cũng là thứ ngân hàng hay quỹ đầu tư sẽ yêu cầu đầu tiên.",
-    openingQuestion:
-      "Vì sao dự báo dòng tiền ngắn hạn lại lập theo tuần chứ không theo tháng?",
-    openingOptions: [
-      "Vì chuẩn mực kế toán quy định kỳ báo cáo dòng tiền tối thiểu là một tuần",
-      "Vì trong một tháng, tiền có thể chạm đáy giữa kỳ rồi hồi",
-      "Vì dữ liệu theo tuần chính xác hơn dữ liệu theo tháng",
-      "Vì ngân hàng chỉ chấp nhận báo cáo theo tuần",
+    "id": 1513,
+    "slug": "lich-phat-hanh-13-tuan",
+    "title": "Kế hoạch, Bài 3: Lịch phát hành 13 tuần - công cụ dùng khi kế hoạch quý đã lỗi thời",
+    "subtitle": "Một quý là quá dài để lập kế hoạch chi tiết và quá ngắn để không lập gì cả.",
+    "duration": "12 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "📅",
+    "whyItMatters": "Kế hoạch quý được lập một lần rồi treo trên tường, còn công việc thì đổi mỗi tuần - và khoảng cách giữa hai thứ đó lớn dần cho tới khi không ai nhìn kế hoạch nữa.",
+    "openingQuestion": "Vì sao lịch mười ba tuần lại là công cụ khác với kế hoạch quý?",
+    "openingOptions": [
+      "Vì nó được cập nhật lại mỗi tuần và luôn nhìn về phía trước mười ba tuần",
+      "Vì nó chi tiết hơn hẳn nên rốt cuộc phản ánh chính xác hơn khối lượng công việc thật",
+      "Vì nó tính theo tuần nên khớp với chu kỳ làm việc của phần lớn đội",
+      "Vì nó bao gồm cả những công việc không nằm trong kế hoạch quý ban đầu"
     ],
-    correctOption: 1,
-    explanation:
-      "Một doanh nghiệp có thể kết thúc mọi tháng với số dư tiền dương mà vẫn mất khả năng thanh toán vào ngày 20, khi lương và tiền hàng rơi vào cùng một tuần còn tiền khách hàng chưa về. Bảng theo tháng làm phẳng chuyện đó thành một con số cuối kỳ đẹp. Con số 13 tuần tương ứng một quý - đủ dài để thấy vấn đề trước khi nó xảy ra, đủ ngắn để từng tuần vẫn dự báo được có căn cứ.",
-    diagram: [
-      { label: "Tiền đầu tuần", arrow: true },
-      { label: "Thu: theo hóa đơn và hạn thanh toán thật", arrow: true },
-      { label: "Chi: lương, nhà cung cấp, thuế, nợ vay", arrow: true },
-      { label: "Tiền cuối tuần so với mức tối thiểu" },
+    "correctOption": 0,
+    "explanation": "Kế hoạch quý là một ảnh chụp: lập một lần, rồi thực tế trôi khỏi nó. Lịch cuốn chiếu thì mỗi tuần bỏ tuần vừa qua và thêm một tuần mới ở cuối, nên nó luôn nhìn cùng một khoảng phía trước. Khác biệt không nằm ở mức chi tiết mà nằm ở việc nó được sửa lại liên tục.",
+    "diagram": [
+      {
+        "label": "Cuốn chiếu: mỗi tuần bỏ tuần cũ, thêm một tuần ở cuối",
+        "arrow": true
+      },
+      {
+        "label": "Nên nó luôn nhìn cùng một khoảng phía trước",
+        "arrow": true
+      },
+      {
+        "label": "Ghi cả phần ĐÃ CAM KẾT và phần còn trống",
+        "arrow": true
+      },
+      {
+        "label": "Giá trị nằm ở buổi cập nhật hằng tuần, không ở bảng"
+      }
     ],
-    realWorldExample: {
-      company: "Nhà thầu xây dựng có lãi nhưng suýt mất thanh khoản",
-      description:
-        "Doanh nghiệp ghi nhận lợi nhuận dương cả bốn quý, nhưng khách hàng thanh toán theo tiến độ nghiệm thu, thường chậm 60 đến 90 ngày, trong khi lương công nhân và tiền vật tư phải trả hằng tuần. Nhìn theo tháng thì mọi tháng đều ổn. Nhìn theo tuần thì có bốn tuần trong quý mà số dư tiền xuống dưới mức tối thiểu cần để trả lương. Bảng 13 tuần cho thấy điều đó từ sáu tuần trước, đủ thời gian để đàm phán ứng trước với một khách hàng lớn thay vì phải vay nóng.",
+    "realWorldExample": {
+      "company": "Phần còn trống mới là phần đáng nhìn",
+      "description": "Một lịch mười ba tuần kín đặc không phải dấu hiệu tốt - nó nghĩa là mọi việc phát sinh trong ba tháng tới đều sẽ đẩy một việc khác ra. Phần còn trống là năng lực dự phòng, và nó nên chiếm một tỷ lệ được quyết định có ý thức."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "Vì sao bảng 13 tuần lập theo dòng tiền thực chứ không theo doanh thu ghi nhận?",
-        options: [
-          "Vì doanh thu ghi nhận theo nguyên tắc dồn tích có thể chưa thu được tiền về",
-          "Vì doanh thu ghi nhận luôn thấp hơn số tiền thực tế mà doanh nghiệp nhận được",
-          "Vì các chuẩn mực kế toán không cho phép dùng doanh thu trong tài liệu dự báo",
-          "Vì số liệu doanh thu chỉ được chốt vào cuối tháng nên không kịp cho báo cáo tuần",
+        "question": "Khác biệt cốt lõi giữa lịch cuốn chiếu và kế hoạch quý là gì?",
+        "options": [
+          "Lịch cuốn chiếu được sửa lại mỗi tuần, còn kế hoạch quý là một ảnh chụp",
+          "Lịch cuốn chiếu chi tiết hơn ở những tuần gần và mờ dần về phía sau",
+          "Lịch cuốn chiếu do đội tự lập còn kế hoạch quý do cấp trên phê duyệt",
+          "Lịch cuốn chiếu chỉ ghi công việc kỹ thuật còn kế hoạch quý ghi cả mục tiêu"
         ],
-        correct: 0,
-        explanation:
-          "Đây chính là khoảng cách giữa lãi và tiền đã học ở phần kế toán, nhưng đặt vào tình huống mà khoảng cách đó quyết định doanh nghiệp còn tồn tại hay không.",
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai là một tính chất thường thấy và nó là hệ quả. Việc được sửa lại liên tục mới là thứ ngăn khoảng cách giữa kế hoạch và thực tế lớn dần tới mức không ai nhìn kế hoạch nữa."
       },
       {
-        question: "Nguồn dữ liệu đáng tin nhất cho phần thu trong bảng 13 tuần là gì?",
-        options: [
-          "Danh sách hóa đơn đã xuất kèm hạn thanh toán và thói quen trả tiền của từng khách",
-          "Kế hoạch doanh thu năm đã được ban lãnh đạo phê duyệt từ đầu năm tài chính",
-          "Doanh thu bình quân của cùng kỳ năm trước chia đều cho số tuần trong quý",
-          "Dự báo của bộ phận bán hàng về những hợp đồng nhiều khả năng sẽ ký được trong quý tới",
+        "question": "Vì sao một lịch kín đặc không phải dấu hiệu tốt?",
+        "options": [
+          "Vì mọi việc phát sinh sẽ đẩy một việc khác ra, và điều đó xảy ra hằng tuần",
+          "Vì đội sẽ làm việc quá tải nên chất lượng công việc giảm xuống",
+          "Vì không còn chỗ cho những cơ hội mới xuất hiện trong quý đó",
+          "Vì việc lập kế hoạch quá chi tiết thường xuyên hoàn toàn không chính xác trong thực tế"
         ],
-        correct: 0,
-        explanation:
-          "Hóa đơn đã xuất là nghĩa vụ đã phát sinh, còn hợp đồng chưa ký chỉ là kỳ vọng. Thói quen trả tiền của từng khách quan trọng không kém hạn ghi trên hóa đơn.",
+        "correct": 0,
+        "explanation": "Phần còn trống không phải chỗ lãng phí mà là NĂNG LỰC DỰ PHÒNG, và nó nên chiếm một tỷ lệ được quyết định có ý thức chứ không phải phần còn sót lại sau khi xếp hết việc."
       },
       {
-        question: "Mức tiền tối thiểu trong bảng dòng tiền có vai trò gì?",
-        options: [
-          "Là ngưỡng cảnh báo: chạm tới nó nghĩa là phải hành động chứ không chờ thêm",
-          "Là số tiền doanh nghiệp bắt buộc phải duy trì theo quy định của ngân hàng cho vay",
-          "Là số dư mục tiêu mà kế hoạch tài chính năm đặt ra cho thời điểm cuối kỳ",
-          "Là mức tiền tối thiểu để được xếp hạng tín nhiệm ở nhóm an toàn",
+        "question": "Vì sao phải phân biệt phần đã cam kết với phần dự kiến?",
+        "options": [
+          "Vì người ngoài đội đọc cả hai như nhau nếu không được đánh dấu rõ",
+          "Vì phần đã cam kết cần được ưu tiên hơn khi có xung đột nguồn lực",
+          "Vì hai loại có mức độ chắc chắn khác nhau nên cần theo dõi riêng",
+          "Vì phần dự kiến có thể thay đổi nên không nên đưa vào lịch chính thức"
         ],
-        correct: 0,
-        explanation:
-          "Không có ngưỡng thì bảng chỉ là một dãy số. Có ngưỡng thì mỗi tuần chạm ngưỡng đều tự động sinh ra một việc phải làm, và đó là toàn bộ mục đích của công cụ này.",
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba mô tả đúng sự khác biệt và không nói vì sao phải đánh dấu. Vấn đề nằm ở người đọc: một dòng trong lịch trông giống mọi dòng khác, và bên ngoài sẽ lập kế hoạch của họ dựa trên nó."
       },
       {
-        question: "Vì sao bảng 13 tuần phải cập nhật lại hằng tuần thay vì lập một lần cho cả quý?",
-        options: [
-          "Vì mỗi tuần trôi qua lại có thêm thông tin thật thay thế cho phần đang là giả định",
-          "Vì bảng cũ sẽ tự động hết hiệu lực sau bảy ngày theo thông lệ báo cáo tài chính",
-          "Vì các khoản chi cố định như lương thay đổi liên tục nên phải nhập lại mỗi tuần",
-          "Vì ngân hàng yêu cầu nộp một bản cập nhật mới vào mỗi đầu tuần làm việc",
+        "question": "Giá trị chính của công cụ này nằm ở đâu?",
+        "options": [
+          "Ở buổi cập nhật hằng tuần, nơi các xung đột lộ ra sớm hơn nhiều tuần",
+          "Ở bảng lịch, vì nó cho mọi người cùng nhìn thấy bức tranh chung",
+          "Ở khả năng dự báo được thời điểm hoàn thành của từng hạng mục",
+          "Ở việc nó buộc đội phải ước lượng khối lượng công việc một cách nghiêm túc"
         ],
-        correct: 0,
-        explanation:
-          "Tuần đầu tiên gần như đã biết chắc, tuần thứ mười ba gần như hoàn toàn là giả định. Cứ mỗi tuần trôi qua, một tuần giả định lại biến thành tuần đã biết, nên bảng luôn giữ được độ tin cậy đó.",
+        "correct": 0,
+        "explanation": "Bảng lịch là sản phẩm phụ. Buổi cập nhật là nơi một người nói ra rằng việc này cần đội kia hỗ trợ trong tuần thứ năm - và biết điều đó ở tuần thứ nhất khác hẳn biết nó ở tuần thứ năm."
       },
-    
-    {
-      "question": "Vì sao bảng dòng tiền 13 tuần phải cập nhật hằng tuần thay vì lập một lần cho cả quý?",
+      {
+        "question": "Điều gì xảy ra khi lịch không được cập nhật vài tuần?",
+        "options": [
+          "Nó trở thành kế hoạch quý, với đúng nhược điểm mà nó sinh ra để tránh",
+          "Đội mất đi công cụ theo dõi tiến độ nên khó biết mình đang ở đâu",
+          "Các bên liên quan không nắm được thay đổi nên kỳ vọng bị lệch",
+          "Những xung đột về nguồn lực bị phát hiện muộn hơn so với bình thường"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là hậu quả cụ thể. Cách nói này thì gọn hơn và hữu ích hơn khi cần thuyết phục ai đó giữ buổi cập nhật: không cập nhật thì bạn không có công cụ này, bạn chỉ có một bảng tính nhiều cột hơn."
+      }
+    ],
+    "keyTakeaways": [
+      "Cuốn chiếu: mỗi tuần bỏ tuần cũ, thêm một tuần mới - luôn nhìn cùng khoảng phía trước.",
+      "Khác biệt nằm ở việc được SỬA LẠI liên tục, không ở mức chi tiết.",
+      "Lịch kín đặc không phải dấu hiệu tốt - phần trống là NĂNG LỰC DỰ PHÒNG.",
+      "Đánh dấu rõ phần ĐÃ CAM KẾT và phần dự kiến - người ngoài đọc cả hai như nhau.",
+      "Giá trị nằm ở BUỔI CẬP NHẬT hằng tuần, không ở bảng lịch."
+    ],
+    "practicePrompt": {
+      "question": "Lịch mười ba tuần của đội bạn kín 100%. Nên làm gì?",
       "options": [
-        "Vì mỗi tuần trôi qua lại có thông tin chắc chắn hơn về các tuần kế tiếp",
-        "Vì số dư tiền mặt thực tế luôn khác với số dự báo ban đầu",
-        "Vì ngân hàng yêu cầu doanh nghiệp nộp bảng cập nhật theo tuần",
-        "Vì bảng cũ bỏ sót các khoản chi mới"
+        "Quyết định một tỷ lệ trống có ý thức và đẩy phần vượt ra ngoài mười ba tuần",
+        "Giữ nguyên vì việc đã được cam kết thì không thể bỏ ra khỏi lịch",
+        "Xin thêm người để có đủ năng lực cho toàn bộ khối lượng đã lên lịch",
+        "Rút ngắn ước lượng của chính từng hạng mục để có thể tạo ra khoảng trống giữa chúng"
       ],
       "correct": 0,
-      "explanation": "Tuần đầu tiên gần như là số chắc chắn, tuần thứ mười ba thì vẫn là ước tính. Cuốn bảng đi mỗi tuần nghĩa là phần chắc chắn luôn nằm ngay trước mặt - đúng lúc tiền mặt là ràng buộc, đó là khác biệt giữa xoay kịp và không kịp."
-    }
-    ],
-    keyTakeaways: [
-      "Doanh nghiệp phá sản vì hết tiền, không phải vì lỗ - hai chuyện khác nhau",
-      "Theo tuần vì con số cuối tháng che mất đáy giữa kỳ",
-      "Phần thu dựa trên hóa đơn đã xuất và thói quen trả tiền, không dựa trên kế hoạch doanh thu",
-      "Phải có mức tiền tối thiểu, nếu không bảng chỉ là một dãy số không sinh ra hành động",
-      "Cập nhật hằng tuần: mỗi tuần một phần giả định biến thành số đã biết",
-    ],
-    practicePrompt: {
-      question:
-        "Bảng 13 tuần cho thấy tuần thứ 7 số dư tiền xuống dưới mức tối thiểu. Hành động hợp lý nhất bây giờ là gì?",
-      options: [
-        "Chờ thêm vài tuần xem tình hình có tự cải thiện không",
-        "Xử lý ngay: giãn chi, đẩy thu, thu xếp tín dụng",
-        "Cắt giảm nhân sự để giảm chi phí",
-        "Ghi nhận và báo cáo trong cuộc họp tháng",
-      ],
-      correct: 1,
-      explanation:
-        "Toàn bộ giá trị của công cụ này nằm ở khoảng thời gian sáu tuần bạn vừa có được. Thu xếp hạn mức tín dụng cần vài tuần, đàm phán giãn nợ nhà cung cấp cũng vậy - làm sớm thì còn là đàm phán, làm muộn thì thành xin cứu. Cắt nhân sự vừa quá chậm để giải quyết vấn đề tuần thứ 7, vừa không đảo ngược được.",
+      "explanation": "Lựa chọn cuối là cách tạo ra khoảng trống trên giấy mà không tạo ra năng lực thật, và nó làm mọi ước lượng sau này mất giá trị. Đẩy phần vượt ra ngoài thì khó chịu hơn và nó nói đúng sự thật về năng lực."
     },
-    summary: {
-      keyIdea: "Khi thanh khoản căng, kỳ báo cáo phải rút ngắn lại cho khớp tốc độ vấn đề",
-      commonMistake: "Yên tâm vì mọi tháng đều kết thúc với số dư dương, trong khi đáy nằm ở giữa tháng",
-      action: "Dựng bảng 13 tuần với ba dòng thu và năm dòng chi lớn nhất, rồi đặt một mức tiền tối thiểu.",
+    "summary": {
+      "keyIdea": "Một quý quá dài để lập kế hoạch chi tiết và quá ngắn để không lập gì cả.",
+      "formula": "Cuốn chiếu mỗi tuần + đánh dấu cam kết và dự kiến + giữ một tỷ lệ trống có ý thức.",
+      "commonMistake": "Lập lịch kín đặc, nên mọi việc phát sinh đều đẩy một việc khác ra.",
+      "action": "Xem lịch của đội bạn còn bao nhiêu phần trăm chỗ trống trong ba tháng tới."
     },
-    application: {
-      title: "Việc cần làm",
-      message:
-        "Lập bảng cho quý tới: mỗi cột một tuần, dòng đầu là tiền đầu tuần, phần thu lấy từ danh sách hóa đơn đã xuất theo hạn thanh toán, phần chi gồm lương, nhà cung cấp, thuế và nợ vay. Đánh dấu mọi tuần mà số dư cuối tuần xuống dưới ngưỡng bạn đặt.",
-      secondary: "Sau bốn tuần, so bản dự báo tuần đầu tiên với thực tế - sai số đó cho biết bảng của bạn đáng tin đến đâu.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Xem kế hoạch ba tháng tới của đội bạn còn bao nhiêu phần trăm chỗ trống, và hỏi con số đó có phải một quyết định hay chỉ là phần còn sót lại.",
+      "secondary": "Nếu nó là phần còn sót lại, mọi việc phát sinh trong ba tháng tới sẽ đẩy một việc đã cam kết ra - và cuộc trò chuyện về việc nào bị đẩy sẽ diễn ra vào lúc gấp gáp nhất."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Bài này là nơi khoảng cách giữa lợi nhuận và dòng tiền - thứ đã học ở phần kế toán - trở thành câu hỏi sống còn thay vì một điểm lý thuyết.",
+        "type": "lead",
+        "text": "Kế hoạch quý được lập một lần rồi treo trên tường, còn công việc thì đổi mỗi tuần - và khoảng cách giữa hai thứ đó lớn dần cho tới khi không ai nhìn kế hoạch nữa."
       },
       {
-        type: "heading",
-        text: "Vì sao đúng 13 tuần",
+        "type": "heading",
+        "text": "Cuốn chiếu là gì"
       },
       {
-        type: "list",
-        items: [
-          "13 tuần tương ứng một quý, khớp với chu kỳ báo cáo và chu kỳ đàm phán với ngân hàng",
-          "Đủ dài để thấy vấn đề trước khi nó xảy ra: sáu đến tám tuần là khoảng thời gian cần để thu xếp hạn mức tín dụng hoặc đàm phán giãn nợ",
-          "Đủ ngắn để từng tuần vẫn dựa được trên hóa đơn và nghĩa vụ đã phát sinh, thay vì trên kỳ vọng",
-          "Cập nhật hằng tuần nên luôn có 13 tuần phía trước, trong đó tuần gần nhất gần như chắc chắn",
-        ],
+        "type": "callout",
+        "label": "Luôn nhìn cùng một khoảng phía trước",
+        "text": "Mỗi tuần bỏ tuần vừa qua và thêm một tuần mới ở cuối. Khác biệt với kế hoạch quý không nằm ở mức chi tiết mà nằm ở việc nó được SỬA LẠI liên tục - nên nó không bao giờ trôi quá xa khỏi thực tế."
       },
       {
-        type: "comparison",
-        left: {
-          label: "Ngân sách năm",
-          text: "Trả lời câu hỏi năm nay chúng ta định làm gì và cần bao nhiêu nguồn lực. Lập theo tháng hoặc quý, dựa trên kế hoạch, và mất ý nghĩa rất nhanh khi thanh khoản căng.",
+        "type": "heading",
+        "text": "Hai thứ phải ghi rõ"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đã cam kết",
+          "text": "Có người nhận, có ngày, và bên ngoài đang lập kế hoạch dựa trên nó."
         },
-        right: {
-          label: "Bảng 13 tuần",
-          text: "Trả lời câu hỏi tuần nào chúng ta thiếu tiền và thiếu bao nhiêu. Lập theo tuần, dựa trên nghĩa vụ đã phát sinh, và là công cụ duy nhất dùng được trong khủng hoảng thanh khoản.",
-        },
+        "right": {
+          "label": "Dự kiến",
+          "text": "Còn có thể đổi. Nếu không đánh dấu, người ngoài đội đọc hai loại này như nhau - một dòng trong lịch trông giống mọi dòng khác."
+        }
       },
       {
-        type: "callout",
-        label: "Ai sẽ đòi xem bảng này",
-        text: "Ngân hàng khi xem xét cấp hoặc gia hạn hạn mức, quỹ đầu tư khi doanh nghiệp gọi vốn trong tình thế khó, và đơn vị tư vấn tái cấu trúc ngay trong tuần đầu tiên vào việc. Ở cả ba trường hợp, việc doanh nghiệp đã có sẵn bảng này và cập nhật đều đặn nói lên nhiều điều về chất lượng quản trị, độc lập với những con số nằm trong đó.",
+        "type": "heading",
+        "text": "Phần trống là một quyết định"
       },
       {
-        type: "closing",
-        lines: [
-          "Lãi là một ý kiến kế toán, tiền trong tài khoản là một sự thật.",
-          "Bài sau quay lại kế hoạch dài hạn, với câu hỏi: một con số duy nhất có đủ không.",
-        ],
+        "type": "paragraph",
+        "text": "Một lịch kín đặc nghĩa là mọi việc phát sinh trong ba tháng tới đều sẽ đẩy một việc khác ra - và việc phát sinh thì xảy ra hằng tuần. Phần còn trống là NĂNG LỰC DỰ PHÒNG, và nó nên chiếm một tỷ lệ được quyết định có ý thức chứ không phải phần còn sót lại."
       },
-    ],
+      {
+        "type": "closing",
+        "lines": [
+          "Giá trị chính của công cụ này không nằm ở bảng lịch. Nó nằm ở BUỔI CẬP NHẬT hằng tuần, nơi một người nói ra rằng việc này cần đội kia hỗ trợ trong tuần thứ năm.",
+          "Biết điều đó ở tuần thứ nhất khác hẳn biết nó ở tuần thứ năm - và nếu buổi cập nhật bị bỏ vài tuần thì bạn không còn công cụ này, bạn chỉ có một bảng tính nhiều cột hơn."
+        ]
+      }
+    ]
   },
   {
     id: 1514,

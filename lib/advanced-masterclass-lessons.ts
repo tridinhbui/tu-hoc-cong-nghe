@@ -13,438 +13,353 @@ import type { Lesson } from "./lesson-types";
 
 export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
   {
-    id: 801,
-    slug: "tai-chinh-bat-dong-san-cap-rate-noi-rental-yield",
-    title: "Chuyên Đề Masterclass 1: Tài Chính Bất Động Sản - Mô Hình Dòng Tiền & Tỷ Suất Vốn Hóa (Cap Rate)",
-    subtitle: "Phân tích NOI, Cap Rate, Rental Yield và đòn bẩy ngân hàng khi đầu tư bất động sản tạo dòng tiền.",
-    whyItMatters:
-      "Phần lớn người mua bất động sản cho thuê ở Việt Nam tính lợi suất bằng cách lấy tiền thuê chia giá nhà - và con số đó gần như luôn đẹp hơn thực tế 1,5 đến 2 điểm phần trăm. Bài này dạy bạn tính đúng, và nhận ra khi nào vay ngân hàng để mua nhà cho thuê là đang tự làm mình nghèo đi.",
-    duration: "14 phút",
-    difficulty: "Khó",
-    emoji: "🏢",
-    openingQuestion:
-      "Một căn hộ dịch vụ trị giá 5 tỷ VNĐ cho thuê thu về 300 triệu VNĐ/năm sau khi trừ chi phí vận hành (NOI). Tỷ suất vốn hóa (Cap Rate) là bao nhiêu?",
-    openingOptions: ["5.0%", "6.0%", "10.0%", "15.0%"],
-    correctOption: 1,
-    explanation:
-      "Tỷ suất vốn hóa lấy thu nhập hoạt động ròng chia giá trị bất động sản, cho ra lợi suất trước khi tính tới việc vay bao nhiêu. Vì loại đòn bẩy ra ngoài, nó cho phép so sánh các tài sản trên cùng một thước đo. Điểm cần nhớ là nó chạy ngược chiều với giá: tỷ suất thấp phản ánh thị trường coi dòng tiền đó chắc chắn hơn nên trả nhiều hơn cho mỗi đồng thu nhập, chứ không có nghĩa tài sản đó kém.",
-    diagram: [
-      { label: "Tiền thuê gộp", arrow: true },
-      { label: "Trừ trống phòng + chi phí vận hành", arrow: true },
-      { label: "NOI", arrow: true },
-      { label: "Chia cho giá mua", arrow: true },
-      { label: "Cap Rate" },
+    "id": 801,
+    "slug": "masterclass-ha-tang-trung-tam-du-lieu",
+    "title": "Chuyên đề Masterclass 1: Hạ tầng trung tâm dữ liệu - định mức và chi phí thật",
+    "subtitle": "Một máy chủ vật lý có bốn ngân sách, và cái hết trước quyết định bạn mua thêm bao nhiêu.",
+    "duration": "14 phút",
+    "difficulty": "Khó",
+    "track": "bonus",
+    "emoji": "🏢",
+    "whyItMatters": "Đội quen với hạ tầng thuê theo nhu cầu thường tính chi phí theo số máy, trong khi chi phí thật của một trung tâm dữ liệu bị chi phối bởi những thứ không ai nhìn thấy trên hoá đơn đám mây.",
+    "openingQuestion": "Ngân sách nào của một tủ máy chủ thường hết trước tiên?",
+    "openingOptions": [
+      "Điện và làm mát, chứ không phải chỗ trống để lắp thêm máy",
+      "Chỗ trống trong tủ, vì kích thước tủ là giới hạn vật lý cứng nhất",
+      "Băng thông mạng, vì các máy trong tủ dùng chung một đường lên",
+      "Số cổng kết nối còn trống trên thiết bị chuyển mạch của tủ đó"
     ],
-    realWorldExample: {
-      company: "Căn hộ dịch vụ tại TP.HCM",
-      description:
-        "Cap rate căn hộ cho thuê ở các quận trung tâm TP.HCM nhiều năm nay dao động quanh 4-6%, trong khi lãi vay mua nhà thả nổi sau ưu đãi thường 10-12%. Nghĩa là mỗi đồng vay về để mua căn hộ cho thuê đang làm dòng tiền âm thêm - người mua thực chất đang đặt cược vào tăng giá đất chứ không phải vào tiền thuê.",
+    "correctOption": 0,
+    "explanation": "Một tủ có bốn mươi hai vị trí lắp máy nhưng chỉ được cấp một công suất điện nhất định, và máy chủ hiện đại tiêu thụ nhiều hơn thế hệ mà trung tâm dữ liệu được thiết kế cho. Kết quả là rất nhiều tủ chỉ lắp được nửa số vị trí - phần còn lại là chỗ trống mà bạn vẫn trả tiền thuê.",
+    "diagram": [
+      {
+        "label": "Bốn ngân sách: chỗ lắp, điện, làm mát, băng thông",
+        "arrow": true
+      },
+      {
+        "label": "Điện và làm mát thường hết trước chỗ lắp",
+        "arrow": true
+      },
+      {
+        "label": "Chi phí thật = mua thiết bị + điện + vận hành + thay thế",
+        "arrow": true
+      },
+      {
+        "label": "So với đám mây phải so cả bốn, không chỉ giá thiết bị"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Tủ nửa trống mà vẫn trả tiền đủ",
+      "description": "Rất nhiều trung tâm dữ liệu cũ chỉ lắp được một nửa số vị trí trong mỗi tủ vì công suất điện cấp cho tủ đã hết. Phần vị trí trống đó vẫn nằm trong hợp đồng thuê, nên chi phí thật cho mỗi máy chủ cao gần gấp đôi con số mà bảng tính đưa ra."
     },
-    application: {
-      title: "Một căn hộ, ba con số",
-      message: "Lấy một tin rao cho thuê bất kỳ đang có thật trên thị trường và tính lần lượt: lợi suất gộp, cap rate sau khi trừ trống 1,5 tháng cộng phí quản lý và dự phòng nội thất, rồi cash-on-cash nếu vay 60% ở lãi suất thả nổi năm thứ ba. Ba con số này thường cách nhau xa tới mức người bán và người mua đang nói về hai tài sản khác nhau.",
-      secondary: "Nếu cap rate ra thấp hơn lãi suất vay, hãy viết ra thành một câu: khoản này chỉ có lãi nếu giá đất tăng ít nhất bao nhiêu phần trăm mỗi năm. Đó mới là vụ cược bạn đang đặt.",
+    "quiz": [
+      {
+        "question": "Vì sao công suất điện thường hết trước chỗ lắp máy?",
+        "options": [
+          "Vì máy chủ đời mới tiêu thụ nhiều hơn thế hệ mà trung tâm dữ liệu được thiết kế cho",
+          "Vì các thiết bị mạng trong tủ chiếm phần lớn công suất được cấp",
+          "Vì hệ thống làm mát trong phòng dùng chung nguồn điện với chính các máy chủ trong tủ đó",
+          "Vì công suất được cấp theo hợp đồng nên thấp hơn nhu cầu thực tế"
+        ],
+        "correct": 0,
+        "explanation": "Đây là chênh lệch giữa hai thế hệ phần cứng chứ không phải sai sót trong thiết kế: một trung tâm dữ liệu được xây cho mật độ công suất của mười năm trước không thể lắp đầy tủ với máy chủ hôm nay."
+      },
+      {
+        "question": "Chi phí thật của một máy chủ tự vận hành gồm những gì?",
+        "options": [
+          "Giá thiết bị, điện tiêu thụ, công vận hành, và phần dự phòng thay thế khi hỏng",
+          "Giá thiết bị và đồng thời chi phí thuê chỗ đặt ở ngay trong trung tâm phần dữ liệu hằng tháng",
+          "Giá thiết bị cộng chi phí khấu hao được phân bổ theo tuổi thọ dự kiến",
+          "Giá thiết bị và chi phí băng thông mạng mà máy đó sử dụng mỗi tháng"
+        ],
+        "correct": 0,
+        "explanation": "Hai khoản cuối là hai khoản hay bị bỏ nhất. Công vận hành thì không xuất hiện trên bất kỳ hoá đơn nào, còn phần dự phòng thay thế thì chỉ lộ ra vào lần hỏng đầu tiên - và lúc đó nó là chi phí gấp gáp."
+      },
+      {
+        "question": "Vì sao so sánh với hạ tầng thuê chỉ theo giá thiết bị lại sai?",
+        "options": [
+          "Vì giá thuê đã bao gồm điện, làm mát, vận hành và thay thế trong cùng một con số",
+          "Vì giá thuê đổi theo đúng mức dùng nên cũng không so sánh trực tiếp được",
+          "Vì thiết bị tự mua có tuổi thọ dài hơn nên cần tính theo nhiều năm",
+          "Vì hai mô hình có mức độ linh hoạt khác nhau nên không cùng đơn vị"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lỗi so sánh phổ biến nhất trong các bảng tính loại này: một con số đã gộp bốn khoản được đặt cạnh một con số chỉ có một khoản, và kết luận rút ra từ đó luôn nghiêng về phía tự vận hành."
+      },
+      {
+        "question": "Vì sao mật độ công suất quan trọng khi chọn phần cứng?",
+        "options": [
+          "Vì một máy mạnh hơn nhưng ngốn điện gấp đôi có thể làm giảm số máy lắp được trong tủ",
+          "Vì máy tiêu thụ nhiều điện thường toả nhiệt lớn nên tuổi thọ ngắn hơn",
+          "Vì chi phí điện chiếm phần lớn trong tổng chi phí vận hành hằng tháng",
+          "Vì công suất tiêu thụ quyết định loại nguồn điện dự phòng mà tủ đó cần được trang bị thêm"
+        ],
+        "correct": 0,
+        "explanation": "Đây là ràng buộc mà bảng so sánh hiệu năng của nhà sản xuất không nhắc tới: hiệu năng trên mỗi watt quan trọng hơn hiệu năng tuyệt đối khi ngân sách điện là ngân sách hết trước."
+      },
+      {
+        "question": "Khi nào tự vận hành hạ tầng thật sự rẻ hơn thuê?",
+        "options": [
+          "Khi tải ổn định, dự đoán được, và chạy gần hết công suất trong nhiều năm",
+          "Khi khối lượng đủ lớn để chi phí trên mỗi đơn vị giảm xuống đáng kể",
+          "Khi đội có đủ chuyên môn để vận hành mà không cần thuê thêm người",
+          "Khi yêu cầu về bảo mật hoặc pháp lý không cho phép dùng hạ tầng thuê"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là điều kiện cần và không đủ. Điều kiện quyết định là hình dạng TẢI: hạ tầng tự vận hành phải mua theo đỉnh và trả tiền suốt thời gian không dùng tới, nên tải càng dao động thì lợi thế càng mất."
+      }
+    ],
+    "keyTakeaways": [
+      "Bốn ngân sách: chỗ lắp, ĐIỆN, làm mát, băng thông - và điện thường hết trước.",
+      "Trung tâm dữ liệu xây cho mật độ mười năm trước không lắp đầy tủ được hôm nay.",
+      "Chi phí thật gồm cả CÔNG VẬN HÀNH và PHẦN DỰ PHÒNG THAY THẾ - hai khoản hay bị bỏ.",
+      "So với đám mây bằng giá thiết bị là đặt con số một khoản cạnh con số bốn khoản.",
+      "Tự vận hành rẻ hơn khi tải ỔN ĐỊNH và chạy gần hết công suất nhiều năm."
+    ],
+    "practicePrompt": {
+      "question": "Bảng tính cho thấy tự mua rẻ hơn thuê 40%. Kiểm tra gì đầu tiên?",
+      "options": [
+        "Bảng đó có tính công vận hành và phần dự phòng thay thế chưa",
+        "Giá thiết bị trong bảng có phải giá thị trường hiện tại hay không",
+        "Thời gian khấu hao được dùng có phù hợp với tuổi thọ thực tế không",
+        "Mức sử dụng dự kiến có được ước tính một cách thận trọng không"
+      ],
+      "correct": 0,
+      "explanation": "Ba lựa chọn kia đều làm con số lệch vài chục phần trăm và đều dễ kiểm. Hai khoản này thì thường vắng mặt hoàn toàn khỏi bảng tính, và cộng chúng vào có thể đảo ngược kết luận chứ không chỉ thu hẹp khoảng cách."
     },
-    sections: [
+    "summary": {
+      "keyIdea": "Một máy chủ vật lý có bốn ngân sách, và cái hết trước quyết định chi phí thật.",
+      "formula": "Chi phí thật = thiết bị + điện + công vận hành + dự phòng thay thế.",
+      "commonMistake": "So giá thiết bị với giá thuê, tức là so một khoản với bốn khoản đã gộp.",
+      "action": "Tìm mức tiêu thụ điện thực tế của tủ máy chủ so với công suất được cấp."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Nếu đội bạn có hạ tầng vật lý, tìm hai con số cho một tủ: công suất điện được cấp và mức tiêu thụ thực tế ở giờ cao điểm.",
+      "secondary": "Nếu tủ còn nhiều vị trí trống mà điện đã gần hết, bạn đang trả tiền cho phần chỗ không dùng được - và con số chi phí trên mỗi máy chủ đang bị tính thấp hơn thực tế."
+    },
+    "sections": [
       {
-        type: "lead",
-        text: "Hai người cùng mua một căn hộ 5 tỷ. Người thứ nhất khoe 'cho thuê 25 triệu/tháng, lợi suất 6%/năm'. Người thứ hai nói 'lợi suất thật của tôi là 3,8%'. Cả hai đều trung thực - họ chỉ đang tính hai thứ khác nhau, và chỉ một trong hai con số dùng được để ra quyết định.",
-      },
-      { type: "heading", text: "1. NOI - con số duy nhất đáng tin trong bất động sản" },
-      {
-        type: "paragraph",
-        text: "NOI (Net Operating Income - lợi nhuận vận hành ròng) là tiền thuê thực nhận trong năm sau khi trừ mọi chi phí để giữ cho tài sản vận hành được, nhưng TRƯỚC khi trừ lãi vay, thuế thu nhập và khấu hao. Ranh giới đó không tùy tiện: nó tách rời hiệu quả của bản thân tài sản khỏi cách người chủ tài trợ cho nó. Cùng một căn hộ, người mua bằng tiền mặt và người vay 70% sẽ có NOI giống hệt nhau - và đó chính là điều làm NOI so sánh được.",
-      },
-      {
-        type: "list",
-        items: [
-          "TRỪ vào NOI: phí quản lý toà nhà, bảo trì và sửa chữa, thuế và phí liên quan tài sản, bảo hiểm, phí môi giới cho thuê, và khoản hụt do trống phòng",
-          "KHÔNG trừ vào NOI: lãi vay ngân hàng, nợ gốc, thuế thu nhập cá nhân, khấu hao",
-          "Khoản hay bị bỏ quên nhất: dự phòng thay thế (CapEx reserve) cho điều hoà, nội thất, sơn sửa - những thứ chắc chắn phải chi, chỉ là không chi đều mỗi tháng",
-        ],
+        "type": "lead",
+        "text": "Đội quen với hạ tầng thuê theo nhu cầu thường tính chi phí theo số máy, trong khi chi phí thật của một trung tâm dữ liệu bị chi phối bởi những thứ không ai nhìn thấy trên hoá đơn đám mây."
       },
       {
-        type: "callout",
-        label: "Lỗi phổ biến nhất",
-        text: "Giả định lấp đầy 12/12 tháng. Căn hộ dịch vụ thực tế hiếm khi vượt 10-11 tháng có khách/năm. Bỏ qua 1 tháng trống là đã thổi phồng NOI thêm khoảng 8% - đủ để biến một thương vụ tệ trông như một thương vụ ổn.",
+        "type": "heading",
+        "text": "Bốn ngân sách của một tủ"
       },
-      { type: "heading", text: "2. Cap Rate và quan hệ nghịch với giá" },
       {
-        type: "formula",
-        title: "Tỷ suất vốn hoá",
-        equation: "Cap Rate = NOI / Giá trị bất động sản",
-        variables: [
-          { symbol: "NOI", name: "Lợi nhuận vận hành ròng năm", description: "Sau chi phí vận hành, trước lãi vay và thuế" },
-          { symbol: "Giá trị", name: "Giá mua hoặc giá thị trường hiện tại", description: "Dùng giá thực trả, đã gồm thuế phí sang tên" },
-        ],
-        example: {
-          title: "Căn hộ 5 tỷ",
-          calculation: "300 triệu / 5.000 triệu",
-          result: "6,0%",
-          explanation:
-            "Đọc ngược lại cũng đúng và hữu ích hơn nhiều: Giá trị = NOI / Cap Rate. Nếu thị trường đòi cap rate 7% thay vì 6%, cùng NOI 300 triệu, tài sản chỉ còn đáng 4,29 tỷ - mất 14% giá trị mà tiền thuê không đổi một đồng nào.",
+        "type": "callout",
+        "label": "Điện hết trước chỗ lắp",
+        "text": "Một tủ có bốn mươi hai vị trí lắp máy nhưng chỉ được cấp một công suất điện nhất định. Máy chủ hiện đại tiêu thụ nhiều hơn thế hệ mà trung tâm dữ liệu được thiết kế cho, nên rất nhiều tủ chỉ lắp được nửa số vị trí - và phần còn lại vẫn nằm trong hợp đồng thuê."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hệ quả cho việc chọn phần cứng: HIỆU NĂNG TRÊN MỖI WATT quan trọng hơn hiệu năng tuyệt đối. Một máy mạnh gấp rưỡi mà ngốn điện gấp đôi làm giảm số máy lắp được trong tủ, và tổng năng lực của tủ đó giảm theo."
+      },
+      {
+        "type": "heading",
+        "text": "Chi phí thật gồm bốn khoản"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Giá thiết bị - khoản duy nhất luôn có trong bảng tính.",
+          "Điện tiêu thụ, gồm cả phần làm mát.",
+          "CÔNG VẬN HÀNH - không xuất hiện trên bất kỳ hoá đơn nào.",
+          "PHẦN DỰ PHÒNG THAY THẾ - chỉ lộ ra vào lần hỏng đầu tiên, và lúc đó là chi phí gấp gáp."
+        ]
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Bảng tính thường làm",
+          "text": "Đặt giá thiết bị cạnh giá thuê hằng tháng. Một con số một khoản cạnh một con số đã gộp cả bốn."
         },
+        "right": {
+          "label": "So sánh đúng",
+          "text": "Cộng đủ bốn khoản rồi mới so. Kết luận đôi khi đảo ngược, chứ không chỉ thu hẹp khoảng cách."
+        }
       },
       {
-        type: "paragraph",
-        text: "Chính chiều nghịch này giải thích vì sao bất động sản cho thuê rớt giá khi lãi suất tăng. Nhà đầu tư đòi hỏi lợi suất cao hơn để bù cho việc gửi tiết kiệm cũng đã sinh lời tốt, cap rate thị trường bị đẩy lên, và mẫu số lớn hơn kéo định giá xuống - dù toà nhà vẫn đầy khách thuê như cũ.",
-      },
-      { type: "heading", text: "3. Ba thước đo hay bị dùng lẫn lộn" },
-      {
-        type: "conceptTable",
-        title: "Phân biệt ba tỷ suất",
-        subtitle: "Cùng một căn hộ có thể được quảng cáo bằng cả ba con số - hãy hỏi rõ là con số nào",
-        concepts: [
-          {
-            vi: "Lợi suất gộp",
-            en: "Gross Rental Yield",
-            def: "Tiền thuê gộp cả năm chia giá mua. Bỏ qua toàn bộ chi phí và trống phòng, nên luôn là con số đẹp nhất và vô dụng nhất.",
-          },
-          {
-            vi: "Tỷ suất vốn hoá",
-            en: "Cap Rate",
-            def: "NOI chia giá mua. Đã trừ chi phí vận hành, chưa tính vay. Đây là thước đo để so sánh giữa các tài sản.",
-          },
-          {
-            vi: "Lợi suất trên vốn tự có",
-            en: "Cash-on-Cash Return",
-            def: "(NOI trừ tiền trả nợ cả năm) chia vốn tự có đã bỏ ra. Đây mới là thứ chạm vào túi bạn khi có vay ngân hàng.",
-          },
-        ],
-      },
-      { type: "heading", text: "4. Đòn bẩy: khi vay tiền làm bạn nghèo đi" },
-      {
-        type: "paragraph",
-        text: "LTV (Loan-to-Value) 70% trên căn nhà 3 tỷ nghĩa là ngân hàng cho vay 2,1 tỷ, bạn bỏ 900 triệu. Đòn bẩy phóng đại kết quả theo cả hai chiều, và chiều nào thắng phụ thuộc vào đúng một phép so sánh: cap rate so với lãi vay.",
-      },
-      {
-        type: "comparison",
-        left: {
-          label: "Đòn bẩy dương (cap rate > lãi vay)",
-          text: "Cap rate 9%, lãi vay 7%. Mỗi đồng vay tạo ra nhiều hơn phần lãi phải trả, nên vay càng nhiều thì lợi suất trên vốn tự có càng cao. Đây là kịch bản trong sách giáo khoa Mỹ.",
-        },
-        right: {
-          label: "Đòn bẩy âm (cap rate < lãi vay)",
-          text: "Cap rate 5%, lãi vay 11% - tình huống phổ biến ở Việt Nam. Mỗi đồng vay tạo ra ít hơn phần lãi phải trả, dòng tiền hằng tháng âm, và bạn phải bù bằng lương. Thương vụ chỉ có lãi nếu giá đất tăng đủ nhanh.",
-        },
-      },
-      {
-        type: "callout",
-        label: "Kiểm tra bắt buộc trước khi vay",
-        text: "DSCR = NOI / Tổng nghĩa vụ trả nợ năm. Dưới 1,0 nghĩa là tiền thuê không đủ trả ngân hàng, tháng nào bạn cũng phải móc túi bù. Ngân hàng cho vay dự án thường đòi tối thiểu 1,2 - bạn cũng nên tự áp chuẩn đó cho mình.",
-      },
-      {
-        type: "closing",
-        lines: [
-          "Cap rate đo chất lượng của tài sản. Cash-on-cash đo chất lượng của thương vụ bạn vừa ký.",
-          "Ở thị trường mà cap rate thấp hơn lãi vay, mua nhà cho thuê bằng tiền vay không phải là đầu tư dòng tiền - đó là đặt cược vào giá đất, và nên gọi đúng tên như vậy.",
-        ],
-      },
-    ],
-    quiz: [
-      {
-        question: "Lợi nhuận vận hành ròng NOI (Net Operating Income) của bất động sản được tính bằng công thức nào?",
-        options: [
-          "Tổng giá trị hợp đồng mua bán - Chi phí môi giới",
-          "Doanh thu cho thuê - Lãi vay ngân hàng",
-          "Tổng doanh thu cho thuê - (Chi phí quản lý + Bảo trì + Thuế tài sản + Trống phòng)",
-          "Doanh thu thuần - Chi phí xây dựng bàn giao",
-        ],
-        correct: 2,
-        explanation:
-          "NOI chỉ trừ các chi phí để giữ tài sản vận hành được, và KHÔNG trừ lãi vay hay thuế thu nhập. Ranh giới đó có mục đích rõ ràng: nó tách hiệu quả của bản thân bất động sản khỏi cách chủ sở hữu tài trợ cho nó, nhờ vậy hai căn hộ giống nhau sẽ có NOI giống nhau dù một người mua bằng tiền mặt còn một người vay 70%.",
-      },
-      {
-        question: "Tỷ lệ đòn bẩy LTV (Loan-to-Value) = 70% khi mua nhà 3 tỷ đồng nghĩa là gì?",
-        options: [
-          "Ngân hàng tài trợ 100% tiền mua nhà",
-          "Vay ngân hàng 900 triệu, vốn tự có 2,1 tỷ đồng",
-          "Lãi suất vay là 70%/năm",
-          "Vốn tự có 900 triệu, vay ngân hàng 2,1 tỷ đồng",
-        ],
-        correct: 3,
-        explanation:
-          "LTV là tỷ lệ khoản vay trên GIÁ TRỊ tài sản, nên 70% của 3 tỷ là 2,1 tỷ tiền vay và 900 triệu vốn tự có. Lưu ý một cái bẫy thực tế: ngân hàng tính LTV trên giá ĐỊNH GIÁ của họ, thường thấp hơn giá bạn thật sự trả - nên số tiền mặt bạn phải chuẩn bị hầu như luôn nhiều hơn con số 30% trên giấy.",
-      },
-      {
-        question:
-          "Cùng một toà nhà cho NOI 700 triệu/năm. Nếu cap rate thị trường tăng từ 6% lên 7% do lãi suất tăng, giá trị toà nhà thay đổi thế nào?",
-        options: [
-          "Tăng khoảng 14%, vì cap rate cao nghĩa là tài sản sinh lời tốt hơn",
-          "Giảm khoảng 14%, từ 11,67 tỷ xuống 10 tỷ, dù tiền thuê không đổi",
-          "Không đổi, vì NOI không đổi",
-          "Giảm đúng 1%, bằng mức tăng cap rate",
-        ],
-        correct: 1,
-        explanation:
-          "Giá trị = NOI / Cap Rate, nên cap rate nằm ở MẪU SỐ và quan hệ là nghịch: 700/0,06 = 11,67 tỷ, còn 700/0,07 = 10 tỷ, tức mất khoảng 14,3%. Đây chính là cơ chế khiến bất động sản cho thuê rớt giá trong chu kỳ lãi suất tăng dù toà nhà vẫn kín khách - nhà đầu tư đòi lợi suất cao hơn vì các kênh khác cũng đã sinh lời tốt hơn.",
-      },
-      {
-        question:
-          "Một căn hộ có cap rate 5%, bạn vay ngân hàng với lãi suất 11%/năm để mua. Điều gì xảy ra với dòng tiền của bạn?",
-        options: [
-          "Dòng tiền dương và càng vay nhiều càng lãi, vì đòn bẩy luôn khuếch đại lợi nhuận",
-          "Đòn bẩy âm: mỗi đồng vay tạo ra ít hơn phần lãi phải trả, dòng tiền hằng tháng âm và bạn phải bù bằng nguồn khác",
-          "Không ảnh hưởng gì, vì lãi vay không nằm trong NOI",
-          "Dòng tiền dương vì tiền thuê luôn tăng theo lạm phát",
-        ],
-        correct: 1,
-        explanation:
-          "Đòn bẩy chỉ khuếch đại lợi nhuận khi cap rate CAO HƠN lãi vay. Ở đây tài sản sinh 5% trong khi tiền vay tốn 11%, nên mỗi đồng vay thêm là mỗi đồng làm dòng tiền xấu đi - đúng tình huống phổ biến ở Việt Nam nhiều năm nay. Thương vụ chỉ có lãi nếu giá đất tăng đủ bù phần lỗ dòng tiền, và khi đó nó là một khoản đặt cược vào giá, không phải một khoản đầu tư dòng tiền.",
-      },
-      {
-        question: "DSCR = 0,85 cho một bất động sản cho thuê có nghĩa là gì?",
-        options: [
-          "Tài sản sinh lời 85% so với kỳ vọng, vẫn chấp nhận được",
-          "NOI chỉ đủ trả 85% nghĩa vụ nợ năm - mỗi năm chủ nhà phải bù thêm 15% từ nguồn khác",
-          "Ngân hàng đã cho vay 85% giá trị tài sản",
-          "Tỷ lệ lấp đầy phòng đạt 85%",
-        ],
-        correct: 1,
-        explanation:
-          "DSCR (Debt Service Coverage Ratio) = NOI / tổng nghĩa vụ trả nợ trong năm. Dưới 1,0 nghĩa là bản thân tài sản không tự nuôi nổi khoản vay của nó. Ngân hàng tài trợ dự án thường đòi tối thiểu 1,2 để có đệm an toàn, và nhà đầu tư cá nhân nên tự áp cùng chuẩn đó - vì khi mất việc hoặc căn hộ trống ba tháng, chính khoảng đệm này quyết định bạn giữ được tài sản hay phải bán tháo.",
-      },
-    ],
-    practicePrompt: {
-      question:
-        "Căn hộ giá 4 tỷ, cho thuê 22 triệu/tháng, chi phí vận hành 3 triệu/tháng, dự kiến trống 1,5 tháng mỗi năm. Cap rate xấp xỉ bao nhiêu?",
-      options: ["6,6%", "5,7%", "4,8%", "4,1%"],
-      correct: 2,
-      explanation:
-        "Tiền thuê thực nhận = 22 triệu × 10,5 tháng = 231 triệu. Chi phí vận hành = 3 triệu × 12 = 36 triệu (vẫn phải trả khi phòng trống). NOI = 231 - 36 = 195 triệu. Cap rate = 195/4.000 = 4,9%, làm tròn 4,8-4,9%. So sánh với con số quảng cáo quen thuộc 22 × 12 / 4.000 = 6,6% để thấy khoảng cách gần 1,8 điểm phần trăm giữa lợi suất gộp và cap rate thật.",
-    },
-    keyTakeaways: [
-      "NOI trừ chi phí vận hành và trống phòng, nhưng không trừ lãi vay - nhờ vậy nó so sánh được giữa các tài sản bất kể ai vay bao nhiêu.",
-      "Giá trị = NOI / Cap Rate, nên cap rate thị trường tăng 1 điểm phần trăm có thể xoá 14% giá trị dù tiền thuê không đổi.",
-      "Lợi suất gộp đo tài sản trên giấy, cap rate đo tài sản thật, cash-on-cash đo thương vụ của riêng bạn.",
-      "Đòn bẩy chỉ có lợi khi cap rate cao hơn lãi vay; ở Việt Nam thường ngược lại, nên mua nhà cho thuê bằng tiền vay là đặt cược vào giá đất.",
-      "DSCR dưới 1,0 nghĩa là tài sản không tự nuôi nổi khoản vay của nó.",
-    ],
-    summary: {
-      keyIdea:
-        "Cap rate đo chất lượng tài sản, cash-on-cash đo chất lượng thương vụ - và khoảng cách giữa cap rate với lãi vay quyết định đòn bẩy giúp bạn hay hại bạn.",
-      formula: "Cap Rate = NOI / Giá trị · Giá trị = NOI / Cap Rate · DSCR = NOI / Nghĩa vụ nợ năm",
-      commonMistake:
-        "Tính lợi suất bằng tiền thuê gộp chia giá nhà, giả định lấp đầy 12/12 tháng và bỏ qua dự phòng thay thế nội thất.",
-      action:
-        "Trước khi xuống tiền, tính NOI với giả định trống 1,5 tháng, rồi kiểm tra DSCR có đạt 1,2 không.",
-    },
-    track: "bonus",
+        "type": "closing",
+        "lines": [
+          "Điều kiện quyết định tự vận hành có rẻ hơn không là hình dạng TẢI, không phải quy mô.",
+          "Hạ tầng tự vận hành phải mua theo đỉnh và trả tiền suốt thời gian không dùng tới - nên tải càng dao động thì lợi thế càng mất, bất kể tổng khối lượng lớn tới đâu."
+        ]
+      }
+    ]
   },
   {
-    id: 802,
-    slug: "dau-tu-trai-phieu-doanh-nghiep-ytm-credit-rating",
-    title: "Chuyên Đề Masterclass 2: Trái Phiếu Doanh Nghiệp - Định Giá Lãi Suất YTM & Quản Trị Rủi Ro Vỡ Nợ",
-    subtitle: "YTM, credit spread, xếp hạng tín nhiệm và điều khoản covenant - đọc một trái phiếu doanh nghiệp trước khi mua.",
-    whyItMatters:
-      "Giai đoạn 2020-2021, hàng trăm nghìn nhà đầu tư cá nhân Việt Nam mua trái phiếu doanh nghiệp chỉ vì một lý do: lãi suất 11%/năm so với gửi tiết kiệm 6%. Rất ít người hỏi phần chênh 5 điểm phần trăm đó là tiền trả cho rủi ro gì. Bài này dạy bạn đặt đúng câu hỏi đó.",
-    duration: "14 phút",
-    difficulty: "Khó",
-    emoji: "📜",
-    openingQuestion: "Khi lãi suất thị trường tăng từ 6% lên 8%, giá của một trái phiếu doanh nghiệp có coupon cố định sẽ biến động thế nào?",
-    openingOptions: [
-      "Giá trái phiếu giảm xuống",
-      "Giá trái phiếu tăng lên",
-      "Giá trái phiếu giữ nguyên không đổi",
-      "Trái phiếu tự động biến thành cổ phiếu",
+    "id": 802,
+    "slug": "masterclass-mang-doanh-nghiep-va-cam-ket-duong-truyen",
+    "title": "Chuyên đề Masterclass 2: Mạng doanh nghiệp - đường truyền, dự phòng và cam kết",
+    "subtitle": "Hai đường truyền từ hai nhà cung cấp vẫn có thể đi qua cùng một sợi cáp dưới lòng đất.",
+    "duration": "14 phút",
+    "difficulty": "Khó",
+    "track": "bonus",
+    "emoji": "📜",
+    "whyItMatters": "Phần lớn kế hoạch dự phòng đường truyền được lập trên sơ đồ logic, còn sự cố thì xảy ra ở tầng vật lý mà sơ đồ đó không thể hiện.",
+    "openingQuestion": "Bạn thuê hai đường truyền từ hai nhà cung cấp khác nhau. Đủ dự phòng chưa?",
+    "openingOptions": [
+      "Chưa - phải kiểm hai đường có đi chung tuyến cáp vật lý nào không",
+      "Rồi, vì hai nhà cung cấp độc lập thì sự cố của họ cũng độc lập",
+      "Chưa, thật sự cần thêm một đường thứ ba để có thể chịu đã được hai sự cố cùng lúc",
+      "Tuỳ vào cam kết mức độ dịch vụ mà từng nhà cung cấp đưa ra"
     ],
-    correctOption: 0,
-    explanation:
-      "Định giá một trái phiếu doanh nghiệp quy về hai việc: chiết khấu dòng coupon và mệnh giá về hiện tại, rồi hỏi tỷ lệ chiết khấu đó có bù đủ rủi ro không. Vế thứ nhất là toán học thuần túy và giải thích vì sao giá đi ngược chiều lãi suất. Vế thứ hai mới là phần phân tích: phần lợi suất vượt trên trái phiếu chính phủ phải bù được xác suất vỡ nợ nhân với phần không thu hồi được, cộng phần bù cho thanh khoản kém.",
-    diagram: [
-      { label: "Lãi suất thị trường tăng", arrow: true },
-      { label: "Trái phiếu cũ kém hấp dẫn", arrow: true },
-      { label: "Giá phải giảm", arrow: true },
-      { label: "YTM tăng bằng mặt bằng mới" },
+    "correctOption": 0,
+    "explanation": "Nhà cung cấp thuê lại hạ tầng của nhau là chuyện bình thường, nên hai hợp đồng khác nhau vẫn có thể chạy trên cùng một sợi cáp trong cùng một cống ngầm. Một chiếc máy xúc cắt đứt cả hai cùng lúc, và đây là dạng nguyên nhân chung mà không sơ đồ logic nào cho thấy.",
+    "diagram": [
+      {
+        "label": "Hai hợp đồng khác nhau vẫn có thể chung một sợi cáp",
+        "arrow": true
+      },
+      {
+        "label": "Hỏi thẳng nhà cung cấp về tuyến vật lý và điểm vào toà nhà",
+        "arrow": true
+      },
+      {
+        "label": "Cam kết dịch vụ đo cái gì, đo ở đâu, và bồi thường bao nhiêu",
+        "arrow": true
+      },
+      {
+        "label": "Bồi thường gần như luôn nhỏ hơn thiệt hại thật rất nhiều"
+      }
     ],
-    interactiveType: "bond",
-    realWorldExample: {
-      company: "Khủng hoảng trái phiếu doanh nghiệp Việt Nam 2022",
-      description:
-        "Sau các vụ việc liên quan Tân Hoàng Minh và Vạn Thịnh Phát, thị trường trái phiếu doanh nghiệp riêng lẻ gần như đóng băng. Nhiều lô trái phiếu bất động sản được bán cho nhà đầu tư cá nhân với lãi suất 11-13% thuộc nhóm quen được gọi là 'ba không': không xếp hạng tín nhiệm, không tài sản đảm bảo đủ chất lượng, không bảo lãnh thanh toán. Nghị định 65/2022 sau đó siết lại điều kiện phát hành và chuẩn nhà đầu tư chuyên nghiệp.",
+    "realWorldExample": {
+      "company": "Điểm vào toà nhà",
+      "description": "Kể cả khi hai đường đi hai tuyến cáp khác nhau, chúng thường vào toà nhà qua cùng một điểm và cùng một phòng thiết bị. Một sự cố ở phòng đó - cháy, ngập, mất điện - làm mất cả hai, và đây là nguyên nhân chung dễ kiểm nhất mà ít ai kiểm."
     },
-    application: {
-      title: "Đọc phần chênh, không đọc con số to",
-      message: "Với lô trái phiếu gần nhất bạn thấy được chào, tra lợi suất trái phiếu chính phủ cùng kỳ hạn và trừ đi. Phần còn lại là giá thị trường đặt cho khả năng doanh nghiệp này không trả được. Rồi mở báo cáo tài chính và tìm dòng tiền từ hoạt động kinh doanh có đủ phủ lãi vay hay không.",
-      secondary: "Nếu spread cao bất thường mà bạn không chỉ ra được nó cao vì cái gì, thì thứ bạn chưa biết chính là thứ bạn đang được trả tiền để gánh.",
-    },
-    sections: [
+    "quiz": [
       {
-        type: "lead",
-        text: "Một trái phiếu trả 11%/năm trong khi ngân hàng trả 6%. Câu hỏi đúng không phải 'lãi cao thế có thật không', mà là 'ai đang trả tôi thêm 5 điểm phần trăm, và họ mua của tôi cái gì bằng số tiền đó'. Câu trả lời luôn là: bạn vừa bán cho họ khả năng chịu đựng việc mất trắng.",
-      },
-      { type: "heading", text: "1. Ba con số 'lợi suất' và vì sao chỉ một cái đáng tin" },
-      {
-        type: "conceptTable",
-        title: "Đừng nhầm ba thứ này",
-        concepts: [
-          {
-            vi: "Lãi danh nghĩa",
-            en: "Coupon Rate",
-            def: "Phần trăm in trên trái phiếu, tính trên mệnh giá. Cố định suốt đời trái phiếu và không nói gì về việc bạn mua nó với giá nào.",
-          },
-          {
-            vi: "Lợi suất hiện hành",
-            en: "Current Yield",
-            def: "Coupon chia GIÁ THỊ TRƯỜNG hiện tại. Đã tốt hơn coupon, nhưng bỏ qua khoản lãi/lỗ khi trái phiếu đáo hạn về mệnh giá.",
-          },
-          {
-            vi: "Lợi suất đáo hạn",
-            en: "Yield to Maturity (YTM)",
-            def: "Tỷ suất chiết khấu làm cho hiện giá của toàn bộ dòng tiền tương lai đúng bằng giá bạn trả hôm nay. Đây là con số để so sánh.",
-          },
+        "question": "Vì sao hai nhà cung cấp khác nhau không đảm bảo hai đường độc lập?",
+        "options": [
+          "Vì họ thuê lại hạ tầng của nhau nên hai hợp đồng có thể chạy chung một sợi cáp",
+          "Vì hai nhà cung cấp có thể dùng chung một điểm trung chuyển lưu lượng quốc tế",
+          "Vì các nhà cung cấp trong cùng khu vực chịu ảnh hưởng bởi cùng điều kiện thời tiết",
+          "Vì họ mua thiết bị từ cùng một số ít hãng nên lỗi phần cứng có thể giống nhau"
         ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là nguyên nhân chung có thật và đều hiếm hơn nhiều. Chung tuyến cáp là chuyện thường ngày trong ngành, và nó không được ghi ở đâu trong hợp đồng nếu bạn không hỏi."
       },
       {
-        type: "paragraph",
-        text: "YTM là thước đo đầy đủ nhất vì nó gộp cả ba nguồn tiền: các kỳ coupon, phần chênh giữa giá mua và mệnh giá nhận lại khi đáo hạn, và yếu tố thời gian. Nhưng nó đi kèm hai giả định thường bị lờ đi - rằng bạn giữ đến ngày đáo hạn, và rằng mọi khoản coupon nhận được đều tái đầu tư đúng bằng chính mức YTM đó. Bán sớm hoặc lãi suất đổi chiều, lợi suất thực tế sẽ khác con số ghi trên bản chào bán.",
-      },
-      { type: "heading", text: "2. Bóc tách lợi suất: bạn được trả cho những rủi ro nào" },
-      {
-        type: "formula",
-        title: "Cấu trúc lợi suất trái phiếu doanh nghiệp",
-        equation: "YTM = Lãi suất phi rủi ro + Credit Spread",
-        variables: [
-          { symbol: "Lãi suất phi rủi ro", name: "Trái phiếu Chính phủ cùng kỳ hạn", description: "Giá của thời gian, không kèm rủi ro vỡ nợ" },
-          { symbol: "Credit Spread", name: "Phần bù rủi ro tín dụng", description: "Bù cho rủi ro vỡ nợ và rủi ro thanh khoản" },
+        "question": "Nguyên nhân chung nào dễ kiểm nhất mà ít ai kiểm?",
+        "options": [
+          "Hai đường vào toà nhà qua cùng một điểm và cùng một phòng thiết bị",
+          "Hai đường dùng chung một thiết bị định tuyến ở phía trong hệ thống",
+          "Hai đường được cấu hình bởi cùng một người nên có thể sai giống nhau",
+          "Hai đường có băng thông không đủ để một cái gánh toàn bộ khi cái kia hỏng"
         ],
-        example: {
-          title: "Trái phiếu doanh nghiệp bất động sản",
-          calculation: "11,5% - 4,5% (TPCP 3 năm)",
-          result: "Spread 7,0%",
-          explanation:
-            "Spread 7 điểm phần trăm là thị trường đang định giá xác suất vỡ nợ rất đáng kể, không phải một món quà. Quy tắc thô để tự kiểm tra: spread khoảng bằng xác suất vỡ nợ hằng năm nhân với tỷ lệ mất vốn khi vỡ nợ. Spread 7% với giả định mất 60% vốn ngụ ý xác suất vỡ nợ quanh 11-12% mỗi năm.",
-        },
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là một vấn đề thật và khác loại - nó là chuyện dung lượng chứ không phải nguyên nhân chung. Điểm vào toà nhà thì kiểm được bằng cách đi bộ xuống tầng hầm và nhìn."
       },
       {
-        type: "callout",
-        label: "Cách đọc một lô trái phiếu lãi cao",
-        text: "Đừng hỏi 'lãi 12% có cao không'. Hãy hỏi 'trái phiếu Chính phủ cùng kỳ hạn đang bao nhiêu, và phần chênh còn lại có tương xứng với rủi ro của chính doanh nghiệp này không'. Nếu bạn không định lượng được rủi ro đó, bạn không định giá được trái phiếu - và khi không định giá được, mức lãi cao là lý do để tránh xa chứ không phải để mua.",
-      },
-      { type: "heading", text: "3. Xếp hạng tín nhiệm và tài sản đảm bảo" },
-      {
-        type: "list",
-        items: [
-          "Investment grade (từ BBB-/Baa3 trở lên): xác suất vỡ nợ thấp, spread mỏng, thanh khoản tốt.",
-          "High yield hay 'junk' (dưới BBB-): spread dày, biến động mạnh theo chu kỳ kinh tế và thường mất thanh khoản đúng lúc bạn cần bán nhất.",
-          "Không xếp hạng: phần lớn trái phiếu riêng lẻ tại Việt Nam giai đoạn 2020-2021 thuộc nhóm này - nghĩa là không có bên thứ ba độc lập nào từng thẩm định khả năng trả nợ.",
-          "Tài sản đảm bảo chỉ có giá trị bằng đúng khả năng phát mại của nó. Cổ phiếu của chính công ty phát hành, hoặc quyền tài sản từ một dự án chưa hoàn thành pháp lý, thường mất giá đúng vào lúc doanh nghiệp gặp khó.",
+        "question": "Điều gì cần đọc kỹ nhất trong một cam kết mức độ dịch vụ?",
+        "options": [
+          "Cam kết đo cái gì, đo ở đâu, và loại trừ những trường hợp nào",
+          "Con số phần trăm thời gian hoạt động mà nhà cung cấp cam kết đạt được",
+          "Mức bồi thường được áp dụng khi nhà cung cấp không đạt cam kết",
+          "Thời hạn hợp đồng và điều kiện để chấm dứt trước thời hạn đó"
         ],
-      },
-      { type: "heading", text: "4. Covenant - hàng rào bảo vệ trái chủ" },
-      {
-        type: "paragraph",
-        text: "Covenant là các cam kết ràng buộc doanh nghiệp trong suốt đời trái phiếu. Điều khoản kiểu 'Debt-to-Equity không vượt 3,0x' không nhằm quản trị hộ doanh nghiệp, mà nhằm chặn trước việc doanh nghiệp vay thêm nợ mới - vì nợ mới sẽ pha loãng khả năng trả nợ dành cho bạn, người đã cho vay trước. Vi phạm covenant thường kích hoạt quyền yêu cầu mua lại trước hạn, và đó là công cụ duy nhất trái chủ có trước khi mọi chuyện đi quá xa.",
+        "correct": 0,
+        "explanation": "Con số phần trăm là thứ được đưa lên đầu tài liệu và nó không có nghĩa cho tới khi bạn biết ba điều kia. Đo ở biên mạng của nhà cung cấp khác hẳn đo từ vị trí của bạn, và danh sách loại trừ thường bao gồm cả bảo trì theo kế hoạch."
       },
       {
-        type: "comparison",
-        left: {
-          label: "Rủi ro lãi suất",
-          text: "Giá biến động khi mặt bằng lãi suất đổi. Đo bằng duration: duration 4 nghĩa là lãi suất tăng 1 điểm phần trăm thì giá giảm khoảng 4%. Rủi ro này biến mất nếu bạn giữ tới đáo hạn.",
-        },
-        right: {
-          label: "Rủi ro tín dụng",
-          text: "Doanh nghiệp không trả được. Rủi ro này KHÔNG biến mất khi giữ tới đáo hạn - giữ lâu chỉ làm bạn ở lại với nó lâu hơn. Đây là rủi ro đã xoá sổ vốn của nhiều nhà đầu tư trái phiếu Việt Nam.",
-        },
-      },
-      {
-        type: "closing",
-        lines: [
-          "Trái phiếu là một khoản cho vay. Trước khi mua, hãy hỏi câu mà mọi cán bộ tín dụng đều phải hỏi: doanh nghiệp này lấy dòng tiền từ đâu để trả tôi, chứ không phải tài sản của họ đáng bao nhiêu trên giấy.",
-          "Lãi suất cao chưa bao giờ là phần thưởng. Nó là hoá đơn thị trường gửi cho bạn, ghi rõ mức rủi ro bạn vừa nhận về.",
+        "question": "Vì sao mức bồi thường không phải thứ để dựa vào?",
+        "options": [
+          "Vì nó gần như luôn nhỏ hơn nhiều so với thiệt hại thật của một lần gián đoạn",
+          "Vì thủ tục yêu cầu bồi thường phức tạp nên nhiều đội không theo tới cùng",
+          "Vì bồi thường thường được trả bằng tín dụng dịch vụ thay vì bằng tiền mặt",
+          "Vì cần chứng minh được mức gián đoạn nên tranh chấp thường kéo dài"
         ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là trở ngại thật khi đi đòi bồi thường. Vấn đề gốc thì nằm ở độ lớn: bồi thường được thiết kế để bù một phần phí dịch vụ, không phải để bù doanh thu bạn mất trong bốn giờ."
       },
+      {
+        "question": "Điều gì nên kiểm định kỳ với đường truyền dự phòng?",
+        "options": [
+          "Chuyển hẳn lưu lượng sang nó một lần và xem hệ thống có chạy đủ không",
+          "Kiểm tra trạng thái kết nối của nó trên bảng theo dõi mỗi tuần",
+          "Đối chiếu băng thông thực tế của nó với mức cam kết trong hợp đồng",
+          "Xác nhận với nhà cung cấp rằng đường đó vẫn đang hoạt động bình thường"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều cho biết đường đó còn sống, không cho biết nó GÁNH ĐƯỢC. Cùng bài học với bản sao lưu chưa từng được khôi phục thử: một cơ chế dự phòng chưa từng chạy thật là một giả định chưa được kiểm."
+      }
     ],
-    quiz: [
-      {
-        question: "Lợi suất đến ngày đáo hạn YTM (Yield to Maturity) phản ánh điều gì?",
-        options: [
-          "Chỉ phần lãi coupon nhận được hằng năm",
-          "Tổng lợi suất thực nhận nếu giữ đến đáo hạn, gồm cả coupon lẫn chênh lệch giữa giá mua và mệnh giá",
-          "Lãi suất ngân hàng trung ương công bố",
-          "Tỷ lệ tăng giá của trái phiếu trong năm gần nhất",
-        ],
-        correct: 1,
-        explanation:
-          "YTM là tỷ suất chiết khấu làm hiện giá toàn bộ dòng tiền tương lai bằng đúng giá bạn trả hôm nay, nên nó gộp cả coupon lẫn khoản lãi/lỗ vốn khi đáo hạn về mệnh giá. Hai giả định đi kèm cần nhớ: bạn giữ tới đáo hạn, và tái đầu tư mọi coupon đúng bằng mức YTM đó - bán sớm hoặc lãi suất đổi chiều thì lợi suất thực tế sẽ lệch khỏi con số này.",
-      },
-      {
-        question: "Điều khoản covenant 'Debt-to-Equity < 3.0x' trong hợp đồng trái phiếu có mục đích gì?",
-        options: [
-          "Bảo đảm doanh nghiệp luôn có lãi mỗi năm",
-          "Ngăn doanh nghiệp vay thêm nợ mới làm loãng khả năng trả nợ cho trái chủ hiện hữu",
-          "Ấn định mức cổ tức tối đa được chia",
-          "Quy định lãi suất coupon sẽ thay đổi theo thị trường",
-        ],
-        correct: 1,
-        explanation:
-          "Covenant không nhằm quản trị hộ doanh nghiệp mà nhằm bảo vệ thứ tự ưu tiên của người đã cho vay trước. Mỗi khoản nợ mới đều chia sẻ cùng một dòng tiền trả nợ, nên trần đòn bẩy giữ cho miếng bánh của bạn không bị cắt nhỏ thêm. Vi phạm covenant thường kích hoạt quyền yêu cầu mua lại trước hạn - công cụ can thiệp sớm duy nhất mà trái chủ có.",
-      },
-      {
-        question: "Một trái phiếu doanh nghiệp có YTM 11,5% trong khi trái phiếu Chính phủ cùng kỳ hạn có lợi suất 4,5%. Credit spread 7% nói lên điều gì?",
-        options: [
-          "Doanh nghiệp này sinh lời tốt hơn Chính phủ 7%",
-          "Thị trường đang đòi 7 điểm phần trăm để bù cho rủi ro vỡ nợ và rủi ro thanh khoản của lô trái phiếu này",
-          "Trái phiếu này an toàn hơn trái phiếu Chính phủ",
-          "Lạm phát kỳ vọng là 7%",
-        ],
-        correct: 1,
-        explanation:
-          "Spread là giá của rủi ro, không phải phần thưởng cho sự nhạy bén. Quy tắc thô để tự kiểm tra: spread xấp xỉ bằng xác suất vỡ nợ hằng năm nhân tỷ lệ mất vốn khi vỡ nợ. Với spread 7% và giả định mất 60% vốn, thị trường đang ngụ ý xác suất vỡ nợ khoảng 11-12% mỗi năm - tức cứ khoảng chín lô như thế này thì thống kê kỳ vọng có một lô mất khả năng trả nợ trong vòng một năm.",
-      },
-      {
-        question: "Nhà đầu tư nói: 'Tôi giữ trái phiếu đến đáo hạn nên không lo rủi ro'. Nhận định này sai ở đâu?",
-        options: [
-          "Không sai, giữ đến đáo hạn thì loại bỏ được mọi rủi ro",
-          "Giữ đến đáo hạn chỉ triệt tiêu rủi ro LÃI SUẤT (biến động giá), không hề triệt tiêu rủi ro TÍN DỤNG",
-          "Sai vì trái phiếu không có ngày đáo hạn cố định",
-          "Sai vì coupon sẽ giảm dần theo thời gian",
-        ],
-        correct: 1,
-        explanation:
-          "Hai rủi ro này hành xử hoàn toàn khác nhau theo thời gian. Rủi ro lãi suất là biến động giá trên đường đi - giữ tới đáo hạn thì bạn nhận đủ mệnh giá và biến động đó không còn ý nghĩa. Nhưng rủi ro tín dụng là việc doanh nghiệp không trả được, và giữ lâu hơn chỉ đơn giản là ở lại với rủi ro đó lâu hơn. Đây chính là ngộ nhận đã khiến rất nhiều nhà đầu tư trái phiếu bất động sản Việt Nam mất vốn năm 2022.",
-      },
-      {
-        question: "Trái phiếu riêng lẻ 'ba không' phổ biến ở Việt Nam giai đoạn 2020-2021 nghĩa là gì?",
-        options: [
-          "Không lãi suất, không kỳ hạn, không mệnh giá",
-          "Không xếp hạng tín nhiệm, không tài sản đảm bảo đủ chất lượng, không bảo lãnh thanh toán",
-          "Không thuế, không phí, không ràng buộc",
-          "Không niêm yết, không chuyển nhượng, không mua lại",
-        ],
-        correct: 1,
-        explanation:
-          "Ba chữ 'không' này mô tả đúng ba lớp bảo vệ mà nhà đầu tư trái phiếu bình thường trông cậy vào, và cả ba đều vắng mặt. Không xếp hạng nghĩa là chưa từng có bên độc lập nào thẩm định khả năng trả nợ; tài sản đảm bảo yếu (thường là cổ phiếu của chính công ty phát hành hoặc quyền tài sản từ dự án chưa xong pháp lý) thì mất giá đúng lúc doanh nghiệp gặp khó; không bảo lãnh nghĩa là không có bên thứ ba nào đứng ra trả thay. Nghị định 65/2022 ra đời chính để siết lại nhóm này.",
-      },
+    "keyTakeaways": [
+      "Hai hợp đồng khác nhau vẫn có thể chạy chung một sợi cáp - họ thuê lại của nhau.",
+      "Nguyên nhân chung dễ kiểm nhất: cùng ĐIỂM VÀO toà nhà và cùng phòng thiết bị.",
+      "Cam kết dịch vụ: đọc ĐO CÁI GÌ, ĐO Ở ĐÂU, LOẠI TRỪ GÌ - không đọc con số phần trăm.",
+      "Bồi thường bù một phần phí dịch vụ, không bù doanh thu mất trong bốn giờ.",
+      "Chuyển hẳn lưu lượng sang đường dự phòng một lần - còn sống khác với gánh được."
     ],
-    practicePrompt: {
-      question:
-        "Trái phiếu mệnh giá 100 triệu, coupon 8%/năm, còn 3 năm đáo hạn, đang được chào bán giá 92 triệu. So với coupon 8%, YTM sẽ như thế nào?",
-      options: [
-        "Thấp hơn 8%, vì mua rẻ nên lợi suất giảm",
-        "Đúng bằng 8%, vì coupon không đổi",
-        "Cao hơn 8%, vì ngoài coupon còn lãi thêm 8 triệu chênh lệch khi đáo hạn về mệnh giá",
-        "Không xác định được nếu chưa biết lãi suất ngân hàng",
+    "practicePrompt": {
+      "question": "Nhà cung cấp cam kết 99,9%. Câu hỏi tiếp theo nên là gì?",
+      "options": [
+        "Con số đó đo ở đâu, và những gì được loại trừ khỏi phép đo",
+        "Mức bồi thường là bao nhiêu nếu họ không đạt được cam kết đó",
+        "Trong mười hai tháng qua họ đã đạt được con số đó hay chưa",
+        "Con số đó được tính theo tháng hay theo năm trong hợp đồng"
       ],
-      correct: 2,
-      explanation:
-        "Mua dưới mệnh giá (mua chiết khấu) thì bạn có hai nguồn lợi: coupon 8 triệu mỗi năm, cộng thêm 8 triệu lãi vốn khi nhận lại đủ 100 triệu lúc đáo hạn. YTM vì vậy phải cao hơn coupon, ở đây khoảng 11,2%. Quy tắc nhớ nhanh: giá dưới mệnh giá thì YTM > coupon, giá trên mệnh giá thì YTM < coupon, giá bằng mệnh giá thì YTM = coupon.",
+      "correct": 0,
+      "explanation": "Lựa chọn thứ tư là một phần của câu hỏi này và nó hẹp hơn. Đo ở biên mạng của nhà cung cấp thì gián đoạn ở đoạn cuối tới bạn không tính vào - và đoạn cuối chính là đoạn hay hỏng nhất."
     },
-    keyTakeaways: [
-      "Giá trái phiếu và lợi suất luôn đi ngược chiều - coupon đã cố định nên chỉ giá mới điều chỉnh được.",
-      "YTM là thước đo đầy đủ nhất, nhưng giả định bạn giữ tới đáo hạn và tái đầu tư coupon đúng bằng YTM.",
-      "YTM = lãi suất phi rủi ro + credit spread; phần spread chính là hoá đơn rủi ro, không phải phần thưởng.",
-      "Giữ đến đáo hạn triệt tiêu rủi ro lãi suất nhưng không hề triệt tiêu rủi ro vỡ nợ.",
-      "Tài sản đảm bảo chỉ đáng giá bằng khả năng phát mại thật của nó vào đúng lúc doanh nghiệp gặp khó.",
-    ],
-    summary: {
-      keyIdea:
-        "Mua trái phiếu là cho vay, nên câu hỏi trung tâm luôn là doanh nghiệp lấy dòng tiền ở đâu để trả bạn - lãi suất cao chỉ là cách thị trường báo giá rủi ro.",
-      formula: "YTM = Lãi suất phi rủi ro + Credit Spread · Spread ≈ Xác suất vỡ nợ × Tỷ lệ mất vốn",
-      commonMistake: "So sánh lãi trái phiếu với lãi tiết kiệm rồi kết luận trái phiếu 'lời hơn', mà không hỏi phần chênh trả cho rủi ro gì.",
-      action: "Với mỗi lô trái phiếu, tra lợi suất TPCP cùng kỳ hạn và tự tính credit spread trước khi xem bản chào bán.",
+    "summary": {
+      "keyIdea": "Kế hoạch dự phòng lập trên sơ đồ logic; sự cố xảy ra ở tầng vật lý.",
+      "formula": "Hỏi tuyến cáp và điểm vào toà nhà → đọc cách đo và danh sách loại trừ → thử chuyển thật.",
+      "commonMistake": "Coi hai nhà cung cấp khác nhau là hai đường độc lập.",
+      "action": "Hỏi nhà cung cấp hai đường của bạn có đi chung tuyến cáp nào không."
     },
-    track: "bonus",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Gửi một câu hỏi cho nhà cung cấp: hai đường truyền của chúng tôi có đi chung tuyến cáp vật lý hoặc chung điểm vào toà nhà ở đoạn nào không?",
+      "secondary": "Câu hỏi này thường không được trả lời ngay, và bản thân việc đó đã là thông tin. Nếu không ai trong đội biết câu trả lời, kế hoạch dự phòng của bạn đang dựa trên một sơ đồ chứ không dựa trên thực tế."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Phần lớn kế hoạch dự phòng đường truyền được lập trên sơ đồ logic, còn sự cố thì xảy ra ở tầng vật lý mà sơ đồ đó không thể hiện."
+      },
+      {
+        "type": "heading",
+        "text": "Hai đường, một sợi cáp"
+      },
+      {
+        "type": "callout",
+        "label": "Nhà cung cấp thuê lại của nhau",
+        "text": "Hai hợp đồng khác nhau vẫn có thể chạy trên cùng một sợi cáp trong cùng một cống ngầm. Một chiếc máy xúc cắt đứt cả hai cùng lúc - và chuyện này không được ghi ở đâu trong hợp đồng nếu bạn không hỏi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nguyên nhân chung dễ kiểm nhất lại là cái ít ai kiểm: ĐIỂM VÀO toà nhà. Kể cả khi hai đường đi hai tuyến cáp khác nhau, chúng thường vào qua cùng một điểm và cùng một phòng thiết bị - và việc này kiểm được bằng cách đi bộ xuống tầng hầm và nhìn."
+      },
+      {
+        "type": "heading",
+        "text": "Đọc một cam kết dịch vụ"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Con số phần trăm",
+          "text": "Ở đầu tài liệu, và không có nghĩa cho tới khi bạn biết ba thứ bên phải."
+        },
+        "right": {
+          "label": "Ba thứ quyết định",
+          "text": "Đo CÁI GÌ, đo Ở ĐÂU, và LOẠI TRỪ gì. Đo ở biên mạng nhà cung cấp thì gián đoạn ở đoạn cuối tới bạn không tính - mà đoạn cuối là đoạn hay hỏng nhất."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Và đừng dựa vào mức bồi thường: nó được thiết kế để bù một phần phí dịch vụ, không phải để bù doanh thu bạn mất trong bốn giờ. Nó là một hình thức chia sẻ rủi ro rất nhỏ, không phải một khoản bảo hiểm."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Việc đáng làm định kỳ: CHUYỂN HẲN lưu lượng sang đường dự phòng một lần và xem hệ thống có chạy đủ không.",
+          "Bảng theo dõi cho biết đường đó còn sống; nó không cho biết đường đó gánh được. Cùng bài học với bản sao lưu chưa từng được khôi phục thử."
+        ]
+      }
+    ]
   },
   {
     id: 803,

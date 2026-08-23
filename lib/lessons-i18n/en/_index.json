@@ -94,11 +94,6 @@
     "subtitle": "Time management, the order in which you build a model, and how to think out loud while working",
     "duration": "12 min"
   },
-  "chuoi-thoi-gian-va-kiem-chung-ngoai-mau": {
-    "title": "Quantitative, Lesson 6: Time series and out-of-sample validation - why a backtest always looks better than reality",
-    "subtitle": "Stationarity, autoregression, volatility clustering, and the quiet biases that wreck every backtest",
-    "duration": "12 min"
-  },
   "co-che-tao-hoan-etf-authorized-participants": {
     "title": "The ETF creation and redemption mechanism: why an ETF price does not drift far from net asset value",
     "subtitle": "Authorized Participants and the arbitrage loop that keeps an ETF aligned with NAV - and when that mechanism stops working",
@@ -139,21 +134,6 @@
     "subtitle": "Why working by column instead of by row completely changes how you think about data",
     "duration": "11 min"
   },
-  "dau-tu-trai-phieu-doanh-nghiep-ytm-credit-rating": {
-    "title": "Masterclass 2: Corporate bonds - pricing with YTM and managing default risk",
-    "subtitle": "YTM, credit spread, credit ratings and covenants - how to read a corporate bond before buying it.",
-    "duration": "14 min"
-  },
-  "day-1-readiness-integration-playbook-m-and-a": {
-    "title": "Day 1 Readiness & Integration Playbook: the first 100 days after M&A",
-    "subtitle": "Why most of a deal's synergy value is decided (or destroyed) within the first 100 days",
-    "duration": "8 min"
-  },
-  "dinh-gia-tai-san-rong": {
-    "title": "Valuing a company as if you sold everything and repaid the debt",
-    "subtitle": "Asset-based valuation, NAV and RNAV - the valuation strand, following on from ROIC and Enterprise Value",
-    "duration": "6 min"
-  },
   "discontinued-operations": {
     "title": "Deep-dive case: Discontinued Operations",
     "subtitle": "Don't let Net Income fool you",
@@ -173,16 +153,6 @@
     "title": "Reading the key macroeconomic indicators: PMI, CPI and GDP nowcasting",
     "subtitle": "The daily toolkit a macro researcher uses to gauge the health of an economy before the official GDP figure is published",
     "duration": "8 min"
-  },
-  "doc-thuyet-minh-bao-cao-tai-chinh": {
-    "title": "Reading the notes - the longest section, and the least read",
-    "subtitle": "The three statements say how much the company earned; the notes say how that number was produced",
-    "duration": "10 min"
-  },
-  "du-bao-dong-tien-13-tuan": {
-    "title": "Planning, Lesson 3: The 13-week cash flow forecast - the tool for when cash becomes the binding constraint",
-    "subtitle": "Why a profitable business still has to count cash week by week, and what goes into that sheet",
-    "duration": "12 min"
   },
   "du-bao-tai-chinh-rolling-forecast": {
     "title": "CFO & Operations, Lesson 2: Financial forecasting - the rolling forecast",
@@ -224,11 +194,6 @@
     "subtitle": "Balancing liquidity, financial income and capital allocation",
     "duration": "6 min"
   },
-  "gia-goi-thau-va-hieu-qua-du-an-xay-dung": {
-    "title": "Contractors, Part 3: Pricing a bid and measuring what it really returns",
-    "subtitle": "Why two packages on the same 10% margin can return wildly different IRRs, and how to read payment terms as a financial variable",
-    "duration": "11 min"
-  },
   "hoach-dinh-tai-chinh-theo-giai-doan-cuoc-doi": {
     "title": "Financial planning by life stage: the same person, four different problems",
     "subtitle": "Why advice that is right at 25 can become the wrong advice at 55",
@@ -239,25 +204,10 @@
     "subtitle": "Why optimising each piece on its own can still produce a poor overall plan",
     "duration": "9 min"
   },
-  "hoi-quy-da-bien-va-cac-bay-thuong-gap": {
-    "title": "Quantitative, Lesson 5: Multiple regression and its traps - multicollinearity, overfitting, omitted variables",
-    "subtitle": "Adding variables always makes the model look better in sample and usually worse out of sample",
-    "duration": "12 min"
-  },
-  "hoi-quy-tuyen-tinh-don-va-beta": {
-    "title": "Quant, Lesson 4: Simple linear regression - where beta actually comes from",
-    "subtitle": "The slope, R-squared, residuals, and how to read a regression output table",
-    "duration": "11 min"
-  },
   "income-affiliates-jv": {
     "title": "Income from affiliates and joint ventures",
     "subtitle": "Equity method (20-50%) versus consolidation (>50%)",
     "duration": "6 min"
-  },
-  "index-match-xlookup-va-sumifs": {
-    "title": "Excel, Lesson 2: Looking data up - INDEX/MATCH, XLOOKUP and SUMIFS",
-    "subtitle": "Why finance people abandon VLOOKUP, and how to join data from several sources without getting a single row wrong",
-    "duration": "11 min"
   },
   "interim-comprehensive-income": {
     "title": "Interim Statement & OCI",
@@ -324,20 +274,10 @@
     "subtitle": "From voluntary disclosure to mandatory - what a Vietnamese exporter selling into the EU needs to know",
     "duration": "9 min"
   },
-  "khung-coso-va-danh-gia-rui-ro-gian-lan": {
-    "title": "The COSO Internal Control Framework and fraud risk assessment",
-    "subtitle": "The 5 components of the COSO Framework - the foundational tool every internal auditor has to master",
-    "duration": "8 min"
-  },
   "kich-ban-va-do-nhay-trong-ke-hoach": {
     "title": "Planning, Lesson 4: Scenarios and sensitivity - why a single number is the wrong answer",
     "subtitle": "Telling sensitivity from scenarios, choosing which variables to flex, and presenting a range to the leadership team",
     "duration": "11 min"
-  },
-  "kiem-dinh-gia-thuyet-trong-tai-chinh": {
-    "title": "Quant, Lesson 3: Hypothesis testing - and the p-hacking trap in backtests",
-    "subtitle": "The null hypothesis, the p-value, Type I and Type II errors, and why trying 100 strategies always turns up a pretty one",
-    "duration": "12 min"
   },
   "kiem-tra-va-do-loi-mo-hinh-excel": {
     "title": "Excel, Lesson 4: Checking and debugging - turning a model into something that reports its own errors",
@@ -389,11 +329,6 @@
     "subtitle": "Net Debt/EBITDA: how to read debt properly",
     "duration": "6 min"
   },
-  "market-anomalies-va-behavioral-finance": {
-    "title": "Market Anomalies: the market patterns the Efficient Market Hypothesis cannot explain",
-    "subtitle": "Momentum, the value premium, the size effect - the widely documented anomalies and how behavioural finance accounts for them",
-    "duration": "8 min"
-  },
   "market-fair-value": {
     "title": "Deep-dive case: Market Fair Value",
     "subtitle": "The P/E multiple and growth companies",
@@ -444,25 +379,10 @@
     "subtitle": "Direct costs, overheads and the allocation basis: when a number decides whose budget gets cut",
     "duration": "11 min"
   },
-  "phan-phoi-xac-suat-trong-tai-chinh": {
-    "title": "Quant, Lesson 1: Probability distributions in finance - and why the tails are always fatter than you think",
-    "subtitle": "Normal, lognormal, skewness and kurtosis: four numbers that describe a return series",
-    "duration": "11 min"
-  },
-  "phan-tich-bao-cao-theo-ty-trong": {
-    "title": "Common-size analysis - comparing a trillion-dong business with a hundred-billion one",
-    "subtitle": "Restate every line as a percentage of a shared base, before you compare anything at all",
-    "duration": "9 min"
-  },
   "phan-tich-cohort-va-cai-bay-trung-binh": {
     "title": "Data Thinking, Lesson 2: Cohort analysis - when the average hides the truth",
     "subtitle": "Why splitting data by start date exposes trends the aggregate keeps buried",
     "duration": "11 min"
-  },
-  "phan-tich-cvp-va-diem-hoa-von": {
-    "title": "Cost-Volume-Profit (CVP) analysis & the breakeven point",
-    "subtitle": "The core management accounting tool for answering: how much do we have to sell to make money, and what does a change in price do to profit",
-    "duration": "7 min"
   },
   "phan-tich-variance-thuc-te-vs-ke-hoach": {
     "title": "CFO & Operations, Lesson 3: Variance analysis - actual against plan",
@@ -492,11 +412,6 @@
   "quan-ly-rui-ro-lai-suat-doanh-nghiep": {
     "title": "CFO & Operations, Lesson 6: Managing corporate interest rate risk",
     "subtitle": "A heavily borrowed business has to manage rate volatility actively, not just 'wait and see'",
-    "duration": "7 min"
-  },
-  "quan-ly-rui-ro-ty-gia-doanh-nghiep-xnk": {
-    "title": "CFO & Operations, Lesson 7: Managing FX risk for import-export businesses",
-    "subtitle": "An exchange rate move can wipe out the entire margin on a large order",
     "duration": "7 min"
   },
   "quan-tri-doanh-nghiep-g-trong-esg": {
@@ -549,11 +464,6 @@
     "subtitle": "The number on the slide, the premium paid, and five ways to cut the optimism out",
     "duration": "8 min"
   },
-  "tai-chinh-bat-dong-san-cap-rate-noi-rental-yield": {
-    "title": "Masterclass 1: Real estate finance - cash flow modelling and the capitalisation rate",
-    "subtitle": "Analysing NOI, cap rate, rental yield and bank leverage when investing in income-producing property.",
-    "duration": "14 min"
-  },
   "tai-chinh-khoi-nghiep-cap-table-vc-valuation": {
     "title": "Masterclass 3: Startup finance - the cap table and venture capital valuation",
     "subtitle": "Pre-money, post-money, dilution, the option pool and liquidation preference - how to read a term sheet properly.",
@@ -572,11 +482,6 @@
   "thien-kien-hanh-vi-trong-phan-tich-equity": {
     "title": "Behavioural bias in equity research: when the experts are wrong too",
     "subtitle": "Overconfidence, herding and analyst optimism bias - why professional analysts' forecasts are still systematically skewed",
-    "duration": "8 min"
-  },
-  "thien-kien-hanh-vi-trong-tai-chinh-doanh-nghiep": {
-    "title": "Behavioural bias in corporate finance: M&A, capital budgeting and CEO overconfidence",
-    "subtitle": "Why 70% of M&A deals create no value for the buyer's shareholders - and what that has to do with psychology",
     "duration": "8 min"
   },
   "thue-gtgt-va-thue-nha-thau": {
@@ -663,10 +568,5 @@
     "title": "CFO & Operations, Lesson 1: Building a corporate budget",
     "subtitle": "Top-down, bottom-up, or a mix - each approach carries its own trade-off",
     "duration": "7 min"
-  },
-  "y-kien-kiem-toan-doc-truoc-tien": {
-    "title": "The audit opinion - the line worth reading before the numbers",
-    "subtitle": "Four types of opinion, and why three of them are reasons to stop",
-    "duration": "9 min"
   }
 }

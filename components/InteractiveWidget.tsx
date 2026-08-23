@@ -1,16 +1,12 @@
 import InteractiveProfitCalc from "./InteractiveProfitCalc";
 import InteractiveInterestRate from "./InteractiveInterestRate";
 import InteractiveSupplyDemand from "./InteractiveSupplyDemand";
-import InteractiveBond from "./InteractiveBond";
 import InteractiveMultiples from "./InteractiveMultiples";
-import InteractiveMoneyVsAsset from "./InteractiveMoneyVsAsset";
 import InteractiveInflationCalculator from "./InteractiveInflationCalculator";
 import InteractiveBudget from "./InteractiveBudget";
 import InteractiveRisk from "./InteractiveRisk";
 import InteractiveChart from "./InteractiveChart";
-import InteractiveProcess from "./InteractiveProcess";
 import InteractiveProspect from "./InteractiveProspect";
-import InteractiveAccretion from "./InteractiveAccretion";
 import InteractiveEthicsCase from "./InteractiveEthicsCase";
 import ExcelPractice from "./ExcelPractice";
 import InteractivePromptCraft from "./InteractivePromptCraft";
@@ -27,10 +23,7 @@ export type WidgetType =
   | "interest-rate"
   | "supply-demand"
   | "profit-calc"
-  | "bond"
-  | "money-vs-asset"
   | "inflation-calculator"
-  | "process"
   | "budget"
   | "chart"
   | "risk"
@@ -38,7 +31,6 @@ export type WidgetType =
   // (1223). Giữ khai báo mà không bài nào dùng thì interactive-widgets.test.ts đỏ.
   | "multiples"
   | "prospect"
-  | "accretion"
   | "ethics-case"
   | "fee-drag"
   | "ratios"
@@ -66,10 +58,6 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveInterestRate />;
     case "supply-demand":
       return <InteractiveSupplyDemand />;
-    case "bond":
-      return <InteractiveBond />;
-    case "money-vs-asset":
-      return <InteractiveMoneyVsAsset />;
     case "inflation-calculator":
       return <InteractiveInflationCalculator />;
     case "budget":
@@ -78,14 +66,10 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveRisk />;
     case "chart":
       return <InteractiveChart />;
-    case "process":
-      return <InteractiveProcess />;
     case "multiples":
       return <InteractiveMultiples />;
     case "prospect":
       return <InteractiveProspect />;
-    case "accretion":
-      return <InteractiveAccretion />;
     case "ethics-case":
       return <InteractiveEthicsCase />;
     case "excel-shortcuts":
@@ -124,8 +108,6 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "interest-rate",
   "supply-demand",
   "profit-calc",
-  "bond",
-  "money-vs-asset",
   // Loại tinh lam phat tam rut khoi danh sach khai bao, KHONG xoa.
   //
   // Bai duy nhat dung no la Chang 13 Bai 4 ve vang chong lam phat, va bai do
@@ -143,10 +125,8 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "budget",
   "risk",
   "chart",
-  "process",
   "multiples",
   "prospect",
-  "accretion",
   "ethics-case",
   "fee-drag",
   "ratios",

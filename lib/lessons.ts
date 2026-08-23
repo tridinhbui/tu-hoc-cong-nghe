@@ -12438,7 +12438,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Vì quy ước dựa vào trí nhớ sẽ trượt đúng vào lúc bận nhất",
       "Vì máy chạy kiểm thử nhanh hơn máy cá nhân rất nhiều lần",
-      "Vì lập trình viên thường không biết cách chạy bộ kiểm thử",
+      "Vì lập trình viên thường không nắm được cách chạy bộ kiểm thử",
       "Vì kết quả trên máy cá nhân không bao giờ đáng tin cậy"
     ],
     "correctOption": 0,
@@ -21176,7 +21176,7 @@ export const lessons: Lesson[] = [
       "Một đội khác cần phát hành phần đó theo nhịp riêng của họ",
       "Phần đó đã trở nên quá lớn và phức tạp để quản lý",
       "Phần đó cần được viết bằng một ngôn ngữ khác",
-      "Kiến trúc dịch vụ nhỏ là thực hành tốt của ngành hiện nay"
+      "Kiến trúc dịch vụ nhỏ vốn là thực hành tốt của cả ngành hiện nay"
     ],
     "correctOption": 0,
     "explanation": "Thứ mà tách dịch vụ mua được là sự độc lập về vận hành: đội khác triển khai theo lịch của họ, mở rộng riêng phần của họ, hỏng riêng phần của họ. Nếu chỉ một đội sở hữu cả hai phần thì bạn trả toàn bộ chi phí phân tán - lời gọi mạng có thể hỏng, dữ liệu không còn nhất quán tức thì, gỡ lỗi phải xâu chuỗi nhiều nơi - mà không nhận được thứ gì. Kích thước và ngôn ngữ đều giải quyết được bằng ranh giới trong cùng một tiến trình, rẻ hơn rất nhiều.",
@@ -21692,7 +21692,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Bật xác thực hai yếu tố cho những tài khoản quan trọng",
       "Bắt mật khẩu phải có ký tự đặc biệt và chữ hoa xen kẽ",
-      "Bắt người dùng đổi mật khẩu định kỳ mỗi chín mươi ngày",
+      "Bắt mọi người dùng đổi mật khẩu định kỳ mỗi chín mươi ngày",
       "Giới hạn độ dài tối đa của mật khẩu để tránh tấn công"
     ],
     "correctOption": 0,
@@ -23665,169 +23665,184 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 134,
-    "slug": "dau-vet-kiem-toan",
-    "title": "Dấu vết kiểm toán: ai đã làm gì, lúc nào",
-    "subtitle": "Câu hỏi sau mỗi sự cố là dữ liệu nào đã bị chạm tới - và chỉ dấu vết trả lời được.",
+    "slug": "nhat-ky-truy-vet-ai-lam-gi-luc-nao",
+    "title": "Nhật ký truy vết: ai đã làm gì, lúc nào",
+    "subtitle": "Loại nhật ký duy nhất mà câu hỏi dành cho nó thường tới sau nhiều tháng.",
     "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "📒",
     "track": "professional",
-    "whyItMatters": "Khi có nghi ngờ dữ liệu bị truy cập trái phép, câu hỏi đầu tiên luôn là ai đã xem gì. Không có dấu vết thì bạn phải giả định trường hợp xấu nhất, và thông báo cho toàn bộ người dùng thay vì cho những người thật sự bị ảnh hưởng.",
-    "openingQuestion": "Dấu vết kiểm toán khác nhật ký ứng dụng thông thường ở điểm nào?",
+    "emoji": "📒",
+    "interactiveType": "sampling",
+    "whyItMatters": "Khi có nghi ngờ về một hành động trong quá khứ, nhật ký truy vết là bằng chứng duy nhất - và nếu nó thiếu một trường thì cả cuộc điều tra dừng lại.",
+    "openingQuestion": "Nhật ký truy vết khác nhật ký ứng dụng ở điểm nào quan trọng nhất?",
     "openingOptions": [
-      "Nó ghi ai đã truy cập dữ liệu nào, và phải chống sửa đổi",
-      "Nó được ghi ở mức chi tiết cao hơn nhật ký thông thường",
-      "Nó chỉ được ghi khi hệ thống phát hiện hành vi bất thường",
-      "Nó được lưu trong cơ sở dữ liệu thay vì trong tệp nhật ký"
+      "Nó ghi AI đã làm gì, và nó phải không sửa được bởi chính người đó",
+      "Nó được lưu giữ trong thời gian dài hơn so với nhật ký ứng dụng thông thường",
+      "Nó chỉ ghi lại những hành động có ảnh hưởng tới dữ liệu của người dùng",
+      "Nó được lưu ở một hệ thống riêng biệt với hệ thống ứng dụng chính"
     ],
     "correctOption": 0,
-    "explanation": "Nhật ký ứng dụng phục vụ việc gỡ lỗi: nó ghi hệ thống đã làm gì. Dấu vết kiểm toán phục vụ việc trả lời trách nhiệm: ai đã chạm vào dữ liệu nào và lúc nào. Vì nó có thể được dùng để quy trách nhiệm, nó phải chống được việc sửa đổi - kể cả bởi người có quyền quản trị. Mức chi tiết và nơi lưu là chi tiết triển khai, còn hai tính chất kia là bản chất.",
+    "explanation": "Vế thứ hai là vế biến nó thành bằng chứng: một bản ghi mà chủ thể của nó sửa được thì không chứng minh được gì. Ba lựa chọn kia đều là hệ quả của yêu cầu này - lưu lâu, lưu riêng, và giới hạn phạm vi đều là cách để đảm bảo tính không sửa được và tính dùng được về sau.",
     "diagram": [
       {
-        "label": "Nghi ngờ dữ liệu bị truy cập trái phép",
+        "label": "Ghi AI làm gì, và người đó KHÔNG sửa được bản ghi",
         "arrow": true
       },
       {
-        "label": "Có dấu vết: biết chính xác ai xem gì",
+        "label": "Năm trường: ai, làm gì, với cái gì, lúc nào, từ đâu",
         "arrow": true
       },
       {
-        "label": "Không có: phải giả định trường hợp xấu nhất",
+        "label": "Thiếu một trường thì cuộc điều tra dừng ở đó",
         "arrow": true
       },
       {
-        "label": "Và thông báo cho toàn bộ người dùng"
+        "label": "Ghi cả hành động ĐỌC với dữ liệu nhạy cảm"
       }
     ],
     "realWorldExample": {
-      "company": "Phạm vi của một thông báo",
-      "description": "Khi phải công bố sự cố, phạm vi thông báo phụ thuộc vào việc bạn chứng minh được ai bị ảnh hưởng. Không có dấu vết thì phạm vi là toàn bộ người dùng, và thiệt hại về uy tín lớn hơn nhiều so với thực tế."
-    },
-    "keyTakeaways": [
-      "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi.",
-      "Nó phải chống sửa đổi, kể cả bởi người có quyền quản trị.",
-      "Không có dấu vết thì phạm vi ảnh hưởng phải giả định là toàn bộ.",
-      "Dấu vết cũng chứa dữ liệu nhạy cảm nên bản thân nó cần được bảo vệ."
-    ],
-    "summary": {
-      "keyIdea": "Dấu vết là thứ duy nhất thu hẹp được phạm vi ảnh hưởng khi có sự cố.",
-      "formula": "Ai, chạm vào gì, lúc nào - và không sửa được.",
-      "commonMistake": "Coi nhật ký ứng dụng là đủ thay cho dấu vết truy cập dữ liệu."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Thử trả lời câu hỏi: tuần trước ai đã xem hồ sơ của người dùng này? Nếu hệ thống không trả lời được thì bạn chưa có dấu vết, dù nhật ký có đầy đủ tới đâu."
-    },
-    "practicePrompt": {
-      "question": "Vì sao dấu vết kiểm toán phải chống được sửa đổi bởi cả quản trị viên?",
-      "options": [
-        "Vì nếu người có quyền cao nhất sửa được thì dấu vết mất giá trị chứng minh",
-        "Vì quản trị viên thường xoá nhầm dữ liệu khi bảo trì hệ thống",
-        "Vì quy định lưu trữ yêu cầu giữ nguyên vẹn mọi bản ghi nhật ký",
-        "Vì việc sửa đổi làm hỏng thứ tự thời gian của các bản ghi"
-      ],
-      "correct": 0,
-      "explanation": "Dấu vết tồn tại để trả lời câu hỏi trách nhiệm, và câu trả lời chỉ có giá trị nếu không ai trong phạm vi nghi vấn sửa được nó. Vì thế nó thường được ghi sang một hệ thống chỉ thêm không sửa, với quyền tách khỏi quyền quản trị ứng dụng."
+      "company": "Trường hay thiếu nhất",
+      "description": "Trường hay thiếu nhất không phải ai hay lúc nào mà là GIÁ TRỊ CŨ. Biết một người đã đổi hạn mức của tài khoản lúc mười giờ mà không biết nó từ bao nhiêu thành bao nhiêu thì bản ghi đó gần như không dùng được."
     },
     "quiz": [
       {
-        "question": "Dấu vết kiểm toán trả lời câu hỏi gì?",
+        "question": "Vì sao người thực hiện hành động không được sửa bản ghi về hành động đó?",
         "options": [
-          "Ai đã chạm vào dữ liệu nào và vào lúc nào",
-          "Hệ thống đã xử lý yêu cầu theo những bước nào",
-          "Thành phần nào của hệ thống đang gặp lỗi hiện tại",
-          "Người dùng đã trải qua những màn hình nào"
+          "Vì một bản ghi mà chủ thể của nó sửa được thì không chứng minh được gì",
+          "Vì việc sửa bản ghi có thể làm mất dữ liệu cần cho các cuộc điều tra khác",
+          "Vì các quy định về lưu trữ yêu cầu giữ nguyên bản ghi trong thời hạn nhất định",
+          "Vì bản ghi bị sửa sẽ làm sai lệch các báo cáo thống kê dựa trên nhật ký đó"
         ],
         "correct": 0,
-        "explanation": "Đây là câu hỏi trách nhiệm chứ không phải câu hỏi kỹ thuật. Nhật ký gỡ lỗi trả lời hệ thống làm gì; dấu vết trả lời con người đã làm gì."
+        "explanation": "Đây là tính chất biến một bản ghi thành bằng chứng, và nó là tính chất duy nhất phân biệt nhật ký truy vết với nhật ký thông thường. Ba lựa chọn kia đều là lý do phụ."
       },
       {
-        "question": "Hậu quả của việc không có dấu vết khi xảy ra sự cố là gì?",
+        "question": "Trường nào hay thiếu nhất trong một bản ghi truy vết?",
         "options": [
-          "Phải giả định phạm vi ảnh hưởng là toàn bộ người dùng",
-          "Không xác định được lỗ hổng nằm ở phần nào của mã",
-          "Không khôi phục được dữ liệu đã bị thay đổi trái phép",
-          "Không chứng minh được hệ thống đã bị xâm nhập hay chưa"
+          "Giá trị cũ trước khi bị thay đổi, chứ không phải ai hay lúc nào",
+          "Địa chỉ mạng mà từ đó hành động được thực hiện",
+          "Lý do mà người thực hiện đưa ra khi tiến hành hành động đó",
+          "Mã định danh của phiên làm việc mà hành động thuộc về"
         ],
         "correct": 0,
-        "explanation": "Bạn không chứng minh được ai không bị ảnh hưởng, nên phải hành động như thể tất cả đều bị. Đó là khác biệt giữa một thông báo cho vài trăm người và một thông báo cho toàn bộ khách hàng."
+        "explanation": "Biết một người đổi hạn mức lúc mười giờ mà không biết nó từ bao nhiêu thành bao nhiêu thì bản ghi gần như không dùng được. Ba trường kia thường có sẵn vì hệ thống đã biết chúng."
       },
       {
-        "question": "Vì sao dấu vết cần tách quyền khỏi quyền quản trị ứng dụng?",
+        "question": "Vì sao nên ghi cả hành động đọc với dữ liệu nhạy cảm?",
         "options": [
-          "Vì người trong phạm vi nghi vấn không được sửa bằng chứng về mình",
-          "Vì quản trị viên không có nhu cầu đọc dấu vết kiểm toán",
-          "Vì việc tách quyền giúp giảm tải cho hệ thống chính",
-          "Vì dấu vết thường được lưu ở một định dạng khác hẳn"
+          "Vì truy cập trái phép thường chỉ là đọc, không để lại thay đổi nào",
+          "Vì các quy định về dữ liệu cá nhân yêu cầu ghi nhận mọi lượt truy cập",
+          "Vì cần nắm được phần dữ liệu nào đang được sử dụng nhiều để tối ưu hiệu năng",
+          "Vì việc đọc dữ liệu cũng tiêu tốn tài nguyên nên cần được theo dõi"
         ],
         "correct": 0,
-        "explanation": "Nếu người có quyền cao nhất sửa được thì bản ghi không chứng minh được gì về chính họ. Ghi sang hệ thống chỉ thêm không sửa là cách phổ biến để đạt tính chất này."
+        "explanation": "Một nhật ký chỉ ghi thay đổi thì hoàn toàn mù với kiểu lạm dụng phổ biến nhất: một người có quyền xem dữ liệu khách hàng và xem những hồ sơ không liên quan tới công việc của họ."
       },
       {
-        "question": "Vì sao bản thân dấu vết cũng cần được bảo vệ?",
+        "question": "Vì sao nhật ký truy vết cần thời hạn lưu dài hơn nhật ký ứng dụng?",
         "options": [
-          "Vì nó chứa thông tin về ai quan tâm tới dữ liệu nào",
-          "Vì nó chiếm dung lượng lớn nên dễ làm đầy ổ đĩa",
-          "Vì nó cần được xoá định kỳ theo quy định lưu trữ",
-          "Vì nó có thể bị đọc bởi các dịch vụ giám sát bên ngoài"
+          "Vì câu hỏi dành cho nó thường tới sau nhiều tháng và không lên lịch trước được",
+          "Vì dung lượng của nó nhỏ hơn nên chi phí lưu trữ lâu không đáng kể",
+          "Vì các quy định pháp luật quy định thời hạn tối thiểu cho loại nhật ký này",
+          "Vì nó không được dùng hằng ngày nên có thể chuyển sang lưu trữ giá rẻ"
         ],
         "correct": 0,
-        "explanation": "Danh sách ai đã tra cứu hồ sơ của ai là dữ liệu nhạy cảm theo cách riêng của nó. Đây là cùng vấn đề với nhật ký ở chặng trước: nơi lưu bằng chứng cũng là nơi có thể rò rỉ."
+        "explanation": "Nhật ký gỡ lỗi mất gần hết giá trị sau khi sự cố đóng. Nhật ký truy vết thì ngược lại: một cuộc điều tra nội bộ hay một yêu cầu từ cơ quan quản lý đều hỏi về chuyện đã xảy ra từ lâu."
       },
       {
-        "question": "Nội dung tối thiểu của một bản ghi dấu vết là gì?",
+        "question": "Điều gì làm nhật ký truy vết trở nên vô dụng dù vẫn được ghi đầy đủ?",
         "options": [
-          "Danh tính người thực hiện, đối tượng bị chạm tới, hành động và thời điểm",
-          "Toàn bộ nội dung dữ liệu trước và sau khi thay đổi",
-          "Địa chỉ mạng và loại thiết bị của người thực hiện",
-          "Mã phiên và toàn bộ tiêu đề của yêu cầu gửi lên"
+          "Không tìm kiếm được theo người và theo đối tượng bị tác động",
+          "Không có ai xem lại nhật ký đó một cách định kỳ để phát hiện bất thường",
+          "Định dạng bản ghi thay đổi qua các phiên bản nên khó đối chiếu",
+          "Khối lượng bản ghi quá lớn nên chi phí lưu trữ vượt ngân sách"
         ],
         "correct": 0,
-        "explanation": "Bốn thành phần ấy đủ để trả lời câu hỏi ai làm gì với cái gì lúc nào. Ghi cả mã phiên hay tiêu đề đầy đủ lại tạo ra chính rủi ro rò rỉ đã nói ở chặng vận hành."
+        "explanation": "Một cuộc điều tra bắt đầu bằng một trong hai câu hỏi: người này đã làm gì, hoặc ai đã chạm vào bản ghi này. Nếu nhật ký chỉ đọc được theo thứ tự thời gian thì bạn có dữ liệu mà không trả lời được câu nào."
       }
     ],
+    "keyTakeaways": [
+      "Tính chất quyết định: người thực hiện KHÔNG sửa được bản ghi về hành động của mình.",
+      "Năm trường: ai, làm gì, với cái gì, lúc nào, từ đâu - cộng GIÁ TRỊ CŨ.",
+      "Giá trị cũ là trường hay thiếu nhất và là trường làm bản ghi dùng được.",
+      "Ghi cả hành động ĐỌC với dữ liệu nhạy cảm - lạm dụng thường không để lại thay đổi.",
+      "Phải tìm kiếm được theo NGƯỜI và theo ĐỐI TƯỢNG, không chỉ theo thời gian."
+    ],
+    "practicePrompt": {
+      "question": "Có nghi ngờ một tài khoản nội bộ xem dữ liệu ngoài phạm vi công việc. Cần gì?",
+      "options": [
+        "Nhật ký có ghi hành động đọc, và tìm kiếm được theo người thực hiện",
+        "Nhật ký các thay đổi mà tài khoản đó đã thực hiện trong thời gian nghi ngờ",
+        "Danh sách quyền truy cập mà tài khoản đó đang được cấp trong hệ thống",
+        "Lịch sử đăng nhập của tài khoản đó kèm địa chỉ đơn thuần mạng của từng lượt"
+      ],
+      "correct": 0,
+      "explanation": "Ba thứ kia đều hữu ích và đều không trả lời được câu hỏi: đọc không phải thay đổi, quyền cho biết họ được phép làm gì chứ không phải đã làm gì, và đăng nhập cho biết họ có mặt chứ không biết họ xem gì."
+    },
+    "summary": {
+      "keyIdea": "Loại nhật ký duy nhất mà câu hỏi dành cho nó thường tới sau nhiều tháng.",
+      "formula": "Ai, làm gì, với cái gì, lúc nào, từ đâu, giá trị cũ - và không sửa được.",
+      "commonMistake": "Chỉ ghi thay đổi, nên mù với kiểu lạm dụng phổ biến nhất là đọc trộm.",
+      "action": "Kiểm nhật ký truy vết của bạn có ghi giá trị cũ không."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Mở một bản ghi truy vết trong hệ thống bạn và kiểm nó có đủ sáu thứ không: ai, làm gì, với cái gì, lúc nào, từ đâu, và GIÁ TRỊ CŨ.",
+      "secondary": "Rồi thử một truy vấn: liệt kê mọi hành động của một người trong tuần qua. Nếu việc đó khó, nhật ký của bạn đang không dùng được cho mục đích duy nhất mà nó tồn tại."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Ở chặng đưa mã ra thế giới đã có một bài về nhật ký. Bài này về một loại bản ghi khác, phục vụ một câu hỏi khác - và nó chỉ có giá trị nếu được dựng trước khi cần."
+        "text": "Khi có nghi ngờ về một hành động trong quá khứ, nhật ký truy vết là bằng chứng duy nhất - và nếu nó thiếu một trường thì cả cuộc điều tra dừng lại."
       },
       {
         "type": "heading",
-        "text": "Hai loại bản ghi, hai mục đích"
+        "text": "Tính chất biến nó thành bằng chứng"
+      },
+      {
+        "type": "callout",
+        "label": "Chủ thể không sửa được",
+        "text": "Một bản ghi mà người thực hiện hành động có thể sửa thì không chứng minh được gì. Lưu ở hệ thống riêng, không cho quyền ghi đè, giữ lâu - cả ba đều là cách bảo vệ tính chất này."
+      },
+      {
+        "type": "heading",
+        "text": "Sáu thứ trong một bản ghi"
+      },
+      {
+        "type": "list",
+        "items": [
+          "AI - danh tính thật, không phải tài khoản dùng chung.",
+          "LÀM GÌ, VỚI CÁI GÌ, LÚC NÀO, TỪ ĐÂU - bốn trường hệ thống thường đã biết.",
+          "GIÁ TRỊ CŨ - trường hay thiếu nhất, và là trường làm bản ghi dùng được."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Biết một người đã đổi hạn mức của tài khoản lúc mười giờ mà không biết nó từ bao nhiêu thành bao nhiêu thì bản ghi đó gần như không trả lời được câu hỏi nào."
+      },
+      {
+        "type": "heading",
+        "text": "Hai điều hay bị bỏ"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Nhật ký ứng dụng",
-          "text": "Hệ thống đã làm gì. Phục vụ gỡ lỗi, được xoay vòng và xoá sau vài tuần, ai trong đội cũng đọc được."
+          "label": "Chỉ ghi thay đổi",
+          "text": "Mù với kiểu lạm dụng phổ biến nhất: một người có quyền xem dữ liệu khách hàng và xem những hồ sơ không liên quan tới công việc của họ."
         },
         "right": {
-          "label": "Dấu vết kiểm toán",
-          "text": "Con người đã làm gì với dữ liệu nào. Phục vụ trách nhiệm, giữ lâu, chống sửa, và quyền đọc hẹp hơn nhiều."
+          "label": "Chỉ đọc được theo thời gian",
+          "text": "Có dữ liệu mà không trả lời được hai câu mà mọi cuộc điều tra bắt đầu bằng: người này đã làm gì, và ai đã chạm vào bản ghi này."
         }
-      },
-      {
-        "type": "heading",
-        "text": "Giá trị lớn nhất là thu hẹp phạm vi"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi có nghi ngờ dữ liệu bị truy cập trái phép, việc đầu tiên là xác định phạm vi. Có dấu vết thì bạn nói được chính xác hồ sơ nào đã bị xem và thông báo cho đúng những người ấy. Không có thì bạn không chứng minh được ai an toàn, nên phải giả định tất cả - và một thông báo diện rộng gây thiệt hại lớn hơn nhiều so với sự cố thật."
-      },
-      {
-        "type": "callout",
-        "label": "Chỉ thêm, không sửa",
-        "text": "Dấu vết được dùng để trả lời câu hỏi về chính những người có quyền cao nhất trong hệ thống. Vì thế nó phải nằm ở nơi mà quyền quản trị ứng dụng không sửa được - thường là một kho chỉ cho phép ghi thêm."
       },
       {
         "type": "closing",
         "lines": [
-          "Dấu vết là thứ bạn chỉ ước mình đã có, đúng vào lúc không thể tạo ra nó nữa.",
-          "Bài sau nói về nguyên tắc làm cho mọi sự cố nhỏ đi ngay từ đầu: cấp ít quyền nhất có thể."
+          "Và thời hạn lưu phải dài hơn nhật ký ứng dụng rất nhiều. Nhật ký gỡ lỗi mất gần hết giá trị sau khi sự cố đóng.",
+          "Nhật ký truy vết thì ngược: câu hỏi dành cho nó tới sau nhiều tháng, và không ai lên lịch trước được thời điểm đó."
         ]
       }
-    ],
-    "interactiveType": "sampling"
+    ]
   },
   {
     "id": 135,
@@ -25348,7 +25363,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Một bước chiếm 20% tổng thời gian. Bạn làm nó nhanh gấp mười. Tổng thời gian giảm bao nhiêu?",
     "openingOptions": [
       "Khoảng 18%, vì tám mươi phần trăm còn lại không đổi",
-      "Khoảng 90%, tương ứng với mức cải thiện của bước đó",
+      "Khoảng 90%, tương ứng đúng với mức cải thiện của riêng bước đó",
       "Khoảng 50%, vì cải thiện lan sang các bước phía sau",
       "Khoảng 20%, đúng bằng tỷ trọng của bước được tối ưu"
     ],
@@ -25515,7 +25530,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Xếp theo thứ tự chi phí tăng dần: đọc từ bộ nhớ chính, đọc từ ổ đĩa thể rắn, một vòng gọi mạng trong cùng trung tâm dữ liệu.",
     "openingOptions": [
       "Bộ nhớ chính, rồi ổ đĩa thể rắn, rồi vòng gọi mạng",
-      "Ổ đĩa thể rắn, rồi bộ nhớ chính, rồi vòng gọi mạng",
+      "Ổ đĩa thể rắn, rồi tới bộ nhớ chính, rồi tới vòng gọi mạng",
       "Bộ nhớ chính, rồi vòng gọi mạng, rồi ổ đĩa thể rắn",
       "Cả ba xấp xỉ nhau trên phần cứng hiện đại ngày nay"
     ],
@@ -26037,7 +26052,7 @@ export const lessons: Lesson[] = [
       "Dữ liệu lớn lên tới mức bộ tối ưu chọn một kế hoạch khác",
       "Cơ sở dữ liệu đang chịu tải cao hơn hôm qua rất nhiều",
       "Một chỉ mục đã bị xoá trong lần triển khai gần đây nhất",
-      "Kết quả hôm qua được lấy từ bộ nhớ đệm của cơ sở dữ liệu"
+      "Kết quả của hôm qua được lấy ra từ bộ nhớ đệm của cơ sở dữ liệu"
     ],
     "correctOption": 0,
     "explanation": "Bộ tối ưu chọn kế hoạch dựa trên ước lượng về dữ liệu, và ước lượng ấy đổi khi bảng lớn lên hoặc khi thống kê được cập nhật. Một truy vấn đang dùng chỉ mục có thể chuyển sang quét toàn bảng nếu bộ tối ưu tính rằng số dòng khớp đã đủ lớn để quét rẻ hơn - và nếu ước lượng ấy sai thì bạn nhận một truy vấn chậm gấp hàng trăm lần mà không ai sửa dòng mã nào. Ba nguyên nhân còn lại đều có thể xảy ra, nhưng đây là nguyên nhân duy nhất giải thích được kiểu chậm đột ngột mà không có thay đổi nào cả.",
@@ -62577,171 +62592,184 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1036,
-    "slug": "dinh-gia-tai-san-rong",
-    "interactiveType": "process",
-    "title": "Định giá DN kiểu bán hết tài sản rồi trả nợ",
-    "subtitle": "Asset-based Valuation, NAV và RNAV - phần định giá doanh nghiệp, tiếp nối ROIC & Enterprise Value",
+    "slug": "kiem-ke-tai-san-so-va-be-mat-tan-cong",
+    "title": "Kiểm kê tài sản số - cái gì đang chạy và ai giữ khoá",
+    "subtitle": "Không bảo vệ được thứ mình không biết là mình đang có.",
     "duration": "6 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "🏗️",
-    "openingQuestion": "Asset-based valuation phù hợp nhất khi nào?",
+    "whyItMatters": "Phần lớn lỗ hổng bị khai thác nằm ở những thứ không có trong danh sách nào: một máy chủ thử nghiệm, một khoá cũ, một tên miền phụ mà không ai nhớ.",
+    "openingQuestion": "Vì sao kiểm kê là bước đầu tiên của bảo mật ứng dụng?",
     "openingOptions": [
-      "Khi muốn định giá tài sản có thể bán riêng lẻ",
-      "Khi công ty hoàn toàn không có tài sản hữu hình nào",
-      "Khi không cần báo cáo",
-      "Chỉ dùng cho công nghệ"
+      "Vì mọi biện pháp bảo vệ đều chỉ áp được lên thứ bạn biết là mình đang có",
+      "Vì cần đánh giá được tổng mức rủi ro trước khi phân bổ ngân sách bảo mật",
+      "Vì các tiêu chuẩn bảo mật đều yêu cầu có danh sách tài sản được cập nhật",
+      "Vì kiểm kê giúp phát hiện những tài nguyên đang chạy mà không còn cần thiết"
     ],
     "correctOption": 0,
-    "explanation": "Định giá theo tài sản ròng phù hợp với doanh nghiệp nhiều tài sản hữu hình hoặc tình huống thanh lý / NAV / RNAV - ví dụ công ty bất động sản, holding company nắm nhiều dự án, hoặc doanh nghiệp đang cân nhắc giải thể. Nó ít phù hợp với công ty công nghệ hay dịch vụ, nơi giá trị chủ yếu đến từ tài sản vô hình khó định giá riêng lẻ như thương hiệu hay đội ngũ.",
+    "explanation": "Một máy chủ thử nghiệm dựng lên hai năm trước, chưa từng được vá, chạy một phiên bản có lỗ hổng đã công bố - không rà soát nào chạm tới nó vì nó không có trong danh sách nào. Ba lựa chọn kia đều là lợi ích thật và đều giả định rằng bạn đã biết mình có gì.",
     "diagram": [
       {
-        "label": "Assets",
+        "label": "Không bảo vệ được thứ mình không biết là mình đang có",
         "arrow": true
       },
       {
-        "label": "Liabilities",
+        "label": "Bốn nhóm: máy đang chạy, tên miền, khoá, và quyền truy cập",
         "arrow": true
       },
       {
-        "label": "NAV / RNAV",
+        "label": "Nhóm hay thiếu nhất: KHOÁ và tài khoản dịch vụ",
         "arrow": true
       },
       {
-        "label": "Equity value",
-        "arrow": false
+        "label": "Kiểm kê phải tự sinh, không phải một bảng ai đó cập nhật tay"
       }
     ],
     "realWorldExample": {
-      "company": "BĐS / holding company",
-      "description": "Những công ty có nhiều tài sản rõ ràng như đất, dự án, tiền mặt thường được soi theo NAV bên cạnh DCF và multiples."
+      "company": "Bảng cập nhật tay lỗi thời trong hai tuần",
+      "description": "Một danh sách tài sản được duy trì bằng tay lỗi thời gần như ngay lập tức, vì mọi người thêm tài nguyên nhanh hơn nhiều so với tốc độ họ nhớ cập nhật bảng. Chỉ danh sách tự sinh từ chính hạ tầng mới phản ánh được thực tế."
     },
     "quiz": [
       {
-        "question": "NAV thường trả lời câu hỏi gì?",
+        "question": "Nhóm tài sản nào hay bị thiếu nhất trong danh sách kiểm kê?",
         "options": [
-          "Nếu bán hết tài sản rồi trừ nợ thì còn bao nhiêu cho cổ đông",
-          "Mức doanh thu công ty dự kiến đạt được trong năm tài chính kế tiếp",
-          "Tỷ lệ biên lợi nhuận gộp trên tổng doanh thu của công ty",
-          "Tốc độ tăng trưởng số lượng người dùng sản phẩm của công ty"
+          "Khoá truy cập và tài khoản dịch vụ, vì chúng không có hình dạng vật lý nào",
+          "Các máy chủ thử nghiệm được dựng tạm rồi để lại chạy",
+          "Các tên miền phụ được tạo cho những chiến dịch đã kết thúc",
+          "Các dịch vụ bên thứ ba đang được tích hợp vào hệ thống chính"
         ],
         "correct": 0,
-        "explanation": "NAV (Net Asset Value) là khung nhìn tài sản ròng khá trực tiếp: định giá từng tài sản riêng lẻ theo giá thị trường hợp lý, trừ đi toàn bộ nợ, phần còn lại là giá trị thuộc về cổ đông."
+        "explanation": "Ba nhóm kia đều xuất hiện ở đâu đó - trong bảng điều khiển hạ tầng, trong cấu hình tên miền, trong hoá đơn. Khoá thì nằm trong biến môi trường, trong tệp cấu hình, trong đầu người đã nghỉ việc."
       },
       {
-        "question": "Vì sao asset-based valuation thường KHÔNG phù hợp để định giá một công ty phần mềm (SaaS) đang tăng trưởng nhanh?",
+        "question": "Vì sao danh sách cập nhật bằng tay không dùng được?",
         "options": [
-          "Vì công ty SaaS không có nghĩa vụ công bố báo cáo tài chính định kỳ theo quy định hiện hành, nên thiếu dữ liệu đầu vào để định giá",
-          "Vì giá trị của công ty SaaS chủ yếu nằm ở tài sản vô hình khó tách bán riêng lẻ (đội ngũ, công nghệ, tệp khách hàng), không phải tài sản hữu hình có thể định giá và bán rời như bất động sản",
-          "Vì công ty SaaS về bản chất luôn có chỉ số NAV âm do đặc thù mô hình kinh doanh thâm dụng công nghệ",
-          "Vì có quy định pháp luật hiện hành cấm áp dụng phương pháp NAV cho các công ty hoạt động trong lĩnh vực công nghệ"
+          "Vì mọi người thêm tài nguyên nhanh hơn tốc độ họ nhớ cập nhật bảng",
+          "Vì việc cập nhật bằng tay dễ có sai sót về thông tin chi tiết",
+          "Vì không có ai chịu trách nhiệm rõ ràng cho việc duy trì bảng đó",
+          "Vì định dạng của bảng thường không phù hợp cho việc tra cứu tự động"
         ],
-        "correct": 1,
-        "explanation": "Asset-based valuation giả định các tài sản có thể tách rời và bán riêng lẻ với giá trị thị trường rõ ràng - đúng với đất đai, tòa nhà, máy móc. Một công ty SaaS tạo giá trị chủ yếu từ tài sản vô hình khó định giá tách rời, nên DCF hoặc multiples (P/E, EV/Revenue) phản ánh giá trị thực tế tốt hơn nhiều."
+        "correct": 0,
+        "explanation": "Đây là chênh lệch tốc độ chứ không phải vấn đề kỷ luật, nên nó không sửa được bằng cách nhắc nhở. Chỉ danh sách TỰ SINH từ chính hạ tầng mới theo kịp."
+      },
+      {
+        "question": "Vì sao một máy chủ thử nghiệm bị quên lại nguy hiểm?",
+        "options": [
+          "Vì nó không được vá và không nằm trong phạm vi của bất kỳ lượt rà soát nào",
+          "Vì nó tiêu tốn tài nguyên và đồng thời chi phí mà hoàn toàn không mang lại giá trị nào",
+          "Vì dữ liệu thử nghiệm trên đó có thể là bản sao của dữ liệu thật",
+          "Vì nó có thể được cấu hình sai nên hoạt động không ổn định"
+        ],
+        "correct": 0,
+        "explanation": "Vế thứ hai là vế quyết định: không nằm trong danh sách nghĩa là không nằm trong lượt quét lỗ hổng, không nằm trong lịch vá, và không ai nhìn cảnh báo của nó. Lựa chọn thứ ba là một rủi ro thật đi kèm."
+      },
+      {
+        "question": "Điều gì nên đi kèm mỗi mục trong danh sách kiểm kê?",
+        "options": [
+          "Một người chịu trách nhiệm, vì không có tên thì không ai xử lý khi có vấn đề",
+          "Ngày tạo và ngày cập nhật gần nhất của tài nguyên đó",
+          "Mức độ quan trọng của tài nguyên đối với hoạt động của hệ thống",
+          "Chi phí hằng tháng mà tài nguyên đó đang tiêu tốn"
+        ],
+        "correct": 0,
+        "explanation": "Ba thông tin kia đều hữu ích và đều lấy tự động được. Tên người thì phải gán, và không có nó thì một cảnh báo về tài nguyên đó không đến được ai - danh sách đầy đủ mà vẫn không dẫn tới hành động nào."
+      },
+      {
+        "question": "Vì sao khoá truy cập cần được xoay vòng định kỳ?",
+        "options": [
+          "Vì một khoá không bao giờ đổi thì thời gian nó bị lộ mà không ai biết là vô hạn",
+          "Vì các tiêu chuẩn bảo mật yêu cầu thay đổi khoá theo chu kỳ nhất định",
+          "Vì khoá cũ có thể dùng thuật toán mã hoá đã lỗi thời và kém an toàn",
+          "Vì việc xoay vòng giúp phát hiện những nơi đang dùng khoá mà không ai biết"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là một tác dụng phụ rất hữu ích của việc xoay vòng. Lý do chính thì về thời gian phơi nhiễm: một khoá bị lộ ba năm trước vẫn đang dùng được nếu nó chưa bao giờ được đổi."
       }
     ],
     "keyTakeaways": [
-      "Asset-based valuation hữu ích khi tài sản rõ và có thể tách rời",
-      "NAV/RNAV thường dùng trong BĐS và holding",
-      "Đừng dùng một khung định giá cho mọi doanh nghiệp"
+      "Không bảo vệ được thứ mình không biết là mình đang có.",
+      "Nhóm hay thiếu nhất: KHOÁ và tài khoản dịch vụ - chúng không có hình dạng nào.",
+      "Danh sách cập nhật tay lỗi thời vì chênh lệch TỐC ĐỘ, không vì thiếu kỷ luật.",
+      "Mỗi mục cần một TÊN NGƯỜI, nếu không cảnh báo về nó không đến được ai.",
+      "Khoá không bao giờ đổi thì thời gian bị lộ mà không ai biết là vô hạn."
     ],
-    "track": "professional",
+    "practicePrompt": {
+      "question": "Bạn muốn bắt đầu kiểm kê. Nguồn dữ liệu nào cho kết quả nhanh nhất?",
+      "options": [
+        "Hoá đơn hạ tầng, vì mọi thứ đang chạy và tốn tiền đều xuất hiện ở đó",
+        "Kho mã nguồn, vì mọi từng dịch vụ đang thực thi đều có mã ở một chỗ nào đó",
+        "Bảng điều khiển của nhà cung cấp, vì nó liệt kê tài nguyên theo từng loại",
+        "Hỏi từng cả đội xem xét họ đang vận hành những phần tài nguyên nào hiện nay"
+      ],
+      "correct": 0,
+      "explanation": "Hoá đơn là danh sách duy nhất không ai quên cập nhật, vì nó do bên bán lập. Bảng điều khiển gần tương đương và thường bỏ sót tài nguyên ở tài khoản khác; hỏi từng đội thì bỏ sót đúng thứ không ai nhớ."
+    },
     "summary": {
-      "keyIdea": "Asset-based valuation hữu ích khi tài sản rõ và có thể tách rời",
-      "commonMistake": "Dễ bỏ qua: nAV/RNAV thường dùng trong BĐS và holding",
-      "action": "Đừng dùng một khung định giá cho mọi doanh nghiệp"
+      "keyIdea": "Phần lớn lỗ hổng bị khai thác nằm ở thứ không có trong danh sách nào.",
+      "formula": "Danh sách tự sinh + bốn nhóm + một tên người cho mỗi mục.",
+      "commonMistake": "Duy trì bảng bằng tay, thứ lỗi thời nhanh hơn tốc độ cập nhật.",
+      "action": "Đọc hoá đơn hạ tầng tháng gần nhất và tìm thứ bạn không nhận ra."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Mở hoá đơn hạ tầng tháng gần nhất và đọc từng dòng. Tìm những mục mà bạn không nhận ra ngay đó là gì.",
+      "secondary": "Mỗi dòng như vậy là một tài sản không ai đang trông. Đây là cách kiểm kê rẻ nhất và nó dùng một danh sách mà không ai quên cập nhật, vì bên bán lập nó."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Không phải mọi doanh nghiệp đều nên định giá bằng cùng một phương pháp - với những công ty sở hữu nhiều tài sản hữu hình rõ ràng, có một cách tiếp cận trực diện hơn DCF hay multiples."
+        "text": "Phần lớn lỗ hổng bị khai thác nằm ở những thứ không có trong danh sách nào: một máy chủ thử nghiệm, một khoá cũ, một tên miền phụ mà không ai nhớ."
       },
       {
         "type": "heading",
-        "text": "NAV: nếu bán hết tài sản rồi trả nợ, còn lại bao nhiêu"
+        "text": "Vì sao đây là bước đầu tiên"
       },
       {
-        "type": "paragraph",
-        "text": "Asset-based valuation định giá từng tài sản riêng lẻ theo giá thị trường hợp lý, trừ đi toàn bộ nợ - phần còn lại (Net Asset Value) là giá trị thuộc về cổ đông. Phương pháp này phù hợp với doanh nghiệp bất động sản, holding company, hoặc tình huống thanh lý, nhưng ít phù hợp với công ty công nghệ/dịch vụ - nơi giá trị chủ yếu đến từ tài sản vô hình (đội ngũ, công nghệ, tệp khách hàng) khó tách bán riêng lẻ như đất đai hay máy móc."
+        "type": "callout",
+        "label": "Không nằm trong danh sách thì không nằm trong lượt rà soát",
+        "text": "Một máy chủ thử nghiệm dựng hai năm trước không nằm trong lượt quét lỗ hổng, không nằm trong lịch vá, và không ai nhìn cảnh báo của nó. Mọi biện pháp bảo vệ đều chỉ áp được lên thứ bạn biết là mình đang có."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn nhóm cần kiểm kê"
       },
       {
         "type": "list",
         "items": [
-          "NAV = giá trị thị trường của tài sản trừ toàn bộ nợ phải trả",
-          "Phù hợp nhất với doanh nghiệp nhiều tài sản hữu hình có thể tách bán riêng lẻ (BĐS, holding company)",
-          "Không phù hợp với công ty giá trị chủ yếu từ tài sản vô hình như SaaS - nên dùng DCF hoặc multiples thay thế"
+          "Máy và dịch vụ đang chạy - xuất hiện trên hoá đơn và bảng điều khiển.",
+          "Tên miền và tên miền phụ - xuất hiện trong cấu hình DNS.",
+          "KHOÁ truy cập và tài khoản dịch vụ - nhóm hay thiếu nhất.",
+          "Quyền truy cập của con người - ai vào được cái gì."
         ]
       },
       {
-        "type": "formula",
-        "title": "NAV và RNAV khác nhau ở đúng một bước",
-        "equation": "NAV = T\u00e0i s\u1ea3n \u2212 N\u1ee3   |   RNAV = T\u00e0i s\u1ea3n \u0111\u00e3 \u0111\u1ecbnh gi\u00e1 l\u1ea1i \u2212 N\u1ee3",
-        "variables": [
-          {
-            "symbol": "NAV",
-            "name": "Giá trị tài sản ròng theo sổ sách",
-            "description": "Lấy thẳng từ bảng cân đối. Nhanh, nhưng tài sản ghi theo giá gốc trừ khấu hao - không phải giá bán được hôm nay."
-          },
-          {
-            "symbol": "RNAV",
-            "name": "Giá trị tài sản ròng sau khi định giá lại",
-            "description": "Thay giá sổ sách bằng giá thị trường của từng tài sản. Đây mới là con số dùng để định giá doanh nghiệp bất động sản hay holding."
-          }
-        ],
-        "example": {
-          "title": "Một công ty bất động sản mua đất từ 2010",
-          "calculation": "Sổ sách: đất 400 tỷ, tài sản khác 150 tỷ, nợ 300 tỷ → NAV = 250 tỷ. Định giá lại: mảnh đất đó nay đáng 1.200 tỷ → RNAV = 1.200 + 150 − 300",
-          "result": "NAV 250 tỷ so với RNAV 1.050 tỷ - chênh nhau hơn bốn lần",
-          "explanation": "Kế toán ghi đất theo giá gốc và KHÔNG đánh giá lại tăng, nên với doanh nghiệp giữ đất lâu năm, giá trị sổ sách gần như vô nghĩa. Đây là lý do cổ phiếu bất động sản thường giao dịch trên nhiều lần giá trị sổ sách mà vẫn không hề đắt."
-        }
+        "type": "paragraph",
+        "text": "Nhóm thứ ba hay thiếu vì nó không có hình dạng nào: khoá nằm trong biến môi trường, trong tệp cấu hình, và trong đầu người đã nghỉ việc. Nó cũng là nhóm mà một mục bị quên gây hậu quả lớn nhất."
       },
       {
         "type": "heading",
-        "text": "Ba chỗ con số NAV nói dối"
-      },
-      {
-        "type": "paragraph",
-        "text": "Thứ nhất, giá thanh lý không phải giá thị trường: bán gấp cả rổ tài sản luôn phải chiết khấu, và một dây chuyền chuyên dụng có thể chỉ bán được theo giá sắt vụn. Thứ hai, nợ ngoài bảng cân đối - nghĩa vụ thuê, bảo lãnh cho công ty liên kết, tranh chấp đang kiện - không nằm trong dòng 'Nợ' mà vẫn phải trả trước khi cổ đông nhận gì. Thứ ba, thuế: bán mảnh đất 1.200 tỷ mua giá 400 tỷ thì phần chênh phải chịu thuế, nên tiền thực về tay cổ đông thấp hơn RNAV tính thô."
+        "text": "Tự sinh, không cập nhật tay"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Khi NAV là thước đo đúng",
-          "text": "Bất động sản, holding nắm nhiều dự án, quỹ đầu tư, doanh nghiệp đang cân nhắc giải thể, và mọi trường hợp giá trị nằm ở những tài sản bán riêng lẻ được."
+          "label": "Bảng cập nhật tay",
+          "text": "Lỗi thời gần như ngay lập tức. Đây là chênh lệch TỐC ĐỘ, không phải thiếu kỷ luật - nên nhắc nhở không sửa được."
         },
         "right": {
-          "label": "Khi NAV vô nghĩa",
-          "text": "Công ty phần mềm, tư vấn, thương hiệu tiêu dùng. Giá trị của họ là đội ngũ, mã nguồn, tệp khách hàng - không có dòng nào trên bảng cân đối, và bán rời ra thì không còn gì. Với nhóm này phải dùng dòng tiền hoặc bội số."
+          "label": "Danh sách tự sinh",
+          "text": "Đọc thẳng từ hạ tầng, từ cấu hình tên miền, từ hoá đơn. Phản ánh thực tế vì nó không phụ thuộc vào việc ai nhớ."
         }
-      },
-      {
-        "type": "callout",
-        "label": "NAV là sàn, không phải giá",
-        "text": "Một doanh nghiệp đang hoạt động tốt gần như luôn đáng giá hơn tổng tài sản của nó - nếu không thì cổ đông nên bán hết tài sản đi ngay. Nên NAV hữu ích nhất như một mức SÀN: nếu giá cổ phiếu thấp hơn cả NAV đã trừ thuế và chi phí thanh lý, hoặc thị trường đang định giá sai, hoặc thị trường tin rằng ban điều hành sẽ còn phá hủy thêm giá trị."
       },
       {
         "type": "closing",
         "lines": [
-          "Không có một khung định giá đúng cho mọi doanh nghiệp.",
-          "Chọn đúng phương pháp theo bản chất tài sản của doanh nghiệp mới cho kết quả có ý nghĩa."
+          "Và gán một TÊN NGƯỜI cho mỗi mục. Đây là thứ duy nhất không lấy tự động được, và không có nó thì một danh sách đầy đủ vẫn không dẫn tới hành động nào.",
+          "Với nhóm khoá, thêm một việc nữa: xoay vòng định kỳ. Một khoá không bao giờ đổi thì thời gian nó bị lộ mà không ai biết là vô hạn."
         ]
       }
-    ],
-    "practicePrompt": {
-      "question": "Phương pháp Định giá dựa trên Giá trị Tài sản ròng (Asset-based / RNAV) thường được áp dụng phù hợp nhất cho nhóm doanh nghiệp nào?",
-      "options": [
-        "Bất động sản, quỹ holding, công ty nhiều đất đai",
-        "Các công ty công nghệ SaaS không có tài sản cố định",
-        "Các chuỗi nhà hàng thức ăn nhanh",
-        "Các ứng dụng di động khởi nghiệp"
-      ],
-      "correct": 0,
-      "explanation": "RNAV (Revalued Net Asset Value) đánh giá lại toàn bộ quỹ đất và tài sản theo giá thị trường hiện tại rồi trừ nợ nần, rất phù hợp cho doanh nghiệp BĐS và Holding."
-    },
-    "application": {
-      "title": "Ứng dụng thực tế: Định giá DN kiểu bán hết tài sản rồi trả nợ",
-      "message": "Phương pháp Định giá dựa trên Giá trị Tài sản ròng (Asset-based / RNAV) thường được áp dụng phù hợp nhất cho nhóm doanh nghiệp nào?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+    ]
   },
   {
     "id": 1054,
@@ -66710,184 +66738,176 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1208,
-    "slug": "quan-ly-rui-ro-ty-gia-doanh-nghiep-xnk",
-    "interactiveType": "risk",
-    "title": "CFO & Vận hành, Bài 7: Quản lý rủi ro tỷ giá cho doanh nghiệp xuất nhập khẩu",
-    "subtitle": "Biến động tỷ giá có thể xóa sạch biên lợi nhuận của cả một đơn hàng lớn",
+    "slug": "quan-tri-rui-ro-nha-cung-cap-dich-vu",
+    "title": "CFO & Vận hành, Bài 7: Quản trị rủi ro nhà cung cấp - khi bên ngoài đổi giá hoặc điều khoản",
+    "subtitle": "Rủi ro lớn nhất từ một nhà cung cấp không phải họ ngừng hoạt động mà là họ đổi điều kiện.",
     "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "💱",
     "track": "professional",
-    "openingQuestion": "Một doanh nghiệp Việt Nam ký hợp đồng xuất khẩu trị giá 1 triệu USD, sẽ nhận thanh toán sau 6 tháng. Nếu VND tăng giá mạnh so với USD trong 6 tháng đó (tỷ giá USD/VND giảm), điều gì xảy ra với doanh nghiệp nếu không có biện pháp phòng ngừa?",
+    "emoji": "💱",
+    "interactiveType": "risk",
+    "whyItMatters": "Chi phí chuyển đổi khỏi một nhà cung cấp lớn dần theo thời gian, và tới một lúc nào đó bạn mất khả năng nói không với mọi thay đổi họ đưa ra.",
+    "openingQuestion": "Rủi ro lớn nhất từ một nhà cung cấp hạ tầng là gì?",
     "openingOptions": [
-      "Không ảnh hưởng gì vì hợp đồng đã ký cố định bằng USD",
-      "Doanh nghiệp nhận được ít VND hơn khi quy đổi lúc thanh toán",
-      "Doanh nghiệp sẽ luôn được lợi trong mọi trường hợp biến động tỷ giá",
-      "Chỉ ảnh hưởng đến đối tác nhập khẩu, không ảnh hưởng đến bên xuất khẩu"
+      "Họ đổi giá hoặc điều khoản vào lúc bạn không còn chuyển đi được nữa",
+      "Họ gặp sự cố kéo dài làm dịch vụ của bạn ngừng hoạt động theo",
+      "Họ ngừng cung cấp dịch vụ mà bạn đang phụ thuộc vào hoàn toàn",
+      "Chất lượng dịch vụ của họ giảm dần mà hoàn toàn không có cam kết ràng buộc"
     ],
-    "correctOption": 1,
-    "explanation": "Doanh nghiệp xuất khẩu nhận doanh thu bằng ngoại tệ (USD) nhưng chi phí (nhân công, nguyên liệu trong nước) chủ yếu bằng VND - nếu VND tăng giá (tỷ giá USD/VND giảm) trong thời gian chờ thanh toán, cùng một số USD nhận được sẽ quy đổi ra ÍT VND HƠN, trực tiếp bào mòn biên lợi nhuận đã tính toán khi ký hợp đồng, dù không có gì thay đổi về mặt hoạt động kinh doanh.",
+    "correctOption": 0,
+    "explanation": "Ba rủi ro kia đều được cân nhắc khi chọn nhà cung cấp và đều có phương án dự phòng. Rủi ro về điều kiện thì tích tụ âm thầm: mỗi tính năng riêng của họ mà bạn dùng thêm làm chi phí chuyển đổi tăng lên, và không có ngày nào bạn nhận ra mình đã vượt qua điểm không quay lại.",
     "diagram": [
       {
-        "label": "Ký hợp đồng xuất khẩu bằng USD",
+        "label": "Chi phí chuyển đổi tăng dần theo từng tính năng riêng bạn dùng",
         "arrow": true
       },
       {
-        "label": "Chờ thanh toán (rủi ro tỷ giá phát sinh trong thời gian này)",
+        "label": "Không có ngày nào bạn nhận ra đã qua điểm không quay lại",
         "arrow": true
       },
       {
-        "label": "Tỷ giá biến động → giá trị quy đổi VND thay đổi",
+        "label": "Đo nó: chuyển đi mất bao lâu, và ước lượng đó cũ chưa",
         "arrow": true
       },
       {
-        "label": "Ảnh hưởng trực tiếp đến biên lợi nhuận thực nhận"
+        "label": "Giữ được lựa chọn tốn tiền - và đó là quyết định có ý thức"
       }
     ],
     "realWorldExample": {
-      "company": "Doanh nghiệp xuất khẩu dệt may, thủy sản Việt Nam",
-      "description": "Các doanh nghiệp xuất khẩu lớn của Việt Nam thường ký hợp đồng forward tỷ giá với ngân hàng để 'khóa' trước tỷ giá quy đổi cho các khoản doanh thu ngoại tệ sẽ nhận trong tương lai, giúp bảo vệ biên lợi nhuận đã tính toán khi báo giá cho đối tác nước ngoài khỏi biến động tỷ giá bất lợi trong thời gian chờ thanh toán."
+      "company": "Đo bằng thời gian chuyển đi",
+      "description": "Con số đo được sức mặc cả của bạn là thời gian cần để chuyển sang nhà cung cấp khác. Con số đó chỉ có nghĩa khi được ước lượng lại định kỳ, vì nó tăng đều mà không ai thông báo - mỗi lần đội dùng thêm một dịch vụ riêng của họ."
     },
     "quiz": [
       {
-        "question": "Forward contract (hợp đồng kỳ hạn) tỷ giá giúp doanh nghiệp xuất khẩu quản trị rủi ro tỷ giá như thế nào?",
+        "question": "Vì sao rủi ro về điều kiện khó nhận ra hơn rủi ro về sự cố?",
         "options": [
-          "Forward contract giúp doanh nghiệp kiếm thêm lợi nhuận từ biến động tỷ giá có lợi",
-          "Forward contract cho phép doanh nghiệp 'khóa' trước một tỷ giá quy đổi cụ thể cho một giao dịch tương lai, loại bỏ sự không chắc chắn về tỷ giá thực tế tại thời điểm thanh toán - đổi lại doanh nghiệp cũng từ bỏ khả năng hưởng lợi nếu tỷ giá di chuyển theo hướng có lợi hơn",
-          "Forward contract chỉ dùng được cho các khoản thanh toán bằng VND",
-          "Forward contract không có chi phí hay đánh đổi nào"
-        ],
-        "correct": 1,
-        "explanation": "Forward contract là công cụ hedging kinh điển: doanh nghiệp thỏa thuận trước một tỷ giá cố định cho giao dịch tương lai với ngân hàng, đổi lấy sự chắc chắn về dòng tiền - nhưng cũng đồng nghĩa với việc từ bỏ khả năng hưởng lợi nếu tỷ giá thực tế biến động theo hướng có lợi hơn so với tỷ giá đã khóa."
-      },
-      {
-        "question": "Một doanh nghiệp vừa xuất khẩu vừa nhập khẩu với cùng một loại ngoại tệ (ví dụ USD) có thể có 'hedge tự nhiên' (natural hedge) một phần. Điều này có nghĩa là gì?",
-        "options": [
-          "Doanh nghiệp này hoàn toàn không cần quan tâm đến rủi ro tỷ giá, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Nếu doanh thu xuất khẩu và chi phí nhập khẩu đều bằng USD với quy mô tương đồng, biến động tỷ giá có xu hướng ảnh hưởng cùng chiều lên cả hai phía (doanh thu và chi phí), làm giảm bớt (nhưng không nhất thiết loại bỏ hoàn toàn) mức độ ảnh hưởng ròng của biến động tỷ giá lên lợi nhuận, giảm nhu cầu hedge bằng công cụ phái sinh tốn phí",
-          "Doanh nghiệp xuất-nhập khẩu luôn có rủi ro tỷ giá cao hơn doanh nghiệp chỉ xuất khẩu, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Natural hedge chỉ áp dụng được nếu doanh nghiệp không có bất kỳ khoản vay ngoại tệ nào, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Natural hedge là một chiến lược quản trị rủi ro thông minh và ít tốn kém: khi cả dòng tiền vào (doanh thu ngoại tệ) và dòng tiền ra (chi phí ngoại tệ) cùng bằng một loại tiền tệ với quy mô tương đồng, biến động tỷ giá tác động lên cả hai theo hướng bù trừ lẫn nhau một phần, giảm nhu cầu phải dùng thêm công cụ phái sinh tốn phí để hedge phần chênh lệch ròng còn lại."
-      },
-      {
-        "question": "Doanh nghiệp thu 8 triệu USD từ xuất khẩu và chi 5 triệu USD nhập nguyên liệu trong cùng kỳ. Rủi ro tỷ giá ròng là bao nhiêu?",
-        "options": [
-          "3 triệu USD, vì phần dòng tiền vào và ra trùng nhau tự triệt tiêu",
-          "13 triệu USD",
-          "8 triệu USD",
-          "5 triệu USD"
+          "Vì nó tích tụ dần qua từng quyết định nhỏ, không có thời điểm nào rõ ràng",
+          "Vì nó không ảnh hưởng tới hoạt động hằng ngày nên không ai để ý tới",
+          "Vì các điều khoản hợp đồng thường xuyên phức tạp nên rốt cuộc khó theo dõi thay đổi",
+          "Vì nhà cung cấp thường thông báo thay đổi điều kiện khá muộn"
         ],
         "correct": 0,
-        "explanation": "Đây là phòng hộ tự nhiên. Chỉ phần chênh lệch mới thực sự chịu rủi ro, và phòng hộ trên con số đó thay vì trên tổng doanh thu tiết kiệm được phần lớn chi phí."
+        "explanation": "Một sự cố có ngày giờ và ai cũng thấy. Chi phí chuyển đổi thì tăng lên mỗi lần một kỹ sư chọn dùng một dịch vụ riêng của nhà cung cấp - một quyết định hợp lý ở thời điểm đó và không ai ghi lại tổng của chúng."
       },
       {
-        "question": "Khác biệt cơ bản giữa hợp đồng kỳ hạn và quyền chọn là gì?",
+        "question": "Con số nào đo được sức mặc cả của bạn với nhà cung cấp?",
         "options": [
-          "Kỳ hạn tạo nghĩa vụ hai chiều; quyền chọn cho quyền chứ không bắt buộc thực hiện, đổi lại phải trả phí",
-          "Kỳ hạn chỉ dùng cho nhập khẩu, quyền chọn chỉ dùng cho xuất khẩu",
-          "Quyền chọn luôn rẻ hơn kỳ hạn",
-          "Kỳ hạn không khóa được tỷ giá"
+          "Thời gian cần để chuyển toàn bộ sang một nhà cung cấp khác",
+          "Tỷ lệ chi phí trả cho nhà cung cấp đó trên tổng chi phí hạ tầng",
+          "Số lượng dịch vụ riêng của họ mà hệ thống đang sử dụng",
+          "Thời hạn còn lại của hợp đồng hiện tại với nhà cung cấp đó"
         ],
         "correct": 0,
-        "explanation": "Khoản phí của quyền chọn chính là giá của sự linh hoạt: giữ được phần lợi khi tỷ giá đi theo hướng thuận, trong khi hợp đồng kỳ hạn đánh đổi phần lợi đó lấy chi phí thấp hơn."
+        "explanation": "Lựa chọn thứ ba là một đầu vào của con số này và nó không tính được thành đơn vị so sánh. Thời gian chuyển đi thì nói thẳng: bạn có bao nhiêu tháng để đàm phán trước khi phải chấp nhận."
+      },
+      {
+        "question": "Vì sao ước lượng thời gian chuyển đổi cần được làm lại định kỳ?",
+        "options": [
+          "Vì nó tăng đều mà không ai thông báo, mỗi lần đội dùng thêm một dịch vụ riêng",
+          "Vì công nghệ của các nhà cung cấp thay đổi nên độ tương thích cũng đổi",
+          "Vì quy mô hệ thống tăng lên nên khối lượng cần chuyển cũng tăng theo",
+          "Vì cả đội có thêm kinh nghiệm nên rốt cuộc ước lượng sau chính xác hơn hẳn ước lượng trước"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều làm con số đổi và đều là những thay đổi thấy được. Cái này thì vô hình: một ước lượng sáu tháng trước có thể đã sai gấp đôi mà không có sự kiện nào báo hiệu."
+      },
+      {
+        "question": "Vì sao giữ khả năng chuyển đổi lại tốn tiền?",
+        "options": [
+          "Vì phải tránh những dịch vụ riêng vốn thường tiện hơn và rẻ hơn",
+          "Vì phải duy trì hệ thống ở hai nhà cung cấp cùng lúc để sẵn sàng chuyển",
+          "Vì cần đội ngũ có kinh nghiệm với nhiều nền tảng khác nhau",
+          "Vì phải trả thêm cho các lớp trung gian giúp trừu tượng hoá nhà cung cấp"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai là một cách làm cực đoan và hiếm khi cần. Cái giá thật thì hằng ngày: dịch vụ quản lý sẵn của nhà cung cấp thường tiện hơn và tổng chi phí thấp hơn tự dựng, nên tránh nó là chấp nhận trả nhiều hơn ngay bây giờ."
+      },
+      {
+        "question": "Cách tiếp cận cân bằng với vấn đề này là gì?",
+        "options": [
+          "Chọn có ý thức phần nào chấp nhận phụ thuộc và phần nào giữ khả năng chuyển",
+          "Tránh mọi dịch vụ riêng của nhà cung cấp để giữ tối đa khả năng chuyển đổi",
+          "Chấp nhận phụ thuộc hoàn toàn để tận dụng tối đa lợi thế về chi phí và tốc độ",
+          "Đàm phán hợp đồng dài hạn với điều khoản cố định giá trong nhiều năm"
+        ],
+        "correct": 0,
+        "explanation": "Hai lựa chọn giữa là hai cực và cả hai đều bỏ qua việc các phần của hệ thống có mức rủi ro rất khác nhau. Điều quan trọng là quyết định đó được đưa ra có ý thức, thay vì hình thành dần từ hàng trăm lựa chọn nhỏ."
       }
     ],
     "keyTakeaways": [
-      "Doanh nghiệp xuất khẩu chịu rủi ro tỷ giá vì nhận doanh thu ngoại tệ nhưng chi phí chủ yếu bằng nội tệ",
-      "Forward contract giúp khóa trước tỷ giá quy đổi, đổi lại từ bỏ khả năng hưởng lợi nếu tỷ giá biến động có lợi",
-      "Natural hedge (có cả dòng tiền vào và ra cùng loại ngoại tệ) giúp giảm rủi ro tỷ giá ròng mà không cần công cụ phái sinh tốn phí"
+      "Rủi ro lớn nhất là họ đổi điều kiện vào lúc bạn không còn chuyển đi được.",
+      "Chi phí chuyển đổi tích tụ qua từng quyết định nhỏ, không có thời điểm rõ ràng.",
+      "Đo sức mặc cả bằng THỜI GIAN CHUYỂN ĐI, và ước lượng lại nó định kỳ.",
+      "Giữ khả năng chuyển tốn tiền hằng ngày - dịch vụ riêng thường tiện và rẻ hơn.",
+      "Chọn CÓ Ý THỨC phần nào chấp nhận phụ thuộc, thay vì để nó hình thành dần."
     ],
     "practicePrompt": {
-      "question": "Một công ty xuất khẩu Việt Nam sẽ nhận 1 triệu USD sau 6 tháng, lo ngại VNĐ tăng giá so với USD trong thời gian đó khiến số VNĐ quy đổi nhận về ít hơn. Công cụ nào giúp công ty khóa tỷ giá quy đổi ngay từ bây giờ?",
+      "question": "Đội định dùng một dịch vụ quản lý sẵn chỉ có ở nhà cung cấp hiện tại. Hỏi gì?",
       "options": [
-        "Forward contract giúp doanh nghiệp khóa trước tỷ giá quy đổi cho giao dịch tương lai",
-        "Nên dùng Interest Rate Swap, công cụ giải quyết được mọi loại rủi ro tài chính doanh nghiệp bao gồm cả tỷ giá",
-        "Công ty không cần làm gì vì doanh nghiệp xuất khẩu không chịu ảnh hưởng từ biến động tỷ giá",
-        "Nên mua cổ phiếu của các công ty xuất khẩu khác để phòng hộ rủi ro tỷ giá"
+        "Nếu phải bỏ nó, thay thế mất bao lâu - và câu trả lời có được ghi lại không",
+        "Dịch vụ đó có đắt hơn so với việc tự dựng một giải pháp tương đương không",
+        "Nhà cung cấp có cam kết duy trì dịch vụ đó trong bao nhiêu năm tới",
+        "Có nhà cung cấp nào khác cung cấp dịch vụ tương tự với giao diện giống không"
       ],
       "correct": 0,
-      "explanation": "Forward contract giúp doanh nghiệp khóa trước tỷ giá quy đổi cho giao dịch tương lai. Đây là công cụ phổ biến nhất để quản trị rủi ro tỷ giá xuất nhập khẩu, giúp doanh nghiệp có dòng tiền ngoại tệ tương lai biết trước chính xác số tiền quy đổi sẽ nhận được."
+      "explanation": "Vế thứ hai là vế quan trọng và hay bị bỏ: nếu câu trả lời không được ghi lại thì mỗi quyết định như vậy biến mất, và tổng của chúng không bao giờ được nhìn thấy ở một chỗ."
+    },
+    "summary": {
+      "keyIdea": "Rủi ro lớn nhất không phải họ ngừng hoạt động mà là họ đổi điều kiện.",
+      "formula": "Đo thời gian chuyển đi + ước lượng lại định kỳ + chọn có ý thức phần nào phụ thuộc.",
+      "commonMistake": "Để mức phụ thuộc hình thành dần từ hàng trăm quyết định nhỏ hợp lý.",
+      "action": "Ước lượng thời gian chuyển toàn bộ sang một nhà cung cấp khác."
     },
     "application": {
-      "title": "Tìm phần tự triệt tiêu trước khi mua công cụ",
-      "message": "Liệt kê dòng ngoại tệ vào và ra theo từng tháng cho cùng một đồng tiền. Phần trùng nhau tự triệt tiêu và không cần phòng hộ; chỉ phần ròng còn lại mới đáng trả phí. Nhiều doanh nghiệp mua forward cho toàn bộ doanh thu xuất khẩu trong khi một nửa chi phí đầu vào cũng bằng chính đồng đó.",
-      "secondary": "Cách rẻ nhất để tăng phần tự triệt tiêu thường không nằm ở phòng ban tài chính: chuyển một phần mua nguyên liệu sang cùng đồng tiền bán hàng, hoặc vay bằng chính đồng đó.",
+      "title": "Làm ngay hôm nay",
+      "message": "Ước lượng thô một con số: nếu phải chuyển toàn bộ sang nhà cung cấp khác, mất bao lâu? Không cần chính xác, cần có con số.",
+      "secondary": "Rồi ghi ngày ước lượng bên cạnh và đặt lịch làm lại sau sáu tháng. Con số tăng lên giữa hai lần đo chính là mức phụ thuộc bạn vừa tích thêm mà không ai quyết định."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Biến động tỷ giá có thể xóa sạch biên lợi nhuận của cả một đơn hàng xuất khẩu lớn, dù mọi thứ về mặt kinh doanh vẫn diễn ra đúng kế hoạch."
+        "text": "Chi phí chuyển đổi khỏi một nhà cung cấp lớn dần theo thời gian, và tới một lúc nào đó bạn mất khả năng nói không với mọi thay đổi họ đưa ra."
       },
       {
         "type": "heading",
-        "text": "Forward contract và natural hedge"
+        "text": "Vì sao rủi ro này khó thấy"
+      },
+      {
+        "type": "callout",
+        "label": "Không có ngày nào để đánh dấu",
+        "text": "Một sự cố có ngày giờ và ai cũng thấy. Chi phí chuyển đổi thì tăng lên mỗi lần một kỹ sư chọn dùng một dịch vụ riêng của nhà cung cấp - một quyết định hợp lý ở thời điểm đó, và không ai ghi lại tổng của chúng."
+      },
+      {
+        "type": "heading",
+        "text": "Con số đo được sức mặc cả"
       },
       {
         "type": "paragraph",
-        "text": "Doanh nghiệp xuất khẩu nhận doanh thu ngoại tệ nhưng chi phí chủ yếu bằng nội tệ - nếu nội tệ tăng giá trong thời gian chờ thanh toán, cùng số ngoại tệ nhận được sẽ quy đổi ra ít nội tệ hơn, bào mòn biên lợi nhuận đã tính khi ký hợp đồng. Forward contract giúp khóa trước tỷ giá quy đổi, đổi lại từ bỏ khả năng hưởng lợi nếu tỷ giá biến động có lợi. Doanh nghiệp vừa xuất vừa nhập khẩu cùng loại ngoại tệ có thể có 'natural hedge' một phần, giảm nhu cầu dùng công cụ phái sinh tốn phí."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Doanh nghiệp xuất khẩu chịu rủi ro tỷ giá vì nhận doanh thu ngoại tệ nhưng chi phí chủ yếu bằng nội tệ",
-          "Forward contract giúp khóa trước tỷ giá quy đổi cho giao dịch tương lai",
-          "Natural hedge (có cả dòng tiền vào và ra cùng ngoại tệ) giúp giảm rủi ro ròng mà không cần công cụ phái sinh"
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Rủi ro nằm ở độ trễ giữa ký hợp đồng và nhận tiền",
-        "equation": "Tác động = Giá trị hợp đồng ngoại tệ × Mức biến động tỷ giá",
-        "example": {
-          "title": "Đơn hàng xuất khẩu 500.000 USD, thanh toán sau 90 ngày",
-          "calculation": "Ký ở tỷ giá 25.500 → nhận ở 24.700, chênh 800 đồng/USD",
-          "result": "Hụt 400 triệu đồng so với dự tính",
-          "explanation": "Nếu biên lợi nhuận của đơn hàng này là 5% trên doanh thu khoảng 12,75 tỷ, tức khoảng 640 triệu, thì riêng biến động tỷ giá đã lấy đi gần hai phần ba lợi nhuận - dù khâu sản xuất và giao hàng đều đúng kế hoạch."
-        }
+        "text": "THỜI GIAN CHUYỂN ĐI. Nó nói thẳng bạn có bao nhiêu tháng để đàm phán trước khi phải chấp nhận điều kiện mới. Và nó chỉ có nghĩa khi được ước lượng lại định kỳ, vì nó tăng đều mà không có sự kiện nào báo hiệu."
       },
       {
         "type": "heading",
-        "text": "Ba lớp phòng hộ, nên đi theo thứ tự"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Phòng hộ tự nhiên trước tiên: nếu doanh nghiệp vừa có doanh thu vừa có chi phí bằng cùng loại ngoại tệ, phần trùng nhau tự triệt tiêu và không tốn đồng phí nào. Hãy tính rủi ro ròng chứ đừng tính trên tổng doanh thu ngoại tệ.",
-          "Điều khoản hợp đồng: thỏa thuận điều chỉnh giá khi tỷ giá vượt một biên độ nhất định, hoặc rút ngắn thời hạn thanh toán để giảm thời gian phơi nhiễm.",
-          "Công cụ phái sinh sau cùng: hợp đồng kỳ hạn hoặc quyền chọn cho phần rủi ro ròng còn lại. Đây là lớp tốn phí nhất nên chỉ dùng cho phần thực sự không xử lý được bằng hai lớp trên."
-        ]
+        "text": "Giữ lựa chọn tốn tiền"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Hợp đồng kỳ hạn",
-          "text": "Khóa cứng tỷ giá cho ngày thanh toán. Chi phí thấp hoặc bằng không, nhưng nghĩa vụ hai chiều: nếu tỷ giá đi theo hướng có lợi, doanh nghiệp vẫn phải thực hiện ở mức đã khóa."
+          "label": "Dùng dịch vụ riêng",
+          "text": "Thường tiện hơn và tổng chi phí thấp hơn tự dựng. Đây là lý do mọi đội đều trôi về hướng này mà không ai quyết định."
         },
         "right": {
-          "label": "Quyền chọn",
-          "text": "Trả phí để có quyền chứ không phải nghĩa vụ. Nếu tỷ giá bất lợi thì dùng quyền; nếu có lợi thì bỏ quyền và bán theo giá thị trường. Linh hoạt hơn nhưng tốn phí ngay từ đầu."
+          "label": "Giữ khả năng chuyển",
+          "text": "Trả nhiều hơn ngay bây giờ, hằng ngày, để đổi lấy sức mặc cả về sau."
         }
-      },
-      {
-        "type": "callout",
-        "label": "Sai lầm hay gặp",
-        "text": "Phòng hộ trên toàn bộ doanh thu ngoại tệ thay vì trên phần rủi ro ròng. Một doanh nghiệp thu 10 triệu USD và chi 7 triệu USD chỉ thực sự phơi nhiễm 3 triệu USD; phòng hộ cả 10 triệu vừa tốn phí gấp hơn ba lần vừa tạo ra một vị thế mới có thể gây lỗ khi tỷ giá đi ngược."
       },
       {
         "type": "closing",
         "lines": [
-          "Một hợp đồng xuất khẩu tốt trên giấy tờ vẫn có thể lỗ nếu tỷ giá đi ngược hướng.",
-          "Quản trị rủi ro tỷ giá là bước không thể bỏ qua với bất kỳ doanh nghiệp xuất nhập khẩu nào."
+          "Cách tiếp cận cân bằng không phải chọn một trong hai cực: các phần của hệ thống có mức rủi ro rất khác nhau, nên phần lõi và phần phụ trợ đáng được quyết định khác nhau.",
+          "Điều quan trọng là quyết định đó được đưa ra CÓ Ý THỨC và được ghi lại, thay vì hình thành dần từ hàng trăm lựa chọn nhỏ mà không ai nhìn thấy tổng."
         ]
       }
-    ],
-    "summary": {
-      "keyIdea": "Doanh nghiệp xuất khẩu chịu rủi ro tỷ giá vì nhận doanh thu ngoại tệ nhưng chi phí chủ yếu bằng nội tệ",
-      "commonMistake": "Dễ bỏ qua: forward contract giúp khóa trước tỷ giá quy đổi, đổi lại từ bỏ khả năng hưởng lợi nếu tỷ giá biến động có lợi",
-      "action": "Natural hedge (có cả dòng tiền vào và ra cùng loại ngoại tệ) giúp giảm rủi ro tỷ giá ròng mà không cần công cụ phái sinh tốn phí"
-    }
+    ]
   },
   {
     "id": 1209,
@@ -72453,149 +72473,176 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1243,
-    "slug": "thien-kien-hanh-vi-trong-tai-chinh-doanh-nghiep",
-    "title": "Thiên kiến hành vi trong Tài chính Doanh nghiệp: M&A, Capital Budgeting và CEO Overconfidence",
-    "subtitle": "Vì sao 70% thương vụ M&A không tạo ra giá trị cho cổ đông bên mua - và điều đó liên quan gì đến tâm lý học",
+    "slug": "thien-kien-trong-nghien-cuu-nguoi-dung",
+    "title": "Thiên kiến trong nghiên cứu người dùng",
+    "subtitle": "Cách bạn hỏi quyết định câu trả lời nhiều hơn là điều người dùng thật sự nghĩ.",
     "duration": "8 phút",
     "difficulty": "Khó",
-    "emoji": "🏢",
     "track": "professional",
-    "openingQuestion": "Nhiều nghiên cứu học thuật dài hạn cho thấy đa số thương vụ M&A (sáp nhập & mua lại) KHÔNG tạo ra giá trị dương cho cổ đông của công ty BÊN MUA (dù thường tạo giá trị cho cổ đông bên bán nhờ premium). 'Hubris Hypothesis' (giả thuyết tự phụ) của Richard Roll (1986) giải thích hiện tượng này như thế nào?",
+    "emoji": "🏢",
+    "interactiveType": "prospect",
+    "whyItMatters": "Một buổi phỏng vấn người dùng làm sai cách còn tệ hơn không phỏng vấn, vì nó cho bạn bằng chứng để tin vào thứ mình đã tin từ trước.",
+    "openingQuestion": "Vì sao hỏi người dùng có muốn tính năng này không lại là câu hỏi tệ?",
     "openingOptions": [
-      "M&A luôn thất bại vì lý do kỹ thuật tài chính đơn thuần, không liên quan đến tâm lý",
-      "CEO bên mua quá tự tin vào synergy nên trả giá quá cao so với giá trị thực",
-      "M&A luôn thành công về mặt tài chính, chỉ thất bại về mặt truyền thông",
-      "Giả thuyết này chỉ áp dụng cho các thương vụ M&A xuyên biên giới"
+      "Vì gần như ai cũng trả lời có, và câu trả lời đó không dự đoán được hành vi",
+      "Vì người dùng thường xuyên không hình dung được tính năng đó chắc chắn sẽ hoạt động thế nào",
+      "Vì câu hỏi đóng không thu được thông tin chi tiết về nhu cầu thật của họ",
+      "Vì mỗi người dùng có nhu cầu khác nhau nên câu trả lời không đại diện"
     ],
-    "correctOption": 1,
-    "explanation": "Hubris Hypothesis của Roll là một trong những ứng dụng sớm nhất và có ảnh hưởng nhất của behavioral finance vào corporate finance: CEO thường tin rằng đánh giá của họ về giá trị mục tiêu (target) chính xác hơn đánh giá của thị trường (giá cổ phiếu hiện tại đã phản ánh), dẫn đến sẵn sàng trả một mức premium cao hơn mức hợp lý để 'chiến thắng' thương vụ - một biểu hiện trực tiếp của overconfidence bias ở cấp độ lãnh đạo doanh nghiệp, không phải sai sót tính toán tài chính đơn thuần.",
+    "correctOption": 0,
+    "explanation": "Nói có với một thứ miễn phí trong tưởng tượng không tốn gì cả, nên câu trả lời gần như không mang thông tin. Ba lựa chọn kia đều là khuyết điểm thật và đều sửa được bằng cách hỏi kỹ hơn. Cái này thì không sửa được bằng cách hỏi - phải chuyển sang hỏi về HÀNH VI ĐÃ XẢY RA.",
+    "diagram": [
+      {
+        "label": "Hỏi về hành vi ĐÃ XẢY RA, không hỏi về ý định tương lai",
+        "arrow": true
+      },
+      {
+        "label": "Lần gần nhất bạn gặp việc này là khi nào, bạn đã làm gì",
+        "arrow": true
+      },
+      {
+        "label": "Người được hỏi muốn làm hài lòng người hỏi",
+        "arrow": true
+      },
+      {
+        "label": "Và bạn nghe rõ hơn những gì khớp với điều mình đã tin"
+      }
+    ],
     "realWorldExample": {
-      "company": "AOL-Time Warner (2000) - Thương vụ M&A thất bại kinh điển",
-      "description": "Thương vụ sáp nhập AOL-Time Warner trị giá 165 tỷ USD được xem là một trong những thất bại M&A lớn nhất lịch sử: chỉ vài năm sau, công ty phải ghi nhận khoản write-down (giảm giá trị) khổng lồ khi giá trị synergy kỳ vọng không bao giờ thành hiện thực. Nhiều phân tích sau đó chỉ ra sự tự tin thái quá của ban lãnh đạo cả hai công ty vào khả năng 'hội tụ' giữa internet và truyền thông truyền thống, đánh giá thấp nghiêm trọng độ phức tạp của việc tích hợp văn hóa doanh nghiệp và mô hình kinh doanh khác biệt."
+      "company": "Thiên kiến của chính người phỏng vấn",
+      "description": "Thiên kiến khó chữa nhất không nằm ở người được hỏi mà ở người hỏi: bạn nhớ rõ hơn những câu khớp với giả thuyết của mình, và bạn hỏi sâu hơn khi câu trả lời đi đúng hướng. Cách chữa duy nhất là ghi lại nguyên văn và để người khác đọc."
     },
     "quiz": [
       {
-        "question": "'Sunk Cost Fallacy' trong Capital Budgeting (thẩm định dự án đầu tư doanh nghiệp) biểu hiện như thế nào, và tại sao nó đặc biệt nguy hiểm ở cấp độ tổ chức lớn?",
+        "question": "Vì sao hỏi về hành vi đã xảy ra tốt hơn hỏi về ý định?",
         "options": [
-          "Sunk cost fallacy chỉ ảnh hưởng đến quyết định tài chính cá nhân, không ảnh hưởng đến quyết định doanh nghiệp",
-          "Doanh nghiệp tiếp tục đổ thêm vốn vào một dự án đang thất bại (vượt ngân sách, không đạt tiến độ) chỉ vì đã đầu tư quá nhiều vào đó ('không thể bỏ giữa chừng'), thay vì đánh giá khách quan liệu tiếp tục đầu tư có tạo ra NPV dương từ ĐIỂM HIỆN TẠI hay không - đặc biệt nguy hiểm ở tổ chức lớn vì (a) quy mô vốn đã đổ vào có thể rất lớn, và (b) người phê duyệt dự án ban đầu thường không muốn thừa nhận sai lầm trước ban lãnh đạo/cổ đông (escalation of commitment)",
-          "Sunk cost fallacy luôn giúp doanh nghiệp đưa ra quyết định đầu tư tốt hơn",
-          "Capital budgeting hoàn toàn miễn nhiễm với các thiên kiến tâm lý nhờ sử dụng công thức NPV/IRR"
+          "Vì hành vi quá khứ là dữ liệu, còn ý định tương lai là dự đoán của chính họ",
+          "Vì người dùng nhớ rõ những gì họ đã làm hơn là những gì họ định làm",
+          "Vì câu hỏi về hành vi cụ thể hơn nên dễ trả lời chính xác hơn",
+          "Vì hành vi quá khứ hoàn toàn có thể đối chiếu đã được với chính dữ liệu sử dụng của hệ thống"
         ],
-        "correct": 1,
-        "explanation": "'Escalation of commitment' (leo thang cam kết) là biến thể tổ chức của sunk cost fallacy: người phê duyệt dự án ban đầu (thường là lãnh đạo cấp cao) có động cơ tâm lý VÀ chính trị mạnh mẽ để tiếp tục bảo vệ quyết định của mình, ngay cả khi dữ liệu mới cho thấy dự án nên bị hủy bỏ. Nguyên tắc tài chính doanh nghiệp chuẩn (NPV/IRR từ điểm hiện tại, bỏ qua chi phí đã bỏ ra) thường bị ghi đè bởi động lực bảo vệ danh tiếng cá nhân của người ra quyết định ban đầu."
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là một lợi ích phụ rất hữu ích. Điểm cốt lõi là hai loại thông tin khác nhau về bản chất: người ta dự đoán hành vi tương lai của chính mình rất kém, kể cả khi hoàn toàn thành thật."
       },
       {
-        "question": "Tại sao các công ty thường thiết lập 'Investment Committee' (Ủy ban đầu tư) độc lập để phê duyệt các quyết định capital budgeting lớn, thay vì để một cá nhân (như CFO hoặc CEO) quyết định đơn phương?",
+        "question": "Vì sao người được hỏi hay trả lời theo hướng làm hài lòng?",
         "options": [
-          "Chỉ đơn thuần là yêu cầu thủ tục hành chính không có tác dụng thực chất",
-          "Cơ chế phê duyệt tập thể giúp giảm thiểu tác động của thiên kiến cá nhân (overconfidence, escalation of commitment, groupthink của riêng một người) - dù bản thân ủy ban tập thể cũng có thể mắc groupthink riêng nếu không được thiết kế đúng (cần đa dạng quan điểm, quy trình phản biện rõ ràng, người 'devil's advocate' được chỉ định)",
-          "Ủy ban đầu tư chỉ tồn tại để tuân thủ quy định pháp lý, không liên quan đến quản trị rủi ro tâm lý",
-          "Quyết định của một cá nhân luôn chính xác hơn quyết định tập thể trong mọi trường hợp"
+          "Vì họ nhận ra bạn đang mong đợi một câu trả lời nào đó và họ muốn giúp",
+          "Vì họ không muốn phê bình công sức mà đội đã bỏ ra cho sản phẩm",
+          "Vì họ được mời tham gia nên cảm thấy có nghĩa vụ nói điều tích cực",
+          "Vì họ chưa dùng đủ lâu để có ý kiến rõ ràng nên nói chung chung"
         ],
-        "correct": 1,
-        "explanation": "Investment Committee là cơ chế cấu trúc (structural safeguard) tương tự Chinese Wall, nhằm chống lại thiên kiến hành vi ở cấp độ ra quyết định lớn - nhưng cần lưu ý: bản thân nhóm/ủy ban cũng dễ mắc 'groupthink' (một dạng herding tập thể) nếu không được thiết kế cẩn thận, nên các tổ chức tốt thường có quy trình phản biện chính thức (như chỉ định người đóng vai 'devil's advocate' để chủ động tìm lỗ hổng trong đề xuất)."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều xảy ra và đều là những phiên bản hẹp hơn. Cơ chế chung là người ta đọc tín hiệu từ cách bạn hỏi - và đó là lý do câu hỏi phải được viết trước, không ứng khẩu."
       },
       {
-        "question": "'Confirmation bias' (thiên kiến xác nhận) ảnh hưởng thế nào đến việc thẩm định (due diligence) một thương vụ M&A sau khi ban lãnh đạo đã 'quyết tâm' theo đuổi thương vụ đó?",
+        "question": "Thiên kiến nào khó chữa nhất trong nghiên cứu người dùng?",
         "options": [
-          "Confirmation bias không ảnh hưởng đến quy trình due diligence chuyên nghiệp vì đây là quy trình khách quan hoàn toàn",
-          "Một khi ban lãnh đạo đã có ý định mạnh mẽ theo đuổi một thương vụ (thường công khai trước cả khi due diligence hoàn tất), đội ngũ thẩm định có xu hướng vô thức TÌM KIẾM và NHẤN MẠNH thông tin ỦNG HỘ thương vụ, trong khi giảm nhẹ hoặc bỏ qua các tín hiệu cảnh báo (red flags) - dẫn đến due diligence trở thành quy trình 'xác nhận quyết định đã có' thay vì đánh giá khách quan thực sự",
-          "Confirmation bias chỉ ảnh hưởng đến nhà đầu tư cá nhân, không ảnh hưởng đến đội ngũ chuyên nghiệp thực hiện due diligence",
-          "Due diligence luôn phát hiện được mọi rủi ro của thương vụ M&A nhờ quy trình chuẩn hóa"
+          "Thiên kiến của chính người hỏi khi nghe và ghi nhớ câu trả lời",
+          "Thiên kiến chọn mẫu khi những người đồng ý tham gia không đại diện",
+          "Thiên kiến do thứ tự các câu hỏi ảnh hưởng tới câu trả lời phía sau",
+          "Thiên kiến do bối cảnh phỏng vấn khác với bối cảnh sử dụng thật"
         ],
-        "correct": 1,
-        "explanation": "Đây là một rủi ro thực tế nghiêm trọng trong M&A: khi CEO/ban lãnh đạo đã công khai cam kết theo đuổi một thương vụ (đôi khi trước cả khi due diligence bắt đầu), toàn bộ tổ chức - bao gồm cả đội ngũ due diligence chuyên nghiệp - chịu áp lực tâm lý (và đôi khi chính trị nội bộ) để tìm ra lý do XÁC NHẬN quyết định đó là đúng, thay vì thực sự thách thức nó. Đây là lý do nhiều chuyên gia khuyến nghị giữ due diligence độc lập khỏi áp lực 'deal momentum' và tránh công bố ý định thương vụ quá sớm trước khi thẩm định hoàn tất."
+        "correct": 0,
+        "explanation": "Ba thiên kiến kia đều nhận ra được và đều có cách giảm bằng thiết kế nghiên cứu. Cái này thì người mắc phải không tự thấy - bạn nhớ rõ hơn những câu khớp với giả thuyết của mình và hỏi sâu hơn khi câu trả lời đi đúng hướng."
+      },
+      {
+        "question": "Cách chữa cho thiên kiến của người hỏi là gì?",
+        "options": [
+          "Ghi lại nguyên văn và để một người khác đọc, thay vì chỉ ghi tóm tắt",
+          "Chuẩn bị câu hỏi thật kỹ trước buổi phỏng vấn để không bị lệch hướng",
+          "Phỏng vấn đủ nhiều người để các thiên kiến cá nhân triệt tiêu lẫn nhau",
+          "Có hai người cùng tham gia mỗi buổi phỏng vấn để đối chiếu ghi nhận"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều giúp và đều không chạm tới phần cốt lõi: bản tóm tắt do chính bạn viết đã lọc qua giả thuyết của bạn rồi. Chỉ nguyên văn mới cho người khác thấy được thứ bạn đã bỏ qua."
+      },
+      {
+        "question": "Vì sao thiên kiến chọn mẫu quan trọng trong nghiên cứu người dùng?",
+        "options": [
+          "Vì người đồng ý dành một giờ nói chuyện thường là người quan tâm bất thường",
+          "Vì số lượng người tham gia thường quá ít để có thể đại diện cho toàn bộ người dùng",
+          "Vì những người được mời thường đến từ một nhóm khách hàng nhất định",
+          "Vì người dùng không hài lòng thường đã rời đi nên không còn để phỏng vấn"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn cuối cũng là một dạng của cùng vấn đề. Cái này rộng hơn và ngược đời hơn: nhóm bạn nghe được nhiều nhất là nhóm ít giống người dùng trung bình nhất, theo đúng cả hai chiều yêu và ghét."
       }
     ],
     "keyTakeaways": [
-      "Hubris Hypothesis: CEO quá tự tin vào khả năng đánh giá giá trị synergy tốt hơn thị trường, dẫn đến trả giá M&A quá cao - giải thích một phần tại sao đa số thương vụ M&A không tạo giá trị cho cổ đông bên mua",
-      "Escalation of commitment: biến thể tổ chức của sunk cost fallacy - lãnh đạo tiếp tục bảo vệ dự án thất bại vì động cơ chính trị/danh tiếng cá nhân, không chỉ vì sai sót phân tích tài chính",
-      "Investment Committee giúp giảm thiểu thiên kiến cá nhân nhưng có thể mắc groupthink nếu thiếu cơ chế phản biện chính thức (devil's advocate)",
-      "Confirmation bias trong due diligence: cam kết công khai theo đuổi thương vụ trước khi thẩm định hoàn tất tạo áp lực 'xác nhận' thay vì đánh giá khách quan"
+      "Nói có với một thứ miễn phí trong tưởng tượng không tốn gì - câu trả lời rỗng.",
+      "Hỏi về HÀNH VI ĐÃ XẢY RA: lần gần nhất bạn gặp việc này, bạn đã làm gì.",
+      "Người được hỏi đọc tín hiệu từ cách bạn hỏi - nên viết câu hỏi trước, đừng ứng khẩu.",
+      "Thiên kiến khó chữa nhất là của chính NGƯỜI HỎI, và người mắc không tự thấy.",
+      "Người đồng ý dành một giờ nói chuyện là người quan tâm bất thường."
     ],
     "practicePrompt": {
-      "question": "CEO công ty bạn vừa công khai tuyên bố với báo chí về ý định mua lại một công ty đối thủ, TRƯỚC KHI đội ngũ due diligence hoàn tất đánh giá. Là trưởng nhóm tài chính doanh nghiệp, bạn nhận thấy rủi ro gì và nên đề xuất gì?",
+      "question": "Bạn muốn biết một tính năng có đáng làm không. Câu hỏi nào tốt nhất?",
       "options": [
-        "Tuyên bố chỉ là truyền thông, không ràng buộc gì tới kết luận due diligence",
-        "Tuyên bố trước tạo confirmation bias và escalation of commitment lên due diligence",
-        "Đề nghị CEO rút lại tuyên bố ngay, đó là cách duy nhất gỡ được rủi ro này",
-        "Đẩy nhanh due diligence để hoàn tất càng sớm càng tốt, bỏ qua các bước kiểm tra chi tiết"
+        "Lần gần nhất bạn gặp vấn đề này là khi nào, và lúc đó bạn đã xoay xở thế nào",
+        "Nếu chúng tôi làm tính năng này, bạn có dùng nó thường xuyên không",
+        "Trong các tính năng sau, bạn thấy cái nào quan trọng nhất với mình",
+        "Bạn đánh giá mức độ thật sự cần thiết của chính tính năng này trên thang từ đúng một tới năm"
       ],
-      "correct": 1,
-      "explanation": "Đây là tình huống thực tế phổ biến trong M&A: nhận diện đúng rủi ro hành vi (không phải để ngăn cản thương vụ, mà để bảo vệ tính khách quan của quy trình đánh giá) là trách nhiệm quan trọng của đội ngũ tài chính doanh nghiệp. Giải pháp không phải là hủy bỏ thương vụ hay chỉ trích CEO, mà là thiết lập cơ chế cấu trúc (quyền phủ quyết độc lập, devil's advocate) để đảm bảo due diligence vẫn giữ được tính khách quan bất chấp áp lực chính trị/tâm lý từ cam kết công khai."
+      "correct": 0,
+      "explanation": "Ba câu kia đều hỏi về ý định hoặc về mức độ quan tâm trong tưởng tượng. Câu đầu hỏi về một sự kiện đã xảy ra - và nếu người đó không nhớ ra lần nào, bạn vừa có câu trả lời rõ hơn mọi thang điểm."
     },
     "summary": {
-      "keyIdea": "Thiên kiến hành vi (overconfidence, sunk cost, confirmation bias) ảnh hưởng trực tiếp đến các quyết định tài chính doanh nghiệp lớn như M&A và capital budgeting, thường ẩn dưới vỏ bọc của các quyết định 'chiến lược' được biện minh bằng lý lẽ tài chính bề mặt.",
-      "commonMistake": "Đánh giá thất bại M&A/dự án đầu tư chỉ qua lăng kính sai sót tính toán tài chính, bỏ qua vai trò của thiên kiến hành vi trong chính quá trình ra quyết định ban đầu",
-      "action": "Khi tham gia thẩm định một thương vụ/dự án lớn, chủ động tìm kiếm các dấu hiệu escalation of commitment hoặc confirmation bias, đặc biệt nếu lãnh đạo đã thể hiện cam kết mạnh mẽ trước khi phân tích hoàn tất"
+      "keyIdea": "Cách bạn hỏi quyết định câu trả lời nhiều hơn điều người dùng thật sự nghĩ.",
+      "formula": "Hỏi hành vi đã xảy ra + viết câu hỏi trước + ghi nguyên văn cho người khác đọc.",
+      "commonMistake": "Hỏi về ý định, nhận câu có, rồi coi đó là bằng chứng cho điều mình đã tin.",
+      "action": "Viết lại một câu hỏi nghiên cứu của bạn thành câu hỏi về hành vi quá khứ."
     },
     "application": {
-      "title": "Áp dụng vào công việc Corporate Finance",
-      "message": "Khi xây dựng đề xuất capital budgeting hoặc tham gia due diligence M&A, chủ động đưa ra kịch bản 'điều gì có thể khiến thương vụ/dự án này thất bại' như một bước bắt buộc, không chỉ tập trung vào kịch bản thành công.",
-      "secondary": "Bài tiếp theo sẽ mở rộng sang cách các market anomalies (bất thường thị trường) phản ánh thiên kiến hành vi ở quy mô toàn thị trường, không chỉ ở cấp độ cá nhân/tổ chức đơn lẻ."
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy một câu hỏi mà đội bạn định hỏi người dùng và viết lại nó thành câu hỏi về một sự kiện đã xảy ra.",
+      "secondary": "Rồi ở buổi phỏng vấn tới, ghi lại NGUYÊN VĂN thay vì tóm tắt, và nhờ một người không tham gia đọc lại. Bản tóm tắt do chính bạn viết đã lọc qua giả thuyết của bạn rồi."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Corporate finance thường được dạy như một môn khoa học chính xác - NPV, IRR, WACC. Nhưng đằng sau mỗi con số là một con người ra quyết định, và con người đó không miễn nhiễm với chính những thiên kiến đã học ở các bài trước."
+        "text": "Một buổi phỏng vấn người dùng làm sai cách còn tệ hơn không phỏng vấn, vì nó cho bạn bằng chứng để tin vào thứ mình đã tin từ trước."
       },
       {
         "type": "heading",
-        "text": "Hubris Hypothesis và Thất bại M&A"
+        "text": "Vì sao hỏi về ý định là hỏi rỗng"
+      },
+      {
+        "type": "callout",
+        "label": "Nói có không tốn gì cả",
+        "text": "Nói có với một thứ miễn phí trong tưởng tượng không tốn gì, nên gần như ai cũng nói có. Và người ta dự đoán hành vi tương lai của chính mình rất kém, kể cả khi hoàn toàn thành thật."
       },
       {
         "type": "paragraph",
-        "text": "Richard Roll's Hubris Hypothesis (1986) là một trong những đóng góp sớm nhất của behavioral finance vào lý thuyết M&A: thay vì giả định thị trường M&A hoàn toàn hiệu quả, Roll đề xuất rằng CEO thường mắc lỗi 'tự phụ' - tin rằng đánh giá cá nhân của họ về giá trị synergy chính xác hơn đánh giá tập thể của thị trường, dẫn đến sẵn sàng trả premium quá cao để 'chiến thắng' quá trình đấu giá (nếu có nhiều bên mua cạnh tranh) hoặc đơn giản là đánh giá quá lạc quan tiềm năng cộng hưởng."
+        "text": "Cách chữa không phải hỏi kỹ hơn mà là ĐỔI LOẠI CÂU HỎI: lần gần nhất bạn gặp việc này là khi nào, và lúc đó bạn đã xoay xở thế nào? Nếu họ không nhớ ra lần nào, bạn vừa có câu trả lời rõ hơn mọi thang điểm."
       },
       {
         "type": "heading",
-        "text": "Escalation of Commitment trong Capital Budgeting"
+        "text": "Hai thiên kiến, và cái khó chữa hơn"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Người được hỏi",
+          "text": "Họ đọc tín hiệu từ cách bạn hỏi và muốn giúp. Giảm được bằng cách viết câu hỏi trước, không ứng khẩu."
+        },
+        "right": {
+          "label": "Người hỏi",
+          "text": "Bạn nhớ rõ hơn những câu khớp với giả thuyết của mình, và hỏi sâu hơn khi câu trả lời đi đúng hướng. Người mắc không tự thấy."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Nguyên tắc tài chính chuẩn dạy rằng quyết định tiếp tục/hủy bỏ một dự án đầu tư nên dựa HOÀN TOÀN vào NPV kỳ vọng TỪ THỜI ĐIỂM HIỆN TẠI trở đi, bỏ qua hoàn toàn chi phí đã bỏ ra (sunk cost). Nhưng thực tế tổ chức cho thấy 'escalation of commitment' - lãnh đạo tiếp tục đổ thêm vốn vào dự án thất bại vì lý do TÂM LÝ VÀ CHÍNH TRỊ (bảo vệ danh tiếng, không muốn thừa nhận sai lầm trước cổ đông/hội đồng quản trị) chứ không phải vì phân tích NPV thực sự ủng hộ việc tiếp tục."
-      },
-      {
-        "type": "heading",
-        "text": "Cơ chế Cấu trúc Chống Thiên kiến ở Cấp độ Tổ chức"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Investment Committee độc lập: phê duyệt tập thể thay vì quyết định đơn phương của một cá nhân",
-          "Devil's Advocate chính thức: chỉ định người có trách nhiệm chủ động tìm lỗ hổng/rủi ro trong mọi đề xuất lớn",
-          "Post-mortem review bắt buộc: đánh giá lại các dự án/thương vụ đã hoàn thành so với dự báo ban đầu, tạo phản hồi (feedback loop) để cải thiện quy trình dự báo trong tương lai",
-          "Tránh công bố cam kết công khai trước khi due diligence/thẩm định hoàn tất, để giảm áp lực confirmation bias"
-        ]
+        "text": "Cách chữa duy nhất cho vế phải: ghi lại NGUYÊN VĂN và để một người khác đọc. Bản tóm tắt do chính bạn viết đã lọc qua giả thuyết của bạn rồi, nên đọc lại nó không phát hiện được gì."
       },
       {
         "type": "closing",
         "lines": [
-          "Hiểu behavioral finance trong corporate finance không phải để nghi ngờ mọi quyết định của ban lãnh đạo, mà để xây dựng quy trình quản trị tốt hơn - nơi những thiên kiến tự nhiên của con người được cân bằng bởi cơ chế cấu trúc phù hợp.",
-          "Đây là lý do các công ty quản trị tốt nhất không chỉ dựa vào 'con người giỏi' mà còn đầu tư nghiêm túc vào 'quy trình tốt' để bảo vệ chất lượng quyết định."
+          "Và nhớ chọn mẫu: người đồng ý dành một giờ nói chuyện với đội sản phẩm là người quan tâm bất thường.",
+          "Nhóm bạn nghe được nhiều nhất là nhóm ít giống người dùng trung bình nhất - theo đúng cả hai chiều, yêu và ghét."
         ]
       }
-    ],
-    "diagram": [
-      {
-        "label": "CEO quá tự tin ước tính cộng hưởng quá cao",
-        "arrow": true
-      },
-      {
-        "label": "Trả giá vượt giá trị thật của mục tiêu M&A",
-        "arrow": true
-      },
-      {
-        "label": "Dự án lỗ vẫn được rót vốn tiếp (leo thang cam kết)",
-        "arrow": true
-      },
-      {
-        "label": "Cơ chế chống: hội đồng độc lập, mốc dừng dự án định trước",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
+    ]
   },
   {
     "id": 1244,
@@ -73585,161 +73632,184 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1250,
-    "slug": "market-anomalies-va-behavioral-finance",
-    "title": "Market Anomalies: Những bất thường thị trường mà Efficient Market Hypothesis không giải thích được",
-    "subtitle": "Momentum, Value Premium, Size Effect - các anomaly được ghi nhận rộng rãi và cách behavioral finance giải thích chúng",
+    "slug": "bat-thuong-trong-du-lieu-hanh-vi",
+    "title": "Những bất thường trong dữ liệu hành vi mà mô hình chuẩn không giải thích",
+    "subtitle": "Khi số liệu đi ngược với mọi thứ bạn biết về người dùng, thường có ba lời giải và chỉ một đúng.",
     "duration": "8 phút",
     "difficulty": "Khó",
-    "emoji": "🔍",
     "track": "professional",
-    "openingQuestion": "'Value Premium' - hiện tượng cổ phiếu giá trị (value stocks, P/E hoặc P/B thấp) có xu hướng outperform cổ phiếu tăng trưởng (growth stocks) trong dài hạn - là một market anomaly nổi tiếng. Cách giải thích nào phù hợp với khung Behavioral Finance hơn là Efficient Market Hypothesis thuần túy?",
+    "emoji": "🔍",
+    "interactiveType": "prospect",
+    "whyItMatters": "Một bất thường được giải thích sai sẽ thành cơ sở cho một loạt quyết định sản phẩm, và không ai quay lại kiểm giả định gốc.",
+    "openingQuestion": "Tỷ lệ hoàn tất đăng ký tăng vọt vào tuần trước mà không ai làm gì. Kiểm gì trước?",
     "openingOptions": [
-      "Value Premium hoàn toàn không tồn tại, đây chỉ là ảo giác thống kê",
-      "Cổ phiếu giá trị bị định giá thấp quá mức do nhà đầu tư đã phản ứng thái quá với tin xấu gần đây",
-      "Value Premium chỉ là kết quả của rủi ro cao hơn thuần túy, không có bất kỳ yếu tố hành vi nào",
-      "Cổ phiếu tăng trưởng luôn tốt hơn cổ phiếu giá trị trong mọi giai đoạn thị trường"
+      "Cách đo có đổi không, và thành phần người dùng có đổi không",
+      "Có thay đổi nào trong sản phẩm được triển khai mà đội chưa biết không",
+      "Có chiến dịch quảng bá nào đang chạy làm tăng lượng người truy cập không",
+      "Con số đó có vượt quá mức dao động thông thường của chỉ số này không"
     ],
-    "correctOption": 1,
-    "explanation": "Trường phái Behavioral Finance (đặc biệt qua công trình của Lakonishok, Shleifer, và Vishny) giải thích Value Premium không chỉ qua rủi ro (risk-based explanation của Fama-French) mà còn qua thiên kiến phản ứng thái quá (overreaction bias): nhà đầu tư có xu hướng ngoại suy quá mức (extrapolate) hiệu suất kém gần đây của một công ty vào tương lai xa, định giá cổ phiếu đó thấp hơn giá trị nội tại thực sự - tạo ra cơ hội cho nhà đầu tư giá trị kiên nhẫn khi kỳ vọng bi quan thái quá không thành hiện thực.",
+    "correctOption": 0,
+    "explanation": "Hai lời giải này chiếm phần lớn các bất thường và cả hai đều không phải thay đổi hành vi thật. Một sự kiện đo lường được sửa lại, hay một nguồn lưu lượng mới đưa vào nhóm người dùng có đặc điểm khác - cả hai làm con số đổi mà không ai trong sản phẩm chạm vào gì.",
+    "diagram": [
+      {
+        "label": "Ba lời giải: cách đo đổi, thành phần đổi, hành vi thật đổi",
+        "arrow": true
+      },
+      {
+        "label": "Hai cái đầu chiếm phần lớn - kiểm chúng trước",
+        "arrow": true
+      },
+      {
+        "label": "Thành phần đổi: nghịch lý gộp nhóm, tổng ngược chiều mọi nhóm",
+        "arrow": true
+      },
+      {
+        "label": "Chỉ khi loại được cả hai mới nói tới hành vi"
+      }
+    ],
     "realWorldExample": {
-      "company": "Fama-French Three-Factor Model và cuộc tranh luận Risk vs Behavioral",
-      "description": "Eugene Fama (người đề xuất Efficient Market Hypothesis, giải Nobel 2013) và Kenneth French phát triển mô hình 3 nhân tố giải thích Value Premium chủ yếu qua RỦI RO (cổ phiếu giá trị rủi ro hơn nên đòi hỏi lợi nhuận cao hơn), trong khi các nhà tài chính hành vi như Richard Thaler (cũng giải Nobel Kinh tế) và Robert Shiller lập luận đây phần lớn là kết quả của THIÊN KIẾN NHẬN THỨC. Cuộc tranh luận học thuật này chưa có hồi kết hoàn toàn - thực tế có thể là cả hai yếu tố (risk-based và behavioral) đều đóng góp vào hiện tượng này ở các mức độ khác nhau."
+      "company": "Nghịch lý gộp nhóm",
+      "description": "Tỷ lệ hoàn tất có thể giảm ở mọi nhóm người dùng mà tổng vẫn tăng, chỉ vì tỷ trọng giữa các nhóm đã đổi. Đây là lý do phép kiểm đầu tiên với mọi bất thường là chia nhỏ theo nhóm - và nó thường kết thúc cuộc điều tra ngay tại đó."
     },
     "quiz": [
       {
-        "question": "'Small-Cap Effect' (hiệu ứng vốn hóa nhỏ) - cổ phiếu vốn hóa nhỏ có xu hướng outperform cổ phiếu vốn hóa lớn trong dài hạn - có thể được giải thích một phần bởi thiên kiến hành vi nào của nhà đầu tư tổ chức lớn?",
+        "question": "Vì sao phải kiểm cách đo trước khi tin vào một bất thường?",
         "options": [
-          "Không có yếu tố hành vi nào liên quan đến hiệu ứng này",
-          "Nhà đầu tư tổ chức lớn (quỹ hưu trí, quỹ tương hỗ lớn) thường tránh cổ phiếu vốn hóa nhỏ do giới hạn thanh khoản và quy mô vốn quản lý (không thể xây dựng vị thế đủ lớn mà không ảnh hưởng giá), dẫn đến các cổ phiếu này bị 'bỏ quên tương đối' (relative neglect) và ít được phân tích kỹ lưỡng bởi giới chuyên gia - tạo ra khả năng định giá sai lệch (mispricing) nhiều hơn so với cổ phiếu vốn hóa lớn được theo dõi sát sao bởi hàng trăm nhà phân tích",
-          "Cổ phiếu vốn hóa nhỏ luôn được định giá chính xác hơn cổ phiếu vốn hóa lớn",
-          "Small-Cap Effect chỉ là kết quả của thanh khoản cao hơn ở cổ phiếu vốn hóa nhỏ"
+          "Vì một thay đổi trong cách ghi nhận sự kiện làm con số đổi mà hành vi không đổi",
+          "Vì các công cụ đo lường có thể gặp lỗi kỹ thuật làm dữ liệu bị sai",
+          "Vì độ trễ của đường dữ liệu có thể làm con số của ngày gần nhất chưa đủ",
+          "Vì cần xác nhận rằng chỉ số đang được tính theo đúng định nghĩa đã thống nhất"
         ],
-        "correct": 1,
-        "explanation": "'Neglect effect' (hiệu ứng bị bỏ quên) là một giải thích hành vi quan trọng cho Small-Cap Effect: khi một cổ phiếu ít được các nhà phân tích chuyên nghiệp theo dõi và ít nhà đầu tư tổ chức lớn tham gia, khả năng thị trường 'định giá sai' (do thiếu thông tin/phân tích kỹ lưỡng) tăng lên - tạo ra cơ hội tiềm năng cho nhà đầu tư sẵn sàng nghiên cứu sâu các cổ phiếu ít được chú ý này, dù đi kèm rủi ro thanh khoản và biến động cao hơn."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là dạng lỗi và chúng ít phổ biến hơn. Một sự kiện được sửa lại - thêm điều kiện, đổi vị trí ghi nhận - là việc diễn ra thường xuyên và gần như không bao giờ được thông báo cho người đọc chỉ số."
       },
       {
-        "question": "'January Effect' (hiệu ứng tháng Giêng - cổ phiếu, đặc biệt vốn hóa nhỏ, có xu hướng outperform trong tháng 1) từng được ghi nhận rộng rãi nhưng đã YẾU ĐI ĐÁNG KỂ theo thời gian. Điều này minh họa nguyên lý quan trọng nào về market anomalies nói chung?",
+        "question": "Nghịch lý gộp nhóm là gì?",
         "options": [
-          "January Effect chưa bao giờ tồn tại thực sự, chỉ là sai số dữ liệu",
-          "Nhiều anomaly có xu hướng SUY YẾU hoặc BIẾN MẤT sau khi được công bố rộng rãi trong nghiên cứu học thuật - một khi đủ nhiều nhà đầu tư/quỹ biết đến và cố gắng khai thác một pattern cụ thể, hành động giao dịch tập thể của họ có xu hướng 'arbitrage away' (giao dịch hết) lợi thế đó, khiến anomaly yếu đi theo thời gian - đây là hiện tượng 'anomaly decay' được ghi nhận rộng rãi trong tài chính định lượng hiện đại",
-          "January Effect vẫn mạnh như trước đây và không có bất kỳ thay đổi nào",
-          "Các anomaly một khi đã hình thành sẽ luôn tồn tại vĩnh viễn không đổi"
+          "Chỉ số giảm ở mọi nhóm mà tổng vẫn tăng, do tỷ trọng giữa các nhóm đã đổi",
+          "Chỉ số của tổng thể không phản ánh được sự khác biệt giữa các nhóm nhỏ",
+          "Chỉ số tính trên nhóm lớn che mất biến động ở những nhóm có ít người dùng",
+          "Chỉ số bị ảnh hưởng nhiều nhất bởi nhóm người dùng đông nhất trong tổng thể"
         ],
-        "correct": 1,
-        "explanation": "'Anomaly decay' là một phát hiện quan trọng và có phần tự tham chiếu (self-referential) thú vị trong tài chính hành vi/định lượng: chính việc công bố nghiên cứu về một anomaly có thể góp phần làm nó yếu đi, vì các quỹ đầu tư (đặc biệt quant funds) nhanh chóng xây dựng chiến lược khai thác nó, dần đẩy giá về mức 'hiệu quả' hơn. Đây là lý do một số nhà nghiên cứu coi đây như bằng chứng cho thấy thị trường có xu hướng TIẾN DẦN VỀ hiệu quả theo thời gian, dù không bao giờ hoàn toàn hiệu quả tuyệt đối."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia mô tả những vấn đề thật của việc gộp và đều nhẹ hơn. Cái này là trường hợp cực đoan: tổng đi NGƯỢC CHIỀU với mọi nhóm thành phần, nên đọc tổng cho kết luận trái ngược hoàn toàn."
       },
       {
-        "question": "Tại sao 'limits to arbitrage' (giới hạn của kinh doanh chênh lệch giá) là khái niệm quan trọng giải thích tại sao các market anomaly có thể TỒN TẠI DAI DẲNG dù về lý thuyết, nhà đầu tư thông minh nên khai thác và loại bỏ chúng ngay lập tức?",
+        "question": "Phép kiểm đầu tiên với một bất thường nên là gì?",
         "options": [
-          "Không có giới hạn nào đối với arbitrage trong thực tế, mọi anomaly đều bị loại bỏ ngay lập tức",
-          "Trong thực tế, kinh doanh chênh lệch giá (arbitrage) không hoàn toàn 'phi rủi ro' như lý thuyết giả định - nhà đầu tư khai thác một anomaly vẫn chịu rủi ro (như 'noise trader risk' - giá có thể tiếp tục lệch xa hơn trong ngắn hạn trước khi hội tụ, gây thiệt hại nếu phải đóng vị thế sớm do margin call hoặc redemption pressure), chi phí giao dịch, và giới hạn về vốn/khả năng vay mượn để xây dựng vị thế đủ lớn - những rào cản thực tế này giải thích tại sao một số anomaly có thể tồn tại dai dẳng thay vì bị loại bỏ ngay",
-          "Limits to arbitrage chỉ áp dụng cho thị trường trái phiếu, không áp dụng cho cổ phiếu",
-          "Arbitrage luôn hoàn toàn an toàn và không có bất kỳ rủi ro nào trong thực tế"
+          "Chia nhỏ theo nhóm và xem chỉ số của từng nhóm có đổi cùng chiều không",
+          "So sánh với cùng kỳ năm trước để loại trừ yếu tố mùa vụ",
+          "Kiểm tra xem bất thường có vượt quá mức dao động nền hay không",
+          "Xem có thay đổi nào được triển khai trùng thời điểm bất thường xuất hiện"
         ],
-        "correct": 1,
-        "explanation": "Khái niệm 'Limits to Arbitrage' (Shleifer và Vishny, 1997) là cầu nối quan trọng giữa lý thuyết thị trường hiệu quả và thực tế quan sát được của market anomalies: ngay cả khi một nhà đầu tư nhận diện đúng một tài sản bị định giá sai, việc khai thác nó đòi hỏi vốn, chấp nhận rủi ro ngắn hạn (giá có thể lệch xa hơn trước khi đúng), và đối mặt với áp lực từ nhà đầu tư/người cho vay nếu vị thế tạm thời lỗ - những rào cản này giải thích tại sao thị trường không thể tự động và ngay lập tức loại bỏ mọi bất thường định giá."
+        "correct": 0,
+        "explanation": "Ba phép kiểm kia đều cần làm và đều đến sau. Chia nhỏ theo nhóm thường kết thúc cuộc điều tra ngay tại đó, vì nó phân biệt được hai lời giải phổ biến nhất khỏi lời giải về hành vi."
+      },
+      {
+        "question": "Vì sao một bất thường được giải thích sai lại nguy hiểm?",
+        "options": [
+          "Vì nó thành cơ sở cho một loạt quyết định và không ai quay lại kiểm giả định gốc",
+          "Vì đội chắc chắn sẽ mất khoảng thời gian điều tra theo đúng hướng sai ở ngay trong rất nhiều tuần",
+          "Vì các chỉ số liên quan cũng bị đọc sai theo cách giải thích đó",
+          "Vì niềm tin vào hệ thống đo lường bị giảm khi phát hiện sai sót"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là chi phí một lần. Cái này thì tích tụ: một giả định sai được đưa vào từ tháng ba vẫn đang chống đỡ cho những quyết định của tháng chín, và không có cơ chế nào tự động kiểm lại nó."
+      },
+      {
+        "question": "Khi nào mới nên kết luận rằng hành vi người dùng thật sự đã đổi?",
+        "options": [
+          "Khi đã loại được cả hai lời giải về cách đo và về thành phần người dùng",
+          "Khi bất thường kéo dài đủ lâu để không thể là biến động ngẫu nhiên",
+          "Khi có nhiều chỉ số khác nhau cùng cho thấy một xu hướng tương tự",
+          "Khi tìm đã được đúng một sự kiện bên ngoài hoàn toàn có thể giải thích sự thay đổi đó"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều làm kết luận đáng tin hơn và đều không loại được hai lời giải kia. Một thay đổi cách đo cũng kéo dài, cũng ảnh hưởng nhiều chỉ số, và cũng có thể trùng thời điểm với một sự kiện bên ngoài."
       }
     ],
     "keyTakeaways": [
-      "Value Premium có thể giải thích qua cả rủi ro (Fama-French) lẫn hành vi (overreaction bias) - cuộc tranh luận học thuật vẫn tiếp diễn, có thể cả hai yếu tố đều đóng góp",
-      "Small-Cap Effect một phần liên quan đến 'neglect effect' - cổ phiếu ít được phân tích có khả năng định giá sai cao hơn",
-      "Anomaly Decay: nhiều bất thường thị trường yếu đi sau khi được công bố rộng rãi, vì các quỹ đầu tư nhanh chóng khai thác và arbitrage away lợi thế đó",
-      "Limits to Arbitrage giải thích tại sao anomaly có thể tồn tại dai dẳng dù lý thuyết cho rằng chúng nên bị loại bỏ ngay - rủi ro, chi phí giao dịch, và giới hạn vốn tạo ra rào cản thực tế"
+      "Ba lời giải: cách đo đổi, thành phần người dùng đổi, hành vi thật đổi.",
+      "Hai cái đầu chiếm phần lớn các bất thường - kiểm chúng TRƯỚC.",
+      "Nghịch lý gộp nhóm: tổng đi ngược chiều với mọi nhóm thành phần.",
+      "Phép kiểm đầu tiên là CHIA NHỎ THEO NHÓM, và nó thường kết thúc điều tra ngay.",
+      "Giải thích sai không phải chi phí một lần - nó chống đỡ cho quyết định nhiều tháng sau."
     ],
     "practicePrompt": {
-      "question": "Một nhà phân tích phát hiện một chiến lược quant dựa trên một anomaly được công bố trong một bài báo học thuật nổi tiếng cách đây 15 năm vẫn cho kết quả backtest ấn tượng trên dữ liệu lịch sử ĐẦY ĐỦ 20 năm. Dựa trên hiểu biết về anomaly decay, điều gì cần được xem xét cẩn thận trước khi triển khai chiến lược này với vốn thực?",
+      "question": "Chia nhỏ theo nhóm cho thấy mọi nhóm đều giảm mà tổng tăng. Kết luận?",
       "options": [
-        "Kết quả backtest ấn tượng trên 20 năm dữ liệu là đủ bằng chứng để triển khai ngay với vốn lớn",
-        "So sánh hiệu suất trước và sau khi bài báo công bố để thấy anomaly decay",
-        "Anomaly đã tồn tại 15 năm sau khi công bố nên đã chứng minh là bền vững",
-        "Chỉ cần backtest càng nhiều năm dữ liệu càng tốt, không cần phân tích theo giai đoạn"
+        "Thành phần người dùng đã đổi - phải tìm nhóm nào tăng tỷ trọng và vì sao",
+        "Có lỗi trong cách tính chỉ số vì tổng không thể ngược chiều với các thành phần",
+        "Cần chia nhỏ theo một tiêu chí khác vì cách chia hiện tại chưa phù hợp",
+        "Hành vi người dùng đã đổi theo hướng tích cực ở mức tổng thể"
       ],
-      "correct": 1,
-      "explanation": "Đây là bài học thực hành quan trọng cho quant/portfolio analyst: một trong những sai lầm phổ biến khi đánh giá chiến lược dựa trên published anomaly là không tách biệt hiệu suất TRƯỚC và SAU khi anomaly được công bố công khai - nếu chiến lược chỉ hiệu quả trong giai đoạn trước công bố (khi ít người biết và khai thác), con số backtest tổng thể có thể phóng đại hiệu suất kỳ vọng thực tế khi triển khai với vốn mới ngày hôm nay, sau khi hàng loạt quỹ khác đã 'ăn' phần lớn lợi thế đó."
+      "correct": 0,
+      "explanation": "Lựa chọn thứ hai là phản xạ tự nhiên và nó sai: tổng ngược chiều với mọi nhóm là hoàn toàn có thể khi tỷ trọng đổi. Câu hỏi tiếp theo không phải chỉ số có đúng không mà là vì sao thành phần người dùng đổi."
     },
     "summary": {
-      "keyIdea": "Market anomalies (Value Premium, Small-Cap Effect, và nhiều pattern khác) thách thức Efficient Market Hypothesis thuần túy, với behavioral finance cung cấp giải thích bổ sung qua các thiên kiến nhận thức - nhưng cần hiểu về anomaly decay và limits to arbitrage để đánh giá đúng tính bền vững của một chiến lược dựa trên anomaly.",
-      "commonMistake": "Tin rằng một anomaly đã được chứng minh trong quá khứ sẽ luôn hiệu quả trong tương lai, bỏ qua khả năng nó đã bị arbitrage away sau khi được công bố rộng rãi",
-      "action": "Khi đánh giá bất kỳ chiến lược dựa trên anomaly nào, luôn kiểm tra hiệu suất theo từng giai đoạn thời gian, đặc biệt so sánh trước/sau thời điểm anomaly được công bố công khai trong nghiên cứu học thuật"
+      "keyIdea": "Khi số liệu đi ngược trực giác, thường có ba lời giải và chỉ một là về hành vi.",
+      "formula": "Kiểm cách đo → chia nhỏ theo nhóm → chỉ khi loại được cả hai mới nói tới hành vi.",
+      "commonMistake": "Nhảy thẳng tới lời giải về hành vi, thứ thú vị nhất và ít khả năng nhất.",
+      "action": "Với bất thường gần nhất bạn thấy, chia nhỏ nó theo nhóm người dùng."
     },
     "application": {
-      "title": "Áp dụng vào công việc Equity Research/Quant Analysis",
-      "message": "Khi nghiên cứu một factor/anomaly để xây dựng chiến lược đầu tư, luôn tìm hiểu: anomaly này được phát hiện/công bố khi nào, và có bằng chứng về việc hiệu suất suy giảm sau đó không (out-of-sample performance).",
-      "secondary": "Bài tiếp theo sẽ đi vào cách các Portfolio Manager chuyên nghiệp xây dựng hệ thống chống lại chính thiên kiến hành vi của bản thân họ khi quản lý danh mục thực tế."
+      "title": "Làm ngay hôm nay",
+      "message": "Với một bất thường gần đây trong số liệu, chia nhỏ nó theo nhóm người dùng và xem các nhóm có đổi cùng chiều không.",
+      "secondary": "Nếu chúng đổi cùng chiều thì bạn đã loại được một lời giải. Nếu không, bạn vừa tìm ra nguyên nhân mà không cần điều tra gì thêm."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Nếu thị trường thực sự hoàn toàn hiệu quả như Efficient Market Hypothesis giả định, không nên có bất kỳ pattern định giá sai nào tồn tại lâu dài. Nhưng thực tế quan sát cho thấy nhiều 'anomaly' vẫn tồn tại - và behavioral finance cung cấp lời giải thích quan trọng."
+        "text": "Một bất thường được giải thích sai sẽ thành cơ sở cho một loạt quyết định sản phẩm, và không ai quay lại kiểm giả định gốc."
       },
       {
         "type": "heading",
-        "text": "Ba Anomaly Kinh điển"
+        "text": "Ba lời giải, theo thứ tự khả năng"
       },
       {
-        "type": "conceptTable",
-        "title": "Market Anomalies phổ biến nhất",
-        "concepts": [
-          {
-            "vi": "Value Premium",
-            "en": "Value Effect",
-            "def": "Cổ phiếu giá trị (P/E, P/B thấp) outperform cổ phiếu tăng trưởng trong dài hạn - giải thích qua cả rủi ro và overreaction bias"
-          },
-          {
-            "vi": "Hiệu ứng vốn hóa nhỏ",
-            "en": "Small-Cap Effect",
-            "def": "Cổ phiếu vốn hóa nhỏ outperform vốn hóa lớn - một phần do neglect effect (ít được phân tích, dễ định giá sai)"
-          },
-          {
-            "vi": "Momentum",
-            "en": "Momentum Effect",
-            "def": "Cổ phiếu tăng giá gần đây tiếp tục tăng trong trung hạn - do underreaction ban đầu với thông tin mới"
-          }
+        "type": "list",
+        "items": [
+          "CÁCH ĐO ĐỔI: một sự kiện được sửa lại, thêm điều kiện, đổi vị trí ghi nhận. Việc này diễn ra thường xuyên và gần như không bao giờ được thông báo cho người đọc chỉ số.",
+          "THÀNH PHẦN NGƯỜI DÙNG ĐỔI: một nguồn lưu lượng mới đưa vào nhóm có đặc điểm khác.",
+          "HÀNH VI THẬT ĐỔI: thú vị nhất, và ít khả năng nhất."
         ]
       },
       {
         "type": "heading",
-        "text": "Anomaly Decay - Khi Kiến thức Tự Phá Hủy Lợi thế"
+        "text": "Phép kiểm rẻ nhất"
+      },
+      {
+        "type": "callout",
+        "label": "Chia nhỏ theo nhóm",
+        "text": "Nếu mọi nhóm đổi cùng chiều với tổng thì bạn loại được lời giải thứ hai. Nếu chúng đổi ngược chiều - hoặc không đổi - thì bạn vừa tìm ra nguyên nhân mà không cần điều tra gì thêm."
       },
       {
         "type": "paragraph",
-        "text": "Một trong những phát hiện thú vị nhất trong nghiên cứu anomaly: hiệu suất của nhiều chiến lược factor có xu hướng SUY YẾU sau khi được công bố rộng rãi trong nghiên cứu học thuật - hiện tượng này được gọi là 'anomaly decay' hoặc 'post-publication effect'. Khi ngày càng nhiều quỹ đầu tư đọc và áp dụng cùng một chiến lược, hành động giao dịch tập thể của họ có xu hướng loại bỏ dần lợi thế định giá sai ban đầu."
+        "text": "Trường hợp cực đoan có tên riêng: chỉ số GIẢM ở mọi nhóm mà tổng vẫn TĂNG, chỉ vì tỷ trọng giữa các nhóm đã đổi. Phản xạ tự nhiên là nghĩ chỉ số tính sai, nhưng nó hoàn toàn có thể xảy ra và không có lỗi nào."
       },
       {
         "type": "heading",
-        "text": "Limits to Arbitrage - Tại sao Anomaly Không Biến Mất Ngay Lập Tức"
+        "text": "Vì sao thứ tự quan trọng"
       },
       {
-        "type": "paragraph",
-        "text": "Nếu một tài sản bị định giá sai rõ ràng, tại sao 'smart money' không ngay lập tức khai thác và loại bỏ sự sai lệch đó? Shleifer và Vishny (1997) chỉ ra rằng arbitrage trong thực tế không hoàn toàn phi rủi ro: giá có thể tiếp tục lệch xa hơn trong ngắn hạn (noise trader risk), chi phí giao dịch và vay mượn tồn tại, và các quỹ đầu tư thường phải đóng vị thế sớm do áp lực từ nhà đầu tư hoặc margin call, ngay cả khi họ đúng về hướng dài hạn."
+        "type": "comparison",
+        "left": {
+          "label": "Chi phí giải thích sai",
+          "text": "Không phải một lần. Một giả định sai đưa vào từ tháng ba vẫn đang chống đỡ cho những quyết định của tháng chín."
+        },
+        "right": {
+          "label": "Chi phí kiểm đúng thứ tự",
+          "text": "Hai phép kiểm, mỗi cái mất chưa tới một giờ, và chúng loại được phần lớn khả năng."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Hiểu về market anomalies không chỉ là kiến thức học thuật - nó là công cụ thực tế giúp phân biệt giữa một cơ hội đầu tư thực sự bền vững và một pattern đã bị 'arbitrage away' từ lâu.",
-          "Câu hỏi quan trọng nhất khi đánh giá bất kỳ chiến lược nào dựa trên anomaly: liệu lợi thế này có còn tồn tại trong thị trường ngày nay, hay chỉ là dấu tích lịch sử đã bị khai thác hết?"
+          "Ba dấu hiệu hay được dùng để khẳng định hành vi đã đổi - kéo dài, ảnh hưởng nhiều chỉ số, trùng một sự kiện bên ngoài - đều không loại được hai lời giải kia.",
+          "Một thay đổi cách đo cũng có đủ ba dấu hiệu đó, và đó là lý do phải loại chúng trước chứ không phải tìm thêm bằng chứng ủng hộ."
         ]
       }
-    ],
-    "diagram": [
-      {
-        "label": "Ghi nhận anomaly: momentum, value, size",
-        "arrow": true
-      },
-      {
-        "label": "Behavioral finance giải thích nguồn gốc tâm lý",
-        "arrow": true
-      },
-      {
-        "label": "Giới hạn của kinh doanh chênh lệch giá giữ anomaly tồn tại",
-        "arrow": true
-      },
-      {
-        "label": "Nhưng khi nhiều người khai thác, lợi thế suy giảm dần",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
+    ]
   },
   {
     "id": 1251,
@@ -74226,152 +74296,182 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1254,
-    "track": "professional",
-    "slug": "khung-coso-va-danh-gia-rui-ro-gian-lan",
-    "title": "Khung Kiểm soát Nội bộ COSO & Đánh giá Rủi ro Gian lận",
-    "subtitle": "5 thành phần của COSO Framework - công cụ nền tảng mọi kiểm toán viên nội bộ phải thành thạo",
+    "slug": "kiem-soat-noi-bo-va-danh-gia-rui-ro-lam-dung",
+    "title": "Kiểm soát nội bộ cho hệ thống và đánh giá rủi ro lạm dụng",
+    "subtitle": "Kiểm soát không phải để ngăn người xấu mà để một sai sót của người tốt không thành thảm hoạ.",
     "duration": "8 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🔎",
-    "openingQuestion": "Khung Kiểm soát Nội bộ COSO (Committee of Sponsoring Organizations) gồm 5 thành phần chính. Thành phần nào được coi là NỀN TẢNG, ảnh hưởng đến hiệu quả của toàn bộ 4 thành phần còn lại?",
+    "interactiveType": "sampling",
+    "whyItMatters": "Phần lớn thiệt hại nội bộ không đến từ ý đồ xấu mà từ một người có quá nhiều quyền làm một thao tác sai trong lúc vội.",
+    "openingQuestion": "Mục đích chính của kiểm soát nội bộ trong một hệ thống là gì?",
     "openingOptions": [
-      "Hoạt động kiểm soát (Control Activities) - các quy trình phê duyệt, đối chiếu cụ thể",
-      "Môi trường kiểm soát - văn hóa, giá trị đạo đức và tấm gương từ chính cấp lãnh đạo tổ chức đó",
-      "Giám sát (Monitoring Activities) - hoạt động theo dõi, đánh giá định kỳ hiệu quả kiểm soát",
-      "Tất cả 5 thành phần có tầm quan trọng ngang nhau, không có thành phần nào là nền tảng"
+      "Làm cho một sai sót của người có thiện chí không thành thiệt hại lớn",
+      "Ngăn chặn những người có ý đồ xấu thực hiện hành vi gây hại",
+      "Đảm bảo hệ thống tuân thủ tất cả các quy định và đồng thời tiêu chuẩn được áp dụng",
+      "Tạo ra bằng chứng để xác định trách nhiệm khi có sự cố xảy ra"
     ],
-    "correctOption": 1,
-    "explanation": "Control Environment (Môi trường Kiểm soát) được COSO Framework coi là nền tảng của toàn bộ hệ thống kiểm soát nội bộ - nó bao gồm tính chính trực và giá trị đạo đức của tổ chức, triết lý quản lý, cơ cấu tổ chức, và đặc biệt là 'tone at the top' (tấm gương từ lãnh đạo cấp cao). Nếu môi trường này yếu (lãnh đạo không coi trọng tuân thủ, văn hóa dung túng vi phạm nhỏ), ngay cả các quy trình kiểm soát chi tiết và tinh vi nhất cũng dễ bị vô hiệu hóa hoặc lách qua trong thực tế.",
-    interactiveType: "sampling",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều là mục đích thật và đều là mục đích phụ. Đặt mục đích chính ở đâu quyết định thiết kế: nếu bạn thiết kế để chống người xấu thì kiểm soát trở nên nặng nề và mọi người tìm cách đi vòng; nếu bạn thiết kế để giới hạn hậu quả của sai sót thì nó nhẹ hơn và vẫn chặn được phần lớn cả hai.",
+    "diagram": [
+      {
+        "label": "Thiết kế để giới hạn HẬU QUẢ của sai sót, không để chống người xấu",
+        "arrow": true
+      },
+      {
+        "label": "Ba loại: ngăn trước, phát hiện sau, và khắc phục",
+        "arrow": true
+      },
+      {
+        "label": "Ngăn trước tốn nhất và làm chậm nhất - dùng ít và đúng chỗ",
+        "arrow": true
+      },
+      {
+        "label": "Kiểm soát mà mọi người đi vòng thì là kiểm soát không tồn tại"
+      }
+    ],
     "realWorldExample": {
-      "company": "Vụ bê bối Enron và sự ra đời của Sarbanes-Oxley Act (SOX)",
-      "description": "Vụ sụp đổ Enron năm 2001 - một trong những vụ gian lận kế toán lớn nhất lịch sử - xảy ra dù công ty có các quy trình kiểm soát trên giấy tờ, nhưng môi trường kiểm soát thực sự lại cực kỳ yếu: văn hóa doanh nghiệp khuyến khích rủi ro quá mức, ban lãnh đạo tạo áp lực đạt chỉ tiêu bằng mọi giá, và kiểm toán viên độc lập (Arthur Andersen) bị xung đột lợi ích nghiêm trọng. Vụ việc dẫn đến Đạo luật Sarbanes-Oxley (SOX) năm 2002, yêu cầu các công ty đại chúng Mỹ phải chính thức đánh giá và báo cáo về hiệu quả kiểm soát nội bộ - một bước ngoặt lớn cho nghề kiểm toán nội bộ toàn cầu."
+      "company": "Kiểm soát bị đi vòng",
+      "description": "Một quy trình phê duyệt nặng nề tới mức đội tạo ra một đường tắt để làm việc gấp sẽ không bảo vệ được gì - và tệ hơn, nó tạo ra ảo giác rằng có kiểm soát. Đường tắt đó thường không được ghi ở đâu và không ai theo dõi."
     },
     "quiz": [
       {
-        "question": "'Fraud Triangle' (Tam giác Gian lận) - mô hình kinh điển trong đánh giá rủi ro gian lận - gồm 3 yếu tố nào cần đồng thời hiện diện để gian lận có khả năng xảy ra?",
+        "question": "Vì sao thiết kế kiểm soát để chống người xấu lại phản tác dụng?",
         "options": [
-          "Chỉ cần một yếu tố duy nhất là cơ hội (Opportunity) để gian lận xảy ra",
-          "Áp lực/Động cơ (Pressure) - lý do cá nhân thúc đẩy hành vi gian lận (khó khăn tài chính, áp lực chỉ tiêu); Cơ hội (Opportunity) - kiểm soát nội bộ yếu tạo điều kiện thực hiện và che giấu; Biện minh (Rationalization) - khả năng tự thuyết phục bản thân hành vi này 'chấp nhận được' hoặc 'chỉ tạm thời'",
-          "Chỉ cần yếu tố áp lực tài chính cá nhân là đủ để dự đoán gian lận",
-          "Fraud Triangle chỉ áp dụng cho gian lận báo cáo tài chính, không áp dụng cho các loại gian lận khác"
+          "Vì nó nặng nề tới mức mọi người tìm cách đi vòng, và đường vòng thì không ai theo dõi",
+          "Vì người có ý đồ xấu thường tìm được cách vượt qua mọi biện pháp kiểm soát",
+          "Vì nó tạo ra không khí thiếu tin tưởng làm giảm tinh thần làm việc của đội",
+          "Vì chi phí xây dựng và duy trì các biện pháp đó vượt quá lợi ích mang lại"
         ],
-        "correct": 1,
-        "explanation": "Fraud Triangle (Donald Cressey) là mô hình nền tảng trong đánh giá rủi ro gian lận: cả 3 yếu tố thường cần hiện diện đồng thời - một nhân viên trung thực có thể có áp lực tài chính nhưng không có cơ hội (kiểm soát chặt); người có cơ hội nhưng không có áp lực/biện minh cũng ít khả năng hành động. Kiểm toán viên nội bộ tập trung chủ yếu vào việc GIẢM YẾU TỐ CƠ HỘI (qua kiểm soát nội bộ mạnh) vì đây là yếu tố tổ chức có thể kiểm soát trực tiếp nhất, so với áp lực cá nhân và biện minh tâm lý khó can thiệp hơn."
+        "correct": 0,
+        "explanation": "Vế thứ hai là vế nguy hiểm: một kiểm soát bị đi vòng không chỉ vô dụng mà còn tạo ảo giác rằng có kiểm soát, nên không ai đi tìm cách bảo vệ khác."
       },
       {
-        "question": "'Segregation of Duties' (Phân tách nhiệm vụ) - một trong những hoạt động kiểm soát cơ bản nhất - hoạt động dựa trên nguyên lý gì để giảm thiểu rủi ro gian lận?",
+        "question": "Ba loại kiểm soát khác nhau ở chỗ nào?",
         "options": [
-          "Nguyên lý này chỉ nhằm mục đích tăng hiệu quả công việc, không liên quan đến gian lận",
-          "Đảm bảo KHÔNG CÓ một cá nhân đơn lẻ nào có quyền kiểm soát toàn bộ một giao dịch từ đầu đến cuối (ví dụ, người phê duyệt thanh toán không nên là người thực hiện thanh toán, và người ghi sổ kế toán không nên là người đối chiếu ngân hàng) - việc phân tách này yêu cầu CÂU KẾT (collusion) giữa nhiều người mới có thể thực hiện gian lận thành công, làm giảm đáng kể xác suất xảy ra so với khi một cá nhân có toàn quyền kiểm soát",
-          "Phân tách nhiệm vụ chỉ áp dụng cho các công ty rất lớn, không cần thiết cho doanh nghiệp nhỏ",
-          "Nguyên lý này yêu cầu mọi nhân viên phải làm việc độc lập hoàn toàn, không hợp tác với nhau"
+          "Ngăn trước chặn hành động, phát hiện sau tìm ra nó, khắc phục giới hạn thiệt hại",
+          "Ba loại áp dụng cho ba mức độ rủi ro khác nhau của chính tất cả các thao tác ở ngay trong hệ thống",
+          "Ba loại do ba tuyến phòng vệ khác nhau trong tổ chức chịu trách nhiệm",
+          "Ba loại được triển khai ở ba giai đoạn khác nhau của vòng đời hệ thống"
         ],
-        "correct": 1,
-        "explanation": "Segregation of Duties là một trong những kiểm soát phòng ngừa (preventive control) mạnh nhất chống lại cả gian lận lẫn sai sót không cố ý: bằng cách tách các chức năng xung khắc (ủy quyền, thực hiện, ghi chép, đối chiếu) cho các cá nhân khác nhau, tổ chức nâng rào cản cho hành vi gian lận từ 'một người có thể tự ý thực hiện' lên 'cần nhiều người cùng câu kết' - một ngưỡng khó vượt qua hơn đáng kể trong hầu hết các trường hợp thực tế."
+        "correct": 0,
+        "explanation": "Phân biệt này quyết định cách phối hợp chúng: ngăn trước tốn nhất và làm chậm nhất nên chỉ dùng cho số ít thao tác, còn phần lớn rủi ro được xử lý bằng hai loại kia với chi phí thấp hơn nhiều."
       },
       {
-        "question": "Khi kiểm toán viên nội bộ phát hiện một 'material weakness' (điểm yếu trọng yếu) trong kiểm soát nội bộ nhưng ban lãnh đạo cho rằng chi phí khắc phục quá cao so với rủi ro thực tế, cách tiếp cận chuyên nghiệp phù hợp nhất của kiểm toán viên là gì?",
+        "question": "Vì sao không nên dùng ngăn trước cho mọi thao tác rủi ro?",
         "options": [
-          "Đồng ý ngay với ban lãnh đạo và bỏ qua vấn đề vì họ có quyền quyết định cuối cùng",
-          "Trình bày rõ ràng phân tích chi phí-lợi ích của rủi ro (bao gồm cả tác động tiềm tàng nếu rủi ro xảy ra, không chỉ chi phí khắc phục), đưa ra khuyến nghị có căn cứ, và đảm bảo quyết định cuối cùng cùng với lý do được ghi nhận chính thức (documented) - nếu ban lãnh đạo vẫn quyết định chấp nhận rủi ro sau khi đã hiểu đầy đủ, đó là quyền của họ, nhưng kiểm toán viên có trách nhiệm đảm bảo quyết định được đưa ra với đầy đủ thông tin và có thể báo cáo lên Ủy ban Kiểm toán/HĐQT nếu cần thiết đối với các rủi ro trọng yếu",
-          "Ngay lập tức báo cáo công khai vấn đề này ra bên ngoài công ty mà không thông báo trước cho ban lãnh đạo",
-          "Tự ý sửa chữa vấn đề mà không cần thông qua bất kỳ quy trình phê duyệt nào"
+          "Vì nó làm chậm mọi thao tác kể cả những lần hoàn toàn bình thường",
+          "Vì nó đòi hỏi có người phê duyệt luôn sẵn sàng vào mọi thời điểm",
+          "Vì việc triển khai nó phức tạp hơn so với hai loại kiểm soát còn lại",
+          "Vì nó không tạo ra bản ghi để đối chiếu khi cần điều tra về sau"
         ],
-        "correct": 1,
-        "explanation": "Đây là tình huống thực tế phổ biến trong nghề kiểm toán nội bộ, đòi hỏi cân bằng giữa tính độc lập nghề nghiệp và thực tế quản trị doanh nghiệp: vai trò của kiểm toán nội bộ không phải là 'ra quyết định thay' ban lãnh đạo, mà là đảm bảo RỦI RO ĐƯỢC HIỂU RÕ VÀ QUYẾT ĐỊNH ĐƯỢC GHI NHẬN MINH BẠCH - với các rủi ro thực sự trọng yếu, chuẩn nghề nghiệp (như IIA Standards) thường yêu cầu báo cáo lên cấp cao hơn (Audit Committee) nếu ban điều hành không xử lý thỏa đáng, đảm bảo trách nhiệm giải trình cuối cùng."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là chi phí thật của loại kiểm soát này. Cái này là chi phí lớn nhất vì nó tính theo tần suất: chặn một thao tác chạy nghìn lần mỗi ngày để phòng một trường hợp mỗi năm là đánh đổi rất tệ."
+      },
+      {
+        "question": "Đánh giá rủi ro lạm dụng nên bắt đầu từ đâu?",
+        "options": [
+          "Liệt kê những thao tác mà một tài khoản đơn lẻ gây thiệt hại lớn nhất",
+          "Xem lại lịch sử các sự cố nội bộ đã xảy ra trong hai năm gần đây",
+          "Rà soát danh sách quyền truy cập của chính toàn bộ tài khoản ở ngay trong hệ thống",
+          "Phỏng vấn các đội để tìm những chỗ họ cảm thấy rủi ro nhất hiện nay"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều là nguồn thông tin tốt và đều bắt đầu từ những gì đã biết. Cách này bắt đầu từ HẬU QUẢ, nên nó tìm được cả những rủi ro chưa từng xảy ra và chưa ai nghĩ tới."
+      },
+      {
+        "question": "Vì sao tách nhiệm vụ lại là biện pháp hiệu quả?",
+        "options": [
+          "Vì nó biến một sai sót của một người thành thứ cần hai người cùng sai mới xảy ra",
+          "Vì nó giúp phát hiện sớm khi có người thực hiện hành động bất thường",
+          "Vì nó phân tán quyền truy cập lực nên rốt cuộc giảm được động cơ lạm dụng của chính từng người",
+          "Vì nó tạo ra bản ghi có chữ ký của nhiều bên nên dễ điều tra hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng nguyên lý với việc yêu cầu các bản sao lưu hỏng độc lập: xác suất hai người độc lập cùng sai một cách nhỏ hơn nhiều xác suất một người sai. Nó chỉ mất tác dụng khi hai người đó không thật sự độc lập."
       }
     ],
     "keyTakeaways": [
-      "COSO Framework có 5 thành phần, với Control Environment (môi trường kiểm soát/tone at the top) là nền tảng - kiểm soát chi tiết dễ thất bại nếu văn hóa tổ chức không coi trọng tuân thủ",
-      "Fraud Triangle: Áp lực + Cơ hội + Biện minh - cả 3 yếu tố thường cần đồng thời hiện diện; kiểm soát nội bộ tập trung giảm yếu tố Cơ hội",
-      "Segregation of Duties nâng rào cản gian lận từ 'một người có thể tự ý thực hiện' lên 'cần câu kết nhiều người' - kiểm soát phòng ngừa cơ bản nhưng hiệu quả cao",
-      "Khi phát hiện material weakness bị ban lãnh đạo từ chối khắc phục, kiểm toán viên có trách nhiệm đảm bảo minh bạch quyết định và báo cáo lên cấp cao hơn nếu cần với rủi ro trọng yếu"
+      "Mục đích chính là giới hạn HẬU QUẢ của sai sót, không phải chống người xấu.",
+      "Kiểm soát bị đi vòng tạo ẢO GIÁC có kiểm soát - tệ hơn không có gì.",
+      "Ba loại: ngăn trước, phát hiện sau, khắc phục - phối hợp chứ không chọn một.",
+      "Ngăn trước tính chi phí theo TẦN SUẤT nên chỉ dùng cho số ít thao tác.",
+      "Đánh giá bắt đầu từ HẬU QUẢ, nên nó tìm được cả rủi ro chưa từng xảy ra."
     ],
     "practicePrompt": {
-      "question": "Trong quá trình kiểm toán nội bộ, bạn phát hiện quy trình thanh toán nhà cung cấp hiện tại: một nhân viên duy nhất (kế toán trưởng) có quyền vừa TẠO nhà cung cấp mới trong hệ thống, vừa PHÊ DUYỆT hóa đơn, vừa THỰC HIỆN chuyển khoản thanh toán. Đây có phải là rủi ro kiểm soát nội bộ nghiêm trọng không, và tại sao?",
+      "question": "Một thao tác nguy hiểm chạy nghìn lần mỗi ngày. Dùng kiểm soát loại nào?",
       "options": [
-        "Không có rủi ro gì vì kế toán trưởng là người đáng tin cậy và có kinh nghiệm lâu năm",
-        "Một người vừa tạo nhà cung cấp, vừa duyệt hóa đơn, vừa chuyển tiền - vi phạm Segregation of Duties",
-        "Rủi ro này chỉ tồn tại trên lý thuyết, hiếm khi xảy ra trong thực tế nên không cần quan tâm",
-        "Nên sa thải kế toán trưởng ngay lập tức mà không cần điều tra thêm"
+        "Phát hiện sau kèm khắc phục, vì ngăn trước sẽ chặn cả nghìn lần bình thường",
+        "Ngăn trước với phê duyệt hai người, vì mức độ nguy hiểm của thao tác đó",
+        "Ngăn ngay trước nhưng ngược lại chỉ áp dụng cho những trường hợp vượt một ngưỡng nhất định",
+        "Không cần kiểm soát nếu thao tác đó đã được tự động hoá hoàn toàn"
       ],
-      "correct": 1,
-      "explanation": "Đây là ví dụ kinh điển về vi phạm segregation of duties nghiêm trọng - độ tin cậy cá nhân (dù thực sự tồn tại) không phải là lý do để bỏ qua thiết kế kiểm soát cấu trúc, vì: (1) hoàn cảnh cá nhân có thể thay đổi theo thời gian (áp lực tài chính bất ngờ); (2) thiếu kiểm soát tạo cơ hội ngay cả khi không có ý định ban đầu; (3) đây cũng là điểm yếu về mặt tuân thủ quy định (như SOX) bất kể có xảy ra gian lận thực tế hay không. Khuyến nghị chuẩn: tách riêng chức năng tạo nhà cung cấp, phê duyệt, và thực hiện thanh toán cho ít nhất 2-3 người khác nhau."
+      "correct": 0,
+      "explanation": "Lựa chọn thứ ba là câu trả lời tốt thứ hai và nó vẫn chưa trả lời được câu quan trọng: ngưỡng đó đặt ở đâu. Phát hiện sau cộng khả năng khắc phục nhanh thường cho cùng mức bảo vệ với một phần nhỏ chi phí."
     },
     "summary": {
-      "keyIdea": "Khung COSO cung cấp cấu trúc toàn diện để đánh giá kiểm soát nội bộ, với Control Environment là nền tảng quyết định hiệu quả thực sự của mọi kiểm soát khác; Fraud Triangle và Segregation of Duties là công cụ thực hành cốt lõi để đánh giá và giảm thiểu rủi ro gian lận.",
-      "commonMistake": "Đánh giá kiểm soát nội bộ chỉ qua việc kiểm tra quy trình có tồn tại trên giấy tờ hay không, bỏ qua việc đánh giá văn hóa tổ chức và tone at the top thực sự",
-      "action": "Khi đánh giá rủi ro gian lận ở bất kỳ vị trí/quy trình nào, luôn kiểm tra xem có sự phân tách rõ ràng giữa chức năng ủy quyền, thực hiện, và ghi chép/đối chiếu hay không"
+      "keyIdea": "Kiểm soát để một sai sót của người tốt không thành thảm hoạ.",
+      "formula": "Bắt đầu từ hậu quả → ngăn trước cho số ít → phát hiện và khắc phục cho phần còn lại.",
+      "commonMistake": "Dựng kiểm soát nặng tới mức đội tạo đường tắt, rồi tin là mình có kiểm soát.",
+      "action": "Liệt kê thao tác mà một tài khoản đơn lẻ gây thiệt hại lớn nhất."
     },
     "application": {
-      "title": "Áp dụng vào công việc Internal Audit",
-      "message": "Chọn một quy trình trong tổ chức bạn quen thuộc (như quy trình mua hàng, thanh toán, hoặc tuyển dụng) và thử áp dụng Fraud Triangle: xác định các điểm có thể tạo Áp lực, Cơ hội, hoặc Biện minh cho hành vi gian lận, từ đó đề xuất kiểm soát bổ sung phù hợp.",
-      "secondary": "Đây là kỹ năng nền tảng cho chứng chỉ CIA (Certified Internal Auditor) - chương trình chứng chỉ uy tín nhất trong ngành kiểm toán nội bộ toàn cầu."
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê ba thao tác mà một tài khoản đơn lẻ, hành động một mình, có thể gây thiệt hại lớn nhất cho hệ thống.",
+      "secondary": "Với mỗi thao tác, hỏi hai câu: có phát hiện được trong bao lâu, và khắc phục được trong bao lâu. Hai con số đó thường quan trọng hơn việc thêm một lớp phê duyệt."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Kiểm toán nội bộ không chỉ là 'kiểm tra sổ sách' - đó là việc đánh giá có hệ thống liệu tổ chức có đủ hàng rào bảo vệ trước rủi ro gian lận và sai sót, bắt đầu từ khung lý thuyết chuẩn quốc tế COSO."
+        "text": "Phần lớn thiệt hại nội bộ không đến từ ý đồ xấu mà từ một người có quá nhiều quyền làm một thao tác sai trong lúc vội."
       },
       {
         "type": "heading",
-        "text": "5 Thành phần của COSO Framework"
+        "text": "Đặt mục đích ở đâu"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chống người xấu",
+          "text": "Kiểm soát trở nên nặng nề, đội tạo đường tắt để làm việc gấp - và đường tắt đó không được ghi ở đâu, không ai theo dõi."
+        },
+        "right": {
+          "label": "Giới hạn hậu quả sai sót",
+          "text": "Nhẹ hơn, không ai cần đi vòng, và vẫn chặn được phần lớn cả hai loại rủi ro."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Đi vòng tệ hơn không có",
+        "text": "Một kiểm soát bị đi vòng không chỉ vô dụng - nó tạo ảo giác rằng có kiểm soát, nên không ai đi tìm cách bảo vệ khác."
+      },
+      {
+        "type": "heading",
+        "text": "Ba loại, và cách phối hợp"
       },
       {
         "type": "list",
         "items": [
-          "Control Environment (Môi trường kiểm soát): văn hóa, giá trị đạo đức, tone at the top - nền tảng của mọi thành phần khác",
-          "Risk Assessment (Đánh giá rủi ro): xác định và phân tích rủi ro có thể ảnh hưởng đến mục tiêu tổ chức",
-          "Control Activities (Hoạt động kiểm soát): chính sách/quy trình cụ thể như phê duyệt, đối chiếu, phân tách nhiệm vụ",
-          "Information & Communication (Thông tin & Truyền thông): đảm bảo thông tin liên quan được truyền đạt kịp thời, chính xác",
-          "Monitoring Activities (Giám sát): đánh giá định kỳ hiệu quả của hệ thống kiểm soát, bao gồm cả vai trò của kiểm toán nội bộ"
+          "NGĂN TRƯỚC: chặn hành động. Tốn nhất, vì chi phí tính theo TẦN SUẤT - chặn một thao tác chạy nghìn lần mỗi ngày để phòng một trường hợp mỗi năm là đánh đổi rất tệ.",
+          "PHÁT HIỆN SAU: tìm ra nó đã xảy ra. Rẻ hơn nhiều và cần một người thật sự nhìn.",
+          "KHẮC PHỤC: giới hạn thiệt hại sau khi biết. Thường là phần bị bỏ quên nhất."
         ]
       },
       {
         "type": "heading",
-        "text": "Fraud Triangle - Mô hình Đánh giá Rủi ro Gian lận"
+        "text": "Bắt đầu đánh giá từ đâu"
       },
       {
         "type": "paragraph",
-        "text": "Donald Cressey, nhà tội phạm học, phát triển mô hình Fraud Triangle sau khi nghiên cứu hàng trăm trường hợp biển thủ: gian lận thường đòi hỏi 3 yếu tố đồng thời - Áp lực (động cơ cá nhân thúc đẩy), Cơ hội (kiểm soát yếu tạo điều kiện), và Biện minh (khả năng tự thuyết phục hành vi 'chấp nhận được'). Kiểm toán nội bộ tập trung chủ yếu vào giảm Cơ hội vì đây là yếu tố có thể kiểm soát trực tiếp qua thiết kế quy trình, khác với hai yếu tố còn lại thuộc về tâm lý/hoàn cảnh cá nhân."
-      },
-      {
-        "type": "heading",
-        "text": "Segregation of Duties - Kiểm soát Nền tảng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nguyên tắc phân tách nhiệm vụ đảm bảo không cá nhân đơn lẻ nào kiểm soát toàn bộ một giao dịch nhạy cảm - từ khởi tạo, phê duyệt, đến thực hiện và ghi chép. Việc này không phải vì thiếu tin tưởng cá nhân, mà vì thiết kế kiểm soát tốt phải độc lập với việc một người có đáng tin cậy hay không, bảo vệ tổ chức trước cả rủi ro gian lận lẫn sai sót không cố ý."
+        "text": "Từ HẬU QUẢ: liệt kê những thao tác mà một tài khoản đơn lẻ, hành động một mình, gây thiệt hại lớn nhất. Cách này tìm được cả những rủi ro chưa từng xảy ra - điều mà việc xem lại lịch sử sự cố không làm được."
       },
       {
         "type": "closing",
         "lines": [
-          "Sau vụ Enron và nhiều bê bối tài chính lớn khác, vai trò của kiểm toán nội bộ đã chuyển từ 'công việc hành chính phụ trợ' thành một chức năng chiến lược, được báo cáo trực tiếp lên Ủy ban Kiểm toán của Hội đồng Quản trị.",
-          "Thành thạo COSO Framework và tư duy đánh giá rủi ro gian lận là nền tảng không thể thiếu cho bất kỳ ai theo đuổi sự nghiệp trong lĩnh vực này."
+          "Với những thao tác đứng đầu danh sách đó, TÁCH NHIỆM VỤ là biện pháp hiệu quả nhất: nó biến một sai sót của một người thành thứ cần hai người cùng sai mới xảy ra.",
+          "Cùng nguyên lý với việc đòi các bản sao lưu hỏng độc lập - và nó cũng mất tác dụng theo cùng một cách, khi hai người đó không thật sự độc lập."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Môi trường kiểm soát",
-        "arrow": true
-      },
-      {
-        "label": "Đánh giá rủi ro",
-        "arrow": true
-      },
-      {
-        "label": "Hoạt động kiểm soát",
-        "arrow": true
-      },
-      {
-        "label": "Thông tin và truyền thông",
-        "arrow": true
-      },
-      {
-        "label": "Giám sát → soi tam giác gian lận: động cơ, cơ hội, biện minh",
-        "arrow": false
       }
     ]
   },
@@ -74726,166 +74826,177 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1257,
-    "track": "professional",
-    "slug": "phan-tich-cvp-va-diem-hoa-von",
-    "title": "Phân tích Chi phí-Khối lượng-Lợi nhuận (CVP) & Điểm hòa vốn",
-    "subtitle": "Công cụ cốt lõi của kế toán quản trị giúp trả lời câu hỏi: bán bao nhiêu thì có lãi, và giá bán thay đổi ảnh hưởng thế nào đến lợi nhuận",
+    "slug": "chi-phi-co-dinh-va-bien-doi-khi-tach-dich-vu",
+    "title": "Quy mô, Bài 1: Chi phí cố định và biến đổi khi tách dịch vụ",
+    "subtitle": "Mỗi dịch vụ tách ra mang theo một khoản chi phí cố định mà không ai tính vào lúc quyết định.",
     "duration": "7 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "⚖️",
-    "openingQuestion": "Một doanh nghiệp sản xuất có chi phí cố định (fixed cost) 500 triệu đồng/tháng, giá bán mỗi sản phẩm 200.000đ, chi phí biến đổi (variable cost) mỗi sản phẩm 120.000đ. Điểm hòa vốn (breakeven point) tính theo số lượng sản phẩm cần bán mỗi tháng là bao nhiêu?",
+    "interactiveType": "profit-calc",
+    "whyItMatters": "Quyết định tách dịch vụ gần như luôn được cân nhắc theo lợi ích kỹ thuật, còn chi phí thì trả bằng thời gian của đội trong nhiều năm sau.",
+    "openingQuestion": "Tách một dịch vụ ra khỏi khối chung mang theo chi phí cố định nào?",
     "openingOptions": [
-      "500 triệu / 200.000đ = 2.500 sản phẩm",
-      "500 triệu / (200.000 - 120.000) = 6.250 sản phẩm",
-      "500 triệu / 120.000đ = 4.167 sản phẩm",
-      "Không thể tính được điểm hòa vốn nếu không biết tổng doanh thu dự kiến"
+      "Kho mã riêng, đường phát hành riêng, theo dõi riêng và người trực riêng",
+      "Chi phí hạ tầng cho các máy chủ chạy dịch vụ mới tách ra",
+      "Thời gian của đội để có thể viết lại phần mã thật sự cần tách và đồng thời kiểm thử lại",
+      "Độ trễ tăng lên do các lượt gọi giữa hai dịch vụ qua mạng"
     ],
-    "correctOption": 1,
-    "explanation": "Công thức điểm hòa vốn (Breakeven Point) = Chi phí cố định / Contribution Margin trên mỗi đơn vị, trong đó Contribution Margin = Giá bán - Chi phí biến đổi mỗi đơn vị. Đây là con số quan trọng vì mỗi sản phẩm bán ra không đóng góp TOÀN BỘ giá bán vào việc bù đắp chi phí cố định - phải trừ đi phần chi phí biến đổi trực tiếp trước, phần còn lại (Contribution Margin) mới là phần thực sự 'đóng góp' để trang trải chi phí cố định và sau đó tạo ra lợi nhuận.",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia là chi phí một lần hoặc chi phí biến đổi theo tải, và cả ba đều xuất hiện trong bảng tính lúc quyết định vì chúng có hoá đơn. Bốn khoản trong lựa chọn đầu thì lặp lại mãi mãi và không tỷ lệ với quy mô dịch vụ - một dịch vụ hai trăm dòng mã vẫn cần đủ cả bốn, gần bằng với một dịch vụ hai mươi nghìn dòng.",
+    "diagram": [
+      {
+        "label": "Chi phí cố định mỗi dịch vụ: kho mã, phát hành, theo dõi, trực",
+        "arrow": true
+      },
+      {
+        "label": "Không tỷ lệ với quy mô - dịch vụ nhỏ vẫn cần đủ cả bốn",
+        "arrow": true
+      },
+      {
+        "label": "Nên số dịch vụ tăng thì tổng chi phí cố định tăng tuyến tính",
+        "arrow": true
+      },
+      {
+        "label": "Điểm hoà vốn: dịch vụ phải đủ lớn để bù khoản cố định đó"
+      }
+    ],
     "realWorldExample": {
-      "company": "Quyết định mở rộng công suất nhà máy",
-      "description": "Khi ban lãnh đạo một công ty sản xuất cân nhắc đầu tư mở rộng nhà máy (tăng chi phí cố định như khấu hao máy móc mới, thuê thêm mặt bằng), phân tích CVP giúp trả lời câu hỏi quan trọng: điểm hòa vốn mới sẽ tăng lên bao nhiêu, và công ty có thực sự tự tin bán được lượng sản phẩm vượt điểm hòa vốn mới đó để khoản đầu tư trở nên có lãi hay không? Đây là công cụ phân tích được dùng rộng rãi trong các quyết định đầu tư mở rộng, ra mắt sản phẩm mới, hay đánh giá tác động của thay đổi giá bán."
+      "company": "Dịch vụ nhỏ xíu vẫn cần đủ bốn khoản",
+      "description": "Một dịch vụ hai trăm dòng mã vẫn cần một kho mã, một đường phát hành, một bảng theo dõi và một người biết cách sửa nó lúc nửa đêm. Bốn khoản đó gần bằng với một dịch vụ hai mươi nghìn dòng."
     },
     "quiz": [
       {
-        "question": "'Operating Leverage' (Đòn bẩy hoạt động) - tỷ lệ giữa chi phí cố định và chi phí biến đổi trong cơ cấu chi phí của doanh nghiệp - ảnh hưởng thế nào đến mức độ biến động của lợi nhuận khi doanh thu thay đổi?",
+        "question": "Vì sao chi phí cố định của một dịch vụ không tỷ lệ với quy mô của nó?",
         "options": [
-          "Operating Leverage không ảnh hưởng gì đến mức độ biến động lợi nhuận",
-          "Doanh nghiệp có Operating Leverage CAO (tỷ trọng chi phí cố định lớn so với chi phí biến đổi, như hãng hàng không hay nhà máy sản xuất công nghệ cao) sẽ có LỢI NHUẬN BIẾN ĐỘNG MẠNH HƠN NHIỀU khi doanh thu thay đổi - một khi đã vượt điểm hòa vốn, mỗi đồng doanh thu tăng thêm sẽ chuyển phần lớn thành lợi nhuận (vì chi phí cố định không đổi), nhưng ngược lại khi doanh thu giảm, lợi nhuận cũng sụt giảm nhanh hơn nhiều vì chi phí cố định vẫn phải gánh chịu bất kể doanh thu bao nhiêu",
-          "Doanh nghiệp có Operating Leverage thấp luôn có lợi nhuận cao hơn doanh nghiệp có Operating Leverage cao",
-          "Operating Leverage chỉ là khái niệm lý thuyết, không có ứng dụng thực tế trong phân tích tài chính doanh nghiệp"
+          "Vì một dịch vụ hai trăm dòng vẫn cần đủ kho mã, phát hành, theo dõi và người trực",
+          "Vì tất cả các công cụ hạ tầng tính phí theo đúng số lượng dịch vụ chứ hoàn toàn không theo khối lượng",
+          "Vì việc quản lý nhiều dịch vụ đòi hỏi thêm một lớp điều phối chung",
+          "Vì mỗi dịch vụ cần một đội riêng bất kể quy mô của nó lớn hay nhỏ"
         ],
-        "correct": 1,
-        "explanation": "Đây là mối liên hệ quan trọng giữa cơ cấu chi phí và rủi ro kinh doanh: doanh nghiệp Operating Leverage cao có lợi nhuận 'khuếch đại' theo cả hai hướng - tăng mạnh khi doanh thu tăng (vượt điểm hòa vốn), nhưng cũng giảm mạnh khi doanh thu giảm (chi phí cố định vẫn phải trả). Đây là lý do các hãng hàng không (chi phí cố định rất cao - máy bay, phi hành đoàn, sân bay) thường có lợi nhuận biến động mạnh theo chu kỳ kinh tế hơn nhiều so với các công ty dịch vụ có chi phí biến đổi chiếm tỷ trọng lớn."
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là một cách hiểu quá mạnh - nhiều dịch vụ nhỏ có thể chung một đội. Bốn khoản kia thì không gộp được: mỗi dịch vụ vẫn cần đường phát hành riêng và bảng theo dõi riêng của nó."
       },
       {
-        "question": "'Contribution Margin Ratio' (Tỷ lệ Đóng góp trên Doanh thu) khác với 'Gross Margin' (Biên lợi nhuận gộp) như thế nào về cách phân loại chi phí?",
+        "question": "Điểm hoà vốn của một quyết định tách dịch vụ là gì?",
         "options": [
-          "Hai chỉ số này hoàn toàn giống nhau, chỉ khác tên gọi",
-          "Contribution Margin phân loại chi phí theo HÀNH VI (cố định vs biến đổi - cost behavior), trong khi Gross Margin phân loại chi phí theo CHỨC NĂNG (giá vốn hàng bán vs chi phí bán hàng/quản lý - cost function theo chuẩn kế toán tài chính); Giá vốn hàng bán trong Gross Margin có thể bao gồm CẢ chi phí cố định (như khấu hao nhà máy) lẫn chi phí biến đổi (nguyên vật liệu), trong khi Contribution Margin chỉ trừ đi phần chi phí BIẾN ĐỔI, giữ lại toàn bộ chi phí cố định để phân tích riêng ở bước sau",
-          "Contribution Margin chỉ dùng cho báo cáo tài chính bên ngoài, Gross Margin chỉ dùng cho quản trị nội bộ",
-          "Gross Margin luôn cao hơn Contribution Margin trong mọi trường hợp"
+          "Mức mà lợi ích từ việc tách vượt qua bốn khoản chi phí cố định lặp lại",
+          "Mức tải mà tại đó dịch vụ tách ra chạy hiệu quả hơn khi nằm trong khối chung",
+          "Thời điểm mà chi phí hạ tầng của dịch vụ mới được bù bằng phần tiết kiệm",
+          "Quy mô đội mà tại đó việc phối hợp trong một khối chung trở nên quá tốn"
         ],
-        "correct": 1,
-        "explanation": "Đây là phân biệt quan trọng giữa kế toán tài chính (financial accounting - dùng cho báo cáo bên ngoài, phân loại chi phí theo CHỨC NĂNG) và kế toán quản trị (management accounting - dùng cho quyết định nội bộ, phân loại chi phí theo HÀNH VI): Contribution Margin format tách biệt rõ ràng chi phí cố định và biến đổi, cho phép phân tích CVP và ra quyết định (như điểm hòa vốn, tác động của thay đổi sản lượng) mà báo cáo Gross Margin truyền thống không thể hiện trực tiếp được."
+        "correct": 0,
+        "explanation": "Lựa chọn cuối mô tả một trong các lợi ích và không phải phép so sánh đầy đủ. Điểm hoà vốn đòi cả hai vế, và vế chi phí thì gần như không bao giờ được viết ra trong cuộc họp quyết định."
       },
       {
-        "question": "Khi một doanh nghiệp cân nhắc giảm giá bán 10% để tăng doanh số, phân tích CVP giúp trả lời câu hỏi quan trọng nào trước khi đưa ra quyết định?",
+        "question": "Vì sao tổng chi phí cố định tăng tuyến tính theo số dịch vụ?",
         "options": [
-          "CVP không liên quan gì đến quyết định thay đổi giá bán",
-          "CVP giúp tính toán chính xác SẢN LƯỢNG TĂNG THÊM cần thiết để bù đắp việc giảm Contribution Margin trên mỗi đơn vị (do giá bán giảm) - nếu giá giảm 10% làm Contribution Margin trên mỗi đơn vị giảm mạnh, doanh nghiệp có thể cần tăng sản lượng bán ra một tỷ lệ RẤT LỚN (không chỉ tương ứng 10%) chỉ để duy trì mức lợi nhuận hiện tại, giúp ban lãnh đạo đánh giá tính khả thi thực tế của chiến lược giảm giá trước khi triển khai",
-          "Chỉ cần giảm giá là chắc chắn sẽ tăng lợi nhuận trong mọi trường hợp",
-          "CVP chỉ áp dụng cho quyết định tăng giá, không áp dụng cho quyết định giảm giá"
+          "Vì mỗi dịch vụ thêm vào mang theo đủ bốn khoản của riêng nó",
+          "Vì chi phí phối hợp giữa các dịch vụ tăng theo số cặp có thể có",
+          "Vì mỗi dịch vụ cần được tích hợp với hệ thống theo dõi chung",
+          "Vì số lượng phụ thuộc giữa các dịch vụ tăng lên khi có thêm dịch vụ mới"
         ],
-        "correct": 1,
-        "explanation": "Đây là ứng dụng thực tế cực kỳ quan trọng của CVP trong quyết định định giá: vì Contribution Margin trên mỗi đơn vị nhạy cảm với thay đổi giá bán (do chi phí biến đổi không đổi), một mức giảm giá tưởng chừng nhỏ có thể làm giảm Contribution Margin theo tỷ lệ LỚN HƠN NHIỀU (đặc biệt với sản phẩm có biên lợi nhuận mỏng ban đầu), đòi hỏi mức tăng sản lượng rất lớn để hòa vốn cho việc giảm giá - phân tích này thường tiết lộ những chiến lược giảm giá 'hấp dẫn trên giấy' nhưng không thực tế khi tính toán kỹ."
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai mô tả một loại chi phí khác cũng có thật và nó tăng nhanh hơn tuyến tính. Bốn khoản cố định thì cộng dồn đơn giản, và chính vì đơn giản nên nó dễ bị bỏ qua trong ước lượng."
+      },
+      {
+        "question": "Cách nào giảm chi phí cố định trên mỗi dịch vụ?",
+        "options": [
+          "Chuẩn hoá bốn khoản đó thành khuôn mẫu dùng chung cho mọi dịch vụ",
+          "Gộp các dịch vụ nhỏ lại thành ít dịch vụ lớn hơn để có thể giảm số lượng",
+          "Giao cho một đội chuyên trách vận hành toàn bộ các dịch vụ nhỏ",
+          "Giảm mức độ theo dõi và trực cho những dịch vụ ít quan trọng hơn"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai là giải pháp đúng khi đã quá đà và nó tốn kém. Chuẩn hoá thì hạ chi phí cố định cho mọi dịch vụ hiện tại lẫn tương lai, và đó là lý do nó đáng làm trước khi tách dịch vụ thứ năm."
+      },
+      {
+        "question": "Vì sao chi phí này hay bị bỏ qua lúc quyết định?",
+        "options": [
+          "Vì nó trả bằng thời gian của đội trong nhiều năm chứ không bằng một khoản chi",
+          "Vì nó khó ước tính chính xác nên người ta bỏ qua cho đơn giản",
+          "Vì lợi ích kỹ thuật của chính việc tách thường xuyên rõ ràng và đồng thời dễ trình bày hơn",
+          "Vì người quyết định thường không phải người sẽ vận hành dịch vụ đó"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là một yếu tố góp phần rất thật. Nhưng lý do gốc là hình thức của chi phí: một khoản chi có hoá đơn thì vào bảng tính, còn nửa ngày mỗi tháng của một kỹ sư thì không vào đâu cả."
       }
     ],
     "keyTakeaways": [
-      "Điểm hòa vốn = Chi phí cố định / Contribution Margin mỗi đơn vị (Giá bán - Chi phí biến đổi mỗi đơn vị) - công thức nền tảng của phân tích CVP",
-      "Operating Leverage cao (chi phí cố định lớn) khuếch đại biến động lợi nhuận theo cả hai hướng khi doanh thu thay đổi - rủi ro và cơ hội song hành",
-      "Contribution Margin phân loại chi phí theo hành vi (cố định/biến đổi) cho mục đích quản trị, khác với Gross Margin phân loại theo chức năng cho báo cáo tài chính bên ngoài",
-      "CVP là công cụ thiết yếu đánh giá tính khả thi của quyết định thay đổi giá bán - mức tăng sản lượng cần thiết để bù đắp giảm giá thường lớn hơn nhiều so với trực giác ban đầu"
+      "Bốn khoản cố định mỗi dịch vụ: kho mã, đường phát hành, theo dõi, người trực.",
+      "Chúng KHÔNG tỷ lệ với quy mô - dịch vụ hai trăm dòng vẫn cần đủ cả bốn.",
+      "Tổng chi phí cố định tăng tuyến tính theo số dịch vụ, và nó cộng dồn im lặng.",
+      "Chuẩn hoá bốn khoản thành khuôn mẫu chung là cách hạ chi phí cho mọi dịch vụ.",
+      "Chi phí bị bỏ qua vì nó trả bằng THỜI GIAN, và thời gian không có hoá đơn."
     ],
     "practicePrompt": {
-      "question": "Doanh nghiệp bạn đang bán sản phẩm giá 500.000đ, chi phí biến đổi 350.000đ/sản phẩm, chi phí cố định 300 triệu/tháng, hiện đang bán 2.500 sản phẩm/tháng (có lãi). Ban lãnh đạo đề xuất giảm giá 10% (còn 450.000đ) để tăng sản lượng. Sản lượng cần đạt bao nhiêu để lợi nhuận KHÔNG ĐỔI so với hiện tại?",
+      "question": "Đội định tách một phần ba trăm dòng thành dịch vụ riêng. Hỏi gì?",
       "options": [
-        "Chỉ cần tăng sản lượng thêm 10% (2.750 sản phẩm) là đủ để bù đắp",
-        "3.750 sản phẩm, tăng 50% chứ không phải 10%",
-        "Không cần tính toán, giảm giá luôn có lợi nếu sản lượng tăng bất kỳ mức nào",
-        "Sản lượng cần giảm, không phải tăng"
+        "Lợi ích của việc tách có bù được bốn khoản cố định lặp lại hằng năm không",
+        "Phần đó có phụ thuộc nhiều vào các phần khác trong khối chung không",
+        "Đội có đủ người để vận hành thêm một dịch vụ nữa hay không",
+        "Có thể tách theo một ranh giới khác để dịch vụ mới lớn hơn không"
       ],
-      "correct": 1,
-      "explanation": "Đây là minh họa kinh điển cho thấy tại sao trực giác đơn giản ('giảm giá 10%, chỉ cần bán nhiều hơn 10%') thường sai lệch nghiêm trọng: vì chi phí biến đổi không đổi khi giá bán giảm, Contribution Margin mỗi đơn vị bị bào mòn với tỷ lệ lớn hơn nhiều so với % giảm giá - trong trường hợp này, Contribution Margin giảm 33% (từ 150.000 xuống 100.000), đòi hỏi sản lượng phải tăng tới 50% chỉ để duy trì lợi nhuận hiện tại, một mục tiêu tăng trưởng doanh số rất tham vọng cần được đánh giá thực tế trước khi quyết định."
+      "correct": 0,
+      "explanation": "Ba câu kia đều đáng hỏi và đều nằm bên trong câu này. Điều quan trọng là bắt phép so sánh phải có ĐỦ HAI VẾ - vì vế chi phí gần như không bao giờ tự xuất hiện trong cuộc họp."
     },
     "summary": {
-      "keyIdea": "Phân tích CVP (Chi phí-Khối lượng-Lợi nhuận) qua công cụ Contribution Margin và điểm hòa vốn là nền tảng để đưa ra các quyết định kinh doanh quan trọng: định giá, mở rộng công suất, và đánh giá rủi ro từ cơ cấu chi phí cố định/biến đổi (operating leverage).",
-      "commonMistake": "Đánh giá tác động của thay đổi giá bán dựa trên trực giác đơn giản (% thay đổi giá tương ứng % thay đổi sản lượng cần thiết), bỏ qua tác động phi tuyến tính lên Contribution Margin",
-      "action": "Trước khi đề xuất bất kỳ thay đổi giá bán hoặc đầu tư tăng chi phí cố định nào, luôn tính toán điểm hòa vốn mới và đánh giá tính khả thi thực tế của mục tiêu sản lượng cần đạt"
+      "keyIdea": "Mỗi dịch vụ tách ra mang theo một khoản cố định mà không ai tính lúc quyết định.",
+      "formula": "Lợi ích của việc tách so với bốn khoản cố định lặp lại hằng năm.",
+      "commonMistake": "Chỉ cân nhắc lợi ích kỹ thuật, vì chi phí trả bằng thời gian nên không có hoá đơn.",
+      "action": "Ước lượng bốn khoản cố định cho một dịch vụ của bạn, tính theo ngày công."
     },
     "application": {
-      "title": "Áp dụng vào công việc Kế toán Quản trị",
-      "message": "Chọn một sản phẩm/dịch vụ của doanh nghiệp bạn quen thuộc, thử phân loại chi phí liên quan thành cố định và biến đổi, tính Contribution Margin và điểm hòa vốn - đây là bài tập nền tảng cho mọi phân tích CVP thực tế.",
-      "secondary": "Hiểu sâu về Operating Leverage cũng giúp bạn phân tích tốt hơn khi đọc báo cáo tài chính của các công ty niêm yết, đặc biệt trong việc dự đoán mức độ biến động lợi nhuận qua các chu kỳ kinh tế khác nhau."
+      "title": "Làm ngay hôm nay",
+      "message": "Với một dịch vụ nhỏ trong hệ thống, ước lượng thô bốn khoản cố định của nó trong một năm - tính bằng ngày công, không bằng tiền.",
+      "secondary": "Rồi so con số đó với lợi ích mà việc tách nó mang lại. Với những dịch vụ nhỏ nhất, phép so sánh này thường ra kết quả mà không ai muốn nói to."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "'Chúng ta cần bán bao nhiêu sản phẩm để có lãi?' - đây là một trong những câu hỏi kinh doanh cơ bản nhất, và phân tích CVP cung cấp câu trả lời chính xác, có căn cứ toán học."
+        "text": "Quyết định tách dịch vụ gần như luôn được cân nhắc theo lợi ích kỹ thuật, còn chi phí thì trả bằng thời gian của đội trong nhiều năm sau."
       },
       {
         "type": "heading",
-        "text": "Contribution Margin - Nền tảng của Phân tích CVP"
+        "text": "Bốn khoản cố định"
       },
       {
-        "type": "paragraph",
-        "text": "Contribution Margin (Số dư đảm phí) = Giá bán - Chi phí biến đổi mỗi đơn vị, thể hiện phần TIỀN CÒN LẠI từ mỗi sản phẩm bán ra sau khi trừ chi phí biến đổi trực tiếp, dùng để trang trải chi phí cố định trước, phần dư ra sau đó mới là lợi nhuận. Công thức điểm hòa vốn = Chi phí cố định / Contribution Margin mỗi đơn vị cho biết chính xác cần bán bao nhiêu sản phẩm để 'hòa' (không lãi không lỗ)."
-      },
-      {
-        "type": "heading",
-        "text": "Operating Leverage - Con dao Hai lưỡi"
-      },
-      {
-        "type": "paragraph",
-        "text": "Doanh nghiệp có tỷ trọng chi phí cố định cao (Operating Leverage cao) có đặc điểm 'khuếch đại' lợi nhuận theo cả hai hướng: khi vượt điểm hòa vốn, mỗi đồng doanh thu tăng thêm chuyển phần lớn thành lợi nhuận (vì chi phí cố định không tăng theo); nhưng khi doanh thu giảm, lợi nhuận sụt giảm nhanh hơn tỷ lệ % giảm doanh thu, vì chi phí cố định vẫn phải gánh chịu. Hiểu Operating Leverage giúp đánh giá đúng mức độ rủi ro kinh doanh gắn với cơ cấu chi phí của một doanh nghiệp."
-      },
-      {
-        "type": "heading",
-        "text": "Ứng dụng Thực tế: Đánh giá Quyết định Giá bán"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một trong những ứng dụng giá trị nhất của CVP là đánh giá tính khả thi của thay đổi giá bán: vì Contribution Margin nhạy cảm phi tuyến tính với thay đổi giá (do chi phí biến đổi cố định), một mức giảm giá nhỏ có thể đòi hỏi mức tăng sản lượng lớn hơn nhiều để duy trì lợi nhuận - phân tích này giúp ban lãnh đạo tránh những quyết định giảm giá 'hấp dẫn trên giấy' nhưng không thực tế khi tính toán kỹ lưỡng."
-      },
-      {
-        "type": "formula",
-        "title": "Điểm hoà vốn theo sản lượng",
-        "label": "Break-even",
-        "numerator": "Chi phí cố định",
-        "denominator": "Biên đóng góp trên mỗi đơn vị",
-        "variables": [
-          {
-            "symbol": "Biên đóng góp",
-            "name": "Giá bán trừ chi phí biến đổi trên mỗi đơn vị"
-          },
-          {
-            "symbol": "Đòn bẩy hoạt động",
-            "name": "Tỷ trọng chi phí cố định - càng cao thì lợi nhuận càng nhạy với doanh số"
-          }
+        "type": "list",
+        "items": [
+          "Một KHO MÃ riêng, với cấu hình, phụ thuộc và lịch cập nhật của nó.",
+          "Một ĐƯỜNG PHÁT HÀNH riêng, phải bảo trì khi công cụ đổi.",
+          "Một bảng THEO DÕI riêng, với ngưỡng cảnh báo của riêng nó.",
+          "Một người TRỰC biết cách sửa nó lúc nửa đêm."
         ]
       },
       {
         "type": "callout",
-        "label": "Con dao hai lưỡi",
-        "text": "Đòn bẩy hoạt động cao khuếch đại theo cả hai chiều. Doanh nghiệp nặng chi phí cố định lãi rất nhanh khi vượt điểm hoà vốn và lỗ cũng rất nhanh khi tụt xuống dưới - cùng một cấu trúc, hai kết cục."
+        "label": "Không tỷ lệ với quy mô",
+        "text": "Một dịch vụ hai trăm dòng mã cần đủ cả bốn khoản, và chúng gần bằng với một dịch vụ hai mươi nghìn dòng. Nên tổng chi phí cố định tăng TUYẾN TÍNH theo số dịch vụ, không theo khối lượng công việc."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao khoản này hay bị bỏ"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chi phí có hoá đơn",
+          "text": "Máy chủ, dịch vụ quản lý sẵn, giấy phép. Vào bảng tính, được cân nhắc, được phê duyệt."
+        },
+        "right": {
+          "label": "Chi phí bằng thời gian",
+          "text": "Nửa ngày mỗi tháng của một kỹ sư để bảo trì đường phát hành. Không vào đâu cả, và cộng dồn im lặng."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "CVP Analysis là một trong những công cụ kế toán quản trị được sử dụng thường xuyên nhất trong thực tế kinh doanh - từ quyết định định giá hàng ngày đến các quyết định đầu tư chiến lược lớn.",
-          "Thành thạo công cụ này giúp chuyên viên kế toán quản trị chuyển từ vai trò 'ghi chép số liệu' sang vai trò 'đối tác chiến lược' thực sự hỗ trợ ra quyết định kinh doanh."
+          "Cách hạ chi phí này không phải gộp lại các dịch vụ đã tách - việc đó tốn kém và chỉ đúng khi đã quá đà.",
+          "Cách đúng là CHUẨN HOÁ bốn khoản thành khuôn mẫu dùng chung, và làm việc đó trước khi tách dịch vụ thứ năm chứ không phải sau dịch vụ thứ hai mươi."
         ]
       }
-    ],
-    "diagram": [
-      {
-        "label": "Tách chi phí cố định và chi phí biến đổi",
-        "arrow": true
-      },
-      {
-        "label": "Tính lãi trên biến phí mỗi đơn vị",
-        "arrow": true
-      },
-      {
-        "label": "Chi phí cố định chia cho lãi trên biến phí → điểm hòa vốn",
-        "arrow": true
-      },
-      {
-        "label": "Đòn bẩy hoạt động khuếch đại lợi nhuận theo cả hai chiều",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "profit-calc",
+    ]
   },
   {
     "id": 1258,
@@ -75236,171 +75347,184 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1260,
-    "track": "professional",
-    "slug": "day-1-readiness-integration-playbook-m-and-a",
-    "title": "Day 1 Readiness & Integration Playbook: 100 Ngày Đầu Sau M&A",
-    "subtitle": "Vì sao phần lớn giá trị synergy của một thương vụ M&A được quyết định (hoặc bị phá hủy) ngay trong 100 ngày đầu tiên",
+    "slug": "danh-sach-san-sang-ngay-dau-sau-khi-tach-khoi",
+    "title": "Danh sách sẵn sàng ngày đầu - một trăm ngày sau khi tách khối",
+    "subtitle": "Ngày cắt là ngày dễ nhất; những thứ hỏng trong ba tháng sau mới là phần khó.",
     "duration": "8 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🔗",
-    "openingQuestion": "'Day 1 Readiness' trong Post-Merger Integration (PMI) đề cập đến việc chuẩn bị cho điều gì cụ thể, và tại sao nó phải được lên kế hoạch từ RẤT LÂU trước khi thương vụ M&A chính thức hoàn tất (deal close)?",
+    "whyItMatters": "Kế hoạch tách khối thường kết thúc ở ngày cắt, trong khi phần lớn vấn đề chỉ xuất hiện khi hai bên bắt đầu tiến hoá độc lập.",
+    "openingQuestion": "Vì sao ngày cắt không phải phần khó của một lần tách khối?",
     "openingOptions": [
-      "Chỉ đơn giản là tổ chức một buổi lễ ăn mừng khi thương vụ hoàn tất",
-      "Các hoạt động vận hành thiết yếu chạy trôi chảy ngay ngày đầu hợp nhất",
-      "Day 1 Readiness chỉ liên quan đến việc thay đổi logo và tên thương hiệu công ty",
-      "Đây là thuật ngữ không có ý nghĩa thực tế cụ thể trong M&A"
+      "Vì nó được chuẩn bị kỹ và có người trực; phần khó là ba tháng sau đó",
+      "Vì các công cụ hiện đại làm cho việc chuyển đổi trở nên tương đối đơn giản",
+      "Vì phần lớn công việc kỹ thuật đã hoàn thành trước khi tới ngày cắt",
+      "Vì có thể quay lui ngay nếu phát hiện vấn đề trong ngày cắt"
     ],
-    "correctOption": 1,
-    "explanation": "Day 1 Readiness là khái niệm sống còn trong PMI: nếu các hệ thống vận hành cơ bản (IT, nhân sự, tài chính, chuỗi cung ứng) không hoạt động trơn tru ngay khi hai công ty chính thức hợp nhất, hậu quả có thể nghiêm trọng - nhân viên không nhận được lương đúng hạn, khách hàng bị gián đoạn dịch vụ, hoặc dữ liệu tài chính không thể tổng hợp chính xác. Vì những thay đổi hệ thống/quy trình phức tạp (như tích hợp hệ thống ERP, đồng bộ hóa quy trình nhân sự) cần nhiều tháng chuẩn bị, việc lên kế hoạch Day 1 phải bắt đầu SONG SONG với quá trình due diligence, không phải chờ đến khi deal chính thức đóng mới bắt đầu.",
+    "correctOption": 0,
+    "explanation": "Ngày cắt có cả đội theo dõi, có kế hoạch quay lui đã chuẩn bị sẵn, và mọi người đang chú ý vào đúng chỗ đó. Ba tháng sau thì hai bên đã phát hành độc lập nhiều lần, sự chú ý đã chuyển đi nơi khác, và những giả định ngầm giữa hai bên bắt đầu lệch nhau mà không có ai kiểm lại chúng.",
+    "diagram": [
+      {
+        "label": "Ngày cắt: có kế hoạch, có người trực, mọi người đang nhìn",
+        "arrow": true
+      },
+      {
+        "label": "Ba tháng sau: hai bên tiến hoá độc lập, không ai nhìn nữa",
+        "arrow": true
+      },
+      {
+        "label": "Danh sách ngày đầu: quyền, theo dõi, người trực, đường quay lui",
+        "arrow": true
+      },
+      {
+        "label": "Và một mốc rà soát ở ngày ba mươi và ngày chín mươi"
+      }
+    ],
     "realWorldExample": {
-      "company": "Thất bại tích hợp Daimler-Chrysler (1998)",
-      "description": "Thương vụ sáp nhập Daimler-Chrysler trị giá 36 tỷ USD, từng được kỳ vọng tạo ra 'siêu tập đoàn ô tô' toàn cầu, cuối cùng thất bại nghiêm trọng và phải tách ra sau gần một thập kỷ - một trong những nguyên nhân chính được các nhà phân tích chỉ ra là sự thất bại trong quá trình tích hợp văn hóa doanh nghiệp và hệ thống vận hành: sự khác biệt sâu sắc trong phong cách quản lý (Đức - có cấu trúc, thận trọng vs Mỹ - linh hoạt, nhanh nhạy) không được giải quyết thỏa đáng ngay từ giai đoạn đầu, dẫn đến xung đột nội bộ kéo dài, mất nhân tài chủ chốt, và không bao giờ đạt được synergy như kỳ vọng ban đầu."
+      "company": "Giả định ngầm lệch nhau",
+      "description": "Hai bên sau khi tách vẫn mang theo những giả định về nhau: định dạng một trường, thứ tự các bước, việc một thao tác luôn hoàn tất trong một giây. Không giả định nào được viết ra, và chúng bắt đầu lệch ngay từ bản phát hành độc lập đầu tiên."
     },
     "quiz": [
       {
-        "question": "Vì sao 'Cultural Integration' (Tích hợp văn hóa doanh nghiệp) thường được coi là yếu tố khó khăn và bị đánh giá thấp nhất trong các thương vụ M&A, dù các yếu tố tài chính/pháp lý thường được chuẩn bị kỹ lưỡng hơn nhiều?",
+        "question": "Vì sao ba tháng sau khó hơn ngày cắt?",
         "options": [
-          "Văn hóa doanh nghiệp không quan trọng, chỉ các yếu tố tài chính mới thực sự quyết định thành công của M&A",
-          "Văn hóa doanh nghiệp là yếu tố VÔ HÌNH, khó đo lường định lượng như các chỉ số tài chính (khác biệt về phong cách ra quyết định, tốc độ làm việc, mức độ chấp nhận rủi ro, cách giao tiếp nội bộ), khiến nó thường bị đánh giá thấp trong giai đoạn due diligence (vốn tập trung chủ yếu vào con số tài chính/pháp lý) - nhưng lại là nguyên nhân hàng đầu dẫn đến thất bại thực tế của nhiều thương vụ M&A, vì nhân viên chủ chốt rời đi hoặc mất động lực làm việc khi văn hóa xung đột không được xử lý",
-          "Cultural Integration chỉ quan trọng với các thương vụ M&A xuyên biên giới quốc tế, không quan trọng với M&A trong nước",
-          "Vấn đề văn hóa doanh nghiệp luôn tự động được giải quyết theo thời gian mà không cần can thiệp chủ động"
+          "Vì hai bên bắt đầu tiến hoá độc lập trong khi sự chú ý đã chuyển đi nơi khác",
+          "Vì các vấn đề tích tụ dần nên đến lúc đó mới đủ lớn để nhận ra",
+          "Vì đội đã chuyển hẳn sang dự án khác nên cũng không còn nguồn lực nào để xử lý việc này",
+          "Vì những người tham gia tách khối có thể đã rời khỏi dự án"
         ],
-        "correct": 1,
-        "explanation": "Đây là một trong những bài học được lặp lại nhiều nhất trong nghiên cứu M&A: các yếu tố 'cứng' (tài chính, pháp lý, hệ thống) thường được due diligence kỹ lưỡng vì có thể đo lường định lượng rõ ràng, nhưng yếu tố 'mềm' (văn hóa, con người) - dù khó đo lường - lại thường là nguyên nhân thực sự khiến synergy kỳ vọng không thành hiện thực, vì nhân tài chủ chốt (thường là tài sản giá trị nhất của một thương vụ) có xu hướng rời đi khi cảm thấy văn hóa mới không phù hợp."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là vấn đề về nguồn lực và con người. Cái này là vấn đề cấu trúc: sau khi tách, hai bên có quyền đổi độc lập - và đó chính là mục đích của việc tách, nên nó không tránh được mà phải quản lý."
       },
       {
-        "question": "'Synergy Tracking' (theo dõi giá trị cộng hưởng) sau khi deal hoàn tất khác với việc chỉ đơn giản dự báo synergy TRƯỚC khi deal như thế nào, và tại sao nó quan trọng cho vai trò của chuyên viên PMI?",
+        "question": "Giả định ngầm giữa hai bên thường là gì?",
         "options": [
-          "Synergy Tracking không cần thiết một khi deal đã hoàn tất và được phê duyệt",
-          "Synergy Tracking là quá trình ĐO LƯỜNG THỰC TẾ (không chỉ dự báo) mức độ synergy đã đạt được so với mục tiêu ban đầu, thường theo từng mốc thời gian cụ thể (30/60/100 ngày, sau đó theo quý) - vai trò của chuyên viên PMI không kết thúc khi deal đóng, mà tiếp tục qua giai đoạn tích hợp thực tế để đảm bảo các cam kết synergy (cắt giảm chi phí, tăng doanh thu chéo) được HIỆN THỰC HÓA, không chỉ dừng lại ở những con số ước tính trên giấy trong giai đoạn thẩm định ban đầu",
-          "Synergy Tracking chỉ là công việc của bộ phận kế toán, không liên quan đến PMI Specialist",
-          "Mọi thương vụ M&A luôn đạt đúng 100% synergy đã dự báo ban đầu nên không cần theo dõi thêm"
+          "Định dạng một trường, thứ tự các bước, việc một thao tác luôn xong trong một giây",
+          "Cách phân chia trách nhiệm mỗi khi có sự cố xảy ra ở ngay ranh giới giữa hai bên với nhau",
+          "Mức độ ưu tiên mà mỗi bên dành cho các yêu cầu từ bên còn lại",
+          "Lịch phát hành mà mỗi bên dự kiến áp dụng sau khi tách ra"
         ],
-        "correct": 1,
-        "explanation": "Đây là khác biệt quan trọng giữa 'lý thuyết' và 'thực thi' trong M&A: nhiều nghiên cứu chỉ ra rằng phần lớn thương vụ M&A không đạt được đầy đủ synergy đã dự báo ban đầu - vai trò của PMI Specialist chính là đảm bảo khoảng cách này được thu hẹp thông qua theo dõi có hệ thống, xác định sớm các rào cản thực hiện, và điều chỉnh kế hoạch tích hợp khi cần thiết, biến các con số synergy từ 'giả định trên slide thuyết trình' thành 'kết quả tài chính thực tế'."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia là những thoả thuận về tổ chức và chúng thường được bàn tới. Ba giả định kỹ thuật kia thì không ai viết ra vì lúc còn chung khối chúng luôn đúng - và chúng bắt đầu lệch từ bản phát hành độc lập đầu tiên."
       },
       {
-        "question": "'Retention Plan' (Kế hoạch giữ chân nhân tài) cho các vị trí chủ chốt của công ty bị mua lại thường được thiết kế và công bố ở giai đoạn nào của quy trình M&A, và tại sao thời điểm này quan trọng?",
+        "question": "Điều gì phải có trong danh sách sẵn sàng ngày đầu?",
         "options": [
-          "Chỉ cần công bố sau khi deal đã hoàn tất hoàn toàn, không cần chuẩn bị trước",
-          "Nên được thiết kế và công bố CÀNG SỚM CÀNG TỐT, lý tưởng là ngay khi deal được công bố công khai (thậm chí trước khi chính thức đóng) - vì giai đoạn từ khi công bố deal đến khi hoàn tất thường là thời điểm nhân viên chủ chốt của công ty bị mua CẢM THẤY BẤT AN NHẤT về tương lai nghề nghiệp và dễ bị đối thủ 'săn đầu người' nhất, nên retention plan (thưởng giữ chân, cam kết vai trò rõ ràng) cần có mặt sớm để giảm thiểu rủi ro mất nhân tài trước khi tích hợp thực sự bắt đầu",
-          "Retention Plan không cần thiết vì mọi nhân viên đều tự động ở lại sau M&A",
-          "Chỉ cần áp dụng cho nhân viên cấp thấp, không cần cho các vị trí lãnh đạo chủ chốt"
+          "Quyền truy cập, bảng theo dõi, người trực, và đường quay lui - đủ cả bốn",
+          "Tài liệu kiến trúc mô tả đầy đủ ranh giới mới giữa hai hệ thống",
+          "Kế hoạch chi tiết cho việc gỡ bỏ phần mã cũ khỏi khối chung",
+          "Danh sách các bên liên quan cần được thông báo về thay đổi này"
         ],
-        "correct": 1,
-        "explanation": "Thời điểm công bố Retention Plan là yếu tố chiến lược quan trọng: khoảng thời gian 'bất định' giữa lúc công bố deal và khi hoàn tất chính thức là 'cửa sổ rủi ro' cao nhất cho việc mất nhân tài, vì đối thủ cạnh tranh thường chủ động tiếp cận nhân sự giỏi của công ty đang bị mua lại trong giai đoạn này, lợi dụng tâm lý bất an của họ. PMI Specialist giỏi nhận diện sớm những vị trí/cá nhân có nguy cơ cao nhất và đảm bảo họ nhận được sự rõ ràng về vai trò, đãi ngộ càng sớm càng tốt."
+        "correct": 0,
+        "explanation": "Bốn thứ này là điều kiện để bên mới VẬN HÀNH ĐƯỢC từ ngày đầu, và thiếu bất kỳ cái nào thì sự cố đầu tiên sẽ phải nhờ tới bên cũ. Ba lựa chọn kia đều cần và đều không chặn được điều đó."
+      },
+      {
+        "question": "Vì sao cần một mốc rà soát ở ngày ba mươi và ngày chín mươi?",
+        "options": [
+          "Vì nếu không đặt lịch trước thì không ai quay lại nhìn khi mọi thứ có vẻ ổn",
+          "Vì cần thời gian đủ dài để đánh giá được hiệu quả của việc tách khối",
+          "Vì các vấn đề thường xuất hiện theo chu kỳ hằng tháng của hệ thống",
+          "Vì cần báo cáo tiến độ cho tất cả các bên liên quan theo đúng định kỳ đã cam kết từ đầu"
+        ],
+        "correct": 0,
+        "explanation": "Chữ CÓ VẺ ỔN là mấu chốt: không có sự cố nào không đồng nghĩa với việc mọi thứ đang đúng. Những giả định lệch nhau tích tụ im lặng, và chỉ một buổi rà soát có lịch mới bắt được chúng trước sự cố đầu tiên."
+      },
+      {
+        "question": "Nên làm gì với những giả định ngầm giữa hai bên?",
+        "options": [
+          "Viết chúng ra thành hợp đồng rõ ràng và kiểm chúng bằng phép kiểm tự động",
+          "Thống nhất bằng lời giữa hai đội trong buổi họp bàn giao trước ngày cắt",
+          "Ghi chúng vào tài liệu kiến trúc để cả hai bên cùng tham chiếu về sau",
+          "Yêu cầu hai bên thông báo cho nhau trước mỗi lần thay đổi ở ranh giới"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều dựa vào việc con người nhớ và tuân thủ. Phép kiểm tự động thì chạy ở mỗi bản thay đổi và nó báo ngay khi một giả định bị phá - trước khi bản đó lên môi trường thật."
       }
     ],
     "keyTakeaways": [
-      "Day 1 Readiness đảm bảo các hoạt động vận hành thiết yếu (IT, lương, chuỗi cung ứng) trơn tru ngay từ ngày hợp nhất chính thức - cần chuẩn bị song song với due diligence, không chờ đến khi deal đóng",
-      "Cultural Integration thường bị đánh giá thấp trong due diligence (khó đo lường định lượng) nhưng là nguyên nhân hàng đầu khiến thương vụ M&A thất bại trong thực tế",
-      "Synergy Tracking sau deal là quá trình đo lường THỰC TẾ (không chỉ dự báo) mức độ synergy đạt được - vai trò PMI Specialist tiếp tục lâu sau khi deal đóng",
-      "Retention Plan cho nhân tài chủ chốt cần công bố sớm (ngay khi deal được công bố công khai) để giảm rủi ro mất người trong giai đoạn bất định trước khi tích hợp"
+      "Ngày cắt có kế hoạch và người nhìn; ba tháng sau thì không ai nhìn nữa.",
+      "Giả định ngầm - định dạng, thứ tự, thời gian - không ai viết ra vì lúc chung khối chúng luôn đúng.",
+      "Danh sách ngày đầu: quyền, theo dõi, người trực, đường quay lui - đủ cả bốn.",
+      "Đặt mốc rà soát ngày ba mươi và chín mươi, vì không có sự cố khác với đang đúng.",
+      "Biến giả định thành HỢP ĐỒNG có phép kiểm tự động, đừng dựa vào việc nhớ."
     ],
     "practicePrompt": {
-      "question": "Bạn là PMI Specialist chuẩn bị cho một thương vụ mua lại sắp công bố công khai trong 2 tuần tới. Ban lãnh đạo hỏi bạn nên ưu tiên hành động nào TRƯỚC TIÊN trong kế hoạch tích hợp?",
+      "question": "Sau khi tách, ba tháng không có sự cố nào. Kết luận gì?",
       "options": [
-        "Chờ đến khi deal chính thức đóng (thường 3-6 tháng sau) mới bắt đầu lên kế hoạch bất kỳ điều gì",
-        "Chốt retention plan cho nhân sự chủ chốt và kế hoạch Day 1 cho hệ thống thiết yếu",
-        "Chỉ tập trung vào việc thiết kế logo và bộ nhận diện thương hiệu mới",
-        "Không cần làm gì cho đến khi có yêu cầu cụ thể từ ban lãnh đạo"
+        "Chưa kết luận được - phải kiểm những giả định giữa hai bên còn đúng không",
+        "Việc tách đã thành công và có thể chuyển sự chú ý sang việc khác",
+        "Cần thêm thời gian theo dõi trước khi kết luận về mức độ thành công",
+        "Ranh giới giữa hai bên đã được thiết kế đúng ngay từ đầu"
       ],
-      "correct": 1,
-      "explanation": "Đây là ứng dụng thực hành trực tiếp của cả hai khái niệm quan trọng nhất trong bài học: retention plan và Day 1 readiness đều cần được khởi động SỚM (trước khi deal chính thức đóng), vì đây chính là giai đoạn rủi ro cao nhất - nhân tài dễ bị mất, và các thay đổi hệ thống phức tạp cần nhiều thời gian chuẩn bị không thể thực hiện vội vàng chỉ trong vài ngày sau khi deal đóng."
+      "correct": 0,
+      "explanation": "Lựa chọn thứ ba đúng hướng và nó chỉ đề nghị chờ lâu hơn. Chờ không phát hiện được giả định đã lệch - chỉ một lượt kiểm chủ động mới bắt được chúng, và bắt trước sự cố thì rẻ hơn nhiều lần."
     },
     "summary": {
-      "keyIdea": "Post-Merger Integration thành công đòi hỏi chuẩn bị Day 1 Readiness và Retention Plan từ RẤT SỚM (song song với due diligence), với chú trọng đặc biệt đến Cultural Integration - yếu tố vô hình nhưng thường là nguyên nhân thực sự khiến nhiều thương vụ M&A không đạt được synergy như kỳ vọng.",
-      "commonMistake": "Tập trung phần lớn nguồn lực chuẩn bị vào các yếu tố tài chính/pháp lý của deal, trong khi chỉ bắt đầu lên kế hoạch tích hợp vận hành/văn hóa SAU KHI deal đã chính thức đóng",
-      "action": "Với bất kỳ thương vụ M&A nào đang chuẩn bị, bắt đầu song song 3 việc ngay từ giai đoạn due diligence: lập kế hoạch Day 1 Readiness, xác định retention plan cho nhân tài chủ chốt, và đánh giá mức độ tương thích văn hóa giữa hai tổ chức"
+      "keyIdea": "Ngày cắt là ngày dễ nhất; những thứ hỏng trong ba tháng sau mới là phần khó.",
+      "formula": "Bốn thứ cho ngày đầu + hợp đồng có phép kiểm + mốc rà soát ngày 30 và 90.",
+      "commonMistake": "Kết thúc kế hoạch ở ngày cắt, khi phần khó còn chưa bắt đầu.",
+      "action": "Với lần tách gần nhất, đặt một mốc rà soát vào lịch nếu chưa có."
     },
     "application": {
-      "title": "Áp dụng vào công việc Post-Merger Integration",
-      "message": "Nghiên cứu một thương vụ M&A lớn đã công bố công khai gần đây - tìm hiểu timeline tích hợp của họ (nếu có thông tin công khai) và thử xác định các yếu tố Day 1 Readiness họ có thể đã phải chuẩn bị.",
-      "secondary": "Kỹ năng cân bằng giữa yếu tố 'cứng' (hệ thống, quy trình) và 'mềm' (văn hóa, con người) trong tích hợp là điều phân biệt một PMI Specialist xuất sắc với người chỉ tập trung vào checklist vận hành thuần túy."
+      "title": "Làm ngay hôm nay",
+      "message": "Với lần tách khối gần nhất của đội bạn, viết ra ba giả định mà hai bên đang ngầm dựa vào nhau - định dạng dữ liệu, thứ tự thao tác, hay thời gian phản hồi.",
+      "secondary": "Rồi biến ít nhất một trong ba thành một phép kiểm tự động. Nó chạy ở mỗi bản thay đổi và báo ngay khi giả định bị phá, thay vì để bạn phát hiện qua một sự cố."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Ký kết một thương vụ M&A chỉ là bước khởi đầu - phần lớn giá trị thực sự (hoặc thất bại) của deal được quyết định trong những tháng đầu tiên sau đó, khi hai tổ chức thực sự phải hòa hợp với nhau trong công việc hàng ngày."
+        "text": "Kế hoạch tách khối thường kết thúc ở ngày cắt, trong khi phần lớn vấn đề chỉ xuất hiện khi hai bên bắt đầu tiến hoá độc lập."
       },
       {
         "type": "heading",
-        "text": "Day 1 Readiness - Không được phép Gián đoạn"
+        "text": "Vì sao ngày cắt là ngày dễ"
       },
       {
-        "type": "paragraph",
-        "text": "Ngày hai công ty chính thức hợp nhất về mặt pháp lý, mọi hoạt động vận hành cơ bản phải tiếp tục trơn tru: nhân viên vẫn nhận lương đúng hạn, khách hàng vẫn được phục vụ không gián đoạn, hệ thống IT có thể giao tiếp với nhau (dù chưa cần tích hợp hoàn toàn). Vì những thay đổi hệ thống phức tạp cần nhiều tháng chuẩn bị, kế hoạch Day 1 phải bắt đầu song song với quá trình due diligence, không phải đợi đến khi deal chính thức đóng."
+        "type": "comparison",
+        "left": {
+          "label": "Ngày cắt",
+          "text": "Có kế hoạch, có người trực, có đường quay lui, và mọi người đang chú ý."
+        },
+        "right": {
+          "label": "Ngày thứ chín mươi",
+          "text": "Hai bên đã phát hành độc lập nhiều lần, sự chú ý chuyển đi nơi khác, và không ai đang nhìn ranh giới giữa chúng."
+        }
       },
       {
         "type": "heading",
-        "text": "Cultural Integration - Thách thức Vô hình nhưng Quyết định"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khác biệt về phong cách quản lý, tốc độ ra quyết định, mức độ chấp nhận rủi ro giữa hai tổ chức thường bị đánh giá thấp trong quá trình due diligence (vốn tập trung vào số liệu tài chính đo lường được), nhưng lại là nguyên nhân hàng đầu khiến nhiều thương vụ M&A lớn thất bại trong thực tế - khi nhân tài chủ chốt cảm thấy không phù hợp với văn hóa mới và rời đi, giá trị thực sự của thương vụ (thường nằm ở con người và tri thức, không chỉ tài sản hữu hình) bị xói mòn nghiêm trọng."
-      },
-      {
-        "type": "heading",
-        "text": "Synergy Tracking - Từ Dự báo đến Hiện thực"
-      },
-      {
-        "type": "paragraph",
-        "text": "Vai trò của PMI Specialist không kết thúc khi deal đóng - công việc thực sự quan trọng là đảm bảo các cam kết synergy (tiết kiệm chi phí, tăng doanh thu chéo) được HIỆN THỰC HÓA qua theo dõi có hệ thống, thường theo các mốc 30/60/100 ngày rồi tiếp tục theo quý, xác định sớm các rào cản và điều chỉnh kế hoạch khi cần."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba mặt trận của một thương vụ sau khi ký",
-        "subtitle": "Định giá quyết định giá phải trả; ba việc dưới đây quyết định có thu lại được không",
-        "concepts": [
-          {
-            "vi": "Sẵn sàng ngày đầu",
-            "en": "Day 1 Readiness",
-            "def": "Lương trả đúng hạn, hệ thống chạy, khách hàng không thấy gián đoạn. Không được phép có sự cố ở đây, vì nó định hình niềm tin của toàn bộ giai đoạn sau."
-          },
-          {
-            "vi": "Hoà nhập văn hoá",
-            "en": "Cultural Integration",
-            "def": "Phần vô hình và quyết định nhất. Nhân sự chủ chốt rời đi trong sáu tháng đầu là cách phổ biến nhất để một thương vụ mất đúng thứ nó vừa mua."
-          },
-          {
-            "vi": "Theo dõi cộng hưởng",
-            "en": "Synergy Tracking",
-            "def": "Đo từng khoản cộng hưởng đã hứa so với thực tế, có người chịu trách nhiệm cho từng khoản. Không đo thì con số cộng hưởng chỉ tồn tại trong bản trình bày duyệt thương vụ."
-          }
-        ]
+        "text": "Thứ lệch đi im lặng"
       },
       {
         "type": "callout",
-        "label": "Đáng nhớ",
-        "text": "Phần lớn thương vụ thất bại không thất bại ở khâu định giá mà ở khâu tích hợp. Mô hình cho biết nên trả bao nhiêu; nó không nói gì về việc hai tổ chức có làm việc được với nhau hay không."
+        "label": "Giả định ngầm",
+        "text": "Định dạng một trường, thứ tự các bước, việc một thao tác luôn hoàn tất trong một giây. Không ai viết chúng ra vì lúc còn chung khối chúng luôn đúng - và chúng bắt đầu lệch ngay từ bản phát hành độc lập đầu tiên."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách xử lý không phải là ghi chúng vào tài liệu hay thoả thuận bằng lời. Cả hai đều dựa vào việc con người nhớ. Biến chúng thành HỢP ĐỒNG có phép kiểm tự động thì phép kiểm chạy ở mỗi bản thay đổi và báo ngay khi một giả định bị phá."
+      },
+      {
+        "type": "heading",
+        "text": "Danh sách ngày đầu"
+      },
+      {
+        "type": "list",
+        "items": [
+          "QUYỀN TRUY CẬP đầy đủ cho bên mới, và bên cũ không còn giữ lại.",
+          "BẢNG THEO DÕI riêng, với ngưỡng cảnh báo của nó.",
+          "NGƯỜI TRỰC có tên, biết cách xử lý sự cố của phần này.",
+          "ĐƯỜNG QUAY LUI còn dùng được, không phải chỉ tồn tại trong tài liệu."
+        ]
       },
       {
         "type": "closing",
         "lines": [
-          "'100 ngày đầu tiên' đã trở thành một khái niệm kinh điển trong M&A vì đây là khoảng thời gian quyết định liệu một thương vụ có thực sự tạo ra giá trị như kỳ vọng hay chỉ là một giao dịch tài chính thành công trên giấy nhưng thất bại trong thực thi.",
-          "Chuyên viên PMI giỏi hiểu rằng công việc thực sự khó khăn bắt đầu SAU KHI deal đóng, không phải kết thúc tại đó."
+          "Bốn thứ này là điều kiện để bên mới vận hành ĐƯỢC từ ngày đầu - thiếu bất kỳ cái nào thì sự cố đầu tiên sẽ phải nhờ tới bên cũ, và việc tách chưa hoàn tất.",
+          "Cuối cùng, đặt mốc rà soát ở ngày ba mươi và ngày chín mươi. Không có sự cố nào KHÔNG đồng nghĩa với mọi thứ đang đúng, và chỉ một buổi rà soát có lịch mới bắt được điều đó."
         ]
       }
-    ],
-    "diagram": [
-      {
-        "label": "Trước ngày đóng deal: chuẩn bị vận hành không gián đoạn",
-        "arrow": true
-      },
-      {
-        "label": "Ngày 1: công bố rõ cơ cấu báo cáo và giữ chân người chủ chốt",
-        "arrow": true
-      },
-      {
-        "label": "100 ngày đầu: tích hợp văn hóa và hệ thống",
-        "arrow": true
-      },
-      {
-        "label": "Theo dõi cộng hưởng thực tế so với cam kết trong mô hình",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "accretion",
+    ]
   },
   {
     "id": 1261,

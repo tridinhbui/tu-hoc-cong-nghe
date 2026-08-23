@@ -13,177 +13,153 @@ import type { Lesson } from "./lesson-types";
 export const QUANT_METHODS_LESSONS: Lesson[] = [
   {
     id: 1421,
-    slug: "phan-phoi-xac-suat-trong-tai-chinh",
-    title: "Định lượng, Bài 1: Phân phối xác suất trong tài chính - và vì sao đuôi luôn dày hơn bạn nghĩ",
-    subtitle: "Phân phối chuẩn, phân phối loga chuẩn, độ lệch và độ nhọn: bốn con số mô tả một chuỗi lợi suất",
-    duration: "11 phút",
-    difficulty: "Khó",
-    emoji: "🎲",
+    slug: "phan-phoi-va-duoi-day-trong-so-lieu",
+    title: "Định lượng, Bài 1: Phân phối và đuôi dày - vì sao số liệu vận hành không đối xứng",
+    subtitle: "Trung bình cộng độ lệch chuẩn là bộ đôi đúng cho một hình dạng mà dữ liệu của bạn hiếm khi có",
+    duration: "8 phút",
+    difficulty: "Trung bình",
+    emoji: "📈",
     track: "professional",
     whyItMatters:
-      "Gần như mọi mô hình rủi ro bạn sẽ gặp - VaR, Black-Scholes, tối ưu danh mục - đều bắt đầu bằng một giả định về phân phối lợi suất. Nếu giả định đó sai, mọi con số phía sau đều sai theo một cách có hệ thống, và luôn sai theo hướng đánh giá thấp rủi ro.",
-    openingQuestion:
-      "Vì sao giả định lợi suất cổ phiếu tuân theo phân phối chuẩn lại nguy hiểm trong quản trị rủi ro?",
+      "Mọi bảng điều khiển đều mặc định hiển thị trung bình, và mọi cảnh báo đều mặc định đặt ở vài lần độ lệch chuẩn. Cả hai giả định một hình dạng phân phối mà phần lớn số liệu vận hành không có, nên chúng bỏ sót đúng nhóm đáng chú ý.",
+    openingQuestion: "Vì sao trung bình và độ lệch chuẩn hay mô tả sai số liệu vận hành?",
     openingOptions: [
-      "Vì phân phối chuẩn khó tính toán trên máy tính",
-      "Vì lợi suất thực tế có đuôi dày hơn chuẩn",
-      "Vì phân phối chuẩn chỉ áp dụng cho trái phiếu",
-      "Vì phân phối chuẩn luôn cho kết quả bi quan quá mức",
+      "Vì phần lớn số liệu đó lệch phải và có đuôi dài, không đối xứng",
+      "Vì số lượng quan sát thường quá ít để hai đại lượng này có ý nghĩa thống kê",
+      "Vì dữ liệu vận hành thường chứa nhiều giá trị bất thường cần được loại bỏ trước",
+      "Vì các đại lượng này thay đổi liên tục nên giá trị đo được nhanh chóng lỗi thời",
     ],
-    correctOption: 1,
+    correctOption: 0,
     explanation:
-      "Theo phân phối chuẩn, một biến động 5 độ lệch chuẩn xảy ra khoảng một lần trong vài triệu ngày giao dịch, tức hầu như không bao giờ. Trên thị trường thật, các cú như vậy xuất hiện vài lần trong một đời người đầu tư. Hiện tượng này gọi là đuôi dày, và hệ quả trực tiếp là mọi mô hình rủi ro dựa trên phân phối chuẩn đều đánh giá thấp một cách có hệ thống xác suất của thảm họa - đúng vào lúc bạn cần nó chính xác nhất.",
+      "Trung bình và độ lệch chuẩn mô tả đầy đủ một phân phối đối xứng hình chuông và gần như không mô tả gì về một phân phối lệch. Số liệu vận hành hầu hết đều lệch: kích thước tệp người dùng tải lên, số bản ghi mỗi tài khoản, thời gian chạy một công việc nền, số lần thử lại. Chúng có sàn ở không, không có trần rõ ràng, và một phần nhỏ quan sát lớn hơn phần còn lại nhiều bậc. Với hình dạng đó, trung bình nằm ở một chỗ mà rất ít quan sát thật rơi vào, và cộng thêm hai lần độ lệch chuẩn cũng không chạm tới nhóm gây ra vấn đề. Ba lý do kia đều có thật và đều xử lý được; hình dạng phân phối thì không xử lý được bằng cách thu thập thêm dữ liệu.",
     diagram: [
-      { label: "Chuỗi giá", arrow: true },
-      { label: "Chuyển thành lợi suất loga", arrow: true },
-      { label: "Mô tả bằng 4 mô men: trung bình, độ lệch chuẩn, độ lệch, độ nhọn", arrow: true },
-      { label: "Kiểm tra giả định trước khi mô hình hóa" },
+      { label: "Sàn ở không, không có trần rõ ràng", arrow: true },
+      { label: "Phần lớn quan sát nhỏ, một số ít lớn hơn nhiều bậc", arrow: true },
+      { label: "Trung bình rơi vào chỗ ít quan sát thật", arrow: true },
+      { label: "Phải đọc bằng phân vị, không bằng trung bình" },
     ],
+    interactiveType: "tail-risk",
     realWorldExample: {
-      company: "Ngày 19/10/1987",
+      company: "Trung bình tám bản ghi",
       description:
-        "Chỉ số Dow Jones giảm hơn 22% trong một phiên. Theo mô hình phân phối chuẩn dựa trên biến động khi đó, xác suất của một sự kiện như vậy nhỏ tới mức nó không được kỳ vọng xảy ra dù thị trường có tồn tại lâu hơn tuổi của vũ trụ. Nó vẫn xảy ra. Đó là bằng chứng thực nghiệm mạnh nhất cho thấy phân phối chuẩn không mô tả đúng đuôi của thị trường tài chính.",
+        "Một đội thấy mỗi tài khoản có trung bình khoảng tám bản ghi và thiết kế giao diện cùng truy vấn theo con số đó. Thực tế phần lớn tài khoản có một tới hai bản ghi, và vài chục tài khoản có hàng chục nghìn. Trung bình tám không mô tả tài khoản nào cả, và chính nhóm hàng chục nghìn mới là nhóm làm màn hình danh sách sập.",
     },
     quiz: [
       {
-        question: "Vì sao giá cổ phiếu thường được mô hình hóa bằng phân phối loga chuẩn thay vì phân phối chuẩn?",
+        question: "Đại lượng nào mô tả số liệu lệch phải tốt hơn trung bình?",
         options: [
-          "Vì loga chuẩn tính toán nhanh hơn trên máy",
-          "Vì giá không thể âm và tăng trưởng mang tính nhân",
-          "Vì chuẩn mực yêu cầu trình bày theo thang loga",
-          "Vì loga chuẩn có phương sai bằng 0",
-        ],
-        correct: 1,
-        explanation:
-          "Nếu lợi suất loga tuân theo phân phối chuẩn thì giá tuân theo phân phối loga chuẩn. Điều này khớp với hai đặc điểm thực tế: giá luôn dương và tăng trưởng mang tính nhân, không cộng.",
-      },
-      {
-        question: "Độ lệch (skewness) âm của chuỗi lợi suất nghĩa là gì?",
-        options: [
-          "Lợi suất trung bình của cả giai đoạn quan sát là một số âm",
-          "Đuôi trái dài hơn: cú giảm cực đoan lớn hơn cú tăng cực đoan",
-          "Phương sai của chuỗi lợi suất mang giá trị âm trong giai đoạn đó",
-          "Dữ liệu bị lỗi, vì độ lệch của một chuỗi lợi suất không thể âm",
-        ],
-        correct: 1,
-        explanation:
-          "Chỉ số cổ phiếu thường có độ lệch âm. Điều này quan trọng vì độ lệch chuẩn đối xử với tăng và giảm như nhau, nên nó che giấu đúng loại rủi ro mà nhà đầu tư sợ nhất.",
-      },
-      {
-        question: "Độ nhọn vượt trội (excess kurtosis) dương phản ánh điều gì?",
-        options: [
-          "Đuôi dày hơn phân phối chuẩn: cực đoan xảy ra thường xuyên hơn",
-          "Trung bình của phân phối cao hơn trung bình của phân phối chuẩn tương ứng",
-          "Chuỗi dữ liệu có xu hướng tăng rõ rệt trong suốt giai đoạn quan sát",
-          "Phương sai của chuỗi bằng 0, nghĩa là lợi suất hầu như không dao động",
+          "Trung vị kèm vài phân vị cao",
+          "Trung bình sau khi đã loại bỏ các giá trị bất thường ở hai đầu của phân phối",
+          "Độ lệch chuẩn vì nó cho biết mức độ phân tán của dữ liệu quanh giá trị trung tâm",
+          "Giá trị lớn nhất và nhỏ nhất để biết được khoảng biến thiên của toàn bộ dữ liệu",
         ],
         correct: 0,
         explanation:
-          "Phân phối chuẩn có độ nhọn bằng 3, nên độ nhọn vượt trội được tính bằng độ nhọn trừ 3. Hầu hết chuỗi lợi suất tài sản tài chính có độ nhọn vượt trội dương rõ rệt, đặc biệt ở tần suất ngày.",
+          "Trung vị nói phần lớn quan sát nằm quanh đâu, và các phân vị cao nói cái đuôi lớn tới mức nào. Hai thứ ấy cùng nhau mô tả được hình dạng lệch, còn loại bỏ giá trị bất thường thì chính là vứt đi nhóm mà bạn cần biết nhất.",
       },
       {
-        question: "Vì sao độ lệch chuẩn một mình là thước đo rủi ro không đầy đủ?",
+        question: "Vì sao đặt ngưỡng cảnh báo ở trung bình cộng hai lần độ lệch chuẩn lại hỏng với dữ liệu lệch?",
         options: [
-          "Vì nó đòi hỏi quá nhiều dữ liệu lịch sử mới ước lượng được chính xác",
-          "Vì nó coi biến động tăng và giảm như nhau, nên bỏ sót rủi ro đuôi",
-          "Vì nó luôn cho kết quả cao hơn mức rủi ro mà nhà đầu tư thực sự chịu",
-          "Vì nó chỉ áp dụng được cho danh mục có trên một trăm mã cổ phiếu khác nhau",
+          "Vì ngưỡng đó vẫn nằm dưới nhóm gây ra vấn đề, nên báo động liên tục",
+          "Vì độ lệch chuẩn của dữ liệu lệch thường rất lớn nên ngưỡng bị đẩy lên quá cao",
+          "Vì trung bình biến động nên ngưỡng không ổn định",
+          "Vì cần ít nhất ba lần độ lệch chuẩn mới phủ được phần lớn các quan sát bình thường",
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Một danh mục bán quyền chọn có thể có độ lệch chuẩn rất thấp trong nhiều năm rồi mất một nửa giá trị trong một tuần. Độ lệch chuẩn hoàn toàn không thấy được rủi ro dạng này; cần thêm độ lệch, độ nhọn và các thước đo đuôi.",
+          "Quy tắc hai lần độ lệch chuẩn phủ khoảng chín mươi lăm phần trăm quan sát chỉ khi phân phối là hình chuông. Với phân phối lệch, phần trên ngưỡng đó nhiều hơn hẳn, nên cảnh báo kêu suốt và người ta tắt nó đi - kết cục tệ hơn cả không có cảnh báo.",
       },
       {
-        question: "Trong tài chính, vì sao thường dùng lợi suất loga thay vì lợi suất số học?",
+        question: "Dữ liệu có hai đỉnh rõ rệt thường có nghĩa là gì?",
         options: [
-          "Vì lợi suất loga luôn lớn hơn nên trông đẹp hơn",
-          "Vì lợi suất loga cộng được qua nhiều kỳ liên tiếp",
-          "Vì sở giao dịch chỉ công bố theo thang loga",
-          "Vì lấy loga loại bỏ được rủi ro đuôi",
+          "Bạn đang gộp hai nhóm khác nhau vào cùng một phép đo",
+          "Có hai loại sự cố khác nhau cùng ảnh hưởng tới chỉ số này trong kỳ đo",
+          "Dữ liệu bị nhiễu và cần được làm mượt trước khi phân tích để thấy xu hướng",
+          "Hệ thống có hai chế độ hoạt động khác nhau tuỳ theo tải ở từng thời điểm",
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Lợi suất loga của nhiều kỳ liên tiếp cộng lại thành lợi suất loga của cả giai đoạn, trong khi lợi suất số học thì phải nhân. Tính chất cộng này khiến toàn bộ bộ máy thống kê dựa trên phân phối chuẩn trở nên áp dụng được.",
+          "Hai đỉnh gần như luôn là dấu hiệu của việc trộn: yêu cầu có trong bộ nhớ đệm và không có, người dùng mới và cũ, hai đường mã khác nhau. Tách ra rồi đo riêng cho hai phân phối đơn giản hơn nhiều, và mọi con số tổng hợp trên dữ liệu trộn đều không mô tả nhóm nào.",
       },
-    ],
-    keyTakeaways: [
-      "Bốn mô men mô tả một chuỗi lợi suất: trung bình, độ lệch chuẩn, độ lệch, độ nhọn - dừng ở hai mô men đầu là bỏ sót rủi ro đuôi",
-      "Giá được mô hình hóa bằng phân phối loga chuẩn vì giá không âm và tăng trưởng mang tính nhân",
-      "Lợi suất thị trường thật có đuôi dày và độ lệch âm, khác rõ so với phân phối chuẩn",
-      "Mọi mô hình rủi ro giả định phân phối chuẩn đều đánh giá thấp xác suất thảm họa một cách có hệ thống",
+      {
+        question: "Vì sao nhiều đại lượng vận hành có phân phối lệch phải?",
+        options: [
+          "Vì chúng có sàn ở không mà không có trần tương ứng ở phía trên",
+          "Vì sự cố hiếm tạo ra giá trị lớn bất thường",
+          "Vì cách thu thập bỏ sót giá trị nhỏ",
+          "Vì người dùng hành xử rất khác nhau",
+        ],
+        correct: 0,
+        explanation:
+          "Đây là ràng buộc cấu trúc chứ không phải hiện tượng: thời gian chạy không âm được, kích thước tệp không âm được, số lần thử lại không âm được. Bên trái bị chặn cứng còn bên phải thì mở, nên hình dạng lệch phải là mặc định chứ không phải ngoại lệ cần giải thích.",
+      },
+      {
+        question: "Muốn biết dữ liệu của mình có hình dạng gì thì làm cách nào rẻ nhất?",
+        options: [
+          "Vẽ biểu đồ tần suất một lần, thay vì đọc các con số tổng hợp",
+          "Tính hệ số bất đối xứng và độ nhọn để xác định phân phối lệch tới mức nào",
+          "So sánh giá trị trung bình với trung vị để biết mức độ lệch của phân phối",
+          "Kiểm định thống kê để xác định dữ liệu có tuân theo phân phối chuẩn hay không",
+        ],
+        correct: 0,
+        explanation:
+          "Ba cách kia đều cho ra một con số về hình dạng, và một con số thì không cho thấy hai đỉnh, không cho thấy một cụm giá trị bằng đúng ngưỡng thời gian chờ, không cho thấy khoảng trống ở giữa. Một biểu đồ tần suất mất năm phút và cho thấy tất cả những thứ đó cùng lúc.",
+      },
     ],
     practicePrompt: {
       question:
-        "Một quỹ khoe rằng trong 5 năm chỉ có 3 tháng lỗ và độ lệch chuẩn rất thấp. Bạn nên hỏi thêm điều gì?",
+        "Bảng điều khiển của bạn hiển thị trung bình thời gian xử lý công việc nền. Nên đổi thành gì?",
       options: [
-        "Quỹ có bao nhiêu nhân sự",
-        "Lợi suất có lệch âm và đuôi dày không",
-        "Quỹ có đăng ký hoạt động hợp pháp không",
-        "Phí quản lý là bao nhiêu",
+        "Trung vị kèm phân vị 95 và 99, và một biểu đồ tần suất xem một lần",
+        "Trung bình kèm độ lệch chuẩn để thấy mức phân tán",
+        "Giá trị lớn nhất trong mỗi khoảng thời gian để phát hiện các trường hợp xấu nhất",
+        "Trung bình được tính trên một cửa sổ trượt để giảm ảnh hưởng của biến động ngắn hạn",
       ],
-      correct: 1,
+      correct: 0,
       explanation:
-        "Chuỗi lợi nhuận quá đều là tín hiệu cảnh báo, không phải điểm cộng. Các chiến lược bán biến động, cho vay ký quỹ hay arbitrage tín dụng đều tạo ra hình dạng lợi suất này: hàng chục tháng lãi nhỏ đều đặn, rồi một tháng xóa sạch. Độ lệch chuẩn thấp đang che giấu chứ không phản ánh rủi ro.",
+        "Trung vị nói phần lớn công việc mất bao lâu, phân vị cao nói nhóm chậm nhất tệ tới đâu, và biểu đồ tần suất cho thấy hình dạng mà không con số tổng hợp nào cho thấy. Giá trị lớn nhất thì quá nhạy với một quan sát duy nhất, còn cửa sổ trượt chỉ làm mượt một đại lượng vốn đã mô tả sai.",
     },
+    keyTakeaways: [
+      "Trung bình và độ lệch chuẩn mô tả đầy đủ đúng một hình dạng, và dữ liệu vận hành hiếm khi có nó",
+      "Sàn ở không mà không có trần làm phân phối lệch phải trở thành mặc định",
+      "Hai đỉnh gần như luôn có nghĩa là đang gộp hai nhóm khác nhau",
+      "Một biểu đồ tần suất cho thấy nhiều hơn mọi con số tổng hợp cộng lại",
+    ],
     summary: {
-      keyIdea: "Trung bình và độ lệch chuẩn chỉ mô tả nửa câu chuyện; rủi ro thật nằm ở đuôi",
-      formula: "Lợi suất loga = ln(P_t / P_t−1)",
-      commonMistake: "Dùng phân phối chuẩn cho mọi thứ vì nó tiện, rồi ngạc nhiên khi sự kiện không thể xảy ra lại xảy ra",
-      action: "Lấy dữ liệu lợi suất ngày của VN-Index một năm, tính bốn mô men và so đuôi thực tế với dự đoán của phân phối chuẩn.",
+      keyIdea: "Số liệu vận hành lệch phải theo cấu trúc, nên bộ đôi trung bình và độ lệch chuẩn mô tả sai nó",
+      commonMistake: "Đặt ngưỡng cảnh báo ở trung bình cộng hai lần độ lệch chuẩn, rồi tắt cảnh báo vì nó kêu suốt",
+      action: "Vẽ biểu đồ tần suất của ba chỉ số bạn hay dùng nhất, một lần, rồi quyết định đọc chúng bằng gì.",
     },
     application: {
-      title: "Kiểm tra giả định trước khi tin mô hình",
+      title: "Năm phút vẽ, đổi cách đọc mãi mãi",
       message:
-        "Trước khi dùng bất kỳ con số rủi ro nào người khác đưa, hãy hỏi mô hình giả định phân phối gì. Nếu câu trả lời là phân phối chuẩn, hãy tự động coi ước lượng rủi ro đuôi là quá lạc quan và hỏi tiếp: kết quả sẽ ra sao trong kịch bản xấu nhất từng xảy ra trong lịch sử.",
-      secondary: "Cách kiểm tra rẻ nhất: đếm số lần lợi suất vượt 3 độ lệch chuẩn trong dữ liệu thật, rồi so với con số phân phối chuẩn dự báo.",
+        "Với mỗi chỉ số quan trọng, vẽ biểu đồ tần suất một lần. Nếu nó lệch hoặc có hai đỉnh, thay trung bình bằng trung vị kèm phân vị cao.",
+      secondary:
+        "Hai đỉnh là tín hiệu tách nhóm: tìm biến phân loại nào chia được chúng ra rồi đo riêng từng nhóm.",
     },
     sections: [
       {
         type: "lead",
-        text: "Thống kê trong tài chính không bắt đầu bằng công thức mà bằng một câu hỏi khiêm tốn: chuỗi số này có hình dạng thế nào. Trả lời sai câu đó thì mọi thứ tinh vi xây phía trên chỉ làm sai lầm trông đáng tin hơn.",
+        text: "Bảng điều khiển nào cũng bắt đầu bằng trung bình, và cảnh báo nào cũng bắt đầu bằng độ lệch chuẩn. Cả hai lựa chọn mặc định ấy giả định một hình dạng phân phối cụ thể.",
       },
       {
         type: "heading",
-        text: "Bốn con số mô tả một chuỗi lợi suất",
+        text: "Lệch phải là mặc định, không phải ngoại lệ",
       },
       {
-        type: "conceptTable",
-        title: "Bốn mô men",
-        subtitle: "Mỗi mô men trả lời một câu hỏi khác nhau về cùng một chuỗi dữ liệu",
-        concepts: [
-          { vi: "Trung bình", en: "Mean", def: "Lợi suất kỳ vọng. Cần rất nhiều dữ liệu để ước lượng chính xác, nên gần như luôn là con số đáng ngờ nhất trong mọi mô hình." },
-          { vi: "Độ lệch chuẩn", en: "Standard deviation", def: "Mức phân tán quanh trung bình. Ước lượng ổn định hơn trung bình nhiều, nhưng đối xử với tăng và giảm như nhau." },
-          { vi: "Độ lệch", en: "Skewness", def: "Phân phối nghiêng về phía nào. Âm nghĩa là đuôi trái dài hơn - đặc trưng của chỉ số cổ phiếu và của các chiến lược bán rủi ro." },
-          { vi: "Độ nhọn", en: "Kurtosis", def: "Đuôi dày cỡ nào. Vượt trội dương nghĩa là sự kiện cực đoan xảy ra thường xuyên hơn phân phối chuẩn dự báo." },
-        ],
-      },
-      {
-        type: "formula",
-        title: "Vì sao dùng lợi suất loga",
-        label: "Tính cộng qua thời gian",
-        equation: "r_t = ln(P_t / P_t−1)",
-        variables: [
-          { symbol: "P_t", name: "Giá tại thời điểm t", description: "Đã điều chỉnh cổ tức và chia tách" },
-          { symbol: "r_t", name: "Lợi suất loga kỳ t", description: "Cộng dồn được: lợi suất cả năm bằng tổng lợi suất từng ngày" },
-        ],
-        example: {
-          title: "Kiểm chứng nhanh",
-          calculation: "Giá 100 lên 110 rồi về 100: lợi suất loga = ln(1,1) + ln(0,909) = 0,0953 − 0,0953",
-          result: "Tổng bằng 0, đúng như thực tế",
-          explanation:
-            "Với lợi suất số học, ta có +10% rồi −9,09%, cộng lại ra +0,91% - một con số vô nghĩa. Đây là lý do phân tích nhiều kỳ luôn dùng lợi suất loga.",
-        },
+        type: "paragraph",
+        text: "Thời gian chạy, kích thước tệp, số bản ghi, số lần thử lại - tất cả đều bị chặn cứng ở không phía dưới và mở phía trên. Ràng buộc ấy đủ để tạo ra hình dạng lệch mà không cần bất kỳ hiện tượng bất thường nào. Vì vậy khi một chỉ số vận hành trông đối xứng, đó mới là điều đáng dừng lại xem xét.",
       },
       {
         type: "callout",
-        label: "Sự thật khó chịu",
-        text: "Trung bình là tham số khó ước lượng nhất. Để phân biệt một tài sản có lợi suất kỳ vọng 8% với một tài sản 10%, với mức biến động điển hình của cổ phiếu, bạn cần hàng chục năm dữ liệu. Đó là lý do mọi mô hình tối ưu danh mục đều rất nhạy với đầu vào lợi suất kỳ vọng - và cũng là lý do chúng thường thất bại ngoài mẫu.",
+        label: "Loại bỏ giá trị bất thường là vứt đi nhóm cần biết nhất",
+        text: "Với dữ liệu lệch, những quan sát lớn không phải nhiễu - chúng là nhóm tài khoản có hàng chục nghìn bản ghi, nhóm tệp nặng gấp trăm lần, nhóm công việc chạy lâu nhất. Đó chính là nhóm làm hệ thống sập, và mọi quy trình làm sạch dữ liệu tự động đều cắt đúng nhóm đó đầu tiên.",
       },
       {
         type: "closing",
         lines: [
-          "Trước khi tính, hãy nhìn hình dạng của dữ liệu.",
-          "Bài sau trả lời câu hỏi tiếp theo: với một mẫu hữu hạn, ta được phép tự tin đến đâu về con số vừa tính.",
+          "Con số tổng hợp nào cũng giả định một hình dạng; biết hình dạng thật rồi mới chọn được con số.",
+          "Bài sau: có số liệu rồi thì làm sao biết một khác biệt là thật hay là ngẫu nhiên.",
         ],
       },
     ],
@@ -361,509 +337,491 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
   },
   {
     id: 1423,
-    slug: "kiem-dinh-gia-thuyet-trong-tai-chinh",
-    title: "Định lượng, Bài 3: Kiểm định giả thuyết - và cái bẫy p-hacking trong backtest",
-    subtitle: "Giả thuyết không, giá trị p, sai lầm loại I và II, và vì sao thử 100 chiến lược luôn tìm ra một cái đẹp",
-    duration: "12 phút",
-    difficulty: "Khó",
-    emoji: "🔬",
+    slug: "kiem-dinh-gia-thuyet-va-p-hacking",
+    title: "Định lượng, Bài 3: Kiểm định giả thuyết và cái bẫy thử nhiều lần",
+    subtitle: "Thử đủ nhiều cách chia dữ liệu thì luôn tìm được một kết quả có ý nghĩa",
+    duration: "8 phút",
+    difficulty: "Trung bình",
+    emoji: "🎯",
     track: "professional",
     whyItMatters:
-      "Kiểm định giả thuyết là ngôn ngữ chuẩn để nói câu này khác không một cách đáng tin. Nhưng trong tài chính nó bị lạm dụng nghiêm trọng: mọi backtest đều là kết quả của việc thử nhiều lần, và giá trị p không hề tính đến số lần bạn đã thử.",
-    openingQuestion:
-      "Bạn thử 100 chiến lược giao dịch ngẫu nhiên, hoàn toàn vô giá trị. Ở mức ý nghĩa 5%, kỳ vọng có bao nhiêu chiến lược trông có ý nghĩa thống kê?",
+      "Câu hỏi khác biệt này có thật không xuất hiện trong mọi buổi họp về số liệu, và công cụ trả lời nó bị dùng sai theo một cách rất đều đặn. Kết quả là các quyết định được biện minh bằng những phát hiện không lặp lại được.",
+    openingQuestion: "Vì sao thử nhiều cách chia dữ liệu rồi báo cáo cách cho kết quả đẹp lại sai?",
     openingOptions: [
-      "Không có cái nào, vì chúng vô giá trị",
-      "Khoảng 5 chiến lược",
-      "Khoảng 50 chiến lược",
-      "Tất cả 100",
+      "Vì mỗi lần thử thêm đều làm tăng khả năng gặp một khác biệt do ngẫu nhiên",
+      "Vì các cách chia khác nhau cho ra những nhóm không so sánh được với nhau",
+      "Vì kích thước mẫu của từng nhóm nhỏ đi khiến kết quả kém tin cậy hơn",
+      "Vì việc chọn cách chia sau khi nhìn dữ liệu làm mất tính khách quan của phân tích",
     ],
-    correctOption: 1,
+    correctOption: 0,
     explanation:
-      "Mức ý nghĩa 5% có nghĩa là chấp nhận sai lầm loại I với xác suất 5% cho mỗi lần kiểm định. Thử 100 lần trên dữ liệu ngẫu nhiên thì kỳ vọng có khoảng 5 kết quả trông đẹp thuần túy do may mắn. Đây là gốc rễ của vấn đề trong toàn ngành backtest: người ta thử hàng nghìn biến thể, chỉ công bố cái tốt nhất, rồi trình bày giá trị p của nó như thể đó là lần thử duy nhất.",
+      "Ngưỡng ý nghĩa thông thường chấp nhận khoảng năm phần trăm khả năng kết luận có khác biệt trong khi thật ra không có. Con số ấy đúng cho một phép kiểm. Thử hai mươi cách chia độc lập thì khả năng ít nhất một cách cho kết quả có ý nghĩa lên tới khoảng sáu mươi tư phần trăm ngay cả khi không có khác biệt nào tồn tại. Điều nguy hiểm là quá trình này hiếm khi có chủ ý: người ta chia theo nền tảng, không thấy gì, chia theo khu vực, không thấy gì, chia theo nhóm người dùng mới, và thấy - rồi báo cáo phát hiện cuối cùng như thể nó là phép kiểm duy nhất được chạy.",
     diagram: [
-      { label: "Giả thuyết không: không có hiệu ứng", arrow: true },
-      { label: "Tính thống kê kiểm định từ dữ liệu", arrow: true },
-      { label: "So với ngưỡng, ra giá trị p", arrow: true },
-      { label: "Hỏi tiếp: đã thử bao nhiêu lần trước khi ra kết quả này" },
+      { label: "Một phép kiểm: khoảng 5% khả năng dương tính giả", arrow: true },
+      { label: "Hai mươi phép kiểm: khoảng 64% ít nhất một cái dương tính giả", arrow: true },
+      { label: "Báo cáo cái cuối cùng như phép kiểm duy nhất", arrow: true },
+      { label: "Phát hiện không lặp lại được ở lần đo sau" },
     ],
-    interactiveType: "regression",
+    interactiveType: "sampling",
     realWorldExample: {
-      company: "Khủng hoảng nhân rộng trong tài chính học thuật",
+      company: "Nhóm người dùng mới trên một nền tảng",
       description:
-        "Nhiều nghiên cứu rà soát lại hàng trăm yếu tố sinh lợi đã được công bố trên các tạp chí hàng đầu và phát hiện phần lớn không còn hiệu quả sau khi bài báo được xuất bản. Một phần do thị trường đã hấp thụ thông tin, nhưng phần lớn hơn là do các yếu tố đó chưa bao giờ tồn tại thật - chúng là sản phẩm của việc dò tìm trên cùng một tập dữ liệu lịch sử hữu hạn bởi hàng nghìn nhà nghiên cứu.",
+        "Một đội so sánh hai phiên bản giao diện, không thấy khác biệt tổng thể, rồi lần lượt chia theo nền tảng, theo khu vực, theo thâm niên tài khoản. Ở lần chia thứ chín, nhóm người dùng mới trên một nền tảng cho khác biệt rõ. Phiên bản mới được triển khai cho nhóm đó, và ba tháng sau không chỉ số nào cải thiện.",
     },
     quiz: [
       {
-        question: "Giá trị p đúng nghĩa là gì?",
+        question: "Cách nào giữ cho việc chia nhóm không thành thử nhiều lần?",
         options: [
-          "Xác suất để giả thuyết không là đúng, tính trên dữ liệu vừa quan sát được",
-          "Xác suất quan sát kết quả cực đoan đến vậy nếu giả thuyết không đúng",
-          "Xác suất chiến lược tiếp tục sinh lời trong giai đoạn sắp tới",
-          "Tỷ lệ số quan sát nằm ngoài khoảng tin cậy đã tính ở bước trước đó",
-        ],
-        correct: 1,
-        explanation:
-          "Đây là định nghĩa hay bị hiểu sai nhất trong thống kê. Giá trị p không phải xác suất giả thuyết đúng hay sai; nó là xác suất của dữ liệu với điều kiện giả thuyết không đúng. Hai điều này khác nhau về bản chất.",
-      },
-      {
-        question: "Sai lầm loại I và loại II khác nhau thế nào?",
-        options: [
-          "Loại I bác bỏ giả thuyết đúng; loại II giữ lại giả thuyết sai",
-          "Loại I là lỗi trong khâu tính toán, còn loại II là lỗi trong khâu thu thập dữ liệu",
-          "Loại I chỉ xảy ra với mẫu nhỏ, còn loại II chỉ xảy ra với mẫu lớn",
-          "Không có khác biệt thực tế, cả hai đều dẫn tới cùng một kết luận sai",
+          "Ghi trước các cách chia định phân tích, trước khi nhìn kết quả",
+          "Giới hạn số lượng cách chia nhóm được phép thực hiện trong mỗi lần phân tích",
+          "Chỉ chia theo những tiêu chí có cơ sở lý thuyết rõ ràng để giải thích được kết quả",
+          "Điều chỉnh ngưỡng ý nghĩa xuống thấp hơn khi thực hiện nhiều phép kiểm cùng lúc",
         ],
         correct: 0,
         explanation:
-          "Loại I là báo động giả: kết luận có hiệu ứng khi không có. Loại II là bỏ sót: có hiệu ứng thật mà không phát hiện được. Hạ ngưỡng ý nghĩa làm giảm loại I nhưng làm tăng loại II - luôn là một sự đánh đổi.",
+          "Điều chỉnh ngưỡng là cách xử lý đúng và nó đòi bạn biết mình đã chạy bao nhiêu phép kiểm - con số mà không ai đếm khi việc chia nhóm diễn ra dần dần. Ghi trước biến số đó thành một con số biết được, và nó cũng biến phần khám phá thêm thành thứ được gọi đúng tên.",
       },
       {
-        question: "Vì sao ý nghĩa thống kê không đồng nghĩa với ý nghĩa kinh tế?",
+        question: "Phát hiện tìm được sau khi đã nhìn dữ liệu nên được xử lý thế nào?",
         options: [
-          "Vì các phép kiểm định thống kê không tính đến đơn vị tiền tệ của dữ liệu",
-          "Vì với mẫu đủ lớn, hiệu ứng cực nhỏ vẫn đạt ý nghĩa thống kê",
-          "Vì người làm thống kê thường không hiểu cơ chế vận hành của thị trường",
-          "Vì ý nghĩa kinh tế của một hiệu ứng luôn lớn hơn ý nghĩa thống kê của nó",
+          "Coi là giả thuyết cần kiểm lại trên dữ liệu mới, không phải kết luận",
+          "Báo cáo kèm ghi chú rằng nó được tìm ra trong quá trình phân tích khám phá",
+          "Kiểm tra lại bằng một phương pháp thống kê khác để xác nhận tính đúng đắn",
+          "Chấp nhận nếu mức ý nghĩa đủ cao và cỡ mẫu của nhóm đó đủ lớn",
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Một chiến lược tạo lợi suất vượt trội 0,05%/tháng có thể có giá trị p rất nhỏ với dữ liệu 50 năm, nhưng sau chi phí giao dịch thì không còn gì. Ngược lại, một hiệu ứng lớn nhưng chỉ quan sát trên 20 điểm dữ liệu có thể rất đáng chú ý dù chưa đạt ngưỡng thống kê.",
+          "Không phương pháp nào chạy trên chính tập dữ liệu đã sinh ra giả thuyết mà cứu được nó, vì vấn đề nằm ở việc giả thuyết được chọn sau khi nhìn. Chỉ có dữ liệu mới - kỳ đo sau, nhóm người dùng khác - mới trả lời được, và đó cũng là phép thử rẻ.",
       },
       {
-        question: "Cách phòng vệ tốt nhất trước p-hacking là gì?",
+        question: "Không bác bỏ được giả thuyết không có khác biệt nghĩa là gì?",
         options: [
-          "Nâng mức ý nghĩa lên 10% để giảm khả năng bỏ sót hiệu ứng thật",
-          "Đặt giả thuyết trước, giữ dữ liệu ngoài mẫu, và đếm số lần đã thử",
-          "Đưa thêm nhiều biến giải thích vào để mô hình bao quát hơn thực tế",
-          "Chỉ dùng dữ liệu của giai đoạn gần nhất vì nó phản ánh thị trường hiện tại",
+          "Chưa đủ bằng chứng cho khác biệt, không phải đã chứng minh là không có",
+          "Hai phiên bản có hiệu quả tương đương nhau nên chọn phiên bản nào cũng được",
+          "Cần tăng cỡ mẫu và chạy lại phép kiểm để có kết luận rõ ràng hơn",
+          "Khác biệt nếu có thì nhỏ tới mức không đáng để đưa vào quyết định",
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Kiểm chứng ngoài mẫu là hàng rào mạnh nhất: nếu hiệu ứng là thật, nó phải tồn tại trên dữ liệu mà bạn chưa từng dùng để tìm kiếm. Nếu biến mất, gần như chắc chắn bạn chỉ khớp với nhiễu.",
+          "Đây là chỗ hiểu sai phổ biến nhất và nó dẫn tới kết luận ngược. Một phép kiểm với cỡ mẫu nhỏ không bác bỏ được gần như mọi thứ, kể cả những khác biệt lớn thật sự tồn tại - nên kết quả không có ý nghĩa thống kê thường nói về cỡ mẫu nhiều hơn về thực tế.",
       },
       {
-        question: "Một chiến lược có tỷ số Sharpe 1,5 trong backtest 5 năm. Nhận định nào đúng?",
+        question: "Khác biệt có ý nghĩa thống kê và khác biệt đáng quan tâm khác nhau ra sao?",
         options: [
-          "Chiến lược chắc chắn có giá trị, vì tỷ số Sharpe trên 1 đã là rất tốt",
-          "Cần biết đã thử bao nhiêu biến thể và kết quả ngoài mẫu ra sao",
-          "Tỷ số Sharpe 1,5 luôn đạt ý nghĩa thống kê với năm năm dữ liệu",
-          "Nên tăng đòn bẩy để khuếch đại lợi suất của một chiến lược tốt như vậy",
+          "Cỡ mẫu đủ lớn thì mọi khác biệt đều có ý nghĩa, kể cả khác biệt vô nghĩa về thực tế",
+          "Ý nghĩa thống kê đo độ tin cậy còn mức đáng quan tâm đo độ lớn của khác biệt",
+          "Khác biệt đáng quan tâm phải vượt ngưỡng ý nghĩa với mức tin cậy cao hơn hẳn",
+          "Hai khái niệm này tương đương nhau khi phép kiểm được thực hiện đúng cách",
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Sharpe của backtest gần như luôn là con số tốt nhất trong nhiều lần thử, nên nó là ước lượng chệch lên trên một cách có hệ thống. Sharpe thực tế sau khi triển khai thường thấp hơn đáng kể - hiện tượng được gọi là suy giảm ngoài mẫu.",
+          "Với vài triệu quan sát, một khác biệt phần nghìn giây cũng cho ra kết quả có ý nghĩa thống kê rất cao và chẳng ai để ý được. Vì vậy báo cáo luôn cần độ lớn của khác biệt bên cạnh mức ý nghĩa - con số thứ hai một mình không nói được nên làm gì.",
       },
-    ],
-    keyTakeaways: [
-      "Giá trị p là xác suất của dữ liệu khi giả thuyết không đúng, không phải xác suất giả thuyết đúng",
-      "Sai lầm loại I là báo động giả, loại II là bỏ sót; giảm cái này luôn làm tăng cái kia",
-      "Thử nhiều lần thì kết quả đẹp xuất hiện ngẫu nhiên - giá trị p không hề biết bạn đã thử bao nhiêu lần",
-      "Ý nghĩa thống kê khác ý nghĩa kinh tế: luôn hỏi hiệu ứng còn lại bao nhiêu sau chi phí giao dịch",
+      {
+        question: "Vì sao nên quyết trước ngưỡng khác biệt đáng để hành động?",
+        options: [
+          "Vì sau khi thấy kết quả, mọi con số đều dễ được biện minh là đủ lớn",
+          "Vì cần ngưỡng đó để tính cỡ mẫu cần thiết",
+          "Vì các bên cần biết trước tiêu chí đánh giá",
+          "Vì so với ngưỡng thì báo cáo rõ ràng hơn",
+        ],
+        correct: 0,
+        explanation:
+          "Ba lý do kia đều là lợi ích về quy trình. Lý do thật là về tâm lý: một khác biệt hai phần trăm nghe nhỏ khi bàn trước và nghe đủ lớn khi nó là kết quả của ba tháng công sức. Con số ghi trước là thứ duy nhất không bị dịch chuyển theo kết quả.",
+      },
     ],
     practicePrompt: {
       question:
-        "Một nhà cung cấp tín hiệu trình bày backtest với p nhỏ hơn 0,01 và nói kết quả rất khó xảy ra do ngẫu nhiên. Câu hỏi sắc bén nhất bạn nên đặt là gì?",
+        "Bạn so hai phiên bản, tổng thể không khác nhau, nhưng một nhóm nhỏ cho kết quả rõ. Nên làm gì?",
       options: [
-        "Phần mềm nào được dùng để chạy backtest",
-        "Đã thử bao nhiêu tổ hợp trước khi chọn",
-        "Dữ liệu lấy từ nguồn nào",
-        "Chi phí đăng ký dịch vụ là bao nhiêu",
+        "Coi đó là giả thuyết và kiểm lại trên dữ liệu của kỳ sau",
+        "Triển khai phiên bản mới cho riêng nhóm đó vì kết quả với họ là rõ ràng",
+        "Tăng cỡ mẫu của nhóm đó và chạy lại phép kiểm để khẳng định kết quả",
+        "Tìm lời giải thích hợp lý cho vì sao nhóm đó phản ứng khác các nhóm khác",
       ],
-      correct: 1,
+      correct: 0,
       explanation:
-        "Giá trị p chỉ có nghĩa cho một kiểm định được xác định trước. Nếu đây là kết quả tốt nhất trong 500 lần thử, mức ý nghĩa hiệu dụng phải được điều chỉnh mạnh, và p nhỏ hơn 0,01 lúc đó không còn ấn tượng chút nào.",
+        "Tìm lời giải thích hợp lý là bước nguy hiểm nhất, vì với bất kỳ nhóm nào cũng luôn tìm được một lời giải thích nghe xuôi tai - và có lời giải thích thì phát hiện được đối xử như đã xác nhận. Kiểm lại trên dữ liệu mới mất một kỳ đo và trả lời dứt khoát.",
     },
+    keyTakeaways: [
+      "Hai mươi phép kiểm độc lập cho khoảng 64% khả năng có ít nhất một dương tính giả",
+      "Việc thử nhiều lần hiếm khi có chủ ý; nó diễn ra dần qua từng lần chia nhóm",
+      "Không bác bỏ được thường nói về cỡ mẫu nhiều hơn về thực tế",
+      "Với mẫu đủ lớn, mọi khác biệt đều có ý nghĩa thống kê, kể cả khác biệt vô nghĩa",
+    ],
     summary: {
-      keyIdea: "Giá trị p không biết bạn đã thử bao nhiêu lần - còn bạn thì biết",
-      formula: "t = (ước lượng − giá trị giả thuyết) / sai số chuẩn",
-      commonMistake: "Trình bày kết quả tốt nhất trong nhiều lần thử như thể đó là lần thử duy nhất",
-      action: "Với mỗi backtest bạn tự chạy, ghi lại số biến thể đã thử và luôn giữ lại 30% dữ liệu cuối để kiểm chứng.",
+      keyIdea: "Ngưỡng ý nghĩa đúng cho một phép kiểm, và số phép kiểm thật sự chạy thì không ai đếm",
+      commonMistake: "Chia nhóm dần cho tới khi thấy kết quả, rồi báo cáo nó như phép kiểm duy nhất",
+      action: "Ghi trước các cách chia nhóm và ngưỡng khác biệt đáng hành động, trước khi nhìn kết quả.",
     },
     application: {
-      title: "Quy tắc trung thực với chính mình",
+      title: "Ghi trước hai thứ",
       message:
-        "Trước khi nhìn dữ liệu, hãy viết ra giả thuyết và tiêu chí đánh giá. Sau khi tìm ra kết quả, hãy kiểm chứng trên phần dữ liệu chưa từng chạm tới. Nếu hiệu ứng biến mất ngoài mẫu, hãy chấp nhận rằng nó chưa bao giờ tồn tại.",
-      secondary: "Quy tắc thô của giới định lượng: chia đôi tỷ số Sharpe trong backtest để có kỳ vọng thực tế.",
+        "Trước mỗi lần đo: các cách chia nhóm định phân tích, và mức khác biệt tối thiểu đáng để hành động. Hai dòng, viết trước khi có số liệu.",
+      secondary:
+        "Mọi phát hiện ngoài danh sách đó là giả thuyết, và nó cần một kỳ đo mới để thành kết luận.",
     },
     sections: [
       {
         type: "lead",
-        text: "Kiểm định giả thuyết được thiết kế cho thế giới nơi nhà nghiên cứu đặt câu hỏi trước rồi mới thu thập dữ liệu. Tài chính vận hành ngược lại: dữ liệu đã có sẵn hàng chục năm, và hàng nghìn người cùng dò tìm trên đúng tập dữ liệu đó. Hiểu sự lệch pha này quan trọng hơn thuộc lòng bất kỳ công thức nào trong bài.",
+        text: "Câu hỏi khác biệt này có thật không được hỏi trong mọi buổi họp về số liệu. Công cụ trả lời nó chính xác đúng một lần mỗi lần dùng, và nó gần như luôn được dùng nhiều lần.",
       },
       {
         type: "heading",
-        text: "Bốn bước của một kiểm định",
+        text: "Thử nhiều lần diễn ra mà không ai định làm vậy",
       },
       {
-        type: "list",
-        items: [
-          "Bước 1: phát biểu giả thuyết không (thường là không có hiệu ứng) và giả thuyết đối",
-          "Bước 2: chọn mức ý nghĩa trước khi nhìn kết quả, thường là 5%",
-          "Bước 3: tính thống kê kiểm định, phổ biến nhất là tỷ số t bằng ước lượng chia sai số chuẩn",
-          "Bước 4: so với ngưỡng và kết luận - đồng thời ghi lại đây là lần thử thứ mấy",
-        ],
-      },
-      {
-        type: "comparison",
-        left: {
-          label: "Sai lầm loại I",
-          text: "Kết luận chiến lược có giá trị trong khi nó vô dụng. Hậu quả: mất tiền thật vì tin vào nhiễu.",
-        },
-        right: {
-          label: "Sai lầm loại II",
-          text: "Bỏ qua một chiến lược thực sự tốt vì dữ liệu chưa đủ mạnh. Hậu quả: mất cơ hội, nhưng không mất vốn.",
-        },
+        type: "paragraph",
+        text: "Không ai ngồi xuống với ý định chạy hai mươi phép kiểm rồi chọn cái đẹp nhất. Chuyện xảy ra là: nhìn tổng thể, không thấy gì, thử chia theo nền tảng, không thấy gì, thử theo khu vực, thử theo thâm niên. Mỗi bước đều hợp lý và không ai đếm tổng. Đến khi một cách chia cho kết quả rõ, nó được báo cáo như thể đó là phép kiểm duy nhất đã chạy.",
       },
       {
         type: "callout",
-        label: "Vì sao đây là vấn đề nghiêm trọng nhất trong đầu tư định lượng",
-        text: "Trong y học, thử nghiệm lâm sàng buộc phải đăng ký giả thuyết trước khi thu thập dữ liệu, chính là để chặn việc dò tìm. Trong tài chính không có cơ chế nào tương đương. Vì vậy trách nhiệm hoàn toàn nằm ở người phân tích: giữ dữ liệu ngoài mẫu, đếm số lần thử, và hoài nghi kết quả đẹp của chính mình.",
+        label: "Lời giải thích hợp lý là bước nguy hiểm nhất",
+        text: "Sau khi tìm được một nhóm có khác biệt, việc tiếp theo luôn là tìm lý do. Với bất kỳ nhóm nào cũng luôn có một lời giải thích nghe xuôi tai, và một khi có lời giải thích thì phát hiện ngẫu nhiên được đối xử như đã được xác nhận. Đây là chỗ một sai lệch thống kê biến thành một niềm tin của cả đội.",
       },
       {
         type: "closing",
         lines: [
-          "Con số ấn tượng nhất trong một backtest thường là con số kém tin cậy nhất, chính vì nó được chọn ra do ấn tượng.",
-          "Ba bài tiếp theo chuyển sang công cụ giải thích quan hệ giữa các biến: hồi quy.",
+          "Ngưỡng ý nghĩa bảo vệ bạn khỏi một phép kiểm; không có gì bảo vệ bạn khỏi phép kiểm thứ hai mươi.",
+          "Bài sau: một biến giải thích được bao nhiêu phần của biến kia.",
         ],
       },
     ],
   },
   {
-    id: 1424,
-    slug: "hoi-quy-tuyen-tinh-don-va-beta",
-    title: "Định lượng, Bài 4: Hồi quy tuyến tính đơn - beta thực sự đến từ đâu",
-    subtitle: "Hệ số góc, R bình phương, phần dư và cách đọc một bảng kết quả hồi quy",
-    duration: "11 phút",
-    difficulty: "Khó",
-    emoji: "📉",
-    track: "professional",
-    whyItMatters:
-      "Beta trong CAPM, sai số theo dõi của quỹ, độ nhạy của cổ phiếu với giá dầu - tất cả đều là hệ số hồi quy. Biết đọc một bảng kết quả hồi quy là kỹ năng tối thiểu để không bị thuyết phục bởi một con số vô nghĩa.",
-    openingQuestion:
-      "Trong hồi quy lợi suất cổ phiếu theo lợi suất thị trường, hệ số góc chính là gì?",
-    openingOptions: [
-      "Alpha của cổ phiếu",
-      "Beta của cổ phiếu",
-      "R bình phương",
-      "Sai số chuẩn của phần dư",
+    "id": 1424,
+    "slug": "hoi-quy-tuyen-tinh-don-do-do-nhay-cua-do-tre",
+    "title": "Định lượng, Bài 4: Hồi quy tuyến tính đơn - đo độ nhạy của độ trễ theo tải",
+    "subtitle": "Một đường thẳng khớp qua đám mây điểm cho bạn một con số, và con số đó chỉ đúng trong khoảng dữ liệu bạn có.",
+    "duration": "11 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "📉",
+    "interactiveType": "regression",
+    "whyItMatters": "Hệ số dốc của một đường hồi quy là cách rẻ nhất để nói tải tăng một đơn vị thì độ trễ tăng bao nhiêu - và cũng là cách dễ bị dùng ngoài phạm vi nhất.",
+    "openingQuestion": "Hồi quy độ trễ theo tải cho hệ số dốc 0,4 mili giây trên mỗi yêu cầu mỗi giây. Dùng được thế nào?",
+    "openingOptions": [
+      "Ước lượng độ trễ khi tải đổi, trong khoảng tải mà dữ liệu đã bao phủ",
+      "Ước lượng độ trễ ở mọi mức tải, kể cả mức chưa từng xuất hiện trong dữ liệu",
+      "Kết luận rằng tải là nguyên nhân làm độ trễ tăng lên trong hệ thống",
+      "So sánh mức độ nhạy của hệ thống này với các hệ thống khác cùng loại"
     ],
-    correctOption: 1,
-    explanation:
-      "Hệ số góc của đường hồi quy lợi suất cổ phiếu theo lợi suất thị trường chính là beta - đo mức nhạy cảm của cổ phiếu với biến động chung của thị trường. Hệ số chặn là alpha, phần lợi suất không giải thích được bởi thị trường. R bình phương cho biết bao nhiêu phần trăm biến động của cổ phiếu được thị trường giải thích, và với một cổ phiếu đơn lẻ con số này thường chỉ khoảng 20 đến 40%.",
-    diagram: [
-      { label: "Biến độc lập X: lợi suất thị trường", arrow: true },
-      { label: "Ước lượng đường thẳng khớp nhất", arrow: true },
-      { label: "Hệ số góc = beta, hệ số chặn = alpha", arrow: true },
-      { label: "Phần dư = những gì mô hình không giải thích được" },
+    "correctOption": 0,
+    "explanation": "Hai giới hạn cần nhớ cùng lúc. Ngoài khoảng dữ liệu thì đường thẳng không còn đáng tin, vì quan hệ giữa tải và độ trễ bị bẻ cong ở gần bão hoà. Và hệ số dốc không chứng minh nhân quả - nó chỉ nói hai đại lượng đi cùng nhau, còn một yếu tố thứ ba có thể đang đẩy cả hai.",
+    "diagram": [
+      {
+        "label": "Hệ số dốc = tải tăng một đơn vị thì độ trễ tăng bao nhiêu",
+        "arrow": true
+      },
+      {
+        "label": "Chỉ đúng TRONG khoảng dữ liệu đã bao phủ",
+        "arrow": true
+      },
+      {
+        "label": "Và nó không chứng minh nhân quả - có thể có yếu tố thứ ba",
+        "arrow": true
+      },
+      {
+        "label": "Luôn vẽ đám mây điểm ra trước khi tin vào con số"
+      }
     ],
-    interactiveType: "regression",
-    realWorldExample: {
-      company: "Beta công bố trên các trang dữ liệu",
-      description:
-        "Hai trang dữ liệu tài chính có thể công bố beta khác nhau đáng kể cho cùng một cổ phiếu, vì họ dùng khoảng thời gian khác nhau (2 năm hay 5 năm), tần suất khác nhau (tuần hay tháng) và chỉ số tham chiếu khác nhau. Beta không phải một hằng số vật lý mà là kết quả của một lựa chọn phương pháp - luôn hỏi con số đó được ước lượng thế nào trước khi đưa vào mô hình định giá.",
+    "realWorldExample": {
+      "company": "Vẽ ra trước khi tin",
+      "description": "Bốn tập dữ liệu có thể cho cùng hệ số dốc, cùng hệ số tương quan, mà nhìn hoàn toàn khác nhau: một tập tuyến tính, một tập cong, một tập có một điểm ngoại lai kéo cả đường. Con số một mình không phân biệt được ba trường hợp đó."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "R bình phương đo lường điều gì?",
-        options: [
-          "Mức độ chính xác của mô hình khi dự báo trên dữ liệu của tương lai",
-          "Tỷ lệ phương sai biến phụ thuộc được giải thích trong mẫu",
-          "Xác suất để mô hình hồi quy vừa ước lượng là mô hình đúng về bản chất",
-          "Sai số chuẩn của hệ số góc, quy đổi về thang từ 0 đến 1 cho dễ so sánh",
+        "question": "Vì sao không nên dùng đường hồi quy ngoài khoảng dữ liệu đã có?",
+        "options": [
+          "Vì quan hệ giữa tải và độ trễ bị bẻ cong ở gần mức bão hoà",
+          "Vì sai số của ước lượng tăng lên khi đi xa khỏi giá trị trung bình",
+          "Vì dữ liệu ở mức tải cao thường ít nên ước lượng kém tin cậy hơn",
+          "Vì các yếu tố khác có thể thay đổi ở mức tải mà chưa từng quan sát được"
         ],
-        correct: 1,
-        explanation:
-          "R bình phương là thước đo mức độ khớp trong mẫu, không phải thước đo khả năng dự báo. Một mô hình có R bình phương cao vẫn có thể dự báo tệ ngoài mẫu, đặc biệt nếu nó bị khớp quá mức.",
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều đúng về mặt thống kê và đều mô tả sự thiếu chính xác. Cái này thì mô tả một sai lầm về HÌNH DẠNG: đường thẳng không chỉ kém chính xác ở đó mà là mô hình sai hẳn."
       },
       {
-        question: "Vì sao phải nhìn sai số chuẩn của hệ số chứ không chỉ nhìn giá trị hệ số?",
-        options: [
-          "Vì sai số chuẩn cho biết hệ số có thực sự khác 0 hay không",
-          "Vì sai số chuẩn quyết định dấu của hệ số là dương hay âm khi diễn giải",
-          "Vì sai số chuẩn có thể dùng thay cho R bình phương khi đánh giá mức khớp",
-          "Vì phần mềm thống kê bắt buộc phải báo cáo đồng thời cả hai chỉ số này",
+        "question": "Vì sao phải vẽ đám mây điểm ra thay vì chỉ nhìn con số?",
+        "options": [
+          "Vì nhiều tập dữ liệu rất khác nhau vẫn cho ra cùng hệ số dốc và cùng tương quan",
+          "Vì biểu đồ sẽ giúp phát hiện các giá trị bị thiếu trong tập dữ liệu",
+          "Vì cần kiểm tra xem số lượng điểm dữ liệu có đủ nhiều hay không",
+          "Vì biểu đồ dễ trình bày cho người không quen với thống kê hơn"
         ],
-        correct: 0,
-        explanation:
-          "Một hệ số luôn có giá trị ước lượng nào đó, kể cả khi quan hệ thật không tồn tại. Tỷ số t bằng hệ số chia sai số chuẩn mới cho biết ta có nên tin vào nó hay không.",
+        "correct": 0,
+        "explanation": "Một tập tuyến tính, một tập cong, và một tập có một điểm ngoại lai kéo cả đường có thể cho cùng bộ số. Con số một mình không phân biệt được ba trường hợp cần ba hành động khác nhau."
       },
       {
-        question: "Phần dư của hồi quy đại diện cho điều gì trong bối cảnh CAPM?",
-        options: [
-          "Rủi ro hệ thống, tức phần biến động chung của toàn bộ thị trường",
-          "Rủi ro riêng của doanh nghiệp, phần có thể đa dạng hóa được",
-          "Chi phí vốn chủ sở hữu mà nhà đầu tư đòi hỏi khi nắm giữ cổ phiếu",
-          "Sai số đo lường phát sinh từ dữ liệu giá do sở giao dịch công bố",
+        "question": "Hệ số tương quan cao nói lên điều gì?",
+        "options": [
+          "Hai đại lượng đi cùng nhau, không nói cái nào gây ra cái nào",
+          "Một đại lượng có thể dùng để dự báo đại lượng kia một cách đáng tin",
+          "Quan hệ giữa hai đại lượng là tuyến tính trong toàn bộ khoảng giá trị",
+          "Không có yếu tố thứ ba nào ảnh hưởng tới cả hai đại lượng cùng lúc"
         ],
-        correct: 1,
-        explanation:
-          "Đây là cầu nối giữa thống kê và lý thuyết danh mục: phần biến động giải thích được bởi thị trường là rủi ro hệ thống, phần dư là rủi ro riêng có thể triệt tiêu bằng đa dạng hóa - và vì vậy không được thị trường trả thêm lợi suất.",
+        "correct": 0,
+        "explanation": "Một bản phát hành làm cả tải tăng lẫn độ trễ tăng vì hai lý do khác nhau sẽ cho tương quan rất cao mà không có quan hệ nhân quả nào giữa hai đại lượng đó."
       },
       {
-        question: "Tương quan mạnh giữa hai biến có chứng minh quan hệ nhân quả không?",
-        options: [
-          "Có, miễn là R bình phương của mô hình vượt ngưỡng 0,8",
-          "Không - có thể do trùng hợp, do biến thứ ba, hoặc do nhân quả ngược",
-          "Có, miễn là giá trị p của hệ số nhỏ hơn ngưỡng 0,01 thông thường",
-          "Có, miễn là chuỗi dữ liệu đủ dài để loại trừ khả năng ngẫu nhiên",
+        "question": "Vì sao một điểm ngoại lai có thể làm sai lệch cả đường hồi quy?",
+        "options": [
+          "Vì phương pháp khớp đường phạt sai số theo bình phương nên điểm xa có trọng số lớn",
+          "Vì điểm ngoại lai thường nằm ở rìa khoảng dữ liệu nên ảnh hưởng tới độ dốc",
+          "Vì số lượng điểm dữ liệu thường không đủ lớn để làm loãng ảnh hưởng của nó",
+          "Vì các thuật toán khớp đường không có cơ chế phát hiện giá trị bất thường"
         ],
-        correct: 1,
-        explanation:
-          "Không có mức R bình phương hay giá trị p nào biến tương quan thành nhân quả. Trong tài chính, biến thứ ba bị bỏ sót thường là chu kỳ kinh tế - nó khiến rất nhiều cặp biến trông như có quan hệ với nhau.",
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai mô tả một điều kiện làm ảnh hưởng nặng thêm. Nguyên nhân gốc nằm trong chính công thức: một điểm lệch gấp mười lần đóng góp sai số gấp một trăm lần, nên nó kéo đường về phía mình."
       },
-    
-    {
-      "question": "Beta ước lượng từ hồi quy có sai số chuẩn lớn. Điều đó nghĩa là gì trong thực tế?",
+      {
+        "question": "Nên làm gì khi thấy một điểm ngoại lai trong dữ liệu hiệu năng?",
+        "options": [
+          "Tìm hiểu nó là gì trước khi quyết định giữ hay bỏ khỏi phép tính",
+          "Bỏ nó ra khỏi tập dữ liệu vì nó không đại diện cho hành vi bình thường",
+          "Giữ nó lại bởi vì mọi phần dữ liệu quan sát được đều là dữ liệu hợp lệ",
+          "Dùng phương pháp khớp đường tương đối ít nhạy với giá trị bất thường hơn"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là quyết định đưa ra trước khi biết điểm đó là gì. Nó có thể là lỗi đo, hoặc có thể là lần duy nhất hệ thống chạm tới mức tải mà bạn đang cần dự báo - và hai trường hợp cho hai hành động ngược nhau."
+      }
+    ],
+    "keyTakeaways": [
+      "Hệ số dốc chỉ đúng TRONG khoảng dữ liệu đã bao phủ - ngoài đó là mô hình sai hẳn.",
+      "Nhiều tập dữ liệu rất khác nhau cho cùng bộ số - luôn VẼ RA trước khi tin.",
+      "Tương quan cao nói hai đại lượng đi cùng nhau, không nói cái nào gây ra cái nào.",
+      "Sai số bình phương làm một điểm lệch gấp mười có trọng số gấp một trăm.",
+      "Điểm ngoại lai: tìm hiểu nó là gì TRƯỚC khi quyết định giữ hay bỏ."
+    ],
+    "practicePrompt": {
+      "question": "Hồi quy trên dữ liệu tải 100-500 cho dốc 0,4ms. Dự báo độ trễ ở tải 2000?",
       "options": [
-        "Con số beta đó không đáng tin để đưa thẳng vào tính chi phí vốn chủ",
-        "Cổ phiếu đó có mức biến động cao hơn so với thị trường chung",
-        "Mô hình hồi quy đã bỏ sót một biến giải thích quan trọng nào đó",
-        "Cần kéo dài thời gian ước lượng cho tới khi hệ số beta bằng một"
+        "Không dự báo được từ mô hình này - phải đo ở gần mức tải đó",
+        "Khoảng 800ms, tính theo hệ số dốc nhân với mức tải cần dự báo",
+        "Cao hơn 800ms một chút, có tính thêm phần sai số của ước lượng",
+        "Được, nếu kiểm tra thấy hệ số tương quan trên dữ liệu hiện có đủ cao"
       ],
       "correct": 0,
-      "explanation": "Beta chỉ là một ước lượng, và ước lượng thì có khoảng tin cậy. Beta 1,2 với sai số chuẩn 0,4 nghĩa là giá trị thật có thể nằm đâu đó giữa 0,4 và 2 - đưa nguyên con số đó vào CAPM là chuyển sự bất định ấy thẳng vào định giá mà không ai nhìn thấy."
-    }
-    ],
-    keyTakeaways: [
-      "Beta là hệ số góc của hồi quy lợi suất cổ phiếu theo lợi suất thị trường; alpha là hệ số chặn",
-      "Luôn đọc hệ số cùng sai số chuẩn của nó - hệ số không kèm sai số là con số nửa vời",
-      "R bình phương đo mức khớp trong mẫu, không đo khả năng dự báo",
-      "Beta phụ thuộc vào lựa chọn giai đoạn, tần suất và chỉ số tham chiếu - nó là một ước lượng, không phải hằng số",
-    ],
-    practicePrompt: {
-      question:
-        "Hồi quy cho beta = 1,4 với sai số chuẩn 0,6 và R bình phương 0,18. Nên kết luận thế nào?",
-      options: [
-        "Cổ phiếu rõ ràng biến động mạnh hơn thị trường 40%",
-        "Beta ước lượng thiếu chính xác: khoảng tin cậy quá rộng",
-        "R bình phương thấp chứng tỏ hồi quy sai phương pháp",
-        "Cần thay biến phụ thuộc bằng giá thay vì lợi suất",
-      ],
-      correct: 1,
-      explanation:
-        "Khoảng tin cậy xấp xỉ 1,4 cộng trừ 1,96 nhân 0,6. Với khoảng rộng như vậy, việc đưa beta 1,4 vào công thức CAPM để ra một chi phí vốn chính xác đến từng số thập phân là ảo tưởng chính xác. R bình phương 0,18 là bình thường với cổ phiếu đơn lẻ, không phải dấu hiệu sai phương pháp.",
+      "explanation": "Lựa chọn cuối là cái bẫy: tương quan cao đo mức khớp TRONG khoảng dữ liệu và nó không nói gì về hành vi ngoài khoảng đó. Ở tải 2000 hệ thống có thể đã qua điểm gãy, nơi quan hệ tuyến tính không còn tồn tại."
     },
-    summary: {
-      keyIdea: "Hồi quy cho bạn một con số kèm mức độ không chắc chắn - phải đọc cả hai",
-      formula: "R_i = alpha + beta × R_m + e",
-      commonMistake: "Đưa beta ước lượng vào CAPM như thể nó chính xác tuyệt đối",
-      action: "Chạy hồi quy beta cho một cổ phiếu bằng dữ liệu 3 năm và 5 năm rồi so hai kết quả với nhau.",
+    "summary": {
+      "keyIdea": "Một đường thẳng cho bạn một con số, và con số đó chỉ đúng trong khoảng dữ liệu bạn có.",
+      "formula": "Vẽ đám mây điểm → khớp đường → đọc dốc → chỉ dùng trong khoảng đã bao phủ.",
+      "commonMistake": "Ngoại suy ra ngoài khoảng dữ liệu, nơi quan hệ đã bị bẻ cong.",
+      "action": "Vẽ đám mây điểm cho một cặp chỉ số bạn đang giả định là tuyến tính."
     },
-    application: {
-      title: "Bốn con số cần đọc trong mọi bảng hồi quy",
-      message:
-        "Hệ số (độ lớn của quan hệ), sai số chuẩn (mức tin cậy), R bình phương (mức giải thích), và số quan sát. Thiếu bất kỳ con số nào trong bốn cái này thì bảng kết quả chưa đủ để kết luận.",
-      secondary: "Thêm một bước nữa nếu có thể: vẽ đồ thị phần dư để phát hiện quan hệ phi tuyến bị bỏ sót.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một cặp chỉ số mà bạn đang ngầm giả định quan hệ tuyến tính - ví dụ tải và độ trễ - rồi vẽ đám mây điểm của chúng.",
+      "secondary": "Nhìn hình dạng trước khi tính bất kỳ con số nào. Nếu nó cong lên ở phía phải, mọi phép ngoại suy tuyến tính bạn đang dùng đều đang lạc quan hơn thực tế."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Hồi quy là công cụ được dùng nhiều nhất trong tài chính ứng dụng, và cũng là công cụ mà người ta dễ dùng sai nhất - vì phần mềm luôn cho ra một kết quả, dù dữ liệu có phù hợp hay không.",
+        "type": "lead",
+        "text": "Hệ số dốc của một đường hồi quy là cách rẻ nhất để nói tải tăng một đơn vị thì độ trễ tăng bao nhiêu - và cũng là cách dễ bị dùng ngoài phạm vi nhất."
       },
       {
-        type: "formula",
-        title: "Mô hình thị trường",
-        label: "Nền tảng thống kê của CAPM",
-        equation: "R_i = alpha + beta × R_m + e",
-        variables: [
-          { symbol: "R_i", name: "Lợi suất cổ phiếu", description: "Biến phụ thuộc" },
-          { symbol: "R_m", name: "Lợi suất thị trường", description: "Biến độc lập" },
-          { symbol: "beta", name: "Hệ số góc", description: "Độ nhạy với thị trường - rủi ro hệ thống" },
-          { symbol: "alpha", name: "Hệ số chặn", description: "Lợi suất vượt trội không giải thích được bởi thị trường" },
-          { symbol: "e", name: "Phần dư", description: "Rủi ro riêng, có thể đa dạng hóa" },
-        ],
-        example: {
-          title: "Đọc kết quả bằng lời",
-          calculation: "beta = 1,2 nghĩa là thị trường tăng 1% thì cổ phiếu kỳ vọng tăng 1,2%",
-          result: "Nhưng chỉ là kỳ vọng trung bình, không phải quy luật",
-          explanation:
-            "Với R bình phương 0,3, có tới 70% biến động của cổ phiếu không liên quan gì đến thị trường. Beta mô tả xu hướng trung bình chứ không dự báo được một ngày cụ thể.",
+        "type": "heading",
+        "text": "Hai giới hạn phải nhớ cùng lúc"
+      },
+      {
+        "type": "list",
+        "items": [
+          "PHẠM VI: chỉ đúng trong khoảng dữ liệu đã bao phủ. Ngoài đó, quan hệ bị bẻ cong ở gần bão hoà nên đường thẳng không kém chính xác mà là mô hình SAI HẲN.",
+          "NHÂN QUẢ: hệ số dốc không chứng minh cái nào gây ra cái nào. Một bản phát hành làm cả tải tăng lẫn độ trễ tăng vì hai lý do khác nhau vẫn cho tương quan rất cao."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Vẽ ra trước khi tin"
+      },
+      {
+        "type": "callout",
+        "label": "Cùng bộ số, ba hình khác hẳn",
+        "text": "Một tập tuyến tính, một tập cong, và một tập có một điểm ngoại lai kéo cả đường có thể cho cùng hệ số dốc và cùng hệ số tương quan. Con số một mình không phân biệt được ba trường hợp cần ba hành động khác nhau."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao một điểm lại kéo được cả đường"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phương pháp khớp đường phạt sai số theo BÌNH PHƯƠNG, nên một điểm lệch gấp mười lần đóng góp sai số gấp một trăm lần và đường bị kéo về phía nó. Đây là tính chất nằm trong công thức, không phải khuyết điểm của công cụ."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Bỏ ngay điểm ngoại lai",
+          "text": "Có thể bạn vừa xoá lần duy nhất hệ thống chạm tới mức tải mà bạn đang cần dự báo."
         },
+        "right": {
+          "label": "Giữ nguyên vì đó là dữ liệu thật",
+          "text": "Có thể bạn vừa để một lỗi đo quyết định hệ số dốc cho mọi kết luận sau đó."
+        }
       },
       {
-        type: "callout",
-        label: "Ảo tưởng chính xác",
-        text: "Sai lầm nghề nghiệp phổ biến nhất là lấy beta ước lượng có sai số lớn, đưa vào CAPM, ra chi phí vốn 11,37%, rồi dùng nó chiết khấu dòng tiền 10 năm và báo cáo giá mục tiêu chính xác đến từng đồng. Toàn bộ độ chính xác đó là giả tạo. Cách trung thực hơn: chạy định giá với beta ở hai đầu khoảng tin cậy và trình bày một vùng giá trị.",
-      },
-      {
-          "type": "heading",
-          "text": "Đọc kết quả hồi quy cho đúng"
-        },
-        {
-          "type": "paragraph",
-          "text": "Ba con số cần nhìn cùng nhau và mỗi con số trả lời một câu khác. Hệ số góc cho biết mức nhạy - beta. Sai số chuẩn của nó cho biết ước lượng đó chắc chắn tới đâu, và đây là phần bị bỏ qua nhiều nhất. R bình phương cho biết bao nhiêu phần biến động được thị trường giải thích, phần còn lại là rủi ro riêng của doanh nghiệp. Một beta 1,2 với sai số chuẩn 0,4 nghĩa là giá trị thật có thể nằm đâu đó rất rộng, và đưa thẳng nó vào CAPM là chuyển toàn bộ sự bất định đó vào định giá mà không ai nhìn thấy."
-        },
-      {
-        type: "closing",
-        lines: [
-          "Một hệ số hồi quy luôn tồn tại; câu hỏi là nó có đáng tin không.",
-          "Bài sau mở rộng sang nhiều biến giải thích - nơi các cạm bẫy nhân lên nhanh chóng.",
-        ],
-      },
-    ],
+        "type": "closing",
+        "lines": [
+          "Cả hai phản xạ đều là quyết định đưa ra TRƯỚC khi biết điểm đó là gì.",
+          "Việc đúng là đi tìm hiểu nó - thường mất mười phút và nó quyết định cả hình dạng mô hình bạn sắp dùng."
+        ]
+      }
+    ]
   },
   {
     id: 1425,
     slug: "hoi-quy-da-bien-va-cac-bay-thuong-gap",
-    title: "Định lượng, Bài 5: Hồi quy đa biến và những cái bẫy - đa cộng tuyến, khớp quá mức, biến bị bỏ sót",
-    subtitle: "Thêm biến luôn làm mô hình đẹp hơn trong mẫu và thường tệ hơn ngoài mẫu",
-    duration: "12 phút",
-    difficulty: "Khó",
+    title: "Định lượng, Bài 5: Hồi quy đa biến và ba cái bẫy",
+    subtitle: "Thêm biến thì mô hình luôn đẹp lên, và ba thứ hỏng cùng lúc",
+    duration: "8 phút",
+    difficulty: "Trung bình",
     emoji: "🕸️",
     track: "professional",
-    whyItMatters:
-      "Các mô hình đa nhân tố, mô hình chấm điểm tín dụng và mọi công cụ dự báo trong tài chính đều là hồi quy đa biến. Không biết các cạm bẫy của nó thì bạn sẽ tin vào những mô hình khớp lịch sử hoàn hảo và thất bại ngay lần đầu gặp dữ liệu mới.",
-    openingQuestion:
-      "Vì sao thêm biến giải thích vào mô hình hầu như luôn làm tăng R bình phương?",
-    openingOptions: [
-      "Vì biến mới luôn chứa thông tin hữu ích",
-      "Vì thêm biến không bao giờ làm khớp kém đi cả",
-      "Vì phần mềm tự động loại bỏ biến vô dụng",
-      "Vì R bình phương không phụ thuộc vào số lượng biến",
-    ],
-    correctOption: 1,
-    explanation:
-      "Đây là tính chất toán học chứ không phải bằng chứng về chất lượng: mô hình luôn có thể gán hệ số 0 cho biến vô dụng, nên mức khớp không thể giảm. Trên dữ liệu hữu hạn nó gần như luôn tăng nhẹ, kể cả với biến ngẫu nhiên. Đó là lý do phải dùng R bình phương hiệu chỉnh, và quan trọng hơn nhiều, phải kiểm chứng ngoài mẫu.",
-    diagram: [
-      { label: "Thêm biến giải thích", arrow: true },
-      { label: "R bình phương trong mẫu luôn tăng", arrow: true },
-      { label: "Nhưng phương sai ước lượng cũng tăng", arrow: true },
-      { label: "Kết quả: khớp quá mức, dự báo ngoài mẫu tệ đi" },
-    ],
     interactiveType: "regression",
+    whyItMatters:
+      "Thêm một biến vào mô hình không bao giờ làm hệ số xác định giảm, nên chỉ số dễ nhìn nhất luôn thưởng cho việc thêm biến. Ba cái bẫy đi kèm thì không hiện ra ở chỉ số nào, và chúng làm mô hình vô dụng theo ba cách khác nhau.",
+    openingQuestion: "Vì sao thêm biến vào mô hình gần như luôn làm hệ số xác định tăng?",
+    openingOptions: [
+      "Vì mô hình luôn tìm được cách dùng biến mới để khớp thêm một phần nhiễu",
+      "Vì mỗi biến thêm vào đều mang theo thông tin mới về biến phụ thuộc",
+      "Vì số bậc tự do tăng lên giúp mô hình mô tả dữ liệu linh hoạt hơn",
+      "Vì thuật toán ước lượng ưu tiên các mô hình có nhiều biến giải thích hơn",
+    ],
+    correctOption: 0,
+    explanation:
+      "Ngay cả một biến hoàn toàn ngẫu nhiên cũng làm hệ số xác định tăng nhẹ, vì trong một tập dữ liệu hữu hạn luôn có một chút nhiễu mà biến đó tình cờ khớp được. Đó là lý do chỉ số này không dùng để so hai mô hình có số biến khác nhau, và cũng là lý do việc thêm biến cho cảm giác cải thiện ở mọi bước. Hệ quả thực tế: một mô hình mười lăm biến trên hai trăm quan sát trông tốt hơn mô hình ba biến ở mọi chỉ số nội bộ, và tệ hơn hẳn trên dữ liệu mới.",
+    diagram: [
+      { label: "Thêm biến: hệ số xác định luôn tăng", arrow: true },
+      { label: "Kể cả khi biến đó hoàn toàn ngẫu nhiên", arrow: true },
+      { label: "Ba bẫy mở ra và không hiện ở chỉ số nào", arrow: true },
+      { label: "Chỉ dữ liệu ngoài mẫu phân biệt được" },
+    ],
     realWorldExample: {
-      company: "Mô hình rủi ro trước 2008",
+      company: "Mười lăm biến, hai trăm quan sát",
       description:
-        "Nhiều mô hình định giá chứng khoán bảo đảm bằng thế chấp trước khủng hoảng 2008 được ước lượng trên dữ liệu giai đoạn giá nhà chỉ tăng. Biến quan trọng nhất - khả năng giá nhà giảm đồng loạt trên toàn quốc - không có trong mẫu nên không có trong mô hình. Mô hình khớp lịch sử gần như hoàn hảo và sai hoàn toàn về tương lai, vì lịch sử được dùng để huấn luyện chưa từng chứa kịch bản đó.",
+        "Một mô hình dự báo tải được xây với mười lăm biến giải thích trên hai trăm quan sát lịch sử, giải thích được hơn chín mươi phần trăm biến động. Đưa vào chạy thật thì sai lệch lớn ngay tháng đầu. Mô hình đã học thuộc hai trăm quan sát ấy, gồm cả phần nhiễu của chúng, và phần nhiễu thì không lặp lại.",
     },
     quiz: [
       {
-        question: "Đa cộng tuyến gây ra hậu quả gì?",
+        question: "Đa cộng tuyến gây ra vấn đề gì?",
         options: [
-          "Làm R bình phương của mô hình giảm mạnh so với mô hình hồi quy đơn biến",
-          "Làm sai số chuẩn phình to, khiến từng hệ số riêng lẻ mất ý nghĩa",
-          "Làm mô hình không chạy được và phần mềm sẽ báo lỗi ma trận suy biến",
-          "Làm phần dư của mọi quan sát đều bằng 0 nên không kiểm định được nữa",
-        ],
-        correct: 1,
-        explanation:
-          "Khi hai biến giải thích tương quan cao, mô hình không thể tách được đóng góp của từng biến. Dấu hiệu điển hình: mô hình tổng thể có ý nghĩa nhưng không hệ số riêng lẻ nào có ý nghĩa, và hệ số đổi dấu khi thêm bớt một biến.",
-      },
-      {
-        question: "Vấn đề biến bị bỏ sót gây ra điều gì?",
-        options: [
-          "Làm hệ số bị chệch nếu biến bỏ sót tương quan với biến đã đưa vào",
-          "Chỉ làm giảm R bình phương chứ không ảnh hưởng gì tới độ chính xác của hệ số",
-          "Làm tăng số quan sát tối thiểu cần có để mô hình đạt ý nghĩa thống kê",
-          "Không gây hậu quả gì nếu cỡ mẫu đủ lớn để định lý giới hạn trung tâm áp dụng",
+          "Hệ số của từng biến trở nên không ổn định dù mô hình vẫn dự báo tốt",
+          "Mô hình mất hẳn khả năng dự báo vì các biến trùng lặp thông tin của nhau",
+          "Hệ số xác định giảm vì thông tin trùng lặp",
+          "Thuật toán không hội tụ nên không ra kết quả",
         ],
         correct: 0,
         explanation:
-          "Đây là dạng sai lệch nguy hiểm nhất vì nó không tự bộc lộ trong bất kỳ chỉ số chẩn đoán nào. Mô hình vẫn trông khỏe mạnh, chỉ có điều hệ số đang thu nhận cả ảnh hưởng của biến bị thiếu.",
+          "Đây là phân biệt quan trọng: dự báo vẫn ổn, còn việc đọc từng hệ số thì không. Khi hai biến gần như trùng nhau, mô hình có vô số cách chia phần đóng góp giữa chúng và nó chọn một cách gần như tuỳ ý - nên hệ số có thể đổi dấu chỉ vì bạn thêm vài quan sát.",
       },
       {
-        question: "Khớp quá mức (overfitting) biểu hiện thế nào?",
+        question: "Biến bị bỏ sót ảnh hưởng tới mô hình thế nào?",
         options: [
-          "Khớp rất tốt trong mẫu nhưng dự báo tệ trên dữ liệu mới",
-          "Mô hình cho R bình phương thấp trên cả tập huấn luyện lẫn tập kiểm tra",
-          "Mô hình chỉ hoạt động được khi có đúng một biến giải thích duy nhất",
-          "Mô hình chạy quá chậm vì phải ước lượng quá nhiều tham số cùng lúc",
+          "Hệ số của các biến còn lại hút phần ảnh hưởng của biến bị thiếu",
+          "Mô hình giải thích được ít hơn hẳn nên chỉ số của nó cũng thấp hơn",
+          "Dự báo lệch một khoảng cố định",
+          "Phần dư tăng và không còn ngẫu nhiên",
         ],
         correct: 0,
         explanation:
-          "Với đủ số biến, bạn có thể khớp hoàn hảo bất kỳ tập dữ liệu nào - kể cả dữ liệu ngẫu nhiên hoàn toàn. Khoảng cách giữa hiệu suất trong mẫu và ngoài mẫu chính là thước đo mức độ khớp quá mức.",
+          "Đây là cái bẫy nguy hiểm nhất trong ba cái, vì nó không làm mô hình trông tệ đi chút nào. Nếu biến bị bỏ sót có liên hệ với một biến đang có trong mô hình, hệ số của biến đang có sẽ phóng đại và bạn đọc ra một ảnh hưởng lớn hơn thực tế - không chỉ số nào cảnh báo điều đó.",
       },
       {
-        question: "Tự tương quan của phần dư trong dữ liệu chuỗi thời gian gây hậu quả gì?",
+        question: "Cách nào phát hiện khớp quá mức đáng tin nhất?",
         options: [
-          "Làm các hệ số ước lượng bị chệch một cách nghiêm trọng và có hệ thống",
-          "Làm sai số chuẩn bị hạ thấp, khiến kết quả trông đáng tin hơn thực chất",
-          "Làm R bình phương của mô hình rơi về 0 dù quan hệ thật vẫn tồn tại",
-          "Không gây hậu quả nào đáng kể với dữ liệu tài chính theo chuỗi",
+          "Đo trên phần dữ liệu chưa từng được dùng để xây mô hình",
+          "So sánh hệ số xác định đã điều chỉnh giữa các mô hình có số biến khác nhau",
+          "Kiểm số biến có quá lớn so với số quan sát",
+          "Xem các hệ số có ý nghĩa thống kê và có dấu phù hợp với kỳ vọng không",
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Đây là cạm bẫy rất phổ biến với dữ liệu tài chính theo thời gian. Hệ số vẫn không chệch, nhưng bạn sẽ tự tin hơn mức đáng có. Cách xử lý thông thường là dùng sai số chuẩn vững như Newey-West.",
+          "Ba cách kia đều là dấu hiệu gián tiếp và đều tính trên chính tập dữ liệu đã dùng để xây mô hình. Phần dữ liệu giữ riêng ra là phép thử duy nhất trả lời đúng câu hỏi mà bạn đang hỏi: mô hình này hoạt động thế nào với dữ liệu nó chưa từng thấy.",
       },
       {
-        question: "Nguyên tắc thực dụng nào giúp tránh khớp quá mức nhất?",
+        question: "Hệ số của một biến đổi dấu khi thêm biến khác vào nghĩa là gì?",
         options: [
-          "Đưa vào càng nhiều biến càng tốt để chắc chắn không bỏ sót thông tin nào",
-          "Giữ mô hình đơn giản, ưu tiên biến có lý do kinh tế, kiểm chứng ngoài mẫu",
-          "Chỉ dùng dữ liệu của năm gần nhất vì nó phản ánh đúng thị trường hiện tại",
-          "Nâng mức ý nghĩa lên 20% để giữ lại nhiều biến giải thích hơn trong mô hình",
+          "Hai biến có liên hệ với nhau, và cần quyết định đọc mô hình nào",
+          "Mô hình mới đúng hơn, hệ số cũ là sai lệch",
+          "Có lỗi trong dữ liệu hoặc khi ước lượng",
+          "Biến vừa thêm không nên có trong mô hình",
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Câu hỏi lọc tốt nhất trước khi đưa một biến vào mô hình: tôi có giải thích được bằng lời vì sao biến này ảnh hưởng đến kết quả không. Nếu không, khả năng cao đó chỉ là tương quan tình cờ trong mẫu.",
+          "Hiện tượng này bình thường và nó nói rằng phần ảnh hưởng đang được chia lại giữa các biến có liên hệ. Không mô hình nào trong hai mô hình sai; chúng trả lời hai câu hỏi khác nhau, và bạn phải nói rõ đang hỏi câu nào - giữ các biến kia cố định hay không.",
       },
-    ],
-    keyTakeaways: [
-      "Thêm biến luôn tăng R bình phương trong mẫu - hãy dùng R bình phương hiệu chỉnh và kiểm chứng ngoài mẫu",
-      "Đa cộng tuyến làm hệ số riêng lẻ mất ý nghĩa dù mô hình tổng thể vẫn hoạt động",
-      "Biến bị bỏ sót gây chệch mà không có chỉ số chẩn đoán nào phát hiện được",
-      "Mọi biến đưa vào mô hình phải có lý do kinh tế giải thích được bằng lời trước khi có bằng chứng thống kê",
+      {
+        question: "Số biến nên có trong mô hình phụ thuộc chủ yếu vào điều gì?",
+        options: [
+          "Số quan sát có được, vì mỗi biến ăn một phần khả năng khái quát hoá",
+          "Số yếu tố mà bạn tin là có ảnh hưởng thật tới biến cần giải thích",
+          "Mức cải thiện của hệ số xác định khi thêm từng biến vào mô hình",
+          "Yêu cầu về độ chính xác của dự báo mà bài toán đặt ra ban đầu",
+        ],
+        correct: 0,
+        explanation:
+          "Với hai trăm quan sát, ba biến là hợp lý và mười lăm biến thì mô hình bắt đầu học thuộc dữ liệu. Đây là ràng buộc cứng không phụ thuộc vào việc bạn tin các biến ấy quan trọng tới đâu, và nó là ràng buộc hay bị bỏ qua nhất vì thêm biến thì luôn thấy chỉ số đẹp lên.",
+      },
     ],
     practicePrompt: {
       question:
-        "Một mô hình dự báo lợi nhuận doanh nghiệp có 15 biến giải thích, R bình phương 0,92, xây trên 40 quan sát quý. Vấn đề lớn nhất là gì?",
+        "Mô hình của bạn có mười biến trên ba trăm quan sát và giải thích được 88% biến động. Nên làm gì trước khi dùng?",
       options: [
-        "R bình phương chưa đủ cao",
-        "Số biến quá lớn so với số quan sát, R² là ảo",
-        "Nên chuyển sang dữ liệu tháng để có thêm quan sát",
-        "Không có vấn đề gì nếu mọi hệ số đều có ý nghĩa",
+        "Đo lại trên phần dữ liệu giữ riêng chưa từng dùng để xây mô hình",
+        "Kiểm đa cộng tuyến để bỏ biến trùng",
+        "Rà ý nghĩa từng hệ số và bỏ biến không đạt",
+        "So với mô hình ít biến hơn bằng chỉ số đã điều chỉnh",
       ],
-      correct: 1,
+      correct: 0,
       explanation:
-        "Quy tắc thô là cần ít nhất 10 đến 20 quan sát cho mỗi biến giải thích. Với 40 quan sát, mô hình không nên có quá hai đến bốn biến. Chuyển sang dữ liệu tháng không giải quyết được vì các quan sát tháng có tự tương quan mạnh, nên số quan sát độc lập thực tế không tăng tương ứng.",
+        "Ba việc kia đều chạy trên chính tập dữ liệu đã sinh ra con số 88%, nên chúng không trả lời được câu hỏi thật là mô hình có hoạt động với dữ liệu mới không. Giữ riêng một phần dữ liệu tốn ít công hơn cả ba việc kia và trả lời dứt khoát.",
     },
+    keyTakeaways: [
+      "Thêm biến ngẫu nhiên cũng làm hệ số xác định tăng, nên chỉ số đó không so được hai mô hình khác số biến",
+      "Đa cộng tuyến làm hệ số không ổn định trong khi dự báo vẫn ổn",
+      "Biến bị bỏ sót là bẫy nguy hiểm nhất vì nó không làm mô hình trông tệ đi",
+      "Số quan sát đặt ra một trần cứng cho số biến, bất kể bạn tin chúng quan trọng tới đâu",
+    ],
     summary: {
-      keyIdea: "Mô hình phức tạp hơn luôn khớp lịch sử tốt hơn và thường dự báo tương lai tệ hơn",
-      formula: "R² hiệu chỉnh phạt theo số biến; luôn so hiệu suất trong mẫu với ngoài mẫu",
-      commonMistake: "Chọn mô hình dựa trên R bình phương thay vì dựa trên hiệu suất ngoài mẫu",
-      action: "Lấy một mô hình bạn tin tưởng, cắt 30% dữ liệu cuối ra, ước lượng lại trên 70% và kiểm tra sai số dự báo.",
+      keyIdea: "Chỉ số dễ nhìn nhất luôn thưởng cho việc thêm biến, còn ba cái bẫy đi kèm thì không hiện ở đâu",
+      commonMistake: "Đánh giá mô hình bằng các chỉ số tính trên chính tập dữ liệu đã dùng để xây nó",
+      action: "Giữ riêng một phần dữ liệu từ đầu, và chỉ chạm vào nó một lần khi mô hình đã xong.",
     },
     application: {
-      title: "Bộ lọc trước khi thêm bất kỳ biến nào",
+      title: "Tách dữ liệu trước khi bắt đầu",
       message:
-        "Ba câu hỏi: Có lý do kinh tế nào giải thích quan hệ này không? Biến này có tương quan cao với biến đã có trong mô hình không? Và sau khi thêm nó, hiệu suất ngoài mẫu có cải thiện không? Chỉ ba câu trả lời có mới biện minh cho việc thêm biến.",
-      secondary: "Trong thực tế, mô hình ba biến có lý do kinh tế rõ ràng gần như luôn bền hơn mô hình mười lăm biến được chọn bằng thuật toán.",
+        "Cắt một phần dữ liệu ra trước khi xây mô hình và đừng nhìn nó. Mọi chỉ số tính trên phần còn lại đều lạc quan, kể cả những chỉ số đã điều chỉnh.",
+      secondary:
+        "Với mỗi hệ số bạn định đọc thành ý nghĩa, kiểm xem nó có đổi khi thêm bớt một biến khác không - nếu có thì đừng đọc nó một mình.",
     },
     sections: [
       {
         type: "lead",
-        text: "Hồi quy đa biến hấp dẫn vì nó cho phép nói câu giữ nguyên các yếu tố khác. Nhưng trong tài chính, các yếu tố khác gần như không bao giờ độc lập với nhau, và đó là nơi mọi rắc rối bắt đầu.",
-      },
-      {
-        type: "conceptTable",
-        title: "Bốn cạm bẫy phải kiểm tra",
-        subtitle: "Mỗi cái phá hỏng mô hình theo một cách khác nhau",
-        concepts: [
-          { vi: "Đa cộng tuyến", en: "Multicollinearity", def: "Các biến giải thích tương quan cao với nhau. Hệ số riêng lẻ mất ý nghĩa và đổi dấu thất thường, dù dự báo tổng thể có thể vẫn ổn." },
-          { vi: "Biến bị bỏ sót", en: "Omitted variable bias", def: "Một yếu tố quan trọng không có trong mô hình nhưng tương quan với biến đã đưa vào, khiến hệ số bị chệch. Nguy hiểm nhất vì không chẩn đoán được." },
-          { vi: "Khớp quá mức", en: "Overfitting", def: "Mô hình học cả nhiễu trong mẫu. Biểu hiện: rất tốt trong mẫu, rất tệ ngoài mẫu. Càng nhiều biến trên mỗi quan sát càng nghiêm trọng." },
-          { vi: "Tự tương quan", en: "Autocorrelation", def: "Phần dư ở các kỳ liên tiếp liên quan với nhau. Không làm chệch hệ số nhưng làm sai số chuẩn bị hạ thấp, tạo cảm giác tin cậy giả." },
-        ],
+        text: "Thêm một biến vào mô hình không bao giờ làm hệ số xác định giảm. Đó là một tính chất toán học, và nó có nghĩa là chỉ số dễ nhìn nhất luôn thưởng cho hành động dễ làm nhất.",
       },
       {
         type: "heading",
-        text: "Vì sao đơn giản lại thắng",
+        text: "Ba cái bẫy, ba kiểu hỏng khác nhau",
       },
       {
-        type: "paragraph",
-        text: "Mỗi biến thêm vào tiêu tốn một bậc tự do và mang theo sai số ước lượng riêng. Với dữ liệu tài chính vốn nhiễu và giới hạn về độ dài, chi phí này thường lớn hơn lợi ích thông tin. Đây là lý do các mô hình bền nhất trong thực tế - mô hình ba nhân tố, chấm điểm tín dụng dạng rút gọn - đều rất đơn giản so với thứ mà thuật toán tự động sẽ chọn.",
+        type: "list",
+        items: [
+          "Khớp quá mức: mô hình học thuộc cả nhiễu, đẹp trong mẫu và tệ ngoài mẫu",
+          "Đa cộng tuyến: dự báo vẫn ổn, còn từng hệ số thì không đọc được",
+          "Biến bị bỏ sót: hệ số các biến còn lại hút phần ảnh hưởng của biến thiếu",
+          "Chỉ cái thứ nhất bị bắt bởi dữ liệu ngoài mẫu; hai cái kia phải tự nghĩ ra",
+        ],
       },
       {
         type: "callout",
-        label: "Quy tắc vàng",
-        text: "Lý thuyết kinh tế phải đến trước dữ liệu. Nếu bạn không giải thích được bằng một câu vì sao biến này ảnh hưởng đến kết quả, đừng đưa nó vào mô hình - dù giá trị p có đẹp đến đâu.",
+        label: "Biến bị bỏ sót không làm mô hình trông tệ đi",
+        text: "Khớp quá mức lộ ra ngay khi bạn đo trên dữ liệu mới, và đa cộng tuyến lộ ra khi hệ số nhảy lung tung. Biến bị bỏ sót thì không để lại dấu vết nào: mô hình vẫn khớp tốt, hệ số vẫn ổn định, và con số bạn đọc ra vẫn sai. Cách duy nhất phát hiện là hỏi thứ gì có thể ảnh hưởng tới cả hai vế mà mình chưa đưa vào.",
       },
       {
         type: "closing",
         lines: [
-          "Mục tiêu của mô hình không phải giải thích quá khứ mà là hữu ích với tương lai.",
-          "Bài cuối chặng xử lý loại dữ liệu đặc thù nhất của tài chính: chuỗi thời gian.",
+          "Mô hình nhiều biến luôn đẹp hơn trên dữ liệu cũ; đó chính là vấn đề, không phải bằng chứng.",
+          "Bài sau: dữ liệu có thứ tự thời gian phá vỡ mọi giả định ở trên.",
         ],
       },
     ],
@@ -871,168 +829,152 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
   {
     id: 1426,
     slug: "chuoi-thoi-gian-va-kiem-chung-ngoai-mau",
-    title: "Định lượng, Bài 6: Chuỗi thời gian và kiểm chứng ngoài mẫu - vì sao backtest luôn đẹp hơn thực tế",
-    subtitle: "Tính dừng, tự hồi quy, cụm biến động và các thiên lệch âm thầm phá hỏng mọi backtest",
-    duration: "12 phút",
-    difficulty: "Khó",
+    title: "Định lượng, Bài 6: Chuỗi thời gian và kiểm chứng ngoài mẫu",
+    subtitle: "Dữ liệu có thứ tự phá vỡ mọi giả định của năm bài trước, và nó phá theo hướng làm bạn tự tin hơn",
+    duration: "8 phút",
+    difficulty: "Trung bình",
     emoji: "⏳",
     track: "professional",
-    whyItMatters:
-      "Dữ liệu tài chính gần như luôn là chuỗi thời gian, và chuỗi thời gian vi phạm hầu hết giả định của thống kê cơ bản. Đây cũng là bài khép lại chặng: nó biến toàn bộ lý thuyết phía trước thành một quy trình kiểm chứng mà bạn có thể áp dụng cho mọi mô hình, của mình hay của người khác.",
-    openingQuestion:
-      "Vì sao không nên chạy hồi quy trực tiếp trên chuỗi giá cổ phiếu mà nên dùng chuỗi lợi suất?",
-    openingOptions: [
-      "Vì chuỗi giá thường có quá nhiều điểm dữ liệu để phần mềm xử lý cùng lúc được hết",
-      "Vì chuỗi giá không dừng, dẫn tới hồi quy giả tạo giữa hai chuỗi không liên quan",
-      "Vì chuỗi giá luôn có giá trị âm",
-      "Vì phần mềm không xử lý được chuỗi giá",
-    ],
-    correctOption: 1,
-    explanation:
-      "Hai chuỗi không dừng bất kỳ, chẳng hạn giá một cổ phiếu Việt Nam và số lượng ô tô bán ra ở Na Uy, đều có xu hướng tăng theo thời gian nên hồi quy giữa chúng sẽ cho R bình phương cao và hệ số có ý nghĩa thống kê - dù chúng chẳng liên quan gì. Đây gọi là hồi quy giả tạo. Lấy sai phân hoặc chuyển sang lợi suất giúp chuỗi trở nên dừng và loại bỏ phần lớn vấn đề này.",
-    diagram: [
-      { label: "Chuỗi giá: không dừng", arrow: true },
-      { label: "Lấy lợi suất: gần dừng", arrow: true },
-      { label: "Kiểm tra tự tương quan và cụm biến động", arrow: true },
-      { label: "Kiểm chứng ngoài mẫu theo trình tự thời gian" },
-    ],
     interactiveType: "regression",
+    whyItMatters:
+      "Phần lớn số liệu vận hành đều có thứ tự thời gian, và mọi công cụ thống kê thông thường giả định các quan sát độc lập. Khoảng cách giữa hai điều đó là lý do các mô hình dự báo tải, dự báo chi phí và dự báo tăng trưởng luôn đẹp trên dữ liệu cũ.",
+    openingQuestion: "Vì sao chia dữ liệu ngẫu nhiên thành tập huấn luyện và tập kiểm là sai với chuỗi thời gian?",
+    openingOptions: [
+      "Vì mô hình được thấy dữ liệu tương lai khi học, điều không xảy ra lúc chạy thật",
+      "Vì các quan sát gần nhau về thời gian có giá trị tương tự nên bị chia không đều",
+      "Vì tập kiểm ngẫu nhiên không phản ánh đúng phân phối của dữ liệu trong thực tế",
+      "Vì thứ tự thời gian là một biến quan trọng bị mất đi khi chia ngẫu nhiên",
+    ],
+    correctOption: 0,
+    explanation:
+      "Chia ngẫu nhiên đặt một số quan sát của tháng Sáu vào tập huấn luyện và một số quan sát của tháng Năm vào tập kiểm. Mô hình vì thế học được cả những gì xảy ra sau thời điểm mà nó sẽ phải dự báo, và nó dùng thông tin ấy để nội suy giữa hai điểm đã biết - một việc dễ hơn nhiều so với ngoại suy về phía trước. Kết quả là điểm số trên tập kiểm cao hơn hẳn kết quả thật, và sai lệch này lớn tới mức nó thường quyết định việc mô hình được đưa vào chạy hay không. Cách chia đúng là cắt theo thời gian: huấn luyện trên phần trước, kiểm trên phần sau, đúng như lúc chạy thật.",
+    diagram: [
+      { label: "Chia ngẫu nhiên: mô hình thấy cả dữ liệu tương lai", arrow: true },
+      { label: "Bài toán thành nội suy, dễ hơn nhiều", arrow: true },
+      { label: "Điểm số cao hơn hẳn thực tế", arrow: true },
+      { label: "Cắt theo thời gian mới mô phỏng đúng lúc chạy thật" },
+    ],
     realWorldExample: {
-      company: "Vì sao chiến lược thắng trong backtest lại thua khi triển khai",
+      company: "Chín mươi phần trăm rồi bốn mươi",
       description:
-        "Một khảo sát quen thuộc trong ngành: các chiến lược định lượng khi đưa vào vận hành thật thường chỉ đạt khoảng một nửa tỷ số Sharpe của backtest. Nguyên nhân xếp theo mức độ phổ biến là thiên lệch sống sót trong dữ liệu, dùng thông tin chưa có tại thời điểm ra quyết định, bỏ qua chi phí giao dịch và tác động giá, và cuối cùng là dò tìm quá nhiều biến thể trên cùng tập dữ liệu.",
+        "Một mô hình dự báo tải đạt độ chính xác rất cao trên tập kiểm được chia ngẫu nhiên, và được duyệt đưa vào vận hành. Trong tháng đầu chạy thật, sai lệch lớn gấp nhiều lần. Chia lại theo thời gian trên chính dữ liệu cũ cho ra con số gần đúng với thực tế - phép kiểm đúng đã có sẵn từ đầu, chỉ là nó cho một con số khó chấp nhận hơn.",
     },
     quiz: [
       {
-        question: "Tính dừng của một chuỗi thời gian nghĩa là gì?",
+        question: "Rò rỉ thông tin tương lai còn xảy ra ở chỗ nào ngoài cách chia dữ liệu?",
         options: [
-          "Chuỗi giữ nguyên giá trị qua các kỳ",
-          "Trung bình và phương sai của chuỗi ổn định theo thời gian",
-          "Chuỗi có xu hướng tăng đều đặn và không đảo chiều trong dài hạn",
-          "Chuỗi không có quan sát nào bị thiếu trong toàn bộ giai đoạn khảo sát",
-        ],
-        correct: 1,
-        explanation:
-          "Tính dừng là điều kiện để suy diễn thống kê có nghĩa. Chuỗi giá không dừng, chuỗi lợi suất thì xấp xỉ dừng về trung bình nhưng phương sai vẫn thay đổi theo thời gian.",
-      },
-      {
-        question: "Cụm biến động (volatility clustering) là hiện tượng gì?",
-        options: [
-          "Nhiều cổ phiếu khác nhau cùng biến động mạnh trong một phiên giao dịch",
-          "Ngày biến động mạnh có xu hướng đi liền nhau thành từng cụm",
-          "Độ biến động luôn tăng lên vào giai đoạn cuối năm rồi giảm trở lại",
-          "Biến động của mọi tài sản hội tụ về 0",
-        ],
-        correct: 1,
-        explanation:
-          "Đây là đặc điểm được ghi nhận nhất quán nhất của dữ liệu tài chính và là lý do các mô hình họ GARCH tồn tại. Nó cũng lý giải vì sao độ biến động dự báo được ở mức nào đó, trong khi hướng giá thì không.",
-      },
-      {
-        question: "Thiên lệch sống sót trong dữ liệu backtest là gì?",
-        options: [
-          "Dữ liệu chỉ còn công ty tồn tại đến hôm nay, đã mất công ty phá sản",
-          "Dữ liệu chỉ gồm công ty mới niêm yết",
-          "Dữ liệu bị thiếu ngẫu nhiên một số phiên do lỗi của nhà cung cấp dữ liệu",
-          "Dữ liệu giá chưa được điều chỉnh cho cổ tức và các đợt chia tách cổ phiếu",
+          "Ở các biến được tính trên toàn bộ dữ liệu, như trung bình hay giá trị chuẩn hoá",
+          "Ở việc chọn siêu tham số của mô hình dựa trên kết quả của tập kiểm",
+          "Ở các biến có độ trễ không được tính đúng theo thời điểm dữ liệu thật sự sẵn có",
+          "Ở việc dữ liệu lịch sử được sửa lại sau khi đã ghi nhận lần đầu",
         ],
         correct: 0,
         explanation:
-          "Bộ dữ liệu chỉ chứa công ty còn sống hôm nay sẽ khiến mọi chiến lược trông tốt hơn thực tế, vì các khoản đầu tư tệ nhất - những công ty đã biến mất - đã bị loại khỏi mẫu ngay từ đầu.",
+          "Ba nguồn kia đều có thật và đều được nhắc tới nhiều. Nguồn này thì lặng lẽ nhất: chuẩn hoá một biến bằng trung bình và độ lệch chuẩn tính trên toàn bộ dữ liệu đã đưa thông tin của tương lai vào từng quan sát của quá khứ, và bước ấy thường nằm trong phần tiền xử lý mà không ai coi là một phần của mô hình.",
       },
       {
-        question: "Thiên lệch nhìn trước (look-ahead bias) là gì?",
+        question: "Kiểm chứng theo cửa sổ trượt về phía trước có ưu điểm gì?",
         options: [
-          "Dùng thông tin chưa được công bố tại thời điểm ra quyết định",
-          "Dự báo quá xa vào tương lai so với độ dài dữ liệu lịch sử đang có",
-          "Dùng dữ liệu ở tần suất quá cao so với chu kỳ giao dịch của chiến lược",
-          "Bỏ qua chi phí giao dịch và trượt giá khi tính lợi suất của chiến lược",
+          "Nó cho nhiều lần kiểm, mỗi lần mô phỏng đúng tình huống lúc chạy thật",
+          "Nó dùng được toàn bộ dữ liệu để huấn luyện",
+          "Nó giảm ảnh hưởng của giai đoạn bất thường",
+          "Nó cho so nhiều mô hình trên cùng tập kiểm",
         ],
         correct: 0,
         explanation:
-          "Đây là lỗi tinh vi và rất phổ biến. Báo cáo tài chính năm thường công bố hai đến ba tháng sau ngày kết thúc năm; dùng nó ở ngày 31/12 nghĩa là chiến lược của bạn đang biết trước tương lai.",
+          "Một lần cắt theo thời gian cho đúng một phép kiểm, và kết quả của nó phụ thuộc nhiều vào việc điểm cắt rơi vào giai đoạn nào. Trượt cửa sổ về phía trước cho một chuỗi kết quả, và độ biến động giữa chúng tự nó đã là thông tin về việc mô hình ổn định tới đâu.",
       },
       {
-        question: "Cách kiểm chứng ngoài mẫu đúng cho chuỗi thời gian là gì?",
+        question: "Vì sao chuỗi thời gian vi phạm giả định độc lập của các phép kiểm thông thường?",
         options: [
-          "Chia ngẫu nhiên toàn bộ quan sát thành tập huấn luyện và tập kiểm tra",
-          "Chia theo trình tự thời gian: huấn luyện trước, kiểm tra ở giai đoạn sau",
-          "Dùng toàn bộ dữ liệu cho cả bước ước lượng lẫn bước kiểm chứng kết quả",
-          "Chỉ kiểm tra trên giai đoạn thị trường tăng để đánh giá tiềm năng sinh lời",
+          "Vì giá trị hôm nay thường liên quan tới giá trị hôm qua",
+          "Vì các quan sát được thu thập theo một trình tự cố định chứ không ngẫu nhiên",
+          "Vì phân phối đổi theo thời gian",
+          "Vì số lượng quan sát bị giới hạn bởi khoảng thời gian đã thu thập được",
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Chia ngẫu nhiên sẽ để dữ liệu tương lai lọt vào tập huấn luyện, tạo ra thiên lệch nhìn trước tinh vi. Với chuỗi thời gian, ranh giới giữa hai tập luôn phải là một mốc thời gian.",
+          "Tự tương quan là vi phạm cốt lõi, và hệ quả của nó rất cụ thể: số quan sát hiệu dụng nhỏ hơn nhiều so với số dòng dữ liệu. Một chuỗi một nghìn điểm đo mỗi phút có thể chỉ mang lượng thông tin tương đương vài chục quan sát độc lập, nên mọi khoảng tin cậy tính theo cách thông thường đều hẹp hơn thực tế.",
       },
-    ],
-    keyTakeaways: [
-      "Chuỗi giá không dừng - hồi quy trực tiếp trên giá tạo ra quan hệ giả tạo; hãy dùng lợi suất",
-      "Lợi suất tài chính có cụm biến động: biến động dự báo được phần nào, còn hướng giá thì không",
-      "Bốn thiên lệch phá hỏng backtest: sống sót, nhìn trước, bỏ qua chi phí giao dịch, và dò tìm quá nhiều",
-      "Kiểm chứng ngoài mẫu phải chia theo thời gian, không bao giờ chia ngẫu nhiên",
+      {
+        question: "Xu hướng và tính mùa vụ nên được xử lý thế nào trước khi mô hình hoá?",
+        options: [
+          "Tách chúng ra và mô hình hoá riêng, vì phần còn lại mới là thứ cần dự báo",
+          "Đưa chúng vào mô hình dưới dạng các biến giải thích để mô hình tự học",
+          "Loại bỏ chúng khỏi dữ liệu vì chúng làm nhiễu quan hệ giữa các biến",
+          "Giữ nguyên vì các mô hình chuỗi thời gian hiện đại xử lý được chúng tự động",
+        ],
+        correct: 0,
+        explanation:
+          "Xu hướng và mùa vụ thường chiếm phần lớn biến động, nên một mô hình chỉ học được hai thứ đó đã trông rất chính xác trong khi nó không dự báo được điều gì hữu ích. Tách ra rồi xem phần dư còn lại có dự báo được không là cách duy nhất biết mô hình có thêm giá trị gì không.",
+      },
+      {
+        question: "Mô hình chạy tốt sáu tháng rồi xấu đi thì nguyên nhân thường là gì?",
+        options: [
+          "Quan hệ trong dữ liệu đã đổi, và mô hình vẫn giữ quan hệ cũ",
+          "Chất lượng dữ liệu đầu vào giảm sút do các thay đổi trong hệ thống thu thập",
+          "Mô hình cần được huấn luyện lại định kỳ với dữ liệu mới để duy trì độ chính xác",
+          "Có sự cố kỹ thuật trong quá trình vận hành khiến mô hình hoạt động không đúng",
+        ],
+        correct: 0,
+        explanation:
+          "Huấn luyện lại là cách xử lý chứ không phải nguyên nhân. Nguyên nhân là hệ thống đã đổi: kiến trúc mới, nhóm người dùng mới, một tính năng thay đổi hành vi. Vì vậy mọi mô hình chạy trong sản xuất cần một chỉ số theo dõi chính độ chính xác của nó, chứ không chỉ theo dõi đầu ra.",
+      },
     ],
     practicePrompt: {
       question:
-        "Bạn nhận một backtest có Sharpe 2,0 trên giai đoạn 2015 đến 2024. Ba câu hỏi kiểm tra nào cần đặt trước tiên?",
+        "Bạn có mô hình dự báo tải đạt độ chính xác rất cao trên tập kiểm. Nên kiểm gì trước khi tin?",
       options: [
-        "Dùng phần mềm gì, máy tính cấu hình ra sao, và ai viết mã",
-        "Hủy niêm yết, nhìn trước, và chi phí giao dịch",
-        "Chiến lược có tên gọi hấp dẫn không và đã được ai đầu tư chưa",
-        "Kết quả năm gần nhất có tốt không",
+        "Tập kiểm được chia theo thời gian hay ngẫu nhiên, và các biến chuẩn hoá bằng gì",
+        "Mô hình có bị khớp quá mức không bằng cách so số biến với số quan sát có được",
+        "Độ chính xác có ổn định không khi thử với các tham số khác nhau của mô hình",
+        "Các biến đầu vào có sẵn sàng tại thời điểm cần dự báo trong môi trường thật không",
       ],
-      correct: 1,
+      correct: 0,
       explanation:
-        "Ba câu này lần lượt kiểm tra thiên lệch sống sót, thiên lệch nhìn trước và chi phí thực hiện - ba nguyên nhân giải thích phần lớn khoảng cách giữa backtest và thực tế. Câu hỏi thứ tư nên là: đã thử bao nhiêu biến thể trước khi chọn ra cái này.",
+        "Hai câu này bắt hai nguồn rò rỉ phổ biến nhất, và chúng giải thích phần lớn khoảng cách giữa điểm số trên giấy với kết quả thật. Phương án bốn cũng là một nguồn rò rỉ đáng kiểm, nhưng nó hiếm hơn nhiều so với hai nguồn kia.",
     },
+    keyTakeaways: [
+      "Chia ngẫu nhiên biến ngoại suy thành nội suy, và điểm số cao hơn hẳn thực tế",
+      "Chuẩn hoá trên toàn bộ dữ liệu là rò rỉ tương lai lặng lẽ nhất",
+      "Tự tương quan làm số quan sát hiệu dụng nhỏ hơn số dòng dữ liệu rất nhiều",
+      "Mô hình chỉ học được xu hướng và mùa vụ trông rất chính xác mà không dự báo được gì",
+    ],
     summary: {
-      keyIdea: "Backtest không phải bằng chứng; nó là giả thuyết cần được kiểm chứng ngoài mẫu",
-      formula: "Kiểm tra tính dừng trước, rồi mới hồi quy; chia tập theo thời gian, không theo ngẫu nhiên",
-      commonMistake: "Tin vào một backtest đẹp mà không hỏi dữ liệu được xây thế nào",
-      action: "Viết ra danh sách bốn thiên lệch và dán nó cạnh màn hình khi đánh giá bất kỳ chiến lược nào.",
+      keyIdea: "Dữ liệu có thứ tự phá vỡ giả định độc lập, và nó phá theo hướng làm mọi con số đẹp lên",
+      commonMistake: "Chia ngẫu nhiên tập kiểm, rồi ngạc nhiên khi mô hình chạy thật kém hơn nhiều lần",
+      action: "Cắt tập kiểm theo thời gian, và kiểm mọi bước tiền xử lý xem có dùng dữ liệu tương lai không.",
     },
     application: {
-      title: "Quy trình kiểm chứng bảy bước",
+      title: "Cắt theo thời gian, và soi phần tiền xử lý",
       message:
-        "Kiểm tra tính dừng; chuyển sang lợi suất; kiểm tra tự tương quan và cụm biến động; xác định giả thuyết trước; chia tập theo thời gian; trừ chi phí giao dịch thực tế; và cuối cùng ghi lại số biến thể đã thử. Bảy bước này bảo vệ bạn khỏi phần lớn sai lầm định lượng trong nghề.",
-      secondary: "Nếu một kết quả chỉ sống sót khi bỏ qua một trong bảy bước trên, nó không phải kết quả.",
+        "Tập kiểm luôn là phần sau của trục thời gian. Mọi giá trị trung bình, độ lệch chuẩn hay ngưỡng dùng để chuẩn hoá phải tính chỉ trên phần huấn luyện.",
+      secondary:
+        "Với mô hình đang chạy thật, thêm một chỉ số theo dõi độ chính xác của chính nó - quan hệ trong dữ liệu sẽ đổi, và không có gì báo cho bạn.",
     },
     sections: [
       {
         type: "lead",
-        text: "Ba bài trước giả định các quan sát độc lập với nhau. Dữ liệu tài chính không như vậy: hôm nay phụ thuộc vào hôm qua, biến động đến theo cụm, và chính cấu trúc của thị trường cũng thay đổi qua các thập kỷ. Bài này xử lý phần đó, và khép lại chặng bằng một quy trình kiểm chứng dùng được ngay.",
+        text: "Năm bài trước đều giả định các quan sát độc lập với nhau. Phần lớn số liệu vận hành thì có thứ tự thời gian, và giả định ấy sai theo một hướng rất cụ thể: nó làm mọi con số đẹp lên.",
       },
       {
         type: "heading",
-        text: "Ba đặc điểm của chuỗi thời gian tài chính",
+        text: "Rò rỉ tương lai, hai đường vào",
       },
       {
-        type: "list",
-        items: [
-          "Không dừng ở mức giá: giá có xu hướng, nên hồi quy giá theo giá tạo ra quan hệ giả tạo với R bình phương rất cao",
-          "Tự tương quan yếu ở lợi suất nhưng mạnh ở bình phương lợi suất: hướng giá gần như không dự báo được, còn độ biến động thì có",
-          "Cấu trúc thay đổi theo thời gian: quan hệ ước lượng trên giai đoạn lãi suất giảm liên tục có thể không còn đúng khi lãi suất đổi chiều",
-        ],
-      },
-      {
-        type: "comparison",
-        left: {
-          label: "Backtest",
-          text: "Biết trước toàn bộ lịch sử. Không có trượt giá, không có tác động giá, không có áp lực tâm lý, và được chọn ra từ nhiều lần thử.",
-        },
-        right: {
-          label: "Thực tế",
-          text: "Ra quyết định với thông tin có tại thời điểm đó. Có chi phí, có trượt giá, và không có cơ hội chạy lại từ đầu khi kết quả xấu.",
-        },
+        type: "paragraph",
+        text: "Đường thứ nhất là cách chia dữ liệu: chia ngẫu nhiên thì mô hình học được cả những gì xảy ra sau thời điểm nó phải dự báo, và bài toán biến từ ngoại suy thành nội suy. Đường thứ hai lặng lẽ hơn: chuẩn hoá một biến bằng trung bình tính trên toàn bộ dữ liệu đã đưa thông tin của tương lai vào từng quan sát quá khứ, và bước ấy thường nằm trong phần tiền xử lý mà không ai coi là một phần của mô hình.",
       },
       {
         type: "callout",
-        label: "Bốn thiên lệch phải loại bỏ",
-        text: "Thiên lệch sống sót (dữ liệu chỉ còn công ty sống sót), thiên lệch nhìn trước (dùng thông tin chưa được công bố ở thời điểm đó), bỏ qua chi phí thực hiện, và dò tìm quá nhiều biến thể. Bốn thứ này giải thích gần như toàn bộ khoảng cách giữa kết quả trên giấy và kết quả thật.",
+        label: "Xu hướng và mùa vụ có thể là toàn bộ độ chính xác",
+        text: "Một mô hình học được rằng tải tăng dần và cao hơn vào giờ hành chính sẽ trông rất chính xác, vì hai thứ đó chiếm phần lớn biến động. Nó cũng không nói được gì mà một quy tắc hai dòng không nói được. Tách xu hướng và mùa vụ ra rồi hỏi phần dư còn lại có dự báo được không là cách duy nhất biết mô hình có thêm giá trị gì.",
       },
       {
         type: "closing",
         lines: [
-          "Thống kê trong tài chính không phải công cụ để chứng minh mình đúng, mà là kỷ luật để phát hiện mình sai sớm hơn.",
-          "Kết thúc chặng: bạn đã có đủ công cụ để đọc, phản biện và tự kiểm chứng bất kỳ con số định lượng nào người khác đưa cho mình.",
+          "Mô hình nào cũng đẹp trên dữ liệu cũ; câu hỏi duy nhất là bạn đã kiểm nó đúng cách chưa.",
+          "Chặng này khép lại ở một chỗ: mọi con số đều đến kèm một cách kiểm, và cách kiểm mới là phần khó.",
         ],
       },
     ],

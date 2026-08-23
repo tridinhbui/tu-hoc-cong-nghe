@@ -160,167 +160,181 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     ],
   },
   {
-    id: 1432,
-    slug: "index-match-xlookup-va-sumifs",
-    title: "Excel, Bài 2: Tra cứu dữ liệu - INDEX/MATCH, XLOOKUP và SUMIFS",
-    subtitle: "Vì sao dân tài chính bỏ VLOOKUP, và cách ghép dữ liệu từ nhiều nguồn mà không sai một dòng",
-    duration: "11 phút",
-    difficulty: "Trung bình",
-    emoji: "🔎",
-    track: "professional",
-    whyItMatters:
-      "Phần lớn công việc phân tích thực tế không phải là tính toán mà là ghép dữ liệu: khớp mã cổ phiếu với báo cáo, khớp mã khách hàng với dư nợ, khớp tháng với số liệu bán hàng. Một hàm tra cứu sai một dòng sẽ làm sai toàn bộ kết luận mà không hề báo lỗi.",
-    openingQuestion:
-      "Vì sao INDEX/MATCH được ưa dùng hơn VLOOKUP trong mô hình tài chính?",
-    openingOptions: [
-      "Vì INDEX/MATCH tính nhanh hơn nhiều lần",
-      "Vì nó không phụ thuộc vào vị trí cột",
-      "Vì VLOOKUP đã bị Excel loại bỏ",
-      "Vì INDEX/MATCH không cần dữ liệu được sắp xếp",
+    "id": 1432,
+    "slug": "tra-cuu-va-ghep-du-lieu-trong-sql",
+    "title": "Excel, Bài 2: Tra cứu và ghép dữ liệu - phép nối, truy vấn con và điều kiện lọc",
+    "subtitle": "Ghép hai bảng thì dễ; điều khó là biết kết quả có bị nhân lên hay bị mất dòng không.",
+    "duration": "11 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "🔎",
+    "interactiveType": "excel-lookup",
+    "whyItMatters": "Một truy vấn ghép sai không báo lỗi - nó trả về một con số trông hợp lý, và con số đó đi thẳng vào báo cáo.",
+    "openingQuestion": "Bạn ghép bảng đơn hàng với bảng chi tiết đơn hàng rồi đếm. Kết quả cao gấp ba. Vì sao?",
+    "openingOptions": [
+      "Vì mỗi đơn có nhiều dòng chi tiết, nên mỗi đơn xuất hiện nhiều lần sau khi ghép",
+      "Vì phép ghép đã tạo ra các dòng trùng lặp do dữ liệu có bản ghi bị nhân đôi",
+      "Vì điều kiện ghép chưa đủ chặt nên rốt cuộc tất cả các dòng không liên quan cũng được ghép vào",
+      "Vì bảng chi tiết chứa cả những dòng thuộc về các đơn hàng đã bị huỷ trước đó"
     ],
-    correctOption: 1,
-    explanation:
-      "VLOOKUP tham chiếu tới cột theo số thứ tự, nên khi ai đó chèn thêm một cột vào giữa bảng nguồn, công thức vẫn chạy nhưng lấy sai cột và không hề báo lỗi. Đây là loại lỗi nguy hiểm nhất vì nó im lặng. INDEX/MATCH tham chiếu tới vùng cụ thể nên tự động đúng khi bảng thay đổi cấu trúc, và nó tra cứu được cả về phía trái của cột khóa - điều VLOOKUP không làm được.",
-    diagram: [
-      { label: "MATCH: tìm vị trí của khóa", arrow: true },
-      { label: "INDEX: lấy giá trị tại vị trí đó", arrow: true },
-      { label: "Ghép lại thành tra cứu bền vững", arrow: true },
-      { label: "SUMIFS cho tổng hợp theo nhiều điều kiện" },
+    "correctOption": 0,
+    "explanation": "Đây là hành vi ĐÚNG của phép ghép một nhiều: một đơn có ba dòng chi tiết thì sau khi ghép, đơn đó xuất hiện ba lần. Không có lỗi nào ở đây, và đó chính là điều nguy hiểm - truy vấn chạy xong, trả về một con số, và không có gì báo rằng bạn vừa đếm mỗi đơn ba lần.",
+    "diagram": [
+      {
+        "label": "Ghép một-nhiều làm bên MỘT xuất hiện nhiều lần",
+        "arrow": true
+      },
+      {
+        "label": "Không có lỗi nào - đó là hành vi đúng",
+        "arrow": true
+      },
+      {
+        "label": "Nên luôn đếm số dòng TRƯỚC và SAU khi ghép",
+        "arrow": true
+      },
+      {
+        "label": "Và biết điều kiện lọc đặt ở đâu quyết định dòng nào mất"
+      }
     ],
-    interactiveType: "excel-lookup",
-    realWorldExample: {
-      company: "Ghép dữ liệu danh mục với dữ liệu thị trường",
-      description:
-        "Một tình huống rất thường gặp: bạn có danh sách 200 mã trong danh mục và một file giá thị trường 1.500 mã. Ghép hai bảng bằng hàm tra cứu chỉ mất một phút, nhưng nếu mã trong file này có khoảng trắng thừa hoặc khác kiểu dữ liệu, kết quả sẽ trả về lỗi hoặc tệ hơn là khớp nhầm. Kiểm tra số dòng khớp được so với tổng số dòng luôn là bước bắt buộc sau mỗi lần ghép.",
+    "realWorldExample": {
+      "company": "Đếm trước và sau",
+      "description": "Phép kiểm rẻ nhất cho một truy vấn ghép là đếm số dòng trước và sau. Nếu số dòng tăng mà bạn không định như vậy, bạn vừa nhân bản dữ liệu; nếu nó giảm, bạn vừa mất dòng ở phép ghép trong mà không nhận ra."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "MATCH với tham số thứ ba bằng 0 nghĩa là gì?",
-        options: [
-          "Tìm giá trị gần đúng lớn nhất nhưng không vượt quá khóa cần tra cứu",
-          "Tìm khớp chính xác, luôn nên dùng cho dữ liệu dạng mã và tên",
-          "Tìm giá trị gần đúng nhỏ nhất nhưng vẫn lớn hơn khóa cần tra cứu",
-          "Bỏ qua các ô trống trong vùng khóa trước khi thực hiện phép tra cứu",
+        "question": "Vì sao ghép sai lại nguy hiểm hơn một truy vấn báo lỗi?",
+        "options": [
+          "Vì nó trả về một con số trông hợp lý và con số đó đi thẳng vào báo cáo",
+          "Vì việc gỡ lỗi cho một truy vấn phức tạp tốn nhiều thời gian hơn",
+          "Vì kết quả sai có thể đã được lưu lại và đồng thời dùng cho các phép tính tiếp theo",
+          "Vì người viết truy vấn thường không kiểm tra lại kết quả sau khi chạy"
         ],
-        correct: 1,
-        explanation:
-          "Chế độ khớp gần đúng đòi hỏi dữ liệu đã được sắp xếp và sẽ trả về kết quả sai một cách im lặng nếu không. Với mã cổ phiếu, mã khách hàng hay tên tài khoản, luôn dùng khớp chính xác.",
+        "correct": 0,
+        "explanation": "Một truy vấn báo lỗi thì bạn sửa nó ngay. Một truy vấn trả về con số sai thì không có tín hiệu nào - và đây là cùng loại nguy hiểm với việc hỏng im lặng ở hệ thống theo dõi."
       },
       {
-        question: "SUMIFS khác SUMIF ở điểm nào?",
-        options: [
-          "SUMIFS cho phép lọc theo nhiều điều kiện cùng lúc",
-          "SUMIFS chỉ cộng được các giá trị số nguyên, không xử lý được số thập phân",
-          "SUMIFS chạy nhanh hơn nhưng đánh đổi bằng độ chính xác của kết quả cộng",
-          "Không có khác biệt, hai hàm cho ra cùng kết quả với mọi bộ dữ liệu",
+        "question": "Phép kiểm rẻ nhất cho một truy vấn ghép là gì?",
+        "options": [
+          "Đếm số dòng trước và sau khi ghép rồi so hai con số",
+          "Chạy truy vấn trên một tập dữ liệu nhỏ và kiểm tra kết quả bằng tay",
+          "Xem kế hoạch thực thi để hiểu cách hệ quản trị xử lý phép ghép đó",
+          "So sánh kết quả với một truy vấn khác tính cùng chỉ số theo cách khác"
         ],
-        correct: 0,
-        explanation:
-          "SUMIFS là hàm tổng hợp được dùng nhiều nhất trong công việc phân tích thực tế, vì dữ liệu kinh doanh gần như luôn cần lọc theo nhiều chiều cùng lúc.",
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là phép kiểm mạnh nhất và nó tốn công gấp nhiều lần. Đếm số dòng mất mười giây và bắt được cả hai kiểu hỏng phổ biến nhất: nhân bản và mất dòng."
       },
       {
-        question: "Ưu điểm chính của XLOOKUP so với VLOOKUP là gì?",
-        options: [
-          "Tra được cả hai chiều, mặc định khớp chính xác, có xử lý lỗi sẵn",
-          "Không cần chỉ định vùng dữ liệu vì hàm tự nhận diện bảng nguồn cần tra",
-          "Tự động sắp xếp lại dữ liệu nguồn trước khi thực hiện phép tra cứu",
-          "Chạy được trên mọi phiên bản Excel, kể cả các phiên bản đã rất cũ",
+        "question": "Điều kiện lọc đặt trong phần ghép khác đặt trong phần lọc ở chỗ nào?",
+        "options": [
+          "Với phép ghép ngoài, đặt ở phần lọc sẽ loại bỏ luôn những dòng không khớp",
+          "Đặt ở ngay trong phần ghép cho hiệu năng tốt hơn hẳn chỉ vì lọc sớm hơn trong quá trình",
+          "Đặt trong phần lọc dễ đọc hơn nên được ưu tiên trong phần tương đối lớn trường hợp",
+          "Hai cách cho cùng kết quả nhưng ngược lại khác nhau về thứ tự thực thi bên trong"
         ],
-        correct: 0,
-        explanation:
-          "XLOOKUP gộp ưu điểm của INDEX/MATCH vào một cú pháp dễ đọc hơn. Hạn chế duy nhất là nó không có trên các phiên bản Excel cũ, nên INDEX/MATCH vẫn là kỹ năng bắt buộc khi làm việc với file của người khác.",
+        "correct": 0,
+        "explanation": "Đây là chỗ biến một phép ghép ngoài thành một phép ghép trong mà không ai nhận ra: những dòng vốn được giữ lại với giá trị rỗng nay bị điều kiện lọc loại bỏ hết. Lựa chọn cuối đúng với phép ghép trong và sai với phép ghép ngoài."
       },
       {
-        question: "Sau khi ghép hai bảng bằng hàm tra cứu, bước kiểm tra bắt buộc là gì?",
-        options: [
-          "In cả hai bảng ra giấy rồi đối chiếu từng dòng một bằng mắt thường",
-          "Đếm số dòng khớp được và so với tổng số dòng cần khớp",
-          "Sắp xếp lại bảng kết quả theo thứ tự bảng chữ cái của cột khóa tra cứu",
-          "Chuyển toàn bộ công thức thành giá trị tĩnh để kết quả không thay đổi nữa",
+        "question": "Vì sao so sánh với giá trị rỗng cần chú ý đặc biệt?",
+        "options": [
+          "Vì so sánh thông thường với giá trị rỗng cho kết quả không phải đúng cũng không phải sai",
+          "Vì giá trị rỗng chiếm dung lượng lưu trữ khác với giá trị bằng không",
+          "Vì các hệ quản trị khác nhau xử lý giá trị rỗng theo những cách khác nhau",
+          "Vì giá trị rỗng làm chỉ mục không sử dụng được nên truy vấn chậm hơn"
         ],
-        correct: 1,
-        explanation:
-          "Hàm tra cứu thất bại một cách rất im lặng. Đếm số dòng khớp được là kiểm tra rẻ nhất và bắt được gần như mọi vấn đề về khoảng trắng thừa, sai kiểu dữ liệu hay mã không tồn tại trong bảng nguồn.",
+        "correct": 0,
+        "explanation": "Hệ quả trực tiếp là một điều kiện lọc trông như bao phủ mọi trường hợp lại lặng lẽ bỏ qua các dòng có giá trị rỗng - và đó là kiểu mất dòng khó thấy nhất trong một truy vấn dài."
       },
+      {
+        "question": "Khi nào nên tách một truy vấn phức tạp thành nhiều bước?",
+        "options": [
+          "Khi bạn không kiểm được từng bước một cách độc lập trong truy vấn hiện tại",
+          "Khi truy vấn dài hơn một số dòng nhất định theo quy ước của đội",
+          "Khi hiệu năng của truy vấn không đạt yêu cầu về thời gian phản hồi",
+          "Khi truy vấn cần được dùng lại ở nhiều chỗ khác nhau trong hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là lý do hợp lý và đều không phải lý do chính. Khả năng KIỂM TỪNG BƯỚC là thứ quyết định bạn có phát hiện được lỗi nhân bản hay mất dòng ở đúng chỗ nó xảy ra hay không."
+      }
     ],
-    keyTakeaways: [
-      "INDEX/MATCH bền hơn VLOOKUP vì không phụ thuộc vị trí cột và tra cứu được sang trái",
-      "Luôn dùng khớp chính xác với dữ liệu dạng mã và tên; khớp gần đúng là nguồn lỗi im lặng",
-      "SUMIFS là công cụ tổng hợp nhiều điều kiện được dùng nhiều nhất trong công việc thực tế",
-      "Sau mọi lần ghép dữ liệu, luôn đếm số dòng khớp thành công trước khi phân tích tiếp",
+    "keyTakeaways": [
+      "Ghép một-nhiều làm bên MỘT xuất hiện nhiều lần - đó là hành vi đúng, không phải lỗi.",
+      "Truy vấn sai không báo lỗi; nó trả một con số hợp lý và đi thẳng vào báo cáo.",
+      "Đếm số dòng TRƯỚC và SAU: mất mười giây, bắt cả nhân bản lẫn mất dòng.",
+      "Điều kiện lọc đặt sai chỗ biến phép ghép ngoài thành phép ghép trong.",
+      "So sánh với giá trị rỗng không cho đúng cũng không cho sai - dòng bị bỏ lặng lẽ."
     ],
-    practicePrompt: {
-      question:
-        "Công thức tra cứu của bạn trả về lỗi không tìm thấy cho khoảng 10% số dòng, dù mã rõ ràng có trong bảng nguồn. Nguyên nhân khả dĩ nhất là gì?",
-      options: [
-        "Excel bị lỗi cần cài lại",
-        "Khoảng trắng thừa, hoặc số và chữ lẫn lộn",
-        "Bảng nguồn có quá nhiều dòng",
-        "Cần sắp xếp lại bảng nguồn theo thứ tự tăng dần",
+    "practicePrompt": {
+      "question": "Truy vấn của bạn ghép bốn bảng và cho tổng doanh thu cao hơn dự kiến. Kiểm gì trước?",
+      "options": [
+        "Đếm số dòng sau mỗi phép ghép để tìm chỗ số dòng bắt đầu nhân lên",
+        "Kiểm tra lại các điều kiện lọc xem có bỏ sót điều kiện nào không",
+        "So sánh kết quả với một nguồn dữ liệu khác để xác nhận con số đúng",
+        "Xem lại định nghĩa của chỉ số doanh thu để chắc chắn công thức đúng"
       ],
-      correct: 1,
-      explanation:
-        "Đây là nguyên nhân số một của lỗi tra cứu trong thực tế, và nó luôn xuất hiện khi dữ liệu được xuất ra từ nhiều hệ thống khác nhau. Cách xử lý: chuẩn hóa dữ liệu bằng hàm cắt khoảng trắng và thống nhất kiểu dữ liệu trước khi ghép, thay vì sửa từng dòng.",
+      "correct": 0,
+      "explanation": "Tổng CAO hơn dự kiến gần như luôn là dấu hiệu nhân bản, và với bốn phép ghép thì việc cần biết là nó xảy ra ở phép nào. Ba cách kia đều hợp lý và đều bắt đầu từ giả định rằng lỗi nằm ở chỗ khác."
     },
-    summary: {
-      keyIdea: "Ghép dữ liệu sai không báo lỗi - nó chỉ cho ra một con số sai trông rất hợp lý",
-      formula: "INDEX(vùng_trả_về, MATCH(khóa, vùng_khóa, 0))",
-      commonMistake: "Dùng VLOOKUP với số thứ tự cột, rồi ai đó chèn thêm một cột và mọi thứ lệch đi trong im lặng",
-      action: "Tự ghép hai bảng dữ liệu thật bằng cả INDEX/MATCH và XLOOKUP, rồi cố tình chèn thêm một cột để thấy VLOOKUP hỏng thế nào.",
+    "summary": {
+      "keyIdea": "Ghép hai bảng thì dễ; điều khó là biết kết quả có bị nhân lên hay mất dòng không.",
+      "formula": "Đếm dòng sau mỗi phép ghép; biết điều kiện lọc đặt ở đâu; cẩn thận với giá trị rỗng.",
+      "commonMistake": "Tin vào một con số trông hợp lý vì truy vấn chạy không báo lỗi.",
+      "action": "Với truy vấn ghép gần nhất của bạn, đếm số dòng trước và sau."
     },
-    application: {
-      title: "Quy trình ghép dữ liệu an toàn",
-      message:
-        "Chuẩn hóa khóa (cắt khoảng trắng, thống nhất kiểu dữ liệu) trước; ghép bằng INDEX/MATCH hoặc XLOOKUP với khớp chính xác; đếm số dòng khớp; rà các dòng lỗi và tìm nguyên nhân chung thay vì sửa thủ công từng dòng.",
-      secondary: "Sửa tay từng dòng lỗi là dấu hiệu bạn đang che vết thương chứ không chữa nguyên nhân - và lần cập nhật dữ liệu sau nó sẽ quay lại.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy một truy vấn có phép ghép mà đội bạn đang dùng cho báo cáo và đếm số dòng trước và sau mỗi phép ghép.",
+      "secondary": "Nếu số dòng tăng ở một bước mà bạn không định như vậy, mọi phép tính tổng phía sau bước đó đang bị nhân lên - và không ai nhận ra vì truy vấn vẫn chạy bình thường."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Trong công việc phân tích thật, thời gian dành cho việc ghép và làm sạch dữ liệu thường nhiều hơn hẳn thời gian tính toán. Nhóm hàm tra cứu là công cụ chính của phần việc đó, và cũng là nơi phát sinh loại lỗi tệ nhất: lỗi không báo lỗi.",
+        "type": "lead",
+        "text": "Một truy vấn ghép sai không báo lỗi. Nó trả về một con số trông hợp lý, và con số đó đi thẳng vào báo cáo."
       },
       {
-        type: "formula",
-        title: "Cấu trúc INDEX/MATCH",
-        label: "Đọc từ trong ra ngoài",
-        equation: "INDEX(vùng_trả_về, MATCH(khóa, vùng_khóa, 0))",
-        variables: [
-          { symbol: "MATCH", name: "Tìm vị trí", description: "Trả về khóa nằm ở dòng thứ mấy trong vùng khóa" },
-          { symbol: "INDEX", name: "Lấy giá trị", description: "Trả về giá trị ở đúng vị trí đó trong vùng cần lấy" },
-          { symbol: "0", name: "Khớp chính xác", description: "Luôn dùng cho mã, tên và mọi dữ liệu dạng định danh" },
-        ],
-        example: {
-          title: "Vì sao nó bền hơn VLOOKUP",
-          calculation: "VLOOKUP(khóa, bảng, 7, 0) so với INDEX(cột_giá, MATCH(khóa, cột_mã, 0))",
-          result: "Chèn thêm một cột: VLOOKUP lấy sai dữ liệu, INDEX/MATCH vẫn đúng",
-          explanation:
-            "Số 7 trong VLOOKUP là một giả định bị chôn về cấu trúc bảng. Bất kỳ ai chỉnh sửa bảng nguồn đều có thể phá vỡ nó mà không hề biết, và công thức sẽ không báo lỗi.",
+        "type": "heading",
+        "text": "Kiểu hỏng phổ biến nhất"
+      },
+      {
+        "type": "callout",
+        "label": "Nhân bản khi ghép một-nhiều",
+        "text": "Một đơn hàng có ba dòng chi tiết thì sau khi ghép, đơn đó xuất hiện ba lần. Đây là hành vi ĐÚNG của phép ghép - và đó chính là điều nguy hiểm, vì không có gì báo rằng bạn vừa đếm mỗi đơn ba lần."
+      },
+      {
+        "type": "paragraph",
+        "text": "Phép kiểm rẻ nhất: ĐẾM SỐ DÒNG trước và sau. Tăng mà bạn không định như vậy là nhân bản; giảm là mất dòng ở phép ghép trong. Việc này mất mười giây và bắt được cả hai kiểu hỏng."
+      },
+      {
+        "type": "heading",
+        "text": "Điều kiện lọc đặt ở đâu"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Trong phần ghép",
+          "text": "Với phép ghép ngoài, các dòng không khớp vẫn được giữ lại với giá trị rỗng ở các cột bên kia."
         },
+        "right": {
+          "label": "Trong phần lọc",
+          "text": "Những dòng đó bị loại bỏ hết. Bạn vừa biến một phép ghép ngoài thành phép ghép trong mà không ai nhận ra."
+        }
       },
       {
-        type: "comparison",
-        left: {
-          label: "Lỗi ồn ào",
-          text: "Công thức trả về mã lỗi. Khó chịu nhưng vô hại - bạn nhìn thấy ngay và sửa được.",
-        },
-        right: {
-          label: "Lỗi im lặng",
-          text: "Công thức trả về một con số trông hợp lý nhưng lấy từ sai dòng hoặc sai cột. Đây là loại lỗi đi thẳng vào bản báo cáo gửi sếp.",
-        },
+        "type": "heading",
+        "text": "Giá trị rỗng"
       },
       {
-        type: "callout",
-        label: "Nguyên tắc kiểm tra tổng",
-        text: "Sau mỗi lần ghép hoặc tổng hợp, luôn có ít nhất một phép kiểm tra chéo: tổng của bảng kết quả phải bằng tổng của bảng nguồn, hoặc số dòng khớp được phải bằng số dòng cần khớp. Không có phép kiểm tra này thì bạn chỉ đang hy vọng.",
+        "type": "paragraph",
+        "text": "So sánh thông thường với giá trị rỗng không cho kết quả đúng cũng không cho sai. Hệ quả: một điều kiện lọc trông như bao phủ mọi trường hợp lại lặng lẽ bỏ qua các dòng có giá trị rỗng - kiểu mất dòng khó thấy nhất trong một truy vấn dài."
       },
       {
-        type: "closing",
-        lines: [
-          "Hàm tra cứu là chỗ dữ liệu từ nhiều nguồn gặp nhau, nên cũng là chỗ sai lệch bắt đầu.",
-          "Bài sau đưa các kỹ năng này vào bối cảnh thật: dựng một mô hình ba báo cáo trong Excel.",
-        ],
-      },
-    ],
+        "type": "closing",
+        "lines": [
+          "Khi truy vấn dài tới mức bạn không kiểm được từng bước một cách độc lập, tách nó ra.",
+          "Tiêu chí không phải số dòng hay hiệu năng mà là KHẢ NĂNG KIỂM: nó quyết định bạn có phát hiện được lỗi ở đúng chỗ nó xảy ra hay không."
+        ]
+      }
+    ]
   },
   {
     id: 1433,

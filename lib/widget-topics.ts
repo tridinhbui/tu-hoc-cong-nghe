@@ -27,20 +27,16 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   // theo nhóm người dùng dùng đúng widget ấy nên các từ sản phẩm được thêm vào.
   chart: ["lãi kép", "lãi đơn", "compound", "kép", "tăng trưởng", "dài hạn", "giữ chân", "nhóm theo thời điểm", "cohort", "đường cong"],
   "profit-calc": ["lợi nhuận", "dòng tiền", "tiền mặt", "doanh thu", "chi phí", "ebitda", "biên", "expense", "net income", "free cash flow", "lỗ", "tồn kho", "cổ tức", "oci", "affiliate"],
-  process: ["báo cáo tài chính", "ba báo cáo", "lưu chuyển", "cân đối", "p&l", "tài sản", "nợ", "vốn chủ", "dồn tích"],
   "interest-rate": ["lãi suất", "interest", "chiết khấu", "npv", "wacc", "capm", "hiện tại", "annuity", "perpetuity", "dcf", "chi phí vốn", "terminal value"],
   risk: ["rủi ro", "risk", "lợi nhuận kỳ vọng", "biến động", "danh mục"],
-  bond: ["trái phiếu", "coupon", "ytm", "bond", "lợi suất", "tín dụng", "spread", "vỡ nợ", "xếp hạng"],
   multiples: ["dung lượng", "capacity", "ước lượng", "hệ số so sánh", "số máy", "mở rộng", "tải cao điểm"],
   // mục sơ đồ lãi lỗ quyền chọn đã gỡ cùng loại widget đó
-  "money-vs-asset": ["tài sản", "tiêu sản", "tiền", "thuê", "mua"],
   // Loại multiples đã tạm rút khỏi WIDGET_TYPES (xem chú thích trong
   // components/InteractiveWidget.tsx), và bảng này chỉ được chứa widget có
   // thật. Khi có bài về dung lượng, thêm lại cả hai chỗ cùng lúc:
   // ["dung lượng", "capacity", "ước lượng", "hệ số", "sizing", "thông lượng"]
   budget: ["ngân sách", "50/30/20", "chi tiêu", "tiết kiệm", "trả nợ", "audit tài chính", "tài sản ròng"],
   prospect: ["tâm lý", "hành vi", "prospect", "mất mát", "thiên kiến", "behavioral", "sai lầm"],
-  accretion: ["eps", "m&a", "sáp nhập", "pha loãng", "thâu tóm", "thương vụ"],
   "supply-demand": ["cung", "cầu", "giá cân bằng", "thị trường", "chi phí biên", "sức mua"],
   // Loại tính lạm phát đã tạm rút khỏi WIDGET_TYPES (xem chú thích trong
   // components/InteractiveWidget.tsx), và bảng này chỉ được chứa widget có

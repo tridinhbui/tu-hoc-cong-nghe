@@ -15,182 +15,181 @@ import type { Lesson } from "./lesson-types";
 
 export const RARE_EVENT_LESSONS: Lesson[] = [
   {
-    id: 1741,
-    slug: "do-tan-suat-su-kien-hiem",
-    title: "Sự kiện hiếm, Bài 1: Đo tần suất khi gần như chưa từng xảy ra",
-    subtitle: "Không có sự cố nào trong hai năm không có nghĩa là tần suất bằng không",
-    duration: "8 phút",
-    difficulty: "Trung bình",
-    emoji: "🎲",
-    track: "professional",
-    whyItMatters:
-      "Quyết định đầu tư bao nhiêu cho một rủi ro hiếm luôn cần một con số tần suất, và con số đó gần như không bao giờ đo trực tiếp được. Cách người ta lấp chỗ trống ấy quyết định họ chuẩn bị quá tay hay không chuẩn bị gì.",
-    openingQuestion: "Hệ thống chạy hai năm không mất dữ liệu lần nào. Kết luận được gì về tần suất mất dữ liệu?",
-    openingOptions: [
-      "Rất ít, ngoài việc nó nhỏ hơn khoảng một lần mỗi hai năm",
-      "Tần suất mất dữ liệu của hệ thống này ở mức rất thấp và có thể coi là không đáng kể",
-      "Các biện pháp bảo vệ hiện tại đang hoạt động hiệu quả và không cần bổ sung thêm gì",
-      "Cần thu thập thêm dữ liệu từ các hệ thống tương tự để có kết luận đáng tin cậy hơn",
+    "id": 1741,
+    "slug": "dinh-muc-tai-nguyen-va-gia-cua-mot-cam-ket",
+    "title": "Sự kiện hiếm, Bài 1: Đặt định mức tài nguyên - giá của một cam kết dài hạn",
+    "subtitle": "Cam kết dùng ba năm để đổi lấy giá rẻ hơn là một vụ cá cược về nhu cầu của chính bạn.",
+    "duration": "12 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "📊",
+    "interactiveType": "risk",
+    "whyItMatters": "Khoản chiết khấu cho cam kết dài hạn lớn tới mức khó từ chối, và cái giá của nó chỉ hiện ra khi nhu cầu đi khác dự báo.",
+    "openingQuestion": "Nhà cung cấp giảm 40% nếu bạn cam kết mức dùng trong ba năm. Cân nhắc gì trước tiên?",
+    "openingOptions": [
+      "Mức dùng thấp nhất mà bạn chắc chắn sẽ đạt trong cả ba năm đó",
+      "Mức dùng trung bình dự kiến của ba năm theo kế hoạch tăng trưởng",
+      "Tổng số tiền tiết kiệm được so với việc trả theo mức dùng thực tế",
+      "Khả năng chuyển sang nhà cung cấp khác nếu điều kiện thị trường đổi"
     ],
-    correctOption: 0,
-    explanation:
-      "Không quan sát thấy sự kiện nào trong một khoảng thời gian chỉ cho một chặn trên rất lỏng, và chặn ấy lỏng hơn nhiều so với trực giác. Với một sự kiện có tần suất thật là một lần mỗi mười năm, xác suất để hai năm trôi qua yên ổn là khoảng tám mươi phần trăm - tức là hai năm sạch là kết quả bình thường nhất, không phải bằng chứng về sự an toàn. Đây là lý do các quyết định dựa trên chưa từng xảy ra thường sai theo cùng một hướng: chúng đọc sự vắng mặt của bằng chứng thành bằng chứng về sự vắng mặt, và làm vậy đúng vào nhóm rủi ro đắt nhất khi xảy ra.",
-    diagram: [
-      { label: "Hai năm không sự cố", arrow: true },
-      { label: "Chặn trên: nhỏ hơn khoảng một lần mỗi hai năm", arrow: true },
-      { label: "Tần suất thật một lần mỗi mười năm vẫn khớp", arrow: true },
-      { label: "Nên phải ước lượng bằng cách khác, không bằng đếm" },
+    "correctOption": 0,
+    "explanation": "Cam kết ở mức trung bình nghĩa là bạn trả cho phần chưa dùng trong những giai đoạn thấp, và chiết khấu chỉ áp cho phần đã cam kết chứ không cho phần vượt. Con số an toàn là mức SÀN - phần bạn chắc chắn dùng kể cả trong kịch bản tệ nhất - còn phần trên đó thì trả theo thực tế.",
+    "diagram": [
+      {
+        "label": "Cam kết ở mức SÀN, không ở mức trung bình dự kiến",
+        "arrow": true
+      },
+      {
+        "label": "Phần trên sàn trả theo thực tế, chấp nhận giá cao hơn",
+        "arrow": true
+      },
+      {
+        "label": "Rủi ro thật: kiến trúc đổi làm nhu cầu đổi loại, không đổi lượng",
+        "arrow": true
+      },
+      {
+        "label": "Và cam kết dài hạn làm giảm động lực tối ưu chi phí"
+      }
     ],
-    realWorldExample: {
-      company: "Ba năm không cần tới bản sao lưu",
-      description:
-        "Một đội chưa từng phải khôi phục từ bản sao lưu trong ba năm và dần ngừng kiểm thử quy trình khôi phục, vì nó tốn thời gian và chưa lần nào cần. Lần đầu cần tới, họ phát hiện bản sao lưu đã hỏng từ nhiều tháng do một thay đổi cấu hình. Ba năm yên ổn không đo được chất lượng của bản sao lưu; nó chỉ đo được rằng chưa có gì buộc phải kiểm tra.",
+    "realWorldExample": {
+      "company": "Đổi loại chứ không đổi lượng",
+      "description": "Rủi ro lớn nhất của cam kết ba năm không phải nhu cầu giảm mà là nhu cầu đổi LOẠI: một quyết định kiến trúc chuyển tải từ máy chủ thường sang dịch vụ chạy theo sự kiện làm cam kết cũ thành vô dụng, dù tổng khối lượng công việc vẫn tăng."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "Cách nào ước lượng được tần suất một sự kiện chưa từng xảy ra ở hệ thống mình?",
-        options: [
-          "Dùng dữ liệu của cả ngành hoặc của nhà cung cấp, rồi điều chỉnh",
-          "Chờ đủ dữ liệu của chính hệ thống mình",
-          "Giả định bằng sự kiện tương tự đã xảy ra",
-          "Ước lượng theo kinh nghiệm người lâu năm",
+        "question": "Vì sao cam kết ở mức trung bình dự kiến lại nguy hiểm?",
+        "options": [
+          "Vì bạn trả cho phần chưa dùng trong những giai đoạn thấp mà không được bù lại",
+          "Vì mức trung bình rất khó ước tính chính xác cho một khoảng thời gian dài như vậy",
+          "Vì nhu cầu thực tế thường thấp hơn dự báo trong phần lớn trường hợp",
+          "Vì mức trung bình không phản ánh được tính mùa vụ của nhu cầu"
         ],
-        correct: 0,
-        explanation:
-          "Chờ đủ dữ liệu nghĩa là chờ vài chục lần sự cố, và với sự kiện hiếm thì đó là hàng chục năm. Dữ liệu ngành có nhiều quan sát hơn nhiều lần và sai số của việc điều chỉnh nó cho hoàn cảnh của bạn nhỏ hơn hẳn sai số của việc suy từ không quan sát nào.",
+        "correct": 0,
+        "explanation": "Cấu trúc giá này bất đối xứng: chiết khấu chỉ áp cho phần đã cam kết, còn phần vượt trả giá thường - nên dùng ít hơn cam kết thì mất tiền, dùng nhiều hơn thì không được gì thêm."
       },
       {
-        question: "Vì sao mẫu nhỏ đặc biệt nguy hiểm với sự kiện hiếm?",
-        options: [
-          "Vì phần lớn khoảng thời gian quan sát sẽ không chứa sự kiện nào",
-          "Vì các sự kiện hiếm thường có nguyên nhân phức tạp nên khó phân loại chính xác",
-          "Vì dữ liệu về sự kiện hiếm thường không được ghi lại đầy đủ khi chúng xảy ra",
-          "Vì mỗi sự kiện hiếm mỗi khác, khó gộp",
+        "question": "Rủi ro lớn nhất của một cam kết ba năm là gì?",
+        "options": [
+          "Nhu cầu đổi LOẠI do một quyết định kiến trúc, dù tổng khối lượng vẫn tăng",
+          "Nhu cầu giảm xuống do sản phẩm không tăng trưởng đúng như kế hoạch ban đầu đã đặt",
+          "Giá thị trường giảm nên mức cam kết trở nên đắt so với giá mới",
+          "Nhà cung cấp thay đổi điều khoản dịch vụ trong thời hạn cam kết"
         ],
-        correct: 0,
-        explanation:
-          "Với một sự kiện xảy ra một lần mỗi mười năm, quan sát trong một năm cho kết quả không có gì ở khoảng chín trên mười lần. Nghĩa là kết quả phổ biến nhất của phép đo cũng là kết quả gây hiểu lầm nhất, và nó lặp lại năm này qua năm khác cho tới lần duy nhất nó không lặp lại.",
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều được cân nhắc khi ký. Cái này thì không, vì nó không phải rủi ro thị trường mà là rủi ro do chính đội tạo ra - và ba năm là khoảng thời gian mà phần lớn kiến trúc đều đổi một lần."
       },
       {
-        question: "Số liệu độ tin cậy do nhà cung cấp công bố nên được dùng thế nào?",
-        options: [
-          "Làm mốc, sau khi đọc điều kiện và loại trừ trong định nghĩa của họ",
-          "Làm căn cứ chính vì họ có nhiều dữ liệu hơn",
-          "Đối chiếu với nhà cung cấp khác để chọn",
-          "Bỏ qua vì họ luôn có động cơ làm đẹp số",
+        "question": "Vì sao cam kết dài hạn làm giảm động lực tối ưu chi phí?",
+        "options": [
+          "Vì tối ưu để dùng ít hơn mức đã cam kết thì không tiết kiệm được đồng nào",
+          "Vì đội tin rằng chi phí đã được kiểm soát nên không cần theo dõi nữa",
+          "Vì phần chiết khấu đã đủ lớn nên tất cả cáci thiện nhỏ trở nên hoàn toàn không đáng kể",
+          "Vì việc thay đổi cấu hình có thể vi phạm điều kiện của hợp đồng cam kết"
         ],
-        correct: 0,
-        explanation:
-          "Họ đúng là có nhiều dữ liệu hơn bạn, và định nghĩa gián đoạn của họ thường loại trừ bảo trì báo trước cùng những sự cố ở phần khách hàng tự cấu hình. Con số vì thế đúng theo định nghĩa của họ và mô tả một thứ hẹp hơn thứ bạn quan tâm.",
+        "correct": 0,
+        "explanation": "Đây là hệ quả thẳng từ cấu trúc giá và nó ít được nói tới khi bàn về cam kết: bạn vừa mua một khoản chiết khấu và vừa tắt một động lực cải thiện, cho tới khi mức dùng vượt qua sàn cam kết."
       },
       {
-        question: "Diễn tập chủ động giúp gì cho việc ước lượng rủi ro hiếm?",
-        options: [
-          "Nó tạo ra quan sát ở nơi mà chờ đợi không tạo ra quan sát nào",
-          "Nó giúp đội quen với quy trình xử lý nên phản ứng nhanh hơn khi sự cố thật xảy ra",
-          "Nó chứng minh với các bên liên quan rằng hệ thống đã sẵn sàng cho tình huống xấu",
-          "Nó phát hiện lỗi tiềm ẩn trước khi thành sự cố",
+        "question": "Cách nào giảm rủi ro của cam kết dài hạn?",
+        "options": [
+          "Chia thành nhiều cam kết ngắn hơn xen kẽ nhau thay vì một cam kết dài",
+          "Đàm phán điều khoản cho phép chuyển đổi giữa các loại tài nguyên",
+          "Cam kết ở mức thấp hơn nhu cầu dự kiến rồi bổ sung khi cần thiết",
+          "Chỉ cam kết cho những phần hạ tầng đã ổn định trong thời gian dài"
         ],
-        correct: 0,
-        explanation:
-          "Ba lợi ích kia đều có và đều là hệ quả. Điều căn bản hơn là nó đổi bản chất của bài toán: thay vì suy đoán từ việc chưa có gì xảy ra, bạn tạo ra sự kiện đó theo lịch của mình và quan sát thật. Đây là cách duy nhất có dữ liệu về một thứ hiếm mà không phải chờ nó tự đến.",
+        "correct": 0,
+        "explanation": "Bốn cách đều giảm rủi ro và ba cách sau đều nằm trong cách đầu ở dạng cụ thể hơn. Chia nhỏ theo thời gian là cách duy nhất giữ được lựa chọn ở mọi thời điểm, thay vì chỉ ở thời điểm ký."
       },
       {
-        question: "Kết luận nào rút ra được từ một chuỗi dài không sự cố?",
-        options: [
-          "Tần suất nhỏ hơn một mức nào đó, và mức đó lỏng hơn ta tưởng",
-          "Hệ thống đủ ổn để bớt biện pháp phòng ngừa",
-          "Các biện pháp phòng ngừa đang phát huy tác dụng và nên được duy trì như hiện nay",
-          "Rủi ro đã chuyển sang các loại khác nên cần rà soát lại danh mục rủi ro tổng thể",
+        "question": "Con số nào cần đo trước khi quyết định cam kết?",
+        "options": [
+          "Mức dùng thấp nhất trong mười hai tháng qua, không phải mức trung bình",
+          "Tốc độ tăng trưởng của mức dùng trong mười hai tháng qua",
+          "Tỷ lệ chi phí hạ tầng trên tổng chi phí vận hành của sản phẩm",
+          "Mức dùng ở giờ cao điểm so với mức dùng ở giờ thấp điểm"
         ],
-        correct: 0,
-        explanation:
-          "Chuỗi dài không sự cố tương thích với cả hai khả năng: biện pháp đang hiệu quả, hoặc chưa gặp may xấu lần nào. Dữ liệu ấy không phân biệt được hai trường hợp, nên mọi kết luận về hiệu quả của biện pháp phải đến từ nguồn khác - thường là từ diễn tập.",
-      },
+        "correct": 0,
+        "explanation": "Ba con số kia đều hữu ích cho việc lập kế hoạch. Mức thấp nhất thì trả lời thẳng câu hỏi của quyết định này: phần nào bạn chắc chắn dùng kể cả trong tháng tệ nhất."
+      }
     ],
-    practicePrompt: {
-      question:
-        "Bạn cần quyết định có đầu tư vào phương án dự phòng cho một sự cố chưa từng xảy ra không. Bước đầu tiên?",
-      options: [
-        "Tìm tần suất của loại sự cố đó trong ngành hoặc ở nhà cung cấp",
-        "Ước tính chi phí của phương án dự phòng để so với ngân sách hiện có của đội",
-        "Rà soát lại các biện pháp phòng ngừa đang có để xem còn thiếu ở chỗ nào",
-        "Đánh giá thiệt hại nếu sự cố xảy ra",
+    "keyTakeaways": [
+      "Cam kết ở mức SÀN - phần chắc chắn dùng kể cả trong kịch bản tệ nhất.",
+      "Cấu trúc giá bất đối xứng: dùng ít hơn thì mất tiền, dùng nhiều hơn không được gì thêm.",
+      "Rủi ro lớn nhất là nhu cầu ĐỔI LOẠI do kiến trúc đổi, không phải nhu cầu giảm.",
+      "Cam kết dài hạn TẮT động lực tối ưu, cho tới khi mức dùng vượt qua sàn.",
+      "Đo mức dùng THẤP NHẤT mười hai tháng qua, không đo mức trung bình."
+    ],
+    "practicePrompt": {
+      "question": "Mức dùng của bạn dao động từ 60 tới 140 đơn vị. Nên cam kết bao nhiêu?",
+      "options": [
+        "Khoảng 60 hoặc thấp hơn, và trả theo thực tế cho phần dao động phía trên",
+        "Khoảng 100, là mức trung bình của khoảng dao động đó",
+        "Khoảng 140, để được chiết khấu cho toàn bộ mức dùng ở giờ cao điểm",
+        "Khoảng 80, cân bằng giữa mức chiết khấu và rủi ro trả thừa"
       ],
-      correct: 0,
-      explanation:
-        "Đánh giá thiệt hại là vế thứ hai và nó chỉ có nghĩa khi nhân với tần suất. Vế tần suất thì không đo được từ dữ liệu của chính bạn, nên nó phải đến từ ngoài - và bỏ qua bước ấy nghĩa là ngầm gán cho nó một con số mà không ai nói ra là bao nhiêu.",
+      "correct": 0,
+      "explanation": "Lựa chọn thứ tư nghe cân bằng và nó vẫn là một vụ cá cược: hai mươi đơn vị giữa 60 và 80 chỉ có ở một phần thời gian, nên phần đó bạn trả cho chỗ trống. Chiết khấu ít hơn mà chắc chắn thì tốt hơn chiết khấu nhiều mà có điều kiện."
     },
-    keyTakeaways: [
-      "Không quan sát thấy chỉ cho một chặn trên, và chặn đó rất lỏng",
-      "Với sự kiện mười năm một lần, hai năm sạch là kết quả bình thường nhất",
-      "Dữ liệu ngành có nhiều quan sát hơn; điều chỉnh nó sai ít hơn suy từ số không",
-      "Diễn tập tạo ra quan sát ở nơi chờ đợi không tạo ra quan sát nào",
-    ],
-    summary: {
-      keyIdea: "Sự vắng mặt của bằng chứng không phải bằng chứng về sự vắng mặt, và điều đó đắt nhất ở đúng nhóm rủi ro này",
-      commonMistake: "Đọc chuỗi dài không sự cố thành chứng minh rằng biện pháp phòng ngừa đang hiệu quả",
-      action: "Lấy tần suất từ dữ liệu ngành hoặc nhà cung cấp, rồi tạo quan sát của chính mình bằng diễn tập.",
+    "summary": {
+      "keyIdea": "Cam kết dài hạn là một vụ cá cược về nhu cầu của chính bạn.",
+      "formula": "Cam kết ở mức sàn mười hai tháng qua; phần trên trả theo thực tế.",
+      "commonMistake": "Cam kết ở mức trung bình dự kiến, rồi trả cho chỗ trống ở giai đoạn thấp.",
+      "action": "Tìm mức dùng thấp nhất trong mười hai tháng qua của tài nguyên chính."
     },
-    application: {
-      title: "Hai nguồn thay cho một phép đếm",
-      message:
-        "Với mỗi rủi ro hiếm, ghi ra tần suất lấy từ đâu ngoài hệ thống của bạn, và lần diễn tập gần nhất là khi nào.",
-      secondary:
-        "Dòng nào không có cả hai là dòng bạn đang gán một con số mà không ai biết nó là bao nhiêu.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm mức dùng THẤP NHẤT của tài nguyên chính trong mười hai tháng qua - không phải trung bình, không phải mức hiện tại.",
+      "secondary": "Đó là trần của một cam kết an toàn. Nếu cam kết hiện tại của bạn cao hơn con số đó, phần chênh lệch là tiền đang trả cho chỗ trống ở những tháng thấp."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Mọi công cụ đo trong vận hành đều dựa vào việc có nhiều quan sát. Với loại sự kiện đắt nhất, số quan sát thường là không - và trực giác rèn từ dữ liệu dày dẫn sai ở đúng chỗ đó.",
+        "type": "lead",
+        "text": "Khoản chiết khấu cho cam kết dài hạn lớn tới mức khó từ chối, và cái giá của nó chỉ hiện ra khi nhu cầu đi khác dự báo."
       },
       {
-        type: "heading",
-        text: "Chưa xảy ra và không xảy ra",
+        "type": "heading",
+        "text": "Cấu trúc giá bất đối xứng"
       },
       {
-        type: "paragraph",
-        text: "Một sự kiện có tần suất thật là một lần mỗi mười năm sẽ để hai năm trôi qua yên ổn với xác suất khoảng tám mươi phần trăm. Nghĩa là kết quả bạn quan sát được nhiều khả năng nhất cũng chính là kết quả không phân biệt được giữa an toàn và may mắn. Chuỗi càng dài thì cảm giác an toàn càng tăng trong khi lượng thông tin thật tăng rất chậm.",
+        "type": "callout",
+        "label": "Dùng ít thì mất, dùng nhiều thì không được gì thêm",
+        "text": "Chiết khấu chỉ áp cho phần đã cam kết. Dùng ít hơn thì bạn trả cho chỗ trống; dùng nhiều hơn thì phần vượt trả giá thường. Nên con số an toàn là mức SÀN, không phải mức trung bình dự kiến."
       },
       {
-        type: "conceptTable",
-        title: "Bốn cách lấp chỗ trống khi không có quan sát",
-        concepts: [
-          {
-            vi: "Dữ liệu ngành",
-            en: "Industry base rate",
-            def: "Nhiều quan sát hơn hẳn. Sai số của việc điều chỉnh nhỏ hơn sai số của việc suy từ số không.",
-          },
-          {
-            vi: "Số liệu nhà cung cấp",
-            en: "Vendor data",
-            def: "Đọc kèm định nghĩa và loại trừ - con số đúng theo định nghĩa của họ, hẹp hơn thứ bạn cần.",
-          },
-          {
-            vi: "Diễn tập chủ động",
-            en: "Game day",
-            def: "Tạo ra sự kiện theo lịch của mình. Cách duy nhất có dữ liệu thật mà không phải chờ.",
-          },
-          {
-            vi: "Phân rã theo nguyên nhân",
-            en: "Decomposition",
-            def: "Sự cố hiếm thường là chuỗi vài sự kiện ít hiếm hơn; từng mắt xích có thể đo được.",
-          },
-        ],
+        "type": "heading",
+        "text": "Rủi ro mà ít ai cân nhắc khi ký"
       },
       {
-        type: "callout",
-        label: "Chuỗi yên ổn làm biện pháp phòng ngừa bị cắt",
-        text: "Cơ chế này lặp lại ở mọi tổ chức: càng lâu không có sự cố thì việc kiểm thử quy trình khôi phục càng khó xin thời gian, vì nó tốn công và chưa lần nào cần tới. Đến lúc cần thì thứ được cắt lại chính là thứ lẽ ra phải hoạt động - và không ai biết nó đã hỏng từ lúc nào.",
+        "type": "comparison",
+        "left": {
+          "label": "Rủi ro được bàn",
+          "text": "Nhu cầu giảm, giá thị trường giảm, nhà cung cấp đổi điều khoản. Cả ba đều được cân nhắc trong cuộc họp quyết định."
+        },
+        "right": {
+          "label": "Rủi ro thật",
+          "text": "Nhu cầu ĐỔI LOẠI. Một quyết định kiến trúc chuyển tải sang loại tài nguyên khác làm cam kết cũ vô dụng, dù tổng khối lượng vẫn tăng."
+        }
       },
       {
-        type: "closing",
-        lines: [
-          "Với sự kiện hiếm, phép đếm không trả lời được câu hỏi; nó chỉ tạo ra cảm giác đã trả lời.",
-          "Bài sau: có con số tần suất rồi thì trung bình vẫn là công cụ sai.",
-        ],
+        "type": "paragraph",
+        "text": "Rủi ro này không được bàn vì nó không phải rủi ro thị trường mà là rủi ro do chính đội tạo ra - và ba năm là khoảng thời gian mà phần lớn kiến trúc đều đổi một lần."
       },
-    ],
+      {
+        "type": "heading",
+        "text": "Một cái giá vô hình"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cam kết dài hạn TẮT động lực tối ưu chi phí: tối ưu để dùng ít hơn mức đã cam kết thì không tiết kiệm được đồng nào. Bạn vừa mua một khoản chiết khấu và vừa tắt một cơ chế cải thiện, cho tới khi mức dùng vượt qua sàn."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cách giảm rủi ro tốt nhất là chia thành nhiều cam kết ngắn hơn xen kẽ nhau, thay vì một cam kết dài duy nhất.",
+          "Nó giữ cho bạn có lựa chọn ở mọi thời điểm, thay vì chỉ có lựa chọn đúng vào ngày ký."
+        ]
+      }
+    ]
   },
   {
     id: 1742,

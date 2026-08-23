@@ -401,190 +401,175 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
     },
   },
   {
-    id: 1753,
-    slug: "gia-goi-thau-va-hieu-qua-du-an-xay-dung",
-    title: "Nhà thầu, Bài 3: Lập giá gói thầu và đo hiệu quả thật của nó",
-    subtitle: "Vì sao hai gói cùng biên lợi nhuận 10% có thể cho ra hai IRR khác nhau rất xa, và cách đọc điều khoản thanh toán như một biến số tài chính",
-    duration: "11 phút",
-    difficulty: "Khó",
-    emoji: "📐",
-    track: "professional",
-    whyItMatters:
-      "Quyết định bỏ giá là quyết định đầu tư lớn nhất mà một nhà thầu đưa ra, nhưng nó thường được quyết bằng đúng một con số: biên lợi nhuận dự kiến. Biên lợi nhuận không nói gì về việc tiền bị giam bao lâu, mà chính khoảng thời gian đó quyết định gói thầu có đáng nhận hay không.",
-    openingQuestion:
-      "Hai gói thầu cùng giá trị và cùng biên lợi nhuận 10%. Gói A thanh toán theo tháng, gói B theo quý và giữ lại 10%. Kết luận nào đúng?",
-    openingOptions: [
-      "Gói A hiệu quả hơn hẳn vì cùng khoản lãi nhưng vốn bị giam ngắn hơn",
-      "Hai gói tương đương vì biên lợi nhuận và giá trị hợp đồng như nhau",
-      "Gói B hiệu quả hơn vì kỳ thanh toán dài giúp giảm chi phí làm hồ sơ",
-      "Không so sánh được nếu chưa biết chủ đầu tư nào có uy tín thanh toán tốt hơn",
+    "id": 1753,
+    "slug": "uoc-luong-goi-viec-va-do-hieu-qua-cua-doi",
+    "title": "Quy mô, Bài 2: Ước lượng gói việc và đo hiệu quả thật của một đội",
+    "subtitle": "Một đội hoàn thành đúng mọi ước lượng có thể là đội đang ước lượng thừa.",
+    "duration": "11 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "📐",
+    "whyItMatters": "Mọi chỉ số về hiệu quả của đội đều bị chính đội đó điều chỉnh được, và biết cơ chế đó là điều kiện để đọc chúng cho đúng.",
+    "openingQuestion": "Một đội hoàn thành đúng hạn 100% số hạng mục trong sáu tháng. Đọc thế nào?",
+    "openingOptions": [
+      "Đáng nghi - nhiều khả năng họ đang ước lượng dư để luôn về đích trước",
+      "Rất tốt - đây là dấu hiệu của chính đúng một đội có quy trình và đồng thời kỷ luật cao",
+      "Bình thường - hoàn thành đúng hạn là kỳ vọng cơ bản với mọi đội",
+      "Chưa đủ thông tin - cần biết độ phức tạp của các hạng mục đó"
     ],
-    correctOption: 0,
-    explanation:
-      "Biên lợi nhuận đo lãi trên doanh thu; nó không có chiều thời gian. Hai gói cùng lãi 10% nhưng một gói trả tiền hằng tháng còn một gói trả theo quý và giữ lại gấp đôi thì lượng vốn bình quân bị giam khác nhau rất xa, và thời gian giam cũng vậy. Đưa cùng khoản lãi đó về dạng tỷ suất trên vốn thực sự bỏ ra theo thời gian - tức IRR của dòng tiền gói thầu - sẽ cho hai con số cách nhau có thể tới vài lần. Đó là lý do điều khoản thanh toán phải được định giá chứ không chỉ được đọc: mỗi tháng chậm nghiệm thu, mỗi điểm phần trăm giữ lại tăng thêm đều là chi phí vốn có thể quy ra tiền, và phần chi phí ấy phải được cộng vào giá bỏ thầu ngay từ đầu.",
-    diagram: [
-      { label: "Chi phí trực tiếp + gián tiếp + dự phòng", arrow: true },
-      { label: "+ Chi phí vốn cho thời gian tiền bị giam", arrow: true },
-      { label: "+ Biên lợi nhuận mục tiêu", arrow: true },
-      { label: "= Giá bỏ thầu, kiểm lại bằng IRR dòng tiền gói" },
+    "correctOption": 0,
+    "explanation": "Ước lượng là dự đoán, và một chuỗi dự đoán trung thực về công việc chưa làm bao giờ cũng có sai số theo cả hai chiều. Đúng một trăm phần trăm nghĩa là hoặc có phần dư trong mọi ước lượng, hoặc phạm vi công việc đang được cắt bớt âm thầm để vừa với hạn - và cả hai đều không hiện ra trên bảng chỉ số.",
+    "diagram": [
+      {
+        "label": "Ước lượng là dự đoán - sai số phải có ở CẢ HAI chiều",
+        "arrow": true
+      },
+      {
+        "label": "Đúng 100% = có phần dư, hoặc phạm vi bị cắt âm thầm",
+        "arrow": true
+      },
+      {
+        "label": "Đo bằng thời gian từ ý tưởng tới người dùng, không bằng số hạng mục",
+        "arrow": true
+      },
+      {
+        "label": "Và mọi chỉ số về đội đều bị chính đội đó điều chỉnh được"
+      }
     ],
-    realWorldExample: {
-      company: "Cùng một gói 50 tỷ, hai bộ điều khoản",
-      description:
-        "Gói 50 tỷ, chi phí 45 tỷ, lãi 5 tỷ tức biên 10%. Phương án A: nghiệm thu hằng tháng, giữ lại 5%, vốn bình quân bị giam khoảng 6 tỷ trong 12 tháng. Phương án B: nghiệm thu theo quý và tiền về chậm thêm 60 ngày, giữ lại 10%, vốn bình quân bị giam khoảng 15 tỷ trong 15 tháng. Cùng 5 tỷ lãi, nhưng A cho tỷ suất trên vốn bỏ ra quanh 83% một năm còn B chỉ quanh 27%. Với chi phí vốn 12%, cả hai vẫn nhận được - nhưng nếu chỉ đủ nguồn cho một gói thì chọn nhầm là mất phần lớn hiệu quả.",
+    "realWorldExample": {
+      "company": "Chỉ số khó làm đẹp giả tạo",
+      "description": "Thời gian từ lúc một yêu cầu được nhận tới lúc người dùng thật sự dùng được là chỉ số khó làm đẹp nhất, vì rút ngắn nó đòi hỏi cải thiện thật ở toàn bộ chuỗi. Số hạng mục hoàn thành thì làm đẹp được chỉ bằng cách chia nhỏ hạng mục."
     },
-    sections: [
+    "quiz": [
       {
-        type: "lead",
-        text: "Bảng tính giá thầu của hầu hết nhà thầu dừng ở ba dòng: chi phí trực tiếp, chi phí gián tiếp, và phần lãi cộng vào. Thiếu dòng thứ tư - chi phí của việc bỏ tiền ra trước và chờ - và chính dòng đó phân biệt một gói đáng nhận với một gói làm xong rồi mới biết là lỗ.",
-      },
-      { type: "heading", text: "Biên lợi nhuận không có chiều thời gian" },
-      {
-        type: "paragraph",
-        text: "Nói một gói lãi 10% là nói về tỷ lệ giữa hai con số trên báo cáo kết quả kinh doanh. Nó không cho biết nhà thầu phải bỏ ra bao nhiêu tiền của mình, cũng không cho biết bao lâu thì lấy lại được. Hai gói cùng 10% mà một gói giam 6 tỷ trong 12 tháng còn gói kia giam 15 tỷ trong 15 tháng là hai khoản đầu tư hoàn toàn khác nhau.",
-      },
-      {
-        type: "formula",
-        title: "Giá bỏ thầu có tính chi phí vốn",
-        equation: "Chi phí trực tiếp + Chi phí gián tiếp + Dự phòng + Vốn bình quân bị giam × Chi phí vốn × Thời gian + Lãi mục tiêu",
-        variables: [
-          { symbol: "Vốn bình quân bị giam", name: "Vốn tự có nằm trong gói", description: "Trung bình theo tháng của phần chi ra chưa thu về" },
-          { symbol: "Chi phí vốn", name: "Lãi vay hoặc chi phí vốn tự có", description: "Dùng mức cao hơn trong hai, xem bài `wacc-co-ban`" },
-          { symbol: "Thời gian", name: "Từ lúc chi tới lúc thu hết", description: "Tính cả thời gian chờ hoàn tiền giữ lại sau bảo hành" },
+        "question": "Vì sao một chuỗi ước lượng trung thực phải có sai số hai chiều?",
+        "options": [
+          "Vì ước lượng là dự đoán về công việc chưa làm, nên nó lệch cả hai phía",
+          "Vì độ phức tạp của các hạng mục khác nhau nên độ chính xác cũng khác nhau",
+          "Vì các yếu tố ngoài tầm kiểm soát ảnh hưởng tới tiến độ theo hai hướng",
+          "Vì kinh nghiệm của người ước lượng thay đổi theo từng loại công việc"
         ],
-        example: {
-          title: "Vốn giam bình quân 6 tỷ, 12 tháng, chi phí vốn 12%",
-          calculation: "6 × 12% × 1",
-          result: "0,72 tỷ phải cộng vào giá",
-          explanation: "Bỏ sót dòng này thì gói tưởng lãi 5 tỷ thực chất chỉ còn 4,28 tỷ, và biên 10% thành 8,6%.",
-        },
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia mô tả các nguồn sai số cụ thể. Điểm cốt lõi đơn giản hơn: nếu mọi ước lượng đều đúng hoặc dư thì nó không còn là dự đoán mà là một cam kết có đệm sẵn."
       },
       {
-        type: "callout",
-        label: "Kiểm lại bằng IRR, không phải bằng biên",
-        text: "Sau khi có giá, dựng dòng tiền theo tháng của riêng gói: các khoản chi ra mang dấu âm, các đợt tiền về mang dấu dương, và đừng quên khoản tiền giữ lại về ở tháng thứ hai mươi mấy. Tính IRR của chuỗi đó rồi so với chi phí vốn. Đây chính là công cụ ở `irr-co-ban` và `danh-gia-du-an-npv-irr`, chỉ khác là dòng tiền được dựng từ điều khoản hợp đồng chứ không từ dự báo doanh thu.",
-      },
-      {
-        type: "comparison",
-        left: {
-          label: "Điều khoản làm gói tốt lên",
-          text: "Tạm ứng cao, nghiệm thu theo tháng, thanh toán trong 30 ngày, giữ lại 5% và cho thay bằng bảo lãnh bảo hành.",
-        },
-        right: {
-          label: "Điều khoản làm gói xấu đi",
-          text: "Tạm ứng thấp hoặc không có, nghiệm thu theo quý, thanh toán sau 60-90 ngày, giữ lại 10% tới hết bảo hành.",
-        },
-      },
-      {
-        type: "conceptTable",
-        title: "Bốn đòn bẩy khi đàm phán, xếp theo giá trị tài chính",
-        concepts: [
-          { vi: "Tăng tỷ lệ tạm ứng", en: "Higher advance", def: "Nâng đáy chữ J lên ngay lập tức, thường đáng giá hơn cả một điểm biên lợi nhuận" },
-          { vi: "Rút ngắn kỳ nghiệm thu", en: "Shorter certification cycle", def: "Từ quý xuống tháng cắt được khoảng một phần ba vốn bình quân bị giam" },
-          { vi: "Giảm tỷ lệ giữ lại", en: "Lower retention", def: "Mỗi điểm phần trăm là tiền nằm im suốt thời gian bảo hành" },
-          { vi: "Thay giữ lại bằng bảo lãnh", en: "Retention bond", def: "Đổi tiền mặt bị giam lấy một khoản phí nhỏ trả cho ngân hàng" },
+        "question": "Vì sao số hạng mục hoàn thành là chỉ số dễ làm đẹp?",
+        "options": [
+          "Vì chia nhỏ hạng mục làm con số tăng lên mà khối lượng công việc không đổi",
+          "Vì đội có thể ưu tiên các hạng mục dễ để hoàn thành được nhiều hơn",
+          "Vì cách phân loại hạng mục không thống nhất giữa các đội khác nhau",
+          "Vì một số hạng mục được đánh dấu hoàn thành khi chưa thật sự xong hết"
         ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều cần một quyết định có thể bị phản đối. Chia nhỏ hạng mục thì lại là việc được khuyến khích vì lý do khác - nên con số tăng lên mà không ai làm gì sai."
       },
       {
-        type: "closing",
-        lines: [
-          "Giá bỏ thầu không phải là chi phí cộng lãi. Nó là chi phí, cộng lãi, cộng tiền thuê vốn của chính mình trong suốt quãng thời gian hợp đồng giam vốn ấy lại.",
+        "question": "Chỉ số nào khó làm đẹp giả tạo nhất?",
+        "options": [
+          "Thời gian từ lúc nhận yêu cầu tới lúc người dùng thật sự dùng được",
+          "Số lượng lỗi được phát hiện trong môi trường thật mỗi tháng",
+          "Tỷ lệ hạng mục hoàn thành đúng hạn so với kế hoạch ban đầu",
+          "Số lần triển khai lên môi trường thật trong mỗi tuần làm việc"
         ],
+        "correct": 0,
+        "explanation": "Rút ngắn nó đòi hỏi cải thiện thật ở toàn bộ chuỗi - từ làm rõ yêu cầu, viết mã, rà soát, kiểm thử tới phát hành. Lựa chọn cuối là chỉ số tốt và nó làm đẹp được bằng cách triển khai nhiều bản nhỏ vô nghĩa."
       },
+      {
+        "question": "Vì sao cắt phạm vi âm thầm nguy hiểm hơn trễ hạn?",
+        "options": [
+          "Vì trễ hạn thì mọi người biết, còn cắt phạm vi thì không hiện ra ở đâu",
+          "Vì phần bị cắt thường là phần khó nhất nên nợ kỹ thuật tích tụ",
+          "Vì người dùng nhận được sản phẩm không đầy đủ như đã được hứa",
+          "Vì việc bổ sung phần bị cắt về sau tốn nhiều công hơn làm ngay từ đầu"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là hậu quả thật. Cái này là vấn đề về thông tin: một hạng mục trễ hai tuần khởi động một cuộc trò chuyện, còn một hạng mục xong đúng hạn với một nửa nội dung thì không khởi động gì cả."
+      },
+      {
+        "question": "Cách đọc một ước lượng cho đúng là gì?",
+        "options": [
+          "Như một khoảng có mức tin cậy, không như một con số duy nhất",
+          "Như một cam kết mà đội chịu trách nhiệm hoàn thành đúng thời hạn",
+          "Như một mục tiêu để đội phấn đấu chứ không phải một dự báo chính xác",
+          "Như một con số cần được nhân thêm hệ số dự phòng trước khi dùng"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là cách xử lý phổ biến và nó chuyển phần dự phòng sang một chỗ khác mà vẫn giấu mức không chắc chắn. Một khoảng thì nói thẳng điều đó, và nó cho phép người nhận quyết định dựa trên rủi ro thật."
+      }
     ],
-    quiz: [
-      {
-        question:
-          "Gói giam bình quân 8 tỷ vốn trong 18 tháng, chi phí vốn 12% một năm. Chi phí vốn cần cộng vào giá là bao nhiêu?",
-        options: [
-          "1,44 tỷ (= 8 tỷ × 12% × 1,5 năm)",
-          "0,96 tỷ (= 8 × 12%, bỏ qua 18 tháng)",
-          "1,44 tỷ nhưng chỉ cộng nếu phải đi vay",
-          "2,16 tỷ (= 8 × 18%, nhân nhầm 12% với 1,5)",
-        ],
-        correct: 0,
-        explanation:
-          "18 tháng là 1,5 năm nên 8 × 12% × 1,5 = 1,44 tỷ. Phương án thứ ba đúng số nhưng sai nguyên tắc: vốn tự có cũng có chi phí cơ hội, không miễn phí chỉ vì không đi vay.",
-      },
-      {
-        question:
-          "Hai gói cùng giá trị, cùng biên lợi nhuận 10%. Gói nào có IRR cao hơn?",
-        options: [
-          "Gói có kỳ nghiệm thu ngắn hơn và tỷ lệ giữ lại thấp hơn",
-          "Gói có giá trị hợp đồng lớn hơn nên quy mô lãi tuyệt đối lớn hơn",
-          "Gói có thời gian thi công dài hơn vì trải chi phí ra nhiều kỳ hơn",
-          "Hai gói bằng nhau vì IRR chỉ phụ thuộc vào biên lợi nhuận của gói",
-        ],
-        correct: 0,
-        explanation:
-          "IRR đo lãi trên vốn theo thời gian. Cùng một khoản lãi, gói nào trả tiền sớm hơn và giam ít vốn hơn thì tỷ suất cao hơn. Biên lợi nhuận không chứa thông tin về thời gian nên không quyết định được IRR.",
-      },
-      {
-        question:
-          "Chủ đầu tư đề nghị tăng tạm ứng từ 10% lên 20% nhưng giảm giá hợp đồng 1%. Nhà thầu nên đánh giá thế nào?",
-        options: [
-          "So phần chi phí vốn tiết kiệm được với 1% giá trị hợp đồng",
-          "Từ chối ngay vì mọi khoản giảm giá đều làm biên lợi nhuận xấu đi",
-          "Chấp nhận ngay vì tiền về sớm luôn tốt hơn trong mọi trường hợp",
-          "Chỉ chấp nhận nếu chủ đầu tư đồng thời giảm tỷ lệ giữ lại xuống",
-        ],
-        correct: 0,
-        explanation:
-          "Đây là một phép so sánh có thể tính ra số, không phải một nguyên tắc. Thêm 10% tạm ứng trên gói 50 tỷ là 5 tỷ về sớm; nếu nó cắt được nhiều hơn 0,5 tỷ chi phí vốn thì đổi là có lợi.",
-      },
-      {
-        question: "Vì sao dòng tiền của gói thầu phải kéo dài quá ngày bàn giao?",
-        options: [
-          "Vì tiền giữ lại chỉ về sau khi hết thời hạn bảo hành công trình",
-          "Vì doanh thu vẫn được ghi nhận trong thời gian bảo hành",
-          "Vì chi phí bảo hành thực tế lớn hơn khoản dự phòng đã trích",
-          "Vì bảo lãnh thực hiện hợp đồng giải toả sau khi quyết toán",
-        ],
-        correct: 0,
-        explanation:
-          "Khoản giữ lại 5-10% nằm im tới hết bảo hành, thường thêm 12 tháng, và nó là dòng tiền dương cuối cùng của gói. Bỏ nó ra khỏi chuỗi sẽ làm IRR tính ra cao hơn thực tế.",
-      },
-      {
-        question:
-          "Gói 50 tỷ chi phí 45 tỷ. Sau khi cộng chi phí vốn 0,9 tỷ, biên lợi nhuận thực còn bao nhiêu?",
-        options: [
-          "8,2% (= (50 − 45 − 0,9) ÷ 50)",
-          "10% (= (50 − 45) ÷ 50, chưa trừ vốn)",
-          "9,1% (= 4,1 ÷ 45, chia nhầm mẫu số)",
-          "8,2% nhưng chỉ đúng khi dùng vốn vay",
-        ],
-        correct: 0,
-        explanation:
-          "50 − 45 − 0,9 = 4,1 tỷ, chia 50 ra 8,2%. Phương án cuối lặp lại cùng nhầm lẫn ở câu đầu: chi phí cơ hội của vốn tự có vẫn là chi phí thật.",
-      },
+    "keyTakeaways": [
+      "Ước lượng là dự đoán - một chuỗi trung thực phải lệch cả HAI chiều.",
+      "Đúng một trăm phần trăm = có phần dư, hoặc phạm vi bị cắt âm thầm.",
+      "Số hạng mục hoàn thành làm đẹp được bằng cách chia nhỏ, mà chia nhỏ lại được khuyến khích.",
+      "Chỉ số khó làm đẹp nhất: thời gian từ nhận yêu cầu tới người dùng dùng được.",
+      "Đọc ước lượng như một KHOẢNG có mức tin cậy, không như một con số."
     ],
-    keyTakeaways: [
-      "Biên lợi nhuận không có chiều thời gian, nên không đủ để so hai gói thầu",
-      "Giá bỏ thầu phải cộng chi phí vốn cho quãng thời gian tiền bị giam",
-      "Kiểm lại gói bằng IRR của dòng tiền theo tháng, dựng từ điều khoản hợp đồng",
-      "Dòng tiền gói phải kéo dài tới lúc nhận lại tiền giữ lại sau bảo hành",
-      "Tạm ứng, kỳ nghiệm thu và tỷ lệ giữ lại là những đòn bẩy đàm phán có thể quy ra tiền",
-    ],
-    practicePrompt: {
-      question:
-        "Nhà thầu chỉ đủ vốn nhận một trong hai gói: gói A lãi 4 tỷ, vốn giam 5 tỷ trong 10 tháng; gói B lãi 6 tỷ, vốn giam 14 tỷ trong 20 tháng. Nên chọn gói nào?",
-      options: [
-        "Gói A, vì lãi trên vốn theo thời gian cao hơn gói B rõ rệt",
-        "Gói B, vì khoản lãi tuyệt đối lớn hơn gói A tới hai tỷ đồng",
-        "Gói B, vì thời gian dài hơn giúp trải chi phí quản lý ra nhiều kỳ",
-        "Cả hai như nhau nếu tính theo biên lợi nhuận trên giá trị hợp đồng",
+    "practicePrompt": {
+      "question": "Đội bạn muốn cải thiện chỉ số hiệu quả. Nên chọn đo cái gì?",
+      "options": [
+        "Thời gian từ lúc nhận yêu cầu tới lúc người dùng dùng được, và phân bố của nó",
+        "Số hạng mục hoàn thành mỗi chu kỳ, so sánh giữa các chu kỳ liên tiếp",
+        "Tỷ lệ hạng mục hoàn thành đúng hạn theo kế hoạch đã cam kết",
+        "Số giờ làm việc thực tế so với số giờ đã ước lượng cho từng hạng mục"
       ],
-      correct: 0,
-      explanation:
-        "Gói A cho 4 tỷ trên 5 tỷ vốn trong 10 tháng, tức khoảng 96% một năm; gói B cho 6 tỷ trên 14 tỷ trong 20 tháng, khoảng 26% một năm. Khi vốn là ràng buộc, con số phải so là lãi trên vốn theo thời gian chứ không phải lãi tuyệt đối.",
+      "correct": 0,
+      "explanation": "Chữ PHÂN BỐ là phần quan trọng: giá trị trung bình của chỉ số này che mất phần đuôi, và phần đuôi - những hạng mục mất ba tháng - mới là chỗ có vấn đề đáng sửa."
     },
-    summary: {
-      keyIdea:
-        "Giá bỏ thầu là chi phí cộng lãi cộng tiền thuê vốn của chính mình trong suốt thời gian hợp đồng giam vốn. Vì biên lợi nhuận không mang chiều thời gian, hai gói cùng biên có thể cho hai tỷ suất rất khác nhau, và cách duy nhất để thấy điều đó là dựng dòng tiền theo tháng từ chính điều khoản thanh toán rồi tính IRR - kéo dài tới lúc tiền giữ lại về sau bảo hành.",
+    "summary": {
+      "keyIdea": "Mọi chỉ số về hiệu quả của đội đều bị chính đội đó điều chỉnh được.",
+      "formula": "Đo thời gian từ ý tưởng tới người dùng, nhìn cả phân bố, đọc ước lượng như khoảng.",
+      "commonMistake": "Coi tỷ lệ đúng hạn cao là dấu hiệu tốt thay vì dấu hiệu có phần dư.",
+      "action": "Đo thời gian từ lúc nhận yêu cầu tới lúc người dùng dùng được."
     },
-    application: {
-      message:
-        "Thêm một dòng vào bảng tính giá thầu hiện tại: vốn bình quân bị giam nhân chi phí vốn nhân thời gian. Rồi trước khi ký, thử đổi kỳ nghiệm thu từ quý xuống tháng trong bảng tính và xem IRR nhảy bao nhiêu - đó là con số để mang đi đàm phán.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Với năm hạng mục gần nhất, đo thời gian từ lúc yêu cầu được nhận tới lúc người dùng thật sự dùng được - không phải từ lúc bắt đầu viết mã.",
+      "secondary": "Khoảng chênh giữa hai cách đo đó thường lớn hơn nhiều so với mọi người nghĩ, và nó nằm ở phần chờ chứ không ở phần làm."
     },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Mọi chỉ số về hiệu quả của đội đều bị chính đội đó điều chỉnh được, và biết cơ chế đó là điều kiện để đọc chúng cho đúng."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao đúng hạn 100% là dấu hiệu xấu"
+      },
+      {
+        "type": "callout",
+        "label": "Sai số phải có ở cả hai chiều",
+        "text": "Ước lượng là dự đoán về công việc chưa làm. Nếu mọi ước lượng đều đúng hoặc dư thì nó không còn là dự đoán mà là một cam kết có đệm sẵn - hoặc phạm vi đang bị cắt âm thầm để vừa với hạn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Vế thứ hai nguy hiểm hơn vế thứ nhất vì nó vô hình: một hạng mục trễ hai tuần khởi động một cuộc trò chuyện, còn một hạng mục xong đúng hạn với một nửa nội dung thì không khởi động gì cả."
+      },
+      {
+        "type": "heading",
+        "text": "Chỉ số nào làm đẹp được"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Số hạng mục hoàn thành",
+          "text": "Tăng lên chỉ bằng cách chia nhỏ hạng mục - mà chia nhỏ lại là việc được khuyến khích vì lý do khác. Con số tăng mà không ai làm gì sai."
+        },
+        "right": {
+          "label": "Thời gian tới người dùng",
+          "text": "Rút ngắn nó đòi hỏi cải thiện thật ở toàn bộ chuỗi: làm rõ yêu cầu, viết mã, rà soát, kiểm thử, phát hành."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Và nhìn cả PHÂN BỐ của chỉ số đó, không chỉ giá trị trung bình. Trung bình che mất phần đuôi, mà phần đuôi - những hạng mục mất ba tháng - mới là chỗ có vấn đề đáng sửa."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cuối cùng, đọc ước lượng như một KHOẢNG có mức tin cậy, không như một con số duy nhất.",
+          "Nhân thêm hệ số dự phòng chỉ chuyển phần đệm sang chỗ khác mà vẫn giấu mức không chắc chắn; một khoảng thì nói thẳng điều đó và cho người nhận quyết định dựa trên rủi ro thật."
+        ]
+      }
+    ]
   },
 ];
