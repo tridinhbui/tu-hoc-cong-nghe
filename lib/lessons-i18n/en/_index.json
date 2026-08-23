@@ -4,25 +4,10 @@
     "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
     "duration": "12 min"
   },
-  "ban-cheo-san-pham-va-kpi-cua-rm-ngan-hang": {
-    "title": "Cross-selling bank products and the RM's KPIs: balancing sales against the customer's interest",
-    "subtitle": "How to hit the sales target while genuinely advising on real needs, rather than pushing product at people",
-    "duration": "7 min"
-  },
   "behavioral-portfolio-management-checklist": {
     "title": "Behavioral portfolio management: building a system against the portfolio manager's own biases",
     "subtitle": "Checklists, pre-mortems and the structural rules professional fund managers use to protect decisions from emotion",
     "duration": "8 min"
-  },
-  "bo-bao-cao-quan-tri-hang-thang": {
-    "title": "Planning, lesson 6: the FP&A monthly rhythm - close, explain, and sit with the business",
-    "subtitle": "What goes into a management reporting pack, how to write the commentary, and why most of the value lies outside the numbers",
-    "duration": "11 min"
-  },
-  "cau-truc-family-office-single-vs-multi": {
-    "title": "Family office structures: single-family, multi-family, and when to choose which",
-    "subtitle": "Why a very wealthy family may still be better off without an office of its own",
-    "duration": "9 min"
   },
   "chi-phi-duoc-tru-va-khong-duoc-tru": {
     "title": "Standards & Tax, Lesson 6: Deductible and non-deductible expenses",
@@ -59,40 +44,15 @@
     "subtitle": "Why working by column instead of by row completely changes how you think about data",
     "duration": "11 min"
   },
-  "doanh-thu-nha-thau-theo-tien-do": {
-    "title": "Contractors, Part 1: Revenue follows progress, not invoices",
-    "subtitle": "Why a contractor's reported profit has almost nothing to do with the cash that arrived in the period",
-    "duration": "10 min"
-  },
   "dung-mo-hinh-ba-bao-cao-trong-excel": {
     "title": "Excel, Lesson 3: Building a real three-statement model - links, circularity and check cells",
     "subtitle": "From sheet layout to a balance check of zero: how to build a model that actually runs",
     "duration": "13 min"
   },
-  "embedded-finance-banking-as-a-service": {
-    "title": "Embedded Finance & Banking-as-a-Service: FinTech's new business model",
-    "subtitle": "How Grab and Shopee can lend money and sell insurance without a banking licence",
-    "duration": "7 min"
-  },
-  "investment-thesis-research-report-structure": {
-    "title": "Investment Thesis & Research Report - how to convince an investor",
-    "subtitle": "A good investment thesis is not just 'this company will go up' - it needs an explicit chain of logic.",
-    "duration": "7 min"
-  },
-  "ir-bo-tai-lieu-va-buoi-gap-nha-dau-tu": {
-    "title": "IR, Part 4: The deck and the meeting - answering hard questions without promising anything extra",
-    "subtitle": "How to structure an investor deck, prepare for hostile questions, and hold the line in a closed room",
-    "duration": "10 min"
-  },
   "ir-cong-bo-thong-tin-va-thoi-diem": {
     "title": "IR, Part 2: Materiality and timing - what you must say, and when",
     "subtitle": "How to recognise material information, how the deadline is counted, and why silence is a choice with consequences",
     "duration": "11 min"
-  },
-  "ir-cong-viec-that-su-la-gi": {
-    "title": "IR, Part 1: What investor relations actually does - and why it is not PR",
-    "subtitle": "The three audiences IR serves, what they are really buying, and the line between corporate communications and disclosure",
-    "duration": "10 min"
   },
   "ir-guidance-va-ky-vong-thi-truong": {
     "title": "IR, Part 3: Guidance - put out a number and then live with it",
@@ -159,11 +119,6 @@
     "subtitle": "From forecast to replanning when reality moves",
     "duration": "8 min"
   },
-  "nudge-theory-thiet-ke-san-pham-tai-chinh": {
-    "title": "Nudge theory & choice architecture: designing financial products responsibly",
-    "subtitle": "From auto-enrolment to robo-advisers - how behavioural biases are applied deliberately to help customers make better decisions",
-    "duration": "8 min"
-  },
   "phan-bo-chi-phi-va-loi-nhuan-bo-phan": {
     "title": "Planning, part 5: cost allocation - why segment profit is always contested",
     "subtitle": "Direct costs, overheads and the allocation basis: when a number decides whose budget gets cut",
@@ -183,11 +138,6 @@
     "title": "Excel, Lesson 5: Power Query - clean the data once, reuse it forever",
     "subtitle": "A repeatable cleaning process instead of copying and hand-fixing every month",
     "duration": "11 min"
-  },
-  "quy-trinh-hoach-dinh-tai-chinh-6-buoc": {
-    "title": "The six-step financial planning process: the standard framework of every financial advisor",
-    "subtitle": "From gathering information to monitoring the plan - the systematic process behind every piece of professional financial advice",
-    "duration": "8 min"
   },
   "quyet-toan-va-thanh-tra-thue": {
     "title": "Standards & Tax, Lesson 8: tax finalisation and tax audits",
@@ -219,11 +169,6 @@
     "subtitle": "Deductible costs, non-deductible costs, loss carry-forward and tax incentives",
     "duration": "12 min"
   },
-  "trinh-bay-va-phan-bien-truoc-hoi-dong-dau-tu": {
-    "title": "Professional Skills, Lesson 2: Defending your thesis before the investment committee",
-    "subtitle": "Answering hard questions, admitting limits, and telling being challenged apart from being rejected",
-    "duration": "11 min"
-  },
   "truc-quan-hoa-va-bieu-do-noi-doi": {
     "title": "Data, Lesson 4: Visualisation - picking the right chart, and spotting the one that lies",
     "subtitle": "Four questions that decide the chart type, and the axis tricks that make true numbers tell the wrong story",
@@ -242,16 +187,6 @@
   "vas-vs-ifrs-khac-biet-nen-tang": {
     "title": "Standards & Tax, Lesson 1: Where VAS and IFRS differ",
     "subtitle": "Historical cost versus fair value: one philosophical difference that drags a long list of numerical differences behind it",
-    "duration": "11 min"
-  },
-  "viet-memo-dau-tu-mot-trang": {
-    "title": "Professional Skills, Lesson 1: The one-page investment memo - conclusion first, evidence after",
-    "subtitle": "The pyramid structure, testable claims, and writing for a reader who only gets through three lines",
-    "duration": "11 min"
-  },
-  "von-luu-dong-nha-thau-xay-dung": {
-    "title": "Contractors, Part 2: Retention, bonds and negative working capital",
-    "subtitle": "Why winning more work leaves a contractor shorter of cash, and how much of a contract stays locked up until after the defects period",
     "duration": "11 min"
   }
 }
