@@ -11,16 +11,16 @@ const DIACRITICS =
 /** Trường riêng mà mỗi trang BẮT BUỘC phải có, ở cả hai ngôn ngữ.
  *
  *  Bảng này là thứ làm cho phép ép kiểu ở đầu mỗi trang an toàn: trang ép về
- *  `SourceCashLessonCopy`/`DebtLessonCopy` rồi đọc thẳng, không `?.`, nên một
+ *  `LaunchEffortLessonCopy`/`ResourceClassLessonCopy` rồi đọc thẳng, không `?.`, nên một
  *  trường thiếu sẽ thành `undefined` giữa màn hình. Ca kiểm dưới đây bắt trước
  *  điều đó. Thêm trang mới thì thêm một dòng ở đây. */
 const REQUIRED: Record<string, (keyof BespokeLessonCopy)[]> = {
-  "source-cash-ma": [
+  "nguon-luc-cho-mot-lan-ra-mat": [
     "sourcesHeading", "debtShareLabel", "dealSizeLabel", "equityShare", "debtShare",
     "equityCaption", "debtCaption", "exitAssumption", "exitEvLabel", "billion",
     "checklistHeading", "sources", "checklist", "remainingDebtLabel",
   ],
-  "cac-loai-debt": [
+  "cac-hang-uu-tien-tai-nguyen": [
     "intro2", "ruleHeading", "ruleLead", "ruleBanner", "ruleNote", "typesHeading",
     "rateSuffix", "waterfallHeading", "scenarioNormal", "scenarioDistress", "payoutLine",
     "verdictNormal", "verdictDistress", "lboHeading", "lboLead", "lboTableTitle",

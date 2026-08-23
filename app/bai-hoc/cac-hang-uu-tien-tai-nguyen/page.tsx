@@ -4,7 +4,7 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import type { DebtLessonCopy } from "@/lib/i18n/dictionaries/sections/bespoke-lessons";
+import type { ResourceClassLessonCopy } from "@/lib/i18n/dictionaries/sections/bespoke-lessons";
 
 /* i18n-ignore-start: `title`, `subtitle` và `nextTitle` đã có lớp phủ trong
    lib/i18n/dictionaries/sections/bespoke-lessons.ts; trang dựng `lesson` từ
@@ -15,11 +15,11 @@ const LESSON: LessonMeta = {
   // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (5) là id
   // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
   // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
-  id: 9004, slug: "cac-loai-debt", day: 5, accent: "teal",
-  title: "Các Loại Debt Cần Biết",
-  subtitle: "9 loại nợ, capital structure và thứ tự ưu tiên thanh toán",
+  id: 9004, slug: "cac-hang-uu-tien-tai-nguyen", day: 5, accent: "teal",
+  title: "Các Hạng Ưu Tiên Tài Nguyên",
+  subtitle: "9 hạng công suất, thứ tự thu hồi và ai bị cắt trước khi cụm thiếu chỗ",
   duration: "8 phút", difficulty: "Trung bình", emoji: "",
-  nextSlug: "bao-cao-luu-chuyen-tien-te", nextTitle: "Day 6: Báo Cáo LCTT",
+  nextSlug: "cau-dieu-kien-if-else", nextTitle: "Day 6: Câu điều kiện",
 };
 /* i18n-ignore-end */
 
@@ -30,41 +30,42 @@ const LESSON: LessonMeta = {
 const QUIZ_CORRECT = [2, 3, 0, 3, 1];
 /* i18n-ignore-end */
 
-/* i18n-ignore-start: `name` của chín loại nợ vốn ĐÃ là tiếng Anh trong bản gốc
-   ("Secured Debt", "Mezzanine Debt") - chúng là thuật ngữ ngành, giống nhau ở
-   cả hai ngôn ngữ, nên không thuộc về một từ điển hai ngôn ngữ. `risk` và
-   `rate` là số vẽ thanh trượt; `emoji` không dịch. Phần chữ - `tag`, `desc`,
-   `eg` - nằm trong `debtTypes` của từ điển, khớp THEO VỊ TRÍ với mảng này. */
+/* i18n-ignore-start: `name` của chín hạng công suất vốn ĐÃ là tiếng Anh trong
+   bản gốc ("Reserved Instance", "Spot Capacity") - chúng là thuật ngữ ngành,
+   giống nhau ở cả hai ngôn ngữ, nên không thuộc về một từ điển hai ngôn ngữ.
+   `risk` và `rate` là số vẽ thanh trượt; `emoji` không dịch. Phần chữ - `tag`,
+   `desc`, `eg` - nằm trong `debtTypes` của từ điển, khớp THEO VỊ TRÍ với mảng
+   này. */
 const DEBT_TYPES = [
-  { id: "secured", emoji: "🔒", name: "Secured Debt", risk: 10, rate: 5 },
-  { id: "unsecured", emoji: "🔓", name: "Unsecured Debt", risk: 30, rate: 8 },
-  { id: "senior", emoji: "👑", name: "Senior Debt", risk: 15, rate: 6 },
-  { id: "sub", emoji: "", name: "Subordinated Debt", risk: 50, rate: 12 },
-  { id: "revolver", emoji: "🔄", name: "Revolving Credit (Revolver)", risk: 20, rate: 7 },
-  { id: "term", emoji: "📅", name: "Term Loan", risk: 25, rate: 7 },
-  { id: "conv", emoji: "🔀", name: "Convertible Debt", risk: 45, rate: 6 },
-  { id: "bond", emoji: "🏛️", name: "Bond", risk: 25, rate: 9 },
-  { id: "mezz", emoji: "🔶", name: "Mezzanine Debt", risk: 65, rate: 18 },
+  { id: "reserved", emoji: "🔒", name: "Guaranteed Reservation", risk: 10, rate: 5 },
+  { id: "besteffort", emoji: "🔓", name: "Best-Effort Quota", risk: 30, rate: 8 },
+  { id: "system", emoji: "👑", name: "System Critical", risk: 15, rate: 6 },
+  { id: "batch", emoji: "", name: "Deferrable Batch", risk: 50, rate: 12 },
+  { id: "burst", emoji: "🔄", name: "Burst Credit", risk: 20, rate: 7 },
+  { id: "committed", emoji: "📅", name: "Committed Use", risk: 25, rate: 7 },
+  { id: "promote", emoji: "🔀", name: "Promotable Class", risk: 45, rate: 6 },
+  { id: "ri", emoji: "🏛️", name: "Reserved Instance", risk: 25, rate: 9 },
+  { id: "spot", emoji: "🔶", name: "Spot Capacity", risk: 65, rate: 18 },
 ];
 
-/** Tên bốn tầng trong waterfall và trong bảng LBO. Cùng lý do với `name` ở
- *  trên: chúng là tên tầng vốn bằng tiếng Anh trong cả hai bản. */
+/** Tên bốn tầng trong thác phân bổ và trong bảng trộn hạng. Cùng lý do với
+ *  `name` ở trên: chúng là tên hạng bằng tiếng Anh trong cả hai bản. */
 const WATERFALL_LAYERS = [
-  { name: "Senior Secured", amount: 200 },
-  { name: "Senior Unsecured / Bond", amount: 150 },
-  { name: "Subordinated / Mezz", amount: 100 },
-  { name: "Equity", amount: 50 },
+  { name: "System Critical", amount: 200 },
+  { name: "Guaranteed Reserved", amount: 150 },
+  { name: "Deferrable Batch", amount: 100 },
+  { name: "Spot", amount: 50 },
 ];
 
 const LBO_ROWS = [
-  { layer: "Senior Secured (Term Loan)", pct: "50%", rate: "SOFR+300bps" },
-  { layer: "Senior Unsecured Bond", pct: "20%", rate: "~8%" },
-  { layer: "Mezzanine / PIK", pct: "10%", rate: "15-20%" },
-  { layer: "Equity (PE Fund)", pct: "20%", rate: "" },
+  { layer: "Committed Use (1 năm)", pct: "50%", rate: "-30% giá niêm yết" },
+  { layer: "Reserved Instance (3 năm)", pct: "20%", rate: "-50% giá niêm yết" },
+  { layer: "Burst Credit", pct: "10%", rate: "×1.2 lúc cao điểm" },
+  { layer: "Spot Capacity", pct: "20%", rate: "" },
 ];
 /* i18n-ignore-end */
 
-function CapitalStructureAnimation({ c }: { c: DebtLessonCopy }) {
+function CapacityWaterfallAnimation({ c }: { c: ResourceClassLessonCopy }) {
   const [scenario, setScenario] = useState<"normal" | "distress">("normal");
   const assets = scenario === "normal" ? 600 : 280;
   let remaining = assets;
@@ -107,11 +108,11 @@ function CapitalStructureAnimation({ c }: { c: DebtLessonCopy }) {
   );
 }
 
-export default function CacLoaiDebtPage() {
+export default function CacHangUuTienTaiNguyenPage() {
   const { t } = useI18n();
-  // Ép kiểu một lần - xem chú thích của DebtLessonCopy về bộ kiểm làm cho phép
+  // Ép kiểu một lần - xem chú thích của ResourceClassLessonCopy về bộ kiểm làm cho phép
   // ép này an toàn.
-  const c = t.bespokeLessons["cac-loai-debt"] as DebtLessonCopy;
+  const c = t.bespokeLessons["cac-hang-uu-tien-tai-nguyen"] as ResourceClassLessonCopy;
 
   const lesson: LessonMeta = { ...LESSON, title: c.title, subtitle: c.subtitle, nextTitle: c.nextTitle };
   const quiz: QuizQuestion[] = c.quiz.map((q, i) => ({
@@ -126,13 +127,13 @@ export default function CacLoaiDebtPage() {
       <div className="space-y-8 text-stone-700 leading-relaxed">
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">{c.heading}</h2>
+          <h2 className="text-xl font-bold text-ink">{c.heading}</h2>
           <p>{c.intro}</p>
           <p>{c.intro2}</p>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">{c.ruleHeading}</h2>
+          <h2 className="text-xl font-bold text-ink">{c.ruleHeading}</h2>
           <p>{c.ruleLead}</p>
           <div className="bg-stone-900 rounded-2xl p-5 text-white text-center">
             <div className="text-2xl font-bold text-stone-700 mb-2">{c.ruleBanner}</div>
@@ -141,7 +142,7 @@ export default function CacLoaiDebtPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">{c.typesHeading}</h2>
+          <h2 className="text-xl font-bold text-ink">{c.typesHeading}</h2>
           <div className="space-y-2">
             {DEBT_TYPES.map((d, i) => (
               <div key={d.id} className="w-full text-left rounded-2xl border p-4 bg-white border-stone-200">
@@ -170,10 +171,10 @@ export default function CacLoaiDebtPage() {
           </div>
         </section>
 
-        <CapitalStructureAnimation c={c} />
+        <CapacityWaterfallAnimation c={c} />
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">{c.lboHeading}</h2>
+          <h2 className="text-xl font-bold text-ink">{c.lboHeading}</h2>
           <p>{c.lboLead}</p>
           <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
             <div className="text-stone-700 text-xs font-bold uppercase tracking-widest mb-2">{c.lboTableTitle}</div>

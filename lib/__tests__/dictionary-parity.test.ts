@@ -54,14 +54,19 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // "US FEDERAL RESERVE". Đó là tên riêng của những nơi có thật, không phải
   // chỗ dịch bị bỏ quên. Chỉ miễn trừ `badge`; `name` và `subtitle` vẫn bị
   // chấm như mọi chuỗi khác.
-  // Bốn phương án của câu "thứ tự ưu tiên trong capital structure waterfall" là
-  // TÊN TẦNG VỐN xếp bằng mũi tên: "Senior Secured → Senior Unsecured →
-  // Subordinated → Equity". Bản tiếng Việt đã viết chúng bằng tiếng Anh vì đó
-  // là cách gọi duy nhất trong ngành, nên bản Anh trùng khít - không phải chỗ
-  // dịch bị bỏ quên. Chỉ miễn trừ ĐÚNG câu này; bốn câu còn lại của trang vẫn
+  // Bốn phương án của câu "thứ tự ưu tiên trong thác phân bổ công suất" là TÊN
+  // HẠNG xếp bằng mũi tên: "System Critical → Guaranteed Reserved → Deferrable
+  // Batch → Spot". Bản tiếng Việt đã viết chúng bằng tiếng Anh vì đó là cách
+  // gọi duy nhất trong ngành, nên bản Anh trùng khít - không phải chỗ dịch bị
+  // bỏ quên. Chỉ miễn trừ ĐÚNG câu này; bốn câu còn lại của trang vẫn
   // bị chấm như mọi chuỗi khác, và `question` với `explanation` của chính nó
   // cũng vậy.
-  "bespokeLessons.cac-loai-debt.quiz.1.options",
+  "bespokeLessons.cac-hang-uu-tien-tai-nguyen.quiz.1.options",
+  // `lboAmounts` là bốn lượng công suất - "500 vCPU", "200 vCPU". Đơn vị vCPU
+  // viết y hệt trong cả hai ngôn ngữ và con số thì không dịch, nên hai bản
+  // trùng khít là ĐÚNG chứ không phải quên dịch. Bản cũ ("500 tỷ" / "500bn")
+  // khác nhau nên chưa bao giờ chạm tới ca kiểm này.
+  "bespokeLessons.cac-hang-uu-tien-tai-nguyen.lboAmounts",
   "rpgBuildings.world-boss.badge",
   "rpgBuildings.pvp.badge",
   "rpgBuildings.arcade.badge",

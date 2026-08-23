@@ -4,7 +4,7 @@ import { useState } from "react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import type { SourceCashLessonCopy } from "@/lib/i18n/dictionaries/sections/bespoke-lessons";
+import type { LaunchEffortLessonCopy } from "@/lib/i18n/dictionaries/sections/bespoke-lessons";
 
 /* i18n-ignore-start: `title`, `subtitle` và `nextTitle` đã có lớp phủ trong
    lib/i18n/dictionaries/sections/bespoke-lessons.ts; trang dựng `lesson` từ
@@ -16,33 +16,33 @@ const META: LessonMeta = {
   // trong lib/lessons.ts nên không có id thật để ghi vào, còn id cũ (15) là id
   // của một bài Chặng 3 CÓ THẬT - nên tiến độ, XP, ghi chú và highlight của
   // trang này đều đổ sang bài đó. Xem lib/__tests__/bespoke-lesson-ids.test.ts.
-  id: 9014, slug: "source-cash-ma", day: 15, accent: "emerald",
-  title: "Source of Cash trong M&A",
-  subtitle: "Tiền mua lại doanh nghiệp đến từ đâu?",
+  id: 9014, slug: "nguon-luc-cho-mot-lan-ra-mat", day: 15, accent: "emerald",
+  title: "Nguồn Lực Cho Một Lần Ra Mắt",
+  subtitle: "Công sức để đưa một hệ thống lên sản xuất đến từ đâu?",
   duration: "8 phút", difficulty: "Khó", emoji: "💼",
-  nextSlug: "synergy-ma", nextTitle: "Synergy trong M&A",
+  nextSlug: "synergy-ma", nextTitle: "Cộng hưởng khi gộp hai dịch vụ",
 };
 /* i18n-ignore-end */
 
 
 /* i18n-ignore-start: sáu chuỗi dưới đây GIỐNG HỆT nhau ở cả hai ngôn ngữ -
-   emoji, và bốn tên nguồn vốn cùng hai nhãn vốn đã là tiếng Anh trong bản gốc.
+   emoji, và bốn tên nguồn lực cùng hai nhãn đã là tiếng Anh trong bản gốc.
    Chúng nằm ngoài từ điển có chủ đích: một cặp giá trị trùng nhau ở đó không
    phân biệt được với một bản dịch bị bỏ quên, và dictionary-parity đã bắt đúng
    cả ba khi tôi thử đưa chúng vào. */
-/** Emoji và TÊN bốn nguồn vốn. Không nằm trong từ điển vì chúng giống hệt nhau
- *  ở cả hai ngôn ngữ: emoji không dịch, còn "Cash on Hand" / "Debt Financing"
+/** Emoji và TÊN bốn nguồn lực. Không nằm trong từ điển vì chúng giống hệt nhau
+ *  ở cả hai ngôn ngữ: emoji không dịch, còn "In-House Effort" / "Technical Debt"
  *  vốn đã là tiếng Anh trong bản gốc tiếng Việt. Một cặp giá trị trùng nhau
  *  trong từ điển không phân biệt được với một bản dịch bị bỏ quên. */
 const SOURCE_ICONS = ["💵", "", "", "🔗"];
-const SOURCE_TYPES = ["Cash on Hand", "Debt Financing", "Stock Consideration", "Earnout + Hybrid"];
+const SOURCE_TYPES = ["In-House Effort", "Technical Debt", "Third-Party Service", "Open Source + Hybrid"];
 
 /** Cùng lý do: hai nhãn này đã là tiếng Anh trong bản gốc. */
-const SIMULATOR_HEADING = "⚙️ LBO Capital Structure Simulator";
-const MOIC_LABEL = "MOIC (equity return)";
+const SIMULATOR_HEADING = "⚙️ Technical Debt Leverage Simulator";
+const MOIC_LABEL = "Return on in-house effort";
 /* i18n-ignore-end */
 
-function FundingStructure({ c }: { c: SourceCashLessonCopy }) {
+function FundingStructure({ c }: { c: LaunchEffortLessonCopy }) {
   const [debtPct, setDebtPct] = useState(60);
   const equityPct = 100 - debtPct;
   const dealSize = 1000;
@@ -114,8 +114,8 @@ const QUIZ_CORRECT = [3, 0, 2, 1, 0];
 export default function Page() {
   const { t } = useI18n();
   // Ép kiểu một lần ở đây thay vì `?.` ở ba mươi chỗ render - xem chú thích
-  // của SourceCashLessonCopy về việc bộ kiểm nào làm cho phép ép này an toàn.
-  const c = t.bespokeLessons["source-cash-ma"] as SourceCashLessonCopy;
+  // của LaunchEffortLessonCopy về việc bộ kiểm nào làm cho phép ép này an toàn.
+  const c = t.bespokeLessons["nguon-luc-cho-mot-lan-ra-mat"] as LaunchEffortLessonCopy;
 
   const lesson: LessonMeta = { ...META, title: c.title, subtitle: c.subtitle, nextTitle: c.nextTitle };
   // Mảng options theo VỊ TRÍ. Lệch độ dài thì đây là chỗ nó lộ ra - độ dài của
@@ -129,11 +129,11 @@ export default function Page() {
 
   return (
     <LessonPageLayout lesson={lesson} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">{c.heading}</h2>
+      <h2 className="text-2xl font-bold text-ink mb-2">{c.heading}</h2>
       <p className="text-stone-600 text-sm mb-6 italic">{c.intro}</p>
 
       <section className="mb-8">
-        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">{c.sourcesHeading}</h3>
+        <h3 className="text-lg font-bold text-ink-heading mb-3">{c.sourcesHeading}</h3>
         <div className="space-y-3">
           {c.sources.map((s, i) => (
             <div key={SOURCE_TYPES[i]} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
@@ -155,7 +155,7 @@ export default function Page() {
       <FundingStructure c={c} />
 
       <section>
-        <h3 className="text-lg font-bold text-stone-800 dark:text-stone-200 mb-3">{c.checklistHeading}</h3>
+        <h3 className="text-lg font-bold text-ink-heading mb-3">{c.checklistHeading}</h3>
         <div className="space-y-2">
           {c.checklist.map((item, i) => (
             <div key={i} className="flex gap-3 bg-stone-50 rounded-lg p-3 text-sm border border-stone-200">
