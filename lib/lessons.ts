@@ -56951,186 +56951,183 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1005,
-    "slug": "commodity-phan-2",
-    "title": "Case chuyên sâu: Commodity Phần 2",
-    "subtitle": "Supply, Demand, Inventory - 3 yếu tố định giá hàng hóa",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🌍",
-    "openingQuestion": "Khi inventory tăng liên tục còn demand yếu, giá commodity thường đi hướng nào?",
+    "title": "Case chuyên sâu: Tài nguyên tính toán khan hiếm",
+    "subtitle": "Khi cung bị chặn bởi giới hạn vật lý còn cầu tăng ở mọi nơi cùng lúc",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🔌",
+    "interactiveType": "supply-demand",
+    "whyItMatters": "Phần lớn tài nguyên trong nghề co giãn gần như vô hạn nếu chịu trả tiền. Một số thì không, và cách xử lý loại thứ hai khác hẳn - trả thêm tiền không giải quyết được gì.",
+    "openingQuestion": "Loại máy chuyên dụng bạn cần hết hàng ở mọi vùng. Nên làm gì trước tiên?",
     "openingOptions": [
-      "Tăng",
-      "Giảm",
-      "Không đổi",
-      "Tăng rồi giảm"
+      "Xem công việc có chạy được trên loại máy khác không",
+      "Trả giá cao hơn",
+      "Đặt hàng dài hạn với nhà cung cấp để được ưu tiên cấp phát trong những đợt khan hiếm sau",
+      "Chuyển sang một nhà cung cấp khác vì họ có thể còn tồn kho loại máy tương tự như vậy"
     ],
-    "correctOption": 1,
-    "explanation": "Tồn kho dư là tín hiệu supply vượt demand, tạo áp lực giảm giá lên hàng hóa - nhà giao dịch commodity thường theo dõi báo cáo tồn kho hàng tuần/tháng sát sao hơn cả báo cáo tài chính doanh nghiệp vì nó phản ánh cán cân cung-cầu gần thời gian thực nhất.",
+    "correctOption": 0,
+    "explanation": "Khi nguồn cung bị giới hạn vật lý thì trả thêm tiền chỉ chuyển hàng từ người khác sang bạn chứ không tạo ra thêm máy, và nó chỉ có tác dụng tới khi người kia cũng trả thêm. Ba phương án còn lại đều là những việc nên làm, nhưng chúng đều mất từ vài tuần tới vài tháng. Câu hỏi chạy được trên loại nào khác thì trả lời được trong một buổi chiều.",
     "diagram": [
       {
-        "label": "Supply",
+        "label": "Cầu tăng đột ngột trên toàn thị trường",
         "arrow": true
       },
       {
-        "label": "Demand",
+        "label": "Cung bị chặn bởi giới hạn vật lý",
         "arrow": true
       },
       {
-        "label": "Inventory",
+        "label": "Giá tăng nhưng lượng không tăng",
         "arrow": true
       },
       {
-        "label": "Giá commodity",
-        "arrow": false
+        "label": "Chỉ giảm cầu hoặc đổi loại mới có tác dụng"
       }
     ],
-    "interactiveType": "supply-demand",
     "realWorldExample": {
-      "company": "Vì sao chu kỳ hàng hóa lặp lại",
-      "description": "Chu kỳ hàng hóa gần như luôn đi theo cùng một kịch bản. Giá cao khuyến khích các nhà sản xuất mở rộng công suất, nhưng mở một mỏ mới hay trồng một vụ mới cần nhiều năm. Đến khi nguồn cung mới đi vào hoạt động thì nhu cầu thường đã hạ nhiệt, cung vượt cầu, tồn kho chất lên và giá lao dốc. Giá thấp lại khiến các dự án bị hoãn và công suất bị cắt, gieo mầm cho đợt thiếu hụt kế tiếp. Độ trễ giữa quyết định đầu tư và sản lượng thực tế chính là lý do cấu trúc khiến hàng hóa mang tính chu kỳ mạnh hơn hầu hết ngành khác."
+      "company": "Chờ sáu tuần cho thứ chạy chậm hơn ba mươi phần trăm",
+      "description": "Một đội cần loại máy chuyên dụng cho công việc huấn luyện mô hình và không đặt được ở đâu. Họ chờ sáu tuần trong danh sách. Khi cuối cùng có người thử chạy trên loại máy phổ thông đang sẵn có, công việc hoàn thành chậm hơn khoảng ba mươi phần trăm - tức là sáu tuần chờ đã tốn hơn nhiều so với toàn bộ phần chậm ấy cộng lại trong cả quý."
     },
-    "quiz": [
-      {
-        "question": "Chỉ báo ngắn hạn quan trọng nhất với commodity thường là gì?",
-        "options": [
-          "Mức tồn kho (inventory)",
-          "Lợi nhuận mỗi cổ phiếu (EPS)",
-          "Tỷ suất cổ tức",
-          "Giá trị sổ sách (book value)"
-        ],
-        "correct": 0,
-        "explanation": "Tồn kho là chỗ chênh lệch cung cầu hiện ra sớm nhất: kho đầy lên nghĩa là cung đang vượt cầu, kho rút xuống thì ngược lại, và giá phản ứng theo trước khi số liệu sản lượng công bố. EPS, tỷ suất cổ tức và giá trị sổ sách đều là chỉ tiêu của một doanh nghiệp cụ thể - chúng nói về công ty khai thác, không nói về cán cân của chính mặt hàng đó."
-      },
-      {
-        "question": "Vì sao commodity thường biến động mạnh hơn sản phẩm dịch vụ?",
-        "options": [
-          "Vì cung khó điều chỉnh nhanh theo cầu",
-          "Vì nhu cầu hàng hóa thay đổi hoàn toàn ngẫu nhiên",
-          "Vì giá do các sàn giao dịch quốc tế ấn định",
-          "Vì hàng hóa không thể lưu kho được lâu"
-        ],
-        "correct": 0,
-        "explanation": "Mở một mỏ hay trồng một vụ mất nhiều năm, nên khi cầu đổi thì cung gần như không nhúc nhích trong ngắn hạn và toàn bộ điều chỉnh dồn vào giá. Sàn giao dịch chỉ là nơi khớp lệnh chứ không ấn định giá. Cầu cũng không ngẫu nhiên - nó đi theo chu kỳ kinh tế. Còn nhiều mặt hàng lưu kho được rất lâu, chính kho dự trữ mới là thứ làm dịu bớt biến động."
-      },
-      {
-        "question": "Vì sao ngành hàng hóa có tính chu kỳ mạnh hơn hầu hết các ngành khác?",
-        "options": [
-          "Vì độ trễ đầu tư dài, cung mới đến khi cầu đã hạ nhiệt",
-          "Vì nhu cầu hàng hóa thay đổi ngẫu nhiên không theo quy luật",
-          "Vì giá hàng hóa do các sàn giao dịch quốc tế ấn định trước",
-          "Vì hàng hóa không thể lưu kho"
-        ],
-        "correct": 0,
-        "explanation": "Mở một mỏ hay trồng một vụ mất nhiều năm. Chính độ trễ này tạo ra vòng lặp giá cao → đầu tư ồ ạt → dư cung → giá thấp → cắt đầu tư → thiếu hụt."
-      },
-      {
-        "question": "Tồn kho giảm nhanh. Vì sao chưa đủ để kết luận giá sẽ tăng bền?",
-        "options": [
-          "Vì phải tách tiêu thụ thật khỏi gián đoạn nguồn cung tạm thời",
-          "Vì tồn kho chỉ phản ánh nguồn cung chứ không hề phản ánh nhu cầu",
-          "Vì dữ liệu tồn kho luôn được công bố chậm hơn giá vài tháng",
-          "Vì giá hàng hóa chủ yếu phụ thuộc vào tỷ giá đồng đô la Mỹ"
-        ],
-        "correct": 0,
-        "explanation": "Nhu cầu tăng bền và gián đoạn cung tạm thời cùng làm tồn kho giảm, nhưng dẫn tới hai kết cục khác hẳn: một bên giá giữ được mặt bằng mới, một bên giá quay về khi nguồn cung khôi phục."
-      },
-      {
-        "question": "Vì sao chu kỳ giá hàng hóa cơ bản thường kéo dài nhiều năm thay vì tự điều chỉnh nhanh?",
-        "options": [
-          "Vì mở mỏ hay xây nhà máy mới mất nhiều năm nên cung phản ứng rất chậm",
-          "Vì các nhà sản xuất lớn thỏa thuận với nhau để giữ giá ổn định trong dài hạn",
-          "Vì nhu cầu hàng hóa cơ bản hầu như không thay đổi theo chu kỳ kinh tế",
-          "Vì hợp đồng tương lai khóa giá giao dịch trong nhiều năm liên tiếp"
-        ],
-        "correct": 0,
-        "explanation": "Giá cao kích thích đầu tư mở rộng, nhưng công suất mới chỉ ra thị trường sau nhiều năm - thường đúng lúc nhu cầu đã hạ nhiệt, và thế là thừa cung kéo dài. Độ trễ giữa tín hiệu giá và phản ứng nguồn cung chính là cỗ máy tạo ra chu kỳ này."
-      }
-    ],
-    "keyTakeaways": [
-      "Commodity phản ứng mạnh với supply/demand và inventory",
-      "Hàng hóa có tính chu kỳ cao do độ trễ cung ứng",
-      "Hedging là quản trị rủi ro, không phải đầu cơ"
-    ],
-    "practicePrompt": {
-      "question": "Ý nào dưới đây đúng với nội dung bài học này?",
-      "options": [
-        "g phải luôn thấp hơn WACC đáng kể để tránh kết quả toán học vô nghĩa",
-        "Merger: hợp nhất bình đẳng; Acquisition: mua và kiểm soát",
-        "Lợi nhuận cao hơn luôn đi kèm rủi ro cao hơn, không có ngoại lệ",
-        "3 factors: Supply/Demand, Inventory, Geopolitics"
-      ],
-      "correct": 3,
-      "explanation": "3 factors: Supply/Demand, Inventory, Geopolitics"
-    },
-    "summary": {
-      "keyIdea": "Inventory là tín hiệu nhanh nhất của commodity.",
-      "commonMistake": "Chỉ nhìn giá hiện tại mà bỏ qua tín hiệu tồn kho.",
-      "action": "Tra dữ liệu inventory của một commodity bạn quan tâm và so với vài kỳ trước."
-    },
-    "application": {
-      "title": "Tra cứu ngay",
-      "message": "Chọn một commodity như dầu, thép hoặc nông sản, kiểm tra inventory gần nhất rồi ghi lại xu hướng tăng hay giảm.",
-      "secondary": "Tồn kho đổi chiều thường báo trước biến động giá."
-    },
-    "track": "bonus",
     "sections": [
       {
         "type": "lead",
-        "text": "Nếu bài trước giới thiệu commodity là hàng hóa chuẩn hóa, bài này đi sâu vào tín hiệu quan trọng nhất để dự đoán hướng đi ngắn hạn của giá: tồn kho."
-      },
-      {
-        "type": "heading",
-        "text": "Inventory - chỉ báo cung-cầu gần thời gian thực nhất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi tồn kho một loại hàng hóa tăng liên tục trong khi nhu cầu yếu, đó là tín hiệu rõ ràng rằng nguồn cung đang vượt cầu, tạo áp lực giảm giá. Ngược lại, tồn kho giảm nhanh trong khi nhu cầu vẫn mạnh thường báo hiệu giá sắp tăng. Vì báo cáo tài chính doanh nghiệp thường công bố chậm (theo quý), trong khi dữ liệu tồn kho hàng hóa được cập nhật hàng tuần/tháng, nhà giao dịch commodity coi đây là chỉ báo sớm quan trọng nhất."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Inventory là chỉ báo ngắn hạn quan trọng nhất với thị trường commodity",
-          "Hàng hóa có tính chu kỳ cao vì cung ứng (khai thác, trồng trọt) có độ trễ lớn so với thay đổi nhu cầu",
-          "Hedging bằng futures là công cụ quản trị rủi ro, không phải công cụ đầu cơ"
-        ]
+        "text": "Có hai loại tài nguyên trong hạ tầng, và nhầm chúng với nhau là nguồn của phần lớn quyết định tồi trong những đợt khan hiếm."
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Tồn kho tăng, nhu cầu yếu",
-          "text": "Cung đang vượt cầu. Giá chịu áp lực giảm. Doanh nghiệp khai thác chịu ảnh hưởng nặng nhất vì chi phí cố định cao và không giảm sản lượng nhanh được."
+          "label": "Loại co giãn",
+          "text": "Dung lượng lưu trữ, băng thông, máy phổ thông. Cần thêm thì trả thêm tiền và có ngay. Bài toán là chi phí."
         },
         "right": {
-          "label": "Tồn kho giảm nhanh, nhu cầu mạnh",
-          "text": "Cung đang thiếu hụt. Giá chịu áp lực tăng. Nhưng cần kiểm tra tồn kho giảm vì tiêu thụ thật hay vì gián đoạn nguồn cung tạm thời - hai nguyên nhân dẫn tới hai kết cục rất khác nhau."
+          "label": "Loại bị chặn vật lý",
+          "text": "Máy chuyên dụng trong đợt khan hiếm, địa chỉ mạng, hạn mức của nhà cung cấp. Trả thêm tiền không tạo ra thêm. Bài toán là phân bổ."
         }
       },
       {
         "type": "heading",
-        "text": "Ba lớp thông tin khi đọc thị trường hàng hóa"
+        "text": "Vì sao trả thêm tiền không có tác dụng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi lượng cung cố định trong ngắn hạn, giá cao hơn chỉ quyết định ai được phần đang có chứ không làm phần ấy lớn lên. Điều đó nghĩa là mọi bên đều trả nhiều hơn và không bên nào nhận được nhiều hơn, cho tới khi nguồn cung thật sự tăng - thứ mất hàng quý vì nó phụ thuộc vào nhà máy chứ không vào đơn hàng."
+      },
+      {
+        "type": "heading",
+        "text": "Ba việc thật sự có tác dụng"
       },
       {
         "type": "list",
         "items": [
-          "Lớp cung: công suất mới sắp đi vào hoạt động, chi phí sản xuất biên của nhóm nhà sản xuất đắt nhất, gián đoạn do thời tiết hoặc địa chính trị.",
-          "Lớp cầu: tăng trưởng công nghiệp của các nước tiêu thụ lớn, mùa vụ, và khả năng thay thế bằng hàng hóa khác khi giá lên cao.",
-          "Lớp tài chính: lãi suất và tỷ giá đồng tiền định giá, chi phí lưu kho, và dòng tiền đầu cơ - lớp này có thể đẩy giá lệch khỏi cân đối cung cầu trong ngắn hạn."
+          "Giảm lượng cần: chạy ít lần hơn, dùng tập dữ liệu nhỏ hơn, bỏ những lần chạy không ai đọc kết quả",
+          "Đổi loại: chấp nhận chậm hơn trên thứ đang có, thay vì nhanh hơn trên thứ chưa có",
+          "Tăng mức sử dụng: xếp hàng công việc để máy đang có không nằm rảnh giữa các lần chạy"
         ]
       },
       {
+        "type": "paragraph",
+        "text": "Cả ba đều nằm hoàn toàn trong tầm tay đội và đều cho kết quả trong vài ngày. Ba phương án còn lại - trả giá cao, hợp đồng dài hạn, đổi nhà cung cấp - đều phụ thuộc vào người khác và đều tính bằng tuần hoặc tháng."
+      },
+      {
         "type": "callout",
-        "label": "Phòng hộ khác đầu cơ",
-        "text": "Một doanh nghiệp sản xuất dùng hợp đồng tương lai để chốt giá đầu vào là đang giảm rủi ro - lãi lỗ của hợp đồng bù trừ cho biến động giá hàng thật. Một bên không có nhu cầu hàng thật mà vẫn mua hợp đồng thì đang nhận thêm rủi ro. Cùng một công cụ, hai mục đích trái ngược nhau."
+        "label": "Mức sử dụng là chỗ có nhiều nhất và ít ai nhìn",
+        "text": "Trong hầu hết đợt khan hiếm, đội nào đo mức sử dụng thật của số máy mình đang giữ cũng thấy nó ở dưới một nửa: máy nằm rảnh giữa các lần chạy, chờ dữ liệu, chờ người bấm nút. Gấp đôi mức sử dụng bằng cách xếp hàng công việc cho ra đúng lượng dung lượng tăng thêm mà cả thị trường đang tranh nhau, và nó không cần ai đồng ý."
       },
       {
         "type": "closing",
         "lines": [
-          "Với commodity, đừng chỉ nhìn giá hiện tại.",
-          "Tồn kho đang tăng hay giảm mới là câu chuyện thực sự đằng sau biến động giá."
+          "Trả thêm tiền chuyển hàng từ người khác sang bạn, nó không tạo ra thêm hàng.",
+          "Việc trong tầm tay cho kết quả trong vài ngày; việc phụ thuộc người khác tính bằng tháng."
         ]
       }
-    ]
+    ],
+    "quiz": [
+      {
+        "question": "Vì sao trả giá cao hơn ít tác dụng khi nguồn cung bị chặn vật lý?",
+        "options": [
+          "Vì nó quyết định ai được phần đang có, không làm phần ấy lớn lên",
+          "Vì nhà cung cấp thường giữ giá cố định theo hợp đồng đã ký từ trước",
+          "Vì các công ty lớn luôn có khả năng trả cao hơn nên đội nhỏ không bao giờ thắng được",
+          "Vì mức giá cao chỉ áp dụng cho đơn hàng mới chứ không rút ngắn được thời gian giao"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều đúng trong nhiều trường hợp. Lý do đầu đúng trong mọi trường hợp và nó giải thích vì sao cuộc đua giá kết thúc ở chỗ mọi bên trả nhiều hơn mà không bên nào nhận nhiều hơn."
+      },
+      {
+        "question": "Đội chờ sáu tuần thay vì chạy trên loại máy chậm hơn 30%. Sai lầm nằm ở đâu?",
+        "options": [
+          "So sánh với thứ chưa có thay vì so với thứ đang có",
+          "Không hỏi nhà cung cấp về thời gian chờ dự kiến",
+          "Đánh giá thấp mức độ khan hiếm nên không đặt hàng sớm hơn khi còn có thể đặt được",
+          "Không thử chạy thử trên loại máy khác để đo chính xác mức chênh lệch hiệu năng"
+        ],
+        "correct": 0,
+        "explanation": "Phương án cuối là hành động còn thiếu, nhưng nguyên nhân của việc không làm nó là sai lầm ở phương án đầu. Chậm ba mươi phần trăm chỉ là bất lợi khi so với loại nhanh; so với việc không chạy gì trong sáu tuần thì nó là toàn bộ phần việc làm được."
+      },
+      {
+        "question": "Việc nào cho kết quả nhanh nhất trong một đợt khan hiếm?",
+        "options": [
+          "Tăng mức sử dụng số máy đang giữ",
+          "Đàm phán hạn mức cao hơn",
+          "Chuyển công việc sang một vùng khác nơi loại máy đó có thể còn khả dụng",
+          "Chia nhỏ công việc để chạy được trên nhiều máy cấu hình thấp hơn cùng lúc"
+        ],
+        "correct": 0,
+        "explanation": "Phương án cuối cũng nằm trong tầm tay nhưng nó cần thay đổi cách công việc được viết. Tăng mức sử dụng thì chỉ cần xếp hàng công việc lại, và trong hầu hết đội thì mức sử dụng thật đang dưới một nửa."
+      },
+      {
+        "question": "Phân biệt tài nguyên co giãn với tài nguyên bị chặn vật lý để làm gì?",
+        "options": [
+          "Để biết bài toán là chi phí hay là phân bổ",
+          "Để lập kế hoạch ngân sách chính xác hơn cho từng loại tài nguyên trong năm",
+          "Để quyết định loại nào nên mua trả trước và loại nào nên thuê theo nhu cầu sử dụng",
+          "Để biết loại nào cần theo dõi sát hơn vì giá của nó biến động mạnh hơn theo thời gian"
+        ],
+        "correct": 0,
+        "explanation": "Hai bài toán ấy có hai bộ công cụ hoàn toàn khác nhau. Với chi phí thì tối ưu là giảm đơn giá; với phân bổ thì tối ưu là giảm lượng cần và tăng mức dùng, và áp bộ công cụ này cho bài toán kia là cách mất sáu tuần."
+      },
+      {
+        "question": "Vì sao mức sử dụng thật thường dưới một nửa?",
+        "options": [
+          "Vì máy nằm rảnh giữa các lần chạy, chờ dữ liệu và chờ người",
+          "Vì các đội thường cấp dư để phòng trường hợp tải tăng đột ngột ngoài dự kiến",
+          "Vì công việc được thiết kế để chạy trên cấu hình cao hơn mức nó thực sự cần dùng",
+          "Vì phần lớn công cụ đo mức sử dụng lấy mẫu quá thưa nên bỏ sót các giai đoạn bận"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều góp phần. Lý do đầu là lý do lớn nhất và cũng dễ sửa nhất: khoảng rảnh giữa các lần chạy không cần thay đổi gì về kiến trúc để thu hẹp, nó chỉ cần một hàng đợi."
+      }
+    ],
+    "keyTakeaways": [
+      "Trả thêm tiền chuyển hàng từ người khác sang bạn, nó không tạo ra thêm hàng",
+      "So với thứ đang có, không so với thứ chưa có",
+      "Ba việc trong tầm tay: giảm lượng cần, đổi loại, tăng mức sử dụng",
+      "Bài toán chi phí và bài toán phân bổ có hai bộ công cụ khác nhau"
+    ],
+    "practicePrompt": {
+      "question": "Máy đang giữ chạy ở mức 45%. Xếp hàng công việc đưa lên 90%. Tương đương với việc có thêm bao nhiêu máy?",
+      "options": [
+        "Gấp đôi số máy hiện có",
+        "Thêm 45% số máy",
+        "Thêm 90% số máy (= lấy thẳng mức sử dụng mới làm phần dung lượng tăng thêm)",
+        "Thêm 55% số máy (= lấy phần dung lượng còn trống trước khi xếp hàng công việc)"
+      ],
+      "correct": 0,
+      "explanation": "Từ 45% lên 90% là gấp đôi lượng việc làm được trên cùng số máy, tức tương đương có gấp đôi số máy. Đó là mức tăng mà cả thị trường đang tranh nhau, và nó không cần ai cấp phát cho bạn."
+    },
+    "summary": {
+      "keyIdea": "Khi cung bị chặn vật lý, bài toán là phân bổ chứ không phải chi phí",
+      "commonMistake": "Chờ thứ nhanh hơn thay vì chạy trên thứ đang có",
+      "action": "Đo mức sử dụng thật của số máy chuyên dụng đội bạn đang giữ."
+    },
+    "application": {
+      "title": "Ba câu trong một đợt khan hiếm",
+      "message": "Công việc này chạy được trên loại nào khác? Máy đang giữ chạy ở mức bao nhiêu? Có lần chạy nào không ai đọc kết quả không?",
+      "secondary": "Ba câu này trả lời được trong một buổi chiều, còn mọi phương án phụ thuộc người khác thì tính bằng tuần."
+    },
+    "id": 1005,
+    "slug": "commodity-phan-2",
+    "track": "bonus"
   },
   {
     "title": "Case chuyên sâu: Chi Phí Mỗi Request Có Hợp Lý?",
@@ -57332,198 +57329,183 @@ export const lessons: Lesson[] = [
     "track": "bonus"
   },
   {
-    "id": 1007,
-    "slug": "vingroup-cash-flow",
-    "title": "Case chuyên sâu: Đọc Dòng Tiền Vingroup",
-    "subtitle": "BCLCTT Q4/2024 - xoay vòng 160k tỷ",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🏢",
-    "openingQuestion": "Doanh thu tăng nhưng operating cash flow lại âm, điều đó nói gì về chất lượng kinh doanh?",
+    "title": "Case chuyên sâu: Đọc dòng tài nguyên của một hệ thống lớn",
+    "subtitle": "Chi phí tăng gấp ba trong hai năm, và bốn chỗ nó thật sự đi vào",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🔍",
+    "whyItMatters": "Câu hỏi vì sao hạ tầng đắt lên gần như luôn được trả lời bằng cảm giác. Có một cách đọc cho ra câu trả lời bằng số, và nó thường chỉ vào chỗ không ai đoán.",
+    "openingQuestion": "Chi phí hạ tầng tăng gấp ba trong hai năm, lượng người dùng tăng gấp đôi. Đọc thế nào?",
     "openingOptions": [
-      "Doanh nghiệp chắc chắn yếu",
-      "Có thể đang kẹt vốn lưu động hoặc CapEx lớn",
-      "Luôn là tín hiệu tốt",
-      "Không liên quan"
+      "Chi phí mỗi người dùng đã tăng khoảng 50%",
+      "Hệ thống đang tăng trưởng tốt",
+      "Chi phí tăng nhanh hơn người dùng nên cần cắt giảm ngay ở những khoản lớn nhất",
+      "Chưa kết luận được vì cơ cấu người dùng có thể đã thay đổi trong khoảng thời gian đó"
     ],
-    "correctOption": 1,
-    "explanation": "Đọc dòng tiền của một tập đoàn đa ngành là bài tập tách bạch: phần nào là tiền từ hoạt động kinh doanh thật, phần nào là tiền vay về, phần nào là tiền bán tài sản. Với doanh nghiệp có mảng bất động sản, dòng tiền kinh doanh âm trong giai đoạn triển khai dự án là bình thường vì chi phí đi trước doanh thu bàn giao nhiều năm. Điều cần theo dõi là nó có quay lại dương khi dự án về đích hay không.",
+    "correctOption": 0,
+    "explanation": "Gấp ba chia gấp đôi ra một rưỡi, tức mỗi người dùng giờ tốn thêm một nửa so với hai năm trước. Đó là con số cần tìm, và nó thay được cả một cuộc tranh luận. Phương án nói cần cắt ngay thì bỏ qua bước tìm hiểu, còn phương án nói chưa kết luận được thì đúng về mặt thận trọng nhưng nó từ chối dùng thông tin đã có.",
     "diagram": [
       {
-        "label": "Lợi nhuận kế toán",
+        "label": "Tổng chi phí theo thời gian",
         "arrow": true
       },
       {
-        "label": "Working capital",
+        "label": "Chia cho đơn vị việc để tách quy mô",
         "arrow": true
       },
       {
-        "label": "CapEx",
+        "label": "Tách theo bốn nhóm chi",
         "arrow": true
       },
       {
-        "label": "Operating cash flow",
-        "arrow": false
+        "label": "Nhóm nào tăng nhanh hơn phần còn lại"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Vì sao bất động sản và bán lẻ hay lệch dòng tiền",
-      "description": "Ở doanh nghiệp bất động sản, tiền chi ra cho quỹ đất và chi phí xây dựng nằm trong hàng tồn kho suốt nhiều năm trước khi doanh thu được ghi nhận. Ở bán lẻ, mỗi cửa hàng mới mở đều cần hàng lấp đầy kệ trước khi bán được đồng nào. Trong cả hai mô hình, giai đoạn mở rộng mạnh gần như luôn đi kèm dòng tiền kinh doanh yếu, và điều đó tự nó chưa phải vấn đề. Vấn đề nằm ở chỗ khác: mở rộng ấy có chuyển thành doanh thu và tiền về trong những kỳ sau hay không - và câu trả lời chỉ hiện ra khi bạn theo dõi qua nhiều kỳ liên tiếp."
-    },
-    "quiz": [
-      {
-        "question": "Điều gì thường làm OCF yếu hơn Net Income?",
-        "options": [
-          "Vốn lưu động tăng mạnh",
-          "Biên lợi nhuận gộp cải thiện",
-          "Doanh thu tăng trưởng nhanh",
-          "Lãi suất vay giảm trong kỳ"
-        ],
-        "correct": 0,
-        "explanation": "Khi phải bỏ tiền vào tồn kho và khoản phải thu, OCF có thể yếu dù lợi nhuận kế toán vẫn đẹp."
-      },
-      {
-        "question": "Nếu một doanh nghiệp liên tục có OCF yếu hơn Net Income trong nhiều năm liền, đây là tín hiệu gì?",
-        "options": [
-          "Cần soi chất lượng lợi nhuận - lãi không thành tiền thật",
-          "Không đáng lo, đó chỉ là biến động ngắn hạn giữa các quý",
-          "Đây là dấu hiệu tốt vì doanh nghiệp đang đầu tư rất mạnh tay",
-          "Doanh nghiệp chắc chắn đang gian lận số liệu báo cáo"
-        ],
-        "correct": 0,
-        "explanation": "Một vài kỳ lệch nhau là bình thường, nhưng lệch nhau liên tục nhiều năm là dấu hiệu cảnh báo về chất lượng lợi nhuận (quality of earnings) cần điều tra sâu hơn, chứ không nên tự động quy kết là gian lận hay tốt."
-      },
-      {
-        "question": "Doanh nghiệp bất động sản có dòng tiền kinh doanh âm trong giai đoạn triển khai dự án lớn. Cách đọc đúng là gì?",
-        "options": [
-          "Có thể bình thường; cần xem tiền có về khi bàn giao không",
-          "Đây luôn là dấu hiệu doanh nghiệp sắp mất khả năng thanh toán",
-          "Không cần quan tâm vì bất động sản luôn có dòng tiền âm",
-          "Nên so trực tiếp với doanh nghiệp phần mềm để đánh giá"
-        ],
-        "correct": 0,
-        "explanation": "Đặc thù ngành làm cho việc lệch dòng tiền là bình thường ở giai đoạn đầu tư. Điều cần theo dõi là dòng tiền có quay lại khi tài sản đi vào khai thác hay không."
-      },
-      {
-        "question": "Trong công thức chuyển từ lợi nhuận sang dòng tiền hoạt động, vì sao khấu hao được cộng lại?",
-        "options": [
-          "Vì đó là chi phí đã trừ nhưng không làm mất tiền trong kỳ",
-          "Vì khấu hao được cơ quan thuế hoàn lại vào cuối năm tài chính",
-          "Vì chuẩn mực kế toán yêu cầu phải cộng lại khi lập báo cáo",
-          "Vì khấu hao là một khoản thu nhập khác của doanh nghiệp"
-        ],
-        "correct": 0,
-        "explanation": "Tiền đã chi ra ở thời điểm mua tài sản. Khấu hao chỉ phân bổ chi phí đó qua các kỳ trên sổ sách, nên khi quy về dòng tiền phải cộng ngược lại."
-      },
-      {
-        "question": "Dòng tiền hoạt động mạnh hơn lợi nhuận ròng một cách bền vững thường đến từ đâu?",
-        "options": [
-          "Khấu hao lớn hoặc mô hình thu tiền trước rồi mới giao hàng",
-          "Việc doanh nghiệp cắt giảm chi phí đầu tư tài sản cố định trong kỳ báo cáo",
-          "Khoản lãi một lần từ việc bán tài sản hoặc thanh lý một mảng kinh doanh",
-          "Việc trì hoãn ghi nhận doanh thu sang kỳ sau"
-        ],
-        "correct": 0,
-        "explanation": "Hai nguồn này lặp lại được: khấu hao là chi phí không tốn tiền, còn thu tiền trước là đặc điểm mô hình kinh doanh. Bán tài sản hay cắt đầu tư cũng làm đẹp dòng tiền một kỳ nhưng không lặp lại - phân biệt hai nhóm này là việc chính khi đọc chất lượng lợi nhuận."
-      }
-    ],
-    "keyTakeaways": [
-      "OCF mới cho thấy tiền mặt thật sinh ra từ hoạt động",
-      "Working capital và CapEx là hai nguồn lệch lớn nhất",
-      "Không nên định giá chỉ bằng Net Income"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Cash flow trả lời câu hỏi công ty thật sự tạo ra bao nhiêu tiền.",
-      "commonMistake": "Nhầm lợi nhuận kế toán với tiền mặt.",
-      "action": "So sánh OCF với Net Income của công ty bạn đang theo dõi trong 3 năm gần nhất."
+      "company": "Tăng gấp ba, và ba phần tư nằm ở một chỗ",
+      "description": "Một hệ thống có hoá đơn tăng từ 40 lên 120 nghìn đô mỗi tháng trong hai năm. Đội cho rằng nguyên nhân là lượng người dùng và chuẩn bị một kế hoạch tối ưu phần xử lý. Khi tách hoá đơn theo bốn nhóm, phần tính toán chỉ tăng gấp rưỡi, còn phần lưu trữ tăng gấp chín - vì một bảng nhật ký chưa bao giờ có chính sách xoá, và nó đã chạy được ba năm."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Doanh thu tăng, nhưng dòng tiền từ hoạt động kinh doanh (OCF) lại âm - đây là tình huống khiến nhiều nhà đầu tư mới bối rối, nhưng lại rất phổ biến ở các doanh nghiệp lớn, đặc biệt bất động sản và bán lẻ."
+        "text": "Đọc chi phí hạ tầng là một kỹ năng đọc số liệu, và nó có đúng hai bước: chia cho đơn vị việc, rồi tách theo nhóm."
       },
       {
         "type": "heading",
-        "text": "Vì sao lợi nhuận và dòng tiền có thể đi ngược chiều nhau"
+        "text": "Bước một tách quy mô khỏi hiệu quả"
       },
       {
         "type": "paragraph",
-        "text": "Kế toán dồn tích (accrual accounting) cho phép ghi nhận doanh thu trước khi thực sự thu được tiền. Khi khoản phải thu, hàng tồn kho, hoặc dự án dở dang tăng nhanh, tiền mặt thực tế bị 'khóa' lại trong các khoản mục này dù lợi nhuận kế toán vẫn nhìn rất đẹp. Đây là lý do nhà đầu tư luôn đối chiếu Net Income với Operating Cash Flow, thay vì chỉ tin vào một con số duy nhất."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Working capital tăng mạnh là nguyên nhân phổ biến nhất khiến OCF yếu hơn Net Income",
-          "Một vài kỳ lệch nhau là bình thường, nhưng lệch liên tục nhiều năm là tín hiệu cần soi kỹ chất lượng lợi nhuận",
-          "OCF mới là thước đo tiền mặt thật doanh nghiệp tạo ra từ hoạt động kinh doanh"
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Từ lợi nhuận sang dòng tiền hoạt động",
-        "equation": "OCF ≈ Lợi nhuận sau thuế + Khấu hao − Thay đổi vốn lưu động",
-        "variables": [
-          {
-            "symbol": "Khấu hao",
-            "name": "Chi phí phi tiền mặt",
-            "description": "Đã trừ khi tính lợi nhuận nhưng không làm mất tiền, nên cộng lại."
-          },
-          {
-            "symbol": "Thay đổi vốn lưu động",
-            "name": "Working capital",
-            "description": "Phải thu và tồn kho tăng thì tiền bị khóa lại; phải trả tăng thì tiền được giữ lại lâu hơn."
-          }
-        ],
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "300 tỷ + 150 tỷ − 600 tỷ",
-          "result": "= −150 tỷ",
-          "explanation": "Doanh nghiệp lãi 300 tỷ nhưng phải thu và tồn kho tăng thêm 600 tỷ trong kỳ. Kết quả là dòng tiền kinh doanh âm 150 tỷ dù báo cáo kết quả kinh doanh nhìn rất tích cực."
-        }
+        "text": "Tổng chi phí tăng có thể là dấu hiệu tốt hoặc xấu và không cách nào biết được nếu chỉ nhìn tổng. Chia cho một đơn vị việc - người dùng hoạt động, yêu cầu, bản ghi xử lý - tách được hai câu chuyện ấy ra, và đây là bước duy nhất trong cả bài mà mọi đội đều bỏ qua."
       },
       {
         "type": "heading",
-        "text": "Phân biệt lệch lành mạnh với lệch đáng lo"
+        "text": "Bước hai tách theo bốn nhóm"
       },
       {
         "type": "list",
         "items": [
-          "Lành mạnh: lệch xuất hiện trong giai đoạn mở rộng có kế hoạch rõ, và thu hẹp lại ở các kỳ sau khi tài sản đi vào khai thác.",
-          "Đáng lo: lệch kéo dài nhiều năm mà không thu hẹp, phải thu tăng nhanh hơn doanh thu, hoặc tồn kho tăng trong khi doanh thu đi ngang.",
-          "Rất đáng lo: doanh nghiệp phải vay thêm liên tục để bù dòng tiền kinh doanh âm, khiến nợ vay và chi phí lãi cùng tăng."
+          "Tính toán: máy chủ chạy mã của bạn. Thường tăng gần tuyến tính theo lượng việc",
+          "Lưu trữ: tăng theo tích luỹ chứ không theo lượng việc, nên nó không bao giờ tự giảm",
+          "Truyền dữ liệu: hay bị bỏ quên và thường là khoản tăng nhanh nhất khi hệ thống bị chia nhỏ",
+          "Dịch vụ bên ngoài: tăng theo hợp đồng và theo số lượng công cụ đội đã thêm vào"
         ]
       },
       {
+        "type": "paragraph",
+        "text": "Nhóm lưu trữ là nhóm khác biệt về bản chất so với ba nhóm kia. Ba nhóm đầu giảm khi lượng việc giảm; lưu trữ thì không, vì nó tính trên thứ đã tích lại. Một hệ thống mất hết người dùng vẫn trả nguyên tiền lưu trữ cho tới khi có người chủ động xoá."
+      },
+      {
         "type": "callout",
-        "label": "Ba dòng tiền, ba câu hỏi",
-        "text": "Dòng tiền kinh doanh trả lời 'hoạt động chính có tạo ra tiền không'. Dòng tiền đầu tư trả lời 'doanh nghiệp đang bỏ tiền vào đâu'. Dòng tiền tài chính trả lời 'phần thiếu được bù bằng gì - vay thêm hay phát hành cổ phần'. Đọc đủ ba dòng mới thấy được bức tranh tài trợ thật."
+        "label": "Thứ không có chính sách xoá thì tăng mãi mãi",
+        "text": "Đây là nguồn tăng chi phí âm thầm phổ biến nhất trong mọi hệ thống đủ tuổi. Nhật ký, bản sao lưu, dữ liệu trung gian, ảnh chụp trạng thái - mỗi thứ đều được tạo ra vì một lý do chính đáng và không thứ nào từng được cho một ngày hết hạn. Câu hỏi rẻ nhất trong toàn bộ việc tối ưu chi phí là hỏi xem bảng lớn nhất đang giữ dữ liệu từ ngày nào."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đọc được",
+          "text": "Bốn nhóm tách riêng, mỗi nhóm chia cho đơn vị việc, xem theo thời gian. Chỉ ra chỗ cần sửa trong mười phút."
+        },
+        "right": {
+          "label": "Chỉ thấy tổng",
+          "text": "Một đường đi lên. Dẫn tới việc tối ưu chỗ dễ nghĩ tới nhất, thường là phần tính toán, thường sai chỗ."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Lợi nhuận kế toán kể một câu chuyện.",
-          "Dòng tiền hoạt động kể câu chuyện thật hơn về sức khỏe tài chính của doanh nghiệp."
+          "Chia cho đơn vị việc trước, tách theo nhóm sau - hai bước, theo thứ tự đó.",
+          "Lưu trữ tính trên thứ đã tích lại, nên nó không bao giờ tự giảm."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Vì sao phải chia chi phí cho đơn vị việc trước khi tách nhóm?",
+        "options": [
+          "Vì tổng trộn quy mô với hiệu quả nên không đọc được",
+          "Vì các nhóm có đơn vị đo khác nhau",
+          "Vì cách này cho phép so sánh chi phí của hệ thống với các hệ thống khác trong công ty",
+          "Vì việc tách nhóm chỉ có ý nghĩa khi đã biết tổng chi phí đang tăng hay đang giảm"
+        ],
+        "correct": 0,
+        "explanation": "Một hệ thống đang tốt lên và một hệ thống đang xấu đi có thể cho ra cùng một đường tổng đi lên. Chia cho đơn vị việc là bước duy nhất tách được hai câu chuyện ấy, và nó phải làm trước vì nó đổi cả kết luận."
+      },
+      {
+        "question": "Nhóm chi phí nào khác biệt về bản chất so với ba nhóm còn lại?",
+        "options": [
+          "Lưu trữ, vì nó tính trên thứ đã tích lại",
+          "Truyền dữ liệu, vì nó hay bị bỏ quên",
+          "Dịch vụ bên ngoài, vì mức tăng của nó phụ thuộc vào hợp đồng chứ không vào lượng việc",
+          "Tính toán, vì nó thường chiếm tỷ trọng lớn nhất trong tổng hoá đơn hằng tháng"
+        ],
+        "correct": 0,
+        "explanation": "Ba nhóm kia đều giảm khi lượng việc giảm, dù theo những cách khác nhau. Lưu trữ thì không giảm chút nào - một hệ thống mất hết người dùng vẫn trả nguyên khoản ấy cho tới khi có người chủ động xoá."
+      },
+      {
+        "question": "Hoá đơn tăng gấp ba, phần tính toán tăng gấp rưỡi, phần lưu trữ tăng gấp chín. Đội đã định làm gì sai?",
+        "options": [
+          "Tối ưu phần xử lý, tức nhóm tăng chậm nhất",
+          "Cắt giảm số máy chủ đang chạy",
+          "Đàm phán lại hợp đồng với nhà cung cấp hạ tầng để có mức giá tốt hơn cho cả bốn nhóm",
+          "Chuyển sang loại máy có cấu hình thấp hơn để giảm chi phí trên mỗi đơn vị tính toán"
+        ],
+        "correct": 0,
+        "explanation": "Phần xử lý là chỗ đội nghĩ tới đầu tiên vì đó là thứ họ viết. Nhưng nó tăng chậm hơn cả mức trung bình, nên mọi giờ bỏ vào đó đều là giờ không bỏ vào bảng nhật ký đang chiếm phần lớn mức tăng."
+      },
+      {
+        "question": "Câu hỏi rẻ nhất trong việc tối ưu chi phí lưu trữ là gì?",
+        "options": [
+          "Bảng lớn nhất đang giữ dữ liệu từ ngày nào",
+          "Dữ liệu nào đang được nén và dữ liệu nào chưa",
+          "Có bao nhiêu bản sao của cùng một tập dữ liệu đang tồn tại trong hệ thống hiện nay",
+          "Loại lưu trữ nào đang được dùng và có loại nào rẻ hơn cho cùng mức truy cập không"
+        ],
+        "correct": 0,
+        "explanation": "Ba câu kia đều dẫn tới những khoản tiết kiệm thật nhưng đều cần công sức kỹ thuật. Câu đầu chỉ cần một truy vấn, và trong hầu hết hệ thống đủ tuổi thì câu trả lời là một ngày xa hơn nhiều so với mức bất kỳ ai cần."
+      },
+      {
+        "question": "Nhóm nào thường tăng nhanh nhất khi một hệ thống bị chia nhỏ?",
+        "options": [
+          "Truyền dữ liệu giữa các phần",
+          "Tính toán, vì mỗi phần cần máy riêng",
+          "Lưu trữ, vì mỗi dịch vụ nhỏ thường giữ bản sao dữ liệu của riêng nó để chạy độc lập",
+          "Dịch vụ bên ngoài, vì mỗi đội tự chọn thêm công cụ giám sát cho phần của mình"
+        ],
+        "correct": 0,
+        "explanation": "Ba nhóm kia đều tăng và đều được lường trước khi lập kế hoạch tách. Phần truyền dữ liệu thì gần như không bao giờ được tính, vì trước khi tách nó bằng không - hai phần trong cùng một tiến trình không phải trả tiền để nói chuyện với nhau."
+      }
+    ],
+    "keyTakeaways": [
+      "Chia cho đơn vị việc trước, tách theo nhóm sau",
+      "Lưu trữ tính trên thứ đã tích lại nên nó không bao giờ tự giảm",
+      "Thứ không có chính sách xoá thì tăng mãi mãi",
+      "Phần truyền dữ liệu bằng không trước khi tách, nên nó không bao giờ được tính"
+    ],
     "practicePrompt": {
-      "question": "Khi đọc Báo cáo lưu chuyển tiền tệ Q4/2024 của Vingroup với quy mô xoay vòng 160.000 tỷ đồng, yếu tố nào phản ánh chính xác nhất năng lực tài chính của tập đoàn?",
+      "question": "Hoá đơn 40 lên 120 nghìn/tháng, người dùng 100 lên 200 nghìn. Chi phí mỗi nghìn người dùng đổi thế nào?",
       "options": [
-        "Cân đối OCF và dòng tiền tài chính để tài trợ CapEx",
-        "Tổng doanh thu kế toán ghi nhận trên Báo cáo kết quả kinh doanh",
-        "Số lượng cổ phiếu đang lưu hành trên sàn chứng khoán",
-        "Mức lợi nhuận sau thuế chưa phân phối trên bảng cân đối"
+        "Từ 400 lên 600 đô",
+        "Từ 400 xuống 300 đô",
+        "Không đổi, vì cả chi phí lẫn số người dùng đều tăng nên hai mức tăng bù trừ cho nhau",
+        "Từ 400 lên 1.200 đô (= chia hoá đơn mới cho số người dùng cũ thay vì số mới)"
       ],
       "correct": 0,
-      "explanation": "Đối với các tập đoàn đa ngành quy mô lớn như Vingroup, việc theo dõi cấu trúc Dòng tiền hoạt động kinh doanh (OCF) và Dòng tiền tài chính (Vay nợ/Phát hành) là chìa khóa để đánh giá khả năng thanh khoản và quản trị rủi ro thanh toán."
+      "explanation": "40.000 chia 100 ra 400; 120.000 chia 200 ra 600. Mức tăng 50% trên mỗi người dùng là con số đáng theo đuổi, còn con số gấp ba của tổng thì phần lớn chỉ phản ánh việc hệ thống có thêm người dùng."
+    },
+    "summary": {
+      "keyIdea": "Hai bước: chia cho đơn vị việc, rồi tách theo bốn nhóm",
+      "commonMistake": "Tối ưu phần xử lý vì đó là thứ đội tự viết ra",
+      "action": "Tách hoá đơn hạ tầng tháng gần nhất thành bốn nhóm và xem nhóm nào tăng nhanh nhất."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Case chuyên sâu: Đọc Dòng Tiền Vingroup",
-      "message": "Khi đọc Báo cáo lưu chuyển tiền tệ Q4/2024 của Vingroup với quy mô xoay vòng 160.000 tỷ đồng, yếu tố nào phản ánh chính xác nhất năng lực tài chính của tập đoàn?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Hai bước, mười phút",
+      "message": "Chia tổng cho một đơn vị việc và vẽ theo thời gian. Tách bốn nhóm và xem nhóm nào tăng nhanh hơn phần còn lại.",
+      "secondary": "Nhóm tăng nhanh nhất hầu như không bao giờ là nhóm đội đoán, và đó là toàn bộ giá trị của việc tách."
+    },
+    "id": 1007,
+    "slug": "vingroup-cash-flow",
+    "track": "bonus"
   },
   {
     "id": 1008,

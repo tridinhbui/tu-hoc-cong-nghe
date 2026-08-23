@@ -5,6 +5,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   getChatMessageReactions,
+  getMyCompetencyLeaderboardRank,
+  getMyCompositeRank,
+  getMyTrackLeaderboardRank,
+  getMyXpRankSince,
   getLeaderboard,
   getXpLeaderboardSince,
   getCompetencyLeaderboard,
@@ -440,5 +444,60 @@ describe.skipIf(!hasLocalData)("getXpLeaderboardSince", () => {
 
   it("mốc thời gian trong tương lai trả rỗng", async () => {
     expect(await getXpLeaderboardSince(db, "2099-01-01T00:00:00+00:00", 10)).toEqual([]);
+  });
+});
+
+describe.skipIf(!hasLocalData)('nhóm "thứ hạng của tôi"', () => {
+  it("người chưa học bài nào trả RỖNG, không phải hạng chót", async () => {
+    // Bản gốc `return` sớm khi my_value = 0. Dịch thành {rank: n, value: 0} là
+    // giao diện hiện "hạng 1520" cho người vừa đăng ký.
+    expect(await getMyTrackLeaderboardRank(db, "personal", "khong-co-that")).toEqual([]);
+    expect(await getMyCompetencyLeaderboardRank(db, [1, 2, 3], "khong-co-that")).toEqual([]);
+    expect(await getMyXpRankSince(db, "2020-01-01T00:00:00+00:00", "khong-co-that")).toEqual([]);
+  });
+
+  it("người đứng đầu bảng có hạng 1 và value khớp bảng", async () => {
+    const top = await getTrackLeaderboard(db, "professional", 1);
+    if (!top.length) return;
+    const [r] = await getMyTrackLeaderboardRank(db, "professional", top[0].user_id);
+    expect(r.rank).toBe(1);
+    expect(r.value).toBe(top[0].value);
+  });
+
+  it("hạng là hạng CẠNH TRANH: bằng điểm thì cùng hạng", async () => {
+    // count(*)+1 trên "số người nhiều hơn mình" cho hạng cạnh tranh. Đổi sang
+    // row_number là hai người bằng điểm nhận hai hạng khác nhau, và thứ tự
+    // giữa họ do SQLite quyết định - tức là đổi sau mỗi lần chạy.
+    const top = await getTrackLeaderboard(db, "personal", 50);
+    const theoValue = new Map<number, string[]>();
+    for (const r of top) theoValue.set(r.value, [...(theoValue.get(r.value) ?? []), r.user_id]);
+    const nhomHoa = [...theoValue.values()].find((g) => g.length > 1);
+    if (!nhomHoa) return; // dữ liệu chưa có ai bằng điểm nhau
+    const hangs = await Promise.all(
+      nhomHoa.map(async (u) => (await getMyTrackLeaderboardRank(db, "personal", u))[0]?.rank)
+    );
+    expect(new Set(hangs).size).toBe(1);
+  });
+
+  it("hạng XP khớp vị trí trong bảng xếp hạng XP", async () => {
+    const MOC = "2020-01-01T00:00:00+00:00";
+    const top = await getXpLeaderboardSince(db, MOC, 10);
+    if (!top.length) return;
+    const [r] = await getMyXpRankSince(db, MOC, top[0].user_id);
+    expect(r.rank).toBe(1);
+    expect(r.value).toBe(top[0].value);
+  });
+
+  it("getMyCompositeRank chỉ trả phân rã điểm cho chính chủ", async () => {
+    const top = await getCompositeLeaderboard(db, 1);
+    if (!top.length) return;
+    const u = top[0].user_id;
+    expect(await getMyCompositeRank(db, "nguoi-khac", u)).toEqual([]);
+    expect(await getMyCompositeRank(db, "", u)).toEqual([]);
+
+    const [minh] = await getMyCompositeRank(db, u, u);
+    expect(minh.rank).toBe(1);
+    expect(minh.value).toBe(top[0].composite);
+    expect(minh.learning_xp).toBe(top[0].learning_xp);
   });
 });
