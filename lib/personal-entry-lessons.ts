@@ -213,7 +213,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
       "Vì mỗi buổi đều đòi một quyết định mới, và ý chí thì không đều",
       "Vì nội dung khó dần nên mất động lực",
       "Vì mục tiêu ban đầu thường quá tham vọng",
-      "Vì thiếu người cùng học nên không ai nhắc",
+      "Vì thiếu người cùng học nên chẳng có ai nhắc mình vào đúng lúc mình định bỏ",
     ],
     correctOption: 0,
     explanation:

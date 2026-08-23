@@ -9,7 +9,6 @@ import InteractiveBudget from "./InteractiveBudget";
 import InteractiveRisk from "./InteractiveRisk";
 import InteractiveChart from "./InteractiveChart";
 import InteractiveProcess from "./InteractiveProcess";
-import InteractivePayoff from "./InteractivePayoff";
 import InteractiveProspect from "./InteractiveProspect";
 import InteractiveAccretion from "./InteractiveAccretion";
 import InteractiveEthicsCase from "./InteractiveEthicsCase";
@@ -35,7 +34,8 @@ export type WidgetType =
   | "budget"
   | "chart"
   | "risk"
-  | "payoff"
+  // Loại widget sơ đồ lãi lỗ quyền chọn đã rời kho cùng bài phái sinh cuối cùng
+  // (1223). Giữ khai báo mà không bài nào dùng thì interactive-widgets.test.ts đỏ.
   | "multiples"
   | "prospect"
   | "accretion"
@@ -80,8 +80,6 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveChart />;
     case "process":
       return <InteractiveProcess />;
-    case "payoff":
-      return <InteractivePayoff />;
     case "multiples":
       return <InteractiveMultiples />;
     case "prospect":
@@ -147,7 +145,6 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "chart",
   "process",
   "multiples",
-  "payoff",
   "prospect",
   "accretion",
   "ethics-case",

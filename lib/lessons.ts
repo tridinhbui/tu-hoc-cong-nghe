@@ -57164,7 +57164,7 @@ export const lessons: Lesson[] = [
     "emoji": "🔬",
     "openingQuestion": "Chi phí hạ tầng tăng mạnh và chi phí mỗi request cũng tăng theo, làm sao biết vẫn hợp lý hay đã lãng phí?",
     "openingOptions": [
-      "Thấy hoá đơn cao là biết đang lãng phí rồi",
+      "Thấy hoá đơn cao lên là biết chắc hệ thống đang lãng phí tài nguyên ở đâu đó rồi",
       "Chỉ cần chi phí mỗi request thấp là ổn",
       "Phải so tốc độ tăng trưởng, phần việc mỗi request và mức dự phòng",
       "Không thể biết được"
@@ -59858,7 +59858,7 @@ export const lessons: Lesson[] = [
     "track": "bonus",
     "openingQuestion": "Sau khi sản phẩm ra mắt, khi nào nên công bố một SLO ra bên ngoài?",
     "openingOptions": [
-      "Ngay lập tức nếu sản phẩm đã có chút người dùng",
+      "Ngay lập tức, nếu sản phẩm đã có được một lượng người dùng thật nhất định rồi",
       "Khi độ tin cậy đã ổn định và phần việc tăng trưởng đã đủ chỗ",
       "Chỉ khi có khách hàng lớn yêu cầu bằng văn bản",
       "Càng sớm và càng nhiều số chín càng tốt"
@@ -67354,199 +67354,173 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1213,
-    "track": "professional",
-    "slug": "fpa-la-gi-vai-tro-doanh-nghiep",
-    "title": "Tự học Tài chính Day 1213: FP&A là gì & Vai trò trong doanh nghiệp",
-    "subtitle": "Từ bộ phận kế toán đến đối tác chiến lược của CEO",
+    "slug": "hoach-dinh-dung-luong-la-gi",
+    "title": "Hoạch định dung lượng là gì và ai làm việc đó",
+    "subtitle": "Trả lời một câu duy nhất: hệ thống chịu được bao nhiêu, và khi nào thì hết chỗ.",
     "duration": "7 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "📊",
-    "openingQuestion": "FP&A (Financial Planning & Analysis) khác gì với Kế toán?",
+    "whyItMatters": "Không ai làm việc này thì nó vẫn được làm - bằng cách phản ứng lúc ba giờ sáng, với chi phí cao hơn nhiều và một sự cố kèm theo.",
+    "openingQuestion": "Hoạch định dung lượng trả lời câu hỏi gì?",
     "openingOptions": [
-      "FP&A và Kế toán là một, chỉ tên khác nhau",
-      "Kế toán ghi quá khứ, FP&A lập kế hoạch tương lai",
-      "FP&A chỉ làm việc với số liệu trong nước, Kế toán quốc tế",
-      "Kế toán tốn chi phí hơn nên doanh nghiệp nhỏ không cần"
+      "Hệ thống chịu được bao nhiêu, và với đà tăng hiện tại thì bao lâu nữa hết chỗ",
+      "Cần bao nhiêu máy chủ để có thể phục vụ số lượng người dùng hiện tại của hệ thống",
+      "Chi phí hạ tầng dự kiến của năm tới là bao nhiêu và phân bổ ra sao",
+      "Thành phần nào trong hệ thống đang tiêu tốn nhiều tài nguyên nhất hiện nay"
     ],
-    "correctOption": 1,
-    "explanation": "Kế toán chốt lại điều đã xảy ra; bộ phận hoạch định và phân tích tài chính dùng số liệu đó để trả lời câu hỏi sắp tới nên làm gì. Công việc xoay quanh ba nhịp lặp lại: lập ngân sách và dự báo, đối chiếu thực tế với kế hoạch để tìm nguyên nhân chênh lệch, rồi cập nhật lại dự báo cho các kỳ còn lại. Giá trị thật không nằm ở bảng số - thứ đó hệ thống xuất được - mà ở câu trả lời cho câu hỏi vì sao.",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều là dữ liệu đầu vào cho công việc này. Câu hỏi thật gồm hai vế và vế thứ hai mới là vế tạo ra hành động: biết còn bao lâu thì bạn có thời gian đặt hàng, thử nghiệm và triển khai. Không có nó, việc mở rộng luôn diễn ra trong tình trạng gấp gáp.",
     "diagram": [
       {
-        "label": "Kế toán chốt số liệu thực tế của kỳ vừa qua",
+        "label": "Hai vế: chịu được bao nhiêu, và bao lâu nữa hết chỗ",
         "arrow": true
       },
       {
-        "label": "FP&A so số thực tế với kế hoạch, tìm nguyên nhân chênh lệch",
+        "label": "Vế thứ hai tạo ra thời gian để hành động bình tĩnh",
         "arrow": true
       },
       {
-        "label": "Cập nhật dự báo cho các quý tới",
+        "label": "Tài nguyên chật nhất quyết định trần, không phải trung bình",
         "arrow": true
       },
       {
-        "label": "Đưa con số đó vào quyết định đầu tư và phân bổ nguồn lực"
+        "label": "Ai làm: đội sở hữu dịch vụ, không phải một bộ phận riêng"
       }
     ],
     "realWorldExample": {
-      "company": "Doanh nghiệp công nghệ",
-      "description": "Kế toán báo cáo: 'Tháng này chi phí nhân sự là 500M'. FP&A dự báo: 'Nếu tuyển thêm 10 người năm tới, chi phí nhân sự sẽ là 700M/tháng, cần tăng doanh thu 50% để giữ biên lợi nhuận' → hỗ trợ CEO quyết định tuyển hay không."
+      "company": "Đội sở hữu dịch vụ làm, không phải bộ phận riêng",
+      "description": "Một bộ phận tập trung có thể tổng hợp số liệu và mua sắm, nhưng chỉ đội sở hữu dịch vụ mới biết tính năng nào sắp ra mắt sẽ đổi hình dạng tải. Tách việc này khỏi họ thì con số luôn trễ một quý so với thực tế."
     },
     "quiz": [
       {
-        "question": "Vai trò chính của FP&A là gì?",
+        "question": "Vì sao vế bao lâu nữa hết chỗ quan trọng hơn vế chịu được bao nhiêu?",
         "options": [
-          "Lập báo cáo tài chính theo chuẩn mực kế toán",
-          "Lập kế hoạch ngân sách, dự báo tài chính, phân tích chênh lệch thực tế vs kế hoạch",
-          "Quản lý tiền mặt hàng ngày của công ty",
-          "Tính thuế và báo cáo với cơ quan thuế"
-        ],
-        "correct": 1,
-        "explanation": "FP&A tập trung vào lập kế hoạch tương lai, không phải ghi chép quá khứ như kế toán. Vai trò chính là chuẩn bị thông tin để CEO ra quyết định chiến lược."
-      },
-      {
-        "question": "Variance Analysis (phân tích chênh lệch) trong FP&A là gì?",
-        "options": [
-          "Phân tích sự khác biệt giữa giá cổ phiếu các công ty",
-          "So sánh doanh thu/chi phí thực tế với kế hoạch, tìm nguyên nhân chênh lệch",
-          "Phân tích rủi ro đầu tư",
-          "Tính lãi suất vay"
-        ],
-        "correct": 1,
-        "explanation": "Variance Analysis giúp hiểu: kế hoạch dự báo 100M lợi nhuận, nhưng thực tế 80M → chênh lệch 20M. Tại sao? Là do doanh thu thấp hơn, hay chi phí cao hơn? Từ đó điều chỉnh kế hoạch lần tới."
-      },
-      {
-        "question": "Rolling Forecast là gì?",
-        "options": [
-          "Dự báo một lần rồi giữ nguyên cả năm",
-          "Dự báo 12 tháng, mỗi tháng thêm tháng mới vào cuối (luôn là 12 tháng phía trước)",
-          "Dự báo chỉ dựa trên data lịch sử",
-          "Không có khái niệm này trong FP&A"
-        ],
-        "correct": 1,
-        "explanation": "Rolling Forecast giữ horizon dự báo luôn là 12 tháng phía trước. Tháng 1 dự báo tháng 1-12, tháng 2 dự báo tháng 2-13, v.v. Điều này giúp kế hoạch luôn linh hoạt và không bị 'cũ' khi đến cuối năm."
-      },
-      {
-        "question": "Khác biệt cốt lõi giữa kế toán và bộ phận lập kế hoạch - phân tích tài chính là gì?",
-        "options": [
-          "Kế toán ghi nhận chính xác điều đã xảy ra; lập kế hoạch ước lượng điều sắp xảy ra để hỗ trợ quyết định",
-          "Kế toán làm việc với số lớn hơn",
-          "Lập kế hoạch không cần hiểu báo cáo tài chính",
-          "Kế toán chỉ làm việc vào cuối năm"
+          "Vì nó cho bạn thời gian để đặt hàng, thử nghiệm và triển khai một cách bình tĩnh",
+          "Vì nó dễ tính hơn nên có thể cập nhật thường xuyên với chi phí thấp",
+          "Vì nó phản ánh được cả xu hướng tăng trưởng chứ không chỉ trạng thái hiện tại",
+          "Vì các bên liên quan quan tâm tới mốc thời gian hơn là con số kỹ thuật"
         ],
         "correct": 0,
-        "explanation": "Hai chức năng có tiêu chuẩn thành công khác nhau: một bên là chính xác và tuân thủ, một bên là hữu ích và kịp thời cho việc ra quyết định."
+        "explanation": "Lựa chọn thứ ba mô tả đúng nội dung của vế đó nhưng không nói vì sao nó quan trọng hơn. Giá trị nằm ở chỗ nó biến một con số thành một hạn - và hạn thì tạo ra hành động, còn con số thì không."
       },
       {
-        "question": "Vì sao một bản phân tích chính xác tuyệt đối vẫn có thể không tạo ra giá trị?",
+        "question": "Tài nguyên nào quyết định trần của hệ thống?",
         "options": [
-          "Vì nếu nó không dẫn tới một quyết định hay hành động nào thì chỉ là mô tả lại số liệu",
-          "Vì độ chính xác cao luôn tốn quá nhiều thời gian",
-          "Vì ban lãnh đạo không đọc báo cáo tài chính",
-          "Vì dự báo luôn sai nên không cần chính xác"
+          "Tài nguyên chật nhất, dù các tài nguyên khác còn rất nhiều chỗ trống",
+          "Tài nguyên có chi phí cao nhất trong tổng chi phí hạ tầng hằng tháng",
+          "Trung bình mức sử dụng của tất cả các tài nguyên chính trong hệ thống",
+          "Tài nguyên có tốc độ tăng trưởng nhanh nhất trong sáu tháng gần đây"
         ],
         "correct": 0,
-        "explanation": "Giá trị của phân tích nằm ở chỗ nó thay đổi được hành động. Đó là lý do khả năng diễn giải và đề xuất quan trọng không kém khả năng dựng mô hình."
+        "explanation": "Một hệ thống dùng ba mươi phần trăm bộ xử lý và chín mươi phần trăm số kết nối cơ sở dữ liệu thì đang ở chín mươi phần trăm dung lượng. Nhìn mức trung bình cho ra con số vừa đẹp vừa vô dụng."
+      },
+      {
+        "question": "Vì sao đội sở hữu dịch vụ nên làm việc này?",
+        "options": [
+          "Vì chỉ họ biết tính năng nào sắp ra mắt sẽ đổi hình dạng tải",
+          "Vì họ có quyền truy cập trực tiếp vào số liệu vận hành của hệ thống",
+          "Vì họ chịu trách nhiệm khi hệ thống quá tải nên có động lực làm tốt",
+          "Vì họ hiểu kiến trúc hệ thống nên ước tính chính xác hơn người ngoài"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều đúng và đều là lý do phụ. Cái này là lý do không thay thế được: một bộ phận tập trung có thể lấy được mọi số liệu quá khứ và vẫn không biết về tính năng sẽ ra mắt tháng sau."
+      },
+      {
+        "question": "Vì sao dự báo dựa trên số liệu quá khứ dễ sai ở hệ thống đang lớn?",
+        "options": [
+          "Vì một thay đổi sản phẩm có thể đổi hình dạng tải theo cách quá khứ không có",
+          "Vì dữ liệu quá khứ thường không đủ dài để nhận ra được xu hướng thật",
+          "Vì tải trong quá khứ bị ảnh hưởng bởi các sự cố nên không phản ánh nhu cầu thật",
+          "Vì mức tăng trưởng của hệ thống không đều nên khó ngoại suy chính xác"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lý do việc này không giao được cho một mô hình tự động: một tính năng mới cho phép tải lên tệp lớn có thể nhân đôi lưu lượng lưu trữ trong một tuần, và không có gì trong dữ liệu quá khứ báo trước điều đó."
+      },
+      {
+        "question": "Kết quả của một lượt hoạch định dung lượng nên trông thế nào?",
+        "options": [
+          "Một ngày cụ thể mà nếu không làm gì thì tài nguyên chật nhất sẽ hết chỗ",
+          "Một báo cáo về mức sử dụng hiện tại của chính từng tài nguyên ở ngay trong hệ thống",
+          "Một đề xuất về số lượng máy chủ cần bổ sung trong quý tiếp theo",
+          "Một biểu đồ dự báo mức tăng trưởng tải trong mười hai tháng tới"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là những phần của kết quả và đều không tự tạo ra hành động. Một NGÀY thì tạo ra: nó vào lịch, nó có người chịu trách nhiệm, và nó bị hỏi tới trong buổi rà soát tháng sau."
       }
     ],
     "keyTakeaways": [
-      "FP&A = lập kế hoạch + dự báo + phân tích (khác kế toán = ghi chép quá khứ)",
-      "Variance Analysis: so sánh thực tế vs kế hoạch để tìm nguyên nhân chênh lệch",
-      "Rolling Forecast: dự báo 12 tháng phía trước, cập nhật mỗi tháng",
-      "FP&A hỗ trợ CEO ra quyết định chiến lược (đầu tư, cắt giảm, mở rộng)"
+      "Hai vế: chịu được bao nhiêu, và BAO LÂU NỮA hết chỗ - vế hai tạo ra hành động.",
+      "Tài nguyên CHẬT NHẤT quyết định trần, dù các tài nguyên khác còn nhiều chỗ.",
+      "Đội sở hữu dịch vụ làm, vì chỉ họ biết tính năng sắp ra sẽ đổi hình dạng tải.",
+      "Dữ liệu quá khứ không báo trước được một thay đổi sản phẩm sắp tới.",
+      "Kết quả phải là một NGÀY CỤ THỂ - báo cáo và biểu đồ không tự tạo ra hành động."
     ],
     "practicePrompt": {
-      "question": "Công ty X dự báo doanh thu năm nay 100 tỷ, nhưng thực tế 9 tháng đầu chỉ 60 tỷ. FP&A nên làm gì?",
+      "question": "Bộ xử lý dùng 30%, số kết nối cơ sở dữ liệu dùng 90%. Hệ thống đang ở mức nào?",
       "options": [
-        "Không làm gì, chỉ báo cáo số liệu cho ban lãnh đạo",
-        "Hạ dự báo năm xuống 80 tỷ và tìm nguyên nhân lệch",
-        "Tăng giá sản phẩm để bù doanh số",
-        "Thôi không đạt được rồi, không cần dự báo nữa"
+        "90% - tài nguyên chật nhất quyết định trần, phần còn rảnh không bù được",
+        "60%, là mức trung bình của các tài nguyên chính đang được theo dõi",
+        "30%, chỉ vì bộ xử lý chính là tài nguyên quyết định năng lực xử lý của chính hệ thống",
+        "Chưa xác định được vì cần thêm số liệu về bộ nhớ và băng thông mạng"
       ],
-      "correct": 1,
-      "explanation": "FP&A phải nhận diện sớm khi dự báo bị lệch so với thực tế, cập nhật kỳ vọng, và hỗ trợ CEO điều chỉnh chiến lược (có thể giảm chi phí, tìm cơ hội tăng doanh thu...) trước khi quá trễ."
+      "correct": 0,
+      "explanation": "Lựa chọn cuối nghe cẩn thận và nó trì hoãn một kết luận đã đủ dữ liệu để đưa ra: thêm số liệu chỉ có thể tìm ra một tài nguyên còn chật hơn, chứ không làm con số chín mươi phần trăm kia bớt đi."
     },
     "summary": {
-      "keyIdea": "FP&A = lập kế hoạch + dự báo + phân tích → hỗ trợ CEO ra quyết định chiến lược",
-      "commonMistake": "Nhầm FP&A với Kế toán. Kế toán ghi chép quá khứ, FP&A dự báo tương lai.",
-      "action": "Hôm nay, hãy so sánh kế hoạch ngân sách của bạn (nếu có) với thực tế - đó là Variance Analysis cơ bản"
+      "keyIdea": "Không ai làm việc này thì nó vẫn được làm - lúc ba giờ sáng, đắt hơn nhiều.",
+      "formula": "Tìm tài nguyên chật nhất → đo đà tăng → ra một ngày cụ thể.",
+      "commonMistake": "Nhìn mức trung bình của các tài nguyên, cho ra con số vừa đẹp vừa vô dụng.",
+      "action": "Tìm tài nguyên chật nhất của hệ thống bạn và mức sử dụng của nó."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Lập một kế hoạch chi tiêu cá nhân cho 3 tháng tới, sau đó hàng tháng so sánh thực tế vs kế hoạch. Đó là FP&A ở mức cá nhân.",
-      "secondary": "Nếu bạn làm việc trong doanh nghiệp, hãy nhìn kế hoạch ngân sách và so sánh với thực tế - nhận diện những chênh lệch lớn."
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm tài nguyên chật nhất của hệ thống bạn ở giờ cao điểm - không phải tài nguyên đắt nhất, không phải mức trung bình.",
+      "secondary": "Rồi nhìn mức đó ba tháng trước và ước ra một ngày. Con số đó thường gần hơn mọi người nghĩ, và nó là thứ duy nhất tạo ra hành động."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Kế toán ghi chép tiền đã chi. FP&A dự báo tiền sẽ chi, để CEO quyết định chi thế nào là tối ưu."
+        "text": "Không ai làm hoạch định dung lượng thì nó vẫn được làm - bằng cách phản ứng lúc ba giờ sáng, với chi phí cao hơn nhiều và một sự cố kèm theo."
       },
       {
         "type": "heading",
-        "text": "FP&A là gì?"
+        "text": "Câu hỏi có hai vế"
       },
       {
-        "type": "paragraph",
-        "text": "FP&A (Financial Planning & Analysis) là bộ phận/chức năng lập kế hoạch tài chính doanh nghiệp, dự báo doanh thu-chi phí theo các kịch bản, phân tích chênh lệch thực tế vs kế hoạch, và chuẩn bị thông tin để hỗ trợ CEO ra quyết định chiến lược."
-      },
-      {
-        "type": "heading",
-        "text": "Kế toán vs FP&A"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kế toán: ghi chép quá khứ (thu chi đã xảy ra), lập báo cáo tài chính",
-          "FP&A: dự báo tương lai (doanh thu-chi phí sẽ ra sao), lập kế hoạch ngân sách",
-          "Kế toán: độ chính xác cao, con số cuối cùng",
-          "FP&A: dự báo có độ không chắc chắn, nhưng giúp quyết định sớm"
-        ]
+        "type": "callout",
+        "label": "Vế thứ hai tạo ra hành động",
+        "text": "Hệ thống chịu được bao nhiêu là một con số. Bao lâu nữa hết chỗ là một HẠN - và hạn thì vào lịch, có người chịu trách nhiệm, và bị hỏi tới trong buổi rà soát tháng sau."
       },
       {
         "type": "heading",
-        "text": "Các chức năng chính của FP&A"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lập ngân sách: dự báo doanh thu & chi phí theo từng bộ phận, từng tháng",
-          "Variance Analysis: so sánh thực tế vs kế hoạch, tìm nguyên nhân chênh lệch",
-          "Lập kịch bản (Scenario Planning): dự báo theo 3-5 kịch bản khác nhau - thận trọng, cơ sở, lạc quan",
-          "Rolling Forecast: cập nhật dự báo 12 tháng phía trước mỗi tháng",
-          "KPI Tracking: theo dõi các chỉ số quan trọng (doanh thu, chi phí, lợi nhuận ròng...)"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Một tháng của bộ phận lập kế hoạch và phân tích tài chính"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Đầu tháng: chốt số liệu tháng trước, so với kế hoạch, tách nguyên nhân chênh lệch theo giá, sản lượng và chi phí.",
-          "Giữa tháng: làm việc với từng bộ phận để hiểu nguyên nhân đằng sau con số, và cập nhật dự báo cho các tháng còn lại.",
-          "Cuối tháng: trình bày cho ban lãnh đạo - không phải đọc lại số liệu mà trả lời ba câu: chuyện gì đang xảy ra, vì sao, và cần quyết định gì.",
-          "Xen kẽ trong tháng: phân tích cho các quyết định cụ thể - mở thêm chi nhánh có hiệu quả không, nên thay đổi chính sách chiết khấu ra sao, dự án nào nên được ưu tiên vốn."
-        ]
+        "text": "Đo cái gì"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Kế toán",
-          "text": "Câu hỏi trung tâm: chuyện gì đã xảy ra, và ghi nhận thế nào cho đúng chuẩn mực? Yêu cầu cao nhất là chính xác và tuân thủ. Kết quả là con số cuối cùng, không thương lượng."
+          "label": "Tài nguyên chật nhất",
+          "text": "Một hệ thống dùng ba mươi phần trăm bộ xử lý và chín mươi phần trăm số kết nối cơ sở dữ liệu thì đang ở chín mươi phần trăm."
         },
         "right": {
-          "label": "Lập kế hoạch và phân tích",
-          "text": "Câu hỏi trung tâm: chuyện gì sắp xảy ra, và ta nên làm gì? Yêu cầu cao nhất là hữu ích và kịp thời. Kết quả là ước lượng kèm khoảng dao động, luôn được cập nhật."
+          "label": "Mức trung bình",
+          "text": "Sáu mươi phần trăm - một con số vừa đẹp vừa vô dụng, vì phần còn rảnh không bù được cho phần đã chật."
         }
       },
       {
-        "type": "callout",
-        "label": "Kỹ năng quan trọng nhất không phải kỹ thuật",
-        "text": "Dựng mô hình là điều kiện cần. Nhưng thứ phân biệt một chuyên viên giỏi là khả năng đặt câu hỏi đúng với người vận hành và diễn giải con số thành đề xuất hành động. Một bản phân tích chính xác tuyệt đối mà không dẫn tới quyết định nào thì không tạo ra giá trị."
+        "type": "heading",
+        "text": "Ai làm"
       },
       {
         "type": "paragraph",
-        "text": "Với người muốn đi theo hướng này, lộ trình phổ biến là bắt đầu từ việc thành thạo mô hình ba báo cáo tài chính, hiểu sâu mô hình kinh doanh của chính ngành mình làm, rồi rèn khả năng trình bày ngắn gọn cho người không chuyên về tài chính. Cả ba đều học được, và thứ tự này quan trọng."
+        "text": "Đội SỞ HỮU dịch vụ. Một bộ phận tập trung có thể tổng hợp số liệu và lo mua sắm, nhưng chỉ đội đó mới biết tính năng nào sắp ra mắt sẽ đổi hình dạng tải - và đó là thứ không có trong bất kỳ dữ liệu quá khứ nào."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Đây cũng là lý do việc này không giao được cho một mô hình tự động: một tính năng mới cho phép tải lên tệp lớn có thể nhân đôi lưu lượng lưu trữ trong một tuần.",
+          "Kết quả cuối cùng phải là một NGÀY CỤ THỂ, không phải một báo cáo. Báo cáo được đọc rồi để đó; một ngày thì bị hỏi tới."
+        ]
       }
     ]
   },
@@ -67902,199 +67876,173 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1216,
-    "track": "professional",
-    "slug": "ky-quy-va-margin-call",
-    "title": "Tự học Tài chính Day 1216: Ký quỹ & Margin Call - Quản lý rủi ro là ưu tiên số một",
-    "subtitle": "Tại sao khách hàng phải 'trả lại tiền' ngay khi thị trường đi ngược?",
+    "slug": "ngan-sach-tai-nguyen-va-nguong-can-thiep",
+    "title": "Ngân sách tài nguyên và ngưỡng can thiệp",
+    "subtitle": "Một hệ thống chạm trần lúc ba giờ sáng là một hệ thống không có ngưỡng can thiệp ở bảy mươi phần trăm.",
     "duration": "8 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "⚠️",
-    "openingQuestion": "Ký quỹ (Margin) là gì?",
+    "whyItMatters": "Khoảng cách giữa lúc bạn biết cần thêm tài nguyên và lúc tài nguyên đó sẵn sàng thường tính bằng tuần, và ngưỡng can thiệp là thứ duy nhất tạo ra khoảng đó.",
+    "openingQuestion": "Ngưỡng can thiệp nên đặt ở đâu?",
     "openingOptions": [
-      "Phí giao dịch chứng khoán phải trả cho công ty môi giới mỗi lần",
-      "Tiền vay từ môi giới để có thêm vốn mua cổ phiếu (leverage)",
-      "Lãi vay",
-      "Thuế giao dịch"
+      "Ở mức mà thời gian còn lại đủ để chuẩn bị và triển khai một cách bình tĩnh",
+      "Ở mức tám mươi phần trăm, theo thông lệ chung cho phần lớn loại tài nguyên",
+      "Ở mức mà hiệu năng bắt đầu suy giảm rõ rệt so với mức bình thường",
+      "Ở mức mà chi phí của việc thêm tài nguyên vẫn thấp hơn thiệt hại khi quá tải"
     ],
-    "correctOption": 1,
-    "explanation": "Ký quỹ là vay tiền công ty chứng khoán để mua thêm cổ phiếu: bạn bỏ 10 triệu, được vay thêm 10 triệu, mua 20 triệu. Điều ít người tính tới là đòn bẩy khuếch đại theo cả hai chiều - danh mục giảm 25% thì phần vốn của bạn mất 50%. Và khác với khoản vay thông thường, chủ nợ ở đây có quyền bán tài sản của bạn khi tỷ lệ ký quỹ xuống dưới ngưỡng, thường đúng vào lúc giá đang thấp nhất.",
+    "correctOption": 0,
+    "explanation": "Ngưỡng không phải một con số cố định mà là một phép trừ: lấy trần trừ đi phần tải sẽ tăng thêm trong khoảng thời gian cần để chuẩn bị. Với hạ tầng thuê theo nhu cầu, khoảng đó tính bằng phút nên ngưỡng có thể đặt cao; với phần cứng phải đặt mua, nó tính bằng tuần và ngưỡng phải thấp hơn hẳn.",
     "diagram": [
       {
-        "label": "Bỏ vốn tự có, vay thêm từ công ty chứng khoán",
+        "label": "Ngưỡng = trần trừ đi phần tăng thêm trong thời gian chuẩn bị",
         "arrow": true
       },
       {
-        "label": "Mua lượng cổ phiếu lớn hơn vốn của mình",
+        "label": "Thuê theo nhu cầu: chuẩn bị vài phút → ngưỡng cao được",
         "arrow": true
       },
       {
-        "label": "Giá giảm: phần lỗ trừ hết vào vốn tự có",
+        "label": "Phần cứng đặt mua: chuẩn bị vài tuần → ngưỡng phải thấp",
         "arrow": true
       },
       {
-        "label": "Tỷ lệ ký quỹ xuống ngưỡng thì bị gọi nộp thêm hoặc bị bán giải chấp"
+        "label": "Mỗi tài nguyên một ngưỡng riêng, không dùng chung một con số"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Nhà đầu tư dùng margin",
-      "description": "Khách hàng A có 100 triệu, ký quỹ vay thêm 100 triệu (50% margin) → mua cổ phiếu với 200 triệu. Cổ phiếu tăng 10% → lợi nhuận 20 triệu (trên vốn 100 triệu = 20% lợi nhuận) thay vì 10%. Nhưng nếu giảm 10% → lỗ 20 triệu (cả vốn gốc + vay). Nếu giảm 50%+ → Margin Call (yêu cầu nộp thêm tiền)"
+      "company": "Ngưỡng không phải cảnh báo",
+      "description": "Ngưỡng can thiệp khác cảnh báo sự cố: nó không cần đánh thức ai lúc nửa đêm. Nó cần xuất hiện trong buổi rà soát tuần với một người có tên và một ngày phải hoàn thành - và đó là lý do nó hay bị bỏ, vì nó không cấp bách."
     },
     "quiz": [
       {
-        "question": "Margin Ratio là gì?",
+        "question": "Vì sao ngưỡng can thiệp không phải một con số cố định?",
         "options": [
-          "Tỉ lệ lợi nhuận của giao dịch",
-          "Tỉ lệ vốn chủ (tiền bạn gửi) so với tổng vốn (tiền bạn + tiền vay)",
-          "Lãi vay",
-          "Phí giao dịch"
-        ],
-        "correct": 1,
-        "explanation": "Margin Ratio = (Vốn chủ) / (Tổng vốn). Ví dụ: bạn gửi 100 triệu, vay 100 triệu, tổng 200 triệu → Margin Ratio = 100/200 = 50%. Khi Margin Ratio rơi xuống mức tối thiểu (ví dụ 30%), bạn bị Margin Call."
-      },
-      {
-        "question": "Margin Call là gì?",
-        "options": [
-          "Gọi điện thoại để hỏi giá cổ phiếu",
-          "Yêu cầu khách hàng nộp thêm tiền (hoặc bán cổ phiếu) để duy trì Margin Ratio tối thiểu",
-          "Cuộc gọi từ công ty chứng khoán để chúc mừng",
-          "Không có khái niệm này"
-        ],
-        "correct": 1,
-        "explanation": "Khi cổ phiếu giảm giá, Margin Ratio của bạn giảm theo. Nếu rơi dưới mức tối thiểu (ví dụ 30%), môi giới sẽ Margin Call: bạn phải nộp thêm tiền hoặc bán một phần cổ phiếu để tăng Margin Ratio lên mức an toàn. Nếu không, môi giới sẽ tự bán cổ phiếu của bạn (Force Sell)."
-      },
-      {
-        "question": "Nếu bạn gửi 100M, vay 100M, mua 200M cổ phiếu. Cổ phiếu giảm 50% (còn 100M), margin ratio bây giờ là bao nhiêu?",
-        "options": [
-          "100% (200M / 200M)",
-          "50% (100M / 200M)",
-          "25% (100M / 400M) - không đúng vì tổng vốn không đổi",
-          "0% vì tất cả đã mất"
-        ],
-        "correct": 1,
-        "explanation": "Ban đầu: vốn chủ = 100M, tổng vốn = 200M (100M vốn + 100M vay), margin ratio = 50%. Sau khi giảm 50%: tài sản = 100M, nhưng nợ = 100M (vay không đổi), vốn chủ = 100M - 100M = 0. Margin ratio = 0 / 100M = 0% → bị margin call ngay!"
-      },
-      {
-        "question": "Danh mục 1 tỷ với 500 triệu vay ký quỹ. Nếu danh mục giảm 30%, vốn tự có của nhà đầu tư giảm bao nhiêu phần trăm?",
-        "options": [
-          "60%, từ 500 triệu xuống 200 triệu",
-          "30%, tương ứng mức giảm của thị trường",
-          "15%",
-          "50%"
+          "Vì nó phụ thuộc vào thời gian cần để chuẩn bị, mà thời gian đó khác nhau theo tài nguyên",
+          "Vì mức sử dụng an toàn khác nhau tuỳ theo loại tài nguyên đang được đo",
+          "Vì trần của mỗi tài nguyên thay đổi khi cấu hình hệ thống được điều chỉnh",
+          "Vì tốc độ tăng trưởng của từng tài nguyên trong hệ thống không giống nhau"
         ],
         "correct": 0,
-        "explanation": "Giá trị danh mục còn 700 triệu, nợ vẫn 500 triệu, nên vốn tự có còn 200 triệu. Đòn bẩy hai lần khuếch đại mức giảm 30% thành 60% - và cơ chế này chạy y hệt ở chiều tăng."
+        "explanation": "Lựa chọn cuối là một thành phần của phép tính này. Yếu tố quyết định thì là thời gian chuẩn bị: cùng một tài nguyên, thuê theo nhu cầu và phải đặt mua sẽ cho hai ngưỡng cách nhau rất xa."
       },
       {
-        "question": "Vì sao các phiên giảm mạnh thường giảm gấp gáp hơn về cuối phiên?",
+        "question": "Ngưỡng can thiệp khác cảnh báo sự cố ở chỗ nào?",
         "options": [
-          "Vì lệnh bán giải chấp từ các tài khoản ký quỹ tạo thêm lực bán, đẩy giá xuống và kích hoạt tiếp các tài khoản khác",
-          "Vì nhà đầu tư nước ngoài chỉ giao dịch cuối phiên",
-          "Vì thanh khoản luôn cao nhất vào cuối phiên",
-          "Vì công ty chứng khoán chỉ khớp lệnh vào cuối ngày"
+          "Nó không cần đánh thức ai, nhưng phải có tên người và một ngày phải xong",
+          "Nó được đặt ở mức thấp hơn nhiều so với ngưỡng cảnh báo sự cố",
+          "Nó chỉ áp dụng cho tất cả các tài nguyên hoàn toàn có thể mở rộng được khi cần thiết",
+          "Nó được xem xét theo chu kỳ thay vì kích hoạt ngay khi bị vượt qua"
         ],
         "correct": 0,
-        "explanation": "Đây là vòng phản hồi tự khuếch đại: giá giảm gây giải chấp, giải chấp tạo lực bán, lực bán làm giá giảm tiếp. Hiểu cơ chế này giải thích vì sao đòn bẩy nguy hiểm nhất đúng lúc thị trường biến động mạnh."
+        "explanation": "Vế thứ hai là vế quan trọng và hay bị bỏ: một ngưỡng chỉ hiện lên bảng theo dõi mà không có người chịu trách nhiệm thì nó chỉ là một màu vàng mà mọi người quen dần."
+      },
+      {
+        "question": "Vì sao mỗi tài nguyên cần một ngưỡng riêng?",
+        "options": [
+          "Vì thời gian chuẩn bị để mở rộng từng loại tài nguyên khác nhau rất xa",
+          "Vì mỗi tài nguyên có mức độ ảnh hưởng khác nhau khi bị cạn kiệt",
+          "Vì các tài nguyên có đơn vị đo khác nhau nên không so sánh trực tiếp được",
+          "Vì đội chịu trách nhiệm cho từng loại tài nguyên thường là các đội khác nhau"
+        ],
+        "correct": 0,
+        "explanation": "Thêm một máy chủ mất vài phút; tăng giới hạn kết nối của cơ sở dữ liệu có thể cần một cửa sổ bảo trì; đặt mua thiết bị mất nhiều tuần. Dùng chung một con số thì hoặc bạn cảnh báo quá sớm ở chỗ này hoặc quá muộn ở chỗ kia."
+      },
+      {
+        "question": "Điều gì làm một ngưỡng can thiệp trở nên vô dụng?",
+        "options": [
+          "Nó bị vượt liên tục mà không ai làm gì, nên mọi người quen với màu vàng đó",
+          "Nó đã được đặt quá thấp nên rốt cuộc kích hoạt quá thường xuyên ở ngay trong ngày làm việc",
+          "Nó không được cập nhật khi trần của tài nguyên đó thay đổi",
+          "Nó không gửi thông báo tới đúng người chịu trách nhiệm về tài nguyên"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai là một nguyên nhân dẫn tới tình trạng này. Bản thân tình trạng thì tệ hơn cả việc không có ngưỡng: bạn vừa mất công đặt nó vừa tạo ra một tín hiệu mà cả đội đã học cách bỏ qua."
+      },
+      {
+        "question": "Nên làm gì khi một ngưỡng bị vượt?",
+        "options": [
+          "Quyết định trong tuần đó: hoặc mở rộng, hoặc giảm tải, hoặc dời ngưỡng có lý do",
+          "Lập kế hoạch mở rộng tài nguyên đó trong quý tiếp theo",
+          "Theo dõi thêm để xem mức sử dụng có tự giảm xuống hay không",
+          "Kiểm tra xem có thành phần nào đang tiêu tốn tài nguyên bất thường không"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ tư là việc nên làm và nó là điều tra, không phải quyết định. Điểm mấu chốt là phải có MỘT trong ba kết cục, và dời ngưỡng cũng là kết cục hợp lệ miễn là có lý do được ghi lại."
       }
     ],
     "keyTakeaways": [
-      "Ký quỹ: tiền vay từ môi giới để leverage (nhân đôi cơ hội & rủi ro)",
-      "Margin Ratio = Vốn chủ / Tổng vốn → phải duy trì tối thiểu (ví dụ 30%)",
-      "Margin Call: yêu cầu nộp thêm tiền hoặc bán cổ phiếu khi margin ratio quá thấp",
-      "Force Sell: môi giới tự động bán cổ phiếu của bạn nếu không đáp ứng margin call"
+      "Ngưỡng = trần TRỪ ĐI phần tải sẽ tăng thêm trong thời gian cần để chuẩn bị.",
+      "Thuê theo nhu cầu thì ngưỡng cao được; phần cứng đặt mua thì phải thấp hơn hẳn.",
+      "Ngưỡng can thiệp không cần đánh thức ai, nhưng phải có TÊN NGƯỜI và một NGÀY.",
+      "Bị vượt liên tục mà không ai làm gì thì nó tệ hơn cả việc không có ngưỡng.",
+      "Ba kết cục hợp lệ: mở rộng, giảm tải, hoặc dời ngưỡng có ghi lý do."
     ],
     "practicePrompt": {
-      "question": "Bạn là môi giới. Khách hàng gửi 50M, vay 50M, mua 100M cổ phiếu. Cổ phiếu giảm 30% (còn 70M). Margin ratio hiện tại là bao nhiêu? Bạn nên làm gì?",
+      "question": "Tài nguyên A mở rộng trong năm phút, tài nguyên B cần đặt mua sáu tuần. Ngưỡng?",
       "options": [
-        "Không làm gì, đợi khách hàng tự xử lý",
-        "Còn 29% → phải margin call ngay",
-        "Bảo khách hàng sẽ tăng lên",
-        "Tự bán hết cổ phiếu của khách hàng ngay"
+        "A đặt cao, B đặt thấp hơn hẳn - vì B cần sáu tuần tải tăng thêm để chuẩn bị",
+        "Cả hai đặt ở cùng một mức để dễ theo dõi và dễ giải thích cho đội",
+        "B đặt cao hơn A vì việc mở rộng B tốn kém nên cần tránh mở rộng sớm",
+        "Tuỳ vào mức độ quan trọng của chính từng tài nguyên đối với chính hoạt động hệ thống"
       ],
-      "correct": 1,
-      "explanation": "Môi giới phải theo dõi margin ratio của mỗi khách hàng hàng ngày. Khi rơi dưới mức tối thiểu, phải margin call ngay để bảo vệ cả khách hàng (giảm lỗ) lẫn chính môi giới (không bị khách hàng chiếm thêm tiền vay)."
+      "correct": 0,
+      "explanation": "Lựa chọn thứ ba đảo ngược phép tính: chi phí mở rộng cao là lý do để cân nhắc kỹ hơn khi quyết định, chứ không phải lý do để biết muộn hơn. Biết muộn thì bạn mất luôn khả năng cân nhắc."
     },
     "summary": {
-      "keyIdea": "Ký quỹ = leverage (nhân đôi cơ hội & rủi ro). Margin Call = kiểm soát rủi ro. Force Sell = điều cuối cùng để bảo vệ",
-      "commonMistake": "Dùng ký quỹ mà không hiểu rủi ro. Bị margin call bất ngờ rồi phản ứng không kịp",
-      "action": "Nếu dùng ký quỹ, luôn đặt Stop Loss + theo dõi margin ratio hàng ngày"
+      "keyIdea": "Ngưỡng can thiệp là thứ duy nhất tạo ra khoảng thời gian để hành động bình tĩnh.",
+      "formula": "Ngưỡng = trần − (đà tăng × thời gian chuẩn bị của chính tài nguyên đó).",
+      "commonMistake": "Dùng một con số chung cho mọi tài nguyên, thường là tám mươi phần trăm.",
+      "action": "Tính ngưỡng riêng cho tài nguyên có thời gian chuẩn bị dài nhất."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Nếu khách hàng của bạn dùng ký quỹ, hãy giáo dục họ: (1) Margin Ratio là gì; (2) Mức tối thiểu; (3) Sau đó hãy để họ quyết định; (4) Giám sát hàng ngày để margin call sớm nếu cần",
-      "secondary": "Nếu bạn là khách hàng dùng ký quỹ, LUÔN đặt stop loss + không bao giờ cho phép margin ratio của mình rơi dưới 40-50%."
+      "title": "Làm ngay hôm nay",
+      "message": "Với mỗi tài nguyên chính, viết ra một con số: mở rộng nó mất bao lâu, tính từ lúc quyết định tới lúc dùng được.",
+      "secondary": "Con số đó nhân với đà tăng hiện tại chính là khoảng phải trừ khỏi trần. Phần lớn đội chưa bao giờ tính nó và đang dùng chung một ngưỡng cho mọi thứ."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Ký quỹ là công cụ mạnh: có thể nhân ba lợi nhuận, nhưng cũng nhân ba lỗ. Margin Call là cơ chế bảo vệ khách hàng khỏi mất hết vốn."
+        "text": "Khoảng cách giữa lúc bạn biết cần thêm tài nguyên và lúc tài nguyên đó sẵn sàng thường tính bằng tuần, và ngưỡng can thiệp là thứ duy nhất tạo ra khoảng đó."
       },
       {
         "type": "heading",
-        "text": "Margin Ratio & Mức tối thiểu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mỗi công ty chứng khoán đặt mức margin ratio tối thiểu khác nhau (thường 30-50%). Nếu của bạn = 50%, và margin ratio giảm xuống 35%, bạn vẫn an toàn. Nhưng nếu tiếp tục giảm xuống 30%, bạn bị margin call. Nếu còn tiếp tục giảm xuống 25%, môi giới sẽ force sell cổ phiếu của bạn (không cần sự đồng ý)."
-      },
-      {
-        "type": "heading",
-        "text": "Tại sao Margin Call là cơ chế bảo vệ?"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Bảo vệ khách hàng: ngăn họ tiếp tục nhảy vào hố sâu hơn",
-          "Bảo vệ môi giới: đảm bảo khách hàng có khả năng trả lại tiền vay",
-          "Bảo vệ thị trường: ngăn khách hàng vỡ nợ hàng loạt (hiệu ứng domino)"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Khi bị Margin Call, bạn có 3 lựa chọn"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Nộp thêm tiền: tăng vốn chủ để tăng margin ratio lên an toàn",
-          "Bán một phần cổ phiếu: giảm tài sản nhưng tăng margin ratio (vì nợ giảm tỉ lệ)",
-          "Không làm gì: môi giới sẽ force sell (bán cổ phiếu của bạn)"
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Tỷ lệ ký quỹ và ngưỡng cảnh báo",
-        "equation": "Tỷ lệ ký quỹ = (Giá trị tài sản − Nợ vay) ÷ Giá trị tài sản",
-        "example": {
-          "title": "Danh mục 1 tỷ, vay 500 triệu",
-          "calculation": "Ban đầu: (1.000 − 500) ÷ 1.000 = 50% · Sau khi giảm 30%: (700 − 500) ÷ 700",
-          "result": "= 28,6% — đã dưới ngưỡng cảnh báo",
-          "explanation": "Danh mục giảm 30% nhưng tỷ lệ ký quỹ rơi từ 50% xuống dưới 29%, vì khoản nợ không giảm theo. Vốn tự có của nhà đầu tư giảm từ 500 xuống 200 triệu - mất 60% dù thị trường chỉ giảm 30%. Đó chính là ý nghĩa của việc đòn bẩy khuếch đại theo cả hai chiều."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao đòn bẩy làm mọi thứ tệ đi đúng lúc tệ nhất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Yêu cầu bổ sung ký quỹ luôn đến khi thị trường đang giảm - tức đúng lúc nhà đầu tư ít có khả năng nộp thêm tiền nhất và cũng là lúc bán ra bất lợi nhất. Nếu không xử lý, lệnh bán giải chấp được thực hiện ở mức giá thị trường tại thời điểm đó, không chờ hồi phục. Khi nhiều tài khoản cùng bị giải chấp một lúc, lực bán đó lại đẩy giá xuống sâu hơn và kích hoạt thêm các tài khoản khác. Đây là lý do những phiên giảm mạnh thường có phần cuối phiên giảm gấp gáp hơn hẳn."
+        "text": "Ngưỡng là một phép trừ"
       },
       {
         "type": "callout",
-        "label": "Ba con số nên biết trước khi dùng ký quỹ",
-        "text": "Một: danh mục giảm bao nhiêu phần trăm thì mình chạm ngưỡng cảnh báo? Hai: nếu bị yêu cầu bổ sung, mình có sẵn bao nhiêu tiền để nộp trong vòng một hai ngày? Ba: lãi vay ký quỹ mỗi tháng là bao nhiêu, và danh mục phải sinh lời bao nhiêu mới bù được khoản đó? Không trả lời được cả ba thì chưa nên dùng đòn bẩy."
+        "label": "Không phải một con số cố định",
+        "text": "Lấy trần trừ đi phần tải sẽ tăng thêm trong khoảng thời gian cần để chuẩn bị. Thuê theo nhu cầu thì khoảng đó tính bằng phút nên ngưỡng đặt cao được; phần cứng phải đặt mua thì nó tính bằng tuần và ngưỡng phải thấp hơn hẳn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hệ quả: mỗi tài nguyên một ngưỡng RIÊNG. Thêm một máy chủ mất vài phút, tăng giới hạn kết nối cơ sở dữ liệu có thể cần một cửa sổ bảo trì, đặt mua thiết bị mất nhiều tuần - dùng chung một con số thì hoặc cảnh báo quá sớm ở chỗ này hoặc quá muộn ở chỗ kia."
+      },
+      {
+        "type": "heading",
+        "text": "Không phải cảnh báo sự cố"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Xử lý chủ động",
-          "text": "Theo dõi tỷ lệ ký quỹ hằng ngày, giảm tỷ lệ vay trước khi chạm ngưỡng, và bán chủ động phần mình chọn ở thời điểm mình chọn."
+          "label": "Cảnh báo sự cố",
+          "text": "Đánh thức người trực. Cần hành động trong vài phút."
         },
         "right": {
-          "label": "Bị xử lý bị động",
-          "text": "Chờ đến khi bị yêu cầu bổ sung rồi mới tính. Lúc này lựa chọn đã hẹp lại, và nếu không kịp xử lý thì công ty chứng khoán bán phần nào họ thấy thanh khoản nhất, không phải phần bạn muốn giữ."
+          "label": "Ngưỡng can thiệp",
+          "text": "Không cần đánh thức ai. Nhưng phải xuất hiện trong buổi rà soát tuần với một TÊN NGƯỜI và một NGÀY phải hoàn thành."
         }
+      },
+      {
+        "type": "paragraph",
+        "text": "Vế thứ hai là vế hay bị bỏ, vì nó không cấp bách. Một ngưỡng chỉ hiện lên bảng theo dõi mà không có người chịu trách nhiệm thì nó chỉ là một màu vàng mà mọi người quen dần."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Và tình trạng đó tệ hơn cả việc không có ngưỡng: bạn vừa mất công đặt nó vừa tạo ra một tín hiệu mà cả đội đã học cách bỏ qua.",
+          "Nên khi một ngưỡng bị vượt, phải có MỘT trong ba kết cục ngay trong tuần: mở rộng, giảm tải, hoặc dời ngưỡng với lý do được ghi lại."
+        ]
       }
     ]
   },
@@ -69214,187 +69162,173 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1223,
-    "track": "professional",
-    "slug": "hedging-instruments-fx-derivatives",
-    "title": "Hedging Instruments & FX Derivatives - Giảm thiểu rủi ro tỷ giá",
-    "subtitle": "Khi bạn phải giao dịch ngoại tệ, dùng derivatives để 'khóa' tỷ giá thay vì chấp nhận rủi ro.",
+    "slug": "cong-cu-giam-thiet-hai-khi-phu-thuoc-ngoai-hong",
+    "title": "Công cụ giảm thiệt hại khi một phụ thuộc bên ngoài hỏng",
+    "subtitle": "Bốn cơ chế, và mỗi cơ chế bảo vệ bạn khỏi một kiểu hỏng khác nhau.",
     "duration": "8 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🔐",
-    "openingQuestion": "Forward contract là gì?",
+    "whyItMatters": "Một dịch vụ bên ngoài chậm đi có thể làm sập hệ thống của bạn nhanh hơn cả khi nó tắt hẳn, và cơ chế bảo vệ cho hai tình huống đó không giống nhau.",
+    "openingQuestion": "Dịch vụ bên ngoài chậm đi mười lần nhưng không lỗi. Vì sao nguy hiểm hơn nó tắt hẳn?",
     "openingOptions": [
-      "Một loại trái phiếu do ngân hàng thương mại phát hành ra thị trường vốn trong nước ta",
-      "Một hợp đồng cam kết mua/bán ngoại tệ ở mức tỷ giá cố định vào ngày tương lai cụ thể",
-      "Một loại bảo hiểm"
+      "Vì các lượt gọi tích tụ và chiếm hết luồng xử lý, trong khi tắt hẳn thì lỗi ngay",
+      "Vì hệ thống không phát hiện được vấn đề nên không kích hoạt cơ chế dự phòng",
+      "Vì người dùng phải chờ lâu nên họ thử lại nhiều lần làm tải tăng thêm",
+      "Vì các chỉ số theo dõibáo dịch vụ hoạt động bình thường nên không ai biết"
     ],
-    "correctOption": 1,
-    "explanation": "Công cụ phòng vệ tỷ giá cho phép doanh nghiệp khóa trước mức tỷ giá cho một nghĩa vụ trong tương lai. Hợp đồng kỳ hạn là dạng đơn giản nhất: hai bên chốt tỷ giá và ngày thực hiện, không mất phí ban đầu nhưng cũng không được hưởng lợi nếu tỷ giá đi theo hướng có lợi. Quyền chọn thì ngược lại - trả phí để giữ quyền không thực hiện. Nguyên tắc chung là chỉ phòng vệ phần dòng tiền đã chắc chắn, vì phòng vệ vượt quá nhu cầu chính là đầu cơ.",
+    "correctOption": 0,
+    "explanation": "Tắt hẳn thì lượt gọi lỗi ngay và luồng được giải phóng ngay. Chậm đi thì mỗi lượt gọi giữ một luồng suốt thời gian chờ, và với lưu lượng không đổi thì số luồng bị giữ tăng cho tới khi hết. Lúc đó cả những phần không liên quan tới dịch vụ ngoài kia cũng ngừng phục vụ được.",
+    "diagram": [
+      {
+        "label": "Thời gian chờ tối đa: chặn việc một lượt gọi giữ luồng vô hạn",
+        "arrow": true
+      },
+      {
+        "label": "Ngắt mạch: dừng gọi khi tỷ lệ lỗi vượt ngưỡng, thử lại dần",
+        "arrow": true
+      },
+      {
+        "label": "Vách ngăn: giới hạn số luồng dành cho mỗi phụ thuộc",
+        "arrow": true
+      },
+      {
+        "label": "Đường lui: làm gì khi không gọi được - và phải quyết định trước"
+      }
+    ],
     "realWorldExample": {
-      "company": "Công ty xuất khẩu cà phê",
-      "description": "Một công ty Việt bán 100 tấn cà phê cho bên Mỹ, nhận được 2M USD trong 3 tháng. Vấn đề: nếu USD giảm giá (VND tăng giá), công ty bị tổn thất khi đổi sang VND. Giải pháp: ký forward contract bây giờ, cam kết bán 2M USD ở mức 24,000 VND/USD vào 3 tháng sau. Bây giờ tỷ giá là 23,500, 3 tháng sau là 22,000, nhưng công ty đã khóa ở 24,000 → tránh được tổn thất."
+      "company": "Đường lui là quyết định nghiệp vụ",
+      "description": "Không gọi được dịch vụ kiểm tra gian lận thì cho qua hay từ chối? Đây không phải câu hỏi kỹ thuật, và nó phải được trả lời trước - lúc ba giờ sáng thì người trực sẽ tự quyết, và họ quyết theo hướng dễ nhất chứ không theo hướng đúng nhất."
     },
     "quiz": [
       {
-        "question": "Sự khác biệt giữa Forward, Futures, và Options là gì?",
+        "question": "Thời gian chờ tối đa bảo vệ khỏi kiểu hỏng nào?",
         "options": [
-          "Không có sự khác biệt, chỉ là tên gọi khác nhau",
-          "Forward: tùy chỉnh, OTC. Futures: chuẩn hóa, sàn giao dịch. Options: quyền (không bắt buộc), Future: bắt buộc",
-          "Forward là tài sản, Futures là tiền"
+          "Một lượt gọi giữ luồng vô hạn khi bên kia chậm mà không trả lỗi",
+          "Một dịch vụ trả về lỗi liên tục làm hệ thống của bạn cũng lỗi theo",
+          "Một dịch vụ bị quá tải do nhận quá nhiều lượt gọi cùng lúc từ bạn",
+          "Một dịch vụ trả về dữ liệu sai mà hệ thống của bạn không kiểm tra được"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Bốn cơ chế trong bài này mỗi cái chặn một kiểu hỏng riêng, và đây là cơ chế nền tảng nhất - không có nó thì ba cơ chế còn lại đều không cứu được, vì luồng đã bị giữ hết trước khi chúng kịp hoạt động."
       },
       {
-        "question": "Tại sao swaps được dùng trong quản lý lãi suất?",
+        "question": "Ngắt mạch giải quyết vấn đề gì mà thời gian chờ không giải quyết?",
         "options": [
-          "Vì nó là loại trái phiếu",
-          "Swap lãi suất: bên A trả lãi suất cố định, bên B trả lãi suất thả nổi. A được bảo vệ nếu lãi suất tăng, B được bảo vệ nếu lãi suất giảm",
-          "Vì nó là loại cổ phiếu"
+          "Việc tiếp tục gọi vào một dịch vụ đang hỏng, vừa tốn tài nguyên vừa làm nó khó hồi phục",
+          "Việc một lượt gọi mất quá nhiều thời gian trước khi trả về kết quả",
+          "Việc số lượng lượt gọi đồng thời vượt quá khả năng xử lý của hệ thống",
+          "Việc hệ thống không biết dịch vụ bên ngoài đã hồi phục hay chưa"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Vế thứ hai là vế ít được nói: một dịch vụ đang quá tải mà vẫn nhận đủ lưu lượng thì không bao giờ hồi phục được. Ngắt mạch vừa bảo vệ bạn vừa cho bên kia một khoảng thở."
       },
       {
-        "question": "Call option trên USD là gì?",
+        "question": "Vách ngăn bảo vệ điều gì?",
         "options": [
-          "Một loại điện thoại",
-          "Quyền (nhưng không bắt buộc) mua USD ở mức giá cố định - nếu tỷ giá tăng, bạn thực hiện; nếu giảm, bạn không",
-          "Một loại lãi suất"
+          "Một phụ thuộc chậm không chiếm hết luồng của những phần không liên quan",
+          "Dữ liệu của các phụ thuộc khác nhau không bị lẫn vào nhau khi xử lý",
+          "Số lượng lượt gọi tới mỗi phụ thuộc không vượt quá giới hạn cho phép",
+          "Lỗi từ đúng một phụ thuộc không lan sang tất cả các phụ thuộc khác trong cùng luồng"
         ],
-        "correct": 1
-      }
-    ],
-    "sections": [
-      {
-        "type": "heading",
-        "text": "Hedging là gì - Giảm thiểu rủi ro, không phải đầu cơ"
+        "correct": 0,
+        "explanation": "Đây là cách ly tài nguyên áp vào phụ thuộc bên ngoài. Không có nó thì một dịch vụ phụ trợ chậm đi có thể làm ngừng cả luồng thanh toán, dù hai thứ đó không liên quan gì tới nhau."
       },
       {
-        "type": "paragraph",
-        "text": "Hedging là hành động sử dụng derivatives để giảm thiểu rủi ro của một danh mục hoặc giao dịch. Ví dụ, nếu bạn xuất khẩu và nhận USD, bạn muốn 'khóa' tỷ giá để tránh rủi ro USD giảm giá. Hedging là 'bảo hiểm', không phải đầu cơ - bạn đã chấp nhận tổn thất nhỏ (chi phí hedging) để tránh tổn thất lớn không tính toán được."
+        "question": "Vì sao đường lui phải được quyết định trước?",
+        "options": [
+          "Vì nó là quyết định nghiệp vụ, và lúc ba giờ sáng người trực sẽ quyết theo hướng dễ nhất",
+          "Vì việc triển khai đường lui cần thời gian nên cũng không làm được lúc có sự cố",
+          "Vì cần kiểm thử đường lui trước để chắc chắn nó hoạt động khi cần tới",
+          "Vì đường lui ảnh hưởng tới trải nghiệm người dùng nên cần được thống nhất"
+        ],
+        "correct": 0,
+        "explanation": "Không gọi được dịch vụ kiểm tra gian lận thì cho qua hay từ chối? Cả hai đều có rủi ro, và người trực lúc nửa đêm không nên là người cân nhắc đánh đổi đó lần đầu tiên."
       },
       {
-        "type": "heading",
-        "text": "Forward Contract - Hợp đồng tùy chỉnh"
-      },
-      {
-        "type": "paragraph",
-        "text": "Forward contract là hợp đồng giữa hai bên (thường ngân hàng và doanh nghiệp): 'Tôi bán USD cho bạn ở mức 24,000 VND/USD vào ngày 30/9, số lượng 1M USD.' Forward được 'tùy chỉnh' - hai bên có thể thỏa thuận bất kỳ số lượng, ngày, hay mức giá nào. Tuy nhiên, nó không được ghi danh trên sàn giao dịch (OTC - Over The Counter), nên có 'counterparty risk': nếu ngân hàng bị phá sản, bạn sẽ gặp rủi ro."
-      },
-      {
-        "type": "heading",
-        "text": "Futures Contract - Phiên bản chuẩn hóa của Forward"
-      },
-      {
-        "type": "paragraph",
-        "text": "Futures contract là phiên bản chuẩn hóa của forward: quy mô cố định (ví dụ, 100,000 USD/contract), ngày giao dịch cố định (tháng 3, 6, 9, 12), nó ghi danh trên sàn giao dịch (ví dụ, CBOT, CME). Ưu điểm: dễ dàng mua/bán bất cứ lúc nào, không có counterparty risk (sàn bảo đảm). Hạn chế: ít tùy chỉnh hơn forward."
-      },
-      {
-        "type": "heading",
-        "text": "Options - Quyền lựa chọn"
-      },
-      {
-        "type": "paragraph",
-        "text": "Option là hợp đồng cho bạn 'quyền' (nhưng không bắt buộc) mua/bán tài sản ở mức giá cố định: Call option: Quyền mua USD ở mức 24,000 VND/USD. Nếu tỷ giá thực tế là 25,000, bạn thực hiện (mua 24,000, bán 25,000, kiếm 1,000). Nếu 23,000, bạn không thực hiện (mất chi phí option nhưng tránh lỗ). Put option: Quyền bán USD ở mức cố định. Option đắt hơn forward/futures (vì bạn trả chi phí 'quyền'), nhưng linh hoạt hơn (bạn không bắt buộc)."
-      },
-      {
-        "type": "heading",
-        "text": "Interest Rate Swap - Quản lý lãi suất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Swap lãi suất: bên A và B trao đổi luồng lãi suất. **Ví dụ:** A phải trả nợ ở lãi suất thả nổi (LIBOR + 2%), lo sợ lãi suất sẽ tăng. B lại vay với lãi suất cố định (5%), không sợ lãi suất tăng. Họ ký swap: A trả 5% cố định, B trả LIBOR + 2% cho A. Kết quả: A bây giờ trả 5% cố định (bảo vệ trước lãi suất tăng), B trả LIBOR + 2% (linh hoạt)."
-      },
-      {
-        "type": "heading",
-        "text": "Valuation của Hedges - Tính giá trị Forward/Options"
-      },
-      {
-        "type": "paragraph",
-        "text": "Forward price được tính: F = S × (1 + r)^t, trong đó S là spot price (tỷ giá hiện tại), r là lãi suất, t là thời gian. Ví dụ, USD spot = 23,500 VND, lãi suất VND = 5%/năm, thời gian 1 năm → F ≈ 23,500 × 1.05 = 24,675. Option phức tạp hơn, dùng Black-Scholes model hoặc binomial model. Độ bay hơi (volatility) của tỷ giá ảnh hưởng rất nhiều tới giá option."
-      },
-      {
-        "type": "heading",
-        "text": "Ứng dụng thực tiễn - Treasury Management"
-      },
-      {
-        "type": "paragraph",
-        "text": "Trong công việc treasury: (1) Nước ngoài: Nhà nhập khẩu vay ngoài, dùng forward để khóa tỷ giá hóa đơn. (2) Đầu tư: Quỹ ngoại dùng currency forward để bảo vệ danh mục khỏi rủi ro tỷ giá. (3) Lãi suất: Ngân hàng dùng interest rate swap để quản lý duration của danh mục. (4) Commodity: Nhà máy điện dùng futures để khóa giá dầu, giá than. Mục đích luôn là 'giảm thiểu rủi ro', không phải 'đầu cơ'."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Bốn công cụ phòng hộ và cái giá của từng cái",
-        "subtitle": "Không công cụ nào miễn phí - khác nhau ở chỗ trả phí bằng tiền hay bằng phần lợi bị bỏ",
-        "concepts": [
-          {
-            "vi": "Hợp đồng kỳ hạn",
-            "en": "Forward",
-            "def": "Tuỳ chỉnh, giao dịch OTC, không tốn phí trả trước. Đổi lại là mất luôn phần lợi nếu giá đi theo hướng có lợi, và có rủi ro đối tác."
-          },
-          {
-            "vi": "Hợp đồng tương lai",
-            "en": "Futures",
-            "def": "Chuẩn hoá và niêm yết nên gần như không có rủi ro đối tác. Đổi lại là thanh toán hàng ngày, tức cần thanh khoản để đáp ứng gọi ký quỹ."
-          },
-          {
-            "vi": "Quyền chọn",
-            "en": "Options",
-            "def": "Giữ được phần lợi khi giá đi thuận, chỉ mất phí quyền chọn. Đó chính là cái giá - trả tiền thật ngay từ đầu."
-          },
-          {
-            "vi": "Hoán đổi lãi suất",
-            "en": "Interest Rate Swap",
-            "def": "Đổi dòng lãi cố định lấy thả nổi hoặc ngược lại. Vốn danh nghĩa không bao giờ trao đổi, nên phơi nhiễm tín dụng nhỏ hơn nhiều con số danh nghĩa."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Cái bẫy",
-        "text": "Phòng hộ không xoá rủi ro, nó ĐỔI rủi ro giá lấy rủi ro cơ sở. Và cùng một hợp đồng kỳ hạn là phòng hộ với doanh nghiệp đang có khoản phải trả bằng ngoại tệ, là đầu cơ với người không có khoản đó - phân biệt nằm ở vị thế gốc chứ không ở công cụ."
+        "question": "Vì sao thử lại có thể làm mọi thứ tệ hơn?",
+        "options": [
+          "Vì nó nhân lưu lượng vào đúng lúc bên kia đang quá tải và cần được giảm tải",
+          "Vì mỗi lượt thử lại chiếm thêm đúng một luồng nên rốt cuộc hệ thống hết luồng nhanh hơn",
+          "Vì thử lại có thể tạo ra các bản ghi trùng lặp ở phía dịch vụ bên ngoài",
+          "Vì thời gian chờ tổng cộng của người dùng tăng lên theo số lần thử lại"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là vấn đề thật của việc thử lại. Cái này là vòng phản hồi dương: thử lại làm bên kia tệ hơn, tệ hơn thì nhiều lỗi hơn, nhiều lỗi hơn thì nhiều lượt thử lại hơn."
       }
     ],
     "keyTakeaways": [
-      "Hedging sử dụng derivatives để giảm thiểu rủi ro, không phải để đầu cơ hoặc kiếm lợi",
-      "Forward: tùy chỉnh, OTC, counterparty risk. Futures: chuẩn hóa, sàn giao dịch, an toàn",
-      "Options cho quyền (nhưng không bắt buộc) - linh hoạt nhưng đắt hơn forward",
-      "Interest rate swap giúp quản lý rủi ro lãi suất - bên cố định và bên nổi plổi huởi"
+      "Chậm nguy hiểm hơn tắt: tắt thì lỗi ngay, chậm thì mỗi lượt gọi giữ một luồng.",
+      "Thời gian chờ tối đa là cơ chế nền tảng - không có nó ba cơ chế kia không kịp hoạt động.",
+      "Ngắt mạch vừa bảo vệ bạn vừa cho bên kia một khoảng thở để hồi phục.",
+      "Vách ngăn: một phụ thuộc chậm không được chiếm luồng của phần không liên quan.",
+      "Đường lui là quyết định NGHIỆP VỤ và phải trả lời trước ba giờ sáng."
     ],
     "practicePrompt": {
-      "question": "Công ty nhập khẩu cần mua 1M USD trong 3 tháng. Spot rate hiện tại 24,000 VND/USD, forward rate 3 tháng 24,300 VND/USD. Công ty nên làm gì?",
+      "question": "Bạn chỉ kịp thêm một cơ chế trước cuối tuần. Chọn cái nào?",
       "options": [
-        "Ký forward contract khóa tỷ giá 24.300 ngay, chấp nhận premium 1,25% để bỏ rủi ro",
-        "Chờ đến khi cần mới mua theo spot rate vì spot đang thấp hơn forward - tiết kiệm được chi phí ngay lúc này",
-        "Mua 1M USD ngay hôm nay theo giá spot rồi giữ USD trong 3 tháng chờ đến hạn",
-        "Không cần quan tâm vì chênh lệch spot-forward chỉ 1.25%, không đáng để hedge"
+        "Thời gian chờ tối đa, vì không có nó thì các cơ chế khác không kịp hoạt động",
+        "Ngắt mạch, vì nó bảo vệ cả hệ thống của bạn lẫn dịch vụ bên ngoài",
+        "Vách ngăn, vì nó ngăn được sự cố lan sang các phần không liên quan",
+        "Đường lui, vì nó giữ cho hệ thống vẫn phục vụ được khi phụ thuộc hỏng"
       ],
       "correct": 0,
-      "explanation": "Mục đích hedging là loại bỏ rủi ro không lường trước được, không phải để kiếm lời từ chênh lệch tỷ giá. Ký forward ở 24,300 nghĩa là công ty chấp nhận trả premium 1.25% so với spot hiện tại, đổi lại biết chắc chắn chi phí mua USD trong 3 tháng tới, dù tỷ giá thực tế khi đó có thể tăng vọt lên 26,000 hay giảm về 23,000. 'Chờ mua theo spot' hoặc 'không hedge vì chênh lệch nhỏ' đều để công ty chịu rủi ro tỷ giá không giới hạn."
+      "explanation": "Ba cơ chế kia đều có giá trị lớn hơn khi đứng một mình và đều dựa trên giả định rằng luồng còn rảnh để chạy chúng. Nếu luồng đã bị giữ hết thì ngắt mạch không có gì để ngắt."
     },
     "summary": {
-      "keyIdea": "Hedging instruments (forward, futures, options, swaps) giúp ngân hàng, công ty, và nhà đầu tư quản lý rủi ro. Mục đích không phải kiếm lợi mà là 'bảo vệ' danh mục khỏi những thay đổi không lường trước."
+      "keyIdea": "Một phụ thuộc chậm đi nguy hiểm hơn một phụ thuộc tắt hẳn.",
+      "formula": "Thời gian chờ → ngắt mạch → vách ngăn → đường lui quyết định trước.",
+      "commonMistake": "Thêm thử lại mà không có ngắt mạch, tạo ra vòng phản hồi dương.",
+      "action": "Kiểm xem mọi lượt gọi ra ngoài của bạn có thời gian chờ tối đa chưa."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Nếu bạn làm treasury officer, bạn sẽ sử dụng những công cụ này hàng ngày. Quy tắc vàng: 'Hedge nếu bạn biết rằng bạn sẽ phải đối mặt với rủi ro trong tương lai.' Nếu công ty xuất khẩu USD, hedge tỷ giá. Nếu vay ngoài với lãi suất nổi, hedge bằng interest rate swap. Hạn chế: đừng 'over-hedge' (hedge quá nhiều) hoặc dùng derivatives để đầu cơ - đó là cách mất tiền."
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê mọi lượt gọi ra dịch vụ bên ngoài trong mã của bạn và kiểm từng cái có đặt thời gian chờ tối đa chưa.",
+      "secondary": "Phần lớn thư viện có giá trị mặc định rất cao hoặc không có mặc định. Đây là thay đổi nhỏ nhất trong bài này và cũng là thay đổi có tác dụng lớn nhất."
     },
-    "diagram": [
+    "sections": [
       {
-        "label": "Xác định phơi nhiễm ròng (sau bù trừ tự nhiên)",
-        "arrow": true
+        "type": "lead",
+        "text": "Một dịch vụ bên ngoài chậm đi có thể làm sập hệ thống của bạn nhanh hơn cả khi nó tắt hẳn, và cơ chế bảo vệ cho hai tình huống đó không giống nhau."
       },
       {
-        "label": "Chọn công cụ: forward · futures · options · swap",
-        "arrow": true
+        "type": "heading",
+        "text": "Vì sao chậm nguy hiểm hơn tắt"
       },
       {
-        "label": "Định giá và ghi nhận hợp đồng phòng hộ",
-        "arrow": true
+        "type": "callout",
+        "label": "Luồng bị giữ",
+        "text": "Tắt hẳn thì lượt gọi lỗi ngay và luồng được giải phóng ngay. Chậm đi thì mỗi lượt gọi giữ một luồng suốt thời gian chờ - và với lưu lượng không đổi, số luồng bị giữ tăng cho tới khi hết. Lúc đó cả những phần không liên quan cũng ngừng phục vụ được."
       },
       {
-        "label": "Theo dõi hiệu quả phòng hộ so với hàng thật",
-        "arrow": false
+        "type": "heading",
+        "text": "Bốn cơ chế"
+      },
+      {
+        "type": "list",
+        "items": [
+          "THỜI GIAN CHỜ TỐI ĐA: chặn việc một lượt gọi giữ luồng vô hạn. Nền tảng nhất - không có nó thì ba cái kia không kịp hoạt động.",
+          "NGẮT MẠCH: dừng gọi khi tỷ lệ lỗi vượt ngưỡng, rồi thử lại dần. Vừa bảo vệ bạn vừa cho bên kia một khoảng thở.",
+          "VÁCH NGĂN: giới hạn số luồng dành cho mỗi phụ thuộc, để một cái chậm không chiếm hết chỗ của cái khác.",
+          "ĐƯỜNG LUI: làm gì khi không gọi được."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Đường lui không phải câu hỏi kỹ thuật"
+      },
+      {
+        "type": "paragraph",
+        "text": "Không gọi được dịch vụ kiểm tra gian lận thì cho qua hay từ chối? Cả hai đều có rủi ro, và người trực lúc ba giờ sáng không nên là người cân nhắc đánh đổi đó lần đầu tiên - họ sẽ quyết theo hướng dễ nhất chứ không theo hướng đúng nhất."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Một cảnh báo về thử lại: thêm nó mà không có ngắt mạch tạo ra vòng phản hồi dương. Thử lại làm bên kia tệ hơn, tệ hơn thì nhiều lỗi hơn, nhiều lỗi hơn thì nhiều lượt thử lại hơn.",
+          "Và nếu chỉ làm được một việc, làm THỜI GIAN CHỜ TỐI ĐA. Phần lớn thư viện có giá trị mặc định rất cao hoặc không có mặc định nào cả."
+        ]
       }
-    ],
-    "interactiveType": "payoff",
+    ]
   },
 
 
@@ -70776,149 +70710,186 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1233,
-    "track": "professional",
-    "slug": "actuarial-science-xac-suat-thong-ke",
-    "interactiveType": "regression",
-    "title": "Actuarial Science: Xác suất & thống kê ứng dụng trong định phí bảo hiểm",
-    "subtitle": "Bảng tử suất, giá trị hiện tại kỳ vọng, và toán học đằng sau mỗi hợp đồng bảo hiểm nhân thọ",
+    "slug": "xac-suat-va-thong-ke-cho-ke-hoach-sao-luu",
+    "title": "Xác suất và thống kê cho kế hoạch sao lưu",
+    "subtitle": "Rủi ro mất dữ liệu không giảm tuyến tính theo số bản sao, và biết vì sao đổi hẳn cách bố trí.",
     "duration": "8 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🧮",
-    "openingQuestion": "Một bảng tử suất (mortality table) cho biết xác suất tử vong ở tuổi 45 là 0.3%/năm. Điều này có ý nghĩa gì khi actuary tính phí bảo hiểm nhân thọ?",
+    "interactiveType": "regression",
+    "whyItMatters": "Một kế hoạch sao lưu ba bản có thể an toàn gấp nghìn lần hoặc gần như không an toàn hơn một bản, tuỳ vào một tính chất mà ít ai kiểm.",
+    "openingQuestion": "Ba bản sao thay vì một thì rủi ro mất dữ liệu giảm bao nhiêu?",
     "openingOptions": [
-      "Có nghĩa là chắc chắn 0.3% trong số 1000 người ở tuổi 45 sẽ qua đời trong đúng năm nay, không sai lệch",
-      "Là xác suất thống kê trên dữ liệu lớn, dùng để tính giá trị hiện tại kỳ vọng của khoản phải chi trả sau",
-      "Con số này chỉ mang tính tham khảo, không được dùng trong tính toán phí bảo hiểm thực tế",
-      "0.3% là mức phí bảo hiểm cố định áp dụng cho mọi người ở tuổi 45"
+      "Tuỳ ba bản đó có hỏng độc lập với nhau không - nếu không thì giảm rất ít",
+      "Giảm ba lần, tương ứng với số lượng bản sao được giữ",
+      "Giảm theo luỹ thừa bậc ba của xác suất hỏng của một bản đơn lẻ",
+      "Tuỳ vào chất lượng của thiết bị lưu trữ được dùng cho từng bản sao"
     ],
-    "correctOption": 1,
-    "explanation": "Bảng tử suất là công cụ thống kê cốt lõi của actuary: nó cho biết XÁC SUẤT (không phải sự chắc chắn) một người ở độ tuổi cụ thể sẽ qua đời trong năm, dựa trên phân tích dữ liệu lịch sử của hàng triệu người. Actuary dùng xác suất này kết hợp với giá trị hiện tại (time value of money) để tính 'giá trị hiện tại kỳ vọng' của nghĩa vụ chi trả bảo hiểm - đây chính là cơ sở khoa học để định phí bảo hiểm công bằng và bền vững tài chính.",
+    "correctOption": 0,
+    "explanation": "Lựa chọn thứ ba đúng KHI VÀ CHỈ KHI ba bản hỏng độc lập. Ba bản trên ba đĩa trong cùng một máy, cùng một nguồn điện, cùng một lô sản xuất thì không độc lập - và phần lớn sự kiện làm mất cả ba là những sự kiện đánh vào cả ba cùng lúc: cháy, ngập, một lệnh xoá, một lỗi phần mềm ghi đè.",
+    "diagram": [
+      {
+        "label": "Nhân xác suất chỉ đúng khi các bản hỏng ĐỘC LẬP",
+        "arrow": true
+      },
+      {
+        "label": "Cùng máy, cùng nguồn điện, cùng lô sản xuất = không độc lập",
+        "arrow": true
+      },
+      {
+        "label": "Ba bản, hai loại phương tiện, một bản ở nơi khác",
+        "arrow": true
+      },
+      {
+        "label": "Và một bản không ghi đè được, chống lệnh xoá lẫn mã độc"
+      }
+    ],
     "realWorldExample": {
-      "company": "Bảng tử suất CSO và định phí bảo hiểm nhân thọ Mỹ",
-      "description": "Ngành bảo hiểm Mỹ sử dụng bảng tử suất chuẩn hóa (CSO - Commissioners Standard Ordinary Table), được xây dựng từ dữ liệu thống kê của hàng chục triệu hợp đồng bảo hiểm qua nhiều thập kỷ, cập nhật định kỳ khi tuổi thọ trung bình thay đổi (nhờ tiến bộ y tế). Khi tuổi thọ trung bình tăng lên qua các thập kỷ, các công ty bảo hiểm phải điều chỉnh lại bảng tử suất và mức phí tương ứng - đây là lý do phí bảo hiểm nhân thọ có xu hướng giảm dần theo thời gian cho cùng một độ tuổi, phản ánh xác suất tử vong giảm nhờ y tế phát triển."
+      "company": "Nguyên nhân chung",
+      "description": "Phần lớn trường hợp mất dữ liệu hoàn toàn không phải do nhiều thiết bị hỏng cùng lúc một cách ngẫu nhiên mà do một nguyên nhân chung: một lệnh xoá chạy trên mọi bản, một lỗi phần mềm ghi đè cả bản sao, một sự kiện vật lý ở cùng một địa điểm."
     },
     "quiz": [
       {
-        "question": "Tại sao actuary cần kết hợp cả xác suất tử vong VÀ giá trị thời gian của tiền (time value of money) khi tính phí bảo hiểm nhân thọ, thay vì chỉ dùng xác suất đơn thuần?",
+        "question": "Vì sao không nhân xác suất hỏng của các bản sao với nhau được?",
         "options": [
-          "Giá trị thời gian của tiền không liên quan gì đến định phí bảo hiểm",
-          "Vì khoản chi trả bảo hiểm có thể xảy ra sau NHIỀU NĂM (không phải ngay lập tức), nên actuary phải chiết khấu (discount) khoản chi trả kỳ vọng trong tương lai về giá trị hiện tại - một khoản bồi thường 1 tỷ đồng sau 20 năm có giá trị hiện tại thấp hơn nhiều so với 1 tỷ đồng ngay bây giờ, ảnh hưởng trực tiếp đến mức phí cần thu ngày hôm nay",
-          "Actuary chỉ cần dùng xác suất, giá trị thời gian của tiền chỉ áp dụng cho ngành ngân hàng",
-          "Giá trị thời gian của tiền chỉ quan trọng với bảo hiểm phi nhân thọ, không quan trọng với bảo hiểm nhân thọ"
+          "Vì phép nhân giả định độc lập, mà các bản sao thường chia sẻ nguyên nhân hỏng chung",
+          "Vì xác suất hỏng của từng bản không đo được chính xác trong thực tế",
+          "Vì xác suất hỏng thay đổi theo tuổi của thiết bị lưu trữ đang dùng",
+          "Vì các bản sao được tạo ở các thời điểm khác nhau nên rủi ro khác nhau"
         ],
-        "correct": 1,
-        "explanation": "Đây là lý do 'giá trị hiện tại kỳ vọng' (expected present value) là công cụ trung tâm của actuarial science: một hợp đồng bảo hiểm nhân thọ có thể kéo dài 20-30 năm, và khoản chi trả kỳ vọng trong tương lai xa cần được chiết khấu về hiện tại để tính phí phù hợp - kết hợp cả yếu tố XÁC SUẤT (khả năng sự kiện xảy ra) và THỜI GIAN (khi nào sự kiện có khả năng xảy ra, và giá trị tiền tệ thay đổi theo thời gian như thế nào)."
+        "correct": 0,
+        "explanation": "Đây là giả định ẩn trong mọi phép tính về dự phòng, và nó là giả định bị phá thường xuyên nhất. Ba lựa chọn kia đều làm con số kém chính xác; cái này làm con số sai theo bậc."
       },
       {
-        "question": "Bảo hiểm nhân thọ (life insurance) và bảo hiểm phi nhân thọ (non-life/general insurance, như bảo hiểm xe, nhà) khác nhau như thế nào về phương pháp định phí?",
+        "question": "Vì sao cần một bản không ghi đè được?",
         "options": [
-          "Cả hai loại đều dùng chính xác cùng một phương pháp định phí",
-          "Bảo hiểm nhân thọ dựa chủ yếu vào bảng tử suất (xác suất tử vong theo tuổi, giới tính, tình trạng sức khỏe) với thời hạn hợp đồng dài (nhiều năm-hàng chục năm); bảo hiểm phi nhân thọ dựa vào tần suất và mức độ nghiêm trọng của tổn thất lịch sử (loss frequency & severity) trong thời gian ngắn hơn (thường 1 năm), và chịu ảnh hưởng nhiều hơn bởi các yếu tố biến động như thiên tai",
-          "Bảo hiểm phi nhân thọ không cần actuary tính toán, chỉ cần ước lượng đơn giản",
-          "Bảo hiểm nhân thọ luôn có phí cao hơn bảo hiểm phi nhân thọ trong mọi trường hợp"
+          "Vì nó là bản duy nhất sống sót qua một lệnh xoá hoặc một lượt mã hoá tống tiền",
+          "Vì nó bảo vệ dữ liệu khỏi việc bị sửa nhầm trong quá trình vận hành",
+          "Vì các quy định về lưu trữ yêu cầu giữ một bản không thay đổi được",
+          "Vì nó giúp xác định được thời điểm chính xác mà dữ liệu bị hỏng"
         ],
-        "correct": 1,
-        "explanation": "Hai nhánh chính của actuarial science có phương pháp luận khác biệt: Life Actuary tập trung vào mô hình hóa xác suất sự kiện SỐNG/CHẾT qua thời gian dài (bảng tử suất, bảng sống sót), trong khi Non-life/P&C Actuary (Property & Casualty) tập trung vào tần suất (frequency - bao lâu xảy ra một sự kiện tổn thất) và mức độ nghiêm trọng (severity - tổn thất trung bình mỗi sự kiện) trong khung thời gian ngắn hơn, thường phải xử lý thêm yếu tố biến động cao từ thiên tai/sự kiện bất thường (catastrophe modeling)."
+        "correct": 0,
+        "explanation": "Hai kịch bản này có chung một đặc điểm: kẻ gây ra có quyền ghi lên mọi bản sao thông thường. Số lượng bản sao không giúp gì ở đây - chỉ tính chất không ghi đè được mới giúp."
       },
       {
-        "question": "'Bảng sống sót' (survival curve) trong actuarial science thể hiện điều gì?",
+        "question": "Vì sao một bản sao phải nằm ở địa điểm khác?",
         "options": [
-          "Chỉ đơn giản là danh sách những người đã qua đời trong một công ty bảo hiểm",
-          "Thể hiện XÁC SUẤT một người ở độ tuổi cụ thể sẽ CÒN SỐNG đến các mốc tuổi trong tương lai - là công cụ bổ sung cho bảng tử suất, đặc biệt quan trọng khi tính phí cho các sản phẩm hưu trí/niên kim (annuity) nơi công ty bảo hiểm phải chi trả CHỪNG NÀO người đó CÒN SỐNG (rủi ro ngược lại với bảo hiểm tử vong)",
-          "Bảng sống sót chỉ áp dụng cho bảo hiểm y tế, không áp dụng cho các sản phẩm khác",
-          "Bảng sống sót và bảng tử suất là hai tên gọi khác nhau của cùng một khái niệm giống hệt nhau"
+          "Vì các sự kiện vật lý - cháy, ngập, mất điện kéo dài - đánh vào cả địa điểm",
+          "Vì cần có bản sao gần với người dùng ở khu vực đó để khôi phục lại nhanh hơn",
+          "Vì các quy định về dữ liệu yêu cầu phân tán bản sao qua nhiều khu vực",
+          "Vì địa điểm khác thường có điều kiện bảo quản thiết bị tốt hơn"
         ],
-        "correct": 1,
-        "explanation": "Bảng sống sót đặc biệt quan trọng cho sản phẩm niên kim (annuity - trả tiền định kỳ chừng nào người mua còn sống, phổ biến trong kế hoạch hưu trí): ở đây, RỦI RO của công ty bảo hiểm ngược lại với bảo hiểm nhân thọ thông thường - công ty phải trả tiền CÀNG LÂU nếu người đó CÀNG SỐNG THỌ, nên actuary cần mô hình hóa chính xác xác suất sống sót qua từng năm, không chỉ xác suất tử vong."
+        "correct": 0,
+        "explanation": "Đây là cách loại bỏ một lớp nguyên nhân chung cụ thể - lớp mà số lượng bản sao trong cùng một phòng máy không bao giờ giải quyết được, dù bạn có bao nhiêu bản."
+      },
+      {
+        "question": "Con số nào quan trọng hơn số lượng bản sao?",
+        "options": [
+          "Thời gian khôi phục thật, đo bằng một lượt khôi phục có bấm giờ",
+          "Tần suất tạo bản sao mới và khoảng cách giữa hai lần sao lưu liên tiếp",
+          "Dung lượng dữ liệu được sao lưu và tốc độ tăng trưởng của nó",
+          "Chi phí lưu trữ hằng tháng cho toàn bộ các bản sao đang được giữ"
+        ],
+        "correct": 0,
+        "explanation": "Một bản sao chưa từng được khôi phục thử là một giả định chưa được kiểm. Và con số thời gian khôi phục thật thường lớn hơn nhiều so với ước lượng - có nơi phát hiện nó tính bằng ngày chứ không bằng giờ."
+      },
+      {
+        "question": "Vì sao tần suất sao lưu quyết định lượng dữ liệu mất tối đa?",
+        "options": [
+          "Vì mọi thay đổi kể từ bản sao gần nhất đều mất khi phải khôi phục từ đó",
+          "Vì sao lưu thường xuyên hơn thì mỗi bản chứa ít thay đổi hơn nên nhẹ hơn",
+          "Vì các bản sao cũ có thể đã bị xoá theo chính sách lưu trữ theo thời hạn",
+          "Vì thời gian khôi phục tăng lên khi khoảng cách giữa hai bản sao dài hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là hai con số khác nhau mà nhiều đội chỉ theo dõi một: mất bao nhiêu dữ liệu do tần suất quyết định, còn ngừng phục vụ bao lâu do thời gian khôi phục quyết định."
       }
     ],
     "keyTakeaways": [
-      "Bảng tử suất (mortality table) cho biết xác suất tử vong theo tuổi - dựa trên dữ liệu thống kê lịch sử lớn, không phải dự đoán cho từng cá nhân cụ thể",
-      "Actuary kết hợp xác suất VÀ giá trị thời gian của tiền để tính 'giá trị hiện tại kỳ vọng' của nghĩa vụ chi trả - nền tảng khoa học của việc định phí bảo hiểm",
-      "Life actuary (bảng tử suất, hợp đồng dài hạn) và Non-life/P&C actuary (tần suất-mức độ tổn thất, catastrophe modeling) có phương pháp luận khác nhau",
-      "Bảng sống sót quan trọng cho sản phẩm niên kim/hưu trí - nơi rủi ro của công ty bảo hiểm là người mua sống THỌ HƠN dự kiến, ngược với bảo hiểm tử vong thông thường"
+      "Nhân xác suất chỉ đúng khi các bản hỏng ĐỘC LẬP - và chúng thường không.",
+      "Phần lớn mất dữ liệu hoàn toàn là do NGUYÊN NHÂN CHUNG, không do trùng hợp.",
+      "Ba bản, hai loại phương tiện, một bản ở nơi khác - mỗi vế loại một lớp nguyên nhân.",
+      "Cần một bản KHÔNG GHI ĐÈ ĐƯỢC - số lượng bản sao không chống được lệnh xoá.",
+      "Hai con số phải theo dõi: mất bao nhiêu dữ liệu, và ngừng phục vụ bao lâu."
     ],
     "practicePrompt": {
-      "question": "Một công ty bảo hiểm bán sản phẩm niên kim hưu trí (trả 50 triệu đồng/năm chừng nào khách hàng còn sống, bắt đầu từ tuổi 60). Tuổi thọ trung bình dân số đang tăng lên nhờ y tế phát triển. Điều này ảnh hưởng thế nào đến rủi ro và định phí của sản phẩm này?",
+      "question": "Bạn có năm bản sao, tất cả trong cùng một tài khoản đám mây. Rủi ro lớn nhất?",
       "options": [
-        "Không ảnh hưởng gì vì tuổi thọ trung bình không liên quan đến sản phẩm niên kim",
-        "Tuổi thọ tăng làm tăng rủi ro: actuary phải cập nhật bảng sống sót và tăng phí",
-        "Tuổi thọ tăng luôn có lợi cho công ty bảo hiểm bán sản phẩm niên kim",
-        "Công ty bảo hiểm không cần điều chỉnh gì vì hợp đồng đã ký không thể thay đổi phí"
+        "Một lệnh hoặc một tài khoản bị chiếm có thể xoá cả năm bản trong vài phút",
+        "Chi phí lưu trữ cho năm bản sao cao hơn mức cần thiết cho mức an toàn đó",
+        "Thời gian khôi phục từ đám mây có thể chậm hơn từ thiết bị tại chỗ",
+        "Nhà cung cấp đám mây có thể gặp sự cố ảnh hưởng tới toàn bộ khu vực"
       ],
-      "correct": 1,
-      "explanation": "Đây là ví dụ về 'longevity risk' (rủi ro tuổi thọ) - một trong những thách thức lớn nhất của ngành bảo hiểm hưu trí/niên kim hiện đại: khi tuổi thọ trung bình tăng (xu hướng toàn cầu nhờ y tế phát triển), công ty bảo hiểm phải chi trả niên kim trong THỜI GIAN DÀI HƠN so với dự tính ban đầu dựa trên bảng sống sót cũ - actuary phải liên tục cập nhật mô hình và điều chỉnh phí cho các hợp đồng MỚI để phản ánh rủi ro này (hợp đồng đã ký với phí cố định thì công ty phải tự gánh chịu rủi ro tăng thêm)."
+      "correct": 0,
+      "explanation": "Lựa chọn cuối cũng là nguyên nhân chung và nó hiếm hơn nhiều, đồng thời phần lớn nhà cung cấp có cơ chế phân tán qua nhiều khu vực. Quyền truy cập thì là nguyên nhân chung mà không cơ chế kỹ thuật nào của họ chặn được."
     },
     "summary": {
-      "keyIdea": "Actuarial science kết hợp xác suất thống kê (bảng tử suất, bảng sống sót) với giá trị thời gian của tiền để tính giá trị hiện tại kỳ vọng của nghĩa vụ bảo hiểm - nền tảng khoa học cho việc định phí công bằng và bền vững.",
-      "commonMistake": "Nhầm lẫn xác suất thống kê (áp dụng cho một nhóm lớn) với dự đoán chắc chắn cho một cá nhân cụ thể",
-      "action": "Khi phân tích sản phẩm bảo hiểm/hưu trí, luôn xem xét cả yếu tố xác suất VÀ thời gian - một khoản chi trả xa trong tương lai có giá trị hiện tại thấp hơn nhiều so với con số danh nghĩa"
+      "keyIdea": "Rủi ro mất dữ liệu không giảm tuyến tính theo số bản sao.",
+      "formula": "Ba bản, hai loại phương tiện, một ở nơi khác, một không ghi đè được.",
+      "commonMistake": "Nhân xác suất mà không kiểm xem các bản có hỏng độc lập không.",
+      "action": "Liệt kê các bản sao của bạn và tìm nguyên nhân chung giữa chúng."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Tìm hiểu về khái niệm 'longevity risk' (rủi ro tuổi thọ) - một trong những thách thức actuarial lớn nhất hiện nay khi tuổi thọ trung bình toàn cầu tiếp tục tăng, ảnh hưởng đến cả ngành bảo hiểm và hệ thống hưu trí quốc gia.",
-      "secondary": "Bài tiếp theo sẽ chuyển sang khía cạnh quy định: Solvency II và các yêu cầu vốn tối thiểu mà công ty bảo hiểm phải tuân thủ để đảm bảo khả năng chi trả dài hạn."
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê mọi bản sao dữ liệu của bạn và với mỗi cặp, hỏi: có sự kiện nào làm hỏng cả hai cùng lúc không?",
+      "secondary": "Cùng tài khoản, cùng khoá truy cập, cùng phần mềm ghi - đây là ba nguyên nhân chung phổ biến nhất và cả ba đều không nhìn thấy được trên sơ đồ hạ tầng."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Đằng sau mỗi hợp đồng bảo hiểm nhân thọ là hàng trăm trang tính toán xác suất và giá trị hiện tại - actuarial science là nơi toán học thống kê gặp gỡ tài chính thực tế."
+        "text": "Một kế hoạch sao lưu ba bản có thể an toàn gấp nghìn lần hoặc gần như không an toàn hơn một bản, tuỳ vào một tính chất mà ít ai kiểm."
       },
       {
         "type": "heading",
-        "text": "Bảng tử suất (Mortality Table) - Công cụ nền tảng"
+        "text": "Giả định ẩn trong mọi phép tính dự phòng"
+      },
+      {
+        "type": "callout",
+        "label": "Độc lập",
+        "text": "Nhân xác suất hỏng của ba bản với nhau chỉ đúng KHI VÀ CHỈ KHI chúng hỏng độc lập. Ba đĩa trong cùng một máy, cùng nguồn điện, cùng lô sản xuất thì không độc lập - và phép tính sai theo bậc, không phải sai vài phần trăm."
       },
       {
         "type": "paragraph",
-        "text": "Bảng tử suất là bảng thống kê cho biết xác suất một người ở độ tuổi cụ thể (thường phân theo giới tính, đôi khi cả tình trạng sức khỏe/hút thuốc) sẽ qua đời trong năm tiếp theo, được xây dựng từ dữ liệu quan sát thực tế của hàng triệu hợp đồng bảo hiểm qua nhiều năm. Đây không phải là dự đoán cho MỘT cá nhân cụ thể, mà là xác suất thống kê áp dụng chính xác ở cấp độ TẬP THỂ lớn - nền tảng để actuary tính toán nghĩa vụ chi trả kỳ vọng của công ty bảo hiểm."
+        "text": "Phần lớn trường hợp mất dữ liệu hoàn toàn không phải do nhiều thiết bị hỏng cùng lúc một cách ngẫu nhiên. Nó do một NGUYÊN NHÂN CHUNG: một lệnh xoá chạy trên mọi bản, một lỗi phần mềm ghi đè cả bản sao, một sự kiện vật lý ở cùng một địa điểm."
       },
       {
         "type": "heading",
-        "text": "Giá trị hiện tại kỳ vọng - Kết hợp xác suất và thời gian"
+        "text": "Quy tắc ba - hai - một, đọc theo nguyên nhân chung"
+      },
+      {
+        "type": "list",
+        "items": [
+          "BA bản: chống hỏng thiết bị ngẫu nhiên.",
+          "HAI loại phương tiện khác nhau: chống một lỗi chung của cùng một loại thiết bị hoặc cùng một phần mềm.",
+          "MỘT bản ở địa điểm khác: chống sự kiện vật lý đánh vào cả địa điểm."
+        ]
       },
       {
         "type": "paragraph",
-        "text": "Công thức cốt lõi của actuarial science: Giá trị hiện tại kỳ vọng = Σ [Xác suất sự kiện xảy ra ở năm t × Khoản chi trả × Hệ số chiết khấu về hiện tại ở năm t]. Ví dụ đơn giản: nếu xác suất một người 45 tuổi qua đời trong năm tới là 0.3%, khoản bảo hiểm là 1 tỷ đồng, và lãi suất chiết khấu là 5%, actuary tính được 'chi phí kỳ vọng' của rủi ro này cho năm đó, cộng dồn qua toàn bộ thời hạn hợp đồng (có thể 20-30 năm) để ra mức phí cần thu."
+        "text": "Và một vế thứ tư ngày càng quan trọng: MỘT bản không ghi đè được. Một lệnh xoá hay một lượt mã hoá tống tiền đều do một chủ thể có quyền ghi lên mọi bản sao thông thường gây ra - số lượng bản sao không giúp gì ở đó."
       },
       {
         "type": "heading",
-        "text": "Hai nhánh chính: Life Actuary và Non-life/P&C Actuary"
+        "text": "Hai con số quan trọng hơn số lượng bản"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Life & Health Actuary",
-          "text": "Bảng tử suất/sống sót, hợp đồng dài hạn (nhiều năm - hàng chục năm), tập trung vào xác suất tử vong/sống sót theo tuổi"
+          "label": "Mất bao nhiêu dữ liệu",
+          "text": "Do TẦN SUẤT sao lưu quyết định. Mọi thay đổi kể từ bản gần nhất đều mất."
         },
         "right": {
-          "label": "Non-life/P&C Actuary",
-          "text": "Tần suất & mức độ nghiêm trọng tổn thất (frequency & severity), hợp đồng ngắn hạn (thường 1 năm), xử lý catastrophe modeling (thiên tai, sự kiện hiếm nhưng thiệt hại lớn)"
+          "label": "Ngừng phục vụ bao lâu",
+          "text": "Do THỜI GIAN KHÔI PHỤC quyết định. Chỉ đo được bằng một lượt khôi phục có bấm giờ."
         }
       },
       {
         "type": "closing",
         "lines": [
-          "Actuarial science là một trong những lĩnh vực toán học ứng dụng khắt khe nhất trong tài chính - sai lệch nhỏ trong mô hình xác suất có thể dẫn đến thiếu hụt dự phòng hàng tỷ đồng nhiều năm sau.",
-          "Đây cũng là lý do actuary phải trải qua chuỗi kỳ thi chuyên môn nghiêm ngặt (như SOA, IFoA) kéo dài nhiều năm để được công nhận chính thức trong ngành."
+          "Nhiều đội chỉ theo dõi một trong hai, và thường là con số dễ hơn - tần suất sao lưu.",
+          "Con số còn lại chỉ lộ ra lúc cần dùng, và nó thường lớn hơn nhiều so với ước lượng: có nơi phát hiện thời gian khôi phục của mình tính bằng ngày chứ không bằng giờ."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Bảng tử suất - xác suất theo từng độ tuổi",
-        "arrow": true
-      },
-      {
-        "label": "Ước lượng dòng chi trả kỳ vọng theo thời gian",
-        "arrow": true
-      },
-      {
-        "label": "Chiết khấu về hiện tại → giá trị hiện tại kỳ vọng",
-        "arrow": true
-      },
-      {
-        "label": "Cộng biên an toàn và chi phí → mức phí bảo hiểm",
-        "arrow": false
       }
     ]
   },
@@ -72689,154 +72660,171 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1244,
-    "track": "professional",
-    "slug": "ke-toan-don-tich-vs-ke-toan-tien-mat",
-    "title": "Kế toán dồn tích vs Kế toán tiền mặt: Khác biệt nền tảng mọi kế toán viên phải nắm",
-    "subtitle": "Tại sao doanh thu ghi nhận không phải lúc nào cũng trùng với tiền thực sự vào tài khoản",
+    "slug": "ghi-ngay-hay-ghi-theo-lo-va-do-tre-du-lieu",
+    "title": "Ghi ngay hay ghi theo lô - và độ trễ của dữ liệu",
+    "subtitle": "Hai cách đưa dữ liệu vào hệ thống, và chúng cho hai định nghĩa khác nhau về từ hiện tại.",
     "duration": "7 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "📗",
-    "openingQuestion": "Một công ty giao hàng cho khách vào ngày 28/12 với hóa đơn 100 triệu, nhưng khách hàng thanh toán vào ngày 15/1 năm sau. Theo nguyên tắc kế toán dồn tích (accrual basis), doanh thu 100 triệu này được ghi nhận vào thời điểm nào?",
+    "whyItMatters": "Phần lớn tranh cãi về việc hai bảng số không khớp nhau đều tan biến khi hai bên nhận ra mình đang dùng hai định nghĩa khác nhau về từ hiện tại.",
+    "openingQuestion": "Hai báo cáo cho hai con số khác nhau về cùng một chỉ số. Nguyên nhân phổ biến nhất?",
     "openingOptions": [
-      "Ngày 15/1 năm sau, khi tiền thực sự vào tài khoản công ty",
-      "Ngày 28/12, khi hàng được giao và quyền thu tiền phát sinh",
-      "Chia đều cho cả hai ngày, mỗi ngày ghi nhận 50 triệu",
-      "Không ghi nhận doanh thu cho đến khi khách hàng xác nhận hài lòng với sản phẩm"
+      "Hai bên lấy dữ liệu ở hai thời điểm khác nhau trên cùng một đường dữ liệu",
+      "Một trong hai bên đang dùng công thức tính toán không đúng với định nghĩa",
+      "Dữ liệu nguồn bị lỗi nên các hệ thống hạ nguồn nhận được giá trị sai lệch",
+      "Hai hệ thống lọc dữ liệu theo các điều kiện khác nhau nên phạm vi khác nhau"
     ],
-    "correctOption": 1,
-    "explanation": "Nguyên tắc kế toán dồn tích (accrual accounting) - nền tảng của mọi chuẩn mực kế toán hiện đại (VAS, IFRS, US GAAP) - quy định doanh thu được ghi nhận khi QUYỀN THU TIỀN phát sinh (hàng đã giao, dịch vụ đã hoàn thành), không phải khi tiền mặt thực sự được nhận. Khoản 100 triệu này được ghi Nợ Tài khoản Phải thu (Accounts Receivable), Có Doanh thu vào ngày 28/12 - và khi tiền về ngày 15/1, chỉ đơn giản là chuyển từ Phải thu sang Tiền mặt, không ghi nhận thêm doanh thu mới.",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều xảy ra và đều được kiểm trước tiên vì chúng dễ nghĩ tới. Nguyên nhân phổ biến hơn cả lại tầm thường hơn: một bên đọc từ hệ thống ghi ngay, một bên đọc từ kho dữ liệu được cập nhật theo lô mỗi giờ - và cả hai đều đúng với định nghĩa của mình.",
+    "diagram": [
+      {
+        "label": "Ghi ngay: mỗi thay đổi cập nhật ngay, đọc ra là hiện tại",
+        "arrow": true
+      },
+      {
+        "label": "Ghi theo lô: gom lại, cập nhật theo chu kỳ, rẻ hơn nhiều",
+        "arrow": true
+      },
+      {
+        "label": "Hai đường cho hai định nghĩa khác nhau về từ HIỆN TẠI",
+        "arrow": true
+      },
+      {
+        "label": "Nên mọi báo cáo phải ghi rõ số liệu tính tới thời điểm nào"
+      }
+    ],
     "realWorldExample": {
-      "company": "Công ty xây dựng và hợp đồng dài hạn",
-      "description": "Các công ty xây dựng thường ký hợp đồng thi công kéo dài nhiều tháng/năm nhưng chỉ nhận thanh toán theo tiến độ hoặc khi hoàn thành. Kế toán dồn tích cho phép công ty ghi nhận doanh thu theo TIẾN ĐỘ THỰC HIỆN (percentage of completion) dù chưa nhận đủ tiền, phản ánh đúng hoạt động kinh doanh thực tế của công ty trong kỳ báo cáo - trong khi kế toán tiền mặt sẽ khiến báo cáo tài chính của công ty trông rất bất thường (doanh thu 0 trong nhiều tháng, rồi đột ngột tăng vọt khi nhận thanh toán)."
+      "company": "Ghi rõ tính tới thời điểm nào",
+      "description": "Một dòng nhỏ ghi số liệu tính tới mấy giờ giải quyết được phần lớn tranh cãi về việc hai bảng không khớp. Nó rẻ tới mức không có lý do gì để bỏ, và nó thường bị bỏ vì người làm báo cáo biết rõ dữ liệu của mình cũ bao lâu."
     },
     "quiz": [
       {
-        "question": "Vì sao hầu hết các công ty đại chúng/niêm yết trên sàn chứng khoán BẮT BUỘC phải sử dụng kế toán dồn tích thay vì kế toán tiền mặt, dù kế toán tiền mặt đơn giản hơn nhiều?",
+        "question": "Ưu điểm chính của ghi theo lô là gì?",
         "options": [
-          "Vì kế toán tiền mặt không hợp pháp trong mọi trường hợp",
-          "Vì kế toán dồn tích phản ánh đúng bản chất kinh tế của hoạt động kinh doanh trong một kỳ (khớp đúng doanh thu với chi phí tạo ra doanh thu đó - nguyên tắc phù hợp/matching principle), giúp nhà đầu tư so sánh hiệu quả hoạt động giữa các kỳ và giữa các công ty một cách công bằng - kế toán tiền mặt dễ bị bóp méo bởi thời điểm thu/chi tiền ngẫu nhiên, không phản ánh đúng hiệu quả kinh doanh thực chất",
-          "Vì kế toán dồn tích giúp công ty đóng thuế ít hơn",
-          "Không có sự khác biệt thực chất nào giữa hai phương pháp"
+          "Rẻ hơn nhiều vì gom nhiều thay đổi lại và ghi một lần thay vì ghi từng cái",
+          "Dữ liệu nhất quán hơn vì mọi bản ghi trong lô được xử lý cùng lúc",
+          "Dễ khôi phục hơn khi có lỗi vì có thể chạy lại nguyên một lô",
+          "Ít gây tải đột biến cho hệ thống vì công việc được phân bố đều hơn"
         ],
-        "correct": 1,
-        "explanation": "Nguyên tắc phù hợp (matching principle) là lý do cốt lõi: kế toán dồn tích ghép đúng doanh thu của một kỳ với các chi phí đã bỏ ra để tạo ra doanh thu đó, bất kể dòng tiền thực tế xảy ra khi nào - giúp báo cáo tài chính phản ánh đúng HIỆU QUẢ KINH DOANH thực chất, thay vì bị biến dạng bởi việc khách hàng trả tiền sớm hay muộn (yếu tố không liên quan đến hiệu quả vận hành thực sự của công ty)."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là lợi ích thật đi kèm. Chi phí là lý do gốc: ghi một triệu bản ghi trong một lượt rẻ hơn hàng chục lần so với ghi một triệu lượt riêng lẻ, vì phần chi phí cố định của mỗi lượt ghi được chia đều."
       },
       {
-        "question": "'Chi phí trả trước' (prepaid expenses) như tiền thuê văn phòng trả trước 1 năm được xử lý như thế nào trong kế toán dồn tích?",
+        "question": "Vì sao độ trễ dữ liệu phải được ghi rõ trên báo cáo?",
         "options": [
-          "Ghi nhận toàn bộ là chi phí ngay lập tức vào tháng trả tiền",
-          "Ghi nhận là Tài sản (Prepaid Expense - một khoản đã trả trước nhưng lợi ích kinh tế còn kéo dài) tại thời điểm thanh toán, sau đó PHÂN BỔ dần thành chi phí qua từng kỳ kế toán tương ứng với thời gian sử dụng thực tế (ví dụ 1/12 mỗi tháng cho hợp đồng thuê 1 năm)",
-          "Không cần ghi nhận gì cho đến khi hợp đồng thuê kết thúc",
-          "Prepaid expenses chỉ áp dụng cho kế toán tiền mặt, không áp dụng cho kế toán dồn tích"
+          "Vì người đọc không có cách nào biết dữ liệu cũ bao lâu nếu không được nói",
+          "Vì các quy định về báo cáo yêu cầu ghi rõ thời điểm của số liệu",
+          "Vì độ trễ thay đổi theo tải nên thật sự cần cập nhật thông tin này thường xuyên xuyên",
+          "Vì cần đối chiếu với các báo cáo khác có cùng khoảng thời gian"
         ],
-        "correct": 1,
-        "explanation": "Đây là ứng dụng trực tiếp của matching principle: dù tiền đã chi ra hết ngay từ đầu, chi phí thuê văn phòng thực sự 'phát sinh' dần theo từng tháng sử dụng - kế toán dồn tích ghi nhận khoản trả trước là TÀI SẢN, rồi phân bổ (amortize) dần thành CHI PHÍ qua các kỳ tương ứng, đảm bảo mỗi tháng chỉ ghi nhận đúng phần chi phí thực sự thuộc về tháng đó."
+        "correct": 0,
+        "explanation": "Người đọc mặc định rằng con số là hiện tại, và mặc định đó gần như luôn sai với đường theo lô. Đây cũng là lý do dòng ghi chú ấy hay bị bỏ: người làm báo cáo biết rõ độ trễ nên không thấy cần nói."
       },
       {
-        "question": "Một công ty có lợi nhuận kế toán (theo dồn tích) dương nhưng dòng tiền hoạt động (operating cash flow) âm trong cùng kỳ. Điều này có thể phản ánh vấn đề gì cần kế toán viên/nhà phân tích lưu ý?",
+        "question": "Khi nào bắt buộc phải dùng đường ghi ngay?",
         "options": [
-          "Đây luôn là dấu hiệu công ty đang gian lận báo cáo tài chính",
-          "Có thể phản ánh việc công ty đang tăng trưởng doanh thu mạnh nhưng CHƯA THU ĐƯỢC TIỀN từ khách hàng (khoản phải thu tăng nhanh), hoặc đang đầu tư mạnh vào hàng tồn kho - đây là lý do tại sao phân tích tài chính chuyên nghiệp luôn xem XÉT CẢ báo cáo lợi nhuận (dồn tích) LẪN báo cáo lưu chuyển tiền tệ, không chỉ dựa vào một trong hai",
-          "Điều này không thể xảy ra trong kế toán dồn tích hợp lệ",
-          "Công ty chắc chắn sẽ phá sản trong năm tới"
+          "Khi quyết định tiếp theo phụ thuộc vào giá trị mới nhất, ví dụ kiểm tra số dư",
+          "Khi khối lượng phần dữ liệu nhỏ nên chi phí ghi từng lượt không đáng kể",
+          "Khi dữ liệu cần được hiển thị cho người dùng cuối trên giao diện",
+          "Khi hệ thống có yêu cầu cao về độ chính xác của các con số báo cáo"
         ],
-        "correct": 1,
-        "explanation": "Đây là lý do quan trọng nhất giải thích tại sao kế toán dồn tích - dù chuẩn xác về mặt ghi nhận hiệu quả kinh doanh - vẫn cần được bổ sung bằng báo cáo lưu chuyển tiền tệ (cash flow statement): lợi nhuận dồn tích dương nhưng dòng tiền âm là tín hiệu cảnh báo sớm phổ biến (early warning sign) mà nhiều vụ sụp đổ doanh nghiệp trong lịch sử đã bỏ qua - công ty có thể 'có lãi trên giấy' nhưng thực sự cạn kiệt tiền mặt để vận hành."
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba là nơi người ta hay tưởng cần ghi ngay và thường không cần: một bảng thống kê cho người dùng xem chậm năm phút thì không ai nhận ra. Điều quyết định là có QUYẾT ĐỊNH nào dựa trên giá trị đó không."
+      },
+      {
+        "question": "Rủi ro của việc dùng cả hai đường cho cùng một loại dữ liệu là gì?",
+        "options": [
+          "Hai đường có thể lệch nhau và không ai biết đường nào là nguồn chuẩn",
+          "Chi phí hạ tầng tăng lên vì phải vận hành hai hệ thống song song",
+          "Việc đồng bộ giữa hai đường tạo thêm một điểm hỏng cho hệ thống",
+          "Đội phải bảo trì hai bộ mã xử lý cho cùng một loại nghiệp vụ"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là chi phí và đều chấp nhận được. Cái này là vấn đề về tính đúng đắn, và nó chỉ giải được bằng cách tuyên bố rõ MỘT đường là nguồn chuẩn - không phải bằng cách làm hai đường khớp nhau."
+      },
+      {
+        "question": "Điều gì giải quyết được phần lớn tranh cãi về hai bảng số không khớp?",
+        "options": [
+          "Ghi rõ trên mỗi bảng rằng số liệu tính tới thời điểm nào",
+          "Thống nhất công thức tính toán giữa các bên trước khi làm báo cáo",
+          "Dùng chung một nguồn dữ liệu duy nhất cho tất cả các báo cáo",
+          "Tự động đối chiếu hai bảng theo lịch và cảnh báo khi có chênh lệch"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba là cách giải triệt để và nó tốn hàng tháng. Dòng ghi chú kia mất năm phút và giải quyết được phần lớn trường hợp, vì phần lớn chênh lệch là chênh lệch về thời điểm chứ không về cách tính."
       }
     ],
     "keyTakeaways": [
-      "Kế toán dồn tích ghi nhận doanh thu/chi phí khi PHÁT SINH (quyền/nghĩa vụ), không phải khi tiền mặt thực sự chuyển giao - đây là chuẩn mực bắt buộc cho công ty đại chúng",
-      "Nguyên tắc phù hợp (matching principle): ghép đúng doanh thu với chi phí tạo ra doanh thu đó trong cùng kỳ báo cáo",
-      "Chi phí trả trước được ghi nhận là tài sản, sau đó phân bổ dần thành chi phí theo thời gian sử dụng thực tế",
-      "Lợi nhuận dồn tích dương nhưng dòng tiền âm là tín hiệu cảnh báo quan trọng - luôn cần đọc cả 2 báo cáo song song, không chỉ một"
+      "Ghi ngay và ghi theo lô cho hai định nghĩa khác nhau về từ HIỆN TẠI.",
+      "Ghi theo lô rẻ hơn hàng chục lần vì chi phí cố định mỗi lượt ghi được chia đều.",
+      "Bắt buộc ghi ngay khi có QUYẾT ĐỊNH dựa trên giá trị mới nhất.",
+      "Dùng cả hai đường thì phải tuyên bố rõ MỘT đường là nguồn chuẩn.",
+      "Ghi rõ số liệu tính tới thời điểm nào - mất năm phút, giải quyết phần lớn tranh cãi."
     ],
     "practicePrompt": {
-      "question": "Công ty bạn nhận được đơn hàng 500 triệu vào tháng 3, giao hàng và xuất hóa đơn tháng 4, khách hàng thanh toán tháng 6. Chi phí sản xuất đơn hàng này (nguyên vật liệu, nhân công) đã chi ra dần từ tháng 2-4, tổng 300 triệu. Theo kế toán dồn tích, lợi nhuận gộp 200 triệu của đơn hàng này nên được ghi nhận vào tháng nào?",
+      "question": "Bảng điều khiển hiển thị số dư ví cho người dùng. Đường nào?",
       "options": [
-        "Tháng 2, khi bắt đầu chi tiền sản xuất",
-        "Tháng 4, khi giao hàng và ghi nhận doanh thu",
-        "Tháng 6, khi tiền thực sự về tài khoản",
-        "Chia đều lợi nhuận cho các tháng 2, 3, 4, 5, 6"
+        "Ghi ngay, vì người dùng sẽ ra quyết định chi tiêu dựa trên con số đó",
+        "Theo lô, vì hiển thị thống kê không cần dữ liệu chính xác tới từng giây",
+        "Theo lô với chu kỳ ngắn, để cân bằng giữa độ mới và chi phí hệ thống",
+        "Tuỳ vào lưu lượng truy cập vào bảng điều khiển đó mỗi ngày"
       ],
-      "correct": 1,
-      "explanation": "Đây là ứng dụng trực tiếp của matching principle: doanh thu ghi nhận tháng 4 (khi giao hàng, quyền thu tiền phát sinh) phải được ghép với TOÀN BỘ chi phí đã bỏ ra để tạo ra doanh thu đó (300 triệu chi phí sản xuất từ tháng 2-4), cho ra lợi nhuận gộp 200 triệu ghi nhận trong tháng 4 - bất kể dòng tiền thực tế (chi từ tháng 2, thu về tháng 6) trải dài qua nhiều tháng khác nhau."
+      "correct": 0,
+      "explanation": "Đây là trường hợp mà tiêu chí hiển thị cho người dùng dẫn tới kết luận sai. Số dư khác một bảng thống kê ở chỗ nó là cơ sở cho một quyết định ngay lập tức, và chậm năm phút ở đây tạo ra giao dịch bị từ chối."
     },
     "summary": {
-      "keyIdea": "Kế toán dồn tích ghi nhận doanh thu/chi phí theo thời điểm phát sinh quyền/nghĩa vụ (không phải dòng tiền thực tế), tuân theo nguyên tắc phù hợp để phản ánh đúng hiệu quả kinh doanh của từng kỳ báo cáo.",
-      "commonMistake": "Nhầm lẫn lợi nhuận kế toán (dồn tích) với tiền mặt thực có trong tài khoản - hai con số này có thể khác biệt đáng kể trong cùng một kỳ",
-      "action": "Khi phân tích báo cáo tài chính bất kỳ công ty nào, luôn đối chiếu lợi nhuận (báo cáo kết quả kinh doanh) với dòng tiền hoạt động (báo cáo lưu chuyển tiền tệ) để có bức tranh đầy đủ"
+      "keyIdea": "Hai cách đưa dữ liệu vào cho hai định nghĩa khác nhau về từ hiện tại.",
+      "formula": "Có quyết định dựa trên giá trị mới nhất → ghi ngay. Không → theo lô, rẻ hơn nhiều.",
+      "commonMistake": "Không ghi độ trễ trên báo cáo, vì người làm biết rõ nên không thấy cần nói.",
+      "action": "Thêm dòng số liệu tính tới thời điểm nào vào báo cáo bạn hay dùng."
     },
     "application": {
-      "title": "Áp dụng vào công việc kế toán thực tế",
-      "message": "Khi hạch toán một nghiệp vụ, luôn tự hỏi: 'quyền thu tiền/nghĩa vụ trả tiền đã thực sự phát sinh chưa?' thay vì chỉ nhìn vào việc tiền đã chuyển hay chưa - đây là kỹ năng phân biệt kế toán viên thành thạo với người mới bắt đầu.",
-      "secondary": "Bài tiếp theo sẽ đi sâu vào bút toán điều chỉnh (adjusting entries) và chu trình khóa sổ - công việc thực hành hàng tháng/hàng quý của mọi kế toán viên."
+      "title": "Làm ngay hôm nay",
+      "message": "Thêm một dòng vào báo cáo mà đội bạn hay dùng: số liệu tính tới thời điểm nào.",
+      "secondary": "Nếu bạn không biết con số đó, đi tìm nó - và khả năng cao là những người đang đọc báo cáo ấy cũng đang không biết."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Sự khác biệt giữa kế toán dồn tích và kế toán tiền mặt là một trong những khái niệm nền tảng nhất - và thường bị hiểu nhầm nhiều nhất - trong toàn bộ ngành kế toán."
+        "text": "Phần lớn tranh cãi về việc hai bảng số không khớp nhau đều tan biến khi hai bên nhận ra mình đang dùng hai định nghĩa khác nhau về từ HIỆN TẠI."
+      },
+      {
+        "type": "heading",
+        "text": "Hai đường"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Kế toán tiền mặt (Cash Basis)",
-          "text": "Ghi nhận doanh thu/chi phí khi TIỀN THỰC SỰ chuyển giao. Đơn giản, dễ hiểu, nhưng không phản ánh đúng hiệu quả kinh doanh theo kỳ - phổ biến ở hộ kinh doanh nhỏ, không được phép dùng cho công ty đại chúng"
+          "label": "Ghi ngay",
+          "text": "Mỗi thay đổi cập nhật ngay lập tức. Đọc ra là giá trị hiện tại. Đắt hơn, và bắt buộc khi có quyết định dựa trên giá trị mới nhất."
         },
         "right": {
-          "label": "Kế toán dồn tích (Accrual Basis)",
-          "text": "Ghi nhận doanh thu/chi phí khi QUYỀN/NGHĨA VỤ phát sinh, bất kể dòng tiền. Phức tạp hơn nhưng phản ánh đúng bản chất kinh tế - bắt buộc theo VAS/IFRS cho công ty niêm yết"
+          "label": "Ghi theo lô",
+          "text": "Gom lại và cập nhật theo chu kỳ. Rẻ hơn hàng chục lần, vì phần chi phí cố định của mỗi lượt ghi được chia đều cho cả lô."
         }
       },
       {
+        "type": "callout",
+        "label": "Tiêu chí chọn",
+        "text": "Không phải hiển thị cho người dùng hay không - một bảng thống kê chậm năm phút thì không ai nhận ra. Điều quyết định là có QUYẾT ĐỊNH nào dựa trên giá trị đó không: kiểm tra số dư trước khi cho giao dịch đi là ghi ngay, không thương lượng."
+      },
+      {
         "type": "heading",
-        "text": "Nguyên tắc Phù hợp (Matching Principle)"
+        "text": "Khi dùng cả hai"
       },
       {
         "type": "paragraph",
-        "text": "Đây là nguyên tắc chi phối toàn bộ kế toán dồn tích: chi phí phải được ghi nhận trong CÙNG KỲ với doanh thu mà nó giúp tạo ra. Ví dụ, nếu một công ty sản xuất hàng hóa trong tháng 1-3 nhưng bán hết trong tháng 4, chi phí sản xuất (giá vốn hàng bán) chỉ được ghi nhận vào tháng 4 - cùng lúc với doanh thu bán hàng, dù tiền mặt đã chi ra từ tháng 1-3."
+        "text": "Phần lớn hệ thống thật đều dùng cả hai, và rủi ro là hai đường lệch nhau mà không ai biết đường nào chuẩn. Cách giải không phải làm chúng khớp nhau - độ trễ khiến điều đó không bao giờ đạt được - mà là TUYÊN BỐ RÕ một đường là nguồn chuẩn."
       },
       {
-        "type": "heading",
-        "text": "Các khoản mục điển hình cần điều chỉnh theo Dồn tích"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Khoản phải thu (Accounts Receivable): doanh thu đã ghi nhận nhưng chưa thu tiền",
-          "Khoản phải trả (Accounts Payable): chi phí đã phát sinh nhưng chưa thanh toán",
-          "Chi phí trả trước (Prepaid Expenses): đã trả tiền nhưng lợi ích kéo dài nhiều kỳ, cần phân bổ dần",
-          "Doanh thu chưa thực hiện (Unearned Revenue): đã nhận tiền nhưng chưa cung cấp hàng hóa/dịch vụ tương ứng"
+        "type": "closing",
+        "lines": [
+          "Và cách rẻ nhất để tránh phần lớn tranh cãi: ghi rõ trên mỗi bảng số rằng SỐ LIỆU TÍNH TỚI THỜI ĐIỂM NÀO.",
+          "Dòng đó mất năm phút để thêm và nó hay bị bỏ vì người làm báo cáo biết rõ dữ liệu của mình cũ bao lâu - còn người đọc thì mặc định rằng con số là hiện tại."
         ]
-      },
-      {
-        "type": "callout",
-        "label": "Lưu ý quan trọng cho nhà phân tích",
-        "text": "Lợi nhuận kế toán (accrual) và dòng tiền thực tế (cash) là HAI KHÁI NIỆM KHÁC NHAU và có thể lệch pha đáng kể trong ngắn hạn. Một công ty 'có lãi' trên báo cáo kết quả kinh doanh vẫn có thể gặp khủng hoảng thanh khoản nếu dòng tiền vào không đủ nhanh - đây là lý do báo cáo lưu chuyển tiền tệ luôn cần được đọc song song với báo cáo kết quả kinh doanh."
       }
-    ],
-    "diagram": [
-      {
-        "label": "Nghiệp vụ phát sinh",
-        "arrow": true
-      },
-      {
-        "label": "Kế toán tiền mặt: ghi khi tiền vào/ra",
-        "arrow": true
-      },
-      {
-        "label": "Kế toán dồn tích: ghi khi phát sinh, khớp doanh thu với chi phí",
-        "arrow": true
-      },
-      {
-        "label": "Chênh lệch tạo ra các khoản phải thu, phải trả, trả trước",
-        "arrow": true
-      },
-      {
-        "label": "Đây là lý do lợi nhuận khác dòng tiền",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "process",
+    ]
   },
   {
     "id": 1245,
@@ -74450,157 +74438,181 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1255,
-    "track": "professional",
-    "slug": "needs-analysis-tu-van-bao-hiem",
-    "title": "Needs Analysis trong Tư vấn Bảo hiểm: Xác định đúng nhu cầu bảo vệ của khách hàng",
-    "subtitle": "Human Life Value và Capital Needs Analysis - hai phương pháp tính số tiền bảo hiểm nhân thọ thực sự cần thiết",
+    "slug": "xac-dinh-du-lieu-nao-can-bao-ve-toi-muc-nao",
+    "title": "Xác định dữ liệu nào cần bảo vệ tới mức nào",
+    "subtitle": "Bảo vệ mọi thứ ở mức cao nhất là cách chắc chắn để không bảo vệ được thứ quan trọng nhất.",
     "duration": "7 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "🛟",
-    "openingQuestion": "Một khách hàng 35 tuổi, là trụ cột thu nhập duy nhất của gia đình (vợ không đi làm, 2 con nhỏ), thu nhập 30 triệu/tháng, hỏi bạn nên mua bảo hiểm nhân thọ với số tiền bảo hiểm bao nhiêu là hợp lý. Phương pháp 'Human Life Value' tiếp cận câu hỏi này như thế nào?",
+    "whyItMatters": "Ngân sách sao lưu và thời gian khôi phục đều có hạn, nên mọi đồng chi cho dữ liệu dựng lại được là một đồng không chi cho dữ liệu không dựng lại được.",
+    "openingQuestion": "Câu hỏi nào phân loại dữ liệu tốt nhất cho mục đích sao lưu?",
     "openingOptions": [
-      "Luôn khuyến nghị một con số cố định như 1 tỷ đồng cho mọi khách hàng bất kể hoàn cảnh",
-      "Ước tính tổng giá trị kinh tế mà người đó tạo ra cho gia đình, chiết khấu về hiện tại nay",
-      "Số tiền bảo hiểm nên bằng đúng tổng tài sản hiện có của khách hàng",
-      "Không cần tính toán gì, chỉ cần mua gói bảo hiểm phổ biến nhất trên thị trường"
+      "Mất nó thì dựng lại được không, và dựng lại mất bao lâu",
+      "Dữ liệu đó có chứa thông tin cá nhân của người dùng hay không",
+      "Dung lượng của nó chiếm bao nhiêu phần trong tổng dung lượng lưu trữ",
+      "Bộ phận nào trong tổ chức đang sở hữu và sử dụng dữ liệu đó"
     ],
-    "correctOption": 1,
-    "explanation": "Phương pháp Human Life Value (HLV) định lượng giá trị kinh tế của một người dựa trên dòng thu nhập họ sẽ tạo ra cho gia đình trong tương lai - tương tự cách định giá một tài sản tạo ra dòng tiền (như DCF trong tài chính doanh nghiệp). Công thức cơ bản: ước tính thu nhập ròng hàng năm (sau thuế, trừ chi tiêu cá nhân của người đó), nhân với số năm làm việc còn lại dự kiến, chiết khấu về giá trị hiện tại - cho ra con số phản ánh chính xác mức độ bảo vệ tài chính gia đình thực sự cần nếu mất đi nguồn thu nhập này.",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều là tiêu chí hữu ích cho những mục đích khác - tuân thủ, chi phí, phân công. Với sao lưu, câu quyết định là khả năng dựng lại: một bảng tổng hợp tính lại được trong hai giờ không cần cùng mức bảo vệ với dữ liệu do người dùng nhập vào, thứ mà mất là mất vĩnh viễn.",
+    "diagram": [
+      {
+        "label": "Dựng lại được không, và mất bao lâu để dựng lại",
+        "arrow": true
+      },
+      {
+        "label": "Không dựng lại được → mức cao nhất, không thương lượng",
+        "arrow": true
+      },
+      {
+        "label": "Dựng lại được nhưng chậm → sao lưu để rút ngắn thời gian",
+        "arrow": true
+      },
+      {
+        "label": "Dựng lại nhanh → không cần sao lưu, chỉ cần mã dựng lại chạy được"
+      }
+    ],
     "realWorldExample": {
-      "company": "So sánh HLV và Capital Needs Analysis trong thực hành tư vấn",
-      "description": "Trong thực hành tư vấn bảo hiểm chuyên nghiệp, nhiều cố vấn kết hợp cả hai phương pháp: Human Life Value cho ước tính ban đầu dựa trên góc độ 'thay thế thu nhập', trong khi Capital Needs Analysis (Nhu cầu Vốn) tính toán chi tiết hơn dựa trên các MỤC TIÊU CỤ THỂ của gia đình (trả hết nợ vay mua nhà, quỹ học phí đại học cho con, chi phí sinh hoạt hàng tháng cho đến khi con trưởng thành, quỹ hưu trí cho người vợ/chồng còn lại) trừ đi tài sản/bảo hiểm hiện có - phương pháp này thường cho kết quả chi tiết và thực tế hơn cho từng gia đình cụ thể."
+      "company": "Mã dựng lại cũng là một bản sao lưu",
+      "description": "Với dữ liệu tính toán được, thứ cần bảo vệ không phải dữ liệu mà là MÃ dựng lại nó cùng với dữ liệu nguồn. Nhiều đội sao lưu rất kỹ bảng kết quả và không ai kiểm xem lượt tính lại có còn chạy được sau mười tám tháng không."
     },
     "quiz": [
       {
-        "question": "'Capital Needs Analysis' (Phân tích Nhu cầu Vốn) khác với Human Life Value như thế nào về cách tiếp cận tính toán số tiền bảo hiểm cần thiết?",
+        "question": "Vì sao dữ liệu do người dùng nhập vào luôn ở mức cao nhất?",
         "options": [
-          "Hai phương pháp này hoàn toàn giống nhau, chỉ khác tên gọi",
-          "Capital Needs Analysis tiếp cận từ GÓC ĐỘ CHI TIÊU/MỤC TIÊU CỤ THỂ của gia đình (nợ cần trả hết, học phí con cái, chi phí sinh hoạt hàng tháng đến một mốc thời gian nhất định, quỹ hưu trí cho người còn lại) rồi TRỪ ĐI tài sản/bảo hiểm hiện có để ra số tiền bảo hiểm bổ sung cần thiết - khác với HLV vốn tiếp cận từ góc độ 'giá trị thu nhập bị mất', Capital Needs Analysis phản ánh chính xác hơn nhu cầu THỰC TẾ của từng gia đình cụ thể với hoàn cảnh riêng biệt",
-          "Capital Needs Analysis chỉ áp dụng cho doanh nghiệp, không áp dụng cho cá nhân",
-          "Human Life Value luôn cho kết quả chính xác hơn Capital Needs Analysis trong mọi trường hợp"
+          "Vì không có nguồn nào khác để dựng lại nó, nên mất là mất vĩnh viễn",
+          "Vì nó thường chứa thông tin cá nhân nên có ràng buộc pháp lý chặt chẽ",
+          "Vì người dùng sẽ phản ứng mạnh nhất khi loại dữ liệu này bị mất",
+          "Vì nó thường là loại dữ liệu có giá trị kinh doanh cao nhất của sản phẩm"
         ],
-        "correct": 1,
-        "explanation": "Đây là hai triết lý tiếp cận bổ sung cho nhau: HLV trả lời câu hỏi 'người này tạo ra bao nhiêu giá trị kinh tế', trong khi Capital Needs Analysis trả lời câu hỏi cụ thể hơn 'gia đình này THỰC SỰ CẦN bao nhiêu tiền để duy trì cuộc sống và đạt các mục tiêu tài chính nếu mất đi trụ cột này' - phương pháp thứ hai thường được ưa chuộng trong thực hành tư vấn hiện đại vì nó gắn trực tiếp với hoàn cảnh và mục tiêu cụ thể của từng gia đình, thay vì chỉ là một công thức tính thu nhập trừu tượng."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là hệ quả và đều có ngoại lệ. Tiêu chí dựng lại được thì không có ngoại lệ: một tấm ảnh người dùng tải lên và đã xoá ở máy họ không tồn tại ở bất kỳ đâu khác."
       },
       {
-        "question": "Tại sao 'Needs Analysis' toàn diện (không chỉ tính con số bảo hiểm) lại quan trọng hơn nhiều so với việc chỉ đơn giản bán một sản phẩm bảo hiểm có sẵn với số tiền bảo hiểm 'tiêu chuẩn' theo độ tuổi/thu nhập?",
+        "question": "Với dữ liệu tính toán được, cần bảo vệ cái gì?",
         "options": [
-          "Needs Analysis chỉ là thủ tục hình thức không ảnh hưởng đến chất lượng tư vấn thực sự",
-          "Mỗi gia đình có hoàn cảnh hoàn toàn khác nhau (số người phụ thuộc, mức độ nợ, tài sản hiện có, mục tiêu giáo dục con cái) - một con số 'tiêu chuẩn' theo độ tuổi/thu nhập có thể THIẾU nghiêm trọng cho một gia đình có nhiều con nhỏ và nợ vay mua nhà lớn, hoặc THỪA không cần thiết (gây lãng phí phí bảo hiểm) cho một gia đình đã có tài sản tích lũy đáng kể - Needs Analysis đảm bảo số tiền bảo hiểm thực sự phù hợp với hoàn cảnh riêng, không phải một công thức chung chung",
-          "Needs Analysis chỉ cần thiết cho khách hàng có thu nhập rất cao",
-          "Mọi khách hàng nên mua số tiền bảo hiểm tối đa có thể mua được, không cần phân tích nhu cầu thực tế"
+          "Mã dựng lại và dữ liệu nguồn, chứ không phải bảng kết quả",
+          "Bảng kết quả, vì tính lại tốn thời gian và tài nguyên đáng kể",
+          "Cả hai, vì cần khôi phục nhanh mà vẫn có khả năng tính lại khi cần",
+          "Dữ liệu nguồn, vì từ đó có thể tính lại mọi kết quả phái sinh"
         ],
-        "correct": 1,
-        "explanation": "Đây là nguyên lý cốt lõi của tư vấn bảo hiểm có trách nhiệm: 'one-size-fits-all' không phù hợp với bản chất của bảo hiểm nhân thọ, vì mục đích của nó là bảo vệ tài chính cho những người phụ thuộc cụ thể với nhu cầu cụ thể - Needs Analysis toàn diện (xem xét cả thu nhập, nợ, tài sản, mục tiêu giáo dục, và các nguồn bảo vệ đã có) đảm bảo khách hàng không bị bảo hiểm thiếu (dẫn đến rủi ro tài chính nghiêm trọng cho gia đình) hoặc bảo hiểm thừa (lãng phí phí bảo hiểm có thể dùng cho mục tiêu tài chính khác)."
+        "correct": 0,
+        "explanation": "Lựa chọn thứ tư đúng một nửa và bỏ mất vế quan trọng: có dữ liệu nguồn mà không có mã dựng lại chạy được thì bạn vẫn không tính lại được. Nhiều đội sao lưu kỹ bảng kết quả và không ai kiểm lượt tính lại còn chạy không."
       },
       {
-        "question": "Khi thực hiện Needs Analysis, tại sao cần trừ đi 'tài sản/bảo hiểm hiện có' của khách hàng trước khi đưa ra khuyến nghị số tiền bảo hiểm bổ sung cần mua?",
+        "question": "Vì sao bảo vệ mọi thứ ở mức cao nhất lại phản tác dụng?",
         "options": [
-          "Không cần trừ gì cả, luôn khuyến nghị mua số tiền bảo hiểm tối đa tính toán được từ đầu",
-          "Vì mục tiêu là lấp đầy KHOẢNG TRỐNG (gap) giữa nhu cầu tài chính thực sự và những gì gia đình ĐÃ CÓ sẵn (bảo hiểm nhân thọ hiện tại từ công ty, tiết kiệm, tài sản có thể thanh lý) - nếu không trừ đi phần đã có, khách hàng sẽ được khuyến nghị mua bảo hiểm THỪA so với nhu cầu thực sự, dẫn đến lãng phí phí bảo hiểm không cần thiết",
-          "Việc trừ tài sản hiện có chỉ là thủ tục kế toán không ảnh hưởng đến số tiền bảo hiểm khuyến nghị cuối cùng",
-          "Chỉ cần trừ tài sản hiện có nếu khách hàng yêu cầu, không bắt buộc trong quy trình chuẩn"
+          "Vì thời gian khôi phục toàn bộ dài ra, nên thứ quan trọng nhất cũng phải chờ theo",
+          "Vì chi phí lưu trữ tăng lên vượt quá ngân sách được phân bổ cho việc này",
+          "Vì việc quản lý quá nhiều bản sao làm tăng khả năng có sai sót vận hành",
+          "Vì dung lượng cần thiết vượt quá năng lực của hệ thống lưu trữ hiện có"
         ],
-        "correct": 1,
-        "explanation": "Đây là bước quan trọng thường bị bỏ qua bởi tư vấn viên thiếu kinh nghiệm (đôi khi vì áp lực doanh số muốn bán số tiền bảo hiểm lớn hơn): Needs Analysis đúng chuẩn phải tính GAP ANALYSIS - Nhu cầu tài chính tổng thể trừ đi Nguồn lực hiện có (bảo hiểm công ty đã cấp, tiết kiệm, tài sản có thể thanh lý nhanh) = Số tiền bảo hiểm bổ sung thực sự cần thiết. Bỏ qua bước này dẫn đến khuyến nghị thừa, không phục vụ lợi ích tối ưu của khách hàng."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là chi phí và đều trả được bằng tiền. Cái này không trả được bằng tiền: nếu mọi thứ đều được khôi phục cùng nhau thì thứ cần trong ba mươi phút phải chờ hết tám giờ."
+      },
+      {
+        "question": "Điều gì nên đi kèm mỗi mức phân loại?",
+        "options": [
+          "Hai con số: mất tối đa bao nhiêu dữ liệu, và khôi phục xong trong bao lâu",
+          "Danh sách những người có quyền truy cập vào dữ liệu ở mức đó",
+          "Chu kỳ rà soát lại phân loại để đảm bảo nó vẫn còn phù hợp",
+          "Chi phí lưu trữ dự kiến hằng tháng cho dữ liệu ở mức đó"
+        ],
+        "correct": 0,
+        "explanation": "Không có hai con số này thì phân loại chỉ là một cái nhãn. Có chúng thì nó thành ràng buộc kiểm được: bạn chạy một lượt khôi phục thử và biết ngay mình đang đạt hay không đạt."
+      },
+      {
+        "question": "Vì sao thứ tự khôi phục cũng cần được quyết định trước?",
+        "options": [
+          "Vì lúc có sự cố thì mọi bên đều nói phần của mình quan trọng nhất",
+          "Vì một số dữ liệu phụ thuộc vào dữ liệu khác nên phải khôi phục theo trình tự",
+          "Vì băng thông khôi phục có hạn nên không làm song song mọi thứ được",
+          "Vì cần thông báo cho từng nhóm người dùng về thời điểm dịch vụ trở lại"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai là ràng buộc kỹ thuật thật và nó chỉ quyết định một phần thứ tự. Phần còn lại là quyết định ưu tiên, và nó không nên được đưa ra lúc mọi người đang chịu áp lực."
       }
     ],
     "keyTakeaways": [
-      "Human Life Value: ước tính giá trị kinh tế của một người dựa trên dòng thu nhập tương lai họ tạo ra cho gia đình, chiết khấu về hiện tại - tương tự cách định giá tài sản tạo dòng tiền",
-      "Capital Needs Analysis: tiếp cận từ mục tiêu cụ thể của gia đình (nợ, học phí, sinh hoạt phí, hưu trí người còn lại) - thường thực tế và cụ thể hơn HLV cho từng gia đình",
-      "Needs Analysis toàn diện tránh cả hai rủi ro: bảo hiểm thiếu (nguy hiểm tài chính cho gia đình) và bảo hiểm thừa (lãng phí phí bảo hiểm)",
-      "Luôn trừ đi tài sản/bảo hiểm hiện có trước khi khuyến nghị số tiền bảo hiểm bổ sung - đây là gap analysis, không phải chỉ tính nhu cầu tổng thể"
+      "Câu phân loại: mất nó thì DỰNG LẠI ĐƯỢC KHÔNG, và mất bao lâu.",
+      "Dữ liệu người dùng nhập vào luôn ở mức cao nhất - không nguồn nào dựng lại được.",
+      "Với dữ liệu tính toán được, thứ cần bảo vệ là MÃ dựng lại cộng dữ liệu nguồn.",
+      "Bảo vệ mọi thứ ở mức cao nhất thì thứ quan trọng nhất phải chờ theo mọi thứ khác.",
+      "Mỗi mức cần hai con số, nếu không phân loại chỉ là một cái nhãn."
     ],
     "practicePrompt": {
-      "question": "Khách hàng 40 tuổi, thu nhập ròng 400 triệu/năm, còn 20 năm làm việc, đã có bảo hiểm nhân thọ từ công ty trị giá 500 triệu, và tài sản tiết kiệm/đầu tư có thể thanh lý 800 triệu. Áp dụng Human Life Value đơn giản (không chiết khấu để dễ tính), sau đó thực hiện gap analysis, số tiền bảo hiểm bổ sung nên khuyến nghị khoảng bao nhiêu?",
+      "question": "Bảng tổng hợp tính lại được trong hai giờ. Nên sao lưu ở mức nào?",
       "options": [
-        "8 tỷ đồng (400 triệu × 20 năm) mà không cần trừ gì cả",
-        "Khoảng 6,7 tỷ đồng (= 8 tỷ HLV − 1,3 tỷ đã có)",
-        "0 đồng vì khách đã có đủ tài sản",
-        "500 triệu đồng, bằng đúng mức bảo hiểm công ty đang cung cấp"
+        "Mức thấp - nhưng phải kiểm rằng lượt tính lại thật sự còn chạy được",
+        "Mức cao, vì hai giờ ngừng phục vụ là khoảng thời gian không chấp nhận được",
+        "Mức trung bình, cân bằng giữa chi phí lưu trữ và thời gian khôi phục",
+        "Mức thấp, vì dữ liệu tính lại được thì không cần bảo vệ đặc biệt"
       ],
-      "correct": 1,
-      "explanation": "Đây là bài tập thực hành trực tiếp áp dụng cả hai khái niệm: Human Life Value cho ước tính ban đầu (dù đơn giản hóa, thực tế cần chiết khấu dòng thu nhập tương lai về hiện tại và trừ chi tiêu cá nhân), sau đó GAP ANALYSIS (trừ đi tài sản/bảo hiểm hiện có) để ra khuyến nghị cuối cùng phù hợp thực sự - tránh cả việc khuyến nghị thiếu (nguy hiểm) lẫn thừa (lãng phí) cho khách hàng."
+      "correct": 0,
+      "explanation": "Lựa chọn cuối là cùng kết luận mà thiếu vế kiểm chứng, và vế đó mới là phần hay hỏng: khả năng tính lại là một giả định, và giả định không được kiểm thì sau mười tám tháng thường đã sai."
     },
     "summary": {
-      "keyIdea": "Needs Analysis chuyên nghiệp (Human Life Value và/hoặc Capital Needs Analysis) đảm bảo số tiền bảo hiểm khuyến nghị phản ánh đúng nhu cầu tài chính thực sự của từng gia đình cụ thể, thay vì áp dụng công thức chung chung theo độ tuổi/thu nhập.",
-      "commonMistake": "Bỏ qua bước trừ tài sản/bảo hiểm hiện có (gap analysis), dẫn đến khuyến nghị số tiền bảo hiểm thừa gây lãng phí phí bảo hiểm cho khách hàng",
-      "action": "Với mỗi khách hàng, thực hiện đầy đủ quy trình: ước tính nhu cầu tổng thể (qua HLV hoặc Capital Needs Analysis), sau đó trừ đi các nguồn lực hiện có để ra số tiền bảo hiểm bổ sung thực sự cần thiết"
+      "keyIdea": "Bảo vệ mọi thứ ở mức cao nhất là cách chắc chắn để không bảo vệ được thứ quan trọng nhất.",
+      "formula": "Phân loại theo khả năng dựng lại → mỗi mức hai con số → thứ tự khôi phục định trước.",
+      "commonMistake": "Sao lưu kỹ bảng kết quả mà không ai kiểm lượt tính lại còn chạy được không.",
+      "action": "Phân loại dữ liệu của bạn theo câu mất nó thì dựng lại được không."
     },
     "application": {
-      "title": "Áp dụng vào công việc Tư vấn Bảo hiểm",
-      "message": "Xây dựng một bảng tính Needs Analysis đơn giản (thu nhập ròng × số năm làm việc còn lại, trừ tài sản/bảo hiểm hiện có) để sử dụng như bước đầu tiên khi tư vấn bất kỳ khách hàng mới nào về bảo hiểm nhân thọ.",
-      "secondary": "Kỹ năng Needs Analysis chuyên nghiệp là yếu tố phân biệt một tư vấn viên bảo hiểm đáng tin cậy với người chỉ đơn thuần bán sản phẩm theo hoa hồng."
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê các loại dữ liệu chính của hệ thống và với mỗi loại trả lời một câu: mất nó thì dựng lại được không, và mất bao lâu?",
+      "secondary": "Danh sách này thường ngắn hơn mọi người nghĩ, và phần thật sự không dựng lại được thường chỉ chiếm một tỷ lệ nhỏ trong tổng dung lượng."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Câu hỏi 'tôi nên mua bao nhiêu tiền bảo hiểm' không có câu trả lời chung cho mọi người - Needs Analysis là quy trình có hệ thống để tìm ra con số thực sự phù hợp với hoàn cảnh riêng của từng gia đình."
+        "text": "Ngân sách sao lưu và thời gian khôi phục đều có hạn, nên mọi đồng chi cho dữ liệu dựng lại được là một đồng không chi cho dữ liệu không dựng lại được."
       },
       {
         "type": "heading",
-        "text": "Human Life Value - Định giá 'Tài sản Con người'"
+        "text": "Câu hỏi phân loại"
       },
       {
-        "type": "paragraph",
-        "text": "Human Life Value áp dụng tư duy định giá tài chính vào con người: một trụ cột thu nhập gia đình tạo ra dòng thu nhập trong nhiều năm tới, tương tự cách một tài sản tạo dòng tiền. Công thức cơ bản: ước tính thu nhập ròng hàng năm (trừ thuế và chi tiêu cá nhân), nhân với số năm làm việc còn lại dự kiến, và lý tưởng nên chiết khấu về giá trị hiện tại - cho ra con số phản ánh 'giá trị kinh tế' thực sự của người đó đối với gia đình."
-      },
-      {
-        "type": "heading",
-        "text": "Capital Needs Analysis - Tiếp cận từ Mục tiêu Cụ thể"
-      },
-      {
-        "type": "paragraph",
-        "text": "Thay vì tính từ góc độ thu nhập trừu tượng, Capital Needs Analysis liệt kê các NHU CẦU TÀI CHÍNH CỤ THỂ nếu trụ cột qua đời: trả hết nợ vay (mua nhà, mua xe), quỹ giáo dục cho con đến khi trưởng thành, chi phí sinh hoạt hàng tháng cho gia đình trong một khoảng thời gian xác định, quỹ dự phòng khẩn cấp, và quỹ hưu trí cho người vợ/chồng còn lại. Phương pháp này thường cho ra con số thực tế và dễ giải thích với khách hàng hơn."
+        "type": "callout",
+        "label": "Mất nó thì dựng lại được không",
+        "text": "Đây là câu quyết định cho mục đích sao lưu. Một bảng tổng hợp tính lại được trong hai giờ không cần cùng mức bảo vệ với dữ liệu do người dùng nhập vào - thứ mà mất là mất vĩnh viễn."
       },
       {
         "type": "heading",
-        "text": "Gap Analysis - Bước Không Thể Bỏ Qua"
+        "text": "Ba mức, theo câu trả lời"
+      },
+      {
+        "type": "list",
+        "items": [
+          "KHÔNG dựng lại được: mức cao nhất, không thương lượng. Dữ liệu người dùng nhập, giao dịch, bản ghi kiểm toán.",
+          "Dựng lại được nhưng CHẬM: sao lưu để rút ngắn thời gian khôi phục, không phải để tránh mất.",
+          "Dựng lại NHANH: không cần sao lưu dữ liệu - cần bảo vệ MÃ dựng lại và dữ liệu nguồn."
+        ]
       },
       {
         "type": "paragraph",
-        "text": "Dù dùng phương pháp nào để tính nhu cầu tổng thể, bước cuối cùng luôn phải TRỪ ĐI các nguồn lực tài chính hiện có: bảo hiểm nhân thọ đã có (từ công ty hoặc mua trước đó), tài sản tiết kiệm/đầu tư có thể thanh lý, và các nguồn thu nhập khác của gia đình (như thu nhập của vợ/chồng nếu có). Kết quả sau khi trừ mới là số tiền bảo hiểm BỔ SUNG thực sự cần khuyến nghị."
+        "text": "Mức thứ ba là mức hay bị làm sai theo một cách cụ thể: nhiều đội sao lưu rất kỹ bảng kết quả và không ai kiểm xem lượt tính lại có còn chạy được sau mười tám tháng không. Khả năng tính lại là một giả định, và giả định không được kiểm thì thường đã sai."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao không bảo vệ mọi thứ ở mức cao nhất"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Giá trị đời người",
-          "text": "Quy thu nhập còn lại của cả đời về hiện giá. Cho một con số lớn và tổng quát, hợp để thấy quy mô vấn đề."
+          "label": "Chi phí trả được bằng tiền",
+          "text": "Dung lượng lưu trữ, băng thông, công quản lý. Ba thứ này tăng lên và vẫn giải quyết được."
         },
         "right": {
-          "label": "Phân tích nhu cầu vốn",
-          "text": "Cộng từng nghĩa vụ cụ thể: nợ, học phí, chi phí sống của gia đình. Cho con số nhỏ hơn và bảo vệ được từng dòng."
+          "label": "Chi phí không trả được",
+          "text": "Thời gian khôi phục toàn bộ dài ra. Thứ cần trong ba mươi phút phải chờ hết tám giờ, vì nó nằm trong cùng một lượt khôi phục."
         }
-      },
-      {
-        "type": "callout",
-        "label": "Bước hay bị bỏ",
-        "text": "Gap analysis là phần trừ đi những gì đã có - bảo hiểm qua công ty, tiết kiệm, quyền lợi bảo hiểm xã hội. Bỏ bước này thì mọi con số nhu cầu đều bị thổi lên, và tư vấn viên rất dễ bỏ nó vì nó luôn làm hợp đồng nhỏ đi."
       },
       {
         "type": "closing",
         "lines": [
-          "Một tư vấn viên bảo hiểm chuyên nghiệp không bán 'sản phẩm có sẵn' - họ giải quyết một bài toán tài chính cụ thể cho từng gia đình, bắt đầu bằng Needs Analysis nghiêm túc.",
-          "Đây cũng là cách xây dựng niềm tin dài hạn với khách hàng: khi họ thấy con số được tính toán có căn cứ rõ ràng (không phải chỉ 'con số tròn' theo cảm tính), họ tin tưởng vào lời khuyên và duy trì mối quan hệ tư vấn lâu dài."
+          "Mỗi mức cần đi kèm HAI CON SỐ: mất tối đa bao nhiêu dữ liệu, và khôi phục xong trong bao lâu. Không có chúng, phân loại chỉ là một cái nhãn.",
+          "Và quyết định THỨ TỰ khôi phục từ trước - lúc có sự cố thì mọi bên đều nói phần của mình quan trọng nhất."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Human life value - giá trị thu nhập tương lai",
-        "arrow": true
-      },
-      {
-        "label": "Capital needs - nghĩa vụ và mục tiêu cụ thể",
-        "arrow": true
-      },
-      {
-        "label": "Trừ đi tài sản và bảo hiểm hiện có",
-        "arrow": true
-      },
-      {
-        "label": "Khoảng thiếu hụt = mức bảo vệ thực sự cần",
-        "arrow": false
       }
     ]
   },
@@ -75105,154 +75117,181 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1259,
-    "track": "professional",
-    "slug": "earnings-call-va-guidance-quan-ly-ky-vong",
-    "title": "Earnings Call & Guidance: Cách IR Chuẩn bị và Quản lý Kỳ vọng Thị trường",
-    "subtitle": "Vì sao một công ty tăng trưởng tốt vẫn có thể bị bán tháo cổ phiếu ngay sau báo cáo lợi nhuận",
+    "slug": "cong-bo-thay-doi-va-quan-ly-ky-vong",
+    "title": "Công bố thay đổi và quản lý kỳ vọng của người dùng",
+    "subtitle": "Một thay đổi được báo trước và một thay đổi giống hệt không được báo tạo ra hai phản ứng khác hẳn nhau.",
     "duration": "7 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "📞",
-    "openingQuestion": "Một công ty công bố lợi nhuận quý tăng 20% so với cùng kỳ năm trước - một con số tăng trưởng rất ấn tượng - nhưng giá cổ phiếu lại GIẢM MẠNH ngay sau đó. Nguyên nhân phổ biến nhất giải thích nghịch lý này là gì?",
+    "whyItMatters": "Phần lớn phản ứng tiêu cực với một thay đổi kỹ thuật không phải về bản thân thay đổi mà về việc người dùng bị bất ngờ.",
+    "openingQuestion": "Vì sao cùng một thay đổi lại nhận hai phản ứng khác hẳn nhau?",
     "openingOptions": [
-      "Thị trường luôn phản ứng phi lý với mọi báo cáo lợi nhuận, không có logic nào cả",
-      "Kết quả vẫn thấp hơn kỳ vọng đã được thị trường định giá sẵn",
-      "Giá cổ phiếu không bao giờ liên quan đến kết quả kinh doanh thực tế",
-      "Công ty chắc chắn đã công bố báo cáo tài chính gian lận"
+      "Vì được báo trước thì người dùng có thời gian chuẩn bị, còn bất ngờ thì họ phải xử lý gấp",
+      "Vì cách trình bày thay đổi ảnh hưởng tới cảm nhận của người dùng về nó",
+      "Vì người dùng khác nhau có mức độ chấp nhận thay đổi khác nhau",
+      "Vì thời điểm công bố quyết định số lượng người dùng nhận được thông tin"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là nguyên lý cốt lõi mà mọi chuyên viên IR phải hiểu sâu sắc: giá cổ phiếu phản ánh KỲ VỌNG đã được thị trường 'định giá trước' (priced in), nên phản ứng giá sau báo cáo lợi nhuận phụ thuộc chủ yếu vào việc kết quả THỰC TẾ so với KỲ VỌNG như thế nào, không phải chỉ nhìn vào con số tăng trưởng tuyệt đối. Một công ty tăng trưởng 20% nhưng thị trường kỳ vọng 30% sẽ bị coi là 'thất vọng' (miss), trong khi một công ty chỉ tăng trưởng 5% nhưng thị trường kỳ vọng 2% sẽ được coi là 'vượt kỳ vọng' (beat) và thường được thưởng bằng giá cổ phiếu tăng.",
+    "correctOption": 0,
+    "explanation": "Với người dùng là kỹ sư hoặc doanh nghiệp, một thay đổi phá vỡ tương thích được báo trước ba tháng là một việc cần lên kế hoạch; cũng thay đổi ấy tới không báo trước là một sự cố mà họ phải huỷ lịch để xử lý. Khác biệt không nằm ở nội dung thay đổi mà ở việc ai kiểm soát được thời điểm.",
+    "diagram": [
+      {
+        "label": "Khác biệt nằm ở AI KIỂM SOÁT ĐƯỢC THỜI ĐIỂM",
+        "arrow": true
+      },
+      {
+        "label": "Báo trước = họ lên kế hoạch. Không báo = họ huỷ lịch",
+        "arrow": true
+      },
+      {
+        "label": "Nói rõ cái gì đổi, khi nào, và phải làm gì",
+        "arrow": true
+      },
+      {
+        "label": "Đừng hứa mốc mà đội chưa chắc giữ được"
+      }
+    ],
     "realWorldExample": {
-      "company": "Netflix và biến động giá sau earnings call",
-      "description": "Netflix là ví dụ kinh điển về mức độ nhạy cảm của giá cổ phiếu với kỳ vọng: nhiều lần trong lịch sử, công ty công bố tăng trưởng thuê bao mới dương (một con số tích cực về bản chất) nhưng vẫn thấp hơn đáng kể so với guidance mà chính công ty đã đưa ra trước đó hoặc kỳ vọng của giới phân tích - dẫn đến giá cổ phiếu giảm mạnh hai chữ số chỉ trong một phiên giao dịch. Điều này minh họa tại sao đội ngũ IR phải cực kỳ thận trọng khi đưa ra guidance (dự báo) ban đầu, vì guidance đó sẽ trở thành 'thước đo' để thị trường đánh giá kết quả thực tế sau này."
+      "company": "Ba câu bắt buộc",
+      "description": "Một thông báo thay đổi cần trả lời đúng ba câu: cái gì đổi, khi nào, và người đọc phải làm gì. Phần lớn thông báo trả lời câu đầu rất kỹ, câu thứ hai mơ hồ, và bỏ hẳn câu thứ ba - vốn là câu duy nhất người đọc thật sự cần."
     },
     "quiz": [
       {
-        "question": "'Guidance' (dự báo/hướng dẫn) mà công ty đưa ra cho thị trường về kết quả kinh doanh tương lai đóng vai trò gì trong chiến lược quản lý kỳ vọng của IR, và tại sao nhiều công ty có xu hướng đưa ra guidance 'thận trọng' (conservative)?",
+        "question": "Câu nào trong thông báo thay đổi hay bị bỏ nhất?",
         "options": [
-          "Guidance chỉ là thủ tục hình thức không ảnh hưởng gì đến phản ứng thị trường sau này",
-          "Guidance thiết lập MỐC THAM CHIẾU chính thức mà thị trường sẽ dùng để đánh giá kết quả thực tế sau này - nhiều công ty cố ý đưa ra guidance hơi thận trọng (thấp hơn kỳ vọng nội bộ thực sự) để tạo dư địa 'vượt kỳ vọng' (beat and raise) khi công bố kết quả thực tế, một chiến lược quản lý kỳ vọng giúp duy trì phản ứng tích cực của thị trường qua nhiều quý liên tiếp, thay vì rủi ro liên tục 'miss' guidance quá lạc quan",
-          "Guidance luôn phải chính xác tuyệt đối, không được phép có bất kỳ sai lệch nào",
-          "Các công ty không bao giờ đưa ra guidance vì lo ngại rủi ro pháp lý"
+          "Người đọc phải làm gì, và làm trước ngày nào",
+          "Chi tiết kỹ thuật của những gì đã được thay đổi trong hệ thống",
+          "Lý do vì sao thay đổi này là cần thiết cho sản phẩm",
+          "Danh sách các phiên bản và thành phần bị ảnh hưởng bởi thay đổi"
         ],
-        "correct": 1,
-        "explanation": "Chiến lược 'beat and raise' (vượt kỳ vọng và nâng dự báo) là một kỹ thuật quản lý kỳ vọng phổ biến: bằng cách đưa ra guidance ban đầu hơi thận trọng, công ty tạo dư địa để công bố kết quả thực tế 'vượt kỳ vọng' trong các quý tiếp theo - tạo ra chuỗi phản ứng tích cực liên tục từ thị trường, thay vì rủi ro đưa ra guidance quá lạc quan rồi liên tục phải 'hạ dự báo' (guide down), điều thường bị thị trường phạt nặng nề hơn nhiều so với việc chỉ đơn giản tăng trưởng chậm."
+        "correct": 0,
+        "explanation": "Đây là câu duy nhất người đọc thật sự cần, và nó hay bị bỏ vì người viết đứng ở phía hệ thống chứ không đứng ở phía người dùng. Ba lựa chọn kia thường được viết rất kỹ."
       },
       {
-        "question": "'Quiet Period' (giai đoạn im lặng) trước khi công bố báo cáo tài chính là gì, và tại sao đội ngũ IR phải tuân thủ nghiêm ngặt quy định này?",
+        "question": "Vì sao không nên hứa một mốc mà đội chưa chắc giữ được?",
         "options": [
-          "Quiet Period chỉ là truyền thống không có cơ sở pháp lý nào",
-          "Quiet Period là khoảng thời gian (thường vài tuần trước khi công bố báo cáo tài chính) mà công ty HẠN CHẾ hoặc NGỪNG hoàn toàn việc trao đổi thông tin tài chính trọng yếu chưa công bố với nhà đầu tư/nhà phân tích, nhằm đảm bảo TUÂN THỦ quy định công bằng thông tin (như Regulation FD tại Mỹ) - tránh tình huống một số nhà đầu tư/nhà phân tích được tiếp cận thông tin sớm hơn công chúng, tạo lợi thế giao dịch không công bằng và có thể vi phạm pháp luật chứng khoán",
-          "Quiet Period chỉ áp dụng cho công ty tư nhân, không áp dụng cho công ty niêm yết",
-          "Trong Quiet Period, công ty hoàn toàn không được phép giao tiếp với bất kỳ ai kể cả nhân viên nội bộ"
+          "Vì lùi mốc làm mất niềm tin nhiều hơn mức mà việc có mốc sớm mang lại",
+          "Vì người dùng sẽ lập kế hoạch dựa trên mốc đó nên bị ảnh hưởng khi lùi",
+          "Vì việc lùi mốc đòi hỏi phải gửi thêm một thông báo cập nhật nữa",
+          "Vì các mốc đã công bố thường được ghi vào hợp đồng với khách hàng lớn"
         ],
-        "correct": 1,
-        "explanation": "Quiet Period phản ánh nguyên tắc pháp lý cốt lõi của thị trường vốn: công bằng thông tin (fair disclosure). Quy định như Regulation FD (Fair Disclosure) tại Mỹ yêu cầu thông tin trọng yếu phải được công bố ĐỒNG THỜI cho TẤT CẢ nhà đầu tư, không được tiết lộ chọn lọc cho một số nhà phân tích/nhà đầu tư lớn trước công chúng. Đội ngũ IR đóng vai trò gác cổng quan trọng đảm bảo tuân thủ nguyên tắc này, đặc biệt nhạy cảm trong giai đoạn ngay trước khi công bố kết quả kinh doanh."
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai mô tả thiệt hại trực tiếp và nó là thiệt hại một lần. Mất niềm tin thì lan sang mọi thông báo sau đó - lần tới người ta sẽ không chuẩn bị theo mốc bạn đưa ra, và lúc đó thông báo thành vô dụng."
       },
       {
-        "question": "Khi kết quả kinh doanh thực tế của công ty THẤP HƠN guidance đã công bố trước đó (một tình huống 'miss'), vai trò của IR trong việc soạn thảo thông điệp truyền thông với nhà đầu tư nên tập trung vào điều gì để duy trì niềm tin dài hạn?",
+        "question": "Với thay đổi phá vỡ tương thích, thời gian báo trước nên tính theo gì?",
         "options": [
-          "Cố gắng che giấu hoặc giảm nhẹ mức độ nghiêm trọng của việc không đạt guidance",
-          "Minh bạch giải thích RÕ RÀNG nguyên nhân cụ thể dẫn đến việc không đạt guidance (yếu tố tạm thời hay cấu trúc, bên trong hay bên ngoài công ty), đồng thời trình bày kế hoạch hành động cụ thể và cập nhật guidance mới một cách thực tế - nhà đầu tư thường phản ứng tiêu cực hơn nhiều với sự THIẾU MINH BẠCH hoặc GIẢI THÍCH MƠ HỒ so với việc chấp nhận một kết quả kém nhưng được giải thích rõ ràng, có kế hoạch khắc phục cụ thể",
-          "Không cần giải thích gì, chỉ cần công bố số liệu và im lặng",
-          "Nên đổ lỗi hoàn toàn cho các yếu tố bên ngoài không thể kiểm soát trong mọi trường hợp"
+          "Theo thời gian mà bên chậm nhất cần để sửa và triển khai được thay đổi",
+          "Theo mức độ nghiêm trọng của thay đổi đối với hệ thống của người dùng",
+          "Theo chu kỳ phát hành thông thường của sản phẩm bạn đang vận hành",
+          "Theo thông lệ chung của ngành cho loại thay đổi tương tự"
         ],
-        "correct": 1,
-        "explanation": "Đây là nguyên tắc quan trọng trong quản trị niềm tin nhà đầu tư dài hạn: thị trường thường 'tha thứ' cho một kết quả kém nếu được giải thích minh bạch, có căn cứ, và đi kèm kế hoạch hành động rõ ràng - nhưng lại phản ứng rất tiêu cực với sự thiếu minh bạch, giải thích mơ hồ, hoặc thay đổi lý do liên tục qua các quý, vì điều này làm xói mòn NIỀM TIN vào khả năng dự báo và quản trị của ban lãnh đạo, một tài sản vô hình cực kỳ quan trọng đối với định giá dài hạn của công ty."
+        "correct": 0,
+        "explanation": "Một bên tích hợp có chu kỳ phát hành theo quý cần ít nhất một quý, không phải hai tuần. Ba lựa chọn kia đều tính từ phía bạn, còn con số cần dùng thì nằm ở phía người nhận."
+      },
+      {
+        "question": "Vì sao nên có kênh thông báo riêng cho thay đổi kỹ thuật?",
+        "options": [
+          "Vì trộn với thông báo tiếp thị thì người cần đọc sẽ bỏ qua cả hai loại",
+          "Vì thay đổi kỹ thuật cần định dạng trình bày khác với nội dung tiếp thị",
+          "Vì đối tượng người đọc của hai loại thông báo này khác nhau hoàn toàn",
+          "Vì thông báo kỹ thuật cần được lưu lại để tra cứu lịch sử thay đổi"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba gần đúng và nhẹ hơn: vấn đề không phải là hai nhóm người khác nhau mà là cùng một người sẽ học cách bỏ qua kênh đó, vì phần lớn nội dung trong đó không cần hành động gì."
+      },
+      {
+        "question": "Sau khi thay đổi đã triển khai xong, việc nào còn lại?",
+        "options": [
+          "Xác nhận rằng thay đổi đã hoàn tất, để người dùng biết mình không cần chờ nữa",
+          "Thu thập phản hồi của người dùng về trải nghiệm với thay đổi vừa rồi",
+          "Cập nhật tài liệu kỹ thuật cho khớp với trạng thái mới của hệ thống",
+          "Gỡ bỏ mã và cấu hình của phiên bản cũ khỏi hệ thống đang chạy"
+        ],
+        "correct": 0,
+        "explanation": "Ba việc kia đều cần làm và đều là việc nội bộ. Việc này thì đóng vòng lặp với người dùng: không có nó, những người đã chuẩn bị vẫn ở trạng thái chờ và không biết mình có thể chuyển sự chú ý sang chỗ khác."
       }
     ],
     "keyTakeaways": [
-      "Phản ứng giá cổ phiếu sau báo cáo lợi nhuận phụ thuộc chủ yếu vào kết quả so với KỲ VỌNG (consensus), không chỉ con số tăng trưởng tuyệt đối",
-      "Chiến lược 'beat and raise': đưa ra guidance thận trọng ban đầu để tạo dư địa vượt kỳ vọng, tránh rủi ro liên tục phải hạ dự báo",
-      "Quiet Period đảm bảo tuân thủ nguyên tắc công bằng thông tin (như Regulation FD) - không tiết lộ thông tin trọng yếu chọn lọc trước khi công bố chính thức",
-      "Khi không đạt guidance, minh bạch và giải thích rõ ràng quan trọng hơn nhiều so với việc cố gắng che giấu hay giải thích mơ hồ để duy trì niềm tin dài hạn"
+      "Khác biệt không nằm ở nội dung thay đổi mà ở AI KIỂM SOÁT ĐƯỢC THỜI ĐIỂM.",
+      "Câu hay bị bỏ nhất: người đọc PHẢI LÀM GÌ, và làm trước ngày nào.",
+      "Thời gian báo trước tính theo BÊN CHẬM NHẤT, không theo chu kỳ của bạn.",
+      "Lùi mốc làm mất niềm tin nhiều hơn mức mà việc có mốc sớm mang lại.",
+      "Kênh riêng cho thay đổi kỹ thuật - trộn với tiếp thị thì người ta bỏ qua cả hai."
     ],
     "practicePrompt": {
-      "question": "Công ty bạn (chuyên viên IR) chuẩn bị công bố kết quả quý: doanh thu tăng 15% (đúng như guidance đã công bố), nhưng biên lợi nhuận giảm nhẹ do chi phí nguyên liệu đầu vào tăng đột biến ngoài dự kiến (yếu tố bên ngoài, tạm thời). Bạn nên chuẩn bị thông điệp earnings call như thế nào?",
+      "question": "Bạn cần gỡ một giao diện lập trình mà đối tác đang dùng. Bước đầu tiên?",
       "options": [
-        "Chỉ tập trung nói về doanh thu tăng trưởng tốt, tránh đề cập đến biên lợi nhuận giảm",
-        "Nói cả hai mặt: doanh thu đạt guidance, biên giảm do chi phí đầu vào tạm thời",
-        "Hoãn công bố kết quả cho đến khi tình hình chi phí nguyên liệu ổn định trở lại",
-        "Đổ lỗi hoàn toàn cho nhà cung cấp nguyên liệu mà không đưa ra bất kỳ giải pháp nào từ phía công ty"
+        "Tìm xem bên nào còn dùng và chu kỳ phát hành của họ dài bao nhiêu",
+        "Gửi thông báo về kế hoạch gỡ bỏ kèm thời hạn theo chu kỳ của bạn",
+        "Chuẩn bị tài liệu hướng dẫn chuyển sang giao diện thay thế mới",
+        "Đặt cảnh báo trong phản hồi để người dùng biết giao diện sắp bị gỡ"
       ],
-      "correct": 1,
-      "explanation": "Đây là ứng dụng thực hành của nguyên tắc minh bạch cân bằng trong IR: che giấu tin xấu (biên lợi nhuận giảm) trong khi chỉ nói về tin tốt (doanh thu tăng) là chiến lược rủi ro cao, vì nhà phân tích/nhà đầu tư chuyên nghiệp sẽ tự phát hiện qua báo cáo tài chính chi tiết - khi đó, việc 'không chủ động đề cập' sẽ bị hiểu là thiếu minh bạch, gây tổn hại niềm tin nhiều hơn so với việc chủ động giải thích rõ ràng ngay từ đầu."
+      "correct": 0,
+      "explanation": "Ba việc kia đều đúng và đều là bước hai. Nếu bên chậm nhất có chu kỳ phát hành theo quý thì thời hạn của bạn phải tính từ con số đó - và bạn chỉ biết nó sau khi đi tìm."
     },
     "summary": {
-      "keyIdea": "Quản lý kỳ vọng thị trường qua guidance và earnings call là công việc cốt lõi của IR - phản ứng giá cổ phiếu phụ thuộc vào kết quả so với kỳ vọng, không chỉ số liệu tuyệt đối, và minh bạch trong giao tiếp quan trọng hơn việc chỉ trình bày tin tốt.",
-      "commonMistake": "Đánh giá thành công của một báo cáo lợi nhuận chỉ dựa trên con số tăng trưởng tuyệt đối, bỏ qua việc so sánh với kỳ vọng thị trường đã được định giá trước",
-      "action": "Trước mỗi earnings call, luôn chuẩn bị thông điệp cân bằng cả tin tốt lẫn tin xấu, với giải thích rõ ràng về nguyên nhân và kế hoạch hành động cụ thể cho các vấn đề phát sinh"
+      "keyIdea": "Phản ứng tiêu cực thường không về thay đổi mà về việc bị bất ngờ.",
+      "formula": "Cái gì đổi + khi nào + phải làm gì, với thời hạn tính theo bên chậm nhất.",
+      "commonMistake": "Viết rất kỹ về cái gì đổi và bỏ hẳn câu người đọc phải làm gì.",
+      "action": "Đọc lại thông báo thay đổi gần nhất và tìm câu người đọc phải làm gì."
     },
     "application": {
-      "title": "Áp dụng vào công việc Investor Relations",
-      "message": "Xem lại một earnings call transcript của công ty niêm yết bạn quan tâm - phân tích cách CEO/CFO xử lý câu hỏi về kết quả không đạt kỳ vọng (nếu có), và đánh giá mức độ minh bạch trong cách họ giải thích.",
-      "secondary": "Kỹ năng quản lý kỳ vọng và giao tiếp minh bạch trong giai đoạn khó khăn là yếu tố phân biệt một chuyên viên IR xuất sắc với người chỉ đơn thuần đọc số liệu từ báo cáo tài chính."
+      "title": "Làm ngay hôm nay",
+      "message": "Đọc lại thông báo thay đổi gần nhất mà đội bạn gửi đi và tìm ba câu: cái gì đổi, khi nào, và người đọc phải làm gì.",
+      "secondary": "Nếu câu thứ ba không có hoặc phải suy ra từ hai câu kia, đó là lý do những người cần hành động đã không hành động."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "'Beat the number' hay 'miss the number' - hai từ này quyết định phần lớn phản ứng của thị trường sau mỗi báo cáo lợi nhuận, và việc quản lý con số 'kỳ vọng' đó chính là nghệ thuật cốt lõi của nghề Investor Relations."
+        "text": "Phần lớn phản ứng tiêu cực với một thay đổi kỹ thuật không phải về bản thân thay đổi mà về việc người dùng bị BẤT NGỜ."
       },
       {
         "type": "heading",
-        "text": "Consensus Estimate - Thước đo Thực sự Quan trọng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Giá cổ phiếu không phản ứng với kết quả kinh doanh 'tuyệt đối' mà phản ứng với SỰ CHÊNH LỆCH giữa kết quả thực tế và kỳ vọng đã được thị trường định giá từ trước (consensus estimate - trung bình dự báo của các nhà phân tích theo dõi cổ phiếu). Đây là lý do một công ty tăng trưởng ấn tượng về mặt tuyệt đối vẫn có thể bị bán tháo nếu không đạt kỳ vọng đã được thiết lập."
-      },
-      {
-        "type": "heading",
-        "text": "Guidance - Công cụ Thiết lập Kỳ vọng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Guidance là dự báo chính thức công ty đưa ra về kết quả kinh doanh tương lai (thường theo quý hoặc năm), trở thành 'thước đo' chính thức để đánh giá hiệu suất sau này. Chiến lược 'beat and raise' (đưa ra guidance thận trọng, sau đó công bố kết quả vượt kỳ vọng) là kỹ thuật quản lý kỳ vọng phổ biến giúp duy trì momentum tích cực qua nhiều quý liên tiếp."
-      },
-      {
-        "type": "heading",
-        "text": "Quiet Period và Nguyên tắc Công bằng Thông tin"
-      },
-      {
-        "type": "paragraph",
-        "text": "Trước khi công bố kết quả kinh doanh chính thức, công ty tuân thủ Quiet Period - hạn chế trao đổi thông tin trọng yếu chưa công bố với bất kỳ nhóm nhà đầu tư/nhà phân tích cụ thể nào, đảm bảo tuân thủ các quy định như Regulation FD nhằm ngăn chặn tình huống một số bên có lợi thế thông tin không công bằng so với công chúng."
+        "text": "Cùng thay đổi, hai phản ứng"
       },
       {
         "type": "callout",
-        "label": "Cái bẫy lớn nhất",
-        "text": "Giá cổ phiếu phản ứng với khoảng chênh so với ĐỒNG THUẬN, không với con số tuyệt đối. Lợi nhuận tăng 30% vẫn làm giá rơi nếu thị trường đã kỳ vọng 40% - và đó là lý do doanh nghiệp quản lý guidance cẩn thận tới vậy."
+        "label": "Ai kiểm soát được thời điểm",
+        "text": "Một thay đổi phá vỡ tương thích được báo trước ba tháng là một việc cần lên kế hoạch. Cũng thay đổi ấy tới không báo trước là một sự cố mà người dùng phải huỷ lịch để xử lý."
+      },
+      {
+        "type": "heading",
+        "text": "Ba câu bắt buộc"
       },
       {
         "type": "list",
         "items": [
-          "Đồng thuận: trung vị dự báo của giới phân tích, chứ không phải con số của một nhà phân tích nào",
-          "Guidance: doanh nghiệp tự đặt mốc kỳ vọng, thường thận trọng để còn chỗ vượt",
-          "Giai đoạn im lặng: khoảng trước công bố mà doanh nghiệp ngừng trao đổi riêng, để mọi nhà đầu tư nhận tin cùng lúc"
+          "CÁI GÌ ĐỔI - thường được viết rất kỹ.",
+          "KHI NÀO - thường mơ hồ.",
+          "NGƯỜI ĐỌC PHẢI LÀM GÌ, trước ngày nào - thường bị bỏ hẳn, và đó là câu duy nhất họ thật sự cần."
         ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Câu thứ ba bị bỏ vì người viết đứng ở phía hệ thống chứ không đứng ở phía người dùng. Một thông báo mô tả hoàn hảo thay đổi kỹ thuật mà không nói ai cần làm gì thì không tạo ra hành động nào."
+      },
+      {
+        "type": "heading",
+        "text": "Tính thời hạn từ phía nào"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Từ phía bạn",
+          "text": "Chu kỳ phát hành của bạn, thông lệ ngành, mức nghiêm trọng. Ba thứ này đều dễ lấy và đều không phải con số cần dùng."
+        },
+        "right": {
+          "label": "Từ bên chậm nhất",
+          "text": "Một bên tích hợp có chu kỳ phát hành theo quý cần ít nhất một quý, không phải hai tuần."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Nghề Investor Relations đòi hỏi sự kết hợp hiếm có giữa kỹ năng tài chính (hiểu sâu số liệu), kỹ năng giao tiếp (truyền đạt thông điệp rõ ràng, thuyết phục), và đạo đức nghề nghiệp (tuân thủ nghiêm ngặt quy định công bố thông tin).",
-          "Một chuyên viên IR giỏi không chỉ 'báo cáo số liệu' - họ xây dựng và bảo vệ niềm tin của thị trường vào khả năng quản trị và tính minh bạch của doanh nghiệp qua nhiều chu kỳ kinh doanh."
+          "Và đừng hứa mốc mà đội chưa chắc giữ được. Lùi mốc gây thiệt hại lan sang mọi thông báo sau đó - lần tới người ta sẽ không chuẩn bị theo mốc bạn đưa ra.",
+          "Cuối cùng, khi triển khai xong thì XÁC NHẬN. Không có bước đó, những người đã chuẩn bị vẫn ở trạng thái chờ mà không biết mình có thể chuyển sự chú ý sang chỗ khác."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Đồng thuận thị trường hình thành trước báo cáo",
-        "arrow": true
-      },
-      {
-        "label": "Kết quả thực tế so với đồng thuận, không so kỳ trước",
-        "arrow": true
-      },
-      {
-        "label": "Guidance định lại kỳ vọng cho các kỳ tới",
-        "arrow": true
-      },
-      {
-        "label": "Vượt kế hoạch nhưng hạ guidance vẫn có thể bị bán tháo",
-        "arrow": false
       }
     ]
   },

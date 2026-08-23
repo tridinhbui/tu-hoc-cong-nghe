@@ -9,11 +9,6 @@
     "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
     "duration": "12 min"
   },
-  "actuarial-science-xac-suat-thong-ke": {
-    "title": "Actuarial Science: probability and statistics applied to insurance pricing",
-    "subtitle": "Mortality tables, expected present value, and the mathematics behind every life insurance contract",
-    "duration": "8 min"
-  },
   "aml-kyc-case-study": {
     "title": "AML/KYC in practice: four situations and how to handle them",
     "subtitle": "Building the reflex to spot the signals and decide, on situations close to the real job",
@@ -209,11 +204,6 @@
     "subtitle": "From sheet layout to a balance check of zero: how to build a model that actually runs",
     "duration": "13 min"
   },
-  "earnings-call-va-guidance-quan-ly-ky-vong": {
-    "title": "Earnings Calls & Guidance: how IR prepares for and manages market expectations",
-    "subtitle": "Why a company growing well can still see its stock sold off the moment earnings land",
-    "duration": "7 min"
-  },
   "embedded-finance-banking-as-a-service": {
     "title": "Embedded Finance & Banking-as-a-Service: FinTech's new business model",
     "subtitle": "How Grab and Shopee can lend money and sell insurance without a banking licence",
@@ -239,11 +229,6 @@
     "subtitle": "Credit, liquidity, interest rate, market and concentration risk",
     "duration": "6 min"
   },
-  "fpa-la-gi-vai-tro-doanh-nghiep": {
-    "title": "What FP&A is, and what it does inside a company",
-    "subtitle": "From an accounting department to the CEO's strategic partner",
-    "duration": "7 min"
-  },
   "fpt-cfo-cash": {
     "title": "FPT's CFO and 8,500bn of cash",
     "subtitle": "Balancing liquidity, financial income and capital allocation",
@@ -253,11 +238,6 @@
     "title": "Contractors, Part 3: Pricing a bid and measuring what it really returns",
     "subtitle": "Why two packages on the same 10% margin can return wildly different IRRs, and how to read payment terms as a financial variable",
     "duration": "11 min"
-  },
-  "hedging-instruments-fx-derivatives": {
-    "title": "Hedging instruments & FX derivatives - cutting exchange-rate risk",
-    "subtitle": "When you have to transact in foreign currency, use derivatives to 'lock in' the rate instead of carrying the risk.",
-    "duration": "8 min"
   },
   "hoach-dinh-tai-chinh-theo-giai-doan-cuoc-doi": {
     "title": "Financial planning by life stage: the same person, four different problems",
@@ -339,11 +319,6 @@
     "subtitle": "Why payroll has to be built role by role and month by month, not as a single annual figure",
     "duration": "11 min"
   },
-  "ke-toan-don-tich-vs-ke-toan-tien-mat": {
-    "title": "Accrual vs cash accounting: the foundational distinction every accountant must hold",
-    "subtitle": "Why recognised revenue does not always coincide with money arriving in the bank",
-    "duration": "7 min"
-  },
   "khau-hao": {
     "title": "Depreciation: three methods and the path through three statements",
     "subtitle": "Which method to pick, and everywhere a dong of depreciation touches",
@@ -383,11 +358,6 @@
     "title": "CFO & Operations, Lesson 4: Corporate financial KPIs - choosing the right metrics to track",
     "subtitle": "Tracking too many metrics is as dangerous as tracking too few",
     "duration": "7 min"
-  },
-  "ky-quy-va-margin-call": {
-    "title": "Margin & Margin Calls - Risk Management Is Priority Number One",
-    "subtitle": "Why does a client have to 'hand the money back' the moment the market turns against them?",
-    "duration": "8 min"
   },
   "lam-sach-du-lieu-va-cai-gia-cua-du-lieu-ban": {
     "title": "Data, Lesson 3: Cleaning data - the part that takes the most time and gets talked about the least",
@@ -467,11 +437,6 @@
   "modern-portfolio-theory": {
     "title": "Modern Portfolio Theory",
     "subtitle": "Correlation, the efficient frontier and spreading risk",
-    "duration": "7 min"
-  },
-  "needs-analysis-tu-van-bao-hiem": {
-    "title": "Needs Analysis in Insurance Advice: pinning down what a client actually needs protecting",
-    "subtitle": "Human Life Value and Capital Needs Analysis - the two ways of working out how much life cover is genuinely required",
     "duration": "7 min"
   },
   "ngan-sach-va-du-bao-tai-chinh": {

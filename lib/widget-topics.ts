@@ -32,7 +32,7 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   risk: ["rủi ro", "risk", "lợi nhuận kỳ vọng", "biến động", "danh mục"],
   bond: ["trái phiếu", "coupon", "ytm", "bond", "lợi suất", "tín dụng", "spread", "vỡ nợ", "xếp hạng"],
   multiples: ["dung lượng", "capacity", "ước lượng", "hệ số so sánh", "số máy", "mở rộng", "tải cao điểm"],
-  payoff: ["quyền chọn", "option", "payoff", "phái sinh", "call", "put", "forward", "future", "swap", "phòng hộ", "chênh lệch giá"],
+  // mục sơ đồ lãi lỗ quyền chọn đã gỡ cùng loại widget đó
   "money-vs-asset": ["tài sản", "tiêu sản", "tiền", "thuê", "mua"],
   // Loại multiples đã tạm rút khỏi WIDGET_TYPES (xem chú thích trong
   // components/InteractiveWidget.tsx), và bảng này chỉ được chứa widget có

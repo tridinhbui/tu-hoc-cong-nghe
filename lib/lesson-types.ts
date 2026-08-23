@@ -115,7 +115,7 @@ export interface Lesson {
     | "chart"
     | "risk"
     | "multiples"
-    | "payoff"
+    // sơ đồ lãi lỗ quyền chọn: gỡ cùng bài phái sinh cuối cùng
     | "prospect"
     | "accretion"
     | "ethics-case"
