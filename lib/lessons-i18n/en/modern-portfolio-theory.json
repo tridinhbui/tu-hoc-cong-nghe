@@ -1,0 +1,165 @@
+{
+  "title": "Many small services or one large one",
+  "subtitle": "Splitting only reduces risk when the pieces fail independently",
+  "duration": "9 min",
+  "whyItMatters": "Splitting a system into pieces is the most expensive architectural decision a team makes, and the reason usually given for it - reducing risk - only holds when one condition is met.",
+  "openingQuestion": "You split one service into five. How does the chance of an incident each month change?",
+  "openingOptions": [
+    "It goes up, if the five still fail together",
+    "It drops fivefold",
+    "It stays the same, because the total amount of code and complexity in the system is unchanged",
+    "It drops, because each incident now affects a fifth of the users instead of all of them"
+  ],
+  "explanation": "Splitting turns a system with one point of failure into a system with five, plus the network between them. If all five depend on one database or one authentication service, they still fail at the same moment and you have paid the full price of splitting for nothing. The deciding condition is whether the pieces fail independently.",
+  "diagram": [
+    {
+      "label": "Split into several pieces"
+    },
+    {
+      "label": "Ask whether they share any dependency"
+    },
+    {
+      "label": "A shared dependency means they fail together"
+    },
+    {
+      "label": "Risk falls with independence, not with count"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Twelve services, one outage",
+    "description": "A system was split into twelve services over two years, on the grounds that one failing piece should not drag the rest down. That year's largest incident took eleven of the twelve down for forty minutes. The cause was the identity service all eleven called on every request - a dependency nobody counted as part of the architecture, because it had been there before the splitting started."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The underlying idea is simple and correct: things that fail independently rarely fail at the same time. All of the difficulty sits in the word independently, and it is almost never checked."
+    },
+    {
+      "type": "heading",
+      "text": "Independence is a condition, not a consequence"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two services running in two processes are still not independent if they share a database, a cluster, a vendor, or a library with a bug in it. That degree of mutual dependence decides the entire benefit of splitting, and it does not shrink on its own as the number of pieces grows."
+    },
+    {
+      "type": "heading",
+      "text": "Four shared dependencies that get missed"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A base service every piece calls: authentication, config, logging, name resolution",
+        "Shared infrastructure: one region, one cluster, one account with one quota",
+        "A shared library: one bug in it appears at the same instant everywhere that upgraded",
+        "Shared people: the same on-call rotation, so two simultaneous incidents are one incident twice as long"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The fourth is the least counted and often the decisive one. Twelve services that are perfectly independent technically but covered by three people on call are not independent at all on a bad night."
+    },
+    {
+      "type": "callout",
+      "label": "The price is paid up front, the benefit is conditional",
+      "text": "Splitting always costs immediately: more network, more failure modes, more coordination on release, more places for data to diverge. Those are certain. The benefit depends on whether the pieces really are independent, and that has to be designed rather than arriving as part of the split."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A split that helps",
+        "text": "Pieces in different regions, different vendors for the things that matter, and each one keeps running when another stops."
+      },
+      "right": {
+        "label": "A split in form only",
+        "text": "Several processes, one database and one authentication service. The full price paid, and none of the benefit received."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Risk falls through independence, not through the number of pieces.",
+        "The price of splitting arrives immediately; the benefit is conditional and must be designed."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the condition for splitting to actually reduce risk?",
+      "options": [
+        "The pieces have to fail independently of each other",
+        "Each piece needs its own team",
+        "Each piece needs its own tests and release process so they do not interfere with one another",
+        "There must be a way for one piece to keep running in a degraded mode when another stops"
+      ],
+      "explanation": "The last option is one way of realising that condition rather than the condition itself. If the pieces still fail together because of a shared dependency then a degraded mode saves nothing, because there is no piece left standing."
+    },
+    {
+      "question": "Which shared dependency is counted least often?",
+      "options": [
+        "The same on-call rotation",
+        "The same internal library",
+        "The same infrastructure vendor, so one outage on their side affects every piece at once",
+        "The same database, so every piece stops when the database has a problem"
+      ],
+      "explanation": "The other three are technical dependencies and all of them appear on an architecture diagram. An on-call rotation appears on no diagram, but three people covering twelve services means two simultaneous incidents become one incident twice as long."
+    },
+    {
+      "question": "Eleven of twelve services went down because of the identity service. Why did nobody see it coming?",
+      "options": [
+        "Because it predated the split, so it was not treated as part of the architecture",
+        "Because it had never had an incident",
+        "Because the tests all ran with the identity service healthy, so the dependency never surfaced",
+        "Because reliance on it grew with each split rather than appearing all at once at the start"
+      ],
+      "explanation": "The other three are all true and all describe how it stayed hidden. The root cause is the scope of the conversation: when people discuss a new architecture they discuss what they are creating, and whatever was already there gets treated as part of the ground."
+    },
+    {
+      "question": "Why is the price of splitting more certain than the benefit?",
+      "options": [
+        "Because the price comes with the split while the benefit has to be designed on top",
+        "Because the price shows up in the first quarter",
+        "Because the benefit only shows during an incident, so quarters pass with nothing measurable",
+        "Because teams routinely underestimate the coordination effort that several services require"
+      ],
+      "explanation": "More network, more failure modes and more coordination follow directly from splitting and cannot be avoided. Independence does not arrive that way - it is a list of extra work, and that list usually never gets written."
+    },
+    {
+      "question": "Two services run in two processes. Are they independent?",
+      "options": [
+        "Not necessarily, it depends on what they share",
+        "Yes, a process is an isolation boundary",
+        "No, because two processes on one machine still share the resources of the operating system",
+        "Yes, provided they talk over the network rather than calling each other in the same memory"
+      ],
+      "explanation": "A process boundary isolates memory errors and crashes. It does not isolate a shared database, a shared account quota, or a library with a bug in it, and those three account for most simultaneous failures."
+    }
+  ],
+  "keyTakeaways": [
+    "Risk falls through independence, not through the number of pieces",
+    "A process boundary does not isolate shared dependencies",
+    "A shared on-call rotation is the least counted dependency of all",
+    "The price comes with the split; independence is a separate list of work"
+  ],
+  "practicePrompt": {
+    "question": "Five services, each failing independently 1% of the time per month. What is the chance at least one fails in a month?",
+    "options": [
+      "About 4.9%",
+      "1%, because each service keeps its own failure rate no matter how many others there are",
+      "5% (= adding the five probabilities and ignoring the overlap between the cases)",
+      "0.2% (= dividing one service's probability by the total number of services)"
+    ],
+    "explanation": "1 minus 0.99 to the fifth is about 4.9%. The point worth keeping is that this is HIGHER than 1%: splitting raises the chance of an incident somewhere, and what it lowers is the blast radius of each one - two different quantities that often get treated as one."
+  },
+  "summary": {
+    "keyIdea": "Splitting reduces risk only when the pieces fail independently",
+    "commonMistake": "Treating the split itself as sufficient for independence",
+    "action": "List everything that every service in your system calls on every request."
+  },
+  "application": {
+    "title": "Three questions before splitting",
+    "message": "What will the pieces share? Who is on call for them? If the shared thing stops, how many pieces keep running?",
+    "secondary": "If the answer to the last one is none, the split is only buying more ways to fail."
+  },
+  "slug": "modern-portfolio-theory"
+}

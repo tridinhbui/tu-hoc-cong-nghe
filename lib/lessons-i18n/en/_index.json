@@ -104,9 +104,19 @@
     "subtitle": "Why every estimate has to carry an interval, and why 36 months of data is nowhere near enough",
     "duration": "11 min"
   },
+  "modern-portfolio-theory": {
+    "title": "Many small services or one large one",
+    "subtitle": "Splitting only reduces risk when the pieces fail independently",
+    "duration": "9 min"
+  },
   "ngan-sach-va-du-bao-tai-chinh": {
     "title": "Budgeting & financial forecasting - planning in order to steer",
     "subtitle": "From forecast to replanning when reality moves",
+    "duration": "8 min"
+  },
+  "operating-leverage": {
+    "title": "Fixed cost and cost that scales with usage",
+    "subtitle": "Why two systems with the same revenue react in opposite ways as load grows",
     "duration": "8 min"
   },
   "phan-bo-chi-phi-va-loi-nhuan-bo-phan": {
@@ -128,11 +138,6 @@
     "title": "Excel, Lesson 5: Power Query - clean the data once, reuse it forever",
     "subtitle": "A repeatable cleaning process instead of copying and hand-fixing every month",
     "duration": "11 min"
-  },
-  "sql-co-ban-cho-dan-tai-chinh": {
-    "title": "Excel, Lesson 6: Basic SQL for finance people - getting exactly the data you need",
-    "subtitle": "SELECT, WHERE, GROUP BY, JOIN: enough to query for yourself instead of waiting on the data team",
-    "duration": "12 min"
   },
   "sql-nang-cao-join-va-window-function": {
     "title": "Data, Lesson 6: Advanced SQL - joining tables and computing over windows",

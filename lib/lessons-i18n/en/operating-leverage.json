@@ -1,0 +1,163 @@
+{
+  "title": "Fixed cost and cost that scales with usage",
+  "subtitle": "Why two systems with the same revenue react in opposite ways as load grows",
+  "duration": "8 min",
+  "whyItMatters": "The ratio between fixed cost and usage-based cost decides whether your system gets better or worse as it grows, and it is settled almost entirely at design time.",
+  "openingQuestion": "The number of users doubles. What happens to cost per user?",
+  "openingOptions": [
+    "Depends on the ratio of fixed cost to usage-based cost",
+    "It halves",
+    "It stays flat, because every additional user consumes the same resources as the one before them",
+    "It rises, because a larger system also costs more to coordinate and operate at that scale"
+  ],
+  "explanation": "A system that is all fixed cost sees cost per user halve when users double. A system where every request calls a service billed per call sees cost per user hold completely flat, however many users there are. Most systems sit somewhere between, and where they sit decides whether scale is an advantage at all.",
+  "diagram": [
+    {
+      "label": "Fixed cost: paid whether anyone uses it or not"
+    },
+    {
+      "label": "Usage cost: multiplied by the number of uses"
+    },
+    {
+      "label": "The ratio between them sets the shape"
+    },
+    {
+      "label": "Scale is an advantage, or it is not"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The more successful it got, the more it lost",
+    "description": "A feature called an external language model service on every tap, priced per call. It proved popular and usage grew tenfold in three months. Cost grew tenfold too, exactly linearly, while revenue did not move because the feature sat inside a flat subscription. No amount of scale could have saved it, because it had no fixed part to spread."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Software is famous for high fixed cost and a near-zero cost of one more user. That used to be almost perfectly true, and it is becoming less true every year."
+    },
+    {
+      "type": "heading",
+      "text": "Two kinds of cost"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Fixed: servers that run continuously, the effort to build it, the people who operate it. Unchanged by usage",
+        "Usage-based: external calls billed per request, data transfer, storage that grows with the user count"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "What matters is that the second kind is growing in many modern systems, largely because per-call services keep getting more common. A purely fixed-cost system gets cheaper per user as it fills up; a purely usage-based one costs the same whether crowded or empty, and every advantage of scale disappears."
+    },
+    {
+      "type": "heading",
+      "text": "What this does to the revenue shape"
+    },
+    {
+      "type": "paragraph",
+      "text": "The problem only becomes serious when the two sides diverge. If users pay by usage and you pay by usage, the two move together and scale is neutral. If users pay a flat monthly amount while your cost rises with every tap they make, then the more engaged the user the more you lose - and that is the most painful kind of failure, because it looks exactly like success until it is very late."
+    },
+    {
+      "type": "callout",
+      "label": "This ratio is settled at design time",
+      "text": "Choosing to call an external per-call service instead of running something yourself is a choice to move cost from the fixed column to the usage column. It is almost always right early on, when the fixed part is expensive and usage is small. It almost always needs revisiting once usage grows, and the crossover point can be computed in advance rather than waiting for an invoice to point it out."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Weighted to fixed",
+        "text": "Expensive at first, cheaper per user over time. Scale becomes an advantage, and smaller rivals struggle to match the cost."
+      },
+      "right": {
+        "label": "Weighted to usage",
+        "text": "Cheap at first, never gets cheaper. Easy to enter the market, and no level of scale creates any advantage."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "High fixed cost is what turns scale into an advantage; without it, crowded and empty are the same.",
+        "The most painful failure is users paying a flat fee while your cost rises with every tap."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which system sees cost per user fall as the user count rises?",
+      "options": [
+        "One where the fixed part is a large share of the total",
+        "One with many active users",
+        "One running on on-demand infrastructure, so cost always tracks actual usage closely",
+        "One that has been optimised so each request consumes fewer resources than it used to"
+      ],
+      "explanation": "The fixed part is divided among more people, so it shrinks per user. The usage part multiplies rather than divides, so it holds flat per user no matter how many users there are."
+    },
+    {
+      "question": "Why does per-call pricing remove the advantage of scale?",
+      "options": [
+        "Because it multiplies with usage rather than being divided by it",
+        "Because external services usually charge more than running it yourself",
+        "Because the vendor can change the price at any time, making long-run cost hard to predict",
+        "Because volume discounts on external services rarely offset the growth in usage itself"
+      ],
+      "explanation": "The other three all make things worse and all are about unit price. The core point is the shape of the arithmetic: an amount multiplied by usage never gets smaller per unit, however good the unit price is."
+    },
+    {
+      "question": "Which situation is the most dangerous?",
+      "options": [
+        "Users pay a flat fee while cost rises with every tap they make",
+        "Users pay by usage and cost is usage-based too",
+        "Users pay a flat fee while the system's cost is also almost entirely fixed",
+        "Users pay by usage while most of the system's cost is fixed cost"
+      ],
+      "explanation": "The other three are neutral or favourable as scale grows. The first loses more the more successful it gets, and it is worse than the others because every engagement metric is reporting good news while it happens."
+    },
+    {
+      "question": "What does choosing an external service over running it yourself mean for cost?",
+      "options": [
+        "It moves cost from the fixed column to the usage column",
+        "It lowers total cost in the early period",
+        "It trades some control over quality for getting the feature to market considerably faster",
+        "It moves operational risk to the vendor and leaves the team the feature work"
+      ],
+      "explanation": "The other three readings are all true and all get said when the decision is made. The first is rarely said and is the only one that predicts what happens at ten times the scale, because it is about shape rather than level."
+    },
+    {
+      "question": "When should a per-call service decision be revisited?",
+      "options": [
+        "When usage is large enough that the fixed cost of running it yourself is cheaper",
+        "When the invoice passes a threshold set in advance",
+        "When the vendor announces a change to its pricing or its terms of service",
+        "When the team has enough people and expertise to operate an equivalent thing internally"
+      ],
+      "explanation": "That crossover can be computed at the outset by comparing the fixed cost of self-hosting against unit price times usage. Waiting for an invoice threshold means overpaying for the whole stretch between the crossover and the moment the threshold fires."
+    }
+  ],
+  "keyTakeaways": [
+    "The fixed part divides as you grow; the usage part multiplies",
+    "Without a fixed part, crowded and empty are the same and scale gives no advantage",
+    "The worst case is users paying flat while cost rises with every tap",
+    "The crossover point can be computed at the outset, not waited for"
+  ],
+  "practicePrompt": {
+    "question": "Fixed $10,000/month, usage $0.01/request. At 1 million and 10 million requests, what is the cost per thousand requests?",
+    "options": [
+      "$20 then $11",
+      "$10 at both levels",
+      "$20 then $2 (= dividing only the fixed part by the new volume, forgetting the usage part)",
+      "$30 then $21 (= adding the fixed part twice in both calculations)"
+    ],
+    "explanation": "At 1 million: $10,000 fixed plus $10,000 usage, over 1,000 thousands, is $20. At 10 million: $10,000 plus $100,000, over 10,000 thousands, is $11. Cost nearly halves but it converges on $10 and never goes below - that floor is set by the usage part."
+  },
+  "summary": {
+    "keyIdea": "The ratio of fixed to usage-based cost decides whether scale is an advantage",
+    "commonMistake": "Assuming any software gets cheaper per user as it fills up",
+    "action": "Split one feature's invoice into a fixed part and a usage-based part."
+  },
+  "application": {
+    "title": "Two questions for a new feature",
+    "message": "Which part of its cost is unchanged however many users there are? How do users pay compared with how you pay?",
+    "secondary": "If the two sides of the second question diverge, work out in advance the scale at which it becomes a problem."
+  },
+  "slug": "operating-leverage"
+}
