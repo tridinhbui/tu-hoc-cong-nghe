@@ -74,11 +74,6 @@
     "subtitle": "Why a contractor's reported profit has almost nothing to do with the cash that arrived in the period",
     "duration": "10 min"
   },
-  "doc-hieu-chi-bao-kinh-te-vi-mo": {
-    "title": "Reading the key macroeconomic indicators: PMI, CPI and GDP nowcasting",
-    "subtitle": "The daily toolkit a macro researcher uses to gauge the health of an economy before the official GDP figure is published",
-    "duration": "8 min"
-  },
   "dung-mo-hinh-ba-bao-cao-trong-excel": {
     "title": "Excel, Lesson 3: Building a real three-statement model - links, circularity and check cells",
     "subtitle": "From sheet layout to a balance check of zero: how to build a model that actually runs",
@@ -88,16 +83,6 @@
     "title": "Embedded Finance & Banking-as-a-Service: FinTech's new business model",
     "subtitle": "How Grab and Shopee can lend money and sell insurance without a banking licence",
     "duration": "7 min"
-  },
-  "hoach-dinh-tai-chinh-theo-giai-doan-cuoc-doi": {
-    "title": "Financial planning by life stage: the same person, four different problems",
-    "subtitle": "Why advice that is right at 25 can become the wrong advice at 55",
-    "duration": "9 min"
-  },
-  "hoach-dinh-tai-chinh-toan-dien": {
-    "title": "Comprehensive financial planning: fitting six pieces into one plan",
-    "subtitle": "Why optimising each piece on its own can still produce a poor overall plan",
-    "duration": "9 min"
   },
   "investment-thesis-research-report-structure": {
     "title": "Investment Thesis & Research Report - how to convince an investor",
@@ -218,11 +203,6 @@
     "title": "Standards & Tax, Lesson 8: tax finalisation and tax audits",
     "subtitle": "What happens when the tax authority re-examines what has already been declared",
     "duration": "9 min"
-  },
-  "solvency-ii-quy-dinh-bao-hiem": {
-    "title": "Solvency II and insurance regulation: making sure the insurer is still there",
-    "subtitle": "SCR, MCR, and the framework that keeps the insurance industry from repeating the solvency crises in its own history",
-    "duration": "7 min"
   },
   "sql-co-ban-cho-dan-tai-chinh": {
     "title": "Excel, Lesson 6: Basic SQL for finance people - getting exactly the data you need",

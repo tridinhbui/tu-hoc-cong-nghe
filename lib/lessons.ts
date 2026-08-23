@@ -70717,148 +70717,190 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1234,
-    "track": "professional",
-    "slug": "solvency-ii-quy-dinh-bao-hiem",
-    "title": "Solvency II & Quy định bảo hiểm: Đảm bảo công ty không phá sản",
-    "subtitle": "SCR, MCR, và khung quy định giúp ngành bảo hiểm không lặp lại những cuộc khủng hoảng thanh toán trong lịch sử",
-    "duration": "7 phút",
+    "title": "Chuẩn nội bộ về mức dự phòng tối thiểu",
+    "subtitle": "Đặt sàn cho cả tổ chức, và vì sao mọi chuẩn đều bị chơi lách",
+    "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "⚖️",
-    "openingQuestion": "Solvency II (khung quy định vốn cho ngành bảo hiểm châu Âu, được nhiều quốc gia khác tham khảo) yêu cầu công ty bảo hiểm duy trì vốn ở mức nào?",
+    "emoji": "📏",
+    "whyItMatters": "Khi mỗi đội tự quyết mức dự phòng của mình thì mức ấy luôn trôi xuống, vì cắt nó không gây hậu quả nào trong quý ấy. Một chuẩn chung là cách duy nhất chặn được, và nó có cái giá riêng.",
+    "openingQuestion": "Đặt chuẩn: mọi dịch vụ phải giữ ít nhất 30% dung lượng dự phòng. Hệ quả đầu tiên là gì?",
     "openingOptions": [
-      "Chỉ cần vốn đủ chi trả các nghĩa vụ đã phát sinh trong quá khứ",
-      "Vốn đủ để có 99,5% khả năng vẫn còn thanh toán được sau đúng một năm",
-      "Vốn chỉ cần bằng đúng số tiền phí bảo hiểm đã thu trong năm",
-      "Không có yêu cầu vốn cụ thể nào, chỉ cần công ty có lãi hàng năm"
+      "Các đội sẽ khai lại mức tải đỉnh cho vừa với chuẩn",
+      "Mọi dịch vụ trở nên an toàn hơn",
+      "Chi phí hạ tầng của toàn công ty tăng lên khoảng ba mươi phần trăm trong kỳ tiếp theo",
+      "Những dịch vụ đang thiếu dự phòng sẽ được ưu tiên cấp thêm tài nguyên trong quý tới"
     ],
-    "correctOption": 1,
-    "explanation": "Solvency Capital Requirement (SCR) là yêu cầu vốn cốt lõi của Solvency II: công ty bảo hiểm phải có đủ vốn để duy trì khả năng thanh toán với xác suất 99.5% trong vòng 1 năm tới - nghĩa là công ty phải có thể chịu đựng được kịch bản bất lợi nghiêm trọng (thứ chỉ xảy ra trung bình 1 lần trong 200 năm) mà vẫn đủ khả năng chi trả các nghĩa vụ cho khách hàng.",
-    "realWorldExample": {
-      "company": "AIG và khủng hoảng tài chính 2008",
-      "description": "AIG (American International Group), một trong những tập đoàn bảo hiểm lớn nhất thế giới, gần như sụp đổ trong khủng hoảng tài chính 2008 do bộ phận Financial Products bán quá nhiều hợp đồng bảo hiểm tín dụng (CDS) mà không có đủ dự phòng vốn tương xứng với rủi ro thực sự - chính phủ Mỹ phải bơm 182 tỷ USD để cứu công ty. Sự kiện này là một trong những động lực chính thúc đẩy các cơ quan quản lý toàn cầu (bao gồm EU với Solvency II) siết chặt yêu cầu vốn đối với ngành bảo hiểm."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Ba mươi phần trăm dự phòng được tính trên một mẫu số, và mẫu số ấy do đội tự khai. Khai mức đỉnh thấp hơn thực tế thì con số ba mươi phần trăm đạt được mà không thêm một máy nào. Đây không phải gian lận mà là phản ứng bình thường trước một chuẩn đặt trên đại lượng không được kiểm chứng độc lập.",
+    "diagram": [
       {
-        "question": "Sự khác biệt giữa SCR (Solvency Capital Requirement) và MCR (Minimum Capital Requirement) trong Solvency II là gì?",
-        "options": [
-          "Hai khái niệm này hoàn toàn giống nhau",
-          "SCR là mức vốn 'mục tiêu' đảm bảo khả năng thanh toán 99.5% - nếu vốn công ty rơi XUỐNG DƯỚI SCR, cơ quan quản lý bắt đầu giám sát chặt hơn và yêu cầu kế hoạch khôi phục vốn; MCR là ngưỡng TỐI THIỂU TUYỆT ĐỐI (thấp hơn SCR) - nếu vốn rơi xuống dưới MCR, cơ quan quản lý có thể can thiệp khẩn cấp, thu hồi giấy phép hoạt động",
-          "MCR luôn cao hơn SCR trong mọi trường hợp",
-          "SCR chỉ áp dụng cho bảo hiểm nhân thọ, MCR chỉ áp dụng cho bảo hiểm phi nhân thọ"
-        ],
-        "correct": 1,
-        "explanation": "Đây là cấu trúc 2 tầng của Solvency II: SCR là 'vùng an toàn mong muốn' (soft threshold - vi phạm dẫn đến giám sát tăng cường và yêu cầu kế hoạch khôi phục vốn trong thời hạn nhất định), MCR là 'ranh giới sống còn' (hard threshold - vi phạm có thể dẫn đến can thiệp khẩn cấp, thậm chí thu hồi giấy phép hoạt động ngay lập tức để bảo vệ quyền lợi khách hàng đã mua bảo hiểm)."
+        "label": "Chuẩn đặt sàn cho toàn tổ chức",
+        "arrow": true
       },
       {
-        "question": "Ba trụ cột (Pillar) của Solvency II tương tự cấu trúc Basel III trong ngành ngân hàng như thế nào?",
-        "options": [
-          "Solvency II và Basel III không có điểm tương đồng nào",
-          "Cả hai đều có cấu trúc 3 trụ cột: Trụ cột 1 - Yêu cầu vốn định lượng (SCR/MCR cho bảo hiểm, tỷ lệ vốn Tier 1 cho ngân hàng); Trụ cột 2 - Giám sát quản trị rủi ro nội bộ và đánh giá của cơ quan quản lý; Trụ cột 3 - Yêu cầu công bố thông tin minh bạch ra thị trường",
-          "Chỉ Basel III có cấu trúc 3 trụ cột, Solvency II chỉ có 1 trụ cột duy nhất",
-          "Hai khung quy định này được thiết kế hoàn toàn độc lập, không tham khảo lẫn nhau"
-        ],
-        "correct": 1,
-        "explanation": "Solvency II được thiết kế theo cấu trúc 3 trụ cột tương tự Basel III (khung quy định vốn ngân hàng): Pillar 1 (yêu cầu vốn định lượng - SCR/MCR), Pillar 2 (quy trình giám sát của cơ quan quản lý và hệ thống quản trị rủi ro nội bộ - ORSA, Own Risk and Solvency Assessment), Pillar 3 (yêu cầu công bố thông tin - Solvency and Financial Condition Report). Sự tương đồng này phản ánh triết lý quản lý rủi ro tài chính chung: định lượng vốn, giám sát quy trình, và minh bạch thông tin."
+        "label": "Sàn tính trên một mẫu số nào đó",
+        "arrow": true
       },
       {
-        "question": "Tại sao các quy định như Solvency II lại đặc biệt quan trọng với ngành bảo hiểm hơn nhiều ngành kinh doanh khác?",
-        "options": [
-          "Vì ngành bảo hiểm có lợi nhuận cao hơn các ngành khác nên cần kiểm soát chặt hơn",
-          "Vì đặc thù 'đảo ngược chu kỳ sản xuất' của bảo hiểm - công ty nhận tiền TRƯỚC (phí bảo hiểm), phát sinh nghĩa vụ chi trả SAU (có thể hàng chục năm sau với bảo hiểm nhân thọ) - nếu không có quy định vốn chặt chẽ, công ty có thể trông có vẻ 'lãi' trong ngắn hạn trong khi thực chất đang tích lũy rủi ro mất khả năng thanh toán trong dài hạn, gây thiệt hại nghiêm trọng cho hàng triệu khách hàng khi vỡ nợ",
-          "Ngành bảo hiểm không cần quy định chặt chẽ vì đã tự nguyện quản lý rủi ro tốt",
-          "Quy định vốn chỉ quan trọng với ngành ngân hàng, không quan trọng với bảo hiểm"
-        ],
-        "correct": 1,
-        "explanation": "Đặc thù 'đảo ngược chu kỳ sản xuất' (nhận tiền trước, chi trả sau, có thể cách nhau hàng chục năm) là lý do cốt lõi khiến quy định vốn bảo hiểm quan trọng: nếu không có yêu cầu trích lập dự phòng và vốn đủ mạnh, một công ty bảo hiểm có thể duy trì vẻ ngoài 'khỏe mạnh về tài chính' trong nhiều năm (thu phí đều đặn, ít chi trả) trong khi thực chất đang bán các hợp đồng với mức phí không đủ để trang trải nghĩa vụ tương lai - rủi ro này chỉ 'phát nổ' nhiều năm sau, khi hàng loạt khách hàng cần chi trả cùng lúc mà công ty không còn đủ nguồn lực."
+        "label": "Mẫu số do bên bị đo tự khai",
+        "arrow": true
+      },
+      {
+        "label": "Chuẩn được đạt mà không đổi gì"
       }
     ],
-    "keyTakeaways": [
-      "SCR (Solvency Capital Requirement): mức vốn đảm bảo 99.5% khả năng thanh toán trong 1 năm, dựa trên các kịch bản stress test nghiêm trọng",
-      "MCR (Minimum Capital Requirement): ngưỡng vốn tối thiểu tuyệt đối - vi phạm có thể dẫn đến can thiệp khẩn cấp/thu hồi giấy phép",
-      "Solvency II có cấu trúc 3 trụ cột tương tự Basel III: yêu cầu vốn định lượng, giám sát quản trị rủi ro, và minh bạch công bố thông tin",
-      "Đặc thù 'đảo ngược chu kỳ sản xuất' của bảo hiểm (nhận tiền trước, chi trả sau nhiều năm) là lý do khiến quy định vốn đặc biệt quan trọng với ngành này"
-    ],
-    "practicePrompt": {
-      "question": "Một công ty bảo hiểm nhân thọ có SCR yêu cầu 500 tỷ đồng, nhưng vốn hiện tại chỉ đạt 480 tỷ đồng (dưới SCR nhưng vẫn trên MCR ở mức 200 tỷ). Điều gì sẽ xảy ra theo khung Solvency II?",
-      "options": [
-        "Không có hậu quả gì vì công ty vẫn trên mức MCR tối thiểu",
-        "Vi phạm SCR nhưng còn trên MCR: phải trình kế hoạch khôi phục vốn",
-        "Công ty sẽ ngay lập tức bị thu hồi giấy phép hoạt động",
-        "Công ty có thể tự do hoạt động bình thường không cần báo cáo gì thêm"
-      ],
-      "correct": 1,
-      "explanation": "Đây chính là mục đích của cấu trúc 2 tầng SCR/MCR: vi phạm SCR (nhưng vẫn trên MCR) là tín hiệu CẢNH BÁO SỚM, kích hoạt giám sát tăng cường và yêu cầu kế hoạch khôi phục vốn - cho công ty cơ hội tự khắc phục trước khi tình hình xấu đi đến mức vi phạm MCR (ngưỡng sống còn, có thể dẫn đến can thiệp khẩn cấp). Đây là thiết kế 'cảnh báo sớm' giúp ngăn chặn khủng hoảng trước khi nó trở nên nghiêm trọng."
-    },
-    "summary": {
-      "keyIdea": "Solvency II (và các khung quy định tương tự toàn cầu) yêu cầu công ty bảo hiểm duy trì vốn đủ để chịu đựng các kịch bản bất lợi nghiêm trọng, với cấu trúc 2 ngưỡng SCR (mục tiêu) và MCR (tối thiểu tuyệt đối) để cảnh báo sớm và ngăn chặn khủng hoảng thanh toán.",
-      "commonMistake": "Đánh giá sức khỏe tài chính của công ty bảo hiểm chỉ dựa vào lợi nhuận công bố hàng năm, bỏ qua chỉ số quan trọng hơn là tỷ lệ vốn SCR/MCR",
-      "action": "Khi phân tích một công ty bảo hiểm niêm yết, tìm báo cáo Solvency and Financial Condition Report (SFCR) để xem tỷ lệ vốn thực tế so với yêu cầu SCR/MCR"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Tìm hiểu tỷ lệ an toàn vốn (solvency ratio) của một công ty bảo hiểm niêm yết tại Việt Nam - so sánh với yêu cầu tối thiểu theo quy định của Bộ Tài chính để đánh giá mức độ an toàn tài chính.",
-      "secondary": "Việt Nam đang trong quá trình hoàn thiện khung quản lý vốn bảo hiểm theo hướng tiếp cận rủi ro tương tự Solvency II - đây là xu hướng chung của các thị trường bảo hiểm mới nổi trên thế giới."
+    "realWorldExample": {
+      "company": "Ba mươi phần trăm trên giấy",
+      "description": "Một công ty áp chuẩn dự phòng ba mươi phần trăm sau một sự cố lớn. Sáu tháng sau, mọi bảng đều xanh. Khi một đội đo lại mức đỉnh thật bằng dữ liệu thay vì bằng con số đã khai, họ phát hiện mức đỉnh thật cao hơn con số khai khoảng bốn mươi phần trăm ở phần lớn dịch vụ - không ai khai sai cố ý, họ chỉ lấy mức đỉnh của tháng gần nhất thay vì của cả năm."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Sau nhiều cuộc khủng hoảng tài chính khiến các công ty bảo hiểm lớn gần như sụp đổ, thế giới nhận ra: chỉ nhìn vào lợi nhuận hàng năm là không đủ để đánh giá sức khỏe thực sự của một công ty bảo hiểm."
+        "text": "Chuẩn chung tồn tại vì một lý do đơn giản: thứ không ai đo thì trôi xuống. Bài này về cách đặt một chuẩn thật sự chặn được, và ba cách mọi chuẩn đều bị lách."
       },
       {
         "type": "heading",
-        "text": "Solvency II - Khung quy định vốn hiện đại cho ngành bảo hiểm"
+        "text": "Vì sao cần một sàn chung"
       },
       {
         "type": "paragraph",
-        "text": "Solvency II là khung quy định vốn được Liên minh châu Âu áp dụng từ 2016, thay thế cho hệ thống Solvency I lỏng lẻo hơn trước đó. Điểm khác biệt cốt lõi: Solvency II áp dụng cách tiếp cận DỰA TRÊN RỦI RO (risk-based approach) - yêu cầu vốn không phải là một con số cố định, mà được tính toán dựa trên MỨC ĐỘ RỦI RO THỰC SỰ mà công ty đang gánh chịu (rủi ro thị trường, rủi ro tín dụng, rủi ro bảo hiểm, rủi ro vận hành), tương tự triết lý của Basel III trong ngành ngân hàng."
+        "text": "Mức dự phòng là khoản dễ cắt nhất trong mọi ngân sách: cắt nó không gây hậu quả nào trong quý cắt, và hậu quả xuất hiện ở lần sự cố tiếp theo khi không ai còn nối được hai việc với nhau. Mỗi đội tự quyết thì mọi đội đều trôi xuống theo cùng một cơ chế, và không đội nào sai."
       },
       {
         "type": "heading",
-        "text": "SCR và MCR - Hai ngưỡng vốn quan trọng"
-      },
-      {
-        "type": "paragraph",
-        "text": "SCR (Solvency Capital Requirement) được tính bằng mô hình Value-at-Risk ở mức tin cậy 99.5% trong khung thời gian 1 năm - nghĩa là công ty phải có đủ vốn để chịu đựng một kịch bản bất lợi chỉ có xác suất xảy ra 0.5% (tương đương sự kiện '1 lần trong 200 năm'). MCR (Minimum Capital Requirement) là ngưỡng thấp hơn, mang tính chất 'giới hạn đỏ' - vi phạm MCR là dấu hiệu nghiêm trọng cho thấy công ty có nguy cơ mất khả năng thanh toán trong thời gian ngắn."
-      },
-      {
-        "type": "heading",
-        "text": "Ba trụ cột của Solvency II"
+        "text": "Ba cách một chuẩn bị lách"
       },
       {
         "type": "list",
         "items": [
-          "Pillar 1 - Yêu cầu vốn định lượng: Tính toán SCR/MCR dựa trên mô hình rủi ro (chuẩn hoặc mô hình nội bộ được phê duyệt)",
-          "Pillar 2 - Giám sát quản trị rủi ro: Yêu cầu công ty thực hiện ORSA (Own Risk and Solvency Assessment) - tự đánh giá rủi ro và khả năng thanh toán định kỳ, không chỉ dựa vào công thức chuẩn",
-          "Pillar 3 - Minh bạch công bố thông tin: Yêu cầu công bố Solvency and Financial Condition Report (SFCR) định kỳ để thị trường và cơ quan quản lý có thể giám sát độc lập"
+          "Khai lại mẫu số: đạt tỷ lệ bằng cách hạ con số đem chia, không bằng cách thêm dự phòng",
+          "Chuyển phân loại: xếp dịch vụ vào nhóm có yêu cầu thấp hơn thay vì đáp ứng yêu cầu cao",
+          "Đạt đúng vào ngày đo: mượn dung lượng trong kỳ kiểm rồi trả lại ngay sau đó"
         ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cả ba đều không phải gian lận và đều được thực hiện bởi những người đang cố làm đúng. Chúng xảy ra vì một chuẩn đo tỷ lệ luôn có hai vế, và bên bị đo thường kiểm soát được ít nhất một vế."
+      },
+      {
+        "type": "callout",
+        "label": "Đặt chuẩn trên đại lượng bên ngoài kiểm chứng được",
+        "text": "Cách sửa không phải là thêm quy định mà là chọn lại đại lượng. Ba mươi phần trăm trên mức đỉnh tự khai thì lách được; ba mươi phần trăm trên mức đỉnh đo từ hệ thống giám sát trung tâm trong mười hai tháng thì không. Một chuẩn chỉ mạnh bằng mức độ độc lập của mẫu số nó dùng, và đó là điều cần quyết trước khi bàn tới con số phần trăm."
+      },
+      {
+        "type": "heading",
+        "text": "Cái giá của một chuẩn chung"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một sàn áp cho tất cả sẽ quá cao với một số dịch vụ và quá thấp với một số khác, vì mức dự phòng đúng phụ thuộc vào hậu quả khi hỏng chứ không vào loại dịch vụ. Chuẩn chia nhóm theo mức độ quan trọng thì đúng hơn nhưng lại mở ra cách lách thứ hai. Không có phương án nào không có cái giá, và việc chọn là chọn cái giá nào dễ phát hiện hơn."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chuẩn chặn được",
+          "text": "Mẫu số đo từ hệ thống giám sát trung tâm, chu kỳ dài, và một lần kiểm bất ngờ mỗi năm."
+        },
+        "right": {
+          "label": "Chuẩn trên giấy",
+          "text": "Tỷ lệ tính trên số liệu đội tự khai, kiểm theo lịch báo trước. Mọi bảng đều xanh và không gì thay đổi."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Quy định vốn bảo hiểm không phải là gánh nặng hành chính - đó là lớp bảo vệ cuối cùng đảm bảo hàng triệu khách hàng sẽ thực sự nhận được khoản bồi thường mà họ đã tin tưởng trả phí trong suốt nhiều năm.",
-          "Đối với một actuary hay chuyên viên quản lý rủi ro bảo hiểm, hiểu sâu Solvency II không chỉ là tuân thủ quy định - đó là công cụ cốt lõi để đánh giá và quản lý sức khỏe tài chính dài hạn của công ty."
+          "Một chuẩn chỉ mạnh bằng mức độ độc lập của mẫu số nó dùng.",
+          "Ba cách lách đều không phải gian lận, và đều do người đang cố làm đúng thực hiện."
         ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "Đánh giá tài sản và nghĩa vụ theo giá trị thị trường",
-        "arrow": true
+        "question": "Vì sao mức dự phòng luôn trôi xuống khi mỗi đội tự quyết?",
+        "options": [
+          "Vì cắt nó không gây hậu quả nào trong quý cắt",
+          "Vì các đội luôn chịu áp lực cắt giảm chi phí hạ tầng",
+          "Vì phần lớn đội không có công cụ để đo chính xác mức dự phòng mình đang thực sự giữ",
+          "Vì mức dự phòng cần thiết thường bị đánh giá thấp khi hệ thống chưa từng gặp sự cố lớn"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều góp phần. Lý do đầu là cơ chế: quyết định cắt và hậu quả của nó cách nhau nhiều tháng, nên vòng phản hồi bị đứt và không ai học được rằng lần cắt trước đã tốn bao nhiêu."
       },
       {
-        "label": "Tính SCR - vốn yêu cầu theo mức rủi ro",
-        "arrow": true
+        "question": "Cách lách phổ biến nhất với một chuẩn dạng tỷ lệ là gì?",
+        "options": [
+          "Hạ con số đem chia thay vì thêm phần dự phòng",
+          "Xin miễn trừ cho dịch vụ của mình",
+          "Trì hoãn việc báo cáo cho tới khi đội kịp bổ sung phần dung lượng còn thiếu",
+          "Gộp nhiều dịch vụ nhỏ lại thành một để mức dự phòng chung dễ đạt chuẩn hơn"
+        ],
+        "correct": 0,
+        "explanation": "Một tỷ lệ có hai vế và bên bị đo thường kiểm soát được mẫu số. Đây cũng là cách lách khó phát hiện nhất, vì nó không để lại dấu vết nào ngoài một con số hơi thấp mà không ai đối chiếu."
       },
       {
-        "label": "So vốn thực có với SCR rồi với MCR",
-        "arrow": true
+        "question": "Cách làm một chuẩn thật sự chặn được là gì?",
+        "options": [
+          "Chọn mẫu số đo được độc lập bởi hệ thống giám sát trung tâm",
+          "Tăng mức phần trăm yêu cầu lên cao hơn",
+          "Bổ sung quy định xử lý đối với những đội không đáp ứng được chuẩn đã đề ra",
+          "Yêu cầu mỗi đội giải trình bằng văn bản về cách họ tính ra con số của mình"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều thêm áp lực lên một phép đo vẫn do bên bị đo cung cấp. Đổi mẫu số sang một nguồn độc lập thì đóng luôn cách lách, và nó phải được quyết trước khi bàn tới con số phần trăm."
       },
       {
-        "label": "Dưới MCR: cơ quan quản lý can thiệp trực tiếp",
-        "arrow": false
+        "question": "Vì sao một sàn duy nhất áp cho mọi dịch vụ là chưa đủ đúng?",
+        "options": [
+          "Vì mức dự phòng đúng phụ thuộc vào hậu quả khi hỏng",
+          "Vì các dịch vụ có quy mô khác nhau",
+          "Vì những dịch vụ mới chưa có đủ dữ liệu lịch sử để xác định được mức đỉnh đáng tin",
+          "Vì chi phí của cùng một tỷ lệ dự phòng chênh nhau nhiều giữa các loại hạ tầng khác nhau"
+        ],
+        "correct": 0,
+        "explanation": "Một dịch vụ nội bộ ba người dùng và một dịch vụ nằm trên đường đi của mọi giao dịch không cần cùng một mức dự phòng. Chia nhóm theo hậu quả thì đúng hơn, nhưng nó mở ra cách lách thứ hai là chuyển phân loại."
+      },
+      {
+        "question": "Ba cách lách chuẩn có điểm chung gì?",
+        "options": [
+          "Đều được thực hiện bởi người đang cố làm đúng",
+          "Đều cần được người quản lý trực tiếp phê duyệt trước",
+          "Đều để lại dấu vết trong hệ thống nên có thể phát hiện được khi rà soát kỹ lưỡng",
+          "Đều chỉ xảy ra ở những đội đang chịu áp lực lớn về chi phí trong kỳ báo cáo đó"
+        ],
+        "correct": 0,
+        "explanation": "Đây là điểm quyết định cách xử lý. Nếu chúng là gian lận thì giải pháp là kỷ luật; nếu chúng là phản ứng bình thường trước một phép đo lỏng thì giải pháp là sửa phép đo, và thực tế luôn là vế thứ hai."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Thứ không ai đo thì trôi xuống, và không đội nào sai khi nó trôi",
+      "Một chuẩn chỉ mạnh bằng mức độ độc lập của mẫu số nó dùng",
+      "Ba cách lách đều do người đang cố làm đúng thực hiện",
+      "Mức dự phòng đúng phụ thuộc vào hậu quả khi hỏng, không vào loại dịch vụ"
+    ],
+    "practicePrompt": {
+      "question": "Chuẩn 30% trên mức đỉnh. Đội khai đỉnh 1.000, thật là 1.400, và đang giữ 1.300 dung lượng. Dự phòng thật là bao nhiêu?",
+      "options": [
+        "Âm, vì 1.300 còn thấp hơn mức đỉnh thật",
+        "30%, đúng bằng mức chuẩn yêu cầu",
+        "0% (= coi như vừa đủ vì dung lượng đang giữ nằm giữa hai con số đỉnh)",
+        "7% (= lấy chênh lệch 100 chia cho mức đỉnh đã khai là 1.400)"
+      ],
+      "correct": 0,
+      "explanation": "Đỉnh thật 1.400 mà chỉ giữ 1.300 nghĩa là thiếu 100 ngay ở mức đỉnh, chưa nói tới dự phòng. Trên giấy đội này vượt chuẩn 30%; trên thực tế họ không đủ dung lượng cho chính ngày bận nhất của mình."
+    },
+    "summary": {
+      "keyIdea": "Chọn mẫu số độc lập trước khi bàn tới con số phần trăm",
+      "commonMistake": "Đặt chuẩn trên đại lượng do bên bị đo tự khai",
+      "action": "Kiểm mức đỉnh khai báo của một dịch vụ với dữ liệu giám sát mười hai tháng."
+    },
+    "application": {
+      "title": "Ba câu trước khi đặt một chuẩn",
+      "message": "Mẫu số đến từ đâu? Ai kiểm chứng được nó? Kỳ đo có báo trước không?",
+      "secondary": "Nếu mẫu số do bên bị đo cung cấp thì con số phần trăm gần như không quan trọng."
+    },
+    "id": 1234,
+    "slug": "solvency-ii-quy-dinh-bao-hiem",
+    "track": "professional"
   },
   {
     "id": 1235,
@@ -74821,171 +74863,191 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1258,
-    "track": "professional",
-    "slug": "doc-hieu-chi-bao-kinh-te-vi-mo",
-    "title": "Đọc hiểu các Chỉ báo Kinh tế Vĩ mô Quan trọng: PMI, CPI và GDP Nowcasting",
-    "subtitle": "Công cụ hàng ngày của chuyên viên nghiên cứu vĩ mô để nắm bắt sức khỏe nền kinh tế trước khi số liệu GDP chính thức được công bố",
-    "duration": "8 phút",
-    "difficulty": "Khó",
-    "emoji": "📡",
-    "openingQuestion": "Chỉ số PMI (Purchasing Managers' Index - Chỉ số Nhà quản trị Mua hàng) được công bố hàng tháng và thường được coi là 'chỉ báo sớm' quan trọng của nền kinh tế. Tại sao các nhà nghiên cứu vĩ mô đặc biệt coi trọng PMI hơn nhiều so với việc chỉ chờ đợi số liệu GDP chính thức?",
+    "title": "Chỉ báo dẫn dắt và chỉ báo trễ",
+    "subtitle": "Cái nào báo trước, cái nào chỉ xác nhận, và vì sao đội nào cũng theo dõi loại thứ hai",
+    "duration": "9 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🚦",
+    "whyItMatters": "Phần lớn bảng theo dõi của một đội gồm toàn chỉ báo trễ - chúng cho biết chuyện đã xảy ra. Biết phân biệt hai loại là điều kiện để phát hiện vấn đề trước khi nó thành sự cố.",
+    "openingQuestion": "Chỉ báo nào báo trước một sự cố về dung lượng?",
     "openingOptions": [
-      "PMI luôn chính xác hơn GDP trong việc đo lường quy mô nền kinh tế",
-      "PMI công bố sớm hơn GDP 1-3 tháng, nên cho tín hiệu xu hướng trước",
-      "PMI chỉ đo lường ngành sản xuất, hoàn toàn không liên quan đến sức khỏe kinh tế tổng thể",
-      "GDP và PMI đo lường chính xác cùng một thứ, chỉ khác tên gọi"
+      "Tốc độ tăng của lượng dùng, không phải mức dùng",
+      "Số sự cố đã xảy ra",
+      "Mức sử dụng hiện tại của cụm máy so với tổng dung lượng đã được cấp phát cho nó",
+      "Độ trễ trung bình, vì nó tăng lên khi hệ thống bắt đầu gần chạm giới hạn xử lý"
     ],
-    "correctOption": 1,
-    "explanation": "Lợi thế cốt lõi của PMI nằm ở TÍNH KỊP THỜI: được tổng hợp từ khảo sát các nhà quản trị mua hàng về hoạt động hiện tại của doanh nghiệp (đơn hàng mới, sản xuất, việc làm, tồn kho, giá cả), PMI có thể được công bố chỉ vài ngày sau khi tháng kết thúc - trong khi GDP chính thức (dựa trên tổng hợp dữ liệu toàn diện từ nhiều nguồn) thường mất 1-3 tháng để công bố lần đầu, và còn bị điều chỉnh (revise) nhiều lần sau đó khi có thêm dữ liệu đầy đủ hơn. PMI vì thế đóng vai trò như một 'tín hiệu radar sớm', dù độ chính xác tuyệt đối kém hơn GDP.",
-    "realWorldExample": {
-      "company": "GDPNow của Fed Atlanta - Mô hình GDP Nowcasting",
-      "description": "Cục Dự trữ Liên bang chi nhánh Atlanta phát triển mô hình 'GDPNow' - một hệ thống 'nowcasting' (dự báo thời gian thực) cập nhật ước tính tăng trưởng GDP quý hiện tại LIÊN TỤC dựa trên các chỉ báo kinh tế được công bố hàng tuần/hàng tháng (PMI, doanh số bán lẻ, sản xuất công nghiệp, thị trường lao động), thay vì chờ đợi số liệu GDP chính thức chỉ được công bố sau khi quý đã kết thúc. Mô hình này được các nhà đầu tư và nhà hoạch định chính sách theo dõi sát sao như một 'radar thời gian thực' về sức khỏe nền kinh tế Mỹ, minh họa cách các chỉ báo tần suất cao được kết hợp để 'nowcast' một chỉ số vốn có độ trễ lớn như GDP."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Mức dùng hiện tại và độ trễ đều cho biết tình hình hôm nay; chúng chỉ báo động khi vấn đề đã tới. Tốc độ tăng thì trả lời câu hỏi còn bao lâu nữa - và khoảng thời gian ấy chính là thứ quyết định bạn có kịp làm gì không. Một chỉ báo dẫn dắt luôn là một đạo hàm hoặc một tín hiệu từ thượng nguồn.",
+    "diagram": [
       {
-        "question": "Ngưỡng '50' trong chỉ số PMI có ý nghĩa gì, và tại sao đây là mức tham chiếu quan trọng nhất cần nhớ khi đọc số liệu PMI hàng tháng?",
-        "options": [
-          "50 chỉ đơn giản là điểm giữa của thang đo từ 0-100, không có ý nghĩa kinh tế đặc biệt",
-          "PMI trên 50 báo hiệu hoạt động kinh tế (sản xuất/dịch vụ) đang MỞ RỘNG (expansion) so với tháng trước; PMI dưới 50 báo hiệu đang THU HẸP (contraction) - đây là ngưỡng nhị phân quan trọng nhất, và mức độ PMI cách xa 50 (như 55 hay 45) phản ánh tốc độ mở rộng/thu hẹp mạnh hay yếu, không phải mức độ tuyệt đối của hoạt động kinh tế",
-          "PMI luôn nằm trong khoảng 45-55, không bao giờ vượt ra ngoài khoảng này",
-          "Ngưỡng 50 chỉ áp dụng cho PMI ngành sản xuất, không áp dụng cho PMI ngành dịch vụ"
-        ],
-        "correct": 1,
-        "explanation": "PMI là chỉ số 'diffusion index' (chỉ số khuếch tán) được tính từ tỷ lệ người trả lời khảo sát báo cáo 'cải thiện', 'không đổi', hay 'xấu đi' so với tháng trước - do đó bản chất của nó là đo TỐC ĐỘ THAY ĐỔI, không phải mức độ tuyệt đối. PMI = 52 nghĩa là hoạt động đang mở rộng (dù chậm), PMI = 65 nghĩa là mở rộng rất nhanh, còn PMI = 48 nghĩa là đang thu hẹp - nhà phân tích vĩ mô luôn theo dõi cả VỊ TRÍ so với ngưỡng 50 lẫn XU HƯỚNG thay đổi qua các tháng liên tiếp."
+        "label": "Tín hiệu thượng nguồn hoặc tốc độ thay đổi",
+        "arrow": true
       },
       {
-        "question": "'Core CPI' (CPI lõi - loại trừ giá thực phẩm và năng lượng) khác với 'Headline CPI' (CPI tổng thể) như thế nào, và tại sao các ngân hàng trung ương thường chú trọng Core CPI hơn khi ra quyết định chính sách tiền tệ?",
-        "options": [
-          "Core CPI và Headline CPI đo lường hoàn toàn giống nhau, không có sự khác biệt thực chất",
-          "Headline CPI bao gồm TẤT CẢ hàng hóa/dịch vụ trong rổ tiêu dùng, trong khi Core CPI LOẠI TRỪ giá thực phẩm và năng lượng - hai nhóm hàng có biến động giá RẤT MẠNH do các yếu tố tạm thời/theo mùa (thời tiết ảnh hưởng nông sản, biến động địa chính trị ảnh hưởng giá dầu) không phản ánh xu hướng lạm phát CƠ BẢN, DÀI HẠN của nền kinh tế - ngân hàng trung ương tập trung vào Core CPI để tránh phản ứng chính sách thái quá trước những biến động giá tạm thời, ngắn hạn",
-          "Core CPI luôn cao hơn Headline CPI trong mọi thời kỳ",
-          "Core CPI chỉ được sử dụng tại Việt Nam, không được sử dụng ở các quốc gia khác"
-        ],
-        "correct": 1,
-        "explanation": "Đây là phân biệt quan trọng trong phân tích lạm phát: giá thực phẩm và năng lượng có độ biến động (volatility) rất cao do các cú sốc cung tạm thời (thời tiết, xung đột địa chính trị, gián đoạn chuỗi cung ứng) không phản ánh áp lực lạm phát cơ bản trong nền kinh tế - nếu ngân hàng trung ương phản ứng chính sách (như tăng lãi suất) mỗi khi giá xăng dầu biến động tạm thời, chính sách tiền tệ sẽ trở nên bất ổn và kém hiệu quả. Core CPI cung cấp tín hiệu 'sạch' hơn về xu hướng lạm phát nền tảng, dù Headline CPI vẫn quan trọng vì phản ánh chi phí sinh hoạt thực tế mà người dân trải qua."
+        "label": "Báo trước, nhiễu nhiều, sai nhiều",
+        "arrow": true
       },
       {
-        "question": "'Nowcasting' trong kinh tế học vĩ mô khác với 'Forecasting' (dự báo) truyền thống như thế nào về mục tiêu và phương pháp?",
-        "options": [
-          "Hai khái niệm này hoàn toàn giống nhau, chỉ khác tên gọi",
-          "Nowcasting nhằm ước tính GIÁ TRỊ HIỆN TẠI của một chỉ số có độ trễ công bố lớn (như GDP quý hiện tại, trước khi số liệu chính thức được công bố), sử dụng các chỉ báo tần suất cao có sẵn NGAY (PMI hàng tháng, doanh số bán lẻ hàng tuần) để 'điền vào khoảng trống' thông tin; Forecasting truyền thống nhằm dự đoán giá trị TƯƠNG LAI (các quý/năm sắp tới) dựa trên mô hình kinh tế lượng và giả định về các yếu tố vĩ mô sẽ diễn biến như thế nào",
-          "Nowcasting chỉ áp dụng cho thị trường chứng khoán, không áp dụng cho các chỉ số kinh tế vĩ mô",
-          "Forecasting luôn chính xác hơn Nowcasting trong mọi trường hợp"
-        ],
-        "correct": 1,
-        "explanation": "Đây là phân biệt quan trọng về MỤC TIÊU THỜI GIAN: Nowcasting trả lời câu hỏi 'điều gì đang thực sự xảy ra NGAY BÂY GIỜ' (dù dữ liệu chính thức chưa công bố) bằng cách tổng hợp các chỉ báo tần suất cao sẵn có, trong khi Forecasting trả lời câu hỏi 'điều gì sẽ xảy ra trong TƯƠNG LAI' dựa trên mô hình và giả định. Cả hai đều là công cụ quan trọng của nhà nghiên cứu vĩ mô, nhưng phục vụ mục đích khác nhau: Nowcasting giúp phản ứng nhanh với tình hình hiện tại, Forecasting giúp lập kế hoạch dài hạn."
+        "label": "Kết quả đã xảy ra",
+        "arrow": true
+      },
+      {
+        "label": "Chắc chắn, và đã muộn"
       }
     ],
-    "keyTakeaways": [
-      "PMI là chỉ báo sớm quan trọng nhờ tính kịp thời (công bố sớm hơn GDP nhiều), với ngưỡng 50 phân biệt mở rộng (>50) và thu hẹp (<50) hoạt động kinh tế",
-      "Core CPI (loại trừ thực phẩm/năng lượng) phản ánh xu hướng lạm phát cơ bản tốt hơn Headline CPI, giúp ngân hàng trung ương tránh phản ứng thái quá với biến động giá tạm thời",
-      "GDP Nowcasting (như GDPNow của Fed Atlanta) kết hợp nhiều chỉ báo tần suất cao để ước tính GDP hiện tại theo thời gian thực, thay vì chờ đợi số liệu chính thức có độ trễ lớn",
-      "Nowcasting (ước tính hiện tại) khác Forecasting (dự báo tương lai) về mục tiêu thời gian - cả hai đều là công cụ thiết yếu của nhà nghiên cứu vĩ mô"
-    ],
-    "practicePrompt": {
-      "question": "PMI sản xuất của một quốc gia công bố ở mức 47.5 trong tháng này, giảm từ 49.8 tháng trước (đã là dưới 50 trong 2 tháng liên tiếp). Đồng thời, Core CPI vẫn ở mức cao 4.5% (so với mục tiêu 2% của ngân hàng trung ương). Tình huống này đặt ngân hàng trung ương vào thế khó như thế nào, và tại sao?",
-      "options": [
-        "Tăng lãi suất giải quyết được cả hai: hạ lạm phát xong PMI sẽ tự hồi phục",
-        "PMI dưới 50 đòi nới lỏng còn Core CPI 4,5% đòi thắt chặt - hai hướng ngược nhau",
-        "PMI chỉ là khảo sát ý kiến nên chỉ Core CPI mới là dữ liệu đáng dựa vào",
-        "Tình huống này chỉ ảnh hưởng đến ngành sản xuất, không ảnh hưởng đến toàn bộ nền kinh tế"
-      ],
-      "correct": 1,
-      "explanation": "Đây là bài tập thực hành tổng hợp tình huống 'lưỡng nan chính sách' mà nhà nghiên cứu vĩ mô cần nhận diện: kết hợp tín hiệu PMI (chỉ báo tăng trưởng) suy yếu với Core CPI (chỉ báo lạm phát) vẫn cao tạo ra xung đột mục tiêu kinh điển giữa 'ổn định giá cả' và 'hỗ trợ tăng trưởng/việc làm' - hai nhiệm vụ kép mà hầu hết ngân hàng trung ương hiện đại phải cân bằng, không có công thức đơn giản nào giải quyết hoàn hảo cả hai mục tiêu cùng lúc."
-    },
-    "summary": {
-      "keyIdea": "PMI, Core CPI, và GDP Nowcasting là bộ công cụ thiết yếu giúp nhà nghiên cứu vĩ mô nắm bắt sức khỏe nền kinh tế theo thời gian thực, bù đắp cho độ trễ công bố lớn của số liệu GDP chính thức.",
-      "commonMistake": "Chỉ dựa vào một chỉ báo đơn lẻ (như chỉ nhìn CPI mà bỏ qua PMI, hoặc ngược lại) để đánh giá tình hình kinh tế, thay vì kết hợp nhiều nguồn tín hiệu",
-      "action": "Xây dựng thói quen theo dõi định kỳ ít nhất 3 chỉ báo tần suất cao (PMI, CPI, dữ liệu thị trường lao động) để có bức tranh cập nhật về nền kinh tế, thay vì chỉ chờ đợi báo cáo GDP hàng quý"
-    },
-    "application": {
-      "title": "Áp dụng vào công việc Macro Research",
-      "message": "Theo dõi công bố PMI và CPI của Việt Nam (hoặc một nền kinh tế bạn quan tâm) trong 3 tháng liên tiếp, ghi chú xu hướng và thử dự đoán số liệu GDP quý sẽ như thế nào dựa trên các tín hiệu này trước khi số liệu chính thức được công bố.",
-      "secondary": "Kỹ năng tổng hợp nhiều chỉ báo tần suất cao thành một 'bức tranh' mạch lạc về nền kinh tế là kỹ năng cốt lõi phân biệt nhà nghiên cứu vĩ mô giỏi với người chỉ đơn thuần đọc và trích dẫn số liệu riêng lẻ."
+    "realWorldExample": {
+      "company": "Bảng toàn màu xanh cho tới ngày hết chỗ",
+      "description": "Một đội theo dõi mức sử dụng ổ đĩa và đặt cảnh báo ở tám mươi phần trăm. Bảng xanh suốt mười một tháng. Ở tháng thứ mười hai, mức dùng đi từ sáu mươi hai phần trăm lên đầy trong chín ngày, vì một tính năng mới bắt đầu ghi nhật ký chi tiết. Cảnh báo tám mươi phần trăm kêu đúng hai ngày trước khi hết chỗ - đủ để biết, không đủ để làm gì."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Trong khi GDP chính thức chỉ được công bố vài tháng một lần với độ trễ lớn, thị trường tài chính cần thông tin cập nhật hàng ngày - đây là lý do các chỉ báo tần suất cao như PMI và CPI trở thành công cụ không thể thiếu của nhà nghiên cứu vĩ mô."
+        "text": "Mọi chỉ báo đều nằm ở một trong hai nhóm, và giá trị của chúng khác nhau về loại chứ không về mức. Bài này về cách nhận ra nhóm nào và cách ghép chúng lại."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Dẫn dắt",
+          "text": "Tốc độ tăng, độ sâu hàng đợi, số yêu cầu đang chờ, số thay đổi sắp phát hành. Báo trước, nhiễu nhiều, sai nhiều."
+        },
+        "right": {
+          "label": "Trễ",
+          "text": "Số sự cố, chi phí tháng qua, tỷ lệ lỗi đã ghi nhận. Chắc chắn, dễ giải thích, và luôn nói về chuyện đã rồi."
+        }
       },
       {
         "type": "heading",
-        "text": "PMI - Radar Sớm của Nền kinh tế"
+        "text": "Vì sao đội nào cũng theo dõi loại thứ hai"
       },
       {
         "type": "paragraph",
-        "text": "PMI được tổng hợp từ khảo sát trực tiếp các nhà quản trị mua hàng về tình hình hoạt động thực tế (đơn hàng mới, sản xuất, tồn kho, việc làm, giá cả đầu vào), cho phép công bố rất sớm sau khi tháng kết thúc. Ngưỡng 50 là mốc quan trọng nhất: trên 50 báo hiệu mở rộng, dưới 50 báo hiệu thu hẹp - và mức độ cách xa 50 phản ánh tốc độ thay đổi mạnh hay yếu."
+        "text": "Chỉ báo trễ dễ đo, dễ báo cáo, và gần như không bao giờ sai. Chỉ báo dẫn dắt thì nhiễu, hay báo động giả, và người theo dõi nó sẽ bị hỏi vì sao lần trước báo mà không có gì xảy ra. Không ai bị trách vì theo dõi một con số đúng, nên mọi bảng đều trôi dần về phía chỉ báo trễ."
       },
       {
         "type": "heading",
-        "text": "Core CPI vs Headline CPI - Lọc Nhiễu để Thấy Xu hướng Thực"
+        "text": "Bốn chỉ báo dẫn dắt đáng thêm"
       },
       {
-        "type": "paragraph",
-        "text": "Vì giá thực phẩm và năng lượng biến động mạnh do các yếu tố tạm thời (thời tiết, địa chính trị), Core CPI loại trừ hai nhóm này để phản ánh xu hướng lạm phát cơ bản, dài hạn hơn - đây là chỉ số các ngân hàng trung ương thường ưu tiên theo dõi khi ra quyết định chính sách tiền tệ, tránh phản ứng thái quá trước biến động giá ngắn hạn không phản ánh áp lực lạm phát thực sự."
-      },
-      {
-        "type": "heading",
-        "text": "GDP Nowcasting - Ghép nối các Mảnh Ghép Thời gian Thực"
-      },
-      {
-        "type": "paragraph",
-        "text": "Các mô hình nowcasting hiện đại (như GDPNow của Fed Atlanta) kết hợp hàng chục chỉ báo tần suất cao khác nhau (PMI, doanh số bán lẻ, sản xuất công nghiệp, dữ liệu lao động) thành một ước tính GDP CẬP NHẬT LIÊN TỤC theo thời gian thực, thay vì chờ đợi số liệu chính thức - một công cụ ngày càng quan trọng cho cả nhà đầu tư lẫn nhà hoạch định chính sách."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba chỉ báo và thứ mỗi cái thật sự nói",
-        "subtitle": "Chúng khác nhau ở độ trễ, nên đọc chung mới ra được bức tranh",
-        "concepts": [
-          {
-            "vi": "Chỉ số nhà quản trị mua hàng",
-            "en": "PMI",
-            "def": "Khảo sát doanh nghiệp, công bố sớm. Trên 50 là mở rộng, dưới 50 là co lại - và mức thay đổi quan trọng hơn mức tuyệt đối."
-          },
-          {
-            "vi": "Lạm phát lõi",
-            "en": "Core CPI",
-            "def": "Loại thực phẩm và năng lượng ra để thấy xu hướng. Headline nói người dân đang trả bao nhiêu; core nói ngân hàng trung ương sẽ phản ứng thế nào."
-          },
-          {
-            "vi": "Ước lượng GDP tức thời",
-            "en": "GDP Nowcasting",
-            "def": "Ghép các chỉ báo tần suất cao để ước GDP quý hiện tại, thay vì chờ số liệu chính thức công bố sau nhiều tháng."
-          }
+        "type": "list",
+        "items": [
+          "Tốc độ tăng của mọi thứ tích luỹ: dung lượng lưu trữ, số bản ghi, số phụ thuộc",
+          "Độ sâu hàng đợi và xu hướng của nó, không chỉ giá trị tại một thời điểm",
+          "Số lời gọi phát sinh cho mỗi yêu cầu, vì nó báo trước chi phí và độ trễ nhiều tháng",
+          "Số thay đổi đang chờ phát hành, vì một đợt lớn dồn lại là một sự cố đang được nạp"
         ]
       },
       {
+        "type": "paragraph",
+        "text": "Điểm chung của bốn chỉ báo này: không cái nào cho biết hôm nay có vấn đề gì. Chúng cho biết quỹ đạo, và quỹ đạo là thứ duy nhất còn đổi được."
+      },
+      {
         "type": "callout",
-        "label": "Đáng nhớ",
-        "text": "Một chỉ báo đơn lẻ gần như không nói lên gì. Giá trị nằm ở chỗ chúng lệch nhau: PMI đi xuống trong khi lạm phát lõi vẫn cao là một tình huống rất khác với cả hai cùng xuống."
+        "label": "Đặt cảnh báo trên đạo hàm, không chỉ trên mức",
+        "text": "Một cảnh báo ở tám mươi phần trăm dung lượng cho bạn khoảng thời gian phụ thuộc hoàn toàn vào tốc độ tăng - có thể là ba tháng, có thể là hai ngày, và cảnh báo ấy không phân biệt được. Thêm một cảnh báo dạng còn bao nhiêu ngày nữa thì đầy, tính từ tốc độ của bốn tuần gần nhất, thì mọi trường hợp đều được báo với cùng một khoảng thời gian để phản ứng."
+      },
+      {
+        "type": "heading",
+        "text": "Ghép hai loại lại"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chỉ báo dẫn dắt dùng để hành động, chỉ báo trễ dùng để kiểm chứng xem hành động ấy có tác dụng không. Một bảng chỉ có loại đầu thì đầy báo động giả và không ai tin; một bảng chỉ có loại sau thì luôn đúng và luôn muộn. Cả hai đều cần, và chúng cần được đọc theo hai nhịp khác nhau."
       },
       {
         "type": "closing",
         "lines": [
-          "Nghiên cứu vĩ mô hiện đại không còn là việc chỉ đọc báo cáo GDP hàng quý - đó là quá trình liên tục tổng hợp nhiều nguồn tín hiệu tần suất cao để xây dựng bức tranh cập nhật, chính xác nhất có thể về sức khỏe nền kinh tế.",
-          "Thành thạo việc đọc và diễn giải PMI, CPI, và các mô hình nowcasting là kỹ năng nền tảng không thể thiếu cho bất kỳ ai theo đuổi sự nghiệp nghiên cứu kinh tế vĩ mô chuyên nghiệp."
+          "Chỉ báo dẫn dắt luôn là một đạo hàm hoặc một tín hiệu từ thượng nguồn.",
+          "Không ai bị trách vì theo dõi một con số đúng, nên mọi bảng đều trôi về phía chỉ báo trễ."
         ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "PMI - radar sớm nhất về sản xuất và dịch vụ",
-        "arrow": true
+        "question": "Đặc điểm chung của mọi chỉ báo dẫn dắt là gì?",
+        "options": [
+          "Chúng là một đạo hàm hoặc một tín hiệu từ thượng nguồn",
+          "Chúng khó đo hơn chỉ báo trễ",
+          "Chúng thường được thu thập từ những hệ thống nằm ngoài phạm vi quản lý của đội",
+          "Chúng cần được theo dõi liên tục thay vì đọc theo chu kỳ như những chỉ báo khác"
+        ],
+        "correct": 0,
+        "explanation": "Một chỉ báo chỉ báo trước được nếu nó đo tốc độ thay đổi, hoặc đo một thứ xảy ra trước trong chuỗi nhân quả. Mọi chỉ báo đo trạng thái hiện tại đều là chỉ báo trễ dù nó được cập nhật thường xuyên tới đâu."
       },
       {
-        "label": "CPI cơ bản - lọc nhiễu giá lương thực và năng lượng",
-        "arrow": true
+        "question": "Vì sao bảng theo dõi của mọi đội đều trôi về phía chỉ báo trễ?",
+        "options": [
+          "Vì không ai bị trách vì theo dõi một con số đúng",
+          "Vì chỉ báo trễ dễ thu thập và dễ trình bày hơn hẳn",
+          "Vì các công cụ giám sát mặc định cung cấp sẵn chỉ báo trễ nhiều hơn chỉ báo dẫn dắt",
+          "Vì ban lãnh đạo thường yêu cầu những con số đã được xác nhận thay vì các dự báo"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều làm việc trôi ấy dễ xảy ra hơn. Lý do đầu là động lực: người theo dõi chỉ báo dẫn dắt sẽ bị hỏi vì sao lần trước báo mà không có gì xảy ra, và không có phần thưởng nào cho những lần báo đúng."
       },
       {
-        "label": "Ghép các chỉ báo tần suất cao → nowcast GDP",
-        "arrow": true
+        "question": "Cảnh báo ở 80% dung lượng có nhược điểm gì?",
+        "options": [
+          "Khoảng thời gian nó cho phụ thuộc hoàn toàn vào tốc độ tăng",
+          "Ngưỡng 80% quá cao với phần lớn hệ thống",
+          "Nó không phân biệt được giữa mức tăng do người dùng và mức tăng do lỗi trong hệ thống",
+          "Nó chỉ áp dụng được cho dung lượng lưu trữ chứ không cho những loại tài nguyên khác"
+        ],
+        "correct": 0,
+        "explanation": "Cùng một ngưỡng cho ba tháng để phản ứng ở một hệ thống và hai ngày ở hệ thống khác, và bản thân cảnh báo không nói được nó đang ở trường hợp nào. Thêm một cảnh báo dạng còn bao nhiêu ngày thì mọi trường hợp được báo với cùng một khoảng thời gian."
       },
       {
-        "label": "Đối chiếu với số liệu GDP chính thức khi công bố",
-        "arrow": false
+        "question": "Vì sao số lời gọi cho mỗi yêu cầu là chỉ báo dẫn dắt?",
+        "options": [
+          "Vì nó báo trước chi phí và độ trễ nhiều tháng",
+          "Vì nó đổi mỗi lần phát hành",
+          "Vì nó phản ánh độ phức tạp của kiến trúc",
+          "Vì nó tăng khi một phụ thuộc phản hồi chậm"
+        ],
+        "correct": 0,
+        "explanation": "Nó tăng ngay ở lần đầu ai đó thêm một lời gọi vào đường đi chính, còn hoá đơn và độ trễ chỉ phản ánh điều đó sau khi lượng dùng đã đủ lớn. Khoảng cách giữa hai thời điểm ấy là toàn bộ giá trị của nó."
+      },
+      {
+        "question": "Nên dùng hai loại chỉ báo như thế nào?",
+        "options": [
+          "Dẫn dắt để hành động, trễ để kiểm chứng hành động có tác dụng không",
+          "Dẫn dắt cho đội kỹ thuật, trễ cho báo cáo lên trên",
+          "Dẫn dắt khi hệ thống đang thay đổi nhanh, trễ khi hệ thống đã bước vào giai đoạn ổn định",
+          "Dẫn dắt để đặt cảnh báo tự động, trễ để phân tích nguyên nhân sau khi sự cố xảy ra"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều chia theo bối cảnh hoặc theo người đọc. Cách đầu chia theo chức năng và nó giải thích vì sao cần cả hai: thiếu loại đầu thì luôn muộn, thiếu loại sau thì không biết mình vừa sửa đúng hay chỉ vừa gặp may."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Chỉ báo dẫn dắt là đạo hàm hoặc tín hiệu thượng nguồn; mọi chỉ báo trạng thái đều trễ",
+      "Bảng trôi về phía chỉ báo trễ vì không ai bị trách vì một con số đúng",
+      "Đặt cảnh báo trên đạo hàm để mọi trường hợp có cùng khoảng thời gian phản ứng",
+      "Dẫn dắt để hành động, trễ để kiểm chứng"
+    ],
+    "practicePrompt": {
+      "question": "Ổ đĩa dùng 62%, tăng 4%/ngày. Cảnh báo đặt ở 80%. Cảnh báo kêu trước khi đầy bao nhiêu ngày?",
+      "options": [
+        "5 ngày",
+        "9 ngày (= số ngày từ mức hiện tại tới lúc đầy, không phải từ lúc cảnh báo kêu)",
+        "20 ngày (= chia mức 80% cho tốc độ tăng 4% mỗi ngày)",
+        "18 ngày (= lấy khoảng cách từ 62% tới 80% chia cho tốc độ tăng)"
+      ],
+      "correct": 0,
+      "explanation": "Từ 80% tới 100% là 20 điểm, chia cho 4 điểm mỗi ngày ra 5 ngày. Nếu tốc độ là 1% mỗi ngày thì cùng cảnh báo ấy cho 20 ngày - cùng một ngưỡng, bốn lần khoảng thời gian, và bảng không nói được bạn đang ở trường hợp nào."
+    },
+    "summary": {
+      "keyIdea": "Chỉ báo dẫn dắt đo quỹ đạo; chỉ có quỹ đạo mới còn đổi được",
+      "commonMistake": "Đặt cảnh báo trên mức mà không đặt trên tốc độ",
+      "action": "Thêm một cảnh báo dạng còn bao nhiêu ngày cho một tài nguyên đang tích luỹ."
+    },
+    "application": {
+      "title": "Bốn chỉ báo dẫn dắt để thêm",
+      "message": "Tốc độ tăng của thứ tích luỹ. Xu hướng độ sâu hàng đợi. Số lời gọi mỗi yêu cầu. Số thay đổi đang chờ phát hành.",
+      "secondary": "Không cái nào cho biết hôm nay có vấn đề gì, và đó chính là điểm của chúng."
+    },
+    "id": 1258,
+    "slug": "doc-hieu-chi-bao-kinh-te-vi-mo",
+    "track": "professional"
   },
   {
     "id": 1259,
@@ -79682,388 +79744,275 @@ export const lessons: Lesson[] = [
   {
     "id": 1284,
     "track": "professional",
-    "slug": "hoach-dinh-tai-chinh-toan-dien",
-    "title": "Hoạch định tài chính toàn diện: Ghép sáu mảnh thành một kế hoạch",
-    "subtitle": "Vì sao tối ưu từng phần riêng lẻ vẫn có thể cho ra một kế hoạch tổng thể kém",
-    "duration": "9 phút",
+    "slug": "ghep-cac-quyet-dinh-roi-thanh-mot-kien-truc",
+    "title": "Ghép các quyết định rời thành một kiến trúc nhất quán",
+    "subtitle": "Sáu quyết định đúng riêng lẻ vẫn có thể cộng thành một hệ thống không ai bảo trì nổi",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "🧭",
-    "openingQuestion": "Một khách hàng có quỹ khẩn cấp bằng 1 tháng chi tiêu, đang vay tiêu dùng lãi 22%/năm, chưa có bảo hiểm nhân thọ dù là người thu nhập chính nuôi hai con nhỏ, và muốn được tư vấn danh mục cổ phiếu để 'tối ưu lợi nhuận dài hạn'. Chuyên viên hoạch định nên bắt đầu từ đâu?",
+    "emoji": "🧩",
+    "whyItMatters": "Kiến trúc của phần lớn hệ thống không được thiết kế mà được tích lại từ những quyết định riêng lẻ, mỗi cái hợp lý vào thời điểm của nó. Nhìn ra được tổng thể trước khi nó đông cứng là việc rẻ hơn nhiều lần so với gỡ ra sau này.",
+    "openingQuestion": "Vì sao nhiều quyết định đúng riêng lẻ vẫn cộng thành một hệ thống khó bảo trì?",
     "openingOptions": [
-      "Xây danh mục cổ phiếu ngay theo đúng yêu cầu khách hàng, vì đó là điều họ hỏi và họ có quyền tự quyết",
-      "Ưu tiên quỹ khẩn cấp và khoản nợ lãi 22% trước, rồi mới tới bảo vệ rủi ro, và sau cùng mới là đầu tư dài",
-      "Chia đều tiền cho cả sáu mảng để bảo đảm không bỏ sót mảng nào",
-      "Từ chối tư vấn cho đến khi khách hàng tự xử lý xong nợ và bảo hiểm"
+      "Vì mỗi quyết định tối ưu cho bài toán của nó, không cho tổng thể",
+      "Vì các quyết định được đưa ra bởi những người khác nhau ở các thời điểm khác nhau",
+      "Vì công nghệ thay đổi nhanh nên những lựa chọn cũ nhanh chóng trở nên lạc hậu",
+      "Vì thiếu tài liệu ghi lại nên người sau không hiểu được lý do của người trước"
     ],
-    "correctOption": 1,
-    "explanation": "Hoạch định toàn diện khác với việc bán một sản phẩm ở chỗ nó buộc phải nhìn thứ tự ưu tiên giữa các mảng. Trả bớt khoản nợ lãi 22% là một lợi ích chắc chắn 22%/năm, cao hơn kỳ vọng của gần như mọi danh mục đầu tư và không kèm rủi ro. Bảo vệ rủi ro cho người thu nhập chính không tạo ra lợi nhuận nhưng ngăn cả kế hoạch sụp đổ vì một sự kiện. Đầu tư vào đúng lúc hai nền tảng này còn yếu là tối ưu một mảng trong khi để hở chỗ có thể phá vỡ tất cả.",
+    "correctOption": 0,
+    "explanation": "Ba nguyên nhân kia đều có thật và đều làm tình hình tệ thêm. Cơ chế gốc thì đơn giản hơn: mỗi quyết định được đưa ra để giải một bài toán cụ thể, và tiêu chí tốt nhất cho bài toán đó không phải tiêu chí tốt nhất cho tổng thể. Chọn một cơ sở dữ liệu hợp nhất cho dịch vụ này, một cơ chế xếp hàng hợp nhất cho dịch vụ kia, một cách xác thực hợp nhất cho dịch vụ thứ ba - sáu lựa chọn đúng cho ra một hệ thống mà không ai nắm hết, mỗi thành phần cần một bộ kỹ năng riêng, và mọi sự cố đều đi qua ranh giới giữa chúng. Không quyết định nào sai, và tổng thì sai.",
+    "diagram": [
+      { "label": "Mỗi quyết định tối ưu cho bài toán của nó", "arrow": true },
+      { "label": "Tiêu chí tổng thể không có ai đại diện", "arrow": true },
+      { "label": "Sáu lựa chọn đúng, một hệ thống không ai nắm hết", "arrow": true },
+      { "label": "Sự cố đi qua ranh giới giữa các mảnh" }
+    ],
     "realWorldExample": {
-      "company": "Vì sao thứ tự ưu tiên quan trọng hơn từng lựa chọn riêng lẻ",
-      "description": "Hãy hình dung hai khách hàng có cùng thu nhập và cùng số tiền dư mỗi tháng. Người thứ nhất dồn toàn bộ vào một danh mục đầu tư được chọn rất kỹ, nhưng không có quỹ khẩn cấp. Khi mất việc bốn tháng, họ buộc phải bán danh mục đúng lúc thị trường đang giảm, và thiệt hại từ việc bán bắt buộc đó lớn hơn toàn bộ phần lợi nhuận vượt trội mà việc chọn cổ phiếu kỹ càng mang lại. Người thứ hai chọn một danh mục bình thường hơn nhưng giữ sáu tháng chi phí bằng tiền gửi - khi mất việc, họ không phải bán gì cả. Sau năm năm, người thứ hai thường có tài sản ròng cao hơn, không phải vì đầu tư giỏi hơn mà vì kế hoạch của họ không có điểm vỡ."
+      "company": "Bốn cơ sở dữ liệu, bốn lý do đúng",
+      "description": "Một hệ thống dùng bốn loại cơ sở dữ liệu khác nhau, mỗi loại được chọn có lý do rõ ràng cho đúng dịch vụ dùng nó. Sau hai năm, việc trực đêm cần người biết cả bốn, việc nâng phiên bản mất bốn lần công, và mọi sự cố dữ liệu không khớp đều nằm ở chỗ nối. Không ai từng quyết định rằng hệ thống sẽ có bốn loại - đó là tổng của bốn quyết định riêng."
     },
     "quiz": [
       {
-        "question": "Vì sao trả bớt khoản nợ tiêu dùng lãi 22%/năm thường được ưu tiên trước khi đầu tư thêm?",
+        "question": "Ai chịu trách nhiệm cho tiêu chí tổng thể trong một tổ chức?",
         "options": [
-          "Vì quy định pháp luật yêu cầu phải hết nợ mới được đầu tư",
-          "Vì đó là một lợi ích chắc chắn 22%/năm không kèm rủi ro, cao hơn kỳ vọng của hầu hết danh mục đầu tư - trong khi lợi nhuận đầu tư thì bất định",
-          "Vì lãi vay tiêu dùng được trừ thuế nên trả sớm có lợi về thuế",
-          "Vì ngân hàng sẽ giảm điểm tín dụng nếu còn dư nợ"
+          "Phải có người được giao rõ, nếu không thì không ai",
+          "Người phụ trách kiến trúc chung của toàn bộ hệ thống trong tổ chức",
+          "Tập thể các trưởng nhóm kỹ thuật thông qua các buổi họp định kỳ",
+          "Người quản lý kỹ thuật cấp cao nhất"
         ],
-        "correct": 1,
-        "explanation": "Đây là phép so sánh cốt lõi: mỗi đồng trả bớt nợ tránh được chi phí lãi ở mức đó một cách chắc chắn. So một lợi ích chắc chắn 22% với một kỳ vọng bất định thấp hơn thì lựa chọn khá rõ ràng."
+        "correct": 0,
+        "explanation": "Ba phương án kia đều mô tả một vai trò có thể tồn tại hoặc không. Điều cần nhớ là khi không ai được giao rõ thì mỗi quyết định vẫn được đưa ra bởi người tối ưu cho phần của họ, và tổng thể không có ai đại diện - đó là trạng thái mặc định của mọi tổ chức chứ không phải một sự cố."
       },
       {
-        "question": "Sáu mảng của một kế hoạch tài chính toàn diện gồm những gì?",
+        "question": "Chi phí của việc thêm một công nghệ mới vào hệ thống gồm những gì?",
         "options": [
-          "Chỉ gồm đầu tư và tiết kiệm - bốn mảng còn lại thuộc lĩnh vực khác",
-          "Dòng tiền và ngân sách, quản lý nợ, bảo vệ rủi ro, đầu tư và tích lũy, kế hoạch hưu trí, và chuyển giao tài sản",
-          "Chứng khoán, trái phiếu, vàng, bất động sản, tiền gửi và ngoại tệ",
-          "Thu nhập, chi tiêu, thuế, phí, lãi và cổ tức"
+          "Công dựng, cộng công nuôi nó mãi mãi ở mọi khâu vận hành",
+          "Công dựng ban đầu và thời gian để đội học cách sử dụng công nghệ đó",
+          "Chi phí bản quyền hoặc dịch vụ, cộng với chi phí hạ tầng để chạy nó",
+          "Thời gian tích hợp với phần hiện có"
         ],
-        "correct": 1,
-        "explanation": "Sáu mảng này bao trùm toàn bộ vòng đời tài chính của một cá nhân. Điểm quan trọng là chúng liên kết với nhau: thay đổi ở một mảng luôn tạo hệ quả ở các mảng khác."
+        "correct": 0,
+        "explanation": "Mỗi công nghệ thêm vào là một dòng nữa trong danh sách phải nâng phiên bản, phải theo dõi, phải có người biết trực đêm, phải kiểm khi có lỗ hổng bảo mật. Khoản đó không xuất hiện trong quyết định ban đầu vì lúc đó nó bằng không, và nó không bao giờ về không nữa."
       },
       {
-        "question": "Khách hàng muốn dồn hết tiền dư vào đầu tư và bỏ qua bảo hiểm vì 'chưa cần thiết'. Cách xử lý phù hợp của chuyên viên hoạch định là gì?",
+        "question": "Khi nào thì thêm một công nghệ mới là hợp lý?",
         "options": [
-          "Làm đúng theo yêu cầu vì khách hàng là người quyết định cuối cùng",
-          "Trình bày rõ hệ quả định lượng được: nếu người thu nhập chính gặp sự cố, gia đình mất bao nhiêu thu nhập trong bao nhiêu năm và khoản nợ nào vẫn còn - rồi để khách hàng quyết định trên cơ sở hiểu rõ, đồng thời ghi lại việc đã cảnh báo",
-          "Từ chối tiếp tục tư vấn cho khách hàng này",
-          "Tự ý mua bảo hiểm trước rồi giải thích sau"
+          "Khi phần nó giải quyết được là phần mà cách hiện có không giải nổi",
+          "Khi công nghệ mới rõ ràng phù hợp hơn với bài toán so với công nghệ hiện có",
+          "Khi đội đã có kinh nghiệm với công nghệ đó nên chi phí học tập là không đáng kể",
+          "Khi công nghệ hiện có đã cũ, hết hỗ trợ"
         ],
-        "correct": 1,
-        "explanation": "Vai trò của chuyên viên hoạch định không phải quyết định thay khách hàng, mà bảo đảm khách hàng quyết định trên cơ sở hiểu rõ hệ quả. Ghi lại việc đã cảnh báo cũng bảo vệ chính chuyên viên về sau."
+        "correct": 0,
+        "explanation": "Ngưỡng phù hợp hơn quá thấp, vì gần như luôn có một công cụ phù hợp hơn cho mọi bài toán cụ thể. Ngưỡng đúng là không giải nổi: nếu cách hiện có làm được ở mức chấp nhận được thì phần chênh lệch phải lớn hơn chi phí nuôi thêm một thứ mãi mãi."
+      },
+      {
+        "question": "Cách nào nhìn ra được tổng thể trước khi nó đông cứng?",
+        "options": [
+          "Định kỳ liệt kê mọi công nghệ đang dùng và ai biết từng thứ",
+          "Vẽ sơ đồ kiến trúc và cập nhật đều",
+          "Bắt mọi quyết định qua hội đồng duyệt",
+          "Ghi lý do từng quyết định cho người sau"
+        ],
+        "correct": 0,
+        "explanation": "Sơ đồ kiến trúc mô tả cách các thành phần nối nhau và không cho thấy gánh nặng vận hành. Một danh sách phẳng gồm mọi thứ đang dùng kèm số người biết từng thứ thì cho thấy ngay: dòng nào chỉ một người biết, và danh sách có dài hơn mức đội nuôi nổi hay không."
+      },
+      {
+        "question": "Hệ thống đã có sáu công nghệ trùng chức năng thì nên xử lý ra sao?",
+        "options": [
+          "Chọn một làm mặc định, và mọi thứ mới đi theo nó trừ khi có lý do rõ",
+          "Lên kế hoạch hợp nhất về một công nghệ",
+          "Giữ nguyên vì chuyển đổi tốn hơn lợi ích",
+          "Đánh giá lại và bỏ thứ ít dùng nhất"
+        ],
+        "correct": 0,
+        "explanation": "Hợp nhất toàn bộ là một dự án lớn thường không bao giờ được ưu tiên, nên nó tương đương với giữ nguyên. Đặt một mặc định thì không tốn gì hôm nay và nó chặn dòng chảy: hệ thống ngừng phình thêm, và những mảnh cũ được thay dần khi có dịp chạm vào chúng vì lý do khác."
       }
-    ],
-    "keyTakeaways": [
-      "Sáu mảng của kế hoạch toàn diện liên kết với nhau; tối ưu một mảng riêng lẻ có thể làm hỏng tổng thể.",
-      "Thứ tự ưu tiên chuẩn: dòng tiền và quỹ khẩn cấp, nợ lãi cao, bảo vệ rủi ro, rồi mới đến đầu tư tăng trưởng.",
-      "Trả bớt nợ lãi cao là lợi ích chắc chắn, cần được so trực tiếp với kỳ suất kỳ vọng bất định của đầu tư.",
-      "Vai trò của chuyên viên là bảo đảm khách hàng hiểu rõ hệ quả, không phải quyết định thay họ."
     ],
     "practicePrompt": {
-      "question": "Khách hàng dư 15 triệu mỗi tháng, có quỹ khẩn cấp 2 tháng chi phí, nợ thẻ tín dụng 80 triệu lãi 30%/năm, chưa có bảo hiểm, và muốn bắt đầu đầu tư. Phân bổ hợp lý nhất trong 6 tháng đầu là gì?",
+      "question": "Đội bạn đang cân nhắc thêm một cơ chế xếp hàng mới cho một dịch vụ. Nên hỏi gì trước?",
       "options": [
-        "Toàn bộ 15 triệu vào danh mục đầu tư để tận dụng lãi kép càng sớm càng tốt",
-        "Dứt điểm nợ 30% trước, song song mua bảo hiểm thuần và nâng quỹ khẩn cấp",
-        "Chia đều 5 triệu cho mỗi mục tiêu để cân bằng",
-        "Giữ toàn bộ bằng tiền gửi cho an toàn"
+        "Cơ chế hiện có làm được ở mức chấp nhận được không, và ai sẽ nuôi cái mới",
+        "Cơ chế mới có phù hợp với bài toán này hơn cơ chế hiện có hay không",
+        "Chi phí dựng và tích hợp cơ chế mới vào hệ thống hiện tại là bao nhiêu",
+        "Có bao nhiêu đội khác trong công ty đang dùng cơ chế mới đó rồi"
       ],
-      "correct": 1,
-      "explanation": "Khoản nợ 30%/năm là chi phí lớn nhất và chắc chắn nhất trong bức tranh này. Bảo hiểm thuần bảo vệ có phí thấp nên không cần chờ - nó lấp đúng lỗ hổng có thể phá vỡ kế hoạch. Đầu tư chậm lại vài tháng là cái giá nhỏ so với hai lợi ích trên."
+      "correct": 0,
+      "explanation": "Câu hỏi phù hợp hơn gần như luôn cho câu trả lời là có, nên nó không phân biệt được gì. Hai câu ở phương án đầu đặt đúng ngưỡng và đúng khoản chi phí hay bị bỏ quên - phần nuôi mãi mãi, chứ không phải phần dựng một lần."
     },
+    "keyTakeaways": [
+      "Mỗi quyết định tối ưu cho bài toán của nó; tổng thể không có ai đại diện",
+      "Chi phí thật của một công nghệ mới là phần nuôi nó mãi mãi, không phải phần dựng",
+      "Ngưỡng đúng là cách hiện có không giải nổi, không phải cách mới phù hợp hơn",
+      "Đặt một mặc định chặn được dòng chảy mà không cần một dự án hợp nhất"
+    ],
     "summary": {
-      "keyIdea": "Hoạch định toàn diện là bài toán về thứ tự ưu tiên giữa sáu mảng liên kết, không phải phép cộng của sáu quyết định độc lập.",
-      "commonMistake": "Bắt đầu từ mảng khách hàng hỏi tới (thường là đầu tư) thay vì từ mảng đang là điểm yếu nhất của kế hoạch.",
-      "action": "Vẽ bức tranh sáu mảng cho chính bạn, đánh dấu mảng yếu nhất, và xác định một việc cụ thể sẽ làm trong tháng này cho mảng đó."
+      "keyIdea": "Kiến trúc phần lớn hệ thống là tổng của những quyết định đúng riêng lẻ mà không ai từng quyết",
+      "commonMistake": "Dùng ngưỡng phù hợp hơn để thêm công nghệ, trong khi ngưỡng đó gần như luôn thoả",
+      "action": "Liệt kê mọi công nghệ đang dùng kèm số người biết từng thứ, và đặt một mặc định cho mỗi nhóm chức năng."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Liệt kê sáu mảng, cho mỗi mảng một điểm từ 1 đến 5, rồi làm việc với mảng điểm thấp nhất trước - không phải mảng bạn thấy thú vị nhất.",
-      "secondary": "Kế hoạch tài chính bị phá vỡ ở mắt yếu nhất, không ở mắt mạnh nhất - nên nguồn lực nên đi vào chỗ yếu."
+      "title": "Một danh sách phẳng, không phải một sơ đồ",
+      "message": "Liệt kê mọi thứ đang chạy trong sản xuất kèm số người biết vận hành nó. Dòng nào chỉ một người biết là rủi ro; danh sách dài hơn mức đội nuôi nổi là câu trả lời cho câu hỏi tiếp theo.",
+      "secondary": "Với mỗi nhóm chức năng, chọn một mặc định. Thứ mới đi theo mặc định trừ khi có lý do viết ra được."
     },
     "sections": [
-      {
-        "type": "lead",
-        "text": "Phần lớn người đi tìm tư vấn tài chính đều hỏi về đầu tư. Nhưng nếu chỉ trả lời đúng câu được hỏi, chuyên viên hoạch định đang bỏ qua phần việc quan trọng nhất của mình: nhìn xem điểm yếu nhất của cả kế hoạch đang nằm ở đâu."
-      },
-      {
-        "type": "heading",
-        "text": "Sáu mảng và câu hỏi trung tâm của từng mảng"
-      },
-      {
-        "type": "conceptTable",
-        "title": "Cấu trúc một kế hoạch tài chính toàn diện",
-        "subtitle": "Mỗi mảng trả lời một câu hỏi khác nhau",
-        "concepts": [
-          {
-            "vi": "Dòng tiền và ngân sách",
-            "en": "Cash flow",
-            "def": "Mỗi tháng thực sự còn dư bao nhiêu, và số dư đó có ổn định không? Đây là mảng nền - không có dòng tiền dư thì năm mảng còn lại không có nguồn lực để vận hành."
-          },
-          {
-            "vi": "Quản lý nợ",
-            "en": "Debt management",
-            "def": "Đang nợ những gì, ở mức lãi nào, và khoản nào nên trả trước? Nợ lãi cao là chi phí chắc chắn, nên nó cạnh tranh trực tiếp với mọi cơ hội đầu tư."
-          },
-          {
-            "vi": "Bảo vệ rủi ro",
-            "en": "Risk protection",
-            "def": "Nếu mất thu nhập, gặp bệnh nặng, hoặc tài sản bị thiệt hại thì kế hoạch có sụp đổ không? Gồm quỹ khẩn cấp và bảo hiểm - hai thứ không tạo lợi nhuận nhưng ngăn thiệt hại lớn."
-          },
-          {
-            "vi": "Đầu tư và tích lũy",
-            "en": "Investment",
-            "def": "Phần tiền dư nên được phân bổ thế nào theo mục tiêu và khẩu vị rủi ro? Đây là mảng được nói tới nhiều nhất nhưng chỉ nên khởi động sau khi ba mảng trên đã vững."
-          },
-          {
-            "vi": "Kế hoạch hưu trí",
-            "en": "Retirement",
-            "def": "Cần bao nhiêu để duy trì mức sống mong muốn khi ngừng làm việc, và hiện đang đi được bao xa so với con số đó?"
-          },
-          {
-            "vi": "Chuyển giao tài sản",
-            "en": "Estate planning",
-            "def": "Nếu điều xấu nhất xảy ra, tài sản sẽ đi đâu và người ở lại có gặp tranh chấp hay thủ tục phức tạp không?"
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao sáu mảng không thể tối ưu riêng lẻ"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mỗi quyết định ở một mảng đều tạo hệ quả ở các mảng khác. Vay thêm để mua nhà làm giảm dòng tiền dư mỗi tháng, nên đồng thời làm chậm tiến độ hưu trí và giảm khả năng đóng phí bảo hiểm. Dồn toàn bộ tiền dư vào đầu tư dài hạn làm cạn quỹ khẩn cấp, nên khi có biến cố phải bán tài sản đúng lúc bất lợi. Mua một hợp đồng bảo hiểm có phí quá cao so với thu nhập lại lấn sang phần lẽ ra dùng để trả nợ lãi cao. Đây là lý do một kế hoạch tốt luôn được nhìn như một hệ thống."
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Tối ưu từng phần",
-          "text": "Chọn được danh mục đầu tư rất tốt, hợp đồng bảo hiểm rất đầy đủ, và kế hoạch hưu trí rất tham vọng - nhưng cộng lại vượt quá dòng tiền dư thực tế, nên không mảng nào được thực hiện trọn vẹn."
-        },
-        "right": {
-          "label": "Tối ưu hệ thống",
-          "text": "Chấp nhận từng mảng ở mức vừa phải nhưng cân đối trong giới hạn dòng tiền thật, ưu tiên lấp lỗ hổng nguy hiểm nhất trước, và nâng dần từng mảng theo thời gian khi thu nhập tăng."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Thứ tự ưu tiên khi nguồn lực có hạn"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Bước 1 - Dòng tiền dương và quỹ khẩn cấp tối thiểu: không có đệm thì mọi biến cố nhỏ đều buộc phải vay lãi cao hoặc bán tài sản bất lợi.",
-          "Bước 2 - Xử lý nợ lãi cao: mỗi đồng trả bớt là một lợi ích chắc chắn bằng đúng mức lãi đó, không rủi ro.",
-          "Bước 3 - Bảo vệ rủi ro lớn: bảo hiểm cho những sự kiện có khả năng phá vỡ kế hoạch, ưu tiên sản phẩm thuần bảo vệ có phí thấp để không lấn sang các mảng khác.",
-          "Bước 4 - Nâng quỹ khẩn cấp lên mức phù hợp với tính ổn định của thu nhập: thu nhập biến động cần đệm dày hơn.",
-          "Bước 5 - Đầu tư và tích lũy dài hạn theo mục tiêu cụ thể, bắt đầu từ mục tiêu có thời hạn xa nhất.",
-          "Bước 6 - Chuyển giao tài sản: rà soát khi tài sản đã đáng kể hoặc khi hoàn cảnh gia đình thay đổi."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Thứ tự này không cứng nhắc",
-        "text": "Có ngoại lệ hợp lý. Nếu công ty có chương trình đóng góp đối ứng vào quỹ hưu trí, phần được đối ứng thường nên nhận ngay vì đó là lợi ích tức thì rất cao. Tương tự, bảo hiểm thuần bảo vệ có phí rất nhỏ so với thu nhập thì không cần chờ tới bước 3 - lấp một lỗ hổng lớn bằng chi phí nhỏ luôn là lựa chọn tốt. Nguyên tắc chung là so lợi ích chắc chắn với lợi ích kỳ vọng, và ưu tiên bịt những lỗ hổng có thể phá vỡ toàn bộ kế hoạch."
-      },
-      {
-        "type": "paragraph",
-        "text": "Cuối cùng, một kế hoạch toàn diện phải được xem lại định kỳ. Kết hôn, sinh con, đổi việc, mua nhà, thu nhập tăng đáng kể - mỗi sự kiện này đều làm thay đổi thứ tự ưu tiên giữa sáu mảng. Kế hoạch lập một lần rồi để đó sẽ dần lệch khỏi hoàn cảnh thật, và thường lệch nhất đúng ở mảng đang trở nên quan trọng nhất."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Kế hoạch tài chính bị phá vỡ ở mắt yếu nhất, không ở mắt mạnh nhất.",
-          "Vì vậy câu hỏi mở đầu không nên là 'đầu tư vào đâu' mà là 'chỗ nào trong kế hoạch này đang hở nhất'."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Dòng tiền dư và quỹ khẩn cấp tối thiểu",
-        "arrow": true
-      },
-      {
-        "label": "Xử lý nợ lãi cao - lợi ích chắc chắn",
-        "arrow": true
-      },
-      {
-        "label": "Bảo vệ rủi ro có thể phá vỡ kế hoạch",
-        "arrow": true
-      },
-      {
-        "label": "Đầu tư và tích lũy theo mục tiêu",
-        "arrow": true
-      },
-      {
-        "label": "Hưu trí và chuyển giao tài sản → rà soát lại khi hoàn cảnh đổi",
-        "arrow": false
-      }
+      { "type": "lead", "text": "Kiến trúc của phần lớn hệ thống không phải kết quả của một buổi thiết kế. Nó là tổng của vài chục quyết định riêng lẻ, mỗi cái hợp lý vào thời điểm của nó." },
+      { "type": "heading", "text": "Tối ưu cục bộ, không ai tối ưu tổng thể" },
+      { "type": "paragraph", "text": "Mỗi lần chọn một công nghệ, tiêu chí là bài toán trước mắt: cái nào hợp nhất cho việc này. Đó là câu hỏi đúng cho người đang giải bài toán đó, và không ai trong phòng có nhiệm vụ hỏi câu còn lại là hệ thống sẽ trông thế nào sau mười lần như vậy. Trạng thái mặc định của mọi tổ chức là tổng thể không có ai đại diện." },
+      { "type": "conceptTable", "title": "Chi phí của một công nghệ thêm vào", "concepts": [
+        { "vi": "Nâng phiên bản", "en": "Upgrades", "def": "Một dòng nữa phải theo mỗi năm, kể cả khi không thêm tính năng nào." },
+        { "vi": "Trực và xử lý sự cố", "en": "On-call", "def": "Phải có người biết nó lúc ba giờ sáng, không chỉ người dựng ra nó." },
+        { "vi": "Lỗ hổng bảo mật", "en": "Security", "def": "Một nguồn cảnh báo nữa phải đọc và phải quyết định có vá gấp hay không." },
+        { "vi": "Ranh giới", "en": "Seams", "def": "Chỗ nối với phần còn lại là nơi phần lớn sự cố xảy ra, và nó tăng theo số mảnh." }
+      ]},
+      { "type": "comparison", "left": { "label": "Ngưỡng phù hợp hơn", "text": "Gần như luôn thoả, vì với bất kỳ bài toán cụ thể nào cũng có một công cụ chuyên biệt hợp hơn công cụ chung. Ngưỡng này không chặn được gì." }, "right": { "label": "Ngưỡng không giải nổi", "text": "Cách hiện có làm được ở mức chấp nhận được thì dừng. Chỉ khi nó thật sự không làm nổi thì phần chênh mới đáng một khoản nuôi vĩnh viễn." } },
+      { "type": "list", "items": [
+        "Liệt kê phẳng mọi thứ đang chạy, kèm số người biết vận hành",
+        "Dòng nào một người biết là rủi ro tập trung, không phải hiệu quả",
+        "Đặt một mặc định cho mỗi nhóm chức năng để chặn dòng chảy",
+        "Thay dần các mảnh cũ khi chạm vào chúng vì lý do khác, không thành dự án riêng"
+      ]},
+      { "type": "callout", "label": "Hợp nhất toàn bộ là dự án không bao giờ được ưu tiên", "text": "Đề xuất gom sáu công nghệ về một luôn nghe hợp lý và luôn thua khi phải cạnh tranh với việc có người dùng đang chờ. Đặt một mặc định thì không tốn gì hôm nay, chặn được việc hệ thống phình thêm, và để phần dọn dẹp diễn ra dần theo những lần chạm vào mã vì lý do khác - đó là con đường duy nhất thực sự đi tới đích." },
+      { "type": "closing", "lines": [
+        "Không quyết định nào sai mà tổng vẫn sai là hình dạng đặc trưng của nợ kiến trúc.",
+        "Bài sau: cùng một hệ thống, mỗi giai đoạn đòi một thứ tự ưu tiên khác."
+      ]}
     ]
   },
   {
     "id": 1285,
     "track": "professional",
-    "slug": "hoach-dinh-tai-chinh-theo-giai-doan-cuoc-doi",
-    "title": "Hoạch định tài chính theo giai đoạn cuộc đời: Cùng một người, bốn bài toán khác nhau",
-    "subtitle": "Vì sao lời khuyên đúng ở tuổi 25 có thể trở thành lời khuyên sai ở tuổi 55",
-    "duration": "9 phút",
+    "slug": "he-thong-theo-giai-doan",
+    "title": "Hệ thống theo giai đoạn: cùng một lời khuyên, ba kết quả khác nhau",
+    "subtitle": "Thứ đúng cho hệ thống mới thường là thứ sai cho hệ thống đã có người dùng",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
     "emoji": "🌱",
-    "openingQuestion": "Hai khách hàng đều có 500 triệu đồng và đều muốn 'đầu tư an toàn nhưng sinh lời tốt'. Người thứ nhất 28 tuổi, độc thân, thu nhập ổn định và tăng dần. Người thứ hai 58 tuổi, hai năm nữa nghỉ hưu, số tiền này là phần lớn tài sản tích lũy. Vì sao cùng một câu hỏi lại cần hai câu trả lời khác nhau?",
+    "whyItMatters": "Phần lớn lời khuyên kỹ thuật được viết ra mà không nói nó dành cho giai đoạn nào, nên người đọc áp dụng nó vào sai chỗ. Cùng một nguyên tắc có thể cứu một hệ thống và làm chậm một hệ thống khác vài tháng.",
+    "openingQuestion": "Vì sao cùng một lời khuyên kỹ thuật lại cho kết quả trái ngược ở hai hệ thống?",
     "openingOptions": [
-      "Vì người trẻ có khẩu vị rủi ro cao hơn do tính cách, còn người lớn tuổi thường thận trọng hơn",
-      "Vì khả năng chịu rủi ro khác nhau: người 28 tuổi còn thời gian bù đắp, còn người 58 tuổi thì không",
-      "Vì người lớn tuổi không hiểu về các sản phẩm đầu tư hiện đại",
-      "Vì lãi suất tiền gửi hiện tại phù hợp hơn với người sắp nghỉ hưu"
+      "Vì cái đắt nhất ở mỗi giai đoạn là một thứ khác nhau",
+      "Vì quy mô và độ phức tạp của hai hệ thống khác nhau nên cách áp dụng phải khác",
+      "Vì năng lực và kinh nghiệm của hai đội phát triển không giống nhau",
+      "Vì bối cảnh kinh doanh và yêu cầu của người dùng ở hai nơi khác nhau"
     ],
-    "correctOption": 1,
-    "explanation": "Điểm khác biệt cốt lõi không phải tính cách hay kiến thức mà là khả năng chịu rủi ro về mặt cấu trúc, gồm hai yếu tố: thời gian còn lại trước khi cần dùng tiền, và khả năng bù đắp bằng thu nhập tương lai. Người 28 tuổi có cả hai nên có thể chấp nhận biến động lớn hơn để đổi lấy kỳ vọng cao hơn. Người 58 tuổi sắp chuyển từ giai đoạn tích lũy sang giai đoạn rút tiền - một đợt giảm sâu ngay trước hoặc sau khi bắt đầu rút có tác động lâu dài rất khác so với cùng đợt giảm đó xảy ra ở tuổi 28.",
+    "correctOption": 0,
+    "explanation": "Ba yếu tố kia đều tạo ra khác biệt và đều là biến phụ. Biến chính là thứ đang khan hiếm nhất ở mỗi giai đoạn. Với một hệ thống chưa có người dùng, thứ đắt nhất là thời gian tới lúc biết mình có làm đúng thứ cần làm không - nên mọi việc làm chậm vòng phản hồi đều là chi phí, kể cả những việc tốt. Với một hệ thống đã có người dùng trả tiền, thứ đắt nhất là một sự cố, nên cùng những việc ấy chuyển từ chi phí thành khoản đầu tư. Lời khuyên không nói rõ nó dành cho giai đoạn nào thì người đọc sẽ tự gán, và họ gán theo giai đoạn của người viết chứ không theo giai đoạn của mình.",
+    "diagram": [
+      { "label": "Chưa có người dùng: đắt nhất là vòng phản hồi chậm", "arrow": true },
+      { "label": "Đang lớn: đắt nhất là thứ không mở rộng được", "arrow": true },
+      { "label": "Đã trưởng thành: đắt nhất là một sự cố", "arrow": true },
+      { "label": "Cùng một việc, ba giá trị khác nhau" }
+    ],
     "realWorldExample": {
-      "company": "Rủi ro thứ tự lợi nhuận - vấn đề đặc thù của giai đoạn cận hưu trí",
-      "description": "Hai người cùng nghỉ hưu với cùng số tiền, cùng rút cùng một tỷ lệ mỗi năm, và cùng gặp một chuỗi lợi nhuận có mức trung bình giống nhau qua 20 năm. Người thứ nhất gặp những năm giảm mạnh vào đầu giai đoạn nghỉ hưu; người thứ hai gặp đúng những năm đó nhưng ở cuối. Kết quả cuối cùng của hai người có thể chênh nhau rất lớn, và người gặp giảm sớm có thể cạn tiền trước. Nguyên nhân là khi rút tiền từ một danh mục đang giảm, số đơn vị tài sản bị bán ra nhiều hơn, làm giảm phần còn lại có thể hồi phục về sau. Đây gọi là rủi ro thứ tự lợi nhuận, và nó gần như không ảnh hưởng đến người đang tích lũy - lý do vì sao cùng một danh mục lại phù hợp ở giai đoạn này mà không phù hợp ở giai đoạn kia."
+      "company": "Bộ kiểm đầy đủ ở tuần thứ hai",
+      "description": "Một đội hai người dựng bộ kiểm thử đầy đủ cho một sản phẩm chưa có người dùng nào, vì đó là cách làm đúng. Ba tháng sau họ đổi hẳn hướng sản phẩm và bỏ gần hết phần đã viết, gồm cả bộ kiểm. Cùng bộ kiểm ấy, viết ở thời điểm sản phẩm đã có nghìn người dùng, sẽ là một trong những khoản đầu tư tốt nhất họ từng làm."
     },
     "quiz": [
       {
-        "question": "Khả năng chịu rủi ro về mặt cấu trúc phụ thuộc chủ yếu vào hai yếu tố nào?",
+        "question": "Ở giai đoạn chưa có người dùng, thứ gì đáng ưu tiên nhất?",
         "options": [
-          "Tính cách của khách hàng và mức độ hiểu biết về đầu tư",
-          "Thời gian còn lại trước khi cần dùng tiền, và khả năng bù đắp thiệt hại bằng thu nhập tương lai",
-          "Số tiền tuyệt đối đang có và lãi suất tiền gửi hiện hành",
-          "Số lượng tài sản đang nắm giữ và số lượng nguồn thu nhập"
+          "Rút ngắn thời gian tới khi biết mình có làm đúng thứ cần không",
+          "Xây nền vững để khỏi làm lại sau này",
+          "Giữ chất lượng mã tốt ngay từ đầu",
+          "Lập quy trình chuẩn để đội mở rộng sau"
         ],
-        "correct": 1,
-        "explanation": "Hai yếu tố này khách quan và đo được, khác với khẩu vị rủi ro mang tính chủ quan. Một người có thể nói mình chấp nhận rủi ro cao, nhưng nếu cần dùng tiền sau 18 tháng thì khả năng chịu rủi ro thực tế của họ vẫn thấp."
+        "correct": 0,
+        "explanation": "Ba việc kia đều đúng và đều giả định rằng thứ bạn đang xây là thứ cần xây. Ở giai đoạn này giả định đó chưa được kiểm, và xác suất nó sai rất cao - nên mọi khoản đầu tư vào độ bền của thứ có thể bị bỏ đều là đặt cược vào một giả định chưa kiểm."
       },
       {
-        "question": "Rủi ro thứ tự lợi nhuận ảnh hưởng mạnh nhất đến nhóm nào?",
+        "question": "Dấu hiệu nào cho thấy hệ thống đã chuyển sang giai đoạn cần đầu tư vào độ bền?",
         "options": [
-          "Người đang trong giai đoạn tích lũy, còn 30 năm nữa mới nghỉ hưu",
-          "Người ở giai đoạn cận hưu trí và những năm đầu sau khi nghỉ hưu, khi bắt đầu rút tiền ra khỏi danh mục",
-          "Người chỉ giữ tiền gửi tiết kiệm",
-          "Người mới bắt đầu đi làm và chưa có tài sản"
+          "Có người dùng mà một sự cố sẽ làm họ rời đi",
+          "Số lượng người dùng đã vượt qua một ngưỡng quy mô nhất định",
+          "Đội đã đủ lớn để phân công người phụ trách chất lượng và hạ tầng",
+          "Mã nguồn đã phức tạp tới mức việc thay đổi bắt đầu trở nên khó khăn"
         ],
-        "correct": 1,
-        "explanation": "Với người đang tích lũy, một đợt giảm còn có tác dụng cho phép mua ở giá thấp hơn. Với người đang rút tiền, đợt giảm buộc phải bán nhiều đơn vị tài sản hơn, làm giảm phần còn lại có thể hồi phục."
+        "correct": 0,
+        "explanation": "Ngưỡng không nằm ở số lượng mà ở hậu quả. Một sản phẩm nội bộ với năm mươi người dùng chịu được sự cố; một sản phẩm với năm mươi khách hàng trả tiền thì không. Cùng con số, hai giai đoạn khác nhau."
       },
       {
-        "question": "Nhu cầu bảo hiểm nhân thọ của một người thường đạt mức cao nhất vào giai đoạn nào?",
+        "question": "Nợ kỹ thuật nên được đối xử thế nào ở giai đoạn đầu?",
         "options": [
-          "Giai đoạn vừa đi làm, còn độc thân và chưa có tài sản",
-          "Giai đoạn xây dựng gia đình: còn dư nợ vay nhà lớn, con nhỏ phụ thuộc hoàn toàn vào thu nhập, và tài sản tích lũy còn ít",
-          "Giai đoạn sau khi nghỉ hưu, khi rủi ro sức khỏe cao nhất",
-          "Nhu cầu không đổi trong suốt cuộc đời"
+          "Là công cụ hợp lệ, miễn là biết mình đang vay và vay ở đâu",
+          "Cần tránh tối đa vì nó tích luỹ dần",
+          "Chấp nhận nếu có kế hoạch trả cụ thể",
+          "Không đáng lo, phần lớn mã sẽ bị bỏ"
         ],
-        "correct": 1,
-        "explanation": "Bảo hiểm nhân thọ bảo vệ những người phụ thuộc vào thu nhập của bạn. Nhu cầu đạt đỉnh khi nghĩa vụ tài chính lớn nhất gặp đúng lúc tài sản tích lũy còn nhỏ nhất, rồi giảm dần khi nợ được trả bớt và tài sản tăng lên."
+        "correct": 0,
+        "explanation": "Phương án bốn gần đúng và thiếu vế quan trọng. Phần lớn mã ở giai đoạn này đúng là sẽ bị bỏ, nhưng không phải tất cả - và phần sống sót thường là phần lõi. Biết mình đang vay ở đâu là điều kiện để nhận ra khi một khoản vay đã chuyển từ tạm thời sang vĩnh viễn."
+      },
+      {
+        "question": "Hệ thống đã trưởng thành thì rủi ro lớn nhất của một thay đổi là gì?",
+        "options": [
+          "Nó làm hỏng thứ đang chạy cho những người đang dựa vào",
+          "Nó tốn nhiều thời gian hơn dự kiến do độ phức tạp của hệ thống hiện tại",
+          "Nó tạo ra thêm nợ kỹ thuật nếu không được thực hiện một cách cẩn thận",
+          "Nó cần nhiều đội phối hợp nên khó kiểm"
+        ],
+        "correct": 0,
+        "explanation": "Đây là điều đảo ngược hoàn toàn thứ tự ưu tiên so với giai đoạn đầu. Ở giai đoạn đầu, thay đổi nhanh gần như không có nhược điểm; ở giai đoạn này, mỗi thay đổi mang theo một xác suất làm hỏng thứ đang phục vụ người thật - nên tốc độ ngừng là tiêu chí hàng đầu."
+      },
+      {
+        "question": "Lời khuyên kỹ thuật đọc trên mạng nên được đọc kèm câu hỏi nào?",
+        "options": [
+          "Người viết đang ở giai đoạn nào khi họ rút ra bài học đó",
+          "Lời khuyên đã kiểm ở bao nhiêu hệ thống",
+          "Công nghệ được nhắc tới có còn phù hợp với thời điểm hiện tại không",
+          "Quy mô hệ thống của người viết có tương đương với hệ thống của bạn không"
+        ],
+        "correct": 0,
+        "explanation": "Phần lớn bài viết kỹ thuật hay đều rút ra từ một hoàn cảnh cụ thể và hiếm khi nói rõ hoàn cảnh đó. Một bài về cách chia nhỏ hệ thống viết bởi người vận hành quy mô rất lớn là lời khuyên đúng cho họ và là lời khuyên tệ nhất có thể cho một đội ba người."
       }
-    ],
-    "keyTakeaways": [
-      "Khả năng chịu rủi ro về cấu trúc - thời gian còn lại và khả năng bù đắp bằng thu nhập - quan trọng hơn khẩu vị rủi ro chủ quan.",
-      "Cùng một mức biến động tạo hệ quả rất khác giữa giai đoạn tích lũy và giai đoạn rút tiền.",
-      "Nhu cầu bảo hiểm đạt đỉnh ở giai đoạn xây dựng gia đình rồi giảm dần, không cố định suốt đời.",
-      "Mỗi sự kiện lớn của cuộc đời là một mốc phải rà soát lại toàn bộ kế hoạch."
     ],
     "practicePrompt": {
-      "question": "Khách hàng 55 tuổi, dự kiến nghỉ hưu ở 60, hiện có toàn bộ tài sản tích lũy trong một danh mục cổ phiếu tăng trưởng. Khuyến nghị hợp lý nhất là gì?",
+      "question": "Đội bạn đang tranh luận có nên đầu tư vào bộ kiểm thử đầy đủ ngay bây giờ không. Câu hỏi nào gỡ được bế tắc?",
       "options": [
-        "Giữ nguyên toàn bộ vì cổ phiếu sinh lời cao nhất trong dài hạn",
-        "Chuyển toàn bộ sang tiền gửi ngay để loại bỏ hoàn toàn rủi ro",
-        "Giảm dần tỷ trọng tài sản biến động cao theo một lộ trình nhiều năm",
-        "Vay thêm để đầu tư nhiều hơn nhằm bù đắp thời gian còn lại ngắn"
+        "Nếu sản phẩm này sai hướng và bị bỏ sau ba tháng, ta mất gì",
+        "Bộ kiểm thử này sẽ tiết kiệm được bao nhiêu thời gian sửa lỗi về sau",
+        "Các đội khác ở giai đoạn tương tự thường đầu tư vào kiểm thử ở mức nào",
+        "Chúng ta có đủ thời gian để viết bộ kiểm thử mà không ảnh hưởng tiến độ không"
       ],
-      "correct": 2,
-      "explanation": "Giữ nguyên bỏ qua rủi ro thứ tự lợi nhuận; chuyển hết sang tiền gửi lại tạo rủi ro khác là tài sản không theo được lạm phát trong hai đến ba thập kỷ nghỉ hưu. Cách xử lý phổ biến là chuyển dịch theo lộ trình và tách riêng phần chi phí của những năm đầu."
+      "correct": 0,
+      "explanation": "Câu hỏi này đưa xác suất sản phẩm bị bỏ vào phép tính, và đó chính là biến phân biệt hai giai đoạn. Nếu câu trả lời là mất ba tuần công thì câu chuyện khác hẳn so với nếu câu trả lời là mất một buổi."
     },
+    "keyTakeaways": [
+      "Biến chính là thứ đang khan hiếm nhất, và nó đổi theo giai đoạn",
+      "Ngưỡng chuyển giai đoạn nằm ở hậu quả của một sự cố, không ở số lượng người dùng",
+      "Nợ kỹ thuật ở giai đoạn đầu là công cụ hợp lệ nếu biết mình vay ở đâu",
+      "Lời khuyên hay nhất cũng đến từ một giai đoạn cụ thể mà tác giả ít khi nói ra"
+    ],
     "summary": {
-      "keyIdea": "Cùng một khách hàng cần bốn kế hoạch khác nhau qua bốn giai đoạn cuộc đời, vì khả năng chịu rủi ro và ưu tiên thay đổi theo cấu trúc chứ không theo sở thích.",
-      "commonMistake": "Áp dụng một công thức phân bổ tài sản cố định cho mọi khách hàng, hoặc giữ nguyên kế hoạch cũ khi hoàn cảnh đã đổi.",
-      "action": "Xác định bạn đang ở giai đoạn nào, và viết ra một điều trong kế hoạch hiện tại lẽ ra phải khác so với giai đoạn trước."
+      "keyIdea": "Cùng một việc có ba giá trị khác nhau ở ba giai đoạn, vì thứ đắt nhất ở mỗi giai đoạn là một thứ khác",
+      "commonMistake": "Áp dụng lời khuyên đúng cho hệ thống trưởng thành vào một sản phẩm chưa có người dùng nào",
+      "action": "Trước mỗi quyết định đầu tư kỹ thuật, xác định thứ đang khan hiếm nhất của hệ thống lúc này."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Với mỗi khách hàng, ghi rõ hai con số trước khi bàn đến sản phẩm: bao nhiêu năm nữa cần dùng tiền, và nếu tài sản giảm 30% thì họ còn nguồn thu nào để bù đắp.",
-      "secondary": "Hai con số này quyết định phân bổ tài sản chặt chẽ hơn nhiều so với câu trả lời của khách hàng cho bảng hỏi khẩu vị rủi ro."
+      "title": "Một câu trước mọi quyết định đầu tư",
+      "message": "Hệ thống này đang khan hiếm nhất thứ gì: thời gian biết mình đúng hướng, khả năng mở rộng, hay độ tin cậy. Câu trả lời quyết định việc đang bàn là chi phí hay đầu tư.",
+      "secondary": "Khi đọc lời khuyên kỹ thuật, tìm xem tác giả đang ở giai đoạn nào - nếu bài không nói, giả định là giai đoạn khác với bạn."
     },
     "sections": [
-      {
-        "type": "lead",
-        "text": "Một trong những sai lầm phổ biến nhất trong tư vấn tài chính là đưa ra lời khuyên đúng - nhưng đúng cho một giai đoạn cuộc đời khác. Bài này tách bốn giai đoạn và chỉ ra ưu tiên thay đổi thế nào qua từng giai đoạn."
-      },
-      {
-        "type": "heading",
-        "text": "Bốn giai đoạn và ưu tiên đặc trưng"
-      },
-      {
-        "type": "conceptTable",
-        "title": "Cùng một người, bốn bài toán khác nhau",
-        "subtitle": "Ưu tiên dịch chuyển theo cấu trúc, không theo sở thích",
-        "concepts": [
-          {
-            "vi": "Khởi đầu sự nghiệp",
-            "en": "Khoảng 22-32 tuổi",
-            "def": "Thu nhập còn thấp nhưng thời gian dài nhất. Ưu tiên: xây quỹ khẩn cấp, dứt điểm nợ lãi cao, hình thành thói quen tiết kiệm đều đặn, và tận dụng thời gian dài để chấp nhận biến động cao hơn."
-          },
-          {
-            "vi": "Xây dựng gia đình",
-            "en": "Khoảng 32-45 tuổi",
-            "def": "Thu nhập tăng nhưng nghĩa vụ tăng nhanh hơn: vay nhà, con nhỏ, phụ giúp cha mẹ. Đây là giai đoạn nhu cầu bảo vệ rủi ro đạt đỉnh, và cũng là giai đoạn dễ vay quá mức nhất."
-          },
-          {
-            "vi": "Tích lũy đỉnh cao",
-            "en": "Khoảng 45-58 tuổi",
-            "def": "Thu nhập thường cao nhất, nợ nhà đã trả bớt, con dần tự lập. Ưu tiên: tăng tốc tích lũy hưu trí, bắt đầu giảm dần rủi ro danh mục, và rà soát kế hoạch chuyển giao tài sản."
-          },
-          {
-            "vi": "Cận hưu trí và hưu trí",
-            "en": "Từ khoảng 58 tuổi",
-            "def": "Chuyển từ tích lũy sang rút tiền. Ưu tiên: bảo toàn phần chi phí của những năm đầu, quản lý rủi ro thứ tự lợi nhuận, và cân đối giữa rủi ro biến động với rủi ro lạm phát trong hai đến ba thập kỷ."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao giai đoạn xây dựng gia đình là giai đoạn dễ sai nhất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Đây là giai đoạn thu nhập tăng rõ rệt, tạo cảm giác có thể gánh thêm nhiều nghĩa vụ. Nhưng cũng chính là giai đoạn nghĩa vụ tăng nhanh nhất và ít linh hoạt nhất: khoản vay nhà 20 năm không thể tạm dừng, chi phí nuôi con không thể cắt giảm đột ngột. Kết quả là nhiều gia đình có tổng nghĩa vụ cố định chiếm phần lớn thu nhập, khiến mọi biến cố nhỏ đều gây căng thẳng, và tiến độ tích lũy hưu trí bị đẩy lùi đúng vào những năm lẽ ra lãi kép phát huy mạnh nhất."
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Giai đoạn tích lũy",
-          "text": "Thị trường giảm là cơ hội: mỗi kỳ nộp tiền định kỳ mua được nhiều đơn vị tài sản hơn ở giá thấp. Thời gian dài phía trước cho phép chờ phục hồi. Biến động là cái giá chấp nhận được để đổi lấy kỳ vọng cao hơn."
-        },
-        "right": {
-          "label": "Giai đoạn rút tiền",
-          "text": "Thị trường giảm là thiệt hại kép: vẫn phải rút tiền để sinh hoạt, nên phải bán nhiều đơn vị tài sản hơn ở giá thấp, làm giảm phần còn lại có thể hồi phục. Không còn thu nhập lao động để bù đắp."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Ba mốc buộc phải rà soát lại toàn bộ kế hoạch"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Thay đổi cấu trúc gia đình: kết hôn, sinh con, ly hôn, hoặc phát sinh nghĩa vụ chăm sóc cha mẹ - mỗi trường hợp đều làm thay đổi nhu cầu bảo vệ và mục tiêu tích lũy.",
-          "Thay đổi thu nhập đáng kể: tăng lương lớn, đổi sang nghề có thu nhập biến động, hoặc mất việc - làm thay đổi cả khả năng tích lũy và mức đệm cần thiết.",
-          "Tiến gần thời điểm cần dùng tiền: khi khoảng thời gian còn lại giảm xuống dưới khoảng năm năm, phân bổ tài sản cho mục tiêu đó cần được xem lại bất kể thị trường đang thế nào."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Rủi ro lạm phát ở giai đoạn hưu trí thường bị đánh giá thấp",
-        "text": "Nhiều người sắp nghỉ hưu chuyển toàn bộ tài sản sang tiền gửi để tránh biến động. Nhưng một giai đoạn nghỉ hưu có thể kéo dài hai đến ba thập kỷ, và trong khoảng thời gian đó lạm phát làm giảm đáng kể sức mua của một khoản tiền cố định. Loại bỏ hoàn toàn rủi ro biến động thực chất là đánh đổi sang một rủi ro khác chậm hơn nhưng chắc chắn hơn. Đây là lý do phân bổ ở giai đoạn hưu trí thường vẫn giữ một phần tài sản có khả năng tăng trưởng, chỉ khác là tách riêng phần chi phí của những năm đầu ra khỏi phần đó."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Không có một phân bổ tài sản đúng cho mọi người, chỉ có phân bổ phù hợp với giai đoạn và hoàn cảnh cụ thể.",
-          "Hai con số quyết định nhiều nhất: còn bao nhiêu năm trước khi cần dùng tiền, và còn nguồn nào để bù đắp nếu sai."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Khởi đầu sự nghiệp - xây nền, thời gian là lợi thế lớn nhất",
-        "arrow": true
-      },
-      {
-        "label": "Xây dựng gia đình - nhu cầu bảo vệ đạt đỉnh, rủi ro vay quá mức",
-        "arrow": true
-      },
-      {
-        "label": "Tích lũy đỉnh cao - tăng tốc hưu trí, bắt đầu giảm rủi ro",
-        "arrow": true
-      },
-      {
-        "label": "Cận hưu trí và hưu trí - chuyển sang rút tiền, quản lý rủi ro thứ tự lợi nhuận",
-        "arrow": false
-      }
+      { "type": "lead", "text": "Phần lớn lời khuyên kỹ thuật được viết mà không nói nó dành cho giai đoạn nào. Người đọc tự gán, và họ gán theo giai đoạn của người viết." },
+      { "type": "heading", "text": "Thứ khan hiếm nhất quyết định thứ tự ưu tiên" },
+      { "type": "conceptTable", "title": "Ba giai đoạn, ba thứ đắt nhất", "concepts": [
+        { "vi": "Chưa có người dùng", "en": "Pre-fit", "def": "Đắt nhất là thời gian tới khi biết mình có làm đúng thứ cần không. Mọi thứ làm chậm vòng phản hồi đều là chi phí." },
+        { "vi": "Đang lớn", "en": "Growing", "def": "Đắt nhất là thứ không mở rộng được cùng người dùng. Chỗ nghẽn đổi vị trí vài tháng một lần." },
+        { "vi": "Đã trưởng thành", "en": "Mature", "def": "Đắt nhất là một sự cố. Tốc độ thay đổi ngừng là tiêu chí hàng đầu." },
+        { "vi": "Ngưỡng chuyển", "en": "Transition", "def": "Nằm ở hậu quả của sự cố, không ở số lượng người dùng." }
+      ]},
+      { "type": "paragraph", "text": "Cùng một việc - viết bộ kiểm thử đầy đủ, tách dịch vụ, dựng hạ tầng nhiều vùng - có ba giá trị rất khác nhau ở ba giai đoạn. Ở giai đoạn đầu chúng là chi phí thuần, vì chúng làm chậm việc kiểm chứng giả định lớn nhất và bảo vệ thứ có thể sẽ bị bỏ. Ở giai đoạn cuối chúng là khoản đầu tư tốt nhất bạn có thể làm. Không việc nào trong số đó đúng hay sai một cách tuyệt đối." },
+      { "type": "comparison", "left": { "label": "Thay đổi nhanh ở giai đoạn đầu", "text": "Gần như không có nhược điểm: chưa ai dựa vào hệ thống, và mỗi vòng lặp rút ngắn đều tăng xác suất tìm đúng hướng trước khi hết nguồn lực." }, "right": { "label": "Thay đổi nhanh ở giai đoạn cuối", "text": "Mỗi lần mang theo một xác suất làm hỏng thứ đang phục vụ người thật. Cùng một hành vi, và giờ nó là nguồn rủi ro chính." } },
+      { "type": "list", "items": [
+        "Xác định thứ khan hiếm nhất trước khi quyết định đầu tư vào đâu",
+        "Ngưỡng chuyển giai đoạn: một sự cố có làm người dùng rời đi không",
+        "Nợ kỹ thuật ở giai đoạn đầu hợp lệ, miễn là biết mình vay ở đâu",
+        "Lời khuyên không nói giai đoạn thì giả định nó thuộc giai đoạn khác bạn"
+      ]},
+      { "type": "callout", "label": "Phần lõi thường là phần sống sót", "text": "Lập luận rằng mã giai đoạn đầu sẽ bị viết lại nên không cần cẩn thận đúng với phần lớn mã và sai với phần quan trọng nhất. Những gì thuộc về lõi - mô hình dữ liệu, cách định danh, ranh giới giữa các phần - thường sống qua mọi lần đổi hướng, và đó cũng là những thứ đắt nhất khi phải sửa sau này." },
+      { "type": "closing", "lines": [
+        "Không có cách làm đúng phổ quát; chỉ có cách làm đúng cho thứ đang khan hiếm nhất lúc này.",
+        "Câu hỏi đầu tiên trước mọi quyết định kỹ thuật là hệ thống này đang ở đâu."
+      ]}
     ]
   },
   {
