@@ -67725,192 +67725,178 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1215,
-    "track": "professional",
-    "slug": "phan-tich-ky-thuat-cho-moi-gioi",
-    "title": "Tự học Tài chính Day 1215: Phân tích kỹ thuật cho môi giới chứng khoán",
-    "subtitle": "Support, Resistance, Moving Average - công cụ đơn giản nhất để nhận định thị trường",
+    "slug": "doc-bieu-do-chi-so-tin-hieu-va-nhieu",
+    "title": "Đọc biểu đồ chỉ số hệ thống - cái gì là tín hiệu, cái gì là nhiễu",
+    "subtitle": "Mắt người tìm ra khuôn mẫu trong dữ liệu ngẫu nhiên, và biểu đồ chỉ số là nơi thói quen đó gây hại nhất.",
     "duration": "7 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "📉",
-    "openingQuestion": "Phân tích kỹ thuật (Technical Analysis) là gì?",
+    "interactiveType": "regression",
+    "whyItMatters": "Phần lớn quyết định vận hành được đưa ra sau khi nhìn một biểu đồ trong ba mươi giây, và ba mươi giây đó rất dễ đọc ra thứ không có ở đó.",
+    "openingQuestion": "Chỉ số tăng ba ngày liên tiếp. Đó có phải một xu hướng không?",
     "openingOptions": [
-      "Phân tích báo cáo tài chính của các công ty đang niêm yết trên sàn chứng khoán",
-      "Phân tích giá và khối lượng giao dịch qua biểu đồ để dự báo xu hướng giá",
-      "Phân tích kỹ thuật của máy móc",
-      "Dùng AI để dự báo 100% chính xác"
+      "Chưa biết - ba điểm là chuỗi mà dữ liệu ngẫu nhiên tạo ra rất thường xuyên",
+      "Có, ba ngày liên tiếp cùng chiều là đủ để xác nhận một xu hướng",
+      "Không, cần ít nhất một chu kỳ bảy ngày mới kết luận được về xu hướng",
+      "Tuỳ vào mức độ tăng của từng ngày so với mức dao động thông thường"
     ],
-    "correctOption": 1,
-    "explanation": "Phân tích kỹ thuật đọc giá và khối lượng trên biểu đồ để nhận diện xu hướng cùng các vùng hỗ trợ, kháng cự. Nó không nói doanh nghiệp đáng giá bao nhiêu - đó là việc của phân tích cơ bản - mà nói thị trường đang hành xử thế nào với cổ phiếu đó. Điều quan trọng nhất khi dùng là chấp nhận rằng mọi tín hiệu chỉ là xác suất, nên điểm cắt lỗ phải được đặt trước khi vào lệnh chứ không phải quyết định sau khi giá đã đi ngược.",
+    "correctOption": 0,
+    "explanation": "Với một chuỗi ngẫu nhiên, xác suất có ba ngày liên tiếp cùng chiều ở đâu đó trong tháng là rất cao - nên chuỗi ba điểm gần như không mang thông tin. Lựa chọn cuối gần đúng và vẫn thiếu: biết mức dao động thông thường là điều kiện cần, nhưng ba điểm thì kể cả khi vượt dao động vẫn quá ít để tách tín hiệu khỏi nhiễu.",
     "diagram": [
       {
-        "label": "Nhìn biểu đồ giá và khối lượng",
+        "label": "Ba điểm liên tiếp cùng chiều là chuyện thường của dữ liệu ngẫu nhiên",
         "arrow": true
       },
       {
-        "label": "Xác định xu hướng, vùng hỗ trợ và kháng cự",
+        "label": "Biết mức dao động nền TRƯỚC khi đọc bất kỳ biến động nào",
         "arrow": true
       },
       {
-        "label": "Đặt điểm vào lệnh và điểm cắt lỗ trước",
+        "label": "So với cùng kỳ, không so với hôm qua - có chu kỳ tuần",
         "arrow": true
       },
       {
-        "label": "Đây là xác suất, không phải dự báo - nên luôn phải có điểm dừng"
+        "label": "Và cẩn thận với trục bị cắt: nó phóng đại mọi biến động"
       }
     ],
     "realWorldExample": {
-      "company": "Cổ phiếu Việt Nam",
-      "description": "Nhà đầu tư thấy VN-Index phá vỡ mức 1300 (resistance cũ) với khối lượng lớn → TA dự báo xu hướng tăng sắp tới. Môi giới sẽ khuyến nghị 'BUY' để khách hàng tham gia vào chân sóng tăng."
+      "company": "Trục bị cắt",
+      "description": "Một biểu đồ có trục dọc bắt đầu từ 95% thay vì từ 0 làm một biến động nửa điểm phần trăm trông như một vách núi. Đây là cách trình bày phổ biến và hợp lý cho chỉ số độ sẵn sàng, nên vấn đề không phải là nó sai mà là người đọc quên mất trục đã bị cắt."
     },
     "quiz": [
       {
-        "question": "Support & Resistance là gì?",
+        "question": "Vì sao phải biết mức dao động nền trước khi đọc một biến động?",
         "options": [
-          "Tên gọi của các bộ phận trong công ty",
-          "Support: mức giá thường bounce lên (không rơi thêm); Resistance: mức giá thường bị chặn lại (không tăng thêm)",
-          "Support chỉ dành cho cổ phiếu tăng, Resistance cho cổ phiếu giảm",
-          "Không có khái niệm này trong phân tích kỹ thuật"
-        ],
-        "correct": 1,
-        "explanation": "Support là sàn (mức giá mà khối lượng mua lớn xuất hiện, chặn cổ phiếu không rơi tiếp). Resistance là trần (mức giá mà khối lượng bán lớn xuất hiện, chặn cổ phiếu không tăng tiếp)."
-      },
-      {
-        "question": "Moving Average (MA) là gì?",
-        "options": [
-          "Giá trung bình di động: tính trung bình giá 50 ngày (hoặc 200 ngày) gần nhất",
-          "Giá trung bình cộng của tất cả ngày trong năm",
-          "Không liên quan gì đến phân tích kỹ thuật",
-          "Chỉ dùng cho cổ phiếu nước ngoài"
+          "Vì không có nó thì mọi biến động đều trông như có ý nghĩa",
+          "Vì mức dao động quyết định ngưỡng cảnh báo nên cần biết để cấu hình",
+          "Vì dao động thay đổi theo tải nên cần cập nhật con số này thường xuyên",
+          "Vì cần so sánh mức dao động giữa các dịch vụ để tìm dịch vụ bất ổn nhất"
         ],
         "correct": 0,
-        "explanation": "MA 50: giá trung bình 50 ngày gần nhất. MA 200: giá trung bình 200 ngày gần nhất. Khi MA 50 vượt lên trên MA 200 = Gold Cross (tín hiệu mua), khi MA 50 đi xuống dưới MA 200 = Death Cross (tín hiệu bán)."
+        "explanation": "Đây là cùng phép kiểm với việc chia hai nhóm cùng một phiên bản để đo nhiễu nền: con số đó là ngưỡng dưới mà mọi thứ nhỏ hơn nó đều vô nghĩa, và không biết nó thì bạn đọc nhiễu thành tín hiệu."
       },
       {
-        "question": "RSI (Relative Strength Index) ở mức nào được coi là 'quá mua' (overbought)?",
+        "question": "Vì sao nên so với cùng kỳ thay vì so với hôm qua?",
         "options": [
-          "Trên 50",
-          "Trên 70",
-          "Trên 80",
-          "Trên 100"
-        ],
-        "correct": 1,
-        "explanation": "RSI trên 70 = cổ phiếu quá mua (overbought) → có thể đảo chiều giảm. RSI dưới 30 = quá bán (oversold) → có thể đảo chiều tăng. RSI 30-70 = normal."
-      },
-      {
-        "question": "Vào lệnh ở 1.250, cắt lỗ 1.200, mục tiêu 1.350. Tỷ lệ rủi ro trên lợi nhuận là bao nhiêu?",
-        "options": [
-          "1:2",
-          "1:1",
-          "2:1",
-          "1:3"
+          "Vì phần lớn chỉ số có chu kỳ tuần, nên thứ hai luôn khác chủ nhật",
+          "Vì dữ liệu của hôm qua có thể chưa hoàn chỉnh do có dữ liệu tới muộn",
+          "Vì so với cùng kỳ cho phép loại bỏ ảnh hưởng của các thay đổi đã triển khai",
+          "Vì khoảng cách một tuần đủ dài để mức dao động ngẫu nhiên bị triệt tiêu"
         ],
         "correct": 0,
-        "explanation": "Rủi ro 50, lợi nhuận kỳ vọng 100, tức 1:2. Với tỷ lệ này chỉ cần đúng khoảng 40% số lần đã hòa vốn - đó là lý do cấu trúc lệnh quan trọng hơn tỷ lệ đoán đúng."
+        "explanation": "So thứ hai với chủ nhật thì bạn đo ngày trong tuần chứ không đo hệ thống. Lựa chọn thứ hai là một lý do thật để cẩn thận với dữ liệu hôm qua nhưng nó không liên quan tới việc chọn mốc so sánh."
       },
       {
-        "question": "Vì sao tín hiệu giao cắt của các đường trung bình mang tính trễ?",
+        "question": "Vì sao trục bị cắt lại dễ gây hiểu nhầm?",
         "options": [
-          "Vì đường trung bình được tính từ dữ liệu giá quá khứ, nên chỉ xác nhận xu hướng sau khi nó đã hình thành",
-          "Vì dữ liệu giá được công bố chậm một ngày",
-          "Vì phải chờ đủ 200 phiên mới tính được",
-          "Vì thị trường Việt Nam có biên độ dao động"
+          "Vì nó phóng đại biến động, và người đọc thường quên mất trục đã bị cắt",
+          "Vì nó làm mất thông tin về giá trị tuyệt đối của chỉ số đang xem",
+          "Vì tất cả các biểu đồ khác nhau có mức cắt khác nhau nên rốt cuộc khó so sánh với nhau",
+          "Vì việc cắt trục thường được làm để che giấu một xu hướng bất lợi"
         ],
         "correct": 0,
-        "explanation": "Trung bình là hàm của quá khứ. Đây là đánh đổi cố hữu: đường càng dài thì tín hiệu càng ít nhiễu nhưng càng đến muộn."
+        "explanation": "Lựa chọn cuối gán ý đồ, và trong thực tế cắt trục thường là cách trình bày hợp lý cho chỉ số độ sẵn sàng - từ 0 tới 100 thì mọi thứ thành một đường phẳng. Vấn đề nằm ở người đọc, không ở người vẽ."
+      },
+      {
+        "question": "Vì sao hồi quy về trung bình hay bị đọc nhầm thành hiệu quả của một thay đổi?",
+        "options": [
+          "Vì người ta thường hành động ngay sau một giá trị cực đoan, và giá trị sau đó tự về gần trung bình",
+          "Vì các thay đổi thường được triển khai vào lúc hệ thống đang có vấn đề",
+          "Vì cần thời gian để tác dụng thật của một thay đổi thể hiện trên chỉ số",
+          "Vì các chỉ số có tương quan với nhau nên khó tách được nguyên nhân"
+        ],
+        "correct": 0,
+        "explanation": "Bạn hành động vào ngày tệ nhất, và ngày hôm sau tốt hơn kể cả khi bạn không làm gì. Đây là lý do phải có nhóm đối chứng hoặc ít nhất một khoảng so sánh, chứ không chỉ nhìn trước và sau."
+      },
+      {
+        "question": "Cách nào giúp đọc biểu đồ trung thực hơn?",
+        "options": [
+          "Đánh dấu các mốc triển khai lên biểu đồ, để biến động có ngữ cảnh khi nhìn",
+          "Tăng thời gian hiển thị để có thể thấy được xu hướng dài hạn rõ hơn",
+          "Dùng đường trung bình trượt để làm mượt các biến động ngắn hạn",
+          "Hiển thị nhiều chỉ số liên quan trên cùng một biểu đồ để đối chiếu"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều làm biểu đồ dễ nhìn hơn và không thêm thông tin nào mới. Mốc triển khai thì thêm thông tin: nó biến câu chỉ số tăng vào thứ ba thành câu chỉ số tăng ngay sau bản phát hành lúc mười giờ."
       }
     ],
     "keyTakeaways": [
-      "TA phân tích giá & khối lượng trên biểu đồ để nhận diện xu hướng",
-      "Support: sàn (mức giá không rơi tiếp); Resistance: trần (mức giá không tăng tiếp)",
-      "MA 50/200: moving averages, dùng để nhận diện xu hướng dài hạn",
-      "TA không dự báo 100% chính xác, chỉ là xác suất cao hơn → kết hợp với Risk Management"
+      "Ba điểm liên tiếp cùng chiều là chuyện thường của dữ liệu ngẫu nhiên.",
+      "Biết mức dao động NỀN trước - không có nó thì mọi biến động trông như có nghĩa.",
+      "So với CÙNG KỲ, vì phần lớn chỉ số có chu kỳ tuần.",
+      "Trục bị cắt phóng đại biến động, và vấn đề nằm ở người đọc chứ không ở người vẽ.",
+      "Hành động vào ngày tệ nhất thì hôm sau tốt hơn kể cả khi bạn không làm gì."
     ],
     "practicePrompt": {
-      "question": "Bạn là môi giới. Khách hàng hỏi: 'VN-Index hiện tại 1250, tôi nên mua hay bán?' Bạn sẽ phân tích như thế nào?",
+      "question": "Bạn sửa một thứ vào ngày độ trễ cao nhất tháng. Hôm sau nó giảm. Kết luận?",
       "options": [
-        "Đoán mò: 'À mua đi, chắc sẽ tăng'",
-        "Xác định support, resistance rồi mới khuyến nghị",
-        "Không dùng phân tích kỹ thuật, chỉ dùng tin tức",
-        "Bảo khách hàng không nên đầu tư cổ phiếu ở thời điểm này"
+        "Chưa kết luận được - hồi quy về trung bình giải thích được kết quả này y hệt",
+        "Thay đổi có tác dụng, vì độ trễ giảm ngay sau khi triển khai nó",
+        "Cần theo dõi thêm vài ngày để xác nhận mức giảm được duy trì",
+        "Thay đổi có tác dụng một phần, phần còn lại do các yếu tố khác"
       ],
-      "correct": 1,
-      "explanation": "Môi giới chuyên nghiệp dùng TA để đưa ra khuyến nghị BUY/SELL cụ thể + mục tiêu giá + stop loss, không phải chỉ đoán mò."
+      "correct": 0,
+      "explanation": "Lựa chọn thứ ba đúng hướng và vẫn không đủ: hồi quy về trung bình cũng tạo ra mức giảm được duy trì, vì giá trị cực đoan vốn hiếm. Cách phân biệt là so với một khoảng đối chứng, không phải chờ lâu hơn."
     },
     "summary": {
-      "keyIdea": "TA là công cụ để nhận diện xu hướng & cơ hội mua/bán dựa trên giá & khối lượng",
-      "commonMistake": "Tin TA 100%, quên rằng TA chỉ xác suất cao hơn, không dự báo 100% chính xác",
-      "action": "Mở TradingView, chọn một cổ phiếu, vẽ support & resistance trên biểu đồ ngày"
+      "keyIdea": "Mắt người tìm ra khuôn mẫu trong dữ liệu ngẫu nhiên; biểu đồ chỉ số là nơi thói quen đó gây hại nhất.",
+      "formula": "Biết dao động nền → so cùng kỳ → đánh dấu mốc triển khai → mới đọc.",
+      "commonMistake": "Đọc mức giảm sau khi hành động vào ngày cực đoan là bằng chứng có tác dụng.",
+      "action": "Tìm mức dao động nền của chỉ số bạn nhìn nhiều nhất."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Chọn 1 cổ phiếu yêu thích. Vẽ support & resistance trên biểu đồ hàng ngày. Tính MA 50 & MA 200. Dựa trên đó, viết 1 khuyến nghị BUY/SELL + target + stop loss.",
-      "secondary": "Nếu bạn là môi giới, đây là cách để tư vấn khách hàng một cách chuyên nghiệp thay vì chỉ 'cảm tính'."
+      "title": "Làm ngay hôm nay",
+      "message": "Với chỉ số bạn nhìn nhiều nhất, tìm mức dao động nền của nó trong một tuần bình thường không có sự cố nào.",
+      "secondary": "Con số đó là ngưỡng dưới. Mọi biến động nhỏ hơn nó mà bạn từng dùng để ra quyết định đều là đọc nhiễu."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Phân tích kỹ thuật không dự báo 100%, nhưng tăng xác suất thành công hơn là đoán mò. Cho môi giới, đó là sự khác biệt giữa tư vấn chuyên nghiệp và đoán mò."
+        "text": "Phần lớn quyết định vận hành được đưa ra sau khi nhìn một biểu đồ trong ba mươi giây, và ba mươi giây đó rất dễ đọc ra thứ không có ở đó."
       },
       {
         "type": "heading",
-        "text": "3 công cụ TA cơ bản"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Support & Resistance: sàn & trần - mức giá quan trọng nơi khối lượng mua/bán lớn",
-          "Moving Average (MA): trung bình di động - giúp xác định xu hướng dài hạn",
-          "RSI (Relative Strength Index): đo mức độ quá mua/quá bán của cổ phiếu"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Gold Cross & Death Cross"
-      },
-      {
-        "type": "paragraph",
-        "text": "Gold Cross: MA 50 (ngắn hạn) vượt lên trên MA 200 (dài hạn) → tín hiệu mua mạnh, xu hướng tăng sắp bắt đầu. Death Cross: MA 50 đi xuống dưới MA 200 → tín hiệu bán mạnh, xu hướng giảm sắp bắt đầu. Đây là những tín hiệu được môi giới dùng rất phổ biến để tư vấn khách hàng."
-      },
-      {
-        "type": "heading",
-        "text": "TA + Risk Management = công thức thành công"
-      },
-      {
-        "type": "paragraph",
-        "text": "TA không dự báo 100%, luôn có xác suất lỗi. Vì vậy, mỗi khuyến nghị BUY phải kèm theo: Target (mục tiêu giá), Stop Loss (nơi cắt lỗ nếu sai). **Ví dụ:** 'BUY ở 1250, target 1300 (lợi nhuận 50), stop loss 1200 (cắt lỗ 50)' → rủi ro = lợi nhuận, tỉ lệ Risk/Reward = 1:1 (công bằng)."
-      },
-      {
-        "type": "formula",
-        "title": "Tỷ lệ rủi ro trên lợi nhuận kỳ vọng",
-        "equation": "R/R = (Giá vào − Mức cắt lỗ) ÷ (Mục tiêu − Giá vào)",
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "Vào 1.250, cắt lỗ 1.200, mục tiêu 1.350 → 50 ÷ 100",
-          "result": "= 1:2",
-          "explanation": "Rủi ro 50 để nhắm lợi nhuận 100. Với tỷ lệ này, chỉ cần đúng khoảng 40% số lần là đã hòa vốn - đây là lý do quản trị rủi ro quan trọng hơn tỷ lệ đoán đúng. Ngược lại, tỷ lệ 2:1 đòi hỏi phải đúng trên hai phần ba số lần mới không lỗ."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Bốn giới hạn cần nói rõ với khách hàng"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tín hiệu kỹ thuật mô tả hành vi giá trong quá khứ, không phải lời hứa về tương lai. Mọi tín hiệu đều có tỷ lệ sai.",
-          "Tín hiệu giao cắt của đường trung bình mang tính trễ theo bản chất - chúng xác nhận xu hướng đã hình thành chứ không dự báo điểm bắt đầu.",
-          "Cổ phiếu thanh khoản thấp cho tín hiệu kém tin cậy hơn hẳn, vì một vài lệnh lớn đã đủ tạo ra mẫu hình giả.",
-          "Một tin cơ bản đủ mạnh - kết quả kinh doanh, thay đổi ban lãnh đạo, sự kiện ngành - có thể vô hiệu hóa mọi mức hỗ trợ và kháng cự trong một phiên."
-        ]
+        "text": "Ba điểm không phải một xu hướng"
       },
       {
         "type": "callout",
-        "label": "Trách nhiệm nghề nghiệp",
-        "text": "Khuyến nghị đưa cho khách hàng cần có cơ sở hợp lý và phải phù hợp với hoàn cảnh cùng khẩu vị rủi ro của chính khách hàng đó, chứ không chỉ dựa vào một tín hiệu trên đồ thị. Cùng một tín hiệu có thể phù hợp với người có kinh nghiệm và tài sản dư dả, nhưng hoàn toàn không phù hợp với người mới dùng phần lớn tiền tiết kiệm."
+        "label": "Chuỗi ngắn là chuyện thường của ngẫu nhiên",
+        "text": "Với một chuỗi ngẫu nhiên, xác suất có ba ngày liên tiếp cùng chiều ở đâu đó trong tháng là rất cao. Nên chuỗi ba điểm gần như không mang thông tin - và nó là loại khuôn mẫu mà mắt người bắt được nhanh nhất."
       },
       {
-        "type": "paragraph",
-        "text": "Cuối cùng, mọi khuyến nghị nên được ghi lại: lý do vào lệnh, mức mục tiêu, mức cắt lỗ và cơ sở của từng con số. Việc này vừa là kỷ luật nghề nghiệp, vừa là cách duy nhất để về sau nhìn lại và biết mình sai ở khâu nào - nhận định ban đầu, việc chọn điểm vào, hay việc không tuân thủ mức cắt lỗ đã đặt."
+        "type": "heading",
+        "text": "Ba việc trước khi đọc"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Biết mức DAO ĐỘNG NỀN. Không có nó thì mọi biến động đều trông như có ý nghĩa.",
+          "So với CÙNG KỲ, không so với hôm qua. Phần lớn chỉ số có chu kỳ tuần, nên thứ hai luôn khác chủ nhật.",
+          "Đánh dấu các mốc triển khai lên biểu đồ. Nó biến câu chỉ số tăng vào thứ ba thành câu chỉ số tăng ngay sau bản phát hành lúc mười giờ."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Hai cái bẫy"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Trục bị cắt",
+          "text": "Trục dọc bắt đầu từ 95% làm một biến động nửa điểm trông như vách núi. Đây là cách trình bày hợp lý cho chỉ số độ sẵn sàng - vấn đề nằm ở người đọc quên mất trục đã cắt."
+        },
+        "right": {
+          "label": "Hồi quy về trung bình",
+          "text": "Bạn hành động vào ngày tệ nhất, và ngày hôm sau tốt hơn kể cả khi bạn không làm gì. Giá trị cực đoan vốn hiếm."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cái bẫy thứ hai là cái đắt hơn, vì nó không chỉ làm bạn đọc sai mà còn làm bạn tin rằng một cách chữa vô dụng là có tác dụng - và lần sau bạn lại dùng nó.",
+          "Cách phân biệt duy nhất là so với một khoảng đối chứng, không phải chờ lâu hơn."
+        ]
       }
     ]
   },
@@ -68501,356 +68487,351 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1219,
-    "track": "professional",
-    "slug": "dinh-gia-bat-dong-san-tai-san-vo-hinh",
-    "title": "Định giá bất động sản & Tài sản vô hình - Khi DCF không đủ",
-    "subtitle": "Định giá một tòa nhà hay một thương hiệu khác với định giá cổ phiếu - bạn cần các phương pháp khác.",
+    "slug": "he-thong-thoi-gian-thuc-do-tre-co-han-cung",
+    "title": "Hệ thống thời gian thực - khi độ trễ có hạn cứng",
+    "subtitle": "Một kết quả đúng mà tới muộn là một kết quả sai, và điều đó đổi toàn bộ cách thiết kế.",
     "duration": "8 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🏢",
-    "openingQuestion": "Tại sao không thể dùng DCF (chiết khấu dòng tiền) để định giá một bất động sản hay một thương hiệu?",
+    "whyItMatters": "Các kỹ thuật làm hệ thống thông thường nhanh hơn - bộ nhớ đệm, thu gom rác, tự mở rộng - đều đánh đổi độ ổn định lấy tốc độ trung bình, và đó là đánh đổi sai ở đây.",
+    "openingQuestion": "Điều gì phân biệt hệ thống thời gian thực với hệ thống chỉ cần nhanh?",
     "openingOptions": [
-      "DCF hoàn toàn có thể, nó là phương pháp duy nhất",
-      "Vì bất động sản và thương hiệu không hề tạo ra dòng tiền nào",
-      "Vì dòng tiền của chúng khó dự báo và không hề ổn định được"
+      "Một kết quả đúng mà tới muộn hơn hạn được tính là một kết quả sai",
+      "Hệ thống thời gian thực có yêu cầu về độ trễ trung bình thấp hơn nhiều",
+      "Hệ thống thời gian thực xử lý dữ liệu ngay khi nhận thay vì gom theo lô",
+      "Hệ thống thời gian thực chạy trên phần cứng chuyên dụng có hiệu năng cao"
     ],
-    "correctOption": 2,
-    "explanation": "DCF dùng tốt nhất cho các công ty có dòng tiền dự báo được. Nhưng bất động sản dễ bị ảnh hưởng bởi thị trường địa phương, chính sách thuế, thay đổi dân số. Thương hiệu (tài sản vô hình) thậm chí khó đo lường dòng tiền riêng biệt. Vì thế cần các phương pháp 'so sánh thị trường' hoặc 'định giá dựa vào chi phí'.",
+    "correctOption": 0,
+    "explanation": "Đây là định nghĩa và nó có hệ quả rất lớn: mục tiêu không còn là làm cho nhanh mà là làm cho ĐOÁN TRƯỚC ĐƯỢC. Một hệ thống chạy trung bình một mili giây nhưng thỉnh thoảng mất năm mươi mili giây thì tệ hơn một hệ thống luôn mất năm mili giây, dù con số trung bình của nó đẹp hơn nhiều.",
+    "diagram": [
+      {
+        "label": "Mục tiêu là ĐOÁN TRƯỚC ĐƯỢC, không phải nhanh trung bình",
+        "arrow": true
+      },
+      {
+        "label": "Đo bằng giá trị TỆ NHẤT, không bằng trung bình hay phân vị",
+        "arrow": true
+      },
+      {
+        "label": "Cấp phát trước mọi thứ, tránh mọi nguồn dừng bất định",
+        "arrow": true
+      },
+      {
+        "label": "Chấp nhận chậm hơn trung bình để đổi lấy trần chắc chắn"
+      }
+    ],
     "realWorldExample": {
-      "company": "Wechat",
-      "description": "Khi Tencent muốn mua lại hay định giá WeChat, phương pháp DCF sẽ rất khó vì giá trị của ứng dụng liên quan tới người dùng, sử dụng, và giấy phép chính phủ - những thứ không thể dự báo bằng công thức toán học. Thay vào đó, phải dùng 'tiền lệ gần đây' (comparable transactions) hoặc 'giá trị lợi nhuận trên người dùng'."
+      "company": "Cấp phát trước và tránh dừng",
+      "description": "Cấp phát toàn bộ bộ nhớ lúc khởi động, dùng cấu trúc dữ liệu kích thước cố định, tránh mọi thứ có thể gây một lượt dừng không đoán trước được. Mã trông kém linh hoạt hơn hẳn, và đó chính là điều làm nó đoán trước được."
     },
     "quiz": [
       {
-        "question": "Ba phương pháp định giá bất động sản chính là gì?",
+        "question": "Vì sao đo bằng giá trị tệ nhất chứ không bằng phân vị cao?",
         "options": [
-          "DCF, accounting, và thị trường",
-          "Income Approach, Cost Approach, và Market Approach",
-          "Giá vốn, giá thị trường, và giá thanh lý"
+          "Vì hạn là hạn cứng, nên một lần vượt cũng là một lần thất bại",
+          "Vì phân vị cao khó tính chính xác khi số lượng mẫu không đủ lớn",
+          "Vì giá trị tệ nhất dễ đo hơn nên không cần công cụ thống kê phức tạp",
+          "Vì phân vị cao thay đổi theo tải nên không ổn định để làm tiêu chuẩn"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Đây là khác biệt nền tảng với hệ thống thông thường, nơi phân vị 99 là tiêu chuẩn hợp lý vì một phần trăm chậm là chấp nhận được. Ở đây không có phần trăm nào chấp nhận được."
       },
       {
-        "question": "Income Approach định giá bất động sản dựa trên điều gì?",
+        "question": "Vì sao cấp phát bộ nhớ lúc chạy lại là vấn đề?",
         "options": [
-          "Tiền mặt hiện tại của chủ nhân",
-          "Doanh thu thuê nhà (hay dòng tiền từ bất động sản) được chiết khấu về hiện tại - giống DCF nhưng chỉ dùng cho bất động sản",
-          "Giá cua tòa nhà tương tự gần đây được bán"
+          "Vì nó có thể kích hoạt một lượt dừng có độ dài không đoán trước được",
+          "Vì việc cấp phát tốn thời gian nên làm tăng độ trễ trung bình của hệ thống",
+          "Vì bộ nhớ có thể bị phân mảnh sau nhiều lượt cấp phát và giải phóng",
+          "Vì hệ thống có thể hết bộ nhớ vào đúng lúc tải cao nhất"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là vấn đề thật và đều có thể ước lượng được. Cái này là vấn đề về TÍNH BẤT ĐỊNH, và bất định là thứ duy nhất mà hệ thống thời gian thực không chịu được."
       },
       {
-        "question": "Goodwill là gì?",
+        "question": "Vì sao bộ nhớ đệm là con dao hai lưỡi ở đây?",
         "options": [
-          "Ý định tốt của công ty",
-          "Phần của giá mua vượt quá giá trị sổ sách của tài sản - ví dụ, bạn mua công ty với giá $100M nhưng tài sản thực (máy móc, tiền) chỉ đáng $60M, $40M còn lại là goodwill (cho thương hiệu, khách hàng, bằng sáng chế)",
-          "Lợi nhuận của công ty sau khi mua"
+          "Vì nó cải thiện trường hợp trung bình mà làm chênh lệch giữa hai trường hợp lớn hơn",
+          "Vì nó chiếm bộ nhớ nên làm giảm dung lượng dành cho việc xử lý chính",
+          "Vì dữ liệu trong đệm có thể cũ nên kết quả trả về không chính xác",
+          "Vì việc quản lý đệm cần thêm một luồng chạy nền gây tranh chấp tài nguyên"
         ],
-        "correct": 1
-      }
-    ],
-    "sections": [
-      {
-        "type": "heading",
-        "text": "Ba phương pháp định giá tài sản (Income, Cost, Market)"
+        "correct": 0,
+        "explanation": "Trúng đệm rất nhanh, trượt đệm chậm hơn cả khi không có đệm - và trần được quyết định bởi trường hợp trượt. Đây là lý do một tối ưu hữu ích ở mọi nơi khác lại phải cân nhắc rất kỹ ở đây."
       },
       {
-        "type": "paragraph",
-        "text": "Income Approach (Phương pháp thu nhập): Định giá dựa vào dòng tiền tạo ra - ví dụ, toà nhà cho thuê, giả sử mỗi năm thu $500K, lợi suất yêu cầu 5%, định giá ≈ $10M. Cost Approach (Phương pháp chi phí): Định giá = chi phí xây dựng lại tài sản + đất, trừ khấu hao - dùng tốt cho bất động sản cũ. Market Approach (Phương pháp thị trường): So sánh với những giao dịch gần đây tương tự - nếu toà nhà tương tự bán với giá $12M/năm cho thuê, toà nhà của bạn là $9M/năm thì định giá ≈ $9M/12M × $12M."
+        "question": "Đánh đổi trung tâm của hệ thống thời gian thực là gì?",
+        "options": [
+          "Chấp nhận chậm hơn ở mức trung bình để đổi lấy một trần chắc chắn",
+          "Chấp nhận chi phí phần cứng cao hơn để đạt được độ trễ thấp hơn",
+          "Chấp nhận độ phức tạp cao hơn trong mã để tối ưu từng đường xử lý",
+          "Chấp nhận xử lý được ít yêu cầu hơn để mỗi yêu cầu được ưu tiên hơn"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là chi phí đi kèm. Đánh đổi trung tâm thì phản trực giác hơn: bạn chủ động làm hệ thống chậm hơn ở phần lớn thời gian, để không bao giờ vượt trần."
       },
       {
-        "type": "heading",
-        "text": "Tại sao bất động sản không thể dùng DCF?"
-      },
-      {
-        "type": "paragraph",
-        "text": "DCF dựa vào: (1) dự báo dòng tiền chính xác 5-10 năm; (2) tỷ lệ chiết khấu ổn định. Bất động sản: (1) dòng tiền phụ thuộc thị trường địa phương, chính sách (giá thuê có thể đứng yên hay tăng gấp đôi); (2) chi phí bảo trì, sửa chữa khó dự báo; (3) giá đất thay đổi theo lịch sử. Vì thế Income Approach là phiên bản 'bất động sản' của DCF - nó đơn giản hơn và chỉ dùng dòng tiền từ cho thuê."
-      },
-      {
-        "type": "heading",
-        "text": "Tài sản vô hình (Intangible Assets) - Thương hiệu, bằng sáng chế, khách hàng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tài sản vô hình là những thứ không có hình dạng vật lý nhưng tạo ra giá trị: thương hiệu (Apple), bằng sáng chế (công nghệ), danh sách khách hàng, hợp đồng dài hạn. Chúng khó định giá vì: (1) dòng tiền riêng biệt khó đo; (2) rủi ro cao; (3) thay đổi nhanh."
-      },
-      {
-        "type": "heading",
-        "text": "Phương pháp định giá tài sản vô hình"
-      },
-      {
-        "type": "paragraph",
-        "text": "Phương pháp Relief from Royalty: 'Nếu tôi phải trả tiền bản quyền để sử dụng thương hiệu này, tôi sẽ trả bao nhiêu?' Ví dụ, Nike phải trả 5% doanh thu để sử dụng logo của mình. Nhân 5% × doanh số dự báo → giá trị thương hiệu. Phương pháp Incremental Earnings: So sánh lợi nhuận của công ty với thương hiệu mạnh vs công ty giống nhưng thương hiệu yếu - hiệu số là giá trị tài sản vô hình."
-      },
-      {
-        "type": "heading",
-        "text": "Goodwill - Khi bạn trả thêm tiền khi mua công ty"
-      },
-      {
-        "type": "paragraph",
-        "text": "Goodwill = Giá mua - Giá trị sổ sách tài sản. Ví dụ, Facebook mua WhatsApp với giá $19B nhưng tài sản thực (máy chủ, văn phòng) chỉ ~$500M. Goodwill = $18.5B, đại diện cho người dùng, khách hàng, công nghệ, thị phần. Goodwill xuất hiện trên bảng cân đối kế toán và phải khấu hao (hoặc kiểm tra xem có bị giảm giá không)."
-      },
-      {
-        "type": "heading",
-        "text": "Impairment - Khi tài sản vô hình mất giá"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nếu một thương hiệu hay bằng sáng chế bất ngờ mất giá (ví dụ, thương hiệu bị scandal, bằng sáng chế bị phán quyết không hợp lệ), giá trị goodwill phải ghi nhận tổn thất (impairment). Ví dụ, nếu Facebook mua TikTok với giá $100B nhưng 2 năm sau TikTok bị cấm ở Mỹ, giá trị sụt về $10B → ghi nhận lỗ $90B."
-      },
-      {
-        "type": "heading",
-        "text": "Ứng dụng thực tiễn - M&A (Sáp nhập và mua lại)"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi một công ty muốn mua công ty khác hoặc định giá tài sản để bán, cần phối hợp cả ba phương pháp. Thường kết quả sẽ khác nhau - ví dụ, Market Approach cho $50M, Income Approach cho $45M, Cost Approach cho $40M. Ngôn ngữ sẽ chọn 'giá công bằng' đâu đó giữa ba con số này, tùy thuộc vào bối cảnh (thị trường nóng hay lạnh, tính gấp gáp, v.v.)."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba cách tiếp cận định giá tài sản",
-        "subtitle": "Chọn cách nào phụ thuộc vào việc tài sản đó sinh dòng tiền, có thể xây lại được, hay có giao dịch so sánh được",
-        "concepts": [
-          {
-            "vi": "Theo thu nhập",
-            "en": "Income Approach",
-            "def": "Chiết khấu dòng tiền tương lai mà tài sản tạo ra. Đúng khi tài sản có dòng tiền tách bạch và đoán được, ví dụ toà nhà cho thuê dài hạn."
-          },
-          {
-            "vi": "Theo chi phí",
-            "en": "Cost Approach",
-            "def": "Chi phí xây lại tài sản tương đương, trừ hao mòn. Dùng khi không có thu nhập và không có giao dịch so sánh - thường là cận dưới của giá trị."
-          },
-          {
-            "vi": "Theo thị trường",
-            "en": "Market Approach",
-            "def": "So với giao dịch của tài sản tương đương. Mạnh nhất khi có nhiều giao dịch gần đây, yếu hẳn khi thị trường mỏng."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Cái bẫy",
-        "text": "Goodwill không phải một tài sản mua được - nó là phần chênh giữa giá trả và giá trị hợp lý của tài sản ròng nhận về. Nghĩa là nó ghi lại một QUYẾT ĐỊNH, không ghi lại một thứ. Đó là lý do kiểm tra suy giảm goodwill thực chất là kiểm tra xem thương vụ ngày ấy có đắt quá không."
+        "question": "Vì sao mã trong hệ thống thời gian thực trông kém linh hoạt?",
+        "options": [
+          "Vì mọi thứ có kích thước cố định và cấp phát trước, và đó chính là cái tạo ra tính đoán trước được",
+          "Vì các ngôn ngữ dùng cho hệ thống thời gian thực có ít tính năng trừu tượng hơn",
+          "Vì đội phát triển ưu tiên tốc độ viết mã hơn là chất lượng thiết kế",
+          "Vì mã cần được rà soát kỹ nên các cấu trúc phức tạp bị hạn chế sử dụng"
+        ],
+        "correct": 0,
+        "explanation": "Vế thứ hai là vế quan trọng: đây không phải mã tệ mà là mã đang trả giá đúng chỗ. Đánh giá nó bằng tiêu chuẩn linh hoạt của hệ thống thông thường là đánh giá sai thước đo."
       }
     ],
     "keyTakeaways": [
-      "Ba phương pháp định giá tài sản: Income Approach (dòng tiền), Cost Approach (chi phí xây lại), Market Approach (so sánh thị trường)",
-      "Bất động sản không dùng DCF vì dòng tiền khó dự báo - Income Approach là phiên bản đơn giản hơn",
-      "Tài sản vô hình (thương hiệu, bằng sáng chế) dùng Royalty Relief hoặc Incremental Earnings",
-      "Goodwill là phần giá mua vượt giá trị sổ sách - phát sinh khi mua công ty với giá cao hơn giá trị tài sản"
+      "Kết quả đúng mà tới muộn là kết quả SAI - đó là định nghĩa, và hệ quả rất lớn.",
+      "Mục tiêu là ĐOÁN TRƯỚC ĐƯỢC, không phải nhanh trung bình.",
+      "Đo bằng giá trị TỆ NHẤT - hạn cứng thì một lần vượt cũng là thất bại.",
+      "Bộ nhớ đệm cải thiện trung bình mà làm trần tệ hơn - phải cân nhắc rất kỹ.",
+      "Mã kém linh hoạt ở đây không phải mã tệ mà là mã đang trả giá đúng chỗ."
     ],
     "practicePrompt": {
-      "question": "Toà nhà cho thuê doanh thu $500K trong năm tới, tăng trưởng đều 2%/năm mãi mãi, lợi suất yêu cầu 6%. Dùng Income Approach (mô hình tăng trưởng đều - growing perpetuity), định giá toà nhà là bao nhiêu?",
+      "question": "Hệ thống chạy trung bình 1ms, thỉnh thoảng 50ms. Hạn là 10ms. Đánh giá?",
       "options": [
-        "≈ $12.75 triệu, dùng công thức V = CF1/(r-g) = 500K/(0.06-0.02)",
-        "≈ $8.33 triệu, dùng V = CF/r = 500K/0.06 (sai vì bỏ qua tăng trưởng)",
-        "≈ $25 triệu, dùng V = CF/g = 500K/0.02 (sai vì dùng nhầm tỷ lệ tăng trưởng làm mẫu số)",
-        "≈ $2.4 triệu, dùng V = CF×(r-g) = 500K×0.04 (sai vì nhân thay vì chia)"
+        "Không đạt - trần là 50ms, và con số trung bình đẹp không bù được cho điều đó",
+        "Đạt, bởi vì phần tương đối lớn thời gian hệ thống thực thi tương đối nhanh hơn hạn rất nhiều lần",
+        "Cần đo thêm để biết tần suất của các lượt 50ms là bao nhiêu",
+        "Đạt một phần, cần cải thiện để giảm số lượt vượt hạn xuống thấp hơn"
       ],
       "correct": 0,
-      "explanation": "Mô hình tăng trưởng đều (growing perpetuity): V = CF1/(r-g) = 500,000/(0.06-0.02) = 500,000/0.04 = $12,500,000 ≈ $12.5 triệu (dùng CF năm tới 500K trực tiếp là cách chuẩn khi đề cho sẵn dòng tiền năm 1). Mức chiết khấu-tăng trưởng (r-g) = 4% là mẫu số quyết định giá trị - sai lệch nhỏ ở g có thể thay đổi định giá đáng kể."
+      "explanation": "Lựa chọn thứ ba là phản xạ đúng ở hệ thống thông thường và sai ở đây: tần suất không đổi được kết luận, vì hạn cứng nghĩa là mọi lượt vượt đều là thất bại. Điều đáng đo là NGUYÊN NHÂN của lượt 50ms."
     },
     "summary": {
-      "keyIdea": "Bất động sản và tài sản vô hình cần các phương pháp định giá khác DCF. Income, Cost, và Market Approach có ưu nhược điểm riêng - thường phải kết hợp để có định giá hợp lý."
+      "keyIdea": "Một kết quả đúng mà tới muộn là một kết quả sai.",
+      "formula": "Đoán trước được > nhanh. Đo bằng tệ nhất. Cấp phát trước. Tránh mọi nguồn bất định.",
+      "commonMistake": "Đánh giá bằng độ trễ trung bình hoặc phân vị cao như hệ thống thông thường.",
+      "action": "Với luồng có hạn cứng của bạn, tìm giá trị TỆ NHẤT chứ không phải trung bình."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Trong công việc M&A, định giá tài sản, hoặc báo cáo tài chính, bạn sẽ phải áp dụng ba phương pháp này để đánh giá một khoản mua, một tòa nhà hay một thương hiệu. Sự hiểu biết về Goodwill cũng quan trọng khi đọc báo cáo tài chính của các công ty mua lại nhiều."
+      "title": "Làm ngay hôm nay",
+      "message": "Nếu hệ thống bạn có một luồng nào có hạn cứng, tìm giá trị TỆ NHẤT của nó trong tháng qua - không phải trung bình, không phải phân vị 99.",
+      "secondary": "Rồi tìm nguyên nhân của đúng lượt đó. Ở hệ thống có hạn cứng, một lượt cá biệt không phải nhiễu cần bỏ qua mà là dữ liệu quan trọng nhất bạn có."
     },
-    "diagram": [
-      {
-        "label": "Xác định loại tài sản cần định giá",
-        "arrow": true
-      },
-      {
-        "label": "Chọn cách tiếp cận: thu nhập · chi phí · thị trường",
-        "arrow": true
-      },
-      {
-        "label": "Với tài sản vô hình: tách dòng tiền do tài sản đó tạo ra",
-        "arrow": true
-      },
-      {
-        "label": "Đối chiếu kết quả giữa các cách tiếp cận",
-        "arrow": true
-      },
-      {
-        "label": "Kiểm tra suy giảm giá trị (impairment) định kỳ",
-        "arrow": false
-      }
-    ],
-  },
-  {
-    "id": 1220,
-    "track": "professional",
-    "slug": "valuation-report-tinh-hop-ly-dinh-gia",
-    "title": "Valuation Report & Tính hợp lý - Cách trình bày định giá một cách thuyết phục",
-    "subtitle": "Định giá là một con số, nhưng một valuation report phải giải thích tại sao con số đó hợp lý.",
-    "duration": "7 phút",
-    "difficulty": "Khó",
-    "emoji": "📋",
-    "openingQuestion": "Một valuation report nên bao gồm những phần nào?",
-    "openingOptions": [
-      "Chỉ cần một con số định giá là đủ, không cần giải thích",
-      "Tóm tắt, phân tích, định giá, khuyến nghị",
-      "Chỉ danh sách các khoản vay và chi phí"
-    ],
-    "correctOption": 1,
-    "explanation": "Một valuation report chuyên nghiệp phải có cấu trúc rõ ràng: Executive Summary (kết luận chính), Industry Analysis (ngành đó thế nào), Financial Analysis (công ty/tài sản thế nào), Valuation Methods (tại sao chọn phương pháp này), Sensitivity Analysis (con số thay đổi thế nào nếu giả định thay đổi), Recommendations. Điều này giúp người đọc (cơ quan quản lý, khách hàng, tòa án) hiểu và tin tưởng định giá.",
-    "realWorldExample": {
-      "company": "Kiểm toán viên độc lập",
-      "description": "Khi một công ty bị kiểm toán, nếu công ty có goodwill lớn hoặc tài sản khó định giá, cơ quan kiểm toán phải thuê các chuyên gia định giá độc lập viết valuation report. Báo cáo này phải mạnh mẽ vì có thể bị thách đấu trong tòa án hoặc bị cơ quan thuế tranh cãi."
-    },
-    "quiz": [
-      {
-        "question": "Executive Summary trong valuation report nên chứa gì?",
-        "options": [
-          "Chi tiết kỹ thuật tất cả các phương pháp định giá",
-          "Chỉ mục của báo cáo",
-          "Kết luận chính: định giá là bao nhiêu, phương pháp chính là gì, các giả định chính là gì"
-        ],
-        "correct": 2
-      },
-      {
-        "question": "Tại sao Sensitivity Analysis quan trọng?",
-        "options": [
-          "Vì nó là bắt buộc theo luật",
-          "Để cho thấy con số định giá thay đổi thế nào nếu các giả định thay đổi - ví dụ, nếu tỷ lệ chiết khấu tăng từ 6% lên 8%, định giá sẽ sụt bao nhiêu",
-          "Để che giấu những điểm yếu của định giá"
-        ],
-        "correct": 1
-      },
-      {
-        "question": "Khi một valuation report bị tranh cãi (ví dụ, trong phiên tòa), điều gì sẽ được xem xét trước tiên?",
-        "options": [
-          "Giá trị cuối cùng (định giá là $50M hay $100M)",
-          "Phương pháp định giá, giả định, và dữ liệu được dùng - tính hợp lý của các bước này",
-          "Ai viết báo cáo"
-        ],
-        "correct": 1
-      }
-    ],
     "sections": [
       {
-        "type": "heading",
-        "text": "Cấu trúc một valuation report chuyên nghiệp"
-      },
-      {
-        "type": "paragraph",
-        "text": "1. Executive Summary (1-2 trang): Kết luận, phương pháp, các con số chính. 2. Introduction (Giới thiệu): Mục đích định giá (mua, bán, thuế, v.v.), công ty/tài sản được định giá là gì. 3. Industry & Market Analysis: Ngành kinh doanh thế nào, xu hướng, cạnh tranh. 4. Company/Asset Analysis: Lịch sử, tài chính, điểm mạnh/yếu. 5. Valuation Methods & Analysis: Dùng phương pháp nào, tại sao, kết quả. 6. Sensitivity & Scenario Analysis: Con số thay đổi thế nào. 7. Conclusion & Recommendation: Định giá cuối cùng là bao nhiêu, phạm vi hợp lý. 8. Appendix: Dữ liệu chi tiết, tài liệu tham khảo."
+        "type": "lead",
+        "text": "Các kỹ thuật làm hệ thống thông thường nhanh hơn - bộ nhớ đệm, thu gom rác, tự mở rộng - đều đánh đổi độ ổn định lấy tốc độ trung bình. Đó là đánh đổi sai ở đây."
       },
       {
         "type": "heading",
-        "text": "Executive Summary - Phần quan trọng nhất"
+        "text": "Định nghĩa và hệ quả của nó"
       },
       {
-        "type": "paragraph",
-        "text": "Executive Summary phải trả lời 3 câu hỏi: (1) Định giá là bao nhiêu? (2) Phương pháp chính là gì? (3) Giả định quan trọng nhất là gì? Nó phải dễ hiểu cho những người không phải chuyên gia - CFO, luật sư, hay thẩm phán có thể đọc 2 trang này và hiểu được phần lớn kết luận."
-      },
-      {
-        "type": "heading",
-        "text": "Industry & Market Analysis - Tại sao ngành này lại quan trọng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Bất kỳ công ty nào cũng bị ảnh hưởng bởi ngành: Tăng trưởng ngành, cạnh tranh, quy định, xu hướng công nghệ. Phần này phải phân tích: kích thước thị trường hiện tại và dự báo, tỷ lệ tăng trưởng, các cạnh tranh chính, rủi ro quy định. Ví dụ, nếu định giá một công ty công nghệ, phải phân tích thị trường AI, xu hướng startups, quy định về dữ liệu."
+        "type": "callout",
+        "label": "Đúng mà muộn là sai",
+        "text": "Mục tiêu không còn là làm cho nhanh mà là làm cho ĐOÁN TRƯỚC ĐƯỢC. Một hệ thống chạy trung bình một mili giây nhưng thỉnh thoảng mất năm mươi thì tệ hơn một hệ thống luôn mất năm - dù con số trung bình của nó đẹp hơn nhiều."
       },
       {
         "type": "heading",
-        "text": "Financial Analysis - Bắt đầu từ dữ liệu cô đơn"
+        "text": "Đo bằng gì"
       },
       {
-        "type": "paragraph",
-        "text": "Phần này phân tích tài chính quá khứ: Doanh thu, lợi nhuận, dòng tiền. Tính các tỷ lệ: ROE, ROIC, biên lợi nhuận. Xu hướng: Doanh thu có tăng hay giảm? Lợi nhuận ổn định hay biến động? Điều này tạo cơ sở để dự báo tương lai."
-      },
-      {
-        "type": "heading",
-        "text": "Valuation Methods - Vì sao chọn DCF mà không chọn Comparable?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Không có 'phương pháp đúng nhất'. Phần này phải giải thích: (1) Phương pháp nào được chọn (DCF, Comparable Companies, Precedent Transactions, vv); (2) Tại sao phù hợp với công ty này; (3) Giả định chính (tỷ lệ tăng trưởng, tỷ lệ chiết khấu); (4) Kết quả từ mỗi phương pháp. **Ví dụ:** 'Chọn DCF vì dòng tiền dự báo được; Comparable Companies không phù hợp vì ít công ty tương tự'."
-      },
-      {
-        "type": "heading",
-        "text": "Sensitivity Analysis - Con số sẽ thay đổi thế nào?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Định giá rất nhạy cảm với các giả định. Sensitivity Analysis cho thấy: nếu tỷ lệ chiết khấu là 5% → định giá $100M, nếu 7% → định giá $70M. Bảng hai chiều (2-way table) thường dùng: hàng là tỷ lệ chiết khấu (5%-9%), cột là tỷ lệ tăng trưởng (2%-6%), ô là định giá. Điều này cho thấy con số không phải là 'chắc chắn' mà có khoảng hợp lý."
+        "type": "comparison",
+        "left": {
+          "label": "Hệ thống thông thường",
+          "text": "Phân vị 99 là tiêu chuẩn hợp lý. Một phần trăm chậm là chấp nhận được."
+        },
+        "right": {
+          "label": "Có hạn cứng",
+          "text": "Giá trị TỆ NHẤT. Không có phần trăm nào chấp nhận được, nên một lượt cá biệt là dữ liệu quan trọng nhất chứ không phải nhiễu."
+        }
       },
       {
         "type": "heading",
-        "text": "Tính hợp lý (Reasonableness Check)"
-      },
-      {
-        "type": "paragraph",
-        "text": "Trước khi kết luận, phải kiểm tra: (1) Định giá có cao so với ngành không? (2) Định giá / Doanh thu là bao nhiêu (P/S ratio)? (3) Định giá / EBITDA? (4) So sánh với Comparable Companies có hợp lý không? Ví dụ, nếu định giá một công ty startup ở $1B nhưng doanh thu chỉ $1M, P/S = 1000x - rất cao, cần giải thích tại sao."
+        "text": "Thiết kế theo hướng loại bỏ bất định"
       },
       {
         "type": "list",
         "items": [
-          "Executive Summary - kết luận và khoảng giá trị, viết cuối cùng nhưng đọc đầu tiên",
-          "Phân tích ngành và thị trường - vì sao ngành này tăng trưởng hay co lại",
-          "Phân tích tài chính - lịch sử ba tới năm năm, tách phần lặp lại khỏi phần một lần",
-          "Phương pháp định giá - và lý do chọn phương pháp đó thay vì phương pháp kia",
-          "Phân tích độ nhạy - con số đổi bao nhiêu khi giả định chính đổi",
-          "Kiểm tra tính hợp lý - đối chiếu kết quả với thị trường và với lẽ thường"
+          "Cấp phát toàn bộ bộ nhớ lúc khởi động; dùng cấu trúc kích thước cố định.",
+          "Tránh mọi thứ có thể gây một lượt dừng có độ dài không đoán trước được.",
+          "Cân nhắc rất kỹ với bộ nhớ đệm: trúng thì rất nhanh, trượt thì chậm hơn cả khi không có đệm - và trần do trường hợp trượt quyết định."
         ]
       },
       {
-        "type": "callout",
-        "label": "Đáng nhớ",
-        "text": "Phần kiểm tra tính hợp lý là phần hay bị bỏ nhất và cũng là phần cứu được nhiều báo cáo nhất. Một mô hình chạy đúng vẫn có thể cho ra bội số EV/EBITDA gấp ba lần trung bình ngành - và câu hỏi lúc đó không phải mô hình sai ở đâu, mà là giả định nào đang nói rằng doanh nghiệp này khác hẳn mọi doanh nghiệp cùng ngành."
+        "type": "closing",
+        "lines": [
+          "Đánh đổi trung tâm nghe phản trực giác: bạn CHỦ ĐỘNG làm hệ thống chậm hơn ở phần lớn thời gian, để không bao giờ vượt trần.",
+          "Và mã kết quả trông kém linh hoạt hơn hẳn. Đó không phải mã tệ - đó là mã đang trả giá đúng chỗ, và đánh giá nó bằng thước đo của hệ thống thông thường là dùng nhầm thước."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1220,
+    "slug": "he-thong-nhung-toi-uu-khi-tai-nguyen-co-dinh",
+    "title": "Hệ thống nhúng - tối ưu khi tài nguyên không tăng thêm được",
+    "subtitle": "Không có nút thêm máy chủ, nên mọi quyết định đều là quyết định đánh đổi trong một ngân sách cố định.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "📋",
+    "whyItMatters": "Thói quen giải quyết vấn đề bằng cách thêm tài nguyên hình thành trong môi trường đám mây, và nó vô dụng ở nơi phần cứng đã được sản xuất và bán đi rồi.",
+    "openingQuestion": "Điều gì khác nhất khi làm việc với hệ thống nhúng?",
+    "openingOptions": [
+      "Không thêm được tài nguyên, nên mọi cải thiện phải lấy từ chỗ khác trong cùng ngân sách",
+      "Ngôn ngữ và công cụ lập trình khác biệt so với phát triển phần mềm thông thường",
+      "Chu kỳ phát hành dài hơn nhiều nên mỗi bản cập nhật phải được kiểm rất kỹ",
+      "Hệ thống phải hoạt động liên tục ở ngay trong thời gian dài mà hoàn toàn vốn không được khởi động lại"
+    ],
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều đúng và đều là hệ quả. Ràng buộc gốc là ngân sách cố định: bộ nhớ, dung lượng lưu trữ và năng lượng đã được quyết định lúc thiết kế phần cứng, nên mọi cải thiện đều là đánh đổi chứ không phải bổ sung. Đây là thứ đổi hoàn toàn thói quen giải quyết vấn đề của người quen môi trường đám mây.",
+    "diagram": [
+      {
+        "label": "Ngân sách cố định: bộ nhớ, lưu trữ, năng lượng",
+        "arrow": true
+      },
+      {
+        "label": "Mọi cải thiện là ĐÁNH ĐỔI, không phải bổ sung",
+        "arrow": true
+      },
+      {
+        "label": "Năng lượng thường là ràng buộc chặt nhất, và nó vô hình",
+        "arrow": true
+      },
+      {
+        "label": "Cập nhật phải có đường quay lui chạy được cả khi bản mới hỏng"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Năng lượng là ràng buộc vô hình",
+      "description": "Với thiết bị chạy pin, một vòng lặp bận không làm chậm gì cả và nó rút ngắn tuổi thọ pin từ sáu tháng xuống ba tuần. Chỉ số này không xuất hiện trên bất kỳ bảng theo dõi hiệu năng nào, nên nó thường được phát hiện bởi người dùng chứ không phải bởi đội."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao năng lượng là ràng buộc dễ bị bỏ sót nhất?",
+        "options": [
+          "Vì nó không làm hệ thống chậm đi, nên không chỉ số hiệu năng nào bắt được",
+          "Vì việc đo năng lượng tiêu thụ đòi hỏi thiết bị chuyên dụng đắt tiền",
+          "Vì mức tiêu thụ thay đổi theo điều kiện môi trường nên khó đo ổn định",
+          "Vì phần lớn kỹ sư phần mềm không được đào tạo về điện tử công suất"
+        ],
+        "correct": 0,
+        "explanation": "Một vòng lặp bận chạy hết công suất mà vẫn trả kết quả đúng và nhanh - mọi phép đo hiệu năng đều xanh. Nó chỉ lộ ra qua tuổi thọ pin, tức là qua người dùng chứ không qua đội."
+      },
+      {
+        "question": "Vì sao cập nhật phần mềm cho thiết bị nhúng rủi ro hơn?",
+        "options": [
+          "Vì một bản hỏng có thể làm thiết bị không khởi động lại được để nhận bản sửa",
+          "Vì thiết bị thường ở nơi khó tiếp cận nên không sửa trực tiếp được",
+          "Vì băng thông hạn chế nên quá trình cập nhật kéo dài và dễ bị gián đoạn",
+          "Vì số lượng thiết bị lớn nên hoàn toàn không kiểm soát được phiên bản của chính từng cái"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều làm việc cập nhật khó khăn hơn và đều khắc phục được. Cái này thì không khắc phục được sau khi đã xảy ra - đó là lý do phải có một phần khởi động không bao giờ bị ghi đè."
+      },
+      {
+        "question": "Vì sao thói quen từ môi trường đám mây lại vô dụng ở đây?",
+        "options": [
+          "Vì cách giải quyết mặc định ở đó là thêm tài nguyên, và ở đây không có tài nguyên để thêm",
+          "Vì các công cụ theo dõi và đồng thời gỡ lỗi của môi trường đám mây không chạy được",
+          "Vì kiến trúc phân tán không áp dụng được cho một thiết bị đơn lẻ",
+          "Vì chu kỳ phát triển ở môi trường đám mây nhanh hơn nhiều lần"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia là khác biệt về công cụ và quy trình, và chúng học lại được. Cái này là khác biệt về PHẢN XẠ, và phản xạ thì khó đổi hơn - người ta đi tìm nút thêm tài nguyên trước khi nghĩ tới việc bỏ bớt việc."
+      },
+      {
+        "question": "Cách tiếp cận nào phù hợp khi cần thêm một tính năng mà bộ nhớ đã đầy?",
+        "options": [
+          "Tìm thứ để bỏ đi, vì đây là bài toán đánh đổi chứ không phải bài toán tối ưu",
+          "Nén dữ liệu đang lưu để giải phóng dung lượng cho tính năng mới",
+          "Tối ưu lại mã hiện có để giảm dung lượng mà nó đang chiếm dụng",
+          "Chuyển một phần xử lý lên máy chủ để giảm tải cho thiết bị"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là cách hợp lệ và chúng đều mua thêm được một ít chỗ, một lần. Câu hỏi đánh đổi thì phải hỏi mỗi lần, và hỏi sớm - vì nếu không, bạn sẽ hỏi nó vào lúc không còn gì để tối ưu nữa."
+      },
+      {
+        "question": "Điều gì nên đo ngay từ đầu ở một dự án nhúng?",
+        "options": [
+          "Ngân sách của từng tài nguyên và phần mà mỗi thành phần đang chiếm trong đó",
+          "Thời gian phản hồi của thiết bị với tất cả các thao tác thường gặp của người dùng",
+          "Tỷ lệ lỗi và tần suất phải khởi động lại thiết bị trong quá trình sử dụng",
+          "Thời gian cần thiết để hoàn tất một chu kỳ cập nhật phần mềm từ xa"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là chỉ số kết quả và đều quan trọng. Bảng ngân sách thì là công cụ ra quyết định: không có nó, mỗi lần thêm tính năng là một cuộc tranh luận không có số, và ngân sách bị tiêu hết trước khi ai kịp nhận ra."
       }
     ],
     "keyTakeaways": [
-      "Valuation report phải có: Executive Summary, Industry Analysis, Financial Analysis, Valuation Methods, Sensitivity Analysis, Recommendations",
-      "Executive Summary là phần quan trọng nhất - phải trả lời câu hỏi: giá là bao nhiêu, phương pháp là gì, giả định là gì",
-      "Sensitivity Analysis cho thấy con số thay đổi thế nào nếu giả định thay đổi - điều này tăng độ tin cậy",
-      "Tính hợp lý là bước cuối - so sánh định giá với ngành, P/S, P/E, và Comparable Companies để đảm bảo không quá cao hay quá thấp"
+      "Ngân sách cố định: mọi cải thiện là ĐÁNH ĐỔI, không phải bổ sung.",
+      "Năng lượng là ràng buộc vô hình - vòng lặp bận không làm chậm gì và giết pin.",
+      "Bản cập nhật hỏng có thể làm thiết bị không nhận được bản sửa - cần phần khởi động bất khả ghi.",
+      "Phản xạ thêm tài nguyên từ môi trường đám mây là thứ khó đổi nhất.",
+      "Đo NGÂN SÁCH từng tài nguyên ngay từ đầu - nó là công cụ ra quyết định, không phải báo cáo."
     ],
     "practicePrompt": {
-      "question": "Bạn cần viết Executive Summary cho báo cáo định giá công ty tech (DCF, kết quả $500M, chiết khấu 8%, tăng trưởng 15%). Đâu là Executive Summary đạt chuẩn nhất?",
+      "question": "Tính năng mới cần thêm bộ nhớ mà ngân sách đã hết. Câu hỏi đầu tiên?",
       "options": [
-        "\"Dùng DCF với chiết khấu 8% và tăng trưởng dài hạn 15%, chúng tôi định giá $500 triệu; Sensitivity Analysis cho thấy vùng $420-580 triệu.\" - nêu rõ kết luận, phương pháp, giả định chính và khoảng dao động",
-        "\"Công ty này đáng giá $500 triệu.\" - chỉ có con số, không giải thích phương pháp hay giả định",
-        "\"Chúng tôi đã áp dụng mô hình chiết khấu dòng tiền tự do vốn chủ sở hữu sau khi điều chỉnh CAPEX, working capital, và terminal value theo phương pháp Gordon Growth với g=15%...\" (viết tiếp 3 trang chi tiết kỹ thuật) - quá kỹ thuật, không phù hợp cho người đọc không chuyên",
-        "\"Công ty có tiềm năng tăng trưởng tốt trong ngành công nghệ.\" - không có con số định giá hay phương pháp cụ thể nào"
+        "Tính năng nào hiện có đáng bỏ đi hơn tính năng mới này",
+        "Có cách nào triển khai tính năng mới với ít bộ nhớ hơn không",
+        "Phiên bản phần cứng tiếp theo có thể tăng bộ nhớ lên được không",
+        "Có phần mã nào hiện tại đang chiếm bộ nhớ nhiều hơn mức cần thiết không"
       ],
       "correct": 0,
-      "explanation": "Executive Summary chuẩn phải trả lời 3 câu hỏi trong 1-2 đoạn ngắn: định giá là bao nhiêu, phương pháp nào, giả định chính là gì - đủ để CFO hay thẩm phán không chuyên môn sâu vẫn nắm được kết luận, đồng thời có khoảng dao động (sensitivity) để thể hiện tính thận trọng."
+      "explanation": "Ba câu kia đều đáng hỏi và đều là cách tránh né câu hỏi thật. Trong một ngân sách cố định, việc thêm một thứ luôn là việc bỏ một thứ - hỏi thẳng câu đó ngay từ đầu tiết kiệm được nhiều tuần."
     },
     "summary": {
-      "keyIdea": "Valuation report không chỉ là một con số - nó là một câu chuyện. Câu chuyện phải rõ ràng, logic, và có thể bị thách đấu. Một báo cáo tốt sẽ có Executive Summary mạnh, phương pháp hợp lý, và Sensitivity Analysis để cho thấy khoảng hợp lý của con số."
+      "keyIdea": "Không có nút thêm tài nguyên, nên mọi quyết định là đánh đổi trong ngân sách cố định.",
+      "formula": "Lập bảng ngân sách từng tài nguyên → mỗi tính năng mới hỏi bỏ gì đi.",
+      "commonMistake": "Mang theo phản xạ thêm tài nguyên từ môi trường đám mây.",
+      "action": "Lập bảng ngân sách bộ nhớ và năng lượng cho hệ thống của bạn."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Trong công việc M&A, định giá tài sản, hoặc kiểm toán, bạn sẽ phải viết hoặc đánh giá valuation report. Báo cáo này có thể bị cơ quan thuế, tòa án hay các nhà đầu tư chỉ trích - nên phải mạnh mẽ và có thể giải thích từng bước."
+      "title": "Làm ngay hôm nay",
+      "message": "Lập một bảng ngân sách: mỗi tài nguyên có bao nhiêu, và từng thành phần đang chiếm bao nhiêu phần trong đó.",
+      "secondary": "Bảng này biến mọi cuộc tranh luận về tính năng thành một phép trừ. Không có nó, ngân sách bị tiêu hết trước khi ai kịp nhận ra."
     },
-    "diagram": [
+    "sections": [
       {
-        "label": "Executive summary - kết luận trước",
-        "arrow": true
+        "type": "lead",
+        "text": "Thói quen giải quyết vấn đề bằng cách thêm tài nguyên hình thành trong môi trường đám mây, và nó vô dụng ở nơi phần cứng đã được sản xuất và bán đi rồi."
       },
       {
-        "label": "Phân tích ngành và thị trường",
-        "arrow": true
+        "type": "heading",
+        "text": "Ràng buộc gốc"
       },
       {
-        "label": "Phân tích tài chính lịch sử",
-        "arrow": true
+        "type": "callout",
+        "label": "Ngân sách cố định",
+        "text": "Bộ nhớ, dung lượng lưu trữ và năng lượng đã được quyết định lúc thiết kế phần cứng. Mọi cải thiện đều là ĐÁNH ĐỔI chứ không phải bổ sung - và đó là thứ đổi hoàn toàn phản xạ của người quen môi trường đám mây."
       },
       {
-        "label": "Chọn phương pháp và giải thích lý do chọn",
-        "arrow": true
+        "type": "heading",
+        "text": "Ràng buộc vô hình nhất"
       },
       {
-        "label": "Bảng nhạy cảm + kiểm tra tính hợp lý",
-        "arrow": false
+        "type": "paragraph",
+        "text": "NĂNG LƯỢNG. Một vòng lặp bận chạy hết công suất mà vẫn trả kết quả đúng và nhanh - mọi phép đo hiệu năng đều xanh. Nó chỉ lộ ra qua tuổi thọ pin rút từ sáu tháng xuống ba tuần, tức là qua người dùng chứ không qua đội."
+      },
+      {
+        "type": "heading",
+        "text": "Cập nhật, và vì sao nó khác"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Trên máy chủ",
+          "text": "Bản hỏng thì quay lui. Máy vẫn ở đó, vẫn nhận được lệnh."
+        },
+        "right": {
+          "label": "Trên thiết bị",
+          "text": "Bản hỏng có thể làm thiết bị không khởi động lại được để nhận bản sửa. Cần một phần khởi động KHÔNG BAO GIỜ bị ghi đè."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Công cụ đáng lập ngay từ đầu là BẢNG NGÂN SÁCH: mỗi tài nguyên có bao nhiêu, và từng thành phần đang chiếm bao nhiêu phần.",
+          "Nó biến mọi cuộc tranh luận về tính năng thành một phép trừ, và nó buộc câu hỏi đúng phải được hỏi sớm: thêm cái này thì bỏ cái gì."
+        ]
       }
-    ],
+    ]
   },
   {
     "id": 1221,
@@ -72859,311 +72840,345 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1245,
-    "track": "professional",
-    "slug": "quy-trinh-dau-tu-quy-tu-thesis-den-portfolio",
-    "title": "Quy trình đầu tư của Quỹ: Từ Investment Thesis đến Portfolio Construction",
-    "subtitle": "Một quỹ đầu tư chuyên nghiệp không mua cổ phiếu ngẫu nhiên - đây là quy trình có hệ thống đằng sau mỗi quyết định",
+    "slug": "tu-luan-diem-ky-thuat-toi-quyet-dinh-trien-khai",
+    "title": "Từ luận điểm kỹ thuật tới quyết định triển khai",
+    "subtitle": "Một đề xuất kỹ thuật tốt không phải là đề xuất đúng nhất mà là đề xuất nói rõ mình sai thì sai ở đâu.",
     "duration": "8 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🎯",
-    "openingQuestion": "Một Portfolio Manager (PM) tại quỹ đầu tư nhận được ý tưởng đầu tư hấp dẫn từ đội ngũ Research về một cổ phiếu. Bước tiếp theo trước khi thực sự đưa cổ phiếu này vào danh mục là gì?",
+    "whyItMatters": "Phần lớn đề xuất kỹ thuật bị bác không phải vì sai mà vì người đọc không có cách nào kiểm chứng nó, nên họ mặc định giữ nguyên hiện trạng.",
+    "openingQuestion": "Điều gì làm một đề xuất kỹ thuật có sức thuyết phục?",
     "openingOptions": [
-      "Mua ngay lập tức với tỷ trọng lớn nếu ý tưởng đủ hấp dẫn",
-      "Đánh giá xem cổ phiếu đó hợp ra sao với toàn bộ danh mục hiện có",
-      "Chờ ý kiến của tất cả nhà đầu tư trong quỹ trước khi quyết định",
-      "Bỏ qua hoàn toàn ý tưởng nếu PM không tự nghiên cứu từ đầu"
+      "Nó nêu rõ điều kiện nào sẽ chứng minh nó sai, chứ không chỉ nêu lý do nó đúng",
+      "Nó trình bày đầy đủ tất cả các phương án đã cân nhắc và đồng thời lý do loại từng phương án",
+      "Nó có số liệu đo lường cụ thể để chứng minh vấn đề đang tồn tại là có thật",
+      "Nó ước tính được thời gian và nguồn lực cần thiết để triển khai phương án"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là điểm khác biệt cốt lõi giữa 'chọn cổ phiếu tốt' (stock picking) và 'quản lý danh mục' (portfolio management) - hai kỹ năng khác nhau: một ý tưởng đầu tư xuất sắc về một công ty đơn lẻ vẫn cần được đánh giá trong BỐI CẢNH TOÀN DANH MỤC trước khi quyết định tỷ trọng - liệu nó có làm tăng rủi ro tập trung (concentration risk) quá mức, có tương quan cao với các vị thế hiện có (giảm lợi ích đa dạng hóa), hay vi phạm giới hạn phân bổ theo ngành/quốc gia đã đặt ra.",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều cần và đều là những thứ một đề xuất tệ cũng có thể có đủ. Điều kiện bác bỏ thì khác: nó cho người đọc một cách kiểm chứng, và nó chứng tỏ người viết đã nghĩ tới khả năng mình sai. Không có nó, người đọc chỉ có thể tin hoặc không tin - và mặc định của tổ chức là giữ nguyên hiện trạng.",
+    "diagram": [
+      {
+        "label": "Nêu điều kiện nào sẽ chứng minh mình SAI",
+        "arrow": true
+      },
+      {
+        "label": "Nêu cả chi phí của việc KHÔNG làm gì",
+        "arrow": true
+      },
+      {
+        "label": "Chia thành bước nhỏ có thể dừng lại giữa chừng",
+        "arrow": true
+      },
+      {
+        "label": "Đề xuất một thử nghiệm rẻ trước khi xin cam kết lớn"
+      }
+    ],
     "realWorldExample": {
-      "company": "Quy trình Investment Committee tại các quỹ lớn",
-      "description": "Tại các quỹ đầu tư chuyên nghiệp lớn, một ý tưởng đầu tư thường phải trải qua nhiều lớp phê duyệt: đội ngũ Research trình bày thesis, Risk team đánh giá tác động lên rủi ro tổng thể danh mục, và Investment Committee (bao gồm các PM cấp cao) thảo luận, phản biện trước khi phê duyệt tỷ trọng cuối cùng. Quy trình này không phải là quan liêu không cần thiết - nó là cơ chế đảm bảo mỗi quyết định đầu tư được xem xét từ nhiều góc độ (return, risk, correlation, liquidity) trước khi thực sự đưa tiền của nhà đầu tư vào rủi ro."
+      "company": "Chi phí của việc không làm gì",
+      "description": "Phần lớn đề xuất chỉ trình bày chi phí của phương án mình đề nghị, nên nó bị so với một phương án giữ nguyên có chi phí bằng không. Nêu rõ hiện trạng đang tốn gì - mỗi tháng, bằng con số - làm phép so sánh trở nên công bằng."
     },
     "quiz": [
       {
-        "question": "'Position Sizing' (xác định quy mô vị thế) trong quản lý danh mục dựa trên những yếu tố nào, ngoài mức độ 'tự tin' của PM vào ý tưởng đầu tư đó?",
+        "question": "Vì sao phải nêu chi phí của việc không làm gì?",
         "options": [
-          "Chỉ dựa duy nhất vào mức độ tự tin của PM - càng tự tin thì tỷ trọng càng lớn",
-          "Kết hợp nhiều yếu tố: mức độ tự tin vào thesis, biến động (volatility) của cổ phiếu đó, tương quan với các vị thế hiện có trong danh mục, thanh khoản (liquidity) của cổ phiếu, và giới hạn rủi ro tổng thể của quỹ (risk budget) - một cổ phiếu biến động cao hoặc thanh khoản thấp thường nhận tỷ trọng nhỏ hơn dù thesis có hấp dẫn đến đâu",
-          "Position sizing luôn cố định ở mức 5% cho mọi cổ phiếu trong danh mục",
-          "Chỉ phụ thuộc vào giá cổ phiếu, cổ phiếu giá cao nhận tỷ trọng lớn hơn"
+          "Vì nếu không, phương án của bạn bị so với một hiện trạng có chi phí bằng không",
+          "Vì người ra quyết định cần biết mức độ cấp bách của vấn đề đang tồn tại",
+          "Vì nó giúp chứng minh rằng vấn đề sẽ nghiêm trọng hơn theo thời gian",
+          "Vì tất cả các quy trình phê duyệt thường xuyên yêu cầu so sánh với chính phương án giữ nguyên"
         ],
-        "correct": 1,
-        "explanation": "Position sizing chuyên nghiệp là một bài toán đa chiều, không chỉ dựa vào 'niềm tin': một cổ phiếu có thesis xuất sắc nhưng biến động cực cao hoặc thanh khoản thấp (khó bán nhanh khi cần) thường được giới hạn tỷ trọng nhỏ hơn để kiểm soát rủi ro tổng thể của danh mục - đây là lý do các quỹ chuyên nghiệp dùng công cụ định lượng (như Kelly Criterion điều chỉnh, hoặc risk parity) thay vì chỉ dựa vào cảm tính của một cá nhân."
+        "correct": 0,
+        "explanation": "Đây là bất đối xứng mà phần lớn đề xuất tự tạo ra cho mình: chi phí của phương án mới thì rõ ràng và có số, còn chi phí của việc giữ nguyên thì vô hình vì nó đã đang được trả rồi."
       },
       {
-        "question": "Tại sao 'Risk Budget' (ngân sách rủi ro) là khái niệm quan trọng trong việc xây dựng danh mục, khác với việc chỉ đơn giản giới hạn số tiền đầu tư vào mỗi cổ phiếu?",
+        "question": "Vì sao chia đề xuất thành bước nhỏ lại tăng khả năng được duyệt?",
         "options": [
-          "Risk Budget và giới hạn số tiền đầu tư là hai khái niệm hoàn toàn giống nhau",
-          "Risk Budget phân bổ 'ngân sách rủi ro' (đo bằng volatility hoặc VaR đóng góp) thay vì chỉ số tiền tuyệt đối - hai cổ phiếu có cùng số tiền đầu tư ($10 triệu mỗi cổ phiếu) có thể đóng góp mức RỦI RO hoàn toàn khác nhau vào danh mục tổng thể nếu một cổ phiếu biến động 15%/năm còn cổ phiếu kia biến động 40%/năm - Risk Budget giúp PM kiểm soát tổng rủi ro danh mục chính xác hơn nhiều so với chỉ giới hạn số tiền",
-          "Risk Budget chỉ áp dụng cho quỹ phòng hộ (hedge fund), không áp dụng cho quỹ tương hỗ thông thường",
-          "Risk Budget không có ứng dụng thực tế nào trong quản lý danh mục"
+          "Vì mỗi bước là một cam kết nhỏ hơn và có thể dừng lại nếu kết quả không như mong đợi",
+          "Vì các bước nhỏ dễ ước tính thời gian hơn nên kế hoạch đáng tin hơn",
+          "Vì nó cho phép đội bắt đầu ngay mà không cần chờ phê duyệt toàn bộ",
+          "Vì nó giảm rủi ro kỹ thuật khi triển khai một thay đổi lớn cùng lúc"
         ],
-        "correct": 1,
-        "explanation": "Đây là khác biệt tinh vi nhưng quan trọng: 'giới hạn tiền' ($10 triệu/cổ phiếu) không kiểm soát được rủi ro thực sự đóng góp vào danh mục, vì các cổ phiếu có mức độ biến động rất khác nhau. Risk Budget (phân bổ theo đóng góp rủi ro - risk contribution) đảm bảo mỗi vị thế đóng góp một mức rủi ro TƯƠNG ĐỐI CÂN BẰNG vào tổng thể, thay vì để một vài cổ phiếu biến động cao vô tình chi phối phần lớn rủi ro của cả danh mục dù số tiền đầu tư không lớn hơn các vị thế khác."
+        "correct": 0,
+        "explanation": "Người ra quyết định không sợ phương án của bạn sai - họ sợ không có đường lui. Ba lựa chọn kia đều là lợi ích thật về mặt kỹ thuật và không chạm vào nỗi lo đó."
       },
       {
-        "question": "Vì sao một quỹ có thể quyết định KHÔNG đầu tư vào một cổ phiếu dù đội ngũ Research đánh giá rất tích cực về triển vọng công ty, chỉ vì lý do thanh khoản (liquidity)?",
+        "question": "Điều kiện bác bỏ nên trông như thế nào?",
         "options": [
-          "Thanh khoản không bao giờ là yếu tố cần cân nhắc trong quyết định đầu tư",
-          "Nếu cổ phiếu có khối lượng giao dịch hàng ngày quá thấp so với quy mô vốn quỹ muốn đầu tư, quỹ có thể gặp khó khăn nghiêm trọng khi cần THOÁT VỊ THẾ nhanh (do biến cố thị trường, redemption từ nhà đầu tư, hoặc thay đổi thesis) - việc bán một lượng lớn cổ phiếu thanh khoản thấp có thể tự đẩy giá xuống đáng kể (market impact), gây thiệt hại thực tế cho quỹ",
-          "Thanh khoản chỉ quan trọng với quỹ đầu tư ngắn hạn, không quan trọng với quỹ dài hạn",
-          "Các quỹ luôn có thể thoát vị thế ngay lập tức bất kể thanh khoản cổ phiếu"
+          "Một con số cụ thể mà nếu đo được thì cả đội đồng ý dừng phương án này",
+          "Một danh sách rủi ro kèm mức độ ảnh hưởng và khả năng xảy ra của từng cái",
+          "Một mô tả về những tình huống mà phương án này sẽ không phù hợp",
+          "Một cam kết đánh giá lại phương án sau một khoảng thời gian nhất định"
         ],
-        "correct": 1,
-        "explanation": "Rủi ro thanh khoản (liquidity risk) là một trong những yếu tố bị đánh giá thấp nhất bởi nhà đầu tư cá nhân nhưng luôn được các quỹ chuyên nghiệp cân nhắc kỹ: một vị thế 'tốt' về mặt cơ bản có thể trở thành gánh nặng nếu quỹ cần thoát ra nhanh (do redemption pressure hoặc thay đổi điều kiện thị trường) mà thị trường không đủ thanh khoản để hấp thụ lệnh bán mà không gây tác động giá đáng kể - đây là lý do nhiều quỹ đặt giới hạn về % khối lượng giao dịch trung bình hàng ngày (average daily volume) mà một vị thế có thể chiếm."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều mở đường cho việc diễn giải lại về sau. Một con số cụ thể thoả thuận TRƯỚC thì không diễn giải lại được, và đó chính là điều làm nó có giá trị."
+      },
+      {
+        "question": "Vì sao nên đề xuất một thử nghiệm rẻ trước?",
+        "options": [
+          "Vì nó biến một cuộc tranh luận về niềm tin thành một phép đo có kết quả",
+          "Vì nó cho phép đội học được công nghệ mới trước khi triển khai rộng",
+          "Vì chi phí thấp nên dễ được phê duyệt hơn so với phương án đầy đủ",
+          "Vì kết quả thử nghiệm sẽ giúp ước tínhxác hơn nguồn lực cần thiết"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba đúng và nó là lý do chiến thuật. Lý do thật thì mạnh hơn: khi hai bên bất đồng về một dự đoán, không ai thắng bằng lập luận - chỉ có phép đo mới kết thúc được cuộc tranh luận đó."
+      },
+      {
+        "question": "Sai lầm phổ biến nhất khi viết đề xuất kỹ thuật là gì?",
+        "options": [
+          "Dành phần lớn nội dung cho giải pháp và rất ít cho việc chứng minh vấn đề",
+          "Viết quá dài nên rốt cuộc người ra quyết định hoàn toàn không đọc hết được toàn bộ nội dung",
+          "Dùng quá nhiều thuật ngữ kỹ thuật mà người ngoài đội không hiểu được",
+          "Không nêu rõ ai sẽ chịu trách nhiệm cho từng phần của việc triển khai"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là khuyết điểm về trình bày và sửa được trong một buổi. Cái này là khuyết điểm về cấu trúc: nếu người đọc chưa tin có vấn đề thì mọi chi tiết về giải pháp đều không có chỗ để bám vào."
       }
     ],
     "keyTakeaways": [
-      "Một ý tưởng đầu tư tốt riêng lẻ (stock picking) không tự động có nghĩa là nên đưa vào danh mục với tỷ trọng lớn - cần đánh giá trong bối cảnh toàn danh mục (portfolio construction)",
-      "Position sizing chuyên nghiệp kết hợp nhiều yếu tố: độ tự tin, biến động, tương quan, thanh khoản, và giới hạn rủi ro tổng thể - không chỉ dựa vào cảm tính",
-      "Risk Budget (phân bổ theo đóng góp rủi ro) kiểm soát rủi ro danh mục chính xác hơn nhiều so với chỉ giới hạn số tiền đầu tư tuyệt đối",
-      "Rủi ro thanh khoản là yếu tố quan trọng thường bị bỏ qua - một vị thế khó thoát nhanh có thể gây thiệt hại nghiêm trọng khi cần bán trong điều kiện thị trường bất lợi"
+      "Nêu ĐIỀU KIỆN BÁC BỎ - nó cho người đọc cách kiểm chứng thay vì chỉ tin hay không.",
+      "Nêu chi phí của việc KHÔNG làm gì, nếu không bạn bị so với một hiện trạng miễn phí.",
+      "Chia thành bước nhỏ có đường lui - người duyệt sợ không có đường lui hơn sợ sai.",
+      "Thử nghiệm rẻ biến tranh luận về niềm tin thành một phép đo có kết quả.",
+      "Sai lầm phổ biến nhất: nhiều giải pháp, ít chứng minh rằng vấn đề có thật."
     ],
     "practicePrompt": {
-      "question": "Đội ngũ Research trình bày một ý tưởng đầu tư xuất sắc vào một công ty vốn hóa nhỏ (small-cap), với khối lượng giao dịch trung bình chỉ 500 triệu đồng/ngày. Quỹ của bạn có quy mô 2000 tỷ đồng và thường giới hạn mỗi vị thế không quá 20% khối lượng giao dịch trung bình hàng ngày. Tỷ trọng tối đa hợp lý cho vị thế này trong danh mục là bao nhiêu, và tại sao?",
+      "question": "Đề xuất của bạn bị hoãn không rõ lý do. Nên bổ sung gì trước tiên?",
       "options": [
-        "Có thể đầu tư bất kỳ số tiền nào miễn là thesis đủ hấp dẫn, không cần quan tâm đến thanh khoản",
-        "Tối đa 20% × 500 triệu = 100 triệu/ngày, tức 0,005% NAV - quá nhỏ để có ý nghĩa",
-        "Nên đầu tư tối đa 5% NAV của quỹ (100 tỷ đồng) bất kể thanh khoản",
-        "Thanh khoản chỉ ảnh hưởng đến việc MUA, không ảnh hưởng đến việc bán sau này"
+        "Con số cho thấy hiện trạng đang tốn gì mỗi tháng, tính bằng thời gian hoặc tiền",
+        "Bản kế hoạch triển khai chi tiết hơn với các mốc thời gian cụ thể",
+        "Danh sách tất cả các công ty khác đã áp dụng phương án tương tự và đồng thời kết quả của họ",
+        "Bản đánh giá rủi ro đầy đủ hơn cho phương án mà bạn đang đề nghị"
       ],
-      "correct": 1,
-      "explanation": "Đây là minh họa thực tế về giới hạn 'capacity' (khả năng hấp thụ vốn) của một chiến lược đầu tư: dù thesis xuất sắc, một quỹ quy mô lớn không thể xây dựng vị thế có ý nghĩa trong một cổ phiếu thanh khoản quá thấp mà không vi phạm giới hạn rủi ro thanh khoản - đây là lý do các quỹ vốn hóa lớn thường không thể đầu tư hiệu quả vào các cơ hội small-cap hấp dẫn mà quỹ nhỏ hơn có thể khai thác tốt hơn nhiều."
+      "correct": 0,
+      "explanation": "Hoãn không rõ lý do gần như luôn nghĩa là người đọc chưa thấy vấn đề đủ lớn để đáng đánh đổi. Ba bổ sung kia đều làm rõ hơn về GIẢI PHÁP, tức là trả lời câu hỏi mà họ chưa hỏi tới."
     },
     "summary": {
-      "keyIdea": "Xây dựng danh mục đầu tư chuyên nghiệp đòi hỏi nhiều hơn việc chỉ chọn cổ phiếu tốt - cần tích hợp position sizing dựa trên rủi ro, risk budget cân bằng, và đánh giá thanh khoản để đảm bảo mỗi quyết định đầu tư phù hợp với bối cảnh toàn danh mục.",
-      "commonMistake": "Đánh giá một ý tưởng đầu tư chỉ dựa trên chất lượng thesis riêng lẻ, bỏ qua tác động của nó lên rủi ro tổng thể và khả năng thanh khoản của toàn danh mục",
-      "action": "Trước khi đề xuất tỷ trọng cho một vị thế mới, luôn đánh giá: mức độ tương quan với danh mục hiện tại, đóng góp rủi ro thực tế (không chỉ số tiền), và khối lượng giao dịch trung bình so với quy mô đầu tư dự kiến"
+      "keyIdea": "Đề xuất tốt là đề xuất nói rõ mình sai thì sai ở đâu.",
+      "formula": "Chứng minh vấn đề → điều kiện bác bỏ → chi phí giữ nguyên → bước nhỏ có đường lui.",
+      "commonMistake": "Nhiều nội dung cho giải pháp, rất ít cho việc chứng minh vấn đề có thật.",
+      "action": "Với đề xuất gần nhất của bạn, viết ra điều kiện nào sẽ chứng minh nó sai."
     },
     "application": {
-      "title": "Áp dụng vào công việc Fund Management",
-      "message": "Khi phân tích một quỹ đầu tư, tìm hiểu quy trình Investment Committee của họ - có bao nhiêu lớp phê duyệt, ai tham gia đánh giá rủi ro, và giới hạn position sizing/risk budget được thiết lập như thế nào.",
-      "secondary": "Bài tiếp theo sẽ đi vào cách đo lường và đánh giá hiệu suất của một quỹ sau khi danh mục đã được xây dựng - Sharpe Ratio, Alpha, và Tracking Error."
+      "title": "Làm ngay hôm nay",
+      "message": "Với đề xuất kỹ thuật gần nhất của bạn, thêm một dòng: con số nào nếu đo được thì cả đội đồng ý dừng phương án này.",
+      "secondary": "Nếu bạn không viết được dòng đó, khả năng cao là đề xuất chưa có dự đoán nào cụ thể - và đó là lý do nó khó được duyệt."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Có một ý tưởng đầu tư tốt chỉ là bước đầu tiên. Biến ý tưởng đó thành một vị thế trong danh mục thực tế - với đúng quy mô, đúng rủi ro, đúng thời điểm - là công việc cốt lõi phân biệt một Portfolio Manager chuyên nghiệp."
+        "text": "Phần lớn đề xuất kỹ thuật bị bác không phải vì sai mà vì người đọc không có cách nào kiểm chứng nó - nên họ mặc định giữ nguyên hiện trạng."
       },
       {
         "type": "heading",
-        "text": "Từ Investment Thesis đến Portfolio Construction"
-      },
-      {
-        "type": "paragraph",
-        "text": "Quy trình đầu tư chuyên nghiệp thường trải qua nhiều bước: (1) Idea Generation - đội ngũ Research tìm kiếm và phân tích cơ hội đầu tư; (2) Due Diligence - thẩm định sâu về công ty, ngành, định giá; (3) Portfolio Fit Analysis - đánh giá cách ý tưởng này tương tác với danh mục hiện tại (tương quan, đóng góp rủi ro); (4) Position Sizing - xác định tỷ trọng phù hợp; (5) Execution - thực hiện giao dịch với chiến lược tối ưu (tránh tác động giá lớn); (6) Monitoring - theo dõi và đánh giá lại định kỳ."
-      },
-      {
-        "type": "heading",
-        "text": "Position Sizing - Không chỉ là 'niềm tin'"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nhiều nhà đầu tư cá nhân xác định quy mô đầu tư chỉ dựa trên mức độ 'tự tin' vào một cổ phiếu. Quản lý danh mục chuyên nghiệp phức tạp hơn nhiều: phải cân bằng giữa độ tự tin vào thesis, mức độ biến động của tài sản, tương quan với các vị thế hiện có (một cổ phiếu tương quan cao với phần còn lại của danh mục cung cấp ít lợi ích đa dạng hóa hơn), và giới hạn thanh khoản để đảm bảo có thể thoát vị thế khi cần mà không gây thiệt hại đáng kể."
-      },
-      {
-        "type": "heading",
-        "text": "Risk Budget - Phân bổ theo Rủi ro, không chỉ theo Tiền"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một sai lầm phổ biến là nghĩ rằng phân bổ đều tiền vào các vị thế (ví dụ mỗi cổ phiếu 5% NAV) tạo ra một danh mục cân bằng về rủi ro. Thực tế, các tài sản có mức độ biến động rất khác nhau - một cổ phiếu công nghệ tăng trưởng cao có thể đóng góp gấp 3-4 lần rủi ro so với một cổ phiếu tiện ích ổn định, dù cùng chiếm 5% số tiền đầu tư. Risk Budget approach phân bổ theo ĐÓNG GÓP RỦI RO thực tế, đảm bảo không có vị thế nào vô tình chi phối phần lớn rủi ro tổng thể của danh mục."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Từ luận điểm tới vị thế",
-        "subtitle": "Ba bước, và bước nào bị bỏ thì danh mục cuối cùng không còn phản ánh luận điểm nữa",
-        "concepts": [
-          {
-            "vi": "Luận điểm đầu tư",
-            "en": "Investment Thesis",
-            "def": "Vì sao tài sản này bị định giá sai, điều gì sẽ sửa lại, và trong bao lâu."
-          },
-          {
-            "vi": "Xác định quy mô vị thế",
-            "en": "Position Sizing",
-            "def": "Bao nhiêu phần danh mục. Đây là quyết định về rủi ro, không phải về mức độ tin tưởng - tin chắc hơn không làm khoản lỗ nhỏ đi."
-          },
-          {
-            "vi": "Ngân sách rủi ro",
-            "en": "Risk Budget",
-            "def": "Phân bổ theo phần đóng góp vào rủi ro tổng chứ không theo tỷ trọng vốn. Danh mục 60/40 theo tiền thường là 90/10 theo rủi ro."
-          }
-        ]
+        "text": "Thứ làm đề xuất kiểm chứng được"
       },
       {
         "type": "callout",
-        "label": "Đáng nhớ",
-        "text": "Hai quỹ có cùng danh sách cổ phiếu vẫn cho kết quả rất khác nhau nếu xác định quy mô vị thế khác nhau. Chọn đúng mã là một nửa; nửa còn lại là đặt bao nhiêu vào mỗi mã."
+        "label": "Điều kiện bác bỏ",
+        "text": "Một con số cụ thể mà nếu đo được thì cả đội đồng ý dừng phương án này. Thoả thuận TRƯỚC thì không diễn giải lại được về sau - và đó chính là điều làm nó có giá trị, khác hẳn một danh sách rủi ro chung chung."
+      },
+      {
+        "type": "heading",
+        "text": "Phép so sánh bị làm lệch"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chi phí phương án mới",
+          "text": "Rõ ràng, có số, và người duyệt phải ký vào."
+        },
+        "right": {
+          "label": "Chi phí giữ nguyên",
+          "text": "Vô hình, vì nó đã đang được trả rồi. Không nêu ra thì phương án của bạn bị so với một hiện trạng có chi phí bằng không."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Hạ rào cản quyết định"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chia thành bước nhỏ có thể DỪNG LẠI giữa chừng. Người ra quyết định không sợ bạn sai - họ sợ không có đường lui.",
+          "Đề xuất một thử nghiệm RẺ trước khi xin cam kết lớn. Khi hai bên bất đồng về một dự đoán, không ai thắng bằng lập luận."
+        ]
       },
       {
         "type": "closing",
         "lines": [
-          "Sự khác biệt giữa 'chọn cổ phiếu giỏi' và 'quản lý quỹ giỏi' nằm ở khả năng nhìn xa hơn từng ý tưởng đầu tư riêng lẻ, để thấy được bức tranh toàn cảnh của danh mục.",
-          "Đây là kỹ năng cần nhiều năm kinh nghiệm để thành thạo, và là lý do các Portfolio Manager giỏi nhất không nhất thiết là những người chọn cổ phiếu giỏi nhất, mà là người xây dựng danh mục cân bằng rủi ro-lợi nhuận tốt nhất."
+          "Và sai lầm phổ biến nhất về cấu trúc: dành phần lớn nội dung cho giải pháp, rất ít cho việc chứng minh vấn đề có thật.",
+          "Nếu người đọc chưa tin có vấn đề thì mọi chi tiết về giải pháp đều không có chỗ để bám vào - và họ hoãn lại mà không nói được vì sao."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Sàng lọc ý tưởng đầu tư",
-        "arrow": true
-      },
-      {
-        "label": "Nghiên cứu sâu và viết luận điểm",
-        "arrow": true
-      },
-      {
-        "label": "Định cỡ vị thế theo mức độ tin cậy và rủi ro",
-        "arrow": true
-      },
-      {
-        "label": "Phân bổ ngân sách rủi ro cho toàn danh mục",
-        "arrow": true
-      },
-      {
-        "label": "Theo dõi và thoát khi luận điểm không còn đúng",
-        "arrow": false
       }
     ]
   },
   {
     "id": 1246,
-    "track": "professional",
-    "slug": "quant-strategies-momentum-mean-reversion",
-    "interactiveType": "regression",
-    "title": "Quant Strategies cơ bản: Momentum, Mean Reversion và Statistical Arbitrage",
-    "subtitle": "Ba trường phái chiến lược định lượng phổ biến nhất - và logic toán học/tâm lý học đằng sau mỗi loại",
+    "slug": "chien-luoc-do-luong-xu-huong-va-hoi-quy-trung-binh",
+    "title": "Chiến lược đo lường - xu hướng, hồi quy về trung bình và kiểm chứng ngoài mẫu",
+    "subtitle": "Một quy tắc rút ra từ dữ liệu quá khứ luôn khớp với quá khứ; câu hỏi là nó có khớp với tương lai không.",
     "duration": "8 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "📉",
-    "openingQuestion": "Chiến lược 'Momentum' (động lượng) trong quant trading dựa trên giả định cốt lõi nào về hành vi giá cổ phiếu?",
+    "interactiveType": "regression",
+    "whyItMatters": "Các quy tắc tự động - tự mở rộng, tự cảnh báo, tự chặn - đều được rút ra từ dữ liệu cũ, và phần lớn chúng chưa từng được kiểm chứng ngoài mẫu.",
+    "openingQuestion": "Bạn tìm được một ngưỡng cảnh báo khớp hoàn hảo với mọi sự cố năm ngoái. Vấn đề gì?",
     "openingOptions": [
-      "Giá cổ phiếu luôn quay về giá trị trung bình dài hạn của nó",
-      "Cổ phiếu tăng mạnh gần đây có xu hướng tiếp tục tăng trong ngắn hạn",
-      "Giá cổ phiếu hoàn toàn ngẫu nhiên và không có bất kỳ pattern nào có thể khai thác",
-      "Momentum chỉ áp dụng cho thị trường ngoại hối, không áp dụng cho cổ phiếu"
+      "Khớp hoàn hảo với dữ liệu dùng để tìm ra nó là điều luôn xảy ra và không nói gì",
+      "Ngưỡng đó có thể không phù hợp với mức tải hiện tại của hệ thống",
+      "Các sự cố năm ngoái có thể không đại diện cho các loại sự cố năm nay",
+      "Cần kiểm tra xem ngưỡng đó có gây ra quá nhiều cảnh báo giả hay không"
     ],
-    "correctOption": 1,
-    "explanation": "Chiến lược Momentum (Jegadeesh & Titman, 1993 - một trong những phát hiện được nghiên cứu nhiều nhất trong tài chính định lượng) dựa trên quan sát thực nghiệm: cổ phiếu tăng giá mạnh trong 3-12 tháng gần đây có xu hướng tiếp tục outperform trong vài tháng tới. Về mặt hành vi, điều này một phần liên quan đến 'underreaction' (thị trường phản ứng chưa đủ với thông tin tích cực ban đầu, giá tiếp tục điều chỉnh dần) và herding (nhà đầu tư khác thấy giá tăng và mua theo, tạo ra động lực tự củng cố trong ngắn-trung hạn).",
+    "correctOption": 0,
+    "explanation": "Nếu bạn thử đủ nhiều ngưỡng trên cùng một tập dữ liệu thì sẽ luôn tìm được một cái khớp hoàn hảo - kể cả khi dữ liệu đó hoàn toàn ngẫu nhiên. Ba lựa chọn kia đều là rủi ro thật và đều kiểm được sau; cái này là lỗi phương pháp và nó làm mọi kiểm tra sau đó trở nên vô nghĩa nếu không sửa.",
+    "diagram": [
+      {
+        "label": "Thử đủ nhiều ngưỡng thì luôn tìm được cái khớp hoàn hảo",
+        "arrow": true
+      },
+      {
+        "label": "Chia dữ liệu: tìm quy tắc trên một phần, kiểm trên phần chưa động tới",
+        "arrow": true
+      },
+      {
+        "label": "Phần kiểm phải là khoảng thời gian SAU, không phải lấy ngẫu nhiên",
+        "arrow": true
+      },
+      {
+        "label": "Và mỗi lần chỉnh lại quy tắc là một lần tiêu bớt phần kiểm"
+      }
+    ],
     "realWorldExample": {
-      "company": "AQR Capital Management và Factor Investing",
-      "description": "AQR Capital, một trong những quỹ định lượng lớn nhất thế giới do Cliff Asness (học trò của Eugene Fama) sáng lập, xây dựng nhiều chiến lược đầu tư dựa trên các 'factor' đã được nghiên cứu học thuật rộng rãi, bao gồm Momentum, Value, và Quality. Thay vì cố gắng dự đoán một cổ phiếu cụ thể, các quỹ này xây dựng danh mục có hệ thống dựa trên các đặc điểm định lượng đã được chứng minh có ý nghĩa thống kê qua nhiều thập kỷ dữ liệu lịch sử trên nhiều thị trường khác nhau."
+      "company": "Chia theo thời gian, không chia ngẫu nhiên",
+      "description": "Với dữ liệu có thứ tự thời gian, lấy ngẫu nhiên một phần để kiểm là gian lận với chính mình: quy tắc được nhìn thấy tương lai. Phần kiểm phải là khoảng thời gian nằm SAU toàn bộ phần dùng để tìm quy tắc."
     },
     "quiz": [
       {
-        "question": "Chiến lược 'Mean Reversion' (hồi quy về trung bình) khác với Momentum như thế nào về giả định cơ bản, và khi nào mỗi chiến lược có xu hướng hoạt động hiệu quả hơn?",
+        "question": "Vì sao kiểm chứng ngoài mẫu là bắt buộc?",
         "options": [
-          "Hai chiến lược này hoàn toàn giống nhau, chỉ khác tên gọi",
-          "Mean Reversion giả định giá tài sản có xu hướng QUAY VỀ mức trung bình lịch sử sau khi lệch quá xa (mua khi giá thấp bất thường, bán khi giá cao bất thường) - ngược hoàn toàn với Momentum (mua khi giá đang tăng, bán khi giá đang giảm); Mean Reversion thường hiệu quả hơn trong khung thời gian NGẮN HẠN (vài ngày) hoặc thị trường SIDEWAYS (đi ngang), trong khi Momentum thường hiệu quả hơn trong khung TRUNG HẠN (vài tháng) với xu hướng rõ ràng",
-          "Mean Reversion chỉ áp dụng cho trái phiếu, không áp dụng cho cổ phiếu",
-          "Cả hai chiến lược luôn cho kết quả giống nhau trong mọi điều kiện thị trường"
+          "Vì một quy tắc luôn khớp với chính dữ liệu đã dùng để tìm ra nó",
+          "Vì cần kiểm tra quy tắc trên nhiều loại dữ liệu khác nhau để đảm bảo ổn định",
+          "Vì dữ liệu mới có đặc điểm khác nên quy tắc cần được cập nhật thường xuyên",
+          "Vì các bên liên quan cần bằng chứng độc lập trước khi chấp nhận quy tắc"
         ],
-        "correct": 1,
-        "explanation": "Đây là hai trường phái GIẢ ĐỊNH ĐỐI LẬP về hành vi giá, và việc chúng cùng tồn tại (và cùng có bằng chứng thực nghiệm hỗ trợ) cho thấy thị trường tài chính phức tạp hơn một mô hình đơn giản: Mean Reversion hoạt động tốt khi biến động giá phần lớn là 'noise' ngẫu nhiên quanh giá trị hợp lý (đặc biệt khung thời gian rất ngắn), trong khi Momentum hoạt động tốt khi có xu hướng thông tin cơ bản thực sự đang thay đổi (khung thời gian trung hạn). Quant chuyên nghiệp phải hiểu rõ ĐIỀU KIỆN THỊ TRƯỜNG nào phù hợp với chiến lược nào."
+        "correct": 0,
+        "explanation": "Mức khớp trên dữ liệu tìm ra quy tắc không mang thông tin, giống như một phép kiểm thử viết sau khi nhìn kết quả. Chỉ dữ liệu mà quy tắc chưa từng thấy mới nói được điều gì."
       },
       {
-        "question": "'Statistical Arbitrage' (Stat Arb) - giao dịch cặp (pairs trading) là ví dụ phổ biến - hoạt động dựa trên nguyên lý gì?",
+        "question": "Vì sao phải chia dữ liệu theo thời gian chứ không lấy ngẫu nhiên?",
         "options": [
-          "Mua một cổ phiếu ngẫu nhiên và hy vọng giá tăng",
-          "Xác định hai (hoặc nhiều) tài sản có mối quan hệ giá lịch sử ổn định (cointegration) - ví dụ hai công ty cùng ngành, chịu ảnh hưởng bởi các yếu tố kinh tế tương tự; khi chênh lệch giá giữa chúng lệch xa khỏi mức lịch sử bình thường, thực hiện giao dịch 'long' tài sản đang tương đối rẻ và 'short' tài sản đang tương đối đắt, kỳ vọng chênh lệch sẽ hội tụ về mức bình thường - chiến lược này mang tính 'market neutral' (trung lập thị trường), lợi nhuận không phụ thuộc vào thị trường chung tăng hay giảm",
-          "Stat Arb chỉ hoạt động khi thị trường đang trong xu hướng tăng mạnh",
-          "Stat Arb yêu cầu dự đoán chính xác hướng đi của toàn thị trường"
+          "Vì lấy ngẫu nhiên thì quy tắc được nhìn thấy tương lai trong lúc được tìm ra",
+          "Vì dữ liệu theo thời gian có xu hướng nên chia ngẫu nhiên làm mất xu hướng đó",
+          "Vì các khoảng thời gian khác nhau có mức tải khác nhau nên cần tách riêng",
+          "Vì việc chia theo thời gian phản ánh đúng cách quy tắc sẽ được dùng sau này"
         ],
-        "correct": 1,
-        "explanation": "Statistical Arbitrage là một biến thể tinh vi của Mean Reversion, áp dụng ở cấp độ MỐI QUAN HỆ TƯƠNG ĐỐI giữa hai tài sản thay vì giá tuyệt đối của một tài sản đơn lẻ. Tính chất 'market neutral' (trung lập thị trường) là điểm hấp dẫn quan trọng: bằng cách long một tài sản và short một tài sản khác có tương quan cao, chiến lược này về lý thuyết loại bỏ được rủi ro biến động chung của toàn thị trường, chỉ còn phụ thuộc vào việc chênh lệch tương đối giữa hai tài sản có hội tụ như kỳ vọng hay không."
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là cách nói khác của cùng ý và nó nhẹ hơn. Nói thẳng thì đây là gian lận với chính mình: các điểm dữ liệu gần nhau về thời gian tương quan với nhau, nên một điểm trong phần kiểm có thể tiết lộ điểm liền kề trong phần huấn luyện."
       },
       {
-        "question": "Tại sao các chiến lược quant dựa trên factor (như Momentum, Value) thường trải qua giai đoạn 'crowding' (quá đông người áp dụng), và điều gì xảy ra khi một factor trở nên quá crowded?",
+        "question": "Vì sao mỗi lần chỉnh lại quy tắc là một lần tiêu bớt phần kiểm?",
         "options": [
-          "Crowding không ảnh hưởng gì đến hiệu quả của chiến lược",
-          "Khi một chiến lược factor được chứng minh hiệu quả và công bố rộng rãi (qua nghiên cứu học thuật, sách, hoặc thành công của các quỹ tiên phong), ngày càng nhiều quỹ áp dụng chiến lược tương tự - khi quá nhiều vốn cùng đuổi theo cùng một tín hiệu, lợi thế thông tin/định giá sai lệch ban đầu bị 'arbitrage away' (giao dịch hết đi), làm giảm hiệu quả tương lai của chiến lược, và trong một số trường hợp có thể dẫn đến 'crowded trade unwind' - khi nhiều quỹ đồng loạt thoát vị thế cùng lúc, gây biến động giá đột ngột và thiệt hại lớn (như sự kiện Quant Quake tháng 8/2007)",
-          "Crowding luôn làm tăng hiệu quả của một chiến lược quant theo thời gian",
-          "Chỉ các chiến lược Momentum mới bị ảnh hưởng bởi crowding, các chiến lược khác thì không"
+          "Vì sau khi nhìn kết quả trên phần kiểm, nó không còn là dữ liệu chưa từng thấy nữa",
+          "Vì số lượng dữ liệu trong phần kiểm giảm dần sau mỗi lần chia lại",
+          "Vì mỗi lần chỉnh làm quy tắc phức tạp hơn nên cần nhiều dữ liệu hơn để kiểm",
+          "Vì các lần chỉnh liên tiếp làm quy tắc phụ thuộc vào thứ tự thực hiện"
         ],
-        "correct": 1,
-        "explanation": "Đây là một trong những rủi ro thực tế quan trọng nhất trong quant investing hiện đại: 'Quant Quake' tháng 8/2007 là ví dụ kinh điển - nhiều quỹ quant lớn đồng thời sử dụng các chiến lược tương tự nhau (dựa trên các factor phổ biến), và khi một số quỹ cần thanh lý vị thế nhanh (do margin call hoặc redemption), việc bán tháo đồng loạt các cổ phiếu có 'factor exposure' tương tự gây ra biến động giá cực đoan trong vài ngày, ảnh hưởng đến hầu hết các quỹ quant khác dù chiến lược của họ vốn không có lỗi về mặt logic."
+        "correct": 0,
+        "explanation": "Đây là chỗ mà nhiều người vô tình vi phạm sau khi đã làm đúng mọi bước trước đó: họ chạy trên phần kiểm, thấy chưa tốt, quay lại chỉnh, rồi chạy lại trên đúng phần kiểm ấy."
+      },
+      {
+        "question": "Dấu hiệu nào cho thấy một quy tắc đang khớp quá mức?",
+        "options": [
+          "Nó có nhiều điều kiện đặc thù, và kết quả tụt hẳn khi ra ngoài mẫu",
+          "Nó thật sự cần được cập nhật thường xuyên để có thể duy trì được hiệu quả ban đầu",
+          "Nó hoạt động tốt với một số loại sự cố và kém với những loại khác",
+          "Nó dựa trên nhiều chỉ số khác nhau thay vì chỉ một chỉ số duy nhất"
+        ],
+        "correct": 0,
+        "explanation": "Hai dấu hiệu này đi cùng nhau và vế thứ hai là vế xác nhận. Số điều kiện nhiều một mình chưa đủ - có bài toán thật sự cần nhiều điều kiện - nhưng cộng với việc tụt hẳn ngoài mẫu thì gần như chắc chắn."
+      },
+      {
+        "question": "Vì sao quy tắc đơn giản thường bền hơn quy tắc phức tạp?",
+        "options": [
+          "Vì nó có ít chỗ để bám vào những đặc điểm ngẫu nhiên của dữ liệu quá khứ",
+          "Vì nó dễ hiểu nên đội dễ phát hiện khi nó hoạt động không đúng",
+          "Vì nó chạy nhanh hơn hẳn nên rốt cuộc áp dụng đã được cho khối lượng dữ liệu lớn hơn",
+          "Vì nó ít phụ thuộc vào chất lượng của dữ liệu đầu vào hơn"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai là lợi ích vận hành thật và nó khác về bản chất. Cái này nói về thống kê: mỗi tham số thêm vào là một chỗ để quy tắc học thuộc nhiễu thay vì học quy luật."
       }
     ],
     "keyTakeaways": [
-      "Momentum: cổ phiếu tăng giá gần đây có xu hướng tiếp tục tăng trong trung hạn - dựa trên underreaction và herding behavior",
-      "Mean Reversion: giá có xu hướng quay về mức trung bình sau khi lệch quá xa - hiệu quả hơn ở khung ngắn hạn/thị trường sideways",
-      "Statistical Arbitrage (pairs trading): giao dịch chênh lệch tương đối giữa hai tài sản tương quan cao, mang tính market-neutral",
-      "Crowding là rủi ro thực tế: khi quá nhiều vốn đuổi theo cùng một factor, lợi thế bị arbitrage away và có thể dẫn đến biến động cực đoan khi nhiều quỹ đồng loạt thoát vị thế"
+      "Thử đủ nhiều ngưỡng thì luôn tìm được cái khớp hoàn hảo, kể cả trên dữ liệu ngẫu nhiên.",
+      "Mức khớp trên chính dữ liệu tìm ra quy tắc KHÔNG mang thông tin nào.",
+      "Chia theo THỜI GIAN - chia ngẫu nhiên là để quy tắc nhìn thấy tương lai.",
+      "Mỗi lần chỉnh lại sau khi xem phần kiểm là một lần tiêu bớt phần kiểm đó.",
+      "Quy tắc đơn giản bền hơn vì nó có ít chỗ để bám vào nhiễu của quá khứ."
     ],
     "practicePrompt": {
-      "question": "Bạn phát hiện một cặp cổ phiếu ngân hàng A và B có tương quan lịch sử rất cao (cùng ngành, quy mô tương tự), nhưng hiện tại cổ phiếu A đang cao hơn B khoảng 15% so với chênh lệch trung bình lịch sử (chỉ thường khoảng 3-5%). Áp dụng logic Statistical Arbitrage, bạn nên làm gì?",
+      "question": "Quy tắc tự mở rộng của bạn hoạt động tốt sáu tháng rồi kém hẳn. Nghi ngờ gì?",
       "options": [
-        "Mua cả A và B với số lượng bằng nhau, không quan tâm đến chênh lệch",
-        "Pairs trade: short A, long B, kỳ vọng chênh lệch hội tụ về mức 3-5%",
-        "Chỉ mua A vì đà tăng đang mạnh hơn, momentum sẽ còn tiếp tục",
-        "Bán cả A và B vì cả hai đều có vẻ được định giá cao"
+        "Hoặc nó khớp quá mức từ đầu, hoặc hình dạng tải đã đổi - và hai cái này phân biệt được",
+        "Ngưỡng trong quy tắc đã lỗi thời so với quy mô hiện tại của hệ thống",
+        "Có một thay đổi trong hệ thống làm quy tắc không còn phù hợp nữa",
+        "Dữ liệu đầu vào cho quy tắc đã bị ảnh hưởng bởi một vấn đề nào đó"
       ],
-      "correct": 1,
-      "explanation": "Đây là ứng dụng chuẩn của Statistical Arbitrage/pairs trading: khi chênh lệch tương đối giữa hai tài sản có lịch sử tương quan chặt chẽ lệch xa khỏi mức bình thường, giao dịch cặp (short tài sản 'đắt', long tài sản 'rẻ') tạo ra vị thế market-neutral kỳ vọng lợi nhuận từ sự hội tụ trở lại - dù không dự đoán được hướng đi chung của cả ngành ngân hàng, tăng hay giảm."
+      "correct": 0,
+      "explanation": "Cách phân biệt: chạy lại quy tắc trên dữ liệu của chính sáu tháng đầu. Nếu nó vẫn tốt ở đó thì tải đã đổi; nếu nó cũng kém thì nó khớp quá mức ngay từ đầu và sáu tháng tốt kia là may mắn."
     },
     "summary": {
-      "keyIdea": "Ba trường phái chiến lược quant phổ biến - Momentum, Mean Reversion, Statistical Arbitrage - dựa trên các giả định khác nhau (thậm chí đối lập) về hành vi giá, mỗi chiến lược phù hợp với điều kiện thị trường và khung thời gian khác nhau, và đều đối mặt rủi ro crowding khi trở nên quá phổ biến.",
-      "commonMistake": "Tin rằng một chiến lược quant 'đúng' về mặt lý thuyết sẽ luôn hiệu quả trong mọi điều kiện thị trường, bỏ qua rủi ro crowding và sự thay đổi của market regime",
-      "action": "Trước khi áp dụng bất kỳ chiến lược factor nào, nghiên cứu xem nó đã được công bố rộng rãi đến mức nào (mức độ crowding) và có phù hợp với điều kiện thị trường hiện tại hay không"
+      "keyIdea": "Quy tắc rút từ quá khứ luôn khớp với quá khứ; câu hỏi là nó có khớp với tương lai không.",
+      "formula": "Chia theo thời gian → tìm quy tắc trên phần đầu → kiểm một lần trên phần sau.",
+      "commonMistake": "Chạy trên phần kiểm, thấy chưa tốt, quay lại chỉnh, rồi chạy lại trên chính nó.",
+      "action": "Với quy tắc tự động của bạn, hỏi nó đã từng được kiểm ngoài mẫu chưa."
     },
     "application": {
-      "title": "Áp dụng vào công việc Quant Analysis",
-      "message": "Thử backtest đơn giản: chọn 10 cổ phiếu tăng giá mạnh nhất trong 6 tháng qua trên một sàn giao dịch, theo dõi hiệu suất của chúng trong 1-3 tháng tiếp theo so với thị trường chung - đây là cách kiểm tra thực nghiệm cơ bản của chiến lược Momentum.",
-      "secondary": "Bài tiếp theo sẽ đi vào một trong những cạm bẫy nguy hiểm nhất của quant trading: backtesting và overfitting."
+      "title": "Làm ngay hôm nay",
+      "message": "Với một quy tắc tự động trong hệ thống bạn - ngưỡng cảnh báo, điều kiện tự mở rộng - hỏi một câu: nó đã từng được kiểm trên dữ liệu mà nó chưa từng thấy chưa?",
+      "secondary": "Với phần lớn quy tắc, câu trả lời là chưa. Và chạy phép kiểm đó thường mất một buổi chiều với dữ liệu đã có sẵn."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Quant investing không phải là 'dùng máy tính để đoán giá cổ phiếu' - đó là việc xây dựng các chiến lược có hệ thống dựa trên các pattern hành vi/thống kê đã được nghiên cứu và kiểm chứng qua dữ liệu lịch sử lớn."
+        "text": "Các quy tắc tự động - tự mở rộng, tự cảnh báo, tự chặn - đều được rút ra từ dữ liệu cũ, và phần lớn chúng chưa từng được kiểm chứng ngoài mẫu."
       },
       {
         "type": "heading",
-        "text": "Momentum - Xu hướng tiếp diễn"
-      },
-      {
-        "type": "paragraph",
-        "text": "Chiến lược Momentum mua các cổ phiếu đã tăng giá mạnh trong quá khứ gần đây (thường 3-12 tháng), dựa trên bằng chứng thực nghiệm rằng xu hướng có xu hướng tiếp diễn trong trung hạn trước khi đảo chiều. Cơ sở hành vi: thị trường thường 'underreact' với thông tin tích cực mới (phản ứng ban đầu chưa đủ mạnh), giá tiếp tục điều chỉnh dần khi ngày càng nhiều nhà đầu tư nhận ra và phản ứng với thông tin đó."
-      },
-      {
-        "type": "heading",
-        "text": "Mean Reversion - Hồi quy về trung bình"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ngược lại với Momentum, Mean Reversion giả định giá có xu hướng dao động quanh một mức 'giá trị hợp lý' và sẽ điều chỉnh trở lại khi lệch quá xa - đặc biệt hiệu quả ở khung thời gian rất ngắn (vài ngày) khi biến động phần lớn là 'noise' ngẫu nhiên không phản ánh thay đổi cơ bản thực sự."
-      },
-      {
-        "type": "heading",
-        "text": "Statistical Arbitrage - Giao dịch tương đối, không tuyệt đối"
-      },
-      {
-        "type": "paragraph",
-        "text": "Thay vì dự đoán hướng đi của một tài sản đơn lẻ, Stat Arb tập trung vào MỐI QUAN HỆ TƯƠNG ĐỐI giữa hai (hoặc nhiều) tài sản có tương quan lịch sử ổn định - giao dịch cặp (pairs trading) là ứng dụng phổ biến nhất, mang lại tính chất market-neutral hấp dẫn cho các quỹ muốn giảm thiểu rủi ro biến động thị trường chung."
+        "text": "Vì sao khớp hoàn hảo là dấu hiệu xấu"
       },
       {
         "type": "callout",
-        "label": "Rủi ro Crowding",
-        "text": "Sự kiện 'Quant Quake' tháng 8/2007 là lời cảnh báo quan trọng: khi quá nhiều quỹ áp dụng các chiến lược factor tương tự nhau, thị trường trở nên dễ tổn thương trước các đợt thanh lý đồng loạt - một rủi ro hệ thống mà quant chuyên nghiệp phải luôn cân nhắc, không chỉ tập trung vào logic thống kê của chiến lược riêng lẻ."
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Momentum - xu hướng có xác suất tiếp diễn",
-        "arrow": true
+        "label": "Thử đủ nhiều thì luôn tìm được",
+        "text": "Nếu bạn thử đủ nhiều ngưỡng trên cùng một tập dữ liệu thì sẽ luôn có một cái khớp hoàn hảo - kể cả khi dữ liệu đó hoàn toàn ngẫu nhiên. Mức khớp trên chính dữ liệu đã dùng để tìm ra quy tắc không mang thông tin nào."
       },
       {
-        "label": "Mean reversion - giá lệch xa trung bình sẽ hồi về",
-        "arrow": true
+        "type": "heading",
+        "text": "Chia dữ liệu, và chia đúng cách"
       },
       {
-        "label": "Statistical arbitrage - giao dịch tương đối giữa các tài sản",
-        "arrow": true
+        "type": "comparison",
+        "left": {
+          "label": "Chia theo thời gian",
+          "text": "Phần kiểm là khoảng nằm SAU toàn bộ phần dùng để tìm quy tắc. Đây là cách duy nhất đúng với dữ liệu có thứ tự."
+        },
+        "right": {
+          "label": "Chia ngẫu nhiên",
+          "text": "Gian lận với chính mình. Các điểm gần nhau về thời gian tương quan với nhau, nên một điểm trong phần kiểm tiết lộ điểm liền kề trong phần huấn luyện."
+        }
       },
       {
-        "label": "Kiểm định trên dữ liệu quá khứ và quản trị rủi ro trước khi triển khai",
-        "arrow": false
+        "type": "paragraph",
+        "text": "Và một quy tắc dễ vi phạm sau khi đã làm đúng mọi bước: phần kiểm chỉ dùng được MỘT LẦN. Chạy trên nó, thấy chưa tốt, quay lại chỉnh, rồi chạy lại trên đúng phần ấy - lúc đó nó không còn là dữ liệu chưa từng thấy nữa."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Dấu hiệu của khớp quá mức: nhiều điều kiện đặc thù, và kết quả tụt hẳn khi ra ngoài mẫu. Vế thứ hai là vế xác nhận - có bài toán thật sự cần nhiều điều kiện.",
+          "Nên mặc định nghiêng về quy tắc ĐƠN GIẢN: mỗi tham số thêm vào là một chỗ để quy tắc học thuộc nhiễu thay vì học quy luật."
+        ]
       }
     ]
   },
@@ -80251,197 +80266,177 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1286,
-    "track": "professional",
-    "slug": "ffo-affo-chi-so-loi-nhuan-cua-reit",
-    "title": "FFO và AFFO: Vì sao không định giá REIT bằng lợi nhuận kế toán",
-    "subtitle": "Khấu hao bất động sản làm lợi nhuận của REIT trông tệ hơn thực tế - và đây là hai chỉ số thay thế",
+    "slug": "du-lieu-lon-vi-sao-trung-binh-khong-dung-duoc",
+    "title": "Dữ liệu lớn - vì sao ở quy mô đó các chỉ số quen thuộc ngừng dùng được",
+    "subtitle": "Ở quy mô đủ lớn, mọi thứ hiếm đều xảy ra thường xuyên, và mọi phép tính toàn bộ đều quá đắt.",
     "duration": "9 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🏢",
-    "openingQuestion": "Một quỹ tín thác bất động sản (REIT) sở hữu các toà nhà cho thuê đang có tỷ lệ lấp đầy cao, tiền thuê tăng đều, dòng tiền hoạt động dương mạnh - nhưng lợi nhuận sau thuế lại rất mỏng, có năm gần bằng không. Nguyên nhân chính thường là gì?",
+    "whyItMatters": "Các phản xạ hình thành ở quy mô nhỏ - quét toàn bộ, tính chính xác, xử lý lại từ đầu khi có lỗi - đều trở thành bất khả thi mà không ai báo trước.",
+    "openingQuestion": "Điều gì đổi khi khối lượng dữ liệu tăng một nghìn lần?",
     "openingOptions": [
-      "REIT đang bị lỗ thực sự và dòng tiền dương chỉ là tạm thời do bán tài sản",
-      "Khấu hao bất động sản là chi phí phi tiền mặt, còn tài sản vẫn giữ giá trị",
-      "REIT không được phép ghi nhận doanh thu tiền thuê vào lợi nhuận",
-      "Chi phí lãi vay của REIT luôn cao hơn thu nhập từ tiền thuê"
+      "Những thứ hiếm trở nên xảy ra hằng ngày, và các phép tính toàn bộ trở nên quá đắt",
+      "Thời gian xử lý tăng lên một nghìn lần nên cần thêm tài nguyên tương ứng",
+      "Cần chuyển sang các công cụ chuyên dụng cho dữ liệu lớn thay vì công cụ cũ",
+      "Chi phí lưu trữ trở thành khoản chi lớn nhất trong tổng chi phí hệ thống"
     ],
-    "correctOption": 1,
-    "explanation": "Khấu hao phân bổ giá trị tài sản thành chi phí qua nhiều năm, dựa trên giả định tài sản mất giá dần theo thời gian sử dụng. Giả định này hợp lý với máy móc hay thiết bị, nhưng với một toà nhà ở vị trí tốt, giá trị thị trường thường không giảm theo cách đó - nhiều trường hợp còn tăng. Vì bất động sản chiếm gần như toàn bộ tài sản của một REIT, khoản khấu hao rất lớn này bóp méo lợi nhuận kế toán tới mức nó không còn phản ánh khả năng sinh lời thực. Đây là lý do ngành bất động sản dùng FFO và AFFO thay cho lợi nhuận sau thuế và chỉ số P/E.",
+    "correctOption": 0,
+    "explanation": "Vế đầu là vế phản trực giác: một lỗi xảy ra với xác suất một phần triệu thì ở một tỷ bản ghi sẽ có một nghìn trường hợp mỗi ngày, nên nó không còn là ngoại lệ mà là một luồng công việc. Vế sau đổi cách làm: bạn không quét toàn bộ để trả lời một câu hỏi nữa, mà phải chọn giữa ước lượng nhanh và câu trả lời chính xác nhưng chậm.",
+    "diagram": [
+      {
+        "label": "Thứ hiếm thành chuyện hằng ngày - không còn là ngoại lệ",
+        "arrow": true
+      },
+      {
+        "label": "Phép tính toàn bộ quá đắt → chọn giữa ước lượng và chính xác",
+        "arrow": true
+      },
+      {
+        "label": "Xử lý lại từ đầu khi lỗi trở thành bất khả thi",
+        "arrow": true
+      },
+      {
+        "label": "Nên thiết kế để xử lý lại được TỪNG PHẦN"
+      }
+    ],
     "realWorldExample": {
-      "company": "Vì sao ngành bất động sản cần một chỉ số riêng",
-      "description": "Hãy hình dung một toà nhà mua 1.000 tỷ, khấu hao đều trong 40 năm, tức 25 tỷ mỗi năm ghi vào chi phí. Nếu toà nhà tạo ra 60 tỷ tiền thuê ròng mỗi năm và chi phí lãi vay là 30 tỷ, thì dòng tiền thực còn lại là 30 tỷ - nhưng lợi nhuận kế toán chỉ còn 5 tỷ sau khi trừ khấu hao. Nhìn qua chỉ số P/E, quỹ này trông cực kỳ đắt; nhìn qua dòng tiền thực, nó hoàn toàn bình thường. Trong khi đó toà nhà vẫn giữ nguyên hoặc tăng giá trị thị trường sau mỗi năm. Chính khoảng cách giữa hai cách nhìn này đã khiến ngành xây dựng ra một thước đo riêng - và cũng là lý do dùng P/E để so sánh REIT với doanh nghiệp thông thường gần như luôn dẫn tới kết luận sai."
+      "company": "Ước lượng đủ tốt",
+      "description": "Đếm chính xác số người dùng khác nhau trong một tháng có thể tốn hàng giờ; một thuật toán ước lượng cho kết quả sai lệch vài phần trăm trong vài giây với một phần nhỏ bộ nhớ. Câu hỏi thật là ai đó có dùng con số đó để làm gì mà vài phần trăm sai lệch lại quan trọng không."
     },
     "quiz": [
       {
-        "question": "Công thức cơ bản của FFO (Funds From Operations) là gì?",
+        "question": "Vì sao ở quy mô lớn, thứ hiếm không còn là ngoại lệ?",
         "options": [
-          "FFO = Doanh thu tiền thuê trừ toàn bộ chi phí vận hành",
-          "FFO = Lợi nhuận sau thuế + Khấu hao bất động sản − Lãi từ việc bán tài sản (và cộng lại lỗ từ việc bán tài sản)",
-          "FFO = Dòng tiền hoạt động kinh doanh trừ chi phí đầu tư",
-          "FFO = Tổng giá trị tài sản trừ tổng nợ phải trả"
+          "Vì một xác suất rất nhỏ nhân với số lượng rất lớn cho ra một con số hằng ngày",
+          "Vì hệ thống lớn có nhiều thành phần hơn nên nhiều thứ có thể hỏng hơn",
+          "Vì dữ liệu lớn thường xuyên đến từ nhiều nguồn nên rốt cuộc chất lượng hoàn toàn không đồng đều",
+          "Vì các trường hợp hiếm tích tụ lại theo thời gian thành số lượng lớn"
         ],
-        "correct": 1,
-        "explanation": "FFO cộng lại khấu hao vì đó là chi phí phi tiền mặt, và loại bỏ lãi/lỗ từ việc bán tài sản vì đó là khoản một lần không phản ánh khả năng sinh lời lặp lại từ hoạt động cho thuê."
+        "correct": 0,
+        "explanation": "Đây là phép nhân đơn giản mà rất khó cảm nhận: một lỗi một phần triệu ở một tỷ bản ghi là một nghìn trường hợp mỗi ngày. Nó nghĩa là xử lý thủ công không còn là phương án, và mã xử lý trường hợp đặc biệt trở thành đường chạy chính."
       },
       {
-        "question": "AFFO khác FFO ở điểm nào và vì sao khác biệt đó quan trọng?",
+        "question": "Vì sao ước lượng lại là lựa chọn hợp lý ở quy mô lớn?",
         "options": [
-          "AFFO chỉ là cách gọi khác của FFO ở một số thị trường",
-          "AFFO trừ thêm chi phí vốn duy trì định kỳ và các khoản chi cần thiết để giữ tài sản có thể cho thuê tiếp - nên nó gần với số tiền thực sự có thể chia cho nhà đầu tư hơn FFO",
-          "AFFO cộng thêm giá trị tăng thêm của bất động sản theo giá thị trường",
-          "AFFO chỉ áp dụng cho REIT chưa niêm yết"
+          "Vì chênh lệch vài phần trăm thường không đổi quyết định, mà chênh lệch chi phí thì rất lớn",
+          "Vì dữ liệu lớn vốn đã có sai số nên tính chính xác cũng không cho kết quả đúng",
+          "Vì các công cụ dữ liệu lớn không hỗ trợ tính toán chính xác trên toàn bộ dữ liệu",
+          "Vì kết quả cần có nhanh nên không đủ thời gian chờ phép tính chính xác"
         ],
-        "correct": 1,
-        "explanation": "FFO bỏ qua thực tế là một toà nhà cần chi tiền định kỳ để thay thang máy, sửa hệ thống điều hoà, cải tạo mặt bằng cho khách thuê mới. AFFO trừ những khoản đó ra, nên nó là thước đo thận trọng hơn về khả năng chi trả cổ tức bền vững."
+        "correct": 0,
+        "explanation": "Câu hỏi cần hỏi là ai dùng con số đó để làm gì. Nếu nó dùng để quyết định có mở rộng hạ tầng hay không thì vài phần trăm không đổi gì; nếu nó dùng để đối soát thanh toán thì ước lượng là không chấp nhận được."
       },
       {
-        "question": "Vì sao dùng chỉ số P/E để so sánh một REIT với một doanh nghiệp sản xuất là không phù hợp?",
+        "question": "Vì sao xử lý lại từ đầu trở nên bất khả thi?",
         "options": [
-          "Vì REIT không có lợi nhuận sau thuế",
-          "Vì mẫu số của P/E ở REIT bị bóp méo nặng bởi khoản khấu hao bất động sản rất lớn, khiến P/E của REIT luôn trông cao bất thường dù dòng tiền hoàn toàn khỏe",
-          "Vì REIT không được niêm yết trên sàn chứng khoán",
-          "Vì P/E chỉ áp dụng cho doanh nghiệp có nợ vay thấp"
+          "Vì thời gian chạy lại có thể dài hơn khoảng cách giữa hai lần lỗi",
+          "Vì dữ liệu gốc có thể đã bị xoá do chính sách lưu trữ theo thời hạn",
+          "Vì chi phí tính toán cho một lượt chạy lại vượt quá ngân sách hằng tháng",
+          "Vì việc chạy lại chiếm tài nguyên nên làm gián đoạn các công việc khác"
         ],
-        "correct": 1,
-        "explanation": "Vấn đề nằm ở mẫu số. Cùng một dòng tiền, một REIT sẽ có lợi nhuận kế toán thấp hơn nhiều so với doanh nghiệp có ít tài sản dài hạn - nên so P/E giữa hai loại là so hai thứ được tính theo cách khác nhau."
+        "correct": 0,
+        "explanation": "Đây là điều kiện làm cho cách làm cũ sụp đổ hoàn toàn chứ không chỉ tốn kém: nếu một lượt chạy lại mất mười tám giờ mà lỗi xảy ra mỗi ngày thì bạn không bao giờ bắt kịp. Ba lựa chọn kia đều làm nó đắt và đều còn khả thi."
       },
       {
-        "question": "Một REIT có tỷ lệ chi trả cổ tức trên AFFO là 115%. Điều này gợi ý gì?",
+        "question": "Hệ quả thiết kế của việc không chạy lại toàn bộ được là gì?",
         "options": [
-          "REIT đang hoạt động rất hiệu quả vì chia được nhiều hơn mức tạo ra",
-          "Cổ tức đang vượt dòng tiền thực sự có thể chia sau khi tính chi phí duy trì tài sản - phần chênh phải lấy từ vay thêm, phát hành thêm chứng chỉ quỹ hoặc bán tài sản, và điều đó khó duy trì lâu dài",
-          "Không có ý nghĩa gì vì AFFO chỉ là con số kế toán ước lượng",
-          "Đây là mức bình thường và bắt buộc theo quy định về REIT"
+          "Chia công việc thành phần độc lập để chạy lại được đúng phần bị lỗi",
+          "Lưu kết quả trung gian sau mỗi bước để không phải tính lại từ đầu",
+          "Tăng số lượng máy xử lý để rút ngắn thời gian của một lượt chạy lại",
+          "Giảm tần suất lỗi bằng cách tăng cường kiểm tra dữ liệu đầu vào"
         ],
-        "correct": 1,
-        "explanation": "Tỷ lệ chi trả trên AFFO vượt 100% kéo dài là dấu hiệu cổ tức không được tài trợ bởi hoạt động cho thuê. Đây là một trong những chỉ số cảnh báo sớm quan trọng nhất khi phân tích REIT."
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai là một phần của cùng ý và nó chưa đủ: lưu kết quả trung gian giúp bạn không tính lại từ bước một, nhưng nếu công việc không chia được thì bạn vẫn phải chạy lại toàn bộ bước đó."
+      },
+      {
+        "question": "Vì sao phân bố dữ liệu lệch lại gây khó ở quy mô lớn?",
+        "options": [
+          "Vì một khoá chiếm phần lớn dữ liệu sẽ dồn vào một máy và làm cả lượt chạy chờ nó",
+          "Vì phân bố lệch làm các chỉ số trung bình không phản ánh đúng thực tế",
+          "Vì cần thêm bước tiền xử lý để chuẩn hoá dữ liệu trước khi tính toán",
+          "Vì các thuật toán ước lượng cho kết quả kém chính xác với dữ liệu lệch"
+        ],
+        "correct": 0,
+        "explanation": "Đây là kiểu hỏng đặc trưng của xử lý phân tán: chín mươi chín phần trăm số máy xong sau vài phút, và cả lượt chạy chờ một máy suốt nhiều giờ. Nó không hiện ra ở quy mô nhỏ vì lúc đó chênh lệch chưa đủ lớn."
       }
     ],
     "keyTakeaways": [
-      "Khấu hao bất động sản là chi phí phi tiền mặt rất lớn, làm lợi nhuận kế toán của REIT không phản ánh khả năng sinh lời thực.",
-      "FFO cộng lại khấu hao và loại lãi/lỗ bán tài sản; AFFO trừ thêm chi phí duy trì nên gần với tiền có thể chia thực tế hơn.",
-      "Dùng P/E để so REIT với doanh nghiệp thông thường gần như luôn cho kết luận sai vì mẫu số bị bóp méo.",
-      "Tỷ lệ chi trả cổ tức trên AFFO vượt 100% kéo dài là dấu hiệu cổ tức không bền vững."
+      "Xác suất rất nhỏ nhân số lượng rất lớn = chuyện hằng ngày, không còn là ngoại lệ.",
+      "Chọn giữa ước lượng và chính xác bằng câu: ai dùng con số này để làm gì.",
+      "Chạy lại từ đầu bất khả thi khi thời gian chạy dài hơn khoảng cách giữa hai lần lỗi.",
+      "Thiết kế để chạy lại được TỪNG PHẦN, không chỉ lưu kết quả trung gian.",
+      "Phân bố lệch: một khoá dồn vào một máy và cả lượt chạy chờ nó."
     ],
     "practicePrompt": {
-      "question": "Một REIT có lợi nhuận sau thuế 120 tỷ, khấu hao bất động sản 300 tỷ, lãi từ bán một toà nhà 80 tỷ, chi phí vốn duy trì định kỳ 60 tỷ. FFO và AFFO xấp xỉ bằng bao nhiêu?",
+      "question": "Lượt xử lý hằng đêm chạy chín tiếng, trong đó tám tiếng cuối chỉ một máy còn chạy. Nguyên nhân?",
       "options": [
-        "FFO = 340 tỷ và AFFO = 280 tỷ",
-        "FFO = 500 tỷ và AFFO = 440 tỷ",
-        "FFO = 120 tỷ và AFFO = 60 tỷ",
-        "FFO = 420 tỷ và AFFO = 360 tỷ"
+        "Phân bố lệch - một khoá chiếm phần lớn dữ liệu nên dồn hết vào một máy",
+        "Máy đó có cấu hình yếu hơn các máy còn lại trong cụm xử lý",
+        "Có lỗi khiến máy đó phải thử lại nhiều lần cùng một phần công việc",
+        "Số lượng máy không đủ nên phần việc trên mỗi máy quá lớn"
       ],
       "correct": 0,
-      "explanation": "FFO = 120 + 300 − 80 = 340 tỷ (cộng khấu hao, trừ lãi bán tài sản vì là khoản một lần). AFFO = 340 − 60 = 280 tỷ (trừ chi phí duy trì). Con số 280 tỷ mới là mốc để đánh giá cổ tức có bền vững hay không."
+      "explanation": "Hình dạng chín mươi chín phần trăm xong nhanh, một phần trăm chạy rất lâu là chữ ký của phân bố lệch. Ba nguyên nhân kia sẽ làm mọi máy chậm đều hoặc làm một máy chậm ngay từ đầu, không tạo ra hình dạng này."
     },
     "summary": {
-      "keyIdea": "REIT cần thước đo riêng vì khấu hao bất động sản bóp méo lợi nhuận kế toán; FFO và AFFO đưa bức tranh trở về gần dòng tiền thực.",
-      "commonMistake": "Kết luận REIT đắt vì P/E cao, hoặc dùng FFO để đánh giá khả năng chi trả cổ tức mà bỏ qua chi phí duy trì tài sản.",
-      "action": "Lấy báo cáo của một REIT và tự tính FFO rồi AFFO, sau đó so cổ tức đã chia với AFFO để xem tỷ lệ chi trả là bao nhiêu."
+      "keyIdea": "Ở quy mô đủ lớn, mọi thứ hiếm xảy ra thường xuyên và mọi phép tính toàn bộ đều quá đắt.",
+      "formula": "Ước lượng khi được + chia phần chạy lại độc lập + xử lý phân bố lệch.",
+      "commonMistake": "Mang phản xạ quét toàn bộ và chạy lại từ đầu lên quy mô mà nó không còn chạy.",
+      "action": "Xem lượt xử lý dài nhất của bạn có bao nhiêu phần trăm thời gian chờ một máy."
     },
     "application": {
-      "title": "Áp dụng vào phân tích",
-      "message": "Khi xem một REIT, thay P/E bằng giá chia FFO hoặc giá chia AFFO, và luôn kiểm tra tỷ lệ cổ tức trên AFFO qua ba đến năm năm.",
-      "secondary": "Thêm hai chỉ số bối cảnh: tỷ lệ lấp đầy và thời hạn còn lại bình quân của các hợp đồng thuê - chúng cho biết dòng tiền hiện tại còn giữ được bao lâu."
+      "title": "Làm ngay hôm nay",
+      "message": "Với lượt xử lý dữ liệu dài nhất của bạn, xem biểu đồ thời gian hoàn thành của từng máy trong cụm.",
+      "secondary": "Nếu phần lớn xong sớm và một vài máy chạy rất lâu, bạn đang gặp phân bố lệch - và sửa nó thường cho cải thiện lớn hơn mọi cách tối ưu khác."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Với hầu hết doanh nghiệp, lợi nhuận sau thuế là điểm khởi đầu tự nhiên của việc phân tích. Với quỹ tín thác bất động sản, đó lại là con số gây hiểu lầm nhiều nhất - và lý do nằm ở một khoản mục duy nhất: khấu hao."
+        "text": "Các phản xạ hình thành ở quy mô nhỏ - quét toàn bộ, tính chính xác, xử lý lại từ đầu khi có lỗi - đều trở thành bất khả thi mà không ai báo trước."
       },
       {
         "type": "heading",
-        "text": "Vì sao khấu hao bóp méo bức tranh ở REIT"
+        "text": "Thứ hiếm thành chuyện hằng ngày"
       },
       {
-        "type": "paragraph",
-        "text": "Khấu hao dựa trên giả định tài sản mất giá dần theo thời gian sử dụng. Giả định đó đúng với dây chuyền sản xuất hay xe tải. Nhưng với một toà nhà ở vị trí tốt được bảo dưỡng đầy đủ, giá trị thị trường thường không suy giảm theo lịch khấu hao kế toán, và trong nhiều trường hợp còn tăng theo giá đất và giá thuê. Vì bất động sản chiếm gần như toàn bộ tài sản của một REIT, khoản khấu hao khổng lồ này làm lợi nhuận kế toán tách rời khỏi khả năng sinh lời thực."
+        "type": "callout",
+        "label": "Một phép nhân khó cảm nhận",
+        "text": "Một lỗi xảy ra với xác suất một phần triệu, ở một tỷ bản ghi, là một nghìn trường hợp mỗi ngày. Xử lý thủ công không còn là phương án, và mã xử lý trường hợp đặc biệt trở thành đường chạy chính."
       },
       {
-        "type": "formula",
-        "title": "Từ lợi nhuận kế toán tới FFO và AFFO",
-        "equation": "FFO = Lợi nhuận sau thuế + Khấu hao BĐS − Lãi bán tài sản · AFFO = FFO − Chi phí vốn duy trì",
-        "variables": [
-          {
-            "symbol": "Khấu hao BĐS",
-            "name": "Chi phí phi tiền mặt",
-            "description": "Cộng lại vì nó không làm doanh nghiệp mất tiền trong kỳ, và giả định mất giá thường không đúng với bất động sản tốt."
-          },
-          {
-            "symbol": "Lãi bán tài sản",
-            "name": "Khoản một lần",
-            "description": "Trừ ra vì bán một toà nhà là sự kiện không lặp lại, không phản ánh khả năng sinh lời từ hoạt động cho thuê."
-          },
-          {
-            "symbol": "Chi phí vốn duy trì",
-            "name": "Recurring capex",
-            "description": "Tiền phải chi định kỳ để giữ tài sản cho thuê được: thay thang máy, sửa điều hoà, cải tạo mặt bằng cho khách thuê mới."
-          }
-        ],
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "120 + 300 − 80 = 340 tỷ (FFO), rồi 340 − 60 = 280 tỷ (AFFO)",
-          "result": "Lợi nhuận kế toán 120 tỷ nhưng dòng tiền có thể chia là 280 tỷ",
-          "explanation": "Chênh lệch hơn hai lần giữa lợi nhuận kế toán và AFFO cho thấy vì sao mọi kết luận dựa trên lợi nhuận sau thuế ở REIT đều cần được kiểm tra lại. Đồng thời AFFO thấp hơn FFO 60 tỷ nhắc rằng không phải toàn bộ FFO đều là tiền tự do."
-        }
+        "type": "heading",
+        "text": "Ước lượng hay chính xác"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "FFO",
-          "text": "Đưa lợi nhuận về gần dòng tiền hoạt động cho thuê. Là thước đo tiêu chuẩn để so sánh giữa các REIT và để tính bội số giá trên FFO. Nhưng nó bỏ qua nhu cầu chi tiền định kỳ để duy trì tài sản."
+          "label": "Chọn ước lượng",
+          "text": "Sai lệch vài phần trăm, chạy trong vài giây với một phần nhỏ bộ nhớ. Đúng khi con số dùng để quyết định có mở rộng hạ tầng hay không."
         },
         "right": {
-          "label": "AFFO",
-          "text": "Trừ thêm chi phí duy trì nên gần với số tiền thực sự có thể chia cho nhà đầu tư. Là thước đo phù hợp hơn để đánh giá cổ tức có bền vững hay không, nhưng cách tính có phần ước lượng nên khó so sánh chéo hơn FFO."
+          "label": "Chọn chính xác",
+          "text": "Hàng giờ và rất nhiều tài nguyên. Bắt buộc khi con số dùng để đối soát thanh toán."
         }
       },
       {
+        "type": "paragraph",
+        "text": "Câu hỏi phân biệt không phải là chính xác có tốt hơn không mà là AI DÙNG con số này để làm gì. Đó là câu hỏi thường không được hỏi, và mặc định rơi vào lựa chọn đắt hơn."
+      },
+      {
         "type": "heading",
-        "text": "Bốn chỉ số nên đọc cùng nhau khi phân tích REIT"
+        "text": "Khi chạy lại từ đầu sụp đổ"
       },
       {
-        "type": "list",
-        "items": [
-          "Giá chia AFFO thay cho P/E: đây là bội số định giá phù hợp với đặc thù của mô hình.",
-          "Tỷ lệ cổ tức trên AFFO: vượt 100% kéo dài nghĩa là cổ tức đang được tài trợ bằng vay thêm hoặc bán tài sản.",
-          "Tỷ lệ lấp đầy và thời hạn còn lại bình quân của hợp đồng thuê: cho biết dòng tiền hiện tại còn được bảo đảm bao lâu, và bao nhiêu phần trăm diện tích sắp phải đàm phán lại.",
-          "Nợ vay so với giá trị tài sản và lịch đáo hạn nợ: REIT thường dùng đòn bẩy cao, nên rủi ro tái cấp vốn khi lãi suất tăng là rủi ro trọng yếu chứ không phụ."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Cẩn thận với cách doanh nghiệp tự định nghĩa AFFO",
-        "text": "Khác với FFO có định nghĩa khá thống nhất trong ngành, AFFO không có chuẩn bắt buộc chung, nên mỗi quỹ có thể tự chọn khoản nào được coi là chi phí duy trì và khoản nào được xếp vào chi phí mở rộng. Một quỹ muốn AFFO trông đẹp hơn chỉ cần xếp nhiều khoản chi vào nhóm mở rộng. Vì vậy khi so sánh giữa các quỹ, nên đọc phần thuyết minh về cách tính và tự điều chỉnh lại cho nhất quán trước khi kết luận."
+        "type": "paragraph",
+        "text": "Nếu một lượt chạy lại mất mười tám giờ mà lỗi xảy ra mỗi ngày thì bạn không bao giờ bắt kịp. Hệ quả thiết kế: chia công việc thành phần ĐỘC LẬP để chạy lại được đúng phần bị lỗi - lưu kết quả trung gian một mình không đủ."
       },
       {
         "type": "closing",
         "lines": [
-          "Với REIT, lợi nhuận sau thuế là con số ít hữu ích nhất trên báo cáo - không phải vì nó sai, mà vì nó trả lời một câu hỏi khác.",
-          "FFO cho biết hoạt động cho thuê tạo ra bao nhiêu; AFFO cho biết bao nhiêu trong số đó thực sự có thể chia."
+          "Và kiểu hỏng đặc trưng nhất của quy mô này là PHÂN BỐ LỆCH: một khoá chiếm phần lớn dữ liệu, dồn vào một máy, và cả lượt chạy chờ nó.",
+          "Chữ ký của nó rất dễ nhận: chín mươi chín phần trăm số máy xong sau vài phút, một máy chạy suốt nhiều giờ. Nó không hiện ra ở quy mô nhỏ vì lúc đó chênh lệch chưa đủ lớn."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Lợi nhuận sau thuế - bị bóp méo bởi khấu hao bất động sản",
-        "arrow": true
-      },
-      {
-        "label": "Cộng lại khấu hao, trừ lãi/lỗ bán tài sản → FFO",
-        "arrow": true
-      },
-      {
-        "label": "Trừ chi phí vốn duy trì định kỳ → AFFO",
-        "arrow": true
-      },
-      {
-        "label": "So cổ tức với AFFO để đánh giá tính bền vững",
-        "arrow": true
-      },
-      {
-        "label": "Đọc kèm tỷ lệ lấp đầy, kỳ hạn thuê và lịch đáo hạn nợ",
-        "arrow": false
       }
     ]
   },
@@ -80851,223 +80846,175 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1289,
-    "track": "professional",
-    "slug": "duration-va-convexity-do-nhay-gia-trai-phieu",
-    "title": "Duration và Convexity: Đo độ nhạy giá trái phiếu theo lãi suất",
-    "subtitle": "Duration cho ước lượng bậc một, convexity sửa phần sai số - và vì sao khác biệt đó quan trọng khi lãi suất biến động mạnh",
+    "slug": "do-nhay-va-phi-tuyen-khi-tai-tang",
+    "title": "Độ nhạy và phi tuyến - vì sao tải gấp đôi làm độ trễ gấp năm",
+    "subtitle": "Hệ thống phản ứng tuyến tính cho tới một điểm, và mọi kế hoạch dung lượng đều sai ở phía sau điểm đó.",
     "duration": "10 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "📉",
-    "openingQuestion": "Một trái phiếu có modified duration là 7. Lãi suất thị trường tăng 1 điểm phần trăm. Ước lượng nhanh mức thay đổi giá trái phiếu là bao nhiêu, và ước lượng đó có chính xác tuyệt đối không?",
+    "whyItMatters": "Kế hoạch dung lượng dựa trên phép ngoại suy tuyến tính là cách phổ biến nhất để bị bất ngờ ở đúng lúc tải cao nhất trong năm.",
+    "openingQuestion": "Tải tăng gấp đôi và độ trễ tăng gấp năm. Vì sao không phải gấp đôi?",
     "openingOptions": [
-      "Giá tăng khoảng 7%, và đây là con số chính xác",
-      "Giá giảm khoảng 7%, nhưng thực tế giảm ít hơn một chút nhờ convexity",
-      "Giá giảm đúng 7% trong mọi trường hợp bất kể mức biến động lãi suất",
-      "Không thể ước lượng nếu chưa biết kỳ hạn còn lại của trái phiếu"
+      "Vì khi mức sử dụng tài nguyên tiến gần bão hoà thì thời gian chờ tăng phi tuyến",
+      "Vì tải tăng làm tăng cả số lỗi nên rốt cuộc hệ thống phải xử lý thêm tất cả các lượt thử lại",
+      "Vì bộ nhớ đệm hoạt động kém hơn khi lượng dữ liệu cần phục vụ tăng lên",
+      "Vì hệ thống phải cấp phát thêm tài nguyên và quá trình đó tốn thời gian"
     ],
-    "correctOption": 1,
-    "explanation": "Modified duration cho biết phần trăm thay đổi giá xấp xỉ khi lãi suất thay đổi một điểm phần trăm, theo chiều nghịch. Nhưng nó là đạo hàm bậc một - tức là xấp xỉ quan hệ giá và lãi suất bằng một đường thẳng, trong khi quan hệ thật là một đường cong lồi. Vì tính lồi đó, khi lãi suất tăng thì giá giảm ít hơn mức duration dự báo, và khi lãi suất giảm thì giá tăng nhiều hơn mức duration dự báo. Sai số này nhỏ với biến động nhỏ nhưng lớn dần khi biến động mạnh, và convexity chính là đại lượng đo phần sai số đó.",
+    "correctOption": 0,
+    "explanation": "Khi một tài nguyên chung - luồng xử lý, kết nối cơ sở dữ liệu, băng thông đĩa - còn nhiều chỗ trống thì yêu cầu tới hầu như không phải chờ. Khi nó gần đầy, mỗi yêu cầu mới phải xếp hàng sau những yêu cầu đang chạy, và thời gian chờ tăng rất nhanh dù tải chỉ nhích lên một chút. Ba lựa chọn kia đều là hiệu ứng phụ thật và đều nhỏ hơn hiệu ứng xếp hàng này.",
+    "diagram": [
+      {
+        "label": "Còn chỗ trống → gần như không phải chờ",
+        "arrow": true
+      },
+      {
+        "label": "Gần bão hoà → mỗi yêu cầu xếp hàng sau những cái đang chạy",
+        "arrow": true
+      },
+      {
+        "label": "Nên đo Ở GẦN mức tải thật, không ngoại suy từ mức thấp",
+        "arrow": true
+      },
+      {
+        "label": "Và biết trước điểm gãy nằm ở đâu, trước khi tới gần nó"
+      }
+    ],
     "realWorldExample": {
-      "company": "Vì sao convexity có giá trị với nhà đầu tư trái phiếu",
-      "description": "Xét hai trái phiếu có cùng modified duration là 8 nhưng convexity khác nhau. Khi lãi suất biến động nhẹ, hai trái phiếu này hành xử gần giống nhau, nên convexity gần như không tạo khác biệt. Nhưng khi lãi suất dịch chuyển mạnh - dù lên hay xuống - trái phiếu có convexity cao hơn luôn cho kết quả tốt hơn: nó giảm ít hơn khi lãi suất tăng và tăng nhiều hơn khi lãi suất giảm. Nói cách khác, convexity cao là một đặc tính có lợi bất đối xứng, nên trong điều kiện thị trường bình thường nó thường phải trả giá bằng lợi suất thấp hơn một chút. Đây là lý do các nhà quản lý danh mục trái phiếu không chỉ khớp duration với chuẩn tham chiếu mà còn theo dõi convexity, đặc biệt khi kỳ vọng lãi suất sẽ biến động mạnh."
+      "company": "Đo ở 30% rồi suy ra 80%",
+      "description": "Một phép đo ở mức sử dụng ba mươi phần trăm nói rất ít về hành vi ở tám mươi phần trăm, vì hai điểm đó nằm ở hai đoạn khác nhau của đường cong. Kế hoạch dung lượng dựa trên phép ngoại suy như vậy luôn lạc quan hơn thực tế."
     },
     "quiz": [
       {
-        "question": "Modified duration đo lường điều gì?",
+        "question": "Vì sao mức sử dụng cao lại làm thời gian chờ tăng nhanh?",
         "options": [
-          "Số năm còn lại đến khi trái phiếu đáo hạn",
-          "Phần trăm thay đổi giá trái phiếu xấp xỉ khi lãi suất thị trường thay đổi một điểm phần trăm, theo chiều nghịch với lãi suất",
-          "Tổng số tiền lãi coupon nhà đầu tư sẽ nhận được cho đến khi đáo hạn",
-          "Xác suất tổ chức phát hành không trả được nợ"
+          "Vì tài nguyên gần đầy thì yêu cầu mới phải xếp hàng sau những cái đang chạy",
+          "Vì hệ thống dành thêm thời gian để điều phối giữa các yêu cầu đồng thời",
+          "Vì các yêu cầu tranh chấp nhau nên rốt cuộc phải thử lại rất nhiều lần mới được phục vụ",
+          "Vì bộ nhớ đệm bị đầy nên tỷ lệ phải đọc từ nguồn gốc tăng lên đáng kể"
         ],
-        "correct": 1,
-        "explanation": "Đây là điểm hay bị nhầm với kỳ hạn còn lại. Một trái phiếu 10 năm có coupon cao sẽ có duration ngắn hơn một trái phiếu 10 năm không coupon, vì dòng tiền được nhận sớm hơn nên giá ít nhạy với lãi suất hơn."
+        "correct": 0,
+        "explanation": "Đây là hiện tượng xếp hàng thuần tuý và nó xảy ra kể cả khi mọi yêu cầu đều giống hệt nhau và không có tranh chấp nào. Ba lựa chọn kia đều làm mọi thứ tệ thêm nhưng chúng không phải nguyên nhân gốc."
       },
       {
-        "question": "Yếu tố nào làm duration của một trái phiếu NGẮN lại?",
+        "question": "Vì sao đo ở mức tải thấp rồi ngoại suy lại nguy hiểm?",
         "options": [
-          "Kỳ hạn dài hơn và coupon thấp hơn",
-          "Coupon cao hơn và lợi suất thị trường cao hơn - vì cả hai đều làm dòng tiền được nhận sớm hơn về mặt trọng số giá trị hiện tại",
-          "Xếp hạng tín nhiệm của tổ chức phát hành thấp hơn",
-          "Khối lượng phát hành lớn hơn"
+          "Vì hai mức tải nằm ở hai đoạn khác nhau của đường cong nên quan hệ khác hẳn",
+          "Vì mức tải thấp không kích hoạt các cơ chế tự mở rộng của hệ thống",
+          "Vì dữ liệu đo ở mức thấp có nhiều nhiễu hơn nên kết quả kém tin cậy",
+          "Vì hệ thống ở mức tải thấp chưa đã được làm nóng nên rốt cuộc chưa đạt hiệu năng tối đa"
         ],
-        "correct": 1,
-        "explanation": "Duration về bản chất là thời gian bình quân có trọng số của các dòng tiền. Coupon cao dồn nhiều giá trị về các kỳ sớm, còn lợi suất cao làm các dòng tiền xa bị chiết khấu mạnh hơn - cả hai đều kéo trọng số về phía trước."
+        "correct": 0,
+        "explanation": "Ngoại suy tuyến tính giả định quan hệ giữ nguyên hình dạng, và đó chính là giả định bị phá ở gần bão hoà. Kết quả luôn lạc quan hơn thực tế, nên sai lầm này chỉ lộ ra vào lúc tệ nhất."
       },
       {
-        "question": "Convexity dương mang lại lợi ích gì cho nhà đầu tư trái phiếu?",
+        "question": "Vì sao biến động của thời gian xử lý làm mọi thứ tệ hơn?",
         "options": [
-          "Bảo đảm trái phiếu không bao giờ giảm giá khi lãi suất tăng",
-          "Tạo lợi ích bất đối xứng: giá giảm ít hơn mức duration dự báo khi lãi suất tăng, và tăng nhiều hơn mức duration dự báo khi lãi suất giảm",
-          "Làm tăng lợi suất đến khi đáo hạn của trái phiếu",
-          "Loại bỏ rủi ro tín dụng của tổ chức phát hành"
+          "Vì một yêu cầu chậm bất thường giữ chỗ và làm mọi yêu cầu phía sau chờ theo",
+          "Vì hệ thống hoàn toàn không dự đoán đã được nhu cầu tài nguyên nên cấp phát kém hiệu quả",
+          "Vì biến động làm các chỉ số trung bình không phản ánh đúng tình trạng thật",
+          "Vì các yêu cầu chậm thường bị hết thời gian chờ và phải được thử lại"
         ],
-        "correct": 1,
-        "explanation": "Chính tính bất đối xứng này khiến convexity là đặc tính đáng mong muốn, và cũng vì thế nó thường phải trả giá bằng lợi suất thấp hơn một chút so với trái phiếu cùng duration nhưng convexity thấp."
+        "correct": 0,
+        "explanation": "Đây là lý do giảm biến động đôi khi hiệu quả hơn giảm thời gian trung bình: cùng một mức sử dụng, hệ thống có thời gian xử lý đều đặn sẽ có đuôi độ trễ ngắn hơn hẳn hệ thống có thời gian xử lý thất thường."
       },
       {
-        "question": "Vì sao trái phiếu có quyền mua lại trước hạn (callable bond) thường có convexity âm khi lãi suất giảm?",
+        "question": "Vì sao nên biết trước điểm gãy nằm ở đâu?",
         "options": [
-          "Vì tổ chức phát hành phải trả thêm phí khi lãi suất giảm",
-          "Vì khi lãi suất giảm đủ nhiều, tổ chức phát hành có động cơ mua lại trái phiếu để phát hành mới với lãi suất thấp hơn - nên giá trái phiếu bị chặn trên và không tăng tiếp theo mức mà duration dự báo",
-          "Vì coupon của trái phiếu sẽ tự động giảm theo lãi suất thị trường",
-          "Vì nhà đầu tư buộc phải bán lại trái phiếu khi lãi suất giảm"
+          "Vì sau điểm đó, một mức tăng tải nhỏ cũng gây hậu quả lớn và tới rất nhanh",
+          "Vì cần đặt ngưỡng cảnh báo ngay tại điểm gãy để phát hiện kịp thời",
+          "Vì điểm gãy quyết định số lượng máy chủ cần chuẩn bị cho giờ cao điểm",
+          "Vì nhà cung cấp hạ tầng thường tính phí khác nhau ở hai bên điểm gãy"
         ],
-        "correct": 1,
-        "explanation": "Quyền mua lại nằm trong tay tổ chức phát hành, nên nó bất lợi cho nhà đầu tư đúng vào lúc thuận lợi nhất. Trần giá này tạo ra convexity âm, và đó là lý do trái phiếu có quyền mua lại thường phải bù cho nhà đầu tư bằng lợi suất cao hơn."
+        "correct": 0,
+        "explanation": "Trước điểm gãy bạn có thời gian phản ứng; sau nó thì không. Lựa chọn thứ hai là một cách dùng thông tin này và nó đặt ngưỡng sai chỗ - ngưỡng phải nằm TRƯỚC điểm gãy một khoảng đủ để kịp hành động."
+      },
+      {
+        "question": "Cách nào tìm được điểm gãy của một hệ thống?",
+        "options": [
+          "Tăng tải dần trên môi trường giống thật và đo cho tới khi độ trễ bắt đầu vọt lên",
+          "Tính toán từ thông số kỹ thuật của phần cứng và giới hạn của phần mềm",
+          "Quan sát dữ liệu lịch sử ở những ngày có tải cao nhất trong năm qua",
+          "So sánh với các hệ thống tương tự đã được đo đạc và công bố kết quả"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba là nguồn thông tin rẻ nhất và nó chỉ cho biết hệ thống đã chịu được tới đâu, không cho biết nó gãy ở đâu. Điểm gãy chỉ tìm được bằng cách đi tới nó có chủ đích."
       }
     ],
     "keyTakeaways": [
-      "Modified duration là ước lượng bậc một về độ nhạy giá theo lãi suất, không phải kỳ hạn còn lại của trái phiếu.",
-      "Coupon cao hơn và lợi suất cao hơn đều làm duration ngắn lại vì dòng tiền được nhận sớm hơn về mặt trọng số.",
-      "Convexity sửa phần sai số của duration; convexity dương tạo lợi ích bất đối xứng nên thường đi kèm lợi suất thấp hơn.",
-      "Trái phiếu có quyền mua lại trước hạn có convexity âm khi lãi suất giảm, vì giá bị chặn trên."
+      "Gần bão hoà thì mỗi yêu cầu xếp hàng sau những cái đang chạy - chờ tăng phi tuyến.",
+      "Ngoại suy tuyến tính từ mức tải thấp LUÔN lạc quan hơn thực tế.",
+      "Biến động thời gian xử lý làm đuôi độ trễ dài ra ở cùng một mức sử dụng.",
+      "Trước điểm gãy bạn có thời gian phản ứng; sau nó thì không.",
+      "Điểm gãy chỉ tìm được bằng cách tăng tải dần tới nó một cách có chủ đích."
     ],
     "practicePrompt": {
-      "question": "Trái phiếu có modified duration 6 và convexity 80. Lãi suất tăng 2 điểm phần trăm. Ước lượng mức thay đổi giá đầy đủ hơn là bao nhiêu?",
+      "question": "Kế hoạch dung lượng nói tải tăng 50% thì cần thêm 50% máy chủ. Vấn đề?",
       "options": [
-        "Giảm đúng 12%, vì 6 nhân 2 điểm phần trăm",
-        "Giảm khoảng 10,4%: duration −12%, convexity +1,6%",
-        "Giảm khoảng 13,6% vì convexity làm mức giảm nặng hơn",
-        "Không đổi vì hai tác động triệt tiêu nhau hoàn toàn"
+        "Nó giả định quan hệ tuyến tính, mà quan hệ đó bị phá ở gần mức bão hoà",
+        "Nó không tính tới chi phí điều phối tăng lên khi số máy chủ nhiều hơn",
+        "Nó bỏ qua thời gian cần thiết để chuẩn bị và đưa máy chủ mới vào hoạt động",
+        "Nó không phân biệt giữa tải trung bình và tải ở giờ cao điểm trong ngày"
       ],
-      "correct": 1,
-      "explanation": "Công thức ước lượng hai bậc: thay đổi giá xấp xỉ bằng trừ duration nhân biến động, cộng một nửa convexity nhân bình phương biến động. Phần convexity luôn cộng thêm khi convexity dương, nên nó làm giảm mức lỗ khi lãi suất tăng và tăng mức lãi khi lãi suất giảm."
+      "correct": 0,
+      "explanation": "Ba lựa chọn kia đều là thiếu sót thật và đều làm kế hoạch lệch vài chục phần trăm. Giả định tuyến tính thì làm kế hoạch lệch theo bậc - và nó lệch theo chiều lạc quan, tức là bạn phát hiện ra vào đúng lúc đang thiếu."
     },
     "summary": {
-      "keyIdea": "Duration cho ước lượng bậc một về độ nhạy giá theo lãi suất; convexity sửa phần sai số và trở nên quan trọng khi lãi suất biến động mạnh.",
-      "commonMistake": "Nhầm duration với kỳ hạn còn lại, hoặc dùng duration đơn thuần để dự báo giá khi lãi suất dịch chuyển lớn.",
-      "action": "Lấy một trái phiếu cụ thể, tính mức thay đổi giá theo duration rồi cộng phần điều chỉnh convexity, và so hai kết quả ở mức biến động 0,5 điểm và 3 điểm phần trăm."
+      "keyIdea": "Hệ thống phản ứng tuyến tính cho tới một điểm, và kế hoạch sai ở phía sau điểm đó.",
+      "formula": "Đo gần mức tải thật + tìm điểm gãy có chủ đích + đặt ngưỡng trước nó.",
+      "commonMistake": "Đo ở ba mươi phần trăm rồi ngoại suy tuyến tính lên tám mươi phần trăm.",
+      "action": "Tìm mức sử dụng hiện tại của tài nguyên chung chật nhất trong hệ thống."
     },
     "application": {
-      "title": "Áp dụng vào quản lý danh mục",
-      "message": "Khi xây danh mục trái phiếu, đặt duration theo quan điểm về hướng lãi suất và theo duration của chuẩn tham chiếu, rồi dùng convexity để định hình cách danh mục phản ứng khi lãi suất biến động mạnh.",
-      "secondary": "Nếu kỳ vọng lãi suất biến động mạnh nhưng không chắc về hướng, một danh mục cùng duration nhưng convexity cao hơn thường là lựa chọn tốt hơn."
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm mức sử dụng hiện tại của tài nguyên chung chật nhất trong hệ thống bạn - nhóm luồng, nhóm kết nối, hay băng thông đĩa.",
+      "secondary": "Nếu con số đó đã trên bảy mươi phần trăm ở giờ cao điểm, mọi phép ngoại suy tuyến tính bạn đang dùng để lập kế hoạch đều đang lạc quan hơn thực tế."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Câu hỏi thực tế nhất của một người giao dịch trái phiếu là: nếu lãi suất dịch chuyển, giá trái phiếu này thay đổi bao nhiêu? Duration trả lời câu đó ở mức xấp xỉ, và convexity cho biết mức xấp xỉ đó sai ở đâu."
+        "text": "Kế hoạch dung lượng dựa trên phép ngoại suy tuyến tính là cách phổ biến nhất để bị bất ngờ ở đúng lúc tải cao nhất trong năm."
       },
       {
         "type": "heading",
-        "text": "Duration: ước lượng bậc một"
-      },
-      {
-        "type": "formula",
-        "title": "Ước lượng thay đổi giá theo duration",
-        "equation": "% thay đổi giá ≈ − Modified Duration × Δ lãi suất",
-        "variables": [
-          {
-            "symbol": "Modified Duration",
-            "name": "Độ nhạy giá",
-            "description": "Cho biết giá thay đổi bao nhiêu phần trăm khi lãi suất thay đổi một điểm phần trăm. Duration 7 nghĩa là lãi suất tăng 1 điểm thì giá giảm khoảng 7%."
-          },
-          {
-            "symbol": "Δ lãi suất",
-            "name": "Mức dịch chuyển lãi suất",
-            "description": "Tính theo điểm phần trăm. Dấu trừ trong công thức phản ánh quan hệ nghịch giữa giá trái phiếu và lãi suất."
-          }
-        ],
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "− 7 × 1% = −7% · nhưng nếu lãi suất tăng 3%: −7 × 3% = −21%",
-          "result": "Ước lượng −21% sẽ lệch đáng kể so với thực tế",
-          "explanation": "Ở mức biến động nhỏ, ước lượng theo duration khá sát. Ở mức biến động 3 điểm phần trăm, đường thẳng của duration đã tách xa đường cong thật, và mức giảm thực tế sẽ nhỏ hơn 21% một cách đáng kể - đó chính là phần convexity giải thích."
-        }
+        "text": "Vì sao quan hệ không tuyến tính"
       },
       {
         "type": "callout",
-        "label": "Duration không phải kỳ hạn còn lại",
-        "text": "Đây là điểm nhầm phổ biến nhất. Một trái phiếu 10 năm coupon 8% có duration ngắn hơn hẳn một trái phiếu 10 năm không coupon, vì nhà đầu tư nhận được phần lớn giá trị sớm hơn. Duration là thời gian bình quân có trọng số của các dòng tiền, nên nó phụ thuộc vào cả kỳ hạn, mức coupon và lợi suất thị trường - chỉ trùng với kỳ hạn còn lại trong trường hợp trái phiếu không coupon."
+        "label": "Xếp hàng",
+        "text": "Khi một tài nguyên chung còn nhiều chỗ trống thì yêu cầu tới hầu như không phải chờ. Khi nó gần đầy, mỗi yêu cầu mới phải xếp hàng sau những cái đang chạy - và thời gian chờ tăng rất nhanh dù tải chỉ nhích lên một chút."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là hiện tượng thuần tuý về xếp hàng: nó xảy ra kể cả khi mọi yêu cầu giống hệt nhau và không có tranh chấp nào. Mọi thứ khác - lỗi tăng, bộ nhớ đệm kém đi, thử lại - chỉ làm nó tệ thêm."
       },
       {
         "type": "heading",
-        "text": "Ba yếu tố quyết định duration"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kỳ hạn còn lại: dài hơn thì duration dài hơn, vì dòng tiền lớn nhất nằm xa hơn về tương lai.",
-          "Mức coupon: coupon cao hơn làm duration ngắn lại, vì nhiều giá trị được nhận ở các kỳ sớm.",
-          "Lợi suất thị trường: lợi suất cao hơn làm duration ngắn lại, vì các dòng tiền xa bị chiết khấu mạnh hơn nên chiếm trọng số nhỏ hơn."
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Convexity: sửa phần sai số"
-      },
-      {
-        "type": "formula",
-        "title": "Ước lượng đầy đủ hơn với hai bậc",
-        "equation": "% thay đổi giá ≈ − Duration × Δr + ½ × Convexity × (Δr)²",
-        "example": {
-          "title": "Duration 6, convexity 80, lãi suất tăng 2 điểm phần trăm",
-          "calculation": "− 6 × 2% = −12% · rồi ½ × 80 × (0,02)² = +1,6%",
-          "result": "Ước lượng đầy đủ ≈ −10,4% thay vì −12%",
-          "explanation": "Phần convexity luôn cộng thêm khi convexity dương, bất kể lãi suất tăng hay giảm - vì số hạng chứa bình phương của mức biến động. Đó chính là nguồn gốc của tính bất đối xứng có lợi."
-        }
+        "text": "Hệ quả cho việc đo"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Convexity dương",
-          "text": "Đặc tính của trái phiếu thông thường. Khi lãi suất tăng, giá giảm ít hơn duration dự báo; khi lãi suất giảm, giá tăng nhiều hơn duration dự báo. Có lợi ở cả hai chiều, nên thường phải trả giá bằng lợi suất thấp hơn."
+          "label": "Đo ở 30%, suy ra 80%",
+          "text": "Hai điểm nằm ở hai đoạn khác nhau của đường cong. Kết quả LUÔN lạc quan hơn thực tế."
         },
         "right": {
-          "label": "Convexity âm",
-          "text": "Xuất hiện ở trái phiếu có quyền mua lại trước hạn và một số sản phẩm có gắn quyền chọn. Khi lãi suất giảm, giá bị chặn trên vì tổ chức phát hành có động cơ mua lại - bất lợi cho nhà đầu tư đúng lúc lẽ ra có lợi nhất."
+          "label": "Đo gần mức tải thật",
+          "text": "Tốn hơn và cho con số dùng được. Đây là điều kiện để một kế hoạch dung lượng có nghĩa."
         }
       },
       {
-        "type": "heading",
-        "text": "Ứng dụng trong quản lý danh mục"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Khớp duration với chuẩn tham chiếu để kiểm soát mức độ phơi nhiễm với lãi suất so với chỉ số so sánh.",
-          "Chủ động kéo dài hoặc rút ngắn duration khi có quan điểm rõ về hướng lãi suất - dài hơn nếu kỳ vọng lãi suất giảm, ngắn hơn nếu kỳ vọng lãi suất tăng.",
-          "Dùng convexity khi không chắc về hướng nhưng kỳ vọng biến động mạnh: cùng duration, danh mục convexity cao hơn cho kết quả tốt hơn ở cả hai chiều.",
-          "Với nghĩa vụ chi trả trong tương lai, khớp duration của tài sản với duration của nghĩa vụ để giảm rủi ro lãi suất - nguyên tắc nền của quản lý tài sản theo nghĩa vụ."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Hạn chế của cả duration và convexity",
-        "text": "Cả hai đều giả định đường cong lợi suất dịch chuyển song song - toàn bộ các kỳ hạn tăng hoặc giảm cùng một mức. Thực tế đường cong thường thay đổi độ dốc: kỳ hạn ngắn và kỳ hạn dài có thể biến động khác nhau, thậm chí trái chiều. Vì vậy với danh mục lớn, chỉ dùng duration tổng là chưa đủ; cần đo thêm mức phơi nhiễm theo từng vùng kỳ hạn để nắm được rủi ro khi độ dốc đường cong thay đổi."
+        "type": "paragraph",
+        "text": "Một yếu tố nữa hay bị bỏ qua: BIẾN ĐỘNG của thời gian xử lý. Một yêu cầu chậm bất thường giữ chỗ và làm mọi yêu cầu phía sau chờ theo - nên ở cùng một mức sử dụng, hệ thống có thời gian xử lý đều đặn sẽ có đuôi độ trễ ngắn hơn hẳn."
       },
       {
         "type": "closing",
         "lines": [
-          "Duration cho bạn câu trả lời nhanh và đủ tốt cho các biến động nhỏ.",
-          "Convexity cho biết câu trả lời đó lệch bao nhiêu - và mức lệch đó lớn dần đúng vào lúc thị trường biến động mạnh nhất."
+          "Việc đáng làm nhất là tìm ĐIỂM GÃY một cách có chủ đích: tăng tải dần trên môi trường giống thật cho tới khi độ trễ bắt đầu vọt lên.",
+          "Dữ liệu lịch sử không thay được phép đo này - nó chỉ cho biết hệ thống đã chịu được tới đâu, không cho biết nó gãy ở đâu. Và trước điểm gãy bạn có thời gian phản ứng; sau nó thì không."
         ]
       }
-    ],
-    "diagram": [
-      {
-        "label": "Lãi suất thị trường dịch chuyển",
-        "arrow": true
-      },
-      {
-        "label": "Duration cho ước lượng bậc một: −Duration × Δr",
-        "arrow": true
-      },
-      {
-        "label": "Convexity điều chỉnh phần sai số: +½ × Convexity × (Δr)²",
-        "arrow": true
-      },
-      {
-        "label": "Convexity dương → lợi bất đối xứng; convexity âm → giá bị chặn trên",
-        "arrow": true
-      },
-      {
-        "label": "Quản lý danh mục: khớp duration, dùng convexity định hình phản ứng khi biến động mạnh",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "bond",
+    ]
   },
 
 

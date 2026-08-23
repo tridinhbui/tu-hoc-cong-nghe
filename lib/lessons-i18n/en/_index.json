@@ -79,11 +79,6 @@
     "subtitle": "Why a very wealthy family may still be better off without an office of its own",
     "duration": "9 min"
   },
-  "cau-truc-quy-pe-vc-gp-lp": {
-    "title": "Private markets, lesson 1: PE/VC fund structure - GP, LP and the ten-year life",
-    "subtitle": "Capital commitments, drawdowns, the investment period, and why a closed-end fund must have an end date",
-    "duration": "11 min"
-  },
   "cau-truc-von-toi-uu-cho-doanh-nghiep": {
     "title": "CFO & Operations 8: The optimal capital structure",
     "subtitle": "How much debt is 'just enough' - not too little, not too much",
@@ -92,11 +87,6 @@
   "chi-phi-duoc-tru-va-khong-duoc-tru": {
     "title": "Standards & Tax, Lesson 6: Deductible and non-deductible expenses",
     "subtitle": "Why accounting profit and taxable profit are never the same number",
-    "duration": "10 min"
-  },
-  "chi-so-vn-index-va-von-hoa-chi-phoi": {
-    "title": "Vietnam Market, Lesson 5: What the VN-Index says and what it hides",
-    "subtitle": "Why the index can be green while most portfolios are red",
     "duration": "10 min"
   },
   "chon-chi-so-do-luong-va-vanity-metric": {
@@ -119,11 +109,6 @@
     "subtitle": "Stationarity, autoregression, volatility clustering, and the quiet biases that wreck every backtest",
     "duration": "12 min"
   },
-  "co-che-giao-dich-tren-thi-truong-viet-nam": {
-    "title": "Vietnam Market, Lesson 1: Trading mechanics - settlement cycle, price bands and order types",
-    "subtitle": "The rules of the game that decide what you can trade, when, and at what price",
-    "duration": "11 min"
-  },
   "co-che-tao-hoan-etf-authorized-participants": {
     "title": "The ETF creation and redemption mechanism: why an ETF price does not drift far from net asset value",
     "subtitle": "Authorized Participants and the arbitrage loop that keeps an ETF aligned with NAV - and when that mechanism stops working",
@@ -133,11 +118,6 @@
     "title": "Deep-dive case: Commodities Part 2",
     "subtitle": "Supply, demand, inventory - the three things that price a commodity",
     "duration": "6 min"
-  },
-  "cong-bo-thong-tin-va-quan-tri-cong-ty-niem-yet": {
-    "title": "Vietnam Market, Lesson 4: Disclosure and corporate governance - the small investor's first line of defence",
-    "subtitle": "Related-party transactions, cross-ownership, major shareholders and the signals to read in AGM documents",
-    "duration": "11 min"
   },
   "credit-debit-phan-2": {
     "title": "Journal entries in practice: from the rule to the ledger",
@@ -179,11 +159,6 @@
     "subtitle": "Why most of a deal's synergy value is decided (or destroyed) within the first 100 days",
     "duration": "8 min"
   },
-  "dinh-gia-bat-dong-san-tai-san-vo-hinh": {
-    "title": "Valuing real estate & intangible assets - when DCF is not enough",
-    "subtitle": "Valuing a building or a brand is different from valuing a share - you need other methods.",
-    "duration": "8 min"
-  },
   "dinh-gia-tai-san-rong": {
     "title": "Valuing a company as if you sold everything and repaid the debt",
     "subtitle": "Asset-based valuation, NAV and RNAV - the valuation strand, following on from ROIC and Enterprise Value",
@@ -198,11 +173,6 @@
     "title": "Dividends",
     "subtitle": "FCF coverage and the quality of the cash behind the payout",
     "duration": "6 min"
-  },
-  "do-hieu-suat-quy-irr-moic-dpi-tvpi": {
-    "title": "Private markets, lesson 3: measuring fund performance - IRR, MOIC, DPI, TVPI and the J-curve",
-    "subtitle": "Why IRR can mislead, and which set of metrics actually tells you the money has come back",
-    "duration": "12 min"
   },
   "doanh-thu-nha-thau-theo-tien-do": {
     "title": "Contractors, Part 1: Revenue follows progress, not invoices",
@@ -239,11 +209,6 @@
     "subtitle": "From sheet layout to a balance check of zero: how to build a model that actually runs",
     "duration": "13 min"
   },
-  "duration-va-convexity-do-nhay-gia-trai-phieu": {
-    "title": "Duration and Convexity: measuring a bond's price sensitivity to interest rates",
-    "subtitle": "Duration gives the first-order estimate, convexity corrects the error - and why that difference matters when rates move sharply",
-    "duration": "10 min"
-  },
   "earnings-call-va-guidance-quan-ly-ky-vong": {
     "title": "Earnings Calls & Guidance: how IR prepares for and manages market expectations",
     "subtitle": "Why a company growing well can still see its stock sold off the moment earnings land",
@@ -269,11 +234,6 @@
     "subtitle": "How to build ESG into a model without turning it into an arbitrary number",
     "duration": "9 min"
   },
-  "ffo-affo-chi-so-loi-nhuan-cua-reit": {
-    "title": "FFO and AFFO: why you do not value a REIT on accounting profit",
-    "subtitle": "Property depreciation makes a REIT's earnings look worse than reality - here are the two measures that replace them",
-    "duration": "9 min"
-  },
   "financial-risk": {
     "title": "The categories of financial risk",
     "subtitle": "Credit, liquidity, interest rate, market and concentration risk",
@@ -292,11 +252,6 @@
   "gia-goi-thau-va-hieu-qua-du-an-xay-dung": {
     "title": "Contractors, Part 3: Pricing a bid and measuring what it really returns",
     "subtitle": "Why two packages on the same 10% margin can return wildly different IRRs, and how to read payment terms as a financial variable",
-    "duration": "11 min"
-  },
-  "giao-dich-ky-quy-va-call-margin": {
-    "title": "Vietnam Market, Lesson 6: Margin trading and the call-margin spiral",
-    "subtitle": "The mechanism that turns one down session into a run of limit-down sessions",
     "duration": "11 min"
   },
   "hedging-instruments-fx-derivatives": {
@@ -564,20 +519,10 @@
     "subtitle": "The core management accounting tool for answering: how much do we have to sell to make money, and what does a change in price do to profit",
     "duration": "7 min"
   },
-  "phan-tich-ky-thuat-cho-moi-gioi": {
-    "title": "Technical analysis for stockbrokers",
-    "subtitle": "Support, resistance and moving averages - the simplest tools for forming a market view",
-    "duration": "7 min"
-  },
   "phan-tich-variance-thuc-te-vs-ke-hoach": {
     "title": "CFO & Operations, Lesson 3: Variance analysis - actual against plan",
     "subtitle": "Missing the plan is not automatically bad - what matters is understanding why",
     "duration": "7 min"
-  },
-  "phi-quan-ly-carry-va-waterfall": {
-    "title": "Private markets, Lesson 2: Management fees, carry and the waterfall - how a fund manager gets paid",
-    "subtitle": "The hurdle rate, the catch-up mechanism and the order in which money is distributed",
-    "duration": "12 min"
   },
   "phim-tat-excel-va-ky-luat-ban-phim": {
     "title": "Excel, Lesson 1: Keyboard discipline - why a modelling test bans the mouse",
@@ -619,21 +564,6 @@
     "subtitle": "VaR, expected shortfall, backtesting and stress testing - and the dangerous limits of every risk model.",
     "duration": "14 min"
   },
-  "quant-strategies-momentum-mean-reversion": {
-    "title": "Quant strategies, the basics: momentum, mean reversion and statistical arbitrage",
-    "subtitle": "The three most common families of quantitative strategy - and the mathematical or psychological logic behind each",
-    "duration": "8 min"
-  },
-  "quy-mo-etf-noi-va-chung-chi-quy": {
-    "title": "The Vietnamese market, Lesson 7: open-ended funds, domestic ETFs and fund certificates",
-    "subtitle": "How to reach diversification while your capital is still small",
-    "duration": "10 min"
-  },
-  "quy-trinh-dau-tu-quy-tu-thesis-den-portfolio": {
-    "title": "A fund's investment process: from investment thesis to portfolio construction",
-    "subtitle": "A professional fund does not buy shares at random - this is the systematic process behind every decision",
-    "duration": "8 min"
-  },
   "quy-trinh-hoach-dinh-tai-chinh-6-buoc": {
     "title": "The six-step financial planning process: the standard framework of every financial advisor",
     "subtitle": "From gathering information to monitoring the plan - the systematic process behind every piece of professional financial advice",
@@ -648,11 +578,6 @@
     "title": "Standards & Tax, Lesson 8: tax finalisation and tax audits",
     "subtitle": "What happens when the tax authority re-examines what has already been declared",
     "duration": "9 min"
-  },
-  "room-ngoai-va-nang-hang-thi-truong": {
-    "title": "The Vietnamese market, Lesson 2: foreign ownership room and market reclassification - where foreign capital comes from",
-    "subtitle": "Foreign ownership limits, market classification criteria, and what they mean for valuation",
-    "duration": "11 min"
   },
   "rui-ro-khi-hau-nhu-rui-ro-tai-chinh": {
     "title": "Climate risk as a financial risk",
@@ -714,11 +639,6 @@
     "subtitle": "Why 70% of M&A deals create no value for the buyer's shareholders - and what that has to do with psychology",
     "duration": "8 min"
   },
-  "thoai-von-va-thi-truong-thu-cap": {
-    "title": "Private markets, Lesson 4: Exits and the secondary market - when paper money becomes money",
-    "subtitle": "The four exit routes, fund life pressure, and the role of the market in fund interests",
-    "duration": "11 min"
-  },
   "thue-gtgt-va-thue-nha-thau": {
     "title": "Standards & Tax, Lesson 4: VAT and foreign contractor tax - a cash flow effect, not a profit effect",
     "subtitle": "Why a business that merely collects a tax on someone else's behalf can still be killed by it",
@@ -738,11 +658,6 @@
     "title": "CFO & Operations, Lesson 9: Wrap-up - the role of the modern CFO",
     "subtitle": "From bookkeeper to strategic partner of the CEO",
     "duration": "7 min"
-  },
-  "trai-phieu-doanh-nghiep-rieng-le-bai-hoc": {
-    "title": "Vietnam Markets, Lesson 3: Privately placed corporate bonds - anatomy of a crisis",
-    "subtitle": "Private placement, professional investors, and the lesson about refinancing risk",
-    "duration": "12 min"
   },
   "treasury-management-quan-ly-dong-tien": {
     "title": "CFO & Operations, Lesson 5: Treasury management - running corporate cash flow",
@@ -773,11 +688,6 @@
     "title": "Standards & Tax, Lesson 7: Tax incentives and related-party transactions",
     "subtitle": "Two mechanisms that shape the tax burden of a foreign-invested business",
     "duration": "10 min"
-  },
-  "valuation-report-tinh-hop-ly-dinh-gia": {
-    "title": "Valuation Reports & Reasonableness - Presenting a valuation convincingly",
-    "subtitle": "A valuation is a number, but a valuation report has to explain why that number is reasonable.",
-    "duration": "7 min"
   },
   "value-at-risk-var-stress-testing": {
     "title": "Value at Risk (VaR) & Stress Testing - Measuring the maximum risk",
