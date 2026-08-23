@@ -63091,412 +63091,383 @@ export const lessons: Lesson[] = [
     }
   },
   {
-    "id": 1055,
-    "slug": "bang-can-doi-ke-toan",
-    "interactiveType": "process",
-    "title": "Đọc Bảng Cân Đối Kế Toán",
-    "subtitle": "Doanh nghiệp đang có gì và tiền đến từ đâu?",
+    "title": "Hệ thống đang có gì và dung lượng đến từ đâu",
+    "subtitle": "Một cách đọc hạ tầng cho biết phần nào là của bạn và phần nào đang đi mượn",
     "duration": "8 phút",
-    "difficulty": "Dễ",
-    "emoji": "⚖️",
-    "track": "bonus",
-    "openingQuestion": "Một doanh nghiệp có tổng tài sản 390 tỷ và vốn chủ sở hữu 240 tỷ. Nợ phải trả là bao nhiêu?",
+    "difficulty": "Trung bình",
+    "emoji": "🏗️",
+    "whyItMatters": "Hai hệ thống cùng phục vụ một lượng tải như nhau có thể ở hai tình trạng hoàn toàn khác nhau, và khác biệt ấy chỉ hiện ra khi tách phần dung lượng sở hữu khỏi phần đang đi mượn.",
+    "openingQuestion": "Hai hệ thống cùng chịu 10.000 yêu cầu mỗi giây. Cái nào bền hơn?",
     "openingOptions": [
-      "150 tỷ",
-      "630 tỷ (= 390 + 240, cộng hai bên)",
-      "Không tính được vì thiếu doanh thu",
-      "390 tỷ, vì tài sản nào cũng do nợ tài trợ"
+      "Cái ít phụ thuộc vào dung lượng co giãn theo nhu cầu hơn",
+      "Cái có nhiều máy hơn, vì tải được chia mỏng ra trên từng máy nên mỗi máy nhẹ hơn",
+      "Cái có chi phí hạ tầng thấp hơn, vì nó dùng tài nguyên hiệu quả hơn hẳn",
+      "Hai cái tương đương, vì cùng phục vụ được một lượng tải như nhau"
     ],
     "correctOption": 0,
-    "explanation": "Tài sản = Nợ phải trả + Vốn chủ sở hữu, nên Nợ = 390 − 240 = 150 tỷ. Phương trình này không phải một quy ước tuỳ ý: mỗi đồng tài sản đều phải đến từ đâu đó, hoặc người khác cho nợ, hoặc cổ đông bỏ vào, hoặc doanh nghiệp tự kiếm rồi giữ lại. Đó là lý do bảng này luôn cân, và cũng là lý do khi nó không cân thì lỗi nằm ở người ghi sổ chứ không ở doanh nghiệp. Cộng hai bên lại thành 630 tỷ là nhầm nguồn vốn với tài sản - hai cột của cùng một bảng, không phải hai khoản cộng dồn.",
+    "explanation": "Dung lượng co giãn theo nhu cầu rất tiện nhưng nó là dung lượng đi mượn: nó phụ thuộc vào việc nhà cung cấp còn máy rảnh, vào hạn mức tài khoản, và vào việc bạn còn trả được tiền. Ba điều kiện ấy đều có thể hụt cùng lúc, và chúng hụt đúng vào lúc nhu cầu tăng đột ngột - tức đúng lúc cần chúng nhất.",
     "diagram": [
-      { "label": "Tài sản", "arrow": true },
-      { "label": "Nợ phải trả", "arrow": true },
-      { "label": "Vốn chủ sở hữu", "arrow": true },
-      { "label": "Hai bên luôn bằng nhau", "arrow": false }
+      {
+        "label": "Tổng dung lượng đang dùng",
+        "arrow": true
+      },
+      {
+        "label": "Tách phần sở hữu và phần đi mượn",
+        "arrow": true
+      },
+      {
+        "label": "Xem phần mượn phụ thuộc vào ai",
+        "arrow": true
+      },
+      {
+        "label": "Biết hệ thống chịu được cú sốc nào"
+      }
     ],
     "realWorldExample": {
-      "company": "Masan Group",
-      "description": "Tổng tài sản khoảng 120.000 tỷ, nợ phải trả khoảng 80.000 tỷ và vốn chủ sở hữu khoảng 40.000 tỷ - tức D/E quanh 2,0x. Trong đó goodwill và tài sản vô hình khoảng 30.000 tỷ, gần bằng cả phần vốn chủ, đến từ các thương vụ M&A."
+      "company": "Hạn mức tài khoản, không phải máy chủ",
+      "description": "Một hệ thống được thiết kế để tự thêm máy khi tải tăng, đã thử nghiệm nhiều lần và luôn hoạt động. Trong đợt cao điểm thật, việc thêm máy dừng ở con số ba mươi và không đi tiếp. Không phải nhà cung cấp hết máy - tài khoản có một hạn mức mặc định là ba mươi máy cho loại đó, đặt từ ngày mở tài khoản, và không ai từng chạm tới nó nên không ai từng biết nó tồn tại."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Nếu báo cáo kết quả kinh doanh là đoạn phim ghi lại những gì xảy ra trong một khoảng thời gian, thì bảng cân đối kế toán là một ảnh chụp tại đúng một thời điểm: doanh nghiệp đang có gì, và số tiền mua những thứ đó đến từ đâu."
+        "text": "Cách đọc dưới đây mượn hình dạng từ một bảng kế toán, và nó hữu ích vì cùng một lý do: nó buộc hai vế phải khớp nhau, nên thứ gì đó không khớp là thứ gì đó đang bị bỏ sót."
       },
-      {
-        "type": "paragraph",
-        "text": "Phương trình nền tảng là Tài sản = Nợ phải trả + Vốn chủ sở hữu, và nó luôn phải cân - đó chính là chữ \"cân đối\" trong tên gọi. Mỗi đồng tài sản đều có nguồn: hoặc ai đó cho nợ, hoặc cổ đông góp vào, hoặc doanh nghiệp tự kiếm được rồi giữ lại."
-      },
-      { "type": "heading", "text": "Ba phần của bảng cân đối" },
-      {
-        "type": "conceptTable",
-        "title": "Đọc từ trên xuống",
-        "subtitle": "Mỗi phần trả lời một câu hỏi khác nhau",
-        "concepts": [
-          {
-            "vi": "Tài sản",
-            "en": "Assets",
-            "def": "Doanh nghiệp đang có gì. Ngắn hạn là tiền, phải thu, tồn kho - những thứ thành tiền trong 12 tháng. Dài hạn là nhà xưởng thiết bị, tài sản vô hình, goodwill, đầu tư dài hạn."
-          },
-          {
-            "vi": "Nợ phải trả",
-            "en": "Liabilities",
-            "def": "Doanh nghiệp nợ ai. Ngắn hạn là phải trả nhà cung cấp, vay ngắn hạn, doanh thu chưa thực hiện. Dài hạn là vay dài hạn, trái phiếu, nghĩa vụ hưu trí."
-          },
-          {
-            "vi": "Vốn chủ sở hữu",
-            "en": "Equity",
-            "def": "Phần còn lại sau khi trừ hết nợ, thuộc về cổ đông. Gồm vốn góp từ cổ phần phát hành và lợi nhuận giữ lại tích lũy qua các năm."
-          }
-        ]
-      },
-      { "type": "heading", "text": "Một bảng cân đối cụ thể" },
       {
         "type": "formula",
-        "title": "Hai cột phải bằng nhau",
-        "equation": "Tài sản = Nợ phải trả + Vốn chủ sở hữu",
-        "example": {
-          "title": "Bên tài sản, bên nguồn vốn",
-          "calculation": "Tiền 50 + Phải thu 80 + Tồn kho 60 + Nhà xưởng thiết bị 200 = 390 tỷ",
-          "result": "390 tỷ = 150 tỷ nợ phải trả + 240 tỷ vốn chủ sở hữu",
-          "explanation": "Hai cột không phải hai khoản cộng dồn. Chúng là cùng một số tiền được nhìn từ hai phía: bên trái là tiền đang nằm ở đâu, bên phải là tiền đến từ ai."
-        }
-      },
-      { "type": "heading", "text": "Ba câu hỏi khi đọc bảng cân đối" },
-      {
-        "type": "list",
-        "items": [
-          "Doanh nghiệp có đủ thanh khoản không? Current Ratio = Tài sản ngắn hạn / Nợ ngắn hạn. Trên 1,5 là thoải mái; dưới 1,0 là nợ đến hạn nhiều hơn thứ có thể bán được để trả.",
-          "Đòn bẩy ở mức nào? D/E = Tổng nợ / Vốn chủ sở hữu. Dưới 1,0 thường an toàn; trên 2,0 là đòn bẩy cao - ROE được khuếch đại, nhưng lỗ cũng vậy.",
-          "Chất lượng tài sản có tốt không? Xem tỷ trọng goodwill và tài sản vô hình trên tổng tài sản, cùng mức dự phòng nợ khó thu. Goodwill quá lớn là rủi ro ghi giảm."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Current Ratio cao chưa chắc là tốt",
-        "text": "Một doanh nghiệp có Current Ratio 4,0 vì tồn kho ứ và khách hàng không trả tiền thì đang gặp vấn đề, không phải đang an toàn. Con số ấy phải đọc cùng vòng quay tồn kho và số ngày thu tiền, không đọc một mình."
-      },
-      { "type": "heading", "text": "Masan Group - đòn bẩy và goodwill" },
-      {
-        "type": "paragraph",
-        "text": "Masan là công ty holding với nhiều mảng - Masan Consumer, WinCommerce, Masan MEATLife - và bảng cân đối của họ cho thấy rõ cách một tập đoàn dùng đòn bẩy để mở rộng nhanh."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tổng tài sản: khoảng 120.000 tỷ",
-          "Nợ phải trả: khoảng 80.000 tỷ, tức D/E quanh 2,0x",
-          "Vốn chủ sở hữu: khoảng 40.000 tỷ",
-          "Goodwill và tài sản vô hình: khoảng 30.000 tỷ, phần lớn từ các thương vụ M&A"
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Chỗ cần theo dõi",
-        "text": "Goodwill khoảng 30.000 tỷ so với vốn chủ 40.000 tỷ nghĩa là ba phần tư phần thuộc cổ đông đang nằm ở một con số không bán được. Nếu các thương vụ không đạt kỳ vọng, một lần ghi giảm goodwill sẽ làm lợi nhuận xấu đột ngột trong khi hoạt động kinh doanh không đổi gì."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Tài sản = Nợ phải trả + Vốn chủ sở hữu, luôn cân - hai cột là một số tiền nhìn từ hai phía.",
-          "Current Ratio trên 1,5 và D/E dưới 2,0 là hai ngưỡng đọc đầu tiên, nhưng phải đọc cùng chất lượng tài sản.",
-          "Goodwill lớn buộc phải xem lại lịch sử M&A."
-        ]
-      }
-    ],
-    "quiz": [
-      {
-        "question": "Phương trình kế toán cơ bản là gì?",
-        "options": [
-          "Nợ phải trả = Tài sản + Vốn chủ sở hữu",
-          "Tài sản = Nợ phải trả + Vốn chủ sở hữu",
-          "Tài sản = Doanh thu − Chi phí trong kỳ",
-          "Vốn chủ sở hữu = Tài sản × Đòn bẩy"
-        ],
-        "correct": 1,
-        "explanation": "Tài sản = Nợ phải trả + Vốn chủ sở hữu. Đây là nền của kế toán kép: mọi giao dịch đều ghi hai bút toán giữ nguyên phương trình. Chuyển vế thành Nợ = Tài sản + Vốn chủ là lỗi hay gặp, và nó làm nợ bị phóng đại lên bằng cả tổng tài sản cộng vốn chủ."
-      },
-      {
-        "question": "Tài sản ngắn hạn gồm những gì?",
-        "options": [
-          "Nhà máy, máy móc, bất động sản đầu tư dài hạn của doanh nghiệp",
-          "Thương hiệu, bằng sáng chế và goodwill từ các thương vụ M&A",
-          "Tiền, phải thu, tồn kho - chuyển thành tiền trong 12 tháng",
-          "Khoản đầu tư dài hạn vào công ty liên kết và công ty con"
-        ],
-        "correct": 2,
-        "explanation": "Tài sản ngắn hạn là những gì dự kiến thành tiền trong vòng 12 tháng: tiền và tương đương tiền, khoản phải thu, hàng tồn kho, chi phí trả trước. Nhà xưởng, thương hiệu và goodwill đều là tài sản dài hạn - chúng tạo ra tiền qua nhiều năm, không thanh lý được trong một năm mà không phá vỡ hoạt động."
-      },
-      {
-        "question": "Debt-to-Equity bằng 3,0 nghĩa là gì?",
-        "options": [
-          "Có 3 đồng vốn chủ sở hữu trên mỗi đồng nợ (đảo tử và mẫu)",
-          "Có 3 đồng nợ trên mỗi đồng vốn chủ sở hữu",
-          "Tổng nợ bằng 300% doanh thu của cả năm",
-          "Doanh nghiệp đã lỗ ba năm liên tiếp"
-        ],
-        "correct": 1,
-        "explanation": "D/E = Tổng nợ / Vốn chủ sở hữu, nên 3,0 là cứ một đồng vốn chủ có ba đồng nợ. Đòn bẩy cao khuếch đại ROE khi kinh doanh tốt và khuếch đại lỗ khi xấu. Đảo tử và mẫu ra 0,33 - cùng một doanh nghiệp, đọc thành ít nợ hơn ba lần thay vì nhiều nợ hơn ba lần."
-      },
-      {
-        "question": "Goodwill trên bảng cân đối phát sinh khi nào?",
-        "options": [
-          "Khi thương hiệu của doanh nghiệp trở nên nổi tiếng trên thị trường",
-          "Khi giá cổ phiếu tăng vượt giá trị sổ sách mỗi cổ phần",
-          "Khi mua lại một doanh nghiệp trên giá trị tài sản thuần",
-          "Khi doanh nghiệp đạt lợi nhuận cao nhiều năm liền"
-        ],
-        "correct": 2,
-        "explanation": "Goodwill = giá mua trong thương vụ M&A − giá trị hợp lý của tài sản thuần nhận được. Nó ghi nhận phần trả thêm cho thương hiệu, tệp khách hàng, đội ngũ. Thương hiệu tự xây thì KHÔNG được ghi nhận - đó là lý do một doanh nghiệp nổi tiếng mà chưa từng đi mua ai có thể không có đồng goodwill nào."
-      },
-      {
-        "question": "Current Ratio bằng 0,6 cho thấy điều gì?",
-        "options": [
-          "Tài sản ngắn hạn đang gấp đôi nợ ngắn hạn, tức rất an toàn",
-          "Doanh nghiệp đang ở giai đoạn tăng trưởng cao nên cần vốn",
-          "Nợ ngắn hạn lớn hơn tài sản ngắn hạn - rủi ro thanh khoản",
-          "Current Ratio không nói gì về sức khoẻ tài chính"
-        ],
-        "correct": 2,
-        "explanation": "Current Ratio = Tài sản ngắn hạn / Nợ ngắn hạn, nên 0,6 nghĩa là mỗi đồng nợ đến hạn chỉ có 0,6 đồng tài sản ngắn hạn để trả. Không phải cứ dưới 1,0 là sắp vỡ nợ - chuỗi bán lẻ thu tiền ngay và trả nhà cung cấp sau thường xuyên ở mức này - nhưng nó là con số buộc phải đọc tiếp, không phải con số bỏ qua."
-      }
-    ],
-    "practicePrompt": {
-      "question": "Doanh nghiệp có tài sản ngắn hạn 140 tỷ, nợ ngắn hạn 200 tỷ, tổng nợ 500 tỷ và vốn chủ sở hữu 250 tỷ. Nhận định nào đúng?",
-      "options": [
-        "Current Ratio 0,7 và D/E 2,0 - cả thanh khoản lẫn đòn bẩy đều đáng lo",
-        "Current Ratio 1,4 và D/E 2,0 - thanh khoản ổn, chỉ đòn bẩy cao",
-        "Current Ratio 0,7 và D/E 0,5 - thanh khoản yếu nhưng nợ thấp",
-        "Chưa kết luận được vì thiếu số doanh thu và lợi nhuận"
-      ],
-      "correct": 0,
-      "explanation": "Current Ratio = 140 / 200 = 0,7 và D/E = 500 / 250 = 2,0. Cả hai đều ở phía xấu của ngưỡng đọc đầu tiên. Phương án 1,4 là đảo tử và mẫu của Current Ratio; phương án 0,5 là đảo tử và mẫu của D/E. Cùng một bảng số, đảo một phép chia là ra kết luận ngược lại."
-    },
-    "keyTakeaways": [
-      "Tài sản = Nợ phải trả + Vốn chủ sở hữu, và nó luôn cân: hai cột là cùng một số tiền nhìn từ hai phía.",
-      "Tài sản ngắn hạn là những gì thành tiền trong 12 tháng - nhà xưởng và goodwill không nằm trong đó.",
-      "Current Ratio trên 1,5 và D/E dưới 2,0 là hai ngưỡng đọc đầu tiên, không phải kết luận cuối cùng.",
-      "Goodwill chỉ sinh ra từ M&A. Thương hiệu tự xây không được ghi nhận, còn goodwill lớn là rủi ro ghi giảm."
-    ],
-    "summary": {
-      "keyIdea": "Bảng cân đối là ảnh chụp tại một thời điểm: bên trái tiền đang nằm ở đâu, bên phải tiền đến từ ai.",
-      "formula": "Tài sản = Nợ phải trả + Vốn chủ sở hữu;  Current Ratio = TS ngắn hạn / Nợ ngắn hạn;  D/E = Tổng nợ / Vốn chủ",
-      "commonMistake": "Đảo tử và mẫu của Current Ratio hoặc D/E, và coi Current Ratio cao là dấu hiệu tốt mà không xem vì sao nó cao.",
-      "action": "Mở bảng cân đối của một doanh nghiệp bạn quan tâm, tính Current Ratio và D/E, rồi tìm tỷ trọng goodwill trên tổng tài sản."
-    },
-    "application": {
-      "message": "Lần tới đọc một báo cáo, tính hai con số này trước khi đọc bất kỳ dòng bình luận nào: Current Ratio và D/E. Chúng cho biết nên đọc phần còn lại với thái độ nào.",
-      "secondary": "Trong công việc thật, đây là hai con số đầu tiên mọi bộ hồ sơ tín dụng và mọi bản thẩm định thương vụ đều tính."
-    }
-  },
-  {
-    "id": 1056,
-    "slug": "chon-phuong-phap-dinh-gia",
-    "title": "Chọn Phương Pháp Định Giá",
-    "subtitle": "\"How do you choose the valuation method?\" - câu phỏng vấn có bẫy",
-    "duration": "7 phút",
-    "difficulty": "Khó",
-    "emoji": "🧩",
-    "track": "bonus",
-    "openingQuestion": "Bạn định giá một startup SaaS: ARR tăng 80% mỗi năm nhưng vẫn đang lỗ. Phương pháp nào ÍT phù hợp nhất?",
-    "openingOptions": [
-      "Asset-based, tức giá trị sổ sách",
-      "EV/Revenue so với các SaaS niêm yết cùng ngành",
-      "DCF với giá trị cuối kỳ chiếm phần lớn giá trị",
-      "Precedent transactions từ các thương vụ SaaS gần đây"
-    ],
-    "correctOption": 0,
-    "explanation": "Giá trị của một doanh nghiệp SaaS nằm ở doanh thu lặp lại, tỷ lệ giữ khách và tốc độ tăng trưởng - không nằm ở tài sản hữu hình. Bảng cân đối của họ gần như chỉ có tiền và vài cái máy tính, nên giá trị sổ sách không nói được gì. Ba phương pháp còn lại đều dùng được, chỉ khác mức độ: EV/Revenue là lựa chọn thường thấy nhất vì chưa có lợi nhuận để chia; DCF vẫn chạy được nhưng giá trị cuối kỳ sẽ chiếm phần lớn nên kết quả rất nhạy với giả định; precedent transactions hữu ích nếu ngành vừa có thương vụ.",
-    "diagram": [
-      { "label": "Đặc điểm doanh nghiệp", "arrow": true },
-      { "label": "Chọn phương pháp", "arrow": true },
-      { "label": "Giải thích vì sao", "arrow": true },
-      { "label": "Đối chiếu chéo", "arrow": false }
-    ],
-    "realWorldExample": {
-      "company": "Buổi phỏng vấn IB",
-      "description": "Câu \"How do you choose your valuation method?\" gần như luôn xuất hiện, và người phỏng vấn không chờ định nghĩa. Họ chờ xem ứng viên đi từ đặc điểm doanh nghiệp tới lựa chọn phương pháp, hay đi từ danh sách phương pháp đã học thuộc."
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Đây là câu hỏi mà ai cũng chuẩn bị sai. Người phỏng vấn không hỏi ba phương pháp định giá là gì - họ đã biết. Họ hỏi để xem bạn chọn công cụ theo hoàn cảnh, hay chọn theo thứ mình thuộc lòng."
-      },
-      {
-        "type": "paragraph",
-        "text": "Khác biệt nằm ở chiều của câu trả lời. Đi từ \"có ba phương pháp chính, ưu nhược điểm là...\" là đọc lại giáo trình. Đi từ \"doanh nghiệp này có dòng tiền ổn định nên tôi ưu tiên DCF\" là cách một người làm nghề thật nói."
-      },
-      { "type": "heading", "text": "Bốn bước để không trả lời như đọc bài" },
-      {
-        "type": "list",
-        "items": [
-          "Context - đặc điểm doanh nghiệp này là gì: dòng tiền ổn định hay chưa có lợi nhuận, tài sản nặng hay vô hình, có peers niêm yết hay không.",
-          "Method - chọn công cụ khớp với đặc điểm đó, và chỉ chọn một cái làm chính.",
-          "Why - nói rõ vì sao công cụ đó khớp, bằng một câu.",
-          "Cross-check - đối chiếu với một phương pháp thứ hai, và giải thích được nếu hai bên lệch nhau."
-        ]
-      },
-      { "type": "heading", "text": "Bốn phương pháp, và khi nào dùng cái nào" },
-      {
-        "type": "conceptTable",
-        "title": "Chọn theo doanh nghiệp, không theo thói quen",
-        "subtitle": "Mỗi phương pháp có một điểm yếu, và biết điểm yếu mới là phần được đánh giá",
-        "concepts": [
+        "title": "Hai vế phải khớp",
+        "variables": [
           {
-            "vi": "Chiết khấu dòng tiền",
-            "en": "DCF",
-            "def": "Dùng khi dòng tiền ổn định và dự báo được - doanh nghiệp trưởng thành như điện nước, hàng tiêu dùng, sản xuất. Cho giá trị nội tại, không phụ thuộc tâm lý thị trường. Điểm yếu: rất nhạy với tỷ lệ chiết khấu và giả định giá trị cuối kỳ."
+            "symbol": "Tổng",
+            "name": "Toàn bộ dung lượng hệ thống đang thật sự dùng",
+            "description": "Đo bằng đơn vị của việc: yêu cầu mỗi giây, bản ghi mỗi phút, hoặc terabyte đang lưu."
           },
           {
-            "vi": "So sánh công ty niêm yết",
-            "en": "Trading comps",
-            "def": "Dùng khi muốn phản ánh mức giá thị trường đang trả cho doanh nghiệp tương tự. Áp dụng được với mọi công ty có peers niêm yết. Điểm yếu: phụ thuộc tâm lý thị trường, và không có peer nào giống hoàn toàn."
+            "symbol": "Sở hữu",
+            "name": "Phần chạy trên tài nguyên đã đặt sẵn và trả tiền trước",
+            "description": "Luôn có mặt, không phụ thuộc ai, và giới hạn của nó là một con số biết trước."
           },
           {
-            "vi": "So sánh thương vụ",
-            "en": "Precedent transactions",
-            "def": "Dùng khi ngành vừa có M&A và cần hiểu phần trả thêm để mua quyền kiểm soát. Đặc biệt hữu ích khi mục tiêu là công ty chưa niêm yết. Điểm yếu: dữ liệu cũ, bối cảnh thị trường lúc đó có thể khác; ngành nhỏ thì quá ít thương vụ."
+            "symbol": "Mượn",
+            "name": "Phần dựa vào dung lượng co giãn hoặc dịch vụ bên ngoài",
+            "description": "Rẻ khi rảnh và có thể vắng mặt đúng lúc cần. Đây là vế đáng đọc kỹ."
           },
           {
-            "vi": "Định giá theo tài sản",
-            "en": "Asset-based",
-            "def": "Dùng khi tài sản hữu hình là phần giá trị chính, hoặc khi doanh nghiệp đang thanh lý - bất động sản, công ty holding. Cho mức sàn dựa trên tài sản bán được. Điểm yếu: bỏ qua khả năng sinh lời và tài sản vô hình, nên thường định giá thấp doanh nghiệp đang tăng trưởng."
+            "symbol": "Đệm",
+            "name": "Phần chênh giữa dung lượng có và tải ở ngày bận nhất",
+            "description": "Âm thì hệ thống đang sống nhờ việc ngày bận nhất chưa tới. Nhiều hệ thống ở trạng thái này mà không biết."
           }
         ]
       },
       {
+        "type": "heading",
+        "text": "Ba câu hỏi cho vế đi mượn"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Phần này phụ thuộc vào ai, và bên đó có cam kết gì bằng văn bản không",
+          "Có hạn mức nào đang chặn ở trên không, kể cả hạn mức chưa ai từng chạm tới",
+          "Nếu phần mượn biến mất hoàn toàn thì hệ thống còn phục vụ được bao nhiêu phần trăm"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Câu thứ ba là câu đáng hỏi nhất và ít được hỏi nhất, vì nó biến một mối lo mơ hồ thành một con số. Một hệ thống còn phục vụ được bảy mươi phần trăm khi mất hết phần mượn thì khác hẳn một hệ thống còn năm phần trăm, dù cả hai đều đang chạy tốt hôm nay."
+      },
+      {
         "type": "callout",
-        "label": "\"I triangulate\" nghĩa là gì, và không nghĩa là gì",
-        "text": "Nó KHÔNG phải lấy trung bình ba con số. Nó là đối chiếu logic: nếu DCF ra 100 tỷ, comps ra 80 tỷ, precedent ra 120 tỷ thì cả ba hội tụ quanh một vùng hợp lý. Nhưng nếu DCF ra 500 tỷ trong khi comps chỉ 80 tỷ thì việc cần làm là xem lại giả định của DCF, không phải lấy 290 tỷ làm kết quả."
-      },
-      { "type": "heading", "text": "Ba lỗi hay gặp, và cách chữa" },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Chỉ định nghĩa từng phương pháp",
-          "text": "\"DCF là phương pháp chiết khấu dòng tiền về hiện tại...\" - đúng nhưng không trả lời câu được hỏi."
-        },
-        "right": {
-          "label": "Nối ngay với \"khi nào dùng\"",
-          "text": "\"DCF phù hợp khi dòng tiền dự báo được, ví dụ một doanh nghiệp điện nước đã trưởng thành.\""
-        }
+        "label": "Hạn mức là loại giới hạn tệ nhất",
+        "text": "Máy chủ hết công suất thì hệ thống chậm dần và có thời gian phản ứng. Hạn mức tài khoản thì không chậm dần - nó chặn dứt khoát ở một con số, thường là một con số mặc định không ai chọn, và nó chỉ lộ ra đúng lần đầu tiên bạn chạm tới. Danh sách mọi hạn mức đang áp lên hệ thống là một tài liệu rẻ để lập và gần như không đội nào có."
       },
       {
-        "type": "comparison",
-        "left": {
-          "label": "Không gắn với loại doanh nghiệp",
-          "text": "\"Tôi dùng cả ba phương pháp cho mọi tình huống để đảm bảo chính xác.\" - nghe an toàn, đọc ra là chưa từng phải chọn."
-        },
-        "right": {
-          "label": "Đi từ hoàn cảnh",
-          "text": "\"Với một startup SaaS, EV/Revenue thường phù hợp hơn DCF vì chưa có dòng tiền dương để chiết khấu.\""
-        }
+        "type": "heading",
+        "text": "Đọc theo thời gian, không đọc một lần"
       },
       {
-        "type": "comparison",
-        "left": {
-          "label": "Không nói về đánh đổi",
-          "text": "\"DCF là tốt nhất vì phản ánh giá trị nội tại.\" - một câu khẳng định không có điểm yếu nào."
-        },
-        "right": {
-          "label": "Nêu điểm yếu trước khi bị hỏi",
-          "text": "\"DCF cho giá trị nội tại nhưng rất nhạy với tỷ lệ chiết khấu - đó là lý do tôi luôn đối chiếu với comps.\""
-        }
+        "type": "paragraph",
+        "text": "Tỷ lệ giữa phần sở hữu và phần mượn thường trôi theo một chiều: mỗi lần cần thêm dung lượng gấp, cách nhanh nhất luôn là mượn thêm. Không quyết định nào trong chuỗi ấy là sai, và sau hai năm thì hệ thống phụ thuộc vào phần mượn ở mức không ai từng cân nhắc."
       },
       {
         "type": "closing",
         "lines": [
-          "DCF cho giá trị nội tại, comps cho góc nhìn thị trường, precedent transactions cho bối cảnh thương vụ.",
-          "Và luôn kết bằng: không phương pháp nào hoàn hảo, nên tôi đối chiếu chéo để kiểm tra lại chính mình.",
-          "Chọn theo doanh nghiệp, không theo thói quen."
+          "Cùng một lượng tải không có nghĩa là cùng một tình trạng.",
+          "Hạn mức chặn dứt khoát và chỉ lộ ra ở lần đầu bạn chạm tới nó."
         ]
       }
     ],
     "quiz": [
       {
-        "question": "Người phỏng vấn hỏi \"How do you choose your valuation method?\". Câu trả lời nào thể hiện tư duy tốt nhất?",
+        "question": "Vì sao dung lượng co giãn được coi là đi mượn?",
         "options": [
-          "Kể tên ba phương pháp chính rồi nêu ưu nhược điểm của từng cái",
-          "Chọn theo đặc điểm của chính doanh nghiệp đó",
-          "Dùng cả ba phương pháp cho mọi tình huống để bảo đảm chính xác",
-          "DCF luôn là tốt nhất vì nó phản ánh giá trị nội tại"
+          "Vì nó phụ thuộc vào điều kiện có thể hụt đúng lúc cần nhất",
+          "Vì chi phí của nó được tính theo giờ nên tổng tiền khó dự đoán trước hằng tháng",
+          "Vì nó cần thời gian khởi động nên không phản ứng kịp với những cú tăng tải đột ngột",
+          "Vì nhà cung cấp có quyền thu hồi loại tài nguyên này trước những loại đã trả trước"
         ],
-        "correct": 1,
-        "explanation": "Người phỏng vấn đã biết ba phương pháp là gì. Họ hỏi để xem bạn đi từ hoàn cảnh tới công cụ, hay đi từ danh sách đã học thuộc. Kể tên rồi nêu ưu nhược điểm là đọc lại giáo trình - đúng nội dung nhưng trả lời sai câu hỏi."
+        "correct": 0,
+        "explanation": "Ba đặc điểm kia đều đúng và đều là bất lợi. Điểm cốt lõi là tính đồng thời: nhà cung cấp hết máy rảnh, hạn mức chạm trần và nhu cầu tăng vọt có xu hướng xảy ra cùng lúc, vì chúng có chung nguyên nhân."
       },
       {
-        "question": "Vì sao precedent transactions thường cho giá trị cao hơn trading comps?",
+        "question": "Câu hỏi nào biến mối lo về phần đi mượn thành một con số?",
         "options": [
-          "Vì dữ liệu precedent luôn cũ hơn nên đã lỗi thời",
-          "Vì trading comps dùng bội số dự phóng còn precedent dùng bội số quá khứ",
-          "Vì nó đã gồm phần trả thêm để mua quyền kiểm soát",
-          "Không có lý do hệ thống, chỉ là ngẫu nhiên của mẫu dữ liệu"
+          "Mất hết phần mượn thì còn phục vụ được bao nhiêu phần trăm",
+          "Phần mượn hiện đang chiếm bao nhiêu phần trăm trong tổng chi phí hạ tầng hằng tháng",
+          "Nhà cung cấp cam kết mức khả dụng bao nhiêu cho loại tài nguyên co giãn này",
+          "Đội mất bao lâu để chuyển phần mượn sang tài nguyên đã đặt sẵn khi cần thiết"
         ],
-        "correct": 2,
-        "explanation": "Phần trả thêm để mua quyền kiểm soát thường 20-40% trên giá thị trường. Khi bên mua trả mức đó, mọi bội số trong thương vụ đều cao hơn bội số của cùng doanh nghiệp khi giao dịch lẻ trên sàn. Đó là lý do precedent transactions thường tạo thành mức trần trong biểu đồ dải định giá."
+        "correct": 0,
+        "explanation": "Ba câu kia đều cho ra con số nhưng đều đo thứ khác. Câu đầu đo đúng thứ cần biết - mức độ nghiêm trọng của kịch bản xấu nhất - và nó thường cho ra một con số thấp hơn nhiều so với cảm giác của đội."
       },
       {
-        "question": "\"No single method is perfect, so I triangulate.\" Câu này nghĩa là gì?",
+        "question": "Vì sao hạn mức nguy hiểm hơn việc hết công suất máy?",
         "options": [
-          "Dùng nhiều phương pháp rồi lấy trung bình để có con số ở giữa",
-          "Trùng nhau thì tin, lệch nhau thì phải hiểu vì sao",
-          "Không phương pháp nào đúng nên chọn cái nào cũng như nhau",
-          "Dùng ba phương pháp để thuyết phục khách hàng tin kết quả"
+          "Vì nó chặn dứt khoát thay vì chậm dần nên không có thời gian phản ứng",
+          "Vì việc nâng hạn mức thường phải qua nhà cung cấp nên mất nhiều ngày làm việc",
+          "Vì hạn mức được áp ở cấp tài khoản nên nó ảnh hưởng tới mọi hệ thống cùng lúc",
+          "Vì các công cụ giám sát hạ tầng thường không theo dõi mức sử dụng so với hạn mức"
         ],
-        "correct": 1,
-        "explanation": "Đối chiếu chéo là kiểm tra logic, không phải phép tính trung bình. DCF 100 tỷ, comps 80 tỷ, precedent 120 tỷ là ba con số hội tụ - hợp lý. Nhưng DCF 500 tỷ bên cạnh comps 80 tỷ thì việc cần làm là xem lại giả định của DCF, không phải lấy trung bình hai con số đó."
+        "correct": 0,
+        "explanation": "Ba lý do kia đều làm tình hình tệ hơn. Lý do đầu là lý do gốc: một hệ thống chậm dần cho đội vài phút để nhận ra và xoay xở, còn một bức tường cứng thì không cho phút nào."
       },
       {
-        "question": "Khi nào nên dùng định giá theo tài sản?",
+        "question": "Vì sao tỷ lệ phần mượn có xu hướng tăng dần theo thời gian?",
         "options": [
-          "Với mọi doanh nghiệp, để có một mức sàn tham chiếu",
-          "Với startup chưa có đồng doanh thu nào",
-          "Khi không tìm được doanh nghiệp nào tương đồng để so sánh",
-          "Với công ty holding, bất động sản, hoặc khi đang thanh lý"
+          "Vì mỗi lần cần dung lượng gấp thì mượn thêm luôn là cách nhanh nhất",
+          "Vì giá của tài nguyên co giãn giảm dần theo thời gian nên nó ngày càng hấp dẫn",
+          "Vì các dịch vụ mới thường được thiết kế để chạy trên tài nguyên co giãn ngay từ đầu",
+          "Vì phần tài nguyên đặt sẵn hết hạn hợp đồng và không phải lúc nào cũng được gia hạn"
         ],
-        "correct": 3,
-        "explanation": "Phương pháp này phù hợp khi giá trị nằm ở tài sản hữu hình - bất động sản, công ty holding - hoặc khi doanh nghiệp đang thanh lý. Nó không phù hợp với doanh nghiệp tạo giá trị từ thương hiệu, sở hữu trí tuệ hay đội ngũ, vì những thứ đó không nằm trên bảng cân đối."
+        "correct": 0,
+        "explanation": "Đây là hình dạng của mọi khoản nợ kỹ thuật: từng quyết định đều hợp lý tại thời điểm của nó, không quyết định nào đáng bị phản đối, và tổng của chúng là một trạng thái chưa ai từng chọn."
       },
       {
-        "question": "Điểm yếu lớn nhất của DCF là gì?",
+        "question": "Đệm dung lượng âm nghĩa là gì?",
         "options": [
-          "Nó không dùng được cho doanh nghiệp đã trưởng thành",
-          "Nó phụ thuộc vào tâm lý thị trường tại thời điểm định giá",
-          "Kết quả rất nhạy với tỷ lệ chiết khấu và giá trị cuối kỳ",
-          "Nó bỏ qua tài sản vô hình như thương hiệu và sở hữu trí tuệ"
+          "Hệ thống đang sống nhờ việc ngày bận nhất chưa tới",
+          "Hệ thống đang dùng nhiều tài nguyên hơn mức đã được phê duyệt trong ngân sách",
+          "Hệ thống cần thêm máy ngay lập tức vì tải hiện tại đã vượt quá khả năng phục vụ",
+          "Phép đo dung lượng đang có lỗi vì phần chênh không thể mang giá trị âm được"
         ],
-        "correct": 2,
-        "explanation": "Giá trị cuối kỳ thường chiếm 70-80% tổng giá trị trong một DCF, nên đổi tỷ lệ tăng trưởng dài hạn một điểm phần trăm có thể đổi kết quả vài chục phần trăm. Phụ thuộc tâm lý thị trường là điểm yếu của comps, không phải của DCF - DCF độc lập với thị trường, và đó vừa là điểm mạnh vừa là chỗ dễ tự lừa mình."
+        "correct": 0,
+        "explanation": "Đệm âm không có nghĩa hệ thống đang hỏng hôm nay - tải hôm nay có thể còn xa mức bận nhất. Nó có nghĩa là hệ thống không còn dự phòng cho ngày bận nhất, và ngày ấy đến mà không báo trước."
       }
     ],
+    "keyTakeaways": [
+      "Cùng một lượng tải không có nghĩa là cùng một tình trạng",
+      "Phần đi mượn phụ thuộc vào điều kiện có xu hướng hụt cùng lúc với nhau",
+      "Hạn mức chặn dứt khoát, không chậm dần, và chỉ lộ ra ở lần đầu chạm tới",
+      "Tỷ lệ phần mượn trôi lên theo thời gian mà không quyết định nào sai"
+    ],
     "practicePrompt": {
-      "question": "Bạn định giá một công ty holding bất động sản: sở hữu nhiều toà nhà cho thuê, dòng tiền thuê ổn định, không có công ty niêm yết nào thật sự tương đồng. Nên chọn thế nào?",
+      "question": "Hệ thống phục vụ 10.000 yêu cầu/giây: 3.000 trên tài nguyên đặt sẵn, 7.000 trên tài nguyên co giãn. Mất hết phần co giãn thì còn bao nhiêu phần trăm?",
       "options": [
-        "Asset-based làm chính, DCF dòng tiền thuê để đối chiếu",
-        "Trading comps làm chính, vì bội số là cách nhanh nhất",
-        "Precedent transactions làm chính, dù ngành không có thương vụ nào gần đây",
-        "Chỉ DCF, vì dòng tiền thuê đã ổn định nên không cần gì khác"
+        "30%",
+        "70% (= lấy phần co giãn thay vì phần đặt sẵn còn lại)",
+        "100% (= giả định tài nguyên đặt sẵn tự động gánh phần còn thiếu)",
+        "0% (= giả định mất phần co giãn thì toàn hệ thống ngừng phục vụ)"
       ],
       "correct": 0,
-      "explanation": "Giá trị nằm ở chính các toà nhà nên asset-based là phương pháp chính, và dòng tiền thuê ổn định cho phép chạy DCF để đối chiếu - hai phương pháp, một chính một kiểm tra. Trading comps không dùng được vì không có peer tương đồng; precedent transactions không dùng được vì không có thương vụ nào. Chỉ dùng một phương pháp thì mất luôn bước đối chiếu chéo."
+      "explanation": "3.000 trên 10.000 là 30%. Con số ấy đáng viết ra vì nó nói rằng bảy trong mười người dùng sẽ không được phục vụ trong kịch bản xấu, trong khi mọi biểu đồ hôm nay đều xanh."
     },
-    "keyTakeaways": [
-      "Trả lời theo chiều: đặc điểm doanh nghiệp → phương pháp → vì sao → đối chiếu chéo. Không kể tên phương pháp trước.",
-      "DCF cho giá trị nội tại, comps cho góc nhìn thị trường, precedent transactions cho bối cảnh thương vụ.",
-      "Precedent transactions thường cao hơn comps vì đã gồm phần trả thêm để mua quyền kiểm soát.",
-      "Đối chiếu chéo là kiểm tra logic khi các phương pháp lệch nhau, không phải lấy trung bình."
-    ],
     "summary": {
-      "keyIdea": "Câu hỏi này đo việc bạn chọn công cụ theo hoàn cảnh, không đo việc bạn nhớ được bao nhiêu phương pháp.",
-      "formula": "Context → Method → Why → Cross-check",
-      "commonMistake": "Kể tên ba phương pháp rồi nêu ưu nhược điểm, và nói \"tôi dùng cả ba cho mọi tình huống\".",
-      "action": "Chọn một doanh nghiệp bạn biết, nói to trong ba mươi giây theo đúng bốn bước trên - có bấm giờ."
+      "keyIdea": "Tách dung lượng sở hữu khỏi dung lượng đi mượn trước khi kết luận về sức chịu",
+      "commonMistake": "Đọc tổng dung lượng mà không hỏi phần nào đang đi mượn",
+      "action": "Liệt kê mọi hạn mức đang áp lên hệ thống bạn giữ, kể cả cái chưa ai chạm."
     },
     "application": {
-      "message": "Tập trả lời câu này trong ba mươi giây, cho ba loại doanh nghiệp khác nhau: một doanh nghiệp điện nước, một startup SaaS đang lỗ, và một công ty holding bất động sản.",
-      "secondary": "Trong công việc thật, đây chính là đoạn mở đầu của mọi bản ghi nhớ định giá: vì sao chọn phương pháp này, và đã đối chiếu với cái gì."
-    }
+      "title": "Ba con số cho hệ thống bạn đang giữ",
+      "message": "Phần sở hữu là bao nhiêu. Phần mượn là bao nhiêu. Mất hết phần mượn thì còn phục vụ được bao nhiêu phần trăm.",
+      "secondary": "Con số thứ ba thường thấp hơn nhiều so với cảm giác của cả đội, và đó là lý do nó đáng được viết ra."
+    },
+    "id": 1055,
+    "slug": "bang-can-doi-ke-toan",
+    "track": "bonus"
+  },
+  {
+    "title": "Chọn cách ước lượng: đo, so sánh, hay dựng mô hình",
+    "subtitle": "Ba cách trả lời câu 'cái này tốn bao nhiêu', và điều kiện dùng được của từng cách",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🧰",
+    "whyItMatters": "Ước lượng sai không nguy hiểm bằng ước lượng bằng phương pháp không hợp, vì phương pháp sai cho ra con số vẫn trông chắc chắn - và không ai nghi ngờ một con số chắc chắn.",
+    "openingQuestion": "Cần biết một tính năng mới sẽ tốn bao nhiêu hạ tầng. Cách nào đáng tin nhất?",
+    "openingOptions": [
+      "Chạy thử với một phần lưu lượng thật rồi nhân lên",
+      "Dựng mô hình tính từ số yêu cầu dự kiến nhân với chi phí trung bình mỗi yêu cầu",
+      "So với một tính năng tương tự đã có, rồi điều chỉnh theo mức chênh về quy mô",
+      "Hỏi những người đã làm tính năng tương tự ở một sản phẩm khác trong công ty"
+    ],
+    "correctOption": 0,
+    "explanation": "Ba cách kia đều dùng được và đều rẻ hơn, nhưng cả ba đều đứng trên một giả định chưa kiểm chứng về hình dạng tải. Chạy thật một phần nhỏ là cách duy nhất trong bốn cách không cần giả định nào - nó tốn nhất, nên nó dành cho những quyết định đủ lớn để đáng tốn.",
+    "diagram": [
+      {
+        "label": "Có thứ tương tự đang chạy không?",
+        "arrow": true
+      },
+      {
+        "label": "Chạy thử được không, và rẻ tới đâu?",
+        "arrow": true
+      },
+      {
+        "label": "Chọn phương pháp theo hai câu trên",
+        "arrow": true
+      },
+      {
+        "label": "Ghi lại giả định cạnh con số"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Con số có ba chữ số thập phân",
+      "description": "Một đội trình bảng ước lượng chi phí hạ tầng cho tính năng mới, ra 12.847 đô mỗi tháng. Bảng có mười bốn dòng, mọi dòng đều tính đúng. Đầu vào duy nhất không đo được là số yêu cầu mỗi người dùng mỗi ngày, và ai đó đã điền 30 vì nghe hợp lý. Con số thật sau khi phát hành là 4. Toàn bộ độ chính xác của mười bốn dòng kia không cứu được một ô đoán bừa."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Ba phương pháp dưới đây không xếp từ tệ tới tốt. Chúng có điều kiện dùng khác nhau, và chọn nhầm là nguồn sai số lớn hơn mọi lỗi tính toán cộng lại."
+      },
+      {
+        "type": "heading",
+        "text": "Đo trực tiếp"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chạy thật với một phần lưu lượng rồi nhân lên. Đáng tin nhất vì nó không giả định gì về hình dạng tải, tỷ lệ trúng đệm, hay phân bố kích thước dữ liệu - ba thứ mà mọi mô hình đều phải đoán. Điều kiện dùng: phải có thứ để chạy, và phải chấp nhận rằng phép nhân lên chỉ đúng khi hệ thống không có nút thắt dùng chung."
+      },
+      {
+        "type": "heading",
+        "text": "So sánh với thứ tương tự"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tìm một thành phần đã chạy có hình dạng gần giống, lấy chi phí thật của nó rồi điều chỉnh theo mức chênh quy mô. Nhanh, rẻ, và thường đủ tốt cho quyết định vừa. Điều kiện dùng: phải nói ra được vì sao hai thứ giống nhau ở khía cạnh đang xét, và đây chính là chỗ phương pháp này hay bị dùng sai - hai dịch vụ cùng gọi là dịch vụ tìm kiếm có thể khác nhau hàng trăm lần về lượng dữ liệu phải quét."
+      },
+      {
+        "type": "heading",
+        "text": "Dựng mô hình từ các thành phần"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tách thành các đại lượng nhỏ rồi nhân lên. Cách duy nhất dùng được khi chưa có gì để đo và không có gì để so. Cũng là cách dễ tạo ra ảo giác chính xác nhất, vì một bảng nhiều dòng trông đáng tin hơn một con số duy nhất, kể cả khi mọi dòng đều nhân từ cùng một ô đoán."
+      },
+      {
+        "type": "callout",
+        "label": "Con số quan trọng nhất là con số kém tin nhất",
+        "text": "Mọi mô hình đều có một đầu vào mà cả mô hình phụ thuộc vào, và độ chính xác của kết quả bằng độ chính xác của đúng ô đó. Cách kiểm rẻ nhất là đổi ô ấy lên gấp ba và xuống một phần ba rồi xem kết luận có đổi không. Nếu đổi, bạn chưa có một ước lượng - bạn có một phép nhân đang chờ số thật."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Ghi kèm giả định",
+          "text": "12.000 đô mỗi tháng, giả định 30 yêu cầu mỗi người mỗi ngày. Người đọc biết ngay phải kiểm gì và biết con số sẽ đổi khi nào."
+        },
+        "right": {
+          "label": "Ghi trần con số",
+          "text": "12.847 đô mỗi tháng. Ba chữ số cuối là lời hứa về độ chính xác mà không đầu vào nào trong bảng đỡ nổi."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Làm tròn theo độ tin cậy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một con số ước lượng nên được làm tròn tới mức phản ánh độ tin cậy thật của nó. Viết 12.847 khi đầu vào chỉ chắc trong khoảng gấp ba là nói dối bằng hình thức, kể cả khi phép tính hoàn toàn đúng. Viết khoảng mười tới bốn mươi nghìn thì xấu hơn trên trang trình bày và trung thực hơn hẳn."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Chọn nhầm phương pháp sai nhiều hơn tính nhầm, và khó phát hiện hơn nhiều.",
+          "Độ chính xác của cả bảng bằng độ chính xác của ô kém tin nhất trong đó."
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Vì sao đo trực tiếp đáng tin hơn dựng mô hình?",
+        "options": [
+          "Vì nó không phải đoán hình dạng tải và phân bố dữ liệu",
+          "Vì nó cho kết quả nhanh hơn nên đội có thể lặp lại nhiều lần để tăng độ chính xác",
+          "Vì nó dùng chính hạ tầng thật nên đơn giá tính ra khớp với hoá đơn nhà cung cấp",
+          "Vì nó loại bỏ được sai số do con người nhập liệu sai vào các ô của bảng tính"
+        ],
+        "correct": 0,
+        "explanation": "Mọi mô hình đều phải giả định hình dạng tải, tỷ lệ trúng đệm và phân bố kích thước dữ liệu. Ba thứ ấy là nguồn sai số lớn nhất, và chạy thật là cách duy nhất không phải đoán cái nào trong ba."
+      },
+      {
+        "question": "Điều kiện dùng của phương pháp so sánh là gì?",
+        "options": [
+          "Nói ra được vì sao hai thứ giống nhau ở khía cạnh đang xét",
+          "Thành phần được đem so phải đã chạy ổn định trong ít nhất ba tháng gần đây",
+          "Hai thành phần phải chạy trên cùng một loại hạ tầng và cùng một nhà cung cấp",
+          "Mức chênh về quy mô giữa hai thành phần không được vượt quá khoảng mười lần"
+        ],
+        "correct": 0,
+        "explanation": "Ba điều kiện kia đều làm phép so tốt hơn nhưng không cái nào là điều kiện cần. Điều kiện cần là sự giống nhau phải nằm đúng ở chiều đang được đo - hai dịch vụ cùng tên có thể khác nhau hàng trăm lần về lượng dữ liệu phải quét."
+      },
+      {
+        "question": "Vì sao một bảng mười bốn dòng dễ tạo ảo giác chính xác?",
+        "options": [
+          "Vì nó trông đáng tin hơn dù mọi dòng có thể nhân từ cùng một ô đoán",
+          "Vì số lượng dòng nhiều làm người đọc khó kiểm tra hết từng dòng một cách kỹ lưỡng",
+          "Vì các sai số nhỏ ở từng dòng có xu hướng triệt tiêu nhau nên tổng trông hợp lý",
+          "Vì bảng tính tự động làm tròn kết quả nên sai số bị che khuất trong quá trình hiển thị"
+        ],
+        "correct": 0,
+        "explanation": "Công sức bỏ vào một bảng được người đọc hiểu nhầm thành bằng chứng về độ tin cậy. Nhưng cấu trúc chi tiết chỉ nói lên rằng phép tính được làm cẩn thận, nó không nói gì về chất lượng của đầu vào."
+      },
+      {
+        "question": "Cách rẻ nhất để biết mô hình có đứng vững không là gì?",
+        "options": [
+          "Đổi đầu vào kém tin nhất lên gấp ba và xuống một phần ba",
+          "Nhờ một người khác dựng lại mô hình độc lập rồi so hai kết quả với nhau",
+          "Kiểm tra lại từng công thức trong bảng để chắc chắn không có ô nào tính sai",
+          "So kết quả của mô hình với chi phí thực tế của những tính năng đã phát hành"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều tốn từ vài giờ tới vài tuần. Cách đầu tốn ba mươi giây và trả lời đúng câu quan trọng nhất: kết luận có phụ thuộc vào một ô mà không ai biết giá trị thật của nó không."
+      },
+      {
+        "question": "Vì sao viết '12.847 đô' là một vấn đề dù phép tính đúng?",
+        "options": [
+          "Vì ba chữ số cuối hứa một độ chính xác không đầu vào nào đỡ nổi",
+          "Vì con số quá cụ thể khiến người đọc khó nhớ và khó so sánh với các phương án khác",
+          "Vì nó không cho biết khoảng dao động nên khó dùng để lập kế hoạch ngân sách",
+          "Vì chi phí hạ tầng luôn thay đổi theo tháng nên mọi con số cụ thể đều nhanh lạc hậu"
+        ],
+        "correct": 0,
+        "explanation": "Cách làm tròn là một tuyên bố về độ tin cậy, và người đọc đọc nó như vậy dù không ai nói ra. Một con số chính xác tới hàng đơn vị nói rằng bạn biết nó tới hàng đơn vị, và đó là điều không đúng."
+      }
+    ],
+    "keyTakeaways": [
+      "Chọn nhầm phương pháp sai nhiều hơn tính nhầm và khó phát hiện hơn",
+      "Đo trực tiếp không phải đoán gì về hình dạng tải, nên nó đáng tin nhất",
+      "Độ chính xác của cả bảng bằng độ chính xác của ô kém tin nhất trong đó",
+      "Cách làm tròn là một tuyên bố về độ tin cậy, dù không ai nói ra"
+    ],
+    "practicePrompt": {
+      "question": "Mô hình ra 12.000 đô/tháng, dựa trên giả định 30 yêu cầu/người/ngày. Số thật là 4. Chi phí thật xấp xỉ bao nhiêu?",
+      "options": [
+        "Khoảng 1.600 đô",
+        "12.000 đô (= giả định chi phí hạ tầng không phụ thuộc vào số yêu cầu)",
+        "3.000 đô (= chia cho 4 thay vì chia cho tỷ lệ 30 trên 4)",
+        "400 đô (= lấy 4 phần trăm của con số gốc thay vì tỷ lệ 4 trên 30)"
+      ],
+      "correct": 0,
+      "explanation": "Tỷ lệ là 4 trên 30, tức khoảng 0,133; nhân với 12.000 ra khoảng 1.600. Sai số gấp bảy lần rưỡi đến từ đúng một ô, trong khi mười bốn dòng còn lại đều tính chính xác tuyệt đối."
+    },
+    "summary": {
+      "keyIdea": "Chọn phương pháp theo việc có gì để đo và có gì để so",
+      "commonMistake": "Dựng mô hình chi tiết trên một đầu vào chưa ai đo",
+      "action": "Tìm ô kém tin nhất trong ước lượng gần nhất của bạn và nhân nó lên gấp ba."
+    },
+    "application": {
+      "title": "Ba câu trước khi chọn cách",
+      "message": "Có thứ tương tự đang chạy không? Chạy thử một phần nhỏ tốn bao nhiêu? Nếu phải dựng mô hình, ô nào là ô cả kết luận phụ thuộc vào?",
+      "secondary": "Câu thứ ba nên được viết ngay cạnh con số cuối cùng, không cất trong đầu người dựng bảng."
+    },
+    "id": 1056,
+    "slug": "chon-phuong-phap-dinh-gia",
+    "track": "bonus"
   },
   {
     "id": 1037,
