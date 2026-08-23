@@ -2448,11 +2448,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "139": [
     {
       "fromDay": 134,
-      "fromTitle": "Dấu vết kiểm toán: ai đã làm gì, lúc nào",
-      "text": "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi.",
+      "fromTitle": "Nhật ký truy vết: ai đã làm gì, lúc nào",
+      "text": "Tính chất quyết định: người thực hiện KHÔNG sửa được bản ghi về hành động của mình.",
       "distractors": [
-        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
-        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt."
+        "Phần mở rộng và loại nội dung khai báo đều do người gửi đặt nên không tin được.",
+        "Nguyên nhân luôn là dữ liệu và câu lệnh bị trộn vào một chuỗi."
       ]
     },
     {
@@ -2597,11 +2597,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 134,
-      "fromTitle": "Dấu vết kiểm toán: ai đã làm gì, lúc nào",
-      "text": "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi.",
+      "fromTitle": "Nhật ký truy vết: ai đã làm gì, lúc nào",
+      "text": "Tính chất quyết định: người thực hiện KHÔNG sửa được bản ghi về hành động của mình.",
       "distractors": [
-        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
-        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt."
+        "Phần mở rộng và loại nội dung khai báo đều do người gửi đặt nên không tin được.",
+        "Nguyên nhân luôn là dữ liệu và câu lệnh bị trộn vào một chuỗi."
       ]
     }
   ],
