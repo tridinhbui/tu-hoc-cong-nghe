@@ -372,3 +372,141 @@ export async function getCompetencyLeaderboard(
     clampLimit(limit, 10, 50)
   );
 }
+
+/** `get_leaderboard(p_metric, p_limit)`.
+ *
+ *  Bản gốc rẽ nhánh theo `p_metric` bằng `case` bên trong SQL. Ở đây chọn cột ở
+ *  TypeScript rồi ghép vào câu lệnh: danh sách cột là hằng số đóng, không phải
+ *  chuỗi do người gọi truyền, nên không mở cửa cho tiêm SQL - và nó tránh được
+ *  việc SQLite phải ép kiểu một biểu thức `case` trả về ba cột khác kiểu nhau.
+ *
+ *  `min_graded = 30`: bảng Điểm TB chỉ nhận người đã có ít nhất 30 bài ĐƯỢC
+ *  CHẤM. Bỏ điều kiện này là ai làm đúng một bài cũng đứng đầu bảng.
+ */
+const METRIC_COLUMN = {
+  lessons: "us.total_lessons_completed",
+  avg_score: "us.avg_quiz_score",
+  xp: "us.total_xp",
+} as const;
+
+export async function getLeaderboard(
+  db: D1Like,
+  metric: "streak" | "lessons" | "avg_score" | "xp",
+  limit?: number
+): Promise<{ user_id: string; name: string; value: number; avatar_url: string | null }[]> {
+  const n = clampLimit(limit, 10, 50);
+
+  if (metric === "streak") {
+    return rows(
+      db,
+      `select s.user_id, ${DISPLAY_NAME} as name, s.current_streak as value, prof.avatar_url
+         from user_streaks s
+         join user_profiles prof on prof.id = s.user_id
+        where coalesce(prof.is_disabled, 0) = 0
+          and coalesce(prof.role, 'user') <> 'admin'
+        order by s.current_streak desc
+        limit ?`,
+      n
+    );
+  }
+
+  const col = METRIC_COLUMN[metric] ?? METRIC_COLUMN.xp;
+  // Chỉ bảng Điểm TB mới cần cổng số bài đã chấm; hai bảng kia bỏ qua nó.
+  const gate = metric === "avg_score" ? "and coalesce(g.graded, 0) >= 30" : "";
+
+  return rows(
+    db,
+    `select us.user_id, ${DISPLAY_NAME} as name, ${col} as value, prof.avatar_url
+       from user_stats us
+       join user_profiles prof on prof.id = us.user_id
+       left join (
+         select p.user_id, count(*) as graded
+           from user_progress p where p.quiz_score is not null group by p.user_id
+       ) g on g.user_id = us.user_id
+      where coalesce(prof.is_disabled, 0) = 0
+        and coalesce(prof.role, 'user') <> 'admin'
+        ${gate}
+      order by value desc
+      limit ?`,
+    n
+  );
+}
+
+/** `get_xp_leaderboard_since(p_since, p_limit)` - hàm nhiều bẫy nhất nhóm A.
+ *
+ *  BA CẤU TRÚC POSTGRES KHÔNG CÓ TRONG SQLITE:
+ *
+ *  1. `distinct on (user_id, game_type) ... order by xp_earned desc` - lấy ván
+ *     có điểm cao nhất mỗi loại game. SQLite không có `DISTINCT ON`; thay bằng
+ *     `row_number() over (partition by ...)` rồi lọc `= 1`. Thứ tự trong
+ *     `over(...)` phải chép ĐÚNG thứ tự trong `distinct on`, kể cả tiêu chí phá
+ *     hoà `created_at asc` - sai thứ tự thì chọn nhầm ván và điểm lệch.
+ *
+ *  2. `full outer join` - SQLite chỉ hỗ trợ từ 3.39 và không nên phụ thuộc vào
+ *     phiên bản của D1. Thay bằng: gom tập user_id bằng `union` rồi `left join`
+ *     ba nguồn vào. Ngữ nghĩa giống hệt và chạy trên mọi phiên bản.
+ *
+ *  3. So sánh mốc thời gian. Dữ liệu lưu dạng `2026-07-12T17:32:55.137+00:00`.
+ *     So chuỗi trực tiếp chỉ đúng khi người gọi truyền y hệt định dạng ấy, nên
+ *     ở đây chuẩn hoá cả hai vế bằng `datetime()`. Đánh đổi: mất khả năng dùng
+ *     chỉ mục trên cột thời gian - chấp nhận được vì lược đồ hiện chưa có chỉ
+ *     mục nào, nhưng nếu sau này thêm thì phải xem lại chỗ này.
+ */
+export async function getXpLeaderboardSince(
+  db: D1Like,
+  since: string,
+  limit?: number
+): Promise<{ user_id: string; name: string; value: number; avatar_url: string | null }[]> {
+  return rows(
+    db,
+    `with lessons as (
+       select user_id, count(*) * 10 as xp
+         from user_progress
+        where completed = 1 and datetime(completed_at) >= datetime(?1)
+        group by user_id
+     ),
+     quiz as (
+       select user_id, coalesce(sum(xp_earned), 0) as xp
+         from user_quiz_sessions
+        where datetime(completed_at) >= datetime(?1)
+        group by user_id
+     ),
+     game_ranked as (
+       select user_id, game_type,
+              min(max(coalesce(xp_earned, 0), 0), 50) as xp_earned,
+              row_number() over (
+                partition by user_id, game_type
+                order by xp_earned desc, created_at asc
+              ) as rn
+         from game_sessions
+        where datetime(created_at) >= datetime(?1)
+     ),
+     games as (
+       select user_id, coalesce(sum(xp_earned), 0) as xp
+         from game_ranked where rn = 1 group by user_id
+     ),
+     ids as (
+       select user_id from lessons
+       union select user_id from quiz
+       union select user_id from games
+     ),
+     totals as (
+       select ids.user_id,
+              coalesce(l.xp, 0) + coalesce(q.xp, 0) + coalesce(g.xp, 0) as total_xp
+         from ids
+         left join lessons l on l.user_id = ids.user_id
+         left join quiz q on q.user_id = ids.user_id
+         left join games g on g.user_id = ids.user_id
+     )
+     select t.user_id, ${DISPLAY_NAME} as name, t.total_xp as value, prof.avatar_url
+       from totals t
+       join user_profiles prof on prof.id = t.user_id
+      where t.total_xp > 0
+        and coalesce(prof.is_disabled, 0) = 0
+        and coalesce(prof.role, 'user') <> 'admin'
+      order by t.total_xp desc
+      limit ?2`,
+    since,
+    clampLimit(limit, 10, 50)
+  );
+}

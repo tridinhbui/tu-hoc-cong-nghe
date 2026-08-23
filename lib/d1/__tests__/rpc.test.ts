@@ -5,6 +5,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   getChatMessageReactions,
+  getLeaderboard,
+  getXpLeaderboardSince,
   getCompetencyLeaderboard,
   getDailyActiveUsers,
   getStudyRoomReactions,
@@ -352,5 +354,91 @@ describe.skipIf(!hasLocalData)("getCompetencyLeaderboard (tham số mảng)", ()
       .all()
       .then((r) => r.results as { c: number }[]);
     expect(got[0].value).toBe(c);
+  });
+});
+
+describe.skipIf(!hasLocalData)("getLeaderboard", () => {
+  it("cả bốn chỉ số đều chạy, sắp giảm dần, kẹp trần 50", async () => {
+    for (const m of ["streak", "lessons", "avg_score", "xp"] as const) {
+      const top = await getLeaderboard(db, m, 9999);
+      expect(top.length, m).toBeLessThanOrEqual(50);
+      const v = top.map((r) => r.value);
+      expect([...v].sort((a, b) => b - a), m).toEqual(v);
+    }
+  });
+
+  it("bảng Điểm TB chỉ nhận người đã có ít nhất 30 bài được chấm", async () => {
+    // Bỏ cổng này là người làm đúng một bài điểm 100 đứng đầu bảng. Đây là
+    // loại lỗi không ai báo vì bảng vẫn hiện ra bình thường.
+    const top = await getLeaderboard(db, "avg_score", 50);
+    for (const r of top) {
+      const [{ c }] = await db
+        .prepare("select count(*) as c from user_progress where user_id = ? and quiz_score is not null")
+        .bind(r.user_id)
+        .all()
+        .then((x) => x.results as { c: number }[]);
+      expect(c, `user ${r.user_id}`).toBeGreaterThanOrEqual(30);
+    }
+  });
+
+  it("chỉ số lạ rơi về xp thay vì ném lỗi", async () => {
+    const la = await getLeaderboard(db, "khong-co-that" as never, 5);
+    const xp = await getLeaderboard(db, "xp", 5);
+    expect(la.map((r) => r.user_id)).toEqual(xp.map((r) => r.user_id));
+  });
+});
+
+describe.skipIf(!hasLocalData)("getXpLeaderboardSince", () => {
+  const MOC = "2020-01-01T00:00:00+00:00"; // đủ xa để bao trọn dữ liệu
+
+  it("chạy được: row_number thay DISTINCT ON, union thay FULL OUTER JOIN", async () => {
+    const top = await getXpLeaderboardSince(db, MOC, 50);
+    expect(top.length).toBeGreaterThan(0);
+    const v = top.map((r) => r.value);
+    expect([...v].sort((a, b) => b - a)).toEqual(v);
+    for (const r of top) expect(r.value).toBeGreaterThan(0);
+  });
+
+  it("mỗi loại game chỉ tính ván điểm cao nhất, và trần 50 mỗi ván", async () => {
+    // Đây là chỗ DISTINCT ON được dịch. Nếu row_number sai phân vùng thì tổng
+    // XP game phồng lên theo số ván chứ không theo số loại game.
+    const top = await getXpLeaderboardSince(db, MOC, 50);
+    if (!top.length) return;
+    const u = top[0].user_id;
+
+    const [{ tran }] = await db
+      .prepare(
+        // `max(x)` một đối số là hàm GỘP, `max(a,b)` hai đối số là hàm vô
+        // hướng. Bản đầu của phép kiểm này viết `min(max(coalesce(x,0),0),50)`
+        // ngay trong GROUP BY - toàn hàm vô hướng, nên SQLite lấy giá trị của
+        // một dòng BẤT KỲ trong nhóm thay vì dòng lớn nhất, và con số lệch đi
+        // 102 XP. Phải gộp `max()` trước rồi mới kẹp.
+        `select coalesce(sum(min(max(mx, 0), 50)), 0) as tran from (
+           select game_type, max(coalesce(xp_earned, 0)) as mx
+             from game_sessions where user_id = ?
+            group by game_type
+         )`
+      )
+      .bind(u)
+      .all()
+      .then((r) => r.results as { tran: number }[]);
+
+    const [{ bai }] = await db
+      .prepare("select count(*) * 10 as bai from user_progress where user_id = ? and completed = 1")
+      .bind(u)
+      .all()
+      .then((r) => r.results as { bai: number }[]);
+
+    const [{ q }] = await db
+      .prepare("select coalesce(sum(xp_earned),0) as q from user_quiz_sessions where user_id = ?")
+      .bind(u)
+      .all()
+      .then((r) => r.results as { q: number }[]);
+
+    expect(top[0].value).toBe(bai + q + tran);
+  });
+
+  it("mốc thời gian trong tương lai trả rỗng", async () => {
+    expect(await getXpLeaderboardSince(db, "2099-01-01T00:00:00+00:00", 10)).toEqual([]);
   });
 });

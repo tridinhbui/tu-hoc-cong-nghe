@@ -34,11 +34,6 @@
     "subtitle": "What the business owns, and where the money came from",
     "duration": "8 min"
   },
-  "bang-ty-le-tu-vong-va-gia-cua-loi-hua": {
-    "title": "Pricing, Lesson 1: the mortality table - putting a price on a long-term promise",
-    "subtitle": "How a table of probabilities becomes a premium, why it has to be discounted to today, and which assumption carries the risk",
-    "duration": "12 min"
-  },
   "bao-hiem-la-gi-mo-hinh-kinh-doanh": {
     "title": "What insurance is & the business model: pricing, reserves, solvency",
     "subtitle": "Why an insurer still makes money even though it pays out on events nobody can foresee",
@@ -193,11 +188,6 @@
     "title": "CFO & Operations, Lesson 2: Financial forecasting - the rolling forecast",
     "subtitle": "Why many modern businesses are abandoning the fixed one-year budget",
     "duration": "7 min"
-  },
-  "du-phong-nghiep-vu-bao-hiem": {
-    "title": "Actuarial pricing, Lesson 2: Technical reserves - why an insurer's profit is an estimate",
-    "subtitle": "Three kinds of reserve, the IBNR held for losses nobody has reported yet, and why reported profit can be wrong for years before anyone notices",
-    "duration": "12 min"
   },
   "dung-mo-hinh-ba-bao-cao-trong-excel": {
     "title": "Excel, Lesson 3: Building a real three-statement model - links, circularity and check cells",
@@ -379,16 +369,6 @@
     "subtitle": "How the skills change by level, choosing between depth and management, and how to build a professional record",
     "duration": "11 min"
   },
-  "loi-nhuan-cong-ty-bao-hiem-va-float": {
-    "title": "Pricing, Lesson 5: Where an insurer makes its money - underwriting or investing",
-    "subtitle": "The combined ratio, float, and why a company losing money on underwriting can still be a good company",
-    "duration": "11 min"
-  },
-  "lua-chon-bat-loi-va-rui-ro-dao-duc": {
-    "title": "Pricing, Lesson 4: Adverse selection and moral hazard - two forces pulling opposite ways",
-    "subtitle": "Why the people who buy the most insurance are the ones who need it most, and why having cover makes people a little less careful",
-    "duration": "11 min"
-  },
   "ma-cau-truc-earnout": {
     "title": "Advanced M&A: The earnout structure in deal valuation",
     "subtitle": "When buyer and seller cannot agree on what the company is worth, an earnout is the way to \"pay later, based on actual results\"",
@@ -568,11 +548,6 @@
     "title": "Estimating synergy soberly: why most deals fall short",
     "subtitle": "The number on the slide, the premium paid, and five ways to cut the optimism out",
     "duration": "8 min"
-  },
-  "tai-bao-hiem-chia-rui-ro": {
-    "title": "Pricing, Lesson 3: Reinsurance - who does an insurer buy insurance from",
-    "subtitle": "Proportional and excess-of-loss reinsurance, the real reason risk gets ceded, and where it stops working",
-    "duration": "10 min"
   },
   "tai-chinh-bat-dong-san-cap-rate-noi-rental-yield": {
     "title": "Masterclass 1: Real estate finance - cash flow modelling and the capitalisation rate",

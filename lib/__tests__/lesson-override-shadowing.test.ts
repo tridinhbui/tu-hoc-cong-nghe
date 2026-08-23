@@ -90,9 +90,16 @@ describe("override che khuất nội dung trong lessons.ts", () => {
 
   it("Modern Portfolio Theory lấy phần dạy từ lessons.ts, không từ override", () => {
     // Bài cụ thể đã lộ ra cái bẫy này. Khoá lại để nó không lặng lẽ quay về.
+    //
+    // Bản đầu của phép kiểm này đòi override PHẢI tồn tại (`toBeTruthy`) và chỉ
+    // cấm nó mang `sections`. Khi bài được chuyển sang nội dung công nghệ thì
+    // override - vốn chỉ còn giữ mảng `quiz` tài chính cũ - bị gỡ hẳn, và phép
+    // kiểm đỏ ở đúng cái nó lẽ ra phải coi là trạng thái tốt nhất. Không có
+    // override thì không có gì che được, nên đó là mức mạnh hơn chứ không phải
+    // một vi phạm. Giờ nó chấp nhận cả hai: không có override, hoặc có nhưng
+    // không mang phần dạy.
     const o = (lessonOverrides as Record<string, Record<string, unknown>>)["modern-portfolio-theory"];
-    expect(o).toBeTruthy();
-    expect(o.sections).toBeUndefined();
+    expect(o?.sections).toBeUndefined();
     const src = bySlug.get("modern-portfolio-theory") as { sections?: unknown[] };
     expect((src.sections ?? []).length).toBeGreaterThan(6);
   });

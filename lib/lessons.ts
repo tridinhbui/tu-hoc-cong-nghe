@@ -10,7 +10,7 @@ import { LOGGING_LESSONS } from "./logging-lessons";
 import { INFRA_PROJECT_LESSONS } from "./infra-project-lessons";
 import { CONSTRUCTION_CONTRACTOR_LESSONS } from "./construction-contractor-lessons";
 import { PAID_TOOLS_LESSONS } from "./paid-tools-lessons";
-import { ACTUARIAL_LESSONS } from "./actuarial-lessons";
+import { RARE_EVENT_LESSONS } from "./rare-event-lessons";
 import { VN_STANDARDS_TAX_LESSONS } from "./vn-standards-tax-lessons";
 import { VN_PRODUCT_LESSONS } from "./vn-product-lessons";
 import { PERSONAL_ENTRY_LESSONS } from "./personal-entry-lessons";
@@ -47,7 +47,7 @@ export const lessons: Lesson[] = [
   ...INFRA_PROJECT_LESSONS,
   ...CONSTRUCTION_CONTRACTOR_LESSONS,
   ...PAID_TOOLS_LESSONS,
-  ...ACTUARIAL_LESSONS,
+  ...RARE_EVENT_LESSONS,
   ...VN_STANDARDS_TAX_LESSONS,
   ...VN_PRODUCT_LESSONS,
   ...PERSONAL_ENTRY_LESSONS,
@@ -61919,190 +61919,184 @@ export const lessons: Lesson[] = [
     "track": "bonus"
   },
   {
-    "id": 1032,
-    "slug": "modern-portfolio-theory",
-    "title": "Modern Portfolio Theory",
-    "subtitle": "Tương quan, đường biên hiệu quả và phân tán rủi ro",
-    "duration": "7 phút",
+    "title": "Nhiều dịch vụ nhỏ hay một dịch vụ lớn",
+    "subtitle": "Chia nhỏ chỉ giảm rủi ro khi các phần hỏng độc lập với nhau",
+    "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "🧩",
-    "openingQuestion": "MPT muốn trả lời câu hỏi nào?",
+    "emoji": "🎲",
+    "interactiveType": "risk",
+    "whyItMatters": "Chia một hệ thống thành nhiều phần là quyết định kiến trúc tốn kém nhất mà một đội đưa ra, và lý do thường được nêu ra cho nó - giảm rủi ro - chỉ đúng khi một điều kiện được thoả mãn.",
+    "openingQuestion": "Tách một dịch vụ thành năm dịch vụ nhỏ. Xác suất có sự cố mỗi tháng đổi thế nào?",
     "openingOptions": [
-      "Một tài sản tốt là đủ",
-      "Danh mục tối ưu cho mỗi mức rủi ro",
-      "Chỉ nên mua tài sản an toàn tuyệt đối",
-      "Tăng số lượng mã càng nhiều càng tốt"
+      "Tăng, nếu năm phần vẫn hỏng cùng nhau",
+      "Giảm năm lần",
+      "Không đổi, vì tổng lượng mã và tổng độ phức tạp của hệ thống vẫn giữ nguyên như cũ",
+      "Giảm, vì mỗi sự cố giờ chỉ ảnh hưởng tới một phần năm số người dùng thay vì toàn bộ"
     ],
-    "correctOption": 1,
-    "explanation": "Lý thuyết danh mục hiện đại đưa ra một ý phản trực giác: rủi ro của một tài sản chỉ có nghĩa trong bối cảnh cả danh mục, vì thứ quan trọng là nó biến động cùng nhịp với phần còn lại tới đâu. Ghép các tài sản ít tương quan có thể hạ rủi ro tổng thể mà không phải hạ lợi nhuận kỳ vọng tương ứng - đây gần như là bữa trưa miễn phí duy nhất trong tài chính. Giới hạn của nó là tương quan tăng lên đúng lúc khủng hoảng.",
+    "correctOption": 0,
+    "explanation": "Chia nhỏ đổi một hệ thống có một điểm hỏng thành một hệ thống có năm, cộng thêm phần mạng giữa chúng. Nếu cả năm cùng phụ thuộc vào một cơ sở dữ liệu hoặc một dịch vụ xác thực thì chúng vẫn hỏng cùng lúc, và bạn đã trả toàn bộ cái giá của việc chia mà không nhận được gì. Điều kiện quyết định là các phần có hỏng độc lập với nhau không.",
     "diagram": [
       {
-        "label": "Expected return",
+        "label": "Chia thành nhiều phần",
         "arrow": true
       },
       {
-        "label": "Volatility",
+        "label": "Hỏi các phần có phụ thuộc chung không",
         "arrow": true
       },
       {
-        "label": "Correlation",
+        "label": "Có phụ thuộc chung thì chúng hỏng cùng nhau",
         "arrow": true
       },
       {
-        "label": "Efficient frontier",
-        "arrow": false
+        "label": "Rủi ro giảm bằng độc lập, không bằng số lượng"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Danh mục đầu tư cá nhân",
-      "description": "Một người nắm 100% cổ phiếu công nghệ sẽ rủi ro khác hẳn người chia đều sang trái phiếu, tiền mặt và cổ phiếu phòng thủ."
-    },
-    "quiz": [
-      {
-        "question": "Lợi ích cốt lõi của đa dạng hóa theo MPT là gì?",
-        "options": [
-          "Giảm rủi ro danh mục mà không nhất thiết hy sinh tương ứng lợi nhuận kỳ vọng",
-          "Tăng rủi ro để kiếm thêm phí",
-          "Xóa sạch mọi rủi ro",
-          "Chỉ phù hợp với quỹ lớn"
-        ],
-        "correct": 0,
-        "explanation": "Kết hợp tài sản ít tương quan giúp giảm biến động tổng thể của danh mục."
-      },
-      {
-        "question": "Nếu hai tài sản có correlation thấp, điều gì xảy ra với danh mục?",
-        "options": [
-          "Biến động danh mục có thể thấp hơn từng tài sản riêng lẻ",
-          "Chắc chắn lỗ",
-          "Không thay đổi",
-          "Bắt buộc phải vay thêm"
-        ],
-        "correct": 0,
-        "explanation": "Correlation thấp là nơi MPT tìm thấy lợi ích lớn nhất của diversification."
-      }
-    ],
-    "keyTakeaways": [
-      "MPT dùng return, risk và correlation để xây danh mục",
-      "Đa dạng hóa đúng cách có thể giảm rủi ro tổng thể",
-      "Efficient frontier là danh mục tốt nhất cho từng mức rủi ro"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "MPT dùng return, risk và correlation để xây danh mục",
-      "commonMistake": "Dễ bỏ qua: đa dạng hóa đúng cách có thể giảm rủi ro tổng thể",
-      "action": "Efficient frontier là danh mục tốt nhất cho từng mức rủi ro"
+      "company": "Mười hai dịch vụ, một lần sập",
+      "description": "Một hệ thống được tách thành mười hai dịch vụ trong hai năm, với lý do là để một phần hỏng không kéo cả hệ thống theo. Sự cố lớn nhất năm đó làm mười một trong mười hai cùng ngừng trong bốn mươi phút. Nguyên nhân là dịch vụ cấp danh tính mà cả mười một đều gọi ở mỗi yêu cầu - một phụ thuộc không ai coi là một phần của kiến trúc vì nó đã có từ trước khi việc tách bắt đầu."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "MPT không dạy bạn chọn 'mã ngon nhất'. Nó dạy bạn ghép các tài sản sao cho cả danh mục trở nên tốt hơn."
+        "text": "Ý tưởng nền là đơn giản và đúng: nhiều thứ hỏng độc lập thì hiếm khi hỏng cùng lúc. Toàn bộ khó khăn nằm ở chữ độc lập, và nó gần như không bao giờ được kiểm tra."
       },
       {
         "type": "heading",
-        "text": "Mini simulation"
+        "text": "Độc lập là điều kiện, không phải hệ quả"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hai dịch vụ chạy trên hai tiến trình khác nhau vẫn không độc lập nếu chúng dùng chung một cơ sở dữ liệu, một cụm máy, một nhà cung cấp, hay một thư viện có lỗi chung. Mức độ phụ thuộc lẫn nhau ấy quyết định toàn bộ lợi ích của việc chia, và nó không tự giảm đi khi số phần tăng lên."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn nguồn phụ thuộc chung hay bị bỏ sót"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Dịch vụ nền mà mọi phần đều gọi: xác thực, cấu hình, ghi nhật ký, phân giải tên",
+          "Hạ tầng chung: một vùng, một cụm, một tài khoản với một hạn mức duy nhất",
+          "Thư viện chung: một lỗi trong nó xuất hiện đồng thời ở mọi nơi đã nâng phiên bản",
+          "Con người chung: cùng một đội trực, nên hai sự cố cùng lúc là một sự cố kéo dài gấp đôi"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Nguồn thứ tư là nguồn ít được tính nhất và thường là nguồn quyết định. Mười hai dịch vụ độc lập hoàn toàn về kỹ thuật nhưng do ba người trực thì trong một đêm xấu chúng không độc lập chút nào."
+      },
+      {
+        "type": "callout",
+        "label": "Cái giá phải trả trước, lợi ích thì có điều kiện",
+        "text": "Chia nhỏ luôn tốn ngay: thêm phần mạng, thêm cách hỏng, thêm việc phối hợp khi phát hành, thêm chỗ để dữ liệu lệch nhau. Những khoản ấy chắc chắn. Lợi ích thì phụ thuộc vào việc các phần có thật sự độc lập không, và điều đó phải được thiết kế chứ không đến kèm theo việc tách."
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Danh mục A",
-          "text": "100% cổ phiếu tăng trưởng: return cao nhưng biến động cũng cao, dễ bị một chu kỳ xấu đánh mạnh."
+          "label": "Chia có ích",
+          "text": "Các phần khác vùng, khác nhà cung cấp cho những thứ quan trọng, và mỗi phần chạy được khi phần khác ngừng."
         },
         "right": {
-          "label": "Danh mục B",
-          "text": "60% cổ phiếu + 30% trái phiếu + 10% tiền mặt: return thấp hơn chút nhưng đường đi mượt hơn nhiều."
+          "label": "Chia hình thức",
+          "text": "Nhiều tiến trình, chung một cơ sở dữ liệu và một dịch vụ xác thực. Trả đủ cái giá, không nhận được lợi ích nào."
         }
-      },
-      {
-        "type": "paragraph",
-        "text": "Điểm mấu chốt của MPT không nằm ở việc chọn tài sản 'tốt nhất' riêng lẻ, mà ở mức độ tương quan (correlation) giữa chúng. Nếu cổ phiếu và trái phiếu trong Danh mục B có correlation thấp (chúng không luôn tăng/giảm cùng lúc), việc kết hợp hai tài sản này có thể giảm biến động tổng thể của danh mục nhiều hơn mức trung bình cộng đơn giản của rủi ro từng tài sản - đây chính là 'bữa trưa miễn phí' hiếm hoi trong tài chính mà Harry Markowitz đã chứng minh bằng toán học."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba biến số trong MPT",
-        "concepts": [
-          {
-            "vi": "Lợi nhuận kỳ vọng",
-            "en": "Expected return",
-            "def": "Mức lợi nhuận trung bình bạn hy vọng nhận được."
-          },
-          {
-            "vi": "Độ biến động",
-            "en": "Volatility",
-            "def": "Mức dao động quanh kỳ vọng - càng cao càng khó chịu."
-          },
-          {
-            "vi": "Tương quan",
-            "en": "Correlation",
-            "def": "Đo tài sản đi cùng chiều hay ngược chiều với nhau."
-          }
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Vì sao rủi ro KHÔNG cộng lại được như lợi nhuận",
-        "equation": "\u03c3\u00b2\u209a = w\u2081\u00b2\u03c3\u2081\u00b2 + w\u2082\u00b2\u03c3\u2082\u00b2 + 2w\u2081w\u2082\u03c1\u03c3\u2081\u03c3\u2082",
-        "variables": [
-          {
-            "symbol": "w",
-            "name": "Tỷ trọng mỗi tài sản",
-            "description": "Cộng lại bằng 1."
-          },
-          {
-            "symbol": "\u03c3",
-            "name": "Độ lệch chuẩn của từng tài sản",
-            "description": "Thước đo rủi ro riêng lẻ."
-          },
-          {
-            "symbol": "\u03c1",
-            "name": "Hệ số tương quan",
-            "description": "Nằm trong [−1, +1]. Đây là số hạng duy nhất trong công thức nói về QUAN HỆ giữa hai tài sản - và là chỗ toàn bộ lợi ích của đa dạng hoá nằm ở đó."
-          }
-        ],
-        "example": {
-          "title": "Hai tài sản y hệt nhau về rủi ro, khác nhau về tương quan",
-          "calculation": "Cả hai đều σ = 20%, chia đôi 50/50. Nếu ρ = 1: σ_p = 20%. Nếu ρ = 0: σ_p = 14,1%. Nếu ρ = −0,5: σ_p = 10,0%.",
-          "result": "Cùng một cặp tài sản, rủi ro danh mục chạy từ 20% xuống 10% mà không đổi một đồng lợi nhuận kỳ vọng",
-          "explanation": "Lợi nhuận kỳ vọng cộng thẳng theo tỷ trọng, còn rủi ro thì không - vì có số hạng 2w₁w₂ρσ₁σ₂. Chỉ khi ρ = 1 thì σ_p mới bằng trung bình có trọng số. Mọi mức ρ nhỏ hơn 1 đều cho rủi ro THẤP HƠN trung bình, và đó chính là 'bữa trưa miễn phí' mà Markowitz nói tới."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Bữa trưa miễn phí đó có giới hạn"
-      },
-      {
-        "type": "paragraph",
-        "text": "Thêm cổ phiếu vào danh mục làm rủi ro giảm nhanh ở những mã đầu tiên rồi chững lại: từ 1 lên 10 mã cắt được phần lớn rủi ro riêng của doanh nghiệp, từ 30 lên 100 mã gần như không cắt thêm được gì. Lý do nằm ngay trong công thức - khi số tài sản tăng, các số hạng phương sai riêng (wᵢ²σᵢ²) nhỏ dần vì w bị bình phương, còn các số hạng tương quan thì không biến mất. Phần còn lại chính là rủi ro hệ thống: cả thị trường cùng rơi thì không có tỷ trọng nào cứu được. Đó cũng là lý do CAPM chỉ trả công cho beta chứ không trả công cho tổng độ biến động."
-      },
-      {
-        "type": "callout",
-        "label": "Tương quan không đứng yên, và nó phản bội đúng lúc cần nhất",
-        "text": "Con số ρ tính từ dữ liệu quá khứ là ρ TRUNG BÌNH của giai đoạn đó. Trong khủng hoảng, tương quan giữa hầu hết tài sản rủi ro tăng vọt về gần 1 - mọi người cùng bán mọi thứ để lấy tiền mặt. Nên một danh mục trông đa dạng trên bảng tính có thể mất phần lớn lợi ích đa dạng hoá đúng vào tháng bạn cần nó. Đây không phải lý do bỏ đa dạng hoá, mà là lý do đừng tính rủi ro danh mục bằng một con số ρ duy nhất rồi coi đó là sự thật."
       },
       {
         "type": "closing",
         "lines": [
-          "Danh mục tốt không phải danh mục liều nhất.",
-          "Là danh mục phù hợp nhất với mục tiêu và tâm lý của bạn."
+          "Rủi ro giảm nhờ độc lập, không nhờ số lượng phần.",
+          "Cái giá của việc chia đến ngay; lợi ích thì có điều kiện và phải được thiết kế."
         ]
       }
     ],
-    "application": {
-      "title": "Tự mô phỏng danh mục",
-      "message": "Lấy 3 tài sản bạn đang nghĩ tới và tự hỏi: nếu một tài sản giảm, hai tài sản kia có giúp bạn đỡ sốc không?",
-      "secondary": "Đây là cách đơn giản nhất để cảm nhận hiệu ứng tương quan trong danh mục."
-    },
+    "quiz": [
+      {
+        "question": "Điều kiện để chia nhỏ thật sự giảm rủi ro là gì?",
+        "options": [
+          "Các phần phải hỏng độc lập với nhau",
+          "Mỗi phần phải có đội riêng",
+          "Mỗi phần phải có bộ kiểm thử và quy trình phát hành riêng để không ảnh hưởng lẫn nhau",
+          "Phải có cơ chế cho phép một phần tiếp tục chạy ở mức suy giảm khi phần khác ngừng"
+        ],
+        "correct": 0,
+        "explanation": "Phương án cuối là một cách hiện thực hoá điều kiện ấy chứ không phải bản thân điều kiện. Nếu các phần vẫn hỏng cùng lúc vì một phụ thuộc chung thì cơ chế suy giảm cũng không cứu được, vì không còn phần nào đứng."
+      },
+      {
+        "question": "Nguồn phụ thuộc chung nào ít được tính nhất?",
+        "options": [
+          "Cùng một đội trực",
+          "Cùng một thư viện nội bộ",
+          "Cùng một nhà cung cấp hạ tầng, nên một sự cố của họ ảnh hưởng tới toàn bộ các phần",
+          "Cùng một cơ sở dữ liệu, nên mọi phần đều ngừng khi cơ sở dữ liệu gặp vấn đề"
+        ],
+        "correct": 0,
+        "explanation": "Ba nguồn kia đều là phụ thuộc kỹ thuật và đều xuất hiện trên sơ đồ kiến trúc. Đội trực thì không nằm trên sơ đồ nào, nhưng ba người trực mười hai dịch vụ nghĩa là hai sự cố đồng thời thành một sự cố dài gấp đôi."
+      },
+      {
+        "question": "Mười một trong mười hai dịch vụ cùng ngừng vì dịch vụ cấp danh tính. Vì sao không ai lường trước?",
+        "options": [
+          "Vì nó có từ trước khi việc tách bắt đầu nên không được coi là phần của kiến trúc",
+          "Vì nó chưa từng gặp sự cố",
+          "Vì các bài kiểm thử đều chạy với dịch vụ danh tính hoạt động bình thường nên không lộ ra",
+          "Vì mức độ phụ thuộc vào nó chỉ tăng dần qua từng lần tách chứ không xuất hiện ngay"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều đúng và đều là cách nó ẩn được. Lý do gốc là phạm vi của cuộc thảo luận: khi bàn về kiến trúc mới, người ta bàn về những thứ mình đang tạo ra, còn thứ đã có sẵn thì được coi như một phần của nền."
+      },
+      {
+        "question": "Vì sao cái giá của việc chia nhỏ chắc chắn hơn lợi ích của nó?",
+        "options": [
+          "Vì cái giá đến kèm theo việc tách, còn lợi ích phải được thiết kế thêm",
+          "Vì cái giá xuất hiện ngay trong quý đầu",
+          "Vì lợi ích chỉ thể hiện khi có sự cố nên nhiều quý trôi qua mà không đo được gì",
+          "Vì các đội thường đánh giá thấp công sức cần cho việc phối hợp giữa nhiều dịch vụ"
+        ],
+        "correct": 0,
+        "explanation": "Thêm phần mạng, thêm cách hỏng và thêm việc phối hợp là hệ quả trực tiếp của việc tách, không tránh được. Sự độc lập thì không đến theo cách đó - nó là một danh sách việc phải làm thêm, và danh sách ấy thường không được lập."
+      },
+      {
+        "question": "Hai dịch vụ chạy trên hai tiến trình khác nhau. Chúng có độc lập không?",
+        "options": [
+          "Chưa chắc, còn tuỳ vào những gì chúng dùng chung",
+          "Có, vì tiến trình là ranh giới cô lập",
+          "Không, vì hai tiến trình trên cùng một máy vẫn chia sẻ tài nguyên của hệ điều hành",
+          "Có, nếu chúng giao tiếp với nhau qua mạng thay vì gọi trực tiếp trong cùng bộ nhớ"
+        ],
+        "correct": 0,
+        "explanation": "Ranh giới tiến trình chỉ cô lập lỗi bộ nhớ và lỗi sập chương trình. Nó không cô lập cơ sở dữ liệu chung, hạn mức tài khoản chung hay một thư viện có lỗi chung, và ba thứ ấy gây ra phần lớn sự cố đồng thời."
+      }
+    ],
+    "keyTakeaways": [
+      "Rủi ro giảm nhờ độc lập, không nhờ số lượng phần",
+      "Ranh giới tiến trình không cô lập phụ thuộc chung",
+      "Đội trực chung là nguồn phụ thuộc ít được tính nhất",
+      "Cái giá đến kèm việc tách; sự độc lập là một danh sách việc phải làm thêm"
+    ],
     "practicePrompt": {
-      "question": "Lý thuyết Danh mục Hiện đại (Modern Portfolio Theory - MPT) chứng minh rằng việc kết hợp các tài sản có hệ số tương quan (Correlation) thấp mang lại lợi ích gì?",
+      "question": "5 dịch vụ, mỗi cái hỏng độc lập 1%/tháng. Xác suất có ít nhất một cái hỏng trong tháng là bao nhiêu?",
       "options": [
-        "Giảm tổng rủi ro mà không giảm lợi nhuận kỳ vọng",
-        "Tăng gấp đôi lợi nhuận danh mục",
-        "Loại bỏ hoàn toàn rủi ro suy thoái kinh tế toàn cầu",
-        "Giúp danh mục không bao giờ giảm giá"
+        "Khoảng 4,9%",
+        "1%, vì mỗi dịch vụ vẫn giữ nguyên xác suất hỏng của riêng nó bất kể có bao nhiêu cái",
+        "5% (= cộng thẳng năm xác suất, bỏ qua phần trùng nhau giữa các trường hợp)",
+        "0,2% (= chia xác suất của một dịch vụ cho tổng số dịch vụ trong hệ thống)"
       ],
       "correct": 0,
-      "explanation": "MPT (Markowitz) chứng minh 'Bữa ăn miễn phí duy nhất trong đầu tư' là Đa dạng hóa: kết hợp các tài sản có tương quan nghịch hoặc thấp giúp triệt tiêu rủi ro phi hệ thống."
-    }
+      "explanation": "1 trừ đi 0,99 mũ 5 ra khoảng 4,9%. Điểm đáng nhớ là con số này LỚN hơn 1%: chia nhỏ làm tăng xác suất có sự cố ở đâu đó, và thứ nó giảm là mức độ ảnh hưởng của mỗi sự cố - hai đại lượng khác nhau thường bị gộp làm một."
+    },
+    "summary": {
+      "keyIdea": "Chia nhỏ giảm rủi ro chỉ khi các phần hỏng độc lập",
+      "commonMistake": "Coi việc tách là đã đủ để có sự độc lập",
+      "action": "Liệt kê thứ mà mọi dịch vụ trong hệ thống bạn đều gọi ở mỗi yêu cầu."
+    },
+    "application": {
+      "title": "Ba câu trước khi tách",
+      "message": "Các phần sẽ dùng chung những gì? Ai trực chúng? Nếu thứ dùng chung ngừng thì bao nhiêu phần còn chạy?",
+      "secondary": "Nếu câu cuối trả lời là không phần nào, việc tách chỉ đang mua thêm cách hỏng."
+    },
+    "id": 1032,
+    "slug": "modern-portfolio-theory",
+    "track": "bonus"
   },
   {
     "id": 1033,
@@ -69445,152 +69439,184 @@ export const lessons: Lesson[] = [
     "track": "bonus"
   },
   {
-    "id": 1328,
-    "slug": "rui-ro-khi-hau-nhu-rui-ro-tai-chinh",
+    "title": "Rủi ro vật lý và địa lý của hạ tầng",
+    "subtitle": "Điện, nước làm mát, đường truyền và vị trí - bốn thứ không có trong sơ đồ kiến trúc",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🌪️",
     "interactiveType": "risk",
-    "title": "Rủi ro khí hậu như một rủi ro tài chính",
-    "subtitle": "Rủi ro vật lý, rủi ro chuyển đổi và tài sản mắc kẹt - cách định lượng thay vì chỉ lo lắng",
-    "duration": "9 phút",
-    "difficulty": "Khó",
-    "emoji": "🌡️",
-    "track": "bonus",
-    "openingQuestion": "Một công ty khai thác than có trữ lượng lớn được ghi nhận trên bảng cân đối. Rủi ro khí hậu lớn nhất với giá trị doanh nghiệp này là gì?",
+    "whyItMatters": "Sơ đồ kiến trúc vẽ các dịch vụ và mũi tên giữa chúng. Nó không vẽ toà nhà, đường điện hay tuyến cáp - và những thứ ấy gây ra các sự cố dài nhất.",
+    "openingQuestion": "Hệ thống chạy ở ba vùng khả dụng của cùng một nhà cung cấp tại một thành phố. Đã đủ chưa?",
     "openingOptions": [
-      "Bão lũ làm hỏng thiết bị khai thác",
-      "Rủi ro chuyển đổi: trữ lượng thành tài sản mắc kẹt",
-      "Nhiệt độ tăng làm công nhân khó làm việc",
-      "Không có rủi ro nào đáng kể vì nhu cầu than vẫn tồn tại"
+      "Chưa, ba vùng ấy vẫn chung nhiều thứ vật lý",
+      "Đủ, vì ba vùng là mức khuyến nghị",
+      "Chưa, cần thêm ít nhất một nhà cung cấp thứ hai để tránh phụ thuộc vào một bên duy nhất",
+      "Đủ, nếu dữ liệu được sao chép đồng bộ giữa cả ba vùng và có cơ chế chuyển đổi tự động"
     ],
-    "correctOption": 1,
-    "explanation": "Rủi ro chuyển đổi thường lớn hơn rủi ro vật lý rất nhiều với các doanh nghiệp thâm dụng carbon. Trữ lượng than được định giá dựa trên giả định sẽ khai thác và bán được. Nếu thuế carbon tăng hoặc điện mặt trời rẻ hơn điện than, một phần trữ lượng vĩnh viễn không có lãi để khai thác - giá trị của nó về không dù tài sản vật lý không hề mất đi. Đó là định nghĩa của tài sản mắc kẹt.",
-    "realWorldExample": {
-      "company": "Ngành nhiệt điện than và các khoản ghi giảm giai đoạn 2018-2023",
-      "description": "Nhiều tập đoàn điện lực châu Âu đã phải ghi giảm hàng tỷ euro giá trị nhà máy nhiệt điện than, không phải vì nhà máy hỏng mà vì giá carbon trong hệ thống ETS của EU tăng khiến vận hành không còn có lãi. Nhà máy vẫn đứng đó, vẫn chạy được, nhưng giá trị kinh tế đã bốc hơi. Đây là tài sản mắc kẹt trong thực tế, không phải lý thuyết."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Ba vùng khả dụng trong một thành phố cô lập được sự cố phần cứng, sự cố điện của một toà nhà và phần lớn lỗi vận hành. Chúng không cô lập được một trận lụt diện rộng, một sự cố lưới điện khu vực, hay việc tuyến cáp chính vào thành phố bị đứt. Câu hỏi đúng không phải bao nhiêu vùng mà là ba vùng ấy còn chung những gì ở tầng vật lý.",
+    "diagram": [
       {
-        "question": "Rủi ro vật lý (physical risk) được chia thành hai loại nào?",
-        "options": [
-          "Rủi ro trong nước và rủi ro quốc tế",
-          "Rủi ro cấp tính (acute) - các sự kiện cực đoan như bão, lũ, cháy rừng; và rủi ro mãn tính (chronic) - thay đổi dài hạn như nước biển dâng, nhiệt độ trung bình tăng, thay đổi lượng mưa",
-          "Rủi ro với tài sản hữu hình và rủi ro với tài sản vô hình",
-          "Rủi ro có bảo hiểm và rủi ro không có bảo hiểm"
-        ],
-        "correct": 1,
-        "explanation": "Rủi ro cấp tính là các sự kiện rời rạc, tần suất và cường độ đang tăng - một trận lũ làm ngập nhà máy. Rủi ro mãn tính là dịch chuyển từ từ nhưng không đảo ngược - nước biển dâng làm một khu công nghiệp ven biển mất giá trị dần qua nhiều thập kỷ. Hai loại này đòi hỏi cách mô hình hóa khác nhau: cấp tính hợp với phân tích xác suất và bảo hiểm, mãn tính hợp với phân tích kịch bản dài hạn."
+        "label": "Sự kiện vật lý ở một vị trí",
+        "arrow": true
       },
       {
-        "question": "Vì sao rủi ro chuyển đổi (transition risk) có thể xuất hiện đột ngột dù quá trình chuyển đổi diễn ra chậm?",
-        "options": [
-          "Vì công nghệ mới luôn xuất hiện bất ngờ",
-          "Vì thị trường định giá lại theo kỳ vọng: một thay đổi chính sách được công bố hôm nay có thể khiến giá tài sản điều chỉnh ngay lập tức, dù tác động thực tế còn nhiều năm nữa mới xảy ra",
-          "Vì các cơ quan quản lý luôn ban hành quy định không báo trước",
-          "Rủi ro chuyển đổi không bao giờ đột ngột, nó luôn diễn ra từ từ"
-        ],
-        "correct": 1,
-        "explanation": "Đây là điểm quan trọng nhất khi đánh giá rủi ro khí hậu về mặt tài chính. Tài sản được định giá theo dòng tiền tương lai kỳ vọng. Khi thị trường thay đổi kỳ vọng về chính sách carbon hay tốc độ áp dụng công nghệ sạch, giá điều chỉnh ngay chứ không chờ tác động vật lý. Ngân hàng Anh gọi rủi ro này là 'khoảnh khắc Minsky khí hậu' - khả năng thị trường định giá lại đột ngột và đồng loạt."
+        "label": "Ảnh hưởng mọi thứ trong bán kính đó",
+        "arrow": true
       },
       {
-        "question": "Phân tích kịch bản khí hậu (climate scenario analysis) khác gì với dự báo thông thường?",
-        "options": [
-          "Không khác gì, chỉ là tên gọi khác của dự báo",
-          "Nó không cố dự đoán tương lai nào sẽ xảy ra, mà kiểm tra sức chống chịu của doanh nghiệp qua nhiều tương lai khác nhau - ví dụ kịch bản nóng lên 1,5°C với chính sách siết mạnh, so với 3°C với chính sách lỏng nhưng thiệt hại vật lý lớn",
-          "Nó chỉ áp dụng cho doanh nghiệp ngành năng lượng",
-          "Nó dựa hoàn toàn vào dữ liệu quá khứ để ngoại suy"
-        ],
-        "correct": 1,
-        "explanation": "Điểm mấu chốt là dữ liệu quá khứ vô dụng ở đây - chưa từng có tiền lệ để ngoại suy. Phân tích kịch bản thay vào đó hỏi: nếu thế giới đi theo đường A thì doanh nghiệp ra sao, đường B thì thế nào? Nghịch lý thú vị là hai kịch bản gây thiệt hại theo hai cách trái ngược: chuyển đổi nhanh gây rủi ro chuyển đổi cao nhưng rủi ro vật lý thấp; chuyển đổi chậm thì ngược lại. Doanh nghiệp phải chịu đựng được cả hai."
+        "label": "Sơ đồ kiến trúc không vẽ bán kính",
+        "arrow": true
+      },
+      {
+        "label": "Nên nó trông như nhiều sự cố ngẫu nhiên"
       }
     ],
-    "keyTakeaways": [
-      "Rủi ro vật lý chia làm cấp tính (bão lũ) và mãn tính (nước biển dâng, nhiệt độ tăng)",
-      "Rủi ro chuyển đổi đến từ chính sách, công nghệ, thị trường và uy tín - thường lớn hơn rủi ro vật lý với ngành thâm dụng carbon",
-      "Tài sản mắc kẹt: tài sản mất giá trị kinh tế dù còn nguyên vẹn về vật lý, vì không còn khai thác có lãi được",
-      "Rủi ro chuyển đổi có thể hiện thực hóa đột ngột vì thị trường định giá theo kỳ vọng, không chờ tác động thực tế"
-    ],
-    "practicePrompt": {
-      "question": "Bạn thẩm định khoản vay 10 năm cho một nhà máy xi măng. Cách đưa rủi ro khí hậu vào phân tích tín dụng nào là hợp lý nhất?",
-      "options": [
-        "Bỏ qua vì rủi ro khí hậu là vấn đề của thế kỷ sau, ngoài kỳ hạn khoản vay",
-        "Chạy kịch bản giá carbon lên biên lợi nhuận và kiểm tra rủi ro lũ lụt",
-        "Từ chối cho vay mọi ngành phát thải cao như một nguyên tắc",
-        "Chỉ yêu cầu doanh nghiệp cam kết bằng văn bản là sẽ giảm phát thải"
-      ],
-      "correct": 1,
-      "explanation": "Kỳ hạn 10 năm hoàn toàn nằm trong khung thời gian rủi ro chuyển đổi hiện thực hóa - CBAM đã thu phí từ 2026. Xi măng là một trong những ngành chịu tác động trực tiếp nhất. Cách làm đúng không phải từ chối hay bỏ qua, mà là định lượng: giá carbon ở các mức khác nhau ảnh hưởng thế nào tới khả năng trả nợ, và nhà máy có rủi ro vật lý gì theo vị trí địa lý. Cam kết bằng văn bản không có giá trị phân tích nếu không kèm số liệu."
-    },
-    "summary": {
-      "keyIdea": "Rủi ro khí hậu là rủi ro tài chính định lượng được, chia thành rủi ro vật lý và rủi ro chuyển đổi, và với nhiều ngành thì rủi ro chuyển đổi đến sớm hơn nhiều.",
-      "commonMistake": "Coi rủi ro khí hậu là chuyện dài hạn ngoài tầm phân tích - trong khi thị trường định giá lại theo kỳ vọng chứ không chờ tác động vật lý",
-      "action": "Với mọi khoản đầu tư hoặc khoản vay kỳ hạn trên 5 năm ở ngành phát thải cao, chạy ít nhất hai kịch bản giá carbon"
-    },
-    "application": {
-      "title": "Áp dụng vào định giá và tín dụng",
-      "message": "Rủi ro khí hậu vào mô hình qua ba đường: dòng tiền (chi phí carbon, chi phí thích ứng), giá trị tài sản (khả năng ghi giảm), và chi phí vốn (nhà đầu tư đòi phần bù rủi ro cao hơn).",
-      "secondary": "Với trái phiếu doanh nghiệp, các tổ chức xếp hạng tín nhiệm đã bắt đầu đưa yếu tố khí hậu vào phương pháp luận xếp hạng."
+    "realWorldExample": {
+      "company": "Hai vùng, một trạm biến áp",
+      "description": "Một công ty chạy hệ thống ở hai trung tâm dữ liệu cách nhau mười lăm cây số, và coi đó là dự phòng theo địa lý. Cả hai lấy điện từ cùng một trạm biến áp khu vực. Khi trạm ấy hỏng trong một đợt nắng nóng, cả hai chuyển sang máy phát; một trong hai có bình nhiên liệu chỉ đủ bốn giờ vì mức dự trữ được đặt theo giả định rằng trung tâm còn lại sẽ gánh."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Câu hỏi không phải 'bạn có tin vào biến đổi khí hậu không'. Câu hỏi là: nếu chính sách carbon siết lại trong mười năm tới, doanh nghiệp này còn kiếm được tiền không?"
+        "text": "Rủi ro vật lý khác mọi rủi ro khác trong khoá này ở một điểm: nó không nằm trong bất kỳ tệp nào bạn đọc được, nên cách duy nhất tìm ra nó là hỏi về những thứ nằm ngoài mã."
       },
       {
         "type": "heading",
-        "text": "Hai loại rủi ro, hai cơ chế hoàn toàn khác"
-      },
-      {
-        "type": "paragraph",
-        "text": "Rủi ro vật lý là thiệt hại do chính hiện tượng khí hậu gây ra: nhà máy ngập, mùa màng thất bát, chuỗi cung ứng đứt gãy vì bão. Nó chia thành cấp tính (sự kiện cực đoan) và mãn tính (dịch chuyển dài hạn). Rủi ro chuyển đổi là thiệt hại do chính quá trình xã hội chuyển sang nền kinh tế ít carbon: thuế carbon, quy định cấm, công nghệ thay thế rẻ hơn, khách hàng đổi hành vi, và nhà đầu tư rút vốn. Điều nghịch lý là hai loại rủi ro này đi ngược nhau - thế giới hành động quyết liệt thì rủi ro vật lý giảm nhưng rủi ro chuyển đổi tăng vọt, và ngược lại."
-      },
-      {
-        "type": "heading",
-        "text": "Bốn nguồn của rủi ro chuyển đổi"
+        "text": "Bốn thứ dùng chung theo vị trí"
       },
       {
         "type": "list",
         "items": [
-          "Chính sách và pháp lý: thuế carbon, hạn ngạch phát thải, lệnh cấm, và cả rủi ro bị kiện đòi bồi thường",
-          "Công nghệ: giải pháp sạch rẻ hơn khiến công nghệ cũ mất khả năng cạnh tranh - pin mặt trời so với nhiệt điện than là ví dụ đã xảy ra",
-          "Thị trường: khách hàng và đối tác thay đổi lựa chọn, làm nhu cầu với sản phẩm phát thải cao suy giảm",
-          "Uy tín: mất khách hàng, khó tuyển người giỏi, hoặc nhà đầu tư loại khỏi danh mục"
+          "Điện: cùng lưới, cùng trạm biến áp, hoặc cùng một nhà cung cấp điện khu vực",
+          "Làm mát: nắng nóng kéo dài làm giảm công suất, và nó xảy ra cùng lúc trên diện rộng",
+          "Đường truyền: nhiều tuyến cáp khác nhau vẫn có thể đi chung một hành lang",
+          "Con người: bão hoặc lụt giữ nhân viên vận hành ở nhà, đúng lúc cần họ tới nơi nhất"
         ]
       },
       {
+        "type": "paragraph",
+        "text": "Đặc điểm chung của bốn thứ này là chúng biến những sự cố lẽ ra độc lập thành một sự cố duy nhất. Một hệ thống được thiết kế để chịu được hai phần hỏng cùng lúc vẫn sập nếu sự kiện vật lý làm cả năm phần hỏng một lượt."
+      },
+      {
         "type": "heading",
-        "text": "Tài sản mắc kẹt - khái niệm cần hiểu chính xác"
+        "text": "Vì sao loại rủi ro này gây sự cố dài nhất"
       },
       {
         "type": "paragraph",
-        "text": "Tài sản mắc kẹt không phải tài sản bị phá hủy. Nó là tài sản mất giá trị kinh tế trước thời hạn dự kiến, do thay đổi ngoài dự tính về quy định, công nghệ hoặc thị trường. Mỏ than vẫn còn than, nhà máy nhiệt điện vẫn chạy được, giàn khoan vẫn nguyên vẹn - nhưng nếu khai thác không còn có lãi thì giá trị trên sổ sách phải ghi giảm. Với nhà phân tích, câu hỏi thực tế là: bao nhiêu phần trăm giá trị doanh nghiệp phụ thuộc vào tài sản có nguy cơ mắc kẹt, và thời điểm nào là điểm hòa vốn?"
+        "text": "Sự cố phần mềm được sửa bằng việc quay lại phiên bản trước, thường trong vài phút. Sự cố vật lý thì không có nút quay lại: phải chờ điện có lại, chờ nước rút, chờ người tới được nơi. Thời gian khôi phục không nằm trong tay đội, và đó là lý do phương án duy nhất có tác dụng là phương án chuẩn bị từ trước."
       },
       {
         "type": "callout",
-        "label": "Cách làm thực tế",
-        "text": "Không cần mô hình khí hậu phức tạp. Bắt đầu bằng câu hỏi đơn giản: nếu giá carbon là 50 USD/tấn, biên lợi nhuận doanh nghiệp này còn bao nhiêu? Nếu 100 USD thì sao? Một bảng độ nhạy hai chiều đã đủ để lộ ra doanh nghiệp nào mong manh."
+        "label": "Hỏi về bán kính, không hỏi về số lượng",
+        "text": "Câu hỏi hữu ích không phải hệ thống có mấy vùng mà là một sự kiện trong bán kính năm mươi cây số làm ngừng bao nhiêu phần của nó. Con số ấy trả lời được bằng cách tra vị trí thật của các trung tâm dữ liệu, một việc mất khoảng một giờ và hầu như không đội nào từng làm."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Dự phòng thật",
+          "text": "Các vùng ở lưới điện khác nhau, hành lang cáp khác nhau, và đủ xa để một sự kiện thời tiết không phủ hết."
+        },
+        "right": {
+          "label": "Dự phòng trên sơ đồ",
+          "text": "Nhiều vùng, nhiều bản sao, cùng một thành phố. Chịu được lỗi phần cứng và không chịu được thời tiết."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Sự kiện vật lý biến những sự cố lẽ ra độc lập thành một sự cố duy nhất.",
+          "Không có nút quay lại, nên phương án duy nhất có tác dụng là phương án chuẩn bị trước."
+        ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "Rủi ro vật lý - thiệt hại trực tiếp từ thiên tai và biến đổi dài hạn",
-        "arrow": true
+        "question": "Ba vùng khả dụng trong một thành phố cô lập được loại sự cố nào?",
+        "options": [
+          "Sự cố phần cứng và sự cố điện của một toà nhà",
+          "Sự cố lưới điện khu vực",
+          "Sự cố thời tiết cực đoan kéo dài, vì mỗi vùng có hệ thống làm mát riêng biệt của nó",
+          "Sự cố đường truyền, vì mỗi vùng đều được kết nối bằng nhiều tuyến cáp độc lập nhau"
+        ],
+        "correct": 0,
+        "explanation": "Đó chính xác là thứ nhiều vùng khả dụng được thiết kế để giải quyết, và nó giải quyết tốt. Ba loại còn lại đều có bán kính lớn hơn khoảng cách giữa các vùng trong cùng một thành phố."
       },
       {
-        "label": "Rủi ro chuyển đổi - từ chính sách, công nghệ, thị trường, uy tín",
-        "arrow": true
+        "question": "Vì sao sự cố vật lý kéo dài hơn sự cố phần mềm?",
+        "options": [
+          "Vì không có nút quay lại, thời gian khôi phục nằm ngoài tay đội",
+          "Vì nó thường xảy ra ngoài giờ làm việc",
+          "Vì việc chẩn đoán nguyên nhân mất nhiều thời gian hơn do thiếu công cụ theo dõi phù hợp",
+          "Vì nó ảnh hưởng tới nhiều phần cùng lúc nên khối lượng việc cần khắc phục lớn hơn hẳn"
+        ],
+        "correct": 0,
+        "explanation": "Phần mềm hỏng thì quay lại phiên bản trước, thường vài phút. Điện mất thì phải chờ có điện, và không kỹ năng nào của đội rút ngắn được khoảng chờ ấy - nên toàn bộ giá trị nằm ở việc đã chuẩn bị gì trước đó."
       },
       {
-        "label": "Quy về tác động lên dòng tiền và giá trị tài sản",
-        "arrow": true
+        "question": "Câu hỏi nào hữu ích hơn 'hệ thống có mấy vùng'?",
+        "options": [
+          "Một sự kiện trong bán kính 50km làm ngừng bao nhiêu phần",
+          "Các vùng cách nhau bao xa",
+          "Mỗi vùng có thể gánh được bao nhiêu phần trăm tải nếu những vùng khác cùng ngừng",
+          "Thời gian cần để chuyển toàn bộ lưu lượng sang một vùng khác là bao lâu"
+        ],
+        "correct": 0,
+        "explanation": "Ba câu kia đều đáng hỏi và đều là câu tiếp theo. Câu đầu là câu duy nhất đo đúng thứ đang bàn, vì khoảng cách không nói lên gì nếu hai vùng cách xa nhau nhưng dùng chung một lưới điện."
       },
       {
-        "label": "Tài sản mắc kẹt: mất giá trước hết thời gian sử dụng kinh tế",
-        "arrow": true
+        "question": "Hai trung tâm dữ liệu cách nhau 15km, chung một trạm biến áp. Vấn đề nằm ở đâu?",
+        "options": [
+          "Khoảng cách địa lý không đảm bảo độc lập về nguồn cấp",
+          "15km là khoảng cách quá gần",
+          "Hai trung tâm cùng thuộc một nhà cung cấp nên chịu chung rủi ro về mặt vận hành",
+          "Việc đồng bộ dữ liệu giữa hai nơi gần nhau tạo cảm giác an toàn hơn thực tế nhiều"
+        ],
+        "correct": 0,
+        "explanation": "Mười lăm cây số đủ xa cho một đám cháy và quá gần cho một trận lụt, nhưng đó không phải điểm chính. Điểm chính là hai nơi có thể cách nhau hàng trăm cây số mà vẫn chung nguồn cấp, nên khoảng cách là chỉ báo chứ không phải phép đo."
       },
       {
-        "label": "Định lượng qua kịch bản thay vì đánh giá định tính chung chung",
-        "arrow": false
+        "question": "Vì sao rủi ro vật lý khó tìm hơn các loại rủi ro khác?",
+        "options": [
+          "Vì nó không nằm trong bất kỳ tệp nào đội đọc được",
+          "Vì nó hiếm khi xảy ra nên ít ai có kinh nghiệm",
+          "Vì nó thuộc trách nhiệm của nhà cung cấp hạ tầng nên đội kỹ thuật không được tiếp cận",
+          "Vì các công cụ giám sát hiện có đều tập trung vào tầng ứng dụng chứ không vào tầng vật lý"
+        ],
+        "correct": 0,
+        "explanation": "Mọi rủi ro khác đều để lại dấu vết ở đâu đó trong kho mã hoặc trong cấu hình. Rủi ro vật lý thì phải đi hỏi ở ngoài, và những việc phải hỏi ở ngoài luôn bị hoãn lâu hơn những việc tra được tại chỗ."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Sự kiện vật lý biến những sự cố lẽ ra độc lập thành một sự cố duy nhất",
+      "Hỏi về bán kính bị ảnh hưởng, không hỏi về số lượng vùng",
+      "Khoảng cách địa lý là chỉ báo, không phải phép đo về sự độc lập",
+      "Không có nút quay lại, nên chỉ phương án chuẩn bị trước mới có tác dụng"
+    ],
+    "practicePrompt": {
+      "question": "5 vùng, trong đó 3 nằm trong bán kính một sự kiện thời tiết. Còn bao nhiêu phần trăm dung lượng nếu tải chia đều?",
+      "options": [
+        "40%",
+        "60%, vì ba trên năm vùng vẫn tương ứng với phần lớn dung lượng của hệ thống",
+        "80% (= giả định chỉ một vùng trong ba vùng bị ảnh hưởng thật sự ngừng hoạt động)",
+        "100% (= giả định hai vùng còn lại tự động gánh được toàn bộ phần tải bị mất)"
+      ],
+      "correct": 0,
+      "explanation": "Hai trên năm vùng còn đứng, tức 40% dung lượng. Con số ấy chỉ đúng nếu hai vùng còn lại có sẵn dung lượng dư - nếu chúng được cấp vừa đủ phần của mình thì hệ thống mất luôn cả hai vì quá tải, và kết quả thật là 0%."
+    },
+    "summary": {
+      "keyIdea": "Sự cố vật lý có bán kính, và sơ đồ kiến trúc không vẽ bán kính",
+      "commonMistake": "Coi nhiều vùng là đã có dự phòng theo địa lý",
+      "action": "Tra vị trí thật của các trung tâm dữ liệu mà hệ thống bạn đang chạy trên đó."
+    },
+    "application": {
+      "title": "Bốn câu về tầng vật lý",
+      "message": "Các vùng dùng chung lưới điện nào? Chung hành lang cáp nào? Một sự kiện thời tiết phủ được mấy vùng? Ai tới được nơi khi đường ngập?",
+      "secondary": "Bốn câu này mất khoảng một giờ để trả lời và hầu như không đội nào từng bỏ ra một giờ ấy."
+    },
+    "id": 1328,
+    "slug": "rui-ro-khi-hau-nhu-rui-ro-tai-chinh",
+    "track": "bonus"
   },
   {
     "title": "Chỉ số phi chức năng khi đánh giá một dịch vụ",
