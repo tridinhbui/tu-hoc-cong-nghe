@@ -12,7 +12,7 @@ import { CONSTRUCTION_CONTRACTOR_LESSONS } from "./construction-contractor-lesso
 import { PAID_TOOLS_LESSONS } from "./paid-tools-lessons";
 import { ACTUARIAL_LESSONS } from "./actuarial-lessons";
 import { VN_STANDARDS_TAX_LESSONS } from "./vn-standards-tax-lessons";
-import { VN_MARKET_LESSONS } from "./vn-market-lessons";
+import { VN_PRODUCT_LESSONS } from "./vn-product-lessons";
 import { PERSONAL_ENTRY_LESSONS } from "./personal-entry-lessons";
 import { INCOME_GROWTH_LESSONS } from "./income-growth-lessons";
 import { PERSONAL_BANKING_LESSONS } from "./personal-banking-lessons";
@@ -25,7 +25,7 @@ import { CAREER_PROJECTS_LESSONS } from "./career-projects-lessons";
 import { OCCUPATIONAL_HEALTH_LESSONS } from "./occupational-health-lessons";
 import { CAREER_STAGE_LESSONS } from "./career-stage-lessons";
 import { PERSONAL_OPS_LESSONS } from "./personal-ops-lessons";
-import { PRIVATE_MARKETS_LESSONS } from "./private-markets-lessons";
+import { RUNTIME_INTERNALS_LESSONS } from "./runtime-internals-lessons";
 import { ANALYST_CRAFT_LESSONS } from "./analyst-craft-lessons";
 import { DATA_TOOLS_LESSONS } from "./data-tools-lessons";
 import { DATA_THINKING_LESSONS } from "./data-thinking-lessons";
@@ -49,7 +49,7 @@ export const lessons: Lesson[] = [
   ...PAID_TOOLS_LESSONS,
   ...ACTUARIAL_LESSONS,
   ...VN_STANDARDS_TAX_LESSONS,
-  ...VN_MARKET_LESSONS,
+  ...VN_PRODUCT_LESSONS,
   ...PERSONAL_ENTRY_LESSONS,
   ...INCOME_GROWTH_LESSONS,
   ...PERSONAL_BANKING_LESSONS,
@@ -62,7 +62,7 @@ export const lessons: Lesson[] = [
   ...OCCUPATIONAL_HEALTH_LESSONS,
   ...CAREER_STAGE_LESSONS,
   ...PERSONAL_OPS_LESSONS,
-  ...PRIVATE_MARKETS_LESSONS,
+  ...RUNTIME_INTERNALS_LESSONS,
   ...ANALYST_CRAFT_LESSONS,
   ...DATA_TOOLS_LESSONS,
   ...DATA_THINKING_LESSONS,
@@ -4135,7 +4135,7 @@ export const lessons: Lesson[] = [
       "Tuỳ kiểu dữ liệu đang dùng để đọc nó: là số 65, hay là ký tự A",
       "Luôn là số 65, vì đó là giá trị nhị phân của dãy bit này",
       "Luôn là ký tự A, vì máy lưu văn bản theo bảng mã chuẩn",
-      "Không xác định được cho tới khi chương trình chạy xong hẳn"
+      "Không xác định được cho tới khi chương trình chạy xong hoàn toàn"
     ],
     "correctOption": 0,
     "explanation": "Bộ nhớ chỉ chứa bit, không chứa ý nghĩa. Cùng dãy 01000001 ấy, đọc như số nguyên tám bit thì là 65, đọc như một ký tự ASCII thì là chữ A, đọc như một phần của số thực thì lại ra thứ khác nữa. Kiểu dữ liệu chính là lời khai bạn đưa cho máy về cách diễn giải các bit đó - và cũng là thứ quyết định phép toán nào hợp lệ trên chúng. Đó là lý do cộng hai chuỗi ra kết quả nối, còn cộng hai số ra kết quả cộng, dù bên dưới đều là bit.",
@@ -18526,7 +18526,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Đội bạn cần một thay đổi nhỏ từ đội khác và họ xếp nó vào quý sau. Cách xử lý nào tốt nhất?",
     "openingOptions": [
       "Đề nghị tự làm phần đó rồi để họ rà soát, nếu ranh giới cho phép",
-      "Chờ tới quý sau và chuyển sang làm việc khác trong lúc đó",
+      "Chờ tới quý sau rồi chuyển sang làm một việc khác trong lúc đó",
       "Đưa vấn đề lên cấp trên để họ ép đội kia ưu tiên lại",
       "Tự viết một bản sao của chức năng đó bên phía đội mình"
     ],
@@ -22831,7 +22831,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Cách phòng thủ chính cho lỗ hổng chèn kịch bản là gì?",
     "openingOptions": [
       "Mã hoá dữ liệu theo đúng ngữ cảnh nơi nó được chèn vào trang",
-      "Lọc bỏ mọi thẻ kịch bản trong dữ liệu trước khi lưu xuống",
+      "Lọc bỏ mọi thẻ kịch bản có trong dữ liệu trước khi lưu xuống",
       "Kiểm tra dữ liệu đầu vào theo danh sách ký tự được phép",
       "Chỉ cho phép người dùng đã đăng nhập gửi nội dung lên"
     ],
@@ -23353,7 +23353,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Tăng vọt, vì công bố đi kèm chi tiết đủ để viết công cụ khai thác",
       "Giảm xuống, vì đã có bản vá nên vấn đề coi như được xử lý",
-      "Không đổi, vì lỗ hổng đã tồn tại từ trước khi được công bố",
+      "Không đổi, vì lỗ hổng vốn đã tồn tại từ trước khi nó được công bố",
       "Tăng dần theo thời gian khi có nhiều người biết tới nó hơn"
     ],
     "correctOption": 0,
@@ -24687,7 +24687,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Sợi chỉ xuyên suốt cả chặng này là gì?",
     "openingOptions": [
       "Mỗi biện pháp bảo vệ một thứ cụ thể khỏi một kịch bản cụ thể",
-      "Càng nhiều biện pháp bảo mật thì hệ thống càng an toàn",
+      "Càng nhiều biện pháp bảo mật thì hệ thống lại càng an toàn hơn",
       "Bảo mật là trách nhiệm của một đội chuyên trách riêng",
       "Tuân thủ đầy đủ tiêu chuẩn là đủ để hệ thống an toàn"
     ],
@@ -68511,7 +68511,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Tại sao không thể dùng DCF (chiết khấu dòng tiền) để định giá một bất động sản hay một thương hiệu?",
     "openingOptions": [
       "DCF hoàn toàn có thể, nó là phương pháp duy nhất",
-      "Vì bất động sản và thương hiệu không tạo ra dòng tiền",
+      "Vì bất động sản và thương hiệu không hề tạo ra dòng tiền nào",
       "Vì dòng tiền của chúng khó dự báo và không hề ổn định được"
     ],
     "correctOption": 2,
@@ -68865,7 +68865,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Một dự đoán về giá cổ phiếu trong tương lai",
       "Tuyên bố rõ: vì sao đáng đầu tư và ở mức giá nào",
-      "Một danh sách các sự kiện lịch sử của công ty"
+      "Một danh sách các sự kiện trong lịch sử của công ty"
     ],
     "correctOption": 1,
     "explanation": "Investment thesis là một câu chuyện logic: (1) Vật chủ (công ty/ngành) sẽ phát triển vì sao; (2) Giá hiện tại không phản ánh giá trị thực - 'bị định giá thấp'; (3) Catalyst (xúc tác) là gì sẽ kích hoạt giá tăng; (4) Rủi ro là gì có thể làm vỡ câu chuyện. Một thesis tốt không dự đoán chính xác giá, mà giải thích logic tại sao nó nên tăng.",
