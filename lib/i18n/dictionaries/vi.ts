@@ -2886,6 +2886,25 @@ export const vi = {
     },
   },
 
+
+  /* Khối đầu trang tiến độ (components/LearningProgressHeader.tsx).
+     Component này được thêm vào cây mà chưa có mục từ điển, nên `tsc` đỏ ở
+     đúng một dòng suốt nhiều giờ. Chữ ở đây viết theo đúng chỗ nó hiện: nhãn
+     cấp độ đứng cạnh tên cấp, dòng XP nằm dưới thanh tiến độ, và phần thưởng
+     đi liền nút chứ không tách thành thẻ riêng. */
+  progressHeader: {
+    levelLabel: "Cấp {level}",
+    xpToNext: "Còn {xp} XP nữa là lên {level}",
+    maxLevel: "Đã ở cấp cao nhất",
+    nextMission: "Việc tiếp theo",
+    cta: "Học bài này",
+    reward: "+{xp} XP khi làm xong",
+    stageRemaining: "còn {count} bài nữa là xong {stage}",
+    allDone: "Bạn đã học hết mọi bài đang mở. Quay lại khi có bài mới nhé.",
+    milestoneLocked: "Xong {stage} thì mở chặng tiếp theo",
+    milestoneReady: "Đã đủ điều kiện mở chặng sau {stage}",
+  },
+
 };
 
 export type Dictionary = typeof vi;

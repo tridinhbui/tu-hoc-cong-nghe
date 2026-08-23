@@ -2694,4 +2694,18 @@ export const en: Dictionary = {
     },
   },
 
+
+  progressHeader: {
+    levelLabel: "Level {level}",
+    xpToNext: "{xp} XP to reach {level}",
+    maxLevel: "You are at the highest level",
+    nextMission: "Up next",
+    cta: "Start this lesson",
+    reward: "+{xp} XP on completion",
+    stageRemaining: "{count} lessons left to finish {stage}",
+    allDone: "You have finished every lesson that is open. Come back when new ones land.",
+    milestoneLocked: "Finish {stage} to unlock the next chapter",
+    milestoneReady: "Ready to unlock the chapter after {stage}",
+  },
+
 };
