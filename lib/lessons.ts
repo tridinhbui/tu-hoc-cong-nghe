@@ -58829,187 +58829,182 @@ export const lessons: Lesson[] = [
     "track": "bonus"
   },
   {
-    "id": 1015,
-    "slug": "tesla-cash-flow",
-    "title": "Tesla Q1/2026 Cash Flow",
-    "subtitle": "Net Income vs Operating Cash Flow - sự khác biệt",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "⚡",
-    "openingQuestion": "Tại sao một công ty có net income dương nhưng operating cash flow vẫn yếu?",
+    "title": "Case: dòng tài nguyên của một sản phẩm tăng nhanh",
+    "subtitle": "Chi phí đi trước doanh thu, và cách phân biệt đầu tư với chảy máu",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🚀",
+    "whyItMatters": "Một sản phẩm đang tăng trưởng luôn tiêu tài nguyên nhanh hơn mức nó tạo ra giá trị, và câu hỏi khó là phân biệt điều đó với một hệ thống đang hỏng theo cách chưa lộ ra.",
+    "openingQuestion": "Chi phí hạ tầng tăng 200%, người dùng tăng 150%. Đây là dấu hiệu tốt hay xấu?",
     "openingOptions": [
-      "Vì doanh thu chưa thu tiền",
-      "Vì tiền mặt biến mất",
-      "Vì chỉ số kế toán sai",
-      "Vì không có thuế"
+      "Chưa biết, còn tuỳ khoản chênh đi vào đâu",
+      "Xấu, vì chi phí tăng nhanh hơn",
+      "Tốt, vì mức tăng trưởng người dùng ở mức này thường kéo theo chi phí tăng nhanh hơn nữa",
+      "Xấu, vì chi phí mỗi người dùng tăng nghĩa là hệ thống đang mất dần hiệu quả theo quy mô"
     ],
     "correctOption": 0,
-    "explanation": "Doanh thu và lợi nhuận có thể ghi nhận trước khi tiền thực sự về, đặc biệt khi khoản phải thu và vốn lưu động tăng. Ở các doanh nghiệp tăng trưởng nhanh, khoảng lệch này có thể kéo dài nhiều quý liên tiếp khi công ty liên tục mở rộng quy mô hoạt động.",
+    "explanation": "Chi phí mỗi người dùng tăng khoảng hai mươi phần trăm, và con số ấy có hai cách giải thích trái ngược. Nếu khoản chênh đi vào dung lượng dựng sẵn cho sáu tháng tới thì đó là đầu tư và nó sẽ tự hết khi người dùng bắt kịp. Nếu nó đi vào việc xử lý ngày càng kém hiệu quả trên mỗi yêu cầu thì đó là chảy máu, và nó tệ đi theo thời gian.",
     "diagram": [
       {
-        "label": "Net income",
+        "label": "Chi phí tăng nhanh hơn lượng dùng",
         "arrow": true
       },
       {
-        "label": "Working capital",
+        "label": "Tách phần dựng sẵn khỏi phần đang tiêu",
         "arrow": true
       },
       {
-        "label": "CapEx",
+        "label": "Phần dựng sẵn tự hết khi người dùng bắt kịp",
         "arrow": true
       },
       {
-        "label": "Operating cash flow",
-        "arrow": false
+        "label": "Phần kia thì không, nó tệ dần"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Ba câu hỏi khi dòng tiền âm ở doanh nghiệp tăng trưởng",
-      "description": "Dòng tiền kinh doanh âm ở một doanh nghiệp đang mở rộng nhanh không tự nó là tín hiệu xấu, nhưng nó luôn đặt ra ba câu hỏi. Thứ nhất, tiền đang bị khóa vào đâu - phải thu, tồn kho, hay chi đầu tư tài sản? Thứ hai, khoản đó có chuyển thành doanh thu ở các kỳ sau không, hay chỉ tích tụ mãi? Thứ ba, doanh nghiệp lấy nguồn nào để trụ qua giai đoạn này - tiền mặt sẵn có, vay thêm, hay phát hành cổ phần làm pha loãng cổ đông hiện hữu? Doanh nghiệp trả lời được cả ba câu và có xu hướng cải thiện qua các quý thì đang đầu tư; doanh nghiệp không trả lời được thì đang đốt tiền."
-    },
-    "quiz": [
-      {
-        "question": "Khi nào OCF thường yếu hơn net income?",
-        "options": [
-          "Khi khoản phải thu tăng mạnh",
-          "Khi biên lợi nhuận gộp cải thiện",
-          "Khi lãi suất vay giảm trong kỳ",
-          "Khi cổ tức chi trả tăng lên"
-        ],
-        "correct": 0,
-        "explanation": "Phải thu tăng mạnh nghĩa là doanh thu đã ghi vào lợi nhuận nhưng tiền còn nằm ở khách hàng, nên dòng tiền kinh doanh tụt lại phía sau - vốn lưu động phình ra chính là chỗ chênh lệch. Biên lợi nhuận gộp cải thiện và lãi vay giảm đều đẩy cả hai con số lên cùng chiều. Còn cổ tức nằm ở phần tài chính của báo cáo lưu chuyển tiền tệ, không đụng tới dòng tiền kinh doanh."
-      },
-      {
-        "question": "Một công ty tăng trưởng nhanh có net income dương nhiều quý liên tiếp nhưng OCF âm liên tục vì CapEx và working capital tăng mạnh. Đây có tự động là dấu hiệu xấu không?",
-        "options": [
-          "Không tự động xấu - cần xem có đủ vốn và đầu tư có hiệu quả",
-          "Không quan trọng, vì net income mới là chỉ số duy nhất cần nhìn",
-          "Có, đây luôn là dấu hiệu xấu và nên bán cổ phiếu ngay lập tức",
-          "Chỉ xấu nếu công ty niêm yết ở Mỹ và chịu chuẩn mực US GAAP"
-        ],
-        "correct": 0,
-        "explanation": "Nhiều doanh nghiệp tăng trưởng nhanh (như Tesla ở giai đoạn mở rộng) có OCF âm hợp lý vì đang đầu tư mạnh cho tương lai - điều quan trọng là công ty có đủ nguồn vốn để duy trì và liệu khoản đầu tư đó có tạo ra ROIC tốt trong dài hạn hay không, không chỉ nhìn dấu âm/dương đơn thuần."
-      },
-      {
-        "question": "Điều gì phân biệt 'đầu tư cho tăng trưởng' với 'đốt tiền' khi dòng tiền kinh doanh âm?",
-        "options": [
-          "Tiền bị khóa có chuyển thành doanh thu ở các kỳ sau hay không",
-          "Việc doanh nghiệp có báo lãi kế toán dương trong cùng kỳ hay không",
-          "Quy mô tuyệt đối của dòng tiền âm trong kỳ báo cáo gần nhất",
-          "Việc doanh nghiệp đã niêm yết trên sàn chứng khoán hay chưa"
-        ],
-        "correct": 0,
-        "explanation": "Cả hai trường hợp đều cho ra dòng tiền âm ở hiện tại. Chỉ có diễn biến ở các kỳ tiếp theo mới phân biệt được, nên phải theo dõi xu hướng chứ không kết luận từ một kỳ."
-      },
-      {
-        "question": "Vì sao nên nhìn dòng tiền kinh doanh cộng dồn bốn quý thay vì từng quý?",
-        "options": [
-          "Vì vốn lưu động dao động theo mùa vụ, từng quý dễ gây hiểu nhầm",
-          "Vì doanh nghiệp chỉ công bố dòng tiền một lần vào mỗi năm tài chính",
-          "Vì báo cáo quý không được kiểm toán nên số liệu không đáng tin",
-          "Vì cộng dồn bốn quý luôn cho ra kết quả dòng tiền dương"
-        ],
-        "correct": 0,
-        "explanation": "Nhiều ngành có mùa cao điểm rõ rệt: tồn kho tăng trước mùa và giảm sau mùa. Cộng dồn bốn quý loại bỏ được nhiễu này và cho thấy xu hướng thật."
-      },
-      {
-        "question": "Cách phân biệt dòng tiền âm do đầu tư mở rộng với dòng tiền âm do mô hình kinh doanh yếu là gì?",
-        "options": [
-          "Xem phần âm nằm ở hoạt động kinh doanh hay ở hoạt động đầu tư",
-          "Xem doanh nghiệp có công bố kế hoạch mở rộng trong báo cáo thường niên hay không",
-          "Xem lợi nhuận ròng trong kỳ là dương hay âm sau khi trừ toàn bộ chi phí",
-          "Xem doanh thu có tăng nhanh hơn ngành không"
-        ],
-        "correct": 0,
-        "explanation": "Chi mua nhà máy nằm ở dòng tiền đầu tư và là lựa chọn có thể dừng lại. Dòng tiền kinh doanh âm thì khác: bản thân việc bán hàng đang ngốn tiền, và càng bán nhiều càng cạn - đó mới là dấu hiệu mô hình chưa chạy được."
-      }
-    ],
-    "keyTakeaways": [
-      "Net income không thay thế được cash flow",
-      "Working capital và CapEx là hai nguồn lệch lớn",
-      "Đọc báo cáo phải xem cả lợi nhuận và tiền mặt"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Net income không thay thế được cash flow",
-      "commonMistake": "Dễ bỏ qua: working capital và CapEx là hai nguồn lệch lớn",
-      "action": "Đọc báo cáo phải xem cả lợi nhuận và tiền mặt"
+      "company": "Bốn quý tăng đều, quý thứ năm thì không",
+      "description": "Một sản phẩm có chi phí mỗi người dùng tăng bốn quý liên tiếp, và mỗi quý đội đều giải thích bằng việc đang dựng sẵn dung lượng cho tăng trưởng. Giải thích ấy đúng ở ba quý đầu. Ở quý thứ tư, phần lớn mức tăng đến từ việc mỗi yêu cầu giờ gọi thêm hai dịch vụ mới thêm vào - không ai nói dối, chỉ là câu giải thích cũ được dùng lại cho một nguyên nhân đã đổi."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Một công ty có Net Income dương nhiều quý liên tiếp nhưng Operating Cash Flow vẫn yếu - đây là tình huống thường gặp ở các doanh nghiệp tăng trưởng nhanh."
+        "text": "Với một sản phẩm đang tăng nhanh, mọi chỉ số về chi phí đều xấu và điều đó là bình thường. Việc cần làm không phải là lo mà là tách ra được phần nào sẽ tự hết."
       },
       {
         "type": "heading",
-        "text": "Doanh thu ghi nhận trước, tiền về sau"
-      },
-      {
-        "type": "paragraph",
-        "text": "Doanh thu và lợi nhuận có thể được ghi nhận trước khi tiền thực sự về, đặc biệt khi khoản phải thu và vốn lưu động tăng nhanh cùng tốc độ mở rộng quy mô. Đây không tự động là dấu hiệu xấu - cần xem doanh nghiệp có đang đầu tư đúng vào tăng trưởng tương lai hay không, và liệu có đủ nguồn vốn (huy động, vay) để duy trì trong giai đoạn OCF âm này."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Khoản phải thu tăng mạnh là nguyên nhân phổ biến khiến OCF yếu hơn Net Income",
-          "OCF âm ở doanh nghiệp tăng trưởng nhanh có thể hợp lý nếu đang đầu tư đúng hướng và có đủ nguồn vốn duy trì",
-          "Net income không thay thế được việc theo dõi cả working capital và CapEx"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Bốn chỉ số theo dõi cùng nhau qua các quý"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tốc độ tăng phải thu so với tốc độ tăng doanh thu - phải thu chạy trước nhiều quý liên tiếp là dấu hiệu chính sách bán chịu đang nới rộng.",
-          "Số ngày tồn kho - tăng dần nghĩa là hàng luân chuyển chậm lại, dù doanh thu vẫn tăng.",
-          "Dòng tiền kinh doanh cộng dồn bốn quý - làm mượt yếu tố mùa vụ, cho thấy xu hướng thật rõ hơn từng quý riêng lẻ.",
-          "Nguồn tài trợ cho phần thiếu hụt - đọc dòng tiền tài chính để biết doanh nghiệp đang vay thêm hay phát hành cổ phần."
-        ]
+        "text": "Hai loại chi phí đi trước"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Đầu tư cho tăng trưởng",
-          "text": "Tiền bị khóa vào tồn kho và tài sản cố định phục vụ công suất mới; doanh thu các quý sau tăng tương ứng; dòng tiền kinh doanh cải thiện dần khi công suất đi vào khai thác."
+          "label": "Dựng sẵn",
+          "text": "Dung lượng mua cho nhu cầu sáu tháng tới, hạ tầng dựng một lần dùng nhiều năm. Tự hết khi lượng dùng bắt kịp."
         },
         "right": {
-          "label": "Đốt tiền",
-          "text": "Tiền chủ yếu bị khóa vào phải thu khó thu hồi và tồn kho luân chuyển chậm; doanh thu không tăng tương ứng; dòng tiền kinh doanh âm sâu hơn qua từng năm và phải liên tục huy động vốn mới để bù."
+          "label": "Kém hiệu quả",
+          "text": "Mỗi yêu cầu tốn nhiều hơn trước vì thêm lời gọi, thêm dữ liệu quét, thêm bước. Không tự hết, và nó lớn theo lượng dùng."
         }
       },
       {
+        "type": "paragraph",
+        "text": "Hai loại này cho ra cùng một biểu đồ đi lên và cần hai cách xử lý ngược nhau: loại đầu chỉ cần chờ và theo dõi, loại sau cần dừng lại sửa. Nhầm chúng theo chiều nào cũng tốn - chờ một thứ không tự hết, hoặc phanh gấp một thứ vốn đang đúng kế hoạch."
+      },
+      {
+        "type": "heading",
+        "text": "Phép tách"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đo chi phí trên mỗi yêu cầu, không trên mỗi người dùng - nó loại được phần dựng sẵn",
+          "Tách phần dung lượng đang nằm rảnh: đó chính là phần dựng sẵn, và nó đo được trực tiếp",
+          "Xem số lời gọi phát sinh cho mỗi yêu cầu theo thời gian - đây là chỗ kém hiệu quả trốn"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Chỉ số thứ ba là chỉ số ít ai theo dõi và cũng là chỉ số báo sớm nhất. Mỗi tính năng mới thường thêm một lời gọi vào đường đi chính, và không lần thêm nào đáng để phản đối riêng lẻ. Sau một năm thì một yêu cầu chạm vào mười một dịch vụ thay vì bốn, và chi phí mỗi yêu cầu đã tăng gần gấp ba mà không quyết định nào sai."
+      },
+      {
         "type": "callout",
-        "label": "Nhìn cộng dồn, đừng nhìn một quý",
-        "text": "Vốn lưu động dao động mạnh theo mùa vụ, nên một quý dòng tiền âm hầu như không nói lên điều gì. Bốn quý cộng dồn, so sánh với cùng kỳ năm trước, mới là góc nhìn đủ để kết luận về xu hướng."
+        "label": "Cùng một giải thích dùng lại quá lâu",
+        "text": "Dấu hiệu đáng ngờ nhất không phải một con số xấu mà là một câu giải thích không đổi qua nhiều quý. Đầu tư dựng sẵn là một giai đoạn có điểm kết thúc, nên nếu nó vẫn được dùng để giải thích quý thứ năm thì hoặc kế hoạch đã trượt rất xa, hoặc nguyên nhân đã đổi mà câu giải thích thì chưa."
       },
       {
         "type": "closing",
         "lines": [
-          "Đừng vội kết luận xấu chỉ vì OCF âm.",
-          "Câu hỏi quan trọng hơn là: doanh nghiệp có đủ nguồn vốn để duy trì giai đoạn này không, và khoản đầu tư đó có tạo giá trị dài hạn không?"
+          "Phần dựng sẵn tự hết khi lượng dùng bắt kịp; phần kém hiệu quả thì lớn theo lượng dùng.",
+          "Số lời gọi cho mỗi yêu cầu là chỉ số báo sớm nhất và ít ai theo dõi."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Vì sao nên đo chi phí trên mỗi yêu cầu thay vì trên mỗi người dùng?",
+        "options": [
+          "Vì nó loại được phần dung lượng dựng sẵn",
+          "Vì số yêu cầu dễ đo hơn số người dùng",
+          "Vì lượng yêu cầu mỗi người dùng thay đổi theo mùa nên chỉ số theo người dùng bị nhiễu",
+          "Vì chi phí hạ tầng phát sinh theo từng yêu cầu chứ không theo số lượng tài khoản đăng ký"
+        ],
+        "correct": 0,
+        "explanation": "Dung lượng dựng sẵn tính trên đầu người thì hiện ra như chi phí tăng, còn tính trên mỗi yêu cầu thật thì nó biến mất khỏi tử số. Đó là cách rẻ nhất để tách hai loại chi phí đi trước ra khỏi nhau."
+      },
+      {
+        "question": "Phần dung lượng đang nằm rảnh cho biết điều gì?",
+        "options": [
+          "Đó chính là phần dựng sẵn, và nó đo được trực tiếp",
+          "Đó là phần lãng phí cần cắt giảm ngay",
+          "Đó là mức dự phòng mà đội đã cấu hình để chịu được những cú tăng tải đột ngột",
+          "Đó là dấu hiệu cho thấy việc phân bổ tài nguyên giữa các dịch vụ đang chưa cân đối"
+        ],
+        "correct": 0,
+        "explanation": "Phương án nói cần cắt ngay là đúng nếu phần rảnh ấy không có kế hoạch dùng tới. Với một sản phẩm đang tăng nhanh thì nó thường có, và việc đo được nó trực tiếp là điều biến một cuộc tranh luận thành một phép trừ."
+      },
+      {
+        "question": "Chỉ số nào báo sớm nhất về việc chi phí đang xấu đi theo cách không tự hết?",
+        "options": [
+          "Số lời gọi phát sinh cho mỗi yêu cầu",
+          "Chi phí hạ tầng theo tháng",
+          "Tỷ lệ giữa mức tăng chi phí và mức tăng người dùng trong cùng một khoảng thời gian",
+          "Độ trễ trung bình của mỗi yêu cầu, vì nó phản ánh khối lượng xử lý ở phía sau"
+        ],
+        "correct": 0,
+        "explanation": "Ba chỉ số kia đều phản ánh vấn đề nhưng đều phản ánh sau khi nó đã đủ lớn. Số lời gọi thì tăng ngay ở lần đầu ai đó thêm một dịch vụ vào đường đi chính, tức nhiều tháng trước khi hoá đơn nói gì."
+      },
+      {
+        "question": "Vì sao 'mỗi yêu cầu giờ chạm 11 dịch vụ thay vì 4' xảy ra mà không quyết định nào sai?",
+        "options": [
+          "Vì mỗi lần thêm một lời gọi đều hợp lý khi xét riêng",
+          "Vì không ai đo tổng số lời gọi",
+          "Vì việc chia nhỏ hệ thống thành nhiều dịch vụ vốn làm tăng số lời gọi một cách tự nhiên",
+          "Vì các đội khác nhau thêm dịch vụ vào cùng một đường đi mà không trao đổi với nhau"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều là cơ chế giúp nó xảy ra. Lý do đầu là lý do khiến không ai chặn được nó: mỗi lời gọi thêm vào đều phục vụ một tính năng thật, và phản đối từng cái một thì luôn thua về lý lẽ."
+      },
+      {
+        "question": "Dấu hiệu đáng ngờ nhất khi đọc báo cáo chi phí theo quý là gì?",
+        "options": [
+          "Một câu giải thích không đổi qua nhiều quý",
+          "Chi phí tăng nhanh hơn doanh thu",
+          "Mức tăng chi phí của quý này lớn hơn hẳn so với mức tăng của những quý liền trước",
+          "Chi phí của một nhóm chiếm tỷ trọng ngày càng lớn trong tổng hoá đơn hằng tháng"
+        ],
+        "correct": 0,
+        "explanation": "Ba dấu hiệu kia đều là con số và đều được nhìn thấy. Một câu giải thích lặp lại thì không ai coi là dữ liệu, trong khi đầu tư dựng sẵn vốn là một giai đoạn có điểm kết thúc - nên nó không giải thích được mãi."
+      }
+    ],
+    "keyTakeaways": [
+      "Phần dựng sẵn tự hết khi lượng dùng bắt kịp; phần kém hiệu quả thì không",
+      "Đo trên mỗi yêu cầu để loại phần dựng sẵn khỏi phép đo",
+      "Số lời gọi cho mỗi yêu cầu báo sớm hơn hoá đơn nhiều tháng",
+      "Một câu giải thích không đổi qua nhiều quý là dấu hiệu đáng ngờ hơn một con số xấu"
+    ],
     "practicePrompt": {
-      "question": "Khi phân tích BCTC Tesla Q1/2026, tại sao Dòng tiền hoạt động kinh doanh (OCF) lại có thể lệch lớn so với Lợi nhuận thuần (Net Income)?",
+      "question": "Chi phí tăng 200%, người dùng tăng 150%. Chi phí mỗi người dùng đổi thế nào?",
       "options": [
-        "Do khấu hao, vốn lưu động và thưởng cổ phiếu",
-        "Do kế toán tính nhầm phép cộng trừ",
-        "Do Tesla không thanh toán tiền điện nước",
-        "Do lợi nhuận thuần luôn luôn bằng dòng tiền OCF"
+        "Tăng 20%",
+        "Tăng 50%",
+        "Tăng 33% (= lấy chênh lệch 50 điểm phần trăm chia cho mức tăng người dùng 150%)",
+        "Giảm 25% (= chia nhầm mức tăng người dùng cho mức tăng chi phí rồi lấy phần bù)"
       ],
       "correct": 0,
-      "explanation": "Lợi nhuận thuần dồn tích (Accrual Net Income) khác với Dòng tiền OCF do các khoản chi phí phi tiền mặt (Khấu hao, SBC) và sự trói buộc tiền mặt tại Vốn lưu động."
+      "explanation": "Chi phí thành 3 lần, người dùng thành 2,5 lần, nên chi phí mỗi người thành 3 chia 2,5 tức 1,2 lần. Cách trừ hai mức phần trăm cho ra 50 điểm và nó sai, vì đây là hai đại lượng nhân chứ không phải cộng."
+    },
+    "summary": {
+      "keyIdea": "Tách phần chi phí sẽ tự hết khỏi phần sẽ lớn theo lượng dùng",
+      "commonMistake": "Giải thích mọi mức tăng bằng việc đang đầu tư dựng sẵn",
+      "action": "Đếm số dịch vụ mà một yêu cầu chính của bạn chạm vào, hôm nay và một năm trước."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Tesla Q1/2026 Cash Flow",
-      "message": "Khi phân tích BCTC Tesla Q1/2026, tại sao Dòng tiền hoạt động kinh doanh (OCF) lại có thể lệch lớn so với Lợi nhuận thuần (Net Income)?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Ba phép đo mỗi quý",
+      "message": "Chi phí trên mỗi yêu cầu. Phần dung lượng đang nằm rảnh. Số lời gọi phát sinh cho mỗi yêu cầu.",
+      "secondary": "Phép đo thứ ba là phép đo duy nhất báo trước, và nó chỉ cần một lần đọc dấu vết yêu cầu."
+    },
+    "id": 1015,
+    "slug": "tesla-cash-flow",
+    "track": "bonus"
   },
   {
     "id": 1016,

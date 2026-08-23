@@ -362,210 +362,202 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
     ]
   },
   {
-    id: 803,
-    slug: "tai-chinh-khoi-nghiep-cap-table-vc-valuation",
-    title: "Chuyên Đề Masterclass 3: Tài Chính Khởi Nghiệp - Bảng Cổ Đông Cap Table & Định Giá Venture Capital",
-    subtitle: "Pre-money, post-money, pha loãng, option pool và liquidation preference - đọc một term sheet đúng cách.",
-    whyItMatters:
-      "Nhà sáng lập thường đàm phán rất căng về mức định giá rồi ký nhanh phần còn lại của term sheet. Nhưng option pool đặt ở đâu và liquidation preference loại nào có thể lấy đi nhiều tiền của bạn hơn cả vài triệu đô chênh lệch định giá. Bài này chỉ ra chính xác chỗ đó.",
-    duration: "15 phút",
-    difficulty: "Khó",
-    emoji: "🚀",
-    openingQuestion:
-      "Một startup được quỹ VC định giá pre-money 4 triệu USD. Quỹ rót 1 triệu USD. Giá trị post-money và tỷ lệ sở hữu của quỹ là bao nhiêu?",
-    openingOptions: [
-      "Post-money = 3 triệu USD; quỹ sở hữu 33%",
-      "Post-money = 4 triệu USD; quỹ sở hữu 25%",
-      "Post-money = 5 triệu USD; quỹ sở hữu 25%",
-      "Post-money = 5 triệu USD; quỹ sở hữu 20%",
+    "title": "Chuyên Đề Masterclass 3: Kỹ thuật ở giai đoạn đầu",
+    "subtitle": "Nợ nào đáng vay khi thứ quý nhất không phải mã mà là thời gian còn lại",
+    "duration": "12 phút",
+    "difficulty": "Khó",
+    "emoji": "🌱",
+    "whyItMatters": "Ở giai đoạn đầu, phần lớn lời khuyên kỹ thuật đúng đắn đều sai, vì chúng được viết cho những hệ thống đã biết mình cần làm gì. Biết khi nào không áp dụng chúng là kỹ năng riêng.",
+    "openingQuestion": "Sản phẩm mới, chưa rõ ai dùng. Nên đầu tư vào kiểm thử tự động tới mức nào?",
+    "openingOptions": [
+      "Chỉ cho phần đã chắc chắn còn tồn tại sau ba tháng",
+      "Càng nhiều càng tốt",
+      "Ở mức tối thiểu, vì mọi phần của sản phẩm đều có thể bị vứt đi trong giai đoạn này",
+      "Ở mức tương đương với các sản phẩm đã trưởng thành, vì tiêu chuẩn chất lượng không nên đổi"
     ],
-    correctOption: 3,
-    explanation:
-      "Bảng cổ đông ghi ai sở hữu bao nhiêu phần trăm sau mỗi vòng gọi vốn, và chỗ dễ sai nhất là phân biệt định giá trước và sau khi nhận tiền. Tỷ lệ của nhà đầu tư mới luôn tính trên định giá sau, vì chính khoản tiền của họ đã nằm trong công ty tại thời điểm đó. Ngoài tỷ lệ còn phải đọc các điều khoản đi kèm - quyền ưu tiên thanh toán và chống pha loãng - vì chúng quyết định ai nhận bao nhiêu khi công ty được bán.",
-    diagram: [
-      { label: "Pre-money", arrow: true },
-      { label: "Cộng vốn mới", arrow: true },
-      { label: "Post-money", arrow: true },
-      { label: "Tỷ lệ quỹ = Vốn mới / Post-money" },
-    ],
-    realWorldExample: {
-      company: "Vòng gọi vốn của startup công nghệ Việt Nam",
-      description:
-        "Các startup như MoMo, VNPay hay Tiki đều đi qua nhiều vòng Seed, Series A, B, C trước khi đạt quy mô lớn. Sau bốn đến năm vòng, tỷ lệ sở hữu của nhóm sáng lập thường rơi từ 100% xuống còn khoảng 15-25% - điều đó bình thường và không đáng sợ, miễn là miếng bánh nhỏ hơn nằm trên một chiếc bánh lớn hơn nhiều lần.",
-    },
-    application: {
-      title: "Ba kịch bản thoái vốn trước khi ký",
-      message: "Dựng bảng chia tiền cho ba mức exit - dưới vốn đã gọi, bằng khoảng hai lần, và mức lạc quan - rồi xem nhà sáng lập thực nhận bao nhiêu ở từng mức. Với liquidation preference 1x participating, kịch bản exit thấp có thể trả về gần như không đồng nào cho cổ phần thường dù định giá vòng gọi vốn nghe rất đẹp.",
-      secondary: "Khi so hai term sheet, quy cả hai về cùng gốc: cùng vị trí option pool, cùng loại preference. Chỉ sau đó con số định giá mới so sánh được với nhau.",
-    },
-    sections: [
+    "correctOption": 0,
+    "explanation": "Kiểm thử là một khoản tích luỹ, và tích luỹ cho thứ sắp bị vứt đi là lãng phí thuần. Nhưng mọi sản phẩm giai đoạn đầu đều có một phần đã chắc chắn - cách người dùng đăng nhập, cách tiền được tính, cách dữ liệu được lưu - và phần ấy đáng được bảo vệ đầy đủ. Phương án tối thiểu cho tất cả sai ở chỗ nó coi mọi phần đều bấp bênh như nhau.",
+    "diagram": [
       {
-        type: "lead",
-        text: "Hai nhà sáng lập nhận hai term sheet. Bản A định giá công ty 10 triệu USD, bản B định giá 8 triệu. Ai cũng nghĩ chọn A là hiển nhiên. Nhưng bản A có option pool 15% đặt trước vòng và liquidation preference 2x participating, còn bản B là 10% pool sau vòng và 1x non-participating. Trong hầu hết kịch bản thoái vốn thực tế, nhà sáng lập nhận được nhiều tiền hơn với bản B.",
+        "label": "Thời gian còn lại là tài nguyên khan hiếm nhất",
+        "arrow": true
       },
-      { type: "heading", text: "1. Pre-money, post-money và phép chia dễ sai" },
       {
-        type: "formula",
-        title: "Phép toán nền tảng của mọi vòng gọi vốn",
-        equation: "Post-money = Pre-money + Vốn đầu tư mới",
-        variables: [
-          { symbol: "Pre-money", name: "Định giá trước khi nhận tiền", description: "Con số hai bên đàm phán" },
-          { symbol: "Post-money", name: "Định giá sau khi nhận tiền", description: "Mẫu số để tính mọi tỷ lệ sở hữu" },
-        ],
-        example: {
-          title: "Vòng Series A",
-          calculation: "Pre 4 triệu + Đầu tư 1 triệu = Post 5 triệu · Tỷ lệ quỹ = 1/5",
-          result: "Quỹ sở hữu 20%",
-          explanation:
-            "Luôn chia cho post-money. Trực giác: ngay sau khi ký, công ty đáng 5 triệu và trong đó có đúng 1 triệu tiền của quỹ. Chia cho pre-money sẽ cho ra 25% - con số không tồn tại trên bất kỳ cap table nào.",
+        "label": "Vay nợ kỹ thuật để đổi lấy tốc độ",
+        "arrow": true
+      },
+      {
+        "label": "Ghi lại khoản vay và điều kiện trả",
+        "arrow": true
+      },
+      {
+        "label": "Trả trước khi lãi lớn hơn phần đã vay"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Sáu tháng dựng nền cho một sản phẩm sống bốn tháng",
+      "description": "Một đội ba người dành sáu tháng dựng nền tảng đầy đủ trước khi phát hành: kiểm thử toàn diện, nhiều môi trường, quy trình triển khai tự động. Sản phẩm ra mắt và bị dừng sau bốn tháng vì không ai cần nó. Toàn bộ phần nền ấy đúng về kỹ thuật và không dòng nào trong đó từng được dùng lại, vì nó gắn chặt với một mô hình dữ liệu chỉ tồn tại trong sản phẩm đã chết."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Kỹ thuật giai đoạn đầu không phải kỹ thuật kém chất lượng. Nó là kỹ thuật cho một bài toán khác: tối đa hoá số lần thử trong khoảng thời gian còn lại, thay vì tối đa hoá tuổi thọ của thứ đang xây."
+      },
+      {
+        "type": "heading",
+        "text": "Thời gian còn lại là ràng buộc, không phải mã"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ở một hệ thống trưởng thành, ràng buộc là công sức bảo trì và mọi lời khuyên đều hướng tới việc giảm nó. Ở giai đoạn đầu, ràng buộc là số lần thử còn lại trước khi hết thời gian, và mọi lời khuyên phải được đọc lại qua lăng kính ấy. Một việc làm giảm công sức bảo trì nhưng làm chậm vòng thử thì ở đây là một việc lỗ."
+      },
+      {
+        "type": "heading",
+        "text": "Phân biệt phần chắc chắn với phần đang dò"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Phần chắc chắn: đăng nhập, tính tiền, lưu dữ liệu người dùng. Sai ở đây tốn thật và nó sẽ còn đó",
+          "Phần đang dò: giao diện, luồng thao tác, thuật toán gợi ý. Có thể bị vứt cả trong một tuần",
+          "Quy tắc: bảo vệ đầy đủ phần đầu, chấp nhận nợ ở phần sau, và biết mình đang ở phần nào"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Sai lầm phổ biến không phải chọn nhầm mức đầu tư mà là áp cùng một mức cho cả hai phần. Áp mức cao cho tất cả thì hết thời gian trước khi tìm được thứ ai đó cần; áp mức thấp cho tất cả thì phần chắc chắn hỏng theo cách tốn tiền thật."
+      },
+      {
+        "type": "heading",
+        "text": "Nợ kỹ thuật là công cụ, với điều kiện được ghi lại"
+      },
+      {
+        "type": "paragraph",
+        "text": "Vay nợ để đi nhanh là hợp lý ở giai đoạn này. Thứ biến nó từ công cụ thành vấn đề là việc không ai ghi lại đã vay gì. Một dòng ghi chú nêu rõ chỗ này làm tắt, sẽ hỏng khi có hơn một nghìn người dùng đồng thời biến một khoản nợ vô hình thành một khoản có điều kiện trả - và điều kiện ấy là thứ duy nhất khiến nó được trả trước khi nổ."
+      },
+      {
+        "type": "callout",
+        "label": "Nợ đắt nhất là nợ ở tầng dữ liệu",
+        "text": "Mã viết vội thì viết lại được trong một tuần. Một mô hình dữ liệu viết vội thì sau sáu tháng đã có dữ liệu thật nằm trong đó, và việc sửa nó cần một cuộc di trú, một khoảng ngừng, và một phương án quay lui. Nếu chỉ có thời gian làm cẩn thận đúng một thứ ở giai đoạn đầu, hãy chọn hình dạng dữ liệu."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Nợ có kiểm soát",
+          "text": "Ghi lại đã vay gì và điều kiện phải trả. Nợ vẫn là nợ, nhưng nó xuất hiện trong kế hoạch trước khi xuất hiện trong sự cố."
         },
-      },
-      { type: "heading", text: "2. Pha loãng qua nhiều vòng" },
-      {
-        type: "paragraph",
-        text: "Mỗi vòng gọi vốn phát hành cổ phần mới, nên tỷ lệ của cổ đông cũ giảm xuống - đó là pha loãng, và nó là cái giá tất yếu của việc huy động vốn. Điều quan trọng là pha loãng không tự động đồng nghĩa với thiệt hại: nếu vòng mới định giá cao hơn hẳn vòng trước, giá trị tuyệt đối phần sở hữu của bạn vẫn tăng dù phần trăm giảm.",
-      },
-      {
-        type: "list",
-        items: [
-          "Sáng lập khởi đầu 100%. Sau Seed bán 20%, còn 80%.",
-          "Series A bán tiếp 25% của công ty: 80% × 75% = 60%.",
-          "Series B bán 20%: 60% × 80% = 48%.",
-          "Quy tắc: nhân dồn các hệ số (1 trừ tỷ lệ bán) qua từng vòng, đừng trừ thẳng phần trăm.",
-          "Câu hỏi đúng không phải 'tôi còn bao nhiêu phần trăm', mà là 'phần trăm đó nhân với định giá mới bằng bao nhiêu tiền so với trước'.",
-        ],
-      },
-      { type: "heading", text: "3. Option pool - cái bẫy nằm ở chữ 'trước'" },
-      {
-        type: "paragraph",
-        text: "Quỹ thường yêu cầu lập một quỹ cổ phiếu thưởng (ESOP pool) để tuyển người, ví dụ 15% công ty. Câu hỏi quyết định là pool đó được tạo TRƯỚC hay SAU khi tính định giá. Thông lệ thị trường là đặt trước vòng, và điều đó có nghĩa toàn bộ 15% ấy bị trừ vào phần của cổ đông hiện hữu - tức là của nhà sáng lập - chứ không chia đều với nhà đầu tư mới.",
+        "right": {
+          "label": "Nợ vô hình",
+          "text": "Không ai ghi, và người viết đã rời đi. Nó chỉ được phát hiện đúng vào lúc điều kiện của nó xảy ra."
+        }
       },
       {
-        type: "comparison",
-        left: {
-          label: "Pool đặt TRƯỚC vòng (pre-money)",
-          text: "Pre-money 4 triệu đã bao gồm pool 15%. Định giá thực tế cho phần đang hoạt động của công ty chỉ còn khoảng 3,4 triệu. Nhà sáng lập gánh trọn phần pha loãng của pool.",
-        },
-        right: {
-          label: "Pool đặt SAU vòng (post-money)",
-          text: "Pool được tạo sau khi tiền vào, nên cả nhà sáng lập lẫn nhà đầu tư mới cùng bị pha loãng theo tỷ lệ. Hiếm gặp hơn, nhưng đây là điểm rất đáng đàm phán.",
-        },
+        "type": "heading",
+        "text": "Dấu hiệu đã tới lúc đổi cách làm"
       },
       {
-        type: "callout",
-        label: "Định giá thực sau option pool",
-        text: "Pre-money 4 triệu kèm pool 15% đặt trước tương đương pre-money khoảng 3,4 triệu nếu không có pool. Trước khi so sánh hai term sheet, hãy quy cả hai về cùng một gốc - nếu không, bạn đang so hai con số không cùng đơn vị.",
-      },
-      { type: "heading", text: "4. SAFE và trái phiếu chuyển đổi" },
-      {
-        type: "paragraph",
-        text: "Ở giai đoạn rất sớm, định giá công ty gần như là đoán mò. SAFE (Simple Agreement for Future Equity) cho phép nhận tiền ngay và hoãn việc định giá tới vòng gọi vốn chính thức tiếp theo, khi đã có cơ sở để định giá. Đổi lại, nhà đầu tư sớm được bảo vệ bằng hai điều khoản: valuation cap (trần định giá quy đổi) và discount (mức chiết khấu so với giá vòng sau) - hai thứ này quyết định họ nhận bao nhiêu cổ phần khi SAFE chuyển đổi.",
+        "type": "list",
+        "items": [
+          "Có người dùng thật trả tiền thật và họ phàn nàn khi hệ thống hỏng",
+          "Đội vượt quá năm người, nên trí nhớ chung không còn thay được tài liệu",
+          "Mô hình dữ liệu đã ngừng đổi trong hai tháng liên tiếp"
+        ]
       },
       {
-        type: "callout",
-        label: "Đừng quên cộng dồn SAFE",
-        text: "Nhiều nhà sáng lập ký liên tiếp vài SAFE mà không dựng bảng mô phỏng chuyển đổi. Đến vòng Series A, toàn bộ chúng chuyển thành cổ phần cùng lúc, thường ở mức cap thấp, và tỷ lệ còn lại của nhà sáng lập thấp hơn nhiều so với hình dung.",
-      },
-      { type: "heading", text: "5. Liquidation preference - ai được trả trước" },
-      {
-        type: "paragraph",
-        text: "Đây là điều khoản quyết định tiền được chia thế nào khi công ty được bán. '1x non-participating' nghĩa là nhà đầu tư chọn một trong hai: lấy lại đúng số vốn đã bỏ, hoặc chuyển sang cổ phần phổ thông và chia theo tỷ lệ - lấy cái nào lợi hơn cho họ. '1x participating' thì họ lấy lại vốn TRƯỚC, rồi VẪN chia phần còn lại theo tỷ lệ. Với các thương vụ thoái vốn quy mô vừa, khác biệt giữa hai loại này thường lớn hơn nhiều so với vài triệu đô chênh lệch định giá mà hai bên đã dành hàng tuần để mặc cả.",
-      },
-      {
-        type: "closing",
-        lines: [
-          "Định giá là con số được nói to nhất trong phòng đàm phán, và hiếm khi là điều khoản quan trọng nhất.",
-          "Trước khi ký, hãy dựng bảng chia tiền ở ba kịch bản thoái vốn - thấp, vừa, cao - và xem thật sự bạn nhận về bao nhiêu ở từng kịch bản.",
-        ],
-      },
+        "type": "closing",
+        "lines": [
+          "Ràng buộc ở giai đoạn đầu là số lần thử còn lại, không phải công sức bảo trì.",
+          "Nợ đắt nhất nằm ở tầng dữ liệu, vì sửa nó cần một cuộc di trú chứ không cần một tuần."
+        ]
+      }
     ],
-    quiz: [
+    "quiz": [
       {
-        question: "Hiện tượng pha loãng cổ phần (Equity Dilution) xảy ra khi nào?",
-        options: [
-          "Khi công ty làm ăn thua lỗ nhiều quý liên tiếp",
-          "Khi công ty phát hành thêm cổ phần mới, làm tỷ lệ sở hữu của cổ đông hiện hữu giảm xuống",
-          "Khi giá cổ phiếu trên thị trường giảm",
-          "Khi công ty chia cổ tức bằng tiền mặt",
+        "question": "Ràng buộc thật sự của một sản phẩm giai đoạn đầu là gì?",
+        "options": [
+          "Số lần thử còn lại trước khi hết thời gian",
+          "Số người trong đội",
+          "Chất lượng của phần nền kỹ thuật đã dựng được trong những tháng đầu tiên",
+          "Mức độ chính xác của những giả định về nhu cầu của người dùng mục tiêu"
         ],
-        correct: 1,
-        explanation:
-          "Pha loãng là chuyện của MẪU SỐ: tổng số cổ phần tăng lên nên phần trăm của bạn nhỏ đi, hoàn toàn không liên quan tới việc công ty lãi hay lỗ. Điểm mấu chốt là pha loãng không đồng nghĩa với thiệt hại - nếu vòng mới định giá cao hơn hẳn, 48% của một công ty 50 triệu USD vẫn hơn xa 80% của một công ty 5 triệu USD.",
+        "correct": 0,
+        "explanation": "Ba yếu tố kia đều ảnh hưởng tới tốc độ và chất lượng. Số lần thử còn lại là ràng buộc cứng: hết nó thì mọi thứ khác không còn nghĩa gì, và nó là thứ duy nhất giảm đều đặn dù đội làm gì."
       },
       {
-        question: "Công cụ đầu tư SAFE (Simple Agreement for Future Equity) có ưu điểm lớn nhất là gì?",
-        options: [
-          "Bảo đảm nhà đầu tư luôn có lãi",
-          "Cho phép nhận vốn nhanh và hoãn việc định giá tới vòng gọi vốn chính thức tiếp theo",
-          "Buộc công ty phải trả lãi suất cố định hằng năm",
-          "Cho nhà đầu tư quyền kiểm soát hội đồng quản trị ngay lập tức",
+        "question": "Sai lầm phổ biến nhất về mức đầu tư kỹ thuật ở giai đoạn đầu là gì?",
+        "options": [
+          "Áp cùng một mức cho cả phần chắc chắn lẫn phần đang dò",
+          "Đầu tư quá ít vào kiểm thử tự động",
+          "Chọn công nghệ quá mới nên đội mất thời gian học thay vì tập trung làm sản phẩm",
+          "Xây quá nhiều tính năng cùng lúc thay vì hoàn thiện từng tính năng một cách kỹ càng"
         ],
-        correct: 1,
-        explanation:
-          "Ở giai đoạn rất sớm, định giá gần như là phỏng đoán, và tranh cãi về nó có thể làm hỏng một vòng gọi vốn cần diễn ra nhanh. SAFE gỡ nút đó bằng cách nhận tiền ngay và để việc định giá cho vòng sau, khi đã có dữ liệu thật. Đổi lại, nhà đầu tư sớm được bù bằng valuation cap và discount - chính hai điều khoản này quyết định họ nhận bao nhiêu cổ phần lúc chuyển đổi.",
+        "correct": 0,
+        "explanation": "Cả hai hướng của sai lầm này đều tốn: áp mức cao cho tất cả thì hết thời gian trước khi tìm ra thứ ai cần, áp mức thấp cho tất cả thì phần đăng nhập và tính tiền hỏng theo cách tốn tiền thật."
       },
       {
-        question:
-          "Term sheet ghi pre-money 4 triệu USD, đầu tư 1 triệu USD, kèm yêu cầu lập option pool 15% ĐẶT TRƯỚC vòng. Điều này có nghĩa gì với nhà sáng lập?",
-        options: [
-          "Pool được chia đều giữa nhà sáng lập và nhà đầu tư mới, mỗi bên gánh một nửa",
-          "Toàn bộ 15% pool bị trừ vào phần của cổ đông hiện hữu, nên định giá thực cho công ty đang hoạt động chỉ còn khoảng 3,4 triệu USD",
-          "Pool không ảnh hưởng gì tới tỷ lệ sở hữu của nhà sáng lập",
-          "Nhà đầu tư phải bỏ thêm tiền để mua pool đó",
+        "question": "Điều gì biến nợ kỹ thuật từ công cụ thành vấn đề?",
+        "options": [
+          "Không ai ghi lại đã vay gì và điều kiện phải trả",
+          "Số lượng nợ tích luỹ quá lớn",
+          "Việc người viết ra khoản nợ đó rời khỏi đội trước khi kịp bàn giao lại cho ai khác",
+          "Việc đội không dành thời gian định kỳ để rà soát và trả bớt những khoản đã vay"
         ],
-        correct: 1,
-        explanation:
-          "Chữ 'trước' (pre-money) là toàn bộ vấn đề: pool được tạo ra trước khi tính định giá, nên nó nằm gọn trong phần 4 triệu và bị trừ vào cổ đông hiện hữu - tức nhà sáng lập - chứ không san sẻ với nhà đầu tư mới. Vì vậy trước khi so sánh hai term sheet, phải quy cả hai về cùng một gốc; nếu không, bạn đang so hai con số không cùng đơn vị đo.",
+        "correct": 0,
+        "explanation": "Ba yếu tố kia đều làm tình hình xấu hơn và đều là hệ quả của yếu tố đầu. Một khoản nợ được ghi lại kèm điều kiện thì xuất hiện trong kế hoạch; một khoản không ghi thì chỉ xuất hiện trong sự cố."
       },
       {
-        question:
-          "Sáng lập khởi đầu 100%. Seed bán 20%, Series A bán 25%, Series B bán 20%. Sáng lập còn lại bao nhiêu?",
-        options: [
-          "35%, lấy 100% trừ đi tổng 65% đã bán",
-          "48%, tính bằng 80% × 75% × 80%",
-          "60%, vì chỉ tính vòng gần nhất",
-          "25%, chia đều cho bốn bên",
+        "question": "Vì sao nợ ở tầng dữ liệu đắt hơn nợ ở tầng mã?",
+        "options": [
+          "Vì sửa nó cần một cuộc di trú chứ không cần một tuần viết lại",
+          "Vì nó ảnh hưởng tới nhiều phần của hệ thống hơn",
+          "Vì các quyết định về dữ liệu thường được đưa ra sớm nhất nên chúng khó thay đổi nhất",
+          "Vì nó liên quan tới dữ liệu của người dùng nên có thêm ràng buộc về mặt pháp lý"
         ],
-        correct: 1,
-        explanation:
-          "Phải NHÂN DỒN các hệ số chứ không trừ thẳng phần trăm, vì mỗi vòng bán một tỷ lệ của công ty tại thời điểm đó chứ không phải của công ty ban đầu: 100% × 0,8 × 0,75 × 0,8 = 48%. Cách trừ thẳng ra 35% là sai. Và một lần nữa, con số cần nhìn không phải 48% mà là 48% nhân định giá hiện tại bằng bao nhiêu tiền.",
+        "correct": 0,
+        "explanation": "Mã viết vội thì viết lại được, và cái giá là công sức. Một mô hình dữ liệu sai sau sáu tháng đã có dữ liệu thật nằm trong đó, nên cái giá gồm cả một khoảng ngừng và một phương án quay lui."
       },
       {
-        question: "Khác biệt giữa '1x non-participating' và '1x participating' liquidation preference là gì?",
-        options: [
-          "Không có khác biệt thực chất, chỉ là cách gọi khác nhau",
-          "Non-participating: nhà đầu tư chọn HOẶC lấy lại vốn HOẶC chia theo tỷ lệ. Participating: lấy lại vốn TRƯỚC rồi VẪN chia tiếp phần còn lại",
-          "Participating chỉ áp dụng khi công ty IPO",
-          "Non-participating nghĩa là nhà đầu tư không được chia gì cả",
+        "question": "Dấu hiệu nào cho biết đã tới lúc đổi sang cách làm của hệ thống trưởng thành?",
+        "options": [
+          "Mô hình dữ liệu đã ngừng đổi trong hai tháng liên tiếp",
+          "Sản phẩm đã ra mắt được sáu tháng",
+          "Đội đã hoàn thành hầu hết những tính năng nằm trong kế hoạch ban đầu của sản phẩm",
+          "Chi phí hạ tầng đã vượt qua mức mà công ty đặt ra cho giai đoạn thử nghiệm"
         ],
-        correct: 1,
-        explanation:
-          "Participating cho nhà đầu tư ăn hai lần trên cùng một thương vụ, nên nó lấy đi phần đáng kể của nhà sáng lập, đặc biệt ở các thương vụ thoái vốn quy mô vừa - đúng kịch bản xảy ra thường xuyên nhất trong thực tế. Đây là lý do một term sheet định giá cao kèm 2x participating có thể tệ hơn hẳn một term sheet định giá thấp hơn kèm 1x non-participating, và là lý do phải luôn dựng bảng chia tiền theo kịch bản trước khi ký.",
-      },
+        "correct": 0,
+        "explanation": "Ba dấu hiệu kia đều là mốc thời gian hoặc mốc kế hoạch, và cả ba đều đạt được kể cả khi sản phẩm vẫn đang dò. Mô hình dữ liệu ngừng đổi thì nói đúng thứ cần biết: phần chắc chắn đã lớn hơn phần đang dò."
+      }
     ],
-    practicePrompt: {
-      question:
-        "Công ty được bán 20 triệu USD. Quỹ đã đầu tư 5 triệu, nắm 25%, với điều khoản 1x participating. Quỹ nhận về bao nhiêu?",
-      options: ["5 triệu USD", "8,75 triệu USD", "10 triệu USD", "6,25 triệu USD"],
-      correct: 1,
-      explanation:
-        "Participating nghĩa là quỹ lấy lại vốn trước rồi vẫn chia tiếp: 5 triệu tiền gốc, sau đó 25% của phần còn lại 15 triệu, tức thêm 3,75 triệu - tổng 8,75 triệu. Nếu điều khoản là 1x NON-participating, quỹ sẽ phải chọn: hoặc 5 triệu tiền gốc, hoặc 25% × 20 = 5 triệu, và nhận 5 triệu. Khoảng chênh 3,75 triệu đó đi thẳng từ túi nhà sáng lập - chỉ vì một từ trong term sheet.",
+    "keyTakeaways": [
+      "Ràng buộc là số lần thử còn lại, không phải công sức bảo trì",
+      "Bảo vệ đầy đủ phần chắc chắn, chấp nhận nợ ở phần đang dò",
+      "Nợ được ghi kèm điều kiện trả thì xuất hiện trong kế hoạch, không trong sự cố",
+      "Nếu chỉ làm cẩn thận được một thứ, hãy chọn hình dạng dữ liệu"
+    ],
+    "practicePrompt": {
+      "question": "Đội có 8 tháng thời gian. Dựng nền đầy đủ mất 5 tháng, mỗi vòng thử mất 1 tháng. Còn bao nhiêu lần thử?",
+      "options": [
+        "3",
+        "8",
+        "5 lần, vì phần dựng nền cũng tính là những vòng thử đầu tiên của sản phẩm",
+        "4 lần, vì tháng cuối thường được dành để hoàn thiện chứ không để thử thêm lần nữa"
+      ],
+      "correct": 0,
+      "explanation": "Tám trừ năm còn ba. Ba lần thử là rất ít cho một sản phẩm chưa biết ai dùng, và đó là toàn bộ lập luận cho việc rút phần dựng nền xuống - mỗi tháng cắt được ở đó là thêm một lần thử."
     },
-    keyTakeaways: [
-      "Post-money = Pre-money + vốn mới, và mọi tỷ lệ sở hữu đều chia cho post-money.",
-      "Pha loãng qua nhiều vòng phải tính bằng cách nhân dồn hệ số, không trừ thẳng phần trăm.",
-      "Option pool đặt trước vòng là nhà sáng lập gánh trọn - hãy quy hai term sheet về cùng gốc trước khi so sánh.",
-      "SAFE hoãn định giá nhưng cộng dồn; phải dựng bảng mô phỏng chuyển đổi trước khi ký cái tiếp theo.",
-      "Liquidation preference thường quyết định tiền về túi bạn nhiều hơn cả con số định giá.",
-    ],
-    summary: {
-      keyIdea:
-        "Định giá là điều khoản được tranh luận to nhất nhưng hiếm khi quan trọng nhất - option pool và liquidation preference mới là chỗ tiền thật sự đổi chủ.",
-      formula: "Post = Pre + Vốn mới · Tỷ lệ = Vốn mới / Post · Còn lại = Tích của (1 - tỷ lệ bán) qua các vòng",
-      commonMistake: "Chia vốn đầu tư cho pre-money để tính tỷ lệ, và bỏ qua vị trí đặt option pool.",
-      action: "Dựng bảng chia tiền ở ba kịch bản thoái vốn - thấp, vừa, cao - trước khi ký bất kỳ term sheet nào.",
+    "summary": {
+      "keyIdea": "Tối đa hoá số lần thử còn lại, không tối đa hoá tuổi thọ của thứ đang xây",
+      "commonMistake": "Áp một mức đầu tư kỹ thuật cho cả phần chắc chắn lẫn phần đang dò",
+      "action": "Chia sản phẩm hiện tại thành hai danh sách: phần chắc còn sau ba tháng, và phần còn lại."
     },
-    track: "bonus",
+    "application": {
+      "title": "Ba câu mỗi khi định làm tắt",
+      "message": "Phần này thuộc nhóm chắc chắn hay nhóm đang dò? Nếu vay thì điều kiện phải trả là gì? Nó có chạm vào hình dạng dữ liệu không?",
+      "secondary": "Câu thứ ba là câu quyết định, vì một cái gật đầu ở đó biến khoản vay một tuần thành một cuộc di trú."
+    },
+    "id": 803,
+    "slug": "tai-chinh-khoi-nghiep-cap-table-vc-valuation",
+    "track": "bonus"
   },
   {
     "title": "Chuyên Đề Masterclass 4: Định lượng rủi ro hệ thống",
