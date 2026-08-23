@@ -28222,845 +28222,744 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 161,
-    "slug": "do-tin-cay-la-mot-danh-doi",
-    "title": "Độ tin cậy là một đánh đổi, không phải một lời hứa",
-    "subtitle": "Không ai xây hệ thống không bao giờ hỏng. Người ta chọn mức hỏng chấp nhận được rồi trả giá cho nó.",
-    "duration": "8 phút",
+    "slug": "do-tin-cay-do-bang-gi",
+    "title": "Độ tin cậy đo bằng gì",
+    "subtitle": "Không phải hệ thống có chạy không - mà người dùng có làm được việc của họ không.",
+    "duration": "7 phút",
     "difficulty": "Trung bình",
-    "emoji": "⚖️",
     "track": "professional",
-    "whyItMatters": "Đội nào coi độ tin cậy là mục tiêu tuyệt đối sẽ tiêu hết ngân sách vào chín số chín mà không ai cần, hoặc kiệt sức vì mọi cảnh báo đều khẩn cấp. Đặt nó thành một con số biến nó thành thứ có thể quyết định được.",
-    "openingQuestion": "Đội đề xuất nâng độ sẵn sàng từ 99,9% lên 99,99%. Câu hỏi đầu tiên nên hỏi là gì?",
+    "emoji": "📶",
+    "interactiveType": "tail-risk",
+    "isFundamental": true,
+    "whyItMatters": "Đội nào cũng nói muốn hệ thống đáng tin, và phần lớn đo nó bằng một con số không phản ánh trải nghiệm thật. Đo sai thì mọi quyết định về dự phòng và đầu tư đều đi theo hướng sai.",
+    "openingQuestion": "Máy chủ chạy suốt tháng không sập lần nào. Hệ thống có đáng tin không?",
     "openingOptions": [
-      "Người dùng có nhận ra khác biệt ấy không, và nó đáng bao nhiêu",
-      "Cần thêm bao nhiêu máy chủ và bao nhiêu vùng để đạt được mức đó",
-      "Hệ thống hiện tại đang hỏng ở đâu nhiều nhất trong sáu tháng qua",
-      "Các đối thủ cùng ngành đang cam kết mức độ sẵn sàng là bao nhiêu"
+      "Chưa kết luận được - nó có thể chạy suốt mà vẫn trả về lỗi hoặc chậm tới mức không dùng được",
+      "Có, vì không có thời gian ngừng hoạt động nghĩa là dịch vụ luôn sẵn sàng phục vụ",
+      "Có, nhưng cần thêm dữ liệu về mức tải để biết nó chịu được bao nhiêu người dùng",
+      "Chưa, vì một tháng là quá ngắn để kết luận về độ tin cậy của một hệ thống"
     ],
     "correctOption": 0,
-    "explanation": "Khoảng cách giữa hai con số đó là bốn mươi ba phút ngừng mỗi tháng so với bốn phút. Chi phí để đi từ mức này lên mức kia thường gấp nhiều lần, và với phần lớn sản phẩm thì người dùng không phân biệt được - họ chịu ảnh hưởng của mạng di động nhiều hơn. Ba câu hỏi còn lại đều hợp lý nhưng chúng đều là câu hỏi thực hiện; chúng chỉ có nghĩa sau khi đã trả lời được rằng mục tiêu ấy đáng theo đuổi.",
+    "explanation": "Tiến trình còn sống là một chuyện, người dùng làm được việc là chuyện khác. Một hệ thống trả về lỗi cho một phần mười số yêu cầu, hoặc mất mười giây để tải một trang, vẫn được tính là đang chạy theo mọi phép đo về thời gian hoạt động. Đó là lý do thời gian hoạt động là con số dễ đo nhất và ít liên quan nhất tới thứ người dùng cảm nhận.",
     "diagram": [
       {
-        "label": "99,9% = ~43 phút ngừng mỗi tháng",
+        "label": "Đo từ phía NGƯỜI DÙNG, không từ phía máy chủ",
         "arrow": true
       },
       {
-        "label": "99,99% = ~4 phút mỗi tháng",
+        "label": "Ba câu hỏi: có trả lời không, đúng không, kịp không",
         "arrow": true
       },
       {
-        "label": "Chi phí chênh nhau nhiều lần",
+        "label": "Và trả lời bằng PHÂN VỊ, không bằng trung bình",
         "arrow": true
       },
       {
-        "label": "Câu hỏi: ai được lợi, và lợi bao nhiêu"
+        "label": "Thời gian hoạt động: dễ đo nhất, ít liên quan nhất"
       }
     ],
     "realWorldExample": {
-      "company": "Chín số chín không ai cần",
-      "description": "Một đội dành hai quý xây dự phòng đa vùng cho công cụ nội bộ mà cả công ty dùng trong giờ hành chính. Mức ngừng thực tế trước đó là vài phút mỗi quý, và không ai từng phàn nàn."
-    },
-    "keyTakeaways": [
-      "Mỗi chín thêm vào thường tốn gấp nhiều lần chín trước đó.",
-      "Mục tiêu độ tin cậy phải xuất phát từ nhu cầu người dùng, không từ tham vọng.",
-      "Độ tin cậy của hệ thống bị chặn bởi mắt xích yếu nhất mà nó phụ thuộc.",
-      "Một mục tiêu quá cao gây kiệt sức, vì mọi trục trặc đều thành khẩn cấp."
-    ],
-    "summary": {
-      "keyIdea": "Chọn mức độ tin cậy phù hợp rồi trả giá cho nó, thay vì đuổi theo con số tuyệt đối.",
-      "formula": "Mỗi chín thêm vào đắt gấp nhiều lần chín trước.",
-      "commonMistake": "Đặt mục tiêu bằng cảm giác chứ không bằng nhu cầu người dùng."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Hỏi xem dịch vụ của bạn đang nhắm mức độ sẵn sàng nào và ai đã quyết định con số ấy. Nếu không ai trả lời được thì bạn vừa tìm ra việc đầu tiên phải làm."
-    },
-    "practicePrompt": {
-      "question": "Vì sao mục tiêu độ tin cậy quá cao lại gây hại cho đội?",
-      "options": [
-        "Vì mọi trục trặc nhỏ đều trở thành việc khẩn cấp phải xử lý ngay",
-        "Vì đội sẽ không còn thời gian để viết tài liệu kỹ thuật cho đầy đủ",
-        "Vì hệ thống sẽ trở nên phức tạp tới mức không ai hiểu được nữa",
-        "Vì chi phí hạ tầng vượt quá ngân sách được duyệt cho cả năm"
-      ],
-      "correct": 0,
-      "explanation": "Khi không còn khoảng đệm nào, mỗi sự cố dù nhỏ cũng phải được xử lý ngay lập tức, kể cả lúc nửa đêm. Ba hậu quả còn lại đều có thật nhưng chúng đến sau; cái đầu tiên đội cảm nhận được là lịch trực trở nên không sống nổi."
+      "company": "Chạy mà không dùng được",
+      "description": "Một sự cố điển hình: cơ sở dữ liệu quá tải nên mọi truy vấn mất ba mươi giây thay vì hai trăm mili giây. Không tiến trình nào chết, không cảnh báo nào về thời gian hoạt động kêu, và toàn bộ người dùng không làm được gì. Bảng theo dõi vẫn xanh suốt sự cố."
     },
     "quiz": [
       {
-        "question": "Khoảng cách giữa 99,9% và 99,99% là bao nhiêu thời gian ngừng mỗi tháng?",
+        "question": "Vì sao thời gian hoạt động là con số kém nhất để đo độ tin cậy?",
         "options": [
-          "Khoảng bốn mươi ba phút so với khoảng bốn phút",
-          "Khoảng bốn giờ so với khoảng bốn mươi phút mỗi tháng",
-          "Khoảng bảy phút so với khoảng bốn mươi giây mỗi tháng",
-          "Khoảng một ngày so với khoảng hai giờ rưỡi mỗi tháng"
+          "Vì nó chỉ nói tiến trình còn sống, không nói người dùng có làm được việc hay không",
+          "Vì nó được tính theo tháng nên không phản ánh được các sự cố ngắn trong ngày",
+          "Vì nó phụ thuộc vào cách mà mỗi nhà cung cấp định nghĩa thế nào là ngừng hoạt động",
+          "Vì nó không tính tới thời gian bảo trì có kế hoạch mà đội chủ động thực hiện"
         ],
         "correct": 0,
-        "explanation": "Một tháng có khoảng bốn mươi ba nghìn phút, nên một phần nghìn của nó là bốn mươi ba phút. Nhớ con số này giúp bạn nhận ra ngay khi một mục tiêu được đặt ra mà không ai tính xem nó nghĩa là gì."
+        "explanation": "Một hệ thống trả lỗi cho một phần mười yêu cầu vẫn được tính là đang chạy. Ba lựa chọn kia đều là hạn chế thật về cách tính, nhưng chúng có thể sửa được bằng cách đo kỹ hơn - còn khoảng cách giữa tiến trình sống và người dùng làm được việc thì không."
       },
       {
-        "question": "Độ tin cậy của một dịch vụ bị chặn bởi điều gì?",
+        "question": "Ba câu hỏi định nghĩa độ tin cậy là gì?",
         "options": [
-          "Mắt xích kém tin cậy nhất trong chuỗi nó phụ thuộc",
-          "Số lượng máy chủ đang chạy trong nhóm phục vụ",
-          "Chất lượng mã nguồn của chính dịch vụ đó",
-          "Tần suất triển khai phiên bản mới lên môi trường thật"
+          "Hệ thống có trả lời không, câu trả lời có đúng không, và nó có kịp không",
+          "Hệ thống có chạy không, có chịu được tải không, và có khôi phục được không",
+          "Dữ liệu có an toàn không, dịch vụ có sẵn sàng không, và chi phí có hợp lý không",
+          "Có bao nhiêu sự cố, mỗi sự cố kéo dài bao lâu, và bao nhiêu người bị ảnh hưởng"
         ],
         "correct": 0,
-        "explanation": "Một dịch vụ hoàn hảo gọi tới một phụ thuộc đạt 99% thì không thể vượt quá 99%. Đây là lý do cam kết độ tin cậy phải được tính từ cả chuỗi chứ không chỉ từ phần mình viết."
+        "explanation": "Ba câu này lần lượt tương ứng với tính sẵn sàng, tính đúng đắn và độ trễ. Lựa chọn cuối mô tả cách ĐO các sự cố đã xảy ra, còn ba câu trên định nghĩa thứ đang được đo."
       },
       {
-        "question": "Mục tiêu độ tin cậy nên xuất phát từ đâu?",
+        "question": "Vì sao câu trả lời có đúng không lại hay bị bỏ sót?",
         "options": [
-          "Từ mức mà người dùng thật sự nhận ra và quan tâm",
-          "Từ mức cao nhất mà công nghệ hiện tại cho phép đạt",
-          "Từ mức mà các công ty cùng ngành đang công bố ra",
-          "Từ mức mà hệ thống đã đạt được trong năm vừa rồi"
+          "Vì một phản hồi sai vẫn là một phản hồi thành công theo mọi phép đo thông thường",
+          "Vì việc kiểm tra tính đúng đắn đòi hỏi phải biết trước kết quả mong đợi là gì",
+          "Vì lỗi về tính đúng đắn thường hiếm hơn nhiều so với lỗi về tốc độ phản hồi",
+          "Vì các công cụ theo dõi hiện nay chưa hỗ trợ đo tính đúng đắn một cách tự động"
         ],
         "correct": 0,
-        "explanation": "Người dùng vào bằng mạng di động đã chịu tỷ lệ lỗi cao hơn nhiều so với khoảng chênh giữa hai mục tiêu bạn đang cân nhắc. Vượt qua ngưỡng ấy thì mọi đồng chi thêm là chi cho một khác biệt không ai cảm nhận được."
+        "explanation": "Đây là loại hỏng tệ nhất trong ba loại: hệ thống trả về mã thành công kèm dữ liệu sai, nên nó không xuất hiện ở bất kỳ bảng theo dõi nào và người dùng tin vào thứ họ nhận được."
       },
       {
-        "question": "Vì sao mỗi chín thêm vào lại đắt hơn chín trước đó?",
+        "question": "Vì sao phải đo độ trễ bằng phân vị chứ không bằng trung bình?",
         "options": [
-          "Vì nó đòi hỏi loại bỏ những nguyên nhân ngày càng hiếm và khó lường",
-          "Vì giá của phần cứng tăng theo cấp số nhân khi mua số lượng lớn",
-          "Vì đội phải tuyển thêm người để trực suốt hai mươi tư giờ mỗi ngày",
-          "Vì các nhà cung cấp hạ tầng tính phí theo mức cam kết dịch vụ"
+          "Vì trung bình giấu đi nhóm chậm nhất, và đó chính là nhóm bỏ đi",
+          "Vì phân vị ổn định hơn nên dễ so sánh giữa các khoảng thời gian khác nhau",
+          "Vì trung bình bị ảnh hưởng bởi những lượt gọi bất thường hiếm khi xảy ra",
+          "Vì phân vị là chuẩn mà các công cụ theo dõi hiện đại đều hỗ trợ sẵn"
         ],
         "correct": 0,
-        "explanation": "Những nguyên nhân dễ đã bị xử lý ở các mức trước. Còn lại là lỗi hiếm, lỗi phối hợp giữa nhiều thành phần, và lỗi con người - loại phải chống bằng kiến trúc và quy trình chứ không bằng một khoản chi."
+        "explanation": "Trung bình hai trăm mili giây hoàn toàn tương thích với việc năm phần trăm người dùng chờ mười giây. Đây là cùng lập luận với bài về đối chuẩn hiệu năng, và ở đây nó còn quan trọng hơn vì con số này quyết định ngân sách của cả đội."
       },
       {
-        "question": "Đặt mục tiêu độ tin cậy thành một con số cụ thể mang lại điều gì?",
+        "question": "Điều gì làm cho một sự cố chậm khó phát hiện hơn một sự cố sập?",
         "options": [
-          "Biến nó thành thứ có thể đem ra cân nhắc và đánh đổi được",
-          "Bảo đảm rằng hệ thống sẽ đạt được đúng mức đã đặt ra",
-          "Cho phép so sánh chất lượng vận hành giữa các đội trong công ty",
-          "Giúp phát hiện sớm những dịch vụ đang hoạt động kém"
+          "Vì mọi tiến trình vẫn sống nên các phép đo về thời gian hoạt động đều báo xanh",
+          "Vì hệ thống chậm thường chỉ ảnh hưởng tới một phần nhỏ người dùng ở xa",
+          "Vì các cảnh báo về tốc độ thường được đặt ngưỡng quá cao nên rất ít khi kêu lên",
+          "Vì sự cố chậm thường tự hết sau một thời gian nên không ai kịp điều tra"
         ],
         "correct": 0,
-        "explanation": "Không có con số thì mọi cuộc tranh luận về việc có nên dừng tính năng để sửa hạ tầng hay không đều là tranh luận cảm tính. Có con số thì câu hỏi trở thành đang thừa hay đang thiếu bao nhiêu."
+        "explanation": "Bảng theo dõi xanh suốt sự cố là tình huống khó chịu nhất trong vận hành: bạn nhận báo cáo từ người dùng trong khi mọi con số của mình đều bình thường. Nó cũng là lý do phải đo từ phía người dùng chứ không từ phía máy chủ."
       }
     ],
+    "keyTakeaways": [
+      "Tiến trình còn sống và người dùng làm được việc là hai chuyện khác nhau.",
+      "Ba câu hỏi: có trả lời không, có đúng không, có kịp không.",
+      "Câu đúng không hay bị bỏ sót - phản hồi sai vẫn là phản hồi thành công.",
+      "Đo độ trễ bằng phân vị: trung bình giấu đi nhóm chậm nhất, tức nhóm bỏ đi.",
+      "Sự cố chậm khó phát hiện hơn sự cố sập, vì bảng theo dõi vẫn xanh suốt."
+    ],
+    "practicePrompt": {
+      "question": "Bảng theo dõi của bạn báo xanh nhưng người dùng liên tục phản ánh chậm. Nguyên nhân có khả năng nhất?",
+      "options": [
+        "Bạn đang đo từ phía máy chủ và đo bằng trung bình, nên phần đuôi không hiện ra",
+        "Hệ thống theo dõi của bạn đang gặp sự cố nên không ghi nhận đúng số liệu",
+        "Người dùng đang gặp vấn đề về đường truyền mạng chứ không phải lỗi hệ thống",
+        "Các sự cố xảy ra quá ngắn nên khoảng lấy mẫu của công cụ theo dõi bỏ sót chúng"
+      ],
+      "correct": 0,
+      "explanation": "Hai lỗi này thường đi cùng nhau và mỗi cái đều đủ để tạo ra tình huống trên. Đường truyền của người dùng cũng là nguyên nhân thật, nhưng bạn chỉ thấy được nó khi đã đo từ phía người dùng - tức là sau khi sửa lỗi đo thứ nhất."
+    },
+    "summary": {
+      "keyIdea": "Độ tin cậy là người dùng làm được việc, không phải tiến trình còn sống.",
+      "formula": "Có trả lời + trả lời đúng + trả lời kịp, đo bằng phân vị từ phía người dùng.",
+      "commonMistake": "Đo thời gian hoạt động, con số dễ đo nhất và ít liên quan nhất.",
+      "action": "Kiểm xem chỉ số độ tin cậy của đội đang đo từ phía nào và bằng con số gì."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Mở bảng theo dõi của đội và trả lời hai câu: các con số này đo từ phía máy chủ hay phía người dùng, và độ trễ đang là trung bình hay phân vị?",
+      "secondary": "Nếu câu trả lời là máy chủ và trung bình, bạn vừa tìm ra lý do vì sao báo cáo từ người dùng không khớp với bảng theo dõi của mình."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Chặng trước hỏi hệ thống nhanh chậm thế nào. Chặng này hỏi một câu khác: khi nó hỏng thì sao - và trước hết, hỏng bao nhiêu thì được coi là chấp nhận được."
+        "text": "Chặng này về việc giữ cho một hệ thống đáng tin. Bài đầu là câu hỏi tưởng đơn giản mà phần lớn đội trả lời sai: đáng tin nghĩa là gì, và đo nó bằng con số nào."
       },
       {
         "type": "heading",
-        "text": "Không có hệ thống nào không hỏng"
+        "text": "Con số dễ đo nhất, và ít liên quan nhất"
+      },
+      {
+        "type": "callout",
+        "label": "Thời gian hoạt động",
+        "text": "Nó nói tiến trình còn sống. Một hệ thống trả về lỗi cho một phần mười số yêu cầu, hoặc mất mười giây để tải một trang, vẫn được tính là đang chạy theo mọi phép đo về thời gian hoạt động."
       },
       {
         "type": "paragraph",
-        "text": "Phần cứng chết, mạng đứt, người triển khai nhầm, phụ thuộc bên thứ ba ngừng. Câu hỏi không phải làm sao để không bao giờ hỏng mà là hỏng bao nhiêu thì chấp nhận được, và bạn sẵn sàng trả bao nhiêu để giữ nó ở mức ấy."
+        "text": "Sự cố điển hình nhất minh hoạ chuyện này: cơ sở dữ liệu quá tải nên mọi truy vấn mất ba mươi giây thay vì hai trăm mili giây. Không tiến trình nào chết, không cảnh báo nào kêu, và toàn bộ người dùng không làm được gì. Bảng theo dõi xanh suốt sự cố."
+      },
+      {
+        "type": "heading",
+        "text": "Ba câu hỏi thay thế"
       },
       {
         "type": "conceptTable",
-        "title": "Một tháng có khoảng 43.200 phút",
-        "subtitle": "Con số đáng nhớ, vì nó biến phần trăm thành thời gian thật",
+        "title": "Và mỗi câu đo cái gì",
         "concepts": [
           {
-            "vi": "99%",
-            "en": "two nines",
-            "def": "Khoảng 7 giờ ngừng mỗi tháng. Đủ cho công cụ nội bộ dùng trong giờ hành chính."
+            "vi": "Có trả lời không",
+            "en": "availability",
+            "def": "Tỷ lệ yêu cầu nhận được phản hồi. Đây là phần gần nhất với thời gian hoạt động, nhưng đo từ phía người dùng."
           },
           {
-            "vi": "99,9%",
-            "en": "three nines",
-            "def": "Khoảng 43 phút mỗi tháng. Mức phổ biến cho sản phẩm thương mại thông thường."
+            "vi": "Có đúng không",
+            "en": "correctness",
+            "def": "Phản hồi có mang dữ liệu đúng không. Hay bị bỏ sót nhất, vì một phản hồi sai vẫn là một phản hồi thành công."
           },
           {
-            "vi": "99,99%",
-            "en": "four nines",
-            "def": "Khoảng 4 phút mỗi tháng. Đòi hỏi dự phòng thật và quy trình triển khai rất kỷ luật."
+            "vi": "Có kịp không",
+            "en": "latency",
+            "def": "Người dùng chờ bao lâu. Đo bằng PHÂN VỊ - trung bình hai trăm mili giây tương thích với việc năm phần trăm chờ mười giây."
           }
         ]
       },
       {
-        "type": "callout",
-        "label": "Mắt xích yếu nhất đặt trần",
-        "text": "Một dịch vụ hoàn hảo gọi tới một phụ thuộc đạt 99% thì không thể vượt quá 99%. Cam kết độ tin cậy phải được tính từ cả chuỗi, và đó thường là lúc người ta phát hiện ra con số mình vừa hứa là bất khả thi."
+        "type": "paragraph",
+        "text": "Câu thứ hai đáng nhấn: hệ thống trả về mã thành công kèm dữ liệu sai là loại hỏng tệ nhất trong ba loại, vì nó không xuất hiện ở bất kỳ bảng theo dõi nào và người dùng tin vào thứ họ nhận được."
       },
       {
         "type": "heading",
-        "text": "Cái giá của mục tiêu quá cao"
+        "text": "Đo từ phía nào"
       },
       {
-        "type": "paragraph",
-        "text": "Nó không chỉ là tiền. Khi không còn khoảng đệm nào, mọi trục trặc dù nhỏ cũng thành việc khẩn cấp phải xử lý ngay, kể cả lúc nửa đêm. Đội kiệt sức, người giỏi nghỉ việc, và độ tin cậy thực tế đi xuống - đúng cái mà mục tiêu ấy định bảo vệ."
+        "type": "comparison",
+        "left": {
+          "label": "Từ phía máy chủ",
+          "text": "Dễ đo, có sẵn trong mọi công cụ. Nhưng nó bỏ qua toàn bộ quãng đường từ máy chủ tới người dùng - và với người dùng ở xa, quãng đó có thể lớn hơn phần bạn đang đo."
+        },
+        "right": {
+          "label": "Từ phía người dùng",
+          "text": "Khó đo hơn, cần công cụ riêng. Nhưng nó là thứ duy nhất trả lời được câu hỏi bạn thật sự quan tâm: người dùng có làm được việc của họ không."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Độ tin cậy là một con số được chọn, không phải một lời hứa được giữ bằng ý chí.",
-          "Bài sau về việc chọn đúng thứ để đo, vì một mục tiêu đặt trên sai chỉ số thì không bảo vệ được gì."
+          "Tình huống khó chịu nhất trong vận hành là bảng theo dõi xanh trong khi người dùng phản ánh chậm - và nó gần như luôn có cùng hai nguyên nhân: đo từ phía máy chủ, và đo bằng trung bình.",
+          "Bài sau biến ba câu hỏi này thành những con số cụ thể mà cả đội cam kết với nhau."
         ]
       }
     ]
   },
   {
     "id": 162,
-    "slug": "chi-so-do-suc-khoe-dich-vu",
-    "title": "Chọn chỉ số: dịch vụ có đang phục vụ được không",
-    "subtitle": "Máy chủ còn sống không giống với người dùng làm được việc.",
-    "duration": "8 phút",
+    "slug": "sli-slo-va-sla",
+    "title": "SLI, SLO và SLA - ba thứ hay bị nhầm",
+    "subtitle": "Một cái là phép đo, một cái là mục tiêu, một cái là hợp đồng có tiền phạt.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "🩺",
     "track": "professional",
-    "whyItMatters": "Mọi mục tiêu độ tin cậy đều đặt trên một chỉ số. Chọn nhầm chỉ số thì bảng theo dõi xanh trong lúc người dùng không dùng được, và không cảnh báo nào nổ.",
-    "openingQuestion": "Chỉ số nào phản ánh đúng nhất việc dịch vụ đang phục vụ được?",
+    "emoji": "🎯",
+    "interactiveType": "tail-risk",
+    "isFundamental": true,
+    "whyItMatters": "Ba từ này bị dùng lẫn lộn trong hầu hết cuộc họp, và hậu quả rất cụ thể: đội cam kết một con số họ tưởng là mục tiêu nội bộ trong khi bên kia hiểu đó là cam kết có ràng buộc.",
+    "openingQuestion": "Đâu là khác biệt cốt lõi giữa mục tiêu nội bộ và cam kết với khách hàng?",
     "openingOptions": [
-      "Tỷ lệ yêu cầu được trả lời đúng và đủ nhanh",
-      "Tỷ lệ thời gian máy chủ ở trạng thái đang chạy",
-      "Mức sử dụng bộ xử lý và bộ nhớ của các máy chủ",
-      "Số lượng yêu cầu mà hệ thống nhận được mỗi giây"
+      "Mục tiêu nội bộ nên chặt hơn cam kết, để bạn có chỗ xoay xở trước khi vi phạm hợp đồng",
+      "Mục tiêu nội bộ mang tính định hướng còn cam kết thì bắt buộc phải đạt được",
+      "Mục tiêu nội bộ do đội kỹ thuật đặt còn cam kết do bộ phận kinh doanh quyết định",
+      "Mục tiêu nội bộ được đo hằng ngày còn cam kết được đánh giá theo từng quý một"
     ],
     "correctOption": 0,
-    "explanation": "Một tiến trình đang chạy vẫn có thể trả về lỗi cho mọi yêu cầu, hoặc trả lời sau ba mươi giây. Chỉ số tốt phải gộp cả tính đúng lẫn tính kịp thời, vì một câu trả lời đến quá muộn thì với người dùng không khác gì không có câu trả lời. Mức dùng tài nguyên và lưu lượng là thông tin để chẩn đoán chứ không cho biết dịch vụ có phục vụ được hay không.",
+    "explanation": "Đặt hai con số bằng nhau nghĩa là khoảnh khắc bạn trượt mục tiêu cũng chính là khoảnh khắc bạn vi phạm hợp đồng - không có khoảng đệm nào để phát hiện và xử lý. Mục tiêu nội bộ chặt hơn tạo ra một vùng cảnh báo: bạn biết mình đang trượt trước khi khách hàng biết, và trước khi có tiền phạt.",
     "diagram": [
       {
-        "label": "Tiến trình còn sống - chưa nói lên gì",
+        "label": "SLI: phép đo - con số bạn thật sự đo được",
         "arrow": true
       },
       {
-        "label": "Yêu cầu được trả lời - gần hơn",
+        "label": "SLO: mục tiêu nội bộ - ngưỡng đội cam kết với nhau",
         "arrow": true
       },
       {
-        "label": "Trả lời đúng và trong ngưỡng thời gian",
+        "label": "SLA: hợp đồng với khách hàng, có tiền phạt",
         "arrow": true
       },
       {
-        "label": "Đó là chỉ số đặt mục tiêu lên được"
+        "label": "Mục tiêu nội bộ phải CHẶT HƠN cam kết"
       }
     ],
     "realWorldExample": {
-      "company": "Xanh toàn bảng, không ai đăng nhập được",
-      "description": "Dịch vụ xác thực trả về lỗi cho mọi yêu cầu suốt hai mươi phút. Mọi máy chủ đều đang chạy, mức tài nguyên bình thường, và không cảnh báo nào nổ vì cảnh báo được đặt trên trạng thái tiến trình."
-    },
-    "keyTakeaways": [
-      "Chỉ số phải gộp cả tính đúng lẫn tính kịp thời của câu trả lời.",
-      "Đo ở chỗ gần người dùng nhất mà bạn còn kiểm soát được.",
-      "Mỗi hành trình quan trọng cần chỉ số riêng, không gộp làm một.",
-      "Mức dùng tài nguyên dùng để chẩn đoán, không dùng để đặt mục tiêu."
-    ],
-    "summary": {
-      "keyIdea": "Chỉ số độ tin cậy phải trả lời được câu hỏi người dùng có làm được việc hay không.",
-      "formula": "Tỷ lệ yêu cầu vừa đúng vừa kịp.",
-      "commonMistake": "Đặt cảnh báo trên trạng thái tiến trình thay vì trên kết quả phục vụ."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Liệt kê ba hành trình quan trọng nhất của người dùng và viết ra chỉ số đo được cho từng cái. Nếu một hành trình không có chỉ số nào thì nó đang không được bảo vệ."
-    },
-    "practicePrompt": {
-      "question": "Vì sao không nên gộp mọi hành trình vào một chỉ số duy nhất?",
-      "options": [
-        "Vì hành trình ít lưu lượng sẽ bị hành trình nhiều lưu lượng che mất",
-        "Vì mỗi hành trình có một đội khác nhau chịu trách nhiệm vận hành",
-        "Vì các hành trình có yêu cầu về thời gian phản hồi khác nhau",
-        "Vì công cụ giám sát không cho phép tổng hợp nhiều nguồn dữ liệu"
-      ],
-      "correct": 0,
-      "explanation": "Nếu chín mươi lăm phần trăm lưu lượng là một hành trình đơn giản, thì chức năng thanh toán hỏng hoàn toàn cũng chỉ kéo con số chung xuống vài phần trăm. Yêu cầu thời gian khác nhau cũng là lý do thật, nhưng nó chỉ làm ngưỡng khó đặt chứ không giấu hẳn một sự cố đi."
+      "company": "Cam kết một con số không đo được",
+      "description": "Nhiều bản cam kết dịch vụ hứa một mức thời gian hoạt động mà bên ký không có cách nào đo. Khi có tranh chấp thì hai bên đưa ra hai con số khác nhau từ hai hệ thống khác nhau - và điều khoản đó thành vô nghĩa với cả hai."
     },
     "quiz": [
       {
-        "question": "Vì sao trạng thái tiến trình là chỉ số kém?",
+        "question": "SLI là gì?",
         "options": [
-          "Vì tiến trình đang chạy vẫn có thể trả lỗi cho mọi yêu cầu",
-          "Vì trạng thái tiến trình chỉ được cập nhật sau mỗi vài phút",
-          "Vì một số hệ điều hành báo trạng thái tiến trình không chính xác",
-          "Vì tiến trình có thể được khởi động lại tự động khi gặp lỗi"
+          "Phép đo cụ thể: tỷ lệ yêu cầu thành công, độ trễ ở phân vị thứ chín mươi chín",
+          "Mức dịch vụ tối thiểu mà hệ thống phải đạt được trong mọi hoàn cảnh",
+          "Danh sách các chỉ số mà đội cam kết theo dõi và báo cáo định kỳ",
+          "Ngưỡng cảnh báo được đặt ra để đội biết khi nào thì cần can thiệp vào hệ thống"
         ],
         "correct": 0,
-        "explanation": "Đây là kiểu sự cố khó chịu nhất: mọi thứ trông sống, không cảnh báo nào nổ, và người dùng thì không đăng nhập được suốt hai mươi phút. Chỉ có chỉ số nhìn vào kết quả trả về mới bắt được nó."
+        "explanation": "Nó chỉ là phép đo, chưa có mục tiêu nào gắn vào. Nhầm nó với ngưỡng là nhầm phổ biến nhất - và hậu quả là đội tranh luận về mục tiêu trước khi thống nhất được mình đang đo cái gì."
       },
       {
-        "question": "Vì sao chỉ số phải gộp cả yếu tố thời gian?",
+        "question": "Vì sao mục tiêu nội bộ phải chặt hơn cam kết với khách hàng?",
         "options": [
-          "Vì câu trả lời đến quá muộn thì với người dùng cũng như không có",
-          "Vì thời gian phản hồi là thứ dễ đo nhất trong các chỉ số",
-          "Vì các trình duyệt tự động huỷ yêu cầu sau một khoảng thời gian chờ",
-          "Vì thời gian phản hồi phản ánh mức tải hiện tại của hệ thống"
+          "Để có vùng cảnh báo: bạn biết mình đang trượt trước khi khách hàng biết",
+          "Để đội có động lực phấn đấu cao hơn mức tối thiểu cần thiết phải đạt",
+          "Để bù cho sai số của các công cụ đo lường mà hai bên đang sử dụng",
+          "Vì các cam kết với khách hàng thường được đàm phán nên có sẵn khoảng dự phòng"
         ],
         "correct": 0,
-        "explanation": "Một dịch vụ trả về đúng kết quả sau ba mươi giây thì tỷ lệ thành công của nó là một trăm phần trăm trong khi người dùng đã bỏ đi. Ngưỡng thời gian phải nằm ngay trong định nghĩa của chỉ số."
+        "explanation": "Đặt hai con số bằng nhau nghĩa là khoảnh khắc trượt mục tiêu cũng là khoảnh khắc vi phạm hợp đồng - không có khoảng nào để phát hiện và xử lý trước."
       },
       {
-        "question": "Nên đo ở vị trí nào trong hệ thống?",
+        "question": "Vì sao một cam kết dịch vụ phải dựa trên con số đo được?",
         "options": [
-          "Ở chỗ gần người dùng nhất mà bạn vẫn còn kiểm soát được",
-          "Ở ngay bên trong dịch vụ, nơi số liệu là chính xác nhất",
-          "Ở tầng cơ sở dữ liệu, nơi phần lớn thời gian bị tiêu tốn",
-          "Ở nhiều tầng cùng lúc rồi lấy giá trị trung bình của chúng"
+          "Vì nếu không, khi có tranh chấp thì hai bên đưa ra hai con số từ hai hệ thống khác nhau",
+          "Vì các quy định về hợp đồng dịch vụ đều yêu cầu phải nêu rõ phương pháp đo lường được dùng",
+          "Vì con số không đo được sẽ khiến khách hàng mất niềm tin vào nhà cung cấp",
+          "Vì đội kỹ thuật cần biết mục tiêu cụ thể mới lập được kế hoạch cải thiện"
         ],
         "correct": 0,
-        "explanation": "Càng đo sâu bên trong thì càng bỏ sót các tầng phía ngoài - cân bằng tải, cổng vào, tầng bộ nhớ đệm - và đó chính là chỗ nhiều sự cố xảy ra. Đo bên trong vẫn cần, nhưng để chẩn đoán chứ không để đặt mục tiêu."
+        "explanation": "Điều khoản không đo được thì vô nghĩa với cả hai bên chứ không chỉ bất lợi cho một bên. Đây là lý do phần đầu tiên của một cam kết nên là định nghĩa phép đo, không phải con số."
       },
       {
-        "question": "Mức sử dụng bộ xử lý nên được dùng vào việc gì?",
+        "question": "Ai nên quyết định mục tiêu độ tin cậy?",
         "options": [
-          "Chẩn đoán nguyên nhân sau khi đã biết dịch vụ có vấn đề",
-          "Đặt mục tiêu độ tin cậy vì nó phản ánh sức khoẻ hệ thống",
-          "Phát cảnh báo chính cho đội trực khi vượt một ngưỡng nhất định",
-          "Báo cáo cho lãnh đạo về chất lượng vận hành trong từng tháng"
+          "Người chịu trách nhiệm về sản phẩm, vì đó là quyết định đánh đổi chứ không phải quyết định kỹ thuật",
+          "Đội kỹ thuật, vì chỉ có họ mới thật sự biết hệ thống chịu được mức nào trong thực tế vận hành hằng ngày",
+          "Bộ phận kinh doanh, vì họ hiểu khách hàng cần mức dịch vụ nào nhất",
+          "Cấp quản lý cao nhất, vì mục tiêu này ảnh hưởng tới toàn bộ tổ chức"
         ],
         "correct": 0,
-        "explanation": "Bộ xử lý cạn mà người dùng không bị ảnh hưởng thì không phải sự cố; bộ xử lý rảnh mà mọi yêu cầu đều lỗi thì là sự cố nặng. Nó không tương ứng với trải nghiệm nên không đặt mục tiêu lên được."
+        "explanation": "Mỗi con số chín thêm vào đều tốn tiền và tốn thời gian lẽ ra dành cho tính năng. Đội kỹ thuật đưa ra chi phí của từng mức, nhưng việc chọn mức nào là đánh đổi giữa độ tin cậy và tốc độ ra tính năng."
       },
       {
-        "question": "Một hành trình quan trọng không có chỉ số riêng nghĩa là gì?",
+        "question": "Vì sao không nên đặt mục tiêu là một trăm phần trăm?",
         "options": [
-          "Nó đang không được bảo vệ, và sự cố ở đó sẽ không ai biết",
-          "Nó sẽ được tính vào chỉ số chung của toàn bộ dịch vụ",
-          "Nó cần được bổ sung vào bảng theo dõi trong quý tới",
-          "Nó có thể chưa đủ lưu lượng để đo lường được một cách ổn định"
+          "Vì chi phí tăng vọt ở mỗi con số chín, và người dùng thường không phân biệt được mức chênh",
+          "Vì không có hệ thống nào có thể đạt được tới mức tuyệt đối trong thực tế vận hành hằng ngày",
+          "Vì mục tiêu quá cao khiến đội mất động lực khi không bao giờ đạt được nó",
+          "Vì các nhà cung cấp hạ tầng bên dưới cũng không cam kết ở mức tuyệt đối"
         ],
         "correct": 0,
-        "explanation": "Chỉ số chung có tồn tại nhưng nó bị lưu lượng lớn chi phối, nên một hành trình nhỏ hỏng hoàn toàn cũng gần như không dịch được con số. Không có chỉ số riêng thì không có cảnh báo riêng."
+        "explanation": "Vế thứ hai là vế quyết định về mặt kinh doanh: người dùng truy cập qua mạng di động không phân biệt được giữa ba con số chín và bốn con số chín, vì đường truyền của họ đã gây gián đoạn nhiều hơn thế."
       }
     ],
+    "keyTakeaways": [
+      "SLI là phép đo - thường là tỷ lệ thành công hoặc độ trễ ở một phân vị cụ thể.",
+      "Mục tiêu nội bộ phải CHẶT HƠN cam kết, để có vùng cảnh báo trước khi vi phạm.",
+      "Cam kết phải dựa trên con số đo được, nếu không nó vô nghĩa với cả hai bên.",
+      "Chọn mức nào là quyết định về sản phẩm, không phải quyết định kỹ thuật.",
+      "Một trăm phần trăm là mục tiêu sai: chi phí tăng vọt, người dùng không phân biệt được."
+    ],
+    "practicePrompt": {
+      "question": "Đội đặt mục tiêu nội bộ bằng đúng con số trong hợp đồng với khách hàng. Rủi ro là gì?",
+      "options": [
+        "Không có vùng đệm: lúc bạn biết mình trượt cũng là lúc đã vi phạm hợp đồng",
+        "Đội sẽ không có động lực để đạt mức cao hơn con số tối thiểu đã cam kết",
+        "Khách hàng có thể yêu cầu nâng mức cam kết vì thấy đội luôn đạt được nó",
+        "Việc đo hai con số giống nhau ở hai nơi gây nhầm lẫn khi báo cáo kết quả"
+      ],
+      "correct": 0,
+      "explanation": "Vùng đệm giữa hai con số chính là thời gian bạn có để phát hiện, điều tra và xử lý. Bỏ nó đi thì mọi lần trượt đều trở thành sự cố hợp đồng ngay lập tức."
+    },
+    "summary": {
+      "keyIdea": "Ba từ, ba thứ khác nhau: phép đo, mục tiêu nội bộ, và hợp đồng có tiền phạt.",
+      "formula": "SLI đo được → SLO chặt hơn SLA → SLA mới đưa vào hợp đồng.",
+      "commonMistake": "Đặt mục tiêu nội bộ bằng đúng con số cam kết, xoá mất vùng đệm.",
+      "action": "Kiểm xem đội có mục tiêu nội bộ tách biệt với cam kết khách hàng không."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Nếu đội bạn có cam kết dịch vụ với khách hàng, kiểm hai thứ: mục tiêu nội bộ có chặt hơn không, và cả hai có dựa trên cùng một phép đo mà bạn thật sự đo được không.",
+      "secondary": "Nếu chưa có mục tiêu nội bộ tách biệt, đó là việc đáng làm trước cả việc cải thiện hệ thống - vì không có nó thì bạn không biết mình đang trượt cho tới lúc quá muộn."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Bài trước nói mục tiêu độ tin cậy phải là một con số. Bài này về việc con số ấy đo cái gì - và đây là chỗ nhiều hệ thống chọn sai ngay từ đầu."
+        "text": "Ba từ viết tắt này bị dùng lẫn lộn trong hầu hết cuộc họp, và hậu quả rất cụ thể: đội cam kết một con số họ tưởng là mục tiêu nội bộ trong khi bên kia hiểu đó là cam kết có ràng buộc."
       },
       {
         "type": "heading",
-        "text": "Ba tầng chỉ số, chỉ tầng cuối đáng đặt mục tiêu"
+        "text": "Ba thứ khác nhau"
       },
       {
         "type": "list",
         "items": [
-          "Tiến trình đang chạy: rẻ nhất để đo, và gần như không nói gì về việc người dùng có dùng được không.",
-          "Yêu cầu được trả lời: tốt hơn, nhưng trả về lỗi cũng là một câu trả lời.",
-          "Yêu cầu được trả lời đúng, trong ngưỡng thời gian: đây mới là thứ tương ứng với trải nghiệm."
+          "Phép đo: con số bạn thật sự đo được - tỷ lệ yêu cầu thành công, độ trễ ở phân vị thứ chín mươi chín. Chưa có mục tiêu nào gắn vào.",
+          "Mục tiêu nội bộ: ngưỡng mà đội cam kết với nhau. Đây là thứ dùng để ra quyết định hằng ngày.",
+          "Hợp đồng: cam kết với khách hàng, thường kèm điều khoản bồi hoàn khi vi phạm."
         ]
       },
       {
         "type": "callout",
-        "label": "Thời gian nằm trong định nghĩa",
-        "text": "Một dịch vụ trả đúng kết quả sau ba mươi giây có tỷ lệ thành công một trăm phần trăm và không người dùng nào còn ở đó để nhận. Ngưỡng thời gian phải là một phần của chỉ số, không phải một chỉ số riêng đứng cạnh."
+        "label": "Nhầm phổ biến nhất",
+        "text": "Nhầm phép đo với ngưỡng. Hậu quả là đội tranh luận về mục tiêu trước khi thống nhất được mình đang đo cái gì - và hai người có thể cùng nói chín mươi chín phẩy chín mà đang nói về hai con số hoàn toàn khác nhau."
       },
       {
         "type": "heading",
-        "text": "Mỗi hành trình một chỉ số"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nếu chín mươi lăm phần trăm lưu lượng là một hành trình đơn giản, thì chức năng thanh toán hỏng hoàn toàn cũng chỉ kéo chỉ số chung xuống vài phần trăm - dưới mọi ngưỡng cảnh báo. Tách chỉ số theo hành trình là cách duy nhất để những phần quan trọng nhưng ít lưu lượng không bị che mất."
+        "text": "Vì sao mục tiêu nội bộ phải chặt hơn"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Chỉ số để đặt mục tiêu",
-          "text": "Đo ở chỗ gần người dùng nhất mà bạn còn kiểm soát. Ít con số, mỗi con số ứng với một việc người dùng làm."
+          "label": "Hai con số bằng nhau",
+          "text": "Khoảnh khắc bạn trượt mục tiêu cũng chính là khoảnh khắc bạn vi phạm hợp đồng. Không có khoảng nào để phát hiện, điều tra và xử lý."
         },
         "right": {
-          "label": "Chỉ số để chẩn đoán",
-          "text": "Mức tài nguyên, độ dài hàng đợi, số kết nối. Rất nhiều, rất chi tiết, và không cái nào đặt mục tiêu lên được."
+          "label": "Mục tiêu chặt hơn",
+          "text": "Vùng giữa hai con số là thời gian bạn có. Bạn biết mình đang trượt trước khi khách hàng biết, và trước khi có tiền phạt."
         }
+      },
+      {
+        "type": "heading",
+        "text": "Hai quyết định hay bị làm sai"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thứ nhất: cam kết phải dựa trên con số ĐO ĐƯỢC. Nhiều bản cam kết hứa một mức mà bên ký không có cách nào đo - và khi có tranh chấp thì hai bên đưa ra hai con số từ hai hệ thống khác nhau, nên điều khoản đó vô nghĩa với cả hai."
+      },
+      {
+        "type": "paragraph",
+        "text": "Thứ hai: ai chọn mức nào. Đây là quyết định về SẢN PHẨM chứ không phải kỹ thuật - mỗi con số chín thêm vào đều tốn tiền và tốn thời gian lẽ ra dành cho tính năng. Đội kỹ thuật đưa ra chi phí của từng mức; người chịu trách nhiệm sản phẩm chọn."
       },
       {
         "type": "closing",
         "lines": [
-          "Bảng theo dõi xanh trong lúc không ai đăng nhập được là một lỗi chọn chỉ số, không phải một lỗi giám sát.",
-          "Bài sau biến chỉ số ấy thành một mục tiêu có ngưỡng và có khung thời gian."
+          "Và đừng đặt mục tiêu là một trăm phần trăm. Người dùng truy cập qua mạng di động không phân biệt được giữa ba con số chín và bốn con số chín, vì đường truyền của họ đã gây gián đoạn nhiều hơn thế.",
+          "Bài sau là công cụ biến mục tiêu đó thành một quyết định hằng ngày: ngân sách lỗi."
         ]
       }
     ]
   },
   {
     "id": 163,
-    "slug": "muc-tieu-dich-vu-va-nguong",
-    "title": "Mục tiêu dịch vụ: ngưỡng, tỷ lệ và khung thời gian",
-    "subtitle": "Một mục tiêu thiếu khung thời gian thì không bao giờ vi phạm được, và cũng không bảo vệ được gì.",
-    "duration": "9 phút",
-    "difficulty": "Khó",
-    "emoji": "🎯",
+    "slug": "ngan-sach-loi",
+    "title": "Ngân sách lỗi",
+    "subtitle": "Phần chênh giữa mục tiêu và một trăm phần trăm là thứ bạn được phép tiêu.",
+    "duration": "7 phút",
+    "difficulty": "Trung bình",
     "track": "professional",
-    "whyItMatters": "Mục tiêu dịch vụ là chỗ độ tin cậy chuyển từ ý kiến sang số liệu. Nó quyết định khi nào đội được phép làm tính năng và khi nào phải dừng lại sửa nền móng.",
-    "openingQuestion": "Ba thành phần bắt buộc của một mục tiêu dịch vụ là gì?",
+    "emoji": "💸",
+    "isFundamental": true,
+    "whyItMatters": "Đây là ý tưởng biến một con số trên bảng theo dõi thành một quyết định hằng ngày, và nó chấm dứt cuộc tranh luận muôn thuở giữa ra tính năng nhanh và giữ hệ thống ổn định.",
+    "openingQuestion": "Mục tiêu là chín mươi chín phẩy chín phần trăm. Ngân sách lỗi trong tháng là bao nhiêu?",
     "openingOptions": [
-      "Ngưỡng của chỉ số, tỷ lệ phải đạt, và khung thời gian đo",
-      "Ngưỡng của chỉ số, người chịu trách nhiệm, và mức cảnh báo",
-      "Tỷ lệ phải đạt, khung thời gian, và hình phạt khi vi phạm",
-      "Chỉ số được chọn, công cụ đo, và tần suất báo cáo kết quả"
+      "Khoảng bốn mươi ba phút - tức không phẩy một phần trăm của một tháng",
+      "Không có phút nào, vì mục tiêu là phải đạt được trong mọi trường hợp",
+      "Tuỳ vào số lượng yêu cầu trong tháng đó chứ không tính theo thời gian được",
+      "Khoảng bảy giờ, tức một phần trăm thời gian của cả tháng đang xét"
     ],
     "correctOption": 0,
-    "explanation": "Ví dụ đầy đủ: chín mươi chín phẩy chín phần trăm số yêu cầu được trả lời đúng trong dưới ba trăm mili giây, đo trên cửa sổ hai mươi tám ngày trượt. Thiếu ngưỡng thì không biết thế nào là đạt; thiếu tỷ lệ thì một yêu cầu chậm cũng thành vi phạm; thiếu khung thời gian thì con số không bao giờ kết thúc để mà so. Người chịu trách nhiệm và cách xử lý vi phạm đều quan trọng nhưng chúng là chính sách đi kèm chứ không phải thành phần của phép đo.",
+    "explanation": "Không phẩy một phần trăm của khoảng bốn mươi ba nghìn phút trong một tháng là khoảng bốn mươi ba phút. Đó là lượng lỗi bạn được phép có mà vẫn đạt mục tiêu - và điểm quan trọng nhất của ý tưởng này là bạn ĐƯỢC PHÉP tiêu nó, chứ không phải phải giữ nó ở mức không.",
     "diagram": [
       {
-        "label": "Ngưỡng: trả lời đúng, dưới 300 mili giây",
+        "label": "Ngân sách = 100% trừ đi mục tiêu",
         "arrow": true
       },
       {
-        "label": "Tỷ lệ: 99,9% số yêu cầu đạt ngưỡng đó",
+        "label": "Còn ngân sách → phát hành nhanh, thử nghiệm mạnh",
         "arrow": true
       },
       {
-        "label": "Khung thời gian: 28 ngày trượt",
+        "label": "Hết ngân sách → dừng tính năng, chuyển sang ổn định",
         "arrow": true
       },
       {
-        "label": "Thiếu một phần thì mục tiêu không dùng được"
+        "label": "Quy tắc thoả thuận trước, không tranh luận lúc đang cháy"
       }
     ],
     "realWorldExample": {
-      "company": "Mục tiêu không bao giờ vi phạm",
-      "description": "Một đội viết mục tiêu là dịch vụ phải phản hồi nhanh và ổn định. Sau một năm không ai từng tuyên bố nó bị vi phạm, kể cả trong tuần có ba sự cố lớn."
-    },
-    "keyTakeaways": [
-      "Một mục tiêu cần đủ ngưỡng, tỷ lệ và khung thời gian mới đo được.",
-      "Cửa sổ trượt phản ánh hiện trạng tốt hơn cửa sổ theo tháng lịch.",
-      "Đặt mục tiêu thấp hơn mức đang đạt là tự tạo nợ, không phải an toàn.",
-      "Mục tiêu là cam kết nội bộ; cam kết với khách hàng phải lỏng hơn nó."
-    ],
-    "summary": {
-      "keyIdea": "Mục tiêu dịch vụ phải viết đủ ba phần để có thể kết luận đạt hay không đạt.",
-      "formula": "X% số yêu cầu đạt ngưỡng Y, đo trong Z ngày.",
-      "commonMistake": "Viết mục tiêu bằng tính từ thay vì bằng con số."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Lấy mục tiêu dịch vụ hiện tại của bạn và kiểm tra xem nó có đủ ba phần không. Nếu thiếu khung thời gian thì bạn chưa từng có cách nào tuyên bố vi phạm."
-    },
-    "practicePrompt": {
-      "question": "Vì sao cam kết với khách hàng nên lỏng hơn mục tiêu nội bộ?",
-      "options": [
-        "Để còn khoảng đệm phát hiện và xử lý trước khi vi phạm hợp đồng",
-        "Để bộ phận kinh doanh dễ đàm phán hơn khi đi ký các hợp đồng mới",
-        "Để đội kỹ thuật không phải chịu áp lực từ phía khách hàng",
-        "Để tránh phải công bố số liệu vận hành thật ra bên ngoài"
-      ],
-      "correct": 0,
-      "explanation": "Nếu hai con số bằng nhau thì lần đầu tiên bạn biết mình có vấn đề cũng là lần đầu tiên bạn đã vi phạm hợp đồng. Khoảng cách giữa chúng chính là thời gian để đội phát hiện xu hướng xấu và can thiệp trước khi nó chạm ngưỡng phải bồi thường."
+      "company": "Ngân sách không tiêu hết cũng là dấu hiệu",
+      "description": "Một đội không dùng tới ngân sách lỗi trong sáu tháng liền không phải là đội xuất sắc - nhiều khả năng họ đang quá thận trọng và ra tính năng chậm hơn mức cần thiết. Ngân sách còn nguyên nghĩa là mục tiêu đặt quá thấp so với khả năng thật."
     },
     "quiz": [
       {
-        "question": "Điều gì xảy ra khi mục tiêu thiếu khung thời gian?",
+        "question": "Ý tưởng cốt lõi của ngân sách lỗi là gì?",
         "options": [
-          "Không bao giờ kết luận được là đạt hay không đạt",
-          "Kết quả đo sẽ dao động mạnh giữa các lần kiểm tra",
-          "Đội phải tự chọn khung thời gian cho mỗi lần báo cáo",
-          "Chỉ số sẽ được tính từ ngày dịch vụ bắt đầu hoạt động"
+          "Lượng lỗi bạn ĐƯỢC PHÉP có, chứ không phải lượng lỗi bạn phải tránh hết",
+          "Ngưỡng cảnh báo để đội biết khi nào hệ thống sắp vượt quá mức chấp nhận được",
+          "Khoản dự phòng thời gian dành cho việc khắc phục sự cố trong mỗi chu kỳ",
+          "Chỉ tiêu về số lỗi tối đa mà đội được phép để lọt ra môi trường thật"
         ],
         "correct": 0,
-        "explanation": "Một tỷ lệ luôn phải tính trên một tập hợp; không xác định tập hợp thì con số không tồn tại. Đó là lý do một mục tiêu như phải phản hồi nhanh và ổn định không bao giờ bị tuyên bố vi phạm, kể cả trong tuần có ba sự cố."
+        "explanation": "Chữ ĐƯỢC PHÉP là toàn bộ ý tưởng. Nó biến độ tin cậy từ một thứ càng cao càng tốt thành một nguồn lực có hạn mà bạn tiêu vào việc gì đó - và việc đó thường là ra tính năng nhanh hơn."
       },
       {
-        "question": "Vì sao nên dùng cửa sổ trượt thay vì tháng lịch?",
+        "question": "Ngân sách lỗi giải quyết được cuộc tranh luận nào?",
         "options": [
-          "Vì tháng lịch xoá sạch lịch sử vào nửa đêm ngày cuối tháng",
-          "Vì cửa sổ trượt cho kết quả ổn định hơn về mặt thống kê",
-          "Vì tháng lịch có số ngày khác nhau nên khó so sánh",
-          "Vì cửa sổ trượt dễ cài đặt hơn trong phần lớn công cụ giám sát"
+          "Ra tính năng nhanh hay giữ hệ thống ổn định, bằng một quy tắc thoả thuận trước",
+          "Đội nào sẽ chịu trách nhiệm khi có sự cố xảy ra trong một hệ thống dùng chung",
+          "Nên đầu tư vào hạ tầng dự phòng hay vào việc tuyển thêm người vận hành",
+          "Mức độ nghiêm trọng của một sự cố nên được đánh giá theo tiêu chí nào"
         ],
         "correct": 0,
-        "explanation": "Một sự cố lớn ngày hai mươi chín được xoá sổ sau hai ngày, và đội bước sang tháng mới với bảng điểm sạch trong khi hệ thống chưa hề được sửa. Cửa sổ trượt giữ sự cố ấy trong tầm nhìn đủ lâu để nó được xử lý."
+        "explanation": "Điểm mạnh nằm ở chữ THOẢ THUẬN TRƯỚC: quy tắc được thống nhất lúc bình thường, nên lúc có sự cố không ai phải tranh luận về việc nên ưu tiên gì. Tranh luận lúc đang cháy luôn nghiêng về phía người nói to hơn."
       },
       {
-        "question": "Vì sao đặt mục tiêu thấp hơn nhiều so với mức đang đạt là sai?",
+        "question": "Khi ngân sách lỗi cạn thì nên làm gì?",
         "options": [
-          "Vì nó cho phép chất lượng trượt xuống mà không có tín hiệu nào",
-          "Vì khách hàng sẽ so sánh với số liệu thực tế và mất niềm tin",
-          "Vì đội sẽ không còn động lực cải thiện hệ thống hiện có",
-          "Vì các công cụ giám sát cần một ngưỡng sát với thực tế để hoạt động"
+          "Dừng phát hành tính năng mới và chuyển toàn bộ sang việc làm hệ thống ổn định lại",
+          "Tăng mục tiêu độ tin cậy lên để có thêm ngân sách cho phần còn lại của kỳ",
+          "Tiếp tục làm như bình thường nhưng tăng cường kiểm thử trước mỗi lần phát hành mới",
+          "Báo cáo cho cấp quản lý và chờ quyết định về hướng xử lý tiếp theo"
         ],
         "correct": 0,
-        "explanation": "Nếu bạn đang ở chín mươi chín phẩy chín mà đặt mục tiêu chín mươi chín, hệ thống có thể xấu đi gấp mười lần trước khi bất kỳ ai được báo. Mục tiêu là một cái phanh, và đặt nó quá xa thì phanh không bao giờ ăn."
+        "explanation": "Đây là phần khó nhất khi áp dụng thật, vì nó đòi một cam kết mà đội phải giữ khi bất tiện. Nâng mục tiêu để có thêm ngân sách là cách phá vỡ toàn bộ ý tưởng - nó biến ràng buộc thành một con số tuỳ chỉnh."
       },
       {
-        "question": "Thành phần nào KHÔNG thuộc về phép đo của mục tiêu dịch vụ?",
+        "question": "Ngân sách còn nguyên sau sáu tháng nói lên điều gì?",
         "options": [
-          "Người chịu trách nhiệm khi mục tiêu bị vi phạm",
-          "Ngưỡng thời gian phản hồi được coi là đạt",
-          "Tỷ lệ phần trăm số yêu cầu phải đạt ngưỡng",
-          "Độ dài của cửa sổ thời gian dùng để tính tỷ lệ"
+          "Nhiều khả năng đội đang quá thận trọng và ra tính năng chậm hơn mức cần thiết",
+          "Đội đang vận hành rất tốt và nên được ghi nhận vì đã giữ cho hệ thống luôn ổn định",
+          "Mục tiêu đã được đặt ở mức phù hợp với khả năng thực tế của hệ thống",
+          "Hệ thống chưa chịu đủ tải thật nên chưa bộc lộ hết các điểm yếu tiềm ẩn"
         ],
         "correct": 0,
-        "explanation": "Nó rất quan trọng, nhưng nó là chính sách đi kèm chứ không phải một phần của công thức. Phân biệt hai thứ này giúp mục tiêu không phình thành một tài liệu dài mà không ai đo được."
+        "explanation": "Đây là hệ quả ít người nghĩ tới của việc coi độ tin cậy là một nguồn lực: không tiêu hết cũng là một dạng lãng phí. Ngân sách còn nguyên nghĩa là mục tiêu đặt quá thấp so với khả năng thật của hệ thống."
       },
       {
-        "question": "Một mục tiêu viết bằng tính từ có vấn đề gì?",
+        "question": "Vì sao ngân sách lỗi nên tính theo tỷ lệ yêu cầu thay vì theo thời gian?",
         "options": [
-          "Mỗi người hiểu một kiểu nên không ai kết luận được điều gì",
-          "Nó không thể được đưa vào trong các công cụ giám sát tự động được",
-          "Nó khiến khách hàng hiểu nhầm về chất lượng dịch vụ",
-          "Nó cần được viết lại mỗi khi hệ thống có thay đổi lớn"
+          "Vì một phút lỗi lúc cao điểm ảnh hưởng tới nhiều người hơn hẳn một phút lúc vắng",
+          "Vì tính theo thời gian đòi hỏi phải xác định chính xác thời điểm bắt đầu sự cố",
+          "Vì tỷ lệ yêu cầu là con số các công cụ theo dõi ghi lại sẵn nên dễ lấy hơn",
+          "Vì cách tính theo thời gian không áp dụng được cho các hệ thống xử lý theo lô"
         ],
         "correct": 0,
-        "explanation": "Nhanh với người vận hành là ba trăm mili giây, với người viết giao diện là hai giây, với giám đốc là cảm giác khi họ mở ứng dụng. Một tài liệu ba bên cùng gật đầu mà không ai hiểu giống nhau còn tệ hơn không có tài liệu."
+        "explanation": "Tính theo thời gian coi mọi phút như nhau, trong khi lưu lượng thật thay đổi nhiều lần giữa giờ cao điểm và ban đêm. Tính theo tỷ lệ yêu cầu thì tự động phản ánh số người thật sự bị ảnh hưởng."
       }
     ],
+    "keyTakeaways": [
+      "Ngân sách lỗi là lượng lỗi bạn ĐƯỢC PHÉP có, không phải mức cần giữ ở không.",
+      "Nó biến độ tin cậy thành nguồn lực có hạn mà bạn tiêu vào tốc độ ra tính năng.",
+      "Hết ngân sách thì dừng tính năng - quy tắc thoả thuận TRƯỚC, không tranh lúc đang cháy.",
+      "Ngân sách còn nguyên sau sáu tháng nghĩa là mục tiêu đặt quá thấp.",
+      "Tính theo tỷ lệ yêu cầu, vì một phút lúc cao điểm khác một phút lúc vắng."
+    ],
+    "practicePrompt": {
+      "question": "Ngân sách lỗi cạn giữa kỳ nhưng có một tính năng đã hứa với khách hàng. Nên làm gì?",
+      "options": [
+        "Đưa quyết định lên người chịu trách nhiệm sản phẩm, vì đây là đánh đổi kinh doanh",
+        "Phát hành tính năng đó vì lời hứa với khách hàng có mức ưu tiên cao hơn",
+        "Hoãn tính năng theo đúng quy tắc, vì quy tắc chỉ có giá trị khi được giữ nguyên",
+        "Nâng mục tiêu độ tin cậy tạm thời để có đủ ngân sách cho lần phát hành này"
+      ],
+      "correct": 0,
+      "explanation": "Quy tắc tồn tại để làm cho đánh đổi hiện ra, không phải để thay thế người quyết định. Giữ nguyên quy tắc bằng mọi giá cũng sai vì nó bỏ qua bối cảnh kinh doanh - còn nâng mục tiêu thì phá luôn ý nghĩa của con số."
+    },
+    "summary": {
+      "keyIdea": "Độ tin cậy là một nguồn lực có hạn, và bạn được phép tiêu nó.",
+      "formula": "Ngân sách = 100% trừ mục tiêu. Còn thì đi nhanh, hết thì dừng lại.",
+      "commonMistake": "Nâng mục tiêu để có thêm ngân sách, tức biến ràng buộc thành tuỳ chỉnh.",
+      "action": "Tính ngân sách lỗi tháng này của hệ thống bạn đang vận hành."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy mục tiêu độ tin cậy của hệ thống bạn và tính ra ngân sách lỗi của tháng này bằng phút. Rồi xem tháng vừa rồi bạn đã tiêu bao nhiêu.",
+      "secondary": "Hai con số đó cho biết bạn đang ở đâu. Nếu đã tiêu gần hết thì đó là tín hiệu dừng; nếu còn gần nguyên thì đó là tín hiệu bạn có thể đi nhanh hơn."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Bài trước chọn được chỉ số. Bài này biến nó thành một mục tiêu - và điều làm nên một mục tiêu dùng được không phải là con số cao, mà là nó viết đủ chi tiết để kết luận đạt hay không đạt."
+        "text": "Bài trước cho bạn một con số mục tiêu. Bài này biến nó thành một quyết định hằng ngày - và đó là điểm khiến ý tưởng này có giá trị hơn nhiều so với vẻ ngoài của một phép trừ."
       },
       {
         "type": "heading",
-        "text": "Ba phần bắt buộc"
-      },
-      {
-        "type": "formula",
-        "expression": "99,9% số yêu cầu trả lời đúng trong dưới 300 mili giây, đo trên 28 ngày trượt",
-        "explanation": "Ngưỡng, tỷ lệ, khung thời gian. Bỏ bất kỳ phần nào thì câu này không còn kết luận được điều gì."
-      },
-      {
-        "type": "paragraph",
-        "text": "Thiếu ngưỡng thì không biết thế nào là một yêu cầu tốt. Thiếu tỷ lệ thì một yêu cầu chậm cũng thành vi phạm, và mọi hệ thống đều vi phạm mọi lúc. Thiếu khung thời gian thì tỷ lệ được tính trên một tập hợp không xác định, tức là nó không tồn tại."
+        "text": "Phép trừ, và ý nghĩa của nó"
       },
       {
         "type": "callout",
-        "label": "Cửa sổ trượt, không phải tháng lịch",
-        "text": "Tháng lịch xoá sạch lịch sử vào nửa đêm ngày cuối tháng. Một sự cố lớn ngày hai mươi chín biến mất sau hai ngày và đội bước sang tháng mới với bảng điểm sạch, trong khi nguyên nhân vẫn nằm nguyên đó."
+        "label": "Bạn ĐƯỢC PHÉP tiêu nó",
+        "text": "Mục tiêu chín mươi chín phẩy chín phần trăm nghĩa là khoảng bốn mươi ba phút lỗi mỗi tháng. Điểm quan trọng không phải con số mà là cách đọc nó: đây là lượng lỗi bạn được phép có, không phải mức bạn phải giữ ở không."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách đọc đó biến độ tin cậy từ một thứ càng cao càng tốt thành một NGUỒN LỰC CÓ HẠN mà bạn tiêu vào việc gì đó - và việc đó thường là ra tính năng nhanh hơn, thử nghiệm mạnh hơn, phát hành thường xuyên hơn."
       },
       {
         "type": "heading",
-        "text": "Hai con số khác nhau"
+        "text": "Quy tắc, thoả thuận trước"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Mục tiêu nội bộ",
-          "text": "Chặt hơn. Nó là cái phanh: chạm vào thì đội đổi ưu tiên. Không có hậu quả pháp lý."
+          "label": "Còn ngân sách",
+          "text": "Phát hành nhanh, thử nghiệm mạnh, chấp nhận rủi ro. Bạn đang có chỗ để sai."
         },
         "right": {
-          "label": "Cam kết với khách hàng",
-          "text": "Lỏng hơn, có hậu quả hợp đồng. Khoảng cách giữa hai con số là thời gian bạn có để can thiệp."
+          "label": "Hết ngân sách",
+          "text": "Dừng tính năng mới, chuyển toàn bộ sang làm hệ thống ổn định lại. Đây là phần khó nhất khi áp dụng thật, vì nó đòi một cam kết phải giữ khi bất tiện."
         }
       },
       {
         "type": "paragraph",
-        "text": "Nếu đặt hai con số bằng nhau, lần đầu tiên bạn biết mình có vấn đề cũng là lần đầu tiên bạn phải bồi thường. Đó là một lỗi thiết kế chính sách chứ không phải xui rủi."
+        "text": "Giá trị lớn nhất nằm ở chữ THOẢ THUẬN TRƯỚC. Quy tắc được thống nhất lúc bình thường, nên lúc có sự cố không ai phải tranh luận về việc nên ưu tiên gì - và tranh luận lúc đang cháy thì luôn nghiêng về phía người nói to hơn."
+      },
+      {
+        "type": "heading",
+        "text": "Hai chi tiết"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tính theo TỶ LỆ YÊU CẦU, đừng tính theo thời gian. Một phút lỗi lúc cao điểm ảnh hưởng tới nhiều người hơn hẳn một phút lúc ba giờ sáng.",
+          "Đừng nâng mục tiêu để có thêm ngân sách. Đó là cách phá vỡ toàn bộ ý tưởng - nó biến một ràng buộc thành một con số tuỳ chỉnh."
+        ]
       },
       {
         "type": "closing",
         "lines": [
-          "Một mục tiêu viết bằng tính từ là một tài liệu ba bên cùng gật đầu mà không ai hiểu giống nhau.",
-          "Bài sau về thứ mục tiêu này sinh ra: phần được phép hỏng, và cách tiêu nó."
+          "Một hệ quả ít người nghĩ tới: ngân sách còn nguyên sau sáu tháng KHÔNG phải dấu hiệu tốt. Nó nghĩa là đội đang quá thận trọng, hoặc mục tiêu đặt quá thấp so với khả năng thật.",
+          "Bài sau là bốn con số mà mọi hệ thống nên theo dõi, bất kể nó làm gì."
         ]
       }
     ]
   },
   {
     "id": 164,
-    "slug": "ngan-sach-loi",
-    "title": "Ngân sách lỗi: phần được phép hỏng",
-    "subtitle": "Mục tiêu 99,9% nghĩa là bạn được phép hỏng 0,1%. Đó là ngân sách, và tiêu hết nó không phải thất bại.",
-    "duration": "9 phút",
-    "difficulty": "Khó",
-    "emoji": "💸",
+    "slug": "bon-chi-so-vang",
+    "title": "Bốn chỉ số vàng",
+    "subtitle": "Bốn con số trả lời được phần lớn câu hỏi trong lúc có sự cố.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
     "track": "professional",
-    "whyItMatters": "Đây là cơ chế duy nhất biến cuộc tranh cãi muôn thuở giữa làm tính năng và giữ ổn định thành một quyết định có dữ liệu, thay vì thành một trận đấu giữa hai nhóm người.",
-    "openingQuestion": "Ngân sách lỗi của tháng còn dư rất nhiều. Điều đó gợi ý gì?",
+    "emoji": "🥇",
+    "interactiveType": "tail-risk",
+    "isFundamental": true,
+    "whyItMatters": "Bảng theo dõi điển hình có hàng trăm biểu đồ và không ai biết nhìn cái nào trước. Bốn con số này là thứ nhìn trước, và chúng đủ để định hướng phần lớn cuộc điều tra.",
+    "openingQuestion": "Trong lúc có sự cố, nên nhìn con số nào trước?",
     "openingOptions": [
-      "Đội có thể mạnh dạn triển khai nhanh hơn hoặc chấp nhận nhiều rủi ro hơn",
-      "Hệ thống đang hoạt động tốt và không cần thay đổi cách làm hiện tại",
-      "Mục tiêu đang được đặt ở mức quá dễ so với năng lực của hệ thống",
-      "Đội nên tận dụng khoảng dư để nâng mục tiêu lên mức cao hơn"
+      "Tỷ lệ lỗi và độ trễ, vì chúng nói người dùng đang gặp chuyện gì ngay lúc này",
+      "Mức sử dụng bộ vi xử lý và bộ nhớ, vì chúng chỉ ra nguyên nhân kỹ thuật gốc",
+      "Nhật ký hệ thống, vì nó chứa thông tin chi tiết nhất về những gì đang xảy ra",
+      "Lịch sử phát hành gần nhất, vì phần lớn sự cố đến từ một thay đổi vừa được đưa lên"
     ],
     "correctOption": 0,
-    "explanation": "Ngân sách dư nghĩa là bạn đang trả tiền cho một mức ổn định vượt nhu cầu - bằng tốc độ ra tính năng chậm hơn mức cần thiết. Cách dùng khoản dư ấy là đẩy nhanh nhịp triển khai, chạy thử nghiệm rủi ro hơn, hoặc làm những việc di trú vốn bị hoãn vì sợ. Nâng mục tiêu là hướng ngược lại: nó biến khoản dư thành ràng buộc mới mà chưa ai chứng minh là người dùng cần.",
+    "explanation": "Thứ tự đúng là triệu chứng trước, nguyên nhân sau: bạn cần biết ai đang bị ảnh hưởng và ở mức nào trước khi tìm vì sao. Mức sử dụng tài nguyên rất hữu ích ở bước tìm nguyên nhân nhưng nó không nói được người dùng có bị ảnh hưởng không - một máy chủ chạy hết công suất mà vẫn trả lời kịp thì không phải sự cố.",
     "diagram": [
       {
-        "label": "Mục tiêu 99,9% → ngân sách 0,1%",
+        "label": "Lưu lượng: có bao nhiêu yêu cầu đang tới",
         "arrow": true
       },
       {
-        "label": "Còn nhiều: đi nhanh hơn, chấp nhận rủi ro",
+        "label": "Tỷ lệ lỗi: bao nhiêu trong số đó thất bại",
         "arrow": true
       },
       {
-        "label": "Sắp hết: dừng tính năng, sửa nền móng",
+        "label": "Độ trễ: người dùng chờ bao lâu, theo phân vị",
         "arrow": true
       },
       {
-        "label": "Quy tắc thoả thuận trước, không tranh cãi lúc sự cố"
+        "label": "Mức bão hoà: hệ thống còn bao nhiêu dư địa"
       }
     ],
     "realWorldExample": {
-      "company": "Cuộc tranh cãi không có dữ liệu",
-      "description": "Nhóm sản phẩm muốn ra tính năng, nhóm vận hành muốn dừng lại vá hạ tầng, và cả hai đều đúng theo góc nhìn của mình. Ngân sách lỗi trả lời câu hỏi ấy bằng một con số thay vì bằng thâm niên của người nói."
-    },
-    "keyTakeaways": [
-      "Ngân sách lỗi là phần được phép hỏng, không phải hạn mức đáng xấu hổ.",
-      "Tiêu hết ngân sách kích hoạt một quy tắc đã thoả thuận từ trước.",
-      "Ngân sách dư nhiều nghĩa là đang đi chậm hơn mức cần thiết.",
-      "Quy tắc phải được viết ra trước sự cố, không phải bàn giữa lúc đang cháy."
-    ],
-    "summary": {
-      "keyIdea": "Ngân sách lỗi biến đánh đổi giữa tốc độ và ổn định thành một quyết định có dữ liệu.",
-      "formula": "Ngân sách = 100% trừ mục tiêu.",
-      "commonMistake": "Coi mọi lần tiêu ngân sách là một thất bại cần điều tra."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Tính ngân sách lỗi tháng này của dịch vụ bạn và xem đã tiêu bao nhiêu phần trăm. Rồi hỏi đội xem chuyện gì sẽ xảy ra nếu nó cạn."
-    },
-    "practicePrompt": {
-      "question": "Điều gì nên xảy ra khi ngân sách lỗi cạn?",
-      "options": [
-        "Dừng phát hành tính năng mới cho tới khi độ tin cậy hồi phục",
-        "Tổ chức một cuộc họp để tìm ra ai đã gây ra phần lớn các sự cố",
-        "Tạm thời nới mục tiêu để đội có thêm khoảng đệm hoạt động",
-        "Tăng tần suất báo cáo tình hình vận hành lên hằng ngày"
-      ],
-      "correct": 0,
-      "explanation": "Điểm mấu chốt là quy tắc này phải được viết ra và đồng thuận từ trước, khi chưa ai đang chịu áp lực. Nới mục tiêu giữa chừng là cách nhanh nhất để biến cả cơ chế thành trang trí, vì lần sau ai cũng biết ngưỡng ấy có thể xê dịch."
+      "company": "Tỷ lệ lỗi giảm mà tình hình tệ hơn",
+      "description": "Nếu lưu lượng sụt mạnh thì tỷ lệ lỗi có thể giảm theo trong khi tình hình đang tệ hơn - người dùng không tới được nữa nên không có yêu cầu nào để lỗi. Đó là lý do lưu lượng phải nhìn cùng lúc với ba con số kia chứ không nhìn riêng."
     },
     "quiz": [
       {
-        "question": "Ngân sách lỗi được tính thế nào?",
+        "question": "Vì sao lưu lượng phải nhìn cùng lúc với ba chỉ số kia?",
         "options": [
-          "Bằng phần còn lại sau khi lấy một trăm phần trăm trừ mục tiêu",
-          "Bằng số phút ngừng trung bình của mười hai tháng gần nhất",
-          "Bằng mức thiệt hại tài chính mà công ty chấp nhận được mỗi tháng",
-          "Bằng số sự cố tối đa mà đội trực có thể xử lý trong tháng"
+          "Vì lưu lượng sụt làm tỷ lệ lỗi giảm theo trong khi tình hình đang tệ hơn",
+          "Vì lưu lượng quyết định mức tài nguyên mà hệ thống cần được cấp phát",
+          "Vì các chỉ số khác chỉ có ý nghĩa khi lưu lượng vượt một ngưỡng nhất định",
+          "Vì lưu lượng là chỉ số duy nhất phản ánh được xu hướng kinh doanh của sản phẩm"
         ],
         "correct": 0,
-        "explanation": "Mục tiêu chín mươi chín phẩy chín cho ngân sách một phần nghìn, tức khoảng bốn mươi ba phút mỗi tháng. Nó là một hệ quả số học của mục tiêu chứ không phải một con số được thương lượng riêng."
+        "explanation": "Người dùng không tới được nữa nên không có yêu cầu nào để lỗi - và tỷ lệ lỗi nhìn riêng sẽ báo tình hình đang cải thiện. Đây là kiểu hiểu nhầm nguy hiểm nhất khi đọc bảng theo dõi lúc có sự cố."
       },
       {
-        "question": "Vì sao ngân sách dư nhiều lại là một tín hiệu đáng chú ý?",
+        "question": "Mức bão hoà đo cái gì?",
         "options": [
-          "Vì nó cho thấy đội đang trả cho sự ổn định bằng tốc độ ra tính năng",
-          "Vì nó cho thấy hệ thống đã được xây dựng vượt quá yêu cầu kỹ thuật",
-          "Vì nó cho thấy các phép đo có thể đang bỏ sót một số loại lỗi",
-          "Vì nó cho thấy người dùng chưa sử dụng hết các chức năng có sẵn"
+          "Hệ thống còn bao nhiêu dư địa trước khi phần chật nhất của nó cạn",
+          "Tỷ lệ phần trăm tài nguyên đang được sử dụng trên tổng tài nguyên đã cấp",
+          "Số lượng yêu cầu tối đa mà hệ thống xử lý được trong một giây",
+          "Mức độ ổn định của hệ thống khi phải chịu tải cao trong thời gian dài"
         ],
         "correct": 0,
-        "explanation": "Mỗi lần hoãn một thay đổi vì sợ, mỗi vòng kiểm duyệt thêm vào, đều là một khoản trả bằng thời gian. Nếu ngân sách không bao giờ được tiêu tới thì những khoản trả ấy đang mua một mức ổn định không ai yêu cầu."
+        "explanation": "Chữ PHẦN CHẬT NHẤT là mấu chốt: nó có thể là bộ nhớ, là số kết nối cơ sở dữ liệu, hay là hàng đợi công việc. Nhìn mức sử dụng bộ vi xử lý mà bỏ qua số kết nối là cách bỏ sót nút thắt thật."
       },
       {
-        "question": "Vì sao quy tắc xử lý phải được viết trước sự cố?",
+        "question": "Vì sao mức sử dụng tài nguyên không nên là chỉ số nhìn đầu tiên?",
         "options": [
-          "Vì giữa lúc đang cháy thì mọi cuộc thương lượng đều nghiêng theo áp lực",
-          "Vì các công cụ giám sát cần được cấu hình trước để tự động thực thi",
-          "Vì viết trước giúp đội nhớ được nội dung quy tắc khi cần dùng",
-          "Vì quy tắc cần được cấp quản lý phê duyệt trước khi có hiệu lực"
+          "Vì một máy chạy hết công suất mà vẫn trả lời kịp thì không phải là sự cố",
+          "Vì các con số về tài nguyên thường có độ trễ vài phút so với thời điểm thực",
+          "Vì mức sử dụng tài nguyên khác nhau nhiều giữa các loại dịch vụ trong hệ thống",
+          "Vì đội vận hành thường không có quyền truy cập vào số liệu ở mức hệ điều hành"
         ],
         "correct": 0,
-        "explanation": "Lúc ngân sách vừa cạn cũng là lúc có một tính năng đã hứa với khách hàng và một hạn chót đang tới. Một quy tắc thoả thuận lúc bình yên là thứ duy nhất đứng vững được trong tình huống đó."
+        "explanation": "Đây là khác biệt giữa chỉ số triệu chứng và chỉ số nguyên nhân. Tài nguyên rất hữu ích ở bước tìm nguyên nhân, nhưng dùng nó làm chỉ số cảnh báo thì bạn sẽ bị đánh thức vì những chuyện không ảnh hưởng tới ai."
       },
       {
-        "question": "Coi mỗi lần tiêu ngân sách là một thất bại dẫn tới hậu quả gì?",
+        "question": "Vì sao bốn chỉ số này áp dụng được cho gần như mọi hệ thống?",
         "options": [
-          "Đội sẽ tránh mọi rủi ro và mất luôn công dụng của cơ chế này",
-          "Đội sẽ báo cáo sai số liệu để tránh bị đánh giá tiêu cực",
-          "Ngân sách sẽ không bao giờ được tiêu hết trong bất kỳ tháng nào",
-          "Các sự cố nhỏ sẽ không được ghi nhận vào hệ thống theo dõi"
+          "Vì chúng mô tả quan hệ giữa yêu cầu vào và khả năng đáp ứng, không phụ thuộc công nghệ",
+          "Vì các công cụ theo dõi hiện nay đều đã thu thập sẵn bốn chỉ số này theo cấu hình mặc định",
+          "Vì chúng đã được chuẩn hoá thành tiêu chuẩn chung cho ngành vận hành hệ thống",
+          "Vì bốn chỉ số này đủ đơn giản để mọi thành viên trong đội đều hiểu được"
         ],
         "correct": 0,
-        "explanation": "Ngân sách sinh ra để được tiêu; nó là giấy phép thử nghiệm chứ không phải hạn mức đáng xấu hổ. Một đội bị phạt vì tiêu nó sẽ tiêu càng ít càng tốt, và cả cơ chế biến thành một con số trên bảng theo dõi."
+        "explanation": "Một hàng đợi công việc, một dịch vụ web hay một tác vụ xử lý theo lô đều có yêu cầu vào và khả năng đáp ứng - nên bốn con số này đều có nghĩa. Đó là lý do chúng dùng lại được khi bạn đổi công nghệ."
       },
       {
-        "question": "Ngân sách lỗi giải quyết được mâu thuẫn nào?",
+        "question": "Nên xử lý thế nào với bảng theo dõi có hàng trăm biểu đồ?",
         "options": [
-          "Giữa nhu cầu ra tính năng nhanh và nhu cầu giữ hệ thống ổn định",
-          "Giữa đội phát triển và đội vận hành về quyền truy cập môi trường thật",
-          "Giữa chi phí hạ tầng và mức chất lượng dịch vụ cam kết",
-          "Giữa yêu cầu của khách hàng lớn và khách hàng nhỏ"
+          "Tách ra một bảng chỉ có bốn con số này, và để phần còn lại cho bước tìm nguyên nhân",
+          "Sắp xếp lại toàn bộ các biểu đồ theo thứ tự ưu tiên để người xem biết nhìn từ trên xuống",
+          "Gộp các biểu đồ liên quan thành từng nhóm theo dịch vụ để dễ tìm kiếm hơn",
+          "Xoá bớt những biểu đồ không được ai sử dụng trong sáu tháng gần đây"
         ],
         "correct": 0,
-        "explanation": "Trước khi có nó, hai bên tranh luận bằng lập luận và cuộc tranh luận nghiêng về ai có thâm niên cao hơn. Sau khi có nó, câu hỏi trở thành ngân sách còn bao nhiêu, và cả hai bên đọc cùng một con số."
+        "explanation": "Hai bảng cho hai mục đích khác nhau: một bảng để biết có chuyện gì không, một bảng để tìm vì sao. Trộn chúng lại là lý do lúc có sự cố không ai biết nhìn đâu trước."
       }
     ],
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Mục tiêu chín mươi chín phẩy chín phần trăm có một mặt sau ít được nói tới: bạn được phép hỏng một phần nghìn. Đó không phải một lỗ hổng trong cam kết mà là phần quan trọng nhất của nó."
-      },
-      {
-        "type": "heading",
-        "text": "Một con số, hai hướng đọc"
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Còn nhiều ngân sách",
-          "text": "Đi nhanh hơn: triển khai dày hơn, chạy thử nghiệm rủi ro hơn, làm những việc di trú vẫn bị hoãn vì sợ."
-        },
-        "right": {
-          "label": "Sắp cạn ngân sách",
-          "text": "Dừng tính năng, dồn sức vào nền móng, siết quy trình phát hành cho tới khi con số hồi phục."
-        }
-      },
-      {
-        "type": "callout",
-        "label": "Tiêu hết không phải thất bại",
-        "text": "Ngân sách sinh ra để được tiêu. Một đội bị khiển trách mỗi lần chạm ngưỡng sẽ học cách không bao giờ chạm tới nó, và khi ấy cơ chế chỉ còn là một con số trang trí trên bảng theo dõi."
-      },
-      {
-        "type": "heading",
-        "text": "Giá trị thật nằm ở chỗ khác"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nhóm sản phẩm muốn ra tính năng, nhóm vận hành muốn vá hạ tầng, và cả hai đều đúng theo góc nhìn của mình. Không có ngân sách lỗi thì cuộc tranh luận ấy được giải quyết bằng thâm niên hoặc bằng ai to tiếng hơn. Có nó thì cả hai bên đọc cùng một con số và câu hỏi trở thành còn dư bao nhiêu."
-      },
-      {
-        "type": "callout",
-        "label": "Viết quy tắc lúc bình yên",
-        "text": "Lúc ngân sách vừa cạn cũng thường là lúc có một tính năng đã hứa và một hạn chót đang tới. Quy tắc thoả thuận từ trước là thứ duy nhất đứng vững trong tình huống đó - và nới mục tiêu giữa chừng thì lần sau không ai còn tin vào ngưỡng nữa."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Ngân sách lỗi không làm hệ thống ổn định hơn. Nó làm cho quyết định về độ ổn định trở thành một phép tính thay vì một cuộc tranh cãi.",
-          "Bài sau về việc chuyển từ con số sang hành động: khi nào thì đánh thức một người đang ngủ."
-        ]
-      }
-    ]
-  },
-  {
-    "id": 165,
-    "slug": "khi-nao-danh-thuc-mot-nguoi",
-    "title": "Báo động: khi nào thì đánh thức một người",
-    "subtitle": "Mỗi cảnh báo lúc ba giờ sáng phải trả lời được câu hỏi vì sao việc này không đợi tới sáng được.",
-    "duration": "9 phút",
-    "difficulty": "Khó",
-    "emoji": "🔔",
-    "track": "professional",
-    "whyItMatters": "Cảnh báo quá nhiều còn nguy hiểm hơn cảnh báo quá ít: đội học cách bỏ qua, và cái duy nhất thật sự quan trọng cũng chìm cùng những cái kia.",
-    "openingQuestion": "Một cảnh báo nổ mỗi đêm và lần nào người trực cũng đóng nó lại mà không làm gì. Nên xử lý thế nào?",
-    "openingOptions": [
-      "Xoá nó, hoặc hạ xuống mức không đánh thức người",
-      "Nâng ngưỡng của nó lên để nó nổ ít lần hơn mỗi tuần",
-      "Ghi chú vào tài liệu trực rằng cảnh báo này có thể bỏ qua",
-      "Chuyển nó sang một kênh riêng để đội xem lại vào buổi sáng"
-    ],
-    "correctOption": 0,
-    "explanation": "Một cảnh báo mà phản ứng đúng là không làm gì thì nó không phải cảnh báo, và giữ nó lại chỉ dạy người trực thói quen bỏ qua - thói quen ấy không phân biệt được cảnh báo nào. Nâng ngưỡng chỉ làm nó nổ thưa hơn mà vẫn vô nghĩa. Chuyển sang kênh xem sau thì hợp lý nếu nó thật sự đáng xem, nhưng đó là một quyết định riêng phải chứng minh, còn mặc định của một cảnh báo không dẫn tới hành động là xoá.",
-    "diagram": [
-      {
-        "label": "Có ai phải làm gì ngay bây giờ không?",
-        "arrow": true
-      },
-      {
-        "label": "Không → không đánh thức, đưa vào việc ban ngày",
-        "arrow": true
-      },
-      {
-        "label": "Có → cảnh báo phải kèm việc cần làm",
-        "arrow": true
-      },
-      {
-        "label": "Không rõ → chưa đủ điều kiện làm cảnh báo"
-      }
-    ],
-    "realWorldExample": {
-      "company": "Mỏi vì cảnh báo",
-      "description": "Một đội nhận trung bình bốn mươi cảnh báo mỗi đêm, trong đó khoảng hai cái là thật. Sau vài tháng, người trực đóng hàng loạt theo phản xạ - và bỏ lỡ một sự cố thật vì nó nằm giữa đám ấy."
-    },
     "keyTakeaways": [
-      "Cảnh báo đánh thức người phải gắn với ảnh hưởng lên người dùng.",
-      "Một cảnh báo mà phản ứng đúng là không làm gì thì phải bị xoá.",
-      "Cảnh báo trên triệu chứng ít hơn cảnh báo trên từng nguyên nhân.",
-      "Mỗi cảnh báo cần một tài liệu ngắn nói rõ phải làm gì tiếp theo."
+      "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà.",
+      "Lưu lượng phải nhìn cùng lúc - lưu lượng sụt làm tỷ lệ lỗi giảm giả tạo.",
+      "Mức bão hoà là dư địa của PHẦN CHẬT NHẤT, không phải mức dùng bộ vi xử lý.",
+      "Triệu chứng trước, nguyên nhân sau - máy chạy hết công suất mà kịp thì không phải sự cố.",
+      "Tách riêng một bảng bốn con số, để phần còn lại cho bước tìm nguyên nhân."
     ],
+    "practicePrompt": {
+      "question": "Tỷ lệ lỗi của bạn đang giảm dần trong ba mươi phút qua. Nên hiểu thế nào?",
+      "options": [
+        "Chưa kết luận được - phải nhìn lưu lượng cùng lúc, vì nó sụt thì tỷ lệ lỗi cũng giảm",
+        "Tình hình đang cải thiện, và nên tiếp tục theo dõi thêm để xác nhận xu hướng",
+        "Biện pháp khắc phục vừa áp dụng đang có tác dụng nên có thể dừng can thiệp",
+        "Cần kiểm tra xem hệ thống theo dõi có đang ghi nhận đủ dữ liệu hay không"
+      ],
+      "correct": 0,
+      "explanation": "Đây là bẫy phổ biến nhất khi đọc bảng theo dõi lúc có sự cố: hai đường cong đi xuống cùng nhau có thể nghĩa là tình hình tốt lên, hoặc nghĩa là người dùng đã không vào được nữa."
+    },
     "summary": {
-      "keyIdea": "Chỉ đánh thức người khi có việc phải làm ngay và người dùng đang chịu ảnh hưởng.",
-      "formula": "Không có hành động thì không có cảnh báo.",
-      "commonMistake": "Đặt cảnh báo cho mọi nguyên nhân có thể thay vì cho triệu chứng."
+      "keyIdea": "Bốn con số trả lời được phần lớn câu hỏi trong ba mươi giây đầu của một sự cố.",
+      "formula": "Lưu lượng + tỷ lệ lỗi + độ trễ + mức bão hoà, nhìn cùng lúc.",
+      "commonMistake": "Nhìn tỷ lệ lỗi riêng lẻ và kết luận sai khi lưu lượng đang sụt.",
+      "action": "Dựng một bảng theo dõi chỉ có bốn con số này cho dịch vụ chính của bạn."
     },
     "application": {
       "title": "Làm ngay hôm nay",
-      "message": "Lấy danh sách cảnh báo đã nổ trong ba mươi ngày qua, đếm xem bao nhiêu cái dẫn tới một hành động thật. Những cái còn lại là ứng viên để xoá."
+      "message": "Dựng một bảng theo dõi chỉ có bốn con số này cho dịch vụ chính, và đặt nó ở nơi mở nhanh nhất. Đây là bảng bạn mở đầu tiên khi có chuyện.",
+      "secondary": "Chú ý phần bão hoà: xác định xem phần CHẬT NHẤT của hệ thống bạn là gì. Nó thường không phải bộ vi xử lý mà là số kết nối cơ sở dữ liệu hoặc chiều dài hàng đợi."
     },
-    "practicePrompt": {
-      "question": "Vì sao nên cảnh báo trên triệu chứng thay vì trên từng nguyên nhân?",
-      "options": [
-        "Vì một cảnh báo triệu chứng bắt được cả những nguyên nhân chưa ai nghĩ tới",
-        "Vì cảnh báo triệu chứng có độ trễ thấp hơn cảnh báo nguyên nhân",
-        "Vì các công cụ giám sát xử lý chỉ số triệu chứng hiệu quả hơn",
-        "Vì nguyên nhân thường thay đổi mỗi khi hệ thống được nâng cấp"
-      ],
-      "correct": 0,
-      "explanation": "Bạn không thể liệt kê trước mọi cách một hệ thống có thể hỏng, và những sự cố tệ nhất thường đến từ tổ hợp không ai lường được. Một cảnh báo đặt trên tỷ lệ lỗi của người dùng thì nổ bất kể nguyên nhân là gì, kể cả nguyên nhân mới tinh."
-    },
-    "quiz": [
-      {
-        "question": "Điều kiện để một cảnh báo được phép đánh thức người là gì?",
-        "options": [
-          "Có người dùng đang chịu ảnh hưởng và có việc phải làm ngay",
-          "Có một ngưỡng kỹ thuật nào đó vừa bị vượt qua trên bảng theo dõi",
-          "Có nguy cơ sự cố xảy ra trong vài giờ tới nếu không can thiệp",
-          "Có một thành phần trong hệ thống đang ở trạng thái bất thường"
-        ],
-        "correct": 0,
-        "explanation": "Nguy cơ trong vài giờ tới là loại việc để lại cho ban ngày, trừ khi vài giờ ấy rơi vào lúc không có ai. Hai lựa chọn còn lại đều là chỉ số kỹ thuật và chúng thường xuyên bất thường mà không ai chịu ảnh hưởng."
-      },
-      {
-        "question": "Cảnh báo mà phản ứng đúng là không làm gì gây ra tác hại nào?",
-        "options": [
-          "Nó dạy người trực thói quen bỏ qua, và thói quen ấy không phân biệt được",
-          "Nó làm tăng chi phí lưu trữ dữ liệu giám sát của hệ thống",
-          "Nó khiến các báo cáo vận hành hằng tháng trông xấu hơn thực tế",
-          "Nó chiếm chỗ trong danh sách cảnh báo khiến khó tìm cảnh báo khác"
-        ],
-        "correct": 0,
-        "explanation": "Đây là chi phí thật và nó không hiện trên bất kỳ bảng nào cho tới ngày một sự cố nghiêm trọng bị đóng nhầm cùng với đám còn lại. Một đội nhận bốn mươi cảnh báo mỗi đêm không có bốn mươi vấn đề, họ có một vấn đề."
-      },
-      {
-        "question": "Mỗi cảnh báo nên đi kèm với cái gì?",
-        "options": [
-          "Một tài liệu ngắn nói rõ việc cần kiểm tra và cần làm tiếp",
-          "Tên của người đã tạo ra cảnh báo đó và ngày tạo",
-          "Đường dẫn tới bảng theo dõi chứa chỉ số liên quan",
-          "Mức độ nghiêm trọng được phân loại theo một thang gồm bốn bậc"
-        ],
-        "correct": 0,
-        "explanation": "Người bị đánh thức lúc ba giờ sáng có khả năng suy luận kém hơn nhiều so với chính họ lúc mười giờ sáng. Một liên kết tới bảng theo dõi thì hữu ích, nhưng nó không thay được câu trả lời cho câu hỏi bây giờ tôi phải làm gì."
-      },
-      {
-        "question": "Vì sao nâng ngưỡng không sửa được một cảnh báo vô nghĩa?",
-        "options": [
-          "Vì nó chỉ làm cảnh báo nổ thưa hơn chứ không làm nó có ích hơn",
-          "Vì ngưỡng mới sẽ nhanh chóng bị vượt qua khi hệ thống lớn lên",
-          "Vì việc thay đổi ngưỡng cần được cả đội xem xét và phê duyệt",
-          "Vì các công cụ giám sát không cho phép đặt ngưỡng động theo tải"
-        ],
-        "correct": 0,
-        "explanation": "Vấn đề không nằm ở tần suất mà ở chỗ nó không dẫn tới hành động nào. Nổ mười lần một tháng thay vì ba mươi lần thì vẫn là mười lần đánh thức người vì một thứ không cần ai làm gì."
-      },
-      {
-        "question": "Cảnh báo dựa trên nguyên nhân có hạn chế gì?",
-        "options": [
-          "Chỉ bắt được những cách hỏng mà ai đó đã nghĩ ra từ trước",
-          "Cần nhiều tài nguyên tính toán hơn để theo dõi được liên tục",
-          "Khó cấu hình hơn so với cảnh báo dựa trên triệu chứng",
-          "Thường nổ chậm hơn vì phải chờ dữ liệu từ nhiều nguồn"
-        ],
-        "correct": 0,
-        "explanation": "Sự cố tệ nhất thường là tổ hợp không ai lường trước, và không có cảnh báo nguyên nhân nào phủ được nó. Chúng vẫn có chỗ - để chẩn đoán nhanh - nhưng lớp bảo vệ chính phải là triệu chứng."
-      }
-    ],
     "sections": [
       {
         "type": "lead",
-        "text": "Có mục tiêu và có ngân sách rồi, câu hỏi tiếp theo là khi nào một con số xấu đi thì phải có người bị đánh thức. Đây là chỗ nhiều đội đi từ thiếu thông tin sang ngập thông tin mà không dừng lại ở giữa."
+        "text": "Bảng theo dõi điển hình có hàng trăm biểu đồ, và lúc có sự cố không ai biết nhìn cái nào trước. Bốn con số này là thứ nhìn trước - chúng đủ để định hướng phần lớn cuộc điều tra."
       },
       {
         "type": "heading",
-        "text": "Ba câu hỏi trước khi tạo một cảnh báo"
+        "text": "Bốn con số"
       },
       {
-        "type": "list",
-        "items": [
-          "Có người dùng đang chịu ảnh hưởng không? Nếu không, đây là việc ban ngày.",
-          "Có việc gì phải làm ngay không? Nếu phản ứng đúng là chờ xem, thì không đánh thức ai.",
-          "Người bị đánh thức sẽ biết làm gì chứ? Nếu chưa, viết tài liệu trước khi bật cảnh báo."
+        "type": "conceptTable",
+        "title": "Và mỗi con số trả lời câu gì",
+        "concepts": [
+          {
+            "vi": "Lưu lượng",
+            "en": "traffic",
+            "def": "Có bao nhiêu yêu cầu đang tới. Phải nhìn cùng lúc với ba cái kia, vì nó là mẫu số của chúng."
+          },
+          {
+            "vi": "Tỷ lệ lỗi",
+            "en": "errors",
+            "def": "Bao nhiêu trong số đó thất bại. Nhớ tính cả loại lỗi trả về mã thành công kèm dữ liệu sai."
+          },
+          {
+            "vi": "Độ trễ",
+            "en": "latency",
+            "def": "Người dùng chờ bao lâu, đo bằng PHÂN VỊ. Và tách riêng độ trễ của yêu cầu thành công với yêu cầu lỗi - lỗi thường nhanh, nên trộn lại sẽ làm con số đẹp lên giả tạo."
+          },
+          {
+            "vi": "Mức bão hoà",
+            "en": "saturation",
+            "def": "Còn bao nhiêu dư địa trước khi phần CHẬT NHẤT cạn. Có thể là bộ nhớ, số kết nối cơ sở dữ liệu, hay chiều dài hàng đợi."
+          }
         ]
       },
       {
+        "type": "heading",
+        "text": "Vì sao lưu lượng phải nhìn cùng lúc"
+      },
+      {
         "type": "callout",
-        "label": "Chi phí không hiện trên bảng nào",
-        "text": "Một đội nhận bốn mươi cảnh báo mỗi đêm không có bốn mươi vấn đề - họ có một vấn đề. Người trực học cách đóng hàng loạt theo phản xạ, và phản xạ ấy không phân biệt được cảnh báo thật với cảnh báo giả."
+        "label": "Tỷ lệ lỗi giảm mà tình hình tệ hơn",
+        "text": "Nếu lưu lượng sụt mạnh thì tỷ lệ lỗi có thể giảm theo - người dùng không tới được nữa nên không có yêu cầu nào để lỗi. Hai đường cong cùng đi xuống có thể nghĩa là tốt lên, hoặc nghĩa là không ai vào được."
       },
       {
         "type": "heading",
@@ -29069,1178 +28968,355 @@ export const lessons: Lesson[] = [
       {
         "type": "comparison",
         "left": {
-          "label": "Cảnh báo triệu chứng",
-          "text": "Tỷ lệ lỗi người dùng gặp, độ trễ ở phân vị cao. Nổ bất kể nguyên nhân là gì, kể cả nguyên nhân mới tinh."
+          "label": "Chỉ số triệu chứng",
+          "text": "Bốn con số trên. Chúng nói người dùng đang gặp chuyện gì, nên chúng là thứ đáng đánh thức bạn lúc ba giờ sáng."
         },
         "right": {
-          "label": "Cảnh báo nguyên nhân",
-          "text": "Đĩa đầy, hàng đợi dài, một máy chủ chết. Hữu ích để chẩn đoán nhanh, nhưng chỉ bắt được cách hỏng đã nghĩ ra."
+          "label": "Chỉ số nguyên nhân",
+          "text": "Mức dùng bộ vi xử lý, bộ nhớ, số luồng. Rất hữu ích khi tìm vì sao - nhưng dùng làm cảnh báo thì bạn bị đánh thức vì những chuyện không ảnh hưởng tới ai."
         }
       },
       {
         "type": "paragraph",
-        "text": "Cách thu gọn danh sách cảnh báo hiệu quả nhất là đếm: trong ba mươi ngày qua, cảnh báo nào đã dẫn tới một hành động thật? Những cái còn lại hoặc phải được sửa cho có ích, hoặc phải bị xoá. Giữ lại vì biết đâu có ngày cần là cách một danh sách bốn mươi cảnh báo hình thành."
+        "text": "Một máy chủ chạy hết công suất mà vẫn trả lời kịp thì không phải sự cố. Đó là khác biệt giữa hai cột, và nó cũng là lý do nên tách ra HAI bảng: một bảng để biết có chuyện gì không, một bảng để tìm vì sao."
       },
       {
         "type": "closing",
         "lines": [
-          "Mỗi cảnh báo lúc ba giờ sáng là một khoản rút từ sức bền của đội. Tiêu nó cho thứ không ai làm gì được là lãng phí đắt nhất trong vận hành.",
-          "Bài sau chuyển từ phát hiện sang phòng ngừa: dự phòng, và chỗ nó không giúp được gì."
+          "Bốn con số này áp dụng được cho gần như mọi hệ thống, vì chúng mô tả quan hệ giữa yêu cầu vào và khả năng đáp ứng - thứ mà một hàng đợi công việc, một dịch vụ web hay một tác vụ theo lô đều có.",
+          "Bài sau là câu hỏi khó hơn: trong bốn con số đó, cái nào đáng đánh thức người ta dậy."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 165,
+    "slug": "canh-bao-cai-gi-va-khong-canh-bao-cai-gi",
+    "title": "Cảnh báo cái gì, và không cảnh báo cái gì",
+    "subtitle": "Mỗi cảnh báo không dẫn tới hành động là một lần dạy cả đội bỏ qua cảnh báo.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "🔔",
+    "isFundamental": true,
+    "whyItMatters": "Hệ thống cảnh báo hỏng theo cách âm thầm: nó không ngừng hoạt động mà mất dần độ tin cậy trong mắt người nhận, cho tới lúc một cảnh báo thật cũng bị bỏ qua.",
+    "openingQuestion": "Tiêu chí nào quyết định một thứ có đáng cảnh báo hay không?",
+    "openingOptions": [
+      "Có ai phải làm gì ngay lúc nhận được nó không - nếu không thì đó không phải cảnh báo",
+      "Mức độ nghiêm trọng của vấn đề mà nó phản ánh trong hệ thống đang vận hành",
+      "Xác suất vấn đề đó dẫn tới một sự cố lớn nếu không được xử lý kịp thời",
+      "Số lượng người dùng có khả năng bị ảnh hưởng nếu vấn đề tiếp tục kéo dài"
+    ],
+    "correctOption": 0,
+    "explanation": "Một thứ nghiêm trọng mà không ai làm gì được lúc ba giờ sáng thì nên là một mục công việc cho sáng hôm sau, không phải một cảnh báo. Ba tiêu chí kia đều đúng về mức độ quan trọng, nhưng chúng không phân biệt được thứ cần hành động NGAY với thứ cần hành động SỚM - và chỉ loại đầu mới đáng đánh thức người ta.",
+    "diagram": [
+      {
+        "label": "Có phải làm gì NGAY không? Không → không cảnh báo",
+        "arrow": true
+      },
+      {
+        "label": "Cảnh báo theo TRIỆU CHỨNG, không theo nguyên nhân",
+        "arrow": true
+      },
+      {
+        "label": "Mỗi cảnh báo kèm: làm gì tiếp theo",
+        "arrow": true
+      },
+      {
+        "label": "Cảnh báo không dẫn tới hành động thì xoá đi"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Mệt vì cảnh báo",
+      "description": "Một đội nhận bốn mươi cảnh báo mỗi đêm và ba mươi tám trong số đó không cần làm gì. Sau vài tuần, phản xạ của người trực là tắt thông báo rồi xem sau - và hai cảnh báo thật cũng nằm trong số bị bỏ qua. Hệ thống vẫn chạy đủ, chỉ là không còn ai đọc."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao cảnh báo theo triệu chứng tốt hơn theo nguyên nhân?",
+        "options": [
+          "Vì có vô số nguyên nhân dẫn tới cùng một triệu chứng, và bạn không liệt kê hết được",
+          "Vì các chỉ số triệu chứng thường ổn định hơn nên ít gây cảnh báo giả hơn",
+          "Vì cảnh báo theo nguyên nhân đòi hỏi hiểu biết sâu về kiến trúc hệ thống",
+          "Vì triệu chứng dễ đo hơn nhiều nên chi phí thiết lập hệ thống cảnh báo cũng thấp hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đặt cảnh báo cho từng nguyên nhân là cuộc đua bạn không thắng: mỗi lần có nguyên nhân mới bạn lại thêm một cảnh báo, và danh sách phình ra mãi. Cảnh báo cho triệu chứng thì bắt được cả những nguyên nhân bạn chưa từng gặp."
+      },
+      {
+        "question": "Vì sao mỗi cảnh báo nên kèm hướng dẫn làm gì tiếp theo?",
+        "options": [
+          "Vì người nhận lúc ba giờ sáng không phải người đã viết cảnh báo đó",
+          "Vì hướng dẫn giúp rút ngắn thời gian xử lý sự cố xuống mức tối thiểu",
+          "Vì quy trình vận hành yêu cầu mọi cảnh báo phải có tài liệu đi kèm",
+          "Vì việc viết hướng dẫn buộc người tạo cảnh báo suy nghĩ kỹ hơn về nó"
+        ],
+        "correct": 0,
+        "explanation": "Một cảnh báo chỉ nói tỷ lệ lỗi cao thì người trực phải tự tìm hiểu từ đầu, trong lúc đang buồn ngủ và đang chịu áp lực. Lựa chọn cuối cũng đúng và là lợi ích phụ thật, nhưng lý do chính nằm ở phía người nhận."
+      },
+      {
+        "question": "Điều gì xảy ra khi có quá nhiều cảnh báo không cần hành động?",
+        "options": [
+          "Người trực học cách bỏ qua chúng, nên cảnh báo thật cũng bị bỏ qua theo",
+          "Hệ thống thông báo bị quá tải nên một số cảnh báo không được gửi đi đúng lúc",
+          "Chi phí vận hành tăng lên vì đội phải dành nhiều thời gian xử lý cảnh báo",
+          "Người trực mất ngủ nên hiệu quả làm việc trong ngày hôm sau giảm sút"
+        ],
+        "correct": 0,
+        "explanation": "Đây là kiểu hỏng âm thầm: hệ thống cảnh báo vẫn chạy đủ, chỉ là không còn ai đọc. Mất ngủ cũng là hậu quả thật và nghiêm trọng, nhưng nó ảnh hưởng tới người còn kiểu hỏng kia ảnh hưởng tới cả hệ thống."
+      },
+      {
+        "question": "Nên làm gì với một cảnh báo thường xuyên kêu mà không ai làm gì?",
+        "options": [
+          "Xoá nó đi, hoặc chuyển thành một mục trong báo cáo hằng tuần",
+          "Nâng ngưỡng của nó lên để nó chỉ kêu trong những trường hợp nghiêm trọng hơn",
+          "Chuyển nó sang mức ưu tiên thấp hơn để nó không đánh thức người trực ban đêm",
+          "Giữ lại nhưng ghi chú rõ rằng nó thường không cần hành động ngay lập tức"
+        ],
+        "correct": 0,
+        "explanation": "Nâng ngưỡng nghe hợp lý nhưng nó chỉ giảm tần suất chứ không giải quyết vấn đề gốc là cảnh báo đó không dẫn tới hành động. Giữ lại kèm ghi chú thì càng tệ - nó vẫn chiếm chỗ trong danh sách mà không mang lại gì."
+      },
+      {
+        "question": "Cảnh báo dựa trên tốc độ tiêu ngân sách lỗi khác cảnh báo theo ngưỡng thế nào?",
+        "options": [
+          "Nó tính cả tốc độ, nên phân biệt được một đợt lỗi ngắn với một xu hướng đang xấu đi",
+          "Nó cho phép đặt ra nhiều mức ngưỡng khác nhau tuỳ theo mức độ nghiêm trọng của vấn đề",
+          "Nó tự động điều chỉnh ngưỡng theo lưu lượng thực tế của từng thời điểm",
+          "Nó chỉ kêu khi ngân sách lỗi đã cạn hoàn toàn nên ít gây phiền hơn"
+        ],
+        "correct": 0,
+        "explanation": "Một ngưỡng cố định không phân biệt được đợt lỗi hai phút rồi tự khỏi với một xu hướng sẽ ăn hết ngân sách trong ba ngày. Cách tính theo tốc độ tiêu làm cho cảnh báo tỷ lệ với mức thiệt hại thật."
+      }
+    ],
+    "keyTakeaways": [
+      "Tiêu chí duy nhất: có ai phải làm gì NGAY không. Không thì đó là mục công việc.",
+      "Cảnh báo theo TRIỆU CHỨNG - có vô số nguyên nhân cho cùng một triệu chứng.",
+      "Mỗi cảnh báo kèm hướng dẫn, vì người nhận lúc ba giờ sáng không phải người viết nó.",
+      "Cảnh báo không dẫn tới hành động thì xoá - nâng ngưỡng chỉ giảm tần suất.",
+      "Cảnh báo theo tốc độ tiêu ngân sách phân biệt được đợt ngắn với xu hướng xấu."
+    ],
+    "practicePrompt": {
+      "question": "Đội bạn nhận bốn mươi cảnh báo mỗi đêm. Việc đầu tiên nên làm là gì?",
+      "options": [
+        "Đếm xem bao nhiêu cái dẫn tới một hành động thật, rồi xoá phần còn lại",
+        "Phân loại chúng theo mức độ nghiêm trọng để người trực biết cái nào xử lý trước",
+        "Gộp các cảnh báo liên quan lại thành một để giảm số lượng thông báo gửi đi",
+        "Chuyển các cảnh báo ít quan trọng sang một kênh riêng để xem vào giờ hành chính"
+      ],
+      "correct": 0,
+      "explanation": "Ba cách kia đều làm cho bốn mươi cảnh báo dễ chịu hơn mà vẫn giữ nguyên bốn mươi cái. Phép đếm thì trả lời thẳng câu hỏi cái nào đáng tồn tại, và con số đó thường gây bất ngờ."
+    },
+    "summary": {
+      "keyIdea": "Mỗi cảnh báo không dẫn tới hành động là một lần dạy cả đội bỏ qua cảnh báo.",
+      "formula": "Phải làm ngay + theo triệu chứng + kèm hướng dẫn = một cảnh báo đáng có.",
+      "commonMistake": "Nâng ngưỡng cho cảnh báo gây nhiễu thay vì xoá nó đi.",
+      "action": "Đếm tỷ lệ cảnh báo tuần qua thật sự dẫn tới một hành động."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy danh sách cảnh báo tuần qua và đếm: bao nhiêu cái dẫn tới một hành động thật? Tỷ lệ đó là mức độ tin cậy còn lại của hệ thống cảnh báo trong mắt đội.",
+      "secondary": "Xoá những cái không dẫn tới hành động, đừng nâng ngưỡng chúng. Nâng ngưỡng chỉ làm chúng kêu ít hơn chứ không làm chúng trở nên đáng đọc."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Bài trước cho bạn bốn con số đáng nhìn. Bài này là câu hỏi khó hơn: trong số đó, cái nào đáng đánh thức một người dậy lúc ba giờ sáng."
+      },
+      {
+        "type": "heading",
+        "text": "Tiêu chí duy nhất"
+      },
+      {
+        "type": "callout",
+        "label": "Có ai phải làm gì NGAY không",
+        "text": "Nếu không thì đó không phải cảnh báo - nó là một mục công việc cho sáng hôm sau. Một thứ rất nghiêm trọng mà không ai làm gì được lúc ba giờ sáng vẫn không đáng đánh thức ai."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tiêu chí này nghe khắt khe nhưng lý do rất thực dụng: mỗi cảnh báo không dẫn tới hành động là một lần dạy cả đội bỏ qua cảnh báo. Và hệ thống cảnh báo hỏng theo cách âm thầm - nó không ngừng chạy, nó chỉ mất dần độ tin cậy cho tới lúc một cảnh báo thật cũng bị bỏ qua."
+      },
+      {
+        "type": "heading",
+        "text": "Theo triệu chứng, không theo nguyên nhân"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Theo triệu chứng",
+          "text": "Tỷ lệ lỗi vượt ngưỡng, độ trễ ở phân vị cao vượt ngưỡng. Bắt được cả những nguyên nhân bạn chưa từng gặp."
+        },
+        "right": {
+          "label": "Theo nguyên nhân",
+          "text": "Bộ nhớ đầy, số kết nối cạn, một tiến trình chết. Có vô số nguyên nhân dẫn tới cùng một triệu chứng - bạn không liệt kê hết được, và danh sách phình ra mãi."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Hai chi tiết làm cảnh báo dùng được"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Kèm hướng dẫn làm gì tiếp theo. Người nhận lúc ba giờ sáng không phải người đã viết cảnh báo đó, và họ đang buồn ngủ.",
+          "Tính theo TỐC ĐỘ tiêu ngân sách lỗi thay vì theo ngưỡng cố định. Một ngưỡng không phân biệt được đợt lỗi hai phút rồi tự khỏi với một xu hướng sẽ ăn hết ngân sách trong ba ngày."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Và với những cảnh báo thường xuyên kêu mà không ai làm gì: XOÁ chúng, đừng nâng ngưỡng. Nâng ngưỡng chỉ giảm tần suất chứ không giải quyết việc chúng không dẫn tới hành động - chúng vẫn chiếm chỗ và vẫn làm mòn sự chú ý."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Phép đo đáng chạy mỗi quý: trong số cảnh báo tuần qua, bao nhiêu cái dẫn tới một hành động thật? Tỷ lệ đó là mức tin cậy còn lại của hệ thống cảnh báo trong mắt đội.",
+          "Bài sau là điều xảy ra sau khi cảnh báo kêu: người ta xử lý sự cố thế nào."
         ]
       }
     ]
   },
   {
     "id": 166,
-    "slug": "du-phong-va-diem-hong-don-le",
-    "title": "Dự phòng: nhân đôi cái gì, và cái gì không nhân đôi được",
-    "subtitle": "Hai máy chủ không giúp gì nếu cả hai cùng đọc một cơ sở dữ liệu, và cơ sở dữ liệu ấy chết.",
-    "duration": "9 phút",
+    "slug": "trong-luc-co-su-co-vai-tro",
+    "title": "Trong lúc có sự cố - vai trò và thứ tự",
+    "subtitle": "Việc đầu tiên là dừng chảy máu, không phải tìm nguyên nhân.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "🧯",
     "track": "professional",
-    "whyItMatters": "Dự phòng là khoản đầu tư đắt nhất trong vận hành, và rất dễ mua nhầm chỗ. Tìm ra điểm hỏng đơn lẻ thật sự thường rẻ hơn và hiệu quả hơn việc nhân đôi mọi thứ.",
-    "openingQuestion": "Dịch vụ chạy trên ba máy chủ nhưng vẫn ngừng hoàn toàn khi một thành phần hỏng. Vì sao?",
+    "emoji": "🚨",
+    "isFundamental": true,
+    "whyItMatters": "Phần lớn sự cố kéo dài không phải vì khó sửa mà vì mười phút đầu bị dùng sai: nhiều người cùng điều tra, không ai điều phối, và không ai nói cho bên ngoài biết chuyện gì đang xảy ra.",
+    "openingQuestion": "Việc đầu tiên khi phát hiện sự cố là gì?",
     "openingOptions": [
-      "Vì cả ba cùng phụ thuộc vào một thành phần không được nhân đôi",
-      "Vì cơ chế chuyển đổi giữa các máy chủ chưa được cấu hình cho đúng",
-      "Vì ba máy chủ đó cùng nằm trên một máy vật lý duy nhất",
-      "Vì tải dồn hết sang hai máy còn lại khiến chúng quá tải theo"
+      "Khôi phục dịch vụ bằng cách nhanh nhất, kể cả khi chưa hiểu nguyên nhân",
+      "Tìm nguyên nhân gốc, vì sửa mà không hiểu nguyên nhân thì lỗi sẽ quay lại",
+      "Thông báo cho tất cả các bên liên quan để mọi người nắm được tình hình",
+      "Thu thập đầy đủ nhật ký và số liệu trước khi trạng thái hệ thống thay đổi"
     ],
     "correctOption": 0,
-    "explanation": "Nhân đôi tầng ứng dụng là phần dễ nhất và cũng là phần ít khi là nút thắt. Bên dưới nó thường còn một cơ sở dữ liệu, một dịch vụ xác thực, một bộ cân bằng tải, một vùng hạ tầng - và chỉ cần một thứ trong đó không có bản thay thế thì độ tin cậy của cả hệ thống rơi về đúng mức của nó. Ba nguyên nhân còn lại đều có thật và đều xảy ra, nhưng chúng là những cách hỏng cụ thể chứ không giải thích được vì sao dự phòng nói chung lại không có tác dụng.",
+    "explanation": "Khôi phục và tìm nguyên nhân là hai việc khác nhau, và làm đúng thứ tự là khác biệt giữa một sự cố mười phút với một sự cố hai tiếng. Quay lại bản trước, chuyển lưu lượng sang vùng khác, tắt tính năng vừa bật - cả ba đều khôi phục được mà không cần biết vì sao. Thu thập bằng chứng cũng quan trọng nhưng nó làm song song, không làm trước.",
     "diagram": [
       {
-        "label": "3 máy chủ ứng dụng - phần dễ nhân đôi",
+        "label": "1. Khôi phục trước, hiểu sau",
         "arrow": true
       },
       {
-        "label": "1 cơ sở dữ liệu, 1 dịch vụ xác thực",
+        "label": "2. Một người điều phối, không tự mình gõ lệnh",
         "arrow": true
       },
       {
-        "label": "Độ tin cậy rơi về mức của mắt xích đơn lẻ",
+        "label": "3. Một người nói chuyện với bên ngoài",
         "arrow": true
       },
       {
-        "label": "Vẽ sơ đồ ra rồi tìm chỗ chỉ có một"
+        "label": "4. Ghi lại mốc thời gian ngay trong lúc làm"
       }
     ],
     "realWorldExample": {
-      "company": "Bản sao chưa từng được thử",
-      "description": "Nhiều hệ thống có bản sao dự phòng nhưng chưa bao giờ chạy thử chuyển đổi sang nó. Lần đầu tiên thử là lúc bản chính đã chết, và đó cũng là lúc phát hiện ra bản sao thiếu một phần cấu hình."
-    },
-    "keyTakeaways": [
-      "Nhân đôi tầng dễ nhất thường không phải nhân đôi đúng chỗ.",
-      "Vẽ sơ đồ phụ thuộc rồi tìm mọi chỗ chỉ có đúng một.",
-      "Bản sao chưa từng được chuyển sang thì chưa phải bản sao.",
-      "Dự phòng không cứu được lỗi lan theo cấu hình hoặc theo mã."
-    ],
-    "summary": {
-      "keyIdea": "Dự phòng chỉ có giá trị ở đúng điểm hỏng đơn lẻ, và chỉ khi đã được thử.",
-      "formula": "Tìm chỗ chỉ có một, rồi hỏi nếu nó chết thì sao.",
-      "commonMistake": "Nhân đôi phần dễ nhân đôi rồi coi hệ thống đã an toàn."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Vẽ mọi thứ dịch vụ của bạn phụ thuộc vào và khoanh tròn những chỗ chỉ có đúng một bản. Với mỗi vòng tròn, hỏi lần cuối cùng ai đó thử cho nó chết là khi nào."
-    },
-    "practicePrompt": {
-      "question": "Vì sao dự phòng không cứu được một bản phát hành có lỗi?",
-      "options": [
-        "Vì mọi bản sao đều chạy cùng một đoạn mã và cùng hỏng như nhau",
-        "Vì bản phát hành mới thường được đưa lên từng máy chủ một",
-        "Vì cơ chế chuyển đổi chỉ hoạt động khi máy chủ ngừng hẳn",
-        "Vì lỗi trong mã không được các phép kiểm tra sức khoẻ phát hiện"
-      ],
-      "correct": 0,
-      "explanation": "Dự phòng chống được lỗi độc lập - một máy chết, một đĩa hỏng - chứ không chống được nguyên nhân chung. Mã sai, cấu hình sai và chứng chỉ hết hạn đều lan tới mọi bản sao cùng lúc, và chống chúng cần triển khai theo đợt cùng khả năng quay lui chứ không cần thêm máy."
+      "company": "Người điều phối không gõ lệnh",
+      "description": "Vai trò dễ bị hiểu sai nhất: người điều phối giữ bức tranh tổng thể, quyết định thử gì tiếp, và bảo đảm không có hai người cùng sửa một chỗ. Ngay khi họ bắt đầu tự gõ lệnh, họ mất bức tranh đó - và đó thường là lúc sự cố kéo dài thêm."
     },
     "quiz": [
       {
-        "question": "Điểm hỏng đơn lẻ là gì?",
+        "question": "Vì sao khôi phục trước khi hiểu nguyên nhân?",
         "options": [
-          "Thành phần mà nếu nó chết thì cả hệ thống ngừng theo",
-          "Thành phần có tần suất hỏng cao nhất trong cả hệ thống",
-          "Thành phần chưa được đưa vào hệ thống giám sát tự động",
-          "Thành phần được nhiều dịch vụ khác nhau cùng sử dụng"
+          "Vì quay lại bản trước hay chuyển lưu lượng đều khôi phục được mà không cần biết vì sao",
+          "Vì việc tìm ra nguyên nhân thường mất nhiều thời gian hơn hẳn mức mà người dùng chịu được",
+          "Vì nguyên nhân gốc chỉ xác định được chính xác sau khi hệ thống đã ổn định lại",
+          "Vì áp lực trong lúc sự cố khiến việc phân tích nguyên nhân dễ đi sai hướng"
         ],
         "correct": 0,
-        "explanation": "Chia sẻ giữa nhiều dịch vụ làm hậu quả rộng hơn nhưng tự nó chưa phải điều kiện - một thành phần dùng chung mà có bản thay thế thì không phải điểm hỏng đơn lẻ. Điều kiện duy nhất là không có gì thay thế nó được."
+        "explanation": "Có sẵn những công cụ khôi phục không đòi hỏi hiểu biết về nguyên nhân, và đó là lý do thứ tự này khả thi chứ không chỉ là lời khuyên. Ba lựa chọn kia đều đúng nhưng chúng giải thích vì sao nên làm vậy, không giải thích vì sao làm được."
       },
       {
-        "question": "Vì sao bản sao chưa được thử chuyển sang thì chưa đáng tin?",
+        "question": "Vì sao người điều phối không nên tự gõ lệnh?",
         "options": [
-          "Vì nó có thể thiếu cấu hình hoặc dữ liệu mà không ai phát hiện ra",
-          "Vì dữ liệu trên bản sao luôn cũ hơn bản chính một khoảng thời gian",
-          "Vì phần cứng của bản sao thường yếu hơn phần cứng bản chính",
-          "Vì các phép kiểm tra sức khoẻ không chạy trên bản sao dự phòng"
+          "Vì họ sẽ mất bức tranh tổng thể, và đó thường là lúc sự cố kéo dài thêm",
+          "Vì việc gõ lệnh nên do người có quyền truy cập cao nhất thực hiện",
+          "Vì họ cần dành toàn bộ thời gian để cập nhật tình hình cho các bên liên quan",
+          "Vì quy trình xử lý sự cố yêu cầu tách bạch người ra quyết định với người thực thi"
         ],
         "correct": 0,
-        "explanation": "Một bản sao chỉ ngồi đó nhận dữ liệu trông giống hệt một bản sao đã sẵn sàng, cho tới lúc phải dùng. Diễn tập chuyển đổi định kỳ là cách duy nhất biến giả định thành sự thật đã kiểm chứng."
+        "explanation": "Đây là vai trò dễ bị hiểu sai nhất và cũng dễ bị bỏ nhất khi đội nhỏ. Người điều phối giữ bức tranh, quyết định thử gì tiếp, và bảo đảm không có hai người cùng sửa một chỗ - ba việc đó đều cần chú ý toàn phần."
       },
       {
-        "question": "Loại lỗi nào dự phòng không giúp được?",
+        "question": "Vì sao cần một người riêng nói chuyện với bên ngoài?",
         "options": [
-          "Lỗi có nguyên nhân chung, lan tới mọi bản sao cùng lúc",
-          "Lỗi phần cứng xảy ra đồng thời trên nhiều máy khác nhau",
-          "Lỗi mạng làm mất kết nối giữa các vùng hạ tầng",
-          "Lỗi do quá tải khi lượng truy cập tăng đột biến"
+          "Vì nếu không, người đang sửa sẽ bị ngắt liên tục bởi câu hỏi từ nhiều phía",
+          "Vì các bên liên quan cần thông tin được diễn đạt theo cách họ hiểu được",
+          "Vì thông tin ra ngoài cần được kiểm soát để tránh gây hoang mang không cần thiết",
+          "Vì quy định về truyền thông sự cố yêu cầu chỉ định người phát ngôn duy nhất"
         ],
         "correct": 0,
-        "explanation": "Mã sai, cấu hình sai, chứng chỉ hết hạn - chúng đi cùng nhau tới mọi bản sao. Cách chống là triển khai theo đợt và có đường quay lui, tức là một loại biện pháp hoàn toàn khác với việc thêm máy."
+        "explanation": "Bị ngắt là chi phí lớn nhất trong mười phút đầu, và nó đến từ nhiều phía cùng lúc. Ba lý do kia đều là lợi ích thật của việc có người phát ngôn, nhưng lợi ích lớn nhất là bảo vệ sự tập trung của người đang sửa."
       },
       {
-        "question": "Vì sao nhân đôi tầng ứng dụng thường chưa đủ?",
+        "question": "Vì sao phải ghi mốc thời gian ngay trong lúc xử lý?",
         "options": [
-          "Vì bên dưới nó vẫn còn những thành phần chỉ có đúng một bản",
-          "Vì tầng ứng dụng ít khi là nơi xảy ra sự cố nhất trong hệ thống",
-          "Vì các bản sao ứng dụng cần một cơ chế đồng bộ phức tạp",
-          "Vì chi phí nhân đôi tầng ứng dụng cao hơn các tầng khác"
+          "Vì trí nhớ về trình tự sự việc méo đi rất nhanh sau khi sự cố kết thúc",
+          "Vì biên bản sự cố yêu cầu phải có dòng thời gian chi tiết của mọi hành động",
+          "Vì mốc thời gian giúp tính toán chính xác thời gian ngừng dịch vụ để báo cáo",
+          "Vì việc ghi chép giúp người xử lý bình tĩnh và có hệ thống hơn khi làm việc"
         ],
         "correct": 0,
-        "explanation": "Đó là phần dễ nhân đôi nhất, nên nó luôn được làm trước, và cảm giác an toàn đến ngay sau đó. Cơ sở dữ liệu, dịch vụ xác thực, bộ cân bằng tải hay cả một vùng hạ tầng vẫn có thể là chỗ chỉ có một."
+        "explanation": "Đây là cùng cơ chế với thiên kiến nhận thức muộn ở chặng rà soát code: sau khi biết kết quả, bạn nhớ lại trình tự theo hướng khớp với nó. Một dòng ghi lúc đó là bằng chứng mà trí nhớ không sửa được."
       },
       {
-        "question": "Cách rẻ nhất để tìm điểm hỏng đơn lẻ là gì?",
+        "question": "Đội nhỏ chỉ có hai người thì phân vai thế nào?",
         "options": [
-          "Vẽ sơ đồ phụ thuộc rồi tìm mọi chỗ chỉ có đúng một bản",
-          "Chờ sự cố xảy ra rồi ghi lại thành phần đã gây ra nó",
-          "Chạy công cụ quét hạ tầng để liệt kê toàn bộ tài nguyên",
-          "Xem lại nhật ký hệ thống của mười hai tháng gần nhất"
+          "Vẫn tách hai vai: một người sửa, một người điều phối và nói chuyện với bên ngoài",
+          "Cả hai cùng sửa để rút ngắn thời gian, rồi cập nhật cho bên ngoài sau khi đã xong",
+          "Một người sửa và một người thu thập bằng chứng cho việc phân tích sau này",
+          "Luân phiên đổi vai giữa hai người để cả hai đều nắm được tình hình đầy đủ"
         ],
         "correct": 0,
-        "explanation": "Nó mất một buổi chiều và không tốn đồng nào, mà thường tìm ra hai hoặc ba thứ không ai để ý. Ba cách còn lại đều cho dữ liệu về những gì đã hỏng, chứ không cho danh sách những gì sẽ kéo sập hệ thống nếu hỏng."
+        "explanation": "Vai điều phối là vai bị bỏ đầu tiên khi đội nhỏ, và đó là lý do sự cố ở đội nhỏ hay kéo dài. Cả hai cùng sửa thì không ai giữ bức tranh và cả hai đều bị ngắt bởi câu hỏi từ bên ngoài."
       }
     ],
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Sau khi biết khi nào phải phản ứng, câu hỏi tiếp theo là làm sao để phải phản ứng ít hơn. Dự phòng là câu trả lời quen thuộc nhất, và cũng là câu trả lời hay được mua nhầm chỗ nhất."
-      },
-      {
-        "type": "heading",
-        "text": "Nhân đôi phần dễ không giải quyết được gì"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tầng ứng dụng không giữ trạng thái nên nhân đôi nó rất rẻ, và vì thế nó luôn được làm trước. Nhưng bên dưới thường còn một cơ sở dữ liệu, một dịch vụ xác thực, một bộ cân bằng tải, đôi khi cả một vùng hạ tầng. Chỉ cần một thứ trong đó không có bản thay thế thì độ tin cậy của cả hệ thống rơi về đúng mức của nó."
-      },
-      {
-        "type": "callout",
-        "label": "Chưa thử thì chưa có",
-        "text": "Một bản sao ngồi nhận dữ liệu trông giống hệt một bản sao sẵn sàng phục vụ. Khác biệt chỉ lộ ra vào lần đầu tiên bạn chuyển sang nó - và nếu lần đầu tiên ấy là lúc bản chính đã chết thì bạn đang gỡ lỗi trong sự cố."
-      },
-      {
-        "type": "heading",
-        "text": "Có loại lỗi thêm máy không chữa được"
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Lỗi độc lập",
-          "text": "Một máy chết, một đĩa hỏng, một vùng mất điện. Đây đúng là chỗ dự phòng phát huy tác dụng."
-        },
-        "right": {
-          "label": "Lỗi nguyên nhân chung",
-          "text": "Mã sai, cấu hình sai, chứng chỉ hết hạn. Lan tới mọi bản sao cùng lúc; chống bằng triển khai theo đợt và đường quay lui."
-        }
-      },
-      {
-        "type": "paragraph",
-        "text": "Phân biệt hai loại này quyết định bạn tiêu tiền vào đâu. Một đội gặp toàn sự cố loại thứ hai mà lại đầu tư vào dự phòng đa vùng sẽ trả rất nhiều để phòng một thứ chưa từng xảy ra với mình."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Câu hỏi hiệu quả nhất trong cả bài này chỉ có một dòng: chỗ nào trong sơ đồ chỉ có đúng một?",
-          "Bài sau về lựa chọn khác khi không nhân đôi được: hỏng một phần thay vì hỏng toàn bộ."
-        ]
-      }
-    ]
-  },
-  {
-    "id": 167,
-    "slug": "suy-giam-co-kiem-soat",
-    "title": "Suy giảm có kiểm soát: hỏng một phần thay vì hỏng hết",
-    "subtitle": "Trang chủ mất phần gợi ý vẫn là trang chủ. Trang chủ trắng thì không.",
-    "duration": "8 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🪫",
-    "track": "professional",
-    "whyItMatters": "Phần lớn sự cố lớn không bắt đầu bằng một cú sập mà bằng một thành phần phụ hỏng và kéo theo mọi thứ. Tách phần thiết yếu khỏi phần phụ là cách rẻ nhất để một sự cố nhỏ ở lại nhỏ.",
-    "openingQuestion": "Dịch vụ gợi ý sản phẩm ngừng hoạt động. Trang danh sách nên phản ứng thế nào?",
-    "openingOptions": [
-      "Hiển thị danh sách như bình thường và bỏ qua phần gợi ý",
-      "Hiển thị thông báo lỗi để người dùng biết có sự cố đang xảy ra",
-      "Thử gọi lại dịch vụ gợi ý cho tới khi nó phản hồi thành công",
-      "Dùng dữ liệu gợi ý cũ nhất còn lưu lại trong bộ nhớ đệm"
-    ],
-    "correctOption": 0,
-    "explanation": "Gợi ý là phần làm trải nghiệm tốt hơn, không phải phần khiến trang có ý nghĩa. Người dùng vào để xem danh sách, nên bỏ phần gợi ý đi là mất mát nhỏ nhất có thể. Dùng dữ liệu cũ trong bộ nhớ đệm cũng là một lựa chọn hợp lý và thường tốt hơn nữa, nhưng nó chỉ khả dụng khi có sẵn dữ liệu; nguyên tắc chung phải là trang vẫn dựng được kể cả khi không có gì để thay thế.",
-    "diagram": [
-      {
-        "label": "Phân loại: thiết yếu hay phụ trợ",
-        "arrow": true
-      },
-      {
-        "label": "Phụ trợ hỏng → bỏ qua, trang vẫn dựng",
-        "arrow": true
-      },
-      {
-        "label": "Thiết yếu hỏng → báo lỗi rõ ràng",
-        "arrow": true
-      },
-      {
-        "label": "Mặc định nguy hiểm: phụ trợ kéo sập cả trang"
-      }
-    ],
-    "realWorldExample": {
-      "company": "Một dịch vụ phụ kéo sập trang chủ",
-      "description": "Dịch vụ xếp hạng đánh giá chậm lại, mỗi lời gọi treo ba mươi giây, và trang chủ chờ nó trước khi dựng. Kết quả là toàn bộ trang chủ ngừng hoạt động vì một khối chiếm chưa tới một phần mười màn hình."
-    },
     "keyTakeaways": [
-      "Phân loại từng phụ thuộc là thiết yếu hay phụ trợ, viết ra rõ ràng.",
-      "Phụ thuộc phụ trợ phải có thời gian chờ ngắn và đường đi khi thất bại.",
-      "Mặc định của mã là để lỗi lan ra, nên phải chặn nó một cách chủ động.",
-      "Thất bại từng phần cần được đo, nếu không nó thành lỗi thầm lặng."
+      "Khôi phục TRƯỚC, hiểu SAU - quay lại bản trước không cần biết nguyên nhân.",
+      "Người điều phối không tự gõ lệnh; gõ lệnh là lúc họ mất bức tranh tổng thể.",
+      "Một người riêng nói chuyện với bên ngoài, để người đang sửa không bị ngắt.",
+      "Ghi mốc thời gian NGAY trong lúc làm - trí nhớ về trình tự méo đi rất nhanh.",
+      "Đội hai người vẫn tách hai vai; vai điều phối là vai bị bỏ đầu tiên."
     ],
+    "practicePrompt": {
+      "question": "Bạn vừa quay lại bản trước và dịch vụ đã bình thường. Việc tiếp theo là gì?",
+      "options": [
+        "Xác nhận bằng con số rằng người dùng đã ổn, rồi mới chuyển sang tìm nguyên nhân",
+        "Tìm ngay nguyên nhân trong bản vừa bị quay lại khi trí nhớ còn rõ ràng nhất",
+        "Thông báo cho các bên liên quan rằng sự cố đã được khắc phục hoàn toàn",
+        "Phát hành lại bản đó với một bản vá nhanh để không mất các tính năng mới"
+      ],
+      "correct": 0,
+      "explanation": "Bảng theo dõi trở lại bình thường không đồng nghĩa với việc người dùng đã ổn - có thể còn hàng đợi tồn đọng hoặc dữ liệu sai đã ghi vào. Thông báo khắc phục hoàn toàn trước khi xác nhận là cách phải đính chính lần thứ hai."
+    },
     "summary": {
-      "keyIdea": "Tách phần thiết yếu khỏi phần phụ để một phần hỏng không kéo theo cả trang.",
-      "formula": "Phụ trợ hỏng thì bỏ qua, thiết yếu hỏng thì báo rõ.",
-      "commonMistake": "Để một lời gọi phụ trợ nằm trên đường dựng trang chính."
+      "keyIdea": "Mười phút đầu quyết định độ dài của cả sự cố, và nó thường bị dùng sai.",
+      "formula": "Khôi phục → xác nhận bằng số → rồi mới tìm nguyên nhân.",
+      "commonMistake": "Nhiều người cùng điều tra, không ai điều phối, không ai báo ra ngoài.",
+      "action": "Viết ra ba vai và ai đóng vai nào, trước lần sự cố tiếp theo."
     },
     "application": {
       "title": "Làm ngay hôm nay",
-      "message": "Liệt kê mọi dịch vụ mà màn hình quan trọng nhất của bạn gọi tới, đánh dấu cái nào thiết yếu. Với mỗi cái phụ trợ, kiểm tra xem nó có thời gian chờ riêng chưa."
+      "message": "Viết ra ba vai - sửa, điều phối, nói chuyện với bên ngoài - và ai trong đội đóng vai nào. Ba dòng, viết lúc bình tĩnh.",
+      "secondary": "Nếu đội chỉ có hai người, vẫn tách hai vai chứ đừng gộp. Vai điều phối là vai bị bỏ đầu tiên, và đó là lý do sự cố ở đội nhỏ hay kéo dài hơn cần thiết."
     },
-    "practicePrompt": {
-      "question": "Vì sao thất bại từng phần cần được ghi nhận và đo riêng?",
-      "options": [
-        "Vì nếu không thì một phần có thể hỏng suốt nhiều tuần mà không ai biết",
-        "Vì các công cụ giám sát cần dữ liệu này để tính toán độ sẵn sàng",
-        "Vì người dùng cần được thông báo về phần chức năng đang thiếu",
-        "Vì đội cần số liệu để quyết định có nên giữ tính năng đó không"
-      ],
-      "correct": 0,
-      "explanation": "Điểm mạnh của suy giảm có kiểm soát cũng chính là điểm yếu của nó: không ai phàn nàn, nên không ai để ý. Một khối gợi ý biến mất khỏi trang trong sáu tuần là chuyện hoàn toàn có thể xảy ra nếu việc bỏ qua nó không được đếm."
-    },
-    "quiz": [
-      {
-        "question": "Phụ thuộc thiết yếu khác phụ thuộc phụ trợ ở điểm nào?",
-        "options": [
-          "Thiếu nó thì màn hình không còn ý nghĩa với người dùng nữa",
-          "Nó được gọi tới nhiều lần hơn trong một lần dựng trang",
-          "Nó do đội khác vận hành nên bạn không kiểm soát được",
-          "Nó có thời gian phản hồi chậm hơn so với các phụ thuộc còn lại"
-        ],
-        "correct": 0,
-        "explanation": "Danh sách sản phẩm mà không có sản phẩm thì trang vô nghĩa; danh sách không có gợi ý thì vẫn dùng được. Ranh giới nằm ở mục đích người dùng đến, không ở đặc điểm kỹ thuật của lời gọi."
-      },
-      {
-        "question": "Vì sao phải chặn lỗi lan ra một cách chủ động?",
-        "options": [
-          "Vì mặc định của mã là để lỗi ném lên và làm hỏng cả lời gọi",
-          "Vì các thư viện mạng thường không có sẵn cơ chế xử lý lỗi nào",
-          "Vì lỗi từ dịch vụ khác không được ghi vào nhật ký của bạn",
-          "Vì hệ thống giám sát chỉ theo dõi lỗi ở tầng ngoài cùng"
-        ],
-        "correct": 0,
-        "explanation": "Không ai cố ý viết mã để một khối gợi ý kéo sập trang chủ - nó xảy ra vì đó là hành vi mặc định khi không có gì ngăn lại. Suy giảm có kiểm soát luôn là thứ phải được viết vào, không bao giờ là thứ tự có."
-      },
-      {
-        "question": "Vì sao phụ thuộc phụ trợ cần thời gian chờ ngắn hơn?",
-        "options": [
-          "Vì chờ lâu một phần không quan trọng làm chậm cả trang",
-          "Vì dịch vụ phụ trợ thường kém tin cậy hơn dịch vụ chính",
-          "Vì thời gian chờ dài chiếm nhiều kết nối mạng hơn",
-          "Vì người dùng ít khi để ý tới phần nội dung phụ trợ"
-        ],
-        "correct": 0,
-        "explanation": "Một dịch vụ chậm nguy hiểm hơn một dịch vụ chết, vì chết thì lỗi trả về ngay còn chậm thì mọi thứ phía sau xếp hàng chờ. Thời gian chờ của phần phụ nên được đặt theo mức mà trang chính chấp nhận trễ được."
-      },
-      {
-        "question": "Khi phụ thuộc thiết yếu hỏng thì nên làm gì?",
-        "options": [
-          "Báo lỗi rõ ràng thay vì hiển thị một trang trống rỗng",
-          "Thử gọi lại liên tục cho tới khi dịch vụ đó phản hồi",
-          "Hiển thị dữ liệu cũ nhất còn lưu lại trong bộ nhớ đệm",
-          "Chuyển người dùng sang một màn hình chức năng khác"
-        ],
-        "correct": 0,
-        "explanation": "Suy giảm có kiểm soát không có nghĩa là giấu mọi lỗi. Khi phần cốt lõi không hoạt động, thứ tử tế nhất là nói rõ điều đó thay vì để người dùng nhìn một khoảng trắng và tự đoán."
-      },
-      {
-        "question": "Điểm yếu của suy giảm có kiểm soát là gì?",
-        "options": [
-          "Sự cố trở nên im lặng nên dễ tồn tại rất lâu mà không ai biết",
-          "Nó làm tăng đáng kể độ phức tạp của mã xử lý giao diện",
-          "Nó khiến người dùng hiểu nhầm rằng hệ thống vẫn đang bình thường",
-          "Nó đòi hỏi mỗi phụ thuộc phải có một phương án thay thế sẵn"
-        ],
-        "correct": 0,
-        "explanation": "Không có ai phàn nàn thì không có tín hiệu nào. Đó là lý do mỗi lần bỏ qua một phần phải được đếm và có ngưỡng cảnh báo riêng, dù ngưỡng ấy không cần đánh thức ai lúc nửa đêm."
-      }
-    ],
     "sections": [
       {
         "type": "lead",
-        "text": "Bài trước về việc nhân đôi những thứ không được phép chết. Bài này về những thứ được phép chết - miễn là chúng chết một mình."
+        "text": "Cảnh báo đã kêu. Bài này về mười phút tiếp theo - và phần lớn sự cố kéo dài không phải vì khó sửa mà vì mười phút đó bị dùng sai."
       },
       {
         "type": "heading",
-        "text": "Hai loại phụ thuộc"
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Thiết yếu",
-          "text": "Thiếu nó thì màn hình mất ý nghĩa. Danh sách sản phẩm không có sản phẩm. Khi nó hỏng, hãy báo lỗi rõ ràng."
-        },
-        "right": {
-          "label": "Phụ trợ",
-          "text": "Làm trải nghiệm tốt hơn nhưng không phải lý do người dùng tới. Gợi ý, xếp hạng, huy hiệu. Khi hỏng thì lặng lẽ bỏ qua."
-        }
-      },
-      {
-        "type": "paragraph",
-        "text": "Ranh giới nằm ở mục đích người dùng đến, không ở đặc điểm kỹ thuật. Đây là một quyết định sản phẩm, và nó phải được viết ra - vì nếu không viết ra thì mặc định của mã sẽ quyết định thay bạn."
+        "text": "Thứ tự đúng"
       },
       {
         "type": "callout",
-        "label": "Chậm nguy hiểm hơn chết",
-        "text": "Một dịch vụ chết trả lỗi về ngay. Một dịch vụ chậm giữ lời gọi ba mươi giây, và mọi thứ phía sau xếp hàng chờ nó. Đó là cách một khối chiếm một phần mười màn hình kéo sập cả trang chủ."
-      },
-      {
-        "type": "heading",
-        "text": "Cái giá: sự cố trở nên im lặng"
+        "label": "Khôi phục trước, hiểu sau",
+        "text": "Quay lại bản trước, chuyển lưu lượng sang vùng khác, tắt tính năng vừa bật - cả ba đều khôi phục được mà KHÔNG cần biết vì sao. Có sẵn những công cụ như vậy là lý do thứ tự này khả thi chứ không chỉ là lời khuyên."
       },
       {
         "type": "paragraph",
-        "text": "Khi phần phụ hỏng mà trang vẫn chạy, không ai phàn nàn - và không ai để ý. Một khối gợi ý biến mất suốt sáu tuần là chuyện hoàn toàn có thể xảy ra. Vì thế mỗi lần bỏ qua một phần phải được đếm, với ngưỡng cảnh báo riêng, dù ngưỡng ấy chỉ cần vào danh sách việc ban ngày."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Suy giảm có kiểm soát không bao giờ tự có. Nó là thứ phải được viết vào từng chỗ một, ngược lại hành vi mặc định.",
-          "Bài sau nhìn ra ngoài ranh giới dịch vụ: độ tin cậy của bạn phụ thuộc vào ai."
-        ]
-      }
-    ]
-  },
-  {
-    "id": 168,
-    "slug": "chuoi-phu-thuoc-va-do-tin-cay",
-    "title": "Chuỗi phụ thuộc: bạn chỉ đáng tin bằng thứ bạn gọi tới",
-    "subtitle": "Bốn phụ thuộc, mỗi cái 99,9%, và trần của bạn đã tụt xuống 99,6%.",
-    "duration": "8 phút",
-    "difficulty": "Khó",
-    "emoji": "🔗",
-    "track": "professional",
-    "whyItMatters": "Rất nhiều cam kết độ tin cậy được đưa ra mà không ai nhân các con số lại với nhau. Phép nhân ấy thường cho thấy mục tiêu đã hứa là bất khả thi ngay từ ngày ký.",
-    "openingQuestion": "Dịch vụ của bạn gọi bốn phụ thuộc, mỗi cái đạt 99,9%. Trần độ tin cậy của bạn là bao nhiêu?",
-    "openingOptions": [
-      "Khoảng 99,6%, vì các xác suất nhân với nhau",
-      "Vẫn là 99,9%, vì các phụ thuộc hiếm khi cùng hỏng một lúc",
-      "Khoảng 99,975%, vì lỗi được chia đều cho bốn thành phần",
-      "Không xác định được nếu chưa biết tần suất gọi từng phụ thuộc"
-    ],
-    "correctOption": 0,
-    "explanation": "Nếu mọi phụ thuộc đều bắt buộc cho một yêu cầu, xác suất thành công là tích của bốn con số: chín mươi chín phẩy chín phần trăm mũ bốn, tức khoảng chín mươi chín phẩy sáu. Bạn mất bốn lần ngân sách lỗi trước khi viết dòng mã nào. Tần suất gọi có ảnh hưởng thật khi một phụ thuộc chỉ được dùng trong một phần số yêu cầu, nhưng với các phụ thuộc bắt buộc thì phép nhân này là trần cứng.",
-    "diagram": [
-      {
-        "label": "Mỗi phụ thuộc bắt buộc: 99,9%",
-        "arrow": true
-      },
-      {
-        "label": "Bốn cái nối tiếp: 0,999 mũ 4",
-        "arrow": true
-      },
-      {
-        "label": "≈ 99,6% - mất gấp bốn lần ngân sách",
-        "arrow": true
-      },
-      {
-        "label": "Trước khi tính tới lỗi của chính bạn"
-      }
-    ],
-    "realWorldExample": {
-      "company": "Cam kết bất khả thi từ ngày ký",
-      "description": "Một đội cam kết chín mươi chín phẩy chín chín phần trăm trong khi gọi tới ba dịch vụ nội bộ mà không dịch vụ nào cam kết quá chín mươi chín phẩy chín. Không có cách nào đạt được, và điều đó đã đúng ngay từ trước khi hệ thống chạy."
-    },
-    "keyTakeaways": [
-      "Phụ thuộc bắt buộc nối tiếp thì xác suất thành công nhân với nhau.",
-      "Biến phụ thuộc từ bắt buộc thành tuỳ chọn là cách nâng trần hiệu quả nhất.",
-      "Cam kết của bạn không được cao hơn tích các cam kết bạn dựa vào.",
-      "Phụ thuộc bên thứ ba nằm ngoài tầm sửa, nên phải có phương án khi nó hỏng."
-    ],
-    "summary": {
-      "keyIdea": "Độ tin cậy của một chuỗi là tích các mắt xích, không phải mức của mắt xích tốt nhất.",
-      "formula": "Trần = tích độ tin cậy của mọi phụ thuộc bắt buộc.",
-      "commonMistake": "Hứa một mức cao hơn tích các cam kết mình đang dựa vào."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Liệt kê mọi phụ thuộc bắt buộc của một hành trình quan trọng, tra cam kết của từng cái, rồi nhân chúng lại. So kết quả với mục tiêu bạn đang tuyên bố."
-    },
-    "practicePrompt": {
-      "question": "Cách hiệu quả nhất để nâng trần độ tin cậy của một chuỗi là gì?",
-      "options": [
-        "Biến bớt phụ thuộc từ bắt buộc thành tuỳ chọn hoặc bỏ hẳn",
-        "Yêu cầu từng đội phụ thuộc nâng cam kết của họ lên một mức",
-        "Thêm bản sao dự phòng cho chính dịch vụ của đội mình",
-        "Tăng số lần thử lại khi một phụ thuộc trả về lỗi tạm thời"
-      ],
-      "correct": 0,
-      "explanation": "Một phụ thuộc bị loại khỏi tích thì trần tăng ngay lập tức, và nó nằm hoàn toàn trong tay bạn. Yêu cầu đội khác nâng cam kết thì phải chờ họ, còn thêm bản sao cho chính mình không đụng gì tới các thừa số trong tích ấy."
-    },
-    "quiz": [
-      {
-        "question": "Vì sao xác suất của các phụ thuộc bắt buộc lại nhân với nhau?",
-        "options": [
-          "Vì yêu cầu chỉ thành công khi mọi phụ thuộc đều thành công",
-          "Vì các phụ thuộc thường hỏng cùng lúc do dùng chung hạ tầng",
-          "Vì mỗi phụ thuộc làm tăng thời gian xử lý của cả yêu cầu",
-          "Vì lỗi từ một phụ thuộc sẽ lan sang các phụ thuộc còn lại"
-        ],
-        "correct": 0,
-        "explanation": "Đó là định nghĩa của bắt buộc: thiếu bất kỳ cái nào thì yêu cầu hỏng. Xác suất của một hợp các sự kiện độc lập là tích của chúng, nên bốn mắt xích chín mươi chín phẩy chín cho khoảng chín mươi chín phẩy sáu."
-      },
-      {
-        "question": "Vì sao nhiều cam kết độ tin cậy là bất khả thi ngay từ đầu?",
-        "options": [
-          "Vì không ai nhân cam kết của các phụ thuộc lại trước khi hứa",
-          "Vì các phụ thuộc thường không công bố cam kết chính thức",
-          "Vì cam kết được đưa ra bởi bộ phận kinh doanh chứ không phải kỹ thuật",
-          "Vì mức cam kết phải cao hơn đối thủ nên bị đẩy lên quá cao"
-        ],
-        "correct": 0,
-        "explanation": "Phép tính này mất năm phút và nó chặn được một lời hứa sẽ theo đội suốt nhiều năm. Ba nguyên nhân còn lại đều góp phần nhưng chúng chỉ gây hại vì phép nhân đã bị bỏ qua."
-      },
-      {
-        "question": "Phụ thuộc bên thứ ba khác phụ thuộc nội bộ ở điểm nào?",
-        "options": [
-          "Bạn không sửa được nó, nên phải chuẩn bị phương án khi nó hỏng",
-          "Nó thường có độ tin cậy thấp hơn các dịch vụ nội bộ",
-          "Nó không được tính vào phép nhân độ tin cậy của cả chuỗi phụ thuộc",
-          "Nó cần được giám sát bằng một hệ thống công cụ riêng"
-        ],
-        "correct": 0,
-        "explanation": "Với dịch vụ nội bộ bạn còn có thể nhắn cho đội bên kia; với bên thứ ba thì bạn chỉ còn cách chờ. Vì thế mỗi phụ thuộc ngoài phải đi kèm câu trả lời cho câu hỏi làm gì trong lúc chờ."
-      },
-      {
-        "question": "Khi nào một phụ thuộc không kéo trần xuống theo cách này?",
-        "options": [
-          "Khi nó là tuỳ chọn và hệ thống vẫn hoạt động được nếu thiếu nó",
-          "Khi nó được gọi tới song song cùng lúc với những phụ thuộc còn lại",
-          "Khi nó có bản sao dự phòng ở một vùng hạ tầng khác",
-          "Khi kết quả của nó được lưu trong bộ nhớ đệm cục bộ"
-        ],
-        "correct": 0,
-        "explanation": "Gọi song song rút ngắn thời gian chứ không đổi xác suất thành công. Dự phòng và bộ nhớ đệm thì nâng độ tin cậy của chính thừa số ấy - hữu ích, nhưng nó vẫn nằm trong tích."
-      },
-      {
-        "question": "Thêm một phụ thuộc bắt buộc mới có tác động gì?",
-        "options": [
-          "Trần độ tin cậy tụt xuống ngay, trước khi viết dòng mã nào",
-          "Trần độ tin cậy không đổi cho tới khi phụ thuộc đó gặp sự cố",
-          "Trần độ tin cậy giảm tỷ lệ với số lần phụ thuộc đó được gọi",
-          "Trần độ tin cậy chỉ giảm nếu phụ thuộc mới kém tin cậy hơn"
-        ],
-        "correct": 0,
-        "explanation": "Tích có thêm một thừa số nhỏ hơn một thì kết quả nhỏ đi, bất kể thừa số ấy tốt tới đâu. Đây là lý do việc thêm một lời gọi tưởng như vô hại vẫn là một quyết định về độ tin cậy."
-      }
-    ],
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Bài đầu chặng nói mắt xích yếu nhất đặt trần. Đó chưa phải toàn bộ sự thật, và phần còn lại tệ hơn: nhiều mắt xích tốt nối lại vẫn cho một chuỗi kém hơn từng cái."
-      },
-      {
-        "type": "heading",
-        "text": "Phép nhân"
-      },
-      {
-        "type": "formula",
-        "expression": "Trần = 0,999 × 0,999 × 0,999 × 0,999 ≈ 0,996",
-        "explanation": "Bốn phụ thuộc bắt buộc, mỗi cái 99,9%. Bạn mất gấp bốn lần ngân sách lỗi trước khi tính tới lỗi của chính mình."
-      },
-      {
-        "type": "paragraph",
-        "text": "Phép tính này mất năm phút và nó là thứ nên chạy trước khi bất kỳ ai ký một cam kết. Rất nhiều mục tiêu bất khả thi được phát hiện đúng ở bước này - và phát hiện sớm thì nó là một cuộc trò chuyện, phát hiện muộn thì nó là một lời hứa bị vỡ."
-      },
-      {
-        "type": "callout",
-        "label": "Cách nâng trần rẻ nhất",
-        "text": "Không phải yêu cầu đội khác làm tốt hơn, mà là bỏ bớt thừa số. Mỗi phụ thuộc chuyển từ bắt buộc sang tuỳ chọn là một thừa số rời khỏi tích - và quyết định ấy nằm hoàn toàn trong tay bạn."
-      },
-      {
-        "type": "heading",
-        "text": "Phụ thuộc bên ngoài"
-      },
-      {
-        "type": "paragraph",
-        "text": "Với dịch vụ nội bộ, bạn còn nhắn được cho đội bên kia. Với nhà cung cấp bên thứ ba, bạn chỉ còn cách chờ và cập nhật cho khách hàng. Mỗi phụ thuộc ngoài vì thế phải đi kèm một câu trả lời viết sẵn cho câu hỏi làm gì trong lúc chờ - dữ liệu cũ, chế độ hạn chế, hay chỉ là một thông báo trung thực."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Thêm một lời gọi tưởng như vô hại vẫn là một quyết định về độ tin cậy, vì tích luôn nhỏ đi.",
-          "Bài sau về cách giữ cho một phụ thuộc hỏng không kéo theo phần còn lại của hệ thống."
-        ]
-      }
-    ]
-  },
-  {
-    "id": 169,
-    "slug": "vach-ngan-va-cau-dao",
-    "title": "Vách ngăn và cầu dao: giữ đám cháy trong một phòng",
-    "subtitle": "Một dịch vụ chậm chiếm hết luồng của bạn, và mọi thứ khác chết theo dù chúng không liên quan gì.",
-    "duration": "9 phút",
-    "difficulty": "Khó",
-    "emoji": "🚪",
-    "track": "professional",
-    "whyItMatters": "Đây là cơ chế biến một sự cố ở một phụ thuộc thành một sự cố cục bộ thay vì một sự cố toàn hệ thống. Không có nó, mọi phụ thuộc đều là một điểm hỏng đơn lẻ của mọi thứ khác.",
-    "openingQuestion": "Một phụ thuộc chậm lại và toàn bộ dịch vụ ngừng phản hồi, kể cả những phần không gọi tới nó. Vì sao?",
-    "openingOptions": [
-      "Vì các lời gọi treo chiếm hết nguồn luồng dùng chung của cả dịch vụ",
-      "Vì lỗi từ phụ thuộc đó được ném lên và làm hỏng tiến trình chính",
-      "Vì bộ nhớ bị chiếm hết bởi các yêu cầu đang chờ phản hồi",
-      "Vì hệ thống tự động dừng lại để tránh trả về dữ liệu không nhất quán"
-    ],
-    "correctOption": 0,
-    "explanation": "Đây là cách lây lan phổ biến nhất và cũng khó đoán nhất, vì nó không đi qua mã của bạn. Mỗi lời gọi treo giữ một luồng hoặc một kết nối; nếu chúng lấy từ cùng một nguồn chung thì chỉ cần vài trăm lời gọi chậm là nguồn ấy cạn, và những yêu cầu hoàn toàn không liên quan cũng không còn chỗ để chạy. Bộ nhớ đầy cũng xảy ra nhưng nó thường tới sau, khi số yêu cầu đang chờ đã tích tụ đủ lâu.",
-    "diagram": [
-      {
-        "label": "Nguồn luồng dùng chung cho mọi lời gọi",
-        "arrow": true
-      },
-      {
-        "label": "Một phụ thuộc chậm → luồng bị giữ",
-        "arrow": true
-      },
-      {
-        "label": "Nguồn cạn → mọi yêu cầu khác chết theo",
-        "arrow": true
-      },
-      {
-        "label": "Vách ngăn: mỗi phụ thuộc một nguồn riêng"
-      }
-    ],
-    "realWorldExample": {
-      "company": "Đám cháy đi qua nguồn luồng",
-      "description": "Dịch vụ tìm kiếm chậm lại, và trang thanh toán ngừng hoạt động dù nó không gọi tới tìm kiếm. Cả hai dùng chung một nguồn kết nối, và tìm kiếm đã giữ hết."
-    },
-    "keyTakeaways": [
-      "Chia nguồn tài nguyên theo phụ thuộc để một cái cạn không kéo theo cái khác.",
-      "Cầu dao ngừng gọi khi tỷ lệ lỗi vượt ngưỡng, rồi thử lại dè dặt.",
-      "Thời gian chờ phải có ở mọi lời gọi ra ngoài, không có ngoại lệ.",
-      "Chậm nguy hiểm hơn chết, vì chậm giữ tài nguyên còn chết thì trả ngay."
-    ],
-    "summary": {
-      "keyIdea": "Cô lập tài nguyên theo phụ thuộc để sự cố ở một chỗ không lan ra cả dịch vụ.",
-      "formula": "Nguồn riêng cho mỗi phụ thuộc, thời gian chờ cho mọi lời gọi.",
-      "commonMistake": "Dùng một nguồn kết nối chung cho mọi phụ thuộc."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Kiểm tra xem các lời gọi ra ngoài trong dịch vụ của bạn có dùng chung một nguồn kết nối không, và có bao nhiêu lời gọi đang không đặt thời gian chờ."
-    },
-    "practicePrompt": {
-      "question": "Cầu dao khác thời gian chờ ở điểm nào?",
-      "options": [
-        "Cầu dao ngừng gọi hẳn một thời gian sau khi thấy quá nhiều lỗi",
-        "Cầu dao chỉ hoạt động với các lời gọi tới dịch vụ bên ngoài",
-        "Cầu dao đo tổng thời gian còn thời gian chờ đo từng lời gọi",
-        "Cầu dao cần cấu hình ở tầng hạ tầng thay vì ở trong mã của ứng dụng"
-      ],
-      "correct": 0,
-      "explanation": "Thời gian chờ giới hạn thiệt hại của từng lời gọi nhưng bạn vẫn trả cái giá ấy cho mọi lời gọi. Cầu dao nhớ rằng dịch vụ kia đang hỏng và trả về lỗi ngay lập tức, nên nó vừa cứu tài nguyên của bạn vừa cho bên kia khoảng lặng để hồi phục."
-    },
-    "quiz": [
-      {
-        "question": "Vách ngăn hoạt động theo nguyên tắc nào?",
-        "options": [
-          "Mỗi phụ thuộc có nguồn tài nguyên riêng, cạn cái này không ảnh hưởng cái kia",
-          "Mỗi phụ thuộc chạy trong một tiến trình riêng biệt hoàn toàn",
-          "Mỗi phụ thuộc được gán một mức độ ưu tiên khác nhau",
-          "Mỗi phụ thuộc được giám sát bằng một bộ chỉ số riêng"
-        ],
-        "correct": 0,
-        "explanation": "Tên gọi mượn từ đóng tàu: nước tràn vào một khoang thì khoang đó ngập, còn con tàu vẫn nổi. Chia tiến trình cũng đạt được điều tương tự nhưng đắt hơn nhiều, và thường không cần thiết."
-      },
-      {
-        "question": "Vì sao một dịch vụ chậm nguy hiểm hơn một dịch vụ chết?",
-        "options": [
-          "Vì chậm giữ tài nguyên của bên gọi còn chết thì trả lỗi về ngay",
-          "Vì chậm không kích hoạt các cảnh báo đã được cấu hình sẵn",
-          "Vì chậm khiến người dùng thử lại nhiều lần làm tăng tải",
-          "Vì chậm khó phát hiện hơn trong những bảng theo dõi thông thường nhất"
-        ],
-        "correct": 0,
-        "explanation": "Một lỗi trả về ngay chỉ tốn vài mili giây; một lời gọi treo ba mươi giây giữ một luồng suốt ba mươi giây đó. Đây là lý do thời gian chờ quan trọng hơn hầu hết các biện pháp chống lỗi khác."
-      },
-      {
-        "question": "Vì sao cầu dao cũng có lợi cho dịch vụ đang hỏng?",
-        "options": [
-          "Vì nó cắt bớt tải để dịch vụ đó có khoảng lặng mà hồi phục",
-          "Vì nó gửi tín hiệu cho đội vận hành của dịch vụ đó cùng biết",
-          "Vì nó chuyển hướng yêu cầu sang một bản sao khác của dịch vụ",
-          "Vì nó lưu lại các yêu cầu để gửi lại sau khi dịch vụ trở lại"
-        ],
-        "correct": 0,
-        "explanation": "Một dịch vụ đang chật vật mà tiếp tục nhận đủ tải, cộng thêm các lần thử lại, thì gần như không có cơ hội đứng dậy. Cầu dao là phiên bản tự động của việc lùi lại một bước."
-      },
-      {
-        "question": "Lời gọi nào cần đặt thời gian chờ?",
-        "options": [
-          "Mọi lời gọi rời khỏi tiến trình, không có ngoại lệ nào",
-          "Những lời gọi tới dịch vụ bên ngoài công ty",
-          "Những lời gọi nằm trên đường xử lý của người dùng",
-          "Những lời gọi tới dịch vụ đã từng gặp sự cố trong quá khứ"
-        ],
-        "correct": 0,
-        "explanation": "Dịch vụ nội bộ, cơ sở dữ liệu, bộ nhớ đệm - tất cả đều có thể treo, và thư viện mặc định thường không đặt thời gian chờ hoặc đặt ở mức vô lý như vài phút. Một lời gọi thiếu thời gian chờ là một lời hứa rằng nó sẽ luôn trả lời."
-      },
-      {
-        "question": "Vì sao lây lan qua nguồn luồng khó đoán?",
-        "options": [
-          "Vì nó không đi qua mã của bạn nên không hiện ra khi đọc mã",
-          "Vì các luồng bị giữ không được ghi vào nhật ký hệ thống",
-          "Vì số lượng luồng thay đổi liên tục theo mức tải của hệ thống",
-          "Vì hiện tượng chỉ xảy ra khi có nhiều phụ thuộc cùng chậm"
-        ],
-        "correct": 0,
-        "explanation": "Trang thanh toán không gọi tới tìm kiếm, và không dòng mã nào nối hai thứ ấy với nhau - chúng chỉ dùng chung một nguồn kết nối được cấu hình ở đâu đó. Đường lây nằm trong hạ tầng chứ không trong logic."
-      }
-    ],
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Bài trước cho thấy mỗi phụ thuộc kéo trần độ tin cậy xuống. Bài này về chuyện tệ hơn: một phụ thuộc hỏng có thể kéo theo cả những phần không liên quan gì tới nó."
-      },
-      {
-        "type": "heading",
-        "text": "Đám cháy đi qua tài nguyên dùng chung"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mỗi lời gọi đang chờ giữ một luồng hoặc một kết nối. Nếu mọi lời gọi lấy từ cùng một nguồn, thì một phụ thuộc chậm chỉ cần vài trăm yêu cầu là vét sạch nguồn ấy - và những yêu cầu hoàn toàn không liên quan cũng không còn chỗ để chạy. Trang thanh toán chết vì dịch vụ tìm kiếm chậm, dù không dòng mã nào nối hai thứ đó."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba lớp bảo vệ, dùng cùng nhau",
-        "subtitle": "Mỗi lớp chặn một giai đoạn khác nhau của cùng một chuỗi",
-        "concepts": [
-          {
-            "vi": "Thời gian chờ",
-            "en": "timeout",
-            "def": "Giới hạn thiệt hại của một lời gọi. Bắt buộc ở mọi lời gọi rời khỏi tiến trình, không ngoại lệ."
-          },
-          {
-            "vi": "Vách ngăn",
-            "en": "bulkhead",
-            "def": "Nguồn tài nguyên riêng cho mỗi phụ thuộc. Cạn khoang này thì khoang khác vẫn đầy."
-          },
-          {
-            "vi": "Cầu dao",
-            "en": "circuit breaker",
-            "def": "Thấy quá nhiều lỗi thì ngừng gọi hẳn một lúc, trả lỗi ngay, rồi thử lại dè dặt."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Cầu dao cứu cả hai bên",
-        "text": "Nó giữ tài nguyên cho bạn, và nó cắt tải cho bên kia. Một dịch vụ đang chật vật mà vẫn nhận đủ lưu lượng cộng thêm các lần thử lại thì gần như không có cơ hội đứng dậy."
-      },
-      {
-        "type": "heading",
-        "text": "Điều dễ bỏ sót nhất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Thư viện mạng thường mặc định không đặt thời gian chờ, hoặc đặt ở mức vô lý như vài phút. Một lời gọi thiếu thời gian chờ là một lời hứa ngầm rằng phía bên kia sẽ luôn trả lời - và đó là lời hứa duy nhất trong hệ thống mà bạn chắc chắn không kiểm soát được."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Không có cô lập thì mọi phụ thuộc đều là điểm hỏng đơn lẻ của mọi thứ khác.",
-          "Bài sau về tình huống xấu nhất: khi phải dựng lại từ bản sao lưu."
-        ]
-      }
-    ]
-  },
-  {
-    "id": 170,
-    "slug": "khoi-phuc-sau-tham-hoa",
-    "title": "Khôi phục sau thảm hoạ: mất bao lâu, và mất bao nhiêu dữ liệu",
-    "subtitle": "Hai con số phải trả lời được trước khi cần tới chúng, vì lúc cần thì đã quá muộn để hỏi.",
-    "duration": "9 phút",
-    "difficulty": "Khó",
-    "emoji": "🧭",
-    "track": "professional",
-    "whyItMatters": "Sao lưu là thứ ai cũng có và ít ai thử. Hai con số này biến một niềm tin mơ hồ thành một cam kết đã được kiểm chứng, và chúng thường lộ ra rằng niềm tin ấy sai.",
-    "openingQuestion": "Hai câu hỏi cần trả lời trước khi một thảm hoạ xảy ra là gì?",
-    "openingOptions": [
-      "Khôi phục mất bao lâu, và mất dữ liệu của khoảng thời gian nào",
-      "Ai chịu trách nhiệm khôi phục, và ai phê duyệt cho việc bắt đầu làm",
-      "Bản sao lưu nằm ở đâu, và ai có quyền truy cập vào nó",
-      "Chi phí của thời gian ngừng, và mức bồi thường phải trả"
-    ],
-    "correctOption": 0,
-    "explanation": "Hai con số ấy quyết định toàn bộ thiết kế của hệ thống sao lưu. Thời gian khôi phục nói lên bạn cần bản sao nóng hay chỉ cần bản lưu trên kho lạnh; lượng dữ liệu chấp nhận mất nói lên bạn cần nhân bản liên tục hay sao lưu mỗi đêm là đủ. Ba nhóm câu hỏi còn lại đều cần thiết cho một kế hoạch hoàn chỉnh, nhưng chúng chỉ có câu trả lời hợp lý sau khi hai con số này đã được chọn.",
-    "diagram": [
-      {
-        "label": "Thời gian khôi phục: mất bao lâu để hoạt động lại",
-        "arrow": true
-      },
-      {
-        "label": "Lượng dữ liệu mất: sao lưu gần nhất cách đây bao lâu",
-        "arrow": true
-      },
-      {
-        "label": "Hai con số quyết định kiến trúc và chi phí",
-        "arrow": true
-      },
-      {
-        "label": "Chưa diễn tập thì cả hai chỉ là ước đoán"
-      }
-    ],
-    "realWorldExample": {
-      "company": "Bản sao lưu không khôi phục được",
-      "description": "Sao lưu chạy đều đặn suốt hai năm và báo thành công mỗi đêm. Lần đầu tiên có người thử khôi phục, tệp giải nén ra lỗi - công việc đã sao lưu một thư mục sai từ tháng thứ ba."
-    },
-    "keyTakeaways": [
-      "Thời gian khôi phục và lượng dữ liệu chấp nhận mất phải được chọn trước.",
-      "Sao lưu báo thành công không chứng minh được là khôi phục được.",
-      "Chỉ có diễn tập khôi phục mới biến hai con số thành sự thật.",
-      "Bản sao lưu phải nằm ngoài phạm vi ảnh hưởng của thứ nó bảo vệ."
-    ],
-    "summary": {
-      "keyIdea": "Kế hoạch khôi phục bắt đầu bằng hai con số và chỉ có giá trị sau khi đã diễn tập.",
-      "formula": "Bao lâu để trở lại, và mất dữ liệu từ lúc nào.",
-      "commonMistake": "Coi công việc sao lưu chạy thành công là bằng chứng đã an toàn."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Hỏi xem lần cuối cùng có ai khôi phục thật từ bản sao lưu là khi nào. Nếu câu trả lời là chưa bao giờ thì bạn chưa có bản sao lưu, bạn có một công việc chạy hằng đêm."
-    },
-    "practicePrompt": {
-      "question": "Vì sao bản sao lưu phải nằm ngoài phạm vi ảnh hưởng của hệ thống chính?",
-      "options": [
-        "Vì thứ phá hỏng dữ liệu gốc thường phá luôn bản sao nằm cùng chỗ",
-        "Vì lưu ở nơi khác giúp giảm chi phí lưu trữ dài hạn đáng kể",
-        "Vì các quy định về dữ liệu yêu cầu lưu trữ ở nhiều địa điểm",
-        "Vì đọc từ nơi khác nhanh hơn khi cần khôi phục lượng lớn dữ liệu"
-      ],
-      "correct": 0,
-      "explanation": "Một lệnh xoá nhầm, một mã độc, hay một tài khoản bị chiếm quyền đều với tới mọi thứ nằm trong cùng phạm vi truy cập. Cách ly bằng vùng khác, tài khoản khác, hoặc bản lưu không cho phép ghi đè là điều kiện để bản sao còn tồn tại đúng lúc bạn cần nó."
-    },
-    "quiz": [
-      {
-        "question": "Con số thời gian khôi phục quyết định điều gì?",
-        "options": [
-          "Bạn cần bản sao nóng sẵn sàng hay chỉ cần kho lưu trữ lạnh",
-          "Bao lâu một lần công việc sao lưu cần được chạy lại",
-          "Lượng dữ liệu tối đa được phép mất trong một sự cố",
-          "Số người cần có mặt trong suốt quá trình khôi phục lại hệ thống"
-        ],
-        "correct": 0,
-        "explanation": "Mục tiêu mười lăm phút và mục tiêu hai ngày dẫn tới hai kiến trúc khác nhau hoàn toàn, chênh nhau nhiều lần về chi phí. Tần suất sao lưu thì do con số còn lại quyết định."
-      },
-      {
-        "question": "Lượng dữ liệu chấp nhận mất quyết định điều gì?",
-        "options": [
-          "Khoảng cách giữa hai lần sao lưu hoặc mức độ nhân bản liên tục",
-          "Khoảng thời gian tối đa mà cả hệ thống được phép ngừng hoạt động",
-          "Dung lượng lưu trữ cần chuẩn bị cho các bản sao lưu",
-          "Số lượng bản sao lưu cần giữ lại trong kho lưu trữ"
-        ],
-        "correct": 0,
-        "explanation": "Chấp nhận mất một giờ thì sao lưu mỗi giờ là đủ; chấp nhận mất vài giây thì phải nhân bản gần như liên tục. Đây là một quyết định nghiệp vụ chứ không phải quyết định kỹ thuật, vì nó nói về việc mất bao nhiêu đơn hàng."
-      },
-      {
-        "question": "Vì sao công việc sao lưu báo thành công vẫn chưa đủ?",
-        "options": [
-          "Vì nó chỉ chứng minh việc ghi đã chạy, không chứng minh việc đọc lại được",
-          "Vì thông báo thành công có thể bị mất trên đường gửi tới đội",
-          "Vì công việc sao lưu thường bỏ qua các tệp đang được mở",
-          "Vì bản sao lưu có thể bị hỏng trong quá trình lưu trữ dài hạn"
-        ],
-        "correct": 0,
-        "explanation": "Sao lưu nhầm thư mục, thiếu một bảng, mã hoá bằng khoá đã mất - mọi trường hợp ấy đều cho một công việc chạy thành công mỗi đêm. Chỉ có một lần khôi phục thật mới kiểm tra được toàn bộ chuỗi."
-      },
-      {
-        "question": "Diễn tập khôi phục nên được làm thế nào?",
-        "options": [
-          "Khôi phục thật vào môi trường riêng rồi kiểm tra dữ liệu có dùng được",
-          "Kiểm tra kích thước tệp sao lưu có nằm trong khoảng dự kiến",
-          "Mở thử tệp sao lưu để xác nhận nó không bị hỏng cấu trúc",
-          "Đối chiếu danh sách bảng trong bản sao với danh sách trong hệ thống"
-        ],
-        "correct": 0,
-        "explanation": "Ba cách còn lại đều kiểm tra tệp chứ không kiểm tra quy trình, mà quy trình mới là chỗ hay hỏng: thiếu quyền truy cập, thiếu khoá giải mã, thiếu bước cấu hình, hoặc mất nhiều giờ hơn dự kiến."
-      },
-      {
-        "question": "Vì sao hai con số này phải được chọn từ trước?",
-        "options": [
-          "Vì chúng quyết định kiến trúc, và không đổi được giữa lúc sự cố",
-          "Vì các nhà cung cấp hạ tầng yêu cầu khai báo chúng khi ký hợp đồng",
-          "Vì đội cần chúng để lập ngân sách hạ tầng cho năm tài chính",
-          "Vì chúng là thông tin bắt buộc trong hồ sơ tuân thủ quy định"
-        ],
-        "correct": 0,
-        "explanation": "Giữa lúc mất dữ liệu, bạn dùng bất kỳ bản sao lưu nào đang có và mất bất kỳ lượng dữ liệu nào đã mất. Hai con số ấy chỉ có ý nghĩa nếu chúng đã định hình hệ thống từ trước đó rất lâu."
-      }
-    ],
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Dự phòng và cô lập lo cho những cách hỏng thông thường. Bài này về tình huống mọi thứ đã mất: trung tâm dữ liệu cháy, dữ liệu bị xoá, mã độc mã hoá toàn bộ."
-      },
-      {
-        "type": "heading",
-        "text": "Hai con số"
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Bao lâu để trở lại",
-          "text": "Mười lăm phút và hai ngày là hai kiến trúc khác nhau hoàn toàn, chênh nhau nhiều lần chi phí. Quyết định bạn cần bản sao nóng hay kho lạnh."
-        },
-        "right": {
-          "label": "Mất dữ liệu từ lúc nào",
-          "text": "Chấp nhận mất một giờ thì sao lưu mỗi giờ là đủ. Chấp nhận mất vài giây thì phải nhân bản liên tục."
-        }
-      },
-      {
-        "type": "paragraph",
-        "text": "Con số thứ hai là một quyết định nghiệp vụ, không phải quyết định kỹ thuật: nó nói về việc mất bao nhiêu đơn hàng, bao nhiêu giao dịch, bao nhiêu bài viết của người dùng. Người trả lời đúng cho nó là người chịu trách nhiệm về sản phẩm chứ không phải người vận hành."
-      },
-      {
-        "type": "callout",
-        "label": "Sao lưu chạy thành công không nói lên gì",
-        "text": "Sao lưu nhầm thư mục, thiếu một bảng, mã hoá bằng khoá đã mất - mọi trường hợp ấy đều cho một công việc báo thành công mỗi đêm suốt hai năm. Chỉ có một lần khôi phục thật mới kiểm tra được toàn bộ chuỗi."
-      },
-      {
-        "type": "heading",
-        "text": "Diễn tập kiểm tra quy trình, không kiểm tra tệp"
-      },
-      {
-        "type": "paragraph",
-        "text": "Chỗ hỏng thường không nằm trong dữ liệu mà nằm quanh nó: thiếu quyền truy cập, mất khoá giải mã, thiếu một bước cấu hình không ai ghi lại, hoặc đơn giản là mất nhiều giờ hơn con số đã hứa. Khôi phục thật vào một môi trường riêng rồi kiểm tra dữ liệu có dùng được là cách duy nhất tìm ra chúng trước."
-      },
-      {
-        "type": "callout",
-        "label": "Để bản sao ngoài tầm với của tai hoạ",
-        "text": "Một lệnh xoá nhầm, một mã độc, một tài khoản bị chiếm quyền đều với tới mọi thứ trong cùng phạm vi truy cập. Vùng khác, tài khoản khác, hoặc bản lưu không cho phép ghi đè - đó là điều kiện để bản sao còn tồn tại đúng lúc bạn cần."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Chưa từng khôi phục thì bạn chưa có bản sao lưu, bạn có một công việc chạy hằng đêm.",
-          "Nửa sau của chặng chuyển từ chuẩn bị sang ứng phó: chuyện gì xảy ra trong ba mươi phút đầu của một sự cố."
-        ]
-      }
-    ]
-  },
-  {
-    "id": 171,
-    "slug": "phat-hien-va-tuyen-bo-su-co",
-    "title": "Tuyên bố sự cố: ngưỡng thấp thì tốt hơn",
-    "subtitle": "Chi phí của một lần tuyên bố nhầm là vài phút. Chi phí của việc tuyên bố muộn là cả sự cố.",
-    "duration": "8 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📣",
-    "track": "professional",
-    "whyItMatters": "Phần lớn sự cố kéo dài không phải vì khó sửa mà vì mất bốn mươi phút để mọi người đồng ý rằng đang có sự cố. Hạ ngưỡng tuyên bố là cải thiện rẻ nhất trong toàn bộ quy trình ứng phó.",
-    "openingQuestion": "Bạn thấy dấu hiệu bất thường nhưng chưa chắc có phải sự cố hay không. Nên làm gì?",
-    "openingOptions": [
-      "Tuyên bố sự cố, vì đóng lại sớm rẻ hơn phát hiện muộn",
-      "Điều tra thêm mười lăm phút rồi quyết định dựa trên dữ liệu",
-      "Hỏi ý kiến một đồng nghiệp có kinh nghiệm trước khi tuyên bố",
-      "Theo dõi thêm cho tới khi có người dùng đầu tiên phàn nàn"
-    ],
-    "correctOption": 0,
-    "explanation": "Tuyên bố rồi đóng lại sau mười phút vì hoá ra không có gì tốn của đội mười phút. Phát hiện muộn bốn mươi phút thì cộng bốn mươi phút vào thời gian ngừng của mọi người dùng, và trong khoảng ấy sự cố còn kịp lan rộng. Điều tra thêm và hỏi đồng nghiệp đều là việc nên làm - nhưng làm chúng sau khi đã tuyên bố, chứ không phải như điều kiện để tuyên bố.",
-    "diagram": [
-      {
-        "label": "Tuyên bố nhầm: mất vài phút của đội",
-        "arrow": true
-      },
-      {
-        "label": "Tuyên bố muộn: cộng thẳng vào thời gian ngừng",
-        "arrow": true
-      },
-      {
-        "label": "Hai chi phí lệch nhau rất xa",
-        "arrow": true
-      },
-      {
-        "label": "Nên đặt ngưỡng tuyên bố thấp"
-      }
-    ],
-    "realWorldExample": {
-      "company": "Bốn mươi phút để đồng ý rằng đang cháy",
-      "description": "Trong nhiều dòng thời gian sự cố, khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố dài hơn khoảng cách từ lúc tuyên bố tới lúc sửa xong. Phần lâu nhất là phần bàn xem đây có phải sự cố không."
-    },
-    "keyTakeaways": [
-      "Đặt ngưỡng tuyên bố thấp, vì hai loại chi phí lệch nhau rất xa.",
-      "Ai cũng được quyền tuyên bố, không cần chờ phê duyệt.",
-      "Tuyên bố mở ra kênh liên lạc và phân vai, chứ không phải kết luận nguyên nhân.",
-      "Đóng nhầm nhiều lần là dấu hiệu tốt, không phải dấu hiệu xấu."
-    ],
-    "summary": {
-      "keyIdea": "Tuyên bố sớm và sẵn sàng đóng lại, thay vì chờ chắc chắn rồi mới bắt đầu.",
-      "formula": "Nghi ngờ thì tuyên bố.",
-      "commonMistake": "Coi việc tuyên bố là một kết luận cần chứng minh trước."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Xem lại ba sự cố gần nhất và đo khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố. Nếu nó dài hơn một phần tư tổng thời gian thì ngưỡng của đội đang quá cao."
-    },
-    "practicePrompt": {
-      "question": "Vì sao mọi người đều nên có quyền tuyên bố sự cố?",
-      "options": [
-        "Vì chờ phê duyệt cộng thêm thời gian vào đúng lúc đắt nhất",
-        "Vì người quản lý thường không nắm được chi tiết kỹ thuật",
-        "Vì như vậy trách nhiệm được chia đều cho cả đội cùng gánh",
-        "Vì các công cụ ứng phó không phân biệt vai trò người tuyên bố"
-      ],
-      "correct": 0,
-      "explanation": "Người phát hiện dấu hiệu đầu tiên thường là người trực hoặc một kỹ sư đang làm việc khác, và bắt họ tìm ai đó phê duyệt là thêm mười lăm phút vào giai đoạn đắt nhất của sự cố. Quyền tuyên bố phải rẻ tới mức không ai phải cân nhắc."
-    },
-    "quiz": [
-      {
-        "question": "Vì sao ngưỡng tuyên bố nên thấp?",
-        "options": [
-          "Vì chi phí tuyên bố nhầm nhỏ hơn nhiều so với chi phí phát hiện muộn",
-          "Vì các công cụ giám sát thường bỏ sót những sự cố nhỏ",
-          "Vì đội cần dữ liệu về số lượng sự cố để báo cáo hằng quý",
-          "Vì tuyên bố sớm giúp thông báo cho khách hàng kịp thời hơn"
-        ],
-        "correct": 0,
-        "explanation": "Mười phút của vài người so với bốn mươi phút nhân với toàn bộ người dùng - hai con số không cùng bậc. Khi hai loại sai lầm lệch nhau xa như vậy thì luôn nên nghiêng về phía sai lầm rẻ hơn."
-      },
-      {
-        "question": "Tuyên bố sự cố nghĩa là gì?",
-        "options": [
-          "Mở kênh liên lạc chung và phân vai để bắt đầu ứng phó",
-          "Xác nhận rằng hệ thống đang có lỗi nghiêm trọng",
-          "Thông báo cho khách hàng rằng dịch vụ đang gián đoạn",
-          "Chuyển quyền quyết định kỹ thuật cho người quản lý cấp trên"
-        ],
-        "correct": 0,
-        "explanation": "Nó là một hành động tổ chức chứ không phải một kết luận kỹ thuật. Hiểu nhầm điểm này chính là nguyên nhân khiến người ta ngại tuyên bố - họ tưởng mình đang khẳng định một điều gì đó cần chứng minh."
-      },
-      {
-        "question": "Việc đóng nhầm nhiều lần nói lên điều gì?",
-        "options": [
-          "Ngưỡng tuyên bố đang ở mức lành mạnh",
-          "Hệ thống giám sát đang phát quá nhiều tín hiệu sai",
-          "Đội chưa hiểu rõ các tiêu chí phân loại sự cố",
-          "Cần nâng ngưỡng lên để giảm số lần huy động không cần thiết"
-        ],
-        "correct": 0,
-        "explanation": "Một đội chưa từng đóng nhầm lần nào là một đội đang tuyên bố quá muộn. Con số cần theo dõi không phải số lần tuyên bố mà là khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố."
-      },
-      {
-        "question": "Đâu là phần thường dài nhất trong một dòng thời gian sự cố?",
-        "options": [
-          "Khoảng từ dấu hiệu đầu tiên tới lúc có người tuyên bố",
-          "Khoảng từ lúc tuyên bố tới lúc tìm ra nguyên nhân gốc",
-          "Khoảng từ lúc tìm ra nguyên nhân tới lúc triển khai bản sửa",
-          "Khoảng từ lúc sửa xong tới lúc xác nhận hệ thống ổn định"
-        ],
-        "correct": 0,
-        "explanation": "Đây là phát hiện gây ngạc nhiên nhất khi một đội bắt đầu đo dòng thời gian của mình. Nó cũng là phần rẻ nhất để rút ngắn, vì nó không đòi hỏi kỹ thuật gì mà chỉ đòi hỏi một quy ước."
-      },
-      {
-        "question": "Sau khi tuyên bố sự cố thì việc điều tra nên diễn ra thế nào?",
-        "options": [
-          "Tiến hành song song, trong khuôn khổ đã có kênh và có vai",
-          "Tạm dừng cho tới khi người chỉ huy sự cố có mặt đầy đủ",
-          "Chỉ do người đã tuyên bố thực hiện để tránh chồng chéo",
-          "Bắt đầu lại từ đầu với dữ liệu được thu thập một cách hệ thống"
-        ],
-        "correct": 0,
-        "explanation": "Tuyên bố không dừng việc điều tra lại mà đặt nó vào một cấu trúc. Khác biệt là từ lúc ấy có một chỗ để mọi phát hiện đổ về, thay vì ba người cùng đào ba hướng mà không ai biết về nhau."
-      }
-    ],
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Nửa đầu chặng là chuẩn bị. Từ đây trở đi là chuyện xảy ra khi mọi chuẩn bị đã không đủ - và bước đầu tiên hoá ra là bước bị làm chậm nhiều nhất."
-      },
-      {
-        "type": "heading",
-        "text": "Hai loại sai lầm, hai cái giá rất khác nhau"
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Tuyên bố nhầm",
-          "text": "Vài người bỏ dở việc trong mười phút rồi quay lại. Chi phí thấp, dễ đo, và không ai bị ảnh hưởng ngoài đội."
-        },
-        "right": {
-          "label": "Tuyên bố muộn",
-          "text": "Bốn mươi phút cộng thẳng vào thời gian ngừng của mọi người dùng, và sự cố còn kịp lan rộng trong khoảng ấy."
-        }
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi hai loại sai lầm lệch nhau xa như vậy, câu trả lời đúng luôn là nghiêng hẳn về phía rẻ hơn. Một đội chưa từng đóng nhầm lần nào không phải một đội chính xác - đó là một đội đang tuyên bố quá muộn."
-      },
-      {
-        "type": "callout",
-        "label": "Tuyên bố là hành động tổ chức",
-        "text": "Nó không khẳng định nguyên nhân, không kết luận mức nghiêm trọng, không hứa gì với khách hàng. Nó chỉ mở một kênh và phân vai. Hiểu nhầm nó thành một kết luận cần chứng minh chính là lý do người ta ngại bấm nút."
-      },
-      {
-        "type": "heading",
-        "text": "Ai được bấm nút"
-      },
-      {
-        "type": "paragraph",
-        "text": "Người phát hiện dấu hiệu đầu tiên thường là người trực hoặc một kỹ sư đang làm việc khác. Bắt họ đi tìm ai đó phê duyệt là cộng thêm mười lăm phút vào giai đoạn đắt nhất. Quyền tuyên bố phải rẻ tới mức không ai phải cân nhắc trước khi dùng."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Con số đáng theo dõi không phải số lần tuyên bố, mà là khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố.",
-          "Bài sau về việc xảy ra ngay sau đó: ai làm gì, và ai không làm gì."
-        ]
-      }
-    ]
-  },
-  {
-    "id": 172,
-    "slug": "vai-tro-trong-su-co",
-    "title": "Phân vai: người chỉ huy không phải người sửa",
-    "subtitle": "Người giỏi nhất về hệ thống mà đi chỉ huy thì bạn mất cả người sửa lẫn người điều phối.",
-    "duration": "9 phút",
-    "difficulty": "Khó",
-    "emoji": "🎽",
-    "track": "professional",
-    "whyItMatters": "Sự cố kéo dài vì hỗn loạn nhiều hơn vì kỹ thuật khó. Ba vai trò rõ ràng cắt được phần lớn sự hỗn loạn ấy, và chúng không cần thêm người nào.",
-    "openingQuestion": "Người chỉ huy sự cố nên là ai?",
-    "openingOptions": [
-      "Người điều phối được, kể cả khi họ không phải chuyên gia về hệ thống",
-      "Kỹ sư hiểu rõ hệ thống nhất trong số những người đang có mặt",
-      "Người quản lý cấp cao nhất tham gia vào cuộc ứng phó",
-      "Người đã phát hiện và tuyên bố sự cố ngay từ đầu"
-    ],
-    "correctOption": 0,
-    "explanation": "Chỉ huy là việc theo dõi ai đang làm gì, quyết định thứ tự ưu tiên và giữ nhịp - nó chiếm toàn bộ sự chú ý của một người. Nếu giao cho chuyên gia giỏi nhất thì họ vừa phải đọc nhật ký vừa phải trả lời câu hỏi từ năm phía, và làm hỏng cả hai việc. Người quản lý cấp cao cũng có thể chỉ huy nếu họ điều phối tốt, nhưng chức vụ không phải tiêu chí - và cấp cao có mặt lại thường khiến người khác ngại phản đối một hướng sai.",
-    "diagram": [
-      {
-        "label": "Chỉ huy: giữ nhịp, phân việc, quyết ưu tiên",
-        "arrow": true
-      },
-      {
-        "label": "Người sửa: tập trung vào một hướng điều tra",
-        "arrow": true
-      },
-      {
-        "label": "Người liên lạc: cập nhật ra ngoài định kỳ",
-        "arrow": true
-      },
-      {
-        "label": "Ba vai tách nhau, kể cả khi chỉ có ba người"
-      }
-    ],
-    "realWorldExample": {
-      "company": "Chuyên gia bị hỏi mỗi ba mươi giây",
-      "description": "Kỹ sư duy nhất hiểu hệ thống ngồi giữa kênh chat, vừa đọc nhật ký vừa trả lời câu hỏi của bảy người. Sự cố kéo dài thêm một giờ, và phần lớn thời gian ấy là chờ họ gõ xong câu trả lời."
-    },
-    "keyTakeaways": [
-      "Chỉ huy điều phối chứ không gõ lệnh, kể cả khi họ biết cách sửa.",
-      "Một hướng điều tra một người, để không ai làm trùng và không ai bị bỏ sót.",
-      "Người liên lạc tách riêng, vì cập nhật ra ngoài chiếm nhiều thời gian hơn ta tưởng.",
-      "Vai trò được tuyên bố ra tiếng, không ai tự hiểu ngầm."
-    ],
-    "summary": {
-      "keyIdea": "Ba vai trò tách bạch cắt phần lớn sự hỗn loạn mà không cần thêm người.",
-      "formula": "Chỉ huy điều phối, người sửa tập trung, người liên lạc nói ra ngoài.",
-      "commonMistake": "Giao chỉ huy cho chuyên gia giỏi nhất về hệ thống."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Viết ba vai trò này vào tài liệu ứng phó của đội kèm một câu mô tả cho mỗi vai. Lần sự cố tới, câu đầu tiên trong kênh là ai nhận vai nào."
-    },
-    "practicePrompt": {
-      "question": "Vì sao cần một người liên lạc riêng?",
-      "options": [
-        "Vì cập nhật cho bên ngoài chiếm nhiều thời gian và làm đứt mạch người sửa",
-        "Vì thông tin gửi ra ngoài cần được kiểm duyệt trước khi công bố",
-        "Vì các bên liên quan thường yêu cầu một đầu mối cố định duy nhất",
-        "Vì người sửa không nắm được bức tranh tổng thể để mô tả tình hình"
-      ],
-      "correct": 0,
-      "explanation": "Câu hỏi khi nào xong đến từ bộ phận hỗ trợ, từ kinh doanh, từ lãnh đạo, và mỗi lần trả lời là một lần người sửa phải chuyển ngữ cảnh. Tách vai này ra bảo vệ sự tập trung của người đang thật sự gỡ vấn đề."
-    },
-    "quiz": [
-      {
-        "question": "Nhiệm vụ chính của người chỉ huy sự cố là gì?",
-        "options": [
-          "Biết ai đang làm gì, quyết thứ tự ưu tiên và giữ nhịp cuộc ứng phó",
-          "Tìm ra nguyên nhân gốc rồi hướng dẫn cho cả đội cách khắc phục vấn đề",
-          "Phê duyệt mọi thay đổi được triển khai trong lúc sự cố",
-          "Ghi lại dòng thời gian để phục vụ việc hồi cứu về sau"
-        ],
-        "correct": 0,
-        "explanation": "Ghi dòng thời gian là việc thật nhưng nó thường giao cho một người khác, vì chỉ huy đã kín việc. Điều quan trọng nhất là chỉ huy không gõ lệnh - ngay khi họ bắt đầu gõ, không còn ai giữ bức tranh tổng thể."
-      },
-      {
-        "question": "Vì sao mỗi hướng điều tra nên do một người phụ trách?",
-        "options": [
-          "Để không có hướng nào bị bỏ sót và không có hướng nào bị làm trùng",
-          "Để mỗi người chịu trách nhiệm rõ ràng khi hồi cứu về sau",
-          "Để giảm số lượng tin nhắn trao đổi trong kênh ứng phó",
-          "Để người chỉ huy dễ theo dõi tiến độ của từng nhánh công việc"
-        ],
-        "correct": 0,
-        "explanation": "Không phân công thì ba người cùng đào một hướng dễ nhất và không ai đụng tới hướng khó. Đây là dạng lãng phí âm thầm nhất trong sự cố vì trông thì ai cũng đang bận."
-      },
-      {
-        "question": "Vì sao chuyên gia giỏi nhất không nên chỉ huy?",
-        "options": [
-          "Vì chỉ huy chiếm toàn bộ sự chú ý nên họ không còn sửa được nữa",
-          "Vì họ thường thiếu kỹ năng giao tiếp với các bên liên quan",
-          "Vì họ thường có xu hướng bám theo giả thuyết của riêng mình quá lâu",
-          "Vì vai trò chỉ huy cần một người có thẩm quyền trong tổ chức"
-        ],
-        "correct": 0,
-        "explanation": "Bạn đánh đổi người sửa giỏi nhất lấy một người điều phối trung bình, rồi mất luôn cả hai vì họ cố làm cùng lúc. Hai việc này đều cần toàn bộ sự chú ý và không ai chia được sự chú ý làm đôi."
-      },
-      {
-        "question": "Vì sao vai trò phải được tuyên bố ra tiếng?",
-        "options": [
-          "Vì hiểu ngầm dẫn tới việc hai người cùng làm hoặc không ai làm",
-          "Vì các công cụ ứng phó cần được gán vai trò thì mới hoạt động đúng",
-          "Vì tài liệu hồi cứu yêu cầu ghi rõ ai đảm nhận vai trò nào",
-          "Vì người mới tham gia cần biết ai là người có thẩm quyền"
-        ],
-        "correct": 0,
-        "explanation": "Ai cũng nghĩ người kia đang cập nhật cho bên ngoài, và bốn mươi phút trôi qua không có thông báo nào. Một dòng chữ tôi nhận vai chỉ huy trong kênh chat đủ để loại bỏ toàn bộ nhóm vấn đề này."
-      },
-      {
-        "question": "Với một sự cố nhỏ chỉ có hai người thì nên làm gì?",
-        "options": [
-          "Vẫn phân vai, một người chỉ huy kiêm liên lạc, một người sửa",
-          "Bỏ qua việc phân vai vì hai người dễ dàng phối hợp trực tiếp",
-          "Gọi thêm một người thứ ba để đủ ba vai trò theo đúng quy trình",
-          "Để cả hai cùng điều tra rồi ai tìm ra trước thì người đó dẫn dắt"
-        ],
-        "correct": 0,
-        "explanation": "Gộp vai thì được, bỏ vai thì không. Điều quan trọng vẫn giữ nguyên: có đúng một người không gõ lệnh, đang giữ bức tranh tổng thể và trả lời câu hỏi từ bên ngoài."
-      }
-    ],
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Sự cố đã được tuyên bố. Trong năm phút tiếp theo, thứ quyết định nó kéo dài hai mươi phút hay hai giờ thường không phải kỹ thuật mà là ai làm gì."
+        "text": "Và sau khi khôi phục, xác nhận bằng CON SỐ rằng người dùng đã ổn. Bảng theo dõi trở lại bình thường không đồng nghĩa với việc mọi thứ đã xong - có thể còn hàng đợi tồn đọng, hoặc dữ liệu sai đã kịp ghi vào."
       },
       {
         "type": "heading",
@@ -30248,1456 +29324,2659 @@ export const lessons: Lesson[] = [
       },
       {
         "type": "conceptTable",
-        "title": "Tách bạch, kể cả khi ít người",
-        "subtitle": "Gộp vai thì được, bỏ vai thì không",
+        "title": "Và vì sao phải tách",
         "concepts": [
           {
-            "vi": "Chỉ huy",
-            "en": "incident commander",
-            "def": "Biết ai đang làm gì, quyết thứ tự ưu tiên, giữ nhịp. Không gõ lệnh - ngay khi họ gõ, không còn ai giữ bức tranh tổng thể."
-          },
-          {
             "vi": "Người sửa",
-            "en": "responder",
-            "def": "Một hướng điều tra, một người. Được bảo vệ khỏi mọi câu hỏi không liên quan tới hướng của mình."
+            "en": "operator",
+            "def": "Người duy nhất gõ lệnh vào hệ thống. Có nhiều hơn một người gõ thì hai thay đổi có thể chồng lên nhau và không ai biết cái nào gây ra chuyện gì."
           },
           {
-            "vi": "Người liên lạc",
-            "en": "comms lead",
-            "def": "Cập nhật cho hỗ trợ, kinh doanh, lãnh đạo theo nhịp cố định. Chắn cho người sửa khỏi câu hỏi khi nào xong."
+            "vi": "Người điều phối",
+            "en": "commander",
+            "def": "Giữ bức tranh tổng thể, quyết định thử gì tiếp. KHÔNG tự gõ lệnh - ngay khi họ gõ, họ mất bức tranh đó."
+          },
+          {
+            "vi": "Người phát ngôn",
+            "en": "comms",
+            "def": "Nói chuyện với bên ngoài. Không có vai này thì người đang sửa bị ngắt liên tục bởi câu hỏi từ nhiều phía."
           }
         ]
       },
       {
-        "type": "callout",
-        "label": "Cái bẫy phổ biến nhất",
-        "text": "Giao chỉ huy cho người hiểu hệ thống nhất. Họ ngồi giữa kênh chat, vừa đọc nhật ký vừa trả lời bảy người, và làm hỏng cả hai việc. Bạn vừa mất người sửa giỏi nhất vừa có một người điều phối đang bị phân tâm."
+        "type": "paragraph",
+        "text": "Vai điều phối là vai dễ bị hiểu sai nhất và cũng là vai bị bỏ đầu tiên khi đội nhỏ. Nhưng ngay cả đội hai người vẫn nên tách: một người sửa, một người vừa điều phối vừa nói chuyện với bên ngoài."
       },
       {
         "type": "heading",
-        "text": "Vì sao phải nói ra tiếng"
+        "text": "Một việc làm song song"
       },
       {
-        "type": "paragraph",
-        "text": "Ai cũng nghĩ người kia đang cập nhật cho bên ngoài, và bốn mươi phút trôi qua mà bộ phận hỗ trợ chưa nhận được dòng nào. Ba người cùng đào một hướng dễ trong khi hướng khó không ai đụng tới. Toàn bộ nhóm vấn đề này biến mất khi có người gõ vào kênh một dòng: tôi nhận vai chỉ huy."
+        "type": "comparison",
+        "left": {
+          "label": "Ghi mốc thời gian NGAY",
+          "text": "Mấy giờ phát hiện, mấy giờ thử gì, mấy giờ hồi phục. Một dòng mỗi lần, ghi trong lúc đang làm."
+        },
+        "right": {
+          "label": "Vì sao không ghi sau",
+          "text": "Trí nhớ về trình tự méo đi rất nhanh sau khi biết kết quả - cùng cơ chế với thiên kiến nhận thức muộn ở chặng rà soát code. Dòng ghi lúc đó là bằng chứng mà trí nhớ không sửa được."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Ba vai không cần thêm người. Chúng chỉ cần được đặt tên trước khi cần tới.",
-          "Bài sau đi sâu vào vai khó nhất trong ba vai: nói gì với bên ngoài khi bạn chưa biết chuyện gì đang xảy ra."
+          "Ba vai và một thói quen ghi chép: đó là toàn bộ nội dung bài này, và cả bốn thứ đều phải quyết định TRƯỚC khi có sự cố.",
+          "Bài sau là việc sau khi mọi thứ đã ổn: viết lại chuyện gì đã xảy ra."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 167,
+    "slug": "bien-ban-su-co-khong-do-loi",
+    "title": "Biên bản sự cố không đổ lỗi",
+    "subtitle": "Không phải để tử tế với nhau - mà để lần sau người ta còn kể thật.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "📋",
+    "isFundamental": true,
+    "whyItMatters": "Biên bản sự cố là nguồn học tập đắt nhất mà đội có - mỗi bản được trả bằng một lần hệ thống hỏng. Cách viết nó quyết định lần sau người ta có kể đủ hay không.",
+    "openingQuestion": "Vì sao biên bản sự cố nên tránh quy trách nhiệm cá nhân?",
+    "openingOptions": [
+      "Vì người ta sẽ kể bớt đi ở lần sau, và bạn mất luôn thông tin cần để sửa hệ thống",
+      "Vì việc quy trách nhiệm không giúp khắc phục được sự cố đã xảy ra rồi",
+      "Vì lỗi thường do nhiều nguyên nhân kết hợp nên khó quy cho một cá nhân nào",
+      "Vì môi trường làm việc tích cực giúp đội có động lực và gắn bó lâu dài hơn"
+    ],
+    "correctOption": 0,
+    "explanation": "Đây là lý do thực dụng chứ không phải lý do đạo đức, và nó quan trọng vì nó chịu được cả những trường hợp có người thật sự làm sai. Một đội quy trách nhiệm sẽ nhận được biên bản đúng về mặt hình thức và thiếu đúng phần có giá trị - phần người viết sợ bị dùng để chống lại mình.",
+    "diagram": [
+      {
+        "label": "Hỏi hệ thống cho phép chuyện đó xảy ra thế nào",
+        "arrow": true
+      },
+      {
+        "label": "Không hỏi ai đã làm gì sai",
+        "arrow": true
+      },
+      {
+        "label": "Mỗi việc cần làm có người và có hạn",
+        "arrow": true
+      },
+      {
+        "label": "Không có hai thứ đó thì biên bản chỉ là một bài kể"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Nguyên nhân gốc không phải một cái",
+      "description": "Sự cố lớn hầu như luôn cần nhiều thứ hỏng cùng lúc: một thay đổi chưa được kiểm đủ, một cảnh báo bị tắt từ tháng trước, và một quy trình khôi phục không ai thử. Đi tìm đúng một nguyên nhân gốc thường có nghĩa là bạn dừng lại quá sớm."
+    },
+    "quiz": [
+      {
+        "question": "Câu hỏi đúng khi phân tích một sự cố là gì?",
+        "options": [
+          "Hệ thống đã cho phép chuyện đó xảy ra thế nào, và làm sao để nó không cho phép nữa",
+          "Ai đã thực hiện thay đổi gây ra sự cố đó và vì sao họ lại không phát hiện được lỗi",
+          "Sự cố này có thể tránh được không nếu quy trình được tuân thủ đầy đủ hơn",
+          "Mức thiệt hại thực tế là bao nhiêu và ai chịu trách nhiệm về khoản đó"
+        ],
+        "correct": 0,
+        "explanation": "Câu hỏi này chuyển trọng tâm từ người sang hệ thống, và nó cho ra những việc làm được. Câu về tuân thủ quy trình nghe trung tính nhưng nó vẫn ngầm quy trách nhiệm, chỉ là gián tiếp hơn."
+      },
+      {
+        "question": "Vì sao nói đi tìm đúng một nguyên nhân gốc thường là dừng quá sớm?",
+        "options": [
+          "Vì sự cố lớn hầu như luôn cần nhiều thứ hỏng cùng lúc mới xảy ra được",
+          "Vì nguyên nhân gốc thật thường nằm sâu hơn mức mà cuộc điều tra đầu tiên chạm tới",
+          "Vì mỗi người trong đội thường nhìn ra một nguyên nhân khác nhau tuỳ góc nhìn",
+          "Vì việc xác định nguyên nhân gốc đòi hỏi dữ liệu mà thường không được ghi lại đủ"
+        ],
+        "correct": 0,
+        "explanation": "Một thay đổi chưa kiểm đủ, một cảnh báo bị tắt từ tháng trước, và một quy trình khôi phục không ai thử - ba lớp phòng vệ cùng thủng. Dừng ở lớp đầu tiên nghĩa là bạn để nguyên hai lớp còn lại."
+      },
+      {
+        "question": "Điều gì phân biệt một biên bản có ích với một bài kể?",
+        "options": [
+          "Mỗi việc cần làm đều có tên người và có hạn hoàn thành cụ thể",
+          "Bản mô tả đầy đủ diễn biến theo trình tự thời gian từ đầu tới cuối",
+          "Phần phân tích nguyên nhân được viết chi tiết và có dẫn chứng bằng số liệu",
+          "Biên bản được chia sẻ cho toàn bộ đội và được lưu vào kho tài liệu chung"
+        ],
+        "correct": 0,
+        "explanation": "Không có người và hạn thì danh sách việc cần làm nằm nguyên trong tài liệu, và sáu tháng sau cùng sự cố lặp lại với cùng nguyên nhân. Ba lựa chọn kia đều là phần cần có nhưng chúng không biến biên bản thành hành động."
+      },
+      {
+        "question": "Vì sao nên viết cả những gì đã diễn ra tốt?",
+        "options": [
+          "Vì đó là những cơ chế phòng vệ đã hoạt động, và bạn cần biết để không gỡ chúng đi",
+          "Vì nó giúp cân bằng lại nội dung biên bản và giữ tinh thần cho cả đội sau sự cố",
+          "Vì các cơ chế hoạt động tốt có thể được nhân rộng sang những phần khác",
+          "Vì cấp quản lý cần thấy đội đã có những chuẩn bị đúng đắn từ trước"
+        ],
+        "correct": 0,
+        "explanation": "Đây là phần hay bị bỏ nhất và nó có giá trị rất cụ thể: một cơ chế cứu bạn lần này mà không ai ghi lại thì nó có thể bị coi là thừa và bị gỡ trong một đợt dọn dẹp sau này."
+      },
+      {
+        "question": "Vì sao nên viết biên bản cho cả sự cố nhỏ?",
+        "options": [
+          "Vì sự cố nhỏ thường là bản thử của một sự cố lớn với cùng nguyên nhân",
+          "Vì viết nhiều biên bản giúp đội quen với quy trình trước khi có sự cố lớn",
+          "Vì các sự cố nhỏ cộng lại cũng gây thiệt hại đáng kể cho người dùng",
+          "Vì quy định vận hành yêu cầu ghi nhận mọi sự cố bất kể mức độ nghiêm trọng"
+        ],
+        "correct": 0,
+        "explanation": "Sửa một nguyên nhân lúc nó mới gây ra năm phút gián đoạn rẻ hơn nhiều so với lúc nó gây ra ba tiếng. Lựa chọn thứ hai cũng đúng và là lợi ích phụ thật, nhưng lý do chính là giá trị dự báo của sự cố nhỏ."
+      }
+    ],
+    "keyTakeaways": [
+      "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+      "Hỏi hệ thống cho phép chuyện đó xảy ra thế nào, đừng hỏi ai làm sai.",
+      "Sự cố lớn cần nhiều lớp phòng vệ cùng thủng - một nguyên nhân gốc là dừng quá sớm.",
+      "Mỗi việc cần làm phải có người và có hạn, nếu không biên bản chỉ là bài kể.",
+      "Viết cả những gì đã hoạt động tốt, để không ai gỡ chúng đi trong đợt dọn dẹp sau."
+    ],
+    "practicePrompt": {
+      "question": "Biên bản viết xong nhưng phần việc cần làm không ghi tên ai. Hệ quả nhiều khả năng nhất?",
+      "options": [
+        "Danh sách nằm nguyên trong tài liệu và cùng sự cố lặp lại sau vài tháng",
+        "Đội sẽ tự phân công khi có thời gian rảnh trong các chu kỳ phát triển sau",
+        "Người quản lý sẽ giao việc cho người phù hợp sau khi đọc biên bản",
+        "Các việc quan trọng nhất vẫn được làm còn những việc nhỏ thì bị bỏ qua"
+      ],
+      "correct": 0,
+      "explanation": "Đây là kết cục phổ biến nhất của biên bản sự cố, và nó có cùng cơ chế với thiên kiến hiện tại ở chặng rà soát code: việc không có chủ và không có hạn thì luôn thua việc gấp."
+    },
+    "summary": {
+      "keyIdea": "Biên bản là nguồn học đắt nhất của đội, trả bằng một lần hệ thống hỏng.",
+      "formula": "Hỏi về hệ thống + nhiều lớp nguyên nhân + việc có người và có hạn.",
+      "commonMistake": "Viết một bài kể hay mà không ai được giao việc gì sau đó.",
+      "action": "Mở biên bản gần nhất và kiểm mỗi việc cần làm có tên người và hạn không."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Mở biên bản sự cố gần nhất của đội và kiểm hai thứ: phần việc cần làm có tên người và hạn không, và những việc đó đã xong chưa.",
+      "secondary": "Nếu chưa xong và cũng không có hạn, đó không phải lỗi của ai - nó là dấu hiệu biên bản đang dừng ở mức bài kể. Thêm người và hạn vào ngay, kể cả cho biên bản cũ."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Sự cố đã xong. Biên bản viết sau đó là nguồn học tập đắt nhất mà đội có - mỗi bản được trả bằng một lần hệ thống hỏng - nên cách viết nó đáng được nghĩ kỹ."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao không đổ lỗi"
+      },
+      {
+        "type": "callout",
+        "label": "Lý do thực dụng, không phải lý do đạo đức",
+        "text": "Một đội quy trách nhiệm sẽ nhận được biên bản đúng về mặt hình thức và thiếu đúng phần có giá trị - phần mà người viết sợ bị dùng để chống lại mình. Lý do này chịu được cả những trường hợp có người thật sự làm sai."
+      },
+      {
+        "type": "paragraph",
+        "text": "Câu hỏi thay thế: HỆ THỐNG đã cho phép chuyện đó xảy ra thế nào, và làm sao để nó không cho phép nữa? Câu này chuyển trọng tâm từ người sang cơ chế, và nó cho ra những việc làm được."
+      },
+      {
+        "type": "heading",
+        "text": "Nguyên nhân không phải một cái"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sự cố lớn hầu như luôn cần nhiều thứ hỏng cùng lúc: một thay đổi chưa được kiểm đủ, một cảnh báo bị tắt từ tháng trước, và một quy trình khôi phục không ai thử. Ba lớp phòng vệ cùng thủng."
+      },
+      {
+        "type": "paragraph",
+        "text": "Nên đi tìm đúng MỘT nguyên nhân gốc thường có nghĩa là bạn dừng lại quá sớm - và để nguyên hai lớp còn lại cho lần sau."
+      },
+      {
+        "type": "heading",
+        "text": "Thứ biến biên bản thành hành động"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Một bài kể",
+          "text": "Diễn biến đầy đủ, phân tích sâu, có số liệu. Đọc rất hay, và sáu tháng sau cùng sự cố lặp lại với cùng nguyên nhân."
+        },
+        "right": {
+          "label": "Một biên bản có ích",
+          "text": "Mỗi việc cần làm có TÊN NGƯỜI và có HẠN. Không có hai thứ đó thì danh sách nằm nguyên trong tài liệu - cùng cơ chế với thiên kiến hiện tại: việc không có chủ luôn thua việc gấp."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Hai phần hay bị bỏ"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Những gì đã diễn ra TỐT. Một cơ chế phòng vệ cứu bạn lần này mà không ai ghi lại thì nó có thể bị coi là thừa và bị gỡ trong một đợt dọn dẹp sau.",
+          "Biên bản cho sự cố NHỎ. Sự cố nhỏ thường là bản thử của một sự cố lớn với cùng nguyên nhân, và sửa lúc nó mới gây năm phút gián đoạn rẻ hơn nhiều."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cả hai đều bị bỏ vì cùng một lý do: chúng không cấp bách. Nhưng chúng là phần cho biên bản giá trị vượt ra ngoài đúng một sự cố.",
+          "Bài sau là chuyện xảy ra ngoài giờ làm: các mô hình trực và cái giá của chúng."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 168,
+    "slug": "truc-cac-mo-hinh-va-cai-gia",
+    "title": "Trực - các mô hình và cái giá",
+    "subtitle": "Trực là một chi phí thật, và giấu nó đi không làm nó biến mất.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "🌙",
+    "isFundamental": false,
+    "whyItMatters": "Trực là phần công việc ít được nói tới nhất và cũng là phần khiến người ta rời đội nhiều nhất. Thiết kế nó tử tế là một quyết định kỹ thuật ngang với việc chọn kiến trúc.",
+    "openingQuestion": "Yếu tố nào quyết định lịch trực có bền vững không?",
+    "openingOptions": [
+      "Số lần bị đánh thức mỗi ca, chứ không phải số ngày phải trực trong tháng",
+      "Số người tham gia luân phiên, vì càng nhiều người thì mỗi người trực càng ít",
+      "Mức phụ cấp cho người trực, vì đó là phần bù đắp cho thời gian ngoài giờ",
+      "Thời lượng mỗi ca trực, vì ca càng ngắn thì áp lực lên mỗi người càng nhẹ"
+    ],
+    "correctOption": 0,
+    "explanation": "Một ca trực bảy ngày mà không ai gọi thì gần như không tốn gì; một ca hai ngày bị đánh thức bốn lần mỗi đêm thì để lại hậu quả kéo dài nhiều ngày sau đó. Số người luân phiên và mức phụ cấp đều quan trọng, nhưng chúng phân bổ lại chi phí chứ không giảm chi phí - và chi phí thật đến từ những lần bị đánh thức.",
+    "diagram": [
+      {
+        "label": "Chi phí thật = số lần bị đánh thức, không phải số ngày trực",
+        "arrow": true
+      },
+      {
+        "label": "Người trực phải có quyền sửa, không chỉ quyền báo",
+        "arrow": true
+      },
+      {
+        "label": "Người viết mã nên trực cho mã của mình",
+        "arrow": true
+      },
+      {
+        "label": "Đội quá nhỏ thì mô hình trực nào cũng không bền"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Trực mà không có quyền",
+      "description": "Mô hình tệ nhất là người trực chỉ có quyền phát hiện và báo lên, còn quyền sửa nằm ở người khác. Nó tạo ra hai lần đánh thức cho một sự cố, thêm một lớp truyền đạt giữa người thấy vấn đề và người sửa được, và không ai học được gì từ lần đó."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao người viết mã nên trực cho mã của chính mình?",
+        "options": [
+          "Vì nó nối hậu quả của một quyết định về đúng người đưa ra quyết định đó",
+          "Vì họ hiểu mã của mình nhất nên sửa nhanh hơn người khác trong đội",
+          "Vì việc trực giúp họ phát hiện được những phần cần cải thiện trong mã",
+          "Vì phân công như vậy công bằng hơn so với việc để một đội riêng trực cho tất cả"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lý do về động cơ chứ không phải về tốc độ: một người bị đánh thức bởi chính đoạn mã mình viết ẩu sẽ viết khác đi lần sau. Việc họ sửa nhanh hơn cũng đúng nhưng đó là lợi ích phụ."
+      },
+      {
+        "question": "Vì sao mô hình trực mà không có quyền sửa lại tệ?",
+        "options": [
+          "Vì nó tạo ra hai lần đánh thức cho một sự cố và thêm một lớp truyền đạt ở giữa",
+          "Vì người trực sẽ không có động lực tìm hiểu kỹ vấn đề khi họ không sửa được",
+          "Vì việc phân quyền hạn chế khiến quy trình phê duyệt kéo dài thời gian xử lý",
+          "Vì người trực không tích luỹ được kinh nghiệm nên khó phát triển nghề nghiệp"
+        ],
+        "correct": 0,
+        "explanation": "Ba chi phí cộng lại: hai người mất ngủ thay vì một, thông tin bị mất qua lớp truyền đạt, và người thấy vấn đề không phải người sửa nên không ai học được gì trọn vẹn từ lần đó."
+      },
+      {
+        "question": "Vì sao đội quá nhỏ thì mô hình trực nào cũng không bền?",
+        "options": [
+          "Vì mỗi người phải trực quá thường xuyên nên không có đủ khoảng nghỉ giữa các ca",
+          "Vì đội nhỏ thường không có đủ chuyên môn để xử lý mọi loại sự cố có thể xảy ra",
+          "Vì chi phí phụ cấp trực chiếm tỷ lệ quá lớn trong ngân sách của đội nhỏ",
+          "Vì đội nhỏ thường vận hành hệ thống đơn giản nên không cần trực liên tục"
+        ],
+        "correct": 0,
+        "explanation": "Đây là ràng buộc mà không cách tổ chức nào vượt qua được - nó là phép chia. Câu trả lời thật cho đội nhỏ thường là giảm thứ cần trực, chứ không phải sắp lịch khéo hơn."
+      },
+      {
+        "question": "Nên làm gì khi đội quá nhỏ để duy trì lịch trực?",
+        "options": [
+          "Giảm thứ cần trực: tự động khôi phục nhiều hơn và chấp nhận mức dịch vụ thấp hơn ban đêm",
+          "Thuê dịch vụ trực bên ngoài để đảm bảo luôn có người theo dõi hệ thống",
+          "Chia ca ngắn hơn nữa để mỗi người phải trực nhiều lần nhưng mỗi lần lại ngắn hơn trước",
+          "Chỉ trực vào những khung giờ có lưu lượng người dùng cao nhất trong ngày"
+        ],
+        "correct": 0,
+        "explanation": "Đây là câu trả lời không ai thích nhưng nó là câu trả lời thật: nếu không đủ người thì phải giảm cam kết, và giảm cam kết ban đêm thường ít tốn kém hơn nhiều so với việc làm kiệt sức ba người."
+      },
+      {
+        "question": "Vì sao nên đo số lần bị đánh thức thay vì số ca trực?",
+        "options": [
+          "Vì một ca bảy ngày không ai gọi gần như không tốn gì, còn hai ngày bị gọi bốn lần thì có",
+          "Vì số ca trực đã được cố định sẵn theo lịch nên không phản ánh được biến động thực tế nào",
+          "Vì số lần đánh thức là con số duy nhất mà hệ thống ghi lại tự động được",
+          "Vì nó cho biết mức độ ổn định của hệ thống chứ không chỉ khối lượng công việc"
+        ],
+        "correct": 0,
+        "explanation": "Con số này cũng là thứ nối lịch trực với chất lượng hệ thống: cách bền vững nhất để giảm gánh nặng trực không phải sắp lịch khéo hơn mà là làm hệ thống ít gọi hơn."
+      }
+    ],
+    "keyTakeaways": [
+      "Chi phí thật là số lần bị ĐÁNH THỨC, không phải số ngày trực.",
+      "Người trực phải có quyền sửa; trực mà chỉ được báo tạo ra hai lần đánh thức.",
+      "Người viết mã nên trực cho mã của mình - nó nối hậu quả về đúng người quyết định.",
+      "Đội quá nhỏ thì mọi mô hình đều không bền; đó là phép chia, không phải cách tổ chức.",
+      "Cách giảm gánh nặng trực bền nhất là làm hệ thống ít gọi hơn."
+    ],
+    "practicePrompt": {
+      "question": "Đội ba người và ai cũng mệt vì trực. Giải pháp nào bền nhất?",
+      "options": [
+        "Giảm thứ cần trực: tự động khôi phục nhiều hơn, hạ cam kết ban đêm",
+        "Sắp lại lịch để mỗi người có khoảng nghỉ dài hơn giữa các ca trực",
+        "Tăng phụ cấp trực để bù đắp cho phần thời gian ngoài giờ của mọi người",
+        "Tuyển thêm người vào đội để chia lịch trực cho nhiều người hơn"
+      ],
+      "correct": 0,
+      "explanation": "Sắp lịch và tăng phụ cấp đều phân bổ lại chi phí chứ không giảm nó. Tuyển thêm người thì đúng hướng nhưng nó mất hàng tháng, còn giảm thứ cần trực làm được ngay tuần này."
+    },
+    "summary": {
+      "keyIdea": "Trực là chi phí thật, và giấu nó đi không làm nó biến mất.",
+      "formula": "Đo số lần bị đánh thức → giảm nó bằng cách làm hệ thống ít gọi hơn.",
+      "commonMistake": "Sắp lịch khéo hơn thay vì giảm số thứ cần trực.",
+      "action": "Đếm số lần đội bị đánh thức trong tháng qua, không đếm số ca trực."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Đếm số lần đội bị đánh thức ngoài giờ trong tháng qua - không đếm số ca trực. Con số đó là chi phí thật của việc vận hành hệ thống này.",
+      "secondary": "Rồi nhìn danh sách nguyên nhân: bao nhiêu lần trong số đó có thể tự động khôi phục được? Đó thường là cách giảm gánh nặng trực nhanh nhất."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Trực là phần công việc ít được nói tới nhất và cũng là phần khiến người ta rời đội nhiều nhất. Thiết kế nó tử tế là một quyết định kỹ thuật ngang với việc chọn kiến trúc."
+      },
+      {
+        "type": "heading",
+        "text": "Đo cái gì"
+      },
+      {
+        "type": "callout",
+        "label": "Số lần bị đánh thức, không phải số ngày trực",
+        "text": "Một ca bảy ngày mà không ai gọi thì gần như không tốn gì. Một ca hai ngày bị đánh thức bốn lần mỗi đêm thì để lại hậu quả kéo dài nhiều ngày sau đó. Số ngày trực là con số dễ đếm và không nói lên chi phí thật."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con số này cũng nối lịch trực với chất lượng hệ thống: cách bền vững nhất để giảm gánh nặng trực không phải sắp lịch khéo hơn mà là làm hệ thống ít gọi hơn. Mọi cách sắp xếp chỉ phân bổ lại chi phí."
+      },
+      {
+        "type": "heading",
+        "text": "Hai nguyên tắc thiết kế"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Người trực phải có quyền sửa",
+          "text": "Mô hình tệ nhất là chỉ được phát hiện và báo lên. Nó tạo ra hai lần đánh thức cho một sự cố, thêm một lớp truyền đạt, và không ai học được gì trọn vẹn."
+        },
+        "right": {
+          "label": "Người viết mã trực cho mã của mình",
+          "text": "Lý do là động cơ chứ không phải tốc độ: một người bị đánh thức bởi chính đoạn mã mình viết ẩu sẽ viết khác đi lần sau."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Ràng buộc không vượt qua được"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đội quá nhỏ thì mô hình trực nào cũng không bền - đó là phép chia, không phải vấn đề cách tổ chức. Ba người luân phiên nghĩa là mỗi người trực một phần ba số đêm trong năm."
+      },
+      {
+        "type": "paragraph",
+        "text": "Câu trả lời thật trong trường hợp đó không ai thích nghe: giảm THỨ CẦN TRỰC. Tự động khôi phục nhiều hơn, và chấp nhận mức dịch vụ thấp hơn vào ban đêm. Giảm cam kết ban đêm thường ít tốn kém hơn nhiều so với việc làm kiệt sức ba người."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Tuyển thêm người cũng là hướng đúng nhưng nó mất hàng tháng, còn giảm thứ cần trực làm được ngay tuần này.",
+          "Bài sau quay lại phía kỹ thuật: những cơ chế giúp hệ thống tự khôi phục mà không cần đánh thức ai."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 169,
+    "slug": "tu-khoi-phuc-va-suy-giam-nhe-nhang",
+    "title": "Tự khôi phục và suy giảm nhẹ nhàng",
+    "subtitle": "Mỗi lần hệ thống tự xử lý được là một lần không ai bị đánh thức.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "🔄",
+    "isFundamental": true,
+    "whyItMatters": "Đây là chỗ đầu tư có tỷ lệ hoàn vốn cao nhất trong cả chặng: mỗi cơ chế tự khôi phục vừa cải thiện trải nghiệm người dùng vừa cắt trực tiếp vào gánh nặng trực của đội.",
+    "openingQuestion": "Cơ chế nào giúp hệ thống tự xử lý mà không cần người can thiệp?",
+    "openingOptions": [
+      "Thử lại có giãn cách, cầu dao ngắt mạch, kiểm tra sức khoẻ và tự thay máy hỏng",
+      "Ghi nhật ký chi tiết hơn để đội nhanh chóng tìm ra nguyên nhân khi có sự cố",
+      "Cảnh báo sớm hơn để người trực có thời gian can thiệp trước khi ảnh hưởng lan rộng",
+      "Tăng cấu hình máy chủ lên mức dư thừa để hệ thống chịu được các đợt tải bất thường"
+    ],
+    "correctOption": 0,
+    "explanation": "Bốn cơ chế này đều xử lý mà không cần người, và đó là điểm phân biệt. Ghi nhật ký kỹ hơn và cảnh báo sớm hơn đều làm cho người xử lý nhanh hơn - nhưng vẫn cần đánh thức một người. Tăng cấu hình thì giảm xác suất chứ không xử lý được khi chuyện đã xảy ra.",
+    "diagram": [
+      {
+        "label": "Thử lại + cầu dao: chịu được lỗi tạm thời",
+        "arrow": true
+      },
+      {
+        "label": "Kiểm tra sức khoẻ + tự thay: chịu được máy hỏng",
+        "arrow": true
+      },
+      {
+        "label": "Suy giảm nhẹ nhàng: chịu được phần phụ trợ hỏng",
+        "arrow": true
+      },
+      {
+        "label": "Tải rơi: chịu được quá tải, có chủ đích"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Tải rơi có chủ đích",
+      "description": "Khi hệ thống quá tải, từ chối nhanh một phần yêu cầu tốt hơn là để mọi yêu cầu đều chậm rồi hết thời gian chờ. Chín mươi phần trăm người dùng được phục vụ bình thường còn hơn một trăm phần trăm cùng chờ ba mươi giây rồi cùng thất bại."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao tải rơi có chủ đích tốt hơn để mọi yêu cầu cùng chậm?",
+        "options": [
+          "Vì chín mươi phần trăm được phục vụ tốt hơn là một trăm phần trăm cùng thất bại",
+          "Vì việc từ chối nhanh giúp máy chủ giải phóng tài nguyên để phục hồi nhanh hơn",
+          "Vì người dùng nhận được lỗi rõ ràng sẽ thử lại thay vì chờ đợi trong vô vọng",
+          "Vì các hệ thống theo dõi ghi nhận lỗi rõ hơn so với các yêu cầu bị chậm"
+        ],
+        "correct": 0,
+        "explanation": "Khi quá tải, để mọi yêu cầu cùng chậm nghĩa là không ai được phục vụ mà tài nguyên vẫn bị tiêu hết. Lựa chọn thứ hai cũng là cơ chế thật và nó hỗ trợ cho lý do chính, nhưng phép so sánh về số người được phục vụ mới là lập luận quyết định."
+      },
+      {
+        "question": "Cầu dao ngắt mạch giải quyết vấn đề gì mà thử lại không giải quyết được?",
+        "options": [
+          "Việc thử lại liên tục vào một dịch vụ đang hỏng làm nó không kịp hồi phục",
+          "Việc thử lại không phân biệt được lỗi tạm thời với lỗi vĩnh viễn trong hệ thống",
+          "Việc thử lại tốn thêm tài nguyên mạng và làm tăng chi phí truyền dữ liệu",
+          "Việc thử lại kéo dài thời gian phản hồi tới người dùng cuối một cách đáng kể"
+        ],
+        "correct": 0,
+        "explanation": "Hai cơ chế này bổ sung nhau: thử lại xử lý lỗi thoáng qua, cầu dao xử lý lỗi kéo dài. Không có cầu dao thì chính cơ chế thử lại trở thành thứ giữ cho dịch vụ kia không đứng dậy được."
+      },
+      {
+        "question": "Kiểm tra sức khoẻ cần đáp ứng điều kiện gì để hữu ích?",
+        "options": [
+          "Phải kiểm tra thật, gồm cả phụ thuộc quan trọng, chứ không chỉ trả về một chữ ổn",
+          "Phải chạy đủ nhanh để không ảnh hưởng tới hiệu năng của hệ thống chính",
+          "Phải được gọi từ nhiều vùng khác nhau để phát hiện được vấn đề mạng cục bộ",
+          "Phải trả về thông tin thật chi tiết về trạng thái của từng thành phần trong hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Một điểm kiểm tra chỉ trả về chữ ổn sẽ báo khoẻ trong khi cơ sở dữ liệu đã sập, và bộ cân bằng tải vẫn đẩy lưu lượng vào một bản không phục vụ được. Đây là cùng cảnh báo đã nêu ở chặng triển khai."
+      },
+      {
+        "question": "Suy giảm nhẹ nhàng khác tự khôi phục ở điểm nào?",
+        "options": [
+          "Nó chấp nhận mất một phần chức năng để giữ phần cốt lõi, thay vì cố phục hồi hết",
+          "Nó chỉ áp dụng cho các tính năng phụ còn tự khôi phục áp dụng cho toàn hệ thống",
+          "Nó cần người quyết định còn tự khôi phục thì diễn ra hoàn toàn tự động",
+          "Nó là biện pháp tạm thời còn tự khôi phục là giải pháp lâu dài cho vấn đề"
+        ],
+        "correct": 0,
+        "explanation": "Hai chiến lược khác nhau cho hai tình huống: một cái cố đưa mọi thứ về bình thường, một cái chấp nhận trạng thái kém hơn nhưng còn dùng được. Cả hai đều tự động, nên lựa chọn thứ ba mô tả sai."
+      },
+      {
+        "question": "Vì sao cơ chế tự khôi phục cũng cần được kiểm thử?",
+        "options": [
+          "Vì một cơ chế chưa từng kích hoạt thật thì chưa được chứng minh là hoạt động",
+          "Vì các cơ chế này có thể xung đột với nhau khi cùng kích hoạt một lúc",
+          "Vì cấu hình của chúng dễ bị thay đổi trong quá trình vận hành mà không ai để ý",
+          "Vì chúng tiêu tốn tài nguyên nên cần đo mức ảnh hưởng tới hiệu năng chung"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng nguyên tắc với bản sao lưu chưa khôi phục thử và chuyển đổi dự phòng chưa kích hoạt thử. Một cơ chế tự động hỏng thầm lặng thì tệ hơn không có, vì bạn đã tin vào nó khi thiết kế phần còn lại."
+      }
+    ],
+    "keyTakeaways": [
+      "Bốn cơ chế: thử lại có giãn cách, cầu dao, kiểm tra sức khoẻ, tự thay máy hỏng.",
+      "Thử lại xử lý lỗi thoáng qua; cầu dao xử lý lỗi kéo dài - chúng bổ sung nhau.",
+      "Kiểm tra sức khoẻ phải kiểm THẬT, nếu không nó đẩy lưu lượng vào bản đã chết.",
+      "Tải rơi có chủ đích: chín mươi phần trăm được phục vụ hơn một trăm phần trăm cùng hỏng.",
+      "Cơ chế tự động chưa kích hoạt thử thì chưa được chứng minh là hoạt động."
+    ],
+    "practicePrompt": {
+      "question": "Hệ thống quá tải và mọi yêu cầu đều mất ba mươi giây rồi hết thời gian chờ. Nên thêm cơ chế nào?",
+      "options": [
+        "Tải rơi: từ chối nhanh một phần yêu cầu để phần còn lại được phục vụ bình thường",
+        "Tự động mở rộng thêm máy để tăng khả năng xử lý cho tới khi tải giảm xuống",
+        "Tăng thời gian chờ tối đa để các yêu cầu có thêm cơ hội hoàn tất trước khi bị cắt",
+        "Xếp các yêu cầu vào hàng đợi và xử lý dần theo thứ tự để không bỏ sót yêu cầu nào"
+      ],
+      "correct": 0,
+      "explanation": "Tự động mở rộng đúng hướng nhưng nó mất vài phút để máy mới sẵn sàng, còn tải rơi có tác dụng ngay. Tăng thời gian chờ và xếp hàng đợi đều làm mọi yêu cầu chờ lâu hơn - tức làm tình hình tệ hơn."
+    },
+    "summary": {
+      "keyIdea": "Mỗi lần hệ thống tự xử lý được là một lần không ai bị đánh thức.",
+      "formula": "Lỗi thoáng qua → thử lại. Lỗi kéo dài → cầu dao. Quá tải → tải rơi.",
+      "commonMistake": "Tin vào cơ chế tự động mà chưa bao giờ kích hoạt thử nó.",
+      "action": "Liệt kê các lần bị đánh thức tháng qua và đánh dấu cái nào tự xử lý được."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy danh sách các lần đội bị đánh thức trong tháng qua và với từng cái, hỏi: cơ chế tự động nào lẽ ra đã xử lý được chuyện này?",
+      "secondary": "Những cái trả lời được là danh sách việc đáng làm, xếp theo tần suất. Và với các cơ chế đã có sẵn, hãy thử kích hoạt một cái trong môi trường thử nghiệm - chưa thử thì chưa chứng minh được."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Bài trước kết thúc ở chỗ cách giảm gánh nặng trực bền nhất là làm hệ thống ít gọi hơn. Bài này là cách làm điều đó - và đây là chỗ đầu tư có tỷ lệ hoàn vốn cao nhất trong cả chặng."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn cơ chế cơ bản"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Thử lại có giãn cách và có ngẫu nhiên: xử lý lỗi thoáng qua. Đã nói ở chặng API, và ở đây nó là lớp đầu tiên.",
+          "Cầu dao ngắt mạch: xử lý lỗi kéo dài. Không có nó thì chính cơ chế thử lại giữ cho dịch vụ kia không đứng dậy được.",
+          "Kiểm tra sức khoẻ và tự thay máy hỏng: xử lý một bản chết trong nhiều bản.",
+          "Tải rơi có chủ đích: xử lý quá tải."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Kiểm tra sức khoẻ phải kiểm THẬT",
+        "text": "Một điểm kiểm tra chỉ trả về chữ ổn sẽ báo khoẻ trong khi cơ sở dữ liệu đã sập - và bộ cân bằng tải vẫn đẩy lưu lượng vào một bản không phục vụ được. Nó phải chạm vào các phụ thuộc quan trọng thì mới có nghĩa."
+      },
+      {
+        "type": "heading",
+        "text": "Tải rơi: điều ngược trực giác"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Nghe có vẻ đúng",
+          "text": "Cố phục vụ mọi yêu cầu. Không từ chối ai cả."
+        },
+        "right": {
+          "label": "Thực tế khi quá tải",
+          "text": "Mọi yêu cầu cùng chậm rồi cùng hết thời gian chờ - không ai được phục vụ mà tài nguyên vẫn bị tiêu hết. Chín mươi phần trăm được phục vụ bình thường tốt hơn hẳn một trăm phần trăm cùng thất bại."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Suy giảm nhẹ nhàng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khác với tự khôi phục ở chỗ nó không cố đưa mọi thứ về bình thường - nó chấp nhận mất một phần chức năng để giữ phần cốt lõi. Đây là điều chặng triển khai đã nói ở mức tính năng, và ở đây nó là một chiến lược vận hành."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Điều kiện để cả năm cơ chế này đáng tin: chúng phải được KÍCH HOẠT THỬ. Đây là cùng nguyên tắc với bản sao lưu chưa khôi phục thử và chuyển đổi dự phòng chưa thử.",
+          "Một cơ chế tự động hỏng thầm lặng còn tệ hơn không có, vì bạn đã tin vào nó khi thiết kế phần còn lại. Bài sau gom cả chặng lại."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "slug": "chu-dong-gay-loi-de-hoc",
+    "title": "Chủ động gây lỗi để học",
+    "subtitle": "Cách duy nhất biết cơ chế dự phòng có chạy không là bắt nó chạy.",
+    "duration": "6 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "🧨",
+    "isFundamental": false,
+    "whyItMatters": "Bài trước kết thúc ở chỗ mọi cơ chế tự động chưa thử thì chưa được chứng minh. Bài này là cách thử chúng mà không phải chờ một sự cố thật.",
+    "openingQuestion": "Vì sao phải chủ động gây lỗi thay vì chờ lỗi tự xảy ra?",
+    "openingOptions": [
+      "Vì lỗi tự xảy ra thì vào lúc bạn không sẵn sàng, còn lỗi chủ động thì bạn chọn thời điểm",
+      "Vì lỗi tự xảy ra quá hiếm nên đội không có đủ cơ hội để rèn luyện kỹ năng xử lý",
+      "Vì lỗi chủ động cho phép kiểm tra được nhiều loại sự cố hơn trong thời gian ngắn",
+      "Vì các cơ chế dự phòng cần được kích hoạt định kỳ để không bị hỏng do lâu không dùng"
+    ],
+    "correctOption": 0,
+    "explanation": "Đây là toàn bộ ý tưởng: cùng một sự cố nhưng bạn chọn lúc nào. Ba giờ chiều thứ ba với cả đội đang ngồi cạnh nhau, có thể dừng bất cứ lúc nào - so với ba giờ sáng thứ bảy khi một người phải xử lý một mình. Cùng thông tin thu được, chi phí khác nhau rất xa.",
+    "diagram": [
+      {
+        "label": "Cùng một lỗi, nhưng bạn chọn thời điểm",
+        "arrow": true
+      },
+      {
+        "label": "Bắt đầu ở môi trường thử nghiệm, phạm vi nhỏ nhất",
+        "arrow": true
+      },
+      {
+        "label": "Nêu giả thuyết TRƯỚC: mình nghĩ chuyện gì sẽ xảy ra",
+        "arrow": true
+      },
+      {
+        "label": "Có nút dừng, và có người theo dõi trong lúc chạy"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Giả thuyết sai mới là kết quả",
+      "description": "Chạy thử mà mọi thứ diễn ra đúng như dự đoán thì bạn chỉ xác nhận thứ mình đã biết. Giá trị nằm ở những lần hệ thống phản ứng khác dự đoán - và tỷ lệ đó cao hơn nhiều so với mức người ta nghĩ trước khi bắt đầu làm."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao phải nêu giả thuyết trước khi gây lỗi?",
+        "options": [
+          "Vì không có nó thì bạn không phân biệt được kết quả bất ngờ với kết quả mong đợi",
+          "Vì việc viết giả thuyết giúp bạn chuẩn bị kỹ hơn cho tình huống xấu nhất",
+          "Vì cần có tài liệu để báo cáo lại kết quả thử nghiệm cho các bên liên quan",
+          "Vì giả thuyết giúp xác định rõ phạm vi ảnh hưởng trước khi thực hiện bài thử nghiệm"
+        ],
+        "correct": 0,
+        "explanation": "Không viết trước thì sau khi thấy kết quả bạn sẽ nhớ rằng mình đã đoán vậy - cùng thiên kiến nhận thức muộn ở chặng rà soát code. Và lúc đó bài thử mất luôn giá trị học tập của nó."
+      },
+      {
+        "question": "Nên bắt đầu thử ở đâu?",
+        "options": [
+          "Môi trường thử nghiệm, với phạm vi nhỏ nhất có thể quan sát được kết quả",
+          "Môi trường thật vào giờ thấp điểm, vì chỉ ở đó mới có điều kiện giống thực tế",
+          "Một bản sao đầy đủ của môi trường thật để kết quả phản ánh đúng nhất",
+          "Bất kỳ môi trường nào, miễn là có đủ công cụ theo dõi để ghi lại kết quả"
+        ],
+        "correct": 0,
+        "explanation": "Môi trường thử nghiệm bắt được phần lớn lỗi cấu hình mà chi phí gần bằng không. Đi thẳng ra môi trường thật khi chưa thử ở chỗ an toàn là bỏ qua lớp lọc rẻ nhất."
+      },
+      {
+        "question": "Vì sao kết quả đúng như dự đoán lại kém giá trị hơn?",
+        "options": [
+          "Vì nó chỉ xác nhận thứ bạn đã biết, còn kết quả bất ngờ mới cho bạn thông tin mới",
+          "Vì kết quả đúng như dự đoán thường có nghĩa là bài thử nghiệm chưa đủ khắc nghiệt",
+          "Vì nó không tạo ra dữ liệu để cải thiện quy trình xử lý sự cố của đội",
+          "Vì các cơ chế dự phòng chỉ bộc lộ điểm yếu khi bị đẩy tới giới hạn"
+        ],
+        "correct": 0,
+        "explanation": "Tỷ lệ kết quả bất ngờ cao hơn nhiều so với mức người ta nghĩ trước khi bắt đầu - và đó là lý do bài thử này đáng làm dù nghe có vẻ chỉ để xác nhận."
+      },
+      {
+        "question": "Điều kiện nào bắt buộc phải có trước khi chạy thử ở môi trường thật?",
+        "options": [
+          "Một nút dừng làm được ngay, và người theo dõi trong suốt thời gian chạy",
+          "Sự phê duyệt của cấp quản lý và thông báo trước cho toàn bộ các bên liên quan",
+          "Một bản sao lưu đầy đủ được thực hiện ngay trước thời điểm bắt đầu thử",
+          "Kết quả thành công của cùng bài thử đó ở môi trường thử nghiệm ít nhất ba lần"
+        ],
+        "correct": 0,
+        "explanation": "Hai điều kiện này là thứ biến một bài thử thành một bài thử có kiểm soát. Sao lưu và phê duyệt đều hợp lý nhưng chúng không giúp gì nếu bạn không dừng được khi thấy điều bất thường."
+      },
+      {
+        "question": "Loại lỗi nào đáng thử trước tiên?",
+        "options": [
+          "Loại đã từng xảy ra thật, vì bạn biết chắc nó sẽ xảy ra lại",
+          "Loại có xác suất cao nhất theo phân tích rủi ro của hệ thống hiện tại",
+          "Loại gây hậu quả nặng nhất nếu xảy ra mà không có cơ chế xử lý",
+          "Loại chưa từng xảy ra, vì đó là những điểm mù mà đội chưa chuẩn bị"
+        ],
+        "correct": 0,
+        "explanation": "Bạn đã có bằng chứng về khả năng xảy ra và bạn cũng biết hậu quả thật của nó. Loại chưa từng xảy ra thì đáng thử về sau, nhưng bắt đầu ở đó là đoán trong khi bạn đang có sẵn dữ liệu thật."
+      }
+    ],
+    "keyTakeaways": [
+      "Cùng một lỗi, nhưng bạn chọn thời điểm - đó là toàn bộ ý tưởng.",
+      "Nêu giả thuyết TRƯỚC, nếu không bạn sẽ nhớ rằng mình đã đoán đúng.",
+      "Bắt đầu ở môi trường thử nghiệm với phạm vi nhỏ nhất - lớp lọc rẻ nhất.",
+      "Kết quả bất ngờ mới là kết quả có giá trị; đúng dự đoán chỉ xác nhận thứ đã biết.",
+      "Thử ở môi trường thật cần nút dừng ngay và người theo dõi suốt thời gian chạy."
+    ],
+    "practicePrompt": {
+      "question": "Bạn muốn bắt đầu thử gây lỗi nhưng đội lo ngại rủi ro. Cách thuyết phục tốt nhất?",
+      "options": [
+        "Chỉ ra rằng cùng sự cố đó sẽ xảy ra vào lúc tệ hơn nhiều nếu không chủ động thử",
+        "Cam kết chỉ thử trong môi trường thử nghiệm và không bao giờ đụng tới môi trường thật",
+        "Trình bày các trường hợp thành công của những công ty lớn đã áp dụng phương pháp này",
+        "Đề nghị thử một lần rồi đánh giá lại xem có nên tiếp tục hay không"
+      ],
+      "correct": 0,
+      "explanation": "Lập luận đúng không phải là thử thì an toàn, mà là không thử cũng không tránh được sự cố - chỉ là bạn gặp nó vào lúc mình chọn hay lúc nó chọn. Cam kết không bao giờ đụng môi trường thật thì bỏ mất phần có giá trị nhất."
+    },
+    "summary": {
+      "keyIdea": "Bạn không tránh được sự cố; bạn chỉ chọn được gặp nó lúc nào.",
+      "formula": "Giả thuyết trước → phạm vi nhỏ nhất → có nút dừng → so với giả thuyết.",
+      "commonMistake": "Chạy thử mà không viết giả thuyết, nên mọi kết quả đều thành như đã đoán.",
+      "action": "Chọn một sự cố đã từng xảy ra và dựng lại nó ở môi trường thử nghiệm."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy một sự cố đã từng xảy ra thật với hệ thống của bạn và dựng lại nó ở môi trường thử nghiệm. Viết giả thuyết trước khi chạy.",
+      "secondary": "So kết quả với giả thuyết. Nếu chúng khác nhau thì bạn vừa tìm ra một điểm mù - và bạn tìm ra nó vào ba giờ chiều thay vì ba giờ sáng."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Bài trước kết thúc ở chỗ mọi cơ chế tự động chưa kích hoạt thử thì chưa được chứng minh. Bài này là cách thử chúng mà không phải chờ một sự cố thật."
+      },
+      {
+        "type": "heading",
+        "text": "Ý tưởng, gói trong một câu"
+      },
+      {
+        "type": "callout",
+        "label": "Cùng một lỗi, nhưng bạn chọn thời điểm",
+        "text": "Ba giờ chiều thứ ba với cả đội đang ngồi cạnh nhau và có thể dừng bất cứ lúc nào - so với ba giờ sáng thứ bảy khi một người phải xử lý một mình. Cùng thông tin thu được, chi phí khác nhau rất xa."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lập luận này quan trọng khi thuyết phục đội: điểm mấu chốt không phải thử thì an toàn, mà là KHÔNG thử cũng không tránh được sự cố. Bạn chỉ chọn được gặp nó lúc mình chọn hay lúc nó chọn."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn điều kiện"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Nêu GIẢ THUYẾT trước: mình nghĩ chuyện gì sẽ xảy ra. Không có nó thì sau khi thấy kết quả bạn sẽ nhớ rằng mình đã đoán vậy.",
+          "Phạm vi nhỏ nhất mà vẫn quan sát được kết quả. Bắt đầu ở môi trường thử nghiệm - nó bắt được phần lớn lỗi cấu hình với chi phí gần bằng không.",
+          "Một nút dừng làm được ngay.",
+          "Người theo dõi trong suốt thời gian chạy, không chạy rồi bỏ đó."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Điều kiện đầu tiên là điều kiện hay bị bỏ nhất, và nó là điều kiện biến một bài thử thành một bài học. Đây cùng cơ chế với việc viết dự đoán trước khi gỡ lỗi ở chặng rà soát code."
+      },
+      {
+        "type": "heading",
+        "text": "Đọc kết quả"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đúng như dự đoán",
+          "text": "Bạn xác nhận thứ mình đã biết. Có giá trị, nhưng nhỏ - và nó là kết quả người ta mong đợi trước khi bắt đầu."
+        },
+        "right": {
+          "label": "Khác dự đoán",
+          "text": "Đây mới là kết quả bạn trả tiền để có. Tỷ lệ này cao hơn nhiều so với mức người ta nghĩ, và mỗi lần như vậy là một điểm mù được tìm ra vào giờ hành chính."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Về thứ tự: bắt đầu bằng loại lỗi ĐÃ TỪNG xảy ra thật. Bạn có bằng chứng về khả năng xảy ra và cũng biết hậu quả thật của nó.",
+          "Loại chưa từng xảy ra thì đáng thử về sau - bắt đầu ở đó là đoán trong khi bạn đang có sẵn dữ liệu thật. Bài sau là cách đo xem đội đang xử lý sự cố tốt tới đâu."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 171,
+    "slug": "do-thoi-gian-phat-hien-va-hoi-phuc",
+    "title": "Đo thời gian phát hiện và thời gian hồi phục",
+    "subtitle": "Hai con số này nói nhiều hơn số lượng sự cố.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "⏲️",
+    "interactiveType": "tail-risk",
+    "isFundamental": true,
+    "whyItMatters": "Đếm số sự cố dẫn tới hành vi sai: người ta gộp nhiều vấn đề thành một sự cố để con số đẹp hơn. Hai con số về thời gian thì không gian lận được theo cách đó.",
+    "openingQuestion": "Vì sao đếm số lượng sự cố là chỉ số kém?",
+    "openingOptions": [
+      "Vì nó khuyến khích gộp nhiều vấn đề thành một để giữ con số thấp",
+      "Vì số lượng sự cố phụ thuộc vào mức độ nhạy của hệ thống cảnh báo đang dùng",
+      "Vì nó không phân biệt được sự cố nghiêm trọng với sự cố nhỏ không đáng kể",
+      "Vì các sự cố thường xảy ra theo cụm nên con số dao động mạnh giữa các tháng"
+    ],
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều là hạn chế thật của phép đếm, nhưng chúng có thể khắc phục bằng cách phân loại kỹ hơn. Vấn đề khuyến khích hành vi sai thì không - nó xuất hiện ngay khi con số trở thành thứ được báo cáo, và nó phá luôn khả năng so sánh giữa các kỳ vì định nghĩa một sự cố đã trôi.",
+    "diagram": [
+      {
+        "label": "Thời gian phát hiện: từ lúc hỏng tới lúc biết",
+        "arrow": true
+      },
+      {
+        "label": "Thời gian hồi phục: từ lúc biết tới lúc người dùng ổn",
+        "arrow": true
+      },
+      {
+        "label": "Cả hai đo bằng PHÂN VỊ, không bằng trung bình",
+        "arrow": true
+      },
+      {
+        "label": "Cải thiện cái đầu thường rẻ hơn cải thiện cái sau"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Phát hiện qua người dùng",
+      "description": "Một con số đáng đo riêng: bao nhiêu phần trăm sự cố được phát hiện bởi hệ thống cảnh báo, và bao nhiêu phần trăm do người dùng báo. Tỷ lệ thứ hai cao là dấu hiệu hệ thống theo dõi đang nhìn sai chỗ, và nó rẻ hơn để sửa so với việc rút ngắn thời gian hồi phục."
+    },
+    "quiz": [
+      {
+        "question": "Thời gian phát hiện đo từ mốc nào?",
+        "options": [
+          "Từ lúc hệ thống thật sự bắt đầu hỏng, không phải từ lúc cảnh báo kêu",
+          "Từ lúc cảnh báo được gửi đi tới lúc người trực xác nhận đã nhận được nó",
+          "Từ lúc người trực bắt đầu điều tra tới lúc xác định được nguyên nhân",
+          "Từ lúc người dùng đầu tiên báo cáo vấn đề tới lúc đội xác nhận sự cố"
+        ],
+        "correct": 0,
+        "explanation": "Đo từ lúc cảnh báo kêu thì bạn đo sai thứ - toàn bộ khoảng thời gian hệ thống hỏng mà không ai biết sẽ biến mất khỏi con số. Và đó chính là khoảng bạn muốn rút ngắn."
+      },
+      {
+        "question": "Vì sao thời gian hồi phục nên tính tới lúc người dùng ổn?",
+        "options": [
+          "Vì sau khi hệ thống bình thường vẫn có thể còn hàng đợi tồn đọng hoặc dữ liệu sai",
+          "Vì người dùng cần thời gian để nhận ra dịch vụ đã hoạt động trở lại bình thường",
+          "Vì các bộ nhớ đệm cần thời gian để được nạp lại sau khi hệ thống khởi động lại",
+          "Vì cần có thời gian quan sát để chắc chắn sự cố không tái phát ngay sau đó"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng điểm đã nêu ở bài về xử lý sự cố: bảng theo dõi xanh trở lại không đồng nghĩa với việc mọi thứ đã xong. Đo tới mốc hệ thống bình thường thì con số đẹp hơn thực tế."
+      },
+      {
+        "question": "Vì sao cải thiện thời gian phát hiện thường rẻ hơn?",
+        "options": [
+          "Vì nó thường chỉ cần thêm một phép đo hoặc một cảnh báo đúng chỗ",
+          "Vì việc phát hiện nhanh không đòi hỏi thay đổi gì trong kiến trúc hệ thống",
+          "Vì các công cụ theo dõi hiện nay đã có sẵn hầu hết các loại cảnh báo cần thiết",
+          "Vì thời gian phát hiện thường chiếm phần lớn tổng thời gian của một sự cố"
+        ],
+        "correct": 0,
+        "explanation": "Rút ngắn thời gian hồi phục thường đòi thay đổi kiến trúc - thêm cơ chế quay lại nhanh, thêm dự phòng. Còn phát hiện nhanh hơn thường chỉ là đo thêm một thứ mà bạn chưa đo."
+      },
+      {
+        "question": "Tỷ lệ sự cố do người dùng báo nói lên điều gì?",
+        "options": [
+          "Hệ thống theo dõi đang nhìn sai chỗ, và đó là vấn đề rẻ để sửa",
+          "Người dùng đang tương tác tích cực với sản phẩm nên phản hồi nhanh",
+          "Đội chưa có đủ nguồn lực để theo dõi hệ thống liên tục hai mươi tư giờ",
+          "Các sự cố xảy ra ở những phần mà đội chưa đánh giá là quan trọng"
+        ],
+        "correct": 0,
+        "explanation": "Người dùng báo trước hệ thống nghĩa là bạn đang đo những thứ không phản ánh trải nghiệm của họ. Sửa việc này rẻ hơn nhiều so với rút ngắn thời gian hồi phục, nên nó nên đứng trước trong danh sách ưu tiên."
+      },
+      {
+        "question": "Vì sao hai con số này nên đo bằng phân vị?",
+        "options": [
+          "Vì trung bình bị kéo lệch bởi vài sự cố rất dài và giấu đi nhóm tệ nhất",
+          "Vì số lượng sự cố thường quá ít để trung bình có ý nghĩa thống kê",
+          "Vì phân vị cho phép so sánh được giữa các đội có quy mô khác nhau",
+          "Vì các công cụ theo dõi mặc định tính theo phân vị nên dễ lấy số hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng lập luận đã dùng cho độ trễ, và nó lặp lại vì nó áp dụng cho mọi phân phối có đuôi dài. Số lượng sự cố ít cũng là vấn đề thật nhưng nó ảnh hưởng tới cả hai cách tính."
+      }
+    ],
+    "keyTakeaways": [
+      "Đếm số sự cố khuyến khích gộp lại cho đẹp; hai con số thời gian thì đo bằng phân vị.",
+      "Thời gian phát hiện tính từ lúc hệ thống THẬT SỰ hỏng, không từ lúc cảnh báo kêu.",
+      "Thời gian hồi phục tính tới lúc NGƯỜI DÙNG ổn, không tới lúc bảng theo dõi xanh.",
+      "Cải thiện thời gian phát hiện thường rẻ hơn: chỉ cần đo thêm một thứ.",
+      "Tỷ lệ sự cố do người dùng báo là dấu hiệu hệ thống theo dõi nhìn sai chỗ."
+    ],
+    "practicePrompt": {
+      "question": "Thời gian phát hiện trung bình của đội là bốn mươi phút. Việc rẻ nhất để giảm nó là gì?",
+      "options": [
+        "Tìm xem các sự cố đó lẽ ra hiện ra ở con số nào, rồi đặt cảnh báo trên con số đó",
+        "Tăng tần suất kiểm tra sức khoẻ hệ thống lên để phát hiện vấn đề sớm hơn",
+        "Bố trí người trực theo dõi bảng số liệu liên tục trong giờ cao điểm",
+        "Hạ ngưỡng của các cảnh báo hiện có xuống để chúng kêu sớm hơn trước"
+      ],
+      "correct": 0,
+      "explanation": "Câu hỏi lẽ ra hiện ra ở con số nào dẫn thẳng tới thứ bạn chưa đo. Hạ ngưỡng cảnh báo hiện có thì chỉ làm chúng kêu sớm hơn cho những loại sự cố bạn đã bắt được, và nó tăng cảnh báo giả."
+    },
+    "summary": {
+      "keyIdea": "Hai con số về thời gian không gian lận được theo cách mà phép đếm bị gian lận.",
+      "formula": "Phát hiện: từ lúc hỏng. Hồi phục: tới lúc người dùng ổn. Cả hai theo phân vị.",
+      "commonMistake": "Đo thời gian phát hiện từ lúc cảnh báo kêu, tức bỏ mất khoảng cần đo.",
+      "action": "Lấy ba sự cố gần nhất và tính hai con số này cho từng cái."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy ba sự cố gần nhất và tính hai con số: bao lâu từ lúc hệ thống thật sự hỏng tới lúc đội biết, và bao lâu từ lúc biết tới lúc người dùng ổn.",
+      "secondary": "Rồi đếm trong ba cái đó, bao nhiêu cái do hệ thống phát hiện và bao nhiêu do người dùng báo. Con số thứ hai thường là chỗ cải thiện rẻ nhất."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Đội nào cũng muốn biết mình xử lý sự cố tốt tới đâu, và con số đầu tiên người ta nghĩ tới - số lượng sự cố - lại là con số kém nhất."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao không đếm sự cố"
+      },
+      {
+        "type": "callout",
+        "label": "Nó khuyến khích gộp",
+        "text": "Ngay khi con số trở thành thứ được báo cáo, người ta gộp nhiều vấn đề thành một sự cố để giữ nó thấp. Định nghĩa một sự cố trôi dần, và bạn mất luôn khả năng so sánh giữa các kỳ."
+      },
+      {
+        "type": "heading",
+        "text": "Hai con số thay thế"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Thời gian phát hiện",
+          "text": "Từ lúc hệ thống THẬT SỰ bắt đầu hỏng tới lúc đội biết. Đo từ lúc cảnh báo kêu là bỏ mất đúng khoảng bạn muốn rút ngắn."
+        },
+        "right": {
+          "label": "Thời gian hồi phục",
+          "text": "Từ lúc biết tới lúc NGƯỜI DÙNG ổn. Đo tới lúc bảng theo dõi xanh thì con số đẹp hơn thực tế - có thể còn hàng đợi tồn đọng hoặc dữ liệu sai đã ghi vào."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Cả hai đo bằng PHÂN VỊ, không bằng trung bình. Đây là lập luận đã dùng cho độ trễ và nó lặp lại vì nó áp dụng cho mọi phân phối có đuôi dài - vài sự cố rất dài sẽ kéo lệch trung bình và giấu đi nhóm tệ nhất."
+      },
+      {
+        "type": "heading",
+        "text": "Cái nào cải thiện trước"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thời gian phát hiện, gần như luôn. Rút ngắn nó thường chỉ cần thêm một phép đo hoặc một cảnh báo đúng chỗ; rút ngắn thời gian hồi phục thường đòi thay đổi kiến trúc - thêm cơ chế quay lại nhanh, thêm dự phòng."
+      },
+      {
+        "type": "paragraph",
+        "text": "Có một con số phụ đáng đo riêng và nó chỉ thẳng vào việc cần làm: bao nhiêu phần trăm sự cố do hệ thống cảnh báo phát hiện, và bao nhiêu do người dùng báo?"
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Tỷ lệ người dùng báo cao nghĩa là bạn đang đo những thứ không phản ánh trải nghiệm của họ - và đó là chỗ rẻ nhất để sửa trong cả chặng.",
+          "Bài sau mở rộng ra khỏi phạm vi sự cố: bốn con số đo cả cách đội làm việc."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 172,
+    "slug": "bon-chi-so-cach-doi-lam-viec",
+    "title": "Bốn chỉ số về cách đội làm việc",
+    "subtitle": "Hai con số về tốc độ, hai con số về ổn định - và chúng không đánh đổi nhau.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "📈",
+    "isFundamental": false,
+    "whyItMatters": "Cuộc tranh luận đi nhanh hay đi chắc kéo dài trong mọi đội, và bốn con số này cho thấy nó là một câu hỏi sai - các đội tốt đạt điểm cao ở cả hai nhóm cùng lúc.",
+    "openingQuestion": "Đội phát hành nhiều lần mỗi ngày có kém ổn định hơn đội phát hành mỗi quý không?",
+    "openingOptions": [
+      "Ngược lại - phát hành thường xuyên thường đi cùng tỷ lệ hỏng thấp hơn",
+      "Có, vì càng nhiều lần phát hành thì càng nhiều cơ hội đưa lỗi ra môi trường thật",
+      "Không khác biệt, vì tổng lượng thay đổi trong một quý là như nhau ở cả hai cách",
+      "Tuỳ vào quy mô hệ thống, vì hệ thống càng phức tạp thì rủi ro mỗi lần càng cao"
+    ],
+    "correctOption": 0,
+    "explanation": "Đây là kết quả ngược trực giác nhất và nó lặp lại điều bài về phát hành ở chặng triển khai đã nói: rủi ro nằm ở kích thước thay đổi, không ở tần suất. Phát hành nhiều lần nghĩa là mỗi lần nhỏ, nên khi hỏng thì tìm nguyên nhân nhanh và quay lại rẻ - và chính điều đó làm tỷ lệ hỏng thấp hơn.",
+    "diagram": [
+      {
+        "label": "Tốc độ: tần suất phát hành, thời gian từ mã tới sản phẩm",
+        "arrow": true
+      },
+      {
+        "label": "Ổn định: tỷ lệ thay đổi gây hỏng, thời gian khôi phục",
+        "arrow": true
+      },
+      {
+        "label": "Hai nhóm KHÔNG đánh đổi nhau",
+        "arrow": true
+      },
+      {
+        "label": "Đo cả bốn, vì đo một nhóm sẽ đẩy nhóm kia xuống"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Đo một nhóm thì nhóm kia tụt",
+      "description": "Đội chỉ đo tần suất phát hành sẽ đẩy mọi thứ ra nhanh và tỷ lệ hỏng tăng. Đội chỉ đo tỷ lệ hỏng sẽ gom thay đổi lại cho chắc và tần suất tụt. Bốn con số phải đi cùng nhau vì mỗi cặp là đối trọng của cặp kia."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao phát hành thường xuyên đi cùng tỷ lệ hỏng thấp hơn?",
+        "options": [
+          "Vì mỗi lần phát hành nhỏ hơn nên tìm nguyên nhân nhanh và quay lại rẻ",
+          "Vì đội phát hành thường xuyên có quy trình kiểm thử tự động hoàn thiện hơn",
+          "Vì việc lặp lại nhiều lần giúp đội thành thạo quy trình phát hành hơn",
+          "Vì các thay đổi nhỏ ít khả năng chứa lỗi hơn so với thay đổi lớn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng lập luận với chặng triển khai. Lựa chọn thứ hai cũng đúng về mặt tương quan nhưng nó đảo nhân quả: quy trình tự động tốt là điều kiện để phát hành thường xuyên, không phải hệ quả của nó."
+      },
+      {
+        "question": "Vì sao phải đo cả bốn con số thay vì chọn ra vài cái?",
+        "options": [
+          "Vì mỗi cặp là đối trọng của cặp kia, nên đo một nhóm sẽ đẩy nhóm kia xuống",
+          "Vì bốn con số này được thiết kế để dùng cùng nhau trong một khung đánh giá",
+          "Vì mỗi con số phản ánh một khía cạnh khác nhau nên bỏ cái nào cũng thiếu",
+          "Vì so sánh với các đội khác đòi hỏi phải có đủ cả bốn con số để đối chiếu"
+        ],
+        "correct": 0,
+        "explanation": "Đội chỉ đo tần suất sẽ đẩy mọi thứ ra nhanh và tỷ lệ hỏng tăng; đội chỉ đo tỷ lệ hỏng sẽ gom thay đổi lại và tần suất tụt. Đây là ví dụ rất rõ cho việc một chỉ số thành mục tiêu thì nó bị tối ưu."
+      },
+      {
+        "question": "Thời gian từ mã tới sản phẩm đo cái gì?",
+        "options": [
+          "Từ lúc mã được gộp vào nhánh chính tới lúc nó chạy trên môi trường thật",
+          "Từ lúc yêu cầu được đưa ra tới lúc tính năng đến tay người dùng cuối",
+          "Từ lúc lập trình viên bắt đầu viết mã tới lúc gửi bản thay đổi đi rà soát",
+          "Tổng thời gian của tất cả các bước trong quy trình phát triển một tính năng"
+        ],
+        "correct": 0,
+        "explanation": "Nó đo phần quy trình kỹ thuật, không đo phần lập kế hoạch sản phẩm. Lựa chọn thứ hai là một con số khác cũng đáng đo nhưng nó trộn lẫn hai thứ mà đội có mức kiểm soát rất khác nhau."
+      },
+      {
+        "question": "Vì sao không nên dùng bốn con số này để so sánh giữa các đội?",
+        "options": [
+          "Vì bối cảnh khác nhau, và so sánh biến chúng thành mục tiêu bị tối ưu riêng",
+          "Vì mỗi đội định nghĩa các mốc thời gian theo cách khác nhau nên số không đồng nhất",
+          "Vì các đội làm việc trên hệ thống có độ phức tạp khác nhau nên không công bằng",
+          "Vì việc so sánh tạo ra cạnh tranh nội bộ làm giảm sự hợp tác giữa các đội"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều thật nhưng chúng có thể giảm bớt bằng cách chuẩn hoá định nghĩa. Vấn đề biến chúng thành mục tiêu thì không - và bốn con số bị tối ưu riêng lẻ sẽ mất hết giá trị chẩn đoán."
+      },
+      {
+        "question": "Cách dùng bốn con số này đúng đắn nhất là gì?",
+        "options": [
+          "Theo dõi xu hướng của chính đội mình qua thời gian, để biết thay đổi có tác dụng không",
+          "Đặt mục tiêu cụ thể cho từng con số và đánh giá đội theo mức đạt được",
+          "Báo cáo định kỳ cho cấp quản lý để họ nắm được hiệu quả làm việc của đội",
+          "So với mức trung bình chung của ngành để biết đội đang ở vị trí nào trên thị trường"
+        ],
+        "correct": 0,
+        "explanation": "Chúng có giá trị nhất khi dùng làm chẩn đoán: bạn thay đổi một thứ và xem bốn con số phản ứng thế nào. Đặt mục tiêu cho từng cái là cách nhanh nhất để mất giá trị đó."
+      }
+    ],
+    "keyTakeaways": [
+      "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói.",
+      "Phát hành thường xuyên đi cùng tỷ lệ hỏng thấp vì mỗi lần nhỏ hơn.",
+      "Đo cả bốn: mỗi cặp là đối trọng của cặp kia, đo một nhóm thì nhóm kia tụt.",
+      "Thời gian từ mã tới sản phẩm đo phần kỹ thuật, không đo phần lập kế hoạch.",
+      "Dùng để theo dõi xu hướng của chính đội mình, không dùng để so giữa các đội."
+    ],
+    "practicePrompt": {
+      "question": "Cấp trên muốn đặt mục tiêu tăng tần suất phát hành lên gấp đôi. Nên góp ý gì?",
+      "options": [
+        "Đề nghị theo dõi cả bốn con số, để thấy tỷ lệ hỏng có tăng theo không",
+        "Đồng ý vì phát hành thường xuyên đã được chứng minh là đi cùng chất lượng cao hơn",
+        "Phản đối vì đặt mục tiêu cho một chỉ số sẽ dẫn tới việc tối ưu riêng chỉ số đó",
+        "Đề nghị đặt mục tiêu cho cả bốn con số cùng lúc để tránh mất cân bằng"
+      ],
+      "correct": 0,
+      "explanation": "Phản đối thẳng thì bỏ mất một mục tiêu hợp lý; đặt mục tiêu cho cả bốn thì vẫn là biến chẩn đoán thành mục tiêu, chỉ là bốn lần thay vì một. Theo dõi cả bốn giữ được ý định ban đầu mà vẫn thấy được cái giá."
+    },
+    "summary": {
+      "keyIdea": "Đi nhanh hay đi chắc là câu hỏi sai - đội tốt đạt cao ở cả hai nhóm.",
+      "formula": "Hai con số tốc độ + hai con số ổn định, luôn nhìn cùng nhau.",
+      "commonMistake": "Đặt mục tiêu cho một con số, và nhận lại chính con số đó bị tối ưu.",
+      "action": "Đo bốn con số này cho đội mình trong quý vừa rồi."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Đo bốn con số cho đội bạn trong quý vừa rồi: tần suất phát hành, thời gian từ mã tới sản phẩm, tỷ lệ thay đổi gây hỏng, thời gian khôi phục.",
+      "secondary": "Rồi nhìn chúng cùng nhau. Nếu một con số rất tốt trong khi cái đối trọng của nó rất tệ, đó là dấu hiệu đội đang tối ưu sai chỗ mà không ai chủ ý làm vậy."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Cuộc tranh luận đi nhanh hay đi chắc kéo dài trong mọi đội. Bốn con số trong bài này cho thấy nó là một câu hỏi sai - và đó là điều đáng ngạc nhiên nhất về chúng."
+      },
+      {
+        "type": "heading",
+        "text": "Hai nhóm"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Bốn con số",
+        "concepts": [
+          {
+            "vi": "Tần suất phát hành",
+            "en": "velocity",
+            "def": "Bao lâu một lần mã mới ra tới người dùng."
+          },
+          {
+            "vi": "Thời gian từ mã tới sản phẩm",
+            "en": "velocity",
+            "def": "Từ lúc mã được gộp vào nhánh chính tới lúc nó chạy thật. Đo phần kỹ thuật, không đo phần lập kế hoạch."
+          },
+          {
+            "vi": "Tỷ lệ thay đổi gây hỏng",
+            "en": "stability",
+            "def": "Bao nhiêu phần trăm lần phát hành dẫn tới sự cố."
+          },
+          {
+            "vi": "Thời gian khôi phục",
+            "en": "stability",
+            "def": "Bao lâu để đưa mọi thứ về bình thường sau một lần hỏng."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Điều ngược trực giác"
+      },
+      {
+        "type": "callout",
+        "label": "Hai nhóm không đánh đổi nhau",
+        "text": "Đội phát hành nhiều lần mỗi ngày thường có tỷ lệ hỏng THẤP HƠN đội phát hành mỗi quý. Lý do lặp lại điều chặng triển khai đã nói: rủi ro nằm ở kích thước thay đổi, không ở tần suất. Mỗi lần nhỏ thì tìm nguyên nhân nhanh và quay lại rẻ."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao phải đo cả bốn"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chỉ đo tốc độ",
+          "text": "Đội đẩy mọi thứ ra nhanh và tỷ lệ hỏng tăng. Con số được đo trông rất đẹp trong khi thứ nó đại diện thì xấu đi."
+        },
+        "right": {
+          "label": "Chỉ đo ổn định",
+          "text": "Đội gom thay đổi lại cho chắc và tần suất tụt. Cũng cùng một cơ chế, chỉ theo hướng ngược lại."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi cặp là đối trọng của cặp kia, nên bốn con số chỉ có nghĩa khi nhìn cùng lúc. Đây là ví dụ rất rõ cho điều bài về chất lượng mã đã nói: một chỉ số thành mục tiêu thì nó bị tối ưu, chứ không phải thứ nó đại diện."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Từ đó ra cách dùng đúng: theo dõi XU HƯỚNG của chính đội mình qua thời gian, để biết một thay đổi có tác dụng không. Đừng so giữa các đội và đừng đặt mục tiêu cho từng con số.",
+          "Bài sau là một loại sự cố mà bốn con số này không cảnh báo được: lỗi lan truyền giữa các dịch vụ."
         ]
       }
     ]
   },
   {
     "id": 173,
-    "slug": "giao-tiep-trong-su-co",
-    "title": "Nói gì khi bạn chưa biết chuyện gì đang xảy ra",
-    "subtitle": "Im lặng không phải trung lập. Người dùng lấp khoảng trống ấy bằng giả định tệ hơn sự thật.",
-    "duration": "8 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📢",
+    "slug": "loi-lan-truyen-giua-cac-dich-vu",
+    "title": "Lỗi lan truyền giữa các dịch vụ",
+    "subtitle": "Một dịch vụ chậm kéo theo cả hệ thống, và nó lan theo hướng ngược với hướng phụ thuộc.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
     "track": "professional",
-    "whyItMatters": "Cách một sự cố được kể lại ảnh hưởng tới niềm tin nhiều hơn độ dài của nó. Một sự cố hai giờ có cập nhật đều đặn để lại ít tổn thất hơn một sự cố hai mươi phút trong im lặng hoàn toàn.",
-    "openingQuestion": "Mười phút sau khi tuyên bố, bạn vẫn chưa biết nguyên nhân. Nên thông báo gì ra ngoài?",
+    "emoji": "🌊",
+    "isFundamental": true,
+    "whyItMatters": "Đây là loại sự cố khó chẩn đoán nhất trong hệ thống nhiều dịch vụ: nơi bạn thấy triệu chứng không phải nơi có vấn đề, và mọi bảng theo dõi đều báo đỏ cùng lúc.",
+    "openingQuestion": "Một dịch vụ ở tầng dưới chậm đi. Điều gì xảy ra với các dịch vụ gọi nó?",
     "openingOptions": [
-      "Nói rõ cái gì đang hỏng, ai bị ảnh hưởng, và khi nào sẽ cập nhật tiếp",
-      "Chờ tới khi xác định được nguyên nhân rồi thông báo một lần cho đầy đủ",
-      "Thông báo rằng hệ thống đang gặp sự cố kỹ thuật và đội đang xử lý",
-      "Ước tính thời gian khắc phục để người dùng biết mà sắp xếp công việc"
+      "Chúng giữ kết nối chờ lâu hơn, cạn dần luồng xử lý, rồi chậm theo dù bản thân vẫn khoẻ",
+      "Chúng nhận được lỗi hết thời gian chờ và chuyển sang xử lý phương án dự phòng",
+      "Chúng bị ảnh hưởng tương ứng với tỷ lệ yêu cầu đi qua dịch vụ chậm đó",
+      "Chúng vẫn hoạt động bình thường cho tới khi dịch vụ kia ngừng hẳn hoàn toàn"
     ],
     "correctOption": 0,
-    "explanation": "Điều người bị ảnh hưởng cần không phải nguyên nhân mà là ba thứ: cái gì đang không dùng được, có phải mình không, và bao giờ biết thêm. Cả ba đều trả lời được ngay từ phút thứ mười mà không cần biết nguyên nhân. Một thông báo chung chung kiểu đang gặp sự cố kỹ thuật thì không nói được gì trong ba thứ ấy, còn ước tính thời gian khi chưa biết nguyên nhân là cách nhanh nhất để phải xin lỗi lần thứ hai.",
+    "explanation": "Mỗi yêu cầu đang chờ chiếm một luồng hoặc một kết nối. Dịch vụ ở dưới chậm gấp mười lần nghĩa là các luồng ở trên bị giữ lâu gấp mười lần, và chúng cạn - lúc đó dịch vụ ở trên không phục vụ được cả những yêu cầu không liên quan gì tới dịch vụ chậm kia. Đó là lý do triệu chứng lan lên trên chứ không dừng ở chỗ có vấn đề.",
     "diagram": [
       {
-        "label": "Cái gì đang không dùng được",
+        "label": "Dịch vụ dưới chậm → luồng ở trên bị giữ lâu",
         "arrow": true
       },
       {
-        "label": "Ai bị ảnh hưởng, ai không",
+        "label": "Luồng cạn → dịch vụ trên chậm theo, dù nó vẫn khoẻ",
         "arrow": true
       },
       {
-        "label": "Khi nào có cập nhật tiếp",
+        "label": "Lan lên trên, ngược hướng phụ thuộc",
         "arrow": true
       },
       {
-        "label": "Ba điều này trả lời được trước khi biết nguyên nhân"
+        "label": "Chặn bằng: thời gian chờ, cầu dao, cách ly tài nguyên"
       }
     ],
     "realWorldExample": {
-      "company": "Im lặng bị đọc thành tệ hơn",
-      "description": "Một dịch vụ gián đoạn hai mươi phút không có thông báo nào. Diễn đàn khách hàng kết luận rằng dữ liệu đã mất, và đội mất ba ngày để sửa lại nhận định đó - lâu hơn nhiều so với chính sự cố."
-    },
-    "keyTakeaways": [
-      "Cập nhật theo nhịp cố định, kể cả khi chưa có gì mới để nói.",
-      "Hứa thời điểm cập nhật tiếp, không hứa thời điểm khắc phục.",
-      "Nói phạm vi ảnh hưởng cụ thể để người không bị ảnh hưởng yên tâm.",
-      "Tránh thuật ngữ nội bộ, vì người đọc không ở trong hệ thống của bạn."
-    ],
-    "summary": {
-      "keyIdea": "Thông báo sớm về phạm vi và nhịp cập nhật, thay vì chờ đủ thông tin.",
-      "formula": "Cái gì hỏng, ai bị ảnh hưởng, khi nào cập nhật tiếp.",
-      "commonMistake": "Hứa thời điểm khắc phục khi còn chưa biết nguyên nhân."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Viết sẵn mẫu thông báo đầu tiên với ba chỗ trống cho phạm vi, ảnh hưởng và thời điểm cập nhật. Lúc sự cố, không ai còn đầu óc để nghĩ cách diễn đạt."
-    },
-    "practicePrompt": {
-      "question": "Vì sao nên hứa thời điểm cập nhật thay vì thời điểm khắc phục?",
-      "options": [
-        "Vì thời điểm cập nhật là thứ bạn kiểm soát được, còn thời điểm sửa xong thì không",
-        "Vì người dùng quan tâm tới tần suất thông tin hơn là tới kết quả cuối",
-        "Vì thời điểm khắc phục cần được cấp quản lý phê duyệt trước khi công bố",
-        "Vì hứa thời điểm khắc phục có thể tạo ra ràng buộc pháp lý với khách hàng"
-      ],
-      "correct": 0,
-      "explanation": "Bạn chắc chắn viết được một dòng sau ba mươi phút nữa, kể cả khi dòng đó nói rằng chưa có gì mới. Còn hứa sửa xong trong một giờ khi chưa biết nguyên nhân là đặt cược, và nếu thua thì bạn mất niềm tin lần thứ hai ngay giữa lúc đang xử lý sự cố."
+      "company": "Đợt gọi lại đồng loạt",
+      "description": "Một dịch vụ hồi phục sau sự cố và ngay lập tức nhận toàn bộ lượng yêu cầu bị dồn lại, cộng với các lượt thử lại của mọi máy khách - nên nó sập lần thứ hai. Đây là lý do cơ chế thử lại phải có lượng ngẫu nhiên trong khoảng chờ."
     },
     "quiz": [
       {
-        "question": "Ba điều cần có trong thông báo đầu tiên là gì?",
+        "question": "Vì sao lỗi lan theo hướng ngược với hướng phụ thuộc?",
         "options": [
-          "Cái gì đang hỏng, ai bị ảnh hưởng, và khi nào cập nhật tiếp",
-          "Nguyên nhân sơ bộ, mức độ nghiêm trọng, và thời gian khắc phục",
-          "Thời điểm bắt đầu, số người bị ảnh hưởng, và kênh liên hệ hỗ trợ",
-          "Lời xin lỗi, cam kết khắc phục, và biện pháp bồi thường dự kiến"
+          "Vì dịch vụ gọi phải chờ, nên tài nguyên của nó cạn dù bản thân nó không có lỗi",
+          "Vì các dịch vụ ở tầng trên thường có ít tài nguyên hơn tầng dưới nên yếu hơn",
+          "Vì lỗi được truyền ngược lên qua các thông báo lỗi giữa các dịch vụ với nhau",
+          "Vì các dịch vụ tầng trên phải xử lý thêm phần logic dự phòng khi tầng dưới lỗi"
         ],
         "correct": 0,
-        "explanation": "Cả ba đều trả lời được từ phút thứ mười mà không cần biết nguyên nhân. Nguyên nhân và thời gian khắc phục thì không, nên đưa chúng vào thông báo đầu là tự tạo ra một lời hứa sẽ phải rút lại."
+        "explanation": "Chữ DÙ BẢN THÂN NÓ KHÔNG CÓ LỖI là mấu chốt, và nó giải thích vì sao loại sự cố này khó chẩn đoán: nơi bạn thấy triệu chứng nặng nhất thường không phải nơi có vấn đề."
       },
       {
-        "question": "Vì sao im lặng gây hại?",
+        "question": "Cơ chế nào chặn được lỗi lan truyền hiệu quả nhất?",
         "options": [
-          "Vì người dùng lấp khoảng trống bằng giả định thường tệ hơn sự thật",
-          "Vì các quy định về dịch vụ yêu cầu thông báo trong một khung giờ nhất định",
-          "Vì bộ phận hỗ trợ không có thông tin để trả lời khách hàng",
-          "Vì đối thủ có thể lợi dụng khoảng lặng để tiếp cận khách hàng"
+          "Cách ly tài nguyên: mỗi phụ thuộc có bể luồng riêng nên một cái chậm không chiếm hết",
+          "Tăng số luồng xử lý lên để hệ thống chịu được nhiều yêu cầu đang chờ hơn",
+          "Ghi nhật ký thật chi tiết để nhanh chóng xác định được dịch vụ nào đang gây ra vấn đề đó",
+          "Giảm số lượng phụ thuộc giữa các dịch vụ trong hệ thống xuống mức tối thiểu"
         ],
         "correct": 0,
-        "explanation": "Một gián đoạn hai mươi phút không thông báo có thể bị đọc thành mất dữ liệu, và sửa lại nhận định đó tốn nhiều ngày. Bộ phận hỗ trợ thiếu thông tin cũng là vấn đề thật nhưng nó là hệ quả, không phải nguyên nhân gốc."
+        "explanation": "Tăng số luồng chỉ dời thời điểm cạn ra xa hơn chứ không chặn được cơ chế. Giảm phụ thuộc là hướng đúng về lâu dài nhưng nó là quyết định kiến trúc, còn cách ly tài nguyên làm được ngay trên hệ thống hiện tại."
       },
       {
-        "question": "Vì sao nên nói rõ phạm vi ảnh hưởng?",
+        "question": "Vì sao đợt gọi lại đồng loạt lại làm dịch vụ sập lần thứ hai?",
         "options": [
-          "Để những người không bị ảnh hưởng không phải lo lắng và liên hệ hỗ trợ",
-          "Để bộ phận hỗ trợ ưu tiên xử lý đúng nhóm khách hàng bị ảnh hưởng",
-          "Để đội kỹ thuật khoanh vùng được nguyên nhân nhanh hơn",
-          "Để có cơ sở tính mức bồi thường theo cam kết dịch vụ đã ký"
+          "Vì nó nhận cả lượng yêu cầu bị dồn lẫn các lượt thử lại của mọi máy khách cùng lúc",
+          "Vì dịch vụ vừa khởi động lại chưa kịp nạp bộ nhớ đệm nên xử lý chậm hơn bình thường",
+          "Vì các kết nối cũ chưa được đóng hết nên tài nguyên chưa được giải phóng hoàn toàn",
+          "Vì hệ thống tự động mở rộng chưa kịp phản ứng với đợt tăng tải đột ngột đó"
         ],
         "correct": 0,
-        "explanation": "Một thông báo nói cả hệ thống đang gián đoạn khi thật ra chỉ chức năng xuất báo cáo bị ảnh hưởng sẽ tạo ra một làn sóng liên hệ từ những người vốn không gặp vấn đề gì. Cụ thể hoá phạm vi là cách giảm tải cho chính đội hỗ trợ."
+        "explanation": "Hai nguồn tải cộng vào nhau đúng lúc dịch vụ yếu nhất. Đây là lý do cụ thể nhất cho việc cơ chế thử lại phải có lượng ngẫu nhiên - không có nó thì mọi máy khách gọi lại đúng cùng một thời điểm."
       },
       {
-        "question": "Khi chưa có gì mới thì nên làm gì vào thời điểm đã hứa cập nhật?",
+        "question": "Vì sao thời gian chờ ngắn lại quan trọng trong hệ thống nhiều dịch vụ?",
         "options": [
-          "Vẫn cập nhật, nói rằng chưa có tiến triển và hẹn mốc tiếp theo",
-          "Lùi thời điểm cập nhật lại cho tới khi có được thông tin gì đáng kể",
-          "Gửi thông báo ngắn cho riêng nhóm khách hàng lớn nhất",
-          "Chuyển sang cập nhật qua kênh hỗ trợ thay vì kênh công khai"
+          "Vì nó giới hạn thời gian một luồng bị giữ, nên tài nguyên không cạn vì chờ",
+          "Vì nó giúp người dùng nhận được phản hồi nhanh hơn thay vì phải đợi lâu",
+          "Vì thời gian chờ dài làm tăng chi phí hạ tầng do phải duy trì nhiều kết nối",
+          "Vì các dịch vụ hiện đại thường phản hồi rất nhanh nên chờ lâu là không cần thiết"
         ],
         "correct": 0,
-        "explanation": "Bỏ lỡ một mốc đã hứa gây tổn thất lớn hơn nội dung của mốc ấy, vì nó khiến mọi mốc sau đó mất giá trị. Một dòng thừa nhận chưa có tiến triển vẫn giữ được cam kết về nhịp."
+        "explanation": "Thời gian chờ ở đây không phải để phục vụ người dùng mà để bảo vệ chính dịch vụ đang gọi. Đó là lý do nó nên ngắn hơn nhiều so với mức người dùng chịu được."
       },
       {
-        "question": "Vì sao nên tránh thuật ngữ nội bộ trong thông báo?",
+        "question": "Vì sao loại sự cố này khó chẩn đoán?",
         "options": [
-          "Vì người đọc không biết các thành phần bên trong hệ thống của bạn",
-          "Vì thuật ngữ kỹ thuật có thể tiết lộ thông tin về kiến trúc hệ thống",
-          "Vì các bản dịch sang ngôn ngữ khác sẽ không chính xác",
-          "Vì thuật ngữ làm thông báo dài hơn mức cần thiết"
+          "Vì mọi bảng theo dõi đều báo đỏ cùng lúc nên khó biết chỗ nào là nguồn gốc",
+          "Vì nó chỉ xảy ra khi hệ thống chịu tải cao nên khó tái hiện trong thử nghiệm",
+          "Vì các dịch vụ thường không ghi lại đủ thông tin về các lượt gọi lẫn nhau",
+          "Vì nguyên nhân thường nằm ở tầng hạ tầng chứ không nằm trong mã ứng dụng"
         ],
         "correct": 0,
-        "explanation": "Nói rằng cụm xử lý hàng đợi đang suy giảm thì với người dùng cũng như không nói gì. Điều họ cần biết là chức năng nào của sản phẩm hiện không dùng được, diễn đạt bằng tên mà họ nhìn thấy trên màn hình."
+        "explanation": "Nơi triệu chứng nặng nhất thường không phải nơi có vấn đề, và đội thường bắt đầu điều tra ở dịch vụ mà người dùng phản ánh - tức là ở tầng trên cùng, xa nguồn gốc nhất."
       }
     ],
+    "keyTakeaways": [
+      "Dịch vụ dưới chậm giữ luồng ở trên lâu hơn, và luồng cạn thì tầng trên chậm theo.",
+      "Lan NGƯỢC hướng phụ thuộc - nơi thấy triệu chứng không phải nơi có vấn đề.",
+      "Cách ly tài nguyên: mỗi phụ thuộc một bể luồng riêng, làm được ngay hôm nay.",
+      "Thời gian chờ ngắn để bảo vệ dịch vụ đang gọi, không phải để phục vụ người dùng.",
+      "Đợt gọi lại đồng loạt làm dịch vụ sập lần hai - vì vậy thử lại phải có ngẫu nhiên."
+    ],
+    "practicePrompt": {
+      "question": "Ba dịch vụ cùng báo đỏ. Nên bắt đầu điều tra ở đâu?",
+      "options": [
+        "Ở dịch vụ nằm sâu nhất trong chuỗi phụ thuộc, vì lỗi lan lên chứ không lan xuống",
+        "Ở dịch vụ có triệu chứng nặng nhất, vì đó là nơi vấn đề biểu hiện rõ ràng nhất",
+        "Ở dịch vụ mà người dùng phản ánh, vì đó là nơi ảnh hưởng tới trải nghiệm trực tiếp",
+        "Ở cả ba cùng lúc bằng cách chia người điều tra để tiết kiệm thời gian"
+      ],
+      "correct": 0,
+      "explanation": "Vì lỗi lan ngược hướng phụ thuộc, dịch vụ sâu nhất trong chuỗi có khả năng là nguồn cao nhất. Bắt đầu ở nơi người dùng phản ánh là bắt đầu ở tầng xa nguồn gốc nhất - đúng cái bẫy của loại sự cố này."
+    },
+    "summary": {
+      "keyIdea": "Triệu chứng lan lên trên; nơi bạn thấy nó không phải nơi có vấn đề.",
+      "formula": "Thời gian chờ ngắn + cầu dao + cách ly tài nguyên = chặn được lan truyền.",
+      "commonMistake": "Bắt đầu điều tra ở dịch vụ mà người dùng phản ánh, tức xa nguồn nhất.",
+      "action": "Vẽ chuỗi phụ thuộc của hệ thống và tìm dịch vụ sâu nhất."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Vẽ chuỗi phụ thuộc giữa các dịch vụ của bạn và đánh dấu dịch vụ nằm sâu nhất. Đó là nơi bắt đầu điều tra khi nhiều thứ cùng báo đỏ.",
+      "secondary": "Rồi kiểm hai thứ ở mỗi lượt gọi ra ngoài: có thời gian chờ tối đa không, và các phụ thuộc có dùng chung một bể luồng không. Dùng chung là chỗ lan truyền đi qua."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Vai liên lạc là vai bị bỏ trống nhiều nhất, vì nó có vẻ ít quan trọng hơn việc sửa. Nhưng cách một sự cố được kể lại ảnh hưởng tới niềm tin nhiều hơn độ dài của nó."
+        "text": "Trong hệ thống một khối, một phần chậm thì phần đó chậm. Trong hệ thống nhiều dịch vụ, một phần chậm có thể làm toàn bộ ngừng phục vụ - và đây là loại sự cố khó chẩn đoán nhất."
       },
       {
         "type": "heading",
-        "text": "Ba thứ trả lời được ngay"
+        "text": "Cơ chế"
+      },
+      {
+        "type": "callout",
+        "label": "Chờ cũng tiêu tài nguyên",
+        "text": "Mỗi yêu cầu đang chờ chiếm một luồng hoặc một kết nối. Dịch vụ ở dưới chậm gấp mười lần nghĩa là các luồng ở trên bị giữ lâu gấp mười lần - và chúng cạn. Lúc đó dịch vụ ở trên không phục vụ được cả những yêu cầu không liên quan gì tới dịch vụ chậm kia."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hệ quả quan trọng nhất: lỗi lan NGƯỢC hướng phụ thuộc. Bạn phụ thuộc vào dịch vụ dưới, nhưng triệu chứng nặng nhất lại hiện ở tầng trên - và đó là nơi đội thường bắt đầu điều tra, vì đó là nơi người dùng phản ánh."
+      },
+      {
+        "type": "heading",
+        "text": "Ba lớp chặn"
       },
       {
         "type": "list",
         "items": [
-          "Cái gì đang không dùng được - bằng tên chức năng người dùng nhìn thấy, không bằng tên dịch vụ nội bộ.",
-          "Ai bị ảnh hưởng và ai không - để người ngoài phạm vi không phải lo và không phải liên hệ.",
-          "Khi nào có cập nhật tiếp - một mốc cụ thể, và giữ đúng mốc ấy."
+          "Thời gian chờ NGẮN cho mọi lượt gọi ra ngoài. Ở đây nó không phải để phục vụ người dùng mà để bảo vệ chính dịch vụ đang gọi - nên nó nên ngắn hơn nhiều mức người dùng chịu được.",
+          "Cầu dao ngắt mạch: ngừng gọi hẳn khi lỗi liên tiếp, để không giữ luồng cho một thứ đằng nào cũng hỏng.",
+          "Cách ly tài nguyên: mỗi phụ thuộc có bể luồng riêng. Một cái chậm chỉ chiếm được phần của nó."
         ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Không có thứ nào trong ba thứ này cần biết nguyên nhân. Đó là lý do thông báo đầu tiên gửi được sau mười phút chứ không phải sau hai giờ."
-      },
-      {
-        "type": "callout",
-        "label": "Hứa nhịp, đừng hứa kết quả",
-        "text": "Bạn chắc chắn viết được một dòng sau ba mươi phút nữa. Bạn không chắc sửa xong trong một giờ khi còn chưa biết nguyên nhân. Hứa cái thứ hai rồi trượt là mất niềm tin lần thứ hai, ngay giữa lúc đang xử lý lần thứ nhất."
-      },
-      {
-        "type": "heading",
-        "text": "Im lặng không phải trung lập"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khoảng trống thông tin luôn được lấp, và thứ lấp vào thường tệ hơn sự thật. Một gián đoạn hai mươi phút không thông báo có thể bị hiểu thành mất dữ liệu, và việc sửa lại nhận định ấy tốn nhiều ngày - dài hơn chính sự cố nhiều lần."
-      },
-      {
-        "type": "callout",
-        "label": "Viết mẫu trước",
-        "text": "Giữa lúc sự cố, không ai còn đầu óc để cân nhắc cách diễn đạt. Một mẫu có ba chỗ trống cho phạm vi, ảnh hưởng và mốc cập nhật biến việc soạn thông báo từ mười phút thành một phút."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Người bị ảnh hưởng không cần biết nguyên nhân. Họ cần biết mình có bị ảnh hưởng không và bao giờ được nghe tin tiếp.",
-          "Bài sau về thứ tự ưu tiên bên trong cuộc ứng phó: chữa cháy trước hay tìm nguồn lửa trước."
-        ]
-      }
-    ]
-  },
-  {
-    "id": 174,
-    "slug": "giam-thieu-truoc-nguyen-nhan-sau",
-    "title": "Giảm thiểu trước, nguyên nhân sau",
-    "subtitle": "Mục tiêu trong sự cố là dừng thiệt hại, không phải hiểu chuyện gì đã xảy ra.",
-    "duration": "8 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🩹",
-    "track": "professional",
-    "whyItMatters": "Đây là thói quen khó bỏ nhất với kỹ sư giỏi: bản năng nghề nghiệp là hiểu rồi mới sửa. Trong sự cố thì thứ tự ấy đắt, vì đồng hồ vẫn chạy trong lúc bạn đang hiểu.",
-    "openingQuestion": "Sự cố bắt đầu ngay sau một lần triển khai. Việc nên làm trước tiên là gì?",
-    "openingOptions": [
-      "Quay lui bản triển khai đó rồi mới tìm hiểu nó đã làm gì",
-      "Đọc thay đổi trong bản triển khai để xác nhận nó là nguyên nhân",
-      "Kiểm tra xem có thay đổi nào khác cùng thời điểm hay không",
-      "Thu thập nhật ký và số liệu trước khi trạng thái hệ thống thay đổi"
-    ],
-    "correctOption": 0,
-    "explanation": "Quay lui thường mất vài phút và nó dừng thiệt hại ngay lập tức; nếu sự cố không hết thì bạn vừa loại được một giả thuyết với chi phí rất thấp. Đọc mã để xác nhận trước thì có thể mất nửa giờ, và trong nửa giờ ấy người dùng vẫn chịu ảnh hưởng. Thu thập dữ liệu trước khi trạng thái đổi là một lo ngại có thật và nên làm - nhưng làm song song, bằng cách chụp lại nhật ký và biểu đồ, chứ không phải bằng cách hoãn việc giảm thiểu.",
-    "diagram": [
-      {
-        "label": "Sự cố đang diễn ra",
-        "arrow": true
-      },
-      {
-        "label": "Ưu tiên 1: dừng thiệt hại cho người dùng",
-        "arrow": true
-      },
-      {
-        "label": "Chụp lại bằng chứng song song",
-        "arrow": true
-      },
-      {
-        "label": "Ưu tiên 2: tìm nguyên nhân, sau khi đã yên"
-      }
-    ],
-    "realWorldExample": {
-      "company": "Nửa giờ đọc mã trước khi quay lui",
-      "description": "Đội dành ba mươi phút đọc bản thay đổi để chắc chắn nó là nguyên nhân trước khi dám quay lui. Việc quay lui sau đó mất bốn phút, và nó đúng là nguyên nhân."
-    },
-    "keyTakeaways": [
-      "Trong sự cố, mục tiêu là dừng thiệt hại chứ không phải hiểu nguyên nhân.",
-      "Ưu tiên các hành động đảo ngược được: quay lui, tắt tính năng, chuyển lưu lượng.",
-      "Chụp lại bằng chứng song song để việc hồi cứu về sau vẫn làm được.",
-      "Một giả thuyết bị loại nhanh có giá trị hơn một giả thuyết được xác nhận chậm."
-    ],
-    "summary": {
-      "keyIdea": "Dừng thiệt hại trước bằng hành động rẻ và đảo ngược được, điều tra sau.",
-      "formula": "Giảm thiểu, chụp bằng chứng, rồi mới hiểu.",
-      "commonMistake": "Đòi hiểu chắc chắn nguyên nhân trước khi dám hành động."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Liệt kê các đòn bẩy giảm thiểu mà đội có thể kéo trong hai phút: quay lui, tắt tính năng, chuyển vùng, hạ tải. Nếu danh sách trống thì đó là việc cần làm trước sự cố tới."
-    },
-    "practicePrompt": {
-      "question": "Vì sao nên ưu tiên những hành động đảo ngược được?",
-      "options": [
-        "Vì nếu đoán sai thì bạn quay lại được mà không mất thêm gì",
-        "Vì chúng thường thực hiện nhanh hơn các hành động khác",
-        "Vì chúng không cần được phê duyệt bởi chính người chỉ huy sự cố",
-        "Vì chúng ít có nguy cơ gây ra lỗi mới trong hệ thống"
-      ],
-      "correct": 0,
-      "explanation": "Trong sự cố bạn hành động dựa trên thông tin không đầy đủ, nên khả năng đoán sai là cao. Một hành động đảo ngược được biến việc đoán sai thành mất vài phút, còn một hành động không đảo ngược được biến nó thành một sự cố thứ hai chồng lên sự cố thứ nhất."
-    },
-    "quiz": [
-      {
-        "question": "Mục tiêu chính trong lúc sự cố đang diễn ra là gì?",
-        "options": [
-          "Dừng thiệt hại đang gây ra cho người dùng",
-          "Xác định chính xác nguyên nhân gốc của vấn đề",
-          "Thu thập đầy đủ dữ liệu cho báo cáo hồi cứu",
-          "Khôi phục hệ thống về đúng trạng thái trước sự cố"
-        ],
-        "correct": 0,
-        "explanation": "Nguyên nhân gốc là mục tiêu của giai đoạn sau, khi không còn ai đang chịu ảnh hưởng. Khôi phục về trạng thái cũ thì đôi khi cũng không phải mục tiêu - một chế độ hạn chế vẫn phục vụ được thì tốt hơn một hệ thống đầy đủ nhưng chưa sẵn sàng."
-      },
-      {
-        "question": "Vì sao quay lui thường là hành động đầu tiên tốt?",
-        "options": [
-          "Vì nó rẻ, nhanh, và loại được một giả thuyết ngay cả khi không hiệu quả",
-          "Vì phần lớn sự cố đều bắt nguồn từ một lần triển khai gần đó",
-          "Vì nó khôi phục hệ thống về trạng thái đã được kiểm chứng",
-          "Vì nó không đòi hỏi hiểu biết sâu về phần mã đang có vấn đề"
-        ],
-        "correct": 0,
-        "explanation": "Giá trị lớn nhất nằm ở nhánh thất bại: quay lui mà sự cố vẫn còn thì bạn vừa loại được nguyên nhân khả dĩ nhất với chi phí bốn phút. Một giả thuyết bị loại nhanh đáng giá hơn một giả thuyết được xác nhận sau nửa giờ."
-      },
-      {
-        "question": "Làm sao vừa giảm thiểu vừa giữ được bằng chứng?",
-        "options": [
-          "Chụp lại nhật ký, biểu đồ và trạng thái song song với việc xử lý",
-          "Giữ nguyên một máy chủ ở trạng thái lỗi để điều tra sau",
-          "Hoãn hành động giảm thiểu vài phút để thu thập dữ liệu",
-          "Ghi lại chi tiết mọi thao tác đã được thực hiện trong kênh ứng phó"
-        ],
-        "correct": 0,
-        "explanation": "Giữ một máy ở trạng thái lỗi cũng là kỹ thuật hợp lệ trong vài trường hợp, nhưng nó phức tạp và không phải lúc nào cũng làm được. Chụp ảnh màn hình biểu đồ và lưu một đoạn nhật ký thì mất mười giây và làm được ở mọi sự cố."
-      },
-      {
-        "question": "Vì sao bản năng hiểu rồi mới sửa lại đắt trong sự cố?",
-        "options": [
-          "Vì đồng hồ thiệt hại vẫn chạy trong suốt thời gian bạn đang tìm hiểu",
-          "Vì việc tìm hiểu dưới áp lực thường dẫn tới kết luận sai lệch",
-          "Vì thông tin cần thiết để hiểu thường chưa có sẵn lúc đó",
-          "Vì người chỉ huy sự cố cần một quyết định nhanh để phân công"
-        ],
-        "correct": 0,
-        "explanation": "Bản năng ấy hoàn toàn đúng trong công việc thường ngày, và đó là lý do nó khó bỏ. Khác biệt duy nhất là trong sự cố có một chi phí chạy theo từng phút, và chi phí ấy không xuất hiện khi bạn gỡ lỗi một cách bình thường."
-      },
-      {
-        "question": "Danh sách đòn bẩy giảm thiểu nên được chuẩn bị khi nào?",
-        "options": [
-          "Trước sự cố, vì lúc đang xử lý thì không ai nghĩ ra được đủ",
-          "Trong lúc hồi cứu, dựa trên những gì đã dùng ở sự cố vừa rồi",
-          "Ngay khi tuyên bố sự cố, do người chỉ huy liệt kê ra",
-          "Định kỳ mỗi quý, cùng với việc rà soát kiến trúc hệ thống"
-        ],
-        "correct": 0,
-        "explanation": "Dưới áp lực, người ta chỉ nhớ được một hoặc hai lựa chọn quen thuộc nhất. Một danh sách viết sẵn - quay lui, tắt tính năng, chuyển vùng, hạ tải, chặn nguồn - biến việc nhớ thành việc đọc."
-      }
-    ],
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Kỹ sư giỏi được rèn để hiểu vấn đề trước khi sửa. Đó là thói quen tốt trong mọi hoàn cảnh trừ một: khi đồng hồ thiệt hại đang chạy."
-      },
-      {
-        "type": "heading",
-        "text": "Hai giai đoạn, hai mục tiêu"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Trong sự cố",
-          "text": "Mục tiêu là dừng thiệt hại. Hành động rẻ, nhanh, đảo ngược được. Không cần hiểu đúng, chỉ cần hết chảy máu."
+          "label": "Tăng số luồng",
+          "text": "Nghe như giải pháp trực tiếp, nhưng nó chỉ dời thời điểm cạn ra xa hơn. Cơ chế vẫn nguyên."
         },
         "right": {
-          "label": "Sau sự cố",
-          "text": "Mục tiêu là hiểu. Có thời gian, có dữ liệu, không ai đang chịu ảnh hưởng. Đây mới là chỗ tìm nguyên nhân gốc."
+          "label": "Cách ly tài nguyên",
+          "text": "Chặn đúng đường lan truyền, và làm được ngay trên hệ thống hiện tại mà không cần đổi kiến trúc."
         }
-      },
-      {
-        "type": "callout",
-        "label": "Giá trị nằm ở nhánh thất bại",
-        "text": "Quay lui rồi mà sự cố vẫn còn thì bạn không thất bại - bạn vừa loại được giả thuyết khả dĩ nhất với chi phí bốn phút. Một giả thuyết bị loại nhanh đáng giá hơn một giả thuyết được xác nhận sau nửa giờ đọc mã."
-      },
-      {
-        "type": "heading",
-        "text": "Đòn bẩy chuẩn bị sẵn"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Quay lui bản triển khai gần nhất.",
-          "Tắt tính năng mới bằng công tắc, nếu có.",
-          "Chuyển lưu lượng sang vùng hoặc bản sao khác.",
-          "Hạ tải: tạm ngắt công việc nền, giảm tần suất, chặn nguồn gây tải bất thường."
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Dưới áp lực, người ta chỉ nhớ được một hoặc hai lựa chọn quen thuộc nhất. Một danh sách viết sẵn biến việc nhớ thành việc đọc - và nếu danh sách của đội bạn đang trống, thì đó là việc phải làm trước sự cố tới chứ không phải trong sự cố tới."
-      },
-      {
-        "type": "callout",
-        "label": "Bằng chứng chụp song song",
-        "text": "Chụp ảnh biểu đồ, lưu một đoạn nhật ký, ghi lại thời điểm. Mất mười giây và giữ cho việc hồi cứu về sau vẫn làm được - không cần hoãn việc giảm thiểu để thu thập dữ liệu."
       },
       {
         "type": "closing",
         "lines": [
-          "Trong sự cố, hiểu là việc để sau. Điều duy nhất không hoãn được là người dùng đang chịu ảnh hưởng.",
-          "Bài sau về giai đoạn thứ hai: hiểu, và làm sao để việc hiểu ấy không biến thành đi tìm người có lỗi."
+          "Một biến thể đáng nhớ: đợt gọi lại đồng loạt. Dịch vụ hồi phục và ngay lập tức nhận cả lượng yêu cầu bị dồn lẫn lượt thử lại của mọi máy khách - nên nó sập lần thứ hai.",
+          "Đó là lý do cụ thể nhất cho việc cơ chế thử lại phải có lượng ngẫu nhiên trong khoảng chờ. Bài sau là cách chuẩn bị năng lực trước khi tải tới."
+        ]
+      }
+    ],
+    "interactiveType": "tail-risk"
+  },
+  {
+    "id": 174,
+    "slug": "kiem-thu-tai-va-ke-hoach-dung-luong",
+    "title": "Kiểm thử tải và kế hoạch dung lượng",
+    "subtitle": "Câu hỏi không phải hệ thống chịu được bao nhiêu, mà nó hỏng theo cách nào.",
+    "duration": "6 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "🏋️",
+    "isFundamental": false,
+    "whyItMatters": "Biết trần chịu tải chỉ có ích nếu bạn cũng biết chuyện gì xảy ra khi vượt trần. Phần lớn đội đo được con số đầu và chưa bao giờ quan sát phần thứ hai.",
+    "openingQuestion": "Kiểm thử tải nên trả lời câu hỏi nào trước tiên?",
+    "openingOptions": [
+      "Hệ thống hỏng theo cách nào khi vượt giới hạn, và phần nào cạn trước",
+      "Hệ thống chịu được tối đa bao nhiêu yêu cầu mỗi giây trước khi bắt đầu lỗi",
+      "Cấu hình nào cho tỷ lệ giữa hiệu năng và chi phí tốt nhất ở mức tải dự kiến",
+      "Thời gian phản hồi thay đổi thế nào khi số người dùng đồng thời tăng dần lên"
+    ],
+    "correctOption": 0,
+    "explanation": "Con số trần rất dễ lỗi thời - một lần phát hành là nó đổi. Cách hỏng thì ổn định hơn nhiều và nó quyết định bạn phải chuẩn bị gì: hệ thống chậm dần đều cho bạn thời gian phản ứng, còn hệ thống đang tốt rồi sập đột ngột thì không. Ba câu kia đều đáng hỏi nhưng chúng cho ra những con số bạn phải đo lại liên tục.",
+    "diagram": [
+      {
+        "label": "Hỏi cách hỏng trước, con số trần sau",
+        "arrow": true
+      },
+      {
+        "label": "Tìm phần cạn TRƯỚC - nó hiếm khi là bộ vi xử lý",
+        "arrow": true
+      },
+      {
+        "label": "Chậm dần đều cho bạn thời gian; sập đột ngột thì không",
+        "arrow": true
+      },
+      {
+        "label": "Đo trên dữ liệu thật với hình dạng thật"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Phần cạn trước hiếm khi là bộ vi xử lý",
+      "description": "Trong phần lớn hệ thống thật, thứ cạn trước là số kết nối cơ sở dữ liệu, chiều dài hàng đợi, hoặc số luồng xử lý. Đội chuẩn bị bằng cách nâng cấu hình máy sẽ thấy mức sử dụng bộ vi xử lý vẫn thấp trong khi hệ thống đã ngừng phục vụ."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao con số trần chịu tải nhanh lỗi thời?",
+        "options": [
+          "Vì một lần phát hành có thể đổi nó, còn cách hỏng thì ổn định hơn nhiều",
+          "Vì lưu lượng thật thay đổi theo mùa nên con số đo được không đại diện",
+          "Vì hạ tầng đám mây thay đổi hiệu năng theo thời điểm nên kết quả không nhất quán",
+          "Vì các phép đo tải thường được thực hiện trong điều kiện không giống thực tế"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lý do nên ưu tiên câu hỏi về cách hỏng: nó cho ra hiểu biết dùng được lâu, còn con số thì phải đo lại sau mỗi thay đổi đáng kể."
+      },
+      {
+        "question": "Vì sao phải tìm phần cạn trước thay vì nhìn mức sử dụng chung?",
+        "options": [
+          "Vì thứ cạn trước thường là kết nối hay hàng đợi chứ không phải bộ vi xử lý",
+          "Vì mức sử dụng chung được tính trung bình nên che đi các đỉnh tải ngắn",
+          "Vì mỗi thành phần trong hệ thống có ngưỡng cảnh báo khác nhau cần theo dõi riêng",
+          "Vì mức sử dụng chung không phân biệt được tải từ người dùng với tải nội bộ"
+        ],
+        "correct": 0,
+        "explanation": "Đội chuẩn bị bằng cách nâng cấu hình máy sẽ thấy mức sử dụng bộ vi xử lý vẫn thấp trong khi hệ thống đã ngừng phục vụ - vì nút thắt nằm ở chỗ khác và tiền đã tiêu sai chỗ."
+      },
+      {
+        "question": "Vì sao cách hỏng chậm dần tốt hơn sập đột ngột?",
+        "options": [
+          "Vì nó cho bạn thời gian phản ứng, còn sập đột ngột thì không có cảnh báo nào",
+          "Vì hệ thống chậm dần vẫn phục vụ được một phần người dùng trong lúc quá tải",
+          "Vì việc khôi phục sau khi chậm dần đơn giản hơn so với sau khi sập hoàn toàn",
+          "Vì các cơ chế tự động mở rộng chỉ kịp phản ứng khi tải tăng từ từ"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai và thứ tư cũng đúng và là lợi ích thật, nhưng thời gian phản ứng mới là điều quyết định - nó biến một sự cố thành một cảnh báo mà bạn còn kịp xử lý."
+      },
+      {
+        "question": "Vì sao kiểm thử tải phải dùng dữ liệu có hình dạng thật?",
+        "options": [
+          "Vì dữ liệu thật lệch và có ngoại lệ, nên nút thắt xuất hiện ở chỗ khác",
+          "Vì dữ liệu giả thường có kích thước nhỏ hơn nên không tạo đủ tải cho hệ thống",
+          "Vì các ràng buộc toàn vẹn dữ liệu chỉ được kiểm tra với dữ liệu thật",
+          "Vì dữ liệu giả không kích hoạt được các đường xử lý phức tạp trong mã"
+        ],
+        "correct": 0,
+        "explanation": "Một truy vấn chạy tốt với dữ liệu phân bố đều có thể sập với dữ liệu lệch nặng về một giá trị. Đây là cùng điểm bài về đối chuẩn hiệu năng đã nêu, và ở đây nó quyết định con số bạn đo được có nghĩa hay không."
+      },
+      {
+        "question": "Kế hoạch dung lượng nên dựa vào cái gì?",
+        "options": [
+          "Đỉnh tải thật đã quan sát được, nhân với mức tăng trưởng dự kiến và một biên an toàn",
+          "Mức tải trung bình trong kỳ vừa qua cộng thêm một tỷ lệ dự phòng cố định đã định trước",
+          "Con số trần chịu tải đo được trong kiểm thử, trừ đi một khoảng an toàn",
+          "Dự báo số lượng người dùng mà bộ phận kinh doanh đưa ra cho kỳ tới"
+        ],
+        "correct": 0,
+        "explanation": "Trung bình là con số sai ở đây vì hệ thống phải chịu được đỉnh chứ không phải trung bình. Dự báo người dùng là đầu vào cho phần tăng trưởng nhưng nó không thay được đỉnh tải đã quan sát thật."
+      }
+    ],
+    "keyTakeaways": [
+      "Hỏi CÁCH HỎNG trước, con số trần sau - con số lỗi thời sau mỗi lần phát hành.",
+      "Tìm phần cạn TRƯỚC: thường là kết nối hoặc hàng đợi, hiếm khi là bộ vi xử lý.",
+      "Chậm dần đều cho bạn thời gian phản ứng; sập đột ngột thì không.",
+      "Dùng dữ liệu có HÌNH DẠNG thật - dữ liệu lệch làm nút thắt xuất hiện chỗ khác.",
+      "Kế hoạch dung lượng dựa trên ĐỈNH tải thật, không dựa trên trung bình."
+    ],
+    "practicePrompt": {
+      "question": "Kiểm thử cho thấy hệ thống chịu được năm nghìn yêu cầu mỗi giây. Thông tin nào còn thiếu?",
+      "options": [
+        "Ở mức năm nghìn lẻ một thì chuyện gì xảy ra, và phần nào của hệ thống cạn trước",
+        "Con số đó được đo với cấu hình phần cứng nào và ở phiên bản mã nào",
+        "Thời gian phản hồi ở mức tải đó là bao nhiêu theo phân vị thứ chín mươi chín",
+        "Hệ thống duy trì được mức tải đó trong bao lâu trước khi bắt đầu suy giảm"
+      ],
+      "correct": 0,
+      "explanation": "Ba câu kia đều là thông tin cần có và cần ghi kèm con số. Nhưng câu về cách hỏng là câu quyết định bạn phải chuẩn bị gì - và nó là câu duy nhất cho ra hiểu biết không lỗi thời sau lần phát hành tới."
+    },
+    "summary": {
+      "keyIdea": "Trần chịu tải là con số; cách hỏng là hiểu biết. Cái sau sống lâu hơn.",
+      "formula": "Cách hỏng + phần cạn trước + đỉnh tải thật nhân biên an toàn.",
+      "commonMistake": "Nâng cấu hình máy trong khi nút thắt là số kết nối cơ sở dữ liệu.",
+      "action": "Chạy tải tăng dần cho tới khi hỏng, và quan sát phần nào cạn trước."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chạy tải tăng dần trên môi trường thử nghiệm cho tới khi hệ thống hỏng, và quan sát: phần nào cạn trước, và nó hỏng theo cách chậm dần hay sập đột ngột?",
+      "secondary": "Hai câu trả lời đó quyết định bạn phải chuẩn bị gì. Và nếu phần cạn trước không phải thứ bạn đoán, bạn vừa tránh được một khoản đầu tư vào đúng chỗ không phải nút thắt."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Bài trước là chuyện xảy ra khi một dịch vụ quá tải. Bài này là cách biết trước điều đó - và câu hỏi đúng không phải câu hỏi mà phần lớn đội đặt ra."
+      },
+      {
+        "type": "heading",
+        "text": "Hai câu hỏi, và thứ tự của chúng"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chịu được bao nhiêu",
+          "text": "Một con số. Rất dễ lỗi thời - một lần phát hành là nó đổi, nên bạn phải đo lại liên tục."
+        },
+        "right": {
+          "label": "Hỏng theo cách nào",
+          "text": "Một hiểu biết. Ổn định hơn nhiều, và nó quyết định bạn phải chuẩn bị gì. Đây là câu nên hỏi trước."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao cách hỏng quan trọng hơn",
+        "text": "Hệ thống chậm dần đều cho bạn thời gian phản ứng - nó biến một sự cố thành một cảnh báo bạn còn kịp xử lý. Hệ thống đang tốt rồi sập đột ngột thì không có khoảng nào cả."
+      },
+      {
+        "type": "heading",
+        "text": "Tìm phần cạn trước"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trong phần lớn hệ thống thật, thứ cạn trước là số kết nối cơ sở dữ liệu, chiều dài hàng đợi, hoặc số luồng xử lý - hiếm khi là bộ vi xử lý. Đội chuẩn bị bằng cách nâng cấu hình máy sẽ thấy mức sử dụng bộ vi xử lý vẫn thấp trong khi hệ thống đã ngừng phục vụ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là lý do câu hỏi phần nào cạn trước đáng giá hơn con số trần: nó chỉ thẳng vào chỗ tiền nên tiêu vào, và nó cứu bạn khỏi việc đầu tư vào đúng chỗ không phải nút thắt."
+      },
+      {
+        "type": "heading",
+        "text": "Hai điều kiện để phép đo có nghĩa"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Dữ liệu có HÌNH DẠNG thật: lệch, có ngoại lệ, lớn như thật. Một truy vấn tốt với dữ liệu phân bố đều có thể sập với dữ liệu lệch nặng.",
+          "Hình dạng TẢI thật: lưu lượng thật không đều mà có đỉnh, và đỉnh mới là thứ hệ thống phải chịu được."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Điều kiện thứ hai cũng là cơ sở của kế hoạch dung lượng: dựa trên ĐỈNH tải thật đã quan sát, nhân với mức tăng trưởng dự kiến và một biên an toàn.",
+          "Trung bình là con số sai ở đây, vì hệ thống không được phép chỉ chịu được mức trung bình. Bài sau là mức dự phòng bao nhiêu là đủ."
         ]
       }
     ]
   },
   {
     "id": 175,
-    "slug": "hoi-cuu-khong-do-loi",
-    "title": "Hồi cứu không đổ lỗi: tìm điều kiện, không tìm người",
-    "subtitle": "Ai gõ lệnh ấy là câu hỏi rẻ tiền. Vì sao lệnh ấy gõ được và không ai chặn lại mới là câu hỏi có ích.",
-    "duration": "9 phút",
+    "slug": "du-phong-bao-nhieu-la-du",
+    "title": "Dự phòng - bao nhiêu là đủ",
+    "subtitle": "Mỗi lớp dự phòng thêm vào cũng là một thứ nữa có thể hỏng.",
+    "duration": "6 phút",
     "difficulty": "Khó",
-    "emoji": "🔎",
     "track": "professional",
-    "whyItMatters": "Một buổi hồi cứu tìm người có lỗi dạy cả đội một bài học duy nhất: lần sau đừng báo sớm. Từ đó trở đi bạn mất luôn nguồn thông tin quan trọng nhất về hệ thống của mình.",
-    "openingQuestion": "Một kỹ sư gõ nhầm lệnh và xoá dữ liệu thật. Buổi hồi cứu nên tập trung vào đâu?",
+    "emoji": "🧱",
+    "isFundamental": false,
+    "whyItMatters": "Thêm dự phòng nghe như luôn tốt, và nó không phải. Mỗi lớp thêm vào đều mang theo độ phức tạp riêng, và độ phức tạp đó tự nó là một nguồn sự cố.",
+    "openingQuestion": "Vì sao thêm một lớp dự phòng không phải lúc nào cũng làm hệ thống đáng tin hơn?",
     "openingOptions": [
-      "Vì sao hệ thống cho phép lệnh đó chạy mà không có bước xác nhận nào",
-      "Vì sao kỹ sư đó không kiểm tra kỹ lệnh trước khi nhấn phím",
-      "Vì sao quy trình chưa yêu cầu có người thứ hai xem lại thao tác",
-      "Vì sao kỹ sư đó được cấp quyền truy cập vào môi trường thật"
+      "Vì lớp đó cũng có thể hỏng, và cơ chế chuyển đổi giữa hai lớp là một thứ mới nữa",
+      "Vì chi phí hạ tầng tăng lên nên đội phải cắt giảm ở những phần quan trọng khác",
+      "Vì các lớp dự phòng cần được đồng bộ dữ liệu nên có thể gây ra sai lệch",
+      "Vì đội mất thời gian vận hành nhiều lớp nên ít thời gian cải thiện hệ thống chính"
     ],
     "correctOption": 0,
-    "explanation": "Con người gõ nhầm - đó là hằng số chứ không phải biến số, và không quy trình nào loại bỏ được nó. Câu hỏi có ích là vì sao một thao tác không thể đảo ngược lại chạy được mà không có ma sát nào chặn: không xác nhận, không giới hạn phạm vi, không sao lưu tự động trước khi xoá. Hai lựa chọn về quy trình và quyền truy cập cũng hướng ra ngoài cá nhân, nhưng chúng thêm thủ tục cho con người trong khi lựa chọn đầu sửa chính hệ thống.",
+    "explanation": "Cơ chế chuyển đổi là phần hay bị bỏ qua nhất khi tính toán: bạn thêm một bản sao và cũng thêm logic quyết định khi nào chuyển, cách phát hiện bản chính đã hỏng, và cách tránh chuyển qua chuyển lại. Có những sự cố mà nguyên nhân gốc chính là cơ chế chuyển đổi kích hoạt nhầm trong khi bản chính vẫn khoẻ.",
     "diagram": [
       {
-        "label": "Ai gây ra? - câu hỏi dừng cuộc điều tra",
+        "label": "Dự phòng thêm = một thứ nữa có thể hỏng",
         "arrow": true
       },
       {
-        "label": "Điều kiện nào cho phép? - câu hỏi mở nó ra",
+        "label": "Và cơ chế chuyển đổi cũng là một thứ có thể hỏng",
         "arrow": true
       },
       {
-        "label": "Thường ra 3-5 điều kiện chồng lên nhau",
+        "label": "Hỏi: thứ này thật sự chống được sự cố nào",
         "arrow": true
       },
       {
-        "label": "Mỗi điều kiện là một chỗ có thể sửa"
+        "label": "Rồi hỏi: nó có được kích hoạt thử bao giờ chưa"
       }
     ],
     "realWorldExample": {
-      "company": "Bài học duy nhất: đừng báo sớm",
-      "description": "Sau một buổi hồi cứu tìm ra người chịu trách nhiệm, số sự cố được báo cáo trong quý tiếp theo giảm mạnh. Số sự cố thật thì không giảm - chúng chỉ được xử lý âm thầm và không ai học được gì."
-    },
-    "keyTakeaways": [
-      "Sai sót của con người là điều kiện đầu vào, không phải nguyên nhân gốc.",
-      "Một sự cố lớn thường cần nhiều điều kiện xảy ra cùng lúc.",
-      "Hồi cứu phải sinh ra việc cụ thể có người nhận và có hạn.",
-      "Đội không dám báo sớm thì mọi cơ chế học hỏi đều ngừng hoạt động."
-    ],
-    "summary": {
-      "keyIdea": "Hồi cứu tìm những điều kiện đã cho phép sự cố xảy ra, không tìm người gây ra nó.",
-      "formula": "Hỏi điều gì cho phép, đừng hỏi ai đã làm.",
-      "commonMistake": "Kết thúc bằng kết luận do lỗi con người."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Mở báo cáo hồi cứu gần nhất của đội và tìm xem có câu nào kết luận là do lỗi con người không. Nếu có, viết lại nó thành câu hỏi hệ thống đã cho phép điều gì."
-    },
-    "practicePrompt": {
-      "question": "Vì sao kết luận do lỗi con người là một kết luận vô dụng?",
-      "options": [
-        "Vì nó không chỉ ra được thứ gì có thể sửa để lần sau không lặp lại",
-        "Vì nó khiến những người liên quan cảm thấy bị đối xử không công bằng",
-        "Vì nó thường không phản ánh đúng chuỗi sự kiện đã diễn ra",
-        "Vì nó không đáp ứng yêu cầu của các quy định về tuân thủ"
-      ],
-      "correct": 0,
-      "explanation": "Hành động duy nhất suy ra được từ nó là hãy cẩn thận hơn, và đó không phải một thay đổi mà là một lời khuyên. Cảm giác bất công cũng có thật và nó gây hại theo cách riêng, nhưng cái chết của buổi hồi cứu nằm ở chỗ nó kết thúc mà không sinh ra được việc gì để làm."
+      "company": "Chuyển đổi kích hoạt nhầm",
+      "description": "Một cơ chế phát hiện bản chính hỏng dựa trên vài lần kiểm tra thất bại liên tiếp. Một đợt nghẽn mạng ngắn làm nó kích hoạt trong khi bản chính vẫn khoẻ - và cuộc chuyển đổi đó gây ra gián đoạn dài hơn nhiều so với đợt nghẽn ban đầu."
     },
     "quiz": [
       {
-        "question": "Vì sao sai sót của con người không được coi là nguyên nhân gốc?",
+        "question": "Phần nào của một cơ chế dự phòng hay bị bỏ qua khi tính rủi ro?",
         "options": [
-          "Vì con người luôn sai, nên nó là điều kiện đầu vào chứ không phải biến số",
-          "Vì thường có nhiều người cùng tham gia vào chuỗi sự kiện",
-          "Vì khó xác định chính xác ai đã thực hiện thao tác nào",
-          "Vì việc quy trách nhiệm không thuộc phạm vi của buổi hồi cứu"
+          "Chính cơ chế chuyển đổi: logic quyết định khi nào chuyển và cách phát hiện bản chính hỏng",
+          "Chi phí đồng bộ dữ liệu liên tục giữa bản chính và bản dự phòng",
+          "Thời gian cần thiết để bản dự phòng khởi động và sẵn sàng nhận lưu lượng",
+          "Sự khác biệt về cấu hình giữa hai bản do chúng được cập nhật vào những thời điểm khác nhau"
         ],
         "correct": 0,
-        "explanation": "Bạn không thiết kế được một hệ thống dựa trên giả định không ai gõ nhầm. Chấp nhận sai sót là hằng số buộc câu hỏi phải chuyển sang chỗ có thể thay đổi được: hệ thống đã cho phép sai sót ấy gây hậu quả tới đâu."
+        "explanation": "Ba lựa chọn kia đều là chi phí thật và thường được tính. Cơ chế chuyển đổi thì bị coi như một phần hiển nhiên của giải pháp, trong khi nó là mã có logic phức tạp và có thể kích hoạt nhầm."
       },
       {
-        "question": "Một sự cố lớn thường có bao nhiêu điều kiện góp phần?",
+        "question": "Vì sao chuyển đổi kích hoạt nhầm lại nguy hiểm?",
         "options": [
-          "Nhiều điều kiện chồng lên nhau, không phải một nguyên nhân duy nhất",
-          "Một nguyên nhân gốc duy nhất kèm vài yếu tố làm nặng thêm",
-          "Hai nguyên nhân độc lập xảy ra gần nhau về thời gian",
-          "Số lượng thay đổi tuỳ theo độ phức tạp của hệ thống"
+          "Vì cuộc chuyển đổi đó có thể gây gián đoạn dài hơn nhiều so với sự cố ban đầu",
+          "Vì bản dự phòng có thể chưa có dữ liệu mới nhất nên gây mất mát thông tin",
+          "Vì việc chuyển về bản chính sau đó đòi hỏi một quy trình thủ công phức tạp",
+          "Vì hệ thống theo dõi sẽ ghi nhận sai nguyên nhân của sự cố trong biên bản"
         ],
         "correct": 0,
-        "explanation": "Cảnh báo không nổ, tài liệu đã cũ, thao tác không có bước xác nhận, người trực mới nhận việc - từng cái một thì không gây ra sự cố. Đi tìm một nguyên nhân duy nhất thường dẫn tới việc chọn ra cái dễ thấy nhất rồi bỏ qua phần còn lại."
+        "explanation": "Một đợt nghẽn mạng ngắn có thể tự khỏi trong vài giây; cuộc chuyển đổi nó kích hoạt thì mất vài phút và có thể kéo theo mất kết nối, mất bộ nhớ đệm. Cơ chế bảo vệ trở thành nguồn sự cố."
       },
       {
-        "question": "Một buổi hồi cứu tốt phải kết thúc bằng gì?",
+        "question": "Câu hỏi nào nên đặt ra trước khi thêm một lớp dự phòng?",
         "options": [
-          "Danh sách việc cụ thể, mỗi việc có người nhận và có hạn hoàn thành",
-          "Bản mô tả đầy đủ dòng thời gian và nguyên nhân của sự cố",
-          "Cam kết của cả đội về việc cẩn thận hơn trong các thao tác tương tự",
-          "Đánh giá mức độ nghiêm trọng và thiệt hại mà sự cố đã gây ra"
+          "Lớp này chống được sự cố cụ thể nào, và sự cố đó đã từng xảy ra chưa",
+          "Chi phí duy trì lớp này mỗi tháng là bao nhiêu so với ngân sách hiện có",
+          "Đội có đủ chuyên môn để vận hành và xử lý sự cố với lớp này không",
+          "Lớp này có tương thích với kiến trúc hiện tại của hệ thống hay không"
         ],
         "correct": 0,
-        "explanation": "Một báo cáo mô tả đầy đủ mà không sinh ra việc gì là một tài liệu lịch sử. Giá trị của hồi cứu nằm ở chỗ hệ thống sau đó khác đi, và điều đó chỉ xảy ra khi có việc được giao cho người cụ thể."
+        "explanation": "Chữ SỰ CỐ CỤ THỂ NÀO buộc bạn nói ra loại hỏng mình đang mua bảo hiểm cho, và rất nhiều lớp dự phòng không vượt qua được câu hỏi này. Ba câu kia đều đáng hỏi nhưng chúng là câu hỏi thứ hai."
       },
       {
-        "question": "Hậu quả của một buổi hồi cứu tìm người có lỗi là gì?",
+        "question": "Vì sao dự phòng nhiều vùng đắt hơn nhiều so với nhiều bản trong một vùng?",
         "options": [
-          "Đội ngừng báo sự cố sớm, và nguồn thông tin quan trọng nhất bị mất",
-          "Người bị quy trách nhiệm sẽ xin chuyển sang đội khác",
-          "Các báo cáo hồi cứu sau đó sẽ được viết chung chung hơn",
-          "Quy trình sẽ được bổ sung thêm nhiều bước phê duyệt không cần thiết"
+          "Vì dữ liệu phải đồng bộ qua khoảng cách xa, buộc bạn chọn giữa chờ và chấp nhận lệch",
+          "Vì giá thuê hạ tầng ở các vùng khác nhau chênh lệch đáng kể theo từng khu vực",
+          "Vì cần phải có đội vận hành riêng ở mỗi vùng để xử lý sự cố theo đúng múi giờ địa phương",
+          "Vì việc quản lý cấu hình đồng nhất giữa nhiều vùng đòi hỏi công cụ chuyên biệt"
         ],
         "correct": 0,
-        "explanation": "Số sự cố được báo giảm mạnh trong khi số sự cố thật không đổi. Từ lúc đó, tổ chức mất khả năng nhìn thấy hệ thống của chính mình, và đó là tổn thất lớn hơn nhiều so với bất kỳ sự cố đơn lẻ nào."
+        "explanation": "Đây là điểm đã nêu ở chặng đám mây và nó lặp lại vì nó là ràng buộc vật lý: phần khó không phải máy chủ mà là dữ liệu, và đó là quyết định kiến trúc chứ không phải một ô cấu hình."
       },
       {
-        "question": "Câu hỏi nào thay thế được câu hỏi ai đã gây ra?",
+        "question": "Điều kiện nào biến một lớp dự phòng từ giả định thành thực tế?",
         "options": [
-          "Điều gì đã khiến hành động đó trở nên hợp lý với người thực hiện lúc ấy",
-          "Người thực hiện có được đào tạo đầy đủ về quy trình chưa",
-          "Có thể thêm bước phê duyệt nào để ngăn hành động đó lại",
-          "Đã có tài liệu nào cảnh báo về hành động đó từ trước chưa"
+          "Nó đã được kích hoạt thử ít nhất một lần trong điều kiện có kiểm soát",
+          "Nó được ghi rõ trong tài liệu kiến trúc và được toàn bộ đội biết tới",
+          "Nó được theo dõi liên tục để bảo đảm luôn ở trạng thái sẵn sàng",
+          "Nó được cấu hình giống hệt bản chính về mọi thông số kỹ thuật"
         ],
         "correct": 0,
-        "explanation": "Không ai cố ý phá hệ thống; với thông tin họ có lúc đó, hành động ấy trông đúng. Tìm hiểu vì sao nó trông đúng sẽ lộ ra tài liệu sai, giao diện gây hiểu nhầm, hoặc một cảnh báo lẽ ra phải có mà không có."
+        "explanation": "Đây là nguyên tắc lặp lại xuyên chặng, và với dự phòng thì nó đặc biệt quan trọng: một lớp chưa thử vẫn được tính vào khi đánh giá rủi ro, nên nó tạo ra cảm giác an toàn mà không có sự an toàn tương ứng."
       }
     ],
+    "keyTakeaways": [
+      "Mỗi lớp dự phòng thêm vào cũng là một thứ nữa có thể hỏng.",
+      "Cơ chế CHUYỂN ĐỔI là phần hay bị bỏ qua nhất khi tính rủi ro.",
+      "Chuyển đổi kích hoạt nhầm có thể gây gián đoạn dài hơn sự cố ban đầu.",
+      "Hỏi lớp này chống được sự cố CỤ THỂ nào - nhiều lớp không qua được câu này.",
+      "Chưa kích hoạt thử thì nó tạo ra cảm giác an toàn mà không có sự an toàn."
+    ],
+    "practicePrompt": {
+      "question": "Đội đề xuất thêm một bản dự phòng ở vùng khác. Câu hỏi đầu tiên nên hỏi?",
+      "options": [
+        "Nó chống được sự cố cụ thể nào, và sự cố loại đó đã từng xảy ra với chúng ta chưa",
+        "Chi phí hạ tầng và công vận hành thêm mỗi tháng sẽ là bao nhiêu",
+        "Dữ liệu sẽ được đồng bộ giữa hai vùng theo cơ chế nào và với độ trễ bao nhiêu",
+        "Cơ chế chuyển đổi giữa hai vùng sẽ được kích hoạt tự động hay thủ công"
+      ],
+      "correct": 0,
+      "explanation": "Ba câu kia đều phải hỏi nhưng chúng giả định quyết định đã được đưa ra. Câu đầu kiểm tra chính quyết định đó - và nếu loại sự cố được nêu chưa từng xảy ra và cũng không có dấu hiệu sắp xảy ra, cuộc bàn luận có thể dừng ở đây."
+    },
+    "summary": {
+      "keyIdea": "Dự phòng không miễn phí về mặt rủi ro; nó đổi một loại rủi ro lấy loại khác.",
+      "formula": "Chống sự cố nào + đã từng xảy ra chưa + đã kích hoạt thử chưa.",
+      "commonMistake": "Bỏ qua cơ chế chuyển đổi khi tính rủi ro của giải pháp dự phòng.",
+      "action": "Liệt kê các lớp dự phòng hiện có và đánh dấu cái nào chưa kích hoạt thử."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê mọi lớp dự phòng hệ thống bạn đang có. Với từng cái, viết ra sự cố cụ thể nó chống được và ngày gần nhất nó được kích hoạt thử.",
+      "secondary": "Những cái không viết được ngày là những cái đang tồn tại dưới dạng giả định. Chúng vẫn được tính vào khi bạn đánh giá rủi ro, nên chúng nguy hiểm hơn là không có."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Sự cố đã yên. Giờ mới tới phần quyết định liệu nó có xảy ra lần nữa hay không - và phần này hỏng rất dễ, chỉ bằng cách hỏi sai một câu."
+        "text": "Thêm dự phòng nghe như luôn tốt. Bài này về lý do nó không phải - và về câu hỏi nên đặt trước khi thêm bất cứ lớp nào."
       },
       {
         "type": "heading",
-        "text": "Hai câu hỏi, hai kết cục"
+        "text": "Phần bị bỏ qua khi tính rủi ro"
+      },
+      {
+        "type": "callout",
+        "label": "Cơ chế chuyển đổi cũng là mã",
+        "text": "Bạn thêm một bản sao, và cũng thêm logic quyết định khi nào chuyển, cách phát hiện bản chính đã hỏng, và cách tránh chuyển qua chuyển lại. Phần đó bị coi như hiển nhiên trong khi nó có thể kích hoạt nhầm."
+      },
+      {
+        "type": "paragraph",
+        "text": "Có những sự cố mà nguyên nhân gốc chính là cơ chế chuyển đổi: một đợt nghẽn mạng ngắn làm nó kích hoạt trong khi bản chính vẫn khoẻ, và cuộc chuyển đổi đó gây gián đoạn dài hơn nhiều so với đợt nghẽn ban đầu."
+      },
+      {
+        "type": "heading",
+        "text": "Hai câu hỏi, theo thứ tự"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Ai đã gây ra?",
-          "text": "Có câu trả lời nhanh, và cuộc điều tra dừng lại ở đó. Việc duy nhất suy ra được là hãy cẩn thận hơn - một lời khuyên, không phải một thay đổi."
+          "label": "Câu thứ nhất",
+          "text": "Lớp này chống được sự cố CỤ THỂ nào, và sự cố đó đã từng xảy ra chưa? Rất nhiều lớp dự phòng không vượt qua được câu hỏi này."
         },
         "right": {
-          "label": "Điều gì đã cho phép?",
-          "text": "Thường ra ba tới năm điều kiện chồng lên nhau, và mỗi cái là một chỗ có thể sửa thật."
+          "label": "Câu thứ hai",
+          "text": "Nó đã được kích hoạt thử bao giờ chưa? Chưa thử thì nó vẫn được tính vào khi đánh giá rủi ro - nên nó tạo ra cảm giác an toàn mà không có sự an toàn tương ứng."
         }
       },
       {
-        "type": "paragraph",
-        "text": "Con người gõ nhầm. Đó là hằng số, không phải biến số, và không quy trình nào loại bỏ được nó. Điều thiết kế được là hậu quả: một thao tác không đảo ngược được thì phải có ma sát trước nó - bước xác nhận, giới hạn phạm vi, bản sao tự động trước khi xoá."
-      },
-      {
-        "type": "callout",
-        "label": "Vì sao nó trông đúng lúc đó",
-        "text": "Không ai cố ý phá hệ thống. Với thông tin họ có tại thời điểm ấy, hành động đó là hợp lý. Tìm hiểu vì sao nó hợp lý sẽ lộ ra tài liệu đã cũ, một giao diện gây hiểu nhầm, hoặc một cảnh báo lẽ ra phải có."
-      },
-      {
         "type": "heading",
-        "text": "Cái giá của việc tìm người"
+        "text": "Các mức, và giá của chúng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Nhiều bản trong một khu: rẻ nhất, chống được một tiến trình hoặc một máy chết.",
+          "Nhiều khu trong một vùng: chống được sự cố mức toà nhà, độ trễ giữa các khu vẫn rất thấp.",
+          "Nhiều vùng: chống được sự cố mức khu vực. Đắt hơn nhiều - và phần đắt không phải máy chủ mà là DỮ LIỆU."
+        ]
       },
       {
         "type": "paragraph",
-        "text": "Sau một buổi hồi cứu quy trách nhiệm, số sự cố được báo cáo giảm mạnh trong quý tiếp theo. Số sự cố thật thì không đổi - chúng chỉ được xử lý âm thầm. Tổ chức vừa mất khả năng nhìn thấy hệ thống của chính mình, và đó là tổn thất lớn hơn bất kỳ sự cố đơn lẻ nào."
-      },
-      {
-        "type": "callout",
-        "label": "Kết thúc bằng việc, không bằng bản mô tả",
-        "text": "Một báo cáo đầy đủ mà không sinh ra việc nào là một tài liệu lịch sử. Mỗi buổi hồi cứu phải để lại danh sách việc có người nhận và có hạn, nếu không thì hệ thống sau đó không khác gì hệ thống trước đó."
+        "text": "Mức thứ ba buộc bạn chọn giữa chờ đồng bộ qua khoảng cách xa và chấp nhận dữ liệu lệch nhau tạm thời. Đó là quyết định kiến trúc, không phải một ô cấu hình - và nó là điểm chặng đám mây đã nêu."
       },
       {
         "type": "closing",
         "lines": [
-          "Không đổ lỗi không phải là tử tế với nhau. Nó là điều kiện để còn có thông tin mà học.",
-          "Bài sau về việc đo chính quá trình này: những con số nào thật sự nói lên đội đang ứng phó tốt hơn."
+          "Với phần lớn hệ thống, nhiều khu trong một vùng là điểm cân bằng đúng. Đi xa hơn chỉ đáng khi thời gian ngừng dịch vụ đắt tới mức trả được cái giá đó.",
+          "Bài sau là loại rủi ro mà dự phòng của bạn không chạm tới: phụ thuộc vào dịch vụ của người khác."
         ]
       }
     ]
   },
   {
     "id": 176,
-    "slug": "chi-so-ve-su-co",
-    "title": "Đo chính việc ứng phó: con số nào nói lên điều gì",
-    "subtitle": "Đếm số sự cố là cách nhanh nhất để đội ngừng ghi nhận sự cố.",
-    "duration": "8 phút",
+    "slug": "phu-thuoc-ben-ngoai-va-cam-ket-cua-ho",
+    "title": "Phụ thuộc bên ngoài và cam kết của họ",
+    "subtitle": "Độ tin cậy của bạn không cao hơn tích các cam kết mà bạn dựa vào.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "📊",
     "track": "professional",
-    "whyItMatters": "Chỉ số về sự cố rất dễ chọn sai, và chọn sai thì nó không chỉ vô dụng mà còn tạo ra động cơ ngược - đội tối ưu cho con số thay vì cho hệ thống.",
-    "openingQuestion": "Chỉ số nào phản ánh tốt nhất việc đội đang ứng phó hiệu quả hơn?",
+    "emoji": "🔗",
+    "isFundamental": true,
+    "whyItMatters": "Nhiều đội đặt mục tiêu độ tin cậy cao hơn mức mà chuỗi phụ thuộc của họ cho phép, và không ai nhận ra cho tới khi phép nhân được thực hiện lần đầu.",
+    "openingQuestion": "Hệ thống của bạn gọi tới bốn dịch vụ, mỗi dịch vụ cam kết chín mươi chín phẩy chín. Trần của bạn là bao nhiêu?",
     "openingOptions": [
-      "Thời gian từ lúc bắt đầu ảnh hưởng tới lúc thiệt hại được chặn lại",
-      "Tổng số sự cố được ghi nhận trong mỗi tháng",
-      "Tỷ lệ sự cố được xử lý xong trong vòng một giờ",
-      "Số lượng các việc cải tiến sinh ra từ những buổi hồi cứu sau mỗi sự cố"
+      "Khoảng chín mươi chín phẩy sáu, vì các cam kết nhân với nhau chứ không lấy cái thấp nhất",
+      "Chín mươi chín phẩy chín, vì đó là mức cam kết của từng dịch vụ trong chuỗi",
+      "Khoảng chín mươi chín phẩy tám, vì chỉ hai dịch vụ nằm trên đường xử lý chính",
+      "Không tính được, vì các dịch vụ có thể hỏng cùng lúc hoặc hỏng độc lập nhau"
     ],
     "correctOption": 0,
-    "explanation": "Con số này đo đúng thứ người dùng chịu đựng, và nó rút ngắn được bằng những cải thiện thật: phát hiện sớm hơn, tuyên bố sớm hơn, có sẵn đòn bẩy giảm thiểu. Đếm tổng số sự cố thì tạo động cơ ngược, vì cách dễ nhất để giảm nó là ghi nhận ít đi. Số việc cải tiến sinh ra thì đo hoạt động chứ không đo kết quả, và nó cũng bị thổi phồng dễ dàng.",
+    "explanation": "Nếu cả bốn đều nằm trên đường xử lý chính và hỏng độc lập với nhau thì xác suất cả bốn cùng hoạt động là tích của bốn con số - khoảng chín mươi chín phẩy sáu. Phép nhân này là thứ khiến nhiều đội đặt mục tiêu cao hơn mức chuỗi phụ thuộc cho phép, và không ai nhận ra cho tới khi có người thực hiện phép tính.",
     "diagram": [
       {
-        "label": "Bắt đầu ảnh hưởng → phát hiện",
+        "label": "Cam kết của các phụ thuộc NHÂN với nhau",
         "arrow": true
       },
       {
-        "label": "Phát hiện → tuyên bố",
+        "label": "Nên trần của bạn thấp hơn cam kết thấp nhất trong chuỗi",
         "arrow": true
       },
       {
-        "label": "Tuyên bố → chặn được thiệt hại",
+        "label": "Trừ khi bạn tách phụ thuộc ra khỏi đường xử lý chính",
         "arrow": true
       },
       {
-        "label": "Tách ba đoạn thì biết phải cải thiện đoạn nào"
+        "label": "Và cam kết của họ chưa chắc là con số bạn quan sát được"
       }
     ],
     "realWorldExample": {
-      "company": "Số sự cố giảm, hệ thống không đổi",
-      "description": "Một tổ chức đặt mục tiêu giảm số sự cố mỗi quý và đạt được nó. Cách đạt là nâng ngưỡng phân loại: những gì trước đây gọi là sự cố nay được ghi thành trục trặc vận hành."
-    },
-    "keyTakeaways": [
-      "Tách thời gian ứng phó thành ba đoạn để biết cải thiện chỗ nào.",
-      "Đừng đặt mục tiêu giảm số lượng sự cố được ghi nhận.",
-      "Dùng trung vị và phân vị thay vì trung bình, vì vài sự cố dài kéo lệch tất cả.",
-      "Chỉ số về sự cố dùng để tìm chỗ cải thiện, không dùng để đánh giá người."
-    ],
-    "summary": {
-      "keyIdea": "Đo thời gian người dùng chịu ảnh hưởng, tách theo đoạn, và đừng đo số lượng.",
-      "formula": "Ảnh hưởng → phát hiện → tuyên bố → chặn.",
-      "commonMistake": "Đặt mục tiêu trên số lượng sự cố được ghi nhận."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Lấy năm sự cố gần nhất và ghi ba mốc thời gian cho mỗi cái. Đoạn nào dài nhất trên cả năm sự cố chính là chỗ cải thiện đầu tiên."
-    },
-    "practicePrompt": {
-      "question": "Vì sao nên dùng trung vị thay vì trung bình cho thời gian xử lý?",
-      "options": [
-        "Vì một sự cố kéo dài bất thường sẽ làm lệch hẳn con số trung bình",
-        "Vì trung vị dễ tính hơn khi số lượng sự cố còn ít",
-        "Vì trung bình không phản ánh được xu hướng thay đổi theo thời gian",
-        "Vì các công cụ theo dõi thường chỉ hỗ trợ tính trung vị"
-      ],
-      "correct": 0,
-      "explanation": "Một sự cố kéo mười hai giờ giữa mười sự cố kéo hai mươi phút sẽ đẩy trung bình lên hơn một giờ, và con số ấy không mô tả đúng bất kỳ sự cố nào trong nhóm. Nhìn cả trung vị lẫn phân vị cao thì bạn thấy được cả trường hợp thường gặp lẫn trường hợp tệ nhất."
+      "company": "Tách khỏi đường xử lý chính",
+      "description": "Một dịch vụ gửi thư nằm trên đường xử lý chính thì mức tin cậy của nó nhân vào mức tin cậy của bạn. Đưa nó vào hàng đợi thì nó rời khỏi phép nhân đó - đơn hàng vẫn tạo được kể cả khi dịch vụ thư đang hỏng."
     },
     "quiz": [
       {
-        "question": "Vì sao đặt mục tiêu giảm số sự cố lại nguy hiểm?",
+        "question": "Vì sao các cam kết nhân với nhau chứ không lấy giá trị thấp nhất?",
         "options": [
-          "Vì cách dễ nhất để đạt mục tiêu là ghi nhận ít sự cố đi",
-          "Vì số sự cố phụ thuộc vào quy mô hệ thống nên khó so sánh",
-          "Vì nó khiến đội tập trung vào phòng ngừa thay vì ứng phó",
-          "Vì số sự cố dao động mạnh giữa các tháng nên khó đặt mục tiêu"
+          "Vì yêu cầu chỉ thành công khi mọi mắt xích trên đường xử lý đều hoạt động",
+          "Vì các dịch vụ khác nhau thường hỏng vào những thời điểm khác nhau trong tháng",
+          "Vì mỗi dịch vụ tính cam kết của mình theo phương pháp khác nhau nên phải cộng dồn",
+          "Vì các lỗi ở tầng dưới thường được khuếch đại khi lan lên các tầng trên"
         ],
         "correct": 0,
-        "explanation": "Nâng ngưỡng phân loại là cách rẻ nhất và không ai phải nói dối: những gì trước gọi là sự cố nay ghi thành trục trặc vận hành. Con số đi xuống, hệ thống không đổi, và tổ chức mất luôn dữ liệu thật."
+        "explanation": "Đây là xác suất của một sự kiện giao: cả bốn cùng hoạt động. Lựa chọn thứ hai mô tả đúng giả định độc lập mà phép nhân dựa vào, nhưng nó không giải thích được vì sao là phép nhân."
       },
       {
-        "question": "Vì sao nên tách thời gian ứng phó thành nhiều đoạn?",
+        "question": "Cách nào đưa một phụ thuộc ra khỏi phép nhân?",
         "options": [
-          "Vì mỗi đoạn được rút ngắn bằng một loại cải thiện khác nhau",
-          "Vì tổng thời gian dao động quá mạnh giữa các sự cố",
-          "Vì các đoạn khác nhau do những người khác nhau cùng phụ trách",
-          "Vì một số đoạn không đo được một cách chính xác"
+          "Tách nó khỏi đường xử lý chính, ví dụ đưa việc đó vào hàng đợi xử lý sau",
+          "Thêm một nhà cung cấp thứ hai cho cùng chức năng để có phương án thay thế",
+          "Đàm phán với nhà cung cấp để nâng mức cam kết trong hợp đồng dịch vụ",
+          "Đặt bộ nhớ đệm cho các kết quả trả về từ dịch vụ đó để giảm số lượt gọi"
         ],
         "correct": 0,
-        "explanation": "Đoạn từ ảnh hưởng tới phát hiện rút ngắn bằng giám sát; đoạn từ phát hiện tới tuyên bố rút ngắn bằng quy ước; đoạn từ tuyên bố tới chặn rút ngắn bằng đòn bẩy giảm thiểu. Một con số tổng không cho biết nên đầu tư vào đâu."
+        "explanation": "Thêm nhà cung cấp thứ hai cũng cải thiện được nhưng nó thay phép nhân bằng một phép tính khác chứ không đưa phụ thuộc ra khỏi đường xử lý. Bộ nhớ đệm giảm tần suất nhưng khi cần gọi thật thì phụ thuộc vẫn nằm đó."
       },
       {
-        "question": "Chỉ số về sự cố nên được dùng để làm gì?",
+        "question": "Vì sao cam kết của nhà cung cấp chưa chắc là con số bạn quan sát được?",
         "options": [
-          "Tìm chỗ cần cải thiện trong quy trình và hệ thống",
-          "Đánh giá hiệu quả làm việc của từng thành viên trong đội",
-          "So sánh chất lượng vận hành giữa các đội trong công ty",
-          "Báo cáo mức độ tin cậy của dịch vụ cho khách hàng"
+          "Vì họ đo từ phía họ và theo định nghĩa của họ, còn bạn trải nghiệm cả đường truyền",
+          "Vì các nhà cung cấp thường báo cáo con số cao hơn thực tế để giữ uy tín",
+          "Vì cam kết được tính trung bình cả năm nên các sự cố ngắn bị hoà tan đi",
+          "Vì bạn chỉ sử dụng một phần dịch vụ nên không quan sát được toàn bộ hệ thống của họ"
         ],
         "correct": 0,
-        "explanation": "Ngay khi chúng được dùng để đánh giá người, chúng ngừng phản ánh sự thật - cùng một cơ chế đã làm hỏng chỉ số đếm số sự cố. Đây là một trường hợp cụ thể của quy luật rằng một phép đo trở thành mục tiêu thì nó thôi làm một phép đo tốt."
+        "explanation": "Hai bên đo hai thứ khác nhau: họ đo dịch vụ của họ, bạn đo trải nghiệm của bạn gồm cả đường truyền và cả cách bạn gọi. Đó là lý do phải tự đo phụ thuộc thay vì tin con số trong hợp đồng."
       },
       {
-        "question": "Đoạn nào trong dòng thời gian thường bị bỏ quên nhất?",
+        "question": "Vì sao nên tự đo độ tin cậy của các phụ thuộc?",
         "options": [
-          "Đoạn từ lúc bắt đầu ảnh hưởng tới lúc có người phát hiện ra",
-          "Đoạn từ lúc tuyên bố tới lúc phân vai xong cho cả đội",
-          "Đoạn từ lúc chặn được thiệt hại tới lúc xác nhận hệ thống đã ổn định",
-          "Đoạn từ lúc sự cố kết thúc tới lúc tổ chức buổi hồi cứu"
+          "Vì con số bạn đo là con số ảnh hưởng tới người dùng của bạn, không phải con số của họ",
+          "Vì việc tự đo cho phép bạn yêu cầu bồi hoàn khi nhà cung cấp không đạt cam kết",
+          "Vì nhà cung cấp thường không công bố số liệu thật chi tiết theo từng khoảng thời gian ngắn",
+          "Vì bạn cần dữ liệu lịch sử để đàm phán mức cam kết tốt hơn trong lần gia hạn"
         ],
         "correct": 0,
-        "explanation": "Nó thường không được ghi vì không ai biết chính xác lúc nào ảnh hưởng bắt đầu. Nhưng nó lại là đoạn dài nhất trong nhiều sự cố, và nó chỉ rút ngắn được bằng cách đầu tư vào giám sát chứ không bằng cách chạy nhanh hơn."
+        "explanation": "Bồi hoàn và đàm phán đều là lợi ích thật nhưng chúng phụ. Lý do chính là con số bạn đo mới là con số đi vào phép nhân của bạn, còn con số trong hợp đồng thì không."
       },
       {
-        "question": "Vì sao số việc cải tiến sinh ra từ hồi cứu là chỉ số kém?",
+        "question": "Điều gì xảy ra khi mục tiêu của bạn cao hơn trần mà chuỗi phụ thuộc cho phép?",
         "options": [
-          "Vì nó đo hoạt động chứ không đo kết quả, và rất dễ bị thổi phồng",
-          "Vì các việc cải tiến thường không được hoàn thành đúng hạn",
-          "Vì số lượng việc phụ thuộc vào mức độ nghiêm trọng của sự cố",
-          "Vì nhiều việc cải tiến trùng lặp giữa các buổi hồi cứu khác nhau"
+          "Đội sẽ liên tục trượt mục tiêu vì lý do nằm ngoài tầm kiểm soát của họ",
+          "Hệ thống sẽ tự động hạ mức dịch vụ xuống để phù hợp với năng lực thực tế",
+          "Các cam kết của nhà cung cấp sẽ được tính vào phần dự phòng của ngân sách lỗi",
+          "Đội cần tăng cường giám sát để phát hiện sớm các sự cố từ phía nhà cung cấp"
         ],
         "correct": 0,
-        "explanation": "Chia một việc thành năm việc nhỏ thì con số tăng gấp năm mà không có gì thay đổi. Chỉ số đáng theo dõi ở đây là tỷ lệ việc đã hoàn thành, và tốt hơn nữa là thời gian ứng phó có thật sự ngắn lại hay không."
+        "explanation": "Đây là tình huống làm hỏng cả ý nghĩa của mục tiêu lẫn tinh thần của đội: họ chịu trách nhiệm cho một con số mà họ không có cách nào đạt được. Phép nhân nên được làm TRƯỚC khi chốt mục tiêu."
       }
     ],
+    "keyTakeaways": [
+      "Cam kết của các phụ thuộc NHÂN với nhau, nên trần của bạn thấp hơn cái thấp nhất.",
+      "Tách phụ thuộc khỏi đường xử lý chính là cách đưa nó ra khỏi phép nhân.",
+      "Cam kết của họ đo từ phía họ; bạn trải nghiệm cả đường truyền và cách mình gọi.",
+      "Tự đo phụ thuộc - con số bạn đo mới là con số đi vào phép nhân của bạn.",
+      "Làm phép nhân TRƯỚC khi chốt mục tiêu, không phải sau khi liên tục trượt."
+    ],
+    "practicePrompt": {
+      "question": "Mục tiêu của bạn là chín mươi chín phẩy chín nhưng chuỗi phụ thuộc chỉ cho phép chín mươi chín phẩy sáu. Nên làm gì?",
+      "options": [
+        "Tách bớt phụ thuộc khỏi đường xử lý chính, hoặc hạ mục tiêu xuống mức đạt được",
+        "Giữ mục tiêu và tăng cường giám sát để phản ứng nhanh khi nhà cung cấp có sự cố",
+        "Đàm phán với các nhà cung cấp để họ nâng mức cam kết trong hợp đồng lên",
+        "Thêm cơ chế dự phòng cho từng phụ thuộc để giảm ảnh hưởng khi chúng hỏng"
+      ],
+      "correct": 0,
+      "explanation": "Hai lựa chọn trong câu này là hai hướng thật sự đổi được phép nhân. Giám sát nhanh hơn không đổi được xác suất, còn đàm phán thì hiếm khi thành công và cũng không nằm trong tầm tay đội kỹ thuật."
+    },
+    "summary": {
+      "keyIdea": "Độ tin cậy của bạn không cao hơn tích các cam kết mà bạn dựa vào.",
+      "formula": "Nhân cam kết của mọi phụ thuộc trên đường xử lý chính = trần của bạn.",
+      "commonMistake": "Chốt mục tiêu trước, rồi phát hiện trần thấp hơn sau nhiều tháng trượt.",
+      "action": "Liệt kê phụ thuộc trên đường xử lý chính và nhân cam kết của chúng."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê mọi dịch vụ bên ngoài nằm trên đường xử lý chính của bạn, tra cam kết của từng cái, và nhân chúng lại. Con số đó là trần của bạn.",
+      "secondary": "Rồi nhìn danh sách và hỏi từng cái: cái này có thật sự phải nằm trên đường xử lý chính không? Mỗi cái đưa ra được là một lần trần của bạn được nâng lên."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Đội đã có quy trình ứng phó và có hồi cứu. Câu hỏi tiếp theo là làm sao biết những thứ ấy đang có tác dụng - và đây là chỗ rất dễ chọn nhầm con số."
+        "text": "Bài trước là dự phòng cho phần bạn kiểm soát. Bài này là phần bạn không kiểm soát - và nó đặt một trần cứng lên mọi mục tiêu bạn đặt ra."
       },
       {
         "type": "heading",
-        "text": "Ba đoạn, ba loại cải thiện"
-      },
-      {
-        "type": "conceptTable",
-        "title": "Tách ra thì mới biết đầu tư vào đâu",
-        "subtitle": "Một con số tổng không chỉ được chỗ nào cần sửa",
-        "concepts": [
-          {
-            "vi": "Ảnh hưởng tới phát hiện",
-            "en": "time to detect",
-            "def": "Rút ngắn bằng giám sát và cảnh báo. Thường là đoạn dài nhất, và cũng hay bị bỏ quên nhất vì khó xác định mốc bắt đầu."
-          },
-          {
-            "vi": "Phát hiện tới tuyên bố",
-            "en": "time to declare",
-            "def": "Rút ngắn bằng quy ước, không bằng công nghệ. Hạ ngưỡng tuyên bố là cải thiện rẻ nhất trong ba đoạn."
-          },
-          {
-            "vi": "Tuyên bố tới chặn được",
-            "en": "time to mitigate",
-            "def": "Rút ngắn bằng đòn bẩy giảm thiểu chuẩn bị sẵn và bằng việc phân vai rõ ràng."
-          }
-        ]
+        "text": "Phép nhân"
       },
       {
         "type": "callout",
-        "label": "Đừng đếm số sự cố",
-        "text": "Cách rẻ nhất để giảm con số ấy là nâng ngưỡng phân loại, và không ai phải nói dối để làm điều đó. Con số đi xuống, hệ thống không đổi, và tổ chức mất luôn dữ liệu thật về chính mình."
-      },
-      {
-        "type": "heading",
-        "text": "Trung vị và phân vị, không phải trung bình"
+        "label": "Không phải cái thấp nhất, mà là tích",
+        "text": "Một yêu cầu chỉ thành công khi MỌI mắt xích trên đường xử lý đều hoạt động. Bốn dịch vụ mỗi cái cam kết chín mươi chín phẩy chín thì trần của bạn khoảng chín mươi chín phẩy sáu - thấp hơn cả cái thấp nhất."
       },
       {
         "type": "paragraph",
-        "text": "Một sự cố kéo mười hai giờ giữa mười sự cố kéo hai mươi phút sẽ đẩy trung bình lên hơn một giờ - một con số không mô tả đúng bất kỳ sự cố nào trong nhóm. Trung vị cho biết trường hợp thường gặp, phân vị cao cho biết trường hợp tệ nhất, và bạn cần cả hai."
+        "text": "Đây là thứ khiến nhiều đội đặt mục tiêu cao hơn mức chuỗi phụ thuộc cho phép, và không ai nhận ra cho tới khi có người thực hiện phép tính. Hậu quả rất cụ thể: đội chịu trách nhiệm cho một con số mà họ không có cách nào đạt được."
       },
       {
-        "type": "callout",
-        "label": "Không dùng để đánh giá người",
-        "text": "Ngay khi một chỉ số được dùng để chấm điểm cá nhân, nó ngừng phản ánh sự thật - đúng cùng cơ chế đã làm hỏng phép đếm số sự cố. Giữ chúng ở vai trò công cụ tìm chỗ cải thiện là điều kiện để chúng còn dùng được."
+        "type": "heading",
+        "text": "Cách nâng trần"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đưa ra khỏi đường chính",
+          "text": "Dịch vụ gửi thư nằm trên đường xử lý chính thì nó nhân vào. Đưa vào hàng đợi thì nó rời khỏi phép nhân - đơn hàng vẫn tạo được kể cả khi dịch vụ thư đang hỏng."
+        },
+        "right": {
+          "label": "Hoặc hạ mục tiêu",
+          "text": "Xuống mức chuỗi phụ thuộc cho phép. Nghe như đầu hàng, nhưng một mục tiêu không đạt được thì không phải mục tiêu - nó chỉ là một con số làm mọi người thất vọng đều đặn."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Con số nào đi vào phép nhân"
+      },
+      {
+        "type": "paragraph",
+        "text": "Không phải con số trong hợp đồng của họ - mà là con số BẠN đo được. Họ đo dịch vụ của họ, từ phía họ, theo định nghĩa của họ. Bạn trải nghiệm cả đường truyền và cả cách bạn gọi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hai con số đó có thể chênh nhau đáng kể, và chỉ con số của bạn mới ảnh hưởng tới người dùng của bạn. Đó là lý do phải tự đo từng phụ thuộc thay vì tin bảng cam kết."
       },
       {
         "type": "closing",
         "lines": [
-          "Con số duy nhất đáng đặt mục tiêu là thời gian người dùng chịu ảnh hưởng. Mọi con số khác là để chẩn đoán.",
-          "Bài sau về nguồn lực đứng sau toàn bộ quy trình này, và cũng là nguồn lực dễ cạn nhất: con người trực."
+          "Bài tập rẻ nhất từ chặng này: liệt kê các phụ thuộc trên đường xử lý chính và nhân cam kết của chúng lại. Con số ra thường thấp hơn mục tiêu đội đang theo đuổi.",
+          "Bài sau là nguyên nhân phổ biến nhất của mọi sự cố, và nó không nằm ở phía nhà cung cấp nào."
         ]
       }
     ]
   },
   {
     "id": 177,
-    "slug": "lich-truc-ben-vung",
-    "title": "Lịch trực bền vững: đội kiệt sức thì hệ thống kém tin cậy",
-    "subtitle": "Người trực là một thành phần của hệ thống, và nó cũng có giới hạn tải như mọi thành phần khác.",
-    "duration": "8 phút",
+    "slug": "thay-doi-la-nguyen-nhan-pho-bien-nhat",
+    "title": "Thay đổi là nguyên nhân phổ biến nhất",
+    "subtitle": "Hệ thống chạy ổn hai năm rồi hỏng hôm nay thì nguyên nhân nằm trong thứ vừa đổi.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "🌙",
     "track": "professional",
-    "whyItMatters": "Mọi cơ chế trong chặng này đều dựa vào một người tỉnh táo ở đầu bên kia. Khi lịch trực không sống nổi, người giỏi nghỉ việc và độ tin cậy đi xuống theo - chậm và không ai quy được cho nguyên nhân nào.",
-    "openingQuestion": "Dấu hiệu rõ nhất cho thấy lịch trực đang không bền vững là gì?",
+    "emoji": "🔀",
+    "isFundamental": true,
+    "whyItMatters": "Biết điều này rút ngắn thời gian điều tra nhiều hơn bất kỳ công cụ nào, và nó cũng chỉ ra rằng cách giảm sự cố hiệu quả nhất là làm cho việc thay đổi an toàn hơn.",
+    "openingQuestion": "Hệ thống chạy ổn hai năm và hỏng hôm nay. Nên tìm nguyên nhân ở đâu trước?",
     "openingOptions": [
-      "Người trực bị đánh thức nhiều đêm liên tiếp trong một ca",
-      "Số lượng sự cố nghiêm trọng tăng lên so với quý trước",
-      "Đội phải thêm người vào danh sách trực để đủ một vòng quay",
-      "Thời gian xử lý trung bình mỗi sự cố đang dài dần ra"
+      "Trong những thứ vừa thay đổi: mã, cấu hình, dữ liệu, hoặc thứ gì đó ở phía nhà cung cấp",
+      "Trong phần mã phức tạp nhất của hệ thống, vì đó là nơi có xác suất lỗi cao nhất",
+      "Trong nhật ký hệ thống của khoảng thời gian ngay trước khi sự cố bắt đầu",
+      "Trong các chỉ số về tài nguyên, vì hệ thống có thể đã chạm giới hạn khi dữ liệu lớn dần"
     ],
     "correctOption": 0,
-    "explanation": "Đây là dấu hiệu đo được trực tiếp và nó dẫn thẳng tới hậu quả: mất ngủ tích lại, khả năng phán đoán giảm, và người ta bắt đầu tìm cách rời khỏi vòng trực. Ba dấu hiệu còn lại đều đáng chú ý nhưng chúng có nhiều cách giải thích khác - hệ thống lớn lên, sản phẩm phức tạp hơn, hoặc đội đang nhận thêm phạm vi. Số đêm bị đánh thức thì chỉ có một cách đọc.",
+    "explanation": "Một hệ thống không tự nhiên hỏng - nếu nó chạy ổn suốt hai năm với cùng mã và cùng cấu hình thì cái vừa đổi là ứng viên số một. Đọc nhật ký là việc phải làm nhưng nó là công cụ chứ không phải hướng điều tra, và không có hướng thì bạn đọc rất nhiều dòng mà không biết tìm gì. Dữ liệu lớn dần cũng là một dạng thay đổi, và nó nằm trong lựa chọn đầu.",
     "diagram": [
       {
-        "label": "Cảnh báo đêm nhiều → thiếu ngủ tích lại",
+        "label": "Hệ thống không tự nhiên hỏng",
         "arrow": true
       },
       {
-        "label": "Phán đoán kém đi, sự cố xử lý chậm hơn",
+        "label": "Thay đổi gồm cả: mã, cấu hình, dữ liệu, phía nhà cung cấp",
         "arrow": true
       },
       {
-        "label": "Người giỏi rời vòng trực hoặc rời đội",
+        "label": "Nên câu hỏi đầu tiên: vừa có gì đổi?",
         "arrow": true
       },
       {
-        "label": "Độ tin cậy đi xuống mà không ai quy được nguyên nhân"
+        "label": "Và cách giảm sự cố là làm việc đổi an toàn hơn, không phải đổi ít hơn"
       }
     ],
     "realWorldExample": {
-      "company": "Vòng trực bốn người",
-      "description": "Một đội bốn người trực xoay vòng nghĩa là mỗi người trực một tuần trong bốn tuần. Nếu mỗi ca có ba đêm bị đánh thức thì đó là ba đêm mất ngủ mỗi tháng, đều đặn, năm này qua năm khác."
-    },
-    "keyTakeaways": [
-      "Số đêm bị đánh thức mỗi ca là chỉ số sức khoẻ của lịch trực.",
-      "Việc dọn cảnh báo phải được tính là công việc, không phải việc làm thêm.",
-      "Vòng trực quá ít người thì không có ca nào là ca nhẹ.",
-      "Sau một ca nặng cần thời gian bù, và điều đó phải được thừa nhận."
-    ],
-    "summary": {
-      "keyIdea": "Người trực là một thành phần có giới hạn, và vượt giới hạn thì cả hệ thống kém đi.",
-      "formula": "Đếm số đêm bị đánh thức, không đếm số cảnh báo.",
-      "commonMistake": "Coi mệt mỏi khi trực là chuyện đương nhiên của nghề."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Đếm số đêm có người bị đánh thức trong ba tháng gần nhất, chia cho số ca. Nếu con số vượt một hai đêm mỗi ca thì việc cần làm là dọn cảnh báo, không phải thêm người trực."
-    },
-    "practicePrompt": {
-      "question": "Cách bền vững nhất để giảm tải cho người trực là gì?",
-      "options": [
-        "Sửa nguyên nhân của những cảnh báo lặp lại nhiều lần nhất",
-        "Thêm người vào vòng trực để mỗi người phải trực ít tuần hơn",
-        "Chuyển các cảnh báo ít nghiêm trọng sang xử lý vào ban ngày",
-        "Chia lịch trực theo múi giờ để không ai phải trực ban đêm"
-      ],
-      "correct": 0,
-      "explanation": "Ba cách còn lại đều phân phối lại gánh nặng chứ không giảm nó, và cách đầu tiên trong số đó còn che mất vấn đề bằng cách làm cho nó ít lộ ra hơn. Chỉ có việc loại bỏ nguyên nhân mới làm tổng số lần bị đánh thức đi xuống thật."
+      "company": "Thay đổi mà không ai gọi là thay đổi",
+      "description": "Một chứng chỉ hết hạn, một dữ liệu vượt ngưỡng khiến truy vấn đổi kế hoạch thực thi, một nhà cung cấp âm thầm đổi hành vi. Không ai trong đội phát hành gì cả, và cả ba đều là thay đổi - chỉ là không nằm trong lịch sử kho mã."
     },
     "quiz": [
       {
-        "question": "Vì sao thêm người vào vòng trực chưa phải giải pháp?",
+        "question": "Những gì được tính là thay đổi?",
         "options": [
-          "Vì tổng số lần bị đánh thức không đổi, chỉ được chia cho nhiều người hơn",
-          "Vì người mới cần thời gian để làm quen với hệ thống",
-          "Vì đội thường không có sẵn người để bổ sung vào vòng trực",
-          "Vì ca trực dài hơn sẽ khiến việc bàn giao trở nên khó khăn"
+          "Mã, cấu hình, dữ liệu vượt ngưỡng, và cả những thay đổi ở phía nhà cung cấp",
+          "Mọi bản phát hành mã nguồn được đưa lên môi trường thật trong thời gian gần đây",
+          "Các thay đổi được ghi nhận trong hệ thống quản lý thay đổi của tổ chức",
+          "Những điều chỉnh về cấu hình hạ tầng và mã nguồn do đội thực hiện"
         ],
         "correct": 0,
-        "explanation": "Nó có giúp trong ngắn hạn và đôi khi là việc đúng phải làm ngay, nhưng nó không đụng tới nguyên nhân. Nếu hệ thống sinh ra ba mươi lần đánh thức mỗi tháng thì ba mươi lần ấy vẫn còn nguyên."
+        "explanation": "Ba lựa chọn kia đều thu hẹp về những thay đổi CÓ CHỦ ĐÍCH. Loại nguy hiểm nhất là loại không ai gọi là thay đổi - chứng chỉ hết hạn, dữ liệu vượt ngưỡng, nhà cung cấp âm thầm đổi hành vi."
       },
       {
-        "question": "Vì sao việc dọn cảnh báo phải được tính là công việc chính thức?",
+        "question": "Vì sao dữ liệu lớn dần cũng là một dạng thay đổi?",
         "options": [
-          "Vì nếu chỉ làm khi rảnh thì nó không bao giờ được làm",
-          "Vì nó đòi hỏi kiến thức sâu về hệ thống nên tốn nhiều thời gian",
-          "Vì cần sự đồng thuận của cả đội trước khi xoá một cảnh báo",
-          "Vì các công cụ giám sát cần được cấu hình lại sau mỗi thay đổi"
+          "Vì nó có thể làm truy vấn đổi kế hoạch thực thi hoặc chạm giới hạn tài nguyên",
+          "Vì dữ liệu lớn hơn làm tăng thời gian sao lưu và khôi phục khi có sự cố",
+          "Vì chi phí lưu trữ tăng lên khiến đội phải điều chỉnh cấu hình hệ thống",
+          "Vì dữ liệu mới có thể chứa những giá trị không hợp lệ mà mã hiện tại chưa xử lý được"
         ],
         "correct": 0,
-        "explanation": "Nó luôn thua mọi việc có hạn chót, và nó không bao giờ có hạn chót của riêng mình. Đưa nó vào kế hoạch như một hạng mục có người nhận là cách duy nhất nó thực sự diễn ra."
+        "explanation": "Đây là loại thay đổi khó chịu nhất vì nó diễn ra liên tục mà không có sự kiện nào đánh dấu. Hệ thống chạy ổn suốt hai năm và hỏng vào đúng ngày một bảng vượt ngưỡng mà bộ tối ưu truy vấn đổi cách làm."
       },
       {
-        "question": "Sau một ca trực nặng thì điều gì nên xảy ra?",
+        "question": "Vì sao câu hỏi vừa có gì đổi rút ngắn điều tra nhiều nhất?",
         "options": [
-          "Người đó được nghỉ bù và điều đó được thừa nhận công khai",
-          "Người đó viết báo cáo tổng kết những gì đã xảy ra trong ca",
-          "Đội họp lại để phân công xử lý những việc còn tồn đọng lại",
-          "Ca trực tiếp theo được rút ngắn để giảm áp lực cho cả đội"
+          "Vì nó thu hẹp phạm vi từ toàn bộ hệ thống xuống một danh sách ngắn có thể duyệt hết",
+          "Vì các thay đổi gần đây thường chưa được kiểm thử kỹ nên dễ chứa lỗi hơn",
+          "Vì đội vẫn còn nhớ rõ nội dung các thay đổi vừa thực hiện nên đánh giá được nhanh hơn",
+          "Vì việc quay lại các thay đổi gần đây là biện pháp khắc phục nhanh nhất"
         ],
         "correct": 0,
-        "explanation": "Thiếu ngủ không tự biến mất khi ca trực kết thúc, và một người vừa thức ba đêm không làm việc hiệu quả trong tuần kế tiếp. Điều quan trọng là nó được thừa nhận, vì nếu phải tự xin thì phần lớn người ta sẽ không xin."
+        "explanation": "Không có hướng thì bạn đọc rất nhiều dòng nhật ký mà không biết tìm gì. Lựa chọn cuối mô tả một lợi ích thật khác - quay lại nhanh - nhưng nó là hệ quả của việc đã xác định được thay đổi, không phải lý do câu hỏi này hiệu quả."
       },
       {
-        "question": "Vì sao một vòng trực quá ít người lại có hại?",
+        "question": "Vì sao giảm số lần thay đổi KHÔNG phải cách giảm sự cố?",
         "options": [
-          "Vì tần suất trực dày tới mức không ai có được khoảng nghỉ thật sự",
-          "Vì rủi ro sẽ không còn ai xử lý được khi có một người nghỉ phép dài",
-          "Vì kiến thức về hệ thống tập trung vào quá ít người",
-          "Vì việc bàn giao giữa các ca diễn ra quá thường xuyên"
+          "Vì gom thay đổi lại làm mỗi lần lớn hơn, nên khi hỏng thì khó tìm và khó quay lại",
+          "Vì tổng lượng thay đổi vẫn giữ nguyên nên tổng số lỗi cũng không đổi",
+          "Vì thay đổi ít đi làm hệ thống lạc hậu và tích tụ nợ kỹ thuật nhiều hơn",
+          "Vì đội sẽ mất dần thói quen phát hành nên quy trình rất dễ hỏng khi cần dùng gấp"
         ],
         "correct": 0,
-        "explanation": "Vòng hai người nghĩa là mỗi người trực một tuần trong hai tuần, tức là một nửa cuộc sống của họ luôn có điện thoại bên cạnh. Hai rủi ro còn lại đều có thật nhưng chúng là vấn đề về năng lực dự phòng chứ không phải về sức bền."
+        "explanation": "Đây là điều đã nói ở chặng triển khai và ở bài về bốn chỉ số, và nó lặp lại vì trực giác luôn kéo về hướng ngược lại. Ba lựa chọn kia đều là hệ quả có thật nhưng chúng gián tiếp hơn."
       },
       {
-        "question": "Vì sao lịch trực kém lại làm hệ thống kém tin cậy?",
+        "question": "Cách giảm sự cố hiệu quả nhất là gì?",
         "options": [
-          "Vì mọi cơ chế ứng phó đều dựa vào một người còn tỉnh táo",
-          "Vì đội sẽ không còn thời gian nào để cải thiện hạ tầng nữa",
-          "Vì các cảnh báo sẽ bị tắt bớt để giảm số lần bị đánh thức",
-          "Vì người mới sẽ được đưa vào trực trước khi đủ kinh nghiệm"
+          "Làm cho việc thay đổi an toàn hơn: nhỏ hơn, quay lại được, có cờ tính năng",
+          "Tăng cường kiểm thử tự động để bắt được nhiều lỗi hơn trước khi phát hành",
+          "Kéo dài thời gian chờ giữa các lần phát hành để hệ thống ổn định lại",
+          "Yêu cầu nhiều người rà soát hơn cho mỗi bản thay đổi trước khi được gộp"
         ],
         "correct": 0,
-        "explanation": "Ba hậu quả còn lại đều xảy ra và đều làm mọi thứ tệ hơn, nhưng chúng đến sau. Điều đầu tiên mất đi là chất lượng phán đoán của người đang xử lý sự cố lúc ba giờ sáng sau đêm thứ ba mất ngủ."
+        "explanation": "Kiểm thử và rà soát đều giảm xác suất lỗi lọt ra, nhưng chúng không giúp gì khi lỗi đã lọt. Ba biện pháp trong lựa chọn đầu giảm cả xác suất lẫn hậu quả, và phần hậu quả mới là phần quyết định độ dài của sự cố."
       }
     ],
+    "keyTakeaways": [
+      "Hệ thống không tự nhiên hỏng - cái vừa đổi là ứng viên số một.",
+      "Thay đổi gồm cả loại không ai gọi là thay đổi: chứng chỉ, dữ liệu, phía nhà cung cấp.",
+      "Câu hỏi vừa có gì đổi thu hẹp phạm vi mạnh hơn bất kỳ công cụ nào.",
+      "Giảm số lần thay đổi làm mỗi lần lớn hơn - khó tìm nguyên nhân và khó quay lại.",
+      "Cách giảm sự cố: làm việc đổi AN TOÀN hơn, không phải đổi ÍT hơn."
+    ],
+    "practicePrompt": {
+      "question": "Không ai phát hành gì trong ba ngày qua mà hệ thống vẫn hỏng hôm nay. Nên tìm ở đâu?",
+      "options": [
+        "Ở những thay đổi không do đội thực hiện: chứng chỉ, dữ liệu vượt ngưỡng, nhà cung cấp",
+        "Ở phần mã phức tạp nhất, vì đây có thể là lỗi tiềm ẩn từ lâu mới bộc lộ",
+        "Ở cấu hình hạ tầng, vì nhà cung cấp đám mây có thể đã cập nhật nền tảng",
+        "Ở mức tải, vì lưu lượng người dùng có thể đã tăng vượt ngưỡng chịu đựng"
+      ],
+      "correct": 0,
+      "explanation": "Lựa chọn thứ ba và thứ tư đều đúng nhưng chúng là hai trường hợp cụ thể nằm trong danh sách của lựa chọn đầu. Câu hỏi đúng vẫn là vừa có gì đổi - chỉ là mở rộng ra ngoài phạm vi những thay đổi có chủ đích."
+    },
+    "summary": {
+      "keyIdea": "Câu hỏi vừa có gì đổi rút ngắn điều tra hơn bất kỳ công cụ nào.",
+      "formula": "Thay đổi = mã + cấu hình + dữ liệu + phía nhà cung cấp + thời gian trôi.",
+      "commonMistake": "Chỉ nhìn lịch sử kho mã, và bỏ qua loại thay đổi không ai ghi lại.",
+      "action": "Dựng một dòng thời gian gộp mọi loại thay đổi vào một chỗ."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Dựng một dòng thời gian gộp mọi loại thay đổi vào một chỗ: phát hành mã, đổi cấu hình, thay đổi hạ tầng, và cả cảnh báo về chứng chỉ sắp hết hạn.",
+      "secondary": "Lúc có sự cố, đây là thứ bạn mở đầu tiên sau bảng bốn chỉ số. Nó biến câu hỏi vừa có gì đổi từ một cuộc hỏi vòng quanh thành một màn hình."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Mọi thứ trong chặng này - cảnh báo, tuyên bố, phân vai, giảm thiểu - đều giả định có một người tỉnh táo ở đầu bên kia. Bài này về thành phần đó, và về việc nó cũng có giới hạn tải."
+        "text": "Có một câu hỏi rút ngắn thời gian điều tra nhiều hơn mọi công cụ cộng lại, và nó đơn giản tới mức hay bị bỏ qua trong lúc vội."
       },
       {
         "type": "heading",
-        "text": "Con số đáng đếm"
-      },
-      {
-        "type": "paragraph",
-        "text": "Không phải số cảnh báo, mà là số đêm có người bị đánh thức, tính trên mỗi ca. Một đội bốn người xoay vòng nghĩa là mỗi người trực một tuần trong bốn tuần; nếu mỗi ca có ba đêm bị đánh thức thì đó là ba đêm mất ngủ mỗi tháng, đều đặn, năm này qua năm khác."
+        "text": "Câu hỏi đó"
       },
       {
         "type": "callout",
-        "label": "Chuỗi hậu quả không ai quy được",
-        "text": "Thiếu ngủ tích lại, phán đoán kém đi, sự cố xử lý chậm hơn, người giỏi rời vòng trực rồi rời đội. Độ tin cậy đi xuống dần, và không có sự cố nào để chỉ vào - nên nguyên nhân này gần như không bao giờ xuất hiện trong một buổi hồi cứu."
+        "label": "Vừa có gì đổi?",
+        "text": "Một hệ thống không tự nhiên hỏng. Nếu nó chạy ổn suốt hai năm với cùng mã và cùng cấu hình thì cái vừa đổi là ứng viên số một - và câu hỏi này thu hẹp phạm vi từ toàn bộ hệ thống xuống một danh sách duyệt hết được."
       },
       {
         "type": "heading",
-        "text": "Ba việc thật sự giảm tải"
+        "text": "Thay đổi gồm những gì"
       },
       {
         "type": "list",
         "items": [
-          "Sửa nguyên nhân của những cảnh báo lặp nhiều nhất - đây là việc duy nhất làm tổng số lần đánh thức giảm thật.",
-          "Đưa việc dọn cảnh báo vào kế hoạch như một hạng mục có người nhận; nếu chỉ làm khi rảnh thì nó không bao giờ được làm.",
-          "Thừa nhận thời gian bù sau ca nặng, chủ động chứ không bắt người ta phải xin."
+          "Mã: bản phát hành gần nhất. Đây là loại ai cũng nghĩ tới.",
+          "Cấu hình: một biến môi trường, một quy tắc định tuyến, một ngưỡng tự động mở rộng.",
+          "Dữ liệu: một bảng vượt ngưỡng khiến truy vấn đổi kế hoạch thực thi. Loại này diễn ra liên tục mà không có sự kiện nào đánh dấu.",
+          "Phía nhà cung cấp: họ phát hành gì đó, hoặc âm thầm đổi hành vi của một điểm truy cập.",
+          "Thời gian trôi: một chứng chỉ hết hạn, một khoá xoay vòng."
         ]
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Phân phối lại gánh nặng",
-          "text": "Thêm người vào vòng trực, chia theo múi giờ, đẩy cảnh báo sang ban ngày. Giúp ngay, nhưng tổng số lần đánh thức không đổi."
+          "label": "Loại ai cũng kiểm",
+          "text": "Bản phát hành mã. Nó nằm trong lịch sử kho, có người biết, và là chỗ đội nhìn đầu tiên."
         },
         "right": {
-          "label": "Giảm gánh nặng",
-          "text": "Loại bỏ nguyên nhân. Chậm hơn, khó hơn, và là cách duy nhất con số đi xuống thật."
+          "label": "Loại nguy hiểm hơn",
+          "text": "Bốn loại còn lại - những thứ không ai gọi là thay đổi. Không ai phát hành gì cả, và hệ thống vẫn hỏng vì một trong số đó."
         }
+      },
+      {
+        "type": "heading",
+        "text": "Hệ quả về cách giảm sự cố"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu thay đổi là nguyên nhân phổ biến nhất thì trực giác nói: thay đổi ít đi. Trực giác sai ở đây, và nó sai theo cách đã được nói ở chặng triển khai lẫn ở bài về bốn chỉ số."
+      },
+      {
+        "type": "paragraph",
+        "text": "Gom thay đổi lại làm mỗi lần lớn hơn - nên khi hỏng thì bạn không biết cái nào gây ra và quay lại nghĩa là mất hết. Cách đúng là làm cho việc thay đổi AN TOÀN hơn: nhỏ hơn, quay lại được, có cờ tính năng."
       },
       {
         "type": "closing",
         "lines": [
-          "Mệt mỏi khi trực không phải chuyện đương nhiên của nghề. Nó là một chỉ số, và nó đang nói điều gì đó về hệ thống.",
-          "Bài sau về cách kiểm tra toàn bộ những gì chặng này đã dựng lên, trước khi thực tế kiểm tra hộ bạn."
+          "Ba biện pháp đó giảm cả xác suất lẫn HẬU QUẢ, còn kiểm thử và rà soát chỉ giảm xác suất - chúng không giúp gì khi lỗi đã lọt ra.",
+          "Bài sau là ba loại tín hiệu bạn dùng để tìm nguyên nhân, và mỗi loại trả lời câu hỏi khác nhau."
         ]
       }
     ]
   },
   {
     "id": 178,
-    "slug": "dien-tap-su-co",
-    "title": "Diễn tập: tự làm hỏng trước khi thực tế làm hỏng",
-    "subtitle": "Mọi giả định về độ tin cậy đều đúng cho tới lần đầu tiên có người thử.",
-    "duration": "9 phút",
+    "slug": "ba-loai-tin-hieu-so-lieu-nhat-ky-dau-vet",
+    "title": "Ba loại tín hiệu - số liệu, nhật ký và dấu vết",
+    "subtitle": "Mỗi loại trả lời một câu hỏi khác nhau, và dùng nhầm loại thì rất tốn.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "🎭",
     "track": "professional",
-    "whyItMatters": "Cả chặng này dựng lên một loạt cơ chế - dự phòng, cầu dao, sao lưu, quy trình ứng phó - và mỗi cơ chế là một giả định chưa được kiểm chứng cho tới khi ai đó cố tình phá thứ nó bảo vệ.",
-    "openingQuestion": "Diễn tập sự cố nên bắt đầu ở đâu?",
+    "emoji": "🛰️",
+    "interactiveType": "tail-risk",
+    "isFundamental": true,
+    "whyItMatters": "Đội đầu tư sai loại tín hiệu sẽ trả rất nhiều tiền lưu trữ mà vẫn không trả lời được câu hỏi mình cần. Ba loại này bổ sung nhau chứ không thay thế nhau.",
+    "openingQuestion": "Bạn cần biết có chuyện gì đang xảy ra không. Loại tín hiệu nào trả lời được?",
     "openingOptions": [
-      "Ở môi trường thử, với một kịch bản hẹp và một nút dừng rõ ràng",
-      "Ở môi trường thật, vì chỉ ở đó kết quả mới phản ánh đúng thực tế",
-      "Ở một buổi thảo luận trên giấy, không đụng tới hệ thống nào",
-      "Ở thành phần mà đội tin là kém tin cậy nhất trong hệ thống"
+      "Số liệu, vì chúng rẻ để giữ lâu và trả lời được câu hỏi về xu hướng theo thời gian",
+      "Nhật ký, vì chúng chứa thông tin chi tiết nhất về từng sự kiện đã xảy ra",
+      "Dấu vết, vì chúng cho thấy đường đi của một yêu cầu qua toàn bộ hệ thống",
+      "Cả ba, vì mỗi loại cung cấp một phần của bức tranh tổng thể về hệ thống"
     ],
     "correctOption": 0,
-    "explanation": "Bắt đầu nhỏ và có kiểm soát là cách xây được niềm tin để đi tiếp; bài học từ vài lần đầu thường đủ nhiều mà chưa cần chạm vào môi trường thật. Thảo luận trên giấy cũng là một hình thức diễn tập có giá trị thật, đặc biệt cho phần quy trình và phân vai, nhưng nó không kiểm chứng được hệ thống. Chọn thành phần đội nghi là yếu nhất nghe hợp lý mà thường sai, vì chỗ đổ vỡ hay nằm ở thứ không ai nghi.",
+    "explanation": "Số liệu là những con số tổng hợp theo thời gian, nên chúng rẻ để giữ nhiều tháng và trả lời được câu có chuyện gì không. Nhật ký và dấu vết đều chi tiết hơn nhiều, và chính vì vậy chúng đắt để giữ lâu - chúng dùng để trả lời câu tiếp theo là vì sao, sau khi số liệu đã cho biết ở đâu.",
     "diagram": [
       {
-        "label": "Giả thuyết: hệ thống chịu được X",
+        "label": "Số liệu: có chuyện gì không - rẻ, giữ lâu được",
         "arrow": true
       },
       {
-        "label": "Gây ra X trong phạm vi hẹp, có nút dừng",
+        "label": "Nhật ký: chuyện gì đã xảy ra ở một chỗ cụ thể",
         "arrow": true
       },
       {
-        "label": "Quan sát: có đúng như giả thuyết không",
+        "label": "Dấu vết: yêu cầu này đi qua đâu và mất bao lâu ở mỗi chặng",
         "arrow": true
       },
       {
-        "label": "Chỗ lệch chính là thứ bạn vừa học được"
+        "label": "Thứ tự dùng: số liệu → dấu vết → nhật ký"
       }
     ],
     "realWorldExample": {
-      "company": "Cầu dao chưa từng ngắt",
-      "description": "Một hệ thống có cầu dao cho mọi phụ thuộc ngoài. Lần đầu diễn tập cho một phụ thuộc chậm lại, cầu dao không ngắt - ngưỡng đã được đặt cao tới mức không tình huống thực tế nào chạm tới."
-    },
-    "keyTakeaways": [
-      "Diễn tập là một phép thử có giả thuyết, không phải phá hoại ngẫu nhiên.",
-      "Bắt đầu hẹp, có nút dừng, và thông báo cho những người liên quan.",
-      "Diễn tập cả phần con người, không chỉ phần hệ thống.",
-      "Diễn tập không tìm ra gì cũng là kết quả, nếu giả thuyết đủ chặt."
-    ],
-    "summary": {
-      "keyIdea": "Chủ động gây ra tình huống hỏng trong phạm vi kiểm soát để kiểm chứng giả định.",
-      "formula": "Giả thuyết, phạm vi hẹp, nút dừng, quan sát.",
-      "commonMistake": "Coi diễn tập là gây hỗn loạn ngẫu nhiên để xem chuyện gì xảy ra."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Chọn một giả định bạn chưa từng kiểm chứng - bản sao chuyển đổi được, cầu dao ngắt được, sao lưu khôi phục được - và lên lịch một phép thử hẹp cho nó."
-    },
-    "practicePrompt": {
-      "question": "Vì sao diễn tập phải bắt đầu bằng một giả thuyết cụ thể?",
-      "options": [
-        "Vì không có giả thuyết thì không biết kết quả nào là bất thường",
-        "Vì giả thuyết giúp thuyết phục lãnh đạo phê duyệt buổi diễn tập",
-        "Vì các công cụ diễn tập yêu cầu khai báo kịch bản trước khi chạy",
-        "Vì giả thuyết cho phép ước lượng trước mức rủi ro của buổi diễn tập"
-      ],
-      "correct": 0,
-      "explanation": "Nếu bạn chỉ tắt một máy chủ rồi xem chuyện gì xảy ra, thì bất kỳ điều gì diễn ra cũng đều là chuyện đã diễn ra và bạn không học được gì. Viết trước rằng lưu lượng phải chuyển sang hai máy còn lại trong dưới ba mươi giây thì bạn có một câu để đối chiếu."
+      "company": "Lấy mẫu dấu vết",
+      "description": "Ghi dấu vết cho mọi yêu cầu là quá đắt với hệ thống có lưu lượng lớn, nên người ta lấy mẫu. Cách lấy mẫu quan trọng: lấy ngẫu nhiên một phần trăm thì bạn gần như không bao giờ có dấu vết của những yêu cầu chậm nhất - đúng những cái bạn cần."
     },
     "quiz": [
       {
-        "question": "Diễn tập khác phá hoại ngẫu nhiên ở điểm nào?",
+        "question": "Vì sao số liệu rẻ hơn nhật ký để giữ lâu?",
         "options": [
-          "Nó có giả thuyết viết trước, phạm vi hẹp và một nút dừng",
-          "Nó được thực hiện trên môi trường thử thay vì môi trường thật",
-          "Nó được lên lịch vào giờ có ít người dùng nhất trong ngày",
-          "Nó có sự tham gia của toàn bộ đội thay vì chỉ một vài người"
+          "Vì chúng là con số đã tổng hợp theo thời gian, không lưu từng sự kiện riêng lẻ",
+          "Vì chúng được nén tốt hơn nhờ có cấu trúc dữ liệu đơn giản và lặp lại",
+          "Vì các công cụ theo dõi tính phí số liệu theo cách khác với nhật ký",
+          "Vì số liệu thường chỉ được thu thập ở một số điểm quan trọng trong hệ thống"
         ],
         "correct": 0,
-        "explanation": "Diễn tập trưởng thành vẫn chạy trên môi trường thật, và điều làm nó an toàn không phải là chọn môi trường mà là ba yếu tố kia. Không có chúng thì đó là một sự cố tự gây ra, có thêm cái tên nghe hay hơn."
+        "explanation": "Đây là khác biệt về bản chất chứ không phải về cách lưu trữ: một triệu yêu cầu thành một con số đếm, còn nhật ký thì thành một triệu dòng. Tỷ lệ chi phí giữa hai loại thường là vài bậc."
       },
       {
-        "question": "Vì sao chọn thành phần đội nghi là yếu nhất thường không hiệu quả?",
+        "question": "Dấu vết trả lời được câu hỏi nào mà hai loại kia không?",
         "options": [
-          "Vì chỗ thật sự đổ vỡ thường là thứ không ai nghi ngờ",
-          "Vì thành phần yếu nhất thường đã được đội theo dõi sát rồi",
-          "Vì việc gây lỗi ở đó có nguy cơ ảnh hưởng tới người dùng thật",
-          "Vì kết quả sẽ đúng như dự đoán nên không thu được thông tin"
+          "Một yêu cầu cụ thể đi qua những dịch vụ nào và mất bao lâu ở mỗi chặng",
+          "Tổng thời gian xử lý trung bình của hệ thống trong một khoảng thời gian",
+          "Những lỗi cụ thể nào đã xảy ra và thông báo lỗi chi tiết là gì",
+          "Mức sử dụng tài nguyên của từng dịch vụ tại thời điểm có sự cố"
         ],
         "correct": 0,
-        "explanation": "Chỗ đội đã nghi ngờ thì thường đã có phòng bị. Giá trị lớn nhất của diễn tập nằm ở những giả định vững tới mức không ai nghĩ tới việc kiểm chứng chúng."
+        "explanation": "Trong hệ thống nhiều dịch vụ, đây là câu hỏi quyết định và không loại nào khác trả lời được: số liệu cho tổng hợp, nhật ký cho từng chỗ riêng lẻ, còn dấu vết nối chúng thành một đường đi."
       },
       {
-        "question": "Vì sao nên diễn tập cả phần con người?",
+        "question": "Vì sao lấy mẫu dấu vết ngẫu nhiên lại có vấn đề?",
         "options": [
-          "Vì quy trình ứng phó cũng là một giả định chưa được kiểm chứng",
-          "Vì đội cần làm quen với áp lực trước khi gặp sự cố thật",
-          "Vì các vai trò cần được phân công lại sau mỗi lần thay đổi nhân sự",
-          "Vì tài liệu ứng phó cần được cập nhật định kỳ theo quy định"
+          "Vì bạn gần như không bao giờ có dấu vết của những yêu cầu chậm nhất",
+          "Vì mẫu ngẫu nhiên không phản ánh đúng phân bố các loại yêu cầu trong hệ thống",
+          "Vì việc lấy mẫu làm mất tính liên tục nên khó dựng lại bức tranh tổng thể",
+          "Vì tỷ lệ lấy mẫu cố định không phù hợp khi lưu lượng thay đổi theo thời điểm"
         ],
         "correct": 0,
-        "explanation": "Cùng loại phát hiện với hệ thống: tài liệu chỉ tới một bảng theo dõi đã bị xoá, không ai có quyền truy cập cần thiết, danh sách liên lạc đã cũ hai năm. Chúng chỉ lộ ra khi có người thật sự đi theo quy trình từ đầu tới cuối."
+        "explanation": "Những yêu cầu chậm nhất là số ít, nên lấy ngẫu nhiên một phần trăm thì xác suất bắt được chúng rất thấp - và đó đúng là những cái bạn cần. Cách chữa là lấy mẫu ưu tiên yêu cầu chậm và yêu cầu lỗi."
       },
       {
-        "question": "Một buổi diễn tập không tìm ra vấn đề nào nghĩa là gì?",
+        "question": "Thứ tự dùng ba loại tín hiệu khi điều tra là gì?",
         "options": [
-          "Là một kết quả hợp lệ, nếu giả thuyết đủ cụ thể để có thể sai",
-          "Là dấu hiệu kịch bản được chọn quá dễ so với thực tế",
-          "Là dấu hiệu hệ thống đã đủ tin cậy cho tình huống đó",
-          "Là dấu hiệu cần mở rộng phạm vi trong lần diễn tập kế tiếp theo"
+          "Số liệu để biết ở đâu, dấu vết để biết chặng nào, nhật ký để biết vì sao",
+          "Nhật ký trước vì nó chi tiết nhất, rồi số liệu để xác nhận phạm vi ảnh hưởng",
+          "Dấu vết trước vì nó cho bức tranh đầy đủ nhất về đường đi của yêu cầu",
+          "Cả ba cùng lúc để không bỏ sót thông tin nào trong quá trình điều tra"
         ],
         "correct": 0,
-        "explanation": "Kiểm chứng được một giả định là kết quả thật, và nó có giá trị vì bạn không còn phải đoán về nó nữa. Điều kiện duy nhất là giả thuyết phải đủ cụ thể để có khả năng bị bác bỏ."
+        "explanation": "Thứ tự này đi từ rộng tới hẹp, và nó tiết kiệm nhất vì mỗi bước thu hẹp phạm vi cho bước sau. Bắt đầu bằng nhật ký nghĩa là đọc rất nhiều dòng mà chưa biết tìm gì."
       },
       {
-        "question": "Vì sao phải thông báo trước cho những người liên quan?",
+        "question": "Điều gì làm cho ba loại tín hiệu này dùng được cùng nhau?",
         "options": [
-          "Để không có ai tưởng đây là sự cố thật và bắt đầu ứng phó nhầm",
-          "Để mọi người có thời gian chuẩn bị cho tình huống được diễn tập",
-          "Để có đủ người quan sát và ghi lại kết quả của buổi diễn tập",
-          "Để đội có thể tạm dừng các thay đổi khác trong thời gian đó"
+          "Một mã định danh chung theo yêu cầu đi qua cả ba loại, để nối chúng lại",
+          "Việc lưu trữ chúng trong cùng một hệ thống để truy vấn được ở một chỗ",
+          "Đồng bộ đồng hồ giữa các máy chủ để dấu thời gian khớp nhau chính xác",
+          "Sử dụng cùng một định dạng dữ liệu cho cả ba loại tín hiệu thu thập được"
         ],
         "correct": 0,
-        "explanation": "Một buổi diễn tập không báo trước có thể kích hoạt một cuộc ứng phó thật với đầy đủ chi phí của nó. Diễn tập bất ngờ có chỗ trong những tổ chức đã rất trưởng thành, nhưng khi ấy vẫn phải có người biết và có nút dừng."
+        "explanation": "Không có mã định danh chung thì bạn có ba kho dữ liệu rời rạc và phải nối bằng tay theo dấu thời gian - việc rất tốn và rất dễ sai. Đồng bộ đồng hồ cũng cần nhưng nó là điều kiện phụ."
       }
     ],
+    "keyTakeaways": [
+      "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+      "Nhật ký: chuyện gì đã xảy ra ở một chỗ cụ thể - đắt để giữ lâu.",
+      "Dấu vết: yêu cầu đi qua đâu và độ trễ ở mỗi chặng - không loại nào thay được.",
+      "Lấy mẫu dấu vết phải ưu tiên yêu cầu CHẬM và LỖI, không lấy ngẫu nhiên.",
+      "Mã định danh chung theo yêu cầu là thứ nối ba loại lại với nhau."
+    ],
+    "practicePrompt": {
+      "question": "Bạn biết dịch vụ A chậm nhưng không biết chậm ở chặng nào. Dùng loại tín hiệu nào?",
+      "options": [
+        "Dấu vết, vì nó cho thấy thời gian ở từng chặng trong đường đi của một yêu cầu",
+        "Nhật ký của dịch vụ A, vì nó chứa chi tiết nhất về những gì dịch vụ đó làm",
+        "Số liệu của dịch vụ A, vì nó cho thấy xu hướng thời gian phản hồi theo thời gian",
+        "Số liệu của tất cả các dịch vụ để so sánh và tìm ra dịch vụ nào chậm nhất"
+      ],
+      "correct": 0,
+      "explanation": "Đây đúng là câu hỏi mà dấu vết sinh ra để trả lời. Nhật ký của dịch vụ A cho biết nó làm gì nhưng không cho biết nó chờ ai, và trong hệ thống nhiều dịch vụ thì phần chờ thường là phần lớn nhất."
+    },
+    "summary": {
+      "keyIdea": "Ba loại bổ sung nhau; dùng nhầm loại thì tốn tiền mà vẫn không có câu trả lời.",
+      "formula": "Số liệu → dấu vết → nhật ký, đi từ rộng tới hẹp.",
+      "commonMistake": "Bắt đầu bằng nhật ký, tức đọc rất nhiều dòng mà chưa biết tìm gì.",
+      "action": "Kiểm xem hệ thống của bạn có mã định danh chung theo yêu cầu chưa."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Kiểm xem hệ thống của bạn có mã định danh chung đi theo mỗi yêu cầu qua các dịch vụ không, và nó có xuất hiện trong nhật ký của từng dịch vụ không.",
+      "secondary": "Nếu chưa có, đó là việc đáng làm trước cả việc thêm dấu vết - vì không có nó thì ba loại tín hiệu là ba kho rời rạc phải nối bằng tay theo dấu thời gian."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Chặng này đã dựng lên nhiều cơ chế: dự phòng, cầu dao, sao lưu, quy trình ứng phó. Mỗi cơ chế là một giả định, và mọi giả định đều đúng cho tới lần đầu tiên có người thử."
+        "text": "Bài trước cho bạn hướng điều tra. Bài này là ba loại tín hiệu bạn dùng để đi theo hướng đó - và mỗi loại trả lời một câu hỏi khác nhau."
       },
       {
         "type": "heading",
-        "text": "Bốn phần của một phép thử"
+        "text": "Ba loại"
       },
       {
-        "type": "list",
-        "items": [
-          "Giả thuyết viết trước: lưu lượng sẽ chuyển sang hai máy còn lại trong dưới ba mươi giây.",
-          "Phạm vi hẹp: một máy, một vùng, một phần trăm lưu lượng - không phải cả hệ thống.",
-          "Nút dừng: một cách quay lại trạng thái bình thường trong vài giây, đã thử trước.",
-          "Quan sát: so kết quả với giả thuyết, và chỗ lệch chính là thứ vừa học được."
+        "type": "conceptTable",
+        "title": "Câu hỏi và cái giá",
+        "concepts": [
+          {
+            "vi": "Số liệu",
+            "en": "metrics",
+            "def": "Có chuyện gì không, và xu hướng thế nào. Là con số đã tổng hợp nên rất rẻ - một triệu yêu cầu thành một con số đếm. Giữ được nhiều tháng."
+          },
+          {
+            "vi": "Nhật ký",
+            "en": "logs",
+            "def": "Chuyện gì đã xảy ra ở một chỗ cụ thể. Chi tiết nhất và đắt nhất để giữ lâu - một triệu yêu cầu thành một triệu dòng."
+          },
+          {
+            "vi": "Dấu vết",
+            "en": "traces",
+            "def": "Một yêu cầu đi qua những dịch vụ nào và mất bao lâu ở mỗi chặng. Trong hệ thống nhiều dịch vụ, không loại nào khác trả lời được câu này."
+          }
         ]
       },
       {
+        "type": "heading",
+        "text": "Thứ tự dùng"
+      },
+      {
         "type": "callout",
-        "label": "Không có giả thuyết thì không có bài học",
-        "text": "Tắt một máy rồi xem chuyện gì xảy ra thì bất kỳ điều gì diễn ra cũng đều là chuyện đã diễn ra. Chỉ khi có một câu viết trước, bạn mới phân biệt được kết quả bình thường với kết quả bất thường."
+        "label": "Rộng tới hẹp",
+        "text": "Số liệu để biết Ở ĐÂU, dấu vết để biết CHẶNG NÀO, nhật ký để biết VÌ SAO. Mỗi bước thu hẹp phạm vi cho bước sau - và bắt đầu bằng nhật ký nghĩa là đọc rất nhiều dòng mà chưa biết tìm gì."
       },
       {
         "type": "heading",
-        "text": "Phần dễ bỏ sót: con người"
+        "text": "Hai chi tiết quyết định"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Mã định danh chung",
+          "text": "Một mã đi theo yêu cầu qua mọi dịch vụ và xuất hiện trong cả ba loại tín hiệu. Không có nó thì bạn có ba kho rời rạc phải nối bằng tay theo dấu thời gian."
+        },
+        "right": {
+          "label": "Cách lấy mẫu dấu vết",
+          "text": "Ghi mọi yêu cầu là quá đắt, nên phải lấy mẫu. Lấy NGẪU NHIÊN một phần trăm thì bạn gần như không bao giờ có dấu vết của yêu cầu chậm nhất - đúng những cái bạn cần."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Quy trình ứng phó cũng là một giả định. Cho một người đi hết quy trình từ đầu tới cuối sẽ lộ ra những thứ cùng loại với lỗi hệ thống: tài liệu chỉ tới một bảng theo dõi đã bị xoá, người trực không có quyền truy cập cần thiết, danh sách liên lạc đã cũ hai năm."
-      },
-      {
-        "type": "callout",
-        "label": "Chỗ đổ vỡ nằm ở thứ không ai nghi",
-        "text": "Thành phần đội đã nghi ngờ thì thường đã có phòng bị. Giá trị lớn nhất nằm ở những giả định vững tới mức không ai nghĩ tới việc kiểm chứng - như một cầu dao có ngưỡng cao tới mức chưa tình huống thực tế nào chạm tới."
+        "text": "Cách chữa cho cột bên phải: lấy mẫu ưu tiên yêu cầu chậm và yêu cầu lỗi. Chúng là số ít nên giữ hết cũng rẻ, và chúng là toàn bộ lý do bạn thu thập dấu vết."
       },
       {
         "type": "closing",
         "lines": [
-          "Câu hỏi không phải hệ thống có chịu được không, mà là bạn muốn biết điều đó vào lúc nào và trong hoàn cảnh nào.",
-          "Bài sau đi qua một dòng thời gian sự cố cụ thể, áp dụng mọi thứ chặng này đã dựng."
+          "Ba loại này bổ sung nhau chứ không thay thế nhau, và đội đầu tư sai loại sẽ trả rất nhiều tiền lưu trữ mà vẫn không trả lời được câu hỏi mình cần.",
+          "Bài sau là một sự cố thật, đi qua đủ mọi thứ chặng này đã nói."
         ]
       }
     ]
   },
   {
     "id": 179,
-    "slug": "case-ba-muoi-phut-dau-su-co",
-    "title": "Case: ba mươi phút đầu của một sự cố",
-    "subtitle": "Cùng một sự cố kỹ thuật, hai cách ứng phó, và chênh nhau bảy mươi phút thời gian ngừng.",
-    "duration": "10 phút",
+    "slug": "case-mot-su-co-that",
+    "title": "Một sự cố thật, từ đầu tới cuối",
+    "subtitle": "Cùng một sự cố, nhìn qua tám bài trước.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "🕐",
     "track": "professional",
-    "whyItMatters": "Mọi nguyên tắc trong chặng này đều dễ đồng ý khi đọc. Đặt chúng vào một dòng thời gian cụ thể thì mới thấy chỗ nào thật sự tốn thời gian, và nó hiếm khi là chỗ ta tưởng.",
-    "openingQuestion": "Sự cố bắt đầu lúc 14:00. Đội A chặn được thiệt hại lúc 14:20, đội B lúc 15:30, cùng nguyên nhân. Khác biệt lớn nhất thường nằm ở đâu?",
+    "emoji": "📖",
+    "interactiveType": "tail-risk",
+    "isFundamental": false,
+    "whyItMatters": "Các nguyên tắc rời chỉ dùng được khi bạn nhận ra tình huống chúng áp dụng. Bài này ghép chín bài trước vào một chuỗi sự kiện cụ thể.",
+    "openingQuestion": "Người dùng phản ánh chậm nhưng bảng theo dõi báo xanh. Bước đầu tiên là gì?",
     "openingOptions": [
-      "Ở thời gian phát hiện và tuyên bố, không ở thời gian sửa",
-      "Ở kinh nghiệm của người đang trực với chính hệ thống cụ thể đó",
-      "Ở chất lượng công cụ chẩn đoán mà mỗi đội đang có",
-      "Ở việc đội nào có mặt đủ người ngay từ đầu sự cố"
+      "Kiểm xem bảng đang đo từ phía nào và bằng con số gì, vì có thể phép đo đang sai",
+      "Hỏi thêm người dùng để xác định phạm vi và mức độ ảnh hưởng cụ thể",
+      "Kiểm tra nhật ký hệ thống trong khoảng thời gian mà người dùng phản ánh",
+      "Kiểm tra xem có bản phát hành nào vừa được đưa lên trong thời gian gần đây không"
     ],
     "correctOption": 0,
-    "explanation": "Khi cùng một nguyên nhân, bước sửa thường mất thời gian như nhau ở cả hai đội - quay lui là quay lui. Chênh lệch nằm ở phần trước đó: bao lâu để có người nhận ra, bao lâu để mọi người đồng ý rằng đang có sự cố, và bao lâu để có người bắt đầu hành động thay vì bàn bạc. Kinh nghiệm và công cụ đều rút ngắn được các đoạn ấy, nhưng chúng là phương tiện chứ không phải chỗ thời gian bị mất.",
+    "explanation": "Bảng xanh trong khi người dùng phản ánh chậm là dấu hiệu điển hình của việc đo từ phía máy chủ và đo bằng trung bình. Nếu phép đo sai thì mọi bước điều tra sau đều dựa trên số sai, và bạn có thể mất hàng giờ tìm nguyên nhân cho một thứ mà công cụ của mình đang che đi.",
     "diagram": [
       {
-        "label": "14:00 lỗi bắt đầu - chưa ai biết",
+        "label": "Bảng xanh + người dùng kêu → nghi phép đo trước",
         "arrow": true
       },
       {
-        "label": "14:06 cảnh báo nổ - đội A tuyên bố ngay",
+        "label": "Đổi sang phân vị → phần đuôi hiện ra",
         "arrow": true
       },
       {
-        "label": "14:08 quay lui bản triển khai gần nhất",
+        "label": "Hỏi vừa có gì đổi → thu hẹp phạm vi",
         "arrow": true
       },
       {
-        "label": "14:20 xác nhận đã ổn, chuyển sang điều tra"
+        "label": "Khôi phục trước, biên bản sau"
       }
     ],
     "realWorldExample": {
-      "company": "Hai dòng thời gian, một nguyên nhân",
-      "description": "Đội B mất hai mươi hai phút để phát hiện, mười tám phút bàn xem đây có phải sự cố không, ba mươi phút đọc mã để chắc chắn bản triển khai là nguyên nhân, rồi bốn phút quay lui."
-    },
-    "keyTakeaways": [
-      "Phần lớn thời gian ngừng thường nằm trước bước sửa, không phải trong nó.",
-      "Ba mốc cần ghi lại: bắt đầu ảnh hưởng, tuyên bố, chặn được thiệt hại.",
-      "Hành động rẻ và đảo ngược được nên đi trước việc xác nhận giả thuyết.",
-      "Thông báo ra ngoài đi song song, không chờ tới khi hiểu nguyên nhân."
-    ],
-    "summary": {
-      "keyIdea": "Chênh lệch giữa ứng phó tốt và kém nằm ở các bước trước khi sửa.",
-      "formula": "Phát hiện nhanh, tuyên bố sớm, hành động rẻ trước.",
-      "commonMistake": "Đầu tư vào tốc độ sửa trong khi thời gian mất ở chỗ khác."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Dựng lại dòng thời gian của sự cố gần nhất với ba mốc trên. So tỷ lệ giữa phần trước khi sửa và phần sửa - đó là bản đồ cải thiện của đội bạn."
-    },
-    "practicePrompt": {
-      "question": "Trong dòng thời gian của đội B, đoạn nào đáng cắt trước tiên?",
-      "options": [
-        "Ba mươi phút đọc mã trước khi dám quay lui",
-        "Hai mươi hai phút từ lúc lỗi bắt đầu tới lúc phát hiện",
-        "Mười tám phút bàn xem đây có phải sự cố hay không",
-        "Bốn phút thực hiện thao tác quay lui bản triển khai"
-      ],
-      "correct": 0,
-      "explanation": "Nó dài nhất và cũng rẻ nhất để cắt: quay lui trước rồi đọc sau không đòi hỏi công cụ mới hay kỹ năng mới, chỉ đòi hỏi đổi thứ tự. Hai đoạn kia cũng đáng cắt nhưng cần đầu tư vào giám sát và vào quy ước tuyên bố, tức là mất nhiều thời gian hơn để có hiệu quả."
+      "company": "Ba lớp cùng thủng",
+      "description": "Một sự cố điển hình cần nhiều thứ hỏng cùng lúc: phép đo che đi phần đuôi, một cảnh báo bị tắt từ tháng trước vì hay kêu, và một cơ chế tự khôi phục chưa bao giờ được kích hoạt thử. Sửa một lớp thì hai lớp kia vẫn nguyên."
     },
     "quiz": [
       {
-        "question": "Vì sao thời gian sửa thường không phải chỗ chênh lệch?",
+        "question": "Sau khi đổi sang đo bằng phân vị, bạn thấy phần đuôi rất xấu. Bước tiếp theo?",
         "options": [
-          "Vì cùng một nguyên nhân thì thao tác khắc phục gần như giống nhau",
-          "Vì các đội thường dùng chung một bộ công cụ triển khai",
-          "Vì thao tác sửa luôn được tự động hoá trong mọi hệ thống hiện đại ngày nay",
-          "Vì bước sửa được thực hiện bởi người có kinh nghiệm nhất"
+          "Hỏi vừa có gì đổi, vì câu đó thu hẹp phạm vi mạnh hơn mọi công cụ",
+          "Mở nhật ký của khoảng thời gian đó để tìm các thông báo lỗi bất thường",
+          "Kiểm tra mức sử dụng tài nguyên của các máy chủ trong hệ thống",
+          "Xem dấu vết của các yêu cầu chậm để biết chúng mất thời gian ở chặng nào"
         ],
         "correct": 0,
-        "explanation": "Quay lui mất bốn phút ở mọi đội có công cụ quay lui. Điều khác nhau là mất bao lâu để tới được thời điểm bấm nút ấy, và đó là phần chiếm phần lớn dòng thời gian."
+        "explanation": "Lựa chọn cuối là bước hợp lý ngay sau đó, nhưng câu hỏi về thay đổi rẻ hơn nhiều và thường trả lời luôn được. Mở nhật ký ngay thì bạn đọc rất nhiều dòng mà chưa có hướng."
       },
       {
-        "question": "Ba mốc cần ghi lại trong mọi sự cố là gì?",
+        "question": "Bạn phát hiện một cảnh báo đã bị tắt từ tháng trước vì nó hay kêu. Đó là vấn đề gì?",
         "options": [
-          "Bắt đầu ảnh hưởng, tuyên bố sự cố, và chặn được thiệt hại",
-          "Cảnh báo nổ, phân vai xong, và triển khai bản sửa",
-          "Người trực nhận thông báo, đội tập hợp, và hệ thống ổn định",
-          "Phát hiện vấn đề, xác định nguyên nhân, và đóng sự cố"
+          "Một lớp phòng vệ đã bị gỡ, và việc nó hay kêu là dấu hiệu nó được thiết lập sai",
+          "Một sai sót trong quy trình quản lý cấu hình khiến thay đổi không được ghi lại",
+          "Một trường hợp người trực không tuân thủ đúng quy trình xử lý cảnh báo",
+          "Một vấn đề về phân quyền vì không nên để cá nhân tự tắt cảnh báo hệ thống"
         ],
         "correct": 0,
-        "explanation": "Ba mốc này chia dòng thời gian thành các đoạn mà mỗi đoạn được cải thiện bằng một loại đầu tư khác nhau. Xác định nguyên nhân thì đáng ghi nhưng nó thường xảy ra sau khi thiệt hại đã được chặn, nên nó không nằm trên đường quan trọng."
+        "explanation": "Chữ THIẾT LẬP SAI là mấu chốt và nó tránh được việc đổ lỗi: người tắt nó đã phản ứng hợp lý với một cảnh báo gây nhiễu. Vấn đề nằm ở chỗ nó gây nhiễu, không ở chỗ ai đã tắt."
       },
       {
-        "question": "Vì sao thông báo ra ngoài nên đi song song?",
+        "question": "Cơ chế tự khôi phục lẽ ra đã xử lý được nhưng nó không kích hoạt. Bài học là gì?",
         "options": [
-          "Vì ba điều cần nói đều trả lời được mà không cần biết nguyên nhân",
-          "Vì bộ phận hỗ trợ sẽ liên tục hỏi nếu không nhận được thông tin",
-          "Vì quy định về dịch vụ yêu cầu thông báo trong một khung thời gian",
-          "Vì thông báo sớm giúp giảm số lượng người dùng bị ảnh hưởng"
+          "Một cơ chế chưa được kích hoạt thử thì chưa được chứng minh là hoạt động",
+          "Các cơ chế tự động cần được cấu hình lại định kỳ khi hệ thống thay đổi",
+          "Nên có nhiều lớp cơ chế tự động để bù cho nhau khi một lớp không hoạt động",
+          "Cần theo dõi riêng trạng thái của các cơ chế tự động để biết chúng còn bật không"
         ],
         "correct": 0,
-        "explanation": "Cái gì hỏng, ai bị ảnh hưởng, khi nào cập nhật tiếp - cả ba đã biết từ phút thứ sáu. Chờ hiểu nguyên nhân rồi mới nói là tự đặt ra một điều kiện mà nội dung thông báo không hề cần tới."
+        "explanation": "Đây là nguyên tắc lặp lại nhiều lần trong chặng, và trường hợp này là minh hoạ đắt nhất của nó: cơ chế nằm trong thiết kế, được tính vào khi đánh giá rủi ro, và chưa ai kiểm chứng."
       },
       {
-        "question": "Bài học chính từ việc so hai dòng thời gian là gì?",
+        "question": "Trong biên bản, nên ghi nguyên nhân gốc là gì?",
         "options": [
-          "Nên đầu tư vào phát hiện và quyết định, không chỉ vào tốc độ sửa",
-          "Nên có thêm người trong vòng trực để phản ứng nhanh hơn",
-          "Nên tự động hoá bước quay lui để rút ngắn thời gian thực hiện thao tác",
-          "Nên phân loại sự cố kỹ hơn để ưu tiên đúng mức nghiêm trọng"
+          "Cả ba lớp cùng thủng, vì sửa một lớp thì hai lớp kia vẫn nguyên cho lần sau",
+          "Thay đổi đã gây ra sự cố, vì đó là sự kiện khởi đầu chuỗi vấn đề",
+          "Cảnh báo bị tắt, vì nếu nó còn bật thì sự cố đã được phát hiện sớm hơn nhiều",
+          "Phép đo sai, vì đó là lớp đầu tiên trong chuỗi và là gốc của mọi thứ sau"
         ],
         "correct": 0,
-        "explanation": "Tự động hoá bước quay lui thì cắt được vài phút trong một đoạn vốn đã ngắn. Phát hiện nhanh hơn và quyết định sớm hơn cắt được hàng chục phút, và chúng thường rẻ hơn để cải thiện."
+        "explanation": "Đi tìm đúng một nguyên nhân gốc là dừng quá sớm, đúng như bài về biên bản đã nói. Ba lựa chọn kia mỗi cái đều là một lớp thật, và chọn một cái nghĩa là bỏ hai cái còn lại."
       },
       {
-        "question": "Vì sao đội A quay lui trước khi xác nhận nguyên nhân?",
+        "question": "Việc cần làm nào có tỷ lệ hoàn vốn cao nhất sau sự cố này?",
         "options": [
-          "Vì nếu đoán sai thì họ chỉ mất bốn phút và loại được một giả thuyết",
-          "Vì họ đã có bằng chứng đủ mạnh ngay từ những phút đầu tiên",
-          "Vì quy trình của họ bắt buộc quay lui khi có sự cố sau triển khai",
-          "Vì họ không có công cụ để phân tích bản thay đổi một cách nhanh chóng"
+          "Sửa phép đo, vì nó là lớp mà mọi lớp khác đều dựa vào để hoạt động",
+          "Bật lại cảnh báo đã tắt và điều chỉnh ngưỡng cho nó bớt gây nhiễu",
+          "Kích hoạt thử cơ chế tự khôi phục để xác nhận nó hoạt động đúng",
+          "Thêm một lớp dự phòng nữa để hệ thống chịu được loại sự cố tương tự"
         ],
         "correct": 0,
-        "explanation": "Đây là toàn bộ nội dung của nguyên tắc giảm thiểu trước: hành động rẻ và đảo ngược được thì không cần chờ chắc chắn. Nhánh thất bại vẫn có giá trị vì nó loại bỏ khả năng khả dĩ nhất với chi phí rất thấp."
+        "explanation": "Cảnh báo được thiết lập trên phép đo, và cơ chế tự khôi phục cũng kích hoạt dựa trên phép đo. Sửa gốc thì hai lớp kia có cơ hội hoạt động; sửa hai lớp kia mà để gốc sai thì chúng vẫn dựa trên số sai."
       }
     ],
+    "keyTakeaways": [
+      "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống.",
+      "Sau khi thấy phần đuôi xấu, hỏi vừa có gì đổi - rẻ hơn mọi công cụ khác.",
+      "Cảnh báo bị tắt vì hay kêu là dấu hiệu nó thiết lập sai, không phải ai đó sai.",
+      "Cơ chế tự khôi phục không kích hoạt: nó chưa từng được thử.",
+      "Ghi cả ba lớp vào biên bản - sửa một lớp thì hai lớp kia vẫn nguyên."
+    ],
+    "practicePrompt": {
+      "question": "Bạn có thời gian sửa đúng một trong ba lớp. Chọn lớp nào?",
+      "options": [
+        "Phép đo, vì cảnh báo và cơ chế tự khôi phục đều dựa trên nó để hoạt động",
+        "Cảnh báo, vì phát hiện sớm rút ngắn được thời gian của mọi sự cố sau này",
+        "Cơ chế tự khôi phục, vì nó xử lý được mà không cần đánh thức ai cả",
+        "Lớp nào sửa nhanh nhất, để còn thời gian quay lại làm tiếp hai lớp kia"
+      ],
+      "correct": 0,
+      "explanation": "Ba lớp không độc lập - chúng xếp chồng lên nhau. Sửa cảnh báo hay cơ chế tự khôi phục trong khi phép đo vẫn sai nghĩa là bạn vừa làm cho hai thứ hoạt động chính xác hơn trên một con số sai."
+    },
+    "summary": {
+      "keyIdea": "Sự cố thật hiếm khi có một nguyên nhân; nó có một chồng lớp cùng thủng.",
+      "formula": "Nghi phép đo → hỏi thay đổi → khôi phục → biên bản nhiều lớp.",
+      "commonMistake": "Chọn một nguyên nhân gốc, và để hai lớp còn lại nguyên cho lần sau.",
+      "action": "Lấy sự cố gần nhất của đội và tìm xem có mấy lớp đã cùng thủng."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy sự cố gần nhất của đội và hỏi: có mấy lớp phòng vệ đã cùng thủng? Danh sách đó thường dài hơn phần nguyên nhân gốc ghi trong biên bản.",
+      "secondary": "Rồi hỏi lớp nào nằm dưới cùng - lớp mà các lớp khác dựa vào. Đó là chỗ sửa có tỷ lệ hoàn vốn cao nhất, và nó thường không phải lớp gây ra triệu chứng rõ nhất."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Mọi nguyên tắc trong chặng này dễ đồng ý khi đọc. Bài này đặt chúng vào một dòng thời gian cụ thể, vì đó là chỗ ta thấy được thời gian thật sự bị mất ở đâu."
+        "text": "Chín bài trước là các nguyên tắc rời. Bài này ghép chúng vào một chuỗi sự kiện cụ thể, vì nguyên tắc chỉ dùng được khi bạn nhận ra tình huống nó áp dụng."
       },
       {
         "type": "heading",
-        "text": "Đội A"
-      },
-      {
-        "type": "list",
-        "items": [
-          "14:00 - một bản triển khai đưa lên, tỷ lệ lỗi bắt đầu tăng ở một phần lưu lượng.",
-          "14:06 - cảnh báo trên tỷ lệ lỗi người dùng nổ. Người trực tuyên bố sự cố ngay, chưa biết nguyên nhân.",
-          "14:07 - phân vai trong kênh. Một người sửa, một người liên lạc, người trực làm chỉ huy.",
-          "14:08 - quay lui bản triển khai gần nhất. Song song, thông báo đầu tiên gửi đi: chức năng nào, ai bị ảnh hưởng, cập nhật sau 30 phút.",
-          "14:20 - tỷ lệ lỗi về bình thường, xác nhận đã ổn. Chuyển sang điều tra nguyên nhân, không còn ai chịu ảnh hưởng."
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Đội B, cùng nguyên nhân"
-      },
-      {
-        "type": "list",
-        "items": [
-          "14:00 - lỗi bắt đầu. Không có cảnh báo trên tỷ lệ lỗi, chỉ có cảnh báo trên tài nguyên.",
-          "14:22 - một khách hàng báo qua bộ phận hỗ trợ. Kỹ sư bắt đầu xem.",
-          "14:40 - sau mười tám phút trao đổi xem đây có phải sự cố không, sự cố được tuyên bố.",
-          "15:10 - ba mươi phút đọc bản thay đổi để chắc chắn nó là nguyên nhân.",
-          "15:14 - quay lui, mất bốn phút. 15:30 - xác nhận đã ổn."
-        ]
+        "text": "Triệu chứng đầu tiên"
       },
       {
         "type": "callout",
-        "label": "Bước sửa giống hệt nhau",
-        "text": "Bốn phút ở cả hai đội. Bảy mươi phút chênh lệch nằm hoàn toàn ở phần trước đó - phát hiện, quyết định, và thứ tự giữa hành động với việc xác nhận."
+        "label": "Bảng xanh, người dùng kêu",
+        "text": "Đây là tình huống khó chịu nhất trong vận hành, và nó gần như luôn có cùng nguyên nhân: đo từ phía máy chủ và đo bằng trung bình. Nghi PHÉP ĐO trước khi nghi hệ thống - nếu phép đo sai thì mọi bước sau đều dựa trên số sai."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đổi sang phân vị và phần đuôi hiện ra: năm phần trăm yêu cầu mất tám giây. Trung bình vẫn hai trăm mili giây, đúng như nó vẫn thế suốt tuần qua."
+      },
+      {
+        "type": "heading",
+        "text": "Thu hẹp phạm vi"
+      },
+      {
+        "type": "paragraph",
+        "text": "Câu hỏi rẻ nhất: vừa có gì đổi? Không chỉ mã - cả cấu hình, dữ liệu, và phía nhà cung cấp. Nếu có một dòng thời gian gộp mọi loại thay đổi thì đây là lúc nó trả hết vốn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau đó mới tới dấu vết của những yêu cầu chậm, để biết thời gian mất ở chặng nào. Và chỉ khi đã biết chặng nào mới mở nhật ký của đúng dịch vụ đó."
+      },
+      {
+        "type": "heading",
+        "text": "Ba lớp cùng thủng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Phép đo che đi phần đuôi, nên không ai biết cho tới khi người dùng phản ánh.",
+          "Một cảnh báo bị tắt từ tháng trước vì nó hay kêu - và việc nó hay kêu là dấu hiệu nó được thiết lập sai, không phải dấu hiệu ai đó làm sai.",
+          "Một cơ chế tự khôi phục lẽ ra đã xử lý được, nhưng nó chưa bao giờ được kích hoạt thử."
+        ]
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Cắt được rẻ nhất",
-          "text": "Ba mươi phút đọc mã trước khi quay lui. Chỉ cần đổi thứ tự, không cần công cụ hay kỹ năng mới."
+          "label": "Biên bản thường viết",
+          "text": "Một nguyên nhân gốc - thường là cái gây ra triệu chứng rõ nhất. Ngắn gọn, dễ đọc, và để nguyên hai lớp còn lại cho lần sau."
         },
         "right": {
-          "label": "Cắt được nhưng cần đầu tư",
-          "text": "Hai mươi hai phút phát hiện cần cảnh báo đặt trên tỷ lệ lỗi. Mười tám phút bàn bạc cần một quy ước về ngưỡng tuyên bố."
+          "label": "Biên bản nên viết",
+          "text": "Cả ba lớp, và chỉ ra lớp nào nằm DƯỚI CÙNG. Cảnh báo được thiết lập trên phép đo, và cơ chế tự khôi phục cũng kích hoạt dựa trên phép đo."
         }
       },
       {
         "type": "closing",
         "lines": [
-          "Nếu chỉ được sửa một thứ trong quy trình ứng phó, hãy sửa thứ tự: hành động rẻ đi trước việc xác nhận.",
-          "Bài sau tổng kết cả chặng."
+          "Nếu chỉ sửa được một lớp thì sửa lớp dưới cùng. Sửa hai lớp trên trong khi phép đo vẫn sai nghĩa là bạn vừa làm cho chúng hoạt động chính xác hơn trên một con số sai.",
+          "Bài cuối chặng gom mười một bài trước thành một cách nghĩ."
         ]
       }
     ]
   },
   {
     "id": 180,
-    "slug": "tong-on-chang-do-tin-cay",
-    "title": "Tổng ôn: chọn mức, chuẩn bị, ứng phó, học",
-    "subtitle": "Hai mươi bài về độ tin cậy gói lại thành bốn giai đoạn có thứ tự.",
-    "duration": "10 phút",
+    "slug": "tong-on-do-tin-cay",
+    "title": "Tổng ôn chặng - độ tin cậy và quản trị sự cố",
+    "subtitle": "Độ tin cậy là một quyết định về đánh đổi, không phải một mục tiêu càng cao càng tốt.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "🧩",
     "track": "professional",
-    "whyItMatters": "Độ tin cậy dễ bị hiểu thành một danh sách kỹ thuật rời rạc. Nhìn nó thành bốn giai đoạn thì bạn biết đội mình đang thiếu ở đâu, và thứ tự nên bổ sung.",
-    "openingQuestion": "Đội chưa có gì về độ tin cậy. Nên bắt đầu từ đâu?",
+    "emoji": "🏁",
+    "interactiveType": "tail-risk",
+    "isFundamental": false,
+    "whyItMatters": "Chín bài trước là các kỹ thuật rời. Bài này rút chúng thành một cách nghĩ, vì kỹ thuật sẽ đổi theo công nghệ còn cách nghĩ thì không.",
+    "openingQuestion": "Ý tưởng xuyên suốt cả chặng này là gì?",
     "openingOptions": [
-      "Chọn một chỉ số cho hành trình quan trọng nhất và đặt mục tiêu cho nó",
-      "Xây dự phòng cho những thành phần quan trọng nhất của hệ thống",
-      "Thiết lập quy trình ứng phó sự cố với các vai trò rõ ràng",
-      "Cài đặt hệ thống giám sát đầy đủ cho toàn bộ hạ tầng"
+      "Độ tin cậy là đánh đổi có giá, nên nó phải được chọn chứ không phải càng cao càng tốt",
+      "Hệ thống càng nhiều lớp dự phòng thì càng ít khả năng xảy ra sự cố nghiêm trọng",
+      "Phát hiện sự cố sớm là yếu tố quan trọng nhất trong việc giảm thiệt hại cho người dùng",
+      "Quy trình xử lý sự cố được chuẩn hoá sẽ rút ngắn thời gian khôi phục dịch vụ"
     ],
     "correctOption": 0,
-    "explanation": "Không có mục tiêu thì mọi việc còn lại đều thiếu tiêu chí: dự phòng bao nhiêu là đủ, cảnh báo ở ngưỡng nào, khi nào thì được coi là sự cố. Giám sát đầy đủ toàn hạ tầng nghe hợp lý nhưng nó thường sinh ra hàng trăm chỉ số mà không cái nào gắn với một quyết định. Một chỉ số kèm một mục tiêu cho một hành trình đã đủ để mọi thứ phía sau có chỗ bám.",
+    "explanation": "Mỗi con số chín thêm vào đều tốn tiền và tốn thời gian lẽ ra dành cho tính năng, nên câu hỏi luôn là mức nào đủ chứ không phải làm sao cao hơn. Ba lựa chọn kia đều là kỹ thuật đúng trong chặng, nhưng chúng trả lời câu hỏi làm thế nào - còn ý tưởng xuyên suốt trả lời câu hỏi tới mức nào.",
     "diagram": [
       {
-        "label": "1. Chọn mức: chỉ số, mục tiêu, ngân sách lỗi",
+        "label": "Đo từ phía người dùng, bằng phân vị",
         "arrow": true
       },
       {
-        "label": "2. Chuẩn bị: dự phòng, cô lập, suy giảm, sao lưu",
+        "label": "Chọn mục tiêu như một đánh đổi, không phải một đích",
         "arrow": true
       },
       {
-        "label": "3. Ứng phó: tuyên bố, phân vai, giảm thiểu, thông báo",
+        "label": "Ngân sách lỗi biến mục tiêu thành quyết định hằng ngày",
         "arrow": true
       },
       {
-        "label": "4. Học: hồi cứu, chỉ số, diễn tập, lịch trực"
+        "label": "Và mọi cơ chế tự động đều phải được thử"
       }
     ],
     "realWorldExample": {
-      "company": "Bốn giai đoạn dùng được ở mọi quy mô",
-      "description": "Một đội ba người và một tổ chức ba nghìn người đều đi qua đúng bốn giai đoạn này. Khác nhau ở mức độ trang trọng của từng bước, không ở việc bỏ bước nào."
-    },
-    "keyTakeaways": [
-      "Không có mục tiêu thì mọi quyết định về độ tin cậy đều thiếu tiêu chí.",
-      "Phần lớn thời gian ngừng nằm trước bước sửa, không nằm trong nó.",
-      "Sai sót con người là điều kiện đầu vào; thứ thiết kế được là hậu quả.",
-      "Mọi cơ chế đều là giả định cho tới khi có người diễn tập nó."
-    ],
-    "summary": {
-      "keyIdea": "Độ tin cậy là bốn giai đoạn nối nhau, và mỗi giai đoạn cần giai đoạn trước.",
-      "formula": "Chọn mức → chuẩn bị → ứng phó → học.",
-      "commonMistake": "Bắt đầu từ giai đoạn hai mà bỏ qua giai đoạn một."
-    },
-    "application": {
-      "title": "Làm ngay hôm nay",
-      "message": "Chấm điểm đội mình trên bốn giai đoạn, mỗi giai đoạn một câu. Giai đoạn sớm nhất bị bỏ trống chính là chỗ nên bắt đầu, kể cả khi giai đoạn sau trông cấp bách hơn."
-    },
-    "practicePrompt": {
-      "question": "Vì sao không nên bắt đầu bằng việc xây dự phòng?",
-      "options": [
-        "Vì chưa có mục tiêu thì không biết bao nhiêu dự phòng là đủ",
-        "Vì dự phòng là hạng mục tốn kém nhất trong toàn bộ danh sách",
-        "Vì dự phòng chỉ có tác dụng với một số loại sự cố nhất định",
-        "Vì đội cần có kinh nghiệm vận hành trước khi bắt tay xây dự phòng"
-      ],
-      "correct": 0,
-      "explanation": "Không có con số thì câu hỏi bao nhiêu là đủ không có đáp án, và đội hoặc xây quá ít hoặc xây quá nhiều mà không cách nào biết mình đang ở đâu. Dự phòng đúng là tốn kém và đúng là chỉ chữa một số loại lỗi, nhưng cả hai điều ấy chỉ trở thành vấn đề khi chưa có tiêu chí để quyết định."
+      "company": "Ba thứ chưa thử",
+      "description": "Bản sao lưu chưa khôi phục thử, chuyển đổi dự phòng chưa kích hoạt thử, cầu dao chưa bao giờ ngắt. Cả ba đều nằm trong thiết kế, đều được tính vào khi đánh giá rủi ro, và đều chưa được chứng minh là hoạt động."
     },
     "quiz": [
       {
-        "question": "Giai đoạn đầu tiên trong bốn giai đoạn là gì?",
+        "question": "Vì sao đo từ phía người dùng lại là nền của mọi thứ còn lại?",
         "options": [
-          "Chọn mức độ tin cậy và biến nó thành mục tiêu có con số",
-          "Chuẩn bị hạ tầng để chịu được các loại sự cố phổ biến nhất",
-          "Xây dựng quy trình ứng phó và phân công vai trò trực",
-          "Thiết lập hệ thống giám sát và cảnh báo cho dịch vụ"
+          "Vì nếu đo sai chỗ thì mục tiêu, ngân sách lỗi và cảnh báo đều dựa trên số sai",
+          "Vì các công cụ đo từ phía người dùng cho dữ liệu chi tiết hơn nhiều so với phía máy chủ",
+          "Vì người dùng là người duy nhất đánh giá được chất lượng dịch vụ một cách khách quan",
+          "Vì dữ liệu từ phía người dùng dùng được cho cả mục đích phân tích hành vi sản phẩm"
         ],
         "correct": 0,
-        "explanation": "Ba giai đoạn còn lại đều cần tiêu chí từ giai đoạn này: dự phòng tới mức nào, cảnh báo ở ngưỡng nào, sự cố tính từ đâu. Bắt đầu từ giữa là lý do nhiều đội có rất nhiều công cụ mà vẫn không trả lời được câu hỏi hệ thống có đủ tin cậy chưa."
+        "explanation": "Toàn bộ chuỗi phía sau đều xây trên con số đó: mục tiêu là một ngưỡng của nó, ngân sách lỗi là phần chênh, và cảnh báo là điều kiện trên nó. Sai ở gốc thì cả chuỗi sai theo mà không có gì báo."
       },
       {
-        "question": "Phát hiện nào lặp lại nhiều lần nhất trong chặng này?",
+        "question": "Điểm chung của bản sao lưu, chuyển đổi dự phòng và cầu dao là gì?",
         "options": [
-          "Thời gian mất ở các bước trước khi sửa nhiều hơn ở bước sửa",
-          "Hệ thống phân tán khó vận hành hơn hệ thống tập trung",
-          "Chi phí độ tin cậy tăng nhanh hơn phần lợi ích mà nó mang lại",
-          "Công cụ tự động hoá quan trọng hơn quy trình thủ công"
+          "Cả ba đều được tính vào khi đánh giá rủi ro dù chưa được chứng minh là hoạt động",
+          "Cả ba đều là những cơ chế khá tốn kém nên nhiều đội bỏ qua chúng khi ngân sách hạn chế",
+          "Cả ba đều cần được cấu hình lại mỗi khi hệ thống có thay đổi về kiến trúc",
+          "Cả ba đều chỉ hoạt động trong những tình huống sự cố rất hiếm khi xảy ra"
         ],
         "correct": 0,
-        "explanation": "Nó xuất hiện ở bài tuyên bố sự cố, bài giảm thiểu trước, bài chỉ số, và cả bài case cuối chặng. Đó cũng là lý do những cải thiện rẻ nhất thường là quy ước chứ không phải công nghệ."
+        "explanation": "Đây là kiểu rủi ro nguy hiểm nhất: một cơ chế nằm trong thiết kế, được đưa vào tính toán, và chưa ai kiểm chứng. Nó tệ hơn không có, vì phần còn lại của hệ thống đã được thiết kế dựa trên giả định nó chạy."
       },
       {
-        "question": "Điều gì được coi là điều kiện đầu vào chứ không phải nguyên nhân?",
+        "question": "Vì sao nhiều quy tắc trong chặng này phải thoả thuận trước?",
         "options": [
-          "Sai sót của con người trong thao tác vận hành",
-          "Lỗi phần cứng xảy ra ngoài dự kiến của cả đội",
-          "Sự cố từ phía nhà cung cấp dịch vụ bên thứ ba",
-          "Tải tăng đột biến vượt quá năng lực đã chuẩn bị"
+          "Vì lúc đang có sự cố thì tranh luận nghiêng về phía người nói to nhất",
+          "Vì các quy tắc cần thời gian để mọi người trong đội làm quen và ghi nhớ",
+          "Vì việc thống nhất trước giúp rút ngắn thời gian phản ứng khi có sự cố",
+          "Vì quy trình vận hành yêu cầu phải có tài liệu được phê duyệt từ trước"
         ],
         "correct": 0,
-        "explanation": "Con người luôn sai, nên nó không phải biến số để loại bỏ. Thứ thiết kế được là hậu quả: một thao tác không đảo ngược được thì phải có ma sát đứng trước nó."
+        "explanation": "Ngân sách lỗi, ba vai xử lý sự cố và tiêu chí cảnh báo đều là quy tắc kiểu này. Chúng có giá trị chính vì chúng được quyết định lúc không ai chịu áp lực."
       },
       {
-        "question": "Vì sao giai đoạn học lại đứng cuối nhưng không kém quan trọng?",
+        "question": "Thứ nào từ chặng này còn giá trị lâu nhất?",
         "options": [
-          "Vì nó là cơ chế duy nhất khiến ba giai đoạn kia tốt lên theo thời gian",
-          "Vì nó tạo ra tài liệu cần thiết cho việc đào tạo người mới",
-          "Vì các quy định về vận hành yêu cầu ghi nhận sau mỗi sự cố",
-          "Vì nó giúp lãnh đạo nắm được tình hình vận hành của hệ thống"
+          "Thói quen hỏi mức độ tin cậy nào là đủ, trước khi bàn cách đạt được nó",
+          "Danh sách bốn chỉ số vàng và cách thiết lập cảnh báo cho từng chỉ số",
+          "Quy trình xử lý sự cố với ba vai và trình tự các bước cần thực hiện",
+          "Các cơ chế tự khôi phục và cách cấu hình chúng cho từng loại dịch vụ"
         ],
         "correct": 0,
-        "explanation": "Không có hồi cứu, không có chỉ số, không có diễn tập thì ba giai đoạn kia đứng yên ở mức chúng được dựng lên ban đầu. Đây là vòng phản hồi, và bỏ nó đi thì cả hệ thống mất khả năng tự cải thiện."
+        "explanation": "Ba lựa chọn kia là kỹ thuật, và kỹ thuật đổi theo công nghệ. Câu hỏi mức nào là đủ thì áp dụng cho mọi hệ thống bạn sẽ vận hành, kể cả những hệ thống chưa tồn tại."
       },
       {
-        "question": "Điểm chung giữa dự phòng, cầu dao và bản sao lưu là gì?",
+        "question": "Nếu chỉ làm được một việc từ chặng này thì nên làm gì?",
         "options": [
-          "Cả ba đều là giả định cho tới khi có người diễn tập chúng",
-          "Cả ba đều đòi hỏi chi phí hạ tầng tăng thêm đáng kể",
-          "Cả ba đều chỉ có tác dụng với lỗi ở tầng hạ tầng",
-          "Cả ba đều cần được cấu hình lại sau mỗi lần triển khai mới"
+          "Đo độ trễ bằng phân vị từ phía người dùng, vì mọi thứ khác đều xây trên con số đó",
+          "Thiết lập bốn chỉ số vàng trên một bảng theo dõi riêng để mở ra nhìn khi có sự cố",
+          "Viết ra ba vai xử lý sự cố và ai đóng vai nào trong đội của mình",
+          "Rà lại danh sách cảnh báo và xoá những cái không dẫn tới hành động"
         ],
         "correct": 0,
-        "explanation": "Bản sao chưa từng chuyển sang, cầu dao chưa từng ngắt, sao lưu chưa từng khôi phục - cả ba trông giống hệt như khi chúng hoạt động tốt. Diễn tập là cách duy nhất phân biệt hai trạng thái ấy trước khi thực tế phân biệt hộ bạn."
+        "explanation": "Ba việc kia đều đáng làm và đều rẻ, nhưng chúng đều giả định bạn đã có con số đúng để làm việc với. Không có nó thì bảng theo dõi hiển thị số sai, và cảnh báo kêu theo số sai."
       }
     ],
+    "keyTakeaways": [
+      "Độ tin cậy là đánh đổi có giá - câu hỏi là mức nào đủ, không phải làm sao cao hơn.",
+      "Đo từ phía người dùng bằng phân vị là nền của mọi thứ còn lại trong chặng.",
+      "Ngân sách lỗi biến một con số trên bảng thành quyết định hằng ngày.",
+      "Quy tắc phải thoả thuận TRƯỚC, vì tranh luận lúc đang cháy nghiêng về người nói to.",
+      "Mọi cơ chế tự động chưa kích hoạt thử thì chưa được chứng minh là hoạt động."
+    ],
+    "practicePrompt": {
+      "question": "Cấp trên hỏi hệ thống nên đạt mức tin cậy nào. Cách trả lời tốt nhất?",
+      "options": [
+        "Đưa ra chi phí của từng mức và để người chịu trách nhiệm sản phẩm chọn",
+        "Đề xuất mức cao nhất mà hệ thống hiện tại có khả năng đạt được ổn định",
+        "Tham khảo mức mà các sản phẩm tương tự trong ngành đang cam kết",
+        "Đề xuất mức hiện tại đang đạt được để tránh phải đầu tư thêm nguồn lực"
+      ],
+      "correct": 0,
+      "explanation": "Đây là điểm mà chặng này quay lại nhiều lần: chọn mức nào là quyết định về sản phẩm, còn đội kỹ thuật cung cấp giá của từng mức. Tham khảo ngành thì bỏ qua bối cảnh riêng của sản phẩm bạn."
+    },
+    "summary": {
+      "keyIdea": "Mức nào là đủ - câu hỏi đó đứng trước mọi câu hỏi về cách làm.",
+      "formula": "Đo đúng → chọn mục tiêu như đánh đổi → ngân sách lỗi → cơ chế tự động đã thử.",
+      "commonMistake": "Coi độ tin cậy là thứ càng cao càng tốt, nên không bao giờ đủ.",
+      "action": "Chọn một việc: đo độ trễ bằng phân vị từ phía người dùng."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn đúng một việc từ chặng này. Nếu phải gợi ý: đo độ trễ bằng phân vị từ phía người dùng, vì mọi thứ khác đều xây trên con số đó.",
+      "secondary": "Sau đó liệt kê các cơ chế tự động mà hệ thống bạn đang dựa vào - sao lưu, chuyển đổi dự phòng, cầu dao - và đánh dấu cái nào chưa từng được kích hoạt thử."
+    },
     "sections": [
       {
         "type": "lead",
-        "text": "Hai mươi bài vừa rồi có một trật tự, và trật tự ấy quan trọng: mỗi giai đoạn cần giai đoạn trước làm tiêu chí."
+        "text": "Chặng này đi từ định nghĩa độ tin cậy tới cơ chế tự khôi phục. Bài cuối rút chín bài trước thành một cách nghĩ, vì kỹ thuật sẽ đổi theo công nghệ còn cách nghĩ thì không."
       },
       {
         "type": "heading",
-        "text": "Bốn giai đoạn"
+        "text": "Ý tưởng xuyên suốt"
+      },
+      {
+        "type": "callout",
+        "label": "Độ tin cậy là đánh đổi, không phải mục tiêu",
+        "text": "Mỗi con số chín thêm vào đều tốn tiền và tốn thời gian lẽ ra dành cho tính năng. Nên câu hỏi luôn là MỨC NÀO ĐỦ, không phải làm sao cao hơn - và đó là câu hỏi đứng trước mọi câu hỏi về cách làm."
+      },
+      {
+        "type": "heading",
+        "text": "Chuỗi phụ thuộc"
       },
       {
         "type": "list",
         "items": [
-          "Chọn mức: chỉ số bám trải nghiệm, mục tiêu đủ ba phần, ngân sách lỗi làm cơ chế đánh đổi.",
-          "Chuẩn bị: dự phòng đúng chỗ, cô lập bằng vách ngăn và cầu dao, suy giảm có kiểm soát, kế hoạch khôi phục.",
-          "Ứng phó: tuyên bố sớm, phân ba vai, giảm thiểu trước, thông báo song song.",
-          "Học: hồi cứu không đổ lỗi, chỉ số tách theo đoạn, diễn tập, lịch trực bền vững."
+          "Đo từ phía NGƯỜI DÙNG, bằng PHÂN VỊ. Mọi thứ sau đều xây trên con số này.",
+          "Chọn mục tiêu như một quyết định về sản phẩm, và giữ nó chặt hơn cam kết với khách hàng.",
+          "Ngân sách lỗi biến mục tiêu thành quyết định hằng ngày: còn thì đi nhanh, hết thì dừng.",
+          "Cảnh báo theo triệu chứng, và chỉ cho những thứ phải làm ngay.",
+          "Cơ chế tự động để hệ thống tự xử lý mà không cần đánh thức ai."
         ]
-      },
-      {
-        "type": "heading",
-        "text": "Ba ý xuyên suốt"
-      },
-      {
-        "type": "conceptTable",
-        "title": "Chúng quay lại ở nhiều bài khác nhau",
-        "subtitle": "Vì chúng là cùng một quy luật nhìn từ các góc khác",
-        "concepts": [
-          {
-            "vi": "Thời gian mất trước bước sửa",
-            "en": "time before the fix",
-            "def": "Phát hiện và quyết định chiếm phần lớn dòng thời gian. Cải thiện chúng thường là quy ước, không phải công nghệ."
-          },
-          {
-            "vi": "Con người là hằng số",
-            "en": "humans are constant",
-            "def": "Sai sót không loại bỏ được. Thứ thiết kế được là hậu quả của sai sót - ma sát trước thao tác nguy hiểm."
-          },
-          {
-            "vi": "Chưa thử thì chưa có",
-            "en": "untested is unproven",
-            "def": "Bản sao, cầu dao, sao lưu, quy trình - tất cả trông giống hệt nhau dù hoạt động hay không, cho tới khi diễn tập."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Bắt đầu từ giai đoạn một",
-        "text": "Nhiều đội bắt đầu từ giai đoạn hai vì nó có vẻ cụ thể hơn, rồi kết thúc với rất nhiều công cụ mà vẫn không trả lời được câu hỏi hệ thống đã đủ tin cậy chưa. Một chỉ số kèm một mục tiêu cho một hành trình là đủ để mọi thứ phía sau có chỗ bám."
       },
       {
         "type": "paragraph",
-        "text": "Bốn giai đoạn này dùng được ở mọi quy mô. Một đội ba người và một tổ chức ba nghìn người đi qua đúng các bước ấy; khác nhau ở mức độ trang trọng của từng bước chứ không ở việc được phép bỏ bước nào."
+        "text": "Chuỗi này có thứ tự chứ không phải một danh sách: sai ở bước một thì cả bốn bước sau đều dựa trên số sai, và không có gì báo cho bạn biết điều đó."
+      },
+      {
+        "type": "heading",
+        "text": "Hai thói quen"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Thoả thuận trước",
+          "text": "Ngân sách lỗi, ba vai xử lý sự cố, tiêu chí cảnh báo. Chúng có giá trị chính vì được quyết lúc không ai chịu áp lực - tranh luận lúc đang cháy nghiêng về phía người nói to nhất."
+        },
+        "right": {
+          "label": "Kích hoạt thử",
+          "text": "Bản sao lưu, chuyển đổi dự phòng, cầu dao. Cả ba đều nằm trong thiết kế, đều được tính vào khi đánh giá rủi ro, và đều có thể chưa từng được chứng minh là hoạt động."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Cột bên phải là kiểu rủi ro nguy hiểm nhất trong cả chặng: nó tệ hơn không có cơ chế nào, vì phần còn lại của hệ thống đã được thiết kế dựa trên giả định nó chạy."
       },
       {
         "type": "closing",
         "lines": [
-          "Độ tin cậy không phải một tính chất của hệ thống. Nó là một vòng lặp gồm chọn mức, chuẩn bị, ứng phó và học.",
-          "Chặng sau chuyển sang một góc khác của cùng nghề: cách dữ liệu được lưu, được đọc và được giữ đúng."
+          "Nếu chỉ làm được một việc: đo độ trễ bằng phân vị từ phía người dùng. Ba việc rẻ khác đều đáng làm nhưng chúng đều giả định bạn đã có con số đúng để làm việc với.",
+          "Chặng sau là cách xử lý những việc không cần trả lời ngay: hàng đợi và xử lý bất đồng bộ."
         ]
       }
     ]

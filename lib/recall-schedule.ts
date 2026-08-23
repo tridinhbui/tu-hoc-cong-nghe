@@ -2932,7 +2932,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Tính lợi ích bằng thời gian tuyệt đối nhân số lần, không bằng phần trăm.",
       "distractors": [
         "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     },
     {
@@ -2952,7 +2952,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
       "distractors": [
         "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     },
     {
@@ -2972,7 +2972,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Đo trước, và đo từ phía người dùng chứ không ở ranh giới hệ thống.",
       "distractors": [
         "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     },
     {
@@ -2988,11 +2988,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "166": [
     {
       "fromDay": 161,
-      "fromTitle": "Portfolio là gì?",
-      "text": "Portfolio: tập hợp tài sản được quản lý như một thể thống nhất",
+      "fromTitle": "Độ tin cậy đo bằng gì",
+      "text": "Tiến trình còn sống và người dùng làm được việc là hai chuyện khác nhau.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     },
     {
@@ -3008,11 +3008,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "167": [
     {
       "fromDay": 162,
-      "fromTitle": "Vì sao không nên nhìn từng khoản đầu tư riêng lẻ?",
-      "text": "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục",
+      "fromTitle": "SLI, SLO và SLA - ba thứ hay bị nhầm",
+      "text": "SLI là phép đo, SLO là mục tiêu nội bộ, SLA là hợp đồng có tiền phạt.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     },
     {
@@ -3028,11 +3028,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "168": [
     {
       "fromDay": 163,
-      "fromTitle": "Diversification - Đa dạng hóa",
-      "text": "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống",
+      "fromTitle": "Ngân sách lỗi",
+      "text": "Ngân sách lỗi là lượng lỗi bạn ĐƯỢC PHÉP có, không phải mức cần giữ ở không.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     },
     {
@@ -3048,11 +3048,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "169": [
     {
       "fromDay": 164,
-      "fromTitle": "Correlation - Tương quan giữa các tài sản",
-      "text": "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)",
+      "fromTitle": "Bốn chỉ số vàng",
+      "text": "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Tiêu chí duy nhất: có ai phải làm gì NGAY không. Không thì đó là mục công việc."
       ]
     },
     {
@@ -3068,11 +3068,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "170": [
     {
       "fromDay": 165,
-      "fromTitle": "Volatility - Biến động",
-      "text": "Volatility: thước đo mức độ dao động giá của một tài sản",
+      "fromTitle": "Cảnh báo cái gì, và không cảnh báo cái gì",
+      "text": "Tiêu chí duy nhất: có ai phải làm gì NGAY không. Không thì đó là mục công việc.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     },
     {
@@ -3081,18 +3081,18 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Tính lợi ích bằng thời gian tuyệt đối nhân số lần, không bằng phần trăm.",
       "distractors": [
         "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     }
   ],
   "171": [
     {
       "fromDay": 166,
-      "fromTitle": "Standard Deviation trong đầu tư",
-      "text": "Standard deviation: công cụ toán học chính xác đo mức độ phân tán của lợi suất",
+      "fromTitle": "Trong lúc có sự cố - vai trò và thứ tự",
+      "text": "Khôi phục TRƯỚC, hiểu SAU - quay lại bản trước không cần biết nguyên nhân.",
       "distractors": [
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     },
     {
@@ -3101,18 +3101,18 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
       "distractors": [
         "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     }
   ],
   "172": [
     {
       "fromDay": 167,
-      "fromTitle": "Expected Return của danh mục",
-      "text": "Expected Return của danh mục = trung bình có trọng số theo tỷ trọng từng tài sản",
+      "fromTitle": "Biên bản sự cố không đổ lỗi",
+      "text": "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
       "distractors": [
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     },
     {
@@ -3121,267 +3121,267 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Đo trước, và đo từ phía người dùng chứ không ở ranh giới hệ thống.",
       "distractors": [
         "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     }
   ],
   "173": [
     {
       "fromDay": 168,
-      "fromTitle": "Risk-Return Tradeoff",
-      "text": "Risk-return tradeoff: lợi nhuận kỳ vọng cao hơn luôn đi kèm rủi ro cao hơn",
+      "fromTitle": "Trực - các mô hình và cái giá",
+      "text": "Chi phí thật là số lần bị ĐÁNH THỨC, không phải số ngày trực.",
       "distractors": [
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     },
     {
       "fromDay": 161,
-      "fromTitle": "Portfolio là gì?",
-      "text": "Portfolio: tập hợp tài sản được quản lý như một thể thống nhất",
+      "fromTitle": "Độ tin cậy đo bằng gì",
+      "text": "Tiến trình còn sống và người dùng làm được việc là hai chuyện khác nhau.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     }
   ],
   "174": [
     {
       "fromDay": 169,
-      "fromTitle": "Modern Portfolio Theory là gì?",
-      "text": "MPT: nền tảng toán học để xây dựng danh mục tối ưu dựa trên return, risk, correlation",
+      "fromTitle": "Tự khôi phục và suy giảm nhẹ nhàng",
+      "text": "Bốn cơ chế: thử lại có giãn cách, cầu dao, kiểm tra sức khoẻ, tự thay máy hỏng.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     },
     {
       "fromDay": 162,
-      "fromTitle": "Vì sao không nên nhìn từng khoản đầu tư riêng lẻ?",
-      "text": "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục",
+      "fromTitle": "SLI, SLO và SLA - ba thứ hay bị nhầm",
+      "text": "SLI là phép đo, SLO là mục tiêu nội bộ, SLA là hợp đồng có tiền phạt.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     }
   ],
   "175": [
     {
       "fromDay": 170,
-      "fromTitle": "Efficient Frontier là gì?",
-      "text": "Efficient Frontier: tập hợp các danh mục tối ưu cho mỗi mức rủi ro",
+      "fromTitle": "Chủ động gây lỗi để học",
+      "text": "Cùng một lỗi, nhưng bạn chọn thời điểm - đó là toàn bộ ý tưởng.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     },
     {
       "fromDay": 163,
-      "fromTitle": "Diversification - Đa dạng hóa",
-      "text": "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống",
+      "fromTitle": "Ngân sách lỗi",
+      "text": "Ngân sách lỗi là lượng lỗi bạn ĐƯỢC PHÉP có, không phải mức cần giữ ở không.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     }
   ],
   "176": [
     {
       "fromDay": 171,
-      "fromTitle": "Sharpe Ratio là gì?",
-      "text": "Sharpe Ratio = (Return − Risk-free rate) / Độ lệch chuẩn",
+      "fromTitle": "Đo thời gian phát hiện và thời gian hồi phục",
+      "text": "Đếm số sự cố khuyến khích gộp nhiều vấn đề thành một để con số đẹp hơn.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     },
     {
       "fromDay": 164,
-      "fromTitle": "Correlation - Tương quan giữa các tài sản",
-      "text": "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)",
+      "fromTitle": "Bốn chỉ số vàng",
+      "text": "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Tiêu chí duy nhất: có ai phải làm gì NGAY không. Không thì đó là mục công việc."
       ]
     }
   ],
   "177": [
     {
       "fromDay": 172,
-      "fromTitle": "Alpha là gì?",
-      "text": "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
+      "fromTitle": "Bốn chỉ số về cách đội làm việc",
+      "text": "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau."
       ]
     },
     {
       "fromDay": 165,
-      "fromTitle": "Volatility - Biến động",
-      "text": "Volatility: thước đo mức độ dao động giá của một tài sản",
+      "fromTitle": "Cảnh báo cái gì, và không cảnh báo cái gì",
+      "text": "Tiêu chí duy nhất: có ai phải làm gì NGAY không. Không thì đó là mục công việc.",
       "distractors": [
-        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     }
   ],
   "178": [
     {
       "fromDay": 173,
-      "fromTitle": "Beta trong danh mục",
-      "text": "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường",
+      "fromTitle": "Lỗi lan truyền giữa các dịch vụ",
+      "text": "Dịch vụ dưới chậm giữ luồng ở trên lâu hơn, và luồng cạn thì tầng trên chậm theo.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau."
       ]
     },
     {
       "fromDay": 166,
-      "fromTitle": "Standard Deviation trong đầu tư",
-      "text": "Standard deviation: công cụ toán học chính xác đo mức độ phân tán của lợi suất",
+      "fromTitle": "Trong lúc có sự cố - vai trò và thứ tự",
+      "text": "Khôi phục TRƯỚC, hiểu SAU - quay lại bản trước không cần biết nguyên nhân.",
       "distractors": [
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     }
   ],
   "179": [
     {
       "fromDay": 174,
-      "fromTitle": "Tracking Error là gì?",
-      "text": "Tracking Error: đo mức độ lệch giữa lợi suất quỹ và benchmark nó theo dõi",
+      "fromTitle": "Kiểm thử tải và kế hoạch dung lượng",
+      "text": "Hỏi CÁCH HỎNG trước, con số trần sau - con số lỗi thời sau mỗi lần phát hành.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     },
     {
       "fromDay": 167,
-      "fromTitle": "Expected Return của danh mục",
-      "text": "Expected Return của danh mục = trung bình có trọng số theo tỷ trọng từng tài sản",
+      "fromTitle": "Biên bản sự cố không đổ lỗi",
+      "text": "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
       "distractors": [
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói.",
+        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
       ]
     }
   ],
   "180": [
     {
       "fromDay": 175,
-      "fromTitle": "Active vs Passive Investing",
-      "text": "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
+      "fromTitle": "Dự phòng - bao nhiêu là đủ",
+      "text": "Mỗi lớp dự phòng thêm vào cũng là một thứ nữa có thể hỏng.",
       "distractors": [
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     },
     {
       "fromDay": 168,
-      "fromTitle": "Risk-Return Tradeoff",
-      "text": "Risk-return tradeoff: lợi nhuận kỳ vọng cao hơn luôn đi kèm rủi ro cao hơn",
+      "fromTitle": "Trực - các mô hình và cái giá",
+      "text": "Chi phí thật là số lần bị ĐÁNH THỨC, không phải số ngày trực.",
       "distractors": [
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     }
   ],
   "181": [
     {
       "fromDay": 176,
-      "fromTitle": "ETF là gì?",
-      "text": "ETF: quỹ chứa rổ tài sản nhưng giao dịch linh hoạt như một cổ phiếu",
+      "fromTitle": "Phụ thuộc bên ngoài và cam kết của họ",
+      "text": "Cam kết của các phụ thuộc NHÂN với nhau, nên trần của bạn thấp hơn cái thấp nhất.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     },
     {
       "fromDay": 169,
-      "fromTitle": "Modern Portfolio Theory là gì?",
-      "text": "MPT: nền tảng toán học để xây dựng danh mục tối ưu dựa trên return, risk, correlation",
+      "fromTitle": "Tự khôi phục và suy giảm nhẹ nhàng",
+      "text": "Bốn cơ chế: thử lại có giãn cách, cầu dao, kiểm tra sức khoẻ, tự thay máy hỏng.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     }
   ],
   "182": [
     {
       "fromDay": 177,
-      "fromTitle": "Mutual Fund là gì?",
-      "text": "Mutual Fund: quỹ tương hỗ, định giá và giao dịch một lần mỗi ngày theo NAV",
+      "fromTitle": "Thay đổi là nguyên nhân phổ biến nhất",
+      "text": "Hệ thống không tự nhiên hỏng - cái vừa đổi là ứng viên số một.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     },
     {
       "fromDay": 170,
-      "fromTitle": "Efficient Frontier là gì?",
-      "text": "Efficient Frontier: tập hợp các danh mục tối ưu cho mỗi mức rủi ro",
+      "fromTitle": "Chủ động gây lỗi để học",
+      "text": "Cùng một lỗi, nhưng bạn chọn thời điểm - đó là toàn bộ ý tưởng.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     }
   ],
   "183": [
     {
       "fromDay": 178,
-      "fromTitle": "Hedge Fund là gì?",
-      "text": "Hedge fund: quỹ tư nhân linh hoạt, ít bị ràng buộc quy định hơn mutual fund/ETF",
+      "fromTitle": "Ba loại tín hiệu - số liệu, nhật ký và dấu vết",
+      "text": "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói.",
+        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống."
       ]
     },
     {
       "fromDay": 171,
-      "fromTitle": "Sharpe Ratio là gì?",
-      "text": "Sharpe Ratio = (Return − Risk-free rate) / Độ lệch chuẩn",
+      "fromTitle": "Đo thời gian phát hiện và thời gian hồi phục",
+      "text": "Đếm số sự cố khuyến khích gộp nhiều vấn đề thành một để con số đẹp hơn.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     }
   ],
   "184": [
     {
       "fromDay": 179,
-      "fromTitle": "Case nhỏ - Xây danh mục 3 tài sản",
-      "text": "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản",
+      "fromTitle": "Một sự cố thật, từ đầu tới cuối",
+      "text": "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     },
     {
       "fromDay": 172,
-      "fromTitle": "Alpha là gì?",
-      "text": "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
+      "fromTitle": "Bốn chỉ số về cách đội làm việc",
+      "text": "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau."
       ]
     }
   ],
   "185": [
     {
       "fromDay": 180,
-      "fromTitle": "Tổng ôn Chặng Danh mục đầu tư và quản trị rủi ro - Đầu tư là quản lý rủi ro, không chỉ săn lợi nhuận",
-      "text": "Đầu tư thành công là quản lý rủi ro có hệ thống, không chỉ săn lợi nhuận cao nhất",
+      "fromTitle": "Tổng ôn chặng - độ tin cậy và quản trị sự cố",
+      "text": "Độ tin cậy là đánh đổi có giá - câu hỏi là mức nào đủ, không phải làm sao cao hơn.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
         "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     },
     {
       "fromDay": 173,
-      "fromTitle": "Beta trong danh mục",
-      "text": "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường",
+      "fromTitle": "Lỗi lan truyền giữa các dịch vụ",
+      "text": "Dịch vụ dưới chậm giữ luồng ở trên lâu hơn, và luồng cạn thì tầng trên chậm theo.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau."
       ]
     }
   ],
@@ -3391,17 +3391,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Derivatives là gì?",
       "text": "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
         "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     },
     {
       "fromDay": 174,
-      "fromTitle": "Tracking Error là gì?",
-      "text": "Tracking Error: đo mức độ lệch giữa lợi suất quỹ và benchmark nó theo dõi",
+      "fromTitle": "Kiểm thử tải và kế hoạch dung lượng",
+      "text": "Hỏi CÁCH HỎNG trước, con số trần sau - con số lỗi thời sau mỗi lần phát hành.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     }
   ],
@@ -3411,17 +3411,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Forward Contract là gì?",
       "text": "Forward: hợp đồng riêng tư (OTC), khóa giá mua/bán trong tương lai",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     },
     {
       "fromDay": 175,
-      "fromTitle": "Active vs Passive Investing",
-      "text": "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
+      "fromTitle": "Dự phòng - bao nhiêu là đủ",
+      "text": "Mỗi lớp dự phòng thêm vào cũng là một thứ nữa có thể hỏng.",
       "distractors": [
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     }
   ],
@@ -3431,17 +3431,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Futures Contract là gì?",
       "text": "Futures: chuẩn hóa, giao dịch qua sàn, có clearing house đảm bảo",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     },
     {
       "fromDay": 176,
-      "fromTitle": "ETF là gì?",
-      "text": "ETF: quỹ chứa rổ tài sản nhưng giao dịch linh hoạt như một cổ phiếu",
+      "fromTitle": "Phụ thuộc bên ngoài và cam kết của họ",
+      "text": "Cam kết của các phụ thuộc NHÂN với nhau, nên trần của bạn thấp hơn cái thấp nhất.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     }
   ],
@@ -3451,17 +3451,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Option là gì?",
       "text": "Option: quyền (không phải nghĩa vụ) mua/bán ở strike price",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     },
     {
       "fromDay": 177,
-      "fromTitle": "Mutual Fund là gì?",
-      "text": "Mutual Fund: quỹ tương hỗ, định giá và giao dịch một lần mỗi ngày theo NAV",
+      "fromTitle": "Thay đổi là nguyên nhân phổ biến nhất",
+      "text": "Hệ thống không tự nhiên hỏng - cái vừa đổi là ứng viên số một.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
       ]
     }
   ],
@@ -3471,17 +3471,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Call Option là gì?",
       "text": "Call option: quyền mua ở strike price, có lợi khi giá tăng",
       "distractors": [
-        "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản",
+        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống.",
         "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác"
       ]
     },
     {
       "fromDay": 178,
-      "fromTitle": "Hedge Fund là gì?",
-      "text": "Hedge fund: quỹ tư nhân linh hoạt, ít bị ràng buộc quy định hơn mutual fund/ETF",
+      "fromTitle": "Ba loại tín hiệu - số liệu, nhật ký và dấu vết",
+      "text": "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro"
+        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói.",
+        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống."
       ]
     }
   ],
@@ -3497,11 +3497,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 179,
-      "fromTitle": "Case nhỏ - Xây danh mục 3 tài sản",
-      "text": "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản",
+      "fromTitle": "Một sự cố thật, từ đầu tới cuối",
+      "text": "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     }
   ],
@@ -3517,10 +3517,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 180,
-      "fromTitle": "Tổng ôn Chặng Danh mục đầu tư và quản trị rủi ro - Đầu tư là quản lý rủi ro, không chỉ săn lợi nhuận",
-      "text": "Đầu tư thành công là quản lý rủi ro có hệ thống, không chỉ săn lợi nhuận cao nhất",
+      "fromTitle": "Tổng ôn chặng - độ tin cậy và quản trị sự cố",
+      "text": "Độ tin cậy là đánh đổi có giá - câu hỏi là mức nào đủ, không phải làm sao cao hơn.",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
         "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     }
@@ -3540,7 +3540,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Derivatives là gì?",
       "text": "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác",
       "distractors": [
-        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
         "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     }
@@ -3560,8 +3560,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Forward Contract là gì?",
       "text": "Forward: hợp đồng riêng tư (OTC), khóa giá mua/bán trong tương lai",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     }
   ],
@@ -3580,8 +3580,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Futures Contract là gì?",
       "text": "Futures: chuẩn hóa, giao dịch qua sàn, có clearing house đảm bảo",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     }
   ],
@@ -3600,8 +3600,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Option là gì?",
       "text": "Option: quyền (không phải nghĩa vụ) mua/bán ở strike price",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản"
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
+        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
       ]
     }
   ],
@@ -3620,7 +3620,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Call Option là gì?",
       "text": "Call option: quyền mua ở strike price, có lợi khi giá tăng",
       "distractors": [
-        "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản",
+        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống.",
         "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác"
       ]
     }

@@ -9,19 +9,10 @@
     "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
     "duration": "12 min"
   },
-  "active-vs-passive-investing": {
-    "title": "Active vs Passive Investing",
-    "subtitle": "Trying to beat the market, or simply owning the whole market?"
-  },
   "actuarial-science-xac-suat-thong-ke": {
     "title": "Actuarial Science: probability and statistics applied to insurance pricing",
     "subtitle": "Mortality tables, expected present value, and the mathematics behind every life insurance contract",
     "duration": "8 min"
-  },
-  "alpha-la-gi": {
-    "title": "What is alpha?",
-    "subtitle": "The excess return a fund manager generates over the market",
-    "duration": "6 min"
   },
   "aml-kyc-case-study": {
     "title": "AML/KYC in practice: four situations and how to handle them",
@@ -87,11 +78,6 @@
     "subtitle": "Checklists, pre-mortems and the structural rules professional fund managers use to protect decisions from emotion",
     "duration": "8 min"
   },
-  "beta-trong-danh-muc": {
-    "title": "Beta in a portfolio",
-    "subtitle": "Measuring how sensitive a portfolio is to the broad market's swings",
-    "duration": "6 min"
-  },
   "black-scholes-hieu-cong-thuc-thay-vi-hoc-thuoc": {
     "title": "Derivatives, lesson 2: Black-Scholes - understand the formula instead of memorising it",
     "subtitle": "Five inputs, one idea about dynamic hedging, and the assumptions that make the model wrong in a crisis",
@@ -129,10 +115,6 @@
   "case-hang-hang-khong-phong-ho-gia-dau": {
     "title": "Small Case - An Airline Hedges Oil Prices",
     "subtitle": "Applying theory in practice: building a hedging strategy for fuel cost"
-  },
-  "case-xay-danh-muc-3-tai-san": {
-    "title": "Small Case - Building a 3-Asset Portfolio",
-    "subtitle": "Applying theory in practice: combining stocks, bonds, and gold based on correlation"
   },
   "case-xuat-khau-phong-ho-ty-gia": {
     "title": "Small case - An exporter hedges its FX exposure",
@@ -218,11 +200,6 @@
     "subtitle": "Related-party transactions, cross-ownership, major shareholders and the signals to read in AGM documents",
     "duration": "11 min"
   },
-  "correlation-tuong-quan-tai-san": {
-    "title": "Correlation between assets",
-    "subtitle": "A measure of how much two assets move together or apart",
-    "duration": "7 min"
-  },
   "credit-debit-phan-2": {
     "title": "Journal entries in practice: from the rule to the ledger",
     "subtitle": "Debits and credits for the transactions you meet every day, and a startup's first month",
@@ -290,11 +267,6 @@
     "title": "Deep-dive case: Discontinued Operations",
     "subtitle": "Don't let Net Income fool you",
     "duration": "5 min"
-  },
-  "diversification-da-dang-hoa": {
-    "title": "Diversification",
-    "subtitle": "Don't put all your eggs in one basket - the oldest rule in investing",
-    "duration": "6 min"
   },
   "dividend": {
     "title": "Dividends",
@@ -381,11 +353,6 @@
     "subtitle": "Why a company growing well can still see its stock sold off the moment earnings land",
     "duration": "7 min"
   },
-  "efficient-frontier-la-gi": {
-    "title": "What is the Efficient Frontier?",
-    "subtitle": "The efficient frontier - the set of every possible optimal portfolio",
-    "duration": "7 min"
-  },
   "embedded-finance-banking-as-a-service": {
     "title": "Embedded Finance & Banking-as-a-Service: FinTech's new business model",
     "subtitle": "How Grab and Shopee can lend money and sell insurance without a banking licence",
@@ -405,15 +372,6 @@
     "title": "ESG in company valuation: into the WACC or into the cash flows?",
     "subtitle": "How to build ESG into a model without turning it into an arbitrary number",
     "duration": "9 min"
-  },
-  "etf-la-gi-day176": {
-    "title": "What is an ETF?",
-    "subtitle": "Exchange-traded fund - trades like a stock, diversifies like a fund"
-  },
-  "expected-return-danh-muc": {
-    "title": "A portfolio's expected return",
-    "subtitle": "A portfolio's expected return is the weighted average of its components",
-    "duration": "6 min"
   },
   "ffo-affo-chi-so-loi-nhuan-cua-reit": {
     "title": "FFO and AFFO: why you do not value a REIT on accounting profit",
@@ -462,10 +420,6 @@
     "title": "Derivatives, Lesson 3: the Greeks - measuring the sensitivity of an option position",
     "subtitle": "Delta, Gamma, Vega, Theta and Rho: the risk map of any derivatives book",
     "duration": "12 min"
-  },
-  "hedge-fund-la-gi": {
-    "title": "What is a Hedge Fund?",
-    "subtitle": "A flexible fund for institutions and wealthy individuals, with lighter regulation"
   },
   "hedging-instruments-fx-derivatives": {
     "title": "Hedging instruments & FX derivatives - cutting exchange-rate risk",
@@ -708,19 +662,10 @@
     "subtitle": "Why the standard three-statement model cannot be applied directly to a bank or a property company",
     "duration": "9 min"
   },
-  "modern-portfolio-theory-la-gi": {
-    "title": "What is Modern Portfolio Theory?",
-    "subtitle": "Harry Markowitz and turning optimal portfolio construction into math",
-    "duration": "7 min"
-  },
   "modern-portfolio-theory": {
     "title": "Modern Portfolio Theory",
     "subtitle": "Correlation, the efficient frontier and spreading risk",
     "duration": "7 min"
-  },
-  "mutual-fund-la-gi": {
-    "title": "What is a Mutual Fund?",
-    "subtitle": "A pooled fund - professionally managed, priced once a day"
   },
   "needs-analysis-tu-van-bao-hiem": {
     "title": "Needs Analysis in Insurance Advice: pinning down what a client actually needs protecting",
@@ -811,11 +756,6 @@
     "subtitle": "The core shortcut groups, navigating a data range, and the working habits of a professional modeller",
     "duration": "10 min"
   },
-  "portfolio-la-gi": {
-    "title": "What is a portfolio?",
-    "subtitle": "A collection of investments managed as a single whole",
-    "duration": "5 min"
-  },
   "post-ipo-dividend": {
     "title": "Post-IPO: Should You Pay a Dividend?",
     "subtitle": "FCF vs net income - when it makes sense to hand cash back to shareholders",
@@ -895,11 +835,6 @@
     "subtitle": "What happens when the tax authority re-examines what has already been declared",
     "duration": "9 min"
   },
-  "risk-return-tradeoff": {
-    "title": "The Risk-Return Tradeoff",
-    "subtitle": "To get a higher expected return, you have to accept correspondingly higher risk",
-    "duration": "6 min"
-  },
   "room-ngoai-va-nang-hang-thi-truong": {
     "title": "The Vietnamese market, Lesson 2: foreign ownership room and market reclassification - where foreign capital comes from",
     "subtitle": "Foreign ownership limits, market classification criteria, and what they mean for valuation",
@@ -914,11 +849,6 @@
     "title": "Climate risk as a financial risk",
     "subtitle": "Physical risk, transition risk and stranded assets - how to quantify instead of just worrying",
     "duration": "9 min"
-  },
-  "sharpe-ratio-la-gi": {
-    "title": "What is the Sharpe Ratio?",
-    "subtitle": "Measuring return earned per unit of risk taken on",
-    "duration": "6 min"
   },
   "so-nhat-ky-so-cai-va-bang-can-doi-thu": {
     "title": "Bookkeeping, Lesson 2: From journal to statements - the path a transaction takes",
@@ -943,11 +873,6 @@
     "title": "Data, Lesson 6: Advanced SQL - joining tables and computing over windows",
     "subtitle": "The four kinds of JOIN, the row-duplication trap, and the family of functions that solves ranking and running totals",
     "duration": "12 min"
-  },
-  "standard-deviation-dau-tu": {
-    "title": "Standard deviation in investing",
-    "subtitle": "The mathematical tool that precisely measures volatility",
-    "duration": "7 min"
   },
   "strike-price-expiration-date": {
     "title": "Strike Price and Expiration Date",
@@ -1037,18 +962,9 @@
     "subtitle": "From bookkeeper to strategic partner of the CEO",
     "duration": "7 min"
   },
-  "tong-on-chang-9-danh-muc": {
-    "title": "Review - Portfolio and Risk Management Track: Investing Is Managing Risk, Not Just Hunting Returns",
-    "subtitle": "Connecting diversification, correlation, MPT, the Sharpe Ratio, and fund types"
-  },
   "tong-on-cong-cu-phai-sinh": {
     "title": "Derivatives review",
     "subtitle": "Connecting Forwards, Futures, Options and Swaps into one picture"
-  },
-  "tracking-error-la-gi": {
-    "title": "What is tracking error?",
-    "subtitle": "Measuring how far a fund strays from the benchmark it tracks",
-    "duration": "6 min"
   },
   "trai-phieu-doanh-nghiep-rieng-le-bai-hoc": {
     "title": "Vietnam Markets, Lesson 3: Privately placed corporate bonds - anatomy of a crisis",
@@ -1114,11 +1030,6 @@
     "title": "Why Do Businesses Use Derivatives to Hedge?",
     "subtitle": "Stabilizing cash flow and protecting profit margin from market volatility"
   },
-  "vi-sao-khong-nen-nhin-tung-khoan-dau-tu": {
-    "title": "Why shouldn't you look at each investment in isolation?",
-    "subtitle": "An asset's risk can vanish once placed in the context of a portfolio",
-    "duration": "6 min"
-  },
   "vi-sao-phai-sinh-nguy-hiem": {
     "title": "Why Can Derivatives Be So Dangerous?",
     "subtitle": "High leverage, complexity, and systemic risk"
@@ -1131,11 +1042,6 @@
   "vingroup-cash-flow": {
     "title": "Deep dive: reading Vingroup's cash flow",
     "subtitle": "Q4/2024 cash flow statement - 160,000bn moving through",
-    "duration": "6 min"
-  },
-  "volatility-bien-dong": {
-    "title": "Volatility",
-    "subtitle": "A measure of how much an asset's price swings over time",
     "duration": "6 min"
   },
   "von-luu-dong-nha-thau-xay-dung": {
