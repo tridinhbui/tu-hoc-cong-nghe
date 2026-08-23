@@ -1,7 +1,11 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
 <!-- END:nextjs-agent-rules -->
 
 # Writing quiz questions
@@ -62,11 +66,53 @@ than by reading:
   So do **not** read a mild negative z as a backlog to grind down. Closing it
   leaves only two moves and both damage the bank: pad the correct option past
   its claim (breaks rule 1), or strip the arithmetic out of the distractors
-  (breaks rule 3). `MAX_LENGTH_BIAS_Z` stays at 3.4 for this reason rather than
-  being ratcheted further — it is a guard against a *new* batch drifting, not a
-  target to reach. The earlier version of this section told you to fix a
-  downward z by "writing some correct options longer"; that advice is what this
-  measurement retired.
+  (breaks rule 3). `MAX_LENGTH_BIAS_Z` is a guard against a *new* batch
+  drifting, not a target to reach. The earlier version of this section told you
+  to fix a downward z by "writing some correct options longer"; that advice is
+  what this measurement retired.
+
+- **This paragraph said "stays at 3.4" for two weeks after the ceiling moved.**
+  `cbf8fde` ratcheted `MAX_LENGTH_BIAS_Z` to **3.2** and did not update the
+  sentence here that named 3.4 as a deliberate resting place, complete with the
+  reasoning for why it should not move. Anyone reading only this file would have
+  argued from a number the code had already left behind. Read the constant, not
+  the prose: `grep MAX_LENGTH_BIAS_Z scripts/audit-lesson-content.mjs`.
+
+  **And `npm run audit:lessons` is red right now**, on exactly that gate:
+  `professional` sits at **z(dài) = −3.49** against the 3.2 ceiling, and it has
+  been red at every commit of the technology migration — measured by checking
+  out each one and re-running the audit, so it is not drift from the new
+  batches. The professional track is the one the migration has not reached yet;
+  what moved was the pool around it, as CFA/FRM lessons left the corpus.
+
+  The gap is small and worth stating exactly, because "grind it down" and "six
+  questions" are different instructions. 381 observed against 446 expected,
+  sd ≈ 18.6, so |z| ≤ 3.2 needs 387 — **six more questions** where the correct
+  answer is the uniquely longest option. Do it by shortening the one distractor
+  that is barely longer than the correct answer, on questions that are already
+  near-ties; do not raise the ceiling to make the build pass, and do not trim
+  correct answers, which only pushes them into the middle where
+  `MAX_MIDDLE_BIAS_Z` catches them. The earlier note that trimming distractors
+  "moved the statistic by zero" was measured on a batch tightened toward rule
+  6's band, not on near-ties chosen for being near-ties.
+
+  **Nobody ever wrote those six questions, and the number went green anyway.**
+  Four chapter-conversion commits later the same measurement reads z = −3.0,
+  inside the 3.2 ceiling — not because anyone touched a `professional` quiz, but
+  because the pool moved under it as finance lessons left and technology lessons
+  arrived. The paragraph above is kept exactly as written, wrong figure and all,
+  because the method in it is right and the standing lesson is the one it
+  demonstrates twice over: **a z-score against a moving corpus is a reading, not
+  a backlog.** Re-measure before starting the work it seems to ask for; the
+  number that sent you may have been fixed by somebody else's unrelated commit.
+
+  What is red *now* is a different line of the same audit: `openingOptions` at
+  **z(ngắn) = −3.28** against a ceiling of 3 — the correct opening answer is the
+  uniquely shortest option 137 times against 173 expected. Same exploit mirrored:
+  eliminate the shortest option and the odds go from one-in-four to one-in-three.
+  sd ≈ 10.98, so |z| ≤ 3.0 needs 141 — **four more lessons**. Fix it by making
+  the shortest *distractor* longer on lessons where the correct answer is already
+  second-shortest, never by trimming the correct answer.
 
 ## Rules
 
@@ -236,10 +282,12 @@ the same trap, armed for whoever next edited one of those nine fields. A second
 test now fails on any override key that equals its `lib/lessons.ts` counterpart:
 a patch that patches nothing is a trap waiting, not dead weight.
 
-IB question bank: `lib/ib-question-overrides.ts`, keyed by numeric id. Same
-rules apply. Note that the delivery route shuffles option order per question,
-so `correct: 0` everywhere is fine there — position leaks nothing, only length
-survives shuffling.
+IB question bank: gone with `d092dd4` — `lib/ib-question-overrides.ts` no longer
+exists. The rule it carried is still worth keeping, because it applies wherever
+a delivery route shuffles: when option order is shuffled per question, `correct:
+0` everywhere leaks nothing, because position does not survive the shuffle —
+**only length does**. `BossBattleModal` is the one place in the app that still
+shuffles this way.
 
 ## Translating lessons
 
@@ -287,6 +335,43 @@ provider, and a root layout that reads a cookie makes every route beneath it
 dynamic. `next build` reports `ƒ /bai-hoc/[slug]`, not `○`. The machinery
 protected a property the app had already lost. **Check `next build` output
 before optimising around static rendering in this repo.**
+
+**Rule 2 was violated in all 19 translations of one batch, and nothing caught it.**
+The translator wrote each English `options` array with the correct answer at
+index 0, because that is the natural way to write a question. `correct` is read
+from the Vietnamese side, where `balanceLessonQuizzes` has already shuffled the
+positions - so the keyed index pointed at a distractor in every question. An
+English reader who understood the material was marked wrong and then shown an
+explanation naming the answer they had just rejected.
+
+It survived 19 files because the guard that ran was a **shape** check: array
+lengths and section types, which always matched. The merge in
+`lib/lesson-translations.js` checks the same thing, for the same reason. Neither
+looks at *which* option carries the answer, and nothing else does either.
+
+The fix at authoring time is one line - build the array correct-first, then swap
+element 0 with element `correct` before writing. Do that inside whatever helper
+writes the file, not by hand per question, because per question is exactly the
+step that got skipped 19 times.
+
+A detector for it was built and **thrown away after measurement**: correlate the
+option lengths of `vi[i]` against `en[i]`, on the theory that a positional
+translation correlates and a permuted one does not. It does not separate them.
+Correctly positional translations in this repo score as low as **-0.26**
+(`dashboard-va-bao-cao-tu-phuc-vu`, verified option by option), while the
+permuted batch scored as high as **+0.89** - Vietnamese and English simply do not
+preserve relative length per option. Matching on shared numerals was tried next
+and resolves **5 of 285** distractors, because most options carry no digits.
+Neither is worth building; the prevention belongs at the write step.
+
+One consequence is recorded here rather than fixed: after the swap those 19
+files have the *keyed* option in the right place and the three distractors in a
+different order from the Vietnamese. That is harmless to a learner - every
+distractor is still a real misconception - and it does violate rule 2 as stated.
+Restoring full correspondence needs a semantic mapping of 285 options by hand,
+and it was judged not worth it against a bounded risk: editing `vi[2]` later
+changes a different distractor than expected, in a lesson where all four options
+remain valid.
 
 **The length gates are per-language.** `MAX_LENGTH_BIAS_Z`, `MAX_TELL_SHARE` and
 the hollow-option patterns all measure character lengths and Vietnamese opener
@@ -511,18 +596,22 @@ measuring by hand rather than by the audit.
 ```
 npm run audit:lessons                                  # lesson quizzes
 npm run audit:lessons:en                               # translated lessons
-node scripts/audit-ib-option-length.mjs                # IB question bank, per category
-node scripts/audit-ib-option-length.mjs --ids <cat>    # per-question lengths
 node scripts/i18n-coverage.mjs                         # untranslated UI strings
 node scripts/i18n-coverage.mjs <file>                  # per-file, with line numbers
 ```
 
-`audit-ib-option-length.mjs` chỉ IN và luôn thoát 0 - nó là bảng đọc theo nhóm
-lúc đang viết lại một lô, không phải cổng. Cổng của ngân hàng IB nằm ở
-`lib/__tests__/ib-question-bank.test.ts` và chạy cùng `npx vitest run`. Chú thích
-đầu file bộ kiểm từng nói cổng đã nằm ở đó trong khi chưa có gì, nên đọc con số
-nó in ra với cỡ mẫu trong đầu: một nhóm 8 câu hiện 50% là bốn câu, cách 25% đúng
-một lần tung đồng xu.
+**Ngân hàng IB và hai kho CFA đã rời khỏi repo.** `lib/ib-question-bank.ts`,
+`lib/ib-question-overrides.ts` và `lib/cfa-item-sets.ts` bị gỡ ở `d092dd4`, cùng
+với `lib/__tests__/ib-question-bank.test.ts` và `cfa-advanced-practice.test.ts`.
+`scripts/audit-ib-option-length.mjs` thì ở lại thêm sáu commit nữa, đọc một tệp
+không còn tồn tại và **ném ENOENT ngay dòng đầu** - trong khi mục này vẫn liệt kê
+nó như một lệnh để chạy. Đã xoá script; hai đoạn văn bên dưới về mẹo độ dài của
+ngân hàng IB giữ lại vì phép đo và bài học rút ra vẫn đúng, nhưng kho ấy không
+còn để mà chạy lại.
+
+Gỡ một kho thì gỡ theo cả ba: dữ liệu, cổng của nó, và mọi công cụ đọc nó. Bỏ
+sót cái thứ ba tạo ra một lệnh trong tài liệu mà ai gõ vào cũng gặp lỗi khó hiểu,
+chứ không phải một câu "kho này không còn nữa".
 
 **Quiz cũng nằm trong `app/bai-hoc/<slug>/page.tsx`.** Một số bài có trang
 viết tay riêng, và mảng `quiz` của chúng là literal trong chính file đó - không
@@ -549,9 +638,29 @@ nó tồn tại.
 | --- | --- | --- |
 | quiz bài học | `lib/lessons-data/*.json` | `npm run audit:lessons` |
 | quiz bài viết tay | `app/bai-hoc/<slug>/page.tsx` | cùng bộ kiểm, qua `hand-authored-quizzes.mjs` |
-| ngân hàng IB | `lib/ib-question-bank.ts` + overrides | `lib/__tests__/ib-question-bank.test.ts` |
-| item set CFA | `lib/cfa-item-sets.ts` | `cfa-advanced-practice.test.ts` (cấu trúc; 20 câu, quá nhỏ để gác phân bố) |
-| **quiz module CFA** | **bảng `ModuleQuizQuestion` trên Supabase** | **chỉ đường ghi** |
+| **đề thi thăng cấp** | **`lib/level-exams.ts`** | **`scripts/audit-level-exam-length.mjs` - chỉ IN, không gác** |
+
+Ba dòng từng đứng ở đây - ngân hàng IB, item set CFA, quiz module CFA trên
+Supabase - đã đi cùng các module bị gỡ ở `d092dd4`. Dòng còn lại là dòng mới, và
+nó đúng cái hình dạng mà bảng này sinh ra để ghi: `LEVEL_EXAMS` có **380 câu qua
+14 cấp**, chấm điểm thật và ghi vào bảng `user_level_exams`, nhưng
+`audit-lesson-content.mjs` chỉ đọc `lib/lessons-data` và các trang viết tay - nên
+không phép đo phân bố nào chạm tới nó.
+
+Dòng này đã lỗi thời một lần trong vòng một giờ sau khi được viết, nên đọc nó
+cùng ngày tháng: lúc đo, kho chưa có công cụ nào và đứng ở dài nhất 27,8% (may
+rủi ~25%); `49a0a13` vừa chuyển nốt 380 câu sang công nghệ và thêm
+`audit-level-exam-length.mjs`, giờ ở 24% (vi) và 23% (en). Công cụ đó **chỉ in
+và luôn thoát 0** - nên "có phép đo" vẫn khác "được gác", và dòng trong bảng ghi
+đúng như vậy.
+
+Bài học chung của cả bảng này: một kho có chấm điểm mà không ai đo thì không tự
+báo, và một phép đo mà không ai gác thì chỉ đúng tới lần chạy tiếp theo.
+
+Một cảnh báo về chính phép đo trên: lần chạy đầu của nó cho `0/327`, một con số
+tuyệt đối tới mức đáng ngờ, và đúng là sai - probe đọc `q.correct` trong khi
+trường thật tên là `correctIndex`, nên `lens[undefined]` không bao giờ bằng max.
+Một tỷ lệ 0% hay 100% gần như luôn là lỗi probe chứ không phải phát hiện.
 
 Quiz module CFA được gõ qua `/admin/cfa-library` và ghi `quiz_score` vào
 `cfa_module_progress` qua `lib/supabase-cfa-progress.ts`. Không script tĩnh nào
