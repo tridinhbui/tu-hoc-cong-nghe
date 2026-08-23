@@ -83,9 +83,9 @@
     {
       "question": "Why is operational quality always the first thing sacrificed?",
       "options": [
-        "Because the reward arrives immediately and the price arrives very late",
-        "Because most teams do not have the tooling to measure this pillar with any accuracy",
         "Because it depends on specific individuals, so it shifts every time somebody leaves the team",
+        "Because most teams do not have the tooling",
+        "Because the reward arrives immediately and the price arrives very late",
         "Because it is the only pillar that does not directly affect the end user of the product"
       ],
       "explanation": "Skipping tests this week really is faster and really has no visible consequence. The consequence arrives at an incident three months later, by which point nobody connects it to the old decision - the feedback loop is broken."
@@ -93,10 +93,10 @@
     {
       "question": "What kind of quantity should this pillar be read as?",
       "options": [
-        "A multiplier on the duration of an incident",
+        "A measure of code quality",
         "A probability that tells you how likely the service is to fail in the coming month",
         "An indicator of how satisfied the team maintaining the service currently is with it",
-        "A measure of code quality, read alongside the number of bugs found each month"
+        "A multiplier on the duration of an incident"
       ],
       "explanation": "Missing documentation does not make the service break. It decides whether the person on call takes fifteen minutes or three hours when it breaks for another reason, so it multiplies rather than adds."
     },
@@ -105,7 +105,7 @@
       "options": [
         "It had stopped being changeable, and no metric caught that",
         "It runs on old infrastructure, so every change needs extra manual deployment steps",
-        "Low cost shows the service is under-resourced and cannot absorb any change safely",
+        "Low cost shows the service is under-resourced",
         "Three years without errors suggests the service's own error measurement broke long ago"
       ],
       "explanation": "Stable and changeable are two different things, and a health dashboard only measures the first. A service nobody dares touch stays green on every chart right up to the day it needs changing."
@@ -113,8 +113,8 @@
     {
       "question": "With no data available, which question measures this pillar best?",
       "options": [
-        "Can a new joiner deploy it on their own",
         "How many tests did the team write for this service over the past quarter",
+        "Can a new joiner deploy it on their own",
         "How many incidents has this service had in the last six months of operation",
         "When was the service's documentation last updated by anyone on the team"
       ],
@@ -123,9 +123,9 @@
     {
       "question": "From which point should recovery time be measured?",
       "options": [
-        "From the moment the service started breaking",
-        "From the moment the first automated alert reached whoever was on call that day",
         "From the moment the on-call engineer acknowledged and began working on the incident",
+        "From the moment the first automated alert reached whoever was on call that day",
+        "From the moment the service started breaking",
         "From the moment the first user reported that the service was not working for them"
       ],
       "explanation": "Measuring from detection discards the stretch where the system was broken and nobody knew - usually the longest stretch and also the easiest to shorten. Choosing a later start makes the number look better without fixing anything."

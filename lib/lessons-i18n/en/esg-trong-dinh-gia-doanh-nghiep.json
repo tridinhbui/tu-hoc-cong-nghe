@@ -94,19 +94,19 @@
     {
       "question": "Why do the three non-functional pillars usually conflict?",
       "options": [
+        "Because each pillar is measured by a different team",
         "Because saving resources usually means cutting tests and logging",
-        "Because each pillar is measured by a different team and the teams use different tooling",
-        "Because the three pillars change on very different time cycles, which makes them hard to compare",
-        "Because only the experience pillar is measured directly while the other two are indirect"
+        "Because the three pillars change on very different time cycles",
+        "Because only the experience pillar is measured directly"
       ],
       "explanation": "The conflict comes from the substance rather than from the measurement. Logging, cross-checking and running in parallel all cost resources, so a service scoring high on efficiency usually scores low on operations."
     },
     {
       "question": "The same data, two boards, opposite rankings. What does that tell you?",
       "options": [
-        "That the ranking reflects the weights more than it reflects the service",
-        "That at least one of the two boards has a fault in how it computes the combined score",
         "That the data is not yet rich enough to separate the services, so more measures are needed",
+        "That at least one of the two boards has a fault in how it computes the combined score",
+        "That the ranking reflects the weights more than it reflects the service",
         "That the two boards are normalising the numbers onto two completely different scales"
       ],
       "explanation": "Neither board is wrong. When the inputs are identical and the outputs are opposite, the only thing that differs is the blending proportion - so that proportion is what is deciding the ranking."
@@ -114,10 +114,10 @@
     {
       "question": "Adjusting a service's score by general impression rather than through a specific variable. What is wrong with that?",
       "options": [
-        "Nobody can check it or argue with it",
+        "Adjusted services stop being comparable with the services that were not adjusted",
         "The adjustment figure will need updating by hand every time the underlying measures are re-taken",
         "It pushes the combined score off the 0-100 scale the board uses for its colour thresholds",
-        "Adjusted services stop being comparable with the services that were not adjusted"
+        "Nobody can check it or argue with it"
       ],
       "explanation": "A number with no mechanism cannot be wrong, and what cannot be wrong also cannot be right. Forcing adjustments through a measurable variable is the only way anyone after you can still argue with it."
     },
@@ -125,19 +125,19 @@
       "question": "What is the right way to use a combined health board?",
       "options": [
         "Treat it as a signal to open the three pillars",
-        "Set an alert threshold on the total and only intervene when the score falls below it",
-        "Compare scores between services to decide which team needs more people and resources",
-        "Track the trend of the total by month rather than looking at the value at a point in time"
+        "Set an alert threshold on the total",
+        "Compare scores between services to decide",
+        "Track the trend of the total by month"
       ],
       "explanation": "The other three all take the total as the conclusion. The total is only trustworthy as a signal, because it combines things that can offset each other: one collapsed pillar can be completely covered by the other two."
     },
     {
       "question": "A service scoring 82 just caused a four-hour incident. What should you look at first?",
       "options": [
-        "The board's weights, and which pillar is being under-weighted",
         "The service's logs across the four hours during which the incident took place that day",
+        "The board's weights, and which pillar is being under-weighted",
         "The history of that service's total score over the last six months to find a trend",
-        "The scores of other services that share common infrastructure with this one"
+        "The scores of other services"
       ],
       "explanation": "Incident logs answer where it broke this time. The weights answer a larger question: why the board stayed green while the thing that just broke was always weak, and how many other services are green in exactly the same way."
     }

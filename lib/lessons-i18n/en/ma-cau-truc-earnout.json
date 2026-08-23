@@ -84,9 +84,9 @@
     {
       "question": "Why is 'support for three months' a poor milestone?",
       "options": [
-        "Because it passes even when the new team has done nothing at all",
-        "Because three months is rarely enough for systems of moderate complexity or above",
         "Because it does not state what priority or response time the old team owes the new one",
+        "Because three months is rarely enough",
+        "Because it passes even when the new team has done nothing at all",
         "Because it forces the old team to hold people who have already moved to other work"
       ],
       "explanation": "A milestone has to distinguish ready from not ready. Time distinguishes nothing at all - it passes identically in both cases, so it is not a milestone but only a deadline."
@@ -94,10 +94,10 @@
     {
       "question": "The new team stops asking questions in the third month. How should you read that?",
       "options": [
-        "As ambiguous data - it could be understanding or it could be reluctance",
-        "As a good sign that the transfer of knowledge has gone the way it was meant to",
+        "As normal, because question counts always fall over time in any handover of this kind",
+        "As a good sign that the transfer",
         "As a bad sign that the new team is avoiding the harder parts of the system entirely",
-        "As normal, because question counts always fall over time in any handover of this kind"
+        "As ambiguous data - it could be understanding or it could be reluctance"
       ],
       "explanation": "A falling question count is a two-valued signal with no way to tell the two apart from outside. That is exactly why the milestone has to measure what the new team can do rather than an indirect sign like how often they ask."
     },
@@ -114,8 +114,8 @@
     {
       "question": "Why write down in advance what happens if the milestone is missed?",
       "options": [
+        "Because stakeholders need to know the risk in advance",
         "Because once it is missed every option becomes a negotiation",
-        "Because stakeholders need to know the risk in advance so they can prepare a fallback plan",
         "Because it helps the new team understand how seriously the milestones were meant to be taken",
         "Because otherwise the old team may leave the moment the deadline passes, milestone or not"
       ],
@@ -124,9 +124,9 @@
     {
       "question": "Which way out gets forgotten when a system cannot be handed over?",
       "options": [
-        "Concluding that it should be replaced rather than taken on",
+        "Hiring somebody from the old team back",
         "Splitting the system into smaller parts and handing them over one at a time in sequence",
-        "Hiring somebody from the old team back on a short contract to keep supporting it",
+        "Concluding that it should be replaced rather than taken on",
         "Keeping ownership with the old team and transferring only day-to-day operations across"
       ],
       "explanation": "The other three all assume the system is worth keeping, and that assumption is rarely tested. A system nobody can hand over is sometimes a system at the end of its life, and replacing it is the cheapest way out."

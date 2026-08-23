@@ -90,10 +90,10 @@
     {
       "question": "Why is 'number of teams using it' a poor measure?",
       "options": [
-        "Because it can be raised by issuing a mandate",
+        "Because the number of teams in the company changes each period, so the figure is not comparable",
         "Because it says nothing about depth of use",
         "Because a team may use one small corner of the platform and still count as an adopter of it",
-        "Because the number of teams in the company changes each period, so the figure is not comparable"
+        "Because it can be raised by issuing a mandate"
       ],
       "explanation": "The other three all make the number less accurate and all are fixable by measuring more carefully. Something that can be raised by an administrative decision is not fixable by any measurement, because it severs the number from the thing it was meant to measure."
     },
@@ -110,8 +110,8 @@
     {
       "question": "What is the shape you can trust for a platform coming into being?",
       "options": [
-        "One team solves it, a second borrows it, a third comes asking",
         "A plan gets approved",
+        "One team solves it, a second borrows it, a third comes asking",
         "A survey about shared needs is sent out to every engineering team in the company",
         "An assessment shows several teams solving the same problem in different ways from each other"
       ],
@@ -120,9 +120,9 @@
     {
       "question": "Why does making it easy to leave bring more teams in?",
       "options": [
-        "Because their biggest risk is getting in and not being able to get out",
-        "Because it shows the platform team is confident",
         "Because it forces the platform to keep data in portable formats, which raises technical quality",
+        "Because it shows the platform team is confident",
+        "Because their biggest risk is getting in and not being able to get out",
         "Because teams experiment more readily when they know they are not committed for the long run"
       ],
       "explanation": "A team weighing your platform is estimating risk rather than estimating benefit. Reducing the cost of the worst case works far harder than any additional promise about the best case."
@@ -130,10 +130,10 @@
     {
       "question": "Which part of the work should a platform take on?",
       "options": [
-        "The hardest part, because a team only switches when the painful piece is taken off them",
+        "The part most common across teams, so one solution serves the largest number of places",
         "The easiest and most repeated part",
         "The part where the platform team has deeper expertise than the product teams have",
-        "The part most common across teams, so one solution serves the largest number of places"
+        "The hardest part, because a team only switches when the painful piece is taken off them"
       ],
       "explanation": "The easy part and the common part sound efficient, and neither is enough to pay for the cost of switching. A team only agrees to learn a new tool when what they get back is the part they hate, not the part they were already fast at."
     }

@@ -1,0 +1,164 @@
+{
+  "title": "When the default capacity model does not work",
+  "subtitle": "Three kinds of system where the familiar arithmetic gives a badly wrong answer",
+  "duration": "9 min",
+  "whyItMatters": "The familiar capacity calculation - requests times cost per request - is right for most services and very wrong for three kinds. Knowing which kind you are in matters more than calculating well.",
+  "openingQuestion": "A service handles 5,000 requests per second. You need to serve 10,000. How many machines?",
+  "openingOptions": [
+    "Cannot say without knowing whether the load is even or bursty",
+    "Two machines, because ten thousand divided by five thousand is exactly twice the current capacity",
+    "Three machines: two by the division plus one spare in case of hardware failure",
+    "Four machines, because in practice each one should only run at about fifty percent of capacity"
+  ],
+  "explanation": "The division only holds when load is spread evenly. Ten thousand requests per second on average could be ten thousand steadily, or two thousand all day and eighty thousand for three minutes. Those two cases need machine counts that differ by an order of magnitude, and the average cannot tell them apart.",
+  "diagram": [
+    {
+      "label": "Measure the shape of the load, not just the average"
+    },
+    {
+      "label": "Work out which kind of system this is"
+    },
+    {
+      "label": "Pick the arithmetic to match the kind"
+    },
+    {
+      "label": "Check it against one real measurement"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Ten thousand on average, eighty thousand at peak",
+    "description": "A team provisioned against the average measured over a month and everything ran well for six weeks. In the seventh, a campaign sent a notification to every user at once and a whole day's traffic arrived in four minutes. The system fell over, and the records showed the month's average had stayed inside the provisioned range - exactly as the arithmetic had promised."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The default capacity calculation assumes three things: load is spread evenly, requests cost the same as one another, and machines are independent. Each of the three kinds below breaks exactly one of those."
+    },
+    {
+      "type": "heading",
+      "text": "Kind one: bursty load"
+    },
+    {
+      "type": "paragraph",
+      "text": "Messaging, push notifications, ticket sales, course registration. In these systems the average is close to meaningless because the whole load sits inside a few minutes. The quantity you need is not average requests per second but peak over average - and that ratio has to be measured rather than guessed, because it ranges from three times to several hundred depending on the event."
+    },
+    {
+      "type": "heading",
+      "text": "Kind two: where one request is not like another"
+    },
+    {
+      "type": "paragraph",
+      "text": "Search, report generation, services calling a model. One request may cost five milliseconds or five seconds depending on the data behind it, so multiplying request count by an average cost produces a number that corresponds to no real state at all. The right quantity here is total work, such as records scanned, rather than the number of times you were called."
+    },
+    {
+      "type": "heading",
+      "text": "Kind three: a shared bottleneck"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every system with a single writable database belongs here. Adding serving machines does not add capacity, because the constrained part is somewhere that does not multiply, and adding machines makes it worse since each one holds another pool of connections. This is the only kind where the default arithmetic is wrong in the most dangerous direction: it tells you the problem is solvable with money."
+    },
+    {
+      "type": "callout",
+      "label": "The sorting questions, asked before the arithmetic",
+      "text": "Three questions separate almost every case. What does my load look like on the busiest day compared with an average one? How many times more expensive is the dearest request than the cheapest? If I add twice as many machines, what does not multiply along with them? Anyone who can answer those three can use any of the models; anyone who cannot will get any of them wrong."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The default model works",
+        "text": "Load fairly even, requests costing about the same, and adding machines genuinely adds capacity. Most internal services live here."
+      },
+      "right": {
+        "label": "Needs its own model",
+        "text": "Bursty load, cost per request differing by orders of magnitude, or a shared bottleneck that does not multiply."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Knowing which kind of system you have matters more than calculating neatly.",
+        "A shared bottleneck is the most dangerous kind, because it makes the problem look solvable with money."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why is the average useless for a system with bursty load?",
+      "options": [
+        "Because bursty load tends to happen at night, outside the hours anyone is watching charts",
+        "Because averaging measurements are usually sampled too infrequently to capture the peaks",
+        "Because the whole load sits in a few minutes, so the average describes no moment at all",
+        "Because the average is pulled upward by rare peaks, so it always exceeds the true level"
+      ],
+      "explanation": "The average describes a state the system is never in: not as busy as the peak and not as quiet as usual. Provisioning against a state that does not exist means excess all day and shortage exactly when it matters."
+    },
+    {
+      "question": "Which kind of system does the default arithmetic get wrong most dangerously?",
+      "options": [
+        "A system depending on several external services that the team does not control at all",
+        "A system with bursty load, because the peak can go far beyond whatever was provisioned for",
+        "A system where cost per request differs by a factor of hundreds between request types",
+        "A system with a shared bottleneck"
+      ],
+      "explanation": "The other two are wrong about the number and can be fixed by measuring again. A shared bottleneck is wrong about the nature of the thing: it convinces a team that more money is more capacity, so they spend it several times before realising the problem is elsewhere."
+    },
+    {
+      "question": "What quantity should a search service use instead of request count?",
+      "options": [
+        "Total work, such as records scanned",
+        "Requests at the ninety-fifth percentile rather than at the average across the whole day",
+        "Average processing time per request multiplied by the total number of requests in the period",
+        "Concurrent active users, since each one usually sends several requests in quick succession"
+      ],
+      "explanation": "When one request costs anywhere between five milliseconds and five seconds, the unit you count has to be the thing causing that spread. Counting how many times you were called counts a quantity nearly unrelated to the resources consumed."
+    },
+    {
+      "question": "You double the serving machines and capacity does not rise, or even falls. What is the usual cause?",
+      "options": [
+        "The load balancer was not reconfigured, so it still distributes across the old machine count",
+        "Each machine holds another pool of connections to the shared bottleneck",
+        "New machines need time to warm their caches",
+        "The cost of synchronising state between machines grows with the square of the machine count"
+      ],
+      "explanation": "This is the classic shape of a shared bottleneck. The constrained part does not multiply with machine count while the pressure on it does, so each machine added both fails to help and takes another share of the scarce thing."
+    },
+    {
+      "question": "Which question should be asked before choosing a capacity model?",
+      "options": [
+        "What machines is the system running on",
+        "What is the infrastructure budget for next quarter",
+        "If I add twice as many machines, what does not multiply along with them",
+        "What user growth is expected over the next twelve months"
+      ],
+      "explanation": "The other three all need answering and all are inputs to the calculation. The first decides which calculation is usable at all - and if the answer is that something does not multiply, then every model based on machine count is meaningless."
+    }
+  ],
+  "keyTakeaways": [
+    "The default model assumes even load, equal request cost, and independent machines",
+    "For bursty load use peak over average, and measure it rather than guessing",
+    "When request costs vary widely, count total work rather than call count",
+    "A shared bottleneck is most dangerous because it makes the problem look solvable with money"
+  ],
+  "practicePrompt": {
+    "question": "2,000 requests per second on average, but 80% of the day's traffic arrives in 4 minutes. Roughly what is the peak?",
+    "options": [
+      "About 576,000 per second",
+      "10,000 per second (= multiplying the average by five as a safety factor)",
+      "57,600 per second (= dividing the 80% share across 40 minutes rather than across 4)",
+      "144,000 per second (= dividing only the remaining 20% of traffic across the 240 seconds)"
+    ],
+    "explanation": "The day holds about 172.8 million requests; 80% of that is 138 million arriving in 240 seconds, which is 576,000 per second - almost three hundred times the average of 2,000. That gap is the distance between a system provisioned against the average and one that survives its busiest day."
+  },
+  "summary": {
+    "keyIdea": "Classify the system first, choose the arithmetic second",
+    "commonMistake": "Provisioning against the average for a system with bursty load",
+    "action": "Work out the peak-over-average ratio for a service you look after."
+  },
+  "application": {
+    "title": "Three questions before any capacity calculation",
+    "message": "What does the busiest day look like against an average one? How many times dearer is the dearest request? If machines double, what does not?",
+    "secondary": "Answer those three and any model will serve; leave them unanswered and every model will mislead."
+  },
+  "slug": "mo-hinh-tc-nganh-dac-thu"
+}

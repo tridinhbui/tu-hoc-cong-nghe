@@ -159,6 +159,11 @@
     "subtitle": "When the two sides disagree about readiness, let a milestone answer",
     "duration": "8 min"
   },
+  "ma-phong-thu-thau-tom-thu-dich": {
+    "title": "Defending against vendor lock-in",
+    "subtitle": "The cost of leaving is decided when you choose, not when you want to leave",
+    "duration": "9 min"
+  },
   "ma-xuyen-bien-gioi": {
     "title": "Taking over a system from another organisation",
     "subtitle": "Technical barriers can be measured; operational ones are what wreck the plan",
@@ -168,6 +173,11 @@
     "title": "Quant, Lesson 2: Samples, standard errors and confidence intervals - how precise is your number really",
     "subtitle": "Why every estimate has to carry an interval, and why 36 months of data is nowhere near enough",
     "duration": "11 min"
+  },
+  "mo-hinh-tc-nganh-dac-thu": {
+    "title": "When the default capacity model does not work",
+    "subtitle": "Three kinds of system where the familiar arithmetic gives a badly wrong answer",
+    "duration": "9 min"
   },
   "modern-portfolio-theory": {
     "title": "Many small services or one large one",

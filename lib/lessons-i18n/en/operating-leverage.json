@@ -85,9 +85,9 @@
     {
       "question": "Which system sees cost per user fall as the user count rises?",
       "options": [
-        "One where the fixed part is a large share of the total",
-        "One with many active users",
         "One running on on-demand infrastructure, so cost always tracks actual usage closely",
+        "One with many active users",
+        "One where the fixed part is a large share of the total",
         "One that has been optimised so each request consumes fewer resources than it used to"
       ],
       "explanation": "The fixed part is divided among more people, so it shrinks per user. The usage part multiplies rather than divides, so it holds flat per user no matter how many users there are."
@@ -95,10 +95,10 @@
     {
       "question": "Why does per-call pricing remove the advantage of scale?",
       "options": [
-        "Because it multiplies with usage rather than being divided by it",
+        "Because volume discounts on external services rarely offset the growth in usage itself",
         "Because external services usually charge more than running it yourself",
         "Because the vendor can change the price at any time, making long-run cost hard to predict",
-        "Because volume discounts on external services rarely offset the growth in usage itself"
+        "Because it multiplies with usage rather than being divided by it"
       ],
       "explanation": "The other three all make things worse and all are about unit price. The core point is the shape of the arithmetic: an amount multiplied by usage never gets smaller per unit, however good the unit price is."
     },
@@ -115,8 +115,8 @@
     {
       "question": "What does choosing an external service over running it yourself mean for cost?",
       "options": [
-        "It moves cost from the fixed column to the usage column",
         "It lowers total cost in the early period",
+        "It moves cost from the fixed column to the usage column",
         "It trades some control over quality for getting the feature to market considerably faster",
         "It moves operational risk to the vendor and leaves the team the feature work"
       ],
@@ -125,10 +125,10 @@
     {
       "question": "When should a per-call service decision be revisited?",
       "options": [
-        "When usage is large enough that the fixed cost of running it yourself is cheaper",
-        "When the invoice passes a threshold set in advance",
         "When the vendor announces a change to its pricing or its terms of service",
-        "When the team has enough people and expertise to operate an equivalent thing internally"
+        "When the invoice passes a threshold set in advance",
+        "When usage is large enough that the fixed cost of running it yourself is cheaper",
+        "When the team has enough people"
       ],
       "explanation": "That crossover can be computed at the outset by comparing the fixed cost of self-hosting against unit price times usage. Waiting for an invoice threshold means overpaying for the whole stretch between the crossover and the moment the threshold fires."
     }

@@ -79,8 +79,8 @@
     {
       "question": "Which group of risk is most often filed wrongly?",
       "options": [
-        "Interface risk between two sides",
         "Operational risk",
+        "Interface risk between two sides",
         "Dependency risk, because it only surfaces when something outside changes rather than during testing",
         "Code risk, because most teams lack test coverage for the edge cases that actually occur"
       ],
@@ -89,9 +89,9 @@
     {
       "question": "Which question separates risk within reach from risk that needs someone else?",
       "options": [
-        "Would this still have happened if everything outside had stayed still",
-        "Has this incident happened before",
         "Does the team have enough access to fix every part of what caused this incident by itself",
+        "Has this incident happened before",
+        "Would this still have happened if everything outside had stayed still",
         "Was recovery this time faster or slower than in the previous incidents of the same kind"
       ],
       "explanation": "This question splits things along the axis that decides the treatment. If the answer is no, then every solution that lives entirely inside the team is a stopgap - the rest has to come from a conversation with the other side."
@@ -99,10 +99,10 @@
     {
       "question": "Four incidents in six months, each fixed at exactly the line that failed. Why do they keep coming?",
       "options": [
-        "Because all four share one cause that none of the fixes touched",
+        "Because the team kept no incident write-ups",
         "Because the team fixed them too quickly",
-        "Because the fixes were only verified in the test environment and never against production traffic",
-        "Because the team kept no incident write-ups, so nobody noticed the link between the four of them"
+        "Because the fixes were only verified in the test environment",
+        "Because all four share one cause that none of the fixes touched"
       ],
       "explanation": "Each fix was right and each one closed its incident. What never happened is somebody laying the four write-ups side by side - and only side by side does the shared shape appear. One at a time, they are four unrelated code bugs."
     },
@@ -119,8 +119,8 @@
     {
       "question": "Why is treating the group slower but worth more than treating the symptom?",
       "options": [
-        "Because only that changes the odds of it happening again",
         "Because it produces documentation",
+        "Because only that changes the odds of it happening again",
         "Because it forces the teams involved to look at the problem together, so understanding spreads wider",
         "Because it usually turns up other problems that have not caused incidents yet but are latent"
       ],

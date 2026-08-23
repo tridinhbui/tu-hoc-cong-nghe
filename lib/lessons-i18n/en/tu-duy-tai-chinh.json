@@ -96,8 +96,8 @@
     {
       "question": "Why are those three the first things cut under schedule pressure?",
       "options": [
-        "Because cutting them causes nothing that week",
         "Because they are not on the task board",
+        "Because cutting them causes nothing that week",
         "Because most teams underestimate how much time they will end up saving later on",
         "Because their benefit is hard to explain to people outside the team, so it is hard to defend"
       ],
@@ -106,9 +106,9 @@
     {
       "question": "What does 'repeats times time each' miss?",
       "options": [
-        "Manual work also costs attention, and attention does not add up linearly",
-        "The cost of maintaining the tool itself",
         "That a person doing it by hand is more likely to make a mistake than a well-tested tool",
+        "The cost of maintaining the tool itself",
+        "Manual work also costs attention, and attention does not add up linearly",
         "That the number of repeats usually grows over time rather than holding at the estimate"
       ],
       "explanation": "The other three gaps are real and all add to the same side. The first one is different in kind: ten minutes repeated daily interrupts other work several times over, so it costs more than three uninterrupted hours a month."
@@ -116,10 +116,10 @@
     {
       "question": "When is writing a tool a mistake?",
       "options": [
-        "When the work will no longer exist in six months",
+        "When a similar tool already exists on another team, even if it does not quite fit the need",
         "When the work only repeats a few times",
         "When the team lacks the people to build tools and hold the product schedule at the same time",
-        "When a similar tool already exists on another team, even if it does not quite fit the need"
+        "When the work will no longer exist in six months"
       ],
       "explanation": "The separating question is lifespan, not repeat count. Work that repeats daily but disappears when an old feature is removed is not worth investing in, while work that repeats quarterly and lives for years is."
     },
@@ -128,8 +128,8 @@
       "options": [
         "Every task they did was quick, and none of them left anything behind",
         "They took on more requests",
-        "They lacked experienced people, so each operational task took longer than it needed to",
-        "Their system was more complex, so the operational workload was simply larger from the start"
+        "They lacked experienced people",
+        "Their system was more complex"
       ],
       "explanation": "The striking part is that nobody on that team ever worked slowly. Every decision to fix by hand was the fastest available at the time, and the sum of two years of fastest-available decisions is a team with no time left for anything else."
     }

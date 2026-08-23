@@ -86,10 +86,10 @@
     {
       "question": "What does splitting a shared cost evenly teach the teams?",
       "options": [
-        "That using more costs nothing more",
+        "That infrastructure cost is a fixed line item and does not need watching month to month",
         "That cost is the platform team's problem",
         "That every team is treated as having an equal role in the use of shared infrastructure",
-        "That infrastructure cost is a fixed line item and does not need watching month to month"
+        "That using more costs nothing more"
       ],
       "explanation": "The money is split correctly in total, so nothing looks wrong on the books. What is wrong is the signal: when your share does not move with your usage, no team has a reason to use less, and the total climbs steadily."
     },
@@ -106,19 +106,19 @@
     {
       "question": "One team accounted for 60% of the bill through a log line in a loop for 18 months. Why did nobody notice?",
       "options": [
-        "Because the cost sat with the platform team, so the team creating it never saw it",
         "Because the log volume grew gradually",
-        "Because cost tooling usually shows only totals and does not break them down by source",
-        "Because that log line sat in a part of the code that is rarely reread after release"
+        "Because the cost sat with the platform team, so the team creating it never saw it",
+        "Because cost tooling usually shows only totals",
+        "Because that log line sat in a part of the code"
       ],
       "explanation": "The other three all slowed the discovery down. The root cause is that the information never reached anyone who could act on it: the only team that could delete that line in an afternoon was the only team that could not see the invoice."
     },
     {
       "question": "Why do teams running shared services lose good people?",
       "options": [
-        "Because their success, seen from outside, is that nothing happens",
-        "Because the work is repetitive",
         "Because they must answer requests from many teams, making it hard to focus on longer work",
+        "Because the work is repetitive",
+        "Because their success, seen from outside, is that nothing happens",
         "Because they rarely take part in the product decisions the company is actually pursuing"
       ],
       "explanation": "The other three are true in many places. The first is true everywhere, because it is inherent to the work: when things run well the credit goes to whoever shipped fast, and the platform team's name only appears on the day something breaks."
@@ -126,10 +126,10 @@
     {
       "question": "What is the cheapest way to rebalance that asymmetry?",
       "options": [
-        "Report the work carried for others in the same place as the incident count",
+        "Credit the platform team on every feature",
         "Rotate platform people into product teams on a cycle",
-        "Set a satisfaction target with the other teams and measure it through a regular survey",
-        "Credit the platform team on every feature that used their infrastructure to ship"
+        "Set a satisfaction target with the other teams",
+        "Report the work carried for others in the same place as the incident count"
       ],
       "explanation": "The other three take organisational effort and need someone else to agree. The first needs one extra line on a dashboard that already exists, and it fixes the actual cause: the platform team currently only appears in reporting on bad days."
     }

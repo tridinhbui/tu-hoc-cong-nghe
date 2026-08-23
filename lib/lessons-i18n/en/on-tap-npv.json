@@ -108,10 +108,10 @@
     {
       "question": "Why does the discount factor fall geometrically rather than in equal steps?",
       "options": [
-        "Because the promise has to survive every period before it",
+        "Because estimation error compounds every time the team updates its plan",
         "Because the team's opportunity cost rises period by period over the life of the project",
         "Because standard financial formulas use exponents for this kind of calculation",
-        "Because estimation error compounds every time the team updates its plan"
+        "Because the promise has to survive every period before it"
       ],
       "explanation": "The chance of surviving eight periods is the chance of surviving one period multiplied by itself eight times. Repeated multiplication is exactly what an exponent is, so the shape comes from the substance rather than from convention."
     },
@@ -128,19 +128,19 @@
     {
       "question": "A project on a newly launched product is costed at 5% a quarter. What does that implicitly claim?",
       "options": [
-        "That the product will hold its current shape for two years",
         "That the team is capable enough to deliver the project on the schedule it has committed to",
+        "That the product will hold its current shape for two years",
         "That the company's infrastructure cost will not rise materially over the next two years",
-        "That the saving has been measured from real data rather than estimated"
+        "That the saving has been measured from real data"
       ],
       "explanation": "A low rate is a statement about how stable the context is, not about the quality of the team or of the measurement. On a new product that statement is almost always too optimistic."
     },
     {
       "question": "Two proposals both say 'saves 40%'. What is the first question to ask?",
       "options": [
-        "When it reaches that figure",
-        "What method produced the 40% and on what dataset it was measured",
         "How many people each option needs and over how long a period they are needed",
+        "What method produced the 40% and on what dataset it was measured",
+        "When it reaches that figure",
         "Whether the two options can be rolled out alongside each other"
       ],
       "explanation": "The other three are all worth asking and all come later. A percentage with no point in time attached is not yet a complete promise, and that is exactly where two proposals that look identical differ most."
@@ -148,10 +148,10 @@
     {
       "question": "Why count in quarters rather than months?",
       "options": [
-        "Because the data is not fine enough to support that precision",
-        "Because most internal planning cycles in a company are organised by quarter",
+        "Because savings usually only start appearing after the third month of a project",
+        "Because most internal planning cycles",
         "Because a monthly discount rate produces a materially different result from a quarterly one",
-        "Because savings usually only start appearing after the third month of a project"
+        "Because the data is not fine enough to support that precision"
       ],
       "explanation": "The whole calculation rests on estimates that are off by tens of percent. Splitting it into months creates an appearance of precision the inputs never had, and false precision is what stops readers asking questions."
     }

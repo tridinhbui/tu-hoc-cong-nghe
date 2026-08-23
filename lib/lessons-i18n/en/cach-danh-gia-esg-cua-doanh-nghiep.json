@@ -83,20 +83,20 @@
     {
       "question": "Why is total monthly infrastructure cost a poor metric?",
       "options": [
+        "Because several services share infrastructure",
+        "Because vendor invoices usually arrive late",
         "Because it mixes the service's efficiency with the amount of work it is doing",
-        "Because vendor invoices usually arrive late, so the figure always lags by a full period",
-        "Because several services share infrastructure, so no single one's share can be isolated",
-        "Because vendor pricing shifts with contracts, making the number unstable across periods"
+        "Because vendor pricing shifts with contracts"
       ],
       "explanation": "The other three are all annoying and all solvable with tooling. Mixing two quantities is not solvable with tooling - it makes a service that is improving and a service that is deteriorating produce the same line on the chart."
     },
     {
       "question": "Why measure latency from the browser rather than inside the data centre?",
       "options": [
-        "Because most of the waiting happens outside the server",
-        "Because server-side measurement tools usually sample rather than recording every request",
+        "Because the clocks on the server and on the user's device are not synchronised with each other",
+        "Because server-side measurement tools usually sample",
         "Because measuring in the data centre misses requests the load balancer redirected elsewhere",
-        "Because the clocks on the server and on the user's device are not synchronised with each other"
+        "Because most of the waiting happens outside the server"
       ],
       "explanation": "Network time, name resolution, secure connection setup and rendering all happen outside the server, and together they usually exceed the server's own share. Measuring indoors measures the smallest part."
     },
@@ -104,7 +104,7 @@
       "question": "A new measurement gives a much better number than the old one. What is the right reflex?",
       "options": [
         "Suspect it is measuring something other than what it claims",
-        "Check whether the old measurement had a fault in how it collected its data",
+        "Check whether the old measurement had a fault",
         "Accept the new figure if the new tool is more reliable than the one it replaced",
         "Run both measurements side by side for a quarter and take the average of the two"
       ],
@@ -113,19 +113,19 @@
     {
       "question": "You discover after a year of recording that the denominator was wrong. What now?",
       "options": [
-        "Recompute the whole history against the new denominator",
         "Keep the old history and start a second series alongside it using the new denominator",
+        "Recompute the whole history against the new denominator",
         "Change the denominator only from the next period and note when the method changed",
-        "Discard the old data, since it was computed a way that is no longer used"
+        "Discard the old data, since it was computed a way"
       ],
       "explanation": "The value of these metrics lives in an unbroken time series. Joining two stretches computed two ways creates a step that a later reader will attribute to a technical change that never happened."
     },
     {
       "question": "Comparing cost per request between a search service and a payments service. What is wrong?",
       "options": [
-        "The two do different kinds of work, so the denominator is not equivalent",
-        "The two have very different request volumes, so the comparison skews toward the smaller one",
         "The two services' costs are recorded under two different accounting cycles",
+        "The two have very different request volumes, so the comparison skews toward the smaller one",
+        "The two do different kinds of work, so the denominator is not equivalent",
         "Payments has higher security requirements, so its cost is always going to be higher"
       ],
       "explanation": "A search request and a payments request are not the same unit of work even though both are called requests. The only comparison that is always meaningful is a service against itself at an earlier point."

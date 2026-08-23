@@ -98,10 +98,10 @@
     {
       "question": "Why is rebuilding from a blank machine the first thing to do?",
       "options": [
-        "Because it proves you already have everything you need",
+        "Because it creates a clean environment",
         "Because it lets the new team experiment freely without affecting the version running live",
         "Because it is the fastest way to understand the overall architecture of an unfamiliar system",
-        "Because it creates a clean environment to compare against the old one when they differ"
+        "Because it proves you already have everything you need"
       ],
       "explanation": "Every other way of getting familiar can proceed on an incomplete understanding without that ever showing. Rebuilding either runs or it does not, and every time it does not something missing has just been named."
     },
@@ -111,15 +111,15 @@
         "Anything that only runs at month end or quarter end",
         "Anything calling out to an external service that a different vendor operates and maintains",
         "Anything written in a language nobody on the receiving team has ever worked with before",
-        "Anything running continuously at high volume, so it cannot be stopped to be examined"
+        "Anything running continuously at high volume"
       ],
       "explanation": "The other three surface immediately and all get written into the plan. The monthly one stays silent throughout the handover and then breaks at the moment there is nobody left to ask, which is the definition of the worst kind of risk."
     },
     {
       "question": "Why are handover plans usually short of what is needed?",
       "options": [
-        "Because only technical barriers can be written down as tasks",
         "Because the handover window is set by the closing team's schedule rather than by the work",
+        "Because only technical barriers can be written down as tasks",
         "Because the receiving team underestimates a system whose code they have never read before",
         "Because stakeholders are rarely consulted while the plan is being drawn up in the first place"
       ],
@@ -128,20 +128,20 @@
     {
       "question": "Why should you not rewrite the odd-looking code straight away?",
       "options": [
-        "Because most odd-looking places are where somebody fixed a real bug",
-        "Because rewriting loses the change history, making it harder to trace bugs back later on",
         "Because the new team lacks the tests to know whether the rewrite is still correct or not",
-        "Because rewriting takes longer than learning to read the code that is already there"
+        "Because rewriting loses the change history, making it harder to trace bugs back later on",
+        "Because most odd-looking places are where somebody fixed a real bug",
+        "Because rewriting takes longer than learning"
       ],
       "explanation": "The other three are all true and all reasons to be careful. The first is a reason not to do it at all: deleting an odd-looking place reopens a closed bug, and you will meet it again without knowing you are meeting it again."
     },
     {
       "question": "What is the greatest value of running two systems in parallel?",
       "options": [
-        "It exposes differences while the old team can still answer",
-        "It allows traffic to be moved across gradually and safely, a portion at a time",
+        "It measures the performance gap between the two so you know whether tuning is needed",
+        "It allows traffic to be moved across gradually",
         "It provides a fallback to return to if the new system runs into a serious incident",
-        "It measures the performance gap between the two so you know whether tuning is needed"
+        "It exposes differences while the old team can still answer"
       ],
       "explanation": "The other three are real and all of them survive if you run in parallel later. The first one expires: every week that passes is another person gone, and why is this different becomes a question nobody can answer."
     }

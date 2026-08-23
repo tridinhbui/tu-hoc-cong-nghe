@@ -86,8 +86,8 @@
     {
       "question": "Why should latency be measured by percentile rather than average?",
       "options": [
-        "Because the average hides the users with the most data",
         "Because percentiles are better supported by modern monitoring tools than averages are",
+        "Because the average hides the users with the most data",
         "Because the average is skewed heavily by requests that return instantly from a warm cache",
         "Because percentiles allow comparison between services with very different request volumes"
       ],
@@ -96,9 +96,9 @@
     {
       "question": "Why do non-functional requirements so often go unbuilt?",
       "options": [
-        "Because they do not appear as a concrete task on anyone's list",
-        "Because most teams lack tooling good enough to measure those requirements properly",
         "Because they usually require architectural change, so they cost far more than a feature does",
+        "Because most teams lack tooling good enough",
+        "Because they do not appear as a concrete task on anyone's list",
         "Because responsibility for them tends to sit with an infrastructure team rather than product"
       ],
       "explanation": "Work gets done when it is on the list. A vague wish like the system must be fast never makes it onto the list, so it never gets done and it never counts as missing either."
@@ -106,10 +106,10 @@
     {
       "question": "What does turning 'the system must be fast' into a real requirement need?",
       "options": [
-        "A number, a threshold and a measurement point",
+        "A list of measurement tools agreed between all of the teams that are involved in it",
         "A detailed description of which use cases should be optimised first among all of them",
         "A commitment from the infrastructure team on the resources that service will be given",
-        "A list of measurement tools agreed between all of the teams that are involved in it"
+        "A number, a threshold and a measurement point"
       ],
       "explanation": "Those three are the minimum for the question is it done to have an answer. Without a measurement point the same threshold yields two different verdicts, because a developer's machine and a user's browser are two different worlds."
     },
@@ -117,7 +117,7 @@
       "question": "A feature passed every test but abandonment tripled. What went wrong?",
       "options": [
         "The tests ran in conditions unlike the real ones",
-        "The test suite was missing edge cases that real users encounter frequently in practice",
+        "The test suite was missing edge cases",
         "The specification described the wrong thing compared with what users needed on that screen",
         "The interface was confusing, so users did not know what action they were supposed to take"
       ],
@@ -126,8 +126,8 @@
     {
       "question": "The specification states no response-time threshold. What follows?",
       "options": [
-        "The specification is incomplete, not that the feature is acceptable",
         "The feature counts as acceptable until an official threshold is added to the document",
+        "The specification is incomplete, not that the feature is acceptable",
         "The threshold should be set at whatever the current version happens to achieve today",
         "Setting the threshold is the operations team's responsibility rather than the product team's"
       ],

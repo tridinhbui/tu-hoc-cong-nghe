@@ -117,9 +117,9 @@
     {
       "question": "Why does a saving in a distant quarter get discounted more heavily?",
       "options": [
-        "Because the further out it is, the less certain it is to still apply",
-        "Because the team's staffing cost will rise quarter by quarter over that stretch of time",
         "Because measurement tools lose accuracy as the period being measured gets longer",
+        "Because the team's staffing cost will rise quarter by quarter over that stretch of time",
+        "Because the further out it is, the less certain it is to still apply",
         "Because savings in distant quarters are often double-counted with those in nearer ones"
       ],
       "explanation": "The discounting here is not about inflation but about probability. The eighth quarter requires the product to still be alive, the team intact and the need unchanged - three conditions, each of which can fail."
@@ -127,10 +127,10 @@
     {
       "question": "Cost 6 person-months, saving 1 per quarter, horizon 8 quarters. What is the undiscounted difference?",
       "options": [
-        "Positive 2 person-months",
+        "Positive 14 person-months (= adding the cost to the saving instead of subtracting it)",
         "Positive 8 person-months (= the total saving, forgetting to subtract the cost paid in)",
         "Negative 6 person-months (= counting only the cost and forgetting to add the saving)",
-        "Positive 14 person-months (= adding the cost to the saving instead of subtracting it)"
+        "Positive 2 person-months"
       ],
       "explanation": "Eight quarters times one is eight, minus six leaves two. A margin of two person-months across eight quarters is very thin, so a light discount or a slightly optimistic estimate turns it negative."
     },
@@ -140,15 +140,15 @@
         "The effort of maintaining the platform itself once it is built",
         "The time the team needs to learn the new platform during the first month of using it",
         "The extra infrastructure cost of running the new platform alongside the old system",
-        "The effort spent persuading other teams to move across to it in the first place"
+        "The effort spent persuading other teams"
       ],
       "explanation": "The other three are all real and all one-off, which is why they get remembered. Maintenance repeats forever at roughly a fifth of the build effort per year, and it turns a thin positive into a negative."
     },
     {
       "question": "Stretching the horizon from 8 to 12 quarters until the difference turns positive. What is wrong with that?",
       "options": [
-        "It is choosing the assumption to justify a conclusion already reached",
         "A longer horizon needs a different discount rate, which makes the calculation more involved",
+        "It is choosing the assumption to justify a conclusion already reached",
         "Internal planning tools usually do not support horizons longer than eight quarters",
         "Savings from the ninth quarter onward are very difficult to measure with any accuracy"
       ],
@@ -157,9 +157,9 @@
     {
       "question": "A thin positive, with the effort estimated by the team proposing the project. What now?",
       "options": [
-        "Double the cost and recalculate before deciding",
-        "Accept the figure, since the proposing team understands the volume of work best of all",
         "Halve the horizon to arrive at a more conservative number for the comparison",
+        "Accept the figure, since the proposing team understands the volume of work best of all",
+        "Double the cost and recalculate before deciding",
         "Ask a different team to produce an independent estimate of the whole project from scratch"
       ],
       "explanation": "Effort estimates run low as a rule rather than as an exception, and they run lowest when the estimator is also the person who wants the project approved. Doubling is crude and it catches most cases."

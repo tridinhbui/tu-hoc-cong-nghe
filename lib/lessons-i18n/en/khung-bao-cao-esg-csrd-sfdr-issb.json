@@ -86,10 +86,10 @@
     {
       "question": "Why can the three needs not be folded into one standard?",
       "options": [
-        "Because a standard sensitive enough for operations would alarm a customer constantly",
-        "Because each group of readers uses an entirely different set of monitoring and reporting tools",
+        "Because a contractual standard has to be approved by the legal department, so it cannot change fast",
+        "Because each group of readers uses an entirely different set of monitoring",
         "Because the data behind the three standards is stored in three places with three retention periods",
-        "Because a contractual standard has to be approved by the legal department, so it cannot change fast"
+        "Because a standard sensitive enough for operations would alarm a customer constantly"
       ],
       "explanation": "Sensitivity is a trade-off rather than a level of quality. More sensitive means seeing things earlier and also raising more false alarms, and what an on-call engineer will tolerate is nothing like what a contract signatory will."
     },
@@ -97,7 +97,7 @@
       "question": "Two availability numbers diverge. Where should you look first?",
       "options": [
         "At how each side defines being down",
-        "At the formula each side is using to convert downtime into a percentage figure",
+        "At the formula each side is using",
         "At the window of time each side sampled in order to produce the number it reported",
         "At the version of the monitoring tool each side was running at the moment of measurement"
       ],
@@ -106,9 +106,9 @@
     {
       "question": "Why is the contractual number usually prettier than the one the product team measures?",
       "options": [
-        "Because periodic probing misses every incident shorter than the probe interval",
         "Because contracts only count incidents the customer has formally reported back to the vendor",
-        "Because monitoring hosts usually sit near the data centre, so their network path is better",
+        "Because periodic probing misses every incident shorter than the probe interval",
+        "Because monitoring hosts usually sit near the data centre",
         "Because announced maintenance windows are excluded from the availability calculation entirely"
       ],
       "explanation": "The last two are both real and both contribute. The largest single reason is sampling frequency: probing once a minute means a forty-second incident is likely to fall between probes, while a real user meets it."
@@ -116,9 +116,9 @@
     {
       "question": "A team changes its definition of down and publishes the new number beside the old history. What follows?",
       "options": [
-        "A trend of improvement or decline that does not exist",
-        "Automated alerts based on the old thresholds stop firing until somebody resets them",
         "The historical data becomes useless and should be deleted to avoid confusing later readers",
+        "Automated alerts based",
+        "A trend of improvement or decline that does not exist",
         "The new number will always be lower than the old one, since new definitions are usually broader"
       ],
       "explanation": "The trend line breaks at exactly the point where the standard changed, and readers attribute that break to some technical change. Either recompute the history against the new standard, or draw the discontinuity explicitly."
@@ -126,10 +126,10 @@
     {
       "question": "What should accompany every number on a dashboard?",
       "options": [
-        "Definition, measurement point, frequency, and what is excluded",
-        "The name of the person responsible for the service and when the board was last refreshed",
-        "The corresponding alert threshold together with that metric's history over the last three months",
-        "The tool used to measure it and the version of that tool at the time the data was collected"
+        "The tool used and the version it ran on",
+        "The name of the person responsible for the service",
+        "The matching alert threshold and its history",
+        "Definition, measurement point, frequency, and what is excluded"
       ],
       "explanation": "Those four are the complete set of places two numbers can diverge. Writing them beside the number turns a long-running argument into a thirty-second comparison."
     }

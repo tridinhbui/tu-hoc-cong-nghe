@@ -1,0 +1,177 @@
+{
+  "title": "Defending against vendor lock-in",
+  "subtitle": "The cost of leaving is decided when you choose, not when you want to leave",
+  "duration": "9 min",
+  "whyItMatters": "Every external service is easy to enter and hard to exit, and the gap between those two is exactly how much bargaining power they hold over you at the next renewal.",
+  "openingQuestion": "When is the cheapest moment to prepare for leaving a vendor?",
+  "openingOptions": [
+    "The day you pick them",
+    "When the contract is nearing its end and the two sides begin renegotiating the terms of it",
+    "When they raise the price or the quality of the service starts to visibly deteriorate",
+    "Once the team has used it long enough to know exactly which features it actually needs"
+  ],
+  "explanation": "The cost of leaving is not a fixed number - it grows with every week of further integration, and it grows fastest early on while the decisions about data shape are still being made. The other three moments are all points where that cost has already peaked, and they are also the moments when the other side holds the most bargaining power.",
+  "diagram": [
+    {
+      "label": "Choose the vendor"
+    },
+    {
+      "label": "Build a thin separating layer immediately"
+    },
+    {
+      "label": "Keep data in a portable shape"
+    },
+    {
+      "label": "Cost of leaving stays a known quantity"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Three weeks becomes eighteen months",
+    "description": "A team integrated a notification service in three weeks, calling the vendor's library directly from fourteen places in the code. Two years later the vendor quadrupled the price. The team estimated eighteen months to move, mostly not because of the fourteen call sites but because notification history, message templates and user subscription state all lived inside the vendor's system in a shape no other vendor could read."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Being locked in is not an event, it is a quantity that grows. This lesson is about keeping it at a known level, and why every measure has to be taken before it is needed."
+    },
+    {
+      "type": "heading",
+      "text": "Three kinds of lock-in, by how hard they are to undo"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Call-site lock-in: your code calls their library directly. Annoying, but effort undoes it",
+        "Data lock-in: your data sits in a shape only they understand. This is the expensive kind",
+        "Process lock-in: how the team works has bent around the tool. Nobody counts this one at all"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most exit plans estimate only the first kind, because it is the only one you can count by searching the code. Then the move runs five times over, because of the other two, and neither of them shows up in any search."
+    },
+    {
+      "type": "heading",
+      "text": "Four measures, ordered by value per hour spent"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A thin separating layer between your code and their library, written on day one",
+        "A periodic copy of the data in a common format, even while nobody needs to read it",
+        "A second vendor running for real on a small share of traffic, not merely a proof of concept",
+        "One page saying what you would do if you had to leave, refreshed at every renewal"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A thin layer, not a thick abstraction",
+      "text": "The common mistake on hearing this advice is to build an abstraction trying to cover every feature of every possible vendor. That costs ten times as much and is always wrong, because you are designing for a party you cannot yet name. The right layer wraps only what you actually use, thin enough to read in five minutes, and its value is gathering every point of contact into one place rather than hiding the differences."
+    },
+    {
+      "type": "heading",
+      "text": "A second vendor running for real is nothing like a proof of concept"
+    },
+    {
+      "type": "paragraph",
+      "text": "A proof of concept demonstrates that integration is possible. One percent of real traffic through a second vendor demonstrates a great deal more: that your data genuinely moves, that the team genuinely operates both, and that your migration estimate rests on work done rather than work imagined. It is also the only item on this list the other side can see."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Prepared in advance",
+        "text": "Costs a few days at the start and keeps the cost of leaving a known quantity. Bargaining power intact at renewal."
+      },
+      "right": {
+        "label": "Prepared when needed",
+        "text": "Costs nothing at first. By the time it is needed, leaving costs more than any price rise the other side could invent."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The cost of leaving is decided when you choose, not when you want to leave.",
+        "The expensive kind of lock-in is in the data, and no search of the code will find it."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which kind of lock-in costs most when leaving a vendor?",
+      "options": [
+        "Call-site lock-in, because the number of places in the code is usually far larger than expected",
+        "Data lock-in",
+        "Contractual lock-in, because the penalties for terminating early are typically very heavy",
+        "Process lock-in, because the team has to relearn its whole way of working with a new tool"
+      ],
+      "explanation": "Call sites can be undone with effort and counted by searching the code. Data sitting in their shape has to be converted, and that conversion is usually larger than the entire original integration put together."
+    },
+    {
+      "question": "Why should the separating layer be thin rather than cover every feature?",
+      "options": [
+        "Because new joiners find an abstraction with many invented concepts of its own hard to follow",
+        "Because a thick layer slows performance by routing every call through additional function layers",
+        "Because you are designing for a party you cannot yet name",
+        "Because a thick layer needs updating every time the vendor releases some new capability"
+      ],
+      "explanation": "An abstraction is only correct when you know what it must cover. Designing for every possible vendor is designing for none, so it costs ten times as much and still has to be rewritten on the day you genuinely move."
+    },
+    {
+      "question": "Why is one percent of real traffic worth more than a proof of concept?",
+      "options": [
+        "It creates a standby option ready",
+        "It allows an objective comparison of actual service quality between the two vendors involved",
+        "It keeps the team in practice with the second vendor so switching later feels less unfamiliar",
+        "It proves the data moves and the team can operate both"
+      ],
+      "explanation": "All three of the others are real benefits. The first is the one a proof of concept cannot give: it turns your migration estimate from a guess into a measurement taken on work already done."
+    },
+    {
+      "question": "An exit plan estimates three months and the move takes eighteen. What is the usual cause?",
+      "options": [
+        "The plan could only count the lock-in that lives in the code",
+        "The old vendor was uncooperative about exporting the data out of their system cleanly",
+        "The team was pulled onto other work, so the migration never got the priority it needed",
+        "The new vendor lacked some features, so those had to be built during the migration itself"
+      ],
+      "explanation": "The other three all happen and all are incidents. The first is the rule: a code search returns a specific and credible-looking number, and it is precisely that credibility that stops anyone going to look for the other two kinds."
+    },
+    {
+      "question": "When should the one-page exit plan be refreshed?",
+      "options": [
+        "Every time the team adds another integration point with the current vendor's platform",
+        "At every contract renewal",
+        "Quarterly, alongside the regular review of the other technical risks in the system",
+        "Whenever there are signs the vendor is about to change its pricing or its terms"
+      ],
+      "explanation": "Renewal is the one moment on this list where the cost-of-leaving figure actually gets used. Refreshing it just before sitting down at the table is how a document becomes an advantage."
+    }
+  ],
+  "keyTakeaways": [
+    "The cost of leaving grows with every week of integration, fastest at the start",
+    "Data lock-in is the expensive kind and no code search finds it",
+    "A thin layer wraps what you use, not every vendor you might one day pick",
+    "One percent of real traffic is worth more than any proof of concept"
+  ],
+  "practicePrompt": {
+    "question": "Integration took 3 weeks across 14 call sites. The exit estimate allows 3 weeks for the code. What is the largest missing piece?",
+    "options": [
+      "Converting historical data into a shape the new vendor can read",
+      "The time to negotiate the contract and complete the legal formalities with the new vendor",
+      "The effort of rewriting documentation and retraining the team on the new tooling",
+      "The period of running both vendors in parallel to compare results before switching off the old"
+    ],
+    "explanation": "The other three all have to be added and all are measured in weeks. Data conversion is measured in months, because it depends on whether the new vendor has an equivalent concept at all - and where it does not, you have to build one."
+  },
+  "summary": {
+    "keyIdea": "Keep the cost of leaving a known quantity by doing the work before you need it",
+    "commonMistake": "Estimating a migration by counting call sites in the code",
+    "action": "Find data your team holds that exists only in one vendor's shape."
+  },
+  "application": {
+    "title": "Four things, on day one",
+    "message": "A thin separating layer. A periodic data copy in a common format. One percent of traffic through a second vendor. One page describing the way out.",
+    "secondary": "All four are cheap in the first week and nearly impossible after the second year."
+  },
+  "slug": "ma-phong-thu-thau-tom-thu-dich"
+}

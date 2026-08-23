@@ -97,8 +97,8 @@
     {
       "question": "Which shared dependency is counted least often?",
       "options": [
-        "The same on-call rotation",
         "The same internal library",
+        "The same on-call rotation",
         "The same infrastructure vendor, so one outage on their side affects every piece at once",
         "The same database, so every piece stops when the database has a problem"
       ],
@@ -107,20 +107,20 @@
     {
       "question": "Eleven of twelve services went down because of the identity service. Why did nobody see it coming?",
       "options": [
-        "Because it predated the split, so it was not treated as part of the architecture",
+        "Because the tests all ran with the identity service healthy",
         "Because it had never had an incident",
-        "Because the tests all ran with the identity service healthy, so the dependency never surfaced",
-        "Because reliance on it grew with each split rather than appearing all at once at the start"
+        "Because it predated the split, so it was not treated as part of the architecture",
+        "Because reliance on it grew with each split"
       ],
       "explanation": "The other three are all true and all describe how it stayed hidden. The root cause is the scope of the conversation: when people discuss a new architecture they discuss what they are creating, and whatever was already there gets treated as part of the ground."
     },
     {
       "question": "Why is the price of splitting more certain than the benefit?",
       "options": [
-        "Because the price comes with the split while the benefit has to be designed on top",
+        "Because teams routinely underestimate the coordination effort",
         "Because the price shows up in the first quarter",
-        "Because the benefit only shows during an incident, so quarters pass with nothing measurable",
-        "Because teams routinely underestimate the coordination effort that several services require"
+        "Because the benefit only shows during an incident",
+        "Because the price comes with the split while the benefit has to be designed on top"
       ],
       "explanation": "More network, more failure modes and more coordination follow directly from splitting and cannot be avoided. Independence does not arrive that way - it is a list of extra work, and that list usually never gets written."
     },

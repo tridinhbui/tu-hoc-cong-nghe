@@ -86,10 +86,10 @@
     {
       "question": "What is the biggest weakness of the threshold-and-sweep approach?",
       "options": [
-        "It treats every service as equally important",
+        "It takes no account of the cost",
         "It requires the whole portfolio to be scored before any work at all can begin on it",
         "It leads teams to raise their score just past the line and then stop working on it",
-        "It takes no account of the cost and time needed to fix each individual service"
+        "It treats every service as equally important"
       ],
       "explanation": "The other three are real weaknesses and all of them can be addressed by adjusting the process. Treating every service alike sits inside the definition of the approach itself, so no adjustment removes it."
     },
@@ -97,7 +97,7 @@
       "question": "Why ask 'does anyone still use this' before adding a service to the fix list?",
       "options": [
         "Because deleting raises the score and cuts future work at the same time",
-        "Because services with few users tend to score lower and so distort the ranking table",
+        "Because services with few users tend to score lower",
         "Because any change to a shared service needs confirming with the other teams involved first",
         "Because user count is the simplest and most reliable way to measure how much it matters"
       ],
@@ -106,19 +106,19 @@
     {
       "question": "Eleven services cleaned up, and six months later the big incidents came from two that were always green. What went wrong?",
       "options": [
+        "The threshold was set too low",
         "The list was ordered by symptom rather than by consequence",
-        "The threshold was set too low, so services worth worrying about stayed above the line",
-        "The cleanup only raised test coverage and never touched the other two pillars at all",
-        "Six months is long enough for services that were green to have decayed back down again"
+        "The cleanup only raised test coverage",
+        "Six months is long enough for services"
       ],
       "explanation": "Those two services were never below the threshold, so no choice of threshold would have caught them. What made them dangerous was importance, and that is the dimension a list sorted by score does not have at all."
     },
     {
       "question": "Why is the everyday-decisions approach hard to sustain?",
       "options": [
-        "Because it is invisible, so nobody defends it when the schedule tightens",
+        "Because it slows down each small change",
         "Because it requires every member of the team to understand how all three pillars are computed",
-        "Because it slows down each small change, so total time to release stretches out",
+        "Because it is invisible, so nobody defends it when the schedule tightens",
         "Because it needs automated measurement on every change and not every team has that"
       ],
       "explanation": "A cleanup project has a name, a deadline and somebody reporting its results, so it gets defended. An everyday principle appears nowhere at all, and what appears nowhere is what gets cut first."
@@ -126,10 +126,10 @@
     {
       "question": "Which approach produces a list in the order incidents will actually arrive?",
       "options": [
-        "Score multiplied by how much the service matters",
+        "Requests per second each service handles during the busiest hour of a normal day",
         "The current health score combined with that score's trend over the last six months",
         "The number of incidents each service has caused over roughly the last year of operation",
-        "Requests per second each service handles during the busiest hour of a normal day"
+        "Score multiplied by how much the service matters"
       ],
       "explanation": "An incident is the product of the chance of breaking and the consequence of breaking. The score measures the first, importance measures the second, and dropping either one produces a list that is wrong at exactly the most dangerous place."
     }

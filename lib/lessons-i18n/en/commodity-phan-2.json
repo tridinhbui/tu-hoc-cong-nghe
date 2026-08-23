@@ -86,8 +86,8 @@
     {
       "question": "Why does paying more help so little when supply is physically capped?",
       "options": [
-        "Because it decides who gets what exists rather than making it larger",
         "Because vendors usually hold prices fixed under contracts signed earlier",
+        "Because it decides who gets what exists rather than making it larger",
         "Because large companies can always outbid, so a small team never wins that competition",
         "Because a higher price applies to new orders and does not shorten the delivery time"
       ],
@@ -96,9 +96,9 @@
     {
       "question": "A team waited six weeks rather than running on machines 30% slower. Where is the error?",
       "options": [
-        "Comparing against what they did not have instead of against what they did",
-        "Not asking the vendor for an expected wait time",
         "Underestimating the shortage, so they failed to order earlier while ordering was still possible",
+        "Not asking the vendor for an expected wait time",
+        "Comparing against what they did not have instead of against what they did",
         "Not running a trial on the other machine type to measure the performance gap accurately"
       ],
       "explanation": "The last option is the missing action, and the reason it was not taken is the error in the first. Thirty percent slower is only a disadvantage compared with the fast type; compared with running nothing for six weeks it is all the work that got done."
@@ -106,10 +106,10 @@
     {
       "question": "Which action produces results fastest during a shortage?",
       "options": [
-        "Raising utilisation on the machines you already hold",
+        "Splitting the work so it runs across several lower-specification machines at the same time",
         "Negotiating a higher quota",
         "Moving the work to another region where that machine type may still be available",
-        "Splitting the work so it runs across several lower-specification machines at the same time"
+        "Raising utilisation on the machines you already hold"
       ],
       "explanation": "The last one is also within reach but it requires changing how the work is written. Raising utilisation only requires queueing the work, and in most teams the real utilisation is already below half."
     },
@@ -117,7 +117,7 @@
       "question": "What is the point of separating elastic from physically capped resources?",
       "options": [
         "To know whether the problem is cost or allocation",
-        "To plan the annual budget more accurately for each kind of resource",
+        "To plan the annual budget more accurately",
         "To decide which kind to buy up front and which to rent as the need arises over time",
         "To know which kind needs watching more closely because its price moves more over time"
       ],
@@ -126,8 +126,8 @@
     {
       "question": "Why is real utilisation usually below half?",
       "options": [
+        "Because teams over-provision",
         "Because machines sit idle between runs, waiting on data and waiting on people",
-        "Because teams over-provision in case load rises unexpectedly beyond what was planned",
         "Because the work is written for a higher specification than it actually needs to run on",
         "Because most utilisation tooling samples too infrequently and misses the busy stretches"
       ],
