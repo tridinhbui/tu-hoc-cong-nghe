@@ -1,0 +1,192 @@
+{
+  "slug": "chuoi-va-thao-tac-van-ban",
+  "title": "Lesson 4: Strings and text operations",
+  "subtitle": "Most of the data you handle in this job is text, not numbers.",
+  "duration": "7 min",
+  "whyItMatters": "Usernames, addresses, file contents, data pulled over the network - nearly everything entering your program is text before it becomes anything else. Clumsy string handling is the source of both display bugs and security holes.",
+  "openingQuestion": "You measure the length of the string \"Hà Nội\" and get a number larger than the characters you can see. Why?",
+  "openingOptions": [
+    "Because the language is counting bytes rather than whole characters",
+    "Because the space between the words counts as two characters",
+    "Because a string carries a hidden terminating character at the end",
+    "Because a capital is stored as two characters, letter and case"
+  ],
+  "explanation": "The machine stores text by assigning a number to each character, and the most common encoding today uses a varying number of bytes per character: unaccented Latin letters take one byte, accented Vietnamese letters take two or three, emoji take more still. If the language or the function you used counts bytes rather than characters, the number will exceed what your eyes see. This is why truncating a string by length sometimes breaks an accented letter at the cut.",
+  "diagram": [
+    {
+      "label": "Each character is assigned a number by an encoding"
+    },
+    {
+      "label": "One character may occupy several bytes"
+    },
+    {
+      "label": "A string is a sequence of those characters"
+    },
+    {
+      "label": "Operations: join, trim, split, replace"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The search box in every application",
+    "description": "When you type into a search box, the program usually normalises the string before matching: trimming stray whitespace at both ends, folding it to one case, sometimes stripping accents as well. Without that step, searching for 'Hà Nội ' with a stray trailing space returns nothing at all."
+  },
+  "quiz": [
+    {
+      "question": "Why are strings in many languages described as immutable?",
+      "options": [
+        "Because every editing operation produces a new string rather than changing the original in place",
+        "Because once assigned, a variable holding that string may not be assigned again",
+        "Because the string's contents live on disk and so cannot be edited while running",
+        "Because a string can only hold characters, not numbers or boolean values"
+      ],
+      "explanation": "Calling a function that upper-cases a string does not change the original variable - it returns a new string, and you have to catch that result. Plenty of beginners call the function, print the old variable, and conclude the function is broken. A second consequence: joining strings inside a long loop is expensive, because each join creates a new string."
+    },
+    {
+      "question": "What does string interpolation gain over joining with plus signs?",
+      "options": [
+        "It runs many times faster because languages optimise specially for this spelling",
+        "It is far easier to read, since the sentence keeps its shape and only the changing part is a slot",
+        "It automatically converts every numeric value to a string before joining them",
+        "It checks the spelling of the fixed text sitting between the slots"
+      ],
+      "explanation": "A sentence assembled from five plus signs and four quote marks is hard to read and easy to lose a space in. Interpolation keeps the sentence's shape and leaves a slot only where something varies, so you can picture the result at a glance. The benefit is purely for the reader; performance is much the same."
+    },
+    {
+      "question": "What does a function that trims a string do?",
+      "options": [
+        "Shortens the string to fit a maximum length that you specify",
+        "Removes every space in the string, including those between the words",
+        "Removes stray spaces and newline characters from the start and end",
+        "Deletes special characters that could cause errors when saved to a database"
+      ],
+      "explanation": "It only touches the two ends and leaves the spacing between words alone. It is a near-mandatory step for anything a user types, because one stray trailing space is invisible on screen and yet makes two strings unequal when compared."
+    },
+    {
+      "question": "Why should user data never be pasted straight into a database query?",
+      "options": [
+        "Because user data often contains accented letters that queries do not support",
+        "Because a query assembled from strings runs more slowly than the usual way of writing it",
+        "Because the database limits the maximum length of a query that can be sent to it",
+        "Because a user can type content that changes the meaning of the query entirely"
+      ],
+      "explanation": "This is injection, one of the oldest and most expensive security flaws there is. When data and commands are mixed into one string, a user can write content the database reads as a command. The way to stop it is parameterisation: send the command and the data separately so they never mix."
+    },
+    {
+      "question": "What does splitting a string on commas produce?",
+      "options": [
+        "A list of the pieces of string that sat between those commas",
+        "A new string with every comma removed from the contents",
+        "The count of commas found in the original string passed in",
+        "The position of the first comma counting from the start of the string"
+      ],
+      "explanation": "Splitting is the basic operation for reading tabular data, where each line is a set of fields separated by commas. Note one trap: if the data itself contains commas inside quotation marks, a naive split cuts in the wrong places, and that is why people use a dedicated library rather than splitting by hand."
+    }
+  ],
+  "keyTakeaways": [
+    "Characters are stored as numbers by an encoding; accented letters take more than one byte.",
+    "Strings are usually immutable - editing functions return a new string, so catch the result.",
+    "Interpolation reads better than joining with plus signs; the benefit is for the reader.",
+    "Always trim both ends of anything a user has typed.",
+    "Never paste user data into a command - use parameterisation."
+  ],
+  "practicePrompt": {
+    "question": "A user enters \" Nguyen Van A \" and you compare it against \"Nguyen Van A\" in the database. What does the comparison give?",
+    "options": [
+      "Not equal, because the spaces at both ends are real characters in the string",
+      "Equal, because most languages ignore stray whitespace when comparing strings",
+      "An error, because the two strings differ in length and cannot be compared directly",
+      "Undefined, because the result depends on which encoding the string is using"
+    ],
+    "explanation": "A space is an ordinary character and the machine compares character by character, so the two strings differ. What makes this bug irritating is that on screen they look identical. That is why trimming is a mandatory normalisation step before any comparison against what a user typed."
+  },
+  "summary": {
+    "keyIdea": "Most of the data entering a program is text before it becomes anything else.",
+    "formula": "Normalise before comparing: trim both ends, fold to one case.",
+    "commonMistake": "Calling an editing function and then printing the old variable, forgetting strings are immutable.",
+    "action": "Compare two identical strings where one has a stray space, and look at the result."
+  },
+  "application": {
+    "title": "Do this today",
+    "message": "Write a program that reads a line of text, trims both ends, folds it to lower case, then splits it on commas and prints each piece on its own line.",
+    "secondary": "Try it with a string containing accented letters and print the length. Compare that number against the characters you count with your eyes."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Beginners tend to picture programming as working with numbers. In practice nearly everything entering a program is text first: usernames, addresses, file contents, data pulled over the network. Handling text clumsily causes both display bugs and security holes."
+    },
+    {
+      "type": "heading",
+      "text": "The machine stores letters as numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Memory can only hold numbers, so each character is assigned a number by an agreed encoding. The most common encoding today uses a varying number of bytes per character: unaccented Latin letters take one byte, accented Vietnamese letters take two or three, emoji take more still."
+    },
+    {
+      "type": "callout",
+      "label": "What this means in practice",
+      "text": "If the function you use counts bytes rather than characters, the length of an accented string will exceed the letters you can see. Worse: truncating a string by byte count can cut right through an accented character, and that spot shows up as a square or a question mark on screen."
+    },
+    {
+      "type": "heading",
+      "text": "Strings are usually immutable"
+    },
+    {
+      "type": "paragraph",
+      "text": "In most languages every string-editing operation produces a new string rather than changing the old one in place. Call the upper-casing function without catching the result and the original variable is exactly as it was - a mistake nearly everyone makes once in their first week, and then concludes the function is broken."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Operations you use every day",
+      "concepts": [
+        {
+          "en": "Concatenate",
+          "def": "Join two strings. This is what a plus sign on strings means, rather than numeric addition."
+        },
+        {
+          "en": "Interpolation",
+          "def": "Insert values into a sentence that keeps its shape. Easier to read than joining repeatedly."
+        },
+        {
+          "en": "Trim",
+          "def": "Remove stray spaces and newlines from the start and end. Mandatory for user data."
+        },
+        {
+          "en": "Split",
+          "def": "Divide a string into a list of pieces on a separator."
+        },
+        {
+          "en": "Replace",
+          "def": "Change every occurrence of one piece into another, returning a new string."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Normalise before comparing"
+    },
+    {
+      "type": "paragraph",
+      "text": "The machine compares character by character, so one stray trailing space makes two strings different - even though on screen they look identical. That is why every search box and every login form normalises first: trim both ends, fold to one case, sometimes strip accents as well."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Joining strings to display",
+        "text": "Safe, and interpolation is the most readable way to write it. The only thing to watch is performance when joining inside a very long loop, since each join creates a new string."
+      },
+      "right": {
+        "label": "Joining strings into a command",
+        "text": "Dangerous. When user data is mixed into a query, they can write content the database reads as a command. Use parameterisation so data and commands never mix."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Strings look simple but they take up most of the real work, and they are where two different classes of bug both hide.",
+        "The next lesson moves on to deciding: comparisons, boolean expressions, and how a program branches."
+      ]
+    }
+  ]
+}

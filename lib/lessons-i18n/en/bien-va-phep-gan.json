@@ -1,0 +1,174 @@
+{
+  "slug": "bien-va-phep-gan",
+  "title": "Lesson 2: Variables and assignment",
+  "subtitle": "A variable is not a box holding a value. Getting this right early saves you a lot of trouble.",
+  "duration": "7 min",
+  "whyItMatters": "Variables are the first thing everybody learns and the thing misunderstood for longest. The wrong mental picture leads straight into a whole class of hard-to-find bugs, where you change a value in one place and another place changes too and you cannot see why.",
+  "openingQuestion": "You write a = 5, then b = a, then a = 9. What is the value of b now?",
+  "openingOptions": [
+    "Still 5, because b took a copy at assignment rather than tracking a",
+    "It is 9, because b was assigned from a and so follows a's latest value",
+    "Undefined, because the two were assigned to each other and cancel out",
+    "It is 14, because the later assignment adds on top of the value held"
+  ],
+  "explanation": "The assignment b = a copies whatever value a holds into b at that exact moment, and after that the two variables have nothing to do with each other. Changing a later does not touch b. The common wrong picture is that the equals sign creates a link, as in a spreadsheet where one cell follows another - programming does not work like that. One important note you will meet again: with compound data such as lists, what gets copied is the pointer to the data rather than the data itself.",
+  "diagram": [
+    {
+      "label": "a = 5: the name a attaches to the value 5"
+    },
+    {
+      "label": "b = a: the current value is copied into b"
+    },
+    {
+      "label": "a = 9: the name a moves over to 9"
+    },
+    {
+      "label": "b is still attached to 5 and does not follow"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A spreadsheet versus a program",
+    "description": "In a spreadsheet, cell B1 holding a formula equal to A1 updates every time A1 changes - that is a live link. In programming, assignment is an event that happens once and is then over. Plenty of people moving from spreadsheets to programming take a long time to shake the habit of picturing live links."
+  },
+  "quiz": [
+    {
+      "question": "What does the equals sign in a = 5 mean?",
+      "options": [
+        "A permanent definition, meaning a will hold the value 5 for the rest of the program",
+        "Comparison, meaning it checks whether a currently equals 5",
+        "Assignment, meaning the name a now points at the value 5",
+        "A type declaration, meaning it tells the machine that a is an integer"
+      ],
+      "explanation": "This trips up almost every beginner, because in mathematics an equals sign means comparison. In most programming languages one equals sign is assignment and two equals signs are comparison. Confusing them produces a bug that is both common and hard to see, because many languages accept either spelling."
+    },
+    {
+      "question": "Why should a variable's name say what it holds?",
+      "options": [
+        "Because linting tools report an error whenever a variable name is a single character",
+        "Because a longer name helps the program run faster when it is processing data",
+        "Because the translator uses the variable's name to infer a suitable data type for it",
+        "Because source code is read many more times than it is written"
+      ],
+      "explanation": "A piece of code is written once and read back dozens of times, by colleagues and by you six months later. totalAmount says what it holds in half a second, while x forces the reader to trace back to wherever it was assigned. Variable names have no effect at all on speed - this is purely about the reader."
+    },
+    {
+      "question": "How does a constant differ from an ordinary variable?",
+      "options": [
+        "A constant cannot be reassigned once its value has been set the first time",
+        "A constant can only hold numbers, whereas an ordinary variable holds any kind of data",
+        "A constant exists for the whole program, whereas an ordinary variable is cleared each line",
+        "A constant is stored on disk, whereas an ordinary variable only sits in temporary memory"
+      ],
+      "explanation": "Declaring a constant is a statement to the reader that this value does not change, and the translator helps you keep your word by reporting an error if anybody reassigns it. The good habit is to reach for a constant by default and switch to a variable only when the value genuinely has to change - it narrows the set of things that can shift unexpectedly."
+    },
+    {
+      "question": "What does a variable's scope mean?",
+      "options": [
+        "The largest and smallest values that variable is able to hold",
+        "The region of source code in which that name has meaning and can be used",
+        "The number of times that variable is allowed to be reassigned in the program",
+        "The amount of memory that variable occupies while the program is running"
+      ],
+      "explanation": "A variable declared inside a block usually only exists within that block, and using it outside reports a name-not-found error. That mechanism is useful: it lets two separate pieces of code use the same name without treading on each other, and it tells you for certain that a variable is only touched within a narrow region."
+    },
+    {
+      "question": "What does a = a + 1 mean?",
+      "options": [
+        "It creates a new variable also called a, independent of the a that already existed",
+        "A meaningless mathematical statement, since no number equals itself plus one",
+        "It works out a's current value plus one, then assigns the result back to a",
+        "It compares the value of a against the value of a plus one to see whether they match"
+      ],
+      "explanation": "Read it right to left and it falls out immediately: the right-hand side is worked out first into a value, then the left-hand side receives it. Seen as a mathematical statement it is absurd, and this is exactly where the mathematical reading of the equals sign has to go. The pattern is so common that most languages have a shorthand for it."
+    }
+  ],
+  "keyTakeaways": [
+    "The equals sign is assignment, not comparison - two equals signs are comparison.",
+    "Assignment copies the value at that moment; the two variables hold no live link.",
+    "Read an assignment right to left: work out the right side, then hand it to the left.",
+    "Variable names serve the reader and have no effect whatsoever on speed.",
+    "Scope decides where a name has meaning; outside it you get a name-not-found error."
+  ],
+  "practicePrompt": {
+    "question": "score = 10, then score = score * 2, then score = score - 5. What is the final value?",
+    "options": [
+      "15 (= 10 × 2, then subtract 5)",
+      "25 (= 10, with both operations added on top of the original value)",
+      "10 (= the first value assigned, since the later operations were not saved)",
+      "5 (= 10 minus 5 first and only then doubled, i.e. the wrong order)"
+    ],
+    "explanation": "Each line runs in turn and each one overwrites the old value: 10 becomes 20, then 20 becomes 15. The way to check is to write the variable's value beside each line - that habit clears up most of the confusion of the first week."
+  },
+  "summary": {
+    "keyIdea": "A variable is a name attached to a value, and assignment moves where it is attached at one moment.",
+    "formula": "Read an assignment right to left: work out the right side, then hand it to the left.",
+    "commonMistake": "Reading the equals sign mathematically and assuming a live link as in a spreadsheet.",
+    "action": "Write three assignments in a row and note the variable's value beside each line."
+  },
+  "application": {
+    "title": "Do this today",
+    "message": "Write a five-line program of nothing but assignments, printing the value after each step. Deliberately name one variable x and another totalAmount, then read the whole thing back.",
+    "secondary": "Try reassigning a constant and read the error message. Knowing in advance what that error looks like means you will recognise it next time."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Variables are the first thing every course teaches and the thing pictured wrongly for longest. The familiar image - a variable is a box holding a value - sounds reasonable but leads to confusion the moment you meet compound data. There is another image that is more accurate and just as easy to remember."
+    },
+    {
+      "type": "heading",
+      "text": "A variable is a name attached to a value"
+    },
+    {
+      "type": "paragraph",
+      "text": "Rather than picturing a variable as a box containing the number 5, picture it as a label reading a which you stick onto the value 5. Reassigning a = 9 peels the label off and sticks it onto the value 9; it does not pour a new value into an old box. The difference sounds small but it explains everything else in this lesson."
+    },
+    {
+      "type": "callout",
+      "label": "This is not the equals sign from mathematics",
+      "text": "In mathematics, a = 5 is a claim. In programming it is an instruction: make a point at 5. That is why a = a + 1 is perfectly valid - read right to left, work out a plus one first, then hand the result to a. Most languages use two equals signs for comparison precisely because one has already been taken for assignment."
+    },
+    {
+      "type": "heading",
+      "text": "Assignment is an event, not a link"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Spreadsheet",
+        "text": "Cell B1 with a formula equal to A1 updates every time A1 changes. That is a live link, and it lasts until you delete the formula."
+      },
+      "right": {
+        "label": "Programming",
+        "text": "b = a copies whatever a holds into b at that instant, and then the two have no connection. Changing a later does not touch b."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "There is one important exception you will meet in the lesson on lists: with compound data, what gets copied across is the pointer to the data rather than the data itself. Two names then point at the same place, and editing through one shows up when you look through the other. Note it now so that you do not think the machine is broken when you meet it."
+    },
+    {
+      "type": "heading",
+      "text": "Naming, and knowing when nothing needs to change"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Names that say what they hold: totalAmount rather than t, studentList rather than sl2.",
+        "Source code is read more often than it is written, so names exist to serve the reader.",
+        "Reach for a constant by default; switch to a variable only when a value really has to change."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Last comes scope: a variable declared inside a block usually only has meaning within that block. Using it outside reports a name-not-found error. That sounds like a restriction but it is really a protection - it lets two pieces of code use the same name without treading on each other."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A variable is a name attached to a value, and assignment moves that attachment at the line you write.",
+        "The next lesson covers what the name attaches to: data types, and why the machine tells the number 5 from the character 5."
+      ]
+    }
+  ]
+}

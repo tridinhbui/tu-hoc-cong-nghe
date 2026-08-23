@@ -1,0 +1,197 @@
+{
+  "slug": "kieu-du-lieu-co-ban",
+  "title": "Lesson 3: The basic data types",
+  "subtitle": "Why the machine tells the number 5 from the character \"5\", and what happens when you mix them.",
+  "duration": "7 min",
+  "whyItMatters": "A great many beginner bugs come from exactly one place: a value that looks like a number but is really a string, usually because it has just been read from an input field or a file. Learning to check the type before doing arithmetic disposes of that whole group at once.",
+  "openingQuestion": "You receive \"5\" and \"3\" from an input field and add them together. What is the likely result?",
+  "openingOptions": [
+    "The string \"53\", because adding two strings joins them together",
+    "The number 8, because the machine sees two numbers and adds them",
+    "An error, because no language allows a plus sign on strings",
+    "An empty string, because two different types cancel each other out"
+  ],
+  "explanation": "An input field always hands back a string, even when the user typed digits. On strings the plus sign means join, so \"5\" plus \"3\" gives \"53\". This is one of the most time-consuming beginner bugs, because the result looks nearly right and the program reports nothing at all. The fix is an explicit conversion before the arithmetic - and always check the result of that conversion, because users typing letters into a number field is routine.",
+  "diagram": [
+    {
+      "label": "Integers and floats: for arithmetic"
+    },
+    {
+      "label": "Strings: for holding text"
+    },
+    {
+      "label": "Booleans: true or false only"
+    },
+    {
+      "label": "Null: no value at all yet"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Every form on the web",
+    "description": "When a user types their age into a field on a web page, what the program receives is a string rather than a number - even when the field is marked as a number field. Skipping the conversion step is where bugs like a sum of ages coming out as a long run of digits come from."
+  },
+  "quiz": [
+    {
+      "question": "Why does 0.1 plus 0.2 usually not give exactly 0.3?",
+      "options": [
+        "Because those two numbers are so small that they fall below the minimum precision supported",
+        "Because the machine rounds every result to two decimal places before handing it back",
+        "Because floating-point addition is slow, so the translator drops a few digits for speed",
+        "Because floats are stored in binary, so many decimal fractions are only approximations"
+      ],
+      "explanation": "The machine stores floats in binary, and 0.1 in binary is an infinitely repeating number, just as one third is in decimal. It gets cut short, so it is only an approximation. The practical consequences: never compare two floats with an equals sign, and store money as integers of the smallest unit."
+    },
+    {
+      "question": "What values can a boolean hold?",
+      "options": [
+        "Exactly two values: true and false",
+        "Three values: true, false, and undetermined",
+        "Any number, where zero means false and everything else means true",
+        "Two strings whose contents are the words true and false"
+      ],
+      "explanation": "A boolean has exactly two values, and it is the result of every comparison. Some languages have rules that treat a few other values as false inside a condition - zero, say, or the empty string - but that is a conversion rule belonging to the language and it does not widen the boolean type."
+    },
+    {
+      "question": "What does explicit type conversion mean?",
+      "options": [
+        "You declare a variable's type up front at the moment you create it in the program",
+        "You call the conversion yourself to turn a value from one type into another, rather than letting the language guess",
+        "You let the translator pick the most suitable type based on the value assigned into it",
+        "You use a comment in the source to record which data type a variable currently holds"
+      ],
+      "explanation": "The opposite of implicit conversion, where the language guesses what you meant - and guesses wrong in silence. Converting explicitly means saying outright: read this string as a number. There is a second benefit too: if the string is not a valid number, you find out right there rather than letting a strange value spread elsewhere."
+    },
+    {
+      "question": "What does a null value represent?",
+      "options": [
+        "An error happened on the previous line and the program is waiting to handle it",
+        "A value equal to zero, shared between numbers and text alike",
+        "No value at all yet, which is different from zero or an empty string",
+        "The variable has been removed from memory and cannot be used again"
+      ],
+      "explanation": "This distinction matters more than it looks. Zero is a real number - zero degrees is a measurement. Null means no measurement was ever taken. Confusing the two produces wrong statistics: computing an average that counts an unsubmitted assignment as a score of zero, for instance."
+    },
+    {
+      "question": "How does a statically typed language differ from a dynamically typed one?",
+      "options": [
+        "Static typing requires declaring a variable's name first, whereas dynamic typing needs no declaration",
+        "Static typing has only a few fixed data types, whereas dynamic typing lets you create new ones",
+        "Static typing is for small programs, whereas dynamic typing is for large-scale systems",
+        "Static typing checks types before running; dynamic typing checks them while running"
+      ],
+      "explanation": "A statically typed language catches type errors at translation time, before a single line runs - in exchange you write more. A dynamically typed language is more flexible and shorter, but a type error only shows up when execution reaches that exact line, sometimes on a user's machine."
+    }
+  ],
+  "keyTakeaways": [
+    "Four basic groups: numbers, strings, booleans, and the null value.",
+    "An input field always returns a string - convert the type before doing arithmetic.",
+    "Floats are only approximations; do not compare them with equals, and store money as integers.",
+    "Null means no value yet, which is nothing like zero or an empty string.",
+    "Explicit conversion lets you catch bad data right where it arrives."
+  ],
+  "practicePrompt": {
+    "question": "You store prices as floats and after many additions the total is off by a few pence. What is the right fix?",
+    "options": [
+      "Store money as integers of the smallest unit, counting in pence for instance",
+      "Rounding the final result to two decimal places is enough to make the drift go away",
+      "Switch to strings for prices, because strings are not subject to rounding error",
+      "Add from the largest number down to the smallest so the error cannot accumulate"
+    ],
+    "explanation": "This is what real financial systems do: store 12500 rather than 125.00 and only divide at display time. The error disappears entirely because integers are exact. Rounding at the end only hides the symptom, and strings cannot be added."
+  },
+  "summary": {
+    "keyIdea": "The type decides how the machine reads a value and what an operation on it means.",
+    "formula": "A plus sign on numbers adds; a plus sign on strings joins.",
+    "commonMistake": "Doing arithmetic on a value read from an input field without converting it from string to number.",
+    "action": "Print the type of a value read from an input field before you use it in a calculation."
+  },
+  "application": {
+    "title": "Do this today",
+    "message": "Write a program that reads two values from the command line and adds them. Run it once without converting and once after converting, then compare the two results.",
+    "secondary": "Then print the result of 0.1 plus 0.2 and look at the number that appears. Seeing it once with your own eyes means you will not forget."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The last lesson said a variable is a name attached to a value. This one is about that value: what kind of thing it is, and how that kind decides what the machine may do with it. It looks like a very small point, and it is the source of most of the bugs of your first week."
+    },
+    {
+      "type": "heading",
+      "text": "The four groups you meet on day one"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Basic data types",
+      "subtitle": "The names differ between languages, but the ideas are the same",
+      "concepts": [
+        {
+          "en": "Integer",
+          "def": "A number with no decimal part. Exact, so it is what you use for counting and for money."
+        },
+        {
+          "en": "Float",
+          "def": "A number with a decimal part. Only an approximation, because the machine stores it in binary."
+        },
+        {
+          "en": "String",
+          "def": "A sequence of characters. The plus sign on strings means join, not add."
+        },
+        {
+          "en": "Boolean",
+          "def": "Just the two values true and false. It is the result of every comparison."
+        },
+        {
+          "en": "Null / None",
+          "def": "No value yet. Quite different from zero, and different from an empty string."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The first trap: strings that look like numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Everything read from an input field, from the command line or from a text file is a string, even when the user typed digits. Add two of those strings together and you get a joined string rather than a sum. What makes this bug expensive is that the program says nothing at all - the result looks nearly right and you have to spot it yourself."
+    },
+    {
+      "type": "callout",
+      "label": "Convert explicitly",
+      "text": "Do not let the language guess what you meant, because it guesses wrong in silence. Call the conversion from string to number yourself. There is a second benefit: if the string is not a valid number - and users typing letters into a number field is routine - you find out right there rather than letting a strange value spread through the program."
+    },
+    {
+      "type": "heading",
+      "text": "The second trap: floats are not exact"
+    },
+    {
+      "type": "paragraph",
+      "text": "The machine stores floats in binary, and 0.1 in binary is an infinitely repeating number, just as one third is in our decimal. It gets cut short to fit in memory, so only an approximation is left. That is why 0.1 plus 0.2 prints a number with an odd tail rather than exactly 0.3."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Do not compare two floats with an equals sign; check whether the difference is below a threshold.",
+        "For money, store integers of the smallest unit and only divide at display time.",
+        "This is not the fault of one particular language - almost every language behaves this way."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Statically typed language",
+        "text": "Types are checked before running, so type errors are caught at translation time. You write more, and in exchange a whole class of bug disappears before it reaches a user."
+      },
+      "right": {
+        "label": "Dynamically typed language",
+        "text": "Types are worked out while running. Quicker and shorter to write, but a type error only shows itself when execution reaches that line, sometimes on a user's machine."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Types are not red tape. They are how the machine knows what a plus sign between two values ought to mean.",
+        "The next lesson goes deeper into the type you use most and think about least: strings and text operations."
+      ]
+    }
+  ]
+}

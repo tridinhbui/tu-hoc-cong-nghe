@@ -7,16 +7,24 @@
   "openingQuestion": "You type a text file containing source code. Does the processor read that file directly?",
   "openingOptions": [
     "No, another program has to translate it into machine instructions first",
-    "Yes, the processor reads every popular programming language directly today without any intermediate stage at all",
-    "Yes, as long as the file is saved in the format that the installed operating system specifies in advance",
-    "No, but only because the text file is encoded and has to be decoded again before it can be run"
+    "Yes, the processor reads every popular programming language directly",
+    "Yes, as long as the file is saved in the format the system specifies",
+    "No, but only because the text file is encoded and has to be decoded"
   ],
   "explanation": "A processor understands exactly one thing: machine instructions, the number sequences fixed in advance for that family of chips. The source code you write is text meant for humans to read. Between those two ends there is always a translating program - a compiler translates the whole thing before it runs, an interpreter reads and executes as it goes. Knowing which one you are using explains why some languages report an error the moment you hit run, while others run half your program before stopping.",
   "diagram": [
-    { "label": "Source code: the text you type" },
-    { "label": "Compiler or interpreter" },
-    { "label": "Machine instructions the processor understands" },
-    { "label": "A process running in memory" }
+    {
+      "label": "Source code: the text you type"
+    },
+    {
+      "label": "Compiler or interpreter"
+    },
+    {
+      "label": "Machine instructions the processor understands"
+    },
+    {
+      "label": "A process running in memory"
+    }
   ],
   "realWorldExample": {
     "company": "The browser you have open right now",
@@ -107,7 +115,10 @@
       "type": "lead",
       "text": "Before you type the first line of code there is a question worth five minutes: how does the text file you just saved become something the machine can run? Skip it and every later error message is a mystery, because you have no idea which stage it came from."
     },
-    { "type": "heading", "text": "The machine does not understand your language" },
+    {
+      "type": "heading",
+      "text": "The machine does not understand your language"
+    },
     {
       "type": "paragraph",
       "text": "A processor only understands machine instructions: number sequences fixed in advance for that family of chips, each one standing for a tiny operation like adding two numbers or copying a value from one place to another. Nobody writes programs that way any more. You write in a language meant for humans, and another program handles the translation."
@@ -128,7 +139,10 @@
       "label": "Source code is only text",
       "text": "This surprises many beginners: a .py or .js file opens in Notepad and contains nothing but letters. The extension only tells the tools how to treat it. Precisely because it is plain text, Git can compare it line by line and you could read the history of changes in the previous chapter."
     },
-    { "type": "heading", "text": "Two kinds of error, and which one to fear" },
+    {
+      "type": "heading",
+      "text": "Two kinds of error, and which one to fear"
+    },
     {
       "type": "paragraph",
       "text": "This distinction will follow you through your whole career, so take it in from the first lesson. A syntax error means breaking the formal rules - a missing bracket, wrong indentation, a mistyped keyword. The translator stops, points straight at the offending line, and you fix it in a minute."
@@ -141,11 +155,26 @@
       "type": "conceptTable",
       "title": "Vocabulary from the first lesson",
       "concepts": [
-        { "en": "Source code", "def": "The text you write following the rules of a programming language. It is a plain text file." },
-        { "en": "Machine code", "def": "The only form a processor understands. It differs between families of chips." },
-        { "en": "Compiler", "def": "Translates the whole program into machine instructions before it runs." },
-        { "en": "Interpreter", "def": "Reads the source and executes as it goes, producing no separate translated file." },
-        { "en": "Syntax", "def": "The rules for writing a language correctly. Correct syntax does not mean correct behaviour." }
+        {
+          "en": "Source code",
+          "def": "The text you write following the rules of a programming language. It is a plain text file."
+        },
+        {
+          "en": "Machine code",
+          "def": "The only form a processor understands. It differs between families of chips."
+        },
+        {
+          "en": "Compiler",
+          "def": "Translates the whole program into machine instructions before it runs."
+        },
+        {
+          "en": "Interpreter",
+          "def": "Reads the source and executes as it goes, producing no separate translated file."
+        },
+        {
+          "en": "Syntax",
+          "def": "The rules for writing a language correctly. Correct syntax does not mean correct behaviour."
+        }
       ]
     },
     {

@@ -1,0 +1,164 @@
+{
+  "title": "From screening to priority: which service to fix first",
+  "subtitle": "Three ways to allocate effort across a portfolio of services, and the price of each",
+  "duration": "8 min",
+  "whyItMatters": "A team with thirty services has effort for three. How those three get chosen matters more than the quality of the work put into them, because excellent work on the wrong thing is still effort thrown away.",
+  "openingQuestion": "Thirty services, enough capacity to fix three. On what criterion do you pick?",
+  "openingOptions": [
+    "Score multiplied by how much the service matters",
+    "The three services with the lowest health scores on this quarter's ranking table",
+    "The three where the team already has people who know them well, so the work goes fastest",
+    "The three that have caused an incident within the last three months of operation"
+  ],
+  "explanation": "A low score on its own is not enough. An internal service scoring twenty that three people use each week ranks behind a service scoring sixty that sits on the path of every transaction. Multiplying score by importance is the cheapest way to get consequence into the priority list instead of only symptoms.",
+  "diagram": [
+    {
+      "label": "Score the whole portfolio"
+    },
+    {
+      "label": "Multiply by how much each one matters"
+    },
+    {
+      "label": "Remove whatever nobody uses any more"
+    },
+    {
+      "label": "Three pieces of work, with owners and deadlines"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A cleanup quarter nobody can remember the results of",
+    "description": "A team spent a whole quarter raising test coverage on every service below the threshold, eleven of them in total. By the end of the quarter every cell was green. Six months later, the two largest incidents came from two services that had been green from the start and were never part of that cleanup - they were never below the threshold, they were simply more important than all eleven put together."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When there are more services than there are people, the strategy for choosing matters more than the quality of execution. There are three common ways to choose, and they fail in three different ways."
+    },
+    {
+      "type": "heading",
+      "text": "One: set a threshold and sweep"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every service below a line has to be fixed. This is simple, fair, and easy to track. Its weakness is that it treats every service alike: an internal tool with three users gets the same priority as something on the path of every transaction, purely because both fell below the line."
+    },
+    {
+      "type": "heading",
+      "text": "Two: fix the worst in each category"
+    },
+    {
+      "type": "paragraph",
+      "text": "Divide the portfolio by type and fix the weakest in each. This keeps balance across areas and avoids pouring all the effort into one place. Its weakness is that it forces you to do something in categories that are entirely fine, spending effort to buy tidiness on a chart."
+    },
+    {
+      "type": "heading",
+      "text": "Three: fold the measures into everyday decisions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Instead of a separate cleanup project, every ordinary change has to leave the three pillars no worse. This is the most durable approach because it needs nobody to approve a project, but it is slow and almost invisible, which makes it hard to survive the quarters when a team is under schedule pressure."
+    },
+    {
+      "type": "callout",
+      "label": "Deleting is usually cheaper than improving",
+      "text": "Before putting a service on the fix list, ask whether anyone still uses it. Most portfolios contain a handful of services that are now only called by another service that has itself died. Removing them raises the average score and reduces the future workload at the same time, and it is the only action on this list that pays twice."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A list ordered by symptom",
+        "text": "Sorted by score from lowest upward. Easy to produce, and it reliably leads to fixing the least-used things first."
+      },
+      "right": {
+        "label": "A list ordered by consequence",
+        "text": "Sorted by score times importance. Harder to produce because importance must be defined, and it puts things in the order incidents will arrive in."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Choosing the wrong work means however well it is done it is still effort thrown away.",
+        "A score is a symptom; a score times importance is a consequence."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is the biggest weakness of the threshold-and-sweep approach?",
+      "options": [
+        "It treats every service as equally important",
+        "It requires the whole portfolio to be scored before any work at all can begin on it",
+        "It leads teams to raise their score just past the line and then stop working on it",
+        "It takes no account of the cost and time needed to fix each individual service"
+      ],
+      "explanation": "The other three are real weaknesses and all of them can be addressed by adjusting the process. Treating every service alike sits inside the definition of the approach itself, so no adjustment removes it."
+    },
+    {
+      "question": "Why ask 'does anyone still use this' before adding a service to the fix list?",
+      "options": [
+        "Because deleting raises the score and cuts future work at the same time",
+        "Because services with few users tend to score lower and so distort the ranking table",
+        "Because any change to a shared service needs confirming with the other teams involved first",
+        "Because user count is the simplest and most reliable way to measure how much it matters"
+      ],
+      "explanation": "Every other action on the list trades effort for score. Deleting returns both, and most portfolios contain a few services now only called by something that has itself died."
+    },
+    {
+      "question": "Eleven services cleaned up, and six months later the big incidents came from two that were always green. What went wrong?",
+      "options": [
+        "The list was ordered by symptom rather than by consequence",
+        "The threshold was set too low, so services worth worrying about stayed above the line",
+        "The cleanup only raised test coverage and never touched the other two pillars at all",
+        "Six months is long enough for services that were green to have decayed back down again"
+      ],
+      "explanation": "Those two services were never below the threshold, so no choice of threshold would have caught them. What made them dangerous was importance, and that is the dimension a list sorted by score does not have at all."
+    },
+    {
+      "question": "Why is the everyday-decisions approach hard to sustain?",
+      "options": [
+        "Because it is invisible, so nobody defends it when the schedule tightens",
+        "Because it requires every member of the team to understand how all three pillars are computed",
+        "Because it slows down each small change, so total time to release stretches out",
+        "Because it needs automated measurement on every change and not every team has that"
+      ],
+      "explanation": "A cleanup project has a name, a deadline and somebody reporting its results, so it gets defended. An everyday principle appears nowhere at all, and what appears nowhere is what gets cut first."
+    },
+    {
+      "question": "Which approach produces a list in the order incidents will actually arrive?",
+      "options": [
+        "Score multiplied by how much the service matters",
+        "The current health score combined with that score's trend over the last six months",
+        "The number of incidents each service has caused over roughly the last year of operation",
+        "Requests per second each service handles during the busiest hour of a normal day"
+      ],
+      "explanation": "An incident is the product of the chance of breaking and the consequence of breaking. The score measures the first, importance measures the second, and dropping either one produces a list that is wrong at exactly the most dangerous place."
+    }
+  ],
+  "keyTakeaways": [
+    "Choosing the work matters more than executing it when capacity is limited",
+    "A score is a symptom; a score times importance is a consequence",
+    "Ask who still uses it before fixing it - deleting is the only action that pays twice",
+    "An everyday principle outlasts a cleanup project but is far easier to cut"
+  ],
+  "practicePrompt": {
+    "question": "Service A: score 20, importance 1. Service B: score 60, importance 5. Lower score is worse. Which do you fix first?",
+    "options": [
+      "B, because its shortfall times importance is larger",
+      "A, because a score of 20 is far lower than 60 and so it is in much worse condition",
+      "A, because going from 20 to 60 is a bigger improvement than going from 60 to 80 is",
+      "Both at once, since the combined effort still falls within what the team can handle"
+    ],
+    "explanation": "A's shortfall is 80 times 1, or 80; B's is 40 times 5, or 200. B comes first even though it looks three times healthier, and that is exactly the ordering a list sorted by score never produces."
+  },
+  "summary": {
+    "keyIdea": "Order the portfolio by consequence rather than by symptom",
+    "commonMistake": "Sorting by score from lowest upward and working down the list",
+    "action": "Assign an importance from 1 to 5 to each service your team looks after."
+  },
+  "application": {
+    "title": "Three steps for next quarter",
+    "message": "Score the whole portfolio. Assign importance. Delete whatever nobody uses before fixing what is left.",
+    "secondary": "The third step usually shortens the list more than the first two put together."
+  },
+  "slug": "esg-investing-screening-den-portfolio"
+}

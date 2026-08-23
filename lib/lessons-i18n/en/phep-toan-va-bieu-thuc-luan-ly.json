@@ -1,0 +1,188 @@
+{
+  "slug": "phep-toan-va-bieu-thuc-luan-ly",
+  "title": "Lesson 5: Operators and boolean expressions",
+  "subtitle": "Every decision a program makes comes down to one question: true or false.",
+  "duration": "7 min",
+  "whyItMatters": "The conditional in the next lesson accepts exactly one thing: a boolean value. Writing accurate boolean expressions is the precondition for all your later logic being right, and it is where the subtlest bugs hide.",
+  "openingQuestion": "When is the condition \"age is at least 18 and has identification\" false?",
+  "openingOptions": [
+    "When at least one of the two sides turns out to be false",
+    "Only when both sides are false at the same moment",
+    "When the first side is false, whatever the second says",
+    "When the two sides disagree and so cancel each other out"
+  ],
+  "explanation": "AND is only true when every side is true, so one false side is enough to make the whole expression false. OR is the reverse: one true side is enough to make the whole expression true. Confusing the two is the classic logic error, and it raises no error message at all - the program runs normally and simply decides wrongly in certain cases, usually the cases you did not think of while writing.",
+  "diagram": [
+    {
+      "label": "A comparison produces true or false"
+    },
+    {
+      "label": "AND, OR and NOT combine them"
+    },
+    {
+      "label": "The final result is still a boolean"
+    },
+    {
+      "label": "A conditional takes that value and branches"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The filters on a shopping site",
+    "description": "The filter 'under 500 thousand AND in stock AND same-day delivery' is three conditions joined by AND, so a product drops out by failing just one criterion. Change one AND to an OR and the result list swells several times over with no error reported anywhere."
+  },
+  "quiz": [
+    {
+      "question": "How do one equals sign and two equals signs differ?",
+      "options": [
+        "One is used for numbers, while two is used when comparing two pieces of text",
+        "One assigns a value, two compares whether things are equal",
+        "One compares both type and value, while two compares only the value",
+        "The two spellings are entirely equivalent and differ only by presentation convention"
+      ],
+      "explanation": "This is the classic mistake because mathematics has only one equals sign. The danger is that many languages accept both spellings inside a condition: write one by accident and the program still runs, but it assigns a value and then treats the assigned result as the condition, so the branch either always runs or never does."
+    },
+    {
+      "question": "What does NOT do to a boolean value?",
+      "options": [
+        "Keeps the value but marks it to be skipped at the next check",
+        "Turns it into a null value to signal that the condition is undetermined",
+        "Inverts it: true becomes false and false becomes true",
+        "Turns it into a number, where true is one and false is zero"
+      ],
+      "explanation": "Negation is very useful, but overused it makes code hard to read: a condition with three nested negations forces the reader to solve a logic puzzle in their head. When you see that, there is usually a way to rewrite it positively by flipping the comparison instead."
+    },
+    {
+      "question": "What does short-circuit evaluation mean in a boolean expression?",
+      "options": [
+        "The language reorders the sides so that the simplest one is evaluated first",
+        "The language evaluates every side first and only then combines the results with AND or OR",
+        "The language skips sides that are too complex so the program runs faster",
+        "The language stops as soon as the result is certain and leaves the remaining sides unevaluated"
+      ],
+      "explanation": "With AND, a false first side settles the whole expression, so the later sides are never evaluated. This is not only about speed - it is a very common safe-writing pattern: check that a value exists on the first side, then use it on the second, so the second never runs while the value is null."
+    },
+    {
+      "question": "Why is it worth splitting a long condition into named intermediate variables?",
+      "options": [
+        "Because the names explain what each side means, turning logic into something readable",
+        "Because a shorter expression makes the program compute noticeably faster",
+        "Because the language limits how many comparisons may appear in one condition",
+        "Because intermediate variables help the language choose a better evaluation order"
+      ],
+      "explanation": "A condition made of five comparisons joined by ANDs and ORs is not something anyone reads in one pass. Split it into two variables called isOldEnough and hasIdentification and join those two, and the condition reads almost like a sentence. Performance is unchanged - the benefit belongs entirely to the reader."
+    },
+    {
+      "question": "What is the modulo operator for?",
+      "options": [
+        "Dividing two numbers and automatically rounding the result down to the nearest integer",
+        "Taking the remainder of a division, often used to test whether a number divides evenly",
+        "Working out one number as a percentage of another number supplied alongside it",
+        "Turning a float into an integer by discarding its decimal part"
+      ],
+      "explanation": "Modulo returns what is left over after dividing. It comes up more often than you would expect: testing odd or even with modulo two, taking the last digit with modulo ten, or cycling round a list with modulo its length."
+    }
+  ],
+  "keyTakeaways": [
+    "Every comparison produces a boolean value - true or false.",
+    "AND needs every side true; OR needs only one side true.",
+    "One equals sign assigns, two compares - confusing them is a silent bug.",
+    "Short-circuiting lets you check existence on the first side before using it on the second.",
+    "Split long conditions into named intermediate variables so the logic can be read."
+  ],
+  "practicePrompt": {
+    "question": "You want to filter users in Hanoi or Ho Chi Minh City whose account is activated. Which spelling is right?",
+    "options": [
+      "(city is Hanoi OR city is HCMC) AND isActivated",
+      "city is Hanoi OR city is HCMC AND isActivated",
+      "city is Hanoi AND city is HCMC AND isActivated",
+      "(city is Hanoi AND isActivated) OR city is HCMC"
+    ],
+    "explanation": "The brackets are needed because AND binds tighter than OR: without them the machine reads it as 'in Hanoi, or else in HCMC and activated' - an unactivated Hanoi user still gets through. The third option matches nobody, since a person is not in two cities at once."
+  },
+  "summary": {
+    "keyIdea": "Every decision in a program comes down to an expression producing true or false.",
+    "formula": "AND needs every side true; OR needs only one side true.",
+    "commonMistake": "Dropping the brackets when mixing AND with OR, letting precedence change what the condition means.",
+    "action": "Write a three-part condition and then split it into two named intermediate variables."
+  },
+  "application": {
+    "title": "Do this today",
+    "message": "Write a program that takes an age and whether identification is held, then prints the result of all three of AND, OR and NOT over that same data.",
+    "secondary": "Then deliberately write one equals sign in a condition and see how your language reacts - does it report an error or silently run on?"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "For a program to decide anything at all, the question has to be reduced to one form: true or false. This lesson is about building those questions, and it matters more than its simple appearance suggests - most subtle logic bugs live right here."
+    },
+    {
+      "type": "heading",
+      "text": "Comparisons produce booleans"
+    },
+    {
+      "type": "paragraph",
+      "text": "Greater than, less than, equal, not equal - every comparison returns true or false. The one to be most careful with is equality, because mathematics has one equals sign while programming has already spent one on assignment. Many languages accept both spellings in a condition, so getting it wrong produces no error, only a wrong result."
+    },
+    {
+      "type": "callout",
+      "label": "Comparing floats",
+      "text": "Remember the lesson on data types: floats are only approximations. So do not use an equals sign on them - check instead whether the difference between the two numbers is smaller than a threshold you are willing to accept."
+    },
+    {
+      "type": "heading",
+      "text": "The three combining operators"
+    },
+    {
+      "type": "conceptTable",
+      "title": "All of a program's logic is built from these",
+      "concepts": [
+        {
+          "en": "AND",
+          "def": "True when every side is true. One false side makes the whole expression false."
+        },
+        {
+          "en": "OR",
+          "def": "True when at least one side is true. Only false when every side is false."
+        },
+        {
+          "en": "NOT",
+          "def": "Inverts the value. Nested several layers deep, it makes code very hard to read."
+        },
+        {
+          "en": "Short-circuit",
+          "def": "Stops as soon as the result is certain, leaving the remaining sides unevaluated."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Short-circuiting is not only about speed - it is a very common safe-writing pattern. Put the existence check on the first side and only then use the value on the second, and the second will never run while the value is null. You will see this pattern everywhere in real code."
+    },
+    {
+      "type": "heading",
+      "text": "Precedence, and how to avoid memorising it"
+    },
+    {
+      "type": "paragraph",
+      "text": "AND is evaluated before OR, just as multiplication comes before addition. That means 'A or B and C' is read as 'A or (B and C)', which can be quite different from what you meant. You do not have to learn a precedence table: just put the brackets in for clarity, even where they are not required."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Hard to read",
+        "text": "A condition of five comparisons joined by ANDs and ORs, all on one line. Nobody reads it in one pass, and every edit is a chance to break it."
+      },
+      "right": {
+        "label": "Easy to read",
+        "text": "Split into two variables called isOldEnough and hasIdentification, with the condition simply joining those two. It reads almost like a sentence, and performance is not affected at all."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A boolean expression written clearly is one that explains your intention by itself.",
+        "The next lesson uses these very expressions to make a program branch: the conditional."
+      ]
+    }
+  ]
+}

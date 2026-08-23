@@ -1,0 +1,164 @@
+{
+  "title": "Why there are several reporting standards, and how to choose",
+  "subtitle": "One system, three measurement standards, three numbers - and none of them wrong",
+  "duration": "8 min",
+  "whyItMatters": "When two teams report two different numbers for the same service, the first instinct is to work out who measured it wrong. Usually neither did - they are using different standards, and knowing that saves a great deal of argument.",
+  "openingQuestion": "Two teams report availability for the same service: 99.9% and 99.2%. Who is right?",
+  "openingOptions": [
+    "Both, if they define being down differently",
+    "The team reporting 99.2%, because the lower figure is generally the more honest of the two",
+    "The team reporting 99.9%, because they have more measurement points and a larger sample",
+    "Undeterminable - you would need a third independent tool to measure it and act as arbiter"
+  ],
+  "explanation": "One team counts downtime as the service not answering; the other counts it as the service answering slower than a threshold. Same window, same system, two definitions, two numbers. Arguing about who is right is arguing about the wrong question - the right one is who each standard is answering for.",
+  "diagram": [
+    {
+      "label": "One system"
+    },
+    {
+      "label": "Three standards with three definitions of down"
+    },
+    {
+      "label": "Three different numbers"
+    },
+    {
+      "label": "Choose by reader, not by which number looks best"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The contractual promise and the dashboard promise",
+    "description": "A company commits to 99.9% with its customers and measures it by probing the service once a minute from a monitoring host. The product team measures the share of real requests from real users that succeeded, and gets 99.2%. The contractual number is always prettier because a once-a-minute probe misses every incident shorter than a minute, and users miss nothing."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Reporting standards are not administrative overhead. Each one is an answer aimed at a different reader, and picking the wrong standard means answering correctly for somebody who did not ask."
+    },
+    {
+      "type": "heading",
+      "text": "Three kinds of reader, three kinds of standard"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Customers ask whether the system is keeping its promise, so their standard is binding and simple",
+        "The operations team asks whether anything is unusual today, so their standard is sensitive and multi-dimensional",
+        "Leadership asks where the trend is going, so their standard aggregates heavily and is read by quarter"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Those three needs cannot be folded into a single standard. One sensitive enough for the operations team to spot anomalies would alarm constantly if a customer read it; one stable enough to write into a contract is blind to exactly the short incidents the operations team most needs to see."
+    },
+    {
+      "type": "heading",
+      "text": "The difference is always in the definition, never in the arithmetic"
+    },
+    {
+      "type": "paragraph",
+      "text": "When two numbers diverge the cause is nearly always one of four places: how down is defined, where it is measured, at what frequency, and whether announced maintenance windows are excluded. Those four questions settle most disputes, and they belong written beside every number rather than held in the head of whoever built the dashboard."
+    },
+    {
+      "type": "callout",
+      "label": "Change the standard and you change the history",
+      "text": "When a team changes its definition of down, the new number cannot be compared with the old one. The correct handling is to recompute the entire history against the new standard before publishing, or to draw a clear break at the point of the change. Publishing the new number next to the old history creates a trend that does not exist, and that is how an improvement on paper is born."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A standard for contracts",
+        "text": "Narrow definition, measured externally, low frequency, maintenance excluded. Stable, and defensible in front of a court."
+      },
+      "right": {
+        "label": "A standard for operations",
+        "text": "Broad definition including slowness, measured from the user side, continuous, nothing excluded. Sensitive and always uglier."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Several standards exist because several readers ask several different questions.",
+        "A number with no definition attached is not yet a complete measurement."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why can the three needs not be folded into one standard?",
+      "options": [
+        "Because a standard sensitive enough for operations would alarm a customer constantly",
+        "Because each group of readers uses an entirely different set of monitoring and reporting tools",
+        "Because the data behind the three standards is stored in three places with three retention periods",
+        "Because a contractual standard has to be approved by the legal department, so it cannot change fast"
+      ],
+      "explanation": "Sensitivity is a trade-off rather than a level of quality. More sensitive means seeing things earlier and also raising more false alarms, and what an on-call engineer will tolerate is nothing like what a contract signatory will."
+    },
+    {
+      "question": "Two availability numbers diverge. Where should you look first?",
+      "options": [
+        "At how each side defines being down",
+        "At the formula each side is using to convert downtime into a percentage figure",
+        "At the window of time each side sampled in order to produce the number it reported",
+        "At the version of the monitoring tool each side was running at the moment of measurement"
+      ],
+      "explanation": "The percentage arithmetic is nearly always identical on both sides. What differs is what gets counted into the numerator, and the definition of down is exactly where that is decided."
+    },
+    {
+      "question": "Why is the contractual number usually prettier than the one the product team measures?",
+      "options": [
+        "Because periodic probing misses every incident shorter than the probe interval",
+        "Because contracts only count incidents the customer has formally reported back to the vendor",
+        "Because monitoring hosts usually sit near the data centre, so their network path is better",
+        "Because announced maintenance windows are excluded from the availability calculation entirely"
+      ],
+      "explanation": "The last two are both real and both contribute. The largest single reason is sampling frequency: probing once a minute means a forty-second incident is likely to fall between probes, while a real user meets it."
+    },
+    {
+      "question": "A team changes its definition of down and publishes the new number beside the old history. What follows?",
+      "options": [
+        "A trend of improvement or decline that does not exist",
+        "Automated alerts based on the old thresholds stop firing until somebody resets them",
+        "The historical data becomes useless and should be deleted to avoid confusing later readers",
+        "The new number will always be lower than the old one, since new definitions are usually broader"
+      ],
+      "explanation": "The trend line breaks at exactly the point where the standard changed, and readers attribute that break to some technical change. Either recompute the history against the new standard, or draw the discontinuity explicitly."
+    },
+    {
+      "question": "What should accompany every number on a dashboard?",
+      "options": [
+        "Definition, measurement point, frequency, and what is excluded",
+        "The name of the person responsible for the service and when the board was last refreshed",
+        "The corresponding alert threshold together with that metric's history over the last three months",
+        "The tool used to measure it and the version of that tool at the time the data was collected"
+      ],
+      "explanation": "Those four are the complete set of places two numbers can diverge. Writing them beside the number turns a long-running argument into a thirty-second comparison."
+    }
+  ],
+  "keyTakeaways": [
+    "Several standards exist because several readers ask several different questions",
+    "The difference between two numbers is nearly always in the definition, not the arithmetic",
+    "Periodic probing misses every incident shorter than the probe interval",
+    "Change the standard and recompute the history, or you invent a trend"
+  ],
+  "practicePrompt": {
+    "question": "An incident lasts 40 seconds and the monitor probes every 60. What is the chance it gets recorded?",
+    "options": [
+      "About two thirds",
+      "100% (= assuming every incident necessarily coincides with at least one probe)",
+      "About one third (= taking the share of time not broken instead of the share broken)",
+      "0% (= assuming any incident shorter than the probe interval always slips through unseen)"
+    ],
+    "explanation": "A 40-second window inside a 60-second cycle has about a 40 in 60 chance of containing a probe. That means one incident of this kind in every three vanishes from the report, and it vanishes systematically rather than at random."
+  },
+  "summary": {
+    "keyIdea": "Each standard answers for one reader, so choose the standard by reader",
+    "commonMistake": "Arguing about who measured correctly instead of comparing the two definitions",
+    "action": "Write the definition, measurement point, frequency and exclusions beside a metric you report."
+  },
+  "application": {
+    "title": "Four questions when two numbers diverge",
+    "message": "How is down defined? Where is it measured? At what frequency? What is excluded?",
+    "secondary": "These four settle most disputes, and they usually show that both sides measured exactly what they set out to measure."
+  },
+  "slug": "khung-bao-cao-esg-csrd-sfdr-issb"
+}
