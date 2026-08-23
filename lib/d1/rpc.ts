@@ -22,10 +22,25 @@
 
 /** Bề mặt D1 mà tệp này dùng tới - hẹp có chủ ý, để `d1-shim.ts` trong bộ kiểm
  *  chỉ phải nhại đúng ba phương thức thay vì cả `D1Database`. */
+export interface D1Statement {
+  bind(...args: unknown[]): D1Statement;
+  all(): Promise<{ results: unknown[] }>;
+  run?(): Promise<{ meta?: { changes?: number; last_row_id?: number } }>;
+}
+
 export interface D1Like {
+  /** Chạy nhiều lệnh trong MỘT transaction ngầm. Đây là tất cả những gì D1 có:
+   *  không có transaction tương tác, tức là KHÔNG đọc được kết quả rồi mới
+   *  quyết định ghi gì trong cùng transaction. Mọi hàm nhóm C phải viết lại
+   *  quanh giới hạn ấy - xem chú thích từng hàm. */
+  batch?(statements: D1Statement[]): Promise<{ meta?: { changes?: number } }[]>;
   prepare(sql: string): {
     bind(...args: unknown[]): {
       all(): Promise<{ results: unknown[] }>;
+      /** Chỉ nhóm hàm GHI mới dùng tới. Trả `meta.changes` để biết lệnh có
+       *  thật sự đổi dòng nào không - nhiều hàm gốc dựa vào con số ấy để phân
+       *  biệt "đã ghi" với "không có gì để ghi". */
+      run?(): Promise<{ meta?: { changes?: number; last_row_id?: number } }>;
     };
   };
 }
@@ -38,6 +53,20 @@ async function rows<T>(db: D1Like, sql: string, ...args: unknown[]): Promise<T[]
 async function one<T>(db: D1Like, sql: string, ...args: unknown[]): Promise<T | null> {
   const r = await rows<T>(db, sql, ...args);
   return r.length ? r[0] : null;
+}
+
+/** Chạy một lệnh ghi và trả số dòng đã đổi.
+ *  `run()` là tuỳ chọn trong `D1Like` để phần chỉ đọc không phải cài nó; ở đây
+ *  rơi về `all()` nếu thiếu, và khi ấy số dòng đổi không biết được (trả -1)
+ *  thay vì giả vờ bằng 0 - 0 có nghĩa là "không đổi gì", một câu khẳng định. */
+async function exec(db: D1Like, sql: string, ...args: unknown[]): Promise<number> {
+  const stmt = db.prepare(sql).bind(...args);
+  if (typeof stmt.run === "function") {
+    const r = await stmt.run();
+    return r?.meta?.changes ?? -1;
+  }
+  await stmt.all();
+  return -1;
 }
 
 /** Kẹp `limit` do người gọi truyền vào, giống `greatest(1, least(coalesce(p,d), max))`
@@ -1470,4 +1499,605 @@ export async function getStudyRoomMissionStatus(
       leader_id: ctx.leader_id,
     };
   });
+}
+
+// ══════════════════════════ NHÓM B: một lệnh ghi ══════════════════════════
+//
+// Bảy hàm dưới đây mỗi hàm chỉ có ĐÚNG MỘT lệnh ghi, nên không cần transaction:
+// một câu lệnh trong SQLite đã là nguyên tử. Cái phải giữ khi dịch là các điều
+// kiện gác đứng TRƯỚC lệnh ghi - chúng là phân quyền, không phải kiểm tra hình
+// thức, và mất một cái là mở một lỗ.
+
+/** `increment_document_download(doc_id)` - không gác gì, bản gốc cấp quyền cho
+ *  cả `anon`. Giữ nguyên. */
+export async function incrementDocumentDownload(db: D1Like, docId: number): Promise<void> {
+  await exec(db, `update documents set download_count = download_count + 1 where id = ?`, docId);
+}
+
+/** `leave_study_room()` - rời MỌI phòng đang tham gia, không nhận room_id.
+ *  `left_at is null` vừa là điều kiện lọc vừa khiến lệnh trở nên bình phương
+ *  luỹ đẳng: gọi hai lần không ghi đè thời điểm rời của lần đầu. */
+export async function leaveStudyRoom(db: D1Like, actor: string): Promise<number> {
+  if (!actor) return 0;
+  return exec(
+    db,
+    `update study_room_members set left_at = datetime('now')
+      where user_id = ? and left_at is null`,
+    actor
+  );
+}
+
+/** `reward_my_referral()` - chỉ đổi trạng thái lượt giới thiệu của CHÍNH MÌNH.
+ *  `status = 'pending'` chặn việc thưởng hai lần. */
+export async function rewardMyReferral(db: D1Like, actor: string): Promise<number> {
+  if (!actor) return 0;
+  return exec(
+    db,
+    `update referrals set status = 'rewarded', rewarded_at = datetime('now')
+      where referred_id = ? and status = 'pending'`,
+    actor
+  );
+}
+
+/** `record_referral(p_referrer_id)`.
+ *
+ *  Ba điều kiện gác của bản gốc, cả ba đều phải giữ:
+ *   1. `p_referrer_id is null` → thoát êm.
+ *   2. `p_referrer_id = auth.uid()` → không tự giới thiệu chính mình.
+ *   3. người giới thiệu phải tồn tại.
+ *  Cộng `on conflict (referred_id) do nothing`: mỗi người chỉ được giới thiệu
+ *  MỘT lần, và lần đầu thắng.
+ *
+ *  CẢNH BÁO PHỤ THUỘC: `on conflict (referred_id)` cần một ràng buộc UNIQUE
+ *  trên cột ấy. Lược đồ D1 hiện có 0 UNIQUE (xem `0002_indexes.sql` chưa tồn
+ *  tại), nên tới khi index được tạo, lệnh này sẽ CHÈN TRÙNG thay vì bỏ qua. */
+export async function recordReferral(
+  db: D1Like,
+  actor: string,
+  referrerId: string | null
+): Promise<number> {
+  if (!actor || !referrerId || referrerId === actor) return 0;
+  const ton = await one<{ c: number }>(
+    db,
+    `select count(*) as c from user_profiles where id = ?`,
+    referrerId
+  );
+  if (!ton?.c) return 0;
+  return exec(
+    db,
+    `insert into referrals (referrer_id, referred_id, status)
+     values (?, ?, 'pending')
+     on conflict (referred_id) do nothing`,
+    referrerId,
+    actor
+  );
+}
+
+/** `mark_admin_chat_messages_seen(p_user_id)`.
+ *  `auth.uid() is distinct from p_user_id` → NÉM, không im lặng bỏ qua: bản
+ *  gốc `raise exception 'not authorized'`. Giữ nguyên việc ném. */
+export async function markAdminChatMessagesSeen(
+  db: D1Like,
+  actor: string,
+  userId: string
+): Promise<number> {
+  if (!actor || actor !== userId) throw new Error("not authorized");
+  return exec(
+    db,
+    `update chat_messages set read = 1
+      where user_id = ? and sender = 'admin' and coalesce(read, 0) = 0`,
+    userId
+  );
+}
+
+/** Người gọi có đang là thành viên hoạt động của phòng không. Dùng ở ba hàm. */
+async function isActiveRoomMember(db: D1Like, actor: string, roomId: number): Promise<boolean> {
+  const r = await one<{ c: number }>(
+    db,
+    `select count(*) as c from study_room_members
+      where room_id = ? and user_id = ? and left_at is null`,
+    roomId,
+    actor
+  );
+  return (r?.c ?? 0) > 0;
+}
+
+/** `record_study_room_checkin(p_room_id, p_source)`.
+ *  `current_date` → `date('now')` (UTC, giống bản gốc trên Supabase).
+ *  Cùng cảnh báo UNIQUE như `recordReferral`: `on conflict (room_id, user_id,
+ *  day_key)` cần ràng buộc duy nhất mà lược đồ D1 chưa có. */
+export async function recordStudyRoomCheckin(
+  db: D1Like,
+  actor: string,
+  roomId: number,
+  source?: string
+): Promise<boolean> {
+  if (!actor) throw new NotAuthenticatedError();
+  if (!(await isActiveRoomMember(db, actor, roomId))) throw new Error("Not a room member");
+  const src = (source ?? "").trim() || "chat";
+  await exec(
+    db,
+    `insert into study_room_checkins (room_id, user_id, day_key, source)
+     values (?, ?, date('now'), ?)
+     on conflict (room_id, user_id, day_key) do nothing`,
+    roomId,
+    actor,
+    src
+  );
+  return true;
+}
+
+/** `record_study_room_quiz_attempt(p_room_id, p_track, p_score, p_total)`.
+ *
+ *  Kiểm tra đầu vào của bản gốc phải giữ NGUYÊN VẸN - nó chặn điểm bịa:
+ *  `p_total <= 0 or p_total > 50 or p_score < 0 or p_score > p_total`.
+ *
+ *  `round((score::numeric / total::numeric) * 100)::int` - lại là bẫy chia
+ *  nguyên: viết `score / total` trong SQLite ra 0 với mọi điểm dưới tuyệt đối.
+ *  Tính ở TypeScript cho khỏi phải nhớ.
+ *
+ *  Bản gốc gọi `record_study_room_checkin` ở cuối và có `returning *`. Hai lệnh
+ *  ghi nhưng KHÔNG cần nguyên tử: điểm danh trùng thì `do nothing`, nên chạy
+ *  lại vô hại. Đó là lý do hàm này ở nhóm B chứ không phải nhóm C. */
+export async function recordStudyRoomQuizAttempt(
+  db: D1Like,
+  actor: string,
+  roomId: number,
+  track: string,
+  score: number,
+  total: number
+): Promise<Record<string, unknown> | null> {
+  if (!actor) throw new NotAuthenticatedError();
+  if (!(await isActiveRoomMember(db, actor, roomId))) throw new Error("Not a room member");
+  if (total <= 0 || total > 50 || score < 0 || score > total) throw new Error("Invalid score");
+
+  const percent = Math.round((score / total) * 100);
+  await exec(
+    db,
+    `insert into study_room_quiz_attempts (room_id, user_id, track, score, total, percent)
+     values (?, ?, ?, ?, ?, ?)`,
+    roomId,
+    actor,
+    (track ?? "").trim() || "personal",
+    score,
+    total,
+    percent
+  );
+  await recordStudyRoomCheckin(db, actor, roomId, "group_quiz");
+
+  return one(
+    db,
+    `select * from study_room_quiz_attempts
+      where room_id = ? and user_id = ? order by id desc limit 1`,
+    roomId,
+    actor
+  );
+}
+
+// ══════════════════ NHÓM C: nhiều lệnh ghi, cần nguyên tử ══════════════════
+//
+// D1 chỉ có `batch()` - MỘT transaction ngầm, KHÔNG tương tác. Nghĩa là không
+// đọc được kết quả rồi mới quyết định ghi gì trong cùng transaction. Mỗi hàm
+// dưới đây phải viết lại quanh giới hạn đó theo một trong hai cách:
+//
+//   (a) Gộp điều kiện vào chính lệnh ghi rồi kiểm số dòng bị ảnh hưởng.
+//       `update ... where coins >= price` + `changes === 0` là "không đủ tiền".
+//       Cách này AN TOÀN TRƯỚC CHẠY ĐUA mà không cần transaction nào.
+//   (b) Gói nhiều lệnh vào `batch()` khi chúng không phụ thuộc kết quả của nhau.
+//
+// Cách KHÔNG dùng: đọc rồi ghi bằng hai lời gọi rời. Giữa hai lời gọi ấy có
+// một khoảng hở, và trong khoảng ấy hai yêu cầu song song đều thấy "còn đủ
+// tiền" rồi cùng trừ. Đó là lỗ tiêu tiền hai lần.
+
+/** Trần thưởng theo nguồn, chép từ `grant_coins`. Giữ Ở MÁY CHỦ chứ không ở
+ *  client - đây là thứ biến "đặt coin thành một triệu" thành "nhiều nhất 100". */
+const COIN_CAPS: Record<string, number> = {
+  building: 5,
+  wheel: 100,
+  game: 50,
+  challenge: 100,
+};
+
+/** `grant_coins(p_source, p_ref, p_amount)`.
+ *
+ *  Bản gốc dựa vào `unique_violation` trên `coin_grants(user_id, source, ref)`
+ *  để chống cấp trùng, và bắt ngoại lệ ấy để trả `duplicate: true` chứ không
+ *  ném - với giao diện thì thao tác đã thành công từ lần trước.
+ *
+ *  Ở đây dùng `insert ... on conflict do nothing` rồi đọc `changes`: 0 nghĩa là
+ *  đã cấp rồi. Tương đương về ngữ nghĩa và không cần bắt ngoại lệ.
+ *
+ *  CHỖ KHÔNG PORT ĐƯỢC: `set_config('app.coin_write','on',true)`. Trigger
+ *  `guard_coins_on_user_profiles` trên Supabase từ chối mọi lệnh ghi vào cột
+ *  `coins` trừ khi cờ phiên ấy bật. SQLite không có biến phạm vi transaction,
+ *  nên lớp bảo vệ ấy BIẾN MẤT. Thay thế: mọi thay đổi `coins` phải đi qua đúng
+ *  hai hàm trong tệp này (`grantCoins`, `purchaseCosmetic`) và bảng `coin_grants`
+ *  đóng vai sổ cái để đối soát. Xem RPC-MIGRATION-MAP.md, bẫy số 4.
+ */
+export async function grantCoins(
+  db: D1Like,
+  actor: string,
+  source: string,
+  ref: string | null,
+  amount: number
+): Promise<{ granted: number; coins_left: number; duplicate: boolean }> {
+  if (!actor) throw new NotAuthenticatedError();
+  const cap = COIN_CAPS[source];
+  if (cap == null) throw new Error(`Nguồn không hợp lệ: ${source}`);
+
+  const give = Math.min(Math.max(Math.trunc(Number(amount)) || 0, 0), cap);
+  const doc = async () =>
+    (await one<{ coins: number }>(db, `select coins from user_profiles where id = ?`, actor))?.coins ?? 0;
+
+  if (give === 0) return { granted: 0, coins_left: await doc(), duplicate: false };
+
+  const changes = await exec(
+    db,
+    `insert into coin_grants (user_id, source, ref, amount) values (?, ?, ?, ?)
+     on conflict (user_id, source, ref) do nothing`,
+    actor,
+    source,
+    ref,
+    give
+  );
+  if (changes === 0) return { granted: 0, coins_left: await doc(), duplicate: true };
+
+  await exec(
+    db,
+    `update user_profiles set coins = coalesce(coins, 0) + ? where id = ?`,
+    give,
+    actor
+  );
+  return { granted: give, coins_left: await doc(), duplicate: false };
+}
+
+/** `purchase_cosmetic(p_asset_key)`.
+ *
+ *  ĐÂY LÀ HÀM MẪU CHO CÁCH (a). Bản gốc đã viết sẵn theo lối an toàn:
+ *  `update ... where coins >= v_price`, rồi nếu không có dòng nào bị đổi thì
+ *  báo không đủ tiền. Điều kiện nằm TRONG lệnh ghi nên hai yêu cầu song song
+ *  không thể cùng trừ tiền.
+ *
+ *  Ba lần kiểm tra trước đó (món có tồn tại, có bán, chưa sở hữu) chỉ là để
+ *  báo lỗi cho đúng - chúng KHÔNG phải lớp bảo vệ chạy đua. Lớp bảo vệ thật là
+ *  `where coins >= ?` và ràng buộc duy nhất `(user_id, asset_id)`.
+ */
+export async function purchaseCosmetic(
+  db: D1Like,
+  actor: string,
+  assetKey: string
+): Promise<{ asset_key: string; coins_left: number }> {
+  if (!actor) throw new NotAuthenticatedError();
+
+  const asset = await one<{ id: string; price: number }>(
+    db,
+    `select id, price from gamification_assets where asset_key = ?`,
+    assetKey
+  );
+  if (!asset) throw new Error(`Không có món nào tên ${assetKey}`);
+  if (asset.price == null) throw new Error("Món này không bán");
+
+  const daCo = await one<{ c: number }>(
+    db,
+    `select count(*) as c from user_inventories where user_id = ? and asset_id = ?`,
+    actor,
+    asset.id
+  );
+  if (daCo?.c) throw new Error("Bạn đã sở hữu món này");
+
+  // Trừ tiền CÓ ĐIỀU KIỆN. changes === 0 ⇒ không đủ tiền, và không có khoảng
+  // hở nào giữa lúc kiểm và lúc trừ.
+  const tru = await exec(
+    db,
+    `update user_profiles set coins = coins - ? where id = ? and coins >= ?`,
+    asset.price,
+    actor,
+    asset.price
+  );
+  if (tru === 0) throw new Error("Không đủ xu");
+
+  await exec(
+    db,
+    `insert into user_inventories (user_id, asset_id) values (?, ?)
+     on conflict (user_id, asset_id) do nothing`,
+    actor,
+    asset.id
+  );
+
+  const con = await one<{ coins: number }>(db, `select coins from user_profiles where id = ?`, actor);
+  return { asset_key: assetKey, coins_left: con?.coins ?? 0 };
+}
+
+/** `toggle_chat_message_reaction(p_message_id, p_emoji)`.
+ *
+ *  Bản gốc đọc `exists(...)` rồi mới chọn `delete` hay `insert`. Đó là khoảng
+ *  hở kinh điển: hai lần bấm gần nhau đều thấy "chưa có" rồi cùng chèn.
+ *
+ *  Viết lại theo cách (a) - KHÔNG đọc trước:
+ *    1. `delete ... where <đúng bộ ba>` và xem `changes`.
+ *    2. `changes === 0` nghĩa là chưa có → chèn.
+ *  Một lệnh quyết định, không có trạng thái trung gian nào để hai luồng cùng
+ *  nhìn thấy. Kết quả cuối giống hệt bản gốc.
+ *
+ *  Ba lần gác trước đó phải giữ: chưa đăng nhập → ném; tin không tồn tại → ném;
+ *  không phải chủ hộp thoại → ném. Cái thứ ba là phân quyền thật.
+ */
+export async function toggleChatMessageReaction(
+  db: D1Like,
+  actor: string,
+  messageId: number,
+  emoji: string
+): Promise<{ message_id: number; emoji: string; user_ids: string[] }[]> {
+  if (!actor) throw new NotAuthenticatedError();
+  const msg = await one<{ user_id: string }>(
+    db,
+    `select user_id from chat_messages where id = ?`,
+    messageId
+  );
+  if (!msg) throw new Error("Message not found");
+  if (msg.user_id !== actor) throw new Error("Not authorized");
+
+  const daXoa = await exec(
+    db,
+    `delete from chat_message_reactions where message_id = ? and user_id = ? and emoji = ?`,
+    messageId,
+    actor,
+    emoji
+  );
+  if (daXoa === 0) {
+    await exec(
+      db,
+      `insert into chat_message_reactions (message_id, user_id, emoji) values (?, ?, ?)
+       on conflict (message_id, user_id, emoji) do nothing`,
+      messageId,
+      actor,
+      emoji
+    );
+  }
+  return getChatMessageReactions(db, actor, msg.user_id);
+}
+
+/** `toggle_study_room_message_reaction(p_message_id, p_emoji)` - cùng khuôn mẫu,
+ *  khác ở chỗ gác: phải là thành viên ĐANG hoạt động của phòng chứa tin nhắn. */
+export async function toggleStudyRoomMessageReaction(
+  db: D1Like,
+  actor: string,
+  messageId: number,
+  emoji: string
+): Promise<{ message_id: number; emoji: string; user_ids: string[] }[]> {
+  if (!actor) throw new NotAuthenticatedError();
+  const msg = await one<{ room_id: number }>(
+    db,
+    `select room_id from study_room_messages where id = ?`,
+    messageId
+  );
+  if (!msg) throw new Error("Message not found");
+  if (!(await isActiveRoomMember(db, actor, msg.room_id))) throw new Error("Not a room member");
+
+  const daXoa = await exec(
+    db,
+    `delete from study_room_message_reactions where message_id = ? and user_id = ? and emoji = ?`,
+    messageId,
+    actor,
+    emoji
+  );
+  if (daXoa === 0) {
+    await exec(
+      db,
+      `insert into study_room_message_reactions (message_id, user_id, emoji) values (?, ?, ?)
+       on conflict (message_id, user_id, emoji) do nothing`,
+      messageId,
+      actor,
+      emoji
+    );
+  }
+  return getStudyRoomReactions(db, actor, msg.room_id);
+}
+
+/** `record_quiz_mistake(p_lesson_id, p_question_index, p_correct, p_question_hash)`.
+ *
+ *  Không có khoảng hở nào cần vá: cả hai nhánh là MỘT lệnh.
+ *  - Đúng → `update ... set resolved = 1`.
+ *  - Sai  → `insert ... on conflict do update set wrong_count = wrong_count + 1`.
+ *
+ *  `coalesce(excluded.question_hash, quiz_mistakes.question_hash)` giữ nguyên
+ *  chiều: lần trả lời mới nhất mới khớp nội dung câu hỏi hiện tại. Đảo chiều
+ *  thì một hàng cũ mãi mãi mang dấu vân tay của phiên bản đã bị thay.
+ */
+export async function recordQuizMistake(
+  db: D1Like,
+  actor: string,
+  lessonId: number,
+  questionIndex: number,
+  correct: boolean,
+  questionHash?: string | null
+): Promise<void> {
+  if (!actor) throw new NotAuthenticatedError();
+  if (correct) {
+    await exec(
+      db,
+      `update quiz_mistakes set resolved = 1, last_attempt_at = datetime('now')
+        where user_id = ? and lesson_id = ? and question_index = ?`,
+      actor,
+      lessonId,
+      questionIndex
+    );
+    return;
+  }
+  await exec(
+    db,
+    `insert into quiz_mistakes
+       (user_id, lesson_id, question_index, wrong_count, resolved,
+        first_wrong_at, last_attempt_at, question_hash)
+     values (?, ?, ?, 1, 0, datetime('now'), datetime('now'), ?)
+     on conflict (user_id, lesson_id, question_index) do update set
+       wrong_count = quiz_mistakes.wrong_count + 1,
+       resolved = 0,
+       last_attempt_at = datetime('now'),
+       question_hash = coalesce(excluded.question_hash, quiz_mistakes.question_hash)`,
+    actor,
+    lessonId,
+    questionIndex,
+    questionHash ?? null
+  );
+}
+
+/** `join_study_room(p_room_id)`.
+ *
+ *  Bản gốc đếm thành viên rồi mới chèn - khoảng hở cho hai người cùng vào
+ *  phòng cuối cùng còn một chỗ. Ở đây gộp điều kiện vào chính lệnh chèn:
+ *  `insert ... select ... where (đếm) < max_members`. Nếu phòng vừa đầy thì
+ *  `changes === 0` và ta ném đúng lỗi cũ.
+ *
+ *  Thứ tự hai lệnh ghi giữ nguyên: rời phòng cũ TRƯỚC rồi mới vào phòng mới.
+ *  Đảo lại thì có khoảnh khắc người dùng ở hai phòng cùng lúc, và
+ *  `study_room_members_one_active_idx` sẽ chặn lệnh thứ hai. */
+export async function joinStudyRoom(db: D1Like, actor: string, roomId: number): Promise<void> {
+  if (!actor) throw new NotAuthenticatedError();
+  const room = await one<{ max_members: number }>(
+    db,
+    `select max_members from study_rooms where id = ?`,
+    roomId
+  );
+  if (!room) throw new Error("Room not found");
+
+  await exec(
+    db,
+    `update study_room_members set left_at = datetime('now')
+      where user_id = ? and left_at is null`,
+    actor
+  );
+
+  const vao = await exec(
+    db,
+    `insert into study_room_members (room_id, user_id)
+     select ?1, ?2
+      where (select count(*) from study_room_members
+              where room_id = ?1 and left_at is null) < ?3`,
+    roomId,
+    actor,
+    room.max_members
+  );
+  if (vao === 0) throw new Error("Room is full");
+}
+
+/** `join_or_create_study_room(p_topic)`.
+ *
+ *  Ba lệnh ghi và một lần đọc ở giữa quyết định có tạo phòng mới hay không -
+ *  đúng hình dạng mà `batch()` KHÔNG giải quyết được. Chấp nhận một chạy đua
+ *  lành tính: hai người cùng lúc thấy "không còn phòng trống" thì tạo hai
+ *  phòng thay vì một. Bản gốc trên Postgres cũng vậy (không có khoá nào ở đây),
+ *  nên đây là hành vi giữ nguyên chứ không phải hồi quy.
+ *
+ *  Cái KHÔNG được lỏng: bước chèn thành viên vẫn phải kiểm sức chứa, nếu không
+ *  hai người có thể cùng lấy chỗ cuối của một phòng đã có sẵn. */
+export async function joinOrCreateStudyRoom(
+  db: D1Like,
+  actor: string,
+  topic: string
+): Promise<number> {
+  if (!actor) throw new NotAuthenticatedError();
+  if (!["personal", "professional", "cfa"].includes(topic)) throw new Error("Invalid topic");
+
+  await exec(
+    db,
+    `update study_room_members set left_at = datetime('now')
+      where user_id = ? and left_at is null`,
+    actor
+  );
+
+  for (let thu = 0; thu < 3; thu++) {
+    const con = await one<{ id: number; max_members: number }>(
+      db,
+      `select r.id, r.max_members from study_rooms r
+        where r.topic = ?
+          and (select count(*) from study_room_members m
+                where m.room_id = r.id and m.left_at is null) < r.max_members
+        order by r.created_at asc limit 1`,
+      topic
+    );
+
+    if (con) {
+      const vao = await exec(
+        db,
+        `insert into study_room_members (room_id, user_id)
+         select ?1, ?2
+          where (select count(*) from study_room_members
+                  where room_id = ?1 and left_at is null) < ?3`,
+        con.id,
+        actor,
+        con.max_members
+      );
+      // Phòng vừa đầy do người khác vào trước: thử phòng kế tiếp thay vì ném.
+      if (vao > 0) return con.id;
+      continue;
+    }
+
+    await exec(db, `insert into study_rooms (topic) values (?)`, topic);
+    const moi = await one<{ id: number }>(
+      db,
+      `select id from study_rooms where topic = ? order by id desc limit 1`,
+      topic
+    );
+    if (!moi) throw new Error("Không tạo được phòng");
+    await exec(
+      db,
+      `insert into study_room_members (room_id, user_id) values (?, ?)`,
+      moi.id,
+      actor
+    );
+    return moi.id;
+  }
+  throw new Error("Room is full");
+}
+
+/** `apply_world_boss_damage(p_boss_id, p_score)`.
+ *
+ *  Sát thương do MÁY CHỦ tính: điểm bị kẹp trong [0,15] rồi mới nhân 6000, nên
+ *  một client sửa điểm thành 9999 cũng chỉ gây sát thương của trận hoàn hảo.
+ *  Giữ nguyên phép kẹp - đây là lớp chống gian lận, không phải kiểm hình thức.
+ *
+ *  `update ... where is_active` rồi kiểm `changes`: không có boss nào đang hoạt
+ *  động thì `changes === 0` và ta ném, đúng như bản gốc kiểm `boss_id is null`. */
+export async function applyWorldBossDamage(
+  db: D1Like,
+  actor: string,
+  bossId: string,
+  score: number
+): Promise<{ boss_id: string; current_hp: number; max_hp: number; damage_applied: number }> {
+  if (!actor) throw new NotAuthenticatedError();
+  const diem = Math.min(Math.max(Math.trunc(Number(score)) || 0, 0), 15);
+  const damage = diem * 6000;
+  if (damage <= 0) throw new Error("Không có sát thương nào để ghi");
+
+  const danh = await exec(
+    db,
+    `update world_bosses set current_hp = max(0, current_hp - ?)
+      where id = ? and is_active = 1`,
+    damage,
+    bossId
+  );
+  if (danh === 0) throw new Error("Không tìm thấy world boss đang hoạt động");
+
+  await exec(
+    db,
+    `insert into world_boss_damage_logs (boss_id, user_id, damage_dealt, score)
+     values (?, ?, ?, ?)`,
+    bossId,
+    actor,
+    damage,
+    diem
+  );
+
+  const b = await one<{ current_hp: number; max_hp: number }>(
+    db,
+    `select current_hp, max_hp from world_bosses where id = ?`,
+    bossId
+  );
+  return {
+    boss_id: bossId,
+    current_hp: b?.current_hp ?? 0,
+    max_hp: b?.max_hp ?? 0,
+    damage_applied: damage,
+  };
 }

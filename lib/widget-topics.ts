@@ -25,8 +25,8 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   // Widget này vẽ một đường cong theo thời gian. Danh sách từ khoá ban đầu chỉ
   // có từ vựng lãi kép vì kho bài khi đó thuần tài chính; đường cong giữ chân
   // theo nhóm người dùng dùng đúng widget ấy nên các từ sản phẩm được thêm vào.
-  chart: ["lãi kép", "lãi đơn", "compound", "kép", "tăng trưởng", "dài hạn", "giữ chân", "nhóm theo thời điểm", "cohort", "đường cong"],
-  "profit-calc": ["lợi nhuận", "dòng tiền", "tiền mặt", "doanh thu", "chi phí", "ebitda", "biên", "expense", "net income", "free cash flow", "lỗ", "tồn kho", "cổ tức", "oci", "affiliate"],
+  chart: ["tăng trưởng", "nhân bội", "tuyến tính", "ngoại suy", "gấp đôi", "tích luỹ", "dài hạn", "dung lượng", "tải"],
+  "profit-calc": ["dư địa", "công suất", "chỗ trống", "giờ cao điểm", "cấp phát", "chi phí cố định", "chi phí biến đổi", "hoà vốn", "đơn vị kinh tế"],
   "interest-rate": ["lãi suất", "interest", "chiết khấu", "npv", "wacc", "capm", "hiện tại", "annuity", "perpetuity", "dcf", "chi phí vốn", "terminal value"],
   risk: ["rủi ro", "risk", "lợi nhuận kỳ vọng", "biến động", "danh mục"],
   multiples: ["dung lượng", "capacity", "ước lượng", "hệ số so sánh", "số máy", "mở rộng", "tải cao điểm"],

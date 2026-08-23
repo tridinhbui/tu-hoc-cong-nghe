@@ -65615,362 +65615,368 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1202,
-    "slug": "xay-dung-ngan-sach-doanh-nghiep",
-    "title": "CFO & Vận hành, Bài 1: Xây dựng ngân sách doanh nghiệp (Budgeting)",
-    "subtitle": "Top-down, bottom-up, hay kết hợp - mỗi cách tiếp cận có đánh đổi riêng",
-    "duration": "7 phút",
+    "title": "Kỹ sư trưởng & Vận hành, Bài 1: Lập ngân sách hạ tầng",
+    "subtitle": "Dự trù chi phí cho năm tới khi bạn không biết sản phẩm sẽ trông thế nào",
+    "duration": "9 phút",
     "difficulty": "Trung bình",
-    "emoji": "📋",
-    "track": "professional",
-    "openingQuestion": "Ngân sách 'bottom-up' (từng bộ phận tự đề xuất rồi tổng hợp) và 'top-down' (ban lãnh đạo đặt mục tiêu tổng rồi phân bổ xuống) khác nhau ở đâu, và rủi ro lớn nhất của mỗi cách là gì?",
+    "emoji": "🧾",
+    "whyItMatters": "Một bản ngân sách hạ tầng lập kém không chỉ sai số. Nó ấn định trước những quyết định kỹ thuật của cả năm, vì mọi thứ vượt khung đều phải xin thêm và phần lớn thì không xin.",
+    "openingQuestion": "Lập ngân sách hạ tầng năm tới. Bắt đầu từ đâu?",
     "openingOptions": [
-      "Không có sự khác biệt thực sự giữa hai phương pháp",
-      "Bottom-up sát thực tế nhưng dễ sandbagging; top-down thì lại dễ phi thực tế",
-      "Top-down luôn chính xác hơn bottom-up trong mọi trường hợp",
-      "Bottom-up chỉ phù hợp với công ty nhỏ, không áp dụng được cho tập đoàn lớn"
+      "Từ chi phí hiện tại tách theo nhóm và theo đơn vị việc",
+      "Từ con số năm ngoái cộng thêm mức tăng trưởng dự kiến của sản phẩm trong năm tới",
+      "Từ kế hoạch sản phẩm, vì tính năng mới là thứ quyết định phần lớn chi phí phát sinh",
+      "Từ mức trần mà ban lãnh đạo đưa xuống, rồi phân bổ ngược lại cho từng hạng mục"
     ],
-    "correctOption": 1,
-    "explanation": "Bottom-up (các bộ phận tự đề xuất ngân sách rồi tổng hợp lên) tận dụng kiến thức chi tiết của người trực tiếp vận hành, nhưng có rủi ro 'sandbagging' - các bộ phận cố tình đặt mục tiêu thấp/chi phí cao để dễ đạt và có dư địa. Top-down (ban lãnh đạo đặt mục tiêu tổng rồi phân bổ) đảm bảo nhất quán với chiến lược công ty nhưng có thể thiếu thực tế nếu không hiểu rõ ràng buộc vận hành cụ thể của từng bộ phận. Nhiều doanh nghiệp dùng cách kết hợp: top-down đặt khung, bottom-up điền chi tiết.",
+    "correctOption": 0,
+    "explanation": "Ba cách kia đều bắt đầu từ một con số tổng và chia xuống, nên khi thực tế lệch thì không ai truy được lệch ở đâu. Bắt đầu từ chi phí hiện tại đã tách nhóm và chia cho đơn vị việc thì mỗi dòng ngân sách gắn với một đại lượng đo được, và sai lệch trong năm chỉ ra được nguyên nhân thay vì chỉ ra một con số.",
     "diagram": [
       {
-        "label": "Top-down: mục tiêu tổng → phân bổ xuống",
-        "arrow": false
+        "label": "Chi phí hiện tại, tách theo nhóm",
+        "arrow": true
       },
       {
-        "label": "Bottom-up: đề xuất từng bộ phận → tổng hợp lên",
-        "arrow": false
+        "label": "Chia cho đơn vị việc",
+        "arrow": true
       },
       {
-        "label": "Kết hợp: khung tổng thể + chi tiết từ dưới lên"
+        "label": "Nhân với lượng việc dự kiến",
+        "arrow": true
+      },
+      {
+        "label": "Cộng riêng các khoản một lần"
       }
     ],
     "realWorldExample": {
-      "company": "Quy trình lập ngân sách hàng năm tại tập đoàn lớn",
-      "description": "Nhiều tập đoàn dùng mô hình kết hợp: ban lãnh đạo công bố mục tiêu tăng trưởng doanh thu/lợi nhuận tổng thể (top-down), sau đó từng bộ phận xây dựng kế hoạch chi tiết để đạt phần đóng góp của mình vào mục tiêu đó (bottom-up), rồi FP&A tổng hợp và điều chỉnh qua nhiều vòng đàm phán trước khi chốt ngân sách cuối cùng."
-    },
-    "quiz": [
-      {
-        "question": "Vì sao 'sandbagging' (đặt mục tiêu thấp để dễ đạt) là một vấn đề nghiêm trọng đối với chất lượng ngân sách doanh nghiệp?",
-        "options": [
-          "Vì sandbagging luôn vi phạm pháp luật, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Nếu các bộ phận đặt mục tiêu doanh thu thấp hoặc ngân sách chi phí cao hơn cần thiết, ngân sách tổng hợp sẽ không phản ánh đúng tiềm năng thực sự của doanh nghiệp, dẫn đến các quyết định phân bổ vốn dựa trên thông tin sai lệch, và người quản lý dễ 'đạt vượt kế hoạch' mà không thực sự xuất sắc",
-          "Vì sandbagging làm tăng chi phí kiểm toán, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Sandbagging không ảnh hưởng gì đến chất lượng ra quyết định của doanh nghiệp, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Sandbagging làm méo mó toàn bộ hệ thống thông tin dùng để ra quyết định - ban lãnh đạo có thể phân bổ vốn sai chỗ, đặt kỳ vọng cổ đông sai lệch, hoặc đánh giá hiệu suất quản lý không chính xác (khen thưởng người 'vượt kế hoạch thấp' thay vì người thực sự xuất sắc)."
-      },
-      {
-        "question": "Zero-based budgeting (ngân sách từ số 0, mỗi khoản chi phải được biện minh lại từ đầu mỗi kỳ) khác gì so với cách lập ngân sách truyền thống (dựa trên ngân sách kỳ trước cộng/trừ điều chỉnh)?",
-        "options": [
-          "Không có sự khác biệt thực chất giữa hai cách tiếp cận",
-          "Ngân sách truyền thống có xu hướng duy trì các khoản chi không còn hiệu quả chỉ vì 'năm trước cũng chi như vậy'; zero-based budgeting buộc mọi khoản chi phải được biện minh lại từ đầu, giúp phát hiện và loại bỏ chi phí không còn cần thiết, dù tốn nhiều thời gian và công sức hơn để thực hiện",
-          "Zero-based budgeting luôn tốn ít thời gian hơn ngân sách truyền thống",
-          "Zero-based budgeting chỉ áp dụng được cho công ty mới thành lập"
-        ],
-        "correct": 1,
-        "explanation": "Ngân sách truyền thống (incremental budgeting) dễ dẫn đến 'quán tính ngân sách' - các khoản chi được duy trì năm này qua năm khác chỉ vì đã tồn tại từ trước, không còn được đánh giá lại về hiệu quả. Zero-based budgeting khắc phục điều này bằng cách yêu cầu biện minh lại từ đầu, nhưng đòi hỏi nhiều thời gian và nguồn lực phân tích hơn."
-      },
-      {
-        "question": "Vì sao việc bộ phận cố ý đặt mục tiêu thấp lại gây hại vượt ra ngoài chính bộ phận đó?",
-        "options": [
-          "Vì ngân sách là cơ sở phân bổ vốn và nhân sự cho cả doanh nghiệp, nên số liệu méo làm mọi quyết định phía sau lệch theo",
-          "Vì nó làm giảm doanh thu ghi nhận trên báo cáo tài chính",
-          "Vì cơ quan thuế sẽ truy thu",
-          "Vì kiểm toán sẽ đưa ra ý kiến ngoại trừ"
-        ],
-        "correct": 0,
-        "explanation": "Ngân sách không chỉ là mục tiêu mà còn là đầu vào cho việc phân bổ nguồn lực. Một con số thấp giả tạo có thể khiến doanh nghiệp đầu tư thiếu vào đúng nơi đang có cơ hội."
-      },
-      {
-        "question": "Ưu điểm chính của ngân sách từ số không so với cách lập dựa trên kỳ trước là gì?",
-        "options": [
-          "Buộc mọi khoản chi phải biện minh lại, nên cắt được chi phí đang duy trì chỉ vì quán tính",
-          "Tốn ít thời gian hơn",
-          "Luôn cho ra ngân sách nhỏ hơn",
-          "Không cần sự tham gia của các bộ phận"
-        ],
-        "correct": 0,
-        "explanation": "Cách lập dựa trên kỳ trước mặc định mọi khoản chi cũ vẫn hợp lý và chỉ điều chỉnh tỷ lệ. Cách từ số không phá bỏ giả định đó, đổi lại tốn công hơn nhiều nên thường áp dụng luân phiên."
-      }
-    ],
-    "keyTakeaways": [
-      "Bottom-up sát thực tế nhưng dễ bị sandbagging; top-down nhất quán chiến lược nhưng có thể thiếu thực tế vận hành",
-      "Nhiều doanh nghiệp dùng cách kết hợp: khung tổng thể top-down + chi tiết bottom-up",
-      "Zero-based budgeting giúp loại bỏ chi phí không còn hiệu quả nhưng tốn nhiều thời gian hơn ngân sách truyền thống"
-    ],
-    "practicePrompt": {
-      "question": "Trưởng phòng kinh doanh cố tình đưa ra dự báo doanh thu thấp hơn khả năng thực tế của mình khi lập ngân sách năm sau, để dễ dàng 'vượt chỉ tiêu' và nhận thưởng. Hành vi này (sandbagging) gây ra hậu quả gì cho toàn công ty?",
-      "options": [
-        "Không gây hậu quả gì đáng kể vì đây chỉ là chiến thuật cá nhân để đạt KPI tốt hơn",
-        "Sandbagging làm méo mó thông tin dùng để ra quyết định phân bổ vốn trong doanh nghiệp",
-        "Hành vi này thực chất có lợi cho công ty vì tạo động lực làm việc tốt hơn cho nhân viên",
-        "Sandbagging chỉ ảnh hưởng đến tiền thưởng cá nhân, không liên quan gì đến quyết định của ban lãnh đạo"
-      ],
-      "correct": 1,
-      "explanation": "Sandbagging làm méo mó thông tin dùng để ra quyết định phân bổ vốn trong doanh nghiệp. Khi số liệu ngân sách không phản ánh đúng tiềm năng thực tế, các quyết định chiến lược dựa trên đó (đầu tư, tuyển dụng, mở rộng) đều có thể bị sai lệch theo."
-    },
-    "application": {
-      "title": "Khung từ trên, chi tiết từ dưới",
-      "message": "Chốt mục tiêu tổng và các ràng buộc chiến lược ở cấp lãnh đạo trước, rồi để các bộ phận lập chi tiết trong khung đó. Đưa yêu cầu ngược lên khi khung không khả thi, thay vì để mỗi bên lập một bản rồi thương lượng cắt đều.",
-      "secondary": "Dấu hiệu sandbagging dễ thấy nhất là một bộ phận vượt kế hoạch đúng vài phần trăm năm nào cũng vậy. Đối chiếu kế hoạch với thực tế của ba năm trước khi duyệt.",
+      "company": "Ngân sách đúng tổng, sai mọi dòng",
+      "description": "Một đội lập ngân sách bằng cách lấy số năm ngoái cộng ba mươi phần trăm. Cuối năm tổng chi lệch chưa tới năm phần trăm so với dự trù, và ban lãnh đạo coi đó là một bản ngân sách tốt. Bên trong thì phần tính toán thấp hơn dự trù bốn mươi phần trăm còn phần lưu trữ vượt gấp đôi - hai sai số lớn triệt tiêu nhau, và không ai học được gì cho năm sau."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Ngân sách doanh nghiệp có thể được xây từ trên xuống hay từ dưới lên - mỗi cách đều có điểm mạnh và rủi ro riêng."
+        "text": "Ngân sách hạ tầng khác ngân sách thông thường ở một điểm: phần lớn chi phí không do ai quyết trực tiếp mà do lượng dùng quyết định. Điều đó khiến việc dự trù phải bắt đầu từ đại lượng, không từ số tiền."
       },
       {
         "type": "heading",
-        "text": "Top-down, bottom-up, và cái bẫy sandbagging"
-      },
-      {
-        "type": "paragraph",
-        "text": "Bottom-up (các bộ phận tự đề xuất) sát thực tế vận hành nhưng dễ bị sandbagging - đặt mục tiêu thấp để dễ đạt. Top-down (ban lãnh đạo đặt mục tiêu rồi phân bổ) nhất quán với chiến lược nhưng có thể thiếu thực tế nếu không hiểu chi tiết vận hành. Zero-based budgeting buộc mọi khoản chi phải biện minh lại từ đầu mỗi kỳ, giúp loại bỏ chi phí không còn hiệu quả mà ngân sách truyền thống (dựa trên kỳ trước) thường duy trì theo quán tính."
+        "text": "Ba loại dòng trong một bản ngân sách hạ tầng"
       },
       {
         "type": "list",
         "items": [
-          "Bottom-up sát thực tế nhưng dễ sandbagging; top-down nhất quán chiến lược nhưng có thể thiếu thực tế",
-          "Sandbagging làm méo mó thông tin dùng để ra quyết định phân bổ vốn",
-          "Zero-based budgeting giúp loại bỏ chi phí không còn hiệu quả nhưng tốn nhiều thời gian hơn"
+          "Theo lượng dùng: tính toán, truyền dữ liệu, lời gọi dịch vụ ngoài. Dự trù bằng đơn giá nhân lượng",
+          "Tích luỹ: lưu trữ và sao lưu. Không bao giờ tự giảm, nên dự trù phải cộng dồn chứ không lặp lại",
+          "Một lần: di trú, mua thiết bị, chi phí dựng môi trường mới. Tách riêng vì chúng không lặp lại"
         ]
-      },
-      {
-        "type": "conceptTable",
-        "title": "Bốn cách lập ngân sách và đánh đổi",
-        "concepts": [
-          {
-            "vi": "Từ dưới lên",
-            "en": "Bottom-up",
-            "def": "Bộ phận tự đề xuất rồi tổng hợp lên. Sát thực tế vận hành và tạo cam kết, nhưng dễ bị đặt mục tiêu thấp để dễ đạt thưởng."
-          },
-          {
-            "vi": "Từ trên xuống",
-            "en": "Top-down",
-            "def": "Ban lãnh đạo đặt mục tiêu rồi phân bổ xuống. Nhất quán với chiến lược, nhưng nếu xa rời thực tế vận hành thì bộ phận sẽ không tin vào con số ngay từ đầu."
-          },
-          {
-            "vi": "Ngân sách từ số không",
-            "en": "Zero-based",
-            "def": "Mọi khoản chi phải biện minh lại từ đầu mỗi kỳ. Cắt được chi phí duy trì theo quán tính, nhưng rất tốn thời gian nên thường chỉ áp dụng luân phiên cho từng nhóm chi phí."
-          },
-          {
-            "vi": "Kết hợp",
-            "en": "Hybrid",
-            "def": "Khung mục tiêu và giới hạn nguồn lực do trên đưa xuống, chi tiết phân bổ do bộ phận đề xuất lên. Cách phổ biến nhất trong thực tế."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao đặt mục tiêu thấp lại nguy hiểm hơn vẻ ngoài"
       },
       {
         "type": "paragraph",
-        "text": "Khi thưởng gắn với việc đạt kế hoạch, bộ phận có động cơ đề xuất mục tiêu dễ đạt. Hậu quả không dừng ở chỗ mục tiêu thấp: ngân sách là cơ sở để phân bổ vốn và nhân sự cho cả doanh nghiệp. Nếu một bộ phận báo cầu thấp hơn thực tế để an toàn, doanh nghiệp có thể phân bổ thiếu nguồn lực cho đúng chỗ đang tăng trưởng, đồng thời rót thừa cho nơi báo cáo lạc quan hơn. Số liệu bị bóp méo ở đầu vào thì mọi quyết định phía sau đều lệch theo."
+        "text": "Nhóm thứ hai là nhóm hay bị lập sai nhất, vì cách lập tự nhiên là lấy chi phí lưu trữ tháng này nhân mười hai. Cách ấy giả định lượng dữ liệu đứng yên, trong khi nó tăng mỗi tháng và không tháng nào giảm - trừ khi có chính sách xoá, và câu hỏi liệu có chính sách xoá không nên nằm ngay trong bản ngân sách."
+      },
+      {
+        "type": "heading",
+        "text": "Dự trù bằng khoảng, không bằng một con số"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một con số duy nhất buộc người lập phải chọn giữa việc bị hụt và việc xin thừa, và cả hai đều tạo ra hành vi xấu. Ba kịch bản - thấp, giữa, cao - kèm điều kiện kích hoạt từng cái thì trung thực hơn và cũng dễ duyệt hơn, vì người duyệt thấy được mình đang chấp nhận rủi ro gì thay vì chỉ thấy một con số phải tin."
       },
       {
         "type": "callout",
-        "label": "Cách giảm động cơ bóp méo",
-        "text": "Tách thưởng khỏi việc đạt đúng con số kế hoạch tự đề xuất, chuyển sang so với mặt bằng thị trường hoặc với cùng kỳ và với các đơn vị tương đương. Khi bộ phận không còn lợi ích từ việc đặt mục tiêu thấp, ngân sách quay lại đúng vai trò của nó: công cụ lập kế hoạch chứ không phải bàn thương lượng."
-      },
-      {
-        "type": "heading",
-        "text": "Ba đầu ra của một chu trình ngân sách tốt"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kế hoạch kết quả kinh doanh theo tháng hoặc quý, gắn với giả định rõ ràng về sản lượng và giá.",
-          "Kế hoạch dòng tiền - phần hay bị bỏ quên nhất, dù đây mới là thứ quyết định doanh nghiệp có trụ được hay không.",
-          "Danh sách giả định then chốt kèm ngưỡng cảnh báo: nếu giả định nào lệch quá mức nào thì phải xem lại kế hoạch."
-        ]
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Không có phương pháp lập ngân sách nào hoàn hảo.",
-          "Nhiều doanh nghiệp dùng cách kết hợp: khung tổng thể top-down, chi tiết bottom-up."
-        ]
-      }
-    ],
-    "summary": {
-      "keyIdea": "Bottom-up sát thực tế nhưng dễ bị sandbagging; top-down nhất quán chiến lược nhưng có thể thiếu thực tế vận hành",
-      "commonMistake": "Dễ bỏ qua: nhiều doanh nghiệp dùng cách kết hợp: khung tổng thể top-down + chi tiết bottom-up",
-      "action": "Zero-based budgeting giúp loại bỏ chi phí không còn hiệu quả nhưng tốn nhiều thời gian hơn ngân sách truyền thống"
-    }
-  },
-  {
-    "id": 1203,
-    "slug": "du-bao-tai-chinh-rolling-forecast",
-    "title": "CFO & Vận hành, Bài 2: Dự báo tài chính (Forecasting) - Rolling Forecast",
-    "subtitle": "Vì sao nhiều doanh nghiệp hiện đại bỏ ngân sách cố định 1 năm",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🔮",
-    "track": "professional",
-    "openingQuestion": "Rolling forecast (dự báo cuốn chiếu, cập nhật liên tục 12-18 tháng tới) khác gì so với ngân sách cố định lập một lần vào đầu năm?",
-    "openingOptions": [
-      "Không có khác biệt gì, chỉ là tên gọi khác nhau",
-      "Ngân sách cố định giữ nguyên cả năm; rolling forecast cập nhật đều",
-      "Rolling forecast chỉ dùng cho các công ty nhỏ dưới 50 nhân viên",
-      "Ngân sách cố định luôn chính xác hơn rolling forecast"
-    ],
-    "correctOption": 1,
-    "explanation": "Ngân sách truyền thống được lập một lần vào đầu năm dựa trên giả định tại thời điểm đó, và thường giữ nguyên suốt cả năm dù điều kiện thị trường thay đổi. Rolling forecast được cập nhật định kỳ (thường mỗi quý), luôn nhìn về phía trước một khoảng thời gian cố định (ví dụ luôn dự báo 12 tháng tới, không phải 'đến hết năm dương lịch') - giúp doanh nghiệp phản ứng nhanh hơn với thay đổi thực tế thay vì bám vào giả định đã lỗi thời từ đầu năm.",
-    "diagram": [
-      {
-        "label": "Ngân sách cố định: lập 1 lần đầu năm, giữ nguyên cả năm",
-        "arrow": false
-      },
-      {
-        "label": "Rolling forecast: cập nhật định kỳ, luôn nhìn xa 12-18 tháng tới",
-        "arrow": false
-      }
-    ],
-    "realWorldExample": {
-      "company": "Doanh nghiệp hoạt động trong ngành biến động nhanh",
-      "description": "Các công ty công nghệ, bán lẻ, hay ngành chịu ảnh hưởng mạnh bởi biến động thị trường thường ưu tiên rolling forecast hơn ngân sách cố định, vì điều kiện kinh doanh có thể thay đổi đáng kể chỉ sau vài tháng - một ngân sách lập từ tháng 1 có thể hoàn toàn lỗi thời vào tháng 6 nếu không được cập nhật."
-    },
-    "quiz": [
-      {
-        "question": "Vì sao rolling forecast đặc biệt hữu ích cho các doanh nghiệp trong ngành có tốc độ thay đổi nhanh (công nghệ, thời trang nhanh) hơn là ngành ổn định (tiện ích công cộng)?",
-        "options": [
-          "Vì ngành thay đổi nhanh không cần lập kế hoạch tài chính nào cả, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Ngành thay đổi nhanh có nhiều yếu tố bất định xuất hiện liên tục trong năm (xu hướng mới, đối thủ cạnh tranh, thay đổi công nghệ) - ngân sách cố định lập từ đầu năm nhanh chóng mất tính liên quan, trong khi rolling forecast liên tục cập nhật giúp doanh nghiệp phản ứng kịp thời với thông tin mới",
-          "Vì ngành ổn định luôn có ngân sách sai lệch nhiều hơn, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Không có sự khác biệt về lợi ích giữa hai loại ngành, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Trong ngành thay đổi nhanh, giả định đưa ra vào tháng 1 (về xu hướng thị trường, hành vi khách hàng, đối thủ cạnh tranh) có thể hoàn toàn lỗi thời chỉ sau vài tháng - rolling forecast cho phép doanh nghiệp liên tục cập nhật kế hoạch dựa trên thông tin mới nhất, thay vì tiếp tục vận hành theo một kế hoạch đã không còn phản ánh thực tế."
-      },
-      {
-        "question": "Một nhược điểm thường gặp của rolling forecast so với ngân sách cố định là gì?",
-        "options": [
-          "Rolling forecast không có nhược điểm nào cả",
-          "Cập nhật dự báo liên tục đòi hỏi nhiều thời gian và nguồn lực của đội FP&A hơn, và có thể khiến các bộ phận kinh doanh khó theo dõi 'mục tiêu cố định' để phấn đấu trong năm nếu mục tiêu liên tục thay đổi theo mỗi lần cập nhật",
-          "Rolling forecast luôn kém chính xác hơn ngân sách cố định",
-          "Rolling forecast không thể áp dụng cho doanh nghiệp có quy mô lớn"
-        ],
-        "correct": 1,
-        "explanation": "Chi phí thực hiện là đánh đổi thực sự của rolling forecast - cập nhật thường xuyên (hàng quý hoặc hàng tháng) tốn nhiều công sức phân tích hơn lập ngân sách một lần mỗi năm, và một số doanh nghiệp vẫn cần một 'mục tiêu neo' (anchor target) tương đối ổn định để đánh giá hiệu suất và tạo động lực cho đội ngũ, thay vì mục tiêu liên tục di chuyển."
-      },
-      {
-        "question": "Vì sao nên tách vai trò của ngân sách và của dự báo?",
-        "options": [
-          "Vì ngân sách là cam kết dùng để đánh giá, còn dự báo cần trung thực nhất - gộp lại tạo động cơ điều chỉnh con số theo hướng đẹp",
-          "Vì chuẩn mực kế toán yêu cầu tách riêng",
-          "Vì dự báo không cần chính xác",
-          "Vì ngân sách chỉ dùng cho bộ phận tài chính"
-        ],
-        "correct": 0,
-        "explanation": "Khi con số vừa là mốc đánh giá vừa là ước lượng, người lập sẽ chịu áp lực làm nó đẹp. Tách hai vai trò giữ cho dự báo còn giá trị dùng để ra quyết định."
-      },
-      {
-        "question": "Dấu hiệu nào cho thấy vấn đề của dự báo nằm ở giả định hoặc động cơ chứ không ở sự bất định của thị trường?",
-        "options": [
-          "Sai số dự báo luôn lệch về một chiều qua nhiều kỳ liên tiếp",
-          "Sai số dự báo dao động quanh mức không",
-          "Dự báo được cập nhật hằng quý",
-          "Dự báo nhìn xa 18 tháng"
-        ],
-        "correct": 0,
-        "explanation": "Bất định thị trường tạo ra sai số hai chiều. Sai số lệch một chiều đều đặn là dấu hiệu có thiên lệch mang tính hệ thống trong cách lập dự báo."
-      }
-    ],
-    "keyTakeaways": [
-      "Rolling forecast cập nhật định kỳ và luôn nhìn xa một khoảng cố định về phía trước, khác ngân sách cố định lập một lần đầu năm",
-      "Đặc biệt hữu ích cho ngành thay đổi nhanh, nơi giả định đầu năm nhanh chóng lỗi thời",
-      "Đánh đổi: tốn nhiều thời gian/nguồn lực hơn, và có thể gây khó khăn trong việc duy trì mục tiêu ổn định để đánh giá hiệu suất"
-    ],
-    "practicePrompt": {
-      "question": "Thay vì lập ngân sách một lần cho cả năm và giữ nguyên (dù thị trường thay đổi), một công ty cập nhật dự báo tài chính mỗi quý, và mỗi lần cập nhật luôn nhìn xa đúng 12 tháng tới kể từ thời điểm cập nhật. Phương pháp này gọi là gì, và ưu điểm so với ngân sách cố định truyền thống là gì?",
-      "options": [
-        "Đây gọi là Zero-based budgeting, phương pháp yêu cầu biện minh lại từng khoản chi từ đầu",
-        "Rolling forecast: cập nhật định kỳ, luôn nhìn xa một khoảng cố định phía trước",
-        "Đây gọi là Top-down budgeting, phương pháp ngân sách áp đặt từ ban lãnh đạo cấp cao xuống",
-        "Phương pháp này không có ưu điểm gì so với ngân sách cố định truyền thống, chỉ tốn thêm công sức"
-      ],
-      "correct": 1,
-      "explanation": "Rolling forecast được cập nhật định kỳ và luôn nhìn xa một khoảng thời gian cố định về phía trước. Ưu điểm lớn nhất là tính linh hoạt - phản ánh thông tin thị trường mới nhất, tránh tình trạng ngân sách cố định trở nên lỗi thời khi điều kiện kinh doanh thay đổi."
-    },
-    "application": {
-      "title": "Tách dự báo khỏi mục tiêu đánh giá",
-      "message": "Nếu định chuyển sang rolling forecast, quyết định trước cái gì dùng để chấm thưởng. Khi cùng một con số vừa là dự báo vừa là chỉ tiêu, người lập sẽ đưa con số an toàn cho mình chứ không đưa con số đúng nhất.",
-      "secondary": "Bắt đầu ở phạm vi hẹp - doanh thu và dòng tiền, cập nhật theo quý, nhìn xa bốn quý - rồi mới mở rộng. Triển khai toàn bộ ngay thường chết vì khối lượng công việc.",
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Nhiều doanh nghiệp hiện đại đang bỏ dần ngân sách cố định lập một lần đầu năm, chuyển sang một cách tiếp cận linh hoạt hơn."
-      },
-      {
-        "type": "heading",
-        "text": "Rolling forecast: luôn nhìn xa một khoảng cố định về phía trước"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ngân sách cố định lập một lần đầu năm và giữ nguyên cả năm dù điều kiện thị trường thay đổi. Rolling forecast được cập nhật định kỳ, luôn nhìn xa 12-18 tháng tới - đặc biệt hữu ích với ngành thay đổi nhanh, nơi giả định đầu năm nhanh chóng lỗi thời. Đánh đổi: cập nhật liên tục tốn nhiều thời gian và nguồn lực hơn, và có thể gây khó khăn trong việc duy trì một mục tiêu ổn định để đánh giá hiệu suất."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Rolling forecast cập nhật định kỳ và luôn nhìn xa một khoảng cố định về phía trước",
-          "Đặc biệt hữu ích cho ngành thay đổi nhanh, nơi giả định đầu năm nhanh chóng lỗi thời",
-          "Đánh đổi: tốn nhiều thời gian hơn, và có thể khó duy trì mục tiêu ổn định để đánh giá hiệu suất"
-        ]
+        "label": "Ngân sách là một quyết định kiến trúc",
+        "text": "Đây là điều dễ bỏ sót nhất. Một bản ngân sách không có chỗ cho lời gọi dịch vụ ngoài tính theo lần thì đội sẽ tự dựng thay vì mua, kể cả khi mua đúng hơn. Một bản ngân sách rộng ở phần tính toán nhưng chặt ở phần lưu trữ thì đội sẽ tính lại thay vì lưu kết quả. Con số trong bảng quyết định cách hệ thống được xây, nên người lập nó cần biết mình đang thiết kế chứ không chỉ đang dự trù."
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Ngân sách cố định",
-          "text": "Lập một lần đầu năm, giữ nguyên cả năm. Ưu điểm: mốc so sánh ổn định, dễ đánh giá hiệu suất, ít tốn công. Nhược điểm: đến quý 3 thì giả định đầu năm có thể đã hoàn toàn lỗi thời mà kế hoạch vẫn giữ nguyên."
+          "label": "Lập từ đại lượng",
+          "text": "Mỗi dòng gắn với một con số đo được. Khi lệch thì biết ngay lệch vì lượng dùng hay vì đơn giá."
         },
         "right": {
-          "label": "Dự báo cuốn chiếu",
-          "text": "Cập nhật mỗi quý, luôn nhìn xa 12-18 tháng. Ưu điểm: luôn phản ánh thực tế mới nhất, hỗ trợ ra quyết định kịp thời. Nhược điểm: tốn nguồn lực và mất mốc cố định để đánh giá hiệu suất."
+          "label": "Lập từ tổng",
+          "text": "Một con số chia xuống cho các hạng mục. Cuối năm chỉ biết lệch bao nhiêu, không biết vì sao."
         }
-      },
-      {
-        "type": "heading",
-        "text": "Hai vai trò dễ bị nhầm lẫn"
-      },
-      {
-        "type": "paragraph",
-        "text": "Phần lớn tranh cãi trong doanh nghiệp về chuyện này bắt nguồn từ việc gộp hai vai trò khác nhau vào một tài liệu. Ngân sách là cam kết - nó nói doanh nghiệp sẽ cố đạt điều gì và làm mốc đánh giá. Dự báo là ước lượng trung thực nhất - nó nói doanh nghiệp nghĩ điều gì sẽ thực sự xảy ra. Khi hai vai trò bị gộp, người lập dự báo có động cơ điều chỉnh con số theo hướng đẹp thay vì theo hướng đúng. Giải pháp phổ biến là giữ ngân sách làm mốc cam kết và chạy dự báo cuốn chiếu song song để phục vụ điều hành."
-      },
-      {
-        "type": "heading",
-        "text": "Ba yếu tố làm dự báo cuốn chiếu chạy được"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tập trung vào một số ít yếu tố dẫn dắt thay vì dự báo từng dòng chi tiết - nếu mỗi lần cập nhật đều mất ba tuần thì chu trình sẽ chết sau vài quý.",
-          "Có kỷ luật ghi lại giả định của mỗi lần cập nhật, để lần sau biết mình đã sai ở giả định nào chứ không chỉ biết là dự báo lệch.",
-          "Ban lãnh đạo thực sự dùng bản cập nhật để ra quyết định. Nếu dự báo mới không thay đổi hành động nào, chu trình chỉ tạo thêm việc mà không tạo giá trị."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Đo chất lượng dự báo",
-        "text": "Hãy theo dõi sai số dự báo qua thời gian: chênh lệch trung bình giữa dự báo và thực tế cho mỗi kỳ, và quan trọng hơn là sai số đó có xu hướng lệch một chiều hay không. Nếu dự báo luôn lạc quan hơn thực tế, vấn đề nằm ở giả định hoặc ở động cơ của người lập, chứ không phải ở sự bất định của thị trường."
       },
       {
         "type": "closing",
         "lines": [
-          "Một kế hoạch tài chính chỉ hữu ích khi nó phản ánh đúng thực tế hiện tại.",
-          "Rolling forecast là cách giữ kế hoạch luôn cập nhật, dù tốn công sức hơn."
+          "Bắt đầu từ đại lượng đo được, không từ con số năm ngoái.",
+          "Ngân sách quyết định cách hệ thống được xây, nên nó là một quyết định kiến trúc."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Vì sao nên lập ngân sách từ đơn vị việc thay vì từ tổng năm ngoái?",
+        "options": [
+          "Vì khi lệch thì truy được nguyên nhân",
+          "Vì con số năm ngoái đã lạc hậu",
+          "Vì cách này cho ra con số chính xác hơn so với việc cộng thêm một tỷ lệ tăng trưởng",
+          "Vì ban lãnh đạo thường yêu cầu giải trình chi tiết cho từng hạng mục trong bản ngân sách"
+        ],
+        "correct": 0,
+        "explanation": "Độ chính xác của tổng không phải mục tiêu chính. Một bản ngân sách đúng tổng mà sai mọi dòng thì không dạy được gì cho năm sau, còn một bản lệch tổng nhưng truy được nguyên nhân thì có."
+      },
+      {
+        "question": "Nhóm chi phí nào hay bị lập sai nhất?",
+        "options": [
+          "Lưu trữ, vì nó cộng dồn chứ không lặp lại",
+          "Truyền dữ liệu, vì nó khó đo",
+          "Lời gọi dịch vụ ngoài, vì đơn giá của chúng có thể thay đổi giữa năm theo phía nhà cung cấp",
+          "Chi phí một lần, vì thời điểm phát sinh của chúng thường trượt so với kế hoạch ban đầu"
+        ],
+        "correct": 0,
+        "explanation": "Cách lập tự nhiên là lấy chi phí lưu trữ tháng này nhân mười hai, và cách ấy giả định lượng dữ liệu đứng yên. Nó tăng mỗi tháng và không tháng nào giảm, trừ khi có chính sách xoá."
+      },
+      {
+        "question": "Vì sao nên dự trù bằng khoảng thay vì một con số?",
+        "options": [
+          "Vì người duyệt thấy được mình đang chấp nhận rủi ro gì",
+          "Vì một con số duy nhất luôn sai",
+          "Vì khoảng cho phép đội linh hoạt điều chỉnh trong năm mà không cần xin phê duyệt lại",
+          "Vì các hạng mục khác nhau có mức độ không chắc chắn khác nhau nên khó gộp thành một số"
+        ],
+        "correct": 0,
+        "explanation": "Một con số buộc người lập chọn giữa bị hụt và xin thừa, và giấu luôn mức độ không chắc chắn khỏi người duyệt. Ba kịch bản kèm điều kiện kích hoạt thì chuyển quyết định về rủi ro sang đúng người có quyền quyết nó."
+      },
+      {
+        "question": "Ngân sách chặt ở phần lưu trữ nhưng rộng ở phần tính toán dẫn tới hành vi gì?",
+        "options": [
+          "Đội tính lại thay vì lưu kết quả",
+          "Đội chuyển dữ liệu sang loại lưu trữ rẻ hơn",
+          "Đội giảm tần suất sao lưu để tiết kiệm phần dung lượng đang bị giới hạn trong năm",
+          "Đội đề nghị điều chỉnh lại ngân sách giữa năm khi phần lưu trữ chạm mức trần đã đặt"
+        ],
+        "correct": 0,
+        "explanation": "Ba hành vi kia đều xảy ra và đều là phản ứng hợp lý. Hành vi đầu là hành vi ít ai lường trước vì nó không trông giống một quyết định về chi phí - nó trông giống một lựa chọn kỹ thuật, và nó được đưa ra bởi người không đọc bản ngân sách."
+      },
+      {
+        "question": "Bản ngân sách lệch tổng dưới 5% nhưng hai nhóm lớn lệch ngược chiều nhau. Nên đọc thế nào?",
+        "options": [
+          "Là một bản ngân sách kém, vì hai sai số lớn đã che nhau",
+          "Là một bản ngân sách tốt, vì tổng khớp",
+          "Là bình thường, vì các nhóm chi phí luôn dao động quanh mức dự trù theo cả hai chiều",
+          "Là dấu hiệu cho thấy cách phân loại các nhóm chi phí chưa phản ánh đúng cấu trúc hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Tổng khớp là điều duy nhất người ngoài nhìn thấy, và nó là điều ít có giá trị nhất. Hai sai số lớn triệt tiêu nhau nghĩa là cả hai mô hình dự trù đều sai và không cái nào được sửa cho năm sau."
+      }
+    ],
+    "keyTakeaways": [
+      "Bắt đầu từ đại lượng đo được, không từ con số tổng của năm ngoái",
+      "Lưu trữ cộng dồn chứ không lặp lại, nên nhân mười hai là sai",
+      "Dự trù bằng khoảng kèm điều kiện kích hoạt, không bằng một con số",
+      "Ngân sách quyết định cách hệ thống được xây, nên nó là quyết định kiến trúc"
+    ],
+    "practicePrompt": {
+      "question": "Lưu trữ đang 2TB, tăng 200GB/tháng, giá 20 đô/TB/tháng. Chi phí lưu trữ cả năm tới là bao nhiêu?",
+      "options": [
+        "Khoảng 744 đô",
+        "480 đô (= lấy chi phí tháng hiện tại nhân mười hai, coi lượng dữ liệu đứng yên)",
+        "1.008 đô (= tính cả năm ở mức dung lượng của tháng thứ mười hai)",
+        "528 đô (= chỉ cộng thêm phần dữ liệu tăng của một tháng vào mức hiện tại)"
+      ],
+      "correct": 0,
+      "explanation": "Dung lượng đi từ 2,2TB tháng đầu tới 4,4TB tháng mười hai, trung bình 3,3TB. 3,3 nhân 20 nhân 12 ra khoảng 792, và tính chính xác theo từng tháng ra khoảng 744-792 tuỳ mốc. Cách nhân mười hai từ tháng hiện tại cho ra 480, tức hụt hơn một phần ba."
+    },
     "summary": {
-      "keyIdea": "Rolling forecast cập nhật định kỳ và luôn nhìn xa một khoảng cố định về phía trước, khác ngân sách cố định lập một lần đầu năm",
-      "commonMistake": "Dễ bỏ qua: đặc biệt hữu ích cho ngành thay đổi nhanh, nơi giả định đầu năm nhanh chóng lỗi thời",
-      "action": "Đánh đổi: tốn nhiều thời gian/nguồn lực hơn, và có thể gây khó khăn trong việc duy trì mục tiêu ổn định để đánh giá hiệu suất"
-    }
+      "keyIdea": "Lập từ đại lượng, tách ba loại dòng, dự trù bằng khoảng",
+      "commonMistake": "Nhân chi phí lưu trữ tháng này với mười hai",
+      "action": "Tách hoá đơn hạ tầng tháng gần nhất thành ba loại dòng."
+    },
+    "application": {
+      "title": "Bốn bước cho bản ngân sách năm tới",
+      "message": "Tách chi phí hiện tại theo nhóm. Chia cho đơn vị việc. Nhân với lượng việc dự kiến. Cộng riêng các khoản một lần.",
+      "secondary": "Rồi đọc lại bản nháp và hỏi: bản này đang khuyến khích đội xây theo cách nào."
+    },
+    "id": 1202,
+    "slug": "xay-dung-ngan-sach-doanh-nghiep",
+    "track": "professional"
+  },
+  {
+    "title": "Kỹ sư trưởng & Vận hành, Bài 2: Dự báo lăn",
+    "subtitle": "Cập nhật dự báo mỗi tháng, thay vì bảo vệ kế hoạch lập từ tháng Giêng",
+    "duration": "9 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🔄",
+    "whyItMatters": "Một kế hoạch năm lập một lần rồi giữ nguyên sẽ sai từ tháng thứ ba, và cái giá không phải con số sai mà là những quyết định được đưa ra để bảo vệ nó.",
+    "openingQuestion": "Tháng thứ tư, thực tế đã lệch xa kế hoạch năm. Nên làm gì?",
+    "openingOptions": [
+      "Cập nhật dự báo cho tám tháng còn lại",
+      "Giữ kế hoạch và tìm cách quay lại đúng hướng",
+      "Chờ tới cuối quý rồi mới điều chỉnh, để tránh phản ứng quá sớm với biến động ngắn hạn",
+      "Lập lại kế hoạch năm từ đầu với những giả định đã được cập nhật theo tình hình mới"
+    ],
+    "correctOption": 0,
+    "explanation": "Giữ kế hoạch cũ biến nó từ một công cụ dự báo thành một mục tiêu phải đạt, và từ đó mọi quyết định đều nhắm vào con số thay vì vào tình hình. Lập lại từ đầu thì tốn công và cũng chỉ tạo ra một kế hoạch cứng khác. Cập nhật phần còn lại là cách giữ cho dự báo tiếp tục làm đúng việc của nó.",
+    "diagram": [
+      {
+        "label": "Kế hoạch ban đầu cho mười hai tháng",
+        "arrow": true
+      },
+      {
+        "label": "Mỗi tháng, thay giả định bằng số thật",
+        "arrow": true
+      },
+      {
+        "label": "Dự báo lại phần còn lại",
+        "arrow": true
+      },
+      {
+        "label": "Chênh lệch thu hẹp dần thay vì lớn lên"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Bảo vệ một con số suốt chín tháng",
+      "description": "Một đội cam kết giữ chi phí hạ tầng dưới một mức đặt từ đầu năm. Tới tháng thứ năm, lượng dùng đã vượt xa dự kiến vì một tính năng thành công ngoài mong đợi. Thay vì cập nhật dự báo, đội cắt phần dung lượng dự phòng và giảm tần suất sao lưu để giữ con số. Hệ thống ở dưới mức cam kết suốt chín tháng, và có một sự cố mất bốn giờ dữ liệu ở tháng thứ mười."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Dự báo lăn không phải một kỹ thuật phức tạp. Nó là quyết định coi kế hoạch là thứ được cập nhật chứ không phải thứ được bảo vệ, và toàn bộ giá trị nằm ở chỗ đó."
+      },
+      {
+        "type": "heading",
+        "text": "Cách làm"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Mỗi tháng, thay các giả định của tháng vừa qua bằng số thật đã đo được",
+          "Dự báo lại phần còn lại của năm với giả định đã cập nhật, không đụng vào phần đã qua",
+          "Ghi lại giả định nào đã đổi và vì sao - đây là phần có giá trị nhất và hay bị bỏ nhất"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Việc thứ ba biến dự báo lăn từ một bảng tính thành một thứ dạy được. Sau sáu tháng, danh sách những giả định đã đổi cho biết đội hay sai ở đâu, và đó là thông tin không có cách nào lấy được từ một kế hoạch lập một lần."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao kế hoạch cứng tạo ra quyết định xấu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi một con số trở thành cam kết, nó cạnh tranh với mọi mục tiêu khác và nó thường thắng, vì nó là thứ duy nhất được đo hằng tháng. Đội sẽ cắt những khoản không bị ai đo - dung lượng dự phòng, tần suất sao lưu, thời gian dành cho kiểm thử - và mọi khoản ấy đều có cái giá đến muộn. Đây là cùng một cơ chế đã gặp ở bài công sức tích lại, chỉ khác là lần này nó do một con số ngân sách kích hoạt."
+      },
+      {
+        "type": "callout",
+        "label": "Chênh lệch là thông tin, không phải lỗi",
+        "text": "Điều kiện để dự báo lăn hoạt động là chênh lệch giữa dự báo và thực tế không bị coi là sai phạm. Nếu người lập dự báo bị hỏi tội mỗi lần lệch thì lần sau họ sẽ dự báo rộng ra để không bao giờ lệch, và bản dự báo mất hết giá trị đúng vào lúc nó trở nên an toàn cho người lập."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Dự báo lăn",
+          "text": "Cập nhật mỗi tháng, sai số thu hẹp dần, và danh sách giả định đã đổi cho biết đội hay sai ở đâu."
+        },
+        "right": {
+          "label": "Kế hoạch cứng",
+          "text": "Chính xác nhất vào ngày lập và tệ dần sau đó. Tới giữa năm nó không còn mô tả gì, chỉ còn là một mục tiêu."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Nhịp cập nhật"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hằng tháng là nhịp phù hợp với phần lớn đội: đủ thường xuyên để bắt được xu hướng, và đủ thưa để không phản ứng theo nhiễu. Hằng tuần thì gần như luôn quá dày - biến động tuần chủ yếu là nhiễu, và cập nhật theo nhiễu tạo ra một chuỗi quyết định dao động qua lại mà không đi tới đâu."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Kế hoạch là thứ được cập nhật, không phải thứ được bảo vệ.",
+          "Chênh lệch là thông tin; coi nó là sai phạm thì lần sau sẽ không còn chênh lệch nào có ý nghĩa."
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Vì sao giữ nguyên kế hoạch cũ tạo ra quyết định xấu?",
+        "options": [
+          "Vì con số thành mục tiêu và nó thắng mọi mục tiêu không được đo",
+          "Vì kế hoạch cũ dựa trên giả định đã sai",
+          "Vì đội sẽ mất thời gian giải trình cho những khoản chênh lệch thay vì tập trung xử lý",
+          "Vì các quyết định phải chờ tới kỳ lập kế hoạch tiếp theo mới được điều chỉnh lại"
+        ],
+        "correct": 0,
+        "explanation": "Việc giả định đã sai chỉ làm con số kém chính xác. Việc nó thành cam kết thì đổi hành vi: đội cắt dung lượng dự phòng, sao lưu và kiểm thử, vì đó là những khoản không ai đo hằng tháng."
+      },
+      {
+        "question": "Phần nào của dự báo lăn hay bị bỏ nhất?",
+        "options": [
+          "Ghi lại giả định nào đã đổi và vì sao",
+          "Cập nhật số thật của tháng vừa qua",
+          "Dự báo lại toàn bộ phần còn lại của năm thay vì chỉ điều chỉnh vài hạng mục lớn",
+          "Đối chiếu dự báo mới với dự báo của kỳ trước để đo mức độ ổn định của mô hình"
+        ],
+        "correct": 0,
+        "explanation": "Hai việc đầu là phép tính nên chúng luôn được làm. Phần ghi lại thì không cho ra con số nào, nhưng sau sáu tháng nó là thứ duy nhất cho biết đội hay sai ở đâu."
+      },
+      {
+        "question": "Điều kiện để dự báo lăn hoạt động là gì?",
+        "options": [
+          "Chênh lệch không bị coi là sai phạm",
+          "Số liệu thực tế phải có sẵn kịp thời mỗi tháng",
+          "Người lập dự báo phải hiểu đủ sâu về kỹ thuật để ước lượng được tác động của thay đổi",
+          "Các bên liên quan phải thống nhất về cách phân loại và đo lường từng hạng mục chi phí"
+        ],
+        "correct": 0,
+        "explanation": "Ba điều kiện kia đều cần và đều là điều kiện kỹ thuật. Điều kiện đầu là điều kiện về hành vi, và thiếu nó thì người lập sẽ dự báo rộng ra để không bao giờ lệch - bản dự báo mất giá trị đúng lúc nó trở nên an toàn."
+      },
+      {
+        "question": "Vì sao cập nhật hằng tuần thường quá dày?",
+        "options": [
+          "Vì biến động tuần chủ yếu là nhiễu",
+          "Vì nó tốn quá nhiều thời gian của đội",
+          "Vì số liệu thực tế của tuần thường chưa được đối chiếu xong nên độ tin cậy chưa đủ cao",
+          "Vì các quyết định về hạ tầng thường cần nhiều tuần để có hiệu lực nên phản hồi bị trễ"
+        ],
+        "correct": 0,
+        "explanation": "Cập nhật theo nhiễu tạo ra một chuỗi quyết định dao động qua lại mà không đi tới đâu, và mỗi lần dao động đều tốn công thật. Hằng tháng đủ thường xuyên để bắt xu hướng và đủ thưa để lọc phần lớn nhiễu."
+      },
+      {
+        "question": "Đội cắt dung lượng dự phòng và giảm tần suất sao lưu để giữ con số cam kết. Vấn đề là gì?",
+        "options": [
+          "Cả hai khoản bị cắt đều có cái giá đến muộn",
+          "Cả hai đều là những khoản chi phí nhỏ",
+          "Việc cắt cần được phê duyệt bởi bộ phận quản lý rủi ro trước khi thực hiện thay đổi",
+          "Việc này làm con số cam kết trở nên không so sánh được với con số của những năm trước"
+        ],
+        "correct": 0,
+        "explanation": "Đó chính là lý do hai khoản này bị chọn: chúng không gây hậu quả nào trong tháng cắt. Cái giá xuất hiện ở lần sự cố tiếp theo, khi không còn ai nối nó với quyết định giữ một con số ngân sách."
+      }
+    ],
+    "keyTakeaways": [
+      "Kế hoạch là thứ được cập nhật, không phải thứ được bảo vệ",
+      "Ghi lại giả định nào đã đổi - đó là phần dạy được duy nhất",
+      "Chênh lệch bị coi là sai phạm thì dự báo sẽ rộng ra và mất giá trị",
+      "Hằng tháng lọc được phần lớn nhiễu; hằng tuần thì không"
+    ],
+    "practicePrompt": {
+      "question": "Kế hoạch cả năm 120 nghìn đô. Bốn tháng đầu đã tiêu 52 nghìn. Dự báo lăn cho cả năm là bao nhiêu?",
+      "options": [
+        "156 nghìn",
+        "120 nghìn, vì kế hoạch năm vẫn giữ nguyên và tám tháng còn lại phải bù lại phần đã vượt",
+        "68 nghìn (= lấy phần ngân sách còn lại thay vì dự báo tổng chi cả năm)",
+        "104 nghìn (= nhân mức chi bốn tháng với hai thay vì với ba)"
+      ],
+      "correct": 0,
+      "explanation": "52 chia 4 ra 13 nghìn mỗi tháng, nhân 12 ra 156 nghìn. Chênh 36 nghìn so với kế hoạch là con số cần đưa ra bàn ngay ở tháng thứ tư, chứ không phải ở tháng thứ mười khi nó đã thành sự đã rồi."
+    },
+    "summary": {
+      "keyIdea": "Mỗi tháng thay giả định bằng số thật rồi dự báo lại phần còn lại",
+      "commonMistake": "Bảo vệ con số cũ bằng cách cắt những khoản không ai đo",
+      "action": "Lấy chi phí các tháng đã qua của năm nay và ngoại suy ra cả năm."
+    },
+    "application": {
+      "title": "Ba việc mỗi tháng",
+      "message": "Thay giả định tháng trước bằng số thật. Dự báo lại phần còn lại. Ghi một dòng về giả định nào đã đổi và vì sao.",
+      "secondary": "Việc thứ ba không cho ra con số nào và là việc duy nhất còn giá trị sau khi năm kết thúc."
+    },
+    "id": 1203,
+    "slug": "du-bao-tai-chinh-rolling-forecast",
+    "track": "professional"
   },
   {
     "id": 1204,
@@ -66144,574 +66150,401 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1205,
-    "slug": "kpi-tai-chinh-doanh-nghiep-chon-dung-chi-so",
-    "title": "CFO & Vận hành, Bài 4: KPI tài chính doanh nghiệp - chọn đúng chỉ số để theo dõi",
+    "slug": "chon-dung-chi-so-cho-doi-ky-thuat",
+    "title": "CFO & Vận hành, Bài 4: Chọn đúng chỉ số để theo dõi",
     "subtitle": "Theo dõi quá nhiều chỉ số cũng nguy hiểm như theo dõi quá ít",
     "duration": "7 phút",
     "difficulty": "Trung bình",
-    "emoji": "🎯",
+    "emoji": "📊",
     "track": "professional",
-    "openingQuestion": "Một công ty SaaS (phần mềm theo mô hình thuê bao) nên ưu tiên theo dõi KPI nào sát sao nhất, thay vì chỉ nhìn doanh thu hàng tháng?",
+    "whyItMatters": "Một bảng điều khiển bốn mươi ô làm người xem không thấy gì cả, và một bảng ba ô sai thì dẫn cả đội đi sai hướng trong nhiều quý. Việc chọn chỉ số quyết định đội chú ý vào đâu, nên nó là quyết định về hành vi chứ không phải về đo lường.",
+    "openingQuestion": "Vì sao theo dõi quá nhiều chỉ số lại nguy hiểm?",
     "openingOptions": [
-      "Chỉ cần theo dõi tổng doanh thu hàng tháng là đủ, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-      "Các chỉ số đặc thù mô hình thuê bao như Churn Rate, Customer Acquisition Cost và Lifetime Value, vì SaaS sống được là nhờ giữ chân khách hàng dài hạn",
-      "Chỉ cần theo dõi lợi nhuận ròng hàng quý, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-      "Không cần theo dõi KPI nào, chỉ cần xem báo cáo tài chính hàng năm, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
+      "Vì không chỉ số nào được nhìn đủ lâu để ai đó hành động theo nó",
+      "Vì chi phí thu thập và lưu trữ dữ liệu tăng lên theo số lượng chỉ số được theo dõi",
+      "Vì các chỉ số mâu thuẫn nhau khó thống nhất",
+      "Vì cần nhiều thời gian hơn để phân tích và tổng hợp báo cáo cho ban lãnh đạo"
     ],
-    "correctOption": 1,
-    "explanation": "KPI cần được chọn phù hợp với ĐẶC THÙ MÔ HÌNH KINH DOANH, không phải một bộ chỉ số chung cho mọi doanh nghiệp. Với SaaS, doanh thu tháng hiện tại ít quan trọng bằng khả năng GIỮ CHÂN khách hàng dài hạn (Churn Rate thấp) và hiệu quả kiếm khách hàng mới so với giá trị họ mang lại (tỷ lệ LTV/CAC) - những chỉ số này dự báo tốt hơn nhiều về sức khỏe tài chính dài hạn so với doanh thu một tháng đơn lẻ.",
+    "correctOption": 0,
+    "explanation": "Một bảng điều khiển bốn mươi ô về mặt kỹ thuật chứa nhiều thông tin hơn bảng ba ô, và về mặt thực tế thì ít hơn: không ai đọc hết bốn mươi ô mỗi ngày, nên mắt lướt qua và chỉ dừng lại khi có màu đỏ. Điều đó biến toàn bộ bảng thành một hệ thống cảnh báo thụ động thay vì một công cụ để chú ý. Ba lý do kia đều có thật và đều nhỏ hơn nhiều: chi phí lưu trữ chỉ số thường không đáng kể, và việc mâu thuẫn giữa các chỉ số là chuyện có thể giải quyết. Thứ không giải quyết được là số lượng thứ một người theo dõi được cùng lúc, và con số đó nhỏ hơn nhiều so với số ô mà một bảng điều khiển chứa nổi.",
     "diagram": [
-      {
-        "label": "Xác định đặc thù mô hình kinh doanh",
-        "arrow": true
-      },
-      {
-        "label": "Chọn KPI phản ánh đúng động lực giá trị của mô hình đó",
-        "arrow": true
-      },
-      {
-        "label": "Theo dõi ít chỉ số quan trọng nhất, không dàn trải"
-      }
+      { "label": "Bốn mươi ô: mắt lướt, chỉ dừng ở màu đỏ", "arrow": true },
+      { "label": "Thành hệ thống cảnh báo, không phải công cụ chú ý", "arrow": true },
+      { "label": "Ba tới năm ô: mỗi ô được nhìn thật", "arrow": true },
+      { "label": "Phần còn lại chuyển sang cảnh báo tự động" }
     ],
     "realWorldExample": {
-      "company": "Các công ty SaaS/thuê bao",
-      "description": "Các nhà đầu tư định giá công ty SaaS thường quan tâm tỷ lệ LTV/CAC (giá trị vòng đời khách hàng trên chi phí kiếm khách hàng) hơn cả lợi nhuận ngắn hạn - một công ty SaaS có thể lỗ trong ngắn hạn vì chi mạnh cho marketing, nhưng nếu LTV/CAC cao và Churn Rate thấp, mô hình vẫn được xem là khỏe mạnh và có giá trị dài hạn lớn."
+      "company": "Bốn mươi ô và một câu hỏi",
+      "description": "Một đội dựng bảng điều khiển bốn mươi ô, cập nhật đầy đủ, ai cũng khen. Sau sáu tháng, hỏi từng người trong đội tuần trước có ô nào làm bạn đổi việc đang làm không thì không ai trả lời được. Bảng ấy vẫn chạy, vẫn đúng, và không thay đổi một quyết định nào."
     },
     "quiz": [
       {
-        "question": "Vì sao 'theo dõi quá nhiều KPI cùng lúc' có thể gây hại cho việc ra quyết định, thay vì chỉ đơn giản là 'có nhiều thông tin hơn thì tốt hơn'?",
+        "question": "Một chỉ số đáng đưa lên bảng chính cần thoả điều kiện gì?",
         "options": [
-          "Càng nhiều KPI luôn càng tốt, không có giới hạn nào cần cân nhắc",
-          "Quá nhiều chỉ số khiến ban lãnh đạo khó xác định đâu là ưu tiên thực sự cần hành động, dễ bị phân tán sự chú ý vào các chỉ số ít quan trọng, và tăng nguy cơ các chỉ số mâu thuẫn nhau khiến việc ra quyết định trở nên rối rắm thay vì rõ ràng hơn",
-          "Theo dõi nhiều KPI luôn tốn nhiều tiền hơn nên cần hạn chế",
-          "Không có vấn đề gì với việc theo dõi nhiều KPI cùng lúc"
-        ],
-        "correct": 1,
-        "explanation": "Nguyên tắc quan trọng trong thiết kế hệ thống KPI là 'ít nhưng đúng trọng tâm' - một bộ dashboard với 30 chỉ số khiến người xem không biết nên tập trung vào đâu, trong khi 3-5 KPI thực sự phản ánh động lực giá trị cốt lõi của doanh nghiệp giúp ra quyết định rõ ràng và nhanh chóng hơn nhiều."
-      },
-      {
-        "question": "Một công ty bán lẻ truyền thống áp dụng y hệt bộ KPI của công ty SaaS (Churn Rate, LTV/CAC) cho hoạt động kinh doanh của mình. Vấn đề tiềm ẩn ở đây là gì?",
-        "options": [
-          "Không có vấn đề gì, KPI luôn áp dụng được cho mọi loại hình doanh nghiệp",
-          "Các KPI đặc thù mô hình thuê bao có thể không phản ánh đúng động lực giá trị của mô hình bán lẻ (nơi khách hàng mua từng lần, không có hợp đồng thuê bao dài hạn) - công ty bán lẻ nên ưu tiên các chỉ số như Same-store Sales Growth, Inventory Turnover, phù hợp hơn với mô hình kinh doanh thực tế của mình",
-          "Công ty bán lẻ luôn nên áp dụng KPI của ngành công nghệ để hiện đại hóa",
-          "Churn Rate và LTV/CAC là bộ KPI chuẩn áp dụng được cho mọi ngành"
-        ],
-        "correct": 1,
-        "explanation": "Đây chính là sai lầm phổ biến của việc áp dụng KPI một cách máy móc mà không hiểu bản chất mô hình kinh doanh - KPI phải được thiết kế dựa trên động lực giá trị THỰC SỰ của từng loại hình doanh nghiệp, không phải sao chép nguyên bộ chỉ số 'thời thượng' từ ngành khác."
-      },
-      {
-        "question": "Vì sao doanh nghiệp bán lẻ cần theo dõi tăng trưởng cửa hàng cũ chứ không chỉ tổng doanh thu?",
-        "options": [
-          "Vì mở cửa hàng mới luôn làm tổng doanh thu tăng, che mất việc các cửa hàng hiện hữu có đang yếu đi hay không",
-          "Vì tổng doanh thu không được kiểm toán",
-          "Vì cửa hàng mới không tính vào doanh thu",
-          "Vì chuẩn mực kế toán yêu cầu"
+          "Có người biết phải làm gì khi nó xấu đi",
+          "Phản ánh chính xác một khía cạnh quan trọng của hệ thống đang vận hành",
+          "Đo được một cách tự động và cập nhật đủ thường xuyên để theo dõi kịp thời",
+          "Có thể so sánh được với mức chuẩn của ngành hoặc của các đội khác"
         ],
         "correct": 0,
-        "explanation": "Đây là ví dụ điển hình của chỉ số đối trọng: một chỉ số tăng trưởng đi kèm một chỉ số chất lượng, để tăng trưởng bằng cách mở rộng không che mất sự suy giảm ở nền tảng cũ."
+        "explanation": "Ba điều kiện kia làm một chỉ số tốt về mặt kỹ thuật và không làm nó hữu ích. Nếu không ai biết phải làm gì khi nó xấu đi thì việc theo dõi chỉ tạo ra lo lắng, và ô đó đang chiếm chỗ của một ô có thể dẫn tới hành động."
       },
       {
-        "question": "Nguyên tắc chỉ số đối trọng nghĩa là gì?",
+        "question": "Vì sao chỉ số dễ đo thường được chọn thay cho chỉ số đáng đo?",
         "options": [
-          "Mỗi chỉ số tăng trưởng nên đi kèm một chỉ số chất lượng, để tránh cải thiện chỗ này bằng cách hy sinh chỗ khác",
-          "Mỗi bộ phận cần có số lượng chỉ số bằng nhau",
-          "Chỉ số phải được đo cả tháng và cả quý",
-          "Chỉ số tài chính phải nhiều hơn chỉ số vận hành"
+          "Vì nó có sẵn, còn chỉ số đáng đo thì phải dựng mới",
+          "Vì chỉ số dễ đo thường ổn định hơn nên biểu đồ trông đẹp hơn khi báo cáo",
+          "Vì các công cụ theo dõi phổ biến đã hỗ trợ sẵn những chỉ số cơ bản nhất",
+          "Vì chỉ số đáng đo thường khó giải thích cho những người ngoài đội kỹ thuật"
         ],
         "correct": 0,
-        "explanation": "Gần như mọi chỉ số đứng một mình đều có cách đẩy lên bằng việc gây hại nơi khác. Cặp chỉ số làm cho hành vi tối ưu hóa cục bộ lộ ra ngay."
+        "explanation": "Số dòng mã, số vé đã đóng, số lần phát hành - tất cả đều có sẵn mà không cần dựng gì. Thứ đáng đo như thời gian từ ý tưởng tới người dùng thì phải nối vài hệ thống lại mới có. Chênh lệch công sức ấy đủ để quyết định bảng điều khiển của phần lớn đội."
+      },
+      {
+        "question": "Chỉ số bị đem ra đánh giá cá nhân thường dẫn tới điều gì?",
+        "options": [
+          "Nó ngừng đo được thứ nó vốn đo, vì người ta tối ưu chính con số",
+          "Nó tạo động lực nên chỉ số tốt lên nhanh",
+          "Nó gây căng thẳng trong đội và làm giảm tinh thần hợp tác giữa các thành viên",
+          "Nó cần được điều chỉnh theo từng vai trò để phản ánh công bằng đóng góp"
+        ],
+        "correct": 0,
+        "explanation": "Con số vẫn tốt lên - đó chính là vấn đề. Đo số vé đã đóng thì vé được chia nhỏ ra; đo độ phủ kiểm thử thì có thêm những bài kiểm không khẳng định gì. Chỉ số vẫn đúng theo định nghĩa và đã ngừng đo thứ bạn quan tâm."
+      },
+      {
+        "question": "Chỉ số dẫn dắt khác chỉ số kết quả ở điểm nào?",
+        "options": [
+          "Chỉ số dẫn dắt đổi trước, nên còn kịp làm gì đó",
+          "Chỉ số dẫn dắt đo hoạt động còn chỉ số kết quả đo thành quả cuối cùng",
+          "Chỉ số dẫn dắt dễ đo hơn",
+          "Chỉ số dẫn dắt ít bị ảnh hưởng bởi các yếu tố bên ngoài đội kiểm soát"
+        ],
+        "correct": 0,
+        "explanation": "Đây là toàn bộ lý do tồn tại của chỉ số dẫn dắt. Tỷ lệ rời bỏ của người dùng là kết quả và nó chỉ hiện ra sau nhiều tuần; thời gian phản hồi ở nhóm chậm nhất đổi trước đó, và đó là khoảng thời gian bạn còn hành động được."
+      },
+      {
+        "question": "Nên làm gì với những chỉ số không đưa lên bảng chính?",
+        "options": [
+          "Đặt cảnh báo tự động, để chúng chỉ xuất hiện khi vượt ngưỡng",
+          "Đưa vào bảng phụ cho ai cần thì xem",
+          "Ngừng thu thập cho đỡ tốn lưu trữ",
+          "Xem lại theo tháng cho khỏi sót"
+        ],
+        "correct": 0,
+        "explanation": "Bảng phụ là nơi chỉ số đi để không ai nhìn nữa, nên nó tương đương với việc bỏ. Cảnh báo tự động giữ được giá trị của chỉ số mà không tốn sự chú ý hằng ngày - đó là cách duy nhất theo dõi nhiều thứ mà vẫn chỉ nhìn vài thứ."
       }
     ],
-    "keyTakeaways": [
-      "KPI cần được chọn phù hợp với đặc thù mô hình kinh doanh cụ thể, không phải một bộ chỉ số chung cho mọi doanh nghiệp",
-      "Theo dõi quá nhiều KPI cùng lúc có thể gây phân tán và khó ra quyết định, nên ưu tiên số ít chỉ số phản ánh đúng động lực giá trị cốt lõi",
-      "Sao chép KPI từ mô hình kinh doanh khác mà không hiểu bản chất là sai lầm phổ biến"
-    ],
     "practicePrompt": {
-      "question": "Một công ty SaaS theo dõi sát Customer Churn Rate và LTV/CAC, trong khi một công ty bán lẻ lại tập trung vào Inventory Turnover và Same-store Sales Growth. Vì sao hai công ty không dùng chung một bộ KPI giống hệt nhau?",
+      "question": "Bảng điều khiển của đội bạn có hai mươi ô. Nên bắt đầu dọn từ đâu?",
       "options": [
-        "KPI phải khớp với đặc thù mô hình kinh doanh, không có bộ chỉ số chung cho mọi ngành",
-        "Đây là sai lầm của cả hai công ty, lẽ ra nên dùng chung một bộ KPI chuẩn cho mọi ngành",
-        "KPI chỉ khác nhau vì quy mô công ty khác nhau, không liên quan gì đến mô hình kinh doanh",
-        "Không có sự khác biệt thực chất nào, cả hai công ty thực chất đang theo dõi cùng một loại thông tin"
+        "Hỏi từng ô: tháng trước nó có làm ai đổi việc đang làm không",
+        "Nhóm các ô theo chủ đề cho dễ đọc",
+        "Bỏ những ô dữ liệu không đầy đủ",
+        "Giữ những ô ban lãnh đạo hay hỏi"
       ],
       "correct": 0,
-      "explanation": "KPI cần được chọn phù hợp với đặc thù mô hình kinh doanh cụ thể, không phải bộ chỉ số chung cho mọi doanh nghiệp. Chọn đúng KPI phản ánh động lực giá trị cốt lõi của từng ngành mới giúp nhà quản lý theo dõi và ra quyết định hiệu quả."
+      "explanation": "Câu hỏi này phân loại được toàn bộ hai mươi ô trong một buổi và nó dùng đúng tiêu chí: một chỉ số tồn tại để dẫn tới hành động. Nhóm lại theo chủ đề làm bảng đẹp hơn mà vẫn hai mươi ô, tức là vẫn không ai nhìn."
     },
-    "application": {
-      "title": "Chọn năm chỉ số, bỏ phần còn lại",
-      "message": "Viết ra công thức tạo ra lợi nhuận của mô hình bạn đang làm, rồi chọn các chỉ số nằm trên đúng công thức đó. SaaS đo giữ chân doanh thu và chi phí thu hút khách trên giá trị vòng đời; bán lẻ đo vòng quay hàng tồn kho và doanh thu trên mét vuông. Đổi chỗ hai bộ này thì cả hai đều vô nghĩa.",
-      "secondary": "Với mỗi KPI định giữ, hỏi: nếu số này xấu đi, tuần này ai làm gì khác đi. Không trả lời được thì nó là chỉ số để báo cáo, không phải để điều hành.",
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Theo dõi quá nhiều KPI cùng lúc có thể gây hại cho việc ra quyết định không kém gì theo dõi quá ít."
-      },
-      {
-        "type": "heading",
-        "text": "KPI phải khớp với đặc thù mô hình kinh doanh"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một công ty SaaS nên ưu tiên Churn Rate, CAC, LTV thay vì chỉ nhìn doanh thu tháng - vì mô hình thuê bao sống nhờ giữ chân khách hàng dài hạn. Sao chép KPI từ mô hình kinh doanh khác (ví dụ công ty bán lẻ dùng nguyên bộ chỉ số SaaS) mà không hiểu bản chất là sai lầm phổ biến. Quá nhiều chỉ số khiến ban lãnh đạo khó xác định ưu tiên thực sự - nguyên tắc quan trọng là 'ít nhưng đúng trọng tâm'."
-      },
-      {
-        "type": "list",
-        "items": [
-          "KPI cần được chọn phù hợp với đặc thù mô hình kinh doanh cụ thể, không phải bộ chỉ số chung",
-          "Theo dõi quá nhiều KPI cùng lúc gây phân tán và khó ra quyết định",
-          "Sao chép KPI từ mô hình kinh doanh khác mà không hiểu bản chất là sai lầm phổ biến"
-        ]
-      },
-      {
-        "type": "conceptTable",
-        "title": "Mô hình kinh doanh nào, chỉ số nấy",
-        "subtitle": "Cùng là doanh nghiệp, nhưng động lực giá trị khác nhau",
-        "concepts": [
-          {
-            "vi": "Thuê bao / SaaS",
-            "en": "Subscription",
-            "def": "Tỷ lệ rời bỏ, chi phí thu hút khách hàng, giá trị vòng đời khách hàng, doanh thu định kỳ. Doanh thu tháng đơn thuần che mất việc khách cũ đang rời đi."
-          },
-          {
-            "vi": "Bán lẻ",
-            "en": "Retail",
-            "def": "Doanh thu trên mét vuông, tăng trưởng cửa hàng cũ, vòng quay hàng tồn kho, biên lợi nhuận gộp. Mở cửa hàng mới luôn làm tổng doanh thu tăng, nên phải tách phần cửa hàng cũ ra."
-          },
-          {
-            "vi": "Sản xuất",
-            "en": "Manufacturing",
-            "def": "Hiệu suất sử dụng công suất, tỷ lệ phế phẩm, chu kỳ chuyển đổi tiền mặt, đòn bẩy hoạt động. Đây là nơi chi phí cố định quyết định lời lỗ."
-          },
-          {
-            "vi": "Cho vay / tài chính",
-            "en": "Lending",
-            "def": "Biên lãi thuần, tỷ lệ nợ xấu, chi phí dự phòng rủi ro, hệ số an toàn vốn. Tăng trưởng dư nợ nhanh mà không nhìn chất lượng nợ là chỉ số nguy hiểm nhất."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ba tiêu chí để một chỉ số đáng được theo dõi"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Có ai đó tác động được: nếu không bộ phận nào thay đổi được chỉ số này bằng hành động cụ thể, nó là thông tin tham khảo chứ không phải chỉ số điều hành.",
-          "Đo được kịp thời: một chỉ số chỉ có sau khi khóa sổ ba tháng thì không giúp điều chỉnh gì trong quý đó.",
-          "Khó bị làm đẹp một cách vô nghĩa: nếu chỉ số có thể được cải thiện bằng cách gây hại chỗ khác - ví dụ đẩy doanh số bằng chiết khấu sâu - thì phải đi kèm một chỉ số đối trọng."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Nguyên tắc chỉ số đối trọng",
-        "text": "Mọi chỉ số về tăng trưởng nên đi kèm một chỉ số về chất lượng: doanh thu đi cùng biên lợi nhuận, số khách hàng mới đi cùng tỷ lệ giữ chân, tăng trưởng dư nợ đi cùng tỷ lệ nợ xấu, sản lượng đi cùng tỷ lệ phế phẩm. Chỉ số đứng một mình luôn có cách để đẩy lên bằng việc hy sinh thứ khác."
-      },
-      {
-        "type": "paragraph",
-        "text": "Về số lượng, nguyên tắc thực dụng là một trang giấy: nếu bảng chỉ số điều hành không in vừa một trang thì ban lãnh đạo sẽ không thực sự theo dõi hết, và khi mọi thứ đều quan trọng thì không gì thực sự được ưu tiên."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "KPI tốt nhất không phải KPI phổ biến nhất trong ngành.",
-          "Đó là KPI phản ánh đúng động lực giá trị thực sự của chính doanh nghiệp bạn."
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Thay số vào bộ KPI của một công ty SaaS",
-        "equation": "LTV/CAC = (ARPU × Biên gộp ÷ Tỷ lệ rời bỏ) ÷ Chi phí có được một khách",
-        "example": {
-                "title": "Cùng doanh thu tháng, hai tương lai khác hẳn",
-                "calculation": "Cả hai: ARPU 2 triệu/tháng, biên gộp 80%, CAC 30 triệu · A rời bỏ 2%/tháng · B rời bỏ 5%/tháng",
-                "result": "A: LTV = 2 × 80% ÷ 2% = 80 triệu → LTV/CAC = 2,7 · B: LTV = 1,6 ÷ 5% = 32 triệu → LTV/CAC = 1,1",
-                "explanation": "Hai công ty báo cáo doanh thu tháng giống hệt nhau, nhưng A thu về 2,7 đồng cho mỗi đồng bỏ ra tìm khách còn B gần như hoà vốn. Chênh lệch nằm ở đúng một con số không xuất hiện trên báo cáo tài chính: tỷ lệ rời bỏ. Đó là ý của bài - KPI phải chọn theo mô hình kinh doanh, và với SaaS thì doanh thu tháng nói ít hơn tỷ lệ giữ chân rất nhiều."
-        }
-}
+    "keyTakeaways": [
+      "Bốn mươi ô chứa nhiều thông tin hơn và cho ít sự chú ý hơn ba ô",
+      "Chỉ số bị đem ra đánh giá cá nhân sẽ tốt lên và ngừng đo thứ nó vốn đo",
+      "Chỉ số dẫn dắt đổi trước, nên còn kịp làm gì đó"
     ],
     "summary": {
-      "keyIdea": "KPI cần được chọn phù hợp với đặc thù mô hình kinh doanh cụ thể, không phải một bộ chỉ số chung cho mọi doanh nghiệp",
-      "commonMistake": "Dễ bỏ qua: theo dõi quá nhiều KPI cùng lúc có thể gây phân tán và khó ra quyết định, nên ưu tiên số ít chỉ số phản ánh đúng động lực giá trị cốt lõi",
-      "action": "Sao chép KPI từ mô hình kinh doanh khác mà không hiểu bản chất là sai lầm phổ biến"
-    }
+      "keyIdea": "Chọn chỉ số là quyết định về sự chú ý của đội, không phải quyết định về đo lường",
+      "commonMistake": "Đưa lên bảng chính mọi thứ đo được, biến nó thành hệ thống cảnh báo mà không ai đọc",
+      "action": "Với mỗi ô trên bảng, hỏi tháng trước nó có làm ai đổi việc đang làm không."
+    },
+    "application": {
+      "title": "Ba tới năm ô, phần còn lại thành cảnh báo",
+      "message": "Giữ trên bảng chính những chỉ số mà có người biết phải làm gì khi chúng xấu đi. Mọi thứ khác chuyển thành cảnh báo tự động theo ngưỡng.",
+      "secondary": "Với mỗi chỉ số giữ lại, viết một dòng: khi nó xấu đi thì ai làm gì. Không viết nổi dòng đó thì bỏ ô ấy."
+    },
+    "sections": [
+      { "type": "lead", "text": "Một bảng điều khiển đầy đủ nghe như điều tốt, và số lượng thứ một người theo dõi được cùng lúc thì không tăng theo số ô mà bảng chứa nổi." },
+      { "type": "heading", "text": "Đầy đủ và hữu ích là hai thứ khác nhau" },
+      { "type": "paragraph", "text": "Bốn mươi ô chứa nhiều thông tin hơn ba ô về mặt kỹ thuật. Về mặt thực tế thì ngược lại: không ai đọc hết bốn mươi ô mỗi ngày, nên mắt lướt qua và chỉ dừng lại ở màu đỏ. Bảng ấy đã chuyển từ công cụ chú ý thành hệ thống cảnh báo thụ động, và nó làm việc đó kém hơn một hệ thống cảnh báo thật." },
+      { "type": "list", "items": [
+        "Một ô đáng giữ khi có người biết phải làm gì lúc nó xấu đi",
+        "Chỉ số dễ đo được chọn thay chỉ số đáng đo chỉ vì nó có sẵn",
+        "Chỉ số dẫn dắt đổi trước chỉ số kết quả, nên còn kịp hành động",
+        "Mọi thứ không lên bảng chính thì thành cảnh báo, không thành bảng phụ"
+      ]},
+      { "type": "conceptTable", "title": "Bốn câu hỏi cho mỗi ô trên bảng", "concepts": [
+        { "vi": "Ai hành động", "en": "Owner", "def": "Khi nó xấu đi thì ai làm gì. Không trả lời được thì ô đó chỉ tạo ra lo lắng." },
+        { "vi": "Dẫn dắt hay kết quả", "en": "Leading or lagging", "def": "Kết quả nói bạn đã làm tốt chưa; dẫn dắt nói bạn còn kịp sửa không." },
+        { "vi": "Đo được hay đáng đo", "en": "Easy or right", "def": "Thứ có sẵn thường không phải thứ quan trọng; chênh lệch công sức quyết định phần lớn bảng." },
+        { "vi": "Bị tối ưu chưa", "en": "Gamed", "def": "Nếu nó gắn với đánh giá cá nhân, giả định rằng nó đã ngừng đo thứ nó vốn đo." }
+      ]},
+      { "type": "callout", "label": "Chỉ số dùng để đánh giá người thì ngừng dùng để đo được", "text": "Đo số vé đã đóng thì vé bị chia nhỏ. Đo độ phủ kiểm thử thì xuất hiện những bài kiểm không khẳng định gì. Con số vẫn tốt lên và vẫn đúng theo định nghĩa của nó - đó chính là điều làm hiện tượng này khó phát hiện, vì mọi dấu hiệu bề mặt đều nói rằng mọi thứ đang cải thiện." },
+      { "type": "closing", "lines": [
+        "Một bảng điều khiển tốt không phải bảng chứa nhiều nhất, mà là bảng có ít ô tới mức mỗi ô đều được nhìn thật.",
+        "Bài sau: giữ bao nhiêu dung lượng dự phòng là đủ, và vì sao thừa cũng là một khoản chi."
+      ]}
+    ]
   },
   {
     "id": 1206,
-    "slug": "treasury-management-quan-ly-dong-tien",
-    "title": "CFO & Vận hành, Bài 5: Treasury Management - quản lý dòng tiền doanh nghiệp",
-    "subtitle": "Đảm bảo doanh nghiệp không bao giờ thiếu tiền mặt đúng lúc cần nhất",
+    "slug": "dung-luong-du-phong-bao-nhieu-la-du",
+    "title": "CFO & Vận hành, Bài 5: Dung lượng dự phòng - bao nhiêu là đủ",
+    "subtitle": "Thiếu thì sập vào đúng lúc đông nhất; thừa thì trả tiền cho thứ không ai dùng",
     "duration": "7 phút",
     "difficulty": "Trung bình",
-    "emoji": "🏦",
+    "emoji": "🪣",
     "track": "professional",
-    "openingQuestion": "Một công ty có lợi nhuận dương và tổng tài sản lớn vẫn có thể phá sản vì lý do gì, mà bộ phận Treasury được lập ra chính để phòng ngừa?",
+    "whyItMatters": "Câu hỏi giữ bao nhiêu dự phòng được trả lời bằng cảm giác ở phần lớn đội, và cả hai hướng sai đều đắt theo cách rất khác nhau - một hướng có hoá đơn mỗi tháng, hướng kia có một sự cố mỗi năm.",
+    "openingQuestion": "Mức dự phòng nên được tính dựa trên con số nào?",
     "openingOptions": [
-      "Vì lợi nhuận dương luôn đảm bảo công ty không bao giờ phá sản",
-      "Mất khả năng thanh khoản dù vẫn có lãi trên sổ sách",
-      "Vì tài sản lớn luôn đồng nghĩa với đủ tiền mặt",
-      "Chỉ công ty thua lỗ mới có nguy cơ phá sản"
+      "Đỉnh thật đã quan sát được, cộng thời gian cần để tăng thêm",
+      "Trung bình nhân một hệ số an toàn",
+      "Mức tối đa hệ thống phục vụ nổi",
+      "Ngân sách kỳ đó chia cho đơn giá"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là một trong những bài học quan trọng nhất của tài chính doanh nghiệp: 'Có lãi' (profitable) và 'Có đủ tiền mặt' (liquid) là hai khái niệm hoàn toàn khác nhau. Một công ty có thể có lợi nhuận kế toán dương nhưng tiền bị kẹt trong khoản phải thu, hàng tồn kho, hoặc tài sản dài hạn - nếu không đủ tiền mặt để trả nghĩa vụ đến hạn đúng lúc, công ty vẫn rơi vào tình trạng mất khả năng thanh toán. Treasury Management tồn tại chính để quản lý và dự báo dòng tiền, đảm bảo luôn đủ thanh khoản.",
+    "correctOption": 0,
+    "explanation": "Trung bình nhân hệ số là cách phổ biến nhất và nó sai theo cả hai chiều tuỳ vào hình dạng phân phối: với số liệu lệch phải, trung bình nhân đôi vẫn nằm dưới đỉnh thật rất xa. Con số đúng gồm hai phần: đỉnh mà bạn đã thật sự quan sát được, và khoảng thời gian hệ thống cần để mở rộng thêm khi vượt đỉnh đó. Phần thứ hai hay bị bỏ quên nhất - nếu việc tăng dung lượng mất mười lăm phút thì bạn cần đệm cho mười lăm phút, còn nếu nó mất hai ngày vì phải đặt hàng thì bạn cần đệm cho hai ngày. Cùng một hệ thống, hai con số dự phòng khác nhau nhiều lần.",
     "diagram": [
-      {
-        "label": "Dự báo dòng tiền vào/ra",
-        "arrow": true
-      },
-      {
-        "label": "Đảm bảo đủ thanh khoản cho nghĩa vụ đến hạn",
-        "arrow": true
-      },
-      {
-        "label": "Quản lý tiền mặt dư thừa (đầu tư ngắn hạn an toàn)",
-        "arrow": true
-      },
-      {
-        "label": "Cân bằng giữa an toàn và hiệu quả sử dụng vốn"
-      }
+      { "label": "Đỉnh thật đã quan sát, không phải trung bình", "arrow": true },
+      { "label": "Cộng phần cần cho thời gian mở rộng", "arrow": true },
+      { "label": "Mở rộng nhanh thì đệm mỏng, chậm thì đệm dày", "arrow": true },
+      { "label": "Rút ngắn thời gian mở rộng rẻ hơn giữ đệm dày" }
     ],
     "realWorldExample": {
-      "company": "Các vụ phá sản do khủng hoảng thanh khoản",
-      "description": "Nhiều doanh nghiệp lớn từng có lợi nhuận kế toán dương vẫn rơi vào khủng hoảng hoặc phá sản vì mất khả năng thanh khoản đột ngột - thường do khách hàng lớn trả chậm, hàng tồn kho không bán được, hoặc không thể tái cấp vốn khoản nợ đến hạn đúng lúc thị trường tín dụng thắt chặt."
+      "company": "Đệm gấp đôi trung bình",
+      "description": "Một đội giữ dung lượng gấp đôi mức sử dụng trung bình và thấy con số đó rất an toàn. Đợt cao điểm cuối năm, tải thật gấp bảy lần trung bình trong khoảng bốn mươi phút. Đệm gấp đôi hết ngay trong phút đầu, và việc mở rộng thêm mất hai mươi phút vì cấu hình tự động chưa từng được chạy thử ở quy mô đó."
     },
     "quiz": [
       {
-        "question": "Vì sao Treasury thường duy trì một khoản 'đệm thanh khoản' (liquidity buffer) ngay cả khi dòng tiền dự báo cho thấy đủ tiền cho mọi nghĩa vụ sắp tới?",
+        "question": "Vì sao thời gian mở rộng quan trọng ngang mức đệm?",
         "options": [
-          "Vì Treasury không tin tưởng vào các dự báo dòng tiền của chính mình",
-          "Dự báo dòng tiền luôn có sai số - một khách hàng lớn trả chậm bất ngờ, một chi phí phát sinh ngoài kế hoạch, hoặc gián đoạn kinh doanh đột ngột đều có thể làm dòng tiền thực tế lệch khỏi dự báo; đệm thanh khoản là biện pháp phòng ngừa cho những tình huống bất định này",
-          "Vì luật pháp yêu cầu bắt buộc phải giữ một khoản tiền mặt tối thiểu",
-          "Đệm thanh khoản chỉ cần thiết cho các công ty nhỏ, không cần cho tập đoàn lớn"
-        ],
-        "correct": 1,
-        "explanation": "Bất kỳ dự báo nào cũng có sai số - Treasury Management giỏi không chỉ dự báo chính xác mà còn CHUẨN BỊ cho khả năng dự báo sai. Đệm thanh khoản là 'bảo hiểm' cho những cú sốc bất ngờ (khách hàng trả chậm, chi phí phát sinh, gián đoạn kinh doanh) mà không ai có thể dự báo chính xác 100%."
-      },
-      {
-        "question": "Giữ quá nhiều tiền mặt dư thừa không đầu tư sinh lời (thay vì chỉ đủ đệm thanh khoản cần thiết) có phải luôn là chiến lược tài chính tối ưu không?",
-        "options": [
-          "Có, càng nhiều tiền mặt càng an toàn nên luôn là lựa chọn tốt nhất",
-          "Không hẳn - tiền mặt nhàn rỗi quá mức có chi phí cơ hội (không được đầu tư sinh lời, không trả cho cổ đông), Treasury cần cân bằng giữa việc đảm bảo an toàn thanh khoản và không giữ quá nhiều vốn nhàn rỗi không tạo giá trị",
-          "Không bao giờ nên giữ tiền mặt dự phòng vì luôn tốn chi phí cơ hội",
-          "Lượng tiền mặt nắm giữ không ảnh hưởng gì đến hiệu quả tài chính doanh nghiệp"
-        ],
-        "correct": 1,
-        "explanation": "Đây là bài toán cân bằng cốt lõi của Treasury: quá ít tiền mặt tạo rủi ro thanh khoản, nhưng quá nhiều tiền mặt nhàn rỗi (không đầu tư ngắn hạn an toàn, không dùng cho tăng trưởng, không trả lại cổ đông) tạo ra chi phí cơ hội - vốn đáng lẽ có thể tạo thêm giá trị lại nằm im không sinh lời."
-      },
-      {
-        "question": "Số ngày tồn kho 70, phải thu 50, phải trả 40. Chu kỳ chuyển đổi tiền mặt là bao nhiêu?",
-        "options": [
-          "80 ngày",
-          "160 ngày",
-          "60 ngày",
-          "20 ngày"
+          "Vì đệm chỉ cần đủ cho khoảng thời gian tới khi dung lượng mới sẵn sàng",
+          "Vì mở rộng chậm làm chi phí tăng lên do phải trả cho cả hai cấu hình cùng lúc",
+          "Vì thời gian mở rộng ảnh hưởng tới trải nghiệm người dùng trong giai đoạn chuyển",
+          "Vì cần biết thời gian mở rộng để lập kế hoạch"
         ],
         "correct": 0,
-        "explanation": "70 + 50 − 40 = 80 ngày. Đây là khoảng thời gian doanh nghiệp phải tự bỏ vốn ra tài trợ trước khi tiền quay về, và nó tăng theo quy mô doanh thu."
+        "explanation": "Hai đại lượng này thay thế cho nhau: đệm dày bù cho việc mở rộng chậm, và mở rộng nhanh cho phép đệm mỏng. Vì vậy đầu tư vào việc rút ngắn thời gian mở rộng thường rẻ hơn nhiều so với việc trả tiền cho một lớp đệm dày mỗi tháng."
       },
       {
-        "question": "Vì sao doanh nghiệp tăng trưởng nhanh có thể thiếu tiền dù vẫn có lãi?",
+        "question": "Cơ chế mở rộng tự động chưa từng chạy ở quy mô thật thì nên coi là gì?",
         "options": [
-          "Vì chu kỳ chuyển đổi tiền mặt dương nghĩa là doanh thu càng tăng thì nhu cầu vốn lưu động càng lớn",
-          "Vì lợi nhuận kế toán luôn sai",
-          "Vì doanh nghiệp phải nộp thuế trước khi thu tiền",
-          "Vì ngân hàng ngừng cho vay khi doanh nghiệp tăng trưởng"
+          "Một giả định, cho tới khi có lần chạy thử ở quy mô đó",
+          "Một biện pháp dự phòng có sẵn nhưng cần theo dõi chặt khi kích hoạt lần đầu",
+          "Một cơ chế đáng tin nếu cấu hình đã được rà soát và không có lỗi rõ ràng",
+          "Một phần của hệ thống cần được kiểm thử trong môi trường thử nghiệm trước"
         ],
         "correct": 0,
-        "explanation": "Mỗi đồng doanh thu tăng thêm kéo theo tồn kho và phải thu tăng theo. Tăng trưởng vì vậy tiêu tiền trước khi tạo ra tiền - và đó là lý do quản lý ngân quỹ tồn tại."
+        "explanation": "Đây cùng một cơ chế với bản sao lưu chưa từng khôi phục thử. Mở rộng gấp năm lần chạm tới những giới hạn mà mở rộng gấp rưỡi không chạm: hạn mức tài khoản, số kết nối tối đa, thời gian khởi động. Không lần nào trong số đó lộ ra ở quy mô nhỏ."
+      },
+      {
+        "question": "Đệm thừa gây thiệt hại theo cách nào?",
+        "options": [
+          "Nó là một khoản chi đều đặn không ai đòi hỏi phải chứng minh",
+          "Nó chiếm tài nguyên của dịch vụ khác",
+          "Nó làm đội chủ quan, ít tối ưu",
+          "Nó làm chỉ số mức dùng khó đọc"
+        ],
+        "correct": 0,
+        "explanation": "Ba tác hại kia đều có và đều gián tiếp. Điều trực tiếp là khoản chi hằng tháng cho thứ chưa từng được dùng tới, và vì nó không gây ra sự cố nào nên không ai rà soát nó - đệm thừa có xu hướng ở lại vĩnh viễn và lớn dần theo mỗi lần ai đó thấy lo."
+      },
+      {
+        "question": "Nên xử lý thế nào với đỉnh tải biết trước theo lịch?",
+        "options": [
+          "Tăng dung lượng trước, rồi hạ xuống sau, thay vì giữ mức cao quanh năm",
+          "Giữ mức dung lượng đủ cho đỉnh cao nhất trong năm để không phải điều chỉnh",
+          "Dựa vào cơ chế mở rộng tự động vì nó xử lý được cả trường hợp đã biết trước",
+          "Phân tán tải sang các khung giờ khác để giảm mức đỉnh cần phục vụ"
+        ],
+        "correct": 0,
+        "explanation": "Với đỉnh biết trước, việc chờ cơ chế tự động phản ứng là chấp nhận một khoảng suy giảm chất lượng mà bạn hoàn toàn tránh được. Tăng trước rồi hạ sau cho cùng mức bảo vệ với chi phí chỉ tính cho những ngày thật sự cần."
+      },
+      {
+        "question": "Chỉ số nào cho biết mức đệm hiện tại có hợp lý không?",
+        "options": [
+          "Tỷ lệ giữa đỉnh cao nhất trong kỳ và dung lượng đang giữ",
+          "Mức sử dụng trung bình so với tổng dung lượng đang được cấp phát",
+          "Số lần hệ thống chạm ngưỡng cảnh báo về dung lượng trong kỳ báo cáo",
+          "Chi phí hạ tầng mỗi đơn vị công việc"
+        ],
+        "correct": 0,
+        "explanation": "Mức sử dụng trung bình so với dung lượng là chỉ số hay được báo cáo nhất và nó nói rất ít, vì hệ thống không sập vì trung bình. Tỷ lệ đỉnh trên dung lượng trả lời đúng câu hỏi: còn cách ngưỡng bao xa vào lúc gần ngưỡng nhất."
       }
-    ],
-    "keyTakeaways": [
-      "Có lãi (profitable) và có đủ tiền mặt (liquid) là hai khái niệm khác nhau - công ty có lãi vẫn có thể mất khả năng thanh khoản",
-      "Đệm thanh khoản là biện pháp phòng ngừa cho sai số trong dự báo dòng tiền, không phải dấu hiệu không tin tưởng dự báo",
-      "Treasury cần cân bằng giữa an toàn thanh khoản và tránh giữ quá nhiều vốn nhàn rỗi không sinh lời"
     ],
     "practicePrompt": {
-      "question": "Một công ty báo cáo lãi 200 tỷ trong quý, nhưng bộ phận Treasury cảnh báo công ty có thể không đủ tiền mặt để trả lương và nhà cung cấp trong tháng tới. Làm sao một công ty đang 'có lãi' lại có thể đối mặt với khủng hoảng tiền mặt?",
+      "question": "Bạn đang giữ dung lượng gấp ba mức trung bình và muốn biết như vậy có hợp lý không. Cần hai con số nào?",
       "options": [
-        "Đây là điều không thể xảy ra, nếu công ty có lãi thì chắc chắn phải có đủ tiền mặt tương ứng",
-        "Có lãi và có đủ tiền mặt là hai chuyện khác nhau: lợi nhuận có thể nằm ở phải thu",
-        "Đây chắc chắn là dấu hiệu gian lận kế toán trong báo cáo tài chính của công ty",
-        "Bộ phận Treasury đang đưa ra cảnh báo sai vì lợi nhuận luôn đồng nghĩa với có đủ tiền mặt"
+        "Đỉnh cao nhất đã quan sát, và thời gian để mở rộng thêm",
+        "Trung bình và độ lệch chuẩn kỳ vừa qua",
+        "Chi phí của phần dung lượng dư thừa và mức thiệt hại nếu hệ thống quá tải",
+        "Xu hướng tăng trưởng của tải và dự báo mức sử dụng trong các quý tới"
       ],
-      "correct": 1,
-      "explanation": "Có lãi và có đủ tiền mặt là hai khái niệm khác nhau - công ty có lãi vẫn có thể mất khả năng thanh khoản. Đây chính là lý do vai trò Treasury Management (quản lý dòng tiền thực tế) quan trọng song song với việc theo dõi lợi nhuận kế toán."
+      "correct": 0,
+      "explanation": "Hai con số này xác định trực tiếp mức đệm cần thiết và chúng lấy được ngay từ dữ liệu đang có. Ba phương án kia đều là đầu vào cho những câu hỏi khác - chúng hữu ích nhưng không trả lời được câu bạn đang hỏi."
     },
-    "application": {
-      "title": "Dự báo tiền theo tuần, mười ba tuần",
-      "message": "Lập bảng tiền vào và tiền ra theo từng tuần cho mười ba tuần tới, gồm cả các khoản dồn cục như lương tháng mười ba, thuế và gốc vay đáo hạn. Đây là công cụ nhìn ra tuần thiếu tiền, thứ mà báo cáo lãi lỗ theo quý không bao giờ hiển thị.",
-      "secondary": "Đặt mức đệm bằng số tuần chi phí cố định, không bằng một con số tuyệt đối - vì con số tuyệt đối không tự lớn lên khi doanh nghiệp lớn lên.",
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Một công ty có lợi nhuận dương vẫn có thể phá sản - nghe vô lý, nhưng đây là bài học quan trọng nhất mà Treasury Management tồn tại để phòng ngừa."
-      },
-      {
-        "type": "heading",
-        "text": "Có lãi khác với có đủ tiền mặt"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một công ty có thể có lợi nhuận kế toán dương nhưng tiền bị kẹt trong khoản phải thu, hàng tồn kho hoặc tài sản dài hạn - nếu không đủ tiền mặt trả nghĩa vụ đến hạn đúng lúc, công ty vẫn mất khả năng thanh toán. Đệm thanh khoản là biện pháp phòng ngừa cho sai số dự báo, không phải dấu hiệu không tin tưởng dự báo. Treasury cần cân bằng giữa an toàn thanh khoản và tránh giữ quá nhiều vốn nhàn rỗi không sinh lời - cả hai thái cực đều có chi phí."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Có lãi và có đủ tiền mặt là hai khái niệm khác nhau - công ty có lãi vẫn có thể mất khả năng thanh khoản",
-          "Đệm thanh khoản là biện pháp phòng ngừa cho sai số dự báo dòng tiền, luôn có thật",
-          "Treasury cần cân bằng giữa an toàn thanh khoản và tránh giữ quá nhiều vốn nhàn rỗi"
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Chu kỳ chuyển đổi tiền mặt",
-        "equation": "CCC = Số ngày tồn kho + Số ngày phải thu − Số ngày phải trả",
-        "variables": [
-          {
-            "symbol": "Số ngày tồn kho",
-            "name": "DIO",
-            "description": "Trung bình bao nhiêu ngày hàng nằm trong kho trước khi bán được."
-          },
-          {
-            "symbol": "Số ngày phải thu",
-            "name": "DSO",
-            "description": "Trung bình bao nhiêu ngày sau khi bán mới thu được tiền từ khách hàng."
-          },
-          {
-            "symbol": "Số ngày phải trả",
-            "name": "DPO",
-            "description": "Trung bình bao nhiêu ngày doanh nghiệp được nhà cung cấp cho nợ."
-          }
-        ],
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "60 ngày tồn kho + 45 ngày phải thu − 30 ngày phải trả",
-          "result": "= 75 ngày",
-          "explanation": "Doanh nghiệp phải tự tài trợ vốn cho 75 ngày hoạt động. Doanh thu càng tăng thì nhu cầu vốn lưu động càng lớn - đây chính là lý do doanh nghiệp tăng trưởng nhanh có thể thiếu tiền dù đang có lãi."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Ba nhiệm vụ của bộ phận quản lý ngân quỹ"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Bảo đảm thanh khoản: luôn có đủ tiền cho các nghĩa vụ đến hạn, kể cả khi dòng tiền vào chậm hơn dự kiến.",
-          "Tối ưu hóa số dư nhàn rỗi: tiền để không cũng có chi phí, vì nó bị lạm phát bào mòn và mất cơ hội sinh lời. Nhưng gửi kỳ hạn quá dài lại phá vỡ mục tiêu thứ nhất.",
-          "Quản trị rủi ro tài chính: rủi ro lãi suất với khoản vay thả nổi, rủi ro tỷ giá với doanh nghiệp xuất nhập khẩu, và rủi ro tập trung khi để quá nhiều tiền ở một tổ chức."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Đệm thanh khoản nên dày bao nhiêu",
-        "text": "Không có con số chung, nhưng cách nghĩ thì có: đệm phải đủ để trụ qua khoảng thời gian tệ nhất mà doanh nghiệp có khả năng gặp - một khách hàng lớn chậm trả, một mùa thấp điểm dài hơn dự kiến, hoặc một khoản vay không được gia hạn. Doanh nghiệp có doanh thu tập trung vào ít khách hàng cần đệm dày hơn hẳn doanh nghiệp có hàng nghìn khách nhỏ."
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Đệm quá mỏng",
-          "text": "Chỉ một sự cố nhỏ - khách hàng lớn chậm trả một tháng - đã buộc doanh nghiệp phải vay nóng với lãi suất cao, hoặc bán tài sản trong thế bị động."
-        },
-        "right": {
-          "label": "Đệm quá dày",
-          "text": "Vốn nằm im không sinh lời, kéo hiệu quả sử dụng vốn xuống. Với doanh nghiệp niêm yết, đây cũng là câu hỏi cổ đông thường đặt ra về việc phân bổ vốn."
-        }
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Lợi nhuận trên giấy tờ không trả được lương nhân viên vào cuối tháng.",
-          "Chỉ tiền mặt thật mới làm được điều đó - đây là lý do Treasury tồn tại."
-        ]
-      }
+    "keyTakeaways": [
+      "Đỉnh thật đã quan sát, không phải trung bình nhân hệ số",
+      "Đệm và thời gian mở rộng thay thế cho nhau; rút ngắn thời gian thường rẻ hơn",
+      "Đệm thừa không gây sự cố nào nên nó ở lại vĩnh viễn và lớn dần"
     ],
     "summary": {
-      "keyIdea": "Có lãi (profitable) và có đủ tiền mặt (liquid) là hai khái niệm khác nhau - công ty có lãi vẫn có thể mất khả năng thanh khoản",
-      "commonMistake": "Dễ bỏ qua: đệm thanh khoản là biện pháp phòng ngừa cho sai số trong dự báo dòng tiền, không phải dấu hiệu không tin tưởng dự báo",
-      "action": "Treasury cần cân bằng giữa an toàn thanh khoản và tránh giữ quá nhiều vốn nhàn rỗi không sinh lời"
-    }
+      "keyIdea": "Mức dự phòng đúng bằng đỉnh thật cộng phần cần cho thời gian mở rộng, không phải một hệ số nhân với trung bình",
+      "commonMistake": "Đặt đệm theo bội số của trung bình, rồi hết đệm trong phút đầu của đợt cao điểm",
+      "action": "Lấy đỉnh cao nhất trong kỳ và thời gian mở rộng thật, rồi tính lại mức đệm từ hai con số đó."
+    },
+    "application": {
+      "title": "Hai con số, một phép tính",
+      "message": "Đỉnh cao nhất đã quan sát trong kỳ, và số phút để dung lượng mới sẵn sàng. Đệm cần đủ cho khoảng thời gian thứ hai ở mức của con số thứ nhất.",
+      "secondary": "Nếu con số thứ hai lớn, hãy đầu tư rút ngắn nó trước khi tăng đệm - một lần sửa so với một khoản chi mỗi tháng."
+    },
+    "sections": [
+      { "type": "lead", "text": "Câu hỏi giữ bao nhiêu dự phòng có hai hướng sai, và chúng đắt theo hai cách rất khác nhau: một hướng có hoá đơn mỗi tháng, hướng kia có một sự cố mỗi năm." },
+      { "type": "heading", "text": "Trung bình không làm hệ thống sập" },
+      { "type": "paragraph", "text": "Cách phổ biến nhất là lấy mức sử dụng trung bình rồi nhân với một hệ số nghe an toàn. Với số liệu lệch phải - và tải hệ thống gần như luôn lệch phải - đỉnh thật có thể cao gấp nhiều lần trung bình, nên hệ số đôi hay ba vẫn nằm dưới đỉnh rất xa. Con số cần dùng là đỉnh đã quan sát được, không phải một bội số của phần giữa." },
+      { "type": "formula", "title": "Mức dự phòng cần giữ", "equation": "Đỉnh đã quan sát × (1 + Tỷ lệ tăng dự kiến) + Phần đủ dùng trong thời gian mở rộng", "variables": [
+        { "symbol": "Đỉnh đã quan sát", "name": "Giá trị cao nhất trong kỳ", "description": "Không phải trung bình, và không phải phân vị 95 nếu đỉnh nằm ngoài nó" },
+        { "symbol": "Thời gian mở rộng", "name": "Từ lúc quyết tới lúc sẵn sàng", "description": "Vài phút nếu tự động đã chạy thử; vài ngày nếu phải đặt hàng hoặc xin duyệt" }
+      ], "example": {
+        "title": "Đỉnh gấp bảy lần trung bình, mở rộng mất hai mươi phút",
+        "calculation": "Đệm phải đủ cho hai mươi phút ở mức đỉnh",
+        "result": "Không phải gấp đôi trung bình",
+        "explanation": "Cùng hệ thống, nếu rút thời gian mở rộng xuống hai phút thì mức đệm cần giữ nhỏ đi nhiều lần."
+      }},
+      { "type": "comparison", "left": { "label": "Đệm dày, mở rộng chậm", "text": "Chi phí đều đặn mỗi tháng cho phần chưa từng dùng tới. Không gây sự cố nào, nên không ai rà soát và nó lớn dần theo mỗi lần có người thấy lo." }, "right": { "label": "Đệm mỏng, mở rộng nhanh", "text": "Chi phí thấp hơn và phụ thuộc vào một cơ chế phải hoạt động đúng lúc cần. Cơ chế đó cần được chạy thử ở quy mô thật, không chỉ ở quy mô nhỏ." } },
+      { "type": "callout", "label": "Mở rộng gấp năm chạm những giới hạn mà gấp rưỡi không chạm", "text": "Hạn mức tài khoản, số kết nối tối đa tới cơ sở dữ liệu, thời gian khởi động của một tiến trình nặng - không giới hạn nào trong số đó lộ ra khi bạn thử mở rộng thêm năm mươi phần trăm. Một cơ chế tự động chưa từng chạy ở quy mô thật là một giả định, đúng theo nghĩa của bài về sự kiện hiếm." },
+      { "type": "closing", "lines": [
+        "Đệm và tốc độ mở rộng là hai cách mua cùng một thứ; chỉ có một cách phải trả tiền mỗi tháng.",
+        "Bài sau: khi một yếu tố duy nhất chi phối phần lớn chi phí hoặc rủi ro của bạn."
+      ]}
+    ]
   },
   {
     "id": 1207,
-    "slug": "quan-ly-rui-ro-lai-suat-doanh-nghiep",
-    "title": "CFO & Vận hành, Bài 6: Quản lý rủi ro lãi suất doanh nghiệp",
-    "subtitle": "Doanh nghiệp vay nợ lớn cần chủ động quản trị biến động lãi suất, không chỉ 'chờ xem'",
-    "duration": "7 phút",
-    "difficulty": "Khó",
-    "emoji": "📉",
+    "slug": "rui-ro-tap-trung-khi-mot-phan-chi-phoi",
+    "title": "CFO & Vận hành, Bài 6: Rủi ro tập trung - khi một phần chi phối tất cả",
+    "subtitle": "Một nhà cung cấp chiếm phần lớn chi phí, một dịch vụ gây phần lớn sự cố, một người biết phần lớn hệ thống",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🎯",
     "track": "professional",
-    "openingQuestion": "Một doanh nghiệp có khoản vay lãi suất thả nổi lớn. Khi ngân hàng trung ương phát tín hiệu sẽ tăng lãi suất mạnh trong thời gian tới, Treasury nên cân nhắc công cụ nào để quản trị rủi ro này?",
+    "whyItMatters": "Mọi tổ chức đều có vài chỗ mà một phần nhỏ chi phối phần lớn kết quả, và những chỗ đó vừa là đòn bẩy lớn nhất vừa là điểm dễ tổn thương nhất. Không đo thì bạn không biết mình đang đứng ở đâu trên cả hai mặt.",
+    "openingQuestion": "Vì sao sự tập trung vừa là đòn bẩy vừa là rủi ro?",
     "openingOptions": [
-      "Không cần làm gì, chỉ cần chờ xem lãi suất thực tế thay đổi ra sao",
-      "Dùng Interest Rate Swap chuyển nghĩa vụ lãi thả nổi sang cố định",
-      "Trả hết toàn bộ khoản vay ngay lập tức bất kể chi phí phạt trả trước hạn",
-      "Vay thêm để tận dụng lãi suất hiện tại trước khi tăng"
+      "Vì cùng một chỗ vừa là nơi cải thiện hiệu quả nhất vừa là nơi hỏng đau nhất",
+      "Vì việc tập trung nguồn lực giúp tối ưu chi phí nhưng làm giảm tính linh hoạt",
+      "Vì phụ thuộc vào một bên duy nhất khiến khả năng thương lượng của bạn yếu đi",
+      "Vì các phần còn lại không được đầu tư đúng mức nên dần trở nên lạc hậu"
     ],
-    "correctOption": 1,
-    "explanation": "Interest Rate Swap là công cụ phái sinh phổ biến để doanh nghiệp chuyển đổi nghĩa vụ lãi suất thả nổi sang cố định (hoặc ngược lại) mà không cần tái cấu trúc khoản vay gốc. Với doanh nghiệp có nợ vay lãi suất thả nổi lớn và lo ngại lãi suất tăng, swap sang lãi suất cố định giúp 'khóa' chi phí lãi vay, tăng khả năng dự báo dòng tiền và bảo vệ biên lợi nhuận khỏi biến động lãi suất bất lợi.",
+    "correctOption": 0,
+    "explanation": "Nếu một dịch vụ chiếm bảy mươi phần trăm hoá đơn hạ tầng thì mọi giờ tối ưu bỏ vào đó có tác dụng lớn hơn nhiều so với bỏ vào chín dịch vụ còn lại cộng lại - đó là mặt đòn bẩy. Cùng lúc, nếu nó hỏng thì bảy mươi phần trăm năng lực xử lý của bạn hỏng theo, và không có chỗ nào khác gánh được - đó là mặt rủi ro. Hai mặt ấy không phải hai hiện tượng mà là cùng một tính chất nhìn từ hai phía, nên chúng luôn đi cùng nhau và không tách rời được. Điều rút ra không phải là tránh tập trung, mà là biết mình đang tập trung ở đâu và quyết định có ý thức về từng chỗ.",
     "diagram": [
-      {
-        "label": "Vay lãi suất thả nổi - rủi ro chi phí tăng khi lãi suất tăng",
-        "arrow": true
-      },
-      {
-        "label": "Interest Rate Swap: đổi thả nổi lấy cố định",
-        "arrow": true
-      },
-      {
-        "label": "Chi phí lãi vay được 'khóa', dễ dự báo hơn"
-      }
+      { "label": "Đo tỷ trọng: chi phí, sự cố, hiểu biết", "arrow": true },
+      { "label": "Chỗ tập trung cao là đòn bẩy lớn nhất", "arrow": true },
+      { "label": "Cũng là điểm hỏng đau nhất", "arrow": true },
+      { "label": "Quyết định có ý thức cho từng chỗ" }
     ],
-    "interactiveType": "interest-rate",
     "realWorldExample": {
-      "company": "Doanh nghiệp có đòn bẩy tài chính cao",
-      "description": "Các doanh nghiệp bất động sản, hạ tầng thường có khoản vay dài hạn lớn với lãi suất thả nổi - trong môi trường lãi suất tăng, nhiều doanh nghiệp trong số này sử dụng interest rate swap hoặc cap lãi suất (interest rate cap) để bảo vệ biên lợi nhuận khỏi chi phí lãi vay tăng đột biến, đặc biệt quan trọng với các dự án có dòng tiền dự kiến ổn định nhưng đòn bẩy cao."
+      "company": "Một người và bảy mươi phần trăm",
+      "description": "Một đội mười người có một thành viên viết phần lớn hệ thống thanh toán và là người duy nhất hiểu luồng đối soát. Trong hai năm, đó là lý do mọi việc liên quan tới thanh toán chạy rất nhanh. Khi người ấy nghỉ ba tuần, bốn việc dừng lại - cùng một tính chất, và không ai từng gọi nó là rủi ro trong suốt hai năm nó là ưu điểm."
     },
     "quiz": [
       {
-        "question": "Vì sao một doanh nghiệp có dòng tiền hoạt động ỔN ĐỊNH, DỰ ĐOÁN ĐƯỢC lại đặc biệt cần quản trị rủi ro lãi suất chặt chẽ hơn doanh nghiệp có dòng tiền biến động mạnh?",
+        "question": "Cách đo mức tập trung đơn giản nhất là gì?",
         "options": [
-          "Vì doanh nghiệp dòng tiền ổn định không có khả năng chịu đựng bất kỳ biến động nào, kể cả nhỏ, nên biến động chi phí lãi vay ngoài dự kiến có thể phá vỡ toàn bộ kế hoạch tài chính đã được xây dựng dựa trên giả định chi phí vốn ổn định",
-          "Vì doanh nghiệp dòng tiền ổn định luôn có lãi suất vay cao hơn",
-          "Doanh nghiệp dòng tiền ổn định không cần quan tâm đến lãi suất vì luôn đủ tiền trả nợ",
-          "Chỉ doanh nghiệp dòng tiền biến động mới cần quản trị rủi ro lãi suất"
+          "Xếp các phần theo tỷ trọng và xem hai phần đầu chiếm bao nhiêu",
+          "Đếm tổng số thành phần rồi so với đội khác",
+          "Tính độ lệch chuẩn của tỷ trọng",
+          "Theo dõi tỷ trọng đổi qua các kỳ"
         ],
         "correct": 0,
-        "explanation": "Nghịch lý thú vị: chính vì dòng tiền hoạt động được dự báo chặt chẽ và toàn bộ kế hoạch tài chính (bao gồm cả các cam kết trả nợ, đầu tư, cổ tức) được xây dựng dựa trên giả định chi phí vốn tương đối ổn định, một biến động lãi suất ngoài dự kiến có thể phá vỡ toàn bộ cấu trúc kế hoạch đó, dù bản thân dòng tiền kinh doanh vẫn ổn định."
+        "explanation": "Phép đo này mất mười phút và trả lời được câu hỏi thật. Nếu hai phần đầu chiếm hơn một nửa thì bạn đang tập trung, bất kể tổng có bao nhiêu thành phần - và con số tổng là thứ hay được báo cáo thay cho nó."
       },
       {
-        "question": "Vì sao doanh nghiệp không nên hedge (phòng ngừa) 100% mọi khoản vay lãi suất thả nổi một cách máy móc, mà cần cân nhắc mức độ hedge phù hợp?",
+        "question": "Vì sao tập trung về hiểu biết khó phát hiện hơn tập trung về chi phí?",
         "options": [
-          "Vì hedging luôn tốn phí và không bao giờ nên thực hiện",
-          "Hedge quá mức có thể khiến doanh nghiệp bỏ lỡ lợi ích khi lãi suất giảm (nếu đã khóa lãi suất cố định cao hơn mức thị trường sau đó), và bản thân công cụ hedging cũng có chi phí giao dịch - doanh nghiệp cần cân bằng giữa mức độ chắc chắn mong muốn và chi phí/cơ hội bị bỏ lỡ",
-          "Hedge 100% luôn là chiến lược tối ưu trong mọi hoàn cảnh thị trường",
-          "Mức độ hedge không ảnh hưởng gì đến kết quả tài chính doanh nghiệp"
-        ],
-        "correct": 1,
-        "explanation": "Hedging là một công cụ quản trị rủi ro, không phải công cụ đầu cơ để tối đa hóa lợi nhuận - hedge 100% loại bỏ hoàn toàn rủi ro nhưng cũng loại bỏ khả năng hưởng lợi nếu lãi suất di chuyển theo hướng có lợi, và có chi phí giao dịch riêng. Quyết định mức độ hedge phù hợp cần cân nhắc khẩu vị rủi ro và cấu trúc tài chính cụ thể của từng doanh nghiệp."
-      },
-      {
-        "question": "Dư nợ thả nổi 500 tỷ, lãi suất tăng 3 điểm phần trăm. Chi phí lãi vay tăng thêm bao nhiêu mỗi năm?",
-        "options": [
-          "15 tỷ đồng",
-          "150 tỷ đồng",
-          "1,5 tỷ đồng",
-          "Không xác định được"
+          "Vì nó không xuất hiện trên hoá đơn hay bảng nào, và nó trông giống hiệu quả",
+          "Vì hiểu biết khó lượng hoá được nên không có cách đo khách quan cho nó",
+          "Vì mỗi người trong đội đều có vùng chuyên môn riêng nên khó so sánh với nhau",
+          "Vì nó thay đổi liên tục khi các thành viên học thêm hoặc chuyển sang việc khác"
         ],
         "correct": 0,
-        "explanation": "500 × 3% = 15 tỷ. Đặt con số này cạnh lợi nhuận trước thuế là cách nhanh nhất để biết mức độ phơi nhiễm có đáng lo hay không."
+        "explanation": "Chi phí tập trung hiện ra ở dòng đầu của hoá đơn. Hiểu biết tập trung thì hiện ra dưới dạng một người luôn xử lý xong việc khó rất nhanh - tức là nó trông giống hệt một điểm mạnh, và nó là điểm mạnh, cho tới ngày người ấy nghỉ."
       },
       {
-        "question": "Đâu là ranh giới giữa quản trị rủi ro và đầu cơ khi phòng hộ lãi suất?",
+        "question": "Giảm tập trung có phải luôn là việc nên làm không?",
         "options": [
-          "Quản trị rủi ro xuất phát từ việc bảo vệ kế hoạch trước kịch bản bất lợi; đầu cơ xuất phát từ niềm tin về hướng đi của lãi suất",
-          "Quản trị rủi ro dùng hợp đồng hoán đổi, đầu cơ dùng trần lãi suất",
-          "Quản trị rủi ro luôn phòng hộ 100% dư nợ",
-          "Không có ranh giới, hai việc là một"
+          "Không, vì phân tán cũng có giá và đôi khi giá đó cao hơn rủi ro",
+          "Có, vì đây là rủi ro nghiêm trọng nhất",
+          "Có, nhưng làm dần để khỏi ảnh hưởng",
+          "Không, vì tập trung cho lợi thế quy mô"
         ],
         "correct": 0,
-        "explanation": "Cùng một giao dịch có thể là phòng hộ hoặc đầu cơ tùy vào lý do thực hiện. Câu hỏi kiểm tra là: nếu bỏ giao dịch này đi, doanh nghiệp có đang chịu rủi ro thật hay không?"
+        "explanation": "Dùng hai nhà cung cấp cho cùng một chức năng tốn một lớp trừu tượng phải nuôi mãi; để hai người cùng nắm một hệ thống tốn thời gian của cả hai. Câu hỏi đúng là so cái giá ấy với thiệt hại khi chỗ tập trung hỏng, chứ không phải giả định rằng phân tán luôn tốt hơn."
+      },
+      {
+        "question": "Cách rẻ nhất giảm rủi ro tập trung về hiểu biết là gì?",
+        "options": [
+          "Để người thứ hai làm phần khó và người thạo ngồi cạnh",
+          "Yêu cầu người thạo viết tài liệu đầy đủ về phần hệ thống mà họ phụ trách",
+          "Luân chuyển người giữa các phần định kỳ",
+          "Tổ chức các buổi chia sẻ để người thạo truyền đạt kiến thức cho cả đội"
+        ],
+        "correct": 0,
+        "explanation": "Tài liệu và buổi chia sẻ truyền được thông tin, và thứ thiếu không phải thông tin mà là kinh nghiệm ra quyết định lúc chưa đủ dữ kiện. Chỉ có việc chính người thứ hai phải quyết mới tạo ra nó, đúng như bài về kèm cặp đã nói."
+      },
+      {
+        "question": "Chỗ tập trung nào đáng xử lý trước?",
+        "options": [
+          "Chỗ mà thiệt hại khi nó hỏng vượt quá khả năng phục hồi",
+          "Chỗ có tỷ trọng cao nhất trong tổng chi phí hoặc tổng khối lượng công việc",
+          "Chỗ dễ giảm tập trung nhất để có kết quả nhanh và tạo đà cho các bước sau",
+          "Chỗ đội có sẵn năng lực để xử lý"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng ngưỡng đã nói ở bài về sự kiện hiếm: dưới mức không phục hồi được thì đó là bài toán kinh tế và giải bằng phép so chi phí. Trên mức đó thì tỷ trọng không còn quan trọng, vì phía bên kia của phép so không phải một khoản tiền."
       }
-    ],
-    "keyTakeaways": [
-      "Interest Rate Swap giúp doanh nghiệp chuyển đổi nghĩa vụ lãi suất thả nổi sang cố định để dự báo chi phí lãi vay tốt hơn",
-      "Doanh nghiệp dòng tiền ổn định vẫn cần quản trị rủi ro lãi suất chặt chẽ vì kế hoạch tài chính dựa trên giả định chi phí vốn ổn định",
-      "Không nên hedge 100% máy móc - cần cân bằng giữa mức độ chắc chắn mong muốn và chi phí/cơ hội bị bỏ lỡ"
     ],
     "practicePrompt": {
-      "question": "Một công ty vay 500 tỷ với lãi suất thả nổi, lo ngại lãi suất sẽ tăng mạnh trong 3 năm tới và muốn 'khóa' chi phí lãi vay ở mức cố định mà không cần tái cấu trúc khoản vay gốc. Công cụ tài chính nào giúp Treasury thực hiện điều này?",
+      "question": "Bạn muốn biết đội mình đang tập trung ở đâu. Nên đo ba thứ nào?",
       "options": [
-        "Interest Rate Swap chuyển nghĩa vụ lãi suất thả nổi sang cố định",
-        "Nên dùng Forward Contract, công cụ chỉ dùng để quản trị rủi ro tỷ giá hối đoái",
-        "Công ty không có công cụ nào để xử lý rủi ro này ngoài việc trả hết khoản vay ngay lập tức",
-        "Nên mua cổ phiếu ngân hàng để phòng hộ rủi ro lãi suất tăng trong tương lai"
+        "Tỷ trọng chi phí, tỷ trọng sự cố, và ai là người duy nhất biết phần nào",
+        "Số lượng nhà cung cấp, số lượng dịch vụ, và số lượng thành viên trong đội",
+        "Mức độ phụ thuộc lẫn nhau giữa các thành phần trong kiến trúc hệ thống",
+        "Thời gian khôi phục dự kiến cho từng thành phần khi nó gặp sự cố"
       ],
       "correct": 0,
-      "explanation": "Interest Rate Swap giúp doanh nghiệp chuyển đổi nghĩa vụ lãi suất thả nổi sang cố định. Đây là công cụ Treasury phổ biến để quản trị rủi ro lãi suất mà không cần tái cấu trúc khoản vay gốc."
+      "explanation": "Ba phép đo này phủ ba loại tập trung khác nhau và cả ba đều lấy được trong một buổi. Đếm số lượng thì không nói gì: mười nhà cung cấp mà một bên chiếm bảy mươi phần trăm hoá đơn thì vẫn là tập trung cao."
     },
-    "application": {
-      "title": "Đo trước, phòng hộ sau",
-      "message": "Tính chi phí lãi vay tăng thêm nếu lãi suất tăng 2 điểm phần trăm, đặt cạnh lợi nhuận trước thuế năm ngoái. Nếu phần tăng ăn hết một phần đáng kể của lợi nhuận, đó là lúc bàn tới phòng hộ - và tỷ lệ phòng hộ nên xuất phát từ chính con số đó.",
-      "secondary": "Phòng hộ một phần dư nợ, không phải toàn bộ, là lựa chọn mặc định hợp lý: nó giữ được tính dự báo cho phần cốt lõi mà vẫn không khoá chặt vào một hướng lãi suất.",
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Doanh nghiệp vay nợ lớn không nên chỉ 'chờ xem' lãi suất biến động ra sao - có những công cụ chủ động để quản trị rủi ro này."
-      },
-      {
-        "type": "heading",
-        "text": "Interest Rate Swap: khóa trước chi phí lãi vay"
-      },
-      {
-        "type": "paragraph",
-        "text": "Interest Rate Swap cho phép doanh nghiệp chuyển đổi nghĩa vụ lãi suất thả nổi sang cố định, giúp dự báo chi phí lãi vay tốt hơn - đổi lại từ bỏ khả năng hưởng lợi nếu lãi suất giảm sau đó. Nghịch lý thú vị: chính doanh nghiệp có dòng tiền ỔN ĐỊNH lại cần quản trị rủi ro lãi suất chặt chẽ, vì toàn bộ kế hoạch tài chính của họ dựa trên giả định chi phí vốn ổn định. Không nên hedge 100% máy móc - cần cân bằng giữa mức độ chắc chắn mong muốn và chi phí cơ hội bị bỏ lỡ."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Interest Rate Swap giúp doanh nghiệp chuyển đổi nghĩa vụ lãi suất thả nổi sang cố định",
-          "Doanh nghiệp dòng tiền ổn định vẫn cần quản trị rủi ro lãi suất vì kế hoạch dựa trên chi phí vốn ổn định",
-          "Không nên hedge 100% máy móc - cần cân bằng mức độ chắc chắn và chi phí cơ hội"
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Đo mức độ phơi nhiễm trước khi bàn đến công cụ",
-        "equation": "Tác động lên lợi nhuận = Dư nợ thả nổi × Mức tăng lãi suất",
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "Dư nợ thả nổi 800 tỷ × tăng 2 điểm phần trăm",
-          "result": "= 16 tỷ chi phí lãi vay tăng thêm mỗi năm",
-          "explanation": "Nếu lợi nhuận trước thuế của doanh nghiệp là 60 tỷ, thì một biến động lãi suất 2 điểm phần trăm đã ăn mất hơn một phần tư lợi nhuận. Con số này phải được tính ra trước, vì nó quyết định việc phòng hộ có đáng làm hay không."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Bốn cách quản trị, từ đơn giản đến phức tạp"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Điều chỉnh cơ cấu nợ: chủ động chuyển một phần dư nợ sang khoản vay lãi suất cố định khi tái cấp vốn - không cần công cụ phái sinh nào.",
-          "Giãn kỳ đáo hạn: tránh để nhiều khoản lớn cùng đáo hạn trong một giai đoạn, để không bị buộc tái cấp vốn toàn bộ đúng lúc lãi suất cao.",
-          "Hợp đồng hoán đổi lãi suất: chuyển nghĩa vụ thả nổi sang cố định cho một phần dư nợ, khóa được chi phí nhưng phải trả phí và mất phần lợi nếu lãi giảm.",
-          "Trần lãi suất: mua quyền được bồi thường phần vượt một mức lãi suất nhất định - tốn phí ban đầu nhưng vẫn giữ được lợi ích nếu lãi suất giảm."
-        ]
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Phòng hộ toàn bộ",
-          "text": "Chi phí lãi vay chắc chắn hoàn toàn, kế hoạch tài chính rất dễ lập. Nhưng nếu lãi suất giảm mạnh, doanh nghiệp bị kẹt ở mức cao trong nhiều năm và mất lợi thế so với đối thủ không phòng hộ."
-        },
-        "right": {
-          "label": "Phòng hộ một phần",
-          "text": "Khóa phần dư nợ tương ứng với mức chi phí lãi mà doanh nghiệp bắt buộc phải chịu được, để phần còn lại thả nổi. Cách này cân bằng giữa sự chắc chắn và chi phí cơ hội, và phổ biến hơn nhiều trong thực tế."
-        }
-      },
-      {
-        "type": "callout",
-        "label": "Phòng hộ không phải dự đoán",
-        "text": "Nếu doanh nghiệp phòng hộ vì tin rằng lãi suất sẽ tăng, đó là đầu cơ chứ không phải quản trị rủi ro. Quản trị rủi ro đúng nghĩa xuất phát từ câu hỏi khác hẳn: nếu lãi suất đi ngược hướng bất lợi nhất, kế hoạch tài chính của doanh nghiệp có còn đứng vững không?"
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Quản trị rủi ro lãi suất không phải để 'đoán đúng hướng lãi suất'.",
-          "Nó là để đảm bảo kế hoạch tài chính không bị phá vỡ bởi một biến số bạn không kiểm soát được."
-        ]
-      }
+    "keyTakeaways": [
+      "Đòn bẩy và rủi ro là cùng một tính chất nhìn từ hai phía",
+      "Tập trung về hiểu biết trông giống hệt một điểm mạnh cho tới ngày người ấy nghỉ",
+      "Phân tán cũng có giá; câu hỏi là so giá đó với thiệt hại khi hỏng"
     ],
     "summary": {
-      "keyIdea": "Interest Rate Swap giúp doanh nghiệp chuyển đổi nghĩa vụ lãi suất thả nổi sang cố định để dự báo chi phí lãi vay tốt hơn",
-      "commonMistake": "Dễ bỏ qua: doanh nghiệp dòng tiền ổn định vẫn cần quản trị rủi ro lãi suất chặt chẽ vì kế hoạch tài chính dựa trên giả định chi phí vốn ổn định",
-      "action": "Không nên hedge 100% máy móc - cần cân bằng giữa mức độ chắc chắn mong muốn và chi phí/cơ hội bị bỏ lỡ"
-    }
+      "keyIdea": "Chỗ tập trung nhất vừa là nơi cải thiện hiệu quả nhất vừa là nơi hỏng đau nhất, và đó là cùng một tính chất",
+      "commonMistake": "Đếm số lượng thành phần thay vì đo tỷ trọng, rồi kết luận là đã phân tán đủ",
+      "action": "Xếp chi phí, sự cố và hiểu biết theo tỷ trọng, rồi xem hai phần đầu chiếm bao nhiêu."
+    },
+    "application": {
+      "title": "Ba bảng xếp hạng, một buổi",
+      "message": "Xếp theo tỷ trọng: chi phí hạ tầng theo dịch vụ, số sự cố theo thành phần, và số phần mà chỉ một người biết. Hai dòng đầu của mỗi bảng là bản đồ rủi ro tập trung của bạn.",
+      "secondary": "Với mỗi dòng đầu bảng, hỏi một câu: nếu chỗ này hỏng hoặc biến mất, chúng ta có phục hồi được không."
+    },
+    "sections": [
+      { "type": "lead", "text": "Trong gần như mọi tổ chức, một phần nhỏ chi phối phần lớn kết quả ở vài chỗ khác nhau. Những chỗ đó là nơi đáng đầu tư nhất và cũng là nơi dễ tổn thương nhất, cùng lúc." },
+      { "type": "heading", "text": "Cùng một tính chất, hai cách nhìn" },
+      { "type": "paragraph", "text": "Một dịch vụ chiếm bảy mươi phần trăm hoá đơn nghĩa là mọi giờ tối ưu bỏ vào đó đáng giá hơn nhiều so với chín dịch vụ còn lại cộng lại. Nó cũng nghĩa là khi nó hỏng thì bảy mươi phần trăm năng lực hỏng theo. Không thể có mặt thứ nhất mà không có mặt thứ hai, nên câu hỏi không phải làm sao tránh tập trung mà là biết mình đang tập trung ở đâu." },
+      { "type": "list", "items": [
+        "Tập trung chi phí: một dịch vụ hoặc một nhà cung cấp chiếm phần lớn hoá đơn",
+        "Tập trung sự cố: một thành phần gây phần lớn số lần gián đoạn",
+        "Tập trung hiểu biết: một người là nguồn duy nhất cho một phần hệ thống",
+        "Ba loại này độc lập với nhau và cần ba phép đo riêng"
+      ]},
+      { "type": "comparison", "left": { "label": "Đếm số lượng", "text": "Mười nhà cung cấp, hai mươi dịch vụ, mười người trong đội. Nghe như đã phân tán, và không nói gì về việc một bên có chiếm bảy mươi phần trăm hay không." }, "right": { "label": "Đo tỷ trọng", "text": "Xếp theo phần đóng góp rồi cộng hai dòng đầu. Nếu chúng vượt một nửa thì bạn đang tập trung, bất kể tổng có bao nhiêu thành phần." } },
+      { "type": "callout", "label": "Tập trung về hiểu biết là loại khó thấy nhất", "text": "Chi phí tập trung nằm ở dòng đầu của hoá đơn và ai mở hoá đơn cũng thấy. Hiểu biết tập trung thì biểu hiện dưới dạng một người luôn xử lý xong việc khó rất nhanh - nó trông giống hệt một điểm mạnh, và nó đúng là điểm mạnh trong suốt thời gian người ấy còn ở đó. Phép thử duy nhất là một kỳ nghỉ dài, và nó chỉ chạy khi đã muộn." },
+      { "type": "closing", "lines": [
+        "Tập trung không phải lỗi cần sửa; nó là một trạng thái cần biết và cần quyết định có ý thức.",
+        "Bài sau: rủi ro đến từ bên ngoài, khi nhà cung cấp đổi giá hoặc đổi điều khoản."
+      ]}
+    ]
   },
   {
     "id": 1208,

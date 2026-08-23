@@ -1,10 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { copyFileSync, existsSync, mkdtempSync, readdirSync } from "node:fs";
+import { copyFileSync, existsSync, mkdtempSync, readFileSync, readdirSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   NotAuthenticatedError,
+  incrementDocumentDownload,
+  leaveStudyRoom,
+  markAdminChatMessagesSeen,
+  recordReferral,
+  recordStudyRoomCheckin,
+  recordStudyRoomQuizAttempt,
+  rewardMyReferral,
   getChatMessageReactions,
   getCommunityFeed,
   getCommunityLearningNow,
@@ -61,6 +68,16 @@ const hasLocalData = existsSync(".wrangler/state/v3/d1/miniflare-D1DatabaseObjec
  *  Phải chép cả tệp `-wal`: thiếu nó thì bản sao chỉ có phần đã checkpoint,
  *  tức là thiếu dữ liệu mà không báo lỗi gì.
  */
+/** `node-sqlite.d.ts` trong repo chỉ khai `prepare().all()`. Nhóm B và C cần
+ *  `run()` và `exec()`, nên khai bổ sung ở đây thay vì sửa tệp khai kiểu chung. */
+type Sqlite = {
+  prepare(sql: string): {
+    all(...p: unknown[]): Record<string, unknown>[];
+    run(...p: unknown[]): { changes: number | bigint; lastInsertRowid: number | bigint };
+  };
+  exec(sql: string): void;
+};
+
 function openCopyOfLocalD1(): D1Like {
   const dir = join(process.cwd(), ".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
   const name = readdirSync(dir).find((f) => f.endsWith(".sqlite") && f !== "metadata.sqlite")!;
@@ -71,14 +88,51 @@ function openCopyOfLocalD1(): D1Like {
     const src = join(dir, name + suffix);
     if (existsSync(src)) copyFileSync(src, dest + suffix);
   }
-  const sqlite = new DatabaseSync(dest, { readOnly: true });
+  // GHI ĐƯỢC, không readOnly. Nhóm B và C là các hàm ghi, và bản sao tạm chính
+  // là chỗ đúng để kiểm chúng: mọi thay đổi nằm trong /tmp và biến mất sau khi
+  // chạy, nên D1 local không bao giờ bị đụng tới.
+  const sqlite = new DatabaseSync(dest) as unknown as Sqlite;
+
+  // Áp 0002_unique_constraints.sql lên bản sao. 0001 sinh từ bản chụp PostgREST
+  // nên KHÔNG có ràng buộc UNIQUE nào, và `ON CONFLICT (...)` ném lỗi "does not
+  // match any PRIMARY KEY or UNIQUE constraint" - tôi phát hiện đúng như vậy khi
+  // chạy bộ kiểm nhóm B lần đầu. Áp ở đây để bộ kiểm chứng minh CẢ HAI: migration
+  // dựng được trên dữ liệu thật, và hàm ghi chạy đúng khi có ràng buộc.
+  for (const line of readFileSync("migrations-d1/0002_unique_constraints.sql", "utf8").split("\n")) {
+    if (line.startsWith("CREATE")) sqlite.exec(line);
+  }
   return {
+    async batch(stmts: unknown[]) {
+      // node:sqlite không có API batch; dựng transaction thủ công để bộ kiểm
+      // kiểm được đúng tính chất mà D1 batch() hứa: hoặc tất cả, hoặc không.
+      sqlite.exec("BEGIN");
+      try {
+        const out = (stmts as { __sql: string; __args: unknown[] }[]).map((st) => {
+          const r = sqlite.prepare(st.__sql).run(...(st.__args as never[]));
+          return { meta: { changes: Number(r.changes) } };
+        });
+        sqlite.exec("COMMIT");
+        return out;
+      } catch (e) {
+        sqlite.exec("ROLLBACK");
+        throw e;
+      }
+    },
     prepare(sql: string) {
       return {
         bind(...args: unknown[]) {
           return {
+            __sql: sql,
+            __args: args,
+            bind(...more: unknown[]) {
+              return this;
+            },
             async all() {
               return { results: sqlite.prepare(sql).all(...(args as never[])) as unknown[] };
+            },
+            async run() {
+              const r = sqlite.prepare(sql).run(...(args as never[]));
+              return { meta: { changes: Number(r.changes), last_row_id: Number(r.lastInsertRowid) } };
             },
           };
         },
@@ -800,5 +854,120 @@ describe.skipIf(!hasLocalData)("phần còn lại của nhóm A", () => {
     for (const r of await getStudyRooms(db, await AI())) {
       expect(r.member_count as number).toBeLessThan(r.max_members as number);
     }
+  });
+});
+
+describe.skipIf(!hasLocalData)("NHÓM B - các hàm ghi", () => {
+  const dem = async (sql: string, ...a: unknown[]) =>
+    (await db.prepare(sql).bind(...a).all().then((r) => r.results as { c: number }[]))[0].c;
+
+  it("incrementDocumentDownload cộng đúng 1", async () => {
+    const doc = (await db.prepare("select id, download_count from documents limit 1")
+      .bind().all().then((r) => r.results as { id: number; download_count: number }[]))[0];
+    if (!doc) return;
+    await incrementDocumentDownload(db, doc.id);
+    const sau = await dem("select download_count as c from documents where id = ?", doc.id);
+    expect(sau).toBe((doc.download_count ?? 0) + 1);
+  });
+
+  it("leaveStudyRoom luỹ đẳng: gọi lần hai không đổi thêm dòng nào", async () => {
+    const tv = (await db
+      .prepare("select user_id from study_room_members where left_at is null limit 1")
+      .bind().all().then((r) => r.results as { user_id: string }[]))[0];
+    if (!tv) return;
+    const lan1 = await leaveStudyRoom(db, tv.user_id);
+    expect(lan1).toBeGreaterThan(0);
+    const lan2 = await leaveStudyRoom(db, tv.user_id);
+    // `left_at is null` khiến lần hai không tìm thấy gì - nếu bỏ điều kiện ấy
+    // thì thời điểm rời của lần đầu bị ghi đè.
+    expect(lan2).toBe(0);
+    expect(await leaveStudyRoom(db, "")).toBe(0);
+  });
+
+  it("rewardMyReferral chỉ thưởng lượt pending, không thưởng hai lần", async () => {
+    const r = (await db
+      .prepare("select referred_id from referrals where status = 'pending' limit 1")
+      .bind().all().then((x) => x.results as { referred_id: string }[]))[0];
+    if (!r) return;
+    expect(await rewardMyReferral(db, r.referred_id)).toBeGreaterThan(0);
+    expect(await rewardMyReferral(db, r.referred_id)).toBe(0);
+  });
+
+  it("recordReferral chặn tự giới thiệu chính mình và người không tồn tại", async () => {
+    const ai = (await db.prepare("select id from user_profiles limit 1").bind().all()
+      .then((r) => r.results as { id: string }[]))[0].id;
+    const truoc = await dem("select count(*) as c from referrals");
+    expect(await recordReferral(db, ai, ai)).toBe(0);           // tự giới thiệu
+    expect(await recordReferral(db, ai, null)).toBe(0);          // null
+    expect(await recordReferral(db, ai, "khong-co-that")).toBe(0); // không tồn tại
+    expect(await dem("select count(*) as c from referrals")).toBe(truoc);
+  });
+
+  it("markAdminChatMessagesSeen NÉM khi không phải chính chủ", async () => {
+    // Bản gốc `raise exception 'not authorized'`. Trả 0 im lặng là che mất một
+    // lần thử truy cập trái phép.
+    await expect(markAdminChatMessagesSeen(db, "nguoi-khac", "chu-hop-thoai")).rejects.toThrow(
+      "not authorized"
+    );
+    await expect(markAdminChatMessagesSeen(db, "", "ai-do")).rejects.toThrow("not authorized");
+  });
+
+  it("markAdminChatMessagesSeen chỉ đánh dấu tin của admin và chưa đọc", async () => {
+    const m = (await db
+      .prepare("select user_id from chat_messages where sender = 'admin' and coalesce(read,0) = 0 limit 1")
+      .bind().all().then((r) => r.results as { user_id: string }[]))[0];
+    if (!m) return;
+    const khacTruoc = await dem(
+      "select count(*) as c from chat_messages where user_id = ? and sender <> 'admin' and coalesce(read,0) = 0",
+      m.user_id
+    );
+    await markAdminChatMessagesSeen(db, m.user_id, m.user_id);
+    expect(
+      await dem(
+        "select count(*) as c from chat_messages where user_id = ? and sender = 'admin' and coalesce(read,0) = 0",
+        m.user_id
+      )
+    ).toBe(0);
+    // Tin của người khác gửi không bị đụng tới.
+    expect(
+      await dem(
+        "select count(*) as c from chat_messages where user_id = ? and sender <> 'admin' and coalesce(read,0) = 0",
+        m.user_id
+      )
+    ).toBe(khacTruoc);
+  });
+
+  it("hàm phòng học NÉM khi chưa đăng nhập hoặc không phải thành viên", async () => {
+    await expect(recordStudyRoomCheckin(db, "", 1)).rejects.toThrow(NotAuthenticatedError);
+    await expect(recordStudyRoomCheckin(db, "nguoi-ngoai", 1)).rejects.toThrow("Not a room member");
+    await expect(recordStudyRoomQuizAttempt(db, "", 1, "personal", 5, 10)).rejects.toThrow(
+      NotAuthenticatedError
+    );
+    await expect(recordStudyRoomQuizAttempt(db, "nguoi-ngoai", 1, "personal", 5, 10)).rejects.toThrow(
+      "Not a room member"
+    );
+  });
+
+  it("recordStudyRoomQuizAttempt chặn điểm bịa và tính percent bằng chia thập phân", async () => {
+    const tv = (await db
+      .prepare("select room_id, user_id from study_room_members where left_at is null limit 1")
+      .bind().all().then((r) => r.results as { room_id: number; user_id: string }[]))[0];
+    if (!tv) return;
+
+    for (const [s, t] of [[5, 0], [5, 51], [-1, 10], [11, 10]] as const) {
+      await expect(
+        recordStudyRoomQuizAttempt(db, tv.user_id, tv.room_id, "personal", s, t)
+      ).rejects.toThrow("Invalid score");
+    }
+
+    // 1/3 = 33%. Nếu tính bằng phép chia nguyên của SQLite thì ra 0.
+    const row = await recordStudyRoomQuizAttempt(db, tv.user_id, tv.room_id, "personal", 1, 3);
+    expect(row!.percent).toBe(33);
+    expect(row!.score).toBe(1);
+    expect(row!.total).toBe(3);
+    // Track rỗng rơi về 'personal'.
+    const row2 = await recordStudyRoomQuizAttempt(db, tv.user_id, tv.room_id, "  ", 2, 4);
+    expect(row2!.track).toBe("personal");
+    expect(row2!.percent).toBe(50);
   });
 });
