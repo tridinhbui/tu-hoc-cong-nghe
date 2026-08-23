@@ -134,3 +134,241 @@ export async function getTrackLeaderboard(
     clampLimit(limit, 10, 50)
   );
 }
+
+/** Tên hiển thị: `coalesce(nullif(full_name,''), split_part(email,'@',1), 'Người học')`.
+ *  SQLite không có `split_part`, nên phần lấy tên trước dấu @ dựng bằng
+ *  `substr` + `instr`. Dùng lại ở nhiều bảng xếp hạng nên tách ra một chỗ. */
+const DISPLAY_NAME = `coalesce(
+  nullif(prof.full_name, ''),
+  case when instr(prof.email, '@') > 1
+       then substr(prof.email, 1, instr(prof.email, '@') - 1) end,
+  'Người học'
+)`;
+
+/** `composite_score_components()` - hàm phụ trợ duy nhất trong cả 53 RPC, dùng
+ *  bởi `get_composite_leaderboard` và `get_my_composite_rank`.
+ *
+ *  BẪY LỚN NHẤT KHI DỊCH: Postgres ép các thành phần sang `numeric` nên
+ *  `learning_xp / 40000` là phép chia thập phân. SQLite chia hai số NGUYÊN cho
+ *  ra số NGUYÊN, nên viết y nguyên thì mọi người dưới 40.000 XP đều được 0 ở
+ *  cấu phần đó - điểm tổng sai mà không có lỗi nào. Vì thế mọi mẫu số ở đây
+ *  đều viết dạng thập phân (`40000.0`).
+ *
+ *  `greatest`/`least` hai đối số → `max`/`min` của SQLite (chúng nhận nhiều đối
+ *  số, khác `max()` gộp nhóm). */
+const COMPOSITE_COMPONENTS = `
+with checkin_xp as (
+  select c.user_id, coalesce(sum(c.xp_earned), 0) as xp
+    from user_chests c where c.source = 'daily_login' group by c.user_id
+),
+exam_totals as (
+  select e.user_id, coalesce(sum(e.score), 0) as points
+    from user_level_exams e where e.source = 'server_graded' group by e.user_id
+),
+base as (
+  select prof.id as user_id,
+         ${DISPLAY_NAME} as name,
+         prof.avatar_url,
+         max(0, coalesce(prof.total_xp, 0) - coalesce(cx.xp, 0)) as learning_xp,
+         coalesce(et.points, 0) as exam_points,
+         max(0, min(100, coalesce(prof.avg_quiz_score, 0))) as accuracy,
+         max(0, coalesce(st.current_streak, 0)) as streak_days
+    from user_profiles prof
+    left join checkin_xp cx on cx.user_id = prof.id
+    left join exam_totals et on et.user_id = prof.id
+    left join user_streaks st on st.user_id = prof.id
+   where coalesce(prof.is_disabled, 0) = 0
+     and coalesce(prof.role, 'user') <> 'admin'
+)
+select b.user_id, b.name, b.avatar_url, b.learning_xp, b.exam_points,
+       b.accuracy, b.streak_days,
+       cast(round(1000 * (
+           0.35 * min(1.0, b.learning_xp / 40000.0)
+         + 0.30 * min(1.0, b.exam_points / 1400.0)
+         + 0.20 * (b.accuracy / 100.0)
+         + 0.15 * min(1.0, b.streak_days / 100.0)
+       )) as integer) as composite
+  from base b`;
+
+export interface CompositeRow {
+  user_id: string; name: string; avatar_url: string | null;
+  learning_xp: number; exam_points: number; accuracy: number;
+  streak_days: number; composite: number;
+}
+
+/** `get_composite_leaderboard(p_limit)` */
+export async function getCompositeLeaderboard(
+  db: D1Like,
+  limit?: number
+): Promise<CompositeRow[]> {
+  return rows<CompositeRow>(
+    db,
+    `${COMPOSITE_COMPONENTS}
+      order by composite desc, exam_points desc, learning_xp desc
+      limit ?`,
+    clampLimit(limit, 10, 50)
+  );
+}
+
+/** `get_chat_message_reactions(p_user_id)`.
+ *
+ *  Hàm gốc có một dòng phân quyền nằm ngay trong mệnh đề WHERE:
+ *  `and p_user_id = auth.uid()` - tức là chỉ được xem reaction trên tin nhắn
+ *  của CHÍNH MÌNH. Không có `auth.uid()` trên D1 nên điều kiện ấy phải được
+ *  kiểm tường minh ở đây; bỏ nó đi là mở cho ai cũng đọc được hộp thoại của
+ *  người khác.
+ *
+ *  `array_agg(user_id order by created_at)` không dịch thẳng được: `group_concat`
+ *  của SQLite không bảo đảm thứ tự ở mọi phiên bản. Nên lấy từng dòng đã sắp
+ *  rồi gom nhóm bằng TypeScript - kết quả giống hệt và không phụ thuộc phiên bản.
+ */
+export async function getChatMessageReactions(
+  db: D1Like,
+  actor: string,
+  userId: string
+): Promise<{ message_id: number; emoji: string; user_ids: string[] }[]> {
+  if (!actor || actor !== userId) return [];
+
+  const flat = await rows<{ message_id: number; emoji: string; user_id: string }>(
+    db,
+    `select r.message_id, r.emoji, r.user_id
+       from chat_message_reactions r
+       join chat_messages msg on msg.id = r.message_id
+      where msg.user_id = ?
+      order by r.message_id, r.emoji, r.created_at asc`,
+    userId
+  );
+
+  const out: { message_id: number; emoji: string; user_ids: string[] }[] = [];
+  for (const r of flat) {
+    const last = out[out.length - 1];
+    if (last && last.message_id === r.message_id && last.emoji === r.emoji) last.user_ids.push(r.user_id);
+    else out.push({ message_id: r.message_id, emoji: r.emoji, user_ids: [r.user_id] });
+  }
+  return out;
+}
+
+/** Gom các dòng `(message_id, emoji, user_id)` đã sắp sẵn thành mảng user_ids.
+ *  Dùng chung cho hai hàm reaction; xem chú thích ở `getChatMessageReactions`
+ *  về lý do không dùng `group_concat`. */
+function groupReactions(
+  flat: { message_id: number; emoji: string; user_id: string }[]
+): { message_id: number; emoji: string; user_ids: string[] }[] {
+  const out: { message_id: number; emoji: string; user_ids: string[] }[] = [];
+  for (const r of flat) {
+    const last = out[out.length - 1];
+    if (last && last.message_id === r.message_id && last.emoji === r.emoji) last.user_ids.push(r.user_id);
+    else out.push({ message_id: r.message_id, emoji: r.emoji, user_ids: [r.user_id] });
+  }
+  return out;
+}
+
+/** `get_study_room_reactions(p_room_id)`.
+ *
+ *  Phân quyền của bản gốc nằm trong một `exists(...)`: người gọi phải là thành
+ *  viên ĐANG hoạt động của phòng (`left_at is null`). Giữ nguyên nó trong SQL
+ *  thay vì kiểm ở TypeScript - một truy vấn thì không có khoảng hở giữa lúc
+ *  kiểm tư cách và lúc đọc dữ liệu. */
+export async function getStudyRoomReactions(
+  db: D1Like,
+  actor: string,
+  roomId: number
+): Promise<{ message_id: number; emoji: string; user_ids: string[] }[]> {
+  if (!actor) return [];
+  const flat = await rows<{ message_id: number; emoji: string; user_id: string }>(
+    db,
+    `select r.message_id, r.emoji, r.user_id
+       from study_room_message_reactions r
+       join study_room_messages msg on msg.id = r.message_id
+      where msg.room_id = ?1
+        and exists (
+          select 1 from study_room_members m
+           where m.room_id = ?1 and m.user_id = ?2 and m.left_at is null
+        )
+      order by r.message_id, r.emoji, r.created_at asc`,
+    roomId,
+    actor
+  );
+  return groupReactions(flat);
+}
+
+/** `get_daily_active_users(days)`.
+ *
+ *  Bản gốc dựng khung ngày bằng `generate_series` rồi LEFT JOIN, để ngày không
+ *  ai học vẫn hiện ra với số 0 thay vì biến mất khỏi đồ thị. SQLite không có
+ *  `generate_series`, nên khung ngày dựng bằng CTE ĐỆ QUY - đây là hàm duy
+ *  nhất trong 53 hàm cần tới nó.
+ *
+ *  MÚI GIỜ. `current_date` của Postgres theo múi giờ máy chủ (UTC trên
+ *  Supabase) còn `date('now')` của SQLite cũng là UTC, nên hai bên khớp nhau.
+ *  Nhưng cả hai đều KHÔNG phải "hôm nay" theo giờ Việt Nam: một lượt học lúc
+ *  6 giờ sáng giờ Việt Nam rơi vào ngày hôm trước theo UTC. Đây là hành vi có
+ *  sẵn của bản gốc, dịch giữ nguyên; muốn đổi thì là một quyết định riêng.
+ */
+export async function getDailyActiveUsers(
+  db: D1Like,
+  days: number
+): Promise<{ date: string; count: number }[]> {
+  // Kẹp để CTE đệ quy không chạy vô hạn nếu `days` là 0, âm hay một số vô lý
+  // do client gửi lên. Bản gốc dựa vào `generate_series` tự trả rỗng; ở đây
+  // phải tự chặn.
+  const n = clampLimit(days, 30, 365);
+  return rows<{ date: string; count: number }>(
+    db,
+    `with recursive spine(day) as (
+       select date('now', '-' || (?1 - 1) || ' days')
+       union all
+       select date(day, '+1 day') from spine where day < date('now')
+     )
+     select spine.day as date, count(distinct up.user_id) as count
+       from spine
+       left join user_progress up
+         on up.completed = 1
+        and date(up.completed_at) = spine.day
+      group by spine.day
+      order by spine.day`,
+    n
+  );
+}
+
+/** `get_competency_leaderboard(p_lesson_ids bigint[], p_limit int)`.
+ *
+ *  HÀM DUY NHẤT TRONG 53 HÀM CÓ THAM SỐ MẢNG. Bản gốc dùng
+ *  `lesson_id = any(p_lesson_ids)`; SQLite không có kiểu mảng nên danh sách
+ *  phải nở thành `in (?,?,?…)` đúng bằng số phần tử lúc chạy.
+ *
+ *  Vì số dấu hỏi do độ dài mảng quyết định, đây cũng là chỗ dễ mở cửa cho tiêm
+ *  SQL nhất trong cả tệp nếu ai đó nối thẳng giá trị vào chuỗi. Ở đây chỉ nối
+ *  các dấu `?`, còn giá trị vẫn đi qua `bind` - và mọi phần tử được ép sang số
+ *  nguyên trước, nên một phần tử không phải số sẽ bị loại chứ không lọt vào SQL.
+ */
+export async function getCompetencyLeaderboard(
+  db: D1Like,
+  lessonIds: number[],
+  limit?: number
+): Promise<{ user_id: string; name: string; value: number; avatar_url: string | null }[]> {
+  const ids = (lessonIds ?? []).map((x) => Math.trunc(Number(x))).filter(Number.isFinite);
+  // Mảng rỗng: `any('{}')` của Postgres không khớp dòng nào, còn `in ()` là lỗi
+  // cú pháp trong SQLite. Trả rỗng sớm để hai bên hành xử giống nhau.
+  if (ids.length === 0) return [];
+
+  const cho = ids.map(() => "?").join(",");
+  return rows(
+    db,
+    `select up.user_id,
+            ${DISPLAY_NAME} as name,
+            count(*) as value,
+            prof.avatar_url
+       from user_progress up
+       join user_profiles prof on prof.id = up.user_id
+      where up.completed = 1
+        and up.lesson_id in (${cho})
+        and coalesce(prof.is_disabled, 0) = 0
+        and coalesce(prof.role, 'user') <> 'admin'
+      group by up.user_id, prof.full_name, prof.email, prof.avatar_url
+      order by value desc
+      limit ?`,
+    ...ids,
+    clampLimit(limit, 10, 50)
+  );
+}

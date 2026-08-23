@@ -413,7 +413,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
         "options": [
           "Vì hai thay đổi tác dụng ngược chiều có thể triệt tiêu nhau và bạn kết luận cả hai vô dụng",
           "Vì số lượng tổ hợp cần thử tăng quá nhanh nên không đủ thời gian đo hết",
-          "Vì mỗi tham số cần một khoảng thời gian ổn định khác nhau sau khi thay đổi",
+          "Vì mỗi tham số cần một khoảng thời gian ổn định khác nhau sau khi được thay đổi, và khoảng đó không đo trước được",
           "Vì một số tham số chỉ có hiệu lực sau khi tiến trình được khởi động lại"
         ],
         "correct": 0,
@@ -434,7 +434,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
         "question": "Vì sao cần ghi lại lý do đằng sau mỗi giá trị cấu hình?",
         "options": [
           "Vì không có nó thì sáu tháng sau không ai dám đổi và cũng không ai biết vì sao là thế",
-          "Vì tất cả các công cụ quản lý cấu hình yêu cầu mô tả cho từng tham số được thay đổi",
+          "Vì tất cả các công cụ quản lý cấu hình đều yêu cầu một mô tả cho từng tham số được thay đổi",
           "Vì cần bằng chứng khi giải thích quyết định cấu hình cho người rà soát",
           "Vì lý do giúp người mới trong đội hiểu được kiến trúc của hệ thống nhanh hơn"
         ],
@@ -445,7 +445,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
         "question": "Điều gì nên làm trước khi bắt đầu chỉnh tham số?",
         "options": [
           "Xác định xem hệ thống đang bị giới hạn bởi cái gì - tính toán, chờ đợi hay bộ nhớ",
-          "Ghi lại toàn bộ giá trị cấu hình hiện tại để khôi phục lại mỗi khi cần",
+          "Ghi lại toàn bộ giá trị cấu hình hiện tại để có thể khôi phục lại chúng mỗi khi cần tới",
           "Chuẩn bị một môi trường riêng có cấu hình giống hệt môi trường thật",
           "Đặt mục tiêu cụ thể về mức độ trễ mà việc chỉnh tham số cần đạt được"
         ],
@@ -457,7 +457,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
         "options": [
           "Như một danh sách xếp hạng để biết chỉnh cái gì trước, không phải một cấu hình tối ưu",
           "Như một tập giá trị tối ưu có thể áp dụng trực tiếp cho hệ thống đang chạy",
-          "Như một bằng chứng cho thấy hệ thống đã đạt tới giới hạn của kiến trúc hiện tại",
+          "Như một bằng chứng cho thấy hệ thống đã chạm tới đúng giới hạn của kiến trúc hiện tại rồi",
           "Như một cơ sở để so sánh hiệu năng giữa các phiên bản khác nhau của ứng dụng"
         ],
         "correct": 0,

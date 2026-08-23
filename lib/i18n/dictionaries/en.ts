@@ -1515,7 +1515,7 @@ export const en: Dictionary = {
     "career-application": "Applying it at work",
     esg: "Sustainability & energy efficiency",
     "economics-markets": "Operating systems & Linux",
-    "vn-market": "The Vietnamese market",
+    "vn-product": "The Vietnamese market",
     "private-markets": "Open source & the ecosystem",
     "wealth-insurance": "Scale & handling load",
     "infra-project": "Infrastructure & platform projects",

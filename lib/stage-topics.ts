@@ -46,7 +46,7 @@ export type StageTopicId =
   | "career-application"
   | "esg"
   | "economics-markets"
-  | "vn-market"
+  | "vn-product"
   | "private-markets"
   | "wealth-insurance"
   | "infra-project"
@@ -96,7 +96,7 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
   "career-application": "generic",
   esg: "generic",
   "economics-markets": "generic",
-  "vn-market": "generic",
+  "vn-product": "generic",
   // "đầu tư thay thế" là đầu tư; substring cũ không bắt được vì chữ thường.
   "private-markets": "investing",
   "wealth-insurance": "generic",
@@ -203,7 +203,7 @@ const PROFESSIONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 22": "quant-data", // Quantitative Methods
   "Chặng 23": "quant-data", // Excel và dữ liệu
   "Chặng 24": "accounting-reporting", // Chuẩn mực kế toán & thuế DN Việt Nam
-  "Chặng 25": "vn-market", // Thị trường chứng khoán Việt Nam
+  "Chặng 25": "vn-product", // Thị trường chứng khoán Việt Nam
   "Chặng 26": "economics-markets", // Tài chính quốc tế
   "Chặng 27": "private-markets", // Cấu trúc và hiệu suất quỹ PE/VC
   "Chặng 28": "career-application", // Kỹ năng nghề phân tích tài chính

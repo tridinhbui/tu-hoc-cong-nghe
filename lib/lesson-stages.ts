@@ -5,7 +5,7 @@ import type { LessonMeta } from "@/lib/lesson-types";
  * Used to determine tiered lesson unlock rules.
  */
 export function getLessonStage(lesson: LessonMeta): number | null {
-  const track = lesson.track || "personal";
+  const track = lesson.track;
   const id = lesson.id;
 
   if (track === "personal") {
@@ -38,9 +38,9 @@ export function getLessonsInStage(
   const stage = getLessonStage(lesson);
   if (stage === null) return [];
 
-  const track = lesson.track || "personal";
+  const track = lesson.track;
   return allLessons.filter((l) => {
-    const lTrack = l.track || "personal";
+    const lTrack = l.track;
     return lTrack === track && getLessonStage(l) === stage;
   });
 }

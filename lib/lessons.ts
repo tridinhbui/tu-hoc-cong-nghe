@@ -55695,206 +55695,182 @@ export const lessons: Lesson[] = [
     "track": "bonus"
   },
   {
-    "id": 1048,
-    "slug": "tu-duy-tai-chinh",
-    "title": "Tư duy tài chính",
-    "subtitle": "Kiến thức không thiếu - cách nghĩ mới là thứ tạo khác biệt",
-    "duration": "6 phút",
+    "title": "Công sức tiêu đi và công sức tích lại",
+    "subtitle": "Cùng một tuần làm việc, hai kết cục khác hẳn nhau sau hai năm",
+    "duration": "7 phút",
     "difficulty": "Dễ",
-    "emoji": "🧠",
-    "openingQuestion": "Căn nhà bạn đang ở là tài sản hay tiêu sản?",
+    "emoji": "🧱",
+      "whyItMatters": "Hai đội bỏ ra cùng số giờ có thể ở hai vị trí hoàn toàn khác nhau sau hai năm, và khác biệt không nằm ở họ làm nhanh tới đâu mà ở việc thứ họ làm có còn dùng lại được không.",
+    "openingQuestion": "Sửa tay một lỗi dữ liệu mất 2 giờ; viết công cụ sửa nó mất 8 giờ. Chọn gì?",
     "openingOptions": [
-      "Tài sản, vì bất động sản về dài hạn thường tăng giá",
-      "Tuỳ dòng tiền: nhà đang ở lấy tiền ra mỗi tháng",
-      "Tiêu sản, vì mọi khoản vay đều là tiêu sản",
-      "Tài sản, vì nó nằm trong bảng cân đối cá nhân"
+      "Tuỳ vào việc lỗi này còn quay lại hay không",
+      "Sửa tay, vì nhanh hơn",
+      "Viết công cụ, vì nó để lại thứ dùng lại được thay vì mất trắng tám giờ vào một lần",
+      "Sửa tay lần này rồi viết công cụ nếu lỗi quay lại thêm hai lần nữa trong quý"
     ],
-    "correctOption": 1,
-    "explanation": "Phép thử không nằm ở tên gọi mà ở hướng dòng tiền: thứ đưa tiền vào túi bạn là tài sản, thứ lấy tiền ra là tiêu sản. Cùng một căn nhà rơi vào hai nhóm khác nhau tuỳ cách dùng - nhà cho thuê thu tiền về mỗi tháng, nhà đang ở thì trả lãi vay, thuế, phí quản lý và sửa chữa. Điều đó không có nghĩa mua nhà để ở là sai: nó đáp ứng một nhu cầu thật và không phải quyết định nào cũng nên tối ưu theo dòng tiền. Nó chỉ có nghĩa là đừng đếm nhà đang ở vào phần đang nuôi mình khi tính xem mình có bao nhiêu thứ tạo ra thu nhập.",
+    "correctOption": 0,
+    "explanation": "Đây là toàn bộ phép tính, và nó chỉ có một biến. Lỗi xảy ra một lần thì hai giờ là đúng và tám giờ là lãng phí. Lỗi xảy ra hằng tháng thì tám giờ hoàn vốn sau bốn tháng rồi sinh lời mãi. Câu trả lời hay nhất trong ba phương án còn lại cũng chỉ là một quy tắc mặc định cho trường hợp bạn chưa biết.",
     "diagram": [
       {
-        "label": "Thu nhập từ lao động",
+        "label": "Một tuần làm việc",
         "arrow": true
       },
       {
-        "label": "Mua thứ tạo dòng tiền",
+        "label": "Phần tiêu đi: xong là hết",
         "arrow": true
       },
       {
-        "label": "Dòng tiền thụ động lớn dần",
+        "label": "Phần tích lại: còn dùng được",
         "arrow": true
       },
       {
-        "label": "Dòng tiền đó trả cho chi tiêu",
-        "arrow": false
+        "label": "Sau hai năm, chênh lệch lớn dần"
       }
     ],
-    "interactiveType": "money-vs-asset",
     "realWorldExample": {
-      "company": "Người đi làm ở Hà Nội",
-      "description": "Hai người cùng lương 20 triệu, cùng tăng lên 30 triệu sau năm năm. Người giữ nguyên mức sống và đẩy toàn bộ phần tăng vào đầu tư kết thúc năm năm với một khoản vốn đang tự sinh lời; người để chi tiêu tăng theo lương thì tỷ lệ tiết kiệm không đổi, thu nhập cao hơn nhưng khoảng cách tới tự do tài chính thì không ngắn lại."
-    },
-    "checkpointIndex": 4,
-    "keyTakeaways": [
-      "Phép thử tài sản hay tiêu sản là hướng dòng tiền, không phải tên của món đồ",
-      "Thời gian là biến mạnh nhất trong lãi kép - bắt đầu sớm 10 năm hơn hẳn góp thêm mỗi tháng",
-      "Chuyển tiền tiết kiệm đi ngay khi nhận lương, đừng để dành phần còn lại",
-      "Lương tăng mà chi tiêu tăng theo thì tỷ lệ tiết kiệm đứng yên"
-    ],
-    "summary": {
-      "keyIdea": "Giàu không đo bằng thu nhập mà bằng phần thu nhập được chuyển thành thứ tự sinh ra tiền",
-      "commonMistake": "Để chi tiêu tăng đúng bằng mức lương tăng, rồi tưởng mình đang khá lên",
-      "action": "Đặt lệnh chuyển tiền tự động vào tài khoản đầu tư đúng ngày lương về"
-    },
-    "application": {
-      "title": "Làm ngay tháng này",
-      "message": "Lấy sao kê ba tháng gần nhất, chia mọi khoản chi thành thứ đưa tiền vào túi và thứ lấy tiền ra, rồi tính xem mỗi tháng bao nhiêu phần trăm thu nhập đi về phía thứ nhất.",
-      "secondary": "Nếu con số dưới 20%, chỗ sửa thường không nằm ở thu nhập mà ở khoản chi lớn thứ hai và thứ ba."
-    },
-    "practicePrompt": {
-      "question": "Lương bạn tăng từ 20 lên 25 triệu. Trước đó bạn tiết kiệm 4 triệu mỗi tháng, tức 20%. Muốn giữ nguyên mức sống, bạn nên làm gì?",
-      "options": [
-        "Tiết kiệm 9 triệu: giữ nguyên chi tiêu 16 triệu như cũ",
-        "Tiết kiệm 5 triệu để giữ đúng tỷ lệ 20% như trước",
-        "Tiết kiệm 4 triệu như cũ, phần tăng để cải thiện đời sống",
-        "Chờ hết năm xem chi tiêu thực tế rồi mới quyết"
-      ],
-      "correct": 0,
-      "explanation": "Giữ nguyên mức sống nghĩa là giữ nguyên số tiền chi, không phải giữ nguyên tỷ lệ. Chi tiêu cũ là 20 − 4 = 16 triệu, nên sau khi tăng lương phần tiết kiệm thành 25 − 16 = 9 triệu, tỷ lệ nhảy lên 36%. Phương án giữ tỷ lệ 20% mới là chỗ hay nhầm: nó cho chi tiêu tăng lên 20 triệu, tức cả phần lương tăng bị mức sống hấp thụ mất bốn phần năm."
+      "company": "Hai đội, cùng số giờ",
+      "description": "Hai đội cùng quy mô, cùng khối lượng việc. Đội thứ nhất xử lý mọi yêu cầu vận hành bằng tay, mỗi lần đều nhanh. Đội thứ hai chậm hơn ở quý đầu vì họ dừng lại viết công cụ cho những việc lặp lại. Sau hai năm, đội thứ hai dành khoảng một phần năm thời gian cho việc vận hành, đội thứ nhất dành quá nửa - và không ai trong đội thứ nhất từng làm việc gì chậm cả."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Phần lớn kiến thức tài chính cá nhân không khó và cũng không bí mật. Thứ tạo ra khác biệt giữa hai người cùng thu nhập là vài thói quen lặp lại đủ lâu, và một phép thử đơn giản áp vào mọi khoản chi lớn."
+        "text": "Phân biệt này nghe hiển nhiên tới mức dễ bị bỏ qua. Nó khó ở chỗ áp dụng, vì thứ tích lại luôn chậm hơn ở lần đầu và cái giá của việc không tích lại thì đến rất muộn."
       },
       {
         "type": "heading",
-        "text": "Tài sản và tiêu sản: phép thử là dòng tiền"
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Đưa tiền vào túi",
-          "text": "Cổ phiếu và quỹ ETF, bất động sản cho thuê, phần vốn góp trong một việc kinh doanh có dòng tiền, khoản tiết kiệm sinh lãi."
-        },
-        "right": {
-          "label": "Lấy tiền ra khỏi túi",
-          "text": "Ô tô mua trả góp cho nhu cầu đi lại, dư nợ thẻ tín dụng lãi cao, hàng xa xỉ mua trả chậm, và cả căn nhà đang ở khi còn trả lãi vay."
-        }
-      },
-      {
-        "type": "callout",
-        "label": "Đừng đẩy thành quy tắc cứng",
-        "text": "Cùng một căn nhà có thể nằm ở cả hai cột tuỳ cách dùng, nên đây là phép thử để nhìn cho đúng chứ không phải mệnh lệnh phải bán nhà đi ở thuê. Mua nhà để ở đáp ứng một nhu cầu thật; chỉ là đừng đếm nó vào phần đang nuôi mình."
-      },
-      {
-        "type": "heading",
-        "text": "Thời gian làm phần lớn công việc"
+        "text": "Ba thứ tích lại"
       },
       {
         "type": "list",
         "items": [
-          "Bắt đầu năm 25 tuổi, góp 5 triệu mỗi tháng ở mức 10%/năm: khoảng 4,5 tỷ ở tuổi 65",
-          "Bắt đầu năm 35 tuổi, cùng mức góp và cùng lãi suất: khoảng 1,7 tỷ",
-          "Bắt đầu năm 45 tuổi: khoảng 650 triệu",
-          "Mười năm đầu tiên đổi kết quả gần gấp ba lần, dù tổng tiền bỏ vào chỉ hơn nhau ba phần mười"
+          "Công cụ: việc lặp lại được làm bằng một lệnh thay vì bằng trí nhớ của một người",
+          "Kiểm thử: một lần viết, và nó bảo vệ mọi thay đổi về sau mà không cần ai nhớ tới nó",
+          "Tài liệu về vì sao: quyết định được ghi lại thì người sau không phải quyết lại từ đầu"
         ]
       },
       {
         "type": "paragraph",
-        "text": "Đó là lý do câu hỏi đáng hỏi không phải mỗi tháng nên góp bao nhiêu, mà bao giờ bắt đầu. Góp thêm hai triệu một tháng không bù được mười năm đã trôi qua, vì phần lớn số cuối cùng đến từ lãi sinh trên lãi chứ không đến từ tiền gốc."
+        "text": "Thứ chung của cả ba là chúng biến một khoản chi lặp lại thành một khoản chi một lần. Và thứ chung thứ hai là cả ba đều bị cắt đầu tiên khi đội bị ép tiến độ, vì cắt chúng không gây ra hậu quả nào trong tuần ấy."
       },
       {
         "type": "heading",
-        "text": "Thứ tự bốn tầng"
+        "text": "Phép tính, và giới hạn của nó"
       },
       {
-        "type": "list",
-        "items": [
-          "Quỹ khẩn cấp bằng 3-6 tháng chi tiêu, để một sự cố không buộc bạn bán tài sản non hoặc vay lãi cao",
-          "Trả dứt nợ lãi cao, trước hết là dư nợ thẻ tín dụng và vay tiêu dùng",
-          "Bảo hiểm y tế và nhân thọ ở mức cơ bản",
-          "Đầu tư dài hạn: cổ phiếu, quỹ ETF, bất động sản"
-        ]
+        "type": "paragraph",
+        "text": "Nhân số lần lặp lại dự kiến với thời gian mỗi lần, rồi so với công sức làm công cụ. Phép tính này đúng và nó bỏ sót một thứ: việc làm bằng tay còn tốn sự chú ý, và sự chú ý thì không cộng tuyến tính. Một việc mười phút lặp lại mỗi ngày tốn nhiều hơn ba giờ mỗi tháng, vì nó cắt ngang mọi thứ khác."
       },
       {
-        "type": "heading",
-        "text": "Ba thói quen tối thiểu"
+        "type": "callout",
+        "label": "Khi thứ tích lại là sai lầm",
+        "text": "Không phải mọi thứ đều đáng tích. Viết công cụ cho một việc sẽ biến mất sau quý này, hay viết kiểm thử cho phần mã đang được thăm dò và sẽ vứt đi, đều là tích luỹ cho một tương lai không tới. Câu hỏi phân biệt không phải việc này có lặp lại không mà là việc này còn tồn tại sau sáu tháng nữa không."
       },
       {
-        "type": "list",
-        "items": [
-          "Tiết kiệm ít nhất 20% thu nhập - khung 50% nhu cầu, 30% mong muốn, 20% tiết kiệm và đầu tư",
-          "Theo dõi dòng tiền cá nhân: biết tiền đang đi đâu là điều kiện để kiểm soát nó",
-          "Học tài chính 15 phút mỗi ngày - kiến thức cũng cộng dồn theo thời gian"
-        ]
+        "type": "comparison",
+        "left": {
+          "label": "Tiêu đi",
+          "text": "Sửa tay, trả lời lại cùng một câu hỏi, dựng lại môi trường bằng trí nhớ. Nhanh mỗi lần và không để lại gì."
+        },
+        "right": {
+          "label": "Tích lại",
+          "text": "Công cụ, kiểm thử, một dòng ghi vì sao. Chậm ở lần đầu và làm mọi lần sau rẻ đi."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Chuyển tiền tiết kiệm đi ngay khi lương về, trước khi chi tiêu, chứ không để dành phần còn lại - vì thường không còn gì.",
-          "Và khi lương tăng, giữ nguyên mức sống thêm một thời gian: đó là lúc rẻ nhất để nâng tỷ lệ tiết kiệm."
+          "Thứ tích lại chậm hơn ở lần đầu và cái giá của việc bỏ nó đến rất muộn.",
+          "Câu hỏi không phải việc này có lặp lại không, mà là nó còn tồn tại sau sáu tháng không."
         ]
       }
     ],
-    "track": "bonus",
     "quiz": [
       {
-        "question": "Theo Rich Dad Poor Dad, sự khác biệt chính giữa người giàu và người nghèo là gì?",
+        "question": "Ba thứ tích lại có điểm chung là gì?",
         "options": [
-          "Người giàu làm việc chăm chỉ hơn nên thu nhập cao hơn",
-          "Người giàu mua tài sản, người nghèo mua tiêu sản",
-          "Người giàu tiết kiệm được nhiều hơn nhờ chi tiêu ít đi",
-          "Người giàu có học vấn cao hơn"
+          "Chúng biến một khoản chi lặp lại thành một khoản chi một lần",
+          "Chúng đều cần thời gian",
+          "Chúng đều đòi hỏi người thực hiện phải có kinh nghiệm nhiều hơn so với việc làm tay",
+          "Chúng đều tạo ra thứ mà các đội khác trong công ty cũng có thể dùng lại được về sau"
         ],
-        "correct": 1,
-        "explanation": "Kiyosaki: Asset = thứ bỏ tiền vào túi bạn (cổ phiếu, bất động sản cho thuê, business). Liability = thứ lấy tiền ra khỏi túi bạn (ô tô tiêu dùng, nhà ở). Người giàu tích lũy assets."
+        "correct": 0,
+        "explanation": "Đó là toàn bộ giá trị của chúng và cũng là cách nhận ra chúng. Nếu một việc không biến khoản chi lặp lại thành khoản một lần thì nó không thuộc nhóm này, dù nó có mất công tới đâu."
       },
       {
-        "question": "Compound interest hoạt động tốt nhất khi nào?",
+        "question": "Vì sao ba thứ ấy bị cắt đầu tiên khi đội bị ép tiến độ?",
         "options": [
-          "Lãi suất càng cao càng tốt, thời gian không quan trọng bằng",
-          "Thời gian đầu tư dài nhất có thể",
-          "Số tiền gốc lớn nhất có thể",
-          "Tần suất nhận lãi nhiều nhất"
+          "Vì cắt chúng không gây hậu quả nào trong tuần ấy",
+          "Vì chúng không nằm trong phiếu công việc",
+          "Vì phần lớn các đội đánh giá thấp mức thời gian mà chúng sẽ tiết kiệm về sau",
+          "Vì lợi ích của chúng khó trình bày với người ngoài đội nên khó bảo vệ khi bị chất vấn"
         ],
-        "correct": 1,
-        "explanation": "Thời gian là yếu tố mạnh nhất trong lãi kép vì nó có tác động hàm mũ. 100 triệu ×10%/năm trong 30 năm = 1.7 tỷ. Trong 40 năm = 4.5 tỷ."
+        "correct": 0,
+        "explanation": "Ba lý do kia đều góp phần. Lý do gốc là vòng phản hồi bị đứt: quyết định cắt và hậu quả của nó cách nhau nhiều tháng, nên không ai từng học được rằng lần cắt trước đã tốn bao nhiêu."
       },
       {
-        "question": "'Pay yourself first' có nghĩa là gì?",
+        "question": "Phép tính 'số lần lặp nhân thời gian mỗi lần' bỏ sót điều gì?",
         "options": [
-          "Trả lương cho bản thân trước nhân viên",
-          "Chuyển tiền tiết kiệm đi trước khi chi tiêu",
-          "Mua đồ cho bản thân trước khi trả hóa đơn",
-          "Tự tăng lương cho mình mỗi khi công ty làm ăn tốt"
+          "Việc làm tay còn tốn sự chú ý, và sự chú ý không cộng tuyến tính",
+          "Thời gian bảo trì chính công cụ đó",
+          "Khả năng người làm tay mắc lỗi cao hơn so với một công cụ đã được kiểm thử kỹ",
+          "Việc số lần lặp lại thường tăng theo thời gian chứ không giữ nguyên như lúc ước lượng"
         ],
-        "correct": 1,
-        "explanation": "Pay yourself first: ngay khi nhận lương, chuyển ngay X% vào tài khoản đầu tư trước khi chi tiêu. Không chờ 'tiết kiệm phần còn lại'- vì thường không còn gì."
+        "correct": 0,
+        "explanation": "Ba thiếu sót kia đều đúng và đều cộng thêm vào một phía. Thiếu sót đầu khác loại: mười phút lặp lại mỗi ngày cắt ngang công việc khác nhiều lần, nên nó tốn hơn hẳn ba giờ liền mạch mỗi tháng."
       },
       {
-        "question": "Lifestyle inflation là gì và tại sao nguy hiểm?",
+        "question": "Khi nào thì viết công cụ là một sai lầm?",
         "options": [
-          "Lạm phát làm chi phí sinh hoạt của cá nhân đắt lên",
-          "Chi tiêu tăng đúng theo mức thu nhập tăng",
-          "Tăng lương nhưng giá cả cũng tăng theo",
-          "Chi phí sinh hoạt tăng theo độ tuổi"
+          "Khi việc ấy sẽ không còn tồn tại sau sáu tháng",
+          "Khi việc ấy chỉ lặp lại vài lần",
+          "Khi đội chưa có đủ người để vừa làm công cụ vừa đảm bảo tiến độ của sản phẩm chính",
+          "Khi đã có một công cụ tương tự ở đội khác dù nó chưa khớp hoàn toàn với nhu cầu"
         ],
-        "correct": 1,
-        "explanation": "Lifestyle inflation: tăng lương 20% thì chi tiêu cũng tăng 20% → tỷ lệ tiết kiệm không đổi. Người giàu giữ lifestyle khi thu nhập tăng, dùng phần dôi ra để đầu tư."
+        "correct": 0,
+        "explanation": "Câu hỏi phân biệt không phải số lần lặp mà là tuổi thọ. Một việc lặp lại mỗi ngày nhưng sẽ biến mất khi tính năng cũ được gỡ thì không đáng tích, còn một việc lặp mỗi quý mà sống nhiều năm thì đáng."
       },
       {
-        "question": "Theo tư duy tài chính đúng đắn, điều nào nên ưu tiên đầu tiên?",
+        "question": "Hai đội cùng số giờ, sau hai năm một đội mất quá nửa thời gian cho vận hành. Nguyên nhân là gì?",
         "options": [
-          "Mua nhà - đó là đầu tư tốt nhất",
-          "Xây dựng emergency fund 3-6 tháng chi tiêu",
-          "Đầu tư chứng khoán để lãi kép sớm",
-          "Trả hết nợ trước rồi mới nghĩ đến đầu tư"
+          "Mỗi việc họ làm đều nhanh nhưng không việc nào để lại gì",
+          "Họ nhận nhiều yêu cầu hơn",
+          "Họ thiếu người có kinh nghiệm nên mỗi việc vận hành đều mất nhiều thời gian hơn mức cần",
+          "Hệ thống của họ phức tạp hơn nên khối lượng công việc vận hành vốn đã lớn hơn từ đầu"
         ],
-        "correct": 1,
-        "explanation": "Emergency fund là nền tảng bắt buộc. Không có nó, bất kỳ sự cố nào (mất việc, bệnh tật) cũng khiến bạn phải bán đầu tư non hoặc vay lãi cao."
+        "correct": 0,
+        "explanation": "Điểm đáng chú ý là không ai trong đội ấy làm việc gì chậm. Mỗi quyết định sửa tay đều là quyết định nhanh nhất tại thời điểm của nó, và tổng của hai năm những quyết định nhanh nhất là một đội không còn thời gian làm gì khác."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Thứ tích lại biến một khoản chi lặp lại thành một khoản chi một lần",
+      "Chúng bị cắt đầu tiên vì cắt chúng không gây hậu quả nào trong tuần ấy",
+      "Việc làm tay còn tốn sự chú ý, thứ không cộng tuyến tính",
+      "Câu hỏi phân biệt là tuổi thọ của việc, không phải số lần lặp"
+    ],
+    "practicePrompt": {
+      "question": "Việc tay mất 20 phút, lặp 3 lần/tuần. Công cụ mất 10 giờ. Bao lâu hoàn vốn?",
+      "options": [
+        "10 tuần",
+        "17 tuần",
+        "30 tuần (= lấy 10 giờ chia cho 20 phút rồi coi mỗi lần là một tuần riêng)",
+        "5 tuần (= tính 3 lần mỗi tuần là 2 giờ thay vì 1 giờ mỗi tuần)"
+      ],
+      "correct": 0,
+      "explanation": "Ba lần nhân 20 phút là 1 giờ mỗi tuần, nên 10 giờ hoàn vốn sau 10 tuần. Con số ấy còn chưa tính phần sự chú ý bị cắt ngang ba lần mỗi tuần, nên thời gian hoàn vốn thật ngắn hơn."
+    },
+    "summary": {
+      "keyIdea": "Phân biệt công sức tiêu đi với công sức còn dùng lại được",
+      "commonMistake": "Chọn cách nhanh nhất mỗi lần và không nhìn tổng của hai năm",
+      "action": "Tìm việc tay bạn làm nhiều nhất tháng qua và tính thời gian hoàn vốn của nó."
+    },
+    "application": {
+      "title": "Hai câu trước một việc lặp lại",
+      "message": "Việc này còn tồn tại sau sáu tháng không? Nếu có, làm nó một lần mất bao lâu so với làm công cụ cho nó?",
+      "secondary": "Câu đầu quyết định có nên tính hay không; câu sau chỉ là phép chia."
+    },
+    "id": 1048,
+    "slug": "tu-duy-tai-chinh",
+    "track": "bonus"
   },
   {
     "title": "Đánh giá một đề xuất: tự xây hay mua sẵn",
@@ -58134,203 +58110,182 @@ export const lessons: Lesson[] = [
     }
   },
   {
-    "id": 1011,
-    "slug": "income-affiliates-jv",
-    "title": "Income từ Affiliates & JV",
-    "subtitle": "Equity method (20-50%) vs Consolidation (>50%)",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🤝",
-    "openingQuestion": "Khi nào một khoản đầu tư được ghi nhận bằng equity method thay vì hợp nhất?",
+    "title": "Chia chi phí và công cho dịch vụ dùng chung",
+    "subtitle": "Khi một hệ thống phục vụ nhiều đội, ai trả tiền và ai được ghi công",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🔗",
+    "whyItMatters": "Mọi công ty đủ lớn đều có dịch vụ dùng chung, và cách chia chi phí cho chúng quyết định hành vi của các đội mạnh hơn bất kỳ tài liệu hướng dẫn nào.",
+    "openingQuestion": "Một hàng đợi dùng chung tốn 10.000 đô/tháng, bốn đội cùng dùng. Chia thế nào?",
     "openingOptions": [
-      "Khi sở hữu 0-5%",
-      "Khi sở hữu 20-50% hoặc có ảnh hưởng đáng kể",
-      "Chỉ khi sở hữu 100% vốn điều lệ của công ty đó",
-      "Không bao giờ"
+      "Theo lượng dùng đo được, dù phép đo tốn công hơn",
+      "Chia đều cho bốn",
+      "Theo quy mô của từng đội, vì đội lớn hơn thì thường tạo ra nhiều tải hơn cho hệ thống",
+      "Không chia, để chi phí ở đội vận hành hàng đợi vì họ là người quyết định kiến trúc"
     ],
-    "correctOption": 1,
-    "explanation": "Công ty có ảnh hưởng đáng kể thường ghi nhận theo equity method; còn kiểm soát đa số mới hợp nhất vào BCTC. Ranh giới 20-50% sở hữu là ngưỡng kế toán quy ước cho ảnh hưởng đáng kể - trên 50% thường coi là kiểm soát và phải hợp nhất toàn bộ báo cáo tài chính của công ty con.",
+    "correctOption": 0,
+    "explanation": "Chia đều thì đội dùng ít trả hộ đội dùng nhiều, và không ai có lý do gì để dùng ít đi. Để nguyên ở đội vận hành thì tệ hơn nữa: chi phí trở thành vô hình với đúng những người tạo ra nó. Chia theo lượng dùng tốn công đo, nhưng nó là cách duy nhất khiến con số trên hoá đơn nối được với hành vi sinh ra nó.",
     "diagram": [
       {
-        "label": "Sở hữu đáng kể",
+        "label": "Đo lượng dùng theo từng đội",
         "arrow": true
       },
       {
-        "label": "Equity method",
+        "label": "Chia chi phí theo lượng đo được",
         "arrow": true
       },
       {
-        "label": "Kiểm soát",
+        "label": "Mỗi đội thấy con số của mình",
         "arrow": true
       },
       {
-        "label": "Consolidation",
-        "arrow": false
+        "label": "Hành vi đổi mà không cần ai nhắc"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Lợi nhuận có, tiền chưa chắc có",
-      "description": "Đây là điểm dễ bỏ sót nhất của phương pháp vốn chủ sở hữu. Khi công ty liên kết báo lãi, công ty mẹ ghi nhận phần tương ứng vào lợi nhuận ngay trong kỳ - nhưng tiền chỉ thực sự về khi công ty liên kết quyết định chia cổ tức, mà quyết định đó công ty mẹ không tự mình kiểm soát được vì chỉ nắm dưới 50%. Kết quả là một doanh nghiệp có thể ghi nhận hàng trăm tỷ lợi nhuận từ liên kết suốt nhiều năm mà dòng tiền thực nhận chỉ bằng một phần nhỏ. Khi so lợi nhuận với dòng tiền kinh doanh, đây thường là một trong những nguyên nhân gây chênh lệch."
-    },
-    "quiz": [
-      {
-        "question": "Tại sao equity income không giống hoàn toàn doanh thu hoạt động lõi?",
-        "options": [
-          "Vì đó là phần chia lợi nhuận, không phải doanh thu bán hàng",
-          "Vì equity income được ghi theo cơ sở tiền mặt chứ không dồn tích",
-          "Vì equity income luôn âm ở các công ty liên kết mới thành lập",
-          "Vì khoản này không bao giờ đi kèm dòng tiền về công ty mẹ"
-        ],
-        "correct": 0,
-        "explanation": "Lợi nhuận từ affiliates/JV là phần chia lợi nhuận chứ không phải doanh thu bán hàng của business lõi."
-      },
-      {
-        "question": "Một công ty có Net Income tăng mạnh chủ yếu nhờ equity income từ một liên doanh lớn tăng đột biến một lần. Nhà đầu tư nên làm gì?",
-        "options": [
-          "Tách equity income ra để xem tăng trưởng có lặp lại được không",
-          "Coi đây là tín hiệu hoạt động kinh doanh lõi đang tăng trưởng bền vững",
-          "Kết luận công ty đang làm đẹp số liệu để đẩy giá cổ phiếu",
-          "Bỏ qua vì equity income luôn chiếm tỷ trọng rất nhỏ"
-        ],
-        "correct": 0,
-        "explanation": "Equity income phụ thuộc vào hoạt động của công ty liên kết, có thể biến động thất thường và không phản ánh sức khỏe của mảng kinh doanh chính - tách riêng nó ra giúp nhà đầu tư đánh giá đúng tính bền vững của lợi nhuận."
-      },
-      {
-        "question": "Vì sao lợi nhuận ghi nhận theo phương pháp vốn chủ sở hữu có thể không đi kèm dòng tiền?",
-        "options": [
-          "Vì tiền chỉ về khi công ty liên kết quyết định chia cổ tức",
-          "Vì công ty liên kết luôn giữ lại toàn bộ lợi nhuận để tái đầu tư",
-          "Vì kế toán không cho phép ghi nhận tiền từ công ty liên kết",
-          "Vì khoản lợi nhuận này bị đánh thuế hai lần trước khi về"
-        ],
-        "correct": 0,
-        "explanation": "Ghi nhận lợi nhuận theo tỷ lệ sở hữu là bút toán trên sổ. Dòng tiền chỉ phát sinh khi có cổ tức, và với mức sở hữu dưới 50% thì công ty mẹ không tự quyết được việc đó."
-      },
-      {
-        "question": "Khác biệt lớn nhất giữa hợp nhất và phương pháp vốn chủ sở hữu trên bảng cân đối là gì?",
-        "options": [
-          "Hợp nhất đưa toàn bộ nợ của công ty con lên bảng cân đối",
-          "Phương pháp vốn chủ ghi nhận cả doanh thu của công ty liên kết",
-          "Hai phương pháp cho kết quả giống hệt nhau trên bảng cân đối",
-          "Hợp nhất không ghi nhận tài sản của công ty con vào bảng"
-        ],
-        "correct": 0,
-        "explanation": "Đây là lý do mức sở hữu quanh ngưỡng 50% rất quan trọng với người phân tích: cùng một hoạt động kinh doanh, nợ có thể hiện lên hoặc không hiện lên bảng cân đối hợp nhất."
-      },
-      {
-        "question": "Vì sao lợi nhuận từ công ty liên kết không nên được tính vào EBITDA khi định giá?",
-        "options": [
-          "Vì nó không sinh ra từ hoạt động lõi mà chính doanh nghiệp trực tiếp vận hành",
-          "Vì chuẩn kế toán cấm cộng bất kỳ khoản lợi nhuận nào từ bên thứ ba vào EBITDA",
-          "Vì khoản này luôn là lợi nhuận một lần và không lặp lại ở các kỳ tiếp theo",
-          "Vì nó đã bị trừ thuế nên cộng vào sẽ làm EBITDA bị tính trùng phần thuế"
-        ],
-        "correct": 0,
-        "explanation": "EBITDA đo hoạt động mà doanh nghiệp kiểm soát, còn phần lợi nhuận liên kết đến từ một công ty khác và thường không kèm dòng tiền cho tới khi có cổ tức. Cách xử lý sạch là bỏ nó khỏi EBITDA rồi định giá phần sở hữu đó riêng."
-      }
-    ],
-    "keyTakeaways": [
-      "20-50% thường liên quan ảnh hưởng đáng kể",
-      "Trên 50% thường chuyển sang consolidation",
-      "Equity income cần đọc riêng khỏi core operating profit"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "20-50% thường liên quan ảnh hưởng đáng kể",
-      "commonMistake": "Dễ bỏ qua: trên 50% thường chuyển sang consolidation",
-      "action": "Equity income cần đọc riêng khỏi core operating profit"
+      "company": "Hoá đơn không ai nhìn",
+      "description": "Một nền tảng ghi nhật ký dùng chung tăng chi phí gấp ba trong một năm. Chi phí nằm ở đội nền tảng, nên bốn đội sản phẩm không ai thấy nó. Khi cuối cùng chi phí được chia theo lượng ghi thật, một đội phát hiện họ chiếm sáu mươi phần trăm toàn bộ hoá đơn vì một dòng ghi nhật ký trong vòng lặp, đặt ở đó mười tám tháng trước để gỡ lỗi. Họ xoá nó trong một buổi chiều."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Khi một tập đoàn sở hữu một phần công ty khác (liên doanh, công ty liên kết), phần lợi nhuận nhận được từ đó được ghi nhận khác hẳn so với doanh thu bán hàng thông thường."
+        "text": "Dịch vụ dùng chung tạo ra hai câu hỏi không tách rời nhau: ai trả tiền, và ai được ghi công khi nó chạy tốt. Trả lời sai câu nào cũng dẫn tới cùng một kết cục là không ai chăm nó."
       },
       {
         "type": "heading",
-        "text": "Equity method - khi ảnh hưởng đáng kể nhưng chưa kiểm soát"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi sở hữu 20-50% một công ty khác (ngưỡng kế toán quy ước cho 'ảnh hưởng đáng kể'), khoản đầu tư đó thường được ghi nhận theo equity method - công ty mẹ ghi nhận phần lợi nhuận tương ứng với tỷ lệ sở hữu, gọi là equity income. Trên 50% sở hữu (kiểm soát), toàn bộ báo cáo tài chính công ty con phải được hợp nhất (consolidation), không chỉ ghi nhận phần lợi nhuận."
+        "text": "Ba cách chia, ba hành vi khác nhau"
       },
       {
         "type": "list",
         "items": [
-          "Equity income là phần chia lợi nhuận từ công ty liên kết, không phải doanh thu bán hàng của hoạt động lõi",
-          "20-50% sở hữu thường tương ứng ảnh hưởng đáng kể (equity method); trên 50% thường chuyển sang hợp nhất",
-          "Nếu Net Income tăng mạnh chủ yếu nhờ equity income đột biến, cần tách riêng để đánh giá tính bền vững"
+          "Chia đều: rẻ để làm, và nó dạy mọi đội rằng dùng thêm không tốn thêm gì",
+          "Chia theo quy mô đội: có vẻ công bằng, nhưng quy mô đội không tương quan với lượng dùng",
+          "Chia theo lượng đo: tốn công dựng phép đo, và là cách duy nhất nối con số với hành vi"
         ]
       },
       {
-        "type": "conceptTable",
-        "title": "Ba mức sở hữu, ba cách ghi nhận",
-        "subtitle": "Ngưỡng là quy ước kế toán, bản chất nằm ở mức độ ảnh hưởng và kiểm soát",
-        "concepts": [
-          {
-            "vi": "Dưới 20%",
-            "en": "Khoản đầu tư tài chính",
-            "def": "Thường ghi nhận theo giá gốc hoặc giá trị hợp lý. Chỉ ghi nhận thu nhập khi nhận cổ tức hoặc khi bán."
-          },
-          {
-            "vi": "20% - 50%",
-            "en": "Phương pháp vốn chủ sở hữu",
-            "def": "Ghi nhận phần lợi nhuận tương ứng tỷ lệ sở hữu vào kết quả kinh doanh, giá trị khoản đầu tư trên bảng cân đối tăng giảm theo."
-          },
-          {
-            "vi": "Trên 50%",
-            "en": "Hợp nhất",
-            "def": "Đưa toàn bộ doanh thu, chi phí, tài sản, nợ của công ty con vào báo cáo hợp nhất, rồi tách phần không thuộc sở hữu ra dòng lợi ích cổ đông thiểu số."
-          }
-        ]
+        "type": "paragraph",
+        "text": "Điểm quan trọng là cả ba cách đều chia đúng tổng số tiền. Chúng khác nhau ở chỗ chúng dạy các đội điều gì, và điều được dạy có tác dụng lâu hơn nhiều so với con số của tháng ấy."
+      },
+      {
+        "type": "heading",
+        "text": "Phần được ghi công thì khó hơn phần chi phí"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đội vận hành dịch vụ dùng chung làm một việc mà thành công của nó nhìn từ ngoài là không có gì xảy ra. Khi mọi thứ chạy tốt, công lao thuộc về các đội sản phẩm phát hành được nhanh; khi có sự cố, tên của đội nền tảng xuất hiện. Đây là một bất đối xứng có thật và nó khiến người giỏi rời khỏi các đội ấy."
+      },
+      {
+        "type": "callout",
+        "label": "Đo phần được dùng, đừng chỉ đo phần bị hỏng",
+        "text": "Cách sửa rẻ nhất cho bất đối xứng trên là báo cáo cả hai chiều với cùng mức độ nổi bật. Nếu bảng chỉ hiện số sự cố thì đội nền tảng chỉ tồn tại vào những ngày xấu. Thêm một dòng về lượng công việc họ gánh hộ - số lần phát hành đã chạy qua, số giờ công đã tiết kiệm cho các đội khác - và bức tranh mới cân."
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Phương pháp vốn chủ sở hữu",
-          "text": "Doanh thu của công ty liên kết KHÔNG xuất hiện trong doanh thu của công ty mẹ. Chỉ một dòng lợi nhuận được ghi nhận. Nợ của công ty liên kết cũng không nằm trên bảng cân đối hợp nhất."
+          "label": "Chi phí hiện với người tạo ra nó",
+          "text": "Mỗi đội thấy phần của mình mỗi tháng. Hành vi đổi mà không cần ai đi nhắc, vì con số tự nói."
         },
         "right": {
-          "label": "Hợp nhất",
-          "text": "Toàn bộ doanh thu, chi phí, tài sản và NỢ của công ty con đi vào báo cáo hợp nhất, kể cả khi công ty mẹ chỉ sở hữu 51%. Phần không sở hữu được tách ra ở dòng lợi ích cổ đông thiểu số."
+          "label": "Chi phí gộp ở một chỗ",
+          "text": "Đội nền tảng bị hỏi vì sao tốn nhiều, trong khi họ là bên duy nhất không tạo ra phần lớn khoản ấy."
         }
-      },
-      {
-        "type": "heading",
-        "text": "Ba câu hỏi khi thấy lợi nhuận từ liên kết lớn"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Phần này chiếm bao nhiêu phần trăm lợi nhuận sau thuế? Trên 20-30% thì hoạt động lõi không còn là câu chuyện chính.",
-          "Có ổn định qua các năm không, hay đến từ một khoản đột biến của công ty liên kết?",
-          "Cổ tức thực nhận từ các công ty liên kết là bao nhiêu so với lợi nhuận đã ghi nhận? Khoảng cách lớn và kéo dài là điều cần giải thích."
-        ]
       },
       {
         "type": "closing",
         "lines": [
-          "Không phải mọi đồng lợi nhuận đều đến từ hoạt động kinh doanh chính.",
-          "Tách riêng equity income giúp nhìn đúng sức khỏe của core business."
+          "Cách chia chi phí dạy các đội điều gì, và điều đó sống lâu hơn con số tháng ấy.",
+          "Thành công của dịch vụ dùng chung nhìn từ ngoài là không có gì xảy ra."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Chia đều chi phí dịch vụ dùng chung dạy các đội điều gì?",
+        "options": [
+          "Rằng dùng thêm không tốn thêm gì",
+          "Rằng chi phí là việc của đội nền tảng",
+          "Rằng mọi đội đều được coi là có vai trò ngang nhau trong việc sử dụng hạ tầng chung",
+          "Rằng chi phí hạ tầng là một khoản cố định nên không cần theo dõi theo từng tháng"
+        ],
+        "correct": 0,
+        "explanation": "Phần tiền được chia đúng tổng, nên nhìn từ sổ sách thì không có gì sai. Cái sai nằm ở tín hiệu: khi phần phải trả không đổi theo lượng dùng, không đội nào có lý do để giảm, và tổng sẽ tăng đều."
+      },
+      {
+        "question": "Vì sao chia theo quy mô đội không đáng tin?",
+        "options": [
+          "Vì quy mô đội không tương quan với lượng dùng",
+          "Vì quy mô đội thay đổi theo từng quý",
+          "Vì các đội lớn thường có nhiều dịch vụ nhỏ nên khó xác định phần nào dùng hạ tầng chung",
+          "Vì cách này khiến các đội có động cơ giữ quy mô nhỏ thay vì tuyển thêm người khi cần"
+        ],
+        "correct": 0,
+        "explanation": "Một đội ba người chạy một hệ thống xử lý theo lô có thể dùng nhiều gấp mười một đội hai mươi người làm giao diện. Chia theo một đại lượng không liên quan thì cũng vô hình với hành vi giống hệt chia đều."
+      },
+      {
+        "question": "Một đội chiếm 60% hoá đơn vì một dòng ghi nhật ký trong vòng lặp suốt 18 tháng. Vì sao không ai phát hiện?",
+        "options": [
+          "Vì chi phí nằm ở đội nền tảng nên đội tạo ra nó không thấy",
+          "Vì lượng ghi nhật ký tăng dần",
+          "Vì các công cụ giám sát chi phí thường chỉ hiện tổng chứ không tách theo nguồn phát sinh",
+          "Vì dòng ghi nhật ký đó nằm trong một phần mã ít được đọc lại sau khi đã phát hành"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều góp phần làm việc phát hiện chậm hơn. Lý do gốc là thông tin không tới được người có thể hành động: đội duy nhất xoá được dòng ấy trong một buổi chiều lại là đội duy nhất không nhìn thấy hoá đơn."
+      },
+      {
+        "question": "Vì sao đội vận hành dịch vụ dùng chung dễ mất người giỏi?",
+        "options": [
+          "Vì thành công của họ nhìn từ ngoài là không có gì xảy ra",
+          "Vì công việc của họ lặp lại",
+          "Vì họ phải phản hồi yêu cầu của nhiều đội khác nhau nên khó tập trung vào việc dài hạn",
+          "Vì họ hiếm khi được tham gia vào những quyết định về sản phẩm mà công ty đang theo đuổi"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều có thật ở nhiều nơi. Lý do đầu là lý do có mặt ở mọi nơi, vì nó nằm trong bản chất công việc: khi mọi thứ chạy tốt thì công thuộc về đội phát hành nhanh, còn tên đội nền tảng chỉ xuất hiện vào ngày có sự cố."
+      },
+      {
+        "question": "Cách rẻ nhất để cân lại bất đối xứng ấy là gì?",
+        "options": [
+          "Báo cáo lượng công việc đã gánh hộ, cùng chỗ với số sự cố",
+          "Đưa người của đội nền tảng luân chuyển sang các đội sản phẩm theo chu kỳ",
+          "Đặt mục tiêu về mức độ hài lòng của các đội khác rồi đo bằng khảo sát định kỳ",
+          "Ghi tên đội nền tảng vào phần đóng góp của mọi tính năng đã dùng hạ tầng của họ"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều tốn công tổ chức và đều cần người khác đồng ý. Cách đầu chỉ cần thêm một dòng vào một bảng đã có, và nó sửa đúng nguyên nhân: đội nền tảng đang chỉ tồn tại trên báo cáo vào những ngày xấu."
+      }
+    ],
+    "keyTakeaways": [
+      "Cả ba cách chia đều chia đúng tổng; chúng khác nhau ở điều chúng dạy các đội",
+      "Chia theo lượng đo tốn công nhất và là cách duy nhất nối con số với hành vi",
+      "Chi phí vô hình với người tạo ra nó thì không ai giảm nó",
+      "Thành công của dịch vụ dùng chung nhìn từ ngoài là không có gì xảy ra"
+    ],
     "practicePrompt": {
-      "question": "Doanh nghiệp A nắm giữ 35% cổ phần có quyền biểu quyết tại Công ty B. Phương pháp kế toán nào bắt buộc được áp dụng trên BCTC của A?",
+      "question": "Hoá đơn 10.000 đô, bốn đội dùng theo tỷ lệ 60/20/15/5. Chia đều thì đội lớn nhất được trả hộ bao nhiêu?",
       "options": [
-        "Phương pháp Vốn chủ sở hữu (Equity Method)",
-        "Hợp nhất kinh doanh đầy đủ 100% tài sản và nợ của B vào A",
-        "Không ghi nhận bất kỳ khoản mục nào cho đến khi B chia cổ tức",
-        "Ghi nhận B như một khoản tiền gửi tiết kiệm ngắn hạn"
+        "3.500 đô",
+        "6.000 đô",
+        "2.500 đô (= lấy chênh lệch giữa mức chia đều và mức dùng của đội nhỏ nhất)",
+        "1.500 đô (= lấy chênh lệch giữa hai đội ở giữa thay vì của đội lớn nhất)"
       ],
       "correct": 0,
-      "explanation": "Khi sở hữu từ 20% đến 50% cổ phần (Công ty liên kết/Liên doanh), doanh nghiệp áp dụng Phương pháp Vốn chủ sở hữu (Equity Method). Khi sở hữu trên 50% mới hợp nhất kinh doanh (Consolidation)."
+      "explanation": "Đội ấy dùng 6.000 nhưng chỉ trả 2.500, tức được ba đội kia gánh hộ 3.500 mỗi tháng. Con số ấy lớn hơn toàn bộ phần dùng của hai đội nhỏ cộng lại, và nó không xuất hiện ở bất kỳ đâu trong cách chia đều."
+    },
+    "summary": {
+      "keyIdea": "Chia chi phí theo lượng đo được, và báo cáo cả phần công lẫn phần lỗi",
+      "commonMistake": "Để chi phí dùng chung ở đội vận hành cho gọn sổ sách",
+      "action": "Tìm một khoản chi phí dùng chung ở công ty bạn và hỏi ai đang thấy nó."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Income từ Affiliates & JV",
-      "message": "Doanh nghiệp A nắm giữ 35% cổ phần có quyền biểu quyết tại Công ty B. Phương pháp kế toán nào bắt buộc được áp dụng trên BCTC của A?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Hai câu cho mọi dịch vụ dùng chung",
+      "message": "Ai nhìn thấy chi phí của nó mỗi tháng? Bảng báo cáo có dòng nào nói về phần việc nó gánh hộ không?",
+      "secondary": "Nếu câu đầu trả lời là đội vận hành và câu sau là không, dịch vụ ấy sẽ vừa đắt lên vừa mất người."
+    },
+    "id": 1011,
+    "slug": "income-affiliates-jv",
+    "track": "bonus"
   },
   {
     "title": "Số liệu giữa kỳ và thay đổi không hiện lên chỉ số chính",
@@ -61443,202 +61398,176 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1029,
-    "slug": "financial-risk",
-    "title": "Phân loại Rủi ro Tài chính",
-    "subtitle": "Credit, Liquidity, Interest Rate, Market và Concentration Risk",
-    "duration": "6 phút",
+    "title": "Phân loại rủi ro kỹ thuật",
+    "subtitle": "Bốn nhóm, và vì sao gọi đúng tên quyết định ai xử lý được",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
     "emoji": "⚠️",
-    "openingQuestion": "Rủi ro tài chính thường được chia thành những nhóm nào?",
+    "interactiveType": "risk",
+    "whyItMatters": "Một rủi ro bị gọi sai tên sẽ được giao cho sai người và xử lý bằng sai công cụ. Phần lớn sự cố lặp lại là sự cố đã được xử lý đúng cách cho một loại rủi ro khác.",
+    "openingQuestion": "Dịch vụ sập vì một thư viện bên ngoài đổi hành vi ở phiên bản mới. Đây là rủi ro loại gì?",
     "openingOptions": [
-      "Credit, liquidity, interest rate, market, concentration",
-      "Chỉ market risk",
-      "Chỉ currency risk",
-      "Chỉ có operational risk mới thực sự đáng quan tâm với ngân hàng"
+      "Rủi ro phụ thuộc, không phải rủi ro mã nguồn",
+      "Rủi ro vận hành",
+      "Rủi ro mã nguồn, vì đội đã không đọc kỹ ghi chú phát hành trước khi nâng phiên bản",
+      "Rủi ro con người, vì quyết định nâng phiên bản do một người đưa ra mà không hỏi ai"
     ],
     "correctOption": 0,
-    "explanation": "Một danh mục hay doanh nghiệp có thể gặp nhiều lớp rủi ro khác nhau, không chỉ một loại biến động giá. Nhiều nhà đầu tư mới chỉ nhìn market risk (giá lên xuống) mà bỏ qua các rủi ro âm thầm hơn như liquidity hay concentration risk, vốn có thể gây thiệt hại nặng hơn nhiều.",
+    "explanation": "Gọi nó là rủi ro mã nguồn dẫn tới cách xử lý là đọc kỹ hơn, thứ không lặp lại được. Gọi đúng là rủi ro phụ thuộc dẫn tới cách xử lý khác hẳn: ghim phiên bản, chạy kiểm thử với bản mới trước khi nâng, và biết trước mình đang phụ thuộc vào những gì. Tên gọi quyết định công cụ, và công cụ quyết định lần sau có lặp lại không.",
     "diagram": [
       {
-        "label": "Credit risk",
+        "label": "Sự cố xảy ra",
         "arrow": true
       },
       {
-        "label": "Liquidity risk",
+        "label": "Hỏi nguyên nhân thuộc nhóm nào",
         "arrow": true
       },
       {
-        "label": "Interest rate risk",
+        "label": "Nhóm quyết định công cụ xử lý",
         "arrow": true
       },
       {
-        "label": "Market / concentration risk",
-        "arrow": false
+        "label": "Công cụ quyết định có lặp lại không"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Danh mục đầu tư / doanh nghiệp",
-      "description": "Rủi ro tập trung hoặc đòn bẩy cao có thể khiến một cú sốc nhỏ biến thành vấn đề lớn về thanh khoản."
-    },
-    "quiz": [
-      {
-        "question": "Rủi ro nào xảy ra khi không bán được tài sản đủ nhanh để trả nghĩa vụ?",
-        "options": [
-          "Rủi ro thanh khoản (liquidity)",
-          "Rủi ro tăng trưởng (growth risk)",
-          "Rủi ro thị trường (market risk)",
-          "Rủi ro về thuế suất (tax risk)"
-        ],
-        "correct": 0,
-        "explanation": "Thanh khoản thấp có thể làm doanh nghiệp hoặc nhà đầu tư rơi vào thế khó dù tài sản danh nghĩa vẫn còn."
-      },
-      {
-        "question": "Một nhà đầu tư có danh mục 100% cổ phiếu công nghệ, đa dạng hóa qua 20 mã khác nhau. Loại rủi ro nào KHÔNG được giảm thiểu dù đã đa dạng hóa số lượng mã?",
-        "options": [
-          "Rủi ro tập trung ngành - cả 20 mã cùng một nhóm",
-          "Chỉ còn lại rủi ro thị trường chung của toàn bộ thị trường",
-          "Rủi ro tín dụng của từng công ty riêng lẻ trong danh mục",
-          "Không còn rủi ro nào sau khi đã đa dạng hóa qua 20 mã"
-        ],
-        "correct": 0,
-        "explanation": "Đa dạng hóa số lượng mã cổ phiếu không tự động loại bỏ rủi ro tập trung ngành - nếu toàn bộ 20 mã đều là công nghệ, chúng có xu hướng biến động cùng chiều khi có cú sốc ảnh hưởng cả ngành (như lãi suất tăng làm giảm định giá cổ phiếu tăng trưởng). Đa dạng hóa thực sự cần tài sản có mức tương quan (correlation) thấp với nhau, không chỉ là nhiều mã khác tên."
-      },
-      {
-        "question": "Danh mục có 20 mã cổ phiếu nhưng đều thuộc ngành bất động sản. Vì sao đây vẫn là rủi ro tập trung dù có nhiều mã?",
-        "options": [
-          "Vì các mã cùng ngành có xu hướng biến động cùng chiều",
-          "Vì việc đa dạng hóa chỉ có ý nghĩa với danh mục trái phiếu",
-          "Vì cổ phiếu bất động sản luôn rủi ro hơn mọi ngành khác",
-          "Vì 20 mã là số lượng quá ít để đa dạng hóa có hiệu quả"
-        ],
-        "correct": 0,
-        "explanation": "Đa dạng hóa thực sự đo bằng mức độ tương quan giữa các tài sản, không phải số lượng. Nhiều mã cùng ngành có tương quan cao, nên rủi ro tập trung vẫn còn nguyên dù danh mục trông đa dạng."
-      },
-      {
-        "question": "Vì sao rủi ro thanh khoản thường bị nhà đầu tư đánh giá thấp so với rủi ro thị trường?",
-        "options": [
-          "Vì nó vô hình lúc bình thường, chỉ lộ khi cần bán gấp",
-          "Vì rủi ro thanh khoản chỉ ảnh hưởng tới thị trường trái phiếu",
-          "Vì rủi ro thanh khoản không tồn tại trong thực tế đầu tư",
-          "Vì các cơ quan quản lý đã loại bỏ rủi ro này"
-        ],
-        "correct": 0,
-        "explanation": "Đây chính là lý do rủi ro thanh khoản nguy hiểm: nó không xuất hiện trên biểu đồ giá hằng ngày, mà chỉ hiện rõ đúng vào thời điểm bất lợi nhất khi nhà đầu tư cần thanh khoản nhất."
-      },
-      {
-        "question": "Rủi ro đối tác khác rủi ro thị trường ở điểm nào?",
-        "options": [
-          "Nó là rủi ro bên kia của giao dịch không thực hiện được nghĩa vụ",
-          "Nó là rủi ro giá tài sản biến động mạnh hơn mức mà mô hình dự báo",
-          "Nó là rủi ro không tìm được người mua khi cần bán tài sản gấp",
-          "Nó là rủi ro quy trình nội bộ hoặc hệ thống công nghệ gặp sự cố"
-        ],
-        "correct": 0,
-        "explanation": "Bạn có thể đúng hoàn toàn về hướng thị trường và vẫn mất tiền vì bên kia không trả được. Khủng hoảng 2008 là bài học kinh điển: hợp đồng phòng vệ chỉ đáng giá bằng khả năng thanh toán của bên bán nó."
-      }
-    ],
-    "keyTakeaways": [
-      "Rủi ro có nhiều lớp, không chỉ giá",
-      "Liquidity và concentration thường bị xem nhẹ",
-      "Đa dạng hóa chỉ loại bỏ một phần rủi ro"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Rủi ro có nhiều lớp, không chỉ giá",
-      "commonMistake": "Dễ bỏ qua: liquidity và concentration thường bị xem nhẹ",
-      "action": "Đa dạng hóa chỉ loại bỏ một phần rủi ro"
+      "company": "Sự cố thứ tư cùng một nguyên nhân",
+      "description": "Một đội gặp bốn sự cố trong sáu tháng, mỗi lần đều kết luận là lỗi mã và mỗi lần đều sửa đúng dòng mã gây ra nó. Nhìn lại cả bốn thì cả bốn đều bắt đầu bằng việc một dịch vụ khác trả về dữ liệu ở dạng không lường trước. Đó là rủi ro giao diện giữa hai đội, và không có lần sửa mã nào chạm tới nó."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Khi nhắc đến 'rủi ro' trong đầu tư, nhiều người chỉ nghĩ ngay đến việc giá tài sản lên xuống - nhưng đó chỉ là một trong nhiều lớp rủi ro tài chính cần quan tâm."
+        "text": "Phân loại rủi ro không phải một bài tập đặt tên. Mỗi nhóm có một bộ công cụ riêng, và dùng công cụ của nhóm này cho rủi ro của nhóm khác thì sửa được lần này và không sửa được lần sau."
       },
       {
         "type": "heading",
-        "text": "Năm lớp rủi ro tài chính"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ngoài market risk (biến động giá), một danh mục hay doanh nghiệp còn đối mặt credit risk (rủi ro đối tác không trả được nợ), liquidity risk (không bán được tài sản đủ nhanh khi cần tiền), interest rate risk (biến động lãi suất), và concentration risk (tập trung quá mức vào một loại tài sản/ngành). Đa dạng hóa số lượng mã cổ phiếu không tự động loại bỏ concentration risk theo ngành - nếu toàn bộ danh mục cùng thuộc một ngành, chúng vẫn biến động cùng chiều khi có cú sốc ảnh hưởng toàn ngành."
+        "text": "Bốn nhóm"
       },
       {
         "type": "list",
         "items": [
-          "Rủi ro tài chính có nhiều lớp: credit, liquidity, interest rate, market, concentration - không chỉ giá",
-          "Liquidity risk và concentration risk thường bị nhà đầu tư mới xem nhẹ hơn market risk",
-          "Đa dạng hóa số lượng mã không tự động loại bỏ rủi ro tập trung ngành nếu các mã đó có tương quan cao"
+          "Rủi ro mã nguồn: logic sai, trường hợp biên chưa xử lý. Công cụ là kiểm thử và rà soát",
+          "Rủi ro phụ thuộc: thứ bên ngoài đổi hoặc biến mất. Công cụ là ghim phiên bản và có phương án dự phòng",
+          "Rủi ro vận hành: cấu hình, triển khai, quyền truy cập. Công cụ là tự động hoá và giảm bước thủ công",
+          "Rủi ro giao diện: hai bên hiểu khác nhau về dữ liệu trao đổi. Công cụ là hợp đồng dữ liệu và kiểm tra ở biên"
         ]
-      },
-      {
-        "type": "conceptTable",
-        "title": "Năm lớp rủi ro tài chính",
-        "concepts": [
-          {
-            "vi": "Rủi ro thị trường",
-            "en": "Market risk",
-            "def": "Giá tài sản biến động do các yếu tố kinh tế vĩ mô, tâm lý thị trường. Loại rủi ro dễ nhận biết nhất."
-          },
-          {
-            "vi": "Rủi ro tín dụng",
-            "en": "Credit risk",
-            "def": "Đối tác hoặc bên phát hành trái phiếu không trả được nợ đúng hạn hoặc đầy đủ."
-          },
-          {
-            "vi": "Rủi ro thanh khoản",
-            "en": "Liquidity risk",
-            "def": "Không bán được tài sản đủ nhanh với giá hợp lý khi cần tiền mặt gấp - thường bị đánh giá thấp cho đến khi thực sự cần bán."
-          },
-          {
-            "vi": "Rủi ro lãi suất",
-            "en": "Interest rate risk",
-            "def": "Biến động lãi suất ảnh hưởng đến giá trị trái phiếu đang nắm giữ hoặc chi phí vay nợ."
-          },
-          {
-            "vi": "Rủi ro tập trung",
-            "en": "Concentration risk",
-            "def": "Danh mục hoặc doanh thu phụ thuộc quá nhiều vào một tài sản, một ngành, hoặc một khách hàng."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao đa dạng hóa số lượng chưa đủ"
       },
       {
         "type": "paragraph",
-        "text": "Một danh mục nắm giữ 20 mã cổ phiếu nghe có vẻ đã đa dạng hóa tốt, nhưng nếu cả 20 mã đó đều thuộc ngành bất động sản hoặc ngân hàng, chúng vẫn có xu hướng biến động cùng chiều khi có cú sốc ảnh hưởng toàn ngành - lãi suất tăng đột ngột, chính sách tín dụng thắt chặt. Đa dạng hóa thực sự cần nhìn vào mức độ tương quan giữa các tài sản, không chỉ đếm số lượng mã trong danh mục."
+        "text": "Nhóm thứ tư là nhóm hay bị xếp nhầm nhất, vì triệu chứng của nó luôn hiện ra ở một bên như một lỗi mã. Người sửa nhìn thấy mã của mình vỡ khi gặp dữ liệu lạ và kết luận là mã thiếu kiểm tra - đúng, nhưng đó là triệu chứng chứ không phải nguyên nhân."
       },
       {
         "type": "callout",
-        "label": "Rủi ro thanh khoản dễ bị bỏ qua nhất",
-        "text": "Trong điều kiện thị trường bình thường, tài sản kém thanh khoản vẫn bán được, nên rủi ro này gần như vô hình. Nó chỉ lộ ra đúng lúc thị trường căng thẳng và ai cũng muốn bán cùng lúc - khi đó chênh lệch giữa giá muốn bán và giá thực bán được có thể rất lớn, đúng lúc nhà đầu tư cần tiền mặt nhất."
+        "label": "Câu hỏi tách nhóm",
+        "text": "Hỏi xem nếu mọi thứ bên ngoài đội bạn đứng yên hoàn toàn thì sự cố này còn xảy ra không. Còn thì là rủi ro mã nguồn hoặc vận hành, tức nằm trong tầm tay. Không còn thì là phụ thuộc hoặc giao diện, và cách xử lý phải có một nửa nằm ở phía bên kia - nghĩa là nó cần một cuộc trao đổi, không chỉ cần một lần sửa."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Xử lý theo triệu chứng",
+          "text": "Sửa đúng dòng gây lỗi. Nhanh, đóng được sự cố, và không đổi gì về xác suất nó xảy ra lần nữa."
+        },
+        "right": {
+          "label": "Xử lý theo nhóm",
+          "text": "Chậm hơn và cần người khác tham gia. Đổi được xác suất, nên nó là việc duy nhất làm số sự cố giảm."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Rủi ro không chỉ là 'giá có thể giảm'.",
-          "Hiểu đủ các lớp rủi ro giúp bạn chuẩn bị cho những cú sốc mà thị trường ít khi báo trước."
+          "Tên gọi quyết định công cụ, và công cụ quyết định lần sau có lặp lại không.",
+          "Bốn sự cố cùng nguyên nhân trông như bốn lỗi mã khác nhau, nếu chỉ nhìn từng cái."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Nhóm rủi ro nào hay bị xếp nhầm nhất?",
+        "options": [
+          "Rủi ro giao diện giữa hai bên",
+          "Rủi ro vận hành",
+          "Rủi ro phụ thuộc, vì nó chỉ lộ ra vào lúc bên ngoài thay đổi chứ không lộ khi kiểm thử",
+          "Rủi ro mã nguồn, vì phần lớn đội đều thiếu độ phủ kiểm thử cho các trường hợp biên"
+        ],
+        "correct": 0,
+        "explanation": "Triệu chứng của nó luôn hiện ra ở một bên như một lỗi mã: mã của bạn vỡ khi gặp dữ liệu lạ. Kết luận thiếu kiểm tra là đúng nhưng nó là triệu chứng, và sửa triệu chứng thì lần sau dữ liệu lạ kiểu khác lại vỡ chỗ khác."
+      },
+      {
+        "question": "Câu hỏi nào tách được rủi ro trong tầm tay khỏi rủi ro cần bên khác?",
+        "options": [
+          "Nếu mọi thứ bên ngoài đứng yên thì sự cố này còn xảy ra không",
+          "Sự cố này đã từng xảy ra chưa",
+          "Đội có đủ quyền truy cập để tự sửa toàn bộ phần gây ra sự cố này hay không",
+          "Thời gian khôi phục lần này dài hơn hay ngắn hơn so với những lần trước đó"
+        ],
+        "correct": 0,
+        "explanation": "Câu này tách đúng theo chiều quyết định cách xử lý. Nếu câu trả lời là không còn, thì mọi giải pháp chỉ nằm trong đội đều là giải pháp tạm - phần còn lại phải đến từ một cuộc trao đổi với bên kia."
+      },
+      {
+        "question": "Bốn sự cố trong sáu tháng, mỗi lần sửa đúng dòng mã gây lỗi. Vì sao vẫn lặp lại?",
+        "options": [
+          "Vì cả bốn có chung một nguyên nhân mà không lần sửa nào chạm tới",
+          "Vì đội sửa quá nhanh",
+          "Vì các bản sửa chỉ được kiểm thử ở môi trường thử nghiệm chứ không ở môi trường thật",
+          "Vì đội chưa ghi lại biên bản sự cố nên không nhận ra mối liên hệ giữa các lần với nhau"
+        ],
+        "correct": 0,
+        "explanation": "Mỗi lần sửa đều đúng và đều đóng được sự cố của nó. Điều không xảy ra là ai đó đặt bốn biên bản cạnh nhau - và chỉ khi đặt cạnh nhau thì hình dạng chung mới hiện ra, còn nhìn từng cái thì đó là bốn lỗi mã khác nhau."
+      },
+      {
+        "question": "Công cụ đúng cho rủi ro phụ thuộc là gì?",
+        "options": [
+          "Ghim phiên bản và có phương án dự phòng",
+          "Đọc kỹ ghi chú phát hành",
+          "Tăng độ phủ kiểm thử cho những phần mã có gọi tới thư viện bên ngoài đó",
+          "Giảm số lượng thư viện bên ngoài mà dịch vụ phụ thuộc vào xuống mức tối thiểu"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều có ích và đều không lặp lại được một cách đáng tin. Ghim phiên bản thì đổi được bản chất vấn đề: thay vì hy vọng không ai nâng nhầm, hệ thống chỉ đổi khi có người chủ động quyết định đổi."
+      },
+      {
+        "question": "Vì sao xử lý theo nhóm chậm hơn nhưng đáng hơn xử lý theo triệu chứng?",
+        "options": [
+          "Vì chỉ nó đổi được xác suất sự cố xảy ra lần nữa",
+          "Vì nó tạo ra tài liệu",
+          "Vì nó buộc các đội liên quan phải cùng nhìn vào vấn đề nên hiểu biết được chia sẻ rộng hơn",
+          "Vì nó thường phát hiện thêm những vấn đề khác chưa gây sự cố nhưng đang tiềm ẩn"
+        ],
+        "correct": 0,
+        "explanation": "Ba lợi ích kia đều có thật và đều là phần thưởng phụ. Điểm cốt lõi là sửa triệu chứng đóng được sự cố mà không đổi gì về khả năng nó tái diễn, nên số sự cố mỗi quý sẽ đứng yên dù mọi lần sửa đều đúng."
+      }
+    ],
+    "keyTakeaways": [
+      "Tên gọi quyết định công cụ, và công cụ quyết định lần sau có lặp lại không",
+      "Rủi ro giao diện hay bị xếp nhầm vì triệu chứng của nó trông như lỗi mã",
+      "Hỏi: nếu bên ngoài đứng yên thì sự cố này còn xảy ra không",
+      "Sửa triệu chứng đóng được sự cố nhưng không đổi xác suất nó tái diễn"
+    ],
     "practicePrompt": {
-      "question": "Rủi ro Thanh khoản (Liquidity Risk) của một ngân hàng thương mại xảy ra khi nào?",
+      "question": "Sáu tháng có 12 sự cố, mỗi cái được sửa đúng và không cái nào lặp lại y hệt. Quý sau dự kiến bao nhiêu sự cố?",
       "options": [
-        "Khi ngân hàng không đủ tiền cho người rút",
-        "Khi ngân hàng có quá nhiều tiền mặt trong két",
-        "Khi lãi suất tiền gửi giảm về 0%",
-        "Khi cổ phiếu ngân hàng tăng giá"
+        "Khoảng 12, vì chưa có gì đổi xác suất",
+        "Ít hơn 12",
+        "Khoảng 6, vì mỗi lần sửa đều loại bỏ vĩnh viễn một nguyên nhân gây sự cố",
+        "Không dự đoán được vì số sự cố phụ thuộc vào khối lượng thay đổi được phát hành"
       ],
       "correct": 0,
-      "explanation": "Rủi ro thanh khoản là rủi ro sinh tử của ngân hàng. Dù ngân hàng có lãi trên sổ sách, nhưng nếu bị rút tiền hàng loạt (Bank run) mà không kịp thanh khoản tài sản thì vẫn có thể sụp đổ."
+      "explanation": "Mười hai lần sửa đúng đã loại mười hai trường hợp cụ thể, không loại nguyên nhân sinh ra chúng. Nếu nguyên nhân còn nguyên thì tốc độ sinh sự cố cũng còn nguyên, và đó là lý do một đội có thể sửa rất giỏi mà số sự cố không giảm năm này qua năm khác."
+    },
+    "summary": {
+      "keyIdea": "Phân loại rủi ro để chọn đúng công cụ, không phải để đặt tên",
+      "commonMistake": "Xếp rủi ro giao diện thành rủi ro mã nguồn vì triệu chứng giống",
+      "action": "Đặt ba biên bản sự cố gần nhất cạnh nhau và tìm hình dạng chung."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Phân loại Rủi ro Tài chính",
-      "message": "Rủi ro Thanh khoản (Liquidity Risk) của một ngân hàng thương mại xảy ra khi nào?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Hai câu sau mỗi sự cố",
+      "message": "Nếu mọi thứ bên ngoài đội đứng yên thì nó còn xảy ra không? Bản sửa này đổi xác suất hay chỉ đóng trường hợp này?",
+      "secondary": "Câu thứ hai là câu phân biệt một đội sửa giỏi với một đội đang giảm số sự cố."
+    },
+    "id": 1029,
+    "slug": "financial-risk",
+    "track": "bonus"
   },
   {
     "id": 1030,
@@ -61808,184 +61737,186 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1031,
-    "slug": "wealth-management",
-    "title": "Wealth Management là gì?",
-    "subtitle": "Tài sản ròng, phân bổ tài sản và danh mục kỳ vọng",
-    "duration": "6 phút",
+    "title": "Nền tảng nội bộ như một dịch vụ cho các đội khác",
+    "subtitle": "Vì sao đội nền tảng tốt nhất là đội có ít người dùng bắt buộc nhất",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "⚖️",
-    "openingQuestion": "Wealth management thực sự quản lý cái gì trước tiên?",
+    "emoji": "🏛️",
+    "whyItMatters": "Nền tảng nội bộ là nơi công sức kỹ thuật bị lãng phí nhiều nhất trong các công ty vừa và lớn, và nguyên nhân hầu như luôn giống nhau: nó được xây cho một nhu cầu chưa ai xác nhận.",
+    "openingQuestion": "Đội nền tảng nên đo thành công bằng gì?",
     "openingOptions": [
-      "Tài sản ròng và mục tiêu sống",
-      "Chỉ là chọn cổ phiếu",
-      "Chỉ là giữ tiền mặt",
-      "Chỉ là mua bảo hiểm"
+      "Số đội tự nguyện dùng khi vẫn có lựa chọn khác",
+      "Số đội đang dùng",
+      "Số tính năng đã xây được trong mỗi quý so với kế hoạch đã cam kết từ đầu kỳ",
+      "Mức độ ổn định của nền tảng, đo bằng số sự cố và thời gian khôi phục trung bình"
     ],
     "correctOption": 0,
-    "explanation": "Quản lý gia sản rộng hơn quản lý danh mục đầu tư: nó bắt đầu từ bảng cân đối cá nhân, các mục tiêu có mốc thời gian cụ thể, dòng tiền vào ra và khả năng chịu biến động. Đầu tư chỉ là một phần, và thường không phải phần quyết định nhất. Hai mảng hay bị bỏ qua nhưng ảnh hưởng lớn hơn nhiều là thanh khoản cho nhu cầu ngắn hạn và bảo vệ trước rủi ro lớn - vì một sự cố không được phòng ngừa có thể xóa nhiều năm tích lũy.",
+    "explanation": "Ba thước đo kia đều tăng được mà không cần nền tảng có ích. Số đội đang dùng tăng bằng một quy định bắt buộc; số tính năng tăng bằng cách xây thêm; mức ổn định tăng bằng cách ít ai dùng. Chỉ có tự nguyện khi vẫn còn lựa chọn khác là thước đo không giả được, vì nó đòi hỏi ai đó cân nhắc rồi chọn.",
     "diagram": [
       {
-        "label": "Net worth",
+        "label": "Nhu cầu lặp lại ở nhiều đội",
         "arrow": true
       },
       {
-        "label": "Asset allocation",
+        "label": "Một đội giải, các đội khác thử",
         "arrow": true
       },
       {
-        "label": "Goal planning",
+        "label": "Đội thứ ba tự tìm tới",
         "arrow": true
       },
       {
-        "label": "Tái cân bằng",
-        "arrow": false
+        "label": "Lúc đó mới là nền tảng"
       }
     ],
     "realWorldExample": {
-      "company": "Cá nhân / gia đình",
-      "description": "Một kế hoạch wealth management tốt không chỉ tối đa hóa lợi nhuận mà còn đảm bảo tiền cho mục tiêu học hành, nhà cửa, hưu trí và bảo vệ rủi ro."
-    },
-    "quiz": [
-      {
-        "question": "Tài sản nào thường nằm ở nhóm thanh khoản cao nhất?",
-        "options": [
-          "Tiền mặt và tiền gửi",
-          "Bất động sản",
-          "Cổ phiếu tăng trưởng",
-          "Đồ sưu tầm"
-        ],
-        "correct": 0,
-        "explanation": "Thanh khoản là yếu tố đầu tiên khi xây dựng bảng cân đối tài chính cá nhân."
-      },
-      {
-        "question": "Tái cân bằng danh mục có ý nghĩa gì?",
-        "options": [
-          "Giữ đúng mức rủi ro đã chọn",
-          "Chỉ để mua thấp bán cao ngẫu nhiên",
-          "Làm danh mục xấu đi",
-          "Không cần thiết nếu lãi"
-        ],
-        "correct": 0,
-        "explanation": "Nếu không tái cân bằng, danh mục dễ lệch khỏi khẩu vị rủi ro ban đầu."
-      }
-    ],
-    "keyTakeaways": [
-      "Wealth management nhìn net worth trước, rồi mới đến đầu tư",
-      "Asset allocation quan trọng hơn chọn một mã thắng",
-      "Tái cân bằng giúp giữ kỷ luật rủi ro"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Wealth management nhìn net worth trước, rồi mới đến đầu tư",
-      "commonMistake": "Dễ bỏ qua: asset allocation quan trọng hơn chọn một mã thắng",
-      "action": "Tái cân bằng giúp giữ kỷ luật rủi ro"
+      "company": "Nền tảng không ai xin",
+      "description": "Một công ty lập đội nền tảng sáu người, giao nhiệm vụ dựng bộ công cụ triển khai dùng chung. Sau chín tháng công cụ ra mắt, đầy đủ tính năng, tài liệu tốt. Hai đội chuyển sang vì được yêu cầu; bốn đội còn lại xin ở lại với công cụ cũ và được chấp thuận. Không ai từng hỏi bốn đội ấy trước khi bắt đầu xem việc triển khai có phải vấn đề của họ không."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Wealth management không phải là 'có nhiều tiền thì mới cần'. Nó là cách bạn tổ chức tài sản, rủi ro và mục tiêu để tiền phục vụ đời sống."
+        "text": "Nền tảng nội bộ là một sản phẩm, và người dùng của nó là các đội khác. Phần lớn thất bại của chúng là thất bại sản phẩm chứ không phải thất bại kỹ thuật."
       },
       {
         "type": "heading",
-        "text": "Ba lớp cần quản"
-      },
-      {
-        "type": "conceptTable",
-        "title": "Khung quản lý tài sản",
-        "subtitle": "Đọc từ trái sang phải như một quy trình",
-        "concepts": [
-          {
-            "vi": "Tài sản ròng",
-            "en": "Net worth",
-            "def": "Tổng tài sản trừ tổng nợ - điểm xuất phát của mọi kế hoạch."
-          },
-          {
-            "vi": "Phân bổ tài sản",
-            "en": "Asset allocation",
-            "def": "Chia tiền vào tiền mặt, trái phiếu, cổ phiếu, BĐS... theo mục tiêu."
-          },
-          {
-            "vi": "Tái cân bằng",
-            "en": "Rebalancing",
-            "def": "Giữ danh mục quay về tỷ trọng mục tiêu khi thị trường biến động."
-          }
-        ]
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Sai lầm thường gặp",
-          "text": "Nhìn một kênh lợi nhuận cao rồi dồn tiền vào đó mà không xét mục tiêu, thanh khoản hay khung thời gian."
-        },
-        "right": {
-          "label": "Cách làm đúng",
-          "text": "Chia tài sản theo mục tiêu: tiền gần hạn, tiền bảo vệ, tiền tăng trưởng và tiền dài hạn."
-        }
+        "text": "Nền tảng đến sau nhu cầu, không đến trước"
       },
       {
         "type": "paragraph",
-        "text": "Ví dụ cụ thể: một gia đình có net worth 5 tỷ, mục tiêu gồm quỹ khẩn cấp (thanh khoản cao, 6 tháng chi tiêu), quỹ mua nhà trong 3 năm tới (ưu tiên an toàn), và quỹ hưu trí sau 25 năm nữa (có thể chấp nhận rủi ro cao hơn để tăng trưởng). Wealth management đúng nghĩa là phân bổ 5 tỷ đó vào ba 'ngăn' khác nhau theo đúng khung thời gian và mục tiêu của từng khoản, thay vì gộp chung và đầu tư theo một chiến lược duy nhất cho tất cả."
+        "text": "Hình dạng đáng tin nhất là một đội giải xong vấn đề của mình, đội thứ hai mượn lại, rồi đội thứ ba tự tìm tới hỏi. Tới lúc đó thì nhu cầu đã được xác nhận ba lần bởi ba nhóm độc lập, và hình dạng của giải pháp đã được hai lần sử dụng thật uốn cho đúng. Bắt đầu từ một kế hoạch thay vì từ ba lần xác nhận ấy là bắt đầu bằng một phỏng đoán tốn chín tháng."
       },
       {
         "type": "heading",
-        "text": "Chia 5 tỷ đó ra thành ba túi, mỗi túi một khẩu vị rủi ro"
+        "text": "Bắt buộc là cách che mất tín hiệu"
       },
       {
         "type": "paragraph",
-        "text": "Gia đình chi tiêu 30 triệu một tháng, nên quỹ khẩn cấp 6 tháng là 180 triệu - chiếm 3,6% tài sản. Khoản trả trước mua nhà cần 1,5 tỷ sau 3 năm, tức 30%. Phần còn lại 3,32 tỷ, tương đương 66,4%, là tiền hưu trí với chân trời 20 năm. Ba túi này không thể dùng chung một tỷ lệ cổ phiếu, vì thứ quyết định không phải mức độ ưa mạo hiểm của gia đình mà là thời điểm tiền phải có mặt."
+        "text": "Khi các đội bị yêu cầu phải dùng, tỷ lệ sử dụng lên một trăm phần trăm và mọi phản hồi tiêu cực chuyển thành phàn nàn riêng thay vì thành quyết định rời đi. Đội nền tảng mất đúng tín hiệu duy nhất cho biết sản phẩm của họ có tốt không, và họ mất nó vào đúng lúc họ cần nó nhất."
       },
       {
-        "type": "conceptTable",
-        "title": "Cùng một gia đình, ba mức rủi ro khác nhau",
-        "subtitle": "Chân trời thời gian quyết định, không phải tính cách",
-        "concepts": [
-          {
-            "vi": "Quỹ khẩn cấp - 180 triệu, cần bất cứ lúc nào",
-            "en": "0% equities",
-            "def": "Tiêu chí duy nhất là rút được ngay và không mất giá. Tiền gửi kỳ hạn ngắn hoặc quỹ tiền tệ. Đặt một đồng cổ phiếu vào đây nghĩa là chấp nhận khả năng phải bán lỗ đúng vào lúc mất việc."
-          },
-          {
-            "vi": "Trả trước mua nhà - 1,5 tỷ, cần sau 3 năm",
-            "en": "Little or no equity",
-            "def": "Ba năm là quá ngắn để chờ hồi phục sau một đợt giảm. Nếu thị trường giảm 30% vào năm thứ ba, kế hoạch mua nhà bị hoãn - và đó là một thất bại thật, không phải một biến động tạm thời."
-          },
-          {
-            "vi": "Hưu trí - 3,32 tỷ, cần sau 20 năm",
-            "en": "High equity weighting",
-            "def": "Đây là túi duy nhất đủ dài để rủi ro biến động trở thành thứ được trả công. Giữ túi này quá an toàn mới là rủi ro lớn nhất, vì lạm phát 20 năm ăn mòn sức mua chắc chắn hơn bất kỳ đợt giảm nào."
-          }
+        "type": "heading",
+        "text": "Ba việc thay cho việc xây thêm tính năng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Rút ngắn thời gian từ lúc một đội bắt đầu thử tới lúc chạy được lần đầu",
+          "Nhận nuôi phần khó nhất, không phần dễ nhất - đội khác chỉ đổi khi được đỡ phần đau",
+          "Cho phép thoát ra dễ dàng, vì thoát dễ là điều kiện để người ta dám vào"
         ]
       },
       {
         "type": "callout",
-        "label": "Vì sao câu hỏi khẩu vị rủi ro của bạn là mấy trên mười thường vô nghĩa",
-        "text": "Cùng một người, cùng một ngày, có ba câu trả lời khác nhau cho ba túi tiền trên. Gộp chúng lại thành một con số rồi áp một tỷ lệ phân bổ duy nhất cho toàn bộ 5 tỷ sẽ vừa đặt quỹ khẩn cấp vào chỗ quá rủi ro, vừa đặt tiền hưu trí vào chỗ quá an toàn - sai cả hai đầu cùng một lúc. Đó là lý do phân bổ tài sản bắt đầu từ danh sách mục tiêu kèm mốc thời gian, chứ không bắt đầu từ một bài trắc nghiệm tính cách."
+        "label": "Thoát dễ là điều kiện của việc vào",
+        "text": "Nghe ngược nhưng nó đúng ở mọi nền tảng nội bộ tôi từng thấy hoạt động. Một đội cân nhắc chuyển sang nền tảng của bạn đang ước lượng rủi ro, và rủi ro lớn nhất của họ không phải nền tảng dở - mà là nền tảng dở và họ không quay lại được. Cho họ lối ra rõ ràng thì bạn vừa giảm rủi ro của họ vừa nhận về áp lực phải tốt, và cả hai đều đúng hướng."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Nền tảng được chọn",
+          "text": "Đội thứ ba tự tìm tới. Phản hồi đến dưới dạng yêu cầu cụ thể vì họ có lý do để nó tốt lên."
+        },
+        "right": {
+          "label": "Nền tảng được áp",
+          "text": "Mọi đội đều dùng và không ai chăm. Phản hồi đến dưới dạng phàn nàn, và không cái nào thành yêu cầu."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Quản lý tài sản tốt là để cuộc sống ít bất ngờ hơn.",
-          "Không phải để chạy theo một con số lợi nhuận đẹp nhất."
+          "Nền tảng nội bộ là một sản phẩm, và thất bại của nó là thất bại sản phẩm.",
+          "Thước đo duy nhất không giả được là có người chọn khi họ vẫn có lựa chọn khác."
         ]
       }
     ],
-    "application": {
-      "title": "Vẽ net worth của bạn",
-      "message": "Liệt kê tài sản, nợ, tiền mặt, khoản đầu tư và mục tiêu sắp tới của bạn vào một bảng đơn giản để biết đâu là phần cần bảo vệ trước tiên.",
-      "secondary": "Thường thì thanh khoản và đệm an toàn quan trọng hơn lợi nhuận tối đa."
-    },
+    "quiz": [
+      {
+        "question": "Vì sao 'số đội đang dùng' là thước đo kém?",
+        "options": [
+          "Vì nó tăng được bằng một quy định bắt buộc",
+          "Vì nó không phản ánh mức độ sâu",
+          "Vì một đội có thể chỉ dùng một phần rất nhỏ của nền tảng nhưng vẫn được tính là đang dùng",
+          "Vì số lượng đội trong công ty thay đổi theo từng kỳ nên con số này không so sánh được"
+        ],
+        "correct": 0,
+        "explanation": "Ba nhược điểm kia đều làm con số kém chính xác nhưng đều sửa được bằng cách đo kỹ hơn. Việc tăng được bằng một quyết định hành chính thì không sửa được bằng phép đo nào, vì nó tách con số khỏi thứ con số định đo."
+      },
+      {
+        "question": "Việc bắt buộc sử dụng lấy đi của đội nền tảng thứ gì?",
+        "options": [
+          "Tín hiệu duy nhất cho biết sản phẩm có tốt không",
+          "Động lực cải tiến",
+          "Cơ hội tìm hiểu nhu cầu thật của từng đội trước khi quyết định xây tính năng nào",
+          "Khả năng ưu tiên công việc theo mức độ cấp thiết mà các đội tự thể hiện qua yêu cầu"
+        ],
+        "correct": 0,
+        "explanation": "Phản hồi tiêu cực vẫn tồn tại sau khi bắt buộc, nhưng nó chuyển từ một quyết định rời đi - thứ đếm được và không cãi được - thành một lời phàn nàn, thứ luôn có thể quy cho việc đội kia ngại thay đổi."
+      },
+      {
+        "question": "Hình dạng đáng tin nhất để một nền tảng ra đời là gì?",
+        "options": [
+          "Một đội giải xong, đội thứ hai mượn, đội thứ ba tự tìm tới",
+          "Một kế hoạch được duyệt",
+          "Một khảo sát về nhu cầu chung được gửi tới toàn bộ các đội kỹ thuật trong công ty",
+          "Một bản đánh giá cho thấy nhiều đội đang giải cùng một vấn đề theo những cách khác nhau"
+        ],
+        "correct": 0,
+        "explanation": "Phương án cuối gần đúng nhưng vẫn thiếu một nửa: biết nhiều đội có cùng vấn đề không đảm bảo họ sẽ chấp nhận cùng một giải pháp. Ba lần dùng thật thì vừa xác nhận nhu cầu vừa uốn hình dạng giải pháp cho đúng."
+      },
+      {
+        "question": "Vì sao 'cho phép thoát ra dễ dàng' lại làm nhiều đội vào hơn?",
+        "options": [
+          "Vì rủi ro lớn nhất của họ là vào rồi không ra được",
+          "Vì nó cho thấy đội nền tảng tự tin",
+          "Vì nó buộc đội nền tảng phải giữ dữ liệu ở dạng phổ thông nên chất lượng kỹ thuật tốt hơn",
+          "Vì các đội sẽ thử nghiệm nhiều hơn khi biết mình không bị ràng buộc lâu dài với lựa chọn"
+        ],
+        "correct": 0,
+        "explanation": "Một đội đang cân nhắc chuyển sang nền tảng của bạn đang ước lượng rủi ro chứ không ước lượng lợi ích. Giảm cái giá của kịch bản xấu nhất có tác dụng mạnh hơn nhiều so với việc hứa thêm về kịch bản tốt."
+      },
+      {
+        "question": "Nền tảng nên nhận nuôi phần nào của công việc?",
+        "options": [
+          "Phần khó nhất, vì đội khác chỉ đổi khi được đỡ phần đau",
+          "Phần dễ nhất và lặp lại nhiều",
+          "Phần mà đội nền tảng có sẵn chuyên môn sâu hơn so với các đội sản phẩm khác",
+          "Phần chung nhất giữa các đội, để một giải pháp duy nhất phục vụ được nhiều nơi"
+        ],
+        "correct": 0,
+        "explanation": "Phần dễ và phần chung nghe hợp lý về mặt hiệu quả, nhưng chúng không đủ để trả cho cái giá của việc đổi. Một đội chỉ chấp nhận học lại một công cụ khi thứ họ nhận về là phần họ ghét nhất, chứ không phải phần họ vốn đã làm nhanh."
+      }
+    ],
+    "keyTakeaways": [
+      "Nền tảng nội bộ là một sản phẩm, thất bại của nó là thất bại sản phẩm",
+      "Bắt buộc dùng lấy đi tín hiệu duy nhất cho biết nó có tốt không",
+      "Nền tảng đến sau ba lần xác nhận, không đến trước bằng một kế hoạch",
+      "Cho lối ra rõ ràng thì nhiều đội dám vào hơn"
+    ],
     "practicePrompt": {
-      "question": "Mục tiêu cốt lõi của ngành Quản lý Tài sản (Wealth Management) cho khách hàng cá nhân là gì?",
+      "question": "Sáu đội: 2 dùng vì được yêu cầu, 4 xin ở lại công cụ cũ. Tỷ lệ tự nguyện là bao nhiêu?",
       "options": [
-        "Bảo tồn vốn, tăng trưởng bền vững, tối ưu phân bổ tài sản",
-        "Khuyên khách hàng đặt cược toàn bộ tài sản vào 1 cổ phiếu lướt sóng",
-        "Hứa hẹn lợi nhuận cố định 50%/năm không rủi ro",
-        "Bán sản phẩm bảo hiểm bằng mọi giá"
+        "0%",
+        "33%",
+        "100%, vì cả sáu đội đều đã được cho cơ hội cân nhắc và đã đưa ra quyết định của mình",
+        "67%, vì bốn đội từ chối cũng là một dạng lựa chọn có ý thức về công cụ họ muốn dùng"
       ],
       "correct": 0,
-      "explanation": "Wealth Management tập trung vào quản lý bức tranh tài chính tổng thể: hoạch định hưu trí, phân bổ tài sản đa dạng (Cổ phiếu, Trái phiếu, BĐS) và bảo vệ tài sản qua các thế hệ."
-    }
+      "explanation": "Hai đội chuyển sang vì được yêu cầu, tức không đội nào chọn khi vẫn còn lựa chọn khác. Con số 33% là tỷ lệ sử dụng, và chênh lệch giữa 33% với 0% chính là toàn bộ nội dung của bài này."
+    },
+    "summary": {
+      "keyIdea": "Đo bằng số đội tự nguyện dùng khi vẫn có lựa chọn khác",
+      "commonMistake": "Xây nền tảng từ một kế hoạch thay vì từ ba lần dùng thật",
+      "action": "Hỏi một đội đang dùng nền tảng của bạn xem họ có ở lại nếu được chọn không."
+    },
+    "application": {
+      "title": "Ba câu cho một nền tảng đang xây",
+      "message": "Đã có ba đội dùng thật chưa? Nếu bỏ quy định bắt buộc thì còn bao nhiêu đội ở lại? Thoát ra mất bao lâu?",
+      "secondary": "Câu thứ hai thường không ai dám hỏi, và nó là câu duy nhất trả lời đúng câu hỏi nền tảng này có đáng không."
+    },
+    "id": 1031,
+    "slug": "wealth-management",
+    "track": "bonus"
   },
   {
     "id": 1032,

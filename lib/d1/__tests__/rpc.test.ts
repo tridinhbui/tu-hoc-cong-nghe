@@ -4,6 +4,11 @@ import { DatabaseSync } from "node:sqlite";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
+  getChatMessageReactions,
+  getCompetencyLeaderboard,
+  getDailyActiveUsers,
+  getStudyRoomReactions,
+  getCompositeLeaderboard,
   getTrackLeaderboard,
   getFollowCounts,
   getTotalCompletedLessonsCount,
@@ -149,5 +154,203 @@ describe.skipIf(!hasLocalData)("getTrackLeaderboard", () => {
       .bind()
       .all()) as { results: { id: string }[] };
     for (const b of banned.results) expect(ids.has(b.id)).toBe(false);
+  });
+});
+
+describe.skipIf(!hasLocalData)("getCompositeLeaderboard", () => {
+  it("điểm tổng khớp công thức tính lại độc lập bằng TypeScript", async () => {
+    // Bản đầu của bộ kiểm này chỉ khẳng định "điểm > 0 với người dưới 40.000
+    // XP". Nó VÔ DỤNG: tôi cố tình đổi `40000.0` thành `40000` (tức bật lại
+    // phép chia nguyên của SQLite) và bộ kiểm vẫn xanh, vì ba cấu phần còn lại
+    // đủ kéo điểm lên dương.
+    //
+    // Cách duy nhất bắt được là tính lại đúng công thức ở đây rồi so từng
+    // dòng. Làm vậy thì mọi sai lệch về kiểu số, thứ tự phép toán hay làm tròn
+    // đều lộ ra chứ không chỉ riêng phép chia nguyên.
+    const top = await getCompositeLeaderboard(db, 50);
+    expect(top.length).toBeGreaterThan(0);
+    // Phải có người ở dưới từng ngưỡng, nếu không phép so sánh không chạm tới
+    // nhánh chia thập phân và lại thành một bộ kiểm vô dụng nữa.
+    expect(top.some((r) => r.learning_xp > 0 && r.learning_xp < 40000)).toBe(true);
+
+    for (const r of top) {
+      const mong = Math.round(
+        1000 *
+          (0.35 * Math.min(1, r.learning_xp / 40000) +
+            0.30 * Math.min(1, r.exam_points / 1400) +
+            0.20 * (r.accuracy / 100) +
+            0.15 * Math.min(1, r.streak_days / 100))
+      );
+      expect(r.composite, `user ${r.user_id}`).toBe(mong);
+    }
+  });
+
+  it("sắp giảm dần và không vượt trần 50", async () => {
+    const top = await getCompositeLeaderboard(db, 9999);
+    expect(top.length).toBeLessThanOrEqual(50);
+    const v = top.map((r) => r.composite);
+    expect([...v].sort((a, b) => b - a)).toEqual(v);
+  });
+
+  it("điểm nằm trong 0..1000 và các cấu phần không âm", async () => {
+    for (const r of await getCompositeLeaderboard(db, 50)) {
+      expect(r.composite).toBeGreaterThanOrEqual(0);
+      expect(r.composite).toBeLessThanOrEqual(1000);
+      expect(r.accuracy).toBeGreaterThanOrEqual(0);
+      expect(r.accuracy).toBeLessThanOrEqual(100);
+      expect(r.learning_xp).toBeGreaterThanOrEqual(0);
+      expect(r.streak_days).toBeGreaterThanOrEqual(0);
+    }
+  });
+});
+
+describe.skipIf(!hasLocalData)("getChatMessageReactions", () => {
+  it("từ chối khi người gọi không phải chủ tin nhắn", async () => {
+    // Hàm gốc gác bằng `and p_user_id = auth.uid()` ngay trong WHERE. Mất dòng
+    // đó là ai cũng đọc được reaction trên hộp thoại của người khác.
+    expect(await getChatMessageReactions(db, "nguoi-khac", "chu-hop-thoai")).toEqual([]);
+    expect(await getChatMessageReactions(db, "", "")).toEqual([]);
+  });
+
+  it("gom nhóm theo message_id + emoji, giữ thứ tự theo created_at", async () => {
+    const owner = (
+      (await db
+        .prepare("select user_id from chat_messages limit 1")
+        .bind()
+        .all()) as { results: { user_id: string }[] }
+    ).results[0]?.user_id;
+    if (!owner) return; // chưa có tin nhắn nào trong dữ liệu local
+
+    const got = await getChatMessageReactions(db, owner, owner);
+    const keys = got.map((g) => `${g.message_id}|${g.emoji}`);
+    expect(new Set(keys).size).toBe(keys.length); // không nhóm nào lặp
+    for (const g of got) expect(g.user_ids.length).toBeGreaterThan(0);
+  });
+});
+
+describe.skipIf(!hasLocalData)("getDailyActiveUsers", () => {
+  it("khung ngày liên tục, đủ số ngày, kể cả ngày không ai học", async () => {
+    // Cả điểm của hàm này là ngày im lặng vẫn phải hiện ra với số 0. Nếu CTE
+    // đệ quy dịch sai thành một phép JOIN thường thì những ngày ấy biến mất và
+    // đồ thị co lại - không lỗi, chỉ thiếu.
+    const got = await getDailyActiveUsers(db, 14);
+    expect(got.length).toBe(14);
+    for (let i = 1; i < got.length; i++) {
+      const truoc = new Date(got[i - 1].date + "T00:00:00Z").getTime();
+      const sau = new Date(got[i].date + "T00:00:00Z").getTime();
+      expect(sau - truoc).toBe(86400000); // đúng một ngày, không nhảy cóc
+    }
+    expect(got.at(-1)!.date).toBe(new Date().toISOString().slice(0, 10));
+  });
+
+  it("kẹp tham số days để CTE đệ quy không chạy vô hạn", async () => {
+    // Tính chất cần gác là CHẶN TRÊN và CHẶN DƯỚI, không phải một con số cụ
+    // thể: bản gốc dựa vào generate_series tự trả rỗng với đầu vào vô lý, còn
+    // CTE đệ quy thì phải tự chặn, nếu không nó chạy tới khi hết bộ nhớ.
+    expect((await getDailyActiveUsers(db, 0)).length).toBe(30); // 0 → mặc định
+    const am = await getDailyActiveUsers(db, -5);
+    expect(am.length).toBeGreaterThanOrEqual(1);
+    expect(am.length).toBeLessThanOrEqual(365);
+    expect((await getDailyActiveUsers(db, 99999)).length).toBe(365); // trần
+  });
+
+  it("số đếm khớp với đếm thô trên cùng khoảng", async () => {
+    const got = await getDailyActiveUsers(db, 30);
+    const tong = got.reduce((a, r) => a + r.count, 0);
+    const [{ c }] = (await db
+      .prepare(
+        `select count(*) as c from (
+           select distinct user_id, date(completed_at) as d
+             from user_progress
+            where completed = 1
+              and date(completed_at) >= date('now', '-29 days')
+              and date(completed_at) <= date('now')
+         )`
+      )
+      .bind()
+      .all()
+      .then((r) => r.results as { c: number }[]));
+    expect(tong).toBe(c);
+  });
+});
+
+describe.skipIf(!hasLocalData)("getStudyRoomReactions", () => {
+  it("người ngoài phòng không đọc được reaction", async () => {
+    // Bản gốc gác bằng exists(... m.user_id = auth.uid() and m.left_at is null).
+    // Mất điều kiện đó là ai cũng đọc được hộp chat của mọi phòng học.
+    const phong = (await db
+      .prepare("select room_id from study_room_messages limit 1")
+      .bind()
+      .all()
+      .then((r) => r.results as { room_id: number }[]))[0];
+    if (!phong) return;
+    expect(await getStudyRoomReactions(db, "nguoi-ngoai-phong", phong.room_id)).toEqual([]);
+    expect(await getStudyRoomReactions(db, "", phong.room_id)).toEqual([]);
+  });
+
+  it("thành viên đã rời phòng cũng không đọc được", async () => {
+    const daRoi = (await db
+      .prepare("select room_id, user_id from study_room_members where left_at is not null limit 1")
+      .bind()
+      .all()
+      .then((r) => r.results as { room_id: number; user_id: string }[]))[0];
+    if (!daRoi) return; // dữ liệu local chưa có ai rời phòng
+    expect(await getStudyRoomReactions(db, daRoi.user_id, daRoi.room_id)).toEqual([]);
+  });
+});
+
+describe.skipIf(!hasLocalData)("getCompetencyLeaderboard (tham số mảng)", () => {
+  const layIds = async (n: number) =>
+    (await db
+      .prepare(`select distinct lesson_id from user_progress where completed = 1 limit ${n}`)
+      .bind()
+      .all()
+      .then((r) => r.results as { lesson_id: number }[])).map((x) => x.lesson_id);
+
+  it("nở đúng số dấu hỏi theo độ dài mảng", async () => {
+    for (const n of [1, 3, 25]) {
+      const ids = await layIds(n);
+      const got = await getCompetencyLeaderboard(db, ids, 50);
+      // Sai số dấu hỏi thì SQLite ném lỗi ràng buộc chứ không trả sai lặng lẽ,
+      // nên chỉ cần chạy được là đã chứng minh phần nở là đúng.
+      expect(Array.isArray(got)).toBe(true);
+      for (const r of got) expect(r.value).toBeGreaterThan(0);
+    }
+  });
+
+  it("mảng rỗng trả rỗng thay vì ném lỗi cú pháp", async () => {
+    // `in ()` là lỗi cú pháp trong SQLite; `any('{}')` của Postgres thì hợp lệ
+    // và không khớp dòng nào. Phải chặn sớm để hai bên giống nhau.
+    expect(await getCompetencyLeaderboard(db, [], 10)).toEqual([]);
+    expect(await getCompetencyLeaderboard(db, undefined as never, 10)).toEqual([]);
+  });
+
+  it("phần tử không phải số bị loại, không lọt vào SQL", async () => {
+    const ids = await layIds(2);
+    const ban = ["1); drop table user_progress;--", null, NaN] as never[];
+    const got = await getCompetencyLeaderboard(db, [...ids, ...ban], 10);
+    expect(Array.isArray(got)).toBe(true);
+    // Bảng vẫn còn nguyên sau lời gọi.
+    const [{ c }] = await db
+      .prepare("select count(*) as c from user_progress")
+      .bind()
+      .all()
+      .then((r) => r.results as { c: number }[]);
+    expect(c).toBeGreaterThan(0);
+  });
+
+  it("đếm khớp với truy vấn thô trên cùng tập bài", async () => {
+    const ids = await layIds(5);
+    const got = await getCompetencyLeaderboard(db, ids, 50);
+    if (!got.length) return;
+    const [{ c }] = await db
+      .prepare(
+        `select count(*) as c from user_progress
+          where completed = 1 and user_id = ? and lesson_id in (${ids.map(() => "?").join(",")})`
+      )
+      .bind(got[0].user_id, ...ids)
+      .all()
+      .then((r) => r.results as { c: number }[]);
+    expect(got[0].value).toBe(c);
   });
 });

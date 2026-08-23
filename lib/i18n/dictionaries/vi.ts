@@ -1619,7 +1619,7 @@ export const vi = {
     "career-application": "Ứng dụng nghề nghiệp",
     esg: "Bền vững & hiệu quả năng lượng",
     "economics-markets": "Hệ điều hành & Linux",
-    "vn-market": "Thị trường Việt Nam",
+    "vn-product": "Thị trường Việt Nam",
     "private-markets": "Mã nguồn mở & hệ sinh thái",
     "wealth-insurance": "Quy mô lớn & chịu tải",
     "infra-project": "Hạ tầng & dự án nền tảng",

@@ -117,11 +117,26 @@ describe("answer positions survive the request path", () => {
 });
 
 describe("getLessonsByTrack", () => {
-  it("includes lessons whose track is derived from stage ranges, not just tagged ones", async () => {
-    const professional = await getLessonsByTrack("professional");
-    const untagged = professional.filter((l) => !l.track);
-    // The old `l.track === track` compare returned zero of these.
-    expect(untagged.length).toBeGreaterThan(0);
+  // Trước đây bộ kiểm này khẳng định CÓ bài không khai `track`, để chứng minh
+  // nhánh suy ra từ dải chặng hoạt động. Giờ mọi bài đều khai track tường minh
+  // (xem lesson-track-required.test.ts về lỗi mà việc để trống đã gây ra), nên
+  // phép khẳng định cũ luôn đúng bằng 0 và không còn kiểm được gì.
+  //
+  // Bất biến thay thế mạnh hơn: hai nguồn sự thật về track - trường khai tường
+  // minh và dải id trong track-stages - phải KHÔNG ĐƯỢC mâu thuẫn. Bảng điều
+  // khiển sắp xếp theo dải chặng còn phần lớn chỗ khác đọc trường khai, nên
+  // chúng lệch nhau là bài học rơi vào hai track khác nhau tuỳ màn hình.
+  it("track khai tường minh không mâu thuẫn với dải chặng", async () => {
+    const [personal, professional] = await Promise.all([
+      getLessonsByTrack("personal"),
+      getLessonsByTrack("professional"),
+    ]);
+    const wrong = [
+      ...personal.filter((l) => l.track && l.track !== "personal"),
+      ...professional.filter((l) => l.track && l.track !== "professional"),
+    ].map((l) => `${l.id} ${l.slug} khai=${l.track}`);
+    expect(wrong).toEqual([]);
+    expect(personal.length + professional.length).toBeGreaterThan(0);
   });
 
   it("returns only explicitly tagged lessons for the bonus track", async () => {
