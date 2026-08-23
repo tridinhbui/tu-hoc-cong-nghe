@@ -160,7 +160,7 @@
       "0 (= assuming four weeks is enough for every scheduled job to appear at least once)",
       "3 (= counting the weekly group and missing the quarterly one exactly)"
     ],
-    "explanation": "The eight daily jobs ran 28 times, the three weekly ones ran 4 times, and the quarterly one has not run at all. That single job is the one you know nothing about, and it will run for the first time after the old team has been disbanded."
+    "explanation": "The eight daily jobs ran 28 times, the three weekly ones ran 4 times, and the quarterly one has not run at all - leaving exactly 1 job you have never seen run. That 1 job is the one you know nothing about, and it will run for the first time after the old team has been disbanded."
   },
   "summary": {
     "keyIdea": "Technical barriers can be measured and solved; operational ones cannot",
