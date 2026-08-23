@@ -1,0 +1,173 @@
+{
+  "title": "Leading indicators and lagging indicators",
+  "subtitle": "Which one warns and which one only confirms, and why every team tracks the second",
+  "duration": "9 min",
+  "whyItMatters": "Most of a team's dashboard is made of lagging indicators - they report what already happened. Telling the two apart is the precondition for catching a problem before it becomes an incident.",
+  "openingQuestion": "Which indicator warns you ahead of a capacity incident?",
+  "openingOptions": [
+    "The rate of growth in usage, not the level of usage",
+    "The number of incidents that have already occurred",
+    "Current cluster utilisation against the total capacity that has been allocated to it",
+    "Average latency, because it rises as the system approaches its processing limits"
+  ],
+  "explanation": "Current utilisation and latency both describe today; they only raise the alarm once the problem has arrived. Rate of growth answers a different question - how long is left - and that interval is what decides whether you can do anything. A leading indicator is always either a derivative or a signal from upstream.",
+  "diagram": [
+    {
+      "label": "An upstream signal or a rate of change"
+    },
+    {
+      "label": "Warns early, noisy, often wrong"
+    },
+    {
+      "label": "An outcome that already happened"
+    },
+    {
+      "label": "Certain, and too late"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An all-green board until the day it filled",
+    "description": "A team tracked disk utilisation with an alert at eighty percent. The board stayed green for eleven months. In the twelfth, usage went from sixty-two percent to full in nine days, because a new feature had started writing detailed logs. The eighty percent alert fired exactly two days before the disk filled - enough to know, not enough to act."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every indicator falls into one of two groups, and their value differs in kind rather than in degree. This lesson is about telling which group you are looking at and how to combine them."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Leading",
+        "text": "Growth rate, queue depth, requests waiting, changes queued for release. Warns early, noisy, often wrong."
+      },
+      "right": {
+        "label": "Lagging",
+        "text": "Incident count, last month's cost, recorded error rate. Certain, easy to explain, and always about something already settled."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Why every team tracks the second kind"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lagging indicators are easy to measure, easy to report, and almost never wrong. Leading ones are noisy, raise false alarms, and whoever watches them gets asked why they warned last time when nothing happened. Nobody is ever criticised for tracking a correct number, so every dashboard drifts toward the lagging kind."
+    },
+    {
+      "type": "heading",
+      "text": "Four leading indicators worth adding"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The growth rate of anything that accumulates: storage, record counts, dependency counts",
+        "Queue depth and its trend, not merely its value at one moment",
+        "Calls made per request, because it warns of cost and latency months ahead",
+        "Changes waiting to be released, because a large batch piling up is an incident being loaded"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "What these four share is that none tells you whether there is a problem today. They tell you the trajectory, and the trajectory is the only thing still changeable."
+    },
+    {
+      "type": "callout",
+      "label": "Alert on the derivative, not only on the level",
+      "text": "An alert at eighty percent of capacity gives you an interval that depends entirely on the growth rate - it could be three months, it could be two days, and the alert cannot tell the difference. Add an alert of the form how many days until full, computed from the last four weeks of growth, and every case gets warned with the same amount of time to react."
+    },
+    {
+      "type": "heading",
+      "text": "Combining the two"
+    },
+    {
+      "type": "paragraph",
+      "text": "Leading indicators are for acting on; lagging ones are for checking whether the action worked. A board with only the first kind is full of false alarms and nobody believes it; a board with only the second is always right and always late. Both are needed, and they need reading on two different rhythms."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A leading indicator is always a derivative or a signal from upstream.",
+        "Nobody is criticised for tracking a correct number, so every board drifts toward lagging ones."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What do all leading indicators have in common?",
+      "options": [
+        "They are usually collected from systems outside the team's own area of control",
+        "They are harder to measure than lagging indicators are",
+        "They are a derivative or a signal from upstream",
+        "They need watching continuously rather than being read on a regular cycle"
+      ],
+      "explanation": "An indicator can only warn early if it measures a rate of change, or measures something that happens earlier in the chain of cause. Anything measuring the present state is lagging however often it refreshes."
+    },
+    {
+      "question": "Why does every team's dashboard drift toward lagging indicators?",
+      "options": [
+        "Because leadership asks for confirmed figures rather than for anything that looks like a forecast",
+        "Because lagging indicators are simpler to collect",
+        "Because monitoring tools supply more lagging indicators by default than leading ones",
+        "Because nobody is criticised for tracking a correct number"
+      ],
+      "explanation": "The other three all make the drift easier. The first is the incentive: whoever watches a leading indicator gets asked why they warned last time when nothing happened, and there is no reward at all for the times they were right."
+    },
+    {
+      "question": "What is the weakness of an alert at 80% capacity?",
+      "options": [
+        "The interval it buys you depends entirely on the growth rate",
+        "The 80% threshold is too high for most systems in practice",
+        "It cannot separate growth caused by users from growth caused by a fault in the system",
+        "It only applies to storage capacity and not to other kinds of resource"
+      ],
+      "explanation": "The same threshold gives three months to react in one system and two days in another, and the alert itself cannot say which case you are in. Adding a days-remaining alert gives every case the same amount of warning."
+    },
+    {
+      "question": "Why are calls per request a leading indicator?",
+      "options": [
+        "Because it changes every time a new release goes out",
+        "Because it warns of cost and latency months in advance",
+        "Because it reflects architectural complexity and so relates to future maintainability",
+        "Because it rises the moment a dependency starts responding more slowly than usual"
+      ],
+      "explanation": "It rises the first time somebody adds a call to the main path, while the invoice and the latency only reflect that once volume has grown enough. The gap between those two moments is its entire value."
+    },
+    {
+      "question": "How should the two kinds of indicator be used?",
+      "options": [
+        "Leading while the system is changing fast, lagging once it has become stable",
+        "Leading for the engineering team, lagging for reporting upward",
+        "Leading to act on, lagging to check whether the action worked",
+        "Leading to set automatic alerts, lagging to analyse the cause after an incident"
+      ],
+      "explanation": "The other three split by context or by audience. This one splits by function, and it explains why both are needed: without the first you are always late, and without the second you cannot tell a real fix from a lucky quarter."
+    }
+  ],
+  "keyTakeaways": [
+    "A leading indicator is a derivative or an upstream signal; every state measure lags",
+    "Boards drift toward lagging indicators because a correct number is never criticised",
+    "Alert on the derivative so every case gets the same warning time",
+    "Leading to act on, lagging to verify"
+  ],
+  "practicePrompt": {
+    "question": "A disk is at 62% and rising 4% a day. The alert is set at 80%. How many days of warning does it give?",
+    "options": [
+      "5 days",
+      "9 days (= the days from the current level to full, not from when the alert fires)",
+      "20 days (= dividing the 80% threshold by the 4% daily growth rate)",
+      "18 days (= the gap from 62% to 80% divided by the growth rate)"
+    ],
+    "explanation": "From 80% to 100% is 20 points, divided by 4 points a day, which is 5 days. At 1% a day the same alert gives 20 days - one threshold, four times the warning, and the board cannot say which case you are in."
+  },
+  "summary": {
+    "keyIdea": "Leading indicators measure trajectory, and only trajectory is still changeable",
+    "commonMistake": "Alerting on the level without alerting on the rate",
+    "action": "Add a days-remaining alert for one resource that is accumulating."
+  },
+  "application": {
+    "title": "Four leading indicators to add",
+    "message": "Growth rate of anything accumulating. Queue depth trend. Calls per request. Changes waiting to be released.",
+    "secondary": "None of them tells you whether there is a problem today, and that is exactly the point of them."
+  },
+  "slug": "doc-hieu-chi-bao-kinh-te-vi-mo"
+}

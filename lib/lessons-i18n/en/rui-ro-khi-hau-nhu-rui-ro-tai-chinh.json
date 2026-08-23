@@ -1,0 +1,165 @@
+{
+  "title": "The physical and geographic risk in infrastructure",
+  "subtitle": "Power, cooling, network paths and location - four things absent from every architecture diagram",
+  "duration": "8 min",
+  "whyItMatters": "An architecture diagram draws services and the arrows between them. It does not draw the building, the power line or the cable route - and those cause the longest incidents.",
+  "openingQuestion": "Your system runs across three availability zones of one vendor in one city. Is that enough?",
+  "openingOptions": [
+    "No, those three still share a great deal physically",
+    "Yes, because three zones is the recommended level",
+    "No, you need at least a second vendor to avoid depending entirely on one provider",
+    "Yes, provided data is replicated synchronously across all three and failover is automatic"
+  ],
+  "explanation": "Three availability zones in one city isolate hardware failure, a power failure in one building, and most operational mistakes. They do not isolate widespread flooding, a regional grid failure, or the main cable route into the city being cut. The right question is not how many zones but what those three still share at the physical layer.",
+  "diagram": [
+    {
+      "label": "A physical event at one location"
+    },
+    {
+      "label": "Affects everything within that radius"
+    },
+    {
+      "label": "An architecture diagram draws no radius"
+    },
+    {
+      "label": "So it looks like several unrelated incidents"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Two sites, one substation",
+    "description": "A company ran its system across two data centres fifteen kilometres apart and treated that as geographic redundancy. Both drew power from the same regional substation. When it failed during a heatwave, both switched to generators; one of the two had a fuel tank good for only four hours, because its reserve had been sized on the assumption that the other site would carry the load."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Physical risk differs from every other risk in this course in one way: it is not in any file you can read, so the only way to find it is to ask about things that live outside the code."
+    },
+    {
+      "type": "heading",
+      "text": "Four things shared by location"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Power: the same grid, the same substation, or the same regional electricity supplier",
+        "Cooling: a prolonged heatwave cuts capacity, and it happens across a wide area at once",
+        "Network: several separate cable routes can still run through one shared corridor",
+        "People: a storm or a flood keeps operators at home, exactly when they are needed on site"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "What these four share is that they turn incidents that would have been independent into a single incident. A system designed to survive two pieces failing at once still falls over when a physical event takes down all five in one go."
+    },
+    {
+      "type": "heading",
+      "text": "Why this kind produces the longest incidents"
+    },
+    {
+      "type": "paragraph",
+      "text": "A software incident is fixed by rolling back to the previous version, usually in minutes. A physical incident has no rollback button: you wait for power, you wait for water to recede, you wait for somebody to reach the site. Recovery time is not in the team's hands, and that is why the only measure that works is one taken in advance."
+    },
+    {
+      "type": "callout",
+      "label": "Ask about the radius, not about the count",
+      "text": "The useful question is not how many zones the system has but how many parts of it a single event within a fifty-kilometre radius would stop. That is answerable by looking up the actual locations of the data centres, a job of about an hour that almost no team has ever done."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Real redundancy",
+        "text": "Zones on different power grids, different cable corridors, and far enough apart that one weather event cannot cover them all."
+      },
+      "right": {
+        "label": "Redundancy on the diagram",
+        "text": "Several zones, several replicas, one city. Survives hardware failure and does not survive weather."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A physical event turns incidents that would have been independent into one incident.",
+        "There is no rollback button, so the only measure that works is one taken in advance."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does three availability zones in one city isolate you from?",
+      "options": [
+        "Hardware failure and a power failure in one building",
+        "A regional grid failure",
+        "Prolonged extreme weather, because each zone has its own separate cooling system",
+        "Network failure, because each zone is connected by several independent cable routes"
+      ],
+      "explanation": "That is exactly what multiple availability zones are designed for, and they do it well. The other three all have a radius larger than the distance between zones within a single city."
+    },
+    {
+      "question": "Why do physical incidents last longer than software ones?",
+      "options": [
+        "They usually happen outside working hours",
+        "There is no rollback, so recovery time is outside the team's hands",
+        "Diagnosis takes longer because the right monitoring tools are not in place for it",
+        "They affect many parts at once, so the total volume of remedial work is larger"
+      ],
+      "explanation": "Software breaks and you roll back, usually in minutes. Power goes and you wait for power, and no skill the team has shortens that wait - so all of the value sits in what was prepared beforehand."
+    },
+    {
+      "question": "Which question is more useful than 'how many zones do we have'?",
+      "options": [
+        "How much of the load could each zone carry if all the others stopped at once",
+        "How far apart are the zones",
+        "How many parts would one event within a fifty-kilometre radius stop",
+        "How long does it take to move all traffic across to a different zone"
+      ],
+      "explanation": "The other three are worth asking and all come next. The first is the only one measuring the thing under discussion, because distance says nothing if two far-apart sites draw on the same grid."
+    },
+    {
+      "question": "Two data centres 15km apart share one substation. Where is the problem?",
+      "options": [
+        "Replicating data between two nearby sites gives a stronger sense of safety than it warrants",
+        "Fifteen kilometres is too close",
+        "Both belong to one vendor, so they carry a shared operational risk as well",
+        "Geographic distance does not guarantee independent power supply"
+      ],
+      "explanation": "Fifteen kilometres is far enough for a fire and too close for a flood, but that is not the main point. The main point is that two sites can be hundreds of kilometres apart and still share a supply, so distance is an indicator rather than a measurement."
+    },
+    {
+      "question": "Why is physical risk harder to find than other kinds?",
+      "options": [
+        "Because it is not in any file the team can read",
+        "Because it happens rarely, so few people have experience of it",
+        "Because it belongs to the infrastructure vendor, so the engineering team cannot see it",
+        "Because existing monitoring focuses on the application layer rather than the physical one"
+      ],
+      "explanation": "Every other risk leaves a trace somewhere in the repository or the configuration. Physical risk has to be asked about elsewhere, and things that must be asked about elsewhere are always postponed longer than things you can look up where you are."
+    }
+  ],
+  "keyTakeaways": [
+    "A physical event turns independent incidents into one incident",
+    "Ask about the radius affected, not the number of zones",
+    "Geographic distance is an indicator of independence, not a measurement of it",
+    "There is no rollback, so only measures taken in advance work"
+  ],
+  "practicePrompt": {
+    "question": "Five zones, three of them inside the radius of one weather event. What share of capacity remains if load is spread evenly?",
+    "options": [
+      "40%",
+      "60%, because three of five zones still corresponds to most of the system's capacity",
+      "80% (= assuming only one of the three affected zones actually stops working)",
+      "100% (= assuming the two remaining zones automatically absorb all of the lost load)"
+    ],
+    "explanation": "Two of five zones are still standing, which is 40% of capacity. That figure only holds if those two have spare capacity - if each was provisioned for exactly its own share, the system loses both to overload and the real answer is zero."
+  },
+  "summary": {
+    "keyIdea": "Physical incidents have a radius, and architecture diagrams draw no radius",
+    "commonMistake": "Treating several zones as geographic redundancy",
+    "action": "Look up the actual locations of the data centres your system runs in."
+  },
+  "application": {
+    "title": "Four questions about the physical layer",
+    "message": "Which power grid do the zones share? Which cable corridor? How many zones can one weather event cover? Who can reach the site when the roads flood?",
+    "secondary": "These four take about an hour to answer and almost no team has ever spent that hour."
+  },
+  "slug": "rui-ro-khi-hau-nhu-rui-ro-tai-chinh"
+}

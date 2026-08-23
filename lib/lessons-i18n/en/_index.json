@@ -74,6 +74,11 @@
     "subtitle": "You cannot plan around hours you have never checked you actually have",
     "duration": "7 min"
   },
+  "doc-hieu-chi-bao-kinh-te-vi-mo": {
+    "title": "Leading indicators and lagging indicators",
+    "subtitle": "Which one warns and which one only confirms, and why every team tracks the second",
+    "duration": "9 min"
+  },
   "esg-investing-screening-den-portfolio": {
     "title": "From screening to priority: which service to fix first",
     "subtitle": "Three ways to allocate effort across a portfolio of services, and the price of each",
@@ -232,6 +237,11 @@
   "quan-tri-doanh-nghiep-g-trong-esg": {
     "title": "Operational quality: the pillar nobody mentions",
     "subtitle": "Why the hardest pillar to see is the one that warns of incidents earliest",
+    "duration": "8 min"
+  },
+  "rui-ro-khi-hau-nhu-rui-ro-tai-chinh": {
+    "title": "The physical and geographic risk in infrastructure",
+    "subtitle": "Power, cooling, network paths and location - four things absent from every architecture diagram",
     "duration": "8 min"
   },
   "sql-nang-cao-join-va-window-function": {
