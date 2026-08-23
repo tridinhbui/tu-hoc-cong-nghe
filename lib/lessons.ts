@@ -58007,7 +58007,7 @@ export const lessons: Lesson[] = [
           "Giảm khoảng 30% (= 10% doanh thu × DOL 3)",
           "Giảm khoảng 10%, vì lợi nhuận biến động cùng tỷ lệ doanh thu",
           "Không đổi, vì chi phí cố định không phụ thuộc vào doanh thu",
-          "Giảm khoảng 3,3% (= 10% ÷ 3, chia thay"
+          "Giảm khoảng 3,3% (= 10% ÷ 3, chia nhầm)"
         ],
         "correct": 0,
         "explanation": "Chi phí cố định không giảm theo doanh thu, nên phần doanh thu mất đi trừ thẳng vào lợi nhuận. Đó là lý do khuếch đại xảy ra mạnh nhất đúng lúc doanh nghiệp cần đệm nhất."
@@ -59183,7 +59183,7 @@ export const lessons: Lesson[] = [
           "Nó che chặng chậm, và lần đầu đệm trượt thì vấn đề quay lại",
           "Nó làm tăng chi phí hạ tầng nhiều hơn phần thời gian tiết kiệm được",
           "Nó chỉ hoạt động với dữ liệu đọc, không dùng được cho dữ liệu ghi",
-          "Nó khiến việc đo độ trễ từng chặng trở"
+          "Nó khiến việc đo độ trễ từng chặng khó hơn"
         ],
         "correct": 0,
         "explanation": "Đệm là công cụ tốt, nhưng dùng để giấu một truy vấn 700ms thì phần trượt vẫn phải trả giá đó - và phần trượt hay xảy ra nhất đúng lúc tải cao. Sửa truy vấn rồi thêm đệm thì cả hai đều có ích."
@@ -60552,7 +60552,7 @@ export const lessons: Lesson[] = [
           "Vì làm khi hệ thống đang ổn định là đổ công vào chỗ lợi ích thấp nhất",
           "Vì công việc gia cố cần một đội chuyên trách mà phần lớn nhóm sản phẩm không có",
           "Vì các thay đổi về độ tin cậy luôn tạo ra rủi ro mới lớn hơn phần chúng khắc phục",
-          "Vì kết quả của việc gia cố không đo lường được"
+          "Vì kết quả gia cố không đo được"
         ],
         "correct": 0,
         "explanation": "Cùng logic với mọi khoản đầu tư: bỏ công vào chỗ đã tốt thì phần cải thiện nhỏ. Tín hiệu đúng là ngân sách lỗi bị tiêu sạch vài kỳ liên tiếp - nó xuất hiện trước sự cố lớn, và đó là toàn bộ giá trị của nó."
@@ -67354,6 +67354,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1213,
+    "track": "professional",
     "slug": "fpa-la-gi-vai-tro-doanh-nghiep",
     "title": "Tự học Tài chính Day 1213: FP&A là gì & Vai trò trong doanh nghiệp",
     "subtitle": "Từ bộ phận kế toán đến đối tác chiến lược của CEO",
@@ -67551,6 +67552,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1214,
+    "track": "professional",
     "slug": "ngan-sach-va-du-bao-tai-chinh",
     "title": "Tự học Tài chính Day 1214: Ngân sách & Dự báo tài chính - Lập kế hoạch để điều khiển",
     "subtitle": "Từ dự báo đến điều chỉnh kế hoạch khi thực tế thay đổi",
@@ -67723,6 +67725,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1215,
+    "track": "professional",
     "slug": "phan-tich-ky-thuat-cho-moi-gioi",
     "title": "Tự học Tài chính Day 1215: Phân tích kỹ thuật cho môi giới chứng khoán",
     "subtitle": "Support, Resistance, Moving Average - công cụ đơn giản nhất để nhận định thị trường",
@@ -67913,6 +67916,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1216,
+    "track": "professional",
     "slug": "ky-quy-va-margin-call",
     "title": "Tự học Tài chính Day 1216: Ký quỹ & Margin Call - Quản lý rủi ro là ưu tiên số một",
     "subtitle": "Tại sao khách hàng phải 'trả lại tiền' ngay khi thị trường đi ngược?",
@@ -68110,6 +68114,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1217,
+    "track": "professional",
     "slug": "value-at-risk-var-stress-testing",
     "interactiveType": "risk",
     "title": "Value at Risk (VaR) & Stress Testing - Đo lường rủi ro tối đa",
@@ -68293,6 +68298,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1218,
+    "track": "professional",
     "slug": "basel-iii-regulatory-capital-requirements",
     "interactiveType": "risk",
     "title": "Basel III & Quy định vốn - Làm sao ngân hàng không phá sản",
@@ -68495,6 +68501,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1219,
+    "track": "professional",
     "slug": "dinh-gia-bat-dong-san-tai-san-vo-hinh",
     "title": "Định giá bất động sản & Tài sản vô hình - Khi DCF không đủ",
     "subtitle": "Định giá một tòa nhà hay một thương hiệu khác với định giá cổ phiếu - bạn cần các phương pháp khác.",
@@ -68676,6 +68683,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1220,
+    "track": "professional",
     "slug": "valuation-report-tinh-hop-ly-dinh-gia",
     "title": "Valuation Report & Tính hợp lý - Cách trình bày định giá một cách thuyết phục",
     "subtitle": "Định giá là một con số, nhưng một valuation report phải giải thích tại sao con số đó hợp lý.",
@@ -68846,6 +68854,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1221,
+    "track": "professional",
     "slug": "investment-thesis-research-report-structure",
     "title": "Investment Thesis & Research Report - Cách thuyết phục nhà đầu tư",
     "subtitle": "Một investment thesis tốt không chỉ là 'công ty này sẽ lên tiền', mà phải có logic rõ ràng.",
@@ -69032,6 +69041,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1222,
+    "track": "professional",
     "slug": "quy-trinh-tham-dinh-tin-dung-5c-framework",
     "title": "Quy trình thẩm định tín dụng: 5C Framework - Đừng cho vay tiền xấu",
     "subtitle": "Trước khi cho vay, phải kiểm tra kỹ khách hàng - 5C giúp bạn làm điều đó có hệ thống.",
@@ -69223,6 +69233,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1223,
+    "track": "professional",
     "slug": "hedging-instruments-fx-derivatives",
     "title": "Hedging Instruments & FX Derivatives - Giảm thiểu rủi ro tỷ giá",
     "subtitle": "Khi bạn phải giao dịch ngoại tệ, dùng derivatives để 'khóa' tỷ giá thay vì chấp nhận rủi ro.",
@@ -70239,7 +70250,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Đặc tả đang thiếu, không phải tính năng đang đạt",
           "Tính năng được coi là đạt cho tới khi có một ngưỡng chính thức được bổ sung vào",
-          "Ngưỡng nên được đặt bằng đúng thời gian",
+          "Ngưỡng nên đặt bằng thời gian đang đạt",
           "Việc đặt ngưỡng thuộc trách nhiệm của đội vận hành chứ không phải của đội sản phẩm"
         ],
         "correct": 0,
@@ -70633,6 +70644,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1232,
+    "track": "professional",
     "slug": "bao-hiem-la-gi-mo-hinh-kinh-doanh",
     "title": "Bảo hiểm là gì & Mô hình kinh doanh: Định phí, dự phòng, khả năng thanh toán",
     "subtitle": "Tại sao công ty bảo hiểm vẫn có lãi dù phải trả tiền cho những sự kiện không lường trước được",
@@ -70783,6 +70795,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1233,
+    "track": "professional",
     "slug": "actuarial-science-xac-suat-thong-ke",
     "interactiveType": "regression",
     "title": "Actuarial Science: Xác suất & thống kê ứng dụng trong định phí bảo hiểm",
@@ -70930,6 +70943,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1234,
+    "track": "professional",
     "slug": "solvency-ii-quy-dinh-bao-hiem",
     "title": "Solvency II & Quy định bảo hiểm: Đảm bảo công ty không phá sản",
     "subtitle": "SCR, MCR, và khung quy định giúp ngành bảo hiểm không lặp lại những cuộc khủng hoảng thanh toán trong lịch sử",
@@ -72694,6 +72708,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1244,
+    "track": "professional",
     "slug": "ke-toan-don-tich-vs-ke-toan-tien-mat",
     "title": "Kế toán dồn tích vs Kế toán tiền mặt: Khác biệt nền tảng mọi kế toán viên phải nắm",
     "subtitle": "Tại sao doanh thu ghi nhận không phải lúc nào cũng trùng với tiền thực sự vào tài khoản",
@@ -72844,6 +72859,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1245,
+    "track": "professional",
     "slug": "quy-trinh-dau-tu-quy-tu-thesis-den-portfolio",
     "title": "Quy trình đầu tư của Quỹ: Từ Investment Thesis đến Portfolio Construction",
     "subtitle": "Một quỹ đầu tư chuyên nghiệp không mua cổ phiếu ngẫu nhiên - đây là quy trình có hệ thống đằng sau mỗi quyết định",
@@ -73014,6 +73030,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1246,
+    "track": "professional",
     "slug": "quant-strategies-momentum-mean-reversion",
     "interactiveType": "regression",
     "title": "Quant Strategies cơ bản: Momentum, Mean Reversion và Statistical Arbitrage",
@@ -73152,6 +73169,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1247,
+    "track": "professional",
     "slug": "cap-table-va-vesting-cau-truc-von-startup",
     "title": "Cap Table & Vesting: Cấu trúc vốn của Startup mọi PE/VC Analyst phải đọc được",
     "subtitle": "Bảng cap table phức tạp là công cụ đầu tiên bạn cần thành thạo khi phân tích một deal đầu tư startup",
@@ -73318,6 +73336,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1248,
+    "track": "professional",
     "slug": "ban-cheo-san-pham-va-kpi-cua-rm-ngan-hang",
     "title": "Bán chéo sản phẩm ngân hàng & KPI của RM: Cân bằng doanh số và lợi ích khách hàng",
     "subtitle": "Làm sao để đạt chỉ tiêu bán hàng mà vẫn thực sự tư vấn đúng nhu cầu, không phải chỉ 'nhét' sản phẩm cho khách",
@@ -73473,6 +73492,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1249,
+    "track": "professional",
     "slug": "quy-trinh-hoach-dinh-tai-chinh-6-buoc",
     "title": "Quy trình Hoạch định Tài chính 6 bước: Khung làm việc chuẩn của mọi Financial Advisor",
     "subtitle": "Từ thu thập thông tin đến giám sát thực hiện - quy trình có hệ thống đằng sau mỗi lời khuyên tài chính chuyên nghiệp",
@@ -74093,6 +74113,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1253,
+    "track": "professional",
     "slug": "embedded-finance-banking-as-a-service",
     "title": "Embedded Finance & Banking-as-a-Service: Mô hình kinh doanh mới của FinTech",
     "subtitle": "Vì sao Grab, Shopee có thể cho vay và bán bảo hiểm mà không cần giấy phép ngân hàng",
@@ -74263,6 +74284,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1254,
+    "track": "professional",
     "slug": "khung-coso-va-danh-gia-rui-ro-gian-lan",
     "title": "Khung Kiểm soát Nội bộ COSO & Đánh giá Rủi ro Gian lận",
     "subtitle": "5 thành phần của COSO Framework - công cụ nền tảng mọi kiểm toán viên nội bộ phải thành thạo",
@@ -74413,6 +74435,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1255,
+    "track": "professional",
     "slug": "needs-analysis-tu-van-bao-hiem",
     "title": "Needs Analysis trong Tư vấn Bảo hiểm: Xác định đúng nhu cầu bảo vệ của khách hàng",
     "subtitle": "Human Life Value và Capital Needs Analysis - hai phương pháp tính số tiền bảo hiểm nhân thọ thực sự cần thiết",
@@ -74568,6 +74591,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1256,
+    "track": "professional",
     "slug": "mo-hinh-cham-diem-tin-dung-credit-scoring",
     "title": "Mô hình Chấm điểm Tín dụng: Từ dữ liệu đến quyết định cho vay",
     "subtitle": "5C framework là cách tiếp cận định tính - Credit Scoring Model là cách tiếp cận định lượng có hệ thống mà các ngân hàng lớn thực sự sử dụng",
@@ -74736,6 +74760,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1257,
+    "track": "professional",
     "slug": "phan-tich-cvp-va-diem-hoa-von",
     "title": "Phân tích Chi phí-Khối lượng-Lợi nhuận (CVP) & Điểm hòa vốn",
     "subtitle": "Công cụ cốt lõi của kế toán quản trị giúp trả lời câu hỏi: bán bao nhiêu thì có lãi, và giá bán thay đổi ảnh hưởng thế nào đến lợi nhuận",
@@ -74898,6 +74923,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1258,
+    "track": "professional",
     "slug": "doc-hieu-chi-bao-kinh-te-vi-mo",
     "title": "Đọc hiểu các Chỉ báo Kinh tế Vĩ mô Quan trọng: PMI, CPI và GDP Nowcasting",
     "subtitle": "Công cụ hàng ngày của chuyên viên nghiên cứu vĩ mô để nắm bắt sức khỏe nền kinh tế trước khi số liệu GDP chính thức được công bố",
@@ -75064,6 +75090,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1259,
+    "track": "professional",
     "slug": "earnings-call-va-guidance-quan-ly-ky-vong",
     "title": "Earnings Call & Guidance: Cách IR Chuẩn bị và Quản lý Kỳ vọng Thị trường",
     "subtitle": "Vì sao một công ty tăng trưởng tốt vẫn có thể bị bán tháo cổ phiếu ngay sau báo cáo lợi nhuận",
@@ -75216,6 +75243,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1260,
+    "track": "professional",
     "slug": "day-1-readiness-integration-playbook-m-and-a",
     "title": "Day 1 Readiness & Integration Playbook: 100 Ngày Đầu Sau M&A",
     "subtitle": "Vì sao phần lớn giá trị synergy của một thương vụ M&A được quyết định (hoặc bị phá hủy) ngay trong 100 ngày đầu tiên",
@@ -79190,6 +79218,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1281,
+    "track": "professional",
     "slug": "aml-kyc-la-gi",
     "title": "AML & KYC là gì: Nền tảng công việc của chuyên viên tuân thủ",
     "subtitle": "Vì sao ngân hàng phải biết rõ khách hàng của mình là ai trước khi nhận tiền của họ",
@@ -79419,6 +79448,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1282,
+    "track": "professional",
     "slug": "aml-kyc-quy-trinh-chi-tiet",
     "title": "Quy trình AML/KYC chi tiết: Từ sàng lọc đến báo cáo giao dịch đáng ngờ",
     "subtitle": "Các bước cụ thể một chuyên viên tuân thủ thực hiện, và ranh giới pháp lý không được vượt qua",
@@ -79633,6 +79663,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1283,
+    "track": "professional",
     "slug": "aml-kyc-case-study",
     "title": "Case thực chiến AML/KYC: Bốn tình huống và cách xử lý",
     "subtitle": "Luyện phản xạ nhận diện dấu hiệu và ra quyết định trên các tình huống sát công việc thật",
@@ -79833,6 +79864,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1284,
+    "track": "professional",
     "slug": "hoach-dinh-tai-chinh-toan-dien",
     "title": "Hoạch định tài chính toàn diện: Ghép sáu mảnh thành một kế hoạch",
     "subtitle": "Vì sao tối ưu từng phần riêng lẻ vẫn có thể cho ra một kế hoạch tổng thể kém",
@@ -80036,6 +80068,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1285,
+    "track": "professional",
     "slug": "hoach-dinh-tai-chinh-theo-giai-doan-cuoc-doi",
     "title": "Hoạch định tài chính theo giai đoạn cuộc đời: Cùng một người, bốn bài toán khác nhau",
     "subtitle": "Vì sao lời khuyên đúng ở tuổi 25 có thể trở thành lời khuyên sai ở tuổi 55",
@@ -80218,6 +80251,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1286,
+    "track": "professional",
     "slug": "ffo-affo-chi-so-loi-nhuan-cua-reit",
     "title": "FFO và AFFO: Vì sao không định giá REIT bằng lợi nhuận kế toán",
     "subtitle": "Khấu hao bất động sản làm lợi nhuận của REIT trông tệ hơn thực tế - và đây là hai chỉ số thay thế",
@@ -80413,6 +80447,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1287,
+    "track": "professional",
     "slug": "cau-truc-family-office-single-vs-multi",
     "title": "Cấu trúc Family Office: Single-family, Multi-family và khi nào nên chọn cái nào",
     "subtitle": "Vì sao một gia đình rất giàu vẫn có thể không nên lập văn phòng gia đình riêng",
@@ -80614,6 +80649,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1288,
+    "track": "professional",
     "slug": "co-che-tao-hoan-etf-authorized-participants",
     "title": "Cơ chế tạo và hoàn ETF: Vì sao giá ETF không lệch xa giá trị tài sản ròng",
     "subtitle": "Authorized Participant và vòng kinh doanh chênh lệch giá giữ ETF khớp với NAV - và khi nào cơ chế đó không hoạt động",
@@ -80815,6 +80851,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1289,
+    "track": "professional",
     "slug": "duration-va-convexity-do-nhay-gia-trai-phieu",
     "title": "Duration và Convexity: Đo độ nhạy giá trái phiếu theo lãi suất",
     "subtitle": "Duration cho ước lượng bậc một, convexity sửa phần sai số - và vì sao khác biệt đó quan trọng khi lãi suất biến động mạnh",
@@ -81714,7 +81751,7 @@ export const lessons: Lesson[] = [
       "question": "Đại lượng nào nên dùng cho dịch vụ tìm kiếm thay vì số yêu cầu?",
       "options": [
         "Tổng công việc, ví dụ số bản ghi phải quét",
-        "Số yêu cầu tại phân vị chín mươi lăm thay",
+        "Số yêu cầu tại phân vị chín mươi lăm",
         "Thời gian xử lý trung bình của mỗi yêu cầu nhân với tổng số yêu cầu trong kỳ",
         "Số người dùng hoạt động đồng thời, vì mỗi người thường gửi nhiều yêu cầu liên tiếp"
       ],

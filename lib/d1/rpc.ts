@@ -84,3 +84,53 @@ export async function getFollowCounts(
   );
   return { followers: r?.followers ?? 0, following: r?.following ?? 0 };
 }
+
+/** `get_track_leaderboard(p_track, p_limit)`.
+ *
+ *  BẢN DỊCH GIỮ NGUYÊN NGỮ NGHĨA, KỂ CẢ CHỖ SAI. Dải id bài học dưới đây chép
+ *  đúng từ hàm gốc, và nó đã lỗi thời: đo trên kho hiện tại, nó chỉ đếm
+ *  108/220 bài `personal` và 181/323 bài `professional`. Tức là bảng xếp hạng
+ *  theo track đang bỏ sót khoảng một nửa số bài của mỗi track, và điều đó đúng
+ *  cả trên Supabase lúc này chứ không phải lỗi do chuyển đổi.
+ *
+ *  Sửa nó là một thay đổi HÀNH VI (thứ hạng của mọi người đổi), nên nó phải là
+ *  một quyết định riêng chứ không lẫn vào đợt di trú. Xem RPC-MIGRATION-MAP.md.
+ *
+ *  Ba chỗ Postgres không chạy trên SQLite, đã đổi:
+ *   - `split_part(email, '@', 1)` → `substr` + `instr`
+ *   - `::numeric` → bỏ, SQLite không có ép kiểu này
+ *   - `greatest/least` cho limit → kẹp trong TypeScript
+ */
+export async function getTrackLeaderboard(
+  db: D1Like,
+  track: "personal" | "professional",
+  limit?: number
+): Promise<{ user_id: string; name: string; value: number; avatar_url: string | null }[]> {
+  const range =
+    track === "personal"
+      ? "(up.lesson_id between 1 and 20 or up.lesson_id between 201 and 288)"
+      : "(up.lesson_id between 21 and 200 or up.lesson_id = 1036)";
+
+  return rows(
+    db,
+    `select up.user_id,
+            coalesce(
+              nullif(prof.full_name, ''),
+              case when instr(prof.email, '@') > 1
+                   then substr(prof.email, 1, instr(prof.email, '@') - 1) end,
+              'Người học'
+            ) as name,
+            count(*) as value,
+            prof.avatar_url
+       from user_progress up
+       join user_profiles prof on prof.id = up.user_id
+      where up.completed = 1
+        and coalesce(prof.is_disabled, 0) = 0
+        and coalesce(prof.role, 'user') <> 'admin'
+        and ${range}
+      group by up.user_id, prof.full_name, prof.email, prof.avatar_url
+      order by value desc
+      limit ?`,
+    clampLimit(limit, 10, 50)
+  );
+}

@@ -1622,7 +1622,7 @@ export const vi = {
     "vn-market": "Thị trường Việt Nam",
     "private-markets": "Mã nguồn mở & hệ sinh thái",
     "wealth-insurance": "Quy mô lớn & chịu tải",
-    "real-estate-project": "Hạ tầng & dự án nền tảng",
+    "infra-project": "Hạ tầng & dự án nền tảng",
     "ai-products": "AI & sản phẩm thông minh",
     "tech-foundations": "Nền tảng công nghệ",
     "advanced-tech": "Công nghệ chuyên sâu",

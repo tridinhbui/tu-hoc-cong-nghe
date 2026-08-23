@@ -49,7 +49,7 @@ export type StageTopicId =
   | "vn-market"
   | "private-markets"
   | "wealth-insurance"
-  | "real-estate-project"
+  | "infra-project"
   | "ai-products"
   // Bài không rơi vào chặng nào
   | "tech-foundations"
@@ -100,7 +100,7 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
   // "đầu tư thay thế" là đầu tư; substring cũ không bắt được vì chữ thường.
   "private-markets": "investing",
   "wealth-insurance": "generic",
-  "real-estate-project": "generic",
+  "infra-project": "generic",
   "ai-products": "generic",
   "tech-foundations": "generic",
   "advanced-tech": "generic",
@@ -220,7 +220,7 @@ const PROFESSIONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 39": "ai-products", // Tài chính sản phẩm FinTech
   "Chặng 40": "system-design-backend", // Quan hệ cổ đông (IR)
   "Chặng 41": "accounting-reporting", // Bút toán và sổ sách
-  "Chặng 42": "real-estate-project", // Tài chính dự án bất động sản
+  "Chặng 42": "infra-project", // Tài chính dự án bất động sản
   "Chặng 43": "wealth-insurance", // Định phí bảo hiểm
 };
 

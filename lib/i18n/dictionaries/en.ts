@@ -1518,7 +1518,7 @@ export const en: Dictionary = {
     "vn-market": "The Vietnamese market",
     "private-markets": "Open source & the ecosystem",
     "wealth-insurance": "Scale & handling load",
-    "real-estate-project": "Infrastructure & platform projects",
+    "infra-project": "Infrastructure & platform projects",
     "ai-products": "AI & intelligent products",
     "tech-foundations": "Tech foundations",
     "advanced-tech": "Advanced technology",
