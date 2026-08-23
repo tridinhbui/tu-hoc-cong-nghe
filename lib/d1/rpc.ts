@@ -2591,6 +2591,17 @@ export async function syncLessonsAtomic(db: D1Like, lessons: LessonSyncRow[]): P
   const json = (v: unknown) =>
     v == null ? null : typeof v === "string" ? v : JSON.stringify(v);
 
+  // Bản gốc có `coalesce(x.track, 'professional')`. KHÔNG chép mặc định ấy:
+  // đúng nó đã gây ra một lỗi sống nhiều tháng - giao diện mặc định
+  // `|| "personal"` còn đường ghi mặc định `|| "professional"`, nên cùng một
+  // bài hiện ra một track và được lưu bằng track khác. Xem
+  // lib/__tests__/lesson-track-required.test.ts. Giờ mọi bài đều tự khai track,
+  // nên thiếu track là lỗi dữ liệu và phải NÉM chứ không lặng lẽ gán.
+  const thieuTrack = lessons.filter((l) => !l.track).map((l) => `${l.id} ${l.slug}`);
+  if (thieuTrack.length) {
+    throw new Error(`Bài thiếu track, không tự gán mặc định: ${thieuTrack.slice(0, 5).join(", ")}`);
+  }
+
   const stmts: unknown[] = [];
 
   // 1. Gỡ đụng độ slug: hàng nào đang giữ slug của payload nhưng khác id.
@@ -2631,7 +2642,7 @@ export async function syncLessonsAtomic(db: D1Like, lessons: LessonSyncRow[]): P
           l.id, l.slug, l.title, l.subtitle ?? null, l.duration ?? null,
           l.difficulty ?? null, l.emoji ?? null, l.opening_question ?? null,
           json(l.opening_options), l.correct_option ?? null, l.explanation ?? null,
-          json(l.key_takeaways), l.track ?? "professional", l.status ?? "published",
+          json(l.key_takeaways), l.track, l.status ?? "published",
           l.stage_number ?? null, l.day_number ?? null
         )
     );
