@@ -9,7 +9,7 @@ import { IR_LESSONS } from "./ir-lessons";
 import { BOOKKEEPING_LESSONS } from "./bookkeeping-lessons";
 import { REAL_ESTATE_PROJECT_LESSONS } from "./real-estate-project-lessons";
 import { CONSTRUCTION_CONTRACTOR_LESSONS } from "./construction-contractor-lessons";
-import { PERSONAL_INSURANCE_LESSONS } from "./personal-insurance-lessons";
+import { PAID_TOOLS_LESSONS } from "./paid-tools-lessons";
 import { ACTUARIAL_LESSONS } from "./actuarial-lessons";
 import { VN_STANDARDS_TAX_LESSONS } from "./vn-standards-tax-lessons";
 import { VN_MARKET_LESSONS } from "./vn-market-lessons";
@@ -46,7 +46,7 @@ export const lessons: Lesson[] = [
   ...BOOKKEEPING_LESSONS,
   ...REAL_ESTATE_PROJECT_LESSONS,
   ...CONSTRUCTION_CONTRACTOR_LESSONS,
-  ...PERSONAL_INSURANCE_LESSONS,
+  ...PAID_TOOLS_LESSONS,
   ...ACTUARIAL_LESSONS,
   ...VN_STANDARDS_TAX_LESSONS,
   ...VN_MARKET_LESSONS,
@@ -81082,148 +81082,195 @@ export const lessons: Lesson[] = [
 
 
 {
-  "id": 1337,
-  "slug": "ma-phong-thu-thau-tom-thu-dich",
-  "title": "M&A Nâng cao: Chiến thuật phòng thủ chống thâu tóm thù địch",
-  "subtitle": "Poison pill, White Knight, Golden Parachute - vũ khí phòng thủ của ban lãnh đạo khi bị thâu tóm ngoài ý muốn",
+  "title": "Phòng thủ trước việc bị khoá vào một nhà cung cấp",
+  "subtitle": "Chi phí rời đi được quyết định lúc chọn, không phải lúc muốn rời",
   "duration": "9 phút",
   "difficulty": "Khó",
-  "emoji": "🛡️",
-  "whyItMatters": "Thâu tóm thù địch (hostile takeover) là kịch bản mà bất kỳ công ty niêm yết nào cũng có thể đối mặt - hiểu các chiến thuật phòng thủ giúp bạn phân tích tình huống M&A phức tạp và đánh giá quyết định của ban lãnh đạo mục tiêu.",
-  "openingQuestion": "Một công ty bị một quỹ đầu tư âm thầm gom cổ phiếu trên sàn với ý định thâu tóm mà không thông qua đàm phán với ban lãnh đạo. Ban lãnh đạo công ty mục tiêu có thể làm gì để tự bảo vệ?",
+  "emoji": "🔓",
+  "whyItMatters": "Mọi dịch vụ bên ngoài đều dễ vào và khó ra, và độ chênh giữa hai chiều ấy chính là quyền thương lượng của họ với bạn ở lần gia hạn hợp đồng tiếp theo.",
+  "openingQuestion": "Lúc nào là lúc rẻ nhất để chuẩn bị cho việc rời một nhà cung cấp?",
   "openingOptions": [
-    "Không thể làm gì vì cổ phiếu là tài sản tự do mua bán trên sàn",
-    "Poison Pill, tìm White Knight, hoặc đàm phán trực tiếp",
-    "Chỉ có thể kiện bên thâu tóm ra tòa",
-    "Bắt buộc phải chấp nhận thương vụ nếu giá chào mua cao hơn thị giá"
+    "Ngay khi chọn họ, trước dòng mã tích hợp đầu tiên",
+    "Khi hợp đồng sắp hết hạn và hai bên bắt đầu thương lượng lại điều khoản",
+    "Khi họ tăng giá hoặc chất lượng dịch vụ bắt đầu đi xuống rõ rệt",
+    "Khi đội đã dùng đủ lâu để biết chính xác mình cần những tính năng nào"
   ],
-  "correctOption": 1,
-  "explanation": "Ban lãnh đạo công ty mục tiêu có nhiều công cụ phòng thủ hợp pháp: Poison Pill làm thương vụ trở nên đắt đỏ/khó khăn hơn cho bên thâu tóm, tìm White Knight là bên mua thân thiện hơn, hoặc đàm phán để cải thiện điều kiện cho cổ đông hiện hữu. Việc có chấp nhận thương vụ hay không phụ thuộc vào nhiều yếu tố, không chỉ đơn thuần là giá chào mua.",
+  "correctOption": 0,
+  "explanation": "Chi phí rời đi không phải một con số cố định - nó lớn dần theo mỗi tuần tích hợp thêm, và nó lớn nhanh nhất ở giai đoạn đầu khi các quyết định về hình dạng dữ liệu đang được đặt ra. Ba thời điểm kia đều là lúc chi phí ấy đã đạt đỉnh, và đó cũng chính là lúc bên kia có nhiều quyền thương lượng nhất.",
   "diagram": [
     {
-      "label": "Phát hiện dấu hiệu thâu tóm thù địch (gom cổ phiếu âm thầm)",
+      "label": "Chọn nhà cung cấp",
       "arrow": true
     },
     {
-      "label": "Đánh giá công cụ phòng thủ: Poison Pill / White Knight / đàm phán",
+      "label": "Dựng lớp ngăn cách ngay từ đầu",
       "arrow": true
     },
     {
-      "label": "Triển khai chiến thuật phù hợp với lợi ích cổ đông dài hạn",
-      "arrow": false
+      "label": "Giữ dữ liệu ở dạng đưa đi được",
+      "arrow": true
+    },
+    {
+      "label": "Chi phí rời đi giữ ở mức đo được"
     }
   ],
-  "interactiveType": "accretion",
   "realWorldExample": {
-    "company": "Chiến thuật Poison Pill trong lịch sử M&A toàn cầu",
-    "description": "Poison Pill (chính thức gọi là \"shareholder rights plan\") được phát triển từ đầu thập niên 1980 tại Mỹ và trở thành công cụ phòng thủ phổ biến nhất: khi một cổ đông vượt ngưỡng sở hữu nhất định (ví dụ 15-20%) mà không được ban lãnh đạo chấp thuận, các cổ đông khác được quyền mua thêm cổ phiếu giá rẻ, pha loãng đáng kể tỷ lệ sở hữu của bên thâu tóm và làm thương vụ trở nên tốn kém hơn nhiều."
+    "company": "Ba tuần thành mười tám tháng",
+    "description": "Một đội tích hợp dịch vụ gửi thông báo trong ba tuần, gọi thẳng thư viện của nhà cung cấp từ mười bốn chỗ trong mã. Hai năm sau nhà cung cấp tăng giá gấp bốn. Đội tính chuyển sang bên khác và ước lượng mười tám tháng, chủ yếu không phải vì mười bốn chỗ gọi mà vì lịch sử thông báo, mẫu nội dung và trạng thái đăng ký của người dùng đều nằm trong hệ thống bên kia, ở một hình dạng không có bên nào khác đọc được."
   },
-  "quiz": [
-    {
-      "question": "Poison Pill hoạt động theo cơ chế nào để cản trở thâu tóm thù địch?",
-      "options": [
-        "Cấm hoàn toàn việc mua bán cổ phiếu công ty trên sàn trong một khoảng thời gian nhất định do ban lãnh đạo công ty mục tiêu tự quyết định",
-        "Cổ đông khác được mua cổ phiếu giá rẻ, pha loãng bên thâu tóm",
-        "Buộc bên thâu tóm phải trả gấp đôi thị giá đóng cửa gần nhất",
-        "Tự động sáp nhập công ty mục tiêu với một đối thủ cạnh tranh khác"
-      ],
-      "correct": 1,
-      "explanation": "Cơ chế cốt lõi của Poison Pill là pha loãng: khi kích hoạt, các cổ đông hiện hữu (trừ bên thâu tóm) được quyền mua cổ phiếu giá rẻ, làm tăng mạnh số lượng cổ phiếu lưu hành và giảm tỷ lệ sở hữu tương đối, khiến thương vụ thâu tóm trở nên tốn kém hơn nhiều so với dự tính ban đầu."
-    },
-    {
-      "question": "White Knight (\"hiệp sĩ trắng\") trong chiến thuật phòng thủ M&A là gì?",
-      "options": [
-        "Một cố vấn pháp lý được thuê riêng để đại diện công ty mục tiêu trong toàn bộ quá trình đàm phán và tố tụng liên quan tới thương vụ",
-        "Một bên mua thứ ba thân thiện hơn, do ban lãnh đạo chủ động tìm đến",
-        "Một loại trái phiếu chuyển đổi phát hành để huy động vốn phòng thủ",
-        "Cổ đông lớn nhất hiện hữu của chính công ty đang bị thâu tóm"
-      ],
-      "correct": 1,
-      "explanation": "White Knight là chiến thuật tìm một bên mua thay thế, thường được ban lãnh đạo/cổ đông đánh giá là thân thiện hơn hoặc mang lại giá trị tốt hơn so với bên thâu tóm thù địch ban đầu, tạo ra một lựa chọn cạnh tranh cho cổ đông."
-    },
-    {
-      "question": "Một số nhà đầu tư chỉ trích chiến thuật phòng thủ thâu tóm (như Poison Pill) vì lý do gì?",
-      "options": [
-        "Vì chúng luôn vi phạm pháp luật về chứng khoán ở mọi thị trường",
-        "Vì chúng có thể bị lạm dụng để bảo vệ vị trí của ban lãnh đạo hiện tại thay vì lợi ích thực sự của cổ đông",
-        "Vì chúng chỉ áp dụng được cho công ty tư nhân chưa niêm yết trên sàn",
-        "Vì chúng luôn làm giảm giá cổ phiếu ngay lập tức sau khi công bố"
-      ],
-      "correct": 1,
-      "explanation": "Đây là tranh cãi cốt lõi về quản trị doanh nghiệp: liệu công cụ phòng thủ có thực sự bảo vệ lợi ích cổ đông dài hạn, hay chỉ đang bảo vệ vị trí của ban lãnh đạo hiện tại (một dạng xung đột lợi ích - agency problem) khi họ có thể ngăn cản một thương vụ mà cổ đông thực ra ủng hộ vì mức giá hấp dẫn."
-    }
-  ],
-  "keyTakeaways": [
-    "Poison Pill pha loãng tỷ lệ sở hữu của bên thâu tóm khi vượt ngưỡng quy định, làm thương vụ tốn kém hơn",
-    "White Knight là chiến thuật tìm bên mua thay thế thân thiện hơn",
-    "Golden Parachute là gói đền bù hậu hĩnh cho ban lãnh đạo nếu bị sa thải sau thâu tóm, cũng làm tăng chi phí thương vụ",
-    "Công cụ phòng thủ có thể bị lạm dụng để bảo vệ vị trí ban lãnh đạo thay vì lợi ích cổ đông - đây là vấn đề quản trị doanh nghiệp quan trọng cần đánh giá"
-  ],
-  "practicePrompt": {
-    "question": "Poison Pill hoạt động theo cơ chế nào?",
-    "options": [
-      "Pha loãng tỷ lệ sở hữu của bên thâu tóm",
-      "Cấm hoàn toàn giao dịch cổ phiếu công ty",
-      "Tự động sáp nhập với công ty khác",
-      "Bắt buộc bên thâu tóm trả gấp đôi thị giá theo luật"
-    ],
-    "correct": 0,
-    "explanation": "Poison Pill hoạt động bằng cơ chế pha loãng thông qua quyền mua cổ phiếu ưu đãi cho các cổ đông ngoài bên thâu tóm."
-  },
-  "summary": {
-    "keyIdea": "Ban lãnh đạo công ty mục tiêu có nhiều công cụ phòng thủ hợp pháp trước thâu tóm thù địch (Poison Pill, White Knight, Golden Parachute), nhưng việc sử dụng chúng luôn cần cân nhắc giữa bảo vệ lợi ích cổ đông và nguy cơ bảo vệ vị trí cá nhân của ban lãnh đạo",
-    "commonMistake": "Cho rằng mọi chiến thuật phòng thủ đều tự động tốt cho cổ đông - thực tế cần đánh giá từng trường hợp cụ thể",
-    "action": "Khi phân tích một thương vụ M&A có yếu tố thâu tóm thù địch, luôn đặt câu hỏi: chiến thuật phòng thủ này phục vụ lợi ích cổ đông dài hạn hay lợi ích của ban lãnh đạo hiện tại?"
-  },
-  "application": {
-    "title": "Phân tích một case thâu tóm thù địch",
-    "message": "Khi đọc tin tức về một thương vụ thâu tóm gây tranh cãi, hãy thử xác định: bên thâu tóm đang sử dụng chiến thuật gì (tender offer, proxy fight), và ban lãnh đạo mục tiêu đang phản ứng bằng công cụ phòng thủ nào?",
-    "secondary": "Đây là bài tập phân tích hữu ích cho bất kỳ ai theo đuổi sự nghiệp M&A, Investment Banking, hoặc quản trị doanh nghiệp."
-  },
-  "track": "bonus",
   "sections": [
     {
       "type": "lead",
-      "text": "Không phải mọi thương vụ M&A đều là kết quả của đàm phán thân thiện - thâu tóm thù địch (hostile takeover) là kịch bản khi bên mua tiếp cận trực tiếp cổ đông, bỏ qua ban lãnh đạo hiện tại."
+      "text": "Bị khoá không phải một sự kiện, nó là một đại lượng lớn dần. Bài này nói về cách giữ nó ở mức đo được, và vì sao mọi biện pháp đều phải làm trước khi cần tới."
     },
     {
       "type": "heading",
-      "text": "Poison Pill: vũ khí phòng thủ phổ biến nhất"
-    },
-    {
-      "type": "paragraph",
-      "text": "Cơ chế Poison Pill được kích hoạt tự động khi một bên (không được ban lãnh đạo chấp thuận) vượt qua ngưỡng sở hữu định trước, thường 15-20%. Khi đó, mọi cổ đông khác được quyền mua thêm cổ phiếu với giá chiết khấu sâu, làm tăng vọt số lượng cổ phiếu lưu hành và pha loãng nghiêm trọng tỷ lệ sở hữu cũng như chi phí của bên thâu tóm."
-    },
-    {
-      "type": "heading",
-      "text": "White Knight và các lựa chọn thay thế khác"
-    },
-    {
-      "type": "paragraph",
-      "text": "Khi đối mặt với thâu tóm thù địch, ban lãnh đạo có thể chủ động tìm một bên mua khác (White Knight) được đánh giá là mang lại điều kiện tốt hơn cho cổ đông và/hoặc phù hợp hơn về văn hóa, chiến lược dài hạn. Ngoài ra, Golden Parachute (gói đền bù lớn cho lãnh đạo nếu bị sa thải sau thâu tóm) cũng gián tiếp làm tăng chi phí thương vụ, khiến nó kém hấp dẫn hơn với bên thâu tóm."
-    },
-    {
-      "type": "callout",
-      "label": "Vấn đề quản trị doanh nghiệp cốt lõi",
-      "text": "Tranh cãi lớn nhất xung quanh các công cụ phòng thủ: chúng có thực sự bảo vệ lợi ích cổ đông, hay đang bảo vệ vị trí và quyền lợi cá nhân của ban lãnh đạo hiện tại? Đây là một dạng \"agency problem\" kinh điển trong tài chính doanh nghiệp - khi lợi ích của người quản lý (ban lãnh đạo) không hoàn toàn trùng khớp với lợi ích của người sở hữu (cổ đông)."
+      "text": "Ba loại khoá, xếp theo độ khó gỡ"
     },
     {
       "type": "list",
       "items": [
-        "Poison Pill: pha loãng tỷ lệ sở hữu khi vượt ngưỡng quy định",
-        "White Knight: tìm bên mua thay thế thân thiện hơn",
-        "Golden Parachute: tăng chi phí thương vụ qua đền bù lãnh đạo",
-        "Cần đánh giá công cụ phòng thủ có phục vụ cổ đông hay bảo vệ ban lãnh đạo"
+        "Khoá theo lời gọi: mã của bạn gọi thẳng thư viện của họ. Khó chịu nhưng gỡ được bằng công sức",
+        "Khoá theo dữ liệu: dữ liệu của bạn nằm ở hình dạng chỉ họ hiểu. Đây là loại đắt nhất",
+        "Khoá theo quy trình: cách đội làm việc đã uốn theo công cụ. Loại này không ai tính vào"
       ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Phần lớn kế hoạch rời đi chỉ ước lượng loại thứ nhất, vì nó là loại đếm được bằng cách tìm trong mã. Rồi việc chuyển trễ gấp năm lần dự kiến vì hai loại kia, và cả hai đều không hiện ra trong bất kỳ phép tìm nào."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn biện pháp, xếp theo giá trị trên mỗi giờ bỏ ra"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Một lớp ngăn cách mỏng giữa mã của bạn và thư viện của họ, viết trong ngày đầu",
+        "Bản sao dữ liệu định kỳ ở hình dạng phổ thông, kể cả khi chưa ai cần đọc nó",
+        "Một bên thứ hai chạy thật với một phần nhỏ lưu lượng, không phải chỉ dựng thử",
+        "Một trang giấy ghi rõ nếu phải rời thì làm gì, cập nhật mỗi lần gia hạn hợp đồng"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Lớp ngăn cách mỏng, không phải lớp trừu tượng dày",
+      "text": "Sai lầm thường gặp khi nghe lời khuyên này là dựng một lớp trừu tượng cố bao trọn mọi tính năng của mọi nhà cung cấp có thể có. Nó tốn gấp mười và luôn sai, vì bạn đang thiết kế cho một bên chưa biết là ai. Lớp đúng chỉ bọc đúng những gì bạn đang dùng, mỏng tới mức đọc hết trong năm phút, và giá trị của nó là gom mọi điểm chạm về một chỗ chứ không phải che giấu sự khác biệt."
+    },
+    {
+      "type": "heading",
+      "text": "Bên thứ hai chạy thật khác hẳn bên thứ hai dựng thử"
+    },
+    {
+      "type": "paragraph",
+      "text": "Một bản dựng thử chứng minh việc tích hợp là làm được. Một phần trăm lưu lượng chạy thật qua bên thứ hai chứng minh nhiều hơn hẳn: rằng dữ liệu của bạn thật sự chuyển được, rằng đội thật sự vận hành được cả hai, và rằng con số ước lượng chuyển đổi của bạn dựa trên việc đã làm chứ không dựa trên việc tưởng tượng. Nó cũng là thứ duy nhất trong danh sách này bên kia nhìn thấy được."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Chuẩn bị trước",
+        "text": "Tốn vài ngày lúc bắt đầu, giữ chi phí rời đi ở mức biết được. Quyền thương lượng còn nguyên ở lần gia hạn."
+      },
+      "right": {
+        "label": "Chuẩn bị khi cần",
+        "text": "Không tốn gì lúc đầu. Tới lúc cần thì chi phí rời đi lớn hơn mọi khoản tăng giá bên kia có thể nghĩ ra."
+      }
     },
     {
       "type": "closing",
       "lines": [
-        "Chiến thuật phòng thủ M&A là một trong những mảng thể hiện rõ nhất sự giao thoa giữa tài chính doanh nghiệp và quản trị doanh nghiệp.",
-        "Bài tiếp theo, chúng ta xem xét một cấu trúc định giá thường xuất hiện trong các thương vụ có yếu tố bất định về tương lai: Earnout."
+        "Chi phí rời đi được quyết định lúc chọn, không phải lúc muốn rời.",
+        "Loại khoá đắt nhất nằm ở dữ liệu, và không phép tìm nào trong mã thấy được nó."
       ]
     }
-  ]
+  ],
+  "quiz": [
+    {
+      "question": "Loại khoá nào đắt nhất khi phải rời một nhà cung cấp?",
+      "options": [
+        "Khoá theo dữ liệu",
+        "Khoá theo lời gọi, vì số chỗ gọi trong mã thường lớn hơn nhiều so với ước lượng ban đầu",
+        "Khoá theo hợp đồng, vì các điều khoản phạt khi chấm dứt sớm thường rất nặng",
+        "Khoá theo quy trình, vì đội phải học lại toàn bộ cách làm việc với công cụ mới"
+      ],
+      "correct": 0,
+      "explanation": "Lời gọi gỡ được bằng công sức và đếm được bằng cách tìm trong mã. Dữ liệu nằm ở hình dạng riêng của họ thì phải chuyển đổi, và phần chuyển đổi ấy thường lớn hơn toàn bộ phần tích hợp ban đầu cộng lại."
+    },
+    {
+      "question": "Vì sao lớp ngăn cách nên mỏng thay vì bao trọn mọi tính năng?",
+      "options": [
+        "Vì bạn đang thiết kế cho một bên chưa biết là ai",
+        "Vì một lớp dày sẽ làm chậm hiệu năng do phải đi qua thêm nhiều tầng gọi hàm",
+        "Vì đội mới vào sẽ khó hiểu được một lớp trừu tượng có quá nhiều khái niệm riêng",
+        "Vì lớp dày cần được cập nhật mỗi khi nhà cung cấp phát hành tính năng mới"
+      ],
+      "correct": 0,
+      "explanation": "Một lớp trừu tượng chỉ đúng khi biết nó phải bao những gì. Thiết kế cho mọi bên có thể có là thiết kế cho không bên nào, nên nó tốn gấp mười và vẫn phải viết lại vào ngày thật sự cần chuyển."
+    },
+    {
+      "question": "Vì sao chạy thật một phần trăm lưu lượng qua bên thứ hai đáng giá hơn một bản dựng thử?",
+      "options": [
+        "Vì nó chứng minh dữ liệu chuyển được và đội vận hành được cả hai",
+        "Vì nó cho phép so sánh chất lượng dịch vụ thực tế giữa hai nhà cung cấp một cách khách quan",
+        "Vì nó giữ cho đội quen tay với bên thứ hai nên lúc cần chuyển sẽ không bỡ ngỡ",
+        "Vì nó tạo ra một phương án dự phòng sẵn sàng nếu nhà cung cấp chính gặp sự cố"
+      ],
+      "correct": 0,
+      "explanation": "Ba lợi ích kia đều có thật. Lợi ích đầu là lợi ích duy nhất một bản dựng thử không cho được: nó biến con số ước lượng chuyển đổi từ một phỏng đoán thành một phép đo trên việc đã làm."
+    },
+    {
+      "question": "Kế hoạch rời đi ước lượng ba tháng, thực tế mất mười tám tháng. Nguyên nhân thường gặp nhất là gì?",
+      "options": [
+        "Kế hoạch chỉ đếm được phần khoá nằm trong mã",
+        "Nhà cung cấp cũ không hợp tác trong việc xuất dữ liệu ra khỏi hệ thống của họ",
+        "Đội bị phân tán sang các việc khác nên dự án chuyển đổi không được ưu tiên đủ",
+        "Bên tiếp nhận mới thiếu một số tính năng nên phải tự xây bổ sung trong quá trình chuyển"
+      ],
+      "correct": 0,
+      "explanation": "Ba nguyên nhân kia đều xảy ra nhưng đều là biến cố. Nguyên nhân đầu là quy luật: một phép tìm trong mã cho ra một con số cụ thể và đáng tin, và chính vẻ đáng tin ấy khiến không ai đi tìm hai loại khoá còn lại."
+    },
+    {
+      "question": "Khi nào nên cập nhật trang giấy ghi kế hoạch rời đi?",
+      "options": [
+        "Mỗi lần gia hạn hợp đồng",
+        "Mỗi khi đội thêm một điểm tích hợp mới với nhà cung cấp hiện tại",
+        "Mỗi quý, cùng với chu kỳ rà soát các rủi ro kỹ thuật khác của hệ thống",
+        "Khi có dấu hiệu cho thấy nhà cung cấp sắp thay đổi chính sách giá hoặc điều khoản"
+      ],
+      "correct": 0,
+      "explanation": "Gia hạn là thời điểm duy nhất trong danh sách này mà con số chi phí rời đi thật sự được dùng tới. Cập nhật nó ngay trước lúc ngồi vào bàn là cách biến một tài liệu thành một lợi thế."
+    }
+  ],
+  "keyTakeaways": [
+    "Chi phí rời đi lớn dần theo mỗi tuần tích hợp, và lớn nhanh nhất ở giai đoạn đầu",
+    "Khoá theo dữ liệu đắt nhất và không phép tìm nào trong mã thấy được nó",
+    "Lớp ngăn cách mỏng bọc đúng thứ đang dùng, không bao trọn mọi bên có thể có",
+    "Một phần trăm lưu lượng chạy thật đáng giá hơn mọi bản dựng thử"
+  ],
+  "practicePrompt": {
+    "question": "Tích hợp mất 3 tuần với 14 điểm gọi. Ước lượng rời đi tính 3 tuần cho phần mã. Còn thiếu phần nào lớn nhất?",
+    "options": [
+      "Chuyển đổi dữ liệu lịch sử sang hình dạng bên mới đọc được",
+      "Thời gian đàm phán hợp đồng và hoàn tất thủ tục pháp lý với nhà cung cấp mới",
+      "Công sức viết lại tài liệu và đào tạo lại đội để làm quen với công cụ mới",
+      "Khoảng thời gian chạy song song hai bên để đối chiếu kết quả trước khi tắt bên cũ"
+    ],
+    "correct": 0,
+    "explanation": "Ba phần kia đều phải cộng vào và đều đo bằng tuần. Phần chuyển đổi dữ liệu đo bằng tháng, vì nó phụ thuộc vào việc bên mới có khái niệm tương ứng hay không - và nếu không thì phải tự dựng."
+  },
+  "summary": {
+    "keyIdea": "Giữ chi phí rời đi ở mức đo được, bằng việc làm trước khi cần",
+    "commonMistake": "Ước lượng việc chuyển đổi bằng cách đếm điểm gọi trong mã",
+    "action": "Tìm dữ liệu nào của đội bạn đang chỉ tồn tại ở hình dạng của một nhà cung cấp."
+  },
+  "application": {
+    "title": "Bốn việc, làm trong ngày đầu",
+    "message": "Lớp ngăn cách mỏng. Bản sao dữ liệu định kỳ ở hình dạng phổ thông. Một phần trăm lưu lượng qua bên thứ hai. Một trang giấy ghi lối ra.",
+    "secondary": "Cả bốn đều rẻ trong tuần đầu và gần như không làm được nữa sau năm thứ hai."
+  },
+  "id": 1337,
+  "slug": "ma-phong-thu-thau-tom-thu-dich",
+  "track": "bonus"
 },
 {
   "title": "Bàn giao có điều kiện: đội cũ ở lại tới mốc nào",
@@ -81594,169 +81641,181 @@ export const lessons: Lesson[] = [
 
 
 {
-  "id": 1342,
-  "slug": "mo-hinh-tc-nganh-dac-thu",
-  "title": "Mô Hình TC Chuyên Đề: Điều Chỉnh Mô Hình Cho Ngành Ngân Hàng & Bất Động Sản",
-  "subtitle": "Vì sao mô hình 3 báo cáo tiêu chuẩn không áp dụng trực tiếp được cho ngân hàng hay công ty bất động sản",
+  "title": "Khi mô hình dung lượng mặc định không dùng được",
+  "subtitle": "Ba loại hệ thống mà phép tính quen thuộc cho ra con số sai hẳn",
   "duration": "9 phút",
   "difficulty": "Khó",
-  "emoji": "🏗️",
-  "whyItMatters": "Sau khi thành thạo mô hình 3 báo cáo tiêu chuẩn (series Mô Hình TC Bài 1-10), bước tiếp theo quan trọng là hiểu vì sao một số ngành đòi hỏi cấu trúc mô hình hoàn toàn khác - kỹ năng này phân biệt một người mới học Excel với một người thực sự hiểu bản chất ngành.",
-  "openingQuestion": "Vì sao không thể áp dụng trực tiếp mô hình 3 báo cáo tiêu chuẩn (doanh thu trừ chi phí, vốn lưu động, capex...) cho một ngân hàng thương mại?",
+  "emoji": "📐",
+  "whyItMatters": "Phép tính dung lượng quen thuộc - lấy lượng yêu cầu nhân chi phí mỗi yêu cầu - đúng cho phần lớn dịch vụ và sai rất xa cho ba loại. Biết mình đang ở loại nào quan trọng hơn tính giỏi.",
+  "openingQuestion": "Dịch vụ chịu được 5.000 yêu cầu mỗi giây. Cần phục vụ 10.000. Cần bao nhiêu máy?",
   "openingOptions": [
-    "Vì ngân hàng không có báo cáo tài chính",
-    "Ngân hàng lấy thu nhập lãi thuần làm cốt lõi",
-    "Vì ngân hàng không cần dự báo tài chính",
-    "Vì luật pháp cấm xây dựng mô hình tài chính cho ngân hàng"
+    "Chưa trả lời được nếu chưa biết yêu cầu đến đều hay đến dồn",
+    "Hai máy, vì mười nghìn chia cho năm nghìn ra đúng bằng hai lần công suất hiện tại",
+    "Ba máy, gồm hai máy theo phép chia và một máy dự phòng cho trường hợp hỏng hóc",
+    "Bốn máy, vì thực tế mỗi máy chỉ nên chạy ở khoảng năm mươi phần trăm công suất"
   ],
-  "correctOption": 1,
-  "explanation": "Mô hình ngân hàng có cấu trúc hoàn toàn khác mô hình doanh nghiệp sản xuất/thương mại thông thường: động lực chính là thu nhập lãi thuần (Net Interest Margin) thay vì doanh thu bán hàng, không có khái niệm vốn lưu động/capex theo nghĩa thông thường, và các chỉ số an toàn vốn (CAR - Capital Adequacy Ratio) đóng vai trò trung tâm mà mô hình doanh nghiệp thông thường không cần quan tâm.",
+  "correctOption": 0,
+  "explanation": "Phép chia chỉ đúng khi tải trải đều. Mười nghìn yêu cầu mỗi giây trung bình có thể là mười nghìn đều đặn, hoặc là hai nghìn suốt ngày và tám mươi nghìn trong ba phút. Hai trường hợp ấy cần số máy chênh nhau hàng chục lần, và con số trung bình không phân biệt được chúng.",
   "diagram": [
     {
-      "label": "Nhận diện đặc thù ngành (ngân hàng / BĐS / khác)",
+      "label": "Đo hình dạng tải, không chỉ mức trung bình",
       "arrow": true
     },
     {
-      "label": "Điều chỉnh động lực doanh thu & cấu trúc bảng cân đối kế toán",
+      "label": "Xác định hệ thống thuộc loại nào",
       "arrow": true
     },
     {
-      "label": "Bổ sung chỉ số đặc thù ngành (CAR cho ngân hàng, NAV cho BĐS)",
-      "arrow": false
+      "label": "Chọn phép tính theo loại",
+      "arrow": true
+    },
+    {
+      "label": "Kiểm bằng một lần đo thật"
     }
   ],
   "realWorldExample": {
-    "company": "Mô hình định giá ngân hàng dùng phương pháp Dividend Discount Model / P/B thay vì DCF thuần túy",
-    "description": "Trong thực hành định giá, các nhà phân tích ngân hàng thường ưu tiên mô hình chiết khấu cổ tức (Dividend Discount Model) hoặc so sánh theo P/B (giá trên giá trị sổ sách) thay vì DCF dựa trên dòng tiền tự do như doanh nghiệp thông thường, vì dòng tiền của ngân hàng khó tách bạch rõ ràng (tiền gửi/cho vay là hoạt động kinh doanh cốt lõi, không phải dòng tiền \"tự do\" theo nghĩa truyền thống) và vốn chủ sở hữu, tỷ lệ an toàn vốn mới là yếu tố quyết định khả năng tăng trưởng."
+    "company": "Trung bình mười nghìn, đỉnh tám mươi nghìn",
+    "description": "Một đội cấp máy theo mức trung bình đo được trong một tháng và mọi thứ chạy tốt trong sáu tuần. Tuần thứ bảy có một chiến dịch gửi thông báo tới toàn bộ người dùng cùng lúc, và toàn bộ lượng truy cập của cả ngày dồn vào bốn phút. Hệ thống sập, và bản ghi cho thấy mức trung bình của tháng ấy vẫn nằm trong khoảng đã cấp - đúng như phép tính đã hứa."
   },
-  "quiz": [
-    {
-      "question": "Chỉ số Net Interest Margin (NIM) trong mô hình ngân hàng tương đương với khái niệm nào trong mô hình doanh nghiệp thông thường?",
-      "options": [
-        "Không có khái niệm tương đương nào, đây là chỉ số hoàn toàn đặc thù chỉ áp dụng riêng cho ngành ngân hàng và bảo hiểm",
-        "Gần tương đương biên lợi nhuận gộp của doanh nghiệp sản xuất, thương mại",
-        "Tương đương với chi phí bán hàng và quản lý doanh nghiệp",
-        "Tương đương với thuế thu nhập doanh nghiệp phải nộp trong kỳ"
-      ],
-      "correct": 1,
-      "explanation": "NIM đóng vai trò tương tự biên lợi nhuận gộp: nó đo lường chênh lệch giữa thu nhập từ tài sản sinh lời (chủ yếu là lãi cho vay) và chi phí huy động vốn (lãi tiền gửi) - đây là động lực lợi nhuận cốt lõi của một ngân hàng, tương tự cách biên gộp là động lực lợi nhuận cốt lõi của doanh nghiệp sản xuất/thương mại."
-    },
-    {
-      "question": "Vì sao mô hình định giá bất động sản (đặc biệt BĐS cho thuê/đầu tư) thường sử dụng NAV (Net Asset Value) như một phương pháp quan trọng, thay vì chỉ dựa vào DCF từ dòng tiền hoạt động?",
-      "options": [
-        "Vì bất động sản không tạo ra bất kỳ dòng tiền hoạt động nào từ việc cho thuê nên không thể áp dụng phương pháp chiết khấu dòng tiền",
-        "Vì giá trị công ty chủ yếu nằm ở giá thị trường của danh mục tài sản",
-        "Vì luật kế toán bắt buộc phải dùng NAV cho toàn bộ ngành bất động sản",
-        "Vì NAV luôn cho ra kết quả định giá cao hơn so với phương pháp DCF"
-      ],
-      "correct": 1,
-      "explanation": "NAV phù hợp với BĐS vì giá trị công ty chủ yếu gắn với giá trị tài sản cụ thể (đất, dự án, tòa nhà cho thuê) có thể định giá riêng lẻ theo giá thị trường hiện tại - cách tiếp cận này thường phản ánh giá trị thực chất tốt hơn so với chỉ chiết khấu dòng tiền cho thuê dự kiến trong tương lai, đặc biệt với tài sản có giá trị tăng theo thời gian."
-    },
-    {
-      "question": "Tỷ lệ an toàn vốn (CAR - Capital Adequacy Ratio) quan trọng như thế nào trong mô hình ngân hàng so với mô hình doanh nghiệp thông thường?",
-      "options": [
-        "Không quan trọng hơn các chỉ số tài chính thông thường khác",
-        "CAR là ràng buộc pháp lý giới hạn quy mô tín dụng mà ngân hàng có thể mở rộng trên nền vốn chủ sở hữu",
-        "CAR chỉ là yêu cầu báo cáo định kỳ, không giới hạn kinh doanh thực tế",
-        "CAR chỉ áp dụng cho các ngân hàng nước ngoài hoạt động tại Việt Nam"
-      ],
-      "correct": 1,
-      "explanation": "CAR đóng vai trò như một ràng buộc (constraint) đặc thù của ngành ngân hàng: quy định pháp lý yêu cầu vốn chủ sở hữu phải đạt tỷ lệ tối thiểu so với tài sản có rủi ro, nên một mô hình ngân hàng chính xác cần tính toán CAR để xác định ngân hàng có thể mở rộng tín dụng đến mức nào mà không vi phạm quy định, khác hẳn với doanh nghiệp thông thường không có ràng buộc tương tự."
-    }
-  ,
-    {
-      "question": "Vì sao mô hình định giá ngân hàng thường dùng dòng tiền tự do cho vốn chủ thay vì cho toàn doanh nghiệp?",
-      "options": [
-        "Vì với ngân hàng, nợ là nguyên liệu kinh doanh chứ không phải nguồn tài trợ",
-        "Vì ngân hàng không có chi phí đầu tư tài sản cố định nên không tính được dòng tiền tự do",
-        "Vì quy định kế toán không cho phép ngân hàng công bố dòng tiền hoạt động chi tiết",
-        "Vì vốn chủ sở hữu của ngân hàng luôn chiếm tỷ trọng nhỏ trong tổng nguồn vốn"
-      ],
-      "correct": 0,
-      "explanation": "Tiền gửi và vốn vay là đầu vào của hoạt động cho vay, nên khái niệm 'giá trị doanh nghiệp trước nợ' mất ý nghĩa với ngân hàng. Vì thế mô hình đi thẳng vào phần thuộc cổ đông, và bội số phổ biến là P/B kèm ROE chứ không phải EV/EBITDA."
-    },
-    {
-      "question": "Vì sao hệ số an toàn vốn ràng buộc trực tiếp mức tăng trưởng của một ngân hàng?",
-      "options": [
-        "Vì mỗi đồng tài sản có rủi ro tăng thêm đều đòi hỏi một lượng vốn tự có tương ứng",
-        "Vì hệ số này quyết định mức lãi suất huy động tối đa mà ngân hàng được phép áp dụng",
-        "Vì ngân hàng có hệ số cao hơn sẽ được giao hạn mức tăng trưởng tín dụng lớn hơn",
-        "Vì hệ số này được dùng để tính mức dự phòng rủi ro tín dụng phải trích lập mỗi năm"
-      ],
-      "correct": 0,
-      "explanation": "Tài sản có rủi ro không thể phình ra mà vốn tự có đứng yên. Vì thế tăng trưởng tín dụng bị chặn bởi lợi nhuận giữ lại hoặc khả năng phát hành thêm cổ phần - đây là biến số ràng buộc mà mô hình ngân hàng phải mô phỏng, khác hẳn doanh nghiệp thông thường."
-    }
-    ],
-  "keyTakeaways": [
-    "Mô hình ngân hàng lấy Net Interest Margin làm động lực lợi nhuận cốt lõi, tương tự vai trò biên lợi nhuận gộp ở doanh nghiệp thông thường",
-    "Ngân hàng không có khái niệm vốn lưu động/capex theo nghĩa truyền thống; bảng cân đối kế toán và CAR mới là trung tâm mô hình",
-    "Mô hình BĐS thường dùng NAV (định giá tài sản theo giá thị trường) song song hoặc thay thế DCF thuần túy",
-    "CAR là ràng buộc đặc thù giới hạn khả năng mở rộng tín dụng của ngân hàng, cần được mô hình hóa như một constraint"
-  ],
-  "practicePrompt": {
-    "question": "Điều gì phân biệt cốt lõi mô hình ngân hàng so với mô hình doanh nghiệp thông thường?",
-    "options": [
-      "Ngân hàng lấy NIM làm động lực và bị ràng buộc bởi CAR",
-      "Ngân hàng không cần lập báo cáo tài chính",
-      "Mô hình ngân hàng đơn giản hơn mô hình doanh nghiệp thông thường",
-      "Không có sự khác biệt đáng kể nào"
-    ],
-    "correct": 0,
-    "explanation": "Ba điểm khác biệt cốt lõi: động lực lợi nhuận (NIM), thiếu vốn lưu động/capex truyền thống, và ràng buộc CAR."
-  },
-  "summary": {
-    "keyIdea": "Mô hình tài chính không phải một công thức áp dụng chung cho mọi ngành - hiểu đặc thù cấu trúc kinh doanh của từng ngành (ngân hàng, bất động sản) là điều kiện để xây dựng một mô hình có ý nghĩa thực chất, không chỉ đúng về mặt kỹ thuật Excel",
-    "commonMistake": "Áp dụng máy móc khung mô hình 3 báo cáo tiêu chuẩn cho mọi loại hình doanh nghiệp mà không điều chỉnh theo đặc thù ngành",
-    "action": "Trước khi xây dựng mô hình cho một công ty, luôn tự hỏi: động lực lợi nhuận cốt lõi của ngành này là gì, và có ràng buộc/chỉ số đặc thù nào (như CAR với ngân hàng) cần được mô hình hóa riêng?"
-  },
-  "application": {
-    "title": "Nhận diện đặc thù ngành trước khi xây model",
-    "message": "Trước khi mở Excel xây mô hình cho một công ty mới, hãy dành 15 phút nghiên cứu: ngành này có gì khác biệt so với mô hình 3 báo cáo tiêu chuẩn bạn đã học? Động lực lợi nhuận cốt lõi là gì?",
-    "secondary": "Đây là bước tư duy thường bị bỏ qua bởi người mới học modeling, nhưng lại là điều phân biệt một mô hình hời hợt với một mô hình thực sự hữu ích."
-  },
-  "track": "bonus",
   "sections": [
     {
       "type": "lead",
-      "text": "Series Mô Hình TC (Bài 1-10) đã trang bị khung mô hình 3 báo cáo tiêu chuẩn - nền tảng áp dụng tốt cho phần lớn doanh nghiệp sản xuất, thương mại, dịch vụ. Nhưng một số ngành đòi hỏi tư duy điều chỉnh hoàn toàn khác."
+      "text": "Phép tính dung lượng mặc định giả định ba điều: tải trải đều, các yêu cầu tốn như nhau, và các máy độc lập với nhau. Ba loại hệ thống dưới đây phá vỡ đúng một trong ba giả định ấy."
     },
     {
       "type": "heading",
-      "text": "Ngân hàng: bảng cân đối kế toán là trung tâm, không phải báo cáo kết quả kinh doanh"
+      "text": "Loại một: hệ thống có tải dồn cục"
     },
     {
       "type": "paragraph",
-      "text": "Với doanh nghiệp thông thường, mô hình thường bắt đầu từ dự phóng doanh thu trên báo cáo kết quả kinh doanh. Với ngân hàng, trọng tâm dịch chuyển sang bảng cân đối kế toán: quy mô tài sản sinh lời (dư nợ cho vay, đầu tư), quy mô nguồn vốn huy động, và tỷ lệ an toàn vốn (CAR) - từ đó mới suy ra thu nhập lãi thuần (NIM) và lợi nhuận."
+      "text": "Tin nhắn, thông báo đẩy, bán vé, đăng ký học phần. Ở những hệ thống này mức trung bình gần như vô nghĩa vì toàn bộ tải nằm trong vài phút. Đại lượng cần dùng không phải yêu cầu mỗi giây trung bình mà là đỉnh trên trung bình - và tỷ số ấy phải đo, không đoán, vì nó dao động từ ba lần tới vài trăm lần tuỳ loại sự kiện."
     },
     {
       "type": "heading",
-      "text": "Bất động sản: NAV bổ sung cho DCF"
+      "text": "Loại hai: hệ thống mà một yêu cầu không giống một yêu cầu"
     },
     {
       "type": "paragraph",
-      "text": "Với công ty bất động sản, đặc biệt các công ty sở hữu tài sản cho thuê dài hạn, giá trị doanh nghiệp phần lớn nằm ở giá trị thị trường của danh mục tài sản đang nắm giữ. Phương pháp NAV (Net Asset Value) - định giá riêng từng tài sản theo giá thị trường hiện tại rồi cộng lại, trừ đi nợ vay - thường được dùng song song với DCF để có bức tranh định giá đầy đủ hơn."
+      "text": "Tìm kiếm, kết xuất báo cáo, dịch vụ gọi mô hình. Một yêu cầu có thể tốn năm mili giây hoặc năm giây tuỳ dữ liệu đằng sau nó, nên nhân số yêu cầu với một chi phí trung bình cho ra một con số không tương ứng với bất kỳ trạng thái thật nào. Đại lượng đúng ở đây là tổng công việc, ví dụ số bản ghi phải quét, chứ không phải số lần được gọi."
+    },
+    {
+      "type": "heading",
+      "text": "Loại ba: hệ thống dùng chung một nút thắt"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mọi hệ thống có một cơ sở dữ liệu ghi duy nhất đều thuộc loại này. Thêm máy phục vụ không tăng dung lượng vì phần bị nghẽn nằm ở chỗ không nhân lên được, và thêm máy còn làm tình hình xấu đi do mỗi máy giữ thêm một tập kết nối. Đây là loại duy nhất mà phép tính mặc định sai theo chiều nguy hiểm nhất: nó nói bạn giải quyết được bằng tiền."
     },
     {
       "type": "callout",
-      "label": "CAR: ràng buộc mà mô hình phải tôn trọng",
-      "text": "Một sai lầm phổ biến khi mới xây mô hình ngân hàng: dự phóng tăng trưởng tín dụng mạnh mẽ mà không kiểm tra xem ngân hàng có đủ vốn chủ sở hữu để duy trì CAR trên mức tối thiểu theo quy định hay không. Một mô hình ngân hàng đúng đắn cần tính toán CAR ở mỗi kỳ dự báo như một điều kiện ràng buộc, không chỉ là con số tham khảo."
+      "label": "Câu hỏi phân loại, hỏi trước khi tính",
+      "text": "Ba câu tách được gần hết trường hợp. Tải của tôi trong ngày bận nhất trông thế nào so với ngày trung bình? Yêu cầu đắt nhất tốn gấp bao nhiêu lần yêu cầu rẻ nhất? Nếu tôi thêm gấp đôi số máy thì cái gì không nhân lên theo? Ai trả lời được ba câu ấy thì phép tính nào cũng dùng được; ai không thì phép tính nào cũng sai."
     },
     {
-      "type": "list",
-      "items": [
-        "Ngân hàng: NIM là động lực lợi nhuận cốt lõi, bảng cân đối kế toán là trung tâm mô hình",
-        "Ngân hàng: CAR là ràng buộc giới hạn khả năng tăng trưởng tín dụng",
-        "Bất động sản: NAV bổ sung/thay thế DCF khi giá trị tài sản là yếu tố chính",
-        "Luôn điều chỉnh khung mô hình theo đặc thù cấu trúc kinh doanh của từng ngành"
-      ]
+      "type": "comparison",
+      "left": {
+        "label": "Mô hình mặc định dùng được",
+        "text": "Tải khá đều, các yêu cầu tốn tương đương, và thêm máy thì thật sự tăng dung lượng. Phần lớn dịch vụ nội bộ nằm ở đây."
+      },
+      "right": {
+        "label": "Cần mô hình riêng",
+        "text": "Tải dồn cục, chi phí mỗi yêu cầu chênh nhau hàng trăm lần, hoặc có một nút thắt dùng chung không nhân lên được."
+      }
     },
     {
       "type": "closing",
       "lines": [
-        "Một mô hình tài chính giỏi không phải là mô hình phức tạp nhất, mà là mô hình phản ánh đúng bản chất kinh doanh của ngành đang được phân tích.",
-        "Đây là bài mở rộng cuối cùng của chuyên đề Mô Hình TC - kết hợp cùng series Bài 1-10 để có nền tảng modeling toàn diện."
+        "Biết hệ thống thuộc loại nào quan trọng hơn tính phép tính cho khéo.",
+        "Nút thắt dùng chung là loại nguy hiểm nhất, vì nó khiến vấn đề trông như giải được bằng tiền."
       ]
     }
-  ]
+  ],
+  "quiz": [
+    {
+      "question": "Vì sao mức trung bình vô dụng với hệ thống có tải dồn cục?",
+      "options": [
+        "Vì toàn bộ tải nằm trong vài phút nên trung bình không mô tả được lúc nào",
+        "Vì các phép đo trung bình thường được lấy mẫu ở tần suất quá thấp để bắt được đỉnh",
+        "Vì tải dồn cục thường xảy ra vào ban đêm nên không nằm trong khung giờ được theo dõi",
+        "Vì mức trung bình bị kéo lên bởi những đỉnh hiếm nên nó luôn cao hơn mức thật"
+      ],
+      "correct": 0,
+      "explanation": "Trung bình mô tả một trạng thái mà hệ thống chưa bao giờ ở trong đó: nó không bận như lúc đỉnh và không rảnh như lúc thường. Cấp máy theo một trạng thái không tồn tại thì thừa suốt ngày và thiếu đúng lúc cần."
+    },
+    {
+      "question": "Loại hệ thống nào mà phép tính mặc định sai theo chiều nguy hiểm nhất?",
+      "options": [
+        "Hệ thống có một nút thắt dùng chung",
+        "Hệ thống có tải dồn cục, vì mức đỉnh có thể vượt xa con số đã dự trù ban đầu",
+        "Hệ thống mà chi phí mỗi yêu cầu chênh nhau tới hàng trăm lần giữa các loại yêu cầu",
+        "Hệ thống phụ thuộc vào nhiều dịch vụ bên ngoài mà đội không kiểm soát được"
+      ],
+      "correct": 0,
+      "explanation": "Hai loại kia sai về con số và sửa được bằng cách đo lại. Nút thắt dùng chung sai về bản chất: nó khiến đội tin rằng thêm tiền là thêm dung lượng, nên họ chi tiền nhiều lần trước khi nhận ra vấn đề nằm ở chỗ khác."
+    },
+    {
+      "question": "Đại lượng nào nên dùng cho dịch vụ tìm kiếm thay vì số yêu cầu?",
+      "options": [
+        "Tổng công việc, ví dụ số bản ghi phải quét",
+        "Số yêu cầu tại phân vị chín mươi lăm thay vì tại mức trung bình của cả ngày",
+        "Thời gian xử lý trung bình của mỗi yêu cầu nhân với tổng số yêu cầu trong kỳ",
+        "Số người dùng hoạt động đồng thời, vì mỗi người thường gửi nhiều yêu cầu liên tiếp"
+      ],
+      "correct": 0,
+      "explanation": "Khi một yêu cầu tốn từ năm mili giây tới năm giây, đơn vị đếm phải là thứ gây ra chênh lệch ấy. Đếm số lần được gọi là đếm một đại lượng gần như không liên quan tới lượng tài nguyên bị tiêu thụ."
+    },
+    {
+      "question": "Thêm gấp đôi số máy phục vụ nhưng dung lượng không tăng, thậm chí giảm. Nguyên nhân thường gặp là gì?",
+      "options": [
+        "Mỗi máy giữ thêm một tập kết nối tới nút thắt dùng chung",
+        "Bộ cân bằng tải chưa được cấu hình lại nên vẫn phân phối theo số máy cũ",
+        "Các máy mới cần thời gian làm nóng bộ đệm nên hiệu năng thấp trong giai đoạn đầu",
+        "Chi phí đồng bộ trạng thái giữa các máy tăng theo bình phương số lượng máy"
+      ],
+      "correct": 0,
+      "explanation": "Đây là hình dạng kinh điển của một nút thắt dùng chung. Phần nghẽn không nhân lên theo số máy, còn áp lực lên nó thì có - nên mỗi máy thêm vào vừa không giúp gì vừa lấy thêm một phần của thứ đang thiếu."
+    },
+    {
+      "question": "Câu hỏi nào nên hỏi trước khi chọn phép tính dung lượng?",
+      "options": [
+        "Thêm gấp đôi máy thì cái gì không nhân lên theo",
+        "Ngân sách hạ tầng cho quý tới là bao nhiêu và đã được duyệt ở mức nào rồi",
+        "Hệ thống đang chạy trên loại máy nào và còn dư bao nhiêu phần trăm công suất",
+        "Mức tăng trưởng người dùng dự kiến trong mười hai tháng tới là bao nhiêu phần trăm"
+      ],
+      "correct": 0,
+      "explanation": "Ba câu kia đều cần trả lời nhưng đều là đầu vào cho phép tính. Câu đầu quyết định phép tính nào dùng được - và nếu câu trả lời là có thứ không nhân lên, mọi phép tính theo số máy đều vô nghĩa."
+    }
+  ],
+  "keyTakeaways": [
+    "Phép tính mặc định giả định tải đều, yêu cầu tốn như nhau, và máy độc lập",
+    "Tải dồn cục thì dùng tỷ số đỉnh trên trung bình, và phải đo chứ không đoán",
+    "Khi chi phí mỗi yêu cầu chênh lớn, đếm tổng công việc thay vì đếm số lần gọi",
+    "Nút thắt dùng chung nguy hiểm nhất vì nó khiến vấn đề trông như giải được bằng tiền"
+  ],
+  "practicePrompt": {
+    "question": "Trung bình 2.000 yêu cầu mỗi giây, nhưng 80% lưu lượng ngày dồn vào 4 phút. Đỉnh xấp xỉ bao nhiêu?",
+    "options": [
+      "Khoảng 576.000 mỗi giây",
+      "10.000 mỗi giây (= nhân mức trung bình với năm lần cho an toàn)",
+      "57.600 mỗi giây (= chia phần 80% cho 40 phút thay vì cho 4 phút)",
+      "144.000 mỗi giây (= lấy đúng 20% lưu lượng còn lại chia cho 240 giây)"
+    ],
+    "correct": 0,
+    "explanation": "Cả ngày có khoảng 172,8 triệu yêu cầu; 80% của nó là 138 triệu dồn vào 240 giây, ra 576.000 mỗi giây - gấp gần ba trăm lần mức trung bình 2.000. Đó là khoảng cách giữa một hệ thống được cấp máy theo trung bình và một hệ thống chịu được ngày bận nhất."
+  },
+  "summary": {
+    "keyIdea": "Phân loại hệ thống trước, chọn phép tính sau",
+    "commonMistake": "Cấp máy theo mức trung bình cho một hệ thống có tải dồn cục",
+    "action": "Tính tỷ số đỉnh trên trung bình của một dịch vụ bạn đang giữ."
+  },
+  "application": {
+    "title": "Ba câu trước mọi phép tính dung lượng",
+    "message": "Ngày bận nhất trông thế nào so với ngày trung bình? Yêu cầu đắt nhất gấp bao nhiêu lần yêu cầu rẻ nhất? Thêm gấp đôi máy thì cái gì không nhân lên?",
+    "secondary": "Trả lời được ba câu thì phép tính nào cũng dùng được; không trả lời được thì phép tính nào cũng sai."
+  },
+  "id": 1342,
+  "slug": "mo-hinh-tc-nganh-dac-thu",
+  "track": "bonus"
 }
 ];
