@@ -868,3 +868,606 @@ export async function getFriendsLeaderboard(
     actor
   );
 }
+
+/** `get_community_post_comments(p_post_id, p_limit)`.
+ *  `p.is_hidden = false` là điều kiện lọc thật: bình luận của bài đã bị ẩn thì
+ *  không trả về, kể cả khi biết id bài. */
+export async function getCommunityPostComments(
+  db: D1Like,
+  postId: number,
+  limit?: number
+): Promise<Record<string, unknown>[]> {
+  return rows(
+    db,
+    `select c.id, c.post_id, c.user_id,
+            coalesce(prof.full_name, 'Người học') as user_name,
+            prof.avatar_url as user_avatar,
+            c.content, c.created_at, c.edited_at
+       from community_post_comments c
+       join user_profiles prof on prof.id = c.user_id
+       join community_posts p on p.id = c.post_id
+      where c.post_id = ? and coalesce(p.is_hidden, 0) = 0
+      order by c.created_at asc
+      limit ?`,
+    postId,
+    clampLimit(limit, 30, 100)
+  );
+}
+
+/** `get_my_social_graph()` - không nhận tham số, toàn bộ dựa vào `auth.uid()`.
+ *  Trên D1 thì id người gọi thành tham số bắt buộc. Thiếu nó là trả về đồ thị
+ *  bạn bè của... không ai, hoặc của tất cả - tuỳ cách viết. Nên chặn sớm. */
+export async function getMySocialGraph(
+  db: D1Like,
+  actor: string
+): Promise<Record<string, unknown>[]> {
+  if (!actor) return [];
+  return rows(
+    db,
+    `select f.id as friendship_id,
+            other.id as user_id, other.full_name, other.avatar_url,
+            other.current_level, other.total_xp,
+            f.status, f.requested_by, f.created_at, f.updated_at, f.responded_at,
+            case when f.status = 'accepted' then 'friend'
+                 when f.requested_by = ?1 then 'outgoing'
+                 else 'incoming' end as direction
+       from user_friendships f
+       join user_profiles other
+         on other.id = case when f.user_a = ?1 then f.user_b else f.user_a end
+      where (f.user_a = ?1 or f.user_b = ?1)
+      order by case when f.status = 'pending' then 0 else 1 end,
+               f.updated_at desc, f.created_at desc`,
+    actor
+  );
+}
+
+/** `search_accounts(search_term, result_limit)`.
+ *
+ *  BẪY UNICODE, và nó không sửa được hoàn toàn ở tầng SQL. Postgres `ilike`
+ *  không phân biệt hoa thường với MỌI ký tự. `LIKE` của SQLite chỉ gấp chữ cho
+ *  A-Z ASCII, và `lower()` cũng vậy - nên "NGUYỄN" sẽ KHÔNG khớp "nguyễn".
+ *
+ *  Cách giảm nhẹ ở đây: hạ chữ phía TypeScript (`toLowerCase()` của JS hiểu
+ *  Unicode) rồi so với `lower(cột)`. Nó xử lý được trường hợp người TÌM gõ hoa,
+ *  còn dữ liệu LƯU dạng hoa có dấu thì vẫn trượt. Muốn đúng hoàn toàn phải thêm
+ *  một cột đã chuẩn hoá sẵn khi ghi - đó là thay đổi lược đồ, không phải việc
+ *  của bản dịch này.
+ *
+ *  Giữ nguyên hai hành vi của bản gốc dù chúng đáng bàn:
+ *   - Ký tự `%` và `_` người dùng gõ vào KHÔNG được thoát, nên gõ `%` khớp mọi
+ *     người. Postgres cũng vậy; sửa là đổi hành vi.
+ *   - Dưới 2 ký tự thì trả rỗng.
+ */
+export async function searchAccounts(
+  db: D1Like,
+  actor: string,
+  searchTerm: string,
+  limit?: number
+): Promise<Record<string, unknown>[]> {
+  const term = (searchTerm ?? "").trim();
+  if (!actor || term.length < 2) return [];
+  const t = term.toLowerCase();
+
+  return rows(
+    db,
+    `select prof.id, prof.full_name, prof.avatar_url, prof.current_level, prof.total_xp
+       from user_profiles prof
+      where prof.id <> ?1
+        and (lower(coalesce(prof.full_name, '')) like ?2
+             or lower(coalesce(prof.email, '')) like ?2)
+      order by case
+                 when lower(coalesce(prof.full_name, '')) like ?3 then 0
+                 when lower(coalesce(prof.email, '')) like ?3 then 1
+                 else 2 end,
+               prof.total_xp desc, prof.created_at desc
+      limit ?4`,
+    actor,
+    `%${t}%`,
+    `${t}%`,
+    clampLimit(limit, 8, 20)
+  );
+}
+
+/** `date_trunc('week', now())` của Postgres - tuần bắt đầu từ THỨ HAI.
+ *
+ *  `date('now','-6 days','weekday 1')` cho đúng thứ Hai của tuần hiện tại ở cả
+ *  bảy ngày, kể cả Chủ nhật (SQLite coi `weekday 1` là thứ Hai KẾ TIẾP, nên
+ *  phải lùi 6 ngày trước). Đã kiểm chứng bằng bảng bốn ngày trong bộ kiểm.
+ *
+ *  Viết nhầm thành `date('now','weekday 1')` là ra thứ Hai TUẦN SAU với mọi
+ *  ngày không phải thứ Hai, và mọi chỉ số "tuần này" trả về 0. */
+const WEEK_START = `date('now', '-6 days', 'weekday 1')`;
+
+/** Số bài hoàn thành trong tuần này của một người - truy vấn con lặp ở ba hàm
+ *  phòng học. `count(...) filter (where ...)` có từ SQLite 3.30 nhưng ở đây
+ *  dùng `sum(case ...)` để không phụ thuộc phiên bản của D1. */
+const WEEKLY_LESSONS = `(select count(*) from user_progress p
+      where p.user_id = %s and p.completed = 1
+        and date(p.completed_at) >= ${WEEK_START})`;
+
+/** `get_my_study_room()` */
+export async function getMyStudyRoom(db: D1Like, actor: string): Promise<Record<string, unknown>[]> {
+  if (!actor) return [];
+  return rows(
+    db,
+    `select r.id as room_id, r.topic,
+            sum(case when m2.left_at is null then 1 else 0 end) as member_count,
+            r.max_members, r.weekly_xp_goal,
+            coalesce(sum(case when m2.left_at is null
+                              then ${WEEKLY_LESSONS.replace("%s", "m2.user_id")}
+                              else 0 end), 0) * 10 as weekly_xp_progress,
+            r.created_at
+       from study_rooms r
+       join study_room_members mine
+         on mine.room_id = r.id and mine.user_id = ? and mine.left_at is null
+       left join study_room_members m2 on m2.room_id = r.id
+      group by r.id`,
+    actor
+  );
+}
+
+/** `get_study_room_members(p_room_id)`.
+ *  Bản gốc chỉ gác `auth.uid() is not null` - tức là bất kỳ ai ĐÃ ĐĂNG NHẬP
+ *  cũng xem được thành viên của phòng bất kỳ, không cần là thành viên. Giữ
+ *  nguyên mức gác ấy; siết lại là đổi hành vi. */
+export async function getStudyRoomMembers(
+  db: D1Like,
+  actor: string,
+  roomId: number
+): Promise<Record<string, unknown>[]> {
+  if (!actor) return [];
+  return rows(
+    db,
+    `select prof.id as user_id, prof.full_name, prof.avatar_url,
+            prof.current_level, prof.total_xp,
+            ${WEEKLY_LESSONS.replace("%s", "prof.id")} as weekly_lessons
+       from study_room_members m
+       join user_profiles prof on prof.id = m.user_id
+      where m.room_id = ? and m.left_at is null
+      order by weekly_lessons desc`,
+    roomId
+  );
+}
+
+/** `get_study_rooms(p_topic)`.
+ *  `having ... < r.max_members`: chỉ hiện phòng CÒN CHỖ. Mất mệnh đề này là
+ *  người học bấm vào phòng đã đầy rồi nhận lỗi. */
+export async function getStudyRooms(
+  db: D1Like,
+  actor: string,
+  topic?: string | null
+): Promise<Record<string, unknown>[]> {
+  if (!actor) return [];
+  return rows(
+    db,
+    `select r.id as room_id, r.topic,
+            sum(case when m.left_at is null then 1 else 0 end) as member_count,
+            r.max_members, r.weekly_xp_goal,
+            coalesce(sum(case when m.left_at is null
+                              then ${WEEKLY_LESSONS.replace("%s", "m.user_id")}
+                              else 0 end), 0) * 10 as weekly_xp_progress,
+            r.created_at
+       from study_rooms r
+       left join study_room_members m on m.room_id = r.id
+      where (?1 is null or r.topic = ?1)
+      group by r.id
+     having sum(case when m.left_at is null then 1 else 0 end) < r.max_members
+      order by r.created_at desc
+      limit 30`,
+    topic ?? null
+  );
+}
+
+/** `get_community_learning_now(p_limit, p_days)`.
+ *  `p_days` là bộ chặn quan trọng - chú thích bản gốc nói rõ: không có nó thì
+ *  danh sách đầy người chuỗi ngày cao nhưng đã nghỉ hàng tháng, và "đang học"
+ *  thành một câu nói sai có người thật đứng tên. Giữ nguyên.
+ *
+ *  `distinct on (user_id) order by completed_at desc` → `row_number()`. */
+export async function getCommunityLearningNow(
+  db: D1Like,
+  limit?: number,
+  days?: number
+): Promise<Record<string, unknown>[]> {
+  return rows(
+    db,
+    `with active as (
+       select s.user_id, s.current_streak, s.last_activity_date
+         from user_streaks s
+        where s.current_streak > 0
+          and date(s.last_activity_date) >= date('now', '-' || ?2 || ' days')
+        order by s.last_activity_date desc, s.current_streak desc
+        limit ?1
+     ),
+     ranked as (
+       select p.user_id, p.lesson_id, p.completed_at,
+              row_number() over (partition by p.user_id order by p.completed_at desc) as rn
+         from user_progress p
+         join active a on a.user_id = p.user_id
+        where p.completed = 1 and p.completed_at is not null
+     ),
+     latest as (select user_id, lesson_id, completed_at from ranked where rn = 1)
+     select a.user_id,
+            nullif(trim(coalesce(prof.full_name, '')), '') as name,
+            prof.avatar_url, a.current_streak, l.lesson_id, l.completed_at
+       from active a
+       left join user_profiles prof on prof.id = a.user_id
+       left join latest l on l.user_id = a.user_id
+      where coalesce(prof.is_disabled, 0) = 0
+      order by a.last_activity_date desc, a.current_streak desc`,
+    clampLimit(limit, 24, 100),
+    clampLimit(days, 7, 365)
+  );
+}
+
+/** Chín bậc cấp độ, chép từ mệnh đề `values` của bản gốc. */
+const LEVEL_BANDS = `lvl(level, min_xp, max_xp) as (
+     values (1,0,99),(2,100,299),(3,300,599),(4,600,1199),(5,1200,1999),
+            (6,2000,3199),(7,3200,4999),(8,5000,6999),(9,7000,999999999)
+   )`;
+
+/** `get_level_stats(p_user_id)`.
+ *
+ *  `jsonb_agg(t.* order by t.xp desc)` KHÔNG dịch thẳng: `json_group_array` của
+ *  SQLite không bảo đảm thứ tự (cùng lý do với `array_agg` ở các hàm reaction).
+ *  Nên top-5 mỗi bậc lấy bằng `row_number()` rồi gom nhóm ở TypeScript - kết
+ *  quả xác định, không phụ thuộc phiên bản.
+ */
+export async function getLevelStats(
+  db: D1Like,
+  userId?: string | null
+): Promise<
+  { level: number; user_count: number; total_users: number; my_rank: number | null; top_users: unknown[] }[]
+> {
+  const tong = await one<{ c: number }>(db, `select count(*) as c from user_stats`);
+  const total_users = tong?.c ?? 0;
+
+  let my_rank: number | null = null;
+  if (userId) {
+    const r = await one<{ rank: number }>(
+      db,
+      `select count(*) + 1 as rank from user_stats
+        where total_xp > coalesce((select total_xp from user_stats where user_id = ?), -1)`,
+      userId
+    );
+    my_rank = r?.rank ?? null;
+  }
+
+  const dem = await rows<{ level: number; user_count: number }>(
+    db,
+    `with ${LEVEL_BANDS}
+     select lvl.level, count(us.user_id) as user_count
+       from lvl left join user_stats us on us.total_xp between lvl.min_xp and lvl.max_xp
+      group by lvl.level order by lvl.level`
+  );
+
+  const top = await rows<{ level: number; name: string; avatar_url: string | null; xp: number }>(
+    db,
+    `with ${LEVEL_BANDS},
+     xep as (
+       select lvl.level, ${DISPLAY_NAME} as name, prof.avatar_url, us.total_xp as xp,
+              row_number() over (partition by lvl.level order by us.total_xp desc) as rn
+         from lvl
+         join user_stats us on us.total_xp between lvl.min_xp and lvl.max_xp
+         join user_profiles prof on prof.id = us.user_id
+     )
+     select level, name, avatar_url, xp from xep where rn <= 5 order by level, xp desc`
+  );
+
+  return dem.map((d) => ({
+    level: d.level,
+    user_count: d.user_count,
+    total_users,
+    my_rank,
+    top_users: top.filter((t) => t.level === d.level).map(({ name, avatar_url, xp }) => ({ name, avatar_url, xp })),
+  }));
+}
+
+/** Ném khi chưa đăng nhập. Bản gốc dùng `raise exception 'Not authenticated'`;
+ *  giữ nguyên việc NÉM chứ không trả rỗng - hai hàm dưới đây trả về trạng thái
+ *  của chính người dùng, và một object rỗng trông y hệt "người này chưa có gì". */
+export class NotAuthenticatedError extends Error {
+  constructor() {
+    super("Not authenticated");
+  }
+}
+
+/** `get_nav_state(p_day_start)` - trả JSON. Dựng object ở TypeScript thay vì
+ *  `json_build_object`: kết quả giống hệt và không phải lo `row_to_json` của
+ *  SQLite có tồn tại hay không. */
+export async function getNavState(
+  db: D1Like,
+  actor: string,
+  dayStart: string
+): Promise<{ profile: unknown; unresolved_mistakes: number; daily_chest_claimed: boolean }> {
+  if (!actor) throw new NotAuthenticatedError();
+
+  const profile = await one(
+    db,
+    `select full_name, email, avatar_url, total_xp, current_level, lessons_completed, coins
+       from user_profiles where id = ?`,
+    actor
+  );
+  const m = await one<{ c: number }>(
+    db,
+    `select count(*) as c from quiz_mistakes where user_id = ? and coalesce(resolved, 0) = 0`,
+    actor
+  );
+  const chest = await one<{ c: number }>(
+    db,
+    `select count(*) as c from user_chests
+      where user_id = ? and source = 'daily_login' and datetime(earned_at) >= datetime(?)`,
+    actor,
+    dayStart
+  );
+  return {
+    profile: profile ?? null,
+    unresolved_mistakes: m?.c ?? 0,
+    daily_chest_claimed: (chest?.c ?? 0) > 0,
+  };
+}
+
+/** `get_lesson_state()` - bốn mảng id + danh sách đánh dấu, gói thành JSON.
+ *  `array_agg` ở đây KHÔNG cần thứ tự nên gom ở TypeScript là đủ. */
+export async function getLessonState(
+  db: D1Like,
+  actor: string
+): Promise<{
+  completed_lessons: number[];
+  unlocked_lesson_ids: number[];
+  user_lesson_flags: number[];
+  bookmarks: unknown[];
+}> {
+  if (!actor) throw new NotAuthenticatedError();
+  const ids = async (sql: string) =>
+    (await rows<{ lesson_id: number }>(db, sql, actor)).map((r) => r.lesson_id);
+
+  return {
+    completed_lessons: await ids(
+      `select lesson_id from user_progress where user_id = ? and completed = 1`
+    ),
+    unlocked_lesson_ids: await ids(`select lesson_id from user_lesson_unlocks where user_id = ?`),
+    user_lesson_flags: await ids(`select lesson_id from lesson_manual_flags where user_id = ?`),
+    bookmarks: await rows(
+      db,
+      `select id, lesson_id, lesson_slug, lesson_title, created_at
+         from lesson_bookmarks where user_id = ? order by created_at desc`,
+      actor
+    ),
+  };
+}
+
+/** Lấy phân bố reaction cho một danh sách bài viết rồi gom nhóm ở TypeScript.
+ *
+ *  Bản gốc dựng `reaction_summary` bằng `jsonb_agg(... order by emoji_count
+ *  desc, emoji)` trong một `left join lateral`. SQLite không có `LATERAL`, và
+ *  `json_group_array` lại không bảo đảm thứ tự - nên phần này tách ra một truy
+ *  vấn thứ hai. Một truy vấn thêm cho cả trang, không phải cho mỗi bài. */
+async function reactionSummaries(
+  db: D1Like,
+  postIds: number[]
+): Promise<Map<number, { emoji: string; count: number }[]>> {
+  const out = new Map<number, { emoji: string; count: number }[]>();
+  if (!postIds.length) return out;
+  const cho = postIds.map(() => "?").join(",");
+  const r = await rows<{ post_id: number; emoji: string; c: number }>(
+    db,
+    `select post_id, emoji, count(*) as c
+       from community_post_reactions where post_id in (${cho})
+      group by post_id, emoji
+      order by post_id, c desc, emoji`,
+    ...postIds
+  );
+  for (const x of r) out.set(x.post_id, [...(out.get(x.post_id) ?? []), { emoji: x.emoji, count: x.c }]);
+  return out;
+}
+
+/** `get_user_community_posts(p_user_id, p_limit, p_before_id)`.
+ *  `LATERAL` → truy vấn con tương quan trong SELECT (SQLite hỗ trợ).
+ *  `p_before_id` là phân trang theo con trỏ: `p.id < ?` rồi `order by id desc`. */
+export async function getUserCommunityPosts(
+  db: D1Like,
+  actor: string,
+  userId: string,
+  limit?: number,
+  beforeId?: number | null
+): Promise<Record<string, unknown>[]> {
+  const posts = await rows<Record<string, unknown> & { id: number }>(
+    db,
+    `select p.id, p.user_id,
+            coalesce(prof.full_name, 'Người học') as user_name,
+            prof.avatar_url as user_avatar,
+            p.kind, p.content, p.metadata, p.created_at, p.edited_at,
+            (select count(*) from community_post_reactions cr where cr.post_id = p.id) as reaction_count,
+            (select cr.emoji from community_post_reactions cr
+              where cr.post_id = p.id and cr.user_id = ?1) as my_reaction,
+            (select count(*) from community_post_comments cc where cc.post_id = p.id) as comment_count
+       from community_posts p
+       join user_profiles prof on prof.id = p.user_id
+      where coalesce(p.is_hidden, 0) = 0
+        and p.user_id = ?2
+        and (?3 is null or p.id < ?3)
+      order by p.id desc
+      limit ?4`,
+    actor || null,
+    userId,
+    beforeId ?? null,
+    clampLimit(limit, 20, 50)
+  );
+
+  const tom = await reactionSummaries(db, posts.map((p) => p.id));
+  return posts.map((p) => ({ ...p, reaction_summary: tom.get(p.id) ?? [] }));
+}
+
+/** `get_dashboard_summary()` - gói năm truy vấn thành một JSON.
+ *  Danh sách cột chép nguyên từ bản gốc, không dùng `select *`: thêm cột vào
+ *  bảng mà bảng điều khiển bỗng nhận thêm dữ liệu là cách rò rỉ thầm lặng. */
+export async function getDashboardSummary(
+  db: D1Like,
+  actor: string
+): Promise<{
+  profile: unknown;
+  stats: unknown;
+  has_completed_onboarding: boolean;
+  passed_milestones: unknown[];
+  challenge_passed_ids: number[];
+}> {
+  if (!actor) throw new NotAuthenticatedError();
+
+  const profile = await one(
+    db,
+    `select id, email, full_name, avatar_url, bio, current_level, total_xp,
+            lessons_completed, avg_quiz_score, current_stage, preferred_track, dark_mode
+       from user_profiles where id = ?`,
+    actor
+  );
+  const stats = await one(
+    db,
+    `select total_lessons_completed, total_xp, current_level, avg_quiz_score,
+            longest_streak, last_lesson_date, total_study_time_hours
+       from user_stats where user_id = ?`,
+    actor
+  );
+  const ob = await one<{ completed: number }>(
+    db,
+    `select completed from user_onboarding where user_id = ?`,
+    actor
+  );
+  const milestones = await rows(
+    db,
+    `select track_id, stage_label, score from user_milestone_exams where user_id = ?`,
+    actor
+  );
+  const passes = await rows<{ lesson_id: number }>(
+    db,
+    `select lesson_id from user_challenge_passes where user_id = ?`,
+    actor
+  );
+
+  return {
+    profile: profile ?? null,
+    stats: stats ?? null,
+    // Bản gốc ép null thành false tường minh; giữ nguyên để giao diện không
+    // phải phân biệt "chưa có bản ghi" với "chưa hoàn thành".
+    has_completed_onboarding: Boolean(ob?.completed),
+    passed_milestones: milestones,
+    challenge_passed_ids: passes.map((p) => p.lesson_id),
+  };
+}
+
+/** `get_community_feed(p_limit, p_before_id)`.
+ *  Giống `get_user_community_posts` nhưng không lọc theo tác giả, và có thêm
+ *  cột `is_following` để giao diện biết hiện nút Theo dõi hay không. */
+export async function getCommunityFeed(
+  db: D1Like,
+  actor: string,
+  limit?: number,
+  beforeId?: number | null
+): Promise<Record<string, unknown>[]> {
+  const posts = await rows<Record<string, unknown> & { id: number }>(
+    db,
+    `select p.id, p.user_id,
+            coalesce(prof.full_name, 'Người học') as user_name,
+            prof.avatar_url as user_avatar,
+            p.kind, p.content, p.metadata, p.created_at, p.edited_at,
+            (select count(*) from community_post_reactions cr where cr.post_id = p.id) as reaction_count,
+            (select cr.emoji from community_post_reactions cr
+              where cr.post_id = p.id and cr.user_id = ?1) as my_reaction,
+            (select count(*) from community_post_comments cc where cc.post_id = p.id) as comment_count,
+            exists (select 1 from user_follows uf
+                     where uf.followed_id = p.user_id and uf.follower_id = ?1) as is_following
+       from community_posts p
+       join user_profiles prof on prof.id = p.user_id
+      where coalesce(p.is_hidden, 0) = 0
+        and (?2 is null or p.id < ?2)
+      order by p.id desc
+      limit ?3`,
+    actor || null,
+    beforeId ?? null,
+    clampLimit(limit, 20, 50)
+  );
+
+  const tom = await reactionSummaries(db, posts.map((p) => p.id));
+  return posts.map((p) => ({ ...p, reaction_summary: tom.get(p.id) ?? [] }));
+}
+
+/** `get_study_room_mission_status(p_room_id)` - hàm cuối của nhóm A.
+ *
+ *  `cross join lateral (values ...)` dựng ba dòng nhiệm vụ từ các con số vừa
+ *  tính. SQLite không có `LATERAL`, và dựng ba dòng ấy ở TypeScript vừa ngắn
+ *  hơn vừa đọc được - phần SQL chỉ còn việc đếm.
+ *
+ *  Phân quyền: `exists(... m.user_id = auth.uid() and m.left_at is null)` gắn
+ *  vào `room_ctx`, nên người ngoài phòng nhận về RỖNG chứ không phải lỗi.
+ *  `greatest(3, n)` → `max(3, n)`; `date_trunc('week', now())` → WEEK_START.
+ */
+export async function getStudyRoomMissionStatus(
+  db: D1Like,
+  actor: string,
+  roomId: number
+): Promise<Record<string, unknown>[]> {
+  if (!actor) return [];
+
+  const ctx = await one<{ streak_weeks: number; is_permanent: number; leader_id: string }>(
+    db,
+    `select r.streak_weeks, r.is_permanent, r.leader_id
+       from study_rooms r
+      where r.id = ?1
+        and exists (select 1 from study_room_members m
+                     where m.room_id = r.id and m.user_id = ?2 and m.left_at is null)`,
+    roomId,
+    actor
+  );
+  if (!ctx) return [];
+
+  const c = await one<Record<string, number>>(
+    db,
+    `with members as (
+       select m.user_id from study_room_members m
+        where m.room_id = ?1 and m.left_at is null
+     )
+     select
+       max(3, (select count(*) from members) * 3) as lesson_target,
+       max(3, (select count(*) from members))     as quiz_target,
+       max(3, (select count(*) from members) * 3) as checkin_target,
+       (select count(*) from user_progress up
+         where up.user_id in (select user_id from members)
+           and up.completed = 1
+           and date(up.completed_at) >= ${WEEK_START}) as lesson_count,
+       (select count(*) from user_quiz_sessions qs
+         where qs.user_id in (select user_id from members)
+           and date(qs.completed_at) >= ${WEEK_START})
+       + (select count(*) from study_room_quiz_attempts qa
+           where qa.room_id = ?1 and date(qa.created_at) >= ${WEEK_START}) as quiz_count,
+       (select count(*) from study_room_checkins ci
+         where ci.room_id = ?1 and date(ci.day_key) >= ${WEEK_START}) as checkin_count`,
+    roomId
+  );
+
+  const claim = await one<{ c: number }>(
+    db,
+    `select count(*) as c from study_room_reward_claims
+      where room_id = ? and date(week_start) = ${WEEK_START}`,
+    roomId
+  );
+  const reward_claimed = (claim?.c ?? 0) > 0;
+
+  const MISSIONS = [
+    ["lessons", "Học bài cùng nhau", "Cả nhóm hoàn thành bài học trong tuần", "lesson_count", "lesson_target"],
+    ["quizzes", "Quiz nhóm & ôn tập", "Cả nhóm làm quiz tự chọn hoặc thử thách nhóm", "quiz_count", "quiz_target"],
+    ["checkins", "Điểm danh đều đặn", "Mỗi thành viên duy trì thói quen check-in tuần này", "checkin_count", "checkin_target"],
+  ] as const;
+
+  return MISSIONS.map(([mission_key, title, description, cur, tgt]) => {
+    const current_value = c?.[cur] ?? 0;
+    const target_value = c?.[tgt] ?? 3;
+    return {
+      mission_key, title, description, current_value, target_value,
+      completed: current_value >= target_value,
+      streak_weeks: ctx.streak_weeks,
+      is_permanent: Boolean(ctx.is_permanent),
+      reward_claimed,
+      leader_id: ctx.leader_id,
+    };
+  });
+}

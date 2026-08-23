@@ -4,7 +4,26 @@ import { DatabaseSync } from "node:sqlite";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
+  NotAuthenticatedError,
   getChatMessageReactions,
+  getCommunityFeed,
+  getCommunityLearningNow,
+  getCommunityPostComments,
+  getDashboardSummary,
+  getLessonState,
+  getLevelStats,
+  getMySocialGraph,
+  getMyStudyRoom,
+  getNavState,
+  getStudyRoomMembers,
+  getStudyRoomMissionStatus,
+  getStudyRooms,
+  getUserCommunityPosts,
+  searchAccounts,
+  getCommunityContributionLeaderboard,
+  getFriendsLeaderboard,
+  getMyCommunityContributionRank,
+  getMyLeaderboardRank,
   getMyCompetencyLeaderboardRank,
   getMyCompositeRank,
   getMyTrackLeaderboardRank,
@@ -499,5 +518,287 @@ describe.skipIf(!hasLocalData)('nhóm "thứ hạng của tôi"', () => {
     expect(minh.rank).toBe(1);
     expect(minh.value).toBe(top[0].composite);
     expect(minh.learning_xp).toBe(top[0].learning_xp);
+  });
+});
+
+describe.skipIf(!hasLocalData)("đóng góp cộng đồng + hạng theo chỉ số", () => {
+  it("bảng đóng góp không độn người có 0 đóng góp", async () => {
+    const top = await getCommunityContributionLeaderboard(db, 50);
+    for (const r of top) expect(r.value).toBeGreaterThan(0);
+    const v = top.map((r) => r.value);
+    expect([...v].sort((a, b) => b - a)).toEqual(v);
+  });
+
+  it("hạng đóng góp chỉ trả cho chính chủ và khớp bảng", async () => {
+    const top = await getCommunityContributionLeaderboard(db, 1);
+    if (!top.length) return;
+    const u = top[0].user_id;
+    expect(await getMyCommunityContributionRank(db, "nguoi-khac", u)).toEqual([]);
+    const [r] = await getMyCommunityContributionRank(db, u, u);
+    expect(r.rank).toBe(1);
+    expect(r.value).toBe(top[0].value);
+  });
+
+  it("getMyLeaderboardRank: không tìm thấy người → rỗng, nhưng 0 điểm vẫn có hạng", async () => {
+    // Bản gốc trả rỗng khi my_value IS NULL, không phải khi = 0. Nhầm hai điều
+    // kiện này là giấu mất hạng của người mới hoặc hiện hạng cho người không có.
+    expect(await getMyLeaderboardRank(db, "xp", "khong-co-that")).toEqual([]);
+    const khong = (await db
+      .prepare("select user_id from user_stats where coalesce(total_xp,0) = 0 limit 1")
+      .bind().all().then((r) => r.results as { user_id: string }[]))[0];
+    if (khong) {
+      const [r] = await getMyLeaderboardRank(db, "xp", khong.user_id);
+      expect(r?.value).toBe(0);
+      expect(r?.rank).toBeGreaterThan(0);
+    }
+  });
+
+  it("Điểm TB: người chưa đủ 30 bài chấm đứng sau TOÀN BỘ nhóm đủ sàn", async () => {
+    const chuaDu = (await db
+      .prepare(
+        `select us.user_id from user_stats us
+           left join (select user_id, count(*) g from user_progress
+                       where quiz_score is not null group by user_id) x
+             on x.user_id = us.user_id
+          where coalesce(x.g, 0) < 30 and us.avg_quiz_score > 0 limit 1`
+      )
+      .bind().all().then((r) => r.results as { user_id: string }[]))[0];
+    if (!chuaDu) return;
+
+    const [{ c: soDuSan }] = await db
+      .prepare(
+        `select count(*) as c from user_stats us
+           join user_profiles prof on prof.id = us.user_id
+           left join (select user_id, count(*) g from user_progress
+                       where quiz_score is not null group by user_id) x
+             on x.user_id = us.user_id
+          where coalesce(prof.is_disabled,0) = 0 and coalesce(prof.role,'user') <> 'admin'
+            and coalesce(x.g, 0) >= 30`
+      )
+      .bind().all().then((r) => r.results as { c: number }[]);
+
+    const [r] = await getMyLeaderboardRank(db, "avg_score", chuaDu.user_id);
+    expect(r.rank).toBeGreaterThan(soDuSan);
+  });
+
+  it("bảng bạn bè luôn có chính mình, và không lặp", async () => {
+    const ai = (await db.prepare("select id from user_profiles limit 1").bind().all()
+      .then((r) => r.results as { id: string }[]))[0];
+    const bang = await getFriendsLeaderboard(db, ai.id, "xp");
+    const ids = bang.map((r) => r.user_id);
+    expect(ids).toContain(ai.id);
+    expect(new Set(ids).size).toBe(ids.length); // `union` khử trùng
+    expect(await getFriendsLeaderboard(db, "", "xp")).toEqual([]);
+  });
+
+  it("chỉ số badges là biểu thức, kẹp trong 0..5", async () => {
+    const ai = (await db.prepare("select id from user_profiles limit 1").bind().all()
+      .then((r) => r.results as { id: string }[]))[0];
+    for (const r of await getFriendsLeaderboard(db, ai.id, "badges")) {
+      expect(r.value).toBeGreaterThanOrEqual(0);
+      expect(r.value).toBeLessThanOrEqual(5);
+    }
+  });
+});
+
+describe.skipIf(!hasLocalData)("phần còn lại của nhóm A", () => {
+  const AI = async () =>
+    (await db.prepare("select id from user_profiles limit 1").bind().all()
+      .then((r) => r.results as { id: string }[]))[0].id;
+
+  it("hàm cần đăng nhập thì NÉM, không trả object rỗng", async () => {
+    // Bản gốc `raise exception 'Not authenticated'`. Trả object rỗng thay vì
+    // ném là giao diện hiện "bạn chưa có gì" cho người chưa đăng nhập.
+    await expect(getNavState(db, "", "2020-01-01T00:00:00+00:00")).rejects.toThrow(NotAuthenticatedError);
+    await expect(getLessonState(db, "")).rejects.toThrow(NotAuthenticatedError);
+    await expect(getDashboardSummary(db, "")).rejects.toThrow(NotAuthenticatedError);
+  });
+
+  it("hàm phòng học và mạng xã hội trả rỗng khi không có người gọi", async () => {
+    expect(await getMySocialGraph(db, "")).toEqual([]);
+    expect(await getMyStudyRoom(db, "")).toEqual([]);
+    expect(await getStudyRooms(db, "")).toEqual([]);
+    expect(await getStudyRoomMembers(db, "", 1)).toEqual([]);
+    expect(await getStudyRoomMissionStatus(db, "", 1)).toEqual([]);
+    expect(await searchAccounts(db, "", "nguyen")).toEqual([]);
+  });
+
+  it("searchAccounts: dưới 2 ký tự trả rỗng, và không trả về chính mình", async () => {
+    const me = await AI();
+    expect(await searchAccounts(db, me, "a")).toEqual([]);
+    expect(await searchAccounts(db, me, " ")).toEqual([]);
+    for (const r of await searchAccounts(db, me, "nguyen", 20)) expect(r.id).not.toBe(me);
+  });
+
+  it("searchAccounts hạ chữ hai phía nên gõ HOA vẫn khớp (phạm vi ASCII)", async () => {
+    const me = await AI();
+    const thuong = await searchAccounts(db, me, "gmail", 20);
+    const hoa = await searchAccounts(db, me, "GMAIL", 20);
+    expect(hoa.map((r) => r.id)).toEqual(thuong.map((r) => r.id));
+  });
+
+  it("getLevelStats: đủ 9 bậc, tổng số người khớp, top mỗi bậc tối đa 5", async () => {
+    const st = await getLevelStats(db, await AI());
+    expect(st.map((s) => s.level)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const [{ c }] = await db.prepare("select count(*) as c from user_stats").bind().all()
+      .then((r) => r.results as { c: number }[]);
+    for (const s of st) {
+      expect(s.total_users).toBe(c);
+      expect(s.top_users.length).toBeLessThanOrEqual(5);
+    }
+    // Mỗi người rơi vào đúng một bậc, nên tổng user_count phải bằng tổng số.
+    expect(st.reduce((a, s) => a + s.user_count, 0)).toBe(c);
+  });
+
+  it("getLevelStats không có userId thì my_rank là null", async () => {
+    for (const s of await getLevelStats(db)) expect(s.my_rank).toBeNull();
+  });
+
+  it("getLessonState trả bốn mảng, không phải chuỗi JSON", async () => {
+    const s = await getLessonState(db, await AI());
+    expect(Array.isArray(s.completed_lessons)).toBe(true);
+    expect(Array.isArray(s.unlocked_lesson_ids)).toBe(true);
+    expect(Array.isArray(s.user_lesson_flags)).toBe(true);
+    expect(Array.isArray(s.bookmarks)).toBe(true);
+  });
+
+  it("bảng tin: phân trang theo con trỏ, id giảm dần, kẹp trần 50", async () => {
+    const me = await AI();
+    const trang1 = await getCommunityFeed(db, me, 5);
+    const ids = trang1.map((p) => p.id as number);
+    expect([...ids].sort((a, b) => b - a)).toEqual(ids);
+    if (ids.length === 5) {
+      const trang2 = await getCommunityFeed(db, me, 5, ids[4]);
+      for (const p of trang2) expect(p.id as number).toBeLessThan(ids[4]);
+    }
+    expect((await getCommunityFeed(db, me, 9999)).length).toBeLessThanOrEqual(50);
+  });
+
+  it("reaction_summary sắp giảm dần theo số lượt", async () => {
+    // Bản gốc dùng jsonb_agg(... order by emoji_count desc, emoji) trong một
+    // LATERAL. Ở đây tách ra truy vấn thứ hai nên thứ tự phải tự bảo đảm.
+    //
+    // Bản đầu của phép kiểm này lấy 50 bài mới nhất rồi TÌM bài có nhiều emoji.
+    // Nó vô dụng: 12 bài như vậy đều nằm ngoài 50 bài mới nhất, nên nhánh
+    // khẳng định không bao giờ chạy - tôi phát hiện bằng cách bỏ `order by`
+    // trong mã và thấy bộ kiểm vẫn xanh. Giờ đi thẳng tới bài có nhiều emoji.
+    const bai = (await db
+      .prepare(
+        `select post_id from community_post_reactions
+          group by post_id having count(distinct emoji) > 1 limit 1`
+      )
+      .bind().all().then((r) => r.results as { post_id: number }[]))[0];
+    expect(bai, "dữ liệu local phải có bài nhiều emoji, nếu không phép kiểm vô nghĩa").toBeTruthy();
+
+    const tacGia = (await db
+      .prepare("select user_id from community_posts where id = ?")
+      .bind(bai.post_id).all().then((r) => r.results as { user_id: string }[]))[0];
+    const posts = await getUserCommunityPosts(db, await AI(), tacGia.user_id, 50);
+    const p = posts.find((x) => x.id === bai.post_id);
+    expect(p, "bài phải nằm trong kết quả").toBeTruthy();
+
+    const tom = p!.reaction_summary as { emoji: string; count: number }[];
+    expect(tom.length).toBeGreaterThan(1);
+    const counts = tom.map((t) => t.count);
+    expect([...counts].sort((a, b) => b - a)).toEqual(counts);
+  });
+
+  it("WEEK_START là thứ HAI của tuần này, không phải thứ Hai tuần sau", async () => {
+    // Kiểm thẳng biểu thức SQL trên bốn ngày đã biết, không phụ thuộc dữ liệu
+    // người dùng. Bản đầu tôi chỉ kiểm gián tiếp qua các hàm phòng học và
+    // không hàm nào trong đó khẳng định con số tuần - nên đổi biểu thức thành
+    // `date('now','weekday 1')` (thứ Hai TUẦN SAU) mà bộ kiểm vẫn xanh.
+    const mong = {
+      "2026-08-17": "2026-08-17", // thứ Hai → chính nó
+      "2026-08-19": "2026-08-17", // thứ Tư
+      "2026-08-22": "2026-08-17", // thứ Bảy
+      "2026-08-23": "2026-08-17", // Chủ nhật → vẫn là thứ Hai TRƯỚC đó
+    };
+    for (const [ngay, dau] of Object.entries(mong)) {
+      const [{ t }] = await db
+        .prepare(`select date(?, '-6 days', 'weekday 1') as t`)
+        .bind(ngay).all().then((r) => r.results as { t: string }[]);
+      expect(t, ngay).toBe(dau);
+    }
+  });
+
+  it("tiến độ tuần của phòng học khớp phép đếm thô", async () => {
+    // Đây là chỗ WEEK_START thật sự được dùng. Dữ liệu local có 3457 bài hoàn
+    // thành trong tuần này, nên phép so sánh này chạm tới mã thật.
+    // Phải chọn thành viên CÓ học trong tuần này. Bản đầu lấy `limit 1` bất kỳ
+    // và trúng người có 0 bài, nên hai vế đều bằng 0 và phép so sánh không
+    // chạm tới WEEK_START - tôi phát hiện bằng cách phá biểu thức tuần trong mã
+    // và thấy bộ kiểm vẫn xanh.
+    const ai = (await db
+      .prepare(
+        `select m.room_id, m.user_id, count(*) as n
+           from study_room_members m
+           join user_progress up on up.user_id = m.user_id and up.completed = 1
+          where m.left_at is null
+            and date(up.completed_at) >= date('now', '-6 days', 'weekday 1')
+          group by m.room_id, m.user_id
+          order by n desc limit 1`
+      )
+      .bind().all().then((r) => r.results as { room_id: number; user_id: string; n: number }[]))[0];
+    expect(ai, "cần một thành viên có học trong tuần này, nếu không phép kiểm vô nghĩa").toBeTruthy();
+    expect(ai.n).toBeGreaterThan(0);
+    const phong = { room_id: ai.room_id };
+    const thanhVien = { user_id: ai.user_id };
+
+    const ds = await getStudyRoomMembers(db, thanhVien.user_id, phong.room_id);
+    const [{ c }] = await db
+      .prepare(
+        `select count(*) as c from user_progress
+          where user_id = ? and completed = 1
+            and date(completed_at) >= date('now', '-6 days', 'weekday 1')`
+      )
+      .bind(thanhVien.user_id).all().then((r) => r.results as { c: number }[]);
+    const toi = ds.find((m) => m.user_id === thanhVien.user_id);
+    expect(toi!.weekly_lessons).toBe(c);
+  });
+
+  it("bài viết của một người: chỉ của người đó, và bài ẩn không lọt", async () => {
+    const tacGia = (await db
+      .prepare("select user_id from community_posts where coalesce(is_hidden,0)=0 limit 1")
+      .bind().all().then((r) => r.results as { user_id: string }[]))[0];
+    if (!tacGia) return;
+    const bai = await getUserCommunityPosts(db, await AI(), tacGia.user_id, 50);
+    for (const p of bai) expect(p.user_id).toBe(tacGia.user_id);
+
+    const [{ c }] = await db
+      .prepare("select count(*) as c from community_posts where user_id = ? and coalesce(is_hidden,0)=1")
+      .bind(tacGia.user_id).all().then((r) => r.results as { c: number }[]);
+    if (c > 0) {
+      const idsAn = (await db
+        .prepare("select id from community_posts where user_id = ? and coalesce(is_hidden,0)=1")
+        .bind(tacGia.user_id).all().then((r) => r.results as { id: number }[])).map((x) => x.id);
+      for (const p of bai) expect(idsAn).not.toContain(p.id);
+    }
+  });
+
+  it("bình luận: sắp tăng dần theo thời gian, kẹp trần 100", async () => {
+    const baiCoBinhLuan = (await db
+      .prepare("select post_id from community_post_comments limit 1")
+      .bind().all().then((r) => r.results as { post_id: number }[]))[0];
+    if (!baiCoBinhLuan) return;
+    const bl = await getCommunityPostComments(db, baiCoBinhLuan.post_id, 9999);
+    expect(bl.length).toBeLessThanOrEqual(100);
+    const t = bl.map((x) => String(x.created_at));
+    expect([...t].sort()).toEqual(t);
+  });
+
+  it("đang học: tôn trọng p_days, không có ai nghỉ quá lâu", async () => {
+    const ds = await getCommunityLearningNow(db, 24, 7);
+    expect(ds.length).toBeLessThanOrEqual(24);
+    for (const r of ds) expect(r.current_streak as number).toBeGreaterThan(0);
+    // Nới p_days ra thì danh sách không được ngắn đi.
+    const rong = await getCommunityLearningNow(db, 24, 365);
+    expect(rong.length).toBeGreaterThanOrEqual(ds.length);
+  });
+
+  it("getStudyRooms chỉ hiện phòng còn chỗ", async () => {
+    for (const r of await getStudyRooms(db, await AI())) {
+      expect(r.member_count as number).toBeLessThan(r.max_members as number);
+    }
   });
 });

@@ -57912,199 +57912,181 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1010,
-    "slug": "operating-leverage",
-    "title": "Operating Leverage",
-    "subtitle": "SaaS vs Airlines - fixed costs và margin expansion",
-    "duration": "6 phút",
+    "title": "Chi phí cố định và chi phí theo lượng dùng",
+    "subtitle": "Vì sao hai hệ thống cùng doanh thu lại phản ứng ngược nhau khi tải tăng",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
     "emoji": "📈",
-    "openingQuestion": "Vì sao SaaS có thể tăng lợi nhuận nhanh hơn hãng hàng không khi doanh thu tăng?",
+    "whyItMatters": "Tỷ lệ giữa chi phí cố định và chi phí theo lượng dùng quyết định hệ thống của bạn tốt lên hay xấu đi khi lớn, và nó được ấn định gần như hoàn toàn ở giai đoạn thiết kế.",
+    "openingQuestion": "Lượng người dùng tăng gấp đôi. Chi phí mỗi người dùng đổi thế nào?",
     "openingOptions": [
-      "Vì SaaS không có chi phí",
-      "Vì fixed cost cao tạo operating leverage",
-      "Vì vé máy bay thì rẻ hơn phần mềm nhiều lần",
-      "Vì SaaS không cần khách hàng"
+      "Tuỳ tỷ lệ giữa phần cố định và phần theo lượng dùng",
+      "Giảm một nửa",
+      "Không đổi, vì mỗi người dùng thêm vào đều tiêu thụ đúng lượng tài nguyên như người trước",
+      "Tăng lên, vì hệ thống lớn hơn thì chi phí phối hợp và vận hành cũng tăng theo quy mô"
     ],
-    "correctOption": 1,
-    "explanation": "Khi chi phí cố định lớn, mỗi đồng doanh thu tăng thêm sẽ rơi xuống lợi nhuận nhanh hơn, đó là operating leverage. Điều này hoạt động theo cả hai chiều: doanh thu tăng thì lợi nhuận tăng nhanh, nhưng doanh thu giảm thì lợi nhuận cũng giảm nhanh không kém.",
+    "correctOption": 0,
+    "explanation": "Một hệ thống toàn chi phí cố định thì chi phí mỗi người dùng giảm một nửa khi số người tăng gấp đôi. Một hệ thống mà mỗi yêu cầu đều gọi một dịch vụ tính tiền theo lần thì chi phí mỗi người dùng không đổi chút nào, dù có bao nhiêu người. Phần lớn hệ thống nằm ở giữa, và vị trí ấy quyết định quy mô là lợi thế hay không.",
     "diagram": [
       {
-        "label": "Fixed costs",
+        "label": "Chi phí cố định: trả dù có ai dùng hay không",
         "arrow": true
       },
       {
-        "label": "Doanh thu tăng",
+        "label": "Chi phí theo lượng: nhân với số lần dùng",
         "arrow": true
       },
       {
-        "label": "Biên lợi nhuận mở rộng",
+        "label": "Tỷ lệ giữa hai phần quyết định hình dạng",
         "arrow": true
       },
       {
-        "label": "Operating leverage",
-        "arrow": false
+        "label": "Quy mô là lợi thế, hoặc không phải"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Cùng giảm 20% doanh thu, hai kết cục",
-      "description": "Doanh nghiệp A có 80% chi phí là cố định; doanh nghiệp B có 80% chi phí là biến đổi. Cả hai cùng có doanh thu 100 và tổng chi phí 90, tức lãi 10. Khi doanh thu giảm 20% xuống còn 80: A chỉ tiết kiệm được phần chi phí biến đổi giảm theo, chi phí còn khoảng 86, nên lỗ 6. B có chi phí giảm gần theo tỷ lệ doanh thu, còn khoảng 76, nên vẫn lãi 4. Cùng một cú sốc doanh thu, một bên lỗ và một bên vẫn có lãi - khác biệt hoàn toàn nằm ở cơ cấu chi phí chứ không ở chất lượng quản trị."
-    },
-    "quiz": [
-      {
-        "question": "Operating leverage cao thường làm điều gì?",
-        "options": [
-          "Lợi nhuận nhạy hơn với doanh thu",
-          "Biên lợi nhuận gộp luôn chuyển sang âm",
-          "Doanh thu giảm ngay trong kỳ đầu tiên",
-          "Nợ vay giảm dần theo thời gian"
-        ],
-        "correct": 0,
-        "explanation": "Doanh thu tăng một chút có thể kéo lợi nhuận tăng rất mạnh nếu fixed costs đã được hấp thụ."
-      },
-      {
-        "question": "Trong một cuộc suy thoái khiến doanh thu giảm mạnh, doanh nghiệp nào chịu tổn thương lợi nhuận nặng hơn: SaaS (fixed cost cao) hay công ty gia công theo đơn hàng (variable cost cao)?",
-        "options": [
-          "SaaS, vì chi phí cố định vẫn phải trả khi doanh thu giảm",
-          "Không bên nào bị ảnh hưởng vì suy thoái chỉ tác động lên giá cổ phiếu",
-          "Công ty gia công, vì chi phí biến đổi rất khó cắt giảm nhanh",
-          "Cả hai chịu tổn thương như nhau vì cùng mất doanh thu"
-        ],
-        "correct": 0,
-        "explanation": "Operating leverage cao là con dao hai lưỡi: nó khuếch đại lợi nhuận khi doanh thu tăng nhưng cũng khuếch đại lỗ khi doanh thu giảm, vì chi phí cố định vẫn phải trả bất kể doanh thu ra sao - đây là lý do cổ phiếu SaaS thường biến động mạnh hơn trong suy thoái."
-      },
-      {
-        "question": "Doanh nghiệp có DOL bằng 3. Doanh thu giảm 10% thì lợi nhuận hoạt động thay đổi ra sao?",
-        "options": [
-          "Giảm khoảng 30% (= 10% doanh thu × DOL 3)",
-          "Giảm khoảng 10%, vì lợi nhuận biến động cùng tỷ lệ doanh thu",
-          "Không đổi, vì chi phí cố định không phụ thuộc vào doanh thu",
-          "Giảm khoảng 3,3% (= 10% ÷ 3, chia nhầm)"
-        ],
-        "correct": 0,
-        "explanation": "Chi phí cố định không giảm theo doanh thu, nên phần doanh thu mất đi trừ thẳng vào lợi nhuận. Đó là lý do khuếch đại xảy ra mạnh nhất đúng lúc doanh nghiệp cần đệm nhất."
-      },
-      {
-        "question": "Tổ hợp nào rủi ro nhất?",
-        "options": [
-          "Đòn bẩy hoạt động cao + doanh thu chu kỳ + nợ vay lớn",
-          "Đòn bẩy hoạt động cao + doanh thu ổn định + không có nợ vay",
-          "Chi phí biến đổi cao + doanh thu ổn định + nợ vay rất lớn",
-          "Chi phí biến đổi cao + doanh thu chu kỳ + nợ vay lớn"
-        ],
-        "correct": 0,
-        "explanation": "Ba yếu tố này khuếch đại lẫn nhau: doanh thu sụt kéo lợi nhuận sụt mạnh hơn nhiều, trong khi nghĩa vụ trả lãi vẫn giữ nguyên. Đây là công thức dẫn tới kiệt quệ tài chính trong suy thoái."
-      },
-      {
-        "question": "Vì sao doanh nghiệp có đòn bẩy vận hành cao thường được khuyên nên hạn chế vay nợ?",
-        "options": [
-          "Vì hai loại đòn bẩy cộng dồn, làm lợi nhuận biến động rất mạnh khi doanh thu hụt",
-          "Vì ngân hàng thường từ chối cho vay các doanh nghiệp có chi phí cố định lớn",
-          "Vì chi phí cố định cao khiến doanh nghiệp không được khấu trừ thuế cho lãi vay",
-          "Vì đòn bẩy vận hành cao đồng nghĩa với việc doanh nghiệp đã hết dư địa tăng trưởng"
-        ],
-        "correct": 0,
-        "explanation": "Chi phí cố định vận hành khuếch đại cú sốc doanh thu thành cú sốc EBIT, rồi lãi vay khuếch đại tiếp cú sốc EBIT thành cú sốc lợi nhuận ròng. Chồng hai tầng lên nhau thì một đợt doanh thu hụt vừa phải cũng đủ đẩy doanh nghiệp tới ngưỡng mất khả năng trả nợ."
-      }
-    ],
-    "keyTakeaways": [
-      "Fixed costs lớn làm lãi/lỗ nhạy hơn với doanh thu",
-      "Operating leverage cao vừa là cơ hội vừa là rủi ro",
-      "Cần đọc cùng chu kỳ doanh thu"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Fixed costs lớn làm lãi/lỗ nhạy hơn với doanh thu",
-      "commonMistake": "Dễ bỏ qua: operating leverage cao vừa là cơ hội vừa là rủi ro",
-      "action": "Cần đọc cùng chu kỳ doanh thu"
+      "company": "Tính năng càng thành công càng lỗ",
+      "description": "Một tính năng gọi một dịch vụ mô hình ngôn ngữ bên ngoài ở mỗi lần người dùng bấm, giá tính theo lần gọi. Tính năng được ưa chuộng và lượng dùng tăng gấp mười trong ba tháng. Chi phí cũng tăng gấp mười, đúng tuyến tính, trong khi doanh thu không đổi vì tính năng nằm trong gói thuê bao cố định. Không có mức quy mô nào cứu được nó, vì nó không có phần cố định để chia ra."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Vì sao một công ty phần mềm SaaS có thể tăng lợi nhuận nhanh hơn nhiều so với hãng hàng không, dù cả hai đều tăng doanh thu cùng một tỷ lệ phần trăm?"
+        "text": "Phần mềm nổi tiếng là có chi phí cố định cao và chi phí thêm một người dùng gần bằng không. Điều đó từng đúng gần như tuyệt đối, và ngày càng ít đúng hơn."
       },
       {
         "type": "heading",
-        "text": "Chi phí cố định là chìa khóa của operating leverage"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi chi phí cố định (fixed costs) chiếm tỷ trọng lớn trong cơ cấu chi phí, mỗi đồng doanh thu tăng thêm sẽ 'rơi xuống' lợi nhuận nhanh hơn nhiều - vì phần lớn chi phí đã được hấp thụ, không tăng theo doanh thu. Nhưng operating leverage là con dao hai lưỡi: nó khuếch đại cả lợi nhuận khi doanh thu tăng lẫn khoản lỗ khi doanh thu giảm, vì chi phí cố định vẫn phải trả bất kể kết quả kinh doanh."
+        "text": "Hai loại chi phí"
       },
       {
         "type": "list",
         "items": [
-          "Operating leverage cao làm lợi nhuận nhạy hơn nhiều với biến động doanh thu, theo cả hai chiều",
-          "SaaS (fixed cost cao) thường chịu tổn thương lợi nhuận nặng hơn trong suy thoái so với doanh nghiệp variable cost cao",
-          "Cần đọc operating leverage cùng chu kỳ doanh thu của ngành, không đọc riêng lẻ"
+          "Cố định: máy chủ chạy suốt, công sức dựng ban đầu, người vận hành. Không đổi theo lượng dùng",
+          "Theo lượng dùng: lời gọi dịch vụ ngoài tính theo lần, truyền dữ liệu, lưu trữ tăng theo người dùng"
         ]
       },
       {
-        "type": "formula",
-        "title": "Đo mức độ đòn bẩy hoạt động",
-        "equation": "DOL = % thay đổi lợi nhuận hoạt động ÷ % thay đổi doanh thu",
-        "variables": [
-          {
-            "symbol": "DOL",
-            "name": "Degree of operating leverage",
-            "description": "DOL bằng 3 nghĩa là doanh thu tăng 1% thì lợi nhuận hoạt động tăng khoảng 3% - và giảm 1% thì lợi nhuận giảm khoảng 3%."
-          }
-        ],
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "Doanh thu +10% → lợi nhuận hoạt động +32%",
-          "result": "DOL ≈ 3,2",
-          "explanation": "Mức khuếch đại này rất hấp dẫn trong giai đoạn tăng trưởng, nhưng chính nó cũng khiến lợi nhuận bốc hơi nhanh khi doanh thu quay đầu. DOL cao nghĩa là biên độ dao động lợi nhuận lớn ở cả hai chiều."
-        }
+        "type": "paragraph",
+        "text": "Điều quan trọng là loại thứ hai đang lớn dần trong nhiều hệ thống hiện đại, chủ yếu vì các dịch vụ tính theo lần gọi ngày càng phổ biến. Một hệ thống thuần chi phí cố định càng đông càng rẻ trên mỗi người; một hệ thống thuần chi phí theo lượng thì đông hay vắng cũng như nhau, và mọi lợi thế của quy mô biến mất."
+      },
+      {
+        "type": "heading",
+        "text": "Hệ quả với hình dạng doanh thu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Vấn đề chỉ thật sự nghiêm trọng khi hai bên lệch nhau. Nếu người dùng trả theo lượng dùng và bạn cũng trả theo lượng dùng thì hai vế đi cùng nhau và quy mô là trung tính. Nếu người dùng trả một khoản cố định hằng tháng trong khi chi phí của bạn tăng theo mỗi lần họ bấm thì người dùng càng tích cực bạn càng lỗ - và đó là loại thất bại đau nhất, vì nó trông giống hệt thành công cho tới lúc muộn."
+      },
+      {
+        "type": "callout",
+        "label": "Tỷ lệ này được ấn định lúc thiết kế",
+        "text": "Quyết định gọi một dịch vụ ngoài tính theo lần thay vì chạy một thứ tự dựng là quyết định chuyển chi phí từ cột cố định sang cột theo lượng. Nó gần như luôn đúng ở giai đoạn đầu, vì phần cố định đắt và lượng dùng còn nhỏ. Nó gần như luôn cần xem lại khi lượng dùng lớn lên, và điểm đảo chiều thì tính được từ trước chứ không cần chờ hoá đơn nhắc."
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Chi phí cố định cao",
-          "text": "Phần mềm, viễn thông, hàng không, xi măng. Điểm hòa vốn cao, nhưng vượt qua rồi thì mỗi đồng doanh thu thêm gần như chảy thẳng xuống lợi nhuận. Rủi ro tập trung ở giai đoạn doanh thu sụt."
+          "label": "Nghiêng về cố định",
+          "text": "Đắt lúc đầu, rẻ dần trên mỗi người dùng. Quy mô là lợi thế, và đối thủ nhỏ hơn khó đuổi kịp về chi phí."
         },
         "right": {
-          "label": "Chi phí biến đổi cao",
-          "text": "Thương mại, phân phối, gia công. Biên lợi nhuận mỏng nhưng ổn định hơn qua chu kỳ, vì chi phí co lại cùng doanh thu. Ít khi lãi đột biến, cũng ít khi lỗ nặng."
+          "label": "Nghiêng về theo lượng",
+          "text": "Rẻ lúc đầu, không rẻ đi bao giờ. Vào thị trường dễ, và không có mức quy mô nào tạo ra lợi thế."
         }
-      },
-      {
-        "type": "heading",
-        "text": "Đọc đòn bẩy hoạt động cùng ba yếu tố khác"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tính ổn định của doanh thu: đòn bẩy cao cộng doanh thu chu kỳ là tổ hợp rủi ro nhất.",
-          "Đòn bẩy tài chính: doanh nghiệp vừa có chi phí cố định cao vừa vay nhiều thì hai lớp khuếch đại chồng lên nhau.",
-          "Vị trí so với điểm hòa vốn: doanh thu vừa trên điểm hòa vốn thì chỉ cần sụt nhẹ đã lỗ; doanh thu gấp đôi điểm hòa vốn có đệm dày hơn nhiều."
-        ]
       },
       {
         "type": "closing",
         "lines": [
-          "Chi phí cố định lớn không tự động là tốt hay xấu.",
-          "Nó khuếch đại bất kỳ điều gì xảy ra với doanh thu - cả tốt lẫn xấu."
+          "Chi phí cố định cao là thứ biến quy mô thành lợi thế; không có nó thì đông cũng như vắng.",
+          "Thất bại đau nhất là khi người dùng trả cố định còn bạn trả theo lượng."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Hệ thống nào có chi phí mỗi người dùng giảm khi số người tăng?",
+        "options": [
+          "Hệ thống có phần cố định chiếm tỷ trọng lớn",
+          "Hệ thống có nhiều người dùng hoạt động",
+          "Hệ thống chạy trên hạ tầng thuê theo nhu cầu nên chi phí luôn khớp với lượng dùng thật",
+          "Hệ thống đã tối ưu để mỗi yêu cầu tiêu thụ ít tài nguyên hơn so với trước khi tối ưu"
+        ],
+        "correct": 0,
+        "explanation": "Phần cố định được chia cho nhiều người hơn nên nó nhỏ dần trên mỗi người. Phần theo lượng thì nhân lên chứ không chia ra, nên nó giữ nguyên trên mỗi người bất kể có bao nhiêu người dùng."
+      },
+      {
+        "question": "Vì sao 'trả theo lần gọi' làm mất lợi thế quy mô?",
+        "options": [
+          "Vì nó nhân lên theo lượng dùng chứ không chia ra",
+          "Vì đơn giá của dịch vụ ngoài thường cao hơn chi phí tự chạy",
+          "Vì nhà cung cấp có thể thay đổi giá bất cứ lúc nào nên chi phí khó dự đoán được dài hạn",
+          "Vì mức chiết khấu theo lượng của các dịch vụ ngoài thường không đủ bù cho mức tăng dùng"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều làm tình hình xấu thêm nhưng đều là chuyện đơn giá. Điểm cốt lõi là hình dạng của phép tính: một khoản nhân với lượng dùng thì không bao giờ nhỏ đi trên mỗi đơn vị, dù đơn giá có tốt tới đâu."
+      },
+      {
+        "question": "Trường hợp nào nguy hiểm nhất?",
+        "options": [
+          "Người dùng trả cố định, chi phí tăng theo mỗi lần họ bấm",
+          "Người dùng trả theo lượng, chi phí cũng theo lượng",
+          "Người dùng trả cố định trong khi chi phí của hệ thống cũng gần như hoàn toàn cố định",
+          "Người dùng trả theo lượng trong khi phần lớn chi phí của hệ thống là chi phí cố định"
+        ],
+        "correct": 0,
+        "explanation": "Ba trường hợp kia đều trung tính hoặc có lợi khi quy mô tăng. Trường hợp đầu thì càng thành công càng lỗ, và nó nguy hiểm hơn cả vì mọi chỉ số về mức độ sử dụng đều đang báo tin tốt trong lúc đó."
+      },
+      {
+        "question": "Quyết định gọi dịch vụ ngoài thay vì tự chạy có nghĩa là gì về mặt chi phí?",
+        "options": [
+          "Chuyển chi phí từ cột cố định sang cột theo lượng dùng",
+          "Giảm tổng chi phí trong giai đoạn đầu",
+          "Đánh đổi mức kiểm soát về chất lượng lấy tốc độ đưa tính năng ra thị trường nhanh hơn",
+          "Chuyển rủi ro vận hành sang nhà cung cấp và giữ lại cho đội phần phát triển tính năng"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách đọc kia đều đúng và đều được nói tới khi ra quyết định. Cách đọc đầu ít khi được nói và là cách duy nhất dự báo được điều gì xảy ra ở quy mô gấp mười, vì nó nói về hình dạng chứ không về mức."
+      },
+      {
+        "question": "Khi nào nên xem lại quyết định dùng dịch vụ tính theo lần gọi?",
+        "options": [
+          "Khi lượng dùng đủ lớn để phần cố định của bản tự chạy rẻ hơn",
+          "Khi hoá đơn vượt một ngưỡng đã đặt trước",
+          "Khi nhà cung cấp thông báo về việc điều chỉnh chính sách giá hoặc điều khoản dịch vụ",
+          "Khi đội đã có đủ người và đủ chuyên môn để tự vận hành thứ tương đương trong nội bộ"
+        ],
+        "correct": 0,
+        "explanation": "Điểm đảo chiều ấy tính được ngay từ đầu bằng cách so chi phí cố định của bản tự chạy với đơn giá nhân lượng dùng. Chờ hoá đơn vượt ngưỡng thì đã trả thừa suốt khoảng từ điểm đảo chiều tới lúc ngưỡng kêu."
+      }
+    ],
+    "keyTakeaways": [
+      "Phần cố định chia ra khi lớn lên; phần theo lượng thì nhân lên",
+      "Không có phần cố định thì đông cũng như vắng, quy mô không tạo lợi thế",
+      "Nguy hiểm nhất là người dùng trả cố định còn chi phí tăng theo mỗi lần bấm",
+      "Điểm đảo chiều tính được từ đầu, không cần chờ hoá đơn nhắc"
+    ],
     "practicePrompt": {
-      "question": "Đòn bẩy vận hành (Operating Leverage) cao ở các công ty công nghệ SaaS mang lại ưu thế tài chính nào khi doanh thu tăng trưởng?",
+      "question": "Cố định 10.000 đô/tháng, theo lượng 0,01 đô/yêu cầu. Ở 1 triệu và 10 triệu yêu cầu, chi phí mỗi nghìn yêu cầu là bao nhiêu?",
       "options": [
-        "Định phí cao nên EBIT Margin mở rộng rất nhanh",
-        "Giảm thiểu hoàn toàn rủi ro cạnh tranh trên thị trường",
-        "Giúp doanh nghiệp không bao giờ phải nộp thuế TNDN",
-        "Giảm nhu cầu tuyển dụng nhân sự bán hàng"
+        "20 đô rồi 11 đô",
+        "10 đô ở cả hai mức",
+        "20 đô rồi 2 đô (= chỉ chia phần cố định cho lượng mới, quên cộng phần theo lượng)",
+        "30 đô rồi 21 đô (= cộng nhầm phần cố định vào hai lần trong cả hai phép tính)"
       ],
       "correct": 0,
-      "explanation": "Công ty có Operating Leverage cao có tỷ trọng chi phí cố định lớn. Khi vượt qua điểm hòa vốn, mỗi đồng doanh thu tăng thêm sẽ đóng góp gần như trọn vẹn vào lợi nhuận hoạt động (Margin Expansion)."
+      "explanation": "Ở 1 triệu: 10.000 cố định cộng 10.000 theo lượng, chia cho 1.000 nghìn ra 20 đô. Ở 10 triệu: 10.000 cộng 100.000, chia cho 10.000 nghìn ra 11 đô. Chi phí giảm gần một nửa nhưng nó tiến dần tới 10 đô chứ không xuống thấp hơn - đó là sàn do phần theo lượng đặt ra."
+    },
+    "summary": {
+      "keyIdea": "Tỷ lệ giữa phần cố định và phần theo lượng quyết định quy mô có phải lợi thế không",
+      "commonMistake": "Giả định phần mềm nào cũng rẻ dần khi đông người dùng",
+      "action": "Tách hoá đơn của một tính năng thành phần cố định và phần theo lượng dùng."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Operating Leverage",
-      "message": "Đòn bẩy vận hành (Operating Leverage) cao ở các công ty công nghệ SaaS mang lại ưu thế tài chính nào khi doanh thu tăng trưởng?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Hai câu cho một tính năng mới",
+      "message": "Phần chi phí nào không đổi dù có bao nhiêu người dùng? Người dùng trả theo cách nào so với cách bạn trả?",
+      "secondary": "Nếu hai vế của câu thứ hai lệch nhau, hãy tính trước xem ở mức quy mô nào thì nó thành vấn đề."
+    },
+    "id": 1010,
+    "slug": "operating-leverage",
+    "track": "bonus"
   },
   {
     "title": "Chia chi phí và công cho dịch vụ dùng chung",

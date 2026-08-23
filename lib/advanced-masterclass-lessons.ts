@@ -568,221 +568,221 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
     track: "bonus",
   },
   {
-    id: 804,
-    slug: "quan-tri-rui-ro-dinh-luong-var-black-swan",
-    interactiveType: "risk",
-    title: "Chuyên Đề Masterclass 4: Quản Trị Rủi Ro Định Lượng - Chỉ Số VaR & Giả Lập Kịch Bản Thiên Nga Đen",
-    subtitle: "VaR, Expected Shortfall, backtesting và stress testing - và giới hạn nguy hiểm của mọi mô hình rủi ro.",
-    whyItMatters:
-      "VaR là con số rủi ro được dùng nhiều nhất trong ngành tài chính, và cũng là con số bị hiểu sai nhiều nhất. Hiểu đúng nó nói gì - và đặc biệt là nó KHÔNG nói gì - là ranh giới giữa quản trị rủi ro thật và cảm giác an toàn giả tạo.",
-    duration: "14 phút",
-    difficulty: "Khó",
-    emoji: "🦢",
-    openingQuestion: "Một danh mục đầu tư 10 tỷ VNĐ có 'Daily VaR 95% = 200 triệu VNĐ'. Con số này có ý nghĩa gì?",
-    openingOptions: [
-      "Tỷ suất lợi nhuận kỳ vọng là 95%/năm",
-      "Danh mục chắc chắn mất đúng 200 triệu VNĐ mỗi ngày",
-      "Trong 95% số ngày, lỗ không vượt quá 200 triệu",
-      "Có 5% khả năng danh mục lãi 200 triệu VNĐ",
+    "title": "Chuyên Đề Masterclass 4: Định lượng rủi ro hệ thống",
+    "subtitle": "Phân vị nói được gì, và vì sao thứ giết bạn luôn nằm ngoài phần đã đo",
+    "duration": "12 phút",
+    "difficulty": "Khó",
+    "emoji": "📊",
+    "interactiveType": "risk",
+    "whyItMatters": "Định lượng rủi ro cho ra những con số trông rất chắc chắn, và chính vẻ chắc chắn ấy là nguy hiểm lớn nhất của chúng nếu người đọc không biết chúng im lặng về điều gì.",
+    "openingQuestion": "Phân vị 99 của độ trễ là 800ms. Câu nào đúng?",
+    "openingOptions": [
+      "1% số yêu cầu chậm hơn 800ms, không biết chậm hơn bao nhiêu",
+      "Không yêu cầu nào chậm quá 800ms",
+      "Trung bình của 1% chậm nhất là khoảng 800ms, tính trên toàn bộ khoảng thời gian đo",
+      "99% người dùng có trải nghiệm tốt vì họ luôn nhận được phản hồi dưới ngưỡng 800ms"
     ],
-    correctOption: 2,
-    explanation:
-      "VaR là một ngưỡng gắn với xác suất, không phải một dự báo. Cách đọc chuẩn: khoảng 1 trong 20 ngày giao dịch, danh mục sẽ lỗ nhiều hơn 200 triệu. Với 250 ngày giao dịch một năm, đó là khoảng 12-13 ngày vượt ngưỡng mỗi năm - và đó là điều bình thường, không phải dấu hiệu mô hình sai.",
-    diagram: [
-      { label: "Phân phối lợi suất", arrow: true },
-      { label: "Chọn mức tin cậy 95%", arrow: true },
-      { label: "VaR = ngưỡng lỗ tại đó", arrow: true },
-      { label: "Phần đuôi còn lại: Expected Shortfall" },
+    "correctOption": 0,
+    "explanation": "Phân vị là một ranh giới, không phải một trần. Nó nói có bao nhiêu phần trăm nằm bên kia, và tuyệt đối im lặng về việc bên kia xa tới đâu - một phần trăm ấy có thể là 900ms hoặc 90 giây. Phương án nói 99% người dùng ổn cũng sai theo một cách khác: một người gửi trăm yêu cầu gần như chắc chắn gặp phần đuôi.",
+    "diagram": [
+      {
+        "label": "Đo phân phối của thứ quan sát được",
+        "arrow": true
+      },
+      {
+        "label": "Phân vị chia nó thành hai phần",
+        "arrow": true
+      },
+      {
+        "label": "Phần bên kia không được mô tả",
+        "arrow": true
+      },
+      {
+        "label": "Và phần chưa từng xảy ra thì không có mặt"
+      }
     ],
-    realWorldExample: {
-      company: "Bài học từ khủng hoảng 2008",
-      description:
-        "Trước 2008, mô hình VaR của nhiều ngân hàng lớn báo rủi ro ở mức thấp, vì chúng được hiệu chuẩn trên dữ liệu của những năm thị trường yên ả và giả định giá nhà toàn nước Mỹ không thể cùng giảm một lúc. Khi điều đó xảy ra, tương quan giữa các tài sản vọt lên gần 1 và mọi ước lượng đa dạng hoá sụp đổ cùng lúc. Bản thân công thức không sai - dữ liệu quá khứ đơn giản chưa từng chứa kịch bản đó.",
+    "realWorldExample": {
+      "company": "Ngân sách lỗi đủ cho mọi tháng trừ tháng thứ mười ba",
+      "description": "Một đội theo dõi ngân sách lỗi suốt một năm và chưa tháng nào tiêu quá sáu mươi phần trăm. Họ kết luận hệ thống có dư an toàn và giảm mức dự phòng. Tháng thứ mười ba có một sự cố kéo dài chín giờ, tiêu hết ngân sách của cả quý trong một lần. Mười hai tháng dữ liệu không hề sai - chúng chỉ chưa từng chứa một sự kiện thuộc loại ấy, nên chúng không nói gì được về nó."
     },
-    application: {
-      title: "Hai câu hỏi cho mỗi con số VaR",
-      message: "Lần tới gặp một báo cáo rủi ro, hỏi Expected Shortfall là bao nhiêu, và năm qua backtest vượt ngưỡng mấy lần. Ở mức tin cậy 99%, khoảng bốn lần vượt trong 250 ngày giao dịch nằm trong dung sai; mười lần thì mô hình đang sai chứ không phải thị trường đang lạ.",
-      secondary: "Nếu người trình bày không trả lời được hai câu đó, con số họ đưa chưa phải một phát biểu về rủi ro - nó mới chỉ là đầu ra của một mô hình.",
-    },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Trong cuộc họp rủi ro, ai đó nói 'VaR của chúng ta là 200 triệu, vẫn trong hạn mức'. Câu hỏi cần đặt ngay sau đó là: 'và trong những ngày vượt ngưỡng, chúng ta mất bao nhiêu?'. Rất nhiều tổ chức đã sụp đổ vì không ai hỏi câu thứ hai.",
-      },
-      { type: "heading", text: "1. Đọc một con số VaR cho đúng" },
-      {
-        type: "paragraph",
-        text: "Một phát biểu VaR đầy đủ luôn có ba thành phần: khoảng thời gian (1 ngày, 10 ngày), mức tin cậy (95%, 99%) và số tiền. Thiếu bất kỳ thành phần nào thì con số vô nghĩa. 'VaR 1 ngày ở mức 95% là 200 triệu' nghĩa là: trong điều kiện thị trường tương tự những gì mô hình đã học, khoảng 5% số ngày sẽ lỗ vượt 200 triệu.",
+        "type": "lead",
+        "text": "Bài này về hai thứ: đọc đúng những con số phân vị, và biết chính xác chúng im lặng về điều gì. Phần thứ hai quan trọng hơn."
       },
       {
-        type: "callout",
-        label: "Hai con số VaR không so hơn kém được",
-        text: "Cùng một danh mục, VaR luôn TĂNG khi mức tin cậy tăng - cắt sâu hơn vào đuôi thì ngưỡng phải lớn hơn. Nên 'VaR 95% = 3 tỷ' và 'VaR 99% = 5 tỷ' là hai điểm nhất quán trên cùng một phân phối, không phải hai mức rủi ro để đem so.",
+        "type": "heading",
+        "text": "Phân vị là ranh giới, không phải trần"
       },
-      { type: "heading", text: "2. Ba cách tính, ba tập giả định" },
       {
-        type: "conceptTable",
-        title: "Phương pháp tính VaR",
-        subtitle: "Cùng một danh mục có thể ra ba con số khác nhau - biết vì sao khác là phần quan trọng",
-        concepts: [
+        "type": "paragraph",
+        "text": "Nói phân vị 99 là 800ms tức là một phần trăm số yêu cầu chậm hơn thế. Nó không nói một phần trăm ấy chậm hơn bao nhiêu, và khoảng cách giữa 900ms với 90 giây là toàn bộ khác biệt giữa một hệ thống chậm và một hệ thống treo. Muốn biết thì phải nhìn giá trị lớn nhất, hoặc phân vị 99,9 đặt cạnh phân vị 99."
+      },
+      {
+        "type": "heading",
+        "text": "Người dùng gặp phần đuôi nhiều hơn con số gợi ý"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một phần trăm nghe nhỏ cho tới khi tính theo phiên làm việc. Một người mở ứng dụng và tạo ra một trăm yêu cầu thì xác suất họ gặp ít nhất một yêu cầu chậm là khoảng sáu mươi ba phần trăm. Phân vị đo trên yêu cầu, còn người dùng thì trải nghiệm theo phiên, và hai đơn vị ấy cách nhau rất xa."
+      },
+      {
+        "type": "formula",
+        "title": "Ba con số nên đứng cạnh nhau",
+        "variables": [
           {
-            vi: "Mô phỏng lịch sử",
-            en: "Historical Simulation",
-            def: "Áp lại đúng các biến động đã xảy ra trong quá khứ lên danh mục hiện tại. Không giả định hình dạng phân phối, nhưng chỉ biết những gì đã từng xảy ra.",
+            "symbol": "p50",
+            "name": "Trung vị: trải nghiệm của người dùng điển hình",
+            "description": "Con số dùng để trả lời hệ thống nhanh hay chậm. Nó không nói gì về ngày xấu."
           },
           {
-            vi: "Tham số",
-            en: "Parametric / Variance-Covariance",
-            def: "Giả định lợi suất phân phối chuẩn, tính từ độ lệch chuẩn và tương quan. Nhanh và gọn, nhưng phân phối chuẩn đánh giá thấp nghiêm trọng xác suất các cú sốc lớn.",
+            "symbol": "p99",
+            "name": "Ranh giới của phần chậm",
+            "description": "Con số dùng để đặt cam kết. Đứng một mình thì nó tạo cảm giác an toàn giả."
           },
           {
-            vi: "Mô phỏng Monte Carlo",
-            en: "Monte Carlo Simulation",
-            def: "Sinh hàng chục nghìn kịch bản ngẫu nhiên theo mô hình đã chọn. Linh hoạt nhất, nhưng kết quả chỉ tốt bằng đúng mô hình bạn đưa vào.",
+            "symbol": "max",
+            "name": "Giá trị tệ nhất đã quan sát được",
+            "description": "Con số duy nhất mô tả phần đuôi. Nó nhiễu và đó là lý do người ta bỏ nó, nhưng bỏ nó là bỏ thứ duy nhất nói về ngày xấu."
           },
-        ],
+          {
+            "symbol": "n",
+            "name": "Số yêu cầu mỗi phiên người dùng",
+            "description": "Thứ chuyển một tỷ lệ trên yêu cầu thành một tỷ lệ trên người. Không có nó thì mọi phân vị đều bị đọc lạc quan hơn thực tế."
+          }
+        ]
       },
-      { type: "heading", text: "3. Điều VaR không nói - và cái giá của nó" },
       {
-        type: "paragraph",
-        text: "Đây là hạn chế quan trọng nhất và cũng bị bỏ qua nhiều nhất: VaR cho biết lỗ VƯỢT ngưỡng bao nhiêu lần, nhưng hoàn toàn im lặng về việc vượt BAO XA. Hai danh mục có thể có cùng VaR 200 triệu, nhưng danh mục thứ nhất trong ngày tệ nhất mất 250 triệu, còn danh mục thứ hai mất 4 tỷ. VaR chấm cho chúng cùng một điểm.",
+        "type": "heading",
+        "text": "Loại rủi ro mà mọi phép đo đều im lặng"
       },
       {
-        type: "formula",
-        title: "Thước đo bổ sung cho phần đuôi",
-        equation: "Expected Shortfall = Mức lỗ trung bình trong các trường hợp đã vượt VaR",
-        variables: [
-          { symbol: "VaR", name: "Ngưỡng lỗ", description: "Trả lời: bao nhiêu lần vượt ngưỡng" },
-          { symbol: "ES", name: "Expected Shortfall / CVaR", description: "Trả lời: khi đã vượt thì trung bình mất bao nhiêu" },
-        ],
-        example: {
-          title: "Vì sao Basel chuyển sang ES",
-          calculation: "VaR 95% = 200 triệu, nhưng ES 95% = 850 triệu",
-          result: "Đuôi dày hơn nhiều so với ngưỡng gợi ý",
-          explanation:
-            "Chính vì lỗ hổng này mà Basel III chuyển chuẩn đo rủi ro thị trường từ VaR sang Expected Shortfall. ES cũng có tính chất toán học tốt hơn: nó luôn thưởng cho việc đa dạng hoá, trong khi VaR trong một số trường hợp lại phạt.",
+        "type": "paragraph",
+        "text": "Mọi con số ở trên đều được tính từ những gì đã xảy ra. Một sự kiện chưa từng xảy ra trong khoảng thời gian đo thì đóng góp bằng không vào mọi phân vị, mọi trung bình và mọi ngân sách lỗi. Điều đó không phải khuyết điểm của phép đo - nó là định nghĩa của phép đo, và nhầm lẫn giữa hai điều ấy là chỗ những đội cẩn thận nhất vẫn bị bất ngờ."
+      },
+      {
+        "type": "callout",
+        "label": "Dữ liệu yên ả là dữ liệu chưa đủ dài",
+        "text": "Mười hai tháng không có sự cố lớn có thể nghĩa là hệ thống bền, hoặc nghĩa là mười hai tháng chưa đủ dài để gặp loại sự kiện xảy ra vài năm một lần. Hai khả năng ấy nhìn giống hệt nhau từ trong dữ liệu, và cách duy nhất tách chúng là đi hỏi ngoài dữ liệu: hệ thống này chưa từng gặp chuyện gì, và nếu gặp thì nó xoay xở thế nào."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đọc thận trọng",
+          "text": "Ba con số đứng cạnh nhau, đọc theo phiên chứ không theo yêu cầu, và một danh sách những kịch bản chưa từng xảy ra."
         },
-      },
-      { type: "heading", text: "4. Backtesting và stress testing" },
-      {
-        type: "comparison",
-        left: {
-          label: "Backtesting - kiểm tra mô hình",
-          text: "Đếm số ngày thực tế lỗ vượt VaR rồi so với kỳ vọng. Với VaR 95% trong 250 ngày, kỳ vọng khoảng 12-13 lần vượt. Vượt 30 lần là mô hình đánh giá thấp rủi ro; vượt 2 lần cũng đáng ngờ không kém, thường nghĩa là mô hình quá thận trọng và đang trói vốn vô ích.",
-        },
-        right: {
-          label: "Stress testing - bỏ xác suất đi",
-          text: "Không hỏi 'khả năng bao nhiêu', mà hỏi 'nếu kịch bản này xảy ra thì mất bao nhiêu': lặp lại tháng 9/2008, VND mất giá 15% trong một tuần, lãi suất tăng 300 điểm cơ bản. Đây là cách nhìn thấy những rủi ro chưa từng có trong dữ liệu.",
-        },
+        "right": {
+          "label": "Đọc tự tin",
+          "text": "Một con số phân vị 99 trên bảng. Trông chính xác, và nó im lặng về cả phần đuôi lẫn phần chưa xảy ra."
+        }
       },
       {
-        type: "callout",
-        label: "Reverse stress test - câu hỏi đáng sợ và hữu ích nhất",
-        text: "Thay vì hỏi 'kịch bản X gây thiệt hại bao nhiêu', hãy hỏi ngược: 'điều gì phải xảy ra để chúng ta phá sản?'. Câu hỏi này buộc người ta đặt tên cho những giả định ngầm mà không ai nghĩ tới - và trong hầu hết các vụ đổ vỡ lớn, thứ giết chết tổ chức luôn nằm trong nhóm giả định đó.",
-      },
-      { type: "heading", text: "5. Thiên nga đen và giới hạn của mô hình" },
-      {
-        type: "paragraph",
-        text: "Nassim Taleb chỉ ra rằng mọi mô hình dựa trên dữ liệu quá khứ đều mù trước những sự kiện chưa từng có tiền lệ. Tệ hơn, rủi ro tài chính có tính phản thân: khi mọi tổ chức cùng dùng một mô hình và cùng bị ép cắt lỗ tại một ngưỡng, chính hành vi cắt lỗ đồng loạt tạo ra cú sập mà mô hình cho là gần như không thể xảy ra. Mô hình không chỉ đo thị trường - nó tham gia định hình thị trường.",
+        "type": "heading",
+        "text": "Việc cần làm với phần không đo được"
       },
       {
-        type: "closing",
-        lines: [
-          "VaR là một chiếc đèn pin tốt, nhưng nó chỉ soi được vùng bạn đã chĩa đèn vào.",
-          "Dùng VaR để đặt hạn mức hằng ngày, dùng Expected Shortfall để hiểu phần đuôi, và dùng stress test để nhìn những thứ dữ liệu quá khứ chưa từng chứa.",
-        ],
+        "type": "list",
+        "items": [
+          "Liệt kê kịch bản chưa từng xảy ra: mất cả một vùng, mất nhà cung cấp danh tính, dữ liệu hỏng lan rộng",
+          "Với mỗi kịch bản, hỏi hệ thống mất bao lâu để trở lại chứ đừng hỏi xác suất nó xảy ra",
+          "Diễn tập ít nhất một kịch bản mỗi quý, vì phương án chưa chạy thử là phương án chưa tồn tại"
+        ]
       },
+      {
+        "type": "closing",
+        "lines": [
+          "Phân vị là ranh giới; thứ mô tả phần đuôi là giá trị tệ nhất đã quan sát.",
+          "Sự kiện chưa từng xảy ra đóng góp bằng không vào mọi phép đo, theo đúng định nghĩa."
+        ]
+      }
     ],
-    quiz: [
+    "quiz": [
       {
-        question: "Hạn chế LỚN NHẤT của chỉ số Value at Risk (VaR) là gì?",
-        options: [
-          "VaR quá phức tạp nên không ngân hàng nào dùng được",
-          "VaR cho biết lỗ vượt ngưỡng bao nhiêu LẦN nhưng không nói vượt BAO XA - nó im lặng về mức độ thiệt hại ở phần đuôi",
-          "VaR chỉ áp dụng được cho cổ phiếu",
-          "VaR luôn đánh giá quá cao rủi ro nên gây lãng phí vốn",
+        "question": "Phân vị 99 là 800ms. Điều gì không suy ra được từ con số này?",
+        "options": [
+          "Phần chậm nhất chậm tới mức nào",
+          "Tỷ lệ yêu cầu chậm hơn 800ms",
+          "Việc hệ thống có đang đáp ứng được cam kết đặt ở ngưỡng 800ms hay không",
+          "Số lượng yêu cầu tuyệt đối nằm ngoài ngưỡng trong khoảng thời gian đã đo"
         ],
-        correct: 1,
-        explanation:
-          "Hai danh mục có thể cùng VaR 200 triệu, nhưng trong ngày tệ nhất một bên mất 250 triệu còn bên kia mất 4 tỷ - VaR chấm chúng cùng điểm. Chính lỗ hổng này khiến Basel III chuyển chuẩn đo rủi ro thị trường sang Expected Shortfall, thước đo trả lời câu hỏi 'khi đã vượt ngưỡng thì trung bình mất bao nhiêu'.",
+        "correct": 0,
+        "explanation": "Ba thứ kia đều suy ra được trực tiếp hoặc bằng một phép nhân đơn giản. Phần đuôi thì không: một phần trăm ấy có thể là 900ms hoặc 90 giây, và phân vị 99 cho ra cùng một con số trong cả hai trường hợp."
       },
       {
-        question: "Phương pháp Stress Testing trong quản trị rủi ro là gì?",
-        options: [
-          "Tính lại VaR với mức tin cậy cao hơn",
-          "Giả lập các kịch bản cực đoan cụ thể (khủng hoảng 2008, tỷ giá sốc, lãi suất tăng vọt) để xem danh mục thiệt hại bao nhiêu, không gắn xác suất",
-          "Kiểm tra tốc độ xử lý của hệ thống giao dịch",
-          "Đo mức độ căng thẳng tâm lý của nhà giao dịch",
+        "question": "1% yêu cầu chậm, mỗi phiên có 100 yêu cầu. Bao nhiêu phần trăm phiên gặp ít nhất một yêu cầu chậm?",
+        "options": [
+          "Khoảng 63%",
+          "1%",
+          "Khoảng 10% (= lấy căn bậc hai của tỷ lệ chậm rồi quy đổi sang phần trăm phiên)",
+          "100% (= giả định mỗi phiên 100 yêu cầu thì chắc chắn có đúng một yêu cầu chậm)"
         ],
-        correct: 1,
-        explanation:
-          "Stress test cố ý BỎ xác suất đi và hỏi một câu khác hẳn VaR: 'nếu kịch bản cụ thể này xảy ra thì mất bao nhiêu'. Điều đó cho phép nhìn thấy những rủi ro chưa từng xuất hiện trong dữ liệu lịch sử - đúng nhóm rủi ro mà VaR mù nhất, và cũng đúng nhóm đã gây ra các cuộc khủng hoảng lớn.",
+        "correct": 0,
+        "explanation": "1 trừ 0,99 mũ 100 ra khoảng 0,63. Đây là khoảng cách giữa một chỉ số nghe rất tốt và một trải nghiệm mà gần hai phần ba người dùng gặp phải, và nó sinh ra chỉ vì hai bên đếm theo hai đơn vị khác nhau."
       },
       {
-        question: "Backtesting mô hình VaR 95% trong 250 ngày giao dịch cho thấy có 30 ngày lỗ vượt VaR. Kết luận gì?",
-        options: [
-          "Mô hình hoạt động tốt, vì 30 ngày là con số nhỏ",
-          "Mô hình đang đánh giá THẤP rủi ro - kỳ vọng chỉ khoảng 12-13 ngày vượt ngưỡng, thực tế gấp hơn hai lần",
-          "Mô hình đánh giá quá cao rủi ro",
-          "Không kết luận được nếu chưa biết lợi nhuận danh mục",
+        "question": "Vì sao giá trị tệ nhất đã quan sát hay bị bỏ khỏi bảng?",
+        "options": [
+          "Vì nó nhiễu và dao động mạnh giữa các kỳ",
+          "Vì nó thường do một lỗi đơn lẻ gây ra",
+          "Vì các công cụ giám sát mặc định chỉ hiển thị những phân vị phổ biến chứ không hiện nó",
+          "Vì nó khó dùng để đặt cam kết do không có cách nào dự đoán được giá trị của kỳ sau"
         ],
-        correct: 1,
-        explanation:
-          "VaR 95% theo định nghĩa cho phép khoảng 5% số ngày vượt ngưỡng, tức 12-13 ngày trên 250 ngày giao dịch. Ghi nhận 30 lần vượt nghĩa là mô hình đang đánh giá thấp rủi ro một cách hệ thống và cần hiệu chuẩn lại. Điều ít người để ý: chỉ 2 lần vượt cũng là tín hiệu xấu - mô hình quá thận trọng sẽ trói vốn một cách vô ích.",
+        "correct": 0,
+        "explanation": "Lý do bỏ nó là chính đáng và hệ quả thì không: nó là con số duy nhất trên bảng mô tả phần đuôi. Bỏ nó đi thì bảng chỉ còn nói về những ngày bình thường, đúng những ngày không ai cần bảng."
       },
       {
-        question: "Vì sao mô hình VaR của nhiều ngân hàng lớn thất bại trong khủng hoảng 2008?",
-        options: [
-          "Vì công thức toán học của VaR bị sai",
-          "Vì mô hình được hiệu chuẩn trên dữ liệu giai đoạn yên ả và giả định các tài sản không cùng lao dốc - khi tương quan vọt lên gần 1, mọi ước lượng đa dạng hoá sụp cùng lúc",
-          "Vì các ngân hàng không tính VaR hằng ngày",
-          "Vì VaR bị cấm sử dụng sau năm 2007",
+        "question": "Mười hai tháng không có sự cố lớn. Hai cách hiểu nào cùng khớp với dữ liệu đó?",
+        "options": [
+          "Hệ thống bền, hoặc mười hai tháng chưa đủ dài",
+          "Hệ thống bền, hoặc phép đo đang có lỗi",
+          "Hệ thống bền, hoặc các sự cố đã xảy ra nhưng không được ghi nhận vào hệ thống theo dõi",
+          "Hệ thống bền, hoặc tải trong năm đó thấp hơn mức mà hệ thống được thiết kế để chịu"
         ],
-        correct: 1,
-        explanation:
-          "Bản thân công thức không sai - dữ liệu đầu vào đơn giản chưa từng chứa kịch bản giá nhà toàn nước Mỹ cùng giảm. Đây là bài học cốt lõi: mô hình rủi ro chỉ biết những gì nó đã được cho học. Tệ hơn nữa là tính phản thân - khi mọi tổ chức cùng dùng một mô hình và cùng bị ép cắt lỗ tại một ngưỡng, chính hành vi bán tháo đồng loạt tạo ra cú sập mà mô hình cho là gần như không thể.",
+        "correct": 0,
+        "explanation": "Ba cách hiểu kia đều giả định có gì đó sai và đều kiểm tra được. Cách hiểu đầu thì không có gì sai cả và cũng không kiểm được từ trong dữ liệu, nên nó là cách hiểu duy nhất đòi phải đi hỏi ở ngoài."
       },
       {
-        question: "Reverse stress test khác stress test thông thường ở điểm nào?",
-        options: [
-          "Nó chạy mô hình theo thứ tự thời gian ngược lại",
-          "Thay vì hỏi 'kịch bản X gây thiệt hại bao nhiêu', nó hỏi ngược: 'điều gì phải xảy ra để tổ chức này phá sản?'",
-          "Nó chỉ dùng cho danh mục trái phiếu",
-          "Nó tính lợi nhuận thay vì tính thua lỗ",
+        "question": "Nên hỏi gì về một kịch bản chưa từng xảy ra?",
+        "options": [
+          "Hệ thống mất bao lâu để trở lại nếu nó xảy ra",
+          "Xác suất nó xảy ra trong năm tới là bao nhiêu",
+          "Những công ty tương tự đã gặp kịch bản này với tần suất khoảng bao nhiêu lần mỗi năm",
+          "Chi phí để phòng ngừa kịch bản này so với thiệt hại ước tính nếu nó thực sự xảy ra"
         ],
-        correct: 1,
-        explanation:
-          "Stress test thông thường bắt đầu từ kịch bản bạn đã nghĩ ra - nên nó chỉ soi được những rủi ro bạn đã tưởng tượng được. Reverse stress test đi ngược từ kết cục phá sản trở lại nguyên nhân, và chính vì thế nó buộc người ta gọi tên những giả định ngầm chưa ai chất vấn. Trong hầu hết các vụ đổ vỡ lớn, thứ giết chết tổ chức đều nằm trong nhóm giả định không ai nghĩ cần kiểm tra.",
-      },
+        "correct": 0,
+        "explanation": "Xác suất của một sự kiện chưa từng xảy ra là thứ không ước lượng được đáng tin, nên mọi câu hỏi bắt đầu từ nó đều dẫn tới một con số bịa. Thời gian trở lại thì đo được bằng một buổi diễn tập, và nó đủ để quyết định."
+      }
     ],
-    practicePrompt: {
-      question:
-        "Danh mục A và B đều có VaR 95% một ngày là 1 tỷ. Nhưng ES 95% của A là 1,2 tỷ, của B là 6 tỷ. Danh mục nào rủi ro hơn?",
-      options: [
-        "Rủi ro như nhau, vì VaR bằng nhau",
-        "A rủi ro hơn vì ES gần VaR hơn",
-        "B rủi ro hơn nhiều: khi vượt ngưỡng, B mất trung bình 6 tỷ so với 1,2 tỷ của A",
-        "Không so sánh được nếu chưa biết quy mô danh mục",
+    "keyTakeaways": [
+      "Phân vị là ranh giới chứ không phải trần; nó im lặng về phần bên kia",
+      "Người dùng trải nghiệm theo phiên, còn phân vị đo theo yêu cầu",
+      "Giá trị tệ nhất đã quan sát là con số duy nhất mô tả phần đuôi",
+      "Sự kiện chưa xảy ra đóng góp bằng không vào mọi phép đo, theo định nghĩa"
+    ],
+    "practicePrompt": {
+      "question": "p99 = 800ms, p99,9 = 12 giây. Điều này nói lên gì về phần đuôi?",
+      "options": [
+        "Đuôi rất dày, phần tệ nhất tệ hơn nhiều so với ranh giới p99",
+        "Đuôi mỏng và hệ thống ổn định",
+        "Hệ thống có hai nhóm người dùng với hai mức trải nghiệm khác nhau rõ rệt về tốc độ",
+        "Phép đo p99,9 chưa đủ mẫu nên con số 12 giây nhiều khả năng là một giá trị ngoại lai"
       ],
-      correct: 2,
-      explanation:
-        "Đây chính là minh hoạ cho lỗ hổng của VaR: hai danh mục hoàn toàn khác nhau về mức độ nguy hiểm nhưng được chấm cùng một điểm. Expected Shortfall phơi bày sự khác biệt - phần đuôi của B dày hơn gấp năm lần. Một danh mục kiểu B thường xuất hiện khi có bán quyền chọn, đòn bẩy cao, hoặc nắm tài sản kém thanh khoản: bình thường thì êm, nhưng khi hỏng thì hỏng rất nặng.",
+      "correct": 0,
+      "explanation": "Từ 800ms lên 12 giây chỉ trong khoảng từ phân vị 99 tới 99,9 là gấp mười lăm lần. Một hệ thống có đuôi mỏng thì hai con số ấy gần nhau; khoảng cách này nói rằng một phần nghìn số yêu cầu đang ở một thế giới khác hẳn."
     },
-    keyTakeaways: [
-      "Một phát biểu VaR chỉ có nghĩa khi đủ ba phần: khoảng thời gian, mức tin cậy và số tiền.",
-      "Cùng một danh mục, VaR luôn tăng theo mức tin cậy - hai con số ở hai mức khác nhau không so hơn kém được.",
-      "VaR nói tần suất vượt ngưỡng, không nói mức độ; Expected Shortfall lấp đúng khoảng trống đó và là chuẩn Basel III.",
-      "Backtesting kiểm tra mô hình có đúng không; stress test nhìn những kịch bản dữ liệu quá khứ chưa từng chứa.",
-      "Mô hình rủi ro chỉ biết những gì nó được cho học - và khi mọi người dùng chung một mô hình, chính nó góp phần tạo ra cú sập.",
-    ],
-    summary: {
-      keyIdea:
-        "VaR trả lời 'bao nhiêu lần vượt ngưỡng', không trả lời 'vượt bao xa' - và khoảng trống đó chính là nơi các cuộc khủng hoảng xảy ra.",
-      formula: "VaR = ngưỡng lỗ tại mức tin cậy X · ES = mức lỗ trung bình trong các trường hợp đã vượt VaR",
-      commonMistake: "Đọc VaR như mức lỗ tối đa có thể xảy ra, thay vì như một ngưỡng gắn với xác suất.",
-      action: "Mỗi khi thấy một con số VaR, hỏi ngay hai câu: Expected Shortfall là bao nhiêu, và backtest năm qua vượt ngưỡng mấy lần.",
+    "summary": {
+      "keyIdea": "Đọc phân vị cùng giá trị tệ nhất, và theo phiên chứ không theo yêu cầu",
+      "commonMistake": "Đọc một con số p99 đứng một mình như một lời bảo đảm",
+      "action": "Đặt p50, p99 và giá trị tệ nhất cạnh nhau trên bảng của đội bạn."
     },
-    track: "bonus",
+    "application": {
+      "title": "Bốn việc",
+      "message": "Ba con số cạnh nhau. Quy đổi sang tỷ lệ phiên. Liệt kê kịch bản chưa từng xảy ra. Diễn tập một cái mỗi quý.",
+      "secondary": "Việc cuối là việc duy nhất chạm được vào phần mà không phép đo nào nhìn thấy."
+    },
+    "id": 804,
+    "slug": "quan-tri-rui-ro-dinh-luong-var-black-swan",
+    "track": "bonus"
   },
   {
     "title": "Chuyên Đề Masterclass 5: Phần mềm tiết kiệm năng lượng",
