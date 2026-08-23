@@ -1,13 +1,13 @@
 import type { Lesson } from "./lesson-types";
 import { ADVANCED_MASTERCLASS_LESSONS } from "./advanced-masterclass-lessons";
 import { GIT_LESSONS } from "./git-lessons";
-import { BANKING_LESSONS } from "./banking-lessons";
-import { DERIVATIVES_PRICING_LESSONS } from "./derivatives-pricing-lessons";
+import { AUTH_LESSONS } from "./auth-lessons";
+import { PERFORMANCE_TUNING_LESSONS } from "./performance-tuning-lessons";
 import { QUANT_METHODS_LESSONS } from "./quant-methods-lessons";
 import { EXCEL_DATA_LESSONS } from "./excel-data-lessons";
 import { IR_LESSONS } from "./ir-lessons";
-import { BOOKKEEPING_LESSONS } from "./bookkeeping-lessons";
-import { REAL_ESTATE_PROJECT_LESSONS } from "./real-estate-project-lessons";
+import { LOGGING_LESSONS } from "./logging-lessons";
+import { INFRA_PROJECT_LESSONS } from "./infra-project-lessons";
 import { CONSTRUCTION_CONTRACTOR_LESSONS } from "./construction-contractor-lessons";
 import { PAID_TOOLS_LESSONS } from "./paid-tools-lessons";
 import { ACTUARIAL_LESSONS } from "./actuarial-lessons";
@@ -38,13 +38,13 @@ export const lessons: Lesson[] = [
   ...READING_STATEMENTS_LESSONS,
   ...ADVANCED_MASTERCLASS_LESSONS,
   ...GIT_LESSONS,
-  ...BANKING_LESSONS,
-  ...DERIVATIVES_PRICING_LESSONS,
+  ...AUTH_LESSONS,
+  ...PERFORMANCE_TUNING_LESSONS,
   ...QUANT_METHODS_LESSONS,
   ...EXCEL_DATA_LESSONS,
   ...IR_LESSONS,
-  ...BOOKKEEPING_LESSONS,
-  ...REAL_ESTATE_PROJECT_LESSONS,
+  ...LOGGING_LESSONS,
+  ...INFRA_PROJECT_LESSONS,
   ...CONSTRUCTION_CONTRACTOR_LESSONS,
   ...PAID_TOOLS_LESSONS,
   ...ACTUARIAL_LESSONS,
@@ -55081,7 +55081,7 @@ export const lessons: Lesson[] = [
           "Vì người đọc cần biết phần nào dùng để dự báo được, phần nào thì không",
           "Vì các khoản một lần thường có sai số đo lớn hơn nên cần được ghi chú riêng",
           "Vì quy trình báo cáo nội bộ yêu cầu phân loại mọi thay đổi theo nguồn gốc",
-          "Vì phần một lần thường do đội khác thực hiện nên cần ghi nhận đúng công"
+          "Vì phần một lần thường do đội khác thực hiện"
         ],
         "correct": 0,
         "explanation": "Toàn bộ giá trị của việc tách nằm ở khả năng dự báo. Một con số gộp trả lời được câu hỏi về quá khứ nhưng không trả lời được câu hỏi duy nhất mà người đọc thật sự quan tâm."
@@ -55415,7 +55415,7 @@ export const lessons: Lesson[] = [
         "question": "Một con số chi phí mỗi request đơn lẻ nói lên điều gì?",
         "options": [
           "Rất ít - phải có xu hướng qua vài kỳ mới đọc được ý nghĩa",
-          "Hệ thống đang hiệu quả hay không so với mức trung bình ngành",
+          "Hệ thống đang hiệu quả hay không so với trung bình ngành",
           "Kiến trúc hiện tại có phù hợp với quy mô người dùng hay chưa",
           "Đội có đang chi tiêu vượt ngân sách hạ tầng được duyệt hay không"
         ],
@@ -55897,208 +55897,194 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1049,
-    "slug": "danh-gia-deal-dau-tu",
-    "title": "Đánh giá thương vụ đầu tư",
-    "subtitle": "Khung đọc một thương vụ mua lại như quỹ đầu tư tư nhân",
+    "title": "Đánh giá một đề xuất: tự xây hay mua sẵn",
+    "subtitle": "Bốn câu tách được một quyết định đúng khỏi một quyết định nghe hay",
     "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "🤝",
-    "openingQuestion": "Vì sao quỹ mua bằng nợ lại cần dòng tiền ổn định hơn là tăng trưởng cao?",
+    "emoji": "⚖️",
+    "whyItMatters": "Quyết định tự xây hay mua sẵn được đưa ra vài lần mỗi năm ở mọi đội, gần như luôn dựa trên so sánh sai vế, và hậu quả của nó kéo dài hơn phần lớn quyết định kỹ thuật khác.",
+    "openingQuestion": "Công cụ ngoài giá 2.000 đô mỗi tháng; tự xây mất 3 tháng công. So thế nào?",
     "openingOptions": [
-      "Vì dòng tiền ổn định thường đi kèm biên lợi nhuận cao hơn hẳn",
-      "Vì nghĩa vụ trả nợ thì cố định, còn tăng trưởng thì không chắc",
-      "Vì bên cho vay không cấp vốn cho công ty tăng trưởng nhanh",
-      "Vì công ty tăng trưởng cao gần như luôn bị định giá quá đắt"
+      "So chi phí ba năm, cộng cả phần duy trì bản tự xây",
+      "So chi phí một năm, vì xa hơn thế thì nhu cầu đã thay đổi nên không tính được",
+      "So thời gian tới lúc dùng được, vì đó mới là thứ quyết định giá trị mang lại",
+      "So mức độ phù hợp với nhu cầu, vì công cụ ngoài hiếm khi khớp hoàn toàn"
     ],
-    "correctOption": 1,
-    "explanation": "Khi phần lớn giá mua đến từ nợ, lịch trả lãi và trả gốc trở thành một khoản chi cố định, đến hạn bất kể năm đó kinh doanh ra sao. Tăng trưởng là thứ có thể đến muộn hoặc không đến; tiền lãi thì không chờ. Vì vậy điều bên cho vay nhìn trước nhất không phải doanh nghiệp lớn nhanh cỡ nào, mà dòng tiền có đủ đều để phủ nghĩa vụ trong cả những năm xấu không. Tăng trưởng vẫn quý, nhưng trong một thương vụ dùng đòn bẩy nó là phần thưởng thêm, còn khả năng trả nợ mới là điều kiện để thương vụ tồn tại.",
+    "correctOption": 0,
+    "explanation": "Ba yếu tố kia đều phải cân nhắc, nhưng chúng chỉ so được sau khi hai vế đã cùng đơn vị và cùng khoảng thời gian. Sai lầm phổ biến nhất là đặt một khoản chi hằng tháng cạnh một khoản công sức một lần, rồi kết luận rằng tự xây rẻ hơn - phép so ấy bỏ quên phần duy trì, vốn là phần lớn nhất.",
     "diagram": [
       {
-        "label": "Mua bằng vốn chủ cộng nợ vay",
+        "label": "Quy hai vế về cùng đơn vị và cùng kỳ",
         "arrow": true
       },
       {
-        "label": "Dòng tiền doanh nghiệp trả bớt nợ",
+        "label": "Cộng chi phí duy trì bản tự xây",
         "arrow": true
       },
       {
-        "label": "Nợ vơi đi, phần vốn chủ dày lên",
+        "label": "Hỏi thứ này có phải việc của đội không",
         "arrow": true
       },
       {
-        "label": "Bán lại sau 3-5 năm",
-        "arrow": false
+        "label": "Quyết, và ghi lại điều kiện xem lại"
       }
     ],
     "realWorldExample": {
-      "company": "Một chuỗi bán lẻ có hợp đồng thuê dài hạn",
-      "description": "Chuỗi cửa hàng với doanh thu lặp lại và nhu cầu đầu tư tài sản thấp là dạng doanh nghiệp quỹ hay tìm: dòng tiền đoán được nên vay được nhiều, và phần cải thiện vận hành thường còn dư địa. Ngược lại, một công ty phần mềm đang tăng trưởng nhanh nhưng đốt tiền lại khó dùng đòn bẩy, dù triển vọng có thể sáng hơn."
-    },
-    "checkpointIndex": 5,
-    "keyTakeaways": [
-      "Trong thương vụ dùng đòn bẩy, khả năng trả nợ là điều kiện, tăng trưởng là phần thưởng thêm",
-      "Lợi nhuận đến từ ba nguồn: lợi nhuận vận hành tăng, nợ vơi đi, và bán ở bội số cao hơn",
-      "MOIC đo số lần nhân vốn, IRR đo tốc độ - đọc một cái mà bỏ cái kia đều dẫn sai",
-      "Phụ thuộc một khách hàng lớn hoặc một cá nhân chủ chốt là dấu hiệu đủ để dừng thương vụ"
-    ],
-    "summary": {
-      "keyIdea": "Một thương vụ tốt không phải là một công ty hay, mà là mua đúng giá, trả được nợ, và có người mua lại",
-      "commonMistake": "Chỉ nhìn chất lượng doanh nghiệp mà không hỏi mua ở bội số nào và bán cho ai",
-      "action": "Với mọi thương vụ, viết ra bốn con số trước khi bàn tiếp: bội số mua, tỷ lệ nợ trên lợi nhuận vận hành, vốn chủ bỏ ra, và bội số bán giả định"
-    },
-    "application": {
-      "title": "Áp vào một thương vụ có thật",
-      "message": "Chọn một thương vụ mua bán doanh nghiệp vừa được công bố, tìm giá mua và lợi nhuận vận hành gần nhất rồi tính bội số. So với các thương vụ cùng ngành để xem bên mua trả đắt hay rẻ.",
-      "secondary": "Nếu không tìm được người mua lại hợp lý sau 3-5 năm, phần lớn lợi nhuận giả định trên giấy sẽ không có chỗ để hiện thực hoá."
-    },
-    "practicePrompt": {
-      "question": "Quỹ bỏ 100 tỷ vốn chủ, bốn năm sau thu về 250 tỷ. MOIC và IRR xấp xỉ bao nhiêu?",
-      "options": [
-        "MOIC 2,5x, IRR ≈ 26% (= 2,5^(1/4) − 1)",
-        "MOIC 2,5x, IRR ≈ 37,5% (= 150%/4, chia đều)",
-        "MOIC 1,5x, IRR ≈ 11% (chỉ tính phần lãi 150 tỷ)",
-        "MOIC 2,5x, IRR ≈ 63% (= 250/100 rồi chia 4 năm)"
-      ],
-      "correct": 0,
-      "explanation": "MOIC là số lần nhân vốn: 250 chia 100 bằng 2,5x. IRR là mức sinh lời gộp hằng năm, nên phải lấy căn bậc bốn chứ không chia đều: 2,5^(1/4) = 1,257, tức khoảng 26% mỗi năm. Hai phương án chia 150% hoặc 250% cho 4 năm mắc cùng một lỗi - bỏ qua việc lãi năm trước tiếp tục sinh lãi. Phương án MOIC 1,5x thì nhầm phần lãi với tổng tiền thu về."
+      "company": "Ba tháng công thành một người toàn thời gian",
+      "description": "Một đội tính rằng tự xây hệ thống xếp hàng công việc mất ba tháng công, rẻ hơn hẳn khoản hai nghìn đô mỗi tháng của công cụ ngoài. Họ xây trong bốn tháng. Sau đó mỗi năm mất khoảng một phần tư thời gian của một người để sửa lỗi, nâng phiên bản và trả lời câu hỏi của các đội khác - tức khoảng ba tháng công mỗi năm, mãi mãi. Phép so ban đầu đã đặt một khoản một lần cạnh một khoản hằng tháng."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Một thương vụ tốt không chỉ là một công ty hay. Bên mua phải trả lời được bốn câu trước khi ký: mua với giá nào, dùng bao nhiêu nợ, dòng tiền có trả nổi nợ đó không, và sau vài năm bán lại cho ai."
+        "text": "Đây là quyết định mà cảm tính của kỹ sư nghiêng mạnh nhất về một phía, nên nó cũng là quyết định cần một khung câu hỏi nhất."
       },
       {
         "type": "heading",
-        "text": "Khung năm bước"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Hiểu mô hình kinh doanh: công ty kiếm tiền bằng cách nào, doanh thu đến từ đâu, lợi thế cạnh tranh nằm ở chỗ nào, ngành đang lên hay xuống",
-          "Đọc số: doanh thu ba đến năm năm đi thế nào, biên lợi nhuận vận hành lên hay xuống, lợi nhuận có chuyển thành tiền mặt không, vốn lưu động ngốn bao nhiêu",
-          "Cấu trúc thương vụ: giá mua bằng mấy lần lợi nhuận vận hành, nợ bằng mấy lần, bên mua bỏ vốn thật bao nhiêu, ban điều hành có góp vốn cùng không",
-          "Kế hoạch tạo giá trị: tăng trưởng tự thân đến từ đâu, cải thiện vận hành được chỗ nào, có mua thêm công ty nhỏ không, ai sẽ là người mua lại",
-          "Rủi ro: kịch bản xấu nhất ra sao, còn dư địa trả nợ không, dấu hiệu cảnh báo nào đang có sẵn"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ba nguồn lợi nhuận"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lợi nhuận vận hành tăng lên, do doanh thu lớn hơn hoặc biên lợi nhuận tốt hơn",
-          "Nợ vơi đi: dòng tiền dùng để trả nợ, nên phần giá trị thuộc về vốn chủ dày lên dù giá trị doanh nghiệp không đổi",
-          "Bán ra ở bội số cao hơn lúc mua vào"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "MOIC và IRR: đọc cả hai"
+        "text": "Câu một: hai vế đã cùng đơn vị chưa"
       },
       {
         "type": "paragraph",
-        "text": "MOIC cho biết nhân vốn bao nhiêu lần, IRR cho biết nhanh chậm ra sao. Không cái nào thay được cái nào, và nói IRR quan trọng hơn là một cách rút gọn dễ dẫn sai: vì IRR phụ thuộc thời gian, một quỹ có thể đẩy nó lên bằng cách bán sớm những thương vụ tốt, dù làm vậy thu về ít tiền hơn. Nhân ba vốn trong sáu năm cho IRR khoảng 20%, thấp hơn nhân đôi trong một năm, nhưng tạo ra nhiều tiền hơn hẳn."
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "MOIC",
-          "text": "Số lần nhân vốn. Đo lượng tiền tuyệt đối tạo ra, không quan tâm mất bao lâu - nên không bị bóp méo bởi thời điểm bán."
-        },
-        "right": {
-          "label": "IRR",
-          "text": "Tốc độ sinh lời hằng năm. Cho biết đồng vốn quay nhanh cỡ nào, nhưng nhạy với thời gian nên bán sớm là đẩy được nó lên."
-        }
+        "text": "Một khoản chi hằng tháng và một khoản công sức một lần không so được với nhau. Quy cả hai về tổng chi phí trong ba năm, với công sức đổi ra tiền theo chi phí thật của một tháng công, là bước đầu tiên và cũng là bước bị bỏ qua nhiều nhất."
       },
       {
         "type": "heading",
-        "text": "Dấu hiệu cảnh báo"
+        "text": "Câu hai: đã cộng phần duy trì chưa"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một hệ thống nội bộ cần người sửa lỗi, nâng phiên bản thư viện, vá lỗ hổng bảo mật, trả lời câu hỏi và viết tài liệu. Kinh nghiệm thường thấy là khoảng một phần tư tới một phần ba công sức dựng ban đầu, mỗi năm, và nó không giảm theo thời gian. Đây gần như luôn là khoản làm lật kết luận."
+      },
+      {
+        "type": "heading",
+        "text": "Câu ba: thứ này có phải việc của đội không"
+      },
+      {
+        "type": "paragraph",
+        "text": "Có những thứ nên tự xây kể cả khi đắt hơn, vì chúng là chỗ sản phẩm khác biệt và bạn cần kiểm soát hoàn toàn. Và có những thứ không nên tự xây kể cả khi rẻ hơn, vì mỗi giờ bỏ vào chúng là một giờ không bỏ vào phần khác biệt ấy. Câu này không tính bằng tiền, và nó thường quan trọng hơn hai câu trước."
+      },
+      {
+        "type": "heading",
+        "text": "Câu bốn: sai thì sửa được không"
       },
       {
         "type": "list",
         "items": [
-          "Một khách hàng chiếm hơn 30% doanh thu",
-          "Doanh nghiệp phụ thuộc nặng vào một cá nhân chủ chốt",
-          "Doanh thu đang giảm hoặc thị phần đang mất",
-          "Khả năng trả lãi đã yếu ngay từ lúc mua",
-          "Ngành đang bị một mô hình mới thay thế",
-          "Số liệu kế toán có dấu hiệu bất thường"
+          "Mua sẵn mà sai: đổi nhà cung cấp, tốn công chuyển đổi dữ liệu, thường vài tháng",
+          "Tự xây mà sai: bỏ đi thứ đội vừa dựng, tốn cả công sức lẫn ý chí của đội",
+          "Loại thứ hai đắt hơn về mặt con người, và ít khi được tính vào lúc quyết định"
         ]
       },
       {
         "type": "callout",
-        "label": "Câu hay bị hỏi khi phỏng vấn",
-        "text": "Giải thích một mô hình mua lại bằng đòn bẩy trong ba bước: mua bằng vốn chủ cộng nợ, dùng dòng tiền tự do trả nợ và cải thiện lợi nhuận vận hành, bán lại sau ba đến năm năm. Lợi nhuận đến từ phần vốn chủ dày lên sau khi nợ giảm và doanh nghiệp có giá hơn."
+        "label": "Ghi điều kiện xem lại, không chỉ ghi quyết định",
+        "text": "Mọi quyết định loại này đúng trong một khoảng điều kiện. Viết ra khoảng ấy - chọn mua vì quy mô còn dưới một trăm nghìn bản ghi mỗi ngày, và sẽ xem lại nếu vượt - biến một quyết định thành một quyết định kiểm tra được. Không có dòng ấy thì hai năm sau không ai nhớ vì sao chọn thế, và mặc định là giữ nguyên."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Phép so đúng",
+          "text": "Tổng ba năm, cả hai vế quy ra tiền, cộng duy trì, kèm một câu trả lời cho việc đây có phải việc của đội không."
+        },
+        "right": {
+          "label": "Phép so hay gặp",
+          "text": "Giá hằng tháng của bên ngoài đặt cạnh ước lượng công sức một lần của bên trong. Luôn cho ra kết luận tự xây rẻ hơn."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Đòn bẩy phóng đại cả hai chiều: nó làm một thương vụ tốt tốt hơn, và một thương vụ tầm thường thành hỏng.",
-          "Vì thế câu hỏi đầu tiên luôn là dòng tiền, không phải triển vọng."
+          "Phần duy trì là phần làm lật kết luận, và là phần hay bị bỏ quên nhất.",
+          "Ghi điều kiện xem lại, vì mặc định của mọi quyết định cũ là giữ nguyên."
         ]
       }
     ],
-    "track": "bonus",
     "quiz": [
       {
-        "question": "Khi trình bày một thương vụ mua lại dùng nợ vay (LBO), câu đầu tiên nhà đầu tư thường hỏi là gì?",
+        "question": "Sai lầm phổ biến nhất khi so tự xây với mua sẵn là gì?",
         "options": [
-          "Doanh thu năm ngoái là bao nhiêu?",
-          "Mua vào và bán ra ở bội số nào?",
-          "Công ty có bao nhiêu nhân viên?",
-          "Lãi suất khoản vay là bao nhiêu phần trăm?"
+          "Đặt một khoản chi hằng tháng cạnh một khoản công sức một lần",
+          "Đánh giá thấp thời gian cần để tích hợp công cụ bên ngoài vào hệ thống hiện có",
+          "Bỏ qua rủi ro nhà cung cấp ngừng dịch vụ hoặc thay đổi mạnh chính sách giá",
+          "Không tính tới việc công cụ bên ngoài thường thiếu một số tính năng đội cần"
         ],
-        "correct": 1,
-        "explanation": "LBO là thương vụ mua doanh nghiệp bằng nhiều nợ vay. Nhà đầu tư nhìn rất kỹ mức định giá lúc mua vào và bán ra: mua ở bao nhiêu lần EBITDA, bán ở bao nhiêu lần EBITDA. EBITDA là lợi nhuận trước lãi vay, thuế, khấu hao và phân bổ."
+        "correct": 0,
+        "explanation": "Ba sai lầm kia đều làm lệch kết quả nhưng đều là sai về mức độ. Đặt hai đơn vị khác nhau cạnh nhau là sai về loại, nên nó cho ra kết luận sai một cách có hệ thống chứ không phải lệch một chút."
       },
       {
-        "question": "3 nguồn tạo lợi nhuận chính trong một thương vụ LBO là gì?",
+        "question": "Chi phí duy trì một hệ thống nội bộ thường ở mức nào so với công sức dựng nó?",
         "options": [
-          "Tăng doanh thu, cắt chi phí, tái cấp vốn",
-          "Tăng lợi nhuận, trả bớt nợ, bán bội số cao hơn",
-          "Bán bớt tài sản, rút cổ tức bằng tiền vay, rồi niêm yết",
-          "Tăng trưởng nội bộ, mua bán sáp nhập, tăng thị phần"
+          "Khoảng một phần tư tới một phần ba mỗi năm",
+          "Khoảng một phần mười mỗi năm",
+          "Khoảng một nửa trong năm đầu rồi gần như bằng không từ năm thứ hai trở đi",
+          "Thay đổi quá nhiều giữa các hệ thống nên không có mức nào dùng làm tham chiếu được"
         ],
-        "correct": 1,
-        "explanation": "Trong LBO, lợi nhuận thường đến từ 3 nguồn: doanh nghiệp kiếm nhiều tiền hơn, dùng dòng tiền để trả bớt nợ, và bán lại công ty ở mức định giá cao hơn lúc mua."
+        "correct": 0,
+        "explanation": "Điểm quan trọng hơn con số là nó không giảm theo thời gian: nâng phiên bản, vá lỗ hổng và trả lời câu hỏi đều lặp lại hằng năm. Một khoản lặp lại đặt cạnh một khoản một lần là chỗ phép so bị lật."
       },
       {
-        "question": "Tại sao quỹ đầu tư tư nhân thích doanh nghiệp có doanh thu lặp lại?",
+        "question": "Khi nào nên tự xây kể cả khi đắt hơn?",
         "options": [
-          "Doanh thu lặp lại luôn cao hơn doanh thu một lần",
-          "Dòng tiền đoán được nên vay được nhiều hơn",
-          "Doanh thu lặp lại được ưu đãi thuế nên giữ lại nhiều hơn",
-          "Nhà đầu tư chỉ thích mô hình thuê bao"
+          "Khi đó là chỗ sản phẩm khác biệt và cần kiểm soát hoàn toàn",
+          "Khi đội có sẵn người hiểu rõ lĩnh vực đó nên chi phí dựng sẽ thấp hơn mức trung bình",
+          "Khi các công cụ có sẵn trên thị trường đều thiếu ít nhất một tính năng đội cần dùng",
+          "Khi việc phụ thuộc vào một nhà cung cấp bên ngoài bị coi là rủi ro không chấp nhận được"
         ],
-        "correct": 1,
-        "explanation": "Doanh thu lặp lại là doanh thu có khả năng quay lại đều đặn, ví dụ hợp đồng thuê bao hoặc hợp đồng dài hạn. Dòng tiền dễ dự báo làm bên cho vay tự tin hơn, nên thương vụ có thể dùng nợ vay an toàn hơn."
+        "correct": 0,
+        "explanation": "Ba lý do kia đều là lý do hợp lệ để nghiêng về tự xây nhưng đều tính bằng tiền hoặc bằng rủi ro. Lý do đầu thì không tính được bằng tiền, và nó là lý do duy nhất đủ mạnh để thắng một phép so chi phí bất lợi."
       },
       {
-        "question": "Nhân 3 lần vốn trong 5 năm tương đương tỷ suất sinh lời hằng năm khoảng bao nhiêu?",
+        "question": "Vì sao 'tự xây mà sai' đắt hơn 'mua sẵn mà sai'?",
         "options": [
-          "~15% (= 300%/5 năm, chia đều thay vì gộp lãi)",
-          "~25%",
-          "~50% (= 3 lần chia 6, nhầm số năm)",
-          "~60% (= 300%/5, quên trừ vốn gốc)"
+          "Vì phải bỏ đi thứ đội vừa dựng, tốn cả ý chí của đội",
+          "Vì chi phí đã bỏ ra để tự xây thường lớn hơn tổng phí đã trả cho công cụ bên ngoài",
+          "Vì việc chuyển từ hệ thống tự xây sang công cụ ngoài phức tạp hơn chiều ngược lại",
+          "Vì đội sẽ mất thêm thời gian để học cách sử dụng công cụ bên ngoài từ đầu"
         ],
-        "correct": 1,
-        "explanation": "MOIC là số lần nhân vốn: bỏ 1 đồng thu về 3 đồng là MOIC 3x. IRR là tỷ suất sinh lời hằng năm. MOIC 3x trong 5 năm tương đương IRR khoảng 25%."
+        "correct": 0,
+        "explanation": "Phần đắt nhất không nằm ở tiền. Bỏ đi thứ mình vừa dựng là một quyết định đội thường trì hoãn rất lâu, và thời gian trì hoãn ấy tốn hơn cả bản thân việc chuyển đổi."
       },
       {
-        "question": "Dấu hiệu cảnh báo nào có thể khiến nhà đầu tư bỏ qua một thương vụ ngay?",
+        "question": "Vì sao nên ghi điều kiện xem lại cạnh quyết định?",
         "options": [
-          "Biên lợi nhuận vận hành dưới 20%",
-          "Phụ thuộc hoàn toàn vào 1-2 cá nhân chủ chốt",
-          "Công ty chưa niêm yết trên sàn chứng khoán",
-          "Doanh thu năm gần nhất dưới 500 tỷ"
+          "Vì mặc định của mọi quyết định cũ là giữ nguyên",
+          "Vì các bên liên quan cần biết khi nào quyết định này sẽ được đưa ra bàn lại",
+          "Vì nó giúp đội theo dõi được liệu ước lượng ban đầu có chính xác hay không",
+          "Vì nó buộc người ra quyết định phải suy nghĩ kỹ hơn về các phương án thay thế"
         ],
-        "correct": 1,
-        "explanation": "Rủi ro phụ thuộc cá nhân chủ chốt nghĩa là nếu CEO hoặc founder rời đi, doanh nghiệp có thể suy yếu mạnh. Nhà đầu tư thích mô hình có thể vận hành bền vững, không phụ thuộc quá nặng vào một người."
+        "correct": 0,
+        "explanation": "Không ai chủ động xem lại một quyết định đã đóng. Một dòng ghi rõ điều kiện biến việc xem lại từ một hành động cần người khởi xướng thành một hành động do số liệu kích hoạt."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Quy hai vế về cùng đơn vị và cùng kỳ trước khi so bất cứ thứ gì",
+      "Chi phí duy trì khoảng một phần tư mỗi năm và không giảm theo thời gian",
+      "Câu 'đây có phải việc của đội không' không tính bằng tiền và thường quan trọng hơn",
+      "Ghi điều kiện xem lại, vì mặc định của quyết định cũ là giữ nguyên"
+    ],
+    "practicePrompt": {
+      "question": "Mua: 2.000 đô/tháng. Tự xây: 4 tháng công, duy trì 1 tháng công/năm. Một tháng công là 8.000 đô. So tổng 3 năm.",
+      "options": [
+        "Mua 72.000 so với tự xây 56.000",
+        "Mua 72.000 so với tự xây 32.000 (= quên cộng phần duy trì ba năm)",
+        "Mua 24.000 so với tự xây 56.000 (= chỉ tính chi phí mua của một năm)",
+        "Mua 72.000 so với tự xây 40.000 (= chỉ cộng duy trì của đúng một năm)"
+      ],
+      "correct": 0,
+      "explanation": "Mua là 2.000 nhân 36 bằng 72.000. Tự xây là 4 cộng 3 tháng duy trì bằng 7 tháng công, nhân 8.000 ra 56.000. Tự xây vẫn rẻ hơn ở đây, nhưng khoảng cách đã hẹp lại từ hơn hai lần xuống còn một phần ba - và câu hỏi 'đây có phải việc của đội không' bắt đầu quan trọng hơn con số."
+    },
+    "summary": {
+      "keyIdea": "Quy về cùng đơn vị, cộng duy trì, rồi mới hỏi câu không tính bằng tiền",
+      "commonMistake": "So giá hằng tháng của bên ngoài với công sức một lần của bên trong",
+      "action": "Tính lại một quyết định tự xây gần đây với phần duy trì ba năm."
+    },
+    "application": {
+      "title": "Bốn câu, theo thứ tự",
+      "message": "Hai vế cùng đơn vị chưa? Đã cộng duy trì chưa? Đây có phải việc của đội không? Sai thì sửa được không?",
+      "secondary": "Hai câu đầu cho ra con số; hai câu sau quyết định con số ấy có đáng nghe theo không."
+    },
+    "id": 1049,
+    "slug": "danh-gia-deal-dau-tu",
+    "track": "bonus"
   },
   {
     "id": 1050,
@@ -57057,7 +57043,7 @@ export const lessons: Lesson[] = [
           "Vì độ trễ đầu tư dài, cung mới đến khi cầu đã hạ nhiệt",
           "Vì nhu cầu hàng hóa thay đổi ngẫu nhiên không theo quy luật",
           "Vì giá hàng hóa do các sàn giao dịch quốc tế ấn định trước",
-          "Vì hàng hóa không thể lưu kho nên cung phải khớp cầu ngay"
+          "Vì hàng hóa không thể lưu kho"
         ],
         "correct": 0,
         "explanation": "Mở một mỏ hay trồng một vụ mất nhiều năm. Chính độ trễ này tạo ra vòng lặp giá cao → đầu tư ồ ạt → dư cung → giá thấp → cắt đầu tư → thiếu hụt."
@@ -58021,7 +58007,7 @@ export const lessons: Lesson[] = [
           "Giảm khoảng 30% (= 10% doanh thu × DOL 3)",
           "Giảm khoảng 10%, vì lợi nhuận biến động cùng tỷ lệ doanh thu",
           "Không đổi, vì chi phí cố định không phụ thuộc vào doanh thu",
-          "Giảm khoảng 3,3% (= 10% ÷ 3, chia thay vì nhân)"
+          "Giảm khoảng 3,3% (= 10% ÷ 3, chia thay"
         ],
         "correct": 0,
         "explanation": "Chi phí cố định không giảm theo doanh thu, nên phần doanh thu mất đi trừ thẳng vào lợi nhuận. Đó là lý do khuếch đại xảy ra mạnh nhất đúng lúc doanh nghiệp cần đệm nhất."
@@ -58347,194 +58333,194 @@ export const lessons: Lesson[] = [
     }
   },
   {
-    "id": 1012,
-    "slug": "interim-comprehensive-income",
-    "title": "Interim Statement & OCI",
-    "subtitle": "Comprehensive Income = Net Income + OCI",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📋",
-    "openingQuestion": "Comprehensive income khác net income ở điểm nào?",
+    "title": "Số liệu giữa kỳ và thay đổi không hiện lên chỉ số chính",
+    "subtitle": "Những thứ tích lại ngoài tầm nhìn của biểu đồ bạn xem mỗi ngày",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "📉",
+    "whyItMatters": "Mọi đội đều có một chỉ số chính và nhìn nó mỗi ngày. Những thay đổi không đi qua chỉ số ấy vẫn tích lại đều đặn, và chúng chỉ hiện ra khi đã đủ lớn để không sửa nhanh được nữa.",
+    "openingQuestion": "Chỉ số chính đi ngang suốt sáu tháng. Kết luận nào an toàn?",
     "openingOptions": [
-      "Chỉ là tên gọi khác",
-      "Bao gồm OCI ngoài net income",
-      "Chỉ dùng cho ngân hàng và công ty bảo hiểm",
-      "Luôn nhỏ hơn"
+      "Chỉ rằng thứ chỉ số ấy đo đang đi ngang",
+      "Rằng hệ thống đang ổn định vì chỉ số chính bao quát phần lớn khía cạnh quan trọng",
+      "Rằng những thay đổi trong sáu tháng qua không gây ảnh hưởng đáng kể tới người dùng",
+      "Rằng có thể chuyển nguồn lực sang việc khác vì không có vấn đề nào cần xử lý"
     ],
-    "correctOption": 1,
-    "explanation": "Comprehensive income = Net income + OCI, tức là cộng thêm các khoản lãi/lỗ chưa hiện thực hoặc chuyển đổi ngoại tệ. Những khoản này chưa đi qua báo cáo kết quả kinh doanh nên không ảnh hưởng EPS, nhưng vẫn làm thay đổi giá trị vốn chủ sở hữu trên bảng cân đối.",
+    "correctOption": 0,
+    "explanation": "Một chỉ số chỉ nói về thứ nó đo. Ba kết luận kia đều mở rộng phạm vi của nó sang những thứ nó không hề chạm tới - và chính khoảng mở rộng ấy là nơi mọi bất ngờ được nuôi lớn. Câu hỏi hữu ích không phải chỉ số nói gì, mà là có thay đổi nào đang xảy ra mà chỉ số này không thấy.",
     "diagram": [
       {
-        "label": "Net income",
+        "label": "Thay đổi xảy ra trong hệ thống",
         "arrow": true
       },
       {
-        "label": "+ OCI",
+        "label": "Một phần đi qua chỉ số chính",
         "arrow": true
       },
       {
-        "label": "Comprehensive income",
+        "label": "Phần còn lại tích lại ngoài tầm nhìn",
         "arrow": true
       },
       {
-        "label": "Bức tranh đầy đủ hơn",
-        "arrow": false
+        "label": "Hiện ra khi đã quá lớn để sửa nhanh"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Doanh nghiệp xuất khẩu có công ty con ở nước ngoài",
-      "description": "Một doanh nghiệp Việt Nam có công ty con hoạt động bằng ngoại tệ. Mỗi kỳ, khi quy đổi báo cáo của công ty con về đồng Việt Nam để hợp nhất, chênh lệch tỷ giá phát sinh không đi qua báo cáo kết quả kinh doanh mà được ghi thẳng vào thu nhập toàn diện khác. Kết quả là lợi nhuận sau thuế và chỉ số EPS không hề thay đổi vì biến động tỷ giá, nhưng vốn chủ sở hữu trên bảng cân đối vẫn tăng hoặc giảm đáng kể. Ai chỉ theo dõi EPS sẽ hoàn toàn không thấy phần biến động này."
-    },
-    "quiz": [
-      {
-        "question": "OCI thường chứa gì?",
-        "options": [
-          "Chênh lệch tỷ giá và lãi/lỗ chưa hiện thực hóa",
-          "Chi phí lương và bảo hiểm nhân viên",
-          "Doanh thu bán hàng và giá vốn hàng bán trong kỳ",
-          "Lãi vay ngân hàng và chi phí tài chính khác"
-        ],
-        "correct": 0,
-        "explanation": "OCI gom những khoản làm đổi vốn chủ nhưng chưa đi qua lợi nhuận ròng vì chưa hiện thực hóa: chênh lệch quy đổi tỷ giá của công ty con ở nước ngoài, đánh giá lại một số công cụ tài chính. Lương, giá vốn, doanh thu và lãi vay đều là các dòng chi phí và doanh thu bình thường của kỳ, nằm ngay trong P&L chứ không phải khoản chờ ở OCI."
-      },
-      {
-        "question": "Một công ty đa quốc gia có OCI âm lớn do chênh lệch tỷ giá trong khi Net Income vẫn dương. Điều này có nghĩa gì?",
-        "options": [
-          "Kinh doanh lõi vẫn lãi, nhưng vốn chủ bị bào mòn vì tỷ giá",
-          "Công ty đang che giấu lỗ tỷ giá bằng cách đẩy nó xuống mục OCI",
-          "Net Income kỳ sau sẽ tự động giảm đúng bằng phần OCI âm",
-          "Không có ý nghĩa gì vì OCI nằm ngoài lợi nhuận báo cáo"
-        ],
-        "correct": 0,
-        "explanation": "OCI âm do tỷ giá cho thấy rủi ro ngoại hối đang ăn mòn giá trị sổ sách dù chưa ảnh hưởng đến lợi nhuận báo cáo - với công ty có tài sản/nợ lớn ở nước ngoài, đây là tín hiệu quan trọng về mức độ rủi ro tiền tệ cần theo dõi song song với Net Income."
-      },
-      {
-        "question": "Vì sao chênh lệch tỷ giá khi hợp nhất công ty con nước ngoài được đưa vào OCI thay vì lợi nhuận?",
-        "options": [
-          "Vì đó là khoản chưa hiện thực hóa, không phản ánh vận hành",
-          "Vì khoản đó không làm thay đổi vốn chủ sở hữu của doanh nghiệp",
-          "Vì khoản đó luôn quay về bằng không vào thời điểm cuối năm",
-          "Vì cơ quan thuế không cho phép ghi khoản đó vào lợi nhuận"
-        ],
-        "correct": 0,
-        "explanation": "Mục đích là giữ cho chỉ tiêu lợi nhuận phản ánh hoạt động kinh doanh. Nhưng khoản đó vẫn làm thay đổi vốn chủ sở hữu thật, nên không được bỏ qua khi đánh giá giá trị."
-      },
-      {
-        "question": "Nhóm doanh nghiệp nào cần đọc kỹ OCI nhất?",
-        "options": [
-          "Doanh nghiệp có công ty con ở nước ngoài hoặc danh mục tài chính lớn",
-          "Doanh nghiệp bán lẻ nội địa quy mô nhỏ, hoàn toàn không vay ngoại tệ nào",
-          "Doanh nghiệp không có nợ vay và chỉ hoạt động trong nước",
-          "Doanh nghiệp mới thành lập chưa có lợi nhuận lũy kế"
-        ],
-        "correct": 0,
-        "explanation": "Ở các nhóm này, biến động tỷ giá và đánh giá lại tài sản tài chính có thể lớn hơn cả lợi nhuận hoạt động trong một kỳ, nên bỏ qua OCI là bỏ qua phần đáng kể của bức tranh."
-      },
-      {
-        "question": "Vì sao một khoản lãi lớn nằm trong thu nhập toàn diện khác lại không làm tăng lợi nhuận mỗi cổ phiếu?",
-        "options": [
-          "Vì nó chưa đi qua báo cáo kết quả kinh doanh, dù đã làm tăng vốn chủ sở hữu",
-          "Vì lợi nhuận mỗi cổ phiếu chỉ tính trên phần lợi nhuận đã được chia cổ tức",
-          "Vì các khoản trong thu nhập toàn diện khác luôn được coi là lợi nhuận một lần",
-          "Vì khoản này bị hoãn lại và chỉ được ghi nhận vào kỳ báo cáo thường niên"
-        ],
-        "correct": 0,
-        "explanation": "Đây là các khoản lãi lỗ chưa hiện thực - đánh giá lại tài sản, chênh lệch tỷ giá hợp nhất - nên chúng đi thẳng vào vốn chủ sở hữu. Hệ quả thực dụng: một doanh nghiệp có thể có vốn chủ biến động mạnh trong khi lợi nhuận mỗi cổ phiếu trông rất phẳng."
-      }
-    ],
-    "keyTakeaways": [
-      "Comprehensive income rộng hơn net income",
-      "OCI có thể làm vốn chủ thay đổi đáng kể",
-      "Cần xem khi phân tích doanh nghiệp quốc tế hoặc tài sản tài chính lớn"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Comprehensive income rộng hơn net income",
-      "commonMistake": "Dễ bỏ qua: oCI có thể làm vốn chủ thay đổi đáng kể",
-      "action": "Cần xem khi phân tích doanh nghiệp quốc tế hoặc tài sản tài chính lớn"
+      "company": "Đi ngang trong khi đuôi dày lên",
+      "description": "Một dịch vụ theo dõi độ trễ trung vị và giữ nó ở 180 mili giây suốt một năm, không lệch quá mười. Trong cùng năm đó phân vị chín mươi chín đi từ 900 mili giây lên 6 giây, vì lượng dữ liệu của nhóm người dùng nặng lớn dần. Biểu đồ trên tường không đổi một nét. Đội chỉ biết khi ba khách hàng lớn nhất cùng phàn nàn trong một tuần."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Net income là chỉ số quen thuộc nhất trên báo cáo tài chính, nhưng nó chưa kể hết toàn bộ câu chuyện về sự thay đổi giá trị vốn chủ sở hữu trong kỳ."
+        "text": "Bài này về hai thứ liên quan nhau: đọc số liệu giữa kỳ cho đúng, và biết loại thay đổi nào không bao giờ đi qua chỉ số chính của bạn."
       },
       {
         "type": "heading",
-        "text": "Comprehensive Income = Net Income + OCI"
+        "text": "Số liệu giữa kỳ nhiễu hơn số liệu cả kỳ"
       },
       {
         "type": "paragraph",
-        "text": "Other Comprehensive Income (OCI) ghi nhận các khoản lãi/lỗ CHƯA HIỆN THỰC HÓA - phổ biến nhất là chênh lệch tỷ giá khi hợp nhất báo cáo công ty con ở nước ngoài, hoặc biến động giá trị hợp lý của một số tài sản tài chính. Những khoản này chưa đi qua báo cáo kết quả kinh doanh nên không ảnh hưởng EPS, nhưng vẫn làm thay đổi giá trị vốn chủ sở hữu trên bảng cân đối."
+        "text": "Một con số đo trong một tuần dao động mạnh hơn nhiều so với cùng con số đo trong một quý, và phần dao động thêm ấy hầu hết là nhiễu chứ không phải tín hiệu. Hệ quả thực tế: một thay đổi nhỏ trong tuần không đáng phản ứng, còn cùng mức thay đổi ấy kéo dài một quý thì đáng. Đội nào phản ứng theo tuần thường dành phần lớn thời gian đuổi theo nhiễu."
+      },
+      {
+        "type": "heading",
+        "text": "Ba loại thay đổi không đi qua chỉ số chính"
       },
       {
         "type": "list",
         "items": [
-          "OCI thường chứa chênh lệch tỷ giá và các khoản lãi/lỗ chưa hiện thực hóa khác",
-          "Comprehensive income rộng hơn net income, phản ánh đầy đủ hơn sự thay đổi giá trị vốn chủ",
-          "Đặc biệt quan trọng khi phân tích doanh nghiệp đa quốc gia hoặc nắm giữ nhiều tài sản tài chính"
+          "Thay đổi ở phần đuôi: trung vị đứng yên trong khi nhóm chậm nhất chậm dần đi",
+          "Thay đổi ở thành phần: tổng không đổi vì một phần tăng bù đúng cho phần khác giảm",
+          "Thay đổi ở nền: chỉ số giữ nguyên nhưng chi phí để giữ nó tăng đều mỗi tháng"
         ]
       },
       {
-        "type": "formula",
-        "title": "Hai tầng của kết quả trong kỳ",
-        "equation": "Thu nhập toàn diện = Lợi nhuận sau thuế + Thu nhập toàn diện khác (OCI)",
-        "variables": [
-          {
-            "symbol": "Lợi nhuận sau thuế",
-            "name": "Net income",
-            "description": "Phần đã đi qua báo cáo kết quả kinh doanh, là mẫu số của EPS."
-          },
-          {
-            "symbol": "OCI",
-            "name": "Other comprehensive income",
-            "description": "Các khoản lãi/lỗ chưa hiện thực hóa: chênh lệch tỷ giá khi hợp nhất, đánh giá lại một số tài sản tài chính, một số khoản liên quan quỹ hưu trí."
-          }
-        ],
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "Lợi nhuận sau thuế 500 tỷ + OCI (−180 tỷ)",
-          "result": "Thu nhập toàn diện = 320 tỷ",
-          "explanation": "EPS vẫn được tính trên 500 tỷ và trông rất ổn, nhưng phần giá trị thực sự tăng thêm cho cổ đông trong kỳ chỉ là 320 tỷ. Khoảng cách 180 tỷ chỉ hiện ra nếu bạn đọc tới báo cáo thu nhập toàn diện."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao có khoản được đưa vào OCI thay vì lợi nhuận"
-      },
-      {
         "type": "paragraph",
-        "text": "Nguyên tắc chung là tách những khoản chưa hiện thực hóa và nằm ngoài tầm kiểm soát của hoạt động kinh doanh ra khỏi thước đo hiệu quả điều hành. Biến động tỷ giá hay giá trị hợp lý của tài sản tài chính có thể đảo chiều ở kỳ sau; nếu đưa hết vào lợi nhuận thì con số lợi nhuận sẽ dao động mạnh vì những lý do không phản ánh năng lực vận hành. Đổi lại, người đọc phải nhớ mở thêm một báo cáo nữa mới thấy đủ bức tranh."
+        "text": "Ba loại này có chung một tính chất khiến chúng nguy hiểm: chúng không tạo ra bất kỳ biến động nào để cảnh báo tự động bắt được. Không có ngưỡng nào bị vượt, không có đường nào gãy, nên chúng chỉ được phát hiện bằng việc chủ động đi tìm."
       },
       {
         "type": "callout",
-        "label": "Khi nào OCI đáng chú ý nhất",
-        "text": "Ba trường hợp: doanh nghiệp có nhiều công ty con ở nước ngoài, doanh nghiệp nắm giữ danh mục tài sản tài chính lớn (ngân hàng, bảo hiểm), và doanh nghiệp có nghĩa vụ quỹ hưu trí đáng kể. Với ba nhóm này, chỉ đọc lợi nhuận sau thuế là bỏ sót một phần lớn câu chuyện."
+        "label": "Loại thứ hai khó thấy nhất",
+        "text": "Khi một thành phần tăng bù đúng cho một thành phần giảm, tổng số phẳng lì và trông như ổn định nhất trong ba loại. Ví dụ thường gặp: lượng yêu cầu tổng không đổi vì người dùng cũ giảm đúng bằng người dùng mới tăng. Hai nhóm ấy dùng hệ thống rất khác nhau, nên mọi giả định về tải đang lặng lẽ hết hạn trong khi biểu đồ nói rằng không có gì xảy ra."
+      },
+      {
+        "type": "heading",
+        "text": "Cách tìm chúng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Tách chỉ số chính theo nhóm - theo phân vị, theo loại người dùng, theo vùng",
+          "Đặt cạnh chỉ số chính một chỉ số về chi phí để giữ được nó",
+          "Mỗi quý một lần, hỏi thẳng: điều gì đã đổi mà biểu đồ của chúng ta không thấy"
+        ]
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Một chỉ số tổng",
+          "text": "Dễ theo dõi, dễ báo cáo, và mọi thay đổi bù trừ lẫn nhau đều biến mất khỏi nó một cách hoàn hảo."
+        },
+        "right": {
+          "label": "Cùng chỉ số, tách nhóm",
+          "text": "Khó nhìn hơn và nhiều đường hơn, nhưng thay đổi ở thành phần thì không giấu được nữa."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Net income không phải là toàn bộ bức tranh về giá trị vốn chủ đang thay đổi.",
-          "OCI là phần âm thầm nhưng có thể rất đáng kể, đặc biệt với doanh nghiệp quốc tế."
+          "Một chỉ số chỉ nói về thứ nó đo, không nói gì về phần còn lại.",
+          "Thay đổi bù trừ nhau là loại khó thấy nhất, vì nó trông giống sự ổn định."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Vì sao số liệu đo theo tuần nhiễu hơn số liệu đo theo quý?",
+        "options": [
+          "Vì mẫu nhỏ hơn nên dao động ngẫu nhiên chiếm phần lớn hơn",
+          "Vì các phép đo theo tuần thường được lấy mẫu thưa hơn nên độ phân giải thấp hơn",
+          "Vì trong một tuần có nhiều sự kiện bất thường hơn so với mức trung bình của quý",
+          "Vì dữ liệu theo tuần chưa kịp qua bước làm sạch"
+        ],
+        "correct": 0,
+        "explanation": "Đây là tính chất của phép đo chứ không phải của hệ thống. Hệ quả thực tế đáng nhớ: cùng một mức thay đổi thì đáng phản ứng khi kéo dài một quý và không đáng khi chỉ xuất hiện trong một tuần."
+      },
+      {
+        "question": "Loại thay đổi nào khó phát hiện nhất?",
+        "options": [
+          "Một thành phần tăng bù đúng cho một thành phần khác giảm",
+          "Thay đổi ở phần đuôi, vì nhóm bị ảnh hưởng thường chiếm tỷ lệ rất nhỏ trong tổng số",
+          "Thay đổi ở nền, vì chi phí để giữ chỉ số thường không được theo dõi cùng chỗ",
+          "Thay đổi diễn ra chậm và đều, vì mắt người khó nhận ra độ dốc nhỏ trên biểu đồ"
+        ],
+        "correct": 0,
+        "explanation": "Ba loại kia đều để lại dấu vết nếu ai đó nhìn đúng chỗ. Loại bù trừ thì không để lại dấu vết nào trên chỉ số tổng - nó cho ra một đường phẳng, tức là chính xác cái hình dạng mà mọi người đọc là ổn định."
+      },
+      {
+        "question": "Trung vị giữ ở 180ms suốt một năm trong khi phân vị 99 đi từ 900ms lên 6 giây. Vì sao cảnh báo không kêu?",
+        "options": [
+          "Vì không ngưỡng nào bị vượt và không đường nào gãy",
+          "Vì các cảnh báo về độ trễ thường chỉ được đặt trên giá trị trung bình của hệ thống",
+          "Vì mức tăng diễn ra dần dần nên mỗi ngày đều nằm trong khoảng dao động cho phép",
+          "Vì nhóm người dùng bị ảnh hưởng quá nhỏ để tạo ra tín hiệu vượt ngưỡng nhiễu"
+        ],
+        "correct": 0,
+        "explanation": "Cảnh báo tự động phát hiện biến động, còn đây không có biến động nào - chỉ có một đại lượng không được theo dõi đang trôi đều. Loại này chỉ tìm được bằng cách chủ động đi tìm, không bằng cách chờ báo."
+      },
+      {
+        "question": "Lượng yêu cầu tổng không đổi vì người dùng cũ giảm đúng bằng người dùng mới tăng. Vì sao đáng lo?",
+        "options": [
+          "Vì hai nhóm dùng hệ thống rất khác nhau nên giả định về tải đang hết hạn",
+          "Vì việc mất người dùng cũ cho thấy sản phẩm đang có vấn đề về mức độ giữ chân",
+          "Vì người dùng mới cần thời gian làm quen nên tỷ lệ lỗi thao tác sẽ tăng lên",
+          "Vì tổng không đổi che mất việc chi phí thu hút người dùng mới đang tăng lên"
+        ],
+        "correct": 0,
+        "explanation": "Ba mối lo kia đều chính đáng nhưng đều thuộc về sản phẩm. Mối lo kỹ thuật là mọi con số dung lượng và mọi cấu hình đệm đều được đặt cho một tập người dùng đang bị thay thế, và không ai được báo rằng chúng cần xem lại."
+      },
+      {
+        "question": "Chỉ số nào nên đặt cạnh chỉ số chính?",
+        "options": [
+          "Chi phí để giữ được chỉ số chính ở mức đó",
+          "Số lượng thay đổi đã được phát hành trong cùng khoảng thời gian theo dõi",
+          "Mức độ hài lòng của người dùng thu thập qua khảo sát định kỳ hằng quý",
+          "Số sự cố đã xảy ra, để đối chiếu với những thời điểm chỉ số biến động mạnh"
+        ],
+        "correct": 0,
+        "explanation": "Một chỉ số giữ nguyên nhờ chi phí tăng gấp đôi là một chỉ số đang xấu đi. Đặt hai đường cạnh nhau là cách rẻ nhất để loại thay đổi ở nền không còn ẩn được nữa."
+      }
+    ],
+    "keyTakeaways": [
+      "Một chỉ số chỉ nói về thứ nó đo, không nói gì về phần còn lại",
+      "Số liệu theo tuần nhiễu hơn theo quý, nên cùng mức thay đổi có ý nghĩa khác nhau",
+      "Thay đổi bù trừ nhau khó thấy nhất vì nó trông giống hệt sự ổn định",
+      "Cảnh báo bắt biến động, không bắt được một đại lượng không ai theo dõi đang trôi"
+    ],
     "practicePrompt": {
-      "question": "Thu nhập toàn diện khác (Other Comprehensive Income - OCI) bao gồm khoản mục nào sau đây?",
+      "question": "Người dùng cũ giảm 30.000, người mới tăng 30.000, người mới tạo gấp 3 lần lượt truy vấn. Tổng truy vấn đổi thế nào?",
       "options": [
-        "Chênh lệch tỷ giá và đánh giá lại tài sản AFS",
-        "Doanh thu bán hàng và cung cấp dịch vụ trong kỳ",
-        "Chi phí quản lý doanh nghiệp và chi phí bán hàng",
-        "Tiền thu được từ phát hành cổ phiếu mới"
+        "Tăng gấp đôi",
+        "Không đổi (= giả định mỗi người dùng tạo ra lượng truy vấn như nhau)",
+        "Tăng gấp ba (= lấy thẳng bội số của nhóm mới làm bội số của tổng)",
+        "Giảm đi (= giả định người dùng mới hoạt động ít hơn người dùng cũ)"
       ],
       "correct": 0,
-      "explanation": "Comprehensive Income = Net Income (Lợi nhuận thuần) + OCI (Thu nhập toàn diện khác). OCI chứa các khoản lãi/lỗ chưa thực hiện từ tỷ giá, công cụ tài chính và đánh giá lại tài sản."
+      "explanation": "Gọi mức của người cũ là 1 thì phần mất là 30.000 và phần thêm là 90.000, tổng tăng thêm 60.000 trên nền cũ. Nếu 30.000 người ấy là toàn bộ tập người dùng thì tổng đi từ 30.000 lên 90.000, tức gấp ba; với một tập lớn hơn thì mức tăng nhỏ hơn nhưng luôn dương - và biểu đồ số người dùng thì phẳng tuyệt đối."
+    },
+    "summary": {
+      "keyIdea": "Hỏi điều gì đang đổi mà chỉ số này không thấy, thay vì hỏi chỉ số nói gì",
+      "commonMistake": "Đọc một đường phẳng là sự ổn định",
+      "action": "Tách một chỉ số chính của đội bạn theo phân vị hoặc theo nhóm người dùng."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Interim Statement & OCI",
-      "message": "Thu nhập toàn diện khác (Other Comprehensive Income - OCI) bao gồm khoản mục nào sau đây?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Ba việc mỗi quý",
+      "message": "Tách chỉ số chính theo nhóm. Đặt cạnh nó chi phí để giữ được nó. Hỏi thẳng cả đội xem điều gì đã đổi mà biểu đồ không thấy.",
+      "secondary": "Việc thứ ba không cần công cụ nào và thường cho ra nhiều thứ hơn hai việc đầu."
+    },
+    "id": 1012,
+    "slug": "interim-comprehensive-income",
+    "track": "bonus"
   },
   {
     "id": 1013,
@@ -58825,7 +58811,7 @@ export const lessons: Lesson[] = [
         "question": "Tỷ lệ nợ kỹ thuật trên năng lực dọn quá cao thường hàm ý gì?",
         "options": [
           "Đội không thể thoát bằng nhịp làm việc hiện tại, cần một quyết định riêng",
-          "Chất lượng mã nguồn của dự án đang ở mức thấp hơn mặt bằng chung của ngành",
+          "Chất lượng mã nguồn của dự án đang ở mức thấp hơn mặt bằng",
           "Đội đang dành quá nhiều thời gian cho việc dọn dẹp thay vì làm tính năng mới",
           "Số lượng lập trình viên trong đội chưa đủ so với quy mô của sản phẩm hiện tại"
         ],
@@ -59164,7 +59150,7 @@ export const lessons: Lesson[] = [
           "Nó không nói phần lớn thời gian đang nằm ở chặng nào",
           "Nó thay đổi liên tục nên không đo lại được kết quả sau khi sửa",
           "Nó gộp cả request lỗi lẫn request thành công vào cùng một số",
-          "Nó phụ thuộc vào cấu hình máy chủ nên không so sánh được"
+          "Nó phụ thuộc vào cấu hình máy chủ"
         ],
         "correct": 0,
         "explanation": "Biết một endpoint chậm là biết có vấn đề, không phải biết vấn đề ở đâu. Chỉ khi tách ra bạn mới có một danh sách xếp hạng để chọn chỗ bắt đầu."
@@ -59197,7 +59183,7 @@ export const lessons: Lesson[] = [
           "Nó che chặng chậm, và lần đầu đệm trượt thì vấn đề quay lại",
           "Nó làm tăng chi phí hạ tầng nhiều hơn phần thời gian tiết kiệm được",
           "Nó chỉ hoạt động với dữ liệu đọc, không dùng được cho dữ liệu ghi",
-          "Nó khiến việc đo độ trễ từng chặng trở nên không còn chính xác"
+          "Nó khiến việc đo độ trễ từng chặng trở"
         ],
         "correct": 0,
         "explanation": "Đệm là công cụ tốt, nhưng dùng để giấu một truy vấn 700ms thì phần trượt vẫn phải trả giá đó - và phần trượt hay xảy ra nhất đúng lúc tải cao. Sửa truy vấn rồi thêm đệm thì cả hai đều có ích."
@@ -60566,7 +60552,7 @@ export const lessons: Lesson[] = [
           "Vì làm khi hệ thống đang ổn định là đổ công vào chỗ lợi ích thấp nhất",
           "Vì công việc gia cố cần một đội chuyên trách mà phần lớn nhóm sản phẩm không có",
           "Vì các thay đổi về độ tin cậy luôn tạo ra rủi ro mới lớn hơn phần chúng khắc phục",
-          "Vì kết quả của việc gia cố không đo lường được nên khó chứng minh với cấp trên"
+          "Vì kết quả của việc gia cố không đo lường được"
         ],
         "correct": 0,
         "explanation": "Cùng logic với mọi khoản đầu tư: bỏ công vào chỗ đã tốt thì phần cải thiện nhỏ. Tín hiệu đúng là ngân sách lỗi bị tiêu sạch vài kỳ liên tiếp - nó xuất hiện trước sự cố lớn, và đó là toàn bộ giá trị của nó."
@@ -61038,7 +61024,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Mức độ xấu không nói gì về việc nó có đang cản trở hay không",
           "Không có cách nào đo được mức độ xấu của mã một cách khách quan",
-          "Mã xấu nhất thường là mã quan trọng nhất nên rủi ro khi sửa cao",
+          "Mã xấu nhất thường là mã quan trọng nhất",
           "Đội sẽ mất động lực nếu bắt đầu bằng phần khó nhất của hệ thống"
         ],
         "correct": 0,
@@ -61195,7 +61181,7 @@ export const lessons: Lesson[] = [
           "Nó dựng được bản đồ, còn đọc tuần tự chỉ cho cú pháp",
           "Nó nhanh hơn vì bỏ qua được phần lớn mã không quan trọng",
           "Nó cho thấy chất lượng mã tốt hơn so với việc đọc từng tệp",
-          "Nó không cần môi trường chạy nên làm được ngay lập tức"
+          "Nó không cần môi trường chạy"
         ],
         "correct": 0,
         "explanation": "Không có bản đồ thì mỗi tệp mở ra là một mảnh rời. Lần theo một request tạo ra khung để đặt các mảnh vào, và sau đó đọc mã nhanh hơn hẳn."
@@ -61392,7 +61378,7 @@ export const lessons: Lesson[] = [
         "question": "Tự dựng phần không phải lõi có hại thế nào?",
         "options": [
           "Dồn công vào chỗ mà giỏi hơn đối thủ cũng không ai để ý",
-          "Làm hệ thống phức tạp hơn mức cần thiết cho quy mô hiện tại",
+          "Làm hệ thống phức tạp hơn mức cần thiết cho quy mô",
           "Khiến đội thiếu thời gian học các công nghệ mới trong ngành",
           "Tạo ra phần mã mà chỉ một người trong đội hiểu được cách vận hành"
         ],
@@ -61536,7 +61522,7 @@ export const lessons: Lesson[] = [
           "Vì nó vô hình lúc bình thường, chỉ lộ khi cần bán gấp",
           "Vì rủi ro thanh khoản chỉ ảnh hưởng tới thị trường trái phiếu",
           "Vì rủi ro thanh khoản không tồn tại trong thực tế đầu tư",
-          "Vì các cơ quan quản lý đã loại bỏ hoàn toàn rủi ro này"
+          "Vì các cơ quan quản lý đã loại bỏ rủi ro này"
         ],
         "correct": 0,
         "explanation": "Đây chính là lý do rủi ro thanh khoản nguy hiểm: nó không xuất hiện trên biểu đồ giá hằng ngày, mà chỉ hiện rõ đúng vào thời điểm bất lợi nhất khi nhà đầu tư cần thanh khoản nhất."
@@ -62433,7 +62419,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao mô hình trả lời sai nguy hiểm hơn API trả lỗi?",
         "options": [
           "Nó không báo hiệu gì cả - câu sai trông y hệt câu đúng",
-          "Nó xảy ra thường xuyên hơn nhiều so với lỗi của API thường",
+          "Nó xảy ra thường hơn nhiều so với lỗi của API thường",
           "Nó không ghi được vào nhật ký nên không truy vết được sau này",
           "Nó khiến chi phí gọi mô hình tăng lên vì phải gọi lại nhiều lần"
         ],
@@ -62445,7 +62431,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Giao diện phải cho người dùng làm việc khác trong lúc chờ",
           "Phải tăng thời gian chờ tối đa của mọi lời gọi trong hệ thống",
-          "Phải chuyển toàn bộ tính năng sang xử lý theo lô vào ban đêm",
+          "Phải chuyển cả tính năng sang xử lý theo lô vào ban đêm",
           "Phải đặt lớp đệm trước mô hình để tránh gọi lại cùng câu hỏi"
         ],
         "correct": 0,
@@ -63200,7 +63186,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao dung lượng co giãn được coi là đi mượn?",
         "options": [
           "Vì nó phụ thuộc vào điều kiện có thể hụt đúng lúc cần nhất",
-          "Vì chi phí của nó được tính theo giờ nên tổng tiền khó dự đoán trước hằng tháng",
+          "Vì chi phí của nó được tính theo giờ",
           "Vì nó cần thời gian khởi động nên không phản ứng kịp với những cú tăng tải đột ngột",
           "Vì nhà cung cấp có quyền thu hồi loại tài nguyên này trước những loại đã trả trước"
         ],
@@ -63222,7 +63208,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao hạn mức nguy hiểm hơn việc hết công suất máy?",
         "options": [
           "Vì nó chặn dứt khoát thay vì chậm dần nên không có thời gian phản ứng",
-          "Vì việc nâng hạn mức thường phải qua nhà cung cấp nên mất nhiều ngày làm việc",
+          "Vì việc nâng hạn mức thường phải qua nhà cung cấp",
           "Vì hạn mức được áp ở cấp tài khoản nên nó ảnh hưởng tới mọi hệ thống cùng lúc",
           "Vì các công cụ giám sát hạ tầng thường không theo dõi mức sử dụng so với hạn mức"
         ],
@@ -63233,7 +63219,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao tỷ lệ phần mượn có xu hướng tăng dần theo thời gian?",
         "options": [
           "Vì mỗi lần cần dung lượng gấp thì mượn thêm luôn là cách nhanh nhất",
-          "Vì giá của tài nguyên co giãn giảm dần theo thời gian nên nó ngày càng hấp dẫn",
+          "Vì giá của tài nguyên co giãn giảm dần theo thời gian",
           "Vì các dịch vụ mới thường được thiết kế để chạy trên tài nguyên co giãn ngay từ đầu",
           "Vì phần tài nguyên đặt sẵn hết hạn hợp đồng và không phải lúc nào cũng được gia hạn"
         ],
@@ -63246,7 +63232,7 @@ export const lessons: Lesson[] = [
           "Hệ thống đang sống nhờ việc ngày bận nhất chưa tới",
           "Hệ thống đang dùng nhiều tài nguyên hơn mức đã được phê duyệt trong ngân sách",
           "Hệ thống cần thêm máy ngay lập tức vì tải hiện tại đã vượt quá khả năng phục vụ",
-          "Phép đo dung lượng đang có lỗi vì phần chênh không thể mang giá trị âm được"
+          "Phép đo dung lượng đang có lỗi"
         ],
         "correct": 0,
         "explanation": "Đệm âm không có nghĩa hệ thống đang hỏng hôm nay - tải hôm nay có thể còn xa mức bận nhất. Nó có nghĩa là hệ thống không còn dự phòng cho ngày bận nhất, và ngày ấy đến mà không báo trước."
@@ -63409,7 +63395,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì nó trông đáng tin hơn dù mọi dòng có thể nhân từ cùng một ô đoán",
           "Vì số lượng dòng nhiều làm người đọc khó kiểm tra hết từng dòng một cách kỹ lưỡng",
-          "Vì các sai số nhỏ ở từng dòng có xu hướng triệt tiêu nhau nên tổng trông hợp lý",
+          "Vì các sai số nhỏ ở từng dòng có xu hướng triệt tiêu nhau",
           "Vì bảng tính tự động làm tròn kết quả nên sai số bị che khuất trong quá trình hiển thị"
         ],
         "correct": 0,
@@ -63431,7 +63417,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì ba chữ số cuối hứa một độ chính xác không đầu vào nào đỡ nổi",
           "Vì con số quá cụ thể khiến người đọc khó nhớ và khó so sánh với các phương án khác",
-          "Vì nó không cho biết khoảng dao động nên khó dùng để lập kế hoạch ngân sách",
+          "Vì nó không cho biết khoảng dao động",
           "Vì chi phí hạ tầng luôn thay đổi theo tháng nên mọi con số cụ thể đều nhanh lạc hậu"
         ],
         "correct": 0,
@@ -69552,7 +69538,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Một xu hướng cải thiện hoặc xấu đi không có thật",
           "Các cảnh báo tự động dựa trên ngưỡng cũ sẽ ngừng hoạt động cho tới khi được đặt lại",
-          "Dữ liệu lịch sử trở nên vô dụng và cần phải xoá đi để tránh gây nhầm lẫn về sau",
+          "Dữ liệu lịch sử trở nên vô dụng",
           "Con số mới sẽ luôn thấp hơn con số cũ vì định nghĩa mới thường rộng hơn định nghĩa cũ"
         ],
         "correct": 0,
@@ -69854,7 +69840,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì tiết kiệm tài nguyên thường phải bỏ bớt kiểm thử và ghi nhật ký",
           "Vì mỗi trụ cột do một đội khác nhau đo và các đội lại dùng công cụ khác nhau",
-          "Vì ba trụ cột thay đổi theo những chu kỳ thời gian rất khác nhau nên khó so",
+          "Vì ba trụ cột thay đổi theo những chu kỳ thời gian rất nên khó so",
           "Vì chỉ trụ cột trải nghiệm là đo trực tiếp được, hai cái còn lại đều gián tiếp"
         ],
         "correct": 0,
@@ -69865,7 +69851,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Rằng thứ hạng phản ánh trọng số nhiều hơn phản ánh dịch vụ",
           "Rằng ít nhất một trong hai bảng đang có lỗi ở bước tính ra điểm tổng hợp",
-          "Rằng bộ số liệu chưa đủ để phân biệt các dịch vụ nên cần thêm chỉ số mới",
+          "Rằng bộ số liệu chưa đủ để phân biệt các dịch vụ",
           "Rằng hai bảng đang chuẩn hoá số liệu về hai thang điểm khác nhau hoàn toàn"
         ],
         "correct": 0,
@@ -69897,7 +69883,7 @@ export const lessons: Lesson[] = [
         "question": "Dịch vụ điểm 82 vừa gây sự cố bốn giờ. Nên xem gì trước tiên?",
         "options": [
           "Trọng số của bảng và trụ cột nào đang bị đè nhẹ",
-          "Nhật ký của dịch vụ trong khoảng bốn giờ xảy ra sự cố của ngày hôm đó",
+          "Nhật ký trong bốn giờ xảy ra sự cố của ngày",
           "Lịch sử điểm tổng của dịch vụ ấy trong sáu tháng gần nhất để tìm ra xu hướng",
           "Điểm của những dịch vụ khác cùng phụ thuộc vào hạ tầng chung với dịch vụ này"
         ],
@@ -70052,7 +70038,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Nó đã thôi thay đổi được, và không chỉ số nào bắt được điều đó",
           "Nó đang chạy trên hạ tầng cũ nên mọi thay đổi đều cần thêm bước triển khai thủ công",
-          "Chi phí thấp cho thấy dịch vụ đang thiếu tài nguyên nên không chịu nổi thay đổi",
+          "Chi phí thấp cho thấy dịch vụ đang thiếu tài nguyên",
           "Ba năm không lỗi là dấu hiệu cho thấy các phép đo lỗi của dịch vụ đã hỏng từ lâu"
         ],
         "correct": 0,
@@ -70241,7 +70227,7 @@ export const lessons: Lesson[] = [
         "question": "Tính năng qua mọi kiểm thử nhưng tỷ lệ bỏ giữa chừng tăng gấp ba. Điều gì đã sai?",
         "options": [
           "Kiểm thử chạy trong điều kiện không giống điều kiện thật",
-          "Bộ kiểm thử còn thiếu những trường hợp biên mà người dùng thật hay gặp phải",
+          "Bộ kiểm thử còn thiếu những trường hợp biên",
           "Đặc tả của tính năng đã mô tả sai điều mà người dùng thực sự cần ở màn hình đó",
           "Giao diện của tính năng khó hiểu nên người dùng không biết phải thao tác thế nào"
         ],
@@ -70253,7 +70239,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Đặc tả đang thiếu, không phải tính năng đang đạt",
           "Tính năng được coi là đạt cho tới khi có một ngưỡng chính thức được bổ sung vào",
-          "Ngưỡng nên được đặt bằng đúng thời gian mà phiên bản hiện tại đang đạt được",
+          "Ngưỡng nên được đặt bằng đúng thời gian",
           "Việc đặt ngưỡng thuộc trách nhiệm của đội vận hành chứ không phải của đội sản phẩm"
         ],
         "correct": 0,
@@ -70385,7 +70371,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì nó trộn hiệu quả của dịch vụ với lượng việc dịch vụ đang làm",
           "Vì hoá đơn của nhà cung cấp thường về chậm nên số liệu luôn trễ một chu kỳ",
-          "Vì nhiều dịch vụ dùng chung hạ tầng nên không tách được phần của từng cái",
+          "Vì nhiều dịch vụ dùng chung hạ tầng",
           "Vì giá của nhà cung cấp thay đổi theo hợp đồng nên con số không ổn định qua kỳ"
         ],
         "correct": 0,
@@ -70573,7 +70559,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao nên hỏi 'còn ai dùng không' trước khi xếp một dịch vụ vào danh sách sửa?",
         "options": [
           "Vì xoá vừa nâng điểm vừa giảm việc phải làm về sau",
-          "Vì dịch vụ ít người dùng thường có điểm thấp hơn nên làm lệch bảng xếp hạng chung",
+          "Vì dịch vụ ít người dùng thường có điểm thấp hơn",
           "Vì cần xác nhận với các đội khác trước khi thay đổi bất cứ dịch vụ dùng chung nào",
           "Vì số lượng người dùng là cách đo mức độ quan trọng đơn giản và đáng tin cậy nhất"
         ],
@@ -70596,7 +70582,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì nó không nhìn thấy được nên không ai bảo vệ nó khi bị ép tiến độ",
           "Vì nó đòi hỏi mọi thành viên trong đội đều phải hiểu cách tính của cả ba trụ cột",
-          "Vì nó làm chậm từng thay đổi nhỏ nên tổng thời gian phát hành bị kéo dài ra",
+          "Vì nó làm chậm từng thay đổi nhỏ",
           "Vì nó cần công cụ đo tự động chạy ở mỗi lần thay đổi mà không phải đội nào cũng có"
         ],
         "correct": 0,
@@ -81338,7 +81324,7 @@ export const lessons: Lesson[] = [
         "Vì nó trôi qua kể cả khi đội mới chưa làm được gì",
         "Vì ba tháng thường không đủ cho những hệ thống có mức độ phức tạp trung bình trở lên",
         "Vì nó không nói rõ đội cũ phải hỗ trợ với mức độ ưu tiên và tốc độ phản hồi nào",
-        "Vì nó bắt đội cũ phải giữ người trong khi họ đã được phân công sang việc khác"
+        "Vì nó bắt đội cũ phải giữ người"
       ],
       "correct": 0,
       "explanation": "Một mốc phải phân biệt được trạng thái đã sẵn sàng với chưa sẵn sàng. Thời gian không phân biệt được gì cả - nó trôi giống hệt nhau trong cả hai trường hợp, nên nó không phải một mốc mà chỉ là một hạn."
@@ -81539,7 +81525,7 @@ export const lessons: Lesson[] = [
         "Thứ chỉ chạy vào cuối tháng hoặc cuối quý",
         "Thứ gọi tới một dịch vụ bên ngoài do một nhà cung cấp khác vận hành và duy trì",
         "Thứ được viết bằng một ngôn ngữ mà không ai trong đội mới từng làm việc cùng",
-        "Thứ chạy liên tục với lưu lượng cao nên không thể dừng lại để kiểm tra được"
+        "Thứ chạy liên tục với lưu lượng cao"
       ],
       "correct": 0,
       "explanation": "Ba loại kia đều lộ ra ngay và đều được ghi vào kế hoạch. Thứ chạy hằng tháng thì im lặng suốt giai đoạn bàn giao rồi hỏng vào lúc không còn ai để hỏi, và đó là định nghĩa của rủi ro tệ nhất."
@@ -81708,7 +81694,7 @@ export const lessons: Lesson[] = [
         "Vì toàn bộ tải nằm trong vài phút nên trung bình không mô tả được lúc nào",
         "Vì các phép đo trung bình thường được lấy mẫu ở tần suất quá thấp để bắt được đỉnh",
         "Vì tải dồn cục thường xảy ra vào ban đêm nên không nằm trong khung giờ được theo dõi",
-        "Vì mức trung bình bị kéo lên bởi những đỉnh hiếm nên nó luôn cao hơn mức thật"
+        "Vì mức trung bình bị kéo lên bởi những đỉnh hiếm"
       ],
       "correct": 0,
       "explanation": "Trung bình mô tả một trạng thái mà hệ thống chưa bao giờ ở trong đó: nó không bận như lúc đỉnh và không rảnh như lúc thường. Cấp máy theo một trạng thái không tồn tại thì thừa suốt ngày và thiếu đúng lúc cần."
@@ -81728,7 +81714,7 @@ export const lessons: Lesson[] = [
       "question": "Đại lượng nào nên dùng cho dịch vụ tìm kiếm thay vì số yêu cầu?",
       "options": [
         "Tổng công việc, ví dụ số bản ghi phải quét",
-        "Số yêu cầu tại phân vị chín mươi lăm thay vì tại mức trung bình của cả ngày",
+        "Số yêu cầu tại phân vị chín mươi lăm thay",
         "Thời gian xử lý trung bình của mỗi yêu cầu nhân với tổng số yêu cầu trong kỳ",
         "Số người dùng hoạt động đồng thời, vì mỗi người thường gửi nhiều yêu cầu liên tiếp"
       ],
@@ -81739,7 +81725,7 @@ export const lessons: Lesson[] = [
       "question": "Thêm gấp đôi số máy phục vụ nhưng dung lượng không tăng, thậm chí giảm. Nguyên nhân thường gặp là gì?",
       "options": [
         "Mỗi máy giữ thêm một tập kết nối tới nút thắt dùng chung",
-        "Bộ cân bằng tải chưa được cấu hình lại nên vẫn phân phối theo số máy cũ",
+        "Bộ cân bằng tải chưa được cấu hình lại",
         "Các máy mới cần thời gian làm nóng bộ đệm nên hiệu năng thấp trong giai đoạn đầu",
         "Chi phí đồng bộ trạng thái giữa các máy tăng theo bình phương số lượng máy"
       ],
@@ -81750,7 +81736,7 @@ export const lessons: Lesson[] = [
       "question": "Câu hỏi nào nên hỏi trước khi chọn phép tính dung lượng?",
       "options": [
         "Thêm gấp đôi máy thì cái gì không nhân lên theo",
-        "Ngân sách hạ tầng cho quý tới là bao nhiêu và đã được duyệt ở mức nào rồi",
+        "Ngân sách hạ tầng cho quý tới là bao nhiêu",
         "Hệ thống đang chạy trên loại máy nào và còn dư bao nhiêu phần trăm công suất",
         "Mức tăng trưởng người dùng dự kiến trong mười hai tháng tới là bao nhiêu phần trăm"
       ],

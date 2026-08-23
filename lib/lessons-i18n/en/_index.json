@@ -59,24 +59,9 @@
     "subtitle": "Checklists, pre-mortems and the structural rules professional fund managers use to protect decisions from emotion",
     "duration": "8 min"
   },
-  "black-scholes-hieu-cong-thuc-thay-vi-hoc-thuoc": {
-    "title": "Derivatives, lesson 2: Black-Scholes - understand the formula instead of memorising it",
-    "subtitle": "Five inputs, one idea about dynamic hedging, and the assumptions that make the model wrong in a crisis",
-    "duration": "13 min"
-  },
   "bo-bao-cao-quan-tri-hang-thang": {
     "title": "Planning, lesson 6: the FP&A monthly rhythm - close, explain, and sit with the business",
     "subtitle": "What goes into a management reporting pack, how to write the commentary, and why most of the value lies outside the numbers",
-    "duration": "11 min"
-  },
-  "but-toan-dieu-chinh-cuoi-ky": {
-    "title": "The books, lesson 3: adjusting entries - why there is still work at period end",
-    "subtitle": "Accruals, prepayments, depreciation, provisions: four families of entry that no document ever reminds you to make",
-    "duration": "12 min"
-  },
-  "but-toan-ghi-so-kep-hai-ve": {
-    "title": "Bookkeeping, Lesson 1: Double entry - why every transaction has two sides",
-    "subtitle": "What debit and credit actually mean, the increase/decrease rule for each account type, and why the totals always balance",
     "duration": "11 min"
   },
   "cach-danh-gia-esg-cua-doanh-nghiep": {
@@ -98,11 +83,6 @@
     "title": "Private markets, lesson 1: PE/VC fund structure - GP, LP and the ten-year life",
     "subtitle": "Capital commitments, drawdowns, the investment period, and why a closed-end fund must have an end date",
     "duration": "11 min"
-  },
-  "cau-truc-von-du-an-bat-dong-san": {
-    "title": "Property Projects 3: Three sources of capital - equity, the construction loan, and buyers' money",
-    "subtitle": "Where each one ranks, the real cost of pre-sale proceeds, and why high leverage bites harder here than elsewhere",
-    "duration": "10 min"
   },
   "cau-truc-von-toi-uu-cho-doanh-nghiep": {
     "title": "CFO & Operations 8: The optimal capital structure",
@@ -204,11 +184,6 @@
     "subtitle": "Valuing a building or a brand is different from valuing a share - you need other methods.",
     "duration": "8 min"
   },
-  "dinh-gia-ngan-hang-pb-roe": {
-    "title": "Banking, Lesson 2: Valuing a bank - P/B, ROE and the residual income model",
-    "subtitle": "Why P/B is the right multiple for a bank, and the mathematical link between P/B and ROE",
-    "duration": "12 min"
-  },
   "dinh-gia-tai-san-rong": {
     "title": "Valuing a company as if you sold everything and repaid the debt",
     "subtitle": "Asset-based valuation, NAV and RNAV - the valuation strand, following on from ROIC and Enterprise Value",
@@ -224,11 +199,6 @@
     "subtitle": "FCF coverage and the quality of the cash behind the payout",
     "duration": "6 min"
   },
-  "do-bien-dong-ham-y-va-nu-cuoi-bien-dong": {
-    "title": "Derivatives, lesson 4: implied volatility and the volatility smile",
-    "subtitle": "Historical volatility, implied volatility, and why the market does not believe in the normal distribution",
-    "duration": "11 min"
-  },
   "do-hieu-suat-quy-irr-moic-dpi-tvpi": {
     "title": "Private markets, lesson 3: measuring fund performance - IRR, MOIC, DPI, TVPI and the J-curve",
     "subtitle": "Why IRR can mislead, and which set of metrics actually tells you the money has come back",
@@ -239,11 +209,6 @@
     "subtitle": "Why a contractor's reported profit has almost nothing to do with the cash that arrived in the period",
     "duration": "10 min"
   },
-  "doc-bao-cao-tai-chinh-ngan-hang": {
-    "title": "Banks, lesson 1: reading a bank's financial statements - why every ratio you learned stops working",
-    "subtitle": "NIM, CASA, LDR, NPL, CIR and the provisioning buffer - the private language of a bank's accounts",
-    "duration": "12 min"
-  },
   "doc-hieu-chi-bao-kinh-te-vi-mo": {
     "title": "Reading the key macroeconomic indicators: PMI, CPI and GDP nowcasting",
     "subtitle": "The daily toolkit a macro researcher uses to gauge the health of an economy before the official GDP figure is published",
@@ -253,21 +218,6 @@
     "title": "Reading the notes - the longest section, and the least read",
     "subtitle": "The three statements say how much the company earned; the notes say how that number was produced",
     "duration": "10 min"
-  },
-  "doi-chieu-va-tim-sai-sot-so-sach": {
-    "title": "Bookkeeping, lesson 4: reconciliation - finding the error before anyone else does",
-    "subtitle": "Bank, receivables and inventory reconciliation, plus an arithmetic trick that finds a transposed digit in three seconds",
-    "duration": "10 min"
-  },
-  "dong-tien-du-an-phat-trien-bat-dong-san": {
-    "title": "Property projects, lesson 2: the J-curve - money out first, money in later",
-    "subtitle": "A development project's cash flow, the peak funding requirement, and why a handsome IRR can still kill the developer",
-    "duration": "11 min"
-  },
-  "du-an-cho-thue-noi-va-cap-rate": {
-    "title": "Property projects, Lesson 4: Rental assets - NOI and why it differs from accounting profit",
-    "subtitle": "How to calculate net operating income, the relationship between NOI and the cap rate, and the three deductions beginners always forget",
-    "duration": "11 min"
   },
   "du-bao-dong-tien-13-tuan": {
     "title": "Planning, Lesson 3: The 13-week cash flow forecast - the tool for when cash becomes the binding constraint",
@@ -348,11 +298,6 @@
     "title": "Vietnam Market, Lesson 6: Margin trading and the call-margin spiral",
     "subtitle": "The mechanism that turns one down session into a run of limit-down sessions",
     "duration": "11 min"
-  },
-  "greeks-delta-gamma-vega-theta": {
-    "title": "Derivatives, Lesson 3: the Greeks - measuring the sensitivity of an option position",
-    "subtitle": "Delta, Gamma, Vega, Theta and Rho: the risk map of any derivatives book",
-    "duration": "12 min"
   },
   "hedging-instruments-fx-derivatives": {
     "title": "Hedging instruments & FX derivatives - cutting exchange-rate risk",
@@ -453,11 +398,6 @@
     "title": "Data, Part 1: When Excel runs out - and why the answer is not row count",
     "subtitle": "The three real limits of a spreadsheet, and how to tell which problems belong in code",
     "duration": "10 min"
-  },
-  "khoa-so-cuoi-ky-va-ket-chuyen": {
-    "title": "Bookkeeping, Lesson 5: Closing the books - the closing entry, and why revenue restarts at zero",
-    "subtitle": "Temporary and permanent accounts, the order of the closing entries, and how an accounting period actually shuts",
-    "duration": "11 min"
   },
   "khung-bao-cao-esg-csrd-sfdr-issb": {
     "title": "ESG reporting frameworks and rules: CSRD, SFDR, ISSB and TCFD",
@@ -634,11 +574,6 @@
     "subtitle": "Missing the plan is not automatically bad - what matters is understanding why",
     "duration": "7 min"
   },
-  "phap-ly-du-an-bat-dong-san-va-dong-tien": {
-    "title": "Property Projects, Lesson 1: Permits - why the cash flow starts with a piece of paper",
-    "subtitle": "Four legal milestones decide when money is allowed to flow in, and why slipping one costs more than a construction overrun",
-    "duration": "11 min"
-  },
   "phi-quan-ly-carry-va-waterfall": {
     "title": "Private markets, Lesson 2: Management fees, carry and the waterfall - how a fund manager gets paid",
     "subtitle": "The hurdle rate, the catch-up mechanism and the order in which money is distributed",
@@ -663,11 +598,6 @@
     "title": "Prospect Theory: the formal framework behind every behavioural bias",
     "subtitle": "The asymmetric value function, the reflection effect, and how Kahneman and Tversky put human irrationality into mathematics",
     "duration": "8 min"
-  },
-  "put-call-parity-va-nguyen-ly-khong-arbitrage": {
-    "title": "Derivatives, Lesson 1: Put-call parity - pricing options before you have any formula",
-    "subtitle": "The no-arbitrage principle and the binding relationship between calls, puts, stock and bonds",
-    "duration": "11 min"
   },
   "quan-ly-rui-ro-lai-suat-doanh-nghiep": {
     "title": "CFO & Operations, Lesson 6: Managing corporate interest rate risk",
@@ -724,20 +654,10 @@
     "subtitle": "Foreign ownership limits, market classification criteria, and what they mean for valuation",
     "duration": "11 min"
   },
-  "rui-ro-du-an-bat-dong-san-va-kich-ban": {
-    "title": "Property projects, Lesson 5: three risks and how they compound on each other",
-    "subtitle": "Permitting delay, cost overrun, a market that turns - and why they never arrive on their own",
-    "duration": "11 min"
-  },
   "rui-ro-khi-hau-nhu-rui-ro-tai-chinh": {
     "title": "Climate risk as a financial risk",
     "subtitle": "Physical risk, transition risk and stranded assets - how to quantify instead of just worrying",
     "duration": "9 min"
-  },
-  "so-nhat-ky-so-cai-va-bang-can-doi-thu": {
-    "title": "Bookkeeping, Lesson 2: From journal to statements - the path a transaction takes",
-    "subtitle": "General journal, general ledger, trial balance: three stages that turn thousands of entries into four pages of accounts",
-    "duration": "10 min"
   },
   "solvency-ii-quy-dinh-bao-hiem": {
     "title": "Solvency II and insurance regulation: making sure the insurer is still there",
