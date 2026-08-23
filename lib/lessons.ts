@@ -30,8 +30,8 @@ import { ANALYST_CRAFT_LESSONS } from "./analyst-craft-lessons";
 import { DATA_TOOLS_LESSONS } from "./data-tools-lessons";
 import { DATA_THINKING_LESSONS } from "./data-thinking-lessons";
 import { FPA_PLANNING_LESSONS } from "./fpa-planning-lessons";
-import { MA_EXECUTION_LESSONS } from "./ma-execution-lessons";
-import { AUDIT_LESSONS } from "./audit-lessons";
+import { RELEASE_MECHANICS_LESSONS } from "./release-mechanics-lessons";
+import { TESTING_LESSONS } from "./testing-lessons";
 import { READING_STATEMENTS_LESSONS } from "./reading-statements-lessons";
 
 export const lessons: Lesson[] = [
@@ -67,8 +67,8 @@ export const lessons: Lesson[] = [
   ...DATA_TOOLS_LESSONS,
   ...DATA_THINKING_LESSONS,
   ...FPA_PLANNING_LESSONS,
-  ...MA_EXECUTION_LESSONS,
-  ...AUDIT_LESSONS,
+  ...RELEASE_MECHANICS_LESSONS,
+  ...TESTING_LESSONS,
   {
     "id": 1,
     "slug": "chuong-trinh-la-gi",
@@ -81226,292 +81226,370 @@ export const lessons: Lesson[] = [
   ]
 },
 {
-  "id": 1338,
-  "slug": "ma-cau-truc-earnout",
-  "title": "M&A Nâng cao: Cấu trúc Earnout trong định giá thương vụ",
-  "subtitle": "Khi bên mua và bên bán không thống nhất được giá trị công ty, Earnout là cách \"trả sau, dựa trên kết quả thực tế\"",
+  "title": "Bàn giao có điều kiện: đội cũ ở lại tới mốc nào",
+  "subtitle": "Khi hai bên không đồng ý hệ thống đã sẵn sàng chưa, hãy để mốc trả lời",
   "duration": "8 phút",
   "difficulty": "Khó",
-  "emoji": "📐",
-  "whyItMatters": "Earnout xuất hiện thường xuyên trong các thương vụ M&A liên quan đến công ty tăng trưởng cao hoặc startup, nơi định giá dựa trên tương lai chưa chắc chắn - hiểu cấu trúc này giúp bạn phân tích và đàm phán các điều khoản M&A phức tạp.",
-  "openingQuestion": "Bên mua và bên bán không thống nhất được định giá: bên bán tin công ty sẽ tăng trưởng mạnh trong 2 năm tới, bên mua thận trọng hơn. Earnout giải quyết bất đồng này như thế nào?",
+  "emoji": "🤝",
+  "whyItMatters": "Mọi cuộc bàn giao đều có một câu hỏi không ai trả lời được lúc bắt đầu: đội mới đã đủ sức chưa. Cấu trúc theo mốc là cách duy nhất trả lời nó bằng bằng chứng thay vì bằng cảm giác.",
+  "openingQuestion": "Đội cũ nói hệ thống sẵn sàng bàn giao, đội mới nói chưa. Giải quyết thế nào?",
   "openingOptions": [
-    "Bằng cách chọn mức giá trung bình cộng của hai bên",
-    "Chia thành khoản trả ngay và khoản trả thêm nếu đạt mốc",
-    "Bằng cách hủy thương vụ và chờ 2 năm để xem kết quả thực tế",
-    "Bằng cách bên bán phải giảm giá theo yêu cầu của bên mua"
+    "Đặt mốc đo được, đội cũ ở lại tới khi đạt",
+    "Kéo dài thêm một tháng bàn giao rồi đánh giá lại tình hình vào cuối tháng đó",
+    "Để đội mới nhận trách nhiệm và đội cũ hỗ trợ khi được hỏi trong ba tháng tới",
+    "Yêu cầu đội cũ viết thêm tài liệu cho tới khi đội mới thấy đã đủ để tiếp nhận"
   ],
-  "correctOption": 1,
-  "explanation": "Earnout là cơ chế chia sẻ rủi ro định giá: bên bán nhận một khoản trả trước, và phần còn lại (earnout) phụ thuộc vào việc công ty có đạt được các mốc hiệu suất đã thỏa thuận hay không trong một khoảng thời gian xác định sau khi thương vụ hoàn tất - giúp thu hẹp khoảng cách kỳ vọng giữa hai bên mà không cần một bên phải nhượng bộ hoàn toàn.",
+  "correctOption": 0,
+  "explanation": "Ba cách kia đều dời câu hỏi sang một thời điểm khác mà không thêm được thông tin nào để trả lời nó. Một mốc đo được biến bất đồng về cảm giác thành một phép thử: đội mới xử lý được ba sự cố liên tiếp không cần gọi ai, hoặc phát hành được hai lần liên tiếp không quay đầu. Đạt thì xong, chưa đạt thì cả hai bên đều thấy vì sao.",
   "diagram": [
     {
-      "label": "Bất đồng định giá giữa bên mua và bên bán",
+      "label": "Bất đồng về mức sẵn sàng",
       "arrow": true
     },
     {
-      "label": "Thỏa thuận: trả trước một phần + Earnout dựa trên mốc hiệu suất",
+      "label": "Chọn mốc đo được, có hạn",
       "arrow": true
     },
     {
-      "label": "Sau 1-3 năm: đo lường kết quả thực tế, thanh toán earnout tương ứng",
-      "arrow": false
+      "label": "Đội cũ ở lại nhưng không làm thay",
+      "arrow": true
+    },
+    {
+      "label": "Đạt mốc thì trách nhiệm chuyển hẳn"
     }
   ],
-  "interactiveType": "accretion",
   "realWorldExample": {
-    "company": "Earnout phổ biến trong M&A công nghệ và startup",
-    "description": "Các thương vụ mua lại startup hoặc công ty công nghệ tăng trưởng cao thường sử dụng earnout, vì định giá truyền thống dựa trên lịch sử tài chính khó áp dụng cho những công ty có tương lai bất định nhưng tiềm năng lớn. Earnout cho phép bên mua trả giá thận trọng ban đầu, đồng thời cho bên bán cơ hội \"chứng minh\" giá trị công ty qua kết quả thực tế để nhận thêm khoản thanh toán."
+    "company": "Ba tháng hỗ trợ khi được hỏi",
+    "description": "Một cuộc bàn giao thoả thuận đội cũ hỗ trợ ba tháng khi được hỏi. Tháng đầu đội mới hỏi mỗi ngày, tháng hai hỏi mỗi tuần, tháng ba không hỏi gì. Ai cũng coi đó là dấu hiệu tốt. Thực ra đội mới đã ngừng hỏi vì thấy ngại, và họ xử lý ba sự cố bằng cách khởi động lại dịch vụ. Đến tháng thứ tư, khi việc khởi động lại không còn tác dụng, không còn ai để hỏi nữa."
   },
-  "quiz": [
-    {
-      "question": "Rủi ro lớn nhất đối với bên bán khi chấp nhận cấu trúc Earnout là gì?",
-      "options": [
-        "Không có rủi ro đáng kể, bên bán luôn nhận đủ tiền ngay khi ký kết",
-        "Bên bán vẫn phụ thuộc vào quyết định vận hành của bên mua để đạt mốc hiệu suất, dù đã mất quyền kiểm soát",
-        "Earnout luôn có giá trị thấp hơn khoản trả trước theo quy định pháp luật",
-        "Bên bán phải hoàn trả tiền nếu công ty không đạt mốc hiệu suất"
-      ],
-      "correct": 1,
-      "explanation": "Đây là rủi ro cấu trúc cốt lõi của earnout: một khi deal đóng, quyền kiểm soát vận hành thường chuyển sang bên mua, nhưng bên bán vẫn phụ thuộc vào kết quả vận hành đó để nhận đủ khoản earnout - tạo ra xung đột lợi ích nếu bên mua có động cơ (dù không cố ý) đưa ra quyết định làm giảm khả năng đạt mốc hiệu suất."
-    },
-    {
-      "question": "Vì sao các điều khoản earnout thường được đàm phán rất chi tiết, bao gồm cả cách đo lường và quyền giám sát của bên bán sau khi deal đóng?",
-      "options": [
-        "Vì pháp luật bắt buộc phải có các điều khoản chi tiết này trong mọi hợp đồng mua bán doanh nghiệp có yếu tố thanh toán trả chậm",
-        "Để giảm tranh chấp về cách tính mốc và xung đột lợi ích khi mất kiểm soát",
-        "Vì earnout luôn phức tạp hơn các hình thức thanh toán khác về mặt thuế",
-        "Chỉ để làm hài lòng đội ngũ pháp lý của cả hai bên trong thương vụ"
-      ],
-      "correct": 1,
-      "explanation": "Chi tiết hóa các điều khoản đo lường (công thức tính, nguồn dữ liệu, quyền kiểm tra sổ sách) và quyền giám sát vận hành ở mức độ nhất định cho bên bán là cách quản lý rủi ro xung đột lợi ích đã nêu, giảm khả năng tranh chấp pháp lý sau khi deal hoàn tất."
-    },
-    {
-      "question": "Earnout mang lại lợi ích gì cho BÊN MUA so với việc trả toàn bộ giá trị ngay tại thời điểm đóng deal?",
-      "options": [
-        "Không có lợi ích gì cho bên mua, cấu trúc earnout tồn tại chỉ nhằm mục đích bảo vệ quyền lợi tài chính của bên bán trong giao dịch",
-        "Giảm rủi ro trả giá cao cho dự báo tăng trưởng chưa được kiểm chứng",
-        "Giúp bên mua tránh hoàn toàn nghĩa vụ thuế phát sinh từ thương vụ",
-        "Cho phép bên mua đơn phương huỷ thương vụ vào bất cứ lúc nào"
-      ],
-      "correct": 1,
-      "explanation": "Lợi ích cốt lõi cho bên mua: giảm rủi ro trả giá cao dựa trên các dự báo tăng trưởng chưa được kiểm chứng. Nếu công ty không đạt được các mốc hiệu suất như bên bán kỳ vọng, bên mua không phải trả phần earnout tương ứng - chia sẻ rủi ro định giá một cách công bằng hơn."
-    }
-  ],
-  "keyTakeaways": [
-    "Earnout chia thanh toán thành khoản trả trước + khoản trả sau dựa trên mốc hiệu suất tương lai",
-    "Phổ biến trong M&A công ty tăng trưởng cao/startup nơi định giá truyền thống khó áp dụng",
-    "Rủi ro cốt lõi: bên bán phụ thuộc vào vận hành của bên mua để đạt mốc hiệu suất, dù không còn toàn quyền kiểm soát",
-    "Điều khoản earnout cần được đàm phán chi tiết về cách đo lường và quyền giám sát để giảm tranh chấp"
-  ],
-  "practicePrompt": {
-    "question": "Rủi ro cấu trúc cốt lõi của Earnout đối với bên bán là gì?",
-    "options": [
-      "Bên bán phụ thuộc quyết định vận hành của bên mua",
-      "Earnout luôn có giá trị thấp hơn khoản trả trước theo quy định",
-      "Bên bán phải hoàn trả toàn bộ tiền nếu không đạt mốc hiệu suất",
-      "Không có rủi ro nào đáng kể"
-    ],
-    "correct": 0,
-    "explanation": "Rủi ro cốt lõi là sự phụ thuộc vào vận hành của bên mua trong khi bên bán không còn toàn quyền kiểm soát."
-  },
-  "summary": {
-    "keyIdea": "Earnout là cơ chế chia sẻ rủi ro định giá giữa bên mua và bên bán, thanh toán một phần dựa trên hiệu suất thực tế sau khi deal đóng, nhưng đi kèm rủi ro xung đột lợi ích về quyền kiểm soát vận hành",
-    "commonMistake": "Đánh giá earnout chỉ như một con số trên giấy mà không xem xét kỹ các điều khoản đo lường và quyền giám sát vận hành đi kèm",
-    "action": "Khi phân tích một thương vụ có earnout, luôn tìm hiểu: mốc hiệu suất được đo lường như thế nào, và bên bán có quyền giám sát/tham gia quyết định vận hành ở mức độ nào sau deal"
-  },
-  "application": {
-    "title": "Phân tích điều khoản Earnout",
-    "message": "Nếu bạn từng đọc tin tức M&A có nhắc đến \"earnout\" hoặc \"deferred consideration\", hãy thử tìm thông tin về mốc hiệu suất cụ thể và khung thời gian - đây là chi tiết quan trọng để đánh giá thực chất giá trị thương vụ.",
-    "secondary": "Kỹ năng này hữu ích cho những ai làm việc trong M&A Advisory, Private Equity, hoặc tư vấn cho founder startup đang đàm phán bán công ty."
-  },
-  "track": "bonus",
   "sections": [
     {
       "type": "lead",
-      "text": "Không phải mọi thương vụ M&A đều có thể chốt giá một lần duy nhất - khi bên mua và bên bán bất đồng sâu sắc về triển vọng tương lai, Earnout là công cụ giúp cả hai tìm được điểm chung."
+      "text": "Bàn giao là một cuộc chuyển giao trách nhiệm, và trách nhiệm thì không chuyển được bằng một buổi họp. Nó chuyển khi đội mới đã thật sự xử lý được thứ họ sẽ phải xử lý."
     },
     {
       "type": "heading",
-      "text": "Cơ chế cốt lõi: trả trước + trả sau có điều kiện"
+      "text": "Vì sao thời gian là mốc tồi"
     },
     {
       "type": "paragraph",
-      "text": "Cấu trúc earnout điển hình chia thanh toán làm hai phần: một khoản cố định trả ngay khi deal đóng, và một khoản biến động (earnout) trả trong 1-3 năm tiếp theo, chỉ khi công ty đạt được các mốc hiệu suất cụ thể đã thỏa thuận trước - thường là doanh thu, EBITDA, hoặc các chỉ số vận hành khác tùy ngành."
+      "text": "Ba tháng hỗ trợ là một mốc dễ viết vào biên bản và không nói gì về mức sẵn sàng. Nó có thể quá dài với một dịch vụ đơn giản và quá ngắn với một dịch vụ có chu kỳ hằng quý. Tệ hơn, nó thưởng cho việc im lặng: đội mới ngại hỏi thì thời gian vẫn trôi và mốc vẫn tới."
     },
     {
       "type": "heading",
-      "text": "Xung đột lợi ích tiềm ẩn sau khi deal đóng"
-    },
-    {
-      "type": "paragraph",
-      "text": "Vấn đề cấu trúc lớn nhất của earnout: sau khi thương vụ hoàn tất, quyền kiểm soát vận hành công ty thường chuyển phần lớn hoặc hoàn toàn sang bên mua. Nhưng bên bán vẫn phụ thuộc vào kết quả vận hành đó để nhận đủ khoản earnout đã thỏa thuận - tạo ra khả năng xung đột lợi ích nếu các quyết định vận hành của bên mua (dù vì lý do chiến lược hợp lý) vô tình hoặc cố ý làm giảm khả năng đạt mốc hiệu suất."
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao chi tiết hóa điều khoản quan trọng",
-      "text": "Để giảm thiểu rủi ro tranh chấp, các thương vụ có earnout thường đàm phán rất kỹ: công thức tính mốc hiệu suất, nguồn dữ liệu/phương pháp kế toán sử dụng, quyền của bên bán được kiểm tra sổ sách, và đôi khi cả một số ràng buộc về cách bên mua được phép vận hành công ty trong giai đoạn earnout (ví dụ không được cắt giảm ngân sách marketing quá mức)."
+      "text": "Mốc tốt trông như thế nào"
     },
     {
       "type": "list",
       "items": [
-        "Earnout chia thanh toán thành trả trước + trả sau có điều kiện",
-        "Giúp thu hẹp khoảng cách kỳ vọng định giá giữa hai bên",
-        "Rủi ro: bên bán phụ thuộc vận hành của bên mua nhưng không còn toàn quyền kiểm soát",
-        "Điều khoản đo lường và giám sát cần được chi tiết hóa để giảm tranh chấp"
+        "Đội mới tự xử lý ba sự cố liên tiếp mà không cần gọi người của đội cũ",
+        "Đội mới phát hành hai lần liên tiếp không phải quay đầu vì lỗi phát sinh",
+        "Hệ thống đi qua một chu kỳ đầy đủ, gồm cả công việc chạy hằng quý",
+        "Có ít nhất hai người bên nhận đủ hiểu để trực, không phải một người duy nhất"
       ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Bốn mốc này có chung một đặc điểm: chúng đo cái đội mới làm được chứ không đo cái đội cũ đã nói. Và chúng đều chỉ đạt được bằng cách để đội mới làm thật, nên chúng cũng định luôn cách đội cũ nên cư xử trong giai đoạn ấy."
+    },
+    {
+      "type": "callout",
+      "label": "Đội cũ ở lại nhưng không làm thay",
+      "text": "Đây là điều khoản khó giữ nhất và cũng là điều khoản quyết định. Khi có sự cố lúc hai giờ sáng, người của đội cũ biết cách sửa trong ba phút, còn để đội mới sửa thì mất bốn mươi phút. Chọn ba phút là hợp lý cho đêm đó và làm hỏng toàn bộ cuộc bàn giao, vì mốc chưa bao giờ đạt được và không ai nhận ra."
+    },
+    {
+      "type": "heading",
+      "text": "Điều gì xảy ra nếu không đạt mốc"
+    },
+    {
+      "type": "paragraph",
+      "text": "Phải viết trước, lúc còn dễ nói chuyện. Thường có ba lối ra: kéo dài thêm một chu kỳ, thu hẹp phạm vi bàn giao và giữ lại phần khó nhất, hoặc kết luận rằng hệ thống này nên bị thay thế thay vì được tiếp nhận. Lối thứ ba nghe cực đoan nhưng đôi khi là lối rẻ nhất, và nó chỉ được cân nhắc nếu đã viết vào từ đầu."
     },
     {
       "type": "closing",
       "lines": [
-        "Earnout là minh chứng cho việc M&A không chỉ là bài toán định giá một lần, mà còn là bài toán thiết kế cơ chế chia sẻ rủi ro thông minh.",
-        "Bài tiếp theo, chúng ta mở rộng góc nhìn ra ngoài biên giới với M&A xuyên quốc gia."
+        "Thời gian không đo được mức sẵn sàng, nó chỉ đo thời gian.",
+        "Đội cũ ở lại để trả lời, không phải để làm thay - đó là cả thoả thuận."
       ]
     }
-  ]
+  ],
+  "quiz": [
+    {
+      "question": "Vì sao 'hỗ trợ ba tháng' là một mốc tồi?",
+      "options": [
+        "Vì nó trôi qua kể cả khi đội mới chưa làm được gì",
+        "Vì ba tháng thường không đủ cho những hệ thống có mức độ phức tạp trung bình trở lên",
+        "Vì nó không nói rõ đội cũ phải hỗ trợ với mức độ ưu tiên và tốc độ phản hồi nào",
+        "Vì nó bắt đội cũ phải giữ người trong khi họ đã được phân công sang việc khác"
+      ],
+      "correct": 0,
+      "explanation": "Một mốc phải phân biệt được trạng thái đã sẵn sàng với chưa sẵn sàng. Thời gian không phân biệt được gì cả - nó trôi giống hệt nhau trong cả hai trường hợp, nên nó không phải một mốc mà chỉ là một hạn."
+    },
+    {
+      "question": "Đội mới ngừng hỏi vào tháng thứ ba. Nên hiểu thế nào?",
+      "options": [
+        "Đó là dữ liệu mơ hồ, có thể là đã hiểu hoặc là đã ngại hỏi",
+        "Đó là dấu hiệu tốt cho thấy quá trình chuyển giao kiến thức đã diễn ra thành công",
+        "Đó là dấu hiệu xấu cho thấy đội mới đang né tránh những phần khó của hệ thống",
+        "Đó là điều bình thường vì số câu hỏi luôn giảm dần theo thời gian trong mọi cuộc bàn giao"
+      ],
+      "correct": 0,
+      "explanation": "Số câu hỏi giảm là một tín hiệu hai nghĩa và không có cách nào tách chúng từ bên ngoài. Đó chính là lý do mốc phải đo việc đội mới làm được, chứ không đo dấu hiệu gián tiếp như tần suất hỏi."
+    },
+    {
+      "question": "Sự cố lúc hai giờ sáng, người đội cũ sửa được trong ba phút. Nên để ai sửa?",
+      "options": [
+        "Đội mới, với người đội cũ ngồi cạnh trả lời",
+        "Đội cũ, vì thời gian khôi phục ngắn hơn nên người dùng chịu ảnh hưởng ít hơn hẳn",
+        "Đội cũ sửa trước rồi giải thích lại cho đội mới vào buổi sáng hôm sau",
+        "Tuỳ mức độ nghiêm trọng, sự cố lớn thì đội cũ sửa còn sự cố nhỏ thì đội mới"
+      ],
+      "correct": 0,
+      "explanation": "Đây là chỗ mọi cuộc bàn giao hỏng, và nó hỏng bằng một chuỗi quyết định hợp lý. Mỗi lần chọn ba phút là một lần mốc không tiến thêm, và không lần nào trong số đó có vẻ là một sai lầm."
+    },
+    {
+      "question": "Vì sao phải viết trước điều gì xảy ra nếu không đạt mốc?",
+      "options": [
+        "Vì lúc chưa đạt thì mọi lựa chọn đều thành một cuộc thương lượng",
+        "Vì các bên liên quan cần biết trước rủi ro để chuẩn bị phương án dự phòng cho mình",
+        "Vì việc này giúp đội mới hiểu rõ mức độ nghiêm túc của những mốc đã được đặt ra",
+        "Vì nếu không viết thì đội cũ có thể rời đi ngay khi hết hạn dù mốc chưa hoàn thành"
+      ],
+      "correct": 0,
+      "explanation": "Lúc mốc chưa đạt, cả hai bên đều đã mệt và đều có lý do để đổ cho bên kia. Một lối ra viết sẵn từ lúc còn dễ nói chuyện là thứ duy nhất giữ cho quyết định ấy không phụ thuộc vào ai đang mệt hơn."
+    },
+    {
+      "question": "Lối ra nào hay bị bỏ quên khi hệ thống không bàn giao được?",
+      "options": [
+        "Kết luận rằng nên thay thế nó thay vì tiếp nhận nó",
+        "Chia hệ thống thành nhiều phần nhỏ rồi bàn giao lần lượt từng phần một",
+        "Thuê lại một người của đội cũ theo hợp đồng ngắn hạn để tiếp tục hỗ trợ",
+        "Giữ nguyên quyền sở hữu ở đội cũ và chỉ chuyển giao quyền vận hành hằng ngày"
+      ],
+      "correct": 0,
+      "explanation": "Ba lối kia đều mặc định rằng hệ thống đáng được giữ lại, và giả định ấy hiếm khi được kiểm tra. Một hệ thống không ai bàn giao nổi đôi khi là một hệ thống đã hết vòng đời, và thay thế là lối rẻ nhất."
+    }
+  ],
+  "keyTakeaways": [
+    "Thời gian không đo được mức sẵn sàng, chỉ mốc đo được việc mới đo được",
+    "Đội cũ ở lại để trả lời chứ không làm thay, kể cả lúc hai giờ sáng",
+    "Số câu hỏi giảm là tín hiệu hai nghĩa, không phải dấu hiệu tốt",
+    "Viết sẵn lối ra khi chưa đạt mốc, lúc còn dễ nói chuyện"
+  ],
+  "practicePrompt": {
+    "question": "Hệ thống có công việc chạy hằng quý. Mốc 'đi qua một chu kỳ đầy đủ' cần tối thiểu bao lâu?",
+    "options": [
+      "Ba tháng",
+      "Một tháng (= chỉ tính chu kỳ của các công việc chạy hằng ngày và hằng tuần)",
+      "Sáu tháng (= yêu cầu chu kỳ hằng quý lặp lại hai lần cho chắc chắn)",
+      "Một năm (= nhầm chu kỳ hằng quý thành chu kỳ tính theo năm tài chính)"
+    ],
+    "correct": 0,
+    "explanation": "Chu kỳ dài nhất quyết định thời gian tối thiểu, nên một công việc hằng quý đặt sàn ở ba tháng. Đây là lý do mốc theo việc và mốc theo thời gian đôi khi trùng nhau - nhưng con số ba tháng ấy đến từ hệ thống chứ không từ biên bản."
+  },
+  "summary": {
+    "keyIdea": "Chuyển trách nhiệm khi đội mới đã làm được, không khi hết hạn",
+    "commonMistake": "Để đội cũ sửa hộ vì đêm đó sửa nhanh hơn",
+    "action": "Viết ba mốc đo được cho một cuộc bàn giao bạn đang tham gia."
+  },
+  "application": {
+    "title": "Bốn mốc và một lối ra",
+    "message": "Ba sự cố tự xử. Hai lần phát hành không quay đầu. Một chu kỳ đầy đủ. Hai người đủ hiểu để trực. Và một dòng ghi rõ chưa đạt thì làm gì.",
+    "secondary": "Bốn mốc đầu đo đội mới; dòng cuối bảo vệ cả hai bên khỏi phiên bản mệt mỏi của chính mình."
+  },
+  "id": 1338,
+  "slug": "ma-cau-truc-earnout",
+  "track": "bonus"
 },
 {
-  "id": 1339,
-  "slug": "ma-xuyen-bien-gioi",
-  "title": "M&A Nâng cao: Rào cản pháp lý và văn hóa trong M&A xuyên biên giới",
-  "subtitle": "Định giá đúng chỉ là điều kiện cần - thương vụ cross-border còn phải vượt qua những rào cản mà mô hình Excel không tính được",
-  "duration": "8 phút",
-  "difficulty": "Trung bình",
+  "title": "Tiếp nhận hệ thống từ một tổ chức khác",
+  "subtitle": "Rào cản kỹ thuật thì đo được; rào cản vận hành mới là thứ làm hỏng việc",
+  "duration": "9 phút",
+  "difficulty": "Khó",
   "emoji": "🌐",
-  "whyItMatters": "Khi doanh nghiệp Việt Nam ngày càng tham gia nhiều thương vụ M&A với đối tác nước ngoài (cả mua vào lẫn bán ra), hiểu các rào cản đặc thù của M&A xuyên biên giới giúp bạn đánh giá thương vụ toàn diện hơn, không chỉ dừng ở mô hình định giá.",
-  "openingQuestion": "Một tập đoàn nước ngoài muốn mua cổ phần chi phối một công ty Việt Nam trong ngành có điều kiện tiếp cận thị trường hạn chế với nhà đầu tư nước ngoài. Rào cản đầu tiên và quan trọng nhất họ cần vượt qua là gì?",
+  "whyItMatters": "Tiếp nhận một hệ thống viết bởi người khác, theo quy ước khác, cho một tổ chức khác là việc gần như ai làm lâu cũng gặp - và là việc có tỷ lệ thất bại cao nhất trong nghề.",
+  "openingQuestion": "Tiếp nhận một hệ thống từ đội bị giải thể. Việc đầu tiên nên làm là gì?",
   "openingOptions": [
-    "Chỉ cần có đủ tiền là có thể mua bất kỳ tỷ lệ nào",
-    "Giới hạn tỷ lệ sở hữu nước ngoài theo từng ngành",
-    "Rào cản ngôn ngữ trong đàm phán",
-    "Chỉ cần chấp thuận từ ban lãnh đạo công ty mục tiêu là đủ"
+    "Dựng lại nó từ đầu trên máy mình, không đọc mã",
+    "Đọc toàn bộ mã nguồn để hiểu kiến trúc trước khi chạm vào bất cứ thứ gì",
+    "Viết lại phần lõi theo quy ước của đội mình để về sau dễ bảo trì hơn hẳn",
+    "Gặp những người dùng chính để biết hệ thống đang phục vụ việc gì cho họ"
   ],
-  "correctOption": 1,
-  "explanation": "Trước khi bàn đến định giá hay chiến lược tích hợp, nhà đầu tư nước ngoài phải xác định rõ giới hạn sở hữu nước ngoài áp dụng cho ngành nghề cụ thể tại Việt Nam (một số ngành mở hoàn toàn, một số ngành có trần tỷ lệ, một số ngành hạn chế hoặc cấm) - đây là rào cản pháp lý nền tảng quyết định cấu trúc thương vụ có khả thi hay không, và cấu trúc như thế nào (sở hữu trực tiếp, gián tiếp qua nhiều lớp, hay hợp tác kinh doanh).",
+  "correctOption": 0,
+  "explanation": "Dựng lại được từ đầu là phép thử duy nhất chứng minh bạn có đủ mọi thứ: mã, cấu hình, biến môi trường, dữ liệu mẫu, và các dịch vụ nó phụ thuộc. Đọc mã và gặp người dùng đều cần thiết nhưng đều làm sau, vì cả hai đều có thể tiến hành trên một hiểu biết sai mà không phát hiện ra. Dựng lại thì hoặc chạy hoặc không.",
   "diagram": [
     {
-      "label": "Xác định giới hạn sở hữu nước ngoài theo ngành",
+      "label": "Dựng lại từ đầu để biết còn thiếu gì",
       "arrow": true
     },
     {
-      "label": "Đánh giá rào cản văn hóa & quản trị (khác biệt cách ra quyết định)",
+      "label": "Chạy song song, so kết quả",
       "arrow": true
     },
     {
-      "label": "Thiết kế cấu trúc thương vụ + kế hoạch tích hợp phù hợp",
-      "arrow": false
+      "label": "Nhận trách nhiệm trực",
+      "arrow": true
+    },
+    {
+      "label": "Đội cũ ngừng hỗ trợ"
     }
   ],
-  "interactiveType": "accretion",
   "realWorldExample": {
-    "company": "Làn sóng M&A xuyên biên giới vào thị trường Việt Nam",
-    "description": "Việt Nam đã chứng kiến nhiều thương vụ M&A lớn có yếu tố nước ngoài trong các ngành bán lẻ, tiêu dùng, tài chính - ngân hàng, mỗi ngành có mức độ mở cửa và giới hạn sở hữu nước ngoài khác nhau theo cam kết WTO và pháp luật chuyên ngành. Các nhà đầu tư nước ngoài thành công thường là những bên đầu tư nhiều thời gian tìm hiểu khung pháp lý và xây dựng đội ngũ quản lý địa phương trước khi hoàn tất thương vụ, thay vì chỉ tập trung vào mô hình định giá."
+    "company": "Bàn giao xong trên giấy",
+    "description": "Một đội nhận sáu dịch vụ từ một bộ phận bị giải thể. Buổi bàn giao kéo dài hai giờ, có tài liệu, có sơ đồ, mọi người đều gật đầu. Ba tuần sau người viết dịch vụ nghỉ việc. Sáu tháng sau, khi cần đổi một quy tắc, đội mới phát hiện một trong sáu dịch vụ đọc cấu hình từ một máy chủ không có trong sơ đồ, do một người đã nghỉ dựng lên từ bốn năm trước."
   },
-  "quiz": [
-    {
-      "question": "Vì sao giới hạn tỷ lệ sở hữu nước ngoài là rào cản cần đánh giá TRƯỚC khi tính đến định giá trong M&A xuyên biên giới vào Việt Nam?",
-      "options": [
-        "Chỉ cần có đủ nguồn vốn là mua được bất kỳ tỷ lệ cổ phần nào ở bất kỳ ngành nghề nào, theo nguyên tắc tự do giao dịch trên thị trường",
-        "Vì nó quyết định cấu trúc thương vụ khả thi: chi phối hay chỉ thiểu số",
-        "Vì nó chỉ ảnh hưởng tới nghĩa vụ thuế thu nhập doanh nghiệp sau này",
-        "Vì đây chỉ là thủ tục hành chính cần hoàn tất trước khi ký hợp đồng"
-      ],
-      "correct": 1,
-      "explanation": "Giới hạn sở hữu nước ngoài là ràng buộc nền tảng: nó xác định liệu nhà đầu tư có thể mua chi phối (trên 50%) hay chỉ được phép mua tỷ lệ thiểu số, điều này ảnh hưởng trực tiếp đến cấu trúc giao dịch, quyền kiểm soát, và thậm chí cả chiến lược tích hợp sau M&A - nên cần được làm rõ sớm nhất."
-    },
-    {
-      "question": "Rào cản văn hóa trong M&A xuyên biên giới thường biểu hiện rõ nhất ở giai đoạn nào của thương vụ?",
-      "options": [
-        "Chỉ ở giai đoạn định giá và đàm phán giá ban đầu của thương vụ",
-        "Ở giai đoạn tích hợp hậu sáp nhập, khi hai đội ngũ vận hành cùng nhau",
-        "Chỉ ảnh hưởng tới việc dịch thuật các tài liệu hợp đồng pháp lý sang ngôn ngữ của bên đối tác nước ngoài trong giai đoạn đàm phán",
-        "Không có rào cản văn hoá nào đáng kể trong M&A hiện đại ngày nay"
-      ],
-      "correct": 1,
-      "explanation": "Dù rào cản văn hóa có thể xuất hiện từ giai đoạn đàm phán, nó thường bộc lộ rõ và gây hậu quả lớn nhất ở giai đoạn tích hợp hậu sáp nhập (PMI) - khi sự khác biệt trong văn hóa doanh nghiệp, phong cách quản lý, và kỳ vọng giao tiếp giữa hai đội ngũ phải được dung hòa trong vận hành hàng ngày."
-    },
-    {
-      "question": "Một cấu trúc phổ biến để nhà đầu tư nước ngoài tiếp cận ngành có giới hạn sở hữu nghiêm ngặt tại nhiều thị trường mới nổi (bao gồm một số trường hợp tại Việt Nam) là gì?",
-      "options": [
-        "Bỏ qua quy định và đầu tư trực tiếp mà không cần khai báo với cơ quan quản lý, vì việc kiểm tra thực tế thường lỏng lẻo ở thị trường mới nổi",
-        "Liên doanh với đối tác trong nước hoặc thoả thuận hợp tác kinh doanh",
-        "Chỉ có thể đầu tư gián tiếp qua thị trường chứng khoán quốc tế",
-        "Không có cách nào tiếp cận ngành có giới hạn sở hữu nghiêm ngặt"
-      ],
-      "correct": 1,
-      "explanation": "Các cấu trúc hợp pháp phổ biến bao gồm liên doanh với đối tác trong nước, các thỏa thuận hợp tác kinh doanh, hoặc sở hữu gián tiếp qua nhiều lớp phù hợp với quy định - tất cả đều cần tuân thủ chặt chẽ khung pháp lý hiện hành, không phải là cách \"lách luật\"."
-    }
-  ],
-  "keyTakeaways": [
-    "Giới hạn sở hữu nước ngoài theo ngành là rào cản pháp lý nền tảng cần đánh giá đầu tiên trong M&A xuyên biên giới vào Việt Nam",
-    "Rào cản này quyết định cấu trúc thương vụ khả thi: mua chi phối, mua thiểu số, hay hợp tác gián tiếp",
-    "Rào cản văn hóa thường bộc lộ rõ nhất ở giai đoạn Post-Merger Integration, không phải giai đoạn đàm phán",
-    "Các cấu trúc tiếp cận hợp pháp (liên doanh, hợp tác kinh doanh) cần tuân thủ chặt chẽ khung pháp lý, không phải cách lách luật"
-  ],
-  "practicePrompt": {
-    "question": "Vì sao giới hạn sở hữu nước ngoài cần được đánh giá trước khi tính đến định giá trong M&A xuyên biên giới?",
-    "options": [
-      "Vì nó quyết định cấu trúc thương vụ khả thi",
-      "Vì nó chỉ là thủ tục hành chính không quan trọng",
-      "Vì nó chỉ ảnh hưởng đến thuế thu nhập doanh nghiệp",
-      "Vì nó chỉ áp dụng cho một ngành duy nhất"
-    ],
-    "correct": 0,
-    "explanation": "Giới hạn sở hữu nước ngoài quyết định cấu trúc thương vụ khả thi, nên cần được làm rõ sớm nhất trước khi xây dựng mô hình định giá chi tiết."
-  },
-  "summary": {
-    "keyIdea": "M&A xuyên biên giới đòi hỏi đánh giá không chỉ định giá tài chính mà còn rào cản pháp lý (giới hạn sở hữu nước ngoài theo ngành) và rào cản văn hóa (đặc biệt bộc lộ ở giai đoạn tích hợp hậu sáp nhập)",
-    "commonMistake": "Tập trung phần lớn nguồn lực vào mô hình định giá tài chính mà bỏ qua đánh giá kỹ lưỡng rào cản pháp lý và văn hóa - hai yếu tố thường quyết định thành bại thực tế của thương vụ",
-    "action": "Khi phân tích một thương vụ M&A xuyên biên giới, luôn bắt đầu bằng câu hỏi pháp lý (ngành này có giới hạn sở hữu nước ngoài không) trước khi đi sâu vào mô hình định giá"
-  },
-  "application": {
-    "title": "Đọc tin tức M&A xuyên biên giới",
-    "message": "Khi đọc về một thương vụ M&A có yếu tố nước ngoài tại Việt Nam, thử tìm hiểu: ngành đó có giới hạn sở hữu nước ngoài không, và nhà đầu tư đã cấu trúc thương vụ như thế nào để tuân thủ (mua trực tiếp, liên doanh, hay hình thức khác)?",
-    "secondary": "Đây là góc nhìn hữu ích cho những ai quan tâm đến M&A Advisory hoặc làm việc trong môi trường doanh nghiệp có vốn đầu tư nước ngoài."
-  },
-  "track": "bonus",
   "sections": [
     {
       "type": "lead",
-      "text": "M&A xuyên biên giới cộng thêm hai lớp phức tạp mà thương vụ trong nước không có: rào cản pháp lý về sở hữu nước ngoài, và rào cản văn hóa khi hai đội ngũ đến từ hai môi trường kinh doanh khác nhau phải làm việc cùng nhau."
+      "text": "Việc tiếp nhận hỏng hiếm khi vì mã khó. Nó hỏng vì những thứ không nằm trong mã: quy ước ngầm, phụ thuộc không ghi ở đâu, và những người biết chuyện đã đi mất."
     },
     {
       "type": "heading",
-      "text": "Rào cản pháp lý: giới hạn sở hữu nước ngoài"
+      "text": "Hai loại rào cản"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Rào cản kỹ thuật",
+        "text": "Ngôn ngữ lạ, kiến trúc khác, công cụ khác. Khó chịu nhưng đo được, ước lượng được, và luôn giải quyết được bằng thời gian."
+      },
+      "right": {
+        "label": "Rào cản vận hành",
+        "text": "Quy ước ngầm, tiêu chuẩn khác về việc thế nào là xong, và những phụ thuộc không ai ghi lại. Không đo được, nên không ai lên kế hoạch cho nó."
+      }
     },
     {
       "type": "paragraph",
-      "text": "Tại Việt Nam, mức độ mở cửa cho nhà đầu tư nước ngoài khác nhau đáng kể theo từng ngành nghề - một số ngành mở hoàn toàn (100% sở hữu nước ngoài), một số có trần tỷ lệ cụ thể, một số hạn chế hoặc có điều kiện đặc biệt (ví dụ liên quan đến an ninh quốc phòng, truyền thông). Xác định đúng giới hạn áp dụng là bước đầu tiên bắt buộc trước khi thiết kế cấu trúc thương vụ."
+      "text": "Kế hoạch tiếp nhận gần như luôn được lập theo rào cản thứ nhất, vì nó là loại duy nhất viết ra thành nhiệm vụ được. Rồi dự án trễ vì loại thứ hai, và không ai nói được nó trễ vì gì."
     },
     {
       "type": "heading",
-      "text": "Rào cản văn hóa: không chỉ là ngôn ngữ"
-    },
-    {
-      "type": "paragraph",
-      "text": "Rào cản văn hóa trong M&A xuyên biên giới sâu sắc hơn nhiều so với khác biệt ngôn ngữ đơn thuần - nó bao gồm phong cách ra quyết định (tập trung vs phân quyền), kỳ vọng về tốc độ thay đổi, cách xử lý xung đột, và văn hóa giao tiếp trong công việc. Những khác biệt này thường không bộc lộ rõ trong giai đoạn đàm phán (khi cả hai bên đều thể hiện thiện chí), mà bùng phát ở giai đoạn tích hợp vận hành thực tế sau khi deal đóng."
-    },
-    {
-      "type": "callout",
-      "label": "Cấu trúc thương vụ khi có giới hạn sở hữu",
-      "text": "Khi ngành mục tiêu có giới hạn sở hữu nước ngoài nghiêm ngặt, nhà đầu tư thường cân nhắc các cấu trúc thay thế hợp pháp: liên doanh với đối tác trong nước để đạt tỷ lệ sở hữu cho phép, các thỏa thuận hợp tác kinh doanh không cần chuyển giao sở hữu trực tiếp, hoặc đầu tư gián tiếp qua các lớp cấu trúc phù hợp với quy định - tất cả đều đòi hỏi tư vấn pháp lý chuyên sâu, không phải giải pháp \"một kích cỡ cho tất cả\"."
+      "text": "Ba thứ phải lấy trước khi người cuối cùng rời đi"
     },
     {
       "type": "list",
       "items": [
-        "Giới hạn sở hữu nước ngoài theo ngành cần được xác định đầu tiên",
-        "Rào cản này quyết định cấu trúc thương vụ khả thi",
-        "Rào cản văn hóa bộc lộ rõ nhất ở giai đoạn tích hợp hậu sáp nhập",
-        "Cấu trúc tiếp cận hợp pháp cần tư vấn pháp lý chuyên sâu, phù hợp từng trường hợp"
+        "Danh sách mọi thứ hệ thống gọi ra ngoài, kể cả những thứ chỉ chạy mỗi tháng một lần",
+        "Cách dựng lại toàn bộ từ một máy trắng, thực hiện bằng tay ít nhất một lần",
+        "Tên những người dùng hệ thống này và việc họ đang phụ thuộc vào nó để làm gì"
       ]
+    },
+    {
+      "type": "callout",
+      "label": "Thứ nguy hiểm nhất là phụ thuộc chạy hằng tháng",
+      "text": "Một hệ thống chạy hằng ngày sẽ tự bộc lộ mọi phụ thuộc của nó trong tuần đầu tiên. Thứ chỉ chạy vào cuối tháng, cuối quý hoặc khi có sự kiện hiếm thì im lặng suốt thời gian bàn giao, rồi hỏng vào lúc không còn ai để hỏi. Cách rẻ nhất để tìm chúng là đọc lịch chạy và danh sách quyền truy cập, không phải đọc mã."
+    },
+    {
+      "type": "heading",
+      "text": "Chạy song song trước khi nhận"
+    },
+    {
+      "type": "paragraph",
+      "text": "Giai đoạn tốn kém nhất nhưng cũng đáng nhất là chạy hệ thống cũ và bản dựng lại của bạn cùng lúc, so kết quả từng ngày. Nó phát hiện mọi khác biệt về cấu hình và dữ liệu mà không cuộc bàn giao nào phát hiện được, và nó phát hiện chúng trong lúc đội cũ vẫn còn trả lời được."
+    },
+    {
+      "type": "heading",
+      "text": "Đừng viết lại ngay"
+    },
+    {
+      "type": "paragraph",
+      "text": "Phản xạ tự nhiên khi nhận mã của người khác là viết lại theo cách mình quen. Đây là sai lầm tốn kém nhất trong cả quá trình, vì phần lớn những chỗ trông kỳ quặc trong mã cũ là chỗ ai đó đã sửa một lỗi thật mà bạn chưa biết. Giữ nguyên cho tới khi hiểu vì sao nó được viết như vậy - và hiểu ở đây nghĩa là tìm ra được thay đổi nào đã tạo ra nó."
     },
     {
       "type": "closing",
       "lines": [
-        "M&A xuyên biên giới nhắc chúng ta rằng một mô hình định giá hoàn hảo trên Excel không đảm bảo thương vụ thành công nếu bỏ qua rào cản pháp lý và văn hóa thực tế.",
-        "Loạt bài M&A nâng cao đến đây tạm dừng - hy vọng các góc nhìn này bổ sung hữu ích cho nền tảng M&A cơ bản đã học trước đó."
+        "Rào cản kỹ thuật đo được nên được lên kế hoạch; rào cản vận hành thì không.",
+        "Dựng lại được từ máy trắng là phép thử duy nhất không nói dối."
       ]
     }
-  ]
+  ],
+  "quiz": [
+    {
+      "question": "Vì sao dựng lại từ máy trắng là việc đầu tiên?",
+      "options": [
+        "Vì nó chứng minh bạn đã có đủ mọi thứ cần thiết",
+        "Vì nó cho phép đội mới thử nghiệm tự do mà không ảnh hưởng tới bản đang chạy thật",
+        "Vì nó là cách nhanh nhất để hiểu được kiến trúc tổng thể của một hệ thống lạ",
+        "Vì nó tạo ra một môi trường sạch để so sánh với môi trường cũ khi có khác biệt"
+      ],
+      "correct": 0,
+      "explanation": "Mọi cách tìm hiểu khác đều có thể tiến hành trên một hiểu biết thiếu sót mà không lộ ra. Dựng lại thì hoặc chạy hoặc không, và mỗi lần không chạy là một thứ đang thiếu được chỉ tên."
+    },
+    {
+      "question": "Loại phụ thuộc nào nguy hiểm nhất khi tiếp nhận?",
+      "options": [
+        "Thứ chỉ chạy vào cuối tháng hoặc cuối quý",
+        "Thứ gọi tới một dịch vụ bên ngoài do một nhà cung cấp khác vận hành và duy trì",
+        "Thứ được viết bằng một ngôn ngữ mà không ai trong đội mới từng làm việc cùng",
+        "Thứ chạy liên tục với lưu lượng cao nên không thể dừng lại để kiểm tra được"
+      ],
+      "correct": 0,
+      "explanation": "Ba loại kia đều lộ ra ngay và đều được ghi vào kế hoạch. Thứ chạy hằng tháng thì im lặng suốt giai đoạn bàn giao rồi hỏng vào lúc không còn ai để hỏi, và đó là định nghĩa của rủi ro tệ nhất."
+    },
+    {
+      "question": "Vì sao kế hoạch tiếp nhận hay lập thiếu?",
+      "options": [
+        "Vì chỉ rào cản kỹ thuật mới viết ra thành nhiệm vụ được",
+        "Vì thời gian bàn giao thường bị ấn định bởi lịch giải thể của đội cũ chứ không theo việc",
+        "Vì đội mới thường đánh giá thấp độ phức tạp của một hệ thống họ chưa từng đọc mã",
+        "Vì các bên liên quan hiếm khi được hỏi ý kiến trong lúc kế hoạch đang được lập ra"
+      ],
+      "correct": 0,
+      "explanation": "Một kế hoạch chỉ chứa được những thứ diễn đạt thành việc. Quy ước ngầm và tiêu chuẩn khác nhau về thế nào là xong thì không diễn đạt được, nên chúng vắng mặt khỏi kế hoạch và có mặt trong phần trễ."
+    },
+    {
+      "question": "Vì sao không nên viết lại phần mã trông kỳ quặc ngay?",
+      "options": [
+        "Vì phần lớn chỗ kỳ quặc là chỗ ai đó đã sửa một lỗi thật",
+        "Vì viết lại sẽ làm mất lịch sử thay đổi nên về sau khó truy vết nguồn gốc của lỗi",
+        "Vì đội mới chưa có đủ bài kiểm thử để biết bản viết lại có còn đúng hay không",
+        "Vì việc viết lại tốn nhiều thời gian hơn so với việc học cách đọc mã hiện có"
+      ],
+      "correct": 0,
+      "explanation": "Ba lý do kia đều đúng và đều là lý do để cẩn thận. Lý do đầu là lý do để không làm: xoá một chỗ kỳ quặc là mở lại một lỗi đã đóng, và bạn sẽ gặp lại nó mà không biết mình đang gặp lại."
+    },
+    {
+      "question": "Giá trị lớn nhất của việc chạy song song hai hệ thống là gì?",
+      "options": [
+        "Nó phơi ra khác biệt trong lúc đội cũ vẫn còn trả lời được",
+        "Nó cho phép chuyển dần từng phần lưu lượng sang hệ thống mới một cách an toàn",
+        "Nó tạo ra một bản dự phòng để quay lại nếu hệ thống mới gặp sự cố nghiêm trọng",
+        "Nó giúp đo được chênh lệch hiệu năng giữa hai bản để biết có cần tối ưu thêm không"
+      ],
+      "correct": 0,
+      "explanation": "Ba giá trị kia đều có thật nhưng đều còn nguyên nếu chạy song song muộn hơn. Giá trị đầu thì hết hạn: mỗi tuần trôi qua là một người nữa rời đi, và câu hỏi vì sao chỗ này khác trở thành không ai trả lời được."
+    }
+  ],
+  "keyTakeaways": [
+    "Dựng lại từ máy trắng là phép thử duy nhất chứng minh bạn có đủ mọi thứ",
+    "Rào cản vận hành không đo được nên không vào kế hoạch, rồi nó làm trễ kế hoạch",
+    "Phụ thuộc chạy hằng tháng im lặng suốt bàn giao rồi hỏng lúc không còn ai hỏi",
+    "Giữ nguyên chỗ kỳ quặc cho tới khi tìm ra thay đổi nào đã tạo ra nó"
+  ],
+  "practicePrompt": {
+    "question": "Hệ thống có 12 công việc định kỳ: 8 chạy hằng ngày, 3 hằng tuần, 1 hằng quý. Sau bốn tuần bàn giao, bao nhiêu cái chưa từng chạy trước mắt bạn?",
+    "options": [
+      "1",
+      "4 (= cộng cả ba công việc hằng tuần vào, dù chúng đã chạy bốn lần)",
+      "0 (= giả định bốn tuần đủ để mọi công việc định kỳ đều xuất hiện một lần)",
+      "3 (= đếm nhóm hằng tuần và bỏ sót đúng cái hằng quý)"
+    ],
+    "correct": 0,
+    "explanation": "Tám cái hằng ngày chạy 28 lần, ba cái hằng tuần chạy 4 lần, cái hằng quý chưa chạy lần nào - còn đúng 1 công việc bạn chưa từng thấy chạy. Chính 1 cái ấy là cái bạn không biết gì về nó, và nó sẽ chạy lần đầu vào lúc đội cũ đã giải thể."
+  },
+  "summary": {
+    "keyIdea": "Rào cản kỹ thuật đo được và giải được; rào cản vận hành thì không",
+    "commonMistake": "Lập kế hoạch tiếp nhận theo độ khó của mã",
+    "action": "Liệt kê mọi công việc định kỳ của một hệ thống bạn đang giữ, kèm chu kỳ."
+  },
+  "application": {
+    "title": "Ba việc trước khi người cuối cùng rời đi",
+    "message": "Dựng lại từ máy trắng một lần bằng tay. Lấy danh sách mọi thứ hệ thống gọi ra ngoài. Ghi tên người dùng và việc họ phụ thuộc.",
+    "secondary": "Ba việc này đều hết hạn cùng lúc với hợp đồng của người cuối cùng biết chuyện."
+  },
+  "id": 1339,
+  "slug": "ma-xuyen-bien-gioi",
+  "track": "bonus"
 },
 
 
