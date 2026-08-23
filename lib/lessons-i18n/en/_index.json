@@ -44,6 +44,11 @@
     "subtitle": "Four groups, and why naming it right decides who can fix it",
     "duration": "8 min"
   },
+  "income-affiliates-jv": {
+    "title": "Splitting cost and credit for a shared service",
+    "subtitle": "When one system serves several teams, who pays and who gets the credit",
+    "duration": "8 min"
+  },
   "ir-cong-bo-thong-tin-va-thoi-diem": {
     "title": "IR, Part 2: Materiality and timing - what you must say, and when",
     "subtitle": "How to recognise material information, how the deadline is counted, and why silence is a choice with consequences",
@@ -138,6 +143,11 @@
     "title": "Data, Lesson 4: Visualisation - picking the right chart, and spotting the one that lies",
     "subtitle": "Four questions that decide the chart type, and the axis tricks that make true numbers tell the wrong story",
     "duration": "11 min"
+  },
+  "tu-duy-tai-chinh": {
+    "title": "Effort that is spent and effort that compounds",
+    "subtitle": "The same week of work, two completely different places to be in two years",
+    "duration": "7 min"
   },
   "tuong-quan-khong-phai-nhan-qua": {
     "title": "Data Thinking, Lesson 4: Correlation is not causation - and three ways to be fooled",

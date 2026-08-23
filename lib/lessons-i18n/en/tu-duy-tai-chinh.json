@@ -1,0 +1,164 @@
+{
+  "title": "Effort that is spent and effort that compounds",
+  "subtitle": "The same week of work, two completely different places to be in two years",
+  "duration": "7 min",
+  "whyItMatters": "Two teams putting in the same hours can end up in very different positions after two years, and the difference is not how fast they worked but whether what they made stayed usable.",
+  "openingQuestion": "Fixing a data bug by hand takes 2 hours; writing a tool that fixes it takes 8. Which do you pick?",
+  "openingOptions": [
+    "Depends on whether this bug comes back",
+    "Fix it by hand, it is faster",
+    "Write the tool, because it leaves something reusable instead of losing eight hours to one incident",
+    "Fix by hand this time, then write the tool if the bug returns twice more this quarter"
+  ],
+  "explanation": "That is the whole calculation, and it has one variable. If the bug happens once, two hours is right and eight is waste. If it happens monthly, eight hours pays back in four months and then earns forever. The best of the other three options is only a sensible default for the case where you do not yet know.",
+  "diagram": [
+    {
+      "label": "One week of work"
+    },
+    {
+      "label": "The spent part: done is gone"
+    },
+    {
+      "label": "The compounding part: still usable"
+    },
+    {
+      "label": "After two years, the gap widens"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Two teams, the same hours",
+    "description": "Two teams of the same size with the same workload. The first handled every operational request by hand, and each time it was quick. The second was slower in the first quarter because they kept stopping to write tools for the repeating work. Two years on, the second team spends about a fifth of its time on operations and the first spends more than half - and nobody on the first team ever did anything slowly."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This distinction sounds obvious enough to skip. It is hard in practice, because the compounding option is always slower the first time and the price of skipping it arrives very late."
+    },
+    {
+      "type": "heading",
+      "text": "Three things that compound"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Tools: repeated work becomes one command instead of one person's memory",
+        "Tests: written once, and they protect every later change without anyone remembering they exist",
+        "A note on why: a recorded decision means the next person does not have to make it again"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "What these three share is that they turn a repeating cost into a one-off cost. What they also share is that all three are the first things cut when a team is under schedule pressure, because cutting them causes nothing that week."
+    },
+    {
+      "type": "heading",
+      "text": "The calculation, and what it misses"
+    },
+    {
+      "type": "paragraph",
+      "text": "Multiply the expected number of repeats by the time each one takes, then compare against the effort of building the tool. That calculation is right and it misses one thing: doing work by hand also costs attention, and attention does not add up linearly. A ten-minute task repeated daily costs more than three hours a month, because it cuts across everything else."
+    },
+    {
+      "type": "callout",
+      "label": "When compounding is the mistake",
+      "text": "Not everything is worth investing in. Writing a tool for work that disappears at the end of this quarter, or tests for code you are still exploring and will throw away, is compounding toward a future that never arrives. The question that separates them is not whether this work repeats but whether this work still exists in six months."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Spent",
+        "text": "Fixing by hand, answering the same question again, rebuilding an environment from memory. Fast each time and it leaves nothing."
+      },
+      "right": {
+        "label": "Compounding",
+        "text": "A tool, a test, one line on why. Slower the first time and it makes every later time cheaper."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The compounding option is slower the first time and the price of skipping it arrives very late.",
+        "The question is not whether this work repeats, but whether it still exists in six months."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What do the three compounding things have in common?",
+      "options": [
+        "They turn a repeating cost into a one-off cost",
+        "They all take time",
+        "They all require the person doing them to have more experience than manual work does",
+        "They all produce something that other teams in the company can reuse later on as well"
+      ],
+      "explanation": "That is their entire value and also how you recognise them. If a piece of work does not turn a repeating cost into a one-off one then it does not belong in this group, however much effort it takes."
+    },
+    {
+      "question": "Why are those three the first things cut under schedule pressure?",
+      "options": [
+        "Because cutting them causes nothing that week",
+        "Because they are not on the task board",
+        "Because most teams underestimate how much time they will end up saving later on",
+        "Because their benefit is hard to explain to people outside the team, so it is hard to defend"
+      ],
+      "explanation": "The other three all contribute. The root cause is a broken feedback loop: the decision to cut and its consequence are months apart, so nobody ever learns what the last cut actually cost."
+    },
+    {
+      "question": "What does 'repeats times time each' miss?",
+      "options": [
+        "Manual work also costs attention, and attention does not add up linearly",
+        "The cost of maintaining the tool itself",
+        "That a person doing it by hand is more likely to make a mistake than a well-tested tool",
+        "That the number of repeats usually grows over time rather than holding at the estimate"
+      ],
+      "explanation": "The other three gaps are real and all add to the same side. The first one is different in kind: ten minutes repeated daily interrupts other work several times over, so it costs more than three uninterrupted hours a month."
+    },
+    {
+      "question": "When is writing a tool a mistake?",
+      "options": [
+        "When the work will no longer exist in six months",
+        "When the work only repeats a few times",
+        "When the team lacks the people to build tools and hold the product schedule at the same time",
+        "When a similar tool already exists on another team, even if it does not quite fit the need"
+      ],
+      "explanation": "The separating question is lifespan, not repeat count. Work that repeats daily but disappears when an old feature is removed is not worth investing in, while work that repeats quarterly and lives for years is."
+    },
+    {
+      "question": "Two teams, same hours, and after two years one spends over half its time on operations. What caused it?",
+      "options": [
+        "Every task they did was quick, and none of them left anything behind",
+        "They took on more requests",
+        "They lacked experienced people, so each operational task took longer than it needed to",
+        "Their system was more complex, so the operational workload was simply larger from the start"
+      ],
+      "explanation": "The striking part is that nobody on that team ever worked slowly. Every decision to fix by hand was the fastest available at the time, and the sum of two years of fastest-available decisions is a team with no time left for anything else."
+    }
+  ],
+  "keyTakeaways": [
+    "Compounding work turns a repeating cost into a one-off cost",
+    "It gets cut first because cutting it causes nothing that week",
+    "Manual work also costs attention, which does not add up linearly",
+    "The separating question is the lifespan of the work, not the repeat count"
+  ],
+  "practicePrompt": {
+    "question": "A manual task takes 20 minutes, 3 times a week. The tool takes 10 hours. How long until it pays back?",
+    "options": [
+      "10 weeks",
+      "17 weeks",
+      "30 weeks (= dividing 10 hours by 20 minutes and treating each one as a separate week)",
+      "5 weeks (= counting 3 times a week as 2 hours rather than 1 hour)"
+    ],
+    "explanation": "Three times 20 minutes is 1 hour a week, so 10 hours pays back in 10 weeks. That figure still excludes the attention cut three times a week, so the real payback is shorter."
+  },
+  "summary": {
+    "keyIdea": "Separate effort that is spent from effort that stays usable",
+    "commonMistake": "Picking the fastest option every time and never looking at the two-year total",
+    "action": "Find the manual task you did most last month and work out its payback period."
+  },
+  "application": {
+    "title": "Two questions before repeating work",
+    "message": "Will this work still exist in six months? If so, how long does doing it once take compared with building a tool for it?",
+    "secondary": "The first question decides whether to do the arithmetic at all; the second is just division."
+  },
+  "slug": "tu-duy-tai-chinh"
+}

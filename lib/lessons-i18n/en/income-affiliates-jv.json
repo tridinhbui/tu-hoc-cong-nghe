@@ -1,0 +1,164 @@
+{
+  "title": "Splitting cost and credit for a shared service",
+  "subtitle": "When one system serves several teams, who pays and who gets the credit",
+  "duration": "8 min",
+  "whyItMatters": "Every company past a certain size has shared services, and how their cost is split drives team behaviour more strongly than any written guideline.",
+  "openingQuestion": "A shared queue costs $10,000 a month and four teams use it. How do you split it?",
+  "openingOptions": [
+    "By measured usage, even though measuring costs more effort",
+    "Split it four ways",
+    "By the size of each team, since a bigger team usually generates more load on the system",
+    "Do not split it - leave the cost with the team running the queue, since they chose the architecture"
+  ],
+  "explanation": "Splitting evenly means the light user subsidises the heavy one, and nobody has any reason to use less. Leaving it with the operating team is worse still: the cost becomes invisible to exactly the people creating it. Splitting by usage costs effort to measure, and it is the only way the number on the invoice connects to the behaviour that produced it.",
+  "diagram": [
+    {
+      "label": "Measure usage per team"
+    },
+    {
+      "label": "Split the cost by what was measured"
+    },
+    {
+      "label": "Each team sees its own number"
+    },
+    {
+      "label": "Behaviour changes without anyone asking"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The invoice nobody looked at",
+    "description": "A shared logging platform tripled in cost over a year. The cost sat with the platform team, so none of the four product teams ever saw it. When it was finally split by actual log volume, one team found it accounted for sixty percent of the whole bill because of a single log line inside a loop, added eighteen months earlier for debugging. They deleted it in an afternoon."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A shared service raises two questions that cannot be separated: who pays for it, and who gets the credit when it runs well. Getting either one wrong leads to the same place, which is that nobody looks after it."
+    },
+    {
+      "type": "heading",
+      "text": "Three ways to split, three different behaviours"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Split evenly: cheap to do, and it teaches every team that using more costs nothing more",
+        "Split by team size: looks fair, but team size does not correlate with usage",
+        "Split by measurement: costs effort to build, and it is the only one connecting the number to behaviour"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The important part is that all three split the same total correctly. What differs is what they teach the teams, and what gets taught outlasts that month's number by a long way."
+    },
+    {
+      "type": "heading",
+      "text": "Credit is harder than cost"
+    },
+    {
+      "type": "paragraph",
+      "text": "The team running a shared service does work whose success, seen from outside, is that nothing happens. When everything runs well the credit goes to the product teams shipping quickly; when there is an incident, the platform team's name is the one that appears. That asymmetry is real and it is why good people leave those teams."
+    },
+    {
+      "type": "callout",
+      "label": "Measure what got carried, not only what broke",
+      "text": "The cheapest fix for that asymmetry is to report both directions with equal prominence. If the dashboard only shows incident counts then the platform team only exists on bad days. Add a line for the work they carried for everyone else - releases run through them, hours saved for other teams - and the picture comes back into balance."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cost visible to whoever creates it",
+        "text": "Every team sees its own share each month. Behaviour changes with nobody having to go and ask, because the number speaks."
+      },
+      "right": {
+        "label": "Cost pooled in one place",
+        "text": "The platform team gets asked why it costs so much, while being the one party that did not create most of it."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "What the split teaches the teams outlasts that month's number.",
+        "Success for a shared service, seen from outside, is that nothing happens."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does splitting a shared cost evenly teach the teams?",
+      "options": [
+        "That using more costs nothing more",
+        "That cost is the platform team's problem",
+        "That every team is treated as having an equal role in the use of shared infrastructure",
+        "That infrastructure cost is a fixed line item and does not need watching month to month"
+      ],
+      "explanation": "The money is split correctly in total, so nothing looks wrong on the books. What is wrong is the signal: when your share does not move with your usage, no team has a reason to use less, and the total climbs steadily."
+    },
+    {
+      "question": "Why is splitting by team size unreliable?",
+      "options": [
+        "Because team size does not correlate with usage",
+        "Because team size changes every quarter",
+        "Because large teams own many small services, so it is hard to attribute shared infrastructure",
+        "Because it gives teams an incentive to stay small instead of hiring when they need to"
+      ],
+      "explanation": "A three-person team running batch processing can use ten times what a twenty-person interface team uses. Splitting by an unrelated quantity is exactly as invisible to behaviour as splitting evenly."
+    },
+    {
+      "question": "One team accounted for 60% of the bill through a log line in a loop for 18 months. Why did nobody notice?",
+      "options": [
+        "Because the cost sat with the platform team, so the team creating it never saw it",
+        "Because the log volume grew gradually",
+        "Because cost tooling usually shows only totals and does not break them down by source",
+        "Because that log line sat in a part of the code that is rarely reread after release"
+      ],
+      "explanation": "The other three all slowed the discovery down. The root cause is that the information never reached anyone who could act on it: the only team that could delete that line in an afternoon was the only team that could not see the invoice."
+    },
+    {
+      "question": "Why do teams running shared services lose good people?",
+      "options": [
+        "Because their success, seen from outside, is that nothing happens",
+        "Because the work is repetitive",
+        "Because they must answer requests from many teams, making it hard to focus on longer work",
+        "Because they rarely take part in the product decisions the company is actually pursuing"
+      ],
+      "explanation": "The other three are true in many places. The first is true everywhere, because it is inherent to the work: when things run well the credit goes to whoever shipped fast, and the platform team's name only appears on the day something breaks."
+    },
+    {
+      "question": "What is the cheapest way to rebalance that asymmetry?",
+      "options": [
+        "Report the work carried for others in the same place as the incident count",
+        "Rotate platform people into product teams on a cycle",
+        "Set a satisfaction target with the other teams and measure it through a regular survey",
+        "Credit the platform team on every feature that used their infrastructure to ship"
+      ],
+      "explanation": "The other three take organisational effort and need someone else to agree. The first needs one extra line on a dashboard that already exists, and it fixes the actual cause: the platform team currently only appears in reporting on bad days."
+    }
+  ],
+  "keyTakeaways": [
+    "All three splits divide the total correctly; they differ in what they teach",
+    "Splitting by measurement costs the most effort and is the only one tied to behaviour",
+    "A cost invisible to whoever creates it is a cost nobody reduces",
+    "Success for a shared service, seen from outside, is that nothing happens"
+  ],
+  "practicePrompt": {
+    "question": "A $10,000 invoice, four teams using it in a 60/20/15/5 ratio. Split evenly, how much is the largest user carried by the others?",
+    "options": [
+      "$3,500",
+      "$6,000",
+      "$2,500 (= the gap between the even share and the smallest team's usage)",
+      "$1,500 (= the gap between the two middle teams rather than for the largest)"
+    ],
+    "explanation": "That team uses $6,000 and pays $2,500, so the other three carry $3,500 of it every month. That figure is larger than the two small teams' entire usage combined, and it appears nowhere at all under an even split."
+  },
+  "summary": {
+    "keyIdea": "Split by measured usage, and report credit alongside blame",
+    "commonMistake": "Leaving shared cost with the operating team to keep the books tidy",
+    "action": "Find one shared cost at your company and ask who actually sees it."
+  },
+  "application": {
+    "title": "Two questions for every shared service",
+    "message": "Who sees its cost each month? Does any line on the dashboard describe the work it carries for others?",
+    "secondary": "If the first answer is the operating team and the second is no, that service will get both more expensive and short of people."
+  },
+  "slug": "income-affiliates-jv"
+}
