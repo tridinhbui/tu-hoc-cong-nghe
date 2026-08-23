@@ -2,14 +2,18 @@ import type { Lesson } from "./lesson-types";
 
 // Ba bài mở đầu cho chặng "Biết mình trước khi học" của track cá nhân.
 //
-// Chặng này vốn bắt đầu bằng audit tài sản ròng rồi đi thẳng tới ngân sách
-// 50/30/20. Nhưng cả hai đều giả định người học đã biết mình tiêu bao nhiêu
-// vào việc gì - và người mới hoàn toàn thì không biết. Bài 1351 lấp đúng chỗ
-// đó: đo trước, phân bổ sau.
+// Chặng này vốn đi thẳng vào nội dung kỹ thuật, và giả định người học đã biết
+// mình có bao nhiêu thời gian, học kiểu gì thì vào, và giữ lại được bao nhiêu.
+// Người mới hoàn toàn thì không biết cả ba. Bài 1351 lấp chỗ thứ nhất: đo
+// trước, phân bổ sau.
 //
-// Hai bài còn lại đóng hai lỗ hổng khiến kế hoạch tài chính cá nhân đổ vỡ dù
-// đã lập đúng: kế hoạch dựa vào ý chí mỗi tháng (1352), và một cú sốc lớn hơn
-// sức chịu của quỹ khẩn cấp (1353).
+// Hai bài còn lại đóng hai lỗ hổng khiến kế hoạch học đổ vỡ dù đã lập đúng:
+// kế hoạch dựa vào ý chí mỗi tối (1352), và phần lớn thứ đã học rơi rụng trong
+// vài tuần mà không ai đo (1353).
+//
+// KHÔNG TRÙNG CÁC BÀI "ÔN TẬP" CỦA NHÁNH professional. Những bài đó tổng kết
+// nội dung của một chặng cụ thể; bài 1353 ở đây nói về cơ chế quên và cách
+// chống lại nó, không gắn với nội dung nào.
 //
 // Ids 1351-1353 nằm ngoài dải 263-268 vì dải đó đã kín; chặng đưa chúng vào
 // bằng extraLessonIds, giống cách Chặng 2 và Chặng 10 của track này làm.
@@ -17,487 +21,504 @@ import type { Lesson } from "./lesson-types";
 export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
   {
     id: 1351,
-    slug: "theo-doi-chi-tieu-truoc-khi-lap-ngan-sach",
-    title: "Chặng 1, Bài 1: Theo dõi chi tiêu - đo trước khi phân bổ",
-    subtitle: "Không thể lập ngân sách cho số tiền bạn chưa biết mình đang tiêu vào đâu",
-    duration: "6 phút",
+    slug: "do-thoi-gian-truoc-khi-lap-ke-hoach-hoc",
+    title: "Chặng 1, Bài 1: Đo thời gian - đo trước khi phân bổ",
+    subtitle: "Không lập được kế hoạch cho số giờ bạn chưa biết mình đang tiêu vào đâu",
+    duration: "7 phút",
     difficulty: "Dễ",
-    emoji: "🔎",
+    emoji: "⏱️",
     track: "personal",
     whyItMatters:
-      "Phần lớn ngân sách thất bại không phải vì con số sai mà vì nó được lập trên trí nhớ. Ghi lại chi tiêu vài tuần là việc nhàm chán nhất trong tài chính cá nhân và cũng là việc thay đổi kết quả nhiều nhất - vì nó biến cảm giác thành dữ liệu.",
-    openingQuestion: "Vì sao nên theo dõi chi tiêu trước khi lập ngân sách?",
+      "Phần lớn kế hoạch học thất bại không phải vì sai nội dung mà vì được lập trên một quỹ thời gian tưởng tượng. Đo hai tuần là việc duy nhất biến kế hoạch từ mong muốn thành thứ có thể chạy.",
+    openingQuestion: "Vì sao nên đo thời gian thật trước khi lập kế hoạch học?",
     openingOptions: [
-      "Vì ngân hàng yêu cầu bảng kê chi tiêu khi mở tài khoản tiết kiệm",
-      "Vì ngân sách dựa trên ước lượng trong đầu thường lệch rất xa so với thực tế",
-      "Vì theo dõi chi tiêu giúp giảm chi ngay lập tức mà không cần cố gắng",
-      "Vì quy tắc 50/30/20 chỉ áp dụng được sau khi đã ghi chép ba năm",
+      "Vì con số bạn tưởng mình có thường lớn hơn con số thật",
+      "Vì việc đo giúp bạn nhận ra những hoạt động đang lãng phí thời gian và cần loại bỏ bớt đi",
+      "Vì cần có dữ liệu để chia đều thời gian cho các chủ đề khác nhau trong kế hoạch học tập",
+      "Vì thấy công sức bỏ ra thì có động lực",
     ],
-    correctOption: 1,
+    correctOption: 0,
     explanation:
-      "Ai cũng nghĩ mình biết mình tiêu gì, và gần như ai cũng sai - thường sai ở nhóm khoản nhỏ lặp lại, thứ trí nhớ không lưu. Lập ngân sách trên ước lượng sai cho ra một kế hoạch đẹp mà không ai thực hiện nổi, rồi người ta kết luận mình thiếu kỷ luật. Vấn đề không nằm ở kỷ luật mà ở dữ liệu đầu vào. Vài tuần ghi chép cho bạn con số thật, và con số thật mới lập được kế hoạch thật.",
+      "Người ta ước lượng quỹ thời gian rảnh bằng cách lấy tổng số giờ trong tuần trừ đi giờ làm và giờ ngủ, và con số ra được thường gấp vài lần thứ thực sự dùng được. Phần chênh lệch nằm ở những khoảng bị cắt vụn: mười lăm phút giữa hai việc, bốn mươi phút sau bữa tối khi đầu đã hết pin, những buổi bị việc gấp lấy mất. Một kế hoạch dựng trên con số tưởng tượng sẽ trượt ngay tuần thứ hai, và điều tệ nhất là người học kết luận rằng mình thiếu kỷ luật thay vì nhận ra kế hoạch đã sai từ phép tính đầu tiên.",
     diagram: [
-      { label: "Ghi lại mọi khoản chi", arrow: true },
-      { label: "Gộp thành nhóm sau vài tuần", arrow: true },
-      { label: "So với thu nhập thực nhận", arrow: true },
-      { label: "Giờ mới lập được ngân sách" },
+      { label: "Ước lượng quỹ rảnh trong đầu", arrow: true },
+      { label: "Đo thật trong hai tuần", arrow: true },
+      { label: "Con số thật thường nhỏ hơn nhiều lần", arrow: true },
+      { label: "Lập kế hoạch trên con số thật" },
     ],
-    interactiveType: "budget",
     realWorldExample: {
-      company: "Khoảng cách giữa cảm giác và sao kê",
+      company: "Mười giờ mỗi tuần và ba giờ",
       description:
-        "Một người ước lượng mình chi khoảng 2 triệu mỗi tháng cho ăn ngoài. Sau bốn tuần ghi chép, con số thật là 4,5 triệu - chênh lệch không nằm ở những bữa ăn đắt tiền mà ở hàng chục lần cà phê, giao đồ ăn và ăn vặt, mỗi lần vài chục nghìn nên không đọng lại trong trí nhớ. Đây là dạng sai lệch phổ biến nhất: khoản lớn thì ai cũng nhớ, khoản nhỏ lặp lại mới là chỗ tiền biến mất.",
+        "Một bạn lập kế hoạch học mười giờ mỗi tuần vì tính ra buổi tối nào cũng rảnh hai tiếng. Đo thật trong hai tuần: ba giờ dùng được, phần lớn vào sáng cuối tuần, còn các buổi tối thì hoặc bị việc gấp hoặc đã hết sức tập trung. Kế hoạch mười giờ trượt ngay tuần đầu; kế hoạch ba giờ đặt vào sáng cuối tuần thì chạy được sáu tháng.",
     },
     quiz: [
       {
-        question: "Nhóm chi tiêu nào thường bị ước lượng sai nhiều nhất?",
+        question: "Nên đo thời gian trong bao lâu trước khi kết luận?",
         options: [
-          "Khoản nhỏ lặp lại nhiều lần, vì trí nhớ không lưu từng lần",
-          "Khoản lớn một lần trong năm như học phí hoặc bảo hiểm",
-          "Tiền thuê nhà và các hóa đơn cố định hằng tháng",
-          "Các khoản chuyển khoản cho người thân trong gia đình",
+          "Khoảng hai tuần, đủ để gặp cả tuần bận lẫn tuần bình thường",
+          "Một tuần là đủ vì các thói quen sinh hoạt thường lặp lại khá đều đặn theo từng tuần",
+          "Một tháng để có đủ dữ liệu và loại bỏ được các yếu tố bất thường trong quá trình đo",
+          "Vài ngày là đủ, đo dài thì hay bỏ dở",
         ],
         correct: 0,
         explanation:
-          "Tiền thuê nhà thì ai cũng nhớ chính xác vì nó lớn và lặp lại đều. Ba mươi lần chi năm mươi nghìn thì không ai nhớ nổi, nhưng cộng lại vẫn là một triệu rưỡi - và đó thường là chỗ chênh lệch giữa cảm giác và sao kê.",
+          "Một tuần dễ rơi trúng tuần bất thường theo cả hai hướng. Một tháng thì phần lớn người bỏ giữa chừng, và dữ liệu dở dang không dùng được. Hai tuần là chỗ cân bằng: đủ dài để thấy dao động, đủ ngắn để làm xong.",
       },
       {
-        question: "Nên theo dõi chi tiêu trong bao lâu trước khi lập ngân sách?",
+        question: "Khoảng thời gian nào hay bị tính nhầm là dùng được?",
         options: [
-          "Đủ dài để bao một chu kỳ chi tiêu, thường vài tuần",
-          "Đúng một ngày là đủ vì thói quen chi tiêu lặp lại giống nhau",
-          "Tối thiểu ba năm để có dữ liệu đáng tin cậy về xu hướng",
-          "Không cần theo dõi, chỉ cần xem số dư đầu và cuối tháng",
+          "Những khoảng ngắn bị cắt vụn giữa hai việc khác",
+          "Thời gian buổi tối sau khi đã hoàn thành xong toàn bộ công việc trong ngày hôm đó",
+          "Cuối tuần khi không có lịch làm việc cố định nào nên toàn bộ thời gian đều tự do",
+          "Thời gian di chuyển, vì nghe được",
         ],
         correct: 0,
         explanation:
-          "Một ngày quá ngắn để thấy quy luật, ba năm thì bạn đã bỏ cuộc từ lâu. Điều quan trọng là bao được các khoản chỉ xuất hiện một lần mỗi tháng như hóa đơn và tiền nhà, nên vài tuần là mốc thực tế.",
+          "Mười lăm phút giữa hai cuộc họp trông như mười lăm phút và không phải. Với việc cần vào mạch - đọc mã, giải một bài khó - phần đầu của mỗi khoảng bị mất để lấy lại ngữ cảnh, nên bốn khoảng mười lăm phút cho ra ít hơn hẳn một khoảng một giờ.",
       },
       {
-        question: "Xem số dư đầu tháng và cuối tháng có thay thế được việc ghi chép không?",
+        question: "Cách đo nào ít khả năng bị bỏ giữa chừng nhất?",
         options: [
-          "Không, vì nó không cho biết tiền đi vào đâu",
-          "Có, vì chênh lệch số dư chính là tổng chi tiêu trong tháng",
-          "Có, nếu bạn không dùng tiền mặt mà chỉ chuyển khoản",
-          "Không, vì số dư ngân hàng không phản ánh đúng thu nhập thật",
+          "Ghi lại vào cuối mỗi ngày, chỉ một dòng",
+          "Dùng ứng dụng tự động ghi nhận thời gian sử dụng máy tính và phân loại theo hoạt động",
+          "Bấm giờ mỗi khi bắt đầu và kết thúc một phiên học để có số liệu chính xác nhất",
+          "Ghi chi tiết từng khoảng ba mươi phút trong ngày để không bỏ sót hoạt động nào cả",
         ],
         correct: 0,
         explanation:
-          "Biết mình tiêu hết mười lăm triệu không giúp bạn quyết định cắt gì. Ngân sách là bài toán phân bổ, và phân bổ đòi hỏi biết cơ cấu chứ không chỉ biết tổng.",
+          "Độ chính xác và khả năng duy trì là hai thứ đánh đổi nhau, và ở đây khả năng duy trì thắng: một phép đo thô làm xong trong hai tuần hữu ích hơn hẳn một phép đo chính xác bị bỏ sau ba ngày. Sai số của việc ghi cuối ngày nhỏ hơn nhiều so với sai số của việc không có dữ liệu.",
       },
       {
-        question: "Thu nhập 18 triệu, sau bốn tuần ghi chép thấy chi 17,2 triệu. Bước tiếp theo hợp lý nhất?",
+        question: "Sau khi đo xong, việc đầu tiên nên làm là gì?",
         options: [
-          "Xem cơ cấu chi để biết cắt được ở đâu trước đã",
-          "Đặt ngay mục tiêu tiết kiệm 20% thu nhập theo quy tắc chuẩn",
-          "Kết luận thu nhập quá thấp và tập trung tìm cách tăng thu nhập",
-          "Ngừng ghi chép vì đã biết được tổng chi tiêu hàng tháng",
+          "Đặt việc học vào đúng khoảng có chất lượng cao nhất trong tuần",
+          "Cắt bớt hoạt động tốn giờ mà ít giá trị",
+          "Chia đều số giờ cho các chủ đề định học",
+          "Đặt mục tiêu tăng dần số giờ mỗi tuần",
         ],
         correct: 0,
         explanation:
-          "Đặt mục tiêu 20% khi đang tiêu 96% thu nhập là đặt một mục tiêu chắc chắn thất bại. Dữ liệu vừa thu được có giá trị ở chỗ nó chỉ ra nhóm nào phình bất thường - và đó mới là chỗ bắt đầu.",
+          "Phép đo cho biết hai thứ: bao nhiêu giờ, và giờ nào tốt. Cái thứ hai thường bị bỏ qua dù nó quan trọng hơn - hai giờ sáng cuối tuần cho kết quả khác hẳn hai giờ tối thứ Tư, và việc xếp đúng chỗ không tốn thêm giờ nào.",
       },
       {
-        question: "Vì sao việc ghi chép tự nó đã làm giảm chi tiêu ở nhiều người?",
+        question: "Con số đo được nhỏ hơn nhiều so với dự tính thì nên hiểu ra sao?",
         options: [
-          "Vì phải ghi lại biến mỗi khoản chi thành quyết định có ý thức",
-          "Vì ứng dụng ghi chép tự động chặn các giao dịch vượt hạn mức",
-          "Vì ngân hàng giảm phí giao dịch cho tài khoản có theo dõi chi tiêu",
-          "Vì ghi chép mất thời gian nên người ta mua sắm ít đi hẳn",
+          "Là chuyện bình thường, và là lý do chính khiến các kế hoạch trước đó trượt",
+          "Là dấu hiệu bạn sắp xếp chưa hiệu quả",
+          "Là do giai đoạn bận bất thường, nên đo lại",
+          "Là con số cần cải thiện bằng cách bớt giải trí",
         ],
         correct: 0,
         explanation:
-          "Phần lớn chi tiêu nhỏ diễn ra tự động, không qua suy nghĩ. Biết rằng lát nữa mình sẽ phải ghi nó xuống là đủ để một số khoản không xảy ra - hiệu ứng này có thật và nó là phần thưởng kèm theo của việc đo đạc.",
+          "Gần như ai đo lần đầu cũng gặp con số nhỏ hơn dự tính, nên nó không nói gì riêng về bạn. Điều nó nói là mọi kế hoạch trước đây đã được dựng trên một quỹ không tồn tại, và đó là lời giải thích tốt hơn nhiều so với kết luận rằng mình thiếu kỷ luật.",
       },
-    ],
-    keyTakeaways: [
-      "Ngân sách lập trên trí nhớ gần như luôn sai, và sai nhiều nhất ở nhóm khoản nhỏ lặp lại",
-      "Vài tuần ghi chép đủ để bao một chu kỳ chi tiêu đầy đủ, kể cả các hóa đơn tháng",
-      "Chênh lệch số dư cho biết tổng chi, không cho biết cơ cấu - mà phân bổ cần cơ cấu",
-      "Bản thân việc ghi chép đã làm giảm chi tiêu, vì nó biến khoản chi tự động thành quyết định có ý thức",
     ],
     practicePrompt: {
       question:
-        "Bạn ghi chép hai tuần rồi bỏ vì thấy mất công. Cách xử lý thực tế nhất là gì?",
+        "Bạn định học ba buổi tối mỗi tuần, mỗi buổi hai tiếng. Nên làm gì trước khi bắt đầu?",
       options: [
-        "Bỏ hẳn việc theo dõi và lập ngân sách chỉ dựa trên ước lượng của mình",
-        "Giảm độ chi tiết lại: chỉ ghi theo nhóm lớn thay vì từng khoản một",
-        "Bắt đầu lại từ đầu và cố gắng ghi thật chi tiết trong ba tháng",
-        "Chờ tới đầu năm sau rồi bắt đầu lại với quyết tâm cao hơn",
+        "Đo hai tuần xem thực tế có bao nhiêu buổi tối dùng được",
+        "Chuẩn bị sẵn nội dung học cho cả ba buổi để không mất thời gian tìm tài liệu khi bắt đầu",
+        "Thông báo với gia đình về lịch học để mọi người sắp xếp không làm gián đoạn khoảng đó",
+        "Bắt đầu luôn rồi điều chỉnh dần sau",
       ],
-      correct: 1,
+      correct: 0,
       explanation:
-        "Một hệ thống thô mà bạn duy trì được luôn thắng một hệ thống hoàn hảo mà bạn bỏ sau hai tuần. Ghi theo năm hoặc sáu nhóm lớn vẫn đủ để thấy chỗ tiền chảy đi, và nó dễ duy trì hơn nhiều so với ghi từng ly cà phê.",
+        "Bắt đầu luôn nghe hợp lý và nó là cách phần lớn người làm, nhưng khi trượt thì họ đọc kết quả là mình thiếu kỷ luật chứ không phải kế hoạch sai. Hai tuần đo trước cho bạn một con số để lập kế hoạch, và quan trọng hơn là cho bạn cách đọc đúng khi mọi thứ không như dự tính.",
     },
+    keyTakeaways: [
+      "Quỹ thời gian tưởng tượng thường lớn hơn quỹ thật vài lần",
+      "Bốn khoảng mười lăm phút cho ra ít hơn hẳn một khoảng một giờ",
+      "Phép đo thô làm xong hơn hẳn phép đo chính xác bị bỏ dở",
+      "Phép đo cho biết cả bao nhiêu giờ lẫn giờ nào tốt; vế thứ hai hay bị bỏ qua",
+    ],
     summary: {
-      keyIdea: "Đo trước, phân bổ sau - ngân sách chỉ tốt bằng dữ liệu nó dựa vào",
-      commonMistake: "Lập ngân sách bằng con số ước lượng trong đầu rồi trách bản thân thiếu kỷ luật",
-      action: "Ghi lại mọi khoản chi trong hai tuần tới, gộp thành năm nhóm, rồi so với thu nhập thực nhận.",
+      keyIdea: "Kế hoạch học trượt vì được dựng trên một quỹ thời gian chưa ai đo",
+      commonMistake: "Trượt kế hoạch rồi kết luận mình thiếu kỷ luật, thay vì kiểm lại phép tính ban đầu",
+      action: "Ghi một dòng vào cuối mỗi ngày trong hai tuần, rồi lập kế hoạch trên con số thu được.",
     },
     application: {
-      title: "Bắt đầu tối nay",
+      title: "Một dòng mỗi tối, hai tuần",
       message:
-        "Mở sao kê ngân hàng và ví điện tử của ba mươi ngày gần nhất. Gộp thành năm nhóm: ở, ăn, đi lại, mua sắm, còn lại. Nhóm nào lớn hơn bạn tưởng?",
-      secondary: "Sao kê đã ghi sẵn phần lớn giao dịch - bạn chỉ cần phân nhóm chứ không phải bắt đầu từ con số không.",
+        "Cuối ngày ghi lại: hôm nay có khoảng nào dùng được cho việc cần tập trung, dài bao lâu, vào lúc nào. Không cần chính xác tới phút.",
+      secondary:
+        "Sau hai tuần, khoanh lấy khoảng có chất lượng cao nhất và đặt việc học vào đó trước khi đặt bất cứ thứ gì khác.",
     },
     sections: [
       {
         type: "lead",
-        text: "Bài tiếp theo sẽ dạy bạn chia thu nhập theo tỷ lệ 50/30/20. Nhưng để chia được, bạn cần biết hiện tại mình đang chia thế nào - và gần như chắc chắn con số trong đầu bạn khác con số trên sao kê.",
+        text: "Câu hỏi mỗi tuần học được mấy giờ thường được trả lời bằng một phép trừ trong đầu, và phép trừ đó bỏ sót đúng phần quyết định.",
       },
       {
         type: "heading",
-        text: "Vì sao trí nhớ không đáng tin ở chỗ này",
+        text: "Giờ rảnh và giờ dùng được là hai thứ khác nhau",
       },
       {
         type: "paragraph",
-        text: "Não ghi nhớ theo sự kiện đáng chú ý, không theo tần suất. Một bữa ăn nhà hàng ba trăm nghìn đọng lại rất rõ; ba mươi lần cà phê bốn mươi nghìn thì hòa vào nền và biến mất. Nhưng ba mươi lần đó cộng lại là một triệu hai, lớn hơn bữa nhà hàng gấp bốn lần. Đây không phải vấn đề trí nhớ kém mà là cách trí nhớ vận hành, nên cách khắc phục là ghi lại chứ không phải cố nhớ kỹ hơn.",
+        text: "Tổng số giờ không có lịch là một con số; số giờ bạn còn đủ sức tập trung, đủ dài để vào mạch, và không bị việc gấp lấy mất là một con số khác nhỏ hơn nhiều. Kế hoạch dựng trên con số thứ nhất trượt ngay tuần thứ hai, và cách người ta đọc cú trượt ấy - thiếu kỷ luật - lại khiến họ lập tiếp một kế hoạch sai theo đúng cách cũ.",
       },
       {
         type: "conceptTable",
-        title: "Ba cách theo dõi, chọn cái bạn duy trì được",
-        subtitle: "Hệ thống tốt nhất là hệ thống bạn không bỏ sau hai tuần",
+        title: "Bốn thứ cần ghi lại, mỗi tối một dòng",
         concepts: [
-          { vi: "Đọc lại sao kê", en: "Statement review", def: "Ít công nhất: mở sao kê ngân hàng và ví điện tử của ba mươi ngày qua rồi phân nhóm. Bỏ sót phần tiền mặt, nhưng đủ để bắt đầu." },
-          { vi: "Ghi theo nhóm", en: "Category logging", def: "Ghi mỗi khoản vào một trong năm sáu nhóm lớn, không cần chi tiết từng món. Cân bằng giữa công sức và thông tin thu được." },
-          { vi: "Ghi từng khoản", en: "Line-item tracking", def: "Chi tiết nhất và cũng dễ bỏ nhất. Hợp lý cho một tháng để hiểu thói quen, không hợp lý làm thói quen lâu dài." },
+          {
+            vi: "Độ dài khoảng",
+            en: "Block length",
+            def: "Liền mạch bao lâu. Bốn khoảng mười lăm phút không bằng một khoảng một giờ với việc cần vào mạch.",
+          },
+          {
+            vi: "Thời điểm",
+            en: "Time of day",
+            def: "Cùng số giờ ở hai thời điểm cho hai kết quả khác hẳn. Đây là vế hay bị bỏ qua nhất.",
+          },
+          {
+            vi: "Mức tỉnh táo",
+            en: "Energy",
+            def: "Ghi thô ba mức là đủ. Một giờ lúc đầu còn tốt hơn hai giờ lúc đã cạn.",
+          },
+          {
+            vi: "Bị cắt hay không",
+            en: "Interruptions",
+            def: "Khoảng bị cắt giữa chừng nên tính là hai khoảng ngắn, không phải một khoảng dài.",
+          },
         ],
       },
       {
         type: "callout",
-        label: "Mục tiêu không phải là ghi chép mãi mãi",
-        text: "Bạn không cần theo dõi chi tiêu suốt đời. Mục tiêu là biết đủ rõ để lập được ngân sách và nhận ra khi có gì đó trượt khỏi quỹ đạo. Nhiều người theo dõi kỹ vài tháng đầu, rồi chuyển sang kiểm tra định kỳ mỗi quý - và như vậy là đủ.",
+        label: "Đo thô làm xong hơn đo kỹ bỏ dở",
+        text: "Cám dỗ là dựng một hệ thống ghi chép chi tiết theo từng ba mươi phút. Phần lớn người bỏ nó trong tuần đầu, và dữ liệu ba ngày thì không dùng được vào việc gì. Một dòng mỗi tối trong hai tuần là phép đo tệ hơn về độ chính xác và tốt hơn về mọi mặt còn lại.",
       },
       {
         type: "closing",
         lines: [
-          "Không đo được thì không quản được, và tài chính cá nhân không phải ngoại lệ.",
-          "Có số thật rồi, bài về ngân sách 50/30/20 mới trở thành một công cụ thay vì một khẩu hiệu.",
+          "Không đo thì mọi kế hoạch đều là một điều ước có lịch kèm theo.",
+          "Bài sau: có con số thật rồi thì làm sao để kế hoạch không phụ thuộc vào ý chí mỗi tối.",
         ],
       },
     ],
   },
   {
     id: 1352,
-    slug: "tu-dong-hoa-tai-chinh-ca-nhan",
-    title: "Chặng 1, Bài 8: Tự động hóa - để kế hoạch không phụ thuộc ý chí",
-    subtitle: "Vì sao ngân sách đúng vẫn đổ vỡ, và cách sửa bằng cơ chế thay vì quyết tâm",
-    duration: "6 phút",
+    slug: "tu-dong-hoa-thoi-quen-hoc",
+    title: "Chặng 1, Bài 8: Tự động hoá - để kế hoạch không phụ thuộc ý chí",
+    subtitle: "Thứ phải quyết định lại mỗi tối là thứ sẽ dừng vào một tối nào đó",
+    duration: "7 phút",
     difficulty: "Dễ",
     emoji: "⚙️",
     track: "personal",
     whyItMatters:
-      "Kế hoạch tài chính hỏng không phải vì tính sai mà vì nó đòi hỏi bạn ra quyết định đúng ba mươi lần mỗi tháng, mỗi tháng, trong nhiều năm. Chuyển phần quan trọng nhất sang chế độ tự động là cách duy nhất khiến nó sống sót qua những tháng bạn mệt mỏi hoặc bận rộn.",
-    openingQuestion: "Vì sao kế hoạch tiết kiệm thường thất bại dù con số hợp lý?",
+      "Kế hoạch học đúng vẫn dừng sau vài tuần, và lý do gần như luôn giống nhau: nó cần một quyết định mới vào mỗi tối. Chuyển phần quyết định đó ra khỏi buổi tối là thay đổi rẻ nhất và có tác dụng lâu nhất.",
+    openingQuestion: "Vì sao một kế hoạch học tốt vẫn hay dừng sau vài tuần?",
     openingOptions: [
-      "Vì lãi suất tiết kiệm thay đổi làm mục tiêu ban đầu không còn đúng",
-      "Vì nó dựa vào việc còn tiền cuối tháng",
-      "Vì ngân hàng giới hạn số lần chuyển tiền vào tài khoản tiết kiệm",
-      "Vì mục tiêu tiết kiệm luôn được đặt cao hơn khả năng thực tế",
+      "Vì mỗi buổi đều đòi một quyết định mới, và ý chí thì không đều",
+      "Vì nội dung khó dần nên mất động lực",
+      "Vì mục tiêu ban đầu thường quá tham vọng",
+      "Vì thiếu người cùng học nên không ai nhắc",
     ],
-    correctOption: 1,
+    correctOption: 0,
     explanation:
-      "Tiết kiệm phần còn lại sau khi tiêu là một thứ tự sai. Chi tiêu luôn giãn ra vừa đủ để lấp hết số tiền có sẵn, nên phần còn lại cuối tháng gần như luôn nhỏ hơn dự tính - và ở nhiều tháng thì bằng không. Đảo thứ tự lại: chuyển phần tiết kiệm đi ngay khi lương về, rồi sống bằng phần còn lại. Cùng một con số, cùng một thu nhập, nhưng tỷ lệ thành công khác hẳn vì nó không còn phụ thuộc vào việc bạn có kiềm chế được cả tháng hay không.",
+      "Một kế hoạch cần quyết định vào mỗi tối là một kế hoạch có ba mươi cơ hội dừng lại mỗi tháng. Quyết định ấy nghe nhỏ - học gì, mở cái gì ra, bắt đầu từ đâu - nhưng nó rơi vào đúng lúc trong ngày mà bạn còn ít sức nhất để quyết bất cứ điều gì. Ba việc kia đều có thật và đều xử lý được, nhưng chúng là lý do thứ hai: rất nhiều người dừng ở tuần thứ ba khi mục tiêu vẫn vừa sức, nội dung vẫn dễ, và họ vẫn muốn học. Thứ họ hết không phải động lực mà là số lần quyết định họ chịu được trong một tuần.",
     diagram: [
-      { label: "Lương về tài khoản", arrow: true },
-      { label: "Chuyển tự động phần tiết kiệm", arrow: true },
-      { label: "Trả các khoản cố định", arrow: true },
-      { label: "Phần còn lại là tiền tiêu tự do" },
+      { label: "Mỗi tối: quyết định học gì, bắt đầu từ đâu", arrow: true },
+      { label: "Ba mươi cơ hội dừng lại mỗi tháng", arrow: true },
+      { label: "Chuyển quyết định ra khỏi buổi tối", arrow: true },
+      { label: "Còn lại chỉ là làm theo thứ đã quyết một lần" },
     ],
     realWorldExample: {
-      company: "Hai người cùng thu nhập, khác thứ tự",
+      company: "Tuần thứ ba",
       description:
-        "Hai người cùng thu nhập hai mươi triệu và cùng đặt mục tiêu tiết kiệm bốn triệu mỗi tháng. Người thứ nhất tiêu trước rồi để dành phần còn lại; cuối năm dành được khoảng hai mươi triệu vì có vài tháng không còn gì. Người thứ hai đặt lệnh chuyển tự động bốn triệu vào ngày lương về rồi sống bằng mười sáu triệu; cuối năm có bốn mươi tám triệu. Không ai kỷ luật hơn ai - chỉ khác thứ tự thao tác.",
+        "Một bạn học đều đặn hai tuần rồi dừng ở tuần thứ ba, và tự kết luận là mình thiếu kiên trì. Nhìn lại thì mỗi tối bạn ấy đều phải chọn học phần nào, tìm lại chỗ đang dở, và mở đúng công cụ ra. Sau khi cố định một khung giờ và để sẵn thứ cần mở từ tối hôm trước, chuỗi kéo được bốn tháng - với đúng lượng kiên trì như cũ.",
     },
     quiz: [
       {
-        question: "Nguyên tắc trả cho mình trước nghĩa là gì?",
+        question: "Cách nào giảm được số quyết định trong một buổi học?",
         options: [
-          "Chuyển tiết kiệm đi ngay khi có thu nhập, trước khi tiêu",
-          "Ưu tiên trả các khoản nợ cá nhân trước khi trả nợ ngân hàng",
-          "Dùng phần thu nhập tăng thêm để tự thưởng cho bản thân trước",
-          "Trả lương cho chính mình trước khi trả lương cho nhân viên",
+          "Quyết trước từ tối hôm trước học gì, và để sẵn thứ cần mở",
+          "Lập một lộ trình học chi tiết cho cả tháng với nội dung cụ thể của từng buổi trong tuần",
+          "Chọn khoá có cấu trúc sẵn cho khỏi phải chọn",
+          "Đặt lịch nhắc trên điện thoại vào đúng giờ học để không quên mất buổi học của mình",
         ],
         correct: 0,
         explanation:
-          "Cụm từ này hay bị hiểu thành tự thưởng, nhưng ý gốc ngược lại: bạn là chủ nợ đầu tiên của chính mình. Phần tiết kiệm được đối xử như một hóa đơn bắt buộc chứ không phải phần dư ra.",
+          "Lộ trình cả tháng và khoá học có cấu trúc đều giúp, nhưng chúng bỏ sót phần khó nhất: khoảng cách giữa lúc ngồi xuống và lúc thật sự bắt đầu. Quyết từ tối hôm trước rút khoảng đó về gần bằng không, vì lúc ngồi xuống không còn gì để chọn nữa.",
       },
       {
-        question: "Vì sao chi tiêu có xu hướng giãn ra lấp đầy thu nhập?",
+        question: "Cố định khung giờ có tác dụng gì rõ nhất?",
         options: [
-          "Vì tiền thấy trong tài khoản được coi là tiền có thể tiêu",
-          "Vì giá cả hàng hóa tăng đúng bằng tốc độ tăng thu nhập",
-          "Vì ngân hàng khuyến khích chi tiêu khi số dư tài khoản cao",
-          "Vì thu nhập cao hơn luôn kèm theo chi phí công việc cao hơn"
+          "Bỏ hẳn câu hỏi khi nào học ra khỏi mỗi ngày",
+          "Giúp cơ thể quen với nhịp sinh học nên khả năng tập trung vào giờ đó sẽ tốt dần lên",
+          "Tạo điều kiện để người xung quanh biết và tránh làm gián đoạn khoảng thời gian đó",
+          "Cho phép bạn theo dõi được mình đã học đủ số giờ đề ra trong tuần hay còn thiếu",
         ],
         correct: 0,
         explanation:
-          "Số dư khả dụng là mốc tham chiếu mà não dùng để quyết định chi tiêu. Chuyển tiền tiết kiệm ra khỏi tầm mắt làm mốc tham chiếu đó thấp xuống, và chi tiêu tự điều chỉnh theo mà không cần cố gắng.",
+          "Ba tác dụng kia đều có và đều đến chậm. Tác dụng đến ngay là loại bỏ một câu hỏi khỏi mỗi ngày, và câu hỏi khi nào học chính là câu dễ trả lời bằng để mai nhất trong tất cả các câu.",
       },
       {
-        question: "Thu nhập 20 triệu, mục tiêu tiết kiệm 20%. Cách làm nào bền hơn?",
+        question: "Nên đặt mục tiêu mỗi buổi ở mức nào?",
         options: [
-          "Chuyển 4 triệu ngay ngày lương về rồi sống bằng 16 triệu",
-          "Tiêu bình thường rồi dồn phần còn lại vào cuối tháng",
-          "Chia đều 4 triệu thành 30 phần nhỏ chuyển mỗi ngày",
-          "Chờ tới khi có một tháng dư nhiều rồi chuyển hết một lần cho đủ"
+          "Nhỏ tới mức làm được cả vào ngày tệ nhất",
+          "Vừa sức với ngày bình thường để duy trì được tiến độ đã đề ra mà không quá gắng sức",
+          "Hơi cao hơn khả năng hiện tại một chút để tạo áp lực và thúc đẩy sự tiến bộ nhanh hơn",
+          "Linh hoạt theo từng ngày tuỳ vào lượng thời gian và mức năng lượng bạn có hôm đó",
         ],
         correct: 0,
         explanation:
-          "Ba phương án còn lại đều đặt phần tiết kiệm ở cuối hàng đợi, sau mọi cám dỗ và mọi khoản phát sinh. Chuyển ngay đầu kỳ biến nó thành ràng buộc đã hoàn tất thay vì một việc còn phải làm.",
+          "Ngày tệ nhất mới là ngày quyết định chuỗi có đứt hay không, và mục tiêu vừa sức với ngày bình thường thì trượt ở đúng những ngày ấy. Một mục tiêu mười lăm phút làm được vào ngày tệ nhất giữ được chuỗi, và vào ngày tốt bạn vẫn tự làm nhiều hơn thế.",
       },
       {
-        question: "Khoản nào nên được tự động hóa trước tiên?",
+        question: "Khi đã đứt chuỗi vài ngày thì nên xử lý thế nào?",
         options: [
-          "Tiết kiệm định kỳ và các khoản cố định bắt buộc",
-          "Chi tiêu ăn uống và giải trí hằng tháng của gia đình",
-          "Các khoản mua sắm lớn đã có kế hoạch từ trong năm",
-          "Tiền mặt dự phòng để trong ví cho các tình huống bất ngờ"
+          "Quay lại ở mức nhỏ nhất, không bù phần đã bỏ lỡ",
+          "Học bù phần đã bỏ trong những ngày tiếp theo để không bị chậm so với lộ trình ban đầu",
+          "Xem lại kế hoạch và điều chỉnh cho phù hợp hơn với hoàn cảnh thực tế của bạn hiện nay",
+          "Bắt đầu lại từ đầu để đảm bảo phần kiến thức đã học được củng cố lại một cách chắc chắn",
         ],
         correct: 0,
         explanation:
-          "Tự động hóa hiệu quả nhất với những khoản đều đặn và không cần suy nghĩ mỗi lần. Chi tiêu linh hoạt thì ngược lại - đó chính là phần nên giữ quyền quyết định thủ công.",
+          "Học bù biến việc quay lại thành một khoản nợ, và một khoản nợ ở đúng lúc bạn đang khó là thứ khiến người ta bỏ hẳn thay vì bỏ vài ngày. Chuỗi đứt vài ngày không mất gì đáng kể; chuỗi bị bỏ hẳn thì mất tất cả.",
       },
       {
-        question: "Vì sao nên tăng mức tiết kiệm tự động mỗi khi được tăng lương?",
+        question: "Dấu hiệu nào cho thấy kế hoạch đang dựa quá nhiều vào ý chí?",
         options: [
-          "Vì chưa quen với mức sống mới nên chưa thấy hụt gì cả",
-          "Vì lương tăng thì thuế thu nhập cũng tăng theo tương ứng",
-          "Vì ngân hàng ưu đãi lãi suất cho khoản tiết kiệm tăng dần",
-          "Vì chi phí sinh hoạt luôn tăng nhanh hơn mức lương tăng"
+          "Bạn phải tự thuyết phục mình ngồi xuống vào phần lớn các buổi",
+          "Bạn hay phải đổi lịch vì việc phát sinh",
+          "Bạn thấy nội dung khó và lâu hiểu hơn",
+          "Bạn không nhớ rõ mình đã học được gì",
         ],
         correct: 0,
         explanation:
-          "Lạm phát lối sống diễn ra âm thầm: lương tăng hai triệu thì trong vài tháng chi tiêu cũng tăng hai triệu, và cảm giác dư dả không hề tăng. Chuyển một phần khoản tăng vào tiết kiệm ngay khi nó vừa xuất hiện là cách chặn quá trình đó ở đúng thời điểm dễ nhất.",
+          "Đây là dấu hiệu sớm nhất và cụ thể nhất, và nó xuất hiện trước khi chuỗi đứt vài tuần. Một hệ thống chạy tốt thì việc ngồi xuống không cần thuyết phục gì cả - nó đã được quyết từ trước, nên lúc đó chỉ còn phần làm.",
       },
-    ],
-    keyTakeaways: [
-      "Tiết kiệm phần còn lại là thứ tự sai; chuyển trước rồi sống bằng phần còn lại mới bền",
-      "Chi tiêu giãn ra lấp đầy số dư khả dụng, nên hạ số dư khả dụng xuống hiệu quả hơn cố kiềm chế",
-      "Tự động hóa hợp với khoản đều đặn; chi tiêu linh hoạt thì nên giữ quyết định thủ công",
-      "Mỗi lần tăng lương là cơ hội tăng tiết kiệm mà không cảm thấy hụt - vì chưa quen mức sống mới",
     ],
     practicePrompt: {
       question:
-        "Bạn đặt lệnh tự động chuyển 4 triệu vào ngày 5 hằng tháng, nhưng lương về ngày 10 nên tháng nào cũng bị lỗi. Sửa thế nào?",
+        "Bạn học đều hai tuần rồi bắt đầu bỏ buổi. Nên sửa chỗ nào trước?",
       options: [
-        "Hủy lệnh tự động và quay lại chuyển tay mỗi tháng cho chủ động",
-        "Dời lệnh về ngay sau ngày lương về, để nó chạy trước mọi khoản chi",
-        "Giảm số tiền xuống mức luôn có sẵn trong tài khoản mọi thời điểm",
-        "Đổi sang chuyển vào cuối tháng khi đã biết còn dư bao nhiêu",
+        "Cố định một khung giờ và quyết nội dung từ tối hôm trước",
+        "Giảm mục tiêu mỗi buổi xuống để việc học trở nên nhẹ nhàng và dễ duy trì hơn trước",
+        "Tìm một người cùng học để hai bên nhắc nhau và tạo thêm động lực duy trì thói quen",
+        "Xem nội dung có hợp trình độ hiện tại không",
       ],
-      correct: 1,
+      correct: 0,
       explanation:
-        "Cơ chế chỉ hoạt động khi nó chạy đúng lúc tiền vừa vào và trước khi bất kỳ khoản nào khác kịp lấy đi. Đây là chi tiết nhỏ quyết định toàn bộ hiệu quả của việc tự động hóa.",
+        "Ba việc kia đều hữu ích và đều là bước hai. Bước một là bỏ bớt số quyết định phải đưa ra mỗi tối, vì đó là chỗ chuỗi thường đứt - người ta không quyết định bỏ học, họ chỉ không quyết định được là học gì.",
     },
+    keyTakeaways: [
+      "Kế hoạch cần quyết định mỗi tối là kế hoạch có ba mươi cơ hội dừng mỗi tháng",
+      "Cố định khung giờ bỏ được câu hỏi dễ hoãn nhất: khi nào học",
+      "Mục tiêu phải nhỏ tới mức làm được vào ngày tệ nhất",
+      "Không học bù - một khoản nợ đúng lúc khó là thứ khiến người ta bỏ hẳn",
+    ],
     summary: {
-      keyIdea: "Đổi ý chí lấy cơ chế: thứ tự thao tác quan trọng hơn quyết tâm",
-      commonMistake: "Đặt tiết kiệm ở cuối hàng đợi, sau mọi khoản chi và mọi cám dỗ",
-      action: "Đặt một lệnh chuyển tiền tự động vào ngày lương về, dù số tiền ban đầu chỉ là một khoản nhỏ.",
+      keyIdea: "Thứ phải quyết định lại mỗi tối là thứ sẽ dừng vào một tối nào đó",
+      commonMistake: "Đọc việc bỏ buổi là thiếu kiên trì, trong khi cái hết là số lần quyết định chịu được",
+      action: "Cố định một khung giờ, và mỗi tối quyết trước nội dung của buổi hôm sau.",
     },
     application: {
-      title: "Một việc làm trong mười phút",
+      title: "Quyết một lần, làm nhiều lần",
       message:
-        "Mở ứng dụng ngân hàng, đặt lệnh chuyển định kỳ vào tài khoản tiết kiệm, hẹn đúng ngày sau ngày lương về. Bắt đầu bằng mức bạn chắc chắn duy trì được, rồi nâng dần.",
-      secondary: "Một khoản nhỏ chạy đều mười hai tháng luôn thắng một khoản lớn chạy được ba tháng.",
+        "Chọn một khung giờ cố định trong tuần. Mỗi tối, dành hai phút quyết nội dung buổi hôm sau và để sẵn thứ cần mở.",
+      secondary:
+        "Đặt mục tiêu mỗi buổi ở mức bạn làm được vào ngày tệ nhất - ngày tốt thì bạn tự làm nhiều hơn.",
     },
     sections: [
       {
         type: "lead",
-        text: "Bạn đã biết mình tiêu gì và đã có một khung phân bổ. Vấn đề còn lại không phải là biết mà là làm - đều đặn, trong nhiều năm, kể cả những tháng bạn mệt. Đó là lúc cơ chế thắng quyết tâm.",
+        text: "Người ta hiếm khi quyết định bỏ học. Họ chỉ không quyết định được là tối nay học gì, đủ nhiều lần liên tiếp.",
       },
       {
         type: "comparison",
         left: {
-          label: "Dựa vào ý chí",
-          text: "Mỗi tháng phải quyết định lại: tháng này để dành bao nhiêu, có nên hoãn không. Ba mươi quyết định nhỏ mỗi tháng, và chỉ cần vài lần yếu lòng là kế hoạch trượt.",
+          label: "Kế hoạch dựa vào ý chí",
+          text: "Mỗi tối phải chọn học gì, tìm lại chỗ đang dở, mở đúng công cụ, rồi mới bắt đầu. Bốn quyết định nhỏ vào đúng lúc trong ngày bạn còn ít sức quyết định nhất.",
         },
         right: {
-          label: "Dựa vào cơ chế",
-          text: "Quyết định một lần khi đặt lệnh, sau đó nó tự chạy. Muốn không tiết kiệm tháng này thì phải chủ động hủy lệnh - và rào cản nhỏ đó thay đổi hành vi rất nhiều.",
+          label: "Kế hoạch đã quyết sẵn",
+          text: "Khung giờ cố định, nội dung đã chọn từ tối hôm trước, thứ cần mở đã để sẵn. Lúc ngồi xuống không còn gì để chọn, chỉ còn phần làm.",
         },
+      },
+      {
+        type: "heading",
+        text: "Ngày tệ nhất mới là ngày quyết định",
+      },
+      {
+        type: "paragraph",
+        text: "Một mục tiêu vừa sức với ngày bình thường sẽ trượt vào những ngày không bình thường, và những ngày đó nhiều hơn ta tưởng. Đặt mục tiêu ở mức làm được vào ngày tệ nhất nghe như hạ chuẩn, nhưng nó bảo vệ đúng thứ đáng bảo vệ là tính liên tục - còn vào ngày tốt thì chẳng ai dừng lại đúng mười lăm phút cả.",
       },
       {
         type: "callout",
-        label: "Vì sao thứ tự quan trọng đến vậy",
-        text: "Số dư nhìn thấy trong tài khoản là mốc tham chiếu não dùng để quyết định chi tiêu, chứ không phải con số trong kế hoạch. Chuyển bốn triệu ra khỏi tài khoản chính ngay đầu tháng làm mốc đó thấp xuống, và chi tiêu tự co lại theo. Cùng con số, cùng thu nhập, khác kết quả - chỉ vì tiền nằm ở đâu.",
+        label: "Đứt chuỗi thì đừng học bù",
+        text: "Học bù biến việc quay lại thành trả nợ, và khoản nợ ấy xuất hiện đúng vào lúc bạn đang khó. Đó là lý do phổ biến khiến một chuỗi đứt ba ngày trở thành một chuỗi bỏ hẳn. Quay lại ở mức nhỏ nhất, coi như chưa từng có gì phải bù.",
       },
-      {
-          "type": "heading",
-          "text": "Thứ tự đặt lệnh tự động quyết định kết quả"
-        },
-        {
-          "type": "paragraph",
-          "text": "Đặt lệnh chuyển tiền tiết kiệm vào ngay ngày lương về, trước mọi khoản chi khác, cho kết quả khác hẳn so với để dành phần còn lại vào cuối tháng. Lý do không nằm ở số học mà ở chỗ số dư nhìn thấy trong tài khoản là mốc tham chiếu não dùng để quyết định chi tiêu. Chuyển tiền đi trước làm mốc đó thấp xuống, và mức chi tự điều chỉnh theo mà không cần một lần cố gắng nào."
-        },
       {
         type: "closing",
         lines: [
-          "Kế hoạch tài chính tốt nhất là kế hoạch không cần bạn nhớ tới nó mỗi ngày.",
-          "Bài cuối chặng nói về thứ bảo vệ toàn bộ kế hoạch này khỏi một cú sốc lớn hơn sức chịu của quỹ khẩn cấp.",
+          "Kỷ luật là thứ hữu hạn; một hệ thống tốt là hệ thống tiêu ít nó nhất.",
+          "Bài sau: học được rồi thì giữ lại được bao nhiêu, và phần rơi rụng đi đâu.",
         ],
       },
     ],
   },
   {
     id: 1353,
-    slug: "bao-hiem-co-ban-cho-nguoi-moi",
-    title: "Chặng 1, Bài 9: Bảo hiểm cơ bản - lớp bảo vệ sau quỹ khẩn cấp",
-    subtitle: "Quỹ khẩn cấp lo cú sốc nhỏ; bảo hiểm lo cú sốc có thể xóa sạch mọi thứ",
-    duration: "6 phút",
-    difficulty: "Dễ",
-    emoji: "🛡️",
+    slug: "chong-quen-giu-lai-thu-da-hoc",
+    title: "Chặng 1, Bài 9: Chống quên - giữ lại thứ đã học",
+    subtitle: "Phần lớn thứ học được rơi rụng trong vài tuần, và không ai đo phần đó",
+    duration: "8 phút",
+    difficulty: "Trung bình",
+    emoji: "🧠",
     track: "personal",
     whyItMatters:
-      "Một kế hoạch tài chính xây nhiều năm có thể bị xóa bởi một sự kiện duy nhất mà quỹ khẩn cấp không đủ sức gánh. Biết loại rủi ro nào cần chuyển đi và loại nào tự gánh được là phần bảo vệ mà mọi bước trước đó dựa vào.",
-    openingQuestion: "Bảo hiểm khác quỹ khẩn cấp ở điểm nào?",
+      "Người học đo tiến độ bằng số bài đã xong, tức là đo phần nạp vào. Phần giữ lại thì không ai đo, và nó nhỏ hơn nhiều - đủ để hai người học cùng một lượng thời gian kết thúc ở hai nơi rất khác nhau.",
+    openingQuestion: "Vì sao xem lại một nội dung vừa học thường tạo cảm giác sai về mức độ nắm được?",
     openingOptions: [
-      "Bảo hiểm sinh lời cao hơn nên thay thế được quỹ khẩn cấp",
-      "Bảo hiểm lo rủi ro lớn hiếm; quỹ khẩn cấp lo nhỏ",
-      "Bảo hiểm chỉ dành cho người có thu nhập cao và tài sản lớn",
-      "Bảo hiểm và quỹ khẩn cấp phục vụ cùng một mục đích, chọn một là đủ",
+      "Vì nhận ra một thứ quen mắt dễ hơn nhiều so với tự nhớ lại nó",
+      "Vì nội dung vừa xem vẫn còn trong trí nhớ ngắn hạn nên chưa phản ánh khả năng ghi nhớ thật",
+      "Vì khi xem lại bạn thường lướt nhanh qua những phần đã biết nên không kiểm tra được kỹ",
+      "Vì cảm giác hiểu phụ thuộc tâm trạng",
     ],
-    correctOption: 1,
+    correctOption: 0,
     explanation:
-      "Hai thứ này giải hai bài toán khác nhau và không thay thế được nhau. Quỹ khẩn cấp xử lý những cú sốc bạn tự gánh được: xe hỏng, mất việc vài tháng, một đợt ốm ngắn. Bảo hiểm xử lý những cú sốc bạn không thể tự gánh dù có tiết kiệm bao nhiêu: một ca điều trị kéo dài, một tai nạn mất khả năng lao động, hoặc người trụ cột qua đời khi con còn nhỏ. Nguyên tắc chọn rất đơn giản: chuyển đi những rủi ro hiếm nhưng đủ lớn để phá hỏng mọi thứ, tự gánh phần còn lại.",
+      "Đọc lại một trang và thấy mọi thứ quen thuộc tạo ra cảm giác đã nắm được, nhưng thứ vừa được kiểm là khả năng nhận ra chứ không phải khả năng nhớ lại. Hai năng lực đó cách nhau rất xa: bạn có thể nhận ra một đoạn mã đúng khi nhìn thấy nó mà không viết nổi đoạn ấy trên trang trắng. Phần lớn cách ôn phổ biến - đọc lại, xem lại video, tô đậm - đều chỉ luyện năng lực thứ nhất, và đó là lý do người ta bất ngờ khi vào việc thật hoặc vào buổi phỏng vấn. Cách duy nhất kiểm được năng lực thứ hai là đóng tài liệu lại và tự viết ra.",
     diagram: [
-      { label: "Rủi ro nhỏ, hay xảy ra", arrow: true },
-      { label: "Tự gánh bằng quỹ khẩn cấp", arrow: true },
-      { label: "Rủi ro lớn, hiếm xảy ra", arrow: true },
-      { label: "Chuyển đi bằng bảo hiểm" },
+      { label: "Học xong: cảm giác đã nắm được", arrow: true },
+      { label: "Vài tuần sau: phần lớn rơi rụng, không ai đo", arrow: true },
+      { label: "Đọc lại: chỉ luyện khả năng nhận ra", arrow: true },
+      { label: "Tự nhớ lại và giãn cách: luyện đúng thứ cần" },
     ],
-    interactiveType: "risk",
     realWorldExample: {
-      company: "Cú sốc y tế kéo dài",
+      company: "Hai mươi bài và một trang trắng",
       description:
-        "Một gia đình có quỹ khẩn cấp sáu tháng chi tiêu - đủ để yên tâm trước phần lớn tình huống. Rồi người trụ cột mắc bệnh cần điều trị dài ngày: thu nhập dừng lại trong khi chi phí y tế và sinh hoạt vẫn chạy. Quỹ sáu tháng cạn trong nửa năm và gia đình bắt đầu vay. Đây chính là loại rủi ro mà tiết kiệm không giải quyết được, vì mức tổn thất không có trần và không tương ứng với bất kỳ số tháng chi tiêu nào bạn dành dụm.",
+        "Một bạn học xong một khoá hai mươi bài trong sáu tuần, mỗi bài đều hiểu ngay lúc học. Ba tháng sau, khi cần dựng một thứ tương tự từ đầu, bạn ấy mở lại tài liệu và nhận ra mình nhớ được đường đi chung nhưng không nhớ nổi chi tiết nào đủ để tự viết. Phần đã học không mất hẳn - nó chỉ chưa bao giờ được chuyển từ nhận ra sang nhớ lại.",
     },
     quiz: [
       {
-        question: "Nguyên tắc chọn loại rủi ro cần mua bảo hiểm là gì?",
+        question: "Cách ôn nào có hiệu quả cao nhất trên mỗi phút bỏ ra?",
         options: [
-          "Chuyển đi rủi ro hiếm nhưng đủ lớn để phá hỏng kế hoạch tài chính",
-          "Mua bảo hiểm cho mọi rủi ro có thể xảy ra để an tâm tuyệt đối",
-          "Chỉ mua bảo hiểm cho những rủi ro xảy ra thường xuyên nhất",
-          "Mua bảo hiểm khi phí đóng thấp hơn mức tiết kiệm hằng tháng",
+          "Đóng tài liệu và tự viết lại những gì nhớ được",
+          "Đọc lại phần nội dung đã học một lần nữa và ghi chú những điểm quan trọng nhất ra",
+          "Xem lại video bài giảng với tốc độ nhanh hơn để ôn được nhiều nội dung trong thời gian ngắn",
+          "Tóm tắt lại nội dung bằng sơ đồ để hệ thống hoá các phần kiến thức có liên quan với nhau",
         ],
         correct: 0,
         explanation:
-          "Bảo hiểm cho rủi ro nhỏ và thường gặp là cách trả phí đắt cho thứ bạn tự lo được - vì phí phải bao gồm cả chi phí vận hành của công ty bảo hiểm. Giá trị thật của nó nằm ở phần đuôi: sự kiện hiếm mà hậu quả không có trần.",
+          "Ba cách kia đều dễ chịu hơn và đều luyện khả năng nhận ra. Việc tự lấy ra từ trí nhớ thì khó chịu, chậm, và cho cảm giác mình biết ít hơn mình tưởng - chính ba đặc điểm ấy là dấu hiệu nó đang làm đúng việc.",
       },
       {
-        question: "Vì sao người độc thân chưa ai phụ thuộc thường chưa cần bảo hiểm nhân thọ?",
+        question: "Vì sao ôn giãn cách hiệu quả hơn ôn dồn?",
         options: [
-          "Vì không có ai chịu thiệt hại tài chính nếu họ qua đời",
-          "Vì công ty bảo hiểm không bán hợp đồng cho người độc thân",
-          "Vì phí bảo hiểm nhân thọ ở tuổi trẻ cao hơn nhiều so với tuổi già",
-          "Vì bảo hiểm y tế đã bao gồm toàn bộ quyền lợi của nhân thọ",
+          "Vì mỗi lần lấy lại sau khi đã quên một phần thì củng cố mạnh hơn",
+          "Vì chia nhỏ thời gian ôn thì đỡ mệt hơn",
+          "Vì ôn nhiều lần trong thời gian dài thì tổng số lần tiếp xúc với nội dung sẽ nhiều hơn",
+          "Vì khoảng nghỉ giữa các lần ôn cho não thời gian để sắp xếp lại thông tin đã tiếp nhận",
         ],
         correct: 0,
         explanation:
-          "Bảo hiểm nhân thọ bù đắp thu nhập bị mất cho người phụ thuộc vào bạn. Không có người phụ thuộc thì không có tổn thất tài chính cần bù - và nhu cầu xuất hiện đúng lúc hoàn cảnh thay đổi, không phải theo tuổi.",
+          "Điểm mấu chốt là phải quên đi một phần thì lần lấy lại mới có giá trị. Ôn dồn trong một buổi thì mọi lần lấy lại đều dễ vì thông tin còn nguyên, nên nó cho cảm giác tốt và kết quả kém. Đây là lý do việc ôn hiệu quả hầu như luôn cho cảm giác khó hơn việc ôn kém hiệu quả.",
       },
       {
-        question: "Bảo hiểm y tế và bảo hiểm nhân thọ bảo vệ hai loại tổn thất nào?",
+        question: "Với kiến thức kỹ thuật, cách kiểm tra mức nắm được tốt nhất là gì?",
         options: [
-          "Chi phí điều trị và thu nhập mất đi của người phụ thuộc",
-          "Tài sản bị hư hỏng và trách nhiệm pháp lý với bên thứ ba",
-          "Lạm phát làm giảm sức mua và biến động của thị trường",
-          "Chi phí sinh hoạt hằng ngày và các khoản nợ vay ngân hàng",
+          "Dựng lại một thứ nhỏ dùng đúng kiến thức đó, không nhìn tài liệu",
+          "Trả lời câu hỏi trắc nghiệm về nội dung đó",
+          "Giải thích lại cho người khác nghe thử",
+          "Đọc lại tài liệu và đánh dấu phần đã quên",
         ],
         correct: 0,
         explanation:
-          "Hai sản phẩm bảo vệ hai vế khác nhau của cùng một cú sốc: tiền phải chi ra để điều trị, và tiền lẽ ra chảy vào mà nay không còn. Có cái này không thay thế được cái kia.",
+          "Giải thích cho người khác là một phép thử tốt và nó vẫn nằm ở tầng lời nói. Dựng lại một thứ nhỏ buộc bạn ra quyết định ở những chỗ tài liệu không nói tới, và đó chính là phần phân biệt giữa biết về một thứ với làm được thứ đó.",
       },
       {
-        question: "Vì sao nên đọc kỹ phần loại trừ trong hợp đồng bảo hiểm?",
+        question: "Ghi chép trong lúc học nên ở dạng nào thì giữ lại được nhiều hơn?",
         options: [
-          "Vì đó là nơi ghi những trường hợp bảo hiểm sẽ không chi trả",
-          "Vì phần đó quyết định mức phí đóng hằng năm của hợp đồng",
-          "Vì loại trừ có thể được đàm phán lại sau khi ký hợp đồng",
-          "Vì nó liệt kê các bệnh viện được liên kết thanh toán trực tiếp",
+          "Diễn đạt lại bằng lời của mình, kể cả khi dài hơn bản gốc",
+          "Chép lại chính xác các định nghĩa và công thức quan trọng để đảm bảo không sai lệch",
+          "Ghi ngắn dưới dạng từ khoá cho dễ ôn",
+          "Sao chép các đoạn quan trọng vào một chỗ để tra cứu lại được nhanh khi cần dùng",
         ],
         correct: 0,
         explanation:
-          "Phần lớn tranh chấp bảo hiểm không nằm ở việc công ty từ chối vô cớ mà ở chỗ tình huống rơi vào một điều khoản loại trừ mà người mua chưa từng đọc. Bệnh có sẵn và thời gian chờ là hai nhóm hay gây bất ngờ nhất.",
+          "Chép lại nguyên văn và lưu đoạn trích đều là thao tác chuyển chỗ, và chúng có thể hoàn thành mà không cần hiểu gì. Diễn đạt lại bằng lời mình thì không làm được nếu chưa hiểu, nên bản thân việc viết được ra đã là một phép kiểm.",
       },
       {
-        question: "Gia đình có quỹ khẩn cấp 6 tháng chi tiêu. Rủi ro nào vẫn chưa được bảo vệ?",
+        question: "Nên xen việc ôn vào lúc nào là hợp lý nhất?",
         options: [
-          "Sự kiện làm mất thu nhập kéo dài hơn nhiều so với sáu tháng",
-          "Chi phí sửa xe hoặc thay thiết bị gia dụng hỏng bất ngờ",
-          "Một đợt thất nghiệp ngắn khi chuyển việc giữa hai công ty",
-          "Chi phí phát sinh khi đi khám bệnh thông thường hằng năm",
+          "Ngay đầu buổi học tiếp theo, trước khi vào nội dung mới",
+          "Vào cuối mỗi buổi học để củng cố lại toàn bộ nội dung vừa tiếp thu trong buổi đó",
+          "Vào một buổi riêng trong tuần dành hẳn cho việc ôn tập lại các nội dung đã học",
+          "Khi thấy đã quên nhiều thì quay lại ôn",
         ],
         correct: 0,
         explanation:
-          "Ba phương án còn lại đều nằm gọn trong sức của quỹ sáu tháng. Cái vượt ngoài là sự kiện vừa cắt thu nhập vừa kéo dài không xác định - và đó chính xác là khoảng trống mà bảo hiểm sinh ra để lấp.",
+          "Buổi riêng cho việc ôn là buổi đầu tiên bị cắt khi bận. Cuối buổi thì thông tin còn nguyên nên việc lấy lại quá dễ để có giá trị. Đầu buổi sau đạt được cả hai: đã quên đủ để lần lấy lại có tác dụng, và nó nằm trong một buổi vốn đã có chỗ trong lịch.",
       },
-    ],
-    keyTakeaways: [
-      "Quỹ khẩn cấp lo rủi ro nhỏ và thường gặp; bảo hiểm lo rủi ro hiếm nhưng không có trần tổn thất",
-      "Mua bảo hiểm cho rủi ro nhỏ là trả phí đắt cho thứ mình tự gánh được",
-      "Nhu cầu bảo hiểm nhân thọ xuất hiện khi có người phụ thuộc, không phải theo tuổi",
-      "Phần loại trừ là nơi quyết định hợp đồng có chi trả hay không - đọc trước khi ký, không phải sau",
     ],
     practicePrompt: {
       question:
-        "Một tư vấn viên đề nghị sản phẩm vừa bảo vệ vừa đầu tư sinh lời. Câu hỏi đầu tiên nên hỏi là gì?",
+        "Bạn vừa học xong một chủ đề và thấy mình hiểu rõ. Nên làm gì để kiểm lại?",
       options: [
-        "Phần phí nào dùng để bảo vệ và phần nào để đầu tư, mỗi phần chi phí bao nhiêu",
-        "Sản phẩm này đã được bao nhiêu khách hàng mua trong năm vừa qua",
-        "Lợi nhuận dự kiến của phần đầu tư trong mười năm tới là bao nhiêu",
-        "Công ty bảo hiểm này có phải doanh nghiệp nước ngoài hay trong nước",
+        "Vài ngày sau, đóng tài liệu và tự viết lại những gì nhớ được",
+        "Đọc lại phần chính để khỏi bỏ sót ý",
+        "Chuyển sang chủ đề tiếp theo vì việc hiểu ngay cho thấy nền tảng của bạn đã đủ vững",
+        "Tóm tắt lại toàn bộ nội dung thành một sơ đồ để nắm được bức tranh tổng thể rõ hơn",
       ],
       correct: 0,
       explanation:
-        "Gộp hai mục đích vào một sản phẩm làm cả hai phần khó so sánh với lựa chọn thay thế. Tách được hai phần ra mới trả lời được câu hỏi thật: phần bảo vệ này có rẻ hơn mua riêng không, và phần đầu tư này có tốt hơn tự đầu tư không.",
+        "Cảm giác hiểu rõ ngay sau khi học là cảm giác đáng ngờ nhất, vì nó được tạo ra bởi việc nội dung vẫn còn nguyên trước mắt. Vài ngày sau thì phần quên đã đủ để phép thử có ý nghĩa, và kết quả của nó gần như luôn thấp hơn dự đoán.",
     },
+    keyTakeaways: [
+      "Nhận ra và nhớ lại là hai năng lực cách nhau rất xa",
+      "Đọc lại, xem lại, tô đậm đều chỉ luyện năng lực thứ nhất",
+      "Phải quên đi một phần thì lần lấy lại mới có giá trị",
+      "Cách ôn hiệu quả gần như luôn cho cảm giác khó hơn cách ôn kém hiệu quả",
+    ],
     summary: {
-      keyIdea: "Tự gánh rủi ro nhỏ, chuyển đi rủi ro có thể xóa sạch mọi thứ",
-      commonMistake: "Coi bảo hiểm là một kênh đầu tư thay vì một công cụ chuyển giao rủi ro",
-      action: "Liệt kê các rủi ro có thể làm mất thu nhập trên sáu tháng và xem hiện bạn được bảo vệ tới đâu.",
+      keyIdea: "Người học đo phần nạp vào và không ai đo phần giữ lại, dù phần thứ hai mới là kết quả",
+      commonMistake: "Đọc lại tài liệu thấy quen thuộc rồi kết luận là đã nắm được",
+      action: "Vài ngày sau mỗi chủ đề, đóng tài liệu và tự viết lại; dựng một thứ nhỏ nếu là kiến thức kỹ thuật.",
     },
     application: {
-      title: "Ba câu tự hỏi",
+      title: "Mười phút đầu mỗi buổi",
       message:
-        "Nếu tôi mất khả năng làm việc một năm, tiền ở đâu ra? Có ai đang phụ thuộc vào thu nhập của tôi không? Và hợp đồng tôi đang có loại trừ những trường hợp nào?",
-      secondary: "Bảo hiểm y tế và bảo hiểm xã hội bắt buộc đã bao một phần - biết phần đó tới đâu trước khi mua thêm.",
+        "Trước khi vào nội dung mới, đóng tài liệu và viết ra những gì còn nhớ từ buổi trước. Chỗ viết không ra chính là chỗ cần đọc lại.",
+      secondary:
+        "Với kiến thức kỹ thuật, thay việc viết bằng việc dựng lại một thứ rất nhỏ mà không nhìn tài liệu.",
     },
     sections: [
       {
         type: "lead",
-        text: "Năm bài trước xây một kế hoạch: biết mình đang ở đâu, phân bổ được thu nhập, có đệm cho những tháng khó, có lộ trình trả nợ. Bài này nói về thứ duy nhất có thể xóa sạch tất cả trong một lần - và cách chặn nó.",
+        text: "Tiến độ học được đo bằng số bài đã xong, tức là đo phần nạp vào. Phần giữ lại thì không xuất hiện trên bất kỳ thanh tiến độ nào, và nó mới là thứ còn lại sau sáu tháng.",
       },
       {
         type: "comparison",
         left: {
-          label: "Rủi ro tự gánh",
-          text: "Xác suất cao, mức tổn thất có trần và nằm trong khả năng. Xe hỏng, điện thoại rơi, một tháng thất nghiệp. Mua bảo hiểm cho nhóm này là trả phí quản lý cho việc mình tự làm được.",
+          label: "Nhận ra",
+          text: "Nhìn thấy thì thấy quen. Đọc lại tài liệu, xem lại video, lướt qua phần tô đậm - tất cả đều luyện năng lực này, và tất cả đều dễ chịu.",
         },
         right: {
-          label: "Rủi ro chuyển đi",
-          text: "Xác suất thấp, mức tổn thất không có trần rõ ràng. Điều trị dài ngày, mất khả năng lao động, người trụ cột qua đời. Đây là nhóm mà không mức tiết kiệm nào đủ chắc chắn.",
+          label: "Nhớ lại",
+          text: "Trang trắng, tự viết ra. Khó chịu, chậm, và cho cảm giác mình biết ít hơn mình tưởng - ba dấu hiệu cho thấy nó đang làm đúng việc.",
         },
+      },
+      {
+        type: "heading",
+        text: "Phải quên thì lần lấy lại mới có giá trị",
+      },
+      {
+        type: "paragraph",
+        text: "Đây là chỗ trái trực giác nhất. Ôn dồn ngay sau khi học thì mọi thứ còn nguyên, lần nào lấy ra cũng dễ, và kết quả là một cảm giác tốt cùng một trí nhớ ngắn. Để cách vài ngày thì lần lấy lại khó hơn hẳn, và chính độ khó đó là thứ tạo ra hiệu quả. Nói cách khác, cách ôn cho cảm giác dễ chịu nhất gần như luôn là cách kém hiệu quả nhất.",
       },
       {
         type: "callout",
-        label: "Vì sao gộp bảo vệ với đầu tư thường không có lợi",
-        text: "Sản phẩm gộp làm cả hai phần trở nên khó so sánh: bạn không biết phần bảo vệ có đắt hơn mua riêng không, cũng không biết phần đầu tư có tốt hơn tự đầu tư không. Tách riêng thì mỗi phần đều so sánh được với lựa chọn thay thế - và đó thường là cách ra quyết định tốt hơn cho người mới.",
+        label: "Với kiến thức kỹ thuật, phép thử là dựng lại",
+        text: "Trả lời được câu hỏi về một công nghệ và dùng được nó là hai chuyện khác nhau. Dựng lại một thứ rất nhỏ mà không nhìn tài liệu buộc bạn quyết định ở đúng những chỗ tài liệu không nói tới - và đó là phần duy nhất phân biệt giữa biết về một thứ với làm được thứ đó.",
       },
-      {
-          "type": "heading",
-          "text": "Mua bao nhiêu là đủ"
-        },
-        {
-          "type": "paragraph",
-          "text": "Số tiền bảo hiểm cần mua bám vào nghĩa vụ cụ thể chứ không bám vào thu nhập: đủ để trả hết phần nợ còn lại và nuôi người phụ thuộc tới khi họ tự lo được. Cách tính đó cho ra một con số hữu hạn thay vì một cảm giác mơ hồ rằng càng nhiều càng tốt. Một hệ quả hay bị bỏ qua là nhu cầu này giảm dần theo thời gian - nợ vơi đi, con lớn lên - nên hợp đồng có thời hạn khớp với giai đoạn nghĩa vụ còn lớn thường hợp lý hơn hợp đồng trọn đời với cùng số tiền phí."
-        },
       {
         type: "closing",
         lines: [
-          "Bảo hiểm không tạo ra của cải; nó ngăn một sự kiện xóa mất phần của cải bạn đã tạo.",
-          "Khép lại chặng: bạn đã biết mình đang ở đâu, đi đâu, và điều gì có thể chặn đường - đủ nền để bắt đầu học đầu tư.",
+          "Học nhanh hơn không có ý nghĩa gì nếu phần rơi rụng cũng nhanh hơn theo.",
+          "Ba bài của chặng này không dạy nội dung nào; chúng chỉ đảm bảo nội dung ở các chặng sau có chỗ để ở lại.",
         ],
       },
     ],

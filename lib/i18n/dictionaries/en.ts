@@ -1500,7 +1500,7 @@ export const en: Dictionary = {
     "digital-assets-risk": "Blockchain & its risks",
     "fraud-safety": "Security & defending against attacks",
     "mobile-apps-vn": "Mobile apps in Vietnam",
-    "life-expenses": "The big projects in a career",
+    "career-projects": "The big projects in a career",
     "health-risk": "Occupational health & human risk",
     "career-stage": "A tech career by stage",
     "personal-ops": "Tooling and workflow",

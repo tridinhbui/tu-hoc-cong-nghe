@@ -870,234 +870,223 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
     track: "bonus",
   },
   {
-    id: 805,
-    slug: "tai-chinh-xanh-tieu-chuan-esg-tin-chi-carbon",
-    title: "Chuyên Đề Masterclass 5: Tài Chính Xanh & Đầu Tư Bền Vững - Tiêu Chuẩn ESG & Thị Trường Tín Chỉ Carbon",
-    subtitle: "ESG, tính trọng yếu, greenwashing, trái phiếu xanh và cơ chế định giá tín chỉ carbon.",
-    whyItMatters:
-      "Doanh nghiệp Việt Nam xuất khẩu sang châu Âu sẽ dần phải khai báo lượng phát thải trong hàng hoá của mình, còn ngân hàng quốc tế ngày càng gắn lãi suất vay với chỉ số ESG. Đây không còn là chuyện truyền thông - nó đã thành một dòng chi phí và một điều kiện tiếp cận vốn.",
-    duration: "13 phút",
-    difficulty: "Khó",
-    emoji: "🌱",
-    openingQuestion: "Chữ G trong bộ tiêu chuẩn đầu tư ESG đại diện cho yếu tố nào sau đây?",
-    openingOptions: [
-      "Green (Năng lượng xanh)",
-      "Governance (Quản trị doanh nghiệp)",
-      "Growth (Tăng trưởng doanh thu công ty)",
-      "Global (Quy mô toàn cầu)",
+    "title": "Chuyên Đề Masterclass 5: Phần mềm tiết kiệm năng lượng",
+    "subtitle": "Điện của một dòng mã, và vì sao phần lớn cách giảm nó đều là chuyển chỗ",
+    "duration": "12 phút",
+    "difficulty": "Khó",
+    "emoji": "🌿",
+      "whyItMatters": "Hạ tầng máy tính tiêu thụ điện ở quy mô của một quốc gia trung bình, và phần lớn quyết định làm nó tăng lên đều do kỹ sư đưa ra mà không hề biết mình đang quyết chuyện đó.",
+    "openingQuestion": "Chuyển dịch vụ sang một vùng chạy bằng điện tái tạo. Lượng phát thải của nó đổi thế nào?",
+    "openingOptions": [
+      "Giảm trên sổ sách, nhưng tổng điện tiêu thụ không đổi",
+      "Giảm thật, vì dịch vụ giờ chạy hoàn toàn bằng nguồn điện không phát thải",
+      "Không đổi, vì phát thải tính theo lượng tính toán chứ không theo nguồn điện",
+      "Tăng lên, vì vùng tái tạo thường xa người dùng nên phải truyền dữ liệu xa hơn"
     ],
-    correctOption: 1,
-    explanation:
-      "G là Governance - quản trị doanh nghiệp: cơ cấu hội đồng quản trị, tính độc lập của thành viên, minh bạch công bố thông tin, kiểm soát xung đột lợi ích, chính sách chống tham nhũng. Trớ trêu là đây thường là chữ cái ít được nói đến nhất nhưng lại có tương quan rõ nhất với hiệu quả tài chính dài hạn.",
-    diagram: [
-      { label: "Xác định vấn đề trọng yếu", arrow: true },
-      { label: "Đo lường và công bố", arrow: true },
-      { label: "Xếp hạng ESG", arrow: true },
-      { label: "Chi phí vốn và khả năng tiếp cận thị trường" },
+    "correctOption": 0,
+    "explanation": "Điện tái tạo trong một khu vực là hữu hạn. Dịch vụ của bạn dùng phần đó thì một tải khác phải lấy phần điện còn lại, vốn bẩn hơn. Con số trong báo cáo của bạn giảm thật, nhưng tổng phát thải của lưới không đổi. Đó là lý do việc giảm lượng tính toán khác hẳn về bản chất so với việc đổi chỗ chạy nó.",
+    "diagram": [
+      {
+        "label": "Dòng mã chạy tốn chu kỳ xử lý",
+        "arrow": true
+      },
+      {
+        "label": "Chu kỳ tốn điện, cộng phần làm mát",
+        "arrow": true
+      },
+      {
+        "label": "Điện có cường độ phát thải theo giờ và theo vùng",
+        "arrow": true
+      },
+      {
+        "label": "Giảm lượng tính toán, hoặc chỉ đổi chỗ"
+      }
     ],
-    interactiveType: "esg-score",
-    realWorldExample: {
-      company: "Doanh nghiệp xuất khẩu Việt Nam và CBAM",
-      description:
-        "Cơ chế điều chỉnh biên giới carbon của EU (CBAM) yêu cầu khai báo lượng phát thải gắn với hàng nhập khẩu ở các nhóm như sắt thép, xi măng, nhôm, phân bón. Với doanh nghiệp Việt Nam trong chuỗi cung ứng này, phát thải chuyển từ một chỉ số báo cáo thành một khoản chi phí trực tiếp. Song song, Việt Nam đã cam kết đạt phát thải ròng bằng 0 vào năm 2050 tại COP26 và đang xây dựng khung pháp lý cho thị trường carbon trong nước.",
+    "realWorldExample": {
+      "company": "Công việc nền chạy lúc nửa đêm",
+      "description": "Một đội chuyển toàn bộ công việc xử lý theo lô sang chạy lúc hai giờ sáng cho rẻ. Ở lưới điện của họ, hai giờ sáng là lúc điện gió dư và cường độ phát thải thấp nhất trong ngày, nên quyết định vì tiền cũng vô tình đúng về môi trường. Ở một lưới khác, hai giờ sáng lại là lúc nhiệt điện than gánh phần lớn tải. Cùng một hành động, hai kết quả ngược nhau, và cả hai đội đều không biết mình đang chọn gì."
     },
-    application: {
-      title: "Kiểm ba thứ trong mỗi cam kết",
-      message: "Mở báo cáo bền vững của một doanh nghiệp niêm yết và tìm đúng ba thứ: năm gốc để so, mốc trung hạn trước 2030, và tên đơn vị kiểm chứng độc lập. Cam kết trung hoà 2050 không có mốc trung hạn là lời hứa của một ban lãnh đạo đã nghỉ hưu trước hạn.",
-      secondary: "Kiểm luôn phạm vi: giảm phát thải Scope 1 và 2 mà im lặng về Scope 3 thường là bỏ qua phần lớn nhất của chính chuỗi giá trị đó.",
-    },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Hai công ty cùng ngành công bố báo cáo phát triển bền vững dày như nhau, ảnh đẹp như nhau. Một công ty được ngân hàng quốc tế cho vay rẻ hơn 0,8 điểm phần trăm. Khác biệt không nằm ở độ dày báo cáo mà ở chỗ: một bên đo lường và bị kiểm chứng, bên kia chỉ kể chuyện.",
-      },
-      { type: "heading", text: "1. Ba trụ cột và điều quan trọng hơn cả ba" },
-      {
-        type: "list",
-        items: [
-          "E - Environmental: phát thải khí nhà kính, tiêu thụ năng lượng và nước, chất thải, tác động tới đa dạng sinh học.",
-          "S - Social: an toàn lao động, quan hệ lao động, quyền riêng tư dữ liệu khách hàng, trách nhiệm trong chuỗi cung ứng.",
-          "G - Governance: cơ cấu và tính độc lập của hội đồng quản trị, minh bạch thông tin, kiểm soát xung đột lợi ích, chống tham nhũng.",
-        ],
+        "type": "lead",
+        "text": "Mọi phép tính đều tốn điện, và lượng điện ấy ước lượng được từ những con số đội nào cũng đã có. Bài này đi từ dòng mã tới ki-lô-oát giờ, rồi tới chỗ khó hơn: phân biệt giảm thật với chuyển chỗ."
       },
       {
-        type: "callout",
-        label: "Tính trọng yếu quan trọng hơn danh sách",
-        text: "Không phải mọi chỉ số ESG đều quan trọng với mọi ngành. Với một nhà máy xi măng, phát thải là vấn đề sống còn; với một công ty phần mềm, phát thải gần như không đáng kể còn quyền riêng tư dữ liệu và giữ chân nhân sự mới là trọng yếu. Báo cáo ESG tốt bắt đầu bằng việc chọn đúng vài vấn đề trọng yếu của ngành mình, không phải bằng việc liệt kê tất cả.",
-      },
-      { type: "heading", text: "2. Vì sao các bảng xếp hạng ESG mâu thuẫn nhau" },
-      {
-        type: "paragraph",
-        text: "Một điểm khiến nhiều nhà đầu tư bối rối: cùng một doanh nghiệp có thể được tổ chức này xếp hạng cao và tổ chức kia xếp hạng thấp. Nguyên nhân không phải ai đó tính sai, mà là các tổ chức chọn chỉ số khác nhau, đặt trọng số khác nhau, và xử lý dữ liệu thiếu theo cách khác nhau. Hệ quả thực tế: điểm ESG không phải sự thật khách quan như lợi nhuận trên báo cáo kiểm toán - nó là một ý kiến, và cần đọc kèm phương pháp luận đứng sau.",
-      },
-      { type: "heading", text: "3. Greenwashing - nhận diện bằng ba câu hỏi" },
-      {
-        type: "comparison",
-        left: {
-          label: "Cam kết có thể kiểm chứng",
-          text: "Có số gốc và năm gốc cụ thể, có mốc trung hạn, có phạm vi rõ ràng (Scope 1, 2, 3), và được bên thứ ba độc lập soát xét. Ví dụ: 'giảm 30% phát thải Scope 1 và 2 so với mức năm 2020, đạt vào 2030'.",
-        },
-        right: {
-          label: "Dấu hiệu tẩy xanh",
-          text: "Khẩu hiệu không kèm số, mục tiêu dồn hết về mốc rất xa như 2050, chỉ khoe một dự án nhỏ trong khi hoạt động chính vẫn gây tác động lớn, hoặc mua tín chỉ carbon để bù trừ mà không hề giảm phát thải thực tế.",
-        },
+        "type": "heading",
+        "text": "Từ chu kỳ xử lý tới điện"
       },
       {
-        type: "paragraph",
-        text: "Ba câu hỏi lọc nhanh: (1) Số liệu có so với năm gốc nào không? (2) Phạm vi tính đến đâu - chỉ nhà máy của mình, hay cả điện mua vào và cả chuỗi cung ứng? (3) Ai kiểm chứng? Một cam kết không trả lời được cả ba thì nên đọc như tài liệu marketing.",
+        "type": "paragraph",
+        "text": "Một máy chủ tiêu thụ điện gần như tuyến tính theo mức sử dụng bộ xử lý, nhưng nó không tiêu thụ bằng không khi rảnh - máy nhàn rỗi vẫn ăn khoảng một nửa mức đỉnh. Đó là con số quan trọng nhất trong cả bài, vì nó nói rằng một cụm máy chạy ở mức mười phần trăm đang lãng phí gần như toàn bộ điện của nó."
       },
-      { type: "heading", text: "4. Trái phiếu xanh và khoản vay gắn với bền vững" },
       {
-        type: "conceptTable",
-        title: "Hai cấu trúc dễ nhầm",
-        concepts: [
+        "type": "formula",
+        "title": "Bốn thừa số",
+        "variables": [
           {
-            vi: "Trái phiếu xanh",
-            en: "Green Bond",
-            def: "Ràng buộc theo MỤC ĐÍCH SỬ DỤNG VỐN: tiền huy động phải dùng cho dự án xanh đã xác định, có báo cáo phân bổ vốn định kỳ. Lãi suất không đổi theo kết quả môi trường.",
+            "symbol": "U",
+            "name": "Mức sử dụng thực tế của cụm máy",
+            "description": "Phần lớn cụm máy nội bộ chạy dưới hai mươi phần trăm. Đây là chỗ có nhiều dư địa nhất và cũng là chỗ ít ai nhìn nhất."
           },
           {
-            vi: "Khoản vay gắn bền vững",
-            en: "Sustainability-Linked Loan",
-            def: "Ràng buộc theo KẾT QUẢ: tiền dùng cho mục đích chung, nhưng lãi suất tăng hoặc giảm tuỳ doanh nghiệp có đạt các chỉ tiêu ESG đã cam kết hay không.",
+            "symbol": "P",
+            "name": "Công suất máy, tính cả mức tiêu thụ khi nhàn rỗi",
+            "description": "Máy nhàn rỗi ăn khoảng một nửa mức đỉnh, nên gộp mười máy chạy mười phần trăm thành hai máy chạy năm mươi phần trăm là một khoản tiết kiệm thật."
           },
           {
-            vi: "Phần bù xanh",
-            en: "Greenium",
-            def: "Mức lợi suất thấp hơn mà nhà phát hành xanh đôi khi được hưởng so với trái phiếu thường cùng rủi ro - thường mỏng, vài điểm cơ bản, và không phải lúc nào cũng tồn tại.",
+            "symbol": "PUE",
+            "name": "Hệ số hạ tầng phụ trợ, chủ yếu là làm mát",
+            "description": "Trung tâm dữ liệu hiện đại quanh 1,2; phòng máy tự dựng thường trên 1,8. Nhân vào toàn bộ, nên nó khuếch đại mọi thứ khác."
           },
-        ],
+          {
+            "symbol": "CI",
+            "name": "Cường độ phát thải của lưới, theo vùng và theo giờ",
+            "description": "Chênh nhau tới mười lần giữa các vùng và tới ba lần trong cùng một ngày. Đây là thừa số duy nhất đổi được mà không phải sửa mã."
+          }
+        ]
       },
-      { type: "heading", text: "5. Tín chỉ carbon hoạt động thế nào" },
       {
-        type: "formula",
-        title: "Đơn vị của thị trường carbon",
-        equation: "1 tín chỉ carbon = 1 tấn CO₂ tương đương (tCO₂e)",
-        variables: [
-          { symbol: "CO₂e", name: "CO₂ tương đương", description: "Quy đổi các khí nhà kính khác về CO₂ theo mức độ gây nóng lên" },
-        ],
-        example: {
-          title: "Vì sao phải quy đổi",
-          calculation: "1 tấn khí metan ≈ 28 tấn CO₂e",
-          result: "Cùng một đơn vị đo cho mọi loại khí",
-          explanation:
-            "Mỗi khí nhà kính giữ nhiệt ở mức khác nhau, nên nếu không quy về một đơn vị chung thì không cộng được, không giao dịch được và không đặt hạn ngạch được. CO₂ tương đương chính là 'đồng tiền chung' của thị trường carbon.",
+        "type": "heading",
+        "text": "Ba việc thật sự giảm"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Gộp tải để cụm máy chạy ở mức cao hơn, thay vì nhiều cụm cùng chạy nhàn rỗi",
+          "Xoá công việc định kỳ không còn ai đọc kết quả - thường chiếm phần đáng kể",
+          "Đệm và tính sẵn thứ được hỏi lại nhiều lần, thay vì tính lại từ đầu mỗi lần"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Ba việc chỉ chuyển chỗ"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chuyển sang vùng dùng điện tái tạo, khi lượng tái tạo trong vùng ấy là hữu hạn",
+          "Mua chứng chỉ bù trừ để trừ vào con số báo cáo mà không đổi gì trong hệ thống",
+          "Đẩy phần tính toán xuống thiết bị người dùng, nơi không ai đo và pin thì hao"
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Chuyển chỗ không vô dụng, nó chỉ không phải giảm",
+        "text": "Chạy công việc nền vào giờ lưới sạch là chuyển chỗ theo thời gian, và nó có ích thật khi lượng điện sạch trong giờ ấy đang dư và không ai dùng. Điều cần giữ là gọi đúng tên: một dòng ghi giảm phát thải nhờ đổi vùng và một dòng ghi giảm phát thải nhờ xoá công việc thừa không nên nằm cùng một cột, vì cái thứ hai còn nguyên giá trị khi mọi vùng đều đã sạch."
+      },
+      {
+        "type": "heading",
+        "text": "Đo trước khi tối ưu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phần lớn đội bắt đầu bằng cách viết lại phần mã họ nghi là tốn nhất, và phần lớn đoán sai. Thứ tự đúng là đo mức sử dụng của cụm máy trước, vì nếu cụm đang chạy ở mười phần trăm thì mọi tối ưu mã đều không đổi được hoá đơn - máy vẫn bật, vẫn ăn nửa công suất, chỉ rảnh hơn."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Giảm thật",
+          "text": "Tổng ki-lô-oát giờ xuống, và nó xuống dù lưới sạch hay bẩn. Kiểm chứng được bằng hoá đơn điện hoặc hoá đơn hạ tầng."
         },
+        "right": {
+          "label": "Chuyển chỗ",
+          "text": "Con số trong báo cáo xuống nhưng tổng tiêu thụ không đổi. Hết giá trị vào ngày mọi vùng đều sạch."
+        }
       },
       {
-        type: "comparison",
-        left: {
-          label: "Thị trường bắt buộc",
-          text: "Nhà nước đặt hạn ngạch phát thải cho từng cơ sở (cap-and-trade). Ai phát thải ít hơn hạn ngạch thì bán phần dư, ai vượt phải mua bù. Giá do cung cầu quyết định, và độ chặt của hạn ngạch quyết định giá.",
-        },
-        right: {
-          label: "Thị trường tự nguyện",
-          text: "Doanh nghiệp tự mua tín chỉ từ các dự án trồng rừng, năng lượng tái tạo, thu hồi metan để bù trừ. Chất lượng rất không đồng đều - vấn đề cốt lõi là tính bổ sung: dự án đó có thật sự chỉ xảy ra được nhờ tiền bán tín chỉ không?",
-        },
-      },
-      {
-        type: "callout",
-        label: "Thứ tự đúng khi giảm phát thải",
-        text: "Đo - Giảm - rồi mới Bù trừ. Mua tín chỉ carbon để bù trừ trong khi chưa làm gì để giảm phát thải thực tế chính là định nghĩa của greenwashing, và ngày càng bị các cơ quan quản lý lẫn nhà đầu tư tổ chức chất vấn.",
-      },
-      {
-        type: "closing",
-        lines: [
-          "ESG chỉ có sức nặng khi nó đi kèm số liệu, phạm vi và bên kiểm chứng độc lập.",
-          "Với doanh nghiệp Việt Nam, phát thải đang chuyển dần từ một chỉ số trong báo cáo thành một dòng chi phí trên bảng kết quả kinh doanh - và đó là lúc nó trở thành vấn đề tài chính thật sự.",
-        ],
-      },
+        "type": "closing",
+        "lines": [
+          "Máy nhàn rỗi ăn nửa công suất, nên mức sử dụng thấp là lãng phí lớn nhất.",
+          "Phân biệt giảm thật với chuyển chỗ, và đừng để hai thứ ấy nằm cùng một cột."
+        ]
+      }
     ],
-    quiz: [
+    "quiz": [
       {
-        question: "Hiện tượng 'tẩy xanh' (Greenwashing) trong báo cáo doanh nghiệp có nghĩa là gì?",
-        options: [
-          "Doanh nghiệp sơn lại nhà máy bằng màu xanh lá",
-          "Doanh nghiệp tô vẽ hình ảnh thân thiện môi trường bằng truyền thông, trong khi hoạt động thực tế không thay đổi tương xứng",
-          "Doanh nghiệp chuyển toàn bộ sang năng lượng tái tạo",
-          "Doanh nghiệp công bố báo cáo phát triển bền vững hằng năm",
+        "question": "Con số nào quan trọng nhất khi ước lượng điện của một cụm máy?",
+        "options": [
+          "Mức tiêu thụ khi máy nhàn rỗi",
+          "Công suất đỉnh mà nhà sản xuất ghi trên thông số kỹ thuật của từng máy chủ",
+          "Số lõi xử lý và dung lượng bộ nhớ mà mỗi máy trong cụm đang được cấp phát",
+          "Lượng yêu cầu mỗi giây mà cụm máy phục vụ được vào giờ cao điểm trong ngày"
         ],
-        correct: 1,
-        explanation:
-          "Ba câu hỏi lọc nhanh giúp nhận diện: số liệu có so với năm gốc cụ thể nào không, phạm vi tính đến đâu (chỉ nhà máy mình hay cả điện mua vào và chuỗi cung ứng), và ai là bên kiểm chứng độc lập. Một cam kết không trả lời được cả ba thì nên đọc như tài liệu marketing. Dấu hiệu điển hình khác là dồn toàn bộ mục tiêu về một mốc rất xa như 2050 mà không có mốc trung hạn nào.",
+        "correct": 0,
+        "explanation": "Máy nhàn rỗi ăn khoảng một nửa mức đỉnh, nên một cụm chạy ở mười phần trăm tiêu thụ hơn một nửa lượng điện của cụm chạy hết công suất. Bỏ qua con số này là bỏ qua phần lớn hoá đơn."
       },
       {
-        question: "Tín chỉ carbon (Carbon Credit) đại diện cho quyền phát thải bao nhiêu khí nhà kính?",
-        options: [
-          "1 kg CO₂ tương đương",
-          "1 tấn CO₂ tương đương (tCO₂e)",
-          "100 tấn CO₂ tương đương",
-          "Không có đơn vị cố định, tuỳ từng dự án",
+        "question": "Vì sao chuyển dịch vụ sang vùng điện tái tạo không giảm tổng phát thải?",
+        "options": [
+          "Vì lượng tái tạo trong vùng là hữu hạn nên tải khác phải lấy phần bẩn hơn",
+          "Vì việc truyền dữ liệu tới vùng mới tiêu thụ thêm điện đủ để bù lại phần đã giảm",
+          "Vì các vùng tái tạo vẫn phải chạy máy phát dự phòng chạy dầu vào giờ cao điểm",
+          "Vì cách tính phát thải hiện nay chưa công nhận nguồn điện của từng vùng riêng"
         ],
-        correct: 1,
-        explanation:
-          "Một tín chỉ tương ứng một tấn CO₂ tương đương. Chữ 'tương đương' là phần quan trọng: mỗi khí nhà kính giữ nhiệt ở mức khác nhau - một tấn metan gây hiệu ứng xấp xỉ 28 tấn CO₂ - nên tất cả phải quy về một đơn vị chung thì mới cộng được, giao dịch được và đặt hạn ngạch được. Đây chính là 'đồng tiền chung' của thị trường carbon.",
+        "correct": 0,
+        "explanation": "Đây là điểm khó nhất của cả bài. Điện sạch trong lưới là một lượng cố định tại mỗi thời điểm; ai dùng nó thì người khác dùng phần còn lại. Báo cáo của bạn đẹp lên, lưới thì không đổi."
       },
       {
-        question: "Vì sao cùng một doanh nghiệp lại nhận điểm ESG rất khác nhau từ các tổ chức xếp hạng khác nhau?",
-        options: [
-          "Vì một trong các tổ chức chắc chắn đã tính sai",
-          "Vì mỗi tổ chức chọn bộ chỉ số khác nhau, đặt trọng số khác nhau và xử lý dữ liệu thiếu theo cách khác nhau",
-          "Vì điểm ESG thay đổi ngẫu nhiên theo ngày",
-          "Vì doanh nghiệp gửi số liệu khác nhau cho từng tổ chức",
+        "question": "Cụm máy chạy ở 10%. Đội định viết lại phần mã tốn nhất. Vấn đề là gì?",
+        "options": [
+          "Tối ưu mã không đổi được hoá đơn khi máy vẫn bật và vẫn rảnh",
+          "Phần mã tốn nhất thường khó viết lại nên công sức bỏ ra sẽ lớn hơn dự kiến nhiều",
+          "Cần đo lại sau khi viết xong mới biết được phần tiết kiệm thực tế là bao nhiêu",
+          "Viết lại mã có thể làm phát sinh lỗi mới trong khi phần tiết kiệm lại không lớn"
         ],
-        correct: 1,
-        explanation:
-          "Đây là khác biệt căn bản giữa ESG và số liệu tài chính. Lợi nhuận sau kiểm toán là một con số được lập theo chuẩn mực chung; điểm ESG là một Ý KIẾN được xây trên lựa chọn phương pháp riêng của từng tổ chức. Vì vậy khi dùng điểm ESG để ra quyết định đầu tư, phải đọc kèm phương pháp luận, và tuyệt đối không so trực tiếp điểm của hai bảng xếp hạng khác nhau.",
+        "correct": 0,
+        "explanation": "Ở mức sử dụng thấp, điện đi vào việc giữ máy bật chứ không vào việc tính toán. Gộp mười máy chạy mười phần trăm thành hai máy chạy năm mươi phần trăm tiết kiệm nhiều hơn mọi lần viết lại mã cộng lại."
       },
       {
-        question: "Khác biệt cốt lõi giữa Green Bond và Sustainability-Linked Loan là gì?",
-        options: [
-          "Không có khác biệt, chỉ là hai tên gọi của cùng một sản phẩm",
-          "Green Bond ràng buộc theo MỤC ĐÍCH SỬ DỤNG VỐN, còn Sustainability-Linked Loan ràng buộc theo KẾT QUẢ đạt được và lãi suất thay đổi theo đó",
-          "Green Bond chỉ dành cho doanh nghiệp nhà nước",
-          "Sustainability-Linked Loan luôn có lãi suất thấp hơn",
+        "question": "Vì sao hệ số hạ tầng phụ trợ khuếch đại mọi thừa số khác?",
+        "options": [
+          "Vì nó nhân vào toàn bộ lượng điện chứ không cộng thêm một khoản cố định",
+          "Vì chi phí làm mát tăng nhanh hơn mức tuyến tính khi mật độ máy trong phòng tăng",
+          "Vì nó được tính lại theo mùa nên giá trị thay đổi nhiều lần trong cùng một năm",
+          "Vì phần lớn các đội không đo được nó nên phải dùng giá trị trung bình của ngành"
         ],
-        correct: 1,
-        explanation:
-          "Hai cấu trúc ràng buộc doanh nghiệp ở hai chỗ khác nhau. Green Bond hỏi 'tiền này đi đâu' - vốn huy động phải dùng cho dự án xanh đã xác định và phải báo cáo phân bổ định kỳ, nhưng lãi suất không đổi dù kết quả môi trường ra sao. Sustainability-Linked Loan hỏi 'anh đạt được gì' - tiền dùng cho mục đích chung, nhưng lãi suất tăng hoặc giảm theo việc doanh nghiệp có chạm các chỉ tiêu ESG đã cam kết hay không.",
+        "correct": 0,
+        "explanation": "Một hệ số nhân biến mọi khoản tiết kiệm thành lớn hơn và mọi khoản lãng phí thành tệ hơn theo đúng tỷ lệ ấy. Chênh giữa 1,2 và 1,8 nghĩa là cùng một khối lượng tính toán tốn thêm một nửa."
       },
       {
-        question: "Một doanh nghiệp mua tín chỉ carbon để bù trừ toàn bộ phát thải nhưng không giảm phát thải thực tế. Đánh giá thế nào?",
-        options: [
-          "Hoàn toàn hợp lệ, vì bù trừ và giảm phát thải có giá trị như nhau",
-          "Đây là dạng greenwashing điển hình - thứ tự đúng phải là Đo, Giảm, rồi mới Bù trừ phần không thể giảm được",
-          "Tốt hơn giảm phát thải vì rẻ hơn nhiều",
-          "Không đánh giá được nếu chưa biết doanh nghiệp thuộc ngành nào",
+        "question": "Xoá một công việc định kỳ không còn ai đọc kết quả. Đây là loại hành động gì?",
+        "options": [
+          "Giảm thật, vì nó còn nguyên giá trị khi mọi vùng đều sạch",
+          "Chuyển chỗ, vì phần tài nguyên được giải phóng sẽ được các công việc khác dùng hết",
+          "Giảm thật, nhưng chỉ trong trường hợp công việc ấy chạy trên hạ tầng dùng riêng",
+          "Chuyển chỗ, vì kết quả của công việc ấy sẽ phải được tính lại khi có người cần"
         ],
-        correct: 1,
-        explanation:
-          "Bù trừ chỉ nên áp dụng cho phần phát thải còn lại sau khi đã thực sự cắt giảm hết mức khả thi. Vấn đề lớn nhất của thị trường tự nguyện là tính bổ sung: nếu khu rừng đó vốn đã được bảo vệ dù có bán tín chỉ hay không, thì tín chỉ ấy không tạo ra thêm lượng CO₂ nào được cắt giảm trong thực tế. Cả cơ quan quản lý lẫn nhà đầu tư tổ chức đang ngày càng siết chặt việc chất vấn các tuyên bố 'trung hoà carbon' dựa hoàn toàn vào bù trừ.",
-      },
+        "correct": 0,
+        "explanation": "Đây là phép thử tốt nhất để phân biệt hai loại: hỏi xem hành động này còn giá trị không vào ngày toàn bộ lưới điện đã sạch. Xoá việc thừa thì còn; đổi vùng thì hết."
+      }
     ],
-    practicePrompt: {
-      question:
-        "Doanh nghiệp cam kết 'trung hoà carbon vào 2050' nhưng không nêu năm gốc, không có mốc trung hạn và không có bên kiểm chứng. Nên đánh giá thế nào?",
-      options: [
-        "Cam kết mạnh, vì 2050 trùng với mục tiêu quốc gia",
-        "Cam kết yếu, mang dấu hiệu tẩy xanh",
-        "Không đánh giá được nếu chưa xem báo cáo tài chính",
-        "Cam kết tốt vì đã công bố công khai",
+    "keyTakeaways": [
+      "Máy nhàn rỗi ăn khoảng một nửa công suất đỉnh, nên mức sử dụng thấp là lãng phí lớn nhất",
+      "Đo mức sử dụng cụm máy trước khi tối ưu mã, vì phần lớn đội đoán sai chỗ tốn",
+      "Phân biệt giảm thật với chuyển chỗ: còn giá trị không khi mọi lưới đều sạch",
+      "Hệ số hạ tầng phụ trợ nhân vào toàn bộ, nên nó khuếch đại cả tiết kiệm lẫn lãng phí"
+    ],
+    "practicePrompt": {
+      "question": "Mười máy chạy 10%, mỗi máy đỉnh 400W, nhàn rỗi 200W. Gộp còn hai máy chạy 50% thì tiết kiệm bao nhiêu?",
+      "options": [
+        "Khoảng 1,6kW",
+        "2kW (= giả định tám máy tắt đi tiết kiệm trọn công suất đỉnh của chúng)",
+        "800W (= chỉ tính phần chênh lệch công suất của hai máy còn lại sau khi gộp)",
+        "400W (= tính đúng phần tiết kiệm của một máy rồi quên nhân với số máy tắt)"
       ],
-      correct: 1,
-      explanation:
-        "Mốc 2050 nằm ngoài nhiệm kỳ của gần như toàn bộ ban lãnh đạo hiện tại, nên nếu không có mốc trung hạn thì không ai phải chịu trách nhiệm trong thực tế. Thiếu năm gốc thì không đo được tiến độ so với đâu; thiếu bên kiểm chứng thì con số chỉ là tự khai. Một cam kết đáng tin có dạng cụ thể hơn nhiều: 'giảm 30% phát thải Scope 1 và 2 so với mức 2020, đạt vào 2030, được kiểm chứng độc lập hằng năm'.",
+      "correct": 0,
+      "explanation": "Mười máy ở 10% ăn khoảng 220W mỗi cái, tổng 2,2kW. Hai máy ở 50% ăn khoảng 300W mỗi cái, tổng 0,6kW. Chênh khoảng 1,6kW, tức gần ba phần tư - và không dòng mã nào phải sửa."
     },
-    keyTakeaways: [
-      "G - Governance thường ít được nói tới nhất nhưng có tương quan rõ nhất với hiệu quả tài chính dài hạn.",
-      "Tính trọng yếu quyết định: mỗi ngành chỉ có vài chỉ số ESG thật sự quan trọng, phần còn lại là nhiễu.",
-      "Điểm ESG là một ý kiến chứ không phải sự thật khách quan - các bảng xếp hạng mâu thuẫn nhau là chuyện bình thường.",
-      "Green Bond ràng buộc mục đích sử dụng vốn; Sustainability-Linked Loan ràng buộc kết quả và gắn vào lãi suất.",
-      "1 tín chỉ carbon = 1 tấn CO₂ tương đương, và thứ tự đúng luôn là Đo - Giảm - rồi mới Bù trừ.",
-    ],
-    summary: {
-      keyIdea:
-        "ESG chỉ có sức nặng tài chính khi đi kèm số liệu, phạm vi và bên kiểm chứng độc lập - còn lại là truyền thông.",
-      formula: "1 tín chỉ carbon = 1 tCO₂e · Thứ tự hành động: Đo → Giảm → Bù trừ phần còn lại",
-      commonMistake: "Đọc điểm ESG như một sự thật khách quan, và coi bù trừ carbon tương đương với giảm phát thải thật.",
-      action:
-        "Với mỗi cam kết bền vững, kiểm tra đủ ba thứ: năm gốc, mốc trung hạn, và tên đơn vị kiểm chứng độc lập.",
+    "summary": {
+      "keyIdea": "Điện đi vào việc giữ máy bật nhiều hơn vào việc tính toán",
+      "commonMistake": "Gọi việc đổi vùng là giảm phát thải và ghi chung cột với việc xoá tải thừa",
+      "action": "Tìm mức sử dụng trung bình của cụm máy đội bạn đang chạy."
     },
-    track: "bonus",
+    "application": {
+      "title": "Bốn bước theo thứ tự",
+      "message": "Đo mức sử dụng cụm máy. Xoá công việc không ai đọc. Gộp tải để chạy ở mức cao hơn. Cuối cùng mới tới chuyện chọn vùng và chọn giờ.",
+      "secondary": "Ba bước đầu giảm thật và kiểm chứng được bằng hoá đơn; bước cuối chỉ đổi chỗ, nên nó đứng cuối."
+    },
+    "id": 805,
+    "slug": "tai-chinh-xanh-tieu-chuan-esg-tin-chi-carbon",
+    "track": "bonus"
   },
 ];

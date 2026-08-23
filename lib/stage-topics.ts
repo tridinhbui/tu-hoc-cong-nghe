@@ -29,7 +29,7 @@ export type StageTopicId =
   | "digital-assets-risk"
   | "fraud-safety"
   | "mobile-apps-vn"
-  | "life-expenses"
+  | "career-projects"
   | "health-risk"
   | "career-stage"
   | "personal-ops"
@@ -81,7 +81,7 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
   "digital-assets-risk": "generic",
   "fraud-safety": "generic",
   "mobile-apps-vn": "generic",
-  "life-expenses": "generic",
+  "career-projects": "generic",
   "health-risk": "generic",
   "career-stage": "generic",
   "personal-ops": "generic",
@@ -148,7 +148,7 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 15": "digital-assets-risk",
   "Chặng 16": "fraud-safety",
   "Chặng 17": "mobile-apps-vn",
-  "Chặng 18": "life-expenses",
+  "Chặng 18": "career-projects",
   "Chặng 19": "health-risk",
   "Chặng 20": "career-stage",
   "Chặng 21": "personal-ops",

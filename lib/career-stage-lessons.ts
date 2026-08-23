@@ -31,9 +31,9 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
     openingQuestion: "Trong hai năm đầu đi làm, thứ nào tạo khác biệt lớn nhất về sau?",
     openingOptions: [
       "Thói quen làm việc: đọc mã người khác, viết kiểm thử, hỏi sớm khi bí",
-      "Chức danh đạt được, vì nó là mốc để đàm phán ở những lần chuyển việc tiếp theo",
-      "Số công nghệ đã dùng qua, vì diện rộng mở ra nhiều hướng đi hơn về sau này",
-      "Tên công ty đầu tiên, vì nó theo hồ sơ của bạn trong suốt phần còn lại của nghề",
+      "Chức danh đạt được, vì nó là mốc để đàm phán ở những lần chuyển việc sau",
+      "Số công nghệ đã dùng qua, vì diện rộng mở ra nhiều hướng đi",
+      "Tên công ty đầu tiên, vì nó theo hồ sơ bạn trong nhiều năm",
     ],
     correctOption: 0,
     explanation:
@@ -67,7 +67,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         options: [
           "Vì đó là cách nhanh nhất học quy ước và ngữ cảnh của hệ thống",
           "Vì điều đó giúp bạn phát hiện lỗi trong mã của đồng nghiệp trước khi chúng lên môi trường thật",
-          "Vì việc tham gia review được ghi nhận và tính vào kết quả đánh giá cuối kỳ của bạn",
+          "Vì tham gia review được tính vào đánh giá cuối kỳ",
           "Vì nó cho thấy bạn quan tâm tới sản phẩm chung chứ không chỉ tới phần việc của mình",
         ],
         correct: 0,
@@ -80,7 +80,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
           "Có người đọc mã của bạn và nói cho bạn biết chỗ chưa được",
           "Mức lương khởi điểm cao nhất trong các lời mời, vì nó là nền cho mọi lần thương lượng sau",
           "Công nghệ mới và hiện đại, vì đó là thứ các nhà tuyển dụng tìm kiếm trong vài năm tới",
-          "Quy mô công ty lớn, vì hệ thống lớn cho bạn nhiều vấn đề thú vị hơn để giải quyết",
+          "Quy mô lớn, vì hệ thống lớn có nhiều vấn đề hay",
         ],
         correct: 0,
         explanation:
@@ -92,7 +92,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
           "Nhận, nói rõ phần chưa chắc, và hẹn một mốc để báo lại tiến độ",
           "Từ chối và đề nghị giao cho người có kinh nghiệm phù hợp hơn với yêu cầu của công việc",
           "Nhận và tự xoay xở, vì đây là cách học nhanh nhất mà không làm phiền tới ai khác",
-          "Nhận nhưng xin thêm thời gian gấp đôi so với ước lượng ban đầu để phòng rủi ro",
+          "Nhận nhưng xin thêm gấp đôi thời gian dự phòng",
         ],
         correct: 0,
         explanation:
@@ -102,9 +102,9 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         question: "So sánh với bạn cùng lứa trong vài năm đầu có ích không?",
         options: [
           "Ít, vì thứ dễ so là chức danh và lương, còn thứ quyết định thì không đo được",
-          "Có, vì đó là cách duy nhất để biết mình đang đi nhanh hay chậm so với mặt bằng chung",
-          "Có, nhưng chỉ nên so với những người cùng loại hình công ty và cùng thành phố",
-          "Không, vì mỗi người có xuất phát điểm và hoàn cảnh khác nhau nên không so được",
+          "Có, vì đó là cách duy nhất biết mình đi nhanh hay chậm so với mặt bằng chung",
+          "Có, nhưng chỉ so với người cùng loại hình công ty và cùng thành phố",
+          "Không, vì mỗi người xuất phát và hoàn cảnh khác nhau nên khó so",
         ],
         correct: 0,
         explanation:
@@ -118,7 +118,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         "Xem mã của mình có ai đọc không, và mỗi tuần học được gì mới",
         "Chuyển sang một công ty lớn hơn để có môi trường tương đương với bạn cùng khoá của mình",
         "Học thêm công nghệ mà công ty lớn đang dùng để rút ngắn khoảng cách về mặt kỹ năng",
-        "Đặt mục tiêu lên chức danh tiếp theo trong vòng một năm để bắt kịp về mặt tiến độ",
+        "Đặt mục tiêu lên chức danh tiếp theo trong một năm",
       ],
       correct: 0,
       explanation:
@@ -192,9 +192,9 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
     openingQuestion: "Vì sao nhiều người thấy mình chững ở giai đoạn giữa nghề?",
     openingOptions: [
       "Vì phần lớn thời gian chuyển sang việc không sinh ra mã, mà họ vẫn đo bằng mã",
-      "Vì các công nghệ mới xuất hiện nhanh hơn tốc độ họ có thể học và cập nhật kịp thời",
-      "Vì cơ hội thăng tiến ở giai đoạn này ít hơn hẳn nên động lực cũng giảm theo tương ứng",
-      "Vì trách nhiệm gia đình chiếm mất phần thời gian trước đây dành cho việc học thêm",
+      "Vì các công nghệ mới xuất hiện nhanh hơn tốc độ họ cập nhật kịp",
+      "Vì cơ hội thăng tiến giai đoạn này ít hơn nên động lực giảm theo",
+      "Vì trách nhiệm gia đình chiếm mất phần thời gian dành cho học thêm",
     ],
     correctOption: 0,
     explanation:
@@ -217,7 +217,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
           "Việc chạy được nhờ bạn, kể cả việc do người khác làm",
           "Số lượng thay đổi bạn tự đưa lên trong kỳ, vì đó vẫn là đóng góp trực tiếp và đo được",
           "Số cuộc họp và trao đổi mà bạn tham gia với vai trò dẫn dắt về mặt kỹ thuật",
-          "Mức độ phức tạp của những phần hệ thống mà bạn đang chịu trách nhiệm chính",
+          "Độ phức tạp của phần hệ thống bạn phụ trách",
         ],
         correct: 0,
         explanation:
@@ -240,7 +240,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         options: [
           "Đây là một nghề khác, không phải bậc tiếp theo của nghề cũ",
           "Mức lương và phạm vi trách nhiệm mới có tương xứng với khối lượng công việc tăng thêm không",
-          "Bạn đã có đủ kinh nghiệm kỹ thuật để đưa ra quyết định cho cả đội hay chưa",
+          "Bạn đã đủ kinh nghiệm để quyết cho cả đội chưa",
           "Công ty có lộ trình rõ ràng để bạn quay lại vai trò kỹ thuật nếu thấy không phù hợp",
         ],
         correct: 0,
@@ -252,7 +252,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         options: [
           "Sâu ở một mảng để có tiếng nói, đủ rộng để nối được các mảng",
           "Ưu tiên mở rộng diện vì giai đoạn này cần làm việc với nhiều phần khác nhau của hệ thống",
-          "Ưu tiên đào sâu một mảng vì đó là thứ khiến bạn khó thay thế trong đội hiện tại",
+          "Ưu tiên đào sâu một mảng cho khó thay thế",
           "Giữ nguyên tỷ lệ như giai đoạn đầu vì cả hai đều quan trọng như nhau về lâu dài",
         ],
         correct: 0,
@@ -265,7 +265,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
           "Một năm trôi qua mà không có quyết định nào bạn thấy khó",
           "Số lượng mã bạn viết ra giảm đi đáng kể so với những năm trước đó trong cùng vị trí",
           "Bạn không còn học được công nghệ mới nào trong khoảng thời gian mười hai tháng vừa qua",
-          "Bạn cảm thấy công việc trở nên lặp lại và ít thú vị hơn so với giai đoạn trước đây",
+          "Bạn thấy công việc lặp lại và kém thú vị hơn",
         ],
         correct: 0,
         explanation:
@@ -277,7 +277,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         "Bạn thấy năm nay mình viết ít mã hơn hẳn và lo là mình đang tụt lại. Nên kiểm bằng cách nào?",
       options: [
         "Liệt kê những việc chạy được nhờ bạn, kể cả việc người khác làm",
-        "So sánh số lượng thay đổi bạn đưa lên năm nay với năm ngoái để có con số cụ thể",
+        "So số thay đổi năm nay với năm ngoái",
         "Hỏi quản lý trực tiếp xem đóng góp của bạn có được ghi nhận đầy đủ trong kỳ đánh giá không",
         "Nhận thêm một dự án kỹ thuật để đảm bảo phần viết mã quay lại mức như trước đây",
       ],
@@ -367,9 +367,9 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         question: "Nâng người khác lên tạo ra đòn bẩy thế nào?",
         options: [
           "Kết quả không dừng lại khi bạn ngừng làm, vì nó ở trong cách người khác làm việc",
-          "Nó giúp bạn có thêm thời gian để tập trung vào những vấn đề kỹ thuật khó hơn của hệ thống",
-          "Nó được ghi nhận cao hơn trong các kỳ đánh giá so với đóng góp kỹ thuật trực tiếp",
-          "Nó mở đường sang vai trò quản lý, vốn là hướng phát triển tự nhiên ở giai đoạn này",
+          "Nó cho bạn thêm thời gian để tập trung vào các vấn đề kỹ thuật khó hơn",
+          "Nó được ghi nhận cao hơn trong kỳ đánh giá so với đóng góp kỹ thuật",
+          "Nó mở đường sang vai trò quản lý, hướng phát triển tự nhiên sau này",
         ],
         correct: 0,
         explanation:
@@ -381,7 +381,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
           "Việc đến tay bạn vì bạn quen làm nó, không vì nó đáng làm nhất",
           "Bạn nhận nhiều việc hơn khả năng xử lý nên thường xuyên phải làm ngoài giờ để kịp tiến độ",
           "Bạn không còn thấy hứng thú với những phần việc kỹ thuật mà trước đây mình rất thích làm",
-          "Bạn ít khi được hỏi ý kiến về những quyết định lớn của đội dù có nhiều kinh nghiệm nhất",
+          "Bạn ít khi được hỏi về các quyết định lớn của đội",
         ],
         correct: 0,
         explanation:
@@ -391,9 +391,9 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         question: "Nên xử lý thế nào khi mảng mình giỏi đang mất dần chỗ đứng?",
         options: [
           "Tách phần nguyên lý khỏi phần công cụ, vì phần nguyên lý chuyển được",
-          "Học một công nghệ mới đang lên để chuyển hẳn sang mảng đó trước khi mảng cũ hết nhu cầu",
-          "Ở lại vì các hệ thống cũ vẫn cần người bảo trì và nhu cầu đó thường kéo dài rất lâu",
-          "Chuyển sang vai trò quản lý để không còn phụ thuộc vào một mảng kỹ thuật cụ thể nào",
+          "Học một công nghệ đang lên để chuyển hẳn sang mảng đó",
+          "Ở lại vì hệ thống cũ vẫn cần người bảo trì rất lâu",
+          "Chuyển sang quản lý để khỏi phụ thuộc một mảng nào",
         ],
         correct: 0,
         explanation:
@@ -403,9 +403,9 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         question: "Vì sao nên viết lại những gì mình biết ở giai đoạn này?",
         options: [
           "Vì phần lớn hiểu biết đang nằm trong đầu một người, và đó là rủi ro cho cả đội",
-          "Vì tài liệu là căn cứ để chứng minh đóng góp của bạn trong các kỳ đánh giá cuối năm",
-          "Vì viết ra giúp bạn hệ thống lại kiến thức và phát hiện những chỗ mình còn hiểu chưa kỹ",
-          "Vì đội ngũ mới cần tài liệu để làm quen với hệ thống mà không phải hỏi lại nhiều lần",
+          "Vì tài liệu là căn cứ chứng minh đóng góp trong kỳ đánh giá cuối năm",
+          "Vì viết ra giúp hệ thống lại kiến thức và thấy chỗ mình hiểu chưa kỹ",
+          "Vì người mới cần tài liệu để làm quen mà không phải hỏi lại nhiều",
         ],
         correct: 0,
         explanation:
@@ -416,7 +416,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         options: [
           "Nói rõ điều gì sẽ hỏng và khi nào, thay vì chỉ nói là không nên",
           "Trình bày phương án thay thế đầy đủ để đội có cơ sở so sánh trước khi đưa ra quyết định",
-          "Nêu lại những lần tương tự trong quá khứ đã dẫn tới kết quả không tốt như thế nào",
+          "Nêu lại những lần tương tự đã hỏng ra sao",
           "Đề nghị lùi quyết định lại để có thêm thời gian nghiên cứu kỹ hơn các rủi ro liên quan",
         ],
         correct: 0,
@@ -429,9 +429,9 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         "Bạn có mười hai năm kinh nghiệm, đang bận và mọi việc đều chạy. Câu hỏi nào đáng đặt ra nhất?",
       options: [
         "Nếu hôm nay mới vào đây, mình có chọn làm đúng những việc này không",
-        "Mình có đang theo kịp các công nghệ mới mà thị trường đang tìm kiếm hay không",
-        "Đóng góp của mình có được ghi nhận tương xứng với kinh nghiệm hiện có hay không",
-        "Mình nên chuyển sang vai trò quản lý hay tiếp tục đi theo hướng chuyên môn kỹ thuật",
+        "Mình có theo kịp các công nghệ thị trường cần không",
+        "Đóng góp của mình có được ghi nhận tương xứng không",
+        "Mình nên chuyển sang quản lý hay giữ hướng kỹ thuật",
       ],
       correct: 0,
       explanation:
@@ -505,7 +505,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
     openingQuestion: "Điều gì dịch chuyển rõ nhất qua ba giai đoạn của nghề?",
     openingOptions: [
       "Tỷ lệ giữa việc tự làm và việc khiến người khác làm được",
-      "Mức độ phức tạp của các vấn đề kỹ thuật mà bạn được giao xử lý trong công việc",
+      "Độ phức tạp của các vấn đề bạn được giao",
       "Số lượng công nghệ và công cụ mà bạn có thể sử dụng thành thạo ở mức chuyên sâu",
       "Phạm vi trách nhiệm và số người mà bạn phải phối hợp cùng trong mỗi dự án cụ thể",
     ],
@@ -540,9 +540,9 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         question: "Ở giai đoạn đầu có nên tập trung vào việc nâng người khác không?",
         options: [
           "Không nhiều, vì chưa có gì đủ vững để truyền và nền của chính mình còn đang dựng",
-          "Có, vì thói quen chia sẻ nên được hình thành từ sớm và càng sớm thì càng dễ duy trì",
-          "Có, vì giải thích cho người khác là cách hiệu quả nhất để củng cố hiểu biết của chính mình",
-          "Không, vì đó là trách nhiệm của những người ở vị trí cao hơn trong đội ngũ kỹ thuật",
+          "Có, vì thói quen chia sẻ nên được hình thành càng sớm càng tốt",
+          "Có, vì giải thích cho người khác củng cố hiểu biết của chính mình",
+          "Không, vì đó là trách nhiệm của những người ở vị trí cao hơn",
         ],
         correct: 0,
         explanation:
@@ -564,9 +564,9 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         question: "Truyền lại hiệu quả nhất bằng cách nào?",
         options: [
           "Để người khác làm phần khó và mình ngồi cạnh, thay vì làm hộ rồi giải thích",
-          "Viết tài liệu chi tiết về cách hệ thống hoạt động để mọi người có thể tự đọc khi cần",
-          "Tổ chức các buổi chia sẻ định kỳ để truyền đạt kinh nghiệm cho cả đội cùng lúc",
-          "Xem lại kỹ mọi thay đổi của người khác và góp ý chi tiết vào từng chỗ chưa hợp lý",
+          "Viết tài liệu chi tiết về cách hệ thống hoạt động để mọi người tự đọc khi cần",
+          "Tổ chức các buổi chia sẻ định kỳ để truyền kinh nghiệm cho cả đội",
+          "Xem lại kỹ mọi thay đổi của người khác và góp ý vào từng chỗ",
         ],
         correct: 0,
         explanation:
@@ -577,7 +577,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         options: [
           "Chỉ gắn lỏng lẻo; chỗ đứng phụ thuộc vào việc bạn đã gặp những gì",
           "Có, vì mỗi giai đoạn cần một khoảng thời gian tối thiểu để tích luỹ đủ kinh nghiệm cần thiết",
-          "Có, và đó là lý do các công ty dùng số năm kinh nghiệm để phân cấp bậc trong đội ngũ",
+          "Có, nên các công ty dùng số năm để phân cấp bậc",
           "Không, vì mỗi người có tốc độ phát triển riêng nên không thể so sánh theo bất kỳ mốc nào",
         ],
         correct: 0,
@@ -590,7 +590,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         "Bạn muốn biết mình đang ở giai đoạn nào. Phép thử nào cho câu trả lời thẳng nhất?",
       options: [
         "Nghỉ một tuần và xem có việc nào dừng lại vì bạn không có mặt",
-        "Đếm số năm kinh nghiệm và so với thang cấp bậc mà công ty bạn đang áp dụng hiện nay",
+        "Đếm số năm và so với thang cấp bậc công ty",
         "Xem tỷ lệ thời gian dành cho viết mã so với thời gian dành cho họp hành và trao đổi",
         "Hỏi quản lý trực tiếp xem họ đánh giá bạn đang ở mức nào so với những người cùng vị trí",
       ],

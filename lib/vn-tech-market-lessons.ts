@@ -1230,7 +1230,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
     openingOptions: [
       "Bạn phải làm đủ một thời gian nhất định, nếu nghỉ sớm thì hoàn lại chi phí",
       "Phải học xong và đạt kết quả tối thiểu",
-      "Không được chia sẻ nội dung đào tạo ra bên ngoài",
+      "Bạn không được chia sẻ nội dung đào tạo ra bên ngoài trong thời gian còn làm việc",
       "Công ty được phân công bạn vào bất kỳ dự án nào",
     ],
     correctOption: 0,
