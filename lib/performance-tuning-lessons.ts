@@ -9,6 +9,7 @@ import type { Lesson } from "./lesson-types";
 export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
   {
     "id": 1411,
+    "interactiveType": "tail-risk",
     "slug": "ho-so-cpu-do-truoc-khi-doan",
     "title": "Tối ưu, Bài 1: Hồ sơ CPU - đo trước khi đoán",
     "subtitle": "Trực giác về chỗ chậm sai gần như mọi lần, và cái giá của việc tin nó là tối ưu nhầm chỗ.",
@@ -193,6 +194,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
   },
   {
     "id": 1412,
+    "interactiveType": "tail-risk",
     "slug": "cap-phat-bo-nho-va-ap-luc-thu-gom-rac",
     "title": "Tối ưu, Bài 2: Cấp phát bộ nhớ và áp lực thu gom rác",
     "subtitle": "Phần lớn chỗ chậm mang tiếng là do thu gom rác thật ra là do cấp phát quá nhiều.",
@@ -369,6 +371,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
   },
   {
     "id": 1413,
+    "interactiveType": "tail-risk",
     "slug": "do-nhay-tham-so-nao-chi-phoi-do-tre",
     "title": "Tối ưu, Bài 3: Độ nhạy - tham số nào thật sự chi phối độ trễ",
     "subtitle": "Một hệ thống có hàng chục tham số chỉnh được, và thường chỉ hai hoặc ba cái làm nên khác biệt.",

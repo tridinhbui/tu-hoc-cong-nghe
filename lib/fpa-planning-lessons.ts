@@ -14,6 +14,7 @@ import type { Lesson } from "./lesson-types";
 export const FPA_PLANNING_LESSONS: Lesson[] = [
   {
     id: 1511,
+    interactiveType: "chart",
     slug: "lap-ke-hoach-theo-yeu-to-dan-dat",
     title: "Kế hoạch, Bài 1: Lập kế hoạch theo yếu tố dẫn dắt - thay vì cộng 10% vào số năm ngoái",
     subtitle: "Nối doanh thu và chi phí về các đại lượng vận hành, để khi kế hoạch trượt bạn biết trượt ở đâu",
@@ -745,7 +746,6 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       { label: "Chọn tiêu thức phản ánh mức sử dụng", arrow: true },
       { label: "Công khai tiêu thức cho mọi bộ phận" },
     ],
-    interactiveType: "profit-calc",
     realWorldExample: {
       company: "Ngân hàng phân bổ chi phí công nghệ",
       description:

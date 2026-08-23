@@ -493,6 +493,7 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
   },
   {
     id: 393,
+    interactiveType: "chart",
     slug: "tu-tich-luy-sang-truyen-lai",
     title: "Chặng 20, Bài 4: Tổng kết - từ tích luỹ sang truyền lại",
     subtitle: "Ba giai đoạn, và trọng tâm dịch chuyển giữa chúng",

@@ -1,6 +1,18 @@
 "use client";
 
 import { useState } from "react";
+
+// So sánh dư địa TRÊN GIẤY với dư địa THẬT, widget cho các bài khai
+// `interactiveType: "profit-calc"`.
+//
+// Cùng phép trừ chạy hai lần trên hai con số khác nhau: công suất được cấp trừ
+// phần đã chiếm cho ra con số trên bảng theo dõi, còn công suất thật sự dùng
+// được ở giờ cao điểm trừ đúng phần ấy mới là con số quyết định hệ thống có vỡ
+// hay không. Người kéo thanh trượt thấy hai kết quả tách dấu nhau - và đó là
+// tình huống bảng báo còn chỗ trong khi hệ thống đã hết chỗ.
+//
+// Phép tính giữ nguyên từ bản trước (lợi nhuận so với tiền mặt); chỉ đổi tên
+// các đại lượng và phần diễn giải.
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

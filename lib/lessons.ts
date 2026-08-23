@@ -4952,6 +4952,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 25,
+    "interactiveType": "prospect",
     "slug": "gia-tri-rong-va-cai-bay-null",
     "title": "Giá trị rỗng: sai lầm tỉ đô",
     "subtitle": "Không có dữ liệu, chưa có dữ liệu và dữ liệu bằng không là ba chuyện khác nhau.",
@@ -7108,6 +7109,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 37,
+    "interactiveType": "regression",
     "slug": "nhat-ky-va-dau-vet-he-thong",
     "title": "Nhật ký: dữ liệu về chính hệ thống của bạn",
     "subtitle": "Lúc sự cố xảy ra thì đã quá muộn để bắt đầu ghi lại những gì đang diễn ra.",
@@ -7277,6 +7279,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 38,
+    "interactiveType": "sampling",
     "slug": "sao-luu-va-khoi-phuc",
     "title": "Sao lưu: bản chưa khôi phục thử thì chưa phải bản sao lưu",
     "subtitle": "Thứ bạn cần không phải bản sao, mà là khả năng quay lại hoạt động trong bao lâu.",
@@ -9501,7 +9504,7 @@ export const lessons: Lesson[] = [
       "Gộp lại thành ít lần gọi hơn, vì mỗi lần đều phải trả một vòng đi về",
       "Nâng băng thông đường truyền lên gấp đôi so với hiện tại",
       "Nén dữ liệu của từng lần gọi để dung lượng giảm xuống",
-      "Tăng cấu hình máy chủ để mỗi yêu cầu được xử lý nhanh hơn"
+      "Tăng cấu hình máy chủ để mỗi yêu cầu được xử lý nhanh hơn hẳn"
     ],
     "correctOption": 0,
     "explanation": "Mỗi lần gọi phải trả ít nhất một vòng đi về, và thời gian đó do khoảng cách vật lý quyết định chứ không do dung lượng. Ba mươi lần gọi nhẹ tới một máy chủ cách một trăm mili giây là ba giây chờ, trong đó gần như không có byte nào thật sự được truyền. Nâng băng thông không rút ngắn được vòng đi về, nén cũng vậy vì dữ liệu vốn đã nhẹ, và máy chủ nhanh hơn chỉ tiết kiệm phần nhỏ nhất trong tổng thời gian.",
@@ -10004,6 +10007,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 53,
+    "interactiveType": "tail-risk",
     "slug": "goi-hai-lan-va-tinh-bat-bien",
     "title": "Gọi hai lần: thao tác nào lặp lại được mà không hại",
     "subtitle": "Máy khách không phân biệt được yêu cầu thất bại với phản hồi bị mất trên đường về.",
@@ -11722,6 +11726,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 63,
+    "interactiveType": "prospect",
     "slug": "so-phien-ban-la-mot-loi-hua",
     "title": "Số phiên bản: một lời hứa, không phải một cái nhãn",
     "subtitle": "Ba con số nói cho người dùng biết nâng cấp này có làm hỏng gì của họ không.",
@@ -13449,7 +13454,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Ngừng ghi, triển khai mã mới, chờ ổn định, rồi mới xoá cột ở lần sau",
       "Xoá cột và triển khai mã mới trong cùng một lần cho gọn",
-      "Xoá cột trước, rồi triển khai mã mới ngay sau đó vài phút",
+      "Xoá cột đó trước, rồi triển khai mã mới ngay sau đó vài phút",
       "Đổi tên cột thành tên tạm rồi xoá sau một tuần theo dõi"
     ],
     "correctOption": 0,
@@ -14815,6 +14820,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 81,
+    "interactiveType": "prospect",
     "slug": "do-cai-gi-o-san-pham",
     "title": "Đo cái gì: chỉ số nói lên điều bạn cần biết",
     "subtitle": "Số lượt tải trang tăng gấp đôi có thể là tin tốt, cũng có thể là người dùng đang lạc đường.",
@@ -15322,8 +15328,7 @@ export const lessons: Lesson[] = [
           "Bài sau đi vào một cách nhìn khác cùng mục đích: người dùng rơi khỏi hành trình ở đúng chỗ nào."
         ]
       }
-    ],
-    "interactiveType": "chart"
+    ]
   },
   {
     "id": 84,
@@ -16318,6 +16323,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 90,
+    "interactiveType": "regression",
     "slug": "phan-hoi-dinh-tinh",
     "title": "Nói chuyện với người dùng: thứ số liệu không nói được",
     "subtitle": "Số liệu cho biết cái gì đang xảy ra; chỉ con người mới nói được vì sao.",
@@ -16329,7 +16335,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Số liệu cho thấy người dùng rơi nhiều ở bước nhập địa chỉ. Bước tiếp theo nên là gì?",
     "openingOptions": [
       "Xem vài phiên làm việc thật hoặc hỏi người dùng để biết vì sao",
-      "Thiết kế lại bước đó theo cách mà đội thấy hợp lý hơn",
+      "Thiết kế lại bước đó theo cách mà cả đội thấy hợp lý hơn hẳn",
       "So sánh cách các sản phẩm khác thiết kế bước tương tự",
       "Chia bước đó thành hai bước nhỏ hơn cho đỡ nặng"
     ],
@@ -16496,7 +16502,7 @@ export const lessons: Lesson[] = [
       "Vì ta hình dung con đường suôn sẻ và bỏ qua những nhánh chưa biết",
       "Vì đội cố ý đưa con số thấp để dự án được phê duyệt",
       "Vì công việc luôn bị chen ngang bởi các yêu cầu khác",
-      "Vì phạm vi công việc luôn được mở rộng sau khi bắt đầu"
+      "Vì phạm vi công việc luôn được mở rộng thêm sau khi bắt đầu"
     ],
     "correctOption": 0,
     "explanation": "Khi ước lượng, bạn dựng lại trong đầu các bước cần làm - và bạn chỉ dựng được những bước bạn biết là tồn tại. Phần lớn thời gian thật lại nằm ở những thứ chỉ hiện ra khi bắt tay vào: một phụ thuộc cũ không tương thích, một trường hợp dữ liệu không ai lường, một hệ thống khác cần sửa theo. Chen ngang và mở rộng phạm vi đều là nguyên nhân thật nhưng chúng là nguyên nhân bên ngoài; cái sai nằm ngay trong bản thân phép ước lượng thì cần được xử lý bằng cách khác.",
@@ -16643,6 +16649,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 92,
+    "interactiveType": "multiples",
     "slug": "chia-nho-va-giao-tung-phan",
     "title": "Chia nhỏ: giao từng phần thay vì giao một lần",
     "subtitle": "Ba tháng không có gì chạy được là ba tháng không ai biết mình đang đi đúng hay sai.",
@@ -17306,6 +17313,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 96,
+    "interactiveType": "sampling",
     "slug": "kiem-chung-truoc-khi-xay",
     "title": "Kiểm chứng trước khi xây: mua thông tin với giá rẻ",
     "subtitle": "Cách rẻ nhất để biết không ai cần thứ này là hỏi trước khi làm ba tháng.",
@@ -18176,6 +18184,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 101,
+    "interactiveType": "chart",
     "slug": "he-thong-lon-khac-he-thong-nho",
     "title": "Quy mô: vấn đề đổi chất chứ không chỉ đổi lượng",
     "subtitle": "Mười người viết cùng một hệ thống không phải là một người làm nhanh gấp mười.",
@@ -20681,6 +20690,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 116,
+    "interactiveType": "prospect",
     "slug": "di-tru-lon-bop-nghet-dan",
     "title": "Thay hệ thống cũ: bóp nghẹt dần thay vì viết lại",
     "subtitle": "Viết lại từ đầu là đặt cược rằng bạn hiểu hết những gì hệ thống cũ đang làm.",
@@ -21853,7 +21863,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Vì nó cho quyền tương đương mà không cần vượt qua yếu tố thứ hai",
       "Vì nó ngắn hơn nên dễ dò tìm bằng cách thử tự động",
-      "Vì nó được lưu ở dạng văn bản thuần trong cơ sở dữ liệu",
+      "Vì nó được lưu ở dạng văn bản thuần ngay trong cơ sở dữ liệu",
       "Vì nó không bao giờ hết hạn nên dùng được lâu dài"
     ],
     "correctOption": 0,
@@ -22332,6 +22342,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 126,
+    "interactiveType": "ethics-case",
     "slug": "ma-hoa-du-lieu-nam-yen",
     "title": "Mã hoá dữ liệu nằm yên: bảo vệ trước ai",
     "subtitle": "Mã hoá cả ổ đĩa không giúp gì khi ứng dụng đang chạy và đang đọc được dữ liệu.",
@@ -22512,7 +22523,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Khoá phải nằm ở nơi chịu kịch bản xâm nhập khác với dữ liệu",
       "Khoá phải dài ít nhất hai trăm năm mươi sáu bit",
-      "Khoá phải được đổi mới sau mỗi ba mươi ngày sử dụng",
+      "Khoá phải được đổi mới sau mỗi ba mươi ngày sử dụng liên tục",
       "Khoá phải được sao lưu ở ít nhất ba nơi khác nhau"
     ],
     "correctOption": 0,
@@ -24862,6 +24873,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 141,
+    "interactiveType": "regression",
     "slug": "hieu-nang-bat-dau-bang-do",
     "title": "Hiệu năng: đo trước, đoán sau",
     "subtitle": "Trực giác về chỗ chậm sai nhiều tới mức không đáng dùng làm căn cứ.",
@@ -26544,6 +26556,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 151,
+    "interactiveType": "tail-risk",
     "slug": "xu-ly-theo-lo",
     "title": "Xử lý theo lô: trả chi phí cố định một lần",
     "subtitle": "Gộp một nghìn thao tác nhỏ thành một thao tác lớn, và chấp nhận cái giá của nó.",
@@ -26881,7 +26894,6 @@ export const lessons: Lesson[] = [
   {
     "id": 153,
     "slug": "tranh-chap-va-khoa",
-    "interactiveType": "chart",
     "title": "Tranh chấp: thêm người làm mà việc chậm đi",
     "subtitle": "Khi mọi luồng đều cần cùng một thứ, thêm luồng chỉ làm hàng chờ dài hơn.",
     "duration": "9 phút",
@@ -27215,6 +27227,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 155,
+    "interactiveType": "chart",
     "slug": "kiem-thu-tai",
     "title": "Kiểm thử tải: tìm giới hạn trước khi người dùng tìm hộ",
     "subtitle": "Một phép thử tải sai còn tệ hơn không thử, vì nó cho bạn một con số để yên tâm.",
@@ -29943,6 +29956,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 170,
+    "interactiveType": "regression",
     "slug": "chu-dong-gay-loi-de-hoc",
     "title": "Chủ động gây lỗi để học",
     "subtitle": "Cách duy nhất biết cơ chế dự phòng có chạy không là bắt nó chạy.",
@@ -30688,6 +30702,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 174,
+    "interactiveType": "chart",
     "slug": "kiem-thu-tai-va-ke-hoach-dung-luong",
     "title": "Kiểm thử tải và kế hoạch dung lượng",
     "subtitle": "Câu hỏi không phải hệ thống chịu được bao nhiêu, mà nó hỏng theo cách nào.",
@@ -32183,6 +32198,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 182,
+    "interactiveType": "tail-risk",
     "slug": "hang-doi-ba-phan-va-mot-hop-dong",
     "title": "Hàng đợi - ba phần và một hợp đồng",
     "subtitle": "Cái ở giữa không chỉ chứa tin nhắn; nó quyết định chuyện gì xảy ra khi có lỗi.",
@@ -33850,6 +33866,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 191,
+    "interactiveType": "prospect",
     "slug": "bat-bien-khi-lap-lai-dieu-kien-bat-buoc",
     "title": "Bất biến khi lặp lại - điều kiện bắt buộc",
     "subtitle": "Không phải một cải tiến tuỳ chọn; nó là cái giá vào cửa của xử lý bất đồng bộ.",
@@ -35122,6 +35139,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 198,
+    "interactiveType": "tail-risk",
     "slug": "cong-viec-theo-lich-so-voi-su-kien",
     "title": "Công việc theo lịch so với sự kiện",
     "subtitle": "Hai cách kích hoạt, và cách cũ hơn vẫn đúng ở nhiều chỗ.",
@@ -35485,6 +35503,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 200,
+    "interactiveType": "tail-risk",
     "slug": "on-tap-xu-ly-bat-dong-bo",
     "title": "Ôn tập - xử lý bất đồng bộ",
     "subtitle": "Bốn quyết định của chặng, và bốn chỗ dễ nhầm.",
@@ -50301,6 +50320,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 275,
+    "interactiveType": "tail-risk",
     "slug": "gioi-han-tan-suat-va-thu-lai",
     "title": "Bài 275: Giới hạn tần suất và cách thử lại",
     "subtitle": "Thử lại ngay lập tức là cách biến một sự cố nhỏ thành một sự cố lớn.",
@@ -50685,6 +50705,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 277,
+    "interactiveType": "tail-risk",
     "slug": "webhook-khi-dich-vu-goi-nguoc-lai",
     "title": "Bài 277: Webhook - khi dịch vụ gọi ngược lại bạn",
     "subtitle": "Đảo chiều lượt gọi, và ba giả định quen thuộc không còn đúng nữa.",
@@ -52632,6 +52653,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 287,
+    "interactiveType": "regression",
     "slug": "truy-van-cham-va-ke-hoach-thuc-thi",
     "title": "Bài 287: Truy vấn chậm và kế hoạch thực thi",
     "subtitle": "Vấn đề hiệu năng phổ biến nhất không nằm trong cơ sở dữ liệu - nó nằm trong vòng lặp của bạn.",
@@ -55884,6 +55906,7 @@ export const lessons: Lesson[] = [
       "secondary": "Câu đầu quyết định có nên tính hay không; câu sau chỉ là phép chia."
     },
     "id": 1048,
+    "interactiveType": "chart",
     "slug": "tu-duy-tai-chinh",
     "track": "bonus"
   },
@@ -56622,6 +56645,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu sau năm nhát cắt ấy con số vẫn dương thì thương vụ đáng làm. Nếu không, phần chênh lệch bạn vừa cắt đi chính là thứ lẽ ra sẽ trở thành mười tám tháng thay vì sáu."
     },
     "id": 1052,
+    "interactiveType": "multiples",
     "slug": "synergy-ma",
     "track": "bonus"
   },
@@ -58085,6 +58109,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu hai vế của câu thứ hai lệch nhau, hãy tính trước xem ở mức quy mô nào thì nó thành vấn đề."
     },
     "id": 1010,
+    "interactiveType": "chart",
     "slug": "operating-leverage",
     "track": "bonus"
   },
@@ -59003,6 +59028,7 @@ export const lessons: Lesson[] = [
       "secondary": "Phép đo thứ ba là phép đo duy nhất báo trước, và nó chỉ cần một lần đọc dấu vết yêu cầu."
     },
     "id": 1015,
+    "interactiveType": "chart",
     "slug": "tesla-cash-flow",
     "track": "bonus"
   },
@@ -59414,6 +59440,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1018,
+    "interactiveType": "sampling",
     "slug": "case-doc-bao-cao-su-co",
     "title": "Case chuyên sâu: Đọc một bản tổng kết sự cố",
     "subtitle": "Công ty lớn công bố họ sập vì sao - và đó là tài liệu học nghề rẻ nhất bạn có",
@@ -59596,7 +59623,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "track": "bonus",
     "emoji": "📦",
-    "interactiveType": "profit-calc",
     "whyItMatters": "Mọi đội đều có một đống việc đang chờ, và phần lớn chỉ đo nó bằng số lượng - con số ít thông tin nhất trong ba con số có thể đo.",
     "openingQuestion": "Đội bạn có 120 hạng mục đang chờ. Con số đó nói lên điều gì?",
     "openingOptions": [
@@ -60147,6 +60173,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1022,
+    "interactiveType": "chart",
     "slug": "case-dat-truoc-hay-tra-theo-dung",
     "title": "Case chuyên sâu: Đặt trước hay trả theo dùng",
     "subtitle": "Cam kết một năm đổi lấy giá rẻ - và đổi luôn cả khả năng đổi ý",
@@ -60864,6 +60891,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1026,
+    "interactiveType": "chart",
     "slug": "case-no-ky-thuat-tich-luy",
     "title": "Case chuyên sâu: Nợ kỹ thuật tích luỹ",
     "subtitle": "Không phải khoản nợ nào cũng đáng trả - nhưng khoản đang thu lãi thì có",
@@ -62397,6 +62425,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1035,
+    "interactiveType": "regression",
     "slug": "case-doc-sau-nhat-ky",
     "title": "Case chuyên sâu: Đọc sâu nhật ký hệ thống",
     "subtitle": "Con số tổng nói có chuyện; nhật ký nói chuyện gì - nếu bạn biết hỏi",
@@ -62741,6 +62770,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1054,
+    "interactiveType": "multiples",
     "slug": "10-cong-thuc-finance",
     "title": "10 Công Thức Phỏng Vấn Kỹ Thuật",
     "subtitle": "Lưu lượng → tải tới gốc → số node → chi phí mỗi request - một dòng chảy liên thông",
@@ -63169,6 +63199,7 @@ export const lessons: Lesson[] = [
       "secondary": "Con số thứ ba thường thấp hơn nhiều so với cảm giác của cả đội, và đó là lý do nó đáng được viết ra."
     },
     "id": 1055,
+    "interactiveType": "multiples",
     "slug": "bang-can-doi-ke-toan",
     "track": "bonus"
   },
@@ -63355,6 +63386,7 @@ export const lessons: Lesson[] = [
       "secondary": "Câu thứ ba nên được viết ngay cạnh con số cuối cùng, không cất trong đầu người dựng bảng."
     },
     "id": 1056,
+    "interactiveType": "multiples",
     "slug": "chon-phuong-phap-dinh-gia",
     "track": "bonus"
   },
@@ -64474,6 +64506,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1105,
+    "interactiveType": "prospect",
     "slug": "danh-gia-suc-khoe-mot-kho-ma",
     "title": "Nền tảng nâng cao, Bài 5: Đánh giá sức khoẻ một kho mã",
     "subtitle": "Bốn thứ đọc được trong một buổi, và chúng nói nhiều hơn cả tuần đọc mã.",
@@ -65034,6 +65067,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1108,
+    "interactiveType": "prospect",
     "slug": "tham-dinh-truoc-khi-nhan-mot-he-thong",
     "title": "Nền tảng nâng cao, Bài 8: Thẩm định trước khi nhận một hệ thống",
     "subtitle": "Bốn câu hỏi mà câu trả lời khó chịu nhất lại là câu trả lời có giá trị nhất.",
@@ -66171,6 +66205,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1205,
+    "interactiveType": "prospect",
     "slug": "chon-dung-chi-so-cho-doi-ky-thuat",
     "title": "Kỹ sư trưởng & Vận hành, Bài 4: Chọn đúng chỉ số để theo dõi",
     "subtitle": "Theo dõi quá nhiều chỉ số cũng nguy hiểm như theo dõi quá ít",
@@ -67119,6 +67154,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1213,
+    "interactiveType": "multiples",
     "slug": "hoach-dinh-dung-luong-la-gi",
     "title": "Hoạch định dung lượng là gì và ai làm việc đó",
     "subtitle": "Trả lời một câu duy nhất: hệ thống chịu được bao nhiêu, và khi nào thì hết chỗ.",
@@ -67641,6 +67677,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1216,
+    "interactiveType": "multiples",
     "slug": "ngan-sach-tai-nguyen-va-nguong-can-thiep",
     "title": "Ngân sách tài nguyên và ngưỡng can thiệp",
     "subtitle": "Một hệ thống chạm trần lúc ba giờ sáng là một hệ thống không có ngưỡng can thiệp ở bảy mươi phần trăm.",
@@ -67812,200 +67849,204 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1217,
-    "track": "professional",
-    "slug": "value-at-risk-var-stress-testing",
-    "interactiveType": "risk",
-    "title": "Value at Risk (VaR) & Stress Testing - Đo lường rủi ro tối đa",
-    "subtitle": "Khi bạn không thể loại bỏ rủi ro, điều tiếp theo tốt nhất là đo lường nó một cách chính xác.",
-    "duration": "8 phút",
+    "title": "Kiểm thử chịu tải và kịch bản cực đoan",
+    "subtitle": "Thiết kế phép thử cho ngày xấu nhất, chứ không cho ngày trung bình nhân hai",
+    "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "📊",
-    "openingQuestion": "Một quỹ đầu tư nói rằng 'VaR của chúng tôi ở mức 95% là $10 triệu'. Điều này có nghĩa là gì?",
+    "emoji": "🧪",
+    "interactiveType": "risk",
+    "whyItMatters": "Phần lớn phép thử chịu tải đo được thứ hệ thống làm tốt và bỏ qua thứ làm nó sập, vì chúng được thiết kế bằng cách nhân tải bình thường lên chứ không bằng cách hỏi rủi ro thật nằm ở đâu và nó hỏng theo cách nào.",
+    "openingQuestion": "Thiết kế một phép thử chịu tải. Bắt đầu từ đâu?",
     "openingOptions": [
-      "Quỹ này chắc chắn sẽ mất tối thiểu $10 triệu mỗi ngày",
-      "Có 95% khả năng mất không quá $10 triệu một ngày",
-      "Quỹ sẽ kiếm được $10 triệu với xác suất 95%",
-      "Rủi ro của quỹ chỉ là $10 triệu và không còn loại rủi ro nào khác"
+      "Từ cách hệ thống đã hỏng những lần trước",
+      "Từ tải hiện tại nhân lên gấp mấy lần",
+      "Từ mức tải dự kiến của năm tới, cộng thêm một khoảng dự phòng cho các đợt cao điểm",
+      "Từ giới hạn kỹ thuật của hạ tầng để biết trần lý thuyết mà hệ thống có thể đạt tới"
     ],
-    "correctOption": 1,
-    "explanation": "VaR (Value at Risk) ở mức tin cậy 95% có nghĩa: trong điều kiện thị trường bình thường, có 95% khả năng tổn thất hàng ngày sẽ không vượt quá con số đó. Ngược lại, có 5% khả năng (1/20 ngày) tổn thất có thể vượt quá mức này - đó là lý do tại sao stress testing lại quan trọng: để chuẩn bị cho những ngày 'xấu' đó.",
-    "realWorldExample": {
-      "company": "J.P. Morgan",
-      "description": "Ngân hàng này sử dụng VaR để giám sát rủi ro giao dịch hàng ngày. Nếu VaR vượt ngưỡng được phép, các trader phải giảm vị thế hoặc tăng cường kiểm soát - chính sách này đã giúp hạn chế thiệt hại trong các cuộc khủng hoảng tài chính."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Nhân tải lên là cách tự nhiên nhất và nó chỉ kiểm được một chiều: hệ thống có chịu được nhiều hơn không. Sự cố thật hiếm khi có hình dạng đó - chúng đến từ tải lệch hình, từ một phụ thuộc chậm lại, hoặc từ dữ liệu có hình dạng bất thường. Lịch sử sự cố là danh sách duy nhất mô tả những hình dạng đã thật sự làm hệ thống này sập.",
+    "diagram": [
       {
-        "question": "Nếu VaR 99% của danh mục đầu tư là $5 triệu, đó có phải là rủi ro cao hay thấp so với VaR 95% là $3 triệu?",
-        "options": [
-          "Không so sánh được vì mức tin cậy khác nhau",
-          "VaR 99% luôn tốt hơn vì nó cao hơn",
-          "VaR 99% cho thấy tổn thất tối đa lớn hơn nhưng chỉ xảy ra 1% thời gian; VaR 95% là $3 triệu xảy ra 5% thời gian - nên nguy hiểm hơn"
-        ],
-        "correct": 2
+        "label": "Lịch sử sự cố: hệ thống hỏng theo cách nào",
+        "arrow": true
       },
       {
-        "question": "Stress test là gì và khác VaR như thế nào?",
-        "options": [
-          "Stress test giống hệt VaR, chỉ là từ gọi khác",
-          "Stress test giả lập những tình huống thị trường cực kỳ bất lợi (như khủng hoảng 2008) để xem danh mục phản ứng thế nào, còn VaR dựa trên dữ liệu lịch sử",
-          "Stress test chỉ dùng cho cổ phiếu, VaR dùng cho trái phiếu"
-        ],
-        "correct": 1
+        "label": "Dựng lại từng hình dạng ấy thành phép thử",
+        "arrow": true
       },
       {
-        "question": "Tại sao các ngân hàng cần VaR ngoài các phương pháp quản lý rủi ro khác?",
-        "options": [
-          "Vì VaR là cách duy nhất để tính toán rủi ro",
-          "VaR cho một con số duy nhất để so sánh rủi ro giữa các danh mục khác nhau và tuân thủ quy định Basel",
-          "Để tỉnh táo - VaR nhắc nhở bạn rằng ngay cả trong thời kỳ bình thường, vẫn có xác suất mất rất nhiều tiền"
-        ],
-        "correct": 1
+        "label": "Thêm kịch bản chưa xảy ra nhưng có thể",
+        "arrow": true
+      },
+      {
+        "label": "Đo thời gian trở lại, không chỉ đo điểm gãy"
       }
     ],
+    "realWorldExample": {
+      "company": "Chịu được gấp năm, sập ở mức bình thường",
+      "description": "Một hệ thống qua phép thử ở mức gấp năm lần tải cao điểm và được duyệt phát hành. Sự cố đầu tiên đến ở mức tải bình thường, khi một dịch vụ phụ thuộc phản hồi chậm hơn thường lệ khoảng hai giây. Số kết nối chờ tích lại, bộ nhớ đầy, và hệ thống sập. Phép thử chưa bao giờ sai - nó chỉ chưa bao giờ thử hình dạng đó, vì nó được thiết kế bằng phép nhân."
+    },
     "sections": [
       {
-        "type": "heading",
-        "text": "Khái niệm VaR (Value at Risk)"
-      },
-      {
-        "type": "paragraph",
-        "text": "Value at Risk (VaR) là một chỉ số đơn giản nhưng mạnh mẽ: nó trả lời câu hỏi 'Tôi có thể mất bao nhiêu tiền trong k ngày với xác suất X% mà không gặp tình huống tệ hơn?' VaR giúp các tổ chức tài chính định lượng rủi ro thị trường. Nó không phải là dự đoán chính xác, mà là một ước tính xác suất."
+        "type": "lead",
+        "text": "Phép thử chịu tải trả lời câu hỏi hệ thống chịu được bao nhiêu. Kịch bản cực đoan trả lời câu khác và quan trọng hơn: nó hỏng theo cách nào, và mất bao lâu để trở lại."
       },
       {
         "type": "heading",
-        "text": "Ba cách tính VaR"
+        "text": "Bốn hình dạng đáng thử hơn phép nhân"
       },
       {
-        "type": "paragraph",
-        "text": "Phương pháp Lịch sử (Historical): lấy dữ liệu thị trường quá khứ, giả sử mẫu này lặp lại. Đơn giản nhưng có thể bỏ sót các sự kiện hiếm gặp.\n\nPhương pháp Parametric (Variance-Covariance): giả sử lợi suất tuân theo phân phối chuẩn, tính VaR từ độ lệch chuẩn. Nhanh nhưng có thể không chính xác nếu thị trường không bình thường.\n\nMonte Carlo: mô phỏng hàng ngàn hoặc hàng triệu kịch bản thị trường ngẫu nhiên. Linh hoạt nhất nhưng tốn máy tính."
-      },
-      {
-        "type": "heading",
-        "text": "Ưu và hạn chế của VaR"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ưu điểm: Cho một con số duy nhất, dễ hiểu, tuân thủ Basel III, so sánh được giữa các danh mục.\n\nHạn chế: VaR không nói gì về tổn thất khi vượt ngưỡng VaR. Ví dụ, VaR 99% không nói chuyện gì xảy ra trong 1% thời gian tồi tệ nhất - có thể tổn thất khủng khiếp hơn. Đó là lý do tại sao Conditional VaR (CVaR) hoặc Expected Shortfall được sinh ra."
-      },
-      {
-        "type": "heading",
-        "text": "Stress Testing - Khi VaR không đủ"
-      },
-      {
-        "type": "paragraph",
-        "text": "Stress test mô phỏng những tình huống thị trường cực kỳ bất lợi: lãi suất tăng 200 bps, cổ phiếu giảm 30%, thanh khoản khô cằn. Điều này chuẩn bị tổ chức cho các sự kiện có xác suất thấp nhưng tác động cao.\n\nVí dụ: Trong cuộc khủng hoảng 2008, nhiều danh mục có VaR 'xanh' nhưng bị lỗ nặng. Stress test sẽ đã cảnh báo."
-      },
-      {
-        "type": "heading",
-        "text": "Basel III và yêu cầu VaR"
-      },
-      {
-        "type": "paragraph",
-        "text": "Basel III bắt buộc các ngân hàng phải tính VaR tối thiểu ở mức 95% và 99%, theo dõi thường xuyên. Nếu VaR vượt ngưỡng được phép, ngân hàng phải tăng vốn dự phòng hoặc giảm rủi ro. Đây là cách các cơ quan quản lý bảo vệ hệ thống tài chính."
-      },
-      {
-        "type": "heading",
-        "text": "Backtesting - Kiểm tra xem VaR có chính xác không"
-      },
-      {
-        "type": "paragraph",
-        "text": "Backtesting là quá trình so sánh VaR dự báo với tổn thất thực tế: nếu VaR 99% đúng, nó không nên vượt quá 1% ngày. Nếu backtesting cho thấy VaR quá nhẹ (thường vượt), phải điều chỉnh mô hình. Đây là bước kiểm soát chất lượng quan trọng."
-      },
-      {
-        "type": "heading",
-        "text": "Ứng dụng thực tiễn của VaR và Stress Test"
-      },
-      {
-        "type": "paragraph",
-        "text": "VaR dùng trong: (1) báo cáo rủi ro hàng ngày; (2) tuân thủ quy định; (3) quyết định mức vốn dự phòng; (4) giám sát danh mục. Stress test dùng trong: (1) chuẩn bị cho khủng hoảng; (2) đánh giá 'điểm yếu' của danh mục; (3) thiết lập giới hạn giao dịch."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba cách tính VaR và cái giá của từng cách",
-        "subtitle": "Cùng một danh mục, ba phương pháp cho ba con số khác nhau - chênh lệch đến từ giả định chứ không từ dữ liệu",
-        "concepts": [
-          {
-            "vi": "Tham số",
-            "en": "Parametric / Delta-Normal",
-            "def": "Giả định lợi suất phân phối chuẩn và quan hệ giá tuyến tính. Nhanh nhất, và sai nhất với danh mục có quyền chọn vì gamma làm lỗ tăng phi tuyến đúng ở phần đuôi."
-          },
-          {
-            "vi": "Mô phỏng lịch sử",
-            "en": "Historical Simulation",
-            "def": "Áp lại biến động quá khứ lên danh mục hôm nay. Giữ được đuôi dày thật, nhưng không sinh ra được kịch bản chưa từng có trong cửa sổ quan sát."
-          },
-          {
-            "vi": "Monte Carlo",
-            "en": "Monte Carlo Simulation",
-            "def": "Sinh hàng loạt kịch bản từ một mô hình phân phối. Linh hoạt nhất và tốn kém nhất; rủi ro của nó là rủi ro mô hình."
-          }
+        "type": "list",
+        "items": [
+          "Một phụ thuộc chậm lại nhưng không chết - hình dạng gây sập nhiều nhất và hiếm khi được thử",
+          "Tải đến dồn trong vài giây thay vì trải đều, ví dụ sau một đợt gửi thông báo",
+          "Dữ liệu có hình dạng bất thường: một người dùng có lượng dữ liệu gấp nghìn lần trung bình",
+          "Một phần hạ tầng biến mất giữa chừng, và phần còn lại phải gánh mà không kịp mở rộng"
         ]
       },
       {
+        "type": "paragraph",
+        "text": "Hình dạng đầu đáng chú ý nhất vì nó phản trực giác. Một phụ thuộc chết hẳn thì hệ thống nhận lỗi ngay và xử lý được; một phụ thuộc chậm lại thì mọi yêu cầu đều chờ, tài nguyên bị giữ, và hệ thống chết vì cạn kết nối chứ không vì lỗi nào. Đây là lý do thời gian chờ tối đa quan trọng hơn hầu hết tham số khác."
+      },
+      {
+        "type": "heading",
+        "text": "Đo thời gian trở lại, không chỉ đo điểm gãy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phần lớn phép thử dừng ở chỗ tìm ra ngưỡng hệ thống bắt đầu hỏng, và đó là nửa câu trả lời. Nửa còn lại là điều gì xảy ra sau đó: hệ thống tự trở lại khi tải giảm, hay nó ở lại trạng thái hỏng cho tới khi có người khởi động lại. Hai hành vi ấy khác nhau về mức độ nghiêm trọng nhiều hơn khác nhau về ngưỡng."
+      },
+      {
         "type": "callout",
-        "label": "Cái bẫy",
-        "text": "VaR là một NGƯỠNG PHÂN VỊ, không phải mức lỗ tối đa. Nó nói 95% số ngày lỗ sẽ dưới ngưỡng, và im lặng hoàn toàn về 5% còn lại - đúng vùng quyết định một tổ chức sống hay chết. Đọc nó thành 'lỗ tối đa' chính là hiểu nhầm đã khiến nhiều định chế bất ngờ năm 2008, và là lý do Basel chuyển sang Expected Shortfall."
+        "label": "Hệ thống không tự trở lại là hệ thống nhân đôi mọi sự cố",
+        "text": "Nếu tải vượt ngưỡng trong ba phút mà hệ thống cần người can thiệp mới hoạt động lại thì mọi cú tăng tải ngắn đều trở thành một sự cố dài. Phép thử phát hiện được điều này chỉ cần thêm một bước: sau khi ép hệ thống hỏng, hạ tải về mức bình thường và ngồi xem. Bước ấy tốn năm phút và hiếm khi có trong kịch bản thử."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Thử theo hình dạng",
+          "text": "Dựng lại các cách hệ thống đã hỏng, cộng vài kịch bản chưa xảy ra. Kết quả nói được nó hỏng thế nào và bao lâu thì lại."
+        },
+        "right": {
+          "label": "Thử bằng phép nhân",
+          "text": "Tải bình thường nhân năm. Kết quả là một con số ngưỡng, và nó không dự đoán được sự cố thật nào."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Tần suất"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một phép thử chạy một lần trước khi phát hành thì chỉ đúng cho phiên bản đó. Hệ thống thay đổi mỗi tuần, và phần lớn thay đổi làm hình dạng chịu tải đổi theo cách không ai lường. Chạy lại theo lịch, dù chỉ một kịch bản mỗi tháng, có giá trị hơn một lần thử toàn diện rồi thôi."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Sự cố thật hiếm khi có hình dạng của tải bình thường nhân lên.",
+          "Một phụ thuộc chậm lại nguy hiểm hơn một phụ thuộc chết hẳn."
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Vì sao thiết kế phép thử bằng cách nhân tải lên là chưa đủ?",
+        "options": [
+          "Vì sự cố thật hiếm khi có hình dạng đó",
+          "Vì nó tốn nhiều tài nguyên để chạy",
+          "Vì mức nhân được chọn tuỳ ý nên kết quả không so sánh được giữa các lần thử khác nhau",
+          "Vì nó chỉ đo được phần xử lý mà không đo được phần lưu trữ và phần truyền dữ liệu"
+        ],
+        "correct": 0,
+        "explanation": "Phép nhân kiểm đúng một chiều: chịu được nhiều hơn không. Sự cố thật đến từ tải lệch hình, phụ thuộc chậm lại, hoặc dữ liệu bất thường - ba hình dạng mà một phép nhân đều đặn không bao giờ tạo ra."
+      },
+      {
+        "question": "Vì sao một phụ thuộc chậm lại nguy hiểm hơn một phụ thuộc chết hẳn?",
+        "options": [
+          "Vì mọi yêu cầu đều chờ nên tài nguyên bị giữ tới lúc cạn",
+          "Vì hệ thống không phát hiện được là có vấn đề",
+          "Vì các cơ chế thử lại tự động sẽ nhân thêm số yêu cầu gửi tới phụ thuộc đang chậm đó",
+          "Vì thời gian chậm thường tăng dần nên khó xác định được thời điểm cần can thiệp"
+        ],
+        "correct": 0,
+        "explanation": "Chết hẳn thì hệ thống nhận lỗi ngay và xử lý được. Chậm lại thì không có lỗi nào để nhận, chỉ có kết nối bị giữ lâu hơn - và hệ thống chết vì cạn kết nối chứ không vì bất kỳ lỗi nào được ghi lại."
+      },
+      {
+        "question": "Bước nào hay bị bỏ khỏi kịch bản thử và tốn năm phút để thêm?",
+        "options": [
+          "Hạ tải về mức bình thường rồi xem hệ thống có tự trở lại không",
+          "Ghi lại toàn bộ nhật ký trong lúc thử",
+          "Chạy phép thử ở nhiều mức tải khác nhau để tìm chính xác điểm bắt đầu suy giảm",
+          "So sánh kết quả của lần thử này với kết quả của lần thử gần nhất trước đó"
+        ],
+        "correct": 0,
+        "explanation": "Phần lớn phép thử dừng ở chỗ tìm ra điểm gãy, và đó là nửa câu trả lời. Hệ thống không tự trở lại thì mọi cú tăng tải ngắn đều thành một sự cố dài, và đó là khác biệt lớn hơn nhiều so với vài phần trăm ở ngưỡng."
+      },
+      {
+        "question": "Nguồn tốt nhất để thiết kế kịch bản thử là gì?",
+        "options": [
+          "Lịch sử sự cố của chính hệ thống này",
+          "Tài liệu về các mẫu lỗi thường gặp",
+          "Kinh nghiệm của những đội khác vận hành hệ thống có kiến trúc tương tự trong công ty",
+          "Kết quả đo hiệu năng ở môi trường thử nghiệm trong những lần phát hành gần đây"
+        ],
+        "correct": 0,
+        "explanation": "Ba nguồn kia đều hữu ích để thêm kịch bản chưa xảy ra. Lịch sử sự cố thì khác loại: nó là danh sách duy nhất mô tả những hình dạng đã thật sự làm sập hệ thống này, với đúng kiến trúc và đúng phụ thuộc của nó."
+      },
+      {
+        "question": "Vì sao một phép thử toàn diện chạy trước khi phát hành là chưa đủ?",
+        "options": [
+          "Vì hệ thống đổi mỗi tuần và thay đổi làm hình dạng chịu tải đổi theo",
+          "Vì kết quả của nó chỉ đúng trong môi trường thử",
+          "Vì phép thử toàn diện tốn nhiều thời gian nên nó thường bị rút gọn dưới áp lực tiến độ",
+          "Vì mức tải thực tế sau khi phát hành thường khác xa so với mức đã dùng khi thử nghiệm"
+        ],
+        "correct": 0,
+        "explanation": "Một kết quả thử là một tuyên bố về một phiên bản cụ thể. Sau mười lần phát hành thì tuyên bố ấy nói về một hệ thống không còn tồn tại, nên một kịch bản chạy lại hằng tháng đáng giá hơn một lần thử toàn diện rồi thôi."
       }
     ],
     "keyTakeaways": [
-      "VaR là một ước tính xác suất tổn thất tối đa trong điều kiện bình thường; nó không nói gì về tổn thất khi vượt ngưỡng",
-      "Ba cách tính VaR: lịch sử, parametric, và Monte Carlo - mỗi cách có ưu nhược điểm",
-      "Stress testing khắc phục hạn chế của VaR bằng cách mô phỏng những tình huống cực kỳ bất lợi",
-      "Basel III bắt buộc các ngân hàng tính VaR định kỳ; backtesting kiểm tra xem mô hình có chính xác không"
+      "Sự cố thật hiếm khi có hình dạng của tải bình thường nhân lên",
+      "Phụ thuộc chậm lại nguy hiểm hơn phụ thuộc chết hẳn",
+      "Đo thời gian trở lại, không chỉ đo điểm gãy",
+      "Lịch sử sự cố là nguồn kịch bản đúng với kiến trúc của chính hệ thống này"
     ],
     "practicePrompt": {
-      "question": "Danh mục: 60% cổ phiếu (biến động 15%/năm), 40% trái phiếu (biến động 5%/năm), tương quan 0.3. Độ lệch chuẩn danh mục và VaR 95% (1 năm) là bao nhiêu?",
+      "question": "Phụ thuộc chậm thêm 2 giây, hệ thống có 200 kết nối, mỗi yêu cầu giữ một kết nối. Ở 150 yêu cầu/giây, kết nối cạn sau bao lâu?",
       "options": [
-        "σp ≈ 9.8%, VaR 95% ≈ 16.1% (dùng công thức phương sai danh mục có tương quan, sau đó nhân z-score 1.645)",
-        "σp = trung bình có trọng số = 11%, VaR 95% ≈ 18.1% (sai vì bỏ qua lợi ích đa dạng hóa từ tương quan < 1)",
-        "σp ≈ 9.8%, VaR 95% ≈ 9.8% (sai vì quên nhân với z-score 1.645 ở mức tin cậy 95%)",
-        "σp ≈ 20%, VaR 95% ≈ 32.9% (sai vì cộng trực tiếp hai độ lệch chuẩn thay vì dùng công thức phương sai)"
+        "Khoảng 1,3 giây",
+        "2 giây",
+        "Không cạn, vì mỗi kết nối được giải phóng ngay sau khi phụ thuộc phản hồi xong",
+        "Khoảng 30 giây (= chia số kết nối cho độ trễ thay vì cho tốc độ đến của yêu cầu)"
       ],
       "correct": 0,
-      "explanation": "σp² = w1²σ1² + w2²σ2² + 2w1w2ρσ1σ2 = 0.36×0.0225 + 0.16×0.0025 + 2×0.6×0.4×0.3×0.15×0.05 = 0.00958 → σp ≈ 9.79%. VaR 95% = z95% × σp = 1.645 × 9.79% ≈ 16.1%. Lưu ý: trung bình có trọng số đơn giản (11%) luôn cao hơn σp thực tế khi tương quan < 1, vì công thức phương sai đã tính đến hiệu ứng đa dạng hóa."
+      "explanation": "150 yêu cầu mỗi giây, mỗi cái giữ kết nối 2 giây, nên số kết nối đang giữ tăng 150 mỗi giây. 200 chia 150 ra khoảng 1,3 giây là cạn. Hai giây chậm thêm đủ để sập một hệ thống chưa hề chạm giới hạn xử lý nào."
     },
     "summary": {
-      "keyIdea": "Value at Risk là công cụ đo lường rủi ro mạnh mẽ nhưng không hoàn hảo. Nó cho ra một con số dễ hiểu, hỗ trợ quyết định và tuân thủ quy định. Tuy nhiên, VaR có thể giả này trong các cuộc khủng hoảng cực kỳ, vì thế stress testing bổ sung lại là bước quan trọng."
+      "keyIdea": "Thử theo hình dạng đã làm hệ thống hỏng, không theo phép nhân",
+      "commonMistake": "Dừng phép thử ở điểm gãy mà không xem nó có tự trở lại không",
+      "action": "Lấy ba biên bản sự cố gần nhất và biến mỗi cái thành một kịch bản thử."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Trong công việc của risk manager, bạn sẽ tính VaR hàng ngày, giám sát backtesting, và sử dụng stress test để chuẩn bị cho các tình huống bất ngờ. VaR không phải để dự đoán hoàn hảo mà để chuẩn bị tinh thần và tài chính cho những ngày xấu."
+      "title": "Bốn kịch bản tối thiểu",
+      "message": "Phụ thuộc chậm lại. Tải dồn trong vài giây. Một người dùng có dữ liệu gấp nghìn lần. Mất một phần hạ tầng giữa chừng.",
+      "secondary": "Sau mỗi kịch bản, hạ tải về bình thường và xem hệ thống có tự trở lại không."
     },
-    "diagram": [
-      {
-        "label": "Chọn độ tin cậy và khung thời gian",
-        "arrow": true
-      },
-      {
-        "label": "Tính VaR (lịch sử · phương sai–hiệp phương sai · Monte Carlo)",
-        "arrow": true
-      },
-      {
-        "label": "Stress test cho phần đuôi VaR không phủ",
-        "arrow": true
-      },
-      {
-        "label": "Backtest: số lần vượt ngưỡng có khớp lý thuyết?",
-        "arrow": true
-      },
-      {
-        "label": "Đặt hạn mức rủi ro và báo cáo",
-        "arrow": false
-      }
-    ]
+    "id": 1217,
+    "slug": "value-at-risk-var-stress-testing",
+    "track": "professional"
   },
   {
     "id": 1218,
     "slug": "han-muc-va-nguong-xet-duyet",
+    "interactiveType": "risk",
     "title": "Hạn mức và ngưỡng xét duyệt: vì sao mọi thao tác lớn cần một trần",
     "subtitle": "Một hạn mức không ngăn được người có ý đồ; nó giới hạn thiệt hại của một thao tác sai.",
     "duration": "8 phút",
     "difficulty": "Khó",
     "track": "professional",
     "emoji": "🏛️",
-    "interactiveType": "risk",
-    "whyItMatters": "Phần lớn thiệt hại lớn từ một thao tác đơn lẻ đều có thể đã nhỏ đi rất nhiều nếu có một con số trần đặt đúng chỗ.",
+    "whyItMatters": "Phần lớn thiệt hại lớn từ một thao tác đơn lẻ đều có thể đã nhỏ đi rất nhiều nếu có một con số trần đặt đúng chỗ - đây là công cụ giới hạn rủi ro rẻ nhất mà một hệ thống có.",
     "openingQuestion": "Hạn mức cho một thao tác nguy hiểm nên đặt theo gì?",
     "openingOptions": [
       "Theo mức thiệt hại mà tổ chức chịu được nếu thao tác đó chạy sai một lần",
@@ -68125,7 +68166,7 @@ export const lessons: Lesson[] = [
     "sections": [
       {
         "type": "lead",
-        "text": "Phần lớn thiệt hại lớn từ một thao tác đơn lẻ đều có thể đã nhỏ đi rất nhiều nếu có một con số trần đặt đúng chỗ."
+        "text": "Phần lớn thiệt hại lớn từ một thao tác đơn lẻ đều có thể đã nhỏ đi rất nhiều nếu có một con số trần đặt đúng chỗ - đây là công cụ giới hạn rủi ro rẻ nhất mà một hệ thống có."
       },
       {
         "type": "heading",
@@ -68166,6 +68207,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1219,
+    "interactiveType": "tail-risk",
     "slug": "he-thong-thoi-gian-thuc-do-tre-co-han-cung",
     "title": "Hệ thống thời gian thực - khi độ trễ có hạn cứng",
     "subtitle": "Một kết quả đúng mà tới muộn là một kết quả sai, và điều đó đổi toàn bộ cách thiết kế.",
@@ -68875,6 +68917,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1223,
+    "interactiveType": "tail-risk",
     "slug": "cong-cu-giam-thiet-hai-khi-phu-thuoc-ngoai-hong",
     "title": "Công cụ giảm thiệt hại khi một phụ thuộc bên ngoài hỏng",
     "subtitle": "Bốn cơ chế, và mỗi cơ chế bảo vệ bạn khỏi một kiểu hỏng khác nhau.",
@@ -70303,155 +70346,190 @@ export const lessons: Lesson[] = [
     "track": "bonus"
   },
   {
-    "id": 1232,
-    "track": "professional",
-    "slug": "bao-hiem-la-gi-mo-hinh-kinh-doanh",
-    "title": "Bảo hiểm là gì & Mô hình kinh doanh: Định phí, dự phòng, khả năng thanh toán",
-    "subtitle": "Tại sao công ty bảo hiểm vẫn có lãi dù phải trả tiền cho những sự kiện không lường trước được",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🛡️",
-    "openingQuestion": "Công ty bảo hiểm nhân thọ thu phí bảo hiểm (premium) từ hàng triệu khách hàng mỗi năm, nhưng chỉ một phần nhỏ trong số đó thực sự yêu cầu bồi thường mỗi năm. Mô hình kinh doanh này dựa trên nguyên lý cốt lõi nào?",
+    "title": "Dự phòng dùng chung: vì sao không đội nào tự lo hết",
+    "subtitle": "Gom phần dự phòng của nhiều dịch vụ vào một chỗ, và điều kiện để nó hoạt động",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🛟",
+    "whyItMatters": "Mỗi dịch vụ tự giữ dự phòng riêng thì tổng chi phí gấp nhiều lần mức cần thiết, nhưng gom chung lại chỉ an toàn khi một điều kiện được thoả - và đó là điều kiện hay bị bỏ qua nhất.",
+    "openingQuestion": "Mười dịch vụ, mỗi cái cần 20% dự phòng. Gom chung thì cần bao nhiêu?",
     "openingOptions": [
-      "Công ty bảo hiểm luôn tìm cách từ chối bồi thường để giữ lợi nhuận",
-      "Chia sẻ rủi ro - rất nhiều người góp phí nhỏ, quỹ chi cho số ít gặp rủi ro thật",
-      "Công ty bảo hiểm chỉ có lãi nhờ đầu tư tiền của khách hàng vào chứng khoán",
-      "Bảo hiểm hoạt động giống hệt như tiết kiệm ngân hàng thông thường"
+      "Ít hơn nhiều, nếu chúng không cùng lúc cần tới",
+      "Vẫn 20% tổng",
+      "Khoảng 10% tổng, tức đúng một nửa vì rủi ro được chia đều cho hai lần số dịch vụ",
+      "Chưa xác định được nếu chưa biết mức tải trung bình của từng dịch vụ trong nhóm"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là nguyên lý cốt lõi của bảo hiểm: risk pooling (chia sẻ rủi ro/gộp rủi ro) - nhiều người cùng đóng góp phí bảo hiểm vào một quỹ chung, và xác suất một cá nhân cụ thể gặp sự kiện rủi ro (tử vong sớm, tai nạn, bệnh hiểm nghèo) là thấp và không chắc chắn ở cấp độ CÁ NHÂN, nhưng có thể dự đoán khá chính xác ở cấp độ TẬP THỂ lớn nhờ 'Luật số lớn' (Law of Large Numbers) trong thống kê - đây chính là công việc của actuary (chuyên viên tính phí bảo hiểm).",
-    "realWorldExample": {
-      "company": "Bảo hiểm nhân thọ và Luật số lớn",
-      "description": "Một công ty bảo hiểm không thể biết chính xác NGƯỜI NÀO trong 1 triệu khách hàng sẽ qua đời trong năm tới, nhưng dựa trên bảng tử suất (mortality table) từ dữ liệu thống kê hàng chục năm, họ có thể dự đoán khá chính xác rằng, ví dụ, khoảng 0.5% khách hàng ở độ tuổi 40-50 sẽ qua đời trong năm - từ đó tính được mức phí bảo hiểm hợp lý để đủ chi trả cho số người này, đồng thời có lãi cho công ty và chi phí vận hành."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Đây là toàn bộ lý do dự phòng dùng chung tồn tại: xác suất mười dịch vụ cùng chạm đỉnh trong một khoảnh khắc thấp hơn nhiều so với xác suất một dịch vụ chạm đỉnh. Nhưng nó chỉ đúng khi các đỉnh độc lập với nhau, và nếu cả mười cùng chạm đỉnh vào chín giờ sáng thứ Hai thì gom chung không tiết kiệm được gì.",
+    "diagram": [
       {
-        "question": "'Dự phòng nghiệp vụ' (technical reserves/loss reserves) trong bảo hiểm là gì và tại sao nó quan trọng?",
-        "options": [
-          "Là khoản tiền công ty bảo hiểm giữ lại để trả lương cho nhân viên",
-          "Là khoản tiền công ty bảo hiểm PHẢI TRÍCH LẬP để đảm bảo có đủ nguồn lực chi trả cho các nghĩa vụ bồi thường trong tương lai (bao gồm cả những sự kiện đã xảy ra nhưng chưa được báo cáo/giải quyết) - đây là yếu tố sống còn quyết định khả năng thanh toán dài hạn của công ty bảo hiểm",
-          "Dự phòng nghiệp vụ chỉ là một khái niệm kế toán hình thức, không ảnh hưởng đến hoạt động thực tế",
-          "Công ty bảo hiểm không cần trích lập dự phòng nếu có đủ vốn chủ sở hữu"
-        ],
-        "correct": 1,
-        "explanation": "Dự phòng nghiệp vụ là 'xương sống' của ngành bảo hiểm - vì hợp đồng bảo hiểm thường kéo dài nhiều năm (đặc biệt bảo hiểm nhân thọ), công ty phải trích lập đủ dự phòng để đảm bảo có tiền chi trả cho các nghĩa vụ trong tương lai, kể cả khi doanh thu phí bảo hiểm mới giảm sút. Trích lập dự phòng không đủ là nguyên nhân chính dẫn đến phá sản của nhiều công ty bảo hiểm trong lịch sử."
+        "label": "Mỗi dịch vụ có đỉnh riêng",
+        "arrow": true
       },
       {
-        "question": "'Adverse selection' (lựa chọn bất lợi) trong bảo hiểm là gì?",
-        "options": [
-          "Là khi công ty bảo hiểm chọn sai nhân viên bán hàng",
-          "Là hiện tượng những người có RỦI RO CAO HƠN (ví dụ người có tiền sử bệnh, hút thuốc) có xu hướng MUA BẢO HIỂM NHIỀU HƠN người có rủi ro thấp, vì họ nhận thức rõ nhu cầu bảo vệ của mình cao hơn - nếu không kiểm soát tốt, điều này khiến 'quỹ chung' bị mất cân bằng, buộc công ty phải tăng phí cho tất cả mọi người",
-          "Là khi khách hàng chọn nhầm gói bảo hiểm không phù hợp",
-          "Adverse selection chỉ xảy ra với bảo hiểm ô tô, không xảy ra với bảo hiểm nhân thọ"
-        ],
-        "correct": 1,
-        "explanation": "Adverse selection là vấn đề kinh điển trong kinh tế học bảo hiểm (thông tin bất cân xứng - asymmetric information): người mua bảo hiểm thường biết rõ về tình trạng sức khỏe/rủi ro của bản thân hơn công ty bảo hiểm, dẫn đến những người rủi ro cao có động lực mua bảo hiểm mạnh hơn. Đây là lý do công ty bảo hiểm yêu cầu khám sức khỏe, khai báo tiền sử bệnh (underwriting) trước khi cấp hợp đồng - để giảm thiểu vấn đề này và định phí chính xác theo mức rủi ro thực tế của từng cá nhân."
+        "label": "Đỉnh không trùng nhau thì tổng đỉnh nhỏ hơn tổng các đỉnh",
+        "arrow": true
       },
       {
-        "question": "'Moral hazard' (rủi ro đạo đức) khác với adverse selection như thế nào trong ngành bảo hiểm?",
-        "options": [
-          "Hai khái niệm này hoàn toàn giống nhau",
-          "Adverse selection xảy ra TRƯỚC khi mua bảo hiểm (ai có xu hướng mua); Moral hazard xảy ra SAU khi đã mua bảo hiểm - khi có bảo hiểm, người được bảo hiểm có thể trở nên BẤT CẨN HƠN hoặc hành xử RỦI RO HƠN vì biết đã có bảo hiểm chi trả (ví dụ lái xe ẩu hơn vì đã có bảo hiểm ô tô đầy đủ)",
-          "Moral hazard chỉ áp dụng cho bảo hiểm y tế, không áp dụng cho các loại bảo hiểm khác",
-          "Moral hazard là vấn đề của công ty bảo hiểm, không liên quan gì đến hành vi khách hàng"
-        ],
-        "correct": 1,
-        "explanation": "Đây là phân biệt thời điểm quan trọng: adverse selection là vấn đề LỰA CHỌN (ai quyết định mua bảo hiểm) xảy ra TRƯỚC khi ký hợp đồng, còn moral hazard là vấn đề HÀNH VI (người được bảo hiểm thay đổi cách hành xử) xảy ra SAU khi đã có bảo hiểm. Cả hai đều là hệ quả của thông tin bất cân xứng, và công ty bảo hiểm dùng các công cụ khác nhau để kiểm soát: underwriting kỹ lưỡng cho adverse selection, và cơ chế đồng chi trả/miễn thường (deductible, co-payment) để giảm moral hazard."
+        "label": "Gom dự phòng vào một chỗ",
+        "arrow": true
+      },
+      {
+        "label": "Điều kiện: đỉnh phải độc lập"
       }
     ],
-    "keyTakeaways": [
-      "Bảo hiểm hoạt động dựa trên nguyên lý risk pooling (chia sẻ rủi ro) - rủi ro không chắc chắn ở cấp độ cá nhân nhưng dự đoán được ở cấp độ tập thể lớn nhờ Luật số lớn",
-      "Dự phòng nghiệp vụ (technical reserves) là yếu tố sống còn - đảm bảo công ty có đủ nguồn lực chi trả nghĩa vụ tương lai, trích lập thiếu là nguyên nhân phá sản phổ biến",
-      "Adverse selection: người rủi ro cao có xu hướng mua bảo hiểm nhiều hơn (vấn đề TRƯỚC khi mua) - công ty kiểm soát bằng underwriting",
-      "Moral hazard: người có bảo hiểm hành xử rủi ro hơn (vấn đề SAU khi mua) - công ty kiểm soát bằng đồng chi trả/miễn thường"
-    ],
-    "practicePrompt": {
-      "question": "Một công ty bảo hiểm y tế phát hiện tỷ lệ yêu cầu bồi thường tăng đột biến trong nhóm khách hàng mới mua gói bảo hiểm cao cấp (không cần khám sức khỏe khi đăng ký). Vấn đề gì có khả năng đang xảy ra, và giải pháp nào phù hợp?",
-      "options": [
-        "Đây chỉ là sự trùng hợp ngẫu nhiên, không cần điều chỉnh gì",
-        "Adverse selection: không khám sức khỏe nên người rủi ro cao mua nhiều hơn",
-        "Nên tăng gấp đôi phí bảo hiểm cho toàn bộ khách hàng hiện tại ngay lập tức",
-        "Nên ngừng bán bảo hiểm y tế hoàn toàn vì rủi ro quá cao"
-      ],
-      "correct": 1,
-      "explanation": "Đây là ví dụ kinh điển của adverse selection: khi rào cản gia nhập thấp (không cần khám sức khỏe), quỹ bảo hiểm dễ bị 'lựa chọn ngược' bởi những người biết trước mình có rủi ro cao. Giải pháp đúng là cải thiện quy trình underwriting (khai báo y tế, khám sức khỏe cơ bản) để đánh giá rủi ro chính xác hơn trước khi cấp hợp đồng, thay vì phản ứng bằng cách tăng phí đồng loạt (gây bất công cho khách hàng rủi ro thấp) hoặc ngừng kinh doanh hoàn toàn."
-    },
-    "summary": {
-      "keyIdea": "Bảo hiểm hoạt động dựa trên risk pooling và Luật số lớn, với dự phòng nghiệp vụ đảm bảo khả năng chi trả dài hạn; hai vấn đề thông tin bất cân xứng cốt lõi là adverse selection (trước khi mua) và moral hazard (sau khi mua).",
-      "commonMistake": "Nhầm lẫn adverse selection với moral hazard, hoặc đánh giá thấp tầm quan trọng của dự phòng nghiệp vụ so với lợi nhuận ngắn hạn",
-      "action": "Khi phân tích một công ty bảo hiểm, luôn kiểm tra mức trích lập dự phòng có tương xứng với quy mô nghĩa vụ tương lai hay không, không chỉ nhìn vào lợi nhuận công bố hàng năm"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Tìm một báo cáo tài chính của công ty bảo hiểm niêm yết, xác định khoản mục 'dự phòng nghiệp vụ' (technical reserves/insurance liabilities) trên bảng cân đối kế toán - so sánh quy mô của nó với tổng tài sản công ty.",
-      "secondary": "Bài tiếp theo sẽ đi sâu vào toán học đằng sau việc định phí bảo hiểm - actuarial science và các công cụ thống kê được dùng để tính phí chính xác."
+    "realWorldExample": {
+      "company": "Chín giờ sáng thứ Hai",
+      "description": "Một công ty gom dự phòng của mười hai dịch vụ vào một kho chung và giảm được bốn mươi phần trăm chi phí dự phòng. Con số ấy đúng trong sáu tháng. Rồi một chiến dịch gửi thông báo vào chín giờ sáng thứ Hai làm cả mười hai dịch vụ cùng chạm đỉnh trong ba phút - đúng điều kiện mà mô hình gom chung giả định là không xảy ra, và kho chung không đủ cho dù một dịch vụ."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Bảo hiểm thường bị hiểu nhầm là một hình thức 'cá cược' - nhưng thực chất đó là một trong những phát minh tài chính tinh vi nhất của loài người: biến sự không chắc chắn của từng cá nhân thành một mô hình kinh doanh có thể dự đoán được."
+        "text": "Ý tưởng gom dự phòng là một trong những cách tiết kiệm lớn nhất trong vận hành hạ tầng, và nó có đúng một điều kiện. Bài này về điều kiện ấy."
       },
       {
         "type": "heading",
-        "text": "Risk Pooling - Nguyên lý cốt lõi của bảo hiểm"
+        "text": "Vì sao gom chung rẻ hơn"
       },
       {
         "type": "paragraph",
-        "text": "Không ai biết chắc mình có gặp tai nạn, bệnh nặng, hay qua đời sớm hay không - đó là rủi ro KHÔNG CHẮC CHẮN ở cấp độ cá nhân. Nhưng khi gộp hàng triệu người lại, xác suất một tỷ lệ nhất định trong số họ sẽ gặp sự kiện đó trở nên khá ổn định và dự đoán được, nhờ 'Luật số lớn' (Law of Large Numbers) trong thống kê. Đây chính là nền tảng cho phép công ty bảo hiểm định phí: mỗi người đóng một khoản phí nhỏ, quỹ chung đủ lớn để chi trả cho số ít người thực sự gặp sự kiện rủi ro."
+        "text": "Mỗi dịch vụ giữ dự phòng riêng nghĩa là mỗi dịch vụ phải giữ đủ cho đỉnh của chính nó, và phần ấy nằm rảnh gần như suốt thời gian. Gom chung thì chỉ cần giữ đủ cho tổng đỉnh xảy ra đồng thời, và con số ấy nhỏ hơn tổng các đỉnh riêng lẻ đúng bằng mức độ các đỉnh không trùng nhau."
       },
       {
         "type": "heading",
-        "text": "Dự phòng nghiệp vụ - Xương sống của khả năng thanh toán"
+        "text": "Ba thứ làm các đỉnh trùng nhau"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Nhịp người dùng chung: giờ mở cửa, đầu tháng, sau một đợt gửi thông báo",
+          "Phụ thuộc chung: mọi dịch vụ cùng chậm lại khi một thứ chúng đều gọi chậm lại",
+          "Công việc định kỳ đặt cùng một mốc: nửa đêm là mốc phổ biến tới mức nguy hiểm"
+        ]
       },
       {
         "type": "paragraph",
-        "text": "Khác với nhiều ngành kinh doanh khác, bảo hiểm có đặc điểm 'đảo ngược chu kỳ sản xuất' (inverted production cycle): công ty NHẬN TIỀN (phí bảo hiểm) TRƯỚC, rồi mới PHÁT SINH CHI PHÍ (bồi thường) SAU, đôi khi cách nhau nhiều năm hoặc thậm chí hàng chục năm (với bảo hiểm nhân thọ). Điều này đòi hỏi công ty phải trích lập dự phòng nghiệp vụ đủ lớn - không được coi phí bảo hiểm thu về là 'lợi nhuận' ngay lập tức, mà phải giữ lại phần lớn để đảm bảo khả năng chi trả nghĩa vụ trong tương lai."
+        "text": "Thứ ba là thứ dễ sửa nhất và hay bị bỏ qua nhất. Không có lý do kỹ thuật nào để mọi công việc định kỳ chạy đúng nửa đêm; nó chỉ là giá trị mặc định mà ai cũng để nguyên. Rải chúng ra trong một khoảng vài giờ là cách rẻ nhất để làm các đỉnh độc lập hơn."
+      },
+      {
+        "type": "callout",
+        "label": "Kiểm điều kiện bằng dữ liệu, không bằng lập luận",
+        "text": "Câu hỏi các đỉnh có độc lập không nghe trừu tượng nhưng nó đo được trực tiếp: vẽ lượng dùng của từng dịch vụ theo giờ trong một tháng và xem các đỉnh có rơi cùng chỗ không. Phép đo ấy mất một buổi và nó thay được toàn bộ cuộc tranh luận, vì nó cũng chỉ luôn ra dịch vụ nào nên bị tách khỏi kho chung."
       },
       {
         "type": "heading",
-        "text": "Hai vấn đề thông tin bất cân xứng: Adverse Selection và Moral Hazard"
+        "text": "Ai được lấy trước khi kho chung không đủ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là phần thiết kế mà mọi mô hình dùng chung phải có và hầu như không nơi nào viết ra trước. Khi kho chung cạn, thứ tự ưu tiên phải được quyết từ trước bằng một quy tắc rõ ràng, vì quyết định vào đúng lúc đang cạn thì luôn nghiêng về đội nào lên tiếng to nhất chứ không về dịch vụ nào quan trọng nhất."
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Adverse Selection",
-          "text": "Xảy ra TRƯỚC khi mua bảo hiểm - người rủi ro cao có động lực mua nhiều hơn vì biết rõ tình trạng của bản thân. Kiểm soát bằng underwriting (khám sức khỏe, khai báo)"
+          "label": "Gom chung có kiểm chứng",
+          "text": "Đã đo đỉnh theo giờ, đã rải công việc định kỳ, đã viết thứ tự ưu tiên khi cạn. Tiết kiệm thật và giữ được khi có sự kiện."
         },
         "right": {
-          "label": "Moral Hazard",
-          "text": "Xảy ra SAU khi mua bảo hiểm - người được bảo hiểm hành xử rủi ro hơn vì biết đã có bảo hiểm chi trả. Kiểm soát bằng đồng chi trả/miễn thường (deductible)"
+          "label": "Gom chung theo lập luận",
+          "text": "Đúng về lý thuyết và chưa ai đo. Tiết kiệm trong vài tháng, rồi hỏng tất cả cùng lúc trong một sự kiện."
         }
       },
       {
         "type": "closing",
         "lines": [
-          "Hiểu được risk pooling, dự phòng nghiệp vụ, và hai vấn đề thông tin bất cân xứng này là nền tảng để hiểu bất kỳ khía cạnh nào khác của ngành bảo hiểm - từ định phí đến quản lý rủi ro đến quy định pháp lý.",
-          "Đây cũng là lý do actuary (chuyên viên định phí bảo hiểm) là một trong những nghề đòi hỏi kỹ năng toán học/thống kê cao nhất trong ngành tài chính."
+          "Gom dự phòng rẻ hơn đúng bằng mức độ các đỉnh không trùng nhau.",
+          "Thứ tự ưu tiên khi kho chung cạn phải viết trước, không quyết lúc đang cạn."
         ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "Nhiều người cùng đóng phí → gộp rủi ro",
-        "arrow": true
+        "question": "Điều kiện để gom dự phòng dùng chung tiết kiệm được là gì?",
+        "options": [
+          "Các đỉnh của từng dịch vụ phải độc lập với nhau",
+          "Các dịch vụ phải có quy mô tương đương",
+          "Kho dự phòng chung phải đủ lớn để chứa được đỉnh của dịch vụ lớn nhất trong nhóm",
+          "Các dịch vụ phải chạy trên cùng một loại hạ tầng để dung lượng chuyển đổi được cho nhau"
+        ],
+        "correct": 0,
+        "explanation": "Phương án cuối là điều kiện kỹ thuật để gom chung khả thi. Điều kiện đầu là điều kiện để nó có ích: nếu mọi đỉnh trùng nhau thì kho chung phải bằng tổng các đỉnh riêng, và không tiết kiệm được gì."
       },
       {
-        "label": "Định phí dựa trên xác suất tổn thất kỳ vọng",
-        "arrow": true
+        "question": "Nguyên nhân nào làm các đỉnh trùng nhau và dễ sửa nhất?",
+        "options": [
+          "Công việc định kỳ đều đặt vào nửa đêm",
+          "Người dùng có nhịp hoạt động chung",
+          "Các dịch vụ cùng gọi tới một phụ thuộc nên chúng cùng chậm lại khi phụ thuộc đó chậm",
+          "Các đợt phát hành của nhiều đội thường được xếp vào cùng một khung giờ trong tuần"
+        ],
+        "correct": 0,
+        "explanation": "Không có lý do kỹ thuật nào để mọi công việc định kỳ chạy đúng nửa đêm - đó chỉ là giá trị mặc định không ai đổi. Rải chúng ra vài giờ là cách rẻ nhất làm các đỉnh độc lập hơn, và nó không cần đổi gì về kiến trúc."
       },
       {
-        "label": "Trích dự phòng nghiệp vụ cho nghĩa vụ tương lai",
-        "arrow": true
+        "question": "Cách kiểm tra điều kiện độc lập là gì?",
+        "options": [
+          "Vẽ lượng dùng từng dịch vụ theo giờ và xem đỉnh có rơi cùng chỗ không",
+          "Tính tương quan giữa các chỉ số hiệu năng",
+          "Hỏi từng đội về khung giờ cao điểm mà dịch vụ của họ thường gặp trong tuần",
+          "Xem lại lịch sử các lần kho dự phòng chung bị cạn để tìm ra mẫu hình lặp lại"
+        ],
+        "correct": 0,
+        "explanation": "Phương án cuối cũng dùng dữ liệu nhưng nó chờ vấn đề xảy ra trước. Vẽ theo giờ thì trả lời được ngay hôm nay, mất một buổi, và nó cũng chỉ luôn ra dịch vụ nào nên bị tách khỏi kho chung."
       },
       {
-        "label": "Đầu tư phần phí chưa dùng (float)",
-        "arrow": true
+        "question": "Vì sao thứ tự ưu tiên khi kho chung cạn phải viết trước?",
+        "options": [
+          "Vì quyết định lúc đang cạn nghiêng về đội lên tiếng to nhất",
+          "Vì lúc đó không còn thời gian để họp",
+          "Vì các đội cần biết trước mức dự phòng mà họ được đảm bảo để lập kế hoạch cho mình",
+          "Vì việc thay đổi thứ tự ưu tiên trong lúc sự cố đang diễn ra có thể gây thêm lỗi mới"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều đúng và đều là lý do thực tế. Lý do đầu là lý do quyết định: dưới áp lực, thứ tự thực tế luôn được xác lập bởi mức độ ồn ào chứ không bởi mức độ quan trọng, và không ai nhận ra điều đó đang xảy ra."
       },
       {
-        "label": "Chi trả khi có sự kiện được bảo hiểm",
-        "arrow": false
+        "question": "Mười hai dịch vụ cùng chạm đỉnh vì một đợt gửi thông báo. Điều gì đã sai trong thiết kế?",
+        "options": [
+          "Mô hình giả định các đỉnh độc lập mà không ai kiểm lại giả định đó",
+          "Kho dự phòng chung được đặt quá nhỏ",
+          "Đợt gửi thông báo đã không được thông báo trước cho đội vận hành hạ tầng chung",
+          "Các dịch vụ đã không có cơ chế giới hạn tốc độ để tự bảo vệ khi lượng yêu cầu tăng vọt"
+        ],
+        "correct": 0,
+        "explanation": "Ba vấn đề kia đều có thật và đều là hệ quả. Sai lầm gốc nằm ở chỗ một giả định định lượng được dùng làm nền cho cả mô hình mà chưa từng được đo, nên không ai biết nó đúng tới đâu."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Gom dự phòng rẻ hơn đúng bằng mức độ các đỉnh không trùng nhau",
+      "Công việc định kỳ đặt cùng một mốc là nguyên nhân dễ sửa nhất",
+      "Kiểm điều kiện độc lập bằng dữ liệu theo giờ, mất một buổi",
+      "Viết trước thứ tự ưu tiên khi kho chung cạn"
+    ],
+    "practicePrompt": {
+      "question": "10 dịch vụ, mỗi cái đỉnh 100 đơn vị, đỉnh xảy ra ngẫu nhiên độc lập và mỗi lúc chỉ khoảng 3 dịch vụ chạm đỉnh. Kho chung cần bao nhiêu?",
+      "options": [
+        "Khoảng 300",
+        "1.000",
+        "500, tức một nửa tổng các đỉnh để có biên an toàn rộng cho những trường hợp bất thường",
+        "100, tức đúng bằng đỉnh của một dịch vụ vì mỗi lúc chỉ một cái cần dùng tới dự phòng"
+      ],
+      "correct": 0,
+      "explanation": "Ba dịch vụ chạm đỉnh cùng lúc nhân 100 ra 300, tức chưa tới một phần ba của 1.000. Khoảng cách giữa 300 và 1.000 chính là toàn bộ khoản tiết kiệm, và nó biến mất hoàn toàn vào ngày cả mười cùng chạm đỉnh."
+    },
+    "summary": {
+      "keyIdea": "Gom dự phòng chỉ tiết kiệm khi các đỉnh độc lập, và điều đó đo được",
+      "commonMistake": "Chấp nhận giả định độc lập bằng lập luận thay vì bằng dữ liệu",
+      "action": "Vẽ lượng dùng theo giờ của ba dịch vụ đội bạn giữ và xem đỉnh có trùng không."
+    },
+    "application": {
+      "title": "Ba việc trước khi gom",
+      "message": "Đo đỉnh theo giờ của từng dịch vụ. Rải công việc định kỳ ra khỏi cùng một mốc. Viết thứ tự ưu tiên khi kho cạn.",
+      "secondary": "Việc thứ hai thường một mình nó đã đủ để mô hình gom chung đứng vững hơn hẳn."
+    },
+    "id": 1232,
+    "slug": "bao-hiem-la-gi-mo-hinh-kinh-doanh",
+    "track": "professional"
   },
   {
     "id": 1233,
@@ -71946,316 +72024,266 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1241,
-    "slug": "prospect-theory-khung-ly-thuyet-chinh-thuc",
-    "title": "Prospect Theory: Khung lý thuyết chính thức đằng sau mọi thiên kiến hành vi",
-    "subtitle": "Hàm giá trị bất đối xứng, hiệu ứng phản chiếu, và cách Kahneman-Tversky mô hình hóa toán học sự phi lý của con người",
+    "slug": "ac-cam-mat-mat-va-hieu-ung-dong-khung",
+    "title": "Ác cảm mất mát và hiệu ứng đóng khung",
+    "subtitle": "Mất một thứ đang có đau hơn không nhận được thứ tương đương, và cách hỏi quyết định câu trả lời",
     "duration": "8 phút",
-    "difficulty": "Khó",
-    "emoji": "📐",
+    "difficulty": "Trung bình",
+    "emoji": "⚖️",
     "track": "professional",
-    "openingQuestion": "Prospect Theory (Lý thuyết triển vọng) khác với Expected Utility Theory (Lý thuyết thỏa dụng kỳ vọng) - nền tảng của kinh tế học cổ điển - ở điểm cốt lõi nào?",
+    "interactiveType": "prospect",
+    "whyItMatters": "Hai đề xuất giống hệt nhau về mặt con số nhận được hai câu trả lời khác nhau tuỳ vào cách chúng được trình bày. Điều đó xảy ra trong mọi buổi họp kỹ thuật, và nó giải thích vì sao những hệ thống rõ ràng đáng thay vẫn được giữ lại nhiều năm.",
+    "openingQuestion": "Vì sao đội thường giữ một hệ thống cũ dù phương án thay thế tốt hơn rõ ràng?",
     "openingOptions": [
-      "Prospect Theory chỉ áp dụng cho các khoản đầu tư có giá trị rất lớn",
-      "Đánh giá theo lỗ/lãi so với một điểm tham chiếu, hàm giá trị bất đối xứng",
-      "Prospect Theory chỉ đúng trong phòng thí nghiệm, không áp dụng được cho thị trường tài chính thực tế",
-      "Hai lý thuyết này hoàn toàn giống nhau, chỉ khác tên gọi"
+      "Vì mất thứ đang chạy được cảm nhận nặng hơn phần cải thiện tương đương",
+      "Vì chi phí chuyển đổi thường cao hơn so với lợi ích thu được trong ngắn hạn",
+      "Vì đội đã quen với hệ thống cũ nên năng suất sẽ giảm trong giai đoạn đầu",
+      "Vì rủi ro kỹ thuật của việc thay thế khó ước lượng chính xác từ trước"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là bước đột phá cốt lõi của Kahneman và Tversky (1979): thay vì đánh giá tài sản CUỐI CÙNG như lý thuyết thỏa dụng cổ điển, con người đánh giá GAIN/LOSS SO VỚI MỘT ĐIỂM THAM CHIẾU (thường là hiện trạng - status quo, hoặc giá mua). Hàm giá trị (value function) trong Prospect Theory có hình chữ S bất đối xứng: lõm (risk-averse) ở vùng lãi, lồi (risk-seeking) ở vùng lỗ, và DỐC HƠN NHIỀU ở vùng lỗ so với vùng lãi - đây chính là công thức toán học đằng sau hiện tượng ác cảm mất mát.",
+    "correctOption": 0,
+    "explanation": "Ba lý do kia đều có thật và đều được đưa ra thành lời trong các buổi thảo luận, nên chúng được cân nhắc. Thứ không được nói ra là mức độ bất đối xứng trong cách chúng ta cảm nhận: mất một thứ đang hoạt động gây khó chịu mạnh hơn nhiều so với niềm vui khi nhận được một cải thiện cùng độ lớn. Hệ quả là khi so một hệ thống đang chạy với một phương án tốt hơn, phần rủi ro mất mát được nhân lên trong đầu mọi người trong khi phần cải thiện thì không. Đây là lý do những quyết định thay thế cần một khoảng chênh lệch lớn bất thường mới được thông qua, và cũng là lý do chúng thường được thông qua muộn hơn mức hợp lý vài năm.",
+    "diagram": [
+      { "label": "So sánh: hệ thống đang chạy và phương án tốt hơn", "arrow": true },
+      { "label": "Phần rủi ro mất mát được nhân lên trong đầu", "arrow": true },
+      { "label": "Phần cải thiện thì không được nhân lên", "arrow": true },
+      { "label": "Cần chênh lệch lớn bất thường mới đủ để đổi" }
+    ],
     "realWorldExample": {
-      "company": "Giải Nobel Kinh tế 2002 và ứng dụng trong Risk Management",
-      "description": "Daniel Kahneman nhận giải Nobel Kinh tế năm 2002 (dù là nhà tâm lý học, không phải nhà kinh tế học) chính vì Prospect Theory - một trong những lý thuyết được trích dẫn nhiều nhất trong lịch sử kinh tế học hiện đại. Các quỹ đầu tư định lượng (quant funds) hiện nay tích hợp trực tiếp các tham số của Prospect Theory (hệ số ác cảm mất mát, độ cong hàm giá trị) vào mô hình rủi ro để dự báo hành vi của nhà đầu tư trong các kịch bản thị trường khác nhau, thay vì chỉ dùng lý thuyết thỏa dụng kỳ vọng cổ điển."
+      "company": "Hai cách trình bày cùng một đề xuất",
+      "description": "Một đề xuất chuyển sang cách triển khai mới được trình bày là sẽ giúp rút thời gian phát hành từ bốn mươi phút xuống mười phút, và bị hoãn hai quý liền. Trình bày lại là mỗi tuần chúng ta đang mất năm giờ công vì cách làm hiện tại, cùng con số, và được duyệt trong buổi họp đó. Không dữ liệu nào thay đổi giữa hai lần."
     },
     "quiz": [
       {
-        "question": "'Điểm tham chiếu' (reference point) trong Prospect Theory có thể thay đổi như thế nào, và tại sao điều này quan trọng đối với nhà quản lý danh mục?",
+        "question": "Đóng khung một đề xuất theo hướng tránh mất mát có vấn đề gì?",
         "options": [
-          "Điểm tham chiếu luôn cố định là 0 (không có tài sản gì) trong mọi trường hợp",
-          "Điểm tham chiếu thường là hiện trạng (status quo) hoặc kỳ vọng gần nhất của nhà đầu tư (giá mua, mức đỉnh gần nhất, benchmark) - và có thể DỊCH CHUYỂN theo thời gian (adaptation), nghĩa là một khách hàng có thể coi một khoản lỗ 10% là 'bình thường' nếu benchmark của họ đã giảm 15%, dù về giá trị tuyệt đối vẫn là một khoản lỗ - hiểu điểm tham chiếu của khách hàng giúp portfolio manager giao tiếp rủi ro hiệu quả hơn",
-          "Điểm tham chiếu không có ứng dụng thực tế nào trong quản lý danh mục chuyên nghiệp",
-          "Điểm tham chiếu chỉ áp dụng cho nhà đầu tư cá nhân, không áp dụng cho tổ chức"
+          "Nó hiệu quả cả khi đề xuất đó không đáng làm",
+          "Nó tạo áp lực tâm lý khiến người quyết định cảm thấy bị thúc ép",
+          "Nó bỏ qua các lợi ích tích cực mà đề xuất mang lại cho đội trong dài hạn",
+          "Nó khó áp dụng với những đề xuất không có thiệt hại rõ ràng để chỉ ra"
         ],
-        "correct": 1,
-        "explanation": "Hiểu điểm tham chiếu là công cụ thực tế quan trọng cho PM: khách hàng không đánh giá hiệu suất danh mục trong chân không, mà so với MỘT ĐIỂM THAM CHIẾU cụ thể (thường là benchmark, đỉnh tài khoản gần nhất, hoặc kỳ vọng ban đầu). Một danh mục giảm 10% có thể được coi là 'thành công tương đối' nếu benchmark giảm 20%, hoặc 'thất bại' nếu benchmark chỉ giảm 2% - communication hiệu quả với khách hàng cần định hình đúng điểm tham chiếu."
+        "correct": 0,
+        "explanation": "Đây là lý do kỹ thuật này đáng biết theo cả hai chiều. Nó làm những đề xuất đúng được duyệt, và nó cũng làm những đề xuất sai được duyệt với cùng hiệu lực - vì nó tác động lên cách cảm nhận chứ không lên nội dung. Biết nó tồn tại là cách duy nhất nhận ra khi mình đang bị nó thuyết phục."
       },
       {
-        "question": "'Hiệu ứng phản chiếu' (reflection effect) trong Prospect Theory dự đoán điều gì về hành vi chấp nhận rủi ro khi đối mặt với LÃI so với khi đối mặt với LỖ?",
+        "question": "Cách nào giảm được ảnh hưởng của ác cảm mất mát khi ra quyết định?",
         "options": [
-          "Con người luôn chấp nhận rủi ro như nhau bất kể đang ở vùng lãi hay lỗ",
-          "Con người có xu hướng NÉ TRÁNH rủi ro (risk-averse) khi đối mặt với lựa chọn trong VÙNG LÃI (thích một khoản lãi chắc chắn nhỏ hơn một canh bạc lãi lớn hơn nhưng không chắc), nhưng lại TÌM KIẾM rủi ro (risk-seeking) khi đối mặt với lựa chọn trong VÙNG LỖ (thích một canh bạc có thể tránh lỗ hoàn toàn hơn một khoản lỗ chắc chắn nhỏ hơn) - đây là lý do nhà đầu tư giữ cổ phiếu lỗ 'đánh cược' vào khả năng phục hồi thay vì chốt lỗ chắc chắn",
-          "Con người luôn né tránh rủi ro trong mọi tình huống, bất kể lãi hay lỗ",
-          "Hiệu ứng phản chiếu chỉ áp dụng cho các khoản tiền rất nhỏ"
+          "Hỏi ngược lại: nếu chưa có gì, hôm nay ta sẽ chọn phương án nào",
+          "Liệt kê đầy đủ ưu nhược điểm của cả hai phương án rồi so sánh có hệ thống",
+          "Mời người ngoài đội đánh giá cho khách quan",
+          "Thử nghiệm phương án mới ở quy mô nhỏ trước khi ra quyết định cuối cùng"
         ],
-        "correct": 1,
-        "explanation": "Reflection effect giải thích trực tiếp disposition effect ở cấp độ lý thuyết: khi đối mặt với khoản LÃI, não bộ risk-averse (thích 'ăn chắc' - chốt lời sớm); khi đối mặt với khoản LỖ, não bộ risk-seeking (thích 'đánh cược' chờ hồi phục thay vì chốt lỗ chắc chắn). Đây là lý do tại sao đơn thuần 'biết' về ác cảm mất mát chưa đủ để hiểu tại sao hành vi khác nhau hoàn toàn ở hai vùng lãi/lỗ - cần hiểu cơ chế reflection effect."
+        "correct": 0,
+        "explanation": "Câu hỏi này xoá điểm tham chiếu, và điểm tham chiếu chính là thứ tạo ra sự bất đối xứng. Ba cách kia đều hữu ích và đều diễn ra trong khi hệ thống hiện tại vẫn ngồi ở vị trí mặc định - nên chúng cải thiện chất lượng thông tin mà không chạm tới cơ chế gây lệch."
       },
       {
-        "question": "'Probability weighting function' (hàm trọng số xác suất) trong Prospect Theory cho thấy con người xử lý xác suất THẤP và xác suất CAO như thế nào so với xác suất thực tế?",
+        "question": "Chi phí đã bỏ ra cho hệ thống cũ nên đóng vai trò gì trong quyết định?",
         "options": [
-          "Con người luôn đánh giá xác suất chính xác 100% theo đúng con số toán học",
-          "Con người có xu hướng ĐỊNH GIÁ CAO các xác suất THẤP (ví dụ, coi 1% khả năng trúng số như thể nó cao hơn thực tế - giải thích tại sao vé số vẫn bán chạy dù kỳ vọng toán học âm) và ĐỊNH GIÁ THẤP các xác suất CAO/gần chắc chắn (coi 99% như thể không hoàn toàn chắc chắn) - đây là cơ sở giải thích cả hành vi mua bảo hiểm (né tránh rủi ro thấp nhưng hậu quả nghiêm trọng) VÀ hành vi mua vé số (tìm kiếm rủi ro thấp nhưng phần thưởng lớn)",
-          "Con người luôn đánh giá thấp mọi loại xác suất bất kể cao hay thấp",
-          "Hàm trọng số xác suất không có ứng dụng thực tế trong tài chính"
+          "Không vai trò nào, vì nó không quay lại dù bạn giữ hay bỏ",
+          "Vai trò tham khảo để đánh giá mức độ đầu tư đã thực hiện cho hệ thống đó",
+          "Vai trò quan trọng, cần tận dụng thứ đã xây",
+          "Vai trò cân nhắc khi so sánh với chi phí dự kiến của phương án thay thế"
         ],
-        "correct": 1,
-        "explanation": "Đây là một trong những phần tinh vi nhất của Prospect Theory: hàm trọng số xác suất (probability weighting function) không tuyến tính - biến dạng xác suất thấp thành cảm giác 'khả dĩ hơn' thực tế, và xác suất cao thành cảm giác 'kém chắc chắn hơn' thực tế. Điều này giải thích một nghịch lý: cùng một người vừa mua bảo hiểm (trả phí để tránh một rủi ro có xác suất thấp nhưng hậu quả nghiêm trọng) vừa mua vé số (trả tiền để theo đuổi một cơ hội có xác suất thấp nhưng phần thưởng lớn) - cả hai hành vi đều nhất quán với việc định giá cao bất thường các xác suất thấp."
+        "correct": 0,
+        "explanation": "Hai năm công đã bỏ vào hệ thống cũ không quay lại trong cả hai trường hợp, nên nó không phân biệt được hai phương án. Điều làm nó khó bỏ qua là nó cũng bị cảm nhận như một khoản mất mát - hai thiên kiến cộng hưởng với nhau ở đúng chỗ này."
+      },
+      {
+        "question": "Vì sao cùng một xác suất được trình bày khác nhau lại đổi quyết định?",
+        "options": [
+          "Vì chín mươi phần trăm thành công và mười phần trăm thất bại kích hoạt hai hệ quy chiếu",
+          "Vì người nghe thường không hiểu rõ ý nghĩa của các con số xác suất được đưa ra",
+          "Vì cách trình bày thứ hai nhấn mạnh vào rủi ro nên tạo cảm giác thận trọng hơn",
+          "Vì con số phần trăm nhỏ hơn dễ bị đánh giá thấp hơn mức thực tế của nó"
+        ],
+        "correct": 0,
+        "explanation": "Hai câu ấy tương đương về mặt toán học và không tương đương về mặt cảm nhận: một câu đặt bạn ở vùng được, câu kia đặt bạn ở vùng mất, và con người chấp nhận rủi ro khác nhau ở hai vùng. Đây là lý do một báo cáo nên nêu cả hai cách diễn đạt khi con số quan trọng."
+      },
+      {
+        "question": "Dấu hiệu nào cho thấy quyết định đang bị đóng khung chi phối?",
+        "options": [
+          "Đảo cách diễn đạt sang chiều còn lại thì cảm giác về nó đổi hẳn",
+          "Cuộc thảo luận tập trung nhiều vào rủi ro hơn là vào lợi ích của phương án",
+          "Người trình bày dùng nhiều số liệu",
+          "Quyết định được đưa ra nhanh hơn so với các quyết định tương tự trước đó"
+        ],
+        "correct": 0,
+        "explanation": "Đây là phép thử trực tiếp và làm được ngay trong buổi họp: viết lại cùng nội dung theo chiều ngược lại rồi hỏi mình có thấy khác không. Nếu có thì cách trình bày đang làm một phần việc mà lẽ ra dữ liệu phải làm."
       }
-    ],
-    "keyTakeaways": [
-      "Prospect Theory: con người đánh giá gain/loss SO VỚI ĐIỂM THAM CHIẾU, không phải tài sản cuối cùng tuyệt đối - khác biệt cốt lõi so với Expected Utility Theory cổ điển",
-      "Hàm giá trị bất đối xứng: dốc hơn ở vùng lỗ so với vùng lãi - công thức toán học đằng sau ác cảm mất mát",
-      "Hiệu ứng phản chiếu: risk-averse trong vùng lãi, risk-seeking trong vùng lỗ - giải thích trực tiếp disposition effect",
-      "Hàm trọng số xác suất phi tuyến tính: định giá cao xác suất thấp (giải thích cả mua bảo hiểm và mua vé số), định giá thấp xác suất cao"
     ],
     "practicePrompt": {
-      "question": "Một khách hàng của bạn có danh mục đầu tư đã giảm 15% so với đỉnh (điểm tham chiếu tâm lý của họ), dù vẫn lãi 20% so với vốn gốc ban đầu (đầu tư 3 năm trước). Khách hàng rất lo lắng và muốn bán tháo toàn bộ. Dựa trên Prospect Theory, làm sao để giải thích hành vi này và tư vấn hiệu quả?",
+      "question": "Đội bạn đang cân nhắc thay một thư viện cũ. Câu hỏi nào giúp nhìn rõ nhất?",
       "options": [
-        "Khách hàng đang phi lý hoàn toàn vì vẫn đang lãi 20%, nên bỏ qua lo lắng của họ",
-        "Họ neo tham chiếu vào đỉnh gần nhất nên đọc mức giảm 15% như một khoản lỗ",
-        "Nên đồng ý bán ngay lập tức theo yêu cầu của khách hàng mà không cần phân tích thêm",
-        "Prospect Theory nói lỗ đau gấp đôi lãi, nên khuyên bán để chặn lỗ là đúng"
+        "Nếu hôm nay bắt đầu từ đầu, ta sẽ chọn thư viện nào",
+        "Chi phí chuyển đổi so với lợi ích thu được trong mười hai tháng tới là bao nhiêu",
+        "Thư viện cũ còn được hỗ trợ bao lâu",
+        "Có bao nhiêu chỗ trong hệ thống đang phụ thuộc trực tiếp vào thư viện đó"
       ],
-      "correct": 1,
-      "explanation": "Đây là ứng dụng thực hành quan trọng của Prospect Theory trong nghề portfolio management/wealth advisory: hiểu rằng điểm tham chiếu của khách hàng (đỉnh gần nhất) khác với điểm tham chiếu 'khách quan' (vốn gốc) giúp PM giao tiếp hiệu quả hơn - không phải để 'thao túng' cảm xúc khách hàng, mà để giúp họ nhìn nhận tình huống với đầy đủ bối cảnh, tránh ra quyết định phi lý do bị chi phối bởi một điểm tham chiếu tâm lý ngắn hạn."
+      "correct": 0,
+      "explanation": "Ba câu kia đều cần thiết và đều được hỏi trong khi thư viện hiện tại vẫn ngồi ở vị trí mặc định. Câu này bỏ vị trí mặc định đi, và nó thường cho ra câu trả lời khác hẳn với cùng bộ dữ liệu."
     },
+    "keyTakeaways": [
+      "Mất thứ đang có được cảm nhận nặng hơn nhận được thứ tương đương",
+      "Cùng một đề xuất, hai cách đóng khung cho hai quyết định khác nhau",
+      "Chi phí đã bỏ ra không phân biệt được hai phương án, và nó vẫn khó bỏ qua",
+      "Phép thử: đảo cách diễn đạt sang chiều ngược lại xem cảm giác có đổi không"
+    ],
     "summary": {
-      "keyIdea": "Prospect Theory là khung lý thuyết toán học chính thức mô tả cách con người thực sự ra quyết định dưới rủi ro - dựa trên gain/loss so với điểm tham chiếu, với hàm giá trị bất đối xứng và hàm trọng số xác suất phi tuyến tính, thay vì lý thuyết thỏa dụng kỳ vọng cổ điển.",
-      "commonMistake": "Giả định khách hàng/nhà đầu tư luôn đánh giá tài sản theo giá trị tuyệt đối, bỏ qua vai trò quyết định của điểm tham chiếu tâm lý trong hành vi thực tế",
-      "action": "Khi phân tích hành vi của khách hàng hoặc thị trường, luôn xác định rõ ĐIỂM THAM CHIẾU đang được sử dụng (vốn gốc, đỉnh gần nhất, benchmark) trước khi đánh giá quyết định của họ là 'hợp lý' hay 'phi lý'"
+      "keyIdea": "Cách một lựa chọn được trình bày làm một phần việc mà lẽ ra dữ liệu phải làm",
+      "commonMistake": "So hệ thống đang chạy với phương án mới trong khi hệ thống cũ ngồi ở vị trí mặc định",
+      "action": "Trước mỗi quyết định thay thế, hỏi: nếu hôm nay bắt đầu từ đầu, ta sẽ chọn cái nào."
     },
     "application": {
-      "title": "Áp dụng vào công việc phân tích/quản lý danh mục",
-      "message": "Khi xây dựng báo cáo hiệu suất cho khách hàng, cân nhắc trình bày nhiều điểm tham chiếu khác nhau (vốn gốc, benchmark, đỉnh gần nhất) để giúp khách hàng có cái nhìn đầy đủ, thay vì chỉ để họ tự neo vào điểm tham chiếu cảm xúc nhất.",
-      "secondary": "Bài tiếp theo sẽ áp dụng Prospect Theory và các thiên kiến liên quan vào phân tích hành vi của các nhà phân tích equity chuyên nghiệp - vì ngay cả chuyên gia cũng không miễn nhiễm với những thiên kiến này."
+      "title": "Một câu hỏi xoá điểm tham chiếu",
+      "message": "Với mọi quyết định giữ hay đổi, hỏi nếu chưa có gì thì hôm nay ta chọn phương án nào. Câu trả lời thường khác với cùng bộ dữ liệu.",
+      "secondary": "Khi đọc một đề xuất, viết lại nó theo chiều ngược lại một lần - nếu cảm giác đổi thì cách trình bày đang thuyết phục thay cho con số."
     },
     "sections": [
-      {
-        "type": "lead",
-        "text": "Mọi thiên kiến hành vi đã học ở chặng Tài chính cá nhân đều có một nền tảng toán học chung - Prospect Theory. Hiểu được khung lý thuyết này giúp chuyên viên tài chính không chỉ nhận diện thiên kiến, mà còn dự đoán và mô hình hóa được chúng."
-      },
-      {
-        "type": "heading",
-        "text": "Từ Expected Utility Theory đến Prospect Theory"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kinh tế học cổ điển dựa trên Expected Utility Theory (lý thuyết thỏa dụng kỳ vọng): con người tối đa hóa thỏa dụng kỳ vọng dựa trên TÀI SẢN CUỐI CÙNG, với hàm thỏa dụng lõm nhất quán (risk-averse ở mọi mức tài sản). Kahneman và Tversky (1979) thách thức giả định này bằng hàng loạt thí nghiệm cho thấy con người thực tế đánh giá GAIN/LOSS SO VỚI MỘT ĐIỂM THAM CHIẾU, không phải tài sản tuyệt đối - một khác biệt tưởng nhỏ nhưng thay đổi hoàn toàn cách dự đoán hành vi con người dưới rủi ro."
-      },
-      {
-        "type": "heading",
-        "text": "Ba đặc điểm cốt lõi của Hàm Giá trị (Value Function)"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Định hình theo điểm tham chiếu (reference-dependent): đánh giá dựa trên gain/loss, không phải tài sản tuyệt đối",
-          "Ác cảm mất mát (loss aversion): hàm giá trị dốc hơn ở vùng lỗ so với vùng lãi - lỗ 'đau' hơn lãi 'vui' với cùng độ lớn",
-          "Độ nhạy giảm dần (diminishing sensitivity): sự khác biệt giữa lãi 100 và 200 cảm thấy lớn hơn sự khác biệt giữa lãi 1100 và 1200, dù cùng là chênh lệch 100 - tạo ra hình dạng cong lõm ở vùng lãi, lồi ở vùng lỗ"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Hàm Trọng số Xác suất (Probability Weighting Function)"
-      },
-      {
-        "type": "paragraph",
-        "text": "Phần ít được biết đến hơn nhưng quan trọng không kém của Prospect Theory: con người không xử lý xác suất một cách tuyến tính. Xác suất thấp (như 1%) được 'định giá' cao hơn giá trị thực của nó trong tâm lý, trong khi xác suất cao (như 99%) được 'định giá' thấp hơn. Đây là lý do các sự kiện 'đuôi' (tail events) - dù rất hiếm - vẫn ảnh hưởng mạnh đến hành vi ra quyết định của con người, một insight quan trọng cho risk management và thiết kế sản phẩm bảo hiểm/đầu tư."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Prospect Theory không chỉ là lý thuyết học thuật - nó là công cụ dự đoán thực tế được tích hợp vào mô hình rủi ro của các quỹ đầu tư định lượng hàng đầu thế giới.",
-          "Hiểu được nền tảng toán học này giúp chuyên viên tài chính chuyển từ việc chỉ 'nhận diện' thiên kiến sang thực sự 'dự đoán và định lượng' tác động của chúng lên quyết định đầu tư."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Từ điểm tham chiếu, không từ mức tài sản tuyệt đối",
-        "arrow": true
-      },
-      {
-        "label": "Hàm giá trị lồi ở vùng lỗ, lõm ở vùng lãi",
-        "arrow": true
-      },
-      {
-        "label": "Độ dốc phía lỗ dựng hơn phía lãi (ác cảm mất mát)",
-        "arrow": true
-      },
-      {
-        "label": "Hàm trọng số xác suất: phóng đại xác suất rất nhỏ",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
+      { "type": "lead", "text": "Hai đề xuất giống hệt nhau về con số nhận được hai câu trả lời khác nhau tuỳ cách trình bày. Điều đó không phải chuyện của tâm lý học ứng dụng ở đâu xa - nó xảy ra trong mọi buổi họp kỹ thuật." },
+      { "type": "heading", "text": "Bất đối xứng giữa mất và được" },
+      { "type": "paragraph", "text": "Mất một thứ đang hoạt động gây khó chịu mạnh hơn nhiều so với niềm vui khi nhận được một cải thiện cùng độ lớn. Khi so một hệ thống đang chạy với phương án tốt hơn, phần rủi ro mất mát được nhân lên trong đầu mọi người còn phần cải thiện thì không. Kết quả là quyết định thay thế cần một chênh lệch lớn bất thường mới được thông qua." },
+      { "type": "list", "items": [
+        "Điểm tham chiếu quyết định thứ gì được coi là mất và thứ gì được coi là được",
+        "Đóng khung theo hướng tránh mất mát hiệu quả cả khi đề xuất không đáng làm",
+        "Chi phí đã bỏ ra không phân biệt hai phương án, và nó cũng bị cảm nhận như mất mát",
+        "Cùng một xác suất, hai cách diễn đạt đặt người nghe ở hai vùng khác nhau"
+      ]},
+      { "type": "heading", "text": "Xoá điểm tham chiếu" },
+      { "type": "paragraph", "text": "Cách xử lý hiệu quả nhất không phải là cố gắng khách quan hơn, mà là đổi câu hỏi. Nếu hôm nay chưa có gì và phải chọn từ đầu, ta sẽ chọn phương án nào - câu ấy bỏ đi vị trí mặc định của hệ thống hiện tại, và vị trí mặc định chính là thứ tạo ra toàn bộ sự bất đối xứng." },
+      { "type": "callout", "label": "Kỹ thuật này hiệu quả cả khi bạn sai", "text": "Đóng khung một đề xuất theo hướng chúng ta đang mất năm giờ mỗi tuần thuyết phục hơn hẳn so với chúng ta sẽ tiết kiệm được năm giờ mỗi tuần, và nó thuyết phục như nhau bất kể đề xuất có đáng làm hay không. Vì vậy biết nó tồn tại có hai công dụng: trình bày rõ hơn khi bạn đúng, và nhận ra khi ai đó đang dùng nó với bạn." },
+      { "type": "closing", "lines": [
+        "Dữ liệu không tự nói; cách nó được đặt vào câu quyết định phần lớn điều người nghe rút ra.",
+        "Bài sau: khi cả đội cùng đồng ý rất nhanh, đó là tín hiệu chứ không phải sự xác nhận."
+      ]}
+    ]
   },
   {
     "id": 1242,
-    "slug": "thien-kien-hanh-vi-trong-phan-tich-equity",
-    "title": "Thiên kiến hành vi trong phân tích Equity: Khi chuyên gia cũng sai",
-    "subtitle": "Overconfidence, herding, và analyst optimism bias - tại sao dự báo của các nhà phân tích chuyên nghiệp vẫn hệ thống thiên lệch",
+    "slug": "khi-ca-doi-dong-y-qua-nhanh",
+    "title": "Khi cả đội đồng ý quá nhanh",
+    "subtitle": "Đồng thuận nhanh là một tín hiệu cần kiểm, không phải một sự xác nhận",
     "duration": "8 phút",
-    "difficulty": "Khó",
-    "emoji": "📊",
+    "difficulty": "Trung bình",
+    "emoji": "👥",
     "track": "professional",
-    "openingQuestion": "Nghiên cứu học thuật dài hạn về dự báo EPS (thu nhập trên mỗi cổ phiếu) của các nhà phân tích equity chuyên nghiệp trên Phố Wall cho thấy điều gì mang tính hệ thống?",
+    "whyItMatters": "Một quyết định được cả đội gật đầu trong ba phút cho cảm giác chắc chắn hơn nhiều so với một quyết định phải tranh luận hai buổi. Cảm giác ấy đi ngược với thực tế trong phần lớn trường hợp, và nó là cơ chế đứng sau những sai lầm mà sau đó không ai giải thích nổi vì sao không ai lên tiếng.",
+    "openingQuestion": "Cả đội đồng ý rất nhanh với một phương án kỹ thuật nghĩa là gì?",
     "openingOptions": [
-      "Dự báo của các nhà phân tích luôn chính xác gần như tuyệt đối nhờ đào tạo chuyên môn cao",
-      "Dự báo lạc quan thiên lệch một cách hệ thống, nhất là ở dự báo dài hạn",
-      "Dự báo luôn bi quan hơn kết quả thực tế vì các nhà phân tích quá thận trọng",
-      "Không có sự khác biệt đáng kể nào giữa dự báo và kết quả thực tế"
+      "Có thể mọi người đều thấy đúng, hoặc chưa ai nghĩ độc lập về nó",
+      "Phương án đó rõ ràng là tốt nhất",
+      "Đội đã hiểu chung nên khỏi tranh luận",
+      "Người đề xuất đã chuẩn bị kỹ từ trước"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là một trong những phát hiện được nghiên cứu kỹ nhất trong tài chính hành vi ứng dụng: dự báo EPS dài hạn của sell-side analyst có xu hướng lạc quan thiên lệch một cách HỆ THỐNG, không ngẫu nhiên. Nguyên nhân không chỉ đến từ thiên kiến tâm lý thuần túy (overconfidence, wishful thinking) mà còn từ CƠ CẤU ĐỘNG CƠ (incentive structure): duy trì quan hệ tốt với ban lãnh đạo doanh nghiệp (để tiếp cận thông tin), tạo ra khuyến nghị 'mua' để thúc đẩy giao dịch qua bộ phận môi giới liên kết.",
+    "correctOption": 0,
+    "explanation": "Hai khả năng ấy trông giống hệt nhau từ bên ngoài, và chúng dẫn tới hai kết cục rất khác nhau. Đồng thuận thật hình thành khi nhiều người đã nghĩ riêng rồi gặp nhau ở cùng một chỗ. Đồng thuận giả hình thành khi người đầu tiên nói ra một phương án nghe hợp lý, người thứ hai không có lý do cụ thể để phản đối nên gật, và từ người thứ ba trở đi thì việc phản đối đòi hỏi phải đi ngược cả nhóm. Không ai nói dối, không ai lười, và kết quả là một quyết định được ba người chấp nhận thay vì được ba người kiểm tra. Điều đáng lo là hai trường hợp cho ra cùng một cảm giác chắc chắn, và cảm giác ấy mạnh hơn ở trường hợp thứ hai.",
+    "diagram": [
+      { "label": "Người đầu nêu một phương án nghe hợp lý", "arrow": true },
+      { "label": "Người thứ hai không có lý do cụ thể để phản đối", "arrow": true },
+      { "label": "Từ người thứ ba, phản đối là đi ngược cả nhóm", "arrow": true },
+      { "label": "Ba người chấp nhận, không phải ba người kiểm tra" }
+    ],
     "realWorldExample": {
-      "company": "Tỷ lệ khuyến nghị 'Buy' áp đảo trên Phố Wall",
-      "description": "Nhiều nghiên cứu qua các thập kỷ liên tục cho thấy khuyến nghị 'Buy' (Mua) từ các nhà phân tích sell-side áp đảo hoàn toàn so với khuyến nghị 'Sell' (Bán) - dù về mặt thống kê, một thị trường cân bằng nên có tỷ lệ Mua/Bán gần bằng nhau. Sự mất cân bằng này phản ánh cả thiên kiến tâm lý (không muốn làm mất lòng ban lãnh đạo doanh nghiệp mình phân tích) lẫn động cơ kinh doanh (dễ tạo giao dịch từ khuyến nghị Mua hơn Bán, đặc biệt với khách hàng tổ chức lớn)."
+      "company": "Ba phút và sáu tháng",
+      "description": "Một đội chọn kiến trúc cho dịch vụ mới trong một buổi họp ba phút, tất cả đều đồng ý. Sáu tháng sau, khi vấn đề lộ ra, hai người nói rằng lúc đó họ đã thấy hơi lấn cấn nhưng không nêu vì mọi người khác có vẻ chắc chắn. Cả hai đều lấn cấn ở cùng một chỗ, và không ai biết người kia cũng vậy."
     },
     "quiz": [
       {
-        "question": "'Herding' (tâm lý bầy đàn) trong dự báo của các nhà phân tích equity biểu hiện như thế nào, và tại sao nó xảy ra ngay cả khi mỗi nhà phân tích có động cơ để nổi bật với dự báo riêng biệt?",
+        "question": "Cách nào giúp đồng thuận phản ánh nhiều góc nhìn độc lập?",
         "options": [
-          "Herding không xảy ra trong giới phân tích chuyên nghiệp vì họ luôn phân tích độc lập",
-          "Dự báo của các nhà phân tích có xu hướng HỘI TỤ gần với 'consensus' (dự báo trung bình của thị trường) hơn là phân tán ngẫu nhiên quanh giá trị thực - một phần vì rủi ro nghề nghiệp (career risk): nếu dự báo sai LỆCH KHỎI consensus và kết quả tệ, nhà phân tích chịu trách nhiệm cá nhân rõ ràng hơn nhiều so với khi dự báo sai NHƯNG GIỐNG với đa số đồng nghiệp (an toàn trong đám đông)",
-          "Herding chỉ xảy ra với nhà đầu tư cá nhân thiếu kinh nghiệm, không xảy ra với chuyên gia",
-          "Các nhà phân tích luôn cố ý đưa ra dự báo khác biệt hoàn toàn với đồng nghiệp để thu hút sự chú ý"
+          "Mỗi người viết ý kiến ra trước, rồi mới cùng đọc",
+          "Người dẫn dắt buổi họp phát biểu sau cùng để không định hướng cuộc thảo luận",
+          "Đặt câu hỏi cho từng thành viên theo thứ tự để đảm bảo ai cũng có tiếng nói",
+          "Dành thời gian cho mỗi người trình bày quan điểm riêng trước khi thảo luận"
         ],
-        "correct": 1,
-        "explanation": "Đây là một ví dụ tinh vi của herding có ĐỘNG CƠ NGHỀ NGHIỆP đằng sau (không chỉ thuần túy tâm lý): 'career risk' hay 'reputational risk' khiến các nhà phân tích thà sai CÙNG với đám đông (an toàn - 'ai cũng dự báo sai như vậy') hơn là sai KHÁC BIỆT với đám đông (rủi ro - 'chỉ mình tôi sai'), dù về lý thuyết, dự báo độc lập chính xác mới tạo ra giá trị thực sự cho khách hàng. Đây là lý do dự báo consensus thường 'dính chặt' gần nhau hơn mức độ phân tán hợp lý."
+        "correct": 0,
+        "explanation": "Ba cách kia đều cải thiện và đều diễn ra sau khi người đầu tiên đã nói - tức là ý kiến của mọi người sau đó đều được hình thành trong bối cảnh đã có một phương án trên bàn. Viết ra trước khi nghe là cách duy nhất thu được ý kiến hình thành độc lập thật sự."
       },
       {
-        "question": "'Post-Earnings Announcement Drift' (PEAD - độ trễ phản ứng giá sau công bố lợi nhuận) là một market anomaly liên quan trực tiếp đến thiên kiến hành vi nào của nhà đầu tư/nhà phân tích?",
+        "question": "Người có kinh nghiệm nhất nên phát biểu vào lúc nào?",
         "options": [
-          "PEAD hoàn toàn không liên quan đến thiên kiến hành vi, chỉ là hiện tượng kỹ thuật thị trường",
-          "PEAD phản ánh 'underreaction' (phản ứng chưa đủ/chậm) của thị trường với thông tin mới - khi một công ty công bố lợi nhuận vượt/dưới kỳ vọng đáng kể, giá cổ phiếu tiếp tục điều chỉnh theo hướng đó trong nhiều tuần/tháng sau đó, thay vì điều chỉnh ngay lập tức và đầy đủ như lý thuyết thị trường hiệu quả (efficient market hypothesis) dự đoán - một phần do các nhà phân tích/nhà đầu tư cập nhật dự báo/niềm tin của họ một cách CHẬM VÀ TỪNG BƯỚC (conservatism bias) thay vì ngay lập tức",
-          "PEAD chỉ xảy ra ở các thị trường mới nổi, không xảy ra ở thị trường phát triển",
-          "PEAD là hiện tượng đã hoàn toàn biến mất trong thị trường hiện đại nhờ giao dịch thuật toán"
+          "Sau cùng, vì ý kiến của họ định hình phần còn lại của cuộc thảo luận",
+          "Đầu tiên, để đặt khung và tiết kiệm giờ",
+          "Khi thảo luận bế tắc, để gỡ hướng đi",
+          "Lúc nào cũng được, miễn nói rõ là ý kiến riêng"
         ],
-        "correct": 1,
-        "explanation": "PEAD là một trong những anomaly được nghiên cứu nhiều nhất, thách thức trực tiếp Efficient Market Hypothesis (giả thuyết thị trường hiệu quả). 'Conservatism bias' (thiên kiến bảo thủ - cập nhật niềm tin quá chậm khi có thông tin mới, trái ngược với representativeness bias là phản ứng quá mạnh) giải thích một phần tại sao thị trường 'underreact' ban đầu với tin tức lợi nhuận, rồi giá tiếp tục điều chỉnh dần trong nhiều tuần sau - tạo ra cơ hội cho các chiến lược momentum ngắn hạn dựa trên earnings surprise."
+        "correct": 0,
+        "explanation": "Uy tín có tác dụng ngay cả khi người nói không muốn nó có tác dụng, và lời nhắc đây chỉ là ý kiến cá nhân gần như không giảm được gì. Thứ tự phát biểu là công cụ hiệu quả hơn nhiều so với mọi lời nhắc, vì nó tác động lên cấu trúc chứ không lên ý thức."
       },
       {
-        "question": "Tại sao các ngân hàng đầu tư/công ty chứng khoán thường thiết kế 'Chinese Wall' (bức tường thông tin) giữa bộ phận Nghiên cứu (Research) và bộ phận Ngân hàng Đầu tư (Investment Banking), và điều này liên quan thế nào đến thiên kiến hành vi trong phân tích equity?",
+        "question": "Vì sao người phản đối thứ hai dễ lên tiếng hơn người thứ nhất rất nhiều?",
         "options": [
-          "Chinese Wall chỉ là yêu cầu pháp lý hình thức, không có tác dụng thực tế nào",
-          "Chinese Wall nhằm giảm thiểu XUNG ĐỘT LỢI ÍCH có thể khuếch đại thiên kiến lạc quan trong dự báo - nếu bộ phận Research biết công ty X đang là khách hàng lớn của bộ phận Investment Banking (phí tư vấn IPO/M&A), có động cơ (dù vô thức) để đưa ra dự báo/khuyến nghị lạc quan hơn nhằm không làm mất lòng khách hàng chung của ngân hàng, ngay cả khi nhà phân tích cố gắng khách quan",
-          "Chinese Wall chỉ áp dụng ở thị trường Trung Quốc, không áp dụng ở các thị trường khác",
-          "Chinese Wall được thiết kế để tăng cường hợp tác giữa hai bộ phận, không phải để tách biệt"
+          "Vì người thứ nhất đã cho thấy phản đối là chuyện được phép",
+          "Vì người thứ hai có thêm thời gian chuẩn bị",
+          "Vì hai người phản đối thì thuyết phục hơn",
+          "Vì sau phản đối đầu thì thảo luận cởi mở hơn"
         ],
-        "correct": 1,
-        "explanation": "Chinese Wall là một cơ chế cấu trúc (structural safeguard) được thiết kế đặc biệt để chống lại chính loại thiên kiến hành vi có nguồn gốc từ động cơ (motivated reasoning) - khi lợi ích tài chính của tổ chức (phí IB) có thể vô thức làm lệch lạc phán đoán 'khách quan' của nhà phân tích nghiên cứu. Đây là ví dụ thực tế về việc ngành tài chính đã xây dựng các quy định/cấu trúc tổ chức cụ thể để đối phó với behavioral finance, không chỉ dừng ở mức độ nhận thức lý thuyết."
+        "correct": 0,
+        "explanation": "Chi phí xã hội của việc là người duy nhất đi ngược cả nhóm lớn hơn nhiều so với việc là người thứ hai, và khoảng cách ấy lớn tới mức nó quyết định phần lớn số ý kiến trái chiều có được nói ra hay không. Đây là lý do một người chủ động nêu nghi ngờ có tác dụng vượt xa nội dung nghi ngờ đó."
+      },
+      {
+        "question": "Giao cho một người vai trò phản biện trong buổi họp có tác dụng gì?",
+        "options": [
+          "Nó bỏ chi phí xã hội của việc phản đối ra khỏi người đó",
+          "Nó đảm bảo mọi rủi ro đều được nêu",
+          "Nó làm thảo luận cân bằng hơn",
+          "Nó buộc người đề xuất chuẩn bị kỹ hơn"
+        ],
+        "correct": 0,
+        "explanation": "Người đó phản đối vì được giao việc phản đối, nên không ai đọc nó thành đi ngược cả nhóm - kể cả chính người đó. Hiệu quả của kỹ thuật này đến từ việc đổi ý nghĩa xã hội của hành động, không đến từ chất lượng của các phản biện được nêu."
+      },
+      {
+        "question": "Dấu hiệu nào cho thấy đồng thuận có thể là giả?",
+        "options": [
+          "Không ai hỏi được một câu về điều kiện mà phương án sẽ hỏng",
+          "Cuộc thảo luận kết thúc nhanh hơn nhiều so với thời gian đã dự kiến",
+          "Một số thành viên không phát biểu gì trong suốt buổi họp",
+          "Quyết định được đưa ra mà không có phương án thay thế nào được xem xét"
+        ],
+        "correct": 0,
+        "explanation": "Ba dấu hiệu kia đều có thể do nguyên nhân vô hại. Dấu hiệu này thì cụ thể: nếu cả đội đã thật sự nghĩ về một phương án thì ít nhất một người hình dung được nó hỏng ở đâu. Không ai hình dung được nghĩa là chưa ai nghĩ đủ sâu, chứ không phải phương án không có điểm yếu nào."
       }
-    ],
-    "keyTakeaways": [
-      "Dự báo EPS dài hạn của sell-side analyst có xu hướng lạc quan thiên lệch hệ thống - kết hợp cả thiên kiến tâm lý và động cơ nghề nghiệp/kinh doanh",
-      "Herding trong dự báo xảy ra vì career risk: sai cùng đám đông an toàn hơn sai khác biệt với đám đông, dù dự báo độc lập chính xác mới tạo giá trị thực",
-      "PEAD (Post-Earnings Announcement Drift) phản ánh conservatism bias - thị trường cập nhật niềm tin quá chậm sau tin tức lợi nhuận bất ngờ",
-      "Chinese Wall là cơ chế cấu trúc chống lại thiên kiến có nguồn gốc từ xung đột lợi ích/động cơ tổ chức, không chỉ thuần túy tâm lý cá nhân"
     ],
     "practicePrompt": {
-      "question": "Bạn là trưởng nhóm Research tại một công ty chứng khoán, nhận thấy 90% khuyến nghị của team trong quý vừa qua là 'Buy', chỉ 2% là 'Sell'. Dựa trên hiểu biết về thiên kiến hành vi trong phân tích equity, đâu là hành động phù hợp nhất?",
+      "question": "Đội bạn vừa thống nhất một quyết định lớn trong năm phút. Nên làm gì?",
       "options": [
-        "Không cần làm gì vì tỷ lệ Buy cao chứng tỏ thị trường đang tăng trưởng tốt",
-        "Kiểm tra xem đây là thị trường tăng thật hay herding/xung đột lợi ích với IB",
-        "Ngay lập tức đổi tất cả khuyến nghị 'Buy' thành 'Sell' để cân bằng tỷ lệ một cách máy móc",
-        "Sa thải toàn bộ nhóm phân tích vì họ rõ ràng đang thiên vị"
+        "Hỏi mỗi người viết ra một điều kiện mà phương án này sẽ hỏng",
+        "Ghi lại quyết định cùng lý do rồi tiếp tục vì đội đã có sự đồng thuận rõ ràng",
+        "Đề nghị hoãn quyết định sang buổi sau để mọi người có thêm thời gian suy nghĩ",
+        "Mời người ngoài đội xem lại quyết định"
       ],
-      "correct": 1,
-      "explanation": "Đây là ứng dụng thực hành của quản lý rủi ro thiên kiến hành vi ở cấp độ tổ chức: một tỷ lệ Buy/Sell mất cân bằng không TỰ ĐỘNG chứng minh có vấn đề (có thể phản ánh đúng thực trạng thị trường), nhưng cũng không nên bị bỏ qua mà không điều tra - trưởng nhóm cần phân biệt được tín hiệu thực (genuine signal) khỏi thiên kiến hệ thống (systematic bias), và xem xét liệu cấu trúc incentive của tổ chức có đang vô tình khuếch đại xu hướng lạc quan hay không."
+      "correct": 0,
+      "explanation": "Câu hỏi này mất năm phút và nó phân biệt được hai loại đồng thuận: nếu ai cũng viết ra được một điều kiện cụ thể thì đội đã nghĩ thật, còn nếu phần lớn để trống thì đó là dấu hiệu rõ ràng. Hoãn sang buổi sau tốn nhiều hơn và không đảm bảo mọi người nghĩ độc lập trong khoảng đó."
     },
+    "keyTakeaways": [
+      "Đồng thuận thật và đồng thuận giả cho cùng một cảm giác chắc chắn",
+      "Ý kiến hình thành sau khi nghe người đầu tiên thì không còn độc lập",
+      "Chi phí xã hội của người phản đối thứ nhất lớn hơn hẳn người thứ hai",
+      "Không ai nêu được điều kiện phương án sẽ hỏng nghĩa là chưa ai nghĩ đủ sâu"
+    ],
     "summary": {
-      "keyIdea": "Ngay cả các nhà phân tích equity chuyên nghiệp cũng thể hiện thiên kiến hành vi hệ thống (optimism bias, herding) trong dự báo, một phần do tâm lý cá nhân và một phần do cơ cấu động cơ/xung đột lợi ích của tổ chức tài chính.",
-      "commonMistake": "Giả định rằng chuyên môn và kinh nghiệm tự động loại bỏ thiên kiến hành vi - thực tế nhiều thiên kiến vẫn tồn tại hệ thống ngay cả ở cấp độ chuyên gia",
-      "action": "Khi đánh giá một báo cáo research hoặc consensus estimate, luôn cân nhắc cơ cấu động cơ đằng sau (quan hệ IB, career risk) bên cạnh nội dung phân tích thuần túy"
+      "keyIdea": "Đồng thuận nhanh là một tín hiệu cần kiểm, và cảm giác chắc chắn nó tạo ra mạnh nhất khi nó ít đáng tin nhất",
+      "commonMistake": "Đọc việc không ai phản đối thành việc mọi người đã cân nhắc và thấy đúng",
+      "action": "Với quyết định lớn, cho mỗi người viết ý kiến ra trước khi nghe người khác nói."
     },
     "application": {
-      "title": "Áp dụng vào công việc phân tích thực tế",
-      "message": "Khi đọc consensus estimate cho một cổ phiếu, kiểm tra độ phân tán (dispersion) giữa các dự báo - độ phân tán thấp bất thường có thể là dấu hiệu herding, không nhất thiết là sự đồng thuận có cơ sở vững chắc.",
-      "secondary": "Bài tiếp theo sẽ mở rộng sang thiên kiến hành vi trong các quyết định tài chính doanh nghiệp (corporate finance) - từ M&A đến capital budgeting."
+      "title": "Viết trước, đọc sau",
+      "message": "Với quyết định lớn: mỗi người viết phương án và một điều kiện nó sẽ hỏng, rồi mới cùng đọc. Năm phút, và nó đổi hẳn chất lượng của phần thảo luận sau đó.",
+      "secondary": "Trong buổi họp, để người có kinh nghiệm nhất phát biểu sau cùng - công cụ này hiệu quả hơn mọi lời nhắc rằng ai cũng nên nói thẳng."
     },
     "sections": [
-      {
-        "type": "lead",
-        "text": "Một trong những phát hiện gây bất ngờ nhất của behavioral finance ứng dụng: ngay cả những chuyên gia được đào tạo bài bản nhất, với dữ liệu và mô hình tốt nhất, vẫn thể hiện thiên kiến hành vi có thể đo lường và dự đoán được."
-      },
-      {
-        "type": "heading",
-        "text": "Optimism Bias trong Dự báo Sell-side"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nhiều nghiên cứu học thuật dài hạn (theo dõi hàng chục nghìn dự báo qua nhiều thập kỷ) xác nhận: dự báo EPS dài hạn của các nhà phân tích sell-side có xu hướng lạc quan hệ thống, đặc biệt rõ rệt với dự báo tăng trưởng dài hạn (long-term growth rate). Nguyên nhân kết hợp cả yếu tố tâm lý thuần túy (wishful thinking, anchoring vào guidance của ban lãnh đạo) và động cơ kinh doanh (duy trì quan hệ để tiếp cận thông tin, thúc đẩy hoạt động giao dịch)."
-      },
-      {
-        "type": "heading",
-        "text": "Herding và Career Risk"
-      },
-      {
-        "type": "paragraph",
-        "text": "Herding trong dự báo phân tích không đơn thuần là 'bắt chước' theo nghĩa tâm lý học cổ điển, mà có nền tảng kinh tế học rõ ràng: rủi ro nghề nghiệp (career risk) tạo ra động cơ hợp lý để 'ẩn nấp trong đám đông'. Một nhà phân tích dự báo SAI giống consensus ít bị chỉ trích hơn nhiều so với một nhà phân tích dự báo SAI khác biệt với consensus, ngay cả khi dự báo độc lập (dù rủi ro hơn) mới thực sự tạo ra giá trị thông tin (alpha) cho nhà đầu tư."
-      },
-      {
-        "type": "heading",
-        "text": "Market Anomalies liên quan đến Thiên kiến Hành vi"
-      },
-      {
-        "type": "paragraph",
-        "text": "Post-Earnings Announcement Drift (PEAD) là ví dụ kinh điển của một 'anomaly' (bất thường thị trường) có nguồn gốc hành vi rõ ràng: giá cổ phiếu tiếp tục điều chỉnh theo hướng của earnings surprise trong nhiều tuần/tháng sau công bố, thay vì điều chỉnh ngay lập tức như Efficient Market Hypothesis dự đoán - phản ánh 'conservatism bias' (cập nhật niềm tin quá chậm) của cả nhà phân tích lẫn nhà đầu tư."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba thiên kiến sống trong chính công việc phân tích",
-        "subtitle": "Chúng không đến từ sự thiếu chuyên môn mà đến từ cấu trúc động cơ của nghề",
-        "concepts": [
-          {
-            "vi": "Thiên kiến lạc quan",
-            "en": "Optimism Bias",
-            "def": "Dự báo sell-side lệch dương một cách có hệ thống, vì khuyến nghị bán làm hỏng quan hệ với doanh nghiệp được phân tích."
-          },
-          {
-            "vi": "Rủi ro nghề nghiệp",
-            "en": "Career Risk",
-            "def": "Sai cùng đám đông thì an toàn, sai một mình thì mất việc. Đó là lý do dự báo tụ lại quanh đồng thuận thay vì trải ra."
-          },
-          {
-            "vi": "Bất thường thị trường",
-            "en": "Market Anomalies",
-            "def": "Momentum, hiệu ứng công bố lợi nhuận - những khoảng lệch tồn tại dai dẳng chính vì chúng bắt nguồn từ hành vi, không từ lỗi định giá nhất thời."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Cái bẫy",
-        "text": "Một dự báo nằm sát đồng thuận không phải bằng chứng nó đúng - có thể nó chỉ đang tránh rủi ro nghề nghiệp. Đáng đọc nhất là bản dự báo lệch xa đồng thuận và nói rõ mình lệch ở giả định nào."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Nhận diện thiên kiến hành vi ở cấp độ chuyên gia không phải để hạ thấp giá trị của phân tích chuyên nghiệp, mà để xây dựng quy trình review/kiểm tra chéo tốt hơn.",
-          "Các tổ chức tài chính hàng đầu hiện nay tích hợp 'behavioral checks' (như phân tích độ phân tán dự báo, theo dõi tỷ lệ Buy/Sell theo thời gian) như một phần của quy trình quản lý chất lượng nghiên cứu."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Thiên lệch lạc quan trong dự báo phía bán",
-        "arrow": true
-      },
-      {
-        "label": "Áp lực nghề nghiệp → hành vi bám đám đông",
-        "arrow": true
-      },
-      {
-        "label": "Dự báo hội tụ về đồng thuận, ít ý kiến trái chiều",
-        "arrow": true
-      },
-      {
-        "label": "Tạo ra các bất thường thị trường có thể khai thác",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
+      { "type": "lead", "text": "Một quyết định được cả đội gật đầu trong ba phút cho cảm giác chắc chắn hơn nhiều so với một quyết định phải tranh luận hai buổi. Cảm giác ấy đi ngược thực tế ở phần lớn trường hợp." },
+      { "type": "heading", "text": "Hai loại đồng thuận, một vẻ ngoài" },
+      { "type": "paragraph", "text": "Đồng thuận thật hình thành khi nhiều người đã nghĩ riêng rồi gặp nhau ở cùng một chỗ. Đồng thuận giả hình thành theo dây chuyền: người đầu nêu một phương án nghe hợp lý, người thứ hai không có lý do cụ thể để phản đối nên gật, và từ người thứ ba trở đi thì phản đối đòi hỏi đi ngược cả nhóm. Không ai nói dối và không ai lười - kết quả vẫn là một quyết định được chấp nhận thay vì được kiểm tra." },
+      { "type": "conceptTable", "title": "Bốn cơ chế, chọn theo mức độ quan trọng của quyết định", "concepts": [
+        { "vi": "Viết trước khi nghe", "en": "Silent write-up", "def": "Cách duy nhất thu được ý kiến hình thành độc lập. Năm phút, dùng cho quyết định lớn." },
+        { "vi": "Người thạo nói sau", "en": "Speak last", "def": "Uy tín định hình phần còn lại của thảo luận kể cả khi người nói không muốn vậy." },
+        { "vi": "Giao vai phản biện", "en": "Assigned dissent", "def": "Bỏ chi phí xã hội ra khỏi người phản đối, vì họ phản đối do được giao việc đó." },
+        { "vi": "Nêu điều kiện hỏng", "en": "Failure condition", "def": "Mỗi người viết một điều kiện phương án sẽ hỏng. Để trống là dấu hiệu chưa ai nghĩ sâu." }
+      ]},
+      { "type": "callout", "label": "Người phản đối đầu tiên trả toàn bộ chi phí", "text": "Là người duy nhất đi ngược cả nhóm khó hơn nhiều so với là người thứ hai, và khoảng cách ấy đủ lớn để quyết định phần lớn số ý kiến trái chiều có được nói ra hay không. Vì vậy một người chủ động nêu nghi ngờ có tác dụng vượt xa nội dung của nghi ngờ đó - họ đang mở đường cho những người còn lại." },
+      { "type": "closing", "lines": [
+        "Đội im lặng không phải đội đồng ý; nó là đội mà chi phí của việc lên tiếng cao hơn giá trị của việc lên tiếng.",
+        "Điều đó sửa được bằng cấu trúc buổi họp, không sửa được bằng lời nhắc rằng ai cũng nên nói thẳng."
+      ]}
+    ]
   },
   {
     "id": 1243,
@@ -72432,6 +72460,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1244,
+    "interactiveType": "tail-risk",
     "slug": "ghi-ngay-hay-ghi-theo-lo-va-do-tre-du-lieu",
     "title": "Ghi ngay hay ghi theo lô - và độ trễ của dữ liệu",
     "subtitle": "Hai cách đưa dữ liệu vào hệ thống, và chúng cho hai định nghĩa khác nhau về từ hiện tại.",
@@ -72600,6 +72629,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1245,
+    "interactiveType": "prospect",
     "slug": "tu-luan-diem-ky-thuat-toi-quyet-dinh-trien-khai",
     "title": "Từ luận điểm kỹ thuật tới quyết định triển khai",
     "subtitle": "Một đề xuất kỹ thuật tốt không phải là đề xuất đúng nhất mà là đề xuất nói rõ mình sai thì sai ở đâu.",
@@ -74959,6 +74989,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1259,
+    "interactiveType": "ethics-case",
     "slug": "cong-bo-thay-doi-va-quan-ly-ky-vong",
     "title": "Công bố thay đổi và quản lý kỳ vọng của người dùng",
     "subtitle": "Một thay đổi được báo trước và một thay đổi giống hệt không được báo tạo ra hai phản ứng khác hẳn nhau.",
@@ -79135,7 +79166,7 @@ export const lessons: Lesson[] = [
     "track": "professional",
     "emoji": "🛡️",
     "interactiveType": "ethics-case",
-    "whyItMatters": "Đặt mức xác minh là quyết định đánh đổi giữa hai loại thiệt hại, và đội kỹ thuật thường chỉ được nghe về một loại.",
+    "whyItMatters": "Đặt mức xác minh là quyết định đánh đổi giữa hai loại thiệt hại, và đội kỹ thuật thường chỉ được nghe về một loại - loại mà bộ phận tuân thủ báo cáo hằng tháng.",
     "openingQuestion": "Vì sao không đặt mức xác minh cao nhất cho mọi người dùng?",
     "openingOptions": [
       "Vì mỗi lớp thêm vào cắt đi một phần người dùng thật, và phần đó không quay lại",
@@ -79255,7 +79286,7 @@ export const lessons: Lesson[] = [
     "sections": [
       {
         "type": "lead",
-        "text": "Đặt mức xác minh là quyết định đánh đổi giữa hai loại thiệt hại, và đội kỹ thuật thường chỉ được nghe về một loại."
+        "text": "Đặt mức xác minh là quyết định đánh đổi giữa hai loại thiệt hại, và đội kỹ thuật thường chỉ được nghe về một loại - loại mà bộ phận tuân thủ báo cáo hằng tháng."
       },
       {
         "type": "heading",
@@ -79308,7 +79339,7 @@ export const lessons: Lesson[] = [
     "track": "professional",
     "emoji": "🔍",
     "interactiveType": "ethics-case",
-    "whyItMatters": "Mọi hệ thống sàng lọc đều đẩy một phần hồ sơ sang cho người xử lý, và tỷ lệ đó quyết định hệ thống có vận hành nổi hay không.",
+    "whyItMatters": "Mọi hệ thống sàng lọc tuân thủ đều đẩy một phần hồ sơ sang cho người xử lý, và tỷ lệ đó quyết định hệ thống có vận hành nổi hay không.",
     "openingQuestion": "Luật sàng lọc chặt hơn thì chuyện gì xảy ra với đội xử lý thủ công?",
     "openingOptions": [
       "Số hồ sơ chuyển sang tăng lên, và tới một mức thì họ duyệt qua loa cho kịp",
@@ -79428,7 +79459,7 @@ export const lessons: Lesson[] = [
     "sections": [
       {
         "type": "lead",
-        "text": "Mọi hệ thống sàng lọc đều đẩy một phần hồ sơ sang cho người xử lý, và tỷ lệ đó quyết định hệ thống có vận hành nổi hay không."
+        "text": "Mọi hệ thống sàng lọc tuân thủ đều đẩy một phần hồ sơ sang cho người xử lý, và tỷ lệ đó quyết định hệ thống có vận hành nổi hay không."
       },
       {
         "type": "heading",
@@ -79484,7 +79515,7 @@ export const lessons: Lesson[] = [
     "track": "professional",
     "emoji": "🧩",
     "interactiveType": "ethics-case",
-    "whyItMatters": "Người xử lý gặp bốn tình huống này thường xuyên, và quyết định của họ tạo ra tiền lệ mà không ai ghi lại thành quy tắc.",
+    "whyItMatters": "Người xử lý gặp bốn tình huống này thường xuyên, và quyết định của họ tạo ra tiền lệ tuân thủ mà không ai ghi lại thành quy tắc.",
     "openingQuestion": "Một người dùng hợp lệ có giấy tờ hệ thống không đọc được. Xử lý thế nào?",
     "openingOptions": [
       "Có một đường xử lý riêng cho trường hợp này, được thiết kế từ trước",
@@ -79604,7 +79635,7 @@ export const lessons: Lesson[] = [
     "sections": [
       {
         "type": "lead",
-        "text": "Người xử lý gặp bốn tình huống này thường xuyên, và quyết định của họ tạo ra tiền lệ mà không ai ghi lại thành quy tắc."
+        "text": "Người xử lý gặp bốn tình huống này thường xuyên, và quyết định của họ tạo ra tiền lệ tuân thủ mà không ai ghi lại thành quy tắc."
       },
       {
         "type": "heading",
@@ -80037,6 +80068,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1286,
+    "interactiveType": "multiples",
     "slug": "du-lieu-lon-vi-sao-trung-binh-khong-dung-duoc",
     "title": "Dữ liệu lớn - vì sao ở quy mô đó các chỉ số quen thuộc ngừng dùng được",
     "subtitle": "Ở quy mô đủ lớn, mọi thứ hiếm đều xảy ra thường xuyên, và mọi phép tính toàn bộ đều quá đắt.",
@@ -80617,6 +80649,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1289,
+    "interactiveType": "chart",
     "slug": "do-nhay-va-phi-tuyen-khi-tai-tang",
     "title": "Độ nhạy và phi tuyến - vì sao tải gấp đôi làm độ trễ gấp năm",
     "subtitle": "Hệ thống phản ứng tuyến tính cho tới một điểm, và mọi kế hoạch dung lượng đều sai ở phía sau điểm đó.",
@@ -81157,6 +81190,7 @@ export const lessons: Lesson[] = [
     "secondary": "Bốn mốc đầu đo đội mới; dòng cuối bảo vệ cả hai bên khỏi phiên bản mệt mỏi của chính mình."
   },
   "id": 1338,
+  "interactiveType": "sampling",
   "slug": "ma-cau-truc-earnout",
   "track": "bonus"
 },
@@ -81527,6 +81561,7 @@ export const lessons: Lesson[] = [
     "secondary": "Trả lời được ba câu thì phép tính nào cũng dùng được; không trả lời được thì phép tính nào cũng sai."
   },
   "id": 1342,
+  "interactiveType": "multiples",
   "slug": "mo-hinh-tc-nganh-dac-thu",
   "track": "bonus"
 }

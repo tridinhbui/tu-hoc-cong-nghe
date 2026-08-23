@@ -14,6 +14,7 @@ import type { Lesson } from "./lesson-types";
 export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
   {
     "id": 801,
+    "interactiveType": "multiples",
     "slug": "masterclass-ha-tang-trung-tam-du-lieu",
     "title": "Chuyên đề Masterclass 1: Hạ tầng trung tâm dữ liệu - định mức và chi phí thật",
     "subtitle": "Một máy chủ vật lý có bốn ngân sách, và cái hết trước quyết định bạn mua thêm bao nhiêu.",

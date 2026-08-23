@@ -217,6 +217,7 @@ export const PAID_TOOLS_LESSONS: Lesson[] = [
   },
   {
     id: 1762,
+    interactiveType: "ethics-case",
     slug: "doc-so-lieu-nha-cung-cap-trung-ra",
     title: "Chọn công cụ, Bài 2: Đọc số liệu nhà cung cấp trưng ra",
     subtitle: "Con số thường đúng; điều kiện để nó đúng mới là thứ cần đọc",

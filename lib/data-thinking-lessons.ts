@@ -14,6 +14,7 @@ import type { Lesson } from "./lesson-types";
 export const DATA_THINKING_LESSONS: Lesson[] = [
   {
     id: 1501,
+    interactiveType: "prospect",
     slug: "chon-chi-so-do-luong-va-vanity-metric",
     title: "Tư duy DL, Bài 1: Chọn chỉ số - và vì sao chỉ số đẹp thường là chỉ số vô dụng",
     subtitle: "Phân biệt chỉ số phù phiếm với chỉ số dẫn tới hành động, và cái bẫy khi chỉ số thành mục tiêu",
@@ -196,6 +197,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
   },
   {
     id: 1502,
+    interactiveType: "chart",
     slug: "phan-tich-cohort-va-cai-bay-trung-binh",
     title: "Tư duy DL, Bài 2: Phân tích cohort - khi số trung bình che mất sự thật",
     subtitle: "Vì sao chia dữ liệu theo nhóm thời điểm lại lộ ra những xu hướng mà tổng thể giấu kín",

@@ -186,6 +186,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
   },
   {
     id: 1442,
+    interactiveType: "ethics-case",
     slug: "lo-trinh-ifrs-tai-viet-nam",
     title: "Chuẩn mực & Dữ liệu, Bài 2: Chuyển kho mã sang một chuẩn mới",
     subtitle: "Một lượt định dạng, một tệp bỏ qua khi truy nguồn, và không trộn logic vào",

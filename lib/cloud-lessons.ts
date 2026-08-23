@@ -584,6 +584,7 @@ export const CLOUD_LESSONS: Lesson[] = [
   },
   {
     "id": 323,
+    "interactiveType": "chart",
     "slug": "tiet-kiem-ha-tang-cach-nao-that-su-hieu-qua",
     "title": "Chặng 13, Bài 4: Tiết kiệm hạ tầng - cách nào thật sự hiệu quả",
     "subtitle": "Thứ tự đúng: tắt cái không dùng, chỉnh cho vừa, rồi mới cam kết dài hạn.",
@@ -963,6 +964,7 @@ export const CLOUD_LESSONS: Lesson[] = [
   },
   {
     "id": 325,
+    "interactiveType": "tail-risk",
     "slug": "do-tre-va-khoang-cach-vat-ly",
     "title": "Chặng 13, Bài 6: Độ trễ và khoảng cách vật lý",
     "subtitle": "Tốc độ ánh sáng là trần cứng, và nó gần hơn bạn tưởng.",
@@ -1151,6 +1153,7 @@ export const CLOUD_LESSONS: Lesson[] = [
   },
   {
     "id": 326,
+    "interactiveType": "multiples",
     "slug": "chon-dich-vu-quan-ly-san-hay-tu-dung",
     "title": "Chặng 13, Bài 7: Dịch vụ quản lý sẵn hay tự dựng",
     "subtitle": "Câu hỏi không phải cái nào rẻ hơn, mà việc này có phải thứ bạn nên giỏi không.",

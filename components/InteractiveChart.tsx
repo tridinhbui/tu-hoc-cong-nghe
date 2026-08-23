@@ -4,13 +4,18 @@ import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
-// Biểu đồ so sánh lãi đơn với lãi kép, widget cho các bài khai
-// `interactiveType: "chart"`.
+// Biểu đồ so sánh tăng trưởng tuyến tính với tăng trưởng nhân bội, widget cho
+// các bài khai `interactiveType: "chart"`.
 //
-// Chọn đúng phép so sánh này vì nó là thứ duy nhất trong toàn bộ chương trình
-// mà một biểu đồ dạy được còn một câu văn thì không: khoảng cách giữa hai
-// đường gần như không thấy trong mấy năm đầu rồi mở toác ra về sau. Đọc "lãi
-// kép mạnh về dài hạn" thì gật đầu; nhìn hai đường tách nhau thì mới tin.
+// Chọn đúng phép so sánh này vì nó là thứ mà một biểu đồ dạy được còn một câu
+// văn thì không: khoảng cách giữa hai đường gần như không thấy trong mấy tháng
+// đầu rồi mở toác ra về sau. Đọc "ngoại suy tuyến tính luôn thiếu" thì gật
+// đầu; nhìn hai đường tách nhau thì mới tin - và mới hiểu vì sao một kế hoạch
+// dung lượng dựng từ dữ liệu ba tháng đầu hụt đúng vào lúc tải cao nhất.
+//
+// Phép tính giữ nguyên từ bản trước (lãi đơn so với lãi kép): cùng một cặp
+// đường, đổi tên trục và đổi phần diễn giải. Ghi lại để người sau khỏi đi tìm
+// lý do vì sao mã tính lãi lại nằm trong một widget về tải.
 
 const WIDTH = 320;
 const HEIGHT = 150;

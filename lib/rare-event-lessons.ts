@@ -193,6 +193,7 @@ export const RARE_EVENT_LESSONS: Lesson[] = [
   },
   {
     id: 1742,
+    interactiveType: "tail-risk",
     slug: "trung-binh-vo-dung-voi-su-kien-hiem",
     title: "Sự kiện hiếm, Bài 2: Vì sao trung bình là công cụ sai",
     subtitle: "Thiệt hại trung bình mỗi năm là một con số không ai từng gặp",
@@ -517,6 +518,7 @@ export const RARE_EVENT_LESSONS: Lesson[] = [
   },
   {
     id: 1744,
+    interactiveType: "prospect",
     slug: "lop-bao-ve-lam-doi-hanh-vi",
     title: "Sự kiện hiếm, Bài 4: Lớp bảo vệ làm đổi hành vi",
     subtitle: "Hai lệch động cơ kéo ngược nhau, và cả hai đều xuất hiện ngay khi có lưới an toàn",

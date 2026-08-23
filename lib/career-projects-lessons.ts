@@ -21,6 +21,7 @@ import type { Lesson } from "./lesson-types";
 export const CAREER_PROJECTS_LESSONS: Lesson[] = [
   {
     id: 370,
+    interactiveType: "multiples",
     slug: "du-an-lon-nao-cung-bao-truoc",
     title: "Chặng 18, Bài 1: Dự án lớn nào cũng báo trước",
     subtitle: "Chúng hiếm khi bất ngờ; cái bất ngờ là tổng thời gian chúng lấy đi",
@@ -182,6 +183,7 @@ export const CAREER_PROJECTS_LESSONS: Lesson[] = [
   },
   {
     id: 371,
+    interactiveType: "multiples",
     slug: "nhan-mot-du-an-phu",
     title: "Chặng 18, Bài 2: Nhận một dự án phụ - thời gian viết là phần nhỏ nhất",
     subtitle: "Dựng xong là mốc dễ thấy nhất và cũng là phần rẻ nhất",
@@ -960,6 +962,7 @@ export const CAREER_PROJECTS_LESSONS: Lesson[] = [
   },
   {
     id: 376,
+    interactiveType: "multiples",
     slug: "ban-do-cac-du-an-lon",
     title: "Chặng 18, Bài 7: Tổng kết - bản đồ các dự án lớn",
     subtitle: "Sáu cam kết, một quỹ thời gian, và một trang giấy",

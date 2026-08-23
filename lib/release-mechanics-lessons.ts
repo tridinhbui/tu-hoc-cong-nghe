@@ -10,6 +10,7 @@ import type { Lesson } from "./lesson-types";
 export const RELEASE_MECHANICS_LESSONS: Lesson[] = [
   {
     "id": 1521,
+    "interactiveType": "regression",
     "slug": "phat-hanh-dan-thay-vi-bat-cho-tat-ca",
     "title": "Phát hành, Bài 1: Phát hành dần - vì sao không bật cho tất cả cùng lúc",
     "subtitle": "Bản phát hành nào cũng là một giả thuyết; phát hành dần là cách kiểm nó với ít người nhất.",
@@ -920,6 +921,7 @@ export const RELEASE_MECHANICS_LESSONS: Lesson[] = [
   },
   {
     "id": 1526,
+    "interactiveType": "sampling",
     "slug": "nghia-vu-ban-giao-he-thong",
     "title": "Phát hành, Bài 6: Nghĩa vụ bàn giao - tài liệu, quyền và người chịu trách nhiệm",
     "subtitle": "Một hệ thống không có người chịu trách nhiệm rõ ràng là một hệ thống sẽ hỏng vào lúc không ai sẵn sàng.",

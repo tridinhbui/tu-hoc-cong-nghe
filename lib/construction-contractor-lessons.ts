@@ -402,6 +402,7 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
   },
   {
     "id": 1753,
+    "interactiveType": "multiples",
     "slug": "uoc-luong-goi-viec-va-do-hieu-qua-cua-doi",
     "title": "Quy mô, Bài 2: Ước lượng gói việc và đo hiệu quả thật của một đội",
     "subtitle": "Một đội hoàn thành đúng mọi ước lượng có thể là đội đang ước lượng thừa.",

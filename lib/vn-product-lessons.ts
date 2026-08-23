@@ -198,6 +198,7 @@ export const VN_PRODUCT_LESSONS: Lesson[] = [
   },
   {
     id: 1452,
+    interactiveType: "sampling",
     slug: "dinh-danh-va-xac-thuc-nguoi-dung-vn",
     title: "Thị trường VN, Bài 2: Định danh và xác thực - biết người dùng là ai tới mức nào",
     subtitle: "Mỗi mức xác thực đắt hơn mức trước một bậc, và phần lớn sản phẩm mua nhầm mức",

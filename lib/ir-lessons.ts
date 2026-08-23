@@ -17,6 +17,7 @@ import type { Lesson } from "./lesson-types";
 export const IR_LESSONS: Lesson[] = [
   {
     id: 1711,
+    interactiveType: "ethics-case",
     slug: "ir-cong-viec-that-su-la-gi",
     title: "IR, Bài 1: Quan hệ cổ đông làm gì - và vì sao đó không phải PR",
     subtitle: "Ba nhóm người IR phục vụ, thứ họ thực sự mua, và ranh giới giữa truyền thông doanh nghiệp với công bố thông tin",
@@ -360,6 +361,7 @@ export const IR_LESSONS: Lesson[] = [
 
   {
     id: 1713,
+    interactiveType: "ethics-case",
     slug: "ir-guidance-va-ky-vong-thi-truong",
     title: "IR, Bài 3: Guidance - đưa ra con số rồi phải sống với nó",
     subtitle: "Vì sao doanh nghiệp công bố kế hoạch, cái giá của việc hụt kế hoạch, và cách đặt khoảng thay vì đặt điểm",
