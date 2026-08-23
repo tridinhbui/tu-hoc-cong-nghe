@@ -73015,171 +73015,190 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1247,
-    "track": "professional",
-    "slug": "cap-table-va-vesting-cau-truc-von-startup",
-    "title": "Cap Table & Vesting: Cấu trúc vốn của Startup mọi PE/VC Analyst phải đọc được",
-    "subtitle": "Bảng cap table phức tạp là công cụ đầu tiên bạn cần thành thạo khi phân tích một deal đầu tư startup",
-    "duration": "8 phút",
+    "title": "Quyền sở hữu mã và cách nó loãng dần",
+    "subtitle": "Ai chịu trách nhiệm phần nào, và điều gì xảy ra khi đội lớn lên gấp ba",
+    "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "📋",
-    "openingQuestion": "Một startup có Cap Table (bảng cấu trúc vốn) cho thấy Nhà sáng lập sở hữu 40% cổ phần thường (common stock), Quỹ VC A sở hữu 30% cổ phần ưu đãi Series A (preferred stock) với điều khoản '1x liquidation preference', và ESOP (quỹ cổ phần nhân viên) 15%. Khi công ty được bán với giá 50 triệu USD, VC A sẽ nhận được tối thiểu bao nhiêu, bất kể tỷ lệ sở hữu 30% của họ có tương ứng với số tiền đó hay không?",
+    "emoji": "🗂️",
+    "whyItMatters": "Quyền sở hữu mã không phải chuyện thủ tục. Nó quyết định ai được gọi lúc hai giờ sáng, ai duyệt thay đổi, và phần nào của hệ thống sẽ mục dần vì không ai thấy nó là của mình.",
+    "openingQuestion": "Đội tăng từ 5 lên 15 người. Quyền sở hữu mã nên đổi thế nào?",
     "openingOptions": [
-      "VC A chỉ nhận đúng 30% × 50 triệu = 15 triệu USD, không hơn không kém",
-      "VC A nhận tối thiểu số vốn đã đầu tư ban đầu, trước khi phần còn lại được chia theo tỷ lệ sở hữu thường",
-      "VC A không nhận được gì vì cổ phần ưu đãi luôn có quyền lợi thấp hơn cổ phần thường",
-      "Liquidation preference chỉ áp dụng khi công ty phá sản, không áp dụng khi công ty được bán với giá tốt"
+      "Phải viết ra",
+      "Giữ nguyên, vì mọi người vẫn quen với cách làm việc chung như trước đây",
+      "Chia theo thư mục, mỗi nhóm nhỏ nhận một phần của kho mã và tự chịu trách nhiệm",
+      "Giao cho người có kinh nghiệm nhất trong mỗi mảng làm đầu mối duyệt mọi thay đổi"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là khái niệm CỐT LÕI mà mọi PE/VC Analyst phải hiểu: 'Liquidation Preference' (ưu tiên thanh lý) cho phép cổ đông ưu đãi (thường là VC) nhận LẠI TỐI THIỂU số tiền đã đầu tư (hoặc một bội số của nó, như '2x') TRƯỚC KHI phần giá trị còn lại được chia cho cổ đông thường theo tỷ lệ sở hữu. Điều này bảo vệ nhà đầu tư VC khỏi rủi ro mất vốn trong các kịch bản thoát vốn (exit) không đạt kỳ vọng, và là lý do tại sao đọc hiểu chi tiết Cap Table không thể chỉ nhìn vào tỷ lệ % sở hữu đơn thuần.",
-    "realWorldExample": {
-      "company": "Startup 'down round' và tác động của Liquidation Preference",
-      "description": "Trong các đợt gọi vốn 'down round' (định giá vòng sau thấp hơn vòng trước) phổ biến trong giai đoạn thị trường điều chỉnh, liquidation preference trở nên cực kỳ quan trọng: nhiều nhà sáng lập và nhân viên nắm giữ cổ phần thường/ESOP phát hiện ra rằng khi công ty được bán với giá không như kỳ vọng ban đầu, phần lớn (hoặc toàn bộ) số tiền thu về có thể chảy vào tay các nhà đầu tư VC vòng sau (có liquidation preference cao và ưu tiên trước), khiến nhà sáng lập và nhân viên - dù sở hữu tỷ lệ % lớn hơn về mặt danh nghĩa - lại nhận được rất ít hoặc không nhận được gì."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Với năm người thì quyền sở hữu tồn tại trong trí nhớ chung và nó hoạt động tốt: ai cũng biết ai hiểu phần nào. Với mười lăm người thì trí nhớ chung không còn phủ hết, nhưng nó không biến mất - nó chỉ trở nên sai. Hai phương án chia theo thư mục và giao đầu mối đều là cách viết ra cụ thể, và cả hai đều tốt hơn việc để nguyên.",
+    "diagram": [
       {
-        "question": "'Vesting Schedule' (lịch trình trao quyền) tiêu chuẩn 4 năm với '1 year cliff' cho cổ phần nhân viên/nhà sáng lập hoạt động như thế nào?",
-        "options": [
-          "Nhân viên nhận toàn bộ cổ phần ngay khi ký hợp đồng lao động",
-          "Nhân viên không nhận được BẤT KỲ cổ phần nào nếu rời công ty trước 1 năm đầu tiên (cliff); sau khi vượt qua mốc 1 năm, họ nhận ngay 25% tổng số cổ phần đã cam kết, sau đó phần còn lại (75%) được trao dần đều theo tháng/quý trong 3 năm tiếp theo cho đến khi vesting đầy đủ sau tổng cộng 4 năm làm việc",
-          "Vesting schedule chỉ áp dụng cho nhà đầu tư VC, không áp dụng cho nhân viên",
-          "Nhân viên luôn giữ được toàn bộ cổ phần dù rời công ty bất kỳ lúc nào"
-        ],
-        "correct": 1,
-        "explanation": "Cấu trúc vesting '4 năm với 1 năm cliff' là chuẩn phổ biến nhất trong ngành startup toàn cầu: cơ chế 'cliff' bảo vệ công ty khỏi việc trao cổ phần cho người rời đi quá sớm (trước khi thực sự đóng góp giá trị đáng kể), trong khi lịch trình vesting dần sau đó tạo động lực giữ chân nhân tài lâu dài - đây là kiến thức cơ bản mọi PE/VC Analyst cần hiểu khi đánh giá cấu trúc sở hữu và động lực của đội ngũ sáng lập/nhân viên."
+        "label": "Đội nhỏ: quyền sở hữu nằm trong trí nhớ chung",
+        "arrow": true
       },
       {
-        "question": "'Anti-dilution Protection' (bảo vệ chống pha loãng) trong term sheet của VC bảo vệ nhà đầu tư khỏi rủi ro gì cụ thể?",
-        "options": [
-          "Bảo vệ nhà đầu tư khỏi việc công ty phá sản hoàn toàn",
-          "Bảo vệ nhà đầu tư khỏi việc bị PHA LOÃNG GIÁ TRỊ khi công ty gọi vốn vòng sau ở mức ĐỊNH GIÁ THẤP HƠN vòng trước (down round) - cơ chế phổ biến nhất là 'weighted average anti-dilution', điều chỉnh lại tỷ lệ chuyển đổi cổ phần ưu đãi của nhà đầu tư cũ để bù đắp một phần thiệt hại từ việc định giá giảm, dù không hoàn toàn loại bỏ tác động pha loãng",
-          "Anti-dilution protection đảm bảo nhà đầu tư luôn giữ nguyên tỷ lệ % sở hữu bất kể công ty gọi vốn bao nhiêu vòng tiếp theo",
-          "Cơ chế này chỉ áp dụng cho nhà sáng lập, không áp dụng cho nhà đầu tư VC"
-        ],
-        "correct": 1,
-        "explanation": "Anti-dilution protection là một trong những điều khoản phức tạp và quan trọng nhất trong term sheet VC: nó không ngăn chặn hoàn toàn việc pha loãng (dilution vẫn xảy ra khi có cổ phần mới phát hành), nhưng điều chỉnh TỶ LỆ CHUYỂN ĐỔI của cổ phần ưu đãi cũ để phần nào bù đắp thiệt hại khi vòng gọi vốn sau có định giá thấp hơn - hiểu cơ chế này (đặc biệt 'weighted average' vs 'full ratchet', hai biến thể phổ biến với mức độ bảo vệ khác nhau) là kỹ năng cần thiết khi phân tích tác động của một vòng gọi vốn mới lên các nhà đầu tư hiện hữu."
+        "label": "Đội lớn: trí nhớ chung không còn phủ hết",
+        "arrow": true
       },
       {
-        "question": "Tại sao việc đọc hiểu chi tiết Cap Table (không chỉ nhìn tỷ lệ % sở hữu bề mặt) lại đặc biệt quan trọng khi một PE/VC Analyst đánh giá một deal đầu tư mới vào một startup đã có nhiều vòng gọi vốn trước đó?",
-        "options": [
-          "Không quan trọng, chỉ cần biết tổng số cổ phần công ty đang lưu hành",
-          "Vì các vòng gọi vốn trước có thể đã tạo ra nhiều lớp liquidation preference chồng chất (stacked preferences), mỗi lớp có thứ tự ưu tiên khác nhau khi thoát vốn - nhà đầu tư mới cần hiểu rõ họ sẽ đứng ở VỊ TRÍ NÀO trong 'thác nước' phân chia giá trị (waterfall) khi công ty được bán, vì trong nhiều kịch bản exit không lý tưởng, các lớp preference tích lũy từ nhiều vòng trước có thể 'ăn hết' phần lớn giá trị exit trước khi đến lượt vòng đầu tư mới nhất",
-          "Cap Table chỉ quan trọng đối với nhà sáng lập, không quan trọng đối với nhà đầu tư mới",
-          "Tất cả các vòng gọi vốn luôn có cùng mức độ ưu tiên như nhau khi công ty thoát vốn"
-        ],
-        "correct": 1,
-        "explanation": "Đây là kỹ năng phân tích cốt lõi của PE/VC Analyst: 'Liquidation Preference Stack' (chồng lớp ưu tiên thanh lý) từ nhiều vòng gọi vốn (Seed, Series A, B, C...) tạo ra một cấu trúc phức tạp mà nhà đầu tư mới PHẢI mô hình hóa qua các kịch bản exit khác nhau (waterfall analysis) để hiểu thực sự họ sẽ nhận được bao nhiêu trong từng tình huống - một startup 'thành công vừa phải' về mặt định giá có thể vẫn khiến vòng đầu tư mới nhất nhận được rất ít, nếu các lớp preference tích lũy từ vòng trước đã chiếm phần lớn giá trị."
+        "label": "Phần không ai nhận bắt đầu mục dần",
+        "arrow": true
+      },
+      {
+        "label": "Nó lộ ra ở lần sự cố tiếp theo"
       }
     ],
-    "keyTakeaways": [
-      "Liquidation Preference (thường '1x' hoặc '2x') cho phép cổ đông ưu đãi nhận lại tối thiểu số vốn đã đầu tư (hoặc bội số) trước khi chia phần còn lại theo tỷ lệ sở hữu - quan trọng hơn tỷ lệ % sở hữu bề mặt trong nhiều kịch bản exit",
-      "Vesting Schedule chuẩn (4 năm, 1 năm cliff) bảo vệ công ty khỏi trao cổ phần cho người rời sớm, tạo động lực gắn bó dài hạn",
-      "Anti-dilution Protection bảo vệ nhà đầu tư một phần khỏi down round, qua điều chỉnh tỷ lệ chuyển đổi cổ phần ưu đãi",
-      "Với startup đã qua nhiều vòng gọi vốn, cần phân tích 'waterfall' đầy đủ để hiểu vị trí ưu tiên thực sự của mỗi lớp nhà đầu tư khi exit, không chỉ nhìn tỷ lệ % sở hữu"
-    ],
-    "practicePrompt": {
-      "question": "Một startup có 3 vòng gọi vốn: Seed ($1M, 1x preference), Series A ($5M, 1x preference), Series B ($10M, 1x preference) - tổng $16M preference stack. Công ty được bán với giá $20M. Sau khi trả đủ $16M preference cho 3 vòng nhà đầu tư ưu đãi, còn lại $4M được chia cho cổ đông thường (nhà sáng lập + ESOP). Điều này cho thấy gì về rủi ro của việc gọi vốn nhiều vòng?",
-      "options": [
-        "Cổ đông thường chia $20M theo tỷ lệ % trên cap table, preference tính sau",
-        "Preference stacking $16M nuốt 80% giá trị exit, cổ đông thường chỉ còn $4M",
-        "Nhà sáng lập giữ 60% cap table nên nhận $12M, phần dư mới trả preference",
-        "Liquidation preference chỉ là con số lý thuyết, không ảnh hưởng đến số tiền thực nhận"
-      ],
-      "correct": 1,
-      "explanation": "Đây là bài học thực tế quan trọng nhất về rủi ro của việc gọi vốn nhiều vòng liên tiếp: 'preference stacking' có thể khiến ngay cả một kết quả exit trông có vẻ tốt (bán được $20M) vẫn để lại rất ít giá trị cho nhà sáng lập/nhân viên, vì phần lớn tiền phải trả cho các nghĩa vụ preference tích lũy từ nhiều vòng gọi vốn trước - đây là lý do các nhà sáng lập cần đàm phán cẩn thận các điều khoản preference ngay từ vòng gọi vốn đầu tiên, và tại sao PE/VC Analyst cần luôn mô hình hóa waterfall trước khi kết luận một deal là hấp dẫn."
-    },
-    "summary": {
-      "keyIdea": "Cap Table không chỉ là bảng tỷ lệ % sở hữu đơn giản - nó chứa đựng cấu trúc quyền lợi phức tạp (liquidation preference, vesting, anti-dilution) quyết định ai thực sự nhận được bao nhiêu tiền trong các kịch bản thoát vốn khác nhau.",
-      "commonMistake": "Đánh giá giá trị một khoản đầu tư/cổ phần chỉ dựa vào tỷ lệ % sở hữu, bỏ qua các điều khoản ưu tiên (preference) có thể thay đổi hoàn toàn số tiền thực nhận trong thực tế",
-      "action": "Khi phân tích một deal đầu tư startup, luôn yêu cầu Cap Table đầy đủ và thực hiện waterfall analysis qua nhiều kịch bản định giá exit khác nhau (thấp, trung bình, cao) trước khi kết luận"
-    },
-    "application": {
-      "title": "Áp dụng vào công việc PE/VC Analysis",
-      "message": "Thực hành xây dựng một waterfall analysis đơn giản: giả định một startup có 2 vòng gọi vốn với liquidation preference khác nhau, tính toán số tiền mỗi bên nhận được ở 3 mức giá exit khác nhau (thấp/trung bình/cao) để thấy rõ tác động của cấu trúc preference.",
-      "secondary": "Bài tiếp theo sẽ đi sâu vào cách đọc hiểu Term Sheet - văn bản pháp lý tóm tắt các điều khoản đầu tư quan trọng nhất trước khi ký hợp đồng chính thức."
+    "realWorldExample": {
+      "company": "Phần mã không ai nhận",
+      "description": "Một đội lớn từ sáu lên hai mươi người trong hai năm mà không viết lại quyền sở hữu. Khi rà soát, có bốn thành phần mà không ai trong đội nhận là của mình - cả bốn đều do những người đã rời đi viết, và cả bốn đều nằm trên đường đi của mọi yêu cầu. Không thành phần nào từng gây sự cố, và đó chính là lý do không ai để ý tới chúng."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Trong PE/VC, một cổ phần 20% không phải lúc nào cũng là một cổ phần 20% - cấu trúc Cap Table phức tạp phía sau con số phần trăm bề mặt mới thực sự quyết định giá trị bạn nhận được."
+        "text": "Quyền sở hữu là một dạng phân bổ, và như mọi phân bổ, nó loãng đi khi số người tăng lên. Điều nguy hiểm không phải sự loãng mà là việc nó xảy ra âm thầm."
       },
       {
         "type": "heading",
-        "text": "Liquidation Preference - Khái niệm quan trọng nhất trong Cap Table"
+        "text": "Quyền sở hữu gồm ba thứ khác nhau"
       },
       {
-        "type": "paragraph",
-        "text": "Cổ phần ưu đãi (preferred stock) mà VC nhận được khi đầu tư luôn đi kèm 'liquidation preference' - quyền được ưu tiên nhận lại một khoản tiền tối thiểu (thường bằng hoặc gấp 1-2 lần vốn đã đầu tư) TRƯỚC KHI phần giá trị còn lại được chia cho cổ đông thường. Đây là cơ chế bảo vệ nhà đầu tư khỏi rủi ro mất vốn, nhưng cũng có nghĩa là trong các kịch bản exit không lý tưởng, phần lớn giá trị có thể chảy vào tay nhà đầu tư ưu đãi trước khi nhà sáng lập/nhân viên nhận được bất kỳ khoản nào đáng kể."
-      },
-      {
-        "type": "heading",
-        "text": "Vesting - Cơ chế giữ chân nhân tài"
-      },
-      {
-        "type": "paragraph",
-        "text": "Cả nhà sáng lập lẫn nhân viên nhận cổ phần thường không nhận toàn bộ ngay lập tức - vesting schedule chuẩn (4 năm, cliff 1 năm) đảm bảo cổ phần chỉ thực sự thuộc về họ dần theo thời gian gắn bó, bảo vệ công ty (và các cổ đông khác) khỏi việc một người rời đi sớm vẫn giữ nguyên tỷ lệ sở hữu lớn mà không tiếp tục đóng góp giá trị."
-      },
-      {
-        "type": "heading",
-        "text": "Waterfall Analysis - Công cụ phân tích không thể thiếu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Với một startup đã qua nhiều vòng gọi vốn, mỗi vòng thường có mức liquidation preference riêng và thứ tự ưu tiên khác nhau (thường vòng sau ưu tiên trước vòng trước - 'stacked' hoặc đôi khi 'pari passu' - ngang hàng). Waterfall analysis mô hình hóa chính xác ai nhận được bao nhiêu ở mỗi mức giá exit khác nhau, là công cụ bắt buộc phải thành thạo trước khi đưa ra bất kỳ kết luận nào về giá trị thực của một khoản đầu tư startup."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba điều khoản quyết định ai nhận được gì",
-        "subtitle": "Tỷ lệ sở hữu trên cap table không nói được số tiền thực nhận khi có sự kiện thanh khoản",
-        "concepts": [
-          {
-            "vi": "Quyền ưu tiên thanh toán",
-            "en": "Liquidation Preference",
-            "def": "Nhà đầu tư lấy phần của mình trước. Với 1x participating, họ nhận lại vốn RỒI mới chia phần còn lại - nên nhà sáng lập có thể sở hữu 60% mà nhận rất ít."
-          },
-          {
-            "vi": "Trao quyền theo thời gian",
-            "en": "Vesting",
-            "def": "Cổ phần về tay dần theo thời gian, thường bốn năm với vách một năm đầu. Rời đi trước vách nghĩa là không nhận gì."
-          },
-          {
-            "vi": "Phân tích thác nước",
-            "en": "Waterfall Analysis",
-            "def": "Tính thử tiền chảy về đâu ở từng mức giá bán. Đây là công cụ duy nhất trả lời được câu hỏi 'bán bao nhiêu thì tôi thực nhận bao nhiêu'."
-          }
+        "type": "list",
+        "items": [
+          "Trách nhiệm khi hỏng: ai được gọi, và ai có đủ hiểu biết để sửa trong đêm",
+          "Quyền duyệt thay đổi: ai phải đồng ý trước khi một thay đổi được đưa vào",
+          "Trách nhiệm về hướng đi: ai quyết định phần này nên tiến hoá theo hướng nào"
         ]
       },
       {
+        "type": "paragraph",
+        "text": "Ba thứ này thường được gộp làm một và chúng không nhất thiết thuộc về cùng một người. Người trực giỏi nhất chưa chắc là người nên quyết hướng đi, và việc gộp chúng là nguyên nhân khiến nhiều đội không dám giao quyền sở hữu cho ai."
+      },
+      {
+        "type": "heading",
+        "text": "Loãng dần theo hai cách"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách thứ nhất là đội lớn lên: cùng một lượng mã chia cho nhiều người hơn thì phần mỗi người thật sự hiểu nhỏ đi. Cách thứ hai âm thầm hơn: người viết ban đầu rời đi và phần của họ không được giao lại cho ai, chỉ được coi như đã có sẵn. Cách thứ hai tạo ra những vùng không ai nhận, và chúng luôn là những vùng cũ nhất, tức là những vùng nằm sâu nhất trong đường đi."
+      },
+      {
         "type": "callout",
-        "label": "Cái bẫy",
-        "text": "Tỷ lệ phần trăm trên cap table là con số dễ nhìn nhất và ít có ý nghĩa nhất. Chỉ waterfall ở nhiều mức giá bán mới cho biết cấu trúc vốn thực sự chia tiền thế nào."
+        "label": "Quyền sở hữu chỉ có thật khi có tên người",
+        "text": "Ghi tên một đội thay vì tên người nghe công bằng hơn và nó gần như luôn nghĩa là không ai. Một đội mười người sở hữu một thành phần thì lúc có sự cố sẽ có mười người cùng nghĩ ai đó khác đang xử lý. Ghi tên hai người cụ thể - hai chứ không một, để còn có người thứ hai khi người đầu nghỉ - là hình dạng duy nhất hoạt động được."
+      },
+      {
+        "type": "heading",
+        "text": "Bàn giao có điều kiện, không bàn giao theo ngày"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khi một người rời đi, phần của họ không nên được coi là đã chuyển vào ngày họ nghỉ. Điều kiện đúng giống điều kiện của mọi cuộc bàn giao: người nhận đã tự xử lý được một sự cố, đã tự phát hành được một thay đổi, và đã đi qua một chu kỳ đầy đủ của thành phần đó. Trước khi đủ ba điều kiện ấy thì thành phần đó vẫn đang không có chủ, dù bảng phân công nói khác."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Có chủ thật",
+          "text": "Hai tên người cụ thể, đã tự xử lý sự cố, và biết vì sao phần này được viết như hiện tại."
+        },
+        "right": {
+          "label": "Có chủ trên bảng",
+          "text": "Tên một đội trong một bảng phân công không ai đọc. Lúc có sự cố, mọi người cùng chờ người khác."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Đọc hiểu Cap Table là kỹ năng nền tảng phân biệt một PE/VC Analyst thực thụ với người chỉ nhìn vào tỷ lệ sở hữu bề mặt.",
-          "Mỗi điều khoản trong Cap Table - liquidation preference, vesting, anti-dilution - đều có thể thay đổi hoàn toàn kết quả tài chính thực tế của một deal, dù về mặt định giá tổng thể (headline valuation) trông có vẻ giống nhau."
+          "Trí nhớ chung không biến mất khi đội lớn lên, nó chỉ trở nên sai.",
+          "Vùng không ai nhận luôn là vùng cũ nhất, tức là vùng nằm sâu nhất trong đường đi."
         ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "Cấu trúc sở hữu theo từng vòng gọi vốn",
-        "arrow": true
+        "question": "Ba thành phần của quyền sở hữu là gì?",
+        "options": [
+          "Trách nhiệm khi hỏng, quyền duyệt, và hướng đi",
+          "Quyền đọc, quyền ghi, và quyền phát hành thay đổi lên môi trường thật",
+          "Người viết ban đầu, người đang bảo trì, và người quản lý trực tiếp của cả hai",
+          "Trách nhiệm về chất lượng, về hiệu năng, và về chi phí hạ tầng mà thành phần đó tiêu"
+        ],
+        "correct": 0,
+        "explanation": "Ba thứ này thường bị gộp làm một dù chúng không nhất thiết thuộc về cùng một người. Người trực giỏi nhất chưa chắc nên quyết hướng đi, và việc gộp chúng là lý do nhiều đội không dám giao quyền sở hữu cho ai."
       },
       {
-        "label": "Quyền ưu tiên thanh lý của từng nhà đầu tư",
-        "arrow": true
+        "question": "Vì sao ghi tên một đội thay vì tên người thường nghĩa là không ai?",
+        "options": [
+          "Vì lúc có sự cố mọi người cùng nghĩ người khác đang xử lý",
+          "Vì thành viên trong đội thay đổi theo thời gian nên trách nhiệm bị đứt đoạn",
+          "Vì không có cơ chế nào buộc một đội phải phân công cụ thể khi sự cố thực sự xảy ra",
+          "Vì các đội thường có nhiều thành phần cùng lúc nên không đủ nguồn lực cho tất cả"
+        ],
+        "correct": 0,
+        "explanation": "Đây là hiệu ứng đã được quan sát rất rộng và nó không phụ thuộc vào việc đội có kỷ luật hay không. Trách nhiệm chia cho mười người thì mỗi người mang một phần mười, và một phần mười của trách nhiệm không đủ để ai đó hành động trước."
       },
       {
-        "label": "Lịch vesting của sáng lập và nhân sự chủ chốt",
-        "arrow": true
+        "question": "Cách loãng nào âm thầm hơn?",
+        "options": [
+          "Người viết rời đi và phần của họ không được giao lại",
+          "Đội lớn lên nên phần mỗi người hiểu nhỏ đi",
+          "Mã được viết thêm liên tục nên khối lượng cần hiểu tăng nhanh hơn số người trong đội",
+          "Các thành phần được tách nhỏ ra nên ranh giới sở hữu giữa chúng trở nên mờ dần đi"
+        ],
+        "correct": 0,
+        "explanation": "Đội lớn lên là một sự kiện ai cũng thấy và thường kéo theo một lần phân công lại. Người rời đi thì phần của họ được coi như đã có sẵn, và những vùng ấy luôn là vùng cũ nhất, tức là vùng nằm sâu nhất trong đường đi."
       },
       {
-        "label": "Phân tích waterfall: khi exit, tiền chảy về ai trước",
-        "arrow": false
+        "question": "Điều kiện để coi một cuộc bàn giao quyền sở hữu là đã xong là gì?",
+        "options": [
+          "Người nhận đã tự xử lý được một sự cố, tự phát hành được một thay đổi, và đã đi qua một chu kỳ đầy đủ của thành phần đó",
+          "Người nhận đã đọc hết mã nguồn",
+          "Người bàn giao đã viết xong tài liệu và tổ chức một buổi trao đổi với người nhận",
+          "Bảng phân công đã được cập nhật và các bên liên quan đã được thông báo về thay đổi"
+        ],
+        "correct": 0,
+        "explanation": "Ba phương án kia đều đo hoạt động của người bàn giao hoặc của thủ tục. Chỉ điều kiện đầu đo thứ cần biết - người nhận đã làm được việc hay chưa - và trước khi đủ ba điều ấy thì thành phần vẫn đang không có chủ dù bảng nói khác."
+      },
+      {
+        "question": "Vì sao nên ghi hai tên người thay vì một?",
+        "options": [
+          "Để còn người thứ hai khi người đầu nghỉ",
+          "Để hai người kiểm tra chéo cho nhau",
+          "Để chia sẻ khối lượng công việc trực và giảm áp lực cho từng người trong đội",
+          "Để đảm bảo luôn có người sẵn sàng dù một trong hai đang nghỉ phép hoặc bận việc khác"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều là lợi ích hằng ngày. Lý do đầu là lý do về rủi ro: một tên duy nhất nghĩa là toàn bộ hiểu biết về thành phần đó rời khỏi công ty cùng một lá đơn, và đó chính là cách các vùng không ai nhận ra đời."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Trí nhớ chung không biến mất khi đội lớn lên, nó chỉ trở nên sai",
+      "Quyền sở hữu gồm ba thứ và chúng không nhất thiết thuộc cùng một người",
+      "Ghi tên một đội gần như luôn nghĩa là không ai",
+      "Bàn giao xong khi người nhận đã làm được việc, không khi bảng được cập nhật"
+    ],
+    "practicePrompt": {
+      "question": "Đội 20 người, 40 thành phần, mỗi thành phần cần 2 người hiểu. Trung bình mỗi người phải hiểu bao nhiêu thành phần?",
+      "options": [
+        "4",
+        "2 (= chia số thành phần cho số người, quên nhân với yêu cầu hai người mỗi thành phần)",
+        "40 (= giả định mọi người đều phải hiểu toàn bộ các thành phần trong hệ thống)",
+        "8 (= nhân đôi con số đúng, tính nhầm rằng mỗi thành phần cần bốn người hiểu)"
+      ],
+      "correct": 0,
+      "explanation": "40 thành phần nhân 2 người ra 80 lượt, chia cho 20 người ra 4 thành phần mỗi người. Con số ấy khả thi; điều đáng chú ý là nó chỉ khả thi khi có ai đó cố ý phân bổ, còn để tự nhiên thì phân bố luôn lệch và vài thành phần rơi vào số không."
+    },
+    "summary": {
+      "keyIdea": "Quyền sở hữu loãng theo số người và theo người rời đi, và cách thứ hai âm thầm hơn",
+      "commonMistake": "Ghi tên một đội và coi như đã có chủ",
+      "action": "Liệt kê thành phần trong hệ thống bạn giữ và ghi hai tên người cho mỗi cái."
+    },
+    "application": {
+      "title": "Ba câu cho một bảng phân công",
+      "message": "Mỗi thành phần có hai tên người chưa? Có thành phần nào không tên không? Người mới nhận đã tự xử lý được một sự cố chưa?",
+      "secondary": "Câu thứ hai thường cho ra vài cái tên trống, và chúng luôn là những phần cũ nhất."
+    },
+    "id": 1247,
+    "slug": "cap-table-va-vesting-cau-truc-von-startup",
+    "track": "professional"
   },
   {
     "id": 1248,
@@ -79775,7 +79794,7 @@ export const lessons: Lesson[] = [
         "question": "Ai chịu trách nhiệm cho tiêu chí tổng thể trong một tổ chức?",
         "options": [
           "Phải có người được giao rõ, nếu không thì không ai",
-          "Người phụ trách kiến trúc chung của toàn bộ hệ thống trong tổ chức",
+          "Người phụ trách kiến trúc chung",
           "Tập thể các trưởng nhóm kỹ thuật thông qua các buổi họp định kỳ",
           "Người quản lý kỹ thuật cấp cao nhất"
         ],
@@ -79786,7 +79805,7 @@ export const lessons: Lesson[] = [
         "question": "Chi phí của việc thêm một công nghệ mới vào hệ thống gồm những gì?",
         "options": [
           "Công dựng, cộng công nuôi nó mãi mãi ở mọi khâu vận hành",
-          "Công dựng ban đầu và thời gian để đội học cách sử dụng công nghệ đó",
+          "Công dựng ban đầu và thời gian học",
           "Chi phí bản quyền hoặc dịch vụ, cộng với chi phí hạ tầng để chạy nó",
           "Thời gian tích hợp với phần hiện có"
         ],
@@ -79810,7 +79829,7 @@ export const lessons: Lesson[] = [
           "Định kỳ liệt kê mọi công nghệ đang dùng và ai biết từng thứ",
           "Vẽ sơ đồ kiến trúc và cập nhật đều",
           "Bắt mọi quyết định qua hội đồng duyệt",
-          "Ghi lý do từng quyết định cho người sau"
+          "Ghi lại lý do của từng quyết định để người sau hiểu được bối cảnh"
         ],
         "correct": 0,
         "explanation": "Sơ đồ kiến trúc mô tả cách các thành phần nối nhau và không cho thấy gánh nặng vận hành. Một danh sách phẳng gồm mọi thứ đang dùng kèm số người biết từng thứ thì cho thấy ngay: dòng nào chỉ một người biết, và danh sách có dài hơn mức đội nuôi nổi hay không."
@@ -79945,8 +79964,8 @@ export const lessons: Lesson[] = [
         "question": "Hệ thống đã trưởng thành thì rủi ro lớn nhất của một thay đổi là gì?",
         "options": [
           "Nó làm hỏng thứ đang chạy cho những người đang dựa vào",
-          "Nó tốn nhiều thời gian hơn dự kiến do độ phức tạp của hệ thống hiện tại",
-          "Nó tạo ra thêm nợ kỹ thuật nếu không được thực hiện một cách cẩn thận",
+          "Nó tốn nhiều thời gian hơn dự kiến",
+          "Nó tạo thêm nợ kỹ thuật nếu làm ẩu",
           "Nó cần nhiều đội phối hợp nên khó kiểm"
         ],
         "correct": 0,
@@ -80395,206 +80414,190 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1288,
-    "track": "professional",
-    "slug": "co-che-tao-hoan-etf-authorized-participants",
-    "title": "Cơ chế tạo và hoàn ETF: Vì sao giá ETF không lệch xa giá trị tài sản ròng",
-    "subtitle": "Authorized Participant và vòng kinh doanh chênh lệch giá giữ ETF khớp với NAV - và khi nào cơ chế đó không hoạt động",
+    "title": "Cơ chế tự sửa: vì sao bản sao không lệch xa bản gốc",
+    "subtitle": "Một vòng phản hồi tốt hơn mọi quy trình rà soát thủ công",
     "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "🔄",
-    "openingQuestion": "Một quỹ ETF chỉ số đang giao dịch trên sàn ở mức giá cao hơn 1,5% so với giá trị tài sản ròng (NAV) của rổ chứng khoán mà nó nắm giữ. Điều gì thường xảy ra tiếp theo và vì sao?",
+    "emoji": "♻️",
+    "whyItMatters": "Mọi hệ thống có bản sao đều có nguy cơ lệch, và cách xử lý thường thấy là rà soát định kỳ. Có một cách khác rẻ hơn nhiều: làm cho việc lệch tự sinh ra lực kéo nó về.",
+    "openingQuestion": "Bản sao dữ liệu có thể lệch bản gốc. Cách nào giữ nó gần nhất?",
     "openingOptions": [
-      "Chênh lệch sẽ tồn tại mãi vì giá trên sàn do cung cầu quyết định, hoàn toàn độc lập với NAV",
-      "Authorized Participant mua rổ chứng khoán cơ sở, đổi lấy chứng chỉ ETF mới rồi bán ra sàn thu chênh",
-      "Công ty quản lý quỹ sẽ ra thông báo yêu cầu nhà đầu tư ngừng mua cho đến khi giá về đúng NAV",
-      "Sàn giao dịch sẽ tạm dừng giao dịch chứng chỉ quỹ đó cho đến khi chênh lệch biến mất"
+      "Làm cho việc phát hiện lệch tự động sinh ra hành động sửa",
+      "Rà soát định kỳ và sửa khi phát hiện",
+      "Tăng tần suất đồng bộ giữa bản sao và bản gốc để khoảng lệch không kịp lớn lên",
+      "Ghi lại mọi thay đổi ở bản gốc rồi phát lại theo đúng thứ tự trên từng bản sao"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là cơ chế cốt lõi phân biệt ETF với quỹ đóng. Thành viên lập quỹ có quyền tạo mới hoặc hoàn lại chứng chỉ quỹ theo NAV, nên mỗi khi giá sàn lệch khỏi NAV đủ để bù chi phí giao dịch, họ có động cơ lợi nhuận để thực hiện giao dịch đối ứng. Chính hành động tìm lợi nhuận đó tự động điều chỉnh cung chứng chỉ quỹ trên sàn và kéo giá về gần NAV. Điểm đáng nhớ là không ai phải chủ động can thiệp - cơ chế hoạt động nhờ động cơ lợi nhuận, không nhờ thiện chí.",
-    "realWorldExample": {
-      "company": "Khi cơ chế bị nghẽn - trường hợp tài sản cơ sở kém thanh khoản",
-      "description": "Cơ chế tạo và hoàn hoạt động tốt khi thành viên lập quỹ có thể mua hoặc bán rổ tài sản cơ sở một cách dễ dàng. Nhưng với ETF nắm giữ tài sản kém thanh khoản - ví dụ trái phiếu doanh nghiệp ít giao dịch - trong giai đoạn thị trường căng thẳng, chính rổ tài sản cơ sở trở nên khó mua bán và khó xác định giá. Khi đó chi phí và rủi ro của việc thực hiện giao dịch đối ứng tăng vọt, thành viên lập quỹ giảm hoạt động, và giá ETF trên sàn có thể lệch khỏi NAV rộng hơn bình thường trong một khoảng thời gian. Điều này không có nghĩa cơ chế bị hỏng - nó phản ánh đúng thực tế là NAV được tính từ các mức giá tham chiếu có thể không còn thực hiện được ở quy mô lớn. Đây là lý do nhà đầu tư nên theo dõi mức chênh lệch giá mua bán và chênh lệch so với NAV, đặc biệt với ETF trên tài sản kém thanh khoản."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Ba cách kia đều làm khoảng lệch nhỏ hơn và đều dựa vào một quy trình chạy đúng. Cách đầu khác về bản chất: nó không cần ai nhớ chạy gì, vì chính sự lệch là thứ kích hoạt việc sửa. Một cơ chế như vậy vẫn hoạt động vào ngày mọi người quên mất nó tồn tại, và đó là thứ không quy trình nào làm được.",
+    "diagram": [
       {
-        "question": "Thành viên lập quỹ (Authorized Participant) là ai và họ khác nhà đầu tư thông thường ở điểm gì?",
-        "options": [
-          "Là nhà đầu tư lớn được ưu tiên mua chứng chỉ quỹ với giá thấp hơn thị trường",
-          "Là các định chế tài chính có thỏa thuận với công ty quản lý quỹ, được quyền tạo mới hoặc hoàn lại chứng chỉ quỹ theo lô lớn dựa trên NAV - trong khi nhà đầu tư thông thường chỉ mua bán chứng chỉ đã lưu hành trên sàn theo giá thị trường",
-          "Là bộ phận tự doanh của chính công ty quản lý quỹ",
-          "Là các nhà đầu tư cá nhân đã đăng ký tài khoản trực tiếp với quỹ"
-        ],
-        "correct": 1,
-        "explanation": "Sự tồn tại của một thị trường sơ cấp song song - nơi chứng chỉ quỹ có thể được tạo mới hoặc triệt tiêu theo NAV - là điểm khác biệt cấu trúc giữa ETF và quỹ đóng, và cũng là lý do ETF thường giao dịch sát NAV."
+        "label": "Bản sao lệch khỏi bản gốc",
+        "arrow": true
       },
       {
-        "question": "Vì sao quỹ đóng (closed-end fund) có thể giao dịch chiết khấu sâu so với NAV trong thời gian dài, còn ETF thì thường không?",
-        "options": [
-          "Vì quỹ đóng thường đầu tư vào tài sản kém chất lượng hơn",
-          "Vì số lượng chứng chỉ quỹ đóng là cố định sau khi phát hành, không có cơ chế tạo mới hay hoàn lại theo NAV - nên không tồn tại vòng kinh doanh chênh lệch giá để kéo giá về NAV",
-          "Vì quỹ đóng không được niêm yết trên sàn giao dịch",
-          "Vì quỹ đóng không công bố NAV nên không thể so sánh"
-        ],
-        "correct": 1,
-        "explanation": "Chính khả năng tạo và hoàn theo NAV là yếu tố tạo ra lực kéo giá. Không có cơ chế đó, giá quỹ đóng chỉ phụ thuộc vào cung cầu thứ cấp và có thể lệch khỏi NAV rất lâu."
+        "label": "Lệch bị phát hiện tự động",
+        "arrow": true
       },
       {
-        "question": "Cơ chế tạo và hoàn bằng hiện vật (in-kind) mang lại lợi ích gì so với thực hiện bằng tiền?",
-        "options": [
-          "Giúp quỹ tăng được lợi nhuận đầu tư cao hơn chỉ số tham chiếu",
-          "Quỹ không phải bán tài sản để lấy tiền trả cho bên hoàn lại - nên giảm chi phí giao dịch và hạn chế phát sinh nghĩa vụ thuế trên lãi vốn cho những nhà đầu tư còn lại trong quỹ",
-          "Cho phép quỹ nắm giữ nhiều tiền mặt hơn để chờ cơ hội",
-          "Giúp quỹ loại bỏ hoàn toàn sai số so với chỉ số tham chiếu"
-        ],
-        "correct": 1,
-        "explanation": "Khi việc hoàn lại được thực hiện bằng cách chuyển giao chính rổ chứng khoán thay vì bán ra lấy tiền, quỹ tránh được vòng giao dịch và các hệ quả về chi phí cùng thuế. Đây là một trong những lợi thế cấu trúc quan trọng của ETF so với quỹ mở truyền thống."
+        "label": "Phát hiện tự sinh ra hành động sửa",
+        "arrow": true
       },
       {
-        "question": "Nhà đầu tư nên đặc biệt lưu ý điều gì khi mua ETF trên tài sản kém thanh khoản trong giai đoạn thị trường căng thẳng?",
-        "options": [
-          "Không có gì khác biệt vì cơ chế tạo và hoàn luôn giữ giá sát NAV trong mọi điều kiện",
-          "Chênh lệch giá mua bán trên sàn có thể rộng ra và giá có thể lệch khỏi NAV nhiều hơn bình thường, vì chính rổ tài sản cơ sở trở nên khó giao dịch và khó định giá",
-          "Nên đặt lệnh thị trường thay vì lệnh giới hạn để khớp nhanh nhất",
-          "Nên chuyển sang mua quỹ đóng vì cấu trúc ổn định hơn"
-        ],
-        "correct": 1,
-        "explanation": "Đây là hệ quả thực tế quan trọng nhất của bài học: cơ chế tạo và hoàn chỉ hiệu quả bằng mức độ thanh khoản của tài sản cơ sở. Trong điều kiện đó, dùng lệnh giới hạn và tránh giao dịch vào đầu hoặc cuối phiên là biện pháp phòng vệ hợp lý."
+        "label": "Khoảng lệch bị kéo về mà không ai can thiệp"
       }
     ],
-    "keyTakeaways": [
-      "Thành viên lập quỹ được tạo mới hoặc hoàn lại chứng chỉ theo NAV, tạo ra vòng kinh doanh chênh lệch giá kéo giá sàn về gần NAV.",
-      "Cơ chế này hoạt động nhờ động cơ lợi nhuận, không cần ai chủ động can thiệp - và đó là điểm khác biệt cốt lõi so với quỹ đóng.",
-      "Tạo và hoàn bằng hiện vật giúp quỹ giảm chi phí giao dịch và hạn chế nghĩa vụ thuế cho nhà đầu tư còn lại.",
-      "Cơ chế chỉ hiệu quả bằng mức thanh khoản của tài sản cơ sở - với tài sản kém thanh khoản, chênh lệch so với NAV có thể rộng ra."
-    ],
-    "practicePrompt": {
-      "question": "Một ETF đang giao dịch thấp hơn NAV 2%. Thành viên lập quỹ sẽ làm gì để thu lợi nhuận, và tác động lên giá là gì?",
-      "options": [
-        "Mua thêm rổ chứng khoán cơ sở và tạo thêm chứng chỉ quỹ mới, làm tăng cung ETF trên sàn",
-        "Mua ETF giá rẻ trên sàn, hoàn lại quỹ nhận rổ theo NAV rồi bán ra",
-        "Bán khống chứng chỉ ETF để đẩy giá xuống thấp hơn nữa",
-        "Không làm gì vì chênh lệch âm không tạo cơ hội lợi nhuận"
-      ],
-      "correct": 1,
-      "explanation": "Khi ETF rẻ hơn NAV, hướng giao dịch có lợi là mua chứng chỉ rẻ trên sàn và hoàn lại để nhận tài sản có giá trị cao hơn. Việc này rút chứng chỉ ra khỏi lưu hành, giảm cung trên sàn và đẩy giá lên. Chiều ngược lại - tạo mới chứng chỉ - xảy ra khi ETF đắt hơn NAV."
-    },
-    "summary": {
-      "keyIdea": "Giá ETF sát NAV không nhờ quy định mà nhờ một vòng kinh doanh chênh lệch giá do thành viên lập quỹ thực hiện vì động cơ lợi nhuận của chính họ.",
-      "commonMistake": "Cho rằng ETF luôn khớp NAV trong mọi điều kiện, và bỏ qua việc chênh lệch có thể rộng ra với tài sản cơ sở kém thanh khoản.",
-      "action": "Chọn một ETF bạn quan tâm, tra mức chênh lệch giá so với NAV và chênh lệch giá mua bán trung bình, rồi so với một ETF trên tài sản thanh khoản cao hơn."
-    },
-    "application": {
-      "title": "Áp dụng khi giao dịch",
-      "message": "Trước khi đặt lệnh ETF, kiểm tra ba thứ: chênh lệch giá so với NAV hiện tại, độ rộng chênh lệch giá mua bán, và mức độ thanh khoản của tài sản cơ sở.",
-      "secondary": "Với ETF trên tài sản kém thanh khoản, dùng lệnh giới hạn và tránh giao dịch ngay khi mở phiên hoặc sát giờ đóng cửa - đó là những thời điểm chênh lệch thường rộng nhất."
+    "realWorldExample": {
+      "company": "Quy trình đối soát hằng tuần bị bỏ quên",
+      "description": "Một hệ thống có bản sao đọc và một quy trình đối soát hằng tuần do một người chạy tay. Người đó chuyển đội, và quy trình ngừng chạy trong bốn tháng mà không ai nhận ra vì nó chưa bao giờ báo lỗi. Khi có người chạy lại, khoảng lệch đã lớn tới mức không sửa được bằng cách đồng bộ - phải dựng lại toàn bộ bản sao từ đầu, mất hai ngày ngừng đọc."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Một quỹ ETF vừa được giao dịch tự do trên sàn theo cung cầu, vừa gần như luôn khớp với giá trị tài sản mà nó nắm giữ. Hai điều này nghe có vẻ mâu thuẫn, và cơ chế giải quyết mâu thuẫn đó chính là điểm kỹ thuật quan trọng nhất mà một chuyên viên quỹ cần hiểu."
+        "text": "Có hai cách giữ hai thứ khớp nhau: kiểm tra rồi sửa, hoặc thiết kế sao cho việc lệch tự tạo ra lực kéo về. Cách thứ hai ít gặp hơn nhiều và bền hơn hẳn."
       },
       {
         "type": "heading",
-        "text": "Hai thị trường song song"
-      },
-      {
-        "type": "conceptTable",
-        "title": "Thị trường sơ cấp và thị trường thứ cấp của một ETF",
-        "subtitle": "Chính sự tồn tại của thị trường sơ cấp tạo ra lực kéo giá",
-        "concepts": [
-          {
-            "vi": "Thị trường thứ cấp",
-            "en": "Secondary market",
-            "def": "Nơi nhà đầu tư thông thường mua bán chứng chỉ quỹ đã lưu hành với nhau trên sàn, theo giá do cung cầu quyết định trong từng thời điểm."
-          },
-          {
-            "vi": "Thị trường sơ cấp",
-            "en": "Primary market",
-            "def": "Nơi thành viên lập quỹ giao dịch trực tiếp với quỹ: nộp rổ tài sản cơ sở để nhận chứng chỉ mới phát hành, hoặc nộp chứng chỉ để nhận lại rổ tài sản - luôn theo NAV, theo lô lớn."
-          },
-          {
-            "vi": "Thành viên lập quỹ",
-            "en": "Authorized Participant",
-            "def": "Định chế tài chính có thỏa thuận với công ty quản lý quỹ để thực hiện các giao dịch tạo và hoàn. Họ không được ưu đãi về giá - họ chỉ có quyền tiếp cận một kênh giao dịch mà nhà đầu tư thường không có."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Vòng kinh doanh chênh lệch giá hoạt động thế nào"
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Khi ETF đắt hơn NAV",
-          "text": "Thành viên lập quỹ mua rổ chứng khoán cơ sở trên thị trường, nộp vào quỹ để nhận chứng chỉ mới theo NAV, rồi bán chứng chỉ đó ra sàn ở giá cao hơn. Cung chứng chỉ trên sàn tăng lên, kéo giá ETF xuống về gần NAV."
-        },
-        "right": {
-          "label": "Khi ETF rẻ hơn NAV",
-          "text": "Thành viên lập quỹ mua chứng chỉ giá rẻ trên sàn, nộp lại cho quỹ để nhận rổ chứng khoán theo NAV, rồi bán rổ đó ra thị trường. Cung chứng chỉ trên sàn giảm đi, đẩy giá ETF lên về gần NAV."
-        }
+        "text": "Vì sao quy trình rà soát luôn mục dần"
       },
       {
         "type": "paragraph",
-        "text": "Điểm đáng chú ý là không có bên nào hành động vì mục tiêu giữ giá đúng NAV. Thành viên lập quỹ chỉ tìm lợi nhuận từ chênh lệch, và mức chênh lệch cần đủ lớn để bù chi phí giao dịch cùng rủi ro trong lúc thực hiện. Chính vì thế giá ETF không khớp NAV tuyệt đối mà dao động trong một dải hẹp quanh NAV - độ rộng của dải đó phản ánh chi phí thực hiện giao dịch đối ứng."
+        "text": "Một quy trình chạy tay phụ thuộc vào việc có người nhớ chạy nó, và trong phần lớn trường hợp nó chưa bao giờ báo lỗi - nên việc nó ngừng chạy cũng không báo gì. Đây là hình dạng thất bại tệ nhất: hệ thống mất một lớp bảo vệ và mọi tín hiệu vẫn bình thường, vì tín hiệu duy nhất mà lớp ấy tạo ra là sự im lặng."
       },
       {
         "type": "heading",
-        "text": "Vì sao thực hiện bằng hiện vật quan trọng"
+        "text": "Ba hình dạng của một cơ chế tự sửa"
       },
       {
         "type": "list",
         "items": [
-          "Quỹ không phải bán chứng khoán để lấy tiền trả cho bên hoàn lại, nên tránh được chi phí giao dịch và tác động lên giá thị trường.",
-          "Vì không phát sinh giao dịch bán, quỹ hạn chế được việc hiện thực hóa lãi vốn - điều này bảo vệ những nhà đầu tư còn lại khỏi nghĩa vụ thuế phát sinh do hành động của người khác.",
-          "Cơ cấu danh mục của quỹ ít bị xáo trộn, nên sai số so với chỉ số tham chiếu được giữ thấp hơn.",
-          "Đây là lợi thế cấu trúc mà quỹ mở truyền thống không có, vì quỹ mở phải bán tài sản để trả tiền cho nhà đầu tư rút vốn."
+          "Đọc rồi so: mỗi lần đọc bản sao, một phần nhỏ được đối chiếu với bản gốc và lệch thì kích hoạt đồng bộ",
+          "Hết hạn theo thời gian: mọi bản sao có tuổi thọ, quá hạn thì tự bị bỏ đi chứ không chờ ai xoá",
+          "Dựng lại định kỳ: bản sao được tạo lại từ đầu theo lịch, nên mọi lệch tích luỹ đều bị xoá sạch"
         ]
       },
       {
-        "type": "heading",
-        "text": "Khi nào cơ chế không hoạt động tốt"
-      },
-      {
         "type": "paragraph",
-        "text": "Cơ chế tạo và hoàn chỉ hiệu quả khi thành viên lập quỹ có thể mua bán rổ tài sản cơ sở một cách thuận lợi. Với ETF trên chỉ số cổ phiếu lớn thanh khoản cao, điều này gần như luôn đúng. Nhưng với ETF nắm trái phiếu doanh nghiệp ít giao dịch, cổ phiếu ở thị trường mới nổi có giờ giao dịch lệch múi, hoặc tài sản có giới hạn về khả năng mua bán, thì trong giai đoạn căng thẳng chính rổ cơ sở trở nên khó giao dịch và khó xác định giá thực hiện được."
+        "text": "Hình dạng thứ hai là hình dạng rẻ nhất và ít được dùng nhất. Một bản sao có hạn sử dụng thì không bao giờ lệch quá thời gian ấy, bất kể chuyện gì xảy ra với quy trình đồng bộ - và nó không cần ai theo dõi."
       },
       {
         "type": "callout",
-        "label": "NAV cũng chỉ là một con số ước lượng",
-        "text": "Với tài sản kém thanh khoản, NAV được tính từ các mức giá tham chiếu gần nhất - có thể là giá của một giao dịch nhỏ hoặc giá mô hình, chưa chắc là giá có thể thực hiện được ở quy mô lớn. Trong tình huống đó, việc giá ETF trên sàn lệch khỏi NAV không hẳn nghĩa là ETF đang bị định giá sai; nhiều khi giá sàn - phản ánh mức mà người mua và người bán thực sự chấp nhận ngay lúc đó - lại sát thực tế hơn chính NAV. Đây là một điểm tinh tế thường bị hiểu ngược."
+        "label": "Cơ chế tốt là cơ chế vẫn chạy khi mọi người quên nó",
+        "text": "Đây là phép thử duy nhất đáng dùng cho loại thiết kế này. Hỏi xem nếu cả đội nghỉ ba tháng thì cơ chế này còn hoạt động không. Một quy trình rà soát thì không; một bản sao có hạn sử dụng thì có. Câu hỏi ấy tách được thứ bền khỏi thứ chỉ đang được nuôi bằng sự chú ý của ai đó."
+      },
+      {
+        "type": "heading",
+        "text": "Cái giá của cơ chế tự sửa"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nó không miễn phí. Một cơ chế tự động sửa cũng có thể tự động sửa nhầm, và khi nó nhầm thì nó nhầm ở quy mô lớn và nhanh. Điều kiện đi kèm là phải có một giới hạn tốc độ - sửa tối đa bao nhiêu bản ghi mỗi phút - và một cảnh báo khi lượng sửa vượt mức thường ngày. Không có hai thứ đó thì một lỗi ở bản gốc sẽ được nhân bản đi khắp nơi với tốc độ tối đa."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Tự sửa",
+          "text": "Lệch kích hoạt sửa, không cần ai nhớ. Cần giới hạn tốc độ và cảnh báo khi lượng sửa bất thường."
+        },
+        "right": {
+          "label": "Rà soát định kỳ",
+          "text": "Đơn giản, dễ hiểu, và mục dần từ ngày người phụ trách chuyển đội. Sự im lặng của nó không phân biệt được với thành công."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Giá ETF sát NAV không phải nhờ một quy định nào, mà nhờ việc luôn có người kiếm được lợi nhuận từ việc kéo nó về.",
-          "Và vì cơ chế dựa trên giao dịch tài sản cơ sở, nó chỉ mạnh bằng đúng mức thanh khoản của rổ tài sản đó."
+          "Quy trình rà soát báo thành công bằng sự im lặng, nên việc nó chết cũng im lặng.",
+          "Một cơ chế tự sửa cần giới hạn tốc độ, vì nó nhầm ở quy mô lớn và nhanh."
         ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "Giá ETF trên sàn lệch khỏi NAV của rổ tài sản",
-        "arrow": true
+        "question": "Vì sao một quy trình rà soát chạy tay là hình dạng thất bại tệ?",
+        "options": [
+          "Vì tín hiệu duy nhất nó tạo ra là sự im lặng",
+          "Vì nó phụ thuộc vào một người cụ thể",
+          "Vì tần suất chạy tay thường thấp hơn tốc độ mà khoảng lệch tích luỹ trong hệ thống",
+          "Vì kết quả của nó không được ghi lại ở đâu nên không ai đối chiếu được giữa các lần"
+        ],
+        "correct": 0,
+        "explanation": "Việc phụ thuộc vào một người là vấn đề thật nhưng nó sửa được bằng cách phân công lại. Việc thành công và việc chết cùng trông giống nhau thì không sửa được bằng phân công - nó là một lỗ hổng trong chính thiết kế của lớp bảo vệ ấy."
       },
       {
-        "label": "Thành viên lập quỹ thấy cơ hội chênh lệch giá",
-        "arrow": true
+        "question": "Hình dạng tự sửa nào rẻ nhất và ít được dùng nhất?",
+        "options": [
+          "Cho bản sao một hạn sử dụng",
+          "Đối chiếu một phần nhỏ ở mỗi lần đọc",
+          "Dựng lại toàn bộ bản sao theo lịch để xoá sạch mọi khoảng lệch đã tích luỹ được",
+          "Ghi nhật ký mọi thay đổi rồi phát lại chúng theo thứ tự lên từng bản sao một"
+        ],
+        "correct": 0,
+        "explanation": "Một bản sao có hạn thì không bao giờ lệch quá thời gian ấy, bất kể chuyện gì xảy ra với quy trình đồng bộ, và nó không cần ai theo dõi. Ba cách kia đều cần một thành phần đang chạy đúng."
       },
       {
-        "label": "Tạo mới hoặc hoàn lại chứng chỉ theo NAV (thường bằng hiện vật)",
-        "arrow": true
+        "question": "Phép thử nào tách được cơ chế bền khỏi cơ chế đang được nuôi bằng sự chú ý?",
+        "options": [
+          "Nếu cả đội nghỉ ba tháng thì nó còn hoạt động không",
+          "Nó đã chạy được bao lâu mà không có sự cố",
+          "Có bao nhiêu người trong đội hiểu được cách nó hoạt động và sửa được khi nó hỏng",
+          "Nó có được ghi vào tài liệu vận hành và được rà soát trong các kỳ kiểm tra định kỳ không"
+        ],
+        "correct": 0,
+        "explanation": "Ba câu kia đều đo mức độ trưởng thành của cách vận hành quanh cơ chế. Câu đầu đo chính cơ chế, và nó cho ra câu trả lời rõ ràng: quy trình rà soát thì không, bản sao có hạn sử dụng thì có."
       },
       {
-        "label": "Cung chứng chỉ trên sàn thay đổi → giá kéo về gần NAV",
-        "arrow": true
+        "question": "Điều kiện bắt buộc đi kèm một cơ chế tự sửa là gì?",
+        "options": [
+          "Một giới hạn tốc độ sửa và một cảnh báo khi lượng sửa vượt mức thường ngày, vì một cơ chế tự động sai sẽ sai ở quy mô lớn và rất nhanh",
+          "Một bản ghi lại mọi lần nó đã sửa",
+          "Một cơ chế cho phép tắt nó đi nhanh chóng khi phát hiện nó đang hoạt động sai",
+          "Một quy trình kiểm tra định kỳ để xác nhận rằng nó vẫn đang chạy đúng như thiết kế"
+        ],
+        "correct": 0,
+        "explanation": "Ba phương án kia đều hữu ích và đều là biện pháp sau khi phát hiện. Giới hạn tốc độ là biện pháp duy nhất giới hạn được thiệt hại trong khoảng thời gian trước khi ai đó kịp phát hiện."
       },
       {
-        "label": "Hiệu quả của cơ chế phụ thuộc vào thanh khoản tài sản cơ sở",
-        "arrow": false
+        "question": "Khác biệt bản chất giữa tự sửa và rà soát định kỳ là gì?",
+        "options": [
+          "Tự sửa không cần ai nhớ chạy nó",
+          "Tự sửa nhanh hơn",
+          "Tự sửa phát hiện được nhiều loại khoảng lệch hơn so với một lần rà soát thủ công",
+          "Tự sửa không cần dừng hệ thống nên nó không ảnh hưởng tới người dùng đang truy cập"
+        ],
+        "correct": 0,
+        "explanation": "Ba khác biệt kia đều là khác biệt về mức. Việc không cần ai nhớ là khác biệt về loại: nó quyết định cơ chế còn tồn tại hay không sau khi người dựng nó chuyển đội, và đó là biến số lớn nhất trong vòng đời của mọi lớp bảo vệ."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Quy trình rà soát báo thành công bằng im lặng nên việc nó chết cũng im lặng",
+      "Bản sao có hạn sử dụng là cơ chế tự sửa rẻ nhất và ít dùng nhất",
+      "Phép thử: cả đội nghỉ ba tháng thì nó còn chạy không",
+      "Cơ chế tự sửa cần giới hạn tốc độ, vì nó sai ở quy mô lớn và nhanh"
+    ],
+    "practicePrompt": {
+      "question": "Bản sao có hạn 10 phút. Quy trình đồng bộ chết lúc 9h00. Bản sao lệch tối đa bao lâu trước khi bị bỏ?",
+      "options": [
+        "10 phút",
+        "Không giới hạn, vì quy trình đồng bộ đã chết nên không còn gì cập nhật bản sao nữa",
+        "20 phút (= cộng thêm một chu kỳ hạn nữa cho khoảng thời gian phát hiện ra sự cố)",
+        "5 phút (= lấy một nửa hạn sử dụng làm khoảng lệch trung bình thay vì tối đa)"
+      ],
+      "correct": 0,
+      "explanation": "Hạn sử dụng đặt trần cứng cho khoảng lệch bất kể quy trình đồng bộ còn sống hay không - quá mười phút thì bản sao tự bị bỏ đi và yêu cầu đọc phải đi tới bản gốc. Đó chính là điều khiến nó bền hơn mọi quy trình cần người nhớ chạy."
+    },
+    "summary": {
+      "keyIdea": "Thiết kế sao cho việc lệch tự sinh ra lực kéo về, thay vì kiểm rồi sửa",
+      "commonMistake": "Dựa vào một quy trình rà soát mà sự im lặng của nó không phân biệt được với thành công",
+      "action": "Tìm một quy trình đối soát chạy tay ở đội bạn và hỏi lần cuối nó chạy là khi nào."
+    },
+    "application": {
+      "title": "Hai câu cho mọi lớp bảo vệ",
+      "message": "Nếu cả đội nghỉ ba tháng thì nó còn chạy không? Nếu nó chết thì có gì báo không?",
+      "secondary": "Nếu câu thứ hai trả lời là không, lớp bảo vệ ấy đang bảo vệ bằng sự tin tưởng chứ không bằng cơ chế."
+    },
+    "id": 1288,
+    "slug": "co-che-tao-hoan-etf-authorized-participants",
+    "track": "professional"
   },
   {
     "id": 1289,
