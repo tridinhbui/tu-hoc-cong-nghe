@@ -1,0 +1,164 @@
+{
+  "title": "Engineering Lead & Operations, Lesson 1: Budgeting infrastructure",
+  "subtitle": "Costing next year when you do not know what the product will look like",
+  "duration": "9 min",
+  "whyItMatters": "A badly built infrastructure budget is not merely inaccurate. It settles the year's engineering decisions in advance, because anything outside the envelope has to be asked for and most of it never is.",
+  "openingQuestion": "You are building next year's infrastructure budget. Where do you start?",
+  "openingOptions": [
+    "From current cost, broken out by group and divided by a unit of work",
+    "From last year's figure plus the growth the product is expected to see over the coming year",
+    "From the product roadmap, since new features are what drive most of the additional cost",
+    "From the ceiling handed down by leadership, then allocated backward across the line items"
+  ],
+  "explanation": "The other three all start from one total and divide downward, so when reality diverges nobody can trace where it diverged. Starting from current cost already split by group and per unit of work means every budget line is tied to a measurable quantity, and a variance during the year points at a cause instead of only at a number.",
+  "diagram": [
+    {
+      "label": "Current cost, split by group"
+    },
+    {
+      "label": "Divided by a unit of work"
+    },
+    {
+      "label": "Multiplied by the work expected"
+    },
+    {
+      "label": "One-off items added separately"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Right on the total, wrong on every line",
+    "description": "A team built its budget by taking last year's number and adding thirty percent. At year end the total was within five percent of the plan and leadership called it a good budget. Inside it, compute came in forty percent under while storage came in at double - two large errors cancelling each other out, and nobody learned anything for the following year."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An infrastructure budget differs from an ordinary one in one way: most of the cost is not decided by anybody, it is decided by usage. That means the estimate has to start from a quantity rather than from an amount of money."
+    },
+    {
+      "type": "heading",
+      "text": "Three kinds of line in an infrastructure budget"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Usage-based: compute, data transfer, external service calls. Estimate as unit price times volume",
+        "Accumulating: storage and backups. Never falls on its own, so it must be summed rather than repeated",
+        "One-off: migrations, hardware purchases, standing up a new environment. Kept separate because they do not recur"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The second group is the one most often estimated wrongly, because the natural way to do it is to take this month's storage cost and multiply by twelve. That assumes the volume of data stands still, when it grows every month and falls in none - unless there is a deletion policy, and whether there is one belongs in the budget itself."
+    },
+    {
+      "type": "heading",
+      "text": "Estimate as a range, not as a number"
+    },
+    {
+      "type": "paragraph",
+      "text": "A single figure forces the person building it to choose between being short and asking for too much, and both produce bad behaviour. Three scenarios - low, middle, high - with the condition that triggers each is both more honest and easier to approve, because the approver can see what risk they are accepting instead of a number they simply have to trust."
+    },
+    {
+      "type": "callout",
+      "label": "A budget is an architectural decision",
+      "text": "This is the part most easily missed. A budget with no room for per-call external services means the team will build its own even where buying is correct. A budget generous on compute and tight on storage means the team will recompute rather than store results. The numbers in the sheet decide how the system gets built, so whoever writes them needs to know they are designing rather than merely estimating."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Built from quantities",
+        "text": "Every line tied to something measurable. When it diverges you know immediately whether it was volume or unit price."
+      },
+      "right": {
+        "label": "Built from a total",
+        "text": "One number divided down across the line items. At year end you know only how far off it was, not why."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Start from measurable quantities, not from last year's number.",
+        "The budget decides how the system gets built, which makes it an architectural decision."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why build a budget from units of work rather than from last year's total?",
+      "options": [
+        "Because this approach produces a more accurate figure than adding a growth percentage does",
+        "Because last year's number is out of date",
+        "Because when the figure diverges you can trace what caused the divergence, which is the only thing that improves next year's estimate",
+        "Because leadership usually requires a detailed justification for each line in the budget"
+      ],
+      "explanation": "Accuracy on the total is not the main goal. A budget right on the total and wrong on every line teaches nothing for the following year, while one that misses the total but explains why does."
+    },
+    {
+      "question": "Which group of cost is most often estimated wrongly?",
+      "options": [
+        "One-off items, because the timing of them tends to slip against the original plan",
+        "Data transfer, because it is hard to measure",
+        "External service calls, because their unit prices can change mid-year on the vendor's side",
+        "Storage, because it accumulates rather than repeating"
+      ],
+      "explanation": "The natural method is to take this month's storage cost and multiply by twelve, and that assumes the data volume stands still. It grows every month and falls in none, unless there is a deletion policy."
+    },
+    {
+      "question": "Why estimate as a range rather than a single number?",
+      "options": [
+        "Because the approver can see what risk they are accepting rather than being handed a number they have to trust",
+        "Because a single number is always wrong",
+        "Because a range lets the team adjust during the year without seeking approval again",
+        "Because different line items carry different levels of uncertainty and are hard to combine"
+      ],
+      "explanation": "A single figure forces the author to choose between coming up short and asking for too much, and it hides the uncertainty from the approver entirely. Three scenarios with triggers move the risk decision to the person entitled to make it."
+    },
+    {
+      "question": "A budget tight on storage but generous on compute produces what behaviour?",
+      "options": [
+        "The team moves data to a cheaper class of storage",
+        "The team recomputes rather than storing results",
+        "The team reduces backup frequency to save the capacity being constrained during the year",
+        "The team asks for the budget to be revised mid-year when storage reaches its ceiling"
+      ],
+      "explanation": "The other three all happen and all are reasonable responses. The first is the one nobody anticipates, because it does not look like a cost decision - it looks like a technical choice, and it is made by somebody who never read the budget."
+    },
+    {
+      "question": "The total came in within 5% but two large groups diverged in opposite directions. How should that be read?",
+      "options": [
+        "As normal, since cost groups always fluctuate around the estimate in both directions",
+        "As a good budget, because the total matched",
+        "As a poor budget, because two large errors covered for each other",
+        "As a sign that the grouping does not reflect the real structure of the system"
+      ],
+      "explanation": "The total matching is the only thing an outsider sees and it is the least valuable thing in the report. Two large errors cancelling means both estimating models were wrong and neither gets corrected for next year."
+    }
+  ],
+  "keyTakeaways": [
+    "Start from measurable quantities, not from last year's total",
+    "Storage accumulates rather than repeating, so multiplying by twelve is wrong",
+    "Estimate as a range with triggers, not as a single number",
+    "The budget decides how the system gets built, so it is an architectural decision"
+  ],
+  "practicePrompt": {
+    "question": "Storage is at 2TB growing 200GB a month, priced at $20 per TB per month. What does storage cost over the next year?",
+    "options": [
+      "About $790",
+      "$480 (= multiplying this month's cost by twelve and treating the data volume as static)",
+      "$1,056 (= charging the whole year at the volume reached in the twelfth month)",
+      "$528 (= adding only one month of data growth on top of the current level)"
+    ],
+    "explanation": "Volume runs from 2.2TB in month one to 4.4TB in month twelve, averaging 3.3TB. 3.3 times $20 times 12 is about $790. Multiplying this month by twelve gives $480, short by more than a third."
+  },
+  "summary": {
+    "keyIdea": "Build from quantities, split three kinds of line, estimate as a range",
+    "commonMistake": "Multiplying this month's storage cost by twelve",
+    "action": "Split your most recent infrastructure invoice into the three kinds of line."
+  },
+  "application": {
+    "title": "Four steps for next year's budget",
+    "message": "Split current cost by group. Divide by a unit of work. Multiply by the work expected. Add one-off items separately.",
+    "secondary": "Then reread the draft and ask which way it is encouraging the team to build."
+  },
+  "slug": "xay-dung-ngan-sach-doanh-nghiep"
+}

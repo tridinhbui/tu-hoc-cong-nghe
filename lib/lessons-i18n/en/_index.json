@@ -79,6 +79,11 @@
     "subtitle": "Which one warns and which one only confirms, and why every team tracks the second",
     "duration": "9 min"
   },
+  "du-bao-tai-chinh-rolling-forecast": {
+    "title": "Engineering Lead & Operations, Lesson 2: Rolling forecasts",
+    "subtitle": "Update the forecast monthly instead of defending the plan you made in January",
+    "duration": "9 min"
+  },
   "esg-investing-screening-den-portfolio": {
     "title": "From screening to priority: which service to fix first",
     "subtitle": "Three ways to allocate effort across a portfolio of services, and the price of each",
@@ -273,5 +278,10 @@
     "title": "An internal platform as a service for other teams",
     "subtitle": "Why the best platform team is the one with the fewest captive users",
     "duration": "8 min"
+  },
+  "xay-dung-ngan-sach-doanh-nghiep": {
+    "title": "Engineering Lead & Operations, Lesson 1: Budgeting infrastructure",
+    "subtitle": "Costing next year when you do not know what the product will look like",
+    "duration": "9 min"
   }
 }

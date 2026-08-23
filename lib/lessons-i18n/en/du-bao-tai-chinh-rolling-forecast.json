@@ -1,0 +1,172 @@
+{
+  "title": "Engineering Lead & Operations, Lesson 2: Rolling forecasts",
+  "subtitle": "Update the forecast monthly instead of defending the plan you made in January",
+  "duration": "9 min",
+  "whyItMatters": "An annual plan made once and then held will be wrong by the third month, and the cost is not the wrong number - it is the decisions made in order to protect it.",
+  "openingQuestion": "It is month four and reality has diverged far from the annual plan. What do you do?",
+  "openingOptions": [
+    "Update the forecast for the eight months that remain, leaving the months already past untouched",
+    "Hold the plan and find a way to get back on track",
+    "Wait until quarter end before adjusting, to avoid reacting too early to short-term movement",
+    "Rebuild the annual plan from scratch with assumptions updated to the current situation"
+  ],
+  "explanation": "Holding the old plan turns it from a forecasting tool into a target that must be hit, and from then on every decision aims at the number rather than at the situation. Rebuilding from scratch costs effort and only produces another rigid plan. Updating the remainder is how a forecast keeps doing the job it exists for.",
+  "diagram": [
+    {
+      "label": "An initial plan covering twelve months"
+    },
+    {
+      "label": "Each month, replace assumptions with real figures"
+    },
+    {
+      "label": "Forecast the remainder again"
+    },
+    {
+      "label": "The gap narrows instead of widening"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Defending one number for nine months",
+    "description": "A team committed to holding infrastructure cost under a level set at the start of the year. By month five, usage had run far past the estimate because one feature succeeded beyond expectation. Rather than update the forecast, the team cut spare capacity and reduced backup frequency to hold the number. The system stayed under the committed level for nine months, and lost four hours of data in an incident in the tenth."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A rolling forecast is not a complicated technique. It is the decision to treat the plan as something updated rather than something defended, and all of its value sits there."
+    },
+    {
+      "type": "heading",
+      "text": "How it works"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Each month, replace the previous month's assumptions with the figures actually measured",
+        "Forecast the rest of the year again on the updated assumptions, leaving the past untouched",
+        "Record which assumption changed and why - the most valuable part and the most often skipped"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "That third step turns a rolling forecast from a spreadsheet into something that teaches. After six months, the list of assumptions that changed tells you where this team tends to be wrong, and there is no way to get that information out of a plan made once."
+    },
+    {
+      "type": "heading",
+      "text": "Why a rigid plan produces bad decisions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once a number becomes a commitment it competes with every other objective, and it usually wins, because it is the only one measured monthly. The team will cut whatever nobody measures - spare capacity, backup frequency, time spent on testing - and every one of those has a price that arrives late. This is the same mechanism seen in the lesson on compounding effort, only here it is triggered by a budget figure."
+    },
+    {
+      "type": "callout",
+      "label": "A variance is information, not a fault",
+      "text": "The condition for a rolling forecast to work is that the gap between forecast and reality is not treated as wrongdoing. If whoever produces the forecast is blamed for every divergence, they will forecast wide enough never to diverge, and the forecast loses all its value at exactly the moment it becomes safe for its author."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A rolling forecast",
+        "text": "Updated monthly, error narrowing, and a list of changed assumptions showing where the team tends to be wrong."
+      },
+      "right": {
+        "label": "A rigid plan",
+        "text": "At its most accurate on the day it was written and worse every day after. By mid-year it describes nothing and is only a target."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "How often to update"
+    },
+    {
+      "type": "paragraph",
+      "text": "Monthly suits most teams: frequent enough to catch a trend, sparse enough not to react to noise. Weekly is nearly always too dense - week-to-week movement is mostly noise, and updating on noise produces a sequence of decisions oscillating back and forth without arriving anywhere."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A plan is something to be updated, not something to be defended.",
+        "Treat variance as a fault and there will soon be no variance worth reading."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why does holding the old plan produce bad decisions?",
+      "options": [
+        "Because decisions have to wait for the next planning cycle before they can be adjusted",
+        "Because the old plan rests on assumptions that are now wrong",
+        "Because the team spends time explaining the divergence instead of dealing with it",
+        "Because the number becomes a target and beats every objective that nobody measures monthly"
+      ],
+      "explanation": "Wrong assumptions only make the number less accurate. Becoming a commitment changes behaviour: the team cuts spare capacity, backups and testing, because those are the things nobody measures monthly."
+    },
+    {
+      "question": "Which part of a rolling forecast is skipped most often?",
+      "options": [
+        "Recording which assumption changed and why",
+        "Updating last month's actual figures",
+        "Reforecasting the whole remainder rather than adjusting a few large line items",
+        "Comparing the new forecast against the previous one to gauge the model's stability"
+      ],
+      "explanation": "The first two are arithmetic, so they always get done. Recording produces no number at all, and after six months it is the only thing that tells you where this team tends to be wrong."
+    },
+    {
+      "question": "What is the condition for a rolling forecast to work?",
+      "options": [
+        "Actual figures have to be available promptly each month",
+        "Variance is not treated as wrongdoing",
+        "Whoever forecasts must understand the engineering well enough to judge the impact of changes",
+        "The parties involved must agree on how each cost line is classified and measured"
+      ],
+      "explanation": "The other three are all necessary and all technical. This one is behavioural, and without it the forecaster widens the range until nothing ever diverges - the forecast loses its value at the moment it becomes safe."
+    },
+    {
+      "question": "Why is updating weekly usually too frequent?",
+      "options": [
+        "Because weekly actuals are not yet reconciled, so they are not reliable enough to act on",
+        "Because it takes too much of the team's time",
+        "Because week-to-week movement is mostly noise",
+        "Because infrastructure decisions take weeks to take effect, so the feedback arrives late"
+      ],
+      "explanation": "Updating on noise produces a sequence of decisions oscillating back and forth without arriving anywhere, and each oscillation costs real effort. Monthly is frequent enough to catch a trend and sparse enough to filter most of the noise."
+    },
+    {
+      "question": "A team cuts spare capacity and backup frequency to hold its committed number. What is wrong with that?",
+      "options": [
+        "Both of the things cut have a price that arrives late",
+        "Both are small cost items",
+        "Cutting them needs sign-off from risk management before the change can be made",
+        "It makes the committed figure incomparable with the figures of previous years"
+      ],
+      "explanation": "That is precisely why those two were chosen: cutting them causes nothing in the month of the cut. The price appears at the next incident, when nobody connects it back to a decision about holding a budget figure."
+    }
+  ],
+  "keyTakeaways": [
+    "A plan is something to be updated, not something to be defended",
+    "Record which assumption changed - it is the only part that teaches",
+    "Variance treated as a fault produces forecasts too wide to be useful",
+    "Monthly filters most of the noise; weekly does not"
+  ],
+  "practicePrompt": {
+    "question": "The annual plan is $120,000. The first four months spent $52,000. What does the rolling forecast give for the year?",
+    "options": [
+      "$156,000",
+      "$120,000, because the annual plan stands and the remaining eight months must absorb the overrun",
+      "$68,000 (= the budget remaining rather than a forecast of the full year's spend)",
+      "$104,000 (= multiplying four months of spend by two rather than by three)"
+    ],
+    "explanation": "$52,000 over four months is $13,000 a month, times twelve is $156,000. The $36,000 gap against the plan is the figure to put on the table in month four, not in month ten when it has already become a fact."
+  },
+  "summary": {
+    "keyIdea": "Each month replace assumptions with actuals and reforecast the remainder",
+    "commonMistake": "Defending the old number by cutting whatever nobody measures",
+    "action": "Take this year's spend so far and extrapolate it across the full year."
+  },
+  "application": {
+    "title": "Three things each month",
+    "message": "Replace last month's assumptions with actuals. Reforecast the remainder. Write one line on which assumption changed and why.",
+    "secondary": "The third produces no number and is the only part still worth anything after the year ends."
+  },
+  "slug": "du-bao-tai-chinh-rolling-forecast"
+}
