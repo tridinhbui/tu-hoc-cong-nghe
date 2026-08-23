@@ -1,0 +1,164 @@
+{
+  "title": "What non-functional measures are, and why they matter",
+  "subtitle": "The things users cannot click on, and leave because of",
+  "duration": "7 min",
+  "whyItMatters": "A feature that works correctly can still be a bad feature if it takes eight seconds to open, costs ten times as much to run, or cannot be fixed by anyone when it breaks. Those are the three things non-functional measures cover.",
+  "openingQuestion": "A feature works in every case but takes eight seconds to appear. Is it broken?",
+  "openingOptions": [
+    "Yes, because eight seconds is wrong behaviour to a user",
+    "No, because every case produces the correct result exactly as the specification requires",
+    "Only if the specification states an explicit response-time threshold for this feature",
+    "Not determinable yet - it needs measuring across several devices and connection types"
+  ],
+  "explanation": "Separating works correctly from works at all is one of the more useful distinctions in this job. Users do not read specifications; to them, eight seconds and does not work are the same experience. A specification with no timing threshold is a gap in the specification, not a reason to call the feature acceptable.",
+  "diagram": [
+    {
+      "label": "Functional: does it do the right thing"
+    },
+    {
+      "label": "Non-functional: what does doing it cost"
+    },
+    {
+      "label": "Resources, time, ability to fix"
+    },
+    {
+      "label": "Three things that decide how long the system lives"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A feature that passed every test",
+    "description": "A team finished a search feature, passed the whole test suite, and matched the specification line by line. After release, the share of users abandoning that screen tripled. No test was wrong and no line of the specification was violated - the feature simply took about six seconds over real connections, while every test ran on a developer's machine."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Functional requirements say what the system must do. Non-functional requirements say how well it has to do it - and the second half is what decides whether it is usable."
+    },
+    {
+      "type": "heading",
+      "text": "The three groups worth watching"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Resource efficiency: how much infrastructure and electricity one unit of useful work costs",
+        "Experience: latency at high percentiles, error rates real users see, behaviour on a weak connection",
+        "Operations: tests, documentation, access, and how long it takes to recover when it breaks"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "All three share a property that makes them easy to skip: none of them appears on a task list. Nobody writes a ticket called the system must recover within fifteen minutes, so nobody does it, until an incident runs long and it becomes the most urgent thing there is."
+    },
+    {
+      "type": "heading",
+      "text": "Why percentiles rather than averages"
+    },
+    {
+      "type": "paragraph",
+      "text": "An average latency of one second sounds fine until you notice it can be ninety percent of users waiting three hundred milliseconds and ten percent waiting seven seconds. That ten percent is not a rare case - they are your heaviest users, because they have the most data. The average hides precisely the group you least want to lose."
+    },
+    {
+      "type": "callout",
+      "label": "No ticket means nobody does it",
+      "text": "The most effective way to get a non-functional requirement built is to turn it into a number with a threshold and a person responsible. The system must be fast is a wish; the ninety-fifth percentile under eight hundred milliseconds, measured from the user's browser, is a requirement. Only the second one counts as unfinished while it is unmet."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A functional requirement",
+        "text": "Users can find a product by name. Verified by one test, pass or fail, no grey area."
+      },
+      "right": {
+        "label": "A non-functional requirement",
+        "text": "Results appear within eight hundred milliseconds at the ninety-fifth percentile over real connections. Verified by continuous measurement."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Works correctly and works at all are two different questions, and few people ask the second.",
+        "A non-functional requirement without a number and a threshold does not exist."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why should latency be measured by percentile rather than average?",
+      "options": [
+        "Because the average hides the users with the most data",
+        "Because percentiles are better supported by modern monitoring tools than averages are",
+        "Because the average is skewed heavily by requests that return instantly from a warm cache",
+        "Because percentiles allow comparison between services with very different request volumes"
+      ],
+      "explanation": "The slow tail is nearly always your heavy users - more data means longer queries. They are both the most frustrated group and the most worth keeping, and an average removes them from the report entirely."
+    },
+    {
+      "question": "Why do non-functional requirements so often go unbuilt?",
+      "options": [
+        "Because they do not appear as a concrete task on anyone's list",
+        "Because most teams lack tooling good enough to measure those requirements properly",
+        "Because they usually require architectural change, so they cost far more than a feature does",
+        "Because responsibility for them tends to sit with an infrastructure team rather than product"
+      ],
+      "explanation": "Work gets done when it is on the list. A vague wish like the system must be fast never makes it onto the list, so it never gets done and it never counts as missing either."
+    },
+    {
+      "question": "What does turning 'the system must be fast' into a real requirement need?",
+      "options": [
+        "A number, a threshold and a measurement point",
+        "A detailed description of which use cases should be optimised first among all of them",
+        "A commitment from the infrastructure team on the resources that service will be given",
+        "A list of measurement tools agreed between all of the teams that are involved in it"
+      ],
+      "explanation": "Those three are the minimum for the question is it done to have an answer. Without a measurement point the same threshold yields two different verdicts, because a developer's machine and a user's browser are two different worlds."
+    },
+    {
+      "question": "A feature passed every test but abandonment tripled. What went wrong?",
+      "options": [
+        "The tests ran in conditions unlike the real ones",
+        "The test suite was missing edge cases that real users encounter frequently in practice",
+        "The specification described the wrong thing compared with what users needed on that screen",
+        "The interface was confusing, so users did not know what action they were supposed to take"
+      ],
+      "explanation": "The other three are functional faults and a test suite could catch them. Running conditions cannot be caught that way - a developer's machine has no weak connection and no real data, and that is where every non-functional problem hides."
+    },
+    {
+      "question": "The specification states no response-time threshold. What follows?",
+      "options": [
+        "The specification is incomplete, not that the feature is acceptable",
+        "The feature counts as acceptable until an official threshold is added to the document",
+        "The threshold should be set at whatever the current version happens to achieve today",
+        "Setting the threshold is the operations team's responsibility rather than the product team's"
+      ],
+      "explanation": "Silence in a specification is not permission. Users still leave at the eighth second whatever the document says, so the thing to fix is the document rather than your reading of the feature."
+    }
+  ],
+  "keyTakeaways": [
+    "Works correctly and works at all are two different questions",
+    "The average hides your heaviest users, so measure at a high percentile",
+    "A requirement without a number, a threshold and a measurement point does not exist",
+    "Test conditions are where every non-functional problem hides"
+  ],
+  "practicePrompt": {
+    "question": "90% of users wait 300ms and 10% wait 7000ms. What is the average latency?",
+    "options": [
+      "970ms",
+      "3650ms (= averaging the two figures and ignoring the proportion in each group)",
+      "700ms (= counting only the slow group's contribution to the overall figure)",
+      "330ms (= multiplying 300 by 1.1 instead of adding the slow group's contribution)"
+    ],
+    "explanation": "0.9 times 300 plus 0.1 times 7000 is 970. The figure 970ms sounds acceptable, while the reality is that one user in ten waits seven seconds - which is exactly what the average conceals."
+  },
+  "summary": {
+    "keyIdea": "Non-functional measures cover what doing the work costs, not whether it can be done",
+    "commonMistake": "Treating a feature that passes its tests as finished",
+    "action": "Pick a feature you just shipped and write it a 95th-percentile threshold."
+  },
+  "application": {
+    "title": "Three questions for the next feature",
+    "message": "How much does one run cost? What is the 95th percentile over a real connection? When it breaks, who fixes it and how long does that take?",
+    "secondary": "None of the three is usually on the ticket, and all three decide how long that feature survives."
+  },
+  "slug": "esg-la-gi-va-tai-sao-quan-trong"
+}

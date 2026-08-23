@@ -44,6 +44,16 @@
     "subtitle": "Why working by column instead of by row completely changes how you think about data",
     "duration": "11 min"
   },
+  "do-thoi-gian-truoc-khi-lap-ke-hoach-hoc": {
+    "title": "Stage 1, Lesson 1: Measure your time before you allocate it",
+    "subtitle": "You cannot plan around hours you have never checked you actually have",
+    "duration": "7 min"
+  },
+  "esg-la-gi-va-tai-sao-quan-trong": {
+    "title": "What non-functional measures are, and why they matter",
+    "subtitle": "The things users cannot click on, and leave because of",
+    "duration": "7 min"
+  },
   "financial-risk": {
     "title": "Classifying technical risk",
     "subtitle": "Four groups, and why naming it right decides who can fix it",
@@ -148,6 +158,11 @@
     "title": "Excel, Lesson 5: Power Query - clean the data once, reuse it forever",
     "subtitle": "A repeatable cleaning process instead of copying and hand-fixing every month",
     "duration": "11 min"
+  },
+  "quan-tri-doanh-nghiep-g-trong-esg": {
+    "title": "Operational quality: the pillar nobody mentions",
+    "subtitle": "Why the hardest pillar to see is the one that warns of incidents earliest",
+    "duration": "8 min"
   },
   "sql-nang-cao-join-va-window-function": {
     "title": "Data, Lesson 6: Advanced SQL - joining tables and computing over windows",

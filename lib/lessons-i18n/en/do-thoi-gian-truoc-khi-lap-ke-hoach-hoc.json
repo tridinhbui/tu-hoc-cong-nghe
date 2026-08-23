@@ -1,0 +1,119 @@
+{
+  "slug": "do-thoi-gian-truoc-khi-lap-ke-hoach-hoc",
+  "title": "Stage 1, Lesson 1: Measure your time before you allocate it",
+  "subtitle": "You cannot plan around hours you have never checked you actually have",
+  "duration": "7 min",
+  "whyItMatters": "Most study plans fail not because the content is wrong but because they were built on an imaginary budget of hours. Two weeks of measurement is the one thing that turns a plan from a wish into something that can actually run.",
+  "openingQuestion": "Why measure your real hours before building a study plan?",
+  "openingOptions": [
+    "Because the number you think you have is usually larger than the real one",
+    "Because measuring reveals which activities are wasting time and should be cut",
+    "Because you need data to divide your hours evenly across the topics in the plan",
+    "Because seeing the effort you put in is motivating"
+  ],
+  "explanation": "People estimate their free hours by taking the week and subtracting work and sleep, and the number that falls out is usually several times larger than what is genuinely usable. The gap sits in the fragments: fifteen minutes between two tasks, forty minutes after dinner when your head is already empty, evenings that something urgent takes away. A plan built on the imagined number slips in week two, and the worst part is that the learner concludes they lack discipline instead of noticing the plan was wrong from its very first calculation.",
+  "diagram": [
+    { "label": "Estimate your free hours in your head" },
+    { "label": "Measure for real over two weeks" },
+    { "label": "The real number is usually several times smaller" },
+    { "label": "Build the plan on the real number" }
+  ],
+  "realWorldExample": {
+    "company": "Ten hours a week, and three",
+    "description": "Someone planned ten study hours a week because every evening looked like two free hours. Measured for real over two weeks: three usable hours, mostly on weekend mornings, while the evenings were either taken by something urgent or arrived with no focus left. The ten-hour plan slipped in week one; the three-hour plan, placed on weekend mornings, ran for six months."
+  },
+  "quiz": [
+    {
+      "question": "How long should you measure before drawing conclusions?",
+      "options": [
+        "A few days is enough; measure too long and most people quit",
+        "One week, since daily habits tend to repeat fairly consistently week to week",
+        "One month, to gather enough data and rule out unusual periods during measurement",
+        "About two weeks, enough to catch both a busy week and an ordinary one"
+      ],
+      "explanation": "One week can easily land on an unusual week in either direction. One month and most people quit partway, and half-finished data is unusable. Two weeks is the balance point: long enough to see the variation, short enough to finish."
+    },
+    {
+      "question": "Which stretch of time gets miscounted as usable most often?",
+      "options": [
+        "Short fragments squeezed between two other tasks",
+        "Evening time after every task for the day has already been completed",
+        "Weekends, when there is no fixed schedule so all the time counts as free",
+        "Commuting time, since you can listen"
+      ],
+      "explanation": "Fifteen minutes between two meetings looks like fifteen minutes and is not. For work that needs you to get into a flow - reading code, solving something hard - the front of each stretch is spent recovering context, so four fifteen-minute stretches yield far less than one uninterrupted hour."
+    },
+    {
+      "question": "Which measurement method is least likely to be abandoned?",
+      "options": [
+        "An app that automatically logs computer time and classifies it by activity",
+        "One line written at the end of each day",
+        "A timer started and stopped for every study session, for the most precise figures",
+        "A detailed log of every thirty-minute block so that nothing gets missed"
+      ],
+      "explanation": "Precision and sustainability trade against each other, and here sustainability wins: a rough measurement you finish in two weeks is far more useful than a precise one abandoned after three days. The error in an end-of-day note is much smaller than the error of having no data at all."
+    },
+    {
+      "question": "Once the measurement is done, what should come first?",
+      "options": [
+        "Split the hours evenly across the topics you plan to study",
+        "Cut activities that eat hours and return little",
+        "Put study into the highest-quality stretch of the week",
+        "Set a target to raise the weekly hours gradually"
+      ],
+      "explanation": "The measurement tells you two things: how many hours, and which hours are good. The second one usually gets ignored even though it matters more - two hours on a weekend morning produces something entirely different from two hours on a Wednesday evening, and placing the work correctly costs no extra time at all."
+    },
+    {
+      "question": "What does it mean when the measured number is far below what you expected?",
+      "options": [
+        "A number to improve by cutting back on entertainment",
+        "A sign that you are organising yourself poorly",
+        "A result of an unusually busy period, so measure again",
+        "Something almost everyone finds, and the main reason earlier plans slipped"
+      ],
+      "explanation": "Nearly everyone who measures for the first time finds a smaller number than expected, so it says nothing in particular about you. What it does say is that every earlier plan was built on a budget that did not exist, and that is a far better explanation than concluding you lack discipline."
+    }
+  ],
+  "keyTakeaways": [
+    "The imagined budget of hours is usually several times the real one",
+    "Four fifteen-minute stretches yield far less than one uninterrupted hour",
+    "A rough measurement you finish beats a precise one you abandon",
+    "The measurement tells you both how many hours and which hours; the second half gets ignored"
+  ],
+  "practicePrompt": {
+    "question": "You plan to study three evenings a week, two hours each. What should you do before starting?",
+    "options": [
+      "Measure for two weeks how many evenings are actually usable",
+      "Prepare the material for all three sessions so no time is lost hunting for it",
+      "Tell your family about the schedule so nobody interrupts that window",
+      "Just start, and adjust as you go"
+    ],
+    "explanation": "Just starting sounds reasonable and it is what most people do, but when the plan slips they read the result as a lack of discipline rather than a wrong plan. Two weeks of measurement gives you a number to plan with, and more importantly it gives you the right way to read what happens when things do not go as expected."
+  },
+  "summary": {
+    "keyIdea": "Study plans slip because they are built on a budget of hours nobody ever measured",
+    "commonMistake": "Slipping the plan and concluding you lack discipline, instead of checking the original arithmetic",
+    "action": "Write one line at the end of each day for two weeks, then build the plan on the number you get."
+  },
+  "application": {
+    "title": "One line each evening, for two weeks",
+    "message": "At the end of the day, note it down: was there a stretch usable for work that needs focus, how long, and when. It does not have to be accurate to the minute.",
+    "secondary": "After two weeks, circle the highest-quality stretch and place your studying there before you place anything else."
+  },
+  "sections": [
+    { "type": "lead", "text": "The question of how many hours a week you can study usually gets answered by a subtraction done in your head, and that subtraction leaves out exactly the part that decides the answer." },
+    { "type": "heading", "text": "Free hours and usable hours are two different things" },
+    { "type": "paragraph", "text": "The total number of unscheduled hours is one figure; the number of hours where you still have focus left, long enough to get into a flow, and not taken by something urgent is a much smaller one. A plan built on the first figure slips in week two, and the way people read that slip - a lack of discipline - is what leads them to build the next wrong plan the same way." },
+    { "type": "conceptTable", "title": "Four things to note down, one line each evening", "concepts": [
+      { "en": "Block length", "def": "How long, uninterrupted. Four fifteen-minute stretches are not one hour for work that needs a flow." },
+      { "en": "Time of day", "def": "The same hours at two different times produce entirely different results. This is the half people skip." },
+      { "en": "Energy", "def": "Three rough levels is enough. One hour while fresh beats two hours once you are spent." },
+      { "en": "Interruptions", "def": "A stretch cut in the middle counts as two short ones, not one long one." }
+    ]},
+    { "type": "callout", "label": "A rough measurement finished beats a careful one abandoned", "text": "The temptation is to build a detailed log broken into thirty-minute blocks. Most people drop it in the first week, and three days of data is not usable for anything. One line each evening for two weeks is the worse measurement on precision and the better one on every other count." },
+    { "type": "closing", "lines": [
+      "Without measuring, every plan is a wish with a schedule attached.",
+      "Next: with a real number in hand, how to keep the plan from depending on willpower every evening."
+    ]}
+  ]
+}

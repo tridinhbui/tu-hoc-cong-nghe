@@ -1,0 +1,161 @@
+{
+  "title": "Operational quality: the pillar nobody mentions",
+  "subtitle": "Why the hardest pillar to see is the one that warns of incidents earliest",
+  "duration": "8 min",
+  "whyItMatters": "Resource efficiency and latency each have their own chart and get looked at daily. Operational quality has no chart, so it decays without anyone noticing - until a four-hour incident says it for them.",
+  "openingQuestion": "Which is more likely to cause a long incident: slow but documented and tested, or fast with neither?",
+  "openingOptions": [
+    "The fast one, because when it breaks nobody knows where to start",
+    "The slow one, because high latency propagates failure to dependent services more quickly",
+    "They are equivalent, because incident duration depends on who is on call rather than on the code",
+    "Not enough information - you would need to know which of the two has more users"
+  ],
+  "explanation": "High latency is unpleasant but it shows up immediately and anyone can measure it. Missing documentation and tests cause no incident at all; they only decide whether an incident lasts four minutes or four hours. That is why this pillar is hard to see: it does not create problems, it multiplies the size of every other one.",
+  "diagram": [
+    {
+      "label": "Operations decays, no chart records it"
+    },
+    {
+      "label": "The other two pillars stay green, so the board stays green"
+    },
+    {
+      "label": "An ordinary incident happens"
+    },
+    {
+      "label": "Four hours instead of four minutes"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The service nobody dares touch",
+    "description": "A service ran stably for three years, almost no errors, low cost. Its health score was always high. Whoever wrote it left long ago, there is no documentation, and test coverage is under ten percent. When a small business rule needed changing, it took six weeks instead of two days, because every change had to be verified by hand. The service never broke - it had simply stopped being changeable, and no metric caught that."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Of the three pillars, two have their own dashboards and get looked at daily. The third does not, and that is its entire problem."
+    },
+    {
+      "type": "heading",
+      "text": "What operational quality consists of"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Test coverage, and more importantly whether the tests run automatically on every change",
+        "Documentation good enough for a newcomer to restore the service at three in the morning without calling anyone",
+        "Clear access: who can change what, and whether every change leaves a trace",
+        "Mean time to recovery, measured from when it started breaking rather than from when it was noticed"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why it is always sacrificed first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Skipping tests this week genuinely does make this week faster, with no visible consequence. The consequence appears at the next incident, possibly three months later, and by then nobody can connect it back to this week's decision. Anything whose reward arrives immediately and whose price arrives late gets sacrificed first, and this pillar is the cleanest example of that shape."
+    },
+    {
+      "type": "callout",
+      "label": "It does not cause incidents, it multiplies them",
+      "text": "This is the part most often misread. Missing documentation does not make a service break. But when the service breaks for an entirely different reason, missing documentation is what decides whether the person on call takes fifteen minutes or three hours to understand what is happening. So do not read this pillar as a probability of failure - read it as a multiplier on the duration of failure."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Measurable",
+        "text": "Test coverage, manual steps in a deployment, recovery time in the last three incidents, how many people understand it well enough to be on call."
+      },
+      "right": {
+        "label": "Not measurable, but askable",
+        "text": "Can a new joiner deploy this on their own? How long does changing a small rule take? Is there any part of the code people are afraid to touch?"
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "This pillar does not create problems, it decides how long problems last.",
+        "There is no chart for it, so it has to be asked about rather than looked at."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why is operational quality always the first thing sacrificed?",
+      "options": [
+        "Because the reward arrives immediately and the price arrives very late",
+        "Because most teams do not have the tooling to measure this pillar with any accuracy",
+        "Because it depends on specific individuals, so it shifts every time somebody leaves the team",
+        "Because it is the only pillar that does not directly affect the end user of the product"
+      ],
+      "explanation": "Skipping tests this week really is faster and really has no visible consequence. The consequence arrives at an incident three months later, by which point nobody connects it to the old decision - the feedback loop is broken."
+    },
+    {
+      "question": "What kind of quantity should this pillar be read as?",
+      "options": [
+        "A multiplier on the duration of an incident",
+        "A probability that tells you how likely the service is to fail in the coming month",
+        "An indicator of how satisfied the team maintaining the service currently is with it",
+        "A measure of code quality, read alongside the number of bugs found each month"
+      ],
+      "explanation": "Missing documentation does not make the service break. It decides whether the person on call takes fifteen minutes or three hours when it breaks for another reason, so it multiplies rather than adds."
+    },
+    {
+      "question": "A service ran three years without errors and cheaply, but changing a small rule took six weeks. Where is the problem?",
+      "options": [
+        "It had stopped being changeable, and no metric caught that",
+        "It runs on old infrastructure, so every change needs extra manual deployment steps",
+        "Low cost shows the service is under-resourced and cannot absorb any change safely",
+        "Three years without errors suggests the service's own error measurement broke long ago"
+      ],
+      "explanation": "Stable and changeable are two different things, and a health dashboard only measures the first. A service nobody dares touch stays green on every chart right up to the day it needs changing."
+    },
+    {
+      "question": "With no data available, which question measures this pillar best?",
+      "options": [
+        "Can a new joiner deploy it on their own",
+        "How many tests did the team write for this service over the past quarter",
+        "How many incidents has this service had in the last six months of operation",
+        "When was the service's documentation last updated by anyone on the team"
+      ],
+      "explanation": "The other three measure inputs or symptoms. The first measures the thing you need to know with a real experiment: if a newcomer can do it, then documentation, tests and access are all at an adequate level."
+    },
+    {
+      "question": "From which point should recovery time be measured?",
+      "options": [
+        "From the moment the service started breaking",
+        "From the moment the first automated alert reached whoever was on call that day",
+        "From the moment the on-call engineer acknowledged and began working on the incident",
+        "From the moment the first user reported that the service was not working for them"
+      ],
+      "explanation": "Measuring from detection discards the stretch where the system was broken and nobody knew - usually the longest stretch and also the easiest to shorten. Choosing a later start makes the number look better without fixing anything."
+    }
+  ],
+  "keyTakeaways": [
+    "This pillar does not create incidents, it multiplies their duration",
+    "It is sacrificed first because the reward is immediate and the price is late",
+    "Stable and changeable are two different things, and dashboards measure only the first",
+    "With no chart, ask a real question: can a new joiner deploy it alone"
+  ],
+  "practicePrompt": {
+    "question": "Breakage starts 2:00, alert 2:40, engineer starts 2:50, recovered 3:20. What is the recovery time?",
+    "options": [
+      "80 minutes",
+      "30 minutes (= counting only from when the engineer began working on the incident)",
+      "40 minutes (= counting from the alert being sent through to recovery being complete)",
+      "10 minutes (= the wait between the alert firing and the engineer picking it up)"
+    ],
+    "explanation": "From 2:00 to 3:20 is 80 minutes. The first forty are the stretch where the system was broken and nobody knew, and that is usually the longest part - excluding it from the measure excludes exactly the part most worth fixing."
+  },
+  "summary": {
+    "keyIdea": "Operational quality decides how long an incident lasts, not whether it happens",
+    "commonMistake": "Reading a stable service as a healthy one",
+    "action": "Ask whether a new joiner could deploy the service you look after on their own."
+  },
+  "application": {
+    "title": "Four questions for a service you own",
+    "message": "Can a new joiner deploy it alone? How long does changing a small rule take? Who understands it well enough to be on call? Is there code nobody dares touch?",
+    "secondary": "None of the four needs a tool, and they are usually more accurate than any chart you already have."
+  },
+  "slug": "quan-tri-doanh-nghiep-g-trong-esg"
+}
