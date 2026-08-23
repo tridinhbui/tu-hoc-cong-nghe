@@ -4,11 +4,6 @@
     "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
     "duration": "12 min"
   },
-  "behavioral-portfolio-management-checklist": {
-    "title": "Behavioral portfolio management: building a system against the portfolio manager's own biases",
-    "subtitle": "Checklists, pre-mortems and the structural rules professional fund managers use to protect decisions from emotion",
-    "duration": "8 min"
-  },
   "chon-chi-so-do-luong-va-vanity-metric": {
     "title": "Data Thinking, Lesson 1: Choosing a metric - and why the pretty ones are usually useless",
     "subtitle": "Telling a vanity metric from one that drives action, and the trap of turning a metric into a target",
@@ -18,6 +13,11 @@
     "title": "Professional Skills, Lesson 3: Preparing for the modelling test and the case interview",
     "subtitle": "Time management, the order in which you build a model, and how to think out loud while working",
     "duration": "12 min"
+  },
+  "commodity-phan-2": {
+    "title": "Deep dive: scarce compute",
+    "subtitle": "When supply is capped by physics and demand rises everywhere at once",
+    "duration": "8 min"
   },
   "credit-debit-phan-2": {
     "title": "Journal entries in practice: from the rule to the ledger",
@@ -158,5 +158,10 @@
     "title": "Data Thinking, Lesson 4: Correlation is not causation - and three ways to be fooled",
     "subtitle": "Confounding, reverse causality, survivorship bias: three mechanisms that turn real data into a wrong conclusion",
     "duration": "11 min"
+  },
+  "wealth-management": {
+    "title": "An internal platform as a service for other teams",
+    "subtitle": "Why the best platform team is the one with the fewest captive users",
+    "duration": "8 min"
   }
 }

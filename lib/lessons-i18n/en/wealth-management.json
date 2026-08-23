@@ -1,0 +1,168 @@
+{
+  "title": "An internal platform as a service for other teams",
+  "subtitle": "Why the best platform team is the one with the fewest captive users",
+  "duration": "8 min",
+  "whyItMatters": "Internal platforms are where engineering effort is most often wasted in mid-sized and large companies, and the cause is nearly always the same: it was built for a need nobody had confirmed.",
+  "openingQuestion": "What should a platform team measure success by?",
+  "openingOptions": [
+    "Teams that adopt it voluntarily while another option still exists",
+    "The number of teams using it",
+    "The number of features shipped each quarter against what was committed at the start of the period",
+    "Platform stability, measured by incident count and mean time to recovery across the quarter"
+  ],
+  "explanation": "The other three can all be raised without the platform being any use. Teams using it goes up with a mandate; features go up by building more; stability goes up when fewer people use it. Only voluntary adoption while an alternative exists cannot be faked, because it requires somebody to weigh the options and then choose.",
+  "diagram": [
+    {
+      "label": "A need that repeats across teams"
+    },
+    {
+      "label": "One team solves it, another tries it"
+    },
+    {
+      "label": "A third team comes looking on its own"
+    },
+    {
+      "label": "Only then is it a platform"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The platform nobody asked for",
+    "description": "A company staffed a six-person platform team and set them to build a shared deployment toolchain. Nine months later the tool shipped, feature-complete and well documented. Two teams moved across because they were told to; the other four asked to stay on their old tooling and were allowed to. Nobody had asked those four, before any of it started, whether deployment was a problem they had."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An internal platform is a product, and its users are other teams. Most platform failures are product failures rather than engineering ones."
+    },
+    {
+      "type": "heading",
+      "text": "A platform follows the need, it does not precede it"
+    },
+    {
+      "type": "paragraph",
+      "text": "The shape that holds up is one team solving its own problem, a second team borrowing the solution, and then a third coming to ask about it. By that point the need has been confirmed three times by three independent groups, and the shape of the answer has been bent into place by two real uses. Starting from a plan instead of from those three confirmations is starting from a guess that costs nine months."
+    },
+    {
+      "type": "heading",
+      "text": "A mandate hides the signal"
+    },
+    {
+      "type": "paragraph",
+      "text": "When teams are required to use it, adoption reaches a hundred percent and every piece of negative feedback turns into a private grumble instead of a decision to leave. The platform team loses the one signal that tells them whether their product is any good, and they lose it exactly when they need it most."
+    },
+    {
+      "type": "heading",
+      "text": "Three things worth more than another feature"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Shorten the time from a team starting to try it to the first thing that actually runs",
+        "Adopt the hardest part, not the easiest - a team only switches when the painful piece is taken off them",
+        "Make leaving easy, because an easy exit is the precondition for anyone daring to come in"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "An easy exit is the precondition for entry",
+      "text": "It sounds backwards and it holds at every internal platform I have seen work. A team considering your platform is estimating risk, and their biggest risk is not that the platform is bad - it is that the platform is bad and they cannot get back out. Give them a clear way out and you have both reduced their risk and taken on the pressure to be good, and both of those point the right way."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A platform that gets chosen",
+        "text": "A third team arrives on its own. Feedback comes as specific requests, because they have a reason to want it to improve."
+      },
+      "right": {
+        "label": "A platform that gets imposed",
+        "text": "Everyone uses it and nobody tends it. Feedback comes as complaints, and none of them turns into a request."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An internal platform is a product, and its failures are product failures.",
+        "The only measure that cannot be faked is somebody choosing it while they still have a choice."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why is 'number of teams using it' a poor measure?",
+      "options": [
+        "Because it can be raised by issuing a mandate",
+        "Because it says nothing about depth of use",
+        "Because a team may use one small corner of the platform and still count as an adopter of it",
+        "Because the number of teams in the company changes each period, so the figure is not comparable"
+      ],
+      "explanation": "The other three all make the number less accurate and all are fixable by measuring more carefully. Something that can be raised by an administrative decision is not fixable by any measurement, because it severs the number from the thing it was meant to measure."
+    },
+    {
+      "question": "What does a mandate take away from the platform team?",
+      "options": [
+        "The one signal that tells them whether the product is any good",
+        "Their motivation to improve",
+        "The chance to learn what each team actually needs before deciding which features to build",
+        "The ability to prioritise by urgency as teams express it through their own requests"
+      ],
+      "explanation": "Negative feedback still exists after a mandate, but it changes from a decision to leave - countable and hard to argue with - into a complaint, which can always be attributed to the other team disliking change."
+    },
+    {
+      "question": "What is the shape you can trust for a platform coming into being?",
+      "options": [
+        "One team solves it, a second borrows it, a third comes asking",
+        "A plan gets approved",
+        "A survey about shared needs is sent out to every engineering team in the company",
+        "An assessment shows several teams solving the same problem in different ways from each other"
+      ],
+      "explanation": "The last option gets close and still misses half of it: knowing several teams share a problem does not mean they will accept the same solution. Three real uses confirm the need and bend the shape of the answer into place at the same time."
+    },
+    {
+      "question": "Why does making it easy to leave bring more teams in?",
+      "options": [
+        "Because their biggest risk is getting in and not being able to get out",
+        "Because it shows the platform team is confident",
+        "Because it forces the platform to keep data in portable formats, which raises technical quality",
+        "Because teams experiment more readily when they know they are not committed for the long run"
+      ],
+      "explanation": "A team weighing your platform is estimating risk rather than estimating benefit. Reducing the cost of the worst case works far harder than any additional promise about the best case."
+    },
+    {
+      "question": "Which part of the work should a platform take on?",
+      "options": [
+        "The hardest part, because a team only switches when the painful piece is taken off them",
+        "The easiest and most repeated part",
+        "The part where the platform team has deeper expertise than the product teams have",
+        "The part most common across teams, so one solution serves the largest number of places"
+      ],
+      "explanation": "The easy part and the common part sound efficient, and neither is enough to pay for the cost of switching. A team only agrees to learn a new tool when what they get back is the part they hate, not the part they were already fast at."
+    }
+  ],
+  "keyTakeaways": [
+    "An internal platform is a product, and its failures are product failures",
+    "A mandate removes the one signal that tells you whether it is any good",
+    "A platform follows three confirmations; it does not precede them with a plan",
+    "A clear exit is what makes teams willing to come in"
+  ],
+  "practicePrompt": {
+    "question": "Six teams: 2 use it because they were told to, 4 asked to stay on their old tooling. What is the voluntary rate?",
+    "options": [
+      "0%",
+      "33%",
+      "100%, because all six were given the chance to consider it and each made a decision",
+      "67%, because the four that declined also made a conscious choice about the tooling they wanted"
+    ],
+    "explanation": "Two teams moved because they were required to, so no team chose it while an alternative existed. The 33% figure is the adoption rate, and the gap between 33% and 0% is the entire content of this lesson."
+  },
+  "summary": {
+    "keyIdea": "Measure by teams that adopt voluntarily while an alternative exists",
+    "commonMistake": "Building a platform from a plan instead of from two real uses",
+    "action": "Ask a team using your platform whether they would stay if they had the choice."
+  },
+  "application": {
+    "title": "Three questions for a platform under construction",
+    "message": "Have three teams used it for real yet? If the mandate were lifted, how many would stay? How long does leaving take?",
+    "secondary": "Nobody dares ask the second one, and it is the only one that answers whether this platform is worth it."
+  },
+  "slug": "wealth-management"
+}

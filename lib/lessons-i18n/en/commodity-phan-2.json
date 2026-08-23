@@ -1,0 +1,164 @@
+{
+  "title": "Deep dive: scarce compute",
+  "subtitle": "When supply is capped by physics and demand rises everywhere at once",
+  "duration": "8 min",
+  "whyItMatters": "Most resources in this job stretch almost without limit if you are willing to pay. A few do not, and the second kind needs completely different handling - paying more solves nothing.",
+  "openingQuestion": "The specialised machines you need are sold out in every region. What do you do first?",
+  "openingOptions": [
+    "Check whether the work runs on a different machine type",
+    "Pay a higher price",
+    "Sign a long-term commitment with the vendor to get priority allocation during future shortages",
+    "Move to another vendor, since they may still have stock of a comparable machine type available"
+  ],
+  "explanation": "When supply is capped by physics, paying more moves stock from somebody else to you rather than creating any more of it, and it only works until that somebody else pays more too. The other three are all worth doing and all take weeks to months. Whether the work runs on a different type can be answered in an afternoon.",
+  "diagram": [
+    {
+      "label": "Demand rises across the whole market at once"
+    },
+    {
+      "label": "Supply is capped by physical limits"
+    },
+    {
+      "label": "Price rises but quantity does not"
+    },
+    {
+      "label": "Only cutting demand or changing type helps"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Six weeks of waiting for something thirty percent slower",
+    "description": "A team needed specialised machines for model training and could not order them anywhere. They waited six weeks on a list. When somebody finally tried the general-purpose machines that were sitting available, the job finished about thirty percent slower - meaning the six weeks of waiting had cost more than the entire slowdown would have across the whole quarter."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "There are two kinds of resource in infrastructure, and confusing them is the source of most bad decisions during a shortage."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The elastic kind",
+        "text": "Storage, bandwidth, general-purpose machines. Need more, pay more, have it now. The problem is cost."
+      },
+      "right": {
+        "label": "The physically capped kind",
+        "text": "Specialised machines during a shortage, network addresses, vendor quotas. Paying more creates none. The problem is allocation."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Why paying more does not work"
+    },
+    {
+      "type": "paragraph",
+      "text": "When supply is fixed in the short run, a higher price decides who gets what already exists rather than making it larger. That means every party pays more and no party receives more, until supply genuinely rises - which takes quarters, because it depends on factories rather than on orders."
+    },
+    {
+      "type": "heading",
+      "text": "Three things that actually work"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Cut what you need: run fewer times, use smaller datasets, drop runs whose results nobody reads",
+        "Change type: accept slower on what you have, rather than faster on what you do not have",
+        "Raise utilisation: queue the work so the machines you hold are not idle between runs"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "All three sit entirely within the team's reach and all three produce results within days. The other three options - paying more, long-term contracts, changing vendor - all depend on somebody else and all are measured in weeks or months."
+    },
+    {
+      "type": "callout",
+      "label": "Utilisation is where the most sits and where nobody looks",
+      "text": "In most shortages, any team that measures the real utilisation of the machines it already holds finds it below half: idle between runs, waiting on data, waiting for somebody to press a button. Doubling utilisation by queueing the work yields exactly the amount of extra capacity the whole market is fighting over, and it needs nobody's agreement."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Paying more moves stock from somebody else to you; it does not create more stock.",
+        "Work within reach produces results in days; work that depends on others is measured in months."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why does paying more help so little when supply is physically capped?",
+      "options": [
+        "Because it decides who gets what exists rather than making it larger",
+        "Because vendors usually hold prices fixed under contracts signed earlier",
+        "Because large companies can always outbid, so a small team never wins that competition",
+        "Because a higher price applies to new orders and does not shorten the delivery time"
+      ],
+      "explanation": "The other three are true in many situations. The first is true in all of them, and it explains why the bidding war ends with every party paying more and no party receiving more."
+    },
+    {
+      "question": "A team waited six weeks rather than running on machines 30% slower. Where is the error?",
+      "options": [
+        "Comparing against what they did not have instead of against what they did",
+        "Not asking the vendor for an expected wait time",
+        "Underestimating the shortage, so they failed to order earlier while ordering was still possible",
+        "Not running a trial on the other machine type to measure the performance gap accurately"
+      ],
+      "explanation": "The last option is the missing action, and the reason it was not taken is the error in the first. Thirty percent slower is only a disadvantage compared with the fast type; compared with running nothing for six weeks it is all the work that got done."
+    },
+    {
+      "question": "Which action produces results fastest during a shortage?",
+      "options": [
+        "Raising utilisation on the machines you already hold",
+        "Negotiating a higher quota",
+        "Moving the work to another region where that machine type may still be available",
+        "Splitting the work so it runs across several lower-specification machines at the same time"
+      ],
+      "explanation": "The last one is also within reach but it requires changing how the work is written. Raising utilisation only requires queueing the work, and in most teams the real utilisation is already below half."
+    },
+    {
+      "question": "What is the point of separating elastic from physically capped resources?",
+      "options": [
+        "To know whether the problem is cost or allocation",
+        "To plan the annual budget more accurately for each kind of resource",
+        "To decide which kind to buy up front and which to rent as the need arises over time",
+        "To know which kind needs watching more closely because its price moves more over time"
+      ],
+      "explanation": "Those two problems come with entirely different toolkits. For cost the move is lowering unit price; for allocation it is cutting what you need and raising utilisation, and applying one toolkit to the other problem is how six weeks get lost."
+    },
+    {
+      "question": "Why is real utilisation usually below half?",
+      "options": [
+        "Because machines sit idle between runs, waiting on data and waiting on people",
+        "Because teams over-provision in case load rises unexpectedly beyond what was planned",
+        "Because the work is written for a higher specification than it actually needs to run on",
+        "Because most utilisation tooling samples too infrequently and misses the busy stretches"
+      ],
+      "explanation": "The other three all contribute. The first is the largest and also the easiest to fix: the gaps between runs need no architectural change to close, only a queue."
+    }
+  ],
+  "keyTakeaways": [
+    "Paying more moves stock from somebody else to you; it creates none",
+    "Compare against what you have, not against what you do not have",
+    "Three things within reach: cut demand, change type, raise utilisation",
+    "A cost problem and an allocation problem come with different toolkits"
+  ],
+  "practicePrompt": {
+    "question": "The machines you hold run at 45% utilisation. Queueing the work raises it to 90%. That is equivalent to how many extra machines?",
+    "options": [
+      "Double the number you have now",
+      "45% more machines",
+      "90% more machines (= taking the new utilisation figure as the added capacity directly)",
+      "55% more machines (= taking the capacity that was idle before the work was queued)"
+    ],
+    "explanation": "Going from 45% to 90% is twice the work done on the same machines, which is the same as having twice as many. That is the increase the whole market is fighting over, and nobody has to allocate it to you."
+  },
+  "summary": {
+    "keyIdea": "When supply is physically capped, the problem is allocation rather than cost",
+    "commonMistake": "Waiting for the faster thing instead of running on what is available",
+    "action": "Measure the real utilisation of the specialised machines your team holds."
+  },
+  "application": {
+    "title": "Three questions during a shortage",
+    "message": "What other type does this work run on? What utilisation are the machines you hold at? Is any run producing results nobody reads?",
+    "secondary": "All three can be answered in an afternoon, while every option that depends on somebody else is measured in weeks."
+  },
+  "slug": "commodity-phan-2"
+}
