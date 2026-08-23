@@ -9,11 +9,6 @@
     "subtitle": "Checklists, pre-mortems and the structural rules professional fund managers use to protect decisions from emotion",
     "duration": "8 min"
   },
-  "chi-phi-duoc-tru-va-khong-duoc-tru": {
-    "title": "Standards & Tax, Lesson 6: Deductible and non-deductible expenses",
-    "subtitle": "Why accounting profit and taxable profit are never the same number",
-    "duration": "10 min"
-  },
   "chon-chi-so-do-luong-va-vanity-metric": {
     "title": "Data Thinking, Lesson 1: Choosing a metric - and why the pretty ones are usually useless",
     "subtitle": "Telling a vanity metric from one that drives action, and the trap of turning a metric into a target",
@@ -44,10 +39,10 @@
     "subtitle": "Why working by column instead of by row completely changes how you think about data",
     "duration": "11 min"
   },
-  "dung-mo-hinh-ba-bao-cao-trong-excel": {
-    "title": "Excel, Lesson 3: Building a real three-statement model - links, circularity and check cells",
-    "subtitle": "From sheet layout to a balance check of zero: how to build a model that actually runs",
-    "duration": "13 min"
+  "financial-risk": {
+    "title": "Classifying technical risk",
+    "subtitle": "Four groups, and why naming it right decides who can fix it",
+    "duration": "8 min"
   },
   "ir-cong-bo-thong-tin-va-thoi-diem": {
     "title": "IR, Part 2: Materiality and timing - what you must say, and when",
@@ -67,11 +62,6 @@
   "ke-chuyen-bang-du-lieu": {
     "title": "Data Thinking, Part 5: Telling a story with data - from a table to a decision",
     "subtitle": "How to structure an analytical presentation, and why the conclusion belongs on the first slide rather than the last",
-    "duration": "11 min"
-  },
-  "ke-hoach-nhan-su-va-chi-phi-luong": {
-    "title": "Planning, Part 2: Headcount planning - the largest cost line and the hardest to reverse",
-    "subtitle": "Why payroll has to be built role by role and month by month, not as a single annual figure",
     "duration": "11 min"
   },
   "khi-nao-excel-het-du-va-chuyen-sang-python": {
@@ -98,11 +88,6 @@
     "title": "Planning, Lesson 1: Driver-based planning - instead of adding 10% to last year",
     "subtitle": "Tie revenue and cost back to operating quantities, so that when the plan slips you know where it slipped",
     "duration": "11 min"
-  },
-  "lo-trinh-ifrs-tai-viet-nam": {
-    "title": "Standards & Tax, Lesson 2: Converting to IFRS - what changes on the statements",
-    "subtitle": "Why a change of standards makes the ratios jump while the business itself is no different",
-    "duration": "10 min"
   },
   "lo-trinh-nghe-phan-tich-tai-chinh": {
     "title": "Professional Skills, Lesson 4: The career path - from analyst to decision maker",
@@ -139,11 +124,6 @@
     "subtitle": "A repeatable cleaning process instead of copying and hand-fixing every month",
     "duration": "11 min"
   },
-  "quyet-toan-va-thanh-tra-thue": {
-    "title": "Standards & Tax, Lesson 8: tax finalisation and tax audits",
-    "subtitle": "What happens when the tax authority re-examines what has already been declared",
-    "duration": "9 min"
-  },
   "sql-co-ban-cho-dan-tai-chinh": {
     "title": "Excel, Lesson 6: Basic SQL for finance people - getting exactly the data you need",
     "subtitle": "SELECT, WHERE, GROUP BY, JOIN: enough to query for yourself instead of waiting on the data team",
@@ -154,21 +134,6 @@
     "subtitle": "The four kinds of JOIN, the row-duplication trap, and the family of functions that solves ranking and running totals",
     "duration": "12 min"
   },
-  "thue-gtgt-va-thue-nha-thau": {
-    "title": "Standards & Tax, Lesson 4: VAT and foreign contractor tax - a cash flow effect, not a profit effect",
-    "subtitle": "Why a business that merely collects a tax on someone else's behalf can still be killed by it",
-    "duration": "10 min"
-  },
-  "thue-hoan-lai-deferred-tax": {
-    "title": "Standards & Tax, Lesson 5: Deferred tax - the hardest line on the balance sheet",
-    "subtitle": "Temporary differences between accounting and tax, and why they tell you about the future",
-    "duration": "11 min"
-  },
-  "thue-thu-nhap-doanh-nghiep-cach-tinh": {
-    "title": "Standards & Tax, Lesson 3: Corporate income tax - from accounting profit to tax payable",
-    "subtitle": "Deductible costs, non-deductible costs, loss carry-forward and tax incentives",
-    "duration": "12 min"
-  },
   "truc-quan-hoa-va-bieu-do-noi-doi": {
     "title": "Data, Lesson 4: Visualisation - picking the right chart, and spotting the one that lies",
     "subtitle": "Four questions that decide the chart type, and the axis tricks that make true numbers tell the wrong story",
@@ -177,16 +142,6 @@
   "tuong-quan-khong-phai-nhan-qua": {
     "title": "Data Thinking, Lesson 4: Correlation is not causation - and three ways to be fooled",
     "subtitle": "Confounding, reverse causality, survivorship bias: three mechanisms that turn real data into a wrong conclusion",
-    "duration": "11 min"
-  },
-  "uu-dai-thue-va-chuyen-gia": {
-    "title": "Standards & Tax, Lesson 7: Tax incentives and related-party transactions",
-    "subtitle": "Two mechanisms that shape the tax burden of a foreign-invested business",
-    "duration": "10 min"
-  },
-  "vas-vs-ifrs-khac-biet-nen-tang": {
-    "title": "Standards & Tax, Lesson 1: Where VAS and IFRS differ",
-    "subtitle": "Historical cost versus fair value: one philosophical difference that drags a long list of numerical differences behind it",
     "duration": "11 min"
   }
 }

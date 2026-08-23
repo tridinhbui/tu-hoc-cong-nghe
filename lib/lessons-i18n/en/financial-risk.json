@@ -1,0 +1,157 @@
+{
+  "title": "Classifying technical risk",
+  "subtitle": "Four groups, and why naming it right decides who can fix it",
+  "duration": "8 min",
+  "whyItMatters": "A risk given the wrong name gets handed to the wrong person and treated with the wrong tool. Most repeat incidents are incidents that were handled correctly - for a different kind of risk.",
+  "openingQuestion": "A service goes down because an external library changed its behaviour in a new version. What kind of risk is this?",
+  "openingOptions": [
+    "Dependency risk, not code risk",
+    "Operational risk",
+    "Code risk, because the team failed to read the release notes carefully before upgrading",
+    "People risk, because one person made the upgrade decision without asking anyone else"
+  ],
+  "explanation": "Calling it code risk leads to the fix being read more carefully, which is not something you can repeat. Naming it dependency risk leads somewhere else entirely: pin the version, run the tests against the new release before upgrading, and know in advance what you depend on. The name picks the tool, and the tool decides whether it happens again.",
+  "diagram": [
+    {
+      "label": "An incident happens"
+    },
+    {
+      "label": "Ask which group the cause belongs to"
+    },
+    {
+      "label": "The group picks the tool"
+    },
+    {
+      "label": "The tool decides whether it repeats"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The fourth incident with the same cause",
+    "description": "A team hit four incidents in six months, concluded each time that it was a code bug, and each time fixed exactly the line that caused it. Looking back at all four, every one started with another service returning data in a shape nobody expected. That is interface risk between two teams, and no amount of fixing code ever touched it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Classifying risk is not a naming exercise. Each group comes with its own set of tools, and using this group's tool on that group's risk fixes today's instance and nothing about tomorrow's."
+    },
+    {
+      "type": "heading",
+      "text": "Four groups"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Code risk: wrong logic, an unhandled edge case. The tools are tests and review",
+        "Dependency risk: something outside changes or disappears. The tools are pinned versions and a fallback",
+        "Operational risk: config, deployment, access. The tools are automation and fewer manual steps",
+        "Interface risk: two sides understand the exchanged data differently. The tools are data contracts and checks at the boundary"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The fourth group is the one most often filed under the wrong heading, because its symptom always shows up on one side as a code bug. Whoever is fixing it sees their own code break on unfamiliar data and concludes the code was missing a check - true, but that is the symptom rather than the cause."
+    },
+    {
+      "type": "callout",
+      "label": "The question that separates the groups",
+      "text": "Ask whether this incident would still have happened if everything outside your team had stayed perfectly still. If yes, it is code or operational risk, which is to say it is within reach. If no, it is dependency or interface risk, and half of the fix has to come from the other side - meaning it needs a conversation, not just a change."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Treating the symptom",
+        "text": "Fix the exact line that failed. Fast, closes the incident, and changes nothing about the odds of it happening again."
+      },
+      "right": {
+        "label": "Treating the group",
+        "text": "Slower, and it needs other people. It changes the odds, which makes it the only work that reduces the incident count."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The name picks the tool, and the tool decides whether it happens again.",
+        "Four incidents with one cause look like four unrelated code bugs, if you only ever look at one."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which group of risk is most often filed wrongly?",
+      "options": [
+        "Interface risk between two sides",
+        "Operational risk",
+        "Dependency risk, because it only surfaces when something outside changes rather than during testing",
+        "Code risk, because most teams lack test coverage for the edge cases that actually occur"
+      ],
+      "explanation": "Its symptom always appears on one side as a code bug: your code breaks on unfamiliar data. Concluding that a check was missing is correct, and it is the symptom - fix that and next time a different shape of unfamiliar data breaks a different place."
+    },
+    {
+      "question": "Which question separates risk within reach from risk that needs someone else?",
+      "options": [
+        "Would this still have happened if everything outside had stayed still",
+        "Has this incident happened before",
+        "Does the team have enough access to fix every part of what caused this incident by itself",
+        "Was recovery this time faster or slower than in the previous incidents of the same kind"
+      ],
+      "explanation": "This question splits things along the axis that decides the treatment. If the answer is no, then every solution that lives entirely inside the team is a stopgap - the rest has to come from a conversation with the other side."
+    },
+    {
+      "question": "Four incidents in six months, each fixed at exactly the line that failed. Why do they keep coming?",
+      "options": [
+        "Because all four share one cause that none of the fixes touched",
+        "Because the team fixed them too quickly",
+        "Because the fixes were only verified in the test environment and never against production traffic",
+        "Because the team kept no incident write-ups, so nobody noticed the link between the four of them"
+      ],
+      "explanation": "Each fix was right and each one closed its incident. What never happened is somebody laying the four write-ups side by side - and only side by side does the shared shape appear. One at a time, they are four unrelated code bugs."
+    },
+    {
+      "question": "What is the right tool for dependency risk?",
+      "options": [
+        "Pin the version and keep a fallback ready",
+        "Read the release notes carefully",
+        "Increase test coverage for the parts of the code that call into that external library",
+        "Cut the number of external libraries the service depends on down to a minimum"
+      ],
+      "explanation": "The other three all help and none of them repeats reliably. Pinning changes the nature of the problem: instead of hoping nobody upgrades by accident, the system only changes when somebody decides to change it."
+    },
+    {
+      "question": "Why is treating the group slower but worth more than treating the symptom?",
+      "options": [
+        "Because only that changes the odds of it happening again",
+        "Because it produces documentation",
+        "Because it forces the teams involved to look at the problem together, so understanding spreads wider",
+        "Because it usually turns up other problems that have not caused incidents yet but are latent"
+      ],
+      "explanation": "The other three benefits are real and all of them are side effects. The core point is that fixing the symptom closes the incident without changing the chance of recurrence, so the count per quarter stays flat no matter how correct every fix was."
+    }
+  ],
+  "keyTakeaways": [
+    "The name picks the tool, and the tool decides whether it happens again",
+    "Interface risk gets misfiled because its symptom looks like a code bug",
+    "Ask: would this still have happened if everything outside had stayed still",
+    "Fixing the symptom closes the incident without changing the odds of recurrence"
+  ],
+  "practicePrompt": {
+    "question": "Twelve incidents in six months, each fixed correctly and none of them an exact repeat. How many incidents should you expect next quarter?",
+    "options": [
+      "About 12, because nothing has changed the odds",
+      "Fewer than 12",
+      "About 6, because each fix permanently removes one cause of incidents from the system",
+      "Not predictable, because the incident count depends on how much change gets released"
+    ],
+    "explanation": "Twelve correct fixes removed twelve specific instances, not the cause that produces them. If the cause is untouched then the rate at which incidents appear is untouched too, and that is how a team can be very good at fixing while its incident count holds flat year after year."
+  },
+  "summary": {
+    "keyIdea": "Classify risk to pick the right tool, not to give it a name",
+    "commonMistake": "Filing interface risk as code risk because the symptom looks the same",
+    "action": "Lay your three most recent incident write-ups side by side and look for the shared shape."
+  },
+  "application": {
+    "title": "Two questions after every incident",
+    "message": "Would it still have happened if everything outside the team had stayed still? Does this fix change the odds, or only close this instance?",
+    "secondary": "The second question is what separates a team that fixes well from a team whose incident count is going down."
+  },
+  "slug": "financial-risk"
+}
