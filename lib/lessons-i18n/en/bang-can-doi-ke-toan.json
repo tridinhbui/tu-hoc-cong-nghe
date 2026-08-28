@@ -1,0 +1,179 @@
+{
+  "title": "What the system holds and where its capacity comes from",
+  "subtitle": "A way of reading infrastructure that shows what is yours and what is borrowed",
+  "duration": "8 min",
+  "whyItMatters": "Two systems serving the same load can be in completely different states, and that difference only appears once you separate the capacity you own from the capacity you are borrowing.",
+  "openingQuestion": "Two systems each handle 10,000 requests per second. Which one is more durable?",
+  "openingOptions": [
+    "The one leaning less on capacity that expands with demand, because that kind can be absent at the moment it is needed most",
+    "The one with more machines, since the load is spread thinner and each machine carries less",
+    "The one with lower infrastructure cost, because it is using its resources more efficiently",
+    "They are equivalent, since both serve the same amount of load"
+  ],
+  "explanation": "Capacity that scales with demand is very convenient and it is borrowed: it depends on the vendor still having free machines, on your account limits, and on you still being able to pay. All three can fall short at once, and they fall short exactly when demand rises sharply - which is when they are needed.",
+  "diagram": [
+    {
+      "label": "Total capacity in use"
+    },
+    {
+      "label": "Separate what is owned from what is borrowed"
+    },
+    {
+      "label": "See what the borrowed part depends on"
+    },
+    {
+      "label": "Know which shock the system survives"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An account limit, not a shortage of machines",
+    "description": "A system was designed to add machines as load rose, had been tested repeatedly, and always worked. During a real peak the machine count stopped at thirty and went no further. The vendor had not run out - the account carried a default limit of thirty for that type, set the day it was opened, and because nobody had ever reached it nobody knew it existed."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The reading below borrows its shape from an accounting sheet, and it is useful for the same reason: it forces two sides to agree, so anything that does not agree is something being left out."
+    },
+    {
+      "type": "formula",
+      "title": "The two sides must agree",
+      "variables": [
+        {
+          "symbol": "Total",
+          "name": "All the capacity the system genuinely uses",
+          "description": "Measured in units of work: requests per second, records per minute, or terabytes stored."
+        },
+        {
+          "symbol": "Owned",
+          "name": "The share running on resources reserved and paid for in advance",
+          "description": "Always present, dependent on nobody, and its limit is a number known ahead of time."
+        },
+        {
+          "symbol": "Borrowed",
+          "name": "The share resting on elastic capacity or an external service",
+          "description": "Cheap when there is slack and capable of being absent when needed. This is the side to read carefully."
+        },
+        {
+          "symbol": "Buffer",
+          "name": "The gap between capacity held and load on the busiest day",
+          "description": "Negative means the system is living on the busiest day not having arrived yet. Many systems are in this state without knowing."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Three questions for the borrowed side"
+    },
+    {
+      "type": "list",
+      "items": [
+        "What does this share depend on, and has that party committed to anything in writing",
+        "Is any limit capping it from above, including one nobody has ever reached",
+        "If the borrowed share vanished entirely, what percentage could the system still serve"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The third is the most worth asking and the least often asked, because it turns a vague worry into a number. A system that still serves seventy percent with the borrowed part gone is in a completely different position from one that serves five, even though both run well today."
+    },
+    {
+      "type": "callout",
+      "label": "A quota is the worst kind of limit",
+      "text": "A server running out of capacity means the system slows down and there is time to react. An account quota does not slow down - it blocks flatly at a number, usually a default nobody chose, and it only reveals itself the first time you reach it. A list of every quota applying to your system is a cheap document to produce and almost no team has one."
+    },
+    {
+      "type": "heading",
+      "text": "Read it over time, not once"
+    },
+    {
+      "type": "paragraph",
+      "text": "The ratio between the owned and borrowed shares tends to drift one way: every time capacity is needed urgently, borrowing more is the fastest route. No single decision in that chain is wrong, and after two years the system depends on the borrowed share at a level nobody ever considered."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The same amount of load does not mean the same condition.",
+        "A quota blocks flatly, and it only shows itself the first time you reach it."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why is elastic capacity considered borrowed?",
+      "options": [
+        "Because the vendor may reclaim this class of resource before reclaiming what is prepaid",
+        "Because it is billed by the hour, so the monthly total is hard to predict in advance",
+        "Because it takes time to start up, so it cannot respond fast enough to sudden surges",
+        "Because it rests on conditions that tend to fall short at exactly the moment it is needed most, since those conditions share a common cause"
+      ],
+      "explanation": "The other three are true and all are disadvantages. The core point is simultaneity: the vendor running out, your quota hitting its ceiling, and demand surging all tend to happen together, because they have a common cause."
+    },
+    {
+      "question": "Which question turns worry about the borrowed share into a number?",
+      "options": [
+        "If the borrowed share vanished, what percentage could the system still serve",
+        "What share of monthly infrastructure cost does the borrowed part represent",
+        "What availability has the vendor committed to for this class of elastic resource",
+        "How long would it take to move the borrowed share onto reserved capacity"
+      ],
+      "explanation": "The other three yield numbers too and all measure something else. The first measures the thing you need to know - how bad the worst case is - and it usually returns a figure far lower than the team's intuition."
+    },
+    {
+      "question": "Why is a quota more dangerous than a server running out of capacity?",
+      "options": [
+        "Because raising a quota goes through the vendor, which takes several working days",
+        "Because it blocks flatly instead of slowing down, so the team gets no time at all to notice and improvise",
+        "Because quotas apply at the account level, so they affect every system at once",
+        "Because monitoring tools usually do not track usage against quota limits"
+      ],
+      "explanation": "The other three make it worse. The first is the root cause: a system that slows down gives the team a few minutes, and a hard wall gives them none."
+    },
+    {
+      "question": "Why does the borrowed share tend to grow over time?",
+      "options": [
+        "Because new services are usually designed to run on elastic capacity from the start",
+        "Because the price of elastic resources falls over time, making it steadily more attractive",
+        "Because every time capacity is needed urgently, borrowing more is the fastest route available",
+        "Because reserved capacity contracts expire and are not always renewed when they do"
+      ],
+      "explanation": "This is the shape of every technical debt: each decision was reasonable at the time, none of them deserves objection, and their sum is a state nobody ever chose."
+    },
+    {
+      "question": "What does a negative capacity buffer mean?",
+      "options": [
+        "The capacity measurement is faulty, since a gap cannot hold a negative value",
+        "The system is consuming more resources than the budget approved for it",
+        "The system needs more machines immediately, because current load already exceeds what it serves",
+        "The system is living on the busiest day not having arrived yet"
+      ],
+      "explanation": "A negative buffer does not mean the system is failing today - today's load may be well below its busiest. It means there is no reserve left for the busiest day, and that day arrives without warning."
+    }
+  ],
+  "keyTakeaways": [
+    "The same amount of load does not mean the same condition",
+    "The borrowed share rests on conditions that tend to fall short together",
+    "A quota blocks flatly and only shows itself the first time you reach it",
+    "The borrowed ratio drifts upward with no single decision being wrong"
+  ],
+  "practicePrompt": {
+    "question": "A system serves 10,000 requests per second: 3,000 reserved and 7,000 elastic. Losing all the elastic leaves what share?",
+    "options": [
+      "30%",
+      "70% (= taking the elastic share rather than the reserved share that remains)",
+      "100% (= assuming reserved capacity automatically absorbs the missing load)",
+      "0% (= assuming losing the elastic share stops the whole system serving)"
+    ],
+    "explanation": "3,000 out of 10,000 is 30%. That figure is worth writing down because it says seven users in ten go unserved in the bad case, while every chart today is green."
+  },
+  "summary": {
+    "keyIdea": "Separate owned capacity from borrowed before judging what a system can take",
+    "commonMistake": "Reading a total capacity figure without asking which share is borrowed",
+    "action": "List every quota applying to the system you look after, including untouched ones."
+  },
+  "application": {
+    "title": "Three numbers for the system you hold",
+    "message": "How much is owned. How much is borrowed. What share could still be served if the borrowed part disappeared.",
+    "secondary": "The third is usually far lower than the whole team's intuition, and that is why it is worth writing down."
+  },
+  "slug": "bang-can-doi-ke-toan"
+}
