@@ -24,6 +24,11 @@
     "subtitle": "What to measure, where to measure it, and why most first measurements are taken in the wrong place",
     "duration": "8 min"
   },
+  "cau-dieu-kien-if-else": {
+    "title": "Lesson 6: Conditionals - a program that branches",
+    "subtitle": "From a straight run of instructions to a program that picks a road.",
+    "duration": "7 min"
+  },
   "chon-chi-so-do-luong-va-vanity-metric": {
     "title": "Data Thinking, Lesson 1: Choosing a metric - and why the pretty ones are usually useless",
     "subtitle": "Telling a vanity metric from one that drives action, and the trap of turning a metric into a target",
@@ -63,6 +68,11 @@
     "title": "Evaluating an internal platform project",
     "subtitle": "What you put in, how long it takes to come back, and why the return has to be discounted",
     "duration": "8 min"
+  },
+  "danh-sach-cau-truc-du-lieu-dau-tien": {
+    "title": "Lesson 8: Lists - your first data structure",
+    "subtitle": "When one variable is not enough, and you need to hold many values under one name.",
+    "duration": "7 min"
   },
   "dao-duc-du-lieu-va-thien-lech-thuat-toan": {
     "title": "Data Thinking, Lesson 6: Data ethics - privacy, bias and accountability",
@@ -209,11 +219,6 @@
     "subtitle": "Splitting only reduces risk when the pieces fail independently",
     "duration": "9 min"
   },
-  "ngan-sach-va-du-bao-tai-chinh": {
-    "title": "Budgeting & financial forecasting - planning in order to steer",
-    "subtitle": "From forecast to replanning when reality moves",
-    "duration": "8 min"
-  },
   "on-tap-npv": {
     "title": "Review: bringing future benefit back to today",
     "subtitle": "Why an hour saved next year is not worth an hour saved next month",
@@ -288,6 +293,11 @@
     "title": "Load testing and extreme scenarios",
     "subtitle": "Designing a test for the worst day, not for an average day multiplied by two",
     "duration": "9 min"
+  },
+  "vong-lap-for-va-while": {
+    "title": "Lesson 7: Loops",
+    "subtitle": "Tell the machine to do something a thousand times, and know for certain it will stop.",
+    "duration": "7 min"
   },
   "wealth-management": {
     "title": "An internal platform as a service for other teams",

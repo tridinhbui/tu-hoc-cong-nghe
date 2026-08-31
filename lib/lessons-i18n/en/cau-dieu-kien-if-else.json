@@ -1,0 +1,130 @@
+{
+  "slug": "cau-dieu-kien-if-else",
+  "title": "Lesson 6: Conditionals - a program that branches",
+  "subtitle": "From a straight run of instructions to a program that picks a road.",
+  "duration": "7 min",
+  "whyItMatters": "A conditional is where a program starts to have behaviour. It is also where most bugs live, because each branch is a separate path and the author usually tests exactly one of them - the one they had in mind.",
+  "openingQuestion": "A function has three nested conditionals, each with two branches. How many runs does it take to try every path?",
+  "explanation": "Each level of nesting doubles the number of paths, so three levels give two to the third, which is eight. This is why deep nesting counts as a bad sign: the path count grows exponentially, and in practice nobody tries them all. The paths nobody tried are where the bugs sit waiting. The remedy is to flatten by returning early on the special cases, instead of wrapping the main work inside several layers.",
+  "openingOptions": [
+    "Eight, because the path count doubles at each level of nesting",
+    "Three, because trying each conditional once is enough",
+    "Six, because three conditionals times two branches each makes six",
+    "Two, because in the end a program only has a true road and a false one"
+  ],
+  "diagram": [
+    { "label": "Evaluate the condition expression" },
+    { "label": "If true, run the first block" },
+    { "label": "If false, run the other block" },
+    { "label": "The two roads meet and the program continues" }
+  ],
+  "realWorldExample": {
+    "company": "Every login screen",
+    "description": "A plain login form already has at least four paths: blank username, blank password, wrong credentials, and correct. Testing only the last one misses three cases that real users hit far more often - and that is why so many apps give a baffling error when you leave a field empty."
+  },
+  "quiz": [
+    {
+      "question": "When does the block after else run?",
+      "options": [
+        "Always, once the conditional block above it has finished running",
+        "When evaluating the condition expression raises an error",
+        "When the condition expression evaluates to false",
+        "When the condition expression returns an empty value rather than true or false"
+      ],
+      "explanation": "Exactly one of the two blocks runs, never both and never neither. If the expression raises an error then the whole conditional never completes and the program either stops or jumps to error handling, rather than falling into the else branch."
+    },
+    {
+      "question": "Why is deeply nested branching treated as a bad sign?",
+      "options": [
+        "Because the compiler cannot check the syntax beyond five levels of nesting",
+        "Because each extra level of nesting makes the program slower",
+        "Because most languages cap how many conditionals may be nested together",
+        "Because the path count grows exponentially, so nobody tries them all"
+      ],
+      "explanation": "Four levels of nesting give sixteen distinct paths, and the author usually tries one or two. The rest are where bugs wait until a user walks into that exact branch. The runtime cost is negligible - the problem is entirely on the human side."
+    },
+    {
+      "question": "What does returning early actually mean?",
+      "options": [
+        "Handle the special cases first and exit at once, so the main work sits at the outermost level",
+        "Put a return on the function's first line so that it always finishes very fast",
+        "Merge every branch into one single condition with many clauses joined together",
+        "Return a temporary value and compute the rest in another function called later"
+      ],
+      "explanation": "Instead of wrapping the main handling inside three layers of conditionals, you check each invalid case at the top of the function and leave immediately. The result is that the main work - the part that matters most - sits at the outermost indentation rather than buried deep, and the reader sees the constraints straight away."
+    },
+    {
+      "question": "What does a multi-branch selection give you over a long else-if chain?",
+      "options": [
+        "It runs faster because the language only has to evaluate that value once",
+        "It says plainly that every branch compares the same value, so readers grasp it faster",
+        "It lets each branch compare against a different variable as the need arises",
+        "It automatically handles the case where the value matches no branch at all"
+      ],
+      "explanation": "The strength is that the intent shows: an else-if chain might examine five different variables, while a multi-branch selection announces immediately that everything is being compared against one value. You still have to write the default branch yourself, and forgetting it is a common bug."
+    },
+    {
+      "question": "Why handle edge cases at the moment you write the condition?",
+      "options": [
+        "Because edge cases always turn up more often than the ordinary case does",
+        "Because the language raises an error if a conditional fails to cover every case",
+        "Because an empty list or a value exactly at the threshold is where bugs sit most",
+        "Because the compiler optimises better when every branch is written out explicitly"
+      ],
+      "explanation": "The ordinary case is the one you think of immediately and test immediately. An empty list, a zero, a null, or a value sitting exactly on the comparison threshold - those are the easiest to forget and where the bugs concentrate. Asking 'what if this is empty' while writing is far cheaper than hunting the bug later."
+    }
+  ],
+  "keyTakeaways": [
+    "Exactly one branch runs - never both, never neither.",
+    "Each level of nesting doubles the number of paths you have to try.",
+    "Returning early flattens the structure and lifts the main work to the outermost level.",
+    "A multi-branch selection says plainly that every branch compares one value.",
+    "Ask while writing: what if it is empty, what if it is zero, what if it equals the threshold."
+  ],
+  "practicePrompt": {
+    "question": "You write a grading condition: above 8 is excellent, above 5 is good, otherwise average. Which branch does a score of exactly 8 land in?",
+    "options": [
+      "Good, because 8 is not above 8 so the first branch does not match",
+      "Excellent, because 8 sits on the boundary so it goes to the higher branch",
+      "Average, because it satisfies neither condition above and falls to the last one",
+      "No branch, because the value is exactly on the boundary so the program errors"
+    ],
+    "explanation": "Above does not include equal, so 8 misses the first branch and matches the second. This is the most common boundary bug there is, and the way to avoid it is to ask, every time you write a comparison with a threshold, where the value exactly at that threshold should go."
+  },
+  "summary": {
+    "keyIdea": "A conditional is where a program starts to have behaviour, and also where bugs concentrate.",
+    "formula": "Number of paths = 2 to the power of the nesting depth.",
+    "commonMistake": "Testing only the path you had in mind, skipping the empty list and the value exactly at the threshold.",
+    "action": "Write a three-branch function and test all three, including the value sitting right on the boundary."
+  },
+  "application": {
+    "title": "Do this today",
+    "message": "Write a program that sorts a score into three grades, then run it with a value exactly on each threshold to see which branch it lands in.",
+    "secondary": "Then rewrite the same logic in the early-return style and compare the two. Whichever reads more easily is your answer for the rest of the course."
+  },
+  "sections": [
+    { "type": "lead", "text": "Up to now your program has run straight down from the top. A conditional is what gives it the ability to pick a road, and that is when it starts to have real behaviour. From here too, bugs begin appearing in the places you are not looking." },
+    { "type": "heading", "text": "The basic structure" },
+    { "type": "paragraph", "text": "A conditional takes a boolean expression - exactly what you learned last lesson - and runs one of two blocks. Exactly one block runs: never both and never neither. Afterwards the two roads meet and the program carries on as normal." },
+    { "type": "callout", "label": "A condition should always be boolean", "text": "Some languages have rules that treat a few other values as false inside a conditional - zero, the empty string, null. Convenient, but a source of surprises, so while you are learning write the comparison out explicitly rather than leaning on implicit conversion." },
+    { "type": "heading", "text": "Why deep nesting is a bad sign" },
+    { "type": "paragraph", "text": "Each level of nesting doubles the path count. Two levels give four paths, three give eight, four give sixteen. The number grows faster than anyone's ability to hold them all in mind, so in practice the author tries one or two - and the rest are where the bugs sit waiting." },
+    { "type": "comparison",
+      "left": { "label": "Deeply nested", "text": "Validity checked on the outside, then permissions inside that, and only then the main handling, indented three levels in. The most important part is buried the deepest." },
+      "right": { "label": "Early return", "text": "Each invalid case checked at the top of the function and exited at once. The main work sits at the outermost level, and the reader sees every constraint from a glance at the first few lines." }
+    },
+    { "type": "heading", "text": "Edge cases are where bugs live" },
+    { "type": "paragraph", "text": "The ordinary case is the one you think of while writing and test right after. What gets forgotten are the values at the edges, and they account for most of the real bugs in shipped software." },
+    { "type": "list", "items": [
+      "A value exactly at the threshold: above 8 does not include 8 itself.",
+      "An empty list: the loop never runs, and a total divided by the element count is a division by zero.",
+      "A null value: calling an operation on it usually stops the program outright.",
+      "Negative numbers and zero, wherever you quietly assumed the value is always positive."
+    ]},
+    { "type": "paragraph", "text": "A habit worth forming in your first week: every time you write a comparison with a threshold, ask yourself where the value exactly at that threshold should go. The question costs five seconds and it blocks the class of bug that takes the most hours to track down." },
+    { "type": "closing", "lines": [
+      "A branching program means a program with many roads, and every road you did not try is a road nobody has checked.",
+      "Next is the other half of control flow: loops, and how one never ends if you forget a single line."
+    ]}
+  ]
+}

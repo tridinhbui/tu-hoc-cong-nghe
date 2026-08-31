@@ -1,0 +1,129 @@
+{
+  "slug": "danh-sach-cau-truc-du-lieu-dau-tien",
+  "title": "Lesson 8: Lists - your first data structure",
+  "subtitle": "When one variable is not enough, and you need to hold many values under one name.",
+  "duration": "7 min",
+  "whyItMatters": "Nearly every real program handles many things at once: a list of users, the lines in a file, the results coming back over the network. A list is how you hold them, and it is also where lesson 2's point about copying values returns with one important exception.",
+  "openingQuestion": "You write b = a where a is a list, then add an element to b. Does a change?",
+  "explanation": "This is the exception the lesson on variables warned you about. For compound data such as a list, assignment copies the pointer to the data rather than the data itself, so both names refer to one single list. Add an element through one name and you see it through the other. To get your own copy you have to copy explicitly, and you also need to know that a shallow copy only separates the outermost layer.",
+  "openingOptions": [
+    "Yes, because both names point at one list",
+    "No, because assignment always makes an independent copy of the value on the right",
+    "No, because lists are immutable so every add produces a brand new list",
+    "Yes, but only if both lists were declared inside the same block"
+  ],
+  "diagram": [
+    { "label": "A list holds many values in order" },
+    { "label": "Each element has an index, starting at 0" },
+    { "label": "Add, remove, search, walk element by element" },
+    { "label": "Assigning a list copies the pointer, not the data" }
+  ],
+  "realWorldExample": {
+    "company": "Any app with a list in it",
+    "description": "A message list, a shopping basket, a page of search results - all of them are a list in memory being drawn to the screen. When you pull down to load more, the program is appending elements to that same list and redrawing the new part."
+  },
+  "quiz": [
+    {
+      "question": "Why do list indexes start at 0 rather than 1?",
+      "options": [
+        "Because an index is the distance from the start, and the first element is 0 away",
+        "Because 0 takes less memory than 1, which saves space on very long lists",
+        "Because languages wanted to distinguish lists from how humans number things",
+        "Because position 1 is reserved for storing that list's current length"
+      ],
+      "explanation": "This numbering comes from how memory works: an index is an offset from the starting position, so the first element has an offset of zero. The consequence to remember forever is that the last element of an n-element list sits at index n minus one - the root of the off-by-one error."
+    },
+    {
+      "question": "How does a shallow copy differ from a deep copy?",
+      "options": [
+        "A shallow copy only copies the first few elements and skips all the rest",
+        "A shallow copy separates the outer layer only; the inner elements stay shared",
+        "A shallow copy runs faster but gives exactly the same result as a deep copy",
+        "A shallow copy makes a new name pointing at the original list itself"
+      ],
+      "explanation": "A shallow copy gives you a new list, so adding or removing elements does not touch the original. But if the elements are themselves compound data, both lists still point at those same elements, and editing inside one is visible from both. Only a deep copy duplicates the whole thing down through every layer."
+    },
+    {
+      "question": "Appending to the end of a list versus inserting at the front - which costs more?",
+      "options": [
+        "They cost the same, since both add exactly one element",
+        "Appending, because you must walk the whole list to find the end",
+        "Inserting at the front, because every later element must shift one place",
+        "It depends on the length; the shorter the list, the slower appending gets"
+      ],
+      "explanation": "For a list stored as one contiguous block in memory, inserting at the front forces every later element to move, so the cost is proportional to the length. Appending is usually just a write into the next slot. With a few dozen elements nobody notices, but inserting at the front inside a hundred-thousand-round loop is another matter."
+    },
+    {
+      "question": "How do you find a value in an unsorted list?",
+      "options": [
+        "Sort the list first, because without sorting there is no way to find anything",
+        "Jump straight to that value's position, since the list knows what it holds",
+        "Halve the list and search whichever half is more likely to contain the value",
+        "Walk element by element until you hit it, or reach the end"
+      ],
+      "explanation": "Unsorted, there is nothing to do but scan sequentially, because the value could be anywhere. Halving only applies once the list is sorted - that is exactly the technique behind git bisect in the Git stage. It is also why people accept the cost of sorting first when they will search many times."
+    },
+    {
+      "question": "How does a list differ from a set?",
+      "options": [
+        "A list keeps order and allows duplicates; a set does neither of those",
+        "A list holds only numbers, while a set can hold every different kind of data",
+        "A list caps its element count while a set expands without limit",
+        "A list lives in memory while a set is written to disk once it grows too large"
+      ],
+      "explanation": "In exchange for losing the order, a set gives you two things: automatic removal of duplicates, and an extremely fast check of whether a value is in it regardless of size. So when your question is 'has this value appeared yet', a set is almost always the right choice over a list."
+    }
+  ],
+  "keyTakeaways": [
+    "An index is an offset from the start, so it begins at 0 and the last element is at n minus one.",
+    "Assigning a list copies the pointer, not the data - two names, one list.",
+    "A shallow copy separates the outer layer; compound elements inside stay shared.",
+    "Inserting at the front costs more than appending, because every later element shifts.",
+    "If your question is 'is this value in there', use a set, not a list."
+  ],
+  "practicePrompt": {
+    "question": "You need to filter the even numbers out of a list. Which approach is safer?",
+    "options": [
+      "Build a new list holding only the even numbers, leaving the original alone",
+      "Walk the original list and delete the odd numbers as you go",
+      "Sort the list first, then cut away the part holding all the odd numbers",
+      "Assign the list to a new name, then delete the odd numbers on that new name"
+    ],
+    "explanation": "Deleting while iterating shifts the later elements up and they get skipped, exactly as the loops lesson said. And assigning to a new name makes no copy at all - both names point at one list, so deleting on the new name deletes on the original too. Building a new list avoids both traps."
+  },
+  "summary": {
+    "keyIdea": "A list holds many values in order under one name, reached by index.",
+    "formula": "The last element of an n-element list sits at index n − 1.",
+    "commonMistake": "Assuming that assigning a list makes a copy, then editing one and finding the other changed.",
+    "action": "Assign a list to another name, add an element, then print both names."
+  },
+  "application": {
+    "title": "Do this today",
+    "message": "Create a list, assign it to a second name, add an element through the second name, then print both. Then do it again using an explicit copy.",
+    "secondary": "Compare the two results. This is one of the most surprising differences in your first month, and seeing it with your own eyes is what makes it stick."
+  },
+  "sections": [
+    { "type": "lead", "text": "So far each of your variables holds exactly one value. Real programs are rarely like that: they handle lists of users, the lines in a file, results coming back over the network. A list is how you hold many values under a single name." },
+    { "type": "heading", "text": "Indexes start at 0" },
+    { "type": "paragraph", "text": "This irritates a lot of beginners, but there is a reason for it: an index is an offset from the list's starting position in memory. The first element is exactly zero slots from the start, so it carries index zero. The consequence to remember forever is that the last element of a five-element list sits at index four." },
+    { "type": "callout", "label": "Back to the loops lesson", "text": "This is precisely the root of the off-by-one error. Where you can, use the syntax that iterates elements directly rather than managing an index yourself - the whole family of bugs disappears, and the code reads more easily too." },
+    { "type": "heading", "text": "The exception you were warned about" },
+    { "type": "paragraph", "text": "In the lesson on variables you learned that assignment copies the value and the two variables are unrelated. With lists it is different: what gets copied is the pointer to the data, not the data itself. Both names refer to one single list, so adding an element through one name is visible through the other." },
+    { "type": "comparison",
+      "left": { "label": "Shallow copy", "text": "Gives you a new list at the outer layer, so adding or removing elements does not touch the original. But if the elements are themselves compound data, both still point at those same elements." },
+      "right": { "label": "Deep copy", "text": "Duplicates the whole thing down through every layer, so the two sides are entirely independent. In exchange it costs more, and on large data that cost is real rather than negligible." }
+    },
+    { "type": "heading", "text": "What each operation costs" },
+    { "type": "list", "items": [
+      "Reading an element by index: near instant, however long the list is.",
+      "Appending to the end: usually very cheap, just a write into the next slot.",
+      "Inserting at the front or middle: every later element must move, so it scales with length.",
+      "Searching for a value when unsorted: a sequential scan, with no shortcut available."
+    ]},
+    { "type": "paragraph", "text": "With a few dozen elements nobody notices the difference. With hundreds of thousands inside a loop, picking the wrong operation is the difference between one second and ten minutes. This is the doorway to complexity, the subject of the advanced stage later on." },
+    { "type": "closing", "lines": [
+      "A list suits you when order means something and you need to walk everything. When the question is 'is this value in there', a set is the better choice.",
+      "Next is the other structure you will use daily: dictionaries, where you look things up by name instead of by position."
+    ]}
+  ]
+}

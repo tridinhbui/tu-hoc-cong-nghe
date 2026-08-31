@@ -210,7 +210,7 @@ export const dataTablesVi = {
       loading: "Đang tải...",
       tabs: {
         netWorth: "Tài sản ròng",
-        budget: "Ngân sách 50/30/20",
+        budget: "Chia dung lượng",
         emergencyFund: "Quỹ khẩn cấp",
         compoundInterest: "Giả lập Lãi kép",
         firePlanner: "Kế hoạch FIRE",
@@ -425,7 +425,7 @@ export const dataTablesEn: typeof dataTablesVi = {
       loading: "Loading...",
       tabs: {
         netWorth: "Net Worth",
-        budget: "50/30/20 Budget",
+        budget: "Capacity split",
         emergencyFund: "Emergency Fund",
         compoundInterest: "Compound Interest",
         firePlanner: "FIRE Planner",

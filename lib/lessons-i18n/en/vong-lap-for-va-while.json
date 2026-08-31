@@ -1,0 +1,129 @@
+{
+  "slug": "vong-lap-for-va-while",
+  "title": "Lesson 7: Loops",
+  "subtitle": "Tell the machine to do something a thousand times, and know for certain it will stop.",
+  "duration": "7 min",
+  "whyItMatters": "A loop is where a computer genuinely outclasses a person: repeating one job a million times without tiring and without error. It is also where it is easy to write a program that never stops, or that runs exactly one time too few.",
+  "openingQuestion": "A while loop runs as long as its condition holds, but nothing inside it changes that condition. What happens?",
+  "explanation": "Nothing here rescues you automatically. An infinite loop runs until something forces it to stop, and on a server it takes the whole service down with it. The compiler cannot catch it either, because it has no way of knowing in advance whether the condition will change - that is only determined at runtime. So every time you write a while, point at the exact line that moves the condition towards stopping.",
+  "openingOptions": [
+    "It runs forever and eats the CPU until you force the program to quit",
+    "The language spots it and stops the loop after some rounds",
+    "It runs exactly once and exits, because nothing about the condition changed",
+    "The program reports an error at compile time for a loop with no exit condition"
+  ],
+  "diagram": [
+    { "label": "Check the condition before each round" },
+    { "label": "If true, run the inner block" },
+    { "label": "Update the variable to move towards stopping" },
+    { "label": "If false, exit and carry on below" }
+  ],
+  "realWorldExample": {
+    "company": "Processing a data file",
+    "description": "Reading a ten-thousand-line file and totalling one column is the classic loop problem: open the file, iterate the lines, split the fields, accumulate. Work that takes a person all day in a spreadsheet finishes in under a second - and, more importantly, runs identically again next month."
+  },
+  "quiz": [
+    {
+      "question": "When is a for loop the usual choice over a while?",
+      "options": [
+        "When the loop body contains another loop nested inside it",
+        "When you need more than a thousand rounds, since for handles large counts faster",
+        "When the stopping condition depends on data the user types in at runtime",
+        "When you already know which elements you will visit, or how many rounds"
+      ],
+      "explanation": "for suits the case where the set to visit is known: every element of a list, or a given range of numbers. while suits the case where you do not know the count in advance and only have a stopping condition - read to the end of the file, or retry until it succeeds. Either can do the other's job, but choosing correctly makes the code state its own intent."
+    },
+    {
+      "question": "What is an off-by-one error?",
+      "options": [
+        "The loop runs exactly one round too many or too few, usually a boundary mistake",
+        "A calculation inside the loop produces a result one unit away from the right one",
+        "The counter variable gets increased by two instead of one after each round",
+        "The loop skips the very first element because the counter was initialised at one"
+      ],
+      "explanation": "The root cause is that indexes in most languages start at zero, so the last element of a ten-element list sits at position nine. Using less-than or less-than-or-equal in the stopping condition decides whether the loop reaches the last element or runs past the end. It is common enough to have its own name."
+    },
+    {
+      "question": "What does break do inside a loop?",
+      "options": [
+        "Skip the rest of this round and move straight on to the next one",
+        "Leave the loop immediately, without checking the condition again",
+        "Pause the loop to wait for the user to type in a new value",
+        "Go back to the top of the loop and reset the counter to its starting value"
+      ],
+      "explanation": "break leaves entirely, while continue is the one that skips the rest of the current round and moves to the next. Confusing the two is fairly common. break is often used once you have found what you were looking for and there is no reason to walk the rest."
+    },
+    {
+      "question": "Two nested loops, each running a thousand rounds - how many times does the innermost block run?",
+      "options": [
+        "Two thousand, because two loops of a thousand rounds each add together",
+        "A million, because the two loops multiply rather than add",
+        "A thousand, because the inner loop only completes on the outer loop's last round",
+        "Impossible to say without knowing the data inside those two loops"
+      ],
+      "explanation": "Nested loops multiply their counts, and this is why a harmless-looking piece of code can bring a program to a halt. With a ten-element list a hundred rounds is nothing; with ten thousand elements it is a hundred million and you are waiting a long time. This is also the doorway to complexity in the advanced stage."
+    },
+    {
+      "question": "Why avoid modifying a list while iterating over that same list?",
+      "options": [
+        "Because the list loses its original ordering once the loop has finished running",
+        "Because most languages lock the list and raise an error if you try to change it",
+        "Because modifying inside a loop runs far more slowly than modifying outside it",
+        "Because removing an element shifts the later ones up, making the loop skip past one"
+      ],
+      "explanation": "Delete the element at position three and the fourth shifts down into position three, but the loop has already advanced its index to four - the shifted element is passed over entirely. The fix is to build a new list of the elements you want to keep, or to walk backwards from the end."
+    }
+  ],
+  "keyTakeaways": [
+    "for when you know the set to visit; while when you only have a stopping condition.",
+    "Every while loop needs a line that moves the condition towards stopping.",
+    "Indexes start at zero - this is the root of the off-by-one error.",
+    "break leaves the loop entirely; continue only skips the rest of this round.",
+    "Nested loops multiply their counts, they do not add."
+  ],
+  "practicePrompt": {
+    "question": "A list has 5 elements, indexes 0 to 4. A loop running the index from 0 to less-than-or-equal 5 will hit what?",
+    "options": [
+      "An out-of-range error on the last round, because there is no element at position 5",
+      "It runs exactly 5 times and ends normally, having visited every element",
+      "It misses the last element, because the stopping condition was set too high",
+      "It runs forever, because the stopping condition is never fully satisfied"
+    ],
+    "explanation": "Five elements live at indexes 0 to 4, so reaching 5 is reaching somewhere that does not exist. The right condition is less than 5, not less than or equal. The way to avoid this whole family of bugs is to iterate the elements directly rather than managing an index yourself."
+  },
+  "summary": {
+    "keyIdea": "A loop is where the machine outclasses the person: a million rounds without tiring and without error.",
+    "formula": "Nested loops multiply their counts, they do not add.",
+    "commonMistake": "Writing a while with no line that moves the condition towards stopping.",
+    "action": "Write a loop that totals a list, then try it on an empty list."
+  },
+  "application": {
+    "title": "Do this today",
+    "message": "Write nested loops that print the times tables from 2 to 9, then count how many times the innermost block runs.",
+    "secondary": "Then write a loop that totals a list and run it on an empty list. The result should be zero, not an error."
+  },
+  "sections": [
+    { "type": "lead", "text": "This is where a computer genuinely outclasses a person. Not because it is cleverer, but because it repeats one job ten thousand times with exactly the accuracy of the first round, in under a second, and does it identically again next month." },
+    { "type": "heading", "text": "Two kinds of loop, and how to choose" },
+    { "type": "comparison",
+      "left": { "label": "for - the set is known in advance", "text": "Visit every element of a list, or run across a given range of numbers. The number of rounds is settled the moment it starts, so there is almost no risk of running forever." },
+      "right": { "label": "while - only a stopping condition", "text": "Read until the file ends, retry until it succeeds, wait until the user types quit. The count is not known in advance, so this is where the risk of running forever lives." }
+    },
+    { "type": "callout", "label": "A rule for every while loop", "text": "Once you have written it, point at the exact line that moves the condition towards stopping. If you cannot point at one, you have just written an infinite loop. The compiler will not catch it, because it cannot know in advance whether the condition changes - that is only settled at runtime." },
+    { "type": "heading", "text": "The off-by-one error" },
+    { "type": "paragraph", "text": "This one is common enough to have its own name in the trade. The root is that indexes in most languages start at zero, so the last element of a five-element list sits at position four rather than five. Using less-than or less-than-or-equal in the stopping condition decides whether you visit them all, miss one, or run past the end of the list." },
+    { "type": "paragraph", "text": "The way to avoid this family of bugs entirely is to use the syntax that iterates elements directly rather than managing an index yourself. Nearly every modern language has it, and it should be your default; go back to managing indexes only when you genuinely need the position." },
+    { "type": "heading", "text": "Three more things to remember" },
+    { "type": "conceptTable", "title": "Common, and commonly confused", "concepts": [
+      { "en": "break", "def": "Leave the loop immediately. Often used once you have found what you were after." },
+      { "en": "continue", "def": "Skip the rest of the current round and move on to the next one." },
+      { "en": "Nested loop", "def": "The counts multiply: two loops of a thousand rounds give a million passes." },
+      { "en": "Mutation while iterating", "def": "Removing an element midway shifts the later ones up and they get skipped." }
+    ]},
+    { "type": "paragraph", "text": "That last point is worth stressing because it is silent: delete the element at position three and the fourth shifts down into position three, while the loop has already advanced its index to four. The shifted element is passed over, no error is reported, and you only notice when you check the result against something. Build a new list rather than editing in place." },
+    { "type": "closing", "lines": [
+      "A loop turns a full day of manual work into a piece of code that runs in a second and repeats forever.",
+      "Next is the thing you will loop over most: lists, your first data structure."
+    ]}
+  ]
+}

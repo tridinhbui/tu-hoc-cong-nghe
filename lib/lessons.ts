@@ -67328,28 +67328,28 @@ export const lessons: Lesson[] = [
   {
     "id": 1214,
     "track": "professional",
-    "slug": "ngan-sach-va-du-bao-tai-chinh",
-    "title": "Tự học Tài chính Day 1214: Ngân sách & Dự báo tài chính - Lập kế hoạch để điều khiển",
-    "subtitle": "Từ dự báo đến điều chỉnh kế hoạch khi thực tế thay đổi",
+    "slug": "ngan-sach-va-du-bao-dung-luong",
+    "title": "Ngân sách dung lượng & dự báo tải - lập kế hoạch để điều khiển",
+    "subtitle": "Từ dự báo tải đến điều chỉnh hạn mức khi thực tế đi khác kế hoạch",
     "duration": "8 phút",
     "difficulty": "Trung bình",
     "emoji": "📈",
-    "openingQuestion": "Ngân sách (Budget) dùng để làm gì trong doanh nghiệp?",
+    "openingQuestion": "Kế hoạch dung lượng dùng để làm gì trong một tổ chức kỹ thuật?",
     "openingOptions": [
-      "Chỉ để làm báo cáo nộp cho cơ quan quản lý nhà nước theo đúng định kỳ hằng năm thôi",
-      "Lập mục tiêu doanh thu/chi phí, so sánh thực tế vs kế hoạch để điều khiển công ty",
-      "Để phát tiền cho các phòng ban",
-      "Để tính thuế"
+      "Chỉ để làm báo cáo nộp cho bộ phận tài chính theo đúng định kỳ hằng quý thôi",
+      "Đặt mốc tải và hạn mức từng tháng, rồi đối chiếu thực tế để điều khiển hệ thống",
+      "Để chia máy chủ cho các đội",
+      "Để tính hoá đơn đám mây"
     ],
     "correctOption": 1,
-    "explanation": "Ngân sách không phải bản dự đoán mà là một công cụ quản trị: nó biến mục tiêu thành những con số cụ thể theo từng tháng, để đến kỳ có thứ mà đối chiếu. Giá trị thật nằm ở bước so sánh thực tế với kế hoạch - chênh lệch chỉ ra chỗ giả định sai, và chỉ ra sớm hơn nhiều so với việc chờ báo cáo tài chính cuối năm. Một ngân sách lập xong rồi cất đi thì không khác gì không lập.",
+    "explanation": "Kế hoạch dung lượng không phải bản dự đoán mà là một công cụ điều khiển: nó biến mục tiêu độ tin cậy thành những con số cụ thể theo từng tháng, để đến kỳ có thứ mà đối chiếu. Giá trị thật nằm ở bước so sánh tải thật với tải dự báo - chênh lệch chỉ ra chỗ giả định sai, và chỉ ra sớm hơn nhiều so với việc chờ tới lúc hệ thống hết chỗ. Một kế hoạch lập xong rồi cất đi thì không khác gì không lập.",
     "diagram": [
       {
-        "label": "Biến mục tiêu năm thành con số từng tháng",
+        "label": "Biến mục tiêu năm thành mốc tải từng tháng",
         "arrow": true
       },
       {
-        "label": "Kết thúc kỳ, đối chiếu thực tế với kế hoạch",
+        "label": "Kết thúc kỳ, đối chiếu tải thật với dự báo",
         "arrow": true
       },
       {
@@ -67357,113 +67357,135 @@ export const lessons: Lesson[] = [
         "arrow": true
       },
       {
-        "label": "Cập nhật dự báo và điều chỉnh hành động ngay trong năm"
+        "label": "Cập nhật dự báo và chỉnh hạn mức ngay trong kỳ"
       }
     ],
     "interactiveType": "budget",
     "realWorldExample": {
-      "company": "Doanh nghiệp bán hàng",
-      "description": "Ngân sách quý 1: 100 tỷ doanh thu, 60 tỷ chi phí → 40 tỷ lợi nhuận. Tháng 1 thực tế: 30 tỷ doanh thu (kém 70 tỷ so với kế hoạch). FP&A phát hiện sớm → CEO quyết định: tăng quảng cáo hoặc đợi xem tháng 2?"
+      "company": "Một nền tảng nội bộ",
+      "description": "Kế hoạch quý 1: 100 nghìn vCPU-giờ được cấp, 60 nghìn cho tải nền, còn 40 nghìn để trống. Tháng 1 thực tế: tải nền đã ăn 85 nghìn - vượt xa dự báo. Đội nền tảng phát hiện sớm, và câu hỏi cho ban kỹ thuật là: cấp thêm dung lượng ngay, hay đợi xem tháng 2 có phải là một đợt bất thường?"
     },
     "quiz": [
       {
-        "question": "Bottom-up budgeting vs Top-down budgeting là gì?",
+        "question": "Lập kế hoạch dung lượng từ dưới lên khác từ trên xuống ở chỗ nào?",
         "options": [
-          "Bottom-up: từ cấp dưới (các phòng ban) ước tính nhu cầu, báo cáo lên; Top-down: từ CEO quyết định chi tiêu cho mỗi phòng ban",
-          "Không có sự khác biệt",
-          "Bottom-up là ngân sách tiền, Top-down là ngân sách chi phí",
-          "Bottom-up dùng cho công ty nhỏ, Top-down cho công ty lớn"
+          "Từ dưới lên dùng cho tải nền; từ trên xuống dùng cho tải cao điểm",
+          "Từ dưới lên lập theo quý; từ trên xuống lập theo năm ngân sách",
+          "Từ dưới lên: mỗi đội tự ước tính rồi báo lên; từ trên xuống: hạn mức được chia xuống",
+          "Từ dưới lên do đội nền tảng lập; từ trên xuống do bộ phận mua sắm duyệt"
+        ],
+        "correct": 2,
+        "explanation": "Từ dưới lên: đội thanh toán báo 'chúng tôi cần 20 nghìn vCPU-giờ để chịu mùa cao điểm', đội tìm kiếm báo 'chúng tôi cần 5 nghìn để chạy đánh chỉ mục lại'. Từ trên xuống: ban kỹ thuật quyết định 'quý này cả tổ chức có 150 nghìn vCPU-giờ, các đội chia nhau thế nào'?"
+      },
+      {
+        "question": "Hạn mức co theo tải thực tế nghĩa là gì?",
+        "options": [
+          "Hạn mức cho phép chuyển dung lượng qua lại giữa các đội",
+          "Hạn mức không đặt trần cho các dịch vụ thuộc nhóm thiết yếu",
+          "Hạn mức được duyệt lại vào giữa mỗi năm ngân sách",
+          "Hạn mức thay đổi theo mức tải thực tế đo được"
+        ],
+        "correct": 3,
+        "explanation": "Ví dụ: kế hoạch 100 triệu lượt gọi, phần dung lượng co giãn 40 nghìn vCPU-giờ. Nếu lượt gọi thật chỉ 80 triệu, phần co giãn lẽ ra phải giảm còn 32 nghìn theo tỷ lệ. So với hạn mức đã co, phép đối chiếu mới công bằng."
+      },
+      {
+        "question": "Dự báo theo ba kịch bản giúp được gì?",
+        "options": [
+          "Dựng ba kịch bản tải để chuẩn bị trước cho tình huống xấu",
+          "Chọn ra kịch bản khả dĩ nhất rồi lập kế hoạch theo đúng nó",
+          "Mô phỏng ngẫu nhiên hàng nghìn kịch bản tải bằng máy tính",
+          "Lập kế hoạch riêng cho từng dịch vụ rồi ghép tất cả lại"
         ],
         "correct": 0,
-        "explanation": "Bottom-up: phòng bán hàng báo 'chúng tôi cần 50 tỷ để đạt 100 tỷ doanh thu', phòng IT báo 'chúng tôi cần 5 tỷ để maintain hệ thống'. Top-down: CEO quyết định 'năm nay chúng ta có 30 tỷ budget chi phí, bạn chia nó như thế nào'?"
+        "explanation": "Ba kịch bản: cơ sở (tải tăng 10% mỗi quý), xấu nhất (một vùng chết, tải dồn hết sang vùng còn lại), tốt nhất (một chiến dịch thành công, tải tăng 50%). Có ba kịch bản thì đội biết trước ngưỡng nào phải bấm nút cấp thêm, thay vì quyết định lúc đang trực sự cố."
       },
       {
-        "question": "Flexible Budget là gì?",
+        "question": "Đội lập kế hoạch cho 1.000 lượt mỗi giây nhưng thực tế đạt 1.400. Hạn mức co theo tải xử lý chênh lệch này thế nào?",
         "options": [
-          "Ngân sách không có quy định cố định",
-          "Ngân sách thay đổi theo mức hoạt động (ví dụ: nếu bán được 80% so với kế hoạch, chi phí cũng giảm tương ứng)",
-          "Ngân sách có thể thay đổi bất kỳ lúc nào",
-          "Ngân sách chỉ áp dụng cho 1 tháng"
+          "Giữ nguyên hạn mức 1.000, phần vượt tính là dùng quá tay",
+          "Tính lại phần dung lượng co giãn ở mức 1.400 rồi mới so",
+          "Nhân toàn bộ hạn mức với 1,4, cả phần tải nền cố định",
+          "Bỏ kế hoạch cũ và lập lại từ đầu cho cả năm ngân sách"
         ],
         "correct": 1,
-        "explanation": "Flexible Budget: kế hoạch doanh thu 100 tỷ, chi phí biến đổi 40 tỷ. Nếu doanh thu thực tế 80 tỷ, chi phí biến đổi sẽ giảm xuống 32 tỷ (theo tỉ lệ). Flexible budget giúp so sánh công bằng hơn."
+        "explanation": "Phục vụ nhiều lượt hơn thì dung lượng co giãn và băng thông tăng theo là đương nhiên, nên so thẳng với hạn mức gốc sẽ kết luận sai rằng đội tiêu quá tay. Hạn mức co theo tải dựng lại mức dung lượng lẽ ra phải có ở lưu lượng thực tế, rồi mới đo chênh lệch."
       },
       {
-        "question": "Scenario Planning giúp gì?",
+        "question": "Nhược điểm chính của kế hoạch dung lượng lập từ trên xuống là gì?",
         "options": [
-          "Chỉ để làm bài tập không có ích",
-          "Dự báo 3 kịch bản - thận trọng, cơ sở, lạc quan - để chuẩn bị trước cho tình huống xấu",
-          "Để đảm bảo doanh thu luôn như kế hoạch",
-          "Không cần thiết nếu đã có budget"
+          "Đội thực thi không cam kết vì không được tham gia",
+          "Mất rất nhiều thời gian tổng hợp từ tất cả các đội",
+          "Không áp dụng được cho tổ chức trên 100 kỹ sư",
+          "Luôn cho ra con số thấp hơn năng lực thật của hệ thống"
         ],
-        "correct": 1,
-        "explanation": "Scenario Planning: Kế hoạch base case (tăng 10%/năm), worst case (nếu thị trường suy thoái, giảm 20%), best case (nếu có đơn hàng lớn, tăng 50%). Giúp CEO chuẩn bị kế hoạch B, C nếu tình huống thay đổi."
+        "correct": 0,
+        "explanation": "Từ trên xuống nhanh và bám sát mục tiêu chi phí, nhưng hạn mức được giao xuống chứ không được thương lượng, nên trưởng nhóm coi đó là con số của cấp trên chứ không phải cam kết của mình. Chậm chạp trong tổng hợp là nhược điểm của hướng từ dưới lên, hướng ngược lại."
       }
     ],
     "keyTakeaways": [
-      "Ngân sách = công cụ quản trị, không phải chỉ báo cáo",
-      "Bottom-up: từ dưới lên (các phòng ban ước tính); Top-down: từ trên xuống (CEO quyết định)",
-      "Flexible Budget: ngân sách thay đổi theo mức hoạt động thực tế",
-      "Scenario Planning: dự báo 3 kịch bản để chuẩn bị 'nếu như'"
+      "Kế hoạch dung lượng là công cụ điều khiển, không phải một bản báo cáo",
+      "Từ dưới lên: mỗi đội tự ước tính; từ trên xuống: hạn mức được chia xuống",
+      "Hạn mức co theo tải: mức dung lượng đúng được dựng lại ở lưu lượng thực tế",
+      "Ba kịch bản tải để biết trước ngưỡng nào phải bấm nút cấp thêm"
     ],
     "practicePrompt": {
-      "question": "Bạn là FP&A của một công ty. Ngân sách năm nay: 100 tỷ doanh thu, 60 tỷ chi phí. Tháng 1-6 thực tế: 45 tỷ doanh thu (kém 5 tỷ so với kế hoạch). Bạn nên báo cáo gì?",
+      "question": "Bạn ở đội nền tảng. Kế hoạch năm: 100 nghìn vCPU-giờ cấp, 60 nghìn cho tải nền. Sáu tháng đầu thực tế: tải nền đã ăn 45 nghìn, vượt 5 nghìn so với dự báo cùng kỳ. Bạn nên làm gì?",
       "options": [
         "Báo cáo đúng số liệu thực tế rồi kết thúc ở đó",
-        "Cập nhật dự báo cả năm và đề xuất điều chỉnh",
-        "Ghi nhận mức lệch nhưng chưa báo cáo",
-        "Đợi tới cuối năm rồi báo cáo một thể"
+        "Cập nhật dự báo cả năm và đề xuất chỉnh hạn mức",
+        "Ghi nhận mức lệch nhưng chưa báo cho ai cả",
+        "Đợi tới cuối năm rồi báo cáo một thể cho gọn"
       ],
       "correct": 1,
-      "explanation": "FP&A phải nhận diện sớm khi dự báo bị lệch, cập nhật kỳ vọng năm, và đề xuất hành động điều chỉnh cho CEO để kịp thời sửa chữa trước khi quá trễ."
+      "explanation": "Vượt 5 nghìn ở nửa đầu năm nghĩa là tốc độ tăng đang cao hơn giả định, và nếu giữ nguyên tốc độ ấy thì phần để trống hết sạch trước khi hết năm. Việc của đội nền tảng là nhận ra sớm, dựng lại dự báo cả năm theo tốc độ mới, rồi đề xuất hành động - cấp thêm, hay dời một tải nặng sang khung giờ thấp điểm - lúc còn nhiều lựa chọn."
     },
     "summary": {
-      "keyIdea": "Ngân sách là công cụ quản trị: lập mục tiêu, so sánh thực tế, điều chỉnh kế hoạch",
-      "commonMistake": "Lập ngân sách rồi bỏ quên, không so sánh thực tế vs kế hoạch hàng tháng",
-      "action": "Lập ngân sách chi tiêu cá nhân cho tháng tới, sau đó hàng tuần so sánh với thực tế"
+      "keyIdea": "Kế hoạch dung lượng là công cụ điều khiển: đặt mốc, đối chiếu thực tế, chỉnh hạn mức",
+      "commonMistake": "Lập kế hoạch rồi bỏ quên, không đối chiếu tải thật với dự báo hằng tháng",
+      "action": "Lập dự báo tải cho một dịch vụ bạn biết trong tháng tới, rồi mỗi tuần đối chiếu với số thật"
     },
     "application": {
       "title": "Áp dụng ngay",
-      "message": "Lập ngân sách tháng này (doanh thu ước tính, chi phí bắt buộc, tiết kiệm mục tiêu). Mỗi tuần, ghi lại thực tế chi tiêu. Cuối tháng, so sánh và phân tích: kế hoạch bị lệch ở đâu?",
-      "secondary": "Nếu bạn làm FP&A, hãy đảm bảo báo cáo variance hàng tháng được phân tích chi tiết, không chỉ là con số."
+      "message": "Lập kế hoạch dung lượng tháng này cho một dịch vụ: tải nền ước tính, phần cao điểm, phần để trống mục tiêu. Mỗi tuần ghi lại tải thật. Cuối tháng đối chiếu và phân tích: dự báo lệch ở đâu?",
+      "secondary": "Nếu bạn ở đội nền tảng, hãy đảm bảo báo cáo chênh lệch hằng tháng được tách nguyên nhân, không chỉ là một con số phần trăm."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Ngân sách không phải chỉ để báo cáo. Nó là công cụ để điều khiển công ty - dự báo tương lai, so sánh hiện tại, điều chỉnh kịp thời."
+        "text": "Kế hoạch dung lượng không phải chỉ để báo cáo. Nó là công cụ để điều khiển hệ thống - dự báo tải sắp tới, đối chiếu với tải đang có, và chỉnh hạn mức kịp thời."
       },
       {
         "type": "heading",
-        "text": "Chu trình Budget → Actual → Variance → Adjustment"
+        "text": "Chu trình: dự báo → thực tế → chênh lệch → điều chỉnh"
       },
       {
         "type": "list",
         "items": [
-          "Budget (kế hoạch): lập dự báo doanh thu & chi phí từng tháng/quý",
-          "Actual (thực tế): ghi chép thực tế doanh thu & chi phí",
-          "Variance (chênh lệch): so sánh actual vs budget, tính % lệch",
-          "Adjustment (điều chỉnh): điều chỉnh kế hoạch phía trước nếu cần, hoặc hành động sửa chữa (tăng bán, cắt chi phí...)"
+          "Dự báo: đặt mốc tải và hạn mức dung lượng cho từng tháng hoặc từng quý",
+          "Thực tế: đo tải thật và dung lượng thật đã dùng, theo cùng đơn vị với dự báo",
+          "Chênh lệch: so thực tế với dự báo, tính phần trăm lệch và tách nguyên nhân",
+          "Điều chỉnh: chỉnh hạn mức phía trước nếu cần, hoặc hành động sửa chữa - cấp thêm dung lượng, dời tải nặng sang giờ thấp điểm, tối ưu truy vấn tốn nhất"
         ]
       },
       {
         "type": "heading",
-        "text": "Bottom-up vs Top-down Budgeting"
+        "text": "Lập từ dưới lên và lập từ trên xuống"
       },
       {
         "type": "paragraph",
-        "text": "Bottom-up: Mỗi phòng ban ước tính nhu cầu của mình rồi báo cáo lên. Bán hàng: 'cần 20 tỷ chi phí quảng cáo để đạt 100 tỷ doanh thu'. IT: 'cần 3 tỷ để maintain & upgrade hệ thống'. FP&A tổng hợp tất cả → ngân sách tổng công ty. Ưu điểm: các phòng ban hiểu rõ nhu cầu của mình. Nhược điểm: có thể over-budget."
+        "text": "Từ dưới lên: mỗi đội ước tính nhu cầu của mình rồi báo lên. Đội thanh toán: 'cần 20 nghìn vCPU-giờ để chịu mùa cao điểm'. Đội tìm kiếm: 'cần 5 nghìn để chạy đánh chỉ mục lại hằng tuần'. Đội nền tảng tổng hợp tất cả thành hạn mức chung. Ưu điểm: mỗi đội hiểu rõ tải của chính mình. Nhược điểm: tổng thường vượt xa dung lượng thật sự mua được."
       },
       {
         "type": "paragraph",
-        "text": "Top-down: CEO quyết định 'năm nay công ty có 150 tỷ budget chi phí', sau đó phân bổ cho từng phòng ban. Bán hàng: 50 tỷ, IT: 10 tỷ, v.v. Ưu điểm: kỷ luật ngân sách chặt chẽ. Nhược điểm: các phòng ban cảm thấy bị ép."
+        "text": "Từ trên xuống: ban kỹ thuật quyết định 'quý này cả tổ chức có 150 nghìn vCPU-giờ', rồi phân bổ cho từng đội. Đội thanh toán 50 nghìn, đội tìm kiếm 10 nghìn, và cứ thế. Ưu điểm: giữ được kỷ luật tổng chi. Nhược điểm: các đội cảm thấy bị áp một con số họ không tham gia dựng."
       },
       {
         "type": "heading",
-        "text": "Scenario Planning"
+        "text": "Dự báo theo ba kịch bản"
       },
       {
         "type": "paragraph",
-        "text": "Thay vì dự báo chỉ một con số, dự báo 3 kịch bản: Base Case (mong muốn nhất), Best Case (nếu may mắn), Worst Case (nếu gặp khủng hoảng). **Ví dụ:** Base = 100 tỷ doanh thu; Best = 120 tỷ (nếu có đơn hàng lớn); Worst = 70 tỷ (nếu lạm phát cao, khách hàng cắt giảm). CEO chuẩn bị kế hoạch B nếu tình huống thay đổi.",
+        "text": "Thay vì dự báo một con số, hãy dựng ba kịch bản: cơ sở (khả dĩ nhất), tốt nhất (nếu mọi thứ thuận), xấu nhất (nếu gặp sự cố). **Ví dụ:** cơ sở = 100 triệu lượt gọi mỗi tháng; tốt nhất = 150 triệu nếu chiến dịch ra mắt thành công; xấu nhất = 180 triệu nếu một vùng chết và toàn bộ tải dồn sang vùng còn lại. Lưu ý kịch bản xấu nhất ở đây cho tải CAO hơn tốt nhất - với dung lượng, rủi ro nằm ở phía nhiều chứ không phải phía ít."
       },
       {
         "type": "heading",
@@ -67471,31 +67493,31 @@ export const lessons: Lesson[] = [
       },
       {
         "type": "paragraph",
-        "text": "Kế hoạch bán 1.000 sản phẩm với giá 100, tức doanh thu 100.000. Thực tế bán 900 sản phẩm với giá 105, tức 94.500. Chênh lệch âm 5.500. Con số đó một mình không nói được nên làm gì. Tách ra: chênh lệch do sản lượng là (900 − 1.000) × 100 = −10.000, chênh lệch do giá là (105 − 100) × 900 = +4.500, cộng lại đúng bằng −5.500. Giờ thì câu chuyện rõ: đội bán hàng đã tăng được giá, nhưng bán hụt sản lượng nhiều hơn phần tăng giá bù lại được."
+        "text": "Kế hoạch phục vụ 1.000 lượt mỗi giây với 100 vCPU-giờ cho mỗi nghìn lượt, tức 100.000 vCPU-giờ. Thực tế phục vụ 900 lượt mỗi giây nhưng tốn 105 cho mỗi nghìn lượt, tức 94.500. Chênh lệch âm 5.500. Con số đó một mình không nói được nên làm gì. Tách ra: chênh lệch do lưu lượng là (900 − 1.000) × 100 = −10.000, chênh lệch do đơn giá tài nguyên là (105 − 100) × 900 = +4.500, cộng lại đúng bằng −5.500. Giờ thì câu chuyện rõ: hệ thống nhận ít lượt hơn dự báo, nhưng mỗi lượt lại tốn nhiều tài nguyên hơn - và phần tốn thêm ấy sẽ lộ hết ra khi lưu lượng quay về mức kế hoạch."
       },
       {
         "type": "callout",
         "label": "Hai nguyên nhân đó dẫn tới hai hành động khác nhau",
-        "text": "Nếu toàn bộ khoảng thiếu đến từ giá, vấn đề nằm ở cạnh tranh hoặc chính sách chiết khấu. Nếu nó đến từ sản lượng, vấn đề nằm ở nhu cầu, ở kênh phân phối hoặc ở năng lực bán hàng. Một báo cáo chỉ nói doanh thu hụt 5,5% buộc người đọc tự đoán, và họ thường đoán theo thiên kiến sẵn có của mình. Đây là toàn bộ giá trị của bước phân tích chênh lệch trong chu trình: nó biến một con số thành một câu hỏi cụ thể có thể giao cho một người cụ thể."
+        "text": "Nếu toàn bộ khoảng lệch đến từ đơn giá tài nguyên, vấn đề nằm trong mã: một truy vấn chậm đi, một vòng lặp thêm việc, một bộ nhớ đệm hết tác dụng. Nếu nó đến từ lưu lượng, vấn đề nằm ở phía sản phẩm hoặc ở một kênh gọi vào đã tắt. Một báo cáo chỉ nói dung lượng lệch 5,5% buộc người đọc tự đoán, và họ thường đoán theo thiên kiến sẵn có của mình. Đây là toàn bộ giá trị của bước phân tích chênh lệch: nó biến một con số thành một câu hỏi cụ thể giao được cho một người cụ thể."
       },
       {
         "type": "comparison",
         "left": {
           "label": "Lập từ dưới lên",
-          "text": "Mỗi phòng ban ước tính nhu cầu của mình rồi tổng hợp lên. Sát thực tế vận hành và người thực hiện cam kết với con số của chính mình. Nhược điểm: tổng thường vượt xa khả năng chi trả, vì không ai có động cơ xin ít."
+          "text": "Mỗi đội ước tính nhu cầu của mình rồi tổng hợp lên. Sát thực tế vận hành và người thực hiện cam kết với con số của chính mình. Nhược điểm: tổng thường vượt xa dung lượng mua được, vì không ai có động cơ xin ít."
         },
         "right": {
           "label": "Lập từ trên xuống",
-          "text": "Ban lãnh đạo ấn định tổng ngân sách rồi phân bổ xuống. Kiểm soát được tổng chi và gắn với mục tiêu tài chính, nhưng con số phân bổ có thể không khớp với thực tế vận hành, và người thực hiện coi đó là chỉ tiêu bị áp chứ không phải kế hoạch của mình. Phần lớn doanh nghiệp chạy cả hai chiều rồi thương lượng ở giữa."
+          "text": "Ban kỹ thuật ấn định tổng dung lượng rồi phân bổ xuống. Kiểm soát được tổng chi và gắn với mục tiêu hoá đơn, nhưng con số phân bổ có thể không khớp với tải thật, và đội thực hiện coi đó là chỉ tiêu bị áp chứ không phải kế hoạch của mình. Phần lớn tổ chức chạy cả hai chiều rồi thương lượng ở giữa."
         }
       },
       {
         "type": "closing",
         "lines": [
-          "Ngân sách không phải bản dự đoán tương lai; nó là bộ mốc để biết mình đang lệch chỗ nào.",
+          "Kế hoạch dung lượng không phải bản dự đoán tương lai; nó là bộ mốc để biết mình đang lệch chỗ nào.",
           "Một con số lệch mà tách được nguyên nhân thì thành việc phải làm, còn không thì chỉ là tin xấu."
         ]
-      },
+      }
     ]
   },
   {
@@ -73639,158 +73661,130 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1251,
-    "slug": "behavioral-portfolio-management-checklist",
-    "title": "Behavioral Portfolio Management: Xây hệ thống chống lại chính thiên kiến của Portfolio Manager",
-    "subtitle": "Checklist, pre-mortem, và các quy tắc cấu trúc mà nhà quản lý quỹ chuyên nghiệp dùng để bảo vệ quyết định khỏi cảm xúc",
-    "duration": "8 phút",
-    "difficulty": "Khó",
-    "emoji": "✅",
     "track": "professional",
-    "openingQuestion": "'Pre-mortem Analysis' - một kỹ thuật được nhà tâm lý học Gary Klein phát triển và ngày càng phổ biến trong quản lý danh mục chuyên nghiệp - hoạt động như thế nào để cải thiện chất lượng quyết định đầu tư?",
+    "slug": "nhat-ky-quyet-dinh-va-pre-mortem",
+    "title": "Nhật ký quyết định và pre-mortem: hai cơ chế chống chính mình",
+    "subtitle": "Trí nhớ về những gì bạn đã nghĩ được viết lại sau khi biết kết quả, và nó luôn được viết lại theo hướng có lợi",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "📓",
+    "whyItMatters": "Người ra quyết định kỹ thuật hiếm khi biết tỷ lệ đúng của mình, vì trí nhớ tự chỉnh lại sau mỗi kết quả. Không có con số đó thì kinh nghiệm tích luỹ thành sự tự tin chứ không thành độ chính xác.",
+    "openingQuestion": "Vì sao khó tự đánh giá tỷ lệ dự đoán đúng của mình?",
     "openingOptions": [
-      "Phân tích chi tiết báo cáo tài chính của công ty sau khi đã đầu tư",
-      "Tưởng tượng khoản đầu tư đã thất bại, rồi liệt kê mọi lý do dẫn tới điều đó ra",
-      "Chỉ áp dụng sau khi khoản đầu tư đã thực sự thất bại để rút kinh nghiệm",
-      "Pre-mortem chỉ là một kỹ thuật marketing không có giá trị phân tích thực sự"
+      "Vì sau khi biết kết quả, ta nhớ mình đã nghĩ gần với kết quả hơn thực tế",
+      "Vì số lượng quyết định quá nhiều nên không thể theo dõi hết được",
+      "Vì nhiều quyết định không có kết quả rõ ràng để đối chiếu lại về sau",
+      "Vì kết quả phụ thuộc nhiều yếu tố ngoài dự đoán ban đầu của mình"
     ],
-    "correctOption": 1,
-    "explanation": "Pre-mortem analysis là kỹ thuật debiasing mạnh mẽ vì nó thay đổi KHUNG THỜI GIAN TÂM LÝ của việc phân tích rủi ro: thay vì hỏi 'điều gì có thể sai?' (một câu hỏi trừu tượng, dễ bị bỏ qua do overconfidence), nó yêu cầu tưởng tượng THẤT BẠI ĐÃ XẢY RA như một sự thật, rồi giải thích tại sao - cách đóng khung này (framing effect) kích hoạt tư duy phân tích mạnh mẽ hơn nhiều so với việc chỉ đơn giản yêu cầu liệt kê rủi ro tiềm ẩn.",
+    "correctOption": 0,
+    "explanation": "Ba lý do kia đều có thật và đều xử lý được bằng cách chọn lọc quyết định để theo dõi. Điều ở đây thì không xử lý được bằng sự cẩn thận: sau khi biết kết quả, trí nhớ về mức độ chắc chắn ban đầu tự dịch chuyển về phía kết quả đã xảy ra. Người từng nghĩ khoảng sáu phần mười sẽ nhớ là mình đã khá chắc, và người từng nghĩ tám phần mười mà sai sẽ nhớ là mình vốn đã nghi ngờ. Hiện tượng này xảy ra với tất cả mọi người, không phụ thuộc vào trí nhớ tốt hay kém, và nó là lý do kinh nghiệm nhiều năm tích luỹ thành sự tự tin nhanh hơn nhiều so với thành độ chính xác.",
+    "diagram": [
+      { "label": "Ra quyết định với một mức độ chắc chắn nào đó", "arrow": true },
+      { "label": "Kết quả xảy ra", "arrow": true },
+      { "label": "Trí nhớ về mức chắc chắn dịch về phía kết quả", "arrow": true },
+      { "label": "Không có bản ghi thì không có gì để đối chiếu" }
+    ],
     "realWorldExample": {
-      "company": "Bridgewater Associates và văn hóa 'Radical Transparency'",
-      "description": "Bridgewater Associates, một trong những quỹ phòng hộ lớn nhất thế giới do Ray Dalio sáng lập, nổi tiếng với văn hóa 'radical transparency' và các quy trình có hệ thống được thiết kế đặc biệt để chống lại thiên kiến cá nhân trong quyết định đầu tư - bao gồm việc ghi lại và phân tích công khai mọi quyết định (kể cả sai lầm), khuyến khích phản biện công khai bất kể cấp bậc, và sử dụng các thuật toán/quy tắc hệ thống để giảm thiểu vai trò của cảm xúc và trực giác cá nhân trong quyết định đầu tư lớn."
+      "company": "Tôi đã bảo rồi",
+      "description": "Sau một sự cố lớn, ba người trong đội đều nhớ rằng mình từng thấy lo về phương án đã chọn. Đọc lại biên bản buổi họp thì cả ba đều đã đồng ý, và không ai nêu điều gì. Không ai nói dối - trí nhớ của cả ba đã tự dịch chuyển sau khi biết chuyện gì xảy ra, đúng như nó vẫn làm với mọi người."
     },
     "quiz": [
       {
-        "question": "'Investment Journal' (nhật ký đầu tư) có hệ thống - ghi lại lý do mua/bán MỖI vị thế TRƯỚC khi thực hiện giao dịch - giúp Portfolio Manager chống lại thiên kiến nào một cách hiệu quả nhất?",
+        "question": "Nhật ký quyết định cần ghi lại gì để có tác dụng?",
         "options": [
-          "Chỉ giúp ghi nhớ thông tin, không có tác dụng chống thiên kiến nào",
-          "Chống lại 'hindsight bias' (thiên kiến nhận thức muộn) - xu hướng, sau khi biết kết quả, tin rằng mình đã 'luôn biết trước' điều đó sẽ xảy ra, dù thực tế dự đoán ban đầu có thể mơ hồ hoặc sai hoàn toàn - việc ghi lại lý do CHÍNH XÁC tại thời điểm quyết định (trước khi biết kết quả) tạo ra một 'bằng chứng khách quan' để đối chiếu sau này, giúp đánh giá chính xác chất lượng quá trình ra quyết định thay vì chỉ đánh giá qua kết quả may rủi",
-          "Đầu tư journal chỉ hữu ích cho mục đích thuế, không liên quan đến thiên kiến hành vi",
-          "Ghi chép chỉ làm chậm quá trình ra quyết định mà không mang lại lợi ích gì"
+          "Dự đoán cụ thể kèm mức độ chắc chắn, viết trước khi biết kết quả",
+          "Lý do lựa chọn và các phương án đã được cân nhắc trong quá trình quyết định",
+          "Bối cảnh và các ràng buộc tại thời điểm quyết định được đưa ra",
+          "Người tham gia quyết định và ý kiến của từng người trong cuộc thảo luận"
         ],
-        "correct": 1,
-        "explanation": "Hindsight bias ('Tôi đã biết trước mà!') là một trong những thiên kiến nguy hiểm nhất đối với việc HỌC HỎI từ kinh nghiệm đầu tư: nếu không có ghi chép khách quan tại thời điểm quyết định, não bộ có xu hướng 'viết lại lịch sử' để phù hợp với kết quả đã biết, khiến PM không thể đánh giá chính xác liệu QUY TRÌNH ra quyết định ban đầu có thực sự tốt hay chỉ đơn giản là may mắn/xui rủi - đầu tư journal tạo ra 'time-stamped record' chống lại sự bóp méo trí nhớ này."
+        "correct": 0,
+        "explanation": "Ba thứ kia đều hữu ích cho việc hiểu lại quyết định về sau và không thứ nào đo được độ chính xác. Chỉ một dự đoán cụ thể kèm con số - tôi nghĩ khoảng bảy phần mười là việc này xong trước tháng Sáu - mới đối chiếu được với thực tế, và đó là điều kiện để có một tỷ lệ đúng."
       },
       {
-        "question": "Vì sao nhiều quỹ đầu tư chuyên nghiệp thiết lập 'Devil's Advocate' chính thức (một người có trách nhiệm chủ động phản biện mọi đề xuất đầu tư lớn) thay vì chỉ dựa vào việc mọi thành viên team tự nhiên sẽ đưa ra ý kiến phản biện khi cần?",
+        "question": "Pre-mortem khác một buổi rà soát rủi ro thông thường ở điểm nào?",
         "options": [
-          "Devil's Advocate chỉ là một chức danh hình thức không có tác dụng thực chất",
-          "Trong môi trường nhóm, có xu hướng tự nhiên là các thành viên NGẦN NGẠI phản biện công khai ý tưởng của đồng nghiệp/cấp trên (đặc biệt nếu ý tưởng đó có vẻ được ủng hộ rộng rãi) do áp lực xã hội (social pressure) và mong muốn hòa hợp nhóm (groupthink) - chỉ định MỘT VAI TRÒ CHÍNH THỨC với trách nhiệm rõ ràng phải tìm ra lỗ hổng loại bỏ được rào cản tâm lý này, biến việc phản biện từ 'gây khó chịu cho đồng nghiệp' thành 'hoàn thành nhiệm vụ được giao'",
-          "Devil's Advocate chỉ cần thiết ở các quỹ nhỏ, không cần thiết ở quỹ lớn có nhiều chuyên gia",
-          "Vai trò này chỉ tồn tại trên lý thuyết, không được áp dụng thực tế tại bất kỳ tổ chức tài chính nào"
+          "Nó giả định thất bại đã xảy ra và hỏi vì sao, thay vì hỏi có thể sai gì",
+          "Nó được thực hiện trước khi bắt đầu dự án thay vì trong quá trình triển khai",
+          "Nó tập trung vào các rủi ro nghiêm trọng nhất thay vì liệt kê toàn bộ rủi ro",
+          "Nó có sự tham gia của nhiều bên liên quan chứ không chỉ đội kỹ thuật"
         ],
-        "correct": 1,
-        "explanation": "Vai trò Devil's Advocate chính thức giải quyết một vấn đề tâm lý xã hội thực sự trong môi trường nhóm: 'groupthink' (Irving Janis, 1972) mô tả xu hướng các nhóm gắn kết chặt chẽ có xu hướng tránh xung đột và tìm kiếm sự đồng thuận, đôi khi phải trả giá bằng việc đánh giá thực tế kém đi. Bằng cách CHÍNH THỨC HÓA vai trò phản biện (thay vì để nó tự phát), tổ chức loại bỏ được rào cản xã hội khiến các cá nhân ngần ngại lên tiếng phản đối ý tưởng phổ biến."
+        "correct": 0,
+        "explanation": "Khác biệt nằm ở cách đặt câu hỏi, và nó tạo ra hiệu quả rất khác. Hỏi có thể sai gì thì người ta liệt kê những rủi ro chung chung. Hỏi bây giờ là sáu tháng sau và dự án đã thất bại, chuyện gì đã xảy ra thì buộc phải kể một câu chuyện cụ thể - và những câu chuyện ấy chứa các rủi ro mà cách hỏi kia không moi ra được."
       },
       {
-        "question": "'Systematic Rules' (quy tắc hệ thống, như rebalancing tự động theo lịch cố định, hoặc stop-loss tự động) trong quản lý danh mục có ưu điểm gì so với việc để Portfolio Manager quyết định thủ công từng trường hợp dựa trên đánh giá tình huống?",
+        "question": "Vì sao pre-mortem hiệu quả hơn khi mỗi người viết trước rồi mới đọc?",
         "options": [
-          "Quy tắc hệ thống luôn kém linh hoạt và cho kết quả tệ hơn quyết định thủ công trong mọi trường hợp",
-          "Quy tắc hệ thống, được thiết lập TRƯỚC khi đối mặt với tình huống thị trường cụ thể (khi tư duy còn khách quan, chưa bị chi phối bởi cảm xúc của khoảnh khắc), loại bỏ được khả năng thiên kiến hành vi (sợ hãi, tham lam, quá tự tin) can thiệp vào quyết định THỰC THI - dù đánh đổi lại là mất đi một phần linh hoạt để phản ứng với các tình huống đặc biệt mà quy tắc chung không lường trước được",
-          "Quy tắc hệ thống chỉ phù hợp với quỹ đầu tư thụ động (passive fund), không phù hợp với quỹ chủ động",
-          "Portfolio Manager giỏi không bao giờ cần đến quy tắc hệ thống vì luôn có thể tự kiểm soát cảm xúc hoàn hảo"
+          "Vì nó thu được các kịch bản thất bại hình thành độc lập với nhau",
+          "Vì việc viết ra giúp mỗi người suy nghĩ kỹ hơn về vấn đề được đặt ra",
+          "Vì nó tiết kiệm thời gian so với việc thảo luận trực tiếp trong buổi họp",
+          "Vì nó giúp người ngại phát biểu cũng có cơ hội đóng góp ý kiến"
         ],
-        "correct": 1,
-        "explanation": "Đây là sự đánh đổi cốt lõi (trade-off) trong thiết kế quy trình đầu tư chuyên nghiệp: quy tắc hệ thống (systematic rules) hy sinh một phần linh hoạt tình huống để đổi lấy tính KHÁCH QUAN VÀ NHẤT QUÁN - đặc biệt có giá trị trong các thời điểm thị trường biến động mạnh, khi thiên kiến hành vi (đặc biệt loss aversion và herding) hoạt động mạnh nhất và dễ dẫn đến quyết định sai lầm nhất. Nhiều quỹ thành công kết hợp cả hai: quy tắc hệ thống cho phần lớn quyết định, kèm cơ chế 'override' có kiểm soát cho các tình huống đặc biệt cần phán đoán của con người."
+        "correct": 0,
+        "explanation": "Đây cùng cơ chế với bài về đồng thuận nhanh: kịch bản đầu tiên được nói ra sẽ định hình mọi kịch bản sau đó, và cả nhóm dồn về một hướng thất bại duy nhất. Viết trước giữ được sự đa dạng, và chính sự đa dạng ấy là giá trị của pre-mortem."
+      },
+      {
+        "question": "Bao nhiêu quyết định cần ghi vào nhật ký để có ích?",
+        "options": [
+          "Chỉ những quyết định lớn và có kết quả kiểm chứng được, vài cái mỗi quý",
+          "Càng nhiều càng tốt để có mẫu đủ lớn cho việc đánh giá độ chính xác",
+          "Toàn bộ các quyết định kỹ thuật quan trọng được đưa ra trong kỳ",
+          "Những quyết định mà bạn cảm thấy không chắc chắn tại thời điểm quyết"
+        ],
+        "correct": 0,
+        "explanation": "Ghi mọi thứ thì nhật ký bị bỏ trong hai tuần, và một nhật ký bị bỏ không cho ra tỷ lệ nào cả. Vài quyết định mỗi quý, chọn những cái có kết quả rõ ràng để đối chiếu, là mức duy trì được nhiều năm - và nhiều năm mới là khoảng thời gian cần để một tỷ lệ có ý nghĩa."
+      },
+      {
+        "question": "Điều gì làm nhật ký quyết định mất tác dụng nhanh nhất?",
+        "options": [
+          "Ghi mà không bao giờ mở lại để đối chiếu với kết quả thật",
+          "Ghi quá sơ sài nên sau này không hiểu được bối cảnh lúc đó",
+          "Ghi quá nhiều quyết định nên khó tìm lại những cái quan trọng",
+          "Ghi bằng ngôn ngữ mơ hồ nên khó xác định dự đoán có đúng hay không"
+        ],
+        "correct": 0,
+        "explanation": "Ba vấn đề kia làm nhật ký khó dùng hơn. Việc không bao giờ mở lại thì làm nó vô dụng hoàn toàn, vì toàn bộ giá trị nằm ở lần đối chiếu chứ không ở lần ghi. Đây cũng là kết cục phổ biến nhất, vì lần ghi thì có động lực còn lần đọc lại thì không có ai nhắc."
       }
-    ],
-    "keyTakeaways": [
-      "Pre-mortem analysis: tưởng tượng thất bại đã xảy ra rồi tìm lý do, hiệu quả hơn nhiều so với chỉ đơn giản hỏi 'rủi ro là gì' - vượt qua overconfidence bias",
-      "Investment journal chống lại hindsight bias bằng cách tạo bằng chứng khách quan về lý do quyết định TẠI THỜI ĐIỂM ra quyết định, trước khi biết kết quả",
-      "Devil's Advocate chính thức giải quyết vấn đề groupthink - phản biện trở thành nhiệm vụ được giao, không phải hành động gây khó chịu tự phát",
-      "Systematic rules (rebalancing tự động, stop-loss...) đánh đổi tính linh hoạt để lấy sự khách quan, đặc biệt giá trị trong thời điểm thị trường biến động mạnh khi thiên kiến hành vi hoạt động mạnh nhất"
     ],
     "practicePrompt": {
-      "question": "Team đầu tư của bạn đang chuẩn bị đưa ra quyết định lớn: tăng tỷ trọng 15% vào một cổ phiếu công nghệ mà cả team đều rất hào hứng sau một buổi thuyết trình ấn tượng từ CEO công ty đó. Dựa trên các công cụ behavioral portfolio management đã học, bạn nên đề xuất quy trình gì trước khi chốt quyết định?",
+      "question": "Đội bạn sắp bắt đầu một dự án lớn. Cơ chế nào đáng dùng nhất trước khi khởi động?",
       "options": [
-        "Chốt quyết định ngay vì cả team đều đồng thuận và hào hứng, sự đồng thuận cao là dấu hiệu tốt",
-        "Chạy pre-mortem, cử một Devil's Advocate chính thức, ghi investment journal trước khi giao dịch",
-        "Đảo chiều ngay: đồng thuận cao là tín hiệu ngược, nên cắt tỷ trọng cổ phiếu này",
-        "Chỉ cần một thành viên senior nhất quyết định là đủ, không cần quy trình phức tạp"
+        "Pre-mortem viết trước: mỗi người kể một kịch bản dự án đã thất bại",
+        "Buổi rà soát rủi ro với danh sách các rủi ro có thể xảy ra và mức độ ảnh hưởng",
+        "Kế hoạch chi tiết theo từng giai đoạn với các mốc kiểm tra tiến độ cụ thể",
+        "Thống nhất tiêu chí thành công để cả đội biết đích đến là gì"
       ],
-      "correct": 1,
-      "explanation": "Đây là tình huống thực tế kinh điển kiểm tra việc áp dụng các công cụ behavioral portfolio management: sự đồng thuận cao và hào hứng tập thể ngay SAU một buổi thuyết trình thuyết phục là chính xác kịch bản mà pre-mortem, Devil's Advocate, và investment journal được thiết kế để xử lý - không phải để ngăn cản đầu tư, mà để đảm bảo quyết định (dù cuối cùng vẫn đi đến 'có') đã trải qua đủ mức độ phản biện khách quan, không chỉ dựa trên cảm xúc tập thể của một buổi họp."
+      "correct": 0,
+      "explanation": "Ba việc kia đều nằm trong mọi quy trình khởi động dự án. Pre-mortem viết trước là việc duy nhất moi ra được những rủi ro cụ thể mà một danh sách rủi ro chung chung không chạm tới, và nó tốn khoảng hai mươi phút."
     },
+    "keyTakeaways": [
+      "Trí nhớ về mức độ chắc chắn tự dịch về phía kết quả đã xảy ra",
+      "Chỉ dự đoán kèm con số mới đối chiếu được; lý do và bối cảnh thì không",
+      "Pre-mortem hỏi vì sao đã thất bại, không hỏi có thể sai gì",
+      "Toàn bộ giá trị của nhật ký nằm ở lần đối chiếu, không ở lần ghi"
+    ],
     "summary": {
-      "keyIdea": "Quản lý danh mục chuyên nghiệp không chỉ đòi hỏi kỹ năng phân tích tài chính, mà còn cần xây dựng các cơ chế cấu trúc (pre-mortem, investment journal, devil's advocate, systematic rules) để bảo vệ quyết định khỏi chính thiên kiến hành vi của người ra quyết định.",
-      "commonMistake": "Tin rằng kinh nghiệm và chuyên môn tự động miễn nhiễm với thiên kiến hành vi, bỏ qua việc xây dựng quy trình cấu trúc để hỗ trợ",
-      "action": "Với mỗi quyết định đầu tư lớn, áp dụng ít nhất một công cụ debiasing có cấu trúc (pre-mortem, ghi journal, hoặc phản biện chính thức) trước khi chốt quyết định cuối cùng"
+      "keyIdea": "Không có bản ghi viết trước thì kinh nghiệm tích thành sự tự tin nhanh hơn nhiều so với thành độ chính xác",
+      "commonMistake": "Ghi lý do và bối cảnh thay vì ghi dự đoán kèm mức độ chắc chắn",
+      "action": "Với vài quyết định lớn mỗi quý, viết một dòng dự đoán kèm con số, và hẹn ngày mở lại."
     },
     "application": {
-      "title": "Áp dụng vào công việc Portfolio Management",
-      "message": "Thử áp dụng pre-mortem cho quyết định đầu tư gần nhất của team bạn: viết ra 5 lý do cụ thể có thể khiến khoản đầu tư này thất bại trong 2 năm tới, và đánh giá xem team đã thực sự cân nhắc đầy đủ những rủi ro này chưa.",
-      "secondary": "Bài cuối cùng của chặng sẽ đi vào Nudge Theory và cách các thiên kiến hành vi được ứng dụng có chủ đích trong thiết kế sản phẩm tài chính - từ góc độ của người thiết kế sản phẩm, không chỉ người ra quyết định đầu tư."
+      "title": "Một dòng, một con số, một ngày hẹn",
+      "message": "Với mỗi quyết định lớn: dự đoán cụ thể, mức độ chắc chắn bằng số, và ngày sẽ mở lại để đối chiếu. Ba thứ đó vừa một dòng.",
+      "secondary": "Trước dự án lớn, dành hai mươi phút cho pre-mortem: mỗi người viết riêng một kịch bản thất bại rồi mới cùng đọc."
     },
     "sections": [
-      {
-        "type": "lead",
-        "text": "Ngay cả Portfolio Manager giỏi nhất cũng không miễn nhiễm với thiên kiến hành vi của chính họ - sự khác biệt giữa PM xuất sắc và PM trung bình thường không nằm ở việc 'không có thiên kiến', mà ở việc xây dựng hệ thống bảo vệ quyết định khỏi những thiên kiến đó."
-      },
-      {
-        "type": "heading",
-        "text": "Pre-mortem Analysis - Tưởng tượng Thất bại Trước"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kỹ thuật pre-mortem, do nhà tâm lý học Gary Klein phát triển, đảo ngược cách tư duy thông thường về rủi ro: thay vì hỏi 'điều gì có thể sai?' một cách trừu tượng, nó yêu cầu nhóm giả định thất bại ĐÃ XẢY RA và viết 'cáo phó' giải thích tại sao - cách đóng khung này (framing) kích hoạt tư duy phân tích sâu sắc hơn nhiều, vì não bộ xử lý 'giải thích một sự thật đã biết' khác hẳn với 'dự đoán một khả năng trừu tượng'."
-      },
-      {
-        "type": "heading",
-        "text": "Investment Journal - Chống lại Hindsight Bias"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ghi lại lý do đầu tư TẠI THỜI ĐIỂM ra quyết định (không phải sau khi biết kết quả) tạo ra bằng chứng khách quan chống lại 'hindsight bias' - xu hướng nguy hiểm khiến người ta tin rằng họ 'đã biết trước' một kết quả, dù dự đoán ban đầu thực tế mơ hồ hoặc sai. Không có ghi chép này, PM không thể học hỏi chính xác từ kinh nghiệm - vì trí nhớ liên tục bị bóp méo để phù hợp với những gì đã xảy ra."
-      },
-      {
-        "type": "heading",
-        "text": "Devil's Advocate và Chống Groupthink"
-      },
-      {
-        "type": "paragraph",
-        "text": "Chỉ định chính thức một người có trách nhiệm phản biện giải quyết một vấn đề tâm lý xã hội thực sự: trong nhóm gắn kết, các thành viên thường ngần ngại phản đối ý tưởng phổ biến do áp lực hòa hợp xã hội. Biến việc phản biện thành MỘT NHIỆM VỤ ĐƯỢC GIAO (thay vì hành động tự phát gây khó chịu) loại bỏ rào cản tâm lý này, đảm bảo mọi quyết định lớn đều được thách thức một cách nghiêm túc."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Pre-mortem: trước khi xuống tiền, giả định hai năm sau khoản này đã hỏng và viết ra vì sao",
-          "Nhật ký đầu tư: ghi luận điểm và kỳ vọng TRƯỚC, để sau này không nhớ lại theo kiểu 'tôi đã biết mà'",
-          "Người phản biện được chỉ định: một người có nhiệm vụ tấn công luận điểm, tách khỏi người đề xuất",
-          "Tiêu chí bán viết sẵn: mốc nào thì thoát, quyết lúc bình tĩnh chứ không lúc đang lỗ"
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Cái bẫy",
-        "text": "Hindsight bias làm mọi quyết định cũ trông hiển nhiên hơn thực tế lúc đó, nên bài học rút ra sau sự việc gần như luôn sai. Nhật ký viết trước là cách duy nhất giữ lại được mức bất định thật tại thời điểm ra quyết định."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Behavioral Portfolio Management không phải là việc 'trở thành người không có cảm xúc' - điều đó không thực tế và không cần thiết.",
-          "Đó là việc THIẾT KẾ quy trình và văn hóa tổ chức để những thiên kiến tự nhiên của con người được cân bằng bởi các cơ chế cấu trúc phù hợp, giống như cách phi công dùng checklist không phải vì họ kém năng lực, mà vì họ hiểu rõ giới hạn của trí nhớ và sự tập trung con người."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Pre-mortem: tưởng tượng thất bại trước khi quyết định",
-        "arrow": true
-      },
-      {
-        "label": "Ghi nhật ký đầu tư kèm lý do và giả định",
-        "arrow": true
-      },
-      {
-        "label": "Chỉ định người phản biện để chống tư duy tập thể",
-        "arrow": true
-      },
-      {
-        "label": "Rà lại nhật ký định kỳ để chống thiên kiến nhận thức muộn",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
+      { "type": "lead", "text": "Người ra quyết định kỹ thuật nhiều năm hiếm khi biết tỷ lệ đúng của mình. Không phải vì không ai đếm, mà vì thứ để đếm đã bị viết lại." },
+      { "type": "heading", "text": "Trí nhớ tự chỉnh sau khi biết kết quả" },
+      { "type": "paragraph", "text": "Sau khi biết chuyện gì đã xảy ra, trí nhớ về mức độ chắc chắn ban đầu dịch chuyển về phía kết quả ấy. Người từng nghĩ khoảng sáu phần mười sẽ nhớ là mình đã khá chắc; người từng rất chắc mà sai sẽ nhớ là mình vốn đã nghi ngờ. Không ai nói dối, và không ai có thể tự chống lại điều đó bằng sự cẩn thận - chỉ một bản ghi viết trước mới chống được." },
+      { "type": "comparison", "left": { "label": "Ghi lý do và bối cảnh", "text": "Hữu ích để hiểu lại vì sao quyết định ấy hợp lý lúc đó. Không đối chiếu được với kết quả, nên không cho ra tỷ lệ đúng nào." }, "right": { "label": "Ghi dự đoán kèm con số", "text": "Tôi nghĩ khoảng bảy phần mười là việc này xong trước tháng Sáu. Đối chiếu được, và sau vài chục lần thì có một tỷ lệ thật." } },
+      { "type": "heading", "text": "Pre-mortem: đổi câu hỏi, đổi kết quả" },
+      { "type": "paragraph", "text": "Hỏi dự án này có thể sai ở đâu thì nhận được một danh sách rủi ro chung chung mà ai cũng biết. Hỏi bây giờ là sáu tháng sau, dự án đã thất bại, chuyện gì đã xảy ra thì buộc mỗi người kể một câu chuyện cụ thể - và những câu chuyện ấy chứa đúng các rủi ro mà cách hỏi kia không moi ra được. Khác biệt chỉ nằm ở cách đặt câu hỏi." },
+      { "type": "callout", "label": "Viết trước rồi mới đọc", "text": "Kịch bản thất bại đầu tiên được nói ra sẽ định hình mọi kịch bản sau nó, và cả nhóm dồn về một hướng duy nhất. Cho mỗi người viết riêng trong năm phút rồi mới cùng đọc giữ được sự đa dạng - và sự đa dạng ấy chính là toàn bộ giá trị của pre-mortem, giống hệt lý do trong bài về đồng thuận nhanh." },
+      { "type": "closing", "lines": [
+        "Kinh nghiệm không tự chuyển thành độ chính xác; nó chỉ chuyển thành sự tự tin trừ khi có ai đó đếm.",
+        "Và người duy nhất đếm được là bạn của sáu tháng trước, nếu bạn ấy đã viết gì đó xuống."
+      ]}
+    ]
   },
   {
     "id": 1252,

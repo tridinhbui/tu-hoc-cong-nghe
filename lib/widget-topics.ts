@@ -35,7 +35,7 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   // components/InteractiveWidget.tsx), và bảng này chỉ được chứa widget có
   // thật. Khi có bài về dung lượng, thêm lại cả hai chỗ cùng lúc:
   // ["dung lượng", "capacity", "ước lượng", "hệ số", "sizing", "thông lượng"]
-  budget: ["ngân sách", "50/30/20", "chi tiêu", "tiết kiệm", "trả nợ", "audit tài chính", "tài sản ròng"],
+  budget: ["dung lượng", "dự phòng", "tải nền", "cao điểm", "cấp phát", "hạn mức", "tỷ lệ để trống", "ngân sách"],
   prospect: ["tâm lý", "hành vi", "prospect", "mất mát", "thiên kiến", "behavioral", "sai lầm"],
   "supply-demand": ["cung", "cầu", "giá cân bằng", "thị trường", "chi phí biên", "sức mua"],
   // Loại tính lạm phát đã tạm rút khỏi WIDGET_TYPES (xem chú thích trong

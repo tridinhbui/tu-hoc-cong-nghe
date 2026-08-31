@@ -5,14 +5,17 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-// Bộ chia ngân sách 50/30/20 - widget cho các bài khai `interactiveType:
-// "budget"`.
+// Bộ chia dung lượng - widget cho các bài khai `interactiveType: "budget"`.
 //
 // Điểm khác biệt so với một máy tính chia ba phần: nó tính ra SỐ THÁNG tới
-// mục tiêu, không chỉ tính ra ba con số. Bài học của cả chặng ngân sách nằm ở
-// tỷ lệ tiết kiệm chứ không ở số tiền tiết kiệm, và cách duy nhất để người
+// mốc dự phòng, không chỉ tính ra ba con số. Bài học của cả chặng dung lượng
+// nằm ở TỶ LỆ để trống chứ không ở lượng để trống, và cách duy nhất để người
 // đọc cảm được điều đó là kéo thanh trượt rồi thấy đích đến gần lại - hoặc
 // lùi xa - ngay trước mắt.
+//
+// Phép tính không đổi khi chặng chuyển từ tài chính cá nhân sang dung lượng:
+// ba phần cộng lại bằng 100%, mốc bằng sáu lần phần đang dùng, số kỳ bằng mốc
+// chia phần để trống. Chỉ chữ đổi.
 
 function getCategories(t: Dictionary) {
   return [
@@ -52,7 +55,7 @@ export default function InteractiveBudget() {
       <div>
         <div className="flex justify-between text-sm mb-2">
           <span className="font-medium text-ink-body">💵 {t.budgetSim.incomeLabel}</span>
-          <span className="font-bold text-stone-800 dark:text-stone-100">
+          <span className="font-bold text-ink-heading">
             {format(t.budgetSim.incomeAmount, { amount: income })}
           </span>
         </div>
@@ -71,7 +74,7 @@ export default function InteractiveBudget() {
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.budgetSim.categoryNeedsLabel}</span>
-            <span className="font-bold text-sky-600 dark:text-sky-400">{needs}%</span>
+            <span className="font-bold text-info">{needs}%</span>
           </div>
           <input
             type="range"
@@ -116,7 +119,7 @@ export default function InteractiveBudget() {
       <div className="grid gap-3 sm:grid-cols-3">
         {CATEGORIES.map((c) => (
           <div key={c.key} className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-800/60">
-            <p className="text-xs font-bold text-stone-600 dark:text-stone-300">{c.label}</p>
+            <p className="text-xs font-bold text-ink-soft">{c.label}</p>
             <p className="text-lg font-extrabold text-ink">
               {format(t.budgetSim.categoryAmount, { amount: ((income * share[c.key]) / 100).toFixed(1) })}
             </p>
@@ -130,16 +133,16 @@ export default function InteractiveBudget() {
           save === 0
             ? "bg-rose-50 dark:bg-rose-950/30"
             : months <= 12
-              ? "bg-accent-soft/30"
-              : "bg-warn-soft/30"
+              ? "bg-emerald-50 dark:bg-emerald-950/30"
+              : "bg-amber-50 dark:bg-amber-950/30"
         }`}
       >
         {save === 0 ? (
-          <p className="text-sm font-semibold text-rose-700 dark:text-rose-300">
+          <p className="text-sm font-semibold text-alert-strong">
             {t.budgetSim.noSavingsMessage}
           </p>
         ) : (
-          <p className="text-sm text-stone-700 dark:text-stone-200">
+          <p className="text-sm text-ink-body">
             {t.budgetSim.savingsPart1} <b>{format(t.budgetSim.savingsAmount, { amount: saveAmount.toFixed(1) })}</b>{" "}
             {t.budgetSim.savingsPart2}{" "}
             (<b>{format(t.budgetSim.savingsTarget, { amount: target.toFixed(0) })}</b>) {t.budgetSim.savingsPart3}{" "}
