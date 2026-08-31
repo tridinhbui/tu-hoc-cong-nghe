@@ -97,11 +97,11 @@ function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUr
       alt={name || t.studyGroups.memberRole}
       width={size}
       height={size}
-      className="rounded-full object-cover border border-stone-200 dark:border-stone-700"
+      className="rounded-full object-cover border border-line-mid"
     />
   ) : (
     <div
-      className="rounded-full bg-stone-200 dark:bg-stone-700 text-ink-body font-extrabold flex items-center justify-center border border-stone-300 dark:border-stone-600 shrink-0"
+      className="rounded-full bg-surface-sunken text-ink-body font-extrabold flex items-center justify-center border border-line-strong shrink-0"
       style={{ width: size, height: size, fontSize: Math.max(11, Math.floor(size / 2.6)) }}
     >
       {initials}
@@ -124,11 +124,11 @@ function missionIcon(key: StudyRoomMission["mission_key"]) {
 
 function noteColorClass(color: string) {
   const colors: Record<string, string> = {
-    emerald: "bg-accent-soft/50 border-emerald-200 dark:border-emerald-800 text-emerald-950 dark:text-emerald-100",
-    amber: "bg-warn-soft/50 border-amber-200 dark:border-amber-800 text-amber-950 dark:text-amber-100",
+    emerald: "bg-emerald-50 dark:bg-emerald-950/50 border-accent-line text-emerald-950 dark:text-emerald-100",
+    amber: "bg-amber-50 dark:bg-amber-950/50 border-warn-line text-amber-950 dark:text-amber-100",
     sky: "bg-sky-50 dark:bg-sky-950/50 border-sky-200 dark:border-sky-800 text-sky-950 dark:text-sky-100",
-    rose: "bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-800 text-rose-950 dark:text-rose-100",
-    violet: "bg-violet-50 dark:bg-violet-950/50 border-violet-200 dark:border-violet-800 text-violet-950 dark:text-violet-100",
+    rose: "bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-900 text-rose-950 dark:text-rose-100",
+    violet: "bg-violet-50 dark:bg-violet-950/50 border-violet-200 dark:border-violet-900 text-violet-950 dark:text-violet-100",
   };
   return colors[color] ?? colors.emerald;
 }
@@ -1021,11 +1021,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     try {
       const result = await claimStudyRoomWeeklyReward(myRoom.room_id);
       await refreshRoomEngagement(myRoom.room_id);
+      // Máy chủ trả về MÃ; `message` chỉ là bản dự phòng cho đường Supabase,
+      // vốn chưa gắn mã và vẫn trả chuỗi tiếng Việt dựng sẵn.
+      const text = (result.code && t.dataRest.studyGroupsClient.rewardClaim[result.code]) || result.message;
       if (result.ok) {
         setIsChestUnlocked(true);
-        toast.success(result.message);
+        toast.success(text);
       } else {
-        toast.error(result.message);
+        toast.error(text);
       }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : t.studyGroups.chestFailed);
@@ -1270,7 +1273,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       {!embedded && (
       <div className="border-b border-line bg-white dark:bg-stone-950">
         <div className="max-w-4xl mx-auto px-6 py-4">
-          <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
+          <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink hover:bg-surface-raised rounded-lg px-3 py-2 -ml-3 transition-colors">
             <ArrowLeft className="w-4 h-4" />
             {t.studyGroups.back}
           </Link>
@@ -1312,7 +1315,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               {/* Center/Right Action Bar: Group Co-Pomodoro + Lofi Focus Sound + Mic Toggle + Mobile Segmented Tab Toggle */}
               <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 {/* ⏱️ Group Co-Pomodoro Timer Widget */}
-                <div className="flex items-center gap-1.5 bg-surface-raised px-2.5 py-1 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-mono font-black">
+                <div className="flex items-center gap-1.5 bg-surface-raised px-2.5 py-1 rounded-xl border border-line-mid text-[10px] font-mono font-black">
                   <span className={pomoRunning ? "animate-pulse text-emerald-500" : "text-amber-500"}>
                     {pomoMode === "focus" ? t.studyGroups.pomodoroFocus : t.studyGroups.pomodoroBreak}
                   </span>
@@ -1332,7 +1335,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
                     lofiPlaying
                       ? "bg-emerald-500 text-white border-emerald-400 animate-pulse shadow-xs"
-                      : "bg-surface-raised text-ink-body border-stone-200 dark:border-stone-700 hover:bg-stone-200"
+                      : "bg-surface-raised text-ink-body border-line-mid hover:bg-stone-200"
                   }`}
                   title={t.studyGroups.lofiToggleTitle}
                 >
@@ -1352,7 +1355,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
                         voice.micEnabled
                           ? "bg-emerald-600 text-white border-emerald-500"
-                          : "bg-surface-raised text-ink-muted border-stone-200 dark:border-stone-700"
+                          : "bg-surface-raised text-ink-muted border-line-mid"
                       }`}
                       title={t.studyGroups.micToggleTitle}
                     >
@@ -1386,8 +1389,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     disabled={voice.status === "connecting" || voice.status === "unavailable"}
                     className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${
                       voice.status === "unavailable"
-                        ? "bg-surface-raised text-stone-400 border-stone-200 dark:border-stone-700"
-                        : "bg-surface-raised text-ink-body border-stone-200 dark:border-stone-700 hover:bg-stone-200"
+                        ? "bg-surface-raised text-stone-400 border-line-mid"
+                        : "bg-surface-raised text-ink-body border-line-mid hover:bg-stone-200"
                     }`}
                     title={
                       voice.status === "unavailable"
@@ -1407,7 +1410,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 )}
 
                 {/* 📱 Mobile Segmented Tab Control (< lg screens) */}
-                <div className="lg:hidden flex bg-surface-raised p-0.5 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-extrabold">
+                <div className="lg:hidden flex bg-surface-raised p-0.5 rounded-xl border border-line-mid text-[10px] font-extrabold">
                   <button
                     type="button"
                     onClick={() => setMobileTab("3d")}
@@ -1431,7 +1434,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <button
                   onClick={handleLeave}
                   disabled={busy}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl border border-line text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 cursor-pointer"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl border border-line text-xs font-bold text-ink-soft hover:bg-surface-raised transition-colors disabled:opacity-60 cursor-pointer"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">{t.studyGroups.leaveRoom}</span>
@@ -1440,7 +1443,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             </div>
 
             {/* 💡 Group Attendance & Daily Quest Guidance Banner */}
-            <div className="mb-3 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-500/40 text-xs font-medium text-stone-800 dark:text-stone-200 flex flex-wrap items-center justify-between gap-2 shadow-xs">
+            <div className="mb-3 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-500/40 text-xs font-medium text-ink-heading flex flex-wrap items-center justify-between gap-2 shadow-xs">
               <div className="flex items-center gap-2 min-w-0">
                 <span className="w-7 h-7 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-sm shrink-0 shadow-xs">
                   📍
@@ -1448,13 +1451,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <div>
                   <p className="flex flex-wrap items-center gap-1.5 font-extrabold text-ink">
                     <span>{t.studyGroups.questsTitle}</span>
-                    <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
+                    <span className="text-[10px] font-black text-warn-strong bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
                       {isPermanentRoom
                         ? t.studyGroups.permanentGroup
                         : format(t.studyGroups.streakWeeks, { weeks: groupStreakWeeks })}
                     </span>
                   </p>
-                  <p className="text-stone-600 dark:text-stone-300 text-[11px] leading-tight mt-0.5">
+                  <p className="text-ink-soft text-[11px] leading-tight mt-0.5">
                     {t.studyGroups.questsHint}
                   </p>
                 </div>
@@ -1487,8 +1490,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         </div>
                         <span className={`text-[10px] font-black px-2 py-0.5 rounded-full border shrink-0 ${
                           mission.completed
-                            ? "bg-accent-soft text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
-                            : "bg-warn-soft text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800"
+                            ? "bg-accent-soft text-accent-strong border-accent-line"
+                            : "bg-warn-soft text-warn-strong border-warn-line"
                         }`}>
                           {mission.current_value}/{mission.target_value}
                         </span>
@@ -2150,7 +2153,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               >
                 {/* Sub-tab Navigation Header */}
                 <div className="flex items-center justify-between border-b border-line pb-2 mb-2 shrink-0">
-                  <div className="flex items-center gap-1 bg-surface-raised p-0.5 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-black">
+                  <div className="flex items-center gap-1 bg-surface-raised p-0.5 rounded-xl border border-line-mid text-[10px] font-black">
                     <button
                       type="button"
                       onClick={() => setChatSubTab("chat")}
@@ -2179,20 +2182,20 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       {t.studyGroups.quizTab}
                     </button>
                   </div>
-                  <span className="text-[10px] font-bold text-accent bg-accent-soft/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+                  <span className="text-[10px] font-bold text-accent bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-accent-line">
                     {t.studyGroups.live}
                   </span>
                 </div>
                 {chatSubTab === "chat" && (
                   <div className="flex-1 flex flex-col min-h-0">
-                    <div className="mb-2 px-2.5 py-1 rounded-xl bg-accent-soft/30 border border-accent-line shrink-0 text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold flex items-center gap-1">
+                    <div className="mb-2 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-accent-line shrink-0 text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold flex items-center gap-1">
                       <span>💡</span>
                       <span>{t.studyGroups.chatCheckinHint}</span>
                     </div>
                     {pinnedMessage && (
-                      <div className="mb-2 px-3 py-1.5 rounded-xl bg-warn-soft/30 border border-amber-200 dark:border-amber-900 shrink-0">
-                        <p className="text-[9px] font-extrabold text-amber-700 dark:text-amber-400">{t.studyGroups.pinnedByAdmin}</p>
-                        <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-snug truncate">{pinnedMessage.content}</p>
+                      <div className="mb-2 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-warn-line shrink-0">
+                        <p className="text-[9px] font-extrabold text-warn-strong">{t.studyGroups.pinnedByAdmin}</p>
+                        <p className="text-[11px] text-ink-heading leading-snug truncate">{pinnedMessage.content}</p>
                       </div>
                     )}
                     <div className="relative flex-1 min-h-0 flex flex-col">
@@ -2206,7 +2209,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   <button
                     onClick={() => void loadOlderMessages()}
                     disabled={loadingOlder}
-                    className="px-3 py-1 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 text-[10px] font-black text-ink-muted hover:text-emerald-600 disabled:opacity-60 cursor-pointer"
+                    className="px-3 py-1 rounded-full bg-white dark:bg-stone-900 border border-line-mid text-[10px] font-black text-ink-muted hover:text-emerald-600 disabled:opacity-60 cursor-pointer"
                   >
                     {loadingOlder ? t.studyGroups.loading : t.studyGroups.loadOlder}
                   </button>
@@ -2221,9 +2224,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   if (msg.is_bot) {
                     return (
                       <div key={msg.id} className="flex justify-start">
-                        <div className="max-w-[85%] rounded-xl px-3 py-2 bg-warn-soft/30 border border-amber-200 dark:border-amber-900">
-                          <p className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 mb-0.5">{t.studyGroups.byAdmin}</p>
-                          <p className="text-sm break-words text-stone-800 dark:text-stone-200">{renderBotMessage(msg.content, t.groupChat, format)}</p>
+                        <div className="max-w-[85%] rounded-xl px-3 py-2 bg-amber-50 dark:bg-amber-950/30 border border-warn-line">
+                          <p className="text-[10px] font-extrabold text-warn-strong mb-0.5">{t.studyGroups.byAdmin}</p>
+                          <p className="text-sm break-words text-ink-heading">{renderBotMessage(msg.content, t.groupChat, format)}</p>
                         </div>
                       </div>
                     );
@@ -2267,7 +2270,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             : isDiamond
                             ? "bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 text-white rounded-tr-xs border-2 border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.7)]"
                             : isMine
-                            ? "bg-surface-invert text-white dark:text-stone-900 rounded-tr-xs"
+                            ? "bg-surface-invert text-ink-invert rounded-tr-xs"
                             : "bg-white dark:bg-stone-900 border border-line text-ink rounded-tl-xs"
                         }`}>
                           {!isMine && (
@@ -2316,7 +2319,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         <div className="relative">
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
-                            className={`${isMine ? "opacity-70" : "opacity-0"} group-hover:opacity-100 transition-all duration-200 p-1.5 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-ink-muted cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
+                            className={`${isMine ? "opacity-70" : "opacity-0"} group-hover:opacity-100 transition-all duration-200 p-1.5 rounded-full hover:bg-surface-sunken text-ink-muted cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
                             title={t.chat.optionsTitle}
                           >
                             <MoreVertical className="w-3.5 h-3.5" />
@@ -2347,7 +2350,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   setReplyingTo({ id: msg.id, senderName: isMine ? t.chat.you : senderName, content: msg.content });
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-ink-heading font-bold transition-colors text-left"
                               >
                                 <CornerUpLeft className="w-3.5 h-3.5 text-accent" />
                                 <span>{t.chat.reply}</span>
@@ -2358,7 +2361,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   void togglePinMessage(msg);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-ink-heading font-bold transition-colors text-left"
                               >
                                 {msg.is_pinned ? <PinOff className="w-3.5 h-3.5 text-warn" /> : <Pin className="w-3.5 h-3.5 text-warn" />}
                                 <span>{msg.is_pinned ? t.chat.unpin : t.chat.pin}</span>
@@ -2369,7 +2372,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   void copyMessageText(mainText || msg.content);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left"
                               >
                                 <Copy className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
                                 <span>{t.chat.copy}</span>
@@ -2384,7 +2387,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                     setReplyingTo(null);
                                     setActiveMenuMsgId(null);
                                   }}
-                                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left"
+                                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left"
                                 >
                                   <Pencil className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
                                   <span>{t.chat.edit}</span>
@@ -2453,7 +2456,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 onClick={() => void toggleReaction(msg.id, emoji)}
                                 className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all ${
                                   hasMyReaction
-                                    ? "bg-accent-soft border-emerald-300 text-emerald-700 dark:text-emerald-300 shadow-2xs"
+                                    ? "bg-accent-soft border-emerald-300 text-accent-strong shadow-2xs"
                                     : "bg-white dark:bg-stone-900 border-line text-ink-body"
                                 }`}
                               >
@@ -2494,14 +2497,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             {/* Replying Banner Preview */}
             {replyingTo && (
-              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-accent-soft/40 border border-emerald-200 dark:border-emerald-800 text-xs text-stone-800 dark:text-stone-200 mt-2">
+              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-accent-line text-xs text-ink-heading mt-2">
                 <div className="min-w-0 flex-1">
                   <span className="font-bold text-accent">{format(t.chat.replyingTo, { name: replyingTo.senderName })}</span>
-                  <p className="truncate text-[11px] text-stone-600 dark:text-stone-400 mt-0.5">{replyingTo.content}</p>
+                  <p className="truncate text-[11px] text-ink-soft mt-0.5">{replyingTo.content}</p>
                 </div>
                 <button
                   onClick={() => setReplyingTo(null)}
-                  className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1 rounded-full cursor-pointer"
+                  className="text-stone-400 hover:text-ink-body p-1 rounded-full cursor-pointer"
                   title={t.chat.cancelReply}
                 >
                   <X className="w-3.5 h-3.5" />
@@ -2509,17 +2512,17 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             )}
             {editingMessage && (
-              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-stone-800 dark:text-stone-200 mt-2">
+              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-ink-heading mt-2">
                 <div className="min-w-0 flex-1">
                   <span className="font-bold text-sky-600 dark:text-sky-400">{t.chat.editing}</span>
-                  <p className="truncate text-[11px] text-stone-600 dark:text-stone-400 mt-0.5">{editingMessage.content}</p>
+                  <p className="truncate text-[11px] text-ink-soft mt-0.5">{editingMessage.content}</p>
                 </div>
                 <button
                   onClick={() => {
                     setEditingMessage(null);
                     setMessageInput("");
                   }}
-                  className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1 rounded-full cursor-pointer"
+                  className="text-stone-400 hover:text-ink-body p-1 rounded-full cursor-pointer"
                   title={t.chat.cancelEdit}
                 >
                   <X className="w-3.5 h-3.5" />
@@ -2551,7 +2554,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               <button
                 onClick={() => void handleSendMessage()}
                 disabled={sendingMessage || !messageInput.trim()}
-                className="shrink-0 w-10 h-10 rounded-xl bg-surface-invert text-white dark:text-stone-900 flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40"
+                className="shrink-0 w-10 h-10 rounded-xl bg-surface-invert text-ink-invert flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40"
                 aria-label={t.chat.sendAria}
               >
                 <Send className="w-4 h-4" />
@@ -2568,7 +2571,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 value={newNoteText}
                 onChange={(e) => setNewNoteText(e.target.value)}
                 placeholder={t.studyGroups.notePlaceholder}
-                className="flex-1 px-3 py-2 rounded-xl border border-line bg-stone-50 dark:bg-stone-950 text-xs text-ink placeholder:text-stone-400 focus:outline-none"
+                className="flex-1 px-3 py-2 rounded-xl border border-line bg-surface text-xs text-ink placeholder:text-stone-400 focus:outline-none"
               />
               <button
                 type="button"
@@ -2581,7 +2584,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             <div className="flex-1 overflow-y-auto space-y-2.5 pr-1">
               {stickyNotes.length === 0 ? (
-                <div className="h-full min-h-[180px] rounded-2xl border border-dashed border-line-strong bg-stone-50 dark:bg-stone-950 flex items-center justify-center text-center px-6">
+                <div className="h-full min-h-[180px] rounded-2xl border border-dashed border-line-strong bg-surface flex items-center justify-center text-center px-6">
                   <p className="text-xs font-bold text-ink-muted">
                     {t.studyGroups.notesEmpty}
                   </p>
@@ -2601,7 +2604,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         <button
                           type="button"
                           onClick={() => void handleDeleteNote(note.id)}
-                          className="mt-1 inline-flex items-center gap-1 text-[10px] font-black text-rose-600 dark:text-rose-300 hover:underline"
+                          className="mt-1 inline-flex items-center gap-1 text-[10px] font-black text-rose-600 dark:text-rose-400 hover:underline"
                         >
                           <Trash2 className="w-3 h-3" />
                           {t.studyGroups.noteDelete}
@@ -2622,7 +2625,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <span>{t.studyGroups.quizChallengeTitle}</span>
                 <span className="px-2 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[9px]">{t.studyGroups.quizReward}</span>
               </p>
-              <p className="text-stone-600 dark:text-stone-300 text-[11px]">
+              <p className="text-ink-soft text-[11px]">
                 {t.studyGroups.quizHint}
               </p>
             </div>
@@ -2630,11 +2633,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {!groupQuizSubmitted ? (
               <div className="space-y-4">
                 {loadingGroupQuiz ? (
-                  <div className="rounded-2xl border border-line bg-stone-50 dark:bg-stone-950 p-6 text-center text-xs font-bold text-stone-500">
+                  <div className="rounded-2xl border border-line bg-surface p-6 text-center text-xs font-bold text-stone-500">
                     {t.studyGroups.quizLoading}
                   </div>
                 ) : groupQuizQuestions.length === 0 ? (
-                  <div className="rounded-2xl border border-dashed border-line-strong bg-stone-50 dark:bg-stone-950 p-6 text-center text-xs font-bold text-stone-500">
+                  <div className="rounded-2xl border border-dashed border-line-strong bg-surface p-6 text-center text-xs font-bold text-stone-500">
                     {t.studyGroups.quizEmpty}
                   </div>
                 ) : (
@@ -2687,7 +2690,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     setGroupQuizSubmitted(false);
                     setGroupQuizAnswers({});
                   }}
-                  className="px-4 py-2 rounded-xl bg-surface-invert text-white dark:text-stone-900 text-xs font-black cursor-pointer"
+                  className="px-4 py-2 rounded-xl bg-surface-invert text-ink-invert text-xs font-black cursor-pointer"
                 >
                   {t.studyGroups.quizRetry}
                 </button>
@@ -2700,7 +2703,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   const member = memberById.get(attempt.user_id);
                   return (
                     <div key={attempt.id} className="flex items-center justify-between gap-2 text-xs">
-                      <span className="font-bold text-stone-700 dark:text-stone-200 truncate">
+                      <span className="font-bold text-ink-body truncate">
                         {attempt.user_id === user?.id ? t.studyGroups.noteAuthorYou : member?.full_name || t.studyGroups.memberRole}
                       </span>
                       <span className="font-black text-accent shrink-0">
@@ -2781,7 +2784,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     key={t.id}
                     onClick={() => void handleRandomMatch(t.id)}
                     disabled={busy}
-                    className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-surface-invert text-white dark:text-stone-900 text-sm font-bold hover:opacity-90 transition-opacity disabled:opacity-60"
+                    className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-surface-invert text-ink-invert text-sm font-bold hover:opacity-90 transition-opacity disabled:opacity-60"
                   >
                     <Shuffle className="w-4 h-4" />
                     {t.label}
@@ -2803,7 +2806,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       className={`text-xs font-bold px-2.5 py-1.5 rounded-md transition-all ${
                         browseTopic === t.id
                           ? "bg-white dark:bg-stone-900 text-ink shadow-sm"
-                          : "text-ink-muted hover:text-stone-800 dark:hover:text-stone-200"
+                          : "text-ink-muted hover:text-ink-heading"
                       }`}
                     >
                       {t.label}
@@ -2839,7 +2842,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       <button
                         onClick={() => void handleJoinRoom(room.room_id)}
                         disabled={busy}
-                        className="shrink-0 px-3.5 py-2 rounded-lg bg-surface-invert text-white dark:text-stone-900 text-xs font-bold hover:opacity-90 transition-opacity disabled:opacity-60"
+                        className="shrink-0 px-3.5 py-2 rounded-lg bg-surface-invert text-ink-invert text-xs font-bold hover:opacity-90 transition-opacity disabled:opacity-60"
                       >
                         {t.studyGroups.join}
                       </button>

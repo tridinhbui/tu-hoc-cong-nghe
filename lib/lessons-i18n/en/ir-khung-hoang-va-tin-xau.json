@@ -90,7 +90,7 @@
     "options": [
       "Close the insider trading window, before drafting anything at all",
       "Draft an announcement immediately and release it within the first hour",
-      "Wait until the scope is established, then inform the executive team",
+      "Wait until the scope is known, then tell the board",
       "Sound out a few friendly analysts first to gauge the likely reaction"
     ],
     "explanation": "From the moment one person inside the company knows, every trade by an insider happens on information the market does not have - and closing the window is something you can do in minutes without knowing the extent of the damage. Drafting an announcement takes time, and establishing the scope takes longer still, but neither may happen while the trading window is open. Only then does the second principle apply: establish the scope and disclose it COMPLETELY in one go, because drip-feeding means the uncertainty never closes and every update becomes a fresh shock."

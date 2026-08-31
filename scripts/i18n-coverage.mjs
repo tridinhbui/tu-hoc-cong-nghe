@@ -84,7 +84,7 @@ const IS_DICTIONARY = (rel) => rel.startsWith("lib/i18n/dictionaries/");
  *  part that a UI translation pass can actually finish. `lessons.ts` alone is
  *  31,167 strings; left in, it is the only number anyone would ever see. */
 const IS_LESSON_CONTENT = (rel) =>
-  /^lib\/(lessons|.*-lessons|ib-question-bank|ib-question-overrides|cfa-item-sets|level-exams|career-question-bank|recall-schedule)\.ts$/.test(
+  /^lib\/(lessons|.*-lessons|level-exams|recall-schedule)\.ts$/.test(
     rel
   );
 
@@ -472,6 +472,36 @@ function calleeName(expr) {
  * AGENTS.md đã đoán đúng chỗ này: "display strings that pass through a local
  * variable inside a component body".
  */
+/**
+ * Một câu SQL không phải chữ hiện ra màn hình.
+ *
+ * lib/d1/rpc.ts giữ hàng chục truy vấn viết bằng template literal nhiều dòng,
+ * và luật `data` báo chúng như copy vì chúng có khoảng trắng. Chúng là mã, và
+ * chúng chiếm 12 trong 22 dòng cuối cùng của báo cáo - đúng loại nhiễu mà
+ * AGENTS.md nói phải loại trong CHÍNH LUẬT chứ không phải bằng i18n-ignore,
+ * vì một cổng kêu oan là một cổng người ta học cách bỏ qua.
+ *
+ * Hẹp có chủ đích, hai nhánh. Nhánh một: mở đầu bằng một từ khoá câu lệnh VÀ
+ * chứa một từ khoá mệnh đề đi kèm - "select" một mình, hay một câu tiếng Việt
+ * tình cờ có chữ "from", đều không lọt. Nhánh hai dành cho MẢNH câu lệnh ghép
+ * bằng template (`coalesce(prof.role, 'user') <> 'admin'`, `= excluded.`): nó
+ * đòi một hàm hoặc toán tử SQL không bao giờ xuất hiện trong văn xuôi.
+ */
+const LOOKS_LIKE_SQL = (text) => {
+  const t = text.trim().toLowerCase();
+  if (/^(select|with|insert\s+into|update|delete\s+from|create\s+table|left\s+join)\b/.test(t) &&
+      /\b(from|join|where|group\s+by|values|set)\b/.test(t)) return true;
+  return /(coalesce\(|nullif\(|instr\(|excluded\.|date\('now'|\bas\s*\(\s*values\s*\()/.test(t);
+};
+
+/**
+ * Một danh sách phông chữ CSS không phải chữ hiện ra màn hình - nó là giá trị
+ * của thuộc tính font-family. Cùng lý do với luật loại danh sách lớp Tailwind:
+ * false positive thuộc về luật, không thuộc về một dòng i18n-ignore.
+ */
+const LOOKS_LIKE_FONT_STACK = (text) =>
+  /,/.test(text) && /\b(sans-serif|serif|monospace|system-ui|cursive)\b/.test(text);
+
 function walkDataFactory(source, push, kind = "data") {
   const walkData = (n, field) => {
     // A module specifier is not copy. `const TABS = [{ Comp: dynamic(() =>
@@ -529,6 +559,10 @@ function findingsIn(src, fileName) {
   const push = (kind, text, pos) => {
     const clean = String(text).replace(/\s+/g, " ").trim();
     if (isNotCopy(clean)) return;
+    // Đặt ở push chứ không ở riêng walkData: mảnh SQL ghép bằng template đi qua
+    // luật returned-text (`= excluded.` trong query-builder), còn danh sách
+    // phông thì đi qua luật data. Một chỗ chặn thì cả hai luật cùng hưởng.
+    if (LOOKS_LIKE_SQL(clean) || LOOKS_LIKE_FONT_STACK(clean)) return;
     if (isIgnored(pos)) {
       excluded += 1;
       return;

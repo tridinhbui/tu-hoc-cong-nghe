@@ -13,10 +13,18 @@
   ],
   "explanation": "The standard error is the standard deviation divided by the square root of n. The consequence is intensely practical and fairly brutal: to halve your error you need four times the data. That is why judging a fund manager's skill on three years of performance is close to hopeless - the confidence interval around their alpha is wide enough to contain both skill and luck.",
   "diagram": [
-    { "label": "The population, never observed" },
-    { "label": "A finite sample" },
-    { "label": "Point estimate + standard error" },
-    { "label": "Confidence interval - the plausible range of the truth" }
+    {
+      "label": "The population, never observed"
+    },
+    {
+      "label": "A finite sample"
+    },
+    {
+      "label": "Point estimate + standard error"
+    },
+    {
+      "label": "Confidence interval - the plausible range of the truth"
+    }
   ],
   "realWorldExample": {
     "company": "Assessing an investment fund",
@@ -86,7 +94,7 @@
       "The strategy definitely generates alpha because the mean is positive",
       "The standard error of 6.3% is larger than the 4% observed",
       "Adding daily frequency data would be enough to settle the question",
-      "The strategy fails because its standard deviation is too high"
+      "The strategy fails: its deviation is too high"
     ],
     "explanation": "The t-ratio is roughly 4 divided by 6.3, about 0.63 - a long way from statistical significance. This is exactly the position most investment strategy pitches are in: a handsome average, presented as evidence, that never actually clears the noise floor."
   },
@@ -130,7 +138,10 @@
         "explanation": "This rule explains why the investment industry finds it so hard to prove anything with data: the cost of extra confidence rises exponentially, while the market keeps changing character over the very period you are measuring."
       }
     },
-    { "type": "heading", "text": "The paradox of sampling more finely" },
+    {
+      "type": "heading",
+      "text": "The paradox of sampling more finely"
+    },
     {
       "type": "paragraph",
       "text": "Intuition says daily data beats monthly data because there are more observations. That holds for variance and fails for the mean. The reason: as you cut the period shorter, the average return per period shrinks by exactly the proportion by which the noise shrinks, so the signal-to-noise ratio is unchanged. The only way to become more certain about expected return is to observe over more years."

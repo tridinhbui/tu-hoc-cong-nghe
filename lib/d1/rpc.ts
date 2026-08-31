@@ -2162,7 +2162,15 @@ export async function claimStudyRoomWeeklyReward(
   db: D1Like,
   actor: string,
   roomId: number
-): Promise<{ ok: boolean; message: string; streak_weeks: number; is_permanent: boolean }> {
+): Promise<{
+  ok: boolean;
+  /** Mã để client tra từ điển. `message` ở lại làm bản dự phòng cho client cũ
+   *  và cho đường Supabase, vốn trả về đúng cùng hình dạng này. */
+  code: "missions_incomplete" | "already_claimed" | "chest_opened";
+  message: string;
+  streak_weeks: number;
+  is_permanent: boolean;
+}> {
   if (!actor) throw new NotAuthenticatedError();
   if (!(await isActiveRoomMember(db, actor, roomId))) throw new Error("Not a room member");
 
@@ -2179,6 +2187,7 @@ export async function claimStudyRoomWeeklyReward(
     const r = await phong();
     return {
       ok: false,
+      code: "missions_incomplete",
       message: "Nhóm chưa hoàn thành đủ 3 nhiệm vụ tuần.",
       streak_weeks: r.streak_weeks,
       is_permanent: Boolean(r.is_permanent),
@@ -2197,6 +2206,7 @@ export async function claimStudyRoomWeeklyReward(
     const r = await phong();
     return {
       ok: false,
+      code: "already_claimed",
       message: "Tuần này nhóm đã nhận thưởng rồi.",
       streak_weeks: r.streak_weeks,
       is_permanent: Boolean(r.is_permanent),
@@ -2227,6 +2237,7 @@ export async function claimStudyRoomWeeklyReward(
   const r = await phong();
   return {
     ok: true,
+    code: "chest_opened",
     message: "Đã mở rương nhóm: mỗi thành viên nhận +25 coin và 1 rương.",
     streak_weeks: r.streak_weeks,
     is_permanent: Boolean(r.is_permanent),
@@ -2336,6 +2347,11 @@ export async function adminResyncAllUserStats(db: D1Like): Promise<number> {
   return affected;
 }
 
+/* i18n-ignore-start: năm câu này được GHI VÀO study_room_messages.content và ở
+   lại đó vĩnh viễn. Dịch chúng làm mồ côi lịch sử chat đã lưu - phòng nào cũng
+   thành nửa Việt nửa Anh - và hàm này chạy theo lịch nên không có locale của
+   người đọc nào để mà chọn. Cùng hình dạng với REACTION_OPTIONS và
+   ASSET_STORAGE_KEYS trong AGENTS.md: giá trị đã persist thì không phải copy. */
 /** Câu bot gửi vào phòng, chép nguyên văn từ `weekly_rematch_study_rooms`. */
 const BOT = {
   vinhVienChaoTuan:
@@ -2349,6 +2365,7 @@ const BOT = {
   gioiThieu: (danhSach: string) =>
     `Chào mọi người! Mình là Tài Tài 👋 Đây là nhóm học chung tuần này của các bạn: ${danhSach}. Chỉ tiêu của nhóm: mỗi thành viên học trung bình ít nhất 3 bài/tuần. Nếu đạt chỉ tiêu, nhóm sẽ tiếp tục duy trì vào tuần sau. Nếu không đạt, nhóm sẽ bị giải tán vào cuối tuần. Đặc biệt, nếu đạt chỉ tiêu liên tiếp 3 tuần, nhóm sẽ được duy trì Vĩnh Viễn!`,
 };
+/* i18n-ignore-end */
 
 /** `weekly_rematch_study_rooms()` - hàm dài nhất trong 53 hàm (185 dòng, 10 lệnh ghi).
  *
@@ -2527,7 +2544,10 @@ export async function weeklyRematchStudyRooms(
           order by prof.full_name`,
         ...nhom
       );
+      /* i18n-ignore-start: mảnh này ghép thẳng vào BOT.gioiThieu ở trên và đi
+         cùng nó vào study_room_messages.content - cùng một lý do. */
       const danhSach = tomTat.map((t) => `${t.ten} (${t.cnt ?? 0} bài tuần này)`).join(", ");
+      /* i18n-ignore-end */
 
       await exec(
         db,

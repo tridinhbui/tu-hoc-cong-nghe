@@ -39,6 +39,11 @@ export const dataRestVi = {
         "Toàn bộ bài học được chia theo từng Chặng, mở khoá tuần tự. Bấm vào một Chặng để xem danh sách bài bên trong.",
     },
     studyGroupsClient: {
+      rewardClaim: {
+        missions_incomplete: "Nhóm chưa hoàn thành đủ 3 nhiệm vụ tuần.",
+        already_claimed: "Tuần này nhóm đã nhận thưởng rồi.",
+        chest_opened: "Đã mở rương nhóm: mỗi thành viên nhận +25 coin và 1 rương.",
+      },
       quickCheers: {
         clap: { label: "Đập tay", message: "👋 Đập tay cổ vũ mọi người cùng học bài nào!" },
         heart: { label: "Bắn tim", message: "❤️ Bắn tim yêu thương tiếp năng lượng học tập!" },
@@ -245,6 +250,11 @@ export const dataRestEn: typeof dataRestVi = {
         "All lessons are split into Stages, unlocked in order. Click a Stage to see the lessons inside it.",
     },
     studyGroupsClient: {
+      rewardClaim: {
+        missions_incomplete: "The group has not finished all 3 weekly missions yet.",
+        already_claimed: "The group has already claimed this week's reward.",
+        chest_opened: "Group chest opened: every member gets +25 coins and 1 chest.",
+      },
       quickCheers: {
         clap: { label: "Clap", message: "👋 Give everyone a clap to cheer them on!" },
         heart: { label: "Heart", message: "❤️ Send a heart to boost the study energy!" },

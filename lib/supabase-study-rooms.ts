@@ -98,6 +98,9 @@ export interface StudyRoomQuizAttempt {
 
 export interface StudyRoomRewardClaimResult {
   ok: boolean;
+  /** Mã kết quả để client tra từ điển. Không bắt buộc: đường Supabase (hàm
+   *  plpgsql) chưa trả về nó, và client rơi về `message` khi vắng. */
+  code?: "missions_incomplete" | "already_claimed" | "chest_opened";
   message: string;
   streak_weeks: number;
   is_permanent: boolean;

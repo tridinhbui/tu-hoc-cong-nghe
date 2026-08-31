@@ -1,0 +1,117 @@
+{
+  "slug": "chong-quen-giu-lai-thu-da-hoc",
+  "title": "Stage 1, Lesson 9: Against forgetting - keeping what you learned",
+  "subtitle": "Most of what you learn falls away within weeks, and nobody measures that part",
+  "duration": "8 min",
+  "whyItMatters": "Learners measure progress by lessons completed, which is measuring what went in. Nobody measures what stayed, and it is far smaller - enough that two people who spent the same hours end up in very different places.",
+  "openingQuestion": "Why does reviewing material you have just learned give a false sense of how well you know it?",
+  "openingOptions": [
+    "Because recognising something familiar is far easier than recalling it yourself",
+    "Because what you just read is still in short-term memory, so it says nothing about real retention",
+    "Because when reviewing you tend to skim the parts you already know, so nothing gets tested properly",
+    "Because the feeling of understanding depends on your mood"
+  ],
+  "explanation": "Rereading a page and finding everything familiar produces a sense of having got it, but what was just tested is the ability to recognise, not the ability to recall. Those two capacities are far apart: you can recognise correct code on sight without being able to write it on a blank page. Most common review methods - rereading, rewatching, highlighting - train only the first, and that is why people are caught out on real work or in an interview. The only way to test the second is to close the material and write it out yourself.",
+  "diagram": [
+    { "label": "Finish learning: the sense of having got it" },
+    { "label": "Weeks later: most of it gone, nobody measured" },
+    { "label": "Rereading: trains only recognition" },
+    { "label": "Recall and spacing: trains the thing that matters" }
+  ],
+  "realWorldExample": {
+    "company": "Twenty lessons and a blank page",
+    "description": "Someone finished a twenty-lesson course in six weeks, understanding each lesson as they went. Three months later, needing to build something similar from scratch, they reopened the material and found they remembered the general route but not a single detail well enough to write it themselves. What they had learned was not lost - it had simply never moved from recognition to recall."
+  },
+  "quiz": [
+    {
+      "question": "Which review method gives the most back per minute spent?",
+      "options": [
+        "Read the material through once more and note down the most important points",
+        "Close the material and write out what you can remember",
+        "Rewatch the lecture video at a faster speed to cover more ground in less time",
+        "Summarise the content as a diagram to organise how the pieces relate to each other"
+      ],
+      "explanation": "The other three are all more comfortable and all train recognition. Pulling something out of memory yourself is uncomfortable, slow, and leaves you feeling you know less than you thought - and those three properties are the sign it is doing its job."
+    },
+    {
+      "question": "Why is spaced review more effective than cramming?",
+      "options": [
+        "Because reviewing many times over a long period gives you more total exposures to the content",
+        "Because splitting the review time into pieces is less tiring",
+        "Because each retrieval after partly forgetting consolidates more strongly",
+        "Because the gaps between reviews give the brain time to reorganise what it has taken in"
+      ],
+      "explanation": "The crucial point is that you have to forget part of it for the retrieval to be worth anything. Cramming into one session makes every retrieval easy because the information is still intact, so it feels good and works badly. This is why effective review almost always feels harder than ineffective review."
+    },
+    {
+      "question": "For technical knowledge, what is the best test of how well you know it?",
+      "options": [
+        "Reread the material and mark each part you had already forgotten",
+        "Answer a set of multiple-choice questions covering that content",
+        "Try explaining it out loud to somebody who does not know the topic",
+        "Rebuild something small using exactly that knowledge, without looking at the material"
+      ],
+      "explanation": "Explaining to somebody else is a good test and it still sits at the level of words. Rebuilding something small forces you to make decisions at the points the material never mentions, and that is precisely what separates knowing about a thing from being able to do it."
+    },
+    {
+      "question": "What form of note-taking while learning retains more?",
+      "options": [
+        "Restated in your own words, even when that runs longer than the original",
+        "Copied out exactly, so that no definition or formula gets distorted",
+        "Short keyword notes, which are quick to write and easy to review",
+        "Important passages copied into one place for quick lookup later"
+      ],
+      "explanation": "Copying verbatim and saving excerpts are both acts of moving text around, and both can be completed without understanding anything. Restating in your own words cannot be done without understanding, so the writing is itself a test."
+    },
+    {
+      "question": "When is the best moment to slot review in?",
+      "options": [
+        "At the end of each session, to consolidate everything taken in during that session",
+        "Right at the start of the next session, before any new material",
+        "In a separate session each week set aside entirely for reviewing what you have learned",
+        "Go back and review whenever you notice you have forgotten a lot"
+      ],
+      "explanation": "A separate review session is the first one cut when you are busy. At the end of a session the information is still intact, so retrieval is too easy to be worth much. The start of the next session gets both: enough forgetting for the retrieval to work, inside a session that already has a place in the schedule."
+    }
+  ],
+  "keyTakeaways": [
+    "Recognition and recall are two capacities that sit far apart",
+    "Rereading, rewatching and highlighting all train only the first",
+    "You have to forget part of it for the retrieval to be worth anything",
+    "Effective review almost always feels harder than ineffective review"
+  ],
+  "practicePrompt": {
+    "question": "You have just finished a topic and feel you understand it clearly. How should you check?",
+    "options": [
+      "A few days later, close the material and write out what you remember",
+      "Reread the main parts so nothing gets missed",
+      "Move on to the next topic, since understanding it straight away shows your foundation is solid",
+      "Summarise the whole thing as a diagram to see the overall picture more clearly"
+    ],
+    "explanation": "The sense of understanding right after learning is the most suspect feeling there is, because it is produced by the material still sitting in front of you. A few days later enough has been forgotten for the test to mean something, and the result is almost always lower than predicted."
+  },
+  "summary": {
+    "keyIdea": "Learners measure what went in and nobody measures what stayed, though the second is the result",
+    "commonMistake": "Rereading the material, finding it familiar, and concluding you have got it",
+    "action": "A few days after each topic, close the material and write it out; build something small if it is technical."
+  },
+  "application": {
+    "title": "The first ten minutes of each session",
+    "message": "Before any new material, close the book and write out what you still remember from last time. Wherever the writing fails is exactly what needs rereading.",
+    "secondary": "For technical knowledge, swap the writing for rebuilding something very small without looking at the material."
+  },
+  "sections": [
+    { "type": "lead", "text": "Study progress gets measured in lessons completed, which is measuring what went in. What stayed appears on no progress bar at all, and it is the part still there after six months." },
+    { "type": "comparison",
+      "left": { "label": "Recognition", "text": "You see it and it looks familiar. Rereading, rewatching, skimming the highlights - all of these train this capacity, and all of them are comfortable." },
+      "right": { "label": "Recall", "text": "A blank page, written yourself. Uncomfortable, slow, and leaving you feeling you know less than you thought - three signs it is doing its job." }
+    },
+    { "type": "heading", "text": "You have to forget for the retrieval to count" },
+    { "type": "paragraph", "text": "This is the least intuitive part. Cramming right after learning leaves everything intact, every retrieval is easy, and the result is a good feeling and a short memory. Leaving a few days makes the retrieval markedly harder, and that difficulty is exactly what produces the effect. Put another way, the review method that feels most comfortable is almost always the least effective one." },
+    { "type": "callout", "label": "For technical knowledge, the test is rebuilding", "text": "Being able to answer questions about a technology and being able to use it are two different things. Rebuilding something very small without looking at the material forces you to decide at exactly the points the material never mentions - and that is the only part that separates knowing about a thing from being able to do it." },
+    { "type": "closing", "lines": [
+      "Learning faster means nothing if what falls away speeds up to match.",
+      "These three lessons teach no content of their own; they only make sure the content in later stages has somewhere to stay."
+    ]}
+  ]
+}

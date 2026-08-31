@@ -93,7 +93,7 @@
     "options": [
       "Scroll down with the mouse to find the last row, then type the range",
       "Ctrl + Shift + down arrow, and then autosum the range",
-      "Select the entire column and sum it, blank cells included",
+      "Select the whole column, blank cells included",
       "Enter a formula for each block of 50 rows and add them up"
     ],
     "explanation": "This takes about two seconds and always lands exactly on the last row containing data. Watch for one trap: if there is a blank cell partway down the column, Ctrl + Shift + arrow will stop there - which is also how you discover gaps in the data that the eye would never catch."

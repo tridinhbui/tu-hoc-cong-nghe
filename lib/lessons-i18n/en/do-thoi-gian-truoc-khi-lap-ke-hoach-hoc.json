@@ -46,10 +46,10 @@
     {
       "question": "Which measurement method is least likely to be abandoned?",
       "options": [
-        "An app that automatically logs computer time and classifies it by activity",
+        "An app that logs your computer time automatically",
         "One line written at the end of each day",
-        "A timer started and stopped for every study session, for the most precise figures",
-        "A detailed log of every thirty-minute block so that nothing gets missed"
+        "A timer started and stopped for every study session",
+        "A detailed log of every single thirty-minute block"
       ],
       "explanation": "Precision and sustainability trade against each other, and here sustainability wins: a rough measurement you finish in two weeks is far more useful than a precise one abandoned after three days. The error in an end-of-day note is much smaller than the error of having no data at all."
     },
@@ -84,9 +84,9 @@
     "question": "You plan to study three evenings a week, two hours each. What should you do before starting?",
     "options": [
       "Measure for two weeks how many evenings are actually usable",
-      "Prepare the material for all three sessions so no time is lost hunting for it",
+      "Prepare the material for all three sessions in advance",
       "Tell your family about the schedule so nobody interrupts that window",
-      "Just start, and adjust as you go"
+      "Just start straight away, and adjust the plan as you go"
     ],
     "explanation": "Just starting sounds reasonable and it is what most people do, but when the plan slips they read the result as a lack of discipline rather than a wrong plan. Two weeks of measurement gives you a number to plan with, and more importantly it gives you the right way to read what happens when things do not go as expected."
   },

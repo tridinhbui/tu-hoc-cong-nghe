@@ -1,0 +1,148 @@
+{
+  "slug": "tu-dong-hoa-thoi-quen-hoc",
+  "title": "Stage 1, Lesson 8: Automate, so the plan does not run on willpower",
+  "subtitle": "Whatever has to be decided again each evening is what will stop on some evening",
+  "duration": "7 min",
+  "whyItMatters": "A sound study plan still stops after a few weeks, and the reason is almost always the same: it needs a fresh decision every evening. Moving that decision out of the evening is the cheapest change available and the one that lasts longest.",
+  "openingQuestion": "Why does a good study plan still tend to stop after a few weeks?",
+  "openingOptions": [
+    "Because every session demands a fresh decision, and willpower is uneven",
+    "Because the material gets harder, so motivation drains away",
+    "Because the original goal was usually too ambitious",
+    "Because there is nobody studying alongside you to say something at the moment you are about to quit"
+  ],
+  "explanation": "A plan that needs a decision every evening is a plan with thirty chances to stop each month. The decision sounds small - what to study, what to open, where to pick up - but it lands at exactly the hour of the day when you have the least capacity left for deciding anything. The other three causes are real and all of them are fixable, but they are the second reason: plenty of people stop in week three while the goal is still manageable, the material still easy, and they still want to learn. What ran out was not motivation but the number of decisions they could absorb in a week.",
+  "diagram": [
+    {
+      "label": "Each evening: decide what to study, where to start"
+    },
+    {
+      "label": "Thirty chances to stop each month"
+    },
+    {
+      "label": "Move the decision out of the evening"
+    },
+    {
+      "label": "What is left is just following what you decided once"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Week three",
+    "description": "Someone studied steadily for two weeks, stopped in week three, and concluded they lacked persistence. Looking back, every evening they had to pick which part to study, find where they had left off, and open the right tool. After fixing a time slot and laying out what to open the evening before, the streak ran four months - on exactly the same amount of persistence."
+  },
+  "quiz": [
+    {
+      "question": "What reduces the number of decisions inside one study session?",
+      "options": [
+        "Decide the evening before what to study, and lay out what you need to open",
+        "Draw up a detailed month-long route with specific content for every session of the week",
+        "Pick a course with a ready-made structure so there is nothing to choose",
+        "Set a reminder on your phone at the exact study time so you never forget a session"
+      ],
+      "explanation": "A month-long route and a structured course both help, but they miss the hardest part: the gap between sitting down and actually starting. Deciding the evening before shrinks that gap to nearly nothing, because by the time you sit down there is nothing left to choose."
+    },
+    {
+      "question": "What is the clearest effect of fixing a time slot?",
+      "options": [
+        "It helps your body settle into a rhythm so your focus at that hour improves over time",
+        "It removes the question of when to study from every single day",
+        "It lets the people around you know about that window and avoid interrupting it",
+        "It lets you track whether you have hit the number of hours you set for the week"
+      ],
+      "explanation": "The other three effects are real and all of them arrive slowly. The effect that arrives immediately is removing one question from each day, and when to study is the easiest of all questions to answer with tomorrow."
+    },
+    {
+      "question": "How ambitious should each session's goal be?",
+      "options": [
+        "A bit above your level, to create real pressure",
+        "Manageable on an ordinary day, holding your pace",
+        "Small enough to do on your worst day",
+        "Flexible day by day, by your time and energy"
+      ],
+      "explanation": "The worst day is the one that decides whether the streak breaks, and a goal calibrated to an ordinary day slips on exactly those days. A fifteen-minute goal that survives the worst day holds the streak, and on a good day you will do more than that anyway."
+    },
+    {
+      "question": "What should you do once the streak has been broken for a few days?",
+      "options": [
+        "Start over from the beginning, to consolidate it all",
+        "Make up the missed sessions over the following days",
+        "Review the plan and adjust it to your real circumstances",
+        "Return at the smallest size, without making up what you missed"
+      ],
+      "explanation": "Making up sessions turns coming back into a debt, and a debt arriving exactly when things are already hard is what makes people quit entirely rather than miss a few days. A streak broken for a few days costs almost nothing; a streak abandoned costs all of it."
+    },
+    {
+      "question": "Which sign shows that a plan is leaning too heavily on willpower?",
+      "options": [
+        "You have to talk yourself into sitting down for most sessions",
+        "You often have to move the schedule when something comes up",
+        "You find the material harder and slower to understand",
+        "You cannot clearly remember what you have learned"
+      ],
+      "explanation": "This is the earliest and most concrete sign, and it shows up weeks before the streak actually breaks. When a system is working, sitting down needs no persuading at all - it was decided in advance, so all that is left at that moment is the doing."
+    }
+  ],
+  "keyTakeaways": [
+    "A plan needing a decision each evening has thirty chances to stop each month",
+    "A fixed time slot removes the most postponable question there is: when to study",
+    "The goal has to be small enough to do on your worst day",
+    "Do not make up missed sessions - a debt arriving when things are hard is what makes people quit"
+  ],
+  "practicePrompt": {
+    "question": "You studied steadily for two weeks and are now starting to miss sessions. What should you fix first?",
+    "options": [
+      "Fix a time slot and decide the content the evening before",
+      "Lower the goal for each session so that studying becomes lighter and easier to keep up",
+      "Find someone to study alongside so you remind each other and build extra motivation",
+      "Check whether the material suits your level"
+    ],
+    "explanation": "The other three are all useful and all of them are step two. Step one is cutting the number of decisions you have to make each evening, because that is where streaks usually break - people do not decide to stop studying, they just fail to decide what to study."
+  },
+  "summary": {
+    "keyIdea": "Whatever has to be decided again each evening is what will stop on some evening",
+    "commonMistake": "Reading a missed session as a lack of persistence, when what ran out was the decisions you could absorb",
+    "action": "Fix one time slot, and each evening decide the next day's content in advance."
+  },
+  "application": {
+    "title": "Decide once, act many times",
+    "message": "Pick one fixed slot in the week. Each evening, spend two minutes deciding the next session's content and laying out what you need to open.",
+    "secondary": "Set each session's goal at the level you could manage on your worst day - on a good day you will do more of your own accord."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "People rarely decide to stop studying. They just fail to decide what to study tonight, enough evenings in a row."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A plan running on willpower",
+        "text": "Every evening you pick what to study, find where you left off, open the right tool, and only then begin. Four small decisions at exactly the hour you have the least capacity left for deciding."
+      },
+      "right": {
+        "label": "A plan decided in advance",
+        "text": "A fixed slot, content chosen the evening before, what you need already laid out. By the time you sit down there is nothing to choose, only the doing."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The worst day is the day that decides"
+    },
+    {
+      "type": "paragraph",
+      "text": "A goal calibrated to an ordinary day slips on the days that are not ordinary, and there are more of those than we expect. Setting the goal at what you could manage on your worst day sounds like lowering the bar, but it protects the thing worth protecting, which is continuity - and on a good day nobody actually stops at exactly fifteen minutes."
+    },
+    {
+      "type": "callout",
+      "label": "Break the streak, but do not make it up",
+      "text": "Making up sessions turns coming back into repaying a debt, and that debt appears exactly when things are already hard. It is the common reason a three-day break becomes a permanent one. Come back at the smallest size, as though there were never anything to repay."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Discipline is finite; a good system is the one that spends the least of it.",
+        "Next: once you have learned something, how much of it stays, and where the rest goes."
+      ]
+    }
+  ]
+}
