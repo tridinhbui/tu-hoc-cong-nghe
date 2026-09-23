@@ -27,8 +27,8 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   // theo nhóm người dùng dùng đúng widget ấy nên các từ sản phẩm được thêm vào.
   chart: ["tăng trưởng", "nhân bội", "tuyến tính", "ngoại suy", "gấp đôi", "tích luỹ", "dài hạn", "dung lượng", "tải"],
   "profit-calc": ["dư địa", "công suất", "chỗ trống", "giờ cao điểm", "cấp phát", "chi phí cố định", "chi phí biến đổi", "hoà vốn", "đơn vị kinh tế"],
-  "interest-rate": ["lãi suất", "interest", "chiết khấu", "npv", "wacc", "capm", "hiện tại", "annuity", "perpetuity", "dcf", "chi phí vốn", "terminal value"],
-  risk: ["rủi ro", "risk", "lợi nhuận kỳ vọng", "biến động", "danh mục"],
+  "interest-rate": ["chiết khấu", "giá trị hiện tại", "quy về hiện tại", "lợi ích tương lai", "hoàn vốn", "đánh giá dự án", "hiện tại", "dài hạn"],
+  risk: ["rủi ro", "risk", "kết quả kỳ vọng", "biến động", "dải kết quả", "định mức", "kịch bản cực đoan"],
   multiples: ["dung lượng", "capacity", "ước lượng", "hệ số so sánh", "số máy", "mở rộng", "tải cao điểm"],
   // mục sơ đồ lãi lỗ quyền chọn đã gỡ cùng loại widget đó
   // Loại multiples đã tạm rút khỏi WIDGET_TYPES (xem chú thích trong
@@ -42,10 +42,10 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   // components/InteractiveWidget.tsx), và bảng này chỉ được chứa widget có
   // thật. Khi có bài về sức mua theo thời gian, thêm lại cả hai chỗ cùng lúc:
   // ["lạm phát", "sức mua"]
-  "ethics-case": ["đạo đức", "ethics", "chuẩn mực", "standard", "xung đột lợi ích", "tuân thủ", "aml", "kyc", "gian lận", "công bố", "trọng yếu", "khủng hoảng"],
+  "ethics-case": ["đạo đức", "ethics", "chuẩn mực", "standard", "xung đột lợi ích", "tuân thủ", "xác minh danh tính", "lỗ hổng", "gian lận", "công bố", "trọng yếu", "khủng hoảng"],
   "tail-risk": ["p99", "độ trễ", "latency", "percentile", "phân vị", "đuôi", "tail", "tốc độ tải", "thời gian chờ", "biến động", "phân phối"],
   ratios: ["chỉ số", "tỷ số", "ratio", "cân đối", "thanh toán", "đòn bẩy", "turnover", "vòng quay", "hiệu quả sử dụng"],
-  "fee-drag": ["phí", "fee", "chi phí quản lý", "ter", "hiệu suất", "etf", "quỹ mở", "quỹ chỉ số"],
+  "fee-drag": ["phí", "fee", "chi phí đều đặn", "hoá đơn", "bào mòn", "hiệu suất", "chi phí duy trì", "đám mây"],
   "esg-score": ["điểm tổng hợp", "sức khoẻ dịch vụ", "trọng số", "trụ cột", "phi chức năng", "bền vững"],
   "prompt-craft": ["câu lệnh", "prompt", "ai", "chatgpt", "claude", "giao việc", "tài liệu"],
   "ai-verify": ["ai", "kiểm chứng", "bịa", "đối chiếu", "soát", "nguồn"],

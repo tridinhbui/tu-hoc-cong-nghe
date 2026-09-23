@@ -5,15 +5,19 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-// Phí ăn mòn danh mục theo thời gian, widget cho các bài khai `interactiveType:
-// "fee-drag"`.
+// Khoản đều đặn ăn mòn theo thời gian, widget cho các bài khai
+// `interactiveType: "fee-drag"`.
 //
-// Ai cũng nghe "phí 1,5% một năm" rồi gật, vì 1,5% nghe như tiền lẻ. Thứ không
-// nghe ra được từ con số đó là nó không lấy 1,5% của tiền gốc, mà lấy 1,5% của
-// cả phần lãi mà phần bị lấy đáng lẽ sinh ra - mỗi năm, trên toàn bộ số năm
-// còn lại. Sau 30 năm, chênh 1,5% phí nuốt khoảng một phần ba số tiền cuối
-// cùng, và không có đoạn văn nào làm người ta tin điều đó bằng cách nhìn hai
-// con số cạnh nhau.
+// Ai cũng nghe "thêm 1,5% một năm" rồi gật, vì 1,5% nghe như tiền lẻ. Thứ
+// không nghe ra được từ con số đó là nó không lấy 1,5% của phần gốc, mà lấy
+// 1,5% của cả phần tăng trưởng mà phần bị lấy đáng lẽ sinh ra - mỗi năm, trên
+// toàn bộ số năm còn lại. Sau 30 kỳ, chênh 1,5% nuốt khoảng một phần ba con
+// số cuối cùng, và không có đoạn văn nào làm người ta tin điều đó bằng cách
+// nhìn hai con số cạnh nhau.
+//
+// Phép tính không gắn với ngành nào: một khoản phần trăm lặp lại trên một số
+// đang lớn dần. Bài 322 dùng nó cho phần phụ phí đều đặn trong hoá đơn đám
+// mây, chỗ người ta nhìn giá niêm yết mỗi giờ mà quên phần cộng dồn.
 //
 // Widget tính cả phí VÀO/RA (phí mua chứng chỉ quỹ) chứ không chỉ phí thường
 // niên: ở Việt Nam phí mua 1-2% khá phổ biến và người ta hay chỉ so phí quản lý.
@@ -101,7 +105,7 @@ function Row({ label, value, children }: { label: string; value: string; childre
   return (
     <label className="block">
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{label}</span>
+        <span className="text-xs font-bold text-ink-body">{label}</span>
         <span className="text-[11px] font-semibold tabular-nums text-ink-muted">{value}</span>
       </div>
       <div className="mt-1.5">{children}</div>
@@ -114,8 +118,8 @@ function Card({ label, value, tone }: { label: string; value: string; tone: "neu
     tone === "good"
       ? "text-accent"
       : tone === "bad"
-        ? "text-rose-600 dark:text-rose-400"
-        : "text-stone-700 dark:text-stone-200";
+        ? "text-alert"
+        : "text-ink-body";
   return (
     <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
       <p className="text-[11px] font-bold uppercase tracking-wide text-ink-muted">{label}</p>
