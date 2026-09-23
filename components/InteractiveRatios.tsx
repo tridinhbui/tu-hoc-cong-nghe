@@ -5,19 +5,23 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-// Sửa bảng cân đối, xem cả loạt chỉ số động đậy cùng lúc, widget cho các bài
+// Sửa bảng độ phủ, xem cả loạt chỉ số động đậy cùng lúc, widget cho các bài
 // khai `interactiveType: "ratios"`.
 //
-// Học chỉ số kiểu mỗi bài một công thức để lại một lỗ hổng: người học nhớ
-// current ratio là gì, quick ratio là gì, nhưng không thấy chúng NỐI với nhau.
-// Mà đó mới là chỗ đọc ra được điều gì: current ratio 2,4 nghe an toàn, cho tới
-// khi nhìn sang quick ratio 0,6 và hiểu rằng gần hết tài sản ngắn hạn đang nằm
-// trong kho chứ không phải tiền. Một doanh nghiệp như vậy vẫn có thể không trả
-// nổi lương tháng sau.
+// Học chỉ số kiểu mỗi bài một công thức để lại một lỗ hổng: người học nhớ độ
+// phủ thô là gì, độ phủ có khẳng định là gì, nhưng không thấy chúng NỐI với
+// nhau. Mà đó mới là chỗ đọc ra được điều gì: độ phủ thô 2,4 nghe an toàn, cho
+// tới khi nhìn sang độ phủ có khẳng định 0,6 và hiểu rằng gần hết phần được
+// tính là đã phủ chỉ là dòng bộ kiểm chạy qua chứ không có khẳng định nào. Một
+// kho mã như vậy vẫn để lọt một thay đổi làm sai logic.
 //
-// Nên widget có một bộ số duy nhất và năm chỉ số cùng đọc từ đó. Kéo tồn kho
-// lên là thấy hai chỉ số thanh khoản tách đôi ra ngay - thứ không nhìn thấy
-// được khi mỗi chỉ số nằm ở một bài riêng.
+// Nên widget có một bộ số duy nhất và năm chỉ số cùng đọc từ đó. Kéo thanh
+// dòng-không-khẳng-định lên là thấy hai chỉ số độ phủ tách đôi ra ngay - thứ
+// không nhìn thấy được khi mỗi chỉ số nằm ở một bài riêng.
+//
+// Phép tính và các ngưỡng màu giữ nguyên từ bản trước (thanh khoản doanh
+// nghiệp). Cấu trúc của hai bài toán trùng khít: một chỉ số đầu trông ổn cho
+// tới khi đọc chỉ số thứ hai bên cạnh nó.
 
 interface Ratio {
   name: string;
@@ -113,7 +117,7 @@ export default function InteractiveRatios() {
             className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 rounded-xl border border-stone-200 px-3 py-2 dark:border-stone-800"
           >
             <div className="min-w-0">
-              <p className="text-xs font-bold text-stone-800 dark:text-stone-100">{r.name}</p>
+              <p className="text-xs font-bold text-ink-heading">{r.name}</p>
               <p className="text-[10px] text-ink-faint">{r.formula}</p>
             </div>
             <p
@@ -161,7 +165,7 @@ function Num({
   return (
     <label className="block">
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{label}</span>
+        <span className="text-xs font-bold text-ink-body">{label}</span>
         <span className="text-[11px] font-semibold tabular-nums text-ink-muted">
           {format(unit, { value })}
         </span>

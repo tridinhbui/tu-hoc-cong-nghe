@@ -44,7 +44,7 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   // ["lạm phát", "sức mua"]
   "ethics-case": ["đạo đức", "ethics", "chuẩn mực", "standard", "xung đột lợi ích", "tuân thủ", "xác minh danh tính", "lỗ hổng", "gian lận", "công bố", "trọng yếu", "khủng hoảng"],
   "tail-risk": ["p99", "độ trễ", "latency", "percentile", "phân vị", "đuôi", "tail", "tốc độ tải", "thời gian chờ", "biến động", "phân phối"],
-  ratios: ["chỉ số", "tỷ số", "ratio", "cân đối", "thanh toán", "đòn bẩy", "turnover", "vòng quay", "hiệu quả sử dụng"],
+  ratios: ["độ phủ", "tỷ trọng", "chỉ số", "tỷ lệ", "khẳng định", "kiểm thử", "nợ kỹ thuật", "phần rủi ro"],
   "fee-drag": ["phí", "fee", "chi phí đều đặn", "hoá đơn", "bào mòn", "hiệu suất", "chi phí duy trì", "đám mây"],
   "esg-score": ["điểm tổng hợp", "sức khoẻ dịch vụ", "trọng số", "trụ cột", "phi chức năng", "bền vững"],
   "prompt-craft": ["câu lệnh", "prompt", "ai", "chatgpt", "claude", "giao việc", "tài liệu"],
