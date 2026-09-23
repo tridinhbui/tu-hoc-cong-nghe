@@ -19,7 +19,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 // đang lớn dần. Bài 322 dùng nó cho phần phụ phí đều đặn trong hoá đơn đám
 // mây, chỗ người ta nhìn giá niêm yết mỗi giờ mà quên phần cộng dồn.
 //
-// Widget tính cả phí VÀO/RA (phí mua chứng chỉ quỹ) chứ không chỉ phí thường
+// Widget tính cả phí mỗi lần cấp thêm chứ không chỉ phụ phí thường
 // niên: ở Việt Nam phí mua 1-2% khá phổ biến và người ta hay chỉ so phí quản lý.
 
 function finalValue(

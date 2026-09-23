@@ -5,14 +5,14 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-// Đánh đổi rủi ro - lợi nhuận, widget cho các bài khai `interactiveType:
+// Đánh đổi rủi ro - kết quả, widget cho các bài khai `interactiveType:
 // "risk"`.
 //
-// Thứ widget này phải dạy được là điều mà một bảng số không dạy nổi: lợi
-// nhuận kỳ vọng cao hơn KHÔNG có nghĩa là kết quả tốt hơn ở một lần cụ thể.
-// Nên nó không hiện một con số kỳ vọng, nó hiện cả DẢI kết quả có thể xảy ra
-// sau n năm - và người kéo thanh trượt thấy dải đó loe ra nhanh hơn nhiều so
-// với phần giữa dịch lên.
+// Thứ widget này phải dạy được là điều mà một bảng số không dạy nổi: giá trị
+// kỳ vọng cao hơn KHÔNG có nghĩa là kết quả tốt hơn ở một lần cụ thể. Nên nó
+// không hiện một con số kỳ vọng, nó hiện cả DẢI kết quả có thể xảy ra sau n
+// kỳ - và người kéo thanh trượt thấy dải đó loe ra nhanh hơn nhiều so với
+// phần giữa dịch lên.
 
 function getProfiles(t: Dictionary) {
   return [
@@ -60,7 +60,7 @@ export default function InteractiveRisk() {
       <div>
         <div className="flex justify-between text-sm mb-2">
           <span className="font-medium text-ink-body">{t.riskCalc.riskLevelLabel}</span>
-          <span className="font-bold text-stone-800 dark:text-stone-100">{profile.label}</span>
+          <span className="font-bold text-ink-heading">{profile.label}</span>
         </div>
         <input
           type="range"
@@ -79,7 +79,7 @@ export default function InteractiveRisk() {
       <div>
         <div className="flex justify-between text-sm mb-2">
           <span className="font-medium text-ink-body">{t.riskCalc.holdingYearsLabel}</span>
-          <span className="font-bold text-stone-800 dark:text-stone-100">{format(t.riskCalc.holdingYearsValue, { years })}</span>
+          <span className="font-bold text-ink-heading">{format(t.riskCalc.holdingYearsValue, { years })}</span>
         </div>
         <input
           type="range"
@@ -99,7 +99,7 @@ export default function InteractiveRisk() {
         <div className="mt-3 flex items-end justify-between gap-2 text-center">
           <div className="flex-1">
             <p className="text-[11px] text-ink-muted">{t.riskCalc.worstCaseLabel}</p>
-            <p className="text-base font-extrabold text-rose-600 dark:text-rose-400">{money(band.low)}</p>
+            <p className="text-base font-extrabold text-alert">{money(band.low)}</p>
           </div>
           <div className="flex-1">
             <p className="text-[11px] text-ink-muted">{t.riskCalc.midCaseLabel}</p>
@@ -114,7 +114,7 @@ export default function InteractiveRisk() {
         </div>
         {/* Dải vẽ theo thang log: nếu vẽ tuyến tính thì kịch bản tốt của mức
             rủi ro cao nhất đẩy mọi cột khác bẹp xuống và không so được nữa. */}
-        <div className="relative mt-4 h-3 w-full overflow-hidden rounded-full bg-stone-200 dark:bg-stone-700">
+        <div className="relative mt-4 h-3 w-full overflow-hidden rounded-full bg-surface-sunken">
           <div
             className="absolute inset-y-0 rounded-full bg-gradient-to-r from-rose-400 via-stone-400 to-emerald-400"
             style={{
