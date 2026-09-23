@@ -18,7 +18,6 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     "apps/**",
-    "packages/**",
     // Agent worktrees. `.claude/worktrees/<name>/` is a full second checkout
     // of this repo, so linting it reported every finding twice - once in
     // `components/X.tsx` and again in `.claude/worktrees/lobby/components/X.tsx` -
