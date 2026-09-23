@@ -10,6 +10,13 @@
 declare module "node:sqlite" {
   export class DatabaseSync {
     constructor(path: string, options?: { readOnly?: boolean });
-    prepare(sql: string): { all(...params: unknown[]): Record<string, unknown>[] };
+    prepare(sql: string): {
+      all(...params: unknown[]): Record<string, unknown>[];
+      /** Dùng cho lệnh GHI. `changes` là BigInt trong node:sqlite. */
+      run(...params: unknown[]): { changes: number | bigint; lastInsertRowid: number | bigint };
+    };
+    /** Chạy nhiều lệnh một lượt - dùng để nạp tệp lược đồ .sql trong bộ kiểm. */
+    exec(sql: string): void;
+    close(): void;
   }
 }
