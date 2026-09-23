@@ -1,0 +1,97 @@
+{
+ "bug_report_messages": {
+  "insert": "exists ( select 1 from bug_reports b where b.id = bug_report_id and b.user_id = ? ) or exists ( select 1 from user_profiles p where p.id = ? and p.role = 'admin' )",
+  "select": "exists ( select 1 from bug_reports b where b.id = bug_report_id and ( b.user_id = ? or exists ( select 1 from user_profiles p where p.id = ? and p.role = 'admin' ) ) )"
+ },
+ "bug_reports": {
+  "update": "exists ( select 1 from user_profiles p where p.id = ? and p.role = 'admin' )",
+  "insert": "user_id = ?",
+  "select": "user_id = ? or exists ( select 1 from user_profiles p where p.id = ? and p.role = 'admin' )"
+ },
+ "chat_message_reactions": {
+  "select": "exists ( select 1 from chat_messages msg where msg.id = chat_message_reactions.message_id and msg.user_id = ? )"
+ },
+ "community_posts": {
+  "select": "is_hidden = false or user_id = ?",
+  "insert": "user_id = ? and kind = 'manual'",
+  "delete": "user_id = ?",
+  "update": "user_id = ? and kind = 'manual' and is_hidden = false"
+ },
+ "contact_messages": {
+  "delete": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')",
+  "select": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')",
+  "update": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')",
+  "insert": "true"
+ },
+ "direct_messages": {
+  "update": "sender_id <> ? and exists ( select 1 from user_friendships f where f.id = direct_messages.friendship_id and f.status = 'accepted' and (? = f.user_a or ? = f.user_b) )",
+  "insert": "? = sender_id and exists ( select 1 from user_friendships f where f.id = direct_messages.friendship_id and f.status = 'accepted' and (? = f.user_a or ? = f.user_b) )",
+  "select": "exists ( select 1 from user_friendships f where f.id = direct_messages.friendship_id and f.status = 'accepted' and (? = f.user_a or ? = f.user_b) )"
+ },
+ "documents": {
+  "delete": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')",
+  "insert": "(exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')) OR (uploaded_by = ? and status = 'pending')",
+  "update": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')",
+  "select": "status = 'approved' or uploaded_by = ?"
+ },
+ "feature_click_events": {
+  "insert": "user_id is null or user_id = ?"
+ },
+ "lesson_completion_appeals": {
+  "insert": "? = user_id and status = 'pending'",
+  "select": "? = user_id"
+ },
+ "lesson_feedback": {
+  "select": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')",
+  "insert": "true"
+ },
+ "lesson_unlock_requests": {
+  "update": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')",
+  "select": "(exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')) OR (user_id = ?)",
+  "insert": "user_id = ?"
+ },
+ "referrals": {
+  "select": "? = referrer_id or ? = referred_id"
+ },
+ "study_room_checkins": {
+  "select": "exists ( select 1 from study_room_members m where m.room_id = study_room_checkins.room_id and m.user_id = ? and m.left_at is null )"
+ },
+ "study_room_message_reactions": {
+  "select": "exists ( select 1 from study_room_messages msg join study_room_members m on m.room_id = msg.room_id where msg.id = study_room_message_reactions.message_id and m.user_id = ? and m.left_at is null )"
+ },
+ "study_room_messages": {
+  "insert": "? = sender_id and exists ( select 1 from study_room_members m where m.room_id = study_room_messages.room_id and m.user_id = ? and m.left_at is null )",
+  "select": "exists ( select 1 from study_room_members m where m.room_id = study_room_messages.room_id and m.user_id = ? and m.left_at is null )",
+  "delete": "sender_id = ? and is_bot = false",
+  "update": "sender_id = ? and is_bot = false AND sender_id = ? and is_bot = false and length(trim(content)) between 1 and 2000 and exists ( select 1 from study_room_members m where m.room_id = study_room_messages.room_id and m.user_id = ? and m.left_at is null )"
+ },
+ "study_room_notes": {
+  "delete": "? = author_id",
+  "insert": "? = author_id and exists ( select 1 from study_room_members m where m.room_id = study_room_notes.room_id and m.user_id = ? and m.left_at is null )",
+  "select": "exists ( select 1 from study_room_members m where m.room_id = study_room_notes.room_id and m.user_id = ? and m.left_at is null )"
+ },
+ "study_room_pomodoro": {
+  "select": "exists ( select 1 from study_room_members m where m.room_id = study_room_pomodoro.room_id and m.user_id = ? and m.left_at is null )"
+ },
+ "study_room_quiz_attempts": {
+  "select": "(exists ( select 1 from study_room_members m where m.room_id = study_room_quiz_attempts.room_id and m.user_id = ? and m.left_at is null )) OR (user_id = ?)"
+ },
+ "study_room_reward_claims": {
+  "select": "exists ( select 1 from study_room_members m where m.room_id = study_room_reward_claims.room_id and m.user_id = ? and m.left_at is null )"
+ },
+ "user_friendships": {
+  "insert": "? = requested_by and status = 'pending' and (? = user_a or ? = user_b)",
+  "update": "? = user_a or ? = user_b",
+  "select": "? = user_a or ? = user_b"
+ },
+ "user_lesson_unlocks": {
+  "select": "(exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')) OR (user_id = ?)",
+  "insert": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')",
+  "update": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')",
+  "delete": "exists (select 1 from user_profiles p where p.id = ? and p.role = 'admin')"
+ },
+ "user_quest_completions": {
+  "insert": "? = user_id and xp_earned = 0",
+  "select": "? = user_id"
+ }
+}

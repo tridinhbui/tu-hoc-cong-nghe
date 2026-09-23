@@ -1,0 +1,5468 @@
+{
+ "takenAt": "2026-08-22",
+ "tables": {
+  "ModuleQuizHeader": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "moduleId",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "Module",
+      "column": "id"
+     }
+    },
+    {
+     "name": "title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "studyNotes",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "announcement_reads": {
+   "columns": [
+    {
+     "name": "announcement_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "announcements",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "read_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "referrals": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "referrer_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "referred_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "status",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "pending",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "rewarded_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "push_subscriptions": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "endpoint",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "p256dh",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "auth",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "study_room_reward_claims": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "room_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "study_rooms",
+      "column": "id"
+     }
+    },
+    {
+     "name": "week_start",
+     "format": "date",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "claimed_by",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "xp_reward",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 150,
+     "foreignKey": null
+    },
+    {
+     "name": "coin_reward",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 25,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_follows": {
+   "columns": [
+    {
+     "name": "follower_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "followed_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "lesson_unlock_requests": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "lessons",
+      "column": "id"
+     }
+    },
+    {
+     "name": "note",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "status",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "pending",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "resolved_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "coin_grants": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "default": "gen_random_uuid()",
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "source",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "ref",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "amount",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "study_room_message_reactions": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "message_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "study_room_messages",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "emoji",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_quiz_sessions": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "track",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "difficulty",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "score",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "total",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "xp_earned",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "completed_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "source",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_cv_bullets": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "career_id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "community_post_reactions": {
+   "columns": [
+    {
+     "name": "post_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "community_posts",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "emoji",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "👍",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "pvp_duels": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "default": "gen_random_uuid()",
+     "foreignKey": null
+    },
+    {
+     "name": "challenger_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "opponent_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "winner_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "wager_coins",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 50,
+     "foreignKey": null
+    },
+    {
+     "name": "status",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "completed",
+     "foreignKey": null
+    },
+    {
+     "name": "challenger_score",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "opponent_score",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "weekly_challenges": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "default": "gen_random_uuid()",
+     "foreignKey": null
+    },
+    {
+     "name": "week_start_date",
+     "format": "date",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "description",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "difficulty",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "case_study_url",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "questions",
+     "format": "jsonb",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "xp_reward",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 200,
+     "foreignKey": null
+    },
+    {
+     "name": "coin_reward",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 50,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_badges": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "badge_key",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "badge_name",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "badge_description",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "badge_icon",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "🏆",
+     "foreignKey": null
+    },
+    {
+     "name": "earned_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "chat_messages": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "sender",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "read",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "image_url",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "quiz_mistakes": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "question_index",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "wrong_count",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 1,
+     "foreignKey": null
+    },
+    {
+     "name": "resolved",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "first_wrong_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "last_attempt_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "question_hash",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_flashcards": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "term",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "definition",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "interval",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 1,
+     "foreignKey": null
+    },
+    {
+     "name": "ease_factor",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 2.5,
+     "foreignKey": null
+    },
+    {
+     "name": "repetitions",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "next_review_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_stats": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "total_lessons_completed",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "total_xp",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "current_level",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 1,
+     "foreignKey": null
+    },
+    {
+     "name": "avg_quiz_score",
+     "format": "double precision",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "longest_streak",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "last_lesson_date",
+     "format": "date",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "total_study_time_hours",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "xp_spent",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    }
+   ]
+  },
+  "study_rooms": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "topic",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "weekly_xp_goal",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 500,
+     "foreignKey": null
+    },
+    {
+     "name": "max_members",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 5,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "streak_weeks",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "is_permanent",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "leader_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "consecutive_weeks_hit",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    }
+   ]
+  },
+  "contact_messages": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "name",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "email",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "subject",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "message",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "is_read",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "lesson_feedback": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "rating",
+     "format": "smallint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "comment",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_quest_completions": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "quest_type",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "day_key",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "xp_earned",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "leaderboard_cache": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "rank",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "total_xp",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lessons_completed",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "avg_quiz_score",
+     "format": "double precision",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "cfa_module_bookmarks": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "module_id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "module_title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_ib_question_attempts": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "question_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "category",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "correct",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "answered_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "lesson_bookmarks": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_slug",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "focus_sessions": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "world",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "room_key",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "started_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "ended_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "seconds",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "reading_progress": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "lesson_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "scroll_percent",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "max_percent_reached",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "milestone_25",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "milestone_50",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "milestone_75",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "milestone_100",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "last_read_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_milestone_exams": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "track_id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "stage_label",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "score",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_lesson_unlocks": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "lessons",
+      "column": "id"
+     }
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "community_notifications": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "recipient_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "actor_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "type",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "post_id",
+     "format": "bigint",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "community_posts",
+      "column": "id"
+     }
+    },
+    {
+     "name": "comment_id",
+     "format": "bigint",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "community_post_comments",
+      "column": "id"
+     }
+    },
+    {
+     "name": "emoji",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "read_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_slug",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "detail",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "financial_guilds": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "default": "gen_random_uuid()",
+     "foreignKey": null
+    },
+    {
+     "name": "name",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "tag",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "logo_emoji",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "🏰",
+     "foreignKey": null
+    },
+    {
+     "name": "leader_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "level",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 1,
+     "foreignKey": null
+    },
+    {
+     "name": "total_xp",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "guild_coins",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "community_post_comments": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "post_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "community_posts",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "edited_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "ModuleQuizQuestion": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "headerId",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "ModuleQuizHeader",
+      "column": "id"
+     }
+    },
+    {
+     "name": "questionNo",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "prompt",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "optionA",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "optionB",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "optionC",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "correct",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "explanation",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "study_room_members": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "room_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "study_rooms",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "joined_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "left_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "game_sessions": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "game_type",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "score",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "total",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "xp_earned",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "lessons": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "slug",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "subtitle",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "stage_number",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "day_number",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "duration",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "difficulty",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "emoji",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "opening_question",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "opening_options",
+     "format": "text[]",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "correct_option",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "explanation",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "key_takeaways",
+     "format": "text[]",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "status",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "draft",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "track",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "is_fundamental",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "prerequisite_id",
+     "format": "bigint",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "lessons",
+      "column": "id"
+     }
+    },
+    {
+     "name": "is_visible",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": true,
+     "foreignKey": null
+    }
+   ]
+  },
+  "net_worth_snapshots": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "total_assets",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "total_liabilities",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "net_worth",
+     "format": "numeric",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "assets_breakdown",
+     "format": "jsonb",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "liabilities_breakdown",
+     "format": "jsonb",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "lesson_videos": {
+   "columns": [
+    {
+     "name": "lesson_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "video_url",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "gamification_assets": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "default": "gen_random_uuid()",
+     "foreignKey": null
+    },
+    {
+     "name": "asset_type",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "asset_key",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "name",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "description",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "rarity",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "common",
+     "foreignKey": null
+    },
+    {
+     "name": "domain_type",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "image_url",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "metadata",
+     "format": "jsonb",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "price",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "feature_click_events": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "event_name",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "metadata",
+     "format": "jsonb",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_career_mission_claims": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "week_key",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "mission_id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "xp_earned",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "coin_earned",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "claimed_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "cfa_module_notes": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "module_id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_challenge_attempts": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "challenge_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "weekly_challenges",
+      "column": "id"
+     }
+    },
+    {
+     "name": "score",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "xp_earned",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "coins_earned",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "completed_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "guild_members": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "guild_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "financial_guilds",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "role",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "member",
+     "foreignKey": null
+    },
+    {
+     "name": "joined_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "notification_preferences": {
+   "columns": [
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "email_reminders_enabled",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "browser_reminders_enabled",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "last_reminder_sent_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "weekly_digest_enabled",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "morning_review_enabled",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "last_morning_review_sent_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "last_weekly_digest_sent_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "community_posts": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "kind",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "metadata",
+     "format": "jsonb",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "is_hidden",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "edited_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_lesson_recalls": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "lesson_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "recall_stage",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 1,
+     "foreignKey": null
+    },
+    {
+     "name": "next_recall_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "cfa_module_progress": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "module_id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "Module",
+      "column": "id"
+     }
+    },
+    {
+     "name": "completed",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "quiz_score",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "quiz_total",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "completed_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "cfa_module_highlights": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "module_id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "quote",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "budget_plans": {
+   "columns": [
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "monthly_income",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "needs_amount",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "wants_amount",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "savings_amount",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "study_room_pomodoro": {
+   "columns": [
+    {
+     "name": "room_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "study_rooms",
+      "column": "id"
+     }
+    },
+    {
+     "name": "mode",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "focus",
+     "foreignKey": null
+    },
+    {
+     "name": "is_running",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "duration_seconds",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 1500,
+     "foreignKey": null
+    },
+    {
+     "name": "remaining_seconds",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 1500,
+     "foreignKey": null
+    },
+    {
+     "name": "started_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "updated_by",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "announcements": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "body",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "severity",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "info",
+     "foreignKey": null
+    },
+    {
+     "name": "created_by",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "active",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": true,
+     "foreignKey": null
+    },
+    {
+     "name": "expires_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "lesson_completion_appeals": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "lesson_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_slug",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "note",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "status",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "pending",
+     "foreignKey": null
+    },
+    {
+     "name": "admin_note",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "reviewed_by",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "reviewed_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "study_room_messages": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "room_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "study_rooms",
+      "column": "id"
+     }
+    },
+    {
+     "name": "sender_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "is_bot",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "is_pinned",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "image_url",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "reply_to_id",
+     "format": "bigint",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "study_room_messages",
+      "column": "id"
+     }
+    },
+    {
+     "name": "file_url",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "file_name",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_level_exams": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "level",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "score",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "source",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "server_graded",
+     "foreignKey": null
+    },
+    {
+     "name": "passed_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "world_boss_damage_logs": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "boss_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "world_bosses",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "damage_dealt",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "score",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "Reading": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "bookId",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "Book",
+      "column": "id"
+     }
+    },
+    {
+     "name": "code",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "order",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "pageStart",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "pageEnd",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "createdAt",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_profiles": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "email",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "full_name",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "avatar_url",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "bio",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "current_level",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 1,
+     "foreignKey": null
+    },
+    {
+     "name": "total_xp",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "lessons_completed",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "avg_quiz_score",
+     "format": "double precision",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "current_stage",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 1,
+     "foreignKey": null
+    },
+    {
+     "name": "preferred_track",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "personal",
+     "foreignKey": null
+    },
+    {
+     "name": "dark_mode",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "role",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "user",
+     "foreignKey": null
+    },
+    {
+     "name": "is_disabled",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "last_login_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "tour_flags",
+     "format": "jsonb",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "discovered_buildings",
+     "format": "text[]",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "coins",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "last_seen_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "preferred_locale",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "vi",
+     "foreignKey": null
+    },
+    {
+     "name": "learning_track",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "learning_pace_per_day",
+     "format": "smallint",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "learning_pace_days_per_week",
+     "format": "smallint",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_stage_exam_attempts": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "track",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "stage_label",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "score",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "total",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "passed",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "attempted_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_streaks": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "default": "gen_random_uuid()",
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "current_streak",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "longest_streak",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "last_activity_date",
+     "format": "date",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "last_streak_before_break",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "freezes_used",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "last_milestone_notified",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_onboarding": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "default": "gen_random_uuid()",
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "completed",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "selected_track",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "completed_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_equipments": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "slot",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "asset_key",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "equipped_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "direct_messages": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "friendship_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_friendships",
+      "column": "id"
+     }
+    },
+    {
+     "name": "sender_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "read_by_recipient",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_chests": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "source",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "earned_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "opened",
+     "format": "boolean",
+     "notNull": true,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "opened_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "reward_type",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "reward_value",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "xp_earned",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    }
+   ]
+  },
+  "LessonContent": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "moduleId",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "Module",
+      "column": "id"
+     }
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "updatedAt",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "videoUrl",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_career_goals": {
+   "columns": [
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "career_id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "set_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "lesson_manual_flags": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_slug",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_inventories": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "asset_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "gamification_assets",
+      "column": "id"
+     }
+    },
+    {
+     "name": "acquired_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "is_equipped",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_friendships": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_a",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_b",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "requested_by",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "status",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "pending",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "responded_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "documents": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "description",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "category",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "khac",
+     "foreignKey": null
+    },
+    {
+     "name": "file_url",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "file_name",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "file_size",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "download_count",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "uploaded_by",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "status",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "approved",
+     "foreignKey": null
+    },
+    {
+     "name": "image_url",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_challenge_passes": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "score",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "total",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "passed_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "cfa_module_recalls": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "module_id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "recall_stage",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 1,
+     "foreignKey": null
+    },
+    {
+     "name": "next_recall_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "lesson_notes": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_slug",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_progress": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "lesson_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "completed",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": false,
+     "foreignKey": null
+    },
+    {
+     "name": "completed_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "quiz_score",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "time_spent_seconds",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "study_room_quiz_attempts": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "room_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "study_rooms",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "track",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "personal",
+     "foreignKey": null
+    },
+    {
+     "name": "score",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "total",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "percent",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "bug_report_messages": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "bug_report_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "bug_reports",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "sender",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "user_domain_mastery": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "domain_type",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "current_xp",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "current_level",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "default": 1,
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "study_room_checkins": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "room_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "study_rooms",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "day_key",
+     "format": "date",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "CURRENT_DATE",
+     "foreignKey": null
+    },
+    {
+     "name": "source",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "chat",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "world_bosses": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "default": "gen_random_uuid()",
+     "foreignKey": null
+    },
+    {
+     "name": "name",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "description",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "boss_emoji",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "🐉",
+     "foreignKey": null
+    },
+    {
+     "name": "max_hp",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 1000000,
+     "foreignKey": null
+    },
+    {
+     "name": "current_hp",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 1000000,
+     "foreignKey": null
+    },
+    {
+     "name": "start_date",
+     "format": "date",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "end_date",
+     "format": "date",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "is_active",
+     "format": "boolean",
+     "notNull": false,
+     "primaryKey": false,
+     "default": true,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "study_room_notes": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "room_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "study_rooms",
+      "column": "id"
+     }
+    },
+    {
+     "name": "author_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "content",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "color",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "emerald",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "chat_message_reactions": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "message_id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "chat_messages",
+      "column": "id"
+     }
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "emoji",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "Module": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "readingId",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "Reading",
+      "column": "id"
+     }
+    },
+    {
+     "name": "code",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "order",
+     "format": "integer",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "createdAt",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "videoUrl",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "interactiveType",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    }
+   ]
+  },
+  "emergency_funds": {
+   "columns": [
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "monthly_expenses",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "target_months",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 6,
+     "foreignKey": null
+    },
+    {
+     "name": "current_saved",
+     "format": "numeric",
+     "notNull": true,
+     "primaryKey": false,
+     "default": 0,
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "lesson_highlights": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "lesson_id",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "lesson_slug",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "quote",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "kind",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "important",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "report_status",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "open",
+     "foreignKey": null
+    },
+    {
+     "name": "resolved_at",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "resolved_by",
+     "format": "uuid",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    }
+   ]
+  },
+  "Book": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "description",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "coverImage",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "level",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "createdAt",
+     "format": "timestamp with time zone",
+     "notNull": false,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  },
+  "bug_reports": {
+   "columns": [
+    {
+     "name": "id",
+     "format": "bigint",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "title",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "description",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "page_path",
+     "format": "text",
+     "notNull": false,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "status",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "open",
+     "foreignKey": null
+    },
+    {
+     "name": "severity",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "medium",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    },
+    {
+     "name": "updated_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
+  }
+ },
+ "rpcs": [
+  "admin_resync_all_user_stats",
+  "apply_world_boss_damage",
+  "claim_study_room_weekly_reward",
+  "composite_score_components",
+  "get_chat_message_reactions",
+  "get_combined_game_leaderboard",
+  "get_community_contribution_leaderboard",
+  "get_community_feed",
+  "get_community_learning_now",
+  "get_community_post_comments",
+  "get_competency_leaderboard",
+  "get_composite_leaderboard",
+  "get_daily_active_users",
+  "get_dashboard_summary",
+  "get_follow_counts",
+  "get_friends_leaderboard",
+  "get_game_leaderboard",
+  "get_leaderboard",
+  "get_lesson_state",
+  "get_level_stats",
+  "get_my_community_contribution_rank",
+  "get_my_competency_leaderboard_rank",
+  "get_my_composite_rank",
+  "get_my_leaderboard_rank",
+  "get_my_social_graph",
+  "get_my_study_room",
+  "get_my_track_leaderboard_rank",
+  "get_my_xp_rank_since",
+  "get_nav_state",
+  "get_net_worth_percentile",
+  "get_online_count",
+  "get_online_users",
+  "get_study_room_members",
+  "get_study_room_mission_status",
+  "get_study_room_reactions",
+  "get_study_rooms",
+  "get_total_completed_lessons_count",
+  "get_total_user_count",
+  "get_track_leaderboard",
+  "get_user_community_posts",
+  "get_xp_leaderboard_since",
+  "grant_coins",
+  "increment_document_download",
+  "join_or_create_study_room",
+  "join_study_room",
+  "leave_study_room",
+  "mark_admin_chat_messages_seen",
+  "purchase_cosmetic",
+  "purchase_shop_item",
+  "record_quiz_mistake",
+  "record_referral",
+  "record_study_room_checkin",
+  "record_study_room_quiz_attempt",
+  "reward_my_referral",
+  "rls_auto_enable",
+  "search_accounts",
+  "set_study_room_pomodoro",
+  "sync_lessons_atomic",
+  "toggle_chat_message_reaction",
+  "toggle_study_room_message_reaction",
+  "weekly_rematch_study_rooms"
+ ]
+}

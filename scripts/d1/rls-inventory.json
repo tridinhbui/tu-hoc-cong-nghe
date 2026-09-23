@@ -1,0 +1,1761 @@
+{
+  "raw": 197,
+  "unique": 195,
+  "rows": [
+    {
+      "table": "user_profiles",
+      "name": "Users can view their own profile",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "id"
+    },
+    {
+      "table": "user_profiles",
+      "name": "Users can insert their own profile",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "id"
+    },
+    {
+      "table": "user_profiles",
+      "name": "Users can update their own profile",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "id"
+    },
+    {
+      "table": "user_progress",
+      "name": "Users can view their own progress",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_progress",
+      "name": "Users can upsert their own progress",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_progress",
+      "name": "Users can update their own progress",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_stats",
+      "name": "Anyone can view stats for the leaderboard",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "user_stats",
+      "name": "Users can upsert their own stats",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_stats",
+      "name": "Users can update their own stats",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lessons",
+      "name": "Anyone can view lessons",
+      "cmd": "SELECT",
+      "body": "for select to anon, authenticated using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "contact_messages",
+      "name": "Anyone can submit a contact message",
+      "cmd": "INSERT",
+      "body": "for insert to anon, authenticated with check (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "contact_messages",
+      "name": "Admins can read contact messages",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "contact_messages",
+      "name": "Admins can update contact messages",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "contact_messages",
+      "name": "Admins can delete contact messages",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "lesson_unlock_requests",
+      "name": "Users can view their own unlock requests",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_unlock_requests",
+      "name": "Users can create their own unlock requests",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_unlock_requests",
+      "name": "Admins can view all unlock requests",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "lesson_unlock_requests",
+      "name": "Admins can update unlock requests",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "user_lesson_unlocks",
+      "name": "Users can view their own unlocks",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_lesson_unlocks",
+      "name": "Admins can manage all unlocks",
+      "cmd": "ALL",
+      "body": "for all to authenticated using (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')) with check (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "user_onboarding",
+      "name": "Users can view their own onboarding",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_onboarding",
+      "name": "Users can upsert their own onboarding",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_onboarding",
+      "name": "Users can update their own onboarding",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_streaks",
+      "name": "Users can view their own streak",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_streaks",
+      "name": "Users can insert their own streak",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_streaks",
+      "name": "Users can update their own streak",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "documents",
+      "name": "Anyone can view documents",
+      "cmd": "SELECT",
+      "body": "for select to anon, authenticated using (status = 'approved' or uploaded_by = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "uploaded_by"
+    },
+    {
+      "table": "documents",
+      "name": "Admins can insert documents",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "documents",
+      "name": "Admins can update documents",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "documents",
+      "name": "Admins can delete documents",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "lesson_feedback",
+      "name": "Anyone can submit lesson feedback",
+      "cmd": "INSERT",
+      "body": "for insert to anon, authenticated with check (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "lesson_feedback",
+      "name": "Admins can read lesson feedback",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin'))",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "lesson_notes",
+      "name": "Users can read own notes",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_notes",
+      "name": "Users can insert own notes",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_notes",
+      "name": "Users can update own notes",
+      "cmd": "UPDATE",
+      "body": "for update using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_notes",
+      "name": "Users can delete own notes",
+      "cmd": "DELETE",
+      "body": "for delete using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "documents",
+      "name": "Users can submit their own pending documents",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (uploaded_by = auth.uid() and status = 'pending')",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "uploaded_by"
+    },
+    {
+      "table": "storage.objects",
+      "name": "Avatar images are publicly accessible",
+      "cmd": "SELECT",
+      "body": "for select using (bucket_id = 'avatars')",
+      "dynamic": false,
+      "kind": "other",
+      "owner": null
+    },
+    {
+      "table": "storage.objects",
+      "name": "Authenticated users can upload avatars",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (bucket_id = 'avatars')",
+      "dynamic": false,
+      "kind": "other",
+      "owner": null
+    },
+    {
+      "table": "storage.objects",
+      "name": "Authenticated users can update avatars",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (bucket_id = 'avatars')",
+      "dynamic": false,
+      "kind": "other",
+      "owner": null
+    },
+    {
+      "table": "lesson_bookmarks",
+      "name": "Users can read own bookmarks",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_bookmarks",
+      "name": "Users can insert own bookmarks",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_bookmarks",
+      "name": "Users can delete own bookmarks",
+      "cmd": "DELETE",
+      "body": "for delete using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_challenge_passes",
+      "name": "Users can read own challenge passes",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_challenge_passes",
+      "name": "Users can insert own challenge passes",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_quiz_sessions",
+      "name": "Users can read own quiz sessions",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_quiz_sessions",
+      "name": "Users can insert own quiz sessions",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "bug_reports",
+      "name": "Users can view own bug reports",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( user_id = auth.uid() or exists ( select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin' ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "bug_reports",
+      "name": "Users can create own bug reports",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "bug_reports",
+      "name": "Admins can update bug reports",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using ( exists ( select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin' ) ) with check ( exists ( select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin' ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "id"
+    },
+    {
+      "table": "bug_report_messages",
+      "name": "Users can view bug report messages",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.bug_reports b where b.id = bug_report_id and ( b.user_id = auth.uid() or exists ( select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin' ) ) ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "bug_report_messages",
+      "name": "Users can create own bug report messages",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check ( exists ( select 1 from public.bug_reports b where b.id = bug_report_id and b.user_id = auth.uid() ) or exists ( select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin' ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_manual_flags",
+      "name": "Users can read own lesson flags",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_manual_flags",
+      "name": "Users can insert own lesson flags",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_manual_flags",
+      "name": "Users can delete own lesson flags",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_friendships",
+      "name": "Users can view own friendships",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_a or auth.uid() = user_b)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_a"
+    },
+    {
+      "table": "user_friendships",
+      "name": "Users can create own friend requests",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check ( auth.uid() = requested_by and status = 'pending' and (auth.uid() = user_a or auth.uid() = user_b) )",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "requested_by"
+    },
+    {
+      "table": "user_friendships",
+      "name": "Users can update own friendships",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_a or auth.uid() = user_b) with check (auth.uid() = user_a or auth.uid() = user_b)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_a"
+    },
+    {
+      "table": "direct_messages",
+      "name": "Users can view direct messages in own friendships",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.user_friendships f where f.id = direct_messages.friendship_id and f.status = 'accepted' and (auth.uid() = f.user_a or auth.uid() = f.user_b) ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "f"
+    },
+    {
+      "table": "direct_messages",
+      "name": "Users can send direct messages in accepted friendships",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check ( auth.uid() = sender_id and exists ( select 1 from public.user_friendships f where f.id = direct_messages.friendship_id and f.status = 'accepted' and (auth.uid() = f.user_a or auth.uid() = f.user_b) ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "sender_id"
+    },
+    {
+      "table": "user_badges",
+      "name": "Users can view their own badges",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_badges",
+      "name": "Users can earn their own badges",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "net_worth_snapshots",
+      "name": "Users can view their own net worth snapshots",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "net_worth_snapshots",
+      "name": "Users can add their own net worth snapshots",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "net_worth_snapshots",
+      "name": "Users can delete their own net worth snapshots",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "budget_plans",
+      "name": "Users can view their own budget plan",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "budget_plans",
+      "name": "Users can upsert their own budget plan",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "budget_plans",
+      "name": "Users can update their own budget plan",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "emergency_funds",
+      "name": "Users can view their own emergency fund",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "emergency_funds",
+      "name": "Users can upsert their own emergency fund",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "emergency_funds",
+      "name": "Users can update their own emergency fund",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "notification_preferences",
+      "name": "Users can view their own notification preferences",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "notification_preferences",
+      "name": "Users can upsert their own notification preferences",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "notification_preferences",
+      "name": "Users can update their own notification preferences",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "announcements",
+      "name": "Anyone signed in can read announcements",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "announcement_reads",
+      "name": "Users can view their own announcement reads",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "announcement_reads",
+      "name": "Users can mark their own announcement reads",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_progress",
+      "name": "Users can view their own CFA module progress",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_progress",
+      "name": "Users can insert their own CFA module progress",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_progress",
+      "name": "Users can update their own CFA module progress",
+      "cmd": "UPDATE",
+      "body": "for update using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "reading_progress",
+      "name": "Users can view their own reading progress",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "reading_progress",
+      "name": "Users can upsert their own reading progress",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "reading_progress",
+      "name": "Users can update their own reading progress",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_bookmarks",
+      "name": "Users can read own CFA bookmarks",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_bookmarks",
+      "name": "Users can insert own CFA bookmarks",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_bookmarks",
+      "name": "Users can delete own CFA bookmarks",
+      "cmd": "DELETE",
+      "body": "for delete using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_notes",
+      "name": "Users can read own CFA notes",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_notes",
+      "name": "Users can insert own CFA notes",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_notes",
+      "name": "Users can update own CFA notes",
+      "cmd": "UPDATE",
+      "body": "for update using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_notes",
+      "name": "Users can delete own CFA notes",
+      "cmd": "DELETE",
+      "body": "for delete using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_highlights",
+      "name": "Users can read own CFA highlights",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_highlights",
+      "name": "Users can insert own CFA highlights",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_highlights",
+      "name": "Users can delete own CFA highlights",
+      "cmd": "DELETE",
+      "body": "for delete using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_recalls",
+      "name": "Users can view their own CFA recalls",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_recalls",
+      "name": "Users can insert their own CFA recalls",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "cfa_module_recalls",
+      "name": "Users can update their own CFA recalls",
+      "cmd": "UPDATE",
+      "body": "for update using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_highlights",
+      "name": "Users can view their own highlights",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_highlights",
+      "name": "Users can create their own highlights",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_highlights",
+      "name": "Users can delete their own highlights",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "storage.objects",
+      "name": "Chat images are publicly accessible",
+      "cmd": "SELECT",
+      "body": "for select using (bucket_id = 'chat-images')",
+      "dynamic": false,
+      "kind": "other",
+      "owner": null
+    },
+    {
+      "table": "storage.objects",
+      "name": "Authenticated users can upload chat images",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check ( bucket_id = 'chat-images' and (storage.foldername(name))[1] = auth.uid()::text and ( select count(*) from storage.objects o where o.bucket_id = 'chat-images' and (storage.foldername(o.name))[1] = auth.uid()::text ) < 200 )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": null
+    },
+    {
+      "table": "game_sessions",
+      "name": "Users can view their own game sessions",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "game_sessions",
+      "name": "Users can insert their own game sessions",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "feature_click_events",
+      "name": "Anyone can log their own feature click events",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated, anon with check (user_id is null or user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_completion_appeals",
+      "name": "Users can view their own appeals",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_completion_appeals",
+      "name": "Users can submit their own appeals",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id and status = 'pending')",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_room_messages",
+      "name": "Members can view messages in their room",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.study_room_members m where m.room_id = study_room_messages.room_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_room_messages",
+      "name": "Members can send messages in their room",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check ( auth.uid() = sender_id and exists ( select 1 from public.study_room_members m where m.room_id = study_room_messages.room_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "sender_id"
+    },
+    {
+      "table": "community_posts",
+      "name": "Anyone can view non-hidden posts, authors see their own hidden posts",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (is_hidden = false or user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "community_posts",
+      "name": "Users can create their own manual posts",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (user_id = auth.uid() and kind = 'manual')",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "community_posts",
+      "name": "Users can delete their own posts",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "community_post_reactions",
+      "name": "Anyone can view reactions",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "community_post_reactions",
+      "name": "Users can react as themselves",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "community_post_reactions",
+      "name": "Users can remove their own reaction",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "push_subscriptions",
+      "name": "Users can view their own push subscriptions",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "push_subscriptions",
+      "name": "Users can insert their own push subscriptions",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "push_subscriptions",
+      "name": "Users can delete their own push subscriptions",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "%I",
+      "name": "CFA library is readable by signed-in users",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (true)', t )",
+      "dynamic": true,
+      "kind": "dynamic",
+      "owner": null
+    },
+    {
+      "table": "community_post_comments",
+      "name": "Anyone can view comments",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "community_post_comments",
+      "name": "Users can create comments as themselves",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "community_post_comments",
+      "name": "Users can delete their own comments",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "quiz_mistakes",
+      "name": "Users can view their own quiz mistakes",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_room_messages",
+      "name": "Senders can update their room messages",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (sender_id = auth.uid() and is_bot = false) with check ( sender_id = auth.uid() and is_bot = false and char_length(trim(content)) between 1 and 2000 and exists ( select 1 from public.study_room_members m where m.room_id = study_room_messages.room_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "sender_id"
+    },
+    {
+      "table": "study_room_messages",
+      "name": "Senders can recall their room messages",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (sender_id = auth.uid() and is_bot = false)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "sender_id"
+    },
+    {
+      "table": "referrals",
+      "name": "Users can view referrals involving them",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = referrer_id or auth.uid() = referred_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "referrer_id"
+    },
+    {
+      "table": "user_quest_completions",
+      "name": "Users can view their own quest completions",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_quest_completions",
+      "name": "Users can insert their own quest completions",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_flashcards",
+      "name": "Users can view their own flashcards",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_flashcards",
+      "name": "Users can insert/update their own flashcards",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_flashcards",
+      "name": "Users can update their own flashcards",
+      "cmd": "UPDATE",
+      "body": "for update using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_flashcards",
+      "name": "Users can delete their own flashcards",
+      "cmd": "DELETE",
+      "body": "for delete using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_milestone_exams",
+      "name": "Users can view their own milestone completions",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_milestone_exams",
+      "name": "Users can insert their own milestone completions",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "lesson_videos",
+      "name": "lesson_videos_public_read",
+      "cmd": "SELECT",
+      "body": "for select using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "user_milestone_exams",
+      "name": "Users can update their own milestone completions",
+      "cmd": "UPDATE",
+      "body": "for update using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_room_checkins",
+      "name": "Members can view study room checkins",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.study_room_members m where m.room_id = study_room_checkins.room_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_room_notes",
+      "name": "Members can read study room notes",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.study_room_members m where m.room_id = study_room_notes.room_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_room_notes",
+      "name": "Members can create study room notes",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check ( auth.uid() = author_id and exists ( select 1 from public.study_room_members m where m.room_id = study_room_notes.room_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "author_id"
+    },
+    {
+      "table": "study_room_notes",
+      "name": "Authors can delete study room notes",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (auth.uid() = author_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "author_id"
+    },
+    {
+      "table": "study_room_pomodoro",
+      "name": "Members can read study room pomodoro",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.study_room_members m where m.room_id = study_room_pomodoro.room_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_room_quiz_attempts",
+      "name": "Members can read study room quiz attempts",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.study_room_members m where m.room_id = study_room_quiz_attempts.room_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_room_message_reactions",
+      "name": "Members can read study room reactions",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.study_room_messages msg join public.study_room_members m on m.room_id = msg.room_id where msg.id = study_room_message_reactions.message_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_room_reward_claims",
+      "name": "Members can read study room reward claims",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.study_room_members m where m.room_id = study_room_reward_claims.room_id and m.user_id = auth.uid() and m.left_at is null ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_lesson_recalls",
+      "name": "Users can view their own lesson recalls",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_lesson_recalls",
+      "name": "Users can insert/update their own lesson recalls",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_lesson_recalls",
+      "name": "Users can update their own lesson recalls",
+      "cmd": "UPDATE",
+      "body": "for update using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_chests",
+      "name": "Users can view their own chests",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_chests",
+      "name": "Users can earn their own chests",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_chests",
+      "name": "Users can open their own chests",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "study_rooms",
+      "name": "Authenticated users can view study rooms",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "study_room_members",
+      "name": "Authenticated users can view study room members",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "user_career_goals",
+      "name": "Users can view their own career goal",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_career_goals",
+      "name": "Users can set their own career goal",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_career_goals",
+      "name": "Users can update their own career goal",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_career_goals",
+      "name": "Users can clear their own career goal",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "gamification_assets",
+      "name": "Assets readable by everyone",
+      "cmd": "SELECT",
+      "body": "for select using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "user_inventories",
+      "name": "Users can view their own inventory",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_inventories",
+      "name": "Users can manage their own inventory",
+      "cmd": "ALL",
+      "body": "for all using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_domain_mastery",
+      "name": "Users can view their own domain mastery",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_domain_mastery",
+      "name": "Users can update their own domain mastery",
+      "cmd": "ALL",
+      "body": "for all using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "weekly_challenges",
+      "name": "Challenges readable by everyone",
+      "cmd": "SELECT",
+      "body": "for select using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "user_challenge_attempts",
+      "name": "Users can view their own attempts",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_challenge_attempts",
+      "name": "Users can insert their own attempts",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_equipments",
+      "name": "Users can view their own equipments",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_equipments",
+      "name": "Users can manage their own equipments",
+      "cmd": "ALL",
+      "body": "for all using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "world_bosses",
+      "name": "World Bosses readable by everyone",
+      "cmd": "SELECT",
+      "body": "for select using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "world_boss_damage_logs",
+      "name": "Damage logs readable by everyone",
+      "cmd": "SELECT",
+      "body": "for select using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "world_boss_damage_logs",
+      "name": "Users can log their own damage",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "financial_guilds",
+      "name": "Guilds readable by everyone",
+      "cmd": "SELECT",
+      "body": "for select using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "financial_guilds",
+      "name": "Authenticated users can create guilds",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = leader_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "leader_id"
+    },
+    {
+      "table": "guild_members",
+      "name": "Guild members readable by everyone",
+      "cmd": "SELECT",
+      "body": "for select using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "guild_members",
+      "name": "Users can join guilds",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "pvp_duels",
+      "name": "PvP duels readable by everyone",
+      "cmd": "SELECT",
+      "body": "for select using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "pvp_duels",
+      "name": "Users can create pvp duels",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = challenger_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "challenger_id"
+    },
+    {
+      "table": "user_quest_completions",
+      "name": "Users can insert their own zero-XP quest ledger rows",
+      "cmd": "INSERT",
+      "body": "for insert with check (auth.uid() = user_id and xp_earned = 0)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_cv_bullets",
+      "name": "Users can view their own CV bullets",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_cv_bullets",
+      "name": "Users can write their own CV bullets",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_cv_bullets",
+      "name": "Users can edit their own CV bullets",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_cv_bullets",
+      "name": "Users can delete their own CV bullets",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_career_mission_claims",
+      "name": "Users can view their own mission claims",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "chat_message_reactions",
+      "name": "Thread owner can read chat reactions",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using ( exists ( select 1 from public.chat_messages msg where msg.id = chat_message_reactions.message_id and msg.user_id = auth.uid() ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_level_exams",
+      "name": "Users can view their own level exams",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "community_posts",
+      "name": "Users can edit their own manual posts",
+      "cmd": "UPDATE",
+      "body": "for update using ( user_id = auth.uid() and kind = 'manual' and is_hidden = false ) with check ( user_id = auth.uid() and kind = 'manual' and is_hidden = false )",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "community_post_comments",
+      "name": "Users can edit their own comments",
+      "cmd": "UPDATE",
+      "body": "for update using (user_id = auth.uid()) with check (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_ib_question_attempts",
+      "name": "ib_attempts_select_own",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "community_notifications",
+      "name": "Users can view their own notifications",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (recipient_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "recipient_id"
+    },
+    {
+      "table": "community_notifications",
+      "name": "Users can mark their own notifications read",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using (recipient_id = auth.uid()) with check (recipient_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row-multi",
+      "owner": "recipient_id"
+    },
+    {
+      "table": "user_stage_exam_attempts",
+      "name": "stage_exam_attempts_select_own",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "user_follows",
+      "name": "Anyone can see follow relationships",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (true)",
+      "dynamic": false,
+      "kind": "public",
+      "owner": null
+    },
+    {
+      "table": "user_follows",
+      "name": "Users can follow as themselves",
+      "cmd": "INSERT",
+      "body": "for insert to authenticated with check (follower_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "follower_id"
+    },
+    {
+      "table": "user_follows",
+      "name": "Users can unfollow their own follows",
+      "cmd": "DELETE",
+      "body": "for delete to authenticated using (follower_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "follower_id"
+    },
+    {
+      "table": "focus_sessions",
+      "name": "Users read own focus sessions",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "direct_messages",
+      "name": "Recipients can mark direct messages read",
+      "cmd": "UPDATE",
+      "body": "for update to authenticated using ( sender_id <> auth.uid() and exists ( select 1 from public.user_friendships f where f.id = direct_messages.friendship_id and f.status = 'accepted' and (auth.uid() = f.user_a or auth.uid() = f.user_b) ) ) with check ( sender_id <> auth.uid() and exists ( select 1 from public.user_friendships f where f.id = direct_messages.friendship_id and f.status = 'accepted' and (auth.uid() = f.user_a or auth.uid() = f.user_b) ) )",
+      "dynamic": false,
+      "kind": "subquery",
+      "owner": "f"
+    },
+    {
+      "table": "study_room_quiz_attempts",
+      "name": "Users can read own room quiz attempts",
+      "cmd": "SELECT",
+      "body": "for select to authenticated using (user_id = auth.uid())",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    },
+    {
+      "table": "coin_grants",
+      "name": "Users read their own coin grants",
+      "cmd": "SELECT",
+      "body": "for select using (auth.uid() = user_id)",
+      "dynamic": false,
+      "kind": "own-row",
+      "owner": "user_id"
+    }
+  ]
+}

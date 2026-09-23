@@ -1,0 +1,1730 @@
+[
+ {
+  "table": "announcement_reads",
+  "name": "Users can mark their own announcement reads",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260715_announcements.sql"
+ },
+ {
+  "table": "announcement_reads",
+  "name": "Users can view their own announcement reads",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260715_announcements.sql"
+ },
+ {
+  "table": "announcements",
+  "name": "Anyone signed in can read announcements",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260715_announcements.sql"
+ },
+ {
+  "table": "budget_plans",
+  "name": "Users can update their own budget plan",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260714_financial_tools.sql"
+ },
+ {
+  "table": "budget_plans",
+  "name": "Users can upsert their own budget plan",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260714_financial_tools.sql"
+ },
+ {
+  "table": "budget_plans",
+  "name": "Users can view their own budget plan",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260714_financial_tools.sql"
+ },
+ {
+  "table": "bug_report_messages",
+  "name": "Users can create own bug report messages",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "exists (\n      select 1 from public.bug_reports b\n      where b.id = bug_report_id\n        and b.user_id = auth.uid()\n    )\n    or exists (\n      select 1 from public.user_profiles p\n      where p.id = auth.uid() and p.role = 'admin'\n    )",
+  "file": "supabase/migrations/20260713_bug_reports.sql"
+ },
+ {
+  "table": "bug_report_messages",
+  "name": "Users can view bug report messages",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1 from public.bug_reports b\n      where b.id = bug_report_id\n        and (\n          b.user_id = auth.uid()\n          or exists (\n            select 1 from public.user_profiles p\n            where p.id = auth.uid() and p.role = 'admin'\n          )\n        )\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260713_bug_reports.sql"
+ },
+ {
+  "table": "bug_reports",
+  "name": "Admins can update bug reports",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1 from public.user_profiles p\n      where p.id = auth.uid() and p.role = 'admin'\n    )",
+  "check": "exists (\n      select 1 from public.user_profiles p\n      where p.id = auth.uid() and p.role = 'admin'\n    )",
+  "file": "supabase/migrations/20260713_bug_reports.sql"
+ },
+ {
+  "table": "bug_reports",
+  "name": "Users can create own bug reports",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "user_id = auth.uid()",
+  "file": "supabase/migrations/20260713_bug_reports.sql"
+ },
+ {
+  "table": "bug_reports",
+  "name": "Users can view own bug reports",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()\n    or exists (\n      select 1 from public.user_profiles p\n      where p.id = auth.uid() and p.role = 'admin'\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260713_bug_reports.sql"
+ },
+ {
+  "table": "cfa_module_bookmarks",
+  "name": "Users can delete own CFA bookmarks",
+  "cmd": "delete",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_bookmarks",
+  "name": "Users can insert own CFA bookmarks",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_bookmarks",
+  "name": "Users can read own CFA bookmarks",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_highlights",
+  "name": "Users can delete own CFA highlights",
+  "cmd": "delete",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_highlights",
+  "name": "Users can insert own CFA highlights",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_highlights",
+  "name": "Users can read own CFA highlights",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_notes",
+  "name": "Users can delete own CFA notes",
+  "cmd": "delete",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_notes",
+  "name": "Users can insert own CFA notes",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_notes",
+  "name": "Users can read own CFA notes",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_notes",
+  "name": "Users can update own CFA notes",
+  "cmd": "update",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_progress",
+  "name": "Users can insert their own CFA module progress",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260716_cfa_module_progress.sql"
+ },
+ {
+  "table": "cfa_module_progress",
+  "name": "Users can update their own CFA module progress",
+  "cmd": "update",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260716_cfa_module_progress.sql"
+ },
+ {
+  "table": "cfa_module_progress",
+  "name": "Users can view their own CFA module progress",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260716_cfa_module_progress.sql"
+ },
+ {
+  "table": "cfa_module_recalls",
+  "name": "Users can insert their own CFA recalls",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_recalls",
+  "name": "Users can update their own CFA recalls",
+  "cmd": "update",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "cfa_module_recalls",
+  "name": "Users can view their own CFA recalls",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_cfa_module_features.sql"
+ },
+ {
+  "table": "chat_message_reactions",
+  "name": "Thread owner can read chat reactions",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1\n      from public.chat_messages msg\n      where msg.id = chat_message_reactions.message_id\n        and msg.user_id = auth.uid()\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260817_chat_message_reactions.sql"
+ },
+ {
+  "table": "coin_grants",
+  "name": "Users read their own coin grants",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260914_lock_coins_column.sql"
+ },
+ {
+  "table": "community_notifications",
+  "name": "Users can mark their own notifications read",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "recipient_id = auth.uid()",
+  "check": "recipient_id = auth.uid()",
+  "file": "supabase/migrations/20260821_community_notifications.sql"
+ },
+ {
+  "table": "community_notifications",
+  "name": "Users can view their own notifications",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "recipient_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260821_community_notifications.sql"
+ },
+ {
+  "table": "community_post_comments",
+  "name": "Anyone can view comments",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260723_community_feed_threads.sql"
+ },
+ {
+  "table": "community_post_comments",
+  "name": "Users can create comments as themselves",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "user_id = auth.uid()",
+  "file": "supabase/migrations/20260723_community_feed_threads.sql"
+ },
+ {
+  "table": "community_post_comments",
+  "name": "Users can delete their own comments",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260723_community_feed_threads.sql"
+ },
+ {
+  "table": "community_post_comments",
+  "name": "Users can edit their own comments",
+  "cmd": "update",
+  "roles": "",
+  "using": "user_id = auth.uid()",
+  "check": "user_id = auth.uid()",
+  "file": "supabase/migrations/20260819_community_edit_own_content.sql"
+ },
+ {
+  "table": "community_post_reactions",
+  "name": "Anyone can view reactions",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260721_community_feed.sql"
+ },
+ {
+  "table": "community_post_reactions",
+  "name": "Users can react as themselves",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "user_id = auth.uid()",
+  "file": "supabase/migrations/20260721_community_feed.sql"
+ },
+ {
+  "table": "community_post_reactions",
+  "name": "Users can remove their own reaction",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260721_community_feed.sql"
+ },
+ {
+  "table": "community_posts",
+  "name": "Anyone can view non-hidden posts, authors see their own hidden posts",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "is_hidden = false or user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260721_community_feed.sql"
+ },
+ {
+  "table": "community_posts",
+  "name": "Users can create their own manual posts",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "user_id = auth.uid() and kind = 'manual'",
+  "file": "supabase/migrations/20260721_community_feed.sql"
+ },
+ {
+  "table": "community_posts",
+  "name": "Users can delete their own posts",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260721_community_feed.sql"
+ },
+ {
+  "table": "community_posts",
+  "name": "Users can edit their own manual posts",
+  "cmd": "update",
+  "roles": "",
+  "using": "user_id = auth.uid()\n    and kind = 'manual'\n    and is_hidden = false",
+  "check": "user_id = auth.uid()\n    and kind = 'manual'\n    and is_hidden = false",
+  "file": "supabase/migrations/20260819_community_edit_own_content.sql"
+ },
+ {
+  "table": "contact_messages",
+  "name": "Admins can delete contact messages",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "contact_messages",
+  "name": "Admins can read contact messages",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "contact_messages",
+  "name": "Admins can update contact messages",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "contact_messages",
+  "name": "Anyone can submit a contact message",
+  "cmd": "insert",
+  "roles": "anon, authenticated",
+  "using": "",
+  "check": "true",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "direct_messages",
+  "name": "Recipients can mark direct messages read",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "sender_id <> auth.uid()\n    and exists (\n      select 1\n      from public.user_friendships f\n      where f.id = direct_messages.friendship_id\n        and f.status = 'accepted'\n        and (auth.uid() = f.user_a or auth.uid() = f.user_b)\n    )",
+  "check": "sender_id <> auth.uid()\n    and exists (\n      select 1\n      from public.user_friendships f\n      where f.id = direct_messages.friendship_id\n        and f.status = 'accepted'\n        and (auth.uid() = f.user_a or auth.uid() = f.user_b)\n    )",
+  "file": "supabase/migrations/20260910_direct_message_read_state.sql"
+ },
+ {
+  "table": "direct_messages",
+  "name": "Users can send direct messages in accepted friendships",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = sender_id\n    and exists (\n      select 1\n      from public.user_friendships f\n      where f.id = direct_messages.friendship_id\n        and f.status = 'accepted'\n        and (auth.uid() = f.user_a or auth.uid() = f.user_b)\n    )",
+  "file": "supabase/migrations/20260713_social_friends_and_messages.sql"
+ },
+ {
+  "table": "direct_messages",
+  "name": "Users can view direct messages in own friendships",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1\n      from public.user_friendships f\n      where f.id = direct_messages.friendship_id\n        and f.status = 'accepted'\n        and (auth.uid() = f.user_a or auth.uid() = f.user_b)\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260713_social_friends_and_messages.sql"
+ },
+ {
+  "table": "documents",
+  "name": "Admins can delete documents",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "check": "",
+  "file": "supabase/migrations/20260706_documents.sql"
+ },
+ {
+  "table": "documents",
+  "name": "Admins can insert documents",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "file": "supabase/migrations/20260706_documents.sql"
+ },
+ {
+  "table": "documents",
+  "name": "Admins can update documents",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "check": "",
+  "file": "supabase/migrations/20260706_documents.sql"
+ },
+ {
+  "table": "documents",
+  "name": "Anyone can view documents",
+  "cmd": "select",
+  "roles": "anon, authenticated",
+  "using": "status = 'approved' or uploaded_by = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260709_community_documents.sql"
+ },
+ {
+  "table": "documents",
+  "name": "Users can submit their own pending documents",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "uploaded_by = auth.uid() and status = 'pending'",
+  "file": "supabase/migrations/20260709_community_documents.sql"
+ },
+ {
+  "table": "emergency_funds",
+  "name": "Users can update their own emergency fund",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260714_financial_tools.sql"
+ },
+ {
+  "table": "emergency_funds",
+  "name": "Users can upsert their own emergency fund",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260714_financial_tools.sql"
+ },
+ {
+  "table": "emergency_funds",
+  "name": "Users can view their own emergency fund",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260714_financial_tools.sql"
+ },
+ {
+  "table": "feature_click_events",
+  "name": "Anyone can log their own feature click events",
+  "cmd": "insert",
+  "roles": "authenticated, anon",
+  "using": "",
+  "check": "user_id is null or user_id = auth.uid()",
+  "file": "supabase/migrations/20260719_feature_click_events.sql"
+ },
+ {
+  "table": "financial_guilds",
+  "name": "Authenticated users can create guilds",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = leader_id",
+  "file": "supabase/migrations/20260809_guilds_and_pvp.sql"
+ },
+ {
+  "table": "financial_guilds",
+  "name": "Guilds readable by everyone",
+  "cmd": "select",
+  "roles": "",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260809_guilds_and_pvp.sql"
+ },
+ {
+  "table": "focus_sessions",
+  "name": "Users read own focus sessions",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260824_focus_sessions.sql"
+ },
+ {
+  "table": "game_sessions",
+  "name": "Users can insert their own game sessions",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260718_game_sessions.sql"
+ },
+ {
+  "table": "game_sessions",
+  "name": "Users can view their own game sessions",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260718_game_sessions.sql"
+ },
+ {
+  "table": "gamification_assets",
+  "name": "Assets readable by everyone",
+  "cmd": "select",
+  "roles": "",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260806_gamification_system.sql"
+ },
+ {
+  "table": "guild_members",
+  "name": "Guild members readable by everyone",
+  "cmd": "select",
+  "roles": "",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260809_guilds_and_pvp.sql"
+ },
+ {
+  "table": "guild_members",
+  "name": "Users can join guilds",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260809_guilds_and_pvp.sql"
+ },
+ {
+  "table": "lesson_bookmarks",
+  "name": "Users can delete own bookmarks",
+  "cmd": "delete",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260712_lesson_bookmarks.sql"
+ },
+ {
+  "table": "lesson_bookmarks",
+  "name": "Users can insert own bookmarks",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260712_lesson_bookmarks.sql"
+ },
+ {
+  "table": "lesson_bookmarks",
+  "name": "Users can read own bookmarks",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260712_lesson_bookmarks.sql"
+ },
+ {
+  "table": "lesson_completion_appeals",
+  "name": "Users can submit their own appeals",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id and status = 'pending'",
+  "file": "supabase/migrations/20260719_lesson_appeals.sql"
+ },
+ {
+  "table": "lesson_completion_appeals",
+  "name": "Users can view their own appeals",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260719_lesson_appeals.sql"
+ },
+ {
+  "table": "lesson_feedback",
+  "name": "Admins can read lesson feedback",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "check": "",
+  "file": "supabase/migrations/20260708_lesson_feedback.sql"
+ },
+ {
+  "table": "lesson_feedback",
+  "name": "Anyone can submit lesson feedback",
+  "cmd": "insert",
+  "roles": "anon, authenticated",
+  "using": "",
+  "check": "true",
+  "file": "supabase/migrations/20260708_lesson_feedback.sql"
+ },
+ {
+  "table": "lesson_highlights",
+  "name": "Users can create their own highlights",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260717_lesson_highlights.sql"
+ },
+ {
+  "table": "lesson_highlights",
+  "name": "Users can delete their own highlights",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_lesson_highlights.sql"
+ },
+ {
+  "table": "lesson_highlights",
+  "name": "Users can view their own highlights",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260717_lesson_highlights.sql"
+ },
+ {
+  "table": "lesson_manual_flags",
+  "name": "Users can delete own lesson flags",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260713_lesson_manual_flags.sql"
+ },
+ {
+  "table": "lesson_manual_flags",
+  "name": "Users can insert own lesson flags",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260713_lesson_manual_flags.sql"
+ },
+ {
+  "table": "lesson_manual_flags",
+  "name": "Users can read own lesson flags",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260713_lesson_manual_flags.sql"
+ },
+ {
+  "table": "lesson_notes",
+  "name": "Users can delete own notes",
+  "cmd": "delete",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260708_lesson_notes.sql"
+ },
+ {
+  "table": "lesson_notes",
+  "name": "Users can insert own notes",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260708_lesson_notes.sql"
+ },
+ {
+  "table": "lesson_notes",
+  "name": "Users can read own notes",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260708_lesson_notes.sql"
+ },
+ {
+  "table": "lesson_notes",
+  "name": "Users can update own notes",
+  "cmd": "update",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260708_lesson_notes.sql"
+ },
+ {
+  "table": "lesson_unlock_requests",
+  "name": "Admins can update unlock requests",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "lesson_unlock_requests",
+  "name": "Admins can view all unlock requests",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "lesson_unlock_requests",
+  "name": "Users can create their own unlock requests",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "user_id = auth.uid()",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "lesson_unlock_requests",
+  "name": "Users can view their own unlock requests",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "lesson_videos",
+  "name": "lesson_videos_public_read",
+  "cmd": "select",
+  "roles": "",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260729_lesson_videos.sql"
+ },
+ {
+  "table": "lessons",
+  "name": "Anyone can view lessons",
+  "cmd": "select",
+  "roles": "anon, authenticated",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "net_worth_snapshots",
+  "name": "Users can add their own net worth snapshots",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260714_financial_tools.sql"
+ },
+ {
+  "table": "net_worth_snapshots",
+  "name": "Users can delete their own net worth snapshots",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260714_financial_tools.sql"
+ },
+ {
+  "table": "net_worth_snapshots",
+  "name": "Users can view their own net worth snapshots",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260714_financial_tools.sql"
+ },
+ {
+  "table": "notification_preferences",
+  "name": "Users can update their own notification preferences",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260714_notification_preferences.sql"
+ },
+ {
+  "table": "notification_preferences",
+  "name": "Users can upsert their own notification preferences",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260714_notification_preferences.sql"
+ },
+ {
+  "table": "notification_preferences",
+  "name": "Users can view their own notification preferences",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260714_notification_preferences.sql"
+ },
+ {
+  "table": "public",
+  "name": "CFA library is readable by signed-in users",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "true)',\n        t",
+  "check": "",
+  "file": "supabase/migrations/20260722_cfa_tables_rls_and_chat_images_hardening.sql"
+ },
+ {
+  "table": "push_subscriptions",
+  "name": "Users can delete their own push subscriptions",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260721_push_subscriptions.sql"
+ },
+ {
+  "table": "push_subscriptions",
+  "name": "Users can insert their own push subscriptions",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260721_push_subscriptions.sql"
+ },
+ {
+  "table": "push_subscriptions",
+  "name": "Users can view their own push subscriptions",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260721_push_subscriptions.sql"
+ },
+ {
+  "table": "pvp_duels",
+  "name": "PvP duels readable by everyone",
+  "cmd": "select",
+  "roles": "",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260809_guilds_and_pvp.sql"
+ },
+ {
+  "table": "pvp_duels",
+  "name": "Users can create pvp duels",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = challenger_id",
+  "file": "supabase/migrations/20260809_guilds_and_pvp.sql"
+ },
+ {
+  "table": "quiz_mistakes",
+  "name": "Users can view their own quiz mistakes",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260723_quiz_mistakes.sql"
+ },
+ {
+  "table": "reading_progress",
+  "name": "Users can update their own reading progress",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260716_fix_missing_grants_and_constraints.sql"
+ },
+ {
+  "table": "reading_progress",
+  "name": "Users can upsert their own reading progress",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260716_fix_missing_grants_and_constraints.sql"
+ },
+ {
+  "table": "reading_progress",
+  "name": "Users can view their own reading progress",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260716_fix_missing_grants_and_constraints.sql"
+ },
+ {
+  "table": "referrals",
+  "name": "Users can view referrals involving them",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = referrer_id or auth.uid() = referred_id",
+  "check": "",
+  "file": "supabase/migrations/20260725_referrals.sql"
+ },
+ {
+  "table": "storage",
+  "name": "Authenticated users can update avatars",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "bucket_id = 'avatars'",
+  "check": "",
+  "file": "supabase/migrations/20260712_avatars_bucket.sql"
+ },
+ {
+  "table": "storage",
+  "name": "Authenticated users can upload avatars",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "bucket_id = 'avatars'",
+  "file": "supabase/migrations/20260712_avatars_bucket.sql"
+ },
+ {
+  "table": "storage",
+  "name": "Authenticated users can upload chat images",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "bucket_id = 'chat-images'\n    and (storage.foldername(name))[1] = auth.uid()::text\n    and (\n      select count(*)\n      from storage.objects o\n      where o.bucket_id = 'chat-images'\n        and (storage.foldername(o.name))[1] = auth.uid()::text\n    ) < 200",
+  "file": "supabase/migrations/20260722_cfa_tables_rls_and_chat_images_hardening.sql"
+ },
+ {
+  "table": "storage",
+  "name": "Avatar images are publicly accessible",
+  "cmd": "select",
+  "roles": "",
+  "using": "bucket_id = 'avatars'",
+  "check": "",
+  "file": "supabase/migrations/20260712_avatars_bucket.sql"
+ },
+ {
+  "table": "storage",
+  "name": "Chat images are publicly accessible",
+  "cmd": "select",
+  "roles": "",
+  "using": "bucket_id = 'chat-images'",
+  "check": "",
+  "file": "supabase/migrations/20260718_chat_images.sql"
+ },
+ {
+  "table": "study_room_checkins",
+  "name": "Members can view study room checkins",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1 from public.study_room_members m\n      where m.room_id = study_room_checkins.room_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260729_study_group_missions_v1.sql"
+ },
+ {
+  "table": "study_room_members",
+  "name": "Authenticated users can view study room members",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260802_study_squads.sql"
+ },
+ {
+  "table": "study_room_message_reactions",
+  "name": "Members can read study room reactions",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1\n      from public.study_room_messages msg\n      join public.study_room_members m on m.room_id = msg.room_id\n      where msg.id = study_room_message_reactions.message_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260729_study_group_missions_v1.sql"
+ },
+ {
+  "table": "study_room_messages",
+  "name": "Members can send messages in their room",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = sender_id\n    and exists (\n      select 1 from public.study_room_members m\n      where m.room_id = study_room_messages.room_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "file": "supabase/migrations/20260719_study_room_weekly_match_and_chat.sql"
+ },
+ {
+  "table": "study_room_messages",
+  "name": "Members can view messages in their room",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1 from public.study_room_members m\n      where m.room_id = study_room_messages.room_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260719_study_room_weekly_match_and_chat.sql"
+ },
+ {
+  "table": "study_room_messages",
+  "name": "Senders can recall their room messages",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "sender_id = auth.uid() and is_bot = false",
+  "check": "",
+  "file": "supabase/migrations/20260724_study_room_message_actions.sql"
+ },
+ {
+  "table": "study_room_messages",
+  "name": "Senders can update their room messages",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "sender_id = auth.uid() and is_bot = false",
+  "check": "sender_id = auth.uid()\n    and is_bot = false\n    and char_length(trim(content)) between 1 and 2000\n    and\n    exists (\n      select 1 from public.study_room_members m\n      where m.room_id = study_room_messages.room_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "file": "supabase/migrations/20260724_study_room_message_actions.sql"
+ },
+ {
+  "table": "study_room_notes",
+  "name": "Authors can delete study room notes",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "auth.uid() = author_id",
+  "check": "",
+  "file": "supabase/migrations/20260729_study_group_missions_v1.sql"
+ },
+ {
+  "table": "study_room_notes",
+  "name": "Members can create study room notes",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = author_id\n    and exists (\n      select 1 from public.study_room_members m\n      where m.room_id = study_room_notes.room_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "file": "supabase/migrations/20260729_study_group_missions_v1.sql"
+ },
+ {
+  "table": "study_room_notes",
+  "name": "Members can read study room notes",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1 from public.study_room_members m\n      where m.room_id = study_room_notes.room_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260729_study_group_missions_v1.sql"
+ },
+ {
+  "table": "study_room_pomodoro",
+  "name": "Members can read study room pomodoro",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1 from public.study_room_members m\n      where m.room_id = study_room_pomodoro.room_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260729_study_group_missions_v1.sql"
+ },
+ {
+  "table": "study_room_quiz_attempts",
+  "name": "Members can read study room quiz attempts",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1 from public.study_room_members m\n      where m.room_id = study_room_quiz_attempts.room_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260729_study_group_missions_v1.sql"
+ },
+ {
+  "table": "study_room_quiz_attempts",
+  "name": "Users can read own room quiz attempts",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260912_daily_quest_signals.sql"
+ },
+ {
+  "table": "study_room_reward_claims",
+  "name": "Members can read study room reward claims",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "exists (\n      select 1 from public.study_room_members m\n      where m.room_id = study_room_reward_claims.room_id\n        and m.user_id = auth.uid()\n        and m.left_at is null\n    )",
+  "check": "",
+  "file": "supabase/migrations/20260729_study_group_missions_v1.sql"
+ },
+ {
+  "table": "study_rooms",
+  "name": "Authenticated users can view study rooms",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260802_study_squads.sql"
+ },
+ {
+  "table": "user_badges",
+  "name": "Users can earn their own badges",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260713_user_badges.sql"
+ },
+ {
+  "table": "user_badges",
+  "name": "Users can view their own badges",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260713_user_badges.sql"
+ },
+ {
+  "table": "user_career_goals",
+  "name": "Users can clear their own career goal",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260803_user_career_goals.sql"
+ },
+ {
+  "table": "user_career_goals",
+  "name": "Users can set their own career goal",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260803_user_career_goals.sql"
+ },
+ {
+  "table": "user_career_goals",
+  "name": "Users can update their own career goal",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260803_user_career_goals.sql"
+ },
+ {
+  "table": "user_career_goals",
+  "name": "Users can view their own career goal",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260803_user_career_goals.sql"
+ },
+ {
+  "table": "user_career_mission_claims",
+  "name": "Users can view their own mission claims",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260814_career_profile.sql"
+ },
+ {
+  "table": "user_challenge_attempts",
+  "name": "Users can insert their own attempts",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260806_gamification_system.sql"
+ },
+ {
+  "table": "user_challenge_attempts",
+  "name": "Users can view their own attempts",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260806_gamification_system.sql"
+ },
+ {
+  "table": "user_challenge_passes",
+  "name": "Users can read own challenge passes",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260712_user_challenge_passes.sql"
+ },
+ {
+  "table": "user_chests",
+  "name": "Users can earn their own chests",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260731_user_chests.sql"
+ },
+ {
+  "table": "user_chests",
+  "name": "Users can open their own chests",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260731_user_chests.sql"
+ },
+ {
+  "table": "user_chests",
+  "name": "Users can view their own chests",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260731_user_chests.sql"
+ },
+ {
+  "table": "user_cv_bullets",
+  "name": "Users can delete their own CV bullets",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260814_career_profile.sql"
+ },
+ {
+  "table": "user_cv_bullets",
+  "name": "Users can edit their own CV bullets",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260814_career_profile.sql"
+ },
+ {
+  "table": "user_cv_bullets",
+  "name": "Users can view their own CV bullets",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260814_career_profile.sql"
+ },
+ {
+  "table": "user_cv_bullets",
+  "name": "Users can write their own CV bullets",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260814_career_profile.sql"
+ },
+ {
+  "table": "user_domain_mastery",
+  "name": "Users can update their own domain mastery",
+  "cmd": "all",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260806_gamification_system.sql"
+ },
+ {
+  "table": "user_domain_mastery",
+  "name": "Users can view their own domain mastery",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260806_gamification_system.sql"
+ },
+ {
+  "table": "user_equipments",
+  "name": "Users can manage their own equipments",
+  "cmd": "all",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260807_rpg_character_equipment.sql"
+ },
+ {
+  "table": "user_equipments",
+  "name": "Users can view their own equipments",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260807_rpg_character_equipment.sql"
+ },
+ {
+  "table": "user_flashcards",
+  "name": "Users can delete their own flashcards",
+  "cmd": "delete",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260727_user_flashcards.sql"
+ },
+ {
+  "table": "user_flashcards",
+  "name": "Users can insert/update their own flashcards",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260727_user_flashcards.sql"
+ },
+ {
+  "table": "user_flashcards",
+  "name": "Users can update their own flashcards",
+  "cmd": "update",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260727_user_flashcards.sql"
+ },
+ {
+  "table": "user_flashcards",
+  "name": "Users can view their own flashcards",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260727_user_flashcards.sql"
+ },
+ {
+  "table": "user_follows",
+  "name": "Anyone can see follow relationships",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260822_user_follows.sql"
+ },
+ {
+  "table": "user_follows",
+  "name": "Users can follow as themselves",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "follower_id = auth.uid()",
+  "file": "supabase/migrations/20260822_user_follows.sql"
+ },
+ {
+  "table": "user_follows",
+  "name": "Users can unfollow their own follows",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "follower_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260822_user_follows.sql"
+ },
+ {
+  "table": "user_friendships",
+  "name": "Users can create own friend requests",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = requested_by\n    and status = 'pending'\n    and (auth.uid() = user_a or auth.uid() = user_b)",
+  "file": "supabase/migrations/20260713_social_friends_and_messages.sql"
+ },
+ {
+  "table": "user_friendships",
+  "name": "Users can update own friendships",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_a or auth.uid() = user_b",
+  "check": "auth.uid() = user_a or auth.uid() = user_b",
+  "file": "supabase/migrations/20260713_social_friends_and_messages.sql"
+ },
+ {
+  "table": "user_friendships",
+  "name": "Users can view own friendships",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_a or auth.uid() = user_b",
+  "check": "",
+  "file": "supabase/migrations/20260713_social_friends_and_messages.sql"
+ },
+ {
+  "table": "user_ib_question_attempts",
+  "name": "ib_attempts_select_own",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260820_ib_question_attempts.sql"
+ },
+ {
+  "table": "user_inventories",
+  "name": "Users can manage their own inventory",
+  "cmd": "all",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260806_gamification_system.sql"
+ },
+ {
+  "table": "user_inventories",
+  "name": "Users can view their own inventory",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260806_gamification_system.sql"
+ },
+ {
+  "table": "user_lesson_recalls",
+  "name": "Users can insert/update their own lesson recalls",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260729_user_lesson_recalls.sql"
+ },
+ {
+  "table": "user_lesson_recalls",
+  "name": "Users can update their own lesson recalls",
+  "cmd": "update",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260729_user_lesson_recalls.sql"
+ },
+ {
+  "table": "user_lesson_recalls",
+  "name": "Users can view their own lesson recalls",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260729_user_lesson_recalls.sql"
+ },
+ {
+  "table": "user_lesson_unlocks",
+  "name": "Admins can manage all unlocks",
+  "cmd": "all",
+  "roles": "authenticated",
+  "using": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "check": "exists (select 1 from public.user_profiles p where p.id = auth.uid() and p.role = 'admin')",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "user_lesson_unlocks",
+  "name": "Users can view their own unlocks",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "user_level_exams",
+  "name": "Users can view their own level exams",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260818_user_level_exams.sql"
+ },
+ {
+  "table": "user_milestone_exams",
+  "name": "Users can insert their own milestone completions",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260728_user_milestones.sql"
+ },
+ {
+  "table": "user_milestone_exams",
+  "name": "Users can update their own milestone completions",
+  "cmd": "update",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260729_milestone_exams_fixes.sql"
+ },
+ {
+  "table": "user_milestone_exams",
+  "name": "Users can view their own milestone completions",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260728_user_milestones.sql"
+ },
+ {
+  "table": "user_onboarding",
+  "name": "Users can update their own onboarding",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "user_onboarding",
+  "name": "Users can upsert their own onboarding",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "user_id = auth.uid()",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "user_onboarding",
+  "name": "Users can view their own onboarding",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "user_profiles",
+  "name": "Users can insert their own profile",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = id",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "user_profiles",
+  "name": "Users can update their own profile",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = id",
+  "check": "",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "user_profiles",
+  "name": "Users can view their own profile",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = id",
+  "check": "",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "user_progress",
+  "name": "Users can update their own progress",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "user_progress",
+  "name": "Users can upsert their own progress",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "user_progress",
+  "name": "Users can view their own progress",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "user_quest_completions",
+  "name": "Users can insert their own zero-XP quest ledger rows",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id and xp_earned = 0",
+  "file": "supabase/migrations/20260813_harden_quest_and_recall_xp.sql"
+ },
+ {
+  "table": "user_quest_completions",
+  "name": "Users can view their own quest completions",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260726_user_quests.sql"
+ },
+ {
+  "table": "user_quiz_sessions",
+  "name": "Users can read own quiz sessions",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260712_user_quiz_sessions.sql"
+ },
+ {
+  "table": "user_stage_exam_attempts",
+  "name": "stage_exam_attempts_select_own",
+  "cmd": "select",
+  "roles": "",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/20260821_stage_exam_attempts.sql"
+ },
+ {
+  "table": "user_stats",
+  "name": "Anyone can view stats for the leaderboard",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "user_stats",
+  "name": "Users can update their own stats",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "auth.uid() = user_id",
+  "check": "",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "user_stats",
+  "name": "Users can upsert their own stats",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/00000000_base_schema_reconstructed.sql"
+ },
+ {
+  "table": "user_streaks",
+  "name": "Users can insert their own streak",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "user_id = auth.uid()",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "user_streaks",
+  "name": "Users can update their own streak",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "user_streaks",
+  "name": "Users can view their own streak",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "supabase/migrations/20260705_lesson_locking_and_admin.sql"
+ },
+ {
+  "table": "weekly_challenges",
+  "name": "Challenges readable by everyone",
+  "cmd": "select",
+  "roles": "",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260806_gamification_system.sql"
+ },
+ {
+  "table": "world_boss_damage_logs",
+  "name": "Damage logs readable by everyone",
+  "cmd": "select",
+  "roles": "",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260808_world_boss_raid.sql"
+ },
+ {
+  "table": "world_boss_damage_logs",
+  "name": "Users can log their own damage",
+  "cmd": "insert",
+  "roles": "",
+  "using": "",
+  "check": "auth.uid() = user_id",
+  "file": "supabase/migrations/20260808_world_boss_raid.sql"
+ },
+ {
+  "table": "world_bosses",
+  "name": "World Bosses readable by everyone",
+  "cmd": "select",
+  "roles": "",
+  "using": "true",
+  "check": "",
+  "file": "supabase/migrations/20260808_world_boss_raid.sql"
+ }
+]

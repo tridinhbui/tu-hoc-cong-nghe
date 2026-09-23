@@ -1,0 +1,396 @@
+{
+ "announcement_reads": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "announcements": {
+  "kind": "public"
+ },
+ "budget_plans": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "bug_report_messages": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "bug_reports": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "cfa_module_bookmarks": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "cfa_module_highlights": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "cfa_module_notes": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "cfa_module_progress": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "cfa_module_recalls": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "chat_message_reactions": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "coin_grants": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "community_notifications": {
+  "kind": "owner",
+  "column": "recipient_id",
+  "publicRead": false
+ },
+ "community_post_comments": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": true
+ },
+ "community_post_reactions": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": true
+ },
+ "community_posts": {
+  "kind": "manual",
+  "reason": "dieu kien khong quy ve mot cot"
+ },
+ "contact_messages": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "direct_messages": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "documents": {
+  "kind": "manual",
+  "reason": "dieu kien khong quy ve mot cot"
+ },
+ "emergency_funds": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "feature_click_events": {
+  "kind": "manual",
+  "reason": "dieu kien khong quy ve mot cot"
+ },
+ "financial_guilds": {
+  "kind": "owner",
+  "column": "leader_id",
+  "publicRead": true
+ },
+ "focus_sessions": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "game_sessions": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "gamification_assets": {
+  "kind": "public"
+ },
+ "guild_members": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": true
+ },
+ "lesson_bookmarks": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "lesson_completion_appeals": {
+  "kind": "manual",
+  "reason": "dieu kien khong quy ve mot cot"
+ },
+ "lesson_feedback": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "lesson_highlights": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "lesson_manual_flags": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "lesson_notes": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "lesson_unlock_requests": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "lesson_videos": {
+  "kind": "public"
+ },
+ "lessons": {
+  "kind": "public"
+ },
+ "net_worth_snapshots": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "notification_preferences": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "push_subscriptions": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "pvp_duels": {
+  "kind": "owner",
+  "column": "challenger_id",
+  "publicRead": true
+ },
+ "quiz_mistakes": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "reading_progress": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "referrals": {
+  "kind": "manual",
+  "reason": "dieu kien khong quy ve mot cot"
+ },
+ "study_room_checkins": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "study_room_members": {
+  "kind": "public"
+ },
+ "study_room_message_reactions": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "study_room_messages": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "study_room_notes": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "study_room_pomodoro": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "study_room_quiz_attempts": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "study_room_reward_claims": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "study_rooms": {
+  "kind": "public"
+ },
+ "user_badges": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_career_goals": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_career_mission_claims": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_challenge_attempts": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_challenge_passes": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_chests": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_cv_bullets": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_domain_mastery": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_equipments": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_flashcards": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_follows": {
+  "kind": "owner",
+  "column": "follower_id",
+  "publicRead": true
+ },
+ "user_friendships": {
+  "kind": "manual",
+  "reason": "dieu kien khong quy ve mot cot"
+ },
+ "user_ib_question_attempts": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_inventories": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_lesson_recalls": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_lesson_unlocks": {
+  "kind": "manual",
+  "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
+ },
+ "user_level_exams": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_milestone_exams": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_onboarding": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_profiles": {
+  "kind": "owner",
+  "column": "id",
+  "publicRead": false
+ },
+ "user_progress": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_quest_completions": {
+  "kind": "manual",
+  "reason": "dieu kien khong quy ve mot cot"
+ },
+ "user_quiz_sessions": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_stage_exam_attempts": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "user_stats": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": true
+ },
+ "user_streaks": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": false
+ },
+ "weekly_challenges": {
+  "kind": "public"
+ },
+ "world_boss_damage_logs": {
+  "kind": "owner",
+  "column": "user_id",
+  "publicRead": true
+ },
+ "world_bosses": {
+  "kind": "public"
+ },
+ "ModuleQuizHeader": {
+  "kind": "manual",
+  "reason": "khong co chinh sach RLS nao trong migration"
+ },
+ "chat_messages": {
+  "kind": "manual",
+  "reason": "khong co chinh sach RLS nao trong migration"
+ },
+ "leaderboard_cache": {
+  "kind": "manual",
+  "reason": "khong co chinh sach RLS nao trong migration"
+ },
+ "ModuleQuizQuestion": {
+  "kind": "manual",
+  "reason": "khong co chinh sach RLS nao trong migration"
+ },
+ "Reading": {
+  "kind": "manual",
+  "reason": "khong co chinh sach RLS nao trong migration"
+ },
+ "LessonContent": {
+  "kind": "manual",
+  "reason": "khong co chinh sach RLS nao trong migration"
+ },
+ "Module": {
+  "kind": "manual",
+  "reason": "khong co chinh sach RLS nao trong migration"
+ },
+ "Book": {
+  "kind": "manual",
+  "reason": "khong co chinh sach RLS nao trong migration"
+ }
+}

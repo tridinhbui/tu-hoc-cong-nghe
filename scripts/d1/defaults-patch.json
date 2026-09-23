@@ -1,0 +1,6 @@
+{
+ "net_worth_snapshots.assets_breakdown": "'{}'::jsonb",
+ "net_worth_snapshots.liabilities_breakdown": "'{}'::jsonb",
+ "feature_click_events.metadata": "'{}'::jsonb",
+ "user_profiles.tour_flags": "'{}'::jsonb"
+}
