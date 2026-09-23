@@ -16,7 +16,7 @@ export async function sendEmail(
     return { sent: false, reason: "no_api_key" };
   }
 
-  const fromAddress = process.env.RESEND_FROM_EMAIL || "Tự Học Tài Chính <onboarding@resend.dev>";
+  const fromAddress = process.env.RESEND_FROM_EMAIL || "Tự Học Công Nghệ <onboarding@resend.dev>";
 
   try {
     const res = await fetch("https://api.resend.com/emails", {
