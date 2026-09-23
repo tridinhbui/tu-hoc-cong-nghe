@@ -5,20 +5,26 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-// Định khoản một nghiệp vụ, widget cho các bài khai `interactiveType:
+// Ghi hai vế cho một sự kiện, widget cho các bài khai `interactiveType:
 // "journal-entry"`.
 //
-// Ghi sổ kép là thứ không học được bằng cách đọc. Bảng "tài sản tăng ghi Nợ,
-// nợ phải trả tăng ghi Có" đọc xong ai cũng thuộc và không ai dùng được, vì
-// cái phải luyện không phải bảng - mà là hai câu hỏi đặt trước nó: nghiệp vụ
-// này làm cái gì tăng, và cái gì giảm.
+// Sổ sự kiện có cặp là thứ không học được bằng cách đọc. Bảng "chỗ nhận thêm
+// ghi vế Vào, nghĩa vụ tăng ghi vế Ra" đọc xong ai cũng thuộc và không ai dùng
+// được, vì cái phải luyện không phải bảng - mà là hai câu hỏi đặt trước nó:
+// sự kiện này làm chỗ nào nhận thêm, và chỗ nào mất đi.
 //
-// Nên widget bắt chọn hai vế cho một nghiệp vụ có thật, rồi hiện phương trình
-// kế toán trước và sau. Chọn sai thì không chỉ báo sai: nó chỉ ra vế nào lệch
+// Nên widget bắt chọn hai vế cho một sự kiện có thật, rồi hiện bất biến tài
+// nguyên trước và sau. Chọn sai thì không chỉ báo sai: nó chỉ ra vế nào lệch
 // và vì sao, vì "sai rồi" không dạy được gì.
 //
-// Nghiệp vụ thứ ba cố ý là mua tài sản - chỗ người mới sai nhiều nhất khi coi
-// mọi khoản chi tiền là chi phí.
+// Sự kiện thứ hai cố ý là giữ tài nguyên lại làm bộ đệm - chỗ người mới sai
+// nhiều nhất khi coi mọi lần lấy tài nguyên ra là đã tiêu hao nó.
+//
+// Cấu trúc không đổi khi chặng chuyển từ kế toán sang nhật ký hệ thống: vẫn
+// chín sổ chia năm nhóm, vẫn năm sự kiện với hai vế, vẫn cùng một phép tính
+// bất biến. `kind` giữ nguyên tên cũ (asset/liability/equity/revenue/expense)
+// vì nó là VAI TRÒ trong bất biến chứ không phải tên hiện ra màn hình: đang
+// giữ, nợ phải trả, tự có, ghi nhận phục vụ, tiêu hao.
 
 type AccountId = "cash" | "fixedAsset" | "inventory" | "receivable" | "loan" | "payable" | "equity" | "revenue" | "expense";
 
@@ -149,7 +155,7 @@ export default function InteractiveJournalEntry() {
               aria-label={format(dict.journalEntry.transactionAriaLabel, { n: i + 1 })}
               aria-current={i === index}
               className={`h-2 w-6 cursor-pointer rounded-full ${
-                i === index ? "bg-surface-invert" : "bg-stone-200 dark:bg-stone-700"
+                i === index ? "bg-surface-invert" : "bg-surface-sunken"
               }`}
             />
           ))}
@@ -214,7 +220,7 @@ export default function InteractiveJournalEntry() {
             <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">
               {dict.journalEntry.equationTitle}
             </p>
-            <p className="mt-1 font-mono text-[12px] text-stone-700 dark:text-stone-200">
+            <p className="mt-1 font-mono text-[12px] text-ink-body">
               {format(dict.journalEntry.equationFormula, {
                 assetsSign: sign(dict, delta.assets),
                 claimsSign: sign(dict, delta.claims),
@@ -273,7 +279,7 @@ function Side({
   const { t } = useI18n();
   return (
     <label className="block">
-      <span className="text-xs font-bold text-stone-700 dark:text-stone-200">
+      <span className="text-xs font-bold text-ink-body">
         {t.journalEntry.recordSidePrefix} {side}{" "}
         <span className="font-normal text-ink-faint">— {hint}</span>
       </span>

@@ -51,7 +51,7 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   "ai-verify": ["ai", "kiểm chứng", "bịa", "đối chiếu", "soát", "nguồn"],
   sampling: ["chọn mẫu", "mẫu", "kiểm toán", "kiểm soát", "bằng chứng", "rcsa", "kri", "ba tuyến", "gian lận", "tuân thủ", "phát hiện"],
   regression: ["hồi quy", "regression", "p-value", "giả thuyết", "tương quan", "thống kê", "ngoài mẫu", "backtest", "chuỗi thời gian", "hiệp phương sai", "monte carlo", "bootstrap", "bayes", "hợp lý cực đại", "mẫu"],
-  "journal-entry": ["bút toán", "định khoản", "ghi sổ", "sổ cái", "nhật ký", "nợ", "có", "hạch toán", "kế toán", "tài sản", "khoá sổ", "kết chuyển", "đối chiếu"],
+  "journal-entry": ["sự kiện", "nhật ký", "log", "hai vế", "bất biến", "tài nguyên", "kết nối", "hàng đợi", "rò rỉ", "đối chiếu", "truy vết"],
   "excel-shortcuts": ["excel", "phím tắt", "bàn phím"],
   "excel-lookup": ["tra cứu", "index", "match", "xlookup", "vlookup", "sumifs"],
   "excel-three-statement": ["mô hình", "ba báo cáo", "vòng lặp", "liên kết"],

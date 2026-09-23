@@ -56102,192 +56102,202 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1050,
-    "slug": "credit-debit-phan-2",
-    "title": "Bút toán thực chiến: từ quy tắc tới sổ",
-    "subtitle": "Ghi Nợ - Có cho những nghiệp vụ gặp hằng ngày, và một tháng đầu của startup",
-    "duration": "7 phút",
-    "difficulty": "Khó",
-    "emoji": "📗",
-    "openingQuestion": "Bán hàng 200 triệu, khách hẹn tháng sau trả. Ghi bút toán nào?",
+    "track": "professional",
+    "slug": "so-su-kien-thuc-chien",
+    "title": "Sổ sự kiện thực chiến: từ quy tắc tới dòng log",
+    "subtitle": "Ghi hai vế cho những sự kiện gặp hằng ngày, và một giờ đầu của một dịch vụ mới",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🧾",
+    "whyItMatters": "Bài trước nói vì sao mỗi sự kiện phải có hai vế. Bài này là phần khó hơn: nhận ra một việc đang xảy ra thì chạm vào sổ nào. Sai chỗ đó thì log vẫn cân, vẫn không báo gì, và vẫn nói sai về hệ thống.",
+    "openingQuestion": "Xử lý xong 200 lượt gọi, bên gọi chưa nhận kết quả về. Ghi hai vế nào?",
     "openingOptions": [
-      "Chưa ghi gì, đợi tiền về mới ghi doanh thu",
-      "Dr. Phải thu 200, Cr. Doanh thu 200",
-      "Dr. Doanh thu 200, Cr. Phải thu 200",
-      "Dr. Tiền 200, Cr. Doanh thu 200"
+      "Chưa ghi gì, đợi bên gọi xác nhận đã nhận rồi mới ghi",
+      "Vào: Việc đang chờ trả kết quả 200; Ra: Lượt phục vụ đã ghi nhận 200",
+      "Vào: Lượt phục vụ đã ghi nhận 200; Ra: Việc đang chờ trả kết quả về 200",
+      "Vào: Kết nối rảnh 200; Ra: Lượt phục vụ đã ghi nhận 200"
     ],
     "correctOption": 1,
-    "explanation": "Doanh thu được ghi khi nghĩa vụ đã hoàn thành, không phải khi tiền về - đó là nguyên tắc dồn tích. Hàng đã giao nên doanh thu phát sinh ngay, và vì tiền chưa thu, phần đối ứng là một khoản phải thu chứ không phải tiền. Phải thu là tài sản, tài sản tăng thì ghi bên Nợ; doanh thu tăng thì ghi bên Có. Đảo hai vế lại là nói doanh thu giảm và phải thu cũng giảm, tức mô tả một nghiệp vụ hoàn toàn khác. Còn ghi vào tiền thì sai ở chỗ khác: sổ sẽ báo có 200 triệu đang nằm trong quỹ, trong khi thực tế quỹ chưa nhận đồng nào.",
+    "explanation": "Lượt phục vụ được ghi nhận khi công việc hoàn thành, không phải khi bên kia xác nhận - đó là lý do sự kiện hoàn tất phải phát ngay tại chỗ việc kết thúc. Việc đã xong nên lượt phục vụ phát sinh ngay, và vì kết quả chưa được nhận, vế đối ứng là một khoản đang chờ trả chứ không phải kết nối rảnh. Việc đang chờ là thứ đang giữ, và thứ đang giữ tăng thì ghi vế Vào; lượt phục vụ tăng thì ghi vế Ra. Đảo hai vế lại là nói lượt phục vụ giảm và phần đang chờ cũng giảm, tức mô tả một sự kiện hoàn toàn khác. Còn ghi vào kết nối rảnh thì sai ở chỗ khác: bể sẽ báo có 200 kết nối đang rảnh, trong khi thực tế chúng vẫn đang bị giữ.",
     "diagram": [
       {
-        "label": "Xác định tài khoản bị ảnh hưởng",
+        "label": "Xác định những sổ bị chạm tới",
         "arrow": true
       },
       {
-        "label": "Phân loại: tài sản, nợ, vốn, doanh thu hay chi phí",
+        "label": "Phân nhóm: đang giữ, nợ phải trả, tự có, phục vụ hay tiêu hao",
         "arrow": true
       },
       {
-        "label": "Áp quy tắc tăng giảm cho từng loại",
+        "label": "Áp quy tắc tăng giảm cho từng nhóm",
         "arrow": true
       },
       {
-        "label": "Ghi Nợ trước, Có sau, tổng hai bên bằng nhau",
-        "arrow": false
+        "label": "Ghi vế Vào trước, vế Ra sau, tổng hai bên bằng nhau"
       }
     ],
     "interactiveType": "journal-entry",
     "realWorldExample": {
-      "company": "Một startup dịch vụ tháng đầu",
-      "description": "Bốn nghiệp vụ đầu tiên của một công ty mới đã chạm đủ bốn loại tài khoản: cổ đông góp vốn, trả trước tiền thuê, mua thiết bị, và bán dịch vụ thu một nửa. Đọc được bốn bút toán đó là đọc được phần lớn sổ của một doanh nghiệp nhỏ."
+      "company": "Một dịch vụ mới trong giờ đầu",
+      "description": "Bốn sự kiện đầu tiên của một tiến trình vừa khởi động đã chạm đủ năm nhóm sổ: được cấp dung lượng ban đầu, mượn kết nối từ bể chung, dành một phần làm bộ đệm, và phục vụ xong một lô việc mà mới trả được một nửa kết quả. Đọc được bốn cặp vế đó là đọc được phần lớn nhật ký của một dịch vụ nhỏ."
     },
-    "checkpointIndex": 4,
-    "keyTakeaways": [
-      "Ba bước: xác định tài khoản, phân loại, rồi áp quy tắc tăng giảm",
-      "Doanh thu ghi khi hoàn thành nghĩa vụ, không phải khi tiền về",
-      "Bỏ tiền mua tài sản không phát sinh chi phí - chỉ đổi hình thái của cải",
-      "Khấu hao là chi phí không có dòng tiền: ghi Nợ chi phí, Có khấu hao lũy kế"
+    "quiz": [
+      {
+        "question": "Lấy 200 chỗ trong hàng đợi ra để nhận việc, dùng kết nối rảnh. Hai vế đúng là?",
+        "options": [
+          "Vào: Kết nối rảnh trong bể 200; Ra: Chỗ trống trong hàng đợi 200",
+          "Vào: Tài nguyên đã tiêu hao 200; Ra: Kết nối rảnh 200",
+          "Vào: Chỗ trống trong hàng đợi 200; Ra: Kết nối rảnh 200",
+          "Vào: Chỗ trống trong hàng đợi 200; Ra: Lượt phục vụ 200"
+        ],
+        "correct": 2,
+        "explanation": "Chỗ trong hàng đợi là thứ đang giữ và nó tăng, nên ghi vế Vào. Kết nối rảnh cũng là thứ đang giữ và nó giảm, nên ghi vế Ra. Đây là sự kiện trao đổi giữa hai thứ cùng nhóm đang giữ, nên tổng đang giữ không đổi một chút nào."
+      },
+      {
+        "question": "Tiến trình mượn 500 kết nối từ bể dùng chung của cụm. Hai vế đúng là?",
+        "options": [
+          "Vào: Kết nối mượn 500; Ra: Kết nối rảnh 500",
+          "Vào: Kết nối rảnh 500; Ra: Dung lượng tự có 500",
+          "Vào: Lượt phục vụ đã ghi nhận 500; Ra: Kết nối mượn từ bể chung 500",
+          "Vào: Kết nối rảnh 500; Ra: Kết nối mượn từ bể chung 500"
+        ],
+        "correct": 3,
+        "explanation": "Kết nối rảnh là thứ đang giữ và nó tăng, nên ghi vế Vào. Nghĩa vụ trả lại bể chung cũng tăng, nên ghi vế Ra. Phần đang giữ và phần nợ cùng tăng - kết nối mượn không làm dung lượng tự có lớn thêm chút nào."
+      },
+      {
+        "question": "Xử lý xong một lô việc, cháy 100 đơn vị tài nguyên không thu lại được. Hai vế?",
+        "options": [
+          "Vào: Tài nguyên đã tiêu hao 100; Ra: Kết nối rảnh 100",
+          "Vào: Kết nối rảnh trong bể 100; Ra: Tài nguyên đã tiêu hao 100",
+          "Vào: Dung lượng tự có 100; Ra: Kết nối rảnh 100",
+          "Vào: Việc đã nhận chưa trả 100; Ra: Lượt phục vụ 100"
+        ],
+        "correct": 0,
+        "explanation": "Tiêu hao tăng nên ghi vế Vào. Kết nối rảnh giảm nên ghi vế Ra. Tiêu hao làm phần tự có co lại, và đây là dạng sự kiện duy nhất trong bài làm điều đó."
+      },
+      {
+        "question": "Nhận trước 50 việc từ hàng đợi, chưa xử lý gì cả. Hai vế đúng là?",
+        "options": [
+          "Vào: Chỗ trống trong hàng đợi 50; Ra: Lượt phục vụ đã ghi nhận 50",
+          "Vào: Chỗ trống trong hàng đợi 50; Ra: Việc đã nhận, chưa trả kết quả 50",
+          "Vào: Lượt phục vụ đã ghi nhận 50; Ra: Chỗ trống trong hàng đợi 50",
+          "Vào: Chỗ trống trong hàng đợi 50; Ra: Dung lượng tự có 50"
+        ],
+        "correct": 1,
+        "explanation": "Chưa xử lý thì chưa có lượt phục vụ nào để ghi nhận. Vế Ra là một nghĩa vụ - việc đã nhận và phải trả kết quả về sau. Tới lúc xử lý xong mới ghi tiếp cặp Vào: Việc đã nhận chưa trả; Ra: Lượt phục vụ đã ghi nhận."
+      },
+      {
+        "question": "Hết một chu kỳ thống kê, các bộ đếm phục vụ và tiêu hao được xử lý thế nào?",
+        "options": [
+          "Giữ nguyên giá trị tích luỹ sang chu kỳ sau",
+          "Chuyển thẳng giá trị sang bảng trạng thái tức thời của tiến trình",
+          "Đưa về 0, phần chênh lệch cộng vào dung lượng tự có",
+          "Xoá hoàn toàn khỏi hệ thống đo đạc và lưu trữ"
+        ],
+        "correct": 2,
+        "explanation": "Các bộ đếm phục vụ và tiêu hao là bộ đếm theo chu kỳ, không phải trạng thái tức thời: chúng được chốt rồi đưa về 0, và phần chênh lệch giữa hai bên dồn vào dung lượng tự có. Sổ đang giữ và sổ nợ thì ngược lại - chúng mang giá trị sang chu kỳ sau vì chúng mô tả thứ đang thật sự tồn tại."
+      }
     ],
-    "summary": {
-      "keyIdea": "Mỗi nghiệp vụ là một câu hỏi: giá trị đi từ tài khoản nào sang tài khoản nào",
-      "commonMistake": "Ghi doanh thu theo lúc tiền về, và coi mọi khoản chi ra là chi phí",
-      "action": "Lấy năm nghiệp vụ gần nhất của một doanh nghiệp bạn biết và tự viết hai vế cho từng cái"
-    },
-    "application": {
-      "title": "Tự viết sổ một tháng",
-      "message": "Lấy một tháng chi tiêu của chính bạn, coi mình là một doanh nghiệp một người, rồi viết hai vế cho mỗi khoản. Chỗ bạn thấy khó phân loại thường là chỗ ranh giới giữa tài sản và chi phí.",
-      "secondary": "Nếu tổng hai bên không cân, lỗi gần như luôn nằm ở một nghiệp vụ bạn chỉ ghi một vế."
-    },
+    "keyTakeaways": [
+      "Ba bước: xác định sổ bị chạm, phân nhóm, rồi áp quy tắc tăng giảm",
+      "Lượt phục vụ ghi nhận khi việc xong, không phải khi bên gọi xác nhận",
+      "Lấy tài nguyên ra giữ không phải là tiêu hao - chỉ đổi hình thái đang giữ",
+      "Bộ đếm theo chu kỳ chốt rồi về 0; sổ đang giữ và sổ nợ mang sang chu kỳ sau"
+    ],
     "practicePrompt": {
-      "question": "Doanh nghiệp trả trước 120 triệu tiền thuê văn phòng cho 6 tháng. Bút toán lúc trả là gì?",
+      "question": "Tiến trình giữ trước 120 kết nối cho sáu chu kỳ tới, lấy từ bể rảnh. Hai vế lúc giữ là gì?",
       "options": [
-        "Dr. Chi phí thuê 120, Cr. Tiền 120",
-        "Dr. Trả trước 120, Cr. Tiền 120",
-        "Dr. Tiền 120, Cr. Trả trước 120",
-        "Dr. Chi phí thuê 20, Cr. Tiền 120"
+        "Vào: Tài nguyên đã tiêu hao 120; Ra: Kết nối rảnh 120",
+        "Vào: Bộ đệm thường trú 120; Ra: Kết nối rảnh 120",
+        "Vào: Kết nối rảnh 120; Ra: Bộ đệm thường trú 120",
+        "Vào: Tài nguyên đã tiêu hao 20; Ra: Kết nối rảnh 120"
       ],
       "correct": 1,
-      "explanation": "Lúc trả tiền, công ty chưa dùng chỗ ở nào cả - nó vừa mua quyền dùng văn phòng trong sáu tháng tới, và quyền đó là một tài sản. Nên bên Nợ là khoản trả trước, không phải chi phí. Chi phí chỉ phát sinh dần: mỗi tháng chuyển 20 triệu từ trả trước sang chi phí thuê. Ghi hết 120 triệu vào chi phí ngay là dồn sáu tháng vào một tháng, làm lợi nhuận tháng đó thấp giả và năm tháng sau cao giả. Phương án cuối lại làm hai bên không cân."
+      "explanation": "Lúc giữ, tiến trình chưa dùng chu kỳ nào cả - nó vừa đặt chỗ cho sáu chu kỳ tới, và chỗ đặt trước đó là một thứ đang giữ. Nên vế Vào là bộ đệm thường trú, không phải tiêu hao. Tiêu hao chỉ phát sinh dần: mỗi chu kỳ chuyển 20 từ bộ đệm sang tiêu hao. Ghi hết 120 vào tiêu hao ngay là dồn sáu chu kỳ vào một chu kỳ, làm phần tự có của chu kỳ đó thấp giả và năm chu kỳ sau cao giả. Phương án cuối lại làm hai bên không cân."
+    },
+    "summary": {
+      "keyIdea": "Mỗi sự kiện là một câu hỏi: tài nguyên đi từ sổ nào sang sổ nào",
+      "commonMistake": "Ghi nhận phục vụ lúc bên gọi xác nhận, và coi mọi lần lấy tài nguyên ra là tiêu hao",
+      "action": "Lấy năm sự kiện gần nhất trong nhật ký của một dịch vụ bạn biết và tự viết hai vế cho từng cái"
+    },
+    "application": {
+      "title": "Tự ghi sổ một giờ",
+      "message": "Lấy một giờ nhật ký của một dịch vụ bạn đang chạy, coi tiến trình đó là một cái sổ, rồi viết hai vế cho mỗi sự kiện. Chỗ bạn thấy khó phân nhóm thường là chỗ ranh giới giữa đang giữ và đã tiêu hao.",
+      "secondary": "Nếu tổng hai bên không cân, lỗi gần như luôn nằm ở một sự kiện bạn chỉ ghi một vế - và đó cũng chính là hình dạng của một chỗ rò rỉ tài nguyên."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Quy tắc Nợ - Có thì ngắn, nhưng chỗ vấp không nằm ở quy tắc: nó nằm ở việc nhận ra một nghiệp vụ đang chạm vào tài khoản nào. Phần này đi qua những nghiệp vụ gặp hằng ngày và một tháng đầu tiên của một công ty mới."
+        "text": "Quy tắc hai vế thì ngắn, nhưng chỗ vấp không nằm ở quy tắc: nó nằm ở việc nhận ra một sự kiện đang chạm vào sổ nào. Phần này đi qua những sự kiện gặp hằng ngày và một giờ đầu tiên của một dịch vụ vừa khởi động."
       },
       {
         "type": "callout",
         "label": "Phần nền đã có ở bài trước",
-        "text": "Vì sao mọi nghiệp vụ có hai vế, quy tắc tăng giảm của từng loại tài khoản, và vì sao tổng luôn cân - tất cả nằm ở bài Ghi sổ kép. Ở đây chỉ áp chúng vào việc thật."
+        "text": "Vì sao mỗi sự kiện phải có hai vế, quy tắc tăng giảm của từng nhóm sổ, và vì sao tổng luôn cân - tất cả nằm ở bài Ghi log có cấu trúc. Ở đây chỉ áp chúng vào việc thật."
       },
       {
         "type": "heading",
-        "text": "Ba bước cho mọi nghiệp vụ"
+        "text": "Ba bước cho mọi sự kiện"
       },
       {
         "type": "list",
         "items": [
-          "Xác định những tài khoản bị ảnh hưởng: tiền, hàng tồn kho, doanh thu, khoản vay, và tương tự",
-          "Phân loại từng tài khoản là tài sản, nợ phải trả, vốn chủ, doanh thu hay chi phí",
-          "Áp quy tắc tăng giảm rồi ghi Nợ trước, Có sau, kiểm tổng hai bên bằng nhau"
+          "Xác định những sổ bị chạm tới: kết nối rảnh, hàng đợi, lượt phục vụ, kết nối mượn, và tương tự",
+          "Phân nhóm từng sổ là đang giữ, nợ phải trả, tự có, ghi nhận phục vụ hay tiêu hao",
+          "Áp quy tắc tăng giảm rồi ghi vế Vào trước, vế Ra sau, kiểm tổng hai bên bằng nhau"
         ]
       },
       {
         "type": "heading",
-        "text": "Bốn nghiệp vụ mẫu"
+        "text": "Bốn sự kiện mẫu"
       },
       {
         "type": "list",
         "items": [
-          "Mua tài sản trả tiền ngay 500 triệu: Nợ tài sản cố định, Có tiền - hai tài sản đổi chỗ, tổng tài sản không đổi",
-          "Bán hàng cho khách nợ 200 triệu: Nợ phải thu, Có doanh thu - ghi doanh thu dù tiền chưa về",
-          "Thu tiền khách nợ 200 triệu: Nợ tiền, Có phải thu - chỉ là chuyển đổi giữa hai tài sản, không có doanh thu mới",
-          "Khấu hao 50 triệu: Nợ chi phí khấu hao, Có khấu hao lũy kế - chi phí phát sinh mà không có đồng tiền nào đi ra"
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Hai nghiệp vụ giữa là chỗ dễ nhầm nhất, vì cùng con số 200 triệu xuất hiện hai lần. Lần đầu tạo ra doanh thu, lần sau thì không - nếu ghi doanh thu ở cả hai lần, sổ sẽ báo doanh thu gấp đôi thực tế."
-      },
-      {
-        "type": "heading",
-        "text": "Tháng đầu của một startup"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Cổ đông góp 2 tỷ: Nợ tiền 2 tỷ, Có vốn góp 2 tỷ",
-          "Trả trước 6 tháng tiền thuê 120 triệu: Nợ trả trước 120, Có tiền 120",
-          "Mua laptop 50 triệu: Nợ thiết bị 50, Có tiền 50",
-          "Bán dịch vụ 300 triệu, thu ngay một nửa: Nợ tiền 150 và Nợ phải thu 150, Có doanh thu 300"
+          "Dành 500 kết nối rảnh làm bộ đệm: Vào bộ đệm thường trú, Ra kết nối rảnh - hai thứ đang giữ đổi chỗ, tổng đang giữ không đổi",
+          "Hoàn tất 200 lượt gọi, bên gọi chưa nhận: Vào việc đang chờ trả, Ra lượt phục vụ - ghi nhận dù kết quả chưa được nhận",
+          "Bên gọi nhận xong 200 kết quả: Vào kết nối rảnh, Ra việc đang chờ trả - chỉ là chuyển đổi giữa hai thứ đang giữ, không có lượt phục vụ mới",
+          "Bộ đệm bị đẩy ra 50: Vào tài nguyên đã tiêu hao, Ra bộ đệm thường trú - tiêu hao phát sinh mà không kết nối nào đi ra"
         ]
       },
       {
         "type": "paragraph",
-        "text": "Nghiệp vụ cuối cho thấy một vế Có có thể đối ứng với hai vế Nợ. Điều phải cân là tổng hai bên, không phải số dòng: 150 cộng 150 bằng 300."
+        "text": "Hai sự kiện giữa là chỗ dễ nhầm nhất, vì cùng con số 200 xuất hiện hai lần. Lần đầu tạo ra lượt phục vụ, lần sau thì không - nếu ghi lượt phục vụ ở cả hai lần, bảng thống kê sẽ báo lưu lượng gấp đôi thực tế. Đây là dạng lỗi đếm hai lần phổ biến nhất trong đo đạc hệ thống, và nó luôn làm con số đẹp lên chứ không xấu đi."
+      },
+      {
+        "type": "heading",
+        "text": "Giờ đầu của một dịch vụ mới"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Được cấp dung lượng ban đầu 2.000: Vào kết nối rảnh 2.000, Ra dung lượng tự có 2.000",
+          "Giữ trước 120 kết nối cho sáu chu kỳ tới: Vào bộ đệm thường trú 120, Ra kết nối rảnh 120",
+          "Mượn 50 kết nối từ bể chung: Vào kết nối rảnh 50, Ra kết nối mượn từ bể chung 50",
+          "Phục vụ xong 300 lượt, mới trả được một nửa kết quả: Vào kết nối rảnh 150 và Vào việc đang chờ trả 150, Ra lượt phục vụ 300"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Sự kiện cuối cho thấy một vế Ra có thể đối ứng với hai vế Vào. Thứ phải cân là tổng hai bên, không phải số dòng log: 150 cộng 150 bằng 300."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Sổ cân",
+          "text": "Tổng vế Vào bằng tổng vế Ra ở mọi thời điểm. Lệch cân gần như luôn nghĩa là một sự kiện chỉ được ghi một vế - và một sự kiện chỉ có vế Vào mà không có vế Ra chính là hình dạng của một chỗ rò rỉ tài nguyên."
+        },
+        "right": {
+          "label": "Sổ cân mà vẫn sai",
+          "text": "Ghi đúng số nhưng sai sổ thì tổng vẫn khớp. Bảng thống kê sẽ nói một câu chuyện mạch lạc về một hệ thống không tồn tại, và không có phép kiểm tự động nào bắt được - chỉ có người đọc biết dịch vụ này làm gì mới thấy."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Sổ tự phát hiện lỗi được là nhờ ràng buộc tổng Nợ bằng tổng Có, nên lệch cân gần như luôn nghĩa là một nghiệp vụ chỉ được ghi một vế.",
-          "Nhưng cân không có nghĩa là đúng: ghi sai tài khoản mà đúng số thì sổ vẫn cân."
+          "Sổ tự phát hiện lỗi được là nhờ ràng buộc tổng hai vế bằng nhau, nên lệch cân gần như luôn nghĩa là một sự kiện chỉ được ghi một nửa.",
+          "Nhưng cân không có nghĩa là đúng: ghi sai sổ mà đúng số thì tổng vẫn cân."
         ]
-      }
-    ],
-    "track": "bonus",
-    "quiz": [
-      {
-        "question": "Mua hàng tồn kho 200 triệu, trả tiền mặt. Bút toán đúng là?",
-        "options": [
-          "Dr. Cash 200M / Cr. Inventory 200M",
-          "Dr. Inventory 200M / Cr. Cash 200M",
-          "Dr. Expense 200M / Cr. Cash 200M",
-          "Dr. Inventory 200M / Cr. Revenue 200M"
-        ],
-        "correct": 1,
-        "explanation": "Inventory (Asset) tăng → Dr. Inventory. Cash (Asset) giảm → Cr. Cash. Đây là giao dịch trao đổi giữa 2 tài sản."
-      },
-      {
-        "question": "Công ty vay ngân hàng 500 triệu, tiền vào tài khoản. Bút toán?",
-        "options": [
-          "Dr. Loan 500M / Cr. Cash 500M",
-          "Dr. Cash 500M / Cr. Loan Payable 500M",
-          "Dr. Revenue 500M / Cr. Loan Payable 500M",
-          "Dr. Cash 500M / Cr. Equity 500M"
-        ],
-        "correct": 1,
-        "explanation": "Cash (Asset) tăng → Dr. Cash. Loan Payable (Liability) tăng → Cr. Loan Payable. Nợ và tài sản cùng tăng."
-      },
-      {
-        "question": "Trả lương nhân viên 100 triệu bằng tiền mặt. Bút toán?",
-        "options": [
-          "Dr. Cash 100M / Cr. Salary Expense 100M",
-          "Dr. Salary Expense 100M / Cr. Cash 100M",
-          "Dr. Equity 100M / Cr. Cash 100M",
-          "Dr. Salary Payable 100M / Cr. Revenue 100M"
-        ],
-        "correct": 1,
-        "explanation": "Salary Expense (Expense) tăng → Dr. Salary Expense. Cash (Asset) giảm → Cr. Cash. Chi phí làm giảm lợi nhuận → giảm Equity."
-      },
-      {
-        "question": "Khách hàng đặt cọc trước 50 triệu, chưa giao hàng. Bút toán?",
-        "options": [
-          "Dr. Cash 50M / Cr. Revenue 50M",
-          "Dr. Cash 50M / Cr. Deferred Revenue 50M",
-          "Dr. Revenue 50M / Cr. Cash 50M",
-          "Dr. Cash 50M / Cr. Equity 50M"
-        ],
-        "correct": 1,
-        "explanation": "Chưa giao hàng = chưa earn revenue. Ghi Deferred Revenue (Liability) - nghĩa vụ giao hàng trong tương lai. Khi giao hàng mới Dr. Deferred Revenue / Cr. Revenue."
-      },
-      {
-        "question": "Sau khi close sổ cuối năm, Revenue và Expense accounts được xử lý thế nào?",
-        "options": [
-          "Giữ nguyên số dư sang năm sau",
-          "Đưa về 0, lãi lỗ chuyển vào lợi nhuận giữ lại",
-          "Chuyển thẳng số dư sang bảng cân đối kế toán",
-          "Xoá hoàn toàn khỏi hệ thống sổ sách"
-        ],
-        "correct": 1,
-        "explanation": "Closing entries: Dr. Revenue / Cr. Income Summary; Dr. Income Summary / Cr. Retained Earnings (nếu lãi). Revenue và Expense là temporary accounts - reset mỗi năm."
       }
     ]
   },

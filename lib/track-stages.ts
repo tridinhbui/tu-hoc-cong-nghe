@@ -1074,17 +1074,17 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // Kho có rất nhiều bài dạy ĐỌC báo cáo tài chính và không bài nào dạy
-      // báo cáo đó được LẬP ra thế nào - quét bút toán, sổ cái, hạch toán ra
-      // 0 bài. Ảnh hưởng xa hơn nghề kế toán: người phân tích chưa từng thấy
-      // hai vế của một định khoản sẽ không giải thích được vì sao lãi tăng mà
-      // tiền không tăng.
+      // Kho có rất nhiều bài dạy ĐỌC bảng thống kê và không bài nào dạy con số
+      // trên bảng ấy được GHI RA thế nào - quét sổ sự kiện, ghi hai vế, đối
+      // chiếu ra 0 bài. Ảnh hưởng xa hơn nghề vận hành: người đọc dashboard mà
+      // chưa từng thấy hai vế của một sự kiện sẽ không giải thích được vì sao
+      // số lượt phục vụ tăng mà người dùng vẫn đang chờ.
       label: "Chặng 41",
       name: "Nhật ký hệ thống và sổ sự kiện",
       days: [1721, 1725] as [number, number],
-      // 1050 (credit-debit-phan-2) là trang viết tay được kéo về corpus. Nó là
-      // phần ÁP DỤNG của bài 1721 (Ghi sổ kép) chứ không dạy lại quy tắc, nên
-      // thuộc đúng chặng này dù id nằm ngoài dải 1721-1725.
+      // 1050 (so-su-kien-thuc-chien) là trang viết tay được kéo về corpus. Nó
+      // là phần ÁP DỤNG của bài 1721 (Ghi log có cấu trúc) chứ không dạy lại
+      // quy tắc, nên thuộc đúng chặng này dù id nằm ngoài dải 1721-1725.
       extraLessonIds: [1050],
       available: true,
       isNew: true,
