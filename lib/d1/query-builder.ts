@@ -1,4 +1,5 @@
 import type { D1Database } from "@cloudflare/workers-types";
+import { createD1Rpc } from "./rpc-dispatch";
 
 /**
  * Bộ dựng truy vấn D1 nhại bề mặt API của supabase-js.
@@ -431,5 +432,13 @@ export function createD1Client(
       }
       return new Builder(db, table, types, policy, actor, predicates[table]);
     },
+
+    /**
+     * 53 hàm RPC, điều phối trong ./rpc-dispatch.ts.
+     *
+     * Ở đây chỉ nối vào chứ không dựng: bảng ánh xạ tên→hàm và thứ tự tham số
+     * là việc riêng, và nó có bộ kiểm riêng đối chiếu với chữ ký thật.
+     */
+    rpc: createD1Rpc(db, actor),
   };
 }
