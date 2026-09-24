@@ -1,0 +1,169 @@
+{
+  "id": 71,
+  "slug": "co-tinh-nang",
+  "title": "Cờ tính năng: tách lúc triển khai khỏi lúc phát hành",
+  "subtitle": "Mã lên máy chủ hôm nay, người dùng thấy nó vào tuần sau - hai việc khác nhau.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🚩",
+  "track": "professional",
+  "whyItMatters": "Khi triển khai và phát hành là một, mọi quyết định kinh doanh đều phải chờ một lần triển khai, và mọi sự cố đều phải chữa bằng một lần triển khai nữa. Tách hai việc ra là biến việc bật tắt tính năng thành thao tác vài giây.",
+  "openingQuestion": "Cờ tính năng cho phép làm gì mà triển khai thông thường không làm được?",
+  "openingOptions": [
+    "Bật tắt tính năng cho người dùng mà không cần triển khai lại",
+    "Triển khai mã lên máy chủ mà không cần dừng dịch vụ",
+    "Chạy nhiều phiên bản của ứng dụng cùng lúc trên một máy chủ duy nhất",
+    "Quay lui về phiên bản cũ khi bản mới gặp sự cố"
+  ],
+  "correctOption": 0,
+  "explanation": "Cờ tính năng tách hai việc vốn hay bị gộp: đưa mã lên máy chủ, và cho người dùng thấy tính năng. Mã có thể nằm trên máy chủ nhiều tuần trong trạng thái tắt, được kiểm thử ở môi trường thật, rồi bật cho một phần trăm người dùng, rồi mở rộng dần. Khi có vấn đề, tắt cờ mất vài giây thay vì chờ một lần triển khai. Triển khai không gián đoạn và quay lui là những kỹ thuật khác, giải bài toán khác, và chúng bổ sung cho cờ chứ không thay thế.",
+  "diagram": [
+    {
+      "label": "Gộp mã vào nhánh chính, cờ đang tắt",
+      "arrow": true
+    },
+    {
+      "label": "Triển khai lên máy chủ, người dùng chưa thấy gì",
+      "arrow": true
+    },
+    {
+      "label": "Bật cho một phần nhỏ người dùng",
+      "arrow": true
+    },
+    {
+      "label": "Mở rộng dần, hoặc tắt trong vài giây nếu hỏng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bật cho một phần trăm",
+    "description": "Một tính năng mới được bật cho một phần trăm người dùng trong hai ngày, đủ để thấy nó làm tăng tỷ lệ lỗi ở một nhóm thiết bị cũ. Tắt cờ, sửa, bật lại. Nếu phát hành cho tất cả cùng lúc thì đó đã là một sự cố diện rộng."
+  },
+  "keyTakeaways": [
+    "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra.",
+    "Tắt cờ mất vài giây, còn quay lui một lần triển khai mất nhiều phút.",
+    "Mỗi cờ là một nhánh mã phải bảo trì, nên phải có kế hoạch xoá.",
+    "Cờ để lâu quá thành nợ: số tổ hợp trạng thái tăng theo cấp số nhân."
+  ],
+  "summary": {
+    "keyIdea": "Cờ tính năng biến việc bật tắt tính năng thành thao tác vài giây thay vì một lần triển khai.",
+    "formula": "Triển khai sớm, phát hành khi sẵn sàng, tắt ngay khi hỏng.",
+    "commonMistake": "Thêm cờ mà không định ngày xoá, rồi mã đầy những nhánh không ai dám bỏ."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Đếm số cờ tính năng đang có trong hệ thống của bạn và xem cái cũ nhất được thêm khi nào. Cờ nào đã bật cho toàn bộ người dùng trên ba tháng là cờ nên được xoá cùng nhánh mã cũ."
+  },
+  "practicePrompt": {
+    "question": "Hệ thống của bạn có ba mươi cờ tính năng, cái cũ nhất từ hai năm trước. Vấn đề là gì?",
+    "options": [
+      "Số tổ hợp trạng thái quá lớn để kiểm thử hay suy luận được",
+      "Việc đọc giá trị của các cờ làm ứng dụng chạy chậm đi rõ rệt",
+      "Kho lưu cấu hình cờ sẽ đầy và không thêm được cờ mới",
+      "Người dùng bị chia thành quá nhiều nhóm khác nhau"
+    ],
+    "correct": 0,
+    "explanation": "Ba mươi cờ độc lập là hơn một tỷ tổ hợp trạng thái, và không bộ kiểm thử nào phủ nổi. Trên thực tế nghĩa là không ai còn biết chắc hệ thống hành xử ra sao với một cấu hình cụ thể, nên mỗi cờ để quên là một khoản nợ có lãi."
+  },
+  "quiz": [
+    {
+      "question": "Cờ tính năng tách bạch hai việc nào?",
+      "options": [
+        "Đưa mã lên máy chủ và cho người dùng thấy tính năng",
+        "Viết mã tính năng và viết bài kiểm thử cho nó",
+        "Triển khai lên môi trường thử và lên môi trường thật",
+        "Gộp mã vào nhánh chính và dựng sản phẩm mới"
+      ],
+      "correct": 0,
+      "explanation": "Triển khai là thao tác kỹ thuật, phát hành là quyết định về sản phẩm. Gộp chúng làm một nghĩa là mọi quyết định kinh doanh đều phải chờ lịch triển khai."
+    },
+    {
+      "question": "Ưu điểm của tắt cờ so với quay lui một lần triển khai là gì?",
+      "options": [
+        "Nhanh hơn nhiều và chỉ ảnh hưởng đúng tính năng có vấn đề",
+        "Không cần ai phê duyệt trước khi thực hiện thao tác",
+        "Giữ lại được dữ liệu mà tính năng mới đã ghi xuống",
+        "Không làm gián đoạn những phiên làm việc đang diễn ra"
+      ],
+      "correct": 0,
+      "explanation": "Quay lui đưa cả hệ thống về bản trước, gồm cả những thay đổi khác vốn đang chạy tốt. Tắt cờ chỉ chạm đúng phần hỏng và có hiệu lực gần như tức thì."
+    },
+    {
+      "question": "Chi phí của mỗi cờ tính năng là gì?",
+      "options": [
+        "Thêm một nhánh mã phải bảo trì và phải kiểm thử",
+        "Thêm một lần gọi mạng mỗi khi người dùng tải trang",
+        "Thêm một bảng dữ liệu phải sao lưu và khôi phục",
+        "Thêm một bước phê duyệt trước mỗi lần triển khai"
+      ],
+      "correct": 0,
+      "explanation": "Cờ nào cũng nhân đôi số đường đi có thể có trong mã. Vài cờ thì quản được; vài chục cờ thì không ai suy luận nổi hệ thống đang hành xử ra sao."
+    },
+    {
+      "question": "Vì sao nên bật tính năng dần theo tỷ lệ người dùng?",
+      "options": [
+        "Để phát hiện vấn đề khi nó mới ảnh hưởng một nhóm nhỏ",
+        "Để giảm tải cho máy chủ trong giai đoạn đầu phát hành",
+        "Để nhóm được bật trước có thời gian làm quen tính năng",
+        "Để đội có thêm thời gian hoàn thiện phần còn lại của mã"
+      ],
+      "correct": 0,
+      "explanation": "Một phần trăm người dùng đủ để lộ ra những vấn đề mà môi trường thử nghiệm không có, trong khi thiệt hại nếu hỏng vẫn nhỏ. Giảm tải là lợi ích phụ chứ không phải mục đích."
+    },
+    {
+      "question": "Cờ nào nên được xoá đi?",
+      "options": [
+        "Cờ đã bật cho toàn bộ người dùng và ổn định từ lâu",
+        "Cờ đang được dùng để bật tắt theo từng khách hàng",
+        "Cờ mới được thêm vào trong lần triển khai gần đây nhất",
+        "Cờ dùng để tắt nhanh khi hệ thống gặp quá tải"
+      ],
+      "correct": 0,
+      "explanation": "Cờ đã bật hết và ổn định thì nhánh tắt của nó là mã chết, và giữ lại chỉ làm tăng số tổ hợp phải suy luận. Cờ vận hành hay cờ theo khách hàng thì có vai trò lâu dài, khác hẳn."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai câu hỏi hay bị coi là một: mã đã lên máy chủ chưa, và người dùng đã thấy tính năng chưa. Tách chúng ra là một trong những thay đổi rẻ nhất mà có tác động lớn nhất tới cách một đội làm việc."
+    },
+    {
+      "type": "heading",
+      "text": "Mã lên trước, phát hành sau"
+    },
+    {
+      "type": "paragraph",
+      "text": "Với cờ tính năng, mã mới vào nhánh chính và lên máy chủ trong trạng thái tắt. Nó chạy trong môi trường thật, chịu tải thật, nhưng không người dùng nào thấy. Khi sản phẩm quyết định phát hành, đó là một thao tác cấu hình chứ không phải một lần triển khai - và khi có vấn đề, tắt lại cũng nhanh như vậy."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Không có cờ",
+        "text": "Phát hành nghĩa là triển khai. Muốn tắt thì phải quay lui cả bản, kéo theo mọi thay đổi khác đang chạy tốt trong bản đó."
+      },
+      "right": {
+        "label": "Có cờ",
+        "text": "Phát hành là đổi một giá trị. Tắt chỉ chạm đúng tính năng có vấn đề, và có hiệu lực trong vài giây."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Cờ là nợ có lãi",
+      "text": "Mỗi cờ nhân đôi số đường đi trong mã. Ba mươi cờ là hơn một tỷ tổ hợp trạng thái - không bộ kiểm thử nào phủ nổi, và không ai còn suy luận được hệ thống hành xử ra sao. Thêm cờ thì phải kèm ngày xoá."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ghi ngày dự kiến xoá ngay khi tạo cờ, và coi đó là một việc phải làm chứ không phải mong muốn.",
+        "Bật dần theo tỷ lệ người dùng thay vì bật hết một lần.",
+        "Phân biệt cờ phát hành - sống ngắn - với cờ vận hành, thứ có vai trò lâu dài."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tách triển khai khỏi phát hành biến những quyết định đáng sợ thành những thao tác nhỏ có thể đảo ngược.",
+        "Bài sau nói về việc đưa bản mới lên mà người dùng không nhận ra có gì đang thay đổi."
+      ]
+    }
+  ]
+}

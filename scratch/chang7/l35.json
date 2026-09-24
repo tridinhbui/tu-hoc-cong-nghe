@@ -1,0 +1,173 @@
+{
+  "id": 35,
+  "slug": "giao-dich-va-tinh-toan-ven",
+  "title": "Giao dịch: hoặc cả hai cùng xảy ra, hoặc không có gì xảy ra",
+  "subtitle": "Trừ tiền tài khoản này rồi hỏng trước khi cộng vào tài khoản kia là tình huống không được phép tồn tại.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🔒",
+  "track": "professional",
+  "whyItMatters": "Mọi nghiệp vụ đáng kể đều gồm nhiều thao tác ghi phải cùng đúng: trừ kho và tạo đơn, ghi nợ và ghi có, tạo tài khoản và gửi thư kích hoạt. Không có giao dịch, mỗi lần hỏng giữa chừng để lại một trạng thái nửa vời mà không ai thiết kế cho nó.",
+  "openingQuestion": "Chuyển tiền gồm trừ ở tài khoản A và cộng vào tài khoản B. Máy chủ hỏng ngay sau bước trừ. Điều gì nên xảy ra?",
+  "openingOptions": [
+    "Phần trừ bị huỷ bỏ, số dư quay về đúng như trước khi bắt đầu",
+    "Phần trừ được giữ lại và hệ thống ghi nhận một khoản chờ xử lý",
+    "Phần cộng được thực hiện bù khi máy chủ khởi động lại xong",
+    "Số dư hai bên được tính lại từ đầu dựa trên lịch sử giao dịch cũ"
+  ],
+  "correctOption": 0,
+  "explanation": "Một giao dịch là một nhóm thao tác được coi như một thao tác duy nhất: hoặc toàn bộ có hiệu lực, hoặc không cái nào có hiệu lực. Khi máy chủ hỏng giữa chừng, cơ sở dữ liệu quay lui mọi thay đổi chưa được xác nhận, nên số dư trở về đúng trạng thái trước đó. Giữ lại phần trừ rồi hy vọng bù sau là tự tạo ra một trạng thái nửa vời, và trạng thái ấy tồn tại bao lâu thì không ai kiểm soát được.",
+  "diagram": [
+    {
+      "label": "Bắt đầu giao dịch",
+      "arrow": true
+    },
+    {
+      "label": "Trừ tài khoản A - chưa xác nhận",
+      "arrow": true
+    },
+    {
+      "label": "Hỏng trước khi cộng vào B",
+      "arrow": true
+    },
+    {
+      "label": "Quay lui toàn bộ - như chưa từng bắt đầu"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bút toán kép trong kế toán",
+    "description": "Kế toán ghi sổ theo nguyên tắc mọi bút toán đều có hai vế cân nhau, và một vế không bao giờ được ghi riêng. Giao dịch trong cơ sở dữ liệu là cách thực thi đúng nguyên tắc ấy bằng máy: hai vế cùng vào sổ, hoặc không vế nào vào cả."
+  },
+  "keyTakeaways": [
+    "Giao dịch biến nhiều thao tác ghi thành một đơn vị được ăn cả hoặc bỏ cả.",
+    "Thay đổi chỉ có hiệu lực với người khác sau khi được xác nhận.",
+    "Mức cô lập quyết định một giao dịch nhìn thấy gì từ giao dịch đang chạy song song.",
+    "Gửi thư hay gọi dịch vụ ngoài không quay lui được, nên đừng đặt trong giao dịch."
+  ],
+  "summary": {
+    "keyIdea": "Giao dịch bảo đảm không tồn tại trạng thái nửa vời khi có sự cố giữa chừng.",
+    "formula": "Cùng thành công, hoặc cùng không xảy ra.",
+    "commonMistake": "Đặt lệnh gọi ra bên ngoài vào trong giao dịch, rồi quay lui mà thư đã gửi rồi."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm trong mã một chỗ ghi vào hai bảng liên tiếp nhau. Tự hỏi: nếu chương trình dừng đúng giữa hai lệnh đó thì dữ liệu còn lại trông ra sao? Nếu câu trả lời khó chịu, chỗ đó cần một giao dịch."
+  },
+  "practicePrompt": {
+    "question": "Hai người cùng đặt mua sản phẩm cuối cùng trong kho vào đúng một lúc, và cả hai đơn đều thành công. Nguyên nhân là gì?",
+    "options": [
+      "Cả hai cùng đọc số tồn là 1 trước khi có bên nào kịp ghi giảm",
+      "Cơ sở dữ liệu đã cộng nhầm số tồn kho khi xử lý hai đơn liên tiếp",
+      "Giao dịch của người đặt sau đã ghi đè lên giao dịch của người đặt trước",
+      "Chỉ mục trên cột tồn kho chưa cập nhật kịp nên đọc ra giá trị cũ"
+    ],
+    "correct": 0,
+    "explanation": "Đây là tình huống đọc rồi ghi kinh điển: cả hai đọc thấy còn hàng, cả hai kết luận là bán được, rồi cả hai cùng ghi. Cách sửa là khoá dòng tồn kho khi đọc hoặc dùng cập nhật có điều kiện, để bên thứ hai buộc phải thấy kết quả của bên thứ nhất."
+  },
+  "quiz": [
+    {
+      "question": "Một giao dịch bảo đảm điều gì?",
+      "options": [
+        "Mọi thao tác trong nhóm cùng có hiệu lực hoặc cùng không",
+        "Mọi thao tác trong nhóm được thực hiện theo đúng thứ tự đã viết",
+        "Mọi thao tác trong nhóm chạy nhanh hơn",
+        "Mọi thao tác trong nhóm được ghi lại vào nhật ký để kiểm tra sau"
+      ],
+      "correct": 0,
+      "explanation": "Tính chất cốt lõi là được ăn cả hoặc bỏ cả. Thứ tự thực hiện vẫn theo mã bạn viết, còn tốc độ thì giao dịch thường làm chậm hơn một chút chứ không nhanh hơn."
+    },
+    {
+      "question": "Vì sao không nên gửi thư điện tử ở giữa một giao dịch cơ sở dữ liệu?",
+      "options": [
+        "Vì thư đã gửi thì không quay lui được khi giao dịch bị huỷ",
+        "Vì gửi thư luôn lâu hơn giới hạn giao dịch",
+        "Vì máy chủ thư không hiểu giao thức đó",
+        "Vì nội dung thư chứa dữ liệu chưa xác nhận"
+      ],
+      "correct": 0,
+      "explanation": "Cơ sở dữ liệu quay lui được thay đổi của chính nó, nhưng không quay lui được thứ đã rời khỏi hệ thống. Cách làm đúng là ghi ý định gửi vào bảng trong giao dịch, rồi một tiến trình khác đọc bảng đó và gửi sau khi giao dịch đã xác nhận."
+    },
+    {
+      "question": "Mức cô lập của giao dịch quyết định điều gì?",
+      "options": [
+        "Một giao dịch nhìn thấy gì từ các giao dịch đang chạy song song",
+        "Số lượng giao dịch tối đa được phép chạy cùng lúc trên một bảng dữ liệu",
+        "Thời gian tối đa một giao dịch được phép mở trước khi bị huỷ bỏ",
+        "Việc giao dịch được ghi vào nhật ký trước hay là sau khi xác nhận"
+      ],
+      "correct": 0,
+      "explanation": "Mức cô lập càng chặt thì càng ít bị ảnh hưởng bởi giao dịch khác, đổi lại càng nhiều tranh chấp và chờ đợi. Chọn mức nào là đánh đổi giữa tính đúng đắn và thông lượng."
+    },
+    {
+      "question": "Tình huống đọc rồi ghi gây lỗi ở chỗ nào?",
+      "options": [
+        "Giá trị đã bị bên khác đổi trong khoảng giữa lúc đọc và lúc ghi",
+        "Giá trị đọc lên bị sai kiểu nên phép ghi sau đó cũng ghi sai theo",
+        "Phép đọc luôn lấy dữ liệu từ bản sao nên không bao giờ mới nhất",
+        "Phép ghi bị cơ sở dữ liệu hoãn lại cho tới khi mọi phép đọc xong"
+      ],
+      "correct": 0,
+      "explanation": "Quyết định ghi dựa trên một giá trị đã cũ tại thời điểm ghi. Khoá dòng khi đọc, hoặc viết cập nhật có điều kiện kèm giá trị cũ, buộc bên tới sau phải thấy thay đổi của bên tới trước."
+    },
+    {
+      "question": "Vì sao giao dịch nên càng ngắn càng tốt?",
+      "options": [
+        "Vì giao dịch mở lâu giữ khoá lâu và chặn những giao dịch khác",
+        "Vì giao dịch quá một phút sẽ bị tự huỷ",
+        "Vì nó chiếm quá nhiều dung lượng nhật ký",
+        "Vì giao dịch dài không quay lui hết được"
+      ],
+      "correct": 0,
+      "explanation": "Khoá được giữ tới lúc xác nhận, nên một giao dịch ôm thêm việc chậm sẽ bắt mọi bên khác xếp hàng. Đó là lý do mọi việc không cần thiết - gọi mạng, xử lý tệp - phải nằm ngoài giao dịch."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Một nghiệp vụ hiếm khi là một thao tác ghi. Nó thường là ba, bốn thao tác phải cùng đúng, và câu hỏi thật là chuyện gì xảy ra nếu chương trình dừng ở giữa."
+    },
+    {
+      "type": "heading",
+      "text": "Trạng thái nửa vời"
+    },
+    {
+      "type": "paragraph",
+      "text": "Không có giao dịch, mỗi lệnh ghi có hiệu lực ngay khi chạy xong. Dừng giữa chừng nghĩa là dữ liệu ở lại trong một trạng thái không ai thiết kế: tiền đã trừ mà chưa cộng, kho đã giảm mà đơn chưa tạo. Những trạng thái đó không có mã nào xử lý, vì không ai hình dung chúng khi viết."
+    },
+    {
+      "type": "callout",
+      "label": "Ranh giới của việc quay lui",
+      "text": "Cơ sở dữ liệu quay lui được thay đổi của chính nó. Nó không thu hồi được thư đã gửi, không huỷ được lệnh đã đẩy sang đối tác. Mọi việc chạm ra thế giới bên ngoài phải nằm ngoài giao dịch, và được kích hoạt sau khi giao dịch xác nhận."
+    },
+    {
+      "type": "heading",
+      "text": "Khi hai người cùng chạm vào một dòng"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Khoá bi quan",
+        "text": "Khoá dòng ngay khi đọc, ai tới sau phải chờ. Chắc chắn đúng, phù hợp khi tranh chấp nhiều, đổi lại giảm thông lượng."
+      },
+      "right": {
+        "label": "Kiểm tra lạc quan",
+        "text": "Không khoá, nhưng khi ghi thì kèm điều kiện giá trị chưa đổi. Nhanh khi ít tranh chấp, đổi lại phải viết mã thử lại khi điều kiện không khớp."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Gói mọi nhóm thao tác ghi phải cùng đúng vào một giao dịch.",
+        "Giữ giao dịch ngắn: không gọi mạng, không xử lý tệp, không chờ người dùng.",
+        "Với thao tác dựa trên giá trị vừa đọc, dùng khoá dòng hoặc cập nhật có điều kiện."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Giao dịch không làm hệ thống nhanh hơn. Nó làm cho những trạng thái không nên tồn tại thì không tồn tại.",
+        "Bài sau nhìn sang chất lượng của chính dữ liệu: thiếu, trùng, sai - và cách đo trước khi tin vào bất kỳ con số nào."
+      ]
+    }
+  ]
+}

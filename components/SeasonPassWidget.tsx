@@ -61,7 +61,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
       {/* Top Banner */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
-          <span className="text-[10px] font-black uppercase tracking-widest text-warn bg-warn-soft/40 px-2.5 py-0.5 rounded-full border border-amber-200 dark:border-amber-900">
+          <span className="text-[10px] font-black uppercase tracking-widest text-warn bg-amber-50 dark:bg-amber-950/40 px-2.5 py-0.5 rounded-full border border-warn-line">
             {t.seasonPass.badge}
           </span>
           <h3 className="text-lg font-black text-stone-900 dark:text-white mt-1">
@@ -72,7 +72,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/30 border border-amber-300 dark:border-amber-700 px-4 py-2 rounded-2xl text-right">
+        <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/30 border border-warn-line-mid px-4 py-2 rounded-2xl text-right">
           <span className="text-[9px] font-black uppercase text-warn block">{t.seasonPass.levelLabel}</span>
           <span className="text-xl font-black text-warn">{format(t.seasonPass.levelValue, { level: currentPassLevel })}</span>
         </div>
@@ -98,7 +98,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
                 ? "bg-stone-50 dark:bg-stone-950/40 border-line opacity-70"
                 : r.isUnlocked
                 ? "bg-gradient-to-b from-amber-50/80 to-white dark:from-amber-950/30 dark:to-stone-900 border-amber-400 dark:border-amber-700 shadow-md"
-                : "bg-surface/40 border-line opacity-60"
+                : "bg-stone-50 dark:bg-stone-900/40 border-line opacity-60"
             }`}
           >
             <div className="flex items-center justify-between mb-3">
@@ -128,7 +128,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
                 <span className="text-xl">{r.vipEmoji}</span>
                 <div className="min-w-0 flex-1">
                   <span className="text-[9px] font-black uppercase text-warn block">{t.seasonPass.vipLabel}</span>
-                  <p className="text-xs font-black text-amber-700 dark:text-amber-300 truncate">{r.vipReward}</p>
+                  <p className="text-xs font-black text-warn-strong truncate">{r.vipReward}</p>
                 </div>
               </div>
             </div>
@@ -139,10 +139,10 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
               disabled={!r.isUnlocked || r.isClaimed}
               className={`w-full py-2 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1 cursor-pointer ${
                 r.isClaimed
-                  ? "bg-stone-200 dark:bg-stone-800 text-stone-400 cursor-default"
+                  ? "bg-surface-sunken text-stone-400 cursor-default"
                   : r.isUnlocked
                   ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-stone-950 hover:scale-105 shadow-md"
-                  : "bg-stone-200 dark:bg-stone-800 text-stone-400 cursor-not-allowed"
+                  : "bg-surface-sunken text-stone-400 cursor-not-allowed"
               }`}
             >
               {r.isClaimed ? t.seasonPass.claimed : r.isUnlocked ? t.seasonPass.claim : t.seasonPass.locked}

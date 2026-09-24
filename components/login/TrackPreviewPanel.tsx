@@ -70,7 +70,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
               )}
               {isActive && (
                 <motion.div
-                  className="absolute inset-x-2 bottom-0 h-1 rounded-t-full bg-emerald-400 dark:bg-emerald-500"
+                  className="absolute inset-x-2 bottom-0 h-1 rounded-t-full bg-emerald-400 dark:bg-emerald-600"
                   layoutId={compact ? "track-indicator-compact" : "track-indicator"}
                   transition={{ type: "spring", stiffness: 380, damping: 28 }}
                 />
@@ -95,13 +95,13 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-300">
               {t.trackPanel.standardised}
             </span>
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-warn bg-warn-soft/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900/50">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-warn bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900/50">
               <Flame className="w-3 h-3 text-amber-500" />
               {format(t.trackPanel.xpPerLesson, { xp: XP_PER_LESSON })}
             </span>
           </div>
 
-          <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed font-medium">
+          <p className="text-xs sm:text-sm text-ink-soft leading-relaxed font-medium">
             {track.description}
           </p>
 

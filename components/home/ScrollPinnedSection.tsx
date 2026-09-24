@@ -48,7 +48,7 @@ export default function ScrollPinnedSection({
               {title}
             </h2>
             {description && (
-              <p className="mt-2 text-xs sm:text-sm text-stone-600 dark:text-stone-400 font-medium leading-relaxed max-w-xl">
+              <p className="mt-2 text-xs sm:text-sm text-ink-soft font-medium leading-relaxed max-w-xl">
                 {description}
               </p>
             )}

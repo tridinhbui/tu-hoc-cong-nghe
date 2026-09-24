@@ -1,0 +1,169 @@
+{
+  "id": 171,
+  "slug": "phat-hien-va-tuyen-bo-su-co",
+  "title": "Tuyên bố sự cố: ngưỡng thấp thì tốt hơn",
+  "subtitle": "Chi phí của một lần tuyên bố nhầm là vài phút. Chi phí của việc tuyên bố muộn là cả sự cố.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📣",
+  "track": "professional",
+  "whyItMatters": "Phần lớn sự cố kéo dài không phải vì khó sửa mà vì mất bốn mươi phút để mọi người đồng ý rằng đang có sự cố. Hạ ngưỡng tuyên bố là cải thiện rẻ nhất trong toàn bộ quy trình ứng phó.",
+  "openingQuestion": "Bạn thấy dấu hiệu bất thường nhưng chưa chắc có phải sự cố hay không. Nên làm gì?",
+  "openingOptions": [
+    "Tuyên bố sự cố, vì đóng lại sớm rẻ hơn phát hiện muộn",
+    "Điều tra thêm mười lăm phút rồi quyết định dựa trên dữ liệu",
+    "Hỏi ý kiến một đồng nghiệp có kinh nghiệm trước khi tuyên bố",
+    "Theo dõi thêm cho tới khi có người dùng đầu tiên phàn nàn"
+  ],
+  "correctOption": 0,
+  "explanation": "Tuyên bố rồi đóng lại sau mười phút vì hoá ra không có gì tốn của đội mười phút. Phát hiện muộn bốn mươi phút thì cộng bốn mươi phút vào thời gian ngừng của mọi người dùng, và trong khoảng ấy sự cố còn kịp lan rộng. Điều tra thêm và hỏi đồng nghiệp đều là việc nên làm - nhưng làm chúng sau khi đã tuyên bố, chứ không phải như điều kiện để tuyên bố.",
+  "diagram": [
+    {
+      "label": "Tuyên bố nhầm: mất vài phút của đội",
+      "arrow": true
+    },
+    {
+      "label": "Tuyên bố muộn: cộng thẳng vào thời gian ngừng",
+      "arrow": true
+    },
+    {
+      "label": "Hai chi phí lệch nhau rất xa",
+      "arrow": true
+    },
+    {
+      "label": "Nên đặt ngưỡng tuyên bố thấp"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bốn mươi phút để đồng ý rằng đang cháy",
+    "description": "Trong nhiều dòng thời gian sự cố, khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố dài hơn khoảng cách từ lúc tuyên bố tới lúc sửa xong. Phần lâu nhất là phần bàn xem đây có phải sự cố không."
+  },
+  "keyTakeaways": [
+    "Đặt ngưỡng tuyên bố thấp, vì hai loại chi phí lệch nhau rất xa.",
+    "Ai cũng được quyền tuyên bố, không cần chờ phê duyệt.",
+    "Tuyên bố mở ra kênh liên lạc và phân vai, chứ không phải kết luận nguyên nhân.",
+    "Đóng nhầm nhiều lần là dấu hiệu tốt, không phải dấu hiệu xấu."
+  ],
+  "summary": {
+    "keyIdea": "Tuyên bố sớm và sẵn sàng đóng lại, thay vì chờ chắc chắn rồi mới bắt đầu.",
+    "formula": "Nghi ngờ thì tuyên bố.",
+    "commonMistake": "Coi việc tuyên bố là một kết luận cần chứng minh trước."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Xem lại ba sự cố gần nhất và đo khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố. Nếu nó dài hơn một phần tư tổng thời gian thì ngưỡng của đội đang quá cao."
+  },
+  "practicePrompt": {
+    "question": "Vì sao mọi người đều nên có quyền tuyên bố sự cố?",
+    "options": [
+      "Vì chờ phê duyệt cộng thêm thời gian vào đúng lúc đắt nhất",
+      "Vì người quản lý thường không nắm được chi tiết kỹ thuật",
+      "Vì như vậy trách nhiệm được chia đều cho cả đội cùng gánh",
+      "Vì các công cụ ứng phó không phân biệt vai trò người tuyên bố"
+    ],
+    "correct": 0,
+    "explanation": "Người phát hiện dấu hiệu đầu tiên thường là người trực hoặc một kỹ sư đang làm việc khác, và bắt họ tìm ai đó phê duyệt là thêm mười lăm phút vào giai đoạn đắt nhất của sự cố. Quyền tuyên bố phải rẻ tới mức không ai phải cân nhắc."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao ngưỡng tuyên bố nên thấp?",
+      "options": [
+        "Vì chi phí tuyên bố nhầm nhỏ hơn nhiều so với chi phí phát hiện muộn",
+        "Vì các công cụ giám sát thường bỏ sót những sự cố nhỏ",
+        "Vì đội cần dữ liệu về số lượng sự cố để báo cáo hằng quý",
+        "Vì tuyên bố sớm giúp thông báo cho khách hàng kịp thời hơn"
+      ],
+      "correct": 0,
+      "explanation": "Mười phút của vài người so với bốn mươi phút nhân với toàn bộ người dùng - hai con số không cùng bậc. Khi hai loại sai lầm lệch nhau xa như vậy thì luôn nên nghiêng về phía sai lầm rẻ hơn."
+    },
+    {
+      "question": "Tuyên bố sự cố nghĩa là gì?",
+      "options": [
+        "Mở kênh liên lạc chung và phân vai để bắt đầu ứng phó",
+        "Xác nhận rằng hệ thống đang có lỗi nghiêm trọng",
+        "Thông báo cho khách hàng rằng dịch vụ đang gián đoạn",
+        "Chuyển quyền quyết định kỹ thuật cho người quản lý cấp trên"
+      ],
+      "correct": 0,
+      "explanation": "Nó là một hành động tổ chức chứ không phải một kết luận kỹ thuật. Hiểu nhầm điểm này chính là nguyên nhân khiến người ta ngại tuyên bố - họ tưởng mình đang khẳng định một điều gì đó cần chứng minh."
+    },
+    {
+      "question": "Việc đóng nhầm nhiều lần nói lên điều gì?",
+      "options": [
+        "Ngưỡng tuyên bố đang ở mức lành mạnh",
+        "Hệ thống giám sát đang phát quá nhiều tín hiệu sai",
+        "Đội chưa hiểu rõ các tiêu chí phân loại sự cố",
+        "Cần nâng ngưỡng lên để giảm số lần huy động không cần thiết"
+      ],
+      "correct": 0,
+      "explanation": "Một đội chưa từng đóng nhầm lần nào là một đội đang tuyên bố quá muộn. Con số cần theo dõi không phải số lần tuyên bố mà là khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố."
+    },
+    {
+      "question": "Đâu là phần thường dài nhất trong một dòng thời gian sự cố?",
+      "options": [
+        "Khoảng từ dấu hiệu đầu tiên tới lúc có người tuyên bố",
+        "Khoảng từ lúc tuyên bố tới lúc tìm ra nguyên nhân gốc",
+        "Khoảng từ lúc tìm ra nguyên nhân tới lúc triển khai bản sửa",
+        "Khoảng từ lúc sửa xong tới lúc xác nhận hệ thống ổn định"
+      ],
+      "correct": 0,
+      "explanation": "Đây là phát hiện gây ngạc nhiên nhất khi một đội bắt đầu đo dòng thời gian của mình. Nó cũng là phần rẻ nhất để rút ngắn, vì nó không đòi hỏi kỹ thuật gì mà chỉ đòi hỏi một quy ước."
+    },
+    {
+      "question": "Sau khi tuyên bố sự cố thì việc điều tra nên diễn ra thế nào?",
+      "options": [
+        "Tiến hành song song, trong khuôn khổ đã có kênh và có vai",
+        "Tạm dừng cho tới khi người chỉ huy sự cố có mặt đầy đủ",
+        "Chỉ do người đã tuyên bố thực hiện để tránh chồng chéo",
+        "Bắt đầu lại từ đầu với dữ liệu được thu thập một cách hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Tuyên bố không dừng việc điều tra lại mà đặt nó vào một cấu trúc. Khác biệt là từ lúc ấy có một chỗ để mọi phát hiện đổ về, thay vì ba người cùng đào ba hướng mà không ai biết về nhau."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Nửa đầu chặng là chuẩn bị. Từ đây trở đi là chuyện xảy ra khi mọi chuẩn bị đã không đủ - và bước đầu tiên hoá ra là bước bị làm chậm nhiều nhất."
+    },
+    {
+      "type": "heading",
+      "text": "Hai loại sai lầm, hai cái giá rất khác nhau"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Tuyên bố nhầm",
+        "text": "Vài người bỏ dở việc trong mười phút rồi quay lại. Chi phí thấp, dễ đo, và không ai bị ảnh hưởng ngoài đội."
+      },
+      "right": {
+        "label": "Tuyên bố muộn",
+        "text": "Bốn mươi phút cộng thẳng vào thời gian ngừng của mọi người dùng, và sự cố còn kịp lan rộng trong khoảng ấy."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Khi hai loại sai lầm lệch nhau xa như vậy, câu trả lời đúng luôn là nghiêng hẳn về phía rẻ hơn. Một đội chưa từng đóng nhầm lần nào không phải một đội chính xác - đó là một đội đang tuyên bố quá muộn."
+    },
+    {
+      "type": "callout",
+      "label": "Tuyên bố là hành động tổ chức",
+      "text": "Nó không khẳng định nguyên nhân, không kết luận mức nghiêm trọng, không hứa gì với khách hàng. Nó chỉ mở một kênh và phân vai. Hiểu nhầm nó thành một kết luận cần chứng minh chính là lý do người ta ngại bấm nút."
+    },
+    {
+      "type": "heading",
+      "text": "Ai được bấm nút"
+    },
+    {
+      "type": "paragraph",
+      "text": "Người phát hiện dấu hiệu đầu tiên thường là người trực hoặc một kỹ sư đang làm việc khác. Bắt họ đi tìm ai đó phê duyệt là cộng thêm mười lăm phút vào giai đoạn đắt nhất. Quyền tuyên bố phải rẻ tới mức không ai phải cân nhắc trước khi dùng."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Con số đáng theo dõi không phải số lần tuyên bố, mà là khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố.",
+        "Bài sau về việc xảy ra ngay sau đó: ai làm gì, và ai không làm gì."
+      ]
+    }
+  ]
+}

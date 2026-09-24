@@ -16,21 +16,21 @@ function getStatusBadge(status: string, t: Dictionary) {
   switch (status) {
     case "approved":
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">
+        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-emerald-100 dark:bg-emerald-950 text-accent-strong">
           <CheckCircle2 className="w-3 h-3" />
           {ta.statusApproved}
         </span>
       );
     case "rejected":
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300">
+        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-rose-100 dark:bg-rose-950 text-alert-strong">
           <XCircle className="w-3 h-3" />
           {ta.statusRejected}
         </span>
       );
     case "pending":
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">
+        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950 text-warn-strong">
           <Clock className="w-3 h-3" />
           {ta.statusPending}
         </span>
@@ -50,7 +50,7 @@ export default function AppealsAllClient({ initialAppeals }: { initialAppeals: A
   };
 
   if (initialAppeals.length === 0) {
-    return <p className="text-sm text-stone-500 dark:text-stone-400">{ta.noAppeals}</p>;
+    return <p className="text-sm text-ink-muted">{ta.noAppeals}</p>;
   }
 
   return (
@@ -58,25 +58,25 @@ export default function AppealsAllClient({ initialAppeals }: { initialAppeals: A
       {/* Pending Appeals */}
       {grouped.pending.length > 0 && (
         <div>
-          <h2 className="text-lg font-bold text-amber-700 dark:text-amber-300 mb-3">
+          <h2 className="text-lg font-bold text-warn-strong mb-3">
             {format(ta.pendingHeading, { count: grouped.pending.length })}
           </h2>
           <div className="space-y-3">
             {grouped.pending.map((a) => (
-              <div key={a.id} className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-4 hover:shadow-md transition-shadow">
+              <div key={a.id} className="bg-white dark:bg-stone-900 border border-line rounded-xl p-4 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between gap-3 flex-wrap">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <p className="font-bold text-stone-900 dark:text-stone-100">
+                      <p className="font-bold text-ink">
                         {a.user_name || a.user_email || ta.unknownLearner}
                       </p>
                       {getStatusBadge(a.status, t)}
                     </div>
-                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                    <p className="text-xs text-ink-muted">
                       {format(ta.lessonMeta, { slug: a.lesson_slug ?? "", id: a.lesson_id, date: formatDate(a.created_at, locale) })}
                     </p>
                     {a.note && (
-                      <p className="text-sm text-stone-700 dark:text-stone-300 mt-2 italic">&quot;{a.note}&quot;</p>
+                      <p className="text-sm text-ink-body mt-2 italic">&quot;{a.note}&quot;</p>
                     )}
                   </div>
                   <Link
@@ -95,7 +95,7 @@ export default function AppealsAllClient({ initialAppeals }: { initialAppeals: A
       {/* Approved Appeals */}
       {grouped.approved.length > 0 && (
         <div>
-          <h2 className="text-lg font-bold text-emerald-700 dark:text-emerald-300 mb-3">
+          <h2 className="text-lg font-bold text-accent-strong mb-3">
             {format(ta.approvedHeading, { count: grouped.approved.length })}
           </h2>
           <div className="space-y-3">
@@ -104,19 +104,19 @@ export default function AppealsAllClient({ initialAppeals }: { initialAppeals: A
                 <div className="flex items-start justify-between gap-3 flex-wrap">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <p className="font-bold text-stone-900 dark:text-stone-100">
+                      <p className="font-bold text-ink">
                         {a.user_name || a.user_email || ta.unknownLearner}
                       </p>
                       {getStatusBadge(a.status, t)}
                     </div>
-                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                    <p className="text-xs text-ink-muted">
                       {format(ta.lessonMeta, { slug: a.lesson_slug ?? "", id: a.lesson_id, date: formatDate(a.created_at, locale) })}
                       {a.reviewed_at && (
                         <> {format(ta.approvedAt, { date: formatDate(a.reviewed_at, locale) })}</>
                       )}
                     </p>
                     {a.note && (
-                      <p className="text-sm text-stone-700 dark:text-stone-300 mt-2 italic">&quot;{a.note}&quot;</p>
+                      <p className="text-sm text-ink-body mt-2 italic">&quot;{a.note}&quot;</p>
                     )}
                   </div>
                 </div>
@@ -129,7 +129,7 @@ export default function AppealsAllClient({ initialAppeals }: { initialAppeals: A
       {/* Rejected Appeals */}
       {grouped.rejected.length > 0 && (
         <div>
-          <h2 className="text-lg font-bold text-rose-700 dark:text-rose-300 mb-3">
+          <h2 className="text-lg font-bold text-alert-strong mb-3">
             {format(ta.rejectedHeading, { count: grouped.rejected.length })}
           </h2>
           <div className="space-y-3">
@@ -138,22 +138,22 @@ export default function AppealsAllClient({ initialAppeals }: { initialAppeals: A
                 <div className="flex items-start justify-between gap-3 flex-wrap">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <p className="font-bold text-stone-900 dark:text-stone-100">
+                      <p className="font-bold text-ink">
                         {a.user_name || a.user_email || ta.unknownLearner}
                       </p>
                       {getStatusBadge(a.status, t)}
                     </div>
-                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                    <p className="text-xs text-ink-muted">
                       {format(ta.lessonMeta, { slug: a.lesson_slug ?? "", id: a.lesson_id, date: formatDate(a.created_at, locale) })}
                       {a.reviewed_at && (
                         <> {format(ta.rejectedAt, { date: formatDate(a.reviewed_at, locale) })}</>
                       )}
                     </p>
                     {a.note && (
-                      <p className="text-sm text-stone-700 dark:text-stone-300 mt-2 italic">&quot;{a.note}&quot;</p>
+                      <p className="text-sm text-ink-body mt-2 italic">&quot;{a.note}&quot;</p>
                     )}
                     {a.admin_note && (
-                      <p className="text-xs bg-rose-50 dark:bg-rose-950/20 text-rose-700 dark:text-rose-300 rounded px-2 py-1 mt-2">
+                      <p className="text-xs bg-rose-50 dark:bg-rose-950/20 text-alert-strong rounded px-2 py-1 mt-2">
                         <span className="font-bold">{ta.reasonLabel}</span> {a.admin_note}
                       </p>
                     )}

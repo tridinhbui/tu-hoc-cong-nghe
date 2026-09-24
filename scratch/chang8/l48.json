@@ -1,0 +1,179 @@
+{
+  "id": 48,
+  "slug": "xac-thuc-va-uy-quyen",
+  "title": "Bạn là ai và bạn được phép làm gì",
+  "subtitle": "Hai câu hỏi khác nhau, và gộp chúng lại là nguồn của những lỗ hổng khó thấy nhất.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🔐",
+  "track": "professional",
+  "whyItMatters": "Lỗ hổng phổ biến nhất trong các ứng dụng web không phải là mật khẩu yếu mà là quên kiểm tra quyền trên từng bản ghi. Người dùng đã đăng nhập hợp lệ, chỉ là họ đổi một con số trên đường dẫn và xem được dữ liệu của người khác.",
+  "openingQuestion": "Người dùng đã đăng nhập đổi số trên đường dẫn từ đơn hàng của mình sang đơn hàng người khác và xem được. Lỗi ở đâu?",
+  "openingOptions": [
+    "Thiếu kiểm tra quyền trên từng bản ghi, dù xác thực vẫn hoạt động đúng",
+    "Cơ chế xác thực bị hỏng nên hệ thống nhận nhầm người dùng này thành người khác",
+    "Định danh đơn hàng dễ đoán nên người dùng suy ra được số của người khác",
+    "Phiên đăng nhập chưa hết hạn nên quyền của phiên cũ vẫn còn hiệu lực"
+  ],
+  "correctOption": 0,
+  "explanation": "Xác thực đã làm đúng việc của nó: hệ thống biết chính xác ai đang gọi. Thứ thiếu là bước sau đó - kiểm tra xem người này có quyền với đúng bản ghi đang được yêu cầu hay không. Định danh dễ đoán chỉ khiến việc khai thác dễ hơn chứ không tạo ra lỗ hổng; đổi sang mã ngẫu nhiên vẫn để nguyên lỗi, chỉ là khó tìm hơn. Đây là lý do hai khái niệm phải tách bạch: biết bạn là ai và biết bạn được làm gì là hai bước, và bỏ bước hai không làm bước một báo lỗi.",
+  "diagram": [
+    {
+      "label": "Yêu cầu mang theo mã danh tính",
+      "arrow": true
+    },
+    {
+      "label": "Xác thực: mã này là của ai",
+      "arrow": true
+    },
+    {
+      "label": "Uỷ quyền: người này có quyền với bản ghi này không",
+      "arrow": true
+    },
+    {
+      "label": "Thiếu bước hai thì bước một vẫn xanh"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đổi một con số trên đường dẫn",
+    "description": "Dạng lỗ hổng bị báo cáo nhiều nhất trong các chương trình tìm lỗi bảo mật: người dùng hợp lệ đổi định danh trên đường dẫn và đọc được dữ liệu của tài khoản khác. Không cần công cụ gì, không cần vượt qua lớp đăng nhập nào."
+  },
+  "keyTakeaways": [
+    "Xác thực trả lời bạn là ai; uỷ quyền trả lời bạn được làm gì với thứ này.",
+    "Quyền phải kiểm trên từng bản ghi, không chỉ trên từng đường dẫn.",
+    "Mã danh tính nên có hạn ngắn và phải huỷ được trước hạn.",
+    "Kiểm tra ở giao diện chỉ là trải nghiệm; hàng rào thật nằm ở phía máy chủ."
+  ],
+  "summary": {
+    "keyIdea": "Biết bạn là ai và biết bạn được phép làm gì là hai bước tách rời nhau.",
+    "formula": "Xác thực một lần, uỷ quyền ở từng thao tác.",
+    "commonMistake": "Kiểm quyền theo đường dẫn mà quên kiểm theo bản ghi cụ thể."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Đăng nhập bằng hai tài khoản khác nhau trên sản phẩm của bạn, rồi lấy định danh bản ghi của tài khoản này gọi bằng phiên của tài khoản kia. Nếu ra dữ liệu thì bạn vừa tìm được một lỗ hổng thật."
+  },
+  "practicePrompt": {
+    "question": "Giao diện đã ẩn nút xoá với người dùng không phải quản trị viên. Như vậy đã đủ chưa?",
+    "options": [
+      "Chưa, vì người dùng gọi thẳng vào máy chủ được mà không qua giao diện",
+      "Đủ, vì không có nút thì không có cách nào gửi yêu cầu xoá lên máy chủ",
+      "Đủ, miễn là mã nguồn phía giao diện được làm rối để khó đọc hiểu",
+      "Chưa, nhưng chỉ cần thêm một lần xác nhận trước khi xoá là được"
+    ],
+    "correct": 0,
+    "explanation": "Mọi thứ chạy trên máy người dùng đều nằm trong tầm kiểm soát của họ: ẩn nút chỉ là chuyện hiển thị. Yêu cầu gọi thẳng tới máy chủ không đi qua giao diện, nên hàng rào duy nhất có giá trị là kiểm tra ở phía máy chủ."
+  },
+  "quiz": [
+    {
+      "question": "Xác thực khác uỷ quyền ở điểm nào?",
+      "options": [
+        "Xác thực xác định bạn là ai, uỷ quyền xác định bạn được làm gì",
+        "Xác thực chạy ở phía giao diện còn uỷ quyền chạy ở phía máy chủ",
+        "Xác thực áp dụng cho người dùng còn uỷ quyền áp dụng cho hệ thống khác",
+        "Xác thực diễn ra một lần mỗi ngày còn uỷ quyền diễn ra mỗi giờ"
+      ],
+      "correct": 0,
+      "explanation": "Hai câu hỏi tách rời và phải trả lời riêng. Hệ thống có thể biết chắc bạn là ai mà vẫn để lọt dữ liệu, vì nó quên hỏi câu thứ hai với đúng bản ghi đang được yêu cầu."
+    },
+    {
+      "question": "Vì sao phải kiểm tra quyền trên từng bản ghi chứ không chỉ từng đường dẫn?",
+      "options": [
+        "Vì người dùng hợp lệ có thể yêu cầu bản ghi không thuộc về mình",
+        "Vì mỗi đường dẫn có thể được ánh xạ tới nhiều hàm xử lý khác nhau",
+        "Vì đường dẫn có thể bị thay đổi bởi các thiết bị trung gian trên mạng",
+        "Vì số lượng đường dẫn quá lớn để kiểm tra hết trong một lần gọi"
+      ],
+      "correct": 0,
+      "explanation": "Quyền vào một đường dẫn chỉ nói rằng người này được dùng chức năng đó, không nói họ được dùng với dữ liệu nào. Câu hỏi đúng luôn là: người này có quyền với chính bản ghi này không."
+    },
+    {
+      "question": "Vì sao mã danh tính nên có thời hạn ngắn?",
+      "options": [
+        "Vì mã bị lộ chỉ dùng được trong một khoảng thời gian hẹp",
+        "Vì mã ngắn hạn chiếm ít dung lượng hơn khi gửi kèm mỗi yêu cầu",
+        "Vì máy chủ không lưu được nhiều mã dài hạn cùng lúc trong bộ nhớ",
+        "Vì mã dài hạn không mã hoá được"
+      ],
+      "correct": 0,
+      "explanation": "Giả định phải là mã sẽ lộ ở đâu đó: nhật ký, lịch sử, một ảnh chụp màn hình. Hạn ngắn thu hẹp cửa sổ khai thác, và cơ chế huỷ trước hạn xử lý những trường hợp biết chắc đã lộ."
+    },
+    {
+      "question": "Kiểm tra quyền ở phía giao diện có giá trị gì?",
+      "options": [
+        "Cải thiện trải nghiệm, nhưng không phải hàng rào bảo mật",
+        "Là hàng rào chính, còn phía máy chủ chỉ cần kiểm tra lại khi có nghi ngờ",
+        "Không có giá trị gì nên tốt nhất là bỏ hẳn để mã gọn hơn",
+        "Đủ an toàn nếu mã nguồn phía giao diện được làm rối trước khi phát hành"
+      ],
+      "correct": 0,
+      "explanation": "Ẩn nút mà người dùng không có quyền dùng là việc nên làm, vì nó tránh cho họ những thất bại vô ích. Nhưng mọi thứ chạy trên máy người dùng đều sửa được, nên nó không bao giờ là hàng rào."
+    },
+    {
+      "question": "Vì sao đổi sang định danh khó đoán không sửa được lỗi thiếu kiểm quyền?",
+      "options": [
+        "Vì lỗ hổng vẫn còn nguyên, chỉ là mất công dò tìm hơn",
+        "Vì định danh khó đoán vẫn bị lộ qua phần tiêu đề của mỗi yêu cầu",
+        "Vì hệ thống buộc phải chuyển định danh về dạng số khi truy vấn",
+        "Vì định danh khó đoán làm chậm truy vấn nên bị thay lại bằng số tăng dần"
+      ],
+      "correct": 0,
+      "explanation": "Bảo mật dựa trên việc người ta không đoán ra không phải bảo mật. Định danh khó đoán làm chậm kẻ dò tìm, nhưng bất kỳ ai có được một định danh hợp lệ - qua đường dẫn chia sẻ, qua nhật ký - vẫn đọc được dữ liệu."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai câu hỏi nghe gần giống nhau tới mức người ta hay gộp làm một: bạn là ai, và bạn được phép làm gì. Gộp chúng lại là cách tạo ra loại lỗ hổng bị báo cáo nhiều nhất trong các ứng dụng web."
+    },
+    {
+      "type": "heading",
+      "text": "Hai bước, và bước hai hay bị quên"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Tách bạch hai câu hỏi",
+      "subtitle": "Bước một xanh không có nghĩa là bước hai đã chạy",
+      "concepts": [
+        {
+          "vi": "Xác thực",
+          "en": "authentication",
+          "def": "Chứng minh danh tính. Diễn ra một lần, kết quả là một mã đi kèm những yêu cầu sau đó."
+        },
+        {
+          "vi": "Uỷ quyền",
+          "en": "authorization",
+          "def": "Kiểm tra quyền với đúng thao tác và đúng bản ghi. Phải chạy ở từng lần gọi, không chỉ lúc đăng nhập."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Quyền theo bản ghi, không chỉ theo chức năng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Câu hỏi hay được kiểm là: người này có được dùng chức năng xem đơn hàng không? Câu hỏi cần kiểm là: người này có được xem đơn hàng số này không? Bỏ vế sau thì mọi người dùng hợp lệ đều đọc được dữ liệu của nhau, và không có lỗi nào được ghi lại vì mọi yêu cầu đều hợp lệ về mặt kỹ thuật."
+    },
+    {
+      "type": "callout",
+      "label": "Mọi thứ ở phía người dùng đều sửa được",
+      "text": "Nút bị ẩn vẫn gọi được, trường chỉ đọc vẫn gửi được giá trị khác, kiểm tra dữ liệu nhập ở trình duyệt vẫn bỏ qua được. Giao diện lo trải nghiệm; hàng rào nằm ở máy chủ, và chỉ ở đó."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Kiểm quyền ở tầng gần dữ liệu nhất, để mọi đường gọi đều đi qua nó.",
+        "Mặc định là từ chối: thiếu quy tắc thì không cho, thay vì cho rồi lọc dần.",
+        "Kiểm thử lỗ hổng này bằng hai tài khoản thật, vì nó không bao giờ tự lộ ra trong nhật ký."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Biết bạn là ai là chuyện dễ. Nhớ hỏi bạn có được phép làm việc này với thứ này không mới là chỗ hệ thống hay quên.",
+        "Bài sau nói về lớp bảo vệ trên đường truyền: vì sao dữ liệu không bị đọc lén giữa hai đầu."
+      ]
+    }
+  ]
+}

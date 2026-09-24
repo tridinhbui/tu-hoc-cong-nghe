@@ -1,0 +1,196 @@
+{
+  "id": 45,
+  "slug": "ma-trang-thai-phan-hoi",
+  "title": "Mã trạng thái: lỗi của ai, và có nên thử lại không",
+  "subtitle": "Ba chữ số nói cho máy gọi biết nên sửa yêu cầu, hay chờ rồi gọi lại.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🚥",
+  "track": "professional",
+  "whyItMatters": "Máy gọi không đọc được câu mô tả lỗi bằng tiếng Việt, nhưng nó xử lý được con số. Trả sai mã trạng thái nghĩa là mọi cơ chế tự động phía sau - thử lại, cảnh báo, ngắt mạch - đều quyết định sai, và không ai phát hiện cho tới khi có sự cố.",
+  "openingQuestion": "Dịch vụ của bạn nhận yêu cầu thiếu một trường bắt buộc. Nên trả mã thuộc nhóm nào?",
+  "openingOptions": [
+    "Nhóm lỗi phía người gọi, vì gọi lại y nguyên cũng vẫn hỏng",
+    "Nhóm lỗi phía máy chủ, vì máy chủ là bên không xử lý được yêu cầu",
+    "Nhóm thành công, kèm một thông báo lỗi trong phần nội dung trả về",
+    "Nhóm chuyển hướng, để người gọi được đưa tới tài liệu hướng dẫn"
+  ],
+  "correctOption": 0,
+  "explanation": "Ranh giới giữa hai nhóm lỗi là câu hỏi: gọi lại y nguyên có cơ hội thành công không? Yêu cầu thiếu trường bắt buộc thì gọi bao nhiêu lần cũng thế, nên nó thuộc nhóm lỗi phía người gọi và người gọi phải sửa. Lỗi phía máy chủ thì ngược lại: yêu cầu vốn hợp lệ, chỉ là máy chủ đang gặp trục trặc, nên thử lại sau là hợp lý. Trả nhầm nhóm khiến máy gọi thử lại vô ích hàng nghìn lần, hoặc bỏ cuộc ngay ở một lỗi đáng lẽ chỉ thoáng qua.",
+  "diagram": [
+    {
+      "label": "Yêu cầu tới dịch vụ",
+      "arrow": true
+    },
+    {
+      "label": "Sai ở yêu cầu → nhóm lỗi người gọi",
+      "arrow": true
+    },
+    {
+      "label": "Sai ở máy chủ → nhóm lỗi máy chủ",
+      "arrow": true
+    },
+    {
+      "label": "Máy gọi dựa vào nhóm để quyết định thử lại"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Trả mã thành công cho mọi thứ",
+    "description": "Một dịch vụ trả mã thành công kèm trường lỗi trong nội dung, để phía giao diện dễ xử lý. Hậu quả là mọi bảng theo dõi đều xanh trong lúc một phần tư số yêu cầu đang hỏng, vì hệ thống giám sát chỉ đếm mã trạng thái."
+  },
+  "keyTakeaways": [
+    "Nhóm lỗi người gọi nghĩa là sửa yêu cầu rồi hãy gọi lại.",
+    "Nhóm lỗi máy chủ nghĩa là yêu cầu ổn, thử lại sau có thể thành công.",
+    "Không trả mã thành công cho một thao tác đã thất bại.",
+    "Mã trạng thái là thứ máy đọc; phần nội dung mới là chỗ giải thích cho người."
+  ],
+  "summary": {
+    "keyIdea": "Mã trạng thái trả lời hai câu: lỗi thuộc về ai, và thử lại có ích không.",
+    "formula": "Sửa yêu cầu, hay chờ rồi gọi lại.",
+    "commonMistake": "Trả mã thành công kèm lỗi trong nội dung, làm mọi giám sát tự động mù."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy một dịch vụ bạn đang viết và liệt kê mọi đường thoát lỗi của nó. Với mỗi đường, tự hỏi gọi lại y nguyên có cơ hội thành công không - câu trả lời quyết định nhóm mã phải trả."
+  },
+  "practicePrompt": {
+    "question": "Dịch vụ của bạn gọi sang một dịch vụ khác và bị nó từ chối vì quá tải. Bạn nên trả về mã thuộc nhóm nào cho người gọi mình?",
+    "options": [
+      "Nhóm lỗi máy chủ, vì người gọi không sai gì và thử lại sau có thể được",
+      "Nhóm lỗi người gọi, vì yêu cầu của họ chính là thứ đã kích hoạt lời gọi kia",
+      "Nhóm thành công, vì phía bạn đã xử lý xong phần việc của mình",
+      "Nhóm chuyển hướng, để người gọi chuyển sang gọi thẳng dịch vụ kia"
+    ],
+    "correct": 0,
+    "explanation": "Người gọi gửi một yêu cầu hoàn toàn hợp lệ; thứ hỏng nằm ở phía bạn và các phụ thuộc của bạn. Trả nhóm lỗi người gọi ở đây khiến họ đi sửa một yêu cầu vốn không sai, còn cơ chế thử lại tự động của họ sẽ không chạy đúng lúc đáng lẽ nên chạy."
+  },
+  "quiz": [
+    {
+      "question": "Ranh giới giữa nhóm lỗi người gọi và nhóm lỗi máy chủ là gì?",
+      "options": [
+        "Gọi lại y nguyên có cơ hội thành công hay không",
+        "Lỗi xảy ra trước hay sau khi máy chủ đọc xong phần nội dung",
+        "Người gọi là con người hay là một hệ thống tự động khác",
+        "Lỗi có được ghi vào nhật ký của máy chủ hay không được ghi"
+      ],
+      "correct": 0,
+      "explanation": "Đây là câu hỏi thực dụng và nó quyết định hành vi của máy gọi. Yêu cầu sai thì sửa rồi gọi lại; máy chủ trục trặc thì chờ rồi gọi lại - hai hành vi hoàn toàn khác nhau."
+    },
+    {
+      "question": "Vì sao không nên trả mã thành công kèm lỗi trong phần nội dung?",
+      "options": [
+        "Vì mọi hệ thống giám sát đếm theo mã trạng thái sẽ báo xanh dù đang hỏng",
+        "Vì phần nội dung của một phản hồi thành công không được phép chứa trường lỗi",
+        "Vì trình duyệt sẽ tự động lưu lại phản hồi đó vào bộ nhớ đệm của nó",
+        "Vì người gọi sẽ không đọc được phần nội dung khi mã là thành công"
+      ],
+      "correct": 0,
+      "explanation": "Mã trạng thái là thứ hạ tầng đọc: bảng theo dõi, cảnh báo, ngắt mạch, thử lại. Giấu lỗi trong nội dung làm cả tầng đó mù, và sự cố chỉ lộ ra khi có người dùng gọi điện."
+    },
+    {
+      "question": "Mã báo tài nguyên không tìm thấy thuộc nhóm nào và nói lên điều gì?",
+      "options": [
+        "Nhóm lỗi người gọi: địa chỉ hoặc định danh trong yêu cầu không đúng",
+        "Nhóm lỗi máy chủ: cơ sở dữ liệu đang không truy cập được vào đúng lúc đó",
+        "Nhóm chuyển hướng: tài nguyên đã được chuyển sang một địa chỉ khác",
+        "Nhóm thành công: yêu cầu hợp lệ nhưng kết quả trả về là rỗng"
+      ],
+      "correct": 0,
+      "explanation": "Không tìm thấy là lỗi ở yêu cầu, vì thứ được hỏng là định danh người gọi đưa vào. Gọi lại y nguyên vẫn không tìm thấy, nên nó nằm đúng nhóm lỗi người gọi."
+    },
+    {
+      "question": "Vì sao cần phân biệt lỗi xác thực với lỗi phân quyền?",
+      "options": [
+        "Một bên là chưa chứng minh được mình là ai, bên kia là đã biết nhưng không đủ quyền",
+        "Một bên xảy ra ở tầng mạng còn bên kia xảy ra ở tầng ứng dụng của chính dịch vụ đang gọi",
+        "Một bên cần thử lại sau một khoảng thời gian còn bên kia thì không cần",
+        "Một bên được ghi vào nhật ký bảo mật còn bên kia thì không được ghi"
+      ],
+      "correct": 0,
+      "explanation": "Hai tình huống dẫn tới hai hành động khác nhau: một bên phải đăng nhập lại, bên kia đăng nhập bao nhiêu lần cũng vô ích vì thiếu quyền. Gộp chúng lại là bắt người dùng thử một việc chắc chắn không giúp gì."
+    },
+    {
+      "question": "Máy gọi dùng mã trạng thái để quyết định điều gì?",
+      "options": [
+        "Có thử lại hay không, và có nên báo lỗi cho người dùng hay không",
+        "Định dạng dữ liệu mà phần nội dung của phản hồi đang sử dụng để mã hoá",
+        "Phiên bản nào của dịch vụ đã xử lý yêu cầu vừa gửi lên",
+        "Thời gian mà phản hồi được phép giữ trong bộ nhớ đệm"
+      ],
+      "correct": 0,
+      "explanation": "Thử lại, ngắt mạch, cảnh báo và hiển thị lỗi đều dựa vào con số này. Định dạng và thời gian lưu đệm nằm ở tiêu đề, còn phiên bản dịch vụ thì mã trạng thái không nói gì."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Con số ba chữ số ở đầu mỗi phản hồi trông như một chi tiết vặt. Thực ra nó là giao diện duy nhất mà máy móc đọc được, và cả tầng tự động hoá phía sau đều hành động dựa vào nó."
+    },
+    {
+      "type": "heading",
+      "text": "Năm nhóm, đọc theo chữ số đầu"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Chữ số đầu nói gì",
+      "subtitle": "Máy gọi chỉ cần nhóm; chi tiết để cho người đọc",
+      "concepts": [
+        {
+          "vi": "Nhóm 2",
+          "en": "success",
+          "def": "Đã làm xong. Nếu thao tác thất bại thì đừng dùng nhóm này, dù chỉ để giao diện dễ xử lý."
+        },
+        {
+          "vi": "Nhóm 3",
+          "en": "redirect",
+          "def": "Thứ bạn tìm nằm ở chỗ khác. Máy gọi thường tự đi theo mà không hỏi."
+        },
+        {
+          "vi": "Nhóm 4",
+          "en": "client error",
+          "def": "Yêu cầu có vấn đề. Gọi lại y nguyên vẫn hỏng, nên phải sửa trước."
+        },
+        {
+          "vi": "Nhóm 5",
+          "en": "server error",
+          "def": "Yêu cầu ổn, phía phục vụ trục trặc. Chờ rồi thử lại là hợp lý."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Hai câu hỏi nó phải trả lời"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Lỗi của ai",
+        "text": "Quyết định ai phải hành động. Nhóm 4 thì người gọi sửa yêu cầu; nhóm 5 thì đội vận hành dịch vụ vào cuộc."
+      },
+      "right": {
+        "label": "Thử lại có ích không",
+        "text": "Quyết định hành vi tự động. Thử lại một lỗi nhóm 4 là lãng phí; bỏ cuộc ngay ở lỗi nhóm 5 là mất một cơ hội thành công."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Đừng gộp xác thực với phân quyền",
+      "text": "Chưa chứng minh được mình là ai thì đăng nhập lại có ích. Đã biết là ai nhưng không đủ quyền thì đăng nhập lại bao nhiêu lần cũng vậy. Hai mã khác nhau dẫn tới hai hành động khác nhau, nên gộp chúng là làm hỏng cả hai."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Với mỗi đường thoát lỗi, tự hỏi gọi lại y nguyên có cơ hội thành công không.",
+        "Mã trạng thái cho máy, phần nội dung cho người - viết cả hai chứ đừng chọn một.",
+        "Đừng bọc mọi lỗi thành một mã duy nhất: nó xoá sạch thông tin mà máy gọi cần."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mã trạng thái là hợp đồng với máy móc. Trả sai nó là làm mù cả tầng tự động hoá phía sau.",
+        "Bài sau lùi lại một bước để nhìn thứ chứa những lời gọi ấy: API, và vì sao nó cũng là một bản hợp đồng."
+      ]
+    }
+  ]
+}

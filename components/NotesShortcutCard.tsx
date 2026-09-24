@@ -69,7 +69,7 @@ export default function NotesShortcutCard() {
             }`}
           >
             <div className="min-h-0 overflow-hidden" inert={collapsed}>
-              <p className="mt-1.5 text-sm font-medium text-stone-600 dark:text-stone-300">{p.notesHint}</p>
+              <p className="mt-1.5 text-sm font-medium text-ink-soft">{p.notesHint}</p>
             </div>
           </div>
         </div>

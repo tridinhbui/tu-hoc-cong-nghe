@@ -39,13 +39,13 @@ export default function FontSizeControl({ scale, onChange }: Props) {
   }
 
   return (
-    <div className="hidden sm:flex items-center gap-1 bg-surface/50 border border-line rounded-full px-1.5 py-1">
+    <div className="hidden sm:flex items-center gap-1 bg-stone-50 dark:bg-stone-900/50 border border-line rounded-full px-1.5 py-1">
       <button
         onClick={() => set(index - 1)}
         disabled={index === 0}
         aria-label={t.fontSize.decrease}
         title={t.fontSize.decrease}
-        className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 dark:text-stone-400 text-xs font-bold hover:bg-stone-200 dark:hover:bg-stone-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+        className="w-7 h-7 rounded-full flex items-center justify-center text-ink-soft text-xs font-bold hover:bg-surface-sunken disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
       >
         {t.fontSize.smaller}
       </button>
@@ -57,7 +57,7 @@ export default function FontSizeControl({ scale, onChange }: Props) {
         disabled={index === SCALES.length - 1}
         aria-label={t.fontSize.increase}
         title={t.fontSize.increase}
-        className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 dark:text-stone-400 text-sm font-bold hover:bg-stone-200 dark:hover:bg-stone-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+        className="w-7 h-7 rounded-full flex items-center justify-center text-ink-soft text-sm font-bold hover:bg-surface-sunken disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
       >
         {t.fontSize.larger}
       </button>

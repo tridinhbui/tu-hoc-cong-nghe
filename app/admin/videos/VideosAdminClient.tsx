@@ -105,26 +105,26 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
           placeholder={tv.searchPlaceholder}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 placeholder-stone-500 dark:placeholder-stone-400"
+          className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-line bg-white dark:bg-stone-900 text-ink placeholder-stone-500 dark:placeholder-stone-400"
         />
       </div>
 
       {/* Videos Table */}
-      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+      <div className="bg-white dark:bg-stone-900 border border-line rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-stone-50 dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800">
+            <thead className="bg-surface border-b border-line">
               <tr>
-                <th className="text-left px-4 py-3 font-semibold text-stone-900 dark:text-stone-100">{tv.colId}</th>
-                <th className="text-left px-4 py-3 font-semibold text-stone-900 dark:text-stone-100">{tv.colLesson}</th>
-                <th className="text-left px-4 py-3 font-semibold text-stone-900 dark:text-stone-100">{tv.colVideoUrl}</th>
-                <th className="text-left px-4 py-3 font-semibold text-stone-900 dark:text-stone-100">{tv.colAction}</th>
+                <th className="text-left px-4 py-3 font-semibold text-ink">{tv.colId}</th>
+                <th className="text-left px-4 py-3 font-semibold text-ink">{tv.colLesson}</th>
+                <th className="text-left px-4 py-3 font-semibold text-ink">{tv.colVideoUrl}</th>
+                <th className="text-left px-4 py-3 font-semibold text-ink">{tv.colAction}</th>
               </tr>
             </thead>
             <tbody>
               {filteredLessons.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-4 py-8 text-center text-stone-500 dark:text-stone-400">
+                  <td colSpan={4} className="px-4 py-8 text-center text-ink-muted">
                     {tv.noLessonsFound}
                   </td>
                 </tr>
@@ -132,13 +132,13 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
                 filteredLessons.map((lesson) => (
                   <tr
                     key={lesson.id}
-                    className="border-b border-stone-200 dark:border-stone-800 hover:bg-stone-50 dark:hover:bg-stone-900/50 transition-colors"
+                    className="border-b border-line hover:bg-stone-50 dark:hover:bg-stone-900/50 transition-colors"
                   >
-                    <td className="px-4 py-3 text-stone-600 dark:text-stone-400">{lesson.id}</td>
+                    <td className="px-4 py-3 text-ink-soft">{lesson.id}</td>
                     <td className="px-4 py-3">
                       <div>
-                        <p className="font-medium text-stone-900 dark:text-stone-100">{lesson.title}</p>
-                        <p className="text-xs text-stone-500 dark:text-stone-400">{lesson.slug}</p>
+                        <p className="font-medium text-ink">{lesson.title}</p>
+                        <p className="text-xs text-ink-muted">{lesson.slug}</p>
                       </div>
                     </td>
                     <td className="px-4 py-3">
@@ -148,7 +148,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
                           value={editingUrl}
                           onChange={(e) => setEditingUrl(e.target.value)}
                           placeholder={tv.urlPlaceholder}
-                          className="w-full px-2 py-1 rounded border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 text-xs"
+                          className="w-full px-2 py-1 rounded border border-line-strong bg-white dark:bg-stone-950 text-ink text-xs"
                         />
                       ) : lesson.videoUrl ? (
                         <a
@@ -177,7 +177,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
                             </button>
                             <button
                               onClick={() => setEditingId(null)}
-                              className="p-1.5 rounded-lg bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-stone-900 dark:text-stone-100"
+                              className="p-1.5 rounded-lg bg-surface-sunken hover:bg-surface-deep text-ink"
                             >
                               {tv.cancel}
                             </button>
@@ -193,7 +193,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
                             {lesson.videoUrl && (
                               <button
                                 onClick={() => handleDeleteVideo(lesson.id)}
-                                className="p-1.5 rounded-lg bg-rose-100 dark:bg-rose-950/40 hover:bg-rose-200 dark:hover:bg-rose-950/60 text-rose-600 dark:text-rose-400"
+                                className="p-1.5 rounded-lg bg-rose-100 dark:bg-rose-950/40 hover:bg-rose-200 dark:hover:bg-rose-950/60 text-alert"
                               >
                                 <Trash2 className="w-4 h-4" />
                               </button>

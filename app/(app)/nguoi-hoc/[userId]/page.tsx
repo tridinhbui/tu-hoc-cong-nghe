@@ -22,12 +22,12 @@ function StatCard({
   hint: string;
 }) {
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5">
-      <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-2">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-5">
+      <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest mb-2">
         {label}
       </p>
-      <p className="text-2xl font-extrabold text-stone-900 dark:text-stone-100">{value}</p>
-      <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{hint}</p>
+      <p className="text-2xl font-extrabold text-ink">{value}</p>
+      <p className="text-xs text-ink-muted mt-1">{hint}</p>
     </div>
   );
 }
@@ -84,22 +84,22 @@ export default async function PublicUserProfilePage({
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+      <div className="border-b border-line bg-white dark:bg-stone-950">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
           <div>
             <Link
               href="/dashboard"
-              className="text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 text-sm font-semibold"
+              className="text-ink-muted hover:text-ink-body text-sm font-semibold"
             >
               {t.publicProfile.backToLeaderboard}
             </Link>
-            <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100 mt-2">
+            <h1 className="text-xl font-bold text-ink mt-2">
               {t.publicProfile.heading}
             </h1>
           </div>
           <Link
             href="/profile"
-            className="text-sm font-semibold text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100"
+            className="text-sm font-semibold text-ink-soft hover:text-ink"
           >
             {t.publicProfile.yourProfile}
           </Link>
@@ -108,7 +108,7 @@ export default async function PublicUserProfilePage({
 
       <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-7">
+          <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-7">
             <div className="flex items-start gap-5">
               {isValidAvatar(profile.avatarUrl) ? (
                 <Image
@@ -116,39 +116,39 @@ export default async function PublicUserProfilePage({
                   alt={displayName}
                   width={88}
                   height={88}
-                  className="w-[88px] h-[88px] rounded-full object-cover border-2 border-stone-200 dark:border-stone-700"
+                  className="w-[88px] h-[88px] rounded-full object-cover border-2 border-line-mid"
                 />
               ) : (
-                <div className="w-[88px] h-[88px] rounded-full bg-stone-200 dark:bg-stone-700 border-2 border-stone-300 dark:border-stone-600 flex items-center justify-center text-2xl font-extrabold text-stone-700 dark:text-stone-300">
+                <div className="w-[88px] h-[88px] rounded-full bg-surface-sunken border-2 border-line-strong flex items-center justify-center text-2xl font-extrabold text-ink-body">
                   {initials}
                 </div>
               )}
 
               <div className="min-w-0 flex-1">
-                <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-2">
+                <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest mb-2">
                   {t.publicProfile.eyebrow}
                 </p>
-                <h2 className="text-3xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">
+                <h2 className="text-3xl font-extrabold text-ink leading-tight">
                   {displayName}
                 </h2>
-                <p className="text-sm text-stone-500 dark:text-stone-400 mt-2">
+                <p className="text-sm text-ink-muted mt-2">
                   {format(t.publicProfile.joinedAt, { date: new Date(profile.joinedAt).toLocaleDateString(intlLocale(locale)) })}
                 </p>
                 {profile.bio ? (
-                  <p className="text-sm text-stone-700 dark:text-stone-300 mt-4 leading-relaxed">
+                  <p className="text-sm text-ink-body mt-4 leading-relaxed">
                     {profile.bio}
                   </p>
                 ) : (
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-4">
+                  <p className="text-sm text-ink-muted mt-4">
                     {t.publicProfile.noBio}
                   </p>
                 )}
-                <div className="mt-3 flex items-center gap-4 text-sm text-stone-500 dark:text-stone-400">
+                <div className="mt-3 flex items-center gap-4 text-sm text-ink-muted">
                   <span>
-                    <span className="font-extrabold text-stone-900 dark:text-stone-100">{followerCount ?? 0}</span> {t.publicProfile.followers}
+                    <span className="font-extrabold text-ink">{followerCount ?? 0}</span> {t.publicProfile.followers}
                   </span>
                   <span>
-                    <span className="font-extrabold text-stone-900 dark:text-stone-100">{followingCount ?? 0}</span> {t.publicProfile.following}
+                    <span className="font-extrabold text-ink">{followingCount ?? 0}</span> {t.publicProfile.following}
                   </span>
                 </div>
                 <div className="mt-5 flex items-center gap-2.5">
@@ -184,13 +184,13 @@ export default async function PublicUserProfilePage({
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
+          <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
             <div className="flex items-center justify-between gap-3 mb-5">
               <div>
-                <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">
+                <h3 className="text-lg font-extrabold text-ink">
                   {t.publicProfile.progressTitle}
                 </h3>
-                <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                <p className="text-sm text-ink-muted mt-1">
                   {format(t.publicProfile.currentPriority, {
                     track:
                       profile.preferredTrack === "personal"
@@ -199,7 +199,7 @@ export default async function PublicUserProfilePage({
                   })}
                 </p>
               </div>
-              <div className="text-right text-sm text-stone-500 dark:text-stone-400">
+              <div className="text-right text-sm text-ink-muted">
                 <div>{format(t.publicProfile.studyMinutes, { minutes: profile.totalStudyMinutes })}</div>
                 <div>{format(t.publicProfile.currentStreakLine, { days: profile.currentStreak })}</div>
               </div>
@@ -209,30 +209,30 @@ export default async function PublicUserProfilePage({
               {profile.trackProgress.map((track) => (
                 <div
                   key={track.track}
-                  className="rounded-xl border border-stone-200 dark:border-stone-800 p-4 bg-stone-50/70 dark:bg-stone-950/40"
+                  className="rounded-xl border border-line p-4 bg-stone-50/70 dark:bg-stone-950/40"
                 >
                   <div className="flex items-center justify-between gap-3 mb-3">
                     <div>
-                      <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
+                      <p className="text-sm font-bold text-ink">
                         {track.title}
                       </p>
-                      <p className="text-xs text-stone-500 dark:text-stone-400">
+                      <p className="text-xs text-ink-muted">
                         {track.subtitle}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">
+                      <p className="text-sm font-extrabold text-ink">
                         {track.completed}/{track.total}
                       </p>
-                      <p className="text-xs text-stone-500 dark:text-stone-400">
+                      <p className="text-xs text-ink-muted">
                         {format(t.publicProfile.percentComplete, { percent: track.percent })}
                       </p>
                     </div>
                   </div>
 
-                  <div className="h-2.5 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden mb-4">
+                  <div className="h-2.5 rounded-full bg-surface-sunken overflow-hidden mb-4">
                     <div
-                      className="h-full rounded-full bg-stone-900 dark:bg-stone-100"
+                      className="h-full rounded-full bg-surface-invert"
                       style={{ width: `${track.percent}%` }}
                     />
                   </div>
@@ -241,18 +241,18 @@ export default async function PublicUserProfilePage({
                     {track.stages.map((stage) => (
                       <div key={`${track.track}-${stage.label}`} className="flex items-center justify-between gap-3 text-sm">
                         <div className="min-w-0">
-                          <p className="font-semibold text-stone-900 dark:text-stone-100">
+                          <p className="font-semibold text-ink">
                             {stage.label}
                           </p>
-                          <p className="text-xs text-stone-500 dark:text-stone-400 truncate">
+                          <p className="text-xs text-ink-muted truncate">
                             {stage.name}
                           </p>
                         </div>
                         <div className="text-right flex-shrink-0">
-                          <p className="font-bold text-stone-900 dark:text-stone-100">
+                          <p className="font-bold text-ink">
                             {stage.completed}/{stage.total}
                           </p>
-                          <p className="text-xs text-stone-500 dark:text-stone-400">
+                          <p className="text-xs text-ink-muted">
                             {stage.percent}%
                           </p>
                         </div>
@@ -265,32 +265,32 @@ export default async function PublicUserProfilePage({
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
-              <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100 mb-4">
+            <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
+              <h3 className="text-lg font-extrabold text-ink mb-4">
                 {t.publicProfile.quickSummary}
               </h3>
               <div className="space-y-4 text-sm">
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-stone-500 dark:text-stone-400">{t.publicProfile.currentStreak}</span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{format(t.publicProfile.days, { days: profile.currentStreak })}</span>
+                  <span className="text-ink-muted">{t.publicProfile.currentStreak}</span>
+                  <span className="font-bold text-ink">{format(t.publicProfile.days, { days: profile.currentStreak })}</span>
                 </div>
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-stone-500 dark:text-stone-400">{t.publicProfile.longestStreak}</span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{format(t.publicProfile.days, { days: profile.longestStreak })}</span>
+                  <span className="text-ink-muted">{t.publicProfile.longestStreak}</span>
+                  <span className="font-bold text-ink">{format(t.publicProfile.days, { days: profile.longestStreak })}</span>
                 </div>
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-stone-500 dark:text-stone-400">{t.publicProfile.studyTime}</span>
-                  <span className="font-bold text-stone-900 dark:text-stone-100">{format(t.publicProfile.minutes, { minutes: profile.totalStudyMinutes })}</span>
+                  <span className="text-ink-muted">{t.publicProfile.studyTime}</span>
+                  <span className="font-bold text-ink">{format(t.publicProfile.minutes, { minutes: profile.totalStudyMinutes })}</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
-              <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100 mb-4">
+            <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
+              <h3 className="text-lg font-extrabold text-ink mb-4">
                 {t.publicProfile.recentLessons}
               </h3>
               {profile.recentLessons.length === 0 ? (
-                <p className="text-sm text-stone-500 dark:text-stone-400">
+                <p className="text-sm text-ink-muted">
                   {t.publicProfile.noLessons}
                 </p>
               ) : (
@@ -299,12 +299,12 @@ export default async function PublicUserProfilePage({
                     <Link
                       key={`${lesson.id}-${lesson.completedAt ?? "pending"}`}
                       href={`/bai-hoc/${lesson.slug}`}
-                      className="block rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
+                      className="block rounded-xl border border-line px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
                     >
-                      <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
+                      <p className="text-sm font-bold text-ink">
                         {lesson.title}
                       </p>
-                      <div className="mt-1 flex items-center justify-between gap-3 text-xs text-stone-500 dark:text-stone-400">
+                      <div className="mt-1 flex items-center justify-between gap-3 text-xs text-ink-muted">
                         <span>
                           {lesson.completedAt
                             ? new Date(lesson.completedAt).toLocaleDateString(intlLocale(locale))
@@ -322,12 +322,12 @@ export default async function PublicUserProfilePage({
               )}
             </div>
 
-            <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
+            <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
               <div className="flex items-center justify-between gap-3 mb-4">
-                <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">
+                <h3 className="text-lg font-extrabold text-ink">
                   {t.publicProfile.recentPosts}
                 </h3>
-                <Link href="/bang-tin" className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+                <Link href="/bang-tin" className="text-xs font-bold text-accent hover:underline">
                   {t.publicProfile.viewFeed}
                 </Link>
               </div>

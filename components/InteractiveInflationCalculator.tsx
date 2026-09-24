@@ -30,7 +30,7 @@ export default function InteractiveInflationCalculator() {
       <h3 className="font-bold text-lg text-ink mb-4">
         {t.inflationCalc.title}
       </h3>
-      <p className="text-sm text-stone-600 dark:text-stone-400 mb-6">
+      <p className="text-sm text-ink-soft mb-6">
         {t.inflationCalc.subtitle}
       </p>
 
@@ -82,10 +82,10 @@ export default function InteractiveInflationCalculator() {
 
       {/* Results */}
       <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="p-4 bg-stone-50 dark:bg-stone-800 rounded-xl">
+        <div className="p-4 bg-surface rounded-xl">
           <div className="flex items-center gap-2 mb-2">
-            <Calculator className="w-4 h-4 text-stone-600 dark:text-stone-400" />
-            <span className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase">
+            <Calculator className="w-4 h-4 text-ink-soft" />
+            <span className="text-xs font-bold text-ink-soft uppercase">
               {t.inflationCalc.currentValueLabel}
             </span>
           </div>
@@ -94,37 +94,37 @@ export default function InteractiveInflationCalculator() {
           </p>
         </div>
 
-        <div className="p-4 bg-rose-50 dark:bg-rose-950/30 rounded-xl border border-rose-200 dark:border-rose-900">
+        <div className="p-4 bg-rose-50 dark:bg-rose-950/30 rounded-xl border border-alert-line">
           <div className="flex items-center gap-2 mb-2">
-            <TrendingDown className="w-4 h-4 text-rose-600 dark:text-rose-400" />
-            <span className="text-xs font-bold text-rose-700 dark:text-rose-400 uppercase">
+            <TrendingDown className="w-4 h-4 text-alert" />
+            <span className="text-xs font-bold text-alert-strong uppercase">
               {format(t.inflationCalc.valueAfterYearsLabel, { years })}
             </span>
           </div>
-          <p className="text-2xl font-bold text-rose-900 dark:text-rose-100">
+          <p className="text-2xl font-bold text-alert-ink">
             {format(t.inflationCalc.millionSuffix, { amount: result.purchasingPower })}
           </p>
         </div>
       </div>
 
       {/* Loss Summary */}
-      <div className="p-4 bg-warn-soft/30 rounded-xl border border-amber-200 dark:border-amber-900 mb-6">
+      <div className="p-4 bg-amber-50 dark:bg-amber-950/30 rounded-xl border border-warn-line mb-6">
         <div className="flex items-center gap-2 mb-2">
           <AlertTriangle className="w-4 h-4 text-warn" />
-          <span className="text-sm font-bold text-amber-800 dark:text-amber-300">
+          <span className="text-sm font-bold text-warn-ink">
             {t.inflationCalc.lossTitle}
           </span>
         </div>
-        <p className="text-3xl font-bold text-amber-900 dark:text-amber-100 mb-1">
+        <p className="text-3xl font-bold text-amber-900 dark:text-amber-300 mb-1">
           {format(t.inflationCalc.millionSuffix, { amount: result.loss })}
         </p>
-        <p className="text-sm text-amber-700 dark:text-amber-400">
+        <p className="text-sm text-warn-strong">
           {format(t.inflationCalc.lossPercentOfOriginal, { pct: result.lossPercentage })}
         </p>
       </div>
 
       {/* Explanation */}
-      <div className="p-4 bg-stone-50 dark:bg-stone-800 rounded-xl">
+      <div className="p-4 bg-surface rounded-xl">
         <h4 className="font-semibold text-sm text-ink mb-3">
           {t.inflationCalc.formulaTitle}
         </h4>
@@ -142,11 +142,11 @@ export default function InteractiveInflationCalculator() {
           </p>
         </div>
 
-        <div className="mt-4 pt-4 border-t border-stone-200 dark:border-stone-700">
+        <div className="mt-4 pt-4 border-t border-line-mid">
           <h4 className="font-semibold text-sm text-ink mb-2">
             {t.inflationCalc.meaningTitle}
           </h4>
-          <p className="text-sm text-stone-600 dark:text-stone-400">
+          <p className="text-sm text-ink-soft">
             {format(t.inflationCalc.meaningBody, {
               amount,
               years,

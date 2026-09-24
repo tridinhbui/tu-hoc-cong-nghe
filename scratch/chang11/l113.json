@@ -1,0 +1,165 @@
+{
+  "id": 113,
+  "slug": "duong-gang-va-phu-thuoc-noi-tiep",
+  "title": "Đường găng: chuỗi dài nhất quyết định ngày xong",
+  "subtitle": "Ba đội mỗi đội hai tuần, nối tiếp nhau, là sáu tuần chứ không phải hai.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔗",
+  "track": "professional",
+  "whyItMatters": "Kế hoạch nhiều đội thường được lập bằng cách cộng công sức rồi chia cho số người. Cách đó bỏ qua thứ quyết định ngày hoàn thành: chuỗi phụ thuộc nối tiếp dài nhất, thứ không rút ngắn được bằng cách thêm người.",
+  "openingQuestion": "Ba đội mỗi đội cần hai tuần, nhưng đội sau phải chờ đội trước xong. Bao lâu thì xong?",
+  "openingOptions": [
+    "Sáu tuần, vì ba phần nối tiếp nhau chứ không chạy song song",
+    "Hai tuần, vì ba đội cùng làm trong một khoảng thời gian",
+    "Bốn tuần, vì hai đội sau có thể bắt đầu một phần công việc sớm",
+    "Tuỳ vào số người mà mỗi đội bố trí cho công việc đó"
+  ],
+  "correctOption": 0,
+  "explanation": "Khi các phần phụ thuộc nối tiếp, tổng thời gian là tổng chứ không phải giá trị lớn nhất. Đây là điểm khác nhau căn bản giữa công sức và thời gian: sáu tuần-người có thể xong trong hai tuần nếu ba phần độc lập, và mất sáu tuần nếu chúng xếp hàng. Thêm người vào bất kỳ đội nào cũng không rút ngắn được chuỗi ấy, vì nút thắt không phải năng lực mà là thứ tự. Muốn nhanh hơn thì phải cắt phụ thuộc, không phải thêm nguồn lực.",
+  "diagram": [
+    {
+      "label": "Ba phần, mỗi phần hai tuần",
+      "arrow": true
+    },
+    {
+      "label": "Song song: xong sau hai tuần",
+      "arrow": true
+    },
+    {
+      "label": "Nối tiếp: xong sau sáu tuần",
+      "arrow": true
+    },
+    {
+      "label": "Thêm người không rút ngắn chuỗi nối tiếp"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Giao diện chờ máy chủ chờ dữ liệu",
+    "description": "Chuỗi phụ thuộc kinh điển trong tổ chức chia theo tầng: đội dữ liệu làm xong thì đội máy chủ mới bắt đầu, xong nữa thì đội giao diện mới vào. Cùng khối lượng công việc ấy, nếu chia theo miền thì một đội làm trọn và xong sau hai tuần."
+  },
+  "keyTakeaways": [
+    "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi.",
+    "Thêm người không rút ngắn được chuỗi nối tiếp.",
+    "Cắt phụ thuộc bằng hợp đồng thoả thuận trước để các phần chạy song song.",
+    "Chuỗi càng dài thì mỗi lần trễ càng dồn hết sang cuối."
+  ],
+  "summary": {
+    "keyIdea": "Ngày hoàn thành do chuỗi phụ thuộc dài nhất quyết định, không do tổng công sức.",
+    "formula": "Muốn nhanh hơn thì cắt phụ thuộc, đừng thêm người.",
+    "commonMistake": "Lập kế hoạch bằng cách cộng công sức rồi chia cho số người."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Vẽ chuỗi phụ thuộc của việc lớn nhất đội bạn đang tham gia. Đường dài nhất trong hình chính là ngày hoàn thành sớm nhất, bất kể có bao nhiêu người."
+  },
+  "practicePrompt": {
+    "question": "Cách nào thật sự rút ngắn được một chuỗi phụ thuộc ba đội?",
+    "options": [
+      "Thoả thuận trước hợp đồng giữa các phần để hai đội sau bắt đầu song song",
+      "Thêm người vào đội đang đứng đầu chuỗi phụ thuộc",
+      "Yêu cầu mỗi đội rút ngắn thời gian ước lượng của mình",
+      "Chuyển toàn bộ công việc cho một đội duy nhất thực hiện"
+    ],
+    "correct": 0,
+    "explanation": "Đội sau thường chờ vì chưa biết hình dạng thứ mình sẽ nhận. Thống nhất hình dạng đó trước rồi mỗi bên tự làm phần mình dựa trên bản mô tả, chuỗi nối tiếp biến thành ba việc song song - và đó là cách duy nhất trong danh sách thật sự đổi được cấu trúc."
+  },
+  "quiz": [
+    {
+      "question": "Điều gì quyết định ngày hoàn thành của một kế hoạch nhiều đội?",
+      "options": [
+        "Chuỗi phụ thuộc nối tiếp dài nhất",
+        "Tổng công sức chia cho tổng số người tham gia",
+        "Đội có khối lượng công việc lớn nhất trong nhóm",
+        "Số lượng đội cùng tham gia vào kế hoạch đó"
+      ],
+      "correct": 0,
+      "explanation": "Những phần chạy song song không cộng vào thời gian, còn những phần xếp hàng thì cộng đủ. Vì thế cấu trúc phụ thuộc quan trọng hơn tổng khối lượng."
+    },
+    {
+      "question": "Vì sao thêm người không rút ngắn được chuỗi nối tiếp?",
+      "options": [
+        "Vì nút thắt là thứ tự công việc chứ không phải năng lực",
+        "Vì người mới cần thời gian để làm quen với dự án",
+        "Vì các đội thường không có sẵn chỗ trống cho người mới vào ngồi",
+        "Vì ngân sách dự án không cho phép tăng nhân sự"
+      ],
+      "correct": 0,
+      "explanation": "Đội thứ ba không thể bắt đầu sớm hơn dù có bao nhiêu người, vì họ đang chờ đầu ra của đội thứ hai. Thêm người chỉ giúp khi nút thắt là năng lực."
+    },
+    {
+      "question": "Cách hiệu quả nhất để cắt phụ thuộc là gì?",
+      "options": [
+        "Thoả thuận hình dạng giao diện trước để các bên làm song song",
+        "Gộp các đội lại thành một đội lớn hơn",
+        "Yêu cầu đội đầu chuỗi ưu tiên phần mà đội sau cần",
+        "Chia nhỏ công việc thành nhiều giai đoạn ngắn hơn"
+      ],
+      "correct": 0,
+      "explanation": "Đội sau chờ vì chưa biết hình dạng đầu vào. Chốt hình dạng ấy trước thì họ làm được ngay với một bản giả lập, và chỉ ghép thật vào cuối."
+    },
+    {
+      "question": "Chuỗi phụ thuộc dài gây rủi ro gì ngoài thời gian?",
+      "options": [
+        "Mỗi lần trễ ở đầu chuỗi đều dồn hết sang các đội phía sau",
+        "Các đội ở phía sau sẽ mất động lực khi phải chờ đợi quá lâu",
+        "Chi phí nhân sự tăng lên theo độ dài của chuỗi",
+        "Chất lượng công việc giảm dần ở các mắt xích cuối"
+      ],
+      "correct": 0,
+      "explanation": "Chuỗi không có chỗ hấp thụ trễ, nên một tuần chậm ở mắt đầu là một tuần chậm cho cả kế hoạch. Rủi ro dồn về cuối, đúng nơi ít thời gian xoay xở nhất."
+    },
+    {
+      "question": "Vì sao chia đội theo miền lại rút ngắn được thời gian so với chia theo tầng?",
+      "options": [
+        "Vì một tính năng nằm gọn trong một đội nên không phải xếp hàng",
+        "Vì đội chia theo miền thường có nhiều người hơn đội chia theo tầng",
+        "Vì công việc theo miền đơn giản hơn công việc theo tầng",
+        "Vì đội theo miền không cần viết tài liệu giao diện"
+      ],
+      "correct": 0,
+      "explanation": "Đây là hệ quả trực tiếp của bài về ranh giới: cắt theo hướng của thay đổi thì chuỗi phụ thuộc ngắn lại. Cùng khối lượng công việc, cấu trúc khác cho ra thời gian khác hẳn."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Kế hoạch nhiều đội hay được lập bằng phép cộng: sáu tuần-người, ba đội, vậy là hai tuần. Phép cộng ấy chỉ đúng khi ba phần độc lập với nhau."
+    },
+    {
+      "type": "heading",
+      "text": "Công sức và thời gian là hai đại lượng khác nhau"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Song song",
+        "text": "Ba phần độc lập, mỗi phần hai tuần. Tổng thời gian là hai tuần. Thêm người vào một đội có thể rút ngắn phần của họ."
+      },
+      "right": {
+        "label": "Nối tiếp",
+        "text": "Ba phần xếp hàng, mỗi phần hai tuần. Tổng thời gian là sáu tuần. Thêm người không đổi được gì, vì nút thắt là thứ tự."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Cắt phụ thuộc bằng hợp đồng thoả thuận trước"
+    },
+    {
+      "type": "paragraph",
+      "text": "Đội sau thường chờ không phải vì cần mã của đội trước mà vì chưa biết hình dạng thứ mình sẽ nhận. Chốt hình dạng ấy ngay từ đầu - một bản mô tả giao diện, một ví dụ dữ liệu - thì họ dựng bản giả lập và làm song song, chỉ ghép thật vào cuối. Chuỗi sáu tuần thành hai tuần rưỡi mà không thêm một người nào."
+    },
+    {
+      "type": "callout",
+      "label": "Trễ dồn về cuối",
+      "text": "Chuỗi nối tiếp không có chỗ hấp thụ chậm trễ. Một tuần trễ ở mắt xích đầu tiên là một tuần trễ cho toàn bộ kế hoạch, và nó rơi vào đội cuối cùng - những người ít có khả năng xoay xở nhất vì họ đứng sát ngày hẹn."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Ngày hoàn thành do cấu trúc phụ thuộc quyết định, không do tổng công sức. Muốn sớm hơn thì đổi cấu trúc.",
+        "Bài sau nói về cách những quyết định như thế này được ghi lại, để người sau không phải đoán vì sao mọi thứ như hiện tại."
+      ]
+    }
+  ]
+}

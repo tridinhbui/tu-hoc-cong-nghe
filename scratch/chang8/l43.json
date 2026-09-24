@@ -1,0 +1,173 @@
+{
+  "id": 43,
+  "slug": "tcp-va-udp",
+  "title": "Bảo đảm hay nhanh: hai cách gửi dữ liệu",
+  "subtitle": "Một bên gửi lại cho tới khi tới nơi, một bên gửi xong là thôi - và cả hai đều đúng chỗ của mình.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🚦",
+  "track": "professional",
+  "whyItMatters": "Cuộc gọi video giật vài khung hình thì vẫn xem được, nhưng chờ gửi lại khung hình cũ thì hỏng cả cuộc gọi. Một lệnh chuyển tiền thì ngược lại: chậm cũng được, sai thì không. Chọn cách gửi là chọn cái nào chấp nhận đánh mất.",
+  "openingQuestion": "Cuộc gọi video nên dùng cách gửi nào?",
+  "openingOptions": [
+    "Cách không gửi lại gói mất, vì khung hình cũ tới muộn cũng vô dụng",
+    "Cách bảo đảm mọi gói đều tới nơi, để hình ảnh không bị mất khung nào",
+    "Cách bảo đảm, nhưng giảm chất lượng hình xuống cho gói nhỏ lại",
+    "Cả hai cách đều được vì độ trễ của chúng gần như bằng nhau"
+  ],
+  "correctOption": 0,
+  "explanation": "Gửi lại một gói đã mất mất thêm ít nhất một vòng đi về. Với tệp tin thì đó là cái giá xứng đáng, vì tệp thiếu một mẩu là tệp hỏng. Với cuộc gọi video thì khung hình của một phần tư giây trước có tới nơi cũng không dùng được nữa - người xem đã ở khung hình khác rồi. Tệ hơn, cơ chế bảo đảm sẽ giữ lại những gói tới sau để chờ gói thiếu, làm cả dòng bị nghẽn vì một mẩu không ai cần. Nên loại dữ liệu quyết định cách gửi, chứ không phải cách nào tốt hơn cách nào.",
+  "diagram": [
+    {
+      "label": "Một gói bị mất giữa đường",
+      "arrow": true
+    },
+    {
+      "label": "Cách bảo đảm: dừng lại, yêu cầu gửi lại",
+      "arrow": true
+    },
+    {
+      "label": "Cách nhanh: bỏ qua, đi tiếp với gói mới",
+      "arrow": true
+    },
+    {
+      "label": "Đúng hay mượt - chọn theo loại dữ liệu"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Nghẽn vì một gói",
+    "description": "Trong cơ chế bảo đảm, các gói tới sau phải nằm chờ cho tới khi gói thiếu được gửi lại, vì đầu nhận cần đúng thứ tự. Một gói mất làm cả dòng khựng lại - hiện tượng này là lý do các ứng dụng thời gian thực chọn cách gửi còn lại."
+  },
+  "keyTakeaways": [
+    "Cách bảo đảm giữ đúng thứ tự và gửi lại gói mất, đổi lại có độ trễ và nghẽn dòng.",
+    "Cách nhanh gửi xong là thôi, không thứ tự, không gửi lại, không thiết lập kết nối.",
+    "Dữ liệu thời gian thực chọn mượt; dữ liệu phải toàn vẹn chọn đúng.",
+    "Cách bảo đảm cần bắt tay trước khi gửi, nên lần gọi đầu luôn tốn thêm vòng đi về."
+  ],
+  "summary": {
+    "keyIdea": "Không có cách gửi tốt hơn, chỉ có cách gửi hợp với loại dữ liệu.",
+    "formula": "Toàn vẹn thì chấp nhận trễ; thời gian thực thì chấp nhận mất.",
+    "commonMistake": "Mặc định chọn cách bảo đảm cho cả những thứ mà dữ liệu cũ đã vô dụng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê các loại dữ liệu dịch vụ của bạn gửi đi, rồi với mỗi loại tự hỏi: nếu một mẩu tới muộn nửa giây thì nó còn giá trị không? Câu trả lời chính là cách gửi phù hợp."
+  },
+  "practicePrompt": {
+    "question": "Hệ thống ghi số đo cảm biến mỗi giây lên máy chủ, mất vài điểm cũng không sao. Nên chọn cách gửi nào?",
+    "options": [
+      "Cách nhanh, vì điểm đo mới luôn thay thế được điểm đo vừa mất",
+      "Cách bảo đảm, để chuỗi số đo không bị thiếu điểm nào khi phân tích",
+      "Cách bảo đảm, nhưng tắt cơ chế giữ thứ tự để giảm bớt độ trễ",
+      "Tuỳ số lượng cảm biến, ít thì dùng cách nhanh còn nhiều thì ngược lại"
+    ],
+    "correct": 0,
+    "explanation": "Số đo mỗi giây là dữ liệu tự làm mới: điểm tiếp theo tới sau một giây và mang thông tin cập nhật hơn điểm vừa mất. Gửi lại điểm cũ vừa tốn băng thông vừa cho ra dữ liệu lỗi thời, nên chi phí của cơ chế bảo đảm ở đây không mua được gì."
+  },
+  "quiz": [
+    {
+      "question": "Cách gửi bảo đảm khác cách gửi nhanh ở điểm cốt lõi nào?",
+      "options": [
+        "Nó gửi lại gói mất và giữ đúng thứ tự cho đầu nhận",
+        "Nó mã hoá nội dung gói tin còn cách nhanh thì gửi ở dạng gốc",
+        "Nó chia dữ liệu thành gói nhỏ hơn nên ít khi bị mất giữa đường",
+        "Nó dùng đường truyền riêng còn cách nhanh dùng đường dùng chung"
+      ],
+      "correct": 0,
+      "explanation": "Khác biệt nằm ở việc có phát hiện thiếu và gửi bù hay không, cùng với việc có xếp lại thứ tự hay không. Mã hoá là chuyện của một tầng khác và áp dụng được cho cả hai."
+    },
+    {
+      "question": "Vì sao ứng dụng thời gian thực thường tránh cơ chế gửi lại?",
+      "options": [
+        "Vì dữ liệu cũ tới muộn thì đã hết giá trị sử dụng",
+        "Vì cơ chế gửi lại chỉ hoạt động trong mạng nội bộ chứ không ra Internet",
+        "Vì gói được gửi lại thường bị hỏng nội dung sau lần truyền thứ hai",
+        "Vì gửi lại làm tăng dung lượng dữ liệu vượt quá băng thông cho phép"
+      ],
+      "correct": 0,
+      "explanation": "Khung hình hay mẩu âm thanh của một phần tư giây trước không còn chỗ để phát nữa. Tệ hơn, chờ nó về còn làm những gói mới tới phải nằm chờ theo, nên chất lượng giảm chứ không tăng."
+    },
+    {
+      "question": "Hiện tượng nghẽn dòng vì một gói xảy ra do đâu?",
+      "options": [
+        "Các gói tới sau phải chờ vì đầu nhận cần đủ thứ tự",
+        "Thiết bị trung gian ưu tiên gói được gửi lại hơn các gói mới",
+        "Băng thông bị chiếm hết bởi những lần gửi lại liên tiếp nhau",
+        "Đầu gửi tạm dừng hoàn toàn cho tới khi nhận đủ mọi xác nhận"
+      ],
+      "correct": 0,
+      "explanation": "Cơ chế bảo đảm trao dữ liệu cho ứng dụng theo đúng thứ tự, nên một mẩu thiếu chặn cả những mẩu đã tới nơi. Đây là chi phí ẩn của sự bảo đảm, và nó lộ ra đúng lúc mạng kém."
+    },
+    {
+      "question": "Vì sao lần gọi đầu tiên qua cách bảo đảm luôn tốn thêm thời gian?",
+      "options": [
+        "Vì hai bên phải bắt tay thiết lập kết nối trước khi gửi dữ liệu",
+        "Vì gói đầu tiên luôn được gửi hai lần để kiểm tra đường truyền",
+        "Vì đầu nhận phải cấp phát sẵn một vùng nhớ đệm lớn trước khi nhận dữ liệu",
+        "Vì phải phân giải lại tên miền cho từng kết nối mới được mở"
+      ],
+      "correct": 0,
+      "explanation": "Bắt tay tốn ít nhất một vòng đi về trước khi byte dữ liệu đầu tiên được gửi. Với kết nối xa, riêng bước đó đã là hàng trăm mili giây - lý do người ta cố dùng lại kết nối thay vì mở mới."
+    },
+    {
+      "question": "Loại dữ liệu nào phù hợp với cách gửi không bảo đảm?",
+      "options": [
+        "Số đo được cập nhật liên tục, mất điểm này thì có điểm sau",
+        "Tệp tin tải về, vì người dùng có thể tải lại nếu thấy tệp hỏng",
+        "Lệnh thanh toán, vì cuối ngày sẽ đối soát",
+        "Bản ghi nhật ký, vì chúng chỉ dùng để tra cứu chứ không tính toán"
+      ],
+      "correct": 0,
+      "explanation": "Dữ liệu tự làm mới thì mẩu mới thay được mẩu mất. Tệp và lệnh thanh toán đều cần toàn vẹn, còn nhật ký thiếu đúng dòng quan trọng thì mất luôn thứ bạn cần khi điều tra."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói gói tin có thể mất, tới trùng và tới lệch thứ tự. Câu hỏi tiếp theo là: ai dọn mớ đó, và có phải lúc nào cũng nên dọn không."
+    },
+    {
+      "type": "heading",
+      "text": "Hai lựa chọn, hai cái giá"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Bảo đảm",
+        "text": "Phát hiện gói thiếu, yêu cầu gửi lại, trao cho ứng dụng đúng thứ tự. Cái giá là bắt tay trước khi gửi, độ trễ khi mất gói, và nghẽn dòng vì một mẩu."
+      },
+      "right": {
+        "label": "Nhanh",
+        "text": "Gửi xong là xong, không kiểm, không đợi, không xếp lại. Cái giá là ứng dụng phải tự lo phần thiếu - hoặc chấp nhận thiếu."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Câu hỏi để chọn"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chỉ cần một câu: nếu mẩu dữ liệu này tới muộn nửa giây thì nó còn giá trị không? Với một dòng trong tệp thì có, và thiếu nó là tệp hỏng. Với một khung hình video thì không, vì người xem đã ở chỗ khác rồi. Câu trả lời quyết định cách gửi, và nó thuộc về bản chất dữ liệu chứ không thuộc về sở thích kỹ thuật."
+    },
+    {
+      "type": "callout",
+      "label": "Cái giá ẩn của sự bảo đảm",
+      "text": "Không chỉ là chờ gói mất được gửi lại. Những gói đã tới nơi cũng phải nằm chờ, vì ứng dụng chỉ được nhận theo đúng thứ tự. Một gói rơi làm cả dòng khựng, và điều đó lộ ra đúng vào lúc mạng kém nhất."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Dữ liệu tự làm mới thì đừng gửi lại: mẩu mới luôn có giá trị hơn mẩu cũ.",
+        "Dùng lại kết nối đã mở thay vì mở mới, để không trả phí bắt tay nhiều lần.",
+        "Chọn cách nhanh không có nghĩa là bỏ mặc: ứng dụng vẫn phải xử lý được phần thiếu."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bảo đảm không miễn phí, và tốc độ không miễn phí. Chọn cái nào là chọn thứ bạn chịu được khi mất.",
+        "Bài sau lên tầng ứng dụng, nơi phần lớn mã của bạn sống: một yêu cầu và một phản hồi trông ra sao."
+      ]
+    }
+  ]
+}

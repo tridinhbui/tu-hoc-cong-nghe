@@ -1,0 +1,165 @@
+{
+  "id": 110,
+  "slug": "su-kien-giua-cac-doi",
+  "title": "Sự kiện nội bộ: kể chuyện đã xảy ra, đừng ra lệnh",
+  "subtitle": "Đơn hàng đã được tạo là một sự thật; hãy gửi email xác nhận là một mệnh lệnh.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "📢",
+  "track": "professional",
+  "whyItMatters": "Sự kiện là cách phổ biến nhất để các đội trao thông tin mà không dính vào nhau. Nhưng nếu sự kiện mang mệnh lệnh thay vì sự thật, bạn chỉ đổi một lời gọi trực tiếp lấy một lời gọi trực tiếp vòng vèo hơn.",
+  "openingQuestion": "Đội đơn hàng cần đội thông báo gửi email cho khách. Nên phát ra thứ gì?",
+  "openingOptions": [
+    "Một sự kiện nói đơn hàng đã được tạo, để bên kia tự quyết định làm gì",
+    "Một sự kiện nói hãy gửi email xác nhận cho khách hàng này",
+    "Một lời gọi trực tiếp tới dịch vụ thông báo của đội kia",
+    "Một bản ghi vào bảng hàng đợi mà đội kia sẽ đọc định kỳ"
+  ],
+  "correctOption": 0,
+  "explanation": "Sự kiện kể một sự thật đã xảy ra thì bên phát không cần biết ai đang nghe hay họ làm gì với nó. Thêm một đội quan tâm tới đơn hàng mới là chuyện của họ, không ai phải sửa gì ở phía đơn hàng. Ngược lại, sự kiện mang mệnh lệnh buộc bên phát phải biết bên kia tồn tại, biết họ làm gì, và phải sửa mỗi khi quy trình đổi - tức là đúng sự phụ thuộc mà kiến trúc sự kiện sinh ra để gỡ, chỉ khác là giờ nó đi qua một hàng đợi.",
+  "diagram": [
+    {
+      "label": "Sự kiện kể sự thật: đơn hàng đã tạo",
+      "arrow": true
+    },
+    {
+      "label": "Bên phát không cần biết ai nghe",
+      "arrow": true
+    },
+    {
+      "label": "Thêm bên nghe mới không phải sửa gì",
+      "arrow": true
+    },
+    {
+      "label": "Sự kiện mang mệnh lệnh thì mất hết lợi ích đó"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Sự kiện tên là hãy làm gì đó",
+    "description": "Khi tên sự kiện bắt đầu bằng một động từ mệnh lệnh, đó là dấu hiệu nó đang là một lời gọi ngụy trang. Sự kiện thật luôn ở thì quá khứ, vì nó mô tả thứ đã xảy ra chứ không phải thứ muốn xảy ra."
+  },
+  "keyTakeaways": [
+    "Sự kiện mô tả việc đã xảy ra, ở thì quá khứ, không mang mệnh lệnh.",
+    "Bên phát không cần biết ai đang nghe - đó là toàn bộ lợi ích của mô hình này.",
+    "Sự kiện cũng là hợp đồng, nên đổi hình dạng của nó cần các bước như đổi API.",
+    "Bên nghe phải chịu được việc nhận trùng và nhận lệch thứ tự."
+  ],
+  "summary": {
+    "keyIdea": "Sự kiện gỡ phụ thuộc chỉ khi nó kể sự thật; mang mệnh lệnh thì phụ thuộc vẫn còn nguyên.",
+    "formula": "Thì quá khứ, không nêu tên người nhận.",
+    "commonMistake": "Đặt tên sự kiện bằng động từ mệnh lệnh, biến hàng đợi thành lời gọi vòng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Đọc danh sách sự kiện hệ thống bạn đang phát và xem tên của chúng. Cái nào ở dạng mệnh lệnh hoặc nhắc tới tên một đội cụ thể là cái đang mang phụ thuộc đi kèm."
+  },
+  "practicePrompt": {
+    "question": "Đội bạn phát sự kiện và ba đội đang nghe. Bạn muốn thêm một trường vào sự kiện đó. Cần làm gì?",
+    "options": [
+      "Thêm trường mới là an toàn, nhưng đổi hay bỏ trường cũ thì cần các bước như đổi API",
+      "Thông báo cho ba đội rồi phát hành phiên bản mới của sự kiện",
+      "Không cần làm gì vì sự kiện không phải là hợp đồng chính thức",
+      "Tạo một loại sự kiện mới hoàn toàn để tránh ảnh hưởng bên nghe"
+    ],
+    "correct": 0,
+    "explanation": "Hình dạng sự kiện là hợp đồng đúng như một phản hồi API, và những quy tắc tương thích ở chặng mạng áp dụng nguyên vẹn. Thêm trường thì bên nghe cũ bỏ qua; đổi tên hay bỏ trường thì phải qua giai đoạn song song."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao sự kiện nên kể sự thật thay vì ra lệnh?",
+      "options": [
+        "Vì bên phát khi đó không cần biết ai đang nghe hay họ làm gì",
+        "Vì sự kiện dạng sự thật có kích thước nhỏ hơn khi truyền",
+        "Vì hàng đợi chỉ hỗ trợ thông điệp ở dạng mô tả lại trạng thái",
+        "Vì mệnh lệnh cần xác nhận còn sự thật thì không cần"
+      ],
+      "correct": 0,
+      "explanation": "Đó chính là thứ gỡ được phụ thuộc: thêm một bên nghe mới không cần ai sửa gì ở phía phát. Mệnh lệnh thì buộc bên phát phải biết bên nhận, nên phụ thuộc vẫn còn."
+    },
+    {
+      "question": "Dấu hiệu một sự kiện đang là lời gọi ngụy trang là gì?",
+      "options": [
+        "Tên nó là một mệnh lệnh hoặc nhắc tới một đội cụ thể",
+        "Nó được phát nhiều lần trong một khoảng thời gian ngắn",
+        "Nó chứa nhiều trường dữ liệu hơn các sự kiện khác",
+        "Nó chỉ có đúng một bên đang lắng nghe hiện tại"
+      ],
+      "correct": 0,
+      "explanation": "Tên phản ánh cách nghĩ. Hãy gửi email hàm ý bên phát biết có dịch vụ email và biết nó phải chạy - đó là sự phụ thuộc mà mô hình này sinh ra để gỡ."
+    },
+    {
+      "question": "Hình dạng của một sự kiện nên được coi là gì?",
+      "options": [
+        "Một hợp đồng, với các quy tắc tương thích như của API",
+        "Một chi tiết nội bộ mà bên phát tự do thay đổi",
+        "Một cấu trúc tạm thời chỉ dùng trong lúc truyền tin qua mạng",
+        "Một bản sao đầy đủ của bản ghi trong cơ sở dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Có bên đọc thì có hợp đồng, bất kể nó đi qua đường nào. Thêm trường là an toàn; đổi tên, đổi kiểu hay bỏ trường đều cần giai đoạn song song."
+    },
+    {
+      "question": "Bên nghe sự kiện phải chuẩn bị cho điều gì?",
+      "options": [
+        "Nhận trùng và nhận lệch thứ tự",
+        "Nhận sự kiện với cấu trúc hoàn toàn khác",
+        "Mất kết nối tới hàng đợi trong thời gian dài",
+        "Phải xác nhận lại với bên phát sau mỗi lần xử lý"
+      ],
+      "correct": 0,
+      "explanation": "Đây là hai tính chất cố hữu của hệ thống thông điệp, đã gặp ở chặng mạng. Bên nghe phải chịu được lặp, và không nên giả định thứ tự trừ khi hệ thống bảo đảm điều đó."
+    },
+    {
+      "question": "Lợi ích lớn nhất của kiến trúc sự kiện giữa các đội là gì?",
+      "options": [
+        "Thêm một bên quan tâm không cần đội phát sửa bất cứ thứ gì",
+        "Giảm được tổng lượng dữ liệu truyền giữa các dịch vụ",
+        "Bảo đảm mọi đội luôn có dữ liệu nhất quán tại mọi thời điểm",
+        "Loại bỏ nhu cầu phải có hợp đồng giữa các đội với nhau"
+      ],
+      "correct": 0,
+      "explanation": "Đó là điểm mạnh cốt lõi. Nó không làm dữ liệu nhất quán hơn - thực ra ngược lại, và bài sau nói về chính cái giá đó."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước kết luận rằng chia sẻ dữ liệu qua bảng phá vỡ ranh giới. Sự kiện là cách phổ biến nhất để trao thông tin mà vẫn giữ ranh giới - nếu dùng đúng cách."
+    },
+    {
+      "type": "heading",
+      "text": "Sự thật hay mệnh lệnh"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Kể sự thật",
+        "text": "Đơn hàng đã được tạo. Bên phát không biết và không cần biết ai nghe. Thêm đội thứ tư quan tâm là chuyện của đội thứ tư."
+      },
+      "right": {
+        "label": "Ra lệnh",
+        "text": "Hãy gửi email xác nhận. Bên phát phải biết có dịch vụ email, biết nó cần chạy, và phải sửa mỗi lần quy trình đổi."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Sự kiện cũng là hợp đồng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ngay khi có bên đọc, hình dạng sự kiện thành lời hứa - đúng như phản hồi của một API. Mọi quy tắc tương thích ở chặng mạng áp dụng nguyên vẹn: thêm trường thì an toàn vì bên nghe cũ bỏ qua, còn đổi tên hay bỏ trường thì cần một giai đoạn phát song song cả hai dạng."
+    },
+    {
+      "type": "callout",
+      "label": "Đặt tên ở thì quá khứ",
+      "text": "Một quy ước nhỏ có tác dụng lớn: mọi sự kiện đều đặt tên ở thì quá khứ và không nhắc tới bên nhận. Nó buộc người viết phải nghĩ theo hướng kể lại thay vì ra lệnh, và nó làm lộ ngay những chỗ đang nghĩ sai."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Sự kiện gỡ được phụ thuộc chỉ khi nó kể chuyện đã xảy ra. Mang mệnh lệnh thì bạn chỉ có một lời gọi đi đường vòng.",
+        "Bài sau nói về cái giá phải trả cho sự độc lập ấy: dữ liệu ở các đội không còn khớp nhau tại mọi thời điểm."
+      ]
+    }
+  ]
+}

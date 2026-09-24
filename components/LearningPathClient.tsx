@@ -162,7 +162,7 @@ export default function LearningPathClient({
           {p.backToDashboard}
         </Link>
         <h1 className="text-2xl font-black text-ink">{p.title}</h1>
-        <p className="text-sm leading-relaxed text-stone-600 dark:text-stone-400">{p.subtitle}</p>
+        <p className="text-sm leading-relaxed text-ink-soft">{p.subtitle}</p>
       </header>
 
       {/* Mục lục. Sáu khối, và người quay lại lần thứ hai gần như luôn chỉ muốn
@@ -207,7 +207,7 @@ export default function LearningPathClient({
           {loading ? (
             <p className="text-sm text-ink-muted">{p.heroLoading}</p>
           ) : !nextLesson ? (
-            <p className="text-sm leading-relaxed text-stone-600 dark:text-stone-400">{p.heroNoLesson}</p>
+            <p className="text-sm leading-relaxed text-ink-soft">{p.heroNoLesson}</p>
           ) : (
             <>
               <p className="text-xs font-bold text-ink-muted">{p.heroTodayLabel}</p>
@@ -247,7 +247,7 @@ export default function LearningPathClient({
                   </span>
                   {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-500" />}
                 </div>
-                <p className="mt-1.5 text-sm leading-relaxed text-stone-600 dark:text-stone-400">
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
                   {id === "personal" ? p.trackPersonalFor : p.trackProfessionalFor}
                 </p>
                 {/* Thẻ ĐANG CHỌN đếm số bài còn lại, thẻ kia đếm tổng.
@@ -281,7 +281,7 @@ export default function LearningPathClient({
                     thì vẫn trúng, nên lỗi này không bao giờ lộ ra thành khiếu
                     nại; nó chỉ làm chỗ bấm trông nhỏ hơn thực tế. */}
                 {picked ? (
-                  <p className="mt-2 text-xs font-black text-emerald-700 dark:text-emerald-400">{p.trackPicked}</p>
+                  <p className="mt-2 text-xs font-black text-accent-strong">{p.trackPicked}</p>
                 ) : (
                   <span className="mt-2 inline-flex rounded-lg border border-stone-300 px-2.5 py-1 text-xs font-bold text-stone-700 dark:border-stone-700 dark:text-stone-300">
                     {p.trackPick}
@@ -323,7 +323,7 @@ export default function LearningPathClient({
           </Field>
         </div>
         <div className="mt-4 rounded-xl bg-stone-50 p-3.5 dark:bg-stone-950/50">
-          <p className="text-sm font-bold text-stone-800 dark:text-stone-200">
+          <p className="text-sm font-bold text-ink-heading">
             {format(p.paceEstimate, { count: remaining, weeks })}
           </p>
           <p className="mt-0.5 text-sm text-ink-muted">
@@ -356,8 +356,8 @@ export default function LearningPathClient({
             role="status"
             className={`mt-2 text-xs font-bold ${
               saveState === "saved"
-                ? "text-emerald-700 dark:text-emerald-400"
-                : "text-rose-700 dark:text-rose-400"
+                ? "text-accent-strong"
+                : "text-alert-strong"
             }`}
           >
             {saveState === "saved" ? p.paceSaved : p.paceSaveFailed}
@@ -379,7 +379,7 @@ export default function LearningPathClient({
               </span>
               <div>
                 <p className="text-sm font-bold text-ink">{title}</p>
-                <p className="mt-1 text-sm leading-relaxed text-stone-600 dark:text-stone-400">{body}</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-soft">{body}</p>
               </div>
             </li>
           ))}
@@ -396,9 +396,9 @@ export default function LearningPathClient({
       </Card>
 
       <Card id="check" icon={<CheckCircle2 className="h-4 w-4" />} title={p.stepCheckTitle}>
-        <p className="text-sm leading-relaxed text-stone-600 dark:text-stone-400">{p.stepCheckBody}</p>
-        <p className="mt-4 text-sm font-bold text-stone-800 dark:text-stone-200">{p.weekRhythmTitle}</p>
-        <ul className="mt-1.5 space-y-1 text-sm leading-relaxed text-stone-600 dark:text-stone-400">
+        <p className="text-sm leading-relaxed text-ink-soft">{p.stepCheckBody}</p>
+        <p className="mt-4 text-sm font-bold text-ink-heading">{p.weekRhythmTitle}</p>
+        <ul className="mt-1.5 space-y-1 text-sm leading-relaxed text-ink-soft">
           <li>· {format(p.weekStudy, { days: Math.max(1, pace.daysPerWeek - 1) })}</li>
           <li>· {p.weekReview}</li>
           <li>· {p.weekRest}</li>
@@ -409,10 +409,10 @@ export default function LearningPathClient({
         {loading ? (
           <p className="text-sm text-ink-muted">{p.adjustLoading}</p>
         ) : !nextLesson ? (
-          <p className="text-sm leading-relaxed text-stone-600 dark:text-stone-400">{p.adjustNoData}</p>
+          <p className="text-sm leading-relaxed text-ink-soft">{p.adjustNoData}</p>
         ) : (
           <div className="space-y-3.5">
-            <p className="text-sm font-bold text-stone-800 dark:text-stone-200">
+            <p className="text-sm font-bold text-ink-heading">
               {format(p.adjustProgress, { done: done[track], total })}
             </p>
             {/* Hai <div> trần không nói gì với trình đọc màn hình, mà đây là
@@ -425,7 +425,7 @@ export default function LearningPathClient({
               aria-valuemax={total}
               aria-valuenow={done[track]}
               aria-label={format(p.progressAria, { done: done[track], total })}
-              className="h-2 w-full overflow-hidden rounded-full bg-stone-200 dark:bg-stone-800"
+              className="h-2 w-full overflow-hidden rounded-full bg-surface-sunken"
             >
               <div
                 className="h-full rounded-full bg-emerald-500 transition-all duration-500"
@@ -433,7 +433,7 @@ export default function LearningPathClient({
               />
             </div>
             <div>
-              <p className="text-sm font-bold text-stone-800 dark:text-stone-200">{p.adjustWeakest}</p>
+              <p className="text-sm font-bold text-ink-heading">{p.adjustWeakest}</p>
               {gaps.length === 0 ? (
                 <p className="mt-1 text-sm text-ink-muted">{p.adjustEmptyGaps}</p>
               ) : (
@@ -508,7 +508,7 @@ function Card({
         </span>
         <h2 className="text-base font-black text-ink">{title}</h2>
       </div>
-      {hint && <p className="mt-2 text-sm leading-relaxed text-stone-600 dark:text-stone-400">{hint}</p>}
+      {hint && <p className="mt-2 text-sm leading-relaxed text-ink-soft">{hint}</p>}
       <div className="mt-4">{children}</div>
     </section>
   );
@@ -550,7 +550,7 @@ function Disclosure({ question, answer }: { question: string; answer: string }) 
         <span className="mr-1.5 inline-block text-stone-400 transition-transform group-open:rotate-90">›</span>
         {question}
       </summary>
-      <p className="mt-2 pl-4 text-sm leading-relaxed text-stone-600 dark:text-stone-400">{answer}</p>
+      <p className="mt-2 pl-4 text-sm leading-relaxed text-ink-soft">{answer}</p>
     </details>
   );
 }

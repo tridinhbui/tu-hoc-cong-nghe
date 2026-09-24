@@ -263,7 +263,7 @@ function getPodiumTone(rank: number) {
       pedestal: "from-amber-500/40 via-amber-400/25 to-amber-300/10 border-amber-400/80",
       chip: "bg-gradient-to-r from-amber-500 to-yellow-500 text-amber-950 font-black shadow-md",
       name: "text-stone-900 dark:text-amber-100",
-      value: "text-amber-700 dark:text-amber-300",
+      value: "text-warn-strong",
       pedestalLabel: "1st",
     };
   }
@@ -302,7 +302,7 @@ function getPodiumTone(rank: number) {
     pedestal: "from-emerald-400/20 via-emerald-300/10 to-transparent border-emerald-200/70",
     chip: "bg-emerald-600 text-white font-black",
     name: "text-stone-900 dark:text-emerald-200",
-    value: "text-emerald-700 dark:text-emerald-400",
+    value: "text-accent-strong",
     pedestalLabel: "5th",
   };
 }
@@ -401,13 +401,13 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
       <div className="rounded-[28px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.18)]">
         <div className="flex items-start justify-between gap-3 border-b border-stone-200/80 dark:border-stone-800 pb-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 dark:border-amber-700 bg-warn-soft/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-amber-700 dark:text-amber-400 shadow-xs">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-warn-line-mid bg-amber-50 dark:bg-amber-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-warn-strong shadow-xs">
               <Trophy className="h-3.5 w-3.5 fill-amber-400 text-warn" />
               {t.leaderboard.eyebrowCompact}
             </div>
             <h2 className="mt-2.5 text-2xl font-black tracking-tight text-ink">{t.leaderboard.titleCompact}</h2>
           </div>
-          <div className="inline-flex items-center gap-1.5 rounded-2xl border border-accent-line bg-accent-soft/60 px-3 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 shadow-xs">
+          <div className="inline-flex items-center gap-1.5 rounded-2xl border border-accent-line bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1.5 text-xs font-bold text-accent-strong shadow-xs">
             {t.leaderboard[activeTab.labelKey]}
           </div>
         </div>
@@ -417,7 +417,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           <button
             type="button"
             onClick={() => leadTabsRef.current?.scrollBy({ left: -160, behavior: "smooth" })}
-            className="absolute -left-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-md flex items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700 transition-all cursor-pointer hidden sm:flex"
+            className="absolute -left-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-800 border border-line-mid shadow-md flex items-center justify-center text-ink-soft hover:bg-surface transition-all cursor-pointer hidden sm:flex"
             aria-label={t.leaderboard.scrollLeft}
           >
             <ChevronLeft className="w-4 h-4" />
@@ -425,7 +425,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           <button
             type="button"
             onClick={() => leadTabsRef.current?.scrollBy({ left: 160, behavior: "smooth" })}
-            className="absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-md flex items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700 transition-all cursor-pointer hidden sm:flex"
+            className="absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-800 border border-line-mid shadow-md flex items-center justify-center text-ink-soft hover:bg-surface transition-all cursor-pointer hidden sm:flex"
             aria-label={t.leaderboard.scrollRight}
           >
             <ChevronRight className="w-4 h-4" />
@@ -446,7 +446,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                   className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition-all cursor-pointer ${
                     isActive
                       ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-white shadow-md ring-1 ring-stone-200/60 dark:ring-stone-700 font-extrabold"
-                      : "text-ink-muted hover:bg-white/50 dark:hover:bg-stone-800/50 hover:text-stone-800 dark:hover:text-stone-200"
+                      : "text-ink-muted hover:bg-white/50 dark:hover:bg-stone-800/50 hover:text-ink-heading"
                   }`}
                 >
                   <Icon className={`h-3.5 w-3.5 ${isActive ? "text-amber-500" : "text-stone-400"}`} />
@@ -554,7 +554,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             <div className="border-t border-stone-200/80 dark:border-stone-800 pt-3">
               <div className="mb-3 flex items-center justify-between">
                 <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-ink-muted">{t.leaderboard.nextRanks}</p>
-                <span className="text-[10px] font-black text-warn bg-warn-soft/60 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800">
+                <span className="text-[10px] font-black text-warn bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full border border-warn-line">
                   {t.leaderboard.rangeCompact}
                 </span>
               </div>
@@ -573,13 +573,13 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     href={href}
                     className={`flex items-center justify-between gap-3 rounded-2xl border p-2.5 transition-all shadow-xs group ${
                       isCurrent
-                        ? "border-emerald-300 dark:border-emerald-800 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/80 dark:from-emerald-950/50 dark:via-stone-900 dark:to-emerald-950/30 ring-2 ring-emerald-400/50 shadow-md"
-                        : "border-stone-200/90 dark:border-stone-800 bg-gradient-to-r from-stone-50/80 via-white to-amber-50/20 dark:from-stone-900 dark:via-stone-900 dark:to-stone-900 hover:border-amber-300 dark:hover:border-amber-700 hover:shadow-md hover:-translate-y-0.5"
+                        ? "border-accent-line-mid bg-gradient-to-r from-emerald-50 via-white to-emerald-50/80 dark:from-emerald-950/50 dark:via-stone-900 dark:to-emerald-950/30 ring-2 ring-emerald-400/50 shadow-md"
+                        : "border-stone-200/90 dark:border-stone-800 bg-gradient-to-r from-stone-50/80 via-white to-amber-50/20 dark:from-stone-900 dark:via-stone-900 dark:to-stone-900 hover:border-warn-line-mid hover:shadow-md hover:-translate-y-0.5"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       {/* Metallic Rank Shield Badge */}
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-700 font-black text-xs text-stone-700 dark:text-stone-200 shadow-inner border border-stone-300/80 dark:border-stone-700 group-hover:scale-105 transition-transform">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-700 font-black text-xs text-ink-body shadow-inner border border-stone-300/80 dark:border-stone-700 group-hover:scale-105 transition-transform">
                         #{actualRank}
                       </div>
 
@@ -587,7 +587,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <AvatarWithFrame rank={actualRank} name={entry.name} avatarUrl={entry.avatarUrl} size={36} />
 
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-xs font-black text-ink group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{entry.name}</p>
+                        <p className="truncate text-xs font-black text-ink group-hover:text-warn transition-colors">{entry.name}</p>
                         <p className="truncate text-[9px] font-extrabold uppercase tracking-wider text-accent">
                           {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
                         </p>
@@ -596,7 +596,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                     <div className="text-right shrink-0">
                       {/* Framed Badge Tag */}
-                      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/10 via-amber-400/20 to-amber-500/10 dark:from-amber-950/60 dark:to-amber-900/40 px-2 py-0.5 text-[9px] font-black uppercase text-amber-800 dark:text-amber-300 border border-amber-300/50 dark:border-amber-800 mb-0.5">
+                      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/10 via-amber-400/20 to-amber-500/10 dark:from-amber-950/60 dark:to-amber-900/40 px-2 py-0.5 text-[9px] font-black uppercase text-warn-ink border border-amber-300/50 dark:border-amber-800 mb-0.5">
                         <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
                         <span>{honor.badge}</span>
                       </div>

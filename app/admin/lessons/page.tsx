@@ -27,8 +27,8 @@ export default async function AdminLessonsPage({ searchParams }: PageProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-1">{tp.title}</h1>
-        <p className="text-sm text-stone-500 dark:text-stone-400">
+        <h1 className="text-2xl font-bold text-ink mb-1">{tp.title}</h1>
+        <p className="text-sm text-ink-muted">
           {tp.subtitle}
         </p>
       </div>

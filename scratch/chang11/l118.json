@@ -1,0 +1,161 @@
+{
+  "id": 118,
+  "slug": "to-chuc-phan-chieu-kien-truc",
+  "title": "Hệ thống có hình dạng của tổ chức làm ra nó",
+  "subtitle": "Ba đội thì rất khó cho ra bốn thành phần, và gần như luôn cho ra ba.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🪞",
+  "track": "professional",
+  "whyItMatters": "Quan sát này giải thích vì sao nhiều nỗ lực cải tổ kiến trúc thất bại: người ta đổi sơ đồ mà không đổi cách tổ chức, và hệ thống trôi ngược về hình dạng cũ trong vòng một năm.",
+  "openingQuestion": "Đội muốn tách hệ thống thành bốn dịch vụ nhưng tổ chức chỉ có hai đội. Điều gì có khả năng xảy ra?",
+  "openingOptions": [
+    "Bốn dịch vụ dần dính lại thành hai nhóm theo ranh giới hai đội",
+    "Bốn dịch vụ sẽ hoạt động độc lập đúng như thiết kế ban đầu",
+    "Hai đội sẽ tự chia thành bốn nhóm nhỏ để phù hợp kiến trúc",
+    "Số lượng dịch vụ sẽ tăng dần cho tới khi đủ bốn đội cùng quản lý"
+  ],
+  "correctOption": 0,
+  "explanation": "Giao tiếp trong một đội gần như miễn phí, còn giao tiếp giữa hai đội thì tốn kém. Vì thế ranh giới nằm bên trong một đội sẽ bị bào mòn dần - người ta gọi thẳng nhau cho nhanh, dùng chung dữ liệu cho tiện, và không ai thấy có vấn đề vì họ ngồi cạnh nhau. Ranh giới trùng với ranh giới đội thì ngược lại: nó được giữ vì vượt qua nó vốn đã bất tiện. Kết quả là kiến trúc trôi về đúng số thành phần bằng số đội, bất kể sơ đồ ban đầu vẽ gì.",
+  "diagram": [
+    {
+      "label": "Thiết kế bốn dịch vụ, tổ chức có hai đội",
+      "arrow": true
+    },
+    {
+      "label": "Ranh giới trong nội bộ đội bị bào mòn",
+      "arrow": true
+    },
+    {
+      "label": "Ranh giới giữa hai đội được giữ",
+      "arrow": true
+    },
+    {
+      "label": "Sau một năm còn lại hai nhóm dính liền"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đổi sơ đồ mà không đổi tổ chức",
+    "description": "Một tổ chức vẽ lại kiến trúc thành sáu dịch vụ độc lập nhưng giữ nguyên ba đội. Mười tám tháng sau, sáu dịch vụ ấy vẫn tồn tại trên giấy nhưng đã chia sẻ dữ liệu và phải triển khai theo cụm ba - đúng bằng số đội."
+  },
+  "keyTakeaways": [
+    "Ranh giới nằm trong nội bộ một đội có xu hướng bị bào mòn.",
+    "Muốn đổi kiến trúc bền vững thì phải đổi cả cách tổ chức đội.",
+    "Có thể dùng quan sát này chủ động: chia đội theo kiến trúc mong muốn.",
+    "Sơ đồ không tự giữ được ranh giới; chỉ chi phí giao tiếp mới giữ được."
+  ],
+  "summary": {
+    "keyIdea": "Kiến trúc trôi về hình dạng của tổ chức, nên đổi kiến trúc mà không đổi tổ chức là việc tạm thời.",
+    "formula": "Muốn ranh giới nào thì đặt đội ở đó.",
+    "commonMistake": "Vẽ lại sơ đồ kiến trúc và giữ nguyên cách chia đội."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "So sơ đồ kiến trúc của tổ chức với sơ đồ các đội. Chỗ nào hai hình khác nhau là chỗ ranh giới đang chịu áp lực, và nó sẽ trôi về phía hình thứ hai."
+  },
+  "practicePrompt": {
+    "question": "Bạn muốn tách một phần lớn thành dịch vụ độc lập thật sự. Việc gì nên làm cùng lúc?",
+    "options": [
+      "Giao phần đó cho một đội riêng chịu trách nhiệm trọn vẹn",
+      "Viết tài liệu kiến trúc mô tả rõ ranh giới mới",
+      "Đặt ra quy định cấm gọi trực tiếp xuyên qua ranh giới đó",
+      "Tách mã sang một kho lưu trữ riêng biệt"
+    ],
+    "correct": 0,
+    "explanation": "Tài liệu, quy định và kho riêng đều hữu ích nhưng đều là hàng rào mềm - chúng bị vượt qua khi có việc gấp. Thứ giữ ranh giới bền là chi phí giao tiếp thật: khi hai bên thuộc hai đội, việc gọi tắt cho nhanh không còn dễ dàng nữa."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao ranh giới nằm trong nội bộ một đội hay bị bào mòn?",
+      "options": [
+        "Vì giao tiếp trong đội rẻ nên người ta dễ đi tắt qua ranh giới",
+        "Vì các thành viên trong đội không nắm rõ thiết kế kiến trúc",
+        "Vì công cụ không có cách nào kiểm tra ranh giới nằm bên trong một kho",
+        "Vì ranh giới nội bộ không được ghi trong tài liệu chính thức"
+      ],
+      "correct": 0,
+      "explanation": "Khi hỏi nhau một câu là xong, không ai thấy chi phí của việc phá ranh giới. Ranh giới chỉ được giữ khi việc vượt qua nó có chi phí thật."
+    },
+    {
+      "question": "Vì sao đổi sơ đồ kiến trúc mà giữ nguyên tổ chức thường không bền?",
+      "options": [
+        "Vì hệ thống trôi dần về hình dạng của tổ chức làm ra nó",
+        "Vì sơ đồ mới chưa được truyền đạt đầy đủ tới toàn bộ các đội",
+        "Vì công cụ hiện tại không hỗ trợ kiến trúc mới",
+        "Vì đội cần thời gian dài để học kiến trúc mới"
+      ],
+      "correct": 0,
+      "explanation": "Áp lực chi phí giao tiếp đẩy hệ thống về phía hình dạng tổ chức mỗi ngày. Sơ đồ là một tuyên bố; chi phí giao tiếp là một lực."
+    },
+    {
+      "question": "Cách dùng quan sát này một cách chủ động là gì?",
+      "options": [
+        "Chia đội theo đúng kiến trúc mà bạn muốn có",
+        "Giữ số đội ít để kiến trúc luôn đơn giản",
+        "Tăng số đội để có nhiều ranh giới rõ ràng hơn",
+        "Luân chuyển người giữa các đội để xoá ranh giới"
+      ],
+      "correct": 0,
+      "explanation": "Nếu tổ chức quyết định kiến trúc, thì thiết kế tổ chức trở thành công cụ kiến trúc. Muốn ba dịch vụ độc lập thì lập ba đội sở hữu ba phần ấy."
+    },
+    {
+      "question": "Thứ gì thật sự giữ được một ranh giới?",
+      "options": [
+        "Chi phí thật của việc giao tiếp qua ranh giới đó",
+        "Tài liệu kiến trúc mô tả rõ ràng phạm vi từng phần",
+        "Quy định nội bộ cấm gọi trực tiếp qua ranh giới",
+        "Việc tách mã nguồn sang các kho lưu trữ riêng"
+      ],
+      "correct": 0,
+      "explanation": "Ba thứ còn lại đều bị vượt qua khi có việc gấp, vì chúng chỉ là hàng rào mềm. Chi phí giao tiếp thì tác động mỗi ngày mà không cần ai cưỡng chế."
+    },
+    {
+      "question": "Dấu hiệu kiến trúc đang trôi về hình dạng tổ chức là gì?",
+      "options": [
+        "Các thành phần thuộc cùng một đội ngày càng dính chặt vào nhau",
+        "Số lượng dịch vụ tăng lên nhanh hơn số lượng đội",
+        "Các đội bắt đầu dùng những công nghệ khác nhau",
+        "Tài liệu kiến trúc không được cập nhật thường xuyên"
+      ],
+      "correct": 0,
+      "explanation": "Đó chính là quá trình bào mòn đang diễn ra: bên trong đội thì gọi thẳng, dùng chung dữ liệu, triển khai cùng nhau - cho tới khi ba thành phần thực chất là một."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Có một quan sát cũ trong ngành nói rằng hệ thống mà một tổ chức tạo ra sẽ có hình dạng giống cấu trúc giao tiếp của chính tổ chức ấy. Nó giải thích rất nhiều thứ trong chặng này."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao lực này tồn tại"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hai người cùng đội hỏi nhau một câu là xong. Hai người khác đội phải tìm đúng người, chờ họ rảnh, có khi phải qua một hàng đợi. Chênh lệch chi phí ấy tác động lên mọi quyết định nhỏ hằng ngày: gọi thẳng cho nhanh hay đi qua giao diện, dùng chung bảng hay xin một bản sao. Từng quyết định đều hợp lý, và tổng của chúng là kiến trúc trôi về hình dạng tổ chức."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Ranh giới trong đội",
+        "text": "Không có chi phí tự nhiên để giữ. Cần kỷ luật chủ động, và kỷ luật thì mòn dần khi có việc gấp."
+      },
+      "right": {
+        "label": "Ranh giới giữa đội",
+        "text": "Được giữ bởi chính chi phí giao tiếp. Không cần ai cưỡng chế, nó tự tồn tại."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Dùng nó chủ động",
+      "text": "Nếu tổ chức quyết định kiến trúc thì cách chia đội là công cụ kiến trúc mạnh nhất bạn có. Muốn ba phần thật sự độc lập thì lập ba đội sở hữu ba phần ấy, và ranh giới sẽ tự được giữ mà không cần quy định nào."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Sơ đồ là một tuyên bố; cấu trúc tổ chức là một lực. Khi hai thứ mâu thuẫn, lực thắng.",
+        "Bài sau dùng chính quan sát này để trả lời câu hỏi cuối của chặng: khi nào nên tách một dịch vụ, và khi nào thì không."
+      ]
+    }
+  ]
+}

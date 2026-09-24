@@ -57,7 +57,7 @@ export default function FormulaBreakdown({
       {/* Mặc định đóng: người học lần đầu cần thấy con số và ý nghĩa của nó
           trước, còn công thức là thứ họ mở ra khi đã hỏi "sao lại ra thế". Mở
           sẵn thì khối tính toán át mất phần đang dạy. */}
-      <summary className="cursor-pointer list-none px-4 py-3 text-xs font-black uppercase tracking-wider text-stone-500 transition-colors hover:text-stone-800 dark:hover:text-stone-200">
+      <summary className="cursor-pointer list-none px-4 py-3 text-xs font-black uppercase tracking-wider text-stone-500 transition-colors hover:text-ink-heading">
         <span className="mr-1.5 inline-block transition-transform group-open:rotate-90">▸</span>
         {t.miscUi.formulaBreakdown.howThisIsCalculated}
       </summary>
@@ -84,7 +84,7 @@ export default function FormulaBreakdown({
                   className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 rounded-xl bg-white px-3 py-2 dark:bg-stone-900"
                 >
                   <span className="text-[11px] font-bold text-stone-500">{step.label}</span>
-                  <span className="font-mono text-[12px] text-stone-600 dark:text-stone-400">
+                  <span className="font-mono text-[12px] text-ink-soft">
                     {step.expression}
                   </span>
                   <span className="font-mono text-[12px] font-bold text-ink">

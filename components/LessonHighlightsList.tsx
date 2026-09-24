@@ -44,8 +44,8 @@ export default function LessonHighlightsList({
               key={h.id}
               className={`group flex items-start gap-2.5 rounded-xl border px-3.5 py-3 text-sm leading-relaxed ${
                 isFlag
-                  ? "border-rose-200 dark:border-rose-900 bg-rose-50/60 dark:bg-rose-950/20"
-                  : "border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/20"
+                  ? "border-alert-line bg-rose-50/60 dark:bg-rose-950/20"
+                  : "border-warn-line bg-amber-50/60 dark:bg-amber-950/20"
               }`}
             >
               {isFlag ? (

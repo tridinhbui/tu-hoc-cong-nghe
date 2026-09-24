@@ -1,0 +1,181 @@
+{
+  "id": 63,
+  "slug": "so-phien-ban-la-mot-loi-hua",
+  "title": "Số phiên bản: một lời hứa, không phải một cái nhãn",
+  "subtitle": "Ba con số nói cho người dùng biết nâng cấp này có làm hỏng gì của họ không.",
+  "duration": "8 phút",
+  "difficulty": "Dễ",
+  "emoji": "🔖",
+  "track": "professional",
+  "whyItMatters": "Người dùng thư viện của bạn quyết định có nâng cấp hay không dựa vào con số ấy, thường là tự động. Đánh số sai thì hoặc bạn làm hỏng hệ thống của họ giữa đêm, hoặc bạn khiến họ không dám nhận bản vá lỗi.",
+  "openingQuestion": "Bạn sửa một lỗi mà không đổi gì trong giao diện lập trình. Nên tăng phần nào của số phiên bản?",
+  "openingOptions": [
+    "Phần cuối, dành cho những lần sửa lỗi tương thích ngược",
+    "Phần giữa, vì đây là một thay đổi trong hành vi của thư viện",
+    "Phần đầu, vì người dùng cần biết có thay đổi đáng kể",
+    "Không phần nào, vì sửa lỗi không tạo ra phiên bản mới"
+  ],
+  "correctOption": 0,
+  "explanation": "Quy ước ba số tách bạch ba mức độ ảnh hưởng tới người dùng. Phần cuối là sửa lỗi mà không đổi giao diện, nên nâng lên là an toàn và người dùng thường cho nhận tự động. Phần giữa là thêm chức năng mới nhưng mã cũ vẫn chạy được. Phần đầu là thay đổi phá vỡ tương thích, và nó buộc người dùng đọc ghi chú phát hành rồi sửa mã. Con số ấy không mô tả bạn đã làm việc nhiều hay ít; nó mô tả rủi ro mà người nhận phải gánh.",
+  "diagram": [
+    {
+      "label": "Phần cuối: sửa lỗi, tương thích ngược",
+      "arrow": true
+    },
+    {
+      "label": "Phần giữa: thêm chức năng, mã cũ vẫn chạy",
+      "arrow": true
+    },
+    {
+      "label": "Phần đầu: phá vỡ tương thích",
+      "arrow": true
+    },
+    {
+      "label": "Người dùng đọc con số để quyết định có nhận không"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Nâng cấp tự động lúc nửa đêm",
+    "description": "Rất nhiều hệ thống cấu hình cho phép tự nhận mọi bản nâng phần cuối. Một thư viện đánh nhầm một thay đổi phá vỡ tương thích thành bản sửa lỗi sẽ làm hỏng đồng loạt những hệ thống ấy, vào giờ không ai trực."
+  },
+  "keyTakeaways": [
+    "Số phiên bản mô tả rủi ro cho người nhận, không mô tả công sức của người phát hành.",
+    "Phần đầu tăng khi phá vỡ tương thích; phần giữa khi thêm; phần cuối khi sửa lỗi.",
+    "Đổi hành vi mặc định cũng là phá vỡ tương thích, dù giao diện không đổi.",
+    "Ghi chú phát hành phải nói rõ cần sửa gì, không chỉ liệt kê thay đổi."
+  ],
+  "summary": {
+    "keyIdea": "Ba con số là một hợp đồng về mức độ an toàn khi nâng cấp.",
+    "formula": "Phá vỡ - thêm mới - sửa lỗi.",
+    "commonMistake": "Đánh một thay đổi phá vỡ tương thích thành bản sửa lỗi cho đỡ ồn ào."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Xem lại vài lần phát hành gần nhất của dự án bạn và tự hỏi từng lần: người dùng có phải sửa mã không? Nếu có mà số phiên bản không tăng phần đầu thì bạn đã hứa sai."
+  },
+  "practicePrompt": {
+    "question": "Bạn đổi giá trị mặc định của một tham số từ bật sang tắt. Giao diện lập trình không đổi. Đây là loại thay đổi gì?",
+    "options": [
+      "Phá vỡ tương thích, vì mã cũ không sửa gì vẫn chạy khác đi",
+      "Sửa lỗi, vì giá trị mặc định cũ vốn là một lựa chọn sai",
+      "Thêm chức năng, vì người dùng có thêm một hành vi mới",
+      "Không tính là thay đổi, vì người dùng đặt lại được giá trị"
+    ],
+    "correct": 0,
+    "explanation": "Tiêu chí là hệ thống của người dùng có hành xử khác đi mà họ không sửa dòng nào hay không. Giao diện giữ nguyên nhưng kết quả đổi là dạng phá vỡ tương thích khó chịu nhất, vì trình biên dịch không báo và người ta chỉ phát hiện qua hành vi sai."
+  },
+  "quiz": [
+    {
+      "question": "Phần đầu của số phiên bản tăng khi nào?",
+      "options": [
+        "Khi có thay đổi phá vỡ tương thích với mã đang dùng",
+        "Khi số lượng chức năng mới tích luỹ đủ nhiều",
+        "Khi đã tròn một năm kể từ lần phát hành trước",
+        "Khi có thay đổi lớn trong cách cài đặt ở bên trong"
+      ],
+      "correct": 0,
+      "explanation": "Tiêu chí duy nhất là người dùng có phải sửa mã hay không. Viết lại toàn bộ bên trong mà giao diện giữ nguyên thì vẫn chỉ là bản sửa lỗi, dù công sức bỏ ra rất lớn."
+    },
+    {
+      "question": "Vì sao đổi giá trị mặc định lại là phá vỡ tương thích?",
+      "options": [
+        "Vì mã cũ không sửa gì vẫn cho ra hành vi khác trước",
+        "Vì người dùng phải khai báo lại tham số đó ở mọi nơi",
+        "Vì trình biên dịch sẽ báo lỗi khi gặp giá trị mặc định mới",
+        "Vì tài liệu cũ không còn mô tả đúng cách dùng thư viện"
+      ],
+      "correct": 0,
+      "explanation": "Đây là dạng phá vỡ nguy hiểm nhất vì không có gì báo lỗi. Mã vẫn dịch, vẫn chạy, chỉ là làm một việc khác - và người ta phát hiện qua số liệu sai chứ không qua thông báo."
+    },
+    {
+      "question": "Số phiên bản mô tả điều gì?",
+      "options": [
+        "Rủi ro mà người nhận phải gánh khi nâng cấp",
+        "Khối lượng công việc mà đội phát triển đã bỏ ra",
+        "Mức độ ổn định của phần mềm tại thời điểm phát hành",
+        "Thứ tự thời gian của các lần phát hành đã có"
+      ],
+      "correct": 0,
+      "explanation": "Nó là thông tin dành cho người nhận, không phải huy chương cho người phát hành. Đó là lý do một lần viết lại toàn bộ bên trong vẫn có thể chỉ là bản sửa lỗi."
+    },
+    {
+      "question": "Ghi chú phát hành nên tập trung vào điều gì?",
+      "options": [
+        "Người dùng cần làm gì để nâng cấp an toàn",
+        "Danh sách đầy đủ mọi thay đổi trong mã nguồn",
+        "Tên những người đã đóng góp cho phiên bản này",
+        "Số lượng lỗi đã được sửa so với bản trước đó"
+      ],
+      "correct": 0,
+      "explanation": "Người đọc ghi chú phát hành đang trả lời một câu hỏi: tôi có phải làm gì không. Danh sách thay đổi đầy đủ đã nằm trong lịch sử kho mã và ít ai đọc hết."
+    },
+    {
+      "question": "Vì sao đánh nhầm một thay đổi phá vỡ thành bản sửa lỗi lại nguy hiểm?",
+      "options": [
+        "Vì nhiều hệ thống được cấu hình tự nhận bản sửa lỗi",
+        "Vì người dùng sẽ mất lòng tin và ngừng dùng thư viện",
+        "Vì trình quản lý gói sẽ từ chối phát hành phiên bản đó",
+        "Vì bản sửa lỗi không được phép chứa mã mới thêm vào"
+      ],
+      "correct": 0,
+      "explanation": "Tự động hoá tin vào con số đó, nên bản nâng sẽ được cài mà không ai đọc gì. Mất lòng tin là hậu quả về sau; hậu quả trước mắt là hàng loạt hệ thống hỏng cùng lúc."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Số phiên bản trông như một cái nhãn hành chính. Thực ra nó là câu trả lời cho câu hỏi quan trọng nhất của người đang cân nhắc nâng cấp: cái này có làm hỏng gì của tôi không?"
+    },
+    {
+      "type": "heading",
+      "text": "Ba mức, ba câu trả lời"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Đọc ba con số",
+      "subtitle": "Luôn hỏi từ phía người nhận, không từ phía người phát hành",
+      "concepts": [
+        {
+          "vi": "Phần đầu",
+          "en": "major",
+          "def": "Phá vỡ tương thích. Người dùng phải đọc ghi chú và sửa mã trước khi nâng."
+        },
+        {
+          "vi": "Phần giữa",
+          "en": "minor",
+          "def": "Thêm chức năng, mã cũ vẫn chạy nguyên. Nâng là an toàn nhưng nên đọc qua."
+        },
+        {
+          "vi": "Phần cuối",
+          "en": "patch",
+          "def": "Sửa lỗi, không đổi giao diện. Đây là mức mà tự động hoá thường nhận không cần hỏi."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Phá vỡ tương thích không chỉ là xoá hàm"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đổi giá trị mặc định: mã cũ chạy khác đi mà không báo gì.",
+        "Siết chặt kiểm tra đầu vào: dữ liệu từng được chấp nhận nay bị từ chối.",
+        "Đổi định dạng dữ liệu trả về, kể cả khi chỉ thêm hoặc đổi tên một trường.",
+        "Đổi hành vi khi có lỗi: từ trả về rỗng sang ném ngoại lệ."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Con số nói về người nhận",
+      "text": "Viết lại toàn bộ bên trong mà giao diện giữ nguyên thì vẫn là bản sửa lỗi. Đổi đúng một ký tự trong tên một trường trả về thì đã là phá vỡ tương thích. Công sức của bạn không nằm trong con số ấy."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Đánh số phiên bản là hứa với người dùng về mức độ an toàn. Hứa sai một lần thì lần sau không ai dám nhận bản vá của bạn nữa.",
+        "Bài sau nói về thứ khác nhau giữa các môi trường mà mã không được phép biết: cấu hình."
+      ]
+    }
+  ]
+}

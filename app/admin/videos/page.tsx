@@ -21,8 +21,8 @@ export default async function VideosAdminPage() {
           <Play className="w-5 h-5" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">{tp.title}</h1>
-          <p className="text-sm text-stone-500 dark:text-stone-400">{tp.subtitle}</p>
+          <h1 className="text-2xl font-bold text-ink">{tp.title}</h1>
+          <p className="text-sm text-ink-muted">{tp.subtitle}</p>
         </div>
       </div>
 

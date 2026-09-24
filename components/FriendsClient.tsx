@@ -59,11 +59,11 @@ function Avatar({
       alt={name || t.chat.userAlt}
       width={size}
       height={size}
-      className="rounded-full object-cover border border-stone-200 dark:border-stone-700"
+      className="rounded-full object-cover border border-line-mid"
     />
   ) : (
     <div
-      className="rounded-full bg-stone-200 dark:bg-stone-700 text-ink-body font-extrabold flex items-center justify-center border border-stone-300 dark:border-stone-600"
+      className="rounded-full bg-surface-sunken text-ink-body font-extrabold flex items-center justify-center border border-line-strong"
       style={{ width: size, height: size, fontSize: Math.max(12, Math.floor(size / 2.5)) }}
     >
       {initials}
@@ -306,7 +306,7 @@ export default function FriendsClient() {
     <div className="min-h-screen bg-white dark:bg-stone-950">
       <div className="border-b border-line bg-white dark:bg-stone-950">
         <div className="max-w-6xl mx-auto px-6 py-4">
-          <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
+          <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink hover:bg-surface-raised rounded-lg px-3 py-2 -ml-3 transition-colors">
             <ArrowLeft className="w-4 h-4" />
             {t.friends.back}
           </Link>
@@ -329,7 +329,7 @@ export default function FriendsClient() {
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
               placeholder={t.friends.searchPlaceholder}
-              className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-ink focus:outline-none focus:border-stone-500"
+              className="w-full px-4 py-3 rounded-xl border border-line-mid bg-white dark:bg-stone-800 text-sm text-ink focus:outline-none focus:border-stone-500"
             />
 
             <div className="mt-4 space-y-3">
@@ -364,7 +364,7 @@ export default function FriendsClient() {
                             setMessages([]);
                             setActiveFriendshipId(relation.friendship_id);
                           }}
-                          className="px-3 py-2 rounded-lg bg-surface-invert text-white dark:text-stone-900 text-xs font-bold"
+                          className="px-3 py-2 rounded-lg bg-surface-invert text-ink-invert text-xs font-bold"
                         >
                           {t.friends.message}
                         </button>
@@ -384,7 +384,7 @@ export default function FriendsClient() {
                         <button
                           onClick={() => void handleSendFriendRequest(account.id)}
                           disabled={busyUserId === account.id}
-                          className="px-3 py-2 rounded-lg bg-surface-invert text-white dark:text-stone-900 text-xs font-bold disabled:opacity-60 flex items-center gap-1.5"
+                          className="px-3 py-2 rounded-lg bg-surface-invert text-ink-invert text-xs font-bold disabled:opacity-60 flex items-center gap-1.5"
                         >
                           <UserPlus className="w-3.5 h-3.5" />
                           {t.friends.addFriend}
@@ -463,7 +463,7 @@ export default function FriendsClient() {
                     key={connection.friendship_id}
                     className={`flex items-center gap-2 rounded-xl border px-3 py-3 transition-colors ${
                       currentFriendshipId === connection.friendship_id
-                        ? "border-stone-900 dark:border-stone-100 bg-surface-raised"
+                        ? "border-line-invert bg-surface-raised"
                         : "border-line hover:bg-stone-50 dark:hover:bg-stone-800/50"
                     }`}
                   >
@@ -487,7 +487,7 @@ export default function FriendsClient() {
                     </button>
                     <Link
                       href={`/nguoi-hoc/${connection.user_id}`}
-                      className="shrink-0 p-2 rounded-lg text-ink-muted hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+                      className="shrink-0 p-2 rounded-lg text-ink-muted hover:bg-surface-sunken hover:text-ink transition-colors"
                       title={t.friends.viewProfileTitle}
                       aria-label={format(t.friends.viewProfileAria, { name: connection.full_name || t.friends.unnamedUser })}
                     >
@@ -544,7 +544,7 @@ export default function FriendsClient() {
                 </Link>
                 <Link
                   href={`/nguoi-hoc/${activeConnection.user_id}`}
-                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 text-xs font-bold text-ink-body hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-line-mid text-xs font-bold text-ink-body hover:bg-surface-raised transition-colors"
                 >
                   <UserRound className="w-3.5 h-3.5" />
                   {t.friends.profile}
@@ -564,8 +564,8 @@ export default function FriendsClient() {
                         <div
                           className={`max-w-md px-4 py-2.5 rounded-2xl text-sm ${
                             isMine
-                              ? "bg-surface-invert text-white dark:text-stone-900 rounded-br-md"
-                              : "bg-white dark:bg-stone-800 text-ink border border-stone-200 dark:border-stone-700 rounded-bl-md"
+                              ? "bg-surface-invert text-ink-invert rounded-br-md"
+                              : "bg-white dark:bg-stone-800 text-ink border border-line-mid rounded-bl-md"
                           }`}
                         >
                           <p className="leading-relaxed whitespace-pre-wrap">{message.content}</p>
@@ -595,12 +595,12 @@ export default function FriendsClient() {
                       }
                     }}
                     placeholder={t.friends.messagePlaceholder}
-                    className="flex-1 px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-ink focus:outline-none focus:border-stone-500"
+                    className="flex-1 px-4 py-3 rounded-xl border border-line-mid bg-white dark:bg-stone-800 text-sm text-ink focus:outline-none focus:border-stone-500"
                   />
                   <button
                     onClick={() => void handleSendMessage()}
                     disabled={!messageInput.trim() || sendingMessage}
-                    className="px-4 py-3 rounded-xl bg-surface-invert text-white dark:text-stone-900 disabled:opacity-50"
+                    className="px-4 py-3 rounded-xl bg-surface-invert text-ink-invert disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
                   </button>

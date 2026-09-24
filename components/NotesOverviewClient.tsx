@@ -215,7 +215,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
       {!embedded && (
         <div className="border-b border-line bg-white dark:bg-stone-950">
           <div className="max-w-2xl mx-auto px-6 py-4">
-            <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 -ml-3 transition-colors">
+            <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink hover:bg-surface-raised rounded-lg px-3 py-2 -ml-3 transition-colors">
               <ArrowLeft className="w-4 h-4" />
               {t.notes.back}
             </Link>
@@ -246,7 +246,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
           {search && (
             <button
               onClick={() => setSearch("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-ink-body"
               title={t.notes.clearSearch}
             >
               <X className="w-4 h-4" />
@@ -264,7 +264,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
 
         {(
           visibleNotes.length === 0 ? (
-            <div className="text-center py-16 text-stone-600 dark:text-stone-300">
+            <div className="text-center py-16 text-ink-soft">
               {awaitingResults ? (
                 <p className="text-sm text-ink-muted">{t.notes.searching}</p>
               ) : isSearching ? (
@@ -288,13 +288,13 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                   <div key={lessonId} className="bg-white/95 dark:bg-stone-900 border border-line rounded-2xl overflow-hidden shadow-xs">
                     <div className="px-5 py-3.5 border-b border-line flex items-center justify-between bg-stone-50/80 dark:bg-stone-850/80">
                       {lessonInfo ? (
-                        <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-extrabold text-ink hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                        <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-extrabold text-ink hover:text-accent transition-colors">
                           {lessonInfo.title}
                         </Link>
                       ) : (
-                        <span className="font-bold text-stone-600 dark:text-stone-300">{format(t.notes.lessonFallback, { id: lessonId })}</span>
+                        <span className="font-bold text-ink-soft">{format(t.notes.lessonFallback, { id: lessonId })}</span>
                       )}
-                      <span className="text-xs font-semibold text-stone-500 dark:text-stone-300 bg-stone-200/60 dark:bg-stone-800 px-2.5 py-1 rounded-full">{format(t.notes.noteCount, { count: lessonNotes.length })}</span>
+                      <span className="text-xs font-semibold text-ink-muted bg-stone-200/60 dark:bg-stone-800 px-2.5 py-1 rounded-full">{format(t.notes.noteCount, { count: lessonNotes.length })}</span>
                     </div>
                     <div className="p-5 space-y-3">
                       {lessonNotes.map((note) => (
@@ -304,17 +304,17 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                               <textarea
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
-                                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-ink text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                                className="w-full px-3.5 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-ink text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500"
                                 rows={3}
                                 autoFocus
                               />
                               {hasMathContent(editContent) && (
-                                <div className="px-3.5 py-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-dashed border-line-strong overflow-x-auto">
+                                <div className="px-3.5 py-2.5 rounded-xl bg-surface-raised border border-dashed border-line-strong overflow-x-auto">
                                   <NoteContent content={editContent} />
                                 </div>
                               )}
                               <div className="flex gap-2 justify-end pt-1">
-                                <button onClick={cancelEditing} className="px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition-colors">
+                                <button onClick={cancelEditing} className="px-3 py-1.5 text-xs font-bold text-ink-soft hover:text-stone-900 dark:hover:text-white transition-colors">
                                   {t.notes.cancel}
                                 </button>
                                 <button
@@ -331,7 +331,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                             <>
                               <NoteContent content={note.content} />
                               <div className="flex items-center justify-between mt-3 pt-2 border-t border-stone-200/50 dark:border-stone-700/50">
-                                <span className="text-[11px] font-semibold text-stone-500 dark:text-stone-300">
+                                <span className="text-[11px] font-semibold text-ink-muted">
                                   {new Date(note.updated_at).toLocaleDateString(intlLocale(locale))}
                                 </span>
                                 <div className="flex items-center gap-3">
@@ -340,16 +340,16 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                                   </button>
                                   {confirmingDeleteId === note.id ? (
                                     <span className="inline-flex items-center gap-2 text-[11px]">
-                                      <span className="font-bold text-rose-600 dark:text-rose-400">{t.notes.deleteConfirm}</span>
+                                      <span className="font-bold text-alert">{t.notes.deleteConfirm}</span>
                                       <button
                                         onClick={() => void removeNote(note.id)}
-                                        className="font-bold text-rose-600 dark:text-rose-400 hover:underline"
+                                        className="font-bold text-alert hover:underline"
                                       >
                                         {t.notes.confirmDelete}
                                       </button>
                                       <button
                                         onClick={() => setConfirmingDeleteId(null)}
-                                        className="font-bold text-stone-500 dark:text-stone-300 hover:underline"
+                                        className="font-bold text-ink-muted hover:underline"
                                       >
                                         {t.notes.cancel}
                                       </button>
@@ -376,7 +376,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                 <button
                   onClick={() => void loadMore()}
                   disabled={loadingMore}
-                  className="w-full py-2.5 rounded-xl border-2 border-dashed border-line-strong text-sm font-bold text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-white transition-colors disabled:opacity-50 inline-flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded-xl border-2 border-dashed border-line-strong text-sm font-bold text-ink-soft hover:border-line-firm hover:text-stone-900 dark:hover:text-white transition-colors disabled:opacity-50 inline-flex items-center justify-center gap-2"
                 >
                   {loadingMore && <Loader2 className="w-4 h-4 animate-spin" />}
                   {loadingMore ? t.notes.loadingMore : t.notes.loadMore}

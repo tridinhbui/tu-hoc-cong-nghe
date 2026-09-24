@@ -38,8 +38,8 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
   );
 
   return (
-    <div className="rounded-2xl border-2 border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/20 p-6 space-y-4">
-      <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-400">
+    <div className="rounded-2xl border-2 border-warn-line bg-amber-50/60 dark:bg-amber-950/20 p-6 space-y-4">
+      <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-warn-strong">
         <RotateCcw className="w-3.5 h-3.5" />
         {heading}
       </div>
@@ -49,9 +49,9 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
         const isCorrect = (optIndex: number) => options[optIndex].correct;
         return (
           <div key={i} className="bg-white dark:bg-stone-900 rounded-xl border border-amber-200 dark:border-amber-900/60 p-4 space-y-3">
-            <p className="text-sm font-semibold text-stone-800 dark:text-stone-200">
+            <p className="text-sm font-semibold text-ink-heading">
               {t.recallCard.fromLabel}{" "}
-              <span className="text-amber-700 dark:text-amber-400">
+              <span className="text-warn-strong">
                 {format(t.recallCard.dayLabel, { day: item.fromDay })}
               </span>{" "}
               {format(t.recallCard.questionSuffix, { title: item.fromTitle })}
@@ -59,10 +59,10 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
             <div className="space-y-2">
               {options.map((opt, optIndex) => {
                 const chosen = picked[i] === optIndex;
-                let stateClass = "border-stone-200 dark:border-stone-700 hover:border-amber-300 dark:hover:border-amber-800";
+                let stateClass = "border-line-mid hover:border-warn-line-mid";
                 if (answered) {
                   if (isCorrect(optIndex)) {
-                    stateClass = "border-emerald-300 dark:border-emerald-800 bg-accent-soft/40";
+                    stateClass = "border-accent-line-mid bg-emerald-50 dark:bg-emerald-950/40";
                   } else if (chosen) {
                     stateClass = "border-rose-300 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/40";
                   } else {
@@ -80,7 +80,7 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
                   >
                     <span className="flex items-start gap-2">
                       {answered && isCorrect(optIndex) && <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />}
-                      {answered && chosen && !isCorrect(optIndex) && <X className="w-4 h-4 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5" />}
+                      {answered && chosen && !isCorrect(optIndex) && <X className="w-4 h-4 text-alert flex-shrink-0 mt-0.5" />}
                       <span className="text-ink-body">{opt.text}</span>
                     </span>
                   </button>
@@ -91,8 +91,8 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
               <p
                 className={`text-xs font-semibold ${
                   isCorrect(picked[i] as number)
-                    ? "text-emerald-700 dark:text-emerald-400"
-                    : "text-rose-700 dark:text-rose-400"
+                    ? "text-accent-strong"
+                    : "text-alert-strong"
                 }`}
               >
                 {isCorrect(picked[i] as number)

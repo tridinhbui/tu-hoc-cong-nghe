@@ -2020,7 +2020,6 @@ export const en: Dictionary = {
     offlineSynced: "Your offline progress has been synced. 🌟",
     lessonLocked: "This lesson is locked. Complete the earlier lessons to unlock it.",
     defaultUserName: "Learner",
-    bonusOther: "Other",
     caseStudies: "Deep-dive cases",
     searchPlaceholder: "Search lessons in this track...",
     searchClear: "Clear search",

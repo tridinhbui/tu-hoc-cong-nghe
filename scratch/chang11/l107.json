@@ -1,0 +1,164 @@
+{
+  "id": 107,
+  "slug": "doi-nen-tang-noi-bo",
+  "title": "Nền tảng nội bộ: sản phẩm mà khách hàng là đồng nghiệp",
+  "subtitle": "Nền tảng không ai muốn dùng nhưng bị bắt dùng là nền tảng đang thất bại.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🏗️",
+  "track": "professional",
+  "whyItMatters": "Đội nền tảng là cách phổ biến nhất để tổ chức lớn tránh việc mỗi đội tự dựng lại hạ tầng. Nhưng nó rất dễ trở thành nút thắt hoặc thành thứ mọi người tìm cách né - và cả hai kết cục đều tệ hơn không có.",
+  "openingQuestion": "Dấu hiệu rõ nhất cho thấy một nền tảng nội bộ đang hoạt động tốt là gì?",
+  "openingOptions": [
+    "Các đội chọn dùng nó vì nó tiện hơn tự làm",
+    "Toàn bộ các đội trong công ty đều đang dùng nó",
+    "Nó có nhiều tính năng hơn các lựa chọn bên ngoài",
+    "Đội nền tảng nhận được nhiều yêu cầu mỗi tuần"
+  ],
+  "correctOption": 0,
+  "explanation": "Tỷ lệ sử dụng cao có thể do bị bắt buộc, và trong trường hợp đó nó che giấu một nền tảng tệ chứ không chứng minh điều ngược lại. Thước đo thật là lựa chọn tự nguyện: nếu các đội có quyền tự làm mà vẫn chọn dùng nền tảng, nghĩa là nó đang thật sự tiết kiệm công sức cho họ. Số lượng yêu cầu nhận được thì thường là dấu hiệu xấu - nó nói rằng mọi thứ đều phải đi qua đội nền tảng, tức là nút thắt.",
+  "diagram": [
+    {
+      "label": "Nền tảng nội bộ ra đời",
+      "arrow": true
+    },
+    {
+      "label": "Bắt buộc dùng: che giấu chất lượng thật",
+      "arrow": true
+    },
+    {
+      "label": "Tự nguyện dùng: chứng minh giá trị thật",
+      "arrow": true
+    },
+    {
+      "label": "Thước đo là lựa chọn, không phải tỷ lệ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Nền tảng bị né",
+    "description": "Khi một nền tảng nội bộ khó dùng nhưng bắt buộc, các đội sẽ dùng nó ở mức tối thiểu rồi tự dựng phần còn lại bên cạnh. Tổ chức nhận được cái tệ nhất của cả hai: vẫn phải nuôi nền tảng, và vẫn có mỗi đội một cách làm riêng."
+  },
+  "keyTakeaways": [
+    "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng.",
+    "Nền tảng nên là thư viện và khuôn mẫu, không phải một hàng đợi yêu cầu.",
+    "Đội nền tảng phải coi các đội khác là khách hàng và đo trải nghiệm của họ.",
+    "Nền tảng không có đường thoát sẽ bị né bằng những cách bạn không thấy."
+  ],
+  "summary": {
+    "keyIdea": "Nền tảng nội bộ là một sản phẩm, và khách hàng của nó có thể bỏ đi theo những cách bạn không đo được.",
+    "formula": "Được chọn, không phải được áp.",
+    "commonMistake": "Đo thành công bằng tỷ lệ tuân thủ trong khi việc dùng là bắt buộc."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Nếu đội bạn duy trì một thành phần dùng chung, hỏi ba đội đang dùng nó: nếu được chọn lại, các bạn có dùng không? Câu trả lời cho biết bạn đang có một nền tảng hay một loại thuế."
+  },
+  "practicePrompt": {
+    "question": "Vì sao nền tảng nội bộ nên là thư viện và khuôn mẫu thay vì một hàng đợi yêu cầu?",
+    "options": [
+      "Vì hàng đợi biến đội nền tảng thành nút thắt của mọi đội khác",
+      "Vì thư viện dễ viết tài liệu hơn so với dịch vụ",
+      "Vì hàng đợi yêu cầu tốn nhiều chi phí hạ tầng hơn",
+      "Vì thư viện cho phép mỗi đội sửa đổi theo ý mình"
+    ],
+    "correct": 0,
+    "explanation": "Mỗi đội cần một thay đổi nhỏ mà phải xếp hàng thì tốc độ của cả tổ chức bị giới hạn bởi quy mô một đội. Thư viện và khuôn mẫu để các đội tự phục vụ, còn đội nền tảng dành thời gian làm cho con đường mặc định tốt hơn."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao tỷ lệ sử dụng cao không chứng minh nền tảng tốt?",
+      "options": [
+        "Vì nó có thể do bắt buộc chứ không do các đội tự chọn",
+        "Vì tỷ lệ sử dụng thường được đo không chính xác",
+        "Vì các đội mới thành lập luôn phải dùng nền tảng theo quy định",
+        "Vì tỷ lệ cao làm tăng tải lên hệ thống nền tảng"
+      ],
+      "correct": 0,
+      "explanation": "Đây là chỉ số phù phiếm ở dạng tổ chức: nó chỉ biết tăng khi có quy định. Câu hỏi có sức phân biệt là nếu được chọn lại thì họ có chọn không."
+    },
+    {
+      "question": "Rủi ro lớn nhất của mô hình hàng đợi yêu cầu là gì?",
+      "options": [
+        "Đội nền tảng thành nút thắt giới hạn tốc độ mọi đội khác",
+        "Các yêu cầu bị xử lý sai thứ tự ưu tiên",
+        "Chi phí vận hành hàng đợi tăng theo số lượng yêu cầu",
+        "Đội nền tảng không nắm được nhu cầu thật sự của các đội khác"
+      ],
+      "correct": 0,
+      "explanation": "Khi mọi thay đổi phải đi qua một đội, năng lực của đội ấy trở thành trần của cả tổ chức. Mô hình tự phục vụ gỡ trần đó."
+    },
+    {
+      "question": "Đội nền tảng nên đo điều gì?",
+      "options": [
+        "Trải nghiệm của các đội dùng nó, ví dụ thời gian để bắt đầu",
+        "Số lượng tính năng đã phát hành trong mỗi quý",
+        "Tỷ lệ các đội trong công ty đã đăng ký sử dụng",
+        "Số lượng yêu cầu hỗ trợ đã xử lý xong mỗi tuần"
+      ],
+      "correct": 0,
+      "explanation": "Khách hàng của họ là các đội khác, nên chỉ số phải phản ánh trải nghiệm của những đội đó - thời gian dựng một dịch vụ mới, số bước phải làm bằng tay. Ba đáp án còn lại đều đo hoạt động của chính đội nền tảng."
+    },
+    {
+      "question": "Điều gì xảy ra khi nền tảng khó dùng nhưng bắt buộc?",
+      "options": [
+        "Các đội dùng ở mức tối thiểu rồi tự dựng phần còn lại bên cạnh",
+        "Các đội sẽ chủ động đóng góp để cải thiện nền tảng",
+        "Tỷ lệ sử dụng giảm dần cho tới khi nền tảng bị bỏ",
+        "Đội nền tảng nhận được phản hồi rõ ràng để sửa chữa"
+      ],
+      "correct": 0,
+      "explanation": "Tổ chức nhận cái tệ nhất của cả hai: vẫn nuôi nền tảng, vẫn có mỗi đội một cách làm riêng, và phần tự dựng ấy không ai nhìn thấy trong số liệu tuân thủ."
+    },
+    {
+      "question": "Vì sao nền tảng nên có đường thoát cho trường hợp đặc biệt?",
+      "options": [
+        "Vì không có đường thoát chính thức thì người ta tự tạo đường vòng",
+        "Vì quy định của công ty yêu cầu phải luôn có sẵn phương án dự phòng",
+        "Vì đường thoát giúp giảm tải cho hạ tầng của nền tảng",
+        "Vì các đội lớn cần được ưu tiên hơn các đội nhỏ"
+      ],
+      "correct": 0,
+      "explanation": "Cùng lý do với ngoại lệ của chuẩn chung ở bài trước: đường vòng tự phát thì không ai thấy và không ai học được gì từ nó. Đường thoát công khai giữ thông tin ở lại trong tổ chức."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Khi nhiều đội cùng cần một thứ, tổ chức thường lập một đội chuyên làm thứ đó. Ý tưởng đúng, nhưng nó thất bại theo hai cách rất đều đặn: thành nút thắt, hoặc thành thứ ai cũng tìm cách né."
+    },
+    {
+      "type": "heading",
+      "text": "Sản phẩm có khách hàng nội bộ"
+    },
+    {
+      "type": "paragraph",
+      "text": "Điểm khác biệt của nền tảng nội bộ là khách hàng bị buộc phải mua. Điều đó xoá mất tín hiệu quan trọng nhất mà một sản phẩm bình thường nhận được: người ta có tự nguyện chọn không. Đội nền tảng vì thế phải chủ động đi tìm tín hiệu ấy, thay vì đọc con số tuân thủ và yên tâm."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Mô hình hàng đợi",
+        "text": "Đội khác gửi yêu cầu, nền tảng làm. Kiểm soát chặt, nhưng năng lực một đội trở thành trần của cả tổ chức."
+      },
+      "right": {
+        "label": "Mô hình tự phục vụ",
+        "text": "Nền tảng cung cấp thư viện, khuôn mẫu, đường mặc định tốt. Các đội tự làm; nền tảng lo cho con đường ấy ngày càng dễ đi."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đo thời gian một đội mới dựng được dịch vụ đầu tiên - đó là chỉ số trải nghiệm khách hàng của bạn.",
+        "Hỏi thẳng các đội: nếu được chọn lại, có dùng không? Câu trả lời quan trọng hơn tỷ lệ tuân thủ.",
+        "Cho phép đường thoát công khai, để những trường hợp chuẩn không phù hợp vẫn nằm trong tầm nhìn."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Nền tảng nội bộ tốt là nền tảng người ta chọn dùng. Bắt buộc chỉ che mất câu trả lời chứ không đổi được nó.",
+        "Bài sau nói về câu hỏi đứng ngay dưới mọi nền tảng: khi nào nên dùng chung một thư viện và khi nào nên để mỗi đội tự làm."
+      ]
+    }
+  ]
+}

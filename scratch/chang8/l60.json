@@ -1,0 +1,183 @@
+{
+  "id": 60,
+  "slug": "on-tap-mang-va-dich-vu",
+  "title": "Ôn tập: đường đi của một lời gọi",
+  "subtitle": "Hai mươi bài vừa rồi lần theo đúng một yêu cầu, từ lúc gõ tên miền tới lúc phản hồi trở về.",
+  "duration": "10 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🎓",
+  "track": "professional",
+  "whyItMatters": "Chặng này không dạy một khung làm việc cụ thể nào. Nó dạy những câu hỏi phải đặt ra mỗi khi hai hệ thống nói chuyện với nhau, và những câu hỏi đó không đổi khi công nghệ đổi.",
+  "openingQuestion": "Sợi chỉ xuyên suốt cả chặng này là gì?",
+  "openingOptions": [
+    "Mạng không đáng tin, nên mọi thiết kế phải coi lỗi là đường chạy bình thường",
+    "Giao thức hiện đại đã che hết sự phức tạp nên mã ứng dụng không cần quan tâm",
+    "Hiệu năng là tiêu chí quan trọng nhất khi thiết kế giao tiếp giữa hai dịch vụ",
+    "Mọi giao tiếp giữa các hệ thống nên chuyển sang bất đồng bộ hoàn toàn"
+  ],
+  "correctOption": 0,
+  "explanation": "Bài đầu chặng nói dữ liệu đi thành gói rời và gói có thể mất. Mọi bài sau chỉ là hệ quả của sự thật đó ở những tầng cao hơn: thời hạn chờ tồn tại vì phản hồi có thể không bao giờ về, mã chống lặp tồn tại vì bạn không biết yêu cầu đã tới chưa, ngắt mạch tồn tại vì phụ thuộc có thể chậm, hàng đợi tồn tại vì hai hệ thống không phải lúc nào cũng cùng khoẻ. Viết mã như thể mạng luôn thông là chỗ mà mọi sự cố trong chặng này bắt đầu.",
+  "diagram": [
+    {
+      "label": "Tên miền → địa chỉ → kết nối",
+      "arrow": true
+    },
+    {
+      "label": "Yêu cầu → xác thực → uỷ quyền",
+      "arrow": true
+    },
+    {
+      "label": "Xử lý → hoặc đệm, hoặc đưa vào hàng đợi",
+      "arrow": true
+    },
+    {
+      "label": "Phản hồi → mã trạng thái → máy gọi quyết định"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Buổi rà soát một tích hợp mới",
+    "description": "Khi ai đó đề xuất gọi sang một dịch vụ mới, chặng này cho bạn danh sách câu hỏi: thời hạn chờ bao nhiêu, gọi hai lần có sao không, họ chậm thì phần nào của ta còn chạy, hạn mức là bao nhiêu, và ta đo cái gì để biết nó đang khoẻ."
+  },
+  "keyTakeaways": [
+    "Gói tin có thể mất, tới trùng và tới lệch thứ tự - mọi thứ khác là hệ quả.",
+    "Mỗi lời gọi phải có thời hạn chờ, và thao tác ghi phải chịu được việc lặp.",
+    "Lỗi từng phần là bình thường; việc của thiết kế là ngăn nó lan ra toàn phần.",
+    "Đo theo phân vị chứ không theo trung bình, vì phần đuôi mới là chỗ mất lòng tin.",
+    "Mọi dữ liệu từ bên ngoài đều chưa đáng tin cho tới khi chính máy chủ kiểm."
+  ],
+  "summary": {
+    "keyIdea": "Mạng không đáng tin, nên thiết kế phải coi thất bại là trạng thái bình thường chứ không phải ngoại lệ.",
+    "formula": "Thời hạn chờ + chống lặp + suy giảm có kiểm soát + đo theo phân vị.",
+    "commonMistake": "Viết mã như thể lời gọi mạng cũng giống như gọi một hàm trong bộ nhớ."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một lời gọi ra ngoài trong hệ thống của bạn và trả lời năm câu: thời hạn chờ bao nhiêu, gọi hai lần có sao không, bên kia chậm thì phần nào của bạn còn chạy, ai giới hạn tốc độ, và bạn đo gì để biết nó khoẻ."
+  },
+  "practicePrompt": {
+    "question": "Một dịch vụ phụ chậm đi và toàn bộ trang chủ ngừng tải. Ba biện pháp nào đáng lẽ đã ngăn được chuyện đó?",
+    "options": [
+      "Thời hạn chờ, ngắt mạch và suy giảm có kiểm soát",
+      "Bộ nhớ đệm, nén dữ liệu và nâng băng thông đường truyền",
+      "Phiên bản API, mã chống lặp và chữ ký xác minh sự kiện",
+      "Giới hạn tốc độ, hàng đợi và cơ chế thử lại có giãn cách"
+    ],
+    "correct": 0,
+    "explanation": "Ba biện pháp đó nhắm đúng vào chuỗi nhân quả: thời hạn chờ ngăn lời gọi treo vô hạn, ngắt mạch dừng gọi khi phụ thuộc đang hỏng, còn suy giảm có kiểm soát giữ cho phần cốt lõi vẫn phục vụ được dù thiếu một ô nội dung."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao mọi lời gọi mạng đều phải có thời hạn chờ?",
+      "options": [
+        "Vì một phụ thuộc chậm sẽ giữ tài nguyên của bạn cho tới khi cạn",
+        "Vì máy chủ đích chỉ xử lý những yêu cầu có khai báo thời hạn",
+        "Vì thời hạn chờ giúp yêu cầu được ưu tiên hơn trong hàng đợi",
+        "Vì không có thời hạn thì cơ chế thử lại không chạy"
+      ],
+      "correct": 0,
+      "explanation": "Dịch vụ chậm nguy hiểm hơn dịch vụ chết, vì nó không trả lời gì trong lúc vẫn chiếm luồng và kết nối của bên gọi. Thời hạn chờ biến sự chậm không giới hạn thành một lỗi có giới hạn."
+    },
+    {
+      "question": "Vì sao thao tác ghi cần chịu được việc gọi hai lần?",
+      "options": [
+        "Vì máy khách không phân biệt được yêu cầu chưa tới với phản hồi bị mất",
+        "Vì máy chủ luôn xử lý mỗi yêu cầu ghi đúng hai lần để đối chiếu kết quả",
+        "Vì bộ cân bằng tải nhân đôi mọi yêu cầu ghi sang hai máy chủ",
+        "Vì thao tác ghi luôn được gửi kèm trong hai gói tin riêng biệt"
+      ],
+      "correct": 0,
+      "explanation": "Hết thời gian chờ để lại một trạng thái không biết, và mọi cách xử lý đều sai với một trong hai khả năng. Mã thao tác do máy khách sinh là lối thoát: máy chủ nhận ra lần lặp và trả lại kết quả cũ."
+    },
+    {
+      "question": "Vì sao đọc hiệu năng theo phân vị thay vì theo trung bình?",
+      "options": [
+        "Vì trung bình che mất nhóm chậm nhất, vốn thường là khách hàng lớn nhất",
+        "Vì phân vị luôn cho con số nhỏ hơn nên dễ đạt cam kết chất lượng dịch vụ hơn",
+        "Vì trung bình chỉ tính được khi có đủ số lượng mẫu trong khoảng đo",
+        "Vì phân vị phân biệt được yêu cầu thành công với yêu cầu bị lỗi"
+      ],
+      "correct": 0,
+      "explanation": "Một phần trăm lời gọi mất mười lăm giây gần như không làm trung bình nhúc nhích, nhưng đó là hàng nghìn người dùng thật. Và phần đuôi hiếm khi ngẫu nhiên - nó rơi vào tài khoản nhiều dữ liệu nhất."
+    },
+    {
+      "question": "Điểm chung của giới hạn tốc độ, ngắt mạch và suy giảm có kiểm soát là gì?",
+      "options": [
+        "Đều chấp nhận mất một phần để giữ cho phần còn lại vẫn chạy",
+        "Đều nhằm tăng tốc độ phản hồi của hệ thống trong điều kiện bình thường",
+        "Đều chỉ hoạt động khi hệ thống có nhiều máy chủ chạy song song",
+        "Đều có thể thay thế cho nhau tuỳ theo loại sự cố đang xảy ra"
+      ],
+      "correct": 0,
+      "explanation": "Cả ba đều là cách hỏng có kiểm soát thay vì hỏng toàn phần: từ chối bớt người gọi, ngừng gọi một phụ thuộc đang hỏng, hoặc bỏ một chức năng phụ. Chúng bổ sung nhau chứ không thay nhau."
+    },
+    {
+      "question": "Vì sao dữ liệu từ máy khách luôn phải kiểm lại ở máy chủ?",
+      "options": [
+        "Vì mọi thứ chạy trên máy người dùng đều nằm trong tầm kiểm soát của họ",
+        "Vì dữ liệu có thể bị thiết bị trung gian sửa trên đường",
+        "Vì trình duyệt không kiểm tra được các quy tắc nghiệp vụ phức tạp",
+        "Vì máy chủ cần ghi lại dữ liệu gốc trước khi kiểm tra tính hợp lệ"
+      ],
+      "correct": 0,
+      "explanation": "Yêu cầu gửi thẳng tới máy chủ được mà không đi qua giao diện của bạn, nên mọi giới hạn cài ở trình duyệt chỉ là gợi ý. Kiểm ở ranh giới nhận, theo danh sách cho phép, là hàng rào duy nhất có giá trị."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai mươi bài vừa rồi thực ra chỉ lần theo một yêu cầu duy nhất, từ lúc bạn gõ một cái tên tới lúc phản hồi quay về. Mỗi bài dừng lại ở một chặng và hỏi: chỗ này hỏng thì sao?"
+    },
+    {
+      "type": "heading",
+      "text": "Chặng một: tới được máy đích"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Dữ liệu đi thành gói rời, và gói có thể mất, tới trùng hoặc lệch thứ tự.",
+        "Tên miền phải đổi thành địa chỉ trước, và bộ nhớ đệm ở bước đó giữ giá trị cũ lâu hơn bạn tưởng.",
+        "Chọn cách gửi là chọn giữa bảo đảm và mượt - hai thứ không thay nhau được."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Chặng hai: nói chuyện có quy tắc"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Một lời gọi là một lá thư tự chứa đủ thông tin, vì máy chủ không nhớ lá thư trước.",
+        "Mã trạng thái nói cho máy biết lỗi của ai và có nên thử lại không.",
+        "API là hợp đồng với người bạn chưa gặp, và họ dựa vào thứ họ thấy chứ không phải tài liệu.",
+        "Xác thực trả lời bạn là ai; uỷ quyền phải hỏi tiếp với chính bản ghi này."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Chặng ba: chịu được thực tế"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Làm nhanh hơn",
+        "text": "Bộ nhớ đệm cắt cả độ trễ lẫn tải, nhưng phải thiết kế đường làm mới. Và nhớ rằng độ trễ do khoảng cách quyết định, không do băng thông."
+      },
+      "right": {
+        "label": "Chịu được lỗi",
+        "text": "Thời hạn chờ, mã chống lặp, ngắt mạch, hàng đợi, giới hạn tốc độ - tất cả cùng phục vụ một mục tiêu: hỏng từng phần thay vì hỏng toàn phần."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Năm câu hỏi mang theo",
+      "text": "Trước mỗi tích hợp mới: thời hạn chờ bao nhiêu? Gọi hai lần có sao không? Bên kia chậm thì phần nào của ta còn chạy? Ai giới hạn tốc độ? Ta đo gì để biết nó đang khoẻ? Hỏi được năm câu đó là chặn được phần lớn sự cố trước khi có dòng mã nào."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Giao thức và công cụ trong chặng này sẽ đổi. Sự thật nền tảng thì không: mạng không đáng tin, và thiết kế tốt là thiết kế coi điều đó là chuyện thường ngày.",
+        "Chặng sau chuyển từ hai hệ thống nói chuyện sang một hệ thống được xây và vận hành: mã nguồn ra tới người dùng bằng cách nào."
+      ]
+    }
+  ]
+}

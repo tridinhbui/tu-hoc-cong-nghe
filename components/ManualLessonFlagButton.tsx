@@ -108,8 +108,8 @@ export default function ManualLessonFlagButton({
         completed
           ? "bg-emerald-100 dark:bg-emerald-900/30 text-accent"
           : flagged
-            ? "bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400"
-            : "bg-surface-raised text-ink-muted hover:bg-stone-200 dark:hover:bg-stone-700"
+            ? "bg-sky-100 dark:bg-sky-900/30 text-info"
+            : "bg-surface-raised text-ink-muted hover:bg-surface-sunken"
       } ${toggling ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}`}
       aria-label={t.manualLessonFlag.ariaLabel}
     >

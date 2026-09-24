@@ -1,0 +1,171 @@
+{
+  "id": 140,
+  "slug": "on-tap-bao-mat-ung-dung",
+  "title": "Ôn tập: bảo mật là chuỗi quyết định, không phải danh sách việc",
+  "subtitle": "Hai mươi bài vừa rồi đều quay về một câu hỏi: bảo vệ cái gì, khỏi ai, và khi hỏng thì tới đâu.",
+  "duration": "10 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🎓",
+  "track": "professional",
+  "whyItMatters": "Bảo mật hay được trình bày như một bộ quy tắc phải thuộc. Nhìn nó như một chuỗi quyết định có đánh đổi thì bạn áp dụng được vào những tình huống mà không danh sách nào nhắc tới.",
+  "openingQuestion": "Sợi chỉ xuyên suốt cả chặng này là gì?",
+  "openingOptions": [
+    "Mỗi biện pháp bảo vệ một thứ cụ thể khỏi một kịch bản cụ thể",
+    "Càng nhiều biện pháp bảo mật thì hệ thống càng an toàn",
+    "Bảo mật là trách nhiệm của một đội chuyên trách riêng",
+    "Tuân thủ đầy đủ tiêu chuẩn là đủ để hệ thống an toàn"
+  ],
+  "correctOption": 0,
+  "explanation": "Từ bài đầu tới bài cuối, mỗi biện pháp đều đi kèm một câu hỏi: nó bảo vệ cái gì, khỏi kịch bản nào, và nó tốn gì. Mã hoá ổ đĩa bảo vệ trước mất thiết bị chứ không trước xâm nhập lúc đang chạy. Quyền tối thiểu không giảm xác suất mà giảm phạm vi. Nhiều biện pháp mà không biết chúng chặn gì thì bạn có chi phí và một cảm giác, còn tuân thủ tiêu chuẩn là mức sàn chứ không phải mục tiêu.",
+  "diagram": [
+    {
+      "label": "Mô hình mối đe doạ: bảo vệ gì, khỏi ai",
+      "arrow": true
+    },
+    {
+      "label": "Đóng đường vào: xác thực, phân quyền, đầu vào",
+      "arrow": true
+    },
+    {
+      "label": "Giới hạn hậu quả: quyền tối thiểu, nhiều lớp",
+      "arrow": true
+    },
+    {
+      "label": "Chuẩn bị cho lúc hỏng: dấu vết, quy trình, kênh báo"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bốn câu hỏi trong buổi rà soát",
+    "description": "Chặng này cho bạn bốn câu để hỏi khi rà soát một tính năng mới: dữ liệu nào đi vào, ai được chạm tới nó, nếu phần này bị chiếm thì kẻ chiếm đi được tới đâu, và ta biết chuyện đã xảy ra bằng cách nào."
+  },
+  "keyTakeaways": [
+    "Bắt đầu từ tài sản và kẻ tấn công, không từ danh sách biện pháp.",
+    "Mọi lỗ hổng tiêm lệnh đều là dữ liệu bị trộn vào câu lệnh - chữa bằng cách tách chúng.",
+    "Phân quyền cần cả vai trò lẫn quan hệ với chính bản ghi đang được yêu cầu.",
+    "Quyền tối thiểu và nhiều lớp không giảm xác suất mà giảm phạm vi hậu quả.",
+    "Dấu vết, quy trình sự cố và kênh nhận báo cáo phải có sẵn trước khi cần."
+  ],
+  "summary": {
+    "keyIdea": "Bảo mật là chuỗi đánh đổi có ý thức, đo bằng thứ được bảo vệ và kịch bản được chặn.",
+    "formula": "Bảo vệ gì - khỏi ai - hỏng thì tới đâu - biết bằng cách nào.",
+    "commonMistake": "Làm theo danh sách chung mà không biết từng mục chặn kịch bản nào."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Với tính năng tiếp theo đội bạn làm, hỏi bốn câu: dữ liệu nào đi vào, ai chạm được, nếu bị chiếm thì tới đâu, và ta biết bằng cách nào. Bốn câu ấy bắt được phần lớn vấn đề trước khi có dòng mã nào."
+  },
+  "practicePrompt": {
+    "question": "Một đội nói họ đã bảo mật vì đã mã hoá toàn bộ dữ liệu. Câu hỏi tiếp theo nên là gì?",
+    "options": [
+      "Khoá nằm ở đâu, và nó bảo vệ trước kịch bản nào",
+      "Thuật toán mã hoá đang dùng là thuật toán nào",
+      "Việc mã hoá ảnh hưởng tới hiệu năng bao nhiêu phần trăm",
+      "Có bao nhiêu bảng dữ liệu đã được mã hoá đầy đủ"
+    ],
+    "correct": 0,
+    "explanation": "Mã hoá chỉ dời bài toán sang việc bảo vệ khoá, nên hai câu ấy quyết định lớp mã hoá có giá trị hay chỉ là trang trí. Thuật toán thì hầu như luôn đủ mạnh, còn phạm vi và hiệu năng đều là chi tiết đứng sau câu hỏi bảo vệ trước ai."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao mọi biện pháp bảo mật đều phải kèm câu hỏi bảo vệ trước ai?",
+      "options": [
+        "Vì mỗi biện pháp chỉ chặn một số kịch bản cụ thể",
+        "Vì các tiêu chuẩn yêu cầu ghi rõ mục đích từng biện pháp",
+        "Vì cần chứng minh chi phí bỏ ra là hợp lý với ban lãnh đạo",
+        "Vì các kịch bản tấn công thay đổi liên tục theo thời gian"
+      ],
+      "correct": 0,
+      "explanation": "Mã hoá ổ đĩa không chặn xâm nhập lúc đang chạy, quyền tối thiểu không chặn việc bị chiếm. Không biết từng biện pháp chặn gì thì bạn không biết mình còn hở chỗ nào."
+    },
+    {
+      "question": "Điểm chung của mọi lỗ hổng tiêm lệnh là gì?",
+      "options": [
+        "Dữ liệu và câu lệnh bị trộn vào cùng một chuỗi",
+        "Dữ liệu đầu vào không được kiểm tra kỹ định dạng",
+        "Tài khoản kết nối được cấp quá nhiều quyền",
+        "Bộ diễn giải có lỗi khi xử lý ký tự đặc biệt"
+      ],
+      "correct": 0,
+      "explanation": "Nhận ra hình dạng chung ấy giúp bạn thấy nó ở cả những chỗ chưa được đặt tên - lệnh hệ điều hành, mẫu tài liệu, câu lệnh gửi cho mô hình ngôn ngữ."
+    },
+    {
+      "question": "Quyền tối thiểu và phòng thủ nhiều lớp cùng phục vụ mục đích gì?",
+      "options": [
+        "Giới hạn phạm vi hậu quả khi một biện pháp nào đó bị vượt qua",
+        "Giảm xác suất hệ thống bị tấn công thành công",
+        "Đáp ứng yêu cầu của các tiêu chuẩn tuân thủ phổ biến",
+        "Phát hiện sớm những hành vi bất thường ở trong hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Cả hai đều xuất phát từ giả định rằng sẽ có chỗ hỏng. Chúng không làm hệ thống khó bị chiếm hơn; chúng quyết định kẻ chiếm được đứng ở đâu."
+    },
+    {
+      "question": "Ba thứ phải có sẵn trước khi sự cố xảy ra là gì?",
+      "options": [
+        "Dấu vết kiểm toán, quy trình xử lý và kênh nhận báo cáo từ bên ngoài",
+        "Đội bảo mật chuyên trách, ngân sách dự phòng và bảo hiểm rủi ro riêng",
+        "Công cụ quét lỗ hổng, tường lửa ứng dụng và hệ thống giám sát",
+        "Chính sách bảo mật, tài liệu kiến trúc và sơ đồ luồng dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Ba thứ ấy không tạo ra được sau khi sự việc đã xảy ra: bằng chứng đã mất, quyết định đầu tiên đã lỡ, và người phát hiện đã chọn kênh khác."
+    },
+    {
+      "question": "Bảo mật và quyền riêng tư khác nhau thế nào?",
+      "options": [
+        "Bảo mật hỏi ai chạm được; riêng tư hỏi có nên giữ dữ liệu đó không",
+        "Bảo mật thuộc về kỹ thuật còn riêng tư thuộc về pháp lý",
+        "Bảo mật bảo vệ tổ chức còn riêng tư bảo vệ người dùng",
+        "Bảo mật áp dụng khi có sự cố còn riêng tư thì áp dụng thường xuyên"
+      ],
+      "correct": 0,
+      "explanation": "Một hệ thống có thể bảo mật rất tốt mà vẫn vi phạm riêng tư, vì nó bảo vệ cẩn thận những trường lẽ ra không nên thu thập. Câu hỏi riêng tư đứng trước."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai mươi bài của chặng này trông như hai mươi chủ đề rời rạc. Thực ra chúng xếp thành bốn nhóm, và cả bốn đều trả lời một chuỗi câu hỏi duy nhất."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn nhóm"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Biết mình bảo vệ gì: mô hình mối đe doạ, và nhận ra kẻ tấn công phổ biến nhất là một cỗ máy.",
+        "Đóng đường vào: xác thực, phiên, phân quyền, đầu vào không tin cậy, tệp tải lên, phụ thuộc.",
+        "Giới hạn hậu quả: quyền tối thiểu, nhiều lớp độc lập, mã hoá và quản lý khoá.",
+        "Chuẩn bị cho lúc hỏng: dấu vết, quy trình sự cố, kênh nhận báo cáo, nghĩa vụ thông báo."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Hai hình dạng lặp lại"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Trộn dữ liệu với lệnh",
+        "text": "Tiêm lệnh, kịch bản chèn vào trang, và mọi biến thể khác. Chữa bằng cách tách hai thứ, không bằng cách lọc nội dung."
+      },
+      "right": {
+        "label": "Tin vào lời khai",
+        "text": "Phần mở rộng tệp, loại nội dung, trường ẩn trong biểu mẫu, kiểm tra ở giao diện. Thứ do phía kia đặt thì không chứng minh gì."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Bốn câu mang theo",
+      "text": "Dữ liệu nào đi vào tính năng này? Ai được chạm tới nó? Nếu phần này bị chiếm thì kẻ chiếm đi được tới đâu? Và ta biết chuyện đã xảy ra bằng cách nào? Bốn câu ấy đủ cho phần lớn buổi rà soát."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bảo mật không phải danh sách phải thuộc mà là chuỗi đánh đổi có ý thức, mỗi cái gắn với một kịch bản cụ thể.",
+        "Chặng sau tiếp tục đi sâu theo hướng nghề mà bạn chọn."
+      ]
+    }
+  ]
+}

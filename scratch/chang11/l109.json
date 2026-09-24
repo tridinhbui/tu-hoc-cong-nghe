@@ -1,0 +1,172 @@
+{
+  "id": 109,
+  "slug": "du-lieu-dung-chung-giua-cac-doi",
+  "title": "Dữ liệu dùng chung: ranh giới khó giữ nhất",
+  "subtitle": "Hai đội cùng ghi vào một bảng thì không còn ranh giới nào giữa họ nữa.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🗄️",
+  "track": "professional",
+  "whyItMatters": "Bạn có thể chia mã thành trăm phần và vẫn không có ranh giới nào, nếu tất cả cùng đọc ghi một cơ sở dữ liệu. Dữ liệu dùng chung là chỗ ranh giới bị phá âm thầm nhất, vì nó không hiện ra trong sơ đồ kiến trúc.",
+  "openingQuestion": "Đội khác muốn đọc thẳng bảng dữ liệu của đội bạn cho nhanh. Vấn đề là gì?",
+  "openingOptions": [
+    "Cấu trúc bảng trở thành hợp đồng công khai mà bạn không sửa được nữa",
+    "Hiệu năng của cơ sở dữ liệu sẽ giảm khi có thêm bên đọc",
+    "Đội kia có thể vô tình sửa dữ liệu của đội bạn",
+    "Việc phân quyền truy cập sẽ trở nên phức tạp hơn"
+  ],
+  "correctOption": 0,
+  "explanation": "Khoảnh khắc một đội khác đọc thẳng bảng của bạn, cấu trúc nội bộ ấy thành hợp đồng - và là hợp đồng không ai ký, không ai kiểm, không ai biết phạm vi. Đổi tên một cột hay tách một bảng, vốn là việc nội bộ, giờ làm hỏng hệ thống của người khác. Hiệu năng và phân quyền đều là vấn đề thật nhưng chúng giải được bằng kỹ thuật; cái mất ở đây là quyền tự do thay đổi phần bên trong của mình, và nó không lấy lại được nếu không có một cuộc di trú.",
+  "diagram": [
+    {
+      "label": "Đội B đọc thẳng bảng của đội A",
+      "arrow": true
+    },
+    {
+      "label": "Cấu trúc bảng thành hợp đồng ngầm",
+      "arrow": true
+    },
+    {
+      "label": "A mất quyền đổi phần bên trong của mình",
+      "arrow": true
+    },
+    {
+      "label": "Ranh giới trên sơ đồ vẫn còn, thực tế đã mất"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bảng có mười hai bên đọc",
+    "description": "Một bảng ban đầu chỉ do một đội dùng, rồi lần lượt các đội khác đọc thẳng vào cho tiện. Ba năm sau, đổi tên một cột cần phối hợp mười hai đội, và không ai còn nhớ hết ai đang đọc gì."
+  },
+  "keyTakeaways": [
+    "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm.",
+    "Ranh giới chỉ có thật khi dữ liệu cũng được ngăn cách, không chỉ mã.",
+    "Cung cấp dữ liệu qua giao diện có phiên bản, hoặc qua bản sao dành cho đọc.",
+    "Truy cập trực tiếp cho nhanh hôm nay là một cuộc di trú vài tháng sau này."
+  ],
+  "summary": {
+    "keyIdea": "Ranh giới đội chỉ tồn tại nếu dữ liệu cũng có ranh giới.",
+    "formula": "Chia sẻ qua giao diện, không qua bảng.",
+    "commonMistake": "Cho đọc thẳng bảng vì nhanh, rồi mất luôn quyền sửa lược đồ của chính mình."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Kiểm xem có bao nhiêu hệ thống ngoài đội bạn đang truy cập thẳng vào cơ sở dữ liệu của bạn. Nếu không trả lời được thì bạn không biết mình đang hứa những gì với ai."
+  },
+  "practicePrompt": {
+    "question": "Đội bạn cần dữ liệu của đội khác để làm báo cáo. Cách nào giữ được ranh giới?",
+    "options": [
+      "Họ cung cấp một giao diện hoặc một bản sao dành cho đọc, có mô tả rõ ràng",
+      "Bạn đọc thẳng bảng của họ nhưng chỉ với quyền chỉ đọc",
+      "Bạn sao chép định kỳ toàn bộ bảng của họ sang cơ sở dữ liệu của chính mình",
+      "Hai đội cùng sở hữu bảng đó và thống nhất trước mọi thay đổi"
+    ],
+    "correct": 0,
+    "explanation": "Điểm mấu chốt không phải quyền đọc hay ghi mà là bạn đang phụ thuộc vào hình dạng nào. Một giao diện hoặc bản sao có mô tả rõ cho phép đội kia đổi cấu trúc bên trong tuỳ ý, miễn là giữ đúng thứ đã hứa - còn sao chép thẳng bảng thì bạn vẫn phụ thuộc vào cấu trúc nội bộ của họ."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao cho đội khác đọc thẳng bảng lại nguy hiểm?",
+      "options": [
+        "Cấu trúc bảng thành hợp đồng ngầm mà bạn không còn tự do sửa",
+        "Việc đọc từ nhiều nơi sẽ làm cơ sở dữ liệu quá tải",
+        "Đội kia có thể vô tình ghi đè lên dữ liệu của bạn",
+        "Cần thêm nhiều tài khoản truy cập phải quản lý"
+      ],
+      "correct": 0,
+      "explanation": "Ba vấn đề còn lại đều giải được bằng kỹ thuật. Thứ không giải được là bạn mất quyền thay đổi phần bên trong của mình, và mất theo cách âm thầm."
+    },
+    {
+      "question": "Ranh giới giữa hai đội chỉ có thật khi nào?",
+      "options": [
+        "Khi cả mã và dữ liệu đều được ngăn cách",
+        "Khi hai đội nằm ở hai kho mã hoàn toàn khác nhau",
+        "Khi hai đội triển khai theo hai lịch riêng biệt",
+        "Khi hai đội báo cáo cho hai người quản lý khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Chia mã thành trăm phần mà tất cả cùng đọc ghi một cơ sở dữ liệu thì không có ranh giới nào cả. Dữ liệu là chỗ ranh giới hay bị phá nhất vì nó không hiện ra trong sơ đồ kiến trúc."
+    },
+    {
+      "question": "Cách chia sẻ dữ liệu nào giữ được tự chủ cho bên sở hữu?",
+      "options": [
+        "Một giao diện hoặc bản sao dành cho đọc, có mô tả rõ ràng",
+        "Cấp quyền chỉ đọc trực tiếp vào bảng gốc",
+        "Cho phép sao chép định kỳ toàn bộ bảng gốc",
+        "Để hai đội cùng sở hữu bảng đó và cùng phê duyệt mọi thay đổi"
+      ],
+      "correct": 0,
+      "explanation": "Một lớp trung gian cho phép bên sở hữu đổi cấu trúc bên trong tuỳ ý, miễn giữ đúng thứ đã hứa. Đọc trực tiếp và sao chép bảng đều khiến bên kia phụ thuộc vào cấu trúc nội bộ."
+    },
+    {
+      "question": "Vì sao truy cập trực tiếp thường được chọn dù có hại?",
+      "options": [
+        "Vì nó nhanh và rẻ ngay lúc đó, còn chi phí thì tới sau",
+        "Vì nó là cách duy nhất đạt được hiệu năng cần thiết",
+        "Vì các công cụ báo cáo chỉ hỗ trợ kết nối cơ sở dữ liệu",
+        "Vì việc xây giao diện cần sự phê duyệt từ nhiều cấp"
+      ],
+      "correct": 0,
+      "explanation": "Đây là dạng nợ kỹ thuật kinh điển: khoản vay có lợi ngay và lãi trả dần bởi người khác. Người quyết định đọc thẳng thường không phải người sau này phải di trú."
+    },
+    {
+      "question": "Hậu quả sau vài năm cho phép đọc thẳng là gì?",
+      "options": [
+        "Đổi lược đồ cần phối hợp nhiều đội, và không ai biết hết ai đang đọc",
+        "Cơ sở dữ liệu chạy chậm tới mức phải nâng cấp phần cứng",
+        "Dữ liệu bị sai lệch do nhiều bên cùng ghi vào một bảng",
+        "Chi phí bản quyền cơ sở dữ liệu tăng theo số kết nối"
+      ],
+      "correct": 0,
+      "explanation": "Cái đắt nhất là mất thông tin về chính hợp đồng của mình. Bạn không biết mình đang hứa gì với ai, nên mọi thay đổi đều thành rủi ro không ước lượng được."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói về mã dùng chung. Dữ liệu dùng chung là cùng một vấn đề nhưng khó gỡ hơn nhiều, vì mã thì tách được trong một tuần còn dữ liệu thì cần cả một cuộc di trú."
+    },
+    {
+      "type": "heading",
+      "text": "Ranh giới vô hình bị phá"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sơ đồ kiến trúc vẽ ba dịch vụ tách biệt, mỗi cái một hộp, mũi tên rõ ràng. Nhưng nếu cả ba cùng đọc ghi một cơ sở dữ liệu thì thực tế chúng là một hệ thống dính liền: đổi một cột là chạm cả ba, và không hộp nào tự triển khai độc lập được. Ranh giới trên hình vẫn còn; ranh giới thật thì đã mất."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Ba cách chia sẻ dữ liệu",
+      "subtitle": "Xếp theo mức tự chủ mà bên sở hữu giữ lại được",
+      "concepts": [
+        {
+          "vi": "Đọc thẳng bảng",
+          "en": "shared database",
+          "def": "Nhanh nhất để dựng, đắt nhất về sau. Cấu trúc nội bộ thành hợp đồng công khai không ai kiểm."
+        },
+        {
+          "vi": "Bản sao dành cho đọc",
+          "en": "read model",
+          "def": "Bên sở hữu chủ động xuất ra một hình dạng ổn định. Đổi bên trong tuỳ ý, miễn giữ hình dạng ấy."
+        },
+        {
+          "vi": "Giao diện có phiên bản",
+          "en": "API",
+          "def": "Kiểm soát chặt nhất, kèm kiểm thử hợp đồng. Đổi lại tốn công dựng và có độ trễ của lời gọi mạng."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Người vay không phải người trả",
+      "text": "Cho đọc thẳng bảng là quyết định của hôm nay, còn cuộc di trú mười hai đội là việc của người ba năm sau. Đó là lý do loại nợ này tích tụ dễ dàng tới vậy - lợi ích và chi phí rơi vào hai nhóm người khác nhau."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Ranh giới giữa các đội chỉ có thật khi dữ liệu cũng có ranh giới. Mọi thứ khác chỉ là hình vẽ.",
+        "Bài sau nói về cách các đội trao dữ liệu cho nhau mà không dính vào nhau: sự kiện."
+      ]
+    }
+  ]
+}

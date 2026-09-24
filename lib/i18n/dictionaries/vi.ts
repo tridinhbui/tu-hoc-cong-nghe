@@ -2178,7 +2178,6 @@ export const vi = {
     lessonLocked: "Bài học này đang bị khoá. Hoàn thành các bài trước để mở khoá.",
     defaultUserName: "Người học",
     // Fallback bucket for a bonus lesson with no category in BONUS_CATEGORIES.
-    bonusOther: "Khác",
     caseStudies: "Case chuyên sâu",
     searchPlaceholder: "Tìm bài học trong lộ trình này...",
     searchClear: "Xoá tìm kiếm",

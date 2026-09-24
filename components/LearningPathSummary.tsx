@@ -121,7 +121,7 @@ export default function LearningPathSummary({
 
               <Link
                 href="/lo-trinh"
-                className="mt-2.5 inline-block text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
+                className="mt-2.5 inline-block text-xs font-bold text-accent-strong hover:underline"
               >
                 {p.summaryFull}
               </Link>

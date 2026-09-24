@@ -160,7 +160,7 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
         type="button"
         onClick={() => setOpen((current) => !current)}
         onFocus={() => setOpen(true)}
-        className="border-b border-dotted border-amber-500 dark:border-amber-400 font-medium cursor-help focus:outline-none hover:text-amber-700 dark:hover:text-amber-300 transition-colors"
+        className="border-b border-dotted border-amber-500 dark:border-amber-400 font-medium cursor-help focus:outline-none hover:text-warn-strong transition-colors"
       >
         {term}
       </button>
@@ -178,7 +178,7 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
         }`}
       >
         <span
-          className={`rounded-2xl bg-stone-900 dark:bg-stone-900 text-white text-xs font-semibold p-3 transition-all duration-200 shadow-2xl flex flex-col items-center gap-2 border border-stone-700/80 min-w-[150px] origin-bottom ${
+          className={`rounded-2xl bg-surface-invert text-white text-xs font-semibold p-3 transition-all duration-200 shadow-2xl flex flex-col items-center gap-2 border border-stone-700/80 min-w-[150px] origin-bottom ${
             open
               ? "opacity-100 scale-100"
               : "opacity-0 scale-95 group-hover/term:opacity-100 group-hover/term:scale-100"

@@ -47,7 +47,7 @@ export default async function AdminLayout({
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 flex">
+    <div className="min-h-screen bg-surface flex">
       <AdminSidebar adminEmail={session.email} badgeCounts={badgeCounts} />
       <main className="flex-1 min-w-0 lg:pl-64">
         <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">

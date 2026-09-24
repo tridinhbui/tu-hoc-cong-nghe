@@ -34,6 +34,16 @@ export default function ThemeLoader() {
 
   return (
     <style dangerouslySetInnerHTML={{ __html: `
+      /* Đổi màu chủ đề Ở TẦNG TOKEN.
+         Danh sách !important bên dưới nhắm vào TÊN LỚP Tailwind gắn cứng
+         (.text-emerald-600...). Sau khi 106 chỗ \`text-accent\` được gộp thành \`text-accent\`, chúng không còn
+         khớp danh sách ấy nữa và lặng lẽ mất khả năng đổi màu - không lỗi,
+         không cảnh báo, chỉ là chủ đề vàng thôi tác dụng ở 106 chỗ.
+         Đổi chính biến token thì mọi lớp dùng \`accent\` đều theo, kể cả những
+         lớp được thêm sau này, và không cần một dòng !important nào. */
+      .theme-gold { --accent: #b45309; --accent-strong: #b45309; }
+      .theme-emerald { --accent: #059669; --accent-strong: #059669; }
+
       /* Gold theme overrides */
       .theme-gold .bg-emerald-500 { background-color: #d97706 !important; }
       .theme-gold .bg-emerald-600 { background-color: #b45309 !important; }

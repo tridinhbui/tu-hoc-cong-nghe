@@ -129,7 +129,7 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
           <p className={`font-bold uppercase tracking-wide text-orange-700 dark:text-orange-300 ${compact ? "text-[9px]" : "text-[10px]"}`}>
             {t.motivationToneLabel[tone] ?? MOTIVATION_TONE_LABEL[tone]}
           </p>
-          <p className={`font-semibold leading-relaxed text-stone-800 dark:text-stone-100 ${compact ? "mt-1 text-[11px]" : "mt-1.5 text-sm"}`}>
+          <p className={`font-semibold leading-relaxed text-ink-heading ${compact ? "mt-1 text-[11px]" : "mt-1.5 text-sm"}`}>
             {line}
           </p>
           <p className={`font-bold text-orange-600 dark:text-orange-400 group-hover:underline ${compact ? "mt-1 text-[10px]" : "mt-2 text-[11px]"}`}>

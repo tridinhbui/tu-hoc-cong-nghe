@@ -1,0 +1,174 @@
+{
+  "id": 30,
+  "slug": "thoi-gian-va-mui-gio",
+  "title": "Thời gian: mốc tuyệt đối và cách con người đọc nó",
+  "subtitle": "Lưu thời điểm theo giờ địa phương là mất thông tin, và mất theo cách không lấy lại được.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🕐",
+  "track": "professional",
+  "whyItMatters": "Báo cáo doanh thu theo ngày lệch một ngày ở những giao dịch lúc nửa đêm. Lịch hẹn nhảy sai giờ sau khi đổi giờ mùa. Hai máy chủ ghi cùng một sự kiện với hai dấu thời gian khác nhau. Cả ba đều bắt nguồn từ việc trộn lẫn mốc thời gian tuyệt đối với cách con người đọc nó.",
+  "openingQuestion": "Nên lưu thời điểm một đơn hàng được tạo dưới dạng nào?",
+  "openingOptions": [
+    "Mốc tuyệt đối theo giờ chuẩn quốc tế, đổi sang giờ địa phương khi hiển thị",
+    "Giờ địa phương của người đặt hàng, vì đó là thứ họ nhìn thấy khi đặt",
+    "Giờ địa phương của máy chủ, vì mọi bản ghi khi đó cùng một chuẩn",
+    "Chuỗi ngày tháng theo đúng định dạng quen thuộc của người dùng cuối"
+  ],
+  "correctOption": 0,
+  "explanation": "Một thời điểm xảy ra là một mốc tuyệt đối, giống nhau với mọi người trên Trái Đất. Cách viết mốc đó ra thành giờ và ngày lại phụ thuộc người đọc đang ở đâu. Lưu mốc tuyệt đối thì bạn luôn đổi được sang bất kỳ múi giờ nào để hiển thị. Lưu giờ địa phương mà không kèm múi giờ thì thông tin đã mất: 10 giờ sáng ở đâu, và có phải đang trong mùa đổi giờ hay không. Không cách nào khôi phục lại được sau đó.",
+  "diagram": [
+    {
+      "label": "Sự kiện xảy ra - một mốc tuyệt đối duy nhất",
+      "arrow": true
+    },
+    {
+      "label": "Lưu theo giờ chuẩn quốc tế",
+      "arrow": true
+    },
+    {
+      "label": "Đổi sang múi giờ người xem khi hiển thị",
+      "arrow": true
+    },
+    {
+      "label": "Mọi người thấy đúng giờ của mình, cùng một mốc"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đổi giờ mùa",
+    "description": "Ở những nước có đổi giờ mùa, mỗi năm có một giờ xuất hiện hai lần và một giờ không tồn tại. Lịch hẹn lưu theo giờ địa phương gặp đúng hai ca đó thì hoặc trùng lặp, hoặc trỏ vào một thời điểm chưa từng có trên đồng hồ."
+  },
+  "keyTakeaways": [
+    "Lưu mốc tuyệt đối theo giờ chuẩn quốc tế, đổi sang giờ địa phương khi hiển thị.",
+    "Giờ địa phương không kèm múi giờ là dữ liệu đã mất thông tin.",
+    "Ngày là một khoảng, và khoảng đó khác nhau tuỳ múi giờ người xem.",
+    "Lịch hẹn tương lai là ngoại lệ: phải lưu kèm tên vùng, không phải độ lệch."
+  ],
+  "summary": {
+    "keyIdea": "Thời điểm là một mốc tuyệt đối; giờ và ngày chỉ là cách con người đọc mốc đó.",
+    "formula": "Lưu tuyệt đối, hiển thị tương đối.",
+    "commonMistake": "Lưu giờ địa phương rồi không biết địa phương nào."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở một bảng có cột thời gian và tự trả lời: cột này là mốc tuyệt đối hay giờ địa phương? Nếu tên cột không nói rõ và tài liệu cũng không, thì mọi báo cáo theo ngày dựa trên nó đều đang có rủi ro lệch."
+  },
+  "practicePrompt": {
+    "question": "Báo cáo doanh thu theo ngày của bạn lệch với báo cáo của đội kế toán đúng ở các đơn đặt lúc gần nửa đêm. Nguyên nhân nào có khả năng nhất?",
+    "options": [
+      "Hai bên cắt ranh giới ngày theo hai múi giờ khác nhau",
+      "Một bên tính theo ngày đặt còn bên kia tính theo ngày giao hàng",
+      "Đơn hàng lúc nửa đêm bị ghi trùng hai lần vào cơ sở dữ liệu",
+      "Đồng hồ của hai máy chủ chạy lệch nhau vài phút mỗi ngày"
+    ],
+    "correct": 0,
+    "explanation": "Ngày là một khoảng, và khoảng đó bắt đầu ở nửa đêm theo múi giờ nào là chuyện phải thống nhất. Đơn lúc 23 giờ 30 giờ Việt Nam nằm ở ngày hôm trước nếu cắt theo giờ chuẩn quốc tế. Cách sửa là ghi rõ trong định nghĩa báo cáo ngày được cắt theo múi giờ nào."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao nên lưu thời điểm theo giờ chuẩn quốc tế?",
+      "options": [
+        "Vì đó là mốc tuyệt đối, đổi sang múi giờ nào cũng được",
+        "Vì nó chiếm ít chỗ lưu trữ hơn so với lưu theo giờ địa phương",
+        "Vì đa số người dùng của hệ thống đều sống ở múi giờ đó",
+        "Vì nó không bị ảnh hưởng bởi năm nhuận và ngày nhuận tháng hai"
+      ],
+      "correct": 0,
+      "explanation": "Mốc tuyệt đối là thông tin đầy đủ, còn giờ địa phương là cách đọc mốc đó. Từ mốc thì suy ra được mọi cách đọc; từ một cách đọc mà không biết ở đâu thì không suy ngược lại được."
+    },
+    {
+      "question": "Lưu giờ địa phương mà không kèm múi giờ làm mất thông tin gì?",
+      "options": [
+        "Vị trí tương ứng với giờ đó, nên không suy ra mốc tuyệt đối được",
+        "Phần giây và mili giây của thời điểm đó",
+        "Thứ trong tuần, phải tính lại khi đọc",
+        "Khả năng xếp bản ghi theo thứ tự thời gian"
+      ],
+      "correct": 0,
+      "explanation": "10 giờ sáng ở Hà Nội và 10 giờ sáng ở Paris là hai mốc cách nhau nhiều giờ. Thiếu múi giờ thì không biết bản ghi ứng với mốc nào, nên cũng không so sánh được đúng thứ tự giữa các bản ghi từ nhiều nơi."
+    },
+    {
+      "question": "Vì sao lịch hẹn trong tương lai nên lưu kèm tên vùng thay vì độ lệch giờ?",
+      "options": [
+        "Vì quy tắc đổi giờ của một vùng có thể thay đổi trước ngày hẹn",
+        "Vì tên vùng chiếm ít dung lượng lưu trữ hơn hẳn so với độ lệch giờ",
+        "Vì độ lệch giờ không biểu diễn được các múi giờ lệch nửa tiếng",
+        "Vì tên vùng hiển thị được tên thành phố trên giao diện"
+      ],
+      "correct": 0,
+      "explanation": "Độ lệch giờ đúng tại thời điểm bạn ghi, nhưng chính phủ đổi quy tắc đổi giờ mùa là chuyện vẫn xảy ra. Tên vùng giữ được ý định gốc: chín giờ sáng theo giờ nơi ấy, dù luật có đổi thế nào."
+    },
+    {
+      "question": "Khi làm báo cáo doanh thu theo ngày, điều gì phải thống nhất trước?",
+      "options": [
+        "Ngày được cắt theo múi giờ nào",
+        "Doanh thu được làm tròn tới đơn vị nào trước khi cộng lại",
+        "Báo cáo chạy vào lúc mấy giờ mỗi ngày trên máy chủ",
+        "Dữ liệu được lấy từ bản sao hay từ cơ sở dữ liệu chính"
+      ],
+      "correct": 0,
+      "explanation": "Ngày là một khoảng dài hai mươi tư giờ, và nó bắt đầu lúc nào phụ thuộc múi giờ. Hai bên cắt theo hai múi giờ khác nhau thì mọi giao dịch gần nửa đêm rơi vào hai ngày khác nhau, dù cùng đọc chung một bảng dữ liệu."
+    },
+    {
+      "question": "Dấu thời gian dạng số đếm giây kể từ một mốc gốc có ưu điểm gì?",
+      "options": [
+        "Nó là một số duy nhất, không nhập nhằng và so sánh được ngay",
+        "Nó cho con người đọc trực tiếp không cần đổi",
+        "Nó tự điều chỉnh theo múi giờ máy đang đọc",
+        "Nó biểu diễn được thời điểm trước công lịch"
+      ],
+      "correct": 0,
+      "explanation": "Một số nguyên thì không có chỗ cho nhập nhằng định dạng hay múi giờ, và so sánh hai mốc chỉ là so hai số. Cái mất là con người không đọc trực tiếp được - nên nó hợp để lưu, không hợp để hiển thị."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Thời gian là chỗ trực giác đánh lừa nhiều nhất. Ai cũng nghĩ mình biết một ngày là gì, cho tới lúc phải trả lời ngày ấy bắt đầu lúc nào, ở đâu, và có đúng hai mươi tư giờ hay không."
+    },
+    {
+      "type": "heading",
+      "text": "Hai khái niệm hay bị gộp làm một"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Mốc tuyệt đối",
+        "text": "Một điểm trên dòng thời gian, giống nhau với mọi người ở mọi nơi. Đây là thứ nên lưu, vì nó đủ thông tin để suy ra mọi cách đọc."
+      },
+      "right": {
+        "label": "Cách con người đọc",
+        "text": "Ngày, giờ, phút theo lịch và múi giờ của người xem. Đây là thứ nên tính ra lúc hiển thị, chứ không phải thứ nên lưu xuống."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Ngày không phải một điểm, mà là một khoảng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Câu hỏi doanh thu ngày mùng một là bao nhiêu chỉ có nghĩa khi kèm theo múi giờ. Một đơn đặt lúc 23 giờ 30 giờ Việt Nam nằm ở ngày mùng một theo giờ Việt Nam, nhưng nằm ở ngày ba mươi mốt theo giờ chuẩn quốc tế. Hai báo cáo cùng đọc một bảng vẫn ra hai con số, và cả hai đều đúng theo định nghĩa riêng."
+    },
+    {
+      "type": "callout",
+      "label": "Đổi giờ mùa",
+      "text": "Mỗi năm, ở những vùng có đổi giờ, một giờ đồng hồ xuất hiện hai lần và một giờ khác không tồn tại. Mã giả định mỗi ngày có đúng hai mươi tư giờ sẽ sai đúng hai lần mỗi năm - đủ hiếm để không ai kịp nhớ nguyên nhân."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Lưu mốc tuyệt đối, đổi sang múi giờ người xem ở tầng hiển thị.",
+        "Với lịch hẹn tương lai, lưu kèm tên vùng chứ không lưu độ lệch giờ.",
+        "Đặt tên cột nói rõ nó là mốc tuyệt đối hay giờ địa phương.",
+        "Trong định nghĩa mọi báo cáo theo ngày, ghi rõ ngày cắt theo múi giờ nào."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Thời điểm là tuyệt đối; cách đọc nó là tương đối. Trộn hai thứ vào một cột là mất thông tin không lấy lại được.",
+        "Bài sau nói về một trường có mặt trong hầu hết mọi bảng: định danh, và chuyện chọn khoá tự tăng hay mã ngẫu nhiên."
+      ]
+    }
+  ]
+}

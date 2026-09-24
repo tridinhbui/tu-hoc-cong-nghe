@@ -1,0 +1,169 @@
+{
+  "id": 59,
+  "slug": "dau-vao-khong-dang-tin",
+  "title": "Mọi thứ gửi tới bạn đều có thể là dối trá",
+  "subtitle": "Dữ liệu từ máy khách không phải dữ liệu của bạn - nó là dữ liệu của người gửi.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🛡️",
+  "track": "professional",
+  "whyItMatters": "Mỗi trường trong yêu cầu là một chỗ ai đó có thể gửi thứ bạn không lường trước: giá âm, mã người dùng của người khác, một chuỗi được dựng để lệnh của bạn hiểu sai. Giả định mọi đầu vào đều thù địch là cách duy nhất viết dịch vụ mở ra Internet.",
+  "openingQuestion": "Biểu mẫu của bạn giới hạn số lượng đặt hàng tối đa là 10. Máy chủ có cần kiểm lại không?",
+  "openingOptions": [
+    "Có, vì yêu cầu gửi thẳng tới máy chủ không đi qua biểu mẫu của bạn",
+    "Không, vì người dùng không có cách nào vượt qua giới hạn ở biểu mẫu",
+    "Không, nếu mã phía giao diện đã được làm rối để khó chỉnh sửa",
+    "Có, nhưng chỉ với những người dùng chưa được xác thực danh tính"
+  ],
+  "correctOption": 0,
+  "explanation": "Biểu mẫu là một gợi ý về hình dạng dữ liệu, không phải một hàng rào. Bất kỳ ai cũng gửi yêu cầu thẳng tới máy chủ được mà không cần mở trang của bạn, và mọi giới hạn cài ở phía trình duyệt đều nằm trên máy họ nên đều sửa được. Làm rối mã chỉ tốn thêm vài phút của người muốn vượt qua. Quy tắc là kiểm ở phía máy chủ mọi thứ, và coi kiểm tra ở giao diện thuần tuý là chuyện trải nghiệm: báo lỗi sớm cho người dùng thật, không ngăn được người dùng có ý đồ.",
+  "diagram": [
+    {
+      "label": "Yêu cầu tới từ bên ngoài",
+      "arrow": true
+    },
+    {
+      "label": "Kiểm kiểu, khoảng giá trị, quyền hạn",
+      "arrow": true
+    },
+    {
+      "label": "Chỉ chấp nhận thứ hợp lệ, từ chối phần còn lại",
+      "arrow": true
+    },
+    {
+      "label": "Rồi mới đưa vào xử lý nghiệp vụ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Số lượng âm",
+    "description": "Một giỏ hàng cho phép sửa số lượng qua yêu cầu trực tiếp mà không kiểm giá trị âm. Đặt số lượng là âm một khiến tổng tiền giảm đi, và người mua tự tạo được đơn hàng gần như miễn phí. Không có kỹ thuật xâm nhập nào ở đây, chỉ là một con số ngoài khoảng dự kiến."
+  },
+  "keyTakeaways": [
+    "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
+    "Kiểm theo danh sách cho phép chặt hơn nhiều so với danh sách cấm.",
+    "Dữ liệu người dùng phải được tách khỏi câu lệnh, không ghép chuỗi vào câu lệnh.",
+    "Thông báo lỗi nên đủ để sửa nhưng không tiết lộ cấu trúc bên trong hệ thống."
+  ],
+  "summary": {
+    "keyIdea": "Dữ liệu từ bên ngoài là dữ liệu chưa được chứng minh, cho tới khi bạn tự kiểm.",
+    "formula": "Kiểm ở máy chủ, theo danh sách cho phép, ở ranh giới nhận.",
+    "commonMistake": "Tin vào giới hạn đã đặt ở giao diện, nơi người gửi kiểm soát hoàn toàn."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy một biểu mẫu trong sản phẩm và gửi thẳng một yêu cầu tới máy chủ với giá trị nằm ngoài giới hạn của biểu mẫu: số âm, chuỗi rất dài, mã của bản ghi không thuộc về bạn. Máy chủ nhận cái nào thì đó là một lỗ hổng."
+  },
+  "practicePrompt": {
+    "question": "Cách nào an toàn hơn khi kiểm tra dữ liệu đầu vào?",
+    "options": [
+      "Liệt kê những gì được chấp nhận và từ chối tất cả phần còn lại",
+      "Liệt kê những mẫu nguy hiểm đã biết và chặn riêng những mẫu đó",
+      "Chấp nhận mọi dữ liệu rồi lọc bỏ ký tự đặc biệt trước khi lưu",
+      "Giới hạn độ dài của mọi trường xuống mức nhỏ nhất có thể dùng được"
+    ],
+    "correct": 0,
+    "explanation": "Danh sách cấm luôn thiếu, vì bạn chỉ chặn được những mẫu đã nghĩ ra và người tấn công chỉ cần tìm mẫu bạn chưa nghĩ tới. Danh sách cho phép đảo ngược gánh nặng đó: thứ gì không nằm trong hình dạng đã định nghĩa thì bị từ chối, kể cả những thứ chưa ai biết."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao kiểm tra dữ liệu ở phía giao diện không phải hàng rào bảo mật?",
+      "options": [
+        "Vì yêu cầu gửi thẳng tới máy chủ được mà không cần đi qua giao diện",
+        "Vì mã phía giao diện luôn chạy chậm hơn nên dễ bị bỏ qua khi tải nặng",
+        "Vì trình duyệt không hỗ trợ kiểm tra các quy tắc phức tạp",
+        "Vì dữ liệu có thể bị sửa bởi thiết bị trung gian trên đường truyền"
+      ],
+      "correct": 0,
+      "explanation": "Mọi thứ chạy trên máy người dùng đều nằm trong quyền kiểm soát của họ. Kiểm ở giao diện giúp người dùng thật biết lỗi sớm, và chỉ có vậy."
+    },
+    {
+      "question": "Vì sao danh sách cho phép an toàn hơn danh sách cấm?",
+      "options": [
+        "Vì nó từ chối cả những dạng nguy hiểm mà bạn chưa từng nghĩ tới",
+        "Vì nó xử lý nhanh hơn nên không làm chậm đường nhận yêu cầu",
+        "Vì nó cho phép ghi lại đầy đủ hơn những lần thử tấn công",
+        "Vì nó không cần cập nhật khi có kỹ thuật tấn công mới"
+      ],
+      "correct": 0,
+      "explanation": "Danh sách cấm chỉ chặn được thứ đã biết, và khoảng trống giữa những gì bạn nghĩ ra với những gì tồn tại là chỗ bị khai thác. Định nghĩa hình dạng hợp lệ rồi từ chối phần còn lại thì khoảng trống ấy biến mất."
+    },
+    {
+      "question": "Vì sao không nên ghép dữ liệu người dùng thẳng vào câu lệnh?",
+      "options": [
+        "Vì dữ liệu có thể chứa phần khiến câu lệnh bị hiểu khác đi",
+        "Vì ghép chuỗi làm câu lệnh chạy chậm hơn",
+        "Vì dữ liệu người dùng thường chứa ký tự không thuộc bảng mã chuẩn",
+        "Vì câu lệnh ghép chuỗi không được cơ sở dữ liệu lưu vào bộ nhớ đệm"
+      ],
+      "correct": 0,
+      "explanation": "Khi dữ liệu và câu lệnh trộn chung một chuỗi, bộ phân tích không phân biệt được phần nào là ý định của bạn và phần nào do người dùng gửi. Tách chúng ra là cách chữa tận gốc chứ không phải lọc ký tự."
+    },
+    {
+      "question": "Thông báo lỗi trả về cho bên ngoài nên như thế nào?",
+      "options": [
+        "Đủ để người gọi biết cách sửa, nhưng không lộ cấu trúc bên trong",
+        "Càng chi tiết càng tốt, kèm cả tên bảng và câu truy vấn đã chạy",
+        "Chỉ một câu chung chung cho mọi loại lỗi để tránh rò rỉ thông tin",
+        "Chứa mã nguồn của dòng đã gây ra lỗi để bên gọi tự tra cứu được"
+      ],
+      "correct": 0,
+      "explanation": "Hai thái cực đều tệ: quá chi tiết là vẽ bản đồ hệ thống cho người tấn công, quá chung chung là làm người tích hợp thật không sửa nổi. Chi tiết đầy đủ nên nằm trong nhật ký nội bộ, còn phản hồi ra ngoài chỉ giữ phần cần để sửa."
+    },
+    {
+      "question": "Nên kiểm tra dữ liệu đầu vào ở đâu?",
+      "options": [
+        "Ngay tại ranh giới nhận dữ liệu, trước khi vào tới logic nghiệp vụ",
+        "Ở tầng gần cơ sở dữ liệu nhất để chắc chắn không bỏ sót đường nào",
+        "Ở mọi hàm dùng tới dữ liệu đó, phòng khi quên một chỗ",
+        "Ở tầng giao diện, vì đó là nơi dữ liệu được người dùng nhập vào"
+      ],
+      "correct": 0,
+      "explanation": "Kiểm một lần ở cửa vào thì mọi mã phía sau làm việc với dữ liệu đã hợp lệ - cùng nguyên tắc với chuyển kiểu và chặn rỗng ở chặng trước. Ràng buộc ở tầng dữ liệu vẫn nên có, nhưng là lưới an toàn cuối chứ không phải chỗ kiểm chính."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Một dịch vụ mở ra Internet nhận dữ liệu từ những người bạn không biết, chạy trên phần mềm bạn không kiểm soát, với ý định bạn không đoán được. Điểm khởi đầu duy nhất đúng là giả định mọi thứ gửi tới đều có thể là dối trá."
+    },
+    {
+      "type": "heading",
+      "text": "Giao diện không phải hàng rào"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ô nhập chỉ cho gõ số, nút bị vô hiệu hoá, giới hạn độ dài, danh sách chỉ có ba lựa chọn - tất cả đều nằm trên máy người dùng và đều sửa được trong vài giây. Chúng tồn tại để người dùng thật biết lỗi sớm mà không phải chờ một vòng gọi. Hàng rào thì nằm ở máy chủ, và chỉ ở đó."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Danh sách cấm",
+        "text": "Liệt kê những mẫu nguy hiểm đã biết rồi chặn chúng. Luôn thiếu, vì bạn chỉ chặn được thứ mình đã nghĩ ra."
+      },
+      "right": {
+        "label": "Danh sách cho phép",
+        "text": "Định nghĩa hình dạng hợp lệ rồi từ chối mọi thứ khác. Chặt hơn hẳn, vì thứ chưa ai biết cũng nằm ngoài hình dạng đó."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Tách dữ liệu khỏi câu lệnh",
+      "text": "Loại lỗ hổng nguy hiểm nhất đều cùng một hình dạng: dữ liệu người dùng bị trộn vào một chuỗi rồi được đem đi diễn giải như câu lệnh. Cách chữa không phải lọc ký tự mà là không bao giờ trộn - dùng cơ chế truyền tham số để hai thứ luôn tách bạch."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Kiểm kiểu, khoảng giá trị và độ dài ngay tại ranh giới nhận dữ liệu.",
+        "Kiểm cả những trường mà giao diện của bạn không bao giờ gửi sai.",
+        "Đừng tin trường nào do máy khách gửi lên để xác định danh tính hay quyền hạn."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Dữ liệu từ bên ngoài chưa được chứng minh là gì cả, cho tới khi chính bạn kiểm nó.",
+        "Bài sau khép lại chặng: nhìn lại toàn bộ đường đi của một lời gọi, từ tên miền tới phản hồi."
+      ]
+    }
+  ]
+}

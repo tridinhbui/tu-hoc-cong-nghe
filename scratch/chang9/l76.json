@@ -1,0 +1,170 @@
+{
+  "id": 76,
+  "slug": "xu-ly-su-co",
+  "title": "Sự cố: khôi phục trước, hiểu nguyên nhân sau",
+  "subtitle": "Trong lúc người dùng đang không dùng được, đi tìm nguyên nhân là một lựa chọn tốn kém.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🚨",
+  "track": "professional",
+  "whyItMatters": "Bản năng của kỹ sư là hiểu vì sao hỏng. Trong lúc có sự cố, bản năng ấy kéo dài thời gian ngừng dịch vụ - vì việc quay lui hay bật lại cờ thường mất vài phút, còn việc hiểu nguyên nhân có thể mất vài giờ.",
+  "openingQuestion": "Vừa phát hiện sự cố sau một lần triển khai. Việc đầu tiên nên làm là gì?",
+  "openingOptions": [
+    "Khôi phục dịch vụ bằng cách quay lui, rồi mới điều tra nguyên nhân",
+    "Đọc nhật ký để hiểu rõ nguyên nhân trước khi quyết định làm gì",
+    "Thông báo cho toàn công ty về sự cố đang diễn ra",
+    "Viết một bản vá nhanh cho lỗi vừa được phát hiện"
+  ],
+  "correctOption": 0,
+  "explanation": "Trong sự cố có hai việc tách bạch: dừng thiệt hại, và hiểu nguyên nhân. Chỉ việc thứ nhất là gấp. Quay lui hoặc tắt cờ đưa hệ thống về trạng thái đã biết là tốt trong vài phút, và sau đó bạn điều tra với đầy đủ thời gian, không có ai đang chờ. Viết bản vá nhanh trong lúc đang hoảng là cách hay tạo ra sự cố thứ hai, vì nó chưa qua kiểm thử và chưa được ai rà soát. Thông báo là việc phải làm nhưng song song, không thay cho việc khôi phục.",
+  "diagram": [
+    {
+      "label": "Phát hiện sự cố",
+      "arrow": true
+    },
+    {
+      "label": "Khôi phục: quay lui hoặc tắt cờ",
+      "arrow": true
+    },
+    {
+      "label": "Xác nhận người dùng dùng được trở lại",
+      "arrow": true
+    },
+    {
+      "label": "Điều tra nguyên nhân khi không còn ai đang chờ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bản vá lúc ba giờ sáng",
+    "description": "Một đội chọn sửa thẳng thay vì quay lui vì tin rằng đã thấy nguyên nhân. Bản vá viết vội gây ra lỗi thứ hai, và tổng thời gian ngừng dịch vụ dài hơn nhiều so với việc quay lui rồi sửa vào sáng hôm sau."
+  },
+  "keyTakeaways": [
+    "Khôi phục và điều tra là hai việc tách biệt; chỉ việc đầu là gấp.",
+    "Quay lui về trạng thái đã biết là tốt luôn an toàn hơn sửa vội.",
+    "Phải có một người điều phối, tách khỏi người đang gõ lệnh.",
+    "Ghi lại dòng thời gian ngay trong lúc xử lý, vì sau đó không ai nhớ chính xác nữa."
+  ],
+  "summary": {
+    "keyIdea": "Mục tiêu trong sự cố là rút ngắn thời gian người dùng chịu ảnh hưởng, không phải hiểu nhanh nhất.",
+    "formula": "Dừng thiệt hại trước, hiểu nguyên nhân sau.",
+    "commonMistake": "Điều tra nguyên nhân trong lúc dịch vụ vẫn đang hỏng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Viết ra ba câu hỏi đầu tiên đội bạn sẽ hỏi khi có sự cố, và ba việc đầu tiên sẽ làm. Có sẵn danh sách ấy lúc bình thường sẽ tiết kiệm nhiều phút lúc hoảng."
+  },
+  "practicePrompt": {
+    "question": "Trong lúc xử lý sự cố, vì sao nên có một người điều phối tách khỏi người đang gõ lệnh?",
+    "options": [
+      "Vì người đang sửa không đủ chú ý để vừa liên lạc vừa theo dõi toàn cục",
+      "Vì quy định yêu cầu phải có ít nhất hai người tham gia xử lý",
+      "Vì người điều phối cần phải phê duyệt mọi thao tác trước khi thực hiện",
+      "Vì cần một người ghi lại nhật ký để phục vụ kiểm toán về sau"
+    ],
+    "correct": 0,
+    "explanation": "Người đang gõ lệnh cần tập trung sâu, còn sự cố lại sinh ra một dòng câu hỏi liên tục từ mọi phía. Tách vai trò giữ cho người sửa không bị ngắt quãng và giữ cho việc liên lạc không bị bỏ quên."
+  },
+  "quiz": [
+    {
+      "question": "Việc gì là gấp nhất khi sự cố đang diễn ra?",
+      "options": [
+        "Đưa hệ thống về trạng thái người dùng dùng được",
+        "Xác định chính xác nguyên nhân gốc của sự cố",
+        "Thông báo cho toàn bộ các bên liên quan ở trong công ty",
+        "Ghi lại đầy đủ nhật ký để phân tích về sau"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi phút điều tra là một phút người dùng vẫn chịu ảnh hưởng. Nguyên nhân không biến mất - nó vẫn nằm đó chờ bạn sau khi dịch vụ đã hồi phục."
+    },
+    {
+      "question": "Vì sao quay lui thường tốt hơn viết bản vá nhanh?",
+      "options": [
+        "Vì nó đưa hệ thống về một trạng thái đã biết là tốt",
+        "Vì nó không cần ai phê duyệt trước khi thực hiện",
+        "Vì nó giữ lại được toàn bộ dữ liệu mà bản mới đã ghi xuống",
+        "Vì nó cho phép tiếp tục điều tra trên bản mới"
+      ],
+      "correct": 0,
+      "explanation": "Bản vá viết trong lúc hoảng chưa qua kiểm thử và chưa được rà soát, nên nó là một canh bạc mới chồng lên sự cố đang có. Bản cũ thì đã chạy tốt hàng tuần."
+    },
+    {
+      "question": "Vì sao nên ghi dòng thời gian ngay trong lúc xử lý?",
+      "options": [
+        "Vì sau khi xong thì không ai nhớ chính xác thứ tự sự việc",
+        "Vì quy định yêu cầu lưu lại bằng chứng cho mọi sự cố",
+        "Vì dòng thời gian giúp tính mức bồi thường cho khách",
+        "Vì nó là cách duy nhất để biết ai đã thực hiện thao tác nào"
+      ],
+      "correct": 0,
+      "explanation": "Trí nhớ về một sự kiện căng thẳng bị sắp xếp lại rất nhanh, và bản dựng lại sau đó thường gọn gàng hơn thực tế. Vài dòng ghi lúc đang diễn ra đáng giá hơn nhiều giờ hồi tưởng."
+    },
+    {
+      "question": "Vai trò điều phối trong sự cố làm gì?",
+      "options": [
+        "Giữ bức tranh toàn cục và lo liên lạc, để người sửa được tập trung",
+        "Phê duyệt từng thao tác kỹ thuật một trước khi nó được thực hiện",
+        "Trực tiếp thực hiện các thao tác khôi phục trên hệ thống",
+        "Quyết định ai sẽ chịu trách nhiệm về nguyên nhân sự cố"
+      ],
+      "correct": 0,
+      "explanation": "Sự cố sinh ra một dòng câu hỏi liên tục, và người đang gõ lệnh không thể vừa trả lời vừa tập trung. Điều phối cũng là người theo dõi xem đã thử gì và còn phương án nào."
+    },
+    {
+      "question": "Khi nào mới nên tìm nguyên nhân gốc?",
+      "options": [
+        "Sau khi đã xác nhận người dùng dùng được trở lại",
+        "Ngay khi phát hiện sự cố, trước mọi thao tác khác",
+        "Trong buổi họp định kỳ vào cuối tuần làm việc",
+        "Chỉ khi sự cố lặp lại lần thứ hai trở đi"
+      ],
+      "correct": 0,
+      "explanation": "Điều tra cần thời gian và sự bình tĩnh, hai thứ không có trong lúc đang mất dịch vụ. Nhưng nó phải diễn ra chứ không được bỏ, nếu không sự cố sẽ quay lại theo đúng con đường cũ."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Cảnh báo đã kích hoạt đúng, và có sự cố thật. Từ giây phút này, mọi quyết định nên được đo bằng một thước duy nhất: nó rút ngắn hay kéo dài thời gian người dùng chịu ảnh hưởng?"
+    },
+    {
+      "type": "heading",
+      "text": "Hai việc, chỉ một việc gấp"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Khôi phục",
+        "text": "Đưa hệ thống về trạng thái đã biết là tốt. Quay lui, tắt cờ, chuyển lưu lượng. Thường mất vài phút và không cần hiểu nguyên nhân."
+      },
+      "right": {
+        "label": "Điều tra",
+        "text": "Hiểu vì sao hỏng. Có thể mất hàng giờ, cần bình tĩnh, và hoàn toàn làm được sau khi dịch vụ đã hồi phục."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Cám dỗ của việc đã thấy nguyên nhân rồi",
+      "text": "Cảm giác biết chắc lỗi ở đâu rất mạnh trong lúc căng thẳng, và nó thường sai. Bản vá viết vội chưa qua kiểm thử, chưa ai rà soát, và nếu nó cũng hỏng thì bạn có hai sự cố chồng lên nhau."
+    },
+    {
+      "type": "heading",
+      "text": "Vai trò trong lúc xử lý"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Người điều phối: giữ toàn cục, lo liên lạc, ghi lại đã thử gì.",
+        "Người thao tác: gõ lệnh, và chỉ làm mỗi việc đó.",
+        "Người liên lạc: cập nhật cho các bên ngoài đội kỹ thuật.",
+        "Với sự cố nhỏ thì một người kiêm cả ba, nhưng phải biết mình đang ở vai nào."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Trong sự cố, hiểu biết là thứ xa xỉ có thể mua sau. Thứ phải mua ngay là sự hồi phục.",
+        "Bài sau nói về việc quan trọng nhất diễn ra sau đó: rút ra bài học mà không đi tìm người để đổ lỗi."
+      ]
+    }
+  ]
+}

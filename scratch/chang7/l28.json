@@ -1,0 +1,185 @@
+{
+  "id": 28,
+  "slug": "luoc-do-du-lieu-la-hop-dong",
+  "title": "Lược đồ dữ liệu: bản hợp đồng giữa hai hệ thống",
+  "subtitle": "Đổi một trường là đổi lời hứa với mọi bên đang đọc dữ liệu đó.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📐",
+  "track": "professional",
+  "whyItMatters": "Đổi tên một trường mất ba giây và làm sập hệ thống của một đội khác trong ba phút. Lược đồ là chỗ duy nhất ghi lại điều hai bên đã thoả thuận, và hiểu nó như một bản hợp đồng là hiểu vì sao có những thay đổi không bao giờ được làm trong một lần triển khai.",
+  "openingQuestion": "Thay đổi nào sau đây an toàn với những hệ thống đang đọc dữ liệu của bạn?",
+  "openingOptions": [
+    "Thêm một trường mới cho phép rỗng vào cấu trúc dữ liệu",
+    "Đổi tên một trường sẵn có sang một cái tên rõ nghĩa hơn hẳn",
+    "Đổi kiểu một trường từ chuỗi sang số cho đúng bản chất của nó",
+    "Xoá một trường mà đội của bạn đã không còn dùng tới nữa"
+  ],
+  "correctOption": 0,
+  "explanation": "Thêm một trường cho phép rỗng là thay đổi tương thích ngược: bên đọc cũ không biết trường mới nên bỏ qua nó, và mọi thứ vẫn chạy như trước. Ba lựa chọn còn lại đều phá vỡ hợp đồng. Đổi tên làm bên đọc tìm một trường không còn tồn tại. Đổi kiểu làm bên đọc nhận thứ nó không biết xử lý. Còn xoá một trường bạn không dùng nữa thì không nói lên điều gì về việc người khác có còn dùng hay không - và thường thì có.",
+  "diagram": [
+    {
+      "label": "Bên ghi định nghĩa lược đồ",
+      "arrow": true
+    },
+    {
+      "label": "Bên đọc viết mã dựa vào lược đồ đó",
+      "arrow": true
+    },
+    {
+      "label": "Đổi lược đồ = đổi hợp đồng",
+      "arrow": true
+    },
+    {
+      "label": "Tương thích ngược hay là hỏng ở phía bên kia"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Một trường đổi kiểu",
+    "description": "Mã bưu chính lưu dưới dạng số cho gọn. Rồi có mã bắt đầu bằng số không, và số không đầu biến mất. Sửa bằng cách đổi cột sang chuỗi - nhưng lúc đó đã có bốn hệ thống khác đọc cột ấy như số, và cả bốn phải sửa cùng lúc."
+  },
+  "keyTakeaways": [
+    "Lược đồ là hợp đồng: bên đọc viết mã dựa vào nó và không hỏi lại bạn.",
+    "Thêm trường cho phép rỗng là an toàn; đổi tên, đổi kiểu, xoá trường thì không.",
+    "Thay đổi phá vỡ tương thích phải làm nhiều bước, không làm trong một lần.",
+    "Mã bưu chính, số điện thoại và mã số thuế là chuỗi, dù trông như số."
+  ],
+  "summary": {
+    "keyIdea": "Lược đồ ràng buộc mọi bên đang đọc dữ liệu, nên đổi nó là đổi lời hứa chứ không phải sửa mã.",
+    "formula": "Thêm thì được, đổi và xoá thì phải qua nhiều bước.",
+    "commonMistake": "Xoá một trường vì đội mình không dùng nữa, mà không hỏi ai còn đọc."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một bảng dữ liệu bạn sở hữu và liệt kê xem những hệ thống nào đang đọc nó. Nếu không trả lời được, đó chính là rủi ro lớn nhất trong lược đồ ấy - không phải kiểu dữ liệu của cột nào."
+  },
+  "practicePrompt": {
+    "question": "Bạn cần đổi tên trường 'sdt' thành 'soDienThoai' mà không làm hỏng bốn hệ thống đang đọc nó. Trình tự nào đúng?",
+    "options": [
+      "Thêm trường mới, ghi cả hai, chờ bên đọc chuyển hết, rồi mới xoá trường cũ",
+      "Đổi tên trường rồi báo cho cả bốn đội sửa mã của họ ngay trong tuần",
+      "Xoá trường cũ trước để không ai còn đọc nhầm, rồi thêm trường mới vào",
+      "Đổi tên trường và giữ lại một bản sao dữ liệu cũ để khôi phục khi có sự cố"
+    ],
+    "correct": 0,
+    "explanation": "Giai đoạn ghi cả hai trường là chỗ then chốt: nó cho phép bên đọc cũ và bên đọc mới cùng sống một thời gian, nên không cần mọi đội triển khai đồng thời. Xoá trường cũ là bước cuối, sau khi đã xác nhận không còn ai đọc nó."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao thêm một trường cho phép rỗng là thay đổi an toàn?",
+      "options": [
+        "Vì bên đọc cũ bỏ qua trường nó không biết tới",
+        "Vì trường mới cho phép rỗng không chiếm thêm dung lượng nào cả",
+        "Vì cơ sở dữ liệu tự báo cho bên đọc",
+        "Vì trường cho rỗng không thuộc lược đồ"
+      ],
+      "correct": 0,
+      "explanation": "Bên đọc chỉ lấy những trường nó cần, nên một trường lạ không ảnh hưởng gì. Nếu trường mới bắt buộc phải có giá trị thì lại khác: mọi dòng dữ liệu cũ đều vi phạm ràng buộc ấy."
+    },
+    {
+      "question": "Vì sao mã bưu chính nên lưu dưới dạng chuỗi thay vì số?",
+      "options": [
+        "Vì lưu dạng số sẽ làm mất các chữ số không đứng đầu",
+        "Vì kiểu chuỗi cho tìm kiếm nhanh hơn",
+        "Vì mã bưu chính có thể dài hơn phạm vi của kiểu số nguyên",
+        "Vì cơ sở dữ liệu không cho phép đánh chỉ mục trên cột kiểu số"
+      ],
+      "correct": 0,
+      "explanation": "Số không có khái niệm chữ số không đứng đầu, nên mã bắt đầu bằng không sẽ mất chữ số ấy khi lưu. Nguyên tắc chung: thứ không đem cộng trừ được thì không phải số, dù nó gồm toàn chữ số."
+    },
+    {
+      "question": "Thay đổi nào phá vỡ tương thích với bên đọc hiện có?",
+      "options": [
+        "Đổi kiểu một trường từ chuỗi sang số nguyên",
+        "Thêm một trường mới mặc định rỗng",
+        "Thêm một chỉ mục mới lên trường đang được truy vấn nhiều",
+        "Đổi thứ tự các trường trong tài liệu mô tả lược đồ dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Bên đọc đang chờ chuỗi mà nhận số thì hoặc lỗi kiểu, hoặc lặng lẽ xử lý sai. Chỉ mục là chuyện lưu trữ bên trong nên bên đọc không thấy, còn thứ tự trường không phải phần của hợp đồng ở phần lớn định dạng."
+    },
+    {
+      "question": "Trình tự đúng để xoá một trường khỏi lược đồ là gì?",
+      "options": [
+        "Ngừng ghi, xác nhận không còn ai đọc, rồi mới xoá hẳn",
+        "Xoá ngay và theo dõi nhật ký lỗi để biết ai đang còn đọc nó",
+        "Xoá dữ liệu trước, giữ lại cột rỗng mãi",
+        "Thông báo trước một tuần rồi xoá đúng hạn dù ai chưa kịp sửa"
+      ],
+      "correct": 0,
+      "explanation": "Xoá trước rồi xem ai kêu là dùng hệ thống thật làm nơi kiểm thử. Trình tự an toàn luôn kết thúc bằng việc xoá, sau khi đã có bằng chứng không còn bên nào đọc."
+    },
+    {
+      "question": "Ràng buộc trong lược đồ có vai trò gì?",
+      "options": [
+        "Chặn dữ liệu sai ngay từ lúc ghi thay vì phát hiện lúc đọc",
+        "Giúp truy vấn quét ít dòng hơn nên nhanh",
+        "Giảm dung lượng nhờ nén cột ràng buộc chặt",
+        "Cho nhiều hệ thống cùng ghi không xung đột"
+      ],
+      "correct": 0,
+      "explanation": "Ràng buộc là hàng rào cuối cùng, đứng ở tầng thấp nhất và bắt được cả những đường ghi mà bạn quên mất. Việc tăng tốc là của chỉ mục, và hai thứ đó độc lập với nhau."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Lược đồ trông như một chi tiết kỹ thuật: cột này kiểu gì, có cho rỗng không. Thực ra nó là văn bản duy nhất ghi lại điều bạn đã hứa với mọi hệ thống đang đọc dữ liệu của mình."
+    },
+    {
+      "type": "heading",
+      "text": "Ai đang đọc dữ liệu của bạn"
+    },
+    {
+      "type": "paragraph",
+      "text": "Khi mới viết, chỉ có mã của chính bạn đọc bảng đó. Sáu tháng sau có một bảng điều khiển, một tiến trình đồng bộ, một báo cáo hàng tháng và một đội khác. Không ai trong số đó hỏi bạn trước khi viết mã - họ nhìn lược đồ và tin vào nó. Đó là lúc lược đồ thành hợp đồng, dù không ai ký gì cả."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Thay đổi nào an toàn",
+      "subtitle": "Đo bằng câu hỏi: bên đọc cũ có còn chạy được không",
+      "concepts": [
+        {
+          "vi": "Thêm trường cho phép rỗng",
+          "en": "additive",
+          "def": "An toàn. Bên đọc cũ bỏ qua trường nó không biết, bên đọc mới dùng được ngay."
+        },
+        {
+          "vi": "Nới lỏng ràng buộc",
+          "en": "widening",
+          "def": "Thường an toàn. Cho phép giá trị dài hơn hoặc rỗng thì dữ liệu cũ vẫn hợp lệ."
+        },
+        {
+          "vi": "Đổi tên, đổi kiểu, xoá",
+          "en": "breaking",
+          "def": "Phá vỡ hợp đồng. Phải làm nhiều bước, không bao giờ trong một lần triển khai."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Cách đổi mà không làm hỏng ai"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Thêm trường mới bên cạnh trường cũ, chưa xoá gì cả.",
+        "Ghi vào cả hai trường trong một thời gian, để bên đọc nào cũng thấy dữ liệu đúng.",
+        "Chờ mọi bên đọc chuyển sang trường mới, và xác nhận bằng số liệu chứ không bằng lời hứa.",
+        "Ngừng ghi trường cũ, theo dõi thêm một thời gian, rồi mới xoá."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Thứ trông như số mà không phải số",
+      "text": "Mã bưu chính, số điện thoại, mã số thuế, số tài khoản. Chúng gồm toàn chữ số nhưng không ai đem cộng chúng lại. Lưu dạng số là mất chữ số không đứng đầu và tràn ở những mã dài - hãy để chúng là chuỗi."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Lược đồ ràng buộc người khác chứ không chỉ ràng buộc bạn. Đổi nó là đổi lời hứa, nên phải đổi theo từng bước.",
+        "Bài sau nói về hình dạng dữ liệu khi rời khỏi hệ thống của bạn: JSON, CSV và định dạng nhị phân, mỗi loại mất đi một thứ khác nhau."
+      ]
+    }
+  ]
+}

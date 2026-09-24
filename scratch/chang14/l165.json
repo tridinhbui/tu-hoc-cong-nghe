@@ -1,0 +1,173 @@
+{
+  "id": 165,
+  "slug": "khi-nao-danh-thuc-mot-nguoi",
+  "title": "Báo động: khi nào thì đánh thức một người",
+  "subtitle": "Mỗi cảnh báo lúc ba giờ sáng phải trả lời được câu hỏi vì sao việc này không đợi tới sáng được.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🔔",
+  "track": "professional",
+  "whyItMatters": "Cảnh báo quá nhiều còn nguy hiểm hơn cảnh báo quá ít: đội học cách bỏ qua, và cái duy nhất thật sự quan trọng cũng chìm cùng những cái kia.",
+  "openingQuestion": "Một cảnh báo nổ mỗi đêm và lần nào người trực cũng đóng nó lại mà không làm gì. Nên xử lý thế nào?",
+  "openingOptions": [
+    "Xoá nó, hoặc hạ xuống mức không đánh thức người",
+    "Nâng ngưỡng của nó lên để nó nổ ít lần hơn mỗi tuần",
+    "Ghi chú vào tài liệu trực rằng cảnh báo này có thể bỏ qua",
+    "Chuyển nó sang một kênh riêng để đội xem lại vào buổi sáng"
+  ],
+  "correctOption": 0,
+  "explanation": "Một cảnh báo mà phản ứng đúng là không làm gì thì nó không phải cảnh báo, và giữ nó lại chỉ dạy người trực thói quen bỏ qua - thói quen ấy không phân biệt được cảnh báo nào. Nâng ngưỡng chỉ làm nó nổ thưa hơn mà vẫn vô nghĩa. Chuyển sang kênh xem sau thì hợp lý nếu nó thật sự đáng xem, nhưng đó là một quyết định riêng phải chứng minh, còn mặc định của một cảnh báo không dẫn tới hành động là xoá.",
+  "diagram": [
+    {
+      "label": "Có ai phải làm gì ngay bây giờ không?",
+      "arrow": true
+    },
+    {
+      "label": "Không → không đánh thức, đưa vào việc ban ngày",
+      "arrow": true
+    },
+    {
+      "label": "Có → cảnh báo phải kèm việc cần làm",
+      "arrow": true
+    },
+    {
+      "label": "Không rõ → chưa đủ điều kiện làm cảnh báo"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Mỏi vì cảnh báo",
+    "description": "Một đội nhận trung bình bốn mươi cảnh báo mỗi đêm, trong đó khoảng hai cái là thật. Sau vài tháng, người trực đóng hàng loạt theo phản xạ - và bỏ lỡ một sự cố thật vì nó nằm giữa đám ấy."
+  },
+  "keyTakeaways": [
+    "Cảnh báo đánh thức người phải gắn với ảnh hưởng lên người dùng.",
+    "Một cảnh báo mà phản ứng đúng là không làm gì thì phải bị xoá.",
+    "Cảnh báo trên triệu chứng ít hơn cảnh báo trên từng nguyên nhân.",
+    "Mỗi cảnh báo cần một tài liệu ngắn nói rõ phải làm gì tiếp theo."
+  ],
+  "summary": {
+    "keyIdea": "Chỉ đánh thức người khi có việc phải làm ngay và người dùng đang chịu ảnh hưởng.",
+    "formula": "Không có hành động thì không có cảnh báo.",
+    "commonMistake": "Đặt cảnh báo cho mọi nguyên nhân có thể thay vì cho triệu chứng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy danh sách cảnh báo đã nổ trong ba mươi ngày qua, đếm xem bao nhiêu cái dẫn tới một hành động thật. Những cái còn lại là ứng viên để xoá."
+  },
+  "practicePrompt": {
+    "question": "Vì sao nên cảnh báo trên triệu chứng thay vì trên từng nguyên nhân?",
+    "options": [
+      "Vì một cảnh báo triệu chứng bắt được cả những nguyên nhân chưa ai nghĩ tới",
+      "Vì cảnh báo triệu chứng có độ trễ thấp hơn cảnh báo nguyên nhân",
+      "Vì các công cụ giám sát xử lý chỉ số triệu chứng hiệu quả hơn",
+      "Vì nguyên nhân thường thay đổi mỗi khi hệ thống được nâng cấp"
+    ],
+    "correct": 0,
+    "explanation": "Bạn không thể liệt kê trước mọi cách một hệ thống có thể hỏng, và những sự cố tệ nhất thường đến từ tổ hợp không ai lường được. Một cảnh báo đặt trên tỷ lệ lỗi của người dùng thì nổ bất kể nguyên nhân là gì, kể cả nguyên nhân mới tinh."
+  },
+  "quiz": [
+    {
+      "question": "Điều kiện để một cảnh báo được phép đánh thức người là gì?",
+      "options": [
+        "Có người dùng đang chịu ảnh hưởng và có việc phải làm ngay",
+        "Có một ngưỡng kỹ thuật nào đó vừa bị vượt qua trên bảng theo dõi",
+        "Có nguy cơ sự cố xảy ra trong vài giờ tới nếu không can thiệp",
+        "Có một thành phần trong hệ thống đang ở trạng thái bất thường"
+      ],
+      "correct": 0,
+      "explanation": "Nguy cơ trong vài giờ tới là loại việc để lại cho ban ngày, trừ khi vài giờ ấy rơi vào lúc không có ai. Hai lựa chọn còn lại đều là chỉ số kỹ thuật và chúng thường xuyên bất thường mà không ai chịu ảnh hưởng."
+    },
+    {
+      "question": "Cảnh báo mà phản ứng đúng là không làm gì gây ra tác hại nào?",
+      "options": [
+        "Nó dạy người trực thói quen bỏ qua, và thói quen ấy không phân biệt được",
+        "Nó làm tăng chi phí lưu trữ dữ liệu giám sát của hệ thống",
+        "Nó khiến các báo cáo vận hành hằng tháng trông xấu hơn thực tế",
+        "Nó chiếm chỗ trong danh sách cảnh báo khiến khó tìm cảnh báo khác"
+      ],
+      "correct": 0,
+      "explanation": "Đây là chi phí thật và nó không hiện trên bất kỳ bảng nào cho tới ngày một sự cố nghiêm trọng bị đóng nhầm cùng với đám còn lại. Một đội nhận bốn mươi cảnh báo mỗi đêm không có bốn mươi vấn đề, họ có một vấn đề."
+    },
+    {
+      "question": "Mỗi cảnh báo nên đi kèm với cái gì?",
+      "options": [
+        "Một tài liệu ngắn nói rõ việc cần kiểm tra và cần làm tiếp",
+        "Tên của người đã tạo ra cảnh báo đó và ngày tạo",
+        "Đường dẫn tới bảng theo dõi chứa chỉ số liên quan",
+        "Mức độ nghiêm trọng được phân loại theo một thang gồm bốn bậc"
+      ],
+      "correct": 0,
+      "explanation": "Người bị đánh thức lúc ba giờ sáng có khả năng suy luận kém hơn nhiều so với chính họ lúc mười giờ sáng. Một liên kết tới bảng theo dõi thì hữu ích, nhưng nó không thay được câu trả lời cho câu hỏi bây giờ tôi phải làm gì."
+    },
+    {
+      "question": "Vì sao nâng ngưỡng không sửa được một cảnh báo vô nghĩa?",
+      "options": [
+        "Vì nó chỉ làm cảnh báo nổ thưa hơn chứ không làm nó có ích hơn",
+        "Vì ngưỡng mới sẽ nhanh chóng bị vượt qua khi hệ thống lớn lên",
+        "Vì việc thay đổi ngưỡng cần được cả đội xem xét và phê duyệt",
+        "Vì các công cụ giám sát không cho phép đặt ngưỡng động theo tải"
+      ],
+      "correct": 0,
+      "explanation": "Vấn đề không nằm ở tần suất mà ở chỗ nó không dẫn tới hành động nào. Nổ mười lần một tháng thay vì ba mươi lần thì vẫn là mười lần đánh thức người vì một thứ không cần ai làm gì."
+    },
+    {
+      "question": "Cảnh báo dựa trên nguyên nhân có hạn chế gì?",
+      "options": [
+        "Chỉ bắt được những cách hỏng mà ai đó đã nghĩ ra từ trước",
+        "Cần nhiều tài nguyên tính toán hơn để theo dõi được liên tục",
+        "Khó cấu hình hơn so với cảnh báo dựa trên triệu chứng",
+        "Thường nổ chậm hơn vì phải chờ dữ liệu từ nhiều nguồn"
+      ],
+      "correct": 0,
+      "explanation": "Sự cố tệ nhất thường là tổ hợp không ai lường trước, và không có cảnh báo nguyên nhân nào phủ được nó. Chúng vẫn có chỗ - để chẩn đoán nhanh - nhưng lớp bảo vệ chính phải là triệu chứng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Có mục tiêu và có ngân sách rồi, câu hỏi tiếp theo là khi nào một con số xấu đi thì phải có người bị đánh thức. Đây là chỗ nhiều đội đi từ thiếu thông tin sang ngập thông tin mà không dừng lại ở giữa."
+    },
+    {
+      "type": "heading",
+      "text": "Ba câu hỏi trước khi tạo một cảnh báo"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Có người dùng đang chịu ảnh hưởng không? Nếu không, đây là việc ban ngày.",
+        "Có việc gì phải làm ngay không? Nếu phản ứng đúng là chờ xem, thì không đánh thức ai.",
+        "Người bị đánh thức sẽ biết làm gì chứ? Nếu chưa, viết tài liệu trước khi bật cảnh báo."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Chi phí không hiện trên bảng nào",
+      "text": "Một đội nhận bốn mươi cảnh báo mỗi đêm không có bốn mươi vấn đề - họ có một vấn đề. Người trực học cách đóng hàng loạt theo phản xạ, và phản xạ ấy không phân biệt được cảnh báo thật với cảnh báo giả."
+    },
+    {
+      "type": "heading",
+      "text": "Triệu chứng trước, nguyên nhân sau"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cảnh báo triệu chứng",
+        "text": "Tỷ lệ lỗi người dùng gặp, độ trễ ở phân vị cao. Nổ bất kể nguyên nhân là gì, kể cả nguyên nhân mới tinh."
+      },
+      "right": {
+        "label": "Cảnh báo nguyên nhân",
+        "text": "Đĩa đầy, hàng đợi dài, một máy chủ chết. Hữu ích để chẩn đoán nhanh, nhưng chỉ bắt được cách hỏng đã nghĩ ra."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Cách thu gọn danh sách cảnh báo hiệu quả nhất là đếm: trong ba mươi ngày qua, cảnh báo nào đã dẫn tới một hành động thật? Những cái còn lại hoặc phải được sửa cho có ích, hoặc phải bị xoá. Giữ lại vì biết đâu có ngày cần là cách một danh sách bốn mươi cảnh báo hình thành."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mỗi cảnh báo lúc ba giờ sáng là một khoản rút từ sức bền của đội. Tiêu nó cho thứ không ai làm gì được là lãng phí đắt nhất trong vận hành.",
+        "Bài sau chuyển từ phát hiện sang phòng ngừa: dự phòng, và chỗ nó không giúp được gì."
+      ]
+    }
+  ]
+}

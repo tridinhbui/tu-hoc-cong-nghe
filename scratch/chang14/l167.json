@@ -1,0 +1,169 @@
+{
+  "id": 167,
+  "slug": "suy-giam-co-kiem-soat",
+  "title": "Suy giảm có kiểm soát: hỏng một phần thay vì hỏng hết",
+  "subtitle": "Trang chủ mất phần gợi ý vẫn là trang chủ. Trang chủ trắng thì không.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🪫",
+  "track": "professional",
+  "whyItMatters": "Phần lớn sự cố lớn không bắt đầu bằng một cú sập mà bằng một thành phần phụ hỏng và kéo theo mọi thứ. Tách phần thiết yếu khỏi phần phụ là cách rẻ nhất để một sự cố nhỏ ở lại nhỏ.",
+  "openingQuestion": "Dịch vụ gợi ý sản phẩm ngừng hoạt động. Trang danh sách nên phản ứng thế nào?",
+  "openingOptions": [
+    "Hiển thị danh sách như bình thường và bỏ qua phần gợi ý",
+    "Hiển thị thông báo lỗi để người dùng biết có sự cố đang xảy ra",
+    "Thử gọi lại dịch vụ gợi ý cho tới khi nó phản hồi thành công",
+    "Dùng dữ liệu gợi ý cũ nhất còn lưu lại trong bộ nhớ đệm"
+  ],
+  "correctOption": 0,
+  "explanation": "Gợi ý là phần làm trải nghiệm tốt hơn, không phải phần khiến trang có ý nghĩa. Người dùng vào để xem danh sách, nên bỏ phần gợi ý đi là mất mát nhỏ nhất có thể. Dùng dữ liệu cũ trong bộ nhớ đệm cũng là một lựa chọn hợp lý và thường tốt hơn nữa, nhưng nó chỉ khả dụng khi có sẵn dữ liệu; nguyên tắc chung phải là trang vẫn dựng được kể cả khi không có gì để thay thế.",
+  "diagram": [
+    {
+      "label": "Phân loại: thiết yếu hay phụ trợ",
+      "arrow": true
+    },
+    {
+      "label": "Phụ trợ hỏng → bỏ qua, trang vẫn dựng",
+      "arrow": true
+    },
+    {
+      "label": "Thiết yếu hỏng → báo lỗi rõ ràng",
+      "arrow": true
+    },
+    {
+      "label": "Mặc định nguy hiểm: phụ trợ kéo sập cả trang"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Một dịch vụ phụ kéo sập trang chủ",
+    "description": "Dịch vụ xếp hạng đánh giá chậm lại, mỗi lời gọi treo ba mươi giây, và trang chủ chờ nó trước khi dựng. Kết quả là toàn bộ trang chủ ngừng hoạt động vì một khối chiếm chưa tới một phần mười màn hình."
+  },
+  "keyTakeaways": [
+    "Phân loại từng phụ thuộc là thiết yếu hay phụ trợ, viết ra rõ ràng.",
+    "Phụ thuộc phụ trợ phải có thời gian chờ ngắn và đường đi khi thất bại.",
+    "Mặc định của mã là để lỗi lan ra, nên phải chặn nó một cách chủ động.",
+    "Thất bại từng phần cần được đo, nếu không nó thành lỗi thầm lặng."
+  ],
+  "summary": {
+    "keyIdea": "Tách phần thiết yếu khỏi phần phụ để một phần hỏng không kéo theo cả trang.",
+    "formula": "Phụ trợ hỏng thì bỏ qua, thiết yếu hỏng thì báo rõ.",
+    "commonMistake": "Để một lời gọi phụ trợ nằm trên đường dựng trang chính."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê mọi dịch vụ mà màn hình quan trọng nhất của bạn gọi tới, đánh dấu cái nào thiết yếu. Với mỗi cái phụ trợ, kiểm tra xem nó có thời gian chờ riêng chưa."
+  },
+  "practicePrompt": {
+    "question": "Vì sao thất bại từng phần cần được ghi nhận và đo riêng?",
+    "options": [
+      "Vì nếu không thì một phần có thể hỏng suốt nhiều tuần mà không ai biết",
+      "Vì các công cụ giám sát cần dữ liệu này để tính toán độ sẵn sàng",
+      "Vì người dùng cần được thông báo về phần chức năng đang thiếu",
+      "Vì đội cần số liệu để quyết định có nên giữ tính năng đó không"
+    ],
+    "correct": 0,
+    "explanation": "Điểm mạnh của suy giảm có kiểm soát cũng chính là điểm yếu của nó: không ai phàn nàn, nên không ai để ý. Một khối gợi ý biến mất khỏi trang trong sáu tuần là chuyện hoàn toàn có thể xảy ra nếu việc bỏ qua nó không được đếm."
+  },
+  "quiz": [
+    {
+      "question": "Phụ thuộc thiết yếu khác phụ thuộc phụ trợ ở điểm nào?",
+      "options": [
+        "Thiếu nó thì màn hình không còn ý nghĩa với người dùng nữa",
+        "Nó được gọi tới nhiều lần hơn trong một lần dựng trang",
+        "Nó do đội khác vận hành nên bạn không kiểm soát được",
+        "Nó có thời gian phản hồi chậm hơn so với các phụ thuộc còn lại"
+      ],
+      "correct": 0,
+      "explanation": "Danh sách sản phẩm mà không có sản phẩm thì trang vô nghĩa; danh sách không có gợi ý thì vẫn dùng được. Ranh giới nằm ở mục đích người dùng đến, không ở đặc điểm kỹ thuật của lời gọi."
+    },
+    {
+      "question": "Vì sao phải chặn lỗi lan ra một cách chủ động?",
+      "options": [
+        "Vì mặc định của mã là để lỗi ném lên và làm hỏng cả lời gọi",
+        "Vì các thư viện mạng thường không có sẵn cơ chế xử lý lỗi nào",
+        "Vì lỗi từ dịch vụ khác không được ghi vào nhật ký của bạn",
+        "Vì hệ thống giám sát chỉ theo dõi lỗi ở tầng ngoài cùng"
+      ],
+      "correct": 0,
+      "explanation": "Không ai cố ý viết mã để một khối gợi ý kéo sập trang chủ - nó xảy ra vì đó là hành vi mặc định khi không có gì ngăn lại. Suy giảm có kiểm soát luôn là thứ phải được viết vào, không bao giờ là thứ tự có."
+    },
+    {
+      "question": "Vì sao phụ thuộc phụ trợ cần thời gian chờ ngắn hơn?",
+      "options": [
+        "Vì chờ lâu một phần không quan trọng làm chậm cả trang",
+        "Vì dịch vụ phụ trợ thường kém tin cậy hơn dịch vụ chính",
+        "Vì thời gian chờ dài chiếm nhiều kết nối mạng hơn",
+        "Vì người dùng ít khi để ý tới phần nội dung phụ trợ"
+      ],
+      "correct": 0,
+      "explanation": "Một dịch vụ chậm nguy hiểm hơn một dịch vụ chết, vì chết thì lỗi trả về ngay còn chậm thì mọi thứ phía sau xếp hàng chờ. Thời gian chờ của phần phụ nên được đặt theo mức mà trang chính chấp nhận trễ được."
+    },
+    {
+      "question": "Khi phụ thuộc thiết yếu hỏng thì nên làm gì?",
+      "options": [
+        "Báo lỗi rõ ràng thay vì hiển thị một trang trống rỗng",
+        "Thử gọi lại liên tục cho tới khi dịch vụ đó phản hồi",
+        "Hiển thị dữ liệu cũ nhất còn lưu lại trong bộ nhớ đệm",
+        "Chuyển người dùng sang một màn hình chức năng khác"
+      ],
+      "correct": 0,
+      "explanation": "Suy giảm có kiểm soát không có nghĩa là giấu mọi lỗi. Khi phần cốt lõi không hoạt động, thứ tử tế nhất là nói rõ điều đó thay vì để người dùng nhìn một khoảng trắng và tự đoán."
+    },
+    {
+      "question": "Điểm yếu của suy giảm có kiểm soát là gì?",
+      "options": [
+        "Sự cố trở nên im lặng nên dễ tồn tại rất lâu mà không ai biết",
+        "Nó làm tăng đáng kể độ phức tạp của mã xử lý giao diện",
+        "Nó khiến người dùng hiểu nhầm rằng hệ thống vẫn đang bình thường",
+        "Nó đòi hỏi mỗi phụ thuộc phải có một phương án thay thế sẵn"
+      ],
+      "correct": 0,
+      "explanation": "Không có ai phàn nàn thì không có tín hiệu nào. Đó là lý do mỗi lần bỏ qua một phần phải được đếm và có ngưỡng cảnh báo riêng, dù ngưỡng ấy không cần đánh thức ai lúc nửa đêm."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước về việc nhân đôi những thứ không được phép chết. Bài này về những thứ được phép chết - miễn là chúng chết một mình."
+    },
+    {
+      "type": "heading",
+      "text": "Hai loại phụ thuộc"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Thiết yếu",
+        "text": "Thiếu nó thì màn hình mất ý nghĩa. Danh sách sản phẩm không có sản phẩm. Khi nó hỏng, hãy báo lỗi rõ ràng."
+      },
+      "right": {
+        "label": "Phụ trợ",
+        "text": "Làm trải nghiệm tốt hơn nhưng không phải lý do người dùng tới. Gợi ý, xếp hạng, huy hiệu. Khi hỏng thì lặng lẽ bỏ qua."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Ranh giới nằm ở mục đích người dùng đến, không ở đặc điểm kỹ thuật. Đây là một quyết định sản phẩm, và nó phải được viết ra - vì nếu không viết ra thì mặc định của mã sẽ quyết định thay bạn."
+    },
+    {
+      "type": "callout",
+      "label": "Chậm nguy hiểm hơn chết",
+      "text": "Một dịch vụ chết trả lỗi về ngay. Một dịch vụ chậm giữ lời gọi ba mươi giây, và mọi thứ phía sau xếp hàng chờ nó. Đó là cách một khối chiếm một phần mười màn hình kéo sập cả trang chủ."
+    },
+    {
+      "type": "heading",
+      "text": "Cái giá: sự cố trở nên im lặng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Khi phần phụ hỏng mà trang vẫn chạy, không ai phàn nàn - và không ai để ý. Một khối gợi ý biến mất suốt sáu tuần là chuyện hoàn toàn có thể xảy ra. Vì thế mỗi lần bỏ qua một phần phải được đếm, với ngưỡng cảnh báo riêng, dù ngưỡng ấy chỉ cần vào danh sách việc ban ngày."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Suy giảm có kiểm soát không bao giờ tự có. Nó là thứ phải được viết vào từng chỗ một, ngược lại hành vi mặc định.",
+        "Bài sau nhìn ra ngoài ranh giới dịch vụ: độ tin cậy của bạn phụ thuộc vào ai."
+      ]
+    }
+  ]
+}

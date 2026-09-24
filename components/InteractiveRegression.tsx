@@ -135,7 +135,7 @@ export default function InteractiveRegression() {
             onChange={(e) => setTests(Number(e.target.value))} aria-label={t.regressionCalc.testsTriedAriaLabel}
             className="w-full cursor-pointer accent-amber-600" />
         </Row>
-        <p className="mt-3 text-xs leading-relaxed text-amber-900 dark:text-amber-200">
+        <p className="mt-3 text-xs leading-relaxed text-amber-900 dark:text-amber-300">
           {format(t.regressionCalc.pHackingText, { tests, chance: (falsePositiveChance(tests) * 100).toFixed(0) })}
         </p>
       </div>
@@ -147,7 +147,7 @@ function Row({ label, value, children }: { label: string; value: string; childre
   return (
     <div>
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{label}</span>
+        <span className="text-xs font-bold text-ink-body">{label}</span>
         <span className="text-[11px] font-semibold tabular-nums text-ink-muted">{value}</span>
       </div>
       <div className="mt-1.5">{children}</div>
@@ -161,7 +161,7 @@ function Card({ label, value, tone }: { label: string; value: string; tone: "goo
       ? "text-accent"
       : tone === "bad"
         ? "text-warn"
-        : "text-stone-800 dark:text-stone-100";
+        : "text-ink-heading";
   return (
     <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
       <p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">{label}</p>

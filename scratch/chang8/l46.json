@@ -1,0 +1,174 @@
+{
+  "id": 46,
+  "slug": "api-la-hop-dong",
+  "title": "API: bản hợp đồng giữa hai đội không ngồi cạnh nhau",
+  "subtitle": "Người dùng API của bạn không đọc mã của bạn - họ đọc lời hứa của bạn.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🤝",
+  "track": "professional",
+  "whyItMatters": "Sửa mã bên trong thì chỉ đội bạn chịu ảnh hưởng. Sửa API là sửa thứ người khác đã viết mã dựa vào, và họ không có mặt trong buổi họp nơi bạn quyết định. Đây là lý do một thay đổi nhỏ về kỹ thuật lại là một quyết định lớn về tổ chức.",
+  "openingQuestion": "Điều gì thuộc về hợp đồng của một API?",
+  "openingOptions": [
+    "Mọi hành vi mà người gọi quan sát được, kể cả thứ bạn chưa từng ghi vào tài liệu",
+    "Chỉ những gì được ghi rõ trong tài liệu chính thức của dịch vụ",
+    "Chỉ tên các đường dẫn và kiểu dữ liệu của trường trong phản hồi",
+    "Toàn bộ mã nguồn xử lý phía sau mỗi đường dẫn của dịch vụ"
+  ],
+  "correctOption": 0,
+  "explanation": "Trên thực tế, hợp đồng là mọi thứ người gọi quan sát được và dựa vào - không phải mọi thứ bạn định hứa. Thứ tự các phần tử trong danh sách, việc một trường luôn có giá trị dù tài liệu ghi là tuỳ chọn, hình dạng của thông báo lỗi: nếu ai đó đã viết mã dựa vào chúng thì đổi đi là làm hỏng hệ thống của họ. Tài liệu mô tả phần bạn cam kết, còn hành vi thật mới là phần người ta thật sự phụ thuộc, và khoảng cách giữa hai thứ đó là nơi các sự cố tích hợp sinh ra.",
+  "diagram": [
+    {
+      "label": "Bạn viết dịch vụ và công bố API",
+      "arrow": true
+    },
+    {
+      "label": "Đội khác viết mã dựa vào hành vi quan sát được",
+      "arrow": true
+    },
+    {
+      "label": "Bạn sửa một chi tiết chưa ghi trong tài liệu",
+      "arrow": true
+    },
+    {
+      "label": "Hệ thống của họ hỏng, và bạn không biết trước"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Thứ tự không ai hứa",
+    "description": "Một API trả về danh sách theo thứ tự ngẫu nhiên về mặt lý thuyết, nhưng thực tế luôn theo thứ tự thêm vào. Nhiều bên viết mã dựa vào điều đó. Ngày cơ sở dữ liệu được đổi cách truy vấn, thứ tự đổi theo và hàng loạt tích hợp hỏng cùng lúc."
+  },
+  "keyTakeaways": [
+    "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+    "Thêm trường mới thường an toàn; đổi tên, đổi kiểu và xoá thì không.",
+    "Thiết kế API là chọn từ vựng cho người khác dùng, nên rõ hơn là ngắn.",
+    "Thông báo lỗi cũng là một phần của hợp đồng vì người gọi sẽ xử lý theo nó."
+  ],
+  "summary": {
+    "keyIdea": "API là lời hứa với những người bạn không gặp, nên đổi nó là việc của tổ chức chứ không riêng kỹ thuật.",
+    "formula": "Thêm thì được, đổi và xoá thì phải qua nhiều bước.",
+    "commonMistake": "Coi thứ chưa ghi trong tài liệu là thứ tự do đổi."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một đường dẫn API bạn sở hữu và liệt kê mọi thứ người gọi có thể quan sát được: trường, kiểu, thứ tự, hình dạng lỗi, cả tốc độ phản hồi. Đó mới là hợp đồng thật của bạn."
+  },
+  "practicePrompt": {
+    "question": "Bạn muốn đổi một trường từ chuỗi sang số cho đúng bản chất. Bốn đội đang đọc trường đó. Nên làm thế nào?",
+    "options": [
+      "Thêm trường mới kiểu số, trả song song cả hai, chờ các đội chuyển rồi mới bỏ trường cũ",
+      "Đổi kiểu trường đó và thông báo cho cả bốn đội sửa mã trong cùng một tuần",
+      "Đổi kiểu và giữ một đường dẫn cũ chạy song song với dữ liệu không đổi",
+      "Giữ nguyên kiểu chuỗi mãi mãi vì mọi thay đổi đều có rủi ro làm hỏng"
+    ],
+    "correct": 0,
+    "explanation": "Giai đoạn trả song song hai trường là chỗ then chốt: nó cho phép bốn đội chuyển theo nhịp riêng thay vì phải triển khai đồng thời. Ép mọi bên sửa trong cùng một tuần là biến một thay đổi kỹ thuật thành một cuộc điều phối, và chỉ cần một đội trễ là hỏng."
+  },
+  "quiz": [
+    {
+      "question": "Hợp đồng thật của một API bao gồm những gì?",
+      "options": [
+        "Mọi hành vi mà người gọi quan sát được và viết mã dựa vào",
+        "Chỉ các đường dẫn và kiểu dữ liệu được ghi trong tài liệu chính thức",
+        "Toàn bộ mã nguồn và cấu trúc cơ sở dữ liệu phía sau dịch vụ",
+        "Danh sách các đội đã đăng ký sử dụng dịch vụ đó với bạn trước đây"
+      ],
+      "correct": 0,
+      "explanation": "Người ta phụ thuộc vào thứ họ thấy, không phải thứ bạn định hứa. Thứ tự phần tử, trường luôn có giá trị, hình dạng lỗi đều thành hợp đồng ngay khi có người viết mã dựa vào chúng."
+    },
+    {
+      "question": "Thay đổi nào với một API là an toàn với người gọi hiện có?",
+      "options": [
+        "Thêm một trường mới vào phần phản hồi trả về",
+        "Đổi tên một trường sang tên khác rõ nghĩa hơn cho người đọc",
+        "Bỏ một trường mà đội của bạn tin rằng không còn ai dùng nữa",
+        "Đổi kiểu một trường từ chuỗi sang số cho đúng bản chất dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Người gọi chỉ đọc những trường họ cần nên trường mới không ảnh hưởng gì. Ba thay đổi còn lại đều phá vỡ mã đang chạy và phải làm qua nhiều bước có giai đoạn song song."
+    },
+    {
+      "question": "Vì sao thông báo lỗi cũng thuộc về hợp đồng?",
+      "options": [
+        "Vì người gọi viết mã xử lý dựa trên hình dạng và mã của lỗi",
+        "Vì thông báo lỗi được ghi vào nhật ký nên phải giữ nguyên định dạng",
+        "Vì đổi thông báo lỗi làm mã trạng thái đổi theo",
+        "Vì tài liệu API bắt buộc phải liệt kê đủ mọi thông báo lỗi có thể có"
+      ],
+      "correct": 0,
+      "explanation": "Mã phía người gọi phân nhánh theo lỗi: cái nào thử lại, cái nào hiện cho người dùng, cái nào báo động. Đổi hình dạng lỗi là làm hỏng những nhánh đó, dù đường thành công vẫn chạy tốt."
+    },
+    {
+      "question": "Vì sao thiết kế API nên ưu tiên rõ ràng hơn ngắn gọn?",
+      "options": [
+        "Vì người đọc là người ngoài, không có ngữ cảnh mà đội bạn đang có",
+        "Vì tên trường dài giúp giảm dung lượng dữ liệu truyền qua mạng",
+        "Vì tên ngắn thường trùng với từ khoá của chính các ngôn ngữ lập trình",
+        "Vì công cụ sinh tài liệu tự động chỉ hoạt động với tên đủ dài"
+      ],
+      "correct": 0,
+      "explanation": "Trong nội bộ, một cái tên viết tắt vẫn hiểu được vì mọi người cùng ngữ cảnh. Người tích hợp từ bên ngoài chỉ có cái tên và tài liệu, nên mỗi chữ viết tắt là một lần họ phải đoán."
+    },
+    {
+      "question": "Vì sao đổi API là quyết định của tổ chức chứ không chỉ của kỹ thuật?",
+      "options": [
+        "Vì nó buộc những đội khác phải sửa mã theo lịch của bạn",
+        "Vì mọi thay đổi API đều phải được ban lãnh đạo phê duyệt trước",
+        "Vì API là tài sản được tính vào giá trị thương mại của sản phẩm",
+        "Vì chỉ đội vận hành mới có quyền triển khai thay đổi lên máy chủ"
+      ],
+      "correct": 0,
+      "explanation": "Chi phí lớn nhất không nằm ở việc sửa mã của bạn mà ở việc điều phối nhiều đội cùng đổi. Đó là lý do các bước có giai đoạn song song đáng giá: chúng biến một cuộc điều phối thành nhiều thay đổi độc lập."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ở bài 28, lược đồ cơ sở dữ liệu là hợp đồng với mọi hệ thống đang đọc. API là đúng ý đó nhưng lộ ra xa hơn: người phụ thuộc vào nó có thể ở một công ty khác, và bạn không biết tên họ."
+    },
+    {
+      "type": "heading",
+      "text": "Hợp đồng là thứ họ thấy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bạn viết tài liệu và nghĩ đó là phạm vi cam kết. Người tích hợp thì viết mã dựa vào những gì dịch vụ thật sự làm - kể cả thứ bạn coi là chi tiết cài đặt. Danh sách luôn về theo thứ tự thêm vào, một trường tuỳ chọn luôn có mặt, mã lỗi luôn kèm một chuỗi mô tả cố định. Không ai hứa những điều đó, nhưng đổi chúng thì hệ thống của người ta hỏng thật."
+    },
+    {
+      "type": "callout",
+      "label": "Thứ chưa hứa vẫn có thể là thứ đang được dựa vào",
+      "text": "Cách duy nhất để một chi tiết không thành hợp đồng là làm cho nó không quan sát được, hoặc làm nó thay đổi thường xuyên tới mức không ai dám dựa vào. Im lặng trong tài liệu không đủ để bạn tự do."
+    },
+    {
+      "type": "heading",
+      "text": "Đổi mà không làm hỏng ai"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Thêm trường mới bên cạnh, chưa bỏ gì cả.",
+        "Trả song song cả trường cũ lẫn trường mới trong một thời gian đủ dài.",
+        "Đo xem còn ai đọc trường cũ không - bằng số liệu, không bằng lời hứa.",
+        "Ngừng trả trường cũ khi số đó đã về không, và chỉ khi đó."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "API nội bộ",
+        "text": "Người dùng ngồi cùng công ty, đổi được nhanh nếu có việc gấp. Nhưng số lượng đội tăng lên thì nó cũng cứng dần như API công khai."
+      },
+      "right": {
+        "label": "API công khai",
+        "text": "Người dùng không quen biết và không thể liên lạc hết. Mọi thay đổi phá vỡ tương thích đều cần phiên bản mới và thời gian chuyển tiếp dài."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "API là lời hứa với những người bạn chưa gặp, và họ dựa vào thứ họ thấy chứ không phải thứ bạn viết trong tài liệu.",
+        "Bài sau nói về cách sắp xếp lời hứa đó cho dễ đoán: tài nguyên, phương thức, và những quy ước quen thuộc."
+      ]
+    }
+  ]
+}

@@ -47,7 +47,7 @@ import CertificateModal from "@/components/CertificateModal";
 import { trackTotals } from "@/lib/track-totals";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange, PROFESSIONAL_BRANCHES, type ProfessionalBranchId } from "@/lib/track-stages";
 import { getLessonShortTitle } from "@/lib/lesson-labels";
-import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
+import { BONUS_CATEGORIES, BONUS_CATEGORY_FALLBACK, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { TRACKS } from "@/lib/tracks";
 import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
 import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supabase-lesson-flags";
@@ -78,27 +78,27 @@ import { format, intlLocale } from "@/lib/i18n";
    learner reads is rendered separately and does go through the dictionary. */
 const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; barColor: string }> = {
   // All stages use the clean neutral Stone color theme of Stage 0
-  "personal-Chặng 0": { emoji: "🔍", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "personal-Chặng 1": { emoji: "🧠", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "personal-Chặng 2": { emoji: "📈", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "personal-Chặng 3": { emoji: "💼", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "personal-Chặng 4": { emoji: "📊", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "personal-Chặng 5": { emoji: "🔬", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "personal-Chặng 6": { emoji: "🛡️", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
+  "personal-Chặng 0": { emoji: "🔍", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "personal-Chặng 1": { emoji: "🧠", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "personal-Chặng 2": { emoji: "📈", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "personal-Chặng 3": { emoji: "💼", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "personal-Chặng 4": { emoji: "📊", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "personal-Chặng 5": { emoji: "🔬", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "personal-Chặng 6": { emoji: "🛡️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
   // Professional Track Stages
-  "professional-Chặng 1": { emoji: "📖", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 2": { emoji: "📊", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 3": { emoji: "🧮", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 4": { emoji: "💵", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 5": { emoji: "🎯", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 6": { emoji: "🛡️", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 7": { emoji: "📈", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 8": { emoji: "⚖️", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 9": { emoji: "🔄", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 10": { emoji: "👑", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 11": { emoji: "🏛️", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 12": { emoji: "🧬", bg: "bg-surface/60 border border-line", text: "text-stone-600 dark:text-stone-400", barColor: "bg-stone-400" },
-  "professional-Chặng 13": { emoji: "🤖", bg: "bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800", text: "text-emerald-700 dark:text-emerald-300", barColor: "bg-emerald-500" },
+  "professional-Chặng 1": { emoji: "📖", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 2": { emoji: "📊", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 3": { emoji: "🧮", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 4": { emoji: "💵", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 5": { emoji: "🎯", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 6": { emoji: "🛡️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 7": { emoji: "📈", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 8": { emoji: "⚖️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 9": { emoji: "🔄", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 10": { emoji: "👑", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 11": { emoji: "🏛️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 12": { emoji: "🧬", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
+  "professional-Chặng 13": { emoji: "🤖", bg: "bg-emerald-50/60 dark:bg-emerald-950/40 border border-accent-line-mid", text: "text-accent-strong", barColor: "bg-emerald-500" },
 };
 /* i18n-ignore-end */
 
@@ -973,7 +973,16 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     // Nhãn hiển thị tra theo giá trị tiếng Việt; phép LỌC vẫn so bằng giá trị
     // gốc, vì `BONUS_CATEGORIES` ánh xạ slug sang chính chuỗi tiếng Việt đó.
     label: t.bonusCategories[category] ?? category,
-    lessons: bonusLessons.filter((l) => (BONUS_CATEGORIES[l.slug] ?? t.dashboard.bonusOther) === category),
+    // Dự phòng là KHOÁ `BONUS_CATEGORY_FALLBACK`, không phải một nhãn đã dịch.
+    // Bản cũ so `t.dashboard.bonusOther` với khoá tiếng Việt, nên nó chỉ đúng
+    // ở tiếng Việt ("Khác" === "Khác"); với tiếng Anh nhãn ấy là "Other",
+    // không khớp nhóm nào, và 25 bài chưa gán nhóm biến mất - chỉ với người
+    // đọc tiếng Anh, tức đúng nửa người dùng mà người sửa ít khi mở ra xem.
+    // `bonusOther` đã được gỡ khỏi từ điển: nhãn của nhóm dự phòng nay chỉ có
+    // một nguồn, `t.bonusCategories["Khác"]`.
+    lessons: bonusLessons.filter(
+      (l) => (BONUS_CATEGORIES[l.slug] ?? BONUS_CATEGORY_FALLBACK) === category
+    ),
   })).filter((g) => g.lessons.length > 0);
 
   return (
@@ -1051,14 +1060,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
             const ACCENTS = [
               { text: "text-slate-600 dark:text-slate-400", bg: "bg-slate-50 dark:bg-slate-900/50", border: "border-slate-300 dark:border-slate-700", solid: "bg-slate-400" },
-              { text: "text-sky-600 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-sky-300 dark:border-sky-800", solid: "bg-sky-500" },
+              { text: "text-info", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-info-line", solid: "bg-sky-500" },
               { text: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/30", border: "border-cyan-300 dark:border-cyan-800", solid: "bg-cyan-500" },
               { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30", border: "border-violet-400 dark:border-violet-700", solid: "bg-violet-500" },
-              { text: "text-accent", bg: "bg-accent-soft/30", border: "border-emerald-400 dark:border-emerald-700", solid: "bg-emerald-500" },
+              { text: "text-accent", bg: "bg-emerald-50 dark:bg-emerald-950/30", border: "border-emerald-400 dark:border-emerald-700", solid: "bg-emerald-500" },
               { text: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-950/30", border: "border-teal-400 dark:border-teal-700", solid: "bg-teal-500" },
               { text: "text-orange-600 dark:text-orange-400", bg: "bg-orange-50 dark:bg-orange-950/30", border: "border-orange-400 dark:border-orange-700", solid: "bg-orange-500" },
-              { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500" },
-              { text: "text-warn", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-500", solid: "bg-gradient-to-r from-amber-400 to-yellow-500" },
+              { text: "text-alert", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500" },
+              { text: "text-warn", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-700", solid: "bg-gradient-to-r from-amber-400 to-yellow-500" },
             ];
 
             return (
@@ -1102,14 +1111,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <div className="relative group/level-strip">
                           <button
                             onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
-                            className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
+                            className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-line-mid shadow-md items-center justify-center text-ink-soft hover:bg-surface transition-all opacity-0 group-hover/level-strip:opacity-100"
                             aria-label={t.dashboard.scrollLeft}
                           >
                             <ChevronLeft className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => levelStripRef.current?.scrollBy({ left: 220, behavior: "smooth" })}
-                            className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-md items-center justify-center text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800 transition-all opacity-0 group-hover/level-strip:opacity-100"
+                            className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-line-mid shadow-md items-center justify-center text-ink-soft hover:bg-surface transition-all opacity-0 group-hover/level-strip:opacity-100"
                             aria-label={t.dashboard.scrollRight}
                           >
                             <ChevronRight className="w-4 h-4" />
@@ -1139,10 +1148,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                 return (
                                   <div key={lvl.level} className="flex items-stretch sm:animate-fade-in [backface-visibility:hidden]">
                                     {idx > 0 && (
-                                      <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-stone-200 dark:bg-stone-800"}`} />
+                                      <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-surface-sunken"}`} />
                                     )}
                                     <div className="flex flex-col items-center gap-2 shrink-0">
-                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-stone-50 dark:bg-stone-800 shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
+                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-surface shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
                                         <img
                                           src={`/levels/level${lvl.level}.jpg`}
                                           alt={t.levelTitles[lvl.level] ?? lvl.name}
@@ -1178,7 +1187,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>{t.dashboard.youBadge}</span>
                                           )}
                                         </div>
-                                        <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-ink" : "text-stone-500 dark:text-stone-500"}`}>
+                                        <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-ink" : "text-ink-muted"}`}>
                                           {t.levelTitles[lvl.level] ?? lvl.name}
                                         </p>
                                         <p className="text-[9px] text-ink-faint mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
@@ -1189,7 +1198,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             và kết luận hệ thống xếp sai cấp. Họ suy luận đúng theo đúng
                                             cái luật duy nhất được cho xem. */}
                                         {lvl.minCfaCompleted ? (
-                                          <p className="text-[9px] text-amber-600 dark:text-amber-500 leading-tight">
+                                          <p className="text-[9px] text-warn leading-tight">
                                             {format(t.finalOne.dashboardClient.levelCfaGate, { count: lvl.minCfaCompleted })}
                                           </p>
                                         ) : null}
@@ -1228,7 +1237,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         <Link
                                           key={i}
                                           href={`/nguoi-hoc/${m.userId}`}
-                                          className="flex items-center gap-2.5 bg-white dark:bg-stone-900 rounded-lg px-3 py-2.5 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                                          className="flex items-center gap-2.5 bg-white dark:bg-stone-900 rounded-lg px-3 py-2.5 hover:bg-surface-raised transition-colors"
                                         >
                                           {isValidAvatar(m.avatarUrl) ? (
                                             // next/image chứ không phải <img>: đây là ảnh trong
@@ -1237,11 +1246,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             // cho từng người xem, mỗi lần cache hết hạn.
                                             <Image src={m.avatarUrl} alt={m.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover shrink-0" />
                                           ) : (
-                                            <div className="w-8 h-8 rounded-full bg-surface-raised text-stone-600 dark:text-stone-300 flex items-center justify-center text-xs font-black shrink-0">
+                                            <div className="w-8 h-8 rounded-full bg-surface-raised text-ink-soft flex items-center justify-center text-xs font-black shrink-0">
                                               {m.name.charAt(0).toUpperCase()}
                                             </div>
                                           )}
-                                          <span className="flex-1 min-w-0 text-sm font-bold text-stone-800 dark:text-stone-200 truncate">
+                                          <span className="flex-1 min-w-0 text-sm font-bold text-ink-heading truncate">
                                             {m.name}
                                           </span>
                                           <span className="text-xs font-black text-accent shrink-0">
@@ -1424,7 +1433,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   <Route className="h-5 w-5" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-bold leading-tight text-stone-900 dark:text-stone-50">
+                  <p className="text-sm font-bold leading-tight text-ink">
                     {t.nav.learningPath}
                   </p>
                   <p className="mt-0.5 text-xs leading-snug text-ink-muted">
@@ -1489,7 +1498,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               <div className="rounded-xl border border-line bg-white dark:bg-stone-900 px-4 py-4">
                 <div className="flex items-center justify-between gap-3 mb-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-9 h-9 rounded-xl bg-warn-soft/30 text-warn flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-warn flex items-center justify-center">
                       <Bookmark className="w-4 h-4" />
                     </div>
                     <div>
@@ -1499,7 +1508,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   </div>
                   <Link
                     href="/profile"
-                    className="text-xs font-bold text-ink-muted hover:text-stone-800 dark:hover:text-stone-200"
+                    className="text-xs font-bold text-ink-muted hover:text-ink-heading"
                   >
                     {t.dashboard.seeAll}
                   </Link>
@@ -1510,7 +1519,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     <Link
                       key={bookmark.id}
                       href={`/bai-hoc/${bookmark.lesson_slug}`}
-                      className="group rounded-lg bg-stone-50 dark:bg-stone-950/40 px-4 py-3 hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors"
+                      className="group rounded-lg bg-stone-50 dark:bg-stone-950/40 px-4 py-3 hover:bg-surface-raised transition-colors"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -1579,7 +1588,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
               {/* Hover Tooltip (pointer devices) */}
               <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
-                <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
+                <div className="bg-surface-invert text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
                   <p className="text-sm font-bold mb-2">{t.trackStages.personal.description}</p>
                   <div className="space-y-1 text-xs text-stone-300">
                     {t.trackStages.personal.pillars.map((pillar) => (
@@ -1625,7 +1634,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
               {/* Hover Tooltip (pointer devices) */}
               <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
-                <div className="bg-stone-900 dark:bg-stone-800 text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
+                <div className="bg-surface-invert text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
                   <p className="text-sm font-bold mb-2">{t.trackStages.professional.description}</p>
                   <div className="space-y-1 text-xs text-stone-300">
                     {t.trackStages.professional.pillars.map((pillar) => (
@@ -1668,8 +1677,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       onClick={() => handleSetProfessionalBranch(branch.id)}
                       className={`shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
                         isActive
-                          ? "border-stone-900 dark:border-stone-100 bg-surface-invert text-white dark:text-stone-900"
-                          : "border-line bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-200"
+                          ? "border-line-invert bg-surface-invert text-ink-invert"
+                          : "border-line bg-white dark:bg-stone-900 text-ink-soft hover:border-line-firm hover:text-ink"
                       }`}
                     >
                       {/* Không emoji. Bảy pill mỗi cái một biểu tượng khác nhau
@@ -1746,7 +1755,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               {stageSearchQuery && (
                 <button
                   onClick={() => setStageSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-ink-body cursor-pointer"
                   title={t.dashboard.searchClear}
                 >
                   <X className="w-4 h-4" />
@@ -1758,12 +1767,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
               {flagSelectionMode && (
                 <>
-                  <span className="text-xs font-bold text-sky-600 dark:text-sky-400 hidden lg:inline">
+                  <span className="text-xs font-bold text-info hidden lg:inline">
                     {format(t.dashboard.selectedCount, { count: selectedFlagLessonIds.size })}
                   </span>
                   <button
                     onClick={clearFlagSelection}
-                    className="px-3 py-2 text-xs font-bold rounded-xl border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors cursor-pointer"
+                    className="px-3 py-2 text-xs font-bold rounded-xl border border-line text-ink-soft hover:bg-surface transition-colors cursor-pointer"
                   >
                     {t.dashboard.cancel}
                   </button>
@@ -1785,8 +1794,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   }}
                   className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition-colors cursor-pointer flex items-center gap-1.5 ${
                     flagSelectionMode
-                      ? "border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300"
-                      : "border-line bg-white dark:bg-stone-900 text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800"
+                      ? "border-info-line bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-400"
+                      : "border-line bg-white dark:bg-stone-900 text-ink-body hover:bg-surface"
                   }`}
                 >
                   <span>{t.dashboard.markLearned.button}</span>
@@ -1822,7 +1831,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   </p>
                   <p>
                     {t.dashboard.markLearned.manualPart1}
-                    <span className="font-semibold text-sky-600 dark:text-sky-400">
+                    <span className="font-semibold text-info">
                       {t.dashboard.markLearned.manualColour}
                     </span>
                     {t.dashboard.markLearned.manualPart2}
@@ -1900,7 +1909,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       className={`w-full flex items-center gap-3 cursor-pointer text-left flex-wrap sm:flex-nowrap transition-all ${
                         isCurrentMilestonePassed
                           ? "bg-emerald-500/[0.04] dark:bg-emerald-500/[0.02] border border-emerald-500/20 px-4 py-3 rounded-xl mb-4"
-                          : "border-b border-line-soft/40 pb-3 mb-4"
+                          : "border-b border-stone-100 dark:border-stone-800/40 pb-3 mb-4"
                       }`}
                     >
                       <span className={`text-xs font-extrabold px-3 py-1.5 rounded-lg flex items-center ${
@@ -1918,7 +1927,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       <span className="text-base sm:text-lg font-extrabold text-ink flex-1 leading-snug">{stageCopy?.name ?? stage.name}</span>
                       {isCurrentMilestonePassed ? (
                         <div className="flex items-center gap-2">
-                      <span className="flex items-center gap-1 text-xs font-bold text-stone-600 dark:text-stone-300 shrink-0 bg-surface-raised px-2.5 py-1 rounded-lg">
+                      <span className="flex items-center gap-1 text-xs font-bold text-ink-soft shrink-0 bg-surface-raised px-2.5 py-1 rounded-lg">
                         {t.dashboard.milestone.passed}
                       </span>
                           <button
@@ -1951,8 +1960,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           </div>
                           <span className={`text-sm font-bold px-3 py-1 rounded-lg ${
                             isCurrentMilestonePassed
-                              ? "text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/60"
-                              : "text-stone-800 dark:text-stone-200 bg-surface-raised"
+                              ? "text-accent-ink bg-emerald-100 dark:bg-emerald-950/60"
+                              : "text-ink-heading bg-surface-raised"
                           }`}>
                             {stageDone}/{stageLessons.length}
                           </span>
@@ -1971,19 +1980,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                 {/* Not available yet - with lock and loading animation */}
                 {stageOpen && !stage.available && (
-                  <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-surface/50 relative overflow-hidden">
+                  <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-stone-50 dark:bg-stone-900/50 relative overflow-hidden">
                     {/* Building background */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 dark:via-stone-800 to-transparent opacity-30" />
 
                     {/* Lock icon */}
                     <div className="relative z-10 flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 rounded-lg bg-stone-200 dark:bg-stone-700 flex items-center justify-center animate-bounce">
-                        <svg className="w-6 h-6 text-stone-600 dark:text-stone-400" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="w-12 h-12 rounded-lg bg-surface-sunken flex items-center justify-center animate-bounce">
+                        <svg className="w-6 h-6 text-ink-soft" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 1C6.48 1 2 5.48 2 11v10c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V11c0-5.52-4.48-10-10-10zm0 2c4.41 0 8 3.59 8 8v2H4v-2c0-4.41 3.59-8 8-8zm-3 13h6v2H9z"/>
                         </svg>
                       </div>
                       <div>
-                        <p className="text-stone-600 dark:text-stone-400 text-sm font-extrabold">{t.dashboard.stageLockedTitle}</p>
+                        <p className="text-ink-soft text-sm font-extrabold">{t.dashboard.stageLockedTitle}</p>
                         <p className="text-ink-muted text-xs mt-1">{t.dashboard.stageLockedHint}</p>
                       </div>
                     </div>
@@ -1992,7 +2001,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                 {/* Available but no lessons in DB yet - with building animation */}
                 {stageOpen && stage.available && stageLessons.length === 0 && (
-                  <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-accent-soft/50 relative overflow-hidden">
+                  <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-emerald-50 dark:bg-emerald-950/50 relative overflow-hidden">
                     {/* Construction bars */}
                     <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
                       <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
@@ -2004,7 +2013,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     {/* Content */}
                     <div className="relative z-10 flex flex-col items-center gap-2">
                       <div className="text-3xl animate-bounce">🏗️</div>
-                      <p className="text-stone-600 dark:text-stone-400 text-sm font-extrabold">{t.dashboard.buildingTitle}</p>
+                      <p className="text-ink-soft text-sm font-extrabold">{t.dashboard.buildingTitle}</p>
                       <p className="text-ink-muted text-xs">{t.dashboard.buildingSubtitle}</p>
                     </div>
                   </div>
@@ -2028,9 +2037,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <div key={part.name} className="border border-line rounded-xl overflow-hidden">
                           <button
                             onClick={() => togglePart(partKey)}
-                            className="w-full flex items-center gap-3 px-5 py-3.5 bg-surface/50 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer text-left"
+                            className="w-full flex items-center gap-3 px-5 py-3.5 bg-stone-50 dark:bg-stone-900/50 hover:bg-surface-raised transition-colors cursor-pointer text-left"
                           >
-                            <span className="font-bold text-stone-800 dark:text-stone-300 text-sm">{stageCopy?.parts[partIdx] ?? part.name}</span>
+                            <span className="font-bold text-ink-heading text-sm">{stageCopy?.parts[partIdx] ?? part.name}</span>
                             <span className="text-xs text-ink-muted font-mono">
                               {format(t.dashboard.lessonRange, { from: lessonOrdinal.get(partLessons[0].id) ?? "", to: lessonOrdinal.get(partLessons[partLessons.length - 1].id) ?? "" })}
                             </span>
@@ -2040,7 +2049,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                 {partLockedCount}
                               </span>
                             )}
-                            <span className="ml-auto text-sm font-bold text-stone-600 dark:text-stone-400 bg-white dark:bg-stone-900 px-3 py-0.5 rounded-lg border border-line">
+                            <span className="ml-auto text-sm font-bold text-ink-soft bg-white dark:bg-stone-900 px-3 py-0.5 rounded-lg border border-line">
                               {partDone}/{partLessons.length}
                             </span>
                             <span className={`text-ink-muted text-sm transition-transform ${partOpen ? "rotate-180" : ""}`}>
@@ -2061,24 +2070,24 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                     <button
                                       key={lesson.id}
                                       onClick={() => handleLockedLessonClick(lesson)}
-                                      className="w-full text-left block rounded-lg border border-line bg-surface/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                                      className="w-full text-left block rounded-lg border border-line bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
                                     >
                                       <div className="flex items-center gap-4 px-6 py-5">
                                         <div className="w-12 flex-shrink-0 text-center">
-                                          <span className="font-mono text-sm font-extrabold text-stone-400 dark:text-stone-600">
+                                          <span className="font-mono text-sm font-extrabold text-ink-faint">
                                             {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
                                           </span>
                                         </div>
                                         <div className="flex-shrink-0">
-                                          <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 flex items-center justify-center">
+                                          <div className="w-6 h-6 rounded-full bg-surface-sunken flex items-center justify-center">
                                             <Lock className="w-3.5 h-3.5 text-ink-muted" />
                                           </div>
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                          <div className="text-base font-bold leading-snug text-stone-500 dark:text-stone-300">
+                                          <div className="text-base font-bold leading-snug text-ink-muted">
                                             {lesson.title}
                                           </div>
-                                          <div className="text-sm mt-1 truncate text-stone-400 dark:text-stone-400">
+                                          <div className="text-sm mt-1 truncate text-ink-faint">
                                             {isWaitingOnChallenge(lesson)
                                               ? t.dashboard.unlockByChallenge
                                               : t.dashboard.unlockByRequest}
@@ -2095,18 +2104,18 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                     onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
                                     className={`block rounded-lg border transition-all ${
                                       isDone
-                                        ? "bg-accent-soft/50 border-accent-line hover:border-emerald-300 dark:hover:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-950"
+                                        ? "bg-emerald-50 dark:bg-emerald-950/50 border-accent-line hover:border-accent-line-mid hover:bg-emerald-100 dark:hover:bg-emerald-950"
                                         : isSelectedForFlag
-                                          ? "bg-sky-50 dark:bg-sky-950/40 border-sky-300 dark:border-sky-800"
+                                          ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
                                           : isFlagged
-                                            ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-sky-300 dark:hover:border-sky-800"
-                                            : "bg-white dark:bg-stone-900 border-line hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800"
+                                            ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-info-line"
+                                            : "bg-white dark:bg-stone-900 border-line hover:border-line-firm hover:bg-surface"
                                     }`}
                                   >
                                     <div className="flex items-center gap-4 px-6 py-5">
                                       {/* Day number */}
                                       <div className="w-12 flex-shrink-0 text-center">
-                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-accent" : isFlagged ? "text-sky-600 dark:text-sky-400" : "text-ink-muted"}`}>
+                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-accent" : isFlagged ? "text-info" : "text-ink-muted"}`}>
                                           {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
                                         </span>
                                       </div>
@@ -2136,10 +2145,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         }}
                                         className="flex-1 min-w-0 block"
                                       >
-                                        <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900 dark:text-emerald-400" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
+                                        <div className={`text-base font-bold leading-snug ${isDone ? "text-accent-ink-strong" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
                                           {lesson.title}
                                         </div>
-                                        <div className={`text-sm mt-1 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
+                                        <div className={`text-sm mt-1 truncate ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
                                           {isFlagged ? t.dashboard.markLearned.flaggedSubtitle : lesson.subtitle}
                                         </div>
                                         <div className="text-[11px] mt-0.5 text-ink-faint font-semibold">
@@ -2172,12 +2181,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                                       {/* Meta */}
                                       <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
-                                        <span className={`text-sm font-semibold ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
+                                        <span className={`text-sm font-semibold ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
                                           {formatLessonTime(lesson, t.dashboard.minutesShort)}
                                         </span>
                                         <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
                                           isDone
-                                            ? "bg-emerald-200 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-300"
+                                            ? "bg-emerald-200 dark:bg-emerald-900 text-accent-ink-strong"
                                             : isFlagged
                                               ? "bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300"
                                             : "bg-surface-raised text-ink-body"
@@ -2196,7 +2205,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                               event.preventDefault();
                                               setAppealTarget({ id: lesson.id, slug: lesson.slug, title: lesson.title });
                                             }}
-                                            className="text-xs font-bold text-ink-faint hover:text-sky-600 dark:hover:text-sky-400 underline underline-offset-2"
+                                            className="text-xs font-bold text-ink-faint hover:text-info underline underline-offset-2"
                                           >
                                             {t.dashboard.appeal}
                                           </button>
@@ -2222,7 +2231,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && stageDone === stageLessons.length && !passedMilestones.some((m) => m.stage_label === stage.label) && (
                   <div className="mt-4 p-5 rounded-xl border border-amber-300 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1.5">
+                      <h4 className="text-xs font-bold text-warn-ink flex items-center gap-1.5">
                         {format(t.dashboard.milestone.eligible, { stage: stage.label })}
                       </h4>
                       <p className="text-[10px] text-ink-muted mt-1 leading-relaxed">
@@ -2300,19 +2309,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <button
                           key={lesson.id}
                           onClick={() => handleLockedLessonClick(lesson)}
-                          className="w-full text-left block rounded-lg border border-line bg-surface/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                          className="w-full text-left block rounded-lg border border-line bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
                         >
                           <div className="flex items-center gap-4 px-6 py-4">
                             <div className="flex-shrink-0">
-                              <div className="w-6 h-6 rounded-full bg-stone-200 dark:bg-stone-700 flex items-center justify-center">
+                              <div className="w-6 h-6 rounded-full bg-surface-sunken flex items-center justify-center">
                                 <Lock className="w-3.5 h-3.5 text-ink-muted" />
                               </div>
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="text-base font-bold leading-snug text-stone-500 dark:text-stone-300">
+                              <div className="text-base font-bold leading-snug text-ink-muted">
                                 {lesson.title}
                               </div>
-                              <div className="text-sm mt-0.5 truncate text-stone-400 dark:text-stone-400">
+                              <div className="text-sm mt-0.5 truncate text-ink-faint">
                                 {isWaitingOnChallenge(lesson)
                                   ? t.dashboard.unlockByChallenge
                                   : t.dashboard.unlockByRequest}
@@ -2329,12 +2338,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
                         className={`block rounded-lg border transition-all ${
                           isDone
-                            ? "bg-accent-soft/50 border-accent-line hover:border-emerald-300 dark:hover:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-950"
+                            ? "bg-emerald-50 dark:bg-emerald-950/50 border-accent-line hover:border-accent-line-mid hover:bg-emerald-100 dark:hover:bg-emerald-950"
                             : isSelectedForFlag
-                              ? "bg-sky-50 dark:bg-sky-950/40 border-sky-300 dark:border-sky-800"
+                              ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
                               : isFlagged
-                                ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-sky-300 dark:hover:border-sky-800"
-                            : "bg-white dark:bg-stone-900 border-line hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800"
+                                ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-info-line"
+                            : "bg-white dark:bg-stone-900 border-line hover:border-line-firm hover:bg-surface"
                         }`}
                       >
                         <div className="flex items-center gap-4 px-6 py-4">
@@ -2360,10 +2369,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             }}
                             className="flex-1 min-w-0 block"
                           >
-                            <div className={`text-base font-bold leading-snug ${isDone ? "text-emerald-900 dark:text-emerald-400" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
+                            <div className={`text-base font-bold leading-snug ${isDone ? "text-accent-ink-strong" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
                               {lesson.title}
                             </div>
-                            <div className={`text-sm mt-0.5 truncate ${isDone ? "text-emerald-700 dark:text-emerald-400" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-stone-600 dark:text-stone-400"}`}>
+                            <div className={`text-sm mt-0.5 truncate ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
                               {isFlagged ? t.dashboard.markLearned.flaggedSubtitle : lesson.subtitle}
                             </div>
                           </Link>

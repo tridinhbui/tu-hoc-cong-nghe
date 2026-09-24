@@ -10,6 +10,7 @@ import { translateAuthErrorCode } from "@/lib/auth-error-messages";
 import { stashReferralCodeFromUrl } from "@/lib/referrals";
 import { safeNextPath } from "@/lib/safe-next-path";
 import { rememberOAuthNext } from "@/lib/oauth-next-cookie";
+import { resetCurrentUserCache } from "@/lib/current-user";
 import Logo from "@/components/Logo";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import { type TrackId } from "@/lib/tracks";
@@ -190,6 +191,7 @@ function LoginForm() {
         }
 
         failedAttemptsRef.current = 0;
+        resetCurrentUserCache();
         router.push(nextPath);
         return;
       } else {
@@ -215,6 +217,7 @@ function LoginForm() {
         }
 
         failedAttemptsRef.current = 0;
+        resetCurrentUserCache();
         router.push(nextPath);
       }
     } catch {

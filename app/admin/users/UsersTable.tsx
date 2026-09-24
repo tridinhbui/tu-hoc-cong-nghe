@@ -85,21 +85,21 @@ export default function UsersTable({
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
-      <div className="p-4 border-b border-stone-200 dark:border-stone-800 flex flex-wrap items-center justify-between gap-3">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl overflow-hidden">
+      <div className="p-4 border-b border-line flex flex-wrap items-center justify-between gap-3">
         <form onSubmit={handleSearchSubmit} className="relative max-w-sm flex-1 min-w-[200px]">
           <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={tu.searchPlaceholder}
-            className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
+            className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-ink focus:outline-none focus:border-stone-500"
           />
         </form>
         <button
           onClick={() => setConfirmResync(true)}
           title={tu.resyncTooltip}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg px-3 py-2 transition-colors flex-shrink-0"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-soft hover:text-ink border border-line-strong rounded-lg px-3 py-2 transition-colors flex-shrink-0"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           {tu.resyncButton}
@@ -114,7 +114,7 @@ export default function UsersTable({
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-stone-200 dark:border-stone-800 text-left text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide">
+              <tr className="border-b border-line text-left text-xs font-bold text-ink-muted uppercase tracking-wide">
                 <th className="px-4 py-3">{tu.colUser}</th>
                 <th className="px-4 py-3">{tu.colRole}</th>
                 <th className="px-4 py-3">{tu.colJoined}</th>
@@ -128,36 +128,36 @@ export default function UsersTable({
               {result.users.map((u) => (
                 <tr key={u.id} className={u.is_disabled ? "opacity-60" : ""}>
                   <td className="px-4 py-3">
-                    <p className="font-semibold text-stone-900 dark:text-stone-100">{u.full_name ?? tu.unnamedUser}</p>
-                    <p className="text-xs text-stone-500 dark:text-stone-400">{u.email}</p>
+                    <p className="font-semibold text-ink">{u.full_name ?? tu.unnamedUser}</p>
+                    <p className="text-xs text-ink-muted">{u.email}</p>
                   </td>
                   <td className="px-4 py-3">
                     <select
                       value={u.role}
                       disabled={u.id === currentAdminId}
                       onChange={(e) => handleRoleChange(u, e.target.value as "user" | "admin")}
-                      className="text-xs font-bold rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 px-2 py-1.5 disabled:opacity-50"
+                      className="text-xs font-bold rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-ink px-2 py-1.5 disabled:opacity-50"
                     >
                       <option value="user">user</option>
                       <option value="admin">admin</option>
                     </select>
                   </td>
-                  <td className="px-4 py-3 text-stone-600 dark:text-stone-400">
+                  <td className="px-4 py-3 text-ink-soft">
                     {new Date(u.created_at).toLocaleDateString(intlLocale(locale))}
                   </td>
-                  <td className="px-4 py-3 text-stone-600 dark:text-stone-400">
+                  <td className="px-4 py-3 text-ink-soft">
                     {u.last_login_at ? new Date(u.last_login_at).toLocaleDateString(intlLocale(locale)) : tu.neverLoggedIn}
                   </td>
-                  <td className="px-4 py-3 text-stone-900 dark:text-stone-100 font-semibold">
+                  <td className="px-4 py-3 text-ink font-semibold">
                     {u.lessons_completed}
                   </td>
                   <td className="px-4 py-3">
                     {u.is_disabled ? (
-                      <span className="inline-flex items-center gap-1 text-xs font-bold text-rose-600 dark:text-rose-400">
+                      <span className="inline-flex items-center gap-1 text-xs font-bold text-alert">
                         <Ban className="w-3.5 h-3.5" /> {tu.disabled}
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                      <span className="inline-flex items-center gap-1 text-xs font-bold text-accent">
                         <CheckCircle2 className="w-3.5 h-3.5" /> {tu.active}
                       </span>
                     )}
@@ -166,7 +166,7 @@ export default function UsersTable({
                     <button
                       onClick={() => setToToggle(u)}
                       disabled={u.id === currentAdminId}
-                      className="text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 disabled:opacity-40 disabled:cursor-not-allowed"
+                      className="text-xs font-bold text-ink-soft hover:text-ink disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                       {u.is_disabled ? tu.unlock : tu.lock}
                     </button>
@@ -178,7 +178,7 @@ export default function UsersTable({
         </div>
       )}
 
-      <div className="px-4 py-3 border-t border-stone-200 dark:border-stone-800 flex items-center gap-2 text-xs text-stone-400">
+      <div className="px-4 py-3 border-t border-line flex items-center gap-2 text-xs text-stone-400">
         <ShieldCheck className="w-3.5 h-3.5" />
         {tu.selfActionHint}
       </div>

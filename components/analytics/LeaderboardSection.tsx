@@ -34,12 +34,12 @@ function LeaderboardAvatar({ name, avatarUrl }: { name: string; avatarUrl: strin
         alt={name}
         width={28}
         height={28}
-        className="w-7 h-7 rounded-full object-cover flex-shrink-0 border border-stone-200 dark:border-stone-700"
+        className="w-7 h-7 rounded-full object-cover flex-shrink-0 border border-line-mid"
       />
     );
   }
   return (
-    <div className="w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-[11px] font-extrabold">
+    <div className="w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center bg-surface-sunken text-ink-soft text-[11px] font-extrabold">
       {name.trim().charAt(0).toUpperCase() || "?"}
     </div>
   );
@@ -209,7 +209,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
           type="button"
           onClick={() => tabsRef.current?.scrollBy({ left: -160, behavior: "smooth" })}
           aria-label={t.leaderboardSection.scrollLeft}
-          className="absolute -left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white/95 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-ink-muted hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
+          className="absolute -left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white/95 dark:bg-stone-900 border border-line-mid shadow-sm flex items-center justify-center text-ink-muted hover:text-ink cursor-pointer"
         >
           <ChevronLeft className="w-3.5 h-3.5" />
         </button>
@@ -224,7 +224,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
               className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer select-none ${
                 activeTab === tabItem.id
                   ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm"
-                  : "bg-white/95 dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-line/80 hover:bg-stone-50 dark:hover:bg-stone-800"
+                  : "bg-white/95 dark:bg-stone-900 text-ink-soft border border-stone-200 dark:border-stone-800/80 hover:bg-surface"
               }`}
             >
               {tabItem.label}
@@ -235,7 +235,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
           type="button"
           onClick={() => tabsRef.current?.scrollBy({ left: 160, behavior: "smooth" })}
           aria-label={t.leaderboardSection.scrollRight}
-          className="absolute -right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white/95 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 shadow-sm flex items-center justify-center text-ink-muted hover:text-stone-900 dark:hover:text-stone-100 cursor-pointer"
+          className="absolute -right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white/95 dark:bg-stone-900 border border-line-mid shadow-sm flex items-center justify-center text-ink-muted hover:text-ink cursor-pointer"
         >
           <ChevronRight className="w-3.5 h-3.5" />
         </button>
@@ -258,8 +258,8 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
                   href={href}
                   className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm transition-all ${
                     isCurrent
-                      ? "bg-accent-soft/50 border border-accent-line"
-                      : "bg-white/95 dark:bg-stone-900 border border-line hover:border-emerald-300 dark:hover:border-emerald-700"
+                      ? "bg-emerald-50 dark:bg-emerald-950/50 border border-accent-line"
+                      : "bg-white/95 dark:bg-stone-900 border border-line hover:border-accent-line-mid"
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
@@ -270,7 +270,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
                           : rank === 2
                             ? "bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-300"
                             : rank === 3
-                              ? "bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-400"
+                              ? "bg-amber-100 dark:bg-amber-950 text-warn-ink"
                               : "bg-surface-raised text-ink-body"
                       }`}
                     >
@@ -279,11 +279,11 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
                     <RankAvatarFrame rank={rank}>
                       <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} />
                     </RankAvatarFrame>
-                    <div className={`font-bold truncate ${isCurrent ? "text-emerald-900 dark:text-emerald-400" : "text-ink"}`}>
+                    <div className={`font-bold truncate ${isCurrent ? "text-accent-ink-strong" : "text-ink"}`}>
                       {entry.name}
                     </div>
                   </div>
-                  <div className={`font-extrabold shrink-0 ml-2 ${isCurrent ? "text-emerald-700 dark:text-emerald-400" : "text-stone-700 dark:text-stone-200"}`}>
+                  <div className={`font-extrabold shrink-0 ml-2 ${isCurrent ? "text-accent-strong" : "text-ink-body"}`}>
                     {tab.format(entry.value)}
                   </div>
                 </Link>
@@ -294,7 +294,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
           {myRank !== null && !myRankInTop10 && (
             <div className="mt-3 pt-3 border-t border-line">
               <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm bg-stone-50 dark:bg-stone-800/50 border border-dashed border-line-strong">
-                <div className="w-7 h-7 rounded flex items-center justify-center flex-shrink-0 font-extrabold bg-stone-200 dark:bg-stone-700 text-ink-body text-[11px]">
+                <div className="w-7 h-7 rounded flex items-center justify-center flex-shrink-0 font-extrabold bg-surface-sunken text-ink-body text-[11px]">
                   #{myRank.rank}
                 </div>
                 <div className="flex-1 min-w-0">

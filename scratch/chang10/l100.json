@@ -1,0 +1,182 @@
+{
+  "id": 100,
+  "slug": "on-tap-do-luong-va-chon-viec",
+  "title": "Ôn tập: đo cho đúng rồi chọn cho đúng",
+  "subtitle": "Hai mươi bài vừa rồi đều nhằm rút ngắn khoảng cách giữa việc tin và việc biết.",
+  "duration": "10 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🎓",
+  "track": "professional",
+  "whyItMatters": "Chín chặng trước dạy cách xây cho tốt. Chặng này dạy cách biết mình đang xây đúng thứ - và đó là kỹ năng phân biệt một kỹ sư giỏi kỹ thuật với một người tạo ra tác động.",
+  "openingQuestion": "Sợi chỉ xuyên suốt cả chặng này là gì?",
+  "openingOptions": [
+    "Rút ngắn khoảng cách giữa lúc tin điều gì đó và lúc biết nó đúng hay sai",
+    "Đo lường càng nhiều chỉ số càng tốt để có bức tranh đầy đủ",
+    "Ưu tiên tốc độ giao hàng hơn là độ chính xác của quyết định",
+    "Chuyển quyền quyết định sản phẩm về cho đội kỹ thuật"
+  ],
+  "correctOption": 0,
+  "explanation": "Từ việc chọn chỉ số tới việc chia nhỏ để giao sớm, mọi kỹ thuật trong chặng này đều phục vụ cùng một ý: bạn luôn hành động dựa trên giả định, và giá trị nằm ở việc kiểm chứng chúng sớm với giá rẻ. Chọn chỉ số đúng để biết mình đang nhìn cái gì. Chia theo nhóm và theo bước để biết vấn đề ở đâu. Thử nghiệm có đối chứng để biết thay đổi có tác dụng không. Kiểm chứng trước khi xây để khỏi mất ba tháng. Tất cả đều là cách mua thông tin sớm hơn.",
+  "diagram": [
+    {
+      "label": "Đo cho đúng: chỉ số, nhóm, phễu, thử nghiệm",
+      "arrow": true
+    },
+    {
+      "label": "Hiểu vì sao: phản hồi định tính",
+      "arrow": true
+    },
+    {
+      "label": "Chọn việc: ưu tiên, nói không, kiểm chứng",
+      "arrow": true
+    },
+    {
+      "label": "Khép vòng: giao, đo, quyết định làm tiếp hay dừng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Buổi họp lập kế hoạch",
+    "description": "Chặng này cho bạn danh sách câu hỏi để hỏi khi ai đó đề xuất một việc: vấn đề của ai, bằng chứng nào, ta biết mình thành công bằng con số nào, và lát nhỏ nhất chạm được người dùng thật là gì. Bốn câu ấy đổi chất lượng của cuộc họp nhiều hơn mọi quy trình."
+  },
+  "keyTakeaways": [
+    "Chỉ số chỉ có nghĩa khi nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
+    "Chia theo nhóm và theo bước làm lộ ra thứ con số tổng che đi.",
+    "Chỉ thử nghiệm có đối chứng mới phân biệt được nhân quả với đi cùng nhau.",
+    "Số liệu nói cái gì và ở đâu; chỉ con người mới nói được vì sao.",
+    "Ưu tiên là so sánh chi phí trì hoãn, và mỗi lời đồng ý là một lời từ chối."
+  ],
+  "summary": {
+    "keyIdea": "Đo cho đúng rồi chọn cho đúng - cả hai đều là cách rút ngắn khoảng cách giữa tin và biết.",
+    "formula": "Vấn đề → bằng chứng → lát nhỏ → đo → quyết định.",
+    "commonMistake": "Xây rất tốt một thứ chưa từng được kiểm chứng là có ai cần."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Với việc tiếp theo đội bạn định làm, trả lời bốn câu: vấn đề của ai, bằng chứng nào, chỉ số nào cho biết đã giải được, và lát nhỏ nhất là gì. Câu nào trống là rủi ro lớn nhất của việc đó."
+  },
+  "practicePrompt": {
+    "question": "Một đồng nghiệp đề xuất tính năng vì nhiều khách hàng đã hỏi về nó. Câu hỏi tiếp theo nên là gì?",
+    "options": [
+      "Những người đó đang xoay xở với vấn đề ấy bằng cách nào hiện giờ?",
+      "Có bao nhiêu khách hàng đã hỏi về tính năng này?",
+      "Đối thủ của chúng ta đã có tính năng tương tự chưa?",
+      "Chúng ta cần bao lâu để xây dựng tính năng đó?"
+    ],
+    "correct": 0,
+    "explanation": "Yêu cầu từ khách hàng là bằng chứng ở mức trung bình - nó cho biết có sự quan tâm nhưng không cho biết vấn đề đau tới đâu. Câu hỏi về cách họ đang xoay xở đưa bạn lên bậc bằng chứng cao nhất, và nó cũng thường tiết lộ rằng thứ họ cần khác thứ họ yêu cầu."
+  },
+  "quiz": [
+    {
+      "question": "Điều gì làm một chỉ số trở nên vô dụng?",
+      "options": [
+        "Nó chỉ có thể tăng nên không bao giờ báo tin xấu",
+        "Nó được cập nhật theo ngày thay vì theo giờ",
+        "Nó không so sánh được với chỉ số của đối thủ",
+        "Nó cần được tính toán bằng một công thức khá phức tạp"
+      ],
+      "correct": 0,
+      "explanation": "Con số không giảm được thì mọi tháng đều trông như tháng tốt, nên nó không phân biệt được tình huống nào và không dẫn tới quyết định nào."
+    },
+    {
+      "question": "Vì sao cần thử nghiệm có đối chứng thay vì so trước và sau?",
+      "options": [
+        "Vì hai khoảng thời gian khác nhau ở rất nhiều thứ ngoài thay đổi của bạn",
+        "Vì so trước sau cần nhiều dữ liệu lịch sử hơn mức có sẵn",
+        "Vì thử nghiệm cho kết quả nhanh hơn so với chờ đủ thời gian",
+        "Vì công cụ phân tích không hỗ trợ so sánh theo thời gian"
+      ],
+      "correct": 0,
+      "explanation": "Ngày lễ, chiến dịch quảng cáo, tin tức và cả những đợt triển khai khác đều lẫn vào phép so trước sau. Hai nhóm chạy song song thì mọi yếu tố ấy tác động lên cả hai như nhau."
+    },
+    {
+      "question": "Số liệu và phản hồi định tính bổ sung nhau thế nào?",
+      "options": [
+        "Số liệu nói cái gì và ở đâu, phản hồi định tính nói vì sao",
+        "Số liệu dành cho ban lãnh đạo, phản hồi dành cho đội sản phẩm",
+        "Số liệu chính xác hơn nên phản hồi chỉ dùng để tham khảo thêm",
+        "Số liệu cho hiện tại, phản hồi định tính cho dự báo tương lai"
+      ],
+      "correct": 0,
+      "explanation": "Phễu chỉ ra người dùng rơi ở bước ba nhưng không phân biệt được giữa bốn nguyên nhân khả dĩ. Vài cuộc trò chuyện loại được ba trong bốn, với chi phí một buổi chiều."
+    },
+    {
+      "question": "Yếu tố nào phân biệt hai việc cùng đáng làm?",
+      "options": [
+        "Chi phí của việc trì hoãn từng cái",
+        "Số người trong đội ủng hộ từng việc",
+        "Thời gian mỗi việc đã nằm trong danh sách",
+        "Mức độ phức tạp kỹ thuật của từng việc"
+      ],
+      "correct": 0,
+      "explanation": "Mọi việc còn trong danh sách đều đáng làm, nên câu hỏi có đáng không không sắp xếp được gì. Hỏi hoãn ba tháng thì mất gì mới cho những câu trả lời khác nhau."
+    },
+    {
+      "question": "Vì sao xây nhầm thứ là dạng lãng phí lớn nhất?",
+      "options": [
+        "Vì toàn bộ công sức bị mất, kể cả phần được làm rất tốt",
+        "Vì nó luôn tốn nhiều thời gian hơn các dạng lãng phí khác",
+        "Vì nó chỉ bị phát hiện sau khi sản phẩm đã ra thị trường",
+        "Vì nó làm giảm uy tín của đội trong mắt các bộ phận khác"
+      ],
+      "correct": 0,
+      "explanation": "Mã ẩu thì sửa được, kiến trúc sai thì cải tổ được, nhưng một tính năng không ai cần thì mọi thứ trong đó đều vô giá trị. Đó là lý do việc kiểm chứng trước khi xây đáng giá tới vậy."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Chặng này khép lại nửa đầu của lộ trình nghề. Chín chặng trước dạy cách xây cho tốt; chặng này dạy cách biết mình đang xây đúng thứ - và hai kỹ năng ấy độc lập với nhau hoàn toàn."
+    },
+    {
+      "type": "heading",
+      "text": "Phần một: đo cho đúng"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chỉ số chỉ có nghĩa khi bạn nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
+        "Chia theo nhóm bắt đầu để tách chất lượng khỏi quy mô thu hút.",
+        "Chia theo bước để biến một tỷ lệ tổng thành một danh sách việc cụ thể.",
+        "Thử nghiệm có đối chứng là thứ duy nhất phân biệt gây ra với đi cùng nhau.",
+        "Định nghĩa chỉ số phải được viết ra, nếu không con số sẽ trôi mà không ai biết."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Phần hai: chọn cho đúng"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ước lượng luôn thấp vì bạn chỉ đếm được thứ mình biết là có.",
+        "Chia nhỏ và giao từng phần để rút ngắn thời gian giữa tin và biết.",
+        "Khi trễ, cắt phạm vi - đó là thứ duy nhất nhường được một cách công khai.",
+        "Ưu tiên bằng chi phí trì hoãn, và nhớ rằng mỗi lời đồng ý là một lời từ chối.",
+        "Kiểm chứng trước khi xây, vì làm tốt một thứ sai vẫn là mất trắng."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Kỹ năng chín chặng trước",
+        "text": "Xây cho đúng: dữ liệu nhất quán, hệ thống chịu lỗi, mã kiểm chứng được, triển khai an toàn."
+      },
+      "right": {
+        "label": "Kỹ năng chặng này",
+        "text": "Xây đúng thứ: biết vấn đề có thật, biết mình đang cải thiện điều gì, và biết khi nào nên dừng."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Bốn câu mang theo",
+      "text": "Vấn đề của ai? Bằng chứng nào cho thấy nó có thật? Con số nào cho biết ta đã giải được? Lát nhỏ nhất chạm được người dùng thật là gì? Hỏi được bốn câu ấy trong một buổi lập kế hoạch là bắt được phần lớn dự án không đáng làm."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Kỹ thuật giúp bạn xây nhanh và bền. Chỉ việc đo và chọn mới quyết định thứ bạn xây có đáng tồn tại hay không.",
+        "Chặng sau chuyển sang quy mô lớn hơn: nhiều đội cùng làm một sản phẩm, và những vấn đề chỉ xuất hiện ở quy mô ấy."
+      ]
+    }
+  ]
+}

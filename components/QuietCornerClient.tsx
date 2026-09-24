@@ -314,7 +314,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:items-start">
       {/* --- Một phút thở -------------------------------------------------- */}
       <section className="rounded-[28px] border border-stone-200 bg-stone-50 px-6 py-7 dark:border-stone-800 dark:bg-stone-900/50">
-        <h2 className="text-center text-base font-extrabold text-stone-800 dark:text-stone-100">
+        <h2 className="text-center text-base font-extrabold text-ink-heading">
           {t.quietCorner.breatheTitle}
         </h2>
         <p className="mx-auto mt-1.5 max-w-md text-center text-xs leading-relaxed text-ink-muted">
@@ -326,7 +326,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       {/* --- Đặt xuống một gánh nặng --------------------------------------- */}
       <section className="rounded-[28px] border border-stone-200 bg-white px-5 py-7 dark:border-stone-800 dark:bg-stone-900">
         <div className="px-1 text-center">
-          <h2 className="text-base font-extrabold text-stone-800 dark:text-stone-100">
+          <h2 className="text-base font-extrabold text-ink-heading">
             {t.quietCorner.burdenTitle}
           </h2>
           <p className="mx-auto mt-1.5 max-w-md text-xs leading-relaxed text-ink-muted">
@@ -336,7 +336,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
 
         {/* Chọn nhóm: đưa lên trước, không cắt bớt. */}
         <div className="mt-5">
-          <p className="text-sm font-bold text-stone-700 dark:text-stone-200">
+          <p className="text-sm font-bold text-ink-body">
             {t.worryThemePrompt.question}
           </p>
           <div className="mt-2.5 flex flex-wrap gap-1.5">
@@ -390,7 +390,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           Danh sách nỗi lo phía trên là những nỗi lo viết sẵn; khối này dành
           cho nỗi lo không nằm trong danh sách nào - phần lớn trường hợp thật. */}
       <section className="mt-6 rounded-[28px] border border-stone-200 bg-white px-5 py-7 dark:border-stone-800 dark:bg-stone-900">
-        <h2 className="text-center text-base font-extrabold text-stone-800 dark:text-stone-100">
+        <h2 className="text-center text-base font-extrabold text-ink-heading">
           {t.quietQuestions.title}
         </h2>
         <p className="mx-auto mt-1.5 max-w-md text-center text-xs leading-relaxed text-ink-muted">
@@ -405,7 +405,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               <span className="text-[11px] font-bold text-orange-700 dark:text-orange-300">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <p className="mt-1 text-sm font-bold leading-snug text-stone-800 dark:text-stone-100">
+              <p className="mt-1 text-sm font-bold leading-snug text-ink-heading">
                 {t.quietQuestionItems[item.id]?.question ?? item.question}
               </p>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">
@@ -428,7 +428,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         {[t.quietClosing.line1, t.quietClosing.line2].map((line) => (
           <p
             key={line}
-            className="mx-auto mt-2.5 max-w-md text-sm leading-relaxed text-stone-600 dark:text-stone-300"
+            className="mx-auto mt-2.5 max-w-md text-sm leading-relaxed text-ink-soft"
           >
             {line}
           </p>
@@ -442,7 +442,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         <div className="flex items-start gap-3">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-stone-400" />
           <div>
-            <h2 className="text-sm font-extrabold text-stone-700 dark:text-stone-200">
+            <h2 className="text-sm font-extrabold text-ink-body">
               {t.quietLimits.title}
             </h2>
             <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">

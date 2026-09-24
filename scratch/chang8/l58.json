@@ -1,0 +1,173 @@
+{
+  "id": 58,
+  "slug": "do-luong-va-phan-vi",
+  "title": "Đo lường: vì sao giá trị trung bình nói dối",
+  "subtitle": "Thời gian phản hồi trung bình 200 mili giây vẫn có thể nghĩa là một phần trăm người dùng chờ mười giây.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "📊",
+  "track": "professional",
+  "whyItMatters": "Mọi quyết định trong chặng này - đặt thời hạn chờ ở đâu, có cần bộ nhớ đệm không, phiên bản cũ tắt được chưa - đều dựa vào số liệu. Đọc sai số liệu thì mọi quyết định phía sau đều sai theo mà vẫn có vẻ có căn cứ.",
+  "openingQuestion": "Thời gian phản hồi trung bình của dịch vụ là 200 mili giây. Điều đó nói gì về trải nghiệm người dùng?",
+  "openingOptions": [
+    "Rất ít, vì trung bình che mất nhóm người dùng chậm nhất",
+    "Phần lớn người dùng nhận phản hồi trong khoảng 200 mili giây",
+    "Không có người dùng nào phải chờ lâu hơn 200 mili giây",
+    "Hệ thống đang hoạt động trong ngưỡng cho phép của mọi tiêu chuẩn"
+  ],
+  "correctOption": 0,
+  "explanation": "Trung bình gộp mọi lần gọi thành một con số và làm biến mất phần đuôi. Một dịch vụ mà 99 phần trăm lần gọi trả về trong 50 mili giây còn 1 phần trăm mất 15 giây vẫn cho trung bình khoảng 200 - và cái 1 phần trăm đó là những người dùng thật đang chờ mười lăm giây. Tệ hơn, họ không rải đều: thường là những người có nhiều dữ liệu nhất, tức là khách hàng lớn nhất của bạn. Vì thế phải đọc theo phân vị, tức là ngưỡng mà 95 hay 99 phần trăm số lần gọi nằm dưới.",
+  "diagram": [
+    {
+      "label": "Đo mọi lần gọi",
+      "arrow": true
+    },
+    {
+      "label": "Trung bình gộp tất cả thành một số",
+      "arrow": true
+    },
+    {
+      "label": "Phân vị 99 giữ lại phần đuôi",
+      "arrow": true
+    },
+    {
+      "label": "Đó mới là trải nghiệm của nhóm chậm nhất"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Người chậm nhất là khách lớn nhất",
+    "description": "Phần đuôi chậm hiếm khi ngẫu nhiên. Nó thường rơi vào tài khoản có nhiều dữ liệu nhất, nhiều bản ghi nhất, truy vấn nặng nhất - tức là khách hàng quan trọng nhất. Tối ưu theo trung bình là tối ưu cho nhóm ít quan trọng nhất."
+  },
+  "keyTakeaways": [
+    "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
+    "Người dùng chậm nhất thường là khách hàng lớn nhất, không phải ngẫu nhiên.",
+    "Đặt thời hạn chờ dựa trên phân vị cao, không dựa trên giá trị trung bình.",
+    "Đo bốn thứ tối thiểu: lưu lượng, tỷ lệ lỗi, độ trễ theo phân vị, và mức sử dụng tài nguyên."
+  ],
+  "summary": {
+    "keyIdea": "Trải nghiệm tệ nhất mới là thứ quyết định danh tiếng, và trung bình giấu đúng phần đó.",
+    "formula": "Đọc phân vị, không đọc trung bình.",
+    "commonMistake": "Kết luận hệ thống khoẻ vì trung bình đẹp, trong khi phần đuôi đang hỏng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở bảng theo dõi của bạn và tìm xem có biểu đồ độ trễ theo phân vị 99 không. Nếu chỉ có trung bình thì bạn đang không nhìn thấy nhóm người dùng đang chịu đựng hệ thống của mình."
+  },
+  "practicePrompt": {
+    "question": "Bạn cần đặt thời hạn chờ cho lời gọi tới một dịch vụ có phân vị 99 là 800 mili giây. Nên đặt bao nhiêu?",
+    "options": [
+      "Trên 800 một khoảng an toàn, để không cắt nhầm những lời gọi vốn sẽ thành công",
+      "Bằng đúng giá trị trung bình, để cho những lời gọi chậm sẽ bị cắt sớm nhất có thể",
+      "Càng ngắn càng tốt, vì lời gọi chậm nào cũng là lời gọi đáng bỏ đi",
+      "Không đặt, để lời gọi nào cũng có cơ hội hoàn thành đầy đủ"
+    ],
+    "correct": 0,
+    "explanation": "Thời hạn chờ đặt dưới phân vị 99 nghĩa là bạn chủ động cắt những lời gọi vốn sẽ thành công, biến sự chậm thành lỗi thật. Đặt trên nó một khoảng an toàn thì chỉ những trường hợp bất thường mới bị cắt, đúng mục đích của cơ chế này."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao không nên đánh giá hiệu năng bằng giá trị trung bình?",
+      "options": [
+        "Vì nó gộp cả phần đuôi vào một con số và làm nhóm chậm nhất biến mất",
+        "Vì nó luôn cho kết quả cao hơn thực tế mà người dùng cảm nhận",
+        "Vì nó chỉ tính được khi số lượng mẫu đủ lớn trong một khoảng thời gian",
+        "Vì nó không phân biệt được yêu cầu thành công với yêu cầu bị lỗi"
+      ],
+      "correct": 0,
+      "explanation": "Một phần trăm lần gọi mất mười lăm giây gần như không làm trung bình nhúc nhích, nhưng đó là hàng nghìn người dùng thật mỗi ngày. Phân vị giữ lại đúng phần thông tin mà trung bình xoá đi."
+    },
+    {
+      "question": "Phân vị 99 của độ trễ nghĩa là gì?",
+      "options": [
+        "99 phần trăm số lần gọi nhanh hơn giá trị đó",
+        "Độ trễ trung bình của 99 phần trăm số lần gọi nhanh nhất",
+        "Giá trị lớn nhất được ghi nhận trong 99 phần trăm khoảng thời gian đo",
+        "Tỷ lệ lời gọi hoàn thành trong ngưỡng thời gian đã cam kết"
+      ],
+      "correct": 0,
+      "explanation": "Đó là một ngưỡng chứ không phải một mức trung bình: chỉ một phần trăm số lần gọi chậm hơn con số ấy. Đọc kèm phân vị 50 để thấy khoảng cách giữa trải nghiệm điển hình và trải nghiệm tệ nhất."
+    },
+    {
+      "question": "Vì sao phần đuôi chậm lại đáng lo hơn vẻ ngoài của nó?",
+      "options": [
+        "Vì nó thường rơi vào những tài khoản có nhiều dữ liệu nhất",
+        "Vì nó luôn tăng dần theo thời gian dù hệ thống không thay đổi",
+        "Vì nó chỉ hiện vào khung giờ vắng người dùng",
+        "Vì nó không thể đo được bằng các công cụ giám sát thông thường"
+      ],
+      "correct": 0,
+      "explanation": "Nhiều dữ liệu nghĩa là truy vấn nặng hơn, danh sách dài hơn, xử lý lâu hơn. Nên nhóm chậm nhất trùng với nhóm khách hàng lớn nhất, và tối ưu theo trung bình là bỏ qua đúng nhóm đó."
+    },
+    {
+      "question": "Bốn nhóm chỉ số tối thiểu cần theo dõi cho một dịch vụ là gì?",
+      "options": [
+        "Lưu lượng, tỷ lệ lỗi, độ trễ theo phân vị và mức sử dụng tài nguyên",
+        "Số người dùng, doanh thu, số phiên bản đang chạy và số lần triển khai",
+        "Dung lượng đĩa, dung lượng bộ nhớ, số luồng và số kết nối đang mở ra",
+        "Số dòng nhật ký, số cảnh báo, số sự cố và thời gian khắc phục trung bình"
+      ],
+      "correct": 0,
+      "explanation": "Bốn nhóm đó trả lời được phần lớn câu hỏi khi có sự cố: đang có bao nhiêu việc, bao nhiêu phần trăm hỏng, người dùng chờ bao lâu, và nút thắt nằm ở tài nguyên nào."
+    },
+    {
+      "question": "Vì sao thời hạn chờ nên đặt dựa trên phân vị cao?",
+      "options": [
+        "Để không cắt nhầm những lời gọi chậm nhưng vẫn sẽ thành công",
+        "Để mọi lời gọi đều được cắt trước khi chúng chiếm quá nhiều tài nguyên",
+        "Để giá trị thời hạn chờ luôn lớn hơn thời gian xử lý của máy chủ đích",
+        "Để cơ chế thử lại kịp chạy hết số lần"
+      ],
+      "correct": 0,
+      "explanation": "Đặt dưới phân vị 99 là tự tạo ra lỗi cho những lời gọi vốn sẽ về đích. Thời hạn chờ nhằm bắt trường hợp bất thường, nên phải nằm trên vùng hành vi bình thường một khoảng an toàn."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Cả chặng này toàn những quyết định cần con số: thời hạn chờ bao nhiêu, đệm bao lâu, tắt phiên bản cũ được chưa. Nhưng con số quen thuộc nhất - giá trị trung bình - lại là con số dễ đánh lừa nhất."
+    },
+    {
+      "type": "heading",
+      "text": "Trung bình xoá mất phần đuôi"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hình dung một dịch vụ trả lời trong 50 mili giây ở 99 phần trăm số lần gọi, và mất 15 giây ở một phần trăm còn lại. Trung bình rơi vào khoảng 200 mili giây, một con số trông rất lành. Nhưng nếu dịch vụ nhận một triệu lời gọi mỗi ngày thì mười nghìn lần trong số đó là mười lăm giây chờ đợi - và những người đó không thấy con số trung bình nào cả."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Đọc phân vị nào",
+      "subtitle": "Luôn đọc kèm nhau, vì khoảng cách giữa chúng mới là thông tin",
+      "concepts": [
+        {
+          "vi": "Phân vị 50",
+          "en": "median",
+          "def": "Trải nghiệm điển hình. Một nửa số lần gọi nhanh hơn con số này."
+        },
+        {
+          "vi": "Phân vị 95",
+          "en": "p95",
+          "def": "Bắt đầu thấy phần đuôi. Đây thường là mức dùng để đặt cam kết chất lượng dịch vụ."
+        },
+        {
+          "vi": "Phân vị 99",
+          "en": "p99",
+          "def": "Trải nghiệm của nhóm tệ nhất, và thường là của khách hàng lớn nhất."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Khoảng cách mới là tín hiệu",
+      "text": "Phân vị 50 là 40 mili giây còn phân vị 99 là 8 giây thì hệ thống của bạn đang có hai chế độ hoạt động khác hẳn nhau, và bạn cần tìm ra cái gì phân chia chúng. Một con số đơn lẻ không bao giờ nói được điều đó."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Người dùng không trải nghiệm giá trị trung bình. Họ trải nghiệm chính lần gọi của họ, và phần đuôi là nơi lòng tin bị mất.",
+        "Bài sau nói về thứ mọi dịch vụ mở ra Internet đều phải giả định: mọi dữ liệu gửi tới đều có thể là dữ liệu độc hại."
+      ]
+    }
+  ],
+  "interactiveType": "tail-risk"
+}

@@ -43,7 +43,7 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
       >
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <span className="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 flex items-center justify-center flex-shrink-0">
+            <span className="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/40 text-info flex items-center justify-center flex-shrink-0">
               <ShieldQuestion className="w-4.5 h-4.5" />
             </span>
             <div>
@@ -51,12 +51,12 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
               <p className="text-xs text-ink-muted mt-0.5 line-clamp-1">{lesson.title}</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 flex-shrink-0">
+          <button onClick={onClose} className="text-stone-400 hover:text-ink-body flex-shrink-0">
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+        <p className="text-sm text-ink-soft leading-relaxed">
           {t.lessonAppeal.blurb}
         </p>
 
@@ -66,13 +66,13 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
           placeholder={t.lessonAppeal.notePlaceholder}
           rows={3}
           maxLength={500}
-          className="w-full px-3 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-ink placeholder:text-stone-400 focus:outline-none focus:border-stone-400 resize-none"
+          className="w-full px-3 py-2.5 rounded-lg border border-line-mid bg-white dark:bg-stone-800 text-sm text-ink placeholder:text-stone-400 focus:outline-none focus:border-stone-400 resize-none"
         />
 
         <button
           onClick={() => void handleSubmit()}
           disabled={sending}
-          className="w-full py-3 rounded-xl font-bold text-sm bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 disabled:opacity-60 transition-colors"
+          className="w-full py-3 rounded-xl font-bold text-sm bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert disabled:opacity-60 transition-colors"
         >
           {sending ? t.lessonAppeal.sending : t.lessonAppeal.submit}
         </button>

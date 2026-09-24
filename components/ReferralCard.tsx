@@ -68,12 +68,12 @@ export default function ReferralCard() {
           readOnly
           value={link}
           onClick={(e) => e.currentTarget.select()}
-          className="flex-1 min-w-0 text-xs bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-lg px-3 py-2.5 text-stone-600 dark:text-stone-400 truncate"
+          className="flex-1 min-w-0 text-xs bg-stone-50 dark:bg-stone-800/60 border border-line-mid rounded-lg px-3 py-2.5 text-ink-soft truncate"
         />
         <button
           onClick={handleCopy}
           title={t.referralCard.copyButtonTitle}
-          className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+          className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-line-mid text-ink-soft hover:bg-surface transition-colors"
         >
           {copied ? <Check className="w-4 h-4 text-accent" /> : <Copy className="w-4 h-4" />}
         </button>
@@ -92,7 +92,7 @@ export default function ReferralCard() {
 
       {stats.totalInvited > 0 && (
         <p className="text-[11px] text-ink-faint mt-3 text-center">
-          {t.referralCard.invitedPrefix} <span className="font-bold text-stone-600 dark:text-stone-300">{stats.totalInvited}</span> {t.referralCard.invitedUnit}
+          {t.referralCard.invitedPrefix} <span className="font-bold text-ink-soft">{stats.totalInvited}</span> {t.referralCard.invitedUnit}
           {stats.totalRewarded > 0 && (
             <>
               {" · "}

@@ -56,7 +56,7 @@ export default function ProfileWallPosts({ userId }: { userId: string }) {
           className="block rounded-xl border border-line px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
         >
           {post.content && (
-            <p className="text-sm text-stone-800 dark:text-stone-200 leading-relaxed line-clamp-3 whitespace-pre-wrap break-words">
+            <p className="text-sm text-ink-heading leading-relaxed line-clamp-3 whitespace-pre-wrap break-words">
               {post.content}
             </p>
           )}

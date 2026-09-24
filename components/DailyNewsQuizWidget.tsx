@@ -160,7 +160,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
         } ${compact ? "px-4 py-3" : "px-6 py-4"}`}
       >
         <div className="flex items-center gap-2.5">
-          <div className="rounded-xl bg-sky-50 dark:bg-sky-950/30 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0 w-8 h-8">
+          <div className="rounded-xl bg-sky-50 dark:bg-sky-950/30 text-info flex items-center justify-center shrink-0 w-8 h-8">
             <Newspaper className="w-4.5 h-4.5" />
           </div>
           <div>
@@ -186,9 +186,9 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
       {!collapsed && (
         <div className={compact ? "p-4 space-y-3" : "p-6 space-y-4"}>
           {/* News snippet box */}
-          <div className={`bg-stone-50 dark:bg-stone-950 border border-line-soft/80 ${compact ? "rounded-xl p-3" : "rounded-2xl p-4"}`}>
+          <div className={`bg-surface border border-stone-100 dark:border-stone-800/80 ${compact ? "rounded-xl p-3" : "rounded-2xl p-4"}`}>
             <div className="flex items-center gap-1.5 mb-2 flex-wrap">
-              <span className="text-[9px] font-extrabold bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-400 px-2 py-0.5 rounded uppercase">
+              <span className="text-[9px] font-extrabold bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 px-2 py-0.5 rounded uppercase">
                 {practiceMode ? t.newsQuiz.badgePractice : t.newsQuiz.badgeToday}
               </span>
               {/* NEWS_QUIZZES (t.newsQuiz.quizzes) is a hand-authored, fixed
@@ -203,7 +203,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
               {activeQuiz.newsTitle}
             </h4>
             {!compact && (
-              <p className="text-[11px] text-stone-600 dark:text-stone-400 mt-2 leading-relaxed italic">
+              <p className="text-[11px] text-ink-soft mt-2 leading-relaxed italic">
                 "{activeQuiz.newsBody}"
               </p>
             )}
@@ -231,12 +231,12 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                       compact ? "p-2.5 text-[11px]" : "p-3.5 text-xs"
                     } ${
                       showSuccess
-                        ? "border-emerald-500 bg-emerald-500/[0.04] dark:bg-emerald-950/20 text-emerald-900 dark:text-emerald-400 font-bold"
+                        ? "border-emerald-500 bg-emerald-500/[0.04] dark:bg-emerald-950/20 text-accent-ink-strong font-bold"
                         : showFailure
-                        ? "border-rose-500 bg-rose-500/[0.04] dark:bg-rose-950/20 text-rose-900 dark:text-rose-400"
+                        ? "border-rose-500 bg-rose-500/[0.04] dark:bg-rose-950/20 text-alert-ink"
                         : isSelected
-                        ? "border-sky-500 bg-sky-500/[0.02] text-sky-900 dark:text-sky-400 font-bold"
-                        : "border-line hover:border-stone-300 dark:hover:border-stone-700 bg-white dark:bg-stone-900 text-ink-body"
+                        ? "border-sky-500 bg-sky-500/[0.02] text-sky-900 dark:text-sky-300 font-bold"
+                        : "border-line hover:border-line-strong bg-white dark:bg-stone-900 text-ink-body"
                     }`}
                   >
                     <span className="mt-0.5 shrink-0">
@@ -264,19 +264,19 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
             <button
               onClick={practiceMode ? submitPractice : handleSubmit}
               disabled={activeSelectedOpt === null}
-              className={`w-full bg-stone-900 hover:bg-stone-800 disabled:bg-stone-200 dark:bg-stone-100 dark:hover:bg-stone-200 dark:disabled:bg-stone-800 text-white dark:text-stone-900 disabled:text-stone-400 rounded-xl font-extrabold tracking-wider uppercase transition-colors cursor-pointer ${
+              className={`w-full bg-stone-900 hover:bg-stone-800 disabled:bg-stone-200 dark:bg-stone-100 dark:hover:bg-stone-200 dark:disabled:bg-stone-800 text-ink-invert disabled:text-stone-400 rounded-xl font-extrabold tracking-wider uppercase transition-colors cursor-pointer ${
                 compact ? "py-2.5 text-[10px]" : "py-3 text-xs"
               }`}
             >
               {t.newsQuiz.submitAnswer}
             </button>
           ) : (
-            <div className={`rounded-2xl bg-stone-50 dark:bg-stone-950 border border-stone-200/60 dark:border-stone-800/80 animate-[fadeIn_0.35s_ease-out] ${compact ? "p-3" : "p-4.5"}`}>
+            <div className={`rounded-2xl bg-surface border border-stone-200/60 dark:border-stone-800/80 animate-[fadeIn_0.35s_ease-out] ${compact ? "p-3" : "p-4.5"}`}>
               <h5 className="text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 text-ink-body mb-2">
                 <Award className={`w-4 h-4 ${activeIsCorrect ? "text-emerald-500" : "text-stone-400"}`} />
                 <span>{activeIsCorrect ? t.newsQuiz.correctAnswerLabel : format(t.newsQuiz.wrongAnswerLabel, { letter: String.fromCharCode(65 + activeQuiz.correctIndex) })}</span>
               </h5>
-              <p className="text-[11px] text-stone-600 dark:text-stone-400 leading-relaxed">
+              <p className="text-[11px] text-ink-soft leading-relaxed">
                 {activeQuiz.explanation}
               </p>
             </div>
@@ -301,7 +301,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
               )}
               <button
                 onClick={() => setPracticeMode(false)}
-                className={`text-ink-muted hover:text-stone-800 dark:hover:text-stone-200 font-bold shrink-0 ${compact ? "text-[10px]" : "text-xs"}`}
+                className={`text-ink-muted hover:text-ink-heading font-bold shrink-0 ${compact ? "text-[10px]" : "text-xs"}`}
               >
                 {t.newsQuiz.exitPractice}
               </button>
@@ -309,7 +309,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           ) : (
             <button
               onClick={startPractice}
-              className={`w-full border-2 border-dashed border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-400 rounded-xl font-bold hover:bg-sky-50 dark:hover:bg-sky-950/30 transition-colors cursor-pointer ${compact ? "py-2 text-[10px]" : "py-2.5 text-xs"}`}
+              className={`w-full border-2 border-dashed border-info-line text-sky-700 dark:text-sky-400 rounded-xl font-bold hover:bg-sky-50 dark:hover:bg-sky-950/30 transition-colors cursor-pointer ${compact ? "py-2 text-[10px]" : "py-2.5 text-xs"}`}
             >
               {t.newsQuiz.startPractice}
             </button>

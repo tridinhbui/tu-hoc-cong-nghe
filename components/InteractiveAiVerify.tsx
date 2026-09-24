@@ -75,7 +75,7 @@ export default function InteractiveAiVerify() {
           const done = choice !== undefined;
           return (
             <li key={claim.text} className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
-              <p className="text-xs font-semibold leading-snug text-stone-800 dark:text-stone-100">
+              <p className="text-xs font-semibold leading-snug text-ink-heading">
                 {i + 1}. {claim.text}
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
@@ -100,7 +100,7 @@ export default function InteractiveAiVerify() {
                 ))}
               </div>
               {done && (
-                <p className="mt-2 text-[11px] leading-relaxed text-stone-600 dark:text-stone-300">{claim.why}</p>
+                <p className="mt-2 text-[11px] leading-relaxed text-ink-soft">{claim.why}</p>
               )}
             </li>
           );

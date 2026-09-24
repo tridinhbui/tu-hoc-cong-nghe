@@ -1,0 +1,173 @@
+{
+  "id": 42,
+  "slug": "dia-chi-ip-va-ten-mien",
+  "title": "Địa chỉ và tên miền: bước đầu tiên của mọi lần gọi mạng",
+  "subtitle": "Trước khi gửi được gì, máy phải đổi một cái tên thành một địa chỉ.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📇",
+  "track": "professional",
+  "whyItMatters": "Rất nhiều sự cố kéo dài hàng giờ hoá ra chỉ là chuyện phân giải tên: bản ghi trỏ sai, bộ nhớ đệm giữ giá trị cũ, hoặc thời gian sống đặt quá dài nên thay đổi không lan kịp. Biết bước này diễn ra thế nào là biết chỗ đầu tiên cần kiểm khi một dịch vụ tự nhiên không gọi được.",
+  "openingQuestion": "Bạn vừa đổi máy chủ và cập nhật bản ghi tên miền, nhưng một số người dùng vẫn vào máy chủ cũ. Vì sao?",
+  "openingOptions": [
+    "Bộ nhớ đệm ở nhiều tầng vẫn đang giữ địa chỉ cũ cho tới khi hết hạn",
+    "Bản ghi tên miền mới cần được duyệt thủ công trước khi có hiệu lực",
+    "Máy chủ cũ vẫn chạy nên nó tiếp tục nhận yêu cầu về phía mình",
+    "Trình duyệt của người dùng cần được khởi động lại thì mới nhận địa chỉ mới"
+  ],
+  "correctOption": 0,
+  "explanation": "Kết quả phân giải tên miền được nhớ tạm ở rất nhiều chỗ: trình duyệt, hệ điều hành, máy chủ phân giải của nhà mạng, và các tầng trung gian khác. Mỗi bản ghi mang theo một thời gian sống, và trong khoảng đó thì không ai đi hỏi lại. Đổi bản ghi chỉ ảnh hưởng tới những lần hỏi mới, nên thay đổi lan dần chứ không tức thì. Vì vậy việc cần làm trước một lần chuyển máy chủ là hạ thời gian sống xuống từ vài ngày trước, chứ không phải lúc đang chuyển.",
+  "diagram": [
+    {
+      "label": "Ứng dụng cần gọi tới một tên miền",
+      "arrow": true
+    },
+    {
+      "label": "Hỏi lần lượt: bộ nhớ đệm, hệ điều hành, nhà mạng",
+      "arrow": true
+    },
+    {
+      "label": "Nhận về một địa chỉ, kèm thời gian sống",
+      "arrow": true
+    },
+    {
+      "label": "Trong thời gian đó không ai hỏi lại nữa"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hạ thời gian sống trước khi chuyển",
+    "description": "Quy trình chuyển máy chủ chuẩn bắt đầu từ vài ngày trước: hạ thời gian sống của bản ghi từ một ngày xuống vài phút, chờ cho giá trị cũ hết hạn ở khắp nơi, rồi mới đổi địa chỉ. Sau khi mọi thứ ổn định thì nâng lại."
+  },
+  "keyTakeaways": [
+    "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi.",
+    "Kết quả phân giải được nhớ tạm ở nhiều tầng, mỗi bản ghi có thời gian sống riêng.",
+    "Đổi bản ghi chỉ ảnh hưởng những lần hỏi mới, nên thay đổi lan dần.",
+    "Cổng là phần tách riêng khỏi địa chỉ: một máy phục vụ nhiều dịch vụ qua nhiều cổng."
+  ],
+  "summary": {
+    "keyIdea": "Phân giải tên là bước đầu tiên và cũng là chỗ hay hỏng đầu tiên của mọi lần gọi mạng.",
+    "formula": "Tên miền → địa chỉ → cổng → kết nối.",
+    "commonMistake": "Đổi bản ghi rồi chờ hiệu lực tức thì, trong khi bộ nhớ đệm còn giữ giá trị cũ."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chạy lệnh tra tên miền của dịch vụ bạn đang chạy và đọc thời gian sống trong kết quả trả về. Con số đó chính là thời gian tối đa một thay đổi cần để lan tới hết người dùng."
+  },
+  "practicePrompt": {
+    "question": "Dịch vụ của bạn gọi được từ máy chủ nhưng không gọi được từ máy cá nhân, cùng một tên miền. Kiểm tra gì trước?",
+    "options": [
+      "Tên miền phân giải ra địa chỉ nào ở mỗi bên, vì hai bên có thể ra khác nhau",
+      "Máy chủ đích có đang chạy hay không, bằng cách kiểm tra tiến trình của chính nó",
+      "Mã nguồn phía máy cá nhân có gọi đúng đường dẫn của dịch vụ hay không",
+      "Chứng chỉ bảo mật của tên miền đó còn hạn sử dụng hay đã hết hạn rồi"
+    ],
+    "correct": 0,
+    "explanation": "Cùng một tên miền phân giải ra hai địa chỉ khác nhau là chuyện rất thường: mạng nội bộ trả về địa chỉ nội bộ còn bên ngoài trả về địa chỉ công cộng. So kết quả phân giải ở hai bên tách được ngay lỗi mạng khỏi lỗi ứng dụng, và nó chỉ tốn một lệnh."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao đổi bản ghi tên miền không có hiệu lực ngay lập tức?",
+      "options": [
+        "Vì kết quả cũ còn nằm trong bộ nhớ đệm cho tới khi hết thời gian sống",
+        "Vì bản ghi mới phải được nhà cung cấp tên miền duyệt trước",
+        "Vì các máy chủ phân giải chỉ cập nhật dữ liệu một lần mỗi ngày",
+        "Vì máy chủ cũ vẫn tiếp tục nhận yêu cầu cho tới khi nó bị tắt hẳn đi"
+      ],
+      "correct": 0,
+      "explanation": "Trong thời gian sống, không ai đi hỏi lại nên ai cũng dùng giá trị cũ. Đó là lý do quy trình chuyển máy chủ luôn bắt đầu bằng việc hạ thời gian sống từ nhiều ngày trước."
+    },
+    {
+      "question": "Cổng trong một địa chỉ dịch vụ dùng để làm gì?",
+      "options": [
+        "Phân biệt nhiều dịch vụ cùng chạy trên một máy",
+        "Xác định máy đích nằm ở vị trí nào trong hệ thống mạng",
+        "Quy định tốc độ tối đa mà kết nối tới dịch vụ đó được dùng",
+        "Chỉ ra giao thức mã hoá mà hai bên sẽ dùng khi trao đổi"
+      ],
+      "correct": 0,
+      "explanation": "Địa chỉ đưa gói tin tới đúng máy; cổng đưa nó tới đúng tiến trình trên máy đó. Nhờ vậy một máy chạy được cả máy chủ web lẫn cơ sở dữ liệu mà không lẫn vào nhau."
+    },
+    {
+      "question": "Vì sao cùng một tên miền có thể phân giải ra hai địa chỉ khác nhau?",
+      "options": [
+        "Vì câu trả lời phụ thuộc nơi hỏi, ví dụ trong mạng nội bộ hay ngoài",
+        "Vì mỗi trình duyệt sẽ tự chọn một địa chỉ ngẫu nhiên trong danh sách",
+        "Vì bản ghi tên miền chỉ chính xác khi được hỏi từ đúng quốc gia đăng ký",
+        "Vì địa chỉ được sinh lại mỗi lần hỏi để tránh bị dò tìm từ bên ngoài"
+      ],
+      "correct": 0,
+      "explanation": "Cấu hình phân giải theo vị trí là chuyện phổ biến: nội bộ trả địa chỉ nội bộ, bên ngoài trả địa chỉ công cộng, và dịch vụ toàn cầu trả về máy chủ gần người hỏi nhất."
+    },
+    {
+      "question": "Bước phân giải tên xảy ra vào lúc nào?",
+      "options": [
+        "Trước khi gói tin đầu tiên được gửi đi",
+        "Song song với việc gửi những gói tin đầu tiên cho nhanh",
+        "Sau khi kết nối đã được thiết lập với máy chủ đích",
+        "Chỉ khi kết nối trực tiếp bằng địa chỉ đã thất bại trước đó"
+      ],
+      "correct": 0,
+      "explanation": "Không có địa chỉ thì không biết gửi gói đi đâu, nên phân giải luôn đi trước. Nó cũng là lý do một lần gọi mạng chậm bất thường có thể chẳng liên quan gì tới máy chủ đích."
+    },
+    {
+      "question": "Vì sao nên hạ thời gian sống của bản ghi trước khi chuyển máy chủ?",
+      "options": [
+        "Để giá trị cũ hết hạn nhanh và thay đổi lan tới người dùng sớm hơn",
+        "Để giảm bớt số lượng yêu cầu phân giải mà máy chủ tên miền phải xử lý",
+        "Để buộc nhà mạng ưu tiên cập nhật bản ghi của tên miền đó",
+        "Để chứng chỉ bảo mật của tên miền được cấp lại theo địa chỉ mới"
+      ],
+      "correct": 0,
+      "explanation": "Thời gian sống ngắn nghĩa là bộ nhớ đệm hỏi lại thường xuyên hơn, nên đổi địa chỉ lan nhanh. Cái giá là nhiều lượt hỏi hơn, nên thường chỉ hạ trong giai đoạn chuyển rồi nâng lại sau."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Trước khi có gói tin nào rời khỏi máy bạn, phải trả lời xong một câu hỏi: cái tên này ứng với địa chỉ nào. Bước ấy diễn ra âm thầm, và khi nó hỏng thì mọi thứ phía sau đều trông như hỏng."
+    },
+    {
+      "type": "heading",
+      "text": "Chuỗi bộ nhớ đệm"
+    },
+    {
+      "type": "paragraph",
+      "text": "Câu hỏi không đi thẳng ra ngoài. Nó lần lượt gặp bộ nhớ đệm của trình duyệt, của hệ điều hành, của máy chủ phân giải nhà mạng - và dừng ở chỗ đầu tiên còn giữ câu trả lời chưa hết hạn. Nghĩa là phần lớn lần gọi không hề đi hỏi ai cả, và cũng nghĩa là thay đổi của bạn không tới được những chỗ đó cho tới khi bản ghi cũ hết hạn."
+    },
+    {
+      "type": "callout",
+      "label": "Thời gian sống là lời hứa",
+      "text": "Đặt một ngày nghĩa là bạn hứa địa chỉ này sẽ không đổi trong một ngày. Ai đã hỏi rồi thì có quyền tin vào đó. Muốn đổi nhanh thì phải rút ngắn lời hứa trước khi thay đổi, chứ không phải lúc đang thay đổi."
+    },
+    {
+      "type": "heading",
+      "text": "Địa chỉ đưa tới máy, cổng đưa tới tiến trình"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Địa chỉ",
+        "text": "Xác định máy nào trong toàn bộ mạng. Gói tin được định tuyến qua nhiều chặng dựa vào đúng thông tin này."
+      },
+      "right": {
+        "label": "Cổng",
+        "text": "Xác định tiến trình nào trên máy đó. Nhờ nó, một máy chạy được nhiều dịch vụ mà lưu lượng không lẫn vào nhau."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Khi một dịch vụ đột nhiên không gọi được, kiểm tra kết quả phân giải trước khi nghi ngờ mã.",
+        "So kết quả phân giải ở hai nơi khác nhau: rất hay ra hai địa chỉ khác nhau.",
+        "Hạ thời gian sống vài ngày trước mọi lần chuyển máy chủ đã lên kế hoạch."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Phân giải tên là bước đầu tiên của mọi lần gọi mạng, nên nó cũng là chỗ đầu tiên đáng nghi khi có sự cố.",
+        "Bài sau nói về việc chọn cách gửi: bảo đảm tới nơi và đúng thứ tự, hay nhanh nhất có thể và chấp nhận mất."
+      ]
+    }
+  ]
+}

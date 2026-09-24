@@ -1,0 +1,174 @@
+{
+  "id": 23,
+  "slug": "so-thuc-va-sai-so",
+  "title": "Số thực: vì sao 0,1 cộng 0,2 không ra 0,3",
+  "subtitle": "Máy lưu số thập phân bằng hệ nhị phân, và phần lớn số thập phân không biểu diễn chẵn được.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔬",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Mọi hệ thống có tiền đều gặp chuyện này: tổng của một cột số lệch vài đồng so với tổng tính tay, và không ai tìm ra đồng đó đi đâu. Nó không đi đâu cả - nó chưa từng tồn tại, vì con số bạn gõ vào không phải con số máy đã lưu.",
+  "openingQuestion": "Trong hầu hết ngôn ngữ lập trình, biểu thức 0,1 + 0,2 == 0,3 cho kết quả gì?",
+  "openingOptions": [
+    "Sai, vì tổng thực tế lệch một lượng cực nhỏ so với 0,3",
+    "Đúng, vì cả hai vế đều được làm tròn về cùng một giá trị",
+    "Đúng, vì phép cộng số thực luôn cho kết quả chính xác tuyệt đối",
+    "Tuỳ máy, vì mỗi bộ xử lý làm tròn số thực theo một cách riêng"
+  ],
+  "correctOption": 0,
+  "explanation": "Số thực được lưu theo hệ nhị phân, và trong hệ nhị phân thì 0,1 là một số thập phân vô hạn tuần hoàn - hệt như 1 chia 3 trong hệ mười. Máy buộc phải cắt ở một chỗ nào đó, nên thứ được lưu chỉ là giá trị gần đúng của 0,1. Cộng hai giá trị gần đúng lại thì sai số cũng cộng theo, và tổng lệch khỏi 0,3 một lượng khoảng một phần mười tỷ tỷ. Lượng đó vô nghĩa với con người nhưng đủ để phép so sánh bằng trả về sai.",
+  "diagram": [
+    {
+      "label": "0,1 trong hệ mười - hữu hạn",
+      "arrow": true
+    },
+    {
+      "label": "đổi sang nhị phân - vô hạn tuần hoàn",
+      "arrow": true
+    },
+    {
+      "label": "cắt ở 53 bit - lưu giá trị gần đúng",
+      "arrow": true
+    },
+    {
+      "label": "cộng hai giá trị gần đúng - sai số tích lại"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Tên lửa Patriot, 1991",
+    "description": "Hệ thống đo thời gian bằng bội số của 0,1 giây, lưu dưới dạng số thực. Sau 100 giờ chạy liên tục, sai số tích lại thành khoảng một phần ba giây - đủ để tính sai vị trí mục tiêu vài trăm mét. Sai số nhỏ không nguy hiểm; sai số nhỏ được nhân lên thì có."
+  },
+  "keyTakeaways": [
+    "Số thực nhị phân không biểu diễn chính xác được phần lớn số thập phân.",
+    "Không so sánh bằng hai số thực; so khoảng cách giữa chúng với một ngưỡng.",
+    "Sai số tích luỹ theo số phép tính, nên vòng lặp dài là chỗ nguy hiểm nhất.",
+    "Với tiền, dùng số nguyên đơn vị nhỏ nhất hoặc kiểu thập phân chuyên dụng."
+  ],
+  "summary": {
+    "keyIdea": "Số thực đổi độ chính xác lấy dải giá trị rộng, nên nó luôn là xấp xỉ chứ không phải giá trị đúng.",
+    "formula": "Thay a == b bằng |a - b| < ngưỡng.",
+    "commonMistake": "Dùng số thực để lưu tiền, rồi đi tìm vài đồng lệch trong báo cáo."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở một trình thông dịch và gõ 0.1 + 0.2. Rồi gõ 0.1 + 0.2 - 0.3 để nhìn thẳng vào sai số. Nếu mã của bạn có chỗ nào so sánh bằng hai số thực, đó là chỗ cần sửa trước tiên."
+  },
+  "practicePrompt": {
+    "question": "Một giỏ hàng cộng dồn giá bằng số thực, tổng ra 59,999999999999996 thay vì 60. Cách sửa đúng là gì?",
+    "options": [
+      "Lưu tiền bằng số nguyên đơn vị đồng, chỉ chia khi hiển thị",
+      "Làm tròn tổng cuối cùng lên hai chữ số thập phân trước khi lưu",
+      "Cộng theo thứ tự từ giá lớn nhất tới nhỏ nhất để giảm sai số",
+      "Đổi sang số thực độ chính xác kép để loại bỏ hẳn sai số này"
+    ],
+    "correct": 0,
+    "explanation": "Làm tròn lúc hiển thị chỉ giấu triệu chứng, và sai số vẫn nằm trong dữ liệu đã lưu. Đổi thứ tự cộng hay tăng độ chính xác đều chỉ đẩy sai số xuống nhỏ hơn chứ không khử được, vì gốc rễ là 0,1 không biểu diễn chẵn trong nhị phân."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao 0,1 không lưu chính xác được bằng số thực nhị phân?",
+      "options": [
+        "Vì trong hệ nhị phân nó là số vô hạn tuần hoàn",
+        "Vì 0,1 quá nhỏ so với giá trị nhỏ nhất mà kiểu số thực lưu được",
+        "Vì bộ xử lý làm tròn mọi số thập phân về bội số của một phần tám",
+        "Vì dấu phẩy thập phân không được lưu cùng với các chữ số của số"
+      ],
+      "correct": 0,
+      "explanation": "Hệ nhị phân chỉ biểu diễn chẵn được những phân số có mẫu là luỹ thừa của 2. Một phần mười không thuộc nhóm đó, nên khai triển nhị phân của nó lặp vô hạn và buộc phải cắt."
+    },
+    {
+      "question": "Cách so sánh hai số thực nào là đúng?",
+      "options": [
+        "Kiểm tra trị tuyệt đối của hiệu có nhỏ hơn một ngưỡng không",
+        "So sánh bằng như bình thường, vì sai số quá nhỏ để ảnh hưởng tới kết quả",
+        "Đổi cả hai về chuỗi ký tự rồi so sánh hai chuỗi với nhau",
+        "Làm tròn cả hai về số nguyên gần nhất rồi mới so sánh bằng"
+      ],
+      "correct": 0,
+      "explanation": "So khoảng cách với một ngưỡng phù hợp với bài toán là cách chuẩn. So chuỗi thì hai giá trị bằng nhau về số vẫn có thể khác chuỗi, còn làm tròn về số nguyên thì mất hết phần thập phân đang cần so."
+    },
+    {
+      "question": "Sai số của số thực trở nên nguy hiểm nhất trong tình huống nào?",
+      "options": [
+        "Khi kết quả được đưa qua nhiều phép tính liên tiếp",
+        "Khi số được in ra với nhiều chữ số",
+        "Khi giá trị được lưu rồi đọc lại",
+        "Khi hai số chênh nhau nhiều lần"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi phép tính thêm một chút sai số, và trong vòng lặp dài thì chúng cộng dồn tới mức nhìn thấy được. In ra hay lưu lại không tự sinh sai số mới, chúng chỉ để lộ sai số vốn đã có sẵn trong giá trị."
+    },
+    {
+      "question": "Kiểu dữ liệu nào phù hợp nhất để lưu số tiền?",
+      "options": [
+        "Số nguyên tính theo đơn vị nhỏ nhất, ví dụ đồng",
+        "Số thực độ chính xác kép vì nó có tới mười lăm chữ số nghĩa",
+        "Chuỗi ký tự để giữ nguyên đúng cách người dùng đã nhập vào",
+        "Số thực độ chính xác đơn cho nhẹ vì tiền hiếm khi quá lớn"
+      ],
+      "correct": 0,
+      "explanation": "Số nguyên không có sai số biểu diễn, nên cộng bao nhiêu lần cũng chính xác. Chuỗi thì không tính toán được nếu không chuyển kiểu, và mọi kiểu số thực nhị phân đều mang sai số dù độ chính xác cao tới đâu."
+    },
+    {
+      "question": "Vì sao số thực vẫn được dùng rộng rãi dù có sai số?",
+      "options": [
+        "Vì nó biểu diễn được dải giá trị rất rộng với ít bit",
+        "Vì nó chia chính xác hơn số nguyên",
+        "Vì chỉ mình nó được phần cứng hỗ trợ",
+        "Vì sai số của nó tự triệt tiêu nhau"
+      ],
+      "correct": 0,
+      "explanation": "Đổi lấy một chút độ chính xác, số thực biểu diễn được từ cực nhỏ tới cực lớn trong cùng 64 bit - thứ mà số nguyên không làm được. Với đo lường khoa học thì đó là đánh đổi đúng; với tiền thì không."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Số thực đổi độ chính xác lấy dải giá trị. Nó biểu diễn được từ khối lượng hạt electron tới khoảng cách giữa các thiên hà, và cái giá phải trả là gần như không con số nào trong đó là chính xác tuyệt đối."
+    },
+    {
+      "type": "heading",
+      "text": "Vấn đề không nằm ở máy tính"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trong hệ mười, một phần ba viết thành 0,333... kéo dài vô tận. Không ai coi đó là lỗi của hệ mười; đơn giản là ba không chia chẵn cho mười. Hệ nhị phân gặp đúng chuyện đó với một phần mười: hai không chia chẵn cho mười, nên 0,1 kéo dài vô tận trong nhị phân và phải cắt."
+    },
+    {
+      "type": "callout",
+      "label": "Cắt ở đâu",
+      "text": "Kiểu số thực 64 bit dành 53 bit cho phần định trị, tương đương khoảng mười lăm tới mười bảy chữ số nghĩa trong hệ mười. Sai số nằm ở chữ số thứ mười sáu - vô hình với người, hữu hình với phép so sánh bằng."
+    },
+    {
+      "type": "heading",
+      "text": "Sai số nhỏ, hậu quả không nhỏ"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Một phép tính",
+        "text": "Sai số nằm ở chữ số thứ mười sáu. Không màn hình nào hiển thị tới đó, không người dùng nào nhận ra, và mọi thứ trông hoàn toàn bình thường."
+      },
+      "right": {
+        "label": "Một triệu phép tính",
+        "text": "Sai số cộng dồn theo từng bước. Trong vòng lặp dài hoặc phép nhân liên tiếp, nó leo lên tới chữ số mà người dùng nhìn thấy và bắt đầu hỏi."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Không bao giờ so sánh bằng hai số thực; so trị tuyệt đối của hiệu với một ngưỡng.",
+        "Với tiền, lưu bằng số nguyên đơn vị nhỏ nhất và chỉ chia khi hiển thị ra màn hình.",
+        "Cẩn thận với phép trừ hai số gần bằng nhau - đó là chỗ sai số tương đối phóng to nhất."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Số thực luôn là xấp xỉ. Biết điều đó thì bạn chọn kiểu theo bài toán, thay vì đi tìm vài đồng chưa từng tồn tại.",
+        "Bài sau sang kiểu thứ ba: chuỗi ký tự, nơi câu hỏi tưởng dễ nhất - chuỗi này dài bao nhiêu - lại có nhiều hơn một câu trả lời đúng."
+      ]
+    }
+  ]
+}

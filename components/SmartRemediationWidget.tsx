@@ -53,17 +53,17 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
       <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/[0.03] rounded-full blur-2xl pointer-events-none" />
 
       <div className="flex gap-3.5 items-start">
-        <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-alert flex items-center justify-center shrink-0">
           <AlertCircle className="w-5.5 h-5.5" />
         </div>
         
         <div className="min-w-0 flex-1 space-y-2">
           <div>
             <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-100/60 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400 border border-rose-200/40">
+              <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-100/60 dark:bg-rose-900/40 text-alert-strong border border-rose-200/40">
                 {t.smartRemediation.badge}
               </span>
-              <span className="text-[10px] font-extrabold text-amber-600 dark:text-amber-500 flex items-center gap-1">
+              <span className="text-[10px] font-extrabold text-warn flex items-center gap-1">
                 <Sparkles className="w-3 h-3" /> {t.smartRemediation.xpBonus}
               </span>
             </div>
@@ -79,13 +79,13 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
           <div className="flex gap-2">
             <Link
               href={`/bai-hoc/${lesson.slug}`}
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-surface-invert text-white dark:text-stone-900 hover:scale-105 active:scale-95 transition-all shadow-sm"
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-surface-invert text-ink-invert hover:scale-105 active:scale-95 transition-all shadow-sm"
             >
               {t.smartRemediation.reviewNow} <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <Link
               href="/game"
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-line bg-white dark:bg-stone-900 text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800 transition-all"
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-line bg-white dark:bg-stone-900 text-ink-body hover:bg-surface transition-all"
             >
               {t.smartRemediation.playMiniGame}
             </Link>

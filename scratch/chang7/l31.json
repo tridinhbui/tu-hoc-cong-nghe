@@ -1,0 +1,173 @@
+{
+  "id": 31,
+  "slug": "dinh-danh-khoa-tu-tang-va-ma-ngau-nhien",
+  "title": "Định danh: khoá tự tăng hay mã ngẫu nhiên",
+  "subtitle": "Số thứ tự tiết lộ quy mô kinh doanh của bạn cho bất kỳ ai đọc được một đường dẫn.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔑",
+  "track": "professional",
+  "whyItMatters": "Định danh là trường khó đổi nhất trong mọi lược đồ, vì nó nằm trong đường dẫn, trong tệp xuất, trong hệ thống của đối tác và trong dấu trang của người dùng. Chọn sai thì không sửa được bằng một lần triển khai, nên đây là quyết định phải làm đúng ngay từ đầu.",
+  "openingQuestion": "Đơn hàng của bạn có định danh tăng dần: 1001, 1002, 1003. Rủi ro rõ nhất là gì?",
+  "openingOptions": [
+    "Người ngoài đếm được số đơn hàng bạn tạo ra trong một khoảng thời gian",
+    "Định danh tăng dần sẽ hết chỗ nhanh hơn so với mã sinh ngẫu nhiên",
+    "Cơ sở dữ liệu phải quét toàn bảng mỗi lần cấp một định danh mới",
+    "Không thể đánh chỉ mục trên cột định danh khi giá trị của nó tăng liên tục"
+  ],
+  "correctOption": 0,
+  "explanation": "Số tăng dần rò rỉ thông tin. Đặt hai đơn hàng cách nhau một tháng rồi lấy hiệu hai định danh là biết doanh nghiệp bán được bao nhiêu đơn trong tháng đó - một con số thường không ai muốn công bố. Nó còn cho phép đoán định danh của bản ghi khác, nên nếu quyền truy cập kiểm tra không chặt thì người ta xem được đơn của người khác chỉ bằng cách trừ đi một. Mã ngẫu nhiên đủ dài thì không đếm được và không đoán được.",
+  "diagram": [
+    {
+      "label": "Đơn 1001 hôm nay",
+      "arrow": true
+    },
+    {
+      "label": "Đơn 1247 sau một tháng",
+      "arrow": true
+    },
+    {
+      "label": "Hiệu = 246 đơn trong tháng",
+      "arrow": true
+    },
+    {
+      "label": "Thông tin kinh doanh lộ ra từ một đường dẫn"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đếm số hoá đơn của đối thủ",
+    "description": "Một cách phân tích cạnh tranh kinh điển: đặt hai đơn hàng nhỏ cách nhau vài tuần, ghi lại mã đơn, rồi lấy hiệu. Không cần xâm nhập gì cả - toàn bộ thông tin nằm sẵn trong cái mã in trên hoá đơn."
+  },
+  "keyTakeaways": [
+    "Khoá tự tăng gọn và sắp xếp tự nhiên, nhưng rò rỉ quy mô và cho phép đoán.",
+    "Mã ngẫu nhiên không đoán được và sinh được ở nhiều nơi mà không xung đột.",
+    "Đừng dùng dữ liệu nghiệp vụ như số điện thoại làm khoá chính, vì nó đổi được.",
+    "Định danh nội bộ và định danh phơi ra ngoài có thể là hai trường khác nhau."
+  ],
+  "summary": {
+    "keyIdea": "Định danh là trường khó đổi nhất, nên chọn theo cả bảo mật lẫn cách hệ thống sẽ mở rộng.",
+    "formula": "Tự tăng cho nội bộ, mã ngẫu nhiên cho thứ phơi ra ngoài.",
+    "commonMistake": "Dùng thông tin nghiệp vụ làm khoá chính, rồi không sửa được khi nó thay đổi."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở một đường dẫn trong sản phẩm của bạn có chứa định danh. Thử cộng một vào con số ấy và xem hệ thống trả về gì. Nếu nó trả về dữ liệu của người khác thì lỗi không nằm ở kiểu định danh mà ở chỗ kiểm tra quyền."
+  },
+  "practicePrompt": {
+    "question": "Bốn máy chủ cùng ghi vào một bảng và cần cấp định danh mà không được trùng nhau. Cách nào phù hợp nhất?",
+    "options": [
+      "Dùng mã ngẫu nhiên đủ dài, mỗi máy tự sinh mà không cần hỏi nhau",
+      "Cho bốn máy cùng hỏi một bộ đếm trung tâm trước mỗi lần ghi dữ liệu",
+      "Chia dải số cho mỗi máy và mở rộng dải khi một máy dùng gần hết",
+      "Ghép định danh tự tăng của mỗi máy với tên của máy đó thành khoá"
+    ],
+    "correct": 0,
+    "explanation": "Mã ngẫu nhiên đủ dài thì xác suất trùng nhỏ tới mức bỏ qua được, nên mỗi máy sinh độc lập mà không cần phối hợp. Bộ đếm trung tâm thành nút thắt cổ chai và là điểm chết chung, còn chia dải thì phải quản lý và cấp lại dải mỗi khi có máy mới."
+  },
+  "quiz": [
+    {
+      "question": "Nhược điểm lớn nhất của định danh tự tăng khi phơi ra ngoài là gì?",
+      "options": [
+        "Nó tiết lộ số lượng bản ghi được tạo ra theo thời gian",
+        "Nó chiếm nhiều dung lượng hơn so với một mã sinh ngẫu nhiên",
+        "Nó làm truy vấn theo khoá chính chậm hơn",
+        "Nó không sắp xếp được theo thứ tự thời gian tạo ra bản ghi"
+      ],
+      "correct": 0,
+      "explanation": "Hiệu của hai định danh cho biết số bản ghi tạo ra ở giữa. Về dung lượng thì tự tăng còn gọn hơn mã ngẫu nhiên, và nó sắp xếp theo thời gian rất tự nhiên - đó chính là các ưu điểm của nó."
+    },
+    {
+      "question": "Ưu điểm của mã ngẫu nhiên trong hệ thống nhiều máy chủ là gì?",
+      "options": [
+        "Mỗi máy sinh được định danh mà không cần phối hợp với máy khác",
+        "Mã ngắn hơn nên đồng bộ giữa các máy nhanh hơn",
+        "Mã tự sắp theo thứ tự thời gian tạo",
+        "Mã cho phép khôi phục bản ghi đã xoá"
+      ],
+      "correct": 0,
+      "explanation": "Không cần bộ đếm chung nghĩa là không có nút thắt cổ chai và không có điểm chết chung. Đổi lại mã dài hơn và không sắp xếp theo thời gian, trừ khi dùng biến thể có kèm phần dấu thời gian ở đầu."
+    },
+    {
+      "question": "Vì sao không nên dùng số điện thoại làm khoá chính của bảng khách hàng?",
+      "options": [
+        "Vì nó là dữ liệu nghiệp vụ và có thể thay đổi về sau",
+        "Vì số điện thoại quá dài để dùng làm khoá chính cho một bảng lớn",
+        "Vì cơ sở dữ liệu không đánh chỉ mục được trên cột kiểu chuỗi",
+        "Vì hai khách hàng khác nhau luôn có thể có cùng một số điện thoại"
+      ],
+      "correct": 0,
+      "explanation": "Khoá chính nên là thứ không bao giờ đổi, vì mọi bảng khác tham chiếu tới nó. Người ta đổi số điện thoại, và lúc đó bạn phải sửa dây chuyền khắp hệ thống - hoặc để lại những tham chiếu trỏ vào hư không."
+    },
+    {
+      "question": "Vì sao đoán được định danh chưa chắc đã là lỗ hổng?",
+      "options": [
+        "Vì kiểm tra quyền truy cập mới là thứ quyết định ai xem được gì",
+        "Vì định danh đoán được luôn bị hệ thống từ chối ngay từ đầu",
+        "Vì người dùng thông thường không bao giờ nghĩ tới việc thử đoán",
+        "Vì cơ sở dữ liệu tự khoá các bản ghi có định danh bị truy cập nhiều"
+      ],
+      "correct": 0,
+      "explanation": "Định danh khó đoán chỉ là lớp che, không phải lớp bảo vệ. Nếu mã kiểm tra đúng rằng người đang gọi có quyền với bản ghi này thì đoán được cũng không lấy được gì; nếu không kiểm thì mã ngẫu nhiên chỉ làm việc dò lâu hơn."
+    },
+    {
+      "question": "Vì sao nhiều hệ thống dùng hai loại định danh cùng lúc?",
+      "options": [
+        "Một khoá tự tăng dùng nội bộ, một mã ngẫu nhiên phơi ra ngoài",
+        "Một khoá cho dữ liệu cũ, một cho dữ liệu mới",
+        "Một khoá cho bản chính, một cho bản dự phòng",
+        "Một khoá do chính người dùng tự đặt, một khoá do hệ thống sinh ra"
+      ],
+      "correct": 0,
+      "explanation": "Cách này lấy được cả hai ưu điểm: bên trong vẫn có khoá gọn, sắp xếp tự nhiên và nối bảng nhanh; bên ngoài chỉ thấy mã không đếm được và không đoán được. Cái giá là thêm một cột và một chỉ mục."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mọi bảng đều cần một cách gọi tên từng dòng. Lựa chọn nghe rất kỹ thuật này lại quyết định cả chuyện đối thủ đọc được gì về bạn, và chuyện hệ thống của bạn mở rộng ra nhiều máy chủ có dễ hay không."
+    },
+    {
+      "type": "heading",
+      "text": "Hai lựa chọn, hai đánh đổi"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Khoá tự tăng",
+        "text": "Gọn, sắp xếp theo thời gian tạo, nối bảng nhanh, dễ đọc khi gỡ lỗi. Đổi lại nó đếm được, đoán được, và cần một bộ đếm chung."
+      },
+      "right": {
+        "label": "Mã ngẫu nhiên",
+        "text": "Không đếm được, không đoán được, sinh ở đâu cũng không đụng nhau. Đổi lại dài hơn, tốn chỉ mục hơn, và không tự sắp theo thời gian."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Rò rỉ qua định danh"
+    },
+    {
+      "type": "paragraph",
+      "text": "Số tăng dần mang theo thông tin mà không ai cố ý công bố: tốc độ tạo bản ghi. Với đơn hàng thì đó là doanh số, với người dùng thì đó là tốc độ tăng trưởng, với phiếu hỗ trợ thì đó là số sự cố. Bất kỳ ai đặt hai đơn cách nhau một tháng đều đọc được con số ấy."
+    },
+    {
+      "type": "callout",
+      "label": "Đừng nhầm hai lỗi",
+      "text": "Định danh đoán được là chuyện rò rỉ thông tin. Xem được dữ liệu của người khác bằng cách đổi định danh trên đường dẫn lại là chuyện thiếu kiểm tra quyền - và đổi sang mã ngẫu nhiên không sửa được lỗi thứ hai, chỉ làm nó khó thấy hơn."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đừng dùng dữ liệu nghiệp vụ làm khoá chính: số điện thoại, email, mã số thuế đều đổi được.",
+        "Cân nhắc hai trường: khoá tự tăng cho bên trong, mã ngẫu nhiên cho bên ngoài.",
+        "Dù chọn kiểu nào, vẫn phải kiểm tra quyền trên từng bản ghi ở mọi lối vào."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Định danh là trường khó đổi nhất, vì nó nằm trong đường dẫn, trong tệp xuất và trong hệ thống của người khác.",
+        "Bài sau nói về cách các bảng nối với nhau qua chính những định danh ấy: quan hệ, khoá ngoại và tính toàn vẹn tham chiếu."
+      ]
+    }
+  ]
+}

@@ -104,7 +104,7 @@ export default function BreathingCircle() {
         <div className="relative text-center" aria-live="polite">
           {running ? (
             <>
-              <p className="text-lg font-extrabold text-stone-800 dark:text-stone-100">
+              <p className="text-lg font-extrabold text-ink-heading">
                 {phase.label}
               </p>
               <p className="mt-0.5 text-3xl font-black tabular-nums text-orange-600 dark:text-orange-400">
@@ -115,7 +115,7 @@ export default function BreathingCircle() {
               </p>
             </>
           ) : (
-            <p className="px-6 text-sm font-semibold leading-relaxed text-stone-600 dark:text-stone-300">
+            <p className="px-6 text-sm font-semibold leading-relaxed text-ink-soft">
               {done ? t.breathing.doneTitle : t.breathing.idleBlurb}
             </p>
           )}

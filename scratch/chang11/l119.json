@@ -1,0 +1,165 @@
+{
+  "id": 119,
+  "slug": "khi-nao-tach-dich-vu",
+  "title": "Khi nào tách dịch vụ, khi nào đừng",
+  "subtitle": "Tách là mua sự độc lập bằng độ phức tạp phân tán - và nhiều đội trả tiền mà không cần hàng.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "✂️",
+  "track": "professional",
+  "whyItMatters": "Tách dịch vụ là quyết định kiến trúc phổ biến nhất trong mười năm qua và cũng là quyết định bị làm sai nhiều nhất. Hiểu bạn đang mua gì và trả bằng gì là cách duy nhất chọn đúng.",
+  "openingQuestion": "Lý do chính đáng nhất để tách một phần thành dịch vụ riêng là gì?",
+  "openingOptions": [
+    "Một đội khác cần phát hành phần đó theo nhịp riêng của họ",
+    "Phần đó đã trở nên quá lớn và phức tạp để quản lý",
+    "Phần đó cần được viết bằng một ngôn ngữ khác",
+    "Kiến trúc dịch vụ nhỏ là thực hành tốt của ngành hiện nay"
+  ],
+  "correctOption": 0,
+  "explanation": "Thứ mà tách dịch vụ mua được là sự độc lập về vận hành: đội khác triển khai theo lịch của họ, mở rộng riêng phần của họ, hỏng riêng phần của họ. Nếu chỉ một đội sở hữu cả hai phần thì bạn trả toàn bộ chi phí phân tán - lời gọi mạng có thể hỏng, dữ liệu không còn nhất quán tức thì, gỡ lỗi phải xâu chuỗi nhiều nơi - mà không nhận được thứ gì. Kích thước và ngôn ngữ đều giải quyết được bằng ranh giới trong cùng một tiến trình, rẻ hơn rất nhiều.",
+  "diagram": [
+    {
+      "label": "Tách mua: độc lập triển khai và mở rộng",
+      "arrow": true
+    },
+    {
+      "label": "Trả bằng: lời gọi mạng, nhất quán cuối cùng, gỡ lỗi phân tán",
+      "arrow": true
+    },
+    {
+      "label": "Một đội sở hữu cả hai phần?",
+      "arrow": true
+    },
+    {
+      "label": "Thì bạn đang trả tiền mà không nhận hàng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Dịch vụ nhỏ của một đội",
+    "description": "Một đội tách hệ thống của mình thành tám dịch vụ nhỏ. Vì cả tám đều do họ sở hữu, mọi tính năng vẫn phải sửa nhiều dịch vụ và triển khai theo thứ tự. Họ nhận đủ chi phí phân tán và không có sự độc lập nào để bù lại."
+  },
+  "keyTakeaways": [
+    "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán.",
+    "Nếu cùng một đội sở hữu cả hai phần thì lợi ích gần như bằng không.",
+    "Ranh giới rõ trong cùng một tiến trình rẻ hơn nhiều và thường là đủ.",
+    "Tách sai chỗ khó sửa hơn nhiều so với để ranh giới bên trong."
+  ],
+  "summary": {
+    "keyIdea": "Chỉ tách khi bạn thật sự cần thứ mà việc tách mua được: sự độc lập giữa các đội.",
+    "formula": "Ranh giới trước, tách sau, và chỉ khi có đội riêng.",
+    "commonMistake": "Tách theo kích thước hoặc theo xu hướng, rồi nhận chi phí mà không có lợi ích."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Với mỗi dịch vụ trong hệ thống của bạn, hỏi ai sở hữu nó. Những dịch vụ cùng một chủ và luôn phải triển khai cùng nhau là những chỗ việc tách chưa mang lại gì."
+  },
+  "practicePrompt": {
+    "question": "Đội bạn muốn tách một phần vì mã đang quá lớn. Lời khuyên tốt hơn là gì?",
+    "options": [
+      "Dựng ranh giới rõ trong cùng một tiến trình trước, tách sau nếu vẫn cần",
+      "Tách ngay, vì một hệ thống lớn thì luôn cần được chia thành nhiều dịch vụ",
+      "Chia mã thành nhiều thư mục con để dễ quản lý hơn",
+      "Thêm người vào đội để có thể xử lý khối lượng mã lớn"
+    ],
+    "correct": 0,
+    "explanation": "Ranh giới trong cùng tiến trình cho phần lớn lợi ích về khả năng hiểu và bảo trì, với chi phí gần bằng không và sửa sai rất rẻ. Nếu về sau xuất hiện lý do thật - một đội riêng cần nhịp phát hành riêng - thì ranh giới ấy đã sẵn sàng để cắt."
+  },
+  "quiz": [
+    {
+      "question": "Tách dịch vụ mua được điều gì?",
+      "options": [
+        "Sự độc lập về triển khai, mở rộng và phạm vi sự cố",
+        "Mã nguồn sạch hơn và dễ hiểu hơn cho người đọc",
+        "Hiệu năng cao hơn nhờ chia tải cho nhiều tiến trình",
+        "Khả năng viết mỗi phần bằng một ngôn ngữ khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Đó là lợi ích cốt lõi và cũng là lợi ích duy nhất không đạt được bằng ranh giới nội bộ. Mã sạch thì ranh giới trong tiến trình cũng cho được, còn hiệu năng thì thường giảm vì thêm lời gọi mạng."
+    },
+    {
+      "question": "Chi phí của việc tách dịch vụ gồm những gì?",
+      "options": [
+        "Lời gọi mạng có thể hỏng, nhất quán cuối cùng, gỡ lỗi phân tán",
+        "Chi phí hạ tầng tăng lên do phải chạy thêm rất nhiều tiến trình",
+        "Thời gian dựng dự án mới cho mỗi dịch vụ được tách ra",
+        "Nhu cầu tuyển thêm người để vận hành các dịch vụ mới"
+      ],
+      "correct": 0,
+      "explanation": "Ba thứ ấy là những vấn đề đã học suốt chặng mạng và chặng này, và chúng đi kèm mọi ranh giới tiến trình. Chi phí hạ tầng thì có thật nhưng nhỏ nhất trong danh sách."
+    },
+    {
+      "question": "Vì sao tách khi cùng một đội sở hữu lại ít giá trị?",
+      "options": [
+        "Vì mọi tính năng vẫn phải sửa nhiều nơi và triển khai theo thứ tự",
+        "Vì một đội không đủ người để vận hành nhiều dịch vụ",
+        "Vì các dịch vụ cùng đội sẽ dùng chung cơ sở dữ liệu",
+        "Vì công cụ giám sát không phân biệt được các dịch vụ đó"
+      ],
+      "correct": 0,
+      "explanation": "Sự độc lập chỉ có nghĩa khi có hai bên muốn đi theo hai nhịp. Cùng một chủ thì hai phần vẫn đi cùng nhịp, và bạn chỉ thêm ranh giới mạng vào giữa."
+    },
+    {
+      "question": "Lựa chọn thường tốt hơn khi mã đang quá lớn là gì?",
+      "options": [
+        "Dựng ranh giới rõ ràng trong cùng một tiến trình",
+        "Tách thành nhiều dịch vụ nhỏ ngay lập tức",
+        "Chia mã thành nhiều kho lưu trữ riêng biệt",
+        "Viết lại toàn bộ phần đó theo một kiến trúc mới hơn"
+      ],
+      "correct": 0,
+      "explanation": "Nó cho phần lớn lợi ích về khả năng hiểu với chi phí gần bằng không, và quan trọng hơn là sửa sai rất rẻ. Ranh giới đặt nhầm chỗ trong tiến trình thì dời trong một tuần; đặt nhầm chỗ giữa hai dịch vụ thì mất nhiều tháng."
+    },
+    {
+      "question": "Thứ tự hợp lý khi muốn tiến tới kiến trúc nhiều dịch vụ là gì?",
+      "options": [
+        "Dựng ranh giới nội bộ trước, tách khi có đội riêng sở hữu",
+        "Tách dịch vụ trước, rồi tổ chức lại đội cho phù hợp",
+        "Làm cả hai cùng lúc để tránh giai đoạn chuyển tiếp",
+        "Tách theo tầng kỹ thuật trước rồi gộp lại theo từng miền nghiệp vụ"
+      ],
+      "correct": 0,
+      "explanation": "Ranh giới nội bộ rẻ và sửa được, nên nó là nơi tìm ra đường cắt đúng. Khi đường cắt đã được kiểm chứng và có một đội thật sự sở hữu phần đó, việc tách trở thành thao tác cơ học chứ không phải canh bạc."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Câu hỏi cuối của chặng này là câu được hỏi nhiều nhất trong thực tế, và bài trước đã đưa ra công cụ để trả lời: nhìn vào tổ chức trước khi nhìn vào mã."
+    },
+    {
+      "type": "heading",
+      "text": "Bạn mua gì và trả bằng gì"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Mua được",
+        "text": "Đội khác triển khai theo nhịp riêng, mở rộng riêng phần của họ, và sự cố của họ không kéo bạn theo. Tất cả đều là lợi ích giữa các đội."
+      },
+      "right": {
+        "label": "Trả bằng",
+        "text": "Lời gọi qua mạng có thể hỏng và chậm, dữ liệu chỉ nhất quán cuối cùng, gỡ lỗi phải xâu chuỗi nhiều nơi, và mọi thay đổi hợp đồng cần các bước tương thích."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Câu hỏi lọc"
+    },
+    {
+      "type": "paragraph",
+      "text": "Có một đội riêng sẽ sở hữu phần này, và họ có lý do thật sự để phát hành theo nhịp khác không? Nếu câu trả lời là không thì bạn đang trả toàn bộ chi phí phân tán để đổi lấy một lợi ích không tồn tại. Kích thước mã, sự phức tạp, hay mong muốn dùng công nghệ khác đều giải quyết được bằng ranh giới trong cùng tiến trình."
+    },
+    {
+      "type": "callout",
+      "label": "Chi phí sửa sai quyết định thứ tự",
+      "text": "Ranh giới đặt nhầm chỗ bên trong một tiến trình thì dời lại trong một tuần. Ranh giới đặt nhầm chỗ giữa hai dịch vụ thì cần một cuộc di trú nhiều tháng. Vì thế hãy tìm đường cắt đúng ở nơi rẻ trước, rồi mới hiện thực hoá nó ở nơi đắt."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tách dịch vụ là một giao dịch: bạn mua sự độc lập giữa các đội và trả bằng độ phức tạp phân tán. Chỉ mua khi thật sự cần hàng.",
+        "Bài sau khép lại chặng: nhìn lại toàn bộ những gì đổi khác khi một hệ thống có nhiều đội cùng làm."
+      ]
+    }
+  ]
+}

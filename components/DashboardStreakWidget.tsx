@@ -125,7 +125,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
           <div className="rounded-[18px] border border-sky-200 dark:border-sky-900 bg-gradient-to-r from-sky-50 via-blue-50/50 to-indigo-50 dark:from-sky-950/40 dark:to-stone-900 p-4 flex items-center justify-between shadow-xs">
             <div>
               <p className="text-xs font-black text-ink">{t.streakWidget.statusLabel}</p>
-              <p className="text-xs font-extrabold text-sky-700 dark:text-sky-300 mt-0.5">
+              <p className="text-xs font-extrabold text-sky-700 dark:text-sky-400 mt-0.5">
                 {t.streakWidget.freezesRemainingPart1}<strong>{freezesLeft} / {MAX_STREAK_FREEZES}</strong>{t.streakWidget.freezesRemainingPart2}
               </p>
             </div>
@@ -144,7 +144,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
               </div>
               <div>
                 <h4 className="text-xs font-black text-ink">{t.streakWidget.feature1Title}</h4>
-                <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
+                <p className="text-xs text-ink-soft mt-1 leading-relaxed">
                   {t.streakWidget.feature1Part1}<strong>{t.streakWidget.feature1Bold1}</strong>{t.streakWidget.feature1Part2}<strong>{t.streakWidget.feature1Bold2}</strong>{t.streakWidget.feature1Part3}
                 </p>
               </div>
@@ -156,7 +156,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
               </div>
               <div>
                 <h4 className="text-xs font-black text-ink">{t.streakWidget.feature2Title}</h4>
-                <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
+                <p className="text-xs text-ink-soft mt-1 leading-relaxed">
                   {t.streakWidget.feature2Part1}<strong>{t.streakWidget.feature2Bold}</strong>{t.streakWidget.feature2Part2}
                 </p>
               </div>
@@ -168,7 +168,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
               </div>
               <div>
                 <h4 className="text-xs font-black text-ink">{t.streakWidget.feature3Title}</h4>
-                <p className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
+                <p className="text-xs text-ink-soft mt-1 leading-relaxed">
                   {t.streakWidget.feature3Desc}
                 </p>
               </div>
@@ -198,7 +198,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
       {/* Interactive Streak Card Button */}
       <div
         onClick={() => setShowModal(true)}
-        className="flex items-center gap-2.5 rounded-[18px] border border-line bg-white dark:bg-stone-900 px-3 py-1.5 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)] hover:bg-stone-50 dark:hover:bg-stone-800 transition-all duration-200 ease-out hover:-translate-y-0.5 cursor-pointer group select-none focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/10"
+        className="flex items-center gap-2.5 rounded-[18px] border border-line bg-white dark:bg-stone-900 px-3 py-1.5 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.14)] hover:bg-surface transition-all duration-200 ease-out hover:-translate-y-0.5 cursor-pointer group select-none focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky-500/10"
         title={t.streakWidget.cardTitle}
       >
         <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${streak > 0 ? "bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-2xs" : "bg-surface-raised text-stone-400"}`}>
@@ -211,7 +211,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
           </div>
           <div className="flex items-center gap-2 mt-0.5">
             <span className="text-xs font-black leading-none text-orange-600 dark:text-orange-400">{format(t.streakWidget.streakDaysSuffix, { count: streak })}</span>
-            <span className="flex items-center gap-0.5 text-[10px] font-semibold leading-none text-sky-600 dark:text-sky-400" title={format(t.streakWidget.freezesTooltip, { count: freezesLeft })}>
+            <span className="flex items-center gap-0.5 text-[10px] font-semibold leading-none text-info" title={format(t.streakWidget.freezesTooltip, { count: freezesLeft })}>
               <ShieldCheck className="w-3 h-3 text-sky-500" />
               <span>{freezesLeft}</span>
             </span>

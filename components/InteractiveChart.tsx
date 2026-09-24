@@ -79,10 +79,10 @@ export default function InteractiveChart() {
       </svg>
 
       <div className="flex flex-wrap gap-x-5 gap-y-1 text-[11px]">
-        <span className="flex items-center gap-1.5 text-stone-600 dark:text-stone-300">
+        <span className="flex items-center gap-1.5 text-ink-soft">
           <span className="inline-block h-0.5 w-4 bg-emerald-500" /> {t.chartDemo.compoundLegend}
         </span>
-        <span className="flex items-center gap-1.5 text-stone-600 dark:text-stone-300">
+        <span className="flex items-center gap-1.5 text-ink-soft">
           <span className="inline-block h-0.5 w-4 border-t-2 border-dashed border-stone-400" /> {t.chartDemo.simpleLegend}
         </span>
       </div>
@@ -106,7 +106,7 @@ export default function InteractiveChart() {
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.chartDemo.yearsLabel}</span>
-            <span className="font-bold text-stone-800 dark:text-stone-100">{format(t.chartDemo.yearsValueSuffix, { years })}</span>
+            <span className="font-bold text-ink-heading">{format(t.chartDemo.yearsValueSuffix, { years })}</span>
           </div>
           <input
             type="range"
@@ -121,7 +121,7 @@ export default function InteractiveChart() {
       </div>
 
       <div className="rounded-2xl bg-emerald-50 p-4 dark:bg-emerald-950/30">
-        <p className="text-sm text-stone-700 dark:text-stone-200">
+        <p className="text-sm text-ink-body">
           {format(t.chartDemo.summaryPart1, { years })}{" "}
           <b>{format(t.chartDemo.summaryCompound, { compound: (compoundEnd * 100).toFixed(0) })}</b>
           {t.chartDemo.summaryPart2}{" "}

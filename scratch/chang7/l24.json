@@ -1,0 +1,211 @@
+{
+  "id": 24,
+  "slug": "van-ban-unicode-va-ma-hoa",
+  "title": "Văn bản: chuỗi này dài bao nhiêu ký tự?",
+  "subtitle": "Một emoji có thể chiếm bốn byte, hai đơn vị mã và vẫn chỉ là một ký tự người đọc thấy.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔤",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Tiếng Việt có dấu, nên mọi lỗi mã hoá đều lộ ra ở đây trước khi lộ ra ở tiếng Anh. Ô nhập giới hạn hai trăm ký tự nhưng cắt mất chữ ở ký tự thứ chín mươi, tên người hiện thành dấu hỏi, khoá tìm kiếm không khớp dù nhìn giống hệt nhau - cả ba đều là cùng một hiểu lầm về đơn vị đo của văn bản.",
+  "openingQuestion": "Chuỗi chứa đúng một emoji mặt cười dài bao nhiêu, theo phần lớn ngôn ngữ lập trình?",
+  "openingOptions": [
+    "Tuỳ đơn vị đếm: 1 ký tự người đọc, 2 đơn vị mã, 4 byte",
+    "Luôn là 1, vì người dùng nhìn thấy đúng một hình duy nhất",
+    "Luôn là 4, vì mọi emoji đều chiếm đúng bốn byte bộ nhớ",
+    "Luôn là 2, vì emoji được lưu bằng hai ký tự ghép lại"
+  ],
+  "correctOption": 0,
+  "explanation": "Văn bản có ba đơn vị đo khác nhau và chúng chỉ trùng nhau ở tiếng Anh không dấu. Byte là chỗ chiếm trong bộ nhớ. Đơn vị mã là thứ ngôn ngữ đếm khi bạn hỏi độ dài chuỗi. Ký tự người đọc thấy là thứ người dùng đếm. Một emoji chiếm bốn byte, hai đơn vị mã trong ngôn ngữ dùng mã hoá mười sáu bit, và vẫn chỉ là một hình trên màn hình. Hỏi độ dài chuỗi mà không nói rõ đơn vị nào thì câu trả lời nào cũng đúng và cũng sai.",
+  "diagram": [
+    {
+      "label": "Ký tự người đọc thấy - 1 hình",
+      "arrow": true
+    },
+    {
+      "label": "Đơn vị mã - thứ hàm độ dài đếm",
+      "arrow": true
+    },
+    {
+      "label": "Byte - chỗ chiếm khi lưu và truyền",
+      "arrow": true
+    },
+    {
+      "label": "Ba con số khác nhau cho cùng một chuỗi"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Ô nhập giới hạn ký tự",
+    "description": "Một biểu mẫu giới hạn hai trăm ký tự, kiểm tra bằng độ dài chuỗi ở trình duyệt nhưng cắt theo byte ở máy chủ. Người viết tiếng Anh không bao giờ gặp vấn đề. Người viết tiếng Việt bị cắt mất chữ ở khoảng ký tự thứ chín mươi, vì mỗi chữ có dấu chiếm ba byte."
+  },
+  "keyTakeaways": [
+    "Byte, đơn vị mã và ký tự người đọc là ba đơn vị đo khác nhau của văn bản.",
+    "UTF-8 dùng số byte thay đổi: một byte cho chữ Latin, ba byte cho chữ tiếng Việt có dấu.",
+    "Hai chuỗi hiện ra giống hệt nhau vẫn có thể khác nhau về bit do khác dạng chuẩn hoá.",
+    "Luôn khai báo mã hoá ở mọi ranh giới: tệp, cơ sở dữ liệu, giao thức mạng."
+  ],
+  "summary": {
+    "keyIdea": "Văn bản không có một độ dài duy nhất; nó có ba, và bạn phải chọn đơn vị theo mục đích.",
+    "formula": "Cắt theo ký tự người đọc, đo dung lượng theo byte.",
+    "commonMistake": "Cắt chuỗi theo byte, làm vỡ một ký tự nhiều byte thành rác."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Gõ một chuỗi tiếng Việt có dấu vào trình thông dịch, in độ dài chuỗi, rồi in số byte khi mã hoá UTF-8. Hai con số sẽ khác nhau - và khoảng cách giữa chúng chính là chỗ các lỗi cắt chữ sinh ra."
+  },
+  "practicePrompt": {
+    "question": "Tên người dùng lưu vào cơ sở dữ liệu hiện thành dấu hỏi thay vì chữ có dấu. Nguyên nhân nào có khả năng nhất?",
+    "options": [
+      "Cột hoặc kết nối đang dùng bảng mã không chứa ký tự đó",
+      "Người dùng đã gõ nhầm bằng bàn phím không hỗ trợ tiếng Việt",
+      "Cột bị giới hạn độ dài nên phần dấu của chữ bị cắt mất đi",
+      "Cơ sở dữ liệu tự đổi chữ có dấu thành dấu hỏi để dễ tìm kiếm"
+    ],
+    "correct": 0,
+    "explanation": "Dấu hỏi là ký tự thay thế khi một bảng mã hẹp gặp ký tự nó không biểu diễn được. Dữ liệu đã hỏng ngay lúc ghi, nên đọc lại bằng mã hoá đúng cũng không cứu được - phải sửa mã hoá của cả cột lẫn kết nối rồi nhập lại."
+  },
+  "quiz": [
+    {
+      "question": "Trong UTF-8, một chữ cái tiếng Việt có dấu chiếm bao nhiêu byte?",
+      "options": [
+        "Ba byte",
+        "Một byte, giống hệt như mọi chữ cái Latin không dấu khác",
+        "Hai byte, vì cần thêm đúng một byte nữa để lưu phần dấu",
+        "Bốn byte, vì đó là kích thước cố định của mọi ký tự Unicode"
+      ],
+      "correct": 0,
+      "explanation": "UTF-8 dùng số byte thay đổi: một byte cho ASCII, hai byte cho phần lớn chữ châu Âu, ba byte cho chữ tiếng Việt có dấu và chữ Á Đông, bốn byte cho emoji. Không có kích thước cố định cho mọi ký tự."
+    },
+    {
+      "question": "Vì sao cắt chuỗi theo byte lại nguy hiểm?",
+      "options": [
+        "Vì nhát cắt có thể rơi vào giữa một ký tự nhiều byte",
+        "Vì cắt theo byte luôn cho chuỗi kết quả ngắn hơn mong đợi",
+        "Vì cắt theo byte chạy chậm hơn nhiều",
+        "Vì byte không giữ được thứ tự ký tự"
+      ],
+      "correct": 0,
+      "explanation": "Một ký tự ba byte bị cắt ở byte thứ hai để lại một mảnh không hợp lệ, hiện ra thành ô vuông hoặc dấu hỏi. Với chuỗi toàn ASCII thì không bao giờ thấy lỗi này, nên nó thường lọt qua kiểm thử."
+    },
+    {
+      "question": "Hai chuỗi hiện ra hoàn toàn giống nhau nhưng so sánh bằng lại cho kết quả sai. Vì sao?",
+      "options": [
+        "Chúng ở hai dạng chuẩn hoá Unicode khác nhau",
+        "Một chuỗi có ký tự xuống dòng ẩn ở cuối",
+        "Phép so sánh chuỗi luôn phân biệt chữ hoa và chữ thường",
+        "Một trong hai chuỗi được lưu bằng bảng mã cũ không tương thích"
+      ],
+      "correct": 0,
+      "explanation": "Chữ ê viết được bằng một điểm mã duy nhất, hoặc bằng chữ e cộng một dấu tổ hợp. Nhìn giống hệt nhau, khác nhau về bit. Chuẩn hoá cả hai về cùng một dạng trước khi so là cách sửa."
+    },
+    {
+      "question": "Nên chọn đơn vị nào khi giới hạn độ dài một ô nhập liệu cho người dùng?",
+      "options": [
+        "Ký tự người đọc thấy, vì đó là thứ người dùng đang đếm",
+        "Byte, vì đó là thứ quyết định dung lượng lưu trữ thực tế",
+        "Đơn vị mã, vì đó chính là con số mà hàm độ dài chuỗi trả về",
+        "Số từ, vì giới hạn theo từ dễ hiểu hơn với người dùng cuối"
+      ],
+      "correct": 0,
+      "explanation": "Người dùng đếm thứ họ nhìn thấy, nên giới hạn phải khớp với đơn vị đó. Byte vẫn cần kiểm ở tầng lưu trữ, nhưng làm giới hạn hiển thị thì nó phạt oan người viết ngôn ngữ có dấu."
+    },
+    {
+      "question": "Điều gì xảy ra khi đọc một tệp UTF-8 bằng bảng mã một byte?",
+      "options": [
+        "Mỗi ký tự nhiều byte bị đọc thành nhiều ký tự lạ",
+        "Chương trình dừng ngay và báo lỗi mã hoá không tương thích",
+        "Các ký tự nhiều byte bị bỏ qua, phần còn lại vẫn đọc đúng",
+        "Tệp tự chuyển về đúng mã hoá khi mở"
+      ],
+      "correct": 0,
+      "explanation": "Bảng mã một byte đọc từng byte thành một ký tự riêng, nên một chữ ba byte hiện thành ba ký tự vô nghĩa. Đây là hiện tượng chữ rác quen thuộc, và nó im lặng chứ không báo lỗi."
+    },
+    {
+      "question": "Vì sao UTF-8 được chọn làm mã hoá mặc định của web?",
+      "options": [
+        "Vì nó tương thích ngược với ASCII và chứa được mọi ký tự",
+        "Vì nó luôn dùng ít byte hơn bảng mã khác",
+        "Vì nó cho so sánh chuỗi nhanh hơn hẳn",
+        "Vì chỉ mình nó được mọi trình duyệt hiểu"
+      ],
+      "correct": 0,
+      "explanation": "Mọi tệp ASCII cũ đều là tệp UTF-8 hợp lệ, nên chuyển sang không phá vỡ thứ gì. Với văn bản Á Đông thì các mã hoá chuyên biệt còn gọn hơn, nhưng tính phổ quát quan trọng hơn vài byte."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Câu hỏi tưởng dễ nhất về văn bản - chuỗi này dài bao nhiêu - lại là câu có ba câu trả lời đúng. Và ba câu đó chỉ trùng nhau khi bạn viết tiếng Anh không dấu."
+    },
+    {
+      "type": "heading",
+      "text": "Ba đơn vị đo, ba con số"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Đo văn bản bằng gì",
+      "subtitle": "Chọn sai đơn vị là nguồn của phần lớn lỗi cắt chữ",
+      "concepts": [
+        {
+          "vi": "Ký tự người đọc thấy",
+          "en": "grapheme",
+          "def": "Một hình trên màn hình. Là thứ người dùng đếm khi bạn nói giới hạn hai trăm ký tự."
+        },
+        {
+          "vi": "Đơn vị mã",
+          "en": "code unit",
+          "def": "Thứ hàm độ dài chuỗi trả về ở phần lớn ngôn ngữ. Một emoji thường tính thành hai."
+        },
+        {
+          "vi": "Byte",
+          "en": "byte",
+          "def": "Chỗ chiếm khi lưu xuống đĩa hoặc gửi qua mạng. Là thứ giới hạn của cột cơ sở dữ liệu nói tới."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "UTF-8 dùng số byte thay đổi"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chữ Latin không dấu chiếm một byte, đúng như bảng mã ASCII cũ - đó là lý do mọi tệp ASCII đều là tệp UTF-8 hợp lệ. Chữ tiếng Việt có dấu chiếm ba byte, và emoji chiếm bốn. Nên một chuỗi hai trăm ký tự tiếng Việt chiếm khoảng sáu trăm byte, gấp ba lần con số mà người viết ô giới hạn hình dung."
+    },
+    {
+      "type": "callout",
+      "label": "Chỗ hay hỏng nhất",
+      "text": "Cắt chuỗi theo byte. Nhát cắt rơi vào giữa một ký tự ba byte và để lại mảnh vỡ hiện thành ô vuông. Mã chạy đúng nhiều năm với dữ liệu tiếng Anh rồi hỏng ngay ngày đầu có người dùng Việt Nam."
+    },
+    {
+      "type": "heading",
+      "text": "Giống hệt nhau mà vẫn khác nhau"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Dạng dựng sẵn",
+        "text": "Chữ ê là một điểm mã duy nhất. Ngắn hơn, và là dạng phần lớn bàn phím sinh ra khi bạn gõ."
+      },
+      "right": {
+        "label": "Dạng tổ hợp",
+        "text": "Chữ ê là chữ e cộng một dấu mũ rời. Hiện ra y hệt, nhưng khác bit - nên so sánh bằng trả về sai và tìm kiếm không khớp."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Khai báo UTF-8 ở mọi ranh giới: tệp, cột cơ sở dữ liệu, kết nối, tiêu đề HTTP.",
+        "Chuẩn hoá chuỗi về một dạng thống nhất trước khi so sánh hoặc dùng làm khoá.",
+        "Giới hạn hiển thị đếm theo ký tự người đọc; giới hạn lưu trữ kiểm theo byte."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Văn bản chỉ đơn giản khi nó là tiếng Anh. Ngay khi có dấu, ba đơn vị đo tách ra và bạn phải nói rõ đang đo bằng cái nào.",
+        "Bài sau nói về một giá trị không phải số cũng không phải chữ: cái rỗng, và vì sao nó được gọi là sai lầm tỉ đô."
+      ]
+    }
+  ]
+}

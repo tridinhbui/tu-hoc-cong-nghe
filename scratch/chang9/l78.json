@@ -1,0 +1,169 @@
+{
+  "id": 78,
+  "slug": "no-ky-thuat",
+  "title": "Nợ kỹ thuật: khoản vay có lãi, không phải rác",
+  "subtitle": "Vay có ý thức là công cụ; vay mà không ghi sổ mới là vấn đề.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📉",
+  "track": "professional",
+  "whyItMatters": "Đội nào cũng nói về nợ kỹ thuật nhưng ít đội quản lý được nó, vì nó không gây sự cố nào rõ ràng. Nó chỉ làm mọi thứ chậm dần, và tới lúc ai cũng thấy chậm thì khoản lãi đã tích rất lớn.",
+  "openingQuestion": "Nợ kỹ thuật khác mã kém chất lượng ở điểm nào?",
+  "openingOptions": [
+    "Nợ là lựa chọn có ý thức để đi nhanh, và có kế hoạch trả",
+    "Nợ chỉ xuất hiện ở những dự án đã chạy trên ba năm",
+    "Nợ nằm ở phần hạ tầng còn mã kém chất lượng nằm ở ứng dụng",
+    "Nợ do người mới gây ra còn mã kém do thiếu quy trình"
+  ],
+  "correctOption": 0,
+  "explanation": "Vay tiền để mở rộng kinh doanh là quyết định hợp lý nếu bạn biết mình đang vay và có kế hoạch trả. Nợ kỹ thuật cũng vậy: chọn một giải pháp tạm để kịp một mốc quan trọng là hoàn toàn chính đáng, miễn là khoản vay ấy được ghi lại và có ngày trả. Thứ không phải nợ mà chỉ là mã kém là khi người viết không biết có cách tốt hơn, hoặc biết mà không ai ghi lại gì. Khác biệt nằm ở ý thức và ở việc có sổ sách, chứ không nằm ở hình dạng đoạn mã.",
+  "diagram": [
+    {
+      "label": "Chọn giải pháp tạm để kịp mốc",
+      "arrow": true
+    },
+    {
+      "label": "Ghi lại: vay gì, vì sao, trả khi nào",
+      "arrow": true
+    },
+    {
+      "label": "Lãi là thời gian mọi thay đổi sau đó tốn thêm",
+      "arrow": true
+    },
+    {
+      "label": "Không ghi sổ thì không ai biết mình đang trả lãi"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cứ để đó rồi dọn sau",
+    "description": "Câu nói ấy xuất hiện trong hầu hết mọi dự án và gần như không bao giờ có bước sau. Không phải vì đội lười, mà vì không có ghi chép nào để lần sau ai đó biết rằng chỗ này từng được đánh dấu là tạm."
+  },
+  "keyTakeaways": [
+    "Nợ kỹ thuật là lựa chọn có ý thức kèm kế hoạch trả, không phải mọi đoạn mã xấu.",
+    "Lãi của nó là thời gian tăng thêm cho mọi thay đổi đi qua vùng đó.",
+    "Trả nợ hiệu quả nhất là trả ở vùng đang được sửa nhiều nhất.",
+    "Không đo được thì không quản được: cần dấu vết trong mã hoặc trong danh sách công việc."
+  ],
+  "summary": {
+    "keyIdea": "Nợ kỹ thuật là một khoản vay hợp lệ, với điều kiện nó được ghi sổ.",
+    "formula": "Vay có ý thức, ghi lại, trả ở nơi lãi cao nhất.",
+    "commonMistake": "Nói sẽ dọn sau mà không ghi lại gì, nên không bao giờ có lần sau."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn tệp bị sửa nhiều nhất trong ba tháng qua của dự án. Đó thường là chỗ nợ kỹ thuật đang tính lãi cao nhất, và cũng là chỗ đáng dọn trước tiên."
+  },
+  "practicePrompt": {
+    "question": "Đội bạn có hai vùng mã đều lộn xộn. Vùng A bị sửa hằng tuần, vùng B không ai đụng tới hai năm nay. Nên dọn vùng nào trước?",
+    "options": [
+      "Vùng A, vì lãi đang được trả mỗi lần có người sửa nó",
+      "Vùng B, vì mã cũ lâu ngày thường có nhiều lỗi tiềm ẩn",
+      "Cả hai cùng lúc để tránh phải quay lại chủ đề này",
+      "Vùng B trước vì nó ít rủi ro hơn khi thay đổi"
+    ],
+    "correct": 0,
+    "explanation": "Lãi chỉ phát sinh khi có người phải đọc và sửa vùng đó. Mã lộn xộn mà hai năm không ai đụng tới thì thực tế đang không tốn gì cả - dọn nó là bỏ công sức mua một lợi ích không tồn tại, kèm rủi ro làm hỏng thứ đang chạy tốt."
+  },
+  "quiz": [
+    {
+      "question": "Điều gì phân biệt nợ kỹ thuật với mã kém chất lượng?",
+      "options": [
+        "Sự có ý thức khi tạo ra nó và kế hoạch trả đi kèm",
+        "Mức độ phức tạp của đoạn mã được viết ra",
+        "Việc đoạn mã đó có được kiểm thử phủ hết hay không",
+        "Thời gian đoạn mã đó đã tồn tại trong dự án"
+      ],
+      "correct": 0,
+      "explanation": "Cùng một đoạn mã có thể là nợ hoặc là rác tuỳ vào việc người viết có biết mình đang đánh đổi hay không, và có ghi lại hay không. Hình dạng mã thì giống nhau."
+    },
+    {
+      "question": "Lãi của nợ kỹ thuật biểu hiện thế nào?",
+      "options": [
+        "Mọi thay đổi đi qua vùng đó đều tốn thêm thời gian",
+        "Hệ thống chạy chậm dần và tốn thêm tài nguyên máy chủ",
+        "Số lượng sự cố tăng lên theo từng tháng của dự án",
+        "Chi phí hạ tầng tăng do mã không được tối ưu hoá"
+      ],
+      "correct": 0,
+      "explanation": "Nó là thuế đánh vào tốc độ phát triển chứ không phải vào hiệu năng lúc chạy. Đó cũng là lý do nó khó nhìn thấy: không có chỉ số nào đỏ, chỉ là mọi việc lâu hơn một chút."
+    },
+    {
+      "question": "Nên ưu tiên trả nợ ở đâu?",
+      "options": [
+        "Ở vùng mã đang bị sửa nhiều nhất",
+        "Ở vùng mã cũ nhất trong toàn bộ dự án",
+        "Ở vùng mã có ít bài kiểm thử phủ nhất",
+        "Ở vùng mã do người đã rời đội viết ra"
+      ],
+      "correct": 0,
+      "explanation": "Lãi chỉ phát sinh khi có người phải làm việc với vùng đó. Dọn một vùng không ai đụng tới là bỏ công sức mà không thu lại được gì, kèm rủi ro làm hỏng thứ đang chạy ổn."
+    },
+    {
+      "question": "Vì sao cần ghi lại nợ kỹ thuật ở đâu đó?",
+      "options": [
+        "Vì người đọc sau không biết đây là lựa chọn tạm hay chủ ý",
+        "Vì quy trình yêu cầu mọi quyết định kỹ thuật phải có văn bản",
+        "Vì công cụ phân tích mã cần dấu hiệu để nhận ra vùng nợ",
+        "Vì đội cần số liệu để báo cáo tiến độ với ban lãnh đạo"
+      ],
+      "correct": 0,
+      "explanation": "Sáu tháng sau, một đoạn mã lạ trông giống nhau ở cả hai trường hợp: cố ý tạm bợ, hay ai đó không biết cách tốt hơn. Không có ghi chép thì người đọc sau phải đoán, và thường họ giữ nguyên vì sợ."
+    },
+    {
+      "question": "Vì sao nợ kỹ thuật khó được ưu tiên xử lý?",
+      "options": [
+        "Vì nó không gây sự cố rõ ràng nào để làm bằng chứng",
+        "Vì trả nợ luôn tốn thời gian hơn dự kiến",
+        "Vì không có ai trong đội muốn nhận việc dọn dẹp mã cũ",
+        "Vì các công cụ hiện có không đo được mức độ nợ"
+      ],
+      "correct": 0,
+      "explanation": "Không có sự cố thì không có câu chuyện để kể khi tranh giành thời gian với tính năng mới. Cách hiệu quả là gắn nó với một con số cụ thể: thời gian trung bình để hoàn thành một thay đổi ở vùng đó."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Cụm từ này bị dùng để chỉ mọi thứ người ta không thích trong kho mã. Nhưng phép so sánh gốc rất chính xác, và nó có ích chỉ khi ta giữ đúng nghĩa: một khoản vay, có lãi, và có sổ."
+    },
+    {
+      "type": "heading",
+      "text": "Vay là hợp lệ, không ghi sổ mới là vấn đề"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chọn giải pháp tạm để kịp một mốc quan trọng là quyết định đúng trong rất nhiều tình huống. Vấn đề bắt đầu khi không ai ghi lại rằng đây là khoản vay: sáu tháng sau, người đọc không phân biệt được đoạn mã tạm bợ có chủ đích với đoạn mã ai đó viết vì không biết cách khác - nên họ giữ nguyên và xây tiếp lên trên."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Nợ có ghi sổ",
+        "text": "Biết vay gì, vì sao, và đổi lại được gì. Có dấu vết trong mã hoặc trong danh sách công việc, nên lần sau người ta biết chỗ nào đáng dọn."
+      },
+      "right": {
+        "label": "Nợ không ghi sổ",
+        "text": "Không ai biết đây là tạm. Mã mới được xây trên nền đó, và khoản vay ban đầu sinh ra những khoản vay tiếp theo."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Lãi trả bằng thời gian",
+      "text": "Nợ kỹ thuật không làm hệ thống chạy chậm; nó làm đội chạy chậm. Mỗi thay đổi đi qua vùng đó tốn thêm thời gian đọc, thêm thời gian kiểm chứng, thêm rủi ro. Đó là lý do nó khó thấy - không có chỉ số nào đỏ cả."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ghi lại khoản vay ngay lúc vay, không phải lúc nhớ ra.",
+        "Ưu tiên dọn ở vùng đang bị sửa nhiều nhất, vì đó là nơi lãi đang thật sự chảy.",
+        "Gắn việc trả nợ vào một con số đo được, để nó cạnh tranh được với tính năng mới."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Vay để đi nhanh là công cụ hợp lệ. Vay mà không ghi sổ là cách một dự án chậm dần mà không ai chỉ ra được lý do.",
+        "Bài sau khép lại chặng: nhìn lại toàn bộ đường đi từ một dòng mã tới thứ đang phục vụ người dùng."
+      ]
+    }
+  ]
+}

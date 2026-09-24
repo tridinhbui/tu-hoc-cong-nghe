@@ -91,14 +91,14 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
   }
 
   if (appeals.length === 0) {
-    return <p className="text-sm text-stone-500 dark:text-stone-400">{ta.noAppeals}</p>;
+    return <p className="text-sm text-ink-muted">{ta.noAppeals}</p>;
   }
 
   return (
     <div className="space-y-4">
       {selectedIds.size > 0 && (
-        <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-lg p-4 flex items-center justify-between">
-          <p className="text-sm font-semibold text-emerald-900 dark:text-emerald-100">
+        <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-accent-line rounded-lg p-4 flex items-center justify-between">
+          <p className="text-sm font-semibold text-accent-ink-strong">
             {format(ta.selectedCount, { count: selectedIds.size })}
           </p>
           <button
@@ -112,16 +112,16 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
         </div>
       )}
 
-      <div className="flex items-center gap-2 pb-2 border-b border-stone-200 dark:border-stone-800">
+      <div className="flex items-center gap-2 pb-2 border-b border-line">
         <input
           type="checkbox"
           checked={selectedIds.size === appeals.length && appeals.length > 0}
           onChange={toggleSelectAll}
           disabled={isPending}
-          className="w-4 h-4 rounded border-stone-300 dark:border-stone-700 cursor-pointer"
+          className="w-4 h-4 rounded border-line-strong cursor-pointer"
           title={ta.selectAllTitle}
         />
-        <span className="text-xs text-stone-500 dark:text-stone-400">
+        <span className="text-xs text-ink-muted">
           {selectedIds.size > 0
             ? format(ta.selectedOf, { selected: selectedIds.size, total: appeals.length })
             : ta.selectToBulkApprove}
@@ -130,7 +130,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
 
       <div className="space-y-3">
         {appeals.map((a) => (
-          <div key={a.id} className={`bg-white dark:bg-stone-900 border rounded-xl p-4 transition-colors ${selectedIds.has(a.id) ? 'border-emerald-400 dark:border-emerald-600 bg-emerald-50/30 dark:bg-emerald-950/20' : 'border-stone-200 dark:border-stone-800'}`}>
+          <div key={a.id} className={`bg-white dark:bg-stone-900 border rounded-xl p-4 transition-colors ${selectedIds.has(a.id) ? 'border-emerald-400 dark:border-emerald-600 bg-emerald-50/30 dark:bg-emerald-950/20' : 'border-line'}`}>
             <div className="flex items-start justify-between gap-3 flex-wrap">
               <div className="flex items-start gap-3 flex-1 min-w-0">
                 <input
@@ -138,17 +138,17 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
                   checked={selectedIds.has(a.id)}
                   onChange={() => toggleSelect(a.id)}
                   disabled={isPending}
-                  className="w-4 h-4 rounded border-stone-300 dark:border-stone-700 cursor-pointer flex-shrink-0 mt-0.5"
+                  className="w-4 h-4 rounded border-line-strong cursor-pointer flex-shrink-0 mt-0.5"
                 />
                 <div className="min-w-0">
-                  <p className="font-bold text-stone-900 dark:text-stone-100">
+                  <p className="font-bold text-ink">
                     {a.user_name || a.user_email || ta.unknownLearner}
                   </p>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                  <p className="text-xs text-ink-muted mt-0.5">
                     {format(ta.lessonMeta, { slug: a.lesson_slug ?? "", id: a.lesson_id, date: formatDate(a.created_at, locale) })}
                   </p>
                   {a.note && (
-                    <p className="text-sm text-stone-700 dark:text-stone-300 mt-2 italic">&quot;{a.note}&quot;</p>
+                    <p className="text-sm text-ink-body mt-2 italic">&quot;{a.note}&quot;</p>
                   )}
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
                 <button
                   onClick={() => setRejectTarget(a.id)}
                   disabled={isPending}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 disabled:opacity-50 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg border border-line-mid text-ink-soft hover:bg-surface disabled:opacity-50 transition-colors"
                 >
                   <XCircle className="w-3.5 h-3.5" />
                   {ta.reject}
@@ -197,14 +197,14 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
 
       {rejectTarget !== null && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50">
-          <div className="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 w-full max-w-sm p-5 space-y-3">
-            <h3 className="font-bold text-stone-900 dark:text-stone-100">{ta.rejectDialogTitle}</h3>
+          <div className="bg-white dark:bg-stone-900 rounded-2xl border border-line w-full max-w-sm p-5 space-y-3">
+            <h3 className="font-bold text-ink">{ta.rejectDialogTitle}</h3>
             <textarea
               value={rejectNote}
               onChange={(e) => setRejectNote(e.target.value)}
               placeholder={ta.rejectReasonPlaceholder}
               rows={3}
-              className="w-full px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-400 resize-none"
+              className="w-full px-3 py-2 rounded-lg border border-line-mid bg-white dark:bg-stone-800 text-sm text-ink focus:outline-none focus:border-stone-400 resize-none"
             />
             <div className="flex justify-end gap-2">
               <button
@@ -212,7 +212,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
                   setRejectTarget(null);
                   setRejectNote("");
                 }}
-                className="px-4 py-2 text-sm font-semibold rounded-lg border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800"
+                className="px-4 py-2 text-sm font-semibold rounded-lg border border-line-strong text-ink-body hover:bg-surface"
               >
                 {ta.cancel}
               </button>

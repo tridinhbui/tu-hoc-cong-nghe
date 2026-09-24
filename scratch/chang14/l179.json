@@ -1,0 +1,181 @@
+{
+  "id": 179,
+  "slug": "case-ba-muoi-phut-dau-su-co",
+  "title": "Case: ba mươi phút đầu của một sự cố",
+  "subtitle": "Cùng một sự cố kỹ thuật, hai cách ứng phó, và chênh nhau bảy mươi phút thời gian ngừng.",
+  "duration": "10 phút",
+  "difficulty": "Khó",
+  "emoji": "🕐",
+  "track": "professional",
+  "whyItMatters": "Mọi nguyên tắc trong chặng này đều dễ đồng ý khi đọc. Đặt chúng vào một dòng thời gian cụ thể thì mới thấy chỗ nào thật sự tốn thời gian, và nó hiếm khi là chỗ ta tưởng.",
+  "openingQuestion": "Sự cố bắt đầu lúc 14:00. Đội A chặn được thiệt hại lúc 14:20, đội B lúc 15:30, cùng nguyên nhân. Khác biệt lớn nhất thường nằm ở đâu?",
+  "openingOptions": [
+    "Ở thời gian phát hiện và tuyên bố, không ở thời gian sửa",
+    "Ở kinh nghiệm của người đang trực với chính hệ thống cụ thể đó",
+    "Ở chất lượng công cụ chẩn đoán mà mỗi đội đang có",
+    "Ở việc đội nào có mặt đủ người ngay từ đầu sự cố"
+  ],
+  "correctOption": 0,
+  "explanation": "Khi cùng một nguyên nhân, bước sửa thường mất thời gian như nhau ở cả hai đội - quay lui là quay lui. Chênh lệch nằm ở phần trước đó: bao lâu để có người nhận ra, bao lâu để mọi người đồng ý rằng đang có sự cố, và bao lâu để có người bắt đầu hành động thay vì bàn bạc. Kinh nghiệm và công cụ đều rút ngắn được các đoạn ấy, nhưng chúng là phương tiện chứ không phải chỗ thời gian bị mất.",
+  "diagram": [
+    {
+      "label": "14:00 lỗi bắt đầu - chưa ai biết",
+      "arrow": true
+    },
+    {
+      "label": "14:06 cảnh báo nổ - đội A tuyên bố ngay",
+      "arrow": true
+    },
+    {
+      "label": "14:08 quay lui bản triển khai gần nhất",
+      "arrow": true
+    },
+    {
+      "label": "14:20 xác nhận đã ổn, chuyển sang điều tra"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hai dòng thời gian, một nguyên nhân",
+    "description": "Đội B mất hai mươi hai phút để phát hiện, mười tám phút bàn xem đây có phải sự cố không, ba mươi phút đọc mã để chắc chắn bản triển khai là nguyên nhân, rồi bốn phút quay lui."
+  },
+  "keyTakeaways": [
+    "Phần lớn thời gian ngừng thường nằm trước bước sửa, không phải trong nó.",
+    "Ba mốc cần ghi lại: bắt đầu ảnh hưởng, tuyên bố, chặn được thiệt hại.",
+    "Hành động rẻ và đảo ngược được nên đi trước việc xác nhận giả thuyết.",
+    "Thông báo ra ngoài đi song song, không chờ tới khi hiểu nguyên nhân."
+  ],
+  "summary": {
+    "keyIdea": "Chênh lệch giữa ứng phó tốt và kém nằm ở các bước trước khi sửa.",
+    "formula": "Phát hiện nhanh, tuyên bố sớm, hành động rẻ trước.",
+    "commonMistake": "Đầu tư vào tốc độ sửa trong khi thời gian mất ở chỗ khác."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Dựng lại dòng thời gian của sự cố gần nhất với ba mốc trên. So tỷ lệ giữa phần trước khi sửa và phần sửa - đó là bản đồ cải thiện của đội bạn."
+  },
+  "practicePrompt": {
+    "question": "Trong dòng thời gian của đội B, đoạn nào đáng cắt trước tiên?",
+    "options": [
+      "Ba mươi phút đọc mã trước khi dám quay lui",
+      "Hai mươi hai phút từ lúc lỗi bắt đầu tới lúc phát hiện",
+      "Mười tám phút bàn xem đây có phải sự cố hay không",
+      "Bốn phút thực hiện thao tác quay lui bản triển khai"
+    ],
+    "correct": 0,
+    "explanation": "Nó dài nhất và cũng rẻ nhất để cắt: quay lui trước rồi đọc sau không đòi hỏi công cụ mới hay kỹ năng mới, chỉ đòi hỏi đổi thứ tự. Hai đoạn kia cũng đáng cắt nhưng cần đầu tư vào giám sát và vào quy ước tuyên bố, tức là mất nhiều thời gian hơn để có hiệu quả."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao thời gian sửa thường không phải chỗ chênh lệch?",
+      "options": [
+        "Vì cùng một nguyên nhân thì thao tác khắc phục gần như giống nhau",
+        "Vì các đội thường dùng chung một bộ công cụ triển khai",
+        "Vì thao tác sửa luôn được tự động hoá trong mọi hệ thống hiện đại ngày nay",
+        "Vì bước sửa được thực hiện bởi người có kinh nghiệm nhất"
+      ],
+      "correct": 0,
+      "explanation": "Quay lui mất bốn phút ở mọi đội có công cụ quay lui. Điều khác nhau là mất bao lâu để tới được thời điểm bấm nút ấy, và đó là phần chiếm phần lớn dòng thời gian."
+    },
+    {
+      "question": "Ba mốc cần ghi lại trong mọi sự cố là gì?",
+      "options": [
+        "Bắt đầu ảnh hưởng, tuyên bố sự cố, và chặn được thiệt hại",
+        "Cảnh báo nổ, phân vai xong, và triển khai bản sửa",
+        "Người trực nhận thông báo, đội tập hợp, và hệ thống ổn định",
+        "Phát hiện vấn đề, xác định nguyên nhân, và đóng sự cố"
+      ],
+      "correct": 0,
+      "explanation": "Ba mốc này chia dòng thời gian thành các đoạn mà mỗi đoạn được cải thiện bằng một loại đầu tư khác nhau. Xác định nguyên nhân thì đáng ghi nhưng nó thường xảy ra sau khi thiệt hại đã được chặn, nên nó không nằm trên đường quan trọng."
+    },
+    {
+      "question": "Vì sao thông báo ra ngoài nên đi song song?",
+      "options": [
+        "Vì ba điều cần nói đều trả lời được mà không cần biết nguyên nhân",
+        "Vì bộ phận hỗ trợ sẽ liên tục hỏi nếu không nhận được thông tin",
+        "Vì quy định về dịch vụ yêu cầu thông báo trong một khung thời gian",
+        "Vì thông báo sớm giúp giảm số lượng người dùng bị ảnh hưởng"
+      ],
+      "correct": 0,
+      "explanation": "Cái gì hỏng, ai bị ảnh hưởng, khi nào cập nhật tiếp - cả ba đã biết từ phút thứ sáu. Chờ hiểu nguyên nhân rồi mới nói là tự đặt ra một điều kiện mà nội dung thông báo không hề cần tới."
+    },
+    {
+      "question": "Bài học chính từ việc so hai dòng thời gian là gì?",
+      "options": [
+        "Nên đầu tư vào phát hiện và quyết định, không chỉ vào tốc độ sửa",
+        "Nên có thêm người trong vòng trực để phản ứng nhanh hơn",
+        "Nên tự động hoá bước quay lui để rút ngắn thời gian thực hiện thao tác",
+        "Nên phân loại sự cố kỹ hơn để ưu tiên đúng mức nghiêm trọng"
+      ],
+      "correct": 0,
+      "explanation": "Tự động hoá bước quay lui thì cắt được vài phút trong một đoạn vốn đã ngắn. Phát hiện nhanh hơn và quyết định sớm hơn cắt được hàng chục phút, và chúng thường rẻ hơn để cải thiện."
+    },
+    {
+      "question": "Vì sao đội A quay lui trước khi xác nhận nguyên nhân?",
+      "options": [
+        "Vì nếu đoán sai thì họ chỉ mất bốn phút và loại được một giả thuyết",
+        "Vì họ đã có bằng chứng đủ mạnh ngay từ những phút đầu tiên",
+        "Vì quy trình của họ bắt buộc quay lui khi có sự cố sau triển khai",
+        "Vì họ không có công cụ để phân tích bản thay đổi một cách nhanh chóng"
+      ],
+      "correct": 0,
+      "explanation": "Đây là toàn bộ nội dung của nguyên tắc giảm thiểu trước: hành động rẻ và đảo ngược được thì không cần chờ chắc chắn. Nhánh thất bại vẫn có giá trị vì nó loại bỏ khả năng khả dĩ nhất với chi phí rất thấp."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mọi nguyên tắc trong chặng này dễ đồng ý khi đọc. Bài này đặt chúng vào một dòng thời gian cụ thể, vì đó là chỗ ta thấy được thời gian thật sự bị mất ở đâu."
+    },
+    {
+      "type": "heading",
+      "text": "Đội A"
+    },
+    {
+      "type": "list",
+      "items": [
+        "14:00 - một bản triển khai đưa lên, tỷ lệ lỗi bắt đầu tăng ở một phần lưu lượng.",
+        "14:06 - cảnh báo trên tỷ lệ lỗi người dùng nổ. Người trực tuyên bố sự cố ngay, chưa biết nguyên nhân.",
+        "14:07 - phân vai trong kênh. Một người sửa, một người liên lạc, người trực làm chỉ huy.",
+        "14:08 - quay lui bản triển khai gần nhất. Song song, thông báo đầu tiên gửi đi: chức năng nào, ai bị ảnh hưởng, cập nhật sau 30 phút.",
+        "14:20 - tỷ lệ lỗi về bình thường, xác nhận đã ổn. Chuyển sang điều tra nguyên nhân, không còn ai chịu ảnh hưởng."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Đội B, cùng nguyên nhân"
+    },
+    {
+      "type": "list",
+      "items": [
+        "14:00 - lỗi bắt đầu. Không có cảnh báo trên tỷ lệ lỗi, chỉ có cảnh báo trên tài nguyên.",
+        "14:22 - một khách hàng báo qua bộ phận hỗ trợ. Kỹ sư bắt đầu xem.",
+        "14:40 - sau mười tám phút trao đổi xem đây có phải sự cố không, sự cố được tuyên bố.",
+        "15:10 - ba mươi phút đọc bản thay đổi để chắc chắn nó là nguyên nhân.",
+        "15:14 - quay lui, mất bốn phút. 15:30 - xác nhận đã ổn."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Bước sửa giống hệt nhau",
+      "text": "Bốn phút ở cả hai đội. Bảy mươi phút chênh lệch nằm hoàn toàn ở phần trước đó - phát hiện, quyết định, và thứ tự giữa hành động với việc xác nhận."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cắt được rẻ nhất",
+        "text": "Ba mươi phút đọc mã trước khi quay lui. Chỉ cần đổi thứ tự, không cần công cụ hay kỹ năng mới."
+      },
+      "right": {
+        "label": "Cắt được nhưng cần đầu tư",
+        "text": "Hai mươi hai phút phát hiện cần cảnh báo đặt trên tỷ lệ lỗi. Mười tám phút bàn bạc cần một quy ước về ngưỡng tuyên bố."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Nếu chỉ được sửa một thứ trong quy trình ứng phó, hãy sửa thứ tự: hành động rẻ đi trước việc xác nhận.",
+        "Bài sau tổng kết cả chặng."
+      ]
+    }
+  ]
+}

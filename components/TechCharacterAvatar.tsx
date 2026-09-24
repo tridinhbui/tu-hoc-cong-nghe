@@ -153,7 +153,7 @@ export default function TechCharacterAvatar({
 
         {/* Armor Badge */}
         {activeArmor && (
-          <div className="absolute -bottom-2 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-100 text-[10px] font-black px-2.5 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-700 shadow-md flex items-center gap-1">
+          <div className="absolute -bottom-2 bg-white dark:bg-stone-900 text-ink-heading text-[10px] font-black px-2.5 py-0.5 rounded-full border border-accent-line-mid shadow-md flex items-center gap-1">
             <Shield className="w-3 h-3 text-emerald-500" /> {activeArmor.icon}
           </div>
         )}
@@ -161,14 +161,14 @@ export default function TechCharacterAvatar({
 
       {/* Left Weapon Slot */}
       {activeWeapon && (
-        <div className="absolute -left-2 top-1/2 -translate-y-1/2 bg-white dark:bg-stone-900 border border-amber-300 dark:border-amber-700 p-1.5 rounded-2xl shadow-md text-lg">
+        <div className="absolute -left-2 top-1/2 -translate-y-1/2 bg-white dark:bg-stone-900 border border-warn-line-mid p-1.5 rounded-2xl shadow-md text-lg">
           {activeWeapon.icon}
         </div>
       )}
 
       {/* Right Pet Slot */}
       {activePet && (
-        <div className="absolute -right-2 top-1/2 -translate-y-1/2 bg-white dark:bg-stone-900 border border-emerald-300 dark:border-emerald-700 p-1.5 rounded-2xl shadow-md text-lg">
+        <div className="absolute -right-2 top-1/2 -translate-y-1/2 bg-white dark:bg-stone-900 border border-accent-line-mid p-1.5 rounded-2xl shadow-md text-lg">
           {activePet.icon}
         </div>
       )}

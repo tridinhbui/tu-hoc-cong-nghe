@@ -1,0 +1,170 @@
+{
+  "id": 101,
+  "slug": "he-thong-lon-khac-he-thong-nho",
+  "title": "Quy mô: vấn đề đổi chất chứ không chỉ đổi lượng",
+  "subtitle": "Mười người viết cùng một hệ thống không phải là một người làm nhanh gấp mười.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🏙️",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Mọi kỹ thuật của mười chặng trước đều giả định một đội đủ nhỏ để ai cũng biết chuyện gì đang xảy ra. Khi giả định ấy vỡ, những vấn đề hoàn toàn mới xuất hiện - và chúng không giải được bằng cách làm tốt hơn những thứ cũ.",
+  "openingQuestion": "Đội tăng từ năm lên hai mươi người. Chi phí phối hợp thay đổi thế nào?",
+  "openingOptions": [
+    "Tăng nhanh hơn số người, vì số cặp phải trao đổi tăng theo bình phương",
+    "Tăng tỷ lệ thuận với số người trong đội",
+    "Không đổi, vì mỗi người vẫn chỉ làm phần việc của mình",
+    "Giảm đi, vì mỗi người phụ trách một phạm vi hẹp hơn trước"
+  ],
+  "correctOption": 0,
+  "explanation": "Với năm người có mười cặp có thể phải trao đổi; với hai mươi người con số ấy là một trăm chín mươi. Chi phí phối hợp tăng theo bình phương trong khi năng lực chỉ tăng tuyến tính, nên tới một quy mô nào đó, thêm người làm mọi thứ chậm lại. Đó là lý do các tổ chức lớn không tổ chức thành một đội hai mươi người mà thành bốn đội năm người với ranh giới rõ ràng - và toàn bộ chặng này nói về cách vẽ những ranh giới đó.",
+  "diagram": [
+    {
+      "label": "5 người: 10 cặp trao đổi",
+      "arrow": true
+    },
+    {
+      "label": "20 người: 190 cặp",
+      "arrow": true
+    },
+    {
+      "label": "Năng lực tăng tuyến tính, phối hợp tăng bình phương",
+      "arrow": true
+    },
+    {
+      "label": "Lời giải là ranh giới, không phải thêm người"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Thêm người vào dự án trễ",
+    "description": "Ở chặng trước, việc thêm người vào một dự án đang trễ thường làm nó trễ thêm. Nguyên nhân chính là chi phí phối hợp: người mới không chỉ cần được hướng dẫn, họ còn thêm một loạt cặp trao đổi mới vào một hệ thống vốn đã đông."
+  },
+  "keyTakeaways": [
+    "Chi phí phối hợp tăng theo bình phương số người, năng lực chỉ tăng tuyến tính.",
+    "Lời giải cho quy mô là ranh giới rõ ràng, không phải quy trình dày hơn.",
+    "Ở đội nhỏ, hiểu biết chung thay được tài liệu; ở quy mô lớn thì không.",
+    "Nhiều thực hành đúng ở quy mô nhỏ trở thành sai ở quy mô lớn, và ngược lại."
+  ],
+  "summary": {
+    "keyIdea": "Quy mô làm xuất hiện những vấn đề mới về chất, không phải phiên bản lớn hơn của vấn đề cũ.",
+    "formula": "Chia thành các đội có ranh giới, thay vì làm một đội lớn hơn.",
+    "commonMistake": "Giải bài toán quy mô bằng cách thêm quy trình cho một đội đã quá đông."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Đếm xem trong tuần qua đội bạn phải hỏi bao nhiêu đội khác để hoàn thành công việc. Con số ấy là thước đo trực tiếp của chi phí phối hợp bạn đang trả."
+  },
+  "practicePrompt": {
+    "question": "Vì sao một thực hành hiệu quả ở đội năm người có thể thất bại ở tổ chức năm mươi người?",
+    "options": [
+      "Vì nó dựa vào việc ai cũng biết chuyện gì đang xảy ra, điều không còn đúng nữa",
+      "Vì tổ chức lớn có quy trình phê duyệt phức tạp hơn nhiều",
+      "Vì người trong tổ chức lớn có trình độ không đồng đều nhau",
+      "Vì công cụ dùng cho đội nhỏ không mở rộng được về mặt kỹ thuật"
+    ],
+    "correct": 0,
+    "explanation": "Rất nhiều thực hành ở đội nhỏ chạy được nhờ một hiểu biết chung không ai viết ra: mọi người đều biết ai đang làm gì và vì sao. Ở năm mươi người, hiểu biết ấy không tồn tại, nên những thứ từng miễn phí - như biết mình sắp giẫm chân ai - trở thành thứ phải trả tiền bằng ranh giới và tài liệu."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao chi phí phối hợp tăng nhanh hơn số người?",
+      "options": [
+        "Vì số cặp có thể phải trao đổi tăng theo bình phương",
+        "Vì mỗi người mới cần nhiều thời gian hướng dẫn hơn người trước",
+        "Vì tổ chức lớn cần thêm nhiều tầng quản lý trung gian",
+        "Vì công cụ liên lạc trở nên chậm hơn khi có nhiều người dùng"
+      ],
+      "correct": 0,
+      "explanation": "Đây là quan hệ toán học chứ không phải vấn đề quản lý: n người có n nhân n trừ một chia hai cặp. Năng lực cộng thêm thì tuyến tính, nên hai đường ấy cắt nhau ở một quy mô nào đó."
+    },
+    {
+      "question": "Lời giải đúng cho bài toán quy mô là gì?",
+      "options": [
+        "Chia thành các đội có ranh giới rõ ràng",
+        "Thêm quy trình phê duyệt để kiểm soát thay đổi",
+        "Tăng số buổi họp để mọi người nắm được thông tin",
+        "Tuyển thêm người để chia bớt khối lượng công việc"
+      ],
+      "correct": 0,
+      "explanation": "Ranh giới cắt bớt số cặp thật sự phải trao đổi, nên nó tấn công đúng nguyên nhân. Thêm họp và thêm quy trình là tăng chi phí phối hợp chứ không giảm."
+    },
+    {
+      "question": "Điều gì mất đi khi đội vượt quá quy mô nhỏ?",
+      "options": [
+        "Hiểu biết chung mà không ai phải viết ra",
+        "Khả năng tuyển được người có chuyên môn phù hợp",
+        "Sự linh hoạt trong việc lựa chọn công nghệ mới",
+        "Quyền tự quyết của từng thành viên trong công việc"
+      ],
+      "correct": 0,
+      "explanation": "Ở năm người, ai cũng biết ai đang làm gì mà không cần cơ chế nào. Đó là thứ miễn phí biến mất trước tiên, và mọi thứ thay thế nó - tài liệu, ranh giới, hợp đồng - đều tốn tiền."
+    },
+    {
+      "question": "Vì sao thêm người vào dự án đang trễ thường làm nó trễ thêm?",
+      "options": [
+        "Vì người mới thêm cả nhu cầu hướng dẫn lẫn số cặp trao đổi mới",
+        "Vì người mới thường không có đủ kinh nghiệm cần thiết",
+        "Vì ngân sách của dự án bị chia nhỏ ra cho nhiều người hơn trước",
+        "Vì đội hiện tại sẽ mất động lực khi có người mới vào"
+      ],
+      "correct": 0,
+      "explanation": "Hai chi phí cộng lại: thời gian của người giỏi nhất bị lấy đi để hướng dẫn, và mạng lưới trao đổi phình ra. Cả hai đều rơi đúng vào lúc dự án ít chịu đựng được nhất."
+    },
+    {
+      "question": "Điều gì đúng với thực hành kỹ thuật khi quy mô thay đổi?",
+      "options": [
+        "Một số thực hành đúng ở quy mô này lại sai ở quy mô khác",
+        "Thực hành tốt thì tốt ở mọi quy mô tổ chức",
+        "Quy mô càng lớn thì càng cần ít quy tắc chung hơn",
+        "Chỉ có công cụ là thay đổi, còn thực hành thì vẫn giữ nguyên"
+      ],
+      "correct": 0,
+      "explanation": "Một kho mã chung cho ba người là hiển nhiên đúng; cho ba trăm người thì cần cả một hệ thống công cụ để còn dùng được. Câu hỏi luôn phải kèm quy mô, nếu không thì lời khuyên nào cũng có phản ví dụ."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mười chặng trước ngầm giả định một đội đủ nhỏ để ai cũng biết chuyện gì đang xảy ra. Chặng này là về những gì xảy ra khi giả định đó không còn đúng."
+    },
+    {
+      "type": "heading",
+      "text": "Phép toán của việc phối hợp"
+    },
+    {
+      "type": "paragraph",
+      "text": "Năm người tạo ra mười cặp có thể phải trao đổi với nhau. Hai mươi người tạo ra một trăm chín mươi. Năng lực làm việc chỉ tăng gấp bốn, còn số đường liên lạc tăng gấp mười chín - và mỗi đường ấy là một cơ hội để hiểu nhầm, để chờ nhau, để hai người cùng làm một việc."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Đội nhỏ",
+        "text": "Hiểu biết chung là miễn phí. Ai cũng biết ai đang làm gì, nên tài liệu ít, quy trình ít, và quyết định nhanh."
+      },
+      "right": {
+        "label": "Quy mô lớn",
+        "text": "Hiểu biết chung không tồn tại. Mọi thứ từng miễn phí giờ phải mua bằng ranh giới, hợp đồng và tài liệu."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Lời khuyên nào cũng cần kèm quy mô",
+      "text": "Kho mã chung, dịch vụ tách riêng, chuẩn chung hay tự chủ - mọi lựa chọn trong chặng này đều có câu trả lời khác nhau ở ba người và ở ba trăm người. Câu hỏi thiếu quy mô là câu hỏi không trả lời được."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đo chi phí phối hợp bằng số đội bạn phải hỏi để hoàn thành một việc.",
+        "Khi chi phí ấy tăng, hãy nghĩ tới ranh giới trước khi nghĩ tới quy trình.",
+        "Chấp nhận rằng một số thứ từng miễn phí giờ sẽ tốn tiền - đó là cái giá của quy mô."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Quy mô không làm vấn đề cũ lớn hơn; nó tạo ra vấn đề khác hẳn, và chúng cần công cụ khác.",
+        "Bài sau nói về công cụ chính của cả chặng: ranh giới, và cách vẽ chúng cho đúng chỗ."
+      ]
+    }
+  ]
+}

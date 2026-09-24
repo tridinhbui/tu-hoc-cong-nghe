@@ -1,0 +1,177 @@
+{
+  "id": 53,
+  "slug": "goi-hai-lan-va-tinh-bat-bien",
+  "title": "Gọi hai lần: thao tác nào lặp lại được mà không hại",
+  "subtitle": "Máy khách không phân biệt được yêu cầu thất bại với phản hồi bị mất trên đường về.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🔁",
+  "track": "professional",
+  "whyItMatters": "Đây là chỗ những lỗi tiền bạc nghiêm trọng nhất sinh ra: khách hàng bị trừ tiền hai lần vì mạng chập chờn đúng lúc, không phải vì mã tính sai. Thiết kế để lặp lại vô hại là cách duy nhất chữa tận gốc.",
+  "openingQuestion": "Máy khách gửi lệnh trừ tiền, chờ mãi không thấy phản hồi. Nó nên làm gì?",
+  "openingOptions": [
+    "Gửi lại kèm đúng mã thao tác cũ, để máy chủ nhận ra đây là lần lặp",
+    "Gửi lại như một yêu cầu hoàn toàn mới, vì lần trước coi như đã thất bại",
+    "Bỏ qua và báo lỗi cho người dùng, vì gửi lại luôn có rủi ro trừ hai lần",
+    "Gọi một đường dẫn khác để kiểm tra số dư rồi tự suy ra kết quả"
+  ],
+  "correctOption": 0,
+  "explanation": "Khi hết thời gian chờ, máy khách ở trong trạng thái không biết: có thể máy chủ chưa nhận được gì, có thể nó đã xử lý xong và phản hồi mất trên đường về. Hai khả năng ấy nhìn từ phía máy khách là giống hệt nhau. Gửi lại như một yêu cầu mới thì rơi vào trường hợp thứ hai là trừ tiền hai lần. Bỏ qua thì rơi vào trường hợp thứ nhất là mất giao dịch. Lối thoát duy nhất là mang theo một mã thao tác do máy khách sinh ra, để máy chủ nhận ra lần gọi lặp và trả lại kết quả cũ thay vì làm lại từ đầu.",
+  "diagram": [
+    {
+      "label": "Máy khách gửi lệnh kèm mã thao tác",
+      "arrow": true
+    },
+    {
+      "label": "Hết thời gian chờ - không rõ đã xử lý chưa",
+      "arrow": true
+    },
+    {
+      "label": "Gửi lại đúng mã thao tác đó",
+      "arrow": true
+    },
+    {
+      "label": "Máy chủ nhận ra lặp, trả kết quả cũ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Nút đặt hàng bấm hai lần",
+    "description": "Người dùng bấm đặt hàng, trang quay lâu, họ bấm lại. Không có mã thao tác thì đó là hai đơn hàng. Với mã thao tác gắn vào lần mở biểu mẫu, lần bấm thứ hai được nhận ra là lặp và trả về đúng đơn đã tạo."
+  },
+  "keyTakeaways": [
+    "Hết thời gian chờ không cho biết thao tác đã xảy ra hay chưa.",
+    "Thao tác lặp lại vô hại thì thử lại được an toàn; thao tác không thì phải có mã chống lặp.",
+    "Mã thao tác do máy khách sinh, gắn với ý định chứ không gắn với lần gửi.",
+    "Đọc và xoá vốn đã lặp lại vô hại; tạo mới và cộng dồn thì không."
+  ],
+  "summary": {
+    "keyIdea": "Vì mạng không cho biết kết quả, hãy thiết kế để làm lại một thao tác không gây hại.",
+    "formula": "Cùng một mã thao tác thì cùng một kết quả, gọi bao nhiêu lần cũng vậy.",
+    "commonMistake": "Cho phép thử lại tự động ở những thao tác không chịu được việc lặp."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê những thao tác ghi trong dịch vụ của bạn và đánh dấu cái nào chịu được việc gọi hai lần. Cái nào không chịu được mà lại nằm sau một cơ chế thử lại tự động là một lỗi đang chờ xảy ra."
+  },
+  "practicePrompt": {
+    "question": "Thao tác nào sau đây vốn đã lặp lại vô hại mà không cần thêm cơ chế gì?",
+    "options": [
+      "Đặt trạng thái đơn hàng thành đã huỷ",
+      "Cộng thêm một trăm nghìn vào số dư tài khoản",
+      "Tạo mới một bản ghi khách hàng từ dữ liệu biểu mẫu",
+      "Gửi một tin nhắn thông báo tới điện thoại người dùng"
+    ],
+    "correct": 0,
+    "explanation": "Đặt một giá trị cụ thể thì lần thứ hai không đổi gì so với lần thứ nhất - trạng thái vẫn là đã huỷ. Ba thao tác còn lại đều cộng dồn hoặc sinh thêm, nên mỗi lần gọi lại tạo ra một hậu quả mới."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao hết thời gian chờ là tình huống khó xử lý?",
+      "options": [
+        "Vì máy khách không biết máy chủ đã xử lý xong hay chưa",
+        "Vì kết nối đã đóng nên không gửi thêm được",
+        "Vì máy chủ sẽ tự động huỷ mọi thay đổi khi máy khách ngắt kết nối",
+        "Vì thời gian chờ luôn được đặt ngắn hơn thời gian xử lý thực tế"
+      ],
+      "correct": 0,
+      "explanation": "Yêu cầu chưa tới và phản hồi bị mất trên đường về là hai tình huống khác hẳn nhau nhưng nhìn giống hệt nhau từ phía máy khách. Mọi cách xử lý đều sai với một trong hai, trừ khi thao tác được thiết kế để lặp lại vô hại."
+    },
+    {
+      "question": "Thao tác lặp lại vô hại nghĩa là gì?",
+      "options": [
+        "Gọi nhiều lần cũng cho cùng một kết quả như gọi một lần",
+        "Gọi nhiều lần thì các lần sau bị máy chủ từ chối tự động",
+        "Gọi nhiều lần cũng không làm tăng tải lên hệ thống phía sau",
+        "Gọi nhiều lần thì mỗi lần trả về một phản hồi khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Điều kiện là trạng thái cuối cùng của hệ thống không đổi dù thao tác chạy bao nhiêu lần. Nhờ tính chất đó, thử lại trở thành an toàn và máy khách không cần biết lần trước đã tới hay chưa."
+    },
+    {
+      "question": "Mã thao tác chống lặp nên do bên nào sinh ra?",
+      "options": [
+        "Máy khách, và gắn với ý định chứ không gắn với từng lần gửi",
+        "Máy chủ, và trả về cho máy khách khi nhận yêu cầu",
+        "Bộ cân bằng tải, vì nó thấy được toàn bộ lưu lượng đi qua",
+        "Cơ sở dữ liệu, vì chỉ nó biết bản ghi đã tồn tại hay chưa"
+      ],
+      "correct": 0,
+      "explanation": "Máy chủ không phân biệt được hai lần gửi của cùng một ý định nếu chính máy khách không nói. Mã phải sinh ra lúc hình thành ý định và giữ nguyên qua mọi lần gửi lại, nếu không nó chẳng chống được gì."
+    },
+    {
+      "question": "Thao tác nào sau đây không lặp lại vô hại?",
+      "options": [
+        "Cộng thêm một khoản vào số dư tài khoản",
+        "Đặt địa chỉ giao hàng thành một giá trị cụ thể",
+        "Xoá một bản ghi theo đúng định danh của nó",
+        "Đọc thông tin chi tiết của một đơn hàng"
+      ],
+      "correct": 0,
+      "explanation": "Cộng dồn tích luỹ theo số lần gọi nên mỗi lần lặp là một khoản tiền nữa. Đặt giá trị và xoá đều cho cùng kết quả cuối dù chạy mấy lần, còn đọc thì không đổi gì cả."
+    },
+    {
+      "question": "Máy chủ nên làm gì khi nhận lại một mã thao tác đã xử lý?",
+      "options": [
+        "Trả về kết quả của lần xử lý trước mà không làm lại thao tác",
+        "Từ chối yêu cầu và báo lỗi trùng lặp cho phía máy khách",
+        "Xử lý lại từ đầu để bảo đảm kết quả trả về là mới nhất",
+        "Bỏ qua yêu cầu và không trả về phản hồi nào cho phía máy khách nữa"
+      ],
+      "correct": 0,
+      "explanation": "Trả lại kết quả cũ khiến lần gọi lặp trông y hệt lần gọi đầu từ phía máy khách, đúng thứ nó cần. Báo lỗi trùng lặp thì đẩy máy khách vào tình huống khó xử: nó vẫn không biết lần đầu đã thành công hay chưa."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước kết thúc ở việc thử lại. Nhưng thử lại chỉ an toàn khi bạn trả lời được một câu hỏi: nếu yêu cầu này chạy hai lần thì có sao không?"
+    },
+    {
+      "type": "heading",
+      "text": "Trạng thái không biết"
+    },
+    {
+      "type": "paragraph",
+      "text": "Máy khách gửi đi và không nhận được gì. Có thể yêu cầu chưa tới nơi. Có thể nó đã được xử lý xong và phản hồi mất trên đường về. Hai khả năng ấy dẫn tới hai hành động ngược nhau, và không có cách nào phân biệt từ phía máy khách - đó là bản chất của mạng, không phải thiếu sót của thiết kế."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Thao tác nào chịu được việc lặp",
+      "subtitle": "Câu hỏi: chạy lần thứ hai thì trạng thái cuối có đổi không",
+      "concepts": [
+        {
+          "vi": "Đọc",
+          "en": "read",
+          "def": "Vô hại hoàn toàn. Không đổi gì nên gọi bao nhiêu lần cũng như một."
+        },
+        {
+          "vi": "Đặt giá trị",
+          "en": "set",
+          "def": "Vô hại. Đặt trạng thái thành đã huỷ hai lần thì kết quả vẫn là đã huỷ."
+        },
+        {
+          "vi": "Xoá",
+          "en": "delete",
+          "def": "Vô hại về kết quả cuối: lần thứ hai không tìm thấy gì để xoá, và trạng thái vẫn đúng."
+        },
+        {
+          "vi": "Cộng dồn, tạo mới",
+          "en": "increment, create",
+          "def": "Không vô hại. Mỗi lần gọi sinh thêm một hậu quả, nên bắt buộc cần mã chống lặp."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Mã gắn với ý định, không gắn với lần gửi",
+      "text": "Nếu máy khách sinh mã mới cho mỗi lần gửi lại thì máy chủ thấy hai ý định khác nhau, và cơ chế chống lặp không chặn được gì. Mã phải ra đời lúc người dùng bấm nút, và giữ nguyên suốt mọi lần thử lại."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mạng không bao giờ cho bạn biết chắc điều gì đã xảy ra. Cách duy nhất là làm cho việc không biết trở nên vô hại.",
+        "Bài sau nói về chuyện gì xảy ra khi một dịch vụ bạn phụ thuộc chết hẳn, và làm sao để nó không kéo bạn chết theo."
+      ]
+    }
+  ]
+}

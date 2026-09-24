@@ -1,0 +1,183 @@
+{
+  "id": 51,
+  "slug": "bo-nho-dem-va-lam-moi",
+  "title": "Bộ nhớ đệm: lời gọi nhanh nhất là lời gọi không xảy ra",
+  "subtitle": "Cái khó không phải là lưu lại, mà là biết khi nào thứ đã lưu không còn đúng nữa.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "📦",
+  "track": "professional",
+  "whyItMatters": "Bộ nhớ đệm là cách rẻ nhất để làm hệ thống nhanh lên nhiều lần, và cũng là nguồn của loại lỗi khó chịu nhất: người dùng thấy dữ liệu cũ và bạn không tái hiện được, vì máy bạn đang giữ bản khác.",
+  "openingQuestion": "Người dùng cập nhật hồ sơ nhưng vẫn thấy thông tin cũ trên trang cá nhân. Nguyên nhân thường gặp nhất là gì?",
+  "openingOptions": [
+    "Một tầng bộ nhớ đệm nào đó vẫn đang trả lại bản đã lưu trước khi cập nhật",
+    "Việc cập nhật chưa được ghi xuống cơ sở dữ liệu do giao dịch thất bại",
+    "Trình duyệt của người dùng cần được khởi động lại thì mới nhận dữ liệu mới",
+    "Cơ sở dữ liệu đang đồng bộ nên bản ghi mới chưa xuất hiện ở bản sao"
+  ],
+  "correctOption": 0,
+  "explanation": "Dữ liệu có thể được giữ tạm ở rất nhiều tầng cùng lúc: trình duyệt, mạng phân phối nội dung, tầng đệm phía ứng dụng, và cả bản sao chỉ đọc của cơ sở dữ liệu. Ghi thành công không tự động làm những bản đã lưu đó biến mất, nên đường ghi và đường đọc lệch nhau cho tới khi có thứ gì đó xoá hoặc làm hết hạn bản cũ. Đây là lý do mọi thiết kế bộ nhớ đệm phải trả lời được câu hỏi làm mới bằng cách nào, chứ không chỉ câu hỏi lưu ở đâu.",
+  "diagram": [
+    {
+      "label": "Ghi dữ liệu mới xuống cơ sở dữ liệu",
+      "arrow": true
+    },
+    {
+      "label": "Các tầng đệm vẫn giữ bản cũ",
+      "arrow": true
+    },
+    {
+      "label": "Đường đọc trả về bản cũ",
+      "arrow": true
+    },
+    {
+      "label": "Cần một cơ chế làm mới, không chỉ cần lưu"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hai bài toán khó nhất",
+    "description": "Có một câu đùa quen thuộc trong ngành: hai bài toán khó nhất là đặt tên và làm mới bộ nhớ đệm. Nó tồn tại vì phần lưu thì ai cũng làm được trong một buổi chiều, còn phần biết khi nào bản đã lưu hết đúng thì đi theo hệ thống suốt vòng đời của nó."
+  },
+  "keyTakeaways": [
+    "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+    "Phần khó là làm mới: biết khi nào bản đã lưu không còn đúng nữa.",
+    "Hết hạn theo thời gian đơn giản nhưng chấp nhận cũ trong khoảng đó.",
+    "Xoá chủ động chính xác hơn nhưng đòi hỏi biết hết mọi chỗ đang giữ bản sao."
+  ],
+  "summary": {
+    "keyIdea": "Bộ nhớ đệm đổi tính mới của dữ liệu lấy tốc độ, và bạn phải chọn mức đánh đổi có ý thức.",
+    "formula": "Lưu ở đâu, sống bao lâu, ai xoá và khi nào.",
+    "commonMistake": "Thêm tầng đệm mà không thiết kế đường làm mới đi kèm."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một trang trong sản phẩm và liệt kê mọi chỗ dữ liệu của nó có thể được giữ tạm. Với mỗi chỗ, trả lời: sống bao lâu, và cái gì làm nó mới lại."
+  },
+  "practicePrompt": {
+    "question": "Bạn đặt thời gian sống của bộ nhớ đệm là một giờ cho trang danh sách sản phẩm. Rủi ro nghiệp vụ là gì?",
+    "options": [
+      "Sản phẩm vừa hết hàng vẫn hiện là còn hàng trong tối đa một giờ",
+      "Máy chủ phải chịu tải cao hơn vì phải làm mới bộ nhớ đệm mỗi giờ",
+      "Người dùng phải tải lại trang thủ công sau mỗi một giờ sử dụng",
+      "Dữ liệu trong bộ nhớ đệm chiếm dung lượng lớn dần theo thời gian"
+    ],
+    "correct": 0,
+    "explanation": "Thời gian sống là lời khai rằng dữ liệu cũ tới mức đó vẫn chấp nhận được. Với mô tả sản phẩm thì một giờ hoàn toàn ổn; với tồn kho thì đó là một giờ bán những thứ không còn, nên hai loại dữ liệu ấy không nên nằm chung một tầng đệm."
+  },
+  "quiz": [
+    {
+      "question": "Phần khó nhất của bộ nhớ đệm là gì?",
+      "options": [
+        "Biết khi nào bản đã lưu không còn đúng nữa",
+        "Chọn được cấu trúc dữ liệu phù hợp để lưu bản sao",
+        "Bảo đảm bộ nhớ đệm không chiếm quá nhiều dung lượng máy chủ",
+        "Đồng bộ bộ nhớ đệm giữa các máy chủ trong cùng một nhóm"
+      ],
+      "correct": 0,
+      "explanation": "Lưu lại là phần dễ và làm xong trong một buổi. Làm mới đúng lúc là bài toán đi theo hệ thống mãi, vì nó phụ thuộc vào nghiệp vụ chứ không vào kỹ thuật."
+    },
+    {
+      "question": "Hết hạn theo thời gian khác xoá chủ động ở chỗ nào?",
+      "options": [
+        "Hết hạn chấp nhận dữ liệu cũ trong một khoảng, xoá chủ động cần biết mọi nơi giữ bản sao",
+        "Hết hạn chỉ dùng được ở trình duyệt còn xoá chủ động chỉ dùng ở máy chủ",
+        "Hết hạn áp dụng cho dữ liệu tĩnh còn xoá chủ động cho dữ liệu động",
+        "Hết hạn không cần cấu hình còn xoá chủ động phải bật thủ công mỗi lần"
+      ],
+      "correct": 0,
+      "explanation": "Đây là đánh đổi giữa đơn giản và chính xác. Hết hạn dễ triển khai nhưng luôn có cửa sổ dữ liệu cũ; xoá chủ động khử được cửa sổ đó nhưng bạn phải biết hết các tầng đang giữ bản sao."
+    },
+    {
+      "question": "Vì sao ghi thành công xuống cơ sở dữ liệu chưa chắc người dùng thấy dữ liệu mới?",
+      "options": [
+        "Vì đường đọc có thể đi qua một tầng đệm vẫn giữ bản cũ",
+        "Vì giao dịch ghi chỉ có hiệu lực sau khi được xác nhận lần hai",
+        "Vì cơ sở dữ liệu ưu tiên đọc hơn ghi",
+        "Vì dữ liệu mới phải chờ tác vụ nền chuyển sang bảng phục vụ đọc"
+      ],
+      "correct": 0,
+      "explanation": "Đường ghi và đường đọc không nhất thiết đi qua cùng những tầng. Ghi xong là dữ liệu đã đúng ở nguồn, nhưng mọi bản sao phía trước nó vẫn cũ cho tới khi bị làm mới."
+    },
+    {
+      "question": "Vì sao không nên đặt dữ liệu tồn kho và mô tả sản phẩm chung một mức thời gian sống?",
+      "options": [
+        "Vì mức cũ chấp nhận được của hai loại dữ liệu này khác nhau rất xa",
+        "Vì dữ liệu tồn kho có kích thước lớn hơn nên chiếm nhiều bộ nhớ hơn",
+        "Vì mô tả sản phẩm phải được cập nhật thường xuyên hơn tồn kho",
+        "Vì cơ sở dữ liệu lưu hai loại dữ liệu này ở hai bảng tách biệt nhau"
+      ],
+      "correct": 0,
+      "explanation": "Thời gian sống là câu trả lời cho câu hỏi dữ liệu cũ bao lâu thì vẫn chấp nhận được, và câu trả lời đó thuộc về nghiệp vụ. Mô tả cũ một giờ không sao; tồn kho cũ một giờ là bán thứ không còn."
+    },
+    {
+      "question": "Lợi ích lớn nhất của bộ nhớ đệm là gì?",
+      "options": [
+        "Lời gọi được trả lời mà không cần đi tới tận nguồn dữ liệu",
+        "Dữ liệu được lưu ở nhiều nơi nên an toàn hơn khi gặp sự cố",
+        "Cơ sở dữ liệu không cần đánh chỉ mục cho những truy vấn đã đệm",
+        "Các máy chủ trong nhóm không cần đồng bộ dữ liệu với nhau nữa"
+      ],
+      "correct": 0,
+      "explanation": "Lời gọi nhanh nhất là lời gọi không xảy ra. Bộ nhớ đệm cắt cả độ trễ mạng lẫn tải lên nguồn dữ liệu, nhưng nó không phải cơ chế sao lưu và không thay được chỉ mục."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước kết thúc ở chỗ độ trễ có một sàn không phá được. Cách duy nhất đi vòng qua nó là đừng gọi nữa - dùng lại câu trả lời đã có sẵn ở gần hơn."
+    },
+    {
+      "type": "heading",
+      "text": "Đệm ở đâu"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Nhiều tầng, mỗi tầng một vòng đời",
+      "subtitle": "Người dùng thấy dữ liệu cũ vì bất kỳ tầng nào trong số này",
+      "concepts": [
+        {
+          "vi": "Trình duyệt",
+          "en": "browser cache",
+          "def": "Gần người dùng nhất, nhanh nhất, và cũng là chỗ bạn khó xoá chủ động nhất."
+        },
+        {
+          "vi": "Mạng phân phối",
+          "en": "CDN",
+          "def": "Máy chủ đặt gần người dùng về địa lý. Cắt được cả độ trễ lẫn tải lên hệ thống gốc."
+        },
+        {
+          "vi": "Tầng ứng dụng",
+          "en": "application cache",
+          "def": "Bộ nhớ đệm dùng chung giữa các máy chủ. Bạn kiểm soát hoàn toàn, nên xoá chủ động dễ nhất ở đây."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Hai cách làm mới"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Hết hạn theo thời gian",
+        "text": "Đặt một khoảng sống rồi để bản cũ tự chết. Đơn giản, không cần phối hợp, đổi lại luôn có cửa sổ dữ liệu cũ."
+      },
+      "right": {
+        "label": "Xoá chủ động khi ghi",
+        "text": "Ghi xong thì xoá ngay bản đã lưu. Chính xác hơn nhiều, đổi lại bạn phải biết mọi tầng đang giữ bản sao - kể cả tầng ở máy người dùng."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Thời gian sống là một quyết định nghiệp vụ",
+      "text": "Nó trả lời câu hỏi: dữ liệu cũ bao nhiêu lâu thì vẫn chấp nhận được? Câu đó không phải câu hỏi kỹ thuật, nên đừng đặt một con số chung cho mọi loại dữ liệu."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Đệm dữ liệu là đổi tính mới lấy tốc độ. Chỉ cần bạn chọn mức đánh đổi có ý thức, thay vì phát hiện ra nó qua một phiếu hỗ trợ.",
+        "Bài sau nói về chiều ngược lại: khi có người gọi quá nhiều, và bạn phải từ chối bớt để bảo vệ hệ thống."
+      ]
+    }
+  ]
+}

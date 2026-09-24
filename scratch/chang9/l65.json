@@ -1,0 +1,170 @@
+{
+  "id": 65,
+  "slug": "bi-mat-va-khoa-truy-cap",
+  "title": "Bí mật: thứ không bao giờ được vào kho mã",
+  "subtitle": "Xoá một khoá khỏi mã không xoá nó khỏi lịch sử kho.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔑",
+  "track": "professional",
+  "whyItMatters": "Khoá truy cập lọt vào kho mã là một trong những nguyên nhân rò rỉ phổ biến nhất, và nó đặc biệt khó chữa: kho mã được nhân bản khắp nơi, giữ lịch sử vĩnh viễn, và một commit đã đẩy đi thì không lấy lại được.",
+  "openingQuestion": "Bạn phát hiện một khoá truy cập đã bị commit vào kho mã tuần trước. Việc đầu tiên phải làm là gì?",
+  "openingOptions": [
+    "Vô hiệu hoá khoá đó và cấp khoá mới, trước khi làm bất cứ việc gì khác",
+    "Xoá dòng chứa khoá rồi commit lại với ghi chú rõ ràng",
+    "Viết lại lịch sử kho mã để xoá sạch dấu vết của khoá",
+    "Đặt kho mã thành riêng tư để người ngoài không đọc được"
+  ],
+  "correctOption": 0,
+  "explanation": "Một khi khoá đã rời khỏi máy bạn, hãy coi như nó đã bị lộ. Kho mã được nhân bản về máy đồng nghiệp, được sao lưu, được các công cụ quét, và những bản sao đó bạn không xoá được. Xoá dòng mã chỉ giấu nó khỏi bản mới nhất chứ vẫn nằm nguyên trong lịch sử. Viết lại lịch sử có ích nhưng chỉ là bước dọn dẹp về sau, và nó không thu hồi được các bản đã nhân bản. Việc duy nhất thật sự chấm dứt rủi ro là làm cho khoá cũ mất hiệu lực.",
+  "diagram": [
+    {
+      "label": "Khoá lọt vào một commit",
+      "arrow": true
+    },
+    {
+      "label": "Kho được nhân bản, sao lưu, quét",
+      "arrow": true
+    },
+    {
+      "label": "Xoá dòng mã không xoá lịch sử",
+      "arrow": true
+    },
+    {
+      "label": "Chỉ vô hiệu hoá khoá mới chấm dứt rủi ro"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Máy quét kho công khai",
+    "description": "Có những công cụ liên tục quét các kho mã công khai để tìm khoá truy cập, và chúng tìm thấy trong vòng vài phút sau khi commit được đẩy lên. Khoảng thời gian giữa lúc lộ và lúc bị khai thác thường tính bằng phút chứ không phải ngày."
+  },
+  "keyTakeaways": [
+    "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+    "Việc đầu tiên luôn là vô hiệu hoá khoá cũ, không phải dọn lịch sử.",
+    "Bí mật nên đi qua kho quản lý riêng và được nạp lúc chạy.",
+    "Xoay vòng khoá định kỳ biến việc thay khoá thành thao tác quen thuộc thay vì tình huống khẩn cấp."
+  ],
+  "summary": {
+    "keyIdea": "Bí mật là loại cấu hình mà lộ ra một lần là hỏng vĩnh viễn, nên nó không bao giờ được nằm cùng mã.",
+    "formula": "Lộ thì vô hiệu hoá trước, dọn dẹp sau.",
+    "commonMistake": "Xoá dòng chứa khoá rồi yên tâm, trong khi lịch sử vẫn giữ nguyên."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chạy một công cụ quét bí mật trên toàn bộ lịch sử kho mã của bạn, không chỉ trên bản mới nhất. Mỗi thứ nó tìm thấy đều cần được vô hiệu hoá, kể cả những khoá bạn tin là đã hết dùng."
+  },
+  "practicePrompt": {
+    "question": "Vì sao kho mã riêng tư vẫn không phải chỗ an toàn để lưu khoá truy cập?",
+    "options": [
+      "Vì mọi người có quyền đọc kho đều thấy khoá, và quyền đó thay đổi theo thời gian",
+      "Vì kho riêng tư vẫn được lập chỉ mục bởi các công cụ tìm kiếm bên ngoài",
+      "Vì nhà cung cấp dịch vụ kho mã có quyền đọc nội dung của mọi kho",
+      "Vì kho riêng tư không mã hoá dữ liệu khi lưu trên máy chủ của họ"
+    ],
+    "correct": 0,
+    "explanation": "Phạm vi người đọc được kho rộng hơn phạm vi người cần dùng khoá, và nó chỉ nới ra theo thời gian khi có người mới vào đội hoặc kho được nhân bản. Một bí mật nằm trong kho là bí mật chia sẻ với tất cả những người ấy, cùng với mọi bản sao trên máy họ."
+  },
+  "quiz": [
+    {
+      "question": "Việc đầu tiên khi phát hiện khoá bị lộ là gì?",
+      "options": [
+        "Vô hiệu hoá khoá cũ và cấp khoá mới",
+        "Xoá dòng chứa khoá khỏi mã nguồn hiện tại",
+        "Viết lại lịch sử kho mã để xoá dấu vết",
+        "Đổi kho mã từ công khai sang riêng tư"
+      ],
+      "correct": 0,
+      "explanation": "Mọi việc dọn dẹp đều không thu hồi được các bản sao đã tồn tại. Chỉ khi khoá cũ mất hiệu lực thì những bản sao ấy mới trở thành vô hại."
+    },
+    {
+      "question": "Vì sao xoá dòng chứa khoá là chưa đủ?",
+      "options": [
+        "Vì khoá vẫn nằm nguyên trong lịch sử của kho mã",
+        "Vì mã nguồn đã được dựng thành sản phẩm mang khoá đó",
+        "Vì trình soạn thảo có thể giữ lại bản nháp chứa khoá",
+        "Vì khoá đã được ghi vào nhật ký của máy chủ dựng"
+      ],
+      "correct": 0,
+      "explanation": "Kho mã giữ toàn bộ lịch sử theo thiết kế, nên commit cũ vẫn đọc được. Đó là lý do phải xử lý ở phía nhà cung cấp khoá chứ không ở phía kho mã."
+    },
+    {
+      "question": "Bí mật nên được đưa tới ứng dụng bằng cách nào?",
+      "options": [
+        "Nạp lúc chạy từ một kho quản lý bí mật riêng",
+        "Đặt trong tệp cấu hình được commit cùng mã nguồn",
+        "Nhúng vào sản phẩm dựng để không phải cấu hình gì thêm",
+        "Gửi qua tin nhắn cho từng người khi họ cần dùng tới"
+      ],
+      "correct": 0,
+      "explanation": "Kho quản lý bí mật cho phép phân quyền theo dịch vụ, ghi lại ai đã đọc, và xoay vòng khoá mà không cần dựng lại. Nhúng vào sản phẩm dựng thì mỗi lần đổi khoá là một lần dựng và triển khai lại."
+    },
+    {
+      "question": "Vì sao nên xoay vòng khoá định kỳ ngay cả khi chưa có sự cố?",
+      "options": [
+        "Để việc thay khoá là thao tác quen thuộc chứ không phải tình huống khẩn cấp",
+        "Để giảm chi phí mà nhà cung cấp dịch vụ tính cho mỗi khoá",
+        "Để các khoá cũ không chiếm chỗ trong kho quản lý bí mật",
+        "Để tuân thủ yêu cầu bắt buộc của mọi tiêu chuẩn bảo mật"
+      ],
+      "correct": 0,
+      "explanation": "Đội chưa bao giờ thay khoá sẽ phát hiện ra nó khó tới mức nào đúng lúc đang có sự cố. Xoay vòng đều đặn biến quy trình đó thành việc bình thường, và rút ngắn thời gian một khoá lộ còn dùng được."
+    },
+    {
+      "question": "Vì sao kho mã riêng tư vẫn không đủ an toàn cho bí mật?",
+      "options": [
+        "Vì số người đọc được kho luôn rộng hơn số người cần dùng khoá",
+        "Vì nhà cung cấp kho mã không mã hoá dữ liệu khi lưu trữ",
+        "Vì kho riêng tư vẫn có thể vô tình bị chuyển thành công khai",
+        "Vì các công cụ quét bên ngoài vẫn đọc được kho riêng tư"
+      ],
+      "correct": 0,
+      "explanation": "Đó là vấn đề phạm vi: quyền đọc kho được cấp cho cả đội và chỉ nới rộng theo thời gian, còn bản sao nằm trên máy của từng người. Kho bị chuyển nhầm sang công khai là một rủi ro thật nhưng hiếm hơn nhiều."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bí mật là một loại cấu hình, nhưng khác mọi loại khác ở một điểm: sai một lần là không sửa được. Địa chỉ đặt nhầm thì đổi lại; khoá lộ ra thì không thu về được nữa."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao kho mã là chỗ tệ nhất"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Nó giữ lịch sử vĩnh viễn theo đúng thiết kế, nên xoá dòng không xoá được gì.",
+        "Nó được nhân bản về máy của mọi người trong đội, và cả những người đã rời đi.",
+        "Nó được sao lưu, phản chiếu và quét bởi những công cụ bạn không kiểm soát.",
+        "Quyền đọc chỉ nới rộng theo thời gian chứ hiếm khi hẹp lại."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Vô hiệu hoá trước, dọn dẹp sau",
+      "text": "Phản xạ tự nhiên là đi xoá dấu vết. Nhưng mỗi phút bỏ ra để viết lại lịch sử là một phút khoá cũ vẫn còn hiệu lực. Làm cho nó vô dụng trước, rồi mới dọn - và khi đó việc dọn không còn gấp nữa."
+    },
+    {
+      "type": "heading",
+      "text": "Chỗ đúng để đặt bí mật"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Biến môi trường",
+        "text": "Đơn giản, chạy được ở mọi nơi. Đủ dùng cho đội nhỏ, nhưng không ghi lại được ai đã đọc và đổi khoá thì phải triển khai lại."
+      },
+      "right": {
+        "label": "Kho quản lý bí mật",
+        "text": "Phân quyền theo từng dịch vụ, ghi lại lượt truy cập, xoay vòng khoá mà không cần dựng lại. Đổi lại là thêm một hệ thống phải vận hành."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bí mật đã rời khỏi máy bạn thì hãy coi như đã lộ. Cách xử lý duy nhất có hiệu lực là làm cho nó vô dụng.",
+        "Bài sau chuyển sang câu hỏi làm sao biết mã của mình đúng trước khi nó tới người dùng: kiểm thử."
+      ]
+    }
+  ]
+}

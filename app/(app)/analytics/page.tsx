@@ -14,7 +14,7 @@ import { useI18n } from "@/lib/i18n/context";
 // module scope with no hook available.
 function AnalyticsLoadingFallback() {
   const { t } = useI18n();
-  return <div className="text-center py-20 text-xs text-stone-500 dark:text-stone-400">{t.finalTwo.analyticsPage.loadingAnalytics}</div>;
+  return <div className="text-center py-20 text-xs text-ink-muted">{t.finalTwo.analyticsPage.loadingAnalytics}</div>;
 }
 
 const LearningAnalytics = dynamicImport(() => import("@/components/LearningAnalytics"), {
@@ -52,7 +52,7 @@ export default function AnalyticsPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
-        <p className="text-stone-500 dark:text-stone-400">{t.finalTwo.analyticsPage.loading}</p>
+        <p className="text-ink-muted">{t.finalTwo.analyticsPage.loading}</p>
       </div>
     );
   }
@@ -76,11 +76,11 @@ export default function AnalyticsPage() {
       <div className="max-w-6xl mx-auto w-full px-6 pt-3 pb-2 flex items-center justify-between gap-4">
         <Link
           href="/dashboard"
-          className="text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 text-xs font-extrabold uppercase tracking-wider flex items-center gap-1"
+          className="text-ink-muted hover:text-ink-heading text-xs font-extrabold uppercase tracking-wider flex items-center gap-1"
         >
           {t.finalTwo.analyticsPage.backToDashboard}
         </Link>
-        <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
+        <div className="inline-flex items-center gap-2 rounded-full border border-accent-line bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent-strong">
           {t.finalTwo.analyticsPage.statsAndLeaderboard}
         </div>
       </div>

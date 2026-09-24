@@ -30,8 +30,8 @@ function categoryLabel(value: string, t: Dictionary) {
 // so this badge always means "your own pending/rejected submission", never
 // someone else's.
 function statusBadge(status: PublicDocument["status"], t: Dictionary) {
-  if (status === "pending") return { label: t.documentsList.statusPending, className: "bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400" };
-  if (status === "rejected") return { label: t.documentsList.statusRejected, className: "bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400" };
+  if (status === "pending") return { label: t.documentsList.statusPending, className: "bg-amber-100 dark:bg-amber-950/60 text-warn-strong" };
+  if (status === "rejected") return { label: t.documentsList.statusRejected, className: "bg-rose-100 dark:bg-rose-950/60 text-alert-strong" };
   return null;
 }
 
@@ -88,10 +88,10 @@ function TypingBanner() {
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
         <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
       </span>
-      <p className="text-xs font-bold text-stone-600 dark:text-stone-300">
+      <p className="text-xs font-bold text-ink-soft">
         <span className="text-rose-600/60 dark:text-rose-400/50 mr-1.5 font-bold uppercase tracking-wider">{t.documentsList.updatingLabel}</span>
-        <span className="text-rose-600 dark:text-rose-400 font-extrabold">{currentText}</span>
-        <span className="animate-pulse font-extrabold text-rose-600 dark:text-rose-400">|</span>
+        <span className="text-alert font-extrabold">{currentText}</span>
+        <span className="animate-pulse font-extrabold text-alert">|</span>
       </p>
     </div>
   );
@@ -128,8 +128,8 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
               onClick={() => setFilter(c.value)}
               className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
                 filter === c.value
-                  ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                  : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+                  ? "bg-surface-invert text-ink-invert"
+                  : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
               }`}
             >
               {c.label}
@@ -138,7 +138,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
         </div>
         <button
           onClick={() => setShowUpload(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-dashed border-stone-300 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-600 text-xs font-bold text-stone-600 dark:text-stone-400 transition-colors flex-shrink-0"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-dashed border-line-strong hover:border-line-firm text-xs font-bold text-ink-soft transition-colors flex-shrink-0"
         >
           <Plus className="w-3.5 h-3.5" />
           {t.documentsList.shareButton}
@@ -163,11 +163,11 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                   setOpenDoc(doc);
                   trackFeatureClick("document_open", { label: doc.file_name });
                 }}
-                className="group text-left rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white/95 dark:bg-stone-900"
+                className="group text-left rounded-2xl border border-line hover:border-line-firm hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white/95 dark:bg-stone-900"
               >
                 {/* Cover image or icon */}
                 {doc.image_url ? (
-                  <div className="relative w-full h-48 bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                  <div className="relative w-full h-48 bg-surface-raised overflow-hidden">
                     {/* Khung đã có kích thước cố định (h-48) và `relative`, nên
                         `fill` là dạng đúng ở đây - không phải đoán tỉ lệ. Ảnh
                         bìa nằm trong bucket "documents"; trang này là lưới thẻ
@@ -189,10 +189,10 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                 {/* Content */}
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <span className="text-[11px] font-bold uppercase tracking-wide bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 px-2.5 py-1 rounded-full">
+                    <span className="text-[11px] font-bold uppercase tracking-wide bg-surface-raised text-ink-soft px-2.5 py-1 rounded-full">
                       {categoryLabel(doc.category, t)}
                     </span>
-                    <span className="text-[11px] font-black bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20 animate-pulse flex items-center gap-0.5">
+                    <span className="text-[11px] font-black bg-emerald-500/10 dark:bg-emerald-500/20 text-accent px-2.5 py-1 rounded-full border border-emerald-500/20 animate-pulse flex items-center gap-0.5">
                       {t.documentsList.freeBadge}
                     </span>
                     {statusBadge(doc.status, t) && (
@@ -202,21 +202,21 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                     )}
                   </div>
 
-                  <h3 className="text-lg font-bold text-stone-900 dark:text-stone-100 mb-2 line-clamp-2 group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-colors">
+                  <h3 className="text-lg font-bold text-ink mb-2 line-clamp-2 group-hover:text-ink-body transition-colors">
                     {doc.title}
                   </h3>
 
                   {doc.description && (
-                    <p className="text-sm text-stone-600 dark:text-stone-400 mb-4 line-clamp-3">
+                    <p className="text-sm text-ink-soft mb-4 line-clamp-3">
                       {doc.description}
                     </p>
                   )}
 
-                  <div className="flex items-center justify-between pt-3 border-t border-stone-100 dark:border-stone-800">
-                    <span className="text-xs font-medium text-stone-500 dark:text-stone-400">
+                  <div className="flex items-center justify-between pt-3 border-t border-line-soft">
+                    <span className="text-xs font-medium text-ink-muted">
                       {formatBytes(doc.file_size)}
                     </span>
-                    <span className="text-xs font-bold text-stone-600 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100 transition-colors">
+                    <span className="text-xs font-bold text-ink-soft group-hover:text-ink transition-colors">
                       {t.documentsList.viewDetails}
                     </span>
                   </div>
@@ -236,7 +236,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
         {openDoc && (
           <div className="space-y-4">
             {openDoc.image_url ? (
-              <div className="relative w-full h-56 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800">
+              <div className="relative w-full h-56 rounded-xl overflow-hidden bg-surface-raised">
                 <Image src={openDoc.image_url} alt="" fill sizes="(max-width: 640px) 100vw, 560px" className="object-cover" />
               </div>
             ) : (
@@ -251,7 +251,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
             )}
 
             <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100">{openDoc.title}</h3>
+              <h3 className="text-xl font-bold text-ink">{openDoc.title}</h3>
               {statusBadge(openDoc.status, t) && (
                 <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(openDoc.status, t)!.className}`}>
                   {statusBadge(openDoc.status, t)!.label}
@@ -259,23 +259,23 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
               )}
             </div>
             {openDoc.status === "pending" && (
-              <p className="text-xs text-amber-700 dark:text-amber-400 -mt-2">
+              <p className="text-xs text-warn-strong -mt-2">
                 {t.documentsList.pendingNotice}
               </p>
             )}
             {openDoc.status === "rejected" && (
-              <p className="text-xs text-rose-700 dark:text-rose-400 -mt-2">
+              <p className="text-xs text-alert-strong -mt-2">
                 {t.documentsList.rejectedNotice}
               </p>
             )}
 
             {openDoc.description && (
-              <p className="text-sm text-stone-600 dark:text-stone-400 whitespace-pre-line leading-relaxed">
+              <p className="text-sm text-ink-soft whitespace-pre-line leading-relaxed">
                 {openDoc.description}
               </p>
             )}
 
-            <div className="flex items-center gap-3 text-xs text-stone-500 dark:text-stone-400 pt-2 border-t border-stone-100 dark:border-stone-800">
+            <div className="flex items-center gap-3 text-xs text-ink-muted pt-2 border-t border-line-soft">
               <span>{openDoc.file_name}</span>
               <span>·</span>
               <span>{formatBytes(openDoc.file_size)}</span>
@@ -291,7 +291,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
               // tên tệp phải do Supabase Storage đặt. Xem toDownloadUrl.
               href={toDownloadUrl(openDoc.file_url, openDoc.file_name)}
               onClick={() => handleDownload(openDoc)}
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-surface-invert text-ink-invert text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
             >
               <Download className="w-4 h-4" />
               {t.documentsList.downloadButton}

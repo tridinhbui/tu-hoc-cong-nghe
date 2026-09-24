@@ -1,0 +1,184 @@
+{
+  "id": 32,
+  "slug": "bang-quan-he-va-khoa-ngoai",
+  "title": "Quan hệ giữa các bảng: khoá ngoại giữ dữ liệu khỏi mồ côi",
+  "subtitle": "Xoá một khách hàng mà quên đơn hàng của họ thì dữ liệu còn đó nhưng không trỏ về đâu nữa.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔗",
+  "track": "professional",
+  "whyItMatters": "Dữ liệu mồ côi không báo lỗi. Nó chỉ làm báo cáo đếm thiếu, làm màn hình hiện tên trống, và làm người ta mất một buổi chiều đi tìm xem những đơn hàng không có chủ này từ đâu ra. Khoá ngoại là thứ ngăn tình trạng đó ngay từ lúc ghi.",
+  "openingQuestion": "Bảng đơn hàng trỏ tới bảng khách hàng. Bạn xoá một khách hàng còn đơn hàng. Điều gì nên xảy ra?",
+  "openingOptions": [
+    "Cơ sở dữ liệu từ chối xoá, vì còn đơn hàng đang tham chiếu tới khách đó",
+    "Xoá khách hàng và để các đơn hàng giữ nguyên mã khách đã không còn",
+    "Xoá khách hàng và tự động gán các đơn hàng đó cho một khách hàng mặc định",
+    "Xoá khách hàng và đánh dấu các đơn hàng là dữ liệu cần kiểm tra lại"
+  ],
+  "correctOption": 0,
+  "explanation": "Khoá ngoại là lời khai rằng cột này phải trỏ tới một dòng có thật ở bảng kia. Khi còn đơn hàng tham chiếu, cơ sở dữ liệu từ chối xoá khách hàng, và đó chính là điều bạn muốn: nó buộc bạn quyết định rõ ràng phải làm gì với những đơn hàng ấy thay vì lặng lẽ tạo ra dữ liệu mồ côi. Ngoài từ chối, bạn còn cấu hình được xoá dây chuyền hoặc đặt cột tham chiếu về rỗng - nhưng cả hai đều phải là lựa chọn có chủ ý.",
+  "diagram": [
+    {
+      "label": "Bảng khách hàng - mỗi dòng một định danh",
+      "arrow": true
+    },
+    {
+      "label": "Bảng đơn hàng - cột mã khách trỏ sang",
+      "arrow": true
+    },
+    {
+      "label": "Khoá ngoại buộc mã khách phải có thật",
+      "arrow": true
+    },
+    {
+      "label": "Không còn đơn hàng nào không có chủ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bảng điều khiển đếm thiếu",
+    "description": "Một báo cáo doanh thu nối bảng đơn hàng với bảng khách hàng để lấy tên. Vài trăm đơn có mã khách đã bị xoá, nên phép nối loại chúng ra và tổng doanh thu thấp hơn thực tế. Con số sai suốt nhiều tháng mà không có lỗi nào được ghi lại."
+  },
+  "keyTakeaways": [
+    "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+    "Không có khoá ngoại thì dữ liệu mồ côi sinh ra âm thầm, không báo lỗi.",
+    "Quan hệ nhiều - nhiều cần một bảng trung gian, không nhồi vào một cột.",
+    "Xoá mềm giữ được lịch sử nhưng buộc mọi truy vấn phải nhớ lọc bản ghi đã xoá."
+  ],
+  "summary": {
+    "keyIdea": "Quan hệ giữa các bảng phải được cơ sở dữ liệu bảo đảm, không phải do mã ứng dụng nhớ giùm.",
+    "formula": "Một - nhiều: khoá ngoại. Nhiều - nhiều: bảng trung gian.",
+    "commonMistake": "Bỏ khoá ngoại cho nhanh, rồi tự viết mã kiểm tra ở từng chỗ ghi."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một bảng có cột trỏ sang bảng khác. Đếm xem có bao nhiêu dòng mà giá trị ở cột đó không tìm thấy ở bảng đích. Nếu con số lớn hơn không, bạn vừa tìm ra dữ liệu mồ côi đang có sẵn."
+  },
+  "practicePrompt": {
+    "question": "Một sản phẩm thuộc nhiều danh mục và một danh mục chứa nhiều sản phẩm. Nên thiết kế thế nào?",
+    "options": [
+      "Tạo bảng trung gian, mỗi dòng nối một sản phẩm với một danh mục",
+      "Thêm cột danh sách danh mục vào bảng sản phẩm, ngăn cách bằng dấu phẩy",
+      "Tạo sẵn nhiều cột danh mục một, danh mục hai, danh mục ba trong bảng",
+      "Nhân bản dòng sản phẩm ra nhiều lần, mỗi lần gắn với một danh mục"
+    ],
+    "correct": 0,
+    "explanation": "Bảng trung gian là cách chuẩn cho quan hệ nhiều - nhiều: nó đặt khoá ngoại được ở cả hai phía, không giới hạn số lượng, và truy vấn theo cả hai chiều đều nhanh. Nhồi danh sách vào một cột thì mất khả năng ràng buộc và mọi truy vấn phải tách chuỗi."
+  },
+  "quiz": [
+    {
+      "question": "Khoá ngoại bảo đảm điều gì?",
+      "options": [
+        "Giá trị ở cột đó phải tồn tại ở bảng được tham chiếu",
+        "Giá trị ở cột đó là duy nhất trong bảng",
+        "Cột đó luôn được đánh chỉ mục nên truy vấn theo nó rất nhanh",
+        "Cột đó không bao giờ được phép để trống ở bất kỳ dòng nào"
+      ],
+      "correct": 0,
+      "explanation": "Khoá ngoại nói về tính toàn vẹn tham chiếu: trỏ đi đâu thì chỗ đó phải có thật. Tính duy nhất là việc của ràng buộc duy nhất, và cột khoá ngoại vẫn có thể để rỗng nếu quan hệ là không bắt buộc."
+    },
+    {
+      "question": "Dữ liệu mồ côi gây hại theo kiểu nào?",
+      "options": [
+        "Nó làm sai lệch báo cáo mà không tạo ra thông báo lỗi nào",
+        "Nó làm cơ sở dữ liệu từ chối mọi truy vấn có chứa phép nối bảng",
+        "Nó chiếm dung lượng tới mức đầy ổ đĩa",
+        "Nó khiến các bản ghi còn lại bị khoá"
+      ],
+      "correct": 0,
+      "explanation": "Phép nối lặng lẽ loại những dòng không tìm được bản ghi tương ứng, nên tổng bị thiếu mà không ai được cảnh báo. Đây là loại lỗi tệ nhất: không sập, không báo, chỉ sai số liệu trong thời gian dài."
+    },
+    {
+      "question": "Quan hệ nhiều - nhiều nên được biểu diễn bằng cách nào?",
+      "options": [
+        "Bằng một bảng trung gian chứa khoá ngoại của cả hai phía",
+        "Bằng một cột chứa danh sách ngăn bởi dấu phẩy",
+        "Bằng cách thêm nhiều cột tham chiếu vào một trong hai bảng gốc",
+        "Bằng cách gộp hai bảng thành một bảng lớn có nhiều dòng lặp lại"
+      ],
+      "correct": 0,
+      "explanation": "Bảng trung gian đặt được ràng buộc ở cả hai phía và không giới hạn số quan hệ. Danh sách trong một cột thì không ràng buộc được, không đánh chỉ mục hiệu quả, và mọi truy vấn phải tách chuỗi ra để so."
+    },
+    {
+      "question": "Xoá mềm nghĩa là gì và cái giá của nó là gì?",
+      "options": [
+        "Đánh dấu đã xoá thay vì xoá thật, đổi lại mọi truy vấn phải nhớ lọc",
+        "Xoá bản ghi nhưng giữ bản sao ở bảng lưu trữ riêng",
+        "Xoá dần từng phần của bản ghi để không khoá bảng quá lâu",
+        "Xoá bản ghi ở bản sao dự phòng, bản chính giữ nguyên"
+      ],
+      "correct": 0,
+      "explanation": "Đánh dấu thì giữ được lịch sử và các tham chiếu cũ vẫn trỏ tới đâu đó có thật. Cái giá là mọi truy vấn về sau phải thêm điều kiện lọc, và chỗ nào quên thì chỗ đó hiện lại dữ liệu đã xoá."
+    },
+    {
+      "question": "Vì sao nên để cơ sở dữ liệu giữ ràng buộc thay vì để mã ứng dụng tự kiểm?",
+      "options": [
+        "Vì nó bắt được cả những đường ghi dữ liệu mà bạn quên mất",
+        "Vì cơ sở dữ liệu kiểm tra ràng buộc nhanh hơn mã ứng dụng nhiều lần",
+        "Vì mã ứng dụng không đọc được quan hệ bảng",
+        "Vì ràng buộc ở đó tắt đi được khi cần"
+      ],
+      "correct": 0,
+      "explanation": "Dữ liệu vào bảng qua nhiều đường: mã chính, tác vụ nền, tiến trình nhập liệu, và cả người gõ tay lúc xử lý sự cố. Ràng buộc ở tầng thấp nhất là hàng rào duy nhất nằm trên mọi đường đó."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Dữ liệu thật không nằm gọn trong một bảng. Khách hàng có đơn hàng, đơn hàng có sản phẩm, sản phẩm thuộc danh mục. Cách bạn nối những bảng đó lại quyết định dữ liệu có giữ được tính nhất quán hay không."
+    },
+    {
+      "type": "heading",
+      "text": "Ba hình dạng quan hệ"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Nhận diện quan hệ trước khi thiết kế bảng",
+      "subtitle": "Câu hỏi luôn là: một bên này ứng với mấy bên kia",
+      "concepts": [
+        {
+          "vi": "Một - một",
+          "en": "one-to-one",
+          "def": "Mỗi dòng bên này ứng đúng một dòng bên kia. Thường gộp chung được, trừ khi cần tách vì bảo mật hoặc kích thước."
+        },
+        {
+          "vi": "Một - nhiều",
+          "en": "one-to-many",
+          "def": "Một khách nhiều đơn. Đặt khoá ngoại ở bảng phía nhiều, trỏ về bảng phía một."
+        },
+        {
+          "vi": "Nhiều - nhiều",
+          "en": "many-to-many",
+          "def": "Sản phẩm và danh mục. Cần một bảng trung gian giữ cặp định danh của hai phía."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao ràng buộc phải nằm ở cơ sở dữ liệu"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lý lẽ hay gặp là mã ứng dụng đã kiểm tra rồi, thêm khoá ngoại chỉ làm chậm. Vấn đề là dữ liệu vào bảng qua nhiều đường hơn bạn nhớ: tiến trình nhập liệu hàng đêm, tác vụ dọn dẹp, một đoạn lệnh gõ tay lúc hai giờ sáng để chữa sự cố. Ràng buộc ở cơ sở dữ liệu nằm trên mọi đường đó cùng lúc."
+    },
+    {
+      "type": "callout",
+      "label": "Xoá thì làm gì với con",
+      "text": "Ba lựa chọn, và phải chọn có chủ ý: từ chối xoá khi còn bản ghi con, xoá dây chuyền cả bản ghi con, hoặc đặt cột tham chiếu về rỗng. Mặc định nên là từ chối, vì nó buộc người xoá phải nghĩ."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đặt khoá ngoại ngay từ khi tạo bảng, đừng để thêm sau khi đã có dữ liệu bẩn.",
+        "Với quan hệ nhiều - nhiều, luôn dùng bảng trung gian thay vì nhồi danh sách vào một cột.",
+        "Nếu dùng xoá mềm, tạo sẵn một khung nhìn đã lọc để không ai quên điều kiện lọc."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Quan hệ được cơ sở dữ liệu bảo đảm thì đúng ở mọi đường ghi. Quan hệ do mã nhớ giùm thì đúng ở những đường bạn còn nhớ.",
+        "Bài sau nói về mặt trái của việc tách bảng: chuẩn hoá tới đâu là đủ, và khi nào lặp dữ liệu lại là lựa chọn đúng."
+      ]
+    }
+  ]
+}

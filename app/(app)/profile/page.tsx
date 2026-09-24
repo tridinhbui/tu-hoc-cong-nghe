@@ -102,14 +102,14 @@ function SectionCard({
   children: ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-4 sm:p-6 min-w-0">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-4 sm:p-6 min-w-0">
       <div className="flex items-start gap-4 mb-5">
-        <div className="w-11 h-11 rounded-2xl bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-700 dark:text-stone-200 flex-shrink-0">
+        <div className="w-11 h-11 rounded-2xl bg-surface-raised flex items-center justify-center text-ink-body flex-shrink-0">
           {icon}
         </div>
         <div className="min-w-0">
-          <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">{title}</h3>
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">{description}</p>
+          <h3 className="text-lg font-extrabold text-ink">{title}</h3>
+          <p className="text-sm text-ink-muted mt-1">{description}</p>
         </div>
       </div>
       {children}
@@ -127,12 +127,12 @@ function StatCard({
   hint: string;
 }) {
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-5">
-      <p className="text-xs font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest mb-2">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-5">
+      <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest mb-2">
         {label}
       </p>
-      <p className="text-2xl font-extrabold text-stone-900 dark:text-stone-100">{value}</p>
-      <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{hint}</p>
+      <p className="text-2xl font-extrabold text-ink">{value}</p>
+      <p className="text-xs text-ink-muted mt-1">{hint}</p>
     </div>
   );
 }
@@ -196,9 +196,9 @@ function summarizeTrackProgress(
 }
 
 const TYPE_ACCENT: Record<JourneyMilestone["type"], string> = {
-  signup: "border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30",
-  lesson_milestone: "border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/30",
-  badge: "border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30",
+  signup: "border-accent-line-mid bg-emerald-50 dark:bg-emerald-950/30",
+  lesson_milestone: "border-info-line bg-sky-50 dark:bg-sky-950/30",
+  badge: "border-warn-line-mid bg-amber-50 dark:bg-amber-950/30",
 };
 
 function formatDate(iso: string): string {
@@ -423,7 +423,7 @@ export default function ProfilePage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
-        <p className="text-stone-500 dark:text-stone-400">{t.profile.loading}</p>
+        <p className="text-ink-muted">{t.profile.loading}</p>
       </div>
     );
   }
@@ -444,17 +444,17 @@ export default function ProfilePage() {
     .slice(0, 2);
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 overflow-x-hidden">
-      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+    <div className="min-h-screen bg-surface overflow-x-hidden">
+      <div className="border-b border-line bg-white dark:bg-stone-950">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4">
           <Link
             href="/dashboard"
-            className="text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 text-sm font-semibold"
+            className="text-ink-muted hover:text-ink-body text-sm font-semibold"
           >
             {t.profile.back}
           </Link>
-          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mt-2">{t.profile.title}</h1>
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+          <h1 className="text-2xl font-bold text-ink mt-2">{t.profile.title}</h1>
+          <p className="text-sm text-ink-muted mt-1">
             {t.profile.subtitle}
           </p>
         </div>
@@ -462,13 +462,13 @@ export default function ProfilePage() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
         {errorMessage && (
-          <div className="rounded-2xl border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/40 px-4 py-3 text-sm font-semibold text-red-700 dark:text-red-300">
+          <div className="rounded-2xl border border-danger-line bg-red-50 dark:bg-red-950/40 px-4 py-3 text-sm font-semibold text-danger">
             {errorMessage}
           </div>
         )}
 
         {/* Premium Dark Hero Header */}
-        <div className="relative overflow-hidden rounded-2xl bg-stone-900 dark:bg-stone-950 text-white p-6 sm:p-8 shadow-lg border border-stone-800">
+        <div className="relative overflow-hidden rounded-2xl bg-surface-invert text-white p-6 sm:p-8 shadow-lg border border-stone-800">
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -556,14 +556,14 @@ export default function ProfilePage() {
           <div className="space-y-6 min-w-0">
             
             {/* Track Progress Summary Card */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 sm:p-6 shadow-sm">
-              <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 sm:p-6 shadow-sm">
+              <div className="flex items-start gap-4 mb-5 border-b border-line-soft pb-4">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-accent flex items-center justify-center flex-shrink-0">
                   <Target className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">{t.profile.trackProgressTitle}</h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.profile.trackProgressSub}</p>
+                  <h3 className="text-base sm:text-lg font-extrabold text-ink">{t.profile.trackProgressTitle}</h3>
+                  <p className="text-xs text-ink-muted mt-0.5">{t.profile.trackProgressSub}</p>
                 </div>
               </div>
 
@@ -582,28 +582,28 @@ export default function ProfilePage() {
                       <div className="flex items-start justify-between gap-4 mb-2">
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">{track.title}</p>
+                            <p className="text-xs sm:text-sm font-extrabold text-ink">{track.title}</p>
                             {isCurrent && (
-                              <span className="inline-flex rounded bg-emerald-100/70 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
+                              <span className="inline-flex rounded bg-emerald-100/70 dark:bg-emerald-950 text-accent-ink px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
                                 {t.profile.inProgress}
                               </span>
                             )}
                           </div>
-                          <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5 truncate max-w-[280px]">
+                          <p className="text-[11px] text-ink-muted mt-0.5 truncate max-w-[280px]">
                             {track.subtitle}
                           </p>
                         </div>
                         <div className="text-right shrink-0">
-                          <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100">
+                          <p className="text-xs sm:text-sm font-extrabold text-ink">
                             {format(t.profile.lessonsOf, { done: track.completed, total: track.total })}
                           </p>
-                          <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">
+                          <p className="text-[10px] text-ink-faint mt-0.5">
                             {format(t.profile.percentAndHours, { percent: track.percent, hours: track.estimatedHours })}
                           </p>
                         </div>
                       </div>
 
-                      <div className="h-2 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
+                      <div className="h-2 rounded-full bg-surface-sunken overflow-hidden">
                         <div
                           className={`h-full rounded-full transition-all duration-300 ${isCurrent ? "bg-emerald-500" : "bg-stone-400 dark:bg-stone-600"}`}
                           style={{ width: `${track.percent}%` }}
@@ -616,19 +616,19 @@ export default function ProfilePage() {
             </div>
 
             {/* Recent Lessons Card */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 sm:p-6 shadow-sm">
-              <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0">
+            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 sm:p-6 shadow-sm">
+              <div className="flex items-start gap-4 mb-5 border-b border-line-soft pb-4">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-warn flex items-center justify-center flex-shrink-0">
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">{t.profile.recentTitle}</h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.profile.recentSub}</p>
+                  <h3 className="text-base sm:text-lg font-extrabold text-ink">{t.profile.recentTitle}</h3>
+                  <p className="text-xs text-ink-muted mt-0.5">{t.profile.recentSub}</p>
                 </div>
               </div>
 
               {recentLessons.length === 0 ? (
-                <p className="text-xs text-stone-500 dark:text-stone-400 py-2">
+                <p className="text-xs text-ink-muted py-2">
                   {t.profile.recentEmpty}
                 </p>
               ) : (
@@ -640,21 +640,21 @@ export default function ProfilePage() {
                       className="flex items-center justify-between gap-3 rounded-xl border border-stone-100 dark:border-stone-800/80 px-4 py-3 hover:bg-stone-50/70 dark:hover:bg-stone-800/50 transition-colors group"
                     >
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                        <p className="text-xs sm:text-sm font-bold text-ink group-hover:text-accent transition-colors truncate">
                           {lesson.title}
                         </p>
-                        <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">
+                        <p className="text-[10px] text-ink-faint mt-0.5">
                           {lesson.completedAt ? format(t.profile.completedOn, { date: new Date(lesson.completedAt).toLocaleDateString(intlLocale(locale)) }) : t.profile.dateUnknown}
                         </p>
                       </div>
                       <div className="flex items-center gap-3 shrink-0">
                         <div className="text-right">
-                          <span className="text-xs font-extrabold text-stone-900 dark:text-stone-100">
+                          <span className="text-xs font-extrabold text-ink">
                             {/* i18n-ignore-start: "N/A" is language-neutral, the same in both locales */}
                             {lesson.quizScore !== null && lesson.quizScore !== undefined ? `${Math.round(lesson.quizScore)}%` : "N/A"}
                             {/* i18n-ignore-end */}
                           </span>
-                          <p className="text-[9px] text-stone-400 dark:text-stone-500">{t.profile.readAndQuiz}</p>
+                          <p className="text-[9px] text-ink-faint">{t.profile.readAndQuiz}</p>
                         </div>
                         <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-emerald-500 transition-colors" />
                       </div>
@@ -665,24 +665,24 @@ export default function ProfilePage() {
             </div>
 
             {/* Learning Journey Timeline Card */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 sm:p-6 shadow-sm">
-              <div className="flex items-start gap-4 mb-5 border-b border-stone-100 dark:border-stone-800 pb-4">
+            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 sm:p-6 shadow-sm">
+              <div className="flex items-start gap-4 mb-5 border-b border-line-soft pb-4">
                 <div className="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0">
                   <Target className="w-5 h-5 text-violet-500" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-stone-900 dark:text-stone-100">{t.profile.journeyTitle}</h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.profile.journeySub}</p>
+                  <h3 className="text-base sm:text-lg font-extrabold text-ink">{t.profile.journeyTitle}</h3>
+                  <p className="text-xs text-ink-muted mt-0.5">{t.profile.journeySub}</p>
                 </div>
               </div>
 
               {milestones.length === 0 ? (
-                <p className="text-xs text-stone-500 dark:text-stone-400 py-2">
+                <p className="text-xs text-ink-muted py-2">
                   {t.profile.journeyEmpty}
                 </p>
               ) : (
                 <div className="relative pl-6 max-h-[350px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
-                  <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-stone-200 dark:bg-stone-800" aria-hidden="true" />
+                  <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-surface-sunken" aria-hidden="true" />
                   <div className="space-y-4">
                     {[...milestones].reverse().map((m, i) => (
                       <div key={`${m.type}-${m.date}-${i}`} className="relative">
@@ -692,9 +692,9 @@ export default function ProfilePage() {
                           {m.emoji}
                         </span>
                         <div className="bg-stone-50/50 dark:bg-stone-950/20 border border-stone-100 dark:border-stone-800/80 rounded-xl px-4 py-2.5 ml-2.5">
-                          <p className="text-[9px] font-black text-stone-400 dark:text-stone-500 mb-0.5">{formatDate(m.date)}</p>
-                          <p className="font-extrabold text-stone-900 dark:text-stone-100 text-xs">{m.title}</p>
-                          <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">{m.description}</p>
+                          <p className="text-[9px] font-black text-ink-faint mb-0.5">{formatDate(m.date)}</p>
+                          <p className="font-extrabold text-ink text-xs">{m.title}</p>
+                          <p className="text-[10px] text-ink-muted mt-0.5">{m.description}</p>
                         </div>
                       </div>
                     ))}
@@ -708,40 +708,40 @@ export default function ProfilePage() {
           <div className="space-y-6 min-w-0">
 
             {/* Unified Key Stats Grid */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
-              <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-4 tracking-tight">{t.profile.summaryTitle}</h4>
+            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
+              <h4 className="text-sm font-extrabold text-ink mb-4 tracking-tight">{t.profile.summaryTitle}</h4>
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">{t.profile.studyTime}</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{format(t.profile.minutes, { count: studyMinutes })}</p>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{format(t.profile.lessonsOpened, { count: lessonsStarted })}</p>
+                  <span className="text-[10px] font-extrabold text-ink-faint uppercase tracking-wider block mb-1">{t.profile.studyTime}</span>
+                  <p className="text-base font-extrabold text-ink truncate">{format(t.profile.minutes, { count: studyMinutes })}</p>
+                  <p className="text-[10px] text-ink-faint mt-0.5 truncate">{format(t.profile.lessonsOpened, { count: lessonsStarted })}</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">{t.profile.weeklyRank}</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{xpRank ? `#${xpRank.rank}` : t.profile.unranked}</p>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{xpRank ? format(t.profile.xpWithPercent, { xp: xpRank.value }) : t.profile.rankKeepGoing}</p>
+                  <span className="text-[10px] font-extrabold text-ink-faint uppercase tracking-wider block mb-1">{t.profile.weeklyRank}</span>
+                  <p className="text-base font-extrabold text-ink truncate">{xpRank ? `#${xpRank.rank}` : t.profile.unranked}</p>
+                  <p className="text-[10px] text-ink-faint mt-0.5 truncate">{xpRank ? format(t.profile.xpWithPercent, { xp: xpRank.value }) : t.profile.rankKeepGoing}</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">{t.profile.streakLabel}</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{format(t.profile.days, { count: streak?.current_streak || 0 })}</p>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{format(t.profile.streakRecord, { count: streak?.longest_streak || 0 })}</p>
+                  <span className="text-[10px] font-extrabold text-ink-faint uppercase tracking-wider block mb-1">{t.profile.streakLabel}</span>
+                  <p className="text-base font-extrabold text-ink truncate">{format(t.profile.days, { count: streak?.current_streak || 0 })}</p>
+                  <p className="text-[10px] text-ink-faint mt-0.5 truncate">{format(t.profile.streakRecord, { count: streak?.longest_streak || 0 })}</p>
                 </div>
                 <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-wider block mb-1">{t.profile.notesAndFlags}</span>
-                  <p className="text-base font-extrabold text-stone-900 dark:text-stone-100 truncate">{format(t.profile.noteCount, { count: notesCount })}</p>
-                  <p className="text-[10px] text-stone-400 dark:text-stone-400 mt-0.5 truncate">{format(t.profile.flaggedCount, { count: flaggedLessonCount })}</p>
+                  <span className="text-[10px] font-extrabold text-ink-faint uppercase tracking-wider block mb-1">{t.profile.notesAndFlags}</span>
+                  <p className="text-base font-extrabold text-ink truncate">{format(t.profile.noteCount, { count: notesCount })}</p>
+                  <p className="text-[10px] text-ink-faint mt-0.5 truncate">{format(t.profile.flaggedCount, { count: flaggedLessonCount })}</p>
                 </div>
               </div>
             </div>
 
             {/* Achievements & Badges */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
-              <div className="flex items-center justify-between mb-4 border-b border-stone-100 dark:border-stone-800 pb-3">
-                <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-4 border-b border-line-soft pb-3">
+                <h4 className="text-sm font-extrabold text-ink flex items-center gap-1.5">
                   <Trophy className="w-4 h-4 text-amber-500" />
                   {t.profile.badgesTitle}
                 </h4>
-                <span className="text-[10px] font-extrabold text-stone-400 dark:text-stone-500 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-extrabold text-ink-faint bg-surface-raised px-2 py-0.5 rounded">
                   {format(t.profile.badgesTotal, { count: badges.length + gameTitles.length })}
                 </span>
               </div>
@@ -755,17 +755,17 @@ export default function ProfilePage() {
                     >
                       <span className="text-xl flex-shrink-0">{gt.gameEmoji}</span>
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs font-extrabold text-amber-700 dark:text-amber-400 truncate">{gt.title}</p>
-                        <p className="text-[10px] text-stone-500 dark:text-stone-400 truncate">{gt.gameLabel}</p>
+                        <p className="text-xs font-extrabold text-warn-strong truncate">{gt.title}</p>
+                        <p className="text-[10px] text-ink-muted truncate">{gt.gameLabel}</p>
                       </div>
-                      <span className="text-[10px] font-extrabold text-amber-600 dark:text-amber-500 shrink-0">{format(t.profile.rankNumber, { rank: gt.rank })}</span>
+                      <span className="text-[10px] font-extrabold text-warn shrink-0">{format(t.profile.rankNumber, { rank: gt.rank })}</span>
                     </div>
                   ))}
                 </div>
               )}
 
               {badges.length === 0 ? (
-                <p className="text-xs text-stone-500 dark:text-stone-400 py-1">
+                <p className="text-xs text-ink-muted py-1">
                   {t.profile.badgesEmpty}
                 </p>
               ) : (
@@ -774,10 +774,10 @@ export default function ProfilePage() {
                     <div
                       key={badge.id}
                       title={badgeDescription(badge, t)}
-                      className="flex flex-col items-center text-center gap-1 p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30"
+                      className="flex flex-col items-center text-center gap-1 p-2.5 rounded-xl border border-line bg-stone-50/50 dark:bg-stone-900/30"
                     >
                       <span className="text-2xl">{badge.badge_icon}</span>
-                      <span className="text-[9px] font-extrabold text-stone-900 dark:text-stone-200 leading-tight truncate w-full">
+                      <span className="text-[9px] font-extrabold text-ink leading-tight truncate w-full">
                         {badgeName(badge, t)}
                       </span>
                     </div>
@@ -787,8 +787,8 @@ export default function ProfilePage() {
             </div>
 
             {/* Unlocked Titles & Themes */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
-              <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 border-b border-stone-100 dark:border-stone-800 pb-3 mb-4">
+            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
+              <h4 className="text-sm font-extrabold text-ink flex items-center gap-1.5 border-b border-line-soft pb-3 mb-4">
                 {t.profile.chestItems}
               </h4>
               
@@ -798,7 +798,7 @@ export default function ProfilePage() {
                   {format(t.profile.titlesSection, { count: unlockedTitles.length })}
                 </h5>
                 {unlockedTitles.length === 0 ? (
-                  <p className="text-xs text-stone-500 dark:text-stone-400 italic">
+                  <p className="text-xs text-ink-muted italic">
                     {t.profile.titlesEmpty}
                   </p>
                 ) : (
@@ -812,7 +812,7 @@ export default function ProfilePage() {
                           className={`px-3 py-1.5 rounded-xl border text-[10px] sm:text-[11px] font-bold transition-all focus:outline-none cursor-pointer whitespace-nowrap ${
                             isEquipped
                               ? "bg-amber-500 text-white border-amber-500 shadow-sm shadow-amber-500/20"
-                              : "border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-amber-400 dark:hover:border-amber-700"
+                              : "border-line text-ink-body hover:border-amber-400 dark:hover:border-amber-700"
                           }`}
                         >
                           {title} {isEquipped ? "✓" : ""}
@@ -829,7 +829,7 @@ export default function ProfilePage() {
                   {format(t.profile.themesSection, { count: unlockedThemes.length })}
                 </h5>
                 {unlockedThemes.length === 0 ? (
-                  <p className="text-xs text-stone-500 dark:text-stone-400 italic">
+                  <p className="text-xs text-ink-muted italic">
                     {t.profile.themesEmpty}
                   </p>
                 ) : (
@@ -847,7 +847,7 @@ export default function ProfilePage() {
                               ? th === "gold"
                                 ? "bg-amber-500 text-white border-amber-500 shadow-sm"
                                 : "bg-emerald-500 text-white border-emerald-500 shadow-sm"
-                              : "border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-700"
+                              : "border-line text-ink-body hover:border-line-firm"
                           }`}
                         >
                           <span className={isEquipped ? "text-white" : colorClass}>✦</span> {format(t.profile.themeLabel, { name: themeName })} {isEquipped ? "✓" : ""}
@@ -861,8 +861,8 @@ export default function ProfilePage() {
 
             {/* Bookmarked Lessons Card */}
             {bookmarks.length > 0 && (
-              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
-                <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-3.5 flex items-center gap-1.5">
+              <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
+                <h4 className="text-sm font-extrabold text-ink mb-3.5 flex items-center gap-1.5">
                   <Bookmark className="w-4 h-4 text-emerald-500" />
                   {format(t.profile.savedLessons, { count: bookmarks.length })}
                 </h4>
@@ -873,7 +873,7 @@ export default function ProfilePage() {
                       href={`/bai-hoc/${bookmark.lesson_slug}`}
                       className="flex items-center justify-between gap-2.5 rounded-xl border border-stone-100 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
                     >
-                      <span className="text-xs font-bold text-stone-800 dark:text-stone-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                      <span className="text-xs font-bold text-ink-heading group-hover:text-accent transition-colors truncate">
                         {bookmark.lesson_title}
                       </span>
                       <Bookmark className="w-3.5 h-3.5 text-amber-500 shrink-0" />
@@ -885,8 +885,8 @@ export default function ProfilePage() {
 
             {/* Flagged Lessons Shortcuts */}
             {flaggedLessons.length > 0 && (
-              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
-                <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 mb-3.5 flex items-center gap-1.5">
+              <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
+                <h4 className="text-sm font-extrabold text-ink mb-3.5 flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-amber-500" />
                   {format(t.profile.flaggedLessons, { count: flaggedLessonCount })}
                 </h4>
@@ -897,10 +897,10 @@ export default function ProfilePage() {
                       href={`/bai-hoc/${lesson.lesson_slug}`}
                       className="flex items-center justify-between gap-3 rounded-xl border border-stone-100 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
                     >
-                      <span className="text-xs font-bold text-stone-800 dark:text-stone-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                      <span className="text-xs font-bold text-ink-heading group-hover:text-accent transition-colors truncate">
                         {lesson.lesson_title}
                       </span>
-                      <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-accent" />
                     </Link>
                   ))}
                 </div>

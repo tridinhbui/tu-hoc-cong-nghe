@@ -89,7 +89,7 @@ export default function InteractivePromptCraft() {
               >
                 {slot.letter}
               </span>
-              <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{slot.label}</span>
+              <span className="text-xs font-bold text-ink-body">{slot.label}</span>
             </div>
             <div className="mt-1.5 space-y-1">
               {slot.options.map((option) => (
@@ -122,7 +122,7 @@ export default function InteractivePromptCraft() {
           {tr.assembledLabel}
         </p>
         {assembled ? (
-          <pre className="mt-1.5 overflow-x-auto whitespace-pre-wrap break-words font-mono text-[11px] leading-relaxed text-stone-700 dark:text-stone-200">
+          <pre className="mt-1.5 overflow-x-auto whitespace-pre-wrap break-words font-mono text-[11px] leading-relaxed text-ink-body">
             {assembled}
           </pre>
         ) : (

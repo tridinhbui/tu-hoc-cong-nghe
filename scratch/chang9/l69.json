@@ -1,0 +1,173 @@
+{
+  "id": 69,
+  "slug": "ra-soat-ma",
+  "title": "Rà soát mã: cái máy không bắt được",
+  "subtitle": "Máy kiểm được mã có chạy đúng không; người kiểm được nó có đáng tồn tại không.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "👀",
+  "track": "professional",
+  "whyItMatters": "Cổng tự động bắt lỗi cú pháp, lỗi kiểu và kiểm thử đỏ. Nó không bắt được một cái tên gây hiểu nhầm, một thiết kế sẽ khó sửa sau sáu tháng, hay việc thay đổi này giải quyết sai vấn đề. Đó là phần việc của người đọc.",
+  "openingQuestion": "Việc gì trong rà soát mã mà cổng tự động không làm thay được?",
+  "openingOptions": [
+    "Đánh giá thay đổi này có giải quyết đúng vấn đề hay không",
+    "Kiểm tra mã có tuân thủ quy ước định dạng của dự án",
+    "Phát hiện ra những bài kiểm thử đang bị hỏng vì thay đổi này",
+    "Xác nhận mã biên dịch được trên môi trường sạch"
+  ],
+  "correctOption": 0,
+  "explanation": "Ba việc còn lại đều nên để máy làm, và máy làm tốt hơn người: không mệt, không bỏ sót, không tranh cãi. Nếu buổi rà soát của bạn đang dành thời gian cho dấu cách và tên biến viết hoa thì đó là dấu hiệu thiếu công cụ chứ không phải rà soát kỹ. Phần người làm được mà máy không làm được là những câu hỏi về ý nghĩa: vấn đề này có đáng giải không, cách giải có phù hợp với phần còn lại của hệ thống không, và sáu tháng nữa người đọc đoạn này có hiểu vì sao nó tồn tại không.",
+  "diagram": [
+    {
+      "label": "Máy: định dạng, kiểu, kiểm thử, quy ước",
+      "arrow": true
+    },
+    {
+      "label": "Người: vấn đề đúng chưa, thiết kế hợp chưa",
+      "arrow": true
+    },
+    {
+      "label": "Rà soát chỉ nên còn phần thứ hai",
+      "arrow": true
+    },
+    {
+      "label": "Còn cãi nhau về dấu cách nghĩa là thiếu công cụ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Thay đổi tám trăm dòng",
+    "description": "Một yêu cầu gộp mã tám trăm dòng thường nhận được vài bình luận về đặt tên và một chữ trông ổn. Cũng đội đó, với một thay đổi năm mươi dòng, sẽ tìm ra vấn đề thiết kế thật. Kích thước thay đổi quyết định chất lượng rà soát nhiều hơn kinh nghiệm người rà."
+  },
+  "keyTakeaways": [
+    "Để máy lo định dạng và quy ước, dành thời gian người cho thiết kế và ý nghĩa.",
+    "Thay đổi càng lớn thì chất lượng rà soát càng tụt, gần như không có ngoại lệ.",
+    "Bình luận nên nói rõ đâu là điều kiện bắt buộc và đâu là gợi ý.",
+    "Rà soát cũng là cách lan truyền hiểu biết, nên đừng để một người gác mọi thứ."
+  ],
+  "summary": {
+    "keyIdea": "Rà soát mã là chỗ trả lời những câu hỏi mà không phép kiểm tự động nào chạm tới được.",
+    "formula": "Máy lo cái đúng sai máy móc, người lo cái hợp lý.",
+    "commonMistake": "Đưa thay đổi quá lớn ra rà soát, rồi nhận lại một chữ trông ổn."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Nhìn lại ba yêu cầu gộp mã gần nhất của bạn và đếm số dòng. Nếu cái nào vượt vài trăm dòng, thử tách nó thành những thay đổi nhỏ hơn và xem chất lượng bình luận có đổi không."
+  },
+  "practicePrompt": {
+    "question": "Bạn rà soát và thấy mã chạy đúng nhưng cách đặt tên khiến người đọc sau dễ hiểu nhầm. Nên làm gì?",
+    "options": [
+      "Nêu ra và giải thích vì sao dễ hiểu nhầm, vì đây đúng là việc của rà soát",
+      "Bỏ qua vì mã chạy đúng và kiểm thử đã xanh hết",
+      "Tự sửa tên rồi gộp luôn để khỏi mất thêm một vòng",
+      "Ghi lại thành một việc riêng để xử lý vào lúc rảnh"
+    ],
+    "correct": 0,
+    "explanation": "Tên gây hiểu nhầm là loại vấn đề không máy nào bắt được và càng để lâu càng đắt, vì mã mới sẽ được viết dựa trên cách hiểu sai đó. Tự sửa rồi gộp thì nhanh hơn nhưng lấy mất của tác giả cơ hội hiểu vì sao cái tên ấy có vấn đề."
+  },
+  "quiz": [
+    {
+      "question": "Việc nào nên để cổng tự động lo thay vì người rà soát?",
+      "options": [
+        "Định dạng mã và các quy ước viết mã của dự án",
+        "Đánh giá thiết kế của thay đổi có phù hợp không",
+        "Xem xét thay đổi có giải đúng vấn đề hay không",
+        "Kiểm tra tên biến có phản ánh đúng ý nghĩa không"
+      ],
+      "correct": 0,
+      "explanation": "Định dạng là thứ có luật rõ ràng nên máy làm tốt hơn hẳn. Ba việc còn lại đòi hỏi hiểu ngữ cảnh và ý định, và đó chính là phần người rà soát mang lại."
+    },
+    {
+      "question": "Vì sao thay đổi lớn lại nhận được rà soát kém hơn?",
+      "options": [
+        "Vì người đọc không giữ nổi toàn bộ ngữ cảnh trong đầu",
+        "Vì công cụ rà soát không hiển thị được quá nhiều dòng",
+        "Vì thay đổi lớn thường được viết bởi người ít kinh nghiệm",
+        "Vì thời hạn của thay đổi lớn thường gấp hơn bình thường"
+      ],
+      "correct": 0,
+      "explanation": "Quá một ngưỡng nhất định, người rà soát chuyển từ đọc hiểu sang lướt qua, và bình luận chuyển từ thiết kế sang những thứ vặt vãnh nhìn là thấy. Đây là hiện tượng ổn định, không phụ thuộc kinh nghiệm."
+    },
+    {
+      "question": "Bình luận rà soát nên phân biệt rõ điều gì?",
+      "options": [
+        "Đâu là điều kiện bắt buộc sửa và đâu chỉ là gợi ý",
+        "Đâu là lỗi cú pháp và đâu là lỗi về mặt logic",
+        "Đâu là ý kiến của người rà và đâu là quy định công ty",
+        "Đâu là phần mã mới và đâu là phần mã được di chuyển"
+      ],
+      "correct": 0,
+      "explanation": "Không phân biệt thì tác giả phải đoán, và thường đoán theo hướng sửa hết cho xong - kể cả những gợi ý người rà soát chỉ nêu cho vui. Một chữ đánh dấu ở đầu bình luận tiết kiệm cả vòng trao đổi."
+    },
+    {
+      "question": "Lợi ích phụ quan trọng của rà soát mã là gì?",
+      "options": [
+        "Lan truyền hiểu biết về hệ thống trong đội",
+        "Giảm số lượng bài kiểm thử cần phải viết",
+        "Rút ngắn thời gian chạy của cổng tự động",
+        "Tăng độ phủ kiểm thử của phần mã vừa được sửa đổi"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi lần rà soát là một lần thêm người biết vùng mã ấy hoạt động ra sao. Đội để một người gác mọi thứ sẽ tối ưu được chất lượng ngắn hạn nhưng tạo ra một điểm phụ thuộc duy nhất."
+    },
+    {
+      "question": "Buổi rà soát dành phần lớn thời gian cho dấu cách và tên viết hoa nói lên điều gì?",
+      "options": [
+        "Dự án thiếu công cụ tự động cho những việc đó",
+        "Người rà soát đang làm việc rất kỹ lưỡng",
+        "Tác giả chưa quen với quy ước của dự án",
+        "Thay đổi này quá nhỏ để có thể có vấn đề thiết kế"
+      ],
+      "correct": 0,
+      "explanation": "Đó là dấu hiệu thời gian của người đang bị dùng vào việc máy làm được. Cài công cụ định dạng tự động rồi thì những bình luận ấy biến mất, và chỗ trống dành cho các câu hỏi đáng giá hơn."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Cổng tự động đã bắt hết những lỗi có luật rõ ràng. Phần còn lại - phần cần người đọc - là những câu hỏi không có luật, và chúng thường là những câu quan trọng nhất."
+    },
+    {
+      "type": "heading",
+      "text": "Chia việc cho đúng"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Máy làm được",
+        "text": "Định dạng, quy ước đặt tên máy móc, lỗi kiểu, kiểm thử đỏ, phụ thuộc có lỗ hổng. Máy không mệt và không bỏ sót."
+      },
+      "right": {
+        "label": "Chỉ người làm được",
+        "text": "Vấn đề này có đáng giải không, cách giải có hợp với phần còn lại không, sáu tháng nữa người đọc có hiểu vì sao đoạn này tồn tại không."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Kích thước quyết định chất lượng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Một thay đổi năm mươi dòng nhận được câu hỏi về thiết kế. Cùng người rà soát ấy, với tám trăm dòng, sẽ để lại vài bình luận về đặt tên rồi duyệt. Không phải vì họ lười - quá một ngưỡng thì không ai giữ nổi toàn bộ ngữ cảnh trong đầu, và bộ não chuyển sang chế độ lướt."
+    },
+    {
+      "type": "callout",
+      "label": "Nói rõ mức độ của bình luận",
+      "text": "Đánh dấu đâu là điều kiện bắt buộc, đâu là đề nghị, đâu chỉ là ghi chú cho vui. Không đánh dấu thì tác giả sửa hết cho an toàn, và những vòng trao đổi vô ích đó là lý do người ta ngại đưa mã ra rà soát."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Giữ thay đổi đủ nhỏ để đọc hết trong một lần ngồi.",
+        "Tự động hoá mọi thứ có luật rõ ràng, để buổi rà soát chỉ còn phần cần suy nghĩ.",
+        "Luân phiên người rà soát, vì rà soát cũng là cách lan truyền hiểu biết trong đội."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Máy trả lời được câu mã này có chạy đúng không. Người trả lời câu mã này có nên tồn tại theo hình dạng này không.",
+        "Bài sau nói về cách đưa những thay đổi đã được duyệt ấy vào chung một dòng chảy mà không giẫm chân nhau."
+      ]
+    }
+  ]
+}

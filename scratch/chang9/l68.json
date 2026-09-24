@@ -1,0 +1,169 @@
+{
+  "id": 68,
+  "slug": "do-phu-kiem-thu",
+  "title": "Độ phủ: con số dễ đạt và dễ hiểu sai",
+  "subtitle": "Chạy qua một dòng không có nghĩa là đã kiểm tra dòng đó làm đúng.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📐",
+  "track": "professional",
+  "whyItMatters": "Độ phủ là con số duy nhất về chất lượng kiểm thử mà máy tính được, nên nó hay bị dùng làm mục tiêu. Hiểu nó đo cái gì là biết khi nào con số ấy có ý nghĩa và khi nào nó chỉ là trang trí.",
+  "openingQuestion": "Một dự án đạt độ phủ 95%. Điều đó bảo đảm gì?",
+  "openingOptions": [
+    "Rất ít, vì phủ chỉ đếm dòng được chạy qua chứ không đếm điều được khẳng định",
+    "Rằng 95% số lỗi trong mã đã được bộ kiểm thử phát hiện ra",
+    "Rằng chỉ còn 5% mã nguồn chưa được kiểm thử viết cho",
+    "Rằng bộ kiểm thử đủ tốt để triển khai mà không cần rà soát"
+  ],
+  "correctOption": 0,
+  "explanation": "Độ phủ đo tỷ lệ dòng mã được thực thi trong lúc chạy kiểm thử. Một bài kiểm thử gọi hàm rồi không khẳng định gì cả vẫn làm tăng độ phủ y hệt một bài kiểm tra kỹ mọi kết quả. Nghĩa là con số ấy đo phạm vi chạm tới, không đo mức độ được kiểm chứng. Nó vẫn hữu ích theo chiều ngược lại: độ phủ thấp ở một vùng chắc chắn nghĩa là vùng đó chưa được kiểm, và đó là thông tin đáng giá.",
+  "diagram": [
+    {
+      "label": "Kiểm thử chạy qua một dòng mã",
+      "arrow": true
+    },
+    {
+      "label": "Dòng đó được tính là đã phủ",
+      "arrow": true
+    },
+    {
+      "label": "Không ai hỏi bài kiểm thử có khẳng định gì không",
+      "arrow": true
+    },
+    {
+      "label": "Phủ cao vẫn có thể là kiểm thử rỗng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đặt độ phủ làm chỉ tiêu",
+    "description": "Khi một đội bị yêu cầu đạt mức phủ nhất định, cách rẻ nhất để đạt là viết những bài gọi hàm rồi không kiểm gì. Con số lên đúng chỉ tiêu, chất lượng không đổi, và bộ kiểm thử phình to thêm một phần vô dụng phải bảo trì."
+  },
+  "keyTakeaways": [
+    "Độ phủ đo dòng được chạy qua, không đo điều được khẳng định.",
+    "Phủ thấp là tín hiệu đáng tin; phủ cao không bảo đảm gì.",
+    "Biến độ phủ thành chỉ tiêu sẽ sinh ra kiểm thử rỗng để đạt con số.",
+    "Phủ nhánh chặt hơn phủ dòng vì nó đòi hỏi cả hai hướng của điều kiện được chạy."
+  ],
+  "summary": {
+    "keyIdea": "Độ phủ nói bạn chưa kiểm chỗ nào, chứ không nói chỗ đã kiểm là tốt.",
+    "formula": "Phủ thấp = chắc chắn thiếu; phủ cao = chưa kết luận được gì.",
+    "commonMistake": "Đặt độ phủ làm chỉ tiêu, và nhận về những bài kiểm thử không khẳng định gì."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở báo cáo độ phủ và tìm vùng có phủ thấp nhất. Đọc xem đó là mã gì - nếu là phần xử lý lỗi hoặc phần tính tiền thì bạn vừa tìm ra chỗ đáng viết kiểm thử nhất."
+  },
+  "practicePrompt": {
+    "question": "Một bài kiểm thử gọi hàm nhưng không kiểm tra kết quả trả về. Nó ảnh hưởng thế nào tới độ phủ?",
+    "options": [
+      "Làm tăng độ phủ y như một bài kiểm thử đầy đủ",
+      "Không được tính vào độ phủ vì thiếu phần khẳng định",
+      "Làm giảm độ phủ vì nó bị đánh dấu là bài không hợp lệ",
+      "Chỉ được tính một nửa so với bài có phần khẳng định"
+    ],
+    "correct": 0,
+    "explanation": "Công cụ đo phủ chỉ ghi lại dòng nào được thực thi, nó không biết bài kiểm thử có khẳng định gì hay không. Đây chính là lý do con số ấy dễ đạt tới mức không nên dùng làm mục tiêu."
+  },
+  "quiz": [
+    {
+      "question": "Độ phủ kiểm thử đo cái gì?",
+      "options": [
+        "Tỷ lệ dòng mã được thực thi khi chạy bộ kiểm thử",
+        "Tỷ lệ lỗi trong mã mà bộ kiểm thử phát hiện được",
+        "Tỷ lệ chức năng nghiệp vụ đã có bài kiểm thử tương ứng",
+        "Tỷ lệ bài kiểm thử chạy thành công trong lượt gần nhất"
+      ],
+      "correct": 0,
+      "explanation": "Nó là phép đo cơ học về dòng được chạm tới. Mọi diễn giải khác - về lỗi, về chức năng, về chất lượng - đều là suy đoán thêm mà con số này không hỗ trợ."
+    },
+    {
+      "question": "Vì sao độ phủ thấp lại là tín hiệu đáng tin hơn độ phủ cao?",
+      "options": [
+        "Vì phủ thấp chắc chắn nghĩa là vùng đó chưa được kiểm",
+        "Vì phủ thấp thường xảy ra ở những đoạn mã quan trọng nhất",
+        "Vì công cụ đo phủ tính chính xác hơn ở mức phủ thấp",
+        "Vì phủ thấp dễ cải thiện hơn so với việc giữ phủ cao"
+      ],
+      "correct": 0,
+      "explanation": "Chiều phủ định của con số này là chắc chắn: chưa chạy qua thì chưa kiểm. Chiều khẳng định thì không, vì chạy qua mà không khẳng định gì vẫn tính là đã phủ."
+    },
+    {
+      "question": "Phủ nhánh khác phủ dòng ở chỗ nào?",
+      "options": [
+        "Phủ nhánh đòi hỏi cả hai hướng của mỗi điều kiện đều được chạy",
+        "Phủ nhánh chỉ tính những dòng nằm trong câu điều kiện",
+        "Phủ nhánh đo số hàm được gọi thay vì số dòng được chạy",
+        "Phủ nhánh chỉ áp dụng được cho bài kiểm thử tích hợp"
+      ],
+      "correct": 0,
+      "explanation": "Một câu điều kiện chỉ chạy nhánh đúng vẫn đạt phủ dòng cao, trong khi nhánh sai chưa từng được kiểm. Phủ nhánh đóng đúng khoảng trống đó nên nó chặt hơn."
+    },
+    {
+      "question": "Điều gì xảy ra khi độ phủ được đặt làm chỉ tiêu bắt buộc?",
+      "options": [
+        "Đội viết những bài kiểm thử rỗng chỉ để đạt con số",
+        "Chất lượng kiểm thử tăng lên tương ứng với chính con số đó",
+        "Các vùng mã quan trọng được ưu tiên viết kiểm thử trước",
+        "Thời gian chạy bộ kiểm thử giảm xuống nhờ tối ưu hoá"
+      ],
+      "correct": 0,
+      "explanation": "Một phép đo trở thành mục tiêu thì nó mất giá trị làm phép đo, và ở đây cách đạt chỉ tiêu rẻ nhất lại là cách vô ích nhất. Dùng độ phủ để tìm chỗ trống thì tốt; dùng làm chỉ tiêu thì hỏng."
+    },
+    {
+      "question": "Vùng mã nào đáng ưu tiên khi thấy độ phủ thấp?",
+      "options": [
+        "Phần xử lý lỗi và phần liên quan tới tiền bạc",
+        "Phần giao diện vì người dùng nhìn thấy trực tiếp",
+        "Phần mã mới viết trong tuần gần nhất của dự án",
+        "Phần mã có nhiều dòng nhất trong toàn bộ dự án"
+      ],
+      "correct": 0,
+      "explanation": "Đường xử lý lỗi hiếm khi chạy trong lúc phát triển nên nó vừa ít được kiểm vừa quan trọng, và mã liên quan tới tiền thì sai một lần là thấy ngay. Số dòng thì không nói gì về mức độ rủi ro."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Độ phủ là con số duy nhất về kiểm thử mà máy tính được tự động, nên nó hay bị biến thành thước đo chất lượng. Nó không phải thước đo chất lượng, nhưng nó vẫn có ích - chỉ theo một chiều."
+    },
+    {
+      "type": "heading",
+      "text": "Nó đếm gì"
+    },
+    {
+      "type": "paragraph",
+      "text": "Công cụ đo phủ ghi lại những dòng được thực thi trong lúc bộ kiểm thử chạy. Nó không biết bài kiểm thử khẳng định điều gì, cũng không biết kết quả có được kiểm tra hay không. Một bài gọi hàm rồi bỏ đó làm tăng độ phủ đúng bằng một bài kiểm tra kỹ từng trường hợp biên."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Chiều dùng được",
+        "text": "Phủ thấp ở một vùng là bằng chứng chắc chắn rằng vùng đó chưa được kiểm. Đây là cách dùng đúng: tìm chỗ trống."
+      },
+      "right": {
+        "label": "Chiều không dùng được",
+        "text": "Phủ cao không nói lên chất lượng. Nó chỉ nói rằng mã đã được chạy qua trong lúc kiểm thử, không nói rằng hành vi đã được kiểm chứng."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Đặt làm chỉ tiêu là hỏng",
+      "text": "Khi con số trở thành mục tiêu, cách đạt rẻ nhất luôn thắng - và ở đây cách rẻ nhất là viết bài kiểm thử không khẳng định gì. Đội đạt chỉ tiêu, chất lượng không đổi, và bộ kiểm thử phình thêm một phần phải bảo trì mà không mang lại gì."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Dùng báo cáo phủ để tìm vùng chưa kiểm, đừng dùng con số tổng để đánh giá đội.",
+        "Ưu tiên các đường xử lý lỗi: chúng ít khi chạy trong lúc phát triển nên hay bị bỏ trống.",
+        "Nếu cần một ngưỡng trong cổng tự động, đặt ở mức chặn tụt lùi chứ không ở mức ép tăng."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Độ phủ trả lời được câu hỏi chỗ nào chưa kiểm. Nó không trả lời được câu hỏi kiểm đã đủ tốt chưa - câu đó cần người đọc.",
+        "Bài sau nói về hình thức kiểm tra mà không máy nào thay được: người khác đọc mã của bạn."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "id": 47,
+  "slug": "tai-nguyen-va-phuong-thuc",
+  "title": "Tài nguyên và phương thức: đặt tên cho thứ, không cho việc",
+  "subtitle": "Địa chỉ nói bạn đang thao tác với cái gì; phương thức nói bạn đang làm gì với nó.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧭",
+  "track": "professional",
+  "whyItMatters": "Một API đặt tên nhất quán thì người tích hợp đoán được đường dẫn tiếp theo mà không cần mở tài liệu. Một API đặt tên theo hành động thì mỗi chức năng mới lại thêm một cái tên phải học thuộc, và số lượng đó chỉ tăng.",
+  "openingQuestion": "Cách đặt đường dẫn nào tốt hơn cho thao tác xoá một đơn hàng?",
+  "openingOptions": [
+    "Địa chỉ trỏ tới đơn hàng đó, còn hành động xoá nằm ở phương thức",
+    "Địa chỉ chứa hẳn từ xoá kèm mã đơn để đọc là hiểu ngay ý định",
+    "Địa chỉ trỏ tới danh sách đơn, còn mã đơn nằm trong phần nội dung",
+    "Địa chỉ riêng cho mỗi loại xoá, ví dụ xoá mềm và xoá vĩnh viễn"
+  ],
+  "correctOption": 0,
+  "explanation": "Tách bạch hai câu hỏi làm API gọn lại rất nhiều: địa chỉ trả lời đang thao tác với cái gì, phương thức trả lời đang làm gì với nó. Nhờ vậy cùng một đường dẫn phục vụ được cả đọc, sửa và xoá, và người tích hợp chỉ cần học một quy ước thay vì thuộc lòng từng cái tên. Nhét hành động vào địa chỉ thì mỗi chức năng mới sinh thêm một đường dẫn, và hạ tầng cũng không đoán được thao tác nào an toàn để lưu đệm hay thử lại.",
+  "diagram": [
+    {
+      "label": "Địa chỉ - tài nguyên nào",
+      "arrow": true
+    },
+    {
+      "label": "Phương thức - làm gì với nó",
+      "arrow": true
+    },
+    {
+      "label": "Cùng một địa chỉ, nhiều thao tác",
+      "arrow": true
+    },
+    {
+      "label": "Người tích hợp đoán được đường dẫn kế tiếp"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bảng điều khiển đếm nhầm",
+    "description": "Một API nhét mọi thao tác vào một đường dẫn duy nhất kèm trường hành động trong nội dung. Mọi bảng theo dõi chỉ thấy một đường dẫn với lưu lượng khổng lồ, và không ai tách được thao tác đọc khỏi thao tác xoá khi đi tìm nguyên nhân sự cố."
+  },
+  "keyTakeaways": [
+    "Địa chỉ đặt tên cho tài nguyên; phương thức mang ý định thao tác.",
+    "Phương thức đọc phải không gây thay đổi, nên hạ tầng mới lưu đệm được nó.",
+    "Đặt tên nhất quán cho phép người tích hợp đoán đúng đường dẫn chưa đọc bao giờ.",
+    "Quan hệ lồng nhau thể hiện bằng đường dẫn lồng, không bằng tên ghép dài."
+  ],
+  "summary": {
+    "keyIdea": "Tách cái gì khỏi làm gì thì API nhỏ lại và đoán được.",
+    "formula": "Danh từ trong địa chỉ, động từ ở phương thức.",
+    "commonMistake": "Nhét hành động vào địa chỉ, khiến mỗi chức năng mới là một cái tên mới."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê mọi đường dẫn trong một dịch vụ của bạn và đánh dấu cái nào chứa động từ. Với mỗi cái, thử viết lại thành danh từ cộng phương thức và xem API có gọn hơn không."
+  },
+  "practicePrompt": {
+    "question": "Vì sao hạ tầng mạng lưu đệm được kết quả của thao tác đọc mà không lưu được thao tác ghi?",
+    "options": [
+      "Vì thao tác đọc không làm thay đổi trạng thái nên trả lại kết quả cũ vẫn đúng",
+      "Vì thao tác đọc luôn có kích thước phản hồi nhỏ hơn thao tác ghi rất nhiều",
+      "Vì thao tác ghi luôn được gửi qua kết nối được mã hoá còn đọc thì không",
+      "Vì thao tác đọc được đánh dấu ưu tiên cao hơn ở trong các thiết bị trung gian"
+    ],
+    "correct": 0,
+    "explanation": "Lưu đệm chỉ an toàn khi việc lặp lại một thao tác không đổi kết quả cuối cùng của hệ thống. Đọc thoả điều kiện đó nên tầng trung gian trả lại bản đã lưu mà không cần hỏi máy chủ; ghi thì mỗi lần lặp là một thay đổi thật, nên không được lưu."
+  },
+  "quiz": [
+    {
+      "question": "Địa chỉ trong một API nên mô tả cái gì?",
+      "options": [
+        "Tài nguyên đang được thao tác",
+        "Hành động mà người gọi muốn thực hiện lần này",
+        "Tên của hàm xử lý yêu cầu ở phía máy chủ",
+        "Định dạng dữ liệu mà người gọi mong nhận về"
+      ],
+      "correct": 0,
+      "explanation": "Địa chỉ đặt tên cho thứ, còn phương thức mang ý định. Tách như vậy thì một đường dẫn phục vụ nhiều thao tác, và số lượng tên phải nhớ không tăng theo số chức năng."
+    },
+    {
+      "question": "Vì sao phương thức đọc phải không gây thay đổi trạng thái?",
+      "options": [
+        "Vì hạ tầng được phép lưu đệm và thử lại nó một cách tự do",
+        "Vì phương thức đọc không có phần nội dung nên không mang được dữ liệu",
+        "Vì máy chủ xử lý thao tác đọc trên bản sao chứ không trên dữ liệu chính",
+        "Vì trình duyệt sẽ từ chối gửi thao tác đọc có gây thay đổi dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Cả một tầng hạ tầng - bộ nhớ đệm, thiết bị trung gian, cơ chế thử lại - đều dựa vào giả định này. Một thao tác đọc mà lại ghi thì sẽ bị chạy nhiều lần hơn bạn tưởng, ở những nơi bạn không kiểm soát."
+    },
+    {
+      "question": "Quan hệ lồng nhau nên được thể hiện thế nào trong đường dẫn?",
+      "options": [
+        "Bằng đường dẫn lồng, ví dụ đơn hàng rồi tới các dòng hàng của nó",
+        "Bằng một tên ghép dài mô tả đủ cả hai tài nguyên trong cùng một đoạn",
+        "Bằng tham số truy vấn để đường dẫn luôn chỉ có đúng một đoạn",
+        "Bằng cách đặt định danh của tài nguyên cha vào phần tiêu đề"
+      ],
+      "correct": 0,
+      "explanation": "Đường dẫn lồng thể hiện đúng quan hệ sở hữu và đọc là hiểu. Tên ghép dài thì mỗi quan hệ mới lại sinh một cái tên mới, và người tích hợp không đoán được từ những cái đã biết."
+    },
+    {
+      "question": "Lợi ích chính của việc đặt tên nhất quán trong API là gì?",
+      "options": [
+        "Người tích hợp đoán đúng đường dẫn mà chưa cần mở tài liệu",
+        "Máy chủ xử lý yêu cầu nhanh hơn nhờ định tuyến đơn giản hơn",
+        "Dữ liệu truyền đi giảm vì đường dẫn ngắn hơn",
+        "Số lượng lỗi phía máy chủ giảm vì mã xử lý được gom lại một chỗ"
+      ],
+      "correct": 0,
+      "explanation": "Cái được lớn nhất là chi phí học của người dùng API. Biết một nhóm tài nguyên thì suy ra được nhóm tiếp theo, và tài liệu chỉ còn để tra chi tiết chứ không để học lại từ đầu."
+    },
+    {
+      "question": "Nhược điểm của việc nhét hành động vào địa chỉ là gì?",
+      "options": [
+        "Mỗi chức năng mới sinh thêm một đường dẫn phải học thuộc",
+        "Địa chỉ quá dài nên bị thiết bị trung gian cắt",
+        "Máy chủ không phân biệt được yêu cầu đến từ trình duyệt hay từ máy khác",
+        "Các tham số truy vấn không dùng được nữa khi địa chỉ đã chứa động từ"
+      ],
+      "correct": 0,
+      "explanation": "Số tên phải nhớ tăng tuyến tính theo số chức năng, và hạ tầng cũng mất khả năng suy đoán thao tác nào an toàn để lưu đệm hay thử lại. Đó là hai chi phí tách biệt và cùng tăng dần."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói API là một hợp đồng. Bài này nói về cách viết hợp đồng đó sao cho người đọc đoán được điều khoản tiếp theo mà không phải lật từng trang."
+    },
+    {
+      "type": "heading",
+      "text": "Hai câu hỏi, hai chỗ trả lời"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Địa chỉ",
+        "text": "Trả lời: đang thao tác với cái gì. Là danh từ, thường ở dạng số nhiều, và lồng nhau khi quan hệ là sở hữu."
+      },
+      "right": {
+        "label": "Phương thức",
+        "text": "Trả lời: đang làm gì với nó. Là động từ, và số lượng của chúng cố định chứ không tăng theo chức năng."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao hạ tầng quan tâm"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bộ nhớ đệm, thiết bị trung gian và cơ chế thử lại tự động đều hành động dựa trên phương thức. Thao tác đọc được coi là an toàn nên chúng lưu lại và trả về bản cũ; thao tác ghi thì không. Nếu một thao tác đọc của bạn lại âm thầm ghi dữ liệu, nó sẽ chạy nhiều lần hơn bạn nghĩ ở những chỗ bạn không kiểm soát."
+    },
+    {
+      "type": "callout",
+      "label": "Không phải mọi thứ đều là tài nguyên",
+      "text": "Có những thao tác không nắn thành danh từ được: tìm kiếm phức tạp, một quy trình nhiều bước. Đừng bẻ cong mô hình cho bằng được - một đường dẫn hành động rõ ràng vẫn tốt hơn một danh từ giả tạo mà không ai đoán ra nghĩa."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Danh từ trong địa chỉ, động từ ở phương thức, và giữ quy ước ấy suốt cả API.",
+        "Giữ cho thao tác đọc thật sự chỉ đọc, vì cả một tầng hạ tầng đang tin vào điều đó.",
+        "Thể hiện quan hệ bằng đường dẫn lồng thay vì bằng những cái tên ghép ngày càng dài."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Một API dễ đoán là một API ít phải giải thích. Quy ước nhất quán làm được điều đó rẻ hơn mọi trang tài liệu.",
+        "Bài sau nói về câu hỏi đứng trước mọi thao tác: bạn là ai, và bạn được phép làm gì."
+      ]
+    }
+  ]
+}

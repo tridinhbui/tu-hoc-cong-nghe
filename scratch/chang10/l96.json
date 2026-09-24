@@ -1,0 +1,181 @@
+{
+  "id": 96,
+  "slug": "kiem-chung-truoc-khi-xay",
+  "title": "Kiểm chứng trước khi xây: mua thông tin với giá rẻ",
+  "subtitle": "Cách rẻ nhất để biết không ai cần thứ này là hỏi trước khi làm ba tháng.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧭",
+  "track": "professional",
+  "whyItMatters": "Xây xong rồi mới phát hiện không ai cần là dạng lãng phí lớn nhất trong nghề, vì nó tiêu tốn không chỉ thời gian xây mà cả thời gian bảo trì về sau. Và nó tránh được với chi phí rất nhỏ.",
+  "openingQuestion": "Bạn có ý tưởng một tính năng lớn. Cách rẻ nhất để biết nó đáng làm là gì?",
+  "openingOptions": [
+    "Tìm bằng chứng người dùng đang tự xoay xở với vấn đề đó theo cách khác",
+    "Xây một bản đơn giản rồi phát hành cho toàn bộ người dùng",
+    "Hỏi người dùng xem họ có muốn tính năng đó không",
+    "Xem đối thủ đã làm tính năng tương tự hay chưa"
+  ],
+  "correctOption": 0,
+  "explanation": "Bằng chứng mạnh nhất là hành vi đã xảy ra: người dùng đang dùng bảng tính bên ngoài để làm việc đó, đang gửi thư nhờ đội hỗ trợ làm thay, đang gõ tay một quy trình mà đáng lẽ máy làm. Đó là những người đã trả giá bằng công sức của mình cho vấn đề ấy - dấu hiệu đáng tin hơn nhiều so với việc họ nói có khi được hỏi. Đối thủ có làm cũng không nói được gì, vì bạn không biết nó có hiệu quả với họ hay không.",
+  "diagram": [
+    {
+      "label": "Ý tưởng một tính năng lớn",
+      "arrow": true
+    },
+    {
+      "label": "Tìm dấu vết người dùng đang tự xoay xở",
+      "arrow": true
+    },
+    {
+      "label": "Có dấu vết: vấn đề là thật",
+      "arrow": true
+    },
+    {
+      "label": "Không có: hỏi thêm trước khi xây gì cả"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bảng tính bên cạnh sản phẩm",
+    "description": "Dấu hiệu mạnh nhất cho một tính năng còn thiếu là người dùng xuất dữ liệu ra bảng tính rồi làm nốt phần việc ở đó. Họ đã bỏ công sức thật cho vấn đề ấy, và chính hành vi đó là bằng chứng đáng tin hơn mọi câu trả lời phỏng vấn."
+  },
+  "keyTakeaways": [
+    "Hành vi đã xảy ra là bằng chứng mạnh hơn nhiều so với ý kiến khi được hỏi.",
+    "Cách kiểm chứng rẻ nhất thường không cần viết dòng mã nào.",
+    "Người đã tự xoay xở là người chắc chắn có vấn đề thật.",
+    "Đối thủ có làm không nói lên điều gì, vì bạn không biết nó có hiệu quả với họ không."
+  ],
+  "summary": {
+    "keyIdea": "Bỏ ra vài ngày để biết mình sai rẻ hơn nhiều so với ba tháng để biết cùng điều đó.",
+    "formula": "Tìm dấu vết hành vi trước, rồi mới viết mã.",
+    "commonMistake": "Xây ba tháng dựa trên một cuộc phỏng vấn trong đó ai cũng nói tính năng này hay đấy."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Với tính năng lớn tiếp theo trong kế hoạch, tìm ba bằng chứng cho thấy người dùng đang tự xoay xở với vấn đề đó. Không tìm được thì đó chính là thông tin đáng giá nhất bạn thu được tuần này."
+  },
+  "practicePrompt": {
+    "question": "Bạn phỏng vấn mười người và cả mười đều nói sẽ dùng tính năng mới. Nên tin tới mức nào?",
+    "options": [
+      "Rất ít, vì nói sẽ dùng và thật sự dùng là hai chuyện khác nhau",
+      "Rất nhiều, vì mười trên mười là một tỷ lệ đồng thuận cao",
+      "Vừa phải, cần phỏng vấn thêm khoảng ba mươi người nữa",
+      "Tuỳ vào việc mười người đó có phải là khách hàng trả tiền hay không"
+    ],
+    "correct": 0,
+    "explanation": "Người ta gần như luôn đồng ý với một ý tưởng nghe hợp lý, nhất là khi người hỏi rõ ràng đang mong nghe có. Phỏng vấn thêm ba mươi người cũng cho cùng kết quả ấy; thứ đổi được câu trả lời là hỏi về việc họ đã làm chứ không phải việc họ sẽ làm."
+  },
+  "quiz": [
+    {
+      "question": "Bằng chứng nào mạnh nhất cho thấy một vấn đề là thật?",
+      "options": [
+        "Người dùng đang tự xoay xở với nó bằng cách nào đó",
+        "Nhiều người nói rằng họ sẽ dùng tính năng giải quyết nó",
+        "Đối thủ vừa ra mắt một tính năng tương tự gần đây",
+        "Đội sản phẩm thấy nó hợp lý về mặt logic nghiệp vụ"
+      ],
+      "correct": 0,
+      "explanation": "Tự xoay xở nghĩa là họ đã trả giá bằng thời gian và công sức. Đó là mức cam kết mà một câu trả lời trong phỏng vấn không bao giờ đạt tới."
+    },
+    {
+      "question": "Vì sao câu trả lời trong phỏng vấn về tính năng tương lai kém tin cậy?",
+      "options": [
+        "Vì người ta dự đoán hành vi của mình kém và muốn làm hài lòng người hỏi",
+        "Vì số lượng người được phỏng vấn thường quá ít",
+        "Vì người dùng không hiểu rõ tính năng khi chưa thấy nó",
+        "Vì phỏng vấn thường được thực hiện bởi người thiếu kinh nghiệm"
+      ],
+      "correct": 0,
+      "explanation": "Hai lực cùng đẩy về một hướng: tưởng tượng thì dễ chịu, và nói không với người đang hào hứng thì khó. Kết quả là gần như mọi ý tưởng đều nhận được sự ủng hộ trong phòng phỏng vấn."
+    },
+    {
+      "question": "Vì sao việc đối thủ đã làm không phải bằng chứng đủ?",
+      "options": [
+        "Vì bạn không biết nó có hiệu quả với họ hay không",
+        "Vì sản phẩm của bạn có kiến trúc kỹ thuật khác họ",
+        "Vì làm theo sau luôn khiến bạn ở thế bất lợi",
+        "Vì khách hàng của hai bên không bao giờ trùng nhau"
+      ],
+      "correct": 0,
+      "explanation": "Bạn chỉ thấy họ đã phát hành, không thấy số liệu của họ. Rất nhiều tính năng tồn tại trong sản phẩm của đối thủ chính vì không ai chịu bỏ công gỡ chúng đi."
+    },
+    {
+      "question": "Mục đích của việc kiểm chứng trước khi xây là gì?",
+      "options": [
+        "Mua thông tin về việc mình có đang sai không, với giá rẻ",
+        "Thu thập đủ tài liệu để thuyết phục ban lãnh đạo duyệt",
+        "Xác định thật chính xác thời gian cần thiết để xây tính năng",
+        "Tìm ra thiết kế giao diện phù hợp nhất với người dùng"
+      ],
+      "correct": 0,
+      "explanation": "Đây cùng logic với việc chia nhỏ ở bài trước: rút ngắn khoảng cách giữa lúc tin và lúc biết. Khác biệt là ở đây bạn mua được thông tin ấy trước cả khi viết dòng mã đầu tiên."
+    },
+    {
+      "question": "Cách kiểm chứng rẻ nhất thường có đặc điểm gì?",
+      "options": [
+        "Không cần viết mã, chỉ cần nhìn vào hành vi đã có",
+        "Cần có một bản dựng đơn giản phát hành cho một nhóm nhỏ",
+        "Cần khảo sát trên diện rộng với hàng trăm người dùng",
+        "Cần phân tích thị trường và đối thủ một cách hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Dấu vết của việc tự xoay xở đã nằm sẵn trong nhật ký hỗ trợ, trong dữ liệu xuất ra, trong những yêu cầu lặp lại. Đọc chúng tốn một buổi chiều và thường đủ để quyết định."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói về việc chọn làm gì. Bài này về bước đứng ngay trước đó: làm sao biết thứ mình định làm có ai cần không, trước khi bỏ ba tháng vào nó."
+    },
+    {
+      "type": "heading",
+      "text": "Thứ bậc của bằng chứng"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Không phải bằng chứng nào cũng nặng như nhau",
+      "subtitle": "Càng gần hành vi thật thì càng đáng tin",
+      "concepts": [
+        {
+          "vi": "Đã trả giá",
+          "en": "revealed",
+          "def": "Người dùng đang bỏ công sức tự xoay xở, hoặc đang trả tiền cho giải pháp khác. Mạnh nhất."
+        },
+        {
+          "vi": "Đã hỏi",
+          "en": "requested",
+          "def": "Họ chủ động yêu cầu tính năng đó. Đáng chú ý, nhưng người yêu cầu không đại diện cho số đông."
+        },
+        {
+          "vi": "Nói sẽ dùng",
+          "en": "stated",
+          "def": "Trả lời có khi được hỏi. Gần như vô giá trị, vì ai cũng nói có với một ý tưởng nghe hợp lý."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Dấu vết của việc tự xoay xở"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Người dùng xuất dữ liệu ra rồi làm nốt ở một công cụ khác.",
+        "Đội hỗ trợ đang làm tay một việc lặp đi lặp lại cho khách.",
+        "Có những yêu cầu giống nhau lặp lại từ nhiều khách hàng không quen nhau.",
+        "Người dùng đang dùng một tính năng theo cách nó không được thiết kế để dùng."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Không tìm thấy dấu vết cũng là kết quả",
+      "text": "Nếu không ai đang xoay xở với vấn đề ấy, có hai khả năng: vấn đề không đủ đau, hoặc bạn chưa nhìn đúng chỗ. Cả hai đều đáng biết trước khi bỏ ba tháng, và cả hai đều rẻ hơn nhiều so với việc phát hiện sau."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Cách rẻ nhất để biết mình sai là hỏi thế giới trước khi xây, chứ không phải sau.",
+        "Bài sau nói về dạng thất bại vẫn xảy ra ngay cả khi đã làm đúng mọi thứ ở đây."
+      ]
+    }
+  ]
+}

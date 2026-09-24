@@ -66,7 +66,7 @@ export default function FileDropzone({ name, accept, required, label, currentFil
 
   return (
     <div className="space-y-2">
-      <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
+      <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">
         {label}
       </label>
       <div
@@ -82,7 +82,7 @@ export default function FileDropzone({ name, accept, required, label, currentFil
         className={`flex items-center gap-3 px-4 py-4 rounded-lg border-2 border-dashed cursor-pointer transition-colors ${
           isDragging
             ? "border-stone-500 bg-surface-raised"
-            : "border-line-strong hover:border-stone-400 dark:hover:border-stone-600"
+            : "border-line-strong hover:border-line-firm"
         }`}
       >
         {displayName ? (
@@ -93,7 +93,7 @@ export default function FileDropzone({ name, accept, required, label, currentFil
               type="button"
               onClick={clearFile}
               title={tf.removeFile}
-              className="p-1 rounded hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-400 flex-shrink-0"
+              className="p-1 rounded hover:bg-surface-sunken text-stone-400 flex-shrink-0"
             >
               <X className="w-4 h-4" />
             </button>

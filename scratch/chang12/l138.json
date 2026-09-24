@@ -1,0 +1,182 @@
+{
+  "id": 138,
+  "slug": "xu-ly-su-co-bao-mat",
+  "title": "Sự cố bảo mật: khác sự cố vận hành ở ba điểm",
+  "subtitle": "Có một bên đối kháng đang phản ứng lại chính những gì bạn làm.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🚨",
+  "track": "professional",
+  "whyItMatters": "Quy trình xử lý sự cố vận hành ở chặng trước áp dụng được phần lớn, nhưng ba điểm khác biệt đủ để làm hỏng cách xử lý nếu bạn dùng nguyên xi: có đối thủ, có bằng chứng cần giữ, và có nghĩa vụ thông báo.",
+  "openingQuestion": "Phát hiện dấu hiệu hệ thống bị xâm nhập. Việc đầu tiên nên làm là gì?",
+  "openingOptions": [
+    "Giữ lại trạng thái hiện tại làm bằng chứng trước khi thay đổi bất cứ thứ gì",
+    "Khởi động lại các máy chủ để loại bỏ tiến trình lạ đang chạy",
+    "Đổi toàn bộ mật khẩu quản trị và khoá truy cập ngay lập tức",
+    "Thông báo cho toàn bộ người dùng về khả năng dữ liệu bị ảnh hưởng"
+  ],
+  "correctOption": 0,
+  "explanation": "Khác với sự cố vận hành, ở đây trạng thái hiện tại là bằng chứng - và khởi động lại thường xoá sạch nó. Bạn sẽ cần trả lời câu hỏi kẻ tấn công vào bằng đường nào và chạm tới những gì, mà những câu ấy chỉ trả lời được từ trạng thái chưa bị can thiệp. Đổi khoá và thông báo đều là việc phải làm, nhưng làm trước khi biết phạm vi thì bạn có thể vừa đánh động kẻ tấn công vừa mất manh mối.",
+  "diagram": [
+    {
+      "label": "Phát hiện dấu hiệu xâm nhập",
+      "arrow": true
+    },
+    {
+      "label": "Giữ bằng chứng: ảnh chụp trạng thái, nhật ký",
+      "arrow": true
+    },
+    {
+      "label": "Xác định phạm vi và đường vào",
+      "arrow": true
+    },
+    {
+      "label": "Rồi mới cắt truy cập và thông báo"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Khởi động lại làm mất manh mối",
+    "description": "Phản xạ vận hành là khởi động lại để dịch vụ trở lại bình thường. Với sự cố bảo mật, thao tác ấy xoá tiến trình đang chạy, bộ nhớ và trạng thái tạm - đúng những thứ cho biết kẻ tấn công đã làm gì."
+  },
+  "keyTakeaways": [
+    "Trạng thái hiện tại là bằng chứng; giữ lại trước khi can thiệp.",
+    "Có một bên đối kháng đang phản ứng, nên hành động lộ liễu có thể phản tác dụng.",
+    "Nghĩa vụ thông báo thường có thời hạn tính bằng giờ, không phải bằng tuần.",
+    "Xác định phạm vi trước, vì nó quyết định cả cách cắt truy cập lẫn phạm vi thông báo."
+  ],
+  "summary": {
+    "keyIdea": "Sự cố bảo mật khác sự cố vận hành vì có đối thủ, có bằng chứng và có nghĩa vụ pháp lý.",
+    "formula": "Giữ bằng chứng, xác định phạm vi, rồi mới cắt và thông báo.",
+    "commonMistake": "Áp dụng phản xạ vận hành là khởi động lại, và xoá luôn manh mối."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Viết ra ba việc đầu tiên đội bạn sẽ làm khi nghi ngờ bị xâm nhập, và ai có quyền quyết định. Có sẵn danh sách ấy lúc bình thường là thứ tiết kiệm nhiều nhất lúc hoảng."
+  },
+  "practicePrompt": {
+    "question": "Vì sao đổi toàn bộ khoá truy cập ngay lập tức có thể là quyết định vội?",
+    "options": [
+      "Vì nó đánh động kẻ tấn công trước khi bạn biết họ đã vào tới đâu",
+      "Vì việc đổi khoá sẽ làm gián đoạn dịch vụ cho cả người dùng thật",
+      "Vì khoá mới có thể bị lộ theo cùng đường như khoá cũ",
+      "Vì quy trình đổi khoá cần được phê duyệt bởi nhiều bên"
+    ],
+    "correct": 0,
+    "explanation": "Đây là điểm khác biệt lớn nhất so với sự cố vận hành: có một bên đang quan sát và phản ứng. Cắt một đường khi chưa biết còn đường nào khác có thể khiến họ chuyển sang lối đi bạn chưa phát hiện, và lần này họ biết mình đã bị nhìn thấy."
+  },
+  "quiz": [
+    {
+      "question": "Ba điểm khác biệt của sự cố bảo mật so với sự cố vận hành là gì?",
+      "options": [
+        "Có bên đối kháng, có bằng chứng cần giữ, và có nghĩa vụ thông báo",
+        "Xảy ra bất ngờ hơn, khó khắc phục hơn và tốn kém hơn",
+        "Cần nhiều người cùng tham gia hơn và cũng mất nhiều thời gian hơn hẳn",
+        "Ảnh hưởng tới nhiều hệ thống hơn và khó tái hiện hơn"
+      ],
+      "correct": 0,
+      "explanation": "Ba điểm ấy đổi hẳn thứ tự hành động. Sự cố vận hành thì khôi phục trước; sự cố bảo mật thì giữ bằng chứng và xác định phạm vi trước khi can thiệp."
+    },
+    {
+      "question": "Vì sao không nên khởi động lại máy chủ ngay khi nghi ngờ bị xâm nhập?",
+      "options": [
+        "Vì nó xoá tiến trình đang chạy và trạng thái tạm - chính là bằng chứng",
+        "Vì kẻ tấn công có thể đã cài mã tự khởi động cùng hệ thống",
+        "Vì việc khởi động lại làm gián đoạn dịch vụ cho người dùng",
+        "Vì cần phải có sự cho phép của bộ phận pháp chế trước khi được thao tác gì"
+      ],
+      "correct": 0,
+      "explanation": "Câu hỏi quan trọng nhất là họ vào bằng đường nào và chạm tới gì, và những câu ấy chỉ trả lời được từ trạng thái chưa bị can thiệp. Mã tự khởi động là rủi ro thật nhưng nó không phải lý do chính."
+    },
+    {
+      "question": "Vì sao xác định phạm vi phải làm trước khi thông báo?",
+      "options": [
+        "Vì phạm vi quyết định thông báo cho ai và nói những gì",
+        "Vì thông báo sớm sẽ khiến người dùng hoảng loạn",
+        "Vì quy định cho phép trì hoãn thông báo cho tới khi xong",
+        "Vì thông báo cần được phê duyệt bởi nhiều cấp trong tổ chức"
+      ],
+      "correct": 0,
+      "explanation": "Không biết phạm vi thì phải giả định trường hợp xấu nhất - đây chính là chỗ dấu vết kiểm toán ở bài trước phát huy giá trị. Nhưng lưu ý nghĩa vụ thông báo thường có thời hạn, nên xác định phạm vi cũng là việc gấp."
+    },
+    {
+      "question": "Sự hiện diện của một bên đối kháng ảnh hưởng thế nào tới cách xử lý?",
+      "options": [
+        "Hành động lộ liễu có thể khiến họ chuyển sang lối đi bạn chưa biết",
+        "Mọi thao tác phải được thực hiện ngoài giờ làm việc",
+        "Đội phải giữ bí mật hoàn toàn với các bộ phận khác",
+        "Không được ghi lại bất cứ thông tin nào về toàn bộ quá trình xử lý"
+      ],
+      "correct": 0,
+      "explanation": "Sự cố vận hành không có ai phản ứng lại bạn; sự cố bảo mật thì có. Vì thế thứ tự và thời điểm của các hành động cắt truy cập là một quyết định chiến thuật chứ không chỉ kỹ thuật."
+    },
+    {
+      "question": "Vì sao nên chuẩn bị danh sách việc trước khi có sự cố?",
+      "options": [
+        "Vì lúc xảy ra thì không ai ở trạng thái tốt để suy luận từ đầu",
+        "Vì quy định yêu cầu mọi tổ chức phải có quy trình bằng văn bản",
+        "Vì danh sách giúp phân chia công việc cho nhiều người hơn",
+        "Vì nó rút ngắn thời gian cần thiết để khôi phục hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Cùng lý do với việc chuẩn bị cho sự cố vận hành, nhưng nặng hơn ở đây vì các quyết định sai đầu tiên - khởi động lại, đổi khoá vội - đều không đảo ngược được."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Chặng đưa mã ra thế giới đã có một bài về xử lý sự cố, và phần lớn nội dung ấy vẫn đúng ở đây. Nhưng ba khác biệt đủ lớn để làm hỏng cách xử lý nếu bạn áp dụng nguyên xi."
+    },
+    {
+      "type": "heading",
+      "text": "Ba khác biệt"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Vì sao thứ tự hành động đổi",
+      "subtitle": "Mỗi khác biệt loại bỏ một phản xạ quen thuộc",
+      "concepts": [
+        {
+          "vi": "Có đối thủ",
+          "en": "adversary",
+          "def": "Một bên đang quan sát và phản ứng. Cắt một đường quá sớm có thể đẩy họ sang lối bạn chưa biết."
+        },
+        {
+          "vi": "Có bằng chứng",
+          "en": "evidence",
+          "def": "Trạng thái hiện tại trả lời câu hỏi họ vào bằng đường nào. Khởi động lại là xoá nó."
+        },
+        {
+          "vi": "Có nghĩa vụ",
+          "en": "obligation",
+          "def": "Nhiều quy định đặt thời hạn thông báo tính bằng giờ, nên đồng hồ bắt đầu chạy từ lúc phát hiện."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Thứ tự làm việc"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Giữ bằng chứng: ảnh chụp trạng thái máy, sao lưu nhật ký ra nơi kẻ tấn công không chạm được.",
+        "Xác định phạm vi: họ vào bằng đường nào, đã chạm tới dữ liệu nào, còn đang ở trong không.",
+        "Cắt truy cập: có kế hoạch, làm đồng thời ở mọi đường đã biết thay vì từng đường một.",
+        "Thông báo: theo phạm vi đã xác định, và theo thời hạn mà quy định đặt ra."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Quyết định đầu tiên khó đảo ngược nhất",
+      "text": "Khởi động lại, xoá tệp lạ, đổi khoá - ba phản xạ tự nhiên và cả ba đều làm mất thông tin. Có sẵn một danh sách ba việc đầu tiên, viết lúc bình thường, là thứ ngăn những phản xạ ấy."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Sự cố bảo mật không phải sự cố vận hành có thêm chữ bảo mật. Thứ tự hành động khác, và quyết định đầu tiên khó sửa nhất.",
+        "Bài sau nói về nghĩa vụ đứng phía sau nhiều quyết định trong chặng này: dữ liệu cá nhân của người dùng."
+      ]
+    }
+  ],
+  "interactiveType": "sampling"
+}

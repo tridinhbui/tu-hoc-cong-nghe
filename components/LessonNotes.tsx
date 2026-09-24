@@ -191,8 +191,8 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
   if (loading) {
     return (
       <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-4 animate-pulse">
-        <div className="h-4 bg-stone-200 dark:bg-stone-800 rounded w-1/4 mb-2"></div>
-        <div className="h-8 bg-stone-200 dark:bg-stone-800 rounded"></div>
+        <div className="h-4 bg-surface-sunken rounded w-1/4 mb-2"></div>
+        <div className="h-8 bg-surface-sunken rounded"></div>
       </div>
     );
   }
@@ -234,7 +234,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
               {notes.map((note) => (
                 <div
                   key={note.id}
-                  className="bg-stone-50 dark:bg-stone-800 rounded-lg p-4 group"
+                  className="bg-surface rounded-lg p-4 group"
                 >
                   {editingNoteId === note.id ? (
                     <div className="space-y-2">
@@ -247,26 +247,26 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                             void handleUpdateNote(note.id);
                           }
                         }}
-                        className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-ink text-sm resize-y min-h-[80px]"
+                        className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-900 text-ink text-sm resize-y min-h-[80px]"
                         rows={4}
                         autoFocus
                       />
                       {hasMathContent(noteContent) && (
-                        <div className="px-3 py-2 rounded-lg bg-surface-raised border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
+                        <div className="px-3 py-2 rounded-lg bg-surface-raised border border-dashed border-line-strong overflow-x-auto">
                           <NoteContent content={noteContent} />
                         </div>
                       )}
                       <div className="flex gap-2 justify-end">
                         <button
                           onClick={cancelEditing}
-                          className="px-3 py-1 text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200"
+                          className="px-3 py-1 text-sm text-ink-soft hover:text-ink"
                         >
                           {t.notes.cancel}
                         </button>
                         <button
                           onClick={() => void handleUpdateNote(note.id)}
                           disabled={saving || !noteContent.trim()}
-                          className="px-3 py-1 text-sm bg-surface-invert text-white dark:text-stone-900 rounded-lg hover:opacity-90 disabled:opacity-50 inline-flex items-center gap-1.5"
+                          className="px-3 py-1 text-sm bg-surface-invert text-ink-invert rounded-lg hover:opacity-90 disabled:opacity-50 inline-flex items-center gap-1.5"
                         >
                           {saving && <Loader2 className="w-3 h-3 animate-spin" />}
                           {saving ? t.notes.saving : t.notes.save}
@@ -286,10 +286,10 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                         </button>
                         {deletingNoteId === note.id ? (
                           <span className="inline-flex items-center gap-2 text-xs">
-                            <span className="font-bold text-rose-600 dark:text-rose-400">{t.notes.deleteThisConfirm}</span>
+                            <span className="font-bold text-alert">{t.notes.deleteThisConfirm}</span>
                             <button
                               onClick={() => void handleDeleteNote(note.id)}
-                              className="font-bold text-rose-600 dark:text-rose-400 hover:underline"
+                              className="font-bold text-alert hover:underline"
                             >
                               {t.notes.confirmDelete}
                             </button>
@@ -319,15 +319,15 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
 
           {/* Add Note Form */}
           {isEditing && editingNoteId === null && (
-            <div className="mt-4 pt-4 border-t border-stone-200 dark:border-stone-700">
+            <div className="mt-4 pt-4 border-t border-line-mid">
               {hasRecoveredDraft && (
-                <div className="mb-2 flex items-center justify-between gap-2 rounded-lg bg-warn-soft/40 border border-amber-200 dark:border-amber-900 px-3 py-2">
-                  <p className="text-xs font-bold text-amber-800 dark:text-amber-300">
+                <div className="mb-2 flex items-center justify-between gap-2 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-warn-line px-3 py-2">
+                  <p className="text-xs font-bold text-warn-ink">
                     📄 {t.notes.recoveredDraft}
                   </p>
                   <button
                     onClick={discardDraft}
-                    className="text-xs font-bold text-amber-700 dark:text-amber-400 hover:underline shrink-0"
+                    className="text-xs font-bold text-warn-strong hover:underline shrink-0"
                   >
                     {t.notes.discardDraft}
                   </button>
@@ -343,7 +343,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                   }
                 }}
                 placeholder={t.notes.writePlaceholder}
-                className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-ink text-sm resize-y min-h-[90px]"
+                className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-900 text-ink text-sm resize-y min-h-[90px]"
                 rows={4}
                 autoFocus
               />
@@ -353,21 +353,21 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                 {t.notes.tipPart2}
               </p>
               {hasMathContent(noteContent) && (
-                <div className="mt-2 px-3 py-2 rounded-lg bg-surface-raised border border-dashed border-stone-300 dark:border-stone-600 overflow-x-auto">
+                <div className="mt-2 px-3 py-2 rounded-lg bg-surface-raised border border-dashed border-line-strong overflow-x-auto">
                   <NoteContent content={noteContent} />
                 </div>
               )}
               <div className="flex gap-2 justify-end mt-2">
                 <button
                   onClick={cancelEditing}
-                  className="px-3 py-1 text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200"
+                  className="px-3 py-1 text-sm text-ink-soft hover:text-ink"
                 >
                   {t.notes.cancel}
                 </button>
                 <button
                   onClick={() => void handleCreateNote()}
                   disabled={saving || !noteContent.trim()}
-                  className="px-3 py-1 text-sm bg-surface-invert text-white dark:text-stone-900 rounded-lg hover:opacity-90 disabled:opacity-50 flex items-center gap-1"
+                  className="px-3 py-1 text-sm bg-surface-invert text-ink-invert rounded-lg hover:opacity-90 disabled:opacity-50 flex items-center gap-1"
                 >
                   {saving ? <Loader2 className="w-3 h-3 animate-spin" /> : <Plus className="w-3 h-3" />}
                   {saving ? t.notes.saving : t.notes.add}
@@ -380,7 +380,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
           {!isEditing && (
             <button
               onClick={() => startEditing()}
-              className="mt-4 w-full py-2 border-2 border-dashed border-stone-300 dark:border-stone-600 rounded-lg text-ink-muted hover:border-stone-400 dark:hover:border-stone-500 hover:text-stone-700 dark:hover:text-stone-300 text-sm font-semibold flex items-center justify-center gap-2"
+              className="mt-4 w-full py-2 border-2 border-dashed border-line-strong rounded-lg text-ink-muted hover:border-line-firm hover:text-ink-body text-sm font-semibold flex items-center justify-center gap-2"
             >
               <Plus className="w-4 h-4" />
               {t.notes.addNote}

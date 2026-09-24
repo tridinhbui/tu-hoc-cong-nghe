@@ -1,0 +1,169 @@
+{
+  "id": 70,
+  "slug": "nhanh-va-gop-ma",
+  "title": "Nhánh: càng sống lâu càng đắt",
+  "subtitle": "Xung đột gộp mã không phải chuyện xui rủi, nó là hàm của thời gian.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🌿",
+  "track": "professional",
+  "whyItMatters": "Một nhánh sống ba tuần sẽ gặp xung đột nặng, và nỗi sợ xung đột lại khiến người ta trì hoãn gộp thêm nữa. Hiểu vòng luẩn quẩn đó là biết vì sao lời khuyên luôn là gộp sớm và gộp thường xuyên.",
+  "openingQuestion": "Vì sao nhánh sống càng lâu thì càng khó gộp?",
+  "openingOptions": [
+    "Vì nhánh chính vẫn tiếp tục thay đổi, và khoảng cách giữa hai bên cứ giãn ra",
+    "Vì công cụ quản lý mã xử lý kém với các nhánh có nhiều commit",
+    "Vì lập trình viên quên mất mình đã sửa những gì trên nhánh đó",
+    "Vì nhánh cũ bị hệ thống tự động đánh dấu là không còn hợp lệ"
+  ],
+  "correctOption": 0,
+  "explanation": "Xung đột sinh ra từ khoảng cách giữa hai phiên bản, và khoảng cách đó tăng theo thời gian vì nhánh chính không đứng yên chờ bạn. Ba ngày thì thường chỉ vài chỗ chạm nhau; ba tuần thì có thể là hàng chục tệp bị người khác dọn dẹp, đổi tên hoặc viết lại. Tệ hơn, xung đột nặng làm người ta sợ gộp và trì hoãn thêm, khiến khoảng cách giãn tiếp. Cách cắt vòng lặp ấy không phải công cụ tốt hơn mà là gộp thường xuyên hơn, mỗi lần một khoảng cách nhỏ.",
+  "diagram": [
+    {
+      "label": "Tách nhánh khỏi nhánh chính",
+      "arrow": true
+    },
+    {
+      "label": "Nhánh chính vẫn tiếp tục thay đổi",
+      "arrow": true
+    },
+    {
+      "label": "Khoảng cách giãn theo thời gian",
+      "arrow": true
+    },
+    {
+      "label": "Gộp muộn = xung đột nặng = càng ngại gộp"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Nhánh tái cấu trúc sáu tuần",
+    "description": "Một nhánh dọn dẹp lớn chạy sáu tuần rồi không bao giờ gộp được, vì gộp lại đòi hỏi giải hàng trăm xung đột với công việc thường ngày của cả đội. Toàn bộ công sức bị bỏ, và lần sau không ai dám đề xuất dọn dẹp nữa."
+  },
+  "keyTakeaways": [
+    "Xung đột là hàm của khoảng cách, và khoảng cách là hàm của thời gian.",
+    "Gộp thường xuyên giữ mỗi lần chỉ có một khoảng cách nhỏ phải giải.",
+    "Thay đổi lớn nên chia thành nhiều bước gộp được, thay vì một nhánh dài.",
+    "Nhánh dài còn giấu công việc khỏi đội, nên hai người dễ làm trùng nhau."
+  ],
+  "summary": {
+    "keyIdea": "Chi phí gộp mã tăng theo thời gian sống của nhánh, nên gộp sớm là cách rẻ nhất.",
+    "formula": "Nhánh ngắn, gộp thường, mỗi lần một khoảng cách nhỏ.",
+    "commonMistake": "Để một nhánh tái cấu trúc chạy hàng tuần rồi phát hiện không gộp lại được nữa."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê các nhánh đang mở trong kho của bạn kèm ngày tạo. Nhánh nào sống quá một tuần nên được hỏi: nó có thể chia nhỏ để gộp dần không, hay nó đang trên đường bị bỏ?"
+  },
+  "practicePrompt": {
+    "question": "Bạn cần một thay đổi lớn phải mất ba tuần mới xong. Cách làm nào ít rủi ro nhất?",
+    "options": [
+      "Chia thành nhiều bước nhỏ gộp được, phần chưa dùng thì tạm tắt",
+      "Làm trên một nhánh riêng và gộp một lần khi đã hoàn chỉnh",
+      "Làm trên nhánh chính và chấp nhận vài ngày hệ thống chưa ổn định",
+      "Gộp nhánh chính vào nhánh của mình mỗi ngày rồi vẫn gộp ngược một lần"
+    ],
+    "correct": 0,
+    "explanation": "Chia nhỏ giữ khoảng cách luôn ngắn và cho đội thấy tiến độ. Gộp nhánh chính vào nhánh của mình mỗi ngày có giảm đau nhưng thay đổi vẫn nằm ngoài nhánh chính suốt ba tuần, nên rủi ro lớn nhất - gộp ngược một cục - vẫn còn nguyên."
+  },
+  "quiz": [
+    {
+      "question": "Xung đột gộp mã sinh ra từ đâu?",
+      "options": [
+        "Từ khoảng cách giữa hai phiên bản đang cùng sửa một chỗ",
+        "Từ việc hai người cùng làm việc trong một tệp cùng lúc",
+        "Từ lỗi của công cụ quản lý mã khi xử lý nhiều nhánh",
+        "Từ việc nhánh không được cập nhật lên bản mới nhất"
+      ],
+      "correct": 0,
+      "explanation": "Hai người sửa cùng tệp ở hai chỗ khác nhau thì công cụ tự gộp được. Xung đột chỉ xuất hiện khi hai bên sửa chồng lên nhau, và xác suất đó tăng theo lượng thay đổi tích luỹ ở hai phía."
+    },
+    {
+      "question": "Vì sao nhánh dài tạo ra vòng luẩn quẩn?",
+      "options": [
+        "Xung đột nặng làm người ta ngại gộp, và trì hoãn khiến xung đột nặng thêm",
+        "Nhánh dài làm công cụ quản lý mã chạy chậm, và chậm thì người ta gộp ít đi",
+        "Nhánh dài chiếm nhiều dung lượng, nên kho mã ngày càng nặng",
+        "Nhánh dài khiến lịch sử kho mã khó đọc, nên ít ai muốn xem lại"
+      ],
+      "correct": 0,
+      "explanation": "Đây là vòng phản hồi dương: mỗi ngày trì hoãn làm lần gộp sắp tới đắt hơn, và lần gộp đắt hơn lại là lý do trì hoãn tiếp. Cắt vòng lặp bằng cách gộp sớm chứ không bằng công cụ tốt hơn."
+    },
+    {
+      "question": "Cách xử lý một thay đổi lớn cần nhiều tuần là gì?",
+      "options": [
+        "Chia thành nhiều bước gộp được, phần chưa dùng thì tạm tắt",
+        "Giữ trên một nhánh riêng cho tới khi hoàn chỉnh hẳn",
+        "Tạm dừng toàn bộ công việc khác của cả đội cho tới khi làm xong việc này",
+        "Sao chép mã sang một kho riêng rồi gộp lại về sau"
+      ],
+      "correct": 0,
+      "explanation": "Mã vào nhánh chính sớm thì khoảng cách không tích luỹ, và cả đội thấy được hướng đi. Phần chưa sẵn sàng được giấu sau một công tắc - đúng chủ đề của bài sau."
+    },
+    {
+      "question": "Ngoài xung đột, nhánh dài còn gây hại gì?",
+      "options": [
+        "Công việc bị giấu khỏi đội nên dễ có người làm trùng",
+        "Các bài kiểm thử trên nhánh đó không chạy được nữa",
+        "Lịch sử commit của nhánh chính sẽ bị mất tính liên tục",
+        "Cổng tự động không kiểm được mã trên nhánh riêng"
+      ],
+      "correct": 0,
+      "explanation": "Mã nằm ngoài nhánh chính là mã không ai thấy. Hai người có thể giải cùng một vấn đề theo hai cách trong ba tuần mà không ai biết, và một trong hai công sức đó sẽ bị bỏ."
+    },
+    {
+      "question": "Gộp nhánh chính vào nhánh của mình mỗi ngày giải quyết được gì?",
+      "options": [
+        "Giảm đau lúc gộp nhưng không đưa thay đổi vào nhánh chính sớm hơn",
+        "Loại bỏ được hoàn toàn khả năng xảy ra xung đột khi gộp ngược trở lại",
+        "Cho phép cả đội nhìn thấy công việc đang làm trên nhánh đó",
+        "Rút ngắn thời gian cần thiết để hoàn thành thay đổi lớn"
+      ],
+      "correct": 0,
+      "explanation": "Nó giữ nhánh của bạn không tụt lại quá xa, một thói quen tốt. Nhưng rủi ro chính vẫn còn: thay đổi của bạn vẫn chưa gặp mã của người khác trong nhánh chính, và cú gộp ngược vẫn là một cục lớn."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Nhánh là công cụ để làm việc song song mà không giẫm chân nhau. Nhưng nó có một chi phí ẩn tăng đều theo thời gian, và chi phí đó bị trả một lần vào đúng lúc bạn muốn gộp."
+    },
+    {
+      "type": "heading",
+      "text": "Xung đột là hàm của thời gian"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nhánh chính không đứng yên chờ. Mỗi ngày nó nhận thêm thay đổi của người khác, và mỗi ngày khoảng cách với nhánh của bạn giãn ra một chút. Sau ba ngày, khoảng cách ấy là vài chỗ chạm nhau. Sau ba tuần, nó có thể là hàng chục tệp đã bị đổi tên, dọn dẹp hoặc viết lại - và bạn phải giải toàn bộ trong một lần ngồi."
+    },
+    {
+      "type": "callout",
+      "label": "Vòng luẩn quẩn",
+      "text": "Gộp muộn thì xung đột nặng. Xung đột nặng thì lần sau càng ngại gộp. Càng ngại gộp thì càng muộn. Cách duy nhất cắt vòng ấy là gộp thường xuyên tới mức mỗi lần chỉ có một khoảng cách nhỏ phải giải."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Nhánh ngắn",
+        "text": "Sống một tới hai ngày. Xung đột nếu có thì nhỏ. Cả đội thấy hướng đi, và mỗi lần gộp chỉ mang một biến số vào nhánh chính."
+      },
+      "right": {
+        "label": "Nhánh dài",
+        "text": "Sống hàng tuần. Xung đột tích luỹ, công việc bị giấu khỏi đội, và rủi ro lớn nhất là tới lúc gộp thì không gộp nổi nữa."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chia thay đổi lớn thành các bước gộp được thay vì một nhánh dài.",
+        "Đặt hạn cho nhánh: quá một tuần thì phải trả lời được vì sao vẫn chưa gộp.",
+        "Dọn dẹp mã thành một thay đổi riêng, đừng trộn vào thay đổi chức năng."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Chi phí gộp mã không cố định - nó lớn dần mỗi ngày bạn chờ. Gộp sớm là cách trả ít nhất.",
+        "Bài sau nói về cách đưa mã chưa dùng tới vào nhánh chính mà không ảnh hưởng người dùng."
+      ]
+    }
+  ]
+}

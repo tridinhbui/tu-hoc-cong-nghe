@@ -109,9 +109,9 @@ export default function ProductPreview() {
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line-soft bg-stone-50 dark:bg-stone-950/60 px-4 py-2.5">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <div className="flex gap-1.5 shrink-0">
-            <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
-            <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
-            <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+            <span className="w-2.5 h-2.5 rounded-full bg-surface-deep" />
+            <span className="w-2.5 h-2.5 rounded-full bg-surface-deep" />
+            <span className="w-2.5 h-2.5 rounded-full bg-surface-deep" />
           </div>
           <div className="flex-1 min-w-0 text-[11px] font-semibold text-ink-faint bg-white dark:bg-stone-900 border border-line rounded-full px-4 py-1 text-center truncate">
             tuhoccongnghe.vn/{tab === "dashboard" ? "dashboard" : "bai-hoc"}
@@ -124,8 +124,8 @@ export default function ProductPreview() {
               onClick={() => setTab(tabItem.id)}
               className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all duration-200 whitespace-nowrap ${
                 tab === tabItem.id
-                  ? "bg-surface-invert text-white dark:text-stone-900 shadow-[0_8px_18px_-14px_rgba(15,23,42,0.45)]"
-                  : "text-ink-faint hover:text-stone-600 dark:hover:text-stone-300"
+                  ? "bg-surface-invert text-ink-invert shadow-[0_8px_18px_-14px_rgba(15,23,42,0.45)]"
+                  : "text-ink-faint hover:text-ink-soft"
               }`}
             >
               {tabItem.label}
@@ -173,8 +173,8 @@ export default function ProductPreview() {
                       key={l.title}
                       className={`flex items-center gap-2.5 min-w-0 rounded-xl border px-3 py-2.5 text-xs font-semibold ${
                         l.done
-                          ? "border-accent-line bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300"
-                          : "border-line text-stone-600 dark:text-stone-400"
+                          ? "border-accent-line bg-emerald-50/60 dark:bg-emerald-950/30 text-accent-ink"
+                          : "border-line text-ink-soft"
                       }`}
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -225,7 +225,7 @@ export default function ProductPreview() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.25, delay: 0.05 + i * 0.06 }}
                       >
-                        <span className={`font-bold ${row.isYou ? "text-emerald-700 dark:text-emerald-400" : "text-ink-body"}`}>
+                        <span className={`font-bold ${row.isYou ? "text-accent-strong" : "text-ink-body"}`}>
                           {i + 1}. {row.name}
                         </span>
                         <span className="text-ink-faint font-semibold">
@@ -252,7 +252,7 @@ export default function ProductPreview() {
               <h3 className="text-base font-extrabold text-ink mb-3">
                 {t.productPreview.lessonTitle}
               </h3>
-              <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed mb-4">
+              <p className="text-xs text-ink-soft leading-relaxed mb-4">
                 {t.productPreview.lessonBody}
               </p>
               <div className="rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/40 p-4 mb-4">
@@ -267,7 +267,7 @@ export default function ProductPreview() {
                         key={opt}
                         className={`text-[11px] font-semibold rounded-lg px-3 py-2 border ${
                           i === 1
-                            ? "border-emerald-300 dark:border-emerald-800 bg-accent-soft/30 text-emerald-800 dark:text-emerald-300"
+                            ? "border-accent-line-mid bg-emerald-50 dark:bg-emerald-950/30 text-accent-ink"
                             : "border-line text-ink-muted"
                         }`}
                         initial={{ opacity: 0, x: -6 }}

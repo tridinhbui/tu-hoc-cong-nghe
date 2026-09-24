@@ -1,0 +1,164 @@
+{
+  "id": 137,
+  "slug": "nhan-bao-cao-lo-hong",
+  "title": "Nhận báo cáo lỗ hổng: đường liên lạc bạn nên có sẵn",
+  "subtitle": "Người tìm thấy lỗ hổng sẽ làm gì đó với nó - bạn chỉ chọn được họ có báo cho bạn hay không.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📬",
+  "track": "professional",
+  "whyItMatters": "Rất nhiều lỗ hổng được người ngoài phát hiện trước bạn. Nếu họ không tìm thấy cách báo trong vài phút, thứ tốt nhất bạn có thể hy vọng là họ bỏ qua - và đó không phải kết cục tốt nhất có thể.",
+  "openingQuestion": "Điều kiện tối thiểu để người ngoài báo lỗ hổng cho bạn là gì?",
+  "openingOptions": [
+    "Một địa chỉ liên hệ dễ tìm và một cam kết không truy cứu người báo thiện chí",
+    "Một chương trình thưởng tiền cho mỗi lỗ hổng được xác nhận",
+    "Một biểu mẫu chi tiết để thu thập đầy đủ thông tin kỹ thuật",
+    "Một đội bảo mật chuyên trách để tiếp nhận và xử lý báo cáo"
+  ],
+  "correctOption": 0,
+  "explanation": "Hai rào cản lớn nhất với người muốn báo là không biết gửi cho ai, và sợ bị quy kết là đã tấn công hệ thống. Một địa chỉ dễ tìm cùng vài dòng cam kết xử lý những người báo cáo có thiện chí một cách công bằng đã gỡ cả hai, và nó không tốn ngân sách nào. Thưởng tiền và đội chuyên trách đều hữu ích ở quy mô lớn hơn nhưng chúng là bước sau, không phải điều kiện tối thiểu.",
+  "diagram": [
+    {
+      "label": "Người ngoài tìm thấy lỗ hổng",
+      "arrow": true
+    },
+    {
+      "label": "Không tìm được cách báo trong vài phút",
+      "arrow": true
+    },
+    {
+      "label": "Họ bỏ qua, đăng công khai, hoặc bán đi",
+      "arrow": true
+    },
+    {
+      "label": "Một địa chỉ dễ tìm đổi được kết cục đó"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Tệp mô tả chính sách bảo mật",
+    "description": "Có một quy ước đặt tệp mô tả cách liên hệ về bảo mật ở một đường dẫn cố định trên tên miền. Nó tồn tại đúng để giải quyết vấn đề người muốn báo không biết gửi cho ai, và nó tốn mười phút để tạo."
+  },
+  "keyTakeaways": [
+    "Rào cản lớn nhất là không biết gửi cho ai và sợ bị quy kết.",
+    "Một địa chỉ liên hệ dễ tìm cộng cam kết không truy cứu là bước rẻ nhất.",
+    "Phản hồi nhanh quan trọng hơn phần thưởng: im lặng đẩy người báo tới công bố.",
+    "Cảm ơn cả những báo cáo không hợp lệ, vì cửa mở là thứ đáng giữ."
+  ],
+  "summary": {
+    "keyIdea": "Bạn không chọn được ai tìm thấy lỗ hổng, chỉ chọn được họ có đường báo cho bạn hay không.",
+    "formula": "Địa chỉ dễ tìm + cam kết công bằng + phản hồi nhanh.",
+    "commonMistake": "Phản ứng bằng đe doạ pháp lý, khiến người sau chọn công bố thẳng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Thử tự tìm cách báo lỗ hổng cho chính sản phẩm của bạn, như một người ngoài. Nếu mất quá vài phút thì đó là khoảng thời gian mà người thật sẽ không bỏ ra."
+  },
+  "practicePrompt": {
+    "question": "Bạn nhận được báo cáo lỗ hổng nhưng chưa xác minh xong. Nên phản hồi thế nào?",
+    "options": [
+      "Xác nhận đã nhận trong vòng vài ngày, kể cả khi chưa có kết luận",
+      "Chờ tới khi xác minh xong rồi mới trả lời một lần cho đầy đủ",
+      "Yêu cầu người báo cung cấp thêm bằng chứng trước khi phản hồi",
+      "Chuyển báo cáo cho bộ phận pháp chế xem xét kỹ trước khi trả lời"
+    ],
+    "correct": 0,
+    "explanation": "Im lặng là lý do phổ biến nhất khiến người báo chuyển sang công bố công khai - họ không phân biệt được bạn đang xử lý với bạn đang phớt lờ. Một dòng xác nhận đã nhận mua cho bạn thời gian mà không cam kết gì về nội dung."
+  },
+  "quiz": [
+    {
+      "question": "Hai rào cản lớn nhất với người muốn báo lỗ hổng là gì?",
+      "options": [
+        "Không biết gửi cho ai và sợ bị quy kết là đã tấn công",
+        "Không có phần thưởng và không được ghi nhận công khai",
+        "Không đủ kiến thức để mô tả lỗ hổng cho rõ ràng",
+        "Không có thời gian để theo dõi quá trình xử lý"
+      ],
+      "correct": 0,
+      "explanation": "Cả hai đều gỡ được bằng một trang ngắn và vài dòng cam kết. Đây là biện pháp bảo mật có tỷ lệ lợi ích trên chi phí cao bậc nhất mà nhiều tổ chức bỏ qua."
+    },
+    {
+      "question": "Vì sao phản hồi nhanh quan trọng hơn phần thưởng?",
+      "options": [
+        "Vì im lặng khiến người báo nghĩ mình bị phớt lờ và chuyển sang công bố",
+        "Vì phần thưởng thu hút những báo cáo chất lượng thấp",
+        "Vì ngân sách thưởng thường không được phê duyệt kịp thời",
+        "Vì người báo lỗ hổng thường không quan tâm tới tiền thưởng"
+      ],
+      "correct": 0,
+      "explanation": "Người báo không nhìn thấy quá trình bên trong của bạn, nên im lặng và phớt lờ trông giống hệt nhau. Một dòng xác nhận giữ cho họ ở lại kênh riêng thay vì chuyển sang kênh công khai."
+    },
+    {
+      "question": "Vì sao nên cảm ơn cả những báo cáo không hợp lệ?",
+      "options": [
+        "Vì giữ cho cửa mở đáng giá hơn việc phân loại đúng sai từng báo cáo",
+        "Vì báo cáo không hợp lệ vẫn có thể chứa manh mối hữu ích",
+        "Vì người báo có thể phản ứng tiêu cực nếu bị từ chối",
+        "Vì việc xác minh của chính bạn cũng có thể sai trong một số trường hợp"
+      ],
+      "correct": 0,
+      "explanation": "Người bị đối xử lạnh nhạt một lần sẽ không báo lần sau, kể cả khi lần sau là một lỗ hổng nghiêm trọng thật. Chi phí của một lời cảm ơn nhỏ hơn nhiều so với chi phí mất một kênh phát hiện."
+    },
+    {
+      "question": "Phản ứng bằng đe doạ pháp lý dẫn tới hậu quả gì?",
+      "options": [
+        "Người tìm thấy lỗ hổng sau đó sẽ chọn công bố thẳng thay vì báo riêng",
+        "Số lượng báo cáo giảm xuống nên đội đỡ mất thời gian xử lý",
+        "Người báo sẽ xoá bỏ thông tin về lỗ hổng đã tìm thấy",
+        "Các lỗ hổng tương tự sẽ không bị tìm thấy trong tương lai"
+      ],
+      "correct": 0,
+      "explanation": "Lỗ hổng không biến mất khi bạn đe doạ người phát hiện; chỉ có kênh báo riêng biến mất. Lần sau bạn biết về nó cùng lúc với tất cả mọi người."
+    },
+    {
+      "question": "Bước đầu tiên và rẻ nhất là gì?",
+      "options": [
+        "Đặt một địa chỉ liên hệ bảo mật ở nơi dễ tìm trên tên miền",
+        "Xây dựng một chương trình thưởng tiền cho người tìm ra lỗ hổng",
+        "Thuê một đơn vị bên ngoài kiểm thử xâm nhập định kỳ",
+        "Lập một đội bảo mật chuyên trách tiếp nhận báo cáo"
+      ],
+      "correct": 0,
+      "explanation": "Nó tốn mười phút và gỡ được rào cản lớn nhất. Ba việc còn lại đều có giá trị nhưng chúng đòi hỏi ngân sách và thời gian, nên chúng là bước sau."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Một phần đáng kể lỗ hổng được người ngoài phát hiện trước bạn: một lập trình viên tò mò, một khách hàng, một người đang nghiên cứu bảo mật. Điều bạn quyết định được không phải chuyện đó có xảy ra hay không."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn kết cục có thể"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Họ báo cho bạn, bạn vá - kết cục tốt nhất và cũng là kết cục cần một cánh cửa mở.",
+        "Họ bỏ qua vì không biết báo cho ai - lỗ hổng vẫn nằm đó chờ người khác tìm thấy.",
+        "Họ công bố công khai vì không nhận được phản hồi - bạn vá dưới áp lực thời gian.",
+        "Họ bán thông tin ấy đi - kết cục tệ nhất, và cũng ít phổ biến nhất."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Cửa mở tốn rất ít"
+    },
+    {
+      "type": "paragraph",
+      "text": "Một trang ngắn ghi địa chỉ liên hệ về bảo mật, cùng vài dòng nói rằng bạn sẽ xử lý công bằng với người báo cáo có thiện chí, đã gỡ được hai rào cản lớn nhất. Nó không tốn ngân sách, không cần đội chuyên trách, và nó chuyển một phần đáng kể khả năng từ ba kết cục dưới sang kết cục đầu tiên."
+    },
+    {
+      "type": "callout",
+      "label": "Im lặng bị đọc là phớt lờ",
+      "text": "Người báo không nhìn thấy công việc bên trong của bạn. Hai tuần không hồi âm trông giống hệt việc bạn không quan tâm, và đó là lúc họ chuyển sang kênh công khai. Một dòng xác nhận đã nhận là toàn bộ thứ cần thiết ở giai đoạn đầu."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bạn không chọn được ai tìm ra lỗ hổng của mình. Bạn chỉ chọn được việc họ có đường nào để nói với bạn hay không.",
+        "Bài sau nói về chuyện xảy ra khi một báo cáo hoá ra là thật và đã có người khai thác nó."
+      ]
+    }
+  ],
+  "interactiveType": "ethics-case"
+}

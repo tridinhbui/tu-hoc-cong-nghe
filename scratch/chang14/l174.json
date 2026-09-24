@@ -1,0 +1,179 @@
+{
+  "id": 174,
+  "slug": "giam-thieu-truoc-nguyen-nhan-sau",
+  "title": "Giảm thiểu trước, nguyên nhân sau",
+  "subtitle": "Mục tiêu trong sự cố là dừng thiệt hại, không phải hiểu chuyện gì đã xảy ra.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🩹",
+  "track": "professional",
+  "whyItMatters": "Đây là thói quen khó bỏ nhất với kỹ sư giỏi: bản năng nghề nghiệp là hiểu rồi mới sửa. Trong sự cố thì thứ tự ấy đắt, vì đồng hồ vẫn chạy trong lúc bạn đang hiểu.",
+  "openingQuestion": "Sự cố bắt đầu ngay sau một lần triển khai. Việc nên làm trước tiên là gì?",
+  "openingOptions": [
+    "Quay lui bản triển khai đó rồi mới tìm hiểu nó đã làm gì",
+    "Đọc thay đổi trong bản triển khai để xác nhận nó là nguyên nhân",
+    "Kiểm tra xem có thay đổi nào khác cùng thời điểm hay không",
+    "Thu thập nhật ký và số liệu trước khi trạng thái hệ thống thay đổi"
+  ],
+  "correctOption": 0,
+  "explanation": "Quay lui thường mất vài phút và nó dừng thiệt hại ngay lập tức; nếu sự cố không hết thì bạn vừa loại được một giả thuyết với chi phí rất thấp. Đọc mã để xác nhận trước thì có thể mất nửa giờ, và trong nửa giờ ấy người dùng vẫn chịu ảnh hưởng. Thu thập dữ liệu trước khi trạng thái đổi là một lo ngại có thật và nên làm - nhưng làm song song, bằng cách chụp lại nhật ký và biểu đồ, chứ không phải bằng cách hoãn việc giảm thiểu.",
+  "diagram": [
+    {
+      "label": "Sự cố đang diễn ra",
+      "arrow": true
+    },
+    {
+      "label": "Ưu tiên 1: dừng thiệt hại cho người dùng",
+      "arrow": true
+    },
+    {
+      "label": "Chụp lại bằng chứng song song",
+      "arrow": true
+    },
+    {
+      "label": "Ưu tiên 2: tìm nguyên nhân, sau khi đã yên"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Nửa giờ đọc mã trước khi quay lui",
+    "description": "Đội dành ba mươi phút đọc bản thay đổi để chắc chắn nó là nguyên nhân trước khi dám quay lui. Việc quay lui sau đó mất bốn phút, và nó đúng là nguyên nhân."
+  },
+  "keyTakeaways": [
+    "Trong sự cố, mục tiêu là dừng thiệt hại chứ không phải hiểu nguyên nhân.",
+    "Ưu tiên các hành động đảo ngược được: quay lui, tắt tính năng, chuyển lưu lượng.",
+    "Chụp lại bằng chứng song song để việc hồi cứu về sau vẫn làm được.",
+    "Một giả thuyết bị loại nhanh có giá trị hơn một giả thuyết được xác nhận chậm."
+  ],
+  "summary": {
+    "keyIdea": "Dừng thiệt hại trước bằng hành động rẻ và đảo ngược được, điều tra sau.",
+    "formula": "Giảm thiểu, chụp bằng chứng, rồi mới hiểu.",
+    "commonMistake": "Đòi hiểu chắc chắn nguyên nhân trước khi dám hành động."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê các đòn bẩy giảm thiểu mà đội có thể kéo trong hai phút: quay lui, tắt tính năng, chuyển vùng, hạ tải. Nếu danh sách trống thì đó là việc cần làm trước sự cố tới."
+  },
+  "practicePrompt": {
+    "question": "Vì sao nên ưu tiên những hành động đảo ngược được?",
+    "options": [
+      "Vì nếu đoán sai thì bạn quay lại được mà không mất thêm gì",
+      "Vì chúng thường thực hiện nhanh hơn các hành động khác",
+      "Vì chúng không cần được phê duyệt bởi chính người chỉ huy sự cố",
+      "Vì chúng ít có nguy cơ gây ra lỗi mới trong hệ thống"
+    ],
+    "correct": 0,
+    "explanation": "Trong sự cố bạn hành động dựa trên thông tin không đầy đủ, nên khả năng đoán sai là cao. Một hành động đảo ngược được biến việc đoán sai thành mất vài phút, còn một hành động không đảo ngược được biến nó thành một sự cố thứ hai chồng lên sự cố thứ nhất."
+  },
+  "quiz": [
+    {
+      "question": "Mục tiêu chính trong lúc sự cố đang diễn ra là gì?",
+      "options": [
+        "Dừng thiệt hại đang gây ra cho người dùng",
+        "Xác định chính xác nguyên nhân gốc của vấn đề",
+        "Thu thập đầy đủ dữ liệu cho báo cáo hồi cứu",
+        "Khôi phục hệ thống về đúng trạng thái trước sự cố"
+      ],
+      "correct": 0,
+      "explanation": "Nguyên nhân gốc là mục tiêu của giai đoạn sau, khi không còn ai đang chịu ảnh hưởng. Khôi phục về trạng thái cũ thì đôi khi cũng không phải mục tiêu - một chế độ hạn chế vẫn phục vụ được thì tốt hơn một hệ thống đầy đủ nhưng chưa sẵn sàng."
+    },
+    {
+      "question": "Vì sao quay lui thường là hành động đầu tiên tốt?",
+      "options": [
+        "Vì nó rẻ, nhanh, và loại được một giả thuyết ngay cả khi không hiệu quả",
+        "Vì phần lớn sự cố đều bắt nguồn từ một lần triển khai gần đó",
+        "Vì nó khôi phục hệ thống về trạng thái đã được kiểm chứng",
+        "Vì nó không đòi hỏi hiểu biết sâu về phần mã đang có vấn đề"
+      ],
+      "correct": 0,
+      "explanation": "Giá trị lớn nhất nằm ở nhánh thất bại: quay lui mà sự cố vẫn còn thì bạn vừa loại được nguyên nhân khả dĩ nhất với chi phí bốn phút. Một giả thuyết bị loại nhanh đáng giá hơn một giả thuyết được xác nhận sau nửa giờ."
+    },
+    {
+      "question": "Làm sao vừa giảm thiểu vừa giữ được bằng chứng?",
+      "options": [
+        "Chụp lại nhật ký, biểu đồ và trạng thái song song với việc xử lý",
+        "Giữ nguyên một máy chủ ở trạng thái lỗi để điều tra sau",
+        "Hoãn hành động giảm thiểu vài phút để thu thập dữ liệu",
+        "Ghi lại chi tiết mọi thao tác đã được thực hiện trong kênh ứng phó"
+      ],
+      "correct": 0,
+      "explanation": "Giữ một máy ở trạng thái lỗi cũng là kỹ thuật hợp lệ trong vài trường hợp, nhưng nó phức tạp và không phải lúc nào cũng làm được. Chụp ảnh màn hình biểu đồ và lưu một đoạn nhật ký thì mất mười giây và làm được ở mọi sự cố."
+    },
+    {
+      "question": "Vì sao bản năng hiểu rồi mới sửa lại đắt trong sự cố?",
+      "options": [
+        "Vì đồng hồ thiệt hại vẫn chạy trong suốt thời gian bạn đang tìm hiểu",
+        "Vì việc tìm hiểu dưới áp lực thường dẫn tới kết luận sai lệch",
+        "Vì thông tin cần thiết để hiểu thường chưa có sẵn lúc đó",
+        "Vì người chỉ huy sự cố cần một quyết định nhanh để phân công"
+      ],
+      "correct": 0,
+      "explanation": "Bản năng ấy hoàn toàn đúng trong công việc thường ngày, và đó là lý do nó khó bỏ. Khác biệt duy nhất là trong sự cố có một chi phí chạy theo từng phút, và chi phí ấy không xuất hiện khi bạn gỡ lỗi một cách bình thường."
+    },
+    {
+      "question": "Danh sách đòn bẩy giảm thiểu nên được chuẩn bị khi nào?",
+      "options": [
+        "Trước sự cố, vì lúc đang xử lý thì không ai nghĩ ra được đủ",
+        "Trong lúc hồi cứu, dựa trên những gì đã dùng ở sự cố vừa rồi",
+        "Ngay khi tuyên bố sự cố, do người chỉ huy liệt kê ra",
+        "Định kỳ mỗi quý, cùng với việc rà soát kiến trúc hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Dưới áp lực, người ta chỉ nhớ được một hoặc hai lựa chọn quen thuộc nhất. Một danh sách viết sẵn - quay lui, tắt tính năng, chuyển vùng, hạ tải, chặn nguồn - biến việc nhớ thành việc đọc."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Kỹ sư giỏi được rèn để hiểu vấn đề trước khi sửa. Đó là thói quen tốt trong mọi hoàn cảnh trừ một: khi đồng hồ thiệt hại đang chạy."
+    },
+    {
+      "type": "heading",
+      "text": "Hai giai đoạn, hai mục tiêu"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Trong sự cố",
+        "text": "Mục tiêu là dừng thiệt hại. Hành động rẻ, nhanh, đảo ngược được. Không cần hiểu đúng, chỉ cần hết chảy máu."
+      },
+      "right": {
+        "label": "Sau sự cố",
+        "text": "Mục tiêu là hiểu. Có thời gian, có dữ liệu, không ai đang chịu ảnh hưởng. Đây mới là chỗ tìm nguyên nhân gốc."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Giá trị nằm ở nhánh thất bại",
+      "text": "Quay lui rồi mà sự cố vẫn còn thì bạn không thất bại - bạn vừa loại được giả thuyết khả dĩ nhất với chi phí bốn phút. Một giả thuyết bị loại nhanh đáng giá hơn một giả thuyết được xác nhận sau nửa giờ đọc mã."
+    },
+    {
+      "type": "heading",
+      "text": "Đòn bẩy chuẩn bị sẵn"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Quay lui bản triển khai gần nhất.",
+        "Tắt tính năng mới bằng công tắc, nếu có.",
+        "Chuyển lưu lượng sang vùng hoặc bản sao khác.",
+        "Hạ tải: tạm ngắt công việc nền, giảm tần suất, chặn nguồn gây tải bất thường."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Dưới áp lực, người ta chỉ nhớ được một hoặc hai lựa chọn quen thuộc nhất. Một danh sách viết sẵn biến việc nhớ thành việc đọc - và nếu danh sách của đội bạn đang trống, thì đó là việc phải làm trước sự cố tới chứ không phải trong sự cố tới."
+    },
+    {
+      "type": "callout",
+      "label": "Bằng chứng chụp song song",
+      "text": "Chụp ảnh biểu đồ, lưu một đoạn nhật ký, ghi lại thời điểm. Mất mười giây và giữ cho việc hồi cứu về sau vẫn làm được - không cần hoãn việc giảm thiểu để thu thập dữ liệu."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Trong sự cố, hiểu là việc để sau. Điều duy nhất không hoãn được là người dùng đang chịu ảnh hưởng.",
+        "Bài sau về giai đoạn thứ hai: hiểu, và làm sao để việc hiểu ấy không biến thành đi tìm người có lỗi."
+      ]
+    }
+  ]
+}

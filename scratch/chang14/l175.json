@@ -1,0 +1,174 @@
+{
+  "id": 175,
+  "slug": "hoi-cuu-khong-do-loi",
+  "title": "Hồi cứu không đổ lỗi: tìm điều kiện, không tìm người",
+  "subtitle": "Ai gõ lệnh ấy là câu hỏi rẻ tiền. Vì sao lệnh ấy gõ được và không ai chặn lại mới là câu hỏi có ích.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🔎",
+  "track": "professional",
+  "whyItMatters": "Một buổi hồi cứu tìm người có lỗi dạy cả đội một bài học duy nhất: lần sau đừng báo sớm. Từ đó trở đi bạn mất luôn nguồn thông tin quan trọng nhất về hệ thống của mình.",
+  "openingQuestion": "Một kỹ sư gõ nhầm lệnh và xoá dữ liệu thật. Buổi hồi cứu nên tập trung vào đâu?",
+  "openingOptions": [
+    "Vì sao hệ thống cho phép lệnh đó chạy mà không có bước xác nhận nào",
+    "Vì sao kỹ sư đó không kiểm tra kỹ lệnh trước khi nhấn phím",
+    "Vì sao quy trình chưa yêu cầu có người thứ hai xem lại thao tác",
+    "Vì sao kỹ sư đó được cấp quyền truy cập vào môi trường thật"
+  ],
+  "correctOption": 0,
+  "explanation": "Con người gõ nhầm - đó là hằng số chứ không phải biến số, và không quy trình nào loại bỏ được nó. Câu hỏi có ích là vì sao một thao tác không thể đảo ngược lại chạy được mà không có ma sát nào chặn: không xác nhận, không giới hạn phạm vi, không sao lưu tự động trước khi xoá. Hai lựa chọn về quy trình và quyền truy cập cũng hướng ra ngoài cá nhân, nhưng chúng thêm thủ tục cho con người trong khi lựa chọn đầu sửa chính hệ thống.",
+  "diagram": [
+    {
+      "label": "Ai gây ra? - câu hỏi dừng cuộc điều tra",
+      "arrow": true
+    },
+    {
+      "label": "Điều kiện nào cho phép? - câu hỏi mở nó ra",
+      "arrow": true
+    },
+    {
+      "label": "Thường ra 3-5 điều kiện chồng lên nhau",
+      "arrow": true
+    },
+    {
+      "label": "Mỗi điều kiện là một chỗ có thể sửa"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bài học duy nhất: đừng báo sớm",
+    "description": "Sau một buổi hồi cứu tìm ra người chịu trách nhiệm, số sự cố được báo cáo trong quý tiếp theo giảm mạnh. Số sự cố thật thì không giảm - chúng chỉ được xử lý âm thầm và không ai học được gì."
+  },
+  "keyTakeaways": [
+    "Sai sót của con người là điều kiện đầu vào, không phải nguyên nhân gốc.",
+    "Một sự cố lớn thường cần nhiều điều kiện xảy ra cùng lúc.",
+    "Hồi cứu phải sinh ra việc cụ thể có người nhận và có hạn.",
+    "Đội không dám báo sớm thì mọi cơ chế học hỏi đều ngừng hoạt động."
+  ],
+  "summary": {
+    "keyIdea": "Hồi cứu tìm những điều kiện đã cho phép sự cố xảy ra, không tìm người gây ra nó.",
+    "formula": "Hỏi điều gì cho phép, đừng hỏi ai đã làm.",
+    "commonMistake": "Kết thúc bằng kết luận do lỗi con người."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở báo cáo hồi cứu gần nhất của đội và tìm xem có câu nào kết luận là do lỗi con người không. Nếu có, viết lại nó thành câu hỏi hệ thống đã cho phép điều gì."
+  },
+  "practicePrompt": {
+    "question": "Vì sao kết luận do lỗi con người là một kết luận vô dụng?",
+    "options": [
+      "Vì nó không chỉ ra được thứ gì có thể sửa để lần sau không lặp lại",
+      "Vì nó khiến những người liên quan cảm thấy bị đối xử không công bằng",
+      "Vì nó thường không phản ánh đúng chuỗi sự kiện đã diễn ra",
+      "Vì nó không đáp ứng yêu cầu của các quy định về tuân thủ"
+    ],
+    "correct": 0,
+    "explanation": "Hành động duy nhất suy ra được từ nó là hãy cẩn thận hơn, và đó không phải một thay đổi mà là một lời khuyên. Cảm giác bất công cũng có thật và nó gây hại theo cách riêng, nhưng cái chết của buổi hồi cứu nằm ở chỗ nó kết thúc mà không sinh ra được việc gì để làm."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao sai sót của con người không được coi là nguyên nhân gốc?",
+      "options": [
+        "Vì con người luôn sai, nên nó là điều kiện đầu vào chứ không phải biến số",
+        "Vì thường có nhiều người cùng tham gia vào chuỗi sự kiện",
+        "Vì khó xác định chính xác ai đã thực hiện thao tác nào",
+        "Vì việc quy trách nhiệm không thuộc phạm vi của buổi hồi cứu"
+      ],
+      "correct": 0,
+      "explanation": "Bạn không thiết kế được một hệ thống dựa trên giả định không ai gõ nhầm. Chấp nhận sai sót là hằng số buộc câu hỏi phải chuyển sang chỗ có thể thay đổi được: hệ thống đã cho phép sai sót ấy gây hậu quả tới đâu."
+    },
+    {
+      "question": "Một sự cố lớn thường có bao nhiêu điều kiện góp phần?",
+      "options": [
+        "Nhiều điều kiện chồng lên nhau, không phải một nguyên nhân duy nhất",
+        "Một nguyên nhân gốc duy nhất kèm vài yếu tố làm nặng thêm",
+        "Hai nguyên nhân độc lập xảy ra gần nhau về thời gian",
+        "Số lượng thay đổi tuỳ theo độ phức tạp của hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Cảnh báo không nổ, tài liệu đã cũ, thao tác không có bước xác nhận, người trực mới nhận việc - từng cái một thì không gây ra sự cố. Đi tìm một nguyên nhân duy nhất thường dẫn tới việc chọn ra cái dễ thấy nhất rồi bỏ qua phần còn lại."
+    },
+    {
+      "question": "Một buổi hồi cứu tốt phải kết thúc bằng gì?",
+      "options": [
+        "Danh sách việc cụ thể, mỗi việc có người nhận và có hạn hoàn thành",
+        "Bản mô tả đầy đủ dòng thời gian và nguyên nhân của sự cố",
+        "Cam kết của cả đội về việc cẩn thận hơn trong các thao tác tương tự",
+        "Đánh giá mức độ nghiêm trọng và thiệt hại mà sự cố đã gây ra"
+      ],
+      "correct": 0,
+      "explanation": "Một báo cáo mô tả đầy đủ mà không sinh ra việc gì là một tài liệu lịch sử. Giá trị của hồi cứu nằm ở chỗ hệ thống sau đó khác đi, và điều đó chỉ xảy ra khi có việc được giao cho người cụ thể."
+    },
+    {
+      "question": "Hậu quả của một buổi hồi cứu tìm người có lỗi là gì?",
+      "options": [
+        "Đội ngừng báo sự cố sớm, và nguồn thông tin quan trọng nhất bị mất",
+        "Người bị quy trách nhiệm sẽ xin chuyển sang đội khác",
+        "Các báo cáo hồi cứu sau đó sẽ được viết chung chung hơn",
+        "Quy trình sẽ được bổ sung thêm nhiều bước phê duyệt không cần thiết"
+      ],
+      "correct": 0,
+      "explanation": "Số sự cố được báo giảm mạnh trong khi số sự cố thật không đổi. Từ lúc đó, tổ chức mất khả năng nhìn thấy hệ thống của chính mình, và đó là tổn thất lớn hơn nhiều so với bất kỳ sự cố đơn lẻ nào."
+    },
+    {
+      "question": "Câu hỏi nào thay thế được câu hỏi ai đã gây ra?",
+      "options": [
+        "Điều gì đã khiến hành động đó trở nên hợp lý với người thực hiện lúc ấy",
+        "Người thực hiện có được đào tạo đầy đủ về quy trình chưa",
+        "Có thể thêm bước phê duyệt nào để ngăn hành động đó lại",
+        "Đã có tài liệu nào cảnh báo về hành động đó từ trước chưa"
+      ],
+      "correct": 0,
+      "explanation": "Không ai cố ý phá hệ thống; với thông tin họ có lúc đó, hành động ấy trông đúng. Tìm hiểu vì sao nó trông đúng sẽ lộ ra tài liệu sai, giao diện gây hiểu nhầm, hoặc một cảnh báo lẽ ra phải có mà không có."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Sự cố đã yên. Giờ mới tới phần quyết định liệu nó có xảy ra lần nữa hay không - và phần này hỏng rất dễ, chỉ bằng cách hỏi sai một câu."
+    },
+    {
+      "type": "heading",
+      "text": "Hai câu hỏi, hai kết cục"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Ai đã gây ra?",
+        "text": "Có câu trả lời nhanh, và cuộc điều tra dừng lại ở đó. Việc duy nhất suy ra được là hãy cẩn thận hơn - một lời khuyên, không phải một thay đổi."
+      },
+      "right": {
+        "label": "Điều gì đã cho phép?",
+        "text": "Thường ra ba tới năm điều kiện chồng lên nhau, và mỗi cái là một chỗ có thể sửa thật."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Con người gõ nhầm. Đó là hằng số, không phải biến số, và không quy trình nào loại bỏ được nó. Điều thiết kế được là hậu quả: một thao tác không đảo ngược được thì phải có ma sát trước nó - bước xác nhận, giới hạn phạm vi, bản sao tự động trước khi xoá."
+    },
+    {
+      "type": "callout",
+      "label": "Vì sao nó trông đúng lúc đó",
+      "text": "Không ai cố ý phá hệ thống. Với thông tin họ có tại thời điểm ấy, hành động đó là hợp lý. Tìm hiểu vì sao nó hợp lý sẽ lộ ra tài liệu đã cũ, một giao diện gây hiểu nhầm, hoặc một cảnh báo lẽ ra phải có."
+    },
+    {
+      "type": "heading",
+      "text": "Cái giá của việc tìm người"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sau một buổi hồi cứu quy trách nhiệm, số sự cố được báo cáo giảm mạnh trong quý tiếp theo. Số sự cố thật thì không đổi - chúng chỉ được xử lý âm thầm. Tổ chức vừa mất khả năng nhìn thấy hệ thống của chính mình, và đó là tổn thất lớn hơn bất kỳ sự cố đơn lẻ nào."
+    },
+    {
+      "type": "callout",
+      "label": "Kết thúc bằng việc, không bằng bản mô tả",
+      "text": "Một báo cáo đầy đủ mà không sinh ra việc nào là một tài liệu lịch sử. Mỗi buổi hồi cứu phải để lại danh sách việc có người nhận và có hạn, nếu không thì hệ thống sau đó không khác gì hệ thống trước đó."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Không đổ lỗi không phải là tử tế với nhau. Nó là điều kiện để còn có thông tin mà học.",
+        "Bài sau về việc đo chính quá trình này: những con số nào thật sự nói lên đội đang ứng phó tốt hơn."
+      ]
+    }
+  ]
+}

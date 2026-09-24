@@ -1,0 +1,169 @@
+{
+  "id": 67,
+  "slug": "tich-hop-lien-tuc",
+  "title": "Tích hợp liên tục: máy chạy kiểm thử thay cho lời hứa",
+  "subtitle": "Quy ước mà không có gì cưỡng chế thì chỉ là quy ước cho tới lúc gấp.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔄",
+  "track": "professional",
+  "whyItMatters": "Mọi đội đều đồng ý là phải chạy kiểm thử trước khi gộp mã. Điều đó đúng cho tới chiều thứ sáu và có việc gấp. Cổng tự động biến sự đồng ý ấy thành thứ không phụ thuộc vào trí nhớ hay áp lực thời gian.",
+  "openingQuestion": "Vì sao cần máy chạy kiểm thử tự động khi cả đội đã đồng ý tự chạy trước khi gộp mã?",
+  "openingOptions": [
+    "Vì quy ước dựa vào trí nhớ sẽ trượt đúng vào lúc bận nhất",
+    "Vì máy chạy kiểm thử nhanh hơn máy cá nhân rất nhiều lần",
+    "Vì lập trình viên thường không biết cách chạy bộ kiểm thử",
+    "Vì kết quả trên máy cá nhân không bao giờ đáng tin cậy"
+  ],
+  "correctOption": 0,
+  "explanation": "Vấn đề không phải là thiện chí. Người ta quên, người ta chạy thiếu một phần, người ta chạy trên nhánh cũ, hoặc đơn giản là đang gấp và tự nhủ thay đổi này nhỏ thôi. Cổng tự động không phụ thuộc vào bất kỳ điều nào trong số đó: nó chạy cùng một bộ, trên cùng một môi trường, ở mọi thay đổi, kể cả lúc năm giờ chiều thứ sáu. Nó cũng loại bỏ tình huống chạy được trên máy tôi, vì kết quả đến từ một môi trường sạch mà ai cũng nhìn thấy.",
+  "diagram": [
+    {
+      "label": "Đẩy thay đổi lên kho mã",
+      "arrow": true
+    },
+    {
+      "label": "Máy dựng lại từ môi trường sạch",
+      "arrow": true
+    },
+    {
+      "label": "Chạy kiểm thử, kiểm kiểu, kiểm quy ước",
+      "arrow": true
+    },
+    {
+      "label": "Đỏ thì chặn gộp, xanh thì cho qua"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bốn trăm lượt chạy đỏ liên tục",
+    "description": "Khi cổng tự động đỏ thường trực vì một lý do không liên quan tới mã, người ta ngừng đọc nó. Lúc đó mọi cổng khác trong cùng lượt chạy cũng mất tác dụng một lượt - không phải vì chúng hỏng, mà vì không còn ai nhìn."
+  },
+  "keyTakeaways": [
+    "Cổng tự động biến quy ước thành thứ không phụ thuộc trí nhớ hay áp lực.",
+    "Nó phải chạy trên môi trường sạch, nếu không sẽ lặp lại chuyện chạy được trên máy tôi.",
+    "Đỏ thường trực làm mọi cổng trong cùng lượt chạy mất tác dụng cùng lúc.",
+    "Cổng phải nhanh, vì vòng phản hồi dài thì người ta tìm cách đi vòng."
+  ],
+  "summary": {
+    "keyIdea": "Cổng tự động là chỗ duy nhất một quy ước trở thành ràng buộc thật.",
+    "formula": "Mọi thay đổi, cùng một bộ kiểm, cùng một môi trường.",
+    "commonMistake": "Để cổng đỏ thường trực, rồi cả đội học cách bỏ qua nó."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Xem lịch sử các lượt chạy cổng tự động của dự án trong hai tuần qua. Tỷ lệ đỏ cao mà không ai sửa là dấu hiệu cổng đã ngừng có tác dụng, dù nó vẫn đang chạy."
+  },
+  "practicePrompt": {
+    "question": "Cổng tự động của bạn mất hai mươi phút mỗi lượt. Hậu quả thực tế là gì?",
+    "options": [
+      "Người ta gộp nhiều thay đổi vào một lần đẩy để đỡ phải chờ",
+      "Máy chủ chạy cổng sẽ tiêu tốn quá nhiều tài nguyên tính toán",
+      "Kết quả kiểm thử kém chính xác hơn so với lượt chạy ngắn",
+      "Các bài kiểm thử mới không thêm vào cổng được nữa"
+    ],
+    "correct": 0,
+    "explanation": "Vòng phản hồi dài đổi hành vi của con người: thay đổi bị gộp thành lô lớn, và lô lớn thì khó tìm nguyên nhân khi hỏng. Đó là cái giá thật của một cổng chậm, đắt hơn nhiều so với tiền máy chủ."
+  },
+  "quiz": [
+    {
+      "question": "Cổng tự động giải quyết vấn đề gì mà quy ước không giải quyết được?",
+      "options": [
+        "Nó không phụ thuộc vào trí nhớ và áp lực thời gian của con người",
+        "Nó phát hiện nhiều loại lỗi hơn so với chạy kiểm thử tay",
+        "Nó cho phép đội bỏ qua bước rà soát mã trước khi gộp",
+        "Nó chạy nhanh hơn nhiều lần so với chạy trên máy cá nhân"
+      ],
+      "correct": 0,
+      "explanation": "Cùng bộ kiểm thử ấy nhưng chạy ở mọi thay đổi, không sót lần nào. Nó không tìm ra lỗi nào mới; nó chỉ bảo đảm việc tìm luôn xảy ra."
+    },
+    {
+      "question": "Vì sao cổng tự động phải dựng lại từ môi trường sạch?",
+      "options": [
+        "Để không lặp lại tình huống chạy được trên máy tôi",
+        "Để tiết kiệm dung lượng lưu trữ trên máy chủ chạy cổng",
+        "Để các lượt chạy không ảnh hưởng tới kết quả của nhau",
+        "Để lập trình viên không cần cài đặt gì trên máy mình"
+      ],
+      "correct": 0,
+      "explanation": "Môi trường sạch phát hiện những phụ thuộc chưa được khai báo. Nếu cổng chạy trên một máy tích tụ trạng thái thì nó chỉ là một máy cá nhân nữa, và nó sẽ xanh trong khi máy chủ thật hỏng."
+    },
+    {
+      "question": "Hậu quả của việc để cổng đỏ thường trực là gì?",
+      "options": [
+        "Mọi cổng trong cùng lượt chạy cùng mất tác dụng một lúc",
+        "Máy chủ chạy cổng bị quá tải vì phải chạy lại liên tục",
+        "Các thay đổi mới không gộp được vào nhánh chính nữa",
+        "Lịch sử kết quả kiểm thử bị mất sau một thời gian"
+      ],
+      "correct": 0,
+      "explanation": "Người ta ngừng đọc một tín hiệu luôn đỏ, và khi ngừng đọc thì mọi kiểm tra chạy chung lượt đó cũng vô hình theo. Một cổng đỏ thường trực tệ hơn không có cổng, vì nó tạo cảm giác đang được bảo vệ."
+    },
+    {
+      "question": "Vì sao thời gian chạy của cổng lại quan trọng?",
+      "options": [
+        "Vì cổng chậm khiến người ta gộp thay đổi thành lô lớn",
+        "Vì cổng chạy chậm làm kết quả kiểm thử trở nên kém chính xác hơn",
+        "Vì cổng chậm tốn nhiều chi phí máy chủ hơn hẳn",
+        "Vì cổng chậm không chạy được nhiều lượt song song"
+      ],
+      "correct": 0,
+      "explanation": "Chờ hai mươi phút cho mỗi lần đẩy thì người ta dồn nhiều việc vào một lần. Lô càng lớn thì khi hỏng càng khó biết thay đổi nào gây ra, đúng thứ mà tích hợp liên tục sinh ra để tránh."
+    },
+    {
+      "question": "Cổng tự động nên chạy những gì?",
+      "options": [
+        "Đủ các kiểm tra mà đội coi là điều kiện để gộp mã",
+        "Chỉ bộ kiểm thử đơn vị, vì các tầng khác quá chậm",
+        "Toàn bộ bài kiểm thử đầu cuối cho mọi đường đi có thể",
+        "Chỉ những kiểm tra mà người rà soát mã không làm được"
+      ],
+      "correct": 0,
+      "explanation": "Nguyên tắc là mọi thứ bạn coi là bắt buộc phải nằm trong cổng, vì thứ không nằm trong cổng thì sớm muộn cũng bị bỏ qua. Cân bằng với tốc độ bằng cách chọn ít bài đầu cuối chứ không bằng cách bỏ hẳn một loại kiểm tra."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mọi đội đều có những quy ước ai cũng đồng ý: chạy kiểm thử trước khi gộp, không đẩy thẳng lên nhánh chính, luôn có người rà soát. Chúng đúng cho tới lúc có việc gấp."
+    },
+    {
+      "type": "heading",
+      "text": "Từ thoả thuận thành ràng buộc"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cổng tự động không thêm kiểm tra mới nào; nó chỉ bảo đảm những kiểm tra đã có luôn được chạy. Khác biệt nằm ở chỗ nó không quên, không vội, và không tự thuyết phục rằng thay đổi này nhỏ thôi. Nó cũng chạy trên một môi trường sạch mà ai cũng nhìn thấy kết quả, nên tranh cãi về việc trên máy tôi vẫn chạy được chấm dứt."
+    },
+    {
+      "type": "callout",
+      "label": "Đỏ thường trực là hỏng cả hệ thống cổng",
+      "text": "Khi một kiểm tra đỏ liên tục vì lý do không liên quan tới mã, người ta ngừng đọc kết quả. Từ lúc đó, mọi kiểm tra chạy chung lượt cũng mất tác dụng - không phải vì chúng sai, mà vì không còn ai nhìn vào."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cổng nhanh",
+        "text": "Vài phút. Người ta đẩy thay đổi nhỏ và thường xuyên, mỗi lần chỉ một biến số, nên hỏng thì tìm ra ngay."
+      },
+      "right": {
+        "label": "Cổng chậm",
+        "text": "Hai mươi phút trở lên. Người ta dồn việc thành lô lớn để đỡ chờ, và khi lô ấy hỏng thì phải đi tìm trong hàng chục thay đổi."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Coi tỷ lệ đỏ của cổng là một chỉ số cần theo dõi, không phải chuyện đương nhiên.",
+        "Sửa hoặc gỡ ngay bài kiểm thử đỏ vặt, vì nó bào mòn lòng tin vào toàn bộ.",
+        "Đưa mọi kiểm tra bắt buộc vào cổng - thứ nằm ngoài cổng sớm muộn cũng bị bỏ qua."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Cổng tự động là chỗ một quy ước trở thành ràng buộc. Nhưng nó chỉ giữ được giá trị chừng nào người ta còn tin vào tín hiệu nó phát ra.",
+        "Bài sau nói về con số hay bị dùng để chứng minh chất lượng kiểm thử, và những gì nó không nói."
+      ]
+    }
+  ]
+}

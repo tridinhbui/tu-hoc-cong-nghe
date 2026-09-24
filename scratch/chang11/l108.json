@@ -1,0 +1,165 @@
+{
+  "id": 108,
+  "slug": "dung-chung-hay-nhan-ban",
+  "title": "Dùng chung hay nhân bản: một chút lặp rẻ hơn một ràng buộc sai",
+  "subtitle": "Gom hai đoạn mã giống nhau lại chỉ đúng khi chúng giống nhau vì cùng một lý do.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🧬",
+  "track": "professional",
+  "whyItMatters": "Bản năng của kỹ sư là gom mọi thứ trùng lặp. Ở quy mô một đội thì bản năng ấy gần như luôn đúng. Vượt qua ranh giới đội, nó tạo ra những ràng buộc buộc hai đội phải đổi cùng nhau mãi mãi.",
+  "openingQuestion": "Hai đội có hai hàm tính phí giống hệt nhau. Có nên gom thành một thư viện chung?",
+  "openingOptions": [
+    "Chỉ khi chúng giống nhau vì cùng một quy tắc nghiệp vụ, không phải tình cờ",
+    "Có, vì mã trùng lặp luôn nên được loại bỏ khi phát hiện",
+    "Không, vì thư viện chung giữa hai đội luôn tạo ra phụ thuộc xấu",
+    "Có, nếu cả hai đội cùng dùng một ngôn ngữ lập trình"
+  ],
+  "correctOption": 0,
+  "explanation": "Hai đoạn mã có thể giống nhau vì cùng thể hiện một quy tắc, hoặc chỉ tình cờ giống nhau ở thời điểm này. Gom nhóm thứ nhất là đúng: quy tắc đổi thì cả hai chỗ phải đổi theo, và thư viện chung bảo đảm điều đó. Gom nhóm thứ hai là tai hoạ: một ngày đội A cần đổi cách tính cho riêng họ, và giờ mọi thay đổi đều phải thương lượng với đội B. Câu hỏi phân biệt rất gọn: nếu một bên cần đổi, bên kia có nhất thiết phải đổi theo không?",
+  "diagram": [
+    {
+      "label": "Hai đoạn mã giống nhau",
+      "arrow": true
+    },
+    {
+      "label": "Cùng một quy tắc? → gom lại là đúng",
+      "arrow": true
+    },
+    {
+      "label": "Chỉ tình cờ giống? → gom lại tạo ràng buộc sai",
+      "arrow": true
+    },
+    {
+      "label": "Hỏi: một bên đổi thì bên kia có phải đổi theo không"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Thư viện chung đầy tham số",
+    "description": "Dấu hiệu của một lần gom nhầm là thư viện chung dần mọc thêm cờ và tham số để phục vụ những trường hợp khác nhau. Mỗi tham số mới là một lần hai bên phát hiện họ vốn không giống nhau, nhưng lúc đó tách ra đã quá muộn."
+  },
+  "keyTakeaways": [
+    "Giống nhau tình cờ và giống nhau vì cùng quy tắc là hai chuyện khác hẳn.",
+    "Câu hỏi phân biệt: một bên đổi thì bên kia có bắt buộc đổi theo không.",
+    "Thư viện chung mọc thêm cờ và tham số là dấu hiệu đã gom nhầm.",
+    "Vượt ranh giới đội, một chút lặp thường rẻ hơn một ràng buộc sai."
+  ],
+  "summary": {
+    "keyIdea": "Gom mã chung tạo ra ràng buộc; ràng buộc chỉ đáng khi hai bên thật sự phải đổi cùng nhau.",
+    "formula": "Cùng lý do thì gom, tình cờ giống thì để yên.",
+    "commonMistake": "Gom theo hình dạng mã thay vì theo lý do tồn tại của nó."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm một thư viện dùng chung giữa hai đội và đếm số cờ hoặc tham số dùng để phân biệt hành vi giữa các bên gọi. Con số ấy là mức độ nó đang bị kéo về hai hướng."
+  },
+  "practicePrompt": {
+    "question": "Thư viện chung của bạn có tám tham số, mỗi đội gọi với một tổ hợp riêng. Điều đó gợi ý gì?",
+    "options": [
+      "Các trường hợp vốn không giống nhau, và có lẽ nên tách ra",
+      "Thư viện đang được thiết kế linh hoạt và dùng lại tốt",
+      "Cần thêm tài liệu để các đội gọi cho đúng cách",
+      "Nên gom tám tham số thành một đối tượng cấu hình duy nhất"
+    ],
+    "correct": 0,
+    "explanation": "Mỗi tham số phân biệt hành vi là một lần ai đó phát hiện trường hợp của mình khác. Tám lần như vậy nghĩa là thứ được gom vốn không phải một khái niệm chung, và gom cấu hình lại thành một đối tượng chỉ giấu triệu chứng chứ không đổi bản chất."
+  },
+  "quiz": [
+    {
+      "question": "Câu hỏi nào phân biệt nên gom hay nên để riêng?",
+      "options": [
+        "Nếu một bên cần đổi, bên kia có bắt buộc phải đổi theo không",
+        "Hai đoạn mã có giống nhau trên bao nhiêu phần trăm số dòng",
+        "Hai đội có đang dùng cùng một ngôn ngữ lập trình không",
+        "Đoạn mã đó có nằm trong phần quan trọng của hệ thống hay không"
+      ],
+      "correct": 0,
+      "explanation": "Nó hỏi thẳng vào lý do tồn tại chứ không vào hình dạng. Hai đoạn giống nhau chín mươi phần trăm mà thay đổi vì hai lý do khác nhau thì gom lại là sai."
+    },
+    {
+      "question": "Chi phí thật của việc gom mã giữa hai đội là gì?",
+      "options": [
+        "Từ đó mọi thay đổi của một bên đều phải thương lượng với bên kia",
+        "Thư viện dùng chung sẽ chạy chậm hơn so với mã riêng của từng đội",
+        "Cần thêm một đội thứ ba để bảo trì phần mã dùng chung",
+        "Mã dùng chung khó viết kiểm thử hơn so với mã riêng"
+      ],
+      "correct": 0,
+      "explanation": "Gom mã là tạo một ràng buộc tổ chức chứ không chỉ một quyết định kỹ thuật. Hai đội vốn độc lập giờ phải phối hợp mỗi lần một bên cần đổi."
+    },
+    {
+      "question": "Dấu hiệu một lần gom đã sai là gì?",
+      "options": [
+        "Thư viện dần mọc thêm cờ và tham số để phân biệt các bên gọi",
+        "Số lượng đội sử dụng thư viện tăng lên theo thời gian",
+        "Thư viện cần được cập nhật phiên bản khá thường xuyên",
+        "Có nhiều người từ các đội khác nhau cùng đóng góp vào thư viện"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi cờ là một tuyên bố rằng trường hợp của tôi khác. Đủ nhiều cờ thì thứ bên trong không còn là một khái niệm chung nữa, chỉ là nhiều khái niệm bị nhốt chung một chỗ."
+    },
+    {
+      "question": "Vì sao lời khuyên gom mã trùng lặp lại đúng trong một đội mà nguy hiểm giữa các đội?",
+      "options": [
+        "Vì trong một đội, tách lại khi phát hiện nhầm là chuyện rẻ",
+        "Vì trong một đội mọi người dùng cùng một phong cách viết mã",
+        "Vì giữa các đội không thể chia sẻ mã do khác kho lưu trữ",
+        "Vì trong một đội số lượng mã trùng lặp thường ít hơn nhiều"
+      ],
+      "correct": 0,
+      "explanation": "Chi phí sửa sai quyết định mức độ mạo hiểm hợp lý. Trong một đội, phát hiện gom nhầm thì tách ra trong một buổi chiều; giữa hai đội thì đó là một cuộc thương lượng kéo dài nhiều tuần."
+    },
+    {
+      "question": "Khi nào nhân bản mã là lựa chọn đúng?",
+      "options": [
+        "Khi hai chỗ giống nhau tình cờ và có thể tiến hoá theo hai hướng",
+        "Khi đội không còn thời gian để viết một thư viện dùng chung tử tế",
+        "Khi hai đoạn mã ngắn hơn khoảng vài chục dòng lệnh",
+        "Khi hai đội thuộc hai bộ phận khác nhau trong công ty"
+      ],
+      "correct": 0,
+      "explanation": "Nhân bản có chủ đích là một lựa chọn hợp lệ chứ không phải sự lười biếng: nó giữ cho hai bên tự do tiến hoá. Điều kiện là ghi lại rằng đây là quyết định, không phải sơ suất."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Thấy hai đoạn mã giống nhau thì phản xạ tự nhiên là gom lại. Phản xạ ấy được rèn suốt sự nghiệp và gần như luôn đúng - cho tới khi đường ranh giới đội nằm giữa hai đoạn mã đó."
+    },
+    {
+      "type": "heading",
+      "text": "Giống nhau vì hai lý do khác nhau"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cùng một quy tắc",
+        "text": "Hai chỗ tính thuế theo cùng một luật. Luật đổi thì cả hai phải đổi. Gom lại là đúng - nó bảo đảm điều đó xảy ra."
+      },
+      "right": {
+        "label": "Tình cờ giống nhau",
+        "text": "Hai chỗ hiện đang tính giống nhau nhưng vì hai nhu cầu khác nhau. Gom lại là trói hai thứ độc lập vào nhau vĩnh viễn."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Cái giá của việc gom nhầm"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sau khi gom, mọi thay đổi của một bên đều thành cuộc thương lượng. Đội A cần một hành vi khác, đội B không muốn rủi ro, và kết quả là một tham số mới. Vài vòng như vậy thì thư viện đầy cờ, không ai hiểu tổ hợp nào còn được dùng, và tách ra thì đã quá muộn vì cả hai đã xây tiếp lên trên."
+    },
+    {
+      "type": "callout",
+      "label": "Chi phí sửa sai quyết định mức mạo hiểm",
+      "text": "Trong một đội, gom nhầm thì tách lại trong một buổi chiều. Giữa hai đội, tách lại là một cuộc thương lượng nhiều tuần. Cùng một quyết định kỹ thuật, hai mức rủi ro hoàn toàn khác nhau - nên ngưỡng để gom cũng phải khác."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Vượt ranh giới đội, một chút lặp lại thường rẻ hơn một ràng buộc sai. Nhưng phải là lặp có chủ đích và được ghi lại.",
+        "Bài sau chuyển từ mã dùng chung sang thứ khó gỡ hơn nhiều: dữ liệu dùng chung giữa các đội."
+      ]
+    }
+  ]
+}

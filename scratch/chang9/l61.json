@@ -1,0 +1,181 @@
+{
+  "id": 61,
+  "slug": "tu-ma-nguon-toi-thu-chay-duoc",
+  "title": "Dựng mã: từ văn bản tới thứ máy chạy được",
+  "subtitle": "Chạy được trên máy tôi là một câu nói về máy bạn, không phải về mã.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🏗️",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Khoảng cách giữa mã trong trình soạn thảo và thứ đang chạy trước mặt người dùng là nơi rất nhiều thời gian bị đốt. Hiểu bước dựng là hiểu vì sao cùng một mã lại cho hai kết quả khác nhau ở hai nơi.",
+  "openingQuestion": "Mã chạy tốt trên máy bạn nhưng hỏng trên máy chủ. Nguyên nhân đầu tiên nên nghi là gì?",
+  "openingOptions": [
+    "Môi trường khác nhau: phiên bản công cụ, phụ thuộc hoặc cấu hình không giống",
+    "Mã nguồn bị hỏng trong quá trình sao chép lên máy chủ",
+    "Máy chủ có cấu hình phần cứng yếu hơn nên không chạy nổi",
+    "Trình biên dịch trên máy chủ có lỗi mà bản trên máy bạn không có"
+  ],
+  "correctOption": 0,
+  "explanation": "Cùng một mã nguồn cho hai kết quả khác nhau nghĩa là thứ khác nhau không nằm ở mã. Nó nằm ở môi trường: phiên bản ngôn ngữ, phiên bản thư viện phụ thuộc, biến cấu hình, hệ điều hành, hay một công cụ bạn đã cài từ lâu và quên mất. Máy của bạn tích tụ trạng thái suốt nhiều tháng, còn máy chủ thì bắt đầu từ con số không. Đó là lý do bước dựng cần được mô tả rõ ràng và chạy được lặp lại - để câu chạy được trên máy tôi không còn là một lời biện hộ.",
+  "diagram": [
+    {
+      "label": "Mã nguồn - văn bản cho người đọc",
+      "arrow": true
+    },
+    {
+      "label": "Bước dựng: giải phụ thuộc, biên dịch, đóng gói",
+      "arrow": true
+    },
+    {
+      "label": "Sản phẩm dựng - thứ máy chạy được",
+      "arrow": true
+    },
+    {
+      "label": "Cùng mã + cùng môi trường = cùng kết quả"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Một công cụ cài từ năm ngoái",
+    "description": "Mã gọi một lệnh có sẵn trên máy lập trình viên vì họ cài nó nhiều tháng trước cho việc khác. Máy chủ không có lệnh đó. Mã không sai, chỉ là nó phụ thuộc vào thứ chưa bao giờ được ghi ra ở đâu."
+  },
+  "keyTakeaways": [
+    "Bước dựng biến mã nguồn thành sản phẩm chạy được, và nó phụ thuộc vào môi trường.",
+    "Dựng lặp lại được nghĩa là cùng đầu vào cho ra cùng đầu ra, ở bất kỳ máy nào.",
+    "Mọi phụ thuộc phải được khai báo, kể cả công cụ hệ thống bạn coi là đương nhiên.",
+    "Dựng một lần rồi mang cùng một sản phẩm qua các môi trường, đừng dựng lại ở mỗi nơi."
+  ],
+  "summary": {
+    "keyIdea": "Chạy được trên máy tôi là câu nói về môi trường, không phải về mã.",
+    "formula": "Mã + môi trường được khai báo = kết quả lặp lại được.",
+    "commonMistake": "Dựng lại ở từng môi trường, rồi thứ chạy trên máy thật không phải thứ bạn đã kiểm thử."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Thử dựng dự án của bạn trên một máy sạch hoặc một thư mục mới tinh, chỉ với những gì được khai báo trong kho mã. Chỗ nào phải cài thêm bằng tay là một phụ thuộc chưa được ghi ra."
+  },
+  "practicePrompt": {
+    "question": "Vì sao nên dựng một lần rồi mang cùng sản phẩm đó qua các môi trường, thay vì dựng lại ở từng nơi?",
+    "options": [
+      "Để thứ chạy trên máy thật đúng là thứ đã được kiểm thử",
+      "Để tiết kiệm thời gian vì bước dựng thường chạy khá lâu",
+      "Để giảm tải cho máy chủ vì nó không phải biên dịch nữa",
+      "Để mã nguồn không cần được sao chép lên máy chủ thật"
+    ],
+    "correct": 0,
+    "explanation": "Dựng lại ở mỗi môi trường nghĩa là mỗi nơi có một sản phẩm hơi khác, và cái đã qua kiểm thử không phải cái đang phục vụ người dùng. Tiết kiệm thời gian là lợi ích phụ; thứ chính là bảo đảm cái được kiểm và cái được chạy là một."
+  },
+  "quiz": [
+    {
+      "question": "Bước dựng làm việc gì?",
+      "options": [
+        "Biến mã nguồn thành sản phẩm mà máy chạy được",
+        "Kiểm tra xem mã nguồn có tuân thủ quy ước viết mã hay không",
+        "Sao chép mã nguồn từ kho mã lên máy chủ đang phục vụ",
+        "Ghi lại lịch sử thay đổi của mã nguồn theo từng phiên bản"
+      ],
+      "correct": 0,
+      "explanation": "Dựng gồm giải phụ thuộc, biên dịch hoặc đóng gói, và tạo ra thứ chạy được. Kiểm quy ước và quản lý lịch sử là những bước khác, chạy quanh nó chứ không phải là nó."
+    },
+    {
+      "question": "Dựng lặp lại được nghĩa là gì?",
+      "options": [
+        "Cùng đầu vào thì cho cùng sản phẩm, chạy ở máy nào cũng vậy",
+        "Bước dựng có thể chạy lại nhiều lần mà không báo lỗi giữa chừng",
+        "Sản phẩm dựng ra được lưu lại để dùng cho những lần sau",
+        "Mọi lập trình viên trong đội đều chạy được bước dựng đó"
+      ],
+      "correct": 0,
+      "explanation": "Tính lặp lại nói về kết quả chứ không nói về việc chạy trơn tru. Nó đòi hỏi mọi phụ thuộc được ghim phiên bản và mọi công cụ được khai báo, nếu không thì máy khác sẽ cho sản phẩm khác."
+    },
+    {
+      "question": "Vì sao câu chạy được trên máy tôi lại không phải một lời bào chữa hợp lệ?",
+      "options": [
+        "Vì nó nói về môi trường của bạn chứ không nói gì về mã",
+        "Vì máy cá nhân thường có cấu hình mạnh hơn máy chủ thật",
+        "Vì mã trên máy cá nhân chưa được cập nhật từ kho mã chung",
+        "Vì môi trường thật luôn dùng phiên bản ngôn ngữ cũ hơn"
+      ],
+      "correct": 0,
+      "explanation": "Nó thừa nhận rằng có một thứ ngoài mã đang quyết định kết quả, và thứ đó chưa được ghi ra ở đâu. Việc cần làm là tìm ra nó rồi khai báo, chứ không phải kết luận rằng mã đã ổn."
+    },
+    {
+      "question": "Phụ thuộc nào hay bị quên khai báo nhất?",
+      "options": [
+        "Công cụ hệ thống có sẵn trên máy lập trình viên",
+        "Thư viện được cài qua trình quản lý gói của ngôn ngữ",
+        "Mã nguồn của chính dự án nằm trong kho mã chung",
+        "Tệp cấu hình được lưu cùng với mã ở trong kho mã chung"
+      ],
+      "correct": 0,
+      "explanation": "Thư viện thì có tệp khai báo nên khó quên. Thứ hay lọt là những lệnh hệ thống người ta gõ hằng ngày tới mức coi là có sẵn ở mọi nơi - và chúng không có sẵn trên một máy chủ mới dựng."
+    },
+    {
+      "question": "Vì sao nên tách bước dựng ra khỏi máy chủ đang phục vụ?",
+      "options": [
+        "Để máy chủ chỉ chạy sản phẩm đã kiểm thử, không tự tạo ra bản mới",
+        "Để giảm dung lượng ổ đĩa mà mã nguồn chiếm trên máy chủ thật",
+        "Để lập trình viên không cần quyền truy cập vào máy chủ nữa",
+        "Để bước dựng chạy nhanh hơn nhờ máy dựng có sẵn nhiều tài nguyên"
+      ],
+      "correct": 0,
+      "explanation": "Nếu máy chủ tự dựng thì mỗi lần triển khai có thể ra một sản phẩm hơi khác, và bạn mất khả năng nói chắc cái đang chạy là cái nào. Tốc độ và dung lượng chỉ là lợi ích phụ."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mã nguồn là văn bản. Thứ phục vụ người dùng là một sản phẩm đã dựng. Giữa hai thứ đó có một bước, và bước ấy phụ thuộc vào rất nhiều điều không nằm trong mã."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao hai máy cho hai kết quả"
+    },
+    {
+      "type": "paragraph",
+      "text": "Máy của bạn tích tụ trạng thái suốt nhiều tháng: các phiên bản công cụ đã cài, biến môi trường đã đặt, thư viện hệ thống đi kèm bản cập nhật nào đó. Máy chủ bắt đầu từ con số không và chỉ có những gì được khai báo. Mọi khác biệt giữa hai bên đều là một phụ thuộc chưa được ghi ra."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Ba thứ phải khai báo",
+      "subtitle": "Thiếu bất kỳ cái nào là bước dựng hết lặp lại được",
+      "concepts": [
+        {
+          "vi": "Phiên bản công cụ",
+          "en": "toolchain",
+          "def": "Ngôn ngữ, trình biên dịch, trình quản lý gói - ghim phiên bản chính xác, không để tự lấy bản mới nhất."
+        },
+        {
+          "vi": "Phụ thuộc",
+          "en": "dependencies",
+          "def": "Thư viện và phiên bản cụ thể của chúng, kèm cả phụ thuộc của phụ thuộc."
+        },
+        {
+          "vi": "Môi trường hệ thống",
+          "en": "system",
+          "def": "Lệnh hệ thống, thư viện nền, biến môi trường - phần hay bị coi là đương nhiên nhất."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Dựng một lần, mang đi nhiều nơi",
+      "text": "Dựng lại ở từng môi trường là tạo ra nhiều sản phẩm hơi khác nhau, và cái đã qua kiểm thử không còn là cái đang chạy. Dựng một lần rồi mang đúng sản phẩm ấy qua thử nghiệm, tiền sản xuất, sản xuất."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ghim phiên bản mọi phụ thuộc thay vì để tự lấy bản mới nhất.",
+        "Thử dựng trên một máy sạch định kỳ, vì đó là cách duy nhất phát hiện phụ thuộc ẩn.",
+        "Đánh dấu mỗi sản phẩm dựng bằng mã commit, để luôn truy được cái đang chạy là mã nào."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bước dựng là chỗ mã gặp thế giới thật. Mọi thứ không được khai báo ở đây sẽ trở thành một sự khác biệt bạn phải đi tìm sau.",
+        "Bài sau đi vào phần lớn nhất của bước dựng: những thư viện bạn không viết nhưng vẫn phải chịu trách nhiệm."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "id": 133,
+  "slug": "chong-lam-dung",
+  "title": "Lạm dụng: dùng đúng chức năng nhưng sai mục đích",
+  "subtitle": "Không có lỗ hổng nào bị khai thác - chỉ là một tính năng được gọi mười nghìn lần.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🚧",
+  "track": "professional",
+  "whyItMatters": "Nhiều thiệt hại thật không đến từ lỗ hổng mà từ việc dùng tính năng hợp lệ theo cách bạn không lường: dò tài khoản qua chức năng quên mật khẩu, gửi thư rác qua chức năng mời bạn bè, hay đơn giản là làm cạn hạn mức của bạn.",
+  "openingQuestion": "Chức năng quên mật khẩu báo thư điện tử này chưa đăng ký. Vấn đề là gì?",
+  "openingOptions": [
+    "Nó cho phép dò xem địa chỉ nào đã có tài khoản trong hệ thống",
+    "Nó làm người dùng bối rối khi gõ nhầm địa chỉ thư điện tử",
+    "Nó tiết lộ rằng hệ thống đang lưu trữ thư điện tử của người dùng",
+    "Nó khiến người dùng phải thử lại nhiều lần mới đăng nhập được"
+  ],
+  "correctOption": 0,
+  "explanation": "Thông báo phân biệt hai trường hợp biến chức năng quên mật khẩu thành một công cụ tra cứu: đưa vào một danh sách địa chỉ và bạn biết được ai có tài khoản ở đây. Với một dịch vụ nhạy cảm thì bản thân việc một người có tài khoản đã là thông tin đáng giá. Cách xử lý là trả về cùng một thông báo cho mọi trường hợp - nếu địa chỉ có trong hệ thống thì thư được gửi, nếu không thì không, nhưng người gọi không phân biệt được.",
+  "diagram": [
+    {
+      "label": "Thông báo khác nhau cho hai trường hợp",
+      "arrow": true
+    },
+    {
+      "label": "Đưa vào danh sách địa chỉ, đọc phản hồi",
+      "arrow": true
+    },
+    {
+      "label": "Biết được ai có tài khoản",
+      "arrow": true
+    },
+    {
+      "label": "Trả cùng một thông báo thì cửa này đóng lại"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Chức năng mời bạn bè",
+    "description": "Một tính năng cho phép gửi lời mời qua thư điện tử nhân danh sản phẩm của bạn. Không giới hạn thì nó thành một công cụ gửi thư rác miễn phí, và hậu quả rơi vào uy tín gửi thư của chính tên miền bạn."
+  },
+  "keyTakeaways": [
+    "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+    "Thông báo khác nhau cho hai trường hợp thường là một kênh rò rỉ thông tin.",
+    "Giới hạn tốc độ theo tài khoản và theo địa chỉ là lớp phòng thủ cơ bản.",
+    "Tính năng gửi thư hoặc gọi ra ngoài nhân danh bạn cần được giới hạn chặt."
+  ],
+  "summary": {
+    "keyIdea": "Không phải rủi ro nào cũng là lỗ hổng; một số là tính năng dùng ngoài ý định.",
+    "formula": "Hỏi: nếu gọi mười nghìn lần thì chuyện gì xảy ra?",
+    "commonMistake": "Chỉ rà soát lỗ hổng kỹ thuật mà không hỏi tính năng này bị lạm dụng thế nào."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Với mỗi tính năng gửi thư, gửi tin nhắn hoặc gọi ra dịch vụ ngoài, hỏi: nếu ai đó gọi nó mười nghìn lần trong một giờ thì chuyện gì xảy ra và ai trả tiền?"
+  },
+  "practicePrompt": {
+    "question": "Cách xử lý đúng cho chức năng quên mật khẩu là gì?",
+    "options": [
+      "Trả cùng một thông báo dù địa chỉ có tồn tại hay không",
+      "Báo rõ địa chỉ chưa đăng ký để người dùng biết đường sửa",
+      "Yêu cầu người dùng nhập thêm thông tin để xác minh danh tính",
+      "Chỉ cho phép gửi yêu cầu đặt lại từ thiết bị đã từng đăng nhập"
+    ],
+    "correct": 0,
+    "explanation": "Thông báo đồng nhất đóng kênh rò rỉ mà vẫn giữ được trải nghiệm chấp nhận được: người dùng thật sẽ nhận được thư, người gõ nhầm thì không nhận được gì và tự kiểm tra lại. Yêu cầu thêm thông tin thì làm khó chính người dùng hợp lệ mà kênh rò rỉ vẫn còn."
+  },
+  "quiz": [
+    {
+      "question": "Lạm dụng khác lỗ hổng ở điểm nào?",
+      "options": [
+        "Nó dùng đúng tính năng theo cách bạn không lường trước",
+        "Nó chỉ xảy ra với những hệ thống có nhiều người dùng",
+        "Nó luôn cần kẻ tấn công có tài khoản hợp lệ trong hệ thống",
+        "Nó không gây thiệt hại thật mà chỉ làm hệ thống chậm đi"
+      ],
+      "correct": 0,
+      "explanation": "Không có gì bị phá; mọi lời gọi đều hợp lệ. Vì thế công cụ quét lỗ hổng không phát hiện được, và nó phải được nghĩ tới lúc thiết kế tính năng."
+    },
+    {
+      "question": "Vì sao thông báo phân biệt hai trường hợp lại là vấn đề?",
+      "options": [
+        "Vì nó biến chức năng thành công cụ tra cứu ai có tài khoản",
+        "Vì nó làm lộ cấu trúc cơ sở dữ liệu của hệ thống",
+        "Vì nó khiến những người dùng gõ nhầm sẽ phải thử lại nhiều lần",
+        "Vì nó tăng số lượng yêu cầu mà máy chủ phải xử lý"
+      ],
+      "correct": 0,
+      "explanation": "Với một dịch vụ nhạy cảm, riêng việc biết ai có tài khoản đã là thông tin đáng giá. Đây là kênh rò rỉ không cần lỗ hổng nào cả."
+    },
+    {
+      "question": "Biện pháp cơ bản nhất chống lạm dụng là gì?",
+      "options": [
+        "Giới hạn tốc độ theo tài khoản và theo nguồn gọi",
+        "Yêu cầu xác thực trước khi dùng mọi tính năng",
+        "Ghi nhật ký chi tiết mọi lần tính năng được gọi",
+        "Giới hạn tổng số người dùng được đăng ký mỗi ngày"
+      ],
+      "correct": 0,
+      "explanation": "Nó chặn đúng đặc điểm chung của mọi kiểu lạm dụng: khối lượng. Nhật ký giúp phát hiện sau khi việc đã xảy ra, còn giới hạn thì ngăn ngay lúc đang xảy ra."
+    },
+    {
+      "question": "Vì sao tính năng gửi thư nhân danh sản phẩm cần được giới hạn chặt?",
+      "options": [
+        "Vì nó có thể bị dùng làm công cụ gửi thư rác miễn phí",
+        "Vì chi phí gửi thư điện tử thường rất cao với số lượng lớn",
+        "Vì nhà cung cấp dịch vụ thư sẽ khoá tài khoản nếu gửi nhiều",
+        "Vì người nhận có thể báo cáo nội dung thư đó là vi phạm"
+      ],
+      "correct": 0,
+      "explanation": "Hậu quả nặng nhất là uy tín gửi thư của tên miền bạn bị hạ, và sau đó thư hợp lệ của chính bạn cũng vào thư mục rác. Đó là thiệt hại khó khôi phục hơn nhiều so với chi phí."
+    },
+    {
+      "question": "Câu hỏi nào giúp phát hiện nguy cơ bị lạm dụng khi thiết kế tính năng?",
+      "options": [
+        "Nếu tính năng này bị gọi mười nghìn lần trong một giờ thì sao?",
+        "Tính năng này có cần người dùng phải đăng nhập vào trước không?",
+        "Tính năng này có ghi dữ liệu vào cơ sở dữ liệu không?",
+        "Tính năng này có gọi tới dịch vụ bên ngoài nào không?"
+      ],
+      "correct": 0,
+      "explanation": "Đặc điểm chung của lạm dụng là khối lượng, nên câu hỏi về khối lượng làm lộ ra phần lớn trường hợp. Nó cũng buộc bạn nghĩ tới ai trả tiền cho mười nghìn lần gọi ấy."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Không phải rủi ro nào cũng là một lỗ hổng. Một số chỉ là tính năng của bạn được dùng đúng cách nhưng ở khối lượng hoặc mục đích mà bạn không nghĩ tới."
+    },
+    {
+      "type": "heading",
+      "text": "Ba dạng thường gặp"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Dò thông tin: chức năng đăng ký hoặc quên mật khẩu tiết lộ ai đã có tài khoản.",
+        "Mượn danh tính của bạn: tính năng gửi thư hoặc mời bạn bè thành công cụ gửi thư rác.",
+        "Làm cạn tài nguyên: một tính năng gọi ra dịch vụ tính phí, và hoá đơn là của bạn."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao công cụ quét không thấy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mọi lời gọi đều hợp lệ: đúng định dạng, đúng quyền, đúng luồng nghiệp vụ. Không có ký tự lạ nào, không có truy vấn nào bị bẻ. Vì thế loại rủi ro này không được phát hiện bằng công cụ mà bằng một câu hỏi lúc thiết kế: nếu thứ này bị gọi mười nghìn lần thì chuyện gì xảy ra, và ai trả tiền?"
+    },
+    {
+      "type": "callout",
+      "label": "Thông báo đồng nhất",
+      "text": "Với những chức năng liên quan tới sự tồn tại của tài khoản, trả về cùng một thông báo cho mọi trường hợp. Người dùng thật vẫn nhận được thư và biết mình làm đúng; người đang dò thì không đọc được gì từ phản hồi."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bảo mật không chỉ là chống thứ bị phá, mà còn là nghĩ trước về thứ bị dùng quá mức.",
+        "Bài sau nói về thứ bạn cần có sẵn khi một trong những chuyện này thật sự xảy ra: dấu vết."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "id": 33,
+  "slug": "chuan-hoa-va-du-lieu-lap",
+  "title": "Chuẩn hoá: mỗi sự thật chỉ nên nằm ở một chỗ",
+  "subtitle": "Lặp dữ liệu không tốn chỗ là chính, mà tốn ở chỗ sửa một nơi và quên chín nơi kia.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🗂️",
+  "track": "professional",
+  "whyItMatters": "Khách đổi địa chỉ, bạn sửa ở bảng khách hàng, nhưng địa chỉ còn nằm trong từng đơn hàng cũ. Giờ hệ thống có hai câu trả lời cho cùng một câu hỏi, và không ai biết câu nào đúng. Chuẩn hoá là cách tránh tình trạng đó - và biết khi nào cố tình không chuẩn hoá cũng quan trọng ngang thế.",
+  "openingQuestion": "Bảng đơn hàng của bạn lưu cả tên và địa chỉ khách trong mỗi dòng. Vấn đề lớn nhất là gì?",
+  "openingOptions": [
+    "Khách đổi địa chỉ thì phải sửa ở nhiều chỗ, và dễ sót",
+    "Bảng đơn hàng chiếm nhiều dung lượng lưu trữ hơn mức cần thiết",
+    "Câu truy vấn lấy danh sách đơn hàng sẽ chạy chậm hơn hẳn",
+    "Cơ sở dữ liệu từ chối lưu cùng một địa chỉ ở nhiều dòng khác nhau"
+  ],
+  "correctOption": 0,
+  "explanation": "Dung lượng là mối lo nhỏ nhất; đĩa rẻ. Vấn đề thật là dữ liệu không nhất quán: khi một sự thật nằm ở mười chỗ, mọi lần cập nhật đều phải chạm đủ mười chỗ, và chỉ cần sót một là hệ thống có hai câu trả lời mâu thuẫn cho cùng một câu hỏi. Chuẩn hoá đưa mỗi sự thật về đúng một chỗ, rồi các bảng khác trỏ tới nó bằng định danh. Sửa một lần là mọi nơi thấy giá trị mới.",
+  "diagram": [
+    {
+      "label": "Địa chỉ khách lặp trong từng đơn hàng",
+      "arrow": true
+    },
+    {
+      "label": "Khách đổi địa chỉ - sửa được vài chỗ",
+      "arrow": true
+    },
+    {
+      "label": "Các dòng còn lại giữ địa chỉ cũ",
+      "arrow": true
+    },
+    {
+      "label": "Hai câu trả lời cho cùng một câu hỏi"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Ngoại lệ đáng giá: hoá đơn",
+    "description": "Địa chỉ giao hàng trên một hoá đơn đã xuất thì phải giữ nguyên như lúc giao, kể cả khi khách đã chuyển nhà. Đây không phải lặp dữ liệu mà là ảnh chụp một sự thật tại một thời điểm - và nó phải được lưu tách khỏi địa chỉ hiện tại của khách."
+  },
+  "keyTakeaways": [
+    "Chuẩn hoá đưa mỗi sự thật về một chỗ duy nhất, các bảng khác trỏ tới bằng định danh.",
+    "Cái giá của chuẩn hoá là phải nối nhiều bảng khi đọc dữ liệu.",
+    "Cố tình lặp dữ liệu là hợp lệ khi cần tốc độ đọc, nhưng phải có cơ chế đồng bộ.",
+    "Ảnh chụp lịch sử không phải lặp dữ liệu, vì nó ghi lại sự thật ở một thời điểm."
+  ],
+  "summary": {
+    "keyIdea": "Mỗi sự thật một chỗ; các nơi khác tham chiếu tới nó thay vì chép lại.",
+    "formula": "Chuẩn hoá để ghi đúng, lặp có kiểm soát để đọc nhanh.",
+    "commonMistake": "Chép giá trị sang bảng khác cho tiện, rồi hai bảng lệch nhau dần."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm một giá trị đang xuất hiện ở hai bảng khác nhau trong hệ thống của bạn, ví dụ tên khách hàng. So hai bên xem có bao nhiêu dòng lệch nhau. Con số đó là chi phí thật của việc lặp dữ liệu."
+  },
+  "practicePrompt": {
+    "question": "Bảng đơn hàng lưu sẵn tên sản phẩm để khỏi phải nối bảng. Sáu tháng sau, tên một sản phẩm được sửa. Điều gì nên xảy ra với các đơn cũ?",
+    "options": [
+      "Giữ nguyên tên cũ, vì đơn hàng ghi lại sự thật tại lúc đặt",
+      "Cập nhật hết sang tên mới, để toàn hệ thống hiển thị thống nhất",
+      "Xoá cột tên trong bảng đơn hàng và luôn nối sang bảng sản phẩm",
+      "Đánh dấu các đơn cũ là dữ liệu không còn hợp lệ để kiểm tra lại"
+    ],
+    "correct": 0,
+    "explanation": "Đây là chỗ lặp dữ liệu có chủ đích và đúng đắn: đơn hàng là bản ghi lịch sử, nên nó phải giữ tên sản phẩm ở đúng thời điểm giao dịch. Cập nhật theo tên mới là viết lại quá khứ, và làm hoá đơn cũ không khớp với thứ khách đã nhận."
+  },
+  "quiz": [
+    {
+      "question": "Chi phí lớn nhất của việc lặp dữ liệu là gì?",
+      "options": [
+        "Dữ liệu ở các nơi lệch nhau sau vài lần cập nhật thiếu",
+        "Dung lượng lưu trữ tăng lên nhanh khi số bản ghi tăng dần",
+        "Cơ sở dữ liệu phải khoá nhiều bảng hơn",
+        "Việc sao lưu mất nhiều thời gian hơn vì tổng dữ liệu lớn hơn"
+      ],
+      "correct": 0,
+      "explanation": "Đĩa rẻ; sự không nhất quán thì không. Khi một sự thật nằm ở nhiều chỗ, mỗi lần cập nhật là một cơ hội để sót, và sót một lần là hệ thống mang hai câu trả lời mâu thuẫn."
+    },
+    {
+      "question": "Cái giá phải trả khi chuẩn hoá dữ liệu là gì?",
+      "options": [
+        "Phải nối nhiều bảng mới lấy đủ thông tin khi đọc",
+        "Không còn đặt được ràng buộc khoá ngoại giữa các bảng đã tách",
+        "Dữ liệu dễ mất vì nằm rải nhiều bảng",
+        "Không lưu được lịch sử thay đổi nữa"
+      ],
+      "correct": 0,
+      "explanation": "Tách bảng làm việc ghi sạch hơn nhưng việc đọc phải nối lại. Với hệ thống đọc nhiều, chi phí nối đó là lý do người ta chấp nhận lặp dữ liệu có kiểm soát ở một số chỗ."
+    },
+    {
+      "question": "Khi nào lặp dữ liệu là lựa chọn đúng?",
+      "options": [
+        "Khi cần ghi lại sự thật tại một thời điểm, như giá trên hoá đơn",
+        "Khi bảng gốc có quá nhiều cột nên nối bảng trở nên bất tiện",
+        "Khi hai đội khác nhau cùng cần đọc dữ liệu của một bảng chung duy nhất",
+        "Khi dữ liệu ít thay đổi nên khả năng lệch nhau là rất thấp"
+      ],
+      "correct": 0,
+      "explanation": "Giá trên hoá đơn không phải bản sao của giá hiện tại mà là một sự thật khác: giá tại lúc bán. Hai giá trị có thể khác nhau mà cả hai vẫn đúng, nên chúng phải nằm ở hai chỗ."
+    },
+    {
+      "question": "Khi cố tình lặp dữ liệu để đọc nhanh, điều bắt buộc phải có là gì?",
+      "options": [
+        "Một cơ chế đồng bộ và một nguồn được coi là chuẩn duy nhất",
+        "Một bản sao dự phòng riêng cho từng bảng có dữ liệu lặp lại",
+        "Một chỉ mục trên mọi cột bị lặp để phát hiện chỗ lệch sớm",
+        "Một quy định cấm sửa dữ liệu ở bảng gốc sau khi nhân bản"
+      ],
+      "correct": 0,
+      "explanation": "Không có nguồn chuẩn thì khi hai bên lệch, không ai trả lời được bên nào đúng. Lặp có kiểm soát luôn đi kèm câu trả lời rõ ràng cho câu hỏi đó, cộng với cách làm cho bản sao bắt kịp."
+    },
+    {
+      "question": "Vì sao bảng dữ liệu cho báo cáo thường được cố ý làm phẳng?",
+      "options": [
+        "Vì báo cáo đọc rất nhiều lần và hầu như không ghi thêm",
+        "Vì bảng phẳng chiếm ít dung lượng hơn hẳn",
+        "Vì công cụ báo cáo không nối bảng được",
+        "Vì số liệu trong báo cáo không cần chính xác như số liệu vận hành"
+      ],
+      "correct": 0,
+      "explanation": "Chuẩn hoá tối ưu cho việc ghi, còn kho báo cáo thì ghi một lần và đọc hàng nghìn lần, nên đánh đổi ngược lại là hợp lý. Đó vẫn phải là dữ liệu chính xác, chỉ là được sắp xếp cho việc đọc."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Nguyên tắc gói gọn trong một câu: mỗi sự thật chỉ nên nằm ở đúng một chỗ. Mọi thứ còn lại của chuẩn hoá chỉ là cách thực hiện câu đó cho từng hình dạng dữ liệu."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao lặp dữ liệu tốn kém"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chi phí không nằm ở đĩa. Nó nằm ở chỗ mỗi bản sao là một chỗ có thể lệch. Khách đổi tên, bạn sửa ở bảng khách hàng và quên bảng phiếu bảo hành. Từ giờ hệ thống có hai cái tên, và mọi báo cáo tuỳ vào bảng nó đọc mà cho ra kết quả khác nhau - không có gì báo lỗi cả."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Chuẩn hoá",
+        "text": "Ghi sạch: sửa một chỗ là xong. Ràng buộc đặt được chặt chẽ. Đổi lại, đọc phải nối nhiều bảng và câu truy vấn dài hơn."
+      },
+      "right": {
+        "label": "Làm phẳng có chủ ý",
+        "text": "Đọc nhanh: mọi thứ nằm sẵn trong một dòng. Đổi lại phải có cơ chế đồng bộ, và phải chỉ rõ đâu là nguồn chuẩn."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Ba thứ trông giống lặp mà không phải"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Giá trên hoá đơn: đó là giá tại lúc bán, một sự thật khác với giá hiện tại của sản phẩm.",
+        "Địa chỉ giao hàng đã lưu: nó ghi lại nơi hàng thật sự được giao tới.",
+        "Tên sản phẩm trong đơn cũ: nó phản ánh thứ khách đã đặt, không phải tên hôm nay."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Câu hỏi phân biệt",
+      "text": "Hai giá trị này có bao giờ khác nhau mà cả hai vẫn đúng không? Nếu có thì đó là hai sự thật khác nhau và phải lưu riêng. Nếu không thì đó là lặp dữ liệu, và bạn đang chờ tới ngày chúng lệch."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Chuẩn hoá là kỷ luật về nơi đặt sự thật, không phải quy tắc cứng phải theo tới cùng.",
+        "Bài sau nói về thứ quyết định câu truy vấn của bạn chạy trong mười mili giây hay mười giây: chỉ mục."
+      ]
+    }
+  ]
+}

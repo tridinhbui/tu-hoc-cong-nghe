@@ -1,0 +1,164 @@
+{
+  "id": 130,
+  "slug": "gia-mao-yeu-cau",
+  "title": "Giả mạo yêu cầu: mượn phiên đăng nhập của nạn nhân",
+  "subtitle": "Trình duyệt tự gửi kèm cookie, nên một trang lạ cũng gọi được vào hệ thống của bạn.",
+  "duration": "8 phút",
+  "difficulty": "Khó",
+  "emoji": "🎭",
+  "track": "professional",
+  "whyItMatters": "Kiểu tấn công này không cần chèn mã vào trang của bạn và không cần biết mật khẩu. Nó chỉ lợi dụng một hành vi mặc định của trình duyệt, nên nó dễ bị bỏ sót khi rà soát.",
+  "openingQuestion": "Vì sao một trang web lạ có thể khiến trình duyệt gửi yêu cầu vào hệ thống của bạn kèm cookie đăng nhập?",
+  "openingOptions": [
+    "Vì trình duyệt tự gửi cookie của một tên miền theo mọi yêu cầu tới tên miền đó",
+    "Vì cookie không được mã hoá nên trang lạ đọc được nội dung của nó",
+    "Vì hệ thống của bạn cho phép mọi nguồn gốc gọi vào qua mạng",
+    "Vì người dùng đã đăng nhập nên mọi trang đều dùng chung phiên"
+  ],
+  "correctOption": 0,
+  "explanation": "Cookie được gắn theo tên miền chứ không theo trang đang mở, nên khi một trang bất kỳ khiến trình duyệt gửi yêu cầu tới tên miền của bạn, cookie phiên sẽ đi kèm một cách tự động. Trang lạ không đọc được nội dung cookie và cũng không đọc được phản hồi, nhưng nó không cần: nếu yêu cầu ấy thực hiện một thao tác thay đổi dữ liệu thì thiệt hại đã xảy ra trước khi có ai nhìn kết quả.",
+  "diagram": [
+    {
+      "label": "Nạn nhân đang đăng nhập ở hệ thống của bạn",
+      "arrow": true
+    },
+    {
+      "label": "Họ mở một trang lạ",
+      "arrow": true
+    },
+    {
+      "label": "Trang lạ khiến trình duyệt gọi tới tên miền của bạn",
+      "arrow": true
+    },
+    {
+      "label": "Cookie đi kèm tự động → thao tác được thực hiện"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Không cần đọc phản hồi",
+    "description": "Kẻ tấn công không thấy kết quả trả về, nhưng với những thao tác như đổi thư điện tử liên hệ hay chuyển tiền thì việc thực hiện đã đủ. Đó là lý do lỗ hổng này chỉ nguy hiểm với những yêu cầu làm thay đổi dữ liệu."
+  },
+  "keyTakeaways": [
+    "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
+    "Chỉ những thao tác thay đổi dữ liệu mới thật sự nguy hiểm với kiểu tấn công này.",
+    "Thuộc tính giới hạn cookie theo nguồn gốc là lớp phòng thủ mặc định hiện nay.",
+    "Mã một lần theo phiên vẫn cần cho những thao tác nhạy cảm nhất."
+  ],
+  "summary": {
+    "keyIdea": "Trình duyệt gửi cookie theo tên miền, nên nguồn gốc của yêu cầu phải được kiểm riêng.",
+    "formula": "Kiểm nguồn gốc, không chỉ kiểm phiên.",
+    "commonMistake": "Cho rằng có phiên hợp lệ nghĩa là yêu cầu đến từ giao diện của mình."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Kiểm cấu hình cookie phiên của bạn xem thuộc tính giới hạn theo nguồn gốc đã được đặt chưa. Đây là một dòng cấu hình và nó chặn phần lớn kịch bản của kiểu tấn công này."
+  },
+  "practicePrompt": {
+    "question": "Vì sao chỉ những yêu cầu làm thay đổi dữ liệu mới nguy hiểm với kiểu tấn công này?",
+    "options": [
+      "Vì kẻ tấn công không đọc được phản hồi, nên đọc dữ liệu không mang lại gì",
+      "Vì trình duyệt chỉ gửi cookie kèm những yêu cầu ghi dữ liệu",
+      "Vì yêu cầu đọc dữ liệu luôn được kiểm tra nguồn gốc chặt hơn",
+      "Vì thao tác đọc không để lại dấu vết trong nhật ký hệ thống"
+    ],
+    "correct": 0,
+    "explanation": "Chính sách cùng nguồn gốc của trình duyệt chặn trang lạ đọc nội dung phản hồi, nên một yêu cầu đọc dữ liệu chỉ khiến máy chủ trả về cho một nơi không đọc được. Với thao tác ghi thì hậu quả nằm ở chính việc thực hiện, và điều đó không cần đọc gì cả."
+  },
+  "quiz": [
+    {
+      "question": "Cookie được trình duyệt gắn theo tiêu chí nào?",
+      "options": [
+        "Theo tên miền đích của yêu cầu",
+        "Theo trang đang mở trong tab hiện tại",
+        "Theo phiên làm việc mà người dùng khởi tạo",
+        "Theo loại yêu cầu là đọc hay là ghi dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Đây chính là hành vi bị lợi dụng: yêu cầu tới tên miền của bạn thì cookie của tên miền đó đi kèm, bất kể yêu cầu ấy bắt nguồn từ trang nào."
+    },
+    {
+      "question": "Kẻ tấn công trong kiểu này có đọc được phản hồi không?",
+      "options": [
+        "Không, vì chính sách cùng nguồn gốc chặn việc đọc phản hồi",
+        "Có, vì yêu cầu đi kèm cookie hợp lệ nên phản hồi trả về đầy đủ",
+        "Có, nếu hệ thống không cấu hình chính sách chia sẻ tài nguyên",
+        "Không, trừ khi nạn nhân bấm vào một liên kết trong trang lạ"
+      ],
+      "correct": 0,
+      "explanation": "Máy chủ vẫn xử lý và trả lời, nhưng trình duyệt không cho trang lạ đọc nội dung ấy. Vì thế giá trị của cuộc tấn công nằm ở tác dụng phụ của yêu cầu chứ không ở dữ liệu trả về."
+    },
+    {
+      "question": "Lớp phòng thủ mặc định hiện nay cho kiểu tấn công này là gì?",
+      "options": [
+        "Thuộc tính giới hạn cookie chỉ gửi khi yêu cầu cùng nguồn gốc",
+        "Mã hoá nội dung cookie trước khi lưu vào trình duyệt",
+        "Kiểm tra địa chỉ mạng của người gửi yêu cầu",
+        "Yêu cầu người dùng xác thực lại ở mỗi thao tác"
+      ],
+      "correct": 0,
+      "explanation": "Nó cắt đúng hành vi bị lợi dụng: yêu cầu bắt nguồn từ tên miền khác thì cookie không đi kèm. Một dòng cấu hình chặn được phần lớn kịch bản."
+    },
+    {
+      "question": "Khi nào vẫn cần mã một lần theo phiên?",
+      "options": [
+        "Với những thao tác nhạy cảm nhất, như lớp bảo vệ thứ hai",
+        "Với mọi yêu cầu đọc dữ liệu từ cơ sở dữ liệu",
+        "Khi người dùng đăng nhập từ một thiết bị mới",
+        "Khi hệ thống chưa bật kết nối được mã hoá"
+      ],
+      "correct": 0,
+      "explanation": "Cấu hình cookie phụ thuộc vào trình duyệt tuân thủ và vào việc không có chỗ nào cấu hình sai. Với thao tác đổi thư liên hệ hay chuyển tiền, một lớp nữa là đáng."
+    },
+    {
+      "question": "Giả định sai nào tạo ra lỗ hổng này?",
+      "options": [
+        "Có phiên hợp lệ nghĩa là yêu cầu đến từ giao diện của chính mình",
+        "Người dùng chỉ mở một trang web tại một thời điểm",
+        "Cookie không thể bị đọc bởi các trang web khác",
+        "Trình duyệt vẫn luôn kiểm tra nguồn gốc trước khi gửi mọi yêu cầu"
+      ],
+      "correct": 0,
+      "explanation": "Phiên chứng minh người dùng là ai, không chứng minh yêu cầu bắt nguồn từ đâu. Tách hai câu hỏi ấy là điểm mấu chốt của cả bài."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai bài trước nói về việc chèn thứ gì đó vào hệ thống. Bài này không chèn gì cả - nó chỉ mượn một hành vi mặc định của trình duyệt và mượn chính phiên hợp lệ của nạn nhân."
+    },
+    {
+      "type": "heading",
+      "text": "Phiên hợp lệ, nguồn gốc thì không"
+    },
+    {
+      "type": "paragraph",
+      "text": "Máy chủ nhận được một yêu cầu có cookie đúng, phiên còn hạn, người dùng có quyền. Mọi thứ đều hợp lệ - trừ việc yêu cầu ấy bắt nguồn từ một trang mà nạn nhân vô tình mở. Đó là lý do phiên và nguồn gốc là hai câu hỏi phải kiểm riêng."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Yêu cầu đọc",
+        "text": "Máy chủ trả về dữ liệu nhưng trang lạ không đọc được phản hồi. Thiệt hại gần như bằng không."
+      },
+      "right": {
+        "label": "Yêu cầu ghi",
+        "text": "Tác dụng phụ đã xảy ra ngay khi máy chủ xử lý. Không cần đọc phản hồi, nên đây là nơi rủi ro tập trung."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đặt thuộc tính giới hạn cookie theo nguồn gốc - một dòng cấu hình, hiệu quả cao.",
+        "Giữ cho thao tác đọc thật sự chỉ đọc, vì đó là giả định mà cả tầng phòng thủ dựa vào.",
+        "Thêm mã một lần cho những thao tác nhạy cảm nhất, như lớp thứ hai."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Phiên trả lời câu hỏi ai đang gọi. Nguồn gốc trả lời câu hỏi lời gọi ấy xuất phát từ đâu - và cả hai đều cần.",
+        "Bài sau nói về một đường vào mà người dùng chủ động đưa nội dung của mình lên máy chủ bạn."
+      ]
+    }
+  ]
+}

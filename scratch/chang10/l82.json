@@ -1,0 +1,172 @@
+{
+  "id": 82,
+  "slug": "chi-so-phu-phiem",
+  "title": "Chỉ số phù phiếm: con số chỉ biết tăng",
+  "subtitle": "Tổng số người từng đăng ký không bao giờ giảm, kể cả khi sản phẩm đang chết.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🎈",
+  "track": "professional",
+  "whyItMatters": "Chỉ số phù phiếm dễ chịu vì nó luôn đi lên, và đó chính là lý do nó vô dụng: một con số không bao giờ giảm thì không phân biệt được tháng tốt với tháng tệ, nên không dẫn tới quyết định nào.",
+  "openingQuestion": "Vì sao tổng số người dùng đã đăng ký là một chỉ số yếu?",
+  "openingOptions": [
+    "Vì nó chỉ tăng, nên không phân biệt được sản phẩm đang tốt lên hay xấu đi",
+    "Vì việc đếm số người đăng ký thường không chính xác tuyệt đối",
+    "Vì nó không so sánh được với số liệu của các công ty khác",
+    "Vì nó thay đổi quá chậm để dùng cho quyết định hằng tuần"
+  ],
+  "correctOption": 0,
+  "explanation": "Con số cộng dồn chỉ có một hướng đi. Sản phẩm có thể mất người dùng nhanh hơn tốc độ thu hút người mới, nhưng tổng số đăng ký vẫn tăng đều đặn và biểu đồ vẫn đẹp. Chỉ số dùng được phải giảm được khi mọi việc tệ đi - số người dùng hoạt động trong tháng, tỷ lệ quay lại sau bảy ngày, tỷ lệ hoàn thành một việc quan trọng. Chúng khó nhìn hơn và đó là điểm mạnh, vì chúng nói cho bạn biết khi nào phải hành động.",
+  "diagram": [
+    {
+      "label": "Tổng đăng ký: chỉ đi lên",
+      "arrow": true
+    },
+    {
+      "label": "Người dùng hoạt động: có thể đi xuống",
+      "arrow": true
+    },
+    {
+      "label": "Chỉ số giảm được mới mang thông tin",
+      "arrow": true
+    },
+    {
+      "label": "Biểu đồ đẹp không đồng nghĩa với sản phẩm khoẻ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Biểu đồ trong tài liệu gọi vốn",
+    "description": "Tổng số lượt tải và tổng số tài khoản đã tạo xuất hiện rất nhiều trong tài liệu trình bày, chính vì chúng chỉ biết đi lên. Câu hỏi phân biệt luôn là: bao nhiêu trong số đó còn quay lại trong ba mươi ngày qua?"
+  },
+  "keyTakeaways": [
+    "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề.",
+    "Chỉ số dùng được phải giảm được khi sản phẩm tệ đi.",
+    "Tỷ lệ thường giàu thông tin hơn số tuyệt đối.",
+    "Chỉ số trung bình che mất phân bố, giống hệt vấn đề của độ trễ trung bình."
+  ],
+  "summary": {
+    "keyIdea": "Chỉ số nào không giảm được thì không nói cho bạn biết khi nào cần hành động.",
+    "formula": "Hỏi: con số này giảm khi nào?",
+    "commonMistake": "Trình bày số cộng dồn vì nó luôn đẹp, rồi tin vào chính biểu đồ ấy."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Nhìn bảng theo dõi sản phẩm và tìm những chỉ số chưa từng giảm trong sáu tháng qua. Với mỗi cái, hỏi xem có tình huống nào làm nó giảm không - nếu không có thì nó không mang tin tức gì."
+  },
+  "practicePrompt": {
+    "question": "Sản phẩm của bạn có tổng đăng ký tăng đều nhưng doanh thu đứng yên. Chỉ số nào giải thích được?",
+    "options": [
+      "Tỷ lệ người dùng mới còn hoạt động sau ba mươi ngày",
+      "Số lượt xem trang trung bình mỗi người dùng mỗi ngày",
+      "Tổng số tính năng đã phát hành trong sáu tháng qua",
+      "Số lượt tải ứng dụng phân theo từng kênh quảng cáo"
+    ],
+    "correct": 0,
+    "explanation": "Đăng ký tăng mà doanh thu đứng yên nghĩa là người mới vào rồi đi, và tỷ lệ giữ chân là chỉ số duy nhất trong danh sách nhìn thấy được điều đó. Ba chỉ số còn lại đều là số cộng dồn hoặc số hoạt động, và chúng vẫn đẹp trong đúng kịch bản này."
+  },
+  "quiz": [
+    {
+      "question": "Đặc điểm chung của chỉ số phù phiếm là gì?",
+      "options": [
+        "Chúng gần như chỉ có thể tăng chứ không giảm",
+        "Chúng được đo bằng những công cụ kém chính xác",
+        "Chúng chỉ có ý nghĩa với các sản phẩm quy mô lớn",
+        "Chúng thay đổi quá nhanh để theo dõi hằng ngày"
+      ],
+      "correct": 0,
+      "explanation": "Một con số chỉ đi lên thì mọi tháng đều trông như tháng tốt. Nó không phân biệt được tình huống nào cả, nên không dẫn tới quyết định nào."
+    },
+    {
+      "question": "Vì sao tỷ lệ thường tốt hơn số tuyệt đối?",
+      "options": [
+        "Vì tỷ lệ giảm được khi chất lượng đi xuống",
+        "Vì tỷ lệ dễ tính toán hơn số tuyệt đối",
+        "Vì tỷ lệ không bị ảnh hưởng bởi yếu tố mùa vụ",
+        "Vì tỷ lệ luôn nằm trong khoảng dễ so sánh"
+      ],
+      "correct": 0,
+      "explanation": "Số đơn hàng có thể tăng chỉ vì có nhiều khách hơn, trong khi tỷ lệ chuyển đổi đang giảm. Tỷ lệ tách được phần chất lượng ra khỏi phần quy mô."
+    },
+    {
+      "question": "Chỉ số nào cho biết sản phẩm có đang giữ được người dùng không?",
+      "options": [
+        "Tỷ lệ người dùng mới còn quay lại sau một khoảng thời gian",
+        "Tổng số tài khoản đã được tạo từ khi ra mắt tới nay",
+        "Số lượt tải ứng dụng trong tháng gần đây nhất",
+        "Tổng thời gian sử dụng cộng dồn của toàn bộ người dùng hiện có"
+      ],
+      "correct": 0,
+      "explanation": "Giữ chân là câu hỏi về việc người dùng có quay lại không, và chỉ chỉ số theo nhóm thời gian mới trả lời được. Ba chỉ số còn lại đều tăng ngay cả khi ai vào cũng bỏ đi sau một ngày."
+    },
+    {
+      "question": "Vì sao giá trị trung bình cũng có thể là chỉ số phù phiếm?",
+      "options": [
+        "Vì nó che mất phân bố, và vài người dùng cực đoan kéo lệch nó",
+        "Vì nó chỉ tính được khi có đủ số lượng người dùng",
+        "Vì nó thay đổi chậm hơn so với các chỉ số khác",
+        "Vì nó không so sánh được giữa các nhóm người dùng"
+      ],
+      "correct": 0,
+      "explanation": "Đây đúng vấn đề đã gặp với độ trễ trung bình ở chặng mạng. Doanh thu trung bình mỗi người dùng có thể tăng chỉ vì một khách hàng lớn, trong khi phần lớn người dùng đang tiêu ít đi."
+    },
+    {
+      "question": "Câu hỏi nào phát hiện nhanh một chỉ số phù phiếm?",
+      "options": [
+        "Chỉ số này giảm trong tình huống nào?",
+        "Chỉ số này được cập nhật bao lâu một lần?",
+        "Chỉ số này có trong công cụ phân tích sẵn có không?",
+        "Chỉ số này có dễ giải thích cho người ngoài không?"
+      ],
+      "correct": 0,
+      "explanation": "Không nghĩ ra được tình huống nào làm nó giảm thì nó không mang thông tin. Một chỉ số hữu ích phải có khả năng báo tin xấu, nếu không nó chỉ đang xác nhận điều bạn muốn nghe."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Có một loại chỉ số ai cũng thích đưa vào báo cáo, vì đường biểu đồ của nó luôn đi lên. Đó cũng chính là lý do nó không nói cho bạn biết điều gì."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao chỉ tăng là một khuyết điểm"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sản phẩm có thể đang mất người dùng nhanh hơn tốc độ thu hút người mới, và tổng số đăng ký vẫn tăng đều. Một con số không bao giờ giảm thì không phân biệt được tháng tốt với tháng tệ - và một phép đo không phân biệt được gì thì không dẫn tới hành động nào."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Đổi sang chỉ số giảm được",
+      "subtitle": "Cùng chủ đề, khác khả năng báo tin xấu",
+      "concepts": [
+        {
+          "vi": "Tổng đăng ký",
+          "en": "cumulative signups",
+          "def": "Chỉ tăng. Thay bằng số người dùng hoạt động trong tháng - con số này giảm khi người ta bỏ đi."
+        },
+        {
+          "vi": "Tổng lượt tải",
+          "en": "total downloads",
+          "def": "Chỉ tăng. Thay bằng tỷ lệ người tải còn dùng sau bảy ngày."
+        },
+        {
+          "vi": "Doanh thu cộng dồn",
+          "en": "cumulative revenue",
+          "def": "Chỉ tăng. Thay bằng doanh thu theo tháng, hoặc theo nhóm khách hàng bắt đầu cùng kỳ."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Trung bình cũng là một chỗ trốn",
+      "text": "Doanh thu trung bình mỗi người dùng có thể tăng vì một khách hàng lớn mới, trong khi tất cả những người còn lại đang tiêu ít đi. Đây đúng là vấn đề của độ trễ trung bình ở chặng mạng, đặt vào bối cảnh sản phẩm."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Chỉ số đáng theo dõi là chỉ số dám báo tin xấu. Con số chỉ biết đi lên là con số bạn đang tự khen mình.",
+        "Bài sau nói về cách nhìn người dùng theo nhóm bắt đầu cùng thời điểm, thứ làm lộ ra những gì con số tổng che đi."
+      ]
+    }
+  ]
+}

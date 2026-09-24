@@ -1,0 +1,169 @@
+{
+  "id": 62,
+  "slug": "phu-thuoc-va-ghim-phien-ban",
+  "title": "Phụ thuộc: mã bạn không viết nhưng vẫn phải chịu trách nhiệm",
+  "subtitle": "Một dự án nhỏ thường kéo theo hàng trăm thư viện, và bạn ký tên vào tất cả.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📚",
+  "track": "professional",
+  "whyItMatters": "Người dùng không phân biệt lỗi do bạn viết với lỗi do một thư viện bạn cài. Với họ, sản phẩm của bạn hỏng. Và phần lớn mã đang chạy trong sản phẩm của bạn lại không phải do bạn viết.",
+  "openingQuestion": "Vì sao nên ghim phiên bản chính xác của thư viện thay vì để tự lấy bản mới nhất?",
+  "openingOptions": [
+    "Để hôm nay và ngày mai dựng ra cùng một sản phẩm",
+    "Để giảm dung lượng phải tải về khi cài đặt phụ thuộc",
+    "Để tránh phải trả phí cho các phiên bản mới hơn",
+    "Để thư viện chạy nhanh hơn ở phiên bản đã ghim"
+  ],
+  "correctOption": 0,
+  "explanation": "Để tự lấy bản mới nhất nghĩa là bước dựng có một đầu vào bạn không kiểm soát, và nó thay đổi theo thời gian chứ không theo mã của bạn. Sáng nay dựng ra một sản phẩm, chiều nay tác giả thư viện phát hành bản mới, và bản dựng lúc năm giờ chiều đã là một thứ khác - dù không ai chạm vào kho mã. Ghim phiên bản đưa quyền quyết định về lại tay bạn: nâng cấp trở thành một thay đổi có chủ đích, xem xét được và quay lui được, thay vì một sự kiện xảy ra sau lưng.",
+  "diagram": [
+    {
+      "label": "Khai báo phụ thuộc không ghim",
+      "arrow": true
+    },
+    {
+      "label": "Mỗi lần dựng lấy bản mới nhất hiện có",
+      "arrow": true
+    },
+    {
+      "label": "Cùng một commit, hai sản phẩm khác nhau",
+      "arrow": true
+    },
+    {
+      "label": "Ghim phiên bản trả quyền quyết định về cho bạn"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Tệp khoá phiên bản",
+    "description": "Phần lớn trình quản lý gói sinh ra một tệp khoá ghi chính xác phiên bản của từng phụ thuộc, kể cả phụ thuộc của phụ thuộc. Tệp đó phải được lưu vào kho mã - không lưu thì mỗi máy giải ra một cây phụ thuộc khác nhau."
+  },
+  "keyTakeaways": [
+    "Phần lớn mã chạy trong sản phẩm của bạn là mã bạn không viết.",
+    "Ghim phiên bản biến nâng cấp thành quyết định có chủ đích thay vì sự kiện ngẫu nhiên.",
+    "Phụ thuộc gián tiếp thường nhiều hơn phụ thuộc trực tiếp hàng chục lần.",
+    "Thêm một thư viện là thêm một thứ phải theo dõi lỗ hổng và bảo trì lâu dài."
+  ],
+  "summary": {
+    "keyIdea": "Phụ thuộc là mã của bạn về mặt trách nhiệm, dù không phải của bạn về mặt tác giả.",
+    "formula": "Ghim phiên bản, lưu tệp khoá, nâng cấp có chủ đích.",
+    "commonMistake": "Thêm một thư viện lớn để dùng đúng một hàm nhỏ trong đó."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Đếm số phụ thuộc trực tiếp của dự án bạn, rồi đếm tổng số gói thật sự được cài. Khoảng cách giữa hai con số là phần bạn chịu trách nhiệm mà chưa từng chọn."
+  },
+  "practicePrompt": {
+    "question": "Bạn cần một hàm định dạng ngày tháng. Thư viện phù hợp kéo theo bốn mươi gói khác. Nên làm gì?",
+    "options": [
+      "Cân nhắc tự viết hàm đó nếu nhu cầu thật sự hẹp",
+      "Cài thư viện đó vì viết lại là phí phạm công sức",
+      "Cài rồi xoá bớt những gói phụ không dùng tới",
+      "Cài phiên bản cũ hơn vì nó kéo ít gói hơn hẳn"
+    ],
+    "correct": 0,
+    "explanation": "Bốn mươi gói cho một hàm định dạng là cái giá dài hạn: mỗi gói là một nguồn lỗ hổng, một thứ phải nâng cấp, một thứ có thể bị bỏ rơi. Nếu nhu cầu thật sự hẹp thì hai chục dòng tự viết rẻ hơn nhiều so với việc bảo trì bốn mươi gói suốt vòng đời dự án."
+  },
+  "quiz": [
+    {
+      "question": "Tệp khoá phiên bản dùng để làm gì?",
+      "options": [
+        "Ghi chính xác phiên bản của mọi gói đã được cài",
+        "Ngăn không cho ai thêm phụ thuộc mới vào trong dự án",
+        "Lưu lại mã nguồn của các thư viện đang được dùng",
+        "Kiểm tra giấy phép sử dụng của từng thư viện một"
+      ],
+      "correct": 0,
+      "explanation": "Nó chụp lại toàn bộ cây phụ thuộc đã giải ra, gồm cả phụ thuộc gián tiếp, để máy khác cài đúng những phiên bản ấy. Không lưu tệp này vào kho mã thì mỗi máy có thể ra một cây khác nhau."
+    },
+    {
+      "question": "Phụ thuộc gián tiếp là gì?",
+      "options": [
+        "Thư viện mà các thư viện bạn cài lại phụ thuộc vào",
+        "Thư viện chỉ được dùng trong suốt quá trình phát triển",
+        "Thư viện được cài sẵn cùng với hệ điều hành máy chủ",
+        "Thư viện bạn khai báo nhưng chưa dùng tới trong mã"
+      ],
+      "correct": 0,
+      "explanation": "Bạn chọn mười thư viện, chúng kéo theo hàng trăm gói khác mà bạn chưa từng đọc tên. Chúng vẫn chạy trong sản phẩm của bạn và vẫn mang rủi ro như những gói bạn tự chọn."
+    },
+    {
+      "question": "Rủi ro lớn nhất khi thêm một thư viện là gì?",
+      "options": [
+        "Bạn nhận thêm trách nhiệm bảo trì và rủi ro bảo mật lâu dài",
+        "Dung lượng sản phẩm dựng ra tăng đáng kể sau mỗi lần thêm",
+        "Thời gian cài đặt phụ thuộc kéo dài hơn ở mỗi lần dựng lại",
+        "Đội của bạn phải học thêm cách sử dụng một công cụ mới"
+      ],
+      "correct": 0,
+      "explanation": "Dung lượng và thời gian cài đều đo được và thường chấp nhận được. Thứ đắt là cam kết dài hạn: theo dõi lỗ hổng, nâng cấp khi có bản vá, và xử lý khi tác giả bỏ rơi dự án."
+    },
+    {
+      "question": "Vì sao nên nâng cấp phụ thuộc thường xuyên thay vì để dồn?",
+      "options": [
+        "Vì nhiều bước nhỏ dễ kiểm chứng hơn một bước nhảy lớn",
+        "Vì phiên bản mới luôn chạy nhanh hơn phiên bản cũ",
+        "Vì trình quản lý gói ngừng hỗ trợ các bản quá cũ",
+        "Vì bản cũ chiếm nhiều dung lượng lưu trữ hơn hẳn bản mới"
+      ],
+      "correct": 0,
+      "explanation": "Để dồn hai năm rồi nâng một lần là gộp hàng chục thay đổi phá vỡ tương thích vào cùng một lần sửa, và khi hỏng thì không biết cái nào gây ra. Nâng đều đặn giữ cho mỗi lần chỉ có một biến số."
+    },
+    {
+      "question": "Khi nào tự viết lại hợp lý hơn cài thư viện?",
+      "options": [
+        "Khi nhu cầu hẹp và thư viện kéo theo rất nhiều gói phụ",
+        "Khi đội có đủ thời gian rảnh để viết lại từ đầu",
+        "Khi thư viện đó được viết bằng ngôn ngữ khác dự án",
+        "Khi thư viện đó chưa đạt tới phiên bản ổn định đầu tiên của nó"
+      ],
+      "correct": 0,
+      "explanation": "Phép so là chi phí dài hạn: hai chục dòng tự viết và hiểu rõ, so với bốn mươi gói phải theo dõi mãi. Với nhu cầu rộng hoặc phần khó như mã hoá và múi giờ thì ngược lại - đừng tự viết."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Đếm số dòng mã trong kho của bạn rồi đếm số dòng trong thư mục phụ thuộc. Tỷ lệ thường là một trên vài trăm. Phần lớn thứ đang chạy trước mặt người dùng không phải do đội bạn viết."
+    },
+    {
+      "type": "heading",
+      "text": "Ghim phiên bản là giành lại quyền quyết định"
+    },
+    {
+      "type": "paragraph",
+      "text": "Khai báo kiểu lấy bản mới nhất biến thời gian thành một đầu vào của bước dựng. Cùng một commit, dựng hôm nay và dựng tuần sau ra hai sản phẩm khác nhau, và khi có lỗi thì bạn không biết nó tới từ thay đổi của mình hay của một tác giả nào đó ở nửa kia địa cầu."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Ghim phiên bản",
+        "text": "Nâng cấp là một thay đổi có chủ đích: nằm trong một lần rà soát mã, chạy qua kiểm thử, và quay lui được nếu hỏng."
+      },
+      "right": {
+        "label": "Lấy bản mới nhất",
+        "text": "Nâng cấp xảy ra sau lưng bạn, vào một thời điểm bạn không chọn, thường là lúc đang triển khai gấp."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Cái bạn không chọn cũng là cái bạn gánh",
+      "text": "Mười phụ thuộc trực tiếp thường kéo theo vài trăm gói gián tiếp. Bạn chưa đọc tên chúng, nhưng chúng chạy trong sản phẩm của bạn, mang lỗ hổng của chúng vào sản phẩm của bạn, và người dùng sẽ hỏi bạn khi chúng hỏng."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Lưu tệp khoá phiên bản vào kho mã, đừng để nó nằm ngoài.",
+        "Nâng cấp đều đặn từng bước nhỏ thay vì dồn lại rồi nhảy một lần.",
+        "Trước khi thêm thư viện, hỏi xem nhu cầu có hẹp tới mức tự viết còn rẻ hơn không."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bạn không viết phần lớn mã trong sản phẩm của mình, nhưng bạn chịu trách nhiệm về toàn bộ nó.",
+        "Bài sau nói về cách đọc con số phiên bản, và vì sao nó là một lời hứa chứ không phải một cái nhãn."
+      ]
+    }
+  ]
+}

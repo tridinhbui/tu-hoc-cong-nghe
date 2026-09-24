@@ -1,0 +1,158 @@
+{
+  "id": 136,
+  "slug": "phong-thu-nhieu-lop",
+  "title": "Nhiều lớp: giả định mỗi lớp đều sẽ hỏng",
+  "subtitle": "Lớp phòng thủ tốt nhất vẫn có ngày bị vượt qua, nên câu hỏi là phía sau nó có gì.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧅",
+  "track": "professional",
+  "whyItMatters": "Mọi biện pháp trong chặng này đều có thể bị cấu hình sai, bị quên ở một nhánh mã, hoặc bị vượt qua bằng cách chưa ai nghĩ tới. Thiết kế với giả định đó là khác biệt giữa một lỗ hổng và một sự cố toàn phần.",
+  "openingQuestion": "Bạn đã mã hoá dữ liệu đúng cách ở giao diện. Vì sao vẫn cần kiểm tra ở máy chủ?",
+  "openingOptions": [
+    "Vì có thể có nhánh hiển thị nào đó bị bỏ sót, và vì yêu cầu gọi thẳng không qua giao diện",
+    "Vì việc kiểm tra ở máy chủ chạy nhanh hơn ở phía giao diện",
+    "Vì các tiêu chuẩn bảo mật yêu cầu kiểm tra ở cả hai phía",
+    "Vì dữ liệu có thể bị thay đổi trong lúc truyền qua mạng"
+  ],
+  "correctOption": 0,
+  "explanation": "Phòng thủ nhiều lớp xuất phát từ một giả định khiêm tốn: mỗi lớp đều có xác suất hỏng khác không. Một nhánh hiển thị mới được thêm mà quên mã hoá, một điểm gọi cho đối tác không đi qua giao diện, một cấu hình bị đặt sai trong lần triển khai vội. Không lớp nào chặn được tất cả, nhưng hai lớp độc lập thì phải cùng hỏng mới thành sự cố - và xác suất ấy nhỏ hơn nhiều.",
+  "diagram": [
+    {
+      "label": "Một lớp: hỏng ở lớp đó là hỏng hẳn",
+      "arrow": true
+    },
+    {
+      "label": "Hai lớp độc lập: phải cùng hỏng",
+      "arrow": true
+    },
+    {
+      "label": "Xác suất giảm mạnh",
+      "arrow": true
+    },
+    {
+      "label": "Với điều kiện chúng thật sự độc lập"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hai lớp không độc lập",
+    "description": "Hai kiểm tra cùng dựa vào một cấu hình, hoặc cùng nằm trong một tệp mã. Chúng trông như hai lớp nhưng cùng hỏng bởi một sai sót duy nhất, nên chúng chỉ là một lớp được đếm hai lần."
+  },
+  "keyTakeaways": [
+    "Giả định mỗi lớp đều có xác suất hỏng, rồi thiết kế cho tình huống đó.",
+    "Hai lớp chỉ có giá trị khi chúng hỏng vì những nguyên nhân khác nhau.",
+    "Lớp gần dữ liệu nhất là lớp đáng tin cậy nhất vì mọi đường đều đi qua.",
+    "Nhiều lớp không thay được việc chữa đúng nguyên nhân ở lớp chính."
+  ],
+  "summary": {
+    "keyIdea": "Không lớp nào đủ, nên hãy xếp nhiều lớp hỏng vì những lý do khác nhau.",
+    "formula": "Hỏi: nếu lớp này hỏng thì còn gì phía sau?",
+    "commonMistake": "Đếm hai kiểm tra cùng phụ thuộc một cấu hình thành hai lớp."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một biện pháp bảo mật bạn đang tin cậy và hỏi: nếu nó bị tắt nhầm trong lần triển khai tới thì chuyện gì xảy ra? Câu trả lời cho biết bạn đang có mấy lớp thật."
+  },
+  "practicePrompt": {
+    "question": "Điều kiện để hai lớp phòng thủ thật sự cộng dồn giá trị là gì?",
+    "options": [
+      "Chúng hỏng vì những nguyên nhân khác nhau, không cùng một sai sót",
+      "Chúng được triển khai bởi hai đội khác nhau ở trong cùng một tổ chức",
+      "Chúng nằm ở hai tầng khác nhau của kiến trúc hệ thống",
+      "Chúng được kiểm thử riêng biệt trong bộ kiểm thử tự động"
+    ],
+    "correct": 0,
+    "explanation": "Hai kiểm tra cùng đọc một biến cấu hình sẽ cùng tắt khi biến ấy bị đặt sai, nên chúng chỉ là một lớp. Tính độc lập nằm ở nguyên nhân hỏng chứ không ở vị trí trong sơ đồ hay ở người triển khai."
+  },
+  "quiz": [
+    {
+      "question": "Giả định nền tảng của phòng thủ nhiều lớp là gì?",
+      "options": [
+        "Mỗi lớp đều có xác suất hỏng khác không",
+        "Kẻ tấn công luôn có kỹ năng cao hơn đội phòng thủ",
+        "Hệ thống sẽ bị tấn công vào một thời điểm nào đó",
+        "Người dùng sẽ luôn chọn cách làm kém an toàn nhất"
+      ],
+      "correct": 0,
+      "explanation": "Cấu hình sai, nhánh mã bị quên, cách vượt qua chưa ai nghĩ tới - lớp nào cũng có đường hỏng. Chấp nhận điều đó là điểm xuất phát của cả cách tiếp cận."
+    },
+    {
+      "question": "Khi nào hai lớp không thật sự là hai lớp?",
+      "options": [
+        "Khi chúng cùng hỏng bởi một sai sót duy nhất",
+        "Khi chúng được viết bởi cùng một lập trình viên",
+        "Khi chúng nằm trong cùng một dịch vụ",
+        "Khi chúng kiểm tra cùng một loại dữ liệu đầu vào"
+      ],
+      "correct": 0,
+      "explanation": "Tính độc lập được đo bằng nguyên nhân hỏng. Hai kiểm tra cùng phụ thuộc một cấu hình thì một lần đặt sai làm cả hai biến mất cùng lúc."
+    },
+    {
+      "question": "Vì sao lớp gần dữ liệu nhất đáng tin cậy nhất?",
+      "options": [
+        "Vì mọi đường truy cập đều phải đi qua nó",
+        "Vì nó chạy nhanh hơn các lớp phía trên",
+        "Vì nó được kiểm thử kỹ hơn các lớp khác",
+        "Vì nó ít bị thay đổi hơn trong quá trình phát triển"
+      ],
+      "correct": 0,
+      "explanation": "Tác vụ nền, điểm gọi cho đối tác, đoạn lệnh chạy tay đều bỏ qua các lớp phía trên. Đặt kiểm tra ở chỗ mọi đường cùng đi qua là cách duy nhất phủ hết."
+    },
+    {
+      "question": "Nhiều lớp có thay được việc chữa đúng nguyên nhân không?",
+      "options": [
+        "Không, chúng chỉ thu hẹp hậu quả khi lớp chính bị vượt qua",
+        "Có, nếu số lớp đủ nhiều thì lỗ hổng không khai thác được",
+        "Có, vì mỗi lớp đều chặn được một phần các cuộc tấn công",
+        "Không, nhưng chúng thay được việc kiểm thử bảo mật định kỳ"
+      ],
+      "correct": 0,
+      "explanation": "Lớp bổ sung là lưới an toàn, không phải cách sửa. Dựa vào chúng để bỏ qua việc chữa nguyên nhân là biến lưới an toàn thành lớp phòng thủ duy nhất."
+    },
+    {
+      "question": "Câu hỏi kiểm tra chất lượng của một tầng phòng thủ là gì?",
+      "options": [
+        "Nếu lớp này bị tắt nhầm thì còn gì phía sau nó",
+        "Lớp này đã chặn được bao nhiêu cuộc tấn công",
+        "Lớp này tiêu tốn bao nhiêu tài nguyên khi chạy",
+        "Lớp này có được ghi trong tài liệu kiến trúc không"
+      ],
+      "correct": 0,
+      "explanation": "Nó buộc bạn liệt kê những gì thật sự còn lại, và thường câu trả lời là không còn gì. Đó là lúc phát hiện mình đang tin vào một lớp duy nhất mà tưởng là nhiều."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mười lăm bài trước mỗi bài đóng một đường vào. Bài này về câu hỏi đứng sau tất cả: chuyện gì xảy ra khi một trong những cánh cửa ấy vẫn hở, và luôn có cánh hở."
+    },
+    {
+      "type": "heading",
+      "text": "Độc lập mới cộng dồn"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hai lớp chỉ có giá trị khi chúng hỏng vì hai lý do khác nhau. Kiểm tra ở giao diện và kiểm tra ở máy chủ là hai lớp thật, vì một nhánh giao diện bị quên không làm máy chủ ngừng kiểm. Nhưng hai kiểm tra cùng đọc một biến cấu hình thì chỉ là một lớp mang hai cái tên."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Với mỗi biện pháp, hỏi: nếu nó bị tắt nhầm thì còn gì phía sau.",
+        "Đặt lớp cuối cùng ở chỗ gần dữ liệu nhất, nơi mọi đường đều đi qua.",
+        "Đừng để lớp bổ sung trở thành lý do lơi lỏng ở lớp chính."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Lưới an toàn không phải sàn nhà",
+      "text": "Chính sách nguồn nội dung, giới hạn quyền, giới hạn tốc độ - tất cả đều là lớp làm nhẹ hậu quả. Chúng đáng có, và chúng không bao giờ là lý do để bỏ qua việc chữa đúng nguyên nhân ở lớp chính."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Thiết kế với giả định mỗi lớp sẽ hỏng là cách duy nhất để một lỗ hổng không trở thành một sự cố toàn phần.",
+        "Bài sau nói về nguồn phát hiện lỗ hổng mà nhiều tổ chức bỏ lỡ: người ngoài chủ động báo cho bạn."
+      ]
+    }
+  ]
+}

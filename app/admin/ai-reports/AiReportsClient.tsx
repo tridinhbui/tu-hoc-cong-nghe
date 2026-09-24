@@ -60,7 +60,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
 
   if (groups.length === 0) {
     return (
-      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-8 text-center text-stone-500 dark:text-stone-400 text-sm">
+      <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-8 text-center text-ink-muted text-sm">
         {ta.emptyState}
       </div>
     );
@@ -68,27 +68,27 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
 
   return (
     <div className="space-y-4">
-      <p className="text-xs text-stone-500 dark:text-stone-400">
-        <span className="font-bold text-stone-700 dark:text-stone-300">{reports.length}</span> {ta.summaryPart1}{" "}
-        <span className="font-bold text-stone-700 dark:text-stone-300">{groups.length}</span> {ta.summaryPart2}
+      <p className="text-xs text-ink-muted">
+        <span className="font-bold text-ink-body">{reports.length}</span> {ta.summaryPart1}{" "}
+        <span className="font-bold text-ink-body">{groups.length}</span> {ta.summaryPart2}
       </p>
 
       {groups.map((group) => (
         <div
           key={group.lesson_id}
-          className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl shadow-sm overflow-hidden"
+          className="bg-white dark:bg-stone-900 border border-line rounded-xl shadow-sm overflow-hidden"
         >
-          <div className="flex items-start justify-between gap-3 flex-wrap px-5 py-4 border-b border-stone-100 dark:border-stone-800 bg-stone-50/60 dark:bg-stone-950/40">
+          <div className="flex items-start justify-between gap-3 flex-wrap px-5 py-4 border-b border-line-soft bg-stone-50/60 dark:bg-stone-950/40">
             <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="font-bold text-stone-900 dark:text-stone-100 truncate" title={group.lesson_title}>
+                <h3 className="font-bold text-ink truncate" title={group.lesson_title}>
                   {group.lesson_title}
                 </h3>
-                <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-extrabold bg-rose-100 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300">
+                <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-extrabold bg-rose-100 dark:bg-rose-950/40 text-alert-strong">
                   {format(ta.reportsCount, { count: group.total })}
                 </span>
               </div>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">
+              <p className="text-xs text-ink-muted mt-1">
                 {group.lesson_slug ? (
                   <span className="font-mono">{group.lesson_slug}</span>
                 ) : (
@@ -102,7 +102,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
                 <Link
                   href={`/bai-hoc/${group.lesson_slug}`}
                   target="_blank"
-                  className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+                  className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-lg border border-line-mid text-ink-soft hover:bg-surface transition-colors"
                 >
                   {ta.viewLesson}
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -123,12 +123,12 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
             {group.quotes.map((q) => (
               <li key={q.ids[0]} className="px-5 py-3.5 flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
-                  <p className="italic bg-rose-50 dark:bg-rose-950/20 border-l-2 border-rose-400 text-stone-700 dark:text-stone-300 px-2.5 py-1.5 rounded-r-md text-xs">
+                  <p className="italic bg-rose-50 dark:bg-rose-950/20 border-l-2 border-rose-400 text-ink-body px-2.5 py-1.5 rounded-r-md text-xs">
                     &quot;{q.quote}&quot;
                   </p>
-                  <div className="flex items-center gap-2 flex-wrap mt-1.5 text-xs text-stone-500 dark:text-stone-400">
+                  <div className="flex items-center gap-2 flex-wrap mt-1.5 text-xs text-ink-muted">
                     {q.count > 1 && (
-                      <span className="inline-flex items-center gap-1 font-bold text-rose-600 dark:text-rose-400">
+                      <span className="inline-flex items-center gap-1 font-bold text-alert">
                         <Users className="w-3.5 h-3.5" />
                         {format(ta.reportersTogether, { count: q.count })}
                       </span>
@@ -140,7 +140,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
                 <button
                   onClick={() => handleIgnoreQuote(q.ids)}
                   disabled={isPending}
-                  className="shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition disabled:opacity-50"
+                  className="shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold text-ink-soft hover:bg-surface-raised rounded-lg transition disabled:opacity-50"
                   title={ta.ignoreTitle}
                 >
                   <EyeOff className="w-3.5 h-3.5" />

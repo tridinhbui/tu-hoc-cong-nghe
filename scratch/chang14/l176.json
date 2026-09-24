@@ -1,0 +1,181 @@
+{
+  "id": 176,
+  "slug": "chi-so-ve-su-co",
+  "title": "Đo chính việc ứng phó: con số nào nói lên điều gì",
+  "subtitle": "Đếm số sự cố là cách nhanh nhất để đội ngừng ghi nhận sự cố.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📊",
+  "track": "professional",
+  "whyItMatters": "Chỉ số về sự cố rất dễ chọn sai, và chọn sai thì nó không chỉ vô dụng mà còn tạo ra động cơ ngược - đội tối ưu cho con số thay vì cho hệ thống.",
+  "openingQuestion": "Chỉ số nào phản ánh tốt nhất việc đội đang ứng phó hiệu quả hơn?",
+  "openingOptions": [
+    "Thời gian từ lúc bắt đầu ảnh hưởng tới lúc thiệt hại được chặn lại",
+    "Tổng số sự cố được ghi nhận trong mỗi tháng",
+    "Tỷ lệ sự cố được xử lý xong trong vòng một giờ",
+    "Số lượng các việc cải tiến sinh ra từ những buổi hồi cứu sau mỗi sự cố"
+  ],
+  "correctOption": 0,
+  "explanation": "Con số này đo đúng thứ người dùng chịu đựng, và nó rút ngắn được bằng những cải thiện thật: phát hiện sớm hơn, tuyên bố sớm hơn, có sẵn đòn bẩy giảm thiểu. Đếm tổng số sự cố thì tạo động cơ ngược, vì cách dễ nhất để giảm nó là ghi nhận ít đi. Số việc cải tiến sinh ra thì đo hoạt động chứ không đo kết quả, và nó cũng bị thổi phồng dễ dàng.",
+  "diagram": [
+    {
+      "label": "Bắt đầu ảnh hưởng → phát hiện",
+      "arrow": true
+    },
+    {
+      "label": "Phát hiện → tuyên bố",
+      "arrow": true
+    },
+    {
+      "label": "Tuyên bố → chặn được thiệt hại",
+      "arrow": true
+    },
+    {
+      "label": "Tách ba đoạn thì biết phải cải thiện đoạn nào"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Số sự cố giảm, hệ thống không đổi",
+    "description": "Một tổ chức đặt mục tiêu giảm số sự cố mỗi quý và đạt được nó. Cách đạt là nâng ngưỡng phân loại: những gì trước đây gọi là sự cố nay được ghi thành trục trặc vận hành."
+  },
+  "keyTakeaways": [
+    "Tách thời gian ứng phó thành ba đoạn để biết cải thiện chỗ nào.",
+    "Đừng đặt mục tiêu giảm số lượng sự cố được ghi nhận.",
+    "Dùng trung vị và phân vị thay vì trung bình, vì vài sự cố dài kéo lệch tất cả.",
+    "Chỉ số về sự cố dùng để tìm chỗ cải thiện, không dùng để đánh giá người."
+  ],
+  "summary": {
+    "keyIdea": "Đo thời gian người dùng chịu ảnh hưởng, tách theo đoạn, và đừng đo số lượng.",
+    "formula": "Ảnh hưởng → phát hiện → tuyên bố → chặn.",
+    "commonMistake": "Đặt mục tiêu trên số lượng sự cố được ghi nhận."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy năm sự cố gần nhất và ghi ba mốc thời gian cho mỗi cái. Đoạn nào dài nhất trên cả năm sự cố chính là chỗ cải thiện đầu tiên."
+  },
+  "practicePrompt": {
+    "question": "Vì sao nên dùng trung vị thay vì trung bình cho thời gian xử lý?",
+    "options": [
+      "Vì một sự cố kéo dài bất thường sẽ làm lệch hẳn con số trung bình",
+      "Vì trung vị dễ tính hơn khi số lượng sự cố còn ít",
+      "Vì trung bình không phản ánh được xu hướng thay đổi theo thời gian",
+      "Vì các công cụ theo dõi thường chỉ hỗ trợ tính trung vị"
+    ],
+    "correct": 0,
+    "explanation": "Một sự cố kéo mười hai giờ giữa mười sự cố kéo hai mươi phút sẽ đẩy trung bình lên hơn một giờ, và con số ấy không mô tả đúng bất kỳ sự cố nào trong nhóm. Nhìn cả trung vị lẫn phân vị cao thì bạn thấy được cả trường hợp thường gặp lẫn trường hợp tệ nhất."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao đặt mục tiêu giảm số sự cố lại nguy hiểm?",
+      "options": [
+        "Vì cách dễ nhất để đạt mục tiêu là ghi nhận ít sự cố đi",
+        "Vì số sự cố phụ thuộc vào quy mô hệ thống nên khó so sánh",
+        "Vì nó khiến đội tập trung vào phòng ngừa thay vì ứng phó",
+        "Vì số sự cố dao động mạnh giữa các tháng nên khó đặt mục tiêu"
+      ],
+      "correct": 0,
+      "explanation": "Nâng ngưỡng phân loại là cách rẻ nhất và không ai phải nói dối: những gì trước gọi là sự cố nay ghi thành trục trặc vận hành. Con số đi xuống, hệ thống không đổi, và tổ chức mất luôn dữ liệu thật."
+    },
+    {
+      "question": "Vì sao nên tách thời gian ứng phó thành nhiều đoạn?",
+      "options": [
+        "Vì mỗi đoạn được rút ngắn bằng một loại cải thiện khác nhau",
+        "Vì tổng thời gian dao động quá mạnh giữa các sự cố",
+        "Vì các đoạn khác nhau do những người khác nhau cùng phụ trách",
+        "Vì một số đoạn không đo được một cách chính xác"
+      ],
+      "correct": 0,
+      "explanation": "Đoạn từ ảnh hưởng tới phát hiện rút ngắn bằng giám sát; đoạn từ phát hiện tới tuyên bố rút ngắn bằng quy ước; đoạn từ tuyên bố tới chặn rút ngắn bằng đòn bẩy giảm thiểu. Một con số tổng không cho biết nên đầu tư vào đâu."
+    },
+    {
+      "question": "Chỉ số về sự cố nên được dùng để làm gì?",
+      "options": [
+        "Tìm chỗ cần cải thiện trong quy trình và hệ thống",
+        "Đánh giá hiệu quả làm việc của từng thành viên trong đội",
+        "So sánh chất lượng vận hành giữa các đội trong công ty",
+        "Báo cáo mức độ tin cậy của dịch vụ cho khách hàng"
+      ],
+      "correct": 0,
+      "explanation": "Ngay khi chúng được dùng để đánh giá người, chúng ngừng phản ánh sự thật - cùng một cơ chế đã làm hỏng chỉ số đếm số sự cố. Đây là một trường hợp cụ thể của quy luật rằng một phép đo trở thành mục tiêu thì nó thôi làm một phép đo tốt."
+    },
+    {
+      "question": "Đoạn nào trong dòng thời gian thường bị bỏ quên nhất?",
+      "options": [
+        "Đoạn từ lúc bắt đầu ảnh hưởng tới lúc có người phát hiện ra",
+        "Đoạn từ lúc tuyên bố tới lúc phân vai xong cho cả đội",
+        "Đoạn từ lúc chặn được thiệt hại tới lúc xác nhận hệ thống đã ổn định",
+        "Đoạn từ lúc sự cố kết thúc tới lúc tổ chức buổi hồi cứu"
+      ],
+      "correct": 0,
+      "explanation": "Nó thường không được ghi vì không ai biết chính xác lúc nào ảnh hưởng bắt đầu. Nhưng nó lại là đoạn dài nhất trong nhiều sự cố, và nó chỉ rút ngắn được bằng cách đầu tư vào giám sát chứ không bằng cách chạy nhanh hơn."
+    },
+    {
+      "question": "Vì sao số việc cải tiến sinh ra từ hồi cứu là chỉ số kém?",
+      "options": [
+        "Vì nó đo hoạt động chứ không đo kết quả, và rất dễ bị thổi phồng",
+        "Vì các việc cải tiến thường không được hoàn thành đúng hạn",
+        "Vì số lượng việc phụ thuộc vào mức độ nghiêm trọng của sự cố",
+        "Vì nhiều việc cải tiến trùng lặp giữa các buổi hồi cứu khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Chia một việc thành năm việc nhỏ thì con số tăng gấp năm mà không có gì thay đổi. Chỉ số đáng theo dõi ở đây là tỷ lệ việc đã hoàn thành, và tốt hơn nữa là thời gian ứng phó có thật sự ngắn lại hay không."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Đội đã có quy trình ứng phó và có hồi cứu. Câu hỏi tiếp theo là làm sao biết những thứ ấy đang có tác dụng - và đây là chỗ rất dễ chọn nhầm con số."
+    },
+    {
+      "type": "heading",
+      "text": "Ba đoạn, ba loại cải thiện"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Tách ra thì mới biết đầu tư vào đâu",
+      "subtitle": "Một con số tổng không chỉ được chỗ nào cần sửa",
+      "concepts": [
+        {
+          "vi": "Ảnh hưởng tới phát hiện",
+          "en": "time to detect",
+          "def": "Rút ngắn bằng giám sát và cảnh báo. Thường là đoạn dài nhất, và cũng hay bị bỏ quên nhất vì khó xác định mốc bắt đầu."
+        },
+        {
+          "vi": "Phát hiện tới tuyên bố",
+          "en": "time to declare",
+          "def": "Rút ngắn bằng quy ước, không bằng công nghệ. Hạ ngưỡng tuyên bố là cải thiện rẻ nhất trong ba đoạn."
+        },
+        {
+          "vi": "Tuyên bố tới chặn được",
+          "en": "time to mitigate",
+          "def": "Rút ngắn bằng đòn bẩy giảm thiểu chuẩn bị sẵn và bằng việc phân vai rõ ràng."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Đừng đếm số sự cố",
+      "text": "Cách rẻ nhất để giảm con số ấy là nâng ngưỡng phân loại, và không ai phải nói dối để làm điều đó. Con số đi xuống, hệ thống không đổi, và tổ chức mất luôn dữ liệu thật về chính mình."
+    },
+    {
+      "type": "heading",
+      "text": "Trung vị và phân vị, không phải trung bình"
+    },
+    {
+      "type": "paragraph",
+      "text": "Một sự cố kéo mười hai giờ giữa mười sự cố kéo hai mươi phút sẽ đẩy trung bình lên hơn một giờ - một con số không mô tả đúng bất kỳ sự cố nào trong nhóm. Trung vị cho biết trường hợp thường gặp, phân vị cao cho biết trường hợp tệ nhất, và bạn cần cả hai."
+    },
+    {
+      "type": "callout",
+      "label": "Không dùng để đánh giá người",
+      "text": "Ngay khi một chỉ số được dùng để chấm điểm cá nhân, nó ngừng phản ánh sự thật - đúng cùng cơ chế đã làm hỏng phép đếm số sự cố. Giữ chúng ở vai trò công cụ tìm chỗ cải thiện là điều kiện để chúng còn dùng được."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Con số duy nhất đáng đặt mục tiêu là thời gian người dùng chịu ảnh hưởng. Mọi con số khác là để chẩn đoán.",
+        "Bài sau về nguồn lực đứng sau toàn bộ quy trình này, và cũng là nguồn lực dễ cạn nhất: con người trực."
+      ]
+    }
+  ]
+}

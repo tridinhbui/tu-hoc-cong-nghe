@@ -167,8 +167,8 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
           <div className="flex items-center gap-2 min-w-0">
             <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
               hasWarning
-                ? 'bg-red-100 dark:bg-red-950/50 text-red-700 dark:text-red-300 animate-pulse'
-                : 'bg-accent-soft/40 text-accent animate-spin-slow'
+                ? 'bg-red-100 dark:bg-red-950/50 text-danger animate-pulse'
+                : 'bg-emerald-50 dark:bg-emerald-950/40 text-accent animate-spin-slow'
           }`}>
             {hasWarning ? <AlertCircle className="w-4 h-4" /> : <RefreshCw className="w-4 h-4" />}
           </div>
@@ -183,7 +183,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             </h3>
             <p className={`text-[10px] mt-0.5 truncate ${
               hasWarning
-                ? 'text-red-700 dark:text-red-300'
+                ? 'text-danger'
                 : 'text-ink-muted'
             }`}>
               {hasWarning ? t.recallWidget.warningSubtitle : t.recallWidget.normalSubtitle}
@@ -207,7 +207,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             {dueRecalls.slice(0, 3).map((item) => (
               <div
                 key={item.lessonId}
-                className="flex items-center justify-between gap-3 p-3 bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 hover:border-stone-300 dark:hover:border-stone-600 transition-all"
+                className="flex items-center justify-between gap-3 p-3 bg-white dark:bg-stone-800 rounded-xl border border-line-mid hover:border-line-strong transition-all"
               >
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-extrabold text-ink truncate">
@@ -235,11 +235,11 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
       ) : (
         // Active Quiz modal/card view inside widget
         <div className="space-y-4">
-          <div className="flex items-center justify-between border-b border-line-soft/80 pb-2">
+          <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800/80 pb-2">
             <span className="text-xs font-extrabold text-ink truncate max-w-[70%]">
               {format(t.recallWidget.reviewingLesson, { title: activeItem.lessonTitle })}
             </span>
-            <span className="text-[10px] font-extrabold text-stone-600 dark:text-stone-300 bg-surface-raised px-2 py-0.5 rounded-md shrink-0">
+            <span className="text-[10px] font-extrabold text-ink-soft bg-surface-raised px-2 py-0.5 rounded-md shrink-0">
               {format(t.recallWidget.questionCounter, { index: currentQIndex + 1, total: questions.length })}
             </span>
           </div>
@@ -252,17 +252,17 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
 
               <div className="space-y-2">
                 {questions[currentQIndex].options.map((opt: string, i: number) => {
-                  let btnCls = "border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-100 hover:border-stone-300 dark:hover:border-stone-500";
+                  let btnCls = "border-line-mid bg-white dark:bg-stone-800 text-ink-heading hover:border-line-strong";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
-                      btnCls = "border-emerald-500 bg-accent-soft/50 text-emerald-900 dark:text-emerald-200 font-bold";
+                      btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-accent-ink-strong font-bold";
                     } else if (i === selectedOpt) {
-                      btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200";
+                      btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-alert-ink";
                     } else {
                       btnCls = "border-line-soft opacity-60";
                     }
                   } else if (selectedOpt === i) {
-                    btnCls = "border-stone-900 dark:border-stone-100 bg-surface-raised text-stone-950 dark:text-white border-2 font-bold";
+                    btnCls = "border-line-invert bg-surface-raised text-stone-950 dark:text-white border-2 font-bold";
                   }
 
                   return (
@@ -283,7 +283,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                 <button
                   onClick={checkAnswer}
                   disabled={selectedOpt === null}
-                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer"
+                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer"
                 >
                   {t.recallWidget.confirm}
                 </button>
@@ -291,8 +291,8 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                 <div className="space-y-3">
                   <div className={`p-3 rounded-xl text-[10px] leading-relaxed border ${
                     selectedOpt === questions[currentQIndex].correct
-                      ? "bg-emerald-50 border-emerald-200 dark:bg-emerald-950/50 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200"
-                      : "bg-rose-50 border-rose-200 dark:bg-rose-950/50 dark:border-rose-800 text-rose-900 dark:text-rose-200"
+                      ? "bg-emerald-50 border-emerald-200 dark:bg-emerald-950/50 dark:border-emerald-800 text-accent-ink-strong"
+                      : "bg-rose-50 border-rose-200 dark:bg-rose-950/50 dark:border-rose-800 text-alert-ink"
                   }`}>
                     <p className="font-bold mb-0.5">
                       {selectedOpt === questions[currentQIndex].correct ? t.recallWidget.correct : t.recallWidget.wrong}

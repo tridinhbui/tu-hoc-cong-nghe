@@ -103,14 +103,14 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
       <div className="flex justify-end mb-4">
         <button
           onClick={() => setShowUpload(true)}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
         >
           <Plus className="w-4 h-4" />
           {td.uploadNewButton}
         </button>
       </div>
 
-      <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+      <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl overflow-hidden">
         {documents.length === 0 ? (
           <EmptyState icon={FileText} title={td.emptyTitle} description={td.emptyDescription} />
         ) : (
@@ -123,34 +123,34 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                     alt=""
                     width={40}
                     height={40}
-                    className="w-10 h-10 rounded-lg object-cover flex-shrink-0 bg-stone-100 dark:bg-stone-800"
+                    className="w-10 h-10 rounded-lg object-cover flex-shrink-0 bg-surface-raised"
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-lg bg-stone-100 dark:bg-stone-800 flex items-center justify-center flex-shrink-0">
-                    <FileText className="w-5 h-5 text-stone-500 dark:text-stone-400" />
+                  <div className="w-10 h-10 rounded-lg bg-surface-raised flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-5 h-5 text-ink-muted" />
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{doc.title}</span>
-                    <span className="text-[10px] font-bold uppercase tracking-wide bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 px-2 py-0.5 rounded-full">
+                    <span className="font-bold text-sm text-ink">{doc.title}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wide bg-surface-raised text-ink-soft px-2 py-0.5 rounded-full">
                       {documentCategoryLabel(doc.category, t)}
                     </span>
                     {doc.status === "pending" && (
-                      <span className="text-[10px] font-bold uppercase tracking-wide bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wide bg-amber-100 dark:bg-amber-950/60 text-warn-strong px-2 py-0.5 rounded-full">
                         {td.pendingBadge}
                       </span>
                     )}
                     {doc.status === "rejected" && (
-                      <span className="text-[10px] font-bold uppercase tracking-wide bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wide bg-rose-100 dark:bg-rose-950/60 text-alert-strong px-2 py-0.5 rounded-full">
                         {td.rejectedBadge}
                       </span>
                     )}
                   </div>
                   {doc.description && (
-                    <p className="text-sm text-stone-600 dark:text-stone-400 mt-1">{doc.description}</p>
+                    <p className="text-sm text-ink-soft mt-1">{doc.description}</p>
                   )}
-                  <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1.5">
+                  <p className="text-[11px] text-ink-faint mt-1.5">
                     {doc.file_name} · {formatBytes(doc.file_size)} · {doc.download_count} {td.downloadsUnit} ·{" "}
                     {new Date(doc.created_at).toLocaleDateString(intlLocale(locale))}
                   </p>
@@ -161,14 +161,14 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                       <button
                         onClick={() => handleApprove(doc)}
                         title={td.approveTitle}
-                        className="p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-500 dark:text-stone-400 hover:text-emerald-600 dark:hover:text-emerald-400"
+                        className="p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-ink-muted hover:text-accent"
                       >
                         <Check className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleReject(doc)}
                         title={td.rejectTitle}
-                        className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-stone-500 dark:text-stone-400 hover:text-rose-600 dark:hover:text-rose-400"
+                        className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-ink-muted hover:text-alert"
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -179,7 +179,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                     target="_blank"
                     rel="noopener noreferrer"
                     title={td.viewDownloadTitle}
-                    className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
+                    className="p-2 rounded-lg hover:bg-surface-raised text-ink-muted"
                   >
                     <Download className="w-4 h-4" />
                   </a>
@@ -189,14 +189,14 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                       setToEdit(doc);
                     }}
                     title={td.editTitle}
-                    className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
+                    className="p-2 rounded-lg hover:bg-surface-raised text-ink-muted"
                   >
                     <Pencil className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => setToDelete(doc)}
                     title={td.deleteTitle}
-                    className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-stone-500 dark:text-stone-400 hover:text-rose-600 dark:hover:text-rose-400"
+                    className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-ink-muted hover:text-alert"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -214,29 +214,29 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
           className="space-y-4"
         >
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.titleLabel}</label>
+            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{td.titleLabel}</label>
             <input
               name="title"
               required
               placeholder={td.titlePlaceholder}
-              className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
+              className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.descriptionLabel}</label>
+            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{td.descriptionLabel}</label>
             <textarea
               name="description"
               rows={3}
               placeholder={td.descriptionPlaceholder}
-              className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 resize-none"
+              className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink resize-none"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.categoryFieldLabel}</label>
+            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{td.categoryFieldLabel}</label>
             <select
               name="category"
               defaultValue="khac"
-              className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
+              className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink"
             >
               {documentCategoriesOf(t).map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
@@ -273,14 +273,14 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
             <button
               type="button"
               onClick={() => setShowUpload(false)}
-              className="px-4 py-2 rounded-lg border border-stone-200 dark:border-stone-800 text-sm font-bold text-stone-700 dark:text-stone-300"
+              className="px-4 py-2 rounded-lg border border-line text-sm font-bold text-ink-body"
             >
               {td.cancelButton}
             </button>
             <button
               type="submit"
               disabled={uploading}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold disabled:opacity-50"
             >
               <Upload className="w-4 h-4" />
               {uploading ? td.uploadingLabel : td.uploadButton}
@@ -293,29 +293,29 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
         {toEdit && (
           <form ref={editFormRef} action={handleUpdate} className="space-y-4">
             <div className="space-y-2">
-              <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.titleLabel}</label>
+              <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{td.titleLabel}</label>
               <input
                 name="title"
                 required
                 defaultValue={toEdit.title}
-                className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
+                className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.descriptionLabel}</label>
+              <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{td.descriptionLabel}</label>
               <textarea
                 name="description"
                 rows={3}
                 defaultValue={toEdit.description ?? ""}
-                className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 resize-none"
+                className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink resize-none"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{td.categoryFieldLabel}</label>
+              <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{td.categoryFieldLabel}</label>
               <select
                 name="category"
                 defaultValue={toEdit.category}
-                className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
+                className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink"
               >
                 {documentCategoriesOf(t).map((c) => (
                   <option key={c.value} value={c.value}>{c.label}</option>
@@ -346,13 +346,13 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
 
             <div className="space-y-2">
               {toEdit.image_url && !removeImage ? (
-                <div className="flex items-center gap-3 p-3 rounded-lg border border-stone-200 dark:border-stone-700">
+                <div className="flex items-center gap-3 p-3 rounded-lg border border-line-mid">
                   <Image src={toEdit.image_url} alt="" width={48} height={48} className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
-                  <span className="flex-1 text-sm text-stone-600 dark:text-stone-400">{td.currentImageLabel}</span>
+                  <span className="flex-1 text-sm text-ink-soft">{td.currentImageLabel}</span>
                   <button
                     type="button"
                     onClick={() => setRemoveImage(true)}
-                    className="text-xs font-bold text-rose-600 dark:text-rose-400 hover:underline"
+                    className="text-xs font-bold text-alert hover:underline"
                   >
                     {td.removeImageButton}
                   </button>
@@ -369,7 +369,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                 <button
                   type="button"
                   onClick={() => setRemoveImage(false)}
-                  className="text-xs font-bold text-stone-600 dark:text-stone-400 hover:underline"
+                  className="text-xs font-bold text-ink-soft hover:underline"
                 >
                   {td.undoRemoveImageButton}
                 </button>
@@ -380,14 +380,14 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               <button
                 type="button"
                 onClick={() => setToEdit(null)}
-                className="px-4 py-2 rounded-lg border border-stone-200 dark:border-stone-800 text-sm font-bold text-stone-700 dark:text-stone-300"
+                className="px-4 py-2 rounded-lg border border-line text-sm font-bold text-ink-body"
               >
                 {td.cancelButton}
               </button>
               <button
                 type="submit"
                 disabled={savingEdit}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold disabled:opacity-50"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold disabled:opacity-50"
               >
                 {savingEdit ? td.savingLabel : td.saveChangesButton}
               </button>

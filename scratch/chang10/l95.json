@@ -1,0 +1,161 @@
+{
+  "id": 95,
+  "slug": "noi-khong-va-chi-phi-co-hoi",
+  "title": "Nói không: mỗi lời đồng ý là một lời từ chối với việc khác",
+  "subtitle": "Nhận thêm việc mà không bỏ bớt việc nào chỉ là hoãn lời từ chối, không phải tránh được nó.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🚪",
+  "track": "professional",
+  "whyItMatters": "Đội không bao giờ nói không sẽ nhận mọi thứ, làm mọi thứ chậm, và cuối cùng vẫn không làm được hết - chỉ khác là lời từ chối lúc đó đã được đưa ra trong im lặng, bởi thực tế, thay vì bởi một quyết định có cân nhắc.",
+  "openingQuestion": "Bạn nhận thêm một yêu cầu vào quý này mà không bỏ bớt việc gì. Điều gì thật sự xảy ra?",
+  "openingOptions": [
+    "Một việc khác sẽ bị lùi lại, chỉ là chưa ai nói ra là việc nào",
+    "Đội sẽ làm được nhiều hơn và hoàn thành tất cả nếu cùng cố gắng",
+    "Chất lượng của việc mới sẽ thấp hơn các việc đã có",
+    "Yêu cầu mới sẽ tự động được xếp vào cuối danh sách"
+  ],
+  "correctOption": 0,
+  "explanation": "Thời gian không co giãn, nên nhận thêm luôn có nghĩa là dời một thứ khác. Điều đó xảy ra dù bạn có nói ra hay không - khác biệt duy nhất là nó được quyết định bởi ai. Nếu bạn nói rõ nhận việc này thì việc kia lùi sang quý sau, người yêu cầu có cơ hội cân nhắc và có khi họ tự rút lại. Nếu bạn chỉ gật đầu, việc bị lùi sẽ do ngẫu nhiên chọn, và người đang chờ nó sẽ phát hiện vào phút chót.",
+  "diagram": [
+    {
+      "label": "Nhận thêm một yêu cầu",
+      "arrow": true
+    },
+    {
+      "label": "Thời gian không tăng thêm",
+      "arrow": true
+    },
+    {
+      "label": "Một việc khác bị lùi",
+      "arrow": true
+    },
+    {
+      "label": "Nói ra thì có người quyết; không nói thì ngẫu nhiên quyết"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đồng ý với mọi thứ",
+    "description": "Một đội nhận mọi yêu cầu để giữ quan hệ tốt với các bộ phận khác. Sáu tháng sau, mọi bộ phận đều đang chờ một thứ gì đó, không ai nhận được gì đúng hạn, và quan hệ tệ hơn hẳn so với việc từ chối thẳng từ đầu."
+  },
+  "keyTakeaways": [
+    "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó.",
+    "Nói không kèm lý do và kèm phương án thay thế thì dễ chấp nhận hơn nhiều.",
+    "Danh sách công khai biến việc từ chối thành một quyết định về thứ tự, không phải về con người.",
+    "Đồng ý với tất cả làm mọi bên cùng thất vọng, chỉ là muộn hơn."
+  ],
+  "summary": {
+    "keyIdea": "Mỗi lời đồng ý là một lời từ chối với việc khác - câu hỏi chỉ là ai đưa ra nó và khi nào.",
+    "formula": "Nhận thêm thì phải chỉ ra thứ bị lùi.",
+    "commonMistake": "Gật đầu để tránh cuộc trò chuyện khó, rồi có cuộc trò chuyện khó hơn nhiều vào phút chót."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lần tới khi nhận thêm một yêu cầu, thử trả lời: được, và việc này sẽ lùi sang tháng sau - bạn thấy ổn chứ? Câu ấy đổi cuộc trò chuyện từ có hay không sang cái nào trước."
+  },
+  "practicePrompt": {
+    "question": "Cách từ chối nào ít gây tổn hại quan hệ nhất?",
+    "options": [
+      "Chỉ ra việc đang chiếm chỗ và để người yêu cầu cùng quyết định thứ tự",
+      "Từ chối thẳng và giải thích rằng đội đang quá tải",
+      "Nhận vào danh sách nhưng nói rõ là chưa biết khi nào làm",
+      "Chuyển yêu cầu sang cho một đội khác trong công ty"
+    ],
+    "correct": 0,
+    "explanation": "Cách này biến câu trả lời từ chuyện có làm cho bạn hay không thành chuyện việc nào quan trọng hơn - một câu hỏi mà người yêu cầu tham gia được và thường tự trả lời. Nhận vào danh sách rồi để đó là cách tệ nhất, vì nó nuôi một kỳ vọng sẽ bị phụ."
+  },
+  "quiz": [
+    {
+      "question": "Nhận thêm việc mà không bỏ bớt gì dẫn tới điều gì?",
+      "options": [
+        "Một việc khác bị lùi, chỉ là chưa được nói ra",
+        "Đội hoàn thành được nhiều việc hơn trong cùng thời gian",
+        "Chất lượng của mọi việc giảm xuống một cách đồng đều",
+        "Danh sách việc tự động được sắp xếp lại theo mức khẩn"
+      ],
+      "correct": 0,
+      "explanation": "Thời gian là hằng số, nên đánh đổi vẫn diễn ra dù không ai tuyên bố. Điều duy nhất bạn chọn được là ai quyết định thứ bị lùi và khi nào điều đó được biết."
+    },
+    {
+      "question": "Vì sao nói không sớm lại tốt hơn cho quan hệ?",
+      "options": [
+        "Vì người yêu cầu còn thời gian tìm phương án khác",
+        "Vì họ sẽ đánh giá cao sự thẳng thắn của bạn",
+        "Vì yêu cầu bị từ chối sớm thường không quan trọng",
+        "Vì quy trình yêu cầu phản hồi trong một khoảng thời gian"
+      ],
+      "correct": 0,
+      "explanation": "Thứ làm hỏng quan hệ không phải lời từ chối mà là kỳ vọng bị nuôi rồi bị phụ. Từ chối sớm để lại cho người ta các lựa chọn; im lặng rồi trễ thì lấy mất tất cả."
+    },
+    {
+      "question": "Danh sách ưu tiên công khai giúp gì cho việc từ chối?",
+      "options": [
+        "Biến nó thành quyết định về thứ tự thay vì về con người",
+        "Giảm số lượng yêu cầu mà đội nhận được mỗi tháng",
+        "Cho phép người yêu cầu tự thêm việc vào danh sách",
+        "Chuyển trách nhiệm từ chối sang cho người quản lý cấp trên"
+      ],
+      "correct": 0,
+      "explanation": "Khi ai cũng thấy danh sách, câu trả lời không phải tôi từ chối bạn mà là việc của bạn đang xếp sau ba việc này - và người yêu cầu có thể tranh luận về thứ tự đó một cách công bằng."
+    },
+    {
+      "question": "Vì sao nhận vào danh sách nhưng không bao giờ làm lại là cách tệ nhất?",
+      "options": [
+        "Vì nó nuôi một kỳ vọng chắc chắn sẽ bị phụ",
+        "Vì danh sách sẽ trở nên quá dài để quản lý",
+        "Vì người yêu cầu sẽ liên tục hỏi về tiến độ",
+        "Vì công cụ quản lý việc tính phí theo số lượng mục"
+      ],
+      "correct": 0,
+      "explanation": "Người ta lập kế hoạch dựa trên lời hứa ngầm ấy và không đi tìm phương án khác. Một lời không rõ ràng luôn tốt hơn một lời có mơ hồ."
+    },
+    {
+      "question": "Câu nào biến cuộc trò chuyện từ chối thành cuộc trò chuyện về thứ tự?",
+      "options": [
+        "Được, và việc này sẽ lùi sang tháng sau - bạn thấy ổn chứ?",
+        "Đội đang rất bận nên chưa nhận thêm được việc mới",
+        "Tôi sẽ đưa vào danh sách và xem xét khi có thời gian",
+        "Việc này cần được người quản lý phê duyệt trước đã"
+      ],
+      "correct": 0,
+      "explanation": "Nó nói rõ cái giá và mời người yêu cầu cùng quyết định. Rất thường thì chính họ sẽ rút lại, vì họ không biết việc kia đang chờ."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói về cách sắp xếp danh sách. Bài này về phần khó hơn: điều gì xảy ra với những việc nằm dưới vạch, và cách nói ra điều đó."
+    },
+    {
+      "type": "heading",
+      "text": "Đánh đổi vẫn xảy ra dù bạn không nói"
+    },
+    {
+      "type": "paragraph",
+      "text": "Thời gian không co giãn. Nhận thêm một việc nghĩa là một việc khác bị lùi, và điều đó đúng bất kể bạn có tuyên bố hay không. Khác biệt duy nhất là ai quyết định việc nào bị lùi: bạn cùng người yêu cầu, ngay bây giờ, khi còn nhiều lựa chọn - hay là hoàn cảnh, vào phút chót, khi không còn lựa chọn nào."
+    },
+    {
+      "type": "callout",
+      "label": "Không phải từ chối con người",
+      "text": "Câu tôi không làm được nghe như một phán xét. Câu việc của bạn đang xếp sau ba việc này, bạn nghĩ nó nên lên trước cái nào là một cuộc thảo luận về thứ tự - và người yêu cầu tham gia được vào đó thay vì chỉ nhận kết quả."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Nói không sớm",
+        "text": "Khó chịu trong năm phút. Người yêu cầu còn thời gian tìm cách khác, và họ biết mình đang ở đâu."
+      },
+      "right": {
+        "label": "Gật đầu rồi trễ",
+        "text": "Dễ chịu trong năm phút. Sau đó là một kỳ vọng bị phụ, một kế hoạch của người khác đổ, và một quan hệ tệ hơn hẳn."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mỗi lời đồng ý là một lời từ chối với một việc khác. Nói ra nó là cách duy nhất để lời từ chối ấy được quyết định chứ không phải được phát hiện.",
+        "Bài sau nói về cách kiểm chứng một ý tưởng trước khi đổ công sức vào nó."
+      ]
+    }
+  ]
+}

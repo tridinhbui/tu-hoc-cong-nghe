@@ -28,9 +28,9 @@ const TRACK_STYLES = {
 } as const;
 
 const TRACK_LABEL_STYLES = {
-  personal: "text-emerald-700 dark:text-emerald-400",
+  personal: "text-accent-strong",
   professional: "text-indigo-700 dark:text-indigo-400",
-  other: "text-stone-600 dark:text-stone-400",
+  other: "text-ink-soft",
 } as const;
 
 export default function HighlightNotebook({ highlights, lessonsById }: HighlightNotebookProps) {
@@ -111,7 +111,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
                 <p className={`text-[11px] font-black uppercase tracking-wider ${TRACK_LABEL_STYLES[group.stage.track]}`}>
                   {format(t.highlightNotebook.groupCountLabel, { label: group.stage.label, count: group.items.length })}
                 </p>
-                <p className="text-xs font-bold text-stone-800 dark:text-stone-200 mt-0.5 leading-snug">
+                <p className="text-xs font-bold text-ink-heading mt-0.5 leading-snug">
                   {group.stage.name}
                 </p>
               </div>
@@ -131,12 +131,12 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
                       className="group rounded-xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 px-3 py-2.5"
                     >
                       <Link href={href} className="block">
-                        <p className="text-sm leading-relaxed text-stone-800 dark:text-stone-200">
+                        <p className="text-sm leading-relaxed text-ink-heading">
                           <mark className="bg-amber-200 dark:bg-amber-900 dark:text-amber-100 rounded-sm px-0.5">
                             {h.quote}
                           </mark>
                         </p>
-                        <p className="mt-1.5 text-[11px] font-bold text-emerald-700 dark:text-emerald-400 truncate">
+                        <p className="mt-1.5 text-[11px] font-bold text-accent-strong truncate">
                           {lesson?.title ?? h.lesson_slug}
                         </p>
                       </Link>

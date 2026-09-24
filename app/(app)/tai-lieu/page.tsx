@@ -114,28 +114,28 @@ function getPlaceholderImageUrl(category: string): string {
 
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-stone-200 dark:border-stone-800">
+      <div className="border-b border-line">
         <div className="max-w-4xl mx-auto px-6 py-8">
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-1 text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 mb-4 transition-colors"
+            className="inline-flex items-center gap-1 text-sm font-medium text-ink-soft hover:text-ink mb-4 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
             {t.finalOne.taiLieuPage.backHome}
           </Link>
           <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-2xl font-black text-stone-900 dark:text-stone-100">{t.finalOne.taiLieuPage.title}</h1>
+            <h1 className="text-2xl font-black text-ink">{t.finalOne.taiLieuPage.title}</h1>
             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black uppercase bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-lg shadow-rose-500/20 animate-bounce">
               {t.finalOne.taiLieuPage.freeBadge}
             </span>
           </div>
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-2">
+          <p className="text-sm text-ink-muted mt-2">
             {t.finalOne.taiLieuPage.subtitle}
           </p>
           <div className="mt-4 p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 flex items-start gap-3 shadow-[0_0_12px_rgba(244,63,94,0.05)]">
             <Gift className="w-5 h-5 text-rose-500 shrink-0 mt-0.5 animate-bounce" />
             <div>
-              <p className="text-xs font-black text-rose-700 dark:text-rose-400 uppercase tracking-wider">{t.finalOne.taiLieuPage.giftTitle}</p>
+              <p className="text-xs font-black text-alert-strong uppercase tracking-wider">{t.finalOne.taiLieuPage.giftTitle}</p>
               <p className="text-xs text-rose-600/90 dark:text-rose-300 mt-1 leading-relaxed">
                 {t.finalOne.taiLieuPage.giftBody}
               </p>

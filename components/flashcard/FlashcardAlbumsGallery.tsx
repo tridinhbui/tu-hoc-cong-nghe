@@ -84,7 +84,7 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
           <button
             onClick={() => handleImport(openAlbum)}
             disabled={importing}
-            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-surface-invert text-white dark:text-stone-900 font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer"
+            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-surface-invert text-ink-invert font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer"
           >
             <Download className="w-4 h-4" />
             {importing

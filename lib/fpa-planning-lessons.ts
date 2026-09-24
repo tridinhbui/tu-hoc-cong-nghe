@@ -184,185 +184,172 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
   },
   {
     id: 1512,
-    slug: "ke-hoach-nhan-su-va-chi-phi-luong",
-    title: "Kế hoạch, Bài 2: Kế hoạch nhân sự - khoản chi lớn nhất và khó đảo ngược nhất",
-    subtitle: "Vì sao chi phí lương phải lập theo từng vị trí và tháng tuyển, chứ không phải một con số cả năm",
-    duration: "11 phút",
+    slug: "ke-hoach-nhan-su-cho-doi-ky-thuat",
+    title: "Kế hoạch, Bài 2: Kế hoạch nhân sự - khoản cam kết lớn nhất và khó đảo ngược nhất",
+    subtitle: "Vì sao phải lập theo từng vị trí và tháng vào làm, chứ không phải một con số cho cả năm",
+    duration: "8 phút",
     difficulty: "Trung bình",
     emoji: "👥",
     track: "professional",
     whyItMatters:
-      "Với phần lớn doanh nghiệp dịch vụ, chi phí nhân sự chiếm quá nửa tổng chi phí. Nó cũng là khoản khó đảo ngược nhất: cắt marketing có hiệu lực trong tháng, còn giảm nhân sự thì tốn chi phí, thời gian và uy tín. Sai ở đây đắt hơn hẳn sai ở các dòng khác.",
-    openingQuestion:
-      "Vì sao chi phí lương cả năm không nên lập bằng cách lấy số nhân sự cuối năm nhân lương bình quân?",
+      "Người là khoản lớn nhất trong gần như mọi kế hoạch kỹ thuật và cũng là khoản chậm nhất để điều chỉnh theo cả hai chiều. Lập nó bằng một con số tổng cho cả năm là cách chắc chắn để kế hoạch sai ngay từ quý đầu.",
+    openingQuestion: "Vì sao kế hoạch nhân sự phải lập theo từng vị trí và tháng vào làm?",
     openingOptions: [
-      "Vì lương bình quân không phản ánh đúng cơ cấu thu nhập của từng vị trí",
-      "Vì người tuyển giữa năm chỉ phát sinh chi phí phần còn lại",
-      "Vì chuẩn mực kế toán yêu cầu ghi nhận chi phí lương theo từng tháng",
-      "Vì lương luôn tăng vào giữa năm",
+      "Vì một người vào tháng Ba và một người vào tháng Mười đóng góp rất khác nhau",
+      "Vì cần biết chính xác chi phí lương để lập ngân sách cho từng quý trong năm",
+      "Vì mỗi vị trí có mức lương khác nhau nên tổng chi phí phụ thuộc vào cơ cấu",
+      "Vì việc tuyển dụng cần được phân bổ đều để bộ phận nhân sự xử lý kịp"
     ],
-    correctOption: 1,
+    correctOption: 0,
     explanation:
-      "Một vị trí tuyển vào tháng 10 chỉ tạo ra chi phí ba tháng trong năm đó, nhưng tạo ra chi phí mười hai tháng trong năm sau. Lấy đầu số cuối kỳ nhân lương bình quân sẽ vừa thổi phồng chi phí năm nay vừa che mất cú nhảy chi phí năm sau - và cú nhảy đó là thứ khiến ngân sách năm kế tiếp thủng ngay từ tháng đầu, dù không tuyển thêm ai.",
+      "Một con số tổng cho cả năm ngầm giả định rằng năng lực có ngay từ đầu năm, và điều đó không bao giờ đúng. Từ lúc duyệt tới lúc có người ngồi vào chỗ thường mất vài tháng, và từ lúc đó tới lúc người ấy làm việc độc lập thì mất vài tháng nữa. Một vị trí được duyệt vào tháng Ba có thể đóng góp được nửa năm; cùng vị trí ấy duyệt vào tháng Mười thì đóng góp gần bằng không cho năm đó, dù chi phí vẫn phát sinh. Lập theo từng vị trí kèm tháng dự kiến vào làm là cách duy nhất để con số năng lực trong kế hoạch phản ánh thứ thật sự có.",
     diagram: [
-      { label: "Liệt kê từng vị trí, không phải tổng số", arrow: true },
-      { label: "Gắn tháng dự kiến vào làm", arrow: true },
-      { label: "Cộng chi phí đi kèm ngoài lương", arrow: true },
-      { label: "Tính hiệu ứng tràn sang năm sau" },
+      { label: "Duyệt vị trí", arrow: true },
+      { label: "Tuyển: vài tháng, không do bạn kiểm soát", arrow: true },
+      { label: "Vào làm rồi cần thêm vài tháng để tự chủ", arrow: true },
+      { label: "Năng lực thật đến muộn hơn nhiều so với ngày duyệt" }
     ],
     realWorldExample: {
-      company: "Công ty công nghệ và cú nhảy chi phí năm sau",
+      company: "Sáu vị trí, một con số",
       description:
-        "Một công ty tuyển 20 người trong năm, phần lớn vào quý bốn. Chi phí lương thực tế năm đó chỉ tăng khoảng 15% so với năm trước, ban lãnh đạo thấy hoàn toàn trong tầm kiểm soát. Sang năm kế tiếp, chi phí lương tăng thêm 30% mà không tuyển thêm một người nào - chỉ vì 20 người kia bắt đầu tính đủ mười hai tháng. Đây là hiệu ứng tràn, và nó không xuất hiện ở bất kỳ dòng nào trong báo cáo năm cũ.",
+        "Một kế hoạch năm ghi tăng sáu người và chia đều năng lực cho bốn quý. Thực tế: hai vị trí tuyển được vào quý hai, ba vào quý ba, một không tuyển được. Cộng thêm thời gian để mỗi người tự làm được việc, năng lực thật của năm đó bằng khoảng một phần ba con số trong kế hoạch - và mọi cam kết về tiến độ đều dựa trên con số kia."
     },
     quiz: [
       {
-        question: "Hiệu ứng tràn trong kế hoạch nhân sự là gì?",
+        question: "Người mới cần bao lâu để đóng góp ở mức của người đang có?",
         options: [
-          "Chi phí của người tuyển giữa năm nay tính đủ mười hai tháng vào năm kế tiếp",
-          "Chi phí phát sinh khi một nhân sự nghỉ việc và phải tuyển người thay thế vị trí đó",
-          "Phần chi phí lương vượt quá ngân sách đã được duyệt từ đầu năm tài chính",
-          "Khoản lương phải trả thêm khi nhân sự làm việc ngoài giờ hành chính quy định",
+          "Vài tháng, và trong khoảng đó họ còn lấy thời gian của người khác",
+          "Khoảng một tháng nếu quy trình tiếp nhận được chuẩn bị tốt",
+          "Phụ thuộc hoàn toàn vào kinh nghiệm trước đó của người được tuyển",
+          "Khoảng hai tuần với những vị trí không đòi hỏi hiểu biết sâu về hệ thống"
         ],
         correct: 0,
         explanation:
-          "Đây là lý do ngân sách năm sau có thể thủng ngay cả khi đóng băng tuyển dụng hoàn toàn. Nó phải được tính ngay từ lúc lập kế hoạch năm nay, không phải phát hiện vào tháng 1 năm sau.",
+          "Vế thứ hai là vế hay bị bỏ nhất: trong vài tháng đầu, một người mới không chỉ đóng góp ít mà còn tiêu thời gian của người kèm. Nghĩa là năng lực của đội giảm trước khi tăng, đúng hình dạng đường cong chữ J - và kế hoạch nào cũng vẽ nó thành một đường thẳng đi lên."
       },
       {
-        question: "Chi phí thật của một nhân sự gồm những gì ngoài lương gộp?",
+        question: "Vì sao kế hoạch nhân sự khó đảo ngược hơn các khoản khác?",
         options: [
-          "Bảo hiểm bắt buộc phần doanh nghiệp đóng, thưởng, thiết bị và chi phí tuyển dụng ban đầu",
-          "Chỉ có bảo hiểm bắt buộc, vì các khoản còn lại được hạch toán vào chi phí quản lý chung",
-          "Không có gì thêm nếu hợp đồng lao động đã ghi rõ tổng thu nhập của người lao động",
-          "Chỉ có thưởng cuối năm, vì đó là khoản duy nhất không nằm trong lương hằng tháng",
+          "Vì cắt giảm gây tổn hại kéo dài, còn dừng một dự án thì không",
+          "Vì cam kết với người lao động ràng buộc pháp lý",
+          "Vì chi phí tuyển và đào tạo không thu lại được",
+          "Vì tuyển lại sau này tốn hơn giữ người"
         ],
         correct: 0,
         explanation:
-          "Tổng chi phí thường cao hơn lương gộp khoảng 20 đến 30 phần trăm tùy ngành và địa bàn. Lập kế hoạch chỉ trên lương gộp là bỏ sót một phần đáng kể ngay từ đầu.",
+          "Ba lý do kia đều là chi phí đo được. Điều làm nó khác hẳn mọi khoản khác là tổn hại lan ra ngoài phạm vi quyết định: những người ở lại đọc tín hiệu đó, và một số người giỏi nhất bắt đầu tìm chỗ khác - phần thiệt hại ấy không có trong bảng nào và thường lớn hơn khoản tiết kiệm được."
       },
       {
-        question: "Vì sao nên lập kế hoạch nhân sự theo từng vị trí thay vì theo tổng đầu người?",
+        question: "Kế hoạch nên xử lý thế nào với vị trí không tuyển được?",
         options: [
-          "Vì tổng đầu người che mất chênh lệch lương giữa các vị trí và thời điểm bắt đầu của từng người",
-          "Vì cơ quan quản lý lao động có yêu cầu doanh nghiệp phải đăng ký kế hoạch tuyển dụng chi tiết",
-          "Vì phần mềm quản lý nhân sự hiện nay không hỗ trợ nhập liệu theo con số tổng hợp",
-          "Vì cách này giúp giảm tổng chi phí nhân sự so với lập kế hoạch theo đầu người",
+          "Coi là kịch bản bình thường và có phương án cho phần việc đó",
+          "Kéo dài thời gian tuyển dụng và hạ bớt yêu cầu cho tới khi tuyển được",
+          "Chuyển ngân sách của vị trí đó sang các hạng mục khác trong kế hoạch",
+          "Ghi nhận là rủi ro và báo cáo lại khi tình hình chưa được cải thiện"
         ],
         correct: 0,
         explanation:
-          "Mười kỹ sư và mười nhân viên hỗ trợ đều là mười đầu người, nhưng chênh lệch chi phí có thể gấp ba lần. Cùng một tổng đầu người còn cho ra chi phí rất khác nhau tùy tháng vào làm.",
+          "Với các vị trí khó, tỷ lệ tuyển được trong một quý thường thấp hơn nhiều so với giả định trong kế hoạch, nên đây là kịch bản thường gặp chứ không phải rủi ro hiếm. Kế hoạch không có phương án cho nó sẽ trượt vào đúng phần việc mà vị trí ấy được duyệt để làm."
       },
       {
-        question: "Khi ngân sách bị cắt, vì sao cắt kế hoạch tuyển dụng lại được ưu tiên hơn giảm nhân sự hiện có?",
+        question: "Thêm người vào một dự án đang chậm có tác dụng gì?",
         options: [
-          "Vì chi phí và tác động lên tổ chức của việc không tuyển thấp hơn hẳn so với cắt giảm",
-          "Vì việc chưa tuyển thì chưa phát sinh chi phí nào nên không ảnh hưởng tới báo cáo",
-          "Vì quy định pháp luật hiện hành không cho phép doanh nghiệp cắt giảm nhân sự",
-          "Vì giảm nhân sự hiện có không tiết kiệm được chi phí trong năm tài chính đang chạy",
+          "Thường làm nó chậm thêm trong ngắn hạn vì người cũ phải dừng lại để kèm",
+          "Giúp rút ngắn tiến độ nếu chia nhỏ được việc",
+          "Không đổi đáng kể vì hai phần bù nhau",
+          "Phụ thuộc giai đoạn và độ phức tạp còn lại"
         ],
         correct: 0,
         explanation:
-          "Không tuyển là quyết định có thể đảo ngược khi tình hình khá lên; cắt giảm thì không. Đó là lý do phần tuyển mới luôn nên được tách riêng và đánh dấu rõ trong ngân sách.",
+          "Thời gian kèm được lấy từ chính những người đang làm phần khó nhất, nên năng lực hiệu dụng giảm ngay lập tức và chỉ hồi lại sau vài tháng. Với một dự án đang chậm thì vài tháng ấy thường dài hơn phần thời gian còn lại của chính dự án."
       },
-    
-    {
-      "question": "Vì sao lập kế hoạch nhân sự theo từng vị trí lại tốt hơn theo tổng đầu người?",
-      "options": [
-        "Vì thời điểm tuyển và mức lương từng vị trí quyết định chi phí thật",
-        "Vì bộ phận nhân sự yêu cầu danh sách vị trí cụ thể để đăng tuyển",
-        "Vì tổng đầu người không phản ánh được số nhân sự nghỉ việc trong năm",
-        "Vì mỗi vị trí đóng bảo hiểm khác nhau"
-      ],
-      "correct": 0,
-      "explanation": "Mười vị trí tuyển tháng Một khác hẳn mười vị trí tuyển tháng Mười về chi phí năm nay, và khác nữa về cú nhảy chi phí năm sau. Con số tổng làm phẳng cả hai điều đó, nên kế hoạch trông đúng cho tới khi ngân sách năm sau vỡ."
-    }
-    ],
-    keyTakeaways: [
-      "Lập theo từng vị trí kèm tháng vào làm, không phải theo tổng đầu người",
-      "Hiệu ứng tràn: người tuyển quý bốn tạo cú nhảy chi phí năm sau dù không tuyển thêm ai",
-      "Chi phí thật cao hơn lương gộp khoảng 20-30%: bảo hiểm, thưởng, thiết bị, tuyển dụng",
-      "Tách riêng phần tuyển mới trong ngân sách - đó là phần đảo ngược được khi phải cắt",
+      {
+        question: "Con số nào nên xuất hiện trong kế hoạch bên cạnh số người?",
+        options: [
+          "Tháng dự kiến vào làm và tháng dự kiến làm việc độc lập được",
+          "Mức lương dự kiến của từng vị trí để tính tổng chi phí cho cả năm",
+          "Nguồn tuyển dụng dự kiến và thời gian trung bình để tuyển từng vị trí",
+          "Tỷ lệ nghỉ việc dự kiến để tính số vị trí cần tuyển thay thế trong kỳ"
+        ],
+        correct: 0,
+        explanation:
+          "Hai con số này chuyển kế hoạch từ đếm đầu người sang đếm năng lực theo thời gian, và chúng là hai con số duy nhất mà mọi cam kết về tiến độ thật sự phụ thuộc vào. Ba phương án kia đều cần cho ngân sách và không cho biết bao giờ có người làm được việc."
+      }
     ],
     practicePrompt: {
       question:
-        "Công ty đóng băng tuyển dụng hoàn toàn từ 1/1 năm sau. Chi phí lương năm sau so với năm nay sẽ thế nào?",
+        "Kế hoạch năm của bạn ghi tăng bốn người. Cần bổ sung gì để nó dùng được cho cam kết tiến độ?",
       options: [
-        "Giữ nguyên, vì số nhân sự không đổi",
-        "Vẫn tăng, do hiệu ứng tràn cộng tăng lương",
-        "Giảm, vì không còn chi phí tuyển dụng",
-        "Không dự đoán được nếu chưa biết tỷ lệ nghỉ việc",
+        "Tháng dự kiến vào làm của từng vị trí, và tháng họ tự chủ được",
+        "Mức lương và tổng chi phí nhân sự tăng thêm trong từng quý của năm",
+        "Mô tả công việc chi tiết của từng vị trí để bắt đầu quá trình tuyển dụng",
+        "Thứ tự ưu tiên giữa bốn vị trí trong trường hợp ngân sách bị cắt giảm"
       ],
-      correct: 1,
+      correct: 0,
       explanation:
-        "Đây là tình huống làm nhiều ban lãnh đạo bất ngờ. Đóng băng tuyển dụng chặn được phần tăng mới, nhưng không chạm tới hai nguồn tăng đã cam kết từ trước: phần tháng còn thiếu của người tuyển năm nay, và các đợt điều chỉnh lương theo chính sách. Tỷ lệ nghỉ việc có bù lại một phần, nhưng thường không đủ.",
+        "Ba việc kia đều cần và đều phục vụ những câu hỏi khác. Với cam kết tiến độ, câu hỏi duy nhất là bao giờ có năng lực thật - và một con số bốn người không trả lời được nó, kể cả khi cả bốn đều được duyệt."
     },
+    keyTakeaways: [
+      "Một con số tổng cả năm ngầm giả định năng lực có ngay từ đầu năm",
+      "Người mới làm năng lực đội giảm trước khi tăng, đúng hình chữ J",
+      "Không tuyển được là kịch bản thường gặp, không phải rủi ro hiếm",
+      "Tổn hại của việc cắt giảm lan ra ngoài phạm vi quyết định và không có trong bảng nào"
+    ],
     summary: {
-      keyIdea: "Chi phí nhân sự do thời điểm vào làm quyết định nhiều không kém số lượng người",
-      commonMistake: "Lấy đầu người cuối kỳ nhân lương bình quân, bỏ qua tháng vào làm và hiệu ứng tràn",
-      action: "Dựng bảng kế hoạch nhân sự có cột tháng dự kiến vào làm, rồi tính chi phí theo từng tháng thay vì cả năm.",
+      keyIdea: "Kế hoạch nhân sự phải đếm năng lực theo thời gian, không đếm đầu người theo năm",
+      commonMistake: "Cam kết tiến độ dựa trên số vị trí được duyệt, trong khi năng lực thật đến muộn hơn nhiều tháng",
+      action: "Với mỗi vị trí, ghi tháng dự kiến vào làm và tháng dự kiến làm việc độc lập được."
     },
     application: {
-      title: "Việc cần làm",
+      title: "Hai cột thay cho một con số",
       message:
-        "Lấy kế hoạch tuyển dụng năm nay và tính hai con số: chi phí phát sinh trong năm nay, và chi phí mười hai tháng đầy đủ của cùng nhóm người đó. Chênh lệch giữa hai con số chính là phần ngân sách năm sau đã bị cam kết trước khi năm sau bắt đầu.",
-      secondary: "Trình bày con số thứ hai cho ban lãnh đạo cùng lúc với con số thứ nhất, đừng để nó xuất hiện lần đầu vào tháng 1.",
+        "Bảng nhân sự có một dòng cho mỗi vị trí, kèm tháng dự kiến vào làm và tháng tự chủ được. Tổng năng lực của năm tính từ hai cột đó, không từ số dòng.",
+      secondary:
+        "Thêm một dòng cho kịch bản không tuyển được vị trí khó nhất - đó là kịch bản thường gặp chứ không phải rủi ro hiếm."
     },
     sections: [
       {
         type: "lead",
-        text: "Trong phần lớn doanh nghiệp dịch vụ, con người là dòng chi phí lớn nhất. Nó cũng là dòng có độ trễ dài nhất giữa lúc ra quyết định và lúc đảo ngược được quyết định đó.",
+        text: "Người là khoản lớn nhất trong gần như mọi kế hoạch kỹ thuật, và là khoản chậm nhất để điều chỉnh theo cả hai chiều."
       },
-      {
-        type: "heading",
-        text: "Vì sao tháng vào làm quan trọng ngang số lượng",
-      },
-      {
-        type: "conceptTable",
-        title: "Ba lớp chi phí của một kế hoạch nhân sự",
-        subtitle: "Bỏ sót lớp nào cũng khiến ngân sách lệch theo hướng lạc quan",
-        concepts: [
-          { vi: "Chi phí trực tiếp", en: "Base cost", def: "Lương gộp nhân số tháng thực tế làm việc trong kỳ. Đây là lớp duy nhất mà phần lớn bản kế hoạch có." },
-          { vi: "Chi phí đi kèm", en: "Loaded cost", def: "Bảo hiểm phần doanh nghiệp đóng, thưởng, thiết bị, chi phí tuyển. Thường cộng thêm 20-30% lên lương gộp." },
-          { vi: "Hiệu ứng tràn", en: "Annualisation", def: "Phần tháng còn thiếu của người tuyển giữa kỳ, rơi hết vào năm sau. Không xuất hiện ở bất kỳ dòng nào của báo cáo năm nay." },
-        ],
-      },
-      {
-        type: "callout",
-        label: "Tách phần đã cam kết khỏi phần còn lựa chọn được",
-        text: "Một ngân sách nhân sự nên đọc được thành hai khối: chi phí của những người đã đang làm - phần gần như cố định trong ngắn hạn - và chi phí của các vị trí dự kiến tuyển, phần vẫn còn quyết định được. Khi ban lãnh đạo yêu cầu cắt giảm, ranh giới này là thứ đầu tiên họ cần thấy, và nếu ngân sách không tách sẵn thì cuộc thảo luận sẽ mất vài ngày chỉ để dựng lại nó.",
-      },
-      {
-        type: "heading",
-        text: "Cùng mười người, chênh 1,1 tỷ"
-      },
+      { type: "heading", text: "Từ ngày duyệt tới ngày có năng lực" },
       {
         type: "paragraph",
-        text: "Kế hoạch tuyển 10 người, lương bình quân 20 triệu một tháng. Nếu lập ngân sách theo cách quen thuộc - lấy 10 người nhân 20 triệu nhân 12 tháng - ra 2,4 tỷ. Nhưng con số đó chỉ đúng nếu cả mười người vào làm từ tháng 1. Trên thực tế, tuyển rải một người mỗi tháng từ tháng 2 tới tháng 11 cho tổng cộng 65 tháng-người, tức 1,3 tỷ. Cùng một kế hoạch đầu người, chênh 1,1 tỷ - và toàn bộ khác biệt nằm ở một cột mà nhiều bảng ngân sách không có: tháng vào làm."
-      },
-      {
-        type: "callout",
-        label: "Con số phải nhân thêm phần đóng góp bắt buộc",
-        text: "Lương gộp chưa phải chi phí thật. Phần người sử dụng lao động đóng cho bảo hiểm xã hội, y tế và thất nghiệp làm chi phí thật cao hơn lương gộp khoảng một phần năm - con số cụ thể theo quy định hiện hành và cần kiểm lại theo năm. Một ngân sách nhân sự quên lớp này sẽ thiếu hụt đúng bằng tỷ lệ đó, và vì đây là dòng chi lớn nhất của phần lớn doanh nghiệp dịch vụ, sai số ấy đủ để làm hỏng cả kế hoạch."
+        text: "Giữa lúc một vị trí được duyệt và lúc có người làm được việc độc lập có hai khoảng trễ chồng lên nhau: thời gian tuyển, phần lớn nằm ngoài tầm kiểm soát của bạn, và thời gian để người mới tự chủ. Cộng lại, một vị trí duyệt đầu năm thường chỉ đóng góp được nửa năm, và một vị trí duyệt vào quý cuối thì đóng góp gần bằng không cho năm đó."
       },
       {
         type: "comparison",
         left: {
-          label: "Phần đã cam kết",
-          text: "Chi phí của những người đang làm, cộng những người đã ký hợp đồng và sắp vào. Gần như không giảm được trong ngắn hạn, vì cắt giảm nhân sự có chi phí riêng và có độ trễ. Đây là phần phải coi như cố định khi lập kịch bản xấu."
+          label: "Kế hoạch đếm đầu người",
+          text: "Tăng bốn người trong năm. Năng lực được chia đều bốn quý, và mọi cam kết tiến độ được xây trên con số đó."
         },
         right: {
-          label: "Phần còn lựa chọn được",
-          text: "Các vị trí đã duyệt nhưng chưa tuyển. Đây là đòn bẩy điều chỉnh nhanh nhất mà một doanh nghiệp có - hoãn tuyển ba tháng cho mười vị trí tiết kiệm được đúng 30 tháng-người. Một ngân sách nhân sự nên đọc được thành hai khối này, vì đó là cách ban lãnh đạo dùng nó khi tình hình đổi."
+          label: "Kế hoạch đếm năng lực",
+          text: "Bốn dòng, mỗi dòng có tháng vào làm và tháng tự chủ. Tổng năng lực thật của năm thường bằng một phần ba tới một nửa con số bên trái."
         }
+      },
+      {
+        type: "list",
+        items: [
+          "Một dòng cho mỗi vị trí, không phải một con số cho cả năm",
+          "Ghi tháng dự kiến vào làm và tháng dự kiến tự chủ được",
+          "Năng lực giảm trước khi tăng, vì người kèm phải dừng việc của họ",
+          "Có sẵn phương án cho vị trí khó nhất không tuyển được"
+        ]
+      },
+      {
+        type: "callout",
+        label: "Cắt giảm không đối xứng với tuyển thêm",
+        text: "Tăng một người thì năng lực tăng sau vài tháng. Cắt một người thì năng lực giảm ngay, và phần thiệt hại lớn hơn nằm ở chỗ những người ở lại đọc tín hiệu đó - một số người giỏi nhất bắt đầu tìm chỗ khác trong vài tháng sau. Khoản ấy không xuất hiện trong bảng tính nào và thường vượt xa phần tiết kiệm được."
       },
       {
         type: "closing",
         lines: [
-          "Số lượng người là câu hỏi dễ. Thời điểm là câu hỏi quyết định con số.",
-          "Bài sau chuyển từ kế hoạch cả năm sang thứ cần khi thanh khoản căng: dự báo dòng tiền theo tuần.",
-        ],
-      },
-    ],
+          "Kế hoạch nhân sự là nơi duy nhất mà một con số đúng vẫn dẫn tới một cam kết sai.",
+          "Bài sau: công cụ dùng khi kế hoạch năm đã không còn khớp với thực tế."
+        ]
+      }
+    ]
   },
   {
     "id": 1513,

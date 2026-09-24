@@ -114,12 +114,12 @@ export default function ReferralPromptModal({
           >
             <button
               onClick={() => setOpen(false)}
-              className="absolute top-3 right-3 p-1 rounded-lg text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+              className="absolute top-3 right-3 p-1 rounded-lg text-stone-400 hover:bg-surface-raised transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
 
-            <div className="w-12 h-12 rounded-2xl bg-accent-soft/40 text-accent flex items-center justify-center mb-3">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-accent flex items-center justify-center mb-3">
               <Gift className="w-6 h-6" />
             </div>
             <h2 className="text-lg font-extrabold text-ink">{t.referralPrompt.title}</h2>
@@ -136,12 +136,12 @@ export default function ReferralPromptModal({
                 readOnly
                 value={link}
                 onClick={(e) => e.currentTarget.select()}
-                className="flex-1 min-w-0 text-xs bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-lg px-3 py-2.5 text-stone-600 dark:text-stone-400 truncate"
+                className="flex-1 min-w-0 text-xs bg-stone-50 dark:bg-stone-800/60 border border-line-mid rounded-lg px-3 py-2.5 text-ink-soft truncate"
               />
               <button
                 onClick={handleCopy}
                 title={t.referralPrompt.copyButtonTitle}
-                className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+                className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-line-mid text-ink-soft hover:bg-surface transition-colors"
               >
                 {copied ? <Check className="w-4 h-4 text-accent" /> : <Copy className="w-4 h-4" />}
               </button>
@@ -150,14 +150,14 @@ export default function ReferralPromptModal({
             <div className="flex gap-2 mt-4">
               <button
                 onClick={() => setOpen(false)}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-line text-sm font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-lg border border-line text-sm font-bold text-ink-soft hover:bg-surface transition-colors"
               >
                 {t.referralPrompt.later}
               </button>
               <Link
                 href="/ban-be"
                 onClick={() => setOpen(false)}
-                className="flex-1 px-4 py-2.5 rounded-lg bg-surface-invert text-white dark:text-stone-900 text-sm font-bold text-center hover:opacity-90 transition-opacity"
+                className="flex-1 px-4 py-2.5 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold text-center hover:opacity-90 transition-opacity"
               >
                 {t.referralPrompt.viewMore}
               </Link>

@@ -131,8 +131,8 @@ export default function FreeRecallCard({
   const progressPct = ((RECALL_SECONDS - secondsLeft) / RECALL_SECONDS) * 100;
 
   return (
-    <div className="rounded-2xl border-2 border-stone-900 dark:border-stone-700 overflow-hidden shadow-xl">
-      <div className="bg-stone-900 dark:bg-stone-950 px-6 py-5 flex items-center gap-3">
+    <div className="rounded-2xl border-2 border-line-invert overflow-hidden shadow-xl">
+      <div className="bg-surface-invert px-6 py-5 flex items-center gap-3">
         <Brain className="w-5 h-5 text-amber-400 flex-shrink-0" />
         <div className="min-w-0">
           <p className="text-white font-extrabold text-lg tracking-wide">{t.freeRecall.headerTitle}</p>
@@ -152,13 +152,13 @@ export default function FreeRecallCard({
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={start}
-                  className="bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 px-5 py-2.5 rounded-xl font-bold text-sm transition"
+                  className="bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert px-5 py-2.5 rounded-xl font-bold text-sm transition"
                 >
                   {t.freeRecall.startButton}
                 </button>
                 <button
                   onClick={skip}
-                  className="text-sm font-bold text-ink-muted hover:text-stone-900 dark:hover:text-stone-100 underline transition"
+                  className="text-sm font-bold text-ink-muted hover:text-ink underline transition"
                 >
                   {t.freeRecall.skipButton}
                 </button>
@@ -169,12 +169,12 @@ export default function FreeRecallCard({
           {phase === "writing" && (
             <motion.div key="writing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-3">
               <div className="flex items-center justify-between gap-4">
-                <span className="text-sm font-bold text-stone-600 dark:text-stone-400">
+                <span className="text-sm font-bold text-ink-soft">
                   {format(t.freeRecall.secondsLeft, { seconds: secondsLeft })}
                 </span>
                 <button
                   onClick={finishWriting}
-                  className="text-xs font-bold text-ink-muted hover:text-stone-900 dark:hover:text-stone-100 underline"
+                  className="text-xs font-bold text-ink-muted hover:text-ink underline"
                 >
                   {t.freeRecall.finishEarly}
                 </button>
@@ -192,7 +192,7 @@ export default function FreeRecallCard({
                 rows={6}
                 placeholder={t.freeRecall.textareaPlaceholder}
                 aria-label={t.freeRecall.textareaAriaLabel}
-                className="w-full rounded-xl border-2 border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-950 p-4 text-stone-800 dark:text-stone-100 leading-relaxed focus:outline-hidden focus:border-stone-900 dark:focus:border-stone-400 resize-none"
+                className="w-full rounded-xl border-2 border-line-mid bg-surface p-4 text-ink-heading leading-relaxed focus:outline-hidden focus:border-line-invert resize-none"
               />
               <p className="text-xs text-ink-faint">
                 {t.freeRecall.privacyNote}
@@ -215,20 +215,20 @@ export default function FreeRecallCard({
                       aria-pressed={isTicked}
                       className={`w-full text-left flex items-start gap-3 px-4 py-3 rounded-xl border-2 transition-all ${
                         isTicked
-                          ? "border-emerald-500 bg-accent-soft/40"
-                          : "border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-950 hover:border-stone-400 dark:hover:border-stone-600"
+                          ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40"
+                          : "border-line-mid bg-white dark:bg-stone-950 hover:border-line-firm"
                       }`}
                     >
                       <span
                         className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 ${
                           isTicked
                             ? "border-emerald-500 bg-emerald-500 text-white"
-                            : "border-stone-300 dark:border-stone-600 text-transparent"
+                            : "border-line-strong text-transparent"
                         }`}
                       >
                         <Check className="w-3.5 h-3.5" />
                       </span>
-                      <span className="text-stone-700 dark:text-stone-200 text-base leading-relaxed">
+                      <span className="text-ink-body text-base leading-relaxed">
                         {takeaway}
                       </span>
                     </button>
@@ -236,12 +236,12 @@ export default function FreeRecallCard({
                 })}
               </div>
               <div className="flex items-center justify-between gap-4 flex-wrap">
-                <p className="text-sm font-bold text-stone-600 dark:text-stone-400">
+                <p className="text-sm font-bold text-ink-soft">
                   {format(t.freeRecall.recalledCount, { recalled: ticked.size, total: takeaways.length })}
                 </p>
                 <button
                   onClick={submitScore}
-                  className="bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 px-5 py-2.5 rounded-xl font-bold text-sm transition"
+                  className="bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert px-5 py-2.5 rounded-xl font-bold text-sm transition"
                 >
                   {t.freeRecall.viewSummaryButton}
                 </button>

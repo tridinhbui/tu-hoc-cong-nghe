@@ -1,0 +1,170 @@
+{
+  "id": 83,
+  "slug": "phan-tich-theo-nhom-cohort",
+  "title": "Nhóm theo thời điểm: tách chất lượng khỏi quy mô",
+  "subtitle": "Tổng số người dùng hoạt động tăng vẫn có thể che một sản phẩm đang tệ dần.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "👥",
+  "track": "professional",
+  "whyItMatters": "Con số tổng trộn lẫn hai thứ: bạn thu hút được bao nhiêu người mới, và bạn giữ được họ tốt tới đâu. Chi tiền quảng cáo nhiều hơn sẽ làm tổng đẹp lên trong khi chất lượng sản phẩm đang đi xuống - và không chỉ số tổng nào phát hiện được điều đó.",
+  "openingQuestion": "Số người dùng hoạt động hằng tháng tăng đều, nhưng bạn nghi sản phẩm đang tệ đi. Nên nhìn vào đâu?",
+  "openingOptions": [
+    "So tỷ lệ quay lại của các nhóm bắt đầu ở những tháng khác nhau",
+    "So tổng số người dùng hoạt động giữa tháng này và tháng trước",
+    "So thời gian sử dụng trung bình của mỗi người dùng theo từng tuần",
+    "So số lượng tính năng mới đã phát hành trong từng quý"
+  ],
+  "correctOption": 0,
+  "explanation": "Chia người dùng thành các nhóm theo tháng họ bắt đầu, rồi theo dõi từng nhóm riêng qua thời gian. Nếu nhóm tháng một còn lại bốn mươi phần trăm sau ba mươi ngày, nhóm tháng sáu còn hai mươi lăm phần trăm, thì sản phẩm đang giữ chân kém dần - dù tổng số người hoạt động vẫn tăng nhờ đổ thêm tiền quảng cáo. Con số tổng không bao giờ cho thấy điều này, vì nó cộng người mới vào cùng chỗ với người cũ và hai xu hướng ngược nhau triệt tiêu lẫn nhau.",
+  "diagram": [
+    {
+      "label": "Chia người dùng theo tháng bắt đầu",
+      "arrow": true
+    },
+    {
+      "label": "Theo dõi từng nhóm qua thời gian",
+      "arrow": true
+    },
+    {
+      "label": "So các nhóm với nhau ở cùng độ tuổi",
+      "arrow": true
+    },
+    {
+      "label": "Chất lượng tách hẳn khỏi quy mô"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Tăng trưởng mua bằng tiền",
+    "description": "Một sản phẩm có tổng người dùng hoạt động tăng gấp đôi trong sáu tháng nhờ tăng ngân sách quảng cáo. Phân tích theo nhóm cho thấy tỷ lệ giữ chân của mỗi nhóm mới lại thấp hơn nhóm trước. Tổng vẫn đẹp cho tới đúng ngày ngân sách quảng cáo dừng."
+  },
+  "keyTakeaways": [
+    "Nhóm theo thời điểm bắt đầu tách chất lượng sản phẩm khỏi quy mô, và đường cong giữ chân của từng nhóm là thứ đáng đọc.",
+    "So các nhóm ở cùng độ tuổi, không so ở cùng thời điểm lịch.",
+    "Xu hướng giữa các nhóm quan trọng hơn con số tuyệt đối của một nhóm.",
+    "Nhóm cũng chia được theo kênh, theo thiết bị hay theo gói dịch vụ."
+  ],
+  "summary": {
+    "keyIdea": "Chia theo nhóm bắt đầu là cách duy nhất thấy được sản phẩm đang tốt lên hay tệ đi.",
+    "formula": "So nhóm với nhóm, ở cùng độ tuổi.",
+    "commonMistake": "Kết luận từ tổng số, vốn trộn lẫn chất lượng với ngân sách quảng cáo."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy người dùng đăng ký trong ba tháng gần nhất, chia thành ba nhóm, và tính tỷ lệ còn hoạt động sau ba mươi ngày của từng nhóm. Ba con số ấy nói nhiều hơn mọi biểu đồ tổng."
+  },
+  "practicePrompt": {
+    "question": "Nhóm tháng một giữ được 40% sau ba mươi ngày, nhóm tháng sáu giữ 25%. Tổng người dùng hoạt động vẫn tăng. Kết luận gì?",
+    "options": [
+      "Sản phẩm đang giữ chân kém dần, và tổng đang được nâng bằng người mới",
+      "Sản phẩm đang tốt lên vì tổng số người hoạt động vẫn tăng đều",
+      "Hai nhóm không so sánh được với nhau vì khác nhau về thời điểm bắt đầu",
+      "Nhóm tháng sáu cần thêm thời gian trước khi có thể kết luận"
+    ],
+    "correct": 0,
+    "explanation": "Cả hai nhóm đều được đo ở cùng độ tuổi ba mươi ngày nên hoàn toàn so sánh được, và khoảng cách mười lăm điểm là một xu hướng rõ. Tổng vẫn tăng chỉ nói rằng dòng người mới đang che phần rơi rụng, và nó sẽ ngừng che ngay khi dòng đó chậm lại."
+  },
+  "quiz": [
+    {
+      "question": "Phân tích theo nhóm bắt đầu giải quyết vấn đề gì?",
+      "options": [
+        "Tách chất lượng sản phẩm khỏi quy mô thu hút người dùng",
+        "Giảm sai số khi đo lường số người dùng hoạt động",
+        "Cho phép so sánh sản phẩm với các đối thủ cùng ngành",
+        "Rút ngắn thời gian cần thiết để có kết luận về sản phẩm"
+      ],
+      "correct": 0,
+      "explanation": "Con số tổng cộng người mới và người cũ vào một chỗ, nên hai xu hướng ngược nhau triệt tiêu nhau. Chia nhóm giữ chúng tách biệt để nhìn được từng thứ."
+    },
+    {
+      "question": "Các nhóm nên được so sánh với nhau như thế nào?",
+      "options": [
+        "Ở cùng độ tuổi tính từ lúc họ bắt đầu",
+        "Ở cùng thời điểm lịch trong năm hiện tại",
+        "Theo tổng số người dùng có trong mỗi nhóm",
+        "Theo kênh quảng cáo đã đưa họ tới sản phẩm"
+      ],
+      "correct": 0,
+      "explanation": "So ở cùng thời điểm lịch thì nhóm mới luôn thua vì họ chưa có đủ thời gian. Đặt chúng cạnh nhau ở mốc ba mươi ngày tuổi mới là phép so công bằng."
+    },
+    {
+      "question": "Vì sao tổng số người dùng hoạt động có thể tăng khi sản phẩm đang tệ đi?",
+      "options": [
+        "Vì dòng người mới đang che phần người cũ rơi rụng",
+        "Vì công cụ đo đếm trùng những người dùng quay lại",
+        "Vì người dùng cũ hoạt động nhiều hơn để bù cho người mới",
+        "Vì số liệu tổng luôn có độ trễ vài tháng so với thực tế"
+      ],
+      "correct": 0,
+      "explanation": "Đổ đủ tiền quảng cáo thì tổng vẫn tăng dù ai vào cũng bỏ đi sau một tuần. Đó là lý do tổng số là chỉ số tệ nhất để đánh giá chất lượng sản phẩm."
+    },
+    {
+      "question": "Ngoài thời điểm bắt đầu, còn có thể chia nhóm theo tiêu chí nào?",
+      "options": [
+        "Kênh đưa người dùng tới, loại thiết bị hoặc gói dịch vụ",
+        "Thứ tự chữ cái trong tên tài khoản của từng người dùng một",
+        "Tổng thời gian mỗi người dùng đã dùng sản phẩm",
+        "Số lượng tính năng mà mỗi người dùng đã sử dụng"
+      ],
+      "correct": 0,
+      "explanation": "Bất kỳ thuộc tính nào có ở thời điểm bắt đầu và không đổi về sau đều dùng chia nhóm được. Chia theo hành vi về sau thì phạm một lỗi khác: bạn đang chọn nhóm dựa trên chính kết quả muốn đo."
+    },
+    {
+      "question": "Điều gì đáng quan tâm nhất trong một bảng phân tích theo nhóm?",
+      "options": [
+        "Xu hướng của cùng một mốc tuổi qua các nhóm liên tiếp",
+        "Con số tuyệt đối của nhóm mới nhất hiện có",
+        "Tổng số người dùng cộng lại của tất cả các nhóm hiện có",
+        "Nhóm nào có số lượng người dùng lớn nhất"
+      ],
+      "correct": 0,
+      "explanation": "Đọc theo cột dọc ở mốc ba mươi ngày qua các nhóm sẽ thấy sản phẩm đang tốt lên hay tệ đi. Con số của riêng một nhóm chỉ là một điểm, không phải một xu hướng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói chỉ số phải giảm được. Bài này nói về một cách nhìn làm lộ ra những xu hướng mà ngay cả chỉ số giảm được cũng có thể che đi."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao con số tổng nói dối"
+    },
+    {
+      "type": "paragraph",
+      "text": "Số người dùng hoạt động tháng này là tổng của hai dòng chảy ngược nhau: người mới vào và người cũ bỏ đi. Nếu bạn tăng ngân sách quảng cáo, dòng vào lớn hơn và tổng tăng - kể cả khi tỷ lệ bỏ đi đang xấu dần. Hai xu hướng triệt tiêu nhau trong một con số, và bạn mất luôn khả năng thấy cái nào đang xảy ra."
+    },
+    {
+      "type": "callout",
+      "label": "So ở cùng độ tuổi",
+      "text": "Nhóm tháng sáu tất nhiên có ít người còn hoạt động hơn nhóm tháng một nếu bạn nhìn vào hôm nay - họ mới bắt đầu. Phép so đúng là đặt cả hai ở mốc ba mươi ngày tuổi, rồi hỏi nhóm nào giữ được nhiều hơn."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Nhìn tổng",
+        "text": "Một con số cho mỗi tháng. Dễ trình bày, và dễ tăng bằng cách chi thêm tiền thu hút người dùng mới."
+      },
+      "right": {
+        "label": "Nhìn theo nhóm",
+        "text": "Một dòng cho mỗi nhóm bắt đầu. Khó trình bày hơn, nhưng cho biết sản phẩm đang tốt lên hay tệ đi, độc lập với ngân sách."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chia theo thuộc tính có sẵn lúc bắt đầu, đừng chia theo hành vi về sau.",
+        "Đọc theo cột dọc ở một mốc tuổi cố định để thấy xu hướng qua các nhóm.",
+        "Dùng cách này cho cả doanh thu, không chỉ cho số người dùng hoạt động."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Con số tổng trả lời câu hỏi hiện giờ lớn tới đâu. Nhóm theo thời điểm trả lời câu hỏi khó hơn: chúng ta đang tốt lên hay tệ đi.",
+        "Bài sau đi vào một cách nhìn khác cùng mục đích: người dùng rơi khỏi hành trình ở đúng chỗ nào."
+      ]
+    }
+  ],
+  "interactiveType": "chart"
+}

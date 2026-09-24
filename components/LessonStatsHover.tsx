@@ -62,7 +62,7 @@ export default function LessonStatsHover() {
         }}
         aria-label={t.lessonStatsHover.quickStatsAria}
         title={t.lessonStatsHover.statsTitle}
-        className="w-10 h-10 rounded-full flex items-center justify-center bg-surface-raised text-ink-muted hover:bg-stone-200 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-200 transition-all cursor-pointer"
+        className="w-10 h-10 rounded-full flex items-center justify-center bg-surface-raised text-ink-muted hover:bg-surface-sunken hover:text-ink-body transition-all cursor-pointer"
       >
         <BarChart3 className="w-4 h-4" />
       </button>
@@ -93,7 +93,7 @@ export default function LessonStatsHover() {
               </div>
               <Link
                 href="/analytics"
-                className="block text-center text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 pt-2 mt-1 border-t border-line-soft"
+                className="block text-center text-xs font-bold text-ink-soft hover:text-ink pt-2 mt-1 border-t border-line-soft"
               >
                 {t.lessonStatsHover.viewFull}
               </Link>

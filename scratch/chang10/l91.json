@@ -1,0 +1,160 @@
+{
+  "id": 91,
+  "slug": "uoc-luong-va-vi-sao-no-sai",
+  "title": "Ước lượng: vì sao nó luôn thấp hơn thực tế",
+  "subtitle": "Bạn ước lượng cho con đường suôn sẻ, còn thực tế tính cả những nhánh rẽ bạn chưa biết là có.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "⏳",
+  "track": "professional",
+  "whyItMatters": "Ước lượng sai không chỉ là chuyện lỡ hạn. Nó làm hỏng mọi quyết định dựa trên nó: việc nào đáng làm trước, có nên nhận thêm cam kết không, và có nên bắt đầu một hướng đi hay không.",
+  "openingQuestion": "Vì sao ước lượng thời gian gần như luôn thấp hơn thực tế?",
+  "openingOptions": [
+    "Vì ta hình dung con đường suôn sẻ và bỏ qua những nhánh chưa biết",
+    "Vì đội cố ý đưa con số thấp để dự án được phê duyệt",
+    "Vì công việc luôn bị chen ngang bởi các yêu cầu khác",
+    "Vì phạm vi công việc luôn được mở rộng sau khi bắt đầu"
+  ],
+  "correctOption": 0,
+  "explanation": "Khi ước lượng, bạn dựng lại trong đầu các bước cần làm - và bạn chỉ dựng được những bước bạn biết là tồn tại. Phần lớn thời gian thật lại nằm ở những thứ chỉ hiện ra khi bắt tay vào: một phụ thuộc cũ không tương thích, một trường hợp dữ liệu không ai lường, một hệ thống khác cần sửa theo. Chen ngang và mở rộng phạm vi đều là nguyên nhân thật nhưng chúng là nguyên nhân bên ngoài; cái sai nằm ngay trong bản thân phép ước lượng thì cần được xử lý bằng cách khác.",
+  "diagram": [
+    {
+      "label": "Hình dung các bước đã biết",
+      "arrow": true
+    },
+    {
+      "label": "Cộng lại thành một con số",
+      "arrow": true
+    },
+    {
+      "label": "Thực tế thêm những nhánh chưa biết",
+      "arrow": true
+    },
+    {
+      "label": "Sai lệch không đối xứng: luôn lệch về phía lâu hơn"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Chín mươi phần trăm đầu tiên",
+    "description": "Có một câu đùa lâu đời trong ngành: chín mươi phần trăm đầu của công việc chiếm chín mươi phần trăm thời gian, và mười phần trăm còn lại chiếm nốt chín mươi phần trăm nữa. Nó tồn tại vì phần cuối luôn chứa những thứ không ai hình dung ra lúc bắt đầu."
+  },
+  "keyTakeaways": [
+    "Sai lệch của ước lượng không đối xứng: nó lệch về phía lâu hơn.",
+    "Việc càng lớn thì ước lượng càng kém tin cậy, vì phần chưa biết càng nhiều.",
+    "Dùng dữ liệu quá khứ của chính đội thay vì cảm giác về việc sắp làm.",
+    "Ước lượng theo khoảng và mức tin cậy trung thực hơn một con số duy nhất."
+  ],
+  "summary": {
+    "keyIdea": "Ước lượng sai vì bạn chỉ đếm được những gì mình biết là tồn tại.",
+    "formula": "Chia nhỏ, dùng lịch sử, nói theo khoảng.",
+    "commonMistake": "Đưa một con số duy nhất cho một việc chưa từng làm bao giờ."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy năm việc gần nhất đội bạn đã làm xong, so ước lượng ban đầu với thời gian thật. Tỷ lệ trung bình giữa hai con số là hệ số hiệu chỉnh đáng tin hơn mọi cảm giác."
+  },
+  "practicePrompt": {
+    "question": "Cách nào cải thiện độ chính xác của ước lượng nhiều nhất?",
+    "options": [
+      "Chia việc thành các phần nhỏ đã từng làm việc tương tự",
+      "Dành thêm thời gian phân tích trước khi đưa ra con số",
+      "Yêu cầu nhiều người cùng ước lượng rồi lấy con số trung bình",
+      "Nhân đôi con số ước lượng ban đầu cho an toàn"
+    ],
+    "correct": 0,
+    "explanation": "Phần chưa biết là nguồn của sai lệch, và chia nhỏ tới mức từng phần giống việc đã làm sẽ thu hẹp phần chưa biết ấy. Nhân đôi giúp về mặt lịch nhưng không cải thiện chất lượng dự báo, và nó không nói được việc nào rủi ro hơn việc nào."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao sai lệch của ước lượng không đối xứng?",
+      "options": [
+        "Vì phần chưa biết chỉ làm việc lâu thêm chứ không nhanh đi",
+        "Vì đội thường dành thời gian dư để hoàn thiện thêm",
+        "Vì các công cụ ước lượng có xu hướng làm tròn xuống",
+        "Vì người quản lý gần như luôn ép giảm con số ước lượng ban đầu"
+      ],
+      "correct": 0,
+      "explanation": "Bất ngờ trong phần mềm gần như luôn là bất ngờ khó chịu. Không có nhánh nào bạn chưa lường mà lại giúp việc xong sớm hơn dự kiến."
+    },
+    {
+      "question": "Vì sao việc lớn khó ước lượng hơn việc nhỏ?",
+      "options": [
+        "Vì việc càng lớn thì phần chưa biết càng chiếm tỷ trọng lớn",
+        "Vì việc lớn thường có nhiều người tham gia cùng lúc",
+        "Vì việc lớn kéo dài nên phải chịu nhiều thay đổi yêu cầu hơn",
+        "Vì công cụ quản lý không hiển thị được việc quá lớn"
+      ],
+      "correct": 0,
+      "explanation": "Việc kéo dài ba tháng chứa nhiều thứ bạn chưa biết là tồn tại hơn hẳn việc ba ngày. Đó là lý do lời khuyên đầu tiên luôn là chia nhỏ."
+    },
+    {
+      "question": "Nguồn thông tin nào đáng tin nhất cho ước lượng?",
+      "options": [
+        "Thời gian thật của những việc tương tự đội đã làm",
+        "Cảm giác của người có nhiều kinh nghiệm nhất trong đội",
+        "Số liệu trung bình của ngành cho loại công việc đó",
+        "Thời gian mà bên yêu cầu mong muốn được nhận kết quả"
+      ],
+      "correct": 0,
+      "explanation": "Lịch sử của chính đội đã bao gồm cả những nhánh chưa biết vốn luôn xuất hiện, còn cảm giác thì chỉ đếm được phần đã hình dung ra. Đây là lý do việc ghi lại thời gian thật rất đáng."
+    },
+    {
+      "question": "Vì sao nên ước lượng theo khoảng thay vì một con số?",
+      "options": [
+        "Vì nó truyền đạt được mức độ không chắc chắn",
+        "Vì nó cho phép đội linh hoạt hơn khi thực hiện",
+        "Vì nó dễ được các bên liên quan chấp nhận hơn",
+        "Vì nó phù hợp hơn với các công cụ lập kế hoạch"
+      ],
+      "correct": 0,
+      "explanation": "Một con số duy nhất giấu đi thông tin quan trọng nhất: chúng ta chắc chắn tới đâu. Khoảng từ hai tới sáu tuần nói rõ đây là việc rủi ro, còn từ ba tới bốn tuần nói điều ngược lại."
+    },
+    {
+      "question": "Vì sao nhân đôi ước lượng không phải giải pháp tốt?",
+      "options": [
+        "Vì nó không cho biết việc nào rủi ro hơn việc nào",
+        "Vì các bên liên quan sẽ không chấp nhận con số lớn",
+        "Vì nó làm đội mất động lực hoàn thành sớm",
+        "Vì hệ số nhân đôi không đúng với mọi loại công việc"
+      ],
+      "correct": 0,
+      "explanation": "Nó xử lý triệu chứng ở mức tổng nhưng mọi việc vẫn được đối xử như nhau. Chia nhỏ và dùng lịch sử thì bạn biết được đâu là phần đáng lo, và đó mới là thông tin dùng để lập kế hoạch."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Từ đây trở đi chặng này chuyển từ hiểu vấn đề sang chọn và lên kế hoạch giải quyết. Và bước đầu tiên của mọi kế hoạch là một con số ai cũng biết là sai."
+    },
+    {
+      "type": "heading",
+      "text": "Bạn chỉ đếm được thứ mình biết là có"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ước lượng là bài toán dựng lại các bước trong đầu rồi cộng chúng lại. Vấn đề nằm ở chỗ bạn chỉ dựng được những bước bạn biết là tồn tại - còn phần lớn thời gian thật lại nằm ở một thư viện cũ không tương thích, một trường hợp dữ liệu kỳ lạ, một hệ thống khác phải sửa theo. Không ai bỏ sót chúng vì cẩu thả; chúng chưa hiện ra ở thời điểm ước lượng."
+    },
+    {
+      "type": "callout",
+      "label": "Bất ngờ chỉ đi một chiều",
+      "text": "Điều làm sai lệch này khó chữa là tính không đối xứng: những thứ bạn chưa lường chỉ làm việc lâu thêm. Không có bất ngờ nào giúp bạn xong sớm, nên sai số không tự triệt tiêu khi cộng nhiều việc lại."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chia tới mức mỗi phần giống một việc đội đã từng làm và đo được thời gian.",
+        "Dùng tỷ lệ giữa ước lượng và thời gian thật của các việc trước làm hệ số hiệu chỉnh.",
+        "Nói theo khoảng và kèm mức tin cậy, để người nghe biết đây là việc chắc hay việc rủi ro.",
+        "Ước lượng lại khi biết thêm thông tin - con số đầu tiên là con số kém tin cậy nhất."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Ước lượng không sai vì người ta thiếu cẩn thận. Nó sai vì phần chưa biết luôn tồn tại, và cách duy nhất giảm nó là làm cho việc nhỏ lại.",
+        "Bài sau nói kỹ về chính cách chữa ấy: chia nhỏ và giao từng phần thay vì giao một lần."
+      ]
+    }
+  ],
+  "interactiveType": "multiples"
+}

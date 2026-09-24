@@ -102,20 +102,20 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
   const activeReport = bugReports.find((report) => report.id === activeReportId) ?? null;
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-[320px_1fr] min-h-[460px]">
-      <div className="border-b md:border-b-0 md:border-r border-stone-200 dark:border-stone-800 divide-y divide-stone-200 dark:divide-stone-800 overflow-y-auto max-h-[560px]">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-[320px_1fr] min-h-[460px]">
+      <div className="border-b md:border-b-0 md:border-r border-line divide-y divide-stone-200 dark:divide-stone-800 overflow-y-auto max-h-[560px]">
         {bugReports.map((report) => (
           <button
             key={report.id}
             onClick={() => openReport(report.id)}
             className={`w-full text-left p-3 transition-colors ${
-              activeReportId === report.id ? "bg-stone-100 dark:bg-stone-800" : "hover:bg-stone-50 dark:hover:bg-stone-800/50"
+              activeReportId === report.id ? "bg-surface-raised" : "hover:bg-stone-50 dark:hover:bg-stone-800/50"
             }`}
           >
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
-                <p className="font-bold text-sm text-stone-900 dark:text-stone-100 truncate">{report.title}</p>
-                <p className="text-xs text-stone-500 dark:text-stone-400 truncate mt-0.5">
+                <p className="font-bold text-sm text-ink truncate">{report.title}</p>
+                <p className="text-xs text-ink-muted truncate mt-0.5">
                   {report.user_name || report.user_email || tb.unknownUser}
                 </p>
               </div>
@@ -127,18 +127,18 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
             </div>
 
             <div className="flex items-center gap-2 mt-2 text-[10px] uppercase tracking-wide">
-              <span className="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300">
+              <span className="px-2 py-0.5 rounded-full bg-surface-raised text-ink-soft">
                 {STATUS_OPTIONS.find((option) => option.value === report.status)?.label}
               </span>
-              <span className="px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300">
+              <span className="px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/50 text-warn-strong">
                 {SEVERITY_LABELS[report.severity]}
               </span>
             </div>
 
             {report.latest_message ? (
-              <p className="text-xs text-stone-500 dark:text-stone-400 truncate mt-2">{report.latest_message}</p>
+              <p className="text-xs text-ink-muted truncate mt-2">{report.latest_message}</p>
             ) : null}
-            <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-1">
+            <p className="text-[10px] text-ink-faint mt-1">
               {new Date(report.updated_at).toLocaleString(intlLocale(locale))}
             </p>
           </button>
@@ -147,20 +147,20 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
 
       <div className="flex flex-col">
         {!activeReport ? (
-          <div className="flex-1 flex items-center justify-center text-sm text-stone-400 dark:text-stone-500">
+          <div className="flex-1 flex items-center justify-center text-sm text-ink-faint">
             {tb.selectReportPrompt}
           </div>
         ) : (
           <>
-            <div className="px-4 py-3 border-b border-stone-200 dark:border-stone-800 space-y-3">
+            <div className="px-4 py-3 border-b border-line space-y-3">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="font-bold text-sm text-stone-900 dark:text-stone-100">{activeReport.title}</p>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                  <p className="font-bold text-sm text-ink">{activeReport.title}</p>
+                  <p className="text-xs text-ink-muted mt-0.5">
                     {activeReport.user_name || activeReport.user_email || tb.unknownUser}
                   </p>
                   {activeReport.page_path ? (
-                    <p className="text-xs text-stone-400 dark:text-stone-500 mt-1">
+                    <p className="text-xs text-ink-faint mt-1">
                       {format(tb.pagePathLabel, { path: activeReport.page_path })}
                     </p>
                   ) : null}
@@ -169,7 +169,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
                   value={activeReport.status}
                   onChange={(event) => void handleStatusChange(event.target.value as BugStatus)}
                   disabled={updatingStatus || isPending}
-                  className="px-3 py-2 text-xs rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100"
+                  className="px-3 py-2 text-xs rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-ink"
                 >
                   {STATUS_OPTIONS.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -178,7 +178,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
                   ))}
                 </select>
               </div>
-              <div className="rounded-xl bg-stone-50 dark:bg-stone-800/70 p-3 text-sm text-stone-700 dark:text-stone-300">
+              <div className="rounded-xl bg-stone-50 dark:bg-stone-800/70 p-3 text-sm text-ink-body">
                 {activeReport.description}
               </div>
             </div>
@@ -192,8 +192,8 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
                     <div
                       className={`max-w-md px-3 py-2 rounded-xl text-sm ${
                         message.sender === "admin"
-                          ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                          : "bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100"
+                          ? "bg-surface-invert text-ink-invert"
+                          : "bg-surface-raised text-ink"
                       }`}
                     >
                       <p>{message.content}</p>
@@ -209,18 +209,18 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
               )}
             </div>
 
-            <div className="p-3 border-t border-stone-200 dark:border-stone-800 flex gap-2">
+            <div className="p-3 border-t border-line flex gap-2">
               <input
                 value={reply}
                 onChange={(event) => setReply(event.target.value)}
                 onKeyDown={(event) => event.key === "Enter" && void handleSendReply()}
                 placeholder={tb.replyPlaceholder}
-                className="flex-1 px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
+                className="flex-1 px-3 py-2 text-sm rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-ink focus:outline-none focus:border-stone-500"
               />
               <button
                 onClick={() => void handleSendReply()}
                 disabled={sending || !reply.trim()}
-                className="px-3 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 disabled:opacity-50"
+                className="px-3 py-2 rounded-lg bg-surface-invert text-ink-invert disabled:opacity-50"
               >
                 <Send className="w-4 h-4" />
               </button>

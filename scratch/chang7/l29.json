@@ -1,0 +1,187 @@
+{
+  "id": 29,
+  "slug": "dinh-dang-trao-doi-du-lieu",
+  "title": "JSON, CSV và nhị phân: mỗi định dạng mất một thứ",
+  "subtitle": "Chọn định dạng là chọn thứ mình chấp nhận đánh mất khi dữ liệu rời khỏi hệ thống.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📦",
+  "track": "professional",
+  "whyItMatters": "Dữ liệu trong bộ nhớ có kiểu, có cấu trúc, có ràng buộc. Xuất ra tệp thì phần lớn những thứ đó biến mất, và bên nhận phải đoán lại. Biết mỗi định dạng đánh mất cái gì là biết trước chỗ nào sẽ hỏng khi hai hệ thống trao dữ liệu cho nhau.",
+  "openingQuestion": "Xuất một bảng có cột mã số thuế ra CSV rồi mở bằng phần mềm bảng tính. Rủi ro lớn nhất là gì?",
+  "openingOptions": [
+    "Mã số bị hiểu thành số và mất các chữ số không đứng đầu",
+    "Tệp CSV không mở được vì thiếu dòng khai báo kiểu dữ liệu",
+    "Các dòng bị xáo trộn thứ tự vì CSV không giữ thứ tự bản ghi",
+    "Dấu tiếng Việt bị mất vì CSV chỉ lưu được ký tự không dấu"
+  ],
+  "correctOption": 0,
+  "explanation": "CSV không mang thông tin kiểu. Mọi thứ trong tệp đều là văn bản, và bên đọc phải tự đoán cột nào là số, cột nào là ngày, cột nào là chuỗi. Phần mềm bảng tính đoán rất hăng: một mã số thuế bắt đầu bằng số không sẽ thành số và mất chữ số ấy, một mã sản phẩm dạng 3E5 sẽ thành ba trăm nghìn. Dấu tiếng Việt thì vẫn giữ được, miễn là tệp ghi bằng UTF-8 và bên đọc cũng đọc bằng UTF-8.",
+  "diagram": [
+    {
+      "label": "Dữ liệu trong bộ nhớ - có kiểu, có ràng buộc",
+      "arrow": true
+    },
+    {
+      "label": "Xuất ra tệp - phần lớn thông tin kiểu mất đi",
+      "arrow": true
+    },
+    {
+      "label": "Bên nhận đoán lại kiểu từ hình dạng chuỗi",
+      "arrow": true
+    },
+    {
+      "label": "Đoán sai chỗ nào thì dữ liệu hỏng chỗ đó"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Tên gene và phần mềm bảng tính",
+    "description": "Một nghiên cứu năm 2016 thấy khoảng một phần năm bài báo di truyền học có dữ liệu bị hỏng vì tên gene bị phần mềm bảng tính tự đổi thành ngày tháng. Cuối cùng giới nghiên cứu phải đổi tên một số gene, vì đổi hành vi của phần mềm khó hơn."
+  },
+  "keyTakeaways": [
+    "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau.",
+    "JSON giữ được cấu trúc lồng nhưng chỉ có vài kiểu cơ bản và không có ngày tháng.",
+    "Định dạng nhị phân gọn và nhanh nhất nhưng không đọc bằng mắt được.",
+    "Luôn khai báo mã hoá UTF-8 và ghi rõ quy ước ngày tháng khi trao đổi tệp."
+  ],
+  "summary": {
+    "keyIdea": "Mỗi định dạng trao đổi đánh đổi giữa dễ đọc, giữ được cấu trúc và gọn nhẹ.",
+    "formula": "CSV cho bảng phẳng, JSON cho cấu trúc lồng, nhị phân cho khối lượng lớn.",
+    "commonMistake": "Tin rằng bên nhận sẽ đoán đúng kiểu của các cột trong tệp CSV."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Xuất một bảng có cột mã số bắt đầu bằng số không ra CSV, mở bằng phần mềm bảng tính rồi lưu lại. So dữ liệu trước và sau - đó là lần mất dữ liệu rẻ nhất bạn sẽ được chứng kiến."
+  },
+  "practicePrompt": {
+    "question": "Hai hệ thống trao đổi ngày tháng qua JSON và lệch nhau đúng một ngày ở vài bản ghi. Nguyên nhân nào có khả năng nhất?",
+    "options": [
+      "JSON không có kiểu ngày, hai bên diễn giải chuỗi theo hai múi giờ khác nhau",
+      "JSON làm tròn giá trị ngày tháng khi số ngày vượt quá phạm vi của tháng",
+      "Một bên ghi ngày dạng số còn bên kia đọc ngày đó dạng chuỗi ký tự",
+      "Tệp JSON bị cắt ngắn khi truyền nên một phần dữ liệu ngày bị thiếu"
+    ],
+    "correct": 0,
+    "explanation": "JSON chỉ có chuỗi, số, luận lý, mảng, đối tượng và rỗng - không có kiểu ngày tháng. Ngày luôn đi dưới dạng chuỗi, và nếu chuỗi đó không mang thông tin múi giờ thì mỗi bên tự hiểu theo múi giờ của mình, lệch nhau tới một ngày ở các mốc gần nửa đêm."
+  },
+  "quiz": [
+    {
+      "question": "CSV đánh mất thông tin gì so với dữ liệu trong bộ nhớ?",
+      "options": [
+        "Kiểu của từng cột và cấu trúc lồng nhau",
+        "Thứ tự các dòng dữ liệu và tên của các cột trong bảng",
+        "Toàn bộ ký tự có dấu nếu tệp chứa văn bản tiếng Việt",
+        "Số lượng bản ghi, vì CSV không lưu tổng số dòng ở đầu tệp"
+      ],
+      "correct": 0,
+      "explanation": "CSV là bảng phẳng gồm toàn văn bản: không có kiểu, không lồng được. Thứ tự dòng và tên cột thì vẫn giữ, còn dấu tiếng Việt phụ thuộc mã hoá chứ không phải bản thân định dạng."
+    },
+    {
+      "question": "JSON không có sẵn kiểu dữ liệu nào sau đây?",
+      "options": [
+        "Ngày tháng",
+        "Chuỗi ký tự, thứ phải mã hoá thành mảng byte trước khi ghi",
+        "Mảng, thứ luôn phải chuyển thành đối tượng có khoá là chỉ số",
+        "Giá trị rỗng, thứ chỉ biểu diễn được bằng một chuỗi trống"
+      ],
+      "correct": 0,
+      "explanation": "JSON có chuỗi, số, luận lý, mảng, đối tượng và rỗng - đúng sáu thứ. Ngày tháng phải đi dưới dạng chuỗi theo một quy ước hai bên thống nhất, và đó là nguồn của rất nhiều lỗi lệch múi giờ."
+    },
+    {
+      "question": "Khi nào nên chọn định dạng nhị phân thay vì JSON?",
+      "options": [
+        "Khi khối lượng dữ liệu lớn và tốc độ đọc ghi là ưu tiên",
+        "Khi dữ liệu lồng nhiều tầng hơn JSON mô tả nổi",
+        "Khi cần con người mở ra sửa trực tiếp",
+        "Khi hai bên dùng hai ngôn ngữ khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Nhị phân gọn hơn và phân tích nhanh hơn nhiều, đổi lại không đọc bằng mắt được. JSON mô tả cấu trúc lồng tốt và chạy được ở mọi ngôn ngữ, nên hai lý do kia không phải chỗ nhị phân thắng."
+    },
+    {
+      "question": "Vì sao phần mềm bảng tính hay làm hỏng dữ liệu CSV?",
+      "options": [
+        "Vì nó tự đoán kiểu của từng ô và đoán sai với mã số",
+        "Vì nó chỉ mở được tệp CSV có ít hơn một triệu dòng dữ liệu",
+        "Vì nó luôn ghi lại tệp bằng bảng mã cũ",
+        "Vì nó sắp xếp lại các cột theo thứ tự bảng chữ cái khi lưu"
+      ],
+      "correct": 0,
+      "explanation": "Vì CSV không mang kiểu, phần mềm phải đoán - và nó đoán theo hình dạng chuỗi, nên mã số mất số không đầu, mã dạng 3E5 thành số mũ, tên gene thành ngày tháng. Đoán sai xong lưu lại là mất luôn dữ liệu gốc."
+    },
+    {
+      "question": "Cách nào an toàn nhất khi trao đổi ngày tháng giữa hai hệ thống?",
+      "options": [
+        "Dùng chuỗi theo chuẩn ISO có kèm thông tin múi giờ",
+        "Dùng số ngày kể từ một mốc gốc do hai bên tự thoả thuận",
+        "Dùng định dạng người dùng cuối quen đọc",
+        "Tách riêng ba trường ngày, tháng và năm"
+      ],
+      "correct": 0,
+      "explanation": "Chuỗi ISO có múi giờ thì không cần đoán gì thêm, và thứ tự chữ của nó trùng thứ tự thời gian. Định dạng quen thuộc với người dùng lại chính là chỗ nhập nhằng nhất, vì cùng một chuỗi đọc được thành hai ngày khác nhau."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Trong bộ nhớ, dữ liệu của bạn có kiểu, có ràng buộc, có quan hệ. Ghi ra tệp là ép tất cả xuống một dãy ký tự - và mỗi định dạng chọn giữ lại một phần khác nhau."
+    },
+    {
+      "type": "heading",
+      "text": "Ba định dạng, ba đánh đổi"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Chọn theo thứ bạn cần giữ",
+      "subtitle": "Không có định dạng tốt nhất, chỉ có định dạng hợp với việc",
+      "concepts": [
+        {
+          "vi": "CSV",
+          "en": "comma-separated values",
+          "def": "Bảng phẳng, ai cũng mở được. Mất hết thông tin kiểu, và không mô tả được dữ liệu lồng nhau."
+        },
+        {
+          "vi": "JSON",
+          "en": "JavaScript Object Notation",
+          "def": "Giữ được cấu trúc lồng, đọc bằng mắt được. Chỉ có sáu kiểu, và không có ngày tháng."
+        },
+        {
+          "vi": "Nhị phân",
+          "en": "binary format",
+          "def": "Gọn nhất, nhanh nhất, giữ được kiểu chặt chẽ. Đổi lại phải có công cụ mới đọc được."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Chỗ hỏng nhiều nhất: đoán kiểu"
+    },
+    {
+      "type": "paragraph",
+      "text": "Vì CSV chỉ có văn bản, mọi bên đọc đều phải đoán kiểu từ hình dạng chuỗi. Phần mềm bảng tính đoán mạnh tay nhất: chuỗi trông như số thành số, chuỗi trông như ngày thành ngày, chuỗi trông như ký hiệu khoa học thành số mũ. Đoán xong nó lưu lại, và dữ liệu gốc biến mất."
+    },
+    {
+      "type": "callout",
+      "label": "Ba thứ luôn phải khai rõ",
+      "text": "Mã hoá là UTF-8, ký tự phân cách là gì, và ngày tháng theo quy ước nào. Ba dòng ghi chú này ngăn được phần lớn sự cố trao đổi tệp, và chúng tốn đúng một phút để viết ra."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Đọc bằng mắt được",
+        "text": "CSV và JSON mở bằng trình soạn thảo là thấy ngay, nên gỡ lỗi nhanh và trao đổi với người khác dễ. Đổi lại tệp lớn và phân tích chậm."
+      },
+      "right": {
+        "label": "Máy đọc nhanh",
+        "text": "Định dạng nhị phân nhỏ hơn nhiều lần và phân tích nhanh hơn hẳn, kèm cả lược đồ chặt chẽ. Đổi lại bạn không mở ra xem thử được."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Chọn định dạng là chọn thứ chấp nhận đánh mất. Biết trước mất gì thì bù lại được bằng tài liệu và quy ước.",
+        "Bài sau vào đúng thứ mà cả ba định dạng đều không mang nổi: thời gian, múi giờ, và vì sao một mốc thời gian có thể lệch nhau tới một ngày."
+      ]
+    }
+  ]
+}

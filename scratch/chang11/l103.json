@@ -1,0 +1,172 @@
+{
+  "id": 103,
+  "slug": "phu-thuoc-cheo-giua-cac-doi",
+  "title": "Phụ thuộc chéo: khi ranh giới có lỗ",
+  "subtitle": "Đội bạn chờ đội kia, đội kia chờ đội thứ ba - và không ai đang làm việc.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔀",
+  "track": "professional",
+  "whyItMatters": "Một đội bị chặn không chỉ mất thời gian của mình. Họ chuyển sang việc khác, mất ngữ cảnh, rồi quay lại - và tổng chi phí lớn hơn nhiều so với số ngày ghi trong lịch.",
+  "openingQuestion": "Đội bạn cần một thay đổi nhỏ từ đội khác và họ xếp nó vào quý sau. Cách xử lý nào tốt nhất?",
+  "openingOptions": [
+    "Đề nghị tự làm phần đó rồi để họ rà soát, nếu ranh giới cho phép",
+    "Chờ tới quý sau và chuyển sang làm việc khác trong lúc đó",
+    "Đưa vấn đề lên cấp trên để họ ép đội kia ưu tiên lại",
+    "Tự viết một bản sao của chức năng đó bên phía đội mình"
+  ],
+  "correctOption": 0,
+  "explanation": "Mô hình đóng góp có rà soát giữ được cả hai thứ: đội sở hữu vẫn kiểm soát chất lượng và hướng đi của phần mã họ chịu trách nhiệm, còn đội cần thay đổi không phải chờ theo lịch của người khác. Chờ một quý là chi phí thật và thường lớn hơn vẻ ngoài vì mất ngữ cảnh. Đưa lên cấp trên đôi khi cần nhưng nó tiêu vốn quan hệ và không mở rộng được. Tự viết bản sao thì tạo ra hai nguồn sự thật, và chúng sẽ lệch nhau.",
+  "diagram": [
+    {
+      "label": "Đội A cần thay đổi ở phần của đội B",
+      "arrow": true
+    },
+    {
+      "label": "Chờ lịch của B: mất một quý",
+      "arrow": true
+    },
+    {
+      "label": "A tự làm, B rà soát",
+      "arrow": true
+    },
+    {
+      "label": "B giữ quyền kiểm soát, A không bị chặn"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hàng đợi của đội nền tảng",
+    "description": "Đội nền tảng nội bộ thường trở thành nút thắt vì mọi đội khác đều cần thứ gì đó từ họ. Mô hình cho phép các đội tự đóng góp rồi nền tảng rà soát là cách phổ biến nhất để gỡ nút thắt ấy mà không mất tính nhất quán."
+  },
+  "keyTakeaways": [
+    "Chi phí bị chặn lớn hơn số ngày chờ, vì mất ngữ cảnh và phải quay lại.",
+    "Cho phép đóng góp có rà soát giữ được cả tốc độ lẫn quyền kiểm soát.",
+    "Nhân bản chức năng để né phụ thuộc tạo ra hai nguồn sự thật sẽ lệch nhau.",
+    "Phụ thuộc lặp lại ở cùng một chỗ là dấu hiệu ranh giới cần vẽ lại."
+  ],
+  "summary": {
+    "keyIdea": "Phụ thuộc chéo là chỗ ranh giới bị vượt qua, và cách rẻ nhất là làm cho việc vượt qua đó không cần chờ đợi.",
+    "formula": "Đóng góp có rà soát thay cho hàng đợi.",
+    "commonMistake": "Chờ trong im lặng, rồi cả hai bên cùng ngạc nhiên khi tới hạn."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê những lần đội bạn bị chặn trong quý vừa rồi và xem chúng có tập trung vào một ranh giới nào không. Nếu có, đó là chỗ cần bàn lại cách chia chứ không phải chỗ cần thêm một cuộc họp."
+  },
+  "practicePrompt": {
+    "question": "Vì sao tự viết bản sao chức năng của đội khác lại là lựa chọn tệ về lâu dài?",
+    "options": [
+      "Vì hai bản sẽ lệch nhau dần và không ai biết bản nào đúng",
+      "Vì nó vi phạm quy định về quyền sở hữu mã trong tổ chức",
+      "Vì việc tự viết lại tốn nhiều thời gian hơn là ngồi chờ đội kia",
+      "Vì mã nhân bản làm tăng dung lượng của sản phẩm cuối"
+    ],
+    "correct": 0,
+    "explanation": "Ngày đầu hai bản giống nhau, nhưng chỉ một bản được sửa khi quy tắc nghiệp vụ đổi. Từ đó hệ thống có hai câu trả lời cho cùng một câu hỏi, và những sai lệch kiểu đó rất khó lần ra vì cả hai đều trông hợp lý."
+  },
+  "quiz": [
+    {
+      "question": "Chi phí thật khi một đội bị chặn gồm những gì?",
+      "options": [
+        "Thời gian chờ cộng với chi phí mất ngữ cảnh khi chuyển việc",
+        "Chỉ đúng số ngày mà họ phải chờ đội kia hoàn thành",
+        "Chi phí lương của cả đội trong suốt khoảng thời gian bị chặn",
+        "Số tính năng bị hoãn lại sang quý tiếp theo"
+      ],
+      "correct": 0,
+      "explanation": "Chuyển sang việc khác rồi quay lại tốn thêm thời gian nạp lại toàn bộ bối cảnh, và phần đó không xuất hiện trên bất kỳ báo cáo tiến độ nào."
+    },
+    {
+      "question": "Mô hình đóng góp có rà soát giải quyết vấn đề gì?",
+      "options": [
+        "Đội cần thay đổi không phải chờ, đội sở hữu vẫn kiểm soát chất lượng",
+        "Giảm số lượng mã mà đội sở hữu phải bảo trì về sau",
+        "Cho phép hai đội cùng sở hữu một vùng mã ngang nhau",
+        "Loại bỏ nhu cầu phải có ranh giới rõ ràng giữa các đội"
+      ],
+      "correct": 0,
+      "explanation": "Nó tách quyền viết khỏi quyền phê duyệt. Nhờ đó nút thắt của đội sở hữu được gỡ mà tính nhất quán của vùng mã vẫn được giữ."
+    },
+    {
+      "question": "Vì sao nhân bản chức năng để né phụ thuộc lại nguy hiểm?",
+      "options": [
+        "Vì hai bản sẽ lệch nhau và hệ thống có hai câu trả lời khác nhau",
+        "Vì nó làm tăng đáng kể dung lượng của sản phẩm dựng ra cuối cùng",
+        "Vì đội sở hữu sẽ phản đối việc mã của họ bị sao chép",
+        "Vì mã nhân bản luôn có chất lượng thấp hơn bản gốc"
+      ],
+      "correct": 0,
+      "explanation": "Đây đúng vấn đề đã gặp ở chặng nền tảng dữ liệu với chuyện lặp dữ liệu: mỗi bản sao là một chỗ có thể lệch, và lệch thì không có gì báo."
+    },
+    {
+      "question": "Phụ thuộc lặp lại ở cùng một ranh giới nói lên điều gì?",
+      "options": [
+        "Ranh giới đó có thể đang được vẽ sai chỗ",
+        "Đội sở hữu phần đó đang thiếu người",
+        "Cần thêm một quy trình phê duyệt cho ranh giới ấy",
+        "Hai đội nên được sáp nhập thành một đội lớn"
+      ],
+      "correct": 0,
+      "explanation": "Ranh giới tồn tại để ít thay đổi phải đi qua. Nếu cùng một chỗ liên tục bị vượt qua thì cách chia đang cắt ngang hướng công việc thật, và giải pháp là vẽ lại chứ không phải thêm quy trình."
+    },
+    {
+      "question": "Khi bị chặn, việc đầu tiên nên làm là gì?",
+      "options": [
+        "Nói rõ tác động và thời hạn với đội kia thay vì chờ im lặng",
+        "Chuyển ngay sang một việc khác để không lãng phí thời gian chờ",
+        "Báo cáo lên cấp trên để được ưu tiên xử lý sớm",
+        "Bắt đầu tự viết phần mình cần trong lúc chờ đợi"
+      ],
+      "correct": 0,
+      "explanation": "Đội kia thường không biết việc của họ đang chặn ai và tốn bao nhiêu. Một câu nói rõ tác động thường đủ để họ xếp lại thứ tự, và nó rẻ hơn mọi phương án còn lại."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ranh giới vẽ đúng vẫn sẽ bị vượt qua - sản phẩm là một khối thống nhất nên không đội nào tách rời hẳn được. Câu hỏi là chuyện gì xảy ra ở những lần vượt qua ấy."
+    },
+    {
+      "type": "heading",
+      "text": "Chi phí thật của việc bị chặn"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trên lịch, việc bị chặn ba tuần trông như mất ba tuần. Thực tế còn thêm chi phí chuyển việc: người ta bỏ dở, nạp bối cảnh mới, rồi ba tuần sau phải nạp lại bối cảnh cũ. Với công việc phức tạp, riêng phần nạp lại đã tốn vài ngày, và nó không xuất hiện ở bất kỳ báo cáo nào."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Ba cách xử lý phụ thuộc",
+      "subtitle": "Xếp theo mức độ mở rộng được",
+      "concepts": [
+        {
+          "vi": "Xếp hàng chờ",
+          "en": "queue",
+          "def": "Đơn giản nhất và chậm nhất. Ổn khi hiếm; thành nút thắt khi nhiều đội cùng cần."
+        },
+        {
+          "vi": "Đóng góp có rà soát",
+          "en": "inner source",
+          "def": "Đội cần tự viết, đội sở hữu duyệt. Giữ được chất lượng mà không giữ lại tốc độ."
+        },
+        {
+          "vi": "Vẽ lại ranh giới",
+          "en": "reorganise",
+          "def": "Đắt nhất, dùng khi cùng một ranh giới bị vượt qua liên tục - dấu hiệu cách chia đang sai."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Đừng chờ trong im lặng",
+      "text": "Đội kia thường không biết việc của họ đang chặn ai. Một câu nói rõ ai bị chặn, tốn gì và tới hạn nào thường đủ để họ xếp lại thứ tự - và nó rẻ hơn nhiều so với việc leo thang lên cấp trên."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Phụ thuộc chéo không loại bỏ được, nhưng chi phí của nó thì giảm được rất nhiều bằng cách tổ chức lại chỗ vượt qua.",
+        "Bài sau nói về thứ giữ cho hai bên của một ranh giới hiểu nhau: hợp đồng giữa các đội."
+      ]
+    }
+  ]
+}

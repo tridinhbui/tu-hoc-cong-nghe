@@ -134,7 +134,7 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
                   <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
                     {t.communityLearning.justStudied}
                   </p>
-                  <p className="mt-0.5 line-clamp-2 text-[11px] font-semibold leading-snug text-stone-600 dark:text-stone-300">
+                  <p className="mt-0.5 line-clamp-2 text-[11px] font-semibold leading-snug text-ink-soft">
                     {lesson.title}
                   </p>
                 </div>

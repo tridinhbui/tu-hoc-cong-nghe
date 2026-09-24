@@ -1,0 +1,161 @@
+{
+  "id": 104,
+  "slug": "hop-dong-giua-cac-doi",
+  "title": "Hợp đồng giữa các đội: lời hứa phải kiểm chứng được",
+  "subtitle": "Tài liệu nói một đằng, mã chạy một nẻo - và không ai biết cho tới khi hỏng.",
+  "duration": "8 phút",
+  "difficulty": "Khó",
+  "emoji": "📜",
+  "track": "professional",
+  "whyItMatters": "Ở chặng mạng, API là hợp đồng với người bạn chưa gặp. Trong một tổ chức, bạn gặp họ hằng ngày - nhưng điều đó không làm hợp đồng bớt cần thiết, nó chỉ làm người ta tưởng là bớt cần.",
+  "openingQuestion": "Làm sao biết một đội khác vừa phá vỡ hợp đồng mà đội bạn đang dựa vào?",
+  "openingOptions": [
+    "Có kiểm thử hợp đồng chạy tự động ở cả hai phía",
+    "Đọc ghi chú phát hành của họ mỗi lần có bản mới",
+    "Tham dự các buổi họp kỹ thuật hằng tuần của họ",
+    "Chờ hệ thống báo lỗi rồi lần ngược về nguyên nhân"
+  ],
+  "correctOption": 0,
+  "explanation": "Kiểm thử hợp đồng là những bài kiểm chạy ở cả hai phía dựa trên cùng một mô tả: bên cung cấp chứng minh mình vẫn trả về đúng hình dạng đã hứa, bên tiêu thụ chứng minh mình chỉ dựa vào những gì được hứa. Nhờ vậy một thay đổi phá vỡ tương thích làm đỏ cổng tự động của chính đội gây ra nó, trước khi tới môi trường thật. Đọc ghi chú phát hành và dự họp đều phụ thuộc vào trí nhớ con người, còn chờ lỗi thì nghĩa là người dùng đã gặp sự cố trước bạn.",
+  "diagram": [
+    {
+      "label": "Hai đội thống nhất một mô tả hợp đồng",
+      "arrow": true
+    },
+    {
+      "label": "Bên cung cấp kiểm: mình vẫn trả đúng hình dạng",
+      "arrow": true
+    },
+    {
+      "label": "Bên tiêu thụ kiểm: mình chỉ dựa vào phần được hứa",
+      "arrow": true
+    },
+    {
+      "label": "Phá vỡ tương thích làm đỏ cổng trước khi ra thật"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Trường tuỳ chọn luôn có mặt",
+    "description": "Tài liệu ghi một trường là tuỳ chọn, nhưng thực tế nó luôn có giá trị, nên bên tiêu thụ viết mã dựa vào điều đó. Ngày trường ấy vắng mặt lần đầu, hệ thống bên kia hỏng - và về mặt hợp đồng thì không ai sai."
+  },
+  "keyTakeaways": [
+    "Hợp đồng chỉ có giá trị khi được kiểm tự động ở cả hai phía.",
+    "Bên tiêu thụ nên kiểm rằng mình chỉ dựa vào những gì được hứa.",
+    "Trong nội bộ, sự quen biết làm người ta bỏ qua hợp đồng - và đó là lúc nó cần nhất.",
+    "Thay đổi phá vỡ tương thích vẫn cần giai đoạn song song, kể cả giữa hai đội cùng công ty."
+  ],
+  "summary": {
+    "keyIdea": "Hợp đồng nội bộ cần được máy kiểm, vì trí nhớ và thiện chí không mở rộng theo quy mô.",
+    "formula": "Mô tả chung + kiểm thử hai phía.",
+    "commonMistake": "Tin rằng cùng công ty thì chỉ cần nhắn nhau một câu là đủ."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một dịch vụ nội bộ đội bạn đang dùng và tự hỏi: nếu họ đổi một trường vào sáng mai, bạn biết bằng cách nào? Nếu câu trả lời là chờ lỗi thì đó là chỗ cần một kiểm thử hợp đồng."
+  },
+  "practicePrompt": {
+    "question": "Đội bạn đang dựa vào một hành vi không được ghi trong tài liệu của đội khác. Nên làm gì?",
+    "options": [
+      "Nói với họ và đưa hành vi đó vào hợp đồng, hoặc ngừng dựa vào nó",
+      "Tiếp tục dùng nó vì nó đã hoạt động rất ổn định suốt thời gian qua",
+      "Ghi chú lại trong tài liệu nội bộ của đội mình để nhớ",
+      "Viết thêm mã phòng hờ cho trường hợp hành vi đó thay đổi"
+    ],
+    "correct": 0,
+    "explanation": "Hành vi không được hứa thì bên kia có toàn quyền đổi, và họ sẽ đổi mà không báo vì họ không biết ai đang dựa vào. Đưa nó vào hợp đồng biến giả định ngầm thành lời hứa được kiểm; nếu họ từ chối hứa thì bạn biết mình đang xây trên cát và cần đổi cách làm."
+  },
+  "quiz": [
+    {
+      "question": "Kiểm thử hợp đồng khác kiểm thử tích hợp thông thường ở chỗ nào?",
+      "options": [
+        "Nó chạy ở cả hai phía dựa trên cùng một mô tả đã thống nhất",
+        "Nó chỉ kiểm phần giao diện chứ không kiểm phần xử lý bên trong",
+        "Nó chạy trên môi trường thật thay vì môi trường thử nghiệm",
+        "Nó được viết bởi đội cung cấp chứ không phải đội tiêu thụ"
+      ],
+      "correct": 0,
+      "explanation": "Điểm mấu chốt là một mô tả chung mà cả hai bên cùng kiểm. Nhờ vậy bên gây ra thay đổi phá vỡ tương thích nhìn thấy cổng đỏ ngay trên máy của mình."
+    },
+    {
+      "question": "Vì sao bên tiêu thụ cũng cần kiểm thử hợp đồng?",
+      "options": [
+        "Để chứng minh mình chỉ dựa vào những gì đã được hứa",
+        "Để phát hiện sớm những lỗi nằm trong mã của bên cung cấp",
+        "Để đo thời gian phản hồi của dịch vụ bên kia",
+        "Để có bằng chứng khi cần khiếu nại về sự cố"
+      ],
+      "correct": 0,
+      "explanation": "Rủi ro lớn nhất không phải bên kia phá lời hứa mà là bạn đã dựa vào thứ họ chưa từng hứa. Kiểm ở phía tiêu thụ làm lộ ra những giả định ngầm ấy."
+    },
+    {
+      "question": "Vì sao hợp đồng nội bộ hay bị bỏ qua?",
+      "options": [
+        "Vì hai đội quen nhau nên tưởng nhắn một câu là đủ",
+        "Vì công cụ kiểm thử hợp đồng chưa phổ biến trong ngành",
+        "Vì hợp đồng chỉ áp dụng được cho các API công khai",
+        "Vì đội nội bộ thay đổi giao diện ít hơn đội bên ngoài"
+      ],
+      "correct": 0,
+      "explanation": "Sự quen biết tạo cảm giác an toàn giả. Nhưng người rời đội, người mới vào, và một câu nhắn trong tin nhắn ba tháng trước thì không ai tìm lại được."
+    },
+    {
+      "question": "Hành vi không ghi trong tài liệu nhưng vẫn ổn định thì nên coi là gì?",
+      "options": [
+        "Một giả định ngầm cần được đưa vào hợp đồng hoặc bỏ đi",
+        "Một phần của hợp đồng vì nó đã ổn định trong thời gian dài",
+        "Một lỗi của bên cung cấp cần được báo cáo để họ sửa",
+        "Một tính năng bổ sung có thể dùng tự do khi cần"
+      ],
+      "correct": 0,
+      "explanation": "Đây đúng vấn đề đã gặp ở bài về API: hợp đồng thực tế là thứ người ta dựa vào. Khác biệt là ở đây bạn ở phía dựa vào, nên bạn có trách nhiệm nói ra."
+    },
+    {
+      "question": "Thay đổi phá vỡ tương thích giữa hai đội nội bộ cần gì?",
+      "options": [
+        "Vẫn cần giai đoạn chạy song song như với bên ngoài",
+        "Chỉ cần một thông báo trước cho đội bị ảnh hưởng",
+        "Chỉ cần cả hai đội triển khai vào cùng một thời điểm",
+        "Không cần gì thêm nếu hai đội thuộc cùng bộ phận"
+      ],
+      "correct": 0,
+      "explanation": "Triển khai đồng thời nghe hợp lý nhưng nó buộc hai lịch phải khớp nhau tuyệt đối và không có đường lui. Giai đoạn song song vẫn là cách rẻ nhất, kể cả khi hai đội ngồi cạnh nhau."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ở chặng mạng, API là hợp đồng với những người bạn chưa gặp. Trong tổ chức thì bạn gặp họ hằng ngày - và chính điều đó khiến người ta nghĩ hợp đồng là chuyện thừa."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao quen biết không thay được hợp đồng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Một câu nhắn ba tháng trước không ai tìm lại được. Người nhắn đã chuyển đội. Người mới vào không biết có thoả thuận đó. Và ngay cả khi mọi người còn nhớ, không ai kiểm được rằng mã hiện tại vẫn đúng với thứ đã nói. Hợp đồng chỉ bắt đầu có giá trị khi có một cỗ máy kiểm nó ở mỗi lần thay đổi."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Phía cung cấp kiểm",
+        "text": "Mình vẫn trả về đúng hình dạng đã hứa. Bắt được lúc vô tình đổi tên trường hay đổi kiểu dữ liệu."
+      },
+      "right": {
+        "label": "Phía tiêu thụ kiểm",
+        "text": "Mình chỉ dựa vào những gì được hứa. Bắt được những giả định ngầm - phần rủi ro mà bên kia hoàn toàn không biết là tồn tại."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Thứ chưa hứa thì có quyền đổi",
+      "text": "Nếu đội bạn dựa vào một hành vi không nằm trong hợp đồng, bên kia sẽ đổi nó vào một ngày nào đó mà không thấy mình sai - vì họ đúng là không sai. Nói ra để nó thành lời hứa, hoặc ngừng dựa vào nó."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Hợp đồng giữa hai đội cùng công ty cần được máy kiểm đúng như hợp đồng với người ngoài. Sự quen biết không mở rộng theo quy mô.",
+        "Bài sau nói về một quyết định định hình mọi thứ trong chặng này: mã của các đội nằm chung một kho hay tách ra."
+      ]
+    }
+  ]
+}

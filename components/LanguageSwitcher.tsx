@@ -17,7 +17,7 @@ export default function LanguageSwitcher({ compact = false }: { compact?: boolea
     <div
       role="group"
       aria-label={t.language.label}
-      className="inline-flex items-center rounded-xl border border-stone-200 dark:border-stone-700 bg-surface p-0.5"
+      className="inline-flex items-center rounded-xl border border-line-mid bg-surface p-0.5"
     >
       {LOCALES.map((code) => {
         const isActive = code === locale;
@@ -38,7 +38,7 @@ export default function LanguageSwitcher({ compact = false }: { compact?: boolea
             className={`cursor-pointer rounded-lg px-2 py-1 text-[11px] font-extrabold uppercase tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 ${
               isActive
                 ? "bg-white dark:bg-stone-700 text-ink shadow-2xs"
-                : "text-ink-muted hover:text-stone-800 dark:hover:text-stone-200"
+                : "text-ink-muted hover:text-ink-heading"
             }`}
           >
             {compact ? LOCALE_SHORT_LABELS[code] : LOCALE_LABELS[code]}

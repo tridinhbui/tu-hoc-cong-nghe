@@ -1,0 +1,162 @@
+{
+  "id": 85,
+  "slug": "thu-nghiem-a-b",
+  "title": "Thử nghiệm A/B: so với chính mình, cùng thời điểm",
+  "subtitle": "So tuần này với tuần trước không phải thử nghiệm - đó là so với thời tiết.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🔬",
+  "track": "professional",
+  "whyItMatters": "Phần lớn thay đổi được phát hành với niềm tin rằng nó tốt hơn, và không ai kiểm tra. Thử nghiệm có đối chứng là cách duy nhất tách tác động của thay đổi khỏi mọi thứ khác đang diễn ra cùng lúc.",
+  "openingQuestion": "Vì sao so tỷ lệ chuyển đổi tuần này với tuần trước không phải là một thử nghiệm hợp lệ?",
+  "openingOptions": [
+    "Vì hai tuần khác nhau ở rất nhiều thứ ngoài thay đổi của bạn",
+    "Vì một tuần là khoảng thời gian quá ngắn để kết luận",
+    "Vì tỷ lệ chuyển đổi vốn vẫn luôn dao động theo chu kỳ hằng tuần",
+    "Vì cần ít nhất ba tuần dữ liệu mới đủ tin cậy"
+  ],
+  "correctOption": 0,
+  "explanation": "Giữa hai tuần có ngày lễ, chiến dịch quảng cáo, tin tức, thời tiết, một đợt triển khai khác của chính đội bạn, và hàng chục thứ không ai ghi lại. Khi tỷ lệ đổi, bạn không có cách nào tách phần do thay đổi của mình khỏi phần do những thứ kia. Thử nghiệm có đối chứng giải bài toán đó bằng cách chia người dùng ngẫu nhiên thành hai nhóm chạy cùng lúc: mọi yếu tố bên ngoài tác động lên cả hai nhóm như nhau, nên khác biệt còn lại chỉ có thể đến từ thay đổi bạn đang thử.",
+  "diagram": [
+    {
+      "label": "Chia người dùng ngẫu nhiên thành hai nhóm",
+      "arrow": true
+    },
+    {
+      "label": "Hai nhóm chạy cùng thời điểm",
+      "arrow": true
+    },
+    {
+      "label": "Yếu tố bên ngoài tác động lên cả hai như nhau",
+      "arrow": true
+    },
+    {
+      "label": "Khác biệt còn lại là do thay đổi của bạn"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Chiến dịch quảng cáo trùng ngày",
+    "description": "Một đội phát hành thay đổi vào thứ hai và thấy doanh thu tăng hai mươi phần trăm. Đội tiếp thị cũng bật một chiến dịch lớn đúng thứ hai đó. Không có nhóm đối chứng thì hai nguyên nhân ấy không tách ra được, và cả hai đội đều tin rằng công là của mình."
+  },
+  "keyTakeaways": [
+    "Chia ngẫu nhiên và chạy song song là thứ tách tác động của thay đổi khỏi nhiễu bên ngoài.",
+    "Phải quyết định chỉ số và cỡ mẫu trước khi bắt đầu, không phải sau khi nhìn kết quả.",
+    "Chạy tới đủ mẫu rồi mới đọc, đừng dừng ngay khi thấy con số đẹp.",
+    "Không phải thay đổi nào cũng cần thử nghiệm - việc sửa lỗi rõ ràng thì cứ làm."
+  ],
+  "summary": {
+    "keyIdea": "Thử nghiệm có đối chứng là cách duy nhất biết thay đổi của bạn gây ra kết quả, chứ không chỉ đi cùng nó.",
+    "formula": "Chia ngẫu nhiên, chạy cùng lúc, quyết định trước, đọc sau khi đủ mẫu.",
+    "commonMistake": "Dừng thử nghiệm ngay lúc con số đang đẹp và gọi đó là kết quả."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy thay đổi lớn gần nhất đội bạn phát hành và hỏi: chúng ta biết nó có tác dụng bằng cách nào? Nếu câu trả lời là số liệu tăng sau khi phát hành thì đó là niềm tin, không phải bằng chứng."
+  },
+  "practicePrompt": {
+    "question": "Thử nghiệm chạy được hai ngày và nhóm B đang hơn 15%. Có nên kết luận và phát hành ngay không?",
+    "options": [
+      "Không, vì dừng lúc con số đẹp làm tăng mạnh khả năng kết luận sai",
+      "Có, vì khác biệt 15% là đủ lớn để không cần chờ thêm",
+      "Có, nếu số người dùng trong hai ngày đã vượt một nghìn",
+      "Không, nhưng vẫn có thể phát hành cho một nửa số người dùng trước"
+    ],
+    "correct": 0,
+    "explanation": "Khi mẫu còn nhỏ, khác biệt dao động rất mạnh và có lúc lên rất cao chỉ do ngẫu nhiên. Nếu bạn cho phép mình dừng bất cứ lúc nào thấy đẹp thì gần như thử nghiệm nào cũng sẽ cho một khoảnh khắc đẹp - đó là lý do cỡ mẫu phải được chốt trước khi bắt đầu."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao hai nhóm phải chạy cùng thời điểm?",
+      "options": [
+        "Để mọi yếu tố bên ngoài tác động lên cả hai như nhau",
+        "Để rút ngắn thời gian cần thiết cho thử nghiệm",
+        "Để số người dùng trong hai nhóm luôn bằng nhau",
+        "Để hệ thống không phải lưu trữ hai phiên bản cùng một lúc"
+      ],
+      "correct": 0,
+      "explanation": "Ngày lễ, chiến dịch quảng cáo và tin tức đều chạm vào cả hai nhóm khi chúng song song, nên chúng bị khử đi khi so sánh. Chạy nối tiếp thì mọi thứ đó lẫn vào kết quả."
+    },
+    {
+      "question": "Vì sao phải chốt chỉ số và cỡ mẫu trước khi bắt đầu?",
+      "options": [
+        "Vì nhìn kết quả rồi mới chọn thì gần như luôn tìm ra thứ trông có ý nghĩa",
+        "Vì công cụ thử nghiệm yêu cầu khai báo trước khi chạy",
+        "Vì thay đổi chỉ số giữa chừng sẽ làm mất dữ liệu đã thu",
+        "Vì cỡ mẫu quyết định chi phí hạ tầng cần chuẩn bị"
+      ],
+      "correct": 0,
+      "explanation": "Đo đủ nhiều chỉ số thì sẽ có cái nào đó khác biệt chỉ do ngẫu nhiên. Chốt trước một chỉ số chính là cách ngăn mình đi tìm câu chuyện phù hợp với dữ liệu sau khi đã thấy dữ liệu."
+    },
+    {
+      "question": "Vì sao chia nhóm phải ngẫu nhiên?",
+      "options": [
+        "Để hai nhóm giống nhau ở cả những đặc điểm bạn không nghĩ tới",
+        "Để mỗi nhóm có số người dùng đúng bằng một nửa tổng số",
+        "Để người dùng hoàn toàn không nhận ra mình đang tham gia thử nghiệm",
+        "Để kết quả có thể tái lập lại được ở lần thử nghiệm sau"
+      ],
+      "correct": 0,
+      "explanation": "Chia theo bất kỳ tiêu chí nào có sẵn - thiết bị, khu vực, thời điểm đăng ký - đều tạo ra hai nhóm khác nhau sẵn về những đặc điểm khác. Ngẫu nhiên là cách cân bằng cả những thứ bạn chưa biết là tồn tại."
+    },
+    {
+      "question": "Khi nào không cần chạy thử nghiệm?",
+      "options": [
+        "Khi sửa một lỗi rõ ràng hoặc thay đổi quá nhỏ để đo được",
+        "Khi đội đã có kinh nghiệm với loại thay đổi tương tự",
+        "Khi thay đổi đã được người quản lý sản phẩm phê duyệt",
+        "Khi số lượng người dùng của sản phẩm vẫn còn tương đối lớn"
+      ],
+      "correct": 0,
+      "explanation": "Thử nghiệm tốn thời gian và cần đủ lưu lượng, nên nó dành cho những quyết định thật sự chưa rõ. Sửa một nút bị vỡ trên điện thoại thì cứ sửa, không cần chứng minh."
+    },
+    {
+      "question": "Điều gì xảy ra nếu bạn liên tục kiểm tra kết quả và dừng khi thấy đẹp?",
+      "options": [
+        "Khả năng kết luận sai tăng lên rất mạnh",
+        "Thời gian thử nghiệm được rút ngắn mà không mất gì",
+        "Kết quả chính xác hơn vì có nhiều lần đo hơn",
+        "Cỡ mẫu cần thiết giảm xuống theo số lần kiểm tra"
+      ],
+      "correct": 0,
+      "explanation": "Khác biệt dao động mạnh khi mẫu nhỏ, nên nhìn đủ nhiều lần thì lúc nào cũng có một khoảnh khắc trông thuyết phục. Cho phép mình dừng ở đó là tự tạo ra kết quả mình muốn."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bạn phát hành một thay đổi và số liệu tăng. Câu hỏi khó là: nó tăng nhờ thay đổi của bạn, hay nhờ một trong hàng chục thứ khác cũng đổi trong tuần đó?"
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao trước và sau không đủ"
+    },
+    {
+      "type": "paragraph",
+      "text": "Giữa tuần này và tuần trước có ngày lễ, có chiến dịch quảng cáo, có tin tức ngành, có một đợt triển khai khác của chính đội bạn. Khi con số đổi, không ai tách được phần nào thuộc về ai - và mọi đội liên quan đều sẽ nhận công về mình một cách hoàn toàn chân thành."
+    },
+    {
+      "type": "callout",
+      "label": "Nhóm đối chứng khử nhiễu",
+      "text": "Hai nhóm chạy song song thì mọi yếu tố bên ngoài chạm vào cả hai như nhau. Ngày lễ ảnh hưởng cả A lẫn B, chiến dịch quảng cáo cũng vậy. Khác biệt còn lại giữa hai nhóm chỉ có thể đến từ thứ duy nhất khác nhau: thay đổi bạn đang thử."
+    },
+    {
+      "type": "heading",
+      "text": "Ba quyết định phải chốt trước"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chỉ số chính: đúng một, chọn trước, và không đổi giữa chừng.",
+        "Cỡ mẫu: chạy tới khi đủ rồi mới đọc kết quả, không dừng sớm vì con số đẹp.",
+        "Ngưỡng ra quyết định: khác biệt bao nhiêu thì đáng phát hành, kể cả khi nó có ý nghĩa thống kê."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Thử nghiệm có đối chứng là cách rẻ nhất để biết mình đúng, và cũng là cách rẻ nhất để biết mình sai trước khi phát hành cho tất cả.",
+        "Bài sau nói về con số quyết định thử nghiệm cần chạy bao lâu, và vì sao nó thường lớn hơn nhiều so với trực giác."
+      ]
+    }
+  ]
+}

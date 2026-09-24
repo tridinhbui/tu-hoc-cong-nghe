@@ -39,14 +39,14 @@ export default function MessagesCombinedWrapper({
   return (
     <div className="space-y-6">
       {/* Top Section Switcher */}
-      <div className="flex items-center gap-3 border-b border-stone-200 dark:border-stone-800 pb-3">
+      <div className="flex items-center gap-3 border-b border-line pb-3">
         <button
           type="button"
           onClick={() => setSection("messages")}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "messages"
-              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
-              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+              ? "bg-surface-invert text-ink-invert shadow-sm"
+              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
           }`}
         >
           <MessageSquare className="w-4 h-4" />
@@ -58,8 +58,8 @@ export default function MessagesCombinedWrapper({
           onClick={() => setSection("announcements")}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "announcements"
-              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
-              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+              ? "bg-surface-invert text-ink-invert shadow-sm"
+              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
           }`}
         >
           <Megaphone className="w-4 h-4 text-amber-500" />

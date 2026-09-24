@@ -87,14 +87,14 @@ export default async function GhiChuPage() {
         <div className="mx-auto w-full max-w-[1500px] xl:flex-1 xl:min-h-0 xl:rounded-[28px] xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:shadow-sm xl:p-3.5 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5">
           <div className="flex items-center justify-between gap-3 mb-5 xl:mb-0 xl:col-span-12">
             <div className="min-w-0">
-              <h1 className="text-xl font-bold text-stone-900 dark:text-stone-100">{t.finalTwo.ghiChuPage.title}</h1>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+              <h1 className="text-xl font-bold text-ink">{t.finalTwo.ghiChuPage.title}</h1>
+              <p className="text-xs text-ink-muted mt-0.5">
                 {t.finalTwo.ghiChuPage.subtitle}
               </p>
             </div>
             <Link
               href="/dashboard"
-              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg px-3 py-2 transition-colors"
+              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink hover:bg-surface-raised rounded-lg px-3 py-2 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               {t.finalTwo.ghiChuPage.backLabel}
@@ -104,7 +104,7 @@ export default async function GhiChuPage() {
           <section className="min-w-0 mb-8 xl:mb-0 xl:col-span-7 xl:min-h-0 xl:overflow-y-auto xl:rounded-[22px] xl:border xl:border-stone-200/80 xl:dark:border-stone-800 xl:bg-white xl:dark:bg-stone-900 xl:p-3.5">
             <NotesOverviewClient lessonsById={lessonsById} userId={user.id} initialNotes={initialNotes} embedded />
 
-            <div className="mt-6 pt-5 border-t border-stone-200 dark:border-stone-800">
+            <div className="mt-6 pt-5 border-t border-line">
               <HighlightNotebook highlights={initialHighlights} lessonsById={lessonsById} />
             </div>
           </section>

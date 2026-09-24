@@ -1,0 +1,176 @@
+{
+  "id": 79,
+  "slug": "tai-lieu-va-ban-giao-hieu-biet",
+  "title": "Tài liệu: viết cho người sáu tháng sau, thường là chính bạn",
+  "subtitle": "Mã nói nó làm gì; chỉ có tài liệu nói vì sao nó được làm như vậy.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📝",
+  "track": "professional",
+  "whyItMatters": "Hiểu biết nằm trong đầu vài người là loại rủi ro không có bảng theo dõi nào bắt được. Nó chỉ lộ ra khi người đó nghỉ phép đúng lúc có sự cố, hoặc rời công ty mang theo lý do của những quyết định quan trọng.",
+  "openingQuestion": "Loại thông tin nào cần được viết ra vì mã nguồn không tự nói được?",
+  "openingOptions": [
+    "Vì sao đã chọn cách này thay vì những cách khác đã cân nhắc",
+    "Hàm này nhận vào những tham số gì và trả về giá trị kiểu nào",
+    "Thứ tự các bước mà đoạn mã thực hiện khi được gọi",
+    "Những hàm nào đang gọi tới đoạn mã đang xét tới"
+  ],
+  "correctOption": 0,
+  "explanation": "Ba thứ còn lại đều đọc được từ chính mã, và công cụ còn đọc nhanh hơn người. Thứ mã không bao giờ nói được là lý do: những phương án đã bị loại, ràng buộc lúc đó, và điều gì sẽ khiến quyết định này cần xem lại. Không có lý do được ghi lại thì người đọc sau chỉ có hai lựa chọn tệ - giữ nguyên vì sợ chạm vào, hoặc sửa lại theo cách đã từng bị loại vì một nguyên nhân họ không biết.",
+  "diagram": [
+    {
+      "label": "Mã nói: nó làm gì",
+      "arrow": true
+    },
+    {
+      "label": "Kiểm thử nói: nó phải làm đúng những gì",
+      "arrow": true
+    },
+    {
+      "label": "Tài liệu nói: vì sao lại làm như vậy",
+      "arrow": true
+    },
+    {
+      "label": "Thiếu vế cuối thì người sau chỉ còn cách đoán"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đoạn mã không ai dám xoá",
+    "description": "Mọi kho mã lâu năm đều có một đoạn kỳ lạ kèm ghi chú đừng xoá. Không ai nhớ vì sao, nên nó tồn tại mãi. Một dòng giải thích lúc viết đã đủ để người sau biết điều kiện nào cho phép gỡ nó đi."
+  },
+  "keyTakeaways": [
+    "Mã và kiểm thử nói cái gì và như thế nào; chỉ tài liệu nói vì sao.",
+    "Tài liệu nằm càng gần mã càng dễ được cập nhật cùng mã.",
+    "Ghi lại cả những phương án đã bị loại và lý do loại.",
+    "Tài liệu sai còn hại hơn không có, vì người đọc tin vào nó."
+  ],
+  "summary": {
+    "keyIdea": "Viết lại lý do là cách duy nhất để quyết định hôm nay còn nghĩa với người đọc sáu tháng sau.",
+    "formula": "Mã cho cái gì, tài liệu cho vì sao.",
+    "commonMistake": "Viết tài liệu mô tả lại những gì mã đã nói rõ, rồi nó lỗi thời ngay tuần sau."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm trong mã của bạn một đoạn trông kỳ lạ mà bạn biết lý do. Viết một hoặc hai câu ngay cạnh nó nói vì sao nó tồn tại và điều kiện nào cho phép gỡ đi."
+  },
+  "practicePrompt": {
+    "question": "Bạn phát hiện tài liệu mô tả một quy trình đã thay đổi từ nửa năm trước. Nên làm gì?",
+    "options": [
+      "Sửa hoặc xoá ngay, vì tài liệu sai còn tệ hơn không có tài liệu",
+      "Giữ nguyên và thêm ghi chú rằng nội dung có thể đã cũ",
+      "Để lại vì nó vẫn ghi lại được cách làm cũ để tham khảo",
+      "Chuyển nó vào kho lưu trữ rồi viết hẳn một tài liệu mới ở bên cạnh"
+    ],
+    "correct": 0,
+    "explanation": "Người đọc tin vào tài liệu và hành động theo nó, nên một trang sai chủ động dẫn họ đi sai đường - tệ hơn nhiều so với việc không có gì và họ phải đi hỏi. Nếu cách làm cũ đáng lưu thì đánh dấu rõ đó là lịch sử, đừng để nó nằm ở chỗ người ta tra cứu hằng ngày."
+  },
+  "quiz": [
+    {
+      "question": "Thông tin nào mã nguồn không tự nói được?",
+      "options": [
+        "Lý do chọn cách này thay vì các phương án khác",
+        "Các bước mà đoạn mã thực hiện khi được gọi",
+        "Kiểu dữ liệu của tham số và giá trị trả về",
+        "Những đoạn mã khác đang phụ thuộc vào nó"
+      ],
+      "correct": 0,
+      "explanation": "Mã là bản ghi đầy đủ về cái gì và như thế nào, còn vì sao thì nằm ngoài nó. Đó cũng là phần mất đi nhanh nhất khi người ra quyết định rời đội."
+    },
+    {
+      "question": "Vì sao tài liệu nên nằm gần mã?",
+      "options": [
+        "Vì càng xa mã thì càng ít khả năng được cập nhật cùng mã",
+        "Vì công cụ tìm kiếm chỉ tìm được tài liệu trong kho mã",
+        "Vì tài liệu nằm ngoài kho mã thì không phân quyền truy cập được",
+        "Vì đặt gần mã giúp giảm dung lượng lưu trữ cần dùng"
+      ],
+      "correct": 0,
+      "explanation": "Tài liệu ở một hệ thống riêng thường bị quên trong lúc sửa mã, rồi lệch dần cho tới khi không ai tin nữa. Nằm ngay cạnh mã thì nó xuất hiện trong buổi rà soát cùng thay đổi."
+    },
+    {
+      "question": "Vì sao tài liệu sai còn hại hơn không có tài liệu?",
+      "options": [
+        "Vì người đọc tin vào nó và hành động theo hướng sai",
+        "Vì nó chiếm chỗ của tài liệu đúng lẽ ra phải được viết",
+        "Vì việc sửa tài liệu sai tốn công hơn viết mới từ đầu",
+        "Vì nó khiến người mới đánh giá thấp chất lượng dự án"
+      ],
+      "correct": 0,
+      "explanation": "Không có tài liệu thì người ta biết mình phải đi hỏi hoặc đọc mã. Có tài liệu sai thì họ tin và làm theo, và phát hiện ra vấn đề ở một chỗ xa nguyên nhân."
+    },
+    {
+      "question": "Điều gì nên được ghi lại khi ra một quyết định kỹ thuật lớn?",
+      "options": [
+        "Bối cảnh, các phương án đã cân nhắc và lý do chọn phương án cuối",
+        "Danh sách những người đã tham gia vào cuộc thảo luận",
+        "Thời gian dự kiến để hoàn thành xong việc triển khai quyết định",
+        "Các đoạn mã sẽ phải thay đổi theo quyết định đó"
+      ],
+      "correct": 0,
+      "explanation": "Phần giá trị nhất là những phương án bị loại và lý do loại, vì đó chính là thứ người sau sẽ đề xuất lại nếu không biết. Ai tham gia và mất bao lâu thì gần như không ai cần tới."
+    },
+    {
+      "question": "Rủi ro của việc hiểu biết chỉ nằm trong đầu vài người là gì?",
+      "options": [
+        "Nó biến mất khi họ nghỉ phép hoặc rời công ty",
+        "Nó khiến những người đó không được thăng tiến",
+        "Nó làm chậm quá trình tuyển dụng thành viên mới",
+        "Nó khiến đội phụ thuộc vào công cụ giao tiếp nội bộ"
+      ],
+      "correct": 0,
+      "explanation": "Đây là loại rủi ro không có chỉ số nào cảnh báo, và nó lộ ra đúng vào lúc tệ nhất: khi có sự cố mà người duy nhất hiểu vùng đó đang không liên lạc được."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mã là bản ghi chính xác tuyệt đối về việc hệ thống làm gì. Nó không nói một chữ nào về việc vì sao lại làm như vậy - và đó thường là câu hỏi duy nhất người đọc sau cần trả lời."
+    },
+    {
+      "type": "heading",
+      "text": "Ba tầng thông tin"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Mỗi thứ trả lời một câu",
+      "subtitle": "Chỉ tầng thứ ba là không tự sinh ra được",
+      "concepts": [
+        {
+          "vi": "Mã",
+          "en": "code",
+          "def": "Hệ thống làm gì và làm thế nào. Luôn chính xác vì nó chính là thứ đang chạy."
+        },
+        {
+          "vi": "Kiểm thử",
+          "en": "tests",
+          "def": "Hệ thống phải làm đúng những gì. Là tài liệu duy nhất tự báo khi nó trở nên sai."
+        },
+        {
+          "vi": "Tài liệu",
+          "en": "docs",
+          "def": "Vì sao lại như vậy: bối cảnh, phương án đã loại, điều kiện để xem xét lại."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Viết ít, viết đúng chỗ"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tài liệu mô tả lại những gì mã đã nói rõ sẽ lỗi thời trong một tuần và không ai đọc. Thứ đáng viết là phần không suy ra được: vì sao chọn cách này, đã thử cách nào và hỏng ra sao, ràng buộc lúc đó là gì. Đặt nó ngay cạnh mã thì nó được rà soát cùng thay đổi, thay vì lệch dần ở một hệ thống riêng."
+    },
+    {
+      "type": "callout",
+      "label": "Đừng xoá, cũng đừng để sai",
+      "text": "Một trang tài liệu lỗi thời chủ động dẫn người đọc đi sai đường, và họ tin nó vì nó nằm ở chỗ đáng tin. Sửa hoặc đánh dấu rõ là lịch sử - đừng để nó nằm lẫn với những trang đang đúng."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Người đọc mã của bạn sáu tháng nữa nhiều khả năng là chính bạn, và bạn sẽ không nhớ vì sao.",
+        "Bài sau khép lại chặng: nhìn lại toàn bộ đường đi từ một dòng mã tới thứ đang phục vụ người dùng."
+      ]
+    }
+  ]
+}

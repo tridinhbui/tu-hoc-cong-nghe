@@ -131,10 +131,10 @@ export default function TechCardCollection({ userId }: { userId: string }) {
               {/* Locked/Unlocked Content */}
               {!isUnlocked ? (
                 <div className="flex flex-col items-center justify-center my-10 py-4 text-center">
-                  <div className="w-12 h-12 bg-stone-200 dark:bg-stone-800 rounded-full flex items-center justify-center text-stone-400 mb-3">
+                  <div className="w-12 h-12 bg-surface-sunken rounded-full flex items-center justify-center text-stone-400 mb-3">
                     <Lock className="w-5 h-5" />
                   </div>
-                  <h4 className="font-bold text-stone-700 dark:text-stone-400">{card.name}</h4>
+                  <h4 className="font-bold text-ink-body">{card.name}</h4>
                   <p className="text-[10px] text-ink-faint mt-1">
                     {t.cardCollection.lockedHint}
                   </p>
@@ -161,7 +161,7 @@ export default function TechCardCollection({ userId }: { userId: string }) {
                     <span className="text-[9px] uppercase font-bold text-stone-400 block mb-1">{t.cardCollection.metricsLabel}</span>
                     <div className="flex flex-wrap gap-1">
                       {card.metrics.map((m, i) => (
-                        <span key={i} className="text-[9px] bg-surface-raised text-stone-600 dark:text-stone-400 px-2 py-0.5 rounded">
+                        <span key={i} className="text-[9px] bg-surface-raised text-ink-soft px-2 py-0.5 rounded">
                           {m}
                         </span>
                       ))}

@@ -1,0 +1,165 @@
+{
+  "id": 90,
+  "slug": "phan-hoi-dinh-tinh",
+  "title": "Nói chuyện với người dùng: thứ số liệu không nói được",
+  "subtitle": "Số liệu cho biết cái gì đang xảy ra; chỉ con người mới nói được vì sao.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🗣️",
+  "track": "professional",
+  "whyItMatters": "Phễu chỉ ra người dùng rơi ở bước ba, nhưng không nói vì sao. Đoán lý do rồi xây một giải pháp cho cái đoán ấy là cách phổ biến nhất để bỏ ra một tháng và không cải thiện được gì.",
+  "openingQuestion": "Số liệu cho thấy người dùng rơi nhiều ở bước nhập địa chỉ. Bước tiếp theo nên là gì?",
+  "openingOptions": [
+    "Xem vài phiên làm việc thật hoặc hỏi người dùng để biết vì sao",
+    "Thiết kế lại bước đó theo cách mà đội thấy hợp lý hơn",
+    "So sánh cách các sản phẩm khác thiết kế bước tương tự",
+    "Chia bước đó thành hai bước nhỏ hơn cho đỡ nặng"
+  ],
+  "correctOption": 0,
+  "explanation": "Số liệu đã làm xong phần việc của nó: khoanh vùng chỗ có vấn đề. Nhưng nó không phân biệt được giữa trường bắt buộc gây khó, bàn phím sai kiểu trên điện thoại, thông báo lỗi khó hiểu, hay đơn giản là người dùng không muốn cho địa chỉ ở bước này. Bốn nguyên nhân ấy dẫn tới bốn giải pháp hoàn toàn khác nhau. Xem năm phiên làm việc thật hoặc hỏi năm người dùng thường đủ để loại bỏ ba trong bốn, và nó tốn một buổi chiều thay vì một tháng.",
+  "diagram": [
+    {
+      "label": "Số liệu: rơi nhiều ở bước ba",
+      "arrow": true
+    },
+    {
+      "label": "Xem phiên thật hoặc hỏi người dùng",
+      "arrow": true
+    },
+    {
+      "label": "Biết được vì sao họ rơi",
+      "arrow": true
+    },
+    {
+      "label": "Giải pháp nhắm đúng nguyên nhân"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Năm người dùng là đủ",
+    "description": "Với những vấn đề dùng được hay không, xem năm người thao tác thường lộ ra phần lớn trở ngại lớn. Không phải vì năm là con số kỳ diệu, mà vì những trở ngại nghiêm trọng thường chạm vào gần như mọi người."
+  },
+  "keyTakeaways": [
+    "Số liệu trả lời cái gì và ở đâu; phản hồi định tính trả lời vì sao.",
+    "Hỏi về hành vi đã xảy ra, đừng hỏi người dùng dự đoán hành vi tương lai.",
+    "Một vài phiên quan sát đủ để loại phần lớn giả thuyết sai.",
+    "Người nói to nhất không đại diện cho đa số người dùng im lặng."
+  ],
+  "summary": {
+    "keyIdea": "Định lượng khoanh vùng vấn đề, định tính giải thích nó - cần cả hai mới ra được giải pháp đúng.",
+    "formula": "Số liệu chỉ chỗ, con người chỉ lý do.",
+    "commonMistake": "Đoán nguyên nhân rồi xây giải pháp cho cái đoán ấy."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn chỗ rơi lớn nhất trong sản phẩm và xem năm bản ghi phiên làm việc đi qua đó. Bạn sẽ thấy thứ mà không biểu đồ nào cho thấy được."
+  },
+  "practicePrompt": {
+    "question": "Bạn hỏi người dùng: bạn có dùng tính năng này nếu chúng tôi làm nó không? Vì sao câu hỏi này yếu?",
+    "options": [
+      "Vì người ta dự đoán hành vi tương lai của mình rất kém và thường trả lời cho lịch sự",
+      "Vì câu hỏi quá dài nên người dùng không đọc hết trước khi trả lời",
+      "Vì cần hỏi ít nhất ba mươi người thì câu trả lời mới đáng tin",
+      "Vì nên hỏi qua biểu mẫu thay vì hỏi trực tiếp bằng lời"
+    ],
+    "correct": 0,
+    "explanation": "Người ta gần như luôn nói có với một tính năng nghe hợp lý, và tỷ lệ thật sự dùng khi nó ra đời thì thấp hơn nhiều. Câu hỏi mạnh hơn là về quá khứ: lần gần nhất bạn gặp vấn đề này là khi nào, và lúc đó bạn đã làm gì?"
+  },
+  "quiz": [
+    {
+      "question": "Phản hồi định tính bổ sung điều gì cho số liệu?",
+      "options": [
+        "Lý do đằng sau hành vi mà số liệu đã đo được",
+        "Độ chính xác cao hơn cho các con số đã thu thập",
+        "Khả năng dự báo số liệu của những tháng tiếp theo",
+        "Bằng chứng để thuyết phục ban lãnh đạo cấp ngân sách"
+      ],
+      "correct": 0,
+      "explanation": "Hai loại thông tin trả lời hai câu khác nhau và không thay nhau được. Số liệu nói bảy mươi phần trăm rơi ở bước ba; chỉ có người dùng nói được vì sao họ rơi."
+    },
+    {
+      "question": "Câu hỏi nào cho câu trả lời đáng tin hơn?",
+      "options": [
+        "Lần gần nhất bạn gặp việc này là khi nào và bạn đã làm gì?",
+        "Bạn có thấy tính năng này hữu ích không?",
+        "Bạn sẽ dùng tính năng này nếu chúng tôi làm nó chứ?",
+        "Bạn đánh giá sản phẩm của chúng tôi được mấy điểm trên mười?"
+      ],
+      "correct": 0,
+      "explanation": "Hỏi về hành vi đã xảy ra thì người ta kể lại được; hỏi về hành vi tương lai thì người ta đoán, và đoán theo hướng làm hài lòng người hỏi."
+    },
+    {
+      "question": "Vì sao vài phiên quan sát đã có ích?",
+      "options": [
+        "Vì trở ngại nghiêm trọng thường chạm vào gần như mọi người",
+        "Vì người dùng đầu tiên luôn là người đại diện tốt nhất",
+        "Vì số lượng nhỏ giúp việc phân tích nhanh và ít tốn kém hơn hẳn",
+        "Vì quan sát nhiều người sẽ cho kết quả mâu thuẫn nhau"
+      ],
+      "correct": 0,
+      "explanation": "Nếu một trở ngại chỉ hiện ra ở một trong hai mươi người thì nó không phải nguyên nhân của cú rơi bảy mươi phần trăm. Những vấn đề lớn lộ ra rất nhanh."
+    },
+    {
+      "question": "Rủi ro của việc chỉ nghe những người chủ động phản hồi là gì?",
+      "options": [
+        "Họ không đại diện cho đa số người dùng im lặng",
+        "Họ thường không phải là khách hàng trả tiền",
+        "Họ chỉ phản hồi về những tính năng mới ra mắt",
+        "Họ đưa ra quá nhiều đề xuất để có thể xử lý hết"
+      ],
+      "correct": 0,
+      "explanation": "Người chịu viết phản hồi thường là người rất thích hoặc rất bực - hai đầu của phân bố. Người bỏ đi trong im lặng, nhóm đông nhất, không bao giờ xuất hiện trong hộp thư của bạn."
+    },
+    {
+      "question": "Thứ tự hợp lý giữa số liệu và phản hồi định tính là gì?",
+      "options": [
+        "Số liệu khoanh vùng trước, phản hồi định tính giải thích sau",
+        "Phản hồi định tính trước để biết nên đo cái gì",
+        "Hai việc nên làm song song và độc lập với nhau",
+        "Chỉ cần một trong hai, tuỳ nguồn lực đội đang có"
+      ],
+      "correct": 0,
+      "explanation": "Số liệu rẻ và phủ rộng nên nó thu hẹp phạm vi tốt nhất. Phỏng vấn thì đắt và hẹp, nên dùng nó khi đã biết cần đào ở đâu là hiệu quả nhất."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Năm bài vừa rồi đều về số liệu. Nhưng số liệu có một giới hạn cứng: nó ghi lại điều đã xảy ra, và không bao giờ ghi lại lý do."
+    },
+    {
+      "type": "heading",
+      "text": "Hai loại thông tin, hai câu hỏi"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Định lượng",
+        "text": "Bao nhiêu người, ở bước nào, thay đổi ra sao. Phủ toàn bộ người dùng, rẻ, và đáng tin về quy mô."
+      },
+      "right": {
+        "label": "Định tính",
+        "text": "Vì sao họ làm vậy, họ đang cố đạt điều gì, chỗ nào làm họ bối rối. Vài người, đắt hơn, nhưng là nguồn duy nhất cho câu hỏi vì sao."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Hỏi về quá khứ, đừng hỏi về tương lai"
+    },
+    {
+      "type": "paragraph",
+      "text": "Câu hỏi bạn có dùng tính năng này không gần như luôn nhận được câu có, vì người ta lịch sự và vì tưởng tượng thì dễ. Câu hỏi lần gần nhất bạn gặp vấn đề này là khi nào cho một câu chuyện thật, có bối cảnh, có thứ họ đã thử. Nếu họ chưa từng gặp vấn đề ấy thì đó cũng là một câu trả lời rất có giá trị."
+    },
+    {
+      "type": "callout",
+      "label": "Cẩn thận với người nói to",
+      "text": "Người viết thư góp ý là người rất thích hoặc rất bực. Nhóm lớn nhất - những người thử một lần rồi lặng lẽ không quay lại - không bao giờ viết gì cho bạn, và họ mới là nhóm quyết định số phận sản phẩm."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Số liệu chỉ cho bạn chỗ để đào. Con người cho bạn biết dưới đó có gì.",
+        "Bài sau chuyển từ việc hiểu vấn đề sang việc lên kế hoạch giải quyết nó, bắt đầu bằng thứ nổi tiếng là luôn sai: ước lượng."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "id": 37,
+  "slug": "nhat-ky-va-dau-vet-he-thong",
+  "title": "Nhật ký: dữ liệu về chính hệ thống của bạn",
+  "subtitle": "Lúc sự cố xảy ra thì đã quá muộn để bắt đầu ghi lại những gì đang diễn ra.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📋",
+  "track": "professional",
+  "whyItMatters": "Mọi cuộc điều tra sự cố đều dừng ở cùng một câu: chúng ta không ghi lại chỗ đó. Nhật ký là thứ duy nhất còn lại sau khi sự việc đã qua, và nó chỉ hữu ích nếu được thiết kế trước - lúc mọi thứ đang chạy tốt và chưa ai nghĩ sẽ cần tới.",
+  "openingQuestion": "Dòng nhật ký nào có ích nhất khi điều tra một sự cố?",
+  "openingOptions": [
+    "Có mã định danh yêu cầu, mốc thời gian và giá trị đầu vào liên quan",
+    "Có nội dung chi tiết nhất có thể, kể cả toàn bộ dữ liệu của người dùng",
+    "Có câu mô tả rõ ràng bằng tiếng Việt để người trực đọc là hiểu ngay",
+    "Có mức độ nghiêm trọng được đánh dấu là nghiêm trọng để dễ tìm kiếm"
+  ],
+  "correctOption": 0,
+  "explanation": "Điều tra sự cố là việc nối các mảnh rời rạc lại thành một chuỗi. Mã định danh yêu cầu cho phép gom mọi dòng thuộc cùng một lần gọi, kể cả khi chúng nằm ở năm dịch vụ khác nhau. Mốc thời gian cho phép xếp chúng theo đúng thứ tự. Giá trị đầu vào cho biết vì sao nhánh mã ấy được chạy. Một câu mô tả hay mà thiếu ba thứ đó thì đọc xong vẫn không biết nó thuộc về lần gọi nào trong hàng triệu lần gọi hôm ấy.",
+  "diagram": [
+    {
+      "label": "Một yêu cầu vào hệ thống - cấp mã định danh",
+      "arrow": true
+    },
+    {
+      "label": "Mã đó đi kèm qua mọi dịch vụ nó chạm tới",
+      "arrow": true
+    },
+    {
+      "label": "Mỗi dịch vụ ghi nhật ký kèm mã ấy",
+      "arrow": true
+    },
+    {
+      "label": "Lọc theo mã là dựng lại được toàn bộ hành trình"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hộp đen máy bay",
+    "description": "Hộp đen không giúp gì cho chuyến bay đang diễn ra. Giá trị của nó nằm hoàn toàn ở việc trả lời câu hỏi sau sự cố, và vì thế nó phải được lắp trước khi cất cánh chứ không phải khi có chuyện. Nhật ký hệ thống đóng đúng vai trò đó."
+  },
+  "keyTakeaways": [
+    "Mã định danh yêu cầu là thứ nối các dòng nhật ký rời rạc thành một chuỗi.",
+    "Ghi bằng cấu trúc có trường thay vì câu văn thì lọc và thống kê được.",
+    "Không bao giờ ghi mật khẩu, thẻ ngân hàng hay dữ liệu cá nhân nhạy cảm vào nhật ký.",
+    "Nhật ký nhiều mà không lọc được thì cũng như không có."
+  ],
+  "summary": {
+    "keyIdea": "Nhật ký là dữ liệu về chính hệ thống, và nó phải được thiết kế trước khi cần tới.",
+    "formula": "Mã định danh + mốc thời gian + ngữ cảnh = dựng lại được sự việc.",
+    "commonMistake": "Ghi thật nhiều dòng mô tả bằng văn xuôi, không trường nào lọc được."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một lỗi đã xảy ra tuần trước và thử dựng lại toàn bộ hành trình của yêu cầu đó chỉ bằng nhật ký. Chỗ nào bạn phải đoán chính là chỗ nhật ký còn thiếu."
+  },
+  "practicePrompt": {
+    "question": "Một lỗi chỉ xảy ra với khoảng một phần nghìn số yêu cầu và không tái hiện được ở môi trường thử. Cách tiếp cận nào hợp lý nhất?",
+    "options": [
+      "Thêm nhật ký có cấu trúc quanh nhánh nghi ngờ rồi chờ lần xảy ra tiếp theo",
+      "Bật mức nhật ký chi tiết nhất cho toàn hệ thống cho tới khi bắt được lỗi",
+      "Thử lại nhiều lần trên môi trường thử với dữ liệu ngẫu nhiên cho tới khi trúng",
+      "Bọc đoạn mã nghi ngờ trong khối bắt lỗi để hệ thống không dừng khi gặp lỗi"
+    ],
+    "correct": 0,
+    "explanation": "Lỗi hiếm cần bằng chứng từ hệ thống thật, vì nó phụ thuộc dữ liệu hoặc thời điểm mà môi trường thử không có. Bật chi tiết toàn hệ thống thì tạo ra khối lượng nhật ký khổng lồ và tốn kém, còn bọc bắt lỗi chỉ giấu triệu chứng đi."
+  },
+  "quiz": [
+    {
+      "question": "Mã định danh yêu cầu dùng để làm gì?",
+      "options": [
+        "Gom mọi dòng nhật ký thuộc cùng một lần gọi lại với nhau",
+        "Xác định người dùng nào đã gửi yêu cầu đó lên hệ thống",
+        "Đánh số thứ tự các yêu cầu để biết cái nào đến trước cái nào",
+        "Cho phép gửi lại đúng yêu cầu đó khi hệ thống gặp sự cố"
+      ],
+      "correct": 0,
+      "explanation": "Một yêu cầu có thể sinh ra hàng chục dòng nhật ký nằm rải ở nhiều dịch vụ. Mã định danh chung là thứ duy nhất cho phép lọc ra đúng chuỗi ấy giữa hàng triệu dòng khác."
+    },
+    {
+      "question": "Vì sao nên ghi nhật ký có cấu trúc thay vì viết thành câu văn?",
+      "options": [
+        "Vì các trường tách rời thì lọc, đếm và cảnh báo tự động được",
+        "Vì nhật ký có cấu trúc chiếm ít chỗ hơn",
+        "Vì câu văn không hiện được dấu tiếng Việt",
+        "Vì ghi có cấu trúc nhanh hơn nên đỡ tốn"
+      ],
+      "correct": 0,
+      "explanation": "Trường tách rời cho phép hỏi những câu như lỗi này xảy ra với bao nhiêu người dùng khác nhau trong giờ qua. Với văn xuôi thì phải viết biểu thức so khớp mong manh, và đổi một chữ trong câu là hỏng hết."
+    },
+    {
+      "question": "Thứ nào tuyệt đối không được ghi vào nhật ký?",
+      "options": [
+        "Mật khẩu, số thẻ ngân hàng và dữ liệu cá nhân nhạy cảm",
+        "Mã định danh của người dùng đã gửi yêu cầu đang được xử lý",
+        "Tên hàm và số dòng nơi lỗi được phát hiện trong mã nguồn",
+        "Thời gian xử lý của từng bước trong quá trình phục vụ yêu cầu"
+      ],
+      "correct": 0,
+      "explanation": "Nhật ký thường được lưu lâu, sao chép nhiều nơi và cho nhiều người đọc hơn cơ sở dữ liệu chính, nên nó là chỗ rò rỉ dễ nhất. Mã định danh người dùng thì ghi được, vì nó không tiết lộ nội dung nào."
+    },
+    {
+      "question": "Vì sao nhật ký quá nhiều lại thành vấn đề?",
+      "options": [
+        "Vì thông tin cần tìm bị chôn giữa khối lượng dòng vô nghĩa",
+        "Vì ghi nhật ký nhiều làm máy chủ chậm hẳn",
+        "Vì hệ điều hành giới hạn số dòng nhật ký được ghi trong một ngày",
+        "Vì nhật ký cũ sẽ tự động ghi đè lên nhật ký mới khi vượt dung lượng"
+      ],
+      "correct": 0,
+      "explanation": "Nhật ký chỉ có giá trị khi tìm được thứ cần tìm. Ghi mọi thứ ở mức chi tiết nhất tạo ra chi phí lưu trữ lớn và một đống rơm để mò kim - đó là lý do có các mức nhật ký khác nhau."
+    },
+    {
+      "question": "Vì sao phải thiết kế nhật ký trước khi sự cố xảy ra?",
+      "options": [
+        "Vì sự việc đã qua thì không ghi lại được nữa",
+        "Vì thêm nhật ký lúc đang có sự cố sẽ làm sập hệ thống",
+        "Vì công cụ chỉ đọc nhật ký từ đầu tháng",
+        "Vì nhật ký thêm sau không đồng bộ được"
+      ],
+      "correct": 0,
+      "explanation": "Nhật ký là bằng chứng, và bằng chứng phải được thu thập lúc sự việc diễn ra. Thêm nhật ký sau sự cố vẫn có ích cho lần sau, nhưng không trả lời được câu hỏi về lần vừa rồi."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Nhật ký là loại dữ liệu duy nhất bạn tạo ra cho chính mình chứ không cho người dùng. Và nó tuân theo một qui luật khó chịu: giá trị của nó chỉ hiện ra vào lúc đã quá muộn để bổ sung."
+    },
+    {
+      "type": "heading",
+      "text": "Ba thứ mỗi dòng nhật ký nên có"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Mã định danh yêu cầu, để gom mọi dòng thuộc cùng một lần gọi qua mọi dịch vụ.",
+        "Mốc thời gian tuyệt đối, để xếp đúng thứ tự các dòng đến từ nhiều máy khác nhau.",
+        "Ngữ cảnh đủ để hiểu vì sao nhánh mã này chạy: định danh bản ghi, giá trị đầu vào chính, kết quả."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Cấu trúc thay vì văn xuôi"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Câu văn",
+        "text": "Dễ đọc bằng mắt khi chỉ có vài dòng. Nhưng muốn đếm, lọc hay đặt cảnh báo thì phải so khớp chuỗi - và đổi một chữ trong câu là mọi thứ hỏng."
+      },
+      "right": {
+        "label": "Có cấu trúc",
+        "text": "Mỗi thông tin là một trường riêng. Lọc theo mã người dùng, đếm theo loại lỗi, cảnh báo khi vượt ngưỡng - tất cả thành truy vấn bình thường."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Nhật ký là chỗ rò rỉ dễ nhất",
+      "text": "Nó được lưu lâu hơn, sao chép nhiều nơi hơn và cho nhiều người đọc hơn cơ sở dữ liệu chính. Mọi thứ nhạy cảm lọt vào đây là lọt ra một vùng ít được bảo vệ hơn hẳn chỗ nó vốn nằm."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Nhật ký tốt không phải nhật ký nhiều. Nó là nhật ký trả lời được câu hỏi bạn sẽ hỏi lúc hai giờ sáng.",
+        "Bài sau nói về lớp phòng thủ cuối cùng khi mọi thứ khác đã hỏng: sao lưu, và vì sao bản sao lưu chưa từng khôi phục thử thì chưa phải bản sao lưu."
+      ]
+    }
+  ]
+}

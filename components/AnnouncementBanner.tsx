@@ -11,11 +11,11 @@ const SEVERITY_STYLE: Record<Announcement["severity"], { wrap: string; icon: typ
     icon: Info,
   },
   warning: {
-    wrap: "bg-warn-soft/30 border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-300",
+    wrap: "bg-amber-50 dark:bg-amber-950/30 border-warn-line text-warn-ink",
     icon: AlertTriangle,
   },
   critical: {
-    wrap: "bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300",
+    wrap: "bg-rose-50 dark:bg-rose-950/30 border-alert-line text-alert-deep",
     icon: ShieldAlert,
   },
 };

@@ -1,0 +1,174 @@
+{
+  "id": 99,
+  "slug": "du-an-tu-y-tuong-toi-do-luong",
+  "title": "Dự án: đi trọn một vòng từ ý tưởng tới con số",
+  "subtitle": "Mọi thứ trong chặng này chỉ có nghĩa khi được nối lại thành một vòng khép kín.",
+  "duration": "10 phút",
+  "difficulty": "Khó",
+  "emoji": "🔁",
+  "track": "professional",
+  "whyItMatters": "Từng kỹ thuật riêng lẻ trong chặng này đều dễ hiểu. Cái khó là nối chúng thành một vòng: chọn vấn đề, kiểm chứng, chia nhỏ, giao, đo, rồi quyết định làm tiếp hay dừng - và làm điều đó với một thứ thật.",
+  "openingQuestion": "Bước đầu tiên khi bắt đầu một dự án theo cách của chặng này là gì?",
+  "openingOptions": [
+    "Viết ra vấn đề và cách bạn sẽ biết nó đã được giải quyết",
+    "Thiết kế giải pháp kỹ thuật và ước lượng thời gian cần thiết",
+    "Lên danh sách các tính năng cần có trong phiên bản đầu tiên",
+    "Xin phê duyệt ngân sách và nhân lực cho toàn bộ dự án"
+  ],
+  "correctOption": 0,
+  "explanation": "Viết ra vấn đề buộc bạn phải nói rõ mình tin điều gì, và viết ra cách biết nó đã được giải quyết buộc bạn chọn một chỉ số trước khi có dữ liệu. Cả hai việc đều mất mười lăm phút và đều rất khó làm sau này: khi đã có số liệu trong tay, bạn sẽ vô thức chọn chỉ số ủng hộ điều mình đã làm. Thiết kế giải pháp và liệt kê tính năng đều là những bước cần thiết, nhưng chúng giả định rằng vấn đề đã rõ - và phần lớn dự án thất bại chính ở giả định ấy.",
+  "diagram": [
+    {
+      "label": "Viết vấn đề và chỉ số thành công",
+      "arrow": true
+    },
+    {
+      "label": "Tìm bằng chứng vấn đề là thật",
+      "arrow": true
+    },
+    {
+      "label": "Cắt lát nhỏ nhất, giao, đo",
+      "arrow": true
+    },
+    {
+      "label": "Quyết định: làm tiếp, đổi hướng, hay dừng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Một trang giấy trước khi bắt đầu",
+    "description": "Nhiều đội bắt đầu mọi dự án bằng một trang: vấn đề là gì, ai gặp nó, bằng chứng nào cho thấy nó có thật, và con số nào sẽ cho biết ta đã giải được. Trang giấy ấy tốn một buổi sáng và loại được phần lớn dự án không đáng làm."
+  },
+  "keyTakeaways": [
+    "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả.",
+    "Lát cắt đầu tiên nhắm vào giả định rủi ro nhất.",
+    "Sau khi đo, ba lựa chọn đều hợp lệ: làm tiếp, đổi hướng, hoặc dừng.",
+    "Dừng lại vì đã học được điều gì đó không phải thất bại."
+  ],
+  "summary": {
+    "keyIdea": "Một vòng khép kín từ giả định tới số liệu là đơn vị công việc thật sự, không phải một tính năng.",
+    "formula": "Vấn đề → bằng chứng → lát nhỏ nhất → đo → quyết định.",
+    "commonMistake": "Bỏ qua bước cuối, nên không bao giờ có lúc dừng lại và hỏi cái này có tác dụng không."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một việc đội đang làm và viết một trang theo bốn mục: vấn đề, ai gặp, bằng chứng, chỉ số thành công. Mục nào bỏ trống là chỗ dự án đang có rủi ro lớn nhất."
+  },
+  "practicePrompt": {
+    "question": "Bạn giao lát đầu tiên và chỉ số không cải thiện. Phản ứng nào hợp lý nhất?",
+    "options": [
+      "Tìm hiểu vì sao, rồi chọn giữa đổi hướng và dừng lại",
+      "Xây tiếp các lát còn lại vì chưa đủ tính năng để thấy tác dụng",
+      "Đổi sang một chỉ số khác phản ánh đúng giá trị hơn",
+      "Kết luận rằng ý tưởng ban đầu hoàn toàn sai và bỏ hẳn"
+    ],
+    "correct": 0,
+    "explanation": "Chỉ số không đổi là dữ liệu, không phải phán quyết. Nó có thể do lát cắt quá nhỏ, do người dùng chưa tìm thấy, hoặc do vấn đề không thật - ba nguyên nhân dẫn tới ba hành động khác nhau. Đổi chỉ số sau khi thấy kết quả là đúng thứ mà việc viết ra từ đầu sinh ra để ngăn."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao phải chọn chỉ số thành công trước khi bắt đầu?",
+      "options": [
+        "Vì sau khi có dữ liệu, bạn sẽ chọn chỉ số ủng hộ việc mình đã làm",
+        "Vì công cụ phân tích cần được cấu hình trước khi thu thập",
+        "Vì chỉ số phải được các bên liên quan phê duyệt trước",
+        "Vì thay đổi chỉ số giữa chừng sẽ làm mất dữ liệu cũ"
+      ],
+      "correct": 0,
+      "explanation": "Đây là cùng nguyên tắc với việc chốt chỉ số trước khi chạy thử nghiệm. Đo nhiều thứ thì luôn có cái nào đó trông đẹp, và chọn sau khi nhìn là tự tạo ra kết luận mình muốn."
+    },
+    {
+      "question": "Lát cắt đầu tiên nên nhắm vào đâu?",
+      "options": [
+        "Giả định rủi ro nhất của cả dự án",
+        "Phần dễ làm nhất để có kết quả nhanh",
+        "Phần mà bên yêu cầu quan tâm nhất",
+        "Phần có nhiều mã dùng lại được nhất"
+      ],
+      "correct": 0,
+      "explanation": "Mục tiêu của việc giao sớm là mua thông tin, và thông tin đắt giá nhất là biết cả hướng đi có sai không. Làm phần dễ trước chỉ trì hoãn tin xấu."
+    },
+    {
+      "question": "Sau khi đo, những lựa chọn hợp lệ là gì?",
+      "options": [
+        "Làm tiếp, đổi hướng, hoặc dừng lại",
+        "Làm tiếp hoặc là xin thêm thời gian",
+        "Đổi chỉ số hoặc mở rộng phạm vi đo",
+        "Chỉ có làm tiếp, vì dừng là thất bại"
+      ],
+      "correct": 0,
+      "explanation": "Nếu dừng không phải một lựa chọn thật thì việc đo không có ý nghĩa - bạn sẽ làm tiếp bất kể kết quả. Đội cho phép mình dừng là đội mà số liệu thật sự dẫn tới quyết định."
+    },
+    {
+      "question": "Vì sao dừng một dự án không phải thất bại?",
+      "options": [
+        "Vì bạn đã mua được thông tin với giá rẻ hơn nhiều so với làm hết",
+        "Vì luôn có thể bắt đầu lại dự án đó vào thời điểm khác",
+        "Vì phần mã đã viết vẫn dùng lại được cho việc khác",
+        "Vì các bên liên quan sẽ hiểu nếu được giải thích rõ ràng"
+      ],
+      "correct": 0,
+      "explanation": "Thất bại là bỏ ba tháng vào một thứ không ai cần. Dừng sau ba tuần vì đã biết điều đó là kết quả tốt nhất có thể có trong tình huống ấy."
+    },
+    {
+      "question": "Mục nào bỏ trống trong bản mô tả dự án là dấu hiệu rủi ro lớn nhất?",
+      "options": [
+        "Bằng chứng cho thấy vấn đề là có thật",
+        "Danh sách các tính năng dự kiến sẽ làm",
+        "Ước lượng thời gian cho từng giai đoạn",
+        "Tên người chịu trách nhiệm chính của dự án"
+      ],
+      "correct": 0,
+      "explanation": "Không có bằng chứng nghĩa là toàn bộ dự án đứng trên một giả định chưa kiểm. Mọi thứ khác - tính năng, thời gian, nhân sự - đều vô nghĩa nếu giả định ấy sai."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Chín bài vừa rồi là những mảnh rời. Bài này ghép chúng thành một vòng, và vòng ấy mới là đơn vị công việc thật sự - không phải một tính năng, mà một chu trình từ giả định tới bằng chứng."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn câu phải viết ra trước"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Vấn đề là gì, nói theo góc nhìn người dùng chứ không theo giải pháp.",
+        "Ai gặp vấn đề đó, và có bao nhiêu người như vậy.",
+        "Bằng chứng nào cho thấy nó có thật - dấu vết của việc họ đang tự xoay xở.",
+        "Con số nào sẽ cho biết ta đã giải được, và mức thay đổi bao nhiêu là đáng."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Rồi mới tới phần xây"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cắt lát nhỏ nhất chạm được vào người dùng thật, nhắm vào giả định rủi ro nhất. Giao nó bằng cờ tính năng cho một phần nhỏ người dùng. Đo chỉ số đã chọn từ đầu. Toàn bộ phần này dùng đúng những kỹ thuật của chặng trước, nên nó không cần thêm gì mới - chỉ cần bạn không bỏ qua bước cuối."
+    },
+    {
+      "type": "callout",
+      "label": "Bước cuối là bước hay bị bỏ",
+      "text": "Sau khi giao, phần lớn đội chuyển ngay sang việc tiếp theo. Không ai quay lại hỏi cái vừa làm có tác dụng không, nên không ai học được gì, và vòng lặp không bao giờ khép. Đặt lịch cho buổi xem kết quả ngay lúc bắt đầu, trước khi có gì để né tránh."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Vòng khép kín",
+        "text": "Giả định được viết ra, kiểm chứng bằng số liệu, và dẫn tới một quyết định. Mỗi vòng làm đội hiểu người dùng của mình hơn."
+      },
+      "right": {
+        "label": "Vòng hở",
+        "text": "Xây, giao, chuyển sang việc tiếp theo. Đội bận rộn liên tục và không tích luỹ được hiểu biết nào về việc cái gì có tác dụng."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Đơn vị công việc không phải một tính năng, mà một vòng từ giả định tới bằng chứng. Đội nào chạy được nhiều vòng hơn thì học nhanh hơn.",
+        "Bài sau khép lại chặng và cả nửa đầu của lộ trình nghề."
+      ]
+    }
+  ]
+}

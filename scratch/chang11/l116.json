@@ -1,0 +1,163 @@
+{
+  "id": 116,
+  "slug": "di-tru-lon-bop-nghet-dan",
+  "title": "Thay hệ thống cũ: bóp nghẹt dần thay vì viết lại",
+  "subtitle": "Viết lại từ đầu là đặt cược rằng bạn hiểu hết những gì hệ thống cũ đang làm.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🌿",
+  "track": "professional",
+  "whyItMatters": "Mọi tổ chức lâu năm đều có một hệ thống ai cũng muốn thay. Cách thay quyết định dự án đó kéo dài sáu tháng hay ba năm - và có kết thúc được hay không.",
+  "openingQuestion": "Vì sao viết lại toàn bộ một hệ thống cũ thường thất bại?",
+  "openingOptions": [
+    "Vì hệ thống cũ chứa vô số hành vi nhỏ mà không ai còn nhớ nhưng ai đó vẫn dựa vào",
+    "Vì công nghệ mới luôn phức tạp hơn công nghệ cũ đang dùng",
+    "Vì đội viết lại thường thiếu kinh nghiệm với nghiệp vụ",
+    "Vì chi phí viết lại luôn vượt xa ngân sách được duyệt"
+  ],
+  "correctOption": 0,
+  "explanation": "Hệ thống chạy nhiều năm tích tụ hàng nghìn quyết định nhỏ: xử lý một trường hợp dữ liệu kỳ lạ, một luật lệ tạm cho một khách hàng, một cách làm tròn khác thường. Phần lớn không có tài liệu và không ai nhớ, nhưng mỗi cái đều có người đang dựa vào. Bản viết lại luôn được so với bản cũ ở đúng những chỗ ấy, và nó luôn thiếu. Trong lúc đó hệ thống cũ vẫn phải chạy và vẫn phải nhận tính năng mới, nên bạn đang chạy đua với một mục tiêu di động.",
+  "diagram": [
+    {
+      "label": "Hệ thống cũ tích tụ hàng nghìn hành vi nhỏ",
+      "arrow": true
+    },
+    {
+      "label": "Viết lại: phải đoán hết chúng cùng lúc",
+      "arrow": true
+    },
+    {
+      "label": "Bóp nghẹt dần: chuyển từng phần, đo từng phần",
+      "arrow": true
+    },
+    {
+      "label": "Mỗi bước có giá trị ngay và lui được"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Dự án viết lại hai năm",
+    "description": "Mô hình quen thuộc: đội mới xây bản thay thế trong khi đội cũ vẫn thêm tính năng vào bản đang chạy. Sau hai năm, bản mới vẫn chưa đuổi kịp, và phần lớn công sức đã dùng để bắt kịp những thứ được thêm vào trong lúc đó."
+  },
+  "keyTakeaways": [
+    "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+    "Chạy song song và so kết quả là cách rẻ nhất để tìm ra hành vi chưa biết.",
+    "Mỗi phần chuyển xong phải lui được, nếu không thì đó lại là một canh bạc lớn.",
+    "Viết lại toàn bộ chỉ hợp lý khi hệ thống cũ đủ nhỏ để hiểu hết."
+  ],
+  "summary": {
+    "keyIdea": "Thay hệ thống cũ bằng nhiều bước nhỏ có giá trị riêng, thay vì một cú nhảy dựa trên hiểu biết chưa đủ.",
+    "formula": "Lớp trung gian, chuyển từng phần, so kết quả, gỡ dần.",
+    "commonMistake": "Xây bản thay thế song song trong khi bản cũ vẫn tiếp tục thay đổi."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn hệ thống cũ mà đội bạn muốn thay và tìm phần nhỏ nhất có thể chuyển ra độc lập. Nếu không tìm được phần nào như vậy thì bước đầu tiên là dựng lớp trung gian, không phải viết mã mới."
+  },
+  "practicePrompt": {
+    "question": "Kỹ thuật nào giúp tìm ra những hành vi của hệ thống cũ mà không ai còn nhớ?",
+    "options": [
+      "Chạy song song cả hai và so từng kết quả trên lưu lượng thật",
+      "Đọc thật kỹ toàn bộ mã nguồn của hệ thống cũ trước khi bắt đầu",
+      "Phỏng vấn những người đã từng làm việc với hệ thống đó",
+      "Viết bộ kiểm thử đầy đủ cho hệ thống cũ trước khi thay"
+    ],
+    "correct": 0,
+    "explanation": "Lưu lượng thật chứa những trường hợp không ai nghĩ ra khi ngồi đọc mã hay viết kiểm thử. Cho hệ thống mới xử lý cùng đầu vào rồi so kết quả sẽ lộ ra khác biệt ở đúng những chỗ bạn không biết là có, mà không ảnh hưởng gì tới người dùng."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao viết lại toàn bộ thường thất bại?",
+      "options": [
+        "Vì hệ thống cũ chứa nhiều hành vi không ai nhớ nhưng vẫn có người dựa vào",
+        "Vì đội viết lại thường không đủ người để hoàn thành đúng hạn",
+        "Vì công nghệ mới cần thời gian để đội làm quen",
+        "Vì ngân sách cho việc viết lại luôn bị cắt giữa chừng"
+      ],
+      "correct": 0,
+      "explanation": "Bản mới luôn được so với bản cũ ở đúng những chỗ không có tài liệu. Cộng thêm việc bản cũ vẫn tiếp tục thay đổi, bạn đang đuổi theo một mục tiêu di động."
+    },
+    {
+      "question": "Bóp nghẹt dần hoạt động thế nào?",
+      "options": [
+        "Đặt lớp trung gian rồi chuyển từng phần sang hệ thống mới",
+        "Viết hệ thống mới rồi chuyển toàn bộ lưu lượng một lần",
+        "Giữ cả hai hệ thống chạy song song vĩnh viễn",
+        "Ngừng thêm tính năng vào hệ thống cũ cho tới khi thay xong"
+      ],
+      "correct": 0,
+      "explanation": "Lớp trung gian cho phép định tuyến từng phần lưu lượng sang bên mới. Nhờ đó mỗi bước nhỏ, có giá trị ngay, và lui được - ba tính chất mà một cú nhảy lớn không có."
+    },
+    {
+      "question": "Chạy song song và so kết quả giải quyết vấn đề gì?",
+      "options": [
+        "Tìm ra những hành vi của hệ thống cũ mà không ai còn biết",
+        "Giảm tải cho hệ thống cũ trong giai đoạn chuyển đổi",
+        "Cho phép người dùng lựa chọn hệ thống họ muốn dùng",
+        "Rút ngắn thời gian cần thiết cho toàn bộ cuộc di trú lớn này"
+      ],
+      "correct": 0,
+      "explanation": "Nó dùng lưu lượng thật làm bộ kiểm thử, và lưu lượng thật chứa những trường hợp không ai nghĩ ra được khi ngồi bàn. Khác biệt kết quả chỉ thẳng vào hành vi bạn chưa biết."
+    },
+    {
+      "question": "Điều kiện để mỗi bước trong cuộc di trú là an toàn?",
+      "options": [
+        "Nó phải lui được và phải có giá trị ngay cả khi dừng ở đó",
+        "Nó phải hoàn thành trong vòng một chu kỳ làm việc",
+        "Nó phải được toàn bộ các đội có liên quan phê duyệt trước",
+        "Nó phải chuyển được ít nhất một phần mười lưu lượng"
+      ],
+      "correct": 0,
+      "explanation": "Nếu bước ba không lui được thì bạn lại có một canh bạc lớn, chỉ là đặt muộn hơn. Và nếu dừng giữa chừng mà mọi thứ vô giá trị thì cuộc di trú vẫn là tất cả hoặc không gì cả."
+    },
+    {
+      "question": "Khi nào viết lại toàn bộ là lựa chọn hợp lý?",
+      "options": [
+        "Khi hệ thống cũ đủ nhỏ để hiểu hết hành vi của nó",
+        "Khi công nghệ cũ không còn được nhà cung cấp hỗ trợ",
+        "Khi đội hiện tại không còn ai từng làm việc với mã cũ",
+        "Khi chi phí vận hành hệ thống cũ đã quá cao"
+      ],
+      "correct": 0,
+      "explanation": "Rủi ro của việc viết lại nằm ở phần hành vi bạn không biết. Hệ thống nhỏ tới mức đọc hết trong vài ngày thì phần ấy gần bằng không, và viết lại trở thành lựa chọn rẻ."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mọi tổ chức đủ lâu đều có một hệ thống mà ai cũng muốn thay. Câu hỏi không phải có nên thay hay không mà là thay theo cách nào - và hai cách cho hai kết cục rất khác nhau."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao cú nhảy lớn hay hỏng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hệ thống chạy tám năm chứa hàng nghìn quyết định nhỏ không có trong tài liệu: một trường hợp dữ liệu kỳ lạ được xử lý riêng, một luật tạm cho khách hàng lớn, một cách làm tròn khác thường vì lý do lịch sử. Bản viết lại phải đoán hết chúng cùng lúc, trong khi bản cũ vẫn tiếp tục nhận tính năng mới - nên khoảng cách không thu hẹp lại."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn bước của bóp nghẹt dần"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đặt một lớp trung gian trước hệ thống cũ, chưa đổi hành vi gì.",
+        "Chuyển phần nhỏ nhất sang hệ thống mới, định tuyến qua lớp ấy.",
+        "Chạy song song, so kết quả trên lưu lượng thật để tìm hành vi chưa biết.",
+        "Lặp lại cho tới khi hệ thống cũ không còn phần nào, rồi mới gỡ nó."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Mỗi bước phải tự đứng được",
+      "text": "Điều làm cách này khác hẳn cú nhảy lớn là mỗi bước có giá trị ngay và lui được. Nếu dự án bị dừng ở bước ba - và các dự án nhiều năm rất hay bị dừng - thì ba phần đã chuyển vẫn đang mang lại lợi ích."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Viết lại là một canh bạc dựa trên hiểu biết chưa đủ. Bóp nghẹt dần đổi canh bạc ấy thành một chuỗi bước nhỏ có thể sai và sửa được.",
+        "Bài sau nói về phần cuối cùng và hay bị bỏ dở nhất của mọi cuộc di trú: thật sự gỡ hệ thống cũ đi."
+      ]
+    }
+  ]
+}

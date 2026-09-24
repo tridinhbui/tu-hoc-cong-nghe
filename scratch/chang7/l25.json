@@ -1,0 +1,196 @@
+{
+  "id": 25,
+  "slug": "gia-tri-rong-va-cai-bay-null",
+  "title": "Giá trị rỗng: sai lầm tỉ đô",
+  "subtitle": "Không có dữ liệu, chưa có dữ liệu và dữ liệu bằng không là ba chuyện khác nhau.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "⭕",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Người phát minh ra giá trị rỗng gọi nó là sai lầm tỉ đô của chính mình, vì nó khiến mọi biến đều có thể mang một giá trị mà không phép toán nào trên nó hợp lệ. Phần lớn sự cố sập ứng dụng ngoài đời có nguyên nhân cuối cùng là một chỗ nào đó nhận rỗng trong khi mã cho rằng chắc chắn có giá trị.",
+  "openingQuestion": "Một trường thu nhập trong biểu mẫu để trống. Nên lưu xuống cơ sở dữ liệu là gì?",
+  "openingOptions": [
+    "Giá trị rỗng, vì số không nghĩa là đã khai và bằng không",
+    "Số không, vì nó gọn hơn và tránh phải kiểm tra rỗng về sau",
+    "Chuỗi trống, vì người dùng đã không gõ gì vào ô đó cả",
+    "Số âm một, để đánh dấu đây là trường hợp đặc biệt cần xử lý"
+  ],
+  "correctOption": 0,
+  "explanation": "Số không là một câu trả lời: người này khai rằng họ không có thu nhập. Rỗng là sự vắng mặt của câu trả lời: chúng ta không biết họ có thu nhập hay không. Trộn hai thứ vào một giá trị là mất thông tin, và mất theo cách không lấy lại được - tính trung bình thu nhập sẽ kéo tụt kết quả bằng những số không chưa từng được ai khai. Dùng số âm một hay chuỗi trống làm dấu hiệu cũng cùng một lỗi, chỉ khác chỗ nó còn lọt qua được cả những phép tính lẽ ra phải chặn lại.",
+  "diagram": [
+    {
+      "label": "Người dùng để trống ô nhập",
+      "arrow": true
+    },
+    {
+      "label": "Lưu là rỗng - giữ nguyên sự thật: không biết",
+      "arrow": true
+    },
+    {
+      "label": "Lưu là số không - bịa ra một câu trả lời",
+      "arrow": true
+    },
+    {
+      "label": "Mọi thống kê phía sau lệch theo"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Tony Hoare, 2009",
+    "description": "Người đưa tham chiếu rỗng vào ngôn ngữ lập trình năm 1965 đã công khai gọi đó là sai lầm tỉ đô của mình. Lý do ông đưa vào rất đơn giản: nó dễ cài đặt. Bốn mươi năm sau, chi phí sửa những lỗi do nó gây ra đã vượt xa khoản tiết kiệm đó."
+  },
+  "keyTakeaways": [
+    "Rỗng nghĩa là không biết; số không và chuỗi trống là những câu trả lời cụ thể.",
+    "Mọi phép toán trên giá trị rỗng đều là chỗ chương trình có thể dừng đột ngột.",
+    "So sánh với rỗng thường không cho kết quả đúng như trực giác, nhất là trong SQL.",
+    "Chặn rỗng ở ranh giới nhận dữ liệu tốt hơn là kiểm tra rải rác khắp nơi."
+  ],
+  "summary": {
+    "keyIdea": "Rỗng là sự vắng mặt của giá trị, không phải một giá trị đặc biệt nào đó.",
+    "formula": "Không biết ≠ bằng không ≠ chuỗi trống.",
+    "commonMistake": "Thay rỗng bằng số không cho tiện, rồi mọi phép trung bình đều sai."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở một bảng dữ liệu bạn đang dùng và đếm xem có bao nhiêu cột số cho phép rỗng. Với mỗi cột, tự trả lời: rỗng ở đây nghĩa là chưa nhập, không áp dụng, hay bằng không? Nếu ba nghĩa đó đang dùng chung một ô, đó là lỗi chờ xảy ra."
+  },
+  "practicePrompt": {
+    "question": "Trong SQL, câu lệnh đếm các dòng có cột trạng thái khác 'xong' lại bỏ sót những dòng có trạng thái rỗng. Vì sao?",
+    "options": [
+      "So sánh với rỗng cho kết quả không xác định, không phải đúng",
+      "Rỗng được coi là bằng chuỗi 'xong' nên bị loại ra khỏi kết quả",
+      "Câu lệnh đếm luôn bỏ qua mọi dòng có bất kỳ cột nào rỗng",
+      "Cột trạng thái rỗng đã bị xoá khỏi bảng trước khi đếm chạy"
+    ],
+    "correct": 0,
+    "explanation": "Trong SQL, mọi so sánh với rỗng đều trả về không xác định chứ không phải đúng hay sai, và mệnh đề lọc chỉ giữ lại những dòng cho kết quả đúng. Muốn bắt các dòng rỗng thì phải viết điều kiện kiểm tra rỗng riêng."
+  },
+  "quiz": [
+    {
+      "question": "Giá trị rỗng khác số không ở điểm cốt lõi nào?",
+      "options": [
+        "Rỗng là vắng mặt câu trả lời, số không là một câu trả lời",
+        "Số không, vì nó gọn hơn và tránh cho ta phải kiểm tra rỗng ở khắp nơi",
+        "Rỗng chỉ dùng được cho cột chữ, còn số không dùng cho cột số",
+        "Rỗng bị cơ sở dữ liệu tự đổi thành số không khi lưu xuống"
+      ],
+      "correct": 0,
+      "explanation": "Khác biệt nằm ở nghĩa chứ không ở cách lưu. Người khai thu nhập bằng không đã trả lời; người để trống thì chưa. Gộp chúng lại là bịa ra dữ liệu chưa từng có ai cung cấp."
+    },
+    {
+      "question": "Vì sao lỗi do giá trị rỗng thường làm chương trình dừng đột ngột?",
+      "options": [
+        "Vì mã gọi một phép toán trên thứ không có giá trị nào cả",
+        "Vì vùng nhớ của rỗng đã bị thu hồi",
+        "Vì trình biên dịch cố ý dừng khi gặp rỗng",
+        "Vì rỗng luôn được chuyển thành số không rồi gây ra chia cho không"
+      ],
+      "correct": 0,
+      "explanation": "Rỗng không mang thuộc tính hay phương thức nào, nên mọi thao tác trên nó đều vô nghĩa và chương trình dừng ngay tại đó. Đây là lỗi lúc chạy, nên nó chỉ lộ ra khi đúng nhánh mã ấy được thực thi."
+    },
+    {
+      "question": "Cách nào giảm lỗi rỗng hiệu quả nhất trên một hệ thống lớn?",
+      "options": [
+        "Kiểm tra và loại rỗng ngay tại ranh giới nhận dữ liệu vào",
+        "Thêm câu lệnh kiểm tra rỗng ở mọi chỗ có dùng tới giá trị đó",
+        "Đặt mặc định là số không cho mọi trường rỗng",
+        "Bọc toàn bộ mã trong khối bắt lỗi để không bị dừng"
+      ],
+      "correct": 0,
+      "explanation": "Chặn một lần ở cửa vào thì mọi mã phía sau làm việc với giá trị chắc chắn có. Kiểm tra rải rác thì chỗ nào quên là chỗ đó hỏng, còn bắt lỗi toàn cục chỉ giấu sự cố chứ không xử lý nguyên nhân."
+    },
+    {
+      "question": "Trong SQL, biểu thức so sánh một cột rỗng với một giá trị cho kết quả gì?",
+      "options": [
+        "Không xác định, nên dòng đó bị mệnh đề lọc bỏ qua",
+        "Sai, nên dòng đó vẫn được giữ lại khi ta phủ định điều kiện",
+        "Đúng, vì rỗng được coi là khớp với mọi giá trị đem ra so",
+        "Lỗi cú pháp nên truy vấn không chạy"
+      ],
+      "correct": 0,
+      "explanation": "SQL dùng logic ba trạng thái: đúng, sai và không xác định. Mệnh đề lọc chỉ giữ dòng cho kết quả đúng, nên dòng rỗng biến mất khỏi cả điều kiện thuận lẫn điều kiện phủ định - chỗ này rất hay làm lệch số liệu báo cáo."
+    },
+    {
+      "question": "Vì sao dùng số âm một để đánh dấu dữ liệu thiếu là lựa chọn tồi?",
+      "options": [
+        "Vì nó là số hợp lệ nên lọt qua mọi phép tính mà không bị chặn",
+        "Vì số âm một chiếm nhiều bộ nhớ hơn so với một giá trị rỗng thật sự",
+        "Vì phần lớn cơ sở dữ liệu không cho phép lưu giá trị số âm",
+        "Vì số âm một luôn bị các thư viện thống kê tự động loại bỏ"
+      ],
+      "correct": 0,
+      "explanation": "Giá trị rỗng làm phép tính dừng lại và buộc bạn xử lý; số âm một thì cộng, chia, xếp hạng bình thường và lặng lẽ kéo mọi kết quả lệch đi. Một giá trị canh gác trông thì tiện nhưng bỏ mất chính cái lợi của rỗng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ba thứ hay bị gộp làm một: không có dữ liệu, dữ liệu bằng không, và dữ liệu là chuỗi trống. Chúng khác nhau về nghĩa, và gộp lại thì thông tin mất đi không lấy lại được."
+    },
+    {
+      "type": "heading",
+      "text": "Rỗng nghĩa là gì"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Ba trạng thái hay bị nhầm",
+      "subtitle": "Cùng trông như ô trống trên màn hình",
+      "concepts": [
+        {
+          "vi": "Rỗng",
+          "en": "null",
+          "def": "Không có câu trả lời. Có thể là chưa hỏi, chưa trả lời, hoặc câu hỏi không áp dụng cho trường hợp này."
+        },
+        {
+          "vi": "Số không",
+          "en": "zero",
+          "def": "Một câu trả lời cụ thể: đại lượng này đã đo và bằng không."
+        },
+        {
+          "vi": "Chuỗi trống",
+          "en": "empty string",
+          "def": "Cũng là một câu trả lời: người dùng đã trả lời bằng cách không viết gì."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao nó tốn kém tới thế"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trong phần lớn ngôn ngữ, mọi biến kiểu tham chiếu đều có thể mang giá trị rỗng. Nghĩa là mọi chỗ dùng biến đó đều là một chỗ chương trình có thể dừng, và trình biên dịch không giúp bạn tìm ra chúng. Bạn phải tự nhớ, ở từng dòng một, suốt cả hệ thống."
+    },
+    {
+      "type": "callout",
+      "label": "Hướng đi mới",
+      "text": "Nhiều ngôn ngữ hiện đại tách hẳn kiểu có thể rỗng khỏi kiểu không thể rỗng, và bắt bạn xử lý trước khi dùng. Lỗi rỗng chuyển từ lúc chạy sang lúc dịch - vẫn phải sửa, nhưng sửa trước khi người dùng gặp."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Chặn ở cửa vào",
+        "text": "Kiểm tra một lần khi dữ liệu đi vào hệ thống. Mọi mã phía sau làm việc với giá trị chắc chắn có, và đọc mã không phải nghĩ tới rỗng nữa."
+      },
+      "right": {
+        "label": "Kiểm tra rải rác",
+        "text": "Thêm câu lệnh kiểm tra ở từng chỗ dùng. Chỗ nào quên thì chỗ đó hỏng, và mã đầy những nhánh phòng thủ không ai chắc còn cần hay không."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đặt cột không cho phép rỗng ngay ở lược đồ nếu trường đó thật sự bắt buộc.",
+        "Khi buộc phải cho phép rỗng, ghi rõ trong tài liệu rỗng ở đây nghĩa là gì.",
+        "Trong SQL, nhớ rằng điều kiện phủ định không bắt được các dòng rỗng."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Rỗng là sự vắng mặt, không phải một giá trị. Giữ nguyên sự vắng mặt đó tốt hơn là bịa ra một câu trả lời cho tiện.",
+        "Bài sau đi từ giá trị sang chỗ chứa giá trị: biến, tham chiếu, và vì sao sửa một danh sách lại làm đổi một danh sách khác."
+      ]
+    }
+  ]
+}

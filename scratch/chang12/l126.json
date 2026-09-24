@@ -1,0 +1,168 @@
+{
+  "id": 126,
+  "slug": "ma-hoa-du-lieu-nam-yen",
+  "title": "Mã hoá dữ liệu nằm yên: bảo vệ trước ai",
+  "subtitle": "Mã hoá cả ổ đĩa không giúp gì khi ứng dụng đang chạy và đang đọc được dữ liệu.",
+  "duration": "8 phút",
+  "difficulty": "Khó",
+  "emoji": "🔐",
+  "track": "professional",
+  "whyItMatters": "Mã hoá lưu trữ hay được coi là dấu tích trong danh sách tuân thủ. Nhưng nó chỉ bảo vệ trước một số kịch bản cụ thể, và không biết là kịch bản nào thì bạn đang trả chi phí cho một cảm giác an toàn.",
+  "openingQuestion": "Mã hoá toàn bộ ổ đĩa bảo vệ trước tình huống nào?",
+  "openingOptions": [
+    "Ổ đĩa vật lý bị lấy đi hoặc bản sao lưu bị thất lạc",
+    "Kẻ tấn công chiếm được quyền chạy mã trên máy chủ đang hoạt động",
+    "Một tài khoản quản trị nội bộ đọc dữ liệu vượt quá phạm vi",
+    "Lỗ hổng tiêm lệnh cho phép đọc dữ liệu qua ứng dụng"
+  ],
+  "correctOption": 0,
+  "explanation": "Khi máy đang chạy, hệ điều hành đã mở khoá ổ đĩa, nên mọi tiến trình có quyền đều đọc được dữ liệu như bình thường. Mã hoá toàn ổ chỉ có tác dụng khi ổ đĩa ở trạng thái tắt và rời khỏi tầm kiểm soát của bạn: bị lấy khỏi trung tâm dữ liệu, bị vứt sai cách, hoặc một bản sao lưu bị thất lạc. Ba kịch bản còn lại đều diễn ra khi hệ thống đang chạy và đã mở khoá, nên chúng cần những biện pháp khác hẳn.",
+  "diagram": [
+    {
+      "label": "Ổ đĩa tắt, rời khỏi tầm kiểm soát → mã hoá ổ có tác dụng",
+      "arrow": true
+    },
+    {
+      "label": "Máy đang chạy → ổ đã mở khoá",
+      "arrow": true
+    },
+    {
+      "label": "Kẻ chiếm quyền đọc dữ liệu như bình thường",
+      "arrow": true
+    },
+    {
+      "label": "Cần mã hoá ở tầng cột hoặc tầng ứng dụng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Dấu tích trong bảng tuân thủ",
+    "description": "Mã hoá lưu trữ thường được bật vì một yêu cầu tuân thủ và sau đó không ai hỏi thêm. Nó có giá trị thật với kịch bản mất thiết bị, nhưng đội dễ tin rằng dữ liệu đã được bảo vệ trước mọi thứ."
+  },
+  "keyTakeaways": [
+    "Mã hoá toàn ổ chỉ bảo vệ khi ổ ở trạng thái tắt và rời khỏi tầm kiểm soát.",
+    "Máy đang chạy thì ổ đã mở khoá, nên tiến trình có quyền đọc được hết.",
+    "Mã hoá theo cột hoặc theo trường bảo vệ được cả khi ứng dụng bị xâm nhập một phần.",
+    "Mọi lớp mã hoá đều quy về câu hỏi khoá nằm ở đâu và ai chạm được vào nó."
+  ],
+  "summary": {
+    "keyIdea": "Mỗi lớp mã hoá bảo vệ trước một kịch bản cụ thể; biết kịch bản đó là điều kiện để nó có ý nghĩa.",
+    "formula": "Hỏi: bảo vệ trước ai, trong tình huống nào.",
+    "commonMistake": "Coi mã hoá lưu trữ là bảo vệ chung cho mọi kịch bản rò rỉ."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Với mỗi lớp mã hoá hệ thống bạn đang bật, viết một câu nó bảo vệ trước ai. Lớp nào không viết được câu đó là lớp đang tồn tại vì thói quen chứ không vì lý do."
+  },
+  "practicePrompt": {
+    "question": "Bạn mã hoá một cột nhạy cảm nhưng khoá giải mã nằm cùng máy chủ ứng dụng. Ai vẫn đọc được?",
+    "options": [
+      "Bất kỳ ai chiếm được quyền chạy mã trên chính máy chủ đó",
+      "Chỉ những người đang có quyền quản trị trên cơ sở dữ liệu",
+      "Không ai, vì dữ liệu đã được mã hoá ở tầng cột",
+      "Chỉ những tiến trình được cấp quyền đọc cột đó"
+    ],
+    "correct": 0,
+    "explanation": "Mã hoá chỉ dịch bài toán bảo vệ dữ liệu thành bài toán bảo vệ khoá. Nếu khoá nằm cạnh dữ liệu và cùng chịu chung một kịch bản xâm nhập thì lớp mã hoá không thêm được gì trước kịch bản đó - dù nó vẫn hữu ích khi chỉ cơ sở dữ liệu bị lấy."
+  },
+  "quiz": [
+    {
+      "question": "Mã hoá toàn bộ ổ đĩa bảo vệ trước kịch bản nào?",
+      "options": [
+        "Ổ đĩa bị lấy đi khi đang ở trạng thái tắt",
+        "Ứng dụng bị lỗ hổng cho phép đọc dữ liệu tuỳ ý",
+        "Người trong nội bộ truy cập vượt quá phạm vi được giao",
+        "Kết nối mạng giữa các dịch vụ bị nghe lén trên đường"
+      ],
+      "correct": 0,
+      "explanation": "Khi máy chạy thì ổ đã mở khoá và mọi tiến trình có quyền đều đọc được. Ba kịch bản còn lại xảy ra lúc hệ thống đang hoạt động nên lớp này không chạm tới."
+    },
+    {
+      "question": "Mã hoá theo cột thêm được gì so với mã hoá toàn ổ?",
+      "options": [
+        "Bảo vệ ngay cả khi cơ sở dữ liệu bị lấy lúc hệ thống đang chạy",
+        "Tăng tốc độ truy vấn trên những cột đã được mã hoá",
+        "Cho phép chia sẻ dữ liệu an toàn với các đội khác",
+        "Loại bỏ nhu cầu phải quản lý khoá mã hoá riêng"
+      ],
+      "correct": 0,
+      "explanation": "Nó thu hẹp phạm vi tin cậy: cơ sở dữ liệu bị sao chép ra ngoài vẫn không đọc được nếu khoá nằm ở nơi khác. Đổi lại là mất khả năng tìm kiếm và sắp xếp trên cột đó."
+    },
+    {
+      "question": "Mọi lớp mã hoá cuối cùng đều quy về câu hỏi nào?",
+      "options": [
+        "Khoá nằm ở đâu và ai chạm được vào nó",
+        "Thuật toán nào được dùng và độ dài khoá bao nhiêu",
+        "Dữ liệu được mã hoá ở tầng nào của hệ thống",
+        "Hiệu năng bị ảnh hưởng bao nhiêu khi bật mã hoá"
+      ],
+      "correct": 0,
+      "explanation": "Thuật toán hiện đại đều đủ mạnh; chỗ hỏng gần như luôn là quản lý khoá. Khoá nằm cạnh dữ liệu thì lớp mã hoá không bảo vệ trước kịch bản mà cả hai cùng bị lấy."
+    },
+    {
+      "question": "Vì sao mã hoá lưu trữ hay bị hiểu sai?",
+      "options": [
+        "Vì nó được bật để tuân thủ rồi bị coi là bảo vệ trước mọi kịch bản",
+        "Vì nó làm chậm hệ thống nên thường bị tắt đi sau một thời gian ngắn",
+        "Vì không có công cụ nào kiểm tra được nó đang hoạt động",
+        "Vì nó chỉ áp dụng được cho một số loại cơ sở dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Một dấu tích trong bảng tuân thủ tạo ra cảm giác đã xong việc. Nó có giá trị thật với kịch bản mất thiết bị, nhưng phần lớn rò rỉ thực tế lại xảy ra qua ứng dụng đang chạy."
+    },
+    {
+      "question": "Cái giá của mã hoá ở tầng cột là gì?",
+      "options": [
+        "Mất khả năng tìm kiếm và sắp xếp trực tiếp trên cột đó",
+        "Cơ sở dữ liệu không tạo được bản sao lưu cho chính bảng đó",
+        "Không thể thay đổi giá trị trong cột sau khi đã ghi",
+        "Cột đó không tham gia được vào các phép nối bảng"
+      ],
+      "correct": 0,
+      "explanation": "Dữ liệu đã mã hoá thì với cơ sở dữ liệu chỉ là chuỗi byte vô nghĩa, nên chỉ mục và phép so sánh không dùng được. Đó là lý do nó được dành cho những trường thật sự nhạy cảm chứ không bật đại trà."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mã hoá dữ liệu lưu trữ nghe như một biện pháp bao trùm. Thực ra nó là một tập hợp các lớp khác nhau, và mỗi lớp chỉ bảo vệ trước một kịch bản rất cụ thể."
+    },
+    {
+      "type": "heading",
+      "text": "Ba lớp, ba kịch bản"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Mỗi lớp chặn được gì",
+      "subtitle": "Câu hỏi luôn là: bảo vệ trước ai",
+      "concepts": [
+        {
+          "vi": "Toàn ổ đĩa",
+          "en": "disk encryption",
+          "def": "Chặn kịch bản ổ bị lấy khi đã tắt. Vô tác dụng khi máy đang chạy vì ổ đã mở khoá."
+        },
+        {
+          "vi": "Theo cột hoặc trường",
+          "en": "field encryption",
+          "def": "Chặn kịch bản cơ sở dữ liệu bị sao chép ra ngoài. Đổi lại mất tìm kiếm và sắp xếp trên cột đó."
+        },
+        {
+          "vi": "Ở tầng ứng dụng",
+          "en": "application-level",
+          "def": "Dữ liệu vào kho đã ở dạng mã hoá. Bảo vệ mạnh nhất, và cũng phức tạp nhất để vận hành."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Bài toán chuyển thành bài toán khoá",
+      "text": "Mã hoá không xoá bỏ vấn đề bảo vệ dữ liệu; nó dời vấn đề ấy sang việc bảo vệ khoá. Nếu khoá nằm cùng chỗ với dữ liệu và cùng chịu chung một kịch bản xâm nhập thì lớp mã hoá không thêm được gì trước kịch bản đó."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mỗi lớp mã hoá cần một câu trả lời cho câu hỏi bảo vệ trước ai. Không có câu trả lời thì nó là chi phí đổi lấy cảm giác.",
+        "Bài sau đi vào chính chỗ mà mọi lớp mã hoá đều quy về: khoá được giữ ở đâu."
+      ]
+    }
+  ]
+}

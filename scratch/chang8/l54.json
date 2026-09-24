@@ -1,0 +1,170 @@
+{
+  "id": 54,
+  "slug": "loi-tung-phan-va-ngat-mach",
+  "title": "Khi một phụ thuộc chết: đừng chết theo nó",
+  "subtitle": "Một dịch vụ chậm nguy hiểm hơn một dịch vụ chết, vì nó giữ tài nguyên của bạn lại.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "⛓️",
+  "track": "professional",
+  "whyItMatters": "Phần lớn sự cố diện rộng không bắt đầu bằng một hệ thống sập, mà bằng một dịch vụ phụ chậm đi. Mọi thứ gọi tới nó bắt đầu chờ, tài nguyên cạn dần, rồi những dịch vụ chẳng liên quan gì cũng ngừng phục vụ.",
+  "openingQuestion": "Vì sao một dịch vụ phụ chạy chậm lại nguy hiểm hơn một dịch vụ phụ chết hẳn?",
+  "openingOptions": [
+    "Vì nó giữ kết nối và luồng xử lý của bạn lại cho tới khi hết thời gian chờ",
+    "Vì nó trả về dữ liệu sai thay vì báo lỗi rõ ràng cho bên gọi",
+    "Vì các cơ chế giám sát không phát hiện được dịch vụ chạy chậm",
+    "Vì dịch vụ chậm không kích hoạt được cơ chế thử lại tự động"
+  ],
+  "correctOption": 0,
+  "explanation": "Một dịch vụ chết trả lời ngay lập tức bằng lỗi kết nối, và bên gọi xử lý xong trong vài mili giây rồi đi tiếp. Một dịch vụ chậm thì không trả lời gì cả: mỗi lời gọi chiếm một luồng và một kết nối, giữ nguyên đó cho tới khi hết thời gian chờ. Nếu thời hạn chờ dài hoặc không có, số lời gọi đang treo tăng dần cho tới khi cạn sạch tài nguyên, và lúc đó cả những chức năng không liên quan gì tới dịch vụ kia cũng ngừng phục vụ được.",
+  "diagram": [
+    {
+      "label": "Dịch vụ phụ chậm đi",
+      "arrow": true
+    },
+    {
+      "label": "Lời gọi treo, chiếm luồng và kết nối",
+      "arrow": true
+    },
+    {
+      "label": "Tài nguyên cạn dần",
+      "arrow": true
+    },
+    {
+      "label": "Chức năng không liên quan cũng ngừng theo"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Ô đánh giá kéo sập trang sản phẩm",
+    "description": "Trang sản phẩm gọi thêm một dịch vụ đánh giá để hiện số sao. Dịch vụ ấy chậm đi, và vì lời gọi không có thời hạn chờ, cả trang sản phẩm ngừng tải - dù phần quan trọng nhất, thông tin và nút mua hàng, hoàn toàn không phụ thuộc vào nó."
+  },
+  "keyTakeaways": [
+    "Mọi lời gọi ra ngoài phải có thời hạn chờ; không có thì mặc định là chờ mãi.",
+    "Ngắt mạch dừng gọi tạm thời khi một phụ thuộc đang hỏng, để không phí tài nguyên.",
+    "Tách biệt tài nguyên theo từng phụ thuộc để một cái hỏng không cạn hết phần chung.",
+    "Xác định trước chức năng nào là cốt lõi và chức năng nào có thể tạm khuyết."
+  ],
+  "summary": {
+    "keyIdea": "Lỗi từng phần là bình thường; việc của bạn là ngăn nó lan thành lỗi toàn phần.",
+    "formula": "Thời hạn chờ + ngắt mạch + tách tài nguyên + suy giảm có kiểm soát.",
+    "commonMistake": "Gọi ra ngoài mà không đặt thời hạn chờ, rồi bị kéo chết theo phụ thuộc."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm mọi lời gọi ra ngoài trong dịch vụ của bạn và kiểm xem cái nào không đặt thời hạn chờ. Với mỗi cái, hỏi tiếp: nếu dịch vụ kia treo mười phút thì phần nào của sản phẩm còn dùng được?"
+  },
+  "practicePrompt": {
+    "question": "Trang chủ gọi năm dịch vụ, trong đó dịch vụ gợi ý sản phẩm đang hỏng. Cách xử lý tốt nhất là gì?",
+    "options": [
+      "Hiện trang chủ thiếu phần gợi ý, vì bốn phần còn lại vẫn có giá trị",
+      "Hiện trang lỗi để người dùng biết hệ thống đang có sự cố",
+      "Chờ cho dịch vụ gợi ý hồi phục rồi mới trả trang chủ về cho người dùng",
+      "Thử gọi lại dịch vụ gợi ý liên tục cho tới khi nhận được kết quả"
+    ],
+    "correct": 0,
+    "explanation": "Suy giảm có kiểm soát nghĩa là mất một phần chức năng thay vì mất tất cả. Người dùng vẫn tìm và mua được hàng, chỉ thiếu một ô gợi ý mà phần lớn không nhận ra. Chờ hoặc thử lại liên tục thì biến một lỗi nhỏ thành sự cố toàn trang."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao mọi lời gọi ra ngoài đều phải có thời hạn chờ?",
+      "options": [
+        "Vì không đặt thì mặc định là chờ rất lâu hoặc chờ mãi",
+        "Vì thời hạn chờ giúp yêu cầu được xử lý với mức ưu tiên cao hơn",
+        "Vì máy chủ đích chỉ trả lời những yêu cầu có khai báo thời hạn",
+        "Vì thời hạn chờ là điều kiện bắt buộc để bật cơ chế thử lại"
+      ],
+      "correct": 0,
+      "explanation": "Mặc định của phần lớn thư viện là chờ rất lâu, và mỗi lời gọi đang treo giữ một phần tài nguyên. Đặt thời hạn là cách biến một sự chậm không giới hạn thành một lỗi có giới hạn mà bạn xử lý được."
+    },
+    {
+      "question": "Cơ chế ngắt mạch hoạt động thế nào?",
+      "options": [
+        "Khi tỷ lệ lỗi vượt ngưỡng thì tạm ngừng gọi và trả lỗi ngay lập tức",
+        "Khi có lỗi thì tự động chuyển hướng lời gọi sang một dịch vụ dự phòng",
+        "Khi phát hiện chậm thì tăng số luồng để xử lý được nhiều lời gọi hơn",
+        "Khi hỏng thì giữ yêu cầu lại để gửi sau"
+      ],
+      "correct": 0,
+      "explanation": "Ý tưởng là ngừng gõ vào một cánh cửa đang khoá: gọi tiếp chỉ tốn tài nguyên của bạn và làm bên kia khó hồi phục hơn. Sau một khoảng, mạch mở thử vài lời gọi để dò xem dịch vụ đã ổn chưa."
+    },
+    {
+      "question": "Tách biệt tài nguyên theo từng phụ thuộc để làm gì?",
+      "options": [
+        "Để một phụ thuộc hỏng không dùng cạn phần tài nguyên của những phụ thuộc khác",
+        "Để mỗi phụ thuộc được cấp một đường truyền mạng riêng biệt",
+        "Để dễ tính chi phí hạ tầng mà mỗi phụ thuộc gây ra cho hệ thống",
+        "Để có thể triển khai từng phụ thuộc độc lập mà không ảnh hưởng nhau"
+      ],
+      "correct": 0,
+      "explanation": "Nếu mọi lời gọi dùng chung một nhóm luồng, phụ thuộc chậm nhất sẽ chiếm hết và làm mọi thứ khác chết đói. Chia phần riêng cho từng phụ thuộc giữ cho thiệt hại nằm trong ranh giới của nó."
+    },
+    {
+      "question": "Suy giảm có kiểm soát nghĩa là gì?",
+      "options": [
+        "Mất một phần chức năng nhưng phần cốt lõi vẫn phục vụ được",
+        "Giảm dần số lượng người dùng được phục vụ cho tới khi hệ thống ổn định",
+        "Hạ chất lượng dữ liệu trả về để giảm tải cho các dịch vụ phía sau",
+        "Tắt bớt máy chủ để tiết kiệm tài nguyên"
+      ],
+      "correct": 0,
+      "explanation": "Nó đòi hỏi bạn quyết định trước cái gì là cốt lõi và cái gì có thể tạm khuyết. Quyết định đó là nghiệp vụ chứ không phải kỹ thuật, và phải có sẵn trước khi sự cố xảy ra."
+    },
+    {
+      "question": "Vì sao dịch vụ chết hẳn lại dễ xử lý hơn dịch vụ chạy chậm?",
+      "options": [
+        "Vì nó trả lỗi ngay nên bên gọi giải phóng tài nguyên gần như tức thì",
+        "Vì hệ thống giám sát chỉ phát hiện được dịch vụ chết chứ không phát hiện chậm",
+        "Vì dịch vụ chết sẽ tự khởi động lại còn dịch vụ chậm thì không",
+        "Vì lời gọi tới dịch vụ chết không được tính vào hạn mức tốc độ"
+      ],
+      "correct": 0,
+      "explanation": "Thất bại nhanh là thất bại dễ chịu: bên gọi biết ngay và chuyển sang đường dự phòng. Chậm thì không ai biết chuyện gì đang xảy ra, trong lúc tài nguyên cứ cạn dần."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Trong một hệ thống có nhiều dịch vụ, việc một phần nào đó đang hỏng là trạng thái bình thường chứ không phải ngoại lệ. Câu hỏi thiết kế là: hỏng ở đó thì lan tới đâu."
+    },
+    {
+      "type": "heading",
+      "text": "Chậm nguy hiểm hơn chết"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Dịch vụ chết",
+        "text": "Trả lỗi kết nối trong vài mili giây. Bên gọi biết ngay, giải phóng tài nguyên, chuyển sang đường dự phòng."
+      },
+      "right": {
+        "label": "Dịch vụ chậm",
+        "text": "Không trả lời gì. Mỗi lời gọi giữ một luồng và một kết nối cho tới khi hết hạn chờ - và nếu không đặt hạn thì là mãi mãi."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Bốn lớp phòng thủ"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Thời hạn chờ: biến sự chậm không giới hạn thành lỗi có giới hạn.",
+        "Ngắt mạch: ngừng gọi tạm thời khi tỷ lệ lỗi vượt ngưỡng, rồi thử lại dè dặt.",
+        "Tách tài nguyên: mỗi phụ thuộc một phần riêng, để cái hỏng không ăn hết phần chung.",
+        "Suy giảm có kiểm soát: quyết định trước chức năng nào được phép tạm khuyết."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Câu hỏi phải trả lời trước sự cố",
+      "text": "Nếu dịch vụ này treo mười phút thì phần nào của sản phẩm còn dùng được? Trả lời được trong lúc yên bình thì bạn có sẵn phương án; trả lời lúc đang có sự cố thì bạn chỉ có sự hoảng loạn."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Hệ thống bền không phải hệ thống không bao giờ hỏng, mà là hệ thống hỏng từng phần và không kéo phần còn lại theo.",
+        "Bài sau nói về cách tháo hẳn sự phụ thuộc theo thời gian: đưa việc vào hàng đợi thay vì chờ nhau."
+      ]
+    }
+  ]
+}

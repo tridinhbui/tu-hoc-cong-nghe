@@ -70,7 +70,7 @@ export default function FormulaBlock({
   return (
     <div className="my-8 border-2 border-stone-900 dark:border-amber-500/40 rounded-2xl bg-white/95 dark:bg-stone-900 shadow-lg overflow-hidden transition-all">
       {/* Header Bar */}
-      <div className="bg-stone-900 dark:bg-stone-950 px-5 py-3.5 flex items-center justify-between border-b border-stone-800">
+      <div className="bg-surface-invert px-5 py-3.5 flex items-center justify-between border-b border-stone-800">
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-xs font-black">
             <Calculator className="w-4 h-4" />
@@ -146,7 +146,7 @@ export default function FormulaBlock({
                 key={v.symbol}
                 className="flex items-start gap-2.5 bg-white/95 dark:bg-stone-800 p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-700/80 text-xs shadow-2xs"
               >
-                <span className="font-mono font-bold text-amber-700 dark:text-amber-300 bg-warn-soft/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/60 shrink-0">
+                <span className="font-mono font-bold text-warn-strong bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/60 shrink-0">
                   {v.symbol}
                 </span>
                 <div>
@@ -167,7 +167,7 @@ export default function FormulaBlock({
       {example && (
         <div className="p-5 bg-emerald-50/30 dark:bg-emerald-950/20 border-t border-emerald-100 dark:border-emerald-900/40">
           <div className="flex items-center gap-2 mb-2">
-            <p className="text-xs font-extrabold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider">
+            <p className="text-xs font-extrabold text-accent-ink uppercase tracking-wider">
               {example.title || t.formulaBlock.defaultExampleTitle}
             </p>
           </div>
@@ -175,13 +175,13 @@ export default function FormulaBlock({
           <div className="bg-white dark:bg-stone-900 p-3.5 rounded-xl border border-emerald-200/60 dark:border-emerald-800/60 text-xs space-y-1.5 shadow-2xs">
             <div className="flex items-baseline justify-between gap-2 flex-wrap font-mono font-bold">
               <span className="text-ink-body">{format(t.formulaBlock.calculationPrefix, { calculation: example.calculation })}</span>
-              <span className="text-accent text-sm font-extrabold bg-accent-soft/60 px-2.5 py-0.5 rounded-lg border border-emerald-200 dark:border-emerald-800">
+              <span className="text-accent text-sm font-extrabold bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-lg border border-accent-line">
                 = {example.result}
               </span>
             </div>
 
             {example.explanation && (
-              <p className="text-stone-600 dark:text-stone-400 text-xs pt-1 leading-relaxed border-t border-line-soft mt-2">
+              <p className="text-ink-soft text-xs pt-1 leading-relaxed border-t border-line-soft mt-2">
                 💡 <span className="font-semibold">{example.explanation}</span>
               </p>
             )}

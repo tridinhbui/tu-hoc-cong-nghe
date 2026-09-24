@@ -1,0 +1,184 @@
+{
+  "id": 39,
+  "slug": "du-lieu-ca-nhan-va-toi-thieu-hoa",
+  "title": "Dữ liệu cá nhân: thứ không thu thập thì không làm rò rỉ được",
+  "subtitle": "Mỗi trường dữ liệu cá nhân bạn lưu là một nghĩa vụ phải giữ, không phải một tài sản.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🛡️",
+  "track": "professional",
+  "whyItMatters": "Bản năng kỹ thuật là thu thập càng nhiều càng tốt, biết đâu sau này dùng tới. Với dữ liệu cá nhân thì bản năng đó ngược hoàn toàn: mỗi trường thêm vào là thêm một thứ phải bảo vệ, phải xoá khi được yêu cầu, và phải giải trình nếu rò rỉ.",
+  "openingQuestion": "Cách chắc chắn nhất để một trường dữ liệu cá nhân không bao giờ bị rò rỉ là gì?",
+  "openingOptions": [
+    "Không thu thập nó ngay từ đầu nếu nghiệp vụ không thật sự cần",
+    "Mã hoá trường đó bằng thuật toán mạnh nhất hiện có trên thị trường",
+    "Giới hạn quyền đọc trường đó cho đúng một nhóm quản trị viên",
+    "Ghi nhật ký mọi lần truy cập để truy vết được khi có sự cố xảy ra"
+  ],
+  "correctOption": 0,
+  "explanation": "Mã hoá, phân quyền và ghi nhật ký đều là biện pháp tốt và đều cần, nhưng cả ba đều làm giảm xác suất chứ không đưa nó về không. Khoá bị lộ, quyền bị cấu hình sai, bản sao lưu bị quên ở một nơi ít bảo vệ - mỗi năm đều có ví dụ mới. Thứ duy nhất không bao giờ rò rỉ là thứ không tồn tại trong hệ thống của bạn. Vì vậy câu hỏi đầu tiên với mọi trường dữ liệu cá nhân không phải là bảo vệ thế nào, mà là có thật sự cần lưu hay không.",
+  "diagram": [
+    {
+      "label": "Trường dữ liệu cá nhân được đề xuất thu thập",
+      "arrow": true
+    },
+    {
+      "label": "Nghiệp vụ nào cần, cần tới mức nào",
+      "arrow": true
+    },
+    {
+      "label": "Không cần thì không thu thập",
+      "arrow": true
+    },
+    {
+      "label": "Cần thì tối thiểu hoá, đặt hạn xoá, phân quyền"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Ngày sinh hay chỉ cần đủ tuổi",
+    "description": "Rất nhiều hệ thống lưu ngày sinh đầy đủ trong khi nghiệp vụ chỉ cần biết người dùng đã đủ mười tám tuổi hay chưa. Lưu một giá trị đúng hoặc sai thay cho ngày sinh giữ nguyên chức năng và xoá bỏ hoàn toàn một trường định danh cá nhân."
+  },
+  "keyTakeaways": [
+    "Thu thập tối thiểu: không lưu trường nào mà nghiệp vụ không thật sự cần.",
+    "Mỗi trường cá nhân cần có mục đích rõ ràng và một thời hạn lưu trữ.",
+    "Ẩn danh thật sự khó hơn vẻ ngoài, vì ghép nhiều trường lại vẫn định danh được.",
+    "Dữ liệu cá nhân trong nhật ký và bản sao lưu cũng là dữ liệu cá nhân."
+  ],
+  "summary": {
+    "keyIdea": "Dữ liệu cá nhân là nghĩa vụ chứ không phải tài sản, nên mặc định là không thu thập.",
+    "formula": "Không có thì không mất; có thì phải có mục đích và thời hạn.",
+    "commonMistake": "Thu thập sẵn phòng khi cần, rồi giữ mãi mà không ai nhớ để làm gì."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê mọi trường dữ liệu cá nhân trong một bảng bạn sở hữu, và với từng trường trả lời hai câu: nghiệp vụ nào dùng nó, và giữ trong bao lâu. Trường nào không trả lời được cả hai là trường nên bỏ."
+  },
+  "practicePrompt": {
+    "question": "Đội phân tích xin một bản dữ liệu người dùng đã bỏ tên và số điện thoại để nghiên cứu. Bản đó đã ẩn danh chưa?",
+    "options": [
+      "Chưa chắc, vì ghép ngày sinh, giới tính và nơi ở vẫn định danh được nhiều người",
+      "Rồi, vì mọi trường định danh trực tiếp đều đã được loại bỏ khỏi bản dữ liệu",
+      "Rồi, miễn là bản đó chỉ được dùng nội bộ và không chia sẻ ra bên ngoài",
+      "Chưa, vì bản dữ liệu vẫn còn mã định danh nội bộ của từng người dùng"
+    ],
+    "correct": 0,
+    "explanation": "Bỏ tên chỉ loại được định danh trực tiếp. Tổ hợp vài trường tưởng như vô hại thường thu hẹp về một người duy nhất, nhất là ở nhóm dân số nhỏ. Ẩn danh thật sự cần gộp nhóm, làm nhiễu hoặc giảm độ chi tiết, chứ không chỉ là xoá cột."
+  },
+  "quiz": [
+    {
+      "question": "Nguyên tắc thu thập tối thiểu nghĩa là gì?",
+      "options": [
+        "Chỉ lưu những trường mà nghiệp vụ thật sự cần tới",
+        "Chỉ lưu dữ liệu của những người dùng đã đồng ý bằng văn bản",
+        "Chỉ cho phép một số ít nhân viên được quyền đọc dữ liệu cá nhân",
+        "Chỉ lưu dữ liệu ở dạng đã mã hoá chứ không lưu ở dạng gốc"
+      ],
+      "correct": 0,
+      "explanation": "Nguyên tắc này nói về việc có thu thập hay không, chứ không phải bảo vệ thế nào sau khi đã thu thập. Đồng ý, phân quyền và mã hoá đều cần, nhưng chúng là những nguyên tắc khác."
+    },
+    {
+      "question": "Vì sao xoá cột tên chưa chắc đã làm dữ liệu trở thành ẩn danh?",
+      "options": [
+        "Vì tổ hợp nhiều trường còn lại vẫn có thể chỉ về một người duy nhất",
+        "Vì tên vẫn còn được lưu lại trong bản sao lưu của bảng dữ liệu",
+        "Vì mỗi dòng vẫn giữ nguyên thứ tự nên đối chiếu ngược lại được",
+        "Vì cơ sở dữ liệu vẫn giữ lại giá trị cũ của cột đã xoá ở trong nhật ký"
+      ],
+      "correct": 0,
+      "explanation": "Ngày sinh, giới tính và mã vùng cư trú gộp lại đã đủ để xác định phần lớn dân số trong nhiều nghiên cứu. Ẩn danh thật sự đòi hỏi giảm độ chi tiết chứ không chỉ bỏ đi cột tên."
+    },
+    {
+      "question": "Vì sao mỗi trường dữ liệu cá nhân nên có thời hạn lưu trữ?",
+      "options": [
+        "Vì giữ vô thời hạn là giữ rủi ro mà không còn lợi ích nghiệp vụ",
+        "Vì cơ sở dữ liệu chậm dần khi nhiều dòng",
+        "Vì dữ liệu cá nhân cũ thường sai lệch",
+        "Vì lưu dữ liệu cá nhân tốn chi phí hơn"
+      ],
+      "correct": 0,
+      "explanation": "Sau khi mục đích thu thập đã hết, dữ liệu chỉ còn lại phần rủi ro. Thời hạn lưu trữ biến việc xoá thành mặc định thay vì thành một việc phải có người nhớ mà làm."
+    },
+    {
+      "question": "Vì sao nhật ký hệ thống là điểm rò rỉ dữ liệu cá nhân hay bị bỏ quên?",
+      "options": [
+        "Vì nó được lưu lâu, sao chép nhiều nơi và nhiều người đọc được",
+        "Vì nhật ký thì không bao giờ được mã hoá bởi bất kỳ hệ thống nào",
+        "Vì nhật ký nằm ngoài phạm vi điều chỉnh của các quy định bảo vệ dữ liệu",
+        "Vì nhật ký được ghi bởi thư viện bên ngoài nên không kiểm soát được"
+      ],
+      "correct": 0,
+      "explanation": "Người ta bảo vệ cơ sở dữ liệu rất kỹ rồi để dữ liệu cá nhân trôi vào nhật ký, nơi lưu ở kho khác, giữ nhiều tháng và cấp quyền đọc rộng hơn hẳn. Quy định vẫn áp dụng cho nhật ký như mọi nơi khác."
+    },
+    {
+      "question": "Cách tiếp cận nào đúng khi nghiệp vụ chỉ cần biết người dùng đã đủ tuổi?",
+      "options": [
+        "Lưu một giá trị đúng hoặc sai thay vì lưu ngày sinh đầy đủ",
+        "Lưu ngày sinh nhưng mã hoá cột đó bằng khoá riêng của hệ thống",
+        "Lưu ngày sinh và giới hạn quyền đọc cột đó cho nhóm quản trị",
+        "Lưu năm sinh thay cho ngày đầy đủ"
+      ],
+      "correct": 0,
+      "explanation": "Một giá trị đúng hoặc sai đáp ứng đủ nghiệp vụ và không còn là dữ liệu định danh nữa. Lưu năm sinh có giảm chi tiết nhưng vẫn là một trường cá nhân, còn mã hoá và phân quyền chỉ bảo vệ thứ lẽ ra không cần giữ."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Với phần lớn dữ liệu, thu thập thêm là có lợi: biết đâu sau này dùng tới. Với dữ liệu cá nhân thì phép tính đảo chiều, vì mỗi trường thêm vào là một nghĩa vụ kéo dài nhiều năm."
+    },
+    {
+      "type": "heading",
+      "text": "Câu hỏi đầu tiên không phải là bảo vệ thế nào"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mã hoá, phân quyền, ghi nhật ký truy cập đều cần thiết, và đều làm giảm xác suất sự cố. Nhưng chúng không đưa xác suất về không, vì khoá bị lộ, cấu hình bị sai và bản sao lưu bị quên đều là chuyện xảy ra hằng năm. Trường duy nhất chắc chắn không rò rỉ là trường bạn không lưu."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Ba câu hỏi cho mỗi trường cá nhân",
+      "subtitle": "Trả lời được cả ba thì mới giữ",
+      "concepts": [
+        {
+          "vi": "Mục đích",
+          "en": "purpose",
+          "def": "Nghiệp vụ cụ thể nào dùng trường này? Biết đâu sau này cần không phải là một mục đích."
+        },
+        {
+          "vi": "Mức tối thiểu",
+          "en": "minimisation",
+          "def": "Có dạng nào ít chi tiết hơn mà vẫn đủ dùng không? Đủ tuổi thay cho ngày sinh, mã vùng thay cho địa chỉ."
+        },
+        {
+          "vi": "Thời hạn",
+          "en": "retention",
+          "def": "Giữ bao lâu rồi xoá? Không có thời hạn nghĩa là giữ mãi, và giữ mãi thì rủi ro chỉ tăng."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Ẩn danh khó hơn vẻ ngoài"
+    },
+    {
+      "type": "callout",
+      "label": "Xoá cột tên là chưa đủ",
+      "text": "Ngày sinh cộng giới tính cộng mã vùng cư trú đã đủ để chỉ đích danh phần lớn người trong nhiều tập dữ liệu. Ẩn danh thật sự cần gộp nhóm hoặc giảm độ chi tiết, và cần kiểm chứng chứ không chỉ tuyên bố."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Rà soát nhật ký và bản sao lưu: dữ liệu cá nhân ở đó cũng chịu cùng nghĩa vụ.",
+        "Đặt hạn xoá tự động thay vì trông chờ có người nhớ dọn dẹp định kỳ.",
+        "Khi được yêu cầu xoá, nhớ rằng dữ liệu còn nằm ở bản sao lưu và kho báo cáo."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Với dữ liệu cá nhân, mặc định an toàn nhất là không thu thập. Mọi biện pháp bảo vệ khác chỉ là lớp thứ hai.",
+        "Bài sau khép lại chặng: nhìn lại toàn bộ hành trình từ một dãy bit tới một hệ thống dữ liệu có thể tin được."
+      ]
+    }
+  ]
+}

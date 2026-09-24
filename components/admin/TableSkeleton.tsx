@@ -6,7 +6,7 @@ export default function TableSkeleton({ rows = 6, cols = 5 }: { rows?: number; c
           {Array.from({ length: cols }).map((_, c) => (
             <div
               key={c}
-              className="h-4 bg-stone-200 dark:bg-stone-800 rounded"
+              className="h-4 bg-surface-sunken rounded"
               style={{ width: c === 0 ? "20%" : `${60 / (cols - 1)}%` }}
             />
           ))}

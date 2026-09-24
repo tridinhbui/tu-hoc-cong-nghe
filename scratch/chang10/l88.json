@@ -1,0 +1,161 @@
+{
+  "id": 88,
+  "slug": "chi-so-dan-dat",
+  "title": "Một chỉ số dẫn dắt: thứ cả đội cùng nhìn",
+  "subtitle": "Theo dõi hai mươi chỉ số nghĩa là không ưu tiên chỉ số nào.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🎯",
+  "track": "professional",
+  "whyItMatters": "Khi mỗi người trong đội tối ưu một con số khác nhau, các nỗ lực triệt tiêu nhau: một người làm quy trình ngắn đi, người kia thêm bước để thu thập dữ liệu. Một chỉ số chung là cách giải mâu thuẫn đó trước khi nó thành cuộc họp.",
+  "openingQuestion": "Đội bạn theo dõi hai mươi chỉ số trên bảng điều khiển. Vấn đề là gì?",
+  "openingOptions": [
+    "Khi phải chọn giữa hai việc, không có con số nào phân xử được",
+    "Bảng điều khiển tải chậm vì phải tính quá nhiều chỉ số",
+    "Không đủ người để theo dõi tất cả các chỉ số mỗi ngày",
+    "Các chỉ số sẽ mâu thuẫn nhau về mặt số học khi được tổng hợp lại"
+  ],
+  "correctOption": 0,
+  "explanation": "Chỉ số tồn tại để giúp ra quyết định. Khi có hai mươi cái, mọi phương án đều làm tốt lên vài cái và xấu đi vài cái khác, nên bạn luôn tìm được con số ủng hộ điều mình vốn đã muốn làm. Một chỉ số dẫn dắt được chọn trước sẽ phân xử: phương án nào làm nó tốt hơn thì thắng. Những chỉ số còn lại không biến mất - chúng trở thành ràng buộc, tức là những thứ không được phép xấu đi, chứ không phải thứ để tối ưu.",
+  "diagram": [
+    {
+      "label": "Hai mươi chỉ số ngang hàng nhau",
+      "arrow": true
+    },
+    {
+      "label": "Mọi phương án đều làm tốt vài cái, xấu vài cái",
+      "arrow": true
+    },
+    {
+      "label": "Một chỉ số dẫn dắt + các ràng buộc",
+      "arrow": true
+    },
+    {
+      "label": "Giờ mới phân xử được giữa hai phương án"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hai đội kéo ngược nhau",
+    "description": "Đội tăng trưởng tối ưu số đăng ký nên rút gọn biểu mẫu. Đội dữ liệu tối ưu chất lượng hồ sơ nên thêm trường bắt buộc. Cả hai đều đạt chỉ tiêu của mình, và sản phẩm đứng yên - vì không ai đặt ra một con số chung đứng trên cả hai."
+  },
+  "keyTakeaways": [
+    "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+    "Chỉ số dẫn dắt phải là thứ đội thật sự tác động được, không phải doanh thu tổng.",
+    "Nó cần được đổi khi giai đoạn của sản phẩm đổi, nhưng không đổi hằng tháng.",
+    "Đặt chỉ tiêu cho một chỉ số sẽ làm nó bị tối ưu theo cách bạn không mong."
+  ],
+  "summary": {
+    "keyIdea": "Một con số được chọn trước là cách giải mâu thuẫn giữa các phương án mà không cần tranh cãi.",
+    "formula": "Một chỉ số để tối ưu, vài chỉ số làm ràng buộc.",
+    "commonMistake": "Coi mọi chỉ số ngang nhau, rồi ai cũng tìm được số liệu ủng hộ mình."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Hỏi ba người trong đội: nếu chỉ được nhìn một con số trong quý này thì đó là con số nào? Ba câu trả lời khác nhau nghĩa là đội đang không có chỉ số dẫn dắt."
+  },
+  "practicePrompt": {
+    "question": "Đội bạn chọn doanh thu quý làm chỉ số dẫn dắt. Vấn đề của lựa chọn này là gì?",
+    "options": [
+      "Đội khó tác động trực tiếp và tín hiệu về quá chậm để điều chỉnh",
+      "Doanh thu là số cộng dồn nên nó chỉ có thể tăng lên",
+      "Doanh thu không đo được chính xác theo từng tuần làm việc",
+      "Doanh thu thuộc trách nhiệm của bộ phận kinh doanh chứ không phải kỹ thuật"
+    ],
+    "correct": 0,
+    "explanation": "Chỉ số dẫn dắt tốt phải nằm trong tầm tác động của đội và phản hồi đủ nhanh để điều chỉnh trong chu kỳ làm việc. Doanh thu quý chịu ảnh hưởng của giá, thị trường và mùa vụ, nên đội làm tốt vẫn có thể thấy nó giảm, và ngược lại."
+  },
+  "quiz": [
+    {
+      "question": "Vấn đề của việc coi nhiều chỉ số ngang hàng là gì?",
+      "options": [
+        "Luôn tìm được con số ủng hộ phương án mình vốn muốn làm",
+        "Bảng điều khiển trở nên quá tải và khó theo dõi",
+        "Các chỉ số sẽ mâu thuẫn nhau khi cộng tổng lại",
+        "Không đủ thời gian để phân tích hết mọi chỉ số"
+      ],
+      "correct": 0,
+      "explanation": "Không có thứ tự ưu tiên thì việc chọn chỉ số trở thành việc chọn kết luận. Một chỉ số dẫn dắt được chốt trước sẽ ngăn cách lập luận vòng quanh đó."
+    },
+    {
+      "question": "Các chỉ số không phải chỉ số dẫn dắt nên đóng vai trò gì?",
+      "options": [
+        "Làm ràng buộc: không được xấu đi khi ta tối ưu chỉ số chính",
+        "Bị loại khỏi bảng theo dõi để tránh gây phân tâm",
+        "Được theo dõi luân phiên theo từng quý trong năm",
+        "Được giao cho những đội khác nhau cùng theo dõi song song với nhau"
+      ],
+      "correct": 0,
+      "explanation": "Chúng vẫn quan trọng, chỉ là không dùng để phân xử. Vai trò ràng buộc ngăn việc tối ưu một con số bằng cách phá hỏng những con số khác."
+    },
+    {
+      "question": "Chỉ số dẫn dắt tốt cần tính chất gì?",
+      "options": [
+        "Đội tác động được và phản hồi đủ nhanh để điều chỉnh",
+        "Có thể so sánh trực tiếp với các đối thủ trong ngành",
+        "Luôn tăng đều đặn qua từng tháng trong năm",
+        "Được ban lãnh đạo công ty phê duyệt chính thức"
+      ],
+      "correct": 0,
+      "explanation": "Con số nằm ngoài tầm ảnh hưởng hoặc phản hồi sau ba tháng thì không hướng dẫn được công việc hằng tuần. Đó là lý do doanh thu quý thường là lựa chọn tệ cho một đội sản phẩm."
+    },
+    {
+      "question": "Điều gì xảy ra khi một chỉ số trở thành chỉ tiêu bắt buộc?",
+      "options": [
+        "Nó bị tối ưu theo những cách không mang lại giá trị thật",
+        "Nó sẽ trở nên chính xác hơn nhờ được theo dõi sát sao",
+        "Các chỉ số khác cũng tự động cải thiện theo",
+        "Việc đo lường nó tốn nhiều tài nguyên hơn trước"
+      ],
+      "correct": 0,
+      "explanation": "Đây đúng hiện tượng đã gặp với độ phủ kiểm thử ở chặng trước. Khi con số thành mục tiêu, cách đạt rẻ nhất sẽ thắng, và cách rẻ nhất hiếm khi trùng với cách tạo ra giá trị."
+    },
+    {
+      "question": "Khi nào nên đổi chỉ số dẫn dắt?",
+      "options": [
+        "Khi giai đoạn của sản phẩm đổi, chứ không phải mỗi tháng",
+        "Khi chỉ số hiện tại đã đạt mục tiêu đề ra trong quý",
+        "Khi có thành viên mới gia nhập đội và mang theo góc nhìn khác",
+        "Khi công cụ phân tích cung cấp thêm chỉ số mới"
+      ],
+      "correct": 0,
+      "explanation": "Giai đoạn tìm kiếm sản phẩm phù hợp cần một chỉ số khác giai đoạn mở rộng. Nhưng đổi liên tục thì không ai kịp thấy tác động của việc mình làm, và chỉ số mất luôn vai trò dẫn dắt."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bốn bài vừa rồi nói về cách đo cho đúng. Bài này nói về việc dùng phép đo ấy để quyết định - và bước đầu tiên là giảm số lượng con số được quyền phân xử xuống còn một."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao nhiều chỉ số làm tê liệt quyết định"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mọi thay đổi đáng kể đều là một đánh đổi: rút gọn biểu mẫu thì tăng đăng ký nhưng giảm chất lượng hồ sơ, thêm bước xác nhận thì giảm lỗi nhưng tăng bỏ cuộc. Với hai mươi chỉ số ngang hàng, mỗi phương án đều có con số ủng hộ, nên cuộc thảo luận trở thành cuộc chọn chỉ số - và ai cũng chọn cái ủng hộ mình, hoàn toàn chân thành."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Chỉ số dẫn dắt",
+        "text": "Đúng một, dùng để phân xử giữa các phương án. Phải nằm trong tầm tác động của đội và phản hồi trong vài tuần."
+      },
+      "right": {
+        "label": "Ràng buộc",
+        "text": "Vài chỉ số không được phép xấu đi. Chúng không chọn phương án thắng, chúng loại những phương án thắng bằng cách phá thứ khác."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Chỉ số thành chỉ tiêu thì hỏng",
+      "text": "Cùng hiện tượng với độ phủ kiểm thử: khi con số trở thành mục tiêu, cách đạt rẻ nhất sẽ thắng. Chỉ số dẫn dắt nên dùng để chọn hướng đi, không nên dùng để chấm điểm người."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Một con số được chọn trước sẽ giải quyết những tranh cãi mà hai mươi con số chỉ làm kéo dài thêm.",
+        "Bài sau nói về chuyện xảy ra với chính con số ấy theo thời gian: định nghĩa trôi đi và không ai nhận ra."
+      ]
+    }
+  ]
+}

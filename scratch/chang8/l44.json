@@ -1,0 +1,189 @@
+{
+  "id": 44,
+  "slug": "http-yeu-cau-va-phan-hoi",
+  "title": "Yêu cầu và phản hồi: hình dạng của một lần gọi",
+  "subtitle": "Mỗi lần gọi là một lá thư có địa chỉ, tiêu đề và nội dung - và máy chủ không nhớ lá thư trước.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "✉️",
+  "track": "professional",
+  "whyItMatters": "Đây là hình dạng của gần như mọi thứ bạn sẽ viết: gọi dịch vụ, tải trang, đọc API. Biết một yêu cầu gồm những phần nào là biết chỗ đặt thông tin nào, và biết vì sao đặt sai chỗ lại gây rò rỉ hoặc phá vỡ bộ nhớ đệm.",
+  "openingQuestion": "Vì sao không nên đặt mã xác thực vào phần địa chỉ của yêu cầu?",
+  "openingOptions": [
+    "Vì địa chỉ bị ghi lại trong nhật ký và lịch sử ở rất nhiều nơi",
+    "Vì phần địa chỉ có giới hạn độ dài nên mã dài sẽ bị cắt bớt đi",
+    "Vì máy chủ không đọc được thông tin nằm trong phần địa chỉ",
+    "Vì phần địa chỉ không được mã hoá còn phần tiêu đề thì có"
+  ],
+  "correctOption": 0,
+  "explanation": "Địa chỉ của một yêu cầu là phần lộ liễu nhất: nó nằm trong nhật ký máy chủ, trong lịch sử trình duyệt, trong nhật ký của các thiết bị trung gian, và nó đi kèm khi người dùng bấm sang trang khác. Bí mật đặt ở đó sẽ được sao chép ra hàng loạt nơi mà không ai chủ ý. Cả địa chỉ lẫn tiêu đề đều được mã hoá như nhau khi kết nối an toàn, nên khác biệt không nằm ở mã hoá mà nằm ở chuyện phần nào bị ghi lại và chia sẻ.",
+  "diagram": [
+    {
+      "label": "Phương thức + địa chỉ - làm gì, với cái gì",
+      "arrow": true
+    },
+    {
+      "label": "Tiêu đề - thông tin về yêu cầu",
+      "arrow": true
+    },
+    {
+      "label": "Nội dung - dữ liệu gửi kèm",
+      "arrow": true
+    },
+    {
+      "label": "Phản hồi trở về với cùng ba phần đó"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Mã đặt lại mật khẩu trong địa chỉ",
+    "description": "Đường dẫn đặt lại mật khẩu mang mã dùng một lần trong địa chỉ. Người dùng dán cả đường dẫn vào một cuộc trò chuyện để nhờ hỗ trợ, và ai đọc được tin nhắn đó cũng đặt lại được mật khẩu. Đó là lý do mã như vậy phải có hạn rất ngắn và chỉ dùng được một lần."
+  },
+  "keyTakeaways": [
+    "Một yêu cầu gồm phương thức, địa chỉ, tiêu đề và nội dung; phản hồi cũng có cấu trúc tương tự.",
+    "Mỗi yêu cầu là độc lập: máy chủ không tự nhớ yêu cầu trước.",
+    "Trạng thái được mang theo bằng tiêu đề, nên mọi yêu cầu đều phải tự chứng minh mình.",
+    "Địa chỉ bị ghi lại ở rất nhiều nơi, nên không đặt bí mật vào đó."
+  ],
+  "summary": {
+    "keyIdea": "Mỗi lần gọi là một lá thư tự chứa đủ thông tin, vì máy chủ không nhớ lá thư trước.",
+    "formula": "Phương thức + địa chỉ + tiêu đề + nội dung.",
+    "commonMistake": "Đặt bí mật vào địa chỉ, nơi bị ghi lại và chia sẻ nhiều nhất."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở công cụ nhà phát triển của trình duyệt, chọn một yêu cầu bất kỳ và đọc đủ bốn phần của nó. Rồi tự hỏi thông tin nào trong đó bạn sẽ không muốn thấy nằm trong một tệp nhật ký."
+  },
+  "practicePrompt": {
+    "question": "Vì sao máy chủ không tự biết người gửi yêu cầu này chính là người đã đăng nhập ở yêu cầu trước?",
+    "options": [
+      "Vì mỗi yêu cầu là độc lập, máy chủ không giữ ngữ cảnh giữa hai lần gọi",
+      "Vì thông tin đăng nhập hết hạn ngay sau khi yêu cầu trước kết thúc",
+      "Vì hai yêu cầu thường được xử lý bởi hai tiến trình khác nhau trên máy chủ",
+      "Vì trình duyệt xoá thông tin phiên làm việc sau mỗi lần gửi yêu cầu"
+    ],
+    "correct": 0,
+    "explanation": "Giao thức được thiết kế không trạng thái: mỗi yêu cầu tự mang đủ thứ cần thiết để xử lý. Nhờ vậy bất kỳ máy chủ nào trong nhóm cũng phục vụ được yêu cầu đó, và đây chính là lý do trạng thái đăng nhập phải đi kèm trong tiêu đề mỗi lần gọi."
+  },
+  "quiz": [
+    {
+      "question": "Một yêu cầu gồm những phần nào?",
+      "options": [
+        "Phương thức, địa chỉ, tiêu đề và nội dung",
+        "Địa chỉ nguồn, địa chỉ đích, cổng và dữ liệu cần gửi đi",
+        "Tên miền, chứng chỉ bảo mật và nội dung đã được mã hoá",
+        "Mã trạng thái, tiêu đề và nội dung mà máy chủ trả về"
+      ],
+      "correct": 0,
+      "explanation": "Phương thức nói làm gì, địa chỉ nói làm với cái gì, tiêu đề mang thông tin về chính yêu cầu, nội dung mang dữ liệu. Mã trạng thái thuộc về phản hồi chứ không thuộc yêu cầu."
+    },
+    {
+      "question": "Giao thức không trạng thái nghĩa là gì?",
+      "options": [
+        "Mỗi yêu cầu tự mang đủ thông tin, máy chủ không nhớ lần gọi trước",
+        "Máy chủ không lưu bất kỳ dữ liệu nào của người dùng xuống cơ sở dữ liệu",
+        "Kết nối bị đóng ngay sau mỗi yêu cầu và phải mở lại từ đầu",
+        "Người dùng phải đăng nhập lại mỗi khi chuyển sang một trang mới"
+      ],
+      "correct": 0,
+      "explanation": "Không trạng thái nói về việc máy chủ không giữ ngữ cảnh giữa các yêu cầu, không nói về việc lưu dữ liệu. Nhờ tính chất này mà đặt nhiều máy chủ sau một bộ cân bằng tải mới đơn giản như vậy."
+    },
+    {
+      "question": "Vì sao không đặt bí mật vào phần địa chỉ của yêu cầu?",
+      "options": [
+        "Vì địa chỉ bị ghi lại trong nhật ký và lịch sử ở nhiều nơi",
+        "Vì phần địa chỉ không được mã hoá còn tiêu đề thì có",
+        "Vì máy chủ xử lý phần địa chỉ chậm hơn nhiều so với phần tiêu đề",
+        "Vì địa chỉ có giới hạn độ dài nên bí mật dài sẽ bị cắt bớt"
+      ],
+      "correct": 0,
+      "explanation": "Khi kết nối an toàn thì cả địa chỉ lẫn tiêu đề đều được mã hoá trên đường truyền. Khác biệt nằm ở chỗ địa chỉ được ghi lại và chia sẻ ở rất nhiều nơi sau khi yêu cầu đã tới đích."
+    },
+    {
+      "question": "Tiêu đề của yêu cầu dùng để mang thứ gì?",
+      "options": [
+        "Thông tin về chính yêu cầu, như định dạng mong muốn hay danh tính người gọi",
+        "Toàn bộ dữ liệu nghiệp vụ mà máy chủ cần để xử lý yêu cầu đó",
+        "Địa chỉ của máy chủ đích và cổng mà dịch vụ đang lắng nghe",
+        "Mã trạng thái cho biết yêu cầu trước đó đã thành công hay chưa"
+      ],
+      "correct": 0,
+      "explanation": "Tiêu đề là siêu dữ liệu: nói về yêu cầu chứ không phải là nội dung của nó. Dữ liệu nghiệp vụ thuộc về phần nội dung, còn địa chỉ máy chủ đã được xử lý ở tầng thấp hơn."
+    },
+    {
+      "question": "Vì sao tính không trạng thái lại giúp mở rộng hệ thống dễ hơn?",
+      "options": [
+        "Vì bất kỳ máy chủ nào trong nhóm cũng xử lý được một yêu cầu bất kỳ",
+        "Vì máy chủ không cần đồng bộ dữ liệu người dùng nữa",
+        "Vì mỗi máy chủ chỉ phục vụ đúng một người dùng mỗi lúc",
+        "Vì số lượng yêu cầu giảm đi khi máy chủ không phải nhớ ngữ cảnh"
+      ],
+      "correct": 0,
+      "explanation": "Yêu cầu tự chứa đủ thông tin nên không cần dính vào một máy cụ thể, và thêm máy vào nhóm chỉ là thêm máy. Dữ liệu vẫn phải dùng chung ở tầng lưu trữ, đó là chuyện khác."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Lên tới tầng ứng dụng, mọi thứ trở nên đơn giản một cách dễ chịu: một bên gửi yêu cầu, một bên trả lời. Cái khó nằm ở chỗ đặt thông tin nào vào phần nào."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn phần của một yêu cầu"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Đặt gì vào đâu",
+      "subtitle": "Đặt nhầm chỗ là nguồn của rò rỉ và của lỗi bộ nhớ đệm",
+      "concepts": [
+        {
+          "vi": "Phương thức",
+          "en": "method",
+          "def": "Ý định của lần gọi: lấy về, tạo mới, cập nhật hay xoá đi."
+        },
+        {
+          "vi": "Địa chỉ",
+          "en": "URL",
+          "def": "Xác định tài nguyên đang thao tác. Bị ghi lại và chia sẻ nhiều nhất, nên không chứa bí mật."
+        },
+        {
+          "vi": "Tiêu đề",
+          "en": "headers",
+          "def": "Thông tin về yêu cầu: danh tính người gọi, định dạng mong muốn, chỉ dẫn cho bộ nhớ đệm."
+        },
+        {
+          "vi": "Nội dung",
+          "en": "body",
+          "def": "Dữ liệu gửi kèm. Có ở những phương thức tạo và cập nhật, thường không có ở phương thức đọc."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Máy chủ không nhớ bạn"
+    },
+    {
+      "type": "paragraph",
+      "text": "Giao thức được thiết kế không trạng thái: xử lý xong một yêu cầu là quên sạch. Nghe như một hạn chế, nhưng chính nó cho phép đặt hai mươi máy chủ sau một bộ cân bằng tải mà không cần biết người dùng nào đang ở máy nào. Cái giá là mọi yêu cầu phải tự chứng minh mình, và đó là lý do có tiêu đề mang danh tính."
+    },
+    {
+      "type": "callout",
+      "label": "Phản hồi cũng có cấu trúc ấy",
+      "text": "Một mã trạng thái thay cho phương thức, rồi tiêu đề và nội dung. Đọc phản hồi mà chỉ nhìn phần nội dung là bỏ qua nửa thông tin - phần lớn chỉ dẫn về bộ nhớ đệm và lỗi nằm ở tiêu đề."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Bí mật đi trong tiêu đề, không đi trong địa chỉ.",
+        "Địa chỉ nên mô tả tài nguyên, không mô tả hành động - hành động đã nằm ở phương thức.",
+        "Mọi yêu cầu phải tự mang đủ danh tính, vì không có ngữ cảnh nào được giữ lại."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Một lần gọi là một lá thư tự chứa đủ thông tin. Máy chủ đọc xong là quên, nên lá thư sau phải tự giới thiệu lại từ đầu.",
+        "Bài sau đọc phần đầu tiên của mọi phản hồi: con số ba chữ số nói chuyện gì đã xảy ra."
+      ]
+    }
+  ]
+}

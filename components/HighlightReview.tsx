@@ -68,7 +68,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
           <button
             type="button"
             onClick={restart}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2 text-xs font-bold text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-line-mid px-3 py-2 text-xs font-bold text-ink-body hover:bg-surface transition-colors cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             {t.highlightReview.restart}
@@ -76,7 +76,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
           <button
             type="button"
             onClick={onExit}
-            className="rounded-xl bg-surface-invert px-3 py-2 text-xs font-bold text-white dark:text-stone-900 hover:opacity-90 transition-opacity cursor-pointer"
+            className="rounded-xl bg-surface-invert px-3 py-2 text-xs font-bold text-ink-invert hover:opacity-90 transition-opacity cursor-pointer"
           >
             {t.highlightReview.done}
           </button>
@@ -98,7 +98,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
           type="button"
           onClick={onExit}
           aria-label={t.highlightReview.exitAria}
-          className="p-1.5 rounded-lg text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+          className="p-1.5 rounded-lg text-stone-400 hover:text-ink-body hover:bg-surface-raised transition-colors cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
@@ -111,7 +111,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
         />
       </div>
 
-      <div className="rounded-2xl border border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/20 p-4">
+      <div className="rounded-2xl border border-warn-line bg-amber-50/60 dark:bg-amber-950/20 p-4">
         <p className="text-base leading-relaxed text-ink">{current.quote}</p>
       </div>
 
@@ -123,7 +123,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
             </p>
             <Link
               href={`/bai-hoc/${lesson?.slug ?? current.lesson_slug}`}
-              className="mt-1 inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
+              className="mt-1 inline-flex items-center gap-1.5 text-sm font-bold text-accent-strong hover:underline"
             >
               {lesson?.title ?? current.lesson_slug}
               <ArrowRight className="w-3.5 h-3.5" />
@@ -134,7 +134,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
             <button
               type="button"
               onClick={() => next(false)}
-              className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2 text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+              className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-line-mid px-3 py-2 text-xs font-bold text-ink-soft hover:bg-surface transition-colors cursor-pointer"
             >
               <X className="w-3.5 h-3.5" />
               {t.highlightReview.notRecalled}
@@ -153,7 +153,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
         <button
           type="button"
           onClick={() => setRevealed(true)}
-          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-stone-200 dark:border-stone-700 px-3 py-2.5 text-xs font-bold text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-line-mid px-3 py-2.5 text-xs font-bold text-ink-body hover:bg-surface transition-colors cursor-pointer"
         >
           <Eye className="w-3.5 h-3.5" />
           {t.highlightReview.revealPrompt}

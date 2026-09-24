@@ -1,0 +1,184 @@
+{
+  "id": 66,
+  "slug": "cac-tang-kiem-thu",
+  "title": "Kiểm thử: nhiều bài nhanh, ít bài chậm",
+  "subtitle": "Một bộ kiểm thử chạy mười lăm phút là bộ kiểm thử người ta học cách bỏ qua.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧪",
+  "track": "professional",
+  "whyItMatters": "Giá trị của kiểm thử không nằm ở việc nó tồn tại mà ở việc người ta chạy nó. Bộ kiểm thử chậm và hay đỏ vặt sẽ bị bỏ qua, và lúc đó nó tệ hơn không có gì vì nó tạo ra cảm giác an toàn giả.",
+  "openingQuestion": "Vì sao nên có nhiều bài kiểm thử nhỏ hơn là ít bài kiểm thử đầu cuối?",
+  "openingOptions": [
+    "Vì bài nhỏ chạy nhanh và chỉ thẳng vào chỗ hỏng",
+    "Vì bài đầu cuối không phát hiện được lỗi thật sự",
+    "Vì bài nhỏ dễ viết hơn nên đội viết được nhiều hơn",
+    "Vì bài đầu cuối chỉ chạy được ở môi trường thật"
+  ],
+  "correctOption": 0,
+  "explanation": "Bài kiểm thử nhỏ chạy trong mili giây và khi đỏ thì nó chỉ đúng một hàm, nên bạn biết ngay phải sửa ở đâu. Bài đầu cuối chạy qua cả hệ thống nên chậm hơn hàng nghìn lần, và khi đỏ thì nguyên nhân có thể nằm ở bất kỳ đâu trong chuỗi ấy - kể cả ở chính hạ tầng kiểm thử. Điều đó không có nghĩa là bỏ bài đầu cuối: chúng là thứ duy nhất chứng minh các mảnh ghép lại với nhau chạy được. Tỷ lệ hợp lý là nhiều bài nhanh ở dưới và một ít bài chậm ở trên.",
+  "diagram": [
+    {
+      "label": "Nhiều bài đơn vị - mili giây, chỉ đúng chỗ hỏng",
+      "arrow": true
+    },
+    {
+      "label": "Ít hơn: bài tích hợp - kiểm ranh giới giữa các phần",
+      "arrow": true
+    },
+    {
+      "label": "Ít nhất: bài đầu cuối - chứng minh cả chuỗi chạy được",
+      "arrow": true
+    },
+    {
+      "label": "Càng lên cao càng chậm và càng khó đọc nguyên nhân"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bài kiểm thử đỏ vặt",
+    "description": "Một bài kiểm thử thỉnh thoảng đỏ rồi chạy lại thì xanh. Đội học cách chạy lại thay vì đọc. Vài tháng sau, một lỗi thật xuất hiện đúng ở bài đó và cũng bị chạy lại cho qua - phản xạ đã được huấn luyện từ trước."
+  },
+  "keyTakeaways": [
+    "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng.",
+    "Bài đầu cuối đắt nhưng là thứ duy nhất chứng minh các mảnh ghép được với nhau.",
+    "Bài kiểm thử đỏ vặt còn hại hơn không có, vì nó dạy người ta bỏ qua tín hiệu.",
+    "Kiểm thử nên khẳng định hành vi quan sát được, không khẳng định cách cài đặt bên trong."
+  ],
+  "summary": {
+    "keyIdea": "Bộ kiểm thử chỉ có giá trị khi nó nhanh và đáng tin tới mức người ta thật sự chạy.",
+    "formula": "Nhiều bài nhanh ở dưới, ít bài chậm ở trên.",
+    "commonMistake": "Kiểm thử bám vào cách cài đặt, nên mọi lần dọn mã đều làm đỏ hàng loạt bài."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Đo thời gian chạy bộ kiểm thử của bạn. Nếu quá vài phút, tìm mười bài chậm nhất - thường chúng chiếm phần lớn thời gian và phần lớn trong số đó không cần chậm tới vậy."
+  },
+  "practicePrompt": {
+    "question": "Bạn dọn lại phần bên trong của một hàm mà không đổi hành vi, và ba mươi bài kiểm thử đỏ. Điều đó nói lên gì?",
+    "options": [
+      "Các bài đó đang khẳng định cách cài đặt chứ không phải hành vi",
+      "Việc dọn mã đã vô tình làm đổi hành vi của hàm đó",
+      "Bộ kiểm thử đang phủ hàm đó rất kỹ, và đây là một dấu hiệu tốt",
+      "Ba mươi bài đó cần được gộp lại thành một bài duy nhất"
+    ],
+    "correct": 0,
+    "explanation": "Hành vi không đổi mà kiểm thử đỏ nghĩa là chúng bám vào chi tiết bên trong: gọi hàm nào, theo thứ tự nào. Loại kiểm thử ấy biến mọi lần dọn dẹp thành một khoản chi phí, nên dần dần không ai dám dọn nữa."
+  },
+  "quiz": [
+    {
+      "question": "Ưu điểm chính của bài kiểm thử đơn vị là gì?",
+      "options": [
+        "Chạy rất nhanh và chỉ thẳng vào chỗ hỏng khi đỏ",
+        "Phát hiện được nhiều loại lỗi hơn các tầng kiểm thử khác",
+        "Không cần bảo trì khi mã nguồn bên dưới thay đổi",
+        "Kiểm được cả phần giao diện mà người dùng nhìn thấy"
+      ],
+      "correct": 0,
+      "explanation": "Tốc độ và độ chính xác của tín hiệu là hai thứ nó cho. Về phạm vi lỗi thì nó yếu hơn hẳn: những lỗi ở ranh giới giữa các phần chỉ lộ ra ở tầng tích hợp trở lên."
+    },
+    {
+      "question": "Vì sao bài kiểm thử đỏ vặt lại nguy hiểm?",
+      "options": [
+        "Vì nó dạy đội phản xạ chạy lại thay vì đọc kết quả",
+        "Vì nó làm bộ kiểm thử chạy lâu hơn mức cần thiết",
+        "Vì nó chiếm chỗ của những bài kiểm thử có ích hơn",
+        "Vì nó chỉ đỏ trên máy chủ chứ không đỏ trên máy cá nhân"
+      ],
+      "correct": 0,
+      "explanation": "Cái hỏng không phải một bài kiểm thử mà là lòng tin vào cả bộ. Khi đỏ đã trở thành tiếng ồn thì lần đỏ thật cũng bị xử lý y như tiếng ồn."
+    },
+    {
+      "question": "Bài kiểm thử nên khẳng định điều gì?",
+      "options": [
+        "Hành vi quan sát được từ bên ngoài của đoạn mã",
+        "Thứ tự các hàm bên trong được gọi khi chạy",
+        "Cấu trúc dữ liệu mà đoạn mã dùng để lưu trạng thái",
+        "Số dòng mã mà đoạn xử lý đã thực thi khi chạy"
+      ],
+      "correct": 0,
+      "explanation": "Khẳng định hành vi thì bạn dọn dẹp bên trong thoải mái mà kiểm thử vẫn xanh. Khẳng định cách cài đặt thì mọi lần cải thiện mã đều kéo theo một đợt sửa kiểm thử, và cái giá đó làm người ta ngừng cải thiện."
+    },
+    {
+      "question": "Vì sao vẫn cần bài kiểm thử đầu cuối dù chúng chậm?",
+      "options": [
+        "Vì chỉ chúng chứng minh được các phần ghép lại vẫn chạy",
+        "Vì chúng phát hiện lỗi sớm hơn bài kiểm thử đơn vị",
+        "Vì chúng chạy được mà không cần dựng lại sản phẩm",
+        "Vì chúng thay thế được nhu cầu viết kiểm thử đơn vị"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi phần đúng riêng lẻ không bảo đảm chúng nói chuyện được với nhau, và những lỗi ở ranh giới thường là lỗi đắt nhất. Vì thế cần chúng, nhưng chỉ vài bài cho các đường đi quan trọng nhất."
+    },
+    {
+      "question": "Bộ kiểm thử chạy quá lâu dẫn tới hậu quả gì?",
+      "options": [
+        "Người ta bỏ qua nó và chỉ chạy khi bị bắt buộc",
+        "Máy chủ kiểm thử tiêu tốn quá nhiều tài nguyên",
+        "Kết quả kiểm thử trở nên kém chính xác theo thời gian",
+        "Các bài kiểm thử mới không thêm được vào bộ nữa"
+      ],
+      "correct": 0,
+      "explanation": "Vòng phản hồi dài thì người ta ngừng dùng nó như một công cụ trong lúc viết mã. Chi phí máy chủ có thật nhưng rẻ hơn nhiều so với việc mất thói quen chạy kiểm thử."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Câu hỏi hay gặp là nên viết bao nhiêu bài kiểm thử. Câu hỏi đúng hơn là: bộ kiểm thử này có nhanh và đáng tin tới mức người ta chạy nó mỗi lần sửa mã không?"
+    },
+    {
+      "type": "heading",
+      "text": "Ba tầng, ba mục đích"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Mỗi tầng trả lời một câu khác nhau",
+      "subtitle": "Càng lên cao càng chậm và tín hiệu càng mờ",
+      "concepts": [
+        {
+          "vi": "Kiểm thử đơn vị",
+          "en": "unit",
+          "def": "Một hàm hoặc một lớp có làm đúng việc của nó không. Mili giây, và khi đỏ thì chỉ thẳng chỗ hỏng."
+        },
+        {
+          "vi": "Kiểm thử tích hợp",
+          "en": "integration",
+          "def": "Hai phần có nói chuyện đúng với nhau không. Chậm hơn, thường cần cơ sở dữ liệu thật."
+        },
+        {
+          "vi": "Kiểm thử đầu cuối",
+          "en": "end-to-end",
+          "def": "Người dùng làm được việc của họ không. Chậm nhất, mong manh nhất, nhưng gần thực tế nhất."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Kiểm thử bám vào hành vi, không bám vào cách làm"
+    },
+    {
+      "type": "paragraph",
+      "text": "Một bài kiểm thử tốt vẫn xanh sau khi bạn viết lại toàn bộ phần bên trong, miễn là kết quả không đổi. Một bài kiểm thử bám vào cách cài đặt thì đỏ ngay khi bạn đổi tên một hàm nội bộ. Bộ kiểm thử loại hai biến mọi lần dọn dẹp thành một khoản chi phí, và kết quả là không ai dọn nữa."
+    },
+    {
+      "type": "callout",
+      "label": "Đỏ vặt là nợ phải trả ngay",
+      "text": "Một bài thỉnh thoảng đỏ rồi chạy lại thì xanh sẽ huấn luyện cả đội một phản xạ: thấy đỏ thì chạy lại. Phản xạ ấy không phân biệt được lỗi thật với tiếng ồn, nên hãy sửa hoặc xoá bài đó chứ đừng sống chung."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đo thời gian chạy và coi nó như một chỉ số sản phẩm, không phải chuyện vặt.",
+        "Với mỗi bài kiểm thử mới, hỏi xem nó sẽ đỏ khi hành vi sai hay khi cách làm đổi.",
+        "Vài bài đầu cuối cho những đường đi quan trọng nhất là đủ - đừng phủ mọi thứ ở tầng ấy."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bộ kiểm thử tốt là bộ được chạy. Mọi tính chất khác đều phụ thuộc vào tính chất đó.",
+        "Bài sau nói về chỗ bộ kiểm thử ấy thật sự phát huy tác dụng: chạy tự động ở mỗi thay đổi."
+      ]
+    }
+  ]
+}

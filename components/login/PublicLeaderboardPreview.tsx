@@ -119,7 +119,7 @@ export default function PublicLeaderboardPreview() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
             </span>
-            <p className="text-xs font-black uppercase tracking-widest text-emerald-800 dark:text-emerald-300">
+            <p className="text-xs font-black uppercase tracking-widest text-accent-ink">
               {t.leaderboardPreview.liveTitle}
             </p>
           </div>
@@ -131,7 +131,7 @@ export default function PublicLeaderboardPreview() {
               className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1 ${
                 metric === "xp"
                   ? "bg-emerald-500 text-stone-950 shadow-md scale-102"
-                  : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
+                  : "text-ink-soft hover:text-ink"
               }`}
             >
               <Zap className="w-3.5 h-3.5" />
@@ -142,7 +142,7 @@ export default function PublicLeaderboardPreview() {
               className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1 ${
                 metric === "streak"
                   ? "bg-amber-500 text-stone-950 shadow-md scale-102"
-                  : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
+                  : "text-ink-soft hover:text-ink"
               }`}
             >
               <Flame className="w-3.5 h-3.5" />
@@ -153,7 +153,7 @@ export default function PublicLeaderboardPreview() {
               className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1 ${
                 metric === "lessons"
                   ? "bg-teal-500 text-stone-950 shadow-md scale-102"
-                  : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
+                  : "text-ink-soft hover:text-ink"
               }`}
             >
               <Trophy className="w-3.5 h-3.5" />
@@ -236,7 +236,7 @@ export default function PublicLeaderboardPreview() {
                     {/* Interactive Cheer Button */}
                     <button
                       onClick={(e) => handleCheerUser(entry.user_id, e)}
-                      className="mt-0.5 inline-flex items-center gap-0.5 text-[8px] font-black px-1.5 py-0.2 rounded-full bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-600 dark:text-rose-300 hover:scale-105 active:scale-95 transition-transform shadow-2xs"
+                      className="mt-0.5 inline-flex items-center gap-0.5 text-[8px] font-black px-1.5 py-0.2 rounded-full bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-alert hover:scale-105 active:scale-95 transition-transform shadow-2xs"
                       title={t.leaderboardPreview.cheerButtonTitle}
                     >
                       <Heart className="w-2.5 h-2.5 fill-rose-500 text-rose-500" />
@@ -323,10 +323,10 @@ export default function PublicLeaderboardPreview() {
                         alt={entry.name}
                         width={36}
                         height={36}
-                        className="w-9 h-9 rounded-full object-cover border border-stone-200 dark:border-stone-700"
+                        className="w-9 h-9 rounded-full object-cover border border-line-mid"
                       />
                     ) : (
-                      <div className="w-9 h-9 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-600 dark:text-emerald-300 flex items-center justify-center font-black text-xs">
+                      <div className="w-9 h-9 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-accent flex items-center justify-center font-black text-xs">
                         {entry.name.trim().charAt(0).toUpperCase() || "?"}
                       </div>
                     )}
@@ -362,14 +362,14 @@ export default function PublicLeaderboardPreview() {
 
         {/* CTA Footer Bar */}
         <div className="pt-3 border-t border-stone-200/80 dark:border-stone-800 flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2 text-stone-600 dark:text-stone-400 font-semibold">
+          <div className="flex items-center gap-2 text-ink-soft font-semibold">
             <UserCheck className="w-4 h-4 text-emerald-500" />
             <span>{t.leaderboardPreview.footerActiveLearners}</span>
           </div>
 
           <Link
             href="/login?mode=signup"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-surface-invert hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 px-5 py-2.5 font-black transition-all hover:scale-102 shadow-md cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-surface-invert hover:bg-stone-800 dark:hover:bg-white text-ink-invert px-5 py-2.5 font-black transition-all hover:scale-102 shadow-md cursor-pointer"
           >
             <span>{t.leaderboardPreview.footerCta}</span>
             <ArrowRight className="w-4 h-4" />

@@ -1,0 +1,172 @@
+{
+  "id": 129,
+  "slug": "kich-ban-chen-vao-trang",
+  "title": "Kịch bản chèn vào trang: nạn nhân là người dùng của bạn",
+  "subtitle": "Mã chạy trong trình duyệt nạn nhân mang đúng quyền của họ.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🕸️",
+  "track": "professional",
+  "whyItMatters": "Khác với tiêm lệnh vào máy chủ, ở đây thiệt hại rơi thẳng vào người dùng: phiên bị lấy, thao tác bị thực hiện thay họ, dữ liệu trên màn hình bị đọc. Và nó xảy ra trong trình duyệt của họ nên nhật ký máy chủ không thấy gì.",
+  "openingQuestion": "Cách phòng thủ chính cho lỗ hổng chèn kịch bản là gì?",
+  "openingOptions": [
+    "Mã hoá dữ liệu theo đúng ngữ cảnh nơi nó được chèn vào trang",
+    "Lọc bỏ mọi thẻ kịch bản trong dữ liệu trước khi lưu xuống",
+    "Kiểm tra dữ liệu đầu vào theo danh sách ký tự được phép",
+    "Chỉ cho phép người dùng đã đăng nhập gửi nội dung lên"
+  ],
+  "correctOption": 0,
+  "explanation": "Vấn đề nằm ở lúc dữ liệu được đưa vào trang chứ không ở lúc nó được nhận vào. Cùng một chuỗi là vô hại trong nội dung văn bản, nguy hiểm trong một thuộc tính, và nguy hiểm theo cách khác trong một khối kịch bản - nên phép mã hoá phải phụ thuộc vào ngữ cảnh đích. Lọc lúc lưu thì hỏng ở hai đầu: nó phá dữ liệu hợp lệ của người dùng, và nó không bảo vệ được những chỗ hiển thị mà bạn quên nghĩ tới.",
+  "diagram": [
+    {
+      "label": "Dữ liệu người dùng được lưu nguyên vẹn",
+      "arrow": true
+    },
+    {
+      "label": "Khi hiển thị, mã hoá theo ngữ cảnh đích",
+      "arrow": true
+    },
+    {
+      "label": "Văn bản, thuộc tính, đường dẫn - ba cách khác nhau",
+      "arrow": true
+    },
+    {
+      "label": "Trình duyệt đọc nó thành dữ liệu, không thành mã"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Máy chủ không thấy gì",
+    "description": "Kịch bản chạy trong trình duyệt nạn nhân, nên phiên bị đánh cắp và thao tác bị thực hiện đều trông như hành vi bình thường của chính người dùng đó. Nhật ký phía máy chủ ghi lại một phiên hợp lệ làm những việc hợp lệ."
+  },
+  "keyTakeaways": [
+    "Mã hoá theo ngữ cảnh lúc hiển thị, không lọc lúc nhận vào.",
+    "Cùng một chuỗi có mức nguy hiểm khác nhau tuỳ chỗ nó được chèn vào.",
+    "Cờ chống đọc cookie bằng kịch bản cắt được đường lấy phiên.",
+    "Chính sách nguồn nội dung là lớp thứ hai, không thay được mã hoá đúng cách."
+  ],
+  "summary": {
+    "keyIdea": "Dữ liệu phải được mã hoá theo đúng ngữ cảnh nơi nó xuất hiện trong trang.",
+    "formula": "Lưu nguyên vẹn, mã hoá lúc hiển thị.",
+    "commonMistake": "Lọc thẻ kịch bản lúc lưu, phá dữ liệu hợp lệ mà vẫn hở chỗ khác."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm trong giao diện của bạn những chỗ chèn dữ liệu vào trang mà không đi qua cơ chế mã hoá mặc định của khung làm việc. Đó là danh sách ngắn và nó chứa gần như mọi rủi ro."
+  },
+  "practicePrompt": {
+    "question": "Vì sao lọc dữ liệu lúc lưu lại là cách phòng thủ yếu?",
+    "options": [
+      "Vì mức nguy hiểm phụ thuộc chỗ hiển thị, thứ chưa biết lúc lưu",
+      "Vì việc lọc làm chậm quá trình ghi dữ liệu xuống cơ sở dữ liệu",
+      "Vì dữ liệu đã lọc không khôi phục lại nguyên bản được nữa",
+      "Vì người dùng có thể gửi dữ liệu qua nhiều đường khác nhau"
+    ],
+    "correct": 0,
+    "explanation": "Một chuỗi vô hại trong nội dung văn bản có thể nguy hiểm khi đặt vào một thuộc tính, và bạn không biết trước dữ liệu sẽ được hiển thị ở những chỗ nào trong tương lai. Mã hoá tại điểm hiển thị luôn biết ngữ cảnh của mình, nên nó xử lý đúng ở mọi chỗ."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao phép mã hoá phải phụ thuộc ngữ cảnh?",
+      "options": [
+        "Vì cùng một chuỗi có mức nguy hiểm khác nhau ở văn bản, thuộc tính hay kịch bản",
+        "Vì mỗi trình duyệt xử lý các ký tự đặc biệt theo cách khác nhau",
+        "Vì dữ liệu dài ngắn khác nhau cần cách mã hoá khác nhau",
+        "Vì ngữ cảnh quyết định dữ liệu được lưu ở bảng nào"
+      ],
+      "correct": 0,
+      "explanation": "Dấu ngoặc kép vô hại trong đoạn văn nhưng có thể thoát khỏi một thuộc tính. Vì thế không có một phép mã hoá chung cho mọi chỗ, và khung làm việc phải biết nó đang chèn vào đâu."
+    },
+    {
+      "question": "Vì sao thiệt hại của lỗ hổng này khó phát hiện từ phía máy chủ?",
+      "options": [
+        "Vì kịch bản chạy trong trình duyệt nạn nhân với phiên hợp lệ của họ",
+        "Vì kẻ tấn công xoá dấu vết trong nhật ký sau khi khai thác",
+        "Vì các yêu cầu độc hại không đi qua máy chủ của bạn",
+        "Vì trình duyệt không hề gửi thông tin về mã đang chạy ở trong trang"
+      ],
+      "correct": 0,
+      "explanation": "Mọi hành động đều mang danh tính thật của nạn nhân, nên chúng trông như hành vi bình thường. Đây là lý do loại lỗ hổng này có thể tồn tại rất lâu mà không ai để ý."
+    },
+    {
+      "question": "Cờ chống đọc cookie bằng kịch bản có tác dụng gì?",
+      "options": [
+        "Cắt đường lấy mã phiên ngay cả khi kịch bản đã chạy được",
+        "Ngăn kịch bản lạ chạy trong trang của người dùng",
+        "Mã hoá nội dung cookie để kịch bản lạ không đọc hiểu được",
+        "Giới hạn cookie chỉ gửi khi kết nối được mã hoá"
+      ],
+      "correct": 0,
+      "explanation": "Đây là phòng thủ nhiều lớp: giả định kịch bản đã chạy được, thì ít nhất nó không lấy được phiên. Ngăn kịch bản chạy là việc của mã hoá đúng cách và chính sách nguồn nội dung."
+    },
+    {
+      "question": "Chính sách nguồn nội dung đóng vai trò gì?",
+      "options": [
+        "Lớp phòng thủ thứ hai, giới hạn kịch bản nào được phép chạy",
+        "Lớp phòng thủ chính, thay thế hẳn cho việc mã hoá dữ liệu đầu ra",
+        "Cơ chế kiểm tra dữ liệu đầu vào trước khi lưu xuống",
+        "Công cụ phát hiện và cảnh báo khi có kịch bản lạ"
+      ],
+      "correct": 0,
+      "explanation": "Nó thu hẹp thiệt hại khi có chỗ mã hoá bị bỏ sót, nhưng nó không sửa được chỗ bỏ sót ấy. Coi nó là lớp thay thế sẽ dẫn tới việc lơi lỏng ở lớp thật sự quan trọng."
+    },
+    {
+      "question": "Cách xử lý dữ liệu người dùng đúng đắn là gì?",
+      "options": [
+        "Lưu nguyên vẹn, mã hoá tại từng điểm hiển thị",
+        "Lọc sạch lúc nhận, rồi hiển thị nguyên vẹn",
+        "Lọc cả lúc nhận lẫn lúc hiển thị cho chắc chắn",
+        "Từ chối mọi dữ liệu chứa ký tự đặc biệt ngay từ đầu"
+      ],
+      "correct": 0,
+      "explanation": "Lưu nguyên vẹn giữ được dữ liệu thật của người dùng và cho phép mỗi điểm hiển thị tự xử lý đúng ngữ cảnh của nó. Lọc lúc nhận vừa phá dữ liệu hợp lệ vừa không phủ hết các chỗ hiển thị."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói về dữ liệu bị đọc thành câu lệnh ở phía máy chủ. Bài này là cùng hình dạng nhưng bộ diễn giải là trình duyệt của người dùng, và nạn nhân là chính họ."
+    },
+    {
+      "type": "heading",
+      "text": "Quyền của nạn nhân, không phải của kẻ tấn công"
+    },
+    {
+      "type": "paragraph",
+      "text": "Kịch bản chèn được vào trang sẽ chạy với đúng danh tính của người đang xem: đọc được dữ liệu trên màn hình, gửi được yêu cầu thay họ, và nếu phiên không được bảo vệ thì lấy được cả mã phiên. Mọi thứ nó làm đều trông như hành vi bình thường trong nhật ký máy chủ."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Ba ngữ cảnh, ba phép mã hoá",
+      "subtitle": "Không có một cách chung cho mọi chỗ",
+      "concepts": [
+        {
+          "vi": "Nội dung văn bản",
+          "en": "text",
+          "def": "Chỗ dễ nhất. Chuyển các ký tự cấu trúc thành thực thể để trình duyệt đọc chúng như chữ."
+        },
+        {
+          "vi": "Thuộc tính",
+          "en": "attribute",
+          "def": "Cần thêm dấu nháy và mã hoá khác, vì dữ liệu có thể thoát khỏi thuộc tính rồi thành mã."
+        },
+        {
+          "vi": "Đường dẫn và kịch bản",
+          "en": "url, script",
+          "def": "Nguy hiểm nhất. Tránh chèn dữ liệu người dùng vào đây; nếu buộc phải thì dùng danh sách cho phép rất hẹp."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Khung làm việc đã làm phần lớn việc này",
+      "text": "Các khung giao diện hiện đại mặc định mã hoá đúng ngữ cảnh, nên rủi ro tập trung ở những chỗ bạn cố tình đi vòng qua cơ chế đó để chèn nội dung thô. Danh sách những chỗ ấy thường rất ngắn và đáng rà soát kỹ."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Dữ liệu người dùng phải được trình duyệt đọc như chữ, không như mã. Điều đó được quyết định ở lúc hiển thị, không ở lúc lưu.",
+        "Bài sau nói về một kiểu tấn công không cần chèn gì cả: mượn chính phiên đăng nhập hợp lệ của nạn nhân."
+      ]
+    }
+  ]
+}

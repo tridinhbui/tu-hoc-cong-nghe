@@ -60,13 +60,36 @@ export const BONUS_CATEGORIES: Record<string, string> = {
 
 // Render order - "Định giá doanh nghiệp" first since it's the cluster most
 // people look for (ROIC/EV/WACC/asset-based valuation).
-export const BONUS_CATEGORY_ORDER = [
+/** Nhóm dành cho bài chưa được gán. Là KHOÁ, không phải nhãn hiển thị. */
+export const BONUS_CATEGORY_FALLBACK = "Khác";
+
+/* Thứ tự ƯU TIÊN, không phải danh sách đầy đủ.
+ *
+ * Trước đây đây LÀ danh sách đầy đủ, và `DashboardClient` duyệt đúng mảng này
+ * để dựng nhóm - nên một nhóm có trong `BONUS_CATEGORIES` mà thiếu ở đây thì
+ * mọi bài thuộc nhóm đó lọc ra rỗng và KHÔNG hiện ở đâu cả. Đúng chuyện đã
+ * xảy ra: nhóm "Đo lường & vận hành hệ thống" được gán cho 20 bài trong đợt
+ * chuyển sang công nghệ, không ai thêm nó vào đây, và 20 bài biến mất khỏi
+ * bảng điều khiển. Không lỗi biên dịch, không bộ kiểm nào đỏ, `tsc` xanh -
+ * một mảng thiếu một phần tử trông giống hệt một mảng đủ.
+ *
+ * Nên danh sách đầy đủ giờ được TÍNH, không gõ tay: ưu tiên trước, phần còn
+ * lại của bảng nối vào sau, nhóm dự phòng luôn cuối. Thêm một nhóm mới vào
+ * `BONUS_CATEGORIES` là đủ để nó hiện ra. */
+export const BONUS_CATEGORY_PREFERRED_ORDER = [
   "Định giá doanh nghiệp",
   "Đọc báo cáo tài chính",
   "Case công ty thực tế",
   "Vốn & cổ đông",
   "Đầu tư & danh mục",
-  "Khác",
 ];
+
+export const BONUS_CATEGORY_ORDER: string[] = (() => {
+  const uu = BONUS_CATEGORY_PREFERRED_ORDER.filter((c) => c !== BONUS_CATEGORY_FALLBACK);
+  const conLai = [...new Set(Object.values(BONUS_CATEGORIES))]
+    .filter((c) => c !== BONUS_CATEGORY_FALLBACK && !uu.includes(c))
+    .sort((a, b) => a.localeCompare(b, "vi"));
+  return [...uu, ...conLai, BONUS_CATEGORY_FALLBACK];
+})();
 
 /* i18n-ignore-end */

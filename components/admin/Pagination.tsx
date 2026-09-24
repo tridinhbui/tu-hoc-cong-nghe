@@ -24,7 +24,7 @@ export default function Pagination({ page, totalPages, onChange }: PaginationPro
         <button
           onClick={() => onChange(Math.max(1, page - 1))}
           disabled={page <= 1}
-          className="p-1.5 rounded-lg border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="p-1.5 rounded-lg border border-line text-ink-soft hover:bg-surface disabled:opacity-40 disabled:cursor-not-allowed"
           aria-label={tp.prevPage}
         >
           <ChevronLeft className="w-4 h-4" />
@@ -32,7 +32,7 @@ export default function Pagination({ page, totalPages, onChange }: PaginationPro
         <button
           onClick={() => onChange(Math.min(totalPages, page + 1))}
           disabled={page >= totalPages}
-          className="p-1.5 rounded-lg border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="p-1.5 rounded-lg border border-line text-ink-soft hover:bg-surface disabled:opacity-40 disabled:cursor-not-allowed"
           aria-label={tp.nextPage}
         >
           <ChevronRight className="w-4 h-4" />

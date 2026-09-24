@@ -15,7 +15,10 @@
      nào chúng sinh ra (`bg-danger`, `text-success`...) xuất hiện trong repo,
      và không `var()` nào trỏ tới. Đo bằng cách quét mọi đuôi file, không chỉ
      .tsx, vì tên class có thể nằm trong chuỗi động. */
-  --color-bg-base: #FAFAFC;
+  /* Nền và chữ GỐC của toàn sản phẩm. Xem ghi chú ở khối `body` bên dưới về
+     lý do đây - chứ không phải className trên <body> - là chỗ quyết định. */
+  --color-page: var(--page);
+  --color-page-ink: var(--page-ink);
   --color-primary: #059669;
   --color-primary-hover: #047857;
 
@@ -40,6 +43,254 @@
 
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
   --shadow-card-hover: 0 6px 16px -6px rgba(0, 0, 0, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.04);
+
+  /* ─────────────────────────────────────────────────────────────────────
+     THANG MÀU THEO VAI TRÒ - một class cho CẢ HAI chế độ sáng/tối.
+     ─────────────────────────────────────────────────────────────────────
+     VÌ SAO CẦN. Repo đang có 14.426 lớp màu viết thẳng trong JSX, 171 sắc độ
+     riêng biệt, và 5.770 tiền tố `dark:` rải trên 184/242 tệp. Nghĩa là mỗi
+     quyết định màu bị lặp lại trung bình 84 lần, và mỗi lần lại phải khai
+     thêm bản màu tối bên cạnh. Đổi phong cách trong tình trạng đó là sửa
+     14.426 chỗ bằng tay - rồi lần sau lại làm y hệt.
+
+     CƠ CHẾ. Token trong `@theme` KHÔNG tự đổi theo `.dark` được, nên chúng
+     trỏ sang một biến trung gian (`--ink`, `--surface`…) và chính biến ấy mới
+     được định nghĩa lại trong khối `.dark` bên dưới. Kết quả: `text-ink` tự
+     đúng ở cả hai chế độ, và cặp `text-stone-900 dark:text-stone-100` gộp
+     lại còn một class.
+
+     TÊN THEO VAI TRÒ, KHÔNG THEO SẮC ĐỘ. `ink-muted` nói được ý định; `stone-500`
+     thì không, và đó là lý do 171 sắc độ mọc ra - không ai biết chỗ này "đúng"
+     phải là 500 hay 600.
+
+     GIÁ TRỊ LẤY TỪ CHÍNH CÁC CẶP ĐANG DÙNG, đo bằng cách quét toàn bộ .tsx và
+     đếm 3.554 cặp `X dark:Y`. Mỗi dòng dưới đây kèm số lần cặp đó xuất hiện,
+     nên bảng này mô tả giao diện HIỆN TẠI chứ không phải một bảng màu mới.
+     Đổi phong cách = sửa các giá trị trong `:root` và `.dark`, không đụng JSX.
+
+     CỐ Ý KHÔNG ghi đè `--color-stone-*` hay `--color-emerald-*`. Làm thế là
+     đổi giao diện mọi trang cùng lúc - một cuộc redesign giấu trong một biến,
+     đúng cái bẫy mà chú thích về `--radius-xl` ở trên đã tránh. */
+
+  /* Chữ */
+  --color-ink: var(--ink);              /* stone-900 → stone-100   (463 cặp) */
+  --color-ink-body: var(--ink-body);    /* stone-700 → stone-300   (144)     */
+  --color-ink-muted: var(--ink-muted);  /* stone-500/600 → stone-400 (675)   */
+  --color-ink-faint: var(--ink-faint);  /* stone-400 → stone-500   (127)     */
+
+  /* Mặt nền */
+  --color-surface: var(--surface);              /* stone-50 → stone-900/950 (91) */
+  --color-surface-raised: var(--surface-raised);/* stone-100 → stone-800    (125) */
+  --color-surface-sunken: var(--surface-sunken);/* stone-200 → stone-800    (51)  */
+  --color-surface-invert: var(--surface-invert);/* stone-900 → stone-100    (68)  */
+  --color-ink-invert: var(--ink-invert);        /* chữ nằm trên surface-invert    */
+
+  /* ĐỢT HAI - đặt tên cho 268 chỗ nữa, sau khi thống nhất bạn tối xong.
+   *
+   * Giá trị lấy NGUYÊN VĂN từ sắc độ đang dùng (đọc từ CSS đã biên dịch), nên
+   * mỗi phép gộp là trung tính tuyệt đối. Xem ghi chú `ink-invert`: đặt token
+   * theo call site, đừng bắt call site theo token.
+   *
+   * `alert` (rose) đứng riêng với `danger` (red) một cách CÓ CHỦ Ý dù cả hai
+   * cùng nghĩa "hỏng". Repo dùng rose 87 chỗ và red 7 chỗ; gộp chúng lại là
+   * đổi màu thật ở một trong hai bên, tức một quyết định thiết kế chứ không
+   * phải một phép dọn. Ghi lại ở đây để lần sau không ai tưởng là sót. */
+  --color-alert: var(--alert);                 /* rose-600  → rose-400    (41) */
+  --color-alert-strong: var(--alert-strong);   /* rose-700  → rose-400    (19) */
+  --color-alert-deep: var(--alert-deep);       /* rose-800  → rose-400     (7) */
+  --color-alert-ink: var(--alert-ink);         /* rose-900  → rose-200    (12) */
+  --color-alert-line: var(--alert-line);       /* rose-200  → rose-900     (8) */
+  --color-info: var(--info);                   /* sky-600   → sky-400     (20) */
+  --color-info-line: var(--info-line);         /* sky-300   → sky-800      (8) */
+  --color-accent-ink: var(--accent-ink);       /* em-800    → em-300      (23) */
+  --color-accent-ink-strong: var(--accent-ink-strong); /* em-900 → em-400 (22) */
+  --color-accent-line-mid: var(--accent-line-mid);     /* em-300 → em-800 (16) */
+  --color-warn-ink: var(--warn-ink);           /* amber-800 → amber-300   (15) */
+  --color-warn-line-mid: var(--warn-line-mid); /* amber-300 → amber-800   (15) */
+  --color-line-firm: var(--line-firm);         /* stone-400 → stone-600   (25) */
+  --color-surface-deep: var(--surface-deep);   /* stone-300 → stone-700   (14) */
+  --color-line-invert: var(--line-invert);     /* stone-900 → stone-100   (14) */
+  --color-ink-max: var(--ink-max);             /* stone-950 → stone-50     (9) */
+
+  /* Nét kẻ */
+  --color-line: var(--line);            /* stone-200 → stone-800   (331)     */
+  --color-line-soft: var(--line-soft);  /* stone-100 → stone-800   (89)      */
+  --color-line-strong: var(--line-strong); /* stone-300 → stone-700 (61)     */
+
+  /* Nhấn và cảnh báo */
+  --color-accent: var(--accent);            /* emerald-600 → emerald-400 (106) */
+  --color-accent-soft: var(--accent-soft);  /* emerald-50 → emerald-950  (67)  */
+  --color-warn: var(--warn);                /* amber-600 → amber-400     (48)  */
+  --color-warn-soft: var(--warn-soft);      /* amber-50 → amber-950      (42)  */
+  --color-danger: var(--danger);            /* red-700 → red-400               */
+  --color-danger-soft: var(--danger-soft);  /* red-50 → red-950                */
+  --color-danger-line: var(--danger-line);  /* red-200 → red-900               */
+  --color-accent-line: var(--accent-line);  /* emerald-200 → emerald-900       */
+
+  /* Đợt hai: các vai trò lộ ra sau khi gộp đợt một. Vẫn KHỚP CHÍNH XÁC sắc độ
+     đang dùng, nên thêm chúng không đổi một pixel nào - chỉ là những vai trò
+     mà đợt đầu chưa đặt tên, không phải sắc độ mới. */
+  --color-ink-soft: var(--ink-soft);        /* stone-600 → stone-400  (202)    */
+  --color-ink-heading: var(--ink-heading);  /* stone-800 → stone-200  (61)     */
+  --color-line-mid: var(--line-mid);        /* stone-200 → stone-700  (70)     */
+  --color-surface-sunken: var(--surface-sunken); /* stone-200 → stone-800 (50) */
+  --color-accent-strong: var(--accent-strong);   /* emerald-700 → emerald-400 (37) */
+  --color-warn-strong: var(--warn-strong);       /* amber-700 → amber-400  (27) */
+  --color-warn-line: var(--warn-line);           /* amber-200 → amber-900  (18) */
+
+  /* NỀN VÀ CHỮ GỐC CỦA CẢ SẢN PHẨM.
+     Trước đây bốn giá trị này nằm hardcode ở ba chỗ: `bg-[#FAFAFC]
+     dark:bg-stone-950` trên <body> trong app/layout.tsx, và `color: #1A1A1E`
+     cùng khối `.dark body` ở dưới file này.
+
+     Vì sao chúng quan trọng hơn mọi token khác: quy tắc `body { color }` KHÔNG
+     nằm trong `@layer` nào, mà style không-layer thắng mọi utility trong
+     `@layer utilities` BẤT KỂ độ đặc hiệu. Nên `text-ink` đặt trên chính thẻ
+     <body> không có tác dụng - màu chữ gốc của toàn sản phẩm do đúng dòng
+     hardcode ấy quyết định, không phải do class nào. Đưa nó vào token là điều
+     kiện để đổi phong cách thật sự có tác dụng. */
+  /* LẦN THỬ ĐẦU ĐÃ GỠ, VÀ ĐÂY LÀ LÝ DO NÓ HỎNG - ghi lại vì cái bẫy này
+     không nhìn thấy được từ diff.
+
+     Lần đó tôi token hoá `bg-[#FAFAFC] dark:bg-stone-950` trên <body> trong
+     app/layout.tsx. Biến đổi đúng (`--page` chuyển #FAFAFC → #18181b khi bật
+     `.dark`, đo trong trình duyệt) nhưng nền tính toán của <body> không đổi,
+     và tôi hoàn nguyên vì không giải thích được.
+
+     Có HAI nguyên nhân, và cái thứ hai mới là cái đã đánh lừa tôi.
+
+     Thứ nhất, className trên <body> CHƯA BAO GIỜ có tác dụng. Utility của
+     Tailwind nằm trong `@layer utilities`, còn `body { background-color }`
+     dưới kia là quy tắc KHÔNG lớp - và quy tắc không lớp thắng mọi quy tắc có
+     lớp, bất kể độ đặc hiệu. Nền thật luôn do dòng CSS đó quyết định, cả
+     trước lẫn sau khi tôi sửa. Tôi đã đổi đúng cái không quyết định gì.
+
+     Nên chỗ token hoá là chính khối `body`, và `.dark body` phải biến mất
+     cùng lúc - còn nó thì `--page` bị ghi đè bằng hằng số ở chế độ tối.
+
+     Thứ hai, và đây là lý do lần đó tôi hoàn nguyên: PHÉP ĐO SAI. Tôi bật chế
+     độ tối bằng `document.documentElement.classList.add("dark")` trong bảng
+     điều khiển, rồi đọc nền tính toán ra màu sáng và kết luận token hỏng.
+     `ThemeLoader` quản lý class ấy và gỡ lại ngay, nên tôi luôn đo ở chế độ
+     sáng. Đo đúng là đi qua đường của app: `localStorage.setItem("theme",
+     "dark")` rồi tải lại (khoá ở lib/theme.ts).
+
+     Đo lại theo đường đó: sáng rgb(250,250,252)/rgb(26,26,30), tối
+     rgb(24,24,27)/rgb(244,244,245) - trùng khít giá trị hardcode cũ.
+
+     Bài học chung: khi một thay đổi CSS "không có tác dụng" trong app có
+     JavaScript điều khiển theme, hãy nghi phép đo trước khi nghi CSS. */
+
+}
+
+/* Giá trị chế độ SÁNG. Lấy đúng sắc độ Tailwind đang dùng, viết dưới dạng
+   oklch y như `node_modules/tailwindcss/theme.css` để không lệch một chút nào
+   so với giao diện hiện tại. */
+:root {
+  --alert: #e70044;
+  --alert-strong: #c20039;
+  --alert-deep: #a30037;
+  --alert-ink: #8b0836;
+  --alert-line: #ffccd3;
+  --info: #0084cc;
+  --info-line: #77d4ff;
+  --accent-ink: #005f46;
+  --accent-ink-strong: #004e3b;
+  --accent-line-mid: #5ee9b5;
+  --warn-ink: #953d00;
+  --warn-line-mid: #ffd236;
+  --line-firm: #a6a09b;
+  --surface-deep: #d6d3d1;
+  --line-invert: #1c1917;
+  --ink-max: #0c0a09;
+  --page: #FAFAFC;                             /* nền gốc <body>          */
+  --page-ink: #1A1A1E;                         /* chữ gốc <body>          */
+  --ink: oklch(21.6% 0.006 56.043);            /* stone-900 */
+  --ink-body: oklch(37.4% 0.01 67.558);        /* stone-700 */
+  --ink-muted: oklch(55.3% 0.013 58.071);      /* stone-500 */
+  --ink-faint: oklch(70.9% 0.01 56.259);       /* stone-400 */
+
+  --surface: oklch(98.5% 0.001 106.423);       /* stone-50  */
+  --surface-raised: oklch(97% 0.001 106.424);  /* stone-100 */
+  --surface-sunken: oklch(92.3% 0.003 48.717); /* stone-200 */
+  --surface-invert: oklch(21.6% 0.006 56.043); /* stone-900 */
+  /* `#fff`, KHÔNG phải stone-100. Giá trị cũ chọn theo trực giác và token này
+     chưa từng được dùng ở đâu (0 chỗ, trong khi `bg-surface-invert` có 76).
+     78 chỗ thật viết `text-white dark:text-stone-900`, nên đặt token bằng đúng
+     cái đang chạy thì phép gộp trung tính tuyệt đối; để stone-100 thì gộp xong
+     78 nút đổi màu chữ. Đặt token theo call site, đừng bắt call site theo token. */
+  --ink-invert: #fff;
+
+  --line: oklch(92.3% 0.003 48.717);           /* stone-200 */
+  --line-soft: oklch(97% 0.001 106.424);       /* stone-100 */
+  --line-strong: oklch(86.9% 0.005 56.366);    /* stone-300 */
+
+  --accent: oklch(59.6% 0.145 163.225);        /* emerald-600 */
+  --accent-soft: oklch(97.9% 0.021 166.113);   /* emerald-50  */
+  --warn: oklch(66.6% 0.179 58.318);           /* amber-600   */
+  --warn-soft: oklch(98.7% 0.022 95.277);      /* amber-50    */
+  --danger: oklch(50.5% 0.213 27.518);         /* red-700 */
+  --danger-soft: oklch(97.1% 0.013 17.38);     /* red-50  */
+  --danger-line: oklch(88.5% 0.062 18.334);    /* red-200 */
+  --accent-line: oklch(90.5% 0.093 164.15);    /* emerald-200 */
+  --ink-soft: oklch(44.4% 0.011 73.639);       /* stone-600 */
+  --ink-heading: oklch(26.8% 0.007 34.298);    /* stone-800 */
+  --line-mid: oklch(92.3% 0.003 48.717);       /* stone-200 */
+  --accent-strong: oklch(50.8% 0.118 165.612); /* emerald-700 */
+  --warn-strong: oklch(55.5% 0.163 48.998);    /* amber-700 */
+  --warn-line: oklch(92.4% 0.12 95.746);       /* amber-200 */
+}
+
+/* Giá trị chế độ TỐI. Đây là toàn bộ nội dung mà 5.770 tiền tố `dark:` đang
+   nói, gom về một chỗ. */
+.dark {
+  --alert: #ff667f;
+  --alert-strong: #ff667f;
+  --alert-deep: #ff667f;
+  --alert-ink: #ffccd3;
+  --alert-line: #8b0836;
+  --info: #00bcfe;
+  --info-line: #005986;
+  --accent-ink: #5ee9b5;
+  --accent-ink-strong: #00d294;
+  --accent-line-mid: #005f46;
+  --warn-ink: #ffd236;
+  --warn-line-mid: #953d00;
+  --line-firm: #57534d;
+  --surface-deep: #44403b;
+  --line-invert: #f5f5f4;
+  --ink-max: #fafaf9;
+  --page: #18181b;
+  --page-ink: #f4f4f5;
+  --ink: oklch(97% 0.001 106.424);             /* stone-100 */
+  --ink-body: oklch(86.9% 0.005 56.366);       /* stone-300 */
+  --ink-muted: oklch(70.9% 0.01 56.259);       /* stone-400 */
+  --ink-faint: oklch(55.3% 0.013 58.071);      /* stone-500 */
+
+  --surface: oklch(21.6% 0.006 56.043);        /* stone-900 */
+  --surface-raised: oklch(26.8% 0.007 34.298); /* stone-800 */
+  --surface-sunken: oklch(26.8% 0.007 34.298); /* stone-800 */
+  --surface-invert: oklch(97% 0.001 106.424);  /* stone-100 */
+  --ink-invert: oklch(21.6% 0.006 56.043);     /* stone-900 */
+
+  --line: oklch(26.8% 0.007 34.298);           /* stone-800 */
+  --line-soft: oklch(26.8% 0.007 34.298);      /* stone-800 */
+  --line-strong: oklch(37.4% 0.01 67.558);     /* stone-700 */
+
+  --accent: oklch(76.5% 0.177 163.223);        /* emerald-400 */
+  --accent-soft: oklch(26.2% 0.051 172.552);   /* emerald-950 */
+  --warn: oklch(82.8% 0.189 84.429);           /* amber-400   */
+  --warn-soft: oklch(27.9% 0.077 45.635);      /* amber-950   */
+  --danger: oklch(70.4% 0.191 22.216);         /* red-400 */
+  --danger-soft: oklch(25.8% 0.092 26.042);    /* red-950 */
+  --danger-line: oklch(39.6% 0.141 25.723);    /* red-900 */
+  --accent-line: oklch(37.8% 0.077 168.94);    /* emerald-900 */
+  --ink-soft: oklch(70.9% 0.01 56.259);        /* stone-400 */
+  --ink-heading: oklch(92.3% 0.003 48.717);    /* stone-200 */
+  --line-mid: oklch(37.4% 0.01 67.558);        /* stone-700 */
+  --accent-strong: oklch(76.5% 0.177 163.223); /* emerald-400 */
+  --warn-strong: oklch(82.8% 0.189 84.429);    /* amber-400 */
+  --warn-line: oklch(41.4% 0.112 45.904);      /* amber-900 */
 }
 
 /* Belt-and-suspenders against horizontal-overflow bugs like the mobile
@@ -57,8 +308,8 @@ html {
 }
 
 body {
-  background-color: var(--color-bg-base);
-  color: #1A1A1E;
+  background-color: var(--page);
+  color: var(--page-ink);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   /* `clip`, not `hidden`. `hidden` here made <body> its own scroll container
      (html above already has non-visible overflow, so body's no longer
@@ -82,11 +333,6 @@ body {
   body {
     overflow-x: clip;
   }
-}
-
-.dark body {
-  background-color: #18181b;
-  color: #f4f4f5;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -491,3 +737,4 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+

@@ -53,7 +53,7 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
         sent ? (
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-surface-invert text-white dark:text-stone-900 text-sm font-bold"
+            className="px-4 py-2 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold"
           >
             {t.unlockRequest.close}
           </button>
@@ -68,7 +68,7 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
             <button
               onClick={handleSubmit}
               disabled={submitting}
-              className="px-4 py-2 rounded-lg bg-surface-invert text-white dark:text-stone-900 text-sm font-bold disabled:opacity-50"
+              className="px-4 py-2 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold disabled:opacity-50"
             >
               {submitting ? t.unlockRequest.submittingButton : t.unlockRequest.submitButton}
             </button>
@@ -77,7 +77,7 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
       }
     >
       {sent ? (
-        <p className="text-sm text-stone-600 dark:text-stone-400">
+        <p className="text-sm text-ink-soft">
           {t.unlockRequest.sentMessage}
         </p>
       ) : (
@@ -93,7 +93,7 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
               <> {t.unlockRequest.requiresPreviousLesson}</>
             )}
           </p>
-          <p className="text-sm text-stone-600 dark:text-stone-400">
+          <p className="text-sm text-ink-soft">
             {t.unlockRequest.unlockHint}
           </p>
           <textarea

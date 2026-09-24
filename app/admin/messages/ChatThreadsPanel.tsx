@@ -167,27 +167,27 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
   const lastAdminMsgId = [...messages].reverse().find((m) => m.sender === "admin")?.id;
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-[280px_1fr] min-h-[420px]">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-[280px_1fr] min-h-[420px]">
       {/* Thread list */}
-      <div className="border-b md:border-b-0 md:border-r border-stone-200 dark:border-stone-800 divide-y divide-stone-200 dark:divide-stone-800 overflow-y-auto max-h-[480px]">
+      <div className="border-b md:border-b-0 md:border-r border-line divide-y divide-stone-200 dark:divide-stone-800 overflow-y-auto max-h-[480px]">
         {threads.map((t) => (
           <button
             key={t.user_id}
             onClick={() => openThread(t.user_id)}
             className={`w-full text-left p-3 transition-colors ${
-              activeUserId === t.user_id ? "bg-stone-100 dark:bg-stone-800" : "hover:bg-stone-50 dark:hover:bg-stone-800/50"
+              activeUserId === t.user_id ? "bg-surface-raised" : "hover:bg-stone-50 dark:hover:bg-stone-800/50"
             }`}
           >
             <div className="flex items-center justify-between gap-2">
-              <span className="font-bold text-sm text-stone-900 dark:text-stone-100 truncate">
+              <span className="font-bold text-sm text-ink truncate">
                 {t.user_name || t.user_email || tc.unknownUser}
               </span>
               {t.unread_count > 0 && (
                 <span className="text-[10px] font-bold bg-blue-600 text-white rounded-full px-1.5 py-0.5">{t.unread_count}</span>
               )}
             </div>
-            <p className="text-xs text-stone-500 dark:text-stone-400 truncate mt-0.5">{t.last_message}</p>
-            <p className="text-[10px] text-stone-400 dark:text-stone-500 mt-1">
+            <p className="text-xs text-ink-muted truncate mt-0.5">{t.last_message}</p>
+            <p className="text-[10px] text-ink-faint mt-1">
               {new Date(t.last_message_at).toLocaleString(intlLocale(locale))}
             </p>
           </button>
@@ -197,16 +197,16 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
       {/* Conversation */}
       <div className="flex flex-col">
         {!activeUserId ? (
-          <div className="flex-1 flex items-center justify-center text-sm text-stone-400 dark:text-stone-500">
+          <div className="flex-1 flex items-center justify-center text-sm text-ink-faint">
             {tc.selectThreadPrompt}
           </div>
         ) : (
           <>
-            <div className="px-4 py-3 border-b border-stone-200 dark:border-stone-800">
-              <p className="font-bold text-sm text-stone-900 dark:text-stone-100">
+            <div className="px-4 py-3 border-b border-line">
+              <p className="font-bold text-sm text-ink">
                 {activeThread?.user_name || activeThread?.user_email || tc.unknownUser}
               </p>
-              {activeThread?.user_email && <p className="text-xs text-stone-500 dark:text-stone-400">{activeThread.user_email}</p>}
+              {activeThread?.user_email && <p className="text-xs text-ink-muted">{activeThread.user_email}</p>}
             </div>
             <div className="flex-1 overflow-y-auto p-4 space-y-3 max-h-[380px]">
               {loadingThread ? (
@@ -217,8 +217,8 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                     <div
                       className={`max-w-xs px-3 py-2 rounded-xl text-sm ${
                         m.sender === "admin"
-                          ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                          : "bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100"
+                          ? "bg-surface-invert text-ink-invert"
+                          : "bg-surface-raised text-ink"
                       }`}
                     >
                       {m.image_url && (
@@ -242,7 +242,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                     {m.sender === "admin" && (
                       <div className="flex items-center gap-2 mt-0.5 mr-1">
                         {m.id === lastAdminMsgId && m.read && (
-                          <span className="text-[10px] text-stone-400 dark:text-stone-500">{tc.seen}</span>
+                          <span className="text-[10px] text-ink-faint">{tc.seen}</span>
                         )}
                         <button
                           type="button"
@@ -271,13 +271,13 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                 pickImage(e.dataTransfer.files?.[0]);
               }}
               className={`p-3 border-t transition-colors ${
-                isDraggingImage ? "border-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20" : "border-stone-200 dark:border-stone-800"
+                isDraggingImage ? "border-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20" : "border-line"
               }`}
             >
               {pendingImagePreview && (
                 <div className="relative inline-block mb-2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={pendingImagePreview} alt={tc.previewAlt} className="h-16 rounded-lg border border-stone-200 dark:border-stone-700 object-cover" />
+                  <img src={pendingImagePreview} alt={tc.previewAlt} className="h-16 rounded-lg border border-line-mid object-cover" />
                   <button
                     onClick={clearPendingImage}
                     className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center"
@@ -287,7 +287,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                 </div>
               )}
               {isDraggingImage && (
-                <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 text-center mb-2">{tc.dropImageHint}</p>
+                <p className="text-xs font-bold text-accent text-center mb-2">{tc.dropImageHint}</p>
               )}
               <div className="flex gap-2">
                 <input
@@ -300,7 +300,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                 <button
                   onClick={() => fileInputRef.current?.click()}
                   title={tc.attachImage}
-                  className="p-2 border border-stone-300 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 rounded-lg transition flex-shrink-0"
+                  className="p-2 border border-line-strong text-ink-muted hover:text-ink rounded-lg transition flex-shrink-0"
                 >
                   <ImagePlus className="w-4 h-4" />
                 </button>
@@ -311,12 +311,12 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
                   onPaste={handlePaste}
                   placeholder={tc.replyPlaceholder}
-                  className="flex-1 min-w-0 px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
+                  className="flex-1 min-w-0 px-3 py-2 text-sm rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-ink focus:outline-none focus:border-stone-500"
                 />
                 <button
                   onClick={handleSend}
                   disabled={sending || (!reply.trim() && !pendingImage)}
-                  className="px-3 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 disabled:opacity-50 flex-shrink-0"
+                  className="px-3 py-2 rounded-lg bg-surface-invert text-ink-invert disabled:opacity-50 flex-shrink-0"
                 >
                   {uploadingImage ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 </button>

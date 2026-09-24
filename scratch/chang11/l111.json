@@ -1,0 +1,162 @@
+{
+  "id": 111,
+  "slug": "nhat-quan-cuoi-cung",
+  "title": "Nhất quán cuối cùng: hai đội, hai câu trả lời, cùng một lúc",
+  "subtitle": "Không phải lỗi - đó là cái giá đã trả để hai đội không phải chờ nhau.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "⏳",
+  "track": "professional",
+  "whyItMatters": "Khi mỗi đội giữ dữ liệu riêng và đồng bộ qua sự kiện, sẽ có những khoảng thời gian hai hệ thống nói hai điều khác nhau. Không thiết kế cho khoảng đó thì nó xuất hiện dưới dạng phiếu hỗ trợ mà không ai tái hiện được.",
+  "openingQuestion": "Người dùng đổi địa chỉ, nhưng trang đơn hàng vẫn hiện địa chỉ cũ trong vài giây. Đây là gì?",
+  "openingOptions": [
+    "Hành vi dự kiến của hệ thống nhất quán cuối cùng, cần được thiết kế cho",
+    "Một lỗi đồng bộ cần được sửa để hai bên luôn khớp nhau",
+    "Dấu hiệu hàng đợi sự kiện đang bị quá tải nghiêm trọng",
+    "Kết quả của việc bộ nhớ đệm chưa được làm mới đúng lúc"
+  ],
+  "correctOption": 0,
+  "explanation": "Khi hai hệ thống giữ hai bản dữ liệu và đồng bộ bằng thông điệp, luôn tồn tại một khoảng thời gian chúng chưa khớp. Đó là hệ quả trực tiếp của việc chọn cho các đội độc lập, không phải sự cố. Việc cần làm không phải xoá bỏ khoảng đó - muốn xoá thì phải quay lại mô hình cùng ghi một chỗ, và mất luôn tính độc lập - mà là quyết định giao diện sẽ nói gì với người dùng trong khoảng ấy, và bao lâu thì coi là quá lâu.",
+  "diagram": [
+    {
+      "label": "Người dùng đổi địa chỉ ở hệ thống A",
+      "arrow": true
+    },
+    {
+      "label": "Sự kiện lan sang hệ thống B",
+      "arrow": true
+    },
+    {
+      "label": "Trong khoảng đó, B vẫn trả lời theo dữ liệu cũ",
+      "arrow": true
+    },
+    {
+      "label": "Thiết kế cho khoảng đó, đừng giả vờ nó không tồn tại"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đã lưu nhưng chưa thấy",
+    "description": "Người dùng bấm lưu, thấy thông báo thành công, chuyển sang trang khác và thấy dữ liệu cũ. Với họ đó là lỗi. Cách xử lý thường gặp nhất là để trang vừa lưu hiển thị luôn giá trị mới từ phía máy khách, thay vì đọc lại từ hệ thống chưa kịp cập nhật."
+  },
+  "keyTakeaways": [
+    "Nhất quán cuối cùng là cái giá của việc các đội độc lập, không phải lỗi.",
+    "Phải quyết định giao diện nói gì trong khoảng chưa khớp.",
+    "Đo độ trễ đồng bộ và đặt ngưỡng cảnh báo cho nó.",
+    "Vài nghiệp vụ cần nhất quán tức thì - với chúng thì đừng tách."
+  ],
+  "summary": {
+    "keyIdea": "Hai bản dữ liệu độc lập luôn có khoảng chưa khớp; việc của bạn là thiết kế cho khoảng đó.",
+    "formula": "Chấp nhận độ trễ, đo nó, và nói rõ với người dùng.",
+    "commonMistake": "Coi mọi lệch nhất thời là lỗi và cố xoá bỏ nó bằng cách gắn chặt hai hệ thống lại."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm một luồng dữ liệu đi giữa hai đội và đo độ trễ từ lúc ghi ở nguồn tới lúc thấy được ở đích. Nếu chưa ai đo thì bạn không biết người dùng đang chờ bao lâu."
+  },
+  "practicePrompt": {
+    "question": "Nghiệp vụ nào không chấp nhận được nhất quán cuối cùng?",
+    "options": [
+      "Trừ tiền tài khoản, vì hai lệnh đồng thời có thể cùng thấy đủ số dư",
+      "Hiển thị số lượt thích của một bài viết trên trang chủ",
+      "Cập nhật ảnh đại diện của người dùng trên các trang khác nhau của sản phẩm",
+      "Đồng bộ danh sách sản phẩm sang hệ thống tìm kiếm"
+    ],
+    "correct": 0,
+    "explanation": "Khi quyết định phụ thuộc vào giá trị vừa đọc và hậu quả không đảo ngược được, một khoảng lệch là đủ để hai lệnh cùng được chấp nhận. Ba trường hợp còn lại thì lệch vài giây chỉ gây khó chịu nhẹ chứ không tạo ra hậu quả sai."
+  },
+  "quiz": [
+    {
+      "question": "Nhất quán cuối cùng là gì?",
+      "options": [
+        "Các bản dữ liệu sẽ khớp nhau sau một khoảng thời gian, không phải ngay lập tức",
+        "Dữ liệu chỉ được đồng bộ vào cuối mỗi ngày làm việc",
+        "Một bản dữ liệu được coi là đúng, còn những bản khác thì chỉ để tham khảo thêm",
+        "Hệ thống tự động sửa những chỗ dữ liệu không khớp nhau"
+      ],
+      "correct": 0,
+      "explanation": "Nó nói về thời điểm chứ không về mức độ đúng. Cuối cùng thì mọi bản sẽ khớp; câu hỏi thiết kế là chuyện gì xảy ra trong khoảng chờ đó."
+    },
+    {
+      "question": "Vì sao nhất quán cuối cùng là cái giá chứ không phải lỗi?",
+      "options": [
+        "Vì muốn xoá nó thì phải gắn chặt hai hệ thống lại và mất tính độc lập",
+        "Vì công nghệ hiện tại chưa cho phép đồng bộ tức thì",
+        "Vì chi phí hạ tầng để đồng bộ nhanh hơn là quá cao",
+        "Vì người dùng thường không nhận ra được những khoảng lệch rất ngắn như vậy"
+      ],
+      "correct": 0,
+      "explanation": "Đây là đánh đổi có thật: độc lập hay nhất quán tức thì, chọn một. Chọn độc lập rồi than phiền về độ lệch là muốn cả hai."
+    },
+    {
+      "question": "Việc cần làm với khoảng thời gian chưa khớp là gì?",
+      "options": [
+        "Quyết định giao diện nói gì với người dùng trong khoảng đó",
+        "Rút ngắn nó xuống mức không đo được bằng công cụ",
+        "Ẩn dữ liệu đi cho tới khi hai bên đã khớp nhau",
+        "Ghi lại mọi lần lệch nhau vào nhật ký để có thể kiểm tra lại về sau"
+      ],
+      "correct": 0,
+      "explanation": "Người dùng sẽ gặp khoảng đó, nên trải nghiệm trong khoảng đó là một quyết định thiết kế. Hiện giá trị vừa nhập, hoặc nói rõ đang xử lý, đều tốt hơn là hiện giá trị cũ như thể nó đúng."
+    },
+    {
+      "question": "Điều gì nên được đo trong hệ thống nhất quán cuối cùng?",
+      "options": [
+        "Độ trễ từ lúc ghi ở nguồn tới lúc thấy được ở đích",
+        "Số lượng sự kiện được phát ra trong mỗi giờ",
+        "Dung lượng dữ liệu đang chờ trong hàng đợi",
+        "Số lượng đội đang lắng nghe mỗi loại sự kiện hiện có"
+      ],
+      "correct": 0,
+      "explanation": "Đó là con số phản ánh trải nghiệm người dùng. Nếu nó thường là hai giây và hôm nay là bốn phút, bạn muốn biết trước khi khách hàng gọi điện."
+    },
+    {
+      "question": "Nghiệp vụ nào đòi hỏi nhất quán tức thì?",
+      "options": [
+        "Những nghiệp vụ mà quyết định dựa trên giá trị vừa đọc và không đảo ngược được",
+        "Những nghiệp vụ có số lượng giao dịch lớn mỗi ngày",
+        "Những nghiệp vụ mà người dùng đang theo dõi trực tiếp ngay trên màn hình",
+        "Những nghiệp vụ liên quan tới nhiều hơn hai đội trong tổ chức"
+      ],
+      "correct": 0,
+      "explanation": "Trừ tiền, giữ chỗ, cấp mã duy nhất đều thuộc nhóm này. Với chúng thì đừng tách qua ranh giới đội - hoặc phải chấp nhận một cơ chế điều phối phức tạp hơn nhiều."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Khi mỗi đội giữ dữ liệu của mình và đồng bộ qua sự kiện, có những khoảnh khắc hệ thống này nói một đằng và hệ thống kia nói một nẻo. Đó không phải sự cố cần sửa mà là hoá đơn cho thứ bạn đã mua."
+    },
+    {
+      "type": "heading",
+      "text": "Bạn đã trả cho cái gì"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nhất quán tức thì đòi hỏi một điểm quyết định duy nhất, và điểm ấy trói mọi bên vào cùng một nhịp: cùng ghi, cùng chờ, cùng hỏng. Chọn cho các đội độc lập nghĩa là chấp nhận mỗi bên có bản của mình và chúng khớp nhau sau một khoảng. Bạn không mất nhất quán; bạn dời nó từ tức thì sang cuối cùng."
+    },
+    {
+      "type": "callout",
+      "label": "Thiết kế cho khoảng chờ",
+      "text": "Sau khi người dùng bấm lưu, đừng đọc lại từ một hệ thống chưa kịp cập nhật rồi hiện giá trị cũ như thể nó đúng. Hiện giá trị họ vừa nhập, hoặc nói rõ đang xử lý. Khoảng chờ là một phần của sản phẩm, không phải khe hở giữa hai dịch vụ."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Chấp nhận được",
+        "text": "Số lượt thích, kết quả tìm kiếm, ảnh đại diện, báo cáo. Lệch vài giây gây khó chịu nhẹ và không tạo ra hậu quả sai."
+      },
+      "right": {
+        "label": "Không chấp nhận được",
+        "text": "Trừ tiền, giữ chỗ cuối cùng, cấp mã duy nhất. Quyết định dựa trên giá trị vừa đọc, và hậu quả không đảo ngược được."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Độ lệch nhất thời là hoá đơn của sự độc lập. Đo nó, nói với người dùng về nó, và đừng cố xoá nó bằng cách trói hai đội lại.",
+        "Bài sau nói về lúc buộc phải trói nhau trong chốc lát: khi nhiều đội phải triển khai phối hợp."
+      ]
+    }
+  ],
+  "interactiveType": "tail-risk"
+}

@@ -138,7 +138,7 @@ export default function GlobalSearchModal({
               type="button"
               onClick={onClose}
               aria-label={t.globalSearch.closeAriaLabel}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-stone-400 hover:bg-surface-raised cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -159,7 +159,7 @@ export default function GlobalSearchModal({
                       key={kw}
                       type="button"
                       onClick={() => setQuery(kw)}
-                      className="px-2.5 py-1 rounded-full bg-surface-raised text-stone-600 dark:text-stone-300 font-bold hover:bg-stone-200 cursor-pointer"
+                      className="px-2.5 py-1 rounded-full bg-surface-raised text-ink-soft font-bold hover:bg-stone-200 cursor-pointer"
                     >
                       {kw}
                     </button>

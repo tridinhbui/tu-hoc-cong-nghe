@@ -1,0 +1,169 @@
+{
+  "id": 139,
+  "slug": "quyen-rieng-tu-va-nghia-vu",
+  "title": "Quyền riêng tư: nghĩa vụ đi kèm mỗi trường dữ liệu",
+  "subtitle": "Bảo mật hỏi ai chạm được vào dữ liệu; riêng tư hỏi bạn có nên giữ nó không.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🪪",
+  "track": "professional",
+  "whyItMatters": "Hai chủ đề hay bị gộp làm một, nhưng chúng trả lời hai câu hỏi khác nhau. Một hệ thống có thể bảo mật rất tốt mà vẫn vi phạm quyền riêng tư, vì nó bảo vệ cẩn thận những dữ liệu lẽ ra không nên thu thập.",
+  "openingQuestion": "Bảo mật và quyền riêng tư khác nhau ở điểm nào?",
+  "openingOptions": [
+    "Bảo mật hỏi ai chạm được vào dữ liệu; riêng tư hỏi có nên giữ dữ liệu đó không",
+    "Bảo mật là vấn đề kỹ thuật còn riêng tư là vấn đề pháp lý",
+    "Bảo mật bảo vệ hệ thống còn riêng tư bảo vệ người dùng",
+    "Bảo mật áp dụng cho dữ liệu nội bộ còn riêng tư cho dữ liệu công khai"
+  ],
+  "correctOption": 0,
+  "explanation": "Bảo mật là câu hỏi về kiểm soát truy cập: ai được chạm vào cái gì, và làm sao ngăn người không được phép. Quyền riêng tư đứng trước đó một bước: dữ liệu này có nên tồn tại trong hệ thống của bạn không, giữ bao lâu, và dùng vào việc gì. Một tổ chức có thể mã hoá rất tốt, phân quyền rất chặt, và vẫn vi phạm quyền riêng tư vì đang thu thập những thứ không cần cho nghiệp vụ nào.",
+  "diagram": [
+    {
+      "label": "Riêng tư: có nên thu thập không",
+      "arrow": true
+    },
+    {
+      "label": "Nếu có: dùng vào việc gì, giữ bao lâu",
+      "arrow": true
+    },
+    {
+      "label": "Bảo mật: ai chạm được vào nó",
+      "arrow": true
+    },
+    {
+      "label": "Bảo mật tốt không bù được thu thập sai"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bảo vệ rất tốt thứ không nên có",
+    "description": "Một hệ thống mã hoá đầy đủ, phân quyền chặt chẽ, dấu vết đầy đủ - và đang lưu ngày sinh của người dùng cho một nghiệp vụ chỉ cần biết họ đủ mười tám tuổi. Mọi biện pháp bảo mật đều đúng, và trường dữ liệu ấy vẫn không nên tồn tại."
+  },
+  "keyTakeaways": [
+    "Riêng tư hỏi có nên giữ; bảo mật hỏi ai chạm được vào thứ đã giữ.",
+    "Mỗi trường dữ liệu cá nhân cần mục đích rõ ràng và một thời hạn.",
+    "Quyền của người dùng gồm xem, sửa và xoá - và phải thực hiện được, không chỉ ghi trong chính sách.",
+    "Xoá phải phủ cả bản sao lưu và kho báo cáo, nếu không thì nó chưa xong."
+  ],
+  "summary": {
+    "keyIdea": "Bảo mật tốt không bù được việc thu thập những dữ liệu lẽ ra không nên có.",
+    "formula": "Có nên giữ - dùng làm gì - giữ bao lâu - ai chạm được.",
+    "commonMistake": "Coi mã hoá và phân quyền là đã xử lý xong phần quyền riêng tư."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Thử thực hiện một yêu cầu xoá dữ liệu cho một tài khoản thật trong hệ thống của bạn. Chỗ nào dữ liệu vẫn còn sau khi quy trình chạy xong là chỗ quyền ấy chưa thật sự tồn tại."
+  },
+  "practicePrompt": {
+    "question": "Người dùng yêu cầu xoá tài khoản. Nơi nào hay bị bỏ sót nhất?",
+    "options": [
+      "Bản sao lưu và kho dữ liệu phục vụ báo cáo",
+      "Bảng người dùng chính ở trong cơ sở dữ liệu",
+      "Bộ nhớ đệm của ứng dụng phía máy chủ",
+      "Nhật ký truy cập của máy chủ web"
+    ],
+    "correct": 0,
+    "explanation": "Bảng chính thì ai cũng nhớ, còn bản sao lưu và kho báo cáo thì nằm ngoài đường ghi thông thường nên hay bị quên. Với bản sao lưu, cách xử lý thực tế thường là gắn thời hạn cho chính bản sao lưu chứ không cố sửa từng bản, và điều đó phải được nói rõ trong chính sách."
+  },
+  "quiz": [
+    {
+      "question": "Câu hỏi trung tâm của quyền riêng tư là gì?",
+      "options": [
+        "Dữ liệu này có nên tồn tại trong hệ thống của bạn không",
+        "Dữ liệu này được mã hoá bằng thuật toán nào",
+        "Ai trong tổ chức được phép đọc dữ liệu này",
+        "Dữ liệu này được lưu ở khu vực địa lý nào"
+      ],
+      "correct": 0,
+      "explanation": "Ba câu còn lại đều là câu hỏi bảo mật, và chúng chỉ có nghĩa sau khi đã trả lời câu đầu tiên. Bảo vệ cẩn thận một trường không nên thu thập vẫn là một vấn đề."
+    },
+    {
+      "question": "Mỗi trường dữ liệu cá nhân cần có gì?",
+      "options": [
+        "Một mục đích nghiệp vụ cụ thể và một thời hạn lưu trữ",
+        "Một mức phân quyền riêng và một khoá mã hoá riêng",
+        "Một bản ghi trong tài liệu kiến trúc của toàn hệ thống",
+        "Một người chịu trách nhiệm được chỉ định rõ ràng"
+      ],
+      "correct": 0,
+      "explanation": "Không trả lời được hai câu ấy thì trường đó đang tồn tại vì thói quen. Phân quyền và mã hoá là cách bảo vệ nó sau khi đã quyết định giữ."
+    },
+    {
+      "question": "Quyền xoá dữ liệu chỉ thật sự tồn tại khi nào?",
+      "options": [
+        "Khi quy trình xoá phủ cả bản sao lưu và kho báo cáo",
+        "Khi chính sách quyền riêng tư có ghi rõ quyền đó",
+        "Khi hệ thống có sẵn nút xoá tài khoản trong giao diện",
+        "Khi bản ghi người dùng bị đánh dấu là đã xoá"
+      ],
+      "correct": 0,
+      "explanation": "Xoá ở bảng chính là phần dễ nhất. Dữ liệu còn nằm trong bản sao lưu, kho báo cáo và những bảng phụ mà quy trình chưa chạm tới thì quyền ấy mới chỉ có trên giấy."
+    },
+    {
+      "question": "Một hệ thống bảo mật rất tốt có thể vi phạm quyền riêng tư không?",
+      "options": [
+        "Có, nếu nó bảo vệ cẩn thận những dữ liệu lẽ ra không nên thu thập",
+        "Không, vì bảo mật tốt thì đã bao gồm cả việc bảo vệ quyền riêng tư",
+        "Có, nhưng chỉ khi dữ liệu bị rò rỉ ra bên ngoài",
+        "Không, vì hai khái niệm ấy đo cùng một thứ"
+      ],
+      "correct": 0,
+      "explanation": "Hai chủ đề trả lời hai câu hỏi khác nhau và có thể tốt hoặc tệ độc lập với nhau. Đây là lý do chúng cần được xem xét riêng chứ không gộp vào một danh sách kiểm tra."
+    },
+    {
+      "question": "Vì sao thời hạn lưu trữ lại là một biện pháp quan trọng?",
+      "options": [
+        "Vì dữ liệu hết mục đích chỉ còn lại phần rủi ro",
+        "Vì lưu trữ lâu dài tốn chi phí hạ tầng đáng kể",
+        "Vì dữ liệu cũ thường không còn chính xác nữa",
+        "Vì quy định giới hạn dung lượng dữ liệu được lưu"
+      ],
+      "correct": 0,
+      "explanation": "Sau khi mục đích đã hết, trường dữ liệu ấy không mang lại lợi ích nào mà vẫn nằm trong phạm vi của mọi vụ rò rỉ tương lai. Thời hạn biến việc xoá thành hành vi mặc định."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ở chặng nền tảng dữ liệu đã có một bài về dữ liệu cá nhân. Bài này nhìn lại nó từ góc bảo mật, và làm rõ một chỗ hay bị gộp: bảo mật và riêng tư không phải một thứ."
+    },
+    {
+      "type": "heading",
+      "text": "Hai câu hỏi khác nhau"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Bảo mật",
+        "text": "Ai chạm được vào dữ liệu này, và làm sao ngăn người không được phép. Câu hỏi về kiểm soát truy cập."
+      },
+      "right": {
+        "label": "Quyền riêng tư",
+        "text": "Dữ liệu này có nên tồn tại không, dùng vào việc gì, giữ bao lâu. Câu hỏi đứng trước cả việc thu thập."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Quyền của người dùng phải thực hiện được"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Xem: họ biết được bạn đang giữ những gì về họ.",
+        "Sửa: dữ liệu sai được sửa lại, kể cả ở những nơi đã sao chép sang.",
+        "Xoá: và xoá phải phủ cả bản sao lưu lẫn kho báo cáo, không chỉ bảng chính."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Bản sao lưu là chỗ hay quên",
+      "text": "Quy trình xoá thường chạy trên cơ sở dữ liệu chính và dừng ở đó. Dữ liệu vẫn nằm trong bản sao lưu hằng đêm và trong kho báo cáo. Cách xử lý thực tế là gắn thời hạn cho chính bản sao lưu và nói rõ điều đó trong chính sách."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bảo vệ tốt một thứ không nên giữ vẫn là một vấn đề. Câu hỏi riêng tư đứng trước câu hỏi bảo mật.",
+        "Bài sau khép lại chặng và nhìn lại toàn bộ cách nghĩ về bảo mật ứng dụng."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "id": 56,
+  "slug": "su-kien-va-webhook",
+  "title": "Sự kiện: báo cho bên kia thay vì bắt họ hỏi liên tục",
+  "subtitle": "Hỏi mỗi phút thì tốn vô ích 99% số lần; báo khi có chuyện thì đúng lúc và đủ.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📣",
+  "track": "professional",
+  "whyItMatters": "Mọi tích hợp giữa hai hệ thống đều phải chọn: bên kia hỏi liên tục, hay bên bạn báo khi có chuyện. Chọn sai thì hoặc tốn tài nguyên cho những lần hỏi rỗng, hoặc mất sự kiện mà không ai biết.",
+  "openingQuestion": "Bạn cần báo cho đối tác biết khi một đơn hàng đổi trạng thái. Cách nào phù hợp hơn?",
+  "openingOptions": [
+    "Gọi tới địa chỉ họ đăng ký mỗi khi có thay đổi, kèm cơ chế gửi lại khi thất bại",
+    "Để họ gọi sang hỏi mỗi phút xem có đơn nào vừa đổi trạng thái không",
+    "Gửi cho họ một tệp tổng hợp mọi thay đổi vào cuối mỗi ngày làm việc",
+    "Cho họ quyền truy cập trực tiếp vào cơ sở dữ liệu đơn hàng của bạn"
+  ],
+  "correctOption": 0,
+  "explanation": "Báo khi có chuyện đúng lúc hơn và rẻ hơn nhiều so với việc bắt bên kia hỏi liên tục, vì phần lớn lần hỏi sẽ không có gì mới. Nhưng nó chuyển gánh nặng sang phía bạn: khi bên kia không nhận được, bạn phải gửi lại có giãn cách, phải ghi lại những lần thất bại, và phải cung cấp một cách để họ đối soát lại nếu đã bỏ lỡ. Cho truy cập thẳng cơ sở dữ liệu thì khoá chặt hệ thống của bạn vào hệ thống của họ, đúng thứ mà chặng này đang tìm cách tránh.",
+  "diagram": [
+    {
+      "label": "Có thay đổi ở phía bạn",
+      "arrow": true
+    },
+    {
+      "label": "Gọi tới địa chỉ bên kia đã đăng ký",
+      "arrow": true
+    },
+    {
+      "label": "Thất bại thì gửi lại có giãn cách",
+      "arrow": true
+    },
+    {
+      "label": "Kèm một cách đối soát cho những gì đã lỡ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cổng thanh toán",
+    "description": "Sau khi người dùng trả tiền, cổng thanh toán gọi ngược về hệ thống bán hàng để báo kết quả. Nếu chỉ dựa vào việc trình duyệt quay về thì mọi giao dịch bị đóng tab giữa chừng sẽ không bao giờ được ghi nhận."
+  },
+  "keyTakeaways": [
+    "Báo khi có chuyện đúng lúc hơn và rẻ hơn việc hỏi liên tục.",
+    "Bên gửi phải gửi lại khi thất bại và ghi lại những lần không thành công.",
+    "Bên nhận phải xác minh nguồn gốc và chịu được việc nhận trùng.",
+    "Luôn cần một đường đối soát để lấy lại những sự kiện đã bỏ lỡ."
+  ],
+  "summary": {
+    "keyIdea": "Sự kiện đảo chiều tích hợp: thay vì bên kia hỏi mãi, bên bạn báo khi có chuyện.",
+    "formula": "Báo ngay + gửi lại khi lỗi + đường đối soát dự phòng.",
+    "commonMistake": "Gửi một lần rồi coi như xong, không có cách nào lấy lại sự kiện đã mất."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Nếu dịch vụ của bạn có gửi sự kiện ra ngoài, kiểm ba thứ: gửi lại mấy lần khi thất bại, những lần thất bại cuối cùng được ghi ở đâu, và bên nhận lấy lại sự kiện đã lỡ bằng cách nào."
+  },
+  "practicePrompt": {
+    "question": "Bên nhận sự kiện của bạn báo họ nhận được cùng một thông báo hai lần. Ai nên xử lý và xử lý thế nào?",
+    "options": [
+      "Bên nhận, bằng cách bỏ qua sự kiện có mã định danh đã xử lý trước đó",
+      "Bên gửi, bằng cách bảo đảm không bao giờ gửi trùng một sự kiện nào",
+      "Cả hai bên cùng đối soát vào cuối ngày để loại các bản ghi trùng nhau",
+      "Không bên nào cần xử lý vì sự kiện trùng không gây hậu quả gì"
+    ],
+    "correct": 0,
+    "explanation": "Bên gửi không bảo đảm được đúng một lần: nếu phản hồi xác nhận mất trên đường về thì nó buộc phải gửi lại. Vì vậy mọi sự kiện đều mang mã định danh, và trách nhiệm nhận ra bản trùng thuộc về bên nhận - cùng nguyên tắc với bài về gọi hai lần."
+  },
+  "quiz": [
+    {
+      "question": "Lợi thế của việc báo sự kiện so với hỏi liên tục là gì?",
+      "options": [
+        "Đúng lúc hơn và không tốn tài nguyên cho những lần hỏi không có gì mới",
+        "Không cần bên nhận phải mở cổng để nhận kết nối từ bên ngoài",
+        "Bảo đảm mọi sự kiện đều tới nơi mà không cần cơ chế nào thêm",
+        "Cho phép bên nhận kiểm soát hoàn toàn nhịp độ xử lý của mình"
+      ],
+      "correct": 0,
+      "explanation": "Hỏi mỗi phút nghĩa là phần lớn lần hỏi trả về rỗng, mà vẫn chậm tới một phút. Bù lại, cách hỏi có ưu điểm là bên nhận tự chủ nhịp độ và không cần mở cổng ra ngoài."
+    },
+    {
+      "question": "Bên gửi sự kiện có trách nhiệm gì khi lần gọi đầu thất bại?",
+      "options": [
+        "Gửi lại có giãn cách tăng dần và ghi lại nếu vẫn không thành công",
+        "Chuyển sự kiện đó sang cho bên nhận dự phòng do phía đối tác chỉ định",
+        "Xoá sự kiện khỏi hàng đợi vì bên nhận đã không sẵn sàng lúc đó",
+        "Chờ bên nhận chủ động gọi sang hỏi lại về sự kiện đã bỏ lỡ"
+      ],
+      "correct": 0,
+      "explanation": "Bên nhận có thể chỉ đang triển khai lại trong ba mươi giây. Gửi lại có giãn cách xử lý được phần lớn trường hợp, và những sự kiện cuối cùng vẫn thất bại phải nằm ở chỗ có người xem được."
+    },
+    {
+      "question": "Vì sao bên nhận phải xác minh nguồn gốc của sự kiện?",
+      "options": [
+        "Vì địa chỉ nhận nằm công khai nên bất kỳ ai cũng gửi tới đó được",
+        "Vì sự kiện có thể bị các thiết bị trung gian sửa đổi trên đường đi",
+        "Vì bên gửi có thể gửi nhầm sự kiện của một khách hàng khác",
+        "Vì thứ tự các sự kiện không được bảo đảm khi truyền qua mạng"
+      ],
+      "correct": 0,
+      "explanation": "Địa chỉ nhận là một điểm công khai trên Internet, nên nếu không kiểm chữ ký thì ai cũng giả được một sự kiện đơn hàng đã thanh toán. Đây là cửa bị bỏ quên rất thường xuyên."
+    },
+    {
+      "question": "Vì sao vẫn cần một đường đối soát dù đã có cơ chế gửi lại?",
+      "options": [
+        "Vì vẫn có những sự kiện thất bại hết số lần thử và mất hẳn",
+        "Vì đường đối soát cho tốc độ xử lý nhanh hơn so với nhận sự kiện",
+        "Vì sự kiện đã gửi cần xác nhận lại lần nữa",
+        "Vì bên nhận không lưu được sự kiện quá một khoảng thời gian nhất định"
+      ],
+      "correct": 0,
+      "explanation": "Gửi lại giảm xác suất mất chứ không đưa nó về không: bên nhận có thể chết hàng giờ. Một đường để hỏi lại những gì đã xảy ra trong khoảng thời gian nào đó là lưới an toàn cuối cùng."
+    },
+    {
+      "question": "Khi nào cách hỏi liên tục lại phù hợp hơn?",
+      "options": [
+        "Khi bên nhận không mở được cổng ra ngoài hoặc muốn tự chủ nhịp xử lý",
+        "Khi số lượng sự kiện rất lớn và cần được xử lý tức thời",
+        "Khi hai hệ thống cùng công ty và đã tin nhau sẵn",
+        "Khi sự kiện chứa dữ liệu nhạy cảm cần được bảo vệ chặt chẽ"
+      ],
+      "correct": 0,
+      "explanation": "Hỏi liên tục đơn giản hơn nhiều về hạ tầng và cho bên nhận toàn quyền quyết định nhịp độ. Với khối lượng lớn cần tức thời thì nó lại là lựa chọn tệ nhất, vì độ trễ bằng đúng chu kỳ hỏi."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai hệ thống cần biết chuyện của nhau. Chỉ có hai cách: một bên hỏi liên tục, hoặc bên kia lên tiếng khi có chuyện. Mỗi cách đặt gánh nặng lên một phía khác nhau."
+    },
+    {
+      "type": "heading",
+      "text": "Hỏi hay báo"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Bên kia hỏi",
+        "text": "Đơn giản về hạ tầng, bên nhận tự chủ nhịp độ và không cần mở cổng. Đổi lại phần lớn lần hỏi là rỗng, và độ trễ bằng đúng chu kỳ hỏi."
+      },
+      "right": {
+        "label": "Bên bạn báo",
+        "text": "Đúng lúc và không lãng phí. Đổi lại bạn gánh việc gửi lại, ghi nhận thất bại, và bên nhận phải mở một điểm công khai để nhận."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Ba việc bên gửi phải làm"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Gửi lại có giãn cách tăng dần khi lần đầu thất bại.",
+        "Ký sự kiện, để bên nhận xác minh được nó thật sự đến từ bạn.",
+        "Đưa những sự kiện thất bại hết số lần thử vào một chỗ có người xem."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Bên nhận phải chịu được trùng",
+      "text": "Không ai bảo đảm được đúng một lần: xác nhận cũng có thể mất trên đường về, và khi đó bên gửi buộc phải gửi lại. Mỗi sự kiện mang một mã định danh, và bên nhận bỏ qua mã đã xử lý - đúng cơ chế của bài về gọi hai lần."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Báo sự kiện là cách rẻ và đúng lúc, miễn là bạn nhận luôn phần trách nhiệm đi kèm: gửi lại, ký, và một đường đối soát.",
+        "Bài sau nói về chuyện xảy ra khi chính hợp đồng ấy cần đổi: phiên bản, và cách sống chung với nhiều phiên bản cùng lúc."
+      ]
+    }
+  ]
+}

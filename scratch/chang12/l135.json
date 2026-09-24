@@ -1,0 +1,128 @@
+{
+  "id": 135,
+  "slug": "quyen-toi-thieu",
+  "title": "Quyền tối thiểu: mỗi phần chỉ được đúng thứ nó cần",
+  "subtitle": "Không phải để ngăn sự cố, mà để sự cố dừng lại ở một chỗ.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🎚️",
+  "track": "professional",
+  "whyItMatters": "Bạn không ngăn được mọi lỗ hổng. Nhưng bạn quyết định được rằng khi một thành phần bị chiếm, kẻ chiếm nó đứng ở đâu và chạm tới được những gì - và đó thường là khác biệt giữa một sự cố nhỏ và một thảm hoạ.",
+  "openingQuestion": "Một dịch vụ chỉ cần đọc bảng đơn hàng. Nên cấp cho nó quyền gì?",
+  "openingOptions": [
+    "Chỉ quyền đọc đúng bảng đó, không hơn",
+    "Quyền đọc trên toàn bộ cơ sở dữ liệu cho tiện về sau",
+    "Quyền đọc và ghi trên bảng đó để linh hoạt khi mở rộng",
+    "Quyền quản trị nhưng có ghi nhật ký đầy đủ mọi thao tác"
+  ],
+  "correctOption": 0,
+  "explanation": "Nguyên tắc này không làm giảm xác suất một dịch vụ bị chiếm; nó quyết định chuyện gì xảy ra sau đó. Dịch vụ chỉ đọc được một bảng thì kẻ chiếm nó cũng chỉ đọc được bảng ấy. Cấp rộng cho tiện là vay trước một khoản mà bạn trả vào đúng ngày xấu nhất, còn ghi nhật ký đầy đủ chỉ cho bạn biết chuyện đã xảy ra chứ không ngăn nó lan ra.",
+  "diagram": [
+    { "label": "Một thành phần bị chiếm", "arrow": true },
+    { "label": "Quyền rộng: kẻ chiếm đi tiếp được rất xa", "arrow": true },
+    { "label": "Quyền hẹp: dừng lại ở đúng phạm vi ấy", "arrow": true },
+    { "label": "Xác suất không đổi, thiệt hại thì đổi hẳn" }
+  ],
+  "realWorldExample": {
+    "company": "Tài khoản dùng chung cho mọi dịch vụ",
+    "description": "Một chuỗi kết nối cơ sở dữ liệu duy nhất được dùng cho toàn bộ hệ thống, với quyền đầy đủ. Bất kỳ dịch vụ nào bị chiếm cũng đồng nghĩa toàn bộ dữ liệu bị chiếm, kể cả dịch vụ chỉ hiển thị trang giới thiệu."
+  },
+  "keyTakeaways": [
+    "Quyền tối thiểu không giảm xác suất sự cố; nó giới hạn phạm vi hậu quả.",
+    "Mỗi dịch vụ nên có danh tính riêng, không dùng chung một tài khoản quyền cao.",
+    "Quyền cấp tạm cho một việc gấp phải có đường thu hồi, nếu không nó ở lại mãi.",
+    "Rà soát quyền định kỳ, vì quyền chỉ nới rộng theo thời gian nếu không ai nhìn."
+  ],
+  "summary": {
+    "keyIdea": "Cấp ít quyền nhất có thể để một thành phần bị chiếm không kéo theo toàn bộ hệ thống.",
+    "formula": "Đúng thứ nó cần, không hơn.",
+    "commonMistake": "Cấp quyền rộng cho tiện, rồi không ai thu hẹp lại nữa."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một dịch vụ trong hệ thống và liệt kê những gì nó thật sự cần chạm tới. So với quyền nó đang có - khoảng cách giữa hai danh sách là phạm vi thiệt hại nếu nó bị chiếm."
+  },
+  "practicePrompt": {
+    "question": "Vì sao quyền cấp tạm cho một sự cố lại hay trở thành vĩnh viễn?",
+    "options": [
+      "Vì không ai nhớ thu hồi, và không có gì nhắc rằng nó vẫn còn đó",
+      "Vì việc thu hồi quyền đòi hỏi phải triển khai lại toàn bộ hệ thống",
+      "Vì quyền tạm không phân biệt được với quyền cấp chính thức",
+      "Vì người được cấp sẽ phản đối khi bị thu hồi quyền đã có"
+    ],
+    "correct": 0,
+    "explanation": "Cấp quyền là việc gấp và có người thúc; thu hồi thì không ai chờ đợi và không có gì hỏng nếu quên. Cách xử lý là gắn hạn ngay lúc cấp, để mặc định là hết hạn chứ không phải mặc định là ở lại."
+  },
+  "quiz": [
+    {
+      "question": "Quyền tối thiểu bảo vệ theo cách nào?",
+      "options": [
+        "Giới hạn phạm vi hậu quả khi một thành phần bị chiếm",
+        "Giảm xác suất một thành phần bị chiếm quyền điều khiển",
+        "Phát hiện sớm khi có truy cập vượt quá phạm vi cho phép",
+        "Ngăn người dùng nội bộ thao tác nhầm trên dữ liệu thật"
+      ],
+      "correct": 0,
+      "explanation": "Nó không làm hệ thống khó bị chiếm hơn. Nó quyết định kẻ chiếm được đứng ở đâu, và đó là thứ phân biệt sự cố một bảng với sự cố toàn bộ cơ sở dữ liệu."
+    },
+    {
+      "question": "Vì sao mỗi dịch vụ nên có danh tính riêng?",
+      "options": [
+        "Để phạm vi thiệt hại của mỗi dịch vụ bị giới hạn riêng",
+        "Để dễ tính chi phí hạ tầng cho từng dịch vụ một",
+        "Để các dịch vụ không phải chờ nhau khi truy cập dữ liệu",
+        "Để hệ thống giám sát phân biệt được lưu lượng của từng bên"
+      ],
+      "correct": 0,
+      "explanation": "Dùng chung một tài khoản quyền cao nghĩa là phạm vi thiệt hại của mọi dịch vụ đều bằng nhau và bằng toàn bộ. Danh tính riêng cho phép cắt phạm vi theo nhu cầu thật của từng bên."
+    },
+    {
+      "question": "Vì sao quyền chỉ nới rộng theo thời gian nếu không ai rà soát?",
+      "options": [
+        "Vì cấp quyền là việc gấp còn thu hồi thì không ai thúc",
+        "Vì hệ thống tự động cấp thêm quyền khi có nhu cầu mới",
+        "Vì các quy định tuân thủ yêu cầu mở rộng quyền định kỳ",
+        "Vì người dùng liên tục yêu cầu thêm quyền để làm việc"
+      ],
+      "correct": 0,
+      "explanation": "Có người chờ để cấp và không ai chờ để thu. Vì thế mặc định phải là hết hạn: gắn thời hạn ngay lúc cấp thì việc thu hồi xảy ra mà không cần ai nhớ."
+    },
+    {
+      "question": "Ghi nhật ký đầy đủ có thay được quyền tối thiểu không?",
+      "options": [
+        "Không, vì nhật ký cho biết chuyện đã xảy ra chứ không ngăn nó lan ra",
+        "Có, nếu nhật ký được giám sát theo thời gian thực",
+        "Có, vì nhật ký cho phép khôi phục lại dữ liệu đã bị chạm",
+        "Không, vì nhật ký không ghi được các thao tác đọc dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Hai thứ phục vụ hai vai trò khác nhau: một cái giới hạn thiệt hại, một cái ghi lại thiệt hại. Giám sát thời gian thực rút ngắn thời gian phản ứng nhưng vẫn là sau khi việc đã bắt đầu."
+    },
+    {
+      "question": "Cách giữ cho quyền không phình ra là gì?",
+      "options": [
+        "Gắn thời hạn ngay lúc cấp và rà soát định kỳ",
+        "Yêu cầu phê duyệt của nhiều cấp trước khi cấp quyền",
+        "Ghi lại lý do cấp quyền trong tài liệu của đội",
+        "Chỉ cho phép một người duy nhất được cấp quyền"
+      ],
+      "correct": 0,
+      "explanation": "Thời hạn biến việc thu hồi thành hành vi mặc định thay vì một việc phải nhớ. Thêm cấp phê duyệt chỉ làm việc cấp chậm hơn mà không giải quyết chuyện quyền ở lại mãi."
+    }
+  ],
+  "sections": [
+    { "type": "lead", "text": "Mọi bài trước trong chặng này nói về cách đóng một đường vào cụ thể. Bài này nói về thứ quyết định chuyện gì xảy ra khi một đường nào đó vẫn hở - và luôn có đường hở." },
+    { "type": "heading", "text": "Không giảm xác suất, giảm hậu quả" },
+    { "type": "paragraph", "text": "Cấp quyền hẹp không làm dịch vụ của bạn khó bị chiếm hơn. Nó quyết định kẻ chiếm được đứng ở đâu sau đó. Một dịch vụ hiển thị trang giới thiệu bị chiếm mà nó chỉ đọc được một bảng công khai thì đó là một sự cố nhỏ; cũng dịch vụ ấy dùng chung tài khoản quyền đầy đủ thì đó là toàn bộ cơ sở dữ liệu." },
+    { "type": "conceptTable", "title": "Ba chiều cần thu hẹp", "subtitle": "Mỗi chiều cắt một phần phạm vi thiệt hại", "concepts": [
+      { "vi": "Phạm vi dữ liệu", "en": "scope", "def": "Đúng những bảng và cột cần dùng, không cấp toàn bộ cơ sở dữ liệu cho tiện." },
+      { "vi": "Loại thao tác", "en": "action", "def": "Chỉ đọc thì đừng cấp quyền ghi. Đây là phần dễ thu hẹp nhất và hay bị bỏ qua nhất." },
+      { "vi": "Thời gian", "en": "duration", "def": "Quyền cấp tạm phải có hạn, để mặc định là hết hạn chứ không phải ở lại mãi." }
+    ]},
+    { "type": "callout", "label": "Quyền chỉ đi một chiều", "text": "Có người thúc khi cần cấp và không ai thúc khi cần thu. Vì thế nếu không gắn hạn ngay lúc cấp, tập quyền của mọi tài khoản sẽ chỉ lớn dần theo năm tháng - cho tới ngày một trong số chúng bị chiếm." },
+    { "type": "closing", "lines": [
+      "Bạn không ngăn được mọi sự cố. Bạn quyết định được nó dừng lại ở đâu.",
+      "Bài sau nói về nguyên tắc bao trùm cả chặng: không lớp nào là đủ, nên phải có nhiều lớp."
+    ]}
+  ]
+}

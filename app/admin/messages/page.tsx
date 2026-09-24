@@ -32,10 +32,10 @@ export default async function AdminMessagesPage({ searchParams }: PageProps) {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-1">
+        <h1 className="text-2xl font-bold text-ink mb-1">
           {tp.title}
         </h1>
-        <p className="text-sm text-stone-500 dark:text-stone-400">
+        <p className="text-sm text-ink-muted">
           {tp.subtitle}
         </p>
       </div>

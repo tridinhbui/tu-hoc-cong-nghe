@@ -1,0 +1,159 @@
+{
+  "id": 127,
+  "slug": "quan-ly-khoa-ma-hoa",
+  "title": "Quản lý khoá: chỗ mọi lớp mã hoá quy về",
+  "subtitle": "Thuật toán thì đủ mạnh; chỗ hỏng gần như luôn là nơi cất chìa.",
+  "duration": "8 phút",
+  "difficulty": "Khó",
+  "emoji": "🗄️",
+  "track": "professional",
+  "whyItMatters": "Rất ít vụ rò rỉ xảy ra vì thuật toán bị phá. Chúng xảy ra vì khoá nằm trong kho mã, trong biến môi trường của một máy bị chiếm, hoặc trong một tệp cấu hình được sao lưu ra chỗ ai cũng đọc được.",
+  "openingQuestion": "Nguyên tắc quan trọng nhất khi quản lý khoá mã hoá là gì?",
+  "openingOptions": [
+    "Khoá phải nằm ở nơi chịu kịch bản xâm nhập khác với dữ liệu",
+    "Khoá phải dài ít nhất hai trăm năm mươi sáu bit",
+    "Khoá phải được đổi mới sau mỗi ba mươi ngày sử dụng",
+    "Khoá phải được sao lưu ở ít nhất ba nơi khác nhau"
+  ],
+  "correctOption": 0,
+  "explanation": "Mục đích của mã hoá là để kẻ lấy được dữ liệu vẫn không đọc được. Điều đó chỉ đúng nếu việc lấy dữ liệu và việc lấy khoá là hai chuyện khác nhau. Khoá nằm cùng máy chủ với cơ sở dữ liệu thì một lần xâm nhập lấy được cả hai, và lớp mã hoá trở thành trang trí. Độ dài khoá thì mọi thuật toán hiện đại đều đã đủ, xoay vòng là thực hành tốt nhưng thứ yếu, còn sao lưu nhiều nơi lại làm tăng số chỗ khoá có thể lộ.",
+  "diagram": [
+    {
+      "label": "Dữ liệu ở kho A",
+      "arrow": true
+    },
+    {
+      "label": "Khoá ở kho B, kịch bản xâm nhập khác",
+      "arrow": true
+    },
+    {
+      "label": "Lấy được A mà không có B → không đọc được",
+      "arrow": true
+    },
+    {
+      "label": "Cùng chỗ thì mã hoá không thêm được gì"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Khoá trong tệp cấu hình",
+    "description": "Một cấu hình phổ biến: dữ liệu được mã hoá, khoá nằm trong tệp cấu hình trên cùng máy chủ, và tệp ấy nằm trong bản sao lưu hằng đêm. Bản sao lưu bị thất lạc thì kẻ nhận được cả dữ liệu lẫn chìa khoá trong cùng một gói."
+  },
+  "keyTakeaways": [
+    "Khoá phải nằm ở nơi chịu kịch bản xâm nhập khác với dữ liệu.",
+    "Kho quản lý khoá chuyên dụng cho phép phân quyền và ghi lại ai đã đọc.",
+    "Xoay vòng khoá cần được thiết kế trước, vì dữ liệu cũ vẫn phải giải mã được.",
+    "Mất khoá là mất dữ liệu vĩnh viễn, nên khôi phục khoá cũng phải được thiết kế."
+  ],
+  "summary": {
+    "keyIdea": "Mã hoá dời bài toán từ bảo vệ dữ liệu sang bảo vệ khoá, nên chất lượng nằm ở chỗ cất chìa.",
+    "formula": "Khoá và dữ liệu không chung một kịch bản mất.",
+    "commonMistake": "Đặt khoá trong tệp cấu hình nằm cùng máy chủ với dữ liệu."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm xem khoá mã hoá của hệ thống bạn đang nằm ở đâu, rồi hỏi: một kịch bản xâm nhập duy nhất có lấy được cả nó lẫn dữ liệu không? Nếu có thì lớp mã hoá ấy chưa bảo vệ được gì."
+  },
+  "practicePrompt": {
+    "question": "Vì sao xoay vòng khoá cần được thiết kế từ đầu?",
+    "options": [
+      "Vì dữ liệu mã hoá bằng khoá cũ vẫn phải giải mã được sau khi đổi",
+      "Vì các tiêu chuẩn bảo mật đều quy định chu kỳ xoay vòng bắt buộc",
+      "Vì khoá cũ sẽ tự động hết hiệu lực sau một khoảng thời gian",
+      "Vì việc xoay vòng làm gián đoạn dịch vụ nếu không chuẩn bị"
+    ],
+    "correct": 0,
+    "explanation": "Đổi khoá không làm dữ liệu cũ tự mã hoá lại, nên hệ thống phải biết bản ghi nào dùng khoá nào - thường bằng cách gắn số phiên bản khoá vào dữ liệu. Không thiết kế trước thì tới lúc cần xoay, bạn đứng trước lựa chọn giữ khoá cũ mãi hoặc mã hoá lại toàn bộ kho."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao khoá không nên nằm cùng chỗ với dữ liệu?",
+      "options": [
+        "Vì một lần xâm nhập sẽ lấy được cả hai cùng lúc",
+        "Vì việc đọc khoá từ xa nhanh hơn đọc từ cùng máy",
+        "Vì cơ sở dữ liệu không được thiết kế để lưu khoá",
+        "Vì các tiêu chuẩn bảo mật cấm lưu chung hai thứ đó"
+      ],
+      "correct": 0,
+      "explanation": "Toàn bộ giá trị của mã hoá nằm ở chỗ lấy được dữ liệu vẫn chưa đọc được. Cùng chỗ nghĩa là một sự cố duy nhất phá cả hai lớp, và lớp mã hoá không đóng góp gì."
+    },
+    {
+      "question": "Kho quản lý khoá chuyên dụng mang lại gì?",
+      "options": [
+        "Phân quyền theo từng dịch vụ và ghi lại ai đã đọc khoá nào",
+        "Tăng tốc độ mã hoá và giải mã trong ứng dụng",
+        "Loại bỏ nhu cầu phải xoay vòng khoá định kỳ",
+        "Cho phép khôi phục dữ liệu ngay cả khi mất khoá"
+      ],
+      "correct": 0,
+      "explanation": "Nó biến khoá thành tài nguyên có kiểm soát truy cập và dấu vết. Nhờ vậy bạn trả lời được câu hỏi ai đã đọc khoá này lúc nào - điều không làm được với một tệp cấu hình."
+    },
+    {
+      "question": "Vấn đề gì phát sinh khi xoay vòng khoá?",
+      "options": [
+        "Dữ liệu cũ vẫn được mã hoá bằng khoá cũ nên phải giữ khoá đó",
+        "Ứng dụng phải khởi động lại để nhận khoá mới",
+        "Hiệu năng sẽ giảm xuống trong suốt quá trình chuyển đổi khoá",
+        "Bản sao lưu cũ không còn khôi phục được nữa"
+      ],
+      "correct": 0,
+      "explanation": "Vì thế mỗi bản ghi thường mang theo số phiên bản khoá đã dùng. Thiết kế trước thì xoay vòng là thao tác bình thường; không thiết kế thì nó thành một dự án di trú."
+    },
+    {
+      "question": "Rủi ro của việc sao lưu khoá ra nhiều nơi là gì?",
+      "options": [
+        "Mỗi bản sao là thêm một chỗ khoá có thể bị lộ",
+        "Các bản sao có thể lệch nhau và gây lỗi giải mã",
+        "Việc đồng bộ khoá giữa các nơi làm chậm hệ thống",
+        "Tiêu chuẩn bảo mật giới hạn số bản sao được phép giữ"
+      ],
+      "correct": 0,
+      "explanation": "Đây là một đánh đổi thật: mất khoá là mất dữ liệu vĩnh viễn, nên cần có đường khôi phục. Nhưng mỗi bản sao thêm một cửa, nên chúng phải được bảo vệ ở mức của chính khoá."
+    },
+    {
+      "question": "Phần nào của hệ thống mã hoá thường là chỗ hỏng thật sự?",
+      "options": [
+        "Quản lý khoá, chứ không phải thuật toán",
+        "Thuật toán mã hoá đã lỗi thời so với hiện tại",
+        "Độ dài khoá không đủ để chống dò tìm",
+        "Cách sinh số ngẫu nhiên khi tạo bản mã"
+      ],
+      "correct": 0,
+      "explanation": "Thuật toán tiêu chuẩn hiện nay không bị phá trong thực tế. Các vụ việc gần như luôn là khoá nằm sai chỗ, bị commit vào kho mã, hoặc nằm trong bản sao lưu ai cũng đọc được."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước kết luận rằng mọi lớp mã hoá đều quy về một câu hỏi: khoá ở đâu. Bài này về chính câu hỏi đó, vì nó là nơi các hệ thống mã hoá thật sự thất bại."
+    },
+    {
+      "type": "heading",
+      "text": "Tách kịch bản mất"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mã hoá có giá trị khi việc lấy được dữ liệu và việc lấy được khoá là hai chuyện độc lập. Khoá nằm trong tệp cấu hình trên cùng máy chủ thì một lần chiếm máy lấy được cả hai. Khoá nằm trong bản sao lưu cùng với dữ liệu thì một bản sao lưu thất lạc là mất cả gói. Câu hỏi kiểm tra rất gọn: có kịch bản đơn lẻ nào lấy được cả hai không?"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Dùng kho khoá chuyên dụng để có phân quyền theo dịch vụ và dấu vết truy cập.",
+        "Gắn số phiên bản khoá vào dữ liệu ngay từ đầu, để xoay vòng không thành dự án.",
+        "Thiết kế đường khôi phục khoá, vì mất khoá là mất dữ liệu vĩnh viễn.",
+        "Đừng để khoá đi vào nhật ký, kho mã hay bản sao lưu chung với dữ liệu."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Hai hướng hỏng ngược nhau",
+      "text": "Khoá quá dễ chạm tới thì mã hoá vô nghĩa; khoá quá khó chạm tới thì một ngày bạn mất nó và mất luôn dữ liệu. Cả hai đều là hỏng, nên quản lý khoá luôn là bài toán cân bằng chứ không phải khoá càng kín càng tốt."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Thuật toán không phải chỗ hỏng. Chỗ hỏng là nơi bạn cất chìa, và đó là phần con người quyết định.",
+        "Bài sau chuyển sang họ lỗ hổng cổ điển nhất và vẫn phổ biến nhất: dữ liệu người dùng bị hiểu thành câu lệnh."
+      ]
+    }
+  ]
+}

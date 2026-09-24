@@ -1,0 +1,170 @@
+{
+  "id": 164,
+  "slug": "ngan-sach-loi",
+  "title": "Ngân sách lỗi: phần được phép hỏng",
+  "subtitle": "Mục tiêu 99,9% nghĩa là bạn được phép hỏng 0,1%. Đó là ngân sách, và tiêu hết nó không phải thất bại.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "💸",
+  "track": "professional",
+  "whyItMatters": "Đây là cơ chế duy nhất biến cuộc tranh cãi muôn thuở giữa làm tính năng và giữ ổn định thành một quyết định có dữ liệu, thay vì thành một trận đấu giữa hai nhóm người.",
+  "openingQuestion": "Ngân sách lỗi của tháng còn dư rất nhiều. Điều đó gợi ý gì?",
+  "openingOptions": [
+    "Đội có thể mạnh dạn triển khai nhanh hơn hoặc chấp nhận nhiều rủi ro hơn",
+    "Hệ thống đang hoạt động tốt và không cần thay đổi cách làm hiện tại",
+    "Mục tiêu đang được đặt ở mức quá dễ so với năng lực của hệ thống",
+    "Đội nên tận dụng khoảng dư để nâng mục tiêu lên mức cao hơn"
+  ],
+  "correctOption": 0,
+  "explanation": "Ngân sách dư nghĩa là bạn đang trả tiền cho một mức ổn định vượt nhu cầu - bằng tốc độ ra tính năng chậm hơn mức cần thiết. Cách dùng khoản dư ấy là đẩy nhanh nhịp triển khai, chạy thử nghiệm rủi ro hơn, hoặc làm những việc di trú vốn bị hoãn vì sợ. Nâng mục tiêu là hướng ngược lại: nó biến khoản dư thành ràng buộc mới mà chưa ai chứng minh là người dùng cần.",
+  "diagram": [
+    {
+      "label": "Mục tiêu 99,9% → ngân sách 0,1%",
+      "arrow": true
+    },
+    {
+      "label": "Còn nhiều: đi nhanh hơn, chấp nhận rủi ro",
+      "arrow": true
+    },
+    {
+      "label": "Sắp hết: dừng tính năng, sửa nền móng",
+      "arrow": true
+    },
+    {
+      "label": "Quy tắc thoả thuận trước, không tranh cãi lúc sự cố"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cuộc tranh cãi không có dữ liệu",
+    "description": "Nhóm sản phẩm muốn ra tính năng, nhóm vận hành muốn dừng lại vá hạ tầng, và cả hai đều đúng theo góc nhìn của mình. Ngân sách lỗi trả lời câu hỏi ấy bằng một con số thay vì bằng thâm niên của người nói."
+  },
+  "keyTakeaways": [
+    "Ngân sách lỗi là phần được phép hỏng, không phải hạn mức đáng xấu hổ.",
+    "Tiêu hết ngân sách kích hoạt một quy tắc đã thoả thuận từ trước.",
+    "Ngân sách dư nhiều nghĩa là đang đi chậm hơn mức cần thiết.",
+    "Quy tắc phải được viết ra trước sự cố, không phải bàn giữa lúc đang cháy."
+  ],
+  "summary": {
+    "keyIdea": "Ngân sách lỗi biến đánh đổi giữa tốc độ và ổn định thành một quyết định có dữ liệu.",
+    "formula": "Ngân sách = 100% trừ mục tiêu.",
+    "commonMistake": "Coi mọi lần tiêu ngân sách là một thất bại cần điều tra."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tính ngân sách lỗi tháng này của dịch vụ bạn và xem đã tiêu bao nhiêu phần trăm. Rồi hỏi đội xem chuyện gì sẽ xảy ra nếu nó cạn."
+  },
+  "practicePrompt": {
+    "question": "Điều gì nên xảy ra khi ngân sách lỗi cạn?",
+    "options": [
+      "Dừng phát hành tính năng mới cho tới khi độ tin cậy hồi phục",
+      "Tổ chức một cuộc họp để tìm ra ai đã gây ra phần lớn các sự cố",
+      "Tạm thời nới mục tiêu để đội có thêm khoảng đệm hoạt động",
+      "Tăng tần suất báo cáo tình hình vận hành lên hằng ngày"
+    ],
+    "correct": 0,
+    "explanation": "Điểm mấu chốt là quy tắc này phải được viết ra và đồng thuận từ trước, khi chưa ai đang chịu áp lực. Nới mục tiêu giữa chừng là cách nhanh nhất để biến cả cơ chế thành trang trí, vì lần sau ai cũng biết ngưỡng ấy có thể xê dịch."
+  },
+  "quiz": [
+    {
+      "question": "Ngân sách lỗi được tính thế nào?",
+      "options": [
+        "Bằng phần còn lại sau khi lấy một trăm phần trăm trừ mục tiêu",
+        "Bằng số phút ngừng trung bình của mười hai tháng gần nhất",
+        "Bằng mức thiệt hại tài chính mà công ty chấp nhận được mỗi tháng",
+        "Bằng số sự cố tối đa mà đội trực có thể xử lý trong tháng"
+      ],
+      "correct": 0,
+      "explanation": "Mục tiêu chín mươi chín phẩy chín cho ngân sách một phần nghìn, tức khoảng bốn mươi ba phút mỗi tháng. Nó là một hệ quả số học của mục tiêu chứ không phải một con số được thương lượng riêng."
+    },
+    {
+      "question": "Vì sao ngân sách dư nhiều lại là một tín hiệu đáng chú ý?",
+      "options": [
+        "Vì nó cho thấy đội đang trả cho sự ổn định bằng tốc độ ra tính năng",
+        "Vì nó cho thấy hệ thống đã được xây dựng vượt quá yêu cầu kỹ thuật",
+        "Vì nó cho thấy các phép đo có thể đang bỏ sót một số loại lỗi",
+        "Vì nó cho thấy người dùng chưa sử dụng hết các chức năng có sẵn"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi lần hoãn một thay đổi vì sợ, mỗi vòng kiểm duyệt thêm vào, đều là một khoản trả bằng thời gian. Nếu ngân sách không bao giờ được tiêu tới thì những khoản trả ấy đang mua một mức ổn định không ai yêu cầu."
+    },
+    {
+      "question": "Vì sao quy tắc xử lý phải được viết trước sự cố?",
+      "options": [
+        "Vì giữa lúc đang cháy thì mọi cuộc thương lượng đều nghiêng theo áp lực",
+        "Vì các công cụ giám sát cần được cấu hình trước để tự động thực thi",
+        "Vì viết trước giúp đội nhớ được nội dung quy tắc khi cần dùng",
+        "Vì quy tắc cần được cấp quản lý phê duyệt trước khi có hiệu lực"
+      ],
+      "correct": 0,
+      "explanation": "Lúc ngân sách vừa cạn cũng là lúc có một tính năng đã hứa với khách hàng và một hạn chót đang tới. Một quy tắc thoả thuận lúc bình yên là thứ duy nhất đứng vững được trong tình huống đó."
+    },
+    {
+      "question": "Coi mỗi lần tiêu ngân sách là một thất bại dẫn tới hậu quả gì?",
+      "options": [
+        "Đội sẽ tránh mọi rủi ro và mất luôn công dụng của cơ chế này",
+        "Đội sẽ báo cáo sai số liệu để tránh bị đánh giá tiêu cực",
+        "Ngân sách sẽ không bao giờ được tiêu hết trong bất kỳ tháng nào",
+        "Các sự cố nhỏ sẽ không được ghi nhận vào hệ thống theo dõi"
+      ],
+      "correct": 0,
+      "explanation": "Ngân sách sinh ra để được tiêu; nó là giấy phép thử nghiệm chứ không phải hạn mức đáng xấu hổ. Một đội bị phạt vì tiêu nó sẽ tiêu càng ít càng tốt, và cả cơ chế biến thành một con số trên bảng theo dõi."
+    },
+    {
+      "question": "Ngân sách lỗi giải quyết được mâu thuẫn nào?",
+      "options": [
+        "Giữa nhu cầu ra tính năng nhanh và nhu cầu giữ hệ thống ổn định",
+        "Giữa đội phát triển và đội vận hành về quyền truy cập môi trường thật",
+        "Giữa chi phí hạ tầng và mức chất lượng dịch vụ cam kết",
+        "Giữa yêu cầu của khách hàng lớn và khách hàng nhỏ"
+      ],
+      "correct": 0,
+      "explanation": "Trước khi có nó, hai bên tranh luận bằng lập luận và cuộc tranh luận nghiêng về ai có thâm niên cao hơn. Sau khi có nó, câu hỏi trở thành ngân sách còn bao nhiêu, và cả hai bên đọc cùng một con số."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mục tiêu chín mươi chín phẩy chín phần trăm có một mặt sau ít được nói tới: bạn được phép hỏng một phần nghìn. Đó không phải một lỗ hổng trong cam kết mà là phần quan trọng nhất của nó."
+    },
+    {
+      "type": "heading",
+      "text": "Một con số, hai hướng đọc"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Còn nhiều ngân sách",
+        "text": "Đi nhanh hơn: triển khai dày hơn, chạy thử nghiệm rủi ro hơn, làm những việc di trú vẫn bị hoãn vì sợ."
+      },
+      "right": {
+        "label": "Sắp cạn ngân sách",
+        "text": "Dừng tính năng, dồn sức vào nền móng, siết quy trình phát hành cho tới khi con số hồi phục."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Tiêu hết không phải thất bại",
+      "text": "Ngân sách sinh ra để được tiêu. Một đội bị khiển trách mỗi lần chạm ngưỡng sẽ học cách không bao giờ chạm tới nó, và khi ấy cơ chế chỉ còn là một con số trang trí trên bảng theo dõi."
+    },
+    {
+      "type": "heading",
+      "text": "Giá trị thật nằm ở chỗ khác"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nhóm sản phẩm muốn ra tính năng, nhóm vận hành muốn vá hạ tầng, và cả hai đều đúng theo góc nhìn của mình. Không có ngân sách lỗi thì cuộc tranh luận ấy được giải quyết bằng thâm niên hoặc bằng ai to tiếng hơn. Có nó thì cả hai bên đọc cùng một con số và câu hỏi trở thành còn dư bao nhiêu."
+    },
+    {
+      "type": "callout",
+      "label": "Viết quy tắc lúc bình yên",
+      "text": "Lúc ngân sách vừa cạn cũng thường là lúc có một tính năng đã hứa và một hạn chót đang tới. Quy tắc thoả thuận từ trước là thứ duy nhất đứng vững trong tình huống đó - và nới mục tiêu giữa chừng thì lần sau không ai còn tin vào ngưỡng nữa."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Ngân sách lỗi không làm hệ thống ổn định hơn. Nó làm cho quyết định về độ ổn định trở thành một phép tính thay vì một cuộc tranh cãi.",
+        "Bài sau về việc chuyển từ con số sang hành động: khi nào thì đánh thức một người đang ngủ."
+      ]
+    }
+  ]
+}

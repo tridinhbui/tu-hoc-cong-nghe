@@ -56,7 +56,7 @@ function SignsAsText({ signs }: { signs: QuietSign[] }) {
           {sign.lines.map((line) => (
             <p
               key={line}
-              className="mt-1.5 text-xs leading-relaxed text-stone-600 dark:text-stone-300"
+              className="mt-1.5 text-xs leading-relaxed text-ink-soft"
             >
               {line}
             </p>

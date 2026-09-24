@@ -1,0 +1,180 @@
+{
+  "id": 169,
+  "slug": "vach-ngan-va-cau-dao",
+  "title": "Vách ngăn và cầu dao: giữ đám cháy trong một phòng",
+  "subtitle": "Một dịch vụ chậm chiếm hết luồng của bạn, và mọi thứ khác chết theo dù chúng không liên quan gì.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🚪",
+  "track": "professional",
+  "whyItMatters": "Đây là cơ chế biến một sự cố ở một phụ thuộc thành một sự cố cục bộ thay vì một sự cố toàn hệ thống. Không có nó, mọi phụ thuộc đều là một điểm hỏng đơn lẻ của mọi thứ khác.",
+  "openingQuestion": "Một phụ thuộc chậm lại và toàn bộ dịch vụ ngừng phản hồi, kể cả những phần không gọi tới nó. Vì sao?",
+  "openingOptions": [
+    "Vì các lời gọi treo chiếm hết nguồn luồng dùng chung của cả dịch vụ",
+    "Vì lỗi từ phụ thuộc đó được ném lên và làm hỏng tiến trình chính",
+    "Vì bộ nhớ bị chiếm hết bởi các yêu cầu đang chờ phản hồi",
+    "Vì hệ thống tự động dừng lại để tránh trả về dữ liệu không nhất quán"
+  ],
+  "correctOption": 0,
+  "explanation": "Đây là cách lây lan phổ biến nhất và cũng khó đoán nhất, vì nó không đi qua mã của bạn. Mỗi lời gọi treo giữ một luồng hoặc một kết nối; nếu chúng lấy từ cùng một nguồn chung thì chỉ cần vài trăm lời gọi chậm là nguồn ấy cạn, và những yêu cầu hoàn toàn không liên quan cũng không còn chỗ để chạy. Bộ nhớ đầy cũng xảy ra nhưng nó thường tới sau, khi số yêu cầu đang chờ đã tích tụ đủ lâu.",
+  "diagram": [
+    {
+      "label": "Nguồn luồng dùng chung cho mọi lời gọi",
+      "arrow": true
+    },
+    {
+      "label": "Một phụ thuộc chậm → luồng bị giữ",
+      "arrow": true
+    },
+    {
+      "label": "Nguồn cạn → mọi yêu cầu khác chết theo",
+      "arrow": true
+    },
+    {
+      "label": "Vách ngăn: mỗi phụ thuộc một nguồn riêng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đám cháy đi qua nguồn luồng",
+    "description": "Dịch vụ tìm kiếm chậm lại, và trang thanh toán ngừng hoạt động dù nó không gọi tới tìm kiếm. Cả hai dùng chung một nguồn kết nối, và tìm kiếm đã giữ hết."
+  },
+  "keyTakeaways": [
+    "Chia nguồn tài nguyên theo phụ thuộc để một cái cạn không kéo theo cái khác.",
+    "Cầu dao ngừng gọi khi tỷ lệ lỗi vượt ngưỡng, rồi thử lại dè dặt.",
+    "Thời gian chờ phải có ở mọi lời gọi ra ngoài, không có ngoại lệ.",
+    "Chậm nguy hiểm hơn chết, vì chậm giữ tài nguyên còn chết thì trả ngay."
+  ],
+  "summary": {
+    "keyIdea": "Cô lập tài nguyên theo phụ thuộc để sự cố ở một chỗ không lan ra cả dịch vụ.",
+    "formula": "Nguồn riêng cho mỗi phụ thuộc, thời gian chờ cho mọi lời gọi.",
+    "commonMistake": "Dùng một nguồn kết nối chung cho mọi phụ thuộc."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Kiểm tra xem các lời gọi ra ngoài trong dịch vụ của bạn có dùng chung một nguồn kết nối không, và có bao nhiêu lời gọi đang không đặt thời gian chờ."
+  },
+  "practicePrompt": {
+    "question": "Cầu dao khác thời gian chờ ở điểm nào?",
+    "options": [
+      "Cầu dao ngừng gọi hẳn một thời gian sau khi thấy quá nhiều lỗi",
+      "Cầu dao chỉ hoạt động với các lời gọi tới dịch vụ bên ngoài",
+      "Cầu dao đo tổng thời gian còn thời gian chờ đo từng lời gọi",
+      "Cầu dao cần cấu hình ở tầng hạ tầng thay vì ở trong mã của ứng dụng"
+    ],
+    "correct": 0,
+    "explanation": "Thời gian chờ giới hạn thiệt hại của từng lời gọi nhưng bạn vẫn trả cái giá ấy cho mọi lời gọi. Cầu dao nhớ rằng dịch vụ kia đang hỏng và trả về lỗi ngay lập tức, nên nó vừa cứu tài nguyên của bạn vừa cho bên kia khoảng lặng để hồi phục."
+  },
+  "quiz": [
+    {
+      "question": "Vách ngăn hoạt động theo nguyên tắc nào?",
+      "options": [
+        "Mỗi phụ thuộc có nguồn tài nguyên riêng, cạn cái này không ảnh hưởng cái kia",
+        "Mỗi phụ thuộc chạy trong một tiến trình riêng biệt hoàn toàn",
+        "Mỗi phụ thuộc được gán một mức độ ưu tiên khác nhau",
+        "Mỗi phụ thuộc được giám sát bằng một bộ chỉ số riêng"
+      ],
+      "correct": 0,
+      "explanation": "Tên gọi mượn từ đóng tàu: nước tràn vào một khoang thì khoang đó ngập, còn con tàu vẫn nổi. Chia tiến trình cũng đạt được điều tương tự nhưng đắt hơn nhiều, và thường không cần thiết."
+    },
+    {
+      "question": "Vì sao một dịch vụ chậm nguy hiểm hơn một dịch vụ chết?",
+      "options": [
+        "Vì chậm giữ tài nguyên của bên gọi còn chết thì trả lỗi về ngay",
+        "Vì chậm không kích hoạt các cảnh báo đã được cấu hình sẵn",
+        "Vì chậm khiến người dùng thử lại nhiều lần làm tăng tải",
+        "Vì chậm khó phát hiện hơn trong những bảng theo dõi thông thường nhất"
+      ],
+      "correct": 0,
+      "explanation": "Một lỗi trả về ngay chỉ tốn vài mili giây; một lời gọi treo ba mươi giây giữ một luồng suốt ba mươi giây đó. Đây là lý do thời gian chờ quan trọng hơn hầu hết các biện pháp chống lỗi khác."
+    },
+    {
+      "question": "Vì sao cầu dao cũng có lợi cho dịch vụ đang hỏng?",
+      "options": [
+        "Vì nó cắt bớt tải để dịch vụ đó có khoảng lặng mà hồi phục",
+        "Vì nó gửi tín hiệu cho đội vận hành của dịch vụ đó cùng biết",
+        "Vì nó chuyển hướng yêu cầu sang một bản sao khác của dịch vụ",
+        "Vì nó lưu lại các yêu cầu để gửi lại sau khi dịch vụ trở lại"
+      ],
+      "correct": 0,
+      "explanation": "Một dịch vụ đang chật vật mà tiếp tục nhận đủ tải, cộng thêm các lần thử lại, thì gần như không có cơ hội đứng dậy. Cầu dao là phiên bản tự động của việc lùi lại một bước."
+    },
+    {
+      "question": "Lời gọi nào cần đặt thời gian chờ?",
+      "options": [
+        "Mọi lời gọi rời khỏi tiến trình, không có ngoại lệ nào",
+        "Những lời gọi tới dịch vụ bên ngoài công ty",
+        "Những lời gọi nằm trên đường xử lý của người dùng",
+        "Những lời gọi tới dịch vụ đã từng gặp sự cố trong quá khứ"
+      ],
+      "correct": 0,
+      "explanation": "Dịch vụ nội bộ, cơ sở dữ liệu, bộ nhớ đệm - tất cả đều có thể treo, và thư viện mặc định thường không đặt thời gian chờ hoặc đặt ở mức vô lý như vài phút. Một lời gọi thiếu thời gian chờ là một lời hứa rằng nó sẽ luôn trả lời."
+    },
+    {
+      "question": "Vì sao lây lan qua nguồn luồng khó đoán?",
+      "options": [
+        "Vì nó không đi qua mã của bạn nên không hiện ra khi đọc mã",
+        "Vì các luồng bị giữ không được ghi vào nhật ký hệ thống",
+        "Vì số lượng luồng thay đổi liên tục theo mức tải của hệ thống",
+        "Vì hiện tượng chỉ xảy ra khi có nhiều phụ thuộc cùng chậm"
+      ],
+      "correct": 0,
+      "explanation": "Trang thanh toán không gọi tới tìm kiếm, và không dòng mã nào nối hai thứ ấy với nhau - chúng chỉ dùng chung một nguồn kết nối được cấu hình ở đâu đó. Đường lây nằm trong hạ tầng chứ không trong logic."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước cho thấy mỗi phụ thuộc kéo trần độ tin cậy xuống. Bài này về chuyện tệ hơn: một phụ thuộc hỏng có thể kéo theo cả những phần không liên quan gì tới nó."
+    },
+    {
+      "type": "heading",
+      "text": "Đám cháy đi qua tài nguyên dùng chung"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mỗi lời gọi đang chờ giữ một luồng hoặc một kết nối. Nếu mọi lời gọi lấy từ cùng một nguồn, thì một phụ thuộc chậm chỉ cần vài trăm yêu cầu là vét sạch nguồn ấy - và những yêu cầu hoàn toàn không liên quan cũng không còn chỗ để chạy. Trang thanh toán chết vì dịch vụ tìm kiếm chậm, dù không dòng mã nào nối hai thứ đó."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Ba lớp bảo vệ, dùng cùng nhau",
+      "subtitle": "Mỗi lớp chặn một giai đoạn khác nhau của cùng một chuỗi",
+      "concepts": [
+        {
+          "vi": "Thời gian chờ",
+          "en": "timeout",
+          "def": "Giới hạn thiệt hại của một lời gọi. Bắt buộc ở mọi lời gọi rời khỏi tiến trình, không ngoại lệ."
+        },
+        {
+          "vi": "Vách ngăn",
+          "en": "bulkhead",
+          "def": "Nguồn tài nguyên riêng cho mỗi phụ thuộc. Cạn khoang này thì khoang khác vẫn đầy."
+        },
+        {
+          "vi": "Cầu dao",
+          "en": "circuit breaker",
+          "def": "Thấy quá nhiều lỗi thì ngừng gọi hẳn một lúc, trả lỗi ngay, rồi thử lại dè dặt."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Cầu dao cứu cả hai bên",
+      "text": "Nó giữ tài nguyên cho bạn, và nó cắt tải cho bên kia. Một dịch vụ đang chật vật mà vẫn nhận đủ lưu lượng cộng thêm các lần thử lại thì gần như không có cơ hội đứng dậy."
+    },
+    {
+      "type": "heading",
+      "text": "Điều dễ bỏ sót nhất"
+    },
+    {
+      "type": "paragraph",
+      "text": "Thư viện mạng thường mặc định không đặt thời gian chờ, hoặc đặt ở mức vô lý như vài phút. Một lời gọi thiếu thời gian chờ là một lời hứa ngầm rằng phía bên kia sẽ luôn trả lời - và đó là lời hứa duy nhất trong hệ thống mà bạn chắc chắn không kiểm soát được."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Không có cô lập thì mọi phụ thuộc đều là điểm hỏng đơn lẻ của mọi thứ khác.",
+        "Bài sau về tình huống xấu nhất: khi phải dựng lại từ bản sao lưu."
+      ]
+    }
+  ]
+}

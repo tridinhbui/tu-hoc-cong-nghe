@@ -79,12 +79,12 @@ export default async function LessonFunnelPanel({ funnel }: { funnel: LessonFunn
               {funnel.rows.slice(0, 20).map((r) => (
                 <tr key={r.slug} className="border-t border-line-soft">
                   <td className="py-1.5 pr-2">
-                    <span className="font-medium text-stone-800 dark:text-stone-200">{r.title}</span>
+                    <span className="font-medium text-ink-heading">{r.title}</span>
                     <span className="ml-1 font-mono text-[10px] text-stone-400">{r.slug}</span>
                   </td>
                   <td className="py-1.5 text-right font-mono tabular-nums">{r.opens}</td>
                   <td className="py-1.5 text-right font-mono tabular-nums">{r.reachedRecall}</td>
-                  <td className="py-1.5 text-right font-mono font-bold tabular-nums text-rose-600 dark:text-rose-400">
+                  <td className="py-1.5 text-right font-mono font-bold tabular-nums text-alert">
                     {r.dropBeforeEnd}
                   </td>
                 </tr>

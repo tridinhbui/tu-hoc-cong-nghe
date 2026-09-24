@@ -1,0 +1,162 @@
+{
+  "id": 72,
+  "slug": "trien-khai-khong-gian-doan",
+  "title": "Triển khai: thay máy đang chạy mà không ai nhận ra",
+  "subtitle": "Đưa bản mới lên từng phần, và giữ đường lui mở suốt quá trình.",
+  "duration": "8 phút",
+  "difficulty": "Khó",
+  "emoji": "🚀",
+  "track": "professional",
+  "whyItMatters": "Triển khai là lúc rủi ro tập trung cao nhất: mã mới gặp dữ liệu thật và tải thật lần đầu. Cách triển khai quyết định một lỗi sẽ ảnh hưởng tất cả người dùng hay chỉ vài phần trăm trong vài phút.",
+  "openingQuestion": "Cách triển khai nào giới hạn được thiệt hại khi bản mới có lỗi?",
+  "openingOptions": [
+    "Đưa lên từng phần và theo dõi chỉ số trước khi mở rộng",
+    "Đưa lên toàn bộ cùng lúc để mọi máy chủ đồng nhất",
+    "Đưa lên vào ban đêm, khi lượng người dùng đang thấp nhất",
+    "Đưa lên sau khi đã chạy đủ bộ kiểm thử đầu cuối"
+  ],
+  "correctOption": 0,
+  "explanation": "Kiểm thử đầy đủ và triển khai giờ thấp điểm đều tốt, nhưng cả hai đều không giới hạn được thiệt hại khi lỗi đã lọt qua. Đưa lên từng phần thì bản mới chỉ phục vụ một tỷ lệ nhỏ lưu lượng lúc đầu, và bạn có số liệu thật để so sánh với bản cũ đang chạy song song. Nếu tỷ lệ lỗi tăng thì dừng lại và chuyển lưu lượng về, ảnh hưởng chỉ nằm ở nhóm nhỏ trong vài phút. Đưa lên toàn bộ cùng lúc thì mọi lỗi đều là lỗi toàn phần ngay lập tức.",
+  "diagram": [
+    {
+      "label": "Bản mới nhận một phần nhỏ lưu lượng",
+      "arrow": true
+    },
+    {
+      "label": "So chỉ số với bản cũ đang chạy song song",
+      "arrow": true
+    },
+    {
+      "label": "Ổn thì mở rộng dần",
+      "arrow": true
+    },
+    {
+      "label": "Xấu thì chuyển lưu lượng về, thiệt hại nhỏ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Triển khai vào chiều thứ sáu",
+    "description": "Quy tắc không triển khai chiều thứ sáu tồn tại ở nhiều nơi. Nó không nói rằng thứ sáu đặc biệt nguy hiểm, mà nói rằng đội đó chưa tin vào khả năng quay lui của mình - nếu quay lui là chuyện vài phút thì ngày nào cũng như nhau."
+  },
+  "keyTakeaways": [
+    "Triển khai từng phần biến lỗi toàn phần thành lỗi cục bộ trong thời gian ngắn.",
+    "Phải có chỉ số để so sánh bản mới với bản cũ, nếu không thì triển khai từng phần vô nghĩa.",
+    "Đường lui phải được kiểm chứng, không chỉ tồn tại trên giấy.",
+    "Nỗi sợ triển khai là dấu hiệu của đường lui yếu, không phải của mã yếu."
+  ],
+  "summary": {
+    "keyIdea": "Cách triển khai quyết định phạm vi và thời gian của thiệt hại khi có lỗi.",
+    "formula": "Từng phần + số liệu so sánh + đường lui đã thử.",
+    "commonMistake": "Triển khai toàn bộ cùng lúc rồi dựa vào nhật ký lỗi để biết có chuyện gì."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Hỏi đội: từ lúc phát hiện bản mới có lỗi tới lúc lưu lượng quay về bản cũ mất bao lâu? Nếu không ai trả lời được bằng một con số đã đo thì đó là việc cần làm trước tiên."
+  },
+  "practicePrompt": {
+    "question": "Đội bạn tránh triển khai vào chiều thứ sáu. Điều đó nói lên gì về hệ thống?",
+    "options": [
+      "Việc quay lui chưa đủ nhanh và đủ tin cậy để làm bất cứ lúc nào",
+      "Mã nguồn của đội có chất lượng thấp hơn mức trung bình của ngành",
+      "Lượng người dùng vào cuối tuần cao hơn hẳn ngày thường",
+      "Quy trình phê duyệt triển khai của công ty quá phức tạp"
+    ],
+    "correct": 0,
+    "explanation": "Quy tắc ấy là cách đội tự bảo vệ khỏi một buổi tối cuối tuần hỏng, và nó hợp lý khi quay lui còn chậm. Nhưng nó là triệu chứng: khi quay lui là chuyện vài phút và có số liệu để phát hiện sớm thì thứ sáu không khác thứ ba."
+  },
+  "quiz": [
+    {
+      "question": "Lợi ích chính của triển khai từng phần là gì?",
+      "options": [
+        "Giới hạn số người dùng bị ảnh hưởng khi bản mới có lỗi",
+        "Giảm tải cho máy chủ khi đang triển khai bản mới",
+        "Rút ngắn tổng thời gian cần thiết để triển khai xong",
+        "Cho phép bỏ qua hẳn bước kiểm thử ở môi trường thử nghiệm"
+      ],
+      "correct": 0,
+      "explanation": "Nó không làm mã ít lỗi hơn; nó làm cho lỗi lọt qua chỉ chạm tới một nhóm nhỏ trong thời gian ngắn. Tổng thời gian triển khai thường còn dài hơn, và đó là cái giá chấp nhận được."
+    },
+    {
+      "question": "Điều kiện để triển khai từng phần có ý nghĩa là gì?",
+      "options": [
+        "Có chỉ số để so sánh bản mới với bản cũ theo thời gian thực",
+        "Có ít nhất năm máy chủ đang chạy song song trong cùng một nhóm",
+        "Có môi trường thử nghiệm giống hệt môi trường thật",
+        "Có quy trình phê duyệt trước mỗi lần mở rộng tỷ lệ"
+      ],
+      "correct": 0,
+      "explanation": "Không có số liệu thì bạn chỉ đang triển khai chậm hơn chứ không an toàn hơn. Chính việc so tỷ lệ lỗi và độ trễ giữa hai bản mới cho bạn tín hiệu để dừng."
+    },
+    {
+      "question": "Vì sao đường lui phải được thử định kỳ?",
+      "options": [
+        "Vì đường lui chưa thử thì không ai biết nó có chạy không",
+        "Vì các bản cũ sẽ bị xoá khỏi kho nếu không dùng tới",
+        "Vì quy trình quay lui thay đổi sau mỗi lần triển khai",
+        "Vì đội cần luyện tập để thao tác nhanh hơn khi thật sự có sự cố"
+      ],
+      "correct": 0,
+      "explanation": "Cùng lý do với sao lưu chưa khôi phục thử: một khả năng chưa từng dùng chỉ là giả định. Và bạn sẽ phát hiện nó hỏng đúng vào lúc đang cần nó nhất."
+    },
+    {
+      "question": "Nỗi sợ triển khai vào cuối tuần là dấu hiệu của điều gì?",
+      "options": [
+        "Đường lui chưa đủ nhanh và đủ đáng tin",
+        "Bộ kiểm thử của dự án chưa phủ đủ các trường hợp",
+        "Đội chưa có đủ người trực vào ngày cuối tuần",
+        "Hệ thống có quá nhiều phụ thuộc bên ngoài"
+      ],
+      "correct": 0,
+      "explanation": "Nếu phát hiện sớm và quay lui trong vài phút thì ngày nào cũng giống nhau. Quy tắc tránh thứ sáu là cách sống chung với một đường lui yếu, hợp lý nhưng vẫn là triệu chứng."
+    },
+    {
+      "question": "Vì sao triển khai là lúc rủi ro tập trung cao nhất?",
+      "options": [
+        "Vì mã mới gặp dữ liệu thật và tải thật lần đầu tiên",
+        "Vì máy chủ phải khởi động lại nên dịch vụ bị gián đoạn",
+        "Vì các phụ thuộc bên ngoài đều được nâng cấp cùng lúc",
+        "Vì cấu hình môi trường thật khác với môi trường thử"
+      ],
+      "correct": 0,
+      "explanation": "Môi trường thử không bao giờ có đủ sự đa dạng của dữ liệu thật và hình dạng tải thật. Đó là lý do phải giả định rằng sẽ có thứ chỉ lộ ra sau khi triển khai, và thiết kế quy trình quanh giả định ấy."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mã đã qua kiểm thử, đã được rà soát, đã nằm sau một cái cờ. Bước còn lại là đưa nó lên chỗ có người dùng thật - và đó là lúc mọi giả định gặp thực tế."
+    },
+    {
+      "type": "heading",
+      "text": "Đưa lên từng phần"
+    },
+    {
+      "type": "paragraph",
+      "text": "Thay vì thay toàn bộ máy chủ cùng lúc, bản mới nhận một tỷ lệ nhỏ lưu lượng trong khi bản cũ vẫn phục vụ phần còn lại. Bạn có hai nhóm chạy song song trên cùng dữ liệu thật, nên so được tỷ lệ lỗi và độ trễ giữa chúng. Nếu bản mới xấu hơn, chuyển lưu lượng về và thiệt hại dừng ở nhóm nhỏ ấy."
+    },
+    {
+      "type": "callout",
+      "label": "Không có số liệu thì chỉ là triển khai chậm",
+      "text": "Đưa lên từng phần mà không so chỉ số giữa hai bản thì bạn chỉ đang kéo dài quá trình, không giảm rủi ro. Tín hiệu để dừng phải đến từ số liệu, không phải từ việc chờ xem có ai kêu không."
+    },
+    {
+      "type": "heading",
+      "text": "Đường lui là phần quan trọng nhất"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đo thời gian quay lui thật, đừng ước lượng trên giấy.",
+        "Thử quay lui định kỳ, vì một khả năng chưa dùng chỉ là giả định.",
+        "Nhớ rằng quay lui mã thì dễ, quay lui thay đổi dữ liệu thì không - đó là bài sau."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bạn không loại bỏ được rủi ro của triển khai. Bạn chọn được nó ảnh hưởng bao nhiêu người và trong bao lâu.",
+        "Bài sau nói về phần không quay lui được bằng một nút bấm: thay đổi cấu trúc dữ liệu."
+      ]
+    }
+  ]
+}

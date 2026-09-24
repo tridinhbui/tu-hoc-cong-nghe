@@ -1,0 +1,174 @@
+{
+  "id": 34,
+  "slug": "chi-muc-va-toc-do-truy-van",
+  "title": "Chỉ mục: vì sao cùng một truy vấn lúc nhanh lúc chậm",
+  "subtitle": "Không có chỉ mục, cơ sở dữ liệu phải đọc từng dòng một để trả lời một câu hỏi.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "⚡",
+  "track": "professional",
+  "whyItMatters": "Truy vấn chạy tốt suốt giai đoạn thử nghiệm rồi chậm dần khi dữ liệu lớn lên, và không ai đổi dòng mã nào cả. Nguyên nhân gần như luôn là quét toàn bảng: mười nghìn dòng thì không ai để ý, mười triệu dòng thì thành sự cố.",
+  "openingQuestion": "Cùng một câu truy vấn chạy nhanh trên bảng mười nghìn dòng, rất chậm trên bảng mười triệu dòng. Vì sao?",
+  "openingOptions": [
+    "Nó phải quét từng dòng, nên thời gian tăng theo số dòng của bảng",
+    "Cơ sở dữ liệu giới hạn tốc độ truy vấn khi bảng vượt một ngưỡng nhất định",
+    "Bảng lớn được lưu ở ổ đĩa chậm hơn so với các bảng có kích thước nhỏ",
+    "Câu truy vấn phải tải toàn bộ bảng lên bộ nhớ trước khi bắt đầu lọc"
+  ],
+  "correctOption": 0,
+  "explanation": "Không có chỉ mục phù hợp, cơ sở dữ liệu chỉ còn một cách để chắc chắn tìm hết: đọc từng dòng và kiểm tra điều kiện. Cách đó tỷ lệ thuận với số dòng, nên nhân dữ liệu lên một nghìn lần thì thời gian cũng tăng cỡ ấy. Chỉ mục là một cấu trúc phụ được sắp xếp sẵn, cho phép nhảy thẳng tới vùng chứa kết quả thay vì đi hết bảng - đổi lại nó chiếm chỗ và làm mỗi lần ghi chậm thêm một chút.",
+  "diagram": [
+    {
+      "label": "Truy vấn có điều kiện lọc",
+      "arrow": true
+    },
+    {
+      "label": "Không có chỉ mục - quét từng dòng",
+      "arrow": true
+    },
+    {
+      "label": "Có chỉ mục - nhảy thẳng tới vùng cần đọc",
+      "arrow": true
+    },
+    {
+      "label": "Thời gian gần như không tăng theo cỡ bảng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Mục lục của một cuốn sách",
+    "description": "Tìm một từ trong cuốn sách không mục lục thì phải lật từng trang. Có mục lục thì tra một lần rồi mở đúng trang. Mục lục chiếm thêm vài trang giấy và phải in lại khi nội dung đổi - đúng hai cái giá mà chỉ mục trong cơ sở dữ liệu phải trả."
+  },
+  "keyTakeaways": [
+    "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng.",
+    "Chỉ mục làm đọc nhanh nhưng làm ghi chậm hơn và chiếm thêm dung lượng.",
+    "Thứ tự các cột trong chỉ mục nhiều cột quyết định truy vấn nào dùng được nó.",
+    "Bọc cột trong một hàm ở mệnh đề lọc thường làm chỉ mục mất tác dụng."
+  ],
+  "summary": {
+    "keyIdea": "Chỉ mục đổi dung lượng và tốc độ ghi lấy tốc độ đọc.",
+    "formula": "Không chỉ mục: quét toàn bảng. Có chỉ mục: tra rồi nhảy.",
+    "commonMistake": "Thêm chỉ mục cho mọi cột, làm mọi lần ghi chậm đi mà đọc không nhanh thêm."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy một câu truy vấn chậm và chạy lệnh giải thích kế hoạch thực thi của nó. Nếu thấy quét toàn bảng ở một bảng lớn, đó chính là chỗ cần thêm chỉ mục - và cũng là cách kiểm chứng sau khi thêm."
+  },
+  "practicePrompt": {
+    "question": "Bạn đã có chỉ mục trên cột ngày tạo, nhưng truy vấn lọc theo năm của cột đó vẫn quét toàn bảng. Vì sao?",
+    "options": [
+      "Vì cột bị bọc trong một hàm nên giá trị trong chỉ mục không khớp nữa",
+      "Vì chỉ mục trên cột ngày tháng chỉ dùng được cho phép sắp xếp",
+      "Vì cơ sở dữ liệu chỉ dùng chỉ mục khi truy vấn chỉ trả về rất ít dòng",
+      "Vì chỉ mục chưa được xây lại sau khi bảng có thêm dữ liệu mới"
+    ],
+    "correct": 0,
+    "explanation": "Chỉ mục lưu giá trị gốc của cột, không lưu kết quả của hàm áp lên cột đó, nên khi điều kiện viết dưới dạng hàm thì không tra được. Cách sửa là viết lại điều kiện thành khoảng giá trị trên chính cột gốc, hoặc tạo chỉ mục trên biểu thức."
+  },
+  "quiz": [
+    {
+      "question": "Chỉ mục giúp truy vấn nhanh hơn bằng cách nào?",
+      "options": [
+        "Cho phép nhảy thẳng tới vùng dữ liệu cần đọc thay vì quét hết",
+        "Nén dữ liệu của bảng lại nên số byte phải đọc từ ổ đĩa ít hơn",
+        "Giữ sẵn kết quả của những truy vấn đã chạy để lần sau trả lại ngay",
+        "Chia bảng thành nhiều phần nhỏ để nhiều luồng cùng quét song song"
+      ],
+      "correct": 0,
+      "explanation": "Chỉ mục là cấu trúc phụ được sắp xếp sẵn, nên tìm trong nó rất nhanh và từ đó biết đúng chỗ cần đọc. Việc nhớ kết quả cũ là bộ đệm truy vấn, một cơ chế khác hoàn toàn."
+    },
+    {
+      "question": "Cái giá phải trả khi thêm một chỉ mục là gì?",
+      "options": [
+        "Mỗi lần ghi phải cập nhật thêm chỉ mục, và tốn thêm dung lượng",
+        "Truy vấn không dùng chỉ mục sẽ chậm đi",
+        "Bảng bị khoá mỗi khi đọc qua chỉ mục",
+        "Dữ liệu phải sắp lại theo thứ tự chỉ mục"
+      ],
+      "correct": 0,
+      "explanation": "Thêm, sửa, xoá đều phải cập nhật cả bảng lẫn mọi chỉ mục liên quan, nên ghi chậm đi theo số chỉ mục. Đó là lý do thêm chỉ mục cho mọi cột là cách chắc chắn làm hệ thống chậm hơn."
+    },
+    {
+      "question": "Trong chỉ mục nhiều cột, thứ tự các cột quan trọng ở chỗ nào?",
+      "options": [
+        "Truy vấn phải lọc theo cột đầu tiên thì mới tận dụng được chỉ mục",
+        "Cột đặt sau cùng quyết định chỉ mục chiếm bao nhiêu dung lượng",
+        "Thứ tự cột chỉ ảnh hưởng tới phép sắp xếp chứ không tới phép lọc",
+        "Cột đầu tiên phải là cột có ít giá trị trùng nhau nhất trong toàn bảng"
+      ],
+      "correct": 0,
+      "explanation": "Chỉ mục nhiều cột sắp xếp theo cột đầu trước, rồi mới tới cột sau, giống như danh bạ sắp theo họ rồi tới tên. Tra theo tên mà không biết họ thì cuốn danh bạ ấy không giúp được gì."
+    },
+    {
+      "question": "Vì sao đôi khi cơ sở dữ liệu cố tình không dùng chỉ mục dù có sẵn?",
+      "options": [
+        "Vì truy vấn lấy phần lớn số dòng nên quét thẳng còn nhanh hơn",
+        "Vì chỉ mục chỉ được dùng khi bảng có dưới một triệu dòng dữ liệu",
+        "Vì chỉ mục chưa được kích hoạt thủ công cho phiên làm việc hiện tại",
+        "Vì nó ưu tiên tiết kiệm bộ nhớ hơn tốc độ"
+      ],
+      "correct": 0,
+      "explanation": "Tra chỉ mục rồi nhảy tới từng dòng có chi phí riêng; khi kết quả chiếm phần lớn bảng thì đọc tuần tự lại rẻ hơn. Bộ tối ưu ước lượng số dòng trả về để quyết định, nên thống kê lỗi thời sẽ khiến nó chọn sai."
+    },
+    {
+      "question": "Cách nào đáng tin để biết một truy vấn có dùng chỉ mục hay không?",
+      "options": [
+        "Chạy lệnh giải thích kế hoạch thực thi của truy vấn đó",
+        "Đo thời gian chạy hai lần rồi so sánh",
+        "Đếm số chỉ mục hiện có trên bảng đó",
+        "Xem dung lượng bảng có tăng lên không"
+      ],
+      "correct": 0,
+      "explanation": "Kế hoạch thực thi nói thẳng nó sẽ quét toàn bảng hay tra chỉ mục nào. Đo thời gian dễ đánh lừa vì lần chạy thứ hai đã có sẵn dữ liệu trong bộ đệm nên nhanh hơn dù kế hoạch không đổi."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Một câu truy vấn không có tốc độ cố định. Cùng một dòng lệnh chạy trong mười mili giây hay mười giây tuỳ vào việc cơ sở dữ liệu có đường tắt để tới dữ liệu hay không."
+    },
+    {
+      "type": "heading",
+      "text": "Quét toàn bảng nghĩa là gì"
+    },
+    {
+      "type": "paragraph",
+      "text": "Muốn chắc chắn tìm hết những dòng thoả điều kiện mà không có cấu trúc hỗ trợ, chỉ có một cách: đọc từng dòng và kiểm tra. Với mười nghìn dòng, việc đó xong trước khi bạn kịp nhận ra. Với mười triệu dòng trên một bảng đang có nhiều truy vấn cùng chạy, nó thành sự cố."
+    },
+    {
+      "type": "callout",
+      "label": "Vì sao lỗi này luôn tới muộn",
+      "text": "Ở môi trường thử nghiệm, bảng nào cũng nhỏ và mọi truy vấn đều nhanh. Chỉ mục thiếu không lộ ra cho tới khi dữ liệu thật lớn lên - thường là vài tháng sau khi tính năng đã chạy ổn định."
+    },
+    {
+      "type": "heading",
+      "text": "Chỉ mục không miễn phí"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Được",
+        "text": "Truy vấn lọc và sắp xếp theo cột có chỉ mục nhanh hơn nhiều lần, và gần như không chậm thêm khi bảng lớn dần."
+      },
+      "right": {
+        "label": "Mất",
+        "text": "Mỗi lần thêm, sửa, xoá đều phải cập nhật chỉ mục, nên ghi chậm đi. Chỉ mục cũng chiếm dung lượng, đôi khi ngang cỡ chính bảng."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đánh chỉ mục theo truy vấn thật đang chạy chậm, không đánh theo linh cảm.",
+        "Trong chỉ mục nhiều cột, đặt cột hay dùng để lọc bằng lên trước.",
+        "Tránh bọc cột trong hàm ở mệnh đề lọc, vì làm vậy là bỏ qua chỉ mục.",
+        "Sau mỗi thay đổi, xem lại kế hoạch thực thi để xác nhận nó thật sự được dùng."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Chỉ mục là đánh đổi có tính toán giữa tốc độ đọc và tốc độ ghi, không phải thứ càng nhiều càng tốt.",
+        "Bài sau nói về thứ bảo đảm rằng nhiều thao tác ghi hoặc cùng thành công hoặc cùng không xảy ra: giao dịch."
+      ]
+    }
+  ]
+}

@@ -50,7 +50,7 @@ export default function ReadingModeControl({ mode, onChange }: Props) {
   }
 
   return (
-    <div className="flex items-center gap-0.5 bg-surface/50 border border-line rounded-full px-1 py-1">
+    <div className="flex items-center gap-0.5 bg-stone-50 dark:bg-stone-900/50 border border-line rounded-full px-1 py-1">
       {MODES.map(({ id, label, icon: Icon }) => (
         <button
           key={id}
@@ -59,8 +59,8 @@ export default function ReadingModeControl({ mode, onChange }: Props) {
           title={label}
           className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
             mode === id
-              ? "bg-surface-invert text-white dark:text-stone-900"
-              : "text-ink-muted hover:bg-stone-200 dark:hover:bg-stone-700"
+              ? "bg-surface-invert text-ink-invert"
+              : "text-ink-muted hover:bg-surface-sunken"
           }`}
         >
           <Icon className="w-3.5 h-3.5" />

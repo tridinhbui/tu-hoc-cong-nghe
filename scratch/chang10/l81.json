@@ -1,0 +1,170 @@
+{
+  "id": 81,
+  "slug": "do-cai-gi-o-san-pham",
+  "title": "Đo cái gì: chỉ số nói lên điều bạn cần biết",
+  "subtitle": "Số lượt tải trang tăng gấp đôi có thể là tin tốt, cũng có thể là người dùng đang lạc đường.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📊",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Chặng trước dạy cách đưa mã ra thế giới an toàn. Chặng này trả lời câu đứng trước đó: nên viết mã gì. Và câu trả lời nào cũng dựa vào một chỉ số - nên chọn sai chỉ số là chọn sai việc để làm, một cách rất thuyết phục.",
+  "openingQuestion": "Số lượt xem trang trong ứng dụng của bạn tăng gấp đôi sau một thay đổi. Đó là tin tốt hay xấu?",
+  "openingOptions": [
+    "Chưa biết, vì nó có thể do người dùng phải mò mẫm nhiều hơn trước",
+    "Tin tốt, vì người dùng đang dành nhiều thời gian hơn cho sản phẩm",
+    "Tin xấu, vì mỗi lượt xem thêm là thêm tải cho hệ thống",
+    "Tin tốt, miễn là tỷ lệ lỗi không tăng lên cùng lúc"
+  ],
+  "correctOption": 0,
+  "explanation": "Một con số không mang ý nghĩa cho tới khi bạn nói rõ nó thay mặt cho điều gì. Lượt xem trang tăng có thể vì sản phẩm hấp dẫn hơn, hoặc vì người dùng không tìm thấy thứ họ cần và phải bấm qua bấm lại. Hai kịch bản ấy cho cùng một con số nhưng đòi hỏi hai hành động ngược nhau. Chỉ số hữu ích là chỉ số mà khi nó tăng, bạn biết chắc điều gì đã tốt lên với người dùng - và nếu không nói được điều đó thì con số ấy chỉ để trang trí báo cáo.",
+  "diagram": [
+    {
+      "label": "Lượt xem trang tăng gấp đôi",
+      "arrow": true
+    },
+    {
+      "label": "Vì sản phẩm hấp dẫn hơn?",
+      "arrow": true
+    },
+    {
+      "label": "Hay vì người dùng đang mò mẫm?",
+      "arrow": true
+    },
+    {
+      "label": "Cùng con số, hai hành động ngược nhau"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Thời gian trên trang",
+    "description": "Với một trang tin tức, thời gian ở lại lâu là tín hiệu tốt. Với một trang trợ giúp, thời gian ở lại lâu nghĩa là người dùng chưa tìm được câu trả lời. Cùng một chỉ số, hai nghĩa hoàn toàn trái ngược, và chỉ mục đích sản phẩm mới phân biệt được."
+  },
+  "keyTakeaways": [
+    "Một chỉ số chỉ có nghĩa khi bạn nói rõ nó thay mặt cho điều gì.",
+    "Chỉ số tốt là chỉ số mà khi nó tăng, bạn biết chắc điều gì đã tốt lên.",
+    "Cùng một con số có thể mang hai nghĩa trái ngược tuỳ mục đích sản phẩm.",
+    "Đo hành vi hoàn thành việc quan trọng hơn đo hoạt động bề mặt."
+  ],
+  "summary": {
+    "keyIdea": "Chọn chỉ số là chọn định nghĩa về thành công, nên nó là quyết định sản phẩm chứ không phải kỹ thuật.",
+    "formula": "Chỉ số tăng thì điều gì tốt lên cho người dùng?",
+    "commonMistake": "Đo thứ dễ đo thay vì thứ phản ánh giá trị người dùng nhận được."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy ba chỉ số trên bảng theo dõi sản phẩm của bạn. Với mỗi cái, viết một câu: khi con số này tăng, điều gì đã tốt lên với người dùng? Cái nào không viết nổi là cái nên bỏ."
+  },
+  "practicePrompt": {
+    "question": "Đội bạn theo dõi số lượt bấm vào một nút mới. Con số tăng đều. Còn thiếu thông tin gì?",
+    "options": [
+      "Người bấm xong có hoàn thành được việc họ định làm hay không",
+      "Nút đó đang được đặt ở vị trí nào trên màn hình của người dùng",
+      "Bao nhiêu phần trăm lượt bấm đến từ điện thoại di động",
+      "Tốc độ phản hồi của hệ thống sau mỗi lần bấm vào nút"
+    ],
+    "correct": 0,
+    "explanation": "Lượt bấm là hoạt động, không phải kết quả. Người dùng bấm nhiều có thể vì nút hữu ích, cũng có thể vì lần bấm đầu không có tác dụng. Chỉ số đáng tin là tỷ lệ hoàn thành việc mà nút ấy sinh ra để phục vụ."
+  },
+  "quiz": [
+    {
+      "question": "Điều gì làm cho một chỉ số trở nên hữu ích?",
+      "options": [
+        "Khi nó tăng, bạn biết chắc điều gì đã tốt lên với người dùng",
+        "Nó được đo tự động và cập nhật theo thời gian thực",
+        "Nó có thể so sánh được với số liệu của các đối thủ",
+        "Nó tăng đều đặn qua từng tháng mà không bị dao động"
+      ],
+      "correct": 0,
+      "explanation": "Tính hữu ích nằm ở khả năng diễn giải, không ở cách thu thập. Một chỉ số đo tự động và mượt mà mà không ai nói được nó nghĩa là gì thì vẫn vô dụng."
+    },
+    {
+      "question": "Vì sao cùng một chỉ số có thể mang hai nghĩa trái ngược?",
+      "options": [
+        "Vì ý nghĩa phụ thuộc vào mục đích của sản phẩm",
+        "Vì cách đo khác nhau giữa các công cụ phân tích",
+        "Vì dữ liệu bị nhiễu khi số lượng người dùng còn ít",
+        "Vì người dùng ở các thị trường khác nhau hành xử khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Thời gian ở lại lâu là thành công với trang tin và là thất bại với trang trợ giúp. Cùng phép đo, cùng cách thu thập, khác nhau ở việc sản phẩm sinh ra để làm gì."
+    },
+    {
+      "question": "Chỉ số đo hoạt động khác chỉ số đo kết quả thế nào?",
+      "options": [
+        "Hoạt động đếm việc người dùng làm, kết quả đếm việc họ đạt được",
+        "Hoạt động đo trên máy chủ còn kết quả đo trên trình duyệt",
+        "Hoạt động cập nhật theo thời gian thực còn kết quả theo ngày",
+        "Hoạt động dành cho đội kỹ thuật còn kết quả dành cho đội kinh doanh"
+      ],
+      "correct": 0,
+      "explanation": "Lượt bấm và lượt xem là hoạt động; đơn hàng hoàn tất và vấn đề được giải quyết là kết quả. Hoạt động tăng mà kết quả không tăng thường nghĩa là người dùng đang phải làm nhiều hơn cho cùng một việc."
+    },
+    {
+      "question": "Vì sao đội hay đo thứ dễ đo thay vì thứ quan trọng?",
+      "options": [
+        "Vì thứ dễ đo đã có sẵn trong công cụ, còn thứ quan trọng phải tự định nghĩa",
+        "Vì thứ quan trọng thường không thể đo được bằng bất kỳ cách nào",
+        "Vì công cụ phân tích không cho phép tạo thêm chỉ số tuỳ chỉnh",
+        "Vì thứ dễ đo luôn có tương quan chặt với thứ quan trọng"
+      ],
+      "correct": 0,
+      "explanation": "Lượt xem trang có sẵn ngay khi cài công cụ, còn tỷ lệ người dùng giải quyết xong vấn đề của họ thì phải ngồi định nghĩa và cài đặt. Chi phí ban đầu chênh nhau nhiều, nên người ta chọn cái sẵn có."
+    },
+    {
+      "question": "Câu hỏi nào giúp kiểm tra một chỉ số có đáng theo dõi không?",
+      "options": [
+        "Nếu con số này tăng gấp đôi, ta sẽ làm gì khác đi?",
+        "Con số này có được cập nhật hằng ngày hay là không?",
+        "Đối thủ của chúng ta có theo dõi chỉ số này không?",
+        "Con số này có dễ giải thích cho ban lãnh đạo không?"
+      ],
+      "correct": 0,
+      "explanation": "Nếu câu trả lời là không làm gì khác thì chỉ số ấy không dẫn tới quyết định nào, và nó chỉ đang chiếm chỗ trên bảng theo dõi. Đây là phép thử rẻ nhất cho mọi chỉ số."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Chặng trước dạy cách đưa thay đổi ra thế giới an toàn. Chặng này lùi lại một bước và hỏi câu đứng trước đó: nên làm thay đổi nào? Mọi câu trả lời đều dựa vào một con số nào đó."
+    },
+    {
+      "type": "heading",
+      "text": "Con số không tự mang ý nghĩa"
+    },
+    {
+      "type": "paragraph",
+      "text": "Đây là ý đã gặp ở bài mở đầu chặng nền tảng dữ liệu: bit không mang ý nghĩa, kiểu mới mang. Chỉ số cũng vậy. Lượt xem trang tăng gấp đôi có thể vì sản phẩm hấp dẫn hơn, hoặc vì người dùng phải bấm qua bấm lại mới tìm được thứ cần. Con số giống hệt nhau, và hành động đúng thì ngược nhau hoàn toàn."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Đo hoạt động",
+        "text": "Lượt xem, lượt bấm, thời gian trên trang. Dễ thu thập vì công cụ nào cũng có sẵn. Tăng lên không nói được là tốt hay xấu."
+      },
+      "right": {
+        "label": "Đo kết quả",
+        "text": "Đơn hoàn tất, vấn đề được giải quyết, việc được làm xong. Phải tự định nghĩa và cài đặt, nhưng tăng lên là chắc chắn tốt."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Phép thử một câu",
+      "text": "Nếu chỉ số này tăng gấp đôi thì chúng ta sẽ làm gì khác đi? Không trả lời được nghĩa là nó không dẫn tới quyết định nào, và một chỉ số không dẫn tới quyết định chỉ đang chiếm chỗ."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Viết ra bằng lời điều mà mỗi chỉ số thay mặt, trước khi đưa nó lên bảng theo dõi.",
+        "Ưu tiên chỉ số kết quả; dùng chỉ số hoạt động để giải thích chứ đừng để đánh giá.",
+        "Cẩn thận với chỉ số tăng khi sản phẩm tệ đi - chúng tồn tại nhiều hơn ta tưởng."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Chọn chỉ số là chọn định nghĩa về thành công. Chọn sai thì cả đội sẽ đi rất nhanh về hướng sai.",
+        "Bài sau nói về nhóm chỉ số trông đẹp nhất và nói được ít nhất."
+      ]
+    }
+  ]
+}

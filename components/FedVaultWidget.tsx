@@ -71,11 +71,11 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+              <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-warn-ink border border-warn-line-mid">
                 {t.fedVault.fedEyebrow}
               </span>
               {completedScenario && (
-                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
+                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-accent-ink border border-accent-line-mid">
                   {t.fedVault.completedBadge}
                 </span>
               )}
@@ -100,7 +100,7 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
         <div className="text-xs space-y-1">
           <p className="font-extrabold text-amber-900 dark:text-amber-300 uppercase tracking-wider">{t.fedVault.objectiveLabel}</p>
           <p className="text-ink-body leading-relaxed font-semibold">
-            {t.fedVault.objectivePart1}<strong className="text-rose-600 dark:text-rose-400">6.5%</strong>{t.fedVault.objectivePart2}<strong className="text-accent">3.0%</strong>{t.fedVault.objectivePart3}<strong className="text-accent">1.5%</strong>{t.fedVault.objectivePart4}
+            {t.fedVault.objectivePart1}<strong className="text-alert">6.5%</strong>{t.fedVault.objectivePart2}<strong className="text-accent">3.0%</strong>{t.fedVault.objectivePart3}<strong className="text-accent">1.5%</strong>{t.fedVault.objectivePart4}
           </p>
         </div>
       </div>
@@ -108,17 +108,17 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
       {/* Main Stats Gauge Dashboard */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
         <div className="bg-stone-50/80 dark:bg-stone-950/60 p-4.5 rounded-2xl border border-stone-200/80 dark:border-stone-800 flex flex-col justify-between shadow-2xs">
-          <span className="text-[10px] font-black text-amber-700 dark:text-amber-400 uppercase tracking-widest">{t.fedVault.rateLabel}</span>
+          <span className="text-[10px] font-black text-warn-strong uppercase tracking-widest">{t.fedVault.rateLabel}</span>
           <div className="my-2">
-            <span className="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-300">{fedRate}%</span>
+            <span className="text-2xl sm:text-3xl font-black text-warn">{fedRate}%</span>
           </div>
           <span className="text-[10px] text-ink-muted font-medium">{t.fedVault.rateDesc}</span>
         </div>
 
         <div className="bg-stone-50/80 dark:bg-stone-950/60 p-4.5 rounded-2xl border border-stone-200/80 dark:border-stone-800 flex flex-col justify-between shadow-2xs">
-          <span className="text-[10px] font-black text-rose-700 dark:text-rose-400 uppercase tracking-widest">{t.fedVault.inflationLabel}</span>
+          <span className="text-[10px] font-black text-alert-strong uppercase tracking-widest">{t.fedVault.inflationLabel}</span>
           <div className="my-2 flex items-baseline gap-1">
-            <span className={`text-2xl sm:text-3xl font-black ${inflation <= 3.0 ? "text-accent" : "text-rose-600 dark:text-rose-400"}`}>
+            <span className={`text-2xl sm:text-3xl font-black ${inflation <= 3.0 ? "text-accent" : "text-alert"}`}>
               {inflation}%
             </span>
           </div>
@@ -147,7 +147,7 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
       {/* Interactive Controls */}
       <div className="bg-stone-50/90 dark:bg-stone-950 p-5 rounded-2xl border border-stone-200/80 dark:border-stone-800 space-y-4 shadow-2xs">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-extrabold uppercase text-stone-800 dark:text-stone-200 tracking-wider">
+          <span className="text-xs font-extrabold uppercase text-ink-heading tracking-wider">
             {t.fedVault.fomcLabel}
           </span>
           <span className="text-xs text-ink-muted font-mono font-bold">{format(t.fedVault.meetingsCount, { turns })}</span>

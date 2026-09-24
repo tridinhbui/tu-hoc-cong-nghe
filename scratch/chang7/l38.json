@@ -1,0 +1,186 @@
+{
+  "id": 38,
+  "slug": "sao-luu-va-khoi-phuc",
+  "title": "Sao lưu: bản chưa khôi phục thử thì chưa phải bản sao lưu",
+  "subtitle": "Thứ bạn cần không phải bản sao, mà là khả năng quay lại hoạt động trong bao lâu.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "💾",
+  "track": "professional",
+  "whyItMatters": "Ai cũng có sao lưu. Số nơi từng thử khôi phục thật thì ít hơn nhiều, và khoảng cách giữa hai con số ấy chính là chỗ các sự cố mất dữ liệu nghiêm trọng xảy ra. Bản sao lưu không đọc được chỉ được phát hiện đúng vào ngày bạn cần tới nó.",
+  "openingQuestion": "Bạn có bản sao lưu chạy tự động hằng đêm suốt hai năm. Rủi ro lớn nhất còn lại là gì?",
+  "openingOptions": [
+    "Chưa ai từng khôi phục thử nên không biết bản sao có dùng được không",
+    "Bản sao lưu hằng đêm chiếm quá nhiều dung lượng lưu trữ theo thời gian",
+    "Sao lưu ban đêm làm hệ thống chạy chậm trong khung giờ đó mỗi ngày",
+    "Dữ liệu phát sinh trong ngày chưa kịp vào bản sao lưu của đêm hôm trước"
+  ],
+  "correctOption": 0,
+  "explanation": "Sao lưu chạy thành công chỉ chứng minh tiến trình ghi được ra tệp, không chứng minh tệp đó đọc lại được, không thiếu bảng, và khôi phục xong hệ thống chạy được. Rất nhiều tổ chức phát hiện bản sao lưu của mình hỏng đúng vào lúc cần dùng: tệp bị cắt ngắn, thiếu một cơ sở dữ liệu quan trọng, hoặc khoá giải mã đã mất. Khôi phục thử định kỳ là cách duy nhất biến giả định thành sự thật đã kiểm chứng.",
+  "diagram": [
+    {
+      "label": "Sao lưu chạy xong - báo thành công",
+      "arrow": true
+    },
+    {
+      "label": "Tệp có tồn tại nhưng chưa ai mở lại",
+      "arrow": true
+    },
+    {
+      "label": "Khôi phục thử định kỳ",
+      "arrow": true
+    },
+    {
+      "label": "Giờ mới biết mình thật sự có bản sao lưu"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Xoá nhầm và bản sao lưu ba tuần",
+    "description": "Một câu lệnh xoá thiếu điều kiện lọc chạy trên bảng chính. Bản sao lưu có, nhưng chỉ giữ ba ngày, và lỗi được phát hiện sau ba tuần vì nó chỉ ảnh hưởng một phần dữ liệu cũ. Chu kỳ giữ bản sao mới là thứ quyết định, không phải việc có sao lưu hay không."
+  },
+  "keyTakeaways": [
+    "Bản sao lưu chưa khôi phục thử chỉ là một giả định, không phải sự bảo đảm.",
+    "Hai con số phải chốt trước: mất tối đa bao nhiêu dữ liệu, và ngừng tối đa bao lâu.",
+    "Bản sao nằm cùng chỗ với dữ liệu gốc thì cùng chết trong một sự cố.",
+    "Chu kỳ giữ bản sao phải dài hơn thời gian trung bình để phát hiện lỗi."
+  ],
+  "summary": {
+    "keyIdea": "Mục tiêu không phải là có bản sao, mà là khôi phục được trong thời gian chấp nhận được.",
+    "formula": "Sao lưu + khôi phục thử định kỳ = khả năng phục hồi.",
+    "commonMistake": "Coi việc tiến trình sao lưu báo thành công là bằng chứng dữ liệu an toàn."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy bản sao lưu gần nhất và khôi phục nó vào một môi trường riêng, bấm giờ từ lúc bắt đầu tới lúc chạy được. Con số đó là thời gian ngừng thật sự của bạn, và nó thường dài hơn mọi người vẫn nghĩ."
+  },
+  "practicePrompt": {
+    "question": "Bản sao lưu của bạn được lưu trên cùng máy chủ với cơ sở dữ liệu chính để khôi phục cho nhanh. Vấn đề là gì?",
+    "options": [
+      "Một sự cố ở máy chủ đó làm mất cả dữ liệu gốc lẫn bản sao lưu",
+      "Khôi phục từ cùng một máy chủ luôn chậm hơn từ máy chủ khác",
+      "Bản sao lưu chiếm dung lượng làm cơ sở dữ liệu chính hết chỗ ghi",
+      "Cơ sở dữ liệu sẽ khoá tệp sao lưu nên không đọc lại được khi cần"
+    ],
+    "correct": 0,
+    "explanation": "Bản sao chỉ có giá trị khi nó không cùng chịu chung một sự cố với bản gốc. Hỏng ổ đĩa, mất máy chủ, mã độc mã hoá dữ liệu hay xoá nhầm cả thư mục đều xoá sổ cả hai cùng lúc nếu chúng nằm cùng chỗ."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao sao lưu chạy thành công vẫn chưa đủ?",
+      "options": [
+        "Vì nó chỉ chứng minh tệp được ghi ra, không chứng minh đọc lại được",
+        "Vì tiến trình sao lưu luôn bỏ qua những bảng có dung lượng quá lớn đó",
+        "Vì bản sao lưu chỉ dùng được trên đúng phiên bản phần mềm đã tạo ra nó",
+        "Vì sao lưu tự động không bao giờ bao gồm dữ liệu mới trong ngày hôm đó"
+      ],
+      "correct": 0,
+      "explanation": "Ghi được tệp và khôi phục được là hai chuyện khác nhau. Tệp cắt ngắn, thiếu bảng, mất khoá giải mã đều cho ra một lần chạy báo thành công và một bản sao vô dụng."
+    },
+    {
+      "question": "Hai con số phải chốt trước khi thiết kế phương án sao lưu là gì?",
+      "options": [
+        "Chấp nhận mất tối đa bao nhiêu dữ liệu và ngừng tối đa bao lâu",
+        "Dung lượng mỗi bản sao và số bản sao được giữ lại cùng lúc",
+        "Chi phí lưu trữ hằng tháng và số người được quyền khôi phục",
+        "Tốc độ ghi của ổ đĩa và băng thông đường truyền tới nơi lưu bản sao"
+      ],
+      "correct": 0,
+      "explanation": "Hai con số ấy quyết định mọi thứ còn lại: sao lưu bao lâu một lần, giữ bao nhiêu bản, để ở đâu, và cần hạ tầng nào. Bắt đầu từ dung lượng hay chi phí là làm ngược thứ tự."
+    },
+    {
+      "question": "Vì sao chu kỳ giữ bản sao lưu lại quan trọng?",
+      "options": [
+        "Vì có những lỗi phải nhiều tuần sau mới bị phát hiện ra",
+        "Vì bản sao cũ mất chất lượng nếu để lâu",
+        "Vì luật buộc giữ mọi bản sao bảy năm",
+        "Vì giữ càng nhiều bản sao thì thời gian khôi phục càng ngắn lại"
+      ],
+      "correct": 0,
+      "explanation": "Xoá nhầm một phần dữ liệu cũ, hay một lỗi làm hỏng dữ liệu dần dần, có thể mất hàng tuần mới lộ ra. Nếu chu kỳ giữ ngắn hơn thời gian phát hiện thì mọi bản sao còn lại đều đã chứa dữ liệu hỏng."
+    },
+    {
+      "question": "Bản sao lưu nên được đặt ở đâu?",
+      "options": [
+        "Ở nơi không cùng chịu chung một sự cố với hệ thống gốc",
+        "Ở cùng máy chủ với cơ sở dữ liệu để khôi phục được nhanh nhất",
+        "Ở máy tính cá nhân của người quản trị để kiểm soát quyền truy cập",
+        "Ở nhiều thư mục trên cùng một ổ đĩa"
+      ],
+      "correct": 0,
+      "explanation": "Nguyên tắc là tách rủi ro: khác máy, khác vùng, và tốt nhất là khác cả tài khoản quản trị. Nếu một sự cố duy nhất xoá được cả gốc lẫn bản sao thì bạn không thật sự có bản sao."
+    },
+    {
+      "question": "Khôi phục thử định kỳ cho bạn thông tin quan trọng nào?",
+      "options": [
+        "Thời gian ngừng thật sự khi có sự cố xảy ra ngoài đời",
+        "Dung lượng tối đa bản sao đạt tới trong năm",
+        "Số bảng đã thay đổi cấu trúc kể từ lần sao lưu gần nhất tới nay",
+        "Mức nén công cụ đạt được trên dữ liệu này"
+      ],
+      "correct": 0,
+      "explanation": "Con số duy nhất đáng tin về thời gian ngừng là con số bạn đã bấm giờ trong một lần khôi phục thật. Ước lượng trên giấy luôn thấp hơn thực tế, vì nó bỏ qua các bước tìm bản sao, xin quyền và kiểm tra lại."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Câu hỏi đúng không phải bạn có sao lưu không, mà là bạn quay lại hoạt động được sau bao lâu, và mất bao nhiêu dữ liệu trong quá trình đó."
+    },
+    {
+      "type": "heading",
+      "text": "Hai con số quyết định mọi thứ"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Chốt trước khi bàn công cụ",
+      "subtitle": "Hai con số này quyết định tần suất, số bản giữ và nơi lưu",
+      "concepts": [
+        {
+          "vi": "Mất tối đa bao nhiêu dữ liệu",
+          "en": "recovery point objective",
+          "def": "Khoảng thời gian giữa hai lần sao lưu. Sao lưu hằng đêm nghĩa là chấp nhận mất tối đa một ngày làm việc."
+        },
+        {
+          "vi": "Ngừng tối đa bao lâu",
+          "en": "recovery time objective",
+          "def": "Thời gian từ lúc sự cố tới lúc chạy lại được. Quyết định bạn cần bản sao nóng hay chỉ cần tệp trên kho lưu trữ."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Ba cách một bản sao lưu trở nên vô dụng"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Nó nằm cùng chỗ với dữ liệu gốc, nên cùng mất trong một sự cố.",
+        "Nó chưa từng được khôi phục thử, nên không ai biết tệp có đọc được không.",
+        "Chu kỳ giữ ngắn hơn thời gian phát hiện lỗi, nên mọi bản còn lại đều đã hỏng theo."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Sao lưu không thay được giao dịch",
+      "text": "Sao lưu bảo vệ trước mất mát lớn: hỏng ổ đĩa, xoá nhầm bảng, mã độc. Nó không bảo vệ trước trạng thái nửa vời do sự cố giữa chừng - đó là việc của giao dịch ở bài trước, và hai thứ này không thay thế nhau."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Bản sao lạnh",
+        "text": "Tệp nằm trên kho lưu trữ giá rẻ. Chi phí thấp, đổi lại khôi phục mất hàng giờ vì phải tải về, giải nén và nạp lại."
+      },
+      "right": {
+        "label": "Bản sao nóng",
+        "text": "Một bản chạy song song, luôn bám sát dữ liệu chính. Chuyển sang trong vài phút, đổi lại tốn gần gấp đôi hạ tầng."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bản sao lưu chưa khôi phục thử chỉ là một niềm tin. Bấm giờ một lần khôi phục thật là cách biến nó thành một con số.",
+        "Bài sau nói về loại dữ liệu mang theo nghĩa vụ pháp lý và đạo đức: dữ liệu cá nhân."
+      ]
+    }
+  ]
+}

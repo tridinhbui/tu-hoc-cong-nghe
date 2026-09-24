@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { errorMessage } from "@/lib/errors";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getUserClient } from "@/lib/auth/current-user";
 import { getServerDictionary } from "@/lib/i18n/server";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
@@ -48,56 +48,71 @@ function fallbackGuildsOf(t: Dictionary) {
   }));
 }
 
-export async function GET(request: NextRequest) {
-  const t = await getServerDictionary();
-  const supabase = await createServerSupabaseClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+interface GuildRow {
+  id: string;
+  name: string;
+  tag: string;
+  logo_emoji: string;
+  level: number;
+  total_xp: number;
+}
 
-  // Fetch Guild list
-  const { data: guilds } = await supabase
+export async function GET() {
+  const t = await getServerDictionary();
+  const { user, db } = await getUserClient();
+
+  // Fetch Guild list. D1 KHÔNG hiểu cú pháp nhúng quan hệ của PostgREST
+  // ("*, guild_members(count)") - bộ dựng truy vấn ném lỗi thay vì âm thầm
+  // thiếu cột, nên đếm thành viên phải là một truy vấn riêng, gộp bằng JS.
+  const { data: guildsRaw } = await db
     .from("financial_guilds")
-    .select("*, guild_members(count)")
+    .select("id, name, tag, logo_emoji, level, total_xp")
     .order("total_xp", { ascending: false })
     .limit(10);
+  const guilds = (guildsRaw ?? []) as unknown as GuildRow[];
 
-  /** Chỉ những cột mà endpoint này đọc; `guild_members(count)` là quan hệ
-   *  tổng hợp nên Supabase trả về mảng một phần tử. */
-  interface GuildRow {
-    id: string;
-    name: string;
-    tag: string;
-    logo_emoji: string;
-    level: number;
-    total_xp: number;
-    guild_members?: { count: number }[] | null;
+  const guildIds = guilds.map((g) => g.id);
+  const memberCountByGuild = new Map<string, number>();
+  if (guildIds.length > 0) {
+    const { data: memberRows } = await db.from("guild_members").select("guild_id").in("guild_id", guildIds);
+    for (const row of (memberRows ?? []) as unknown as { guild_id: string }[]) {
+      memberCountByGuild.set(row.guild_id, (memberCountByGuild.get(row.guild_id) ?? 0) + 1);
+    }
   }
 
-  const formattedGuilds = (guilds as GuildRow[] | null)?.map((g) => ({
-    id: g.id,
-    name: g.name,
-    tag: g.tag,
-    logo_emoji: g.logo_emoji,
-    level: g.level,
-    total_xp: g.total_xp,
-    member_count: g.guild_members?.[0]?.count || 1,
-  })) || fallbackGuildsOf(t);
+  const formattedGuilds =
+    guilds.length > 0
+      ? guilds.map((g) => ({
+          id: g.id,
+          name: g.name,
+          tag: g.tag,
+          logo_emoji: g.logo_emoji,
+          level: g.level,
+          total_xp: g.total_xp,
+          member_count: memberCountByGuild.get(g.id) || 1,
+        }))
+      : fallbackGuildsOf(t);
 
-  // Check user's current guild if logged in
+  // Check user's current guild if logged in. Cũng tách hai truy vấn thay vì
+  // "role, financial_guilds(*)" - cùng lý do trên.
   let myGuild = null;
   if (user) {
-    const { data: member } = await supabase
+    const { data: memberRaw } = await db
       .from("guild_members")
-      .select("role, financial_guilds(*)")
+      .select("role, guild_id")
       .eq("user_id", user.id)
       .maybeSingle();
+    const member = memberRaw as unknown as { role: string; guild_id: string } | null;
 
-    if (member?.financial_guilds) {
-      myGuild = {
-        role: member.role,
-        ...member.financial_guilds,
-      };
+    if (member) {
+      const { data: guildRaw } = await db
+        .from("financial_guilds")
+        .select("*")
+        .eq("id", member.guild_id)
+        .maybeSingle();
+      if (guildRaw) {
+        myGuild = { role: member.role, ...(guildRaw as unknown as Record<string, unknown>) };
+      }
     }
   }
 
@@ -108,10 +123,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { user, db } = await getUserClient();
 
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -135,7 +147,7 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      const { data: guild, error } = await supabase
+      const { data: guildRaw, error } = await db
         .from("financial_guilds")
         .insert({
           name,
@@ -149,9 +161,10 @@ export async function POST(request: NextRequest) {
         .single();
 
       if (error) throw error;
+      const guild = guildRaw as unknown as { id: string };
 
       // Add leader to guild_members
-      await supabase.from("guild_members").insert({
+      await db.from("guild_members").insert({
         guild_id: guild.id,
         user_id: user.id,
         role: "leader",
@@ -165,7 +178,7 @@ export async function POST(request: NextRequest) {
 
   if (body?.action === "join" && body.guildId) {
     try {
-      await supabase.from("guild_members").insert({
+      await db.from("guild_members").insert({
         guild_id: body.guildId,
         user_id: user.id,
         role: "member",

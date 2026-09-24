@@ -1,0 +1,185 @@
+{
+  "id": 131,
+  "slug": "tai-tep-len-va-noi-dung-khong-tin-cay",
+  "title": "Tải tệp lên: nhận một tệp là nhận một rủi ro",
+  "subtitle": "Phần mở rộng và loại tệp khai báo đều do người gửi đặt, nên chúng không chứng minh gì.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📎",
+  "track": "professional",
+  "whyItMatters": "Chức năng tải ảnh đại diện trông vô hại, nhưng nó là một đường cho phép người ngoài đặt nội dung tuỳ ý lên hạ tầng của bạn. Cách xử lý sau đó quyết định đó là một tệp ảnh hay một chỗ đứng chân.",
+  "openingQuestion": "Người dùng tải lên một tệp có đuôi ảnh. Kiểm tra nào là đáng tin?",
+  "openingOptions": [
+    "Đọc nội dung tệp để xác định loại thật, không tin phần mở rộng",
+    "Kiểm tra phần mở rộng có nằm trong danh sách cho phép hay không",
+    "Kiểm tra loại nội dung mà trình duyệt khai báo khi gửi lên",
+    "Kiểm tra kích thước tệp có nằm trong giới hạn cho phép không"
+  ],
+  "correctOption": 0,
+  "explanation": "Phần mở rộng và loại nội dung khai báo đều là dữ liệu do phía gửi đặt, nên chúng nói lên ý định chứ không nói lên sự thật. Đọc nội dung để xác định loại thật là kiểm tra duy nhất dựa trên chính tệp. Nhưng ngay cả nó cũng chưa đủ: một tệp vừa hợp lệ như ảnh vừa chứa nội dung nguy hiểm là chuyện có thật, nên lớp quan trọng hơn là phục vụ tệp từ một tên miền riêng và không bao giờ thực thi nội dung được tải lên.",
+  "diagram": [
+    {
+      "label": "Phần mở rộng và loại khai báo: do người gửi đặt",
+      "arrow": true
+    },
+    {
+      "label": "Đọc nội dung để xác định loại thật",
+      "arrow": true
+    },
+    {
+      "label": "Lưu ngoài thư mục phục vụ, đặt tên do hệ thống sinh",
+      "arrow": true
+    },
+    {
+      "label": "Phục vụ từ tên miền riêng, không thực thi"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Tên tệp cũng là dữ liệu",
+    "description": "Tên tệp do người dùng đặt có thể chứa dấu chuyển thư mục để ghi ra ngoài vùng dự kiến. Đó là lý do hệ thống nên tự sinh tên và chỉ giữ tên gốc như một nhãn hiển thị."
+  },
+  "keyTakeaways": [
+    "Phần mở rộng và loại nội dung khai báo đều do người gửi đặt nên không tin được.",
+    "Tên tệp cũng là dữ liệu người dùng; hệ thống nên tự sinh tên khi lưu.",
+    "Phục vụ tệp tải lên từ một tên miền riêng để tách khỏi phiên của ứng dụng.",
+    "Không bao giờ để nội dung tải lên được thực thi bởi máy chủ."
+  ],
+  "summary": {
+    "keyIdea": "Tệp tải lên là dữ liệu không tin cậy, và mọi thuộc tính đi kèm nó cũng vậy.",
+    "formula": "Xác định loại từ nội dung, tự sinh tên, phục vụ từ tên miền riêng.",
+    "commonMistake": "Tin vào phần mở rộng và lưu tệp thẳng vào thư mục được phục vụ."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Kiểm xem tệp người dùng tải lên đang được lưu ở đâu và phục vụ từ tên miền nào. Nếu chúng nằm cùng tên miền với ứng dụng thì một tệp nội dung động có thể chạm tới phiên người dùng."
+  },
+  "practicePrompt": {
+    "question": "Vì sao nên phục vụ tệp tải lên từ một tên miền riêng?",
+    "options": [
+      "Để nội dung tệp không truy cập được cookie phiên của ứng dụng chính",
+      "Để giảm tải cho máy chủ chính khi có nhiều lượt tải xuống",
+      "Để dễ áp dụng bộ nhớ đệm cho các tệp tĩnh đã tải lên",
+      "Để tách chi phí băng thông của phần tệp ra khỏi ứng dụng"
+    ],
+    "correct": 0,
+    "explanation": "Cookie gắn theo tên miền, nên nội dung phục vụ từ một tên miền khác không chạm được vào phiên của ứng dụng chính. Giảm tải và bộ nhớ đệm là lợi ích phụ có thật, nhưng lý do bảo mật mới là lý do bắt buộc."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao không tin được phần mở rộng của tệp?",
+      "options": [
+        "Vì nó do phía gửi đặt và không phản ánh nội dung thật",
+        "Vì các hệ điều hành xử lý phần mở rộng khác nhau",
+        "Vì trình duyệt tự động thay đổi phần mở rộng khi gửi",
+        "Vì phần mở rộng bị cắt bỏ trong quá trình truyền tải lên"
+      ],
+      "correct": 0,
+      "explanation": "Đây là cùng nguyên tắc với mọi dữ liệu từ bên ngoài: thứ do người gửi kiểm soát thì chỉ là lời khai. Đọc nội dung là cách duy nhất kiểm tra dựa trên chính tệp."
+    },
+    {
+      "question": "Vì sao hệ thống nên tự sinh tên khi lưu tệp?",
+      "options": [
+        "Vì tên do người dùng đặt có thể chứa ký tự chuyển thư mục",
+        "Vì tên gốc thường quá dài để lưu trong cơ sở dữ liệu",
+        "Vì tên trùng nhau sẽ khiến tệp cũ bị ghi đè mất",
+        "Vì tên tiếng Việt có dấu sẽ gây lỗi trên một số hệ thống tệp"
+      ],
+      "correct": 0,
+      "explanation": "Trùng tên là vấn đề thật nhưng giải được bằng nhiều cách. Rủi ro bảo mật là tên chứa dấu chuyển thư mục khiến tệp được ghi ra ngoài vùng dự kiến."
+    },
+    {
+      "question": "Nguyên tắc quan trọng nhất với nội dung tải lên là gì?",
+      "options": [
+        "Không bao giờ để máy chủ thực thi nội dung đó",
+        "Quét tệp bằng công cụ diệt mã độc trước khi lưu",
+        "Giới hạn kích thước tệp ở mức thấp nhất có thể",
+        "Chỉ cho phép người dùng đã xác thực được tải lên"
+      ],
+      "correct": 0,
+      "explanation": "Quét và giới hạn đều hữu ích nhưng chúng là lớp bổ sung. Nếu nội dung do người ngoài đặt mà được thực thi thì bạn đã trao quyền chạy mã trên hạ tầng của mình."
+    },
+    {
+      "question": "Kiểm tra loại nội dung do trình duyệt khai báo có giá trị gì?",
+      "options": [
+        "Rất ít, vì giá trị đó cũng do phía gửi đặt",
+        "Cao, vì trình duyệt xác định loại từ nội dung thật",
+        "Đủ dùng nếu kết hợp với kiểm tra phần mở rộng",
+        "Chỉ có giá trị với các tệp có kích thước nhỏ"
+      ],
+      "correct": 0,
+      "explanation": "Nó là một tiêu đề trong yêu cầu, và mọi tiêu đề đều đặt được tuỳ ý khi gọi thẳng vào máy chủ. Kết hợp hai lời khai không tin được thì vẫn không tin được."
+    },
+    {
+      "question": "Vì sao chức năng tải ảnh đại diện lại đáng chú ý về bảo mật?",
+      "options": [
+        "Vì nó cho người ngoài đặt nội dung tuỳ ý lên hạ tầng của bạn",
+        "Vì ảnh thường có kích thước lớn nên gây tốn dung lượng lưu trữ",
+        "Vì người dùng có thể tải lên ảnh vi phạm bản quyền",
+        "Vì việc xử lý ảnh tiêu tốn nhiều tài nguyên máy chủ"
+      ],
+      "correct": 0,
+      "explanation": "Nghe như một tính năng nhỏ, nhưng nó mở một đường cho dữ liệu tuỳ ý đi vào hệ thống lưu trữ. Cách xử lý sau đó quyết định nó dừng lại ở một tệp ảnh hay trở thành chỗ đứng chân."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Cho phép người dùng tải tệp lên là mời họ đặt nội dung tuỳ ý vào hạ tầng của bạn. Tính năng nghe nhỏ nhưng đường vào thì rộng, và mọi thuộc tính đi kèm tệp đều do người gửi đặt."
+    },
+    {
+      "type": "heading",
+      "text": "Ba thứ đều là lời khai"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Phần mở rộng: do người gửi đặt, không liên quan tới nội dung thật.",
+        "Loại nội dung khai báo: một tiêu đề trong yêu cầu, đặt tuỳ ý được.",
+        "Tên tệp: cũng là dữ liệu người dùng, có thể chứa ký tự chuyển thư mục."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Bốn lớp xử lý"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Từ lúc nhận tới lúc phục vụ",
+      "subtitle": "Mỗi lớp chặn một kịch bản khác nhau",
+      "concepts": [
+        {
+          "vi": "Xác định loại",
+          "en": "content sniffing",
+          "def": "Đọc nội dung để biết loại thật, và từ chối những loại không nằm trong danh sách cho phép."
+        },
+        {
+          "vi": "Tự sinh tên",
+          "en": "generated name",
+          "def": "Hệ thống đặt tên khi lưu; tên gốc chỉ giữ làm nhãn hiển thị cho người dùng."
+        },
+        {
+          "vi": "Lưu ngoài vùng phục vụ",
+          "en": "outside webroot",
+          "def": "Tệp không nằm trong thư mục mà máy chủ tự động phục vụ, nên không có đường gọi trực tiếp."
+        },
+        {
+          "vi": "Tên miền riêng",
+          "en": "separate origin",
+          "def": "Phục vụ từ tên miền khác để nội dung không chạm được cookie phiên của ứng dụng chính."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Không thực thi, trong mọi trường hợp",
+      "text": "Mọi biện pháp khác đều là giảm xác suất. Nguyên tắc không bao giờ để nội dung tải lên được thực thi là thứ giữ cho một tệp lọt qua các lớp trên vẫn chỉ nằm im trong kho."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tệp tải lên là dữ liệu không tin cậy, và cả những thứ mô tả nó cũng vậy.",
+        "Bài sau nói về đường vào mà bạn không viết dòng nào: mã của người khác chạy trong sản phẩm của bạn."
+      ]
+    }
+  ]
+}

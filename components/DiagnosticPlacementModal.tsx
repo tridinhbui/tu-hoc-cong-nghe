@@ -164,7 +164,7 @@ export default function DiagnosticPlacementModal({
             <button
               type="button"
               onClick={handleDismiss}
-              className="p-1.5 rounded-full text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer transition-colors"
+              className="p-1.5 rounded-full text-stone-400 hover:bg-surface-raised cursor-pointer transition-colors"
               title={t.diagnostic.dismissTitle}
             >
               <X className="w-4 h-4" />
@@ -183,7 +183,7 @@ export default function DiagnosticPlacementModal({
                       <button
                         type="button"
                         onClick={handleDismiss}
-                        className="text-[11px] font-bold text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 underline cursor-pointer"
+                        className="text-[11px] font-bold text-stone-400 hover:text-ink-soft underline cursor-pointer"
                       >
                         {t.diagnostic.skipForNow}
                       </button>
@@ -199,7 +199,7 @@ export default function DiagnosticPlacementModal({
                           key={idx}
                           type="button"
                           onClick={() => handleSelectOption(opt.scoreTrack)}
-                          className="w-full text-left p-3.5 rounded-2xl border border-line bg-stone-50 dark:bg-stone-950/60 hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-xs sm:text-sm font-semibold text-stone-800 dark:text-stone-200 transition-all cursor-pointer flex items-center justify-between"
+                          className="w-full text-left p-3.5 rounded-2xl border border-line bg-stone-50 dark:bg-stone-950/60 hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-xs sm:text-sm font-semibold text-ink-heading transition-all cursor-pointer flex items-center justify-between"
                         >
                           <span>{opt.text}</span>
                           <ArrowRight className="w-4 h-4 text-stone-400 shrink-0" />
@@ -214,7 +214,7 @@ export default function DiagnosticPlacementModal({
               <div className="text-center py-4 space-y-4">
                 <div className="text-5xl">{rec.emoji}</div>
                 <div>
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-[10px] font-black uppercase tracking-wider border border-emerald-300 dark:border-emerald-800">
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-accent-ink text-[10px] font-black uppercase tracking-wider border border-accent-line-mid">
                     {t.diagnostic.resultBadge}
                   </span>
                   <h3 className="text-lg font-black text-ink mt-2">

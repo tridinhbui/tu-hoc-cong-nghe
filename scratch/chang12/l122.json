@@ -1,0 +1,161 @@
+{
+  "id": 122,
+  "slug": "xac-thuc-va-mat-khau",
+  "title": "Mật khẩu: thứ yếu nhất mà ai cũng còn dùng",
+  "subtitle": "Người dùng dùng lại mật khẩu, nên rò rỉ ở nơi khác trở thành vấn đề của bạn.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔑",
+  "track": "professional",
+  "whyItMatters": "Cách phổ biến nhất để tài khoản bị chiếm không phải bẻ khoá mật khẩu của bạn mà là dùng lại mật khẩu đã lộ ở một dịch vụ khác. Điều đó đổi hẳn danh sách việc cần làm.",
+  "openingQuestion": "Biện pháp nào giảm rủi ro chiếm tài khoản nhiều nhất?",
+  "openingOptions": [
+    "Bật xác thực hai yếu tố cho những tài khoản quan trọng",
+    "Bắt mật khẩu phải có ký tự đặc biệt và chữ hoa xen kẽ",
+    "Bắt người dùng đổi mật khẩu định kỳ mỗi chín mươi ngày",
+    "Giới hạn độ dài tối đa của mật khẩu để tránh tấn công"
+  ],
+  "correctOption": 0,
+  "explanation": "Yếu tố thứ hai làm cho một mật khẩu bị lộ không còn đủ để vào tài khoản, và đó chính là kịch bản phổ biến nhất trong thực tế. Ba lựa chọn còn lại đều từng là lời khuyên chuẩn và giờ đã bị rút lại: quy tắc ký tự phức tạp khiến người ta chọn những biến thể dễ đoán, đổi định kỳ khiến họ chỉ tăng một con số ở cuối, còn giới hạn độ dài tối đa thì cản trở đúng những mật khẩu mạnh nhất mà không mang lại lợi ích nào.",
+  "diagram": [
+    {
+      "label": "Mật khẩu lộ ở một dịch vụ khác",
+      "arrow": true
+    },
+    {
+      "label": "Kẻ tấn công thử lại trên hàng nghìn dịch vụ",
+      "arrow": true
+    },
+    {
+      "label": "Trùng mật khẩu → vào được tài khoản",
+      "arrow": true
+    },
+    {
+      "label": "Yếu tố thứ hai cắt đứt chuỗi này"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Thử lại thông tin đã lộ",
+    "description": "Sau mỗi vụ rò rỉ lớn, danh sách thư điện tử và mật khẩu được thử tự động trên hàng loạt dịch vụ khác. Tỷ lệ trùng chỉ vài phần trăm, nhưng với hàng triệu bản ghi thì vài phần trăm là rất nhiều tài khoản."
+  },
+  "keyTakeaways": [
+    "Rủi ro lớn nhất là dùng lại mật khẩu, không phải mật khẩu bị bẻ khoá.",
+    "Yếu tố thứ hai là biện pháp có tỷ lệ lợi ích trên công sức cao nhất.",
+    "Quy tắc ký tự phức tạp và đổi định kỳ đã bị các hướng dẫn hiện đại rút lại.",
+    "Độ dài quan trọng hơn độ phức tạp, nên đừng giới hạn độ dài tối đa."
+  ],
+  "summary": {
+    "keyIdea": "Mật khẩu thất bại chủ yếu vì được dùng lại, nên hãy thêm một yếu tố thay vì siết quy tắc.",
+    "formula": "Yếu tố thứ hai đánh bại mọi quy tắc ký tự.",
+    "commonMistake": "Bắt đổi mật khẩu định kỳ, khiến người dùng chỉ thêm một con số ở cuối."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Kiểm xem sản phẩm của bạn có giới hạn độ dài tối đa của mật khẩu không, và có bắt đổi định kỳ không. Cả hai đều là tàn dư của lời khuyên cũ và nên được gỡ."
+  },
+  "practicePrompt": {
+    "question": "Vì sao bắt người dùng đổi mật khẩu định kỳ lại phản tác dụng?",
+    "options": [
+      "Vì người ta chỉ đổi tối thiểu, thường là tăng một con số ở cuối",
+      "Vì hệ thống phải lưu lịch sử toàn bộ mật khẩu cũ để so sánh",
+      "Vì việc đổi mật khẩu làm mất phiên đăng nhập đang hoạt động",
+      "Vì người dùng sẽ quên mật khẩu và gọi tới đội hỗ trợ nhiều hơn hẳn"
+    ],
+    "correct": 0,
+    "explanation": "Ép đổi theo lịch không tạo ra mật khẩu mạnh hơn mà tạo ra một chuỗi biến thể dễ đoán, và người biết mật khẩu cũ đoán được mật khẩu mới. Đổi mật khẩu chỉ nên được yêu cầu khi có dấu hiệu nó đã lộ."
+  },
+  "quiz": [
+    {
+      "question": "Kịch bản chiếm tài khoản phổ biến nhất là gì?",
+      "options": [
+        "Mật khẩu đã lộ ở dịch vụ khác được thử lại trên dịch vụ của bạn",
+        "Kẻ tấn công dò từng mật khẩu một cho tới khi tìm ra mật khẩu đúng",
+        "Lỗ hổng trong mã xác thực cho phép bỏ qua bước kiểm tra",
+        "Nhân viên nội bộ truy cập trái phép vào tài khoản người dùng"
+      ],
+      "correct": 0,
+      "explanation": "Dò từng mật khẩu thì chậm và dễ bị chặn bởi giới hạn số lần thử. Thử lại thông tin đã lộ thì mỗi tài khoản chỉ cần một lần thử, nên nó vượt qua mọi cơ chế đếm số lần sai."
+    },
+    {
+      "question": "Vì sao quy tắc bắt buộc ký tự đặc biệt không hiệu quả như kỳ vọng?",
+      "options": [
+        "Vì người dùng chọn những biến thể dễ đoán để thoả mãn quy tắc",
+        "Vì ký tự đặc biệt không làm tăng số tổ hợp có thể có",
+        "Vì nhiều bàn phím không nhập được các ký tự đặc biệt",
+        "Vì hệ thống thường sẽ tự loại bỏ các ký tự đặc biệt khi lưu trữ"
+      ],
+      "correct": 0,
+      "explanation": "Người ta thêm một dấu chấm than ở cuối và viết hoa chữ đầu - kẻ tấn công biết rõ các biến thể ấy. Độ dài tạo ra nhiều tổ hợp hơn nhiều so với việc bắt buộc vài loại ký tự."
+    },
+    {
+      "question": "Vì sao không nên giới hạn độ dài tối đa của mật khẩu?",
+      "options": [
+        "Vì nó cản trở đúng những mật khẩu dài và mạnh nhất",
+        "Vì tiêu chuẩn bảo mật hiện hành cấm đặt giới hạn đó",
+        "Vì hệ thống lưu mật khẩu ở dạng băm có độ dài cố định",
+        "Vì người dùng sẽ chọn mật khẩu ngắn hơn mức an toàn"
+      ],
+      "correct": 0,
+      "explanation": "Mật khẩu được băm trước khi lưu nên độ dài đầu vào không ảnh hưởng tới dung lượng lưu trữ. Giới hạn tối đa chỉ chặn người đang cố làm điều đúng."
+    },
+    {
+      "question": "Yếu tố thứ hai bảo vệ trước điều gì?",
+      "options": [
+        "Trường hợp mật khẩu đã lộ nhưng kẻ tấn công không có thiết bị",
+        "Trường hợp máy chủ bị xâm nhập và cơ sở dữ liệu bị lấy đi",
+        "Trường hợp người dùng chọn mật khẩu quá ngắn và dễ đoán",
+        "Trường hợp phiên đăng nhập bị đánh cắp sau khi người dùng đã xác thực"
+      ],
+      "correct": 0,
+      "explanation": "Nó cắt đúng chuỗi phổ biến nhất: biết mật khẩu nhưng không có yếu tố thứ hai thì không vào được. Phiên bị đánh cắp sau khi đăng nhập là một vấn đề khác, cần biện pháp khác."
+    },
+    {
+      "question": "Khi nào nên yêu cầu người dùng đổi mật khẩu?",
+      "options": [
+        "Khi có dấu hiệu mật khẩu đó đã bị lộ",
+        "Theo lịch định kỳ chín mươi ngày một lần",
+        "Mỗi khi người dùng đăng nhập từ thiết bị mới",
+        "Khi mật khẩu không còn thoả mãn quy tắc hiện tại"
+      ],
+      "correct": 0,
+      "explanation": "Đổi vì có lý do thì hữu ích; đổi theo lịch thì tạo ra chuỗi biến thể dễ đoán. Đây là một trong những lời khuyên bị đảo ngược rõ ràng nhất trong ngành mười năm qua."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mật khẩu là cơ chế xác thực yếu nhất còn được dùng rộng rãi, và nó yếu vì một lý do nằm ngoài tầm kiểm soát của bạn: người dùng dùng lại nó ở mọi nơi."
+    },
+    {
+      "type": "heading",
+      "text": "Rò rỉ ở nơi khác là vấn đề của bạn"
+    },
+    {
+      "type": "paragraph",
+      "text": "Một dịch vụ nào đó bị rò rỉ, danh sách thư điện tử kèm mật khẩu được công bố, và các máy tự động thử lại chúng trên hàng nghìn dịch vụ khác. Tỷ lệ trùng chỉ vài phần trăm, nhưng vài phần trăm của hàng triệu bản ghi là rất nhiều tài khoản - và mỗi tài khoản chỉ cần đúng một lần thử, nên cơ chế khoá sau năm lần sai không chặn được gì."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Lời khuyên cũ",
+        "text": "Bắt buộc ký tự đặc biệt, chữ hoa và số. Đổi mật khẩu mỗi ba tháng. Giới hạn độ dài tối đa. Tất cả đều đã bị rút lại."
+      },
+      "right": {
+        "label": "Hướng dẫn hiện nay",
+        "text": "Khuyến khích mật khẩu dài, không giới hạn tối đa, chỉ bắt đổi khi có dấu hiệu lộ, và ưu tiên thêm yếu tố thứ hai."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Vì sao đổi định kỳ phản tác dụng",
+      "text": "Người dùng đổi tối thiểu để qua quy tắc, thường là tăng con số cuối lên một. Ai biết mật khẩu cũ thì đoán được mật khẩu mới, nên chính sách này biến một bí mật thành một chuỗi có quy luật."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mật khẩu thất bại vì được dùng lại, không vì quá đơn giản. Thêm một yếu tố mạnh hơn mọi quy tắc bạn có thể áp lên nó.",
+        "Bài sau nói về thứ được cấp sau khi xác thực thành công, và vì sao nó thường là mục tiêu dễ hơn cả mật khẩu."
+      ]
+    }
+  ]
+}

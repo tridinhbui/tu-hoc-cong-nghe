@@ -120,7 +120,7 @@ export default function InteractiveEthicsCase() {
               aria-label={format(tr.caseAriaLabel, { n: i + 1 })}
               aria-current={i === index}
               className={`h-2 w-6 cursor-pointer rounded-full ${
-                i === index ? "bg-surface-invert" : "bg-stone-200 dark:bg-stone-700"
+                i === index ? "bg-surface-invert" : "bg-surface-sunken"
               }`}
             />
           ))}
@@ -191,7 +191,7 @@ export default function InteractiveEthicsCase() {
 
       {done && (
         <div className="mt-4 rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
-          <p className="text-xs leading-relaxed text-stone-600 dark:text-stone-300">{c.reasoning}</p>
+          <p className="text-xs leading-relaxed text-ink-soft">{c.reasoning}</p>
           {index < CASES.length - 1 && (
             <button
               type="button"

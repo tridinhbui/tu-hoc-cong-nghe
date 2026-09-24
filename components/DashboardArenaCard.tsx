@@ -53,7 +53,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
             <Dices className="h-4 w-4" />
           </span>
           <span className="min-w-0 flex-1">
-            <span className="block truncate text-xs font-bold text-stone-800 dark:text-stone-200">
+            <span className="block truncate text-xs font-bold text-ink-heading">
               {t.dashboardArena.quizTitle}
             </span>
             <span className="block truncate text-[10px] text-ink-muted">
@@ -74,7 +74,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
             <Swords className="h-4 w-4" />
           </span>
           <span className="min-w-0 flex-1">
-            <span className="block truncate text-xs font-bold text-stone-800 dark:text-stone-200">
+            <span className="block truncate text-xs font-bold text-ink-heading">
               {t.dashboardArena.bossTitle}
             </span>
             <span className="block truncate text-[10px] text-ink-muted">
@@ -95,7 +95,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
             <Users className="h-4 w-4" />
           </span>
           <span className="min-w-0 flex-1">
-            <span className="block truncate text-xs font-bold text-stone-800 dark:text-stone-200">
+            <span className="block truncate text-xs font-bold text-ink-heading">
               {t.dashboardArena.soloTitle}
             </span>
             <span className="block truncate text-[10px] text-ink-muted">

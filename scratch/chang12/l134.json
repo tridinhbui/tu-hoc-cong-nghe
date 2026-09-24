@@ -1,0 +1,166 @@
+{
+  "id": 134,
+  "slug": "dau-vet-kiem-toan",
+  "title": "Dấu vết kiểm toán: ai đã làm gì, lúc nào",
+  "subtitle": "Câu hỏi sau mỗi sự cố là dữ liệu nào đã bị chạm tới - và chỉ dấu vết trả lời được.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📒",
+  "track": "professional",
+  "whyItMatters": "Khi có nghi ngờ dữ liệu bị truy cập trái phép, câu hỏi đầu tiên luôn là ai đã xem gì. Không có dấu vết thì bạn phải giả định trường hợp xấu nhất, và thông báo cho toàn bộ người dùng thay vì cho những người thật sự bị ảnh hưởng.",
+  "openingQuestion": "Dấu vết kiểm toán khác nhật ký ứng dụng thông thường ở điểm nào?",
+  "openingOptions": [
+    "Nó ghi ai đã truy cập dữ liệu nào, và phải chống sửa đổi",
+    "Nó được ghi ở mức chi tiết cao hơn nhật ký thông thường",
+    "Nó chỉ được ghi khi hệ thống phát hiện hành vi bất thường",
+    "Nó được lưu trong cơ sở dữ liệu thay vì trong tệp nhật ký"
+  ],
+  "correctOption": 0,
+  "explanation": "Nhật ký ứng dụng phục vụ việc gỡ lỗi: nó ghi hệ thống đã làm gì. Dấu vết kiểm toán phục vụ việc trả lời trách nhiệm: ai đã chạm vào dữ liệu nào và lúc nào. Vì nó có thể được dùng để quy trách nhiệm, nó phải chống được việc sửa đổi - kể cả bởi người có quyền quản trị. Mức chi tiết và nơi lưu là chi tiết triển khai, còn hai tính chất kia là bản chất.",
+  "diagram": [
+    {
+      "label": "Nghi ngờ dữ liệu bị truy cập trái phép",
+      "arrow": true
+    },
+    {
+      "label": "Có dấu vết: biết chính xác ai xem gì",
+      "arrow": true
+    },
+    {
+      "label": "Không có: phải giả định trường hợp xấu nhất",
+      "arrow": true
+    },
+    {
+      "label": "Và thông báo cho toàn bộ người dùng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Phạm vi của một thông báo",
+    "description": "Khi phải công bố sự cố, phạm vi thông báo phụ thuộc vào việc bạn chứng minh được ai bị ảnh hưởng. Không có dấu vết thì phạm vi là toàn bộ người dùng, và thiệt hại về uy tín lớn hơn nhiều so với thực tế."
+  },
+  "keyTakeaways": [
+    "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi.",
+    "Nó phải chống sửa đổi, kể cả bởi người có quyền quản trị.",
+    "Không có dấu vết thì phạm vi ảnh hưởng phải giả định là toàn bộ.",
+    "Dấu vết cũng chứa dữ liệu nhạy cảm nên bản thân nó cần được bảo vệ."
+  ],
+  "summary": {
+    "keyIdea": "Dấu vết là thứ duy nhất thu hẹp được phạm vi ảnh hưởng khi có sự cố.",
+    "formula": "Ai, chạm vào gì, lúc nào - và không sửa được.",
+    "commonMistake": "Coi nhật ký ứng dụng là đủ thay cho dấu vết truy cập dữ liệu."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Thử trả lời câu hỏi: tuần trước ai đã xem hồ sơ của người dùng này? Nếu hệ thống không trả lời được thì bạn chưa có dấu vết, dù nhật ký có đầy đủ tới đâu."
+  },
+  "practicePrompt": {
+    "question": "Vì sao dấu vết kiểm toán phải chống được sửa đổi bởi cả quản trị viên?",
+    "options": [
+      "Vì nếu người có quyền cao nhất sửa được thì dấu vết mất giá trị chứng minh",
+      "Vì quản trị viên thường xoá nhầm dữ liệu khi bảo trì hệ thống",
+      "Vì quy định lưu trữ yêu cầu giữ nguyên vẹn mọi bản ghi nhật ký",
+      "Vì việc sửa đổi làm hỏng thứ tự thời gian của các bản ghi"
+    ],
+    "correct": 0,
+    "explanation": "Dấu vết tồn tại để trả lời câu hỏi trách nhiệm, và câu trả lời chỉ có giá trị nếu không ai trong phạm vi nghi vấn sửa được nó. Vì thế nó thường được ghi sang một hệ thống chỉ thêm không sửa, với quyền tách khỏi quyền quản trị ứng dụng."
+  },
+  "quiz": [
+    {
+      "question": "Dấu vết kiểm toán trả lời câu hỏi gì?",
+      "options": [
+        "Ai đã chạm vào dữ liệu nào và vào lúc nào",
+        "Hệ thống đã xử lý yêu cầu theo những bước nào",
+        "Thành phần nào của hệ thống đang gặp lỗi hiện tại",
+        "Người dùng đã trải qua những màn hình nào"
+      ],
+      "correct": 0,
+      "explanation": "Đây là câu hỏi trách nhiệm chứ không phải câu hỏi kỹ thuật. Nhật ký gỡ lỗi trả lời hệ thống làm gì; dấu vết trả lời con người đã làm gì."
+    },
+    {
+      "question": "Hậu quả của việc không có dấu vết khi xảy ra sự cố là gì?",
+      "options": [
+        "Phải giả định phạm vi ảnh hưởng là toàn bộ người dùng",
+        "Không xác định được lỗ hổng nằm ở phần nào của mã",
+        "Không khôi phục được dữ liệu đã bị thay đổi trái phép",
+        "Không chứng minh được hệ thống đã bị xâm nhập hay chưa"
+      ],
+      "correct": 0,
+      "explanation": "Bạn không chứng minh được ai không bị ảnh hưởng, nên phải hành động như thể tất cả đều bị. Đó là khác biệt giữa một thông báo cho vài trăm người và một thông báo cho toàn bộ khách hàng."
+    },
+    {
+      "question": "Vì sao dấu vết cần tách quyền khỏi quyền quản trị ứng dụng?",
+      "options": [
+        "Vì người trong phạm vi nghi vấn không được sửa bằng chứng về mình",
+        "Vì quản trị viên không có nhu cầu đọc dấu vết kiểm toán",
+        "Vì việc tách quyền giúp giảm tải cho hệ thống chính",
+        "Vì dấu vết thường được lưu ở một định dạng khác hẳn"
+      ],
+      "correct": 0,
+      "explanation": "Nếu người có quyền cao nhất sửa được thì bản ghi không chứng minh được gì về chính họ. Ghi sang hệ thống chỉ thêm không sửa là cách phổ biến để đạt tính chất này."
+    },
+    {
+      "question": "Vì sao bản thân dấu vết cũng cần được bảo vệ?",
+      "options": [
+        "Vì nó chứa thông tin về ai quan tâm tới dữ liệu nào",
+        "Vì nó chiếm dung lượng lớn nên dễ làm đầy ổ đĩa",
+        "Vì nó cần được xoá định kỳ theo quy định lưu trữ",
+        "Vì nó có thể bị đọc bởi các dịch vụ giám sát bên ngoài"
+      ],
+      "correct": 0,
+      "explanation": "Danh sách ai đã tra cứu hồ sơ của ai là dữ liệu nhạy cảm theo cách riêng của nó. Đây là cùng vấn đề với nhật ký ở chặng trước: nơi lưu bằng chứng cũng là nơi có thể rò rỉ."
+    },
+    {
+      "question": "Nội dung tối thiểu của một bản ghi dấu vết là gì?",
+      "options": [
+        "Danh tính người thực hiện, đối tượng bị chạm tới, hành động và thời điểm",
+        "Toàn bộ nội dung dữ liệu trước và sau khi thay đổi",
+        "Địa chỉ mạng và loại thiết bị của người thực hiện",
+        "Mã phiên và toàn bộ tiêu đề của yêu cầu gửi lên"
+      ],
+      "correct": 0,
+      "explanation": "Bốn thành phần ấy đủ để trả lời câu hỏi ai làm gì với cái gì lúc nào. Ghi cả mã phiên hay tiêu đề đầy đủ lại tạo ra chính rủi ro rò rỉ đã nói ở chặng vận hành."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ở chặng đưa mã ra thế giới đã có một bài về nhật ký. Bài này về một loại bản ghi khác, phục vụ một câu hỏi khác - và nó chỉ có giá trị nếu được dựng trước khi cần."
+    },
+    {
+      "type": "heading",
+      "text": "Hai loại bản ghi, hai mục đích"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Nhật ký ứng dụng",
+        "text": "Hệ thống đã làm gì. Phục vụ gỡ lỗi, được xoay vòng và xoá sau vài tuần, ai trong đội cũng đọc được."
+      },
+      "right": {
+        "label": "Dấu vết kiểm toán",
+        "text": "Con người đã làm gì với dữ liệu nào. Phục vụ trách nhiệm, giữ lâu, chống sửa, và quyền đọc hẹp hơn nhiều."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Giá trị lớn nhất là thu hẹp phạm vi"
+    },
+    {
+      "type": "paragraph",
+      "text": "Khi có nghi ngờ dữ liệu bị truy cập trái phép, việc đầu tiên là xác định phạm vi. Có dấu vết thì bạn nói được chính xác hồ sơ nào đã bị xem và thông báo cho đúng những người ấy. Không có thì bạn không chứng minh được ai an toàn, nên phải giả định tất cả - và một thông báo diện rộng gây thiệt hại lớn hơn nhiều so với sự cố thật."
+    },
+    {
+      "type": "callout",
+      "label": "Chỉ thêm, không sửa",
+      "text": "Dấu vết được dùng để trả lời câu hỏi về chính những người có quyền cao nhất trong hệ thống. Vì thế nó phải nằm ở nơi mà quyền quản trị ứng dụng không sửa được - thường là một kho chỉ cho phép ghi thêm."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Dấu vết là thứ bạn chỉ ước mình đã có, đúng vào lúc không thể tạo ra nó nữa.",
+        "Bài sau nói về nguyên tắc làm cho mọi sự cố nhỏ đi ngay từ đầu: cấp ít quyền nhất có thể."
+      ]
+    }
+  ],
+  "interactiveType": "sampling"
+}

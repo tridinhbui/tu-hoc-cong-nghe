@@ -31,7 +31,7 @@ export default function EmojiPicker({ onSelect }: { onSelect: (emoji: string) =>
         type="button"
         onClick={() => setOpen((v) => !v)}
         title={t.miscUi.emojiPicker.selectEmoji}
-        className="p-2 border border-line-soft/50 text-ink-muted hover:text-stone-900 dark:hover:text-stone-100 rounded-xl transition flex-shrink-0 active:scale-95"
+        className="p-2 border border-stone-100 dark:border-stone-800/50 text-ink-muted hover:text-ink rounded-xl transition flex-shrink-0 active:scale-95"
       >
         <Smile className="w-4.5 h-4.5" />
       </button>
@@ -45,7 +45,7 @@ export default function EmojiPicker({ onSelect }: { onSelect: (emoji: string) =>
                 onSelect(emoji);
                 setOpen(false);
               }}
-              className="text-lg hover:bg-stone-100 dark:hover:bg-stone-700 rounded-md p-1 transition"
+              className="text-lg hover:bg-surface-raised rounded-md p-1 transition"
             >
               {emoji}
             </button>

@@ -182,7 +182,7 @@ export default function RigorousLevelExamModal({
         </div>
 
         {/* Info Strip */}
-        <div className="bg-emerald-50/70 dark:bg-emerald-950/40 border-b border-emerald-100 dark:border-emerald-900 px-6 py-2.5 flex items-center justify-between text-xs font-bold text-emerald-900 dark:text-emerald-300 shrink-0">
+        <div className="bg-emerald-50/70 dark:bg-emerald-950/40 border-b border-emerald-100 dark:border-emerald-900 px-6 py-2.5 flex items-center justify-between text-xs font-bold text-accent-ink-strong shrink-0">
           <div className="flex items-center gap-2">
             <Trophy className="w-4 h-4 text-amber-500" />
             <span>
@@ -194,7 +194,7 @@ export default function RigorousLevelExamModal({
                 })}
             </span>
           </div>
-          <div className={`flex items-center gap-1.5 font-mono px-3 py-1 rounded-full border shadow-xs ${timeLeft < 60 ? "bg-rose-500 text-white border-rose-400 animate-pulse font-black" : "bg-white dark:bg-stone-800 text-ink border-stone-200 dark:border-stone-700"}`}>
+          <div className={`flex items-center gap-1.5 font-mono px-3 py-1 rounded-full border shadow-xs ${timeLeft < 60 ? "bg-rose-500 text-white border-rose-400 animate-pulse font-black" : "bg-white dark:bg-stone-800 text-ink border-line-mid"}`}>
             <Clock className="w-3.5 h-3.5" />
             <span>{formatTime(timeLeft)}</span>
           </div>
@@ -204,7 +204,7 @@ export default function RigorousLevelExamModal({
         <div className="p-6 overflow-y-auto space-y-6 flex-1">
           {loadError ? (
             <div className="py-12 text-center space-y-4">
-              <p className="text-sm font-bold text-rose-600 dark:text-rose-400">{loadError}</p>
+              <p className="text-sm font-bold text-alert">{loadError}</p>
               <button
                 onClick={retryExam}
                 className="px-5 py-2.5 rounded-xl bg-emerald-500 text-stone-950 font-black text-xs hover:bg-emerald-400 cursor-pointer inline-flex items-center gap-2"
@@ -263,20 +263,20 @@ export default function RigorousLevelExamModal({
                 <h3 className="text-2xl font-black text-ink">
                   {passed ? t.levelExam.resultPassed : t.levelExam.resultFailed}
                 </h3>
-                <p className="text-sm text-stone-600 dark:text-stone-400">
+                <p className="text-sm text-ink-soft">
                   {t.levelExam.resultPart1}<span className="font-black text-accent text-lg">{format(t.levelExam.resultScore, { correct: correctCount, total: result?.total ?? questions.length })}{format(t.levelExam.resultPart2, { percent: scorePercentage })}</span>{format(t.levelExam.resultRequired, { percent: result?.minPassPercentage ?? minPassPercentage })}
                 </p>
 
                 {result?.expired && (
-                  <p className="text-xs font-bold text-amber-700 dark:text-amber-400">
+                  <p className="text-xs font-bold text-warn-strong">
                     {t.levelExam.timedOutNote}
                   </p>
                 )}
 
                 {passed ? (
-                  <div className="p-4 rounded-2xl bg-accent-soft/60 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 space-y-3 font-medium text-left">
+                  <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-accent-line text-xs text-accent-ink space-y-3 font-medium text-left">
                     <div>
-                      <p className="font-black text-sm text-emerald-900 dark:text-emerald-200">{format(t.levelExam.promotedTitle, { level: levelToTest, name: t.levelTitles[levelToTest] ?? levelMeta.name })}</p>
+                      <p className="font-black text-sm text-accent-ink-strong">{format(t.levelExam.promotedTitle, { level: levelToTest, name: t.levelTitles[levelToTest] ?? levelMeta.name })}</p>
                       <p className="mt-0.5">{t.levelExam.promotedBody}</p>
                     </div>
                     <button
@@ -311,8 +311,8 @@ export default function RigorousLevelExamModal({
                     </button>
                   </div>
                 ) : (
-                  <div className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-xs text-rose-800 dark:text-rose-300 space-y-1 font-medium text-left">
-                    <p className="font-black text-sm text-rose-900 dark:text-rose-200">{t.levelExam.reviewTitle}</p>
+                  <div className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-alert-line text-xs text-alert-deep space-y-1 font-medium text-left">
+                    <p className="font-black text-sm text-alert-ink">{t.levelExam.reviewTitle}</p>
                     <p>{t.levelExam.reviewBody}</p>
                   </div>
                 )}
@@ -336,7 +336,7 @@ export default function RigorousLevelExamModal({
                       key={q.id || qIdx}
                       className={`p-4 rounded-2xl border text-xs space-y-2 ${
                         isCorrect
-                          ? "bg-emerald-50/50 dark:bg-emerald-950/20 border-accent-line/60"
+                          ? "bg-emerald-50/50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-900/60"
                           : "bg-rose-50/50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-900/60"
                       }`}
                     >
@@ -351,17 +351,17 @@ export default function RigorousLevelExamModal({
 
                       <div className="space-y-1 text-ink-body pt-1">
                         <p>
-                          {t.levelExam.youChose}<span className={`font-extrabold ${isCorrect ? "text-emerald-700 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>{userAns !== undefined ? q.options[userAns] : t.levelExam.notChosen}</span>
+                          {t.levelExam.youChose}<span className={`font-extrabold ${isCorrect ? "text-accent-strong" : "text-alert"}`}>{userAns !== undefined ? q.options[userAns] : t.levelExam.notChosen}</span>
                         </p>
                         {!isCorrect && correctIndex !== null && (
                           <p>
-                            {t.levelExam.correctAnswer}<span className="font-extrabold text-emerald-700 dark:text-emerald-400">{q.options[correctIndex]}</span>
+                            {t.levelExam.correctAnswer}<span className="font-extrabold text-accent-strong">{q.options[correctIndex]}</span>
                           </p>
                         )}
                       </div>
 
                       {explanation && (
-                        <div className="mt-2 p-2.5 rounded-xl bg-white dark:bg-stone-900 border border-line text-[11px] text-stone-600 dark:text-stone-400 italic">
+                        <div className="mt-2 p-2.5 rounded-xl bg-white dark:bg-stone-900 border border-line text-[11px] text-ink-soft italic">
                           💡 <strong>{t.levelExam.explanationLabel}</strong> {explanation}
                         </div>
                       )}
@@ -374,7 +374,7 @@ export default function RigorousLevelExamModal({
         </div>
 
         {/* Footer Action Buttons */}
-        <div className="border-t border-line px-6 py-4 bg-stone-50 dark:bg-stone-950 flex items-center justify-between shrink-0">
+        <div className="border-t border-line px-6 py-4 bg-surface flex items-center justify-between shrink-0">
           {!submitted ? (
             <>
               <p className="text-xs text-stone-500 font-semibold">
@@ -403,7 +403,7 @@ export default function RigorousLevelExamModal({
               {!passed && (
                 <button
                   onClick={retryExam}
-                  className="px-4 py-2.5 rounded-xl bg-stone-200 dark:bg-stone-800 text-ink font-bold text-xs hover:bg-stone-300 dark:hover:bg-stone-700 cursor-pointer flex items-center gap-1.5"
+                  className="px-4 py-2.5 rounded-xl bg-surface-sunken text-ink font-bold text-xs hover:bg-surface-deep cursor-pointer flex items-center gap-1.5"
                 >
                   <RefreshCw className="w-4 h-4" />
                   <span>{t.levelExam.retakeNow}</span>

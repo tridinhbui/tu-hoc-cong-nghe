@@ -1,4 +1,5 @@
 import HomePage from "@/components/home/HomePage";
+import RedirectSignedIn from "@/components/home/RedirectSignedIn";
 
 // Trang marketing, kết xuất TĨNH.
 //
@@ -7,9 +8,15 @@ import HomePage from "@/components/home/HomePage";
 // mọi lượt bot quét đều tốn một lần chạy function cộng một vòng mạng ra
 // Supabase, cho một quyết định gần như luôn là "không chuyển hướng".
 //
-// Phép chuyển hướng đó nay nằm ở proxy.ts, chỗ đã biết sẵn câu trả lời:
-// request không mang cookie phiên thì thoát sớm, request có cookie thì
-// `getUser()` vốn đã chạy. Trang này vì thế không cần biết gì về phiên nữa.
+// Phép chuyển hướng đó từng nằm ở proxy.ts, chỗ đã biết sẵn câu trả lời miễn
+// phí. Proxy đã đi cùng cuộc chuyển sang Workers, nên giờ nó nằm phía trình
+// duyệt trong RedirectSignedIn - xem tệp đó về lý do không dùng quy tắc cookie
+// trong next.config. Trang này vẫn không cần biết gì về phiên, và vẫn TĨNH.
 export default function RootPage() {
-  return <HomePage />;
+  return (
+    <>
+      <RedirectSignedIn />
+      <HomePage />
+    </>
+  );
 }

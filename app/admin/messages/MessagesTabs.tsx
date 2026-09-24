@@ -37,8 +37,8 @@ export default function MessagesTabs({
           onClick={() => setTab("feedback")}
           className={`flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
             tab === "feedback"
-              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+              ? "bg-surface-invert text-ink-invert"
+              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
           }`}
         >
           <Mail className="w-4 h-4" />
@@ -49,8 +49,8 @@ export default function MessagesTabs({
           onClick={() => setTab("chat")}
           className={`flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
             tab === "chat"
-              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+              ? "bg-surface-invert text-ink-invert"
+              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
           }`}
         >
           <MessageCircle className="w-4 h-4" />
@@ -61,8 +61,8 @@ export default function MessagesTabs({
           onClick={() => setTab("bugs")}
           className={`flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
             tab === "bugs"
-              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+              ? "bg-surface-invert text-ink-invert"
+              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
           }`}
         >
           <Bug className="w-4 h-4" />
@@ -73,8 +73,8 @@ export default function MessagesTabs({
           onClick={() => setTab("community")}
           className={`flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
             tab === "community"
-              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+              ? "bg-surface-invert text-ink-invert"
+              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
           }`}
         >
           <Users2 className="w-4 h-4" />

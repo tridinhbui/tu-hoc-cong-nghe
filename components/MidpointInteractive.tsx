@@ -45,7 +45,7 @@ export default function MidpointInteractive({
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-surface/50 border-2 border-line rounded-2xl p-6 my-8"
+      className="bg-stone-50 dark:bg-stone-900/50 border-2 border-line rounded-2xl p-6 my-8"
     >
       <div className="flex items-center gap-2 mb-4">
         <h3 className="text-base font-bold text-ink">{t.finalOne.midpointInteractive.stopAndCheck}</h3>
@@ -54,7 +54,7 @@ export default function MidpointInteractive({
         </span>
       </div>
 
-      <p className="text-stone-800 dark:text-stone-300 font-semibold mb-4">{question.question}</p>
+      <p className="text-ink-heading font-semibold mb-4">{question.question}</p>
 
       <div className="space-y-2 mb-4">
         {question.options.map((opt, i) => (
@@ -64,12 +64,12 @@ export default function MidpointInteractive({
             onClick={() => setSelected(i)}
             className={`w-full text-left px-4 py-3 rounded-xl border-2 transition-all ${
               selected === i
-                ? "border-stone-900 dark:border-stone-100 bg-white dark:bg-stone-900 text-ink font-semibold"
+                ? "border-line-invert bg-white dark:bg-stone-900 text-ink font-semibold"
                 : submitted
                   ? i === question.correct
-                    ? "border-emerald-500 bg-accent-soft/50 text-emerald-900 dark:text-emerald-400"
-                    : "border-line bg-surface/50 text-stone-600 dark:text-stone-400 opacity-50"
-                  : "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-stone-400 dark:hover:border-stone-600"
+                    ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-accent-ink-strong"
+                    : "border-line bg-stone-50 dark:bg-stone-900/50 text-ink-soft opacity-50"
+                  : "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-line-firm"
             }`}
           >
             <span className="font-bold text-sm">{String.fromCharCode(65 + i)}.</span>{" "}
@@ -91,7 +91,7 @@ export default function MidpointInteractive({
             saveMidpointDone(lessonId);
             lessonCompletion?.markMidpointDone();
           }}
-          className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-2.5 rounded-xl font-bold text-sm transition"
+          className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert py-2.5 rounded-xl font-bold text-sm transition"
         >
           {t.finalOne.midpointInteractive.checkButton}
         </button>
@@ -103,14 +103,14 @@ export default function MidpointInteractive({
           animate={{ opacity: 1, scale: 1 }}
           className={`mt-4 p-4 rounded-xl ${
             isCorrect
-              ? "bg-emerald-100 dark:bg-emerald-950/50 border border-emerald-300 dark:border-emerald-900"
+              ? "bg-emerald-100 dark:bg-emerald-950/50 border border-accent-line-mid"
               : "bg-surface-raised border border-line-strong"
           }`}
         >
-          <p className={`font-bold ${isCorrect ? "text-emerald-900 dark:text-emerald-400" : "text-ink"}`}>
+          <p className={`font-bold ${isCorrect ? "text-accent-ink-strong" : "text-ink"}`}>
             {isCorrect ? t.finalOne.midpointInteractive.correct : t.finalOne.midpointInteractive.incorrect}
           </p>
-          <p className={`text-sm mt-1 ${isCorrect ? "text-emerald-800 dark:text-emerald-400" : "text-ink-body"}`}>
+          <p className={`text-sm mt-1 ${isCorrect ? "text-accent-ink" : "text-ink-body"}`}>
             {question.explanation}
           </p>
           <button
@@ -121,7 +121,7 @@ export default function MidpointInteractive({
               lessonCompletion?.markMidpointDone();
               onComplete?.();
             }}
-            className="mt-3 text-sm font-bold text-ink-body hover:text-stone-900 dark:hover:text-stone-100 underline"
+            className="mt-3 text-sm font-bold text-ink-body hover:text-ink underline"
           >
             {t.finalOne.midpointInteractive.continueReading}
           </button>

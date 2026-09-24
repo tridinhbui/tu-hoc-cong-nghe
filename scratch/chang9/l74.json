@@ -1,0 +1,176 @@
+{
+  "id": 74,
+  "slug": "quan-sat-he-thong-dang-chay",
+  "title": "Quan sát được: biết hệ thống đang làm gì lúc này",
+  "subtitle": "Kiểm thử nói mã đúng với những gì bạn nghĩ ra; quan sát nói nó đang làm gì thật.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔭",
+  "track": "professional",
+  "whyItMatters": "Người dùng thật làm những việc bạn không nghĩ tới, với dữ liệu bạn không tưởng tượng ra. Bộ kiểm thử chỉ phủ những trường hợp có người đã hình dung; phần còn lại chỉ nhìn thấy được ở hệ thống đang chạy.",
+  "openingQuestion": "Ba loại tín hiệu cơ bản để hiểu một hệ thống đang chạy là gì?",
+  "openingOptions": [
+    "Chỉ số, nhật ký và vết của một yêu cầu đi qua hệ thống",
+    "Kiểm thử đơn vị, kiểm thử tích hợp và kiểm thử đầu cuối",
+    "Mức dùng bộ xử lý, dung lượng đĩa và lưu lượng mạng",
+    "Số người dùng, doanh thu và tỷ lệ giữ chân khách hàng"
+  ],
+  "correctOption": 0,
+  "explanation": "Ba loại tín hiệu trả lời ba câu hỏi khác nhau và không thay nhau được. Chỉ số là những con số theo thời gian, rẻ để lưu và tốt để phát hiện bất thường, nhưng chúng chỉ nói có chuyện gì đó đang xảy ra. Nhật ký là những sự kiện rời rạc có ngữ cảnh, giúp trả lời chuyện gì đã xảy ra với yêu cầu cụ thể này. Vết nối các bước của cùng một yêu cầu qua nhiều dịch vụ, trả lời câu hỏi thời gian đã đi đâu. Thiếu loại nào thì có một họ câu hỏi bạn không trả lời được.",
+  "diagram": [
+    {
+      "label": "Chỉ số: có gì đó bất thường",
+      "arrow": true
+    },
+    {
+      "label": "Nhật ký: chuyện gì xảy ra ở yêu cầu này",
+      "arrow": true
+    },
+    {
+      "label": "Vết: thời gian đã đi đâu trong chuỗi gọi",
+      "arrow": true
+    },
+    {
+      "label": "Ba câu hỏi khác nhau, ba công cụ khác nhau"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Chậm ở đâu trong mười dịch vụ",
+    "description": "Một yêu cầu mất ba giây và đi qua mười dịch vụ. Chỉ số chỉ nói tổng thời gian tăng, nhật ký của từng dịch vụ đều trông bình thường. Vết cho thấy hai giây tám nằm ở một lời gọi lặp trong vòng lặp - thứ không dịch vụ nào tự thấy được."
+  },
+  "keyTakeaways": [
+    "Chỉ số phát hiện bất thường, nhật ký giải thích một trường hợp, vết chỉ ra thời gian đi đâu.",
+    "Kiểm thử phủ những gì bạn nghĩ tới; quan sát cho thấy những gì thật sự xảy ra.",
+    "Chỉ số quan trọng nhất là chỉ số phản ánh trải nghiệm người dùng, không phải tài nguyên máy.",
+    "Đo cả những thứ không bao giờ được xảy ra, vì số không bất ngờ khác không là tín hiệu mạnh."
+  ],
+  "summary": {
+    "keyIdea": "Quan sát được là khả năng trả lời câu hỏi mới về hệ thống mà không cần triển khai thêm mã.",
+    "formula": "Chỉ số + nhật ký + vết.",
+    "commonMistake": "Chỉ đo tài nguyên máy chủ, rồi bảng theo dõi xanh trong lúc người dùng không dùng được."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở bảng theo dõi của bạn và hỏi: nhìn vào đây có biết người dùng đang dùng được sản phẩm hay không? Nếu chỉ thấy mức dùng bộ xử lý và bộ nhớ thì câu trả lời là không."
+  },
+  "practicePrompt": {
+    "question": "Bảng theo dõi của bạn toàn xanh nhưng người dùng báo không đặt hàng được. Nguyên nhân có khả năng nhất là gì?",
+    "options": [
+      "Bạn đang đo sức khoẻ máy chủ chứ không đo hành trình của người dùng",
+      "Hệ thống giám sát bị lỗi nên hiển thị dữ liệu không chính xác",
+      "Người dùng đang gặp vấn đề ở mạng của chính họ chứ không phải ở hệ thống",
+      "Sự cố vừa mới xảy ra nên số liệu chưa kịp cập nhật lên bảng"
+    ],
+    "correct": 0,
+    "explanation": "Bộ xử lý nhàn, bộ nhớ dư và đĩa còn chỗ hoàn toàn tương thích với việc luồng đặt hàng đang hỏng. Chỉ số phản ánh trải nghiệm - số đơn tạo thành công mỗi phút - sẽ đỏ ngay, còn chỉ số tài nguyên thì không bao giờ."
+  },
+  "quiz": [
+    {
+      "question": "Chỉ số khác nhật ký ở điểm nào?",
+      "options": [
+        "Chỉ số là số theo thời gian, nhật ký là sự kiện rời rạc có ngữ cảnh",
+        "Chỉ số do máy chủ ghi còn nhật ký do ứng dụng tự ghi ra",
+        "Chỉ số được lưu vĩnh viễn còn nhật ký bị xoá sau vài ngày",
+        "Chỉ số dùng cho vận hành còn nhật ký dùng cho phát triển"
+      ],
+      "correct": 0,
+      "explanation": "Khác biệt nằm ở hình dạng dữ liệu và câu hỏi trả lời được. Chỉ số rẻ, gộp lại được và tốt cho xu hướng; nhật ký nặng hơn nhưng giữ được chi tiết của một trường hợp cụ thể."
+    },
+    {
+      "question": "Vết phân tán trả lời câu hỏi nào?",
+      "options": [
+        "Thời gian của một yêu cầu đã đi vào những bước nào",
+        "Có bao nhiêu yêu cầu bị lỗi trong khoảng thời gian qua",
+        "Máy chủ nào trong nhóm đang chịu tải cao nhất hiện tại",
+        "Người dùng nào đang gặp lỗi nhiều nhất trong ngày hôm nay"
+      ],
+      "correct": 0,
+      "explanation": "Nó nối các bước của cùng một yêu cầu qua nhiều dịch vụ thành một bức tranh có thứ tự và thời lượng. Không có nó thì mỗi dịch vụ chỉ thấy phần của mình và ai cũng trông vô can."
+    },
+    {
+      "question": "Vì sao chỉ đo tài nguyên máy chủ là chưa đủ?",
+      "options": [
+        "Vì hệ thống có thể nhàn rỗi trong khi người dùng không dùng được",
+        "Vì các chỉ số tài nguyên thay đổi quá nhanh để có thể theo dõi kịp",
+        "Vì máy chủ hiện đại không cho phép đo tài nguyên chính xác",
+        "Vì tài nguyên chỉ phản ánh chi phí chứ không phản ánh tải"
+      ],
+      "correct": 0,
+      "explanation": "Một dịch vụ từ chối mọi yêu cầu sẽ dùng rất ít tài nguyên - bảng theo dõi xanh mướt trong lúc sản phẩm chết. Chỉ số phải bám vào việc người dùng làm được gì."
+    },
+    {
+      "question": "Vì sao nên đo cả những sự kiện lẽ ra không bao giờ xảy ra?",
+      "options": [
+        "Vì một số khác không ở đó là tín hiệu rất mạnh và rõ ràng",
+        "Vì các sự kiện hiếm thường chiếm nhiều tài nguyên nhất",
+        "Vì hệ thống giám sát cần có dữ liệu nền để so sánh xu hướng",
+        "Vì sự kiện hiếm không ghi được vào nhật ký thông thường"
+      ],
+      "correct": 0,
+      "explanation": "Đếm những nhánh không được phép chạy - dữ liệu vi phạm bất biến, đường mã lẽ ra chết - cho bạn một chỉ số mà mọi giá trị khác không đều đáng điều tra, không cần ngưỡng phức tạp."
+    },
+    {
+      "question": "Quan sát được nghĩa là gì?",
+      "options": [
+        "Trả lời được câu hỏi mới về hệ thống mà không phải thêm mã",
+        "Có đủ bảng theo dõi cho từng dịch vụ trong hệ thống",
+        "Ghi lại toàn bộ yêu cầu và phản hồi để tra cứu về sau",
+        "Có người trực theo dõi hệ thống suốt hai mươi tư giờ mỗi ngày"
+      ],
+      "correct": 0,
+      "explanation": "Thước đo là những câu hỏi bạn chưa nghĩ tới lúc viết mã. Nếu mỗi lần điều tra sự cố đều phải triển khai thêm nhật ký rồi chờ nó tái diễn thì hệ thống chưa quan sát được."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Kiểm thử trả lời câu hỏi mã có làm đúng những gì ta nghĩ tới không. Còn câu hỏi nó đang làm gì ngay lúc này, với người dùng thật và dữ liệu thật, thì chỉ hệ thống đang chạy mới trả lời được."
+    },
+    {
+      "type": "heading",
+      "text": "Ba loại tín hiệu"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Mỗi loại một câu hỏi",
+      "subtitle": "Không loại nào thay được loại nào",
+      "concepts": [
+        {
+          "vi": "Chỉ số",
+          "en": "metrics",
+          "def": "Số theo thời gian, rẻ để lưu lâu. Tốt cho câu hỏi có gì bất thường không và xu hướng ra sao."
+        },
+        {
+          "vi": "Nhật ký",
+          "en": "logs",
+          "def": "Sự kiện rời rạc kèm ngữ cảnh. Tốt cho câu hỏi chuyện gì đã xảy ra với chính yêu cầu này."
+        },
+        {
+          "vi": "Vết",
+          "en": "traces",
+          "def": "Chuỗi các bước của một yêu cầu qua nhiều dịch vụ. Tốt cho câu hỏi thời gian đã đi đâu."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Đo thứ người dùng cảm nhận"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mức dùng bộ xử lý và bộ nhớ là chỉ số về chi phí, không phải về sản phẩm. Một dịch vụ từ chối mọi yêu cầu sẽ có tài nguyên rất đẹp. Chỉ số đáng đặt lên bảng theo dõi chính là những thứ mô tả việc người dùng làm được: số đơn tạo thành công mỗi phút, tỷ lệ đăng nhập lỗi, độ trễ theo phân vị của luồng quan trọng nhất."
+    },
+    {
+      "type": "callout",
+      "label": "Đếm cả những thứ không được phép xảy ra",
+      "text": "Một bộ đếm cho nhánh mã lẽ ra không bao giờ chạy, hoặc cho dữ liệu vi phạm một bất biến. Nó nằm ở không suốt nhiều tháng, và ngày nó khác không thì bạn có một tín hiệu không cần ngưỡng, không cần diễn giải."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Quan sát được là khả năng đặt câu hỏi mới cho hệ thống mà không phải triển khai thêm mã rồi chờ sự cố tái diễn.",
+        "Bài sau nói về việc biến những tín hiệu ấy thành hành động: cảnh báo, và cách không đánh thức người ta vô ích."
+      ]
+    }
+  ]
+}

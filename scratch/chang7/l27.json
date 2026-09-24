@@ -1,0 +1,173 @@
+{
+  "id": 27,
+  "slug": "du-lieu-bat-bien",
+  "title": "Bất biến: khi không sửa được lại là tính năng",
+  "subtitle": "Dữ liệu không đổi thì không ai đổi nó sau lưng bạn.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧊",
+  "track": "professional",
+  "whyItMatters": "Phần lớn thời gian đọc mã là để trả lời một câu hỏi: giá trị này lúc chạy tới đây thì đang là gì. Nếu dữ liệu sửa được ở khắp nơi, câu trả lời phụ thuộc vào toàn bộ lịch sử chương trình. Nếu dữ liệu bất biến, câu trả lời nằm ngay tại chỗ nó được tạo ra.",
+  "openingQuestion": "Lợi ích lớn nhất của việc dùng dữ liệu bất biến là gì?",
+  "openingOptions": [
+    "Giá trị đã tạo thì không đổi, nên đọc mã không phải lần theo lịch sử",
+    "Chương trình chạy nhanh hơn vì không cần cấp phát thêm vùng nhớ mới",
+    "Bộ nhớ tiêu tốn ít hơn vì dữ liệu cũ được ghi đè ngay tại chỗ",
+    "Không cần viết kiểm thử vì dữ liệu bất biến không thể sai được"
+  ],
+  "correctOption": 0,
+  "explanation": "Bất biến nghĩa là sau khi tạo ra thì giá trị không đổi nữa; muốn giá trị khác thì tạo giá trị mới. Cái lợi không nằm ở tốc độ - thực ra nó tốn thêm bộ nhớ và thời gian cấp phát. Cái lợi nằm ở chỗ bạn đọc một dòng mã và biết chắc giá trị ở đó là gì, không phải đi tìm xem có hàm nào ở đâu đã sửa nó chưa. Nó cũng xoá sổ cả một họ lỗi: dùng chung tham chiếu, sửa dữ liệu của người gọi, và tranh chấp khi nhiều luồng cùng ghi.",
+  "diagram": [
+    {
+      "label": "Dữ liệu sửa được - ai cũng có thể đổi",
+      "arrow": true
+    },
+    {
+      "label": "Giá trị hiện tại phụ thuộc toàn bộ lịch sử",
+      "arrow": true
+    },
+    {
+      "label": "Dữ liệu bất biến - tạo mới thay vì sửa",
+      "arrow": true
+    },
+    {
+      "label": "Giá trị đọc được ngay tại chỗ khai báo"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Sổ cái kế toán",
+    "description": "Sổ cái không cho tẩy xoá. Ghi sai thì ghi thêm một bút toán điều chỉnh, còn dòng cũ vẫn nằm đó. Nhờ vậy lịch sử luôn tra lại được và không ai sửa quá khứ. Dữ liệu bất biến trong phần mềm dùng đúng nguyên tắc ấy vì đúng lý do ấy."
+  },
+  "keyTakeaways": [
+    "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
+    "Nó đổi bộ nhớ và chút tốc độ lấy khả năng đọc hiểu và an toàn nhiều luồng.",
+    "Chỉ có bất biến nông thì lớp trong vẫn sửa được như thường.",
+    "Hằng số chỉ khoá cái tên, không khoá dữ liệu mà tên đó trỏ tới."
+  ],
+  "summary": {
+    "keyIdea": "Dữ liệu không đổi thì giá trị của nó đọc được tại chỗ, không cần lần theo lịch sử chương trình.",
+    "formula": "Muốn khác đi thì tạo bản mới, không sửa bản cũ.",
+    "commonMistake": "Tưởng khai báo hằng là dữ liệu bên trong cũng khoá theo."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm trong mã của bạn một hàm sửa đối tượng nó nhận vào. Viết lại thành hàm trả về đối tượng mới, rồi xem chỗ gọi có ngắn đi và dễ đọc hơn không."
+  },
+  "practicePrompt": {
+    "question": "Bạn khai báo một hằng chứa danh sách rồi vẫn thêm được phần tử vào danh sách đó. Vì sao?",
+    "options": [
+      "Hằng khoá việc gán lại tên, không khoá nội dung bên trong",
+      "Danh sách là kiểu duy nhất mà từ khoá hằng không áp dụng được",
+      "Hằng chỉ có hiệu lực sau khi chương trình đã biên dịch xong",
+      "Thêm phần tử không tính là sửa vì kích thước danh sách vẫn hợp lệ"
+    ],
+    "correct": 0,
+    "explanation": "Hằng bảo đảm cái tên luôn trỏ vào đúng vật đó, chứ không bảo đảm vật đó không đổi. Muốn khoá nội dung thì phải dùng cấu trúc bất biến thật sự hoặc gọi hàm đóng băng của ngôn ngữ."
+  },
+  "quiz": [
+    {
+      "question": "Dữ liệu bất biến nghĩa là gì?",
+      "options": [
+        "Sau khi tạo ra thì giá trị không thay đổi được nữa",
+        "Dữ liệu được lưu xuống ổ đĩa nên tồn tại qua các lần chạy",
+        "Dữ liệu chỉ đọc được bởi đúng một luồng tại một thời điểm",
+        "Dữ liệu tự động khôi phục về giá trị ban đầu khi có lỗi xảy ra"
+      ],
+      "correct": 0,
+      "explanation": "Bất biến nói về khả năng thay đổi giá trị, không nói về nơi lưu hay quyền truy cập. Muốn giá trị khác thì tạo giá trị mới, còn giá trị cũ vẫn nguyên vẹn cho những ai đang giữ nó."
+    },
+    {
+      "question": "Cái giá phải trả khi dùng dữ liệu bất biến là gì?",
+      "options": [
+        "Tốn thêm bộ nhớ và thời gian cấp phát cho mỗi bản mới",
+        "Mã khó đọc hơn vì nhiều biến cùng lúc",
+        "Không dùng được khi có nhiều luồng",
+        "Dữ liệu bất biến không lưu xuống được vì luôn phải đổi tên"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi thay đổi sinh ra một bản mới, nên tốn bộ nhớ và thời gian hơn sửa tại chỗ. Đổi lại là mã dễ đọc hơn và an toàn khi nhiều luồng cùng chạy - chính chỗ mà bất biến mạnh nhất."
+    },
+    {
+      "question": "Vì sao bất biến giúp chương trình nhiều luồng an toàn hơn?",
+      "options": [
+        "Vì không ai ghi được thì không có tranh chấp khi cùng đọc",
+        "Vì hệ điều hành tự khoá vùng nhớ đó",
+        "Vì các luồng phải xếp hàng chờ nhau",
+        "Vì mỗi lúc chỉ một luồng được truy cập"
+      ],
+      "correct": 0,
+      "explanation": "Tranh chấp dữ liệu cần ít nhất một bên ghi. Nếu không bên nào ghi được thì mọi luồng đọc cùng lúc đều an toàn, và bạn không cần khoá - thứ vốn là nguồn của bế tắc và lỗi khó tái hiện."
+    },
+    {
+      "question": "Khai báo hằng khoá được cái gì?",
+      "options": [
+        "Việc gán lại tên đó cho một giá trị khác",
+        "Toàn bộ nội dung của đối tượng mà tên đó đang trỏ tới",
+        "Cả tên lẫn mọi đối tượng lồng bên trong nó ở mọi cấp",
+        "Quyền đọc giá trị đó từ những tệp mã nguồn khác trong dự án"
+      ],
+      "correct": 0,
+      "explanation": "Hằng là lời hứa về cái tên: nó sẽ luôn trỏ vào đúng vật này. Vật đó có sửa được hay không lại là chuyện của kiểu dữ liệu, nên hằng chứa danh sách thì danh sách vẫn thêm bớt được."
+    },
+    {
+      "question": "Bất biến nông có hạn chế gì?",
+      "options": [
+        "Các đối tượng lồng bên trong vẫn sửa được như thường",
+        "Nó chỉ áp dụng được cho những đối tượng có ít hơn mười trường",
+        "Nó chạy chậm hơn hẳn bất biến sâu",
+        "Nó ngăn cả việc đọc dữ liệu chứ không riêng gì việc ghi dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Đóng băng lớp ngoài không đóng băng những gì lớp ngoài trỏ tới. Đây là cùng một hình dạng với chuyện bản sao nông ở bài trước: lớp ngoài an toàn, lớp trong vẫn dùng chung và vẫn sửa được."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Nghe thì như một hạn chế: dữ liệu tạo ra rồi không sửa được nữa. Nhưng thứ bạn đánh mất là khả năng sửa, còn thứ bạn nhận lại là khả năng biết chắc - và trong một hệ thống lớn, biết chắc đáng giá hơn nhiều."
+    },
+    {
+      "type": "heading",
+      "text": "Câu hỏi tốn thời gian nhất khi đọc mã"
+    },
+    {
+      "type": "paragraph",
+      "text": "Giá trị này lúc chạy tới đây là gì? Với dữ liệu sửa được, muốn trả lời thì phải tìm mọi chỗ có thể đã sửa nó - kể cả những hàm bạn chỉ truyền nó qua. Với dữ liệu bất biến, câu trả lời nằm ngay tại chỗ tạo ra nó, và không có chỗ nào khác cần tìm."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Sửa tại chỗ",
+        "text": "Nhanh và tiết kiệm bộ nhớ. Đổi lại, ai giữ tham chiếu tới dữ liệu cũng có thể đổi nó, và bạn không biết trước ai."
+      },
+      "right": {
+        "label": "Tạo bản mới",
+        "text": "Tốn bộ nhớ hơn. Đổi lại, người đang giữ bản cũ vẫn thấy đúng thứ họ đã nhận, và không có thay đổi nào diễn ra sau lưng ai."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Hằng không phải bất biến",
+      "text": "Khai báo hằng khoá cái tên, không khoá dữ liệu. Hằng chứa danh sách thì vẫn thêm bớt phần tử được - cái không làm được chỉ là gán tên đó cho một danh sách khác."
+    },
+    {
+      "type": "heading",
+      "text": "Bất biến giải quyết luôn ba lỗi ở bài trước"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Không còn chuyện hàm sửa dữ liệu của người gọi, vì hàm không sửa được gì.",
+        "Không còn chuyện bản sao nông làm hỏng bản gốc, vì bản gốc vốn không đổi.",
+        "Không còn tranh chấp giữa các luồng, vì tranh chấp cần có ít nhất một bên ghi."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bất biến đổi một ít bộ nhớ lấy rất nhiều sự chắc chắn. Ở phần lớn mã nghiệp vụ, đó là đánh đổi có lợi.",
+        "Bài sau chuyển từ dữ liệu trong bộ nhớ sang dữ liệu giữa hai hệ thống: lược đồ, và vì sao nó là một bản hợp đồng."
+      ]
+    }
+  ]
+}

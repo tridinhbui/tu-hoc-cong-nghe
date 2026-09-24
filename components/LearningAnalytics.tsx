@@ -60,8 +60,8 @@ function formatHour(hour: number) {
 }
 
 function metricTone(score: number) {
-  if (score >= 75) return "text-emerald-700 dark:text-emerald-300";
-  if (score >= 45) return "text-amber-700 dark:text-amber-300";
+  if (score >= 75) return "text-accent-strong";
+  if (score >= 45) return "text-warn-strong";
   return "text-ink-body";
 }
 
@@ -99,7 +99,7 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: Cu
     return (
       <div className="bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-line rounded-xl p-3 shadow-xl text-xs space-y-1.5 z-50">
         {formattedLabel && (
-          <p className="font-extrabold text-ink border-b border-line-soft/80 pb-1 mb-1.5">
+          <p className="font-extrabold text-ink border-b border-stone-100 dark:border-stone-800/80 pb-1 mb-1.5">
             {formattedLabel}
           </p>
         )}
@@ -176,10 +176,10 @@ function MetricCard({
           <p className={`${sectionLabelClass} text-[10px] tracking-[0.2em] opacity-80`}>
             {label}
           </p>
-          <p className="mt-3 text-2xl sm:text-3xl font-extrabold text-stone-950 dark:text-stone-50 tracking-tight">{value}</p>
+          <p className="mt-3 text-2xl sm:text-3xl font-extrabold text-ink-max tracking-tight">{value}</p>
           <p className="mt-2 text-xs text-ink-muted leading-relaxed truncate">{hint}</p>
         </div>
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-stone-50 dark:bg-stone-800/60 text-ink-muted group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-stone-50 dark:bg-stone-800/60 text-ink-muted group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950/30 group-hover:text-accent transition-colors duration-300">
           {icon}
         </div>
       </div>
@@ -209,18 +209,18 @@ function AnalyticsSkeleton() {
   return (
     <div className="space-y-6 animate-pulse">
       <div className="rounded-2xl border-2 border-line bg-white dark:bg-stone-900 p-5 sm:p-8">
-        <div className="h-6 w-40 rounded-full bg-stone-200 dark:bg-stone-800" />
-        <div className="mt-4 h-10 w-72 rounded-2xl bg-stone-200 dark:bg-stone-800" />
-        <div className="mt-3 h-5 w-full max-w-2xl rounded-full bg-stone-200 dark:bg-stone-800" />
+        <div className="h-6 w-40 rounded-full bg-surface-sunken" />
+        <div className="mt-4 h-10 w-72 rounded-2xl bg-surface-sunken" />
+        <div className="mt-3 h-5 w-full max-w-2xl rounded-full bg-surface-sunken" />
       </div>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {Array.from({ length: 8 }).map((_, index) => (
-          <div key={index} className="h-36 rounded-2xl border border-line bg-stone-200 dark:bg-stone-800" />
+          <div key={index} className="h-36 rounded-2xl border border-line bg-surface-sunken" />
         ))}
       </div>
       <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="h-96 rounded-2xl border border-line bg-stone-200 dark:bg-stone-800" />
-        <div className="h-96 rounded-2xl border border-line bg-stone-200 dark:bg-stone-800" />
+        <div className="h-96 rounded-2xl border border-line bg-surface-sunken" />
+        <div className="h-96 rounded-2xl border border-line bg-surface-sunken" />
       </div>
     </div>
   );
@@ -311,7 +311,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
         <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500" />
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0 flex-1">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-accent-line bg-accent-soft/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-accent-line bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-accent-strong">
               {t.analytics.personal}
             </div>
             <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-ink">
@@ -333,19 +333,19 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           {/* Compact Horizontal Quick Stats */}
           <div className="grid grid-cols-3 gap-1.5 sm:gap-3 shrink-0">
             <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">{t.analytics.streakLabel}</p>
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-ink-faint">{t.analytics.streakLabel}</p>
               <p className="mt-1 text-base sm:text-lg font-black text-ink whitespace-nowrap">{format(t.analytics.streakDays, { count: analytics.streakDays })}</p>
               <p className="text-[9px] font-semibold text-ink-muted truncate">{format(t.analytics.streakRecord, { count: analytics.longestStreak })}</p>
             </div>
 
             <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">{t.analytics.quizScoreLabel}</p>
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-ink-faint">{t.analytics.quizScoreLabel}</p>
               <p className="mt-1 text-base sm:text-lg font-black text-accent whitespace-nowrap">{analytics.averageQuizScore}%</p>
               <p className="text-[9px] font-semibold text-ink-muted truncate">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</p>
             </div>
 
             <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-stone-400 dark:text-stone-400">{t.analytics.studyHourLabel}</p>
+              <p className="text-[9px] font-extrabold uppercase tracking-wider text-ink-faint">{t.analytics.studyHourLabel}</p>
               <p className="mt-1 text-base sm:text-lg font-black text-ink whitespace-nowrap">
                 {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown}
               </p>
@@ -371,7 +371,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               onClick={() => setActiveSection(tab.id)}
               className="relative pb-3 text-sm font-bold transition-all cursor-pointer focus:outline-none whitespace-nowrap shrink-0"
             >
-              <span className={`transition-colors duration-200 ${isActive ? "text-stone-900 dark:text-stone-50" : "text-ink-faint hover:text-stone-700 dark:hover:text-stone-300"}`}>
+              <span className={`transition-colors duration-200 ${isActive ? "text-ink" : "text-ink-faint hover:text-ink-body"}`}>
                 {tab.label}
               </span>
               {isActive && (
@@ -435,9 +435,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
                   <p className={sectionLabelClass}>{t.analytics.rhythmEyebrow}</p>
-                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.rhythmTitle}</h3>
+                  <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.rhythmTitle}</h3>
                 </div>
-                <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-stone-600 dark:text-stone-300 font-bold"}>
+                <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-ink-soft font-bold"}>
                   {format(t.analytics.rhythmPeak, { count: weeklyPeak })}
                 </div>
               </div>
@@ -481,7 +481,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             >
               <div className="mb-6">
                 <p className={sectionLabelClass}>{t.analytics.hoursEyebrow}</p>
-                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.hoursTitle}</h3>
+                <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.hoursTitle}</h3>
                 <p className="mt-1 text-xs text-ink-muted">{t.analytics.hoursSub}</p>
               </div>
               {studyHourData.length === 0 ? (
@@ -566,7 +566,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             >
               <div className="mb-6">
                 <p className={sectionLabelClass}>{t.analytics.trackEyebrow}</p>
-                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.trackTitle}</h3>
+                <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.trackTitle}</h3>
               </div>
               {trackPieData.length === 0 ? (
                 <div className="flex h-[260px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-800/40 text-xs text-ink-faint border border-stone-200/50 dark:border-stone-800/80">
@@ -594,7 +594,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                     </ResponsiveContainer>
                     <div className="absolute flex flex-col items-center justify-center">
                       <span className="text-[10px] uppercase font-extrabold tracking-widest text-ink-faint">{t.analytics.total}</span>
-                      <span className="text-xl font-extrabold text-stone-900 dark:text-stone-50">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</span>
+                      <span className="text-xl font-extrabold text-ink">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</span>
                     </div>
                   </div>
                   <div className="space-y-2.5">
@@ -605,9 +605,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       >
                         <div className="flex items-center gap-2.5">
                           <span className="h-3 w-3 rounded-full ring-2 ring-white dark:ring-stone-900 shrink-0" style={{ backgroundColor: item.color }} />
-                          <span className="font-bold text-stone-800 dark:text-stone-200">{item.name}</span>
+                          <span className="font-bold text-ink-heading">{item.name}</span>
                         </div>
-                        <span className="font-extrabold text-stone-900 dark:text-stone-50">{format(t.analytics.lessonCount, { count: item.value })}</span>
+                        <span className="font-extrabold text-ink">{format(t.analytics.lessonCount, { count: item.value })}</span>
                       </div>
                     ))}
                   </div>
@@ -625,9 +625,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
                   <p className={sectionLabelClass}>{t.analytics.difficultyEyebrow}</p>
-                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.difficultyTitle}</h3>
+                  <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.difficultyTitle}</h3>
                 </div>
-                <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-stone-600 dark:text-stone-300 font-bold"}>
+                <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-ink-soft font-bold"}>
                   {format(t.analytics.lessonsDone, { count: analytics.totalLessonsCompleted })}
                 </div>
               </div>
@@ -639,9 +639,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       <div className="mb-1.5 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: item.color }} />
-                          <span className="font-bold text-stone-800 dark:text-stone-200">{item.label}</span>
+                          <span className="font-bold text-ink-heading">{item.label}</span>
                         </div>
-                        <span className="font-extrabold text-stone-900 dark:text-stone-50">{format(t.analytics.lessonsWithPercent, { count: item.value, percent: Math.round(width) })}</span>
+                        <span className="font-extrabold text-ink">{format(t.analytics.lessonsWithPercent, { count: item.value, percent: Math.round(width) })}</span>
                       </div>
                       <div className="h-2.5 rounded-full bg-surface-raised overflow-hidden">
                         <motion.div
@@ -701,7 +701,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
                   <p className={sectionLabelClass}>{t.analytics.notesEyebrow}</p>
-                  <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.notesTitle}</h3>
+                  <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.notesTitle}</h3>
                 </div>
                 <Link
                   href="/ghi-chu"
@@ -729,7 +729,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                           {index + 1}
                         </div>
                         <div className="min-w-0">
-                          <p className="truncate text-xs font-bold text-ink group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                          <p className="truncate text-xs font-bold text-ink group-hover:text-accent-strong transition-colors">
                             {lesson.title}
                           </p>
                           <p className="mt-1 text-[10px] text-ink-faint font-medium">
@@ -753,7 +753,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             >
               <div className="mb-6">
                 <p className={sectionLabelClass}>{t.analytics.nextEyebrow}</p>
-                <h3 className="mt-2 text-lg font-bold text-stone-900 dark:text-stone-50">{t.analytics.nextTitle}</h3>
+                <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.nextTitle}</h3>
               </div>
 
               <div className="space-y-3">
@@ -804,7 +804,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                 </Link>
                 <Link
                   href="/ghi-chu"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-line bg-white dark:bg-stone-900 px-4 py-2.5 text-xs font-bold text-stone-800 dark:text-stone-100 transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/50 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-line bg-white dark:bg-stone-900 px-4 py-2.5 text-xs font-bold text-ink-heading transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/50 cursor-pointer"
                 >
                   {t.analytics.openNotes}
                   <ArrowRight className="h-3.5 w-3.5" />

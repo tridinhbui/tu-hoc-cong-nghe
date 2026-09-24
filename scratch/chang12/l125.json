@@ -1,0 +1,167 @@
+{
+  "id": 125,
+  "slug": "phan-quyen-chi-tiet",
+  "title": "Phân quyền: theo vai trò là chưa đủ",
+  "subtitle": "Người này là quản lý - nhưng là quản lý của phòng nào, và bản ghi này thuộc phòng nào?",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🗝️",
+  "track": "professional",
+  "whyItMatters": "Vai trò trả lời được câu hỏi người này làm được loại việc gì, nhưng không trả lời được câu hỏi với dữ liệu nào. Khoảng trống giữa hai câu ấy là nơi loại lỗ hổng bị báo cáo nhiều nhất sinh ra.",
+  "openingQuestion": "Người dùng có vai trò quản lý gọi vào bản ghi của một phòng khác. Hệ thống nên kiểm gì?",
+  "openingOptions": [
+    "Người này có quyền với chính bản ghi đang được yêu cầu hay không",
+    "Người này có vai trò quản lý hay không, vì vai trò đã đủ để quyết định",
+    "Yêu cầu này có đến từ thiết bị mà người dùng thường dùng không",
+    "Người này đã đăng nhập trong vòng bao lâu tính tới thời điểm gọi"
+  ],
+  "correctOption": 0,
+  "explanation": "Vai trò cho biết loại thao tác được phép, còn quan hệ giữa người dùng và bản ghi mới cho biết thao tác ấy có hợp lệ với dữ liệu này không. Kiểm vai trò mà bỏ vế thứ hai nghĩa là mọi quản lý đều xem được dữ liệu của mọi phòng, và hệ thống không ghi nhận điều đó như một lỗi vì mọi yêu cầu đều hợp lệ về mặt kỹ thuật. Đây là cùng khoảng trống đã gặp ở chặng mạng, chỉ khác là ở đây nó xuất hiện dưới dạng phân quyền theo vai trò trông rất chỉn chu.",
+  "diagram": [
+    {
+      "label": "Vai trò: được làm loại thao tác nào",
+      "arrow": true
+    },
+    {
+      "label": "Quan hệ: bản ghi này có thuộc phạm vi của họ không",
+      "arrow": true
+    },
+    {
+      "label": "Thiếu vế hai → mọi quản lý xem được mọi phòng",
+      "arrow": true
+    },
+    {
+      "label": "Và không có lỗi nào được ghi lại"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Quản lý của phòng khác",
+    "description": "Hệ thống kiểm rất kỹ rằng người gọi có vai trò quản lý. Nó không kiểm bản ghi đang xem thuộc phòng nào. Một quản lý tò mò đổi con số trên đường dẫn và đọc được lương của phòng bên cạnh."
+  },
+  "keyTakeaways": [
+    "Vai trò trả lời loại thao tác; quan hệ trả lời với dữ liệu nào.",
+    "Kiểm quyền nên đặt ở tầng gần dữ liệu để mọi đường gọi đều đi qua.",
+    "Mặc định là từ chối: thiếu quy tắc thì không cho, thay vì cho rồi lọc dần.",
+    "Kiểm thử loại lỗ hổng này cần hai tài khoản thật, vì nó không tự hiện trong nhật ký."
+  ],
+  "summary": {
+    "keyIdea": "Phân quyền đầy đủ cần cả vai trò lẫn quan hệ giữa người dùng và bản ghi.",
+    "formula": "Người này có quyền làm việc này với chính bản ghi này không?",
+    "commonMistake": "Kiểm vai trò ở đầu vào rồi coi như đã xong phần phân quyền."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy hai tài khoản cùng vai trò nhưng khác phạm vi, rồi dùng phiên của tài khoản này gọi vào bản ghi của tài khoản kia. Nếu ra dữ liệu thì bạn vừa tìm được một lỗ hổng thật."
+  },
+  "practicePrompt": {
+    "question": "Nên đặt việc kiểm quyền theo bản ghi ở tầng nào?",
+    "options": [
+      "Ở tầng gần dữ liệu nhất, để mọi đường gọi đều phải đi qua nó",
+      "Ở tầng giao diện, vì đó là nơi người dùng gửi yêu cầu vào",
+      "Ở tầng định tuyến, vì mọi yêu cầu đều đi qua đó trước tiên",
+      "Ở mỗi hàm nghiệp vụ, để mỗi nơi tự quyết định theo ngữ cảnh riêng"
+    ],
+    "correct": 0,
+    "explanation": "Dữ liệu được đọc qua nhiều đường hơn bạn nhớ: giao diện chính, một tác vụ nền, một điểm gọi cho đối tác, một đoạn lệnh chạy tay. Đặt kiểm tra ở tầng gần dữ liệu là cách duy nhất bảo đảm mọi đường ấy đều đi qua cùng một quy tắc."
+  },
+  "quiz": [
+    {
+      "question": "Vai trò và quan hệ trả lời hai câu hỏi nào?",
+      "options": [
+        "Được làm loại thao tác gì, và được làm với dữ liệu nào",
+        "Là ai trong hệ thống, và đăng nhập từ thiết bị nào",
+        "Thuộc bộ phận nào, và có thâm niên bao lâu trong tổ chức",
+        "Có quyền đọc hay ghi, và trong khoảng thời gian nào"
+      ],
+      "correct": 0,
+      "explanation": "Hai vế phải cùng đúng thì thao tác mới hợp lệ. Bỏ vế thứ hai là để lọt loại lỗ hổng bị báo cáo nhiều nhất trong các chương trình tìm lỗi bảo mật."
+    },
+    {
+      "question": "Vì sao lỗ hổng thiếu kiểm quyền theo bản ghi khó phát hiện?",
+      "options": [
+        "Vì mọi yêu cầu đều hợp lệ về mặt kỹ thuật nên không có lỗi nào được ghi",
+        "Vì nó chỉ xuất hiện khi hệ thống chịu tải cao bất thường",
+        "Vì công cụ quét bảo mật tự động không đọc được mã nguồn",
+        "Vì nó chỉ ảnh hưởng tới một số ít người dùng đang có vai trò đặc biệt hơn"
+      ],
+      "correct": 0,
+      "explanation": "Người dùng hợp lệ, phiên hợp lệ, yêu cầu đúng cú pháp - không có gì để cảnh báo. Chỉ có kiểm thử chủ động bằng hai tài khoản mới làm nó lộ ra."
+    },
+    {
+      "question": "Nguyên tắc mặc định khi thiếu quy tắc phân quyền là gì?",
+      "options": [
+        "Từ chối, và chỉ cho phép khi có quy tắc nói rõ",
+        "Cho phép, rồi bổ sung quy tắc hạn chế khi phát hiện vấn đề",
+        "Cho phép với quyền đọc và từ chối với quyền ghi",
+        "Ghi lại yêu cầu để quản trị viên xem xét và quyết định sau"
+      ],
+      "correct": 0,
+      "explanation": "Mặc định cho phép nghĩa là mọi tính năng mới đều mở cho tới khi có người nhớ đóng lại. Mặc định từ chối thì lỗi biểu hiện thành người dùng không làm được việc - khó chịu nhưng an toàn."
+    },
+    {
+      "question": "Vì sao kiểm quyền nên đặt gần tầng dữ liệu?",
+      "options": [
+        "Vì dữ liệu được đọc qua nhiều đường hơn số đường bạn nhớ",
+        "Vì tầng dữ liệu xử lý nhanh hơn nên ít ảnh hưởng hiệu năng",
+        "Vì chỉ tầng dữ liệu mới biết bản ghi thuộc về ai",
+        "Vì các tầng phía trên không có thông tin về người dùng"
+      ],
+      "correct": 0,
+      "explanation": "Tác vụ nền, điểm gọi cho đối tác, đoạn lệnh chạy tay lúc xử lý sự cố - tất cả đều bỏ qua tầng giao diện. Đặt quy tắc ở chỗ mọi đường cùng đi qua là cách duy nhất phủ hết."
+    },
+    {
+      "question": "Cách kiểm thử loại lỗ hổng này là gì?",
+      "options": [
+        "Dùng phiên của tài khoản này gọi vào bản ghi của tài khoản khác",
+        "Chạy công cụ quét bảo mật tự động trên toàn bộ hệ thống",
+        "Rà soát toàn bộ mã nguồn để tìm ra những chỗ thiếu câu lệnh kiểm tra",
+        "Theo dõi nhật ký để phát hiện những truy cập bất thường"
+      ],
+      "correct": 0,
+      "explanation": "Công cụ tự động không biết bản ghi nào nên thuộc về ai, nên chúng bỏ sót loại lỗi này gần như hoàn toàn. Hai tài khoản thật và một lần đổi số trên đường dẫn là phép thử rẻ và hiệu quả nhất."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ở chặng mạng đã có một bài về xác thực và uỷ quyền. Bài này đi sâu vào vế thứ hai, vì đó là nơi phần lớn lỗ hổng thực tế nằm - và là nơi phân quyền trông chỉn chu nhất lại hở nhiều nhất."
+    },
+    {
+      "type": "heading",
+      "text": "Vai trò không đủ"
+    },
+    {
+      "type": "paragraph",
+      "text": "Phân quyền theo vai trò trả lời gọn gàng câu hỏi người này làm được loại việc gì. Nhưng dữ liệu thật luôn có phạm vi: bản ghi này thuộc phòng nào, đơn hàng này của khách nào, hồ sơ này của ai. Vai trò không mang thông tin đó, nên hệ thống chỉ kiểm vai trò sẽ để mọi người cùng vai trò thấy dữ liệu của nhau."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Hai câu hỏi phải cùng đúng",
+      "subtitle": "Thiếu câu nào cũng để lọt",
+      "concepts": [
+        {
+          "vi": "Vai trò",
+          "en": "role",
+          "def": "Loại thao tác được phép: xem, sửa, duyệt, xoá. Ổn định và dễ quản lý."
+        },
+        {
+          "vi": "Quan hệ",
+          "en": "relationship",
+          "def": "Bản ghi này có nằm trong phạm vi của người đó không. Phụ thuộc dữ liệu, nên phải kiểm ở từng lần gọi."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Mặc định là từ chối",
+      "text": "Khi thiếu quy tắc cho một trường hợp, hệ thống nên từ chối. Lỗi kiểu này biểu hiện thành người dùng phàn nàn không làm được việc - khó chịu nhưng thấy ngay. Mặc định cho phép thì lỗi biểu hiện thành dữ liệu bị lộ, và không ai phàn nàn."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Biết người dùng là ai chỉ là nửa câu chuyện. Nửa còn lại là bản ghi này có phải của họ không - và nửa ấy hay bị bỏ.",
+        "Bài sau chuyển sang bảo vệ chính dữ liệu khi nó nằm yên trong kho."
+      ]
+    }
+  ]
+}

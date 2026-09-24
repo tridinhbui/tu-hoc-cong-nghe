@@ -40,12 +40,12 @@ export default function MistakeReviewWidget({ userId }: MistakeReviewWidgetProps
         className="group block bg-rose-50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/50 rounded-xl p-4 transition-all hover:border-rose-300 dark:hover:border-rose-800 hover:shadow-sm"
       >
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/50 text-alert flex items-center justify-center flex-shrink-0">
             <AlertCircle className="w-5 h-5" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-0.5">
-              <h3 className="text-sm font-bold text-rose-900 dark:text-rose-100">
+              <h3 className="text-sm font-bold text-alert-ink">
                 {t.finalTwo.mistakeReviewWidget.title}
               </h3>
               <span className="inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-bold">

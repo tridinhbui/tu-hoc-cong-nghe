@@ -1,0 +1,159 @@
+{
+  "id": 123,
+  "slug": "phien-dang-nhap-va-ma-thong-bao",
+  "title": "Phiên đăng nhập: chìa khoá được cấp sau khi mở cửa",
+  "subtitle": "Lấy được mã phiên thì không cần biết mật khẩu nữa.",
+  "duration": "8 phút",
+  "difficulty": "Khó",
+  "emoji": "🎟️",
+  "track": "professional",
+  "whyItMatters": "Sau khi đăng nhập, mọi yêu cầu tiếp theo được chấp nhận nhờ một mã ngắn gọn nào đó. Mã ấy tương đương mật khẩu về mặt quyền hạn nhưng thường được bảo vệ kém hơn nhiều.",
+  "openingQuestion": "Vì sao mã phiên lại là mục tiêu hấp dẫn hơn mật khẩu?",
+  "openingOptions": [
+    "Vì nó cho quyền tương đương mà không cần vượt qua yếu tố thứ hai",
+    "Vì nó ngắn hơn nên dễ dò tìm bằng cách thử tự động",
+    "Vì nó được lưu ở dạng văn bản thuần trong cơ sở dữ liệu",
+    "Vì nó không bao giờ hết hạn nên dùng được lâu dài"
+  ],
+  "correctOption": 0,
+  "explanation": "Mã phiên được cấp sau khi mọi bước kiểm tra đã xong, nên ai cầm nó thì đi thẳng vào trong mà không phải qua mật khẩu hay yếu tố thứ hai lần nữa. Nó cũng đi kèm mọi yêu cầu, nên nó xuất hiện ở nhiều chỗ hơn mật khẩu: trong trình duyệt, trong nhật ký nếu bị ghi nhầm, trong đường dẫn nếu bị đặt sai chỗ. Độ dài thì không phải vấn đề vì mã sinh ngẫu nhiên đủ dài không dò được, và hết hạn thì phụ thuộc vào cách bạn cấu hình.",
+  "diagram": [
+    {
+      "label": "Đăng nhập: mật khẩu + yếu tố thứ hai",
+      "arrow": true
+    },
+    {
+      "label": "Hệ thống cấp mã phiên",
+      "arrow": true
+    },
+    {
+      "label": "Mọi yêu cầu sau đó chỉ cần mã ấy",
+      "arrow": true
+    },
+    {
+      "label": "Ai cầm mã thì bỏ qua được cả hai bước đầu"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Mã phiên trong nhật ký",
+    "description": "Một cấu hình ghi nhật ký đầy đủ tiêu đề yêu cầu sẽ ghi luôn mã phiên vào tệp nhật ký - nơi được lưu lâu, sao chép nhiều nơi và cấp quyền đọc rộng. Đây là cách rò rỉ phiên phổ biến mà không ai bị tấn công cả."
+  },
+  "keyTakeaways": [
+    "Mã phiên có quyền tương đương mật khẩu nhưng lộ ra ở nhiều chỗ hơn.",
+    "Phiên phải có hạn và phải huỷ được ngay lập tức khi cần.",
+    "Đặt cờ bảo vệ trên cookie để mã không đọc được từ mã kịch bản.",
+    "Cấp mã phiên mới sau khi đăng nhập để tránh bị gán phiên từ trước."
+  ],
+  "summary": {
+    "keyIdea": "Phiên là chìa khoá thay cho mật khẩu, nên nó cần được bảo vệ ngang mật khẩu.",
+    "formula": "Có hạn, huỷ được, không lộ ra ngoài.",
+    "commonMistake": "Ghi mã phiên vào nhật ký hoặc đặt nó trong đường dẫn."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm xem hệ thống của bạn có cách huỷ một phiên cụ thể ngay lập tức không. Nếu câu trả lời là chờ nó hết hạn thì bạn chưa xử lý được tình huống tài khoản bị chiếm."
+  },
+  "practicePrompt": {
+    "question": "Vì sao nên cấp mã phiên mới ngay sau khi người dùng đăng nhập thành công?",
+    "options": [
+      "Để mã do kẻ tấn công gán trước đó không còn giá trị sau khi đăng nhập",
+      "Để giảm số lượng phiên đang mở cùng lúc trên hệ thống",
+      "Để người dùng có thể đăng nhập trên nhiều thiết bị khác nhau",
+      "Để hệ thống ghi nhận được đúng thời điểm bắt đầu của mỗi phiên làm việc"
+    ],
+    "correct": 0,
+    "explanation": "Nếu mã phiên không đổi khi đăng nhập, kẻ tấn công có thể đặt sẵn một mã vào trình duyệt nạn nhân rồi chờ họ đăng nhập - và mã ấy nay mang quyền của tài khoản vừa đăng nhập. Cấp mã mới ở đúng thời điểm chuyển quyền cắt đứt kịch bản đó."
+  },
+  "quiz": [
+    {
+      "question": "Mã phiên tương đương với gì về mặt quyền hạn?",
+      "options": [
+        "Mật khẩu, nhưng không cần qua yếu tố thứ hai nữa",
+        "Một phần quyền hạn, tuỳ theo cấu hình của hệ thống",
+        "Quyền đọc dữ liệu nhưng không có quyền ghi thay đổi",
+        "Quyền tạm thời chỉ dùng được từ một địa chỉ duy nhất"
+      ],
+      "correct": 0,
+      "explanation": "Nó được cấp sau khi mọi kiểm tra đã xong, nên nó đại diện cho kết quả của toàn bộ quá trình xác thực. Giới hạn theo địa chỉ là một biện pháp tuỳ chọn chứ không phải mặc định."
+    },
+    {
+      "question": "Vì sao mã phiên hay lộ hơn mật khẩu?",
+      "options": [
+        "Vì nó đi kèm mọi yêu cầu nên xuất hiện ở rất nhiều chỗ",
+        "Vì nó được lưu ở dạng văn bản thuần trên máy chủ",
+        "Vì nó ngắn hơn nên dễ bị dò bằng cách thử tự động",
+        "Vì nó được chia sẻ giữa nhiều người dùng trong cùng lúc"
+      ],
+      "correct": 0,
+      "explanation": "Mật khẩu chỉ đi qua đường mạng đúng một lần khi đăng nhập; mã phiên đi kèm mọi yêu cầu sau đó. Nhiều lần xuất hiện nghĩa là nhiều cơ hội bị ghi nhầm vào nhật ký hoặc lọt vào đường dẫn."
+    },
+    {
+      "question": "Khả năng nào là bắt buộc khi tài khoản bị chiếm?",
+      "options": [
+        "Huỷ ngay lập tức mọi phiên đang hoạt động của tài khoản đó",
+        "Ghi lại địa chỉ mạng của mọi phiên đã từng đăng nhập",
+        "Buộc người dùng đổi mật khẩu ở lần đăng nhập kế tiếp",
+        "Gửi thông báo tới địa chỉ thư điện tử đã đăng ký của người dùng"
+      ],
+      "correct": 0,
+      "explanation": "Đổi mật khẩu mà không huỷ phiên thì kẻ tấn công vẫn ở bên trong với mã cũ. Huỷ phiên là bước cắt quyền truy cập thật sự; những việc kia là bổ trợ."
+    },
+    {
+      "question": "Cờ bảo vệ trên cookie phiên có tác dụng gì?",
+      "options": [
+        "Ngăn mã kịch bản trong trang đọc được giá trị của cookie",
+        "Mã hoá nội dung cookie trước khi lưu vào trình duyệt",
+        "Giới hạn cookie chỉ được gửi tới một địa chỉ mạng cố định",
+        "Đặt thời gian sống tối đa cho cookie phiên đó"
+      ],
+      "correct": 0,
+      "explanation": "Nó cắt đường lấy mã phiên bằng kịch bản chèn vào trang - một trong những cách phổ biến nhất. Thời gian sống và phạm vi gửi là những thuộc tính khác của cookie."
+    },
+    {
+      "question": "Vì sao ghi nhật ký đầy đủ tiêu đề yêu cầu lại nguy hiểm?",
+      "options": [
+        "Vì mã phiên nằm trong tiêu đề sẽ bị ghi vào tệp nhật ký",
+        "Vì tiêu đề chứa thông tin về phiên bản của hệ thống",
+        "Vì việc ghi nhật ký đầy đủ làm chậm hệ thống đi đáng kể",
+        "Vì tiêu đề có thể chứa dữ liệu do người dùng tự đặt"
+      ],
+      "correct": 0,
+      "explanation": "Nhật ký được lưu lâu, sao chép nhiều nơi, và cấp quyền đọc rộng hơn cơ sở dữ liệu. Đây là chỗ rò rỉ mà không có cuộc tấn công nào cả - chỉ là một cấu hình quá rộng tay."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói về việc chứng minh bạn là ai. Bài này về thứ được cấp sau đó - và về việc nó thường được bảo vệ kém hơn chính mật khẩu mà nó thay thế."
+    },
+    {
+      "type": "heading",
+      "text": "Chìa khoá sau cánh cửa"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sau khi đăng nhập, hệ thống cấp một mã và mọi yêu cầu sau đó chỉ cần mã ấy. Điều đó là cần thiết - không ai muốn nhập mật khẩu ở mỗi lần bấm chuột - nhưng nó tạo ra một bí mật thứ hai có quyền ngang bí mật thứ nhất, và bí mật ấy đi qua đường mạng hàng nghìn lần thay vì một lần."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đặt hạn cho phiên, và đặt hạn ngắn hơn cho những thao tác nhạy cảm.",
+        "Bảo đảm huỷ được một phiên cụ thể ngay lập tức, không chờ hết hạn.",
+        "Đặt cờ chống đọc bằng kịch bản và cờ chỉ gửi qua kết nối an toàn.",
+        "Cấp mã mới ngay sau khi đăng nhập, để mã cũ không mang theo quyền mới."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Đổi mật khẩu chưa đủ",
+      "text": "Khi phát hiện tài khoản bị chiếm, phản xạ đầu tiên là đổi mật khẩu. Nhưng kẻ tấn công đang giữ một mã phiên còn hạn, và mã ấy không bị ảnh hưởng. Huỷ toàn bộ phiên mới là bước cắt quyền truy cập."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Phiên là chìa khoá được cấp sau khi cửa đã mở. Nó cần được giữ cẩn thận đúng như thứ nó thay thế.",
+        "Bài sau chuyển từ câu hỏi bạn là ai sang câu hỏi bạn được làm gì, ở mức chi tiết hơn chặng trước."
+      ]
+    }
+  ]
+}

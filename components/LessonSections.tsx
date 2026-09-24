@@ -67,7 +67,7 @@ export default function LessonSections({
     switch (block.type) {
       case "lead":
         return (
-          <div key={i} className="text-xl leading-relaxed font-normal text-stone-800 dark:text-stone-100">
+          <div key={i} className="text-xl leading-relaxed font-normal text-ink-heading">
             {renderFormattedText(block.text, seenTerms)}
           </div>
         );
@@ -90,7 +90,7 @@ export default function LessonSections({
         return (
           <ul key={i} className="space-y-3 pl-1 my-4">
             {block.items.map((item, j) => (
-              <li key={j} className="flex items-start gap-3 text-stone-700 dark:text-stone-100 text-lg">
+              <li key={j} className="flex items-start gap-3 text-ink-body text-lg">
                 <span className="mt-2.5 w-2 h-2 rounded-full bg-amber-500 flex-shrink-0" />
                 <div className="flex-1">{renderFormattedText(item, seenTerms)}</div>
               </li>
@@ -100,9 +100,9 @@ export default function LessonSections({
 
       case "callout":
         return (
-          <div key={i} className="border-l-4 border-l-stone-900 dark:border-l-amber-400 bg-surface/80 rounded-r-2xl p-5 sm:p-6 space-y-2 border border-line my-6">
-            <p className="text-xs font-black text-stone-500 dark:text-stone-300 uppercase tracking-widest">{block.label}</p>
-            <div className="text-stone-800 dark:text-stone-100 text-base leading-relaxed">{renderFormattedText(block.text, seenTerms)}</div>
+          <div key={i} className="border-l-4 border-l-stone-900 dark:border-l-amber-400 bg-stone-50 dark:bg-stone-900/80 rounded-r-2xl p-5 sm:p-6 space-y-2 border border-line my-6">
+            <p className="text-xs font-black text-ink-muted uppercase tracking-widest">{block.label}</p>
+            <div className="text-ink-heading text-base leading-relaxed">{renderFormattedText(block.text, seenTerms)}</div>
           </div>
         );
 
@@ -111,8 +111,8 @@ export default function LessonSections({
           <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
             {[block.left, block.right].map((side) => (
               <div key={side.label} className="border border-line bg-white/95 dark:bg-stone-900 rounded-2xl p-5 space-y-2 shadow-2xs">
-                <p className="text-xs font-black text-stone-500 dark:text-stone-300 uppercase tracking-widest">{side.label}</p>
-                <div className="text-base text-stone-700 dark:text-stone-100 leading-relaxed">{renderFormattedText(side.text, seenTerms)}</div>
+                <p className="text-xs font-black text-ink-muted uppercase tracking-widest">{side.label}</p>
+                <div className="text-base text-ink-body leading-relaxed">{renderFormattedText(side.text, seenTerms)}</div>
               </div>
             ))}
           </div>
@@ -120,8 +120,8 @@ export default function LessonSections({
 
       case "conceptTable":
         return (
-          <div key={i} className="rounded-2xl overflow-hidden border-2 border-stone-900 dark:border-stone-700 shadow-lg my-6">
-            <div className="bg-stone-900 dark:bg-stone-800 px-6 py-4">
+          <div key={i} className="rounded-2xl overflow-hidden border-2 border-line-invert shadow-lg my-6">
+            <div className="bg-surface-invert px-6 py-4">
               <p className="text-white font-extrabold text-lg tracking-wide">{block.title}</p>
               <p className="text-stone-300 text-sm mt-0.5">{block.subtitle ?? t.finalTwo.lessonSections.defaultConceptTableSubtitle}</p>
             </div>
@@ -129,16 +129,16 @@ export default function LessonSections({
               {block.concepts.map(({ vi, en, def }) => (
                 <div
                   key={en}
-                  className="group px-6 py-4 flex items-start gap-4 cursor-default transition-all duration-200 hover:bg-stone-50 dark:hover:bg-stone-800 hover:pl-8"
+                  className="group px-6 py-4 flex items-start gap-4 cursor-default transition-all duration-200 hover:bg-surface hover:pl-8"
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-3 flex-wrap">
-                      <span className="font-bold text-ink text-base group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-colors">{vi}</span>
-                      <span className="text-sm text-stone-500 dark:text-stone-300 font-mono bg-surface-raised px-2 py-0.5 rounded group-hover:bg-stone-200 dark:group-hover:bg-stone-700 transition-colors">{en}</span>
+                      <span className="font-bold text-ink text-base group-hover:text-ink-body transition-colors">{vi}</span>
+                      <span className="text-sm text-ink-muted font-mono bg-surface-raised px-2 py-0.5 rounded group-hover:bg-surface-sunken transition-colors">{en}</span>
                     </div>
-                    <p className="text-stone-500 dark:text-stone-300 text-base mt-1 leading-relaxed group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-colors">{def}</p>
+                    <p className="text-ink-muted text-base mt-1 leading-relaxed group-hover:text-ink-body transition-colors">{def}</p>
                   </div>
-                  <span className="text-stone-200 dark:text-stone-600 group-hover:text-stone-500 dark:group-hover:text-stone-300 transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
+                  <span className="text-stone-200 dark:text-stone-600 group-hover:text-ink-muted transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
                 </div>
               ))}
             </div>
@@ -166,7 +166,7 @@ export default function LessonSections({
             {block.lines.map((line, j) => (
               <p
                 key={j}
-                className={j === block.lines.length - 1 ? "text-stone-900 dark:text-white font-bold text-xl" : "text-stone-600 dark:text-stone-200 text-base"}
+                className={j === block.lines.length - 1 ? "text-stone-900 dark:text-white font-bold text-xl" : "text-ink-soft text-base"}
               >
                 {line}
               </p>
@@ -180,7 +180,7 @@ export default function LessonSections({
   };
 
   return (
-    <div className="space-y-8 text-stone-700 dark:text-stone-100 leading-relaxed text-lg">
+    <div className="space-y-8 text-ink-body leading-relaxed text-lg">
       {sections.map((block, i) => {
         const rendered = renderBlock(block, i);
         if (checkpoint && i === checkpointAfterIndex) {

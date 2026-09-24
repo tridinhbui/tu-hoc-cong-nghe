@@ -27,22 +27,22 @@ export default function OpeningQuestionBlock({
 
   return (
     <div className="space-y-4">
-      <div className="text-[10px] font-extrabold text-stone-500 dark:text-stone-300 uppercase tracking-widest">
+      <div className="text-[10px] font-extrabold text-ink-muted uppercase tracking-widest">
         {t.finalTwo.openingQuestionBlock.header}
       </div>
-      <p className="text-stone-800 dark:text-stone-100 font-bold leading-relaxed text-base sm:text-lg">
+      <p className="text-ink-heading font-bold leading-relaxed text-base sm:text-lg">
         {question}
       </p>
 
       <div className="space-y-2.5">
         {options.map((opt, i) => {
-          let btnCls = "border-line bg-white/95 dark:bg-stone-900 text-stone-800 dark:text-stone-100 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-50 dark:hover:bg-stone-800/60 font-medium";
+          let btnCls = "border-line bg-white/95 dark:bg-stone-900 text-ink-heading hover:border-line-firm hover:bg-stone-50 dark:hover:bg-stone-800/60 font-medium";
           if (submitted) {
-            if (i === correct) btnCls = "border-emerald-500 bg-accent-soft/50 text-emerald-900 dark:text-emerald-300 font-bold";
-            else if (i === selected) btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-300 font-bold";
+            if (i === correct) btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-accent-ink-strong font-bold";
+            else if (i === selected) btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-alert-ink font-bold";
             else btnCls = "border-line-soft bg-stone-50/20 dark:bg-stone-900/20 text-ink-muted opacity-60";
           } else if (selected === i) {
-            btnCls = "border-stone-900 dark:border-stone-100 bg-surface-raised text-ink font-bold border-2";
+            btnCls = "border-line-invert bg-surface-raised text-ink font-bold border-2";
           }
 
           return (
@@ -53,7 +53,7 @@ export default function OpeningQuestionBlock({
               className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm transition-all flex items-center gap-3 cursor-pointer ${btnCls}`}
             >
               <span className={`w-6 h-6 rounded-lg text-xs font-black flex items-center justify-center border shrink-0 ${
-                selected === i ? "bg-white/80 dark:bg-stone-900/80 border-current" : "bg-surface-raised text-stone-700 dark:text-stone-200 border-stone-200 dark:border-stone-700"
+                selected === i ? "bg-white/80 dark:bg-stone-900/80 border-current" : "bg-surface-raised text-ink-body border-line-mid"
               }`}>
                 {["A", "B", "C", "D"][i]}
               </span>
@@ -66,7 +66,7 @@ export default function OpeningQuestionBlock({
       {selected !== null && !submitted && (
         <button
           onClick={() => setSubmitted(true)}
-          className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-[0.98]"
+          className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-[0.98]"
         >
           {t.finalTwo.openingQuestionBlock.confirmButton}
         </button>
@@ -77,7 +77,7 @@ export default function OpeningQuestionBlock({
           initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
           className={`rounded-xl p-4 text-xs leading-relaxed border ${
-            selected === correct ? "bg-emerald-50/50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400" : "bg-rose-50/40 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-rose-800 dark:text-rose-400"
+            selected === correct ? "bg-emerald-50/50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-accent-ink" : "bg-rose-50/40 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"
           }`}
         >
           <p className="font-semibold mb-1">

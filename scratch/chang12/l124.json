@@ -1,0 +1,165 @@
+{
+  "id": 124,
+  "slug": "luu-mat-khau-dung-cach",
+  "title": "Lưu mật khẩu: giả định cơ sở dữ liệu sẽ bị lấy",
+  "subtitle": "Câu hỏi không phải làm sao giữ được, mà là nếu mất thì kẻ lấy dùng được bao nhiêu.",
+  "duration": "8 phút",
+  "difficulty": "Khó",
+  "emoji": "🧂",
+  "track": "professional",
+  "whyItMatters": "Rò rỉ cơ sở dữ liệu xảy ra với cả những tổ chức rất lớn. Cách bạn lưu mật khẩu quyết định sự cố đó là một phiền toái hay là hàng triệu tài khoản bị chiếm ở khắp nơi khác.",
+  "openingQuestion": "Cách lưu mật khẩu nào là đúng?",
+  "openingOptions": [
+    "Hàm băm chuyên cho mật khẩu, có muối riêng cho từng người dùng",
+    "Hàm băm thông dụng nhanh, áp dụng đồng nhất cho mọi mật khẩu",
+    "Mã hoá hai chiều để có thể khôi phục lại được khi người dùng quên",
+    "Lưu nguyên bản nhưng giới hạn quyền đọc bảng đó thật chặt"
+  ],
+  "correctOption": 0,
+  "explanation": "Hàm băm chuyên cho mật khẩu được thiết kế để chạy chậm có chủ đích, nên thử hàng tỷ khả năng trở nên tốn kém tới mức không đáng. Muối riêng cho từng người khiến kẻ tấn công không tái sử dụng được công sức giữa các tài khoản, và làm bảng tra sẵn trở nên vô dụng. Hàm băm thông dụng thì quá nhanh nên dò được rất nhanh. Mã hoá hai chiều nghĩa là ai lấy được khoá thì đọc được tất cả, còn lưu nguyên bản thì rò rỉ là mất trắng.",
+  "diagram": [
+    {
+      "label": "Giả định: cơ sở dữ liệu sẽ bị lấy",
+      "arrow": true
+    },
+    {
+      "label": "Băm chậm có chủ đích → dò rất tốn kém",
+      "arrow": true
+    },
+    {
+      "label": "Muối riêng từng người → không dùng chung công sức",
+      "arrow": true
+    },
+    {
+      "label": "Rò rỉ thành phiền toái thay vì thảm hoạ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bảng tra sẵn",
+    "description": "Không có muối, kẻ tấn công tính trước giá trị băm của hàng tỷ mật khẩu phổ biến rồi tra ngược. Muối riêng cho từng người khiến bảng ấy vô dụng, vì mỗi tài khoản cần một bảng riêng."
+  },
+  "keyTakeaways": [
+    "Thiết kế với giả định cơ sở dữ liệu sẽ bị lấy vào một ngày nào đó.",
+    "Dùng hàm băm chuyên cho mật khẩu, chậm có chủ đích, không dùng hàm băm nhanh.",
+    "Muối riêng từng người khiến bảng tra sẵn vô dụng.",
+    "Không bao giờ khôi phục được mật khẩu gốc; chỉ đặt lại được mật khẩu mới."
+  ],
+  "summary": {
+    "keyIdea": "Cách lưu mật khẩu quyết định hậu quả của một vụ rò rỉ, không ngăn được vụ rò rỉ.",
+    "formula": "Băm chậm + muối riêng từng người.",
+    "commonMistake": "Dùng hàm băm nhanh vì nó có sẵn và chạy nhẹ."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Kiểm xem hệ thống của bạn đang dùng hàm gì để lưu mật khẩu. Nếu đó là một hàm băm thông dụng chạy nhanh thì đây là việc đáng làm trước những việc bảo mật khác."
+  },
+  "practicePrompt": {
+    "question": "Sản phẩm của bạn có chức năng gửi lại mật khẩu cũ qua thư điện tử. Điều đó nói lên gì?",
+    "options": [
+      "Mật khẩu đang được lưu ở dạng khôi phục được, tức là sai cách",
+      "Hệ thống đang dùng mã hoá mạnh nên khôi phục được an toàn",
+      "Chức năng đó tiện cho người dùng nhưng không ảnh hưởng bảo mật",
+      "Cần thêm bước xác minh danh tính trước khi gửi lại mật khẩu"
+    ],
+    "correct": 0,
+    "explanation": "Băm là hàm một chiều, nên nếu hệ thống gửi lại được mật khẩu cũ thì nó không băm mà đang lưu ở dạng đọc lại được. Quy trình đúng là gửi một liên kết đặt lại mật khẩu có hạn ngắn, dùng một lần."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao hàm băm cho mật khẩu phải chậm có chủ đích?",
+      "options": [
+        "Để việc thử hàng tỷ khả năng trở nên quá tốn kém",
+        "Để giảm tải cho máy chủ khi có nhiều người đăng nhập",
+        "Để giá trị băm dài hơn và khó lưu trữ trùng lặp hơn",
+        "Để bảo đảm mỗi lần băm cho ra một kết quả khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Với hàm nhanh, một máy hiện đại thử được hàng tỷ khả năng mỗi giây. Làm chậm mỗi lần băm xuống vài phần trăm giây thì người dùng không nhận ra nhưng kẻ dò thì mất hàng năm."
+    },
+    {
+      "question": "Muối riêng cho từng người dùng có tác dụng gì?",
+      "options": [
+        "Khiến bảng tra sẵn vô dụng và không tái dùng công sức giữa các tài khoản",
+        "Làm cho giá trị băm khó đoán hơn với cùng một mật khẩu",
+        "Cho phép hệ thống kiểm tra mật khẩu nhanh hơn khi đăng nhập",
+        "Ngăn hai người dùng chọn cùng một mật khẩu giống nhau"
+      ],
+      "correct": 0,
+      "explanation": "Không có muối thì hai người cùng mật khẩu có cùng giá trị băm, và một bảng tính trước dùng được cho toàn bộ cơ sở dữ liệu. Muối buộc kẻ tấn công phải tấn công từng tài khoản một."
+    },
+    {
+      "question": "Vì sao không nên mã hoá hai chiều thay vì băm?",
+      "options": [
+        "Vì ai lấy được khoá thì đọc được toàn bộ mật khẩu",
+        "Vì mã hoá hai chiều chạy chậm hơn nhiều so với băm",
+        "Vì không thể so sánh mật khẩu khi người dùng đăng nhập",
+        "Vì các tiêu chuẩn bảo mật cấm dùng mã hoá cho mật khẩu"
+      ],
+      "correct": 0,
+      "explanation": "Băm không có đường ngược, nên kể cả bạn cũng không đọc được. Mã hoá thì luôn có khoá ở đâu đó, và khoá ấy thường nằm gần chính cơ sở dữ liệu bị lấy."
+    },
+    {
+      "question": "Giả định nền tảng khi thiết kế cách lưu mật khẩu là gì?",
+      "options": [
+        "Cơ sở dữ liệu sẽ bị lấy vào một lúc nào đó",
+        "Người dùng sẽ chọn mật khẩu yếu và dễ đoán",
+        "Kẻ tấn công có quyền truy cập vào máy chủ ứng dụng",
+        "Kết nối mạng giữa các thành phần có thể bị nghe lén"
+      ],
+      "correct": 0,
+      "explanation": "Cách lưu mật khẩu không ngăn được rò rỉ; nó chỉ quyết định hậu quả khi rò rỉ xảy ra. Thiết kế với giả định đó là thứ phân biệt một sự cố có thể xử lý với một thảm hoạ."
+    },
+    {
+      "question": "Quy trình đúng khi người dùng quên mật khẩu là gì?",
+      "options": [
+        "Gửi liên kết đặt lại có hạn ngắn và chỉ dùng được một lần",
+        "Gửi lại mật khẩu hiện tại qua thư điện tử đã đăng ký",
+        "Đặt mật khẩu tạm rồi gửi cho người dùng qua tin nhắn",
+        "Yêu cầu người dùng liên hệ bộ phận hỗ trợ để được xác minh"
+      ],
+      "correct": 0,
+      "explanation": "Không hệ thống nào lưu đúng cách mà gửi lại được mật khẩu cũ. Liên kết một lần có hạn ngắn giữ cho cửa sổ rủi ro hẹp, còn mật khẩu tạm gửi qua tin nhắn thì tồn tại lâu hơn nhiều."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Không ai định làm rò rỉ cơ sở dữ liệu, và nó vẫn xảy ra - với cả những tổ chức có đội bảo mật lớn. Vì thế câu hỏi thiết kế không phải làm sao giữ được mà là nếu mất thì mất bao nhiêu."
+    },
+    {
+      "type": "heading",
+      "text": "Hai tính chất bắt buộc"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Chậm có chủ đích",
+        "text": "Mỗi lần kiểm tra tốn vài phần trăm giây - người dùng không nhận ra, còn kẻ dò hàng tỷ khả năng thì mất hàng năm thay vì vài giờ."
+      },
+      "right": {
+        "label": "Muối riêng từng người",
+        "text": "Hai người cùng mật khẩu cho hai giá trị băm khác nhau. Bảng tính trước trở nên vô dụng, và mỗi tài khoản phải tấn công riêng."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Không đường ngược, kể cả cho bạn",
+      "text": "Nếu hệ thống gửi lại được mật khẩu cũ cho người dùng thì nó không băm. Đây là phép thử một câu mà bất kỳ ai cũng làm được từ bên ngoài, và nó luôn đúng."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Dùng thư viện chuyên cho mật khẩu, đừng tự ghép hàm băm và muối.",
+        "Đặt tham số chi phí theo phần cứng hiện tại và xem lại định kỳ.",
+        "Quy trình quên mật khẩu phải là đặt lại, không bao giờ là gửi lại."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Cách lưu mật khẩu không ngăn được rò rỉ. Nó quyết định rò rỉ ấy là một tuần vất vả hay là hàng triệu tài khoản bị chiếm ở khắp nơi.",
+        "Bài sau quay lại câu hỏi quyền hạn, ở mức chi tiết hơn: ai được làm gì với chính bản ghi nào."
+      ]
+    }
+  ]
+}

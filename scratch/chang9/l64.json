@@ -1,0 +1,169 @@
+{
+  "id": 64,
+  "slug": "cau-hinh-va-moi-truong",
+  "title": "Cấu hình: thứ khác nhau giữa các môi trường",
+  "subtitle": "Cùng một sản phẩm dựng phải chạy được ở thử nghiệm và ở thật, chỉ khác cấu hình.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "⚙️",
+  "track": "professional",
+  "whyItMatters": "Khi cấu hình nằm lẫn trong mã, mỗi môi trường cần một bản dựng riêng, và thứ chạy trước mặt người dùng không còn là thứ đã qua kiểm thử. Tách được cấu hình ra là điều kiện để một sản phẩm đi qua nhiều môi trường mà vẫn là chính nó.",
+  "openingQuestion": "Địa chỉ cơ sở dữ liệu khác nhau giữa môi trường thử nghiệm và môi trường thật. Nên đặt nó ở đâu?",
+  "openingOptions": [
+    "Ngoài mã, đọc vào lúc chạy qua biến môi trường hoặc kho cấu hình",
+    "Trong mã, dùng câu điều kiện để kiểm tra xem đang chạy ở đâu",
+    "Trong hai tệp cấu hình riêng, chọn tệp lúc dựng sản phẩm",
+    "Trong cơ sở dữ liệu, để mọi môi trường cùng đọc một chỗ"
+  ],
+  "correctOption": 0,
+  "explanation": "Nguyên tắc là cùng một sản phẩm dựng chạy được ở mọi môi trường, và thứ duy nhất khác đi là cấu hình được đưa vào lúc chạy. Đặt câu điều kiện trong mã nghĩa là mã biết về môi trường, và mỗi môi trường mới lại phải sửa mã. Chọn tệp lúc dựng thì mỗi nơi có một sản phẩm khác, nên cái đã kiểm thử không phải cái đang chạy. Còn đặt địa chỉ cơ sở dữ liệu vào chính cơ sở dữ liệu là bài toán con gà quả trứng.",
+  "diagram": [
+    {
+      "label": "Một sản phẩm dựng duy nhất",
+      "arrow": true
+    },
+    {
+      "label": "Cấu hình đưa vào lúc chạy",
+      "arrow": true
+    },
+    {
+      "label": "Cùng mã, khác môi trường",
+      "arrow": true
+    },
+    {
+      "label": "Cái đã kiểm thử đúng là cái đang chạy"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Câu điều kiện theo tên môi trường",
+    "description": "Mã kiểm tra nếu đang chạy ở môi trường thật thì làm thế này, không thì làm thế kia. Nhánh dành cho môi trường thật không bao giờ được chạy trong kiểm thử, nên nó là đoạn mã duy nhất chưa từng được kiểm - và cũng là đoạn quan trọng nhất."
+  },
+  "keyTakeaways": [
+    "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã.",
+    "Một sản phẩm dựng duy nhất đi qua mọi môi trường, chỉ đổi cấu hình.",
+    "Mã không nên biết nó đang chạy ở môi trường nào.",
+    "Thiếu cấu hình bắt buộc thì phải dừng ngay lúc khởi động, không chạy tiếp với giá trị mặc định."
+  ],
+  "summary": {
+    "keyIdea": "Tách cấu hình khỏi mã để một sản phẩm dựng phục vụ được mọi môi trường.",
+    "formula": "Mã giống nhau, cấu hình khác nhau.",
+    "commonMistake": "Viết câu điều kiện theo tên môi trường, tạo ra nhánh mã không bao giờ được kiểm thử."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm trong mã của bạn mọi chỗ kiểm tra tên môi trường. Với mỗi chỗ, hỏi xem sự khác biệt ấy có thể biến thành một giá trị cấu hình thay vì một nhánh mã hay không."
+  },
+  "practicePrompt": {
+    "question": "Ứng dụng khởi động mà thiếu một biến cấu hình bắt buộc. Nó nên làm gì?",
+    "options": [
+      "Dừng ngay và báo rõ thiếu biến nào",
+      "Chạy tiếp với một giá trị mặc định hợp lý",
+      "Chạy tiếp và ghi một dòng cảnh báo vào nhật ký",
+      "Thử đọc lại biến đó sau mỗi vài giây cho tới khi có"
+    ],
+    "correct": 0,
+    "explanation": "Thất bại nhanh và ồn ào lúc khởi động là loại thất bại rẻ nhất: nó xảy ra trước khi có người dùng nào bị ảnh hưởng, và thông báo chỉ thẳng vào nguyên nhân. Chạy tiếp với giá trị mặc định là cách để ứng dụng ghi dữ liệu vào nhầm chỗ suốt nhiều giờ trước khi ai đó nhận ra."
+  },
+  "quiz": [
+    {
+      "question": "Thứ gì thuộc về cấu hình chứ không thuộc về mã?",
+      "options": [
+        "Những giá trị khác nhau giữa các môi trường",
+        "Những giá trị có thể thay đổi trong tương lai",
+        "Những giá trị mà người dùng cuối được phép sửa",
+        "Những giá trị không nên hiển thị ra giao diện"
+      ],
+      "correct": 0,
+      "explanation": "Tiêu chí là sự khác biệt giữa các môi trường. Một hằng số nghiệp vụ giống nhau ở mọi nơi vẫn thuộc về mã, dù về sau có thể đổi."
+    },
+    {
+      "question": "Vì sao mã không nên kiểm tra tên môi trường?",
+      "options": [
+        "Vì nhánh dành cho môi trường thật sẽ không được kiểm thử",
+        "Vì tên môi trường có thể bị đổi bởi đội vận hành",
+        "Vì việc đọc tên môi trường làm khởi động chậm hơn",
+        "Vì mỗi ngôn ngữ lại đặt tên môi trường theo một cách khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Đoạn mã chỉ chạy ở môi trường thật là đoạn duy nhất chưa từng chạy trong kiểm thử, và nó lại là đoạn quan trọng nhất. Biến sự khác biệt thành một giá trị cấu hình thì cả hai nhánh đều được kiểm."
+    },
+    {
+      "question": "Vì sao nên dùng một sản phẩm dựng cho mọi môi trường?",
+      "options": [
+        "Để thứ đang chạy đúng là thứ đã được kiểm thử",
+        "Để tiết kiệm thời gian vì chỉ phải dựng một lần",
+        "Để giảm dung lượng lưu trữ dành cho các bản dựng",
+        "Để đội vận hành không cần biết cách dựng sản phẩm"
+      ],
+      "correct": 0,
+      "explanation": "Nếu mỗi môi trường có một bản dựng riêng thì bản đã qua kiểm thử không phải bản đang phục vụ, và mọi kết luận từ kiểm thử đều mất giá trị. Thời gian và dung lượng chỉ là lợi ích phụ."
+    },
+    {
+      "question": "Ứng dụng nên phản ứng thế nào khi thiếu cấu hình bắt buộc?",
+      "options": [
+        "Dừng ngay lúc khởi động và nói rõ thiếu gì",
+        "Dùng giá trị mặc định an toàn rồi chạy tiếp bình thường",
+        "Ghi cảnh báo vào nhật ký rồi tiếp tục phục vụ người dùng",
+        "Chờ tới khi có yêu cầu đầu tiên cần dùng giá trị đó"
+      ],
+      "correct": 0,
+      "explanation": "Dừng lúc khởi động là lỗi rẻ nhất vì chưa ai bị ảnh hưởng. Chạy tiếp nghĩa là dời sự cố sang một thời điểm ngẫu nhiên sau này, khi triệu chứng đã cách xa nguyên nhân."
+    },
+    {
+      "question": "Cấu hình nên được nạp vào lúc nào?",
+      "options": [
+        "Lúc chạy, từ môi trường hoặc từ một kho cấu hình",
+        "Lúc dựng, để sản phẩm có sẵn mọi thứ nó cần",
+        "Lúc cài đặt, ghi thẳng vào tệp trong thư mục ứng dụng",
+        "Lúc có yêu cầu đầu tiên, để khởi động được nhanh hơn"
+      ],
+      "correct": 0,
+      "explanation": "Nạp lúc chạy giữ cho sản phẩm dựng không mang thông tin của bất kỳ môi trường nào. Nạp lúc dựng là quay lại chuyện mỗi môi trường một bản, đúng thứ ta đang tránh."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Một sản phẩm dựng phải chạy được ở máy lập trình viên, ở môi trường thử nghiệm và ở môi trường thật. Thứ duy nhất được phép khác nhau giữa ba nơi là cấu hình."
+    },
+    {
+      "type": "heading",
+      "text": "Ranh giới giữa mã và cấu hình"
+    },
+    {
+      "type": "paragraph",
+      "text": "Câu hỏi phân loại rất gọn: giá trị này có khác nhau giữa các môi trường không? Địa chỉ cơ sở dữ liệu, khoá truy cập dịch vụ ngoài, mức ghi nhật ký đều khác - chúng là cấu hình. Còn công thức tính thuế hay quy tắc nghiệp vụ thì giống nhau ở mọi nơi, nên chúng thuộc về mã dù về sau có thể đổi."
+    },
+    {
+      "type": "callout",
+      "label": "Nhánh không bao giờ được kiểm",
+      "text": "Câu điều kiện theo tên môi trường tạo ra một đoạn mã chỉ chạy ở nơi thật. Nó chưa từng chạy trong kiểm thử, chưa ai xem nó hành xử ra sao, và nó lại đứng ở chỗ quan trọng nhất. Đó là lý do nên biến khác biệt thành cấu hình chứ không thành nhánh."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cấu hình lúc chạy",
+        "text": "Một sản phẩm duy nhất đi qua mọi môi trường. Cái được kiểm thử đúng là cái được chạy, và thêm một môi trường mới không cần dựng lại."
+      },
+      "right": {
+        "label": "Cấu hình lúc dựng",
+        "text": "Mỗi môi trường một sản phẩm riêng. Kiểm thử ở bản này rồi chạy bản khác, nên mọi bảo đảm từ kiểm thử đều yếu đi."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Kiểm tra đủ cấu hình bắt buộc ngay lúc khởi động và dừng hẳn nếu thiếu.",
+        "Đừng đặt giá trị mặc định cho những thứ mà đoán sai sẽ gây hại, như địa chỉ cơ sở dữ liệu.",
+        "Ghi lại danh sách biến cấu hình ở một chỗ, vì đó là tài liệu vận hành thật sự của dịch vụ."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tách cấu hình khỏi mã là điều kiện để nói được câu: thứ đang chạy đúng là thứ chúng ta đã kiểm.",
+        "Bài sau nói về loại cấu hình đặc biệt không được phép nằm trong kho mã: bí mật."
+      ]
+    }
+  ]
+}

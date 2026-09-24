@@ -1,0 +1,162 @@
+{
+  "id": 132,
+  "slug": "phu-thuoc-co-lo-hong",
+  "title": "Lỗ hổng trong thư viện: mã bạn không viết vẫn là mã của bạn",
+  "subtitle": "Ngày một lỗ hổng được công bố cũng là ngày các máy quét bắt đầu tìm nó.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📦",
+  "track": "professional",
+  "whyItMatters": "Phần lớn mã chạy trong sản phẩm của bạn là mã của người khác, và lỗ hổng của họ trở thành lỗ hổng của bạn ngay khi được công bố. Tốc độ vá quyết định bạn có nằm trong cửa sổ bị quét hay không.",
+  "openingQuestion": "Một lỗ hổng nghiêm trọng trong thư viện bạn đang dùng vừa được công bố. Rủi ro thay đổi thế nào?",
+  "openingOptions": [
+    "Tăng vọt, vì công bố đi kèm chi tiết đủ để viết công cụ khai thác",
+    "Giảm xuống, vì đã có bản vá nên vấn đề coi như được xử lý",
+    "Không đổi, vì lỗ hổng đã tồn tại từ trước khi được công bố",
+    "Tăng dần theo thời gian khi có nhiều người biết tới nó hơn"
+  ],
+  "correctOption": 0,
+  "explanation": "Trước khi công bố, lỗ hổng vẫn tồn tại nhưng rất ít người biết cách khai thác. Sau khi công bố, mô tả chi tiết trở thành công khai và các máy quét tự động được cập nhật trong vòng vài giờ tới vài ngày. Vì thế khoảng thời gian nguy hiểm nhất bắt đầu đúng lúc bản vá xuất hiện, không phải trước đó - và đó là lý do tốc độ vá quan trọng hơn nhiều so với việc theo dõi tin tức bảo mật.",
+  "diagram": [
+    {
+      "label": "Lỗ hổng tồn tại, ít người biết",
+      "arrow": true
+    },
+    {
+      "label": "Công bố kèm mô tả chi tiết",
+      "arrow": true
+    },
+    {
+      "label": "Máy quét cập nhật trong vài giờ tới vài ngày",
+      "arrow": true
+    },
+    {
+      "label": "Cửa sổ nguy hiểm nhất bắt đầu từ đây"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Phụ thuộc gián tiếp",
+    "description": "Lỗ hổng thường nằm ở một gói bạn chưa từng nghe tên, được kéo vào bởi một thư viện bạn có chọn. Đó là lý do việc quét phải chạy trên toàn bộ cây phụ thuộc chứ không chỉ trên danh sách bạn khai báo."
+  },
+  "keyTakeaways": [
+    "Cửa sổ nguy hiểm nhất bắt đầu ngay khi lỗ hổng được công bố.",
+    "Quét phải phủ toàn bộ cây phụ thuộc, gồm cả phụ thuộc gián tiếp.",
+    "Nâng cấp đều đặn giữ cho việc vá khẩn không thành một dự án di trú.",
+    "Không phải lỗ hổng nào cũng chạm tới bạn - nhưng phải kiểm chứng, không đoán."
+  ],
+  "summary": {
+    "keyIdea": "Lỗ hổng của thư viện là lỗ hổng của bạn, và đồng hồ bắt đầu chạy từ lúc công bố.",
+    "formula": "Quét toàn cây, nâng cấp đều, vá nhanh.",
+    "commonMistake": "Để phụ thuộc lạc hậu nhiều năm, khiến mỗi bản vá khẩn thành một cuộc di trú."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chạy công cụ quét lỗ hổng trên cây phụ thuộc của dự án. Nếu chưa có công cụ nào chạy tự động ở cổng tích hợp thì đó là việc đáng thêm trước tiên."
+  },
+  "practicePrompt": {
+    "question": "Vì sao việc nâng cấp phụ thuộc đều đặn lại là biện pháp bảo mật?",
+    "options": [
+      "Vì khi cần vá khẩn, bạn chỉ phải nhảy một bước ngắn thay vì nhiều phiên bản",
+      "Vì phiên bản mới luôn có ít lỗ hổng hơn phiên bản cũ",
+      "Vì công cụ quét chỉ nhận diện được các phiên bản gần đây",
+      "Vì nhà cung cấp chỉ hỗ trợ những phiên bản mới nhất"
+    ],
+    "correct": 0,
+    "explanation": "Một dự án lạc hậu hai năm không vá được trong một buổi chiều: bản vá nằm ở một phiên bản có nhiều thay đổi phá vỡ tương thích ở giữa. Nâng cấp đều biến việc vá khẩn thành một thao tác nhỏ, và tốc độ ấy chính là thứ quyết định trong cửa sổ nguy hiểm."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao rủi ro tăng vọt ngay khi lỗ hổng được công bố?",
+      "options": [
+        "Vì mô tả chi tiết thành công khai và máy quét được cập nhật rất nhanh",
+        "Vì việc công bố khiến nhiều kẻ tấn công chú ý hơn tới sản phẩm của bạn",
+        "Vì bản vá đi kèm thường tạo ra những lỗ hổng mới khác",
+        "Vì các phiên bản cũ ngừng được nhà cung cấp hỗ trợ từ lúc đó"
+      ],
+      "correct": 0,
+      "explanation": "Trước công bố, khai thác đòi hỏi tự tìm ra lỗ hổng. Sau công bố, nó thành một mục trong danh sách mà mọi máy quét đều thử trên mọi địa chỉ."
+    },
+    {
+      "question": "Vì sao quét lỗ hổng phải phủ cả phụ thuộc gián tiếp?",
+      "options": [
+        "Vì lỗ hổng thường nằm ở gói bạn không trực tiếp chọn",
+        "Vì phụ thuộc gián tiếp chiếm phần lớn dung lượng sản phẩm",
+        "Vì công cụ quét không phân biệt được hai loại phụ thuộc",
+        "Vì phụ thuộc gián tiếp được cập nhật thường xuyên hơn"
+      ],
+      "correct": 0,
+      "explanation": "Bạn chọn mười thư viện và nhận về vài trăm gói. Phần lớn cây phụ thuộc là thứ bạn chưa từng đọc tên, nhưng nó vẫn chạy trong sản phẩm của bạn."
+    },
+    {
+      "question": "Vì sao phụ thuộc lạc hậu lâu năm là rủi ro bảo mật?",
+      "options": [
+        "Vì bản vá nằm sau nhiều thay đổi phá vỡ tương thích nên vá khẩn rất chậm",
+        "Vì các phiên bản cũ không tương thích với công cụ quét hiện tại",
+        "Vì phiên bản cũ tiêu tốn nhiều tài nguyên hơn khi chạy",
+        "Vì nhà cung cấp sẽ xoá các phiên bản cũ khỏi kho gói"
+      ],
+      "correct": 0,
+      "explanation": "Tốc độ vá là thứ quyết định trong cửa sổ nguy hiểm, và tốc độ ấy phụ thuộc vào khoảng cách bạn đang tụt lại. Nâng cấp đều đặn là cách giữ khoảng cách đó ngắn."
+    },
+    {
+      "question": "Mọi lỗ hổng được công bố đều ảnh hưởng tới bạn?",
+      "options": [
+        "Không, nhưng phải kiểm chứng chứ không được đoán",
+        "Có, nếu thư viện đó nằm trong cây phụ thuộc của bạn",
+        "Không, chỉ những lỗ hổng ở phụ thuộc trực tiếp mới ảnh hưởng",
+        "Có, vì mọi lỗ hổng đều có cách khai thác trong thực tế"
+      ],
+      "correct": 0,
+      "explanation": "Một lỗ hổng có thể nằm ở chức năng bạn không dùng, hoặc cần điều kiện mà hệ thống bạn không có. Nhưng kết luận không ảnh hưởng phải dựa trên việc đọc mô tả, không dựa trên cảm giác."
+    },
+    {
+      "question": "Vị trí tốt nhất để chạy công cụ quét lỗ hổng là ở đâu?",
+      "options": [
+        "Trong cổng tích hợp liên tục, chạy tự động ở mỗi thay đổi",
+        "Trong buổi rà soát bảo mật định kỳ hằng quý",
+        "Trên máy chủ thật, quét các gói đang chạy",
+        "Trên máy cá nhân của mỗi lập trình viên khi cần"
+      ],
+      "correct": 0,
+      "explanation": "Cùng lý lẽ với mọi cổng khác ở chặng trước: thứ phụ thuộc vào trí nhớ con người sẽ trượt vào lúc bận nhất. Chạy tự động thì nó không quên."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ở chặng đưa mã ra thế giới đã có một bài về phụ thuộc. Bài này nhìn chúng từ góc bảo mật, nơi câu hỏi không phải bảo trì mà là bạn phản ứng nhanh tới đâu."
+    },
+    {
+      "type": "heading",
+      "text": "Đồng hồ bắt đầu chạy khi công bố"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trước ngày công bố, lỗ hổng vẫn nằm đó nhưng khai thác nó đòi hỏi tự tìm ra. Sau ngày công bố, có mô tả chi tiết, thường có cả mã minh hoạ, và các máy quét được cập nhật trong vòng vài giờ tới vài ngày. Nghịch lý là cửa sổ nguy hiểm nhất mở ra đúng lúc bản vá xuất hiện."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Dự án cập nhật đều",
+        "text": "Vá khẩn là nâng một phiên bản nhỏ, chạy kiểm thử, triển khai. Vài giờ, và cửa sổ rủi ro rất hẹp."
+      },
+      "right": {
+        "label": "Dự án lạc hậu hai năm",
+        "text": "Bản vá nằm sau nhiều thay đổi phá vỡ tương thích. Vá khẩn thành một cuộc di trú nhiều tuần, trong lúc máy quét đang chạy."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Ảnh hưởng phải được kiểm chứng",
+      "text": "Không phải lỗ hổng nào cũng chạm tới bạn - nó có thể nằm ở chức năng bạn không dùng. Nhưng kết luận ấy phải đến từ việc đọc mô tả và kiểm tra mã của mình, không từ hy vọng."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mã bạn không viết vẫn chạy trong sản phẩm của bạn, và lỗ hổng của nó tính vào bạn.",
+        "Bài sau chuyển từ lỗ hổng kỹ thuật sang một dạng rủi ro khác: hệ thống bị dùng đúng cách nhưng quá mức."
+      ]
+    }
+  ],
+  "interactiveType": "ethics-case"
+}

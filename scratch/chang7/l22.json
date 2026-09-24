@@ -1,0 +1,215 @@
+{
+  "id": 22,
+  "slug": "so-nguyen-va-tran-so",
+  "title": "Số nguyên: phạm vi hữu hạn và cái bẫy tràn số",
+  "subtitle": "Cộng thêm 1 vào số lớn nhất không ra số lớn hơn, mà ra số âm.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "➕",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Một biến đếm kiểu 32 bit đủ dùng suốt nhiều năm, rồi vượt ngưỡng vào một ngày không ai chờ đợi. Lúc đó chương trình không dừng, không báo lỗi, chỉ lặng lẽ cho ra một con số âm và mọi phép tính phía sau đi theo. Biết phạm vi của kiểu số nguyên là biết trước ngày đó tới.",
+  "openingQuestion": "Một biến số nguyên 8 bit có dấu đang giữ giá trị lớn nhất là 127. Cộng thêm 1 thì ra bao nhiêu?",
+  "openingOptions": [
+    "-128, vì giá trị quay vòng về đầu dải biểu diễn",
+    "128, vì máy tự mở rộng thêm bit để chứa cho đủ",
+    "127, vì máy giữ nguyên giá trị khi đã chạm trần trên",
+    "Chương trình dừng lại và báo lỗi tràn số ra màn hình"
+  ],
+  "correctOption": 0,
+  "explanation": "Số nguyên có dấu 8 bit biểu diễn được dải từ -128 tới 127, tổng cộng 256 giá trị. Dải đó không phải một đoạn thẳng mà là một vòng tròn: đi hết đầu này thì quay lại đầu kia. Cộng 1 vào 127 làm bit dấu bị lật, và kết quả là -128. Điều nguy hiểm không nằm ở con số sai, mà ở chỗ phần lớn ngôn ngữ không báo gì cả - phép tính hợp lệ về mặt kiểu, chỉ sai về mặt nghĩa, và nó đi tiếp vào những phép tính sau như một giá trị bình thường.",
+  "diagram": [
+    {
+      "label": "127 - giá trị lớn nhất của 8 bit có dấu",
+      "arrow": true
+    },
+    {
+      "label": "cộng thêm 1",
+      "arrow": true
+    },
+    {
+      "label": "bit dấu bị lật",
+      "arrow": true
+    },
+    {
+      "label": "-128 - quay vòng, không có cảnh báo"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Gangnam Style, 2014",
+    "description": "Bộ đếm lượt xem của YouTube ban đầu là số nguyên 32 bit có dấu, trần là 2.147.483.647. Khi một video chạm ngưỡng đó, YouTube phải đổi sang kiểu 64 bit. Trần mới lớn tới mức không bộ đếm nào của loài người chạm tới được."
+  },
+  "keyTakeaways": [
+    "Kiểu số nguyên có phạm vi hữu hạn, quyết định bởi số bit dành cho nó.",
+    "Vượt phạm vi thì giá trị quay vòng chứ không dừng, và thường không báo lỗi.",
+    "Kiểu không dấu đẩy trần trên lên gấp đôi nhưng bỏ hẳn phần âm.",
+    "Chia số nguyên cắt cụt phần thập phân chứ không làm tròn."
+  ],
+  "summary": {
+    "keyIdea": "Dải số nguyên là một vòng tròn hữu hạn, không phải một đoạn thẳng vô hạn.",
+    "formula": "n bit có dấu = dải từ -2^(n-1) tới 2^(n-1) - 1.",
+    "commonMistake": "Tưởng máy sẽ báo lỗi khi tràn, trong khi nó lặng lẽ trả về giá trị quay vòng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm trong mã của bạn một biến đếm hoặc một trường id kiểu 32 bit. Ước lượng nó tăng bao nhiêu mỗi ngày, rồi chia 2.147.483.647 cho con số đó để biết còn bao nhiêu ngày nữa tới trần."
+  },
+  "practicePrompt": {
+    "question": "Bạn tính trung bình bằng (a + b) / 2 với a và b đều là số nguyên lớn gần trần. Kết quả ra số âm. Vì sao?",
+    "options": [
+      "Phép cộng tràn trước khi kịp chia, nên đã sai từ bước đó",
+      "Phép chia số nguyên làm mất dấu của kết quả sau khi cộng",
+      "Trung bình của hai số lớn luôn vượt trần của kiểu số nguyên",
+      "Máy tính sai vì hai số quá gần nhau nên bị làm tròn xuống"
+    ],
+    "correct": 0,
+    "explanation": "Tổng a + b vượt trần và quay vòng thành số âm; phép chia sau đó chỉ chia một giá trị vốn đã sai. Cách sửa quen thuộc là viết a + (b - a) / 2, vì hiệu hai số không bao giờ vượt trần khi cả hai cùng nằm trong dải."
+  },
+  "quiz": [
+    {
+      "question": "Số nguyên 32 bit có dấu biểu diễn được giá trị lớn nhất là bao nhiêu?",
+      "options": [
+        "2.147.483.647",
+        "4.294.967.295 (= 2^32 - 1, đây là trần của kiểu KHÔNG dấu)",
+        "2.147.483.648 (= 2^31, quên trừ 1 cho giá trị số không)",
+        "1.073.741.823 (= 2^30 - 1, tính thiếu mất một bit dữ liệu)"
+      ],
+      "correct": 0,
+      "explanation": "32 bit có dấu dành một bit cho dấu, còn 31 bit cho độ lớn, nên trần là 2^31 - 1 = 2.147.483.647. Phải trừ 1 vì dải còn phải chứa cả giá trị không."
+    },
+    {
+      "question": "Điều gì xảy ra khi một phép cộng số nguyên vượt quá trần của kiểu?",
+      "options": [
+        "Giá trị quay vòng về đầu dải và thường không có cảnh báo nào",
+        "Chương trình dừng và ghi lỗi tràn số vào nhật ký",
+        "Máy tự động mở rộng biến sang kiểu lớn hơn để chứa kết quả",
+        "Kết quả bị giữ nguyên ở đúng giá trị trần của kiểu số nguyên đang dùng"
+      ],
+      "correct": 0,
+      "explanation": "Ở phần lớn ngôn ngữ, tràn số là hành vi lặng lẽ: kết quả quay vòng và đi tiếp như một giá trị hợp lệ. Vài ngôn ngữ có kiểm tra tràn nhưng thường phải bật lên, và vài ngôn ngữ khác dùng số nguyên lớn tuỳ ý nên không có trần."
+    },
+    {
+      "question": "Kiểu số nguyên không dấu khác kiểu có dấu ở điểm nào?",
+      "options": [
+        "Nó bỏ phần âm và dùng toàn bộ bit cho độ lớn",
+        "Nó chiếm ít bộ nhớ hơn vì bỏ bit dấu",
+        "Nó không bao giờ bị tràn số vì dải giá trị của nó rộng gấp đôi",
+        "Nó làm tròn thay vì cắt khi chia"
+      ],
+      "correct": 0,
+      "explanation": "Không dấu đẩy trần trên lên gấp đôi vì bit dấu được dùng làm bit dữ liệu, nhưng số bit vẫn thế nên bộ nhớ không đổi, và nó vẫn tràn - chỉ là tràn ở ngưỡng khác, và trừ xuống dưới không lại quay vòng lên giá trị cực lớn."
+    },
+    {
+      "question": "Trong ngôn ngữ chia số nguyên, 7 chia 2 cho kết quả gì?",
+      "options": [
+        "3",
+        "3,5 vì phép chia luôn giữ lại phần thập phân của kết quả",
+        "4 vì kết quả được làm tròn lên tới số nguyên gần nhất",
+        "Lỗi vì hai số nguyên không chia hết cho nhau được"
+      ],
+      "correct": 0,
+      "explanation": "Chia số nguyên cắt cụt phần thập phân chứ không làm tròn, nên 7 chia 2 ra 3. Đây là nguồn của những sai lệch nhỏ tích lại trong các phép chia trung bình hoặc chia tỷ lệ, nhất là khi kết quả lại được nhân lên."
+    },
+    {
+      "question": "Vì sao lỗi tràn số thường phát hiện rất muộn?",
+      "options": [
+        "Vì nó chỉ xảy ra khi dữ liệu đã lớn tới ngưỡng, thường sau nhiều năm",
+        "Vì trình biên dịch cố tình giấu cảnh báo tràn để mã chạy nhanh hơn",
+        "Vì kiểm thử không bao giờ phát hiện được các lỗi thuộc loại này",
+        "Vì lỗi tràn số chỉ xuất hiện trên máy chủ chứ không hề có trên máy cá nhân"
+      ],
+      "correct": 0,
+      "explanation": "Ở giai đoạn đầu, mọi giá trị đều cách trần rất xa nên không có gì bất thường để thấy. Lỗi nằm im cho tới đúng ngày dữ liệu chạm ngưỡng - và kiểm thử vẫn bắt được nó, miễn là có ca kiểm thử đặt giá trị sát trần."
+    },
+    {
+      "question": "Cách nào đáng tin nhất để tránh tràn ở một trường id đang tăng dần?",
+      "options": [
+        "Chọn kiểu 64 bit ngay từ đầu cho trường đó",
+        "Đặt lại bộ đếm về không mỗi khi nó sắp chạm tới giá trị trần",
+        "Ghi nhật ký mỗi lần bộ đếm tăng",
+        "Dùng số thực vì dải rộng hơn"
+      ],
+      "correct": 0,
+      "explanation": "64 bit cho trần khoảng 9,2 tỷ tỷ, đủ xa để không phải nghĩ tới nữa. Đặt lại bộ đếm thì tạo id trùng, còn số thực có dải rộng hơn thật nhưng mất độ chính xác ở giá trị lớn nên hai id khác nhau có thể thành bằng nhau."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Số nguyên trong máy tính không phải số nguyên trong toán học. Toán học cho bạn một dải vô hạn; máy tính cho bạn một vòng tròn hữu hạn, và không nói trước lúc nào bạn đi hết vòng."
+    },
+    {
+      "type": "heading",
+      "text": "Bao nhiêu bit thì chứa được bao nhiêu"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mỗi bit thêm vào làm gấp đôi số giá trị biểu diễn được. Tám bit cho 256 giá trị, mười sáu bit cho 65.536, ba mươi hai bit cho hơn bốn tỷ. Với kiểu có dấu, một nửa dải dành cho số âm, nên trần trên chỉ còn một nửa: 32 bit có dấu dừng ở 2.147.483.647."
+    },
+    {
+      "type": "callout",
+      "label": "Vì sao trừ 1",
+      "text": "Dải 31 bit độ lớn chứa 2^31 giá trị, nhưng một trong số đó là số không. Nên trần là 2^31 - 1 chứ không phải 2^31 - đúng cái chỗ hay nhầm khi ước lượng bằng đầu."
+    },
+    {
+      "type": "heading",
+      "text": "Quay vòng, chứ không phải chặn lại"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hình dung mặt đồng hồ: sau 12 giờ là 1 giờ chứ không phải 13 giờ. Dải số nguyên hoạt động y hệt. Cộng 1 vào giá trị lớn nhất đưa bạn về giá trị nhỏ nhất, và trừ 1 khỏi giá trị nhỏ nhất đưa bạn lên giá trị lớn nhất."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Ba kiểu số nguyên hay gặp",
+      "subtitle": "Tên gọi khác nhau tuỳ ngôn ngữ, dải giá trị thì không đổi",
+      "concepts": [
+        {
+          "vi": "Số nguyên 32 bit có dấu",
+          "en": "int32",
+          "def": "Từ -2.147.483.648 tới 2.147.483.647. Mặc định ở rất nhiều ngôn ngữ, và là nguồn của phần lớn ca tràn số."
+        },
+        {
+          "vi": "Số nguyên 64 bit có dấu",
+          "en": "int64",
+          "def": "Trần khoảng 9,2 tỷ tỷ. Đủ cho mọi bộ đếm thực tế, đổi lại chiếm gấp đôi bộ nhớ."
+        },
+        {
+          "vi": "Số nguyên lớn tuỳ ý",
+          "en": "bignum",
+          "def": "Không có trần, tự cấp phát thêm khi cần. An toàn tuyệt đối nhưng chậm hơn nhiều lần."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Chia số nguyên cắt cụt"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Chia số nguyên",
+        "text": "7 chia 2 ra 3. Phần thập phân bị bỏ đi chứ không làm tròn, nên 9 chia 10 ra 0 - một cái bẫy quen thuộc khi tính tỷ lệ phần trăm."
+      },
+      "right": {
+        "label": "Chia số thực",
+        "text": "7 chia 2 ra 3,5. Giữ được phần thập phân, đổi lại mang theo sai số biểu diễn mà bài sau sẽ nói tới."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chọn 64 bit cho mọi trường id, bộ đếm và dấu thời gian - chi phí bộ nhớ không đáng kể so với rủi ro.",
+        "Khi tính trung bình hai số lớn, viết a + (b - a) / 2 thay vì (a + b) / 2.",
+        "Viết ca kiểm thử đặt giá trị sát trần, vì đó là chỗ duy nhất lỗi tràn lộ ra."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Số nguyên là một vòng tròn hữu hạn. Vượt qua đầu này thì quay lại đầu kia, và thường không ai báo cho bạn biết.",
+        "Bài sau sang kiểu thứ hai: số thực, nơi vấn đề không phải phạm vi mà là độ chính xác - và nơi 0,1 cộng 0,2 không ra đúng 0,3."
+      ]
+    }
+  ]
+}

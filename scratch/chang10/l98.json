@@ -1,0 +1,172 @@
+{
+  "id": 98,
+  "slug": "lam-viec-voi-nguoi-khong-phai-ky-su",
+  "title": "Giải thích đánh đổi cho người không viết mã",
+  "subtitle": "Không phải đơn giản hoá kỹ thuật, mà là nói bằng thứ họ dùng để quyết định.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🤝",
+  "track": "professional",
+  "whyItMatters": "Phần lớn quyết định về sản phẩm được đưa ra bởi những người không đọc mã. Nếu bạn không diễn đạt được đánh đổi kỹ thuật thành thứ họ cân nhắc được, quyết định vẫn sẽ được đưa ra - chỉ là không có thông tin của bạn trong đó.",
+  "openingQuestion": "Bạn cần xin hai tuần để trả nợ kỹ thuật. Cách trình bày nào hiệu quả nhất?",
+  "openingOptions": [
+    "Mỗi thay đổi ở vùng đó đang tốn gấp ba thời gian, và khoảng cách đang giãn",
+    "Mã ở đó rất lộn xộn và cần được cải tổ lại cho sạch sẽ",
+    "Đội cảm thấy khó chịu mỗi khi phải làm việc với phần mã đó",
+    "Các thực hành tốt trong ngành đều khuyến nghị dọn nợ định kỳ"
+  ],
+  "correctOption": 0,
+  "explanation": "Người quyết định đang cân nhắc giữa hai tuần dọn dẹp và hai tuần tính năng mới, và họ cần một cách so sánh hai thứ đó. Gấp ba thời gian cho mỗi thay đổi là một con số họ dùng được: nó nói rằng hai tuần bỏ ra sẽ được hoàn lại qua những tháng sau, và nói rằng chi phí đang tăng chứ không đứng yên. Lộn xộn và khó chịu là những sự thật đúng nhưng chúng không so sánh được với một tính năng mới, nên chúng luôn thua trong cuộc tranh luận về ưu tiên.",
+  "diagram": [
+    {
+      "label": "Vấn đề kỹ thuật cần được xử lý",
+      "arrow": true
+    },
+    {
+      "label": "Diễn đạt bằng thời gian, rủi ro hoặc tiền",
+      "arrow": true
+    },
+    {
+      "label": "Giờ nó so sánh được với các phương án khác",
+      "arrow": true
+    },
+    {
+      "label": "Quyết định được đưa ra có thông tin của bạn"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cải tổ mã không bao giờ được duyệt",
+    "description": "Đề xuất cải tổ mã bị từ chối nhiều năm liền vì luôn được trình bày bằng ngôn ngữ nội bộ của kỹ thuật. Cùng đề xuất ấy, khi kèm con số về thời gian trung bình để hoàn thành một thay đổi ở vùng đó, được duyệt trong một cuộc họp."
+  },
+  "keyTakeaways": [
+    "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được.",
+    "Đưa ra phương án kèm hệ quả, thay vì đưa ra kết luận đã chốt.",
+    "Nói sớm về rủi ro khi bên kia còn nhiều lựa chọn.",
+    "Không diễn đạt được thì quyết định vẫn diễn ra, chỉ là thiếu thông tin của bạn."
+  ],
+  "summary": {
+    "keyIdea": "Việc của bạn không phải đơn giản hoá kỹ thuật mà là dịch nó sang đơn vị mà người kia dùng để quyết định.",
+    "formula": "Thời gian, rủi ro, tiền - ba đơn vị ai cũng so sánh được.",
+    "commonMistake": "Trình bày bằng thuật ngữ nội bộ rồi kết luận rằng bên kia không hiểu kỹ thuật."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy một việc kỹ thuật bạn tin là quan trọng nhưng chưa được ưu tiên. Viết lại lý do bằng đúng một câu chỉ chứa thời gian, rủi ro hoặc tiền, không có thuật ngữ nào."
+  },
+  "practicePrompt": {
+    "question": "Bên sản phẩm muốn một tính năng trong hai tuần, nhưng làm đúng cần bốn. Nên trình bày thế nào?",
+    "options": [
+      "Đưa ra hai phương án kèm hệ quả của từng cái, để họ chọn",
+      "Nhận hai tuần rồi cố gắng làm hết sức trong thời gian đó",
+      "Từ chối và giải thích rằng hai tuần là bất khả thi về kỹ thuật",
+      "Nhận bốn tuần và giải thích rằng đó là ước lượng chuẩn"
+    ],
+    "correct": 0,
+    "explanation": "Phiên bản hai tuần thường vẫn tồn tại - chỉ là nó thiếu một phần phạm vi hoặc mang một khoản nợ cần trả sau. Nói rõ cả hai lựa chọn cùng hệ quả biến cuộc trò chuyện thành một quyết định chung, thay vì một bên áp đặt lịch và một bên nói không."
+  },
+  "quiz": [
+    {
+      "question": "Đơn vị nào giúp một đánh đổi kỹ thuật so sánh được với các phương án khác?",
+      "options": [
+        "Thời gian, rủi ro hoặc tiền",
+        "Số dòng mã cần được thay đổi",
+        "Mức độ phức tạp của kiến trúc hiện tại",
+        "Số lượng thư viện phụ thuộc liên quan"
+      ],
+      "correct": 0,
+      "explanation": "Ba đơn vị ấy là thứ mọi quyết định kinh doanh đều dùng, nên chúng đặt cạnh nhau được. Số dòng mã và mức độ phức tạp chỉ có nghĩa với người trong nghề."
+    },
+    {
+      "question": "Vì sao nên đưa ra phương án thay vì kết luận?",
+      "options": [
+        "Vì người quyết định biết những ràng buộc mà bạn không thấy",
+        "Vì đưa kết luận sẽ khiến bạn chịu trách nhiệm nếu sai",
+        "Vì quy trình yêu cầu mọi đề xuất đều phải có nhiều lựa chọn",
+        "Vì phương án nhiều hơn thì khả năng được duyệt cao hơn"
+      ],
+      "correct": 0,
+      "explanation": "Có thể có một cam kết với khách hàng, một mốc pháp lý, một tình hình cạnh tranh mà bạn chưa biết. Đưa phương án kèm hệ quả để họ ghép thông tin của bạn với thông tin của họ."
+    },
+    {
+      "question": "Điều gì xảy ra khi đánh đổi kỹ thuật không được diễn đạt ra ngoài đội?",
+      "options": [
+        "Quyết định vẫn được đưa ra nhưng thiếu thông tin của bạn",
+        "Quyết định sẽ bị hoãn cho tới khi có đủ thông tin",
+        "Đội kỹ thuật sẽ được toàn quyền quyết định theo ý của mình",
+        "Người quản lý sẽ chủ động tìm hiểu vấn đề kỹ thuật"
+      ],
+      "correct": 0,
+      "explanation": "Không có gì dừng lại chờ bạn. Quyết định được đưa ra dựa trên những thông tin có mặt trong phòng, và nếu thông tin của bạn không có mặt thì nó không tồn tại."
+    },
+    {
+      "question": "Vì sao lộn xộn và khó bảo trì là lập luận yếu?",
+      "options": [
+        "Vì chúng không so sánh được với giá trị của một tính năng mới",
+        "Vì chúng là ý kiến chủ quan của từng lập trình viên",
+        "Vì chúng không đo lường được bằng công cụ tự động",
+        "Vì chúng thường chỉ được nêu ra khi đội muốn trì hoãn công việc"
+      ],
+      "correct": 0,
+      "explanation": "Người quyết định phải chọn giữa hai thứ, và họ cần chúng cùng đơn vị. Một bên là doanh thu ước tính, bên kia là cảm giác khó chịu - cuộc so sánh ấy có kết quả từ trước khi bắt đầu."
+    },
+    {
+      "question": "Khi nào nên nói về rủi ro kỹ thuật?",
+      "options": [
+        "Sớm, khi bên kia còn nhiều phương án để điều chỉnh",
+        "Khi rủi ro đã trở thành vấn đề thật sự xảy ra",
+        "Trong buổi tổng kết cuối mỗi giai đoạn dự án",
+        "Chỉ khi nào được hỏi trực tiếp về tình trạng của dự án"
+      ],
+      "correct": 0,
+      "explanation": "Cùng nguyên tắc với việc báo trễ ở bài về phạm vi: giá trị của thông tin nằm ở số lựa chọn nó còn để lại cho người nhận. Nói khi rủi ro đã thành sự cố là nói khi mọi lựa chọn đã hết."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mọi bài trong chặng này đều dẫn tới một cuộc trò chuyện với người không viết mã: nên làm gì trước, cần bao lâu, đánh đổi gì. Kỹ năng dịch giữa hai thế giới ấy quyết định thông tin của bạn có được dùng hay không."
+    },
+    {
+      "type": "heading",
+      "text": "Dịch, không phải đơn giản hoá"
+    },
+    {
+      "type": "paragraph",
+      "text": "Đơn giản hoá là bỏ bớt chi tiết cho tới khi câu chuyện dễ nghe. Dịch là giữ nguyên nội dung nhưng đổi đơn vị: từ mã lộn xộn sang mỗi thay đổi ở vùng này tốn gấp ba thời gian, từ thiếu kiểm thử sang xác suất một lỗi lọt ra người dùng đang cao. Nội dung không mất đi, nó chỉ được nói bằng thứ người kia dùng để cân nhắc."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Ba đơn vị dùng được ở mọi cuộc họp",
+      "subtitle": "Chọn cái phù hợp với thứ bên kia đang lo",
+      "concepts": [
+        {
+          "vi": "Thời gian",
+          "en": "time",
+          "def": "Việc này làm mọi thay đổi sau chậm đi bao nhiêu, và khoảng cách ấy có đang giãn không."
+        },
+        {
+          "vi": "Rủi ro",
+          "en": "risk",
+          "def": "Khả năng hỏng, phạm vi ảnh hưởng nếu hỏng, và thời gian khắc phục."
+        },
+        {
+          "vi": "Tiền",
+          "en": "money",
+          "def": "Doanh thu bị ảnh hưởng, chi phí hạ tầng, hoặc công sức của người khác đang bị chặn."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Đưa phương án, đừng đưa phán quyết",
+      "text": "Bên kia thường biết những ràng buộc bạn không thấy: một cam kết với khách hàng lớn, một mốc pháp lý, một đối thủ sắp ra mắt. Đưa hai phương án kèm hệ quả để họ ghép thông tin của bạn vào bức tranh của họ, thay vì phải chọn giữa tin bạn và không tin bạn."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Nếu đánh đổi kỹ thuật không được nói bằng ngôn ngữ của người quyết định, nó sẽ không có mặt trong quyết định.",
+        "Bài sau là một dự án nhỏ nối lại toàn bộ chặng: từ một ý tưởng tới một con số chứng minh nó đúng hay sai."
+      ]
+    }
+  ]
+}

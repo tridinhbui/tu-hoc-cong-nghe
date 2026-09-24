@@ -37,7 +37,7 @@ export default function ConfirmDialog({
           <button
             onClick={onCancel}
             disabled={loading}
-            className="px-4 py-2 text-sm font-semibold rounded-lg border border-line-strong text-ink-body hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-50"
+            className="px-4 py-2 text-sm font-semibold rounded-lg border border-line-strong text-ink-body hover:bg-surface transition-colors disabled:opacity-50"
           >
             {tc.cancel}
           </button>
@@ -53,7 +53,7 @@ export default function ConfirmDialog({
         </>
       }
     >
-      <p className="text-sm text-stone-600 dark:text-stone-400">{message}</p>
+      <p className="text-sm text-ink-soft">{message}</p>
     </Modal>
   );
 }

@@ -1,0 +1,209 @@
+{
+  "id": 40,
+  "slug": "on-tap-nen-tang-du-lieu",
+  "title": "Ôn tập: từ một dãy bit tới một hệ thống đáng tin",
+  "subtitle": "Mười chín bài vừa rồi đều trả lời cùng một câu hỏi ở những tầng khác nhau.",
+  "duration": "10 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🎓",
+  "track": "professional",
+  "whyItMatters": "Chặng này không dạy một công nghệ nào cụ thể. Nó dạy cách đặt câu hỏi về dữ liệu, và những câu hỏi đó giữ nguyên giá trị khi ngôn ngữ, cơ sở dữ liệu hay khung làm việc đổi hết.",
+  "openingQuestion": "Sợi chỉ xuyên suốt cả chặng này là gì?",
+  "openingOptions": [
+    "Dữ liệu không tự mang ý nghĩa; ý nghĩa đến từ những quy ước ta đặt quanh nó",
+    "Cơ sở dữ liệu quan hệ là lựa chọn đúng cho mọi bài toán lưu trữ dữ liệu",
+    "Mọi lỗi dữ liệu đều bắt nguồn từ việc chọn sai kiểu cho một trường nào đó",
+    "Hiệu năng là tiêu chí quan trọng nhất khi thiết kế một hệ thống dữ liệu"
+  ],
+  "correctOption": 0,
+  "explanation": "Bài đầu chặng nói một dãy bit không mang ý nghĩa cho tới khi có kiểu dữ liệu diễn giải nó. Mọi bài sau đó lặp lại đúng ý ấy ở tầng cao hơn: một cột số không có nghĩa cho tới khi biết rỗng ở đây nghĩa là gì, một mốc thời gian không có nghĩa cho tới khi biết nó theo múi giờ nào, một bảng không có nghĩa cho tới khi biết nó nối với bảng nào và ai được đọc. Kỹ thuật thay đổi liên tục, còn việc phải nói rõ những quy ước ấy thì không.",
+  "diagram": [
+    {
+      "label": "Bit và kiểu - ý nghĩa của một giá trị",
+      "arrow": true
+    },
+    {
+      "label": "Lược đồ và quan hệ - ý nghĩa của một bảng",
+      "arrow": true
+    },
+    {
+      "label": "Giao dịch và chỉ mục - hành vi khi hệ thống chạy thật",
+      "arrow": true
+    },
+    {
+      "label": "Chất lượng, nhật ký, sao lưu, riêng tư - tin được tới đâu"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Buổi rà soát thiết kế",
+    "description": "Khi một đồng nghiệp đưa ra thiết kế bảng mới, chặng này cho bạn danh sách câu hỏi để hỏi: cột này rỗng nghĩa là gì, thời gian theo múi giờ nào, định danh có phơi ra ngoài không, ai đọc được, giữ bao lâu. Năm câu đó bắt được phần lớn vấn đề trước khi có dòng mã nào được viết."
+  },
+  "keyTakeaways": [
+    "Kiểu dữ liệu quyết định cả giá trị lẫn phép toán hợp lệ trên một vùng bit.",
+    "Số nguyên tràn, số thực có sai số, văn bản có ba đơn vị đo - ba cái bẫy nền tảng.",
+    "Lược đồ là hợp đồng với mọi hệ thống đang đọc, nên đổi nó phải theo từng bước.",
+    "Giao dịch chặn trạng thái nửa vời; chỉ mục đổi tốc độ ghi lấy tốc độ đọc.",
+    "Dữ liệu hỏng không báo lỗi, nên chất lượng phải được đo chủ động và định kỳ."
+  ],
+  "summary": {
+    "keyIdea": "Dữ liệu chỉ có nghĩa khi các quy ước quanh nó được nói rõ và được hệ thống bảo đảm.",
+    "formula": "Kiểu, lược đồ, ràng buộc, giao dịch, phép đo - năm tầng của một hệ thống đáng tin.",
+    "commonMistake": "Coi những quy ước ấy là chuyện ai cũng hiểu, nên không ai viết ra."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy một bảng đang chạy thật trong hệ thống của bạn và trả lời năm câu: rỗng ở mỗi cột nghĩa là gì, thời gian theo múi giờ nào, định danh có đoán được không, ai đang đọc bảng này, và dữ liệu giữ bao lâu. Chỗ nào không trả lời được là chỗ cần làm tiếp."
+  },
+  "practicePrompt": {
+    "question": "Một đồng nghiệp đề xuất lưu số điện thoại làm khoá chính của bảng khách hàng, kiểu số nguyên, kèm cột thời gian tạo theo giờ máy chủ. Có mấy vấn đề?",
+    "options": [
+      "Ba: khoá chính đổi được, kiểu số làm mất số không đầu, thời gian thiếu múi giờ",
+      "Hai: khoá chính có thể thay đổi và kiểu số làm mất chữ số không ở đầu",
+      "Một: chỉ có việc dùng số điện thoại làm khoá chính là thật sự sai",
+      "Không có vấn đề nào nếu mọi khách hàng đều ở trong cùng một quốc gia"
+    ],
+    "correct": 0,
+    "explanation": "Ba vấn đề đến từ ba bài khác nhau trong chặng: khoá chính nên là thứ không đổi, số điện thoại là chuỗi chứ không phải số vì có số không đứng đầu, và thời gian phải là mốc tuyệt đối chứ không phải giờ địa phương của máy chủ."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao cùng một dãy bit lại cho hai giá trị khác nhau?",
+      "options": [
+        "Vì kiểu dữ liệu quyết định cách diễn giải các bit đó",
+        "Vì hai vùng nhớ khác nhau được hệ điều hành cấp phát khác nhau",
+        "Vì bộ xử lý đọc bit theo thứ tự ngược nhau ở hai lần đọc khác nhau",
+        "Vì một trong hai giá trị đã bị một tiến trình khác ghi đè lên trước đó"
+      ],
+      "correct": 0,
+      "explanation": "Đây là ý mở đầu chặng và cũng là nền của mọi bài sau: bit không mang ý nghĩa, quy ước diễn giải mới mang. Ở tầng cao hơn, lược đồ và tài liệu đóng đúng vai trò của kiểu dữ liệu."
+    },
+    {
+      "question": "Thay đổi nào với lược đồ là an toàn với các hệ thống đang đọc?",
+      "options": [
+        "Thêm một trường mới cho phép rỗng vào cấu trúc dữ liệu",
+        "Đổi kiểu một trường từ chuỗi sang số cho đúng bản chất dữ liệu",
+        "Đổi tên một trường sang tên mới rõ nghĩa hơn cho người đọc mã",
+        "Xoá một trường đội bạn đã ngừng dùng"
+      ],
+      "correct": 0,
+      "explanation": "Bên đọc cũ bỏ qua trường nó không biết, nên thêm trường cho phép rỗng không phá vỡ gì. Ba thay đổi còn lại đều phá hợp đồng và phải làm qua nhiều bước với giai đoạn ghi song song."
+    },
+    {
+      "question": "Vì sao lỗi dữ liệu nguy hiểm hơn lỗi mã nguồn?",
+      "options": [
+        "Vì nó vẫn cho ra kết quả trông hợp lý và không tạo thông báo lỗi",
+        "Vì nó luôn lan ra nhiều bảng hơn so với một lỗi trong mã nguồn",
+        "Vì nó chỉ xảy ra trên hệ thống thật chứ không tái hiện được khi thử",
+        "Vì nó không sửa được sau khi dữ liệu đã được ghi xuống ổ đĩa"
+      ],
+      "correct": 0,
+      "explanation": "Mã hỏng thì có ngoại lệ và có người báo; dữ liệu hỏng thì đi thẳng vào báo cáo và cuộc họp. Đó là lý do bốn phép kiểm định kỳ - thiếu, trùng, ngoài khoảng, phân bố lạ - phải là việc chủ động."
+    },
+    {
+      "question": "Giao dịch và sao lưu bảo vệ hệ thống trước hai loại rủi ro nào?",
+      "options": [
+        "Giao dịch chặn trạng thái nửa vời, sao lưu chống mất mát dữ liệu lớn",
+        "Giao dịch chống mất dữ liệu, còn sao lưu bảo đảm tính nhất quán khi ghi",
+        "Cả hai cùng bảo vệ trước sự cố hỏng ổ đĩa của máy chủ cơ sở dữ liệu",
+        "Cả hai cùng bảo vệ trước việc nhiều người cùng sửa một dòng dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Hai cơ chế cho hai loại rủi ro khác nhau và không thay thế nhau. Giao dịch lo chuyện nhóm thao tác ghi phải cùng đúng; sao lưu lo chuyện dữ liệu biến mất vì hỏng phần cứng, xoá nhầm hay mã độc."
+    },
+    {
+      "question": "Nguyên tắc quan trọng nhất khi xử lý dữ liệu cá nhân là gì?",
+      "options": [
+        "Không thu thập trường nào mà nghiệp vụ không thật sự cần tới",
+        "Mã hoá mọi trường cá nhân bằng khoá mạnh",
+        "Giới hạn quyền đọc cho nhóm quản trị nhỏ",
+        "Ghi nhật ký mọi lần truy cập dữ liệu đó"
+      ],
+      "correct": 0,
+      "explanation": "Ba biện pháp còn lại đều cần, nhưng đều giảm xác suất chứ không khử được rủi ro. Thứ không tồn tại trong hệ thống thì không rò rỉ được, nên tối thiểu hoá luôn là lớp đầu tiên."
+    },
+    {
+      "question": "Điểm chung của khoá ngoại, ràng buộc cột và giao dịch là gì?",
+      "options": [
+        "Chúng để cơ sở dữ liệu bảo đảm quy tắc thay vì trông chờ mã nhớ giùm",
+        "Chúng đều làm tăng tốc độ của các câu truy vấn đọc dữ liệu từ bảng",
+        "Chúng đều chỉ hoạt động khi bảng có ít hơn một triệu dòng dữ liệu",
+        "Chúng đều là tính năng tuỳ chọn nên có thể tắt đi để hệ thống chạy nhanh"
+      ],
+      "correct": 0,
+      "explanation": "Cả ba đặt quy tắc ở tầng thấp nhất, nơi mọi đường ghi đều đi qua - kể cả tác vụ nền và câu lệnh gõ tay lúc chữa sự cố. Đó là khác biệt giữa quy tắc được bảo đảm và quy tắc được hy vọng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mười chín bài của chặng này đi từ tám bit trong bộ nhớ tới một hệ thống dữ liệu nhiều người dùng chung. Nhìn lại thì chúng chỉ là một câu hỏi được hỏi ở bốn tầng khác nhau."
+    },
+    {
+      "type": "heading",
+      "text": "Tầng một: một giá trị có nghĩa là gì"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Kiểu dữ liệu quyết định cách đọc bit và phép toán nào hợp lệ.",
+        "Số nguyên có phạm vi hữu hạn và quay vòng khi vượt, thường không báo lỗi.",
+        "Số thực luôn là xấp xỉ, nên không so sánh bằng và không dùng để lưu tiền.",
+        "Văn bản có ba đơn vị đo, và chúng chỉ trùng nhau ở tiếng Anh không dấu.",
+        "Rỗng là vắng mặt câu trả lời, khác hẳn số không và chuỗi trống."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Tầng hai: dữ liệu nằm ở đâu và nối với nhau ra sao"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Biến kiểu tham chiếu chia sẻ dữ liệu; bất biến chặn hẳn loại lỗi đó từ gốc.",
+        "Lược đồ là hợp đồng với mọi bên đọc, nên thay đổi phá vỡ tương thích phải làm nhiều bước.",
+        "Định danh quyết định cả chuyện rò rỉ thông tin lẫn chuyện mở rộng nhiều máy chủ.",
+        "Khoá ngoại giữ dữ liệu khỏi mồ côi; chuẩn hoá giữ mỗi sự thật ở đúng một chỗ."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Tầng ba: hệ thống hành xử thế nào khi chạy thật"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Đúng đắn",
+        "text": "Giao dịch bảo đảm nhóm thao tác ghi cùng thành công hoặc cùng không, nên không có trạng thái nửa vời khi hỏng giữa chừng."
+      },
+      "right": {
+        "label": "Tốc độ",
+        "text": "Chỉ mục đổi dung lượng và tốc độ ghi lấy tốc độ đọc. Thêm đúng chỗ thì nhanh gấp nhiều lần; thêm bừa thì chậm cả hệ thống."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Tầng bốn: tin được tới đâu"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chất lượng dữ liệu phải đo chủ động, vì dữ liệu sai trông y hệt dữ liệu đúng.",
+        "Nhật ký là bằng chứng, và phải được thiết kế trước khi sự cố xảy ra.",
+        "Bản sao lưu chưa khôi phục thử thì mới chỉ là một giả định.",
+        "Dữ liệu cá nhân là nghĩa vụ, nên mặc định an toàn nhất là không thu thập."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Năm câu hỏi mang theo",
+      "text": "Rỗng ở cột này nghĩa là gì? Thời gian theo múi giờ nào? Định danh có phơi ra ngoài không? Ai đang đọc bảng này? Dữ liệu giữ bao lâu? Hỏi được năm câu đó trong một buổi rà soát thiết kế là bắt được phần lớn vấn đề trước khi có dòng mã nào."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Công nghệ trong chặng này sẽ đổi. Những câu hỏi thì không - chúng đúng với cơ sở dữ liệu quan hệ, với kho dữ liệu lớn và với thứ chưa ra đời.",
+        "Chặng sau chuyển từ dữ liệu nằm yên sang dữ liệu di chuyển: hệ thống nói chuyện với nhau qua mạng."
+      ]
+    }
+  ]
+}

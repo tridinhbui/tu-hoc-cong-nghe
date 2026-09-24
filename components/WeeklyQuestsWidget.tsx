@@ -143,7 +143,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
             {t.weeklyQuests.subtitle}
           </p>
         </div>
-        <span className="text-[10px] font-black text-warn bg-warn-soft/40 px-2 py-0.5 rounded">
+        <span className="text-[10px] font-black text-warn bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded">
           {format(t.weeklyQuests.questCount, { done: (quest1Done ? 1 : 0) + (quest2Done ? 1 : 0) + (quest3Done ? 1 : 0) })}
         </span>
       </div>
@@ -204,7 +204,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       {/* Epic Chest Claim Button */}
       {allQuestsDone ? (
         isEpicClaimed ? (
-          <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
+          <div className="p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             {t.weeklyQuests.claimedMessage}
           </div>
@@ -219,7 +219,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
           </button>
         )
       ) : (
-        <div className="p-3 bg-stone-50 dark:bg-stone-950 border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold">
+        <div className="p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold">
           {t.weeklyQuests.locked}
         </div>
       )}

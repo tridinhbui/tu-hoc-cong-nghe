@@ -1,0 +1,174 @@
+{
+  "id": 170,
+  "slug": "khoi-phuc-sau-tham-hoa",
+  "title": "Khôi phục sau thảm hoạ: mất bao lâu, và mất bao nhiêu dữ liệu",
+  "subtitle": "Hai con số phải trả lời được trước khi cần tới chúng, vì lúc cần thì đã quá muộn để hỏi.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🧭",
+  "track": "professional",
+  "whyItMatters": "Sao lưu là thứ ai cũng có và ít ai thử. Hai con số này biến một niềm tin mơ hồ thành một cam kết đã được kiểm chứng, và chúng thường lộ ra rằng niềm tin ấy sai.",
+  "openingQuestion": "Hai câu hỏi cần trả lời trước khi một thảm hoạ xảy ra là gì?",
+  "openingOptions": [
+    "Khôi phục mất bao lâu, và mất dữ liệu của khoảng thời gian nào",
+    "Ai chịu trách nhiệm khôi phục, và ai phê duyệt cho việc bắt đầu làm",
+    "Bản sao lưu nằm ở đâu, và ai có quyền truy cập vào nó",
+    "Chi phí của thời gian ngừng, và mức bồi thường phải trả"
+  ],
+  "correctOption": 0,
+  "explanation": "Hai con số ấy quyết định toàn bộ thiết kế của hệ thống sao lưu. Thời gian khôi phục nói lên bạn cần bản sao nóng hay chỉ cần bản lưu trên kho lạnh; lượng dữ liệu chấp nhận mất nói lên bạn cần nhân bản liên tục hay sao lưu mỗi đêm là đủ. Ba nhóm câu hỏi còn lại đều cần thiết cho một kế hoạch hoàn chỉnh, nhưng chúng chỉ có câu trả lời hợp lý sau khi hai con số này đã được chọn.",
+  "diagram": [
+    {
+      "label": "Thời gian khôi phục: mất bao lâu để hoạt động lại",
+      "arrow": true
+    },
+    {
+      "label": "Lượng dữ liệu mất: sao lưu gần nhất cách đây bao lâu",
+      "arrow": true
+    },
+    {
+      "label": "Hai con số quyết định kiến trúc và chi phí",
+      "arrow": true
+    },
+    {
+      "label": "Chưa diễn tập thì cả hai chỉ là ước đoán"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bản sao lưu không khôi phục được",
+    "description": "Sao lưu chạy đều đặn suốt hai năm và báo thành công mỗi đêm. Lần đầu tiên có người thử khôi phục, tệp giải nén ra lỗi - công việc đã sao lưu một thư mục sai từ tháng thứ ba."
+  },
+  "keyTakeaways": [
+    "Thời gian khôi phục và lượng dữ liệu chấp nhận mất phải được chọn trước.",
+    "Sao lưu báo thành công không chứng minh được là khôi phục được.",
+    "Chỉ có diễn tập khôi phục mới biến hai con số thành sự thật.",
+    "Bản sao lưu phải nằm ngoài phạm vi ảnh hưởng của thứ nó bảo vệ."
+  ],
+  "summary": {
+    "keyIdea": "Kế hoạch khôi phục bắt đầu bằng hai con số và chỉ có giá trị sau khi đã diễn tập.",
+    "formula": "Bao lâu để trở lại, và mất dữ liệu từ lúc nào.",
+    "commonMistake": "Coi công việc sao lưu chạy thành công là bằng chứng đã an toàn."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Hỏi xem lần cuối cùng có ai khôi phục thật từ bản sao lưu là khi nào. Nếu câu trả lời là chưa bao giờ thì bạn chưa có bản sao lưu, bạn có một công việc chạy hằng đêm."
+  },
+  "practicePrompt": {
+    "question": "Vì sao bản sao lưu phải nằm ngoài phạm vi ảnh hưởng của hệ thống chính?",
+    "options": [
+      "Vì thứ phá hỏng dữ liệu gốc thường phá luôn bản sao nằm cùng chỗ",
+      "Vì lưu ở nơi khác giúp giảm chi phí lưu trữ dài hạn đáng kể",
+      "Vì các quy định về dữ liệu yêu cầu lưu trữ ở nhiều địa điểm",
+      "Vì đọc từ nơi khác nhanh hơn khi cần khôi phục lượng lớn dữ liệu"
+    ],
+    "correct": 0,
+    "explanation": "Một lệnh xoá nhầm, một mã độc, hay một tài khoản bị chiếm quyền đều với tới mọi thứ nằm trong cùng phạm vi truy cập. Cách ly bằng vùng khác, tài khoản khác, hoặc bản lưu không cho phép ghi đè là điều kiện để bản sao còn tồn tại đúng lúc bạn cần nó."
+  },
+  "quiz": [
+    {
+      "question": "Con số thời gian khôi phục quyết định điều gì?",
+      "options": [
+        "Bạn cần bản sao nóng sẵn sàng hay chỉ cần kho lưu trữ lạnh",
+        "Bao lâu một lần công việc sao lưu cần được chạy lại",
+        "Lượng dữ liệu tối đa được phép mất trong một sự cố",
+        "Số người cần có mặt trong suốt quá trình khôi phục lại hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Mục tiêu mười lăm phút và mục tiêu hai ngày dẫn tới hai kiến trúc khác nhau hoàn toàn, chênh nhau nhiều lần về chi phí. Tần suất sao lưu thì do con số còn lại quyết định."
+    },
+    {
+      "question": "Lượng dữ liệu chấp nhận mất quyết định điều gì?",
+      "options": [
+        "Khoảng cách giữa hai lần sao lưu hoặc mức độ nhân bản liên tục",
+        "Khoảng thời gian tối đa mà cả hệ thống được phép ngừng hoạt động",
+        "Dung lượng lưu trữ cần chuẩn bị cho các bản sao lưu",
+        "Số lượng bản sao lưu cần giữ lại trong kho lưu trữ"
+      ],
+      "correct": 0,
+      "explanation": "Chấp nhận mất một giờ thì sao lưu mỗi giờ là đủ; chấp nhận mất vài giây thì phải nhân bản gần như liên tục. Đây là một quyết định nghiệp vụ chứ không phải quyết định kỹ thuật, vì nó nói về việc mất bao nhiêu đơn hàng."
+    },
+    {
+      "question": "Vì sao công việc sao lưu báo thành công vẫn chưa đủ?",
+      "options": [
+        "Vì nó chỉ chứng minh việc ghi đã chạy, không chứng minh việc đọc lại được",
+        "Vì thông báo thành công có thể bị mất trên đường gửi tới đội",
+        "Vì công việc sao lưu thường bỏ qua các tệp đang được mở",
+        "Vì bản sao lưu có thể bị hỏng trong quá trình lưu trữ dài hạn"
+      ],
+      "correct": 0,
+      "explanation": "Sao lưu nhầm thư mục, thiếu một bảng, mã hoá bằng khoá đã mất - mọi trường hợp ấy đều cho một công việc chạy thành công mỗi đêm. Chỉ có một lần khôi phục thật mới kiểm tra được toàn bộ chuỗi."
+    },
+    {
+      "question": "Diễn tập khôi phục nên được làm thế nào?",
+      "options": [
+        "Khôi phục thật vào môi trường riêng rồi kiểm tra dữ liệu có dùng được",
+        "Kiểm tra kích thước tệp sao lưu có nằm trong khoảng dự kiến",
+        "Mở thử tệp sao lưu để xác nhận nó không bị hỏng cấu trúc",
+        "Đối chiếu danh sách bảng trong bản sao với danh sách trong hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Ba cách còn lại đều kiểm tra tệp chứ không kiểm tra quy trình, mà quy trình mới là chỗ hay hỏng: thiếu quyền truy cập, thiếu khoá giải mã, thiếu bước cấu hình, hoặc mất nhiều giờ hơn dự kiến."
+    },
+    {
+      "question": "Vì sao hai con số này phải được chọn từ trước?",
+      "options": [
+        "Vì chúng quyết định kiến trúc, và không đổi được giữa lúc sự cố",
+        "Vì các nhà cung cấp hạ tầng yêu cầu khai báo chúng khi ký hợp đồng",
+        "Vì đội cần chúng để lập ngân sách hạ tầng cho năm tài chính",
+        "Vì chúng là thông tin bắt buộc trong hồ sơ tuân thủ quy định"
+      ],
+      "correct": 0,
+      "explanation": "Giữa lúc mất dữ liệu, bạn dùng bất kỳ bản sao lưu nào đang có và mất bất kỳ lượng dữ liệu nào đã mất. Hai con số ấy chỉ có ý nghĩa nếu chúng đã định hình hệ thống từ trước đó rất lâu."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Dự phòng và cô lập lo cho những cách hỏng thông thường. Bài này về tình huống mọi thứ đã mất: trung tâm dữ liệu cháy, dữ liệu bị xoá, mã độc mã hoá toàn bộ."
+    },
+    {
+      "type": "heading",
+      "text": "Hai con số"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Bao lâu để trở lại",
+        "text": "Mười lăm phút và hai ngày là hai kiến trúc khác nhau hoàn toàn, chênh nhau nhiều lần chi phí. Quyết định bạn cần bản sao nóng hay kho lạnh."
+      },
+      "right": {
+        "label": "Mất dữ liệu từ lúc nào",
+        "text": "Chấp nhận mất một giờ thì sao lưu mỗi giờ là đủ. Chấp nhận mất vài giây thì phải nhân bản liên tục."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Con số thứ hai là một quyết định nghiệp vụ, không phải quyết định kỹ thuật: nó nói về việc mất bao nhiêu đơn hàng, bao nhiêu giao dịch, bao nhiêu bài viết của người dùng. Người trả lời đúng cho nó là người chịu trách nhiệm về sản phẩm chứ không phải người vận hành."
+    },
+    {
+      "type": "callout",
+      "label": "Sao lưu chạy thành công không nói lên gì",
+      "text": "Sao lưu nhầm thư mục, thiếu một bảng, mã hoá bằng khoá đã mất - mọi trường hợp ấy đều cho một công việc báo thành công mỗi đêm suốt hai năm. Chỉ có một lần khôi phục thật mới kiểm tra được toàn bộ chuỗi."
+    },
+    {
+      "type": "heading",
+      "text": "Diễn tập kiểm tra quy trình, không kiểm tra tệp"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chỗ hỏng thường không nằm trong dữ liệu mà nằm quanh nó: thiếu quyền truy cập, mất khoá giải mã, thiếu một bước cấu hình không ai ghi lại, hoặc đơn giản là mất nhiều giờ hơn con số đã hứa. Khôi phục thật vào một môi trường riêng rồi kiểm tra dữ liệu có dùng được là cách duy nhất tìm ra chúng trước."
+    },
+    {
+      "type": "callout",
+      "label": "Để bản sao ngoài tầm với của tai hoạ",
+      "text": "Một lệnh xoá nhầm, một mã độc, một tài khoản bị chiếm quyền đều với tới mọi thứ trong cùng phạm vi truy cập. Vùng khác, tài khoản khác, hoặc bản lưu không cho phép ghi đè - đó là điều kiện để bản sao còn tồn tại đúng lúc bạn cần."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Chưa từng khôi phục thì bạn chưa có bản sao lưu, bạn có một công việc chạy hằng đêm.",
+        "Nửa sau của chặng chuyển từ chuẩn bị sang ứng phó: chuyện gì xảy ra trong ba mươi phút đầu của một sự cố."
+      ]
+    }
+  ]
+}

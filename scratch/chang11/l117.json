@@ -1,0 +1,158 @@
+{
+  "id": 117,
+  "slug": "go-he-thong-cu",
+  "title": "Gỡ hệ thống cũ: phần không ai muốn làm",
+  "subtitle": "Di trú chưa xong khi bản mới chạy - nó xong khi bản cũ đã tắt.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧹",
+  "track": "professional",
+  "whyItMatters": "Mỗi hệ thống cũ còn sống là một khoản chi phí hằng tháng: bảo trì, vá lỗi bảo mật, người phải biết nó, và mọi thay đổi phải làm ở hai chỗ. Không tắt được thì cuộc di trú đã biến thành một khoản nợ vĩnh viễn.",
+  "openingQuestion": "Bản mới đã chạy tốt sáu tháng nhưng bản cũ vẫn còn. Chi phí thật của việc đó là gì?",
+  "openingOptions": [
+    "Mọi thay đổi phải làm ở hai nơi, và ai cũng phải biết cả hai",
+    "Chi phí hạ tầng cho hệ thống cũ vẫn tiếp tục phát sinh",
+    "Người dùng bối rối không biết nên dùng hệ thống nào",
+    "Dữ liệu giữa hai hệ thống có thể sẽ không còn đồng bộ với nhau"
+  ],
+  "correctOption": 0,
+  "explanation": "Chi phí hạ tầng thường là phần nhỏ nhất và dễ thấy nhất. Cái đắt là gánh nặng nhận thức và công sức lặp: mỗi quy tắc nghiệp vụ mới phải cài ở hai chỗ, mỗi lỗ hổng bảo mật phải vá hai lần, mỗi người mới vào phải học cả hai, và mọi cuộc thảo luận đều bắt đầu bằng câu hỏi đang nói về hệ thống nào. Chi phí ấy không giảm theo thời gian mà tăng, vì hiểu biết về hệ thống cũ mất dần trong khi nó vẫn phải được duy trì.",
+  "diagram": [
+    {
+      "label": "Bản mới chạy tốt, bản cũ vẫn còn",
+      "arrow": true
+    },
+    {
+      "label": "Thay đổi phải làm hai chỗ",
+      "arrow": true
+    },
+    {
+      "label": "Người biết hệ thống cũ dần rời đi",
+      "arrow": true
+    },
+    {
+      "label": "Chi phí tăng dần chứ không giảm"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Chín mươi phần trăm rồi dừng",
+    "description": "Rất nhiều cuộc di trú dừng ở mức phần lớn đã chuyển, vì phần còn lại là những trường hợp khó nhất và không còn ai thấy hào hứng. Hệ thống cũ ở lại thêm nhiều năm để phục vụ vài phần trăm lưu lượng, với đầy đủ chi phí của một hệ thống hoàn chỉnh."
+  },
+  "keyTakeaways": [
+    "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy.",
+    "Chi phí giữ hệ thống cũ tăng theo thời gian vì hiểu biết về nó mất dần.",
+    "Đặt ngày tắt ngay từ đầu và coi phần cuối là một phần của kế hoạch.",
+    "Đo lưu lượng còn lại để biết ai đang giữ hệ thống cũ sống."
+  ],
+  "summary": {
+    "keyIdea": "Phần khó nhất của di trú là phần cuối, và bỏ dở nó biến khoản đầu tư thành khoản nợ.",
+    "formula": "Đo lưu lượng còn lại, xử lý từng bên, rồi tắt hẳn.",
+    "commonMistake": "Coi di trú là xong khi bản mới nhận phần lớn lưu lượng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê những hệ thống trong tổ chức lẽ ra đã được thay thế nhưng vẫn đang chạy. Với mỗi cái, hỏi ai đang giữ nó sống và cần gì để tắt được."
+  },
+  "practicePrompt": {
+    "question": "Còn 3% lưu lượng trên hệ thống cũ. Bước đầu tiên để tắt nó là gì?",
+    "options": [
+      "Tìm ra 3% đó là ai và vì sao họ chưa chuyển",
+      "Đặt một ngày tắt và thông báo cho toàn bộ tổ chức",
+      "Tắt thử trong một giờ để xem ai lên tiếng phản đối",
+      "Chuyển 3% đó sang bản mới bằng cách định tuyến bắt buộc"
+    ],
+    "correct": 0,
+    "explanation": "3% có thể là hàng nghìn người dùng lẻ hoặc một hệ thống nội bộ duy nhất, và hai tình huống ấy cần hai cách xử lý khác hẳn. Đây đúng câu chuyện của việc tắt phiên bản API cũ ở chặng trước: số liệu trước, quyết định sau, và ngày tắt là bước cuối chứ không phải bước đầu."
+  },
+  "quiz": [
+    {
+      "question": "Khi nào một cuộc di trú được coi là hoàn thành?",
+      "options": [
+        "Khi hệ thống cũ đã được tắt hẳn",
+        "Khi bản mới nhận phần lớn lưu lượng",
+        "Khi bản mới đã chạy ổn định trong ba tháng",
+        "Khi đội đã chuyển sang làm dự án khác"
+      ],
+      "correct": 0,
+      "explanation": "Còn chạy là còn tốn: bảo trì, vá bảo mật, thay đổi hai nơi. Mọi lợi ích của việc di trú chỉ hiện thực hoá khi bản cũ biến mất."
+    },
+    {
+      "question": "Chi phí lớn nhất của việc giữ hệ thống cũ song song là gì?",
+      "options": [
+        "Mọi thay đổi phải làm hai lần và ai cũng phải biết cả hai",
+        "Chi phí hạ tầng và giấy phép phần mềm cho riêng hệ thống cũ",
+        "Dung lượng lưu trữ bị chiếm bởi dữ liệu trùng lặp",
+        "Sự nhầm lẫn của người dùng khi có hai hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Chi phí hạ tầng thì nhìn thấy được và thường nhỏ. Gánh nặng nhận thức và công sức lặp thì không xuất hiện trên hoá đơn nào nhưng lớn hơn nhiều."
+    },
+    {
+      "question": "Vì sao chi phí giữ hệ thống cũ tăng theo thời gian?",
+      "options": [
+        "Vì người hiểu nó dần rời đi trong khi nó vẫn phải được duy trì",
+        "Vì phần cứng chạy hệ thống cũ ngày càng đắt để thay thế",
+        "Vì số lượng người dùng của hệ thống cũ vẫn tăng lên theo thời gian",
+        "Vì các quy định về bảo mật ngày càng chặt chẽ hơn"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi năm trôi qua thì ít người biết nó hơn, tài liệu cũ hơn, và công nghệ nền của nó xa hiện tại hơn. Việc sửa một lỗi trong đó đắt dần cho tới lúc gần như không ai dám."
+    },
+    {
+      "question": "Vì sao nhiều cuộc di trú dừng ở gần cuối?",
+      "options": [
+        "Vì phần còn lại là những ca khó nhất và không còn ai thấy hào hứng",
+        "Vì ngân sách dự án thường hết trước khi hoàn thành",
+        "Vì phần cuối luôn đòi hỏi công nghệ mà đội chưa có",
+        "Vì tổ chức đã đạt được phần lớn lợi ích rồi nên dừng lại là hợp lý"
+      ],
+      "correct": 0,
+      "explanation": "Phần dễ được làm trước, nên phần còn lại là những ca ngoại lệ. Cộng với việc lợi ích cảm nhận được đã tới hết, động lực rơi xuống đúng lúc công việc khó lên."
+    },
+    {
+      "question": "Cách giữ cho phần cuối không bị bỏ dở là gì?",
+      "options": [
+        "Đặt ngày tắt và coi việc gỡ là một phần của kế hoạch từ đầu",
+        "Giao phần cuối cho một đội khác chuyên về di trú",
+        "Chờ tới khi lưu lượng còn lại tự giảm về không",
+        "Ngừng hỗ trợ hệ thống cũ để buộc người dùng phải chuyển sang"
+      ],
+      "correct": 0,
+      "explanation": "Nếu việc gỡ nằm ngoài kế hoạch thì nó luôn thua mọi việc khác khi tranh giành thời gian. Đưa nó vào từ đầu với một ngày cụ thể là cách duy nhất nó được làm."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bản mới đã chạy, số liệu đẹp, đội đã ăn mừng. Và hệ thống cũ vẫn ở đó - phục vụ vài phần trăm lưu lượng, với đầy đủ chi phí của một hệ thống hoàn chỉnh."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao phần cuối luôn khó nhất"
+    },
+    {
+      "type": "paragraph",
+      "text": "Những gì chuyển được dễ đã chuyển trước. Phần còn lại là các ca ngoại lệ: một khách hàng có cấu hình đặc biệt, một luồng nghiệp vụ hiếm nhưng quan trọng, một hệ thống nội bộ mà không ai nhớ vì sao vẫn gọi vào. Đúng lúc công việc trở nên khó nhất thì lợi ích cảm nhận được đã tới hết, và mọi việc khác trông hấp dẫn hơn."
+    },
+    {
+      "type": "callout",
+      "label": "Chi phí không đứng yên",
+      "text": "Một hệ thống cũ được giữ lại không phải một khoản chi phí cố định. Người hiểu nó rời đi, tài liệu cũ dần, nền công nghệ của nó ngày càng xa hiện tại. Ba năm sau, sửa một lỗi nhỏ trong đó có thể tốn hơn cả việc chuyển nốt phần còn lại hôm nay."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đưa việc gỡ vào kế hoạch ngay từ đầu, kèm một ngày cụ thể.",
+        "Đo lưu lượng còn lại theo từng bên gọi, để biết chính xác ai đang giữ nó sống.",
+        "Xử lý từng bên còn lại một cách chủ động thay vì chờ họ tự chuyển."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Di trú xong khi bản cũ tắt, không phải khi bản mới chạy. Bỏ dở phần cuối biến một khoản đầu tư thành một khoản nợ vĩnh viễn.",
+        "Bài sau nói về một quan sát giải thích rất nhiều thứ trong chặng này: hình dạng hệ thống thường phản chiếu hình dạng tổ chức."
+      ]
+    }
+  ]
+}

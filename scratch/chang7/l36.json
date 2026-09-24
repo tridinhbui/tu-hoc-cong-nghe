@@ -1,0 +1,189 @@
+{
+  "id": 36,
+  "slug": "chat-luong-du-lieu",
+  "title": "Chất lượng dữ liệu: đo trước khi tin vào con số",
+  "subtitle": "Một báo cáo sai không trông khác gì một báo cáo đúng.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔍",
+  "track": "professional",
+  "whyItMatters": "Mã hỏng thì có ngoại lệ, có nhật ký, có người báo. Dữ liệu hỏng thì không: nó vẫn ra một con số, vẫn vẽ được biểu đồ, vẫn được đưa vào cuộc họp. Chỗ duy nhất phát hiện được là kiểm tra chủ động, và phải kiểm trước khi ai đó ra quyết định.",
+  "openingQuestion": "Bảng khách hàng có 100.000 dòng, trong đó 12.000 dòng thiếu số điện thoại. Bước đầu tiên nên làm gì?",
+  "openingOptions": [
+    "Tìm hiểu vì sao thiếu, vì cách sửa phụ thuộc hoàn toàn vào nguyên nhân",
+    "Xoá 12.000 dòng đó đi để phần dữ liệu còn lại được sạch và đáng tin",
+    "Điền một giá trị mặc định vào để mọi dòng đều có đủ dữ liệu ở cột đó",
+    "Bỏ qua vì tỷ lệ thiếu dưới hai mươi phần trăm là mức chấp nhận được"
+  ],
+  "correctOption": 0,
+  "explanation": "Thiếu dữ liệu là một triệu chứng, và cùng một triệu chứng có nhiều nguyên nhân đòi hỏi cách xử lý ngược nhau. Nếu đó là những khách đăng ký qua kênh không hỏi số điện thoại thì dữ liệu không hề sai, nó chỉ không tồn tại. Nếu đó là lỗi của một lần nhập liệu thì phải nhập lại. Nếu đó là do một thay đổi mã cách đây ba tháng thì phải sửa mã trước, không thì lấp bao nhiêu cũng lại thiếu tiếp. Xoá hay điền bừa đều là quyết định trước khi biết chuyện gì đã xảy ra.",
+  "diagram": [
+    {
+      "label": "Phát hiện dữ liệu thiếu hoặc bất thường",
+      "arrow": true
+    },
+    {
+      "label": "Tìm nguyên nhân: nguồn nào, từ khi nào",
+      "arrow": true
+    },
+    {
+      "label": "Sửa ở nguồn để không tái diễn",
+      "arrow": true
+    },
+    {
+      "label": "Rồi mới xử lý phần dữ liệu đã hỏng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Ngày sinh mùng một tháng một",
+    "description": "Rất nhiều cơ sở dữ liệu có một đỉnh nhọn bất thường ở ngày mùng một tháng một. Đó không phải hiện tượng dân số học mà là dấu vết của những biểu mẫu bắt buộc nhập ngày sinh: người ta chọn đại giá trị đầu tiên trong danh sách để đi tiếp."
+  },
+  "keyTakeaways": [
+    "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ.",
+    "Thiếu, trùng, sai định dạng và giá trị vô lý là bốn nhóm hay gặp nhất.",
+    "Sửa ở nguồn trước, dọn dữ liệu cũ sau, nếu không thì dọn xong lại hỏng.",
+    "Một đỉnh nhọn bất thường trong phân bố thường là dấu vết của quy trình, không phải sự thật."
+  ],
+  "summary": {
+    "keyIdea": "Chất lượng dữ liệu phải được đo, vì dữ liệu sai trông y hệt dữ liệu đúng.",
+    "formula": "Đếm thiếu, đếm trùng, xem phân bố, kiểm khoảng giá trị.",
+    "commonMistake": "Dọn dữ liệu cũ mà không sửa nguồn, nên tháng sau lại phải dọn lần nữa."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một bảng quan trọng và chạy bốn phép đếm: bao nhiêu dòng thiếu ở mỗi cột, bao nhiêu bản ghi trùng, bao nhiêu giá trị nằm ngoài khoảng hợp lý, và phân bố theo ngày tạo có chỗ nào nhảy vọt bất thường không."
+  },
+  "practicePrompt": {
+    "question": "Doanh thu tháng này giảm ba mươi phần trăm so với tháng trước. Việc nên làm trước khi báo cáo là gì?",
+    "options": [
+      "Kiểm tra xem đường dữ liệu có thay đổi gì không trước khi kết luận",
+      "Báo ngay cho ban lãnh đạo vì mức giảm này là bất thường nghiêm trọng",
+      "So với cùng kỳ năm ngoái để xem đây có phải yếu tố mùa vụ hay không",
+      "Chia nhỏ theo từng sản phẩm để tìm ra nhóm hàng gây sụt giảm nhiều nhất"
+    ],
+    "correct": 0,
+    "explanation": "Một cú sụt lớn và đột ngột thường là dữ liệu chứ không phải kinh doanh: một tiến trình nhập liệu hỏng, một nguồn ngừng gửi, một bộ lọc mới thêm vào. Phân tích theo mùa vụ hay theo sản phẩm đều hữu ích, nhưng làm trên dữ liệu chưa kiểm chứng thì chỉ giải thích rất thuyết phục cho một con số sai."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao lỗi dữ liệu nguy hiểm hơn lỗi mã nguồn?",
+      "options": [
+        "Vì nó không tạo ra thông báo lỗi nào để người ta chú ý",
+        "Vì nó luôn ảnh hưởng tới nhiều bảng hơn so với một lỗi mã",
+        "Vì nó không sửa được sau khi đã ghi",
+        "Vì nó chỉ xuất hiện trên hệ thống thật chứ không có khi thử nghiệm"
+      ],
+      "correct": 0,
+      "explanation": "Mã hỏng thì có ngoại lệ và có người báo. Dữ liệu hỏng vẫn cho ra một con số trông hợp lý, và con số đó đi thẳng vào cuộc họp. Không kiểm chủ động thì không có cơ chế nào phát hiện."
+    },
+    {
+      "question": "Vì sao phải sửa ở nguồn trước khi dọn dữ liệu cũ?",
+      "options": [
+        "Vì nếu không thì dữ liệu hỏng mới lại sinh ra ngay sau đó",
+        "Vì dọn trước sẽ xoá mất bằng chứng",
+        "Vì không sửa được khi nguồn đang ghi vào",
+        "Vì dọn luôn tốn thời gian hơn sửa nguồn"
+      ],
+      "correct": 0,
+      "explanation": "Dọn mà không sửa nguồn là công việc lặp lại vô hạn: tháng sau lại đúng chỗ ấy. Giữ lại một mẫu dữ liệu hỏng để đối chiếu là việc nên làm, nhưng lý do chính vẫn là chặn đường sinh ra nó."
+    },
+    {
+      "question": "Một đỉnh nhọn bất thường trong phân bố ngày sinh thường nói lên điều gì?",
+      "options": [
+        "Đó là dấu vết của quy trình nhập liệu chứ không phải sự thật",
+        "Đó là dấu hiệu dữ liệu đã bị ghi trùng",
+        "Đó là kết quả của việc làm tròn ngày tháng khi chuyển đổi định dạng",
+        "Đó là hiện tượng bình thường vì ngày sinh không phân bố đều quanh năm"
+      ],
+      "correct": 0,
+      "explanation": "Giá trị mặc định của biểu mẫu, lựa chọn đầu tiên trong danh sách, hay một giá trị canh gác do lập trình viên đặt đều tạo ra đỉnh nhọn kiểu này. Nó là dấu vết của cách dữ liệu được thu thập."
+    },
+    {
+      "question": "Bốn phép kiểm cơ bản nên chạy định kỳ trên một bảng quan trọng là gì?",
+      "options": [
+        "Đếm thiếu, đếm trùng, kiểm khoảng giá trị và xem phân bố theo thời gian",
+        "Đếm số dòng, đo dung lượng, kiểm chỉ mục và kiểm thời gian truy vấn",
+        "Kiểm quyền truy cập, kiểm bản sao lưu, kiểm nhật ký và kiểm mã hoá",
+        "So với tháng trước, năm trước, kế hoạch và đối thủ"
+      ],
+      "correct": 0,
+      "explanation": "Bốn phép đó phủ được bốn nhóm lỗi hay gặp nhất và đều chạy bằng câu truy vấn đơn giản. Những thứ còn lại đều quan trọng, nhưng chúng đo hạ tầng hoặc đo kinh doanh chứ không đo chất lượng dữ liệu."
+    },
+    {
+      "question": "Khi phát hiện một cú sụt lớn bất thường trong số liệu, giả thuyết đầu tiên nên là gì?",
+      "options": [
+        "Đường dữ liệu có vấn đề chứ không phải kinh doanh sụt giảm",
+        "Đối thủ vừa tung khuyến mãi lớn cùng kỳ",
+        "Có yếu tố mùa vụ mô hình chưa tính tới",
+        "Người dùng đổi hành vi sau bản cập nhật"
+      ],
+      "correct": 0,
+      "explanation": "Hành vi kinh doanh hiếm khi đổi đột ngột trong một ngày; đường dữ liệu thì đổi đột ngột suốt. Loại trừ nguyên nhân kỹ thuật trước rồi mới đi tìm cách giải thích bằng thị trường."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Một báo cáo dựa trên dữ liệu hỏng vẫn có tiêu đề, vẫn có biểu đồ, vẫn có con số tròn trịa. Không có gì trong hình dạng của nó cho biết nó sai - đó là lý do phải đo chứ không thể nhìn."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn nhóm lỗi hay gặp"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Kiểm gì trên một bảng mới nhận",
+      "subtitle": "Bốn câu truy vấn, làm trước khi tin bất kỳ con số nào",
+      "concepts": [
+        {
+          "vi": "Thiếu",
+          "en": "missing",
+          "def": "Bao nhiêu dòng rỗng ở mỗi cột, và tỷ lệ đó có đổi theo thời gian không."
+        },
+        {
+          "vi": "Trùng",
+          "en": "duplicate",
+          "def": "Cùng một thực thể xuất hiện nhiều lần, thường do nhập từ nhiều nguồn."
+        },
+        {
+          "vi": "Ngoài khoảng",
+          "en": "out of range",
+          "def": "Tuổi âm, ngày sinh ở tương lai, số tiền lớn bất thường - dấu hiệu của lỗi nhập hoặc lỗi đơn vị."
+        },
+        {
+          "vi": "Phân bố lạ",
+          "en": "anomaly",
+          "def": "Một giá trị chiếm tỷ lệ bất thường, thường là giá trị mặc định lọt vào dữ liệu thật."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Sửa ở nguồn trước"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cám dỗ lớn nhất là viết một đoạn lệnh dọn sạch bảng rồi coi như xong. Nhưng nếu nguyên nhân vẫn nằm ở biểu mẫu không kiểm tra đầu vào, hoặc ở tiến trình nhập liệu bỏ sót trường, thì tháng sau bạn lại chạy đúng đoạn lệnh ấy. Dọn dữ liệu là bước hai, không phải bước một."
+    },
+    {
+      "type": "callout",
+      "label": "Ghi lại chỗ đã dọn",
+      "text": "Khi buộc phải sửa dữ liệu cũ, hãy giữ lại bản ghi những gì đã đổi và vì sao. Sáu tháng sau sẽ có người hỏi vì sao số liệu tháng này khác bản báo cáo họ lưu hồi đó, và câu trả lời phải tra được."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đặt bốn phép kiểm thành tác vụ chạy định kỳ, có cảnh báo khi vượt ngưỡng.",
+        "Với mỗi cột cho phép rỗng, ghi rõ trong tài liệu rỗng ở đây nghĩa là gì.",
+        "Trước khi giải thích một biến động lớn bằng lý do kinh doanh, loại trừ nguyên nhân kỹ thuật."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Dữ liệu sai không tự báo. Thứ duy nhất phát hiện được nó là những phép kiểm bạn chủ động chạy.",
+        "Bài sau nói về loại dữ liệu mô tả chính hệ thống: nhật ký và dấu vết, thứ bạn chỉ ước mình đã ghi khi sự cố xảy ra."
+      ]
+    }
+  ]
+}

@@ -89,8 +89,8 @@ export default function AdminSidebar({
             onClick={() => setMobileOpen(false)}
             className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
               active
-                ? "bg-surface-invert text-white dark:text-stone-900"
-                : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800"
+                ? "bg-surface-invert text-ink-invert"
+                : "text-ink-soft hover:bg-surface-raised"
             }`}
           >
             <Icon className="w-4 h-4 flex-shrink-0" />
@@ -109,7 +109,7 @@ export default function AdminSidebar({
         <span className="font-bold text-ink">{ts.brandShort}</span>
         <button
           onClick={() => setMobileOpen(true)}
-          className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800"
+          className="p-2 rounded-lg hover:bg-surface-raised"
           aria-label={ts.openMenu}
         >
           <Menu className="w-5 h-5 text-ink-body" />
@@ -128,7 +128,7 @@ export default function AdminSidebar({
               <span className="font-bold text-ink">{ts.brandShort}</span>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="p-1.5 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800"
+                className="p-1.5 rounded-lg hover:bg-surface-raised"
                 aria-label={ts.closeMenu}
               >
                 <X className="w-5 h-5 text-ink-body" />
@@ -163,7 +163,7 @@ function SidebarFooter({ adminEmail }: { adminEmail: string }) {
       <p className="px-3 text-xs text-ink-muted truncate mb-1">{adminEmail}</p>
       <Link
         href="/dashboard"
-        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-ink-soft hover:bg-surface-raised transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         {t.adminOne.sidebar.backToApp}

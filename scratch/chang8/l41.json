@@ -1,0 +1,190 @@
+{
+  "id": 41,
+  "slug": "mang-may-tinh-va-goi-tin",
+  "title": "Mạng: dữ liệu đi thành từng gói, không thành dòng liền",
+  "subtitle": "Không có sợi dây nào nối thẳng máy bạn tới máy chủ - chỉ có những gói tin đi lẻ và được ghép lại.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🌐",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Mọi thứ khó chịu khi làm việc với mạng - lúc nhanh lúc chậm, thỉnh thoảng mất, thứ tự đảo lộn - đều bắt nguồn từ một sự thật: dữ liệu bị cắt thành gói và mỗi gói tự đi đường của nó. Hiểu điều đó là hiểu vì sao mã chạy tốt trên máy mình lại hỏng khi ra mạng thật.",
+  "openingQuestion": "Bạn gửi một tệp 10 MB qua mạng. Nó đi tới máy nhận theo cách nào?",
+  "openingOptions": [
+    "Bị cắt thành nhiều nghìn gói nhỏ, mỗi gói đi riêng rồi ghép lại ở đầu kia",
+    "Đi thành một khối liền mạch theo đường đã được thiết lập từ trước",
+    "Được nén lại thành một gói duy nhất rồi giải nén ở phía máy nhận",
+    "Đi theo từng byte một, byte sau chỉ rời đi khi byte trước đã tới nơi"
+  ],
+  "correctOption": 0,
+  "explanation": "Mạng hiện đại chuyển dữ liệu theo gói: tệp bị cắt thành hàng nghìn mẩu nhỏ, mỗi mẩu mang theo địa chỉ đích và tự tìm đường qua các thiết bị trung gian. Hai gói của cùng một tệp có thể đi hai đường khác nhau, tới nơi lệch thứ tự, hoặc một gói mất hẳn giữa đường. Đầu nhận có nhiệm vụ xếp lại đúng thứ tự và yêu cầu gửi lại phần thiếu. Cảm giác về một dòng dữ liệu liền mạch là thứ được dựng lên ở tầng trên, không phải thứ có sẵn dưới đường truyền.",
+  "diagram": [
+    {
+      "label": "Tệp 10 MB ở máy gửi",
+      "arrow": true
+    },
+    {
+      "label": "Cắt thành hàng nghìn gói nhỏ",
+      "arrow": true
+    },
+    {
+      "label": "Mỗi gói tự đi đường của nó",
+      "arrow": true
+    },
+    {
+      "label": "Máy nhận xếp lại đúng thứ tự"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bưu điện chứ không phải ống nước",
+    "description": "Gửi một cuốn sách bằng cách xé ra thành nghìn trang, mỗi trang bỏ một phong bì có ghi địa chỉ và số thứ tự. Các phong bì đi những chuyến xe khác nhau, tới nơi lộn xộn, vài cái thất lạc. Người nhận xếp lại theo số và yêu cầu gửi lại trang thiếu."
+  },
+  "keyTakeaways": [
+    "Dữ liệu đi thành gói rời, mỗi gói tự tìm đường qua các thiết bị trung gian.",
+    "Gói có thể tới lệch thứ tự, tới trùng, hoặc mất hẳn giữa đường.",
+    "Cảm giác dòng liền mạch được dựng ở tầng trên chứ không có sẵn.",
+    "Mỗi tầng mạng thêm phần tiêu đề riêng, nên dữ liệu thật luôn nhỏ hơn lưu lượng."
+  ],
+  "summary": {
+    "keyIdea": "Mạng không nối hai máy bằng một sợi dây; nó chuyển từng gói tin độc lập.",
+    "formula": "Cắt thành gói, gửi rời, xếp lại ở đầu nhận.",
+    "commonMistake": "Viết mã như thể mạng luôn thông suốt và không bao giờ mất gói."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chạy lệnh dò đường tới một địa chỉ ở nước ngoài và đếm số chặng gói tin phải đi qua. Mỗi chặng là một chỗ gói có thể bị chậm lại hoặc mất đi."
+  },
+  "practicePrompt": {
+    "question": "Ứng dụng chạy hoàn hảo khi thử trên máy cá nhân nhưng lỗi liên tục khi lên mạng thật. Nguyên nhân thường gặp nhất là gì?",
+    "options": [
+      "Trên máy cá nhân không có mất gói và độ trễ nên mọi giả định đều đúng",
+      "Máy chủ thật có cấu hình yếu hơn máy cá nhân nên xử lý không kịp",
+      "Mã nguồn khi triển khai đã bị biên dịch khác so với lúc chạy thử",
+      "Trình duyệt trên máy thật dùng phiên bản khác nên không còn tương thích"
+    ],
+    "correct": 0,
+    "explanation": "Chạy cục bộ nghĩa là gói không bao giờ mất, độ trễ gần bằng không và băng thông gần như vô hạn. Mọi giả định ngầm về mạng đều đúng ở đó và sai ngay khi ra ngoài, nên lỗi không nằm ở mã mà nằm ở những điều kiện mã đã mặc định."
+  },
+  "quiz": [
+    {
+      "question": "Dữ liệu đi qua mạng dưới hình thức nào?",
+      "options": [
+        "Từng gói nhỏ độc lập, mỗi gói mang địa chỉ đích riêng",
+        "Một dòng byte liền mạch theo đường đã được giữ sẵn cho phiên đó",
+        "Một khối duy nhất được nén lại rồi giải nén ở phía máy nhận",
+        "Từng byte một, byte sau chờ byte trước"
+      ],
+      "correct": 0,
+      "explanation": "Chuyển mạch gói là nền của mạng hiện đại: mỗi gói tự tìm đường nên hạ tầng dùng chung được cho rất nhiều bên. Dòng liền mạch là ảo giác do tầng trên dựng lên bằng cách xếp lại và gửi bù."
+    },
+    {
+      "question": "Điều gì có thể xảy ra với các gói tin trên đường đi?",
+      "options": [
+        "Tới lệch thứ tự, tới trùng, hoặc mất hẳn",
+        "Chỉ có thể bị chậm lại chứ không bao giờ mất đi hoàn toàn",
+        "Bị đổi nội dung bởi các thiết bị trung gian trên đường truyền",
+        "Luôn tới đúng thứ tự vì mỗi gói mang theo số thứ tự của mình"
+      ],
+      "correct": 0,
+      "explanation": "Mất gói là chuyện bình thường của mạng, không phải sự cố hiếm. Số thứ tự giúp đầu nhận xếp lại chứ không ngăn được gói tới lộn xộn, và cũng không ngăn được gói biến mất."
+    },
+    {
+      "question": "Vì sao mã chạy tốt trên máy cá nhân lại hay hỏng khi lên mạng thật?",
+      "options": [
+        "Vì cục bộ không có mất gói, độ trễ hay đứt kết nối",
+        "Vì máy chủ thật luôn có cấu hình phần cứng yếu hơn máy cá nhân",
+        "Vì mã được biên dịch theo cách khác khi triển khai lên máy chủ",
+        "Vì hệ điều hành trên máy chủ xử lý mạng theo cơ chế hoàn toàn khác"
+      ],
+      "correct": 0,
+      "explanation": "Môi trường cục bộ là một mạng lý tưởng, nên mọi giả định ngầm đều đúng. Ra ngoài thật thì độ trễ, mất gói và đứt kết nối biến những giả định đó thành lỗi."
+    },
+    {
+      "question": "Phần tiêu đề mà mỗi tầng mạng thêm vào có tác dụng gì?",
+      "options": [
+        "Mang thông tin để tầng tương ứng ở đầu kia xử lý được gói",
+        "Nén dữ liệu để gói tin chiếm ít băng thông",
+        "Mã hoá nội dung gói tin nhằm chống lại việc bị nghe lén trên đường",
+        "Đánh dấu mức độ ưu tiên để gói được đi qua các chặng nhanh hơn"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi tầng nói chuyện với đúng tầng tương ứng ở phía bên kia, và tiêu đề là chỗ chứa thông tin cho cuộc nói chuyện đó. Nó làm gói to thêm chứ không nén lại, nên dữ liệu thật luôn nhỏ hơn lưu lượng đo được."
+    },
+    {
+      "question": "Vì sao mạng được chia thành nhiều tầng?",
+      "options": [
+        "Để mỗi tầng đổi được mà không phá vỡ những tầng còn lại",
+        "Để tăng tốc độ truyền vì mỗi tầng xử lý gói tin song song nhau",
+        "Để giảm số gói tin cần gửi nhờ gộp nhiều tầng vào một lần truyền",
+        "Để mỗi tầng có thể mã hoá dữ liệu bằng một thuật toán riêng biệt"
+      ],
+      "correct": 0,
+      "explanation": "Phân tầng là cách chia trách nhiệm: đổi từ cáp đồng sang sóng không dây không cần sửa gì ở tầng ứng dụng. Nó thêm chút chi phí xử lý chứ không làm nhanh hơn - cái được là khả năng thay đổi độc lập."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hình dung quen thuộc về mạng là một sợi dây nối máy bạn với máy chủ. Hình dung đó dễ chịu và sai, và gần như mọi lỗi mạng khó hiểu đều là hậu quả của việc tin vào nó."
+    },
+    {
+      "type": "heading",
+      "text": "Chuyển mạch gói"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dữ liệu bị cắt thành gói, mỗi gói mang địa chỉ đích và tự tìm đường qua các thiết bị trung gian. Nhờ vậy một đường truyền phục vụ được rất nhiều bên cùng lúc, thay vì bị một cuộc nói chuyện chiếm giữ. Cái giá là không gói nào được bảo đảm tới nơi, tới đúng lúc, hay tới đúng thứ tự."
+    },
+    {
+      "type": "callout",
+      "label": "Mất gói là bình thường",
+      "text": "Thiết bị trung gian quá tải thì việc nó làm là vứt bớt gói. Đó không phải hỏng hóc mà là cơ chế điều tiết. Tầng trên phát hiện thiếu và yêu cầu gửi lại - và đó là lý do tốc độ mạng dao động chứ không phẳng."
+    },
+    {
+      "type": "heading",
+      "text": "Phân tầng: mỗi tầng một việc"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Bốn tầng hay nhắc tới nhất",
+      "subtitle": "Mỗi tầng chỉ nói chuyện với đúng tầng tương ứng ở đầu bên kia",
+      "concepts": [
+        {
+          "vi": "Tầng liên kết",
+          "en": "link",
+          "def": "Đưa dữ liệu qua một chặng vật lý: sợi cáp, sóng không dây, giữa hai thiết bị cạnh nhau."
+        },
+        {
+          "vi": "Tầng mạng",
+          "en": "network",
+          "def": "Định tuyến gói qua nhiều chặng để tới đúng địa chỉ đích, dù đích ở nửa kia địa cầu."
+        },
+        {
+          "vi": "Tầng giao vận",
+          "en": "transport",
+          "def": "Dựng lại thứ tự, phát hiện thiếu và gửi bù - hoặc cố tình không làm gì trong số đó."
+        },
+        {
+          "vi": "Tầng ứng dụng",
+          "en": "application",
+          "def": "Nơi mã của bạn sống: yêu cầu, phản hồi, và ý nghĩa của dữ liệu được trao đổi."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đừng viết mã như thể mạng luôn thông; hãy coi lỗi mạng là đường chạy bình thường.",
+        "Mọi lời gọi qua mạng đều phải có thời hạn chờ, nếu không nó treo vô hạn.",
+        "Lưu lượng đo được luôn lớn hơn dữ liệu thật, vì mỗi tầng thêm phần tiêu đề của mình."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Không có sợi dây nào cả. Chỉ có những gói tin đi lẻ, và một ảo giác về dòng liền mạch được dựng lên phía trên chúng.",
+        "Bài sau nói về bước đầu tiên của mọi lần gọi mạng: tìm ra máy đích nằm ở địa chỉ nào."
+      ]
+    }
+  ]
+}

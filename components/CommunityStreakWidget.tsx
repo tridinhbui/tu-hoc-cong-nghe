@@ -88,7 +88,7 @@ export default function CommunityStreakWidget() {
                   {post.user_name.charAt(0).toUpperCase()}
                 </span>
               )}
-              <span className="min-w-0 flex-1 truncate text-xs font-bold text-stone-800 dark:text-stone-200">
+              <span className="min-w-0 flex-1 truncate text-xs font-bold text-ink-heading">
                 {post.user_name}
               </span>
               {days !== null && (

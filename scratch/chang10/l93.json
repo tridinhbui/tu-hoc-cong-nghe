@@ -1,0 +1,176 @@
+{
+  "id": 93,
+  "slug": "pham-vi-va-danh-doi",
+  "title": "Phạm vi, thời gian, chất lượng: chọn thứ để nhường",
+  "subtitle": "Khi việc trễ, thứ duy nhất nên co lại là phạm vi.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "⚖️",
+  "track": "professional",
+  "whyItMatters": "Mọi dự án trễ đều buộc phải nhường một thứ. Nếu không chọn có ý thức thì thứ bị nhường sẽ là chất lượng, vì đó là thứ duy nhất cắt được trong im lặng mà không ai phải phê duyệt.",
+  "openingQuestion": "Dự án sẽ trễ hai tuần. Nên điều chỉnh thứ nào trước?",
+  "openingOptions": [
+    "Phạm vi: bỏ bớt những phần ít giá trị nhất ra khỏi đợt này",
+    "Chất lượng: giảm bớt kiểm thử để kịp hạn đã cam kết",
+    "Nhân lực: thêm người vào đội để đẩy nhanh tiến độ",
+    "Thời gian: yêu cầu cả đội cùng làm thêm giờ trong hai tuần tới"
+  ],
+  "correctOption": 0,
+  "explanation": "Cắt phạm vi là lựa chọn duy nhất mà hậu quả hiện ra ngay và mọi người cùng thấy: tính năng này chưa có trong đợt này. Cắt chất lượng thì hậu quả bị dời sang tương lai dưới dạng lỗi và nợ kỹ thuật, và nó luôn đắt hơn phần tiết kiệm được. Thêm người vào một dự án đang trễ thường làm nó trễ thêm vì thời gian hướng dẫn lấy đi chính người đang làm được việc. Làm thêm giờ mua được vài ngày rồi trả lại bằng sai sót và kiệt sức.",
+  "diagram": [
+    {
+      "label": "Việc sắp trễ",
+      "arrow": true
+    },
+    {
+      "label": "Cắt phạm vi: hậu quả hiện ngay, ai cũng thấy",
+      "arrow": true
+    },
+    {
+      "label": "Cắt chất lượng: hậu quả dời sang tương lai",
+      "arrow": true
+    },
+    {
+      "label": "Thêm người: thường làm chậm thêm"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Thêm người vào dự án trễ",
+    "description": "Người mới cần được hướng dẫn, và người hướng dẫn chính là người đang làm việc hiệu quả nhất. Trong ngắn hạn, đội mất năng suất chứ không tăng - hiện tượng này đã được mô tả từ những năm bảy mươi và vẫn lặp lại đều đặn."
+  },
+  "keyTakeaways": [
+    "Cắt phạm vi là lựa chọn có hậu quả rõ ràng và ai cũng nhìn thấy.",
+    "Cắt chất lượng là khoản vay lãi suất cao, và nó bị vay trong im lặng.",
+    "Thêm người vào việc đang trễ thường làm nó trễ thêm.",
+    "Nói sớm về việc trễ luôn rẻ hơn nói muộn, dù khó chịu hơn ở thời điểm nói."
+  ],
+  "summary": {
+    "keyIdea": "Khi việc trễ, thứ duy nhất nên nhường là phạm vi - vì nó là thứ duy nhất nhường một cách công khai.",
+    "formula": "Cắt việc, đừng cắt chất lượng.",
+    "commonMistake": "Không chọn gì cả, và để chất lượng bị cắt trong im lặng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy việc đang làm và xếp các phần của nó theo giá trị. Nếu phải giao trong nửa thời gian thì bỏ phần nào? Danh sách ấy nên có sẵn trước khi cần tới."
+  },
+  "practicePrompt": {
+    "question": "Bạn biết dự án sẽ trễ nhưng còn ba tuần nữa mới tới hạn. Nên nói khi nào?",
+    "options": [
+      "Ngay bây giờ, vì càng sớm thì bên kia càng còn nhiều phương án",
+      "Khi tới hạn, vì biết đâu đội vẫn kịp xong trong ba tuần còn lại",
+      "Trước hạn vài ngày, để có thêm thời gian tự khắc phục",
+      "Chỉ nói nếu bên yêu cầu chủ động hỏi về tiến độ"
+    ],
+    "correct": 0,
+    "explanation": "Ba tuần cho bên kia đủ thời gian đổi kế hoạch, dời truyền thông, hoặc chấp nhận cắt phạm vi. Nói vào đúng ngày tới hạn thì bạn đã lấy mất mọi lựa chọn của họ, và đó mới là phần khiến người ta mất lòng tin - không phải bản thân việc trễ."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao cắt phạm vi tốt hơn cắt chất lượng?",
+      "options": [
+        "Vì hậu quả của nó hiện ra ngay và mọi người cùng thấy",
+        "Vì nó tiết kiệm được nhiều thời gian hơn hẳn",
+        "Vì người dùng thường không nhận ra tính năng nào đang bị thiếu",
+        "Vì chất lượng có thể bổ sung dễ dàng ở đợt sau"
+      ],
+      "correct": 0,
+      "explanation": "Cắt phạm vi là một quyết định công khai có người phê duyệt. Cắt chất lượng xảy ra âm thầm và hậu quả xuất hiện nhiều tháng sau, khi không ai còn nối được nó với quyết định ban đầu."
+    },
+    {
+      "question": "Vì sao thêm người vào dự án đang trễ thường không giúp?",
+      "options": [
+        "Vì việc hướng dẫn lấy đi thời gian của chính người đang làm tốt nhất",
+        "Vì người mới không có quyền truy cập vào hệ thống ngay",
+        "Vì ngân sách dự án thường không cho phép thêm nhân sự",
+        "Vì đội sẽ mất động lực khi có người mới tham gia"
+      ],
+      "correct": 0,
+      "explanation": "Năng suất giảm trước khi tăng, và với một dự án đang trễ thì giai đoạn giảm ấy rơi đúng vào lúc không chịu nổi. Với việc kéo dài nhiều tháng thì có thể có lãi, với việc còn hai tuần thì không."
+    },
+    {
+      "question": "Chi phí thật của việc cắt chất lượng là gì?",
+      "options": [
+        "Một khoản nợ được vay trong im lặng và trả lãi về sau",
+        "Sự bất mãn của các thành viên trong chính đội phát triển",
+        "Việc phải xin phê duyệt lại từ các bên liên quan",
+        "Thời gian kiểm thử tăng lên ở những đợt tiếp theo"
+      ],
+      "correct": 0,
+      "explanation": "Đây là nợ kỹ thuật ở dạng tệ nhất: không ai ghi sổ, không ai quyết định có ý thức, nên không ai biết mình đang trả lãi cho khoản gì."
+    },
+    {
+      "question": "Vì sao nên báo tin trễ càng sớm càng tốt?",
+      "options": [
+        "Vì bên kia còn nhiều phương án hơn khi biết sớm",
+        "Vì báo sớm thì đội có thêm áp lực để kịp hạn",
+        "Vì quy trình của công ty yêu cầu cập nhật tiến độ định kỳ",
+        "Vì tin xấu báo sớm sẽ được quên đi nhanh hơn"
+      ],
+      "correct": 0,
+      "explanation": "Điều làm mất lòng tin không phải việc trễ mà là việc bị bất ngờ. Ba tuần báo trước cho người khác đủ thời gian điều chỉnh; một ngày báo trước thì không."
+    },
+    {
+      "question": "Điều gì xảy ra nếu không chọn thứ để nhường?",
+      "options": [
+        "Chất lượng sẽ bị nhường, vì nó cắt được mà không cần ai duyệt",
+        "Dự án sẽ tự động được gia hạn thêm thời gian",
+        "Đội sẽ tự cân bằng lại khối lượng công việc",
+        "Phạm vi sẽ tự thu hẹp khi tới gần hạn cuối"
+      ],
+      "correct": 0,
+      "explanation": "Ba yếu tố không thể cùng giữ, nên một cái sẽ nhường dù bạn có chọn hay không. Không chọn nghĩa là chọn cái nhường được trong im lặng, và đó luôn là chất lượng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mọi kế hoạch đều gặp lúc không đủ thời gian. Câu hỏi không phải là có phải nhường gì không, mà là bạn chọn nhường hay để nó tự bị nhường."
+    },
+    {
+      "type": "heading",
+      "text": "Ba thứ không cùng giữ được"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Cái nào nhường được",
+      "subtitle": "Hai trong ba là cứng hơn bạn tưởng",
+      "concepts": [
+        {
+          "vi": "Phạm vi",
+          "en": "scope",
+          "def": "Nhường được, và nhường một cách công khai. Bỏ phần ít giá trị nhất ra khỏi đợt này."
+        },
+        {
+          "vi": "Thời gian",
+          "en": "time",
+          "def": "Đôi khi nhường được, nhưng thường ràng buộc bởi cam kết bên ngoài mà bạn không kiểm soát."
+        },
+        {
+          "vi": "Chất lượng",
+          "en": "quality",
+          "def": "Nhường được nhưng không nên. Hậu quả bị dời sang tương lai và luôn đắt hơn phần tiết kiệm."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao chất lượng luôn là thứ bị hy sinh"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cắt phạm vi cần một cuộc trò chuyện khó với người đang chờ tính năng. Dời hạn cần thông báo với nhiều bên. Bỏ bớt kiểm thử thì không cần nói với ai - nó xảy ra bằng cách không làm gì cả. Đó chính là lý do nó luôn là thứ bị nhường khi không ai chủ động chọn, và cũng là lý do phải chọn có ý thức."
+    },
+    {
+      "type": "callout",
+      "label": "Bất ngờ đắt hơn tin xấu",
+      "text": "Người ta chịu được việc trễ. Thứ họ không chịu được là biết vào phút chót, khi mọi phương án của họ đã bị lấy mất. Báo sớm là món quà bạn tặng người khác, dù nó khó chịu cho chính bạn ở thời điểm nói."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Khi việc trễ, hãy cắt việc chứ đừng cắt chất lượng. Cái đầu tiên là một quyết định, cái thứ hai là một khoản vay bạn không nhớ mình đã ký.",
+        "Bài sau nói về việc chọn làm gì trước, khi danh sách việc luôn dài hơn thời gian có."
+      ]
+    }
+  ]
+}

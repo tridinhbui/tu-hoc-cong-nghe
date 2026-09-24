@@ -30,7 +30,7 @@ export default function LessonTranslationBadge({ translated }: { translated?: bo
   return (
     <p
       title={t.content.viOnlyBadgeTitle}
-      className="inline-flex items-center gap-1.5 rounded-lg border border-amber-300 dark:border-amber-800 bg-warn-soft/40 px-2.5 py-1 text-[11px] font-bold text-amber-800 dark:text-amber-300"
+      className="inline-flex items-center gap-1.5 rounded-lg border border-warn-line-mid bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 text-[11px] font-bold text-warn-ink"
     >
       <span aria-hidden="true">🇻🇳</span>
       {t.content.viOnlyBadge}

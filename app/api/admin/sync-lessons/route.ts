@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       correct_option: lesson.correctOption,
       explanation: lesson.explanation,
       key_takeaways: lesson.keyTakeaways,
-      track: lesson.track || "professional",
+      track: lesson.track,
       status: "published",
       stage_number: Math.ceil(lesson.id / 20),
       day_number: lesson.id,

@@ -1,0 +1,162 @@
+{
+  "id": 86,
+  "slug": "co-mau-va-y-nghia-thong-ke",
+  "title": "Cỡ mẫu: vì sao thử nghiệm cần lâu hơn bạn tưởng",
+  "subtitle": "Muốn phát hiện một cải thiện nhỏ thì cần rất nhiều người dùng, và không có cách nào đi tắt.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "📏",
+  "track": "professional",
+  "whyItMatters": "Đội chạy thử nghiệm ba ngày rồi kết luận sẽ nhận về những kết luận sai một cách có hệ thống. Biết cỡ mẫu cần thiết trước khi bắt đầu là cách tránh việc bỏ công chạy một thử nghiệm không bao giờ có khả năng trả lời câu hỏi của bạn.",
+  "openingQuestion": "Bạn muốn phát hiện một cải thiện 1% trong tỷ lệ chuyển đổi. So với việc phát hiện cải thiện 10%, cỡ mẫu cần thiết thay đổi thế nào?",
+  "openingOptions": [
+    "Lớn hơn rất nhiều lần, vì hiệu ứng càng nhỏ càng khó tách khỏi nhiễu",
+    "Lớn hơn khoảng mười lần, tương ứng với chính mức chênh lệch của hiệu ứng",
+    "Không đổi, vì cỡ mẫu chỉ phụ thuộc vào tổng số người dùng",
+    "Nhỏ hơn, vì hiệu ứng nhỏ thì dao động giữa hai nhóm cũng nhỏ"
+  ],
+  "correctOption": 0,
+  "explanation": "Cỡ mẫu cần thiết tăng rất nhanh khi hiệu ứng bạn muốn phát hiện nhỏ đi - giảm hiệu ứng mười lần thì cỡ mẫu tăng khoảng một trăm lần, chứ không phải mười. Lý do là bạn phải phân biệt tín hiệu với dao động ngẫu nhiên, và dao động ấy không nhỏ đi theo. Hệ quả thực tế rất quan trọng: một sản phẩm có vài nghìn người dùng mỗi tuần đơn giản là không thể phát hiện được cải thiện một phần trăm, dù chạy bao lâu cũng vậy. Biết điều đó trước thì bạn khỏi tốn công.",
+  "diagram": [
+    {
+      "label": "Hiệu ứng lớn: ít mẫu cũng thấy được",
+      "arrow": true
+    },
+    {
+      "label": "Hiệu ứng nhỏ: tín hiệu chìm trong dao động",
+      "arrow": true
+    },
+    {
+      "label": "Giảm hiệu ứng 10 lần → mẫu tăng khoảng 100 lần",
+      "arrow": true
+    },
+    {
+      "label": "Không đủ lưu lượng thì đừng chạy thử nghiệm ấy"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Thử nghiệm không bao giờ kết luận được",
+    "description": "Một đội chạy thử nghiệm suốt hai tháng và luôn thấy kết quả không rõ ràng. Tính lại thì với lưu lượng hiện có, họ cần chín tháng để phát hiện được mức cải thiện đang kỳ vọng. Hai tháng đó đáng lẽ dành cho một thay đổi lớn hơn."
+  },
+  "keyTakeaways": [
+    "Cỡ mẫu cần thiết tăng theo bình phương khi hiệu ứng nhỏ đi.",
+    "Tính cỡ mẫu trước khi chạy, để biết thử nghiệm có khả thi hay không.",
+    "Không đủ lưu lượng thì hãy thử những thay đổi lớn hơn, đừng thử tinh chỉnh nhỏ.",
+    "Có ý nghĩa thống kê không đồng nghĩa với đáng làm về mặt kinh doanh."
+  ],
+  "summary": {
+    "keyIdea": "Khả năng phát hiện một hiệu ứng phụ thuộc vào cỡ mẫu, nên phải tính trước khi chạy.",
+    "formula": "Hiệu ứng nhỏ đi một nửa thì mẫu cần lớn lên khoảng bốn lần.",
+    "commonMistake": "Chạy thử nghiệm hai tháng cho một câu hỏi cần chín tháng lưu lượng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy lưu lượng tuần của luồng quan trọng nhất và tính xem với con số đó, bạn phát hiện được mức cải thiện nhỏ nhất là bao nhiêu trong hai tuần. Con số ấy quyết định loại thay đổi đáng thử."
+  },
+  "practicePrompt": {
+    "question": "Thử nghiệm cho kết quả có ý nghĩa thống kê với mức cải thiện 0,3%. Có nên phát hành không?",
+    "options": [
+      "Còn tuỳ, vì có ý nghĩa thống kê không có nghĩa là đáng với chi phí duy trì",
+      "Có, vì kết quả đã đạt ngưỡng ý nghĩa thống kê nên chắc chắn có lợi",
+      "Không, vì mức cải thiện dưới 1% luôn nằm trong sai số đo lường",
+      "Có, nhưng chỉ nên phát hành cho một nửa số người dùng hiện tại"
+    ],
+    "correct": 0,
+    "explanation": "Ý nghĩa thống kê chỉ nói rằng hiệu ứng nhiều khả năng có thật, không nói nó đủ lớn để đáng làm. Cải thiện 0,3% có thể là hàng tỷ đồng với một sản phẩm lớn và là con số vô nghĩa với một sản phẩm nhỏ - và nó vẫn phải trừ đi chi phí duy trì thêm một nhánh mã."
+  },
+  "quiz": [
+    {
+      "question": "Cỡ mẫu cần thiết thay đổi thế nào khi hiệu ứng muốn phát hiện nhỏ đi một nửa?",
+      "options": [
+        "Tăng lên khoảng bốn lần",
+        "Tăng lên khoảng hai lần",
+        "Giảm đi khoảng một nửa",
+        "Không thay đổi đáng kể"
+      ],
+      "correct": 0,
+      "explanation": "Quan hệ là bình phương chứ không phải tuyến tính. Đây là lý do những tinh chỉnh nhỏ gần như không kiểm chứng được ở sản phẩm có lưu lượng vừa phải."
+    },
+    {
+      "question": "Vì sao nên tính cỡ mẫu trước khi bắt đầu thử nghiệm?",
+      "options": [
+        "Để biết thử nghiệm có khả năng trả lời câu hỏi hay không",
+        "Để công cụ phân tích cấu hình được đúng số nhóm cần chia ra",
+        "Để bảo đảm hai nhóm có số người dùng bằng nhau",
+        "Để dự trù chi phí hạ tầng cho thời gian chạy thử"
+      ],
+      "correct": 0,
+      "explanation": "Nếu con số tính ra là chín tháng lưu lượng thì bạn biết ngay đừng chạy, và dành thời gian cho một thay đổi lớn hơn. Phát hiện điều đó sau hai tháng chạy là mất trắng hai tháng."
+    },
+    {
+      "question": "Có ý nghĩa thống kê nghĩa là gì?",
+      "options": [
+        "Khác biệt quan sát được khó có khả năng chỉ do ngẫu nhiên",
+        "Khác biệt đủ lớn để đáng đầu tư phát hành cho tất cả",
+        "Kết quả sẽ lặp lại y hệt nếu ta chạy lại thử nghiệm lần nữa",
+        "Nhóm thử nghiệm chắc chắn tốt hơn nhóm đối chứng"
+      ],
+      "correct": 0,
+      "explanation": "Nó nói về khả năng khác biệt là thật, không nói về độ lớn hay giá trị kinh doanh. Một khác biệt rất nhỏ vẫn đạt ý nghĩa thống kê nếu mẫu đủ lớn."
+    },
+    {
+      "question": "Sản phẩm có lưu lượng thấp nên tập trung thử nghiệm gì?",
+      "options": [
+        "Những thay đổi lớn, vì hiệu ứng lớn cần ít mẫu hơn",
+        "Những tinh chỉnh nhỏ, vì chúng ít rủi ro hơn khi phát hành",
+        "Nhiều thử nghiệm song song để tận dụng lưu lượng có sẵn",
+        "Thử nghiệm kéo dài nhiều tháng để tích luỹ đủ dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Với ít lưu lượng, chỉ hiệu ứng lớn mới nổi lên trên nhiễu. Chạy nhiều thử nghiệm song song còn chia nhỏ lưu lượng ra nữa, làm mọi thứ khó kết luận hơn."
+    },
+    {
+      "question": "Vì sao khác biệt giữa hai nhóm dao động mạnh khi mẫu còn nhỏ?",
+      "options": [
+        "Vì một vài người dùng cá biệt cũng đủ làm lệch tỷ lệ",
+        "Vì công cụ đo lường kém chính xác ở giai đoạn đầu",
+        "Vì việc chia nhóm chưa kịp cân bằng giữa hai bên",
+        "Vì người dùng đầu tiên thường có hành vi khác thường"
+      ],
+      "correct": 0,
+      "explanation": "Với một trăm người mỗi nhóm, hai người mua thêm đã đổi tỷ lệ hai điểm phần trăm. Chính dao động đó tạo ra những khoảnh khắc trông thuyết phục mà không có gì thật đằng sau."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói phải chốt cỡ mẫu trước khi chạy. Bài này nói vì sao con số ấy thường lớn hơn nhiều so với trực giác, và điều đó đổi cách chọn thứ để thử."
+    },
+    {
+      "type": "heading",
+      "text": "Tín hiệu và nhiễu"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hai nhóm người dùng giống hệt nhau vẫn cho hai tỷ lệ khác nhau, đơn giản vì con người không đồng nhất. Đó là nhiễu. Việc của thử nghiệm là tách tín hiệu ra khỏi nhiễu ấy, và khi tín hiệu nhỏ đi thì bạn cần nhiều dữ liệu hơn rất nhiều để làm được - quan hệ là bình phương, nên hiệu ứng nhỏ đi mười lần thì mẫu phải lớn lên khoảng một trăm lần."
+    },
+    {
+      "type": "callout",
+      "label": "Hệ quả cho sản phẩm nhỏ",
+      "text": "Với vài nghìn người dùng mỗi tuần, bạn không phát hiện được cải thiện một phần trăm dù chạy bao lâu. Điều đó không phải thất bại - nó chỉ có nghĩa là hãy thử những thay đổi lớn, và với những tinh chỉnh nhỏ thì cứ chọn theo phán đoán rồi đi tiếp."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Ý nghĩa thống kê",
+        "text": "Khác biệt này khó có khả năng chỉ do ngẫu nhiên. Là câu hỏi về độ tin cậy, và mẫu càng lớn thì càng dễ đạt."
+      },
+      "right": {
+        "label": "Ý nghĩa thực tiễn",
+        "text": "Khác biệt này có đủ lớn để đáng phát hành và duy trì không? Là câu hỏi kinh doanh, và không phép thống kê nào trả lời thay được."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Biết cỡ mẫu cần thiết trước khi chạy giúp bạn khỏi bỏ hai tháng vào một câu hỏi cần chín tháng.",
+        "Bài sau nói về cái bẫy đứng ngay sau khi có số liệu đẹp: nhầm hai thứ đi cùng nhau với hai thứ gây ra nhau."
+      ]
+    }
+  ],
+  "interactiveType": "sampling"
+}

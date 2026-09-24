@@ -13,8 +13,8 @@ export default async function AdminDocumentsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-1">{tp.title}</h1>
-      <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">
+      <h1 className="text-2xl font-bold text-ink mb-1">{tp.title}</h1>
+      <p className="text-sm text-ink-muted mb-6">
         {tp.subtitle}
       </p>
       <DocumentsManager documents={documents} />

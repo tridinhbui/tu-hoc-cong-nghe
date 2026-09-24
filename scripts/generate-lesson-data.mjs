@@ -230,7 +230,10 @@ const trackTotals = {};
 let lessonsWithoutMinutes = 0;
 for (const l of lessons) {
   if (l.isVisible === false) continue;
-  const track = l.resolvedTrack ?? l.track ?? "unknown";
+  // Nhãn hiển thị cho bảng thống kê, KHÔNG phải giá trị track mặc định:
+  // mọi bài đều phải tự khai track (lib/__tests__/lesson-track-required.test.ts).
+  const resolved = l.resolvedTrack ?? l.track;
+  const track = resolved ?? "unknown";
   const entry = (trackTotals[track] ??= { lessons: 0, minutes: 0, missingMinutes: 0 });
   entry.lessons++;
   if (typeof l.totalMinutes === "number") entry.minutes += l.totalMinutes;

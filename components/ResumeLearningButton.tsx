@@ -92,8 +92,8 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           </div>
         </div>
         <div className="flex-1 space-y-2">
-          <div className="h-3.5 bg-stone-200 dark:bg-stone-800 rounded-full w-2/5 bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite]" />
-          <div className="h-3.5 bg-stone-200 dark:bg-stone-800 rounded-full w-4/5 bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite]" style={{ animationDelay: "120ms" }} />
+          <div className="h-3.5 bg-surface-sunken rounded-full w-2/5 bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite]" />
+          <div className="h-3.5 bg-surface-sunken rounded-full w-4/5 bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite]" style={{ animationDelay: "120ms" }} />
         </div>
         <style>{`
           @keyframes shimmer {
@@ -185,10 +185,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             </div>
 
             <div className="flex-1 min-w-0">
-              <span className="text-[9px] font-extrabold text-emerald-700 dark:text-emerald-300 uppercase tracking-widest bg-accent-soft/40 px-2 py-0.5 rounded-md">
+              <span className="text-[9px] font-extrabold text-accent-strong uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
                 {t.resume.quickGuideTitle}
               </span>
-              <p className="mt-1.5 text-stone-800 dark:text-stone-100 text-sm sm:text-[15px] font-bold leading-relaxed">
+              <p className="mt-1.5 text-ink-heading text-sm sm:text-[15px] font-bold leading-relaxed">
                 {format(t.resume.quickGuideIntro, { name: firstName ? ` ${firstName}` : "" })}
               </p>
             </div>
@@ -198,11 +198,11 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             <a
               href="#lo-trinh"
               onClick={() => trackFeatureClick("beginner_cta_click", { label: "step1_chon_lo_trinh" })}
-              className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-emerald-300 dark:hover:border-emerald-800 rounded-xl p-3 transition-colors"
+              className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-accent-line-mid rounded-xl p-3 transition-colors"
             >
-              <span className="shrink-0 w-6 h-6 rounded-full bg-surface-invert text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">1</span>
+              <span className="shrink-0 w-6 h-6 rounded-full bg-surface-invert text-ink-invert text-[11px] font-extrabold flex items-center justify-center">1</span>
               <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">{t.resume.step1Title}</p>
+                <p className="text-xs sm:text-sm font-extrabold text-ink">{t.resume.step1Title}</p>
                 <p className="text-[10px] text-ink-faint font-bold mt-0.5">{t.resume.step1Body}</p>
               </div>
               <Map className="w-4 h-4 text-stone-400 group-hover:text-emerald-500 shrink-0" />
@@ -215,7 +215,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             >
               <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-600 text-white text-[11px] font-extrabold flex items-center justify-center">2</span>
               <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50 truncate">{format(t.resume.step2Title, { lesson: nextLessonShortTitle ?? "" })}</p>
+                <p className="text-xs sm:text-sm font-extrabold text-ink truncate">{format(t.resume.step2Title, { lesson: nextLessonShortTitle ?? "" })}</p>
                 <p className="text-[10px] text-ink-faint font-bold mt-0.5">{format(t.resume.step2Body, { duration: nextLesson.duration })}</p>
               </div>
               <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl transition-all">{t.resume.study}</span>
@@ -224,11 +224,11 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             <Link
               href="/analytics?tab=leaderboard"
               onClick={() => trackFeatureClick("beginner_cta_click", { label: "step3_bang_xep_hang" })}
-              className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-amber-300 dark:hover:border-amber-800 rounded-xl p-3 transition-colors"
+              className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-warn-line-mid rounded-xl p-3 transition-colors"
             >
-              <span className="shrink-0 w-6 h-6 rounded-full bg-surface-invert text-white dark:text-stone-900 text-[11px] font-extrabold flex items-center justify-center">3</span>
+              <span className="shrink-0 w-6 h-6 rounded-full bg-surface-invert text-ink-invert text-[11px] font-extrabold flex items-center justify-center">3</span>
               <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-50">{t.resume.step3Title}</p>
+                <p className="text-xs sm:text-sm font-extrabold text-ink">{t.resume.step3Title}</p>
                 <p className="text-[10px] text-ink-faint font-bold mt-0.5">{t.resume.step3Body}</p>
               </div>
               <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-amber-500 shrink-0" />
@@ -244,7 +244,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
       <Link
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-        className="group relative block h-full bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 rounded-3xl p-5 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col justify-between overflow-hidden"
+        className="group relative block h-full bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 hover:border-line-strong rounded-3xl p-5 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col justify-between overflow-hidden"
       >
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-400" />
@@ -254,7 +254,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           {/* Avatar with soft energetic halo */}
           <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 mt-0.5">
             <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
-            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-stone-200 dark:border-stone-700 shadow-sm bg-surface-raised flex items-center justify-center">
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-line-mid shadow-sm bg-surface-raised flex items-center justify-center">
               <TaiTaiAvatar size={44} />
             </div>
             {/* Online status indicator */}
@@ -264,23 +264,23 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
           <div className="flex-1 min-w-0 pr-5 sm:pr-8">
             {/* Header Labels */}
             <div className="flex items-center gap-2 flex-wrap mb-2">
-              <span className="text-[10px] font-black text-stone-600 dark:text-stone-300 uppercase tracking-widest bg-surface-raised border border-stone-200 dark:border-stone-700 px-2.5 py-0.5 rounded-lg shadow-2xs">
+              <span className="text-[10px] font-black text-ink-soft uppercase tracking-widest bg-surface-raised border border-line-mid px-2.5 py-0.5 rounded-lg shadow-2xs">
                 {t.resume.heroBanner}
               </span>
-              <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-warn-soft/50 border border-amber-200/80 dark:border-amber-800/80 px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-2xs">
+              <span className="text-[10px] font-black text-warn-strong uppercase tracking-widest bg-amber-50 dark:bg-amber-950/50 border border-amber-200/80 dark:border-amber-800/80 px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-2xs">
                 {format(t.resume.xpIfNow, { xp: XP_PER_LESSON })}
               </span>
             </div>
 
             {/* Tai Tai speech text */}
-            <p className="text-stone-900 dark:text-stone-50 text-sm sm:text-[15px] font-extrabold leading-relaxed">
+            <p className="text-ink text-sm sm:text-[15px] font-extrabold leading-relaxed">
               "{energeticGreeting}"
             </p>
 
             {/* Live Track Progress Bar */}
             {trackProgress && (
               <div className="mt-3.5">
-                <div className="flex items-center justify-between text-[11px] font-bold text-stone-600 dark:text-stone-400 mb-1">
+                <div className="flex items-center justify-between text-[11px] font-bold text-ink-soft mb-1">
                   <span>{format(t.resume.trackProgress, { done: trackProgress.completed, total: trackProgress.total })}</span>
                   <span className="text-accent font-extrabold">{trackProgress.percent}%</span>
                 </div>
@@ -294,7 +294,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
             )}
 
             {/* Lesson Target Sub-Card inside the hero banner */}
-            <div className="mt-3.5 bg-stone-50/80 dark:bg-stone-950/60 border border-stone-200/80 dark:border-stone-800 group-hover:border-stone-300 dark:group-hover:border-stone-700 rounded-2xl p-3 sm:p-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 transition-all duration-300">
+            <div className="mt-3.5 bg-stone-50/80 dark:bg-stone-950/60 border border-stone-200/80 dark:border-stone-800 group-hover:border-line-strong rounded-2xl p-3 sm:p-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 transition-all duration-300">
               <div className="min-w-0 flex-1">
                 <span className="text-[9px] font-black text-ink-muted uppercase tracking-wider block mb-0.5">
                   {t.resume.continuingLesson}
@@ -328,11 +328,11 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5 flex-wrap mb-2">
-                <span className="text-[9px] font-extrabold text-sky-700 dark:text-sky-300 uppercase tracking-widest bg-sky-50 dark:bg-sky-950/40 px-2 py-0.5 rounded-md">
+                <span className="text-[9px] font-extrabold text-sky-700 dark:text-sky-400 uppercase tracking-widest bg-sky-50 dark:bg-sky-950/40 px-2 py-0.5 rounded-md">
                   {t.resume.feedbackTitle}
                 </span>
                 {stageReviewInsight && (
-                  <span className="text-[9px] font-extrabold text-amber-700 dark:text-amber-300 uppercase tracking-widest bg-warn-soft/40 px-2 py-0.5 rounded-md">
+                  <span className="text-[9px] font-extrabold text-warn-strong uppercase tracking-widest bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-md">
                     {t.resume.reviewOnTime}
                   </span>
                 )}
@@ -347,7 +347,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                   </p>
                   <Link
                     href={`/bai-hoc/${stageReviewInsight.lessonSlug}`}
-                    className="inline-flex items-center gap-1 mt-2 text-[11px] font-extrabold text-amber-800 dark:text-amber-300 hover:text-amber-600 dark:hover:text-amber-200"
+                    className="inline-flex items-center gap-1 mt-2 text-[11px] font-extrabold text-warn-ink hover:text-warn"
                   >
                     {format(t.resume.openStage, { stage: stageReviewInsight.stageLabel, lesson: getLessonShortTitle({ title: stageReviewInsight.lessonTitle }) })} <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
@@ -363,7 +363,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                     {topicGapSummary.map((item) => (
                       <span
                         key={item.topicId}
-                        className="inline-flex items-center gap-1 rounded-full border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 px-2.5 py-1 text-[10px] font-extrabold text-rose-700 dark:text-rose-300"
+                        className="inline-flex items-center gap-1 rounded-full border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 px-2.5 py-1 text-[10px] font-extrabold text-alert-strong"
                       >
                         {t.topics[item.topicId]}
                         <span className="rounded-full bg-rose-500 text-white px-1.5 py-0.5 text-[9px]">{item.count}</span>
@@ -378,19 +378,19 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                   <p className="text-[11px] font-extrabold text-ink">
                     {format(t.resume.stumblingMost, { topic: t.topics[criticalMistake.topicId] })}
                   </p>
-                  <p className="text-[11px] text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">
+                  <p className="text-[11px] text-ink-soft mt-1 leading-relaxed">
                     {format(t.resume.wrongCount, { count: criticalMistake.wrongCount, lesson: getLessonShortTitle({ title: criticalMistake.lessonTitle }) })}
                   </p>
                   <p className="text-[11px] text-ink-body mt-2 leading-relaxed">
                     {criticalMistake.explanation ?? t.resume.explanationFallback}
                   </p>
-                  <p className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300 mt-2 leading-relaxed">
+                  <p className="text-[11px] font-bold text-accent-strong mt-2 leading-relaxed">
                     {format(t.resume.coachSuggestion, { action: t.topicAdvice[criticalMistake.adviceId] })}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     <Link
                       href={`/bai-hoc/${criticalMistake.lessonSlug}`}
-                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-surface-invert text-white dark:text-stone-900"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-surface-invert text-ink-invert"
                     >
                       {t.resume.reviewThisLesson} <ArrowRight className="w-3.5 h-3.5" />
                     </Link>

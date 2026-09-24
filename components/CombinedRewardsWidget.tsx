@@ -282,8 +282,8 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 activeTab === "daily"
                   ? "bg-white dark:bg-stone-900 text-ink shadow-sm font-black"
                   : dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed)
-                  ? "bg-amber-50/70 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border border-amber-200/60 dark:border-amber-900/50 font-black"
-                  : "text-ink-muted hover:text-stone-700 dark:hover:text-stone-300 font-bold"
+                  ? "bg-amber-50/70 dark:bg-amber-950/30 text-warn-strong border border-amber-200/60 dark:border-amber-900/50 font-black"
+                  : "text-ink-muted hover:text-ink-body font-bold"
               }`}
             >
               <span>{t.rewards.tabDaily}</span>
@@ -297,7 +297,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 activeTab === "chests"
                   ? "bg-white dark:bg-stone-900 text-ink shadow-sm border border-line"
                   : chestCount > 0
-                  ? "bg-rose-50/70 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/50 font-black"
+                  ? "bg-rose-50/70 dark:bg-rose-950/30 text-alert border border-rose-200 dark:border-rose-900/50 font-black"
                   : "text-ink-muted hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-500/5"
               }`}
             >
@@ -312,7 +312,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
               className={`flex-1 text-[10px] sm:text-[10.5px] font-black px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1.5 ${
                 activeTab === "weekly"
                   ? "bg-white dark:bg-stone-900 text-ink shadow-sm border border-line"
-                  : "text-ink-muted hover:text-stone-700 dark:hover:text-stone-300 font-bold"
+                  : "text-ink-muted hover:text-ink-body font-bold"
               }`}
             >
               <span>{t.rewards.tabWeekly}</span>
@@ -352,7 +352,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 `}</style>
 
                 {chestCount > 0 ? (
-                  <div className="text-center py-4 bg-stone-50 dark:bg-stone-950 rounded-2xl border border-line-soft/80 space-y-3">
+                  <div className="text-center py-4 bg-surface rounded-2xl border border-stone-100 dark:border-stone-800/80 space-y-3">
                     <button
                       onClick={handleOpenChest}
                       disabled={opening}
@@ -363,7 +363,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                       <span className="text-2xl">🎁</span>
                     </button>
                     <div className="space-y-1">
-                      <p className="text-xs font-bold text-stone-800 dark:text-stone-200">{t.rewards.hasUnopenedChest}</p>
+                      <p className="text-xs font-bold text-ink-heading">{t.rewards.hasUnopenedChest}</p>
                       <p className="text-[10px] text-ink-faint">{t.rewards.openChestHint}</p>
                     </div>
                   </div>
@@ -374,12 +374,12 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 )}
 
                 {/* Rương tri thức tuần - Weekly Chest Tracker inside Chests Tab */}
-                <div className="mt-4 pt-4 border-t border-line-soft/80 flex items-center justify-between gap-3">
+                <div className="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/80 flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent animate-pulse mb-1">
                       <Gift className="w-3.5 h-3.5 text-rose-500" /> {t.rewards.weeklyChestTitle}
                     </span>
-                    <p className="text-[11.5px] font-bold text-stone-600 dark:text-stone-300">
+                    <p className="text-[11.5px] font-bold text-ink-soft">
                       {format(t.rewards.weeklyChestCompleted, { count: dailyQuests.filter((q) => q.current >= q.target).length })}
                     </p>
                   </div>
@@ -388,7 +388,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     disabled={weeklyClaimed || dailyQuests.filter((q) => q.current >= q.target).length < WEEKLY_CHEST_QUESTS_REQUIRED}
                     className={`px-4 py-2 text-[10px] font-black rounded-xl transition-all duration-200 border shrink-0 flex items-center justify-center gap-1.5 ${
                       weeklyClaimed
-                        ? "bg-stone-100 dark:bg-stone-950 text-stone-400 border-line"
+                        ? "bg-surface-raised text-stone-400 border-line"
                         : dailyQuests.filter((q) => q.current >= q.target).length >= 3
                         ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white border-rose-500 shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 cursor-pointer animate-pulse"
                         : "bg-surface text-stone-400 border-line cursor-not-allowed"
@@ -436,7 +436,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
                 {allQuestsDone ? (
                   isEpicClaimed ? (
-                    <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
+                    <div className="mt-4 p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-500" /> {t.rewards.epicClaimed}
                     </div>
                   ) : (
@@ -449,7 +449,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     </button>
                   )
                 ) : (
-                  <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-950 border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold">
+                  <div className="mt-4 p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold">
                     {t.rewards.epicLocked}
                   </div>
                 )}

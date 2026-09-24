@@ -1,0 +1,161 @@
+{
+  "id": 128,
+  "slug": "tiem-lenh",
+  "title": "Tiêm lệnh: dữ liệu bị đọc thành câu lệnh",
+  "subtitle": "Mọi lỗ hổng họ này đều cùng một hình dạng: hai thứ bị trộn vào một chuỗi.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "💉",
+  "track": "professional",
+  "whyItMatters": "Đây là họ lỗ hổng cổ điển nhất và vẫn nằm trong nhóm phổ biến nhất sau hai mươi năm. Nó tồn tại dai dẳng vì cách chữa sai - lọc ký tự - trông có vẻ hợp lý và luôn thiếu.",
+  "openingQuestion": "Cách chữa tận gốc cho lỗ hổng tiêm lệnh là gì?",
+  "openingOptions": [
+    "Truyền dữ liệu như tham số, tách hẳn khỏi câu lệnh",
+    "Lọc bỏ những ký tự đặc biệt trong dữ liệu người dùng",
+    "Kiểm tra độ dài và định dạng của mọi trường đầu vào",
+    "Giới hạn quyền của tài khoản mà ứng dụng dùng để kết nối"
+  ],
+  "correctOption": 0,
+  "explanation": "Gốc rễ của vấn đề là dữ liệu và câu lệnh bị trộn vào cùng một chuỗi, khiến bộ phân tích không phân biệt được phần nào là ý định của bạn. Truyền tham số giữ hai thứ ở hai đường riêng: câu lệnh được phân tích trước, dữ liệu được gắn vào sau như một giá trị và không bao giờ được diễn giải. Lọc ký tự thì luôn thiếu vì bạn phải nghĩ ra mọi cách mã hoá, còn giới hạn quyền và kiểm định dạng đều là lớp phòng thủ tốt nhưng chúng giảm thiệt hại chứ không đóng lỗ hổng.",
+  "diagram": [
+    {
+      "label": "Ghép chuỗi: câu lệnh và dữ liệu trộn làm một",
+      "arrow": true
+    },
+    {
+      "label": "Bộ phân tích không phân biệt được ý định",
+      "arrow": true
+    },
+    {
+      "label": "Truyền tham số: câu lệnh phân tích trước",
+      "arrow": true
+    },
+    {
+      "label": "Dữ liệu gắn sau, không bao giờ được diễn giải"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Không chỉ có cơ sở dữ liệu",
+    "description": "Cùng hình dạng ấy xuất hiện ở mọi nơi có bộ diễn giải: lệnh hệ điều hành, truy vấn thư mục, mẫu tài liệu, và cả câu lệnh gửi cho mô hình ngôn ngữ. Học một lần rồi nhận ra nó ở những chỗ tưởng không liên quan."
+  },
+  "keyTakeaways": [
+    "Nguyên nhân luôn là dữ liệu và câu lệnh bị trộn vào một chuỗi.",
+    "Truyền tham số là cách chữa tận gốc; lọc ký tự thì luôn thiếu.",
+    "Cùng hình dạng xuất hiện ở lệnh hệ điều hành, mẫu tài liệu và nhiều nơi khác.",
+    "Giới hạn quyền là lớp giảm thiệt hại, không phải cách đóng lỗ hổng."
+  ],
+  "summary": {
+    "keyIdea": "Tiêm lệnh là hậu quả của việc trộn dữ liệu vào câu lệnh, nên cách chữa là không trộn.",
+    "formula": "Câu lệnh một đường, dữ liệu một đường.",
+    "commonMistake": "Lọc ký tự đặc biệt và tin rằng đã xử lý xong."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm trong mã của bạn mọi chỗ đang ghép chuỗi để tạo truy vấn hoặc lệnh hệ thống. Mỗi chỗ như vậy là một ứng viên, kể cả khi dữ liệu hiện đang đến từ nguồn bạn tin tưởng."
+  },
+  "practicePrompt": {
+    "question": "Vì sao lọc ký tự đặc biệt là cách chữa yếu?",
+    "options": [
+      "Vì bạn phải nghĩ ra mọi cách mã hoá, còn kẻ tấn công chỉ cần tìm một cách bị bỏ sót",
+      "Vì việc lọc làm chậm hệ thống khi có nhiều dữ liệu đầu vào",
+      "Vì một số ký tự đặc biệt là hợp lệ trong dữ liệu người dùng",
+      "Vì các thư viện lọc ký tự thường có lỗi trong quá trình xử lý"
+    ],
+    "correct": 0,
+    "explanation": "Đây là cuộc chơi bất đối xứng: danh sách cấm phải đầy đủ, còn người tấn công chỉ cần một khe hở. Cùng một ký tự có nhiều cách viết qua các lớp mã hoá khác nhau, nên bộ lọc nào cũng có chỗ chưa nghĩ tới - trong khi truyền tham số thì không cần nghĩ tới cách nào cả."
+  },
+  "quiz": [
+    {
+      "question": "Nguyên nhân gốc của mọi lỗ hổng tiêm lệnh là gì?",
+      "options": [
+        "Dữ liệu và câu lệnh bị trộn vào cùng một chuỗi",
+        "Dữ liệu người dùng chứa những ký tự không được phép",
+        "Tài khoản kết nối có quyền cao hơn mức cần thiết",
+        "Bộ phân tích của cơ sở dữ liệu có lỗi khi xử lý chuỗi"
+      ],
+      "correct": 0,
+      "explanation": "Khi hai thứ nằm chung một chuỗi, bộ phân tích không có cách nào biết phần nào do bạn viết và phần nào do người dùng gửi. Mọi biến thể của họ lỗ hổng này đều là cùng một sai lầm ấy."
+    },
+    {
+      "question": "Truyền tham số hoạt động thế nào?",
+      "options": [
+        "Câu lệnh được phân tích trước, dữ liệu gắn vào sau như một giá trị",
+        "Dữ liệu được mã hoá trước khi ghép vào câu lệnh",
+        "Hệ thống kiểm tra dữ liệu theo một danh sách cho phép",
+        "Câu lệnh được kiểm tra lại sau khi đã ghép xong chuỗi"
+      ],
+      "correct": 0,
+      "explanation": "Vì cấu trúc câu lệnh đã cố định trước khi dữ liệu xuất hiện, không nội dung nào của dữ liệu thay đổi được cấu trúc ấy. Đó là lý do cách này đóng lỗ hổng thay vì thu hẹp nó."
+    },
+    {
+      "question": "Ngoài truy vấn cơ sở dữ liệu, hình dạng lỗ hổng này còn xuất hiện ở đâu?",
+      "options": [
+        "Lệnh hệ điều hành, truy vấn thư mục, mẫu tài liệu và nhiều nơi khác",
+        "Chỉ ở những hệ thống đang dùng cơ sở dữ liệu quan hệ kiểu truyền thống",
+        "Chỉ ở phần giao diện nơi người dùng nhập dữ liệu trực tiếp",
+        "Chỉ ở những nơi dữ liệu được lưu xuống mà không kiểm tra"
+      ],
+      "correct": 0,
+      "explanation": "Ở đâu có một bộ diễn giải nhận chuỗi thì ở đó có nguy cơ này. Nhận ra hình dạng chung giúp bạn thấy nó ở cả những chỗ chưa từng được đặt tên."
+    },
+    {
+      "question": "Vai trò của việc giới hạn quyền tài khoản kết nối là gì?",
+      "options": [
+        "Giảm thiệt hại khi lỗ hổng bị khai thác, không đóng được lỗ hổng",
+        "Ngăn chặn hoàn toàn khả năng tiêm lệnh vào truy vấn",
+        "Thay thế cho việc phải dùng truyền tham số trong mã",
+        "Cho phép phát hiện sớm những truy vấn bất thường"
+      ],
+      "correct": 0,
+      "explanation": "Đây là phòng thủ nhiều lớp: nếu lỗ hổng vẫn còn ở đâu đó, quyền hẹp giới hạn được mức thiệt hại. Nhưng nó không thay được việc chữa đúng nguyên nhân."
+    },
+    {
+      "question": "Vì sao họ lỗ hổng này vẫn phổ biến sau hai mươi năm?",
+      "options": [
+        "Vì cách chữa sai trông hợp lý và được lặp lại rộng rãi",
+        "Vì các ngôn ngữ mới chưa hỗ trợ cách truyền tham số",
+        "Vì kẻ tấn công liên tục tìm ra kỹ thuật khai thác mới",
+        "Vì các hệ thống cũ không thể nâng cấp cách viết truy vấn"
+      ],
+      "correct": 0,
+      "explanation": "Ghép chuỗi là cách viết tự nhiên nhất và lọc ký tự là phản xạ tự nhiên nhất. Cả hai đều dễ nghĩ ra hơn nhiều so với việc dùng đúng cơ chế tham số, nên chúng được tái tạo ở mọi thế hệ lập trình viên."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Đây là họ lỗ hổng lâu đời nhất còn phổ biến, và ở chặng nền tảng dữ liệu ta đã gặp nó một lần. Bài này nhìn kỹ hơn vì hình dạng của nó lặp lại ở rất nhiều nơi."
+    },
+    {
+      "type": "heading",
+      "text": "Một hình dạng, nhiều tên gọi"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bạn viết một chuỗi có cấu trúc, ghép dữ liệu người dùng vào giữa, rồi đưa cho một bộ diễn giải. Bộ diễn giải không biết ranh giới giữa hai phần, nên dữ liệu chứa ký tự cấu trúc sẽ đổi hẳn ý nghĩa của câu lệnh. Cùng chuyện ấy xảy ra với truy vấn cơ sở dữ liệu, lệnh hệ điều hành, mẫu tài liệu, và cả câu lệnh gửi cho một mô hình ngôn ngữ."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Lọc ký tự",
+        "text": "Bạn phải nghĩ ra mọi cách viết của mọi ký tự nguy hiểm, qua mọi lớp mã hoá. Thiếu một trường hợp là hỏng, và luôn có trường hợp bị thiếu."
+      },
+      "right": {
+        "label": "Truyền tham số",
+        "text": "Cấu trúc câu lệnh cố định trước khi dữ liệu xuất hiện. Không nội dung nào đổi được cấu trúc, nên không cần nghĩ tới ký tự nào cả."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Cuộc chơi bất đối xứng",
+      "text": "Người phòng thủ phải đúng ở mọi trường hợp; người tấn công chỉ cần đúng một lần. Mọi cách chữa dựa trên danh sách cấm đều thua cuộc chơi ấy, và đó là lý do phải chữa ở tầng cấu trúc chứ không ở tầng nội dung."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Đừng trộn dữ liệu vào câu lệnh. Mọi thứ khác chỉ là thu hẹp hậu quả của việc đã trộn.",
+        "Bài sau là cùng hình dạng ấy nhưng ở phía trình duyệt, nơi nạn nhân là chính người dùng của bạn."
+      ]
+    }
+  ]
+}

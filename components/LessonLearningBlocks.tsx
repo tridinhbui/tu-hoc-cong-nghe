@@ -30,7 +30,7 @@ export function LessonQuestionCard({
         <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
         {resolvedTitle}
       </div>
-      <p className="text-base font-semibold leading-relaxed text-stone-800 dark:text-stone-300">
+      <p className="text-base font-semibold leading-relaxed text-ink-heading">
         {question}
       </p>
 
@@ -157,11 +157,11 @@ export function LessonApplicationCard({ title, message, secondary }: LessonAppli
   const resolvedTitle = title ?? t.learningBlocks.defaultApplicationTitle;
   return (
     <div className="rounded-[24px] border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 p-5 shadow-[0_10px_40px_rgba(16,185,129,0.1)] dark:border-emerald-900/70 dark:from-emerald-950/30 dark:via-stone-950 dark:to-emerald-950/30">
-      <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-700 dark:text-emerald-400">
+      <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-accent-strong">
         <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
         {resolvedTitle}
       </div>
-      <p className="text-sm font-semibold leading-relaxed text-emerald-900 dark:text-emerald-200">{message}</p>
+      <p className="text-sm font-semibold leading-relaxed text-accent-ink-strong">{message}</p>
       {secondary && <p className="mt-2 text-sm leading-relaxed text-emerald-800/80 dark:text-emerald-300/80">{secondary}</p>}
     </div>
   );
@@ -179,11 +179,11 @@ export function ReviewLoopCard({ title, prompt, cta }: ReviewLoopCardProps) {
   const resolvedCta = cta ?? t.learningBlocks.defaultReviewCta;
   return (
     <div className="rounded-[24px] border border-amber-200 bg-gradient-to-br from-amber-50 via-white to-amber-50 p-5 shadow-[0_10px_40px_rgba(245,158,11,0.12)] dark:border-amber-900/70 dark:from-amber-950/30 dark:via-stone-950 dark:to-amber-950/30">
-      <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-amber-700 dark:text-amber-400">
+      <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-warn-strong">
         <span className="inline-flex h-2.5 w-2.5 rounded-full bg-amber-500" />
         {resolvedTitle}
       </div>
-      <p className="text-sm font-semibold leading-relaxed text-amber-900 dark:text-amber-200">{prompt}</p>
+      <p className="text-sm font-semibold leading-relaxed text-amber-900 dark:text-amber-300">{prompt}</p>
       <div className="mt-3 inline-flex rounded-full border border-amber-300/70 bg-white/70 px-3 py-1 text-[11px] font-semibold text-amber-800 dark:border-amber-800/70 dark:bg-stone-900/70 dark:text-amber-300">
         {resolvedCta}
       </div>

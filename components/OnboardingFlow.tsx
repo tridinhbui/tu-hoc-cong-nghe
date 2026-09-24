@@ -23,7 +23,7 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       content: (
         <div className="text-center py-8">
           <div className="text-6xl mb-4">🎓</div>
-          <p className="text-stone-600 dark:text-stone-400 text-lg">
+          <p className="text-ink-soft text-lg">
             {oc.step1Body}
           </p>
         </div>
@@ -34,15 +34,15 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       description: oc.step2Description,
       content: (
         <div className="space-y-4 py-4">
-          <div className="p-4 border-2 border-accent-line rounded-xl bg-accent-soft/30">
-            <h3 className="font-bold text-emerald-900 dark:text-emerald-400 mb-2">{oc.personalTrackTitle}</h3>
-            <p className="text-sm text-stone-600 dark:text-stone-400">
+          <div className="p-4 border-2 border-accent-line rounded-xl bg-emerald-50 dark:bg-emerald-950/30">
+            <h3 className="font-bold text-accent-ink-strong mb-2">{oc.personalTrackTitle}</h3>
+            <p className="text-sm text-ink-soft">
               {oc.personalTrackBody}
             </p>
           </div>
           <div className="p-4 border-2 border-blue-200 dark:border-blue-900 rounded-xl bg-blue-50 dark:bg-blue-950/30">
             <h3 className="font-bold text-blue-900 dark:text-blue-400 mb-2">{oc.professionalTrackTitle}</h3>
-            <p className="text-sm text-stone-600 dark:text-stone-400">
+            <p className="text-sm text-ink-soft">
               {oc.professionalTrackBody}
             </p>
           </div>
@@ -113,7 +113,7 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       content: (
         <div className="text-center py-8">
           <div className="text-6xl mb-4">🚀</div>
-          <p className="text-stone-600 dark:text-stone-400 text-lg">
+          <p className="text-ink-soft text-lg">
             {oc.step5Body}
           </p>
         </div>
@@ -189,7 +189,7 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
                       ? "bg-surface-invert w-8"
                       : index < currentStep
                       ? "bg-stone-400 dark:bg-stone-600 w-2"
-                      : "bg-stone-200 dark:bg-stone-800 w-2"
+                      : "bg-surface-sunken w-2"
                   }`}
                 />
               ))}
@@ -204,7 +204,7 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
           <h2 className="text-2xl font-bold text-ink">
             {ONBOARDING_STEPS[currentStep].title}
           </h2>
-          <p className="text-stone-600 dark:text-stone-400 mt-1">
+          <p className="text-ink-soft mt-1">
             {ONBOARDING_STEPS[currentStep].description}
           </p>
         </div>
@@ -228,15 +228,15 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
                     onClick={() => setSelectedTrack("personal")}
                     className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
                       selectedTrack === "personal"
-                        ? "border-emerald-500 bg-accent-soft/30"
-                        : "border-line hover:border-stone-300 dark:hover:border-stone-700"
+                        ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30"
+                        : "border-line hover:border-line-strong"
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                         selectedTrack === "personal"
                           ? "border-emerald-500 bg-emerald-500"
-                          : "border-stone-300 dark:border-stone-600"
+                          : "border-line-strong"
                       }`}>
                         {selectedTrack === "personal" && (
                           <CheckCircle2 className="w-4 h-4 text-white" />
@@ -258,14 +258,14 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
                     className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
                       selectedTrack === "professional"
                         ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30"
-                        : "border-line hover:border-stone-300 dark:hover:border-stone-700"
+                        : "border-line hover:border-line-strong"
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                         selectedTrack === "professional"
                           ? "border-blue-500 bg-blue-500"
-                          : "border-stone-300 dark:border-stone-600"
+                          : "border-line-strong"
                       }`}>
                         {selectedTrack === "professional" && (
                           <CheckCircle2 className="w-4 h-4 text-white" />
@@ -292,7 +292,7 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
           <button
             onClick={handlePrevious}
             disabled={currentStep === 0}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-ink-soft hover:bg-surface-raised disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             {t.onboarding.previous}
@@ -301,7 +301,7 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
           {currentStep === ONBOARDING_STEPS.length - 1 ? (
             <button
               onClick={handleComplete}
-              className="flex items-center gap-2 px-6 py-2 rounded-xl font-semibold bg-surface-invert text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-white transition-colors"
+              className="flex items-center gap-2 px-6 py-2 rounded-xl font-semibold bg-surface-invert text-ink-invert hover:bg-stone-800 dark:hover:bg-white transition-colors"
             >
               {t.onboarding.start}
               <ArrowRight className="w-4 h-4" />
@@ -309,7 +309,7 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
           ) : (
             <button
               onClick={handleNext}
-              className="flex items-center gap-2 px-6 py-2 rounded-xl font-semibold bg-surface-invert text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-white transition-colors"
+              className="flex items-center gap-2 px-6 py-2 rounded-xl font-semibold bg-surface-invert text-ink-invert hover:bg-stone-800 dark:hover:bg-white transition-colors"
             >
               {t.onboarding.next}
               <ArrowRight className="w-4 h-4" />

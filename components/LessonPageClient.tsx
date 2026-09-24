@@ -161,11 +161,11 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           the subtitle shown in the hero above, so there's nothing to
           duplicate here. */}
       {lesson.whyItMatters && (
-        <div className="rounded-xl border-2 border-amber-200 dark:border-amber-900 bg-warn-soft/30 p-5 sm:p-6">
-          <p className="text-xs font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-500 mb-2">
+        <div className="rounded-xl border-2 border-warn-line bg-amber-50 dark:bg-amber-950/30 p-5 sm:p-6">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-warn-strong mb-2">
             {t.lessonPage.whyItMattersTitle}
           </p>
-          <p className="text-stone-800 dark:text-stone-200 text-base sm:text-lg leading-relaxed font-medium">
+          <p className="text-ink-heading text-base sm:text-lg leading-relaxed font-medium">
             {lesson.whyItMatters}
           </p>
         </div>
@@ -177,7 +177,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           <h4 className="text-xs font-bold text-ink flex items-center gap-1.5">
             {t.lessonPage.feynmanTitle}
           </h4>
-          <p className="text-[10px] text-stone-600 dark:text-stone-300 mt-1 leading-relaxed">
+          <p className="text-[10px] text-ink-soft mt-1 leading-relaxed">
             {t.lessonPage.feynmanSubtitle}
           </p>
         </div>
@@ -189,7 +189,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           className={`px-3.5 py-2 text-xs font-bold rounded-xl shadow-sm hover:scale-[1.03] active:scale-95 transition-all cursor-pointer ${
             feynmanMode
               ? "bg-amber-500 text-white"
-              : "bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-stone-700"
+              : "bg-white dark:bg-stone-800 text-ink-body border border-line-mid"
           }`}
         >
           {feynmanMode ? t.lessonPage.feynmanOn : t.lessonPage.feynmanOff}
@@ -205,7 +205,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           <div className="flex items-center gap-2.5">
             <span className="text-2xl animate-bounce">🦖</span>
             <div>
-              <h5 className="text-xs font-extrabold text-amber-700 dark:text-amber-300">{t.lessonPage.feynmanCardTitle}</h5>
+              <h5 className="text-xs font-extrabold text-warn-strong">{t.lessonPage.feynmanCardTitle}</h5>
               <p className="text-[10px] text-ink-muted font-bold uppercase tracking-wider">{t.lessonPage.feynmanCardSubtitle}</p>
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
                   ))}
                 </ul>
                 {lesson.summary?.commonMistake && (
-                  <p className="text-[11px] text-red-600 dark:text-red-300 bg-red-50/60 dark:bg-red-950/40 p-2.5 rounded-lg border border-red-200/60 dark:border-red-900/40 font-bold">
+                  <p className="text-[11px] text-red-600 dark:text-red-400 bg-red-50/60 dark:bg-red-950/40 p-2.5 rounded-lg border border-red-200/60 dark:border-red-900/40 font-bold">
                     {t.lessonPage.feynmanMistakePrefix} {lesson.summary.commonMistake}
                   </p>
                 )}
@@ -335,7 +335,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
 
       {/* 5. Real-life Example block */}
       {lesson.realWorldExample && lesson.realWorldExample.company && (
-        <div className="border border-line rounded-2xl p-6 bg-surface/50 space-y-3">
+        <div className="border border-line rounded-2xl p-6 bg-stone-50 dark:bg-stone-900/50 space-y-3">
           <p className="text-xs font-bold text-ink-muted uppercase tracking-widest">
             {format(t.lessonPage.realWorldExampleTitle, { company: lesson.realWorldExample.company })}
           </p>
@@ -410,7 +410,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 6. Key Takeaways block */}
       {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
         <div className="rounded-2xl overflow-hidden shadow-xl">
-          <div className="bg-stone-900 dark:bg-stone-950 px-6 py-5">
+          <div className="bg-surface-invert px-6 py-5">
             <p className="text-white font-extrabold text-xl tracking-wide">{t.lessonPage.keyTakeawaysTitle}</p>
           </div>
           <div className="bg-stone-800 divide-y divide-stone-700">

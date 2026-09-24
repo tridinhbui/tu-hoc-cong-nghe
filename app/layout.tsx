@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
@@ -78,15 +76,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             nên nó không biết cookie ngôn ngữ. Đặt `lang` trước khi vẽ. */}
         <script dangerouslySetInnerHTML={{ __html: LOCALE_INIT_SCRIPT }} />
       </head>
-      <body className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 text-stone-900 dark:text-stone-100 antialiased font-sans transition-colors" suppressHydrationWarning>
+      <body className="min-h-screen antialiased font-sans transition-colors" suppressHydrationWarning>
         <I18nProvider>
         <ThemeLoader />
         {children}
         <GlobalChatWrapper />
         <Toaster position="top-right" richColors closeButton />
         </I18nProvider>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );

@@ -81,14 +81,14 @@ export default function GamesAdminClient() {
       label: tg.statLabels.avgScore,
       value: stats?.averageScorePerGame ?? 0,
       icon: Trophy,
-      color: "text-amber-600 dark:text-amber-400",
+      color: "text-warn",
       bg: "bg-amber-50 dark:bg-amber-950/40",
     },
     {
       label: tg.statLabels.xpFromGames,
       value: stats?.totalXpFromGames ?? 0,
       icon: Zap,
-      color: "text-emerald-600 dark:text-emerald-400",
+      color: "text-accent",
       bg: "bg-emerald-50 dark:bg-emerald-950/40",
     },
   ];
@@ -96,7 +96,7 @@ export default function GamesAdminClient() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="w-8 h-8 border-2 border-stone-300 dark:border-stone-700 border-t-stone-900 dark:border-t-stone-100 rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-line-strong border-t-stone-900 dark:border-t-stone-100 rounded-full animate-spin" />
       </div>
     );
   }
@@ -108,7 +108,7 @@ export default function GamesAdminClient() {
         <button
           onClick={handleRefresh}
           disabled={refreshing}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-stone-900 dark:text-stone-100 font-semibold text-sm transition-colors disabled:opacity-50"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-sunken hover:bg-surface-deep text-ink font-semibold text-sm transition-colors disabled:opacity-50"
         >
           <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
           {tg.refreshButton}
@@ -121,23 +121,23 @@ export default function GamesAdminClient() {
           return (
             <div
               key={card.label}
-              className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-4 hover:border-stone-300 dark:hover:border-stone-700 transition-colors"
+              className="bg-white dark:bg-stone-900 border border-line rounded-xl p-4 hover:border-line-strong transition-colors"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className={`w-10 h-10 rounded-lg ${card.bg} flex items-center justify-center`}>
                   <Icon className={`w-5 h-5 ${card.color}`} />
                 </div>
               </div>
-              <p className="text-2xl font-bold text-stone-900 dark:text-stone-100">{card.value.toLocaleString()}</p>
-              <p className="text-xs font-semibold text-stone-500 dark:text-stone-400 mt-2">{card.label}</p>
+              <p className="text-2xl font-bold text-ink">{card.value.toLocaleString()}</p>
+              <p className="text-xs font-semibold text-ink-muted mt-2">{card.label}</p>
             </div>
           );
         })}
       </div>
 
       {/* Tabs */}
-      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl">
-        <div className="flex border-b border-stone-200 dark:border-stone-800">
+      <div className="bg-white dark:bg-stone-900 border border-line rounded-xl">
+        <div className="flex border-b border-line">
           {([
             { id: "overview", label: tg.tabs.overview, icon: BarChart3 },
             { id: "players", label: tg.tabs.players, icon: Users },
@@ -153,7 +153,7 @@ export default function GamesAdminClient() {
                 className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold border-b-2 transition-colors ${
                   isActive
                     ? "border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400"
-                    : "border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
+                    : "border-transparent text-ink-soft hover:text-ink"
                 }`}
               >
                 <TabIcon className="w-4 h-4" />
@@ -166,30 +166,30 @@ export default function GamesAdminClient() {
         <div className="p-6">
           {selectedMetric === "overview" && (
             <div className="space-y-4">
-              <h3 className="font-bold text-stone-900 dark:text-stone-100">{tg.overviewHeading}</h3>
+              <h3 className="font-bold text-ink">{tg.overviewHeading}</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 bg-stone-50 dark:bg-stone-950/50 rounded-lg">
-                  <p className="text-xs text-stone-500 dark:text-stone-400">{tg.mostPlayedLabel}</p>
-                  <p className="text-lg font-bold text-stone-900 dark:text-stone-100 mt-1">{stats?.mostPlayedGame}</p>
+                  <p className="text-xs text-ink-muted">{tg.mostPlayedLabel}</p>
+                  <p className="text-lg font-bold text-ink mt-1">{stats?.mostPlayedGame}</p>
                 </div>
                 <div className="p-4 bg-stone-50 dark:bg-stone-950/50 rounded-lg">
-                  <p className="text-xs text-stone-500 dark:text-stone-400">{tg.activeTodayLabel}</p>
-                  <p className="text-lg font-bold text-stone-900 dark:text-stone-100 mt-1">{stats?.dailyActiveGamers}</p>
+                  <p className="text-xs text-ink-muted">{tg.activeTodayLabel}</p>
+                  <p className="text-lg font-bold text-ink mt-1">{stats?.dailyActiveGamers}</p>
                 </div>
               </div>
 
               {/* Game Type Breakdown */}
               <div className="mt-6">
-                <h4 className="font-semibold text-stone-900 dark:text-stone-100 mb-3">{tg.breakdownHeading}</h4>
+                <h4 className="font-semibold text-ink mb-3">{tg.breakdownHeading}</h4>
                 <div className="space-y-2 max-h-96 overflow-y-auto">
                   {stats?.gameTypeStats && stats.gameTypeStats.length > 0 ? (
                     stats.gameTypeStats.map((game) => (
                       <div
                         key={game.gameType}
-                        className="p-3 bg-stone-50 dark:bg-stone-950/50 rounded-lg border border-stone-200 dark:border-stone-800"
+                        className="p-3 bg-stone-50 dark:bg-stone-950/50 rounded-lg border border-line"
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <p className="font-semibold text-stone-900 dark:text-stone-100 text-sm capitalize">
+                          <p className="font-semibold text-ink text-sm capitalize">
                             {game.gameType.replace(/-/g, " ")}
                           </p>
                           <span className="text-xs bg-purple-100 dark:bg-purple-950/40 text-purple-700 dark:text-purple-400 px-2 py-1 rounded">
@@ -198,27 +198,27 @@ export default function GamesAdminClient() {
                         </div>
                         <div className="grid grid-cols-3 gap-2 text-xs">
                           <div>
-                            <p className="text-stone-500 dark:text-stone-400">{tg.totalXpLabel}</p>
-                            <p className="font-bold text-stone-900 dark:text-stone-100">{game.totalXp.toLocaleString()}</p>
+                            <p className="text-ink-muted">{tg.totalXpLabel}</p>
+                            <p className="font-bold text-ink">{game.totalXp.toLocaleString()}</p>
                           </div>
                           <div>
-                            <p className="text-stone-500 dark:text-stone-400">{tg.avgXpLabel}</p>
-                            <p className="font-bold text-stone-900 dark:text-stone-100">{game.averageXp}</p>
+                            <p className="text-ink-muted">{tg.avgXpLabel}</p>
+                            <p className="font-bold text-ink">{game.averageXp}</p>
                           </div>
                           <div>
-                            <p className="text-stone-500 dark:text-stone-400">{tg.avgScoreLabel}</p>
-                            <p className="font-bold text-stone-900 dark:text-stone-100">{game.averageScore}</p>
+                            <p className="text-ink-muted">{tg.avgScoreLabel}</p>
+                            <p className="font-bold text-ink">{game.averageScore}</p>
                           </div>
                         </div>
                       </div>
                     ))
                   ) : (
-                    <p className="text-sm text-stone-500 dark:text-stone-400 text-center py-4">{tg.noGameData}</p>
+                    <p className="text-sm text-ink-muted text-center py-4">{tg.noGameData}</p>
                   )}
                 </div>
               </div>
 
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-4">
+              <p className="text-xs text-ink-muted mt-4">
                 {tg.tipLine}
               </p>
             </div>
@@ -226,13 +226,13 @@ export default function GamesAdminClient() {
 
           {selectedMetric === "players" && (
             <div className="space-y-4">
-              <h3 className="font-bold text-stone-900 dark:text-stone-100">{tg.playersHeading}</h3>
+              <h3 className="font-bold text-ink">{tg.playersHeading}</h3>
               <div className="p-4 bg-stone-50 dark:bg-stone-950/50 rounded-lg">
-                <p className="text-sm text-stone-600 dark:text-stone-400">
-                  {tg.playersSentencePart1} <span className="font-bold text-stone-900 dark:text-stone-100">{stats?.totalPlayersEngaged}</span> {tg.playersSentencePart2}
+                <p className="text-sm text-ink-soft">
+                  {tg.playersSentencePart1} <span className="font-bold text-ink">{stats?.totalPlayersEngaged}</span> {tg.playersSentencePart2}
                 </p>
               </div>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-4">
+              <p className="text-xs text-ink-muted mt-4">
                 {tg.comingSoonFeatures}
               </p>
             </div>
@@ -240,35 +240,35 @@ export default function GamesAdminClient() {
 
           {selectedMetric === "performance" && (
             <div className="space-y-4">
-              <h3 className="font-bold text-stone-900 dark:text-stone-100">{tg.performanceHeading}</h3>
+              <h3 className="font-bold text-ink">{tg.performanceHeading}</h3>
               <div className="p-4 bg-stone-50 dark:bg-stone-950/50 rounded-lg">
-                <p className="text-sm text-stone-600 dark:text-stone-400">
-                  {tg.avgScorePrefix} <span className="font-bold text-stone-900 dark:text-stone-100">{stats?.averageScorePerGame.toLocaleString()}</span>
+                <p className="text-sm text-ink-soft">
+                  {tg.avgScorePrefix} <span className="font-bold text-ink">{stats?.averageScorePerGame.toLocaleString()}</span>
                 </p>
               </div>
 
               {/* Performance by Game Type */}
               {stats?.gameTypeStats && stats.gameTypeStats.length > 0 && (
                 <div className="mt-4">
-                  <h4 className="font-semibold text-stone-900 dark:text-stone-100 mb-3">{tg.detailedPerformanceHeading}</h4>
+                  <h4 className="font-semibold text-ink mb-3">{tg.detailedPerformanceHeading}</h4>
                   <div className="space-y-2 max-h-96 overflow-y-auto">
                     {stats.gameTypeStats.map((game) => (
                       <div
                         key={game.gameType}
-                        className="p-3 bg-stone-50 dark:bg-stone-950/50 rounded-lg border border-stone-200 dark:border-stone-800"
+                        className="p-3 bg-stone-50 dark:bg-stone-950/50 rounded-lg border border-line"
                       >
                         <div className="flex items-center justify-between">
-                          <p className="font-medium text-stone-900 dark:text-stone-100 text-sm capitalize">
+                          <p className="font-medium text-ink text-sm capitalize">
                             {game.gameType.replace(/-/g, " ")}
                           </p>
                           <div className="flex gap-4 text-xs">
                             <div className="text-right">
-                              <p className="text-stone-500 dark:text-stone-400">{tg.avgScoreLabel}</p>
-                              <p className="font-bold text-emerald-600 dark:text-emerald-400">{game.averageScore}</p>
+                              <p className="text-ink-muted">{tg.avgScoreLabel}</p>
+                              <p className="font-bold text-accent">{game.averageScore}</p>
                             </div>
                             <div className="text-right">
-                              <p className="text-stone-500 dark:text-stone-400">{tg.ratioLabel}</p>
-                              <p className="font-bold text-amber-600 dark:text-amber-400">
+                              <p className="text-ink-muted">{tg.ratioLabel}</p>
+                              <p className="font-bold text-warn">
                                 {game.timesPlayed > 0 ? ((game.averageScore / 10000) * 100).toFixed(1) : "0"}%
                               </p>
                             </div>
@@ -280,7 +280,7 @@ export default function GamesAdminClient() {
                 </div>
               )}
 
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-4">
+              <p className="text-xs text-ink-muted mt-4">
                 {tg.dataUpdatedNote}
               </p>
             </div>
@@ -288,13 +288,13 @@ export default function GamesAdminClient() {
 
           {selectedMetric === "earnings" && (
             <div className="space-y-4">
-              <h3 className="font-bold text-stone-900 dark:text-stone-100">{tg.earningsHeading}</h3>
+              <h3 className="font-bold text-ink">{tg.earningsHeading}</h3>
               <div className="p-4 bg-stone-50 dark:bg-stone-950/50 rounded-lg">
-                <p className="text-sm text-stone-600 dark:text-stone-400">
-                  {tg.totalXpGivenPrefix} <span className="font-bold text-stone-900 dark:text-stone-100">{stats?.totalXpFromGames.toLocaleString()}</span>
+                <p className="text-sm text-ink-soft">
+                  {tg.totalXpGivenPrefix} <span className="font-bold text-ink">{stats?.totalXpFromGames.toLocaleString()}</span>
                 </p>
               </div>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-4">
+              <p className="text-xs text-ink-muted mt-4">
                 {tg.rewardToolComingSoon}
               </p>
             </div>
@@ -303,16 +303,16 @@ export default function GamesAdminClient() {
       </div>
 
       {/* Actions */}
-      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-6">
-        <h3 className="font-bold text-stone-900 dark:text-stone-100 mb-4">{tg.actionsHeading}</h3>
+      <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-6">
+        <h3 className="font-bold text-ink mb-4">{tg.actionsHeading}</h3>
         <div className="flex flex-wrap gap-3">
           <button className="px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm transition-colors">
             {tg.checkStatusButton}
           </button>
-          <button className="px-4 py-2 rounded-lg bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-stone-900 dark:text-stone-100 font-semibold text-sm transition-colors">
+          <button className="px-4 py-2 rounded-lg bg-surface-sunken hover:bg-surface-deep text-ink font-semibold text-sm transition-colors">
             {tg.exportReportButton}
           </button>
-          <button className="px-4 py-2 rounded-lg bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-stone-900 dark:text-stone-100 font-semibold text-sm transition-colors">
+          <button className="px-4 py-2 rounded-lg bg-surface-sunken hover:bg-surface-deep text-ink font-semibold text-sm transition-colors">
             {tg.configButton}
           </button>
         </div>

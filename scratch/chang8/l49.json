@@ -1,0 +1,184 @@
+{
+  "id": 49,
+  "slug": "ma-hoa-duong-truyen",
+  "title": "Mã hoá đường truyền: vì sao ổ khoá kia có ý nghĩa",
+  "subtitle": "Nó chứng minh bạn đang nói chuyện với đúng máy chủ, không chỉ giấu nội dung khỏi người ngoài.",
+  "duration": "8 phút",
+  "difficulty": "Khó",
+  "emoji": "🔒",
+  "track": "professional",
+  "whyItMatters": "Gói tin của bạn đi qua chục thiết bị không thuộc quyền kiểm soát của ai trong hai đầu. Không mã hoá thì mỗi thiết bị đó đọc được và sửa được nội dung. Điều ít người để ý là mã hoá còn giải quyết một vấn đề khác, quan trọng không kém: chứng minh đầu kia đúng là ai họ nói.",
+  "openingQuestion": "Chứng chỉ của một trang web chứng minh điều gì?",
+  "openingOptions": [
+    "Máy chủ này thật sự sở hữu tên miền đó, theo xác nhận của một bên thứ ba",
+    "Trang web này an toàn và không chứa mã độc hại nào bên trong",
+    "Chủ sở hữu trang web là một doanh nghiệp có đăng ký hợp pháp",
+    "Dữ liệu người dùng nhập vào sẽ được lưu trữ dưới dạng đã mã hoá"
+  ],
+  "correctOption": 0,
+  "explanation": "Chứng chỉ chỉ chứng minh một điều: có một bên thứ ba được cả hai phía tin tưởng đã xác nhận rằng máy chủ này kiểm soát tên miền ấy. Nó không nói gì về việc trang web có lành mạnh hay không, chủ sở hữu là ai, hay dữ liệu được lưu ra sao - một trang lừa đảo vẫn xin được chứng chỉ hợp lệ cho tên miền của chính nó. Giá trị nằm ở chỗ khác: nhờ nó, kẻ đứng giữa không thể giả làm máy chủ mà bạn định gọi, kể cả khi hắn kiểm soát toàn bộ đường truyền.",
+  "diagram": [
+    {
+      "label": "Máy khách yêu cầu kết nối an toàn",
+      "arrow": true
+    },
+    {
+      "label": "Máy chủ đưa chứng chỉ chứng minh danh tính",
+      "arrow": true
+    },
+    {
+      "label": "Hai bên thoả thuận một khoá dùng riêng cho phiên này",
+      "arrow": true
+    },
+    {
+      "label": "Từ đó mọi thứ đi qua đều được mã hoá"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Mạng công cộng ở quán cà phê",
+    "description": "Trên một mạng không dây công cộng, bất kỳ ai cũng nghe được lưu lượng chưa mã hoá của người khác, và thiết bị phát sóng giả có thể chen vào giữa. Mã hoá đường truyền khiến cả hai việc đó vô nghĩa: nghe được cũng không đọc được, chen vào thì lộ ngay ở bước kiểm chứng chỉ."
+  },
+  "keyTakeaways": [
+    "Mã hoá đường truyền giải quyết ba việc: giấu nội dung, chống sửa đổi, và xác minh danh tính máy chủ.",
+    "Chứng chỉ chỉ chứng minh quyền kiểm soát tên miền, không chứng minh trang web lành mạnh.",
+    "Nó bảo vệ dữ liệu trên đường đi, không bảo vệ dữ liệu khi đã nằm trong máy chủ.",
+    "Chứng chỉ hết hạn làm dịch vụ ngừng hoạt động, nên phải gia hạn tự động và theo dõi."
+  ],
+  "summary": {
+    "keyIdea": "Mã hoá đường truyền không chỉ giấu nội dung mà còn chứng minh bạn đang nói chuyện với đúng ai.",
+    "formula": "Bí mật + toàn vẹn + danh tính.",
+    "commonMistake": "Tưởng ổ khoá nghĩa là trang web đáng tin, trong khi nó chỉ nói về tên miền."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Bấm vào biểu tượng ổ khoá trên một trang bạn hay dùng và xem chứng chỉ: ai cấp, cho tên miền nào, hạn tới bao giờ. Rồi kiểm xem dịch vụ của bạn có cảnh báo trước khi chứng chỉ hết hạn không."
+  },
+  "practicePrompt": {
+    "question": "Dịch vụ của bạn ngừng hoạt động lúc nửa đêm mà không ai triển khai gì. Nguyên nhân nào đáng kiểm tra sớm?",
+    "options": [
+      "Chứng chỉ vừa hết hạn, vì nó hết theo lịch chứ không theo thay đổi của bạn",
+      "Cơ sở dữ liệu đã tự khoá lại sau khi chạy tác vụ dọn dẹp hằng đêm",
+      "Nhà cung cấp hạ tầng đã giảm bớt tài nguyên cấp cho máy chủ vào giờ thấp điểm",
+      "Bộ nhớ đệm của hệ thống bị xoá theo lịch nên mọi yêu cầu đều chậm hẳn"
+    ],
+    "correct": 0,
+    "explanation": "Chứng chỉ hết hạn là một trong số ít nguyên nhân gây sự cố mà không cần ai chạm vào hệ thống - nó đến theo đồng hồ. Đó cũng là lý do việc gia hạn phải tự động và phải có cảnh báo trước nhiều ngày."
+  },
+  "quiz": [
+    {
+      "question": "Chứng chỉ của một máy chủ chứng minh điều gì?",
+      "options": [
+        "Máy chủ này kiểm soát tên miền đó, theo xác nhận của bên thứ ba",
+        "Trang web này đã được kiểm tra và không chứa mã độc hại nào",
+        "Chủ sở hữu là doanh nghiệp có đăng ký kinh doanh hợp pháp",
+        "Dữ liệu người dùng sẽ được lưu ở dạng mã hoá trong cơ sở dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Chứng chỉ nói về quyền kiểm soát tên miền, không nói về ý định của chủ sở hữu. Một trang lừa đảo hoàn toàn xin được chứng chỉ hợp lệ cho tên miền của chính nó."
+    },
+    {
+      "question": "Ngoài việc giấu nội dung, mã hoá đường truyền còn giải quyết vấn đề gì?",
+      "options": [
+        "Xác minh danh tính đầu kia và phát hiện nội dung bị sửa trên đường",
+        "Tăng tốc độ truyền nhờ nén dữ liệu trước khi gửi qua mạng",
+        "Bảo vệ dữ liệu sau khi nó đã được lưu vào cơ sở dữ liệu",
+        "Ngăn máy chủ ghi lại nội dung của các yêu cầu vào nhật ký"
+      ],
+      "correct": 0,
+      "explanation": "Ba mục tiêu đi cùng nhau: bí mật, toàn vẹn và danh tính. Thiếu vế danh tính thì kẻ đứng giữa chỉ cần dựng một máy chủ giả, và mã hoá với hắn cũng chẳng bảo vệ được gì."
+    },
+    {
+      "question": "Mã hoá đường truyền không bảo vệ được điều gì?",
+      "options": [
+        "Dữ liệu sau khi đã tới máy chủ và được lưu lại",
+        "Nội dung của yêu cầu khi nó đi qua các thiết bị trung gian",
+        "Việc bị một máy chủ giả mạo chen vào giữa hai đầu kết nối",
+        "Việc nội dung gói tin bị sửa đổi trên đường truyền đi"
+      ],
+      "correct": 0,
+      "explanation": "Nó bảo vệ dữ liệu trên đường đi và dừng lại ở đó. Bảo vệ dữ liệu khi nằm yên là chuyện của phân quyền, mã hoá lưu trữ và những thứ đã nói ở chặng trước."
+    },
+    {
+      "question": "Vì sao chứng chỉ hết hạn lại gây sự cố toàn phần?",
+      "options": [
+        "Vì máy khách từ chối kết nối khi không xác minh được danh tính máy chủ",
+        "Vì máy chủ tự tắt dịch vụ để tránh truyền dữ liệu không mã hoá ra ngoài",
+        "Vì dữ liệu đã mã hoá bằng chứng chỉ cũ không giải mã được nữa",
+        "Vì tên miền bị thu hồi khi chứng chỉ tương ứng của nó hết hiệu lực"
+      ],
+      "correct": 0,
+      "explanation": "Máy khách coi chứng chỉ hết hạn là dấu hiệu không tin được, nên nó dừng kết nối chứ không cảnh báo rồi đi tiếp. Với người dùng thì hiện tượng giống hệt dịch vụ chết hẳn."
+    },
+    {
+      "question": "Vì sao khoá dùng cho mỗi phiên lại được thoả thuận riêng?",
+      "options": [
+        "Để lộ khoá của một phiên không làm lộ nội dung các phiên khác",
+        "Để giảm khối lượng tính toán mà máy chủ phải xử lý cho mỗi kết nối",
+        "Để mỗi phiên dùng được một thuật toán mã hoá khác nhau khi cần",
+        "Để khỏi phải gửi lại chứng chỉ ở lần sau"
+      ],
+      "correct": 0,
+      "explanation": "Khoá riêng cho từng phiên giới hạn thiệt hại khi một khoá bị lộ, và các cơ chế hiện đại còn bảo đảm lộ khoá dài hạn cũng không giải mã được những phiên đã ghi lại trước đó."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Cái ổ khoá nhỏ trên thanh địa chỉ được hiểu sai nhiều hơn bất kỳ biểu tượng nào khác trên máy tính. Nó không nói trang này tốt; nó nói bạn đang nói chuyện với đúng tên miền ấy, và không ai ở giữa nghe được."
+    },
+    {
+      "type": "heading",
+      "text": "Ba việc trong một"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Mã hoá đường truyền giải quyết gì",
+      "subtitle": "Thiếu bất kỳ vế nào thì hai vế còn lại cũng mất giá trị",
+      "concepts": [
+        {
+          "vi": "Bí mật",
+          "en": "confidentiality",
+          "def": "Thiết bị trung gian thấy lưu lượng nhưng không đọc được nội dung bên trong."
+        },
+        {
+          "vi": "Toàn vẹn",
+          "en": "integrity",
+          "def": "Nội dung bị sửa trên đường thì đầu nhận phát hiện được và từ chối."
+        },
+        {
+          "vi": "Danh tính",
+          "en": "authentication",
+          "def": "Chứng chỉ chứng minh đầu kia đúng là chủ của tên miền bạn định gọi."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao vế danh tính là quan trọng nhất"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mã hoá mà không biết mình đang mã hoá với ai thì vô nghĩa: kẻ đứng giữa chỉ cần dựng một máy chủ giả, và bạn sẽ trao đổi bí mật rất an toàn với chính hắn. Chuỗi tin cậy từ chứng chỉ tới bên cấp phát là thứ chặn kịch bản đó, và cũng là lý do trình duyệt cảnh báo dữ dội khi chứng chỉ không khớp tên miền."
+    },
+    {
+      "type": "callout",
+      "label": "Ổ khoá không phải huy hiệu tin cậy",
+      "text": "Xin chứng chỉ cho một tên miền là việc miễn phí và tự động. Một trang lừa đảo cũng có ổ khoá xanh y hệt ngân hàng thật. Thứ cần đọc là chính tên miền, không phải biểu tượng bên cạnh nó."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Gia hạn chứng chỉ tự động, và đặt cảnh báo trước hạn nhiều ngày.",
+        "Bật mã hoá cho cả lưu lượng nội bộ giữa các dịch vụ, không chỉ ở lối ra ngoài.",
+        "Nhớ rằng lớp này dừng lại ở cửa máy chủ - bảo vệ dữ liệu nằm yên là việc khác."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mã hoá đường truyền trả lời câu hỏi ai đang ở đầu bên kia, chứ không trả lời câu hỏi họ có tử tế không.",
+        "Bài sau chuyển sang thứ không lớp bảo mật nào xoá được: khoảng cách vật lý, và cái giá của nó tính bằng mili giây."
+      ]
+    }
+  ]
+}

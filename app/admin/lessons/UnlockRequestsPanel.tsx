@@ -31,7 +31,7 @@ export default function UnlockRequestsPanel({ requests }: { requests: UnlockRequ
   return (
     <div className="bg-amber-50 dark:bg-amber-950/20 border-2 border-amber-200 dark:border-amber-900/50 rounded-xl overflow-hidden">
       <div className="px-4 py-3 border-b border-amber-200 dark:border-amber-900/50 flex items-center gap-2">
-        <Inbox className="w-4 h-4 text-amber-700 dark:text-amber-400" />
+        <Inbox className="w-4 h-4 text-warn-strong" />
         <h2 className="font-bold text-sm text-amber-900 dark:text-amber-300">
           {format(tu.pendingTitle, { count: requests.length })}
         </h2>
@@ -40,11 +40,11 @@ export default function UnlockRequestsPanel({ requests }: { requests: UnlockRequ
         {requests.map((req) => (
           <div key={req.id} className="p-4 flex items-start justify-between gap-3">
             <div>
-              <p className="text-sm font-semibold text-stone-900 dark:text-stone-100">
+              <p className="text-sm font-semibold text-ink">
                 {req.user_name ?? req.user_email} {tu.requestPart1}{req.lesson_title}{tu.requestPart2}
               </p>
-              {req.note && <p className="text-xs text-stone-600 dark:text-stone-400 mt-1">&ldquo;{req.note}&rdquo;</p>}
-              <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1">
+              {req.note && <p className="text-xs text-ink-soft mt-1">&ldquo;{req.note}&rdquo;</p>}
+              <p className="text-[11px] text-ink-faint mt-1">
                 {new Date(req.created_at).toLocaleString(intlLocale(locale))}
               </p>
             </div>
@@ -52,7 +52,7 @@ export default function UnlockRequestsPanel({ requests }: { requests: UnlockRequ
               <button
                 onClick={() => handle(req.id, true)}
                 disabled={processingId === req.id}
-                className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-emerald-900 disabled:opacity-50"
+                className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-950/50 text-accent-strong hover:bg-emerald-200 dark:hover:bg-emerald-900 disabled:opacity-50"
                 title={tu.approve}
               >
                 <Check className="w-4 h-4" />
@@ -60,7 +60,7 @@ export default function UnlockRequestsPanel({ requests }: { requests: UnlockRequ
               <button
                 onClick={() => handle(req.id, false)}
                 disabled={processingId === req.id}
-                className="p-2 rounded-lg bg-rose-100 dark:bg-rose-950/50 text-rose-700 dark:text-rose-400 hover:bg-rose-200 dark:hover:bg-rose-900 disabled:opacity-50"
+                className="p-2 rounded-lg bg-rose-100 dark:bg-rose-950/50 text-alert-strong hover:bg-rose-200 dark:hover:bg-rose-900 disabled:opacity-50"
                 title={tu.reject}
               >
                 <X className="w-4 h-4" />

@@ -174,14 +174,14 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
         {view !== "pick" && (
           <button
             onClick={() => setView("pick")}
-            className="inline-flex items-center gap-1 text-xs font-bold text-ink-muted hover:text-stone-800 dark:hover:text-stone-200 cursor-pointer"
+            className="inline-flex items-center gap-1 text-xs font-bold text-ink-muted hover:text-ink-heading cursor-pointer"
           >
             <ChevronLeft className="w-3.5 h-3.5" />
             {t.stageSkip.chooseAnotherStage}
           </button>
         )}
       </div>
-      <p className="text-xs text-stone-600 dark:text-stone-400 mb-4 leading-relaxed">
+      <p className="text-xs text-ink-soft mb-4 leading-relaxed">
         {format(t.stageSkip.descriptionPart1, { questionCount: STAGE_EXAM_QUESTION_COUNT })} {passPercent}
         {t.stageSkip.descriptionPart2}
       </p>
@@ -196,7 +196,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
                 className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
                   track === trackOption.id
                     ? "border-violet-500 bg-violet-500 text-white"
-                    : "border-line bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
+                    : "border-line bg-white dark:bg-stone-950 text-ink-soft hover:border-stone-300"
                 }`}
               >
                 {trackOption.label}
@@ -263,7 +263,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
             </span>
             <span>{format(t.stageSkip.answeredCount, { answered: answeredCount, total: questions.length })}</span>
           </div>
-          <div className="h-1.5 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
+          <div className="h-1.5 rounded-full bg-surface-sunken overflow-hidden">
             <div
               className="h-full rounded-full bg-violet-500 transition-all duration-300"
               style={{ width: `${((activeQ + 1) / questions.length) * 100}%` }}
@@ -306,14 +306,14 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
             <button
               onClick={() => setActiveQ((i) => Math.max(0, i - 1))}
               disabled={activeQ === 0}
-              className="px-3.5 py-2 rounded-xl border border-line text-xs font-bold text-stone-600 dark:text-stone-400 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="px-3.5 py-2 rounded-xl border border-line text-xs font-bold text-ink-soft disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
               {t.stageSkip.previousQuestion}
             </button>
             {activeQ < questions.length - 1 ? (
               <button
                 onClick={() => setActiveQ((i) => i + 1)}
-                className="px-4 py-2 rounded-xl bg-surface-invert text-white dark:text-stone-900 text-xs font-black cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-surface-invert text-ink-invert text-xs font-black cursor-pointer"
               >
                 {t.stageSkip.nextQuestion}
               </button>
@@ -347,7 +347,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
               {result.alreadyCompleted ? format(t.stageSkip.alreadyCompletedSuffix, { count: result.alreadyCompleted }) : ""}.
             </p>
           ) : (
-            <p className="text-sm font-bold text-stone-600 dark:text-stone-400">
+            <p className="text-sm font-bold text-ink-soft">
               {t.stageSkip.failedResultPart1} {passPercent}
               {t.stageSkip.failedResultPart2}{" "}
               {formatCooldown(STAGE_EXAM_RETRY_COOLDOWN_MS, t.cooldown)} {t.stageSkip.failedResultPart3}
@@ -355,7 +355,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
           )}
           <button
             onClick={() => setView("pick")}
-            className="px-4 py-2 rounded-xl bg-surface-invert text-white dark:text-stone-900 text-xs font-black cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-surface-invert text-ink-invert text-xs font-black cursor-pointer"
           >
             {t.stageSkip.backToStageList}
           </button>

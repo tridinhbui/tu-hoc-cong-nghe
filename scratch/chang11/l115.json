@@ -1,0 +1,161 @@
+{
+  "id": 115,
+  "slug": "ra-soat-kien-truc",
+  "title": "Rà soát kiến trúc: cửa sổ hay cửa ải",
+  "subtitle": "Hội đồng duyệt mọi thứ sẽ thành nút thắt; không có gì cả thì mỗi đội đi một hướng.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔍",
+  "track": "professional",
+  "whyItMatters": "Một số quyết định kỹ thuật ảnh hưởng xa hơn phạm vi một đội, và chúng cần nhiều góc nhìn. Nhưng cơ chế để có được góc nhìn đó rất dễ biến thành thủ tục xin phép, và lúc ấy người ta sẽ tìm cách đi vòng.",
+  "openingQuestion": "Quyết định nào xứng đáng được rà soát ngoài phạm vi một đội?",
+  "openingOptions": [
+    "Những quyết định khó đảo ngược hoặc ảnh hưởng tới nhiều đội khác",
+    "Mọi quyết định kỹ thuật có ảnh hưởng tới kiến trúc của cả hệ thống",
+    "Những quyết định do đội mới thành lập đưa ra lần đầu",
+    "Những quyết định cần ngân sách vượt một ngưỡng nhất định"
+  ],
+  "correctOption": 0,
+  "explanation": "Tiêu chí phải là chi phí sửa sai, vì đó chính là thứ mà việc có thêm góc nhìn giúp giảm. Một lựa chọn nội bộ mà đội tự sửa trong một tuần thì không đáng để năm người khác bỏ thời gian xem. Một lựa chọn định hình cách năm đội làm việc suốt hai năm thì đáng, kể cả khi nó nhỏ về mặt mã. Đưa mọi quyết định qua rà soát biến cơ chế này thành hàng đợi, và hàng đợi thì luôn bị người ta tìm cách vòng qua.",
+  "diagram": [
+    {
+      "label": "Quyết định dễ sửa, phạm vi hẹp → đội tự quyết",
+      "arrow": true
+    },
+    {
+      "label": "Quyết định khó đảo ngược hoặc ảnh hưởng rộng",
+      "arrow": true
+    },
+    {
+      "label": "Rà soát để lấy thêm góc nhìn",
+      "arrow": true
+    },
+    {
+      "label": "Không phải để xin phép"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hội đồng kiến trúc thành hàng đợi",
+    "description": "Khi mọi thay đổi đáng kể phải qua một hội đồng họp hai tuần một lần, các đội học cách chia nhỏ đề xuất cho dưới ngưỡng phải trình. Tổ chức mất cả tốc độ lẫn khả năng nhìn thấy những quyết định thật sự lớn."
+  },
+  "keyTakeaways": [
+    "Tiêu chí rà soát là chi phí sửa sai, không phải quy mô mã hay ngân sách.",
+    "Rà soát nên là nơi lấy góc nhìn, không phải cửa xin phép.",
+    "Người quyết định vẫn nên là đội sở hữu, sau khi đã nghe.",
+    "Cơ chế quá nặng sẽ bị lách bằng cách chia nhỏ đề xuất."
+  ],
+  "summary": {
+    "keyIdea": "Rà soát kiến trúc tồn tại để cải thiện quyết định, không phải để chặn chúng.",
+    "formula": "Rà soát thứ khó đảo ngược, để đội tự quyết phần còn lại.",
+    "commonMistake": "Duyệt mọi thứ, khiến cơ chế thành nút thắt rồi bị đi vòng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Nhìn cơ chế rà soát ở tổ chức bạn và hỏi: nó đang cải thiện quyết định hay đang cấp phép? Nếu kết quả phần lớn là duyệt sau vài tuần chờ thì nó đang là cửa ải."
+  },
+  "practicePrompt": {
+    "question": "Sau buổi rà soát, ai nên là người ra quyết định cuối cùng?",
+    "options": [
+      "Đội sở hữu phần đó, sau khi đã nghe các góc nhìn khác",
+      "Hội đồng rà soát, vì họ có cái nhìn toàn cục hơn",
+      "Người quản lý kỹ thuật cấp cao nhất tham gia buổi đó",
+      "Nhóm đông hơn trong buổi rà soát thông qua biểu quyết"
+    ],
+    "correct": 0,
+    "explanation": "Đội sở hữu là bên sống với hậu quả và bên hiểu ngữ cảnh chi tiết nhất, nên trách nhiệm nên đi cùng quyền. Chuyển quyền quyết sang hội đồng biến rà soát thành phê duyệt, và đội mất luôn động lực nghĩ kỹ vì dù sao cũng có người khác chốt."
+  },
+  "quiz": [
+    {
+      "question": "Tiêu chí nào xác định một quyết định cần rà soát rộng?",
+      "options": [
+        "Nó khó đảo ngược hoặc ảnh hưởng tới nhiều đội",
+        "Nó liên quan tới một phần lớn của mã nguồn",
+        "Nó do một đội mới hoặc người mới đề xuất",
+        "Nó đòi hỏi chi phí hạ tầng vượt ngưỡng cho phép"
+      ],
+      "correct": 0,
+      "explanation": "Giá trị của thêm góc nhìn tỷ lệ với chi phí sửa sai. Quyết định sửa được trong một tuần thì bỏ thời gian của năm người để xem là lỗ."
+    },
+    {
+      "question": "Điều gì xảy ra khi cơ chế rà soát quá nặng?",
+      "options": [
+        "Các đội chia nhỏ đề xuất để lọt dưới ngưỡng phải trình",
+        "Chất lượng của các quyết định được cải thiện rõ rệt",
+        "Số lượng quyết định kiến trúc giảm xuống đáng kể",
+        "Các đội chuyển sang xin ý kiến bằng kênh không chính thức"
+      ],
+      "correct": 0,
+      "explanation": "Người ta tối ưu theo luật lệ họ gặp. Kết quả là tổ chức mất khả năng nhìn thấy những quyết định lớn - đúng thứ cơ chế này sinh ra để có."
+    },
+    {
+      "question": "Vai trò đúng của buổi rà soát kiến trúc là gì?",
+      "options": [
+        "Cung cấp góc nhìn mà đội sở hữu không có",
+        "Phê duyệt để đội được phép bắt đầu triển khai",
+        "Bảo đảm mọi đội tuân thủ chuẩn chung của tổ chức",
+        "Phân bổ nguồn lực giữa các đề xuất cạnh tranh nhau"
+      ],
+      "correct": 0,
+      "explanation": "Người ở đội khác biết những va chạm mà đội sở hữu không thấy, và biết những lần thử trước đã hỏng ra sao. Đó là giá trị thật; phê duyệt chỉ là quyền lực."
+    },
+    {
+      "question": "Vì sao đội sở hữu nên giữ quyền quyết định cuối?",
+      "options": [
+        "Vì họ sống với hậu quả và hiểu ngữ cảnh chi tiết nhất",
+        "Vì hội đồng rà soát không có đủ thời gian để tìm hiểu sâu",
+        "Vì quy trình yêu cầu người thực hiện phải tự quyết",
+        "Vì như vậy sẽ giảm được số vòng trao đổi cần thiết"
+      ],
+      "correct": 0,
+      "explanation": "Trách nhiệm nên đi cùng quyền. Khi có người khác chốt thay, đội mất động lực suy nghĩ kỹ và luôn có chỗ để đổ lỗi khi hỏng."
+    },
+    {
+      "question": "Dấu hiệu cơ chế rà soát đang hoạt động tốt là gì?",
+      "options": [
+        "Đội chủ động mang đề xuất tới vì nhận được góc nhìn hữu ích",
+        "Tỷ lệ đề xuất được duyệt ngay trong lần trình đầu tiên rất cao",
+        "Số lượng đề xuất được rà soát tăng đều qua từng quý",
+        "Mọi quyết định kiến trúc đều có biên bản rà soát đi kèm"
+      ],
+      "correct": 0,
+      "explanation": "Tự nguyện tìm tới là thước đo tương tự nền tảng nội bộ ở bài trước. Nếu người ta chỉ tới vì bắt buộc thì cơ chế đang là thuế chứ không phải dịch vụ."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Một số quyết định đi xa hơn phạm vi đội đưa ra chúng. Tổ chức nào cũng cần cách để những quyết định ấy được nhiều người nhìn - và cách ấy rất dễ biến thành thứ mọi người tìm cách né."
+    },
+    {
+      "type": "heading",
+      "text": "Lọc theo chi phí sửa sai"
+    },
+    {
+      "type": "paragraph",
+      "text": "Không phải quyết định nào cũng đáng để năm người bỏ một giờ. Câu hỏi lọc là: nếu chọn sai thì sửa mất bao lâu? Đổi một thư viện nội bộ thì một tuần, nên đội tự quyết. Chọn cách các dịch vụ trao dữ liệu cho nhau thì hai năm, nên đáng nghe thêm - kể cả khi thay đổi mã ban đầu rất nhỏ."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cửa sổ",
+        "text": "Đội mang đề xuất tới để nghe góc nhìn khác, rồi tự quyết. Người ta tìm tới vì nó hữu ích, và nó không nằm trên đường găng."
+      },
+      "right": {
+        "label": "Cửa ải",
+        "text": "Không qua thì không được làm. Thành hàng đợi, và các đội học cách chia nhỏ đề xuất để lọt dưới ngưỡng."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Nghe rồi vẫn tự quyết",
+      "text": "Giữ quyền quyết ở đội sở hữu là thứ phân biệt rà soát với phê duyệt. Nó cũng giữ cho trách nhiệm không bị pha loãng: khi hỏng, không ai nói được rằng hội đồng đã duyệt rồi."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Rà soát tốt là nơi người ta tự tìm tới. Ngay khi nó thành cửa phải qua, nó bắt đầu bị đi vòng.",
+        "Bài sau nói về loại quyết định lớn nhất mà mọi tổ chức lâu năm đều phải đối mặt: thay thế một hệ thống đang chạy."
+      ]
+    }
+  ]
+}

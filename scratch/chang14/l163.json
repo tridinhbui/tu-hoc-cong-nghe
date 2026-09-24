@@ -1,0 +1,174 @@
+{
+  "id": 163,
+  "slug": "muc-tieu-dich-vu-va-nguong",
+  "title": "Mục tiêu dịch vụ: ngưỡng, tỷ lệ và khung thời gian",
+  "subtitle": "Một mục tiêu thiếu khung thời gian thì không bao giờ vi phạm được, và cũng không bảo vệ được gì.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🎯",
+  "track": "professional",
+  "whyItMatters": "Mục tiêu dịch vụ là chỗ độ tin cậy chuyển từ ý kiến sang số liệu. Nó quyết định khi nào đội được phép làm tính năng và khi nào phải dừng lại sửa nền móng.",
+  "openingQuestion": "Ba thành phần bắt buộc của một mục tiêu dịch vụ là gì?",
+  "openingOptions": [
+    "Ngưỡng của chỉ số, tỷ lệ phải đạt, và khung thời gian đo",
+    "Ngưỡng của chỉ số, người chịu trách nhiệm, và mức cảnh báo",
+    "Tỷ lệ phải đạt, khung thời gian, và hình phạt khi vi phạm",
+    "Chỉ số được chọn, công cụ đo, và tần suất báo cáo kết quả"
+  ],
+  "correctOption": 0,
+  "explanation": "Ví dụ đầy đủ: chín mươi chín phẩy chín phần trăm số yêu cầu được trả lời đúng trong dưới ba trăm mili giây, đo trên cửa sổ hai mươi tám ngày trượt. Thiếu ngưỡng thì không biết thế nào là đạt; thiếu tỷ lệ thì một yêu cầu chậm cũng thành vi phạm; thiếu khung thời gian thì con số không bao giờ kết thúc để mà so. Người chịu trách nhiệm và cách xử lý vi phạm đều quan trọng nhưng chúng là chính sách đi kèm chứ không phải thành phần của phép đo.",
+  "diagram": [
+    {
+      "label": "Ngưỡng: trả lời đúng, dưới 300 mili giây",
+      "arrow": true
+    },
+    {
+      "label": "Tỷ lệ: 99,9% số yêu cầu đạt ngưỡng đó",
+      "arrow": true
+    },
+    {
+      "label": "Khung thời gian: 28 ngày trượt",
+      "arrow": true
+    },
+    {
+      "label": "Thiếu một phần thì mục tiêu không dùng được"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Mục tiêu không bao giờ vi phạm",
+    "description": "Một đội viết mục tiêu là dịch vụ phải phản hồi nhanh và ổn định. Sau một năm không ai từng tuyên bố nó bị vi phạm, kể cả trong tuần có ba sự cố lớn."
+  },
+  "keyTakeaways": [
+    "Một mục tiêu cần đủ ngưỡng, tỷ lệ và khung thời gian mới đo được.",
+    "Cửa sổ trượt phản ánh hiện trạng tốt hơn cửa sổ theo tháng lịch.",
+    "Đặt mục tiêu thấp hơn mức đang đạt là tự tạo nợ, không phải an toàn.",
+    "Mục tiêu là cam kết nội bộ; cam kết với khách hàng phải lỏng hơn nó."
+  ],
+  "summary": {
+    "keyIdea": "Mục tiêu dịch vụ phải viết đủ ba phần để có thể kết luận đạt hay không đạt.",
+    "formula": "X% số yêu cầu đạt ngưỡng Y, đo trong Z ngày.",
+    "commonMistake": "Viết mục tiêu bằng tính từ thay vì bằng con số."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy mục tiêu dịch vụ hiện tại của bạn và kiểm tra xem nó có đủ ba phần không. Nếu thiếu khung thời gian thì bạn chưa từng có cách nào tuyên bố vi phạm."
+  },
+  "practicePrompt": {
+    "question": "Vì sao cam kết với khách hàng nên lỏng hơn mục tiêu nội bộ?",
+    "options": [
+      "Để còn khoảng đệm phát hiện và xử lý trước khi vi phạm hợp đồng",
+      "Để bộ phận kinh doanh dễ đàm phán hơn khi đi ký các hợp đồng mới",
+      "Để đội kỹ thuật không phải chịu áp lực từ phía khách hàng",
+      "Để tránh phải công bố số liệu vận hành thật ra bên ngoài"
+    ],
+    "correct": 0,
+    "explanation": "Nếu hai con số bằng nhau thì lần đầu tiên bạn biết mình có vấn đề cũng là lần đầu tiên bạn đã vi phạm hợp đồng. Khoảng cách giữa chúng chính là thời gian để đội phát hiện xu hướng xấu và can thiệp trước khi nó chạm ngưỡng phải bồi thường."
+  },
+  "quiz": [
+    {
+      "question": "Điều gì xảy ra khi mục tiêu thiếu khung thời gian?",
+      "options": [
+        "Không bao giờ kết luận được là đạt hay không đạt",
+        "Kết quả đo sẽ dao động mạnh giữa các lần kiểm tra",
+        "Đội phải tự chọn khung thời gian cho mỗi lần báo cáo",
+        "Chỉ số sẽ được tính từ ngày dịch vụ bắt đầu hoạt động"
+      ],
+      "correct": 0,
+      "explanation": "Một tỷ lệ luôn phải tính trên một tập hợp; không xác định tập hợp thì con số không tồn tại. Đó là lý do một mục tiêu như phải phản hồi nhanh và ổn định không bao giờ bị tuyên bố vi phạm, kể cả trong tuần có ba sự cố."
+    },
+    {
+      "question": "Vì sao nên dùng cửa sổ trượt thay vì tháng lịch?",
+      "options": [
+        "Vì tháng lịch xoá sạch lịch sử vào nửa đêm ngày cuối tháng",
+        "Vì cửa sổ trượt cho kết quả ổn định hơn về mặt thống kê",
+        "Vì tháng lịch có số ngày khác nhau nên khó so sánh",
+        "Vì cửa sổ trượt dễ cài đặt hơn trong phần lớn công cụ giám sát"
+      ],
+      "correct": 0,
+      "explanation": "Một sự cố lớn ngày hai mươi chín được xoá sổ sau hai ngày, và đội bước sang tháng mới với bảng điểm sạch trong khi hệ thống chưa hề được sửa. Cửa sổ trượt giữ sự cố ấy trong tầm nhìn đủ lâu để nó được xử lý."
+    },
+    {
+      "question": "Vì sao đặt mục tiêu thấp hơn nhiều so với mức đang đạt là sai?",
+      "options": [
+        "Vì nó cho phép chất lượng trượt xuống mà không có tín hiệu nào",
+        "Vì khách hàng sẽ so sánh với số liệu thực tế và mất niềm tin",
+        "Vì đội sẽ không còn động lực cải thiện hệ thống hiện có",
+        "Vì các công cụ giám sát cần một ngưỡng sát với thực tế để hoạt động"
+      ],
+      "correct": 0,
+      "explanation": "Nếu bạn đang ở chín mươi chín phẩy chín mà đặt mục tiêu chín mươi chín, hệ thống có thể xấu đi gấp mười lần trước khi bất kỳ ai được báo. Mục tiêu là một cái phanh, và đặt nó quá xa thì phanh không bao giờ ăn."
+    },
+    {
+      "question": "Thành phần nào KHÔNG thuộc về phép đo của mục tiêu dịch vụ?",
+      "options": [
+        "Người chịu trách nhiệm khi mục tiêu bị vi phạm",
+        "Ngưỡng thời gian phản hồi được coi là đạt",
+        "Tỷ lệ phần trăm số yêu cầu phải đạt ngưỡng",
+        "Độ dài của cửa sổ thời gian dùng để tính tỷ lệ"
+      ],
+      "correct": 0,
+      "explanation": "Nó rất quan trọng, nhưng nó là chính sách đi kèm chứ không phải một phần của công thức. Phân biệt hai thứ này giúp mục tiêu không phình thành một tài liệu dài mà không ai đo được."
+    },
+    {
+      "question": "Một mục tiêu viết bằng tính từ có vấn đề gì?",
+      "options": [
+        "Mỗi người hiểu một kiểu nên không ai kết luận được điều gì",
+        "Nó không thể được đưa vào trong các công cụ giám sát tự động được",
+        "Nó khiến khách hàng hiểu nhầm về chất lượng dịch vụ",
+        "Nó cần được viết lại mỗi khi hệ thống có thay đổi lớn"
+      ],
+      "correct": 0,
+      "explanation": "Nhanh với người vận hành là ba trăm mili giây, với người viết giao diện là hai giây, với giám đốc là cảm giác khi họ mở ứng dụng. Một tài liệu ba bên cùng gật đầu mà không ai hiểu giống nhau còn tệ hơn không có tài liệu."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước chọn được chỉ số. Bài này biến nó thành một mục tiêu - và điều làm nên một mục tiêu dùng được không phải là con số cao, mà là nó viết đủ chi tiết để kết luận đạt hay không đạt."
+    },
+    {
+      "type": "heading",
+      "text": "Ba phần bắt buộc"
+    },
+    {
+      "type": "formula",
+      "expression": "99,9% số yêu cầu trả lời đúng trong dưới 300 mili giây, đo trên 28 ngày trượt",
+      "explanation": "Ngưỡng, tỷ lệ, khung thời gian. Bỏ bất kỳ phần nào thì câu này không còn kết luận được điều gì."
+    },
+    {
+      "type": "paragraph",
+      "text": "Thiếu ngưỡng thì không biết thế nào là một yêu cầu tốt. Thiếu tỷ lệ thì một yêu cầu chậm cũng thành vi phạm, và mọi hệ thống đều vi phạm mọi lúc. Thiếu khung thời gian thì tỷ lệ được tính trên một tập hợp không xác định, tức là nó không tồn tại."
+    },
+    {
+      "type": "callout",
+      "label": "Cửa sổ trượt, không phải tháng lịch",
+      "text": "Tháng lịch xoá sạch lịch sử vào nửa đêm ngày cuối tháng. Một sự cố lớn ngày hai mươi chín biến mất sau hai ngày và đội bước sang tháng mới với bảng điểm sạch, trong khi nguyên nhân vẫn nằm nguyên đó."
+    },
+    {
+      "type": "heading",
+      "text": "Hai con số khác nhau"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Mục tiêu nội bộ",
+        "text": "Chặt hơn. Nó là cái phanh: chạm vào thì đội đổi ưu tiên. Không có hậu quả pháp lý."
+      },
+      "right": {
+        "label": "Cam kết với khách hàng",
+        "text": "Lỏng hơn, có hậu quả hợp đồng. Khoảng cách giữa hai con số là thời gian bạn có để can thiệp."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Nếu đặt hai con số bằng nhau, lần đầu tiên bạn biết mình có vấn đề cũng là lần đầu tiên bạn phải bồi thường. Đó là một lỗi thiết kế chính sách chứ không phải xui rủi."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Một mục tiêu viết bằng tính từ là một tài liệu ba bên cùng gật đầu mà không ai hiểu giống nhau.",
+        "Bài sau về thứ mục tiêu này sinh ra: phần được phép hỏng, và cách tiêu nó."
+      ]
+    }
+  ]
+}

@@ -59,14 +59,14 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-line">
           <div className="flex items-center gap-2">
-            <Eye className="w-5 h-5 text-stone-600 dark:text-stone-400" />
+            <Eye className="w-5 h-5 text-ink-soft" />
             <h3 className="font-bold text-ink">
               {format(tp.previewOf, { name: file.name })}
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-400"
+            className="p-1 rounded hover:bg-surface-raised text-stone-400"
           >
             <X className="w-5 h-5" />
           </button>
@@ -87,33 +87,33 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
           {isPdf && previewUrl && (
             <iframe
               src={previewUrl}
-              className="w-full h-[60vh] rounded-lg border border-stone-200 dark:border-stone-700"
+              className="w-full h-[60vh] rounded-lg border border-line-mid"
               title={tp.pdfPreviewTitle}
             />
           )}
 
           {isExcel && fileInfo && (
             <div className="space-y-4">
-              <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                <p className="text-sm text-stone-600 dark:text-stone-400 mb-2">{tp.fileInfoTitle}</p>
+              <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900 rounded-lg p-4">
+                <p className="text-sm text-ink-soft mb-2">{tp.fileInfoTitle}</p>
                 <div className="space-y-2 text-sm">
                   <p>
                     <span className="font-semibold text-ink-body">{tp.nameLabel}</span>{" "}
-                    <span className="text-stone-600 dark:text-stone-400">{file.name}</span>
+                    <span className="text-ink-soft">{file.name}</span>
                   </p>
                   <p>
                     <span className="font-semibold text-ink-body">{tp.typeLabel}</span>{" "}
-                    <span className="text-stone-600 dark:text-stone-400">
+                    <span className="text-ink-soft">
                       {fileInfo.type || tp.excelSpreadsheetFallback}
                     </span>
                   </p>
                   <p>
                     <span className="font-semibold text-ink-body">{tp.sizeLabel}</span>{" "}
-                    <span className="text-stone-600 dark:text-stone-400">{fileInfo.size}</span>
+                    <span className="text-ink-soft">{fileInfo.size}</span>
                   </p>
                 </div>
               </div>
-              <div className="bg-warn-soft/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 text-sm text-amber-800 dark:text-amber-200">
+              <div className="bg-amber-50 dark:bg-amber-950/20 border border-warn-line rounded-lg p-4 text-sm text-warn-ink">
                 {tp.excelCannotPreview}
               </div>
             </div>
@@ -124,19 +124,19 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
               <div className="bg-surface-raised border border-line-strong rounded-lg p-6 text-center">
                 <p className="text-2xl mb-2">📄</p>
                 <p className="font-semibold text-ink mb-2">{file.name}</p>
-                <p className="text-sm text-stone-600 dark:text-stone-400">
+                <p className="text-sm text-ink-soft">
                   {tp.unsupportedPreview}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-stone-50 dark:bg-stone-800 rounded-lg p-3">
-                  <p className="text-xs text-stone-600 dark:text-stone-400">{tp.typeCaption}</p>
+                <div className="bg-surface rounded-lg p-3">
+                  <p className="text-xs text-ink-soft">{tp.typeCaption}</p>
                   <p className="font-semibold text-ink text-sm">
                     {fileInfo.type || tp.unknownFallback}
                   </p>
                 </div>
-                <div className="bg-stone-50 dark:bg-stone-800 rounded-lg p-3">
-                  <p className="text-xs text-stone-600 dark:text-stone-400">{tp.sizeCaption}</p>
+                <div className="bg-surface rounded-lg p-3">
+                  <p className="text-xs text-ink-soft">{tp.sizeCaption}</p>
                   <p className="font-semibold text-ink text-sm">
                     {fileInfo.size}
                   </p>
@@ -153,7 +153,7 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
             download={file.name}
             className={`inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg transition-colors ${
               previewUrl
-                ? "bg-surface-raised text-ink-body hover:bg-stone-200 dark:hover:bg-stone-700"
+                ? "bg-surface-raised text-ink-body hover:bg-surface-sunken"
                 : "opacity-50 cursor-not-allowed"
             }`}
           >

@@ -1,0 +1,177 @@
+{
+  "id": 121,
+  "slug": "mo-hinh-moi-de-doa",
+  "title": "Mô hình mối đe doạ: ai muốn gì, và bạn mất gì",
+  "subtitle": "Bảo vệ mọi thứ như nhau nghĩa là không bảo vệ được thứ quan trọng nhất.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🛡️",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Bảo mật không phải một danh sách việc phải làm mà là một loạt đánh đổi. Không biết mình đang bảo vệ cái gì khỏi ai thì bạn sẽ tiêu công sức vào những chỗ dễ làm thay vì những chỗ quan trọng.",
+  "openingQuestion": "Trước khi bàn về giải pháp bảo mật, câu hỏi đầu tiên nên là gì?",
+  "openingOptions": [
+    "Tài sản nào đáng giá nhất, và ai có động cơ muốn lấy nó",
+    "Hệ thống của chúng ta đang thiếu những biện pháp bảo mật nào",
+    "Các đối thủ trong ngành đang áp dụng tiêu chuẩn bảo mật nào",
+    "Ngân sách dành cho bảo mật năm nay là bao nhiêu tiền"
+  ],
+  "correctOption": 0,
+  "explanation": "Mọi biện pháp bảo mật đều có giá: tiền, thời gian, và sự bất tiện cho người dùng. Vì thế chúng phải được xếp theo thứ tự, và thứ tự ấy đến từ việc biết bạn đang giữ gì và ai muốn lấy. Một sản phẩm giữ dữ liệu sức khoẻ có bức tranh đe doạ khác hẳn một trò chơi giải trí, dù cả hai đều là ứng dụng web. Bắt đầu từ danh sách biện pháp thay vì từ tài sản là cách chắc chắn để làm rất nhiều việc mà vẫn hở ở đúng chỗ đắt nhất.",
+  "diagram": [
+    {
+      "label": "Tài sản: dữ liệu gì, đáng giá bao nhiêu",
+      "arrow": true
+    },
+    {
+      "label": "Kẻ tấn công: ai, động cơ gì, khả năng tới đâu",
+      "arrow": true
+    },
+    {
+      "label": "Đường vào: chỗ nào chạm tới tài sản đó",
+      "arrow": true
+    },
+    {
+      "label": "Ưu tiên biện pháp theo ba thứ trên"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Kẻ tấn công cơ hội",
+    "description": "Phần lớn cuộc tấn công không nhắm vào bạn cụ thể. Chúng là máy quét tự động tìm những lỗ hổng đã biết trên hàng triệu địa chỉ. Điều đó có nghĩa là vá lỗ hổng đã công bố và không để lộ bí mật đã chặn được phần lớn rủi ro thực tế."
+  },
+  "keyTakeaways": [
+    "Bắt đầu từ tài sản và kẻ tấn công, không từ danh sách biện pháp.",
+    "Phần lớn tấn công là cơ hội và tự động, không nhắm riêng vào bạn.",
+    "Mọi biện pháp đều có giá, nên chúng phải được xếp thứ tự.",
+    "Bức tranh đe doạ khác nhau theo sản phẩm, nên không có danh sách chung."
+  ],
+  "summary": {
+    "keyIdea": "Bảo mật là bài toán ưu tiên, và thứ tự ưu tiên đến từ việc hiểu tài sản và kẻ tấn công.",
+    "formula": "Tài sản, kẻ tấn công, đường vào, rồi mới tới biện pháp.",
+    "commonMistake": "Làm theo danh sách kiểm tra chung mà không hỏi mình đang bảo vệ cái gì."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Viết ra ba tài sản đáng giá nhất trong hệ thống của bạn và với mỗi cái, ai sẽ muốn lấy nó. Danh sách nửa trang ấy đổi thứ tự ưu tiên nhiều hơn mọi tài liệu tiêu chuẩn."
+  },
+  "practicePrompt": {
+    "question": "Vì sao việc vá các lỗ hổng đã công bố lại có giá trị cao bất thường?",
+    "options": [
+      "Vì phần lớn tấn công là máy quét tự động tìm đúng những lỗ hổng đó",
+      "Vì các lỗ hổng đã công bố luôn nghiêm trọng hơn những lỗ hổng chưa biết",
+      "Vì việc vá lỗi được các tiêu chuẩn bảo mật yêu cầu bắt buộc",
+      "Vì nhà cung cấp thư viện sẽ ngừng hỗ trợ nếu không cập nhật"
+    ],
+    "correct": 0,
+    "explanation": "Kẻ tấn công có mục tiêu cụ thể thì hiếm, còn máy quét tự động thì chạy suốt ngày trên toàn bộ Internet. Vá kịp thời loại bỏ đúng cái mà đa số các cuộc tấn công thực tế đang tìm, nên nó cho tỷ lệ lợi ích trên công sức cao hơn hầu hết biện pháp khác."
+  },
+  "quiz": [
+    {
+      "question": "Câu hỏi đầu tiên khi lập kế hoạch bảo mật là gì?",
+      "options": [
+        "Chúng ta đang giữ tài sản gì và ai muốn lấy nó",
+        "Hệ thống còn thiếu những biện pháp bảo mật nào",
+        "Tiêu chuẩn nào trong ngành cần được tuân thủ",
+        "Đội có bao nhiêu người và ngân sách bao nhiêu"
+      ],
+      "correct": 0,
+      "explanation": "Không có câu trả lời cho câu này thì mọi biện pháp đều ngang hàng, và bạn sẽ làm những thứ dễ trước. Tài sản và kẻ tấn công là thứ tạo ra thứ tự ưu tiên."
+    },
+    {
+      "question": "Phần lớn các cuộc tấn công trong thực tế có đặc điểm gì?",
+      "options": [
+        "Tự động và cơ hội, không nhắm riêng vào một tổ chức cụ thể",
+        "Được thực hiện bởi những nhóm có kỹ năng rất cao",
+        "Nhắm vào những lỗ hổng chưa từng được công bố",
+        "Bắt đầu từ việc lừa nhân viên qua thư điện tử"
+      ],
+      "correct": 0,
+      "explanation": "Máy quét chạy liên tục trên toàn bộ Internet và tìm những lỗ hổng đã biết. Đó là lý do vá lỗi kịp thời có giá trị thực tế cao hơn nhiều biện pháp nghe phức tạp hơn."
+    },
+    {
+      "question": "Vì sao không có danh sách kiểm tra bảo mật dùng chung cho mọi sản phẩm?",
+      "options": [
+        "Vì tài sản và kẻ tấn công khác nhau ở mỗi sản phẩm",
+        "Vì các tiêu chuẩn bảo mật thay đổi quá nhanh để theo kịp",
+        "Vì mỗi công nghệ có những lỗ hổng riêng không giống nhau",
+        "Vì quy mô đội quyết định biện pháp nào khả thi để làm"
+      ],
+      "correct": 0,
+      "explanation": "Một ứng dụng giữ hồ sơ sức khoẻ và một trò chơi giải trí có bức tranh đe doạ khác hẳn. Danh sách chung vẫn hữu ích làm điểm khởi đầu, nhưng nó không thay được việc xếp thứ tự theo tài sản của chính bạn."
+    },
+    {
+      "question": "Vì sao mọi biện pháp bảo mật đều phải được xếp thứ tự?",
+      "options": [
+        "Vì mỗi biện pháp đều tốn tiền, thời gian và sự tiện lợi",
+        "Vì không thể triển khai nhiều biện pháp cùng một lúc",
+        "Vì các biện pháp có thể xung đột với nhau khi cùng bật",
+        "Vì tiêu chuẩn yêu cầu triển khai theo đúng thứ tự quy định"
+      ],
+      "correct": 0,
+      "explanation": "Không có gì miễn phí: xác thực hai bước làm người dùng chậm lại, mã hoá làm hệ thống phức tạp hơn. Vì có giá nên phải chọn, và chọn thì cần thứ tự."
+    },
+    {
+      "question": "Ba thành phần của một mô hình mối đe doạ đơn giản là gì?",
+      "options": [
+        "Tài sản, kẻ tấn công và đường vào tới tài sản đó",
+        "Lỗ hổng, bản vá và thời gian cần để triển khai",
+        "Tiêu chuẩn, quy trình và người chịu trách nhiệm chính",
+        "Ngân sách, công cụ và đội ngũ vận hành bảo mật"
+      ],
+      "correct": 0,
+      "explanation": "Ba câu hỏi ấy đủ để xếp thứ tự cho phần lớn tổ chức: giữ gì, ai muốn, và họ chạm tới bằng đường nào. Mọi thứ khác là chi tiết triển khai của ba câu này."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bảo mật hay được trình bày như một danh sách việc phải làm. Nhưng danh sách ấy dài vô tận và mọi mục đều tốn kém, nên câu hỏi thật luôn là làm cái nào trước."
+    },
+    {
+      "type": "heading",
+      "text": "Ba câu hỏi tạo ra thứ tự"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Mô hình mối đe doạ tối giản",
+      "subtitle": "Nửa trang là đủ để đổi hẳn thứ tự ưu tiên",
+      "concepts": [
+        {
+          "vi": "Tài sản",
+          "en": "assets",
+          "def": "Dữ liệu hoặc khả năng nào đáng giá: hồ sơ người dùng, tiền, quyền quản trị, uy tín."
+        },
+        {
+          "vi": "Kẻ tấn công",
+          "en": "adversary",
+          "def": "Ai muốn nó và họ bỏ ra được bao nhiêu công sức. Máy quét tự động khác hẳn một nhóm có mục tiêu."
+        },
+        {
+          "vi": "Đường vào",
+          "en": "attack surface",
+          "def": "Mọi chỗ dữ liệu bên ngoài chạm được vào hệ thống: biểu mẫu, API, tệp tải lên, phụ thuộc."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Kẻ tấn công phổ biến nhất là một cỗ máy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hình dung về bảo mật thường là một người có kỹ năng cao nhắm vào bạn. Thực tế phần lớn là máy quét chạy liên tục trên toàn Internet, thử những lỗ hổng đã công bố và những mật khẩu mặc định. Chúng không quan tâm bạn là ai, và chúng tìm thấy trong vài phút sau khi một dịch vụ mới lên mạng."
+    },
+    {
+      "type": "callout",
+      "label": "Bảo vệ đều nhau là không bảo vệ",
+      "text": "Nguồn lực có hạn, nên trải mỏng ra mọi chỗ nghĩa là chỗ quan trọng nhất cũng chỉ được một lớp mỏng. Biết tài sản nào đáng giá nhất cho phép bạn đặt nhiều lớp ở đó và chấp nhận ít lớp hơn ở chỗ khác."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bảo mật là bài toán ưu tiên trước khi là bài toán kỹ thuật. Không biết mình giữ gì thì mọi biện pháp đều trông ngang nhau.",
+        "Bài sau bắt đầu từ đường vào phổ biến nhất: cách hệ thống xác định bạn là ai."
+      ]
+    }
+  ]
+}

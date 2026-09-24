@@ -31,7 +31,7 @@ export function goalsOf(t: Dictionary): { id: LearningGoal; name: string; desc: 
       desc: d.basicInvesting.desc,
       icon: TrendingUp,
       color: "text-emerald-500",
-      bg: "bg-accent-soft/20"
+      bg: "bg-emerald-50 dark:bg-emerald-950/20"
     },
     {
       id: "corporate-finance",
@@ -142,7 +142,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                   className={`text-left p-4.5 rounded-2xl border transition-all flex flex-col justify-between space-y-3 cursor-pointer focus:outline-none ${
                     isSelected
                       ? "border-emerald-500 bg-emerald-500/[0.03] dark:bg-emerald-950/20"
-                      : "border-line hover:border-stone-300 dark:hover:border-stone-700 bg-white dark:bg-stone-900"
+                      : "border-line hover:border-line-strong bg-white dark:bg-stone-900"
                   }`}
                 >
                   <div className="flex items-center justify-between w-full">

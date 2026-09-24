@@ -161,14 +161,14 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
                   const isCurrent = normalizeRef(task.target) === ref;
                   const err = isError(value);
                   return (
-                    <td key={ref} className="p-0 border border-stone-200 dark:border-stone-700">
+                    <td key={ref} className="p-0 border border-line-mid">
                       <button
                         type="button"
                         onClick={() => selectCell(ref)}
                         className={[
                           "w-full h-7 px-1.5 text-left truncate transition-colors",
                           typeof value === "number" ? "text-right" : "",
-                          err ? "text-rose-600 font-semibold dark:text-rose-400" : "text-stone-700 dark:text-stone-200",
+                          err ? "text-rose-600 font-semibold dark:text-rose-400" : "text-ink-body",
                           isCurrent
                             ? "bg-amber-100 ring-2 ring-inset ring-amber-400 dark:bg-amber-500/20 dark:ring-amber-500"
                             : isTarget
@@ -362,7 +362,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                   {table.rows.map((row, i) => (
                     <tr key={i} className="border-t border-line-soft">
                       {table.columns.map((c) => (
-                        <td key={c} className="px-2 py-1 text-stone-700 dark:text-stone-200">
+                        <td key={c} className="px-2 py-1 text-ink-body">
                           {row[c] === null ? t.excelPractice.nullValue : String(row[c])}
                         </td>
                       ))}
@@ -422,10 +422,10 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
         </button>
 
         {result && (
-          <div className="overflow-x-auto rounded-xl border border-stone-200 dark:border-stone-700">
+          <div className="overflow-x-auto rounded-xl border border-line-mid">
             <table className="w-full text-[11px] tabular-nums">
               <thead>
-                <tr className="bg-stone-50 dark:bg-stone-800">
+                <tr className="bg-surface">
                   {result.columns.map((c) => (
                     <th key={c} className="px-2 py-1 text-left font-semibold text-ink-muted">
                       {c}
@@ -437,7 +437,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                 {result.rows.map((row, i) => (
                   <tr key={i} className="border-t border-line-soft">
                     {row.map((v, j) => (
-                      <td key={j} className="px-2 py-1 text-stone-700 dark:text-stone-200">
+                      <td key={j} className="px-2 py-1 text-ink-body">
                         {v === null ? (
                           <span className="text-stone-400 italic">{t.excelPractice.nullValue}</span>
                         ) : (
@@ -547,18 +547,18 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
                   ? "border-amber-300 bg-amber-50 dark:border-amber-500/40 dark:bg-amber-500/10"
                   : checked
                     ? "border-emerald-300 bg-emerald-50 dark:border-emerald-500/40 dark:bg-emerald-500/10"
-                    : "border-stone-200 dark:border-stone-700",
+                    : "border-line-mid",
               ].join(" ")}
             >
               <span className="w-5 shrink-0 text-xs font-bold text-ink-faint">{i + 1}</span>
-              <span className="flex-1 text-xs leading-relaxed text-stone-700 dark:text-stone-200">{step}</span>
+              <span className="flex-1 text-xs leading-relaxed text-ink-body">{step}</span>
               <span className="flex flex-col shrink-0">
                 <button
                   type="button"
                   onClick={() => move(i, i - 1)}
                   disabled={i === 0}
                   aria-label={t.excelPractice.moveUp}
-                  className="px-1.5 text-stone-400 disabled:opacity-20 hover:text-stone-700 dark:hover:text-stone-200"
+                  className="px-1.5 text-stone-400 disabled:opacity-20 hover:text-ink-body"
                 >
                   ▲
                 </button>
@@ -567,7 +567,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
                   onClick={() => move(i, i + 1)}
                   disabled={i === order.length - 1}
                   aria-label={t.excelPractice.moveDown}
-                  className="px-1.5 text-stone-400 disabled:opacity-20 hover:text-stone-700 dark:hover:text-stone-200"
+                  className="px-1.5 text-stone-400 disabled:opacity-20 hover:text-ink-body"
                 >
                   ▼
                 </button>

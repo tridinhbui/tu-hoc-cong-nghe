@@ -1,0 +1,161 @@
+{
+  "id": 97,
+  "slug": "xay-thu-khong-ai-can",
+  "title": "Thất bại phổ biến nhất: làm rất tốt một thứ không ai cần",
+  "subtitle": "Mã sạch, kiểm thử đủ, triển khai mượt - và không ai dùng.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🏚️",
+  "track": "professional",
+  "whyItMatters": "Mọi kỹ năng trong chín chặng trước đều là kỹ năng xây cho tốt. Không kỹ năng nào trong số đó bảo vệ bạn khỏi việc xây nhầm thứ - và xây nhầm thứ là dạng lãng phí lớn nhất, vì nó lãng phí toàn bộ công sức chứ không phải một phần.",
+  "openingQuestion": "Một tính năng được xây rất tốt nhưng chỉ 2% người dùng chạm vào. Điều gì đã sai?",
+  "openingOptions": [
+    "Nhiều khả năng vấn đề nó giải quyết không đủ quan trọng với người dùng",
+    "Chất lượng kỹ thuật của tính năng chưa đủ tốt để hấp dẫn",
+    "Người dùng chưa biết tới nó nên cần quảng bá nhiều hơn",
+    "Giao diện của tính năng cần được thiết kế lại cho dễ dùng hơn"
+  ],
+  "correctOption": 0,
+  "explanation": "Ba giả thuyết còn lại đều có thể đúng và đều đáng kiểm tra, nhưng chúng cũng là ba cách dễ chịu để tránh giả thuyết khó chịu nhất: có thể vấn đề này không đủ đau để người ta bận tâm. Kiểm tra giả thuyết ấy trước là việc rẻ nhất, vì nếu đúng thì mọi khoản đầu tư vào quảng bá và thiết kế lại đều là tiền ném đi. Cách kiểm cũng đơn giản: hỏi vài người trong số 98% kia xem họ giải quyết việc đó thế nào, và câu trả lời thường là họ không có việc đó.",
+  "diagram": [
+    {
+      "label": "Tính năng chất lượng cao, ít người dùng",
+      "arrow": true
+    },
+    {
+      "label": "Giả thuyết dễ chịu: chưa biết tới, giao diện khó",
+      "arrow": true
+    },
+    {
+      "label": "Giả thuyết khó chịu: vấn đề không đủ đau",
+      "arrow": true
+    },
+    {
+      "label": "Kiểm cái khó chịu trước, vì nó rẻ nhất"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Tính năng không ai gỡ đi",
+    "description": "Sản phẩm nào cũng có những tính năng dùng dưới một phần trăm. Chúng không bị gỡ vì gỡ thì phải thừa nhận công sức đã bỏ ra là lãng phí, và vì luôn có một khách hàng nào đó đang dùng. Chúng ở lại, và mỗi thứ đều làm sản phẩm nặng thêm một chút."
+  },
+  "keyTakeaways": [
+    "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ.",
+    "Giả thuyết vấn đề không đủ đau nên được kiểm trước vì nó rẻ nhất và khó chịu nhất.",
+    "Công sức đã bỏ ra không phải lý do để giữ lại một tính năng không ai dùng.",
+    "Mỗi tính năng giữ lại đều có chi phí bảo trì và làm sản phẩm khó hiểu thêm."
+  ],
+  "summary": {
+    "keyIdea": "Làm tốt một thứ sai vẫn là lãng phí toàn bộ, và không kỹ năng kỹ thuật nào ngăn được điều đó.",
+    "formula": "Kiểm giả thuyết khó chịu nhất trước.",
+    "commonMistake": "Đổ thêm công sức vào quảng bá và thiết kế lại cho một vấn đề không có thật."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê các tính năng của sản phẩm và tỷ lệ người dùng chạm vào mỗi cái trong ba mươi ngày. Với những cái dưới vài phần trăm, hỏi xem giữ lại đang tốn gì mỗi tháng."
+  },
+  "practicePrompt": {
+    "question": "Đội đã bỏ ba tháng xây một tính năng và số liệu cho thấy không ai dùng. Lập luận nào là sai lầm?",
+    "options": [
+      "Đã bỏ ba tháng rồi nên phải đầu tư thêm để nó thành công",
+      "Nên hỏi người dùng vì sao họ không dùng tính năng đó",
+      "Nên cân nhắc gỡ nó đi để giảm bớt chi phí bảo trì về sau này",
+      "Nên xem lại quy trình đã dẫn tới quyết định xây nó"
+    ],
+    "correct": 0,
+    "explanation": "Ba tháng đã tiêu là chi phí chìm - nó không quay lại dù bạn làm gì tiếp theo, nên nó không được phép tham gia vào quyết định. Câu hỏi đúng chỉ là: từ hôm nay, đầu tư thêm vào đây có đáng hơn đầu tư vào việc khác không?"
+  },
+  "quiz": [
+    {
+      "question": "Vì sao xây nhầm thứ là dạng lãng phí lớn nhất?",
+      "options": [
+        "Vì toàn bộ công sức bị mất, không chỉ một phần",
+        "Vì nó thường tốn nhiều thời gian hơn các dạng khác",
+        "Vì nó chỉ được phát hiện sau khi đã phát hành",
+        "Vì nó ảnh hưởng tới uy tín của đội phát triển"
+      ],
+      "correct": 0,
+      "explanation": "Mã viết ẩu thì sửa được, kiến trúc sai thì cải tổ được. Một tính năng không ai cần thì mọi thứ trong đó đều vô giá trị, kể cả phần được làm rất tốt."
+    },
+    {
+      "question": "Vì sao nên kiểm giả thuyết vấn đề không đủ đau trước tiên?",
+      "options": [
+        "Vì nếu nó đúng thì mọi khoản đầu tư khác đều vô ích",
+        "Vì nó là giả thuyết dễ kiểm chứng nhất về mặt kỹ thuật",
+        "Vì các giả thuyết còn lại đã được loại trừ từ trước",
+        "Vì đó là nguyên nhân của mọi trường hợp ít người dùng"
+      ],
+      "correct": 0,
+      "explanation": "Thứ tự kiểm nên theo mức độ ảnh hưởng tới các quyết định sau. Nếu vấn đề không có thật thì quảng bá thêm và thiết kế lại đều là tiền ném đi, nên phải loại khả năng đó trước."
+    },
+    {
+      "question": "Chi phí chìm nên đóng vai trò gì trong quyết định tiếp theo?",
+      "options": [
+        "Không vai trò nào, vì nó không quay lại dù bạn làm gì",
+        "Vai trò quan trọng, vì đã đầu tư nhiều thì nên đi tiếp",
+        "Vai trò tham khảo khi ước lượng công sức còn lại",
+        "Vai trò quyết định nếu khoản đầu tư đủ lớn"
+      ],
+      "correct": 0,
+      "explanation": "Câu hỏi duy nhất có nghĩa là: từ hôm nay trở đi, đầu tư thêm vào đây có đáng hơn đầu tư vào việc khác không? Ba tháng đã tiêu không xuất hiện trong câu hỏi ấy."
+    },
+    {
+      "question": "Chi phí của việc giữ lại một tính năng không ai dùng là gì?",
+      "options": [
+        "Bảo trì, kiểm thử và làm sản phẩm khó hiểu thêm",
+        "Dung lượng lưu trữ và tài nguyên máy chủ tăng lên",
+        "Thời gian tải trang của người dùng bị kéo dài ra",
+        "Chi phí bản quyền cho các thư viện nó đang dùng"
+      ],
+      "correct": 0,
+      "explanation": "Nó xuất hiện trong mọi lần nâng cấp phụ thuộc, mọi lần cải tổ, mọi lần có người mới cần hiểu hệ thống. Và nó chiếm chỗ trong giao diện, làm những thứ quan trọng khó tìm hơn."
+    },
+    {
+      "question": "Cách rẻ nhất để hiểu vì sao không ai dùng một tính năng là gì?",
+      "options": [
+        "Hỏi vài người không dùng xem họ xử lý việc đó thế nào",
+        "Phân tích sâu số liệu hành vi của những người đã dùng",
+        "Khảo sát toàn bộ người dùng về mức độ hài lòng",
+        "So sánh với cách các sản phẩm khác giải quyết vấn đề"
+      ],
+      "correct": 0,
+      "explanation": "Nhóm không dùng chính là nhóm mang câu trả lời, và họ thường nói ngay rằng họ không có vấn đề đó. Phân tích nhóm đã dùng thì chỉ cho biết về một nhóm nhỏ vốn đã khác biệt."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Chín chặng trước dạy cách xây cho tốt: dữ liệu đúng, hệ thống bền, mã sạch, triển khai an toàn. Không kỹ năng nào trong số đó trả lời được câu hỏi thứ này có đáng xây không."
+    },
+    {
+      "type": "heading",
+      "text": "Ba giả thuyết dễ chịu và một giả thuyết khó"
+    },
+    {
+      "type": "paragraph",
+      "text": "Khi một tính năng không được dùng, đội thường nghĩ tới việc quảng bá thêm, thiết kế lại, hoặc đặt nó ở chỗ dễ thấy hơn. Cả ba đều có thể đúng, và cả ba đều giữ nguyên giả định rằng vấn đề là có thật. Giả thuyết thứ tư - vấn đề này không đủ đau để ai bận tâm - khó chịu hơn nhiều, và chính vì thế nó hay bị kiểm sau cùng, sau khi đã tiêu thêm hai tháng."
+    },
+    {
+      "type": "callout",
+      "label": "Chi phí chìm không tham gia quyết định",
+      "text": "Ba tháng đã bỏ ra không quay lại dù bạn tiếp tục hay dừng. Câu hỏi duy nhất là từ hôm nay, đồng công sức tiếp theo nên đặt vào đâu. Nhưng cảm giác không muốn thừa nhận lãng phí lại là thứ giữ những tính năng chết ở lại rất lâu."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Giữ lại",
+        "text": "Tránh được cảm giác thừa nhận thất bại. Đổi lại là chi phí bảo trì mỗi tháng, và một giao diện ngày càng đông đúc."
+      },
+      "right": {
+        "label": "Gỡ đi",
+        "text": "Khó chịu một lần, kèm việc thông báo cho số ít người đang dùng. Đổi lại là một sản phẩm nhẹ hơn và một bài học được ghi nhận."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Kỹ năng kỹ thuật giúp bạn xây tốt. Chỉ việc kiểm chứng mới giúp bạn xây đúng thứ, và không cái nào thay được cái kia.",
+        "Bài sau nói về việc đưa những đánh đổi này ra ngoài đội kỹ thuật, tới những người quyết định cùng bạn."
+      ]
+    }
+  ]
+}

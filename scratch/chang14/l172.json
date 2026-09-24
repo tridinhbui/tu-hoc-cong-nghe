@@ -1,0 +1,176 @@
+{
+  "id": 172,
+  "slug": "vai-tro-trong-su-co",
+  "title": "Phân vai: người chỉ huy không phải người sửa",
+  "subtitle": "Người giỏi nhất về hệ thống mà đi chỉ huy thì bạn mất cả người sửa lẫn người điều phối.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🎽",
+  "track": "professional",
+  "whyItMatters": "Sự cố kéo dài vì hỗn loạn nhiều hơn vì kỹ thuật khó. Ba vai trò rõ ràng cắt được phần lớn sự hỗn loạn ấy, và chúng không cần thêm người nào.",
+  "openingQuestion": "Người chỉ huy sự cố nên là ai?",
+  "openingOptions": [
+    "Người điều phối được, kể cả khi họ không phải chuyên gia về hệ thống",
+    "Kỹ sư hiểu rõ hệ thống nhất trong số những người đang có mặt",
+    "Người quản lý cấp cao nhất tham gia vào cuộc ứng phó",
+    "Người đã phát hiện và tuyên bố sự cố ngay từ đầu"
+  ],
+  "correctOption": 0,
+  "explanation": "Chỉ huy là việc theo dõi ai đang làm gì, quyết định thứ tự ưu tiên và giữ nhịp - nó chiếm toàn bộ sự chú ý của một người. Nếu giao cho chuyên gia giỏi nhất thì họ vừa phải đọc nhật ký vừa phải trả lời câu hỏi từ năm phía, và làm hỏng cả hai việc. Người quản lý cấp cao cũng có thể chỉ huy nếu họ điều phối tốt, nhưng chức vụ không phải tiêu chí - và cấp cao có mặt lại thường khiến người khác ngại phản đối một hướng sai.",
+  "diagram": [
+    {
+      "label": "Chỉ huy: giữ nhịp, phân việc, quyết ưu tiên",
+      "arrow": true
+    },
+    {
+      "label": "Người sửa: tập trung vào một hướng điều tra",
+      "arrow": true
+    },
+    {
+      "label": "Người liên lạc: cập nhật ra ngoài định kỳ",
+      "arrow": true
+    },
+    {
+      "label": "Ba vai tách nhau, kể cả khi chỉ có ba người"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Chuyên gia bị hỏi mỗi ba mươi giây",
+    "description": "Kỹ sư duy nhất hiểu hệ thống ngồi giữa kênh chat, vừa đọc nhật ký vừa trả lời câu hỏi của bảy người. Sự cố kéo dài thêm một giờ, và phần lớn thời gian ấy là chờ họ gõ xong câu trả lời."
+  },
+  "keyTakeaways": [
+    "Chỉ huy điều phối chứ không gõ lệnh, kể cả khi họ biết cách sửa.",
+    "Một hướng điều tra một người, để không ai làm trùng và không ai bị bỏ sót.",
+    "Người liên lạc tách riêng, vì cập nhật ra ngoài chiếm nhiều thời gian hơn ta tưởng.",
+    "Vai trò được tuyên bố ra tiếng, không ai tự hiểu ngầm."
+  ],
+  "summary": {
+    "keyIdea": "Ba vai trò tách bạch cắt phần lớn sự hỗn loạn mà không cần thêm người.",
+    "formula": "Chỉ huy điều phối, người sửa tập trung, người liên lạc nói ra ngoài.",
+    "commonMistake": "Giao chỉ huy cho chuyên gia giỏi nhất về hệ thống."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Viết ba vai trò này vào tài liệu ứng phó của đội kèm một câu mô tả cho mỗi vai. Lần sự cố tới, câu đầu tiên trong kênh là ai nhận vai nào."
+  },
+  "practicePrompt": {
+    "question": "Vì sao cần một người liên lạc riêng?",
+    "options": [
+      "Vì cập nhật cho bên ngoài chiếm nhiều thời gian và làm đứt mạch người sửa",
+      "Vì thông tin gửi ra ngoài cần được kiểm duyệt trước khi công bố",
+      "Vì các bên liên quan thường yêu cầu một đầu mối cố định duy nhất",
+      "Vì người sửa không nắm được bức tranh tổng thể để mô tả tình hình"
+    ],
+    "correct": 0,
+    "explanation": "Câu hỏi khi nào xong đến từ bộ phận hỗ trợ, từ kinh doanh, từ lãnh đạo, và mỗi lần trả lời là một lần người sửa phải chuyển ngữ cảnh. Tách vai này ra bảo vệ sự tập trung của người đang thật sự gỡ vấn đề."
+  },
+  "quiz": [
+    {
+      "question": "Nhiệm vụ chính của người chỉ huy sự cố là gì?",
+      "options": [
+        "Biết ai đang làm gì, quyết thứ tự ưu tiên và giữ nhịp cuộc ứng phó",
+        "Tìm ra nguyên nhân gốc rồi hướng dẫn cho cả đội cách khắc phục vấn đề",
+        "Phê duyệt mọi thay đổi được triển khai trong lúc sự cố",
+        "Ghi lại dòng thời gian để phục vụ việc hồi cứu về sau"
+      ],
+      "correct": 0,
+      "explanation": "Ghi dòng thời gian là việc thật nhưng nó thường giao cho một người khác, vì chỉ huy đã kín việc. Điều quan trọng nhất là chỉ huy không gõ lệnh - ngay khi họ bắt đầu gõ, không còn ai giữ bức tranh tổng thể."
+    },
+    {
+      "question": "Vì sao mỗi hướng điều tra nên do một người phụ trách?",
+      "options": [
+        "Để không có hướng nào bị bỏ sót và không có hướng nào bị làm trùng",
+        "Để mỗi người chịu trách nhiệm rõ ràng khi hồi cứu về sau",
+        "Để giảm số lượng tin nhắn trao đổi trong kênh ứng phó",
+        "Để người chỉ huy dễ theo dõi tiến độ của từng nhánh công việc"
+      ],
+      "correct": 0,
+      "explanation": "Không phân công thì ba người cùng đào một hướng dễ nhất và không ai đụng tới hướng khó. Đây là dạng lãng phí âm thầm nhất trong sự cố vì trông thì ai cũng đang bận."
+    },
+    {
+      "question": "Vì sao chuyên gia giỏi nhất không nên chỉ huy?",
+      "options": [
+        "Vì chỉ huy chiếm toàn bộ sự chú ý nên họ không còn sửa được nữa",
+        "Vì họ thường thiếu kỹ năng giao tiếp với các bên liên quan",
+        "Vì họ thường có xu hướng bám theo giả thuyết của riêng mình quá lâu",
+        "Vì vai trò chỉ huy cần một người có thẩm quyền trong tổ chức"
+      ],
+      "correct": 0,
+      "explanation": "Bạn đánh đổi người sửa giỏi nhất lấy một người điều phối trung bình, rồi mất luôn cả hai vì họ cố làm cùng lúc. Hai việc này đều cần toàn bộ sự chú ý và không ai chia được sự chú ý làm đôi."
+    },
+    {
+      "question": "Vì sao vai trò phải được tuyên bố ra tiếng?",
+      "options": [
+        "Vì hiểu ngầm dẫn tới việc hai người cùng làm hoặc không ai làm",
+        "Vì các công cụ ứng phó cần được gán vai trò thì mới hoạt động đúng",
+        "Vì tài liệu hồi cứu yêu cầu ghi rõ ai đảm nhận vai trò nào",
+        "Vì người mới tham gia cần biết ai là người có thẩm quyền"
+      ],
+      "correct": 0,
+      "explanation": "Ai cũng nghĩ người kia đang cập nhật cho bên ngoài, và bốn mươi phút trôi qua không có thông báo nào. Một dòng chữ tôi nhận vai chỉ huy trong kênh chat đủ để loại bỏ toàn bộ nhóm vấn đề này."
+    },
+    {
+      "question": "Với một sự cố nhỏ chỉ có hai người thì nên làm gì?",
+      "options": [
+        "Vẫn phân vai, một người chỉ huy kiêm liên lạc, một người sửa",
+        "Bỏ qua việc phân vai vì hai người dễ dàng phối hợp trực tiếp",
+        "Gọi thêm một người thứ ba để đủ ba vai trò theo đúng quy trình",
+        "Để cả hai cùng điều tra rồi ai tìm ra trước thì người đó dẫn dắt"
+      ],
+      "correct": 0,
+      "explanation": "Gộp vai thì được, bỏ vai thì không. Điều quan trọng vẫn giữ nguyên: có đúng một người không gõ lệnh, đang giữ bức tranh tổng thể và trả lời câu hỏi từ bên ngoài."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Sự cố đã được tuyên bố. Trong năm phút tiếp theo, thứ quyết định nó kéo dài hai mươi phút hay hai giờ thường không phải kỹ thuật mà là ai làm gì."
+    },
+    {
+      "type": "heading",
+      "text": "Ba vai"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Tách bạch, kể cả khi ít người",
+      "subtitle": "Gộp vai thì được, bỏ vai thì không",
+      "concepts": [
+        {
+          "vi": "Chỉ huy",
+          "en": "incident commander",
+          "def": "Biết ai đang làm gì, quyết thứ tự ưu tiên, giữ nhịp. Không gõ lệnh - ngay khi họ gõ, không còn ai giữ bức tranh tổng thể."
+        },
+        {
+          "vi": "Người sửa",
+          "en": "responder",
+          "def": "Một hướng điều tra, một người. Được bảo vệ khỏi mọi câu hỏi không liên quan tới hướng của mình."
+        },
+        {
+          "vi": "Người liên lạc",
+          "en": "comms lead",
+          "def": "Cập nhật cho hỗ trợ, kinh doanh, lãnh đạo theo nhịp cố định. Chắn cho người sửa khỏi câu hỏi khi nào xong."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Cái bẫy phổ biến nhất",
+      "text": "Giao chỉ huy cho người hiểu hệ thống nhất. Họ ngồi giữa kênh chat, vừa đọc nhật ký vừa trả lời bảy người, và làm hỏng cả hai việc. Bạn vừa mất người sửa giỏi nhất vừa có một người điều phối đang bị phân tâm."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao phải nói ra tiếng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ai cũng nghĩ người kia đang cập nhật cho bên ngoài, và bốn mươi phút trôi qua mà bộ phận hỗ trợ chưa nhận được dòng nào. Ba người cùng đào một hướng dễ trong khi hướng khó không ai đụng tới. Toàn bộ nhóm vấn đề này biến mất khi có người gõ vào kênh một dòng: tôi nhận vai chỉ huy."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Ba vai không cần thêm người. Chúng chỉ cần được đặt tên trước khi cần tới.",
+        "Bài sau đi sâu vào vai khó nhất trong ba vai: nói gì với bên ngoài khi bạn chưa biết chuyện gì đang xảy ra."
+      ]
+    }
+  ]
+}

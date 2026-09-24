@@ -154,6 +154,12 @@ function openCopyOfLocalD1(): D1Like {
 
 const db = (hasLocalData ? openCopyOfLocalD1() : null) as unknown as D1Like;
 
+const runSql = async (sql: string, ...args: unknown[]) => {
+  const statement = db.prepare(sql).bind(...args);
+  expect(statement.run, "adapter D1 local trong test này phải hỗ trợ run()").toBeTruthy();
+  return statement.run!();
+};
+
 describe.skipIf(!hasLocalData)("RPC nhóm A trên D1 local", () => {
 
   const raw = async (sql: string, ...args: unknown[]) => {
@@ -794,13 +800,16 @@ describe.skipIf(!hasLocalData)("phần còn lại của nhóm A", () => {
   });
 
   it("tiến độ tuần của phòng học khớp phép đếm thô", async () => {
-    // Đây là chỗ WEEK_START thật sự được dùng. Dữ liệu local có 3457 bài hoàn
-    // thành trong tuần này, nên phép so sánh này chạm tới mã thật.
+    // Đây là chỗ WEEK_START thật sự được dùng. Dữ liệu local từng có 3457 bài
+    // hoàn thành trong tuần hiện tại, nhưng dump D1 là dữ liệu sống: vài ngày
+    // sau nó thành "tuần trước" và phép kiểm đỏ dù mã không đổi. Vì bộ kiểm
+    // chạy trên BẢN SAO tạm của D1, đặt một hàng fixture vào tuần này ngay
+    // trong test là an toàn và giữ phép so sánh chạm tới mã thật.
     // Phải chọn thành viên CÓ học trong tuần này. Bản đầu lấy `limit 1` bất kỳ
     // và trúng người có 0 bài, nên hai vế đều bằng 0 và phép so sánh không
     // chạm tới WEEK_START - tôi phát hiện bằng cách phá biểu thức tuần trong mã
     // và thấy bộ kiểm vẫn xanh.
-    const ai = (await db
+    let ai = (await db
       .prepare(
         `select m.room_id, m.user_id, count(*) as n
            from study_room_members m
@@ -811,6 +820,48 @@ describe.skipIf(!hasLocalData)("phần còn lại của nhóm A", () => {
           order by n desc limit 1`
       )
       .bind().all().then((r) => r.results as { room_id: number; user_id: string; n: number }[]))[0];
+
+    if (!ai) {
+      const seed = (await db
+        .prepare(
+          `select m.room_id, m.user_id, min(up.id) as progress_id
+             from study_room_members m
+             left join user_progress up on up.user_id = m.user_id and up.completed = 1
+            where m.left_at is null
+            group by m.room_id, m.user_id
+            order by progress_id is null, m.room_id
+            limit 1`
+        )
+        .bind().all().then((r) => r.results as { room_id: number; user_id: string; progress_id: number | null }[]))[0];
+      expect(seed, "cần một thành viên phòng học đang hoạt động để dựng fixture tuần").toBeTruthy();
+
+      if (seed.progress_id) {
+        await runSql(
+          "update user_progress set completed = 1, completed_at = datetime('now') where id = ?",
+          seed.progress_id
+        );
+      } else {
+        await runSql(
+          `insert into user_progress (user_id, lesson_id, completed, completed_at)
+           values (?, coalesce((select max(lesson_id) + 1 from user_progress where user_id = ?), 900000), 1, datetime('now'))`,
+          seed.user_id,
+          seed.user_id
+        );
+      }
+
+      ai = (await db
+        .prepare(
+          `select m.room_id, m.user_id, count(*) as n
+             from study_room_members m
+             join user_progress up on up.user_id = m.user_id and up.completed = 1
+            where m.left_at is null
+              and date(up.completed_at) >= date('now', '-6 days', 'weekday 1')
+            group by m.room_id, m.user_id
+            order by n desc limit 1`
+        )
+        .bind().all().then((r) => r.results as { room_id: number; user_id: string; n: number }[]))[0];
+    }
+
     expect(ai, "cần một thành viên có học trong tuần này, nếu không phép kiểm vô nghĩa").toBeTruthy();
     expect(ai.n).toBeGreaterThan(0);
     const phong = { room_id: ai.room_id };

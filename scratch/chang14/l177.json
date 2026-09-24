@@ -1,0 +1,173 @@
+{
+  "id": 177,
+  "slug": "lich-truc-ben-vung",
+  "title": "Lịch trực bền vững: đội kiệt sức thì hệ thống kém tin cậy",
+  "subtitle": "Người trực là một thành phần của hệ thống, và nó cũng có giới hạn tải như mọi thành phần khác.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🌙",
+  "track": "professional",
+  "whyItMatters": "Mọi cơ chế trong chặng này đều dựa vào một người tỉnh táo ở đầu bên kia. Khi lịch trực không sống nổi, người giỏi nghỉ việc và độ tin cậy đi xuống theo - chậm và không ai quy được cho nguyên nhân nào.",
+  "openingQuestion": "Dấu hiệu rõ nhất cho thấy lịch trực đang không bền vững là gì?",
+  "openingOptions": [
+    "Người trực bị đánh thức nhiều đêm liên tiếp trong một ca",
+    "Số lượng sự cố nghiêm trọng tăng lên so với quý trước",
+    "Đội phải thêm người vào danh sách trực để đủ một vòng quay",
+    "Thời gian xử lý trung bình mỗi sự cố đang dài dần ra"
+  ],
+  "correctOption": 0,
+  "explanation": "Đây là dấu hiệu đo được trực tiếp và nó dẫn thẳng tới hậu quả: mất ngủ tích lại, khả năng phán đoán giảm, và người ta bắt đầu tìm cách rời khỏi vòng trực. Ba dấu hiệu còn lại đều đáng chú ý nhưng chúng có nhiều cách giải thích khác - hệ thống lớn lên, sản phẩm phức tạp hơn, hoặc đội đang nhận thêm phạm vi. Số đêm bị đánh thức thì chỉ có một cách đọc.",
+  "diagram": [
+    {
+      "label": "Cảnh báo đêm nhiều → thiếu ngủ tích lại",
+      "arrow": true
+    },
+    {
+      "label": "Phán đoán kém đi, sự cố xử lý chậm hơn",
+      "arrow": true
+    },
+    {
+      "label": "Người giỏi rời vòng trực hoặc rời đội",
+      "arrow": true
+    },
+    {
+      "label": "Độ tin cậy đi xuống mà không ai quy được nguyên nhân"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Vòng trực bốn người",
+    "description": "Một đội bốn người trực xoay vòng nghĩa là mỗi người trực một tuần trong bốn tuần. Nếu mỗi ca có ba đêm bị đánh thức thì đó là ba đêm mất ngủ mỗi tháng, đều đặn, năm này qua năm khác."
+  },
+  "keyTakeaways": [
+    "Số đêm bị đánh thức mỗi ca là chỉ số sức khoẻ của lịch trực.",
+    "Việc dọn cảnh báo phải được tính là công việc, không phải việc làm thêm.",
+    "Vòng trực quá ít người thì không có ca nào là ca nhẹ.",
+    "Sau một ca nặng cần thời gian bù, và điều đó phải được thừa nhận."
+  ],
+  "summary": {
+    "keyIdea": "Người trực là một thành phần có giới hạn, và vượt giới hạn thì cả hệ thống kém đi.",
+    "formula": "Đếm số đêm bị đánh thức, không đếm số cảnh báo.",
+    "commonMistake": "Coi mệt mỏi khi trực là chuyện đương nhiên của nghề."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Đếm số đêm có người bị đánh thức trong ba tháng gần nhất, chia cho số ca. Nếu con số vượt một hai đêm mỗi ca thì việc cần làm là dọn cảnh báo, không phải thêm người trực."
+  },
+  "practicePrompt": {
+    "question": "Cách bền vững nhất để giảm tải cho người trực là gì?",
+    "options": [
+      "Sửa nguyên nhân của những cảnh báo lặp lại nhiều lần nhất",
+      "Thêm người vào vòng trực để mỗi người phải trực ít tuần hơn",
+      "Chuyển các cảnh báo ít nghiêm trọng sang xử lý vào ban ngày",
+      "Chia lịch trực theo múi giờ để không ai phải trực ban đêm"
+    ],
+    "correct": 0,
+    "explanation": "Ba cách còn lại đều phân phối lại gánh nặng chứ không giảm nó, và cách đầu tiên trong số đó còn che mất vấn đề bằng cách làm cho nó ít lộ ra hơn. Chỉ có việc loại bỏ nguyên nhân mới làm tổng số lần bị đánh thức đi xuống thật."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao thêm người vào vòng trực chưa phải giải pháp?",
+      "options": [
+        "Vì tổng số lần bị đánh thức không đổi, chỉ được chia cho nhiều người hơn",
+        "Vì người mới cần thời gian để làm quen với hệ thống",
+        "Vì đội thường không có sẵn người để bổ sung vào vòng trực",
+        "Vì ca trực dài hơn sẽ khiến việc bàn giao trở nên khó khăn"
+      ],
+      "correct": 0,
+      "explanation": "Nó có giúp trong ngắn hạn và đôi khi là việc đúng phải làm ngay, nhưng nó không đụng tới nguyên nhân. Nếu hệ thống sinh ra ba mươi lần đánh thức mỗi tháng thì ba mươi lần ấy vẫn còn nguyên."
+    },
+    {
+      "question": "Vì sao việc dọn cảnh báo phải được tính là công việc chính thức?",
+      "options": [
+        "Vì nếu chỉ làm khi rảnh thì nó không bao giờ được làm",
+        "Vì nó đòi hỏi kiến thức sâu về hệ thống nên tốn nhiều thời gian",
+        "Vì cần sự đồng thuận của cả đội trước khi xoá một cảnh báo",
+        "Vì các công cụ giám sát cần được cấu hình lại sau mỗi thay đổi"
+      ],
+      "correct": 0,
+      "explanation": "Nó luôn thua mọi việc có hạn chót, và nó không bao giờ có hạn chót của riêng mình. Đưa nó vào kế hoạch như một hạng mục có người nhận là cách duy nhất nó thực sự diễn ra."
+    },
+    {
+      "question": "Sau một ca trực nặng thì điều gì nên xảy ra?",
+      "options": [
+        "Người đó được nghỉ bù và điều đó được thừa nhận công khai",
+        "Người đó viết báo cáo tổng kết những gì đã xảy ra trong ca",
+        "Đội họp lại để phân công xử lý những việc còn tồn đọng lại",
+        "Ca trực tiếp theo được rút ngắn để giảm áp lực cho cả đội"
+      ],
+      "correct": 0,
+      "explanation": "Thiếu ngủ không tự biến mất khi ca trực kết thúc, và một người vừa thức ba đêm không làm việc hiệu quả trong tuần kế tiếp. Điều quan trọng là nó được thừa nhận, vì nếu phải tự xin thì phần lớn người ta sẽ không xin."
+    },
+    {
+      "question": "Vì sao một vòng trực quá ít người lại có hại?",
+      "options": [
+        "Vì tần suất trực dày tới mức không ai có được khoảng nghỉ thật sự",
+        "Vì rủi ro sẽ không còn ai xử lý được khi có một người nghỉ phép dài",
+        "Vì kiến thức về hệ thống tập trung vào quá ít người",
+        "Vì việc bàn giao giữa các ca diễn ra quá thường xuyên"
+      ],
+      "correct": 0,
+      "explanation": "Vòng hai người nghĩa là mỗi người trực một tuần trong hai tuần, tức là một nửa cuộc sống của họ luôn có điện thoại bên cạnh. Hai rủi ro còn lại đều có thật nhưng chúng là vấn đề về năng lực dự phòng chứ không phải về sức bền."
+    },
+    {
+      "question": "Vì sao lịch trực kém lại làm hệ thống kém tin cậy?",
+      "options": [
+        "Vì mọi cơ chế ứng phó đều dựa vào một người còn tỉnh táo",
+        "Vì đội sẽ không còn thời gian nào để cải thiện hạ tầng nữa",
+        "Vì các cảnh báo sẽ bị tắt bớt để giảm số lần bị đánh thức",
+        "Vì người mới sẽ được đưa vào trực trước khi đủ kinh nghiệm"
+      ],
+      "correct": 0,
+      "explanation": "Ba hậu quả còn lại đều xảy ra và đều làm mọi thứ tệ hơn, nhưng chúng đến sau. Điều đầu tiên mất đi là chất lượng phán đoán của người đang xử lý sự cố lúc ba giờ sáng sau đêm thứ ba mất ngủ."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mọi thứ trong chặng này - cảnh báo, tuyên bố, phân vai, giảm thiểu - đều giả định có một người tỉnh táo ở đầu bên kia. Bài này về thành phần đó, và về việc nó cũng có giới hạn tải."
+    },
+    {
+      "type": "heading",
+      "text": "Con số đáng đếm"
+    },
+    {
+      "type": "paragraph",
+      "text": "Không phải số cảnh báo, mà là số đêm có người bị đánh thức, tính trên mỗi ca. Một đội bốn người xoay vòng nghĩa là mỗi người trực một tuần trong bốn tuần; nếu mỗi ca có ba đêm bị đánh thức thì đó là ba đêm mất ngủ mỗi tháng, đều đặn, năm này qua năm khác."
+    },
+    {
+      "type": "callout",
+      "label": "Chuỗi hậu quả không ai quy được",
+      "text": "Thiếu ngủ tích lại, phán đoán kém đi, sự cố xử lý chậm hơn, người giỏi rời vòng trực rồi rời đội. Độ tin cậy đi xuống dần, và không có sự cố nào để chỉ vào - nên nguyên nhân này gần như không bao giờ xuất hiện trong một buổi hồi cứu."
+    },
+    {
+      "type": "heading",
+      "text": "Ba việc thật sự giảm tải"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Sửa nguyên nhân của những cảnh báo lặp nhiều nhất - đây là việc duy nhất làm tổng số lần đánh thức giảm thật.",
+        "Đưa việc dọn cảnh báo vào kế hoạch như một hạng mục có người nhận; nếu chỉ làm khi rảnh thì nó không bao giờ được làm.",
+        "Thừa nhận thời gian bù sau ca nặng, chủ động chứ không bắt người ta phải xin."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Phân phối lại gánh nặng",
+        "text": "Thêm người vào vòng trực, chia theo múi giờ, đẩy cảnh báo sang ban ngày. Giúp ngay, nhưng tổng số lần đánh thức không đổi."
+      },
+      "right": {
+        "label": "Giảm gánh nặng",
+        "text": "Loại bỏ nguyên nhân. Chậm hơn, khó hơn, và là cách duy nhất con số đi xuống thật."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mệt mỏi khi trực không phải chuyện đương nhiên của nghề. Nó là một chỉ số, và nó đang nói điều gì đó về hệ thống.",
+        "Bài sau về cách kiểm tra toàn bộ những gì chặng này đã dựng lên, trước khi thực tế kiểm tra hộ bạn."
+      ]
+    }
+  ]
+}

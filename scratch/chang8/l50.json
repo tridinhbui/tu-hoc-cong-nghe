@@ -1,0 +1,170 @@
+{
+  "id": 50,
+  "slug": "do-tre-va-bang-thong",
+  "title": "Độ trễ và băng thông: hai thứ hoàn toàn khác nhau",
+  "subtitle": "Đường truyền rộng hơn không làm một lần gọi về nhanh hơn.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "⏱️",
+  "track": "professional",
+  "whyItMatters": "Đội hạ tầng nâng băng thông gấp đôi mà trang vẫn tải chậm y nguyên, vì thứ đang giết hiệu năng là số lần đi về chứ không phải dung lượng. Phân biệt được hai đại lượng này là biết cần tối ưu cái gì, và biết khi nào tối ưu thêm cũng không giúp được nữa.",
+  "openingQuestion": "Trang của bạn gọi 30 lần tới máy chủ, mỗi lần rất nhẹ. Cách nào cải thiện tốc độ nhiều nhất?",
+  "openingOptions": [
+    "Gộp lại thành ít lần gọi hơn, vì mỗi lần đều phải trả một vòng đi về",
+    "Nâng băng thông đường truyền lên gấp đôi so với hiện tại",
+    "Nén dữ liệu của từng lần gọi để dung lượng giảm xuống",
+    "Tăng cấu hình máy chủ để mỗi yêu cầu được xử lý nhanh hơn"
+  ],
+  "correctOption": 0,
+  "explanation": "Mỗi lần gọi phải trả ít nhất một vòng đi về, và thời gian đó do khoảng cách vật lý quyết định chứ không do dung lượng. Ba mươi lần gọi nhẹ tới một máy chủ cách một trăm mili giây là ba giây chờ, trong đó gần như không có byte nào thật sự được truyền. Nâng băng thông không rút ngắn được vòng đi về, nén cũng vậy vì dữ liệu vốn đã nhẹ, và máy chủ nhanh hơn chỉ tiết kiệm phần nhỏ nhất trong tổng thời gian.",
+  "diagram": [
+    {
+      "label": "Băng thông - bao nhiêu dữ liệu mỗi giây",
+      "arrow": true
+    },
+    {
+      "label": "Độ trễ - bao lâu cho một vòng đi về",
+      "arrow": true
+    },
+    {
+      "label": "Nhiều lần gọi nhẹ = nhiều vòng đi về",
+      "arrow": true
+    },
+    {
+      "label": "Băng thông không cứu được, chỉ gộp lại mới cứu"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Giới hạn của tốc độ ánh sáng",
+    "description": "Tín hiệu trong cáp quang đi chậm hơn ánh sáng trong chân không, nên một vòng đi về giữa Việt Nam và bờ tây nước Mỹ không thể dưới khoảng 150 mili giây dù hạ tầng có tốt tới đâu. Đó là sàn vật lý, không phải vấn đề kỹ thuật chờ được giải quyết."
+  },
+  "keyTakeaways": [
+    "Băng thông là lưu lượng mỗi giây; độ trễ là thời gian cho một vòng đi về.",
+    "Nâng băng thông không giảm được độ trễ, vì độ trễ do khoảng cách quyết định.",
+    "Nhiều lần gọi nhỏ thường tệ hơn một lần gọi lớn, dù tổng dung lượng bằng nhau.",
+    "Cách duy nhất giảm độ trễ thật sự là đưa dữ liệu tới gần người dùng hơn."
+  ],
+  "summary": {
+    "keyIdea": "Độ trễ là khoảng cách, băng thông là độ rộng - và chúng không thay nhau được.",
+    "formula": "Tổng thời gian ≈ số vòng đi về × độ trễ + dung lượng ÷ băng thông.",
+    "commonMistake": "Nâng băng thông để chữa một vấn đề vốn do số lần gọi gây ra."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Mở công cụ nhà phát triển, đếm số lần gọi mạng khi tải một trang của bạn, rồi nhân với độ trễ trung bình. Con số đó là phần thời gian bạn chỉ chữa được bằng cách gọi ít lần hơn."
+  },
+  "practicePrompt": {
+    "question": "Một tệp lớn tải rất chậm dù độ trễ tới máy chủ chỉ 20 mili giây. Nút thắt nằm ở đâu?",
+    "options": [
+      "Băng thông, vì thời gian tải một tệp lớn chủ yếu do dung lượng chia cho tốc độ",
+      "Độ trễ, vì mỗi mẩu của tệp đều phải chờ một vòng đi về riêng",
+      "Số lần gọi, vì tệp lớn luôn được chia thành nhiều yêu cầu độc lập",
+      "Cấu hình máy chủ, vì máy chủ phải đọc toàn bộ tệp lên bộ nhớ trước"
+    ],
+    "correct": 0,
+    "explanation": "Với một tệp lớn qua một kết nối đã mở, độ trễ chỉ tính một lần ở đầu còn phần còn lại là dung lượng chia cho băng thông. Đây là trường hợp ngược với bài toán nhiều lần gọi nhẹ, và nó cho thấy vì sao phải chẩn đoán trước khi tối ưu."
+  },
+  "quiz": [
+    {
+      "question": "Độ trễ khác băng thông ở điểm nào?",
+      "options": [
+        "Độ trễ là thời gian một vòng đi về, băng thông là lưu lượng mỗi giây",
+        "Độ trễ đo ở phía máy khách còn băng thông đo ở phía máy chủ",
+        "Độ trễ áp dụng cho kết nối có dây còn băng thông cho kết nối không dây",
+        "Độ trễ thay đổi theo giờ trong ngày còn băng thông thì cố định"
+      ],
+      "correct": 0,
+      "explanation": "Một cái là thời gian, một cái là tốc độ - hai đại lượng khác đơn vị và không thay nhau được. Đường rộng gấp đôi không rút ngắn quãng đường mà tín hiệu phải đi."
+    },
+    {
+      "question": "Vì sao nhiều lần gọi nhỏ thường chậm hơn một lần gọi lớn?",
+      "options": [
+        "Vì mỗi lần gọi đều phải trả một vòng đi về riêng",
+        "Vì mỗi lần gọi nhỏ được nén kém hiệu quả hơn một lần gọi lớn",
+        "Vì máy chủ phải mở một kết nối mới hoàn toàn cho mỗi lần gọi",
+        "Vì các lần gọi nhỏ bị thiết bị trung gian xếp sau lần gọi lớn"
+      ],
+      "correct": 0,
+      "explanation": "Chi phí cố định của mỗi lần gọi là vòng đi về, và nó không nhỏ đi khi dữ liệu nhỏ đi. Ba mươi lần gọi nhẹ qua một kết nối chậm vẫn tốn ba mươi vòng chờ."
+    },
+    {
+      "question": "Cách nào thật sự giảm được độ trễ cho người dùng ở xa?",
+      "options": [
+        "Đặt bản sao dữ liệu ở gần họ về mặt địa lý",
+        "Nâng băng thông của đường truyền tới máy chủ trung tâm",
+        "Nén dữ liệu mạnh hơn trước khi gửi",
+        "Tăng số lượng máy chủ tại trung tâm dữ liệu hiện có"
+      ],
+      "correct": 0,
+      "explanation": "Độ trễ là hàm của khoảng cách, nên cách duy nhất giảm nó là rút ngắn khoảng cách. Đây chính là lý do tồn tại của các mạng phân phối nội dung đặt máy chủ rải khắp thế giới."
+    },
+    {
+      "question": "Vì sao độ trễ có một giới hạn dưới không vượt qua được?",
+      "options": [
+        "Vì tín hiệu không thể đi nhanh hơn tốc độ ánh sáng trong môi trường truyền",
+        "Vì các thiết bị trung gian luôn giữ gói tin lại một khoảng thời gian cố định",
+        "Vì giao thức mạng quy định thời gian chờ tối thiểu giữa hai gói tin",
+        "Vì hệ điều hành chỉ kiểm tra gói tin đến theo từng chu kỳ nhất định"
+      ],
+      "correct": 0,
+      "explanation": "Đây là sàn vật lý chứ không phải hạn chế kỹ thuật. Thiết bị trung gian có cộng thêm thời gian thật, nhưng ngay cả khi loại bỏ hết chúng thì khoảng cách vẫn đặt ra một mức không thể xuống dưới."
+    },
+    {
+      "question": "Khi nào nâng băng thông thật sự giúp ích?",
+      "options": [
+        "Khi phải truyền khối lượng dữ liệu lớn qua một kết nối đã mở sẵn",
+        "Khi ứng dụng thực hiện rất nhiều lần gọi nhỏ tới máy chủ",
+        "Khi người dùng ở xa máy chủ về mặt địa lý và độ trễ cao",
+        "Khi máy chủ cần thời gian dài để xử lý xong mỗi yêu cầu"
+      ],
+      "correct": 0,
+      "explanation": "Băng thông chi phối phần dung lượng chia cho tốc độ, nên nó quyết định khi dữ liệu lớn. Với nhiều lần gọi nhẹ, thời gian nằm ở các vòng chờ và băng thông gần như không ảnh hưởng gì."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai từ hay bị dùng lẫn lộn, và dùng lẫn lộn là cách tiêu tiền vào đúng thứ không giúp gì. Một cái đo độ rộng của con đường, một cái đo chiều dài của nó."
+    },
+    {
+      "type": "heading",
+      "text": "Phép tính thô nhưng đủ dùng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tổng thời gian của một lần tải xấp xỉ bằng số vòng đi về nhân với độ trễ, cộng với dung lượng chia cho băng thông. Nhìn vào đó là biết ngay nên tối ưu gì: nếu số hạng đầu chiếm phần lớn thì phải gọi ít lần hơn, còn nếu số hạng sau chiếm phần lớn thì mới đến lượt nén và băng thông."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Nhiều lần gọi nhẹ",
+        "text": "Thời gian nằm ở các vòng chờ. Nén không giúp, băng thông không giúp - chỉ có gộp lời gọi lại và dùng chung kết nối mới giúp."
+      },
+      "right": {
+        "label": "Một tệp lớn",
+        "text": "Thời gian nằm ở dung lượng chia cho tốc độ. Đây mới là chỗ nén và băng thông phát huy tác dụng thật sự."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Sàn vật lý",
+      "text": "Một vòng đi về xuyên Thái Bình Dương không thể xuống dưới khoảng 150 mili giây, vì tín hiệu trong sợi quang đi chậm hơn ánh sáng trong chân không. Không có khoản đầu tư hạ tầng nào phá được con số đó - chỉ có việc đặt dữ liệu gần người dùng hơn."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đếm số lần gọi trước khi nghĩ tới việc nén hay nâng đường truyền.",
+        "Dùng lại kết nối đã mở, vì mở mới là trả thêm vòng bắt tay.",
+        "Với người dùng ở xa, cách duy nhất còn lại là mang dữ liệu tới gần họ."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Băng thông mua được bằng tiền; độ trễ thì phải mua bằng khoảng cách.",
+        "Bài sau nói về cách né hẳn cả hai: không gọi đi nữa, mà dùng lại câu trả lời đã có."
+      ]
+    }
+  ],
+  "interactiveType": "tail-risk"
+}

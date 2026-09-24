@@ -1,0 +1,185 @@
+{
+  "id": 180,
+  "slug": "tong-on-chang-do-tin-cay",
+  "title": "Tổng ôn: chọn mức, chuẩn bị, ứng phó, học",
+  "subtitle": "Hai mươi bài về độ tin cậy gói lại thành bốn giai đoạn có thứ tự.",
+  "duration": "10 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧩",
+  "track": "professional",
+  "whyItMatters": "Độ tin cậy dễ bị hiểu thành một danh sách kỹ thuật rời rạc. Nhìn nó thành bốn giai đoạn thì bạn biết đội mình đang thiếu ở đâu, và thứ tự nên bổ sung.",
+  "openingQuestion": "Đội chưa có gì về độ tin cậy. Nên bắt đầu từ đâu?",
+  "openingOptions": [
+    "Chọn một chỉ số cho hành trình quan trọng nhất và đặt mục tiêu cho nó",
+    "Xây dự phòng cho những thành phần quan trọng nhất của hệ thống",
+    "Thiết lập quy trình ứng phó sự cố với các vai trò rõ ràng",
+    "Cài đặt hệ thống giám sát đầy đủ cho toàn bộ hạ tầng"
+  ],
+  "correctOption": 0,
+  "explanation": "Không có mục tiêu thì mọi việc còn lại đều thiếu tiêu chí: dự phòng bao nhiêu là đủ, cảnh báo ở ngưỡng nào, khi nào thì được coi là sự cố. Giám sát đầy đủ toàn hạ tầng nghe hợp lý nhưng nó thường sinh ra hàng trăm chỉ số mà không cái nào gắn với một quyết định. Một chỉ số kèm một mục tiêu cho một hành trình đã đủ để mọi thứ phía sau có chỗ bám.",
+  "diagram": [
+    {
+      "label": "1. Chọn mức: chỉ số, mục tiêu, ngân sách lỗi",
+      "arrow": true
+    },
+    {
+      "label": "2. Chuẩn bị: dự phòng, cô lập, suy giảm, sao lưu",
+      "arrow": true
+    },
+    {
+      "label": "3. Ứng phó: tuyên bố, phân vai, giảm thiểu, thông báo",
+      "arrow": true
+    },
+    {
+      "label": "4. Học: hồi cứu, chỉ số, diễn tập, lịch trực"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bốn giai đoạn dùng được ở mọi quy mô",
+    "description": "Một đội ba người và một tổ chức ba nghìn người đều đi qua đúng bốn giai đoạn này. Khác nhau ở mức độ trang trọng của từng bước, không ở việc bỏ bước nào."
+  },
+  "keyTakeaways": [
+    "Không có mục tiêu thì mọi quyết định về độ tin cậy đều thiếu tiêu chí.",
+    "Phần lớn thời gian ngừng nằm trước bước sửa, không nằm trong nó.",
+    "Sai sót con người là điều kiện đầu vào; thứ thiết kế được là hậu quả.",
+    "Mọi cơ chế đều là giả định cho tới khi có người diễn tập nó."
+  ],
+  "summary": {
+    "keyIdea": "Độ tin cậy là bốn giai đoạn nối nhau, và mỗi giai đoạn cần giai đoạn trước.",
+    "formula": "Chọn mức → chuẩn bị → ứng phó → học.",
+    "commonMistake": "Bắt đầu từ giai đoạn hai mà bỏ qua giai đoạn một."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chấm điểm đội mình trên bốn giai đoạn, mỗi giai đoạn một câu. Giai đoạn sớm nhất bị bỏ trống chính là chỗ nên bắt đầu, kể cả khi giai đoạn sau trông cấp bách hơn."
+  },
+  "practicePrompt": {
+    "question": "Vì sao không nên bắt đầu bằng việc xây dự phòng?",
+    "options": [
+      "Vì chưa có mục tiêu thì không biết bao nhiêu dự phòng là đủ",
+      "Vì dự phòng là hạng mục tốn kém nhất trong toàn bộ danh sách",
+      "Vì dự phòng chỉ có tác dụng với một số loại sự cố nhất định",
+      "Vì đội cần có kinh nghiệm vận hành trước khi bắt tay xây dự phòng"
+    ],
+    "correct": 0,
+    "explanation": "Không có con số thì câu hỏi bao nhiêu là đủ không có đáp án, và đội hoặc xây quá ít hoặc xây quá nhiều mà không cách nào biết mình đang ở đâu. Dự phòng đúng là tốn kém và đúng là chỉ chữa một số loại lỗi, nhưng cả hai điều ấy chỉ trở thành vấn đề khi chưa có tiêu chí để quyết định."
+  },
+  "quiz": [
+    {
+      "question": "Giai đoạn đầu tiên trong bốn giai đoạn là gì?",
+      "options": [
+        "Chọn mức độ tin cậy và biến nó thành mục tiêu có con số",
+        "Chuẩn bị hạ tầng để chịu được các loại sự cố phổ biến nhất",
+        "Xây dựng quy trình ứng phó và phân công vai trò trực",
+        "Thiết lập hệ thống giám sát và cảnh báo cho dịch vụ"
+      ],
+      "correct": 0,
+      "explanation": "Ba giai đoạn còn lại đều cần tiêu chí từ giai đoạn này: dự phòng tới mức nào, cảnh báo ở ngưỡng nào, sự cố tính từ đâu. Bắt đầu từ giữa là lý do nhiều đội có rất nhiều công cụ mà vẫn không trả lời được câu hỏi hệ thống có đủ tin cậy chưa."
+    },
+    {
+      "question": "Phát hiện nào lặp lại nhiều lần nhất trong chặng này?",
+      "options": [
+        "Thời gian mất ở các bước trước khi sửa nhiều hơn ở bước sửa",
+        "Hệ thống phân tán khó vận hành hơn hệ thống tập trung",
+        "Chi phí độ tin cậy tăng nhanh hơn phần lợi ích mà nó mang lại",
+        "Công cụ tự động hoá quan trọng hơn quy trình thủ công"
+      ],
+      "correct": 0,
+      "explanation": "Nó xuất hiện ở bài tuyên bố sự cố, bài giảm thiểu trước, bài chỉ số, và cả bài case cuối chặng. Đó cũng là lý do những cải thiện rẻ nhất thường là quy ước chứ không phải công nghệ."
+    },
+    {
+      "question": "Điều gì được coi là điều kiện đầu vào chứ không phải nguyên nhân?",
+      "options": [
+        "Sai sót của con người trong thao tác vận hành",
+        "Lỗi phần cứng xảy ra ngoài dự kiến của cả đội",
+        "Sự cố từ phía nhà cung cấp dịch vụ bên thứ ba",
+        "Tải tăng đột biến vượt quá năng lực đã chuẩn bị"
+      ],
+      "correct": 0,
+      "explanation": "Con người luôn sai, nên nó không phải biến số để loại bỏ. Thứ thiết kế được là hậu quả: một thao tác không đảo ngược được thì phải có ma sát đứng trước nó."
+    },
+    {
+      "question": "Vì sao giai đoạn học lại đứng cuối nhưng không kém quan trọng?",
+      "options": [
+        "Vì nó là cơ chế duy nhất khiến ba giai đoạn kia tốt lên theo thời gian",
+        "Vì nó tạo ra tài liệu cần thiết cho việc đào tạo người mới",
+        "Vì các quy định về vận hành yêu cầu ghi nhận sau mỗi sự cố",
+        "Vì nó giúp lãnh đạo nắm được tình hình vận hành của hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Không có hồi cứu, không có chỉ số, không có diễn tập thì ba giai đoạn kia đứng yên ở mức chúng được dựng lên ban đầu. Đây là vòng phản hồi, và bỏ nó đi thì cả hệ thống mất khả năng tự cải thiện."
+    },
+    {
+      "question": "Điểm chung giữa dự phòng, cầu dao và bản sao lưu là gì?",
+      "options": [
+        "Cả ba đều là giả định cho tới khi có người diễn tập chúng",
+        "Cả ba đều đòi hỏi chi phí hạ tầng tăng thêm đáng kể",
+        "Cả ba đều chỉ có tác dụng với lỗi ở tầng hạ tầng",
+        "Cả ba đều cần được cấu hình lại sau mỗi lần triển khai mới"
+      ],
+      "correct": 0,
+      "explanation": "Bản sao chưa từng chuyển sang, cầu dao chưa từng ngắt, sao lưu chưa từng khôi phục - cả ba trông giống hệt như khi chúng hoạt động tốt. Diễn tập là cách duy nhất phân biệt hai trạng thái ấy trước khi thực tế phân biệt hộ bạn."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai mươi bài vừa rồi có một trật tự, và trật tự ấy quan trọng: mỗi giai đoạn cần giai đoạn trước làm tiêu chí."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn giai đoạn"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chọn mức: chỉ số bám trải nghiệm, mục tiêu đủ ba phần, ngân sách lỗi làm cơ chế đánh đổi.",
+        "Chuẩn bị: dự phòng đúng chỗ, cô lập bằng vách ngăn và cầu dao, suy giảm có kiểm soát, kế hoạch khôi phục.",
+        "Ứng phó: tuyên bố sớm, phân ba vai, giảm thiểu trước, thông báo song song.",
+        "Học: hồi cứu không đổ lỗi, chỉ số tách theo đoạn, diễn tập, lịch trực bền vững."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Ba ý xuyên suốt"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Chúng quay lại ở nhiều bài khác nhau",
+      "subtitle": "Vì chúng là cùng một quy luật nhìn từ các góc khác",
+      "concepts": [
+        {
+          "vi": "Thời gian mất trước bước sửa",
+          "en": "time before the fix",
+          "def": "Phát hiện và quyết định chiếm phần lớn dòng thời gian. Cải thiện chúng thường là quy ước, không phải công nghệ."
+        },
+        {
+          "vi": "Con người là hằng số",
+          "en": "humans are constant",
+          "def": "Sai sót không loại bỏ được. Thứ thiết kế được là hậu quả của sai sót - ma sát trước thao tác nguy hiểm."
+        },
+        {
+          "vi": "Chưa thử thì chưa có",
+          "en": "untested is unproven",
+          "def": "Bản sao, cầu dao, sao lưu, quy trình - tất cả trông giống hệt nhau dù hoạt động hay không, cho tới khi diễn tập."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Bắt đầu từ giai đoạn một",
+      "text": "Nhiều đội bắt đầu từ giai đoạn hai vì nó có vẻ cụ thể hơn, rồi kết thúc với rất nhiều công cụ mà vẫn không trả lời được câu hỏi hệ thống đã đủ tin cậy chưa. Một chỉ số kèm một mục tiêu cho một hành trình là đủ để mọi thứ phía sau có chỗ bám."
+    },
+    {
+      "type": "paragraph",
+      "text": "Bốn giai đoạn này dùng được ở mọi quy mô. Một đội ba người và một tổ chức ba nghìn người đi qua đúng các bước ấy; khác nhau ở mức độ trang trọng của từng bước chứ không ở việc được phép bỏ bước nào."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Độ tin cậy không phải một tính chất của hệ thống. Nó là một vòng lặp gồm chọn mức, chuẩn bị, ứng phó và học.",
+        "Chặng sau chuyển sang một góc khác của cùng nghề: cách dữ liệu được lưu, được đọc và được giữ đúng."
+      ]
+    }
+  ]
+}

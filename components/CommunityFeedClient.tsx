@@ -82,9 +82,9 @@ function FeedSkeleton() {
           className="overflow-hidden rounded-[24px] bg-white p-5 shadow-[0_16px_34px_-28px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 dark:bg-stone-900/85 dark:ring-stone-800/60"
         >
           <div className="flex items-start gap-4">
-            <div className="h-11 w-11 shrink-0 animate-pulse rounded-full bg-stone-200 dark:bg-stone-800" />
+            <div className="h-11 w-11 shrink-0 animate-pulse rounded-full bg-surface-sunken" />
             <div className="min-w-0 flex-1">
-              <div className="h-4 w-36 animate-pulse rounded-full bg-stone-200 dark:bg-stone-800" />
+              <div className="h-4 w-36 animate-pulse rounded-full bg-surface-sunken" />
               <div className="mt-4 space-y-2">
                 <div className="h-3 w-full animate-pulse rounded-full bg-surface-raised" />
                 <div className="h-3 w-4/5 animate-pulse rounded-full bg-surface-raised" />
@@ -120,7 +120,7 @@ function Avatar({ name, avatarUrl }: { name?: string | null; avatarUrl?: string 
       className="rounded-full object-cover ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0"
     />
   ) : (
-    <div className="w-11 h-11 rounded-full bg-stone-200 dark:bg-stone-700 text-ink-body font-extrabold flex items-center justify-center ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0">
+    <div className="w-11 h-11 rounded-full bg-surface-sunken text-ink-body font-extrabold flex items-center justify-center ring-2 ring-white shadow-[0_8px_18px_-16px_rgba(15,23,42,0.35)] flex-shrink-0">
       {initials}
     </div>
   );
@@ -150,7 +150,7 @@ const TONE_STYLES = {
     chipActive: "border-emerald-300 bg-emerald-500 text-white shadow-[0_10px_22px_-18px_rgba(16,185,129,0.45)] dark:border-emerald-700 dark:bg-emerald-400 dark:text-stone-950",
     soft: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/35 dark:text-emerald-300",
     softSurface: "bg-emerald-50/70 dark:bg-emerald-950/20",
-    icon: "text-emerald-600 dark:text-emerald-300",
+    icon: "text-accent",
     border: "border-emerald-200/70 dark:border-emerald-900/50",
   },
   sky: {
@@ -158,7 +158,7 @@ const TONE_STYLES = {
     chipActive: "border-sky-300 bg-sky-500 text-white shadow-[0_10px_22px_-18px_rgba(59,130,246,0.45)] dark:border-sky-700 dark:bg-sky-400 dark:text-stone-950",
     soft: "bg-sky-50 text-sky-700 dark:bg-sky-950/35 dark:text-sky-300",
     softSurface: "bg-sky-50/70 dark:bg-sky-950/20",
-    icon: "text-sky-600 dark:text-sky-300",
+    icon: "text-info",
     border: "border-sky-200/70 dark:border-sky-900/50",
   },
   amber: {
@@ -166,7 +166,7 @@ const TONE_STYLES = {
     chipActive: "border-amber-300 bg-amber-500 text-white shadow-[0_10px_22px_-18px_rgba(245,158,11,0.45)] dark:border-amber-700 dark:bg-amber-400 dark:text-stone-950",
     soft: "bg-amber-50 text-amber-700 dark:bg-amber-950/35 dark:text-amber-300",
     softSurface: "bg-amber-50/70 dark:bg-amber-950/20",
-    icon: "text-amber-600 dark:text-amber-300",
+    icon: "text-warn",
     border: "border-amber-200/70 dark:border-amber-900/50",
   },
   orange: {
@@ -174,7 +174,7 @@ const TONE_STYLES = {
     chipActive: "border-orange-300 bg-orange-500 text-white shadow-[0_10px_22px_-18px_rgba(249,115,22,0.45)] dark:border-orange-700 dark:bg-orange-400 dark:text-stone-950",
     soft: "bg-orange-50 text-orange-700 dark:bg-orange-950/35 dark:text-orange-300",
     softSurface: "bg-orange-50/70 dark:bg-orange-950/20",
-    icon: "text-orange-600 dark:text-orange-300",
+    icon: "text-orange-600 dark:text-orange-400",
     border: "border-orange-200/70 dark:border-orange-900/50",
   },
   red: {
@@ -182,7 +182,7 @@ const TONE_STYLES = {
     chipActive: "border-red-300 bg-red-500 text-white shadow-[0_10px_22px_-18px_rgba(239,68,68,0.45)] dark:border-red-700 dark:bg-red-400 dark:text-stone-950",
     soft: "bg-red-50 text-red-700 dark:bg-red-950/35 dark:text-red-300",
     softSurface: "bg-red-50/70 dark:bg-red-950/20",
-    icon: "text-red-600 dark:text-red-300",
+    icon: "text-red-600 dark:text-red-400",
     border: "border-red-200/70 dark:border-red-900/50",
   },
   violet: {
@@ -190,7 +190,7 @@ const TONE_STYLES = {
     chipActive: "border-violet-300 bg-violet-500 text-white shadow-[0_10px_22px_-18px_rgba(139,92,246,0.45)] dark:border-violet-700 dark:bg-violet-400 dark:text-stone-950",
     soft: "bg-violet-50 text-violet-700 dark:bg-violet-950/35 dark:text-violet-300",
     softSurface: "bg-violet-50/70 dark:bg-violet-950/20",
-    icon: "text-violet-600 dark:text-violet-300",
+    icon: "text-violet-600 dark:text-violet-400",
     border: "border-violet-200/70 dark:border-violet-900/50",
   },
   stone: {
@@ -198,7 +198,7 @@ const TONE_STYLES = {
     chipActive: "border-stone-300 bg-stone-200 text-stone-900 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.16)] dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100",
     soft: "bg-stone-50 text-stone-600 dark:bg-stone-950/35 dark:text-stone-300",
     softSurface: "bg-stone-50/80 dark:bg-stone-950/35",
-    icon: "text-stone-600 dark:text-stone-300",
+    icon: "text-ink-soft",
     border: "border-stone-200/70 dark:border-stone-800/50",
   },
 } as const;
@@ -419,7 +419,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
               disabled={userVotedId !== null}
               className={`relative w-full text-left p-3 rounded-xl border text-xs font-bold transition-all overflow-hidden cursor-pointer ${
                 isMyChoice
-                  ? "border-emerald-500 bg-emerald-500/15 text-emerald-900 dark:text-emerald-200 ring-2 ring-emerald-400/40"
+                  ? "border-emerald-500 bg-emerald-500/15 text-accent-ink-strong ring-2 ring-emerald-400/40"
                   : "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-stone-400"
               }`}
             >
@@ -1082,7 +1082,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <button
                   type="button"
                   onClick={() => setIsComposeModalOpen(true)}
-                  className="flex-1 rounded-full bg-surface-raised/80 px-4 py-2.5 text-left text-xs sm:text-sm font-medium text-ink-muted hover:bg-stone-200/70 dark:hover:bg-stone-700 transition-colors cursor-pointer"
+                  className="flex-1 rounded-full bg-stone-100 dark:bg-stone-800/80 px-4 py-2.5 text-left text-xs sm:text-sm font-medium text-ink-muted hover:bg-stone-200/70 dark:hover:bg-stone-700 transition-colors cursor-pointer"
                 >
                   {format(t.feed.composerPrompt, { name: (user.user_metadata?.full_name || t.feed.composerFallbackName).split(" ").pop() ?? "" })}
                 </button>
@@ -1092,7 +1092,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <button
                   type="button"
                   onClick={() => setIsComposeModalOpen(true)}
-                  className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+                  className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-ink-soft hover:bg-surface-raised transition-colors cursor-pointer"
                 >
                   <ImageIcon className="w-4 h-4 text-emerald-500" />
                   <span>{t.feed.addMedia}</span>
@@ -1100,7 +1100,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <button
                   type="button"
                   onClick={() => setIsComposeModalOpen(true)}
-                  className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+                  className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-ink-soft hover:bg-surface-raised transition-colors cursor-pointer"
                 >
                   <Lightbulb className="w-4 h-4 text-amber-500" />
                   <span>{t.feed.addTopic}</span>
@@ -1108,7 +1108,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <button
                   type="button"
                   onClick={() => setIsComposeModalOpen(true)}
-                  className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+                  className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-ink-soft hover:bg-surface-raised transition-colors cursor-pointer"
                 >
                   <SmilePlus className="w-4 h-4 text-yellow-500" />
                   <span>{t.feed.addFeeling}</span>
@@ -1135,7 +1135,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       <button
                         type="button"
                         onClick={() => setIsComposeModalOpen(false)}
-                        className="absolute right-3.5 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-600 dark:text-stone-300 transition-colors cursor-pointer"
+                        className="absolute right-3.5 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-ink-soft transition-colors cursor-pointer"
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -1152,7 +1152,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           </p>
                           <div className="flex flex-wrap items-center gap-1.5 mt-1">
 
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-accent-soft/40 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 border border-accent-line/50">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-[11px] font-extrabold text-accent-strong border border-emerald-200 dark:border-emerald-900/50">
                               {t.feed.visibilityPublic}
                             </span>
                           </div>
@@ -1187,14 +1187,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       {isPollMode && (
                         <div className="p-3 rounded-2xl bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 space-y-3">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-black text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
+                            <span className="text-xs font-black text-warn-ink flex items-center gap-1.5">
                               <Vote className="w-4 h-4" />
                               {t.feed.createPoll}
                             </span>
                             <button
                               type="button"
                               onClick={() => setIsPollMode(false)}
-                              className="text-[10px] font-bold text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
+                              className="text-[10px] font-bold text-stone-400 hover:text-ink-soft"
                             >
                               {t.feed.cancel}
                             </button>
@@ -1236,7 +1236,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                               <button
                                 type="button"
                                 onClick={() => setPollOptions((prev) => [...prev, ""])}
-                                className="text-xs font-black text-amber-700 dark:text-amber-400 hover:underline cursor-pointer"
+                                className="text-xs font-black text-warn-strong hover:underline cursor-pointer"
                               >
                                 {t.feed.addPollOption}
                               </button>
@@ -1348,13 +1348,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-3">
                     <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-sm font-black text-stone-950 dark:text-stone-50">{post.user_name}</span>
+                        <span className="text-sm font-black text-ink-max">{post.user_name}</span>
                       <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-black ${badgeTone.soft}`}>
                         <BadgeIcon className="h-3 w-3" />
                         {badge.label}
                       </span>
                       {post.kind === "streak" && (
-                        <span className="flex items-center gap-1 text-[10px] font-bold text-red-600 dark:text-red-300 bg-danger-soft/30 px-2 py-0.5 rounded-full">
+                        <span className="flex items-center gap-1 text-[10px] font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 px-2 py-0.5 rounded-full">
                           <Flame className="flame-burn w-3 h-3 fill-current" /> {t.feed.streak}
                         </span>
                       )}
@@ -1402,7 +1402,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           <div className="flex items-center gap-2">
                             <button
                               onClick={cancelEditPost}
-                              className="rounded-full px-3.5 py-1.5 text-xs font-bold text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800"
+                              className="rounded-full px-3.5 py-1.5 text-xs font-bold text-stone-500 hover:bg-surface-raised"
                             >
                               {t.feed.cancelEdit}
                             </button>
@@ -1418,7 +1418,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       </div>
                     ) : (
                       post.content && (
-                        <p className="mt-2 whitespace-pre-wrap break-words text-[15px] leading-7 text-stone-800 dark:text-stone-100">
+                        <p className="mt-2 whitespace-pre-wrap break-words text-[15px] leading-7 text-ink-heading">
                           {post.content}
                         </p>
                       )
@@ -1557,7 +1557,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             initial={{ opacity: 0, y: 8, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                            className="absolute left-0 bottom-full z-50 mb-2.5 flex items-center gap-1.5 rounded-2xl bg-white/95 dark:bg-stone-900/95 p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.3)] border border-stone-200 dark:border-stone-700 backdrop-blur-md whitespace-nowrap"
+                            className="absolute left-0 bottom-full z-50 mb-2.5 flex items-center gap-1.5 rounded-2xl bg-white/95 dark:bg-stone-900/95 p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.3)] border border-line-mid backdrop-blur-md whitespace-nowrap"
                           >
                             {REACTION_OPTIONS.map((item) => (
                               <button
@@ -1569,8 +1569,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 }}
                                 className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 hover:scale-105 active:scale-95 cursor-pointer shrink-0 ${
                                   post.my_reaction === item
-                                    ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800"
-                                    : "bg-surface-raised text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-700"
+                                    ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-accent-line-mid"
+                                    : "bg-surface-raised text-ink-body hover:bg-surface-sunken"
                                 }`}
                               >
                                 <span>{item}</span>
@@ -1635,7 +1635,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                   <button
                                     type="button"
                                     onClick={() => setCommentDrafts((prev) => ({ ...prev, [post.id]: `${prev[post.id] ?? ""}✨` }))}
-                                  className="inline-flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-stone-100 dark:hover:bg-stone-800"
+                                  className="inline-flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-surface-raised"
                                 >
                                     <SmilePlus className="h-3.5 w-3.5" />
                                     {t.feed.emojiHint}
@@ -1699,7 +1699,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                           <button
                                             type="button"
                                             onClick={cancelEditComment}
-                                            className="rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800"
+                                            className="rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-500 hover:bg-surface-raised"
                                           >
                                             {t.feed.cancelEdit}
                                           </button>
@@ -1715,7 +1715,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                       </div>
                                     </div>
                                   ) : (
-                                    <p className="mt-1 text-sm text-stone-700 dark:text-stone-200 whitespace-pre-wrap break-words">
+                                    <p className="mt-1 text-sm text-ink-body whitespace-pre-wrap break-words">
                                       {comment.content}
                                     </p>
                                   )}
@@ -1798,7 +1798,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="overflow-hidden mt-3 pt-3 border-t border-line-soft space-y-2 text-xs font-medium text-stone-600 dark:text-stone-300"
+                    className="overflow-hidden mt-3 pt-3 border-t border-line-soft space-y-2 text-xs font-medium text-ink-soft"
                   >
                     <p>{t.feed.rule1}</p>
                     <p>{t.feed.rule2}</p>

@@ -1,0 +1,177 @@
+{
+  "id": 114,
+  "slug": "ghi-lai-quyet-dinh-kien-truc",
+  "title": "Ghi lại quyết định: vì sao mọi thứ như hiện tại",
+  "subtitle": "Người đến sau nhìn thấy kết quả nhưng không thấy những phương án đã bị loại.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📄",
+  "track": "professional",
+  "whyItMatters": "Ở quy mô lớn, người ra quyết định và người sống với quyết định thường không phải một, và hiếm khi cùng thời điểm. Không ghi lại lý do thì mỗi thế hệ sau lại đề xuất đúng phương án đã bị loại vì một nguyên nhân họ không biết.",
+  "openingQuestion": "Phần nào của một quyết định kiến trúc là quan trọng nhất để ghi lại?",
+  "openingOptions": [
+    "Các phương án đã cân nhắc và lý do loại từng cái",
+    "Sơ đồ chi tiết của kiến trúc được chọn cuối cùng",
+    "Danh sách những người đã tham gia vào quyết định",
+    "Kế hoạch triển khai và thời gian dự kiến hoàn thành"
+  ],
+  "correctOption": 0,
+  "explanation": "Kiến trúc được chọn thì người sau nhìn vào mã là thấy, dù có sơ đồ hay không. Thứ họ không có cách nào biết là những phương án đã được cân nhắc và vì sao chúng bị loại - và chính đó là thông tin ngăn họ đề xuất lại một lựa chọn đã thất bại. Danh sách người tham gia và kế hoạch triển khai đều mất giá trị rất nhanh, trong khi phần lý do vẫn có ích sau nhiều năm, kể cả khi kết luận cuối cùng đã sai và cần đổi.",
+  "diagram": [
+    {
+      "label": "Quyết định được đưa ra",
+      "arrow": true
+    },
+    {
+      "label": "Mã cho thấy phương án được chọn",
+      "arrow": true
+    },
+    {
+      "label": "Không gì cho thấy phương án đã loại",
+      "arrow": true
+    },
+    {
+      "label": "Người sau đề xuất lại đúng cái đã thất bại"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Câu hỏi lặp lại mỗi hai năm",
+    "description": "Mọi tổ chức lâu năm đều có một câu hỏi được đặt lại đều đặn: sao mình không dùng cách kia? Mỗi lần lại tốn vài tuần thảo luận để đi tới cùng kết luận cũ. Một trang ghi lý do lần đầu tiên đã cắt được toàn bộ chuỗi ấy."
+  },
+  "keyTakeaways": [
+    "Ghi lại các phương án đã loại và lý do, vì mã chỉ cho thấy phương án được chọn.",
+    "Ghi cả điều kiện nào sẽ khiến quyết định này cần xem lại.",
+    "Bản ghi ngắn được viết luôn tốt hơn tài liệu dài không ai viết.",
+    "Quyết định cũ không cần đúng mãi - nó cần giải thích được bối cảnh lúc đó."
+  ],
+  "summary": {
+    "keyIdea": "Ghi lại lý do là cách để quyết định hôm nay còn hiểu được với người của ba năm sau.",
+    "formula": "Bối cảnh, phương án, lựa chọn, điều kiện xem lại.",
+    "commonMistake": "Ghi lại kiến trúc được chọn - thứ đã hiển nhiên - và bỏ qua phần lý do."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một quyết định kỹ thuật đội bạn vừa đưa ra và viết nửa trang: bối cảnh, hai phương án đã cân nhắc, vì sao chọn cái này, và điều gì sẽ khiến ta xem lại."
+  },
+  "practicePrompt": {
+    "question": "Vì sao nên ghi cả điều kiện khiến quyết định cần được xem lại?",
+    "options": [
+      "Vì nó cho người sau biết khi nào đổi là hợp lý thay vì phải đoán",
+      "Vì quy trình yêu cầu mọi quyết định đều phải có thời hạn hiệu lực",
+      "Vì nó giúp giảm số lượng quyết định cần ghi lại về sau",
+      "Vì nó chứng minh người quyết định đã cân nhắc kỹ lưỡng"
+    ],
+    "correct": 0,
+    "explanation": "Phần lớn quyết định kiến trúc đúng trong một khoảng điều kiện nhất định: quy mô hiện tại, số đội hiện có, loại tải hiện tại. Viết ra khoảng ấy biến một lựa chọn tưởng như vĩnh viễn thành một lựa chọn có điều kiện, và người sau biết mình đang ở trong hay ngoài khoảng đó."
+  },
+  "quiz": [
+    {
+      "question": "Thông tin nào người sau không thể suy ra từ mã nguồn?",
+      "options": [
+        "Các phương án đã bị loại và lý do loại chúng",
+        "Cấu trúc thư mục và cách các thành phần liên kết",
+        "Thứ tự các bước xử lý trong một luồng nghiệp vụ",
+        "Những thư viện bên ngoài mà hệ thống đang dùng"
+      ],
+      "correct": 0,
+      "explanation": "Mã là bản ghi đầy đủ về thứ đã được chọn. Nó im lặng hoàn toàn về những thứ đã được cân nhắc rồi bỏ - và đó là phần ngăn người sau lặp lại sai lầm cũ."
+    },
+    {
+      "question": "Vì sao bản ghi ngắn tốt hơn tài liệu kiến trúc dài?",
+      "options": [
+        "Vì bản ngắn được viết thật, còn bản dài thường không bao giờ hoàn thành",
+        "Vì tài liệu dài chứa quá nhiều thông tin gây nhiễu",
+        "Vì bản ngắn dễ được phê duyệt nhanh hơn",
+        "Vì tài liệu dài phải cập nhật thường xuyên hơn"
+      ],
+      "correct": 0,
+      "explanation": "Một trang viết trong ba mươi phút và tồn tại thì có giá trị hơn hẳn hai mươi trang chỉ nằm trong kế hoạch. Ngưỡng công sức thấp là điều kiện để thói quen này sống được."
+    },
+    {
+      "question": "Vì sao một quyết định cũ hoá ra sai vẫn đáng giữ bản ghi?",
+      "options": [
+        "Vì nó giải thích bối cảnh lúc đó và giúp người sau hiểu vì sao đổi",
+        "Vì quy định lưu trữ yêu cầu giữ lại mọi tài liệu kỹ thuật",
+        "Vì nó chứng minh được ai là người phải chịu trách nhiệm cho sai lầm",
+        "Vì nó có thể lại trở nên đúng khi hoàn cảnh thay đổi"
+      ],
+      "correct": 0,
+      "explanation": "Bản ghi không phải lời tuyên bố về chân lý mà là ảnh chụp bối cảnh. Biết lúc đó tổ chức có ba đội chứ không phải ba mươi làm cho quyết định cũ trở nên dễ hiểu, kể cả khi nó không còn phù hợp."
+    },
+    {
+      "question": "Hiện tượng nào cho thấy tổ chức đang thiếu bản ghi quyết định?",
+      "options": [
+        "Cùng một câu hỏi kiến trúc được đặt lại đều đặn mỗi vài năm",
+        "Số lượng tài liệu kỹ thuật tăng nhanh theo thời gian",
+        "Các đội mới thường mất nhiều thời gian để làm quen",
+        "Kiến trúc của hệ thống thay đổi thường xuyên hơn so với dự kiến"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi lần lặp lại tốn vài tuần thảo luận để đi tới cùng kết luận cũ, hoặc tệ hơn là tới kết luận ngược lại mà không biết vì sao lần trước đã bác. Đó là chi phí trực tiếp của việc không ghi."
+    },
+    {
+      "question": "Bản ghi quyết định nên chứa những phần nào?",
+      "options": [
+        "Bối cảnh, các phương án, lựa chọn, và điều kiện xem lại",
+        "Sơ đồ kiến trúc, kế hoạch triển khai, và người phụ trách",
+        "Danh sách yêu cầu, thiết kế chi tiết, và tiêu chí nghiệm thu",
+        "Lịch sử thảo luận, biểu quyết, và kết luận cuối cùng"
+      ],
+      "correct": 0,
+      "explanation": "Bốn phần ấy trả lời đúng những câu mà người đọc sau sẽ hỏi. Sơ đồ và kế hoạch thì mất giá trị nhanh, còn lịch sử thảo luận thì không ai đọc lại."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ở chặng trước đã nói tài liệu nên giải thích vì sao chứ không mô tả cái gì. Ở quy mô nhiều đội, nguyên tắc ấy trở thành nhu cầu cấp bách, vì người ra quyết định và người sống với nó gần như chắc chắn là hai nhóm khác nhau."
+    },
+    {
+      "type": "heading",
+      "text": "Thứ mã không nói được"
+    },
+    {
+      "type": "paragraph",
+      "text": "Người mới nhìn vào hệ thống thấy đúng một phương án: phương án đang chạy. Họ không thấy ba phương án khác đã được cân nhắc, không biết cái nào đã thử và hỏng, không biết ràng buộc nào lúc đó khiến lựa chọn hiện tại là hợp lý. Nên họ đề xuất lại một trong ba cái đã bị loại, hoàn toàn có thiện chí."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Bốn phần của một bản ghi",
+      "subtitle": "Nửa trang là đủ; dài hơn thì sẽ không ai viết",
+      "concepts": [
+        {
+          "vi": "Bối cảnh",
+          "en": "context",
+          "def": "Lúc đó tổ chức có gì, ràng buộc nào, quy mô nào. Phần này giải thích được cả những quyết định về sau hoá ra sai."
+        },
+        {
+          "vi": "Phương án",
+          "en": "options",
+          "def": "Những cách đã cân nhắc và điểm mạnh yếu của từng cái. Phần giá trị nhất và hay bị bỏ nhất."
+        },
+        {
+          "vi": "Lựa chọn",
+          "en": "decision",
+          "def": "Chọn cái nào và vì sao. Ngắn thôi, vì mã đã cho thấy phần lớn nội dung này."
+        },
+        {
+          "vi": "Điều kiện xem lại",
+          "en": "revisit",
+          "def": "Cái gì đổi thì quyết định này cần xem lại. Biến lựa chọn vĩnh viễn thành lựa chọn có điều kiện."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Ngưỡng thấp mới sống được",
+      "text": "Quy trình đòi hai mươi trang và ba chữ ký sẽ không ai theo, và tổ chức lại quay về chỗ không ghi gì. Nửa trang viết trong ba mươi phút, nằm cạnh mã, là thứ thật sự tồn tại được qua nhiều năm."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Người sau nhìn thấy kết quả nhưng không thấy con đường. Ghi lại con đường là cách duy nhất để họ không đi lại đoạn đã biết là cụt.",
+        "Bài sau nói về nơi những quyết định ấy được đưa ra ở quy mô lớn: rà soát kiến trúc, và cách làm nó không thành một cửa ải."
+      ]
+    }
+  ]
+}

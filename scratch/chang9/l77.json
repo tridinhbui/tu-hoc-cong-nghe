@@ -1,0 +1,169 @@
+{
+  "id": 77,
+  "slug": "hau-su-co-khong-do-loi",
+  "title": "Sau sự cố: tìm nguyên nhân, không tìm người",
+  "subtitle": "Ai bấm nút là câu hỏi rẻ tiền; vì sao hệ thống cho phép bấm mới là câu đáng hỏi.",
+  "duration": "9 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📋",
+  "track": "professional",
+  "whyItMatters": "Buổi họp sau sự cố quyết định tổ chức học được gì. Nếu nó đi tìm người chịu trách nhiệm, thứ duy nhất được học là cách giấu sự cố lần sau - và những sự cố bị giấu thì không ai sửa được.",
+  "openingQuestion": "Một kỹ sư chạy nhầm lệnh xoá dữ liệu trên máy chủ thật. Câu hỏi đáng đặt nhất là gì?",
+  "openingOptions": [
+    "Vì sao một lệnh như vậy chạy được mà không có bước xác nhận nào",
+    "Vì sao kỹ sư đó lại không đọc kỹ lệnh trước khi bấm nút chạy",
+    "Ai đã cấp quyền chạy lệnh đó cho kỹ sư ngay từ đầu",
+    "Làm sao để nhắc mọi người cẩn thận hơn khi thao tác"
+  ],
+  "correctOption": 0,
+  "explanation": "Con người sẽ tiếp tục mắc lỗi; đó là hằng số của mọi hệ thống có người vận hành. Câu hỏi hữu ích duy nhất là vì sao hệ thống cho phép một thao tác nguy hiểm diễn ra dễ dàng đến thế. Yêu cầu cẩn thận hơn không đổi được gì vì người ta vốn đã đang cố gắng cẩn thận. Còn hỏi ai cấp quyền là chuyển việc đổ lỗi sang một người khác chứ không sửa được điều gì. Thứ đổi được là hệ thống: thêm bước xác nhận, chạy thử trước, giới hạn phạm vi, khôi phục nhanh.",
+  "diagram": [
+    {
+      "label": "Sự cố xảy ra",
+      "arrow": true
+    },
+    {
+      "label": "Hỏi ai làm → người ta học cách giấu",
+      "arrow": true
+    },
+    {
+      "label": "Hỏi vì sao hệ thống cho phép → tìm ra chỗ sửa",
+      "arrow": true
+    },
+    {
+      "label": "Sửa hệ thống, không sửa con người"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Lệnh không có bước xác nhận",
+    "description": "Rất nhiều sự cố mất dữ liệu có cùng hình dạng: một lệnh mạnh, chạy được trên môi trường thật, không hỏi lại, không giới hạn phạm vi. Sau sự cố, thứ được thêm vào không phải một lời nhắc nhở mà là một bước xác nhận."
+  },
+  "keyTakeaways": [
+    "Con người mắc lỗi là hằng số; thứ thay đổi được là hệ thống quanh họ.",
+    "Đi tìm người chịu trách nhiệm dạy tổ chức cách giấu sự cố lần sau.",
+    "Mỗi hành động rút ra phải có người phụ trách và thời hạn, nếu không nó không tồn tại.",
+    "Sự cố suýt xảy ra cũng đáng phân tích, vì nó rẻ hơn nhiều so với sự cố thật."
+  ],
+  "summary": {
+    "keyIdea": "Mục tiêu sau sự cố là làm cho lần sau khó xảy ra hơn, không phải tìm ra ai đã sai.",
+    "formula": "Hỏi vì sao hệ thống cho phép, không hỏi ai đã bấm.",
+    "commonMistake": "Kết luận bằng nhắc nhở cẩn thận hơn, thứ không đổi được xác suất nào."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy biên bản sự cố gần nhất của đội và đếm số hành động rút ra đã thật sự hoàn thành. Tỷ lệ đó cho biết buổi họp ấy là một cơ chế cải thiện hay chỉ là một thủ tục."
+  },
+  "practicePrompt": {
+    "question": "Biên bản sự cố kết luận rằng cần nhắc mọi người cẩn thận hơn khi thao tác trên máy chủ thật. Vấn đề của kết luận này là gì?",
+    "options": [
+      "Nó không đổi được xác suất, vì người ta vốn đã đang cố cẩn thận",
+      "Nó không nêu tên người đã gây ra sự cố lần này",
+      "Nó chỉ áp dụng cho một đội chứ không cho toàn công ty",
+      "Nó cần được ban lãnh đạo phê duyệt trước khi chính thức có hiệu lực"
+    ],
+    "correct": 0,
+    "explanation": "Không ai chủ ý cẩu thả, nên một lời nhắc không thêm được gì vào mức cẩn thận sẵn có. Hành động rút ra phải là thứ đổi hệ thống - thêm xác nhận, chạy thử trước, thu hẹp quyền - để cùng một sai lầm của con người không còn dẫn tới cùng một hậu quả."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao buổi họp sau sự cố không nên đi tìm người chịu trách nhiệm?",
+      "options": [
+        "Vì tổ chức sẽ học cách giấu sự cố thay vì báo cáo",
+        "Vì thường không xác định được chính xác ai đã sai",
+        "Vì việc đó vốn thuộc thẩm quyền của bộ phận nhân sự",
+        "Vì người gây ra sự cố đã đủ áp lực trong lúc xử lý"
+      ],
+      "correct": 0,
+      "explanation": "Sự cố bị giấu là sự cố không ai sửa được, và nó sẽ lặp lại ở quy mô lớn hơn. Giữ cho việc báo cáo an toàn là điều kiện để tổ chức nhìn thấy vấn đề thật của mình."
+    },
+    {
+      "question": "Câu hỏi nào hữu ích khi phân tích sự cố?",
+      "options": [
+        "Vì sao hệ thống cho phép sai lầm này gây ra hậu quả lớn tới vậy",
+        "Ai là người đã thực hiện thao tác dẫn tới sự cố lần này",
+        "Vì sao người đó không kiểm tra kỹ trước khi thao tác",
+        "Làm sao để nhắc cả đội chú ý hơn trong tương lai"
+      ],
+      "correct": 0,
+      "explanation": "Câu hỏi ấy dẫn tới những thay đổi kiểm chứng được ở hệ thống. Ba câu còn lại dẫn tới cảm giác đã xử lý xong mà xác suất lặp lại không đổi chút nào."
+    },
+    {
+      "question": "Điều gì làm cho một hành động rút ra là thật?",
+      "options": [
+        "Có người phụ trách cụ thể và có thời hạn hoàn thành",
+        "Được ghi đầy đủ vào biên bản buổi họp sau sự cố",
+        "Được toàn bộ đội đồng ý trong lúc thảo luận",
+        "Được nêu ra bởi người kinh nghiệm nhất đội"
+      ],
+      "correct": 0,
+      "explanation": "Không có người và không có hạn thì nó là một mong muốn. Cách kiểm tra rẻ nhất cho chất lượng quy trình này là đếm tỷ lệ hành động rút ra đã thật sự xong."
+    },
+    {
+      "question": "Vì sao nên phân tích cả những sự cố suýt xảy ra?",
+      "options": [
+        "Vì chúng cho cùng bài học với giá rẻ hơn nhiều",
+        "Vì chúng xảy ra thường xuyên hơn sự cố thật rất nhiều",
+        "Vì chúng dễ phân tích hơn do không có áp lực thời gian",
+        "Vì quy định yêu cầu ghi nhận mọi bất thường của hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Một lỗi được chặn lại bởi may mắn có cùng nguyên nhân hệ thống với một lỗi gây thiệt hại. Học từ nó nghĩa là bạn không phải trả học phí bằng một sự cố thật."
+    },
+    {
+      "question": "Vì sao yêu cầu mọi người cẩn thận hơn là một kết luận yếu?",
+      "options": [
+        "Vì nó không thay đổi bất kỳ điều kiện nào của hệ thống",
+        "Vì không có cách nào đo được mức độ cẩn thận của đội",
+        "Vì các thành viên mới trong đội sẽ không biết tới yêu cầu này",
+        "Vì nó cần được nhắc lại thường xuyên mới có tác dụng"
+      ],
+      "correct": 0,
+      "explanation": "Mọi người đã đang cố cẩn thận trước khi sự cố xảy ra. Muốn giảm xác suất thì phải đổi thứ gì đó bên ngoài ý chí con người - một bước xác nhận, một giới hạn phạm vi, một đường lui nhanh."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Dịch vụ đã hồi phục, mọi người đã ngủ bù. Buổi họp sau đó là nơi tổ chức quyết định sẽ học được gì - hoặc học cách không nói ra lần sau."
+    },
+    {
+      "type": "heading",
+      "text": "Con người là hằng số"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trong mọi hệ thống có người vận hành, sẽ có người gõ nhầm, đọc lướt, hoặc chạy lệnh trên cửa sổ dòng lệnh sai. Đó không phải biến số bạn điều chỉnh được bằng nhắc nhở. Biến số điều chỉnh được là hệ thống: nó có hỏi lại trước thao tác nguy hiểm không, có chạy thử trước không, có giới hạn phạm vi không, và khôi phục mất bao lâu."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Hỏi ai làm",
+        "text": "Kết thúc bằng một người thấy có lỗi và một tổ chức học được rằng báo cáo sự cố là việc nguy hiểm cho bản thân."
+      },
+      "right": {
+        "label": "Hỏi vì sao được phép",
+        "text": "Kết thúc bằng một danh sách thay đổi kiểm chứng được, và một tổ chức mà lần sau người ta báo sớm hơn."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Không có người và hạn thì không tồn tại",
+      "text": "Mỗi hành động rút ra phải có tên một người và một ngày. Tỷ lệ hành động đã hoàn thành là thước đo duy nhất cho biết quy trình này đang cải thiện hệ thống hay chỉ đang sinh ra biên bản."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Viết biên bản đủ để người ngoài đội đọc hiểu chuyện gì đã xảy ra.",
+        "Phân tích cả sự cố suýt xảy ra, vì chúng cho bài học với giá rẻ hơn nhiều.",
+        "Tránh những kết luận kiểu cẩn thận hơn - chúng không đổi được xác suất nào."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mục tiêu không phải tìm ra ai sai, mà làm cho cùng sai lầm ấy lần sau không gây ra hậu quả ấy nữa.",
+        "Bài sau nói về loại vấn đề không gây sự cố nào nhưng làm mọi việc chậm dần: nợ kỹ thuật."
+      ]
+    }
+  ]
+}

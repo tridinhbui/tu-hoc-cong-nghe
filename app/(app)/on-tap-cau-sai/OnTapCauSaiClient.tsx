@@ -172,16 +172,16 @@ export default function OnTapCauSaiClient() {
   const currentCardItem = sessionDeck[currentIndex];
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 font-sans text-stone-900 dark:text-stone-100 pb-12">
+    <div className="min-h-screen bg-surface font-sans text-ink pb-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Arriving from the 7:30 push: say why this is a short list, so a
             trimmed session doesn't read as missing mistakes. */}
         {isMorningSession && (
-          <div className="mb-6 rounded-2xl border-2 border-amber-300 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 px-5 py-4">
-            <p className="text-xs font-black uppercase tracking-widest text-amber-700 dark:text-amber-500">
+          <div className="mb-6 rounded-2xl border-2 border-warn-line-mid bg-amber-50 dark:bg-amber-950/30 px-5 py-4">
+            <p className="text-xs font-black uppercase tracking-widest text-warn-strong">
               {t.mistakeReview.morningSession}
             </p>
-            <p className="text-sm text-stone-700 dark:text-stone-300 mt-1 leading-relaxed">
+            <p className="text-sm text-ink-body mt-1 leading-relaxed">
               {format(t.mistakeReview.morningSub, { count: items.length })}
               {t.mistakeReview.enoughForToday}{" "}
               <Link href="/on-tap-cau-sai" className="font-bold underline">
@@ -195,27 +195,27 @@ export default function OnTapCauSaiClient() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
-                <BrainCircuit className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> {t.mistakeReview.srsBadge}
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-accent-ink border border-accent-line-mid">
+                <BrainCircuit className="w-3.5 h-3.5 text-accent" /> {t.mistakeReview.srsBadge}
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100">
+            <h1 className="text-2xl sm:text-3xl font-black text-ink">
               {t.mistakeReview.title}
             </h1>
-            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
+            <p className="text-xs sm:text-sm text-ink-muted mt-1">
               {t.mistakeReview.subtitle}
             </p>
           </div>
 
           {/* View Mode Switcher Button */}
-          <div className="flex items-center gap-1 bg-stone-200 dark:bg-stone-900 p-1 rounded-xl border border-stone-300 dark:border-stone-800 shrink-0">
+          <div className="flex items-center gap-1 bg-surface-sunken p-1 rounded-xl border border-line-strong shrink-0">
             <button
               type="button"
               onClick={() => setViewMode("flashcard")}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black transition-all cursor-pointer ${
                 viewMode === "flashcard"
-                  ? "bg-white dark:bg-stone-800 text-emerald-600 dark:text-emerald-400 shadow-xs"
-                  : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200"
+                  ? "bg-white dark:bg-stone-800 text-accent shadow-xs"
+                  : "text-stone-500 hover:text-ink-heading"
               }`}
             >
               <Layers className="w-3.5 h-3.5" /> {t.mistakeReview.tabCards}
@@ -225,8 +225,8 @@ export default function OnTapCauSaiClient() {
               onClick={() => setViewMode("list")}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black transition-all cursor-pointer ${
                 viewMode === "list"
-                  ? "bg-white dark:bg-stone-800 text-emerald-600 dark:text-emerald-400 shadow-xs"
-                  : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200"
+                  ? "bg-white dark:bg-stone-800 text-accent shadow-xs"
+                  : "text-stone-500 hover:text-ink-heading"
               }`}
             >
               <List className="w-3.5 h-3.5" /> {t.mistakeReview.tabList}
@@ -235,14 +235,14 @@ export default function OnTapCauSaiClient() {
         </div>
 
         {loading ? (
-          <div className="py-16 text-center text-sm text-stone-400 dark:text-stone-500">
+          <div className="py-16 text-center text-sm text-ink-faint">
             {t.mistakeReview.loading}
           </div>
         ) : items.length === 0 ? (
-          <div className="text-center py-16 px-4 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm space-y-3">
+          <div className="text-center py-16 px-4 bg-white dark:bg-stone-900 border-2 border-line rounded-3xl shadow-sm space-y-3">
             <PartyPopper className="w-12 h-12 text-emerald-500 mx-auto" />
-            <h3 className="font-black text-lg text-stone-900 dark:text-stone-100">{t.mistakeReview.emptyTitle}</h3>
-            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 max-w-md mx-auto">
+            <h3 className="font-black text-lg text-ink">{t.mistakeReview.emptyTitle}</h3>
+            <p className="text-xs sm:text-sm text-ink-muted max-w-md mx-auto">
               {t.mistakeReview.emptyBody}
             </p>
             <Link
@@ -257,12 +257,12 @@ export default function OnTapCauSaiClient() {
              Trạng thái này trước đây không tồn tại được: bộ thẻ luôn là toàn
              bộ danh sách nên nó không bao giờ rỗng. Vẫn để một lối đi vòng -
              lịch là gợi ý cho việc học, không phải cái khoá. */
-          <div className="text-center py-16 px-4 bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-3xl shadow-sm space-y-3">
+          <div className="text-center py-16 px-4 bg-white dark:bg-stone-900 border-2 border-line rounded-3xl shadow-sm space-y-3">
             <Calendar className="w-12 h-12 text-emerald-500 mx-auto" />
-            <h3 className="font-black text-lg text-stone-900 dark:text-stone-100">
+            <h3 className="font-black text-lg text-ink">
               {t.mistakeReview.noneDueTitle}
             </h3>
-            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 max-w-md mx-auto">
+            <p className="text-xs sm:text-sm text-ink-muted max-w-md mx-auto">
               {format(t.mistakeReview.noneDueBody, { count: items.length })}
             </p>
             <div className="pt-2 flex flex-wrap justify-center gap-3">
@@ -274,7 +274,7 @@ export default function OnTapCauSaiClient() {
                   setIsFlipped(false);
                   setSessionCompleted(false);
                 }}
-                className="px-4 py-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100 font-black text-xs hover:bg-stone-200 dark:hover:bg-stone-700 cursor-pointer"
+                className="px-4 py-2.5 rounded-xl bg-surface-raised text-ink font-black text-xs hover:bg-surface-sunken cursor-pointer"
               >
                 {t.mistakeReview.reviewAllAnyway}
               </button>
@@ -290,7 +290,7 @@ export default function OnTapCauSaiClient() {
           /* ── 3D FLASHCARD INTERACTION MODE ── */
           <div className="space-y-4">
             {/* Progress Counter & SRS Stats Bar */}
-            <div className="flex items-center justify-between text-xs font-black text-stone-500 dark:text-stone-400 px-1">
+            <div className="flex items-center justify-between text-xs font-black text-ink-muted px-1">
               <span>
                 {format(t.mistakeReview.cardCounter, {
                   current: currentIndex + 1,
@@ -298,7 +298,7 @@ export default function OnTapCauSaiClient() {
                   due: sessionDeck.length,
                 })}
               </span>
-              <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+              <span className="text-accent flex items-center gap-1">
                 <Zap className="w-3.5 h-3.5" /> {t.mistakeReview.algorithmActive}
               </span>
             </div>
@@ -358,23 +358,23 @@ export default function OnTapCauSaiClient() {
                           } ${
                             isDueForReview(srsInfo.nextReviewAt)
                               ? "border-amber-400/80 dark:border-amber-600/80"
-                              : "border-stone-200 dark:border-stone-800"
+                              : "border-line"
                           }`}
                         >
                           <div className="space-y-3">
-                            <div className="flex items-center justify-between gap-2 border-b border-stone-100 dark:border-stone-800 pb-3">
+                            <div className="flex items-center justify-between gap-2 border-b border-line-soft pb-3">
                               <Link
                                 href={currentCardItem.href}
-                                className="text-xs font-black text-emerald-600 dark:text-emerald-400 hover:underline truncate"
+                                className="text-xs font-black text-accent hover:underline truncate"
                               >
                                 {currentCardItem.lessonLabel}: {currentCardItem.lessonTitle}
                               </Link>
-                              <span className="px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/80 text-[10px] font-black uppercase text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800 shrink-0">
+                              <span className="px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/80 text-[10px] font-black uppercase text-warn-ink border border-warn-line-mid shrink-0">
                                 {format(t.mistakeReview.srsLevel, { level: srsInfo.level, days: srsInfo.intervalDays })}
                               </span>
                             </div>
 
-                            <p className="font-extrabold text-base sm:text-lg text-stone-900 dark:text-stone-100 leading-snug">
+                            <p className="font-extrabold text-base sm:text-lg text-ink leading-snug">
                               {currentCardItem.question}
                             </p>
 
@@ -382,11 +382,11 @@ export default function OnTapCauSaiClient() {
                               {currentCardItem.options.map((opt, oi) => {
                                 const isCorrectOpt = oi === currentCardItem.correct;
                                 const chosen = answerState.picked === oi;
-                                let cls = "border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 hover:border-emerald-400/60 text-stone-800 dark:text-stone-200";
+                                let cls = "border-line bg-stone-50 dark:bg-stone-950/60 hover:border-emerald-400/60 text-ink-heading";
                                 if (answered) {
-                                  if (isCorrectOpt) cls = "border-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-200 font-black";
-                                  else if (chosen) cls = "border-rose-400 bg-rose-50 dark:bg-rose-950/60 text-rose-900 dark:text-rose-200 font-bold";
-                                  else cls = "border-stone-200 dark:border-stone-800 opacity-50";
+                                  if (isCorrectOpt) cls = "border-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 text-accent-ink-strong font-black";
+                                  else if (chosen) cls = "border-rose-400 bg-rose-50 dark:bg-rose-950/60 text-alert-ink font-bold";
+                                  else cls = "border-line opacity-50";
                                 }
                                 return (
                                   <button
@@ -404,14 +404,14 @@ export default function OnTapCauSaiClient() {
                             </div>
                           </div>
 
-                          <div className="pt-2 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between">
+                          <div className="pt-2 border-t border-line-soft flex items-center justify-between">
                             <span className="text-[11px] font-bold text-stone-400">
                               {t.mistakeReview.pickOrFlip}
                             </span>
                             <button
                               type="button"
                               onClick={() => setIsFlipped(true)}
-                              className="px-3 py-1.5 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-black text-xs hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
+                              className="px-3 py-1.5 rounded-xl bg-surface-invert text-ink-invert font-black text-xs hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
                             >
                               {t.mistakeReview.flipToExplanation}
                             </button>
@@ -509,7 +509,7 @@ export default function OnTapCauSaiClient() {
                           setIsFlipped(false);
                           setCurrentIndex((prev) => Math.max(0, prev - 1));
                         }}
-                        className="px-3 py-1.5 rounded-xl border border-stone-300 dark:border-stone-800 text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-900 disabled:opacity-40 cursor-pointer"
+                        className="px-3 py-1.5 rounded-xl border border-line-strong text-xs font-bold text-ink-soft hover:bg-surface-sunken disabled:opacity-40 cursor-pointer"
                       >
                         {t.mistakeReview.prevCard}
                       </button>
@@ -537,7 +537,7 @@ export default function OnTapCauSaiClient() {
         ) : (
           /* ── CLASSIC LIST VIEW MODE ── */
           <div className="space-y-4">
-            <p className="text-xs font-bold text-stone-500 dark:text-stone-400 mb-3">
+            <p className="text-xs font-bold text-ink-muted mb-3">
               {format(t.mistakeReview.totalMistakes, { count: items.length })}
             </p>
             <div className="space-y-4">
@@ -551,35 +551,35 @@ export default function OnTapCauSaiClient() {
                   <div
                     key={k}
                     className={`bg-white dark:bg-stone-900 rounded-2xl border-2 p-5 space-y-3 transition-opacity ${
-                      state.resolved ? "border-emerald-200 dark:border-emerald-900 opacity-60" : "border-stone-200 dark:border-stone-800"
+                      state.resolved ? "border-accent-line opacity-60" : "border-line"
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
                       <Link
                         href={item.href}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline"
                       >
                         {item.lessonLabel}: {item.lessonTitle}
                         <ArrowRight className="w-3 h-3" />
                       </Link>
                       {srsInfo && (
-                        <span className="text-[11px] font-bold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
+                        <span className="text-[11px] font-bold text-warn-strong bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full border border-warn-line-mid">
                           {format(t.mistakeReview.srsLevelShort, { level: srsInfo.level, days: srsInfo.intervalDays })}
                         </span>
                       )}
                     </div>
 
-                    <p className="font-bold text-stone-900 dark:text-stone-100 leading-relaxed">{item.question}</p>
+                    <p className="font-bold text-ink leading-relaxed">{item.question}</p>
 
                     <div className="space-y-2">
                       {item.options.map((opt, oi) => {
                         const isCorrectOpt = oi === item.correct;
                         const chosen = state.picked === oi;
-                        let cls = "border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 hover:border-stone-300 dark:hover:border-stone-500";
+                        let cls = "border-line-mid bg-white dark:bg-stone-800 hover:border-line-strong";
                         if (answered) {
                           if (isCorrectOpt) cls = "border-emerald-400 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 font-black";
                           else if (chosen) cls = "border-rose-400 dark:border-rose-700 bg-rose-50 dark:bg-rose-950/50";
-                          else cls = "border-stone-200 dark:border-stone-800 opacity-60";
+                          else cls = "border-line opacity-60";
                         }
                         return (
                           <button
@@ -588,9 +588,9 @@ export default function OnTapCauSaiClient() {
                             onClick={() => handlePickAnswer(item, oi)}
                             className={`w-full text-left text-sm rounded-xl border px-4 py-2.5 transition-colors flex items-start gap-2 disabled:cursor-default cursor-pointer ${cls}`}
                           >
-                            {answered && isCorrectOpt && <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />}
-                            {answered && chosen && !isCorrectOpt && <X className="w-4 h-4 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5" />}
-                            <span className="text-stone-800 dark:text-stone-100">{opt}</span>
+                            {answered && isCorrectOpt && <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />}
+                            {answered && chosen && !isCorrectOpt && <X className="w-4 h-4 text-alert flex-shrink-0 mt-0.5" />}
+                            <span className="text-ink-heading">{opt}</span>
                           </button>
                         );
                       })}
@@ -598,7 +598,7 @@ export default function OnTapCauSaiClient() {
 
                     {answered && (
                       <div className="space-y-2">
-                        <p className={`text-xs leading-relaxed rounded-xl p-3 border ${state.resolved ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200" : "bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-800 text-rose-900 dark:text-rose-200"}`}>
+                        <p className={`text-xs leading-relaxed rounded-xl p-3 border ${state.resolved ? "bg-emerald-50 dark:bg-emerald-950/50 border-accent-line text-accent-ink-strong" : "bg-rose-50 dark:bg-rose-950/50 border-alert-line text-alert-ink"}`}>
                           {item.explanation}
                         </p>
                         <div className="flex items-center gap-2 pt-1">
@@ -606,14 +606,14 @@ export default function OnTapCauSaiClient() {
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "forget")}
-                            className="px-2 py-1 rounded-lg bg-stone-100 dark:bg-stone-800 text-[10px] font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-200"
+                            className="px-2 py-1 rounded-lg bg-surface-raised text-[10px] font-bold text-ink-body hover:bg-stone-200"
                           >
                             {t.mistakeReview.plus1Day}
                           </button>
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "good")}
-                            className="px-2 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-[10px] font-bold text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200"
+                            className="px-2 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-[10px] font-bold text-accent-strong hover:bg-emerald-200"
                           >
                             {t.mistakeReview.plus7Days}
                           </button>

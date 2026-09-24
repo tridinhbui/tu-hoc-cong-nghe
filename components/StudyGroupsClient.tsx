@@ -127,7 +127,7 @@ function noteColorClass(color: string) {
     emerald: "bg-emerald-50 dark:bg-emerald-950/50 border-accent-line text-emerald-950 dark:text-emerald-100",
     amber: "bg-amber-50 dark:bg-amber-950/50 border-warn-line text-amber-950 dark:text-amber-100",
     sky: "bg-sky-50 dark:bg-sky-950/50 border-sky-200 dark:border-sky-800 text-sky-950 dark:text-sky-100",
-    rose: "bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-900 text-rose-950 dark:text-rose-100",
+    rose: "bg-rose-50 dark:bg-rose-950/50 border-alert-line text-rose-950 dark:text-rose-100",
     violet: "bg-violet-50 dark:bg-violet-950/50 border-violet-200 dark:border-violet-900 text-violet-950 dark:text-violet-100",
   };
   return colors[color] ?? colors.emerald;
@@ -1451,7 +1451,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <div>
                   <p className="flex flex-wrap items-center gap-1.5 font-extrabold text-ink">
                     <span>{t.studyGroups.questsTitle}</span>
-                    <span className="text-[10px] font-black text-warn-strong bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
+                    <span className="text-[10px] font-black text-warn-strong bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-warn-line-mid">
                       {isPermanentRoom
                         ? t.studyGroups.permanentGroup
                         : format(t.studyGroups.streakWeeks, { weeks: groupStreakWeeks })}
@@ -2188,7 +2188,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </div>
                 {chatSubTab === "chat" && (
                   <div className="flex-1 flex flex-col min-h-0">
-                    <div className="mb-2 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-accent-line shrink-0 text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold flex items-center gap-1">
+                    <div className="mb-2 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-accent-line shrink-0 text-[10px] text-accent-ink font-semibold flex items-center gap-1">
                       <span>💡</span>
                       <span>{t.studyGroups.chatCheckinHint}</span>
                     </div>
@@ -2374,7 +2374,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 }}
                                 className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left"
                               >
-                                <Copy className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+                                <Copy className="w-3.5 h-3.5 text-info" />
                                 <span>{t.chat.copy}</span>
                               </button>
 
@@ -2389,7 +2389,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   }}
                                   className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left"
                                 >
-                                  <Pencil className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+                                  <Pencil className="w-3.5 h-3.5 text-info" />
                                   <span>{t.chat.edit}</span>
                                 </button>
 
@@ -2404,7 +2404,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       toast.error(translateApiError(t, err) ?? t.chat.recallFailed);
                                     }
                                   }}
-                                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-bold transition-colors text-left"
+                                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-alert font-bold transition-colors text-left"
                                 >
                                   <Trash2 className="w-3.5 h-3.5 text-rose-500" />
                                   <span>{t.chat.recall}</span>
@@ -2514,7 +2514,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {editingMessage && (
               <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-ink-heading mt-2">
                 <div className="min-w-0 flex-1">
-                  <span className="font-bold text-sky-600 dark:text-sky-400">{t.chat.editing}</span>
+                  <span className="font-bold text-info">{t.chat.editing}</span>
                   <p className="truncate text-[11px] text-ink-soft mt-0.5">{editingMessage.content}</p>
                 </div>
                 <button
@@ -2604,7 +2604,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         <button
                           type="button"
                           onClick={() => void handleDeleteNote(note.id)}
-                          className="mt-1 inline-flex items-center gap-1 text-[10px] font-black text-rose-600 dark:text-rose-400 hover:underline"
+                          className="mt-1 inline-flex items-center gap-1 text-[10px] font-black text-alert hover:underline"
                         >
                           <Trash2 className="w-3 h-3" />
                           {t.studyGroups.noteDelete}

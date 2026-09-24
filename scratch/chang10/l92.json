@@ -1,0 +1,165 @@
+{
+  "id": 92,
+  "slug": "chia-nho-va-giao-tung-phan",
+  "title": "Chia nhỏ: giao từng phần thay vì giao một lần",
+  "subtitle": "Ba tháng không có gì chạy được là ba tháng không ai biết mình đang đi đúng hay sai.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧩",
+  "track": "professional",
+  "whyItMatters": "Chia nhỏ không chỉ để ước lượng chính xác hơn. Nó là cách rút ngắn khoảng cách giữa lúc quyết định và lúc biết quyết định ấy đúng hay sai - và khoảng cách đó là thứ quyết định bạn học nhanh tới đâu.",
+  "openingQuestion": "Một tính năng cần ba tháng. Cách chia nào có giá trị nhất?",
+  "openingOptions": [
+    "Chia thành các phần mà mỗi phần xong là người dùng dùng được thêm một việc",
+    "Chia theo tầng kỹ thuật: một tháng cơ sở dữ liệu, một tháng máy chủ, một tháng giao diện",
+    "Chia đều thành sáu phần hai tuần để dễ theo dõi tiến độ",
+    "Chia theo người: mỗi thành viên nhận một phần độc lập"
+  ],
+  "correctOption": 0,
+  "explanation": "Chia theo tầng kỹ thuật cho ra những phần không tự đứng được: sau hai tháng bạn có cơ sở dữ liệu và máy chủ mà không ai dùng được gì, nên vẫn chưa học được điều gì về việc mình đang làm có đúng không. Chia theo lát cắt dọc - mỗi phần đi xuyên từ giao diện tới dữ liệu và làm được một việc trọn vẹn - thì sau hai tuần đã có người dùng thật và có phản hồi thật. Chia đều theo thời gian hay theo người đều là cách sắp xếp công việc, không phải cách tạo ra điểm học.",
+  "diagram": [
+    {
+      "label": "Việc lớn ba tháng",
+      "arrow": true
+    },
+    {
+      "label": "Cắt dọc: mỗi lát làm trọn một việc nhỏ",
+      "arrow": true
+    },
+    {
+      "label": "Giao lát đầu sau hai tuần",
+      "arrow": true
+    },
+    {
+      "label": "Có phản hồi thật trước khi làm tiếp"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hai tháng không ai thấy gì",
+    "description": "Một đội xây nền tảng trong hai tháng rồi mới làm giao diện. Tuần đầu có người dùng, họ phát hiện giả định cốt lõi về cách người ta nhập dữ liệu là sai, và phần lớn nền tảng phải làm lại. Cùng phát hiện ấy, nếu đến ở tuần thứ hai, sẽ rẻ hơn nhiều lần."
+  },
+  "keyTakeaways": [
+    "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+    "Chia theo tầng kỹ thuật trì hoãn mọi phản hồi tới tận cuối.",
+    "Mỗi phần giao được là một cơ hội phát hiện mình đang sai với giá rẻ.",
+    "Phần đầu tiên nên nhắm vào giả định rủi ro nhất, không nhắm vào phần dễ nhất."
+  ],
+  "summary": {
+    "keyIdea": "Chia nhỏ để học sớm, không chỉ để quản lý tiến độ.",
+    "formula": "Cắt dọc, giao được, học rồi mới làm tiếp.",
+    "commonMistake": "Chia theo tầng kỹ thuật, rồi không có gì chạy được cho tới tuần cuối."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy việc lớn nhất đội đang làm và hỏi: phần nhỏ nhất mà người dùng thật dùng được là gì? Nếu câu trả lời cần hơn hai tuần thì hãy cắt tiếp."
+  },
+  "practicePrompt": {
+    "question": "Phần đầu tiên của một việc lớn nên nhắm vào đâu?",
+    "options": [
+      "Giả định rủi ro nhất, để biết sớm nếu cả hướng đi là sai",
+      "Phần dễ nhất, để có kết quả nhanh và tạo động lực cho đội",
+      "Phần mà đội có sẵn kinh nghiệm nhất trong nhóm",
+      "Phần mà bên yêu cầu quan tâm nhiều nhất hiện tại"
+    ],
+    "correct": 0,
+    "explanation": "Nếu cả hướng đi sai thì mọi phần dễ đã làm đều bỏ đi, nên làm phần dễ trước chỉ trì hoãn tin xấu. Đánh vào giả định rủi ro nhất trước có thể cho tin xấu ngay tuần đầu, và đó chính là kết quả rẻ nhất bạn có thể mua."
+  },
+  "quiz": [
+    {
+      "question": "Lát cắt dọc nghĩa là gì?",
+      "options": [
+        "Một phần đi xuyên mọi tầng và làm được một việc trọn vẹn",
+        "Một phần chỉ thuộc về một tầng kỹ thuật duy nhất",
+        "Một phần được giao cho đúng một thành viên trong đội",
+        "Một phần có thể hoàn thành gọn trong đúng một ngày làm việc"
+      ],
+      "correct": 0,
+      "explanation": "Đủ giao diện, đủ xử lý, đủ dữ liệu để một người dùng thật làm xong một việc. Đó là điều kiện để nhận được phản hồi, và phản hồi mới là thứ ta muốn."
+    },
+    {
+      "question": "Vì sao chia theo tầng kỹ thuật là cách chia yếu?",
+      "options": [
+        "Vì không có gì dùng được cho tới khi tầng cuối cùng xong",
+        "Vì các tầng phụ thuộc lẫn nhau nên không thể làm song song",
+        "Vì mỗi tầng cần một người có chuyên môn khác nhau",
+        "Vì việc kiểm thử chỉ thực hiện được ở tầng giao diện"
+      ],
+      "correct": 0,
+      "explanation": "Toàn bộ giá trị và toàn bộ việc học bị dồn về cuối. Hai tháng đầu bạn chỉ có niềm tin rằng mình đang đi đúng, và niềm tin thì không kiểm chứng được."
+    },
+    {
+      "question": "Lợi ích chính của việc giao từng phần là gì?",
+      "options": [
+        "Rút ngắn khoảng cách giữa lúc quyết định và lúc biết mình đúng hay sai",
+        "Giúp người quản lý theo dõi tiến độ chính xác hơn",
+        "Cho phép nhiều người trong đội làm song song với nhau",
+        "Giảm tổng khối lượng công việc cần phải hoàn thành"
+      ],
+      "correct": 0,
+      "explanation": "Theo dõi tiến độ là lợi ích phụ. Cái chính là mỗi lần giao được là một lần kiểm chứng giả định, và bạn không thể học nhanh hơn nhịp giao của mình."
+    },
+    {
+      "question": "Phần đầu tiên nên nhắm vào cái gì?",
+      "options": [
+        "Giả định rủi ro nhất của cả hướng đi",
+        "Phần dễ nhất để nhanh có kết quả đầu tiên",
+        "Phần nhìn thấy rõ nhất trên giao diện người dùng",
+        "Phần mà đội đã có sẵn mã tương tự để dùng lại"
+      ],
+      "correct": 0,
+      "explanation": "Mục tiêu của việc chia nhỏ là mua thông tin sớm. Thông tin đắt giá nhất luôn là câu trả lời cho câu hỏi ta có đang đi sai hướng không."
+    },
+    {
+      "question": "Kích thước hợp lý cho một phần giao được là gì?",
+      "options": [
+        "Đủ nhỏ để người dùng thật chạm vào được trong vài tuần",
+        "Đủ lớn để không phải triển khai quá nhiều lần",
+        "Bằng đúng khả năng làm việc của đội trong một quý",
+        "Tuỳ vào độ phức tạp của việc, không có nguyên tắc chung nào cả"
+      ],
+      "correct": 0,
+      "explanation": "Ngưỡng thực dụng là khoảng thời gian bạn chịu được khi đi sai hướng. Vài tuần thì mất vài tuần; ba tháng thì mất ba tháng, và đó thường là quá nhiều."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước kết ở lời khuyên chia nhỏ để ước lượng đỡ sai. Nhưng chia nhỏ có một lợi ích lớn hơn nhiều so với chuyện ước lượng."
+    },
+    {
+      "type": "heading",
+      "text": "Cắt dọc, không cắt ngang"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cắt ngang theo tầng",
+        "text": "Tháng một cơ sở dữ liệu, tháng hai máy chủ, tháng ba giao diện. Mỗi phần xong đều không dùng được, nên mọi phản hồi dồn về tuần cuối."
+      },
+      "right": {
+        "label": "Cắt dọc theo việc",
+        "text": "Mỗi phần đi xuyên các tầng và làm trọn một việc nhỏ. Xong phần đầu là có người dùng thật, có số liệu thật, có tin xấu sớm."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Chia nhỏ là để mua thông tin"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mỗi lần giao được một phần là một lần bạn kiểm chứng những giả định của mình với thế giới thật. Nếu giả định cốt lõi sai, bạn muốn biết ở tuần thứ hai chứ không phải tháng thứ ba. Vì thế phần đầu tiên nên nhắm vào chỗ rủi ro nhất, chứ không phải chỗ dễ nhất - làm phần dễ trước chỉ là trì hoãn tin xấu bằng tiền của công ty."
+    },
+    {
+      "type": "callout",
+      "label": "Nhịp giao quyết định nhịp học",
+      "text": "Bạn không thể học nhanh hơn tốc độ đưa thứ gì đó tới tay người dùng. Đội giao mỗi hai tuần có hai mươi sáu điểm học mỗi năm; đội giao mỗi quý có bốn. Khác biệt ấy tích luỹ nhanh hơn mọi khác biệt về kỹ năng."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Chia nhỏ không phải kỹ thuật quản lý tiến độ. Nó là cách rút ngắn thời gian giữa việc tin và việc biết.",
+        "Bài sau nói về thứ luôn phải điều chỉnh khi việc lớn hơn dự kiến: phạm vi, và ba thứ không thể cùng giữ."
+      ]
+    }
+  ]
+}

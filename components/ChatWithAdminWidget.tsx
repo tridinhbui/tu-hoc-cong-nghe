@@ -415,11 +415,11 @@ export default function ChatWithAdminWidget({
             }}
             aria-label={t.adminChat.openAria}
             title={t.adminChat.dragTitle}
-            className="fixed bottom-6 right-4 sm:right-6 z-40 w-14 h-14 rounded-full bg-white dark:bg-stone-100 shadow-lg hover:shadow-xl hover:scale-105 transition-transform flex items-center justify-center group overflow-hidden border border-stone-200 dark:border-stone-300 cursor-grab active:cursor-grabbing select-none touch-none"
+            className="fixed bottom-6 right-4 sm:right-6 z-40 w-14 h-14 rounded-full bg-white dark:bg-stone-100 shadow-lg hover:shadow-xl hover:scale-105 transition-transform flex items-center justify-center group overflow-hidden border border-line cursor-grab active:cursor-grabbing select-none touch-none"
           >
             <Logo size={56} className="rounded-full pointer-events-none" />
             <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-100 pointer-events-none" />
-            <div className="absolute bottom-full right-0 mb-2 bg-stone-900 dark:bg-stone-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition shadow-md pointer-events-none">
+            <div className="absolute bottom-full right-0 mb-2 bg-surface-invert text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition shadow-md pointer-events-none">
               {t.adminChat.dragTitle}
             </div>
           </motion.button>
@@ -435,7 +435,7 @@ export default function ChatWithAdminWidget({
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             // `transition-all` tắt trong lúc kéo: nó làm bề rộng đuổi theo con
             // trỏ chậm một nhịp, và cảm giác là panel dính chứ không phải mượt.
-            className={`fixed inset-x-4 top-4 bottom-4 z-50 bg-white dark:bg-stone-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-line-soft/80 flex flex-col overflow-hidden ${
+            className={`fixed inset-x-4 top-4 bottom-4 z-50 bg-white dark:bg-stone-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden ${
               dragging ? "" : "transition-all duration-300"
             } ${
               // Bề rộng đọc từ biến CSS nên nó chỉ áp từ sm trở lên; dưới
@@ -500,17 +500,17 @@ export default function ChatWithAdminWidget({
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5 mb-0.5">
                     <Pin className="w-3 h-3 text-warn" />
-                    <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400">
+                    <span className="text-[10px] font-extrabold text-warn-strong">
                       {format(t.adminChat.pinnedBy, { who: pinnedMessage.sender === "user" ? t.chat.you : t.adminChat.adminName })}
                     </span>
                   </div>
-                  <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-relaxed font-medium truncate">
+                  <p className="text-[11px] text-ink-heading leading-relaxed font-medium truncate">
                     {pinnedMessage.content}
                   </p>
                 </div>
                 <button
                   onClick={() => setPinnedMsgId(null)}
-                  className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-0.5 rounded-full cursor-pointer"
+                  className="text-stone-400 hover:text-ink-body p-0.5 rounded-full cursor-pointer"
                   title={t.adminChat.unpinTitle}
                 >
                   <X className="w-3.5 h-3.5" />
@@ -520,7 +520,7 @@ export default function ChatWithAdminWidget({
 
             {/* Community shoutout */}
             {shoutout && (
-              <div className="shrink-0 px-4 py-2 bg-emerald-50/60 dark:bg-emerald-950/20 border-b border-emerald-100/50 dark:border-emerald-900/30 text-[11px] text-emerald-800 dark:text-emerald-300 font-bold leading-relaxed flex items-center gap-1.5">
+              <div className="shrink-0 px-4 py-2 bg-emerald-50/60 dark:bg-emerald-950/20 border-b border-emerald-100/50 dark:border-emerald-900/30 text-[11px] text-accent-ink font-bold leading-relaxed flex items-center gap-1.5">
                 <span className="text-xs">💡</span>{" "}
                 {format(t.libData.shoutouts[shoutout.variant] ?? t.libData.shoutouts[0], {
                   name: shoutout.name,
@@ -542,7 +542,7 @@ export default function ChatWithAdminWidget({
                 pickImage(e.dataTransfer.files?.[0]);
               }}
               className={`flex-1 overflow-y-auto p-4 space-y-4 transition-colors duration-200 scrollbar-thin ${
-                isDraggingImage ? "bg-emerald-50/50 dark:bg-emerald-950/20" : "bg-stone-50 dark:bg-stone-950"
+                isDraggingImage ? "bg-emerald-50/50 dark:bg-emerald-950/20" : "bg-surface"
               }`}
             >
               {isDraggingImage && (
@@ -595,8 +595,8 @@ export default function ChatWithAdminWidget({
                         <div
                           className={`relative rounded-2xl px-3.5 py-2 text-[12px] leading-relaxed shadow-xs w-fit ${
                             isMine
-                              ? "bg-surface-invert text-white dark:text-stone-900 rounded-tr-xs"
-                              : "bg-white dark:bg-stone-800/90 text-stone-800 dark:text-stone-100 border border-line-soft/60 rounded-tl-xs"
+                              ? "bg-surface-invert text-ink-invert rounded-tr-xs"
+                              : "bg-white dark:bg-stone-800/90 text-ink-heading border border-stone-100 dark:border-stone-800/60 rounded-tl-xs"
                           }`}
                         >
                           {/* Quoted Message Box */}
@@ -641,7 +641,7 @@ export default function ChatWithAdminWidget({
                         <div className={`${isPending ? "hidden" : ""} ${isMine ? "absolute right-full top-1/2 mr-1 -translate-y-1/2" : "absolute left-full top-1/2 ml-1 -translate-y-1/2"}`}>
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
-                            className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 text-ink-muted cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105"
+                            className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 rounded-full hover:bg-surface-sunken text-ink-muted cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105"
                             title={t.chat.optionsTitle}
                           >
                             <MoreVertical className="w-3 h-3" />
@@ -680,7 +680,7 @@ export default function ChatWithAdminWidget({
                                   });
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px] cursor-pointer"
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-ink-heading font-bold transition-colors text-left text-[11px] cursor-pointer"
                               >
                                 <CornerUpLeft className="w-3 h-3 text-accent" />
                                 <span>{t.chat.reply}</span>
@@ -691,7 +691,7 @@ export default function ChatWithAdminWidget({
                                   togglePinMessage(msg.id);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px] cursor-pointer"
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-ink-heading font-bold transition-colors text-left text-[11px] cursor-pointer"
                               >
                                 {pinnedMsgId === msg.id ? (
                                   <PinOff className="w-3 h-3 text-warn" />
@@ -706,9 +706,9 @@ export default function ChatWithAdminWidget({
                                   void copyMessageText(mainText || msg.content);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px] cursor-pointer"
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left text-[11px] cursor-pointer"
                               >
-                                <Copy className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+                                <Copy className="w-3 h-3 text-info" />
                                 <span>{t.chat.copy}</span>
                               </button>
 
@@ -721,9 +721,9 @@ export default function ChatWithAdminWidget({
                                       setReplyingTo(null);
                                       setActiveMenuMsgId(null);
                                     }}
-                                    className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-stone-800 dark:text-stone-200 font-bold transition-colors text-left text-[11px] cursor-pointer"
+                                    className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left text-[11px] cursor-pointer"
                                   >
-                                    <Pencil className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+                                    <Pencil className="w-3 h-3 text-info" />
                                     <span>{t.chat.edit}</span>
                                   </button>
 
@@ -732,7 +732,7 @@ export default function ChatWithAdminWidget({
                                       setActiveMenuMsgId(null);
                                       void handleDeleteMessage(msg.id);
                                     }}
-                                    className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-bold transition-colors text-left text-[11px] cursor-pointer"
+                                    className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-alert font-bold transition-colors text-left text-[11px] cursor-pointer"
                                   >
                                     <Trash2 className="w-3 h-3 text-rose-500" />
                                     <span>{t.chat.recall}</span>
@@ -756,7 +756,7 @@ export default function ChatWithAdminWidget({
                                   onClick={() => void toggleReaction(msg.id, emoji)}
                                   className={`inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.2 rounded-full border transition-all cursor-pointer ${
                                     hasMyReaction
-                                      ? "bg-accent-soft border-emerald-300 text-emerald-700 dark:text-emerald-300 shadow-2xs"
+                                      ? "bg-accent-soft border-emerald-300 text-accent-strong shadow-2xs"
                                       : "bg-white dark:bg-stone-900 border-line text-ink-body"
                                   }`}
                                 >
@@ -793,21 +793,21 @@ export default function ChatWithAdminWidget({
             </div>
 
             {/* Input Container */}
-            <div className="p-3 bg-white dark:bg-stone-900 border-t border-line-soft/40 shrink-0">
+            <div className="p-3 bg-white dark:bg-stone-900 border-t border-stone-100 dark:border-stone-800/40 shrink-0">
               {/* Replying Banner Preview */}
               {replyingTo && (
-                <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-accent-soft/40 border border-emerald-200 dark:border-emerald-800 text-xs text-stone-800 dark:text-stone-200 mb-2">
+                <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-accent-line text-xs text-ink-heading mb-2">
                   <div className="min-w-0 flex-1">
                     <span className="font-bold text-accent">
                       {format(t.chat.replyingTo, { name: replyingTo.senderName })}
                     </span>
-                    <p className="truncate text-[10px] text-stone-600 dark:text-stone-400 mt-0.2">
+                    <p className="truncate text-[10px] text-ink-soft mt-0.2">
                       {replyingTo.content}
                     </p>
                   </div>
                   <button
                     onClick={() => setReplyingTo(null)}
-                    className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-0.5 rounded-full cursor-pointer"
+                    className="text-stone-400 hover:text-ink-body p-0.5 rounded-full cursor-pointer"
                     title={t.chat.cancelReply}
                   >
                     <X className="w-3.5 h-3.5" />
@@ -817,10 +817,10 @@ export default function ChatWithAdminWidget({
 
               {/* Editing Banner Preview */}
               {editingMessage && (
-                <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-stone-800 dark:text-stone-200 mb-2">
+                <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-ink-heading mb-2">
                   <div className="min-w-0 flex-1">
-                    <span className="font-bold text-sky-600 dark:text-sky-400">{t.chat.editing}</span>
-                    <p className="truncate text-[10px] text-stone-600 dark:text-stone-400 mt-0.2">
+                    <span className="font-bold text-info">{t.chat.editing}</span>
+                    <p className="truncate text-[10px] text-ink-soft mt-0.2">
                       {editingMessage.content}
                     </p>
                   </div>
@@ -829,7 +829,7 @@ export default function ChatWithAdminWidget({
                       setEditingMessage(null);
                       setInput("");
                     }}
-                    className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-0.5 rounded-full cursor-pointer"
+                    className="text-stone-400 hover:text-ink-body p-0.5 rounded-full cursor-pointer"
                     title={t.chat.cancelEdit}
                   >
                     <X className="w-3.5 h-3.5" />
@@ -843,7 +843,7 @@ export default function ChatWithAdminWidget({
                   <img
                     src={pendingImagePreview || ""}
                     alt={t.chat.previewAlt}
-                    className="w-14 h-14 rounded-lg object-cover border border-line-soft/50 shadow-md"
+                    className="w-14 h-14 rounded-lg object-cover border border-stone-100 dark:border-stone-800/50 shadow-md"
                   />
                   <button
                     onClick={() => clearPendingImage()}
@@ -866,7 +866,7 @@ export default function ChatWithAdminWidget({
                 <button
                   onClick={() => fileInputRef.current?.click()}
                   title={t.chat.attachImage}
-                  className="p-2 border border-line-soft/50 text-ink-muted hover:text-stone-800 dark:hover:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-800 rounded-xl transition flex-shrink-0 active:scale-95 cursor-pointer"
+                  className="p-2 border border-stone-100 dark:border-stone-800/50 text-ink-muted hover:text-ink-heading hover:bg-surface rounded-xl transition flex-shrink-0 active:scale-95 cursor-pointer"
                 >
                   <ImagePlus className="w-4.5 h-4.5" />
                 </button>
@@ -885,13 +885,13 @@ export default function ChatWithAdminWidget({
                   }}
                   onPaste={handlePaste}
                   placeholder={editingMessage ? t.chat.editPlaceholder : t.adminChat.inputPlaceholder}
-                  className="flex-1 min-w-0 px-3 py-2 border border-line-soft/40 bg-stone-50/50 dark:bg-stone-950/60 text-ink rounded-xl text-xs focus:outline-none focus:border-stone-400 dark:focus:border-stone-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
+                  className="flex-1 min-w-0 px-3 py-2 border border-stone-100 dark:border-stone-800/40 bg-stone-50/50 dark:bg-stone-950/60 text-ink rounded-xl text-xs focus:outline-none focus:border-line-firm focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
                 />
 
                 <button
                   onClick={() => void handleSend()}
                   disabled={(!input.trim() && !pendingImage) || sending || !userId}
-                  className="p-2 bg-gradient-to-br from-stone-900 to-stone-800 dark:from-white dark:to-stone-100 text-white dark:text-stone-900 rounded-xl hover:shadow disabled:opacity-30 disabled:pointer-events-none transition flex-shrink-0 active:scale-95 cursor-pointer"
+                  className="p-2 bg-gradient-to-br from-stone-900 to-stone-800 dark:from-white dark:to-stone-100 text-ink-invert rounded-xl hover:shadow disabled:opacity-30 disabled:pointer-events-none transition flex-shrink-0 active:scale-95 cursor-pointer"
                   aria-label={t.chat.sendAria}
                 >
                   {uploadingImage || sending ? (

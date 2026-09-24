@@ -1,0 +1,171 @@
+{
+  "id": 80,
+  "slug": "on-tap-tu-ma-nguon-toi-nguoi-dung",
+  "title": "Ôn tập: đường đi từ một dòng mã tới người dùng",
+  "subtitle": "Hai mươi bài vừa rồi đều nhằm rút ngắn khoảng cách giữa lúc viết và lúc biết nó đúng.",
+  "duration": "10 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🎓",
+  "track": "professional",
+  "whyItMatters": "Chặng này không dạy một công cụ nào cụ thể. Nó dạy cách nghĩ về việc đưa thay đổi ra thế giới sao cho mỗi bước đều nhỏ, kiểm chứng được và đảo ngược được - và cách nghĩ đó không đổi khi công cụ đổi.",
+  "openingQuestion": "Sợi chỉ xuyên suốt cả chặng này là gì?",
+  "openingOptions": [
+    "Mỗi bước phải nhỏ, kiểm chứng được và có đường quay lại",
+    "Tự động hoá càng nhiều càng tốt vì máy không bao giờ sai",
+    "Kiểm thử đầy đủ là điều kiện đủ để triển khai an toàn",
+    "Tốc độ triển khai là chỉ số quan trọng nhất của một đội"
+  ],
+  "correctOption": 0,
+  "explanation": "Từ bước dựng tới lần triển khai cuối, mọi kỹ thuật trong chặng này đều phục vụ cùng một ý: giữ cho mỗi thay đổi nhỏ, có cách biết nó đúng, và có đường quay lại nếu sai. Ghim phiên bản để bước dựng lặp lại được. Nhánh ngắn để mỗi lần gộp chỉ mang một biến số. Cờ tính năng để bật tắt trong vài giây. Triển khai từng phần để lỗi chỉ chạm một nhóm nhỏ. Tách di trú dữ liệu để đường lui không bị phá. Kiểm thử đầy đủ là cần nhưng không đủ, vì luôn có thứ chỉ lộ ra ở môi trường thật.",
+  "diagram": [
+    {
+      "label": "Dựng: lặp lại được, phụ thuộc được ghim",
+      "arrow": true
+    },
+    {
+      "label": "Kiểm: kiểm thử, cổng tự động, rà soát mã",
+      "arrow": true
+    },
+    {
+      "label": "Đưa ra: nhánh ngắn, cờ, triển khai từng phần",
+      "arrow": true
+    },
+    {
+      "label": "Vận hành: quan sát, cảnh báo, sự cố, bài học"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Câu hỏi trước mỗi thay đổi",
+    "description": "Thay đổi này nhỏ tới đâu, tôi biết nó đúng bằng cách nào, và nếu sai thì quay lại mất bao lâu. Ba câu ấy áp dụng được cho một dòng mã lẫn cho một lần đổi cấu trúc dữ liệu, và chúng là toàn bộ nội dung chặng này."
+  },
+  "keyTakeaways": [
+    "Bước dựng phải lặp lại được, nếu không thì mọi kết luận từ kiểm thử đều yếu.",
+    "Cổng tự động biến quy ước thành ràng buộc; rà soát mã lo phần máy không làm được.",
+    "Cờ tính năng tách triển khai khỏi phát hành, biến việc tắt thành thao tác vài giây.",
+    "Mã quay lui được, dữ liệu thì không, nên thứ tự các bước quyết định đường lui.",
+    "Sau sự cố, sửa hệ thống chứ đừng sửa con người."
+  ],
+  "summary": {
+    "keyIdea": "Đưa mã ra thế giới an toàn nghĩa là mỗi bước đều nhỏ, kiểm chứng được và đảo ngược được.",
+    "formula": "Nhỏ - biết đúng - lui được.",
+    "commonMistake": "Dồn nhiều thay đổi vào một lần lớn, rồi khi hỏng thì không biết cái nào gây ra."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Với thay đổi tiếp theo của bạn, trả lời ba câu: nó nhỏ tới đâu, bạn biết nó đúng bằng cách nào, và nếu sai thì quay lại mất bao lâu. Câu nào không trả lời được là chỗ cần cải thiện trước."
+  },
+  "practicePrompt": {
+    "question": "Đội bạn triển khai mỗi tháng một lần, mỗi lần gộp hàng trăm thay đổi. Rủi ro lớn nhất là gì?",
+    "options": [
+      "Khi hỏng thì không biết thay đổi nào trong hàng trăm cái gây ra",
+      "Máy chủ phải chịu tải lớn hơn trong mỗi lần triển khai",
+      "Người dùng phải chờ quá lâu mới nhận được tính năng mới",
+      "Đội mất nhiều thời gian chuẩn bị cho mỗi lần triển khai"
+    ],
+    "correct": 0,
+    "explanation": "Lô càng lớn thì việc tìm nguyên nhân càng khó, và quay lui nghĩa là bỏ luôn cả những thay đổi đang chạy tốt. Đó là lý do tần suất triển khai cao lại an toàn hơn - mỗi lần chỉ mang một ít rủi ro và một biến số."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao bước dựng phải lặp lại được?",
+      "options": [
+        "Vì nếu không thì thứ đã kiểm thử không chắc là thứ đang chạy",
+        "Vì nó giúp rút ngắn thời gian chờ mỗi lần triển khai",
+        "Vì các công cụ hiện đại đều yêu cầu phải khai báo phụ thuộc",
+        "Vì nó giảm dung lượng lưu trữ dành cho sản phẩm dựng"
+      ],
+      "correct": 0,
+      "explanation": "Cùng mã cho hai sản phẩm khác nhau nghĩa là mọi kết luận từ kiểm thử đều nói về một bản khác bản đang phục vụ. Ghim phiên bản và khai báo đủ phụ thuộc là cách đóng khoảng trống đó."
+    },
+    {
+      "question": "Cờ tính năng và triển khai từng phần cùng phục vụ mục đích gì?",
+      "options": [
+        "Giới hạn phạm vi thiệt hại và rút ngắn thời gian khắc phục",
+        "Giảm số lượng bài kiểm thử cần viết cho mỗi tính năng",
+        "Cho phép nhiều đội cùng triển khai một lúc mà không xung đột nhau",
+        "Giảm tải cho máy chủ trong những giờ cao điểm"
+      ],
+      "correct": 0,
+      "explanation": "Cả hai đều không làm mã ít lỗi hơn. Chúng làm cho lỗi lọt qua chỉ chạm một phần nhỏ người dùng, và tắt đi được trong vài giây thay vì vài chục phút."
+    },
+    {
+      "question": "Vì sao thay đổi cấu trúc dữ liệu cần tách thành nhiều lần triển khai?",
+      "options": [
+        "Để ở mọi thời điểm đều còn quay lui được về bản mã trước",
+        "Để cơ sở dữ liệu không phải khoá bảng quá lâu trong một lần",
+        "Để đội vận hành kịp sao lưu trước mỗi bước thay đổi",
+        "Để mỗi bước đều được kiểm thử riêng ở môi trường thử"
+      ],
+      "correct": 0,
+      "explanation": "Gộp đổi dữ liệu với đổi mã sẽ phá đường lui: mã cũ không chạy được trên cấu trúc mới. Tách bước giữ cho mỗi trạng thái trung gian tương thích với cả hai bản."
+    },
+    {
+      "question": "Sau một sự cố, việc gì tạo ra thay đổi thật?",
+      "options": [
+        "Sửa hệ thống để cùng sai lầm ấy không còn gây hậu quả ấy",
+        "Nhắc cả đội cẩn thận hơn khi thao tác trên môi trường thật",
+        "Xác định ai đã thực hiện thao tác dẫn tới sự cố lần đó",
+        "Ghi lại đầy đủ diễn biến vào biên bản để lưu trữ về sau"
+      ],
+      "correct": 0,
+      "explanation": "Con người sẽ tiếp tục mắc lỗi, nên thứ duy nhất điều chỉnh được là hệ thống quanh họ. Biên bản là cần nhưng nó chỉ có giá trị khi dẫn tới những thay đổi có người phụ trách và có hạn."
+    },
+    {
+      "question": "Vì sao triển khai thường xuyên lại an toàn hơn triển khai hiếm?",
+      "options": [
+        "Vì mỗi lần chỉ mang theo một ít thay đổi nên dễ tìm nguyên nhân",
+        "Vì máy chủ đã quen với việc khởi động lại nên ít gặp lỗi hơn",
+        "Vì đội có nhiều cơ hội luyện tập quy trình triển khai",
+        "Vì người dùng nhận được tính năng mới sớm hơn nhiều"
+      ],
+      "correct": 0,
+      "explanation": "Rủi ro tỷ lệ với kích thước lô. Triển khai hàng trăm thay đổi một lúc nghĩa là khi hỏng thì phải tìm trong hàng trăm khả năng, và quay lui thì mất luôn cả những thứ đang chạy tốt."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai mươi bài của chặng này đi theo một đường thẳng: từ lúc bạn gõ xong dòng mã cuối cùng, tới lúc nó phục vụ người dùng, tới lúc bạn biết nó đang chạy ra sao."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn đoạn của con đường"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Dựng: mã thành sản phẩm chạy được, với phụ thuộc được ghim và môi trường được khai báo.",
+        "Kiểm: kiểm thử nhiều tầng, cổng tự động biến quy ước thành ràng buộc, rà soát mã lo phần còn lại.",
+        "Đưa ra: nhánh ngắn, cờ tính năng, triển khai từng phần, và tách di trú dữ liệu để giữ đường lui.",
+        "Vận hành: quan sát hệ thống thật, cảnh báo đúng việc, xử lý sự cố, rồi rút bài học từ hệ thống."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Ba câu hỏi mang theo"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Trước khi thay đổi",
+        "text": "Thay đổi này nhỏ tới đâu? Tôi sẽ biết nó đúng bằng cách nào? Nếu sai thì quay lại mất bao lâu?"
+      },
+      "right": {
+        "label": "Sau khi thay đổi",
+        "text": "Có chỉ số nào cho thấy nó đang chạy đúng không? Ai sẽ biết đầu tiên nếu hỏng? Bài học lần trước đã thành thay đổi thật chưa?"
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Kích thước lô là biến số quan trọng nhất",
+      "text": "Gần như mọi lời khuyên trong chặng này quy về một điều: giữ cho mỗi bước nhỏ. Nhánh ngắn, thay đổi nhỏ, triển khai thường xuyên, di trú theo bước. Lô nhỏ thì mỗi lần chỉ có một biến số, và một biến số thì luôn tìm ra được."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Công cụ trong chặng này sẽ đổi, và tên gọi cũng vậy. Ba câu hỏi thì không: nhỏ tới đâu, biết đúng bằng cách nào, lui mất bao lâu.",
+        "Chặng sau chuyển từ việc đưa mã ra thế giới sang việc quyết định nên viết mã gì: đo lường sản phẩm và chọn việc để làm."
+      ]
+    }
+  ]
+}

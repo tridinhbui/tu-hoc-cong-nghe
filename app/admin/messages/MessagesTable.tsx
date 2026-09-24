@@ -98,16 +98,16 @@ export default function MessagesTable({
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl overflow-hidden">
       {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row gap-3 p-4 border-b border-stone-200 dark:border-stone-800">
+      <div className="flex flex-col sm:flex-row gap-3 p-4 border-b border-line">
         <form onSubmit={handleSearchSubmit} className="relative flex-1">
           <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={tm.searchPlaceholder}
-            className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
+            className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-ink focus:outline-none focus:border-stone-500"
           />
         </form>
         <div className="flex gap-1">
@@ -117,8 +117,8 @@ export default function MessagesTable({
               onClick={() => handleFilterChange(f)}
               className={`px-3 py-2 text-xs font-bold rounded-lg transition-colors ${
                 initialFilter === f
-                  ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                  : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+                  ? "bg-surface-invert text-ink-invert"
+                  : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
               }`}
             >
               {f === "all" ? tm.filterAll : f === "unread" ? tm.filterUnread : tm.filterRead}
@@ -143,8 +143,8 @@ export default function MessagesTable({
                   className="flex-1 min-w-0 text-left"
                 >
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{msg.name}</span>
-                    {msg.email && <span className="text-xs text-stone-500 dark:text-stone-400">{msg.email}</span>}
+                    <span className="font-bold text-sm text-ink">{msg.name}</span>
+                    {msg.email && <span className="text-xs text-ink-muted">{msg.email}</span>}
                     {!msg.is_read && (
                       <span className="text-[10px] font-bold uppercase tracking-wide bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 px-2 py-0.5 rounded-full">
                         {tm.newBadge}
@@ -152,12 +152,12 @@ export default function MessagesTable({
                     )}
                   </div>
                   {msg.subject && (
-                    <p className="text-sm font-semibold text-stone-700 dark:text-stone-300 mt-1">{msg.subject}</p>
+                    <p className="text-sm font-semibold text-ink-body mt-1">{msg.subject}</p>
                   )}
-                  <p className={`text-sm text-stone-600 dark:text-stone-400 mt-1 ${expanded === msg.id ? "" : "line-clamp-2"}`}>
+                  <p className={`text-sm text-ink-soft mt-1 ${expanded === msg.id ? "" : "line-clamp-2"}`}>
                     {msg.message}
                   </p>
-                  <p className="text-[11px] text-stone-400 dark:text-stone-500 mt-1.5">
+                  <p className="text-[11px] text-ink-faint mt-1.5">
                     {new Date(msg.created_at).toLocaleString(intlLocale(locale))}
                   </p>
                 </button>
@@ -169,7 +169,7 @@ export default function MessagesTable({
                         setReplyText("");
                       }}
                       title={tm.replyViaChat}
-                      className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
+                      className="p-2 rounded-lg hover:bg-surface-raised text-ink-muted"
                     >
                       <Reply className="w-4 h-4" />
                     </button>
@@ -177,14 +177,14 @@ export default function MessagesTable({
                   <button
                     onClick={() => toggleRead(msg)}
                     title={msg.is_read ? tm.markUnread : tm.markRead}
-                    className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400"
+                    className="p-2 rounded-lg hover:bg-surface-raised text-ink-muted"
                   >
                     {msg.is_read ? <Mail className="w-4 h-4" /> : <MailOpen className="w-4 h-4" />}
                   </button>
                   <button
                     onClick={() => setToDelete(msg)}
                     title={tm.deleteAction}
-                    className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-stone-500 dark:text-stone-400 hover:text-rose-600 dark:hover:text-rose-400"
+                    className="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-ink-muted hover:text-alert"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -199,12 +199,12 @@ export default function MessagesTable({
                     onKeyDown={(e) => e.key === "Enter" && sendReply(msg)}
                     placeholder={format(tm.replyPlaceholder, { name: msg.name })}
                     autoFocus
-                    className="flex-1 px-3 py-2 text-sm rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-500"
+                    className="flex-1 px-3 py-2 text-sm rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-ink focus:outline-none focus:border-stone-500"
                   />
                   <button
                     onClick={() => sendReply(msg)}
                     disabled={sendingReply || !replyText.trim()}
-                    className="px-3 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 disabled:opacity-50"
+                    className="px-3 py-2 rounded-lg bg-surface-invert text-ink-invert disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
                   </button>

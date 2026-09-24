@@ -1,0 +1,169 @@
+{
+  "id": 102,
+  "slug": "ranh-gioi-va-quyen-so-huu",
+  "title": "Ranh giới: mỗi phần có đúng một chủ",
+  "subtitle": "Phần mã ai cũng sửa được là phần mã không ai chịu trách nhiệm.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧱",
+  "track": "professional",
+  "whyItMatters": "Ranh giới là công cụ duy nhất cắt được chi phí phối hợp tăng theo bình phương. Vẽ đúng thì mỗi đội làm việc gần như độc lập; vẽ sai thì mọi thay đổi đều cần ba đội cùng ngồi lại.",
+  "openingQuestion": "Nên vẽ ranh giới giữa các đội theo tiêu chí nào?",
+  "openingOptions": [
+    "Theo những phần thay đổi vì lý do khác nhau và ít cần đổi cùng lúc",
+    "Theo tầng kỹ thuật: một đội giao diện, một đội máy chủ, một đội dữ liệu",
+    "Theo số lượng dòng mã để khối lượng công việc chia đều",
+    "Theo công nghệ mà mỗi nhóm thành viên thành thạo nhất"
+  ],
+  "correctOption": 0,
+  "explanation": "Mục tiêu của ranh giới là để một thay đổi thông thường chỉ chạm vào một bên. Chia theo tầng kỹ thuật thì gần như mọi tính năng đều đi xuyên cả ba tầng, nên mỗi việc đều cần ba đội phối hợp - đúng thứ ranh giới sinh ra để tránh. Chia theo lý do thay đổi thì một tính năng nằm gọn trong một đội và họ giao được mà không phải chờ ai. Chia theo số dòng mã hay theo công nghệ đều bỏ qua câu hỏi quan trọng nhất: cái gì hay đổi cùng nhau.",
+  "diagram": [
+    {
+      "label": "Chia theo tầng: mọi tính năng cần ba đội",
+      "arrow": true
+    },
+    {
+      "label": "Chia theo lý do thay đổi",
+      "arrow": true
+    },
+    {
+      "label": "Một tính năng nằm gọn trong một đội",
+      "arrow": true
+    },
+    {
+      "label": "Giao được mà không phải chờ ai"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Ba đội cho một nút bấm",
+    "description": "Trong tổ chức chia theo tầng, thêm một trường vào biểu mẫu cần đội giao diện, đội máy chủ và đội dữ liệu cùng lên lịch. Việc hai ngày trở thành việc sáu tuần, và phần lớn thời gian ấy là chờ đợi chứ không phải làm."
+  },
+  "keyTakeaways": [
+    "Vẽ ranh giới theo lý do thay đổi, không theo tầng kỹ thuật.",
+    "Mỗi phần mã nên có đúng một đội chịu trách nhiệm.",
+    "Ranh giới tốt là ranh giới mà thay đổi thông thường chỉ chạm một bên.",
+    "Không có chủ thì phần mã đó xuống cấp dần vì ai cũng sửa và không ai chăm."
+  ],
+  "summary": {
+    "keyIdea": "Ranh giới đúng là ranh giới cắt ít nhất số lần một thay đổi phải đi qua nó.",
+    "formula": "Cái gì đổi cùng nhau thì ở cùng nhau.",
+    "commonMistake": "Chia đội theo tầng kỹ thuật, khiến mọi tính năng đều cần phối hợp ba bên."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy mười thay đổi gần nhất của đội và đếm xem mỗi cái đi qua bao nhiêu ranh giới đội. Nếu phần lớn vượt quá một, ranh giới hiện tại đang vẽ sai chỗ."
+  },
+  "practicePrompt": {
+    "question": "Một vùng mã không thuộc đội nào, ai cần thì sửa. Hậu quả thường thấy là gì?",
+    "options": [
+      "Nó xuống cấp dần vì mọi người chỉ sửa đủ cho việc của mình rồi đi",
+      "Nó được cải thiện nhanh vì có nhiều người cùng đóng góp",
+      "Nó bị khoá lại vì không ai được phép thay đổi khi chưa xin phép ai",
+      "Nó trở thành phần ổn định nhất vì không ai muốn động vào"
+    ],
+    "correct": 0,
+    "explanation": "Mỗi người đi qua chỉ tối ưu cho việc của mình và không ai chịu trách nhiệm về tổng thể, nên chất lượng trôi xuống theo hướng ít ai để ý. Đây là lý do quyền sở hữu quan trọng không kém bản thân đường ranh giới."
+  },
+  "quiz": [
+    {
+      "question": "Tiêu chí đúng để vẽ ranh giới giữa các đội là gì?",
+      "options": [
+        "Những phần thay đổi vì lý do khác nhau thì tách ra",
+        "Những phần có cùng công nghệ thì gom vào một đội",
+        "Những phần có số dòng mã tương đương nhau thì chia đều ra",
+        "Những phần do cùng một người viết thì giữ nguyên"
+      ],
+      "correct": 0,
+      "explanation": "Ranh giới tồn tại để giảm số lần phải phối hợp, nên nó phải cắt ở chỗ ít có thay đổi đi qua nhất. Cái gì hay đổi cùng nhau thì nên ở cùng một phía."
+    },
+    {
+      "question": "Vì sao chia đội theo tầng kỹ thuật lại tốn kém?",
+      "options": [
+        "Vì gần như mọi tính năng đều đi xuyên qua tất cả các tầng",
+        "Vì mỗi tầng dùng một ngôn ngữ lập trình khác nhau",
+        "Vì các tầng phải được triển khai theo đúng thứ tự cố định",
+        "Vì việc kiểm thử chỉ thực hiện được ở tầng ngoài cùng"
+      ],
+      "correct": 0,
+      "explanation": "Ranh giới đặt vuông góc với hướng của thay đổi thì mọi thay đổi đều phải vượt qua nó. Kết quả là chi phí phối hợp tăng thay vì giảm - ngược hẳn mục đích."
+    },
+    {
+      "question": "Vì sao mỗi phần mã nên có đúng một chủ?",
+      "options": [
+        "Vì không có chủ thì không ai chịu trách nhiệm về tổng thể của nó",
+        "Vì nhiều người sửa cùng lúc sẽ gây xung đột khi gộp mã",
+        "Vì công cụ quản lý mã yêu cầu khai báo người phụ trách",
+        "Vì việc phân quyền truy cập cần một danh sách rõ ràng"
+      ],
+      "correct": 0,
+      "explanation": "Xung đột gộp mã thì công cụ xử lý được. Thứ không xử lý được là chuyện mỗi người chỉ sửa vừa đủ cho việc của mình, và chất lượng tổng thể trôi xuống mà không ai thấy."
+    },
+    {
+      "question": "Dấu hiệu ranh giới đang vẽ sai chỗ là gì?",
+      "options": [
+        "Phần lớn thay đổi thông thường phải đi qua nhiều đội",
+        "Một đội có nhiều mã hơn hẳn các đội còn lại",
+        "Các đội dùng những công nghệ khác nhau cho phần của mình",
+        "Có nhiều cuộc họp kỹ thuật giữa các đội mỗi tuần"
+      ],
+      "correct": 0,
+      "explanation": "Đây là phép đo trực tiếp: đếm số ranh giới mà mỗi thay đổi phải vượt qua. Chênh lệch về khối lượng mã thì bình thường và không nói lên gì về chất lượng của đường ranh giới."
+    },
+    {
+      "question": "Ranh giới tốt mang lại điều gì cho một đội?",
+      "options": [
+        "Khả năng giao được việc mà không phải chờ đội khác",
+        "Quyền tự do lựa chọn bất kỳ công nghệ nào mà họ muốn",
+        "Số lượng mã cần bảo trì ít hơn so với trước",
+        "Sự tách biệt hoàn toàn khỏi các đội còn lại"
+      ],
+      "correct": 0,
+      "explanation": "Tự chủ trong việc giao là lợi ích chính. Tách biệt hoàn toàn thì không đội nào đạt được, vì sản phẩm vẫn là một - điều cần là những lần phải phối hợp trở nên hiếm chứ không phải biến mất."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước kết luận rằng lời giải cho quy mô là ranh giới. Bài này về câu hỏi khó: vẽ chúng ở đâu, vì vẽ sai chỗ còn tệ hơn không vẽ."
+    },
+    {
+      "type": "heading",
+      "text": "Cắt theo hướng của thay đổi"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mọi đường ranh giới đều là một chỗ phải phối hợp khi thay đổi đi qua. Vì thế câu hỏi không phải là chia thế nào cho đẹp mà là chia thế nào để ít thay đổi phải đi qua nhất. Nếu bạn nhìn mười tính năng gần nhất và thấy chúng đều đi xuyên cùng một đường cắt, thì đường ấy đang đặt vuông góc với hướng công việc thật."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cắt theo tầng",
+        "text": "Giao diện, máy chủ, dữ liệu là ba đội. Mọi tính năng đi qua cả ba, nên mọi việc đều cần lên lịch chung."
+      },
+      "right": {
+        "label": "Cắt theo miền",
+        "text": "Đơn hàng, thanh toán, kho là ba đội, mỗi đội có đủ các tầng. Một tính năng đơn hàng nằm gọn trong một đội."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Không chủ thì xuống cấp",
+      "text": "Vùng mã ai cũng sửa được nhận rất nhiều thay đổi nhỏ, mỗi cái vừa đủ cho việc của người sửa. Không ai lùi lại nhìn tổng thể, nên nó tích tụ mâu thuẫn cho tới lúc không ai dám động vào nữa."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đếm số ranh giới mà một thay đổi thông thường phải vượt qua - đó là thước đo chất lượng của cách chia.",
+        "Ghi rõ đội nào sở hữu phần nào, ở một chỗ ai cũng tra được.",
+        "Khi ranh giới liên tục bị vượt qua ở cùng một chỗ, hãy nghĩ tới việc vẽ lại chứ không phải họp thêm."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Ranh giới đúng chỗ làm các đội gần như độc lập. Ranh giới sai chỗ biến mọi việc nhỏ thành một cuộc họp ba bên.",
+        "Bài sau nói về thứ làm hỏng ngay cả những ranh giới vẽ đúng: phụ thuộc chéo len qua chúng."
+      ]
+    }
+  ]
+}

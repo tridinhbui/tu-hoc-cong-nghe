@@ -1,0 +1,158 @@
+{
+  "id": 89,
+  "slug": "dinh-nghia-chi-so-va-su-troi-dat",
+  "title": "Định nghĩa chỉ số: con số đổi vì cách tính đổi",
+  "subtitle": "Người dùng hoạt động nghĩa là gì? Hai người trả lời khác nhau thì hai báo cáo sẽ cãi nhau.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📐",
+  "track": "professional",
+  "whyItMatters": "Rất nhiều cuộc họp dài là cuộc cãi nhau giữa hai con số mà cả hai đều đúng theo định nghĩa riêng. Và nhiều cú tăng trưởng ấn tượng hoá ra là một lần đổi cách tính mà không ai ghi lại.",
+  "openingQuestion": "Số người dùng hoạt động của bạn tăng 30% trong một ngày, không có gì được phát hành. Nguyên nhân khả dĩ nhất là gì?",
+  "openingOptions": [
+    "Định nghĩa hoặc cách thu thập chỉ số vừa thay đổi",
+    "Một chiến dịch quảng cáo bắt đầu chạy từ hôm đó",
+    "Người dùng bắt đầu chia sẻ sản phẩm cho bạn bè nhiều hơn",
+    "Có một ngày lễ khiến lượng truy cập tăng đột biến"
+  ],
+  "correctOption": 0,
+  "explanation": "Hành vi con người hiếm khi nhảy ba mươi phần trăm trong một ngày; cách đo thì nhảy suốt. Một sự kiện mới được ghi nhận vào định nghĩa hoạt động, một bộ lọc bị gỡ, một thay đổi khiến ứng dụng gọi thêm một lần lúc khởi động - tất cả đều tạo ra cú nhảy như vậy. Đây là phiên bản sản phẩm của nguyên tắc đã gặp ở chặng trước: khi số liệu biến động đột ngột, giả thuyết đầu tiên phải là đường dữ liệu, không phải thế giới thật.",
+  "diagram": [
+    {
+      "label": "Chỉ số nhảy đột ngột",
+      "arrow": true
+    },
+    {
+      "label": "Kiểm định nghĩa và đường thu thập trước",
+      "arrow": true
+    },
+    {
+      "label": "Loại trừ xong mới tìm nguyên nhân sản phẩm",
+      "arrow": true
+    },
+    {
+      "label": "Hành vi người dùng đổi từ từ, cách đo thì đổi tức thì"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hai báo cáo, hai con số",
+    "description": "Đội sản phẩm báo cáo tám mươi nghìn người dùng hoạt động, đội tài chính báo sáu mươi nghìn. Cả hai đều đúng: một bên đếm mọi phiên mở ứng dụng, bên kia chỉ đếm người có ít nhất một hành động. Không ai sai, và cuộc họp vẫn mất một tiếng."
+  },
+  "keyTakeaways": [
+    "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được.",
+    "Đổi định nghĩa thì phải ghi lại và đánh dấu trên biểu đồ, nếu không lịch sử thành vô nghĩa.",
+    "Biến động đột ngột nên nghi đường dữ liệu trước khi nghi thế giới thật.",
+    "Số liệu quá khứ chỉ so sánh được nếu định nghĩa không đổi trong khoảng đó."
+  ],
+  "summary": {
+    "keyIdea": "Một chỉ số là con số cộng với định nghĩa; thiếu vế sau thì con số không so sánh được với chính nó.",
+    "formula": "Viết định nghĩa, đánh dấu mọi lần đổi.",
+    "commonMistake": "Đổi cách tính rồi ăn mừng cú tăng trưởng do chính việc đổi tạo ra."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Hỏi hai người ở hai đội khác nhau định nghĩa một chỉ số quan trọng của công ty. Nếu hai câu trả lời khác nhau thì bạn vừa tìm ra nguồn của nhiều cuộc họp trong tương lai."
+  },
+  "practicePrompt": {
+    "question": "Bạn cần đổi định nghĩa một chỉ số cho hợp lý hơn. Nên làm gì với dữ liệu lịch sử?",
+    "options": [
+      "Tính lại lịch sử theo định nghĩa mới, hoặc đánh dấu rõ điểm thay đổi",
+      "Giữ nguyên lịch sử cũ và bắt đầu chuỗi mới từ hôm nay",
+      "Xoá dữ liệu lịch sử vì nó không còn so sánh được nữa",
+      "Giữ song song cả hai chỉ số vô thời hạn để tiện đối chiếu"
+    ],
+    "correct": 0,
+    "explanation": "Nối hai định nghĩa vào một đường biểu đồ mà không đánh dấu là tạo ra một cú nhảy giả mà người đọc sẽ diễn giải như một sự kiện thật. Tính lại lịch sử là tốt nhất; không làm được thì tối thiểu phải có một vạch trên biểu đồ ghi rõ định nghĩa đổi từ đây."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao mỗi chỉ số cần một định nghĩa được viết ra?",
+      "options": [
+        "Vì không có nó thì hai đội tính ra hai con số và cả hai đều đúng",
+        "Vì công cụ phân tích yêu cầu khai báo trước khi tạo chỉ số",
+        "Vì định nghĩa quyết định chỉ số đó được cập nhật bao lâu một lần",
+        "Vì nó giúp giảm chi phí tính toán cho hệ thống phân tích"
+      ],
+      "correct": 0,
+      "explanation": "Người dùng hoạt động có ít nhất năm cách hiểu hợp lý. Không chốt một cách thì mọi cuộc thảo luận đều bắt đầu bằng việc đối chiếu xem ai đang nói về con số nào."
+    },
+    {
+      "question": "Khi một chỉ số nhảy đột ngột trong một ngày, nên nghi gì trước?",
+      "options": [
+        "Định nghĩa hoặc đường thu thập dữ liệu vừa thay đổi",
+        "Người dùng vừa thay đổi hành vi trên diện rộng cùng một lúc",
+        "Đối thủ vừa gặp sự cố nên khách chuyển sang",
+        "Có yếu tố mùa vụ mà mô hình chưa tính tới"
+      ],
+      "correct": 0,
+      "explanation": "Hành vi tập thể đổi từ từ, còn cách đo thì đổi trong một lần triển khai. Đây là cùng nguyên tắc với việc chẩn đoán biến động số liệu ở chặng nền tảng dữ liệu."
+    },
+    {
+      "question": "Khi đổi định nghĩa chỉ số, việc bắt buộc phải làm là gì?",
+      "options": [
+        "Đánh dấu điểm thay đổi hoặc tính lại toàn bộ lịch sử",
+        "Thông báo cho toàn bộ nhân viên trong công ty biết",
+        "Giữ lại định nghĩa cũ chạy song song trong một năm",
+        "Chờ tới đầu năm tài chính mới để áp dụng định nghĩa mới"
+      ],
+      "correct": 0,
+      "explanation": "Không đánh dấu thì đường biểu đồ có một cú nhảy mà người đọc sẽ hiểu là sự kiện thật. Sáu tháng sau sẽ có người viết cả một bản phân tích về nguyên nhân của cú nhảy ấy."
+    },
+    {
+      "question": "Định nghĩa chỉ số nên được lưu ở đâu?",
+      "options": [
+        "Ở một chỗ duy nhất mà mọi người đều tra được",
+        "Trong tài liệu riêng của từng đội sử dụng chỉ số",
+        "Trong mã nguồn của hệ thống phân tích dữ liệu",
+        "Trong biên bản cuộc họp lúc chỉ số được thống nhất"
+      ],
+      "correct": 0,
+      "explanation": "Định nghĩa nằm rải rác thì chúng sẽ trôi khỏi nhau. Một chỗ duy nhất, ai cũng tra được, là điều kiện để hai đội nói về cùng một con số."
+    },
+    {
+      "question": "Vì sao một cú tăng trưởng ấn tượng đôi khi không có thật?",
+      "options": [
+        "Vì cách tính vừa đổi và cú tăng là do chính việc đổi tạo ra",
+        "Vì dữ liệu cần thời gian để ổn định sau mỗi lần cập nhật",
+        "Vì người dùng thử nghiệm nhiều hơn khi có tính năng mới",
+        "Vì các công cụ phân tích thường đếm trùng trong giai đoạn đầu"
+      ],
+      "correct": 0,
+      "explanation": "Thêm một loại sự kiện vào định nghĩa là đủ để tạo ra một cú nhảy hai chữ số. Nếu không ai ghi lại thì cả công ty sẽ ăn mừng một thay đổi trong bảng tính."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước chọn ra một chỉ số để cả đội cùng nhìn. Bài này về chuyện xảy ra sau đó: chính con số ấy trôi đi, không phải vì thế giới đổi mà vì cách tính đổi."
+    },
+    {
+      "type": "heading",
+      "text": "Một chỉ số là con số cộng định nghĩa"
+    },
+    {
+      "type": "paragraph",
+      "text": "Người dùng hoạt động trong tháng nghe rất rõ ràng cho tới khi phải viết ra: hoạt động nghĩa là mở ứng dụng, hay là làm ít nhất một hành động? Có tính người dùng thử không? Có tính lượt truy cập từ máy tự động không? Mỗi lựa chọn cho một con số khác, và mọi lựa chọn đều hợp lý - nên nếu không chốt thì hai đội sẽ có hai sự thật."
+    },
+    {
+      "type": "callout",
+      "label": "Nghi đường dữ liệu trước",
+      "text": "Hành vi của hàng chục nghìn người đổi từ từ. Cách đo thì đổi trong đúng một lần triển khai. Khi thấy cú nhảy trong một ngày, kiểm định nghĩa và đường thu thập trước khi viết bất kỳ bản phân tích nào về thị trường."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Giữ định nghĩa của mọi chỉ số quan trọng ở một chỗ duy nhất, ai cũng tra được.",
+        "Đánh dấu ngay trên biểu đồ mỗi lần định nghĩa hoặc cách thu thập thay đổi.",
+        "Khi đổi định nghĩa, tính lại lịch sử nếu làm được - nếu không thì bắt đầu một chuỗi mới."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Con số không có định nghĩa thì không so sánh được với chính nó của tháng trước.",
+        "Bài sau nói về loại thông tin mà không chỉ số nào chạm tới được: vì sao người dùng làm điều họ làm."
+      ]
+    }
+  ]
+}

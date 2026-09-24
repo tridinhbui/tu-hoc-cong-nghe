@@ -1,0 +1,177 @@
+{
+  "id": 87,
+  "slug": "di-cung-nhau-va-gay-ra-nhau",
+  "title": "Đi cùng nhau không có nghĩa là gây ra nhau",
+  "subtitle": "Người dùng nhóm này gắn bó hơn - hay chính vì họ gắn bó nên mới thuộc nhóm này?",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🔗",
+  "track": "professional",
+  "whyItMatters": "Đây là chỗ số liệu dẫn tới quyết định sai một cách thuyết phục nhất. Hai con số đi cùng nhau luôn gợi ra một câu chuyện nhân quả, và câu chuyện ấy thường ngược chiều hoặc do một nguyên nhân thứ ba.",
+  "openingQuestion": "Người dùng bật thông báo có tỷ lệ giữ chân cao gấp ba. Kết luận nào an toàn?",
+  "openingOptions": [
+    "Chưa kết luận được, vì người vốn đã gắn bó mới là người chịu bật thông báo",
+    "Bật thông báo làm tăng tỷ lệ giữ chân, nên hãy bật mặc định cho tất cả",
+    "Thông báo là tính năng quan trọng nhất và cần được đầu tư thêm",
+    "Người không bật thông báo là nhóm khách hàng không tiềm năng"
+  ],
+  "correctOption": 0,
+  "explanation": "Chiều nhân quả ở đây rất có thể ngược lại: những người đã thích sản phẩm là những người sẵn lòng bật thông báo, chứ không phải thông báo làm họ thích sản phẩm. Bật mặc định cho tất cả sẽ không biến nhóm còn lại thành người gắn bó, và thường còn làm họ gỡ ứng dụng. Cách duy nhất tách được hai giả thuyết là một thử nghiệm: chia ngẫu nhiên rồi bật cho một nhóm. Ngẫu nhiên hoá phá vỡ mối liên hệ giữa việc bật thông báo và mức độ gắn bó sẵn có.",
+  "diagram": [
+    {
+      "label": "Quan sát: bật thông báo đi cùng giữ chân cao",
+      "arrow": true
+    },
+    {
+      "label": "Giả thuyết 1: thông báo gây ra gắn bó",
+      "arrow": true
+    },
+    {
+      "label": "Giả thuyết 2: gắn bó gây ra việc bật thông báo",
+      "arrow": true
+    },
+    {
+      "label": "Chỉ thử nghiệm ngẫu nhiên mới tách được"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Người dùng tính năng X gắn bó hơn",
+    "description": "Câu này xuất hiện ở mọi sản phẩm và gần như luôn bị đọc sai. Người đã gắn bó thì khám phá nhiều tính năng hơn, nên mọi tính năng đều tương quan với sự gắn bó. Ép người mới dùng tính năng đó thường không tạo ra được sự gắn bó nào."
+  },
+  "keyTakeaways": [
+    "Hai đại lượng đi cùng nhau có thể do nhân quả ngược chiều hoặc do nguyên nhân thứ ba.",
+    "Ngẫu nhiên hoá là thứ duy nhất cắt đứt được mối liên hệ sẵn có giữa hai nhóm.",
+    "Nhóm tự chọn luôn khác nhóm được chọn ngẫu nhiên ở nhiều thứ bạn không đo.",
+    "Trước khi hành động theo một tương quan, hãy viết ra ít nhất hai cách giải thích khác."
+  ],
+  "summary": {
+    "keyIdea": "Tương quan là điểm bắt đầu của một câu hỏi, không phải kết luận để hành động.",
+    "formula": "Hỏi: chiều ngược lại có hợp lý không, và có nguyên nhân thứ ba không?",
+    "commonMistake": "Ép mọi người dùng một tính năng vì nhóm tự dùng nó đang gắn bó hơn."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tìm một câu kiểu người dùng làm X thì giữ chân tốt hơn trong tài liệu của đội bạn. Viết ra hai cách giải thích khác cho cùng số liệu ấy, rồi xem kết luận ban đầu còn vững không."
+  },
+  "practicePrompt": {
+    "question": "Số liệu cho thấy khách hàng gọi hỗ trợ có tỷ lệ rời bỏ cao hơn. Kết luận nào hợp lý nhất?",
+    "options": [
+      "Người gặp vấn đề mới gọi hỗ trợ, nên vấn đề mới là nguyên nhân chung",
+      "Đội hỗ trợ đang làm việc kém nên khiến khách hàng rời bỏ",
+      "Nên hạn chế kênh hỗ trợ để giảm tỷ lệ rời bỏ của khách",
+      "Khách hàng gọi hỗ trợ vốn đã là nhóm khó tính hơn mức trung bình"
+    ],
+    "correct": 0,
+    "explanation": "Có một nguyên nhân đứng trước cả hai: khách gặp trục trặc thì vừa gọi hỗ trợ vừa dễ rời bỏ. Kết luận rằng hỗ trợ gây ra rời bỏ dẫn tới hành động tai hại là cắt bớt kênh hỗ trợ, trong khi việc đúng là đi tìm trục trặc kia."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao tương quan không đủ để kết luận nhân quả?",
+      "options": [
+        "Vì quan hệ có thể ngược chiều hoặc do một nguyên nhân thứ ba",
+        "Vì phép đo tương quan luôn có sai số khá lớn",
+        "Vì cần có ít nhất ba đại lượng mới xác định được nhân quả",
+        "Vì tương quan chỉ tính được trên dữ liệu quá khứ"
+      ],
+      "correct": 0,
+      "explanation": "Cùng một tương quan tương thích với nhiều cấu trúc nhân quả khác nhau, và dữ liệu quan sát không phân biệt được chúng. Đó là lý do phải can thiệp bằng thử nghiệm."
+    },
+    {
+      "question": "Ngẫu nhiên hoá giúp gì trong việc xác định nhân quả?",
+      "options": [
+        "Nó cắt đứt liên hệ giữa việc thuộc nhóm nào và các đặc điểm sẵn có",
+        "Nó làm tăng cỡ mẫu cần thiết nên kết quả đáng tin hơn",
+        "Nó loại bỏ hoàn toàn sai số trong quá trình đo lường",
+        "Nó cho phép quan sát người dùng trong thời gian dài hơn"
+      ],
+      "correct": 0,
+      "explanation": "Khi việc ai vào nhóm nào do ngẫu nhiên quyết định, hai nhóm giống nhau về mọi đặc điểm - kể cả những đặc điểm bạn không nghĩ tới. Khác biệt còn lại chỉ có thể do can thiệp."
+    },
+    {
+      "question": "Vấn đề của nhóm tự chọn là gì?",
+      "options": [
+        "Họ khác nhóm còn lại ở nhiều thứ ngoài hành vi đang xét",
+        "Họ thường có số lượng quá nhỏ để phân tích đáng tin",
+        "Họ không đại diện cho những người dùng trả tiền",
+        "Họ thay đổi hành vi ngay khi biết mình đang được quan sát"
+      ],
+      "correct": 0,
+      "explanation": "Người tự bật một tính năng đã khác người không bật ngay từ trước khi bật. Mọi khác biệt về sau đều lẫn cả tác động của tính năng lẫn khác biệt vốn có ấy."
+    },
+    {
+      "question": "Câu hỏi nào giúp kiểm tra một kết luận nhân quả?",
+      "options": [
+        "Chiều ngược lại có hợp lý không, và có nguyên nhân thứ ba không?",
+        "Dữ liệu có được thu thập trong ít nhất ba tháng không?",
+        "Mức tương quan có đủ cao để loại trừ ngẫu nhiên không?",
+        "Kết luận này có phù hợp với kinh nghiệm của đội không?"
+      ],
+      "correct": 0,
+      "explanation": "Hai câu hỏi ấy loại được phần lớn kết luận sai mà không cần công cụ gì. Tương quan cao không giúp gì cả - nó vẫn tương thích với cả ba cấu trúc nhân quả."
+    },
+    {
+      "question": "Vì sao mọi tính năng thường tương quan với sự gắn bó?",
+      "options": [
+        "Vì người đã gắn bó thì khám phá nhiều tính năng hơn",
+        "Vì các tính năng được thiết kế để tăng sự gắn bó",
+        "Vì công cụ đo lường tính cả những lượt dùng thử",
+        "Vì người dùng mới thường không tìm thấy tính năng nào"
+      ],
+      "correct": 0,
+      "explanation": "Sự gắn bó là nguyên nhân chung đứng trước việc dùng gần như mọi tính năng. Vì thế câu người dùng tính năng X gắn bó hơn gần như luôn đúng và gần như luôn vô dụng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bạn có số liệu sạch, cỡ mẫu lớn, và một mối liên hệ rõ ràng giữa hai đại lượng. Đây chính là lúc dễ ra quyết định sai nhất, vì mọi thứ trông rất thuyết phục."
+    },
+    {
+      "type": "heading",
+      "text": "Ba cách giải thích một tương quan"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Cùng một số liệu, ba cấu trúc",
+      "subtitle": "Dữ liệu quan sát không phân biệt được chúng",
+      "concepts": [
+        {
+          "vi": "Xuôi chiều",
+          "en": "forward causation",
+          "def": "Thứ ta hay giả định. Đôi khi đúng, nhưng không được mặc định là đúng."
+        },
+        {
+          "vi": "Ngược chiều",
+          "en": "reverse causation",
+          "def": "Người gắn bó mới bật thông báo, chứ không phải thông báo tạo ra gắn bó."
+        },
+        {
+          "vi": "Nguyên nhân chung",
+          "en": "confounder",
+          "def": "Trục trặc khiến khách vừa gọi hỗ trợ vừa rời bỏ. Hai hệ quả của một nguyên nhân."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao ngẫu nhiên hoá là lối thoát"
+    },
+    {
+      "type": "paragraph",
+      "text": "Khi bạn quyết định ai được bật tính năng bằng cách tung đồng xu, việc thuộc nhóm nào không còn liên quan gì tới mức độ gắn bó sẵn có, tới thiết bị, tới thâm niên, hay bất kỳ đặc điểm nào khác. Hai nhóm giống nhau về mọi thứ trừ đúng một can thiệp - nên khác biệt về sau chỉ có thể do can thiệp ấy."
+    },
+    {
+      "type": "callout",
+      "label": "Hành động sai từ một tương quan đúng",
+      "text": "Người gọi hỗ trợ rời bỏ nhiều hơn là một sự thật. Kết luận rằng hỗ trợ gây ra rời bỏ dẫn tới việc cắt bớt kênh hỗ trợ - vừa không giảm được rời bỏ, vừa lấy mất kênh duy nhất bạn biết được khách đang gặp gì."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tương quan mở ra một câu hỏi hay. Biến nó thành kết luận mà không kiểm chứng là cách đi rất nhanh về hướng sai.",
+        "Bài sau nói về việc chọn một chỉ số để cả đội cùng nhìn, và vì sao nhiều chỉ số cùng lúc lại tệ hơn."
+      ]
+    }
+  ],
+  "interactiveType": "regression"
+}

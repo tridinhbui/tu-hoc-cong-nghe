@@ -87,7 +87,7 @@ function ChapterHeading({
         </span>
         <span
           className={`eyebrow ${
-            dark ? "text-emerald-300/90" : "text-emerald-700 dark:text-emerald-400"
+            dark ? "text-emerald-300/90" : "text-accent-strong"
           }`}
         >
           {eyebrow}
@@ -103,7 +103,7 @@ function ChapterHeading({
 
       <h2
         className={`mt-4 text-[1.7rem] font-black leading-[1.12] tracking-tight sm:text-[2.1rem] lg:text-[2.4rem] ${
-          dark ? "text-white" : "text-stone-950 dark:text-stone-50"
+          dark ? "text-white" : "text-ink-max"
         }`}
       >
         {title}
@@ -112,7 +112,7 @@ function ChapterHeading({
       {sub && (
         <p
           className={`mt-3 max-w-xl text-sm leading-7 sm:text-[15px] ${
-            dark ? "text-stone-300" : "text-stone-600 dark:text-stone-400"
+            dark ? "text-stone-300" : "text-ink-soft"
           }`}
         >
           {sub}
@@ -342,9 +342,9 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <Logo size={28} />
-              <span className="text-sm sm:text-base font-black text-stone-800 dark:text-stone-200 uppercase tracking-widest flex items-center gap-2">
+              <span className="text-sm sm:text-base font-black text-ink-heading uppercase tracking-widest flex items-center gap-2">
                 {t.home.brand}
-                <span className="text-[9px] font-black text-accent bg-accent-soft/40 px-2 py-0.5 rounded border border-emerald-200/50 hidden xs:inline-block">
+                <span className="text-[9px] font-black text-accent bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200/50 hidden xs:inline-block">
                   {t.home.brandBadge}
                 </span>
               </span>
@@ -407,7 +407,7 @@ export default function HomePage() {
 
                 <motion.h1
                   {...heroReveal(0.03, 18)}
-                  className="mb-4 text-[2.5rem] sm:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tight text-stone-950 dark:text-stone-50"
+                  className="mb-4 text-[2.5rem] sm:text-[3.6rem] lg:text-[3.8rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tight text-ink-max"
                 >
                   {t.home.hero.titlePart1}{" "}
                   <span className="text-accent font-black">
@@ -430,7 +430,7 @@ export default function HomePage() {
                 >
                   <Link
                     href="/login?mode=signup"
-                    className="group inline-flex items-center gap-2 rounded-lg bg-stone-950 px-6 py-3.5 text-base font-black text-white transition-colors hover:bg-stone-800 active:bg-surface-invert dark:text-stone-900 dark:hover:bg-white"
+                    className="group inline-flex items-center gap-2 rounded-lg bg-stone-950 px-6 py-3.5 text-base font-black text-white transition-colors hover:bg-stone-800 active:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
                   >
                     {t.home.hero.ctaPrimary}
                     <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -458,7 +458,7 @@ export default function HomePage() {
                   {...heroReveal(0.12, 14)}
                   className="w-full border-t border-stone-300/70 pt-4 dark:border-stone-700/70 sm:w-fit"
                 >
-                  <div className="eyebrow mb-3 flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                  <div className="eyebrow mb-3 flex items-center gap-2 text-accent-strong">
                     <span aria-hidden className="h-px w-4 bg-emerald-600/70 dark:bg-emerald-500/70" />
                     {t.home.hero.liveLabel}
                   </div>
@@ -733,7 +733,7 @@ export default function HomePage() {
                 title={
                   <>
                     {t.home.ecosystem.titlePart1}{" "}
-                    <span className="text-emerald-700 dark:text-emerald-400">
+                    <span className="text-accent-strong">
                       {t.home.ecosystem.titleHighlight}
                     </span>
                   </>
@@ -795,13 +795,13 @@ export default function HomePage() {
                       Con số nào đổi thì đổi cả chú thích ở đây. */}
                   <div className="mt-6 grid gap-y-5 border-t border-stone-300/70 pt-5 dark:border-stone-700/70 sm:grid-cols-3 sm:gap-y-0 sm:divide-x sm:divide-stone-300/70 sm:dark:divide-stone-700/70">
                     <div className="sm:pr-5">
-                      <div className="text-[9px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
+                      <div className="text-[9px] font-black uppercase tracking-wider text-accent-strong">
                         {t.home.vision.stat1Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-accent">
                         11%
                       </div>
-                      <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
+                      <p className="mt-1 text-[11px] leading-snug text-ink-soft">
                         {t.home.vision.stat1Note}
                       </p>
                     </div>
@@ -809,10 +809,10 @@ export default function HomePage() {
                       <div className="text-[9px] font-black uppercase tracking-wider text-ink-muted">
                         {t.home.vision.stat2Label}
                       </div>
-                      <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
+                      <div className="mt-1 text-2xl font-black text-ink-heading">
                         7/10
                       </div>
-                      <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
+                      <p className="mt-1 text-[11px] leading-snug text-ink-soft">
                         {t.home.vision.stat2Note}
                       </p>
                     </div>
@@ -820,10 +820,10 @@ export default function HomePage() {
                       <div className="text-[9px] font-black uppercase tracking-wider text-ink-muted">
                         {t.home.vision.stat3Label}
                       </div>
-                      <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
+                      <div className="mt-1 text-2xl font-black text-ink-heading">
                         {t.home.vision.stat3Value}
                       </div>
-                      <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
+                      <p className="mt-1 text-[11px] leading-snug text-ink-soft">
                         {t.home.vision.stat3Note}
                       </p>
                     </div>
@@ -832,7 +832,7 @@ export default function HomePage() {
 
                 <div>
                   <div className="rounded-xl border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-4 shadow-xs">
-                    <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-black text-emerald-700 dark:text-emerald-300 uppercase tracking-widest">
+                    <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-black text-accent-strong uppercase tracking-widest">
                       <span>🇻🇳</span>
                       {t.home.vision.missionLabel}
                     </p>

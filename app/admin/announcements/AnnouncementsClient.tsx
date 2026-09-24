@@ -92,14 +92,14 @@ export default function AnnouncementsClient({
 
   return (
     <div className="space-y-8">
-      <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl p-5 space-y-4">
+      <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-5 space-y-4">
         <div className="flex items-center gap-2">
-          <Megaphone className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-          <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100">{ta.newAnnouncementHeading}</h2>
+          <Megaphone className="w-4 h-4 text-ink-muted" />
+          <h2 className="text-sm font-bold text-ink">{ta.newAnnouncementHeading}</h2>
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-bold text-ink-soft uppercase tracking-wider mb-1.5">
             {ta.titleLabel}
           </label>
           <input
@@ -108,12 +108,12 @@ export default function AnnouncementsClient({
             onChange={(e) => setTitle(e.target.value)}
             maxLength={200}
             placeholder={ta.titlePlaceholder}
-            className="w-full px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-sm"
+            className="w-full px-4 py-2.5 rounded-lg border border-line-mid bg-white dark:bg-stone-800 focus:border-line-firm focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-ink text-sm"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-bold text-ink-soft uppercase tracking-wider mb-1.5">
             {ta.bodyLabel}
           </label>
           <textarea
@@ -122,13 +122,13 @@ export default function AnnouncementsClient({
             maxLength={2000}
             rows={4}
             placeholder={ta.bodyPlaceholder}
-            className="w-full px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-sm resize-none"
+            className="w-full px-4 py-2.5 rounded-lg border border-line-mid bg-white dark:bg-stone-800 focus:border-line-firm focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-ink text-sm resize-none"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-ink-soft uppercase tracking-wider mb-1.5">
               {ta.severityLabel}
             </label>
             <div className="flex gap-1.5">
@@ -139,8 +139,8 @@ export default function AnnouncementsClient({
                   onClick={() => setSeverity(s.id)}
                   className={`flex-1 text-xs font-bold py-2 rounded-lg border-2 transition-colors ${
                     severity === s.id
-                      ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                      : "border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-400 dark:hover:border-stone-600"
+                      ? "border-line-invert bg-surface-invert text-ink-invert"
+                      : "border-line-mid text-ink-muted hover:border-line-firm"
                   }`}
                 >
                   {s.label}
@@ -149,7 +149,7 @@ export default function AnnouncementsClient({
             </div>
           </div>
           <div>
-            <label className="block text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-ink-soft uppercase tracking-wider mb-1.5">
               {ta.expiresLabel}
             </label>
             <input
@@ -158,7 +158,7 @@ export default function AnnouncementsClient({
               value={expiresInDays}
               onChange={(e) => setExpiresInDays(e.target.value)}
               placeholder={ta.expiresPlaceholder}
-              className="w-full px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:border-stone-400 dark:focus:border-stone-500 focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-stone-900 dark:text-stone-100 text-sm"
+              className="w-full px-4 py-2.5 rounded-lg border border-line-mid bg-white dark:bg-stone-800 focus:border-line-firm focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-ink text-sm"
             />
           </div>
         </div>
@@ -167,16 +167,16 @@ export default function AnnouncementsClient({
           type="button"
           disabled={!canSend || sending}
           onClick={() => setConfirmSendOpen(true)}
-          className="w-full py-3 rounded-lg font-bold text-sm bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full py-3 rounded-lg font-bold text-sm bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {sending ? ta.sending : ta.sendToAll}
         </button>
       </div>
 
       <div>
-        <h2 className="text-sm font-bold text-stone-900 dark:text-stone-100 mb-3">{ta.historyHeading}</h2>
+        <h2 className="text-sm font-bold text-ink mb-3">{ta.historyHeading}</h2>
         {announcements.length === 0 ? (
-          <p className="text-sm text-stone-500 dark:text-stone-400">{ta.noHistory}</p>
+          <p className="text-sm text-ink-muted">{ta.noHistory}</p>
         ) : (
           <div className="space-y-3">
             {announcements.map((a) => {
@@ -185,7 +185,7 @@ export default function AnnouncementsClient({
               return (
                 <div
                   key={a.id}
-                  className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-4"
+                  className="bg-white dark:bg-stone-900 border border-line rounded-xl p-4"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -195,14 +195,14 @@ export default function AnnouncementsClient({
                           {SEVERITIES.find((s) => s.id === a.severity)?.label}
                         </span>
                         {!a.active && (
-                          <span className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-400 dark:text-stone-500">
+                          <span className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border border-line-mid text-ink-faint">
                             {ta.deactivatedBadge}
                           </span>
                         )}
                       </div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100 mt-1.5">{a.title}</p>
-                      <p className="text-sm text-stone-600 dark:text-stone-400 mt-1 whitespace-pre-wrap">{a.body}</p>
-                      <p className="text-xs text-stone-400 dark:text-stone-500 mt-2">
+                      <p className="font-bold text-ink mt-1.5">{a.title}</p>
+                      <p className="text-sm text-ink-soft mt-1 whitespace-pre-wrap">{a.body}</p>
+                      <p className="text-xs text-ink-faint mt-2">
                         {formatDate(a.createdAt, locale)} · {a.createdByEmail ?? "admin"} · {a.readCount} {ta.readCountSuffix}
                         {a.expiresAt ? ` ${format(ta.expiresSuffix, { date: formatDate(a.expiresAt, locale) })}` : ""}
                       </p>
@@ -211,7 +211,7 @@ export default function AnnouncementsClient({
                       <button
                         onClick={() => setDeactivateTarget(a.id)}
                         disabled={isPending}
-                        className="flex-shrink-0 text-xs font-bold text-rose-600 dark:text-rose-400 hover:underline disabled:opacity-50"
+                        className="flex-shrink-0 text-xs font-bold text-alert hover:underline disabled:opacity-50"
                       >
                         {ta.deactivateAction}
                       </button>

@@ -1,0 +1,170 @@
+{
+  "id": 73,
+  "slug": "di-tru-du-lieu-khi-trien-khai",
+  "title": "Đổi cấu trúc dữ liệu: phần không quay lui được",
+  "subtitle": "Mã thì lui về bản cũ trong một phút; cột vừa bị xoá thì không.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🗄️",
+  "track": "professional",
+  "whyItMatters": "Mọi kế hoạch quay lui đều giả định rằng bản cũ chạy lại được. Giả định đó sai ngay khi lần triển khai này đã đổi cấu trúc dữ liệu theo cách bản cũ không hiểu, và đó là lúc một sự cố nhỏ thành một đêm dài.",
+  "openingQuestion": "Bạn cần xoá một cột không còn dùng. Trình tự an toàn là gì?",
+  "openingOptions": [
+    "Ngừng ghi, triển khai mã mới, chờ ổn định, rồi mới xoá cột ở lần sau",
+    "Xoá cột và triển khai mã mới trong cùng một lần cho gọn",
+    "Xoá cột trước, rồi triển khai mã mới ngay sau đó vài phút",
+    "Đổi tên cột thành tên tạm rồi xoá sau một tuần theo dõi"
+  ],
+  "correctOption": 0,
+  "explanation": "Vấn đề nằm ở khoảng thời gian giữa hai bước và ở khả năng quay lui. Nếu xoá cột cùng lúc với triển khai mã, thì lúc cần quay lui, mã cũ sẽ chạy trên một cấu trúc dữ liệu không còn cột nó cần - và bạn kẹt: không tiến được vì mã mới hỏng, không lui được vì dữ liệu đã đổi. Tách thành nhiều lần triển khai giữ cho mỗi bước luôn tương thích với cả bản trước lẫn bản sau, nên ở bất kỳ thời điểm nào bạn cũng còn đường lui.",
+  "diagram": [
+    {
+      "label": "Bước 1: mã mới ngừng dùng cột, cột vẫn còn",
+      "arrow": true
+    },
+    {
+      "label": "Bước 2: triển khai, theo dõi, vẫn lui được",
+      "arrow": true
+    },
+    {
+      "label": "Bước 3: xác nhận không còn ai đọc cột đó",
+      "arrow": true
+    },
+    {
+      "label": "Bước 4: xoá cột ở một lần triển khai riêng"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Kẹt giữa hai bản",
+    "description": "Một lần triển khai đổi tên cột và sửa mã trong cùng một bước. Mã mới có lỗi khác, cần quay lui, nhưng mã cũ không tìm thấy cột theo tên cũ. Đội mất cả đêm để viết một bản vá khẩn thay vì bấm nút lui trong một phút."
+  },
+  "keyTakeaways": [
+    "Thay đổi cấu trúc dữ liệu phải tương thích với cả bản mã cũ lẫn bản mới.",
+    "Tách thành nhiều lần triển khai để mỗi bước luôn còn đường lui.",
+    "Thêm cột cho phép rỗng là an toàn; xoá và đổi tên thì không.",
+    "Di trú dữ liệu lớn nên chạy theo lô, không khoá bảng trong một giao dịch dài."
+  ],
+  "summary": {
+    "keyIdea": "Mã quay lui được, dữ liệu thì không - nên thứ tự các bước quyết định bạn có đường lui hay không.",
+    "formula": "Thêm trước, chuyển sau, xoá sau cùng, mỗi bước một lần triển khai.",
+    "commonMistake": "Gộp đổi cấu trúc dữ liệu và đổi mã vào một lần triển khai cho gọn."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Nhìn lần thay đổi cấu trúc dữ liệu gần nhất của bạn và tự hỏi: nếu phải quay lui mã ngay sau đó năm phút thì có được không? Nếu câu trả lời là không thì lần sau cần tách thành nhiều bước."
+  },
+  "practicePrompt": {
+    "question": "Bạn cần đổi tên một cột. Trình tự nào giữ được đường lui ở mọi thời điểm?",
+    "options": [
+      "Thêm cột mới, ghi cả hai, chuyển đường đọc, ngừng ghi cột cũ, rồi xoá",
+      "Đổi tên cột rồi triển khai mã mới trong cùng một cửa sổ bảo trì duy nhất",
+      "Tạo một khung nhìn mang tên mới rồi giữ nguyên cột cũ mãi mãi",
+      "Đổi tên cột trước một ngày để mã cũ kịp báo lỗi và được sửa"
+    ],
+    "correct": 0,
+    "explanation": "Giai đoạn ghi cả hai cột là chỗ then chốt: trong suốt giai đoạn đó, cả mã cũ lẫn mã mới đều chạy được trên cùng cấu trúc dữ liệu, nên quay lui luôn khả thi. Đây đúng là hình dạng của việc đổi lược đồ đã nói ở chặng nền tảng dữ liệu."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao không nên gộp đổi cấu trúc dữ liệu với đổi mã trong một lần triển khai?",
+      "options": [
+        "Vì khi cần quay lui, mã cũ không chạy được trên cấu trúc mới",
+        "Vì cơ sở dữ liệu sẽ khoá bảng trong suốt quá trình triển khai",
+        "Vì cổng tự động không kiểm thử được hai loại thay đổi cùng lúc",
+        "Vì đội vận hành và đội phát triển làm hai việc đó riêng biệt"
+      ],
+      "correct": 0,
+      "explanation": "Đường lui biến mất đúng lúc bạn cần nó nhất. Tách bước giữ cho mỗi trạng thái trung gian đều tương thích với cả hai bản mã."
+    },
+    {
+      "question": "Thay đổi cấu trúc nào an toàn với mã đang chạy?",
+      "options": [
+        "Thêm một cột mới cho phép rỗng",
+        "Đổi tên một cột sang tên rõ nghĩa hơn",
+        "Xoá một cột mà mã mới không còn dùng",
+        "Thêm ràng buộc không rỗng cho một cột sẵn có"
+      ],
+      "correct": 0,
+      "explanation": "Mã cũ không biết cột mới nên nó bỏ qua. Thêm ràng buộc không rỗng thì mọi dòng cũ thiếu giá trị sẽ vi phạm ngay, nên nó là thay đổi phá vỡ chứ không phải bổ sung."
+    },
+    {
+      "question": "Vì sao di trú dữ liệu lớn nên chạy theo lô?",
+      "options": [
+        "Để không khoá bảng quá lâu và chặn các thao tác khác",
+        "Để giảm dung lượng nhật ký mà cơ sở dữ liệu phải ghi",
+        "Để có thể quay lui từng lô một khi phát hiện ra có lỗi",
+        "Để việc di trú không cần chạy trong một giao dịch nào"
+      ],
+      "correct": 0,
+      "explanation": "Một giao dịch cập nhật hàng triệu dòng giữ khoá rất lâu và làm mọi thứ khác xếp hàng. Chạy theo lô nhỏ giữ hệ thống vẫn phục vụ được trong suốt quá trình."
+    },
+    {
+      "question": "Giai đoạn ghi cả hai cột có vai trò gì?",
+      "options": [
+        "Giữ cho cả mã cũ lẫn mã mới đều chạy được trên cùng dữ liệu",
+        "Cho phép so sánh giá trị hai cột để phát hiện lỗi chuyển đổi",
+        "Giảm thời gian cần thiết để hoàn tất việc chuyển đổi dữ liệu",
+        "Bảo đảm không có dòng dữ liệu nào bị bỏ sót khi chuyển"
+      ],
+      "correct": 0,
+      "explanation": "Đó là giai đoạn hai thế hệ mã cùng sống được, và chính nó tạo ra đường lui. So sánh hai cột là lợi ích phụ có thật nhưng không phải mục đích chính."
+    },
+    {
+      "question": "Sau khi triển khai mã mới ngừng dùng một cột, khi nào nên xoá cột đó?",
+      "options": [
+        "Ở một lần triển khai riêng, sau khi đã xác nhận không còn ai đọc",
+        "Ngay trong cùng lần triển khai để tránh quên mất về sau",
+        "Sau khi cột đó đã rỗng hoàn toàn ở mọi dòng dữ liệu",
+        "Khi dung lượng bảng vượt ngưỡng cần được tối ưu lại"
+      ],
+      "correct": 0,
+      "explanation": "Tách ra một lần riêng nghĩa là trong suốt thời gian theo dõi bản mới, bạn vẫn lui về bản cũ được. Xoá là bước cuối cùng và không gấp, vì một cột thừa không gây hại gì."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói đường lui là phần quan trọng nhất của triển khai. Bài này nói về thứ duy nhất có thể phá huỷ đường lui ấy: thay đổi đã ghi vào dữ liệu."
+    },
+    {
+      "type": "heading",
+      "text": "Bất đối xứng giữa mã và dữ liệu"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Mã",
+        "text": "Quay lui là thay sản phẩm dựng cũ vào chỗ bản mới. Vài phút, và trạng thái sau đó giống hệt trước khi triển khai."
+      },
+      "right": {
+        "label": "Dữ liệu",
+        "text": "Cột đã xoá thì dữ liệu trong đó mất. Giá trị đã chuyển đổi thì bản gốc có thể không còn. Không có nút lui nào cho việc này."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Bốn bước cho một thay đổi phá vỡ"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Thêm cấu trúc mới bên cạnh cấu trúc cũ, chưa bỏ gì cả.",
+        "Ghi vào cả hai chỗ, để cả mã cũ lẫn mã mới đều đọc được thứ chúng cần.",
+        "Chuyển đường đọc sang cấu trúc mới, theo dõi cho tới khi chắc chắn ổn.",
+        "Ngừng ghi cấu trúc cũ, rồi xoá nó ở một lần triển khai riêng."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Mỗi bước phải tự đứng được",
+      "text": "Sau mỗi lần triển khai, hệ thống phải ở trạng thái chạy được và lui được. Nếu có bước nào mà lui về bản trước sẽ hỏng, thì bước đó cần được tách nhỏ thêm nữa."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mã có nút lui, dữ liệu thì không. Thứ tự các bước là thứ duy nhất giữ cho bạn còn đường quay lại.",
+        "Bài sau chuyển sang thứ bắt đầu ngay khi triển khai kết thúc: nhìn xem hệ thống thật sự đang chạy ra sao."
+      ]
+    }
+  ]
+}

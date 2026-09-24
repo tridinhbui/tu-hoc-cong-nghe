@@ -107,9 +107,9 @@ export default function InteractiveSampling() {
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100"
           />
         </Row>
-        <p className="mt-3 text-xs leading-relaxed text-stone-600 dark:text-stone-300">
+        <p className="mt-3 text-xs leading-relaxed text-ink-soft">
           {t.samplingCalc.residualPart1}{" "}
-          <span className="font-bold tabular-nums text-rose-600 dark:text-rose-400">
+          <span className="font-bold tabular-nums text-alert">
             {(residual * 100).toFixed(2)}%
           </span>
           {t.samplingCalc.residualPart2}
@@ -123,7 +123,7 @@ function Row({ label, value, children }: { label: string; value: string; childre
   return (
     <div>
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{label}</span>
+        <span className="text-xs font-bold text-ink-body">{label}</span>
         <span className="text-[11px] font-semibold tabular-nums text-ink-muted">
           {value}
         </span>
@@ -138,8 +138,8 @@ function Card({ label, value, tone }: { label: string; value: string; tone: "goo
     tone === "good"
       ? "text-accent"
       : tone === "bad"
-        ? "text-rose-600 dark:text-rose-400"
-        : "text-stone-800 dark:text-stone-100";
+        ? "text-alert"
+        : "text-ink-heading";
   return (
     <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
       <p className="text-[11px] font-bold uppercase tracking-wide text-ink-muted">

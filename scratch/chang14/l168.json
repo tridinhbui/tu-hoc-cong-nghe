@@ -1,0 +1,163 @@
+{
+  "id": 168,
+  "slug": "chuoi-phu-thuoc-va-do-tin-cay",
+  "title": "Chuỗi phụ thuộc: bạn chỉ đáng tin bằng thứ bạn gọi tới",
+  "subtitle": "Bốn phụ thuộc, mỗi cái 99,9%, và trần của bạn đã tụt xuống 99,6%.",
+  "duration": "8 phút",
+  "difficulty": "Khó",
+  "emoji": "🔗",
+  "track": "professional",
+  "whyItMatters": "Rất nhiều cam kết độ tin cậy được đưa ra mà không ai nhân các con số lại với nhau. Phép nhân ấy thường cho thấy mục tiêu đã hứa là bất khả thi ngay từ ngày ký.",
+  "openingQuestion": "Dịch vụ của bạn gọi bốn phụ thuộc, mỗi cái đạt 99,9%. Trần độ tin cậy của bạn là bao nhiêu?",
+  "openingOptions": [
+    "Khoảng 99,6%, vì các xác suất nhân với nhau",
+    "Vẫn là 99,9%, vì các phụ thuộc hiếm khi cùng hỏng một lúc",
+    "Khoảng 99,975%, vì lỗi được chia đều cho bốn thành phần",
+    "Không xác định được nếu chưa biết tần suất gọi từng phụ thuộc"
+  ],
+  "correctOption": 0,
+  "explanation": "Nếu mọi phụ thuộc đều bắt buộc cho một yêu cầu, xác suất thành công là tích của bốn con số: chín mươi chín phẩy chín phần trăm mũ bốn, tức khoảng chín mươi chín phẩy sáu. Bạn mất bốn lần ngân sách lỗi trước khi viết dòng mã nào. Tần suất gọi có ảnh hưởng thật khi một phụ thuộc chỉ được dùng trong một phần số yêu cầu, nhưng với các phụ thuộc bắt buộc thì phép nhân này là trần cứng.",
+  "diagram": [
+    {
+      "label": "Mỗi phụ thuộc bắt buộc: 99,9%",
+      "arrow": true
+    },
+    {
+      "label": "Bốn cái nối tiếp: 0,999 mũ 4",
+      "arrow": true
+    },
+    {
+      "label": "≈ 99,6% - mất gấp bốn lần ngân sách",
+      "arrow": true
+    },
+    {
+      "label": "Trước khi tính tới lỗi của chính bạn"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cam kết bất khả thi từ ngày ký",
+    "description": "Một đội cam kết chín mươi chín phẩy chín chín phần trăm trong khi gọi tới ba dịch vụ nội bộ mà không dịch vụ nào cam kết quá chín mươi chín phẩy chín. Không có cách nào đạt được, và điều đó đã đúng ngay từ trước khi hệ thống chạy."
+  },
+  "keyTakeaways": [
+    "Phụ thuộc bắt buộc nối tiếp thì xác suất thành công nhân với nhau.",
+    "Biến phụ thuộc từ bắt buộc thành tuỳ chọn là cách nâng trần hiệu quả nhất.",
+    "Cam kết của bạn không được cao hơn tích các cam kết bạn dựa vào.",
+    "Phụ thuộc bên thứ ba nằm ngoài tầm sửa, nên phải có phương án khi nó hỏng."
+  ],
+  "summary": {
+    "keyIdea": "Độ tin cậy của một chuỗi là tích các mắt xích, không phải mức của mắt xích tốt nhất.",
+    "formula": "Trần = tích độ tin cậy của mọi phụ thuộc bắt buộc.",
+    "commonMistake": "Hứa một mức cao hơn tích các cam kết mình đang dựa vào."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê mọi phụ thuộc bắt buộc của một hành trình quan trọng, tra cam kết của từng cái, rồi nhân chúng lại. So kết quả với mục tiêu bạn đang tuyên bố."
+  },
+  "practicePrompt": {
+    "question": "Cách hiệu quả nhất để nâng trần độ tin cậy của một chuỗi là gì?",
+    "options": [
+      "Biến bớt phụ thuộc từ bắt buộc thành tuỳ chọn hoặc bỏ hẳn",
+      "Yêu cầu từng đội phụ thuộc nâng cam kết của họ lên một mức",
+      "Thêm bản sao dự phòng cho chính dịch vụ của đội mình",
+      "Tăng số lần thử lại khi một phụ thuộc trả về lỗi tạm thời"
+    ],
+    "correct": 0,
+    "explanation": "Một phụ thuộc bị loại khỏi tích thì trần tăng ngay lập tức, và nó nằm hoàn toàn trong tay bạn. Yêu cầu đội khác nâng cam kết thì phải chờ họ, còn thêm bản sao cho chính mình không đụng gì tới các thừa số trong tích ấy."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao xác suất của các phụ thuộc bắt buộc lại nhân với nhau?",
+      "options": [
+        "Vì yêu cầu chỉ thành công khi mọi phụ thuộc đều thành công",
+        "Vì các phụ thuộc thường hỏng cùng lúc do dùng chung hạ tầng",
+        "Vì mỗi phụ thuộc làm tăng thời gian xử lý của cả yêu cầu",
+        "Vì lỗi từ một phụ thuộc sẽ lan sang các phụ thuộc còn lại"
+      ],
+      "correct": 0,
+      "explanation": "Đó là định nghĩa của bắt buộc: thiếu bất kỳ cái nào thì yêu cầu hỏng. Xác suất của một hợp các sự kiện độc lập là tích của chúng, nên bốn mắt xích chín mươi chín phẩy chín cho khoảng chín mươi chín phẩy sáu."
+    },
+    {
+      "question": "Vì sao nhiều cam kết độ tin cậy là bất khả thi ngay từ đầu?",
+      "options": [
+        "Vì không ai nhân cam kết của các phụ thuộc lại trước khi hứa",
+        "Vì các phụ thuộc thường không công bố cam kết chính thức",
+        "Vì cam kết được đưa ra bởi bộ phận kinh doanh chứ không phải kỹ thuật",
+        "Vì mức cam kết phải cao hơn đối thủ nên bị đẩy lên quá cao"
+      ],
+      "correct": 0,
+      "explanation": "Phép tính này mất năm phút và nó chặn được một lời hứa sẽ theo đội suốt nhiều năm. Ba nguyên nhân còn lại đều góp phần nhưng chúng chỉ gây hại vì phép nhân đã bị bỏ qua."
+    },
+    {
+      "question": "Phụ thuộc bên thứ ba khác phụ thuộc nội bộ ở điểm nào?",
+      "options": [
+        "Bạn không sửa được nó, nên phải chuẩn bị phương án khi nó hỏng",
+        "Nó thường có độ tin cậy thấp hơn các dịch vụ nội bộ",
+        "Nó không được tính vào phép nhân độ tin cậy của cả chuỗi phụ thuộc",
+        "Nó cần được giám sát bằng một hệ thống công cụ riêng"
+      ],
+      "correct": 0,
+      "explanation": "Với dịch vụ nội bộ bạn còn có thể nhắn cho đội bên kia; với bên thứ ba thì bạn chỉ còn cách chờ. Vì thế mỗi phụ thuộc ngoài phải đi kèm câu trả lời cho câu hỏi làm gì trong lúc chờ."
+    },
+    {
+      "question": "Khi nào một phụ thuộc không kéo trần xuống theo cách này?",
+      "options": [
+        "Khi nó là tuỳ chọn và hệ thống vẫn hoạt động được nếu thiếu nó",
+        "Khi nó được gọi tới song song cùng lúc với những phụ thuộc còn lại",
+        "Khi nó có bản sao dự phòng ở một vùng hạ tầng khác",
+        "Khi kết quả của nó được lưu trong bộ nhớ đệm cục bộ"
+      ],
+      "correct": 0,
+      "explanation": "Gọi song song rút ngắn thời gian chứ không đổi xác suất thành công. Dự phòng và bộ nhớ đệm thì nâng độ tin cậy của chính thừa số ấy - hữu ích, nhưng nó vẫn nằm trong tích."
+    },
+    {
+      "question": "Thêm một phụ thuộc bắt buộc mới có tác động gì?",
+      "options": [
+        "Trần độ tin cậy tụt xuống ngay, trước khi viết dòng mã nào",
+        "Trần độ tin cậy không đổi cho tới khi phụ thuộc đó gặp sự cố",
+        "Trần độ tin cậy giảm tỷ lệ với số lần phụ thuộc đó được gọi",
+        "Trần độ tin cậy chỉ giảm nếu phụ thuộc mới kém tin cậy hơn"
+      ],
+      "correct": 0,
+      "explanation": "Tích có thêm một thừa số nhỏ hơn một thì kết quả nhỏ đi, bất kể thừa số ấy tốt tới đâu. Đây là lý do việc thêm một lời gọi tưởng như vô hại vẫn là một quyết định về độ tin cậy."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài đầu chặng nói mắt xích yếu nhất đặt trần. Đó chưa phải toàn bộ sự thật, và phần còn lại tệ hơn: nhiều mắt xích tốt nối lại vẫn cho một chuỗi kém hơn từng cái."
+    },
+    {
+      "type": "heading",
+      "text": "Phép nhân"
+    },
+    {
+      "type": "formula",
+      "expression": "Trần = 0,999 × 0,999 × 0,999 × 0,999 ≈ 0,996",
+      "explanation": "Bốn phụ thuộc bắt buộc, mỗi cái 99,9%. Bạn mất gấp bốn lần ngân sách lỗi trước khi tính tới lỗi của chính mình."
+    },
+    {
+      "type": "paragraph",
+      "text": "Phép tính này mất năm phút và nó là thứ nên chạy trước khi bất kỳ ai ký một cam kết. Rất nhiều mục tiêu bất khả thi được phát hiện đúng ở bước này - và phát hiện sớm thì nó là một cuộc trò chuyện, phát hiện muộn thì nó là một lời hứa bị vỡ."
+    },
+    {
+      "type": "callout",
+      "label": "Cách nâng trần rẻ nhất",
+      "text": "Không phải yêu cầu đội khác làm tốt hơn, mà là bỏ bớt thừa số. Mỗi phụ thuộc chuyển từ bắt buộc sang tuỳ chọn là một thừa số rời khỏi tích - và quyết định ấy nằm hoàn toàn trong tay bạn."
+    },
+    {
+      "type": "heading",
+      "text": "Phụ thuộc bên ngoài"
+    },
+    {
+      "type": "paragraph",
+      "text": "Với dịch vụ nội bộ, bạn còn nhắn được cho đội bên kia. Với nhà cung cấp bên thứ ba, bạn chỉ còn cách chờ và cập nhật cho khách hàng. Mỗi phụ thuộc ngoài vì thế phải đi kèm một câu trả lời viết sẵn cho câu hỏi làm gì trong lúc chờ - dữ liệu cũ, chế độ hạn chế, hay chỉ là một thông báo trung thực."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Thêm một lời gọi tưởng như vô hại vẫn là một quyết định về độ tin cậy, vì tích luôn nhỏ đi.",
+        "Bài sau về cách giữ cho một phụ thuộc hỏng không kéo theo phần còn lại của hệ thống."
+      ]
+    }
+  ]
+}

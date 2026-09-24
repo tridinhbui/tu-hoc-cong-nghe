@@ -63,7 +63,7 @@ export default function InteractiveProspect() {
 
       {QUESTIONS.map((q) => (
         <div key={q.id} className="rounded-2xl border border-stone-200 p-4 dark:border-stone-800">
-          <p className="text-sm font-bold text-stone-800 dark:text-stone-100">{q.frame}</p>
+          <p className="text-sm font-bold text-ink-heading">{q.frame}</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {(["safe", "risky"] as const).map((c) => (
               <button
@@ -87,22 +87,22 @@ export default function InteractiveProspect() {
       {done && (
         <div
           className={`rounded-2xl p-4 ${
-            flipped ? "bg-warn-soft/30" : "bg-accent-soft/30"
+            flipped ? "bg-amber-50 dark:bg-amber-950/30" : "bg-emerald-50 dark:bg-emerald-950/30"
           }`}
         >
-          <p className="text-sm text-stone-700 dark:text-stone-200">
+          <p className="text-sm text-ink-body">
             {tr.resultIntroPart1} <b>{tr.resultIntroAmount}</b> {tr.resultIntroPart2}
           </p>
           {flipped ? (
-            <p className="mt-2 text-sm font-semibold text-amber-800 dark:text-amber-200">
+            <p className="mt-2 text-sm font-semibold text-warn-ink">
               {tr.flippedText}
             </p>
           ) : consistent ? (
-            <p className="mt-2 text-sm font-semibold text-emerald-800 dark:text-emerald-200">
+            <p className="mt-2 text-sm font-semibold text-accent-ink">
               {tr.consistentText}
             </p>
           ) : (
-            <p className="mt-2 text-sm font-semibold text-emerald-800 dark:text-emerald-200">
+            <p className="mt-2 text-sm font-semibold text-accent-ink">
               {tr.otherText}
             </p>
           )}

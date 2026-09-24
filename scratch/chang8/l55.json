@@ -1,0 +1,163 @@
+{
+  "id": 55,
+  "slug": "hang-doi-va-xu-ly-bat-dong-bo",
+  "title": "Hàng đợi: nhận việc trước, làm sau",
+  "subtitle": "Người dùng không cần đợi email được gửi xong mới biết mình đã đăng ký thành công.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "📮",
+  "track": "professional",
+  "whyItMatters": "Gọi đồng bộ trói hai hệ thống vào cùng một nhịp: bên kia chậm thì bên này chậm, bên kia chết thì bên này lỗi. Hàng đợi tháo sợi dây đó ra, đổi lại bạn phải chấp nhận một khoảng thời gian dữ liệu chưa nhất quán.",
+  "openingQuestion": "Thao tác nào nên đưa vào hàng đợi thay vì xử lý ngay trong lời gọi?",
+  "openingOptions": [
+    "Gửi email xác nhận, vì người dùng không cần chờ nó xong mới đi tiếp",
+    "Kiểm tra mật khẩu khi đăng nhập, vì đó là thao tác tốn nhiều tài nguyên",
+    "Trừ tiền trong tài khoản, vì đây là thao tác quan trọng cần được ưu tiên",
+    "Đọc thông tin hồ sơ người dùng, vì dữ liệu này ít khi thay đổi"
+  ],
+  "correctOption": 0,
+  "explanation": "Câu hỏi để phân loại là: người dùng có cần biết kết quả của việc này ngay bây giờ không? Gửi email thì không - họ chỉ cần biết đăng ký đã thành công, còn email tới sau vài giây cũng chẳng sao, và nếu máy chủ thư đang hỏng thì việc đó không được phép chặn đường đăng ký. Kiểm tra mật khẩu thì ngược lại, vì kết quả quyết định bước tiếp theo. Trừ tiền cũng phải đồng bộ, vì người dùng cần biết ngay giao dịch thành công hay không.",
+  "diagram": [
+    {
+      "label": "Nhận yêu cầu từ người dùng",
+      "arrow": true
+    },
+    {
+      "label": "Làm phần bắt buộc phải có kết quả ngay",
+      "arrow": true
+    },
+    {
+      "label": "Đẩy phần còn lại vào hàng đợi",
+      "arrow": true
+    },
+    {
+      "label": "Trả lời người dùng, việc kia chạy sau"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Đơn hàng và hoá đơn",
+    "description": "Bấm đặt hàng xong là thấy xác nhận ngay, nhưng email hoá đơn tới sau vài giây và tin nhắn giao vận tới sau vài phút. Nếu tất cả cùng chạy đồng bộ, một sự cố ở nhà cung cấp thư sẽ chặn luôn cả việc đặt hàng."
+  },
+  "keyTakeaways": [
+    "Đưa vào hàng đợi những việc mà người dùng không cần kết quả ngay.",
+    "Hàng đợi làm hệ thống bền hơn và đổi lại có độ trễ nhất quán.",
+    "Thông điệp có thể được xử lý hai lần, nên bên xử lý phải chịu được việc lặp.",
+    "Hàng đợi dài dần là tín hiệu sớm nhất cho biết bên xử lý không theo kịp."
+  ],
+  "summary": {
+    "keyIdea": "Hàng đợi tháo sự phụ thuộc theo thời gian giữa hai hệ thống.",
+    "formula": "Cần biết ngay thì đồng bộ; không cần thì đưa vào hàng đợi.",
+    "commonMistake": "Đưa vào hàng đợi cả những thao tác mà người dùng cần kết quả tức thì."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một thao tác chậm trong sản phẩm và liệt kê từng việc nó làm. Với mỗi việc, hỏi: người dùng có cần kết quả của nó trước khi màn hình phản hồi không? Những việc trả lời không chính là danh sách nên đưa vào hàng đợi."
+  },
+  "practicePrompt": {
+    "question": "Hàng đợi xử lý ảnh của bạn dài dần lên suốt buổi sáng và không rút xuống. Điều đó nói lên gì?",
+    "options": [
+      "Tốc độ đưa việc vào đang cao hơn tốc độ xử lý, và khoảng cách sẽ còn giãn ra",
+      "Các thông điệp trong hàng đợi bị hỏng nên không bên nào xử lý được",
+      "Hàng đợi đã đầy dung lượng nên không nhận thêm thông điệp mới nữa",
+      "Bên xử lý đang xử lý mỗi thông điệp nhiều lần liên tiếp nên tốn thời gian gấp bội lần"
+    ],
+    "correct": 0,
+    "explanation": "Chiều dài hàng đợi là hiệu của hai tốc độ tích lại theo thời gian, nên nó tăng đều nghĩa là đầu vào đang vượt đầu ra. Đây là chỉ số cảnh báo sớm tốt nhất của kiến trúc bất đồng bộ: nó tăng từ lâu trước khi người dùng kịp nhận ra có gì chậm."
+  },
+  "quiz": [
+    {
+      "question": "Tiêu chí để đưa một việc vào hàng đợi là gì?",
+      "options": [
+        "Người dùng không cần biết kết quả của việc đó ngay lập tức",
+        "Việc đó tốn nhiều tài nguyên của máy chủ hơn các việc khác",
+        "Việc đó có khả năng thất bại cao hơn những việc còn lại",
+        "Việc đó cần gọi tới một dịch vụ ngoài hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Tiêu chí thuộc về trải nghiệm và nghiệp vụ chứ không thuộc về kỹ thuật. Một việc nặng nhưng người dùng cần kết quả ngay thì vẫn phải chạy đồng bộ, dù nó chậm."
+    },
+    {
+      "question": "Cái giá phải trả khi dùng hàng đợi là gì?",
+      "options": [
+        "Có một khoảng thời gian dữ liệu chưa nhất quán giữa các phần hệ thống",
+        "Tổng lượng công việc mà hệ thống phải xử lý tăng lên đáng kể",
+        "Không thể theo dõi được trạng thái của từng việc đã được đưa vào",
+        "Các việc trong hàng đợi luôn được xử lý sai thứ tự so với lúc được gửi"
+      ],
+      "correct": 0,
+      "explanation": "Trả lời người dùng trước khi làm xong nghĩa là có một cửa sổ mà hệ thống chưa phản ánh đủ hậu quả. Giao diện phải nói rõ trạng thái đang xử lý, nếu không người dùng sẽ tưởng có lỗi."
+    },
+    {
+      "question": "Vì sao bên xử lý thông điệp phải chịu được việc lặp?",
+      "options": [
+        "Vì một thông điệp có thể được giao lại nếu lần xử lý trước không kịp xác nhận",
+        "Vì hàng đợi luôn gửi mỗi thông điệp tới hai bên xử lý khác nhau",
+        "Vì các thông điệp giống nhau sẽ được gộp lại thành một khi hàng đợi đầy",
+        "Vì bên gửi vẫn luôn gửi mỗi việc hai lần để phòng trường hợp thông điệp bị mất"
+      ],
+      "correct": 0,
+      "explanation": "Phần lớn hàng đợi bảo đảm giao ít nhất một lần chứ không bảo đảm đúng một lần, vì xác nhận cũng có thể mất. Đây chính là bài toán gọi hai lần ở bài trước, đặt vào một bối cảnh khác."
+    },
+    {
+      "question": "Chiều dài hàng đợi là chỉ số nói lên điều gì?",
+      "options": [
+        "Chênh lệch giữa tốc độ đưa việc vào và tốc độ xử lý",
+        "Số lượng bên xử lý đang hoạt động tại đúng thời điểm đo",
+        "Dung lượng bộ nhớ mà hệ thống hàng đợi đang chiếm dụng",
+        "Tỷ lệ thông điệp bị lỗi trong tổng số thông điệp đã gửi"
+      ],
+      "correct": 0,
+      "explanation": "Hàng đợi tăng đều nghĩa là đầu vào vượt đầu ra và khoảng cách sẽ tiếp tục giãn. Đó là cảnh báo sớm hơn nhiều so với việc chờ người dùng phàn nàn."
+    },
+    {
+      "question": "Vì sao hàng đợi làm hệ thống bền hơn trước sự cố?",
+      "options": [
+        "Vì việc vẫn nằm chờ được khi bên xử lý tạm thời không hoạt động",
+        "Vì hàng đợi tự động sửa những thông điệp bị lỗi trước khi giao đi",
+        "Vì bên gửi không cần biết có bên xử lý nào đang chạy hay không",
+        "Vì mỗi thông điệp được lưu ở nhiều nơi nên không bao giờ mất"
+      ],
+      "correct": 0,
+      "explanation": "Hàng đợi hấp thụ sự cố ngắn hạn: bên xử lý chết mười phút thì việc dồn lại chứ không mất, và được làm nốt khi nó sống lại. Với gọi đồng bộ thì mười phút đó là mười phút lỗi trả thẳng cho người dùng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Gọi đồng bộ nghĩa là hai hệ thống phải cùng khoẻ tại cùng một thời điểm. Hàng đợi tháo ràng buộc đó: bên gửi ghi việc ra rồi đi tiếp, bên nhận làm khi nào nó sẵn sàng."
+    },
+    {
+      "type": "heading",
+      "text": "Câu hỏi phân loại"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chỉ có một câu: người dùng có cần biết kết quả của việc này trước khi màn hình phản hồi không? Trừ tiền thì có, nên phải đồng bộ. Gửi email, dựng ảnh thu nhỏ, cập nhật chỉ số thống kê thì không - và nhét chúng vào đường đồng bộ là bắt người dùng chờ những thứ họ không quan tâm, đồng thời buộc sự thành công của mình vào sức khoẻ của những dịch vụ phụ."
+    },
+    {
+      "type": "callout",
+      "label": "Ít nhất một lần, không phải đúng một lần",
+      "text": "Phần lớn hàng đợi bảo đảm thông điệp được giao ít nhất một lần. Nếu bên xử lý làm xong mà chết trước khi kịp xác nhận, thông điệp sẽ được giao lại. Nên mọi bên xử lý đều phải chịu được việc chạy hai lần - đúng bài toán ở bài trước."
+    },
+    {
+      "type": "heading",
+      "text": "Những gì phải theo dõi"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chiều dài hàng đợi: tăng đều nghĩa là bên xử lý không theo kịp.",
+        "Tuổi của thông điệp cũ nhất: nói thẳng người dùng đang chờ bao lâu.",
+        "Hàng đợi lỗi: nơi chứa những thông điệp thất bại nhiều lần, và phải có người xem nó."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Hàng đợi không làm việc biến mất, nó chỉ dời việc sang chỗ chịu được sự chậm trễ.",
+        "Bài sau nói về chiều ngược lại của bất đồng bộ: khi hệ thống khác cần biết chuyện gì vừa xảy ra bên bạn."
+      ]
+    }
+  ],
+  "interactiveType": "tail-risk"
+}

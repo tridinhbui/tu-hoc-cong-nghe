@@ -1,0 +1,169 @@
+{
+  "id": 84,
+  "slug": "pheu-va-cho-roi",
+  "title": "Phễu: tìm chỗ người dùng rơi ra",
+  "subtitle": "Tỷ lệ hoàn thành 20% không nói được gì; biết họ rơi ở bước nào thì nói rất nhiều.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔻",
+  "track": "professional",
+  "whyItMatters": "Một con số tổng về tỷ lệ chuyển đổi cho bạn biết có vấn đề, nhưng không cho biết sửa ở đâu. Chia hành trình thành từng bước là cách biến một cảm giác mơ hồ thành một danh sách việc cụ thể.",
+  "openingQuestion": "Tỷ lệ hoàn tất đơn hàng của bạn là 20%. Việc đầu tiên nên làm là gì?",
+  "openingOptions": [
+    "Chia hành trình thành từng bước và xem người dùng rơi ở bước nào",
+    "So sánh con số đó với mức trung bình của ngành để biết mình đứng đâu",
+    "Thiết kế lại toàn bộ giao diện đặt hàng cho hiện đại hơn",
+    "Tăng ngân sách quảng cáo để bù cho tỷ lệ hoàn tất thấp"
+  ],
+  "correctOption": 0,
+  "explanation": "Con số tổng nói rằng bốn trên năm người bỏ cuộc, nhưng không nói họ bỏ ở đâu. Nếu tám mươi phần trăm rơi ngay ở bước nhập địa chỉ thì bạn có một việc rất cụ thể để làm, và nó rẻ. Nếu họ rơi đều ở cả năm bước thì vấn đề nằm ở chỗ khác - có thể là bản thân sản phẩm chứ không phải quy trình. So với trung bình ngành không giúp gì vì bạn vẫn không biết sửa ở đâu, còn thiết kế lại toàn bộ là bỏ tiền vào một chỗ chưa được xác định.",
+  "diagram": [
+    {
+      "label": "100 người vào giỏ hàng",
+      "arrow": true
+    },
+    {
+      "label": "70 tới bước nhập địa chỉ",
+      "arrow": true
+    },
+    {
+      "label": "25 tới bước thanh toán",
+      "arrow": true
+    },
+    {
+      "label": "20 hoàn tất - chỗ rơi lớn nhất đã lộ ra"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bước bắt buộc tạo tài khoản",
+    "description": "Rất nhiều phễu đặt hàng có một cú rơi lớn ở đúng bước bắt người dùng tạo tài khoản trước khi thanh toán. Cho phép đặt hàng không cần tài khoản là một thay đổi nhỏ về mã và thường là thay đổi lớn nhất về doanh thu."
+  },
+  "keyTakeaways": [
+    "Chia hành trình thành bước để biến một con số tổng thành một danh sách việc.",
+    "Cú rơi lớn nhất là nơi đáng sửa trước, không phải bước có tỷ lệ thấp nhất trong tuyệt đối.",
+    "Phải định nghĩa rõ từng bước, nếu không hai người sẽ đọc ra hai kết quả.",
+    "Phễu cho biết chỗ rơi chứ không cho biết vì sao rơi - phần đó cần hỏi người dùng."
+  ],
+  "summary": {
+    "keyIdea": "Phễu biến câu hỏi vì sao tỷ lệ thấp thành câu hỏi người dùng rơi ở bước nào.",
+    "formula": "Chia bước, đo từng bước, sửa chỗ rơi lớn nhất.",
+    "commonMistake": "Thiết kế lại toàn bộ hành trình trong khi vấn đề nằm ở đúng một bước."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Vẽ ra năm bước của hành trình quan trọng nhất trong sản phẩm và đếm số người đi qua từng bước. Cú rơi lớn nhất thường nằm ở chỗ không ai đoán trước."
+  },
+  "practicePrompt": {
+    "question": "Phễu của bạn rơi đều khoảng mười phần trăm ở mỗi bước, không có chỗ nào rơi đột ngột. Điều đó gợi ý gì?",
+    "options": [
+      "Vấn đề nhiều khả năng nằm ở giá trị sản phẩm chứ không ở một bước cụ thể",
+      "Phễu đang được chia thành quá nhiều bước nên tỷ lệ bị phân tán",
+      "Cần thiết kế lại bước cuối cùng, vì đó là nơi mất đi nhiều người nhất",
+      "Dữ liệu đo lường có lỗi vì phễu thật luôn có một chỗ rơi lớn"
+    ],
+    "correct": 0,
+    "explanation": "Rơi đều nghĩa là không có rào cản kỹ thuật nào nổi bật, nên nguyên nhân thường nằm ở chỗ người dùng chưa đủ muốn đi tiếp. Sửa từng bước trong tình huống này cho lợi ích rất nhỏ, và câu hỏi đúng chuyển sang chuyện sản phẩm có giải đúng vấn đề của họ không."
+  },
+  "quiz": [
+    {
+      "question": "Phễu giúp gì mà tỷ lệ chuyển đổi tổng không giúp được?",
+      "options": [
+        "Chỉ ra người dùng rơi ở bước nào trong hành trình",
+        "Cho biết tỷ lệ của bạn so với đối thủ cùng ngành",
+        "Dự báo doanh thu của tháng tiếp theo chính xác hơn",
+        "Xác định nhóm người dùng nào có giá trị cao nhất"
+      ],
+      "correct": 0,
+      "explanation": "Con số tổng nói có vấn đề, phễu nói vấn đề ở đâu. Đó là khác biệt giữa một cảm giác và một việc cụ thể có thể giao cho ai đó làm."
+    },
+    {
+      "question": "Vì sao cần định nghĩa rõ từng bước của phễu?",
+      "options": [
+        "Vì định nghĩa mơ hồ thì hai người sẽ đo ra hai kết quả khác nhau",
+        "Vì công cụ phân tích chỉ nhận tối đa năm bước cho mỗi phễu",
+        "Vì các bước bắt buộc phải có số người giảm dần mới được coi là hợp lệ",
+        "Vì người dùng cần được thông báo về từng bước họ đang ở"
+      ],
+      "correct": 0,
+      "explanation": "Bắt đầu giỏ hàng nghĩa là gì - thêm sản phẩm đầu tiên, hay mở trang giỏ? Hai định nghĩa cho hai mẫu số khác nhau, và mọi tỷ lệ phía sau đổi theo."
+    },
+    {
+      "question": "Nên ưu tiên sửa bước nào trong phễu?",
+      "options": [
+        "Bước có cú rơi lớn nhất so với bước liền trước",
+        "Bước cuối cùng vì nó gần với doanh thu nhất",
+        "Bước đầu tiên vì nó ảnh hưởng tới toàn bộ phía sau",
+        "Bước có số người tuyệt đối đi qua ít nhất"
+      ],
+      "correct": 0,
+      "explanation": "Cú rơi lớn cho thấy có rào cản thật ở đó, và gỡ được nó thì toàn bộ phần sau hưởng lợi. Bước cuối gần doanh thu nhưng nếu nó chỉ rơi vài phần trăm thì cải thiện được rất ít."
+    },
+    {
+      "question": "Phễu không trả lời được câu hỏi nào?",
+      "options": [
+        "Vì sao người dùng rơi ra ở bước đó",
+        "Bao nhiêu người đi qua được mỗi bước",
+        "Bước nào có tỷ lệ rơi cao nhất hiện tại",
+        "Tỷ lệ hoàn tất chung của cả hành trình"
+      ],
+      "correct": 0,
+      "explanation": "Số liệu cho biết chỗ nào, không cho biết vì sao. Muốn biết lý do thì phải xem bản ghi phiên làm việc, đọc phản hồi, hoặc hỏi trực tiếp vài người dùng."
+    },
+    {
+      "question": "Phễu rơi đều ở mọi bước gợi ý điều gì?",
+      "options": [
+        "Vấn đề nằm ở mức độ người dùng muốn hoàn thành, không ở một rào cản cụ thể",
+        "Phễu đang được chia thành quá nhiều bước nhỏ không cần thiết",
+        "Công cụ đo lường đang đếm sót người dùng ở một số bước",
+        "Sản phẩm đang hoạt động tốt vì không có chỗ nghẽn nào"
+      ],
+      "correct": 0,
+      "explanation": "Không có bước nào nổi bật nghĩa là không có rào cản kỹ thuật rõ ràng. Lúc đó câu hỏi chuyển từ làm sao dễ hơn sang liệu người dùng có thật sự cần thứ này không."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước chia người dùng theo thời điểm bắt đầu. Bài này chia theo một trục khác: họ đi được tới đâu trong hành trình bạn thiết kế cho họ."
+    },
+    {
+      "type": "heading",
+      "text": "Từ một con số thành một danh sách việc"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tỷ lệ hoàn tất hai mươi phần trăm là một sự thật đúng nhưng vô dụng - nó không nói bạn phải làm gì. Chia hành trình thành năm bước và đo từng bước thì con số ấy biến thành một bức tranh: bảy mươi người tới bước hai, hai mươi lăm tới bước ba. Cú rơi giữa bước hai và ba giờ là một việc cụ thể, giao cho ai đó được, và ước lượng được lợi ích nếu sửa."
+    },
+    {
+      "type": "callout",
+      "label": "Định nghĩa bước trước khi đo",
+      "text": "Bắt đầu giỏ hàng nghĩa là thêm sản phẩm đầu tiên hay mở trang giỏ? Hai định nghĩa cho hai mẫu số khác nhau và mọi tỷ lệ phía sau đổi theo. Viết ra định nghĩa trước, nếu không hai báo cáo sẽ cãi nhau mà không ai sai."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Có một cú rơi lớn",
+        "text": "Thường là rào cản kỹ thuật hoặc thiết kế: một trường bắt buộc, một bước đăng nhập, một lỗi trên thiết bị nào đó. Rẻ để tìm và rẻ để sửa."
+      },
+      "right": {
+        "label": "Rơi đều mọi bước",
+        "text": "Không có rào cản nổi bật, nên vấn đề thường nằm ở mức độ người dùng muốn đi tiếp. Sửa giao diện lúc này cho lợi ích rất nhỏ."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đo phễu riêng cho từng thiết bị: một cú rơi có thể chỉ tồn tại trên màn hình nhỏ.",
+        "Sau khi tìm ra chỗ rơi, xem bản ghi phiên hoặc hỏi người dùng để biết vì sao.",
+        "Đừng chia quá nhiều bước - phễu mười bước thì mỗi bước rơi vài phần trăm và không nói lên gì."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Phễu không nói vì sao, nhưng nó nói ở đâu - và ở đâu thường là nửa đường tới câu trả lời.",
+        "Bài sau nói về cách biết chắc một thay đổi có làm mọi thứ tốt lên hay không, thay vì chỉ tin là có."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "id": 120,
+  "slug": "on-tap-quy-mo-va-nhieu-doi",
+  "title": "Ôn tập: mọi thứ đổi khác khi có nhiều đội",
+  "subtitle": "Hai mươi bài vừa rồi đều xoay quanh một lực duy nhất: chi phí giao tiếp.",
+  "duration": "10 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🎓",
+  "track": "professional",
+  "whyItMatters": "Chặng này khép lại phần kỹ năng nghề trong kho bài. Nó là chặng duy nhất mà câu trả lời đúng phụ thuộc vào quy mô tổ chức chứ không chỉ vào bài toán kỹ thuật.",
+  "openingQuestion": "Sợi chỉ xuyên suốt cả chặng này là gì?",
+  "openingOptions": [
+    "Chi phí giao tiếp giữa các đội định hình mọi quyết định kỹ thuật ở quy mô lớn",
+    "Hệ thống lớn cần được tách thành càng nhiều dịch vụ nhỏ càng tốt",
+    "Quy trình và tài liệu là công cụ chính để quản lý nhiều đội",
+    "Tổ chức lớn nên chuẩn hoá mọi thứ để bảo đảm tính nhất quán"
+  ],
+  "correctOption": 0,
+  "explanation": "Từ bài đầu tới bài cuối, mọi thứ đều quay về một lực: giao tiếp trong đội gần như miễn phí, giao tiếp giữa các đội thì đắt. Ranh giới tồn tại để giảm số lần phải trả chi phí ấy. Hợp đồng và sự kiện tồn tại để những lần phải trả trở nên rẻ và an toàn. Chuẩn chung tồn tại để người chuyển đội không phải học lại. Và quan sát ở bài mười tám nói rằng chính lực ấy sẽ kéo kiến trúc về hình dạng tổ chức, dù bạn vẽ sơ đồ thế nào.",
+  "diagram": [
+    {
+      "label": "Ranh giới: giảm số lần phải phối hợp",
+      "arrow": true
+    },
+    {
+      "label": "Hợp đồng và sự kiện: làm lần phối hợp rẻ đi",
+      "arrow": true
+    },
+    {
+      "label": "Chuẩn chung: giảm chi phí học lại",
+      "arrow": true
+    },
+    {
+      "label": "Tổ chức quyết định kiến trúc, không phải sơ đồ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Câu hỏi trước mọi đề xuất lớn",
+    "description": "Chặng này cho bạn bốn câu để hỏi khi ai đó đề xuất một thay đổi kiến trúc: ai sở hữu phần này, thay đổi thông thường có phải đi qua mấy đội, hợp đồng giữa hai bên là gì, và nếu chọn sai thì sửa mất bao lâu."
+  },
+  "keyTakeaways": [
+    "Chi phí phối hợp tăng theo bình phương số người; ranh giới là công cụ cắt nó.",
+    "Vẽ ranh giới theo lý do thay đổi, không theo tầng kỹ thuật.",
+    "Ranh giới chỉ có thật khi dữ liệu cũng được ngăn cách, không chỉ mã.",
+    "Phải triển khai đồng thời luôn là dấu hiệu của thay đổi chưa chia nhỏ.",
+    "Kiến trúc trôi về hình dạng tổ chức, nên đổi tổ chức là công cụ kiến trúc."
+  ],
+  "summary": {
+    "keyIdea": "Ở quy mô nhiều đội, chi phí giao tiếp là lực chi phối mọi quyết định kỹ thuật.",
+    "formula": "Ranh giới đúng chỗ, hợp đồng rõ ràng, tổ chức khớp kiến trúc.",
+    "commonMistake": "Áp dụng lời khuyên của một quy mô khác mà không hỏi tổ chức mình đang ở đâu."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Vẽ hai sơ đồ: các thành phần hệ thống, và các đội. Chỗ nào hai hình không khớp là chỗ tổ chức bạn đang trả chi phí phối hợp cao nhất."
+  },
+  "practicePrompt": {
+    "question": "Một đội đề xuất tách hệ thống của họ thành năm dịch vụ. Câu hỏi đầu tiên nên là gì?",
+    "options": [
+      "Có bao nhiêu đội sẽ sở hữu năm phần đó?",
+      "Năm dịch vụ ấy sẽ dùng công nghệ gì?",
+      "Việc tách sẽ mất bao lâu để hoàn thành?",
+      "Hệ thống hiện tại đang có bao nhiêu dòng mã?"
+    ],
+    "correct": 0,
+    "explanation": "Nếu câu trả lời là một đội thì họ sắp trả toàn bộ chi phí phân tán mà không nhận được sự độc lập nào - và ranh giới trong cùng tiến trình sẽ cho họ gần hết lợi ích với giá rẻ hơn nhiều. Ba câu còn lại đều quan trọng nhưng chúng chỉ có nghĩa sau khi câu này đã được trả lời."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao chi phí phối hợp là lực chi phối ở quy mô lớn?",
+      "options": [
+        "Vì nó tăng theo bình phương số người trong khi năng lực chỉ tăng tuyến tính",
+        "Vì tổ chức lớn có nhiều tầng quản lý hơn tổ chức nhỏ",
+        "Vì công cụ liên lạc trở nên kém hiệu quả khi có nhiều người",
+        "Vì các đội lớn thường có nhiều người thiếu kinh nghiệm hơn"
+      ],
+      "correct": 0,
+      "explanation": "Hai đường tăng theo hai tốc độ khác nhau, nên tới một quy mô nào đó chúng cắt nhau. Từ điểm đó trở đi, mọi quyết định kỹ thuật đều phải tính tới chi phí phối hợp."
+    },
+    {
+      "question": "Ranh giới nên được vẽ theo tiêu chí nào?",
+      "options": [
+        "Theo lý do thay đổi, để một thay đổi thông thường chỉ chạm một bên",
+        "Theo tầng kỹ thuật, để mỗi đội chuyên sâu một lĩnh vực",
+        "Theo khối lượng mã, để cho công việc được chia đều ra giữa các đội",
+        "Theo công nghệ, để mỗi đội chỉ dùng một bộ công cụ"
+      ],
+      "correct": 0,
+      "explanation": "Ranh giới tồn tại để giảm số lần phải phối hợp, nên nó phải cắt ở chỗ ít thay đổi đi qua nhất. Cắt theo tầng thì mọi tính năng đều vượt qua, tức là làm điều ngược lại."
+    },
+    {
+      "question": "Điều gì làm một ranh giới trở thành thật?",
+      "options": [
+        "Cả mã và dữ liệu đều được ngăn cách, không chỉ mã",
+        "Hai đội nằm ở hai kho mã lưu trữ khác nhau",
+        "Có tài liệu kiến trúc mô tả rõ phạm vi từng phần",
+        "Hai bên giao tiếp qua một giao diện được định nghĩa rõ"
+      ],
+      "correct": 0,
+      "explanation": "Chia mã thành trăm phần mà tất cả cùng đọc ghi một cơ sở dữ liệu thì không có ranh giới nào. Dữ liệu dùng chung là chỗ ranh giới bị phá âm thầm nhất."
+    },
+    {
+      "question": "Nhu cầu triển khai đồng thời giữa hai đội cho thấy điều gì?",
+      "options": [
+        "Có một thay đổi phá vỡ tương thích chưa được chia thành các bước",
+        "Hai đội cần cải thiện cách lập kế hoạch chung với nhau",
+        "Hệ thống thiếu công cụ điều phối triển khai tự động",
+        "Hai dịch vụ đó nên được gộp lại thành một dịch vụ"
+      ],
+      "correct": 0,
+      "explanation": "Nó nghĩa là tồn tại một khoảnh khắc bản cũ bên này không chạy được với bản mới bên kia. Chia thành các bước tương thích hai chiều thì khoảnh khắc ấy biến mất và không ai phải khớp lịch."
+    },
+    {
+      "question": "Vì sao đổi sơ đồ kiến trúc mà giữ nguyên cách chia đội thường thất bại?",
+      "options": [
+        "Vì chi phí giao tiếp kéo hệ thống về hình dạng của tổ chức",
+        "Vì các đội cần thời gian dài để học kiến trúc mới",
+        "Vì sơ đồ mới thường phức tạp hơn khả năng thực hiện",
+        "Vì các công cụ hiện có không hỗ trợ kiến trúc vừa được đề xuất"
+      ],
+      "correct": 0,
+      "explanation": "Ranh giới nằm trong nội bộ một đội không có chi phí tự nhiên để giữ, nên nó bị bào mòn dần. Muốn ranh giới bền thì phải đặt một đội ở đó."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hai mươi bài của chặng này trông như hai mươi chủ đề rời: ranh giới, hợp đồng, sự kiện, di trú, tổ chức. Thực ra chúng đều là hệ quả của một lực duy nhất."
+    },
+    {
+      "type": "heading",
+      "text": "Một lực, nhiều hệ quả"
+    },
+    {
+      "type": "paragraph",
+      "text": "Giao tiếp trong đội gần như miễn phí; giao tiếp giữa các đội thì đắt. Từ chênh lệch ấy suy ra gần như mọi thứ trong chặng: ranh giới để giảm số lần phải trả, hợp đồng và sự kiện để những lần phải trả trở nên rẻ và an toàn, chuẩn chung để người chuyển đội không phải học lại, và cuối cùng là quan sát rằng chính lực ấy kéo kiến trúc về hình dạng tổ chức."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn nhóm bài"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ranh giới: vẽ theo lý do thay đổi, có chủ rõ ràng, và phải ngăn cách cả dữ liệu.",
+        "Giao tiếp qua ranh giới: hợp đồng có kiểm thử, sự kiện kể sự thật, chấp nhận nhất quán cuối cùng.",
+        "Phối hợp: tránh triển khai đồng thời, cắt chuỗi phụ thuộc, ghi lại quyết định.",
+        "Thay đổi lớn: bóp nghẹt dần thay vì viết lại, và nhớ gỡ hệ thống cũ."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Ở đội nhỏ",
+        "text": "Hiểu biết chung miễn phí, quyết định nhanh, ranh giới ít quan trọng. Nhiều lời khuyên của chặng này là chi phí thừa."
+      },
+      "right": {
+        "label": "Ở quy mô lớn",
+        "text": "Mọi thứ từng miễn phí đều phải mua. Ranh giới, hợp đồng và tài liệu không phải thủ tục mà là thứ thay cho hiểu biết chung đã mất."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Bốn câu mang theo",
+      "text": "Ai sở hữu phần này? Một thay đổi thông thường phải đi qua mấy đội? Hợp đồng giữa hai bên là gì và ai kiểm nó? Nếu chọn sai thì sửa mất bao lâu? Bốn câu đó đủ để đánh giá phần lớn đề xuất kiến trúc ở quy mô nhiều đội."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Không có kiến trúc đúng tuyệt đối - chỉ có kiến trúc hợp với tổ chức đang xây nó, ở quy mô hiện tại.",
+        "Đây là chặng cuối của phần kỹ năng nghề. Những gì còn lại của lộ trình là chiều sâu theo từng hướng bạn chọn đi."
+      ]
+    }
+  ]
+}

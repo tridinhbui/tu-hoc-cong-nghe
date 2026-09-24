@@ -73,7 +73,7 @@ export default function InteractiveEsgScore() {
         <Weight label={tr.environmentLabel} value={we} onChange={(v) => setWe(Math.min(v, 100 - ws))} />
         <Weight label={tr.socialLabel} value={ws} onChange={(v) => setWs(Math.min(v, 100 - we))} />
         <div className="flex items-baseline justify-between gap-2">
-          <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{tr.governanceLabel}</span>
+          <span className="text-xs font-bold text-ink-body">{tr.governanceLabel}</span>
           <span className="text-[11px] font-semibold tabular-nums text-ink-muted">
             {format(tr.remainderValue, { value: wg })}
           </span>
@@ -103,7 +103,7 @@ export default function InteractiveEsgScore() {
             className="flex items-center justify-between gap-3 rounded-xl border border-stone-200 px-3 py-2 dark:border-stone-800"
           >
             <div className="min-w-0">
-              <p className="text-xs font-bold text-stone-800 dark:text-stone-100">
+              <p className="text-xs font-bold text-ink-heading">
                 <span className="text-ink-faint">#{i + 1} </span>
                 {c.name}
               </p>
@@ -129,7 +129,7 @@ function Weight({ label, value, onChange }: { label: string; value: number; onCh
   return (
     <label className="block">
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-xs font-bold text-stone-700 dark:text-stone-200">{label}</span>
+        <span className="text-xs font-bold text-ink-body">{label}</span>
         <span className="text-[11px] font-semibold tabular-nums text-ink-muted">{value}%</span>
       </div>
       <input

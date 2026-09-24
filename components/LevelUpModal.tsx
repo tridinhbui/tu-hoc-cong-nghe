@@ -158,7 +158,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
         <button
           onClick={onClose}
           aria-label={t.levelUp.closeAriaLabel}
-          className="absolute top-4 right-4 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 transition-colors"
+          className="absolute top-4 right-4 text-stone-400 hover:text-ink-soft transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -185,7 +185,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
           <button
             onClick={handleDownload}
             disabled={downloading}
-            className="flex-1 py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-ink-body font-bold text-xs hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
+            className="flex-1 py-3 rounded-xl border border-line-mid text-ink-body font-bold text-xs hover:bg-surface transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
           >
             {downloading ? (
               <span className="w-3.5 h-3.5 border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200 rounded-full animate-spin" />
@@ -199,7 +199,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
           <button
             onClick={handleShare}
             disabled={sharing}
-            className="flex-1 py-3 rounded-xl border border-stone-200 dark:border-stone-700 text-ink-body font-bold text-xs hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
+            className="flex-1 py-3 rounded-xl border border-line-mid text-ink-body font-bold text-xs hover:bg-surface transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
           >
             {sharing ? (
               <span className="w-3.5 h-3.5 border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200 rounded-full animate-spin" />
@@ -212,7 +212,7 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
 
         <button
           onClick={onClose}
-          className="w-full py-3.5 rounded-xl bg-surface-invert text-white dark:text-stone-900 font-bold text-sm hover:bg-stone-800 dark:hover:bg-white transition-colors"
+          className="w-full py-3.5 rounded-xl bg-surface-invert text-ink-invert font-bold text-sm hover:bg-stone-800 dark:hover:bg-white transition-colors"
         >
           {t.levelUp.confirm}
         </button>

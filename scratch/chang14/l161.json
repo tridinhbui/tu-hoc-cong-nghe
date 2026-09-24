@@ -1,0 +1,180 @@
+{
+  "id": 161,
+  "slug": "do-tin-cay-la-mot-danh-doi",
+  "title": "Độ tin cậy là một đánh đổi, không phải một lời hứa",
+  "subtitle": "Không ai xây hệ thống không bao giờ hỏng. Người ta chọn mức hỏng chấp nhận được rồi trả giá cho nó.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "⚖️",
+  "track": "professional",
+  "whyItMatters": "Đội nào coi độ tin cậy là mục tiêu tuyệt đối sẽ tiêu hết ngân sách vào chín số chín mà không ai cần, hoặc kiệt sức vì mọi cảnh báo đều khẩn cấp. Đặt nó thành một con số biến nó thành thứ có thể quyết định được.",
+  "openingQuestion": "Đội đề xuất nâng độ sẵn sàng từ 99,9% lên 99,99%. Câu hỏi đầu tiên nên hỏi là gì?",
+  "openingOptions": [
+    "Người dùng có nhận ra khác biệt ấy không, và nó đáng bao nhiêu",
+    "Cần thêm bao nhiêu máy chủ và bao nhiêu vùng để đạt được mức đó",
+    "Hệ thống hiện tại đang hỏng ở đâu nhiều nhất trong sáu tháng qua",
+    "Các đối thủ cùng ngành đang cam kết mức độ sẵn sàng là bao nhiêu"
+  ],
+  "correctOption": 0,
+  "explanation": "Khoảng cách giữa hai con số đó là bốn mươi ba phút ngừng mỗi tháng so với bốn phút. Chi phí để đi từ mức này lên mức kia thường gấp nhiều lần, và với phần lớn sản phẩm thì người dùng không phân biệt được - họ chịu ảnh hưởng của mạng di động nhiều hơn. Ba câu hỏi còn lại đều hợp lý nhưng chúng đều là câu hỏi thực hiện; chúng chỉ có nghĩa sau khi đã trả lời được rằng mục tiêu ấy đáng theo đuổi.",
+  "diagram": [
+    {
+      "label": "99,9% = ~43 phút ngừng mỗi tháng",
+      "arrow": true
+    },
+    {
+      "label": "99,99% = ~4 phút mỗi tháng",
+      "arrow": true
+    },
+    {
+      "label": "Chi phí chênh nhau nhiều lần",
+      "arrow": true
+    },
+    {
+      "label": "Câu hỏi: ai được lợi, và lợi bao nhiêu"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Chín số chín không ai cần",
+    "description": "Một đội dành hai quý xây dự phòng đa vùng cho công cụ nội bộ mà cả công ty dùng trong giờ hành chính. Mức ngừng thực tế trước đó là vài phút mỗi quý, và không ai từng phàn nàn."
+  },
+  "keyTakeaways": [
+    "Mỗi chín thêm vào thường tốn gấp nhiều lần chín trước đó.",
+    "Mục tiêu độ tin cậy phải xuất phát từ nhu cầu người dùng, không từ tham vọng.",
+    "Độ tin cậy của hệ thống bị chặn bởi mắt xích yếu nhất mà nó phụ thuộc.",
+    "Một mục tiêu quá cao gây kiệt sức, vì mọi trục trặc đều thành khẩn cấp."
+  ],
+  "summary": {
+    "keyIdea": "Chọn mức độ tin cậy phù hợp rồi trả giá cho nó, thay vì đuổi theo con số tuyệt đối.",
+    "formula": "Mỗi chín thêm vào đắt gấp nhiều lần chín trước.",
+    "commonMistake": "Đặt mục tiêu bằng cảm giác chứ không bằng nhu cầu người dùng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Hỏi xem dịch vụ của bạn đang nhắm mức độ sẵn sàng nào và ai đã quyết định con số ấy. Nếu không ai trả lời được thì bạn vừa tìm ra việc đầu tiên phải làm."
+  },
+  "practicePrompt": {
+    "question": "Vì sao mục tiêu độ tin cậy quá cao lại gây hại cho đội?",
+    "options": [
+      "Vì mọi trục trặc nhỏ đều trở thành việc khẩn cấp phải xử lý ngay",
+      "Vì đội sẽ không còn thời gian để viết tài liệu kỹ thuật cho đầy đủ",
+      "Vì hệ thống sẽ trở nên phức tạp tới mức không ai hiểu được nữa",
+      "Vì chi phí hạ tầng vượt quá ngân sách được duyệt cho cả năm"
+    ],
+    "correct": 0,
+    "explanation": "Khi không còn khoảng đệm nào, mỗi sự cố dù nhỏ cũng phải được xử lý ngay lập tức, kể cả lúc nửa đêm. Ba hậu quả còn lại đều có thật nhưng chúng đến sau; cái đầu tiên đội cảm nhận được là lịch trực trở nên không sống nổi."
+  },
+  "quiz": [
+    {
+      "question": "Khoảng cách giữa 99,9% và 99,99% là bao nhiêu thời gian ngừng mỗi tháng?",
+      "options": [
+        "Khoảng bốn mươi ba phút so với khoảng bốn phút",
+        "Khoảng bốn giờ so với khoảng bốn mươi phút mỗi tháng",
+        "Khoảng bảy phút so với khoảng bốn mươi giây mỗi tháng",
+        "Khoảng một ngày so với khoảng hai giờ rưỡi mỗi tháng"
+      ],
+      "correct": 0,
+      "explanation": "Một tháng có khoảng bốn mươi ba nghìn phút, nên một phần nghìn của nó là bốn mươi ba phút. Nhớ con số này giúp bạn nhận ra ngay khi một mục tiêu được đặt ra mà không ai tính xem nó nghĩa là gì."
+    },
+    {
+      "question": "Độ tin cậy của một dịch vụ bị chặn bởi điều gì?",
+      "options": [
+        "Mắt xích kém tin cậy nhất trong chuỗi nó phụ thuộc",
+        "Số lượng máy chủ đang chạy trong nhóm phục vụ",
+        "Chất lượng mã nguồn của chính dịch vụ đó",
+        "Tần suất triển khai phiên bản mới lên môi trường thật"
+      ],
+      "correct": 0,
+      "explanation": "Một dịch vụ hoàn hảo gọi tới một phụ thuộc đạt 99% thì không thể vượt quá 99%. Đây là lý do cam kết độ tin cậy phải được tính từ cả chuỗi chứ không chỉ từ phần mình viết."
+    },
+    {
+      "question": "Mục tiêu độ tin cậy nên xuất phát từ đâu?",
+      "options": [
+        "Từ mức mà người dùng thật sự nhận ra và quan tâm",
+        "Từ mức cao nhất mà công nghệ hiện tại cho phép đạt",
+        "Từ mức mà các công ty cùng ngành đang công bố ra",
+        "Từ mức mà hệ thống đã đạt được trong năm vừa rồi"
+      ],
+      "correct": 0,
+      "explanation": "Người dùng vào bằng mạng di động đã chịu tỷ lệ lỗi cao hơn nhiều so với khoảng chênh giữa hai mục tiêu bạn đang cân nhắc. Vượt qua ngưỡng ấy thì mọi đồng chi thêm là chi cho một khác biệt không ai cảm nhận được."
+    },
+    {
+      "question": "Vì sao mỗi chín thêm vào lại đắt hơn chín trước đó?",
+      "options": [
+        "Vì nó đòi hỏi loại bỏ những nguyên nhân ngày càng hiếm và khó lường",
+        "Vì giá của phần cứng tăng theo cấp số nhân khi mua số lượng lớn",
+        "Vì đội phải tuyển thêm người để trực suốt hai mươi tư giờ mỗi ngày",
+        "Vì các nhà cung cấp hạ tầng tính phí theo mức cam kết dịch vụ"
+      ],
+      "correct": 0,
+      "explanation": "Những nguyên nhân dễ đã bị xử lý ở các mức trước. Còn lại là lỗi hiếm, lỗi phối hợp giữa nhiều thành phần, và lỗi con người - loại phải chống bằng kiến trúc và quy trình chứ không bằng một khoản chi."
+    },
+    {
+      "question": "Đặt mục tiêu độ tin cậy thành một con số cụ thể mang lại điều gì?",
+      "options": [
+        "Biến nó thành thứ có thể đem ra cân nhắc và đánh đổi được",
+        "Bảo đảm rằng hệ thống sẽ đạt được đúng mức đã đặt ra",
+        "Cho phép so sánh chất lượng vận hành giữa các đội trong công ty",
+        "Giúp phát hiện sớm những dịch vụ đang hoạt động kém"
+      ],
+      "correct": 0,
+      "explanation": "Không có con số thì mọi cuộc tranh luận về việc có nên dừng tính năng để sửa hạ tầng hay không đều là tranh luận cảm tính. Có con số thì câu hỏi trở thành đang thừa hay đang thiếu bao nhiêu."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Chặng trước hỏi hệ thống nhanh chậm thế nào. Chặng này hỏi một câu khác: khi nó hỏng thì sao - và trước hết, hỏng bao nhiêu thì được coi là chấp nhận được."
+    },
+    {
+      "type": "heading",
+      "text": "Không có hệ thống nào không hỏng"
+    },
+    {
+      "type": "paragraph",
+      "text": "Phần cứng chết, mạng đứt, người triển khai nhầm, phụ thuộc bên thứ ba ngừng. Câu hỏi không phải làm sao để không bao giờ hỏng mà là hỏng bao nhiêu thì chấp nhận được, và bạn sẵn sàng trả bao nhiêu để giữ nó ở mức ấy."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Một tháng có khoảng 43.200 phút",
+      "subtitle": "Con số đáng nhớ, vì nó biến phần trăm thành thời gian thật",
+      "concepts": [
+        {
+          "vi": "99%",
+          "en": "two nines",
+          "def": "Khoảng 7 giờ ngừng mỗi tháng. Đủ cho công cụ nội bộ dùng trong giờ hành chính."
+        },
+        {
+          "vi": "99,9%",
+          "en": "three nines",
+          "def": "Khoảng 43 phút mỗi tháng. Mức phổ biến cho sản phẩm thương mại thông thường."
+        },
+        {
+          "vi": "99,99%",
+          "en": "four nines",
+          "def": "Khoảng 4 phút mỗi tháng. Đòi hỏi dự phòng thật và quy trình triển khai rất kỷ luật."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Mắt xích yếu nhất đặt trần",
+      "text": "Một dịch vụ hoàn hảo gọi tới một phụ thuộc đạt 99% thì không thể vượt quá 99%. Cam kết độ tin cậy phải được tính từ cả chuỗi, và đó thường là lúc người ta phát hiện ra con số mình vừa hứa là bất khả thi."
+    },
+    {
+      "type": "heading",
+      "text": "Cái giá của mục tiêu quá cao"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nó không chỉ là tiền. Khi không còn khoảng đệm nào, mọi trục trặc dù nhỏ cũng thành việc khẩn cấp phải xử lý ngay, kể cả lúc nửa đêm. Đội kiệt sức, người giỏi nghỉ việc, và độ tin cậy thực tế đi xuống - đúng cái mà mục tiêu ấy định bảo vệ."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Độ tin cậy là một con số được chọn, không phải một lời hứa được giữ bằng ý chí.",
+        "Bài sau về việc chọn đúng thứ để đo, vì một mục tiêu đặt trên sai chỉ số thì không bảo vệ được gì."
+      ]
+    }
+  ]
+}

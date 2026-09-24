@@ -1,0 +1,176 @@
+{
+  "id": 106,
+  "slug": "chuan-chung-va-tu-chu",
+  "title": "Chuẩn chung và tự chủ: chọn chỗ để thống nhất",
+  "subtitle": "Thống nhất mọi thứ thì đội nào cũng bị trói; thống nhất không gì thì mỗi đội là một hòn đảo.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🧭",
+  "track": "professional",
+  "whyItMatters": "Mỗi chuẩn chung là một khoản thuế đánh vào tự chủ và một khoản lợi tức về khả năng dịch chuyển. Không chọn có ý thức thì tổ chức trôi về một trong hai cực, và cả hai cực đều tốn kém.",
+  "openingQuestion": "Thứ nào đáng đặt thành chuẩn chung cho toàn tổ chức nhất?",
+  "openingOptions": [
+    "Cách các dịch vụ ghi nhật ký và phát chỉ số ra ngoài",
+    "Ngôn ngữ lập trình mà mọi đội phải dùng",
+    "Cách đặt tên biến và định dạng mã trong từng dự án riêng",
+    "Thư viện giao diện mà mọi sản phẩm phải dùng chung"
+  ],
+  "correctOption": 0,
+  "explanation": "Chuẩn đáng đặt nhất là chuẩn ở ranh giới - nơi các phần gặp nhau. Nhật ký và chỉ số theo cùng định dạng cho phép một bảng theo dõi chung, một cách điều tra sự cố chung, và người chuyển đội không phải học lại. Ngôn ngữ lập trình thì ngược lại: nó là chuyện bên trong một đội, và ép chung lấy đi rất nhiều tự chủ để đổi lấy ít lợi ích. Định dạng mã nên tự động hoá trong từng dự án chứ không cần thống nhất toàn tổ chức, còn thư viện giao diện chỉ đáng chuẩn hoá khi các sản phẩm thật sự cần trông giống nhau.",
+  "diagram": [
+    {
+      "label": "Chuẩn ở ranh giới: nhật ký, chỉ số, xác thực",
+      "arrow": true
+    },
+    {
+      "label": "Lợi ích lớn, mất tự chủ ít",
+      "arrow": true
+    },
+    {
+      "label": "Chuẩn bên trong: ngôn ngữ, cấu trúc thư mục",
+      "arrow": true
+    },
+    {
+      "label": "Mất tự chủ nhiều, lợi ích nhỏ"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Người chuyển đội",
+    "description": "Thước đo thực dụng cho chuẩn chung là một người chuyển sang đội khác mất bao lâu để đóng góp được. Nếu mọi thứ ở ranh giới đều giống nhau, họ chỉ cần học phần nghiệp vụ - và đó là phần duy nhất đáng để họ học."
+  },
+  "keyTakeaways": [
+    "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+    "Mỗi chuẩn là thuế đánh vào tự chủ, nên phải trả lời được nó mua lại thứ gì.",
+    "Con đường mặc định dễ đi luôn hiệu quả hơn quy định bắt buộc.",
+    "Chuẩn cần có cách xin ngoại lệ, nếu không người ta sẽ lách trong im lặng."
+  ],
+  "summary": {
+    "keyIdea": "Thống nhất ở chỗ các phần gặp nhau, để tự do ở chỗ chỉ ảnh hưởng bên trong.",
+    "formula": "Chuẩn ở ranh giới, tự chủ bên trong.",
+    "commonMistake": "Ép chuẩn vào những quyết định chỉ ảnh hưởng nội bộ một đội."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê các chuẩn chung tổ chức bạn đang có và với mỗi cái, viết một câu nó mua lại thứ gì. Cái nào không viết nổi là cái đang thu thuế mà không trả lợi tức."
+  },
+  "practicePrompt": {
+    "question": "Cách hiệu quả nhất để một chuẩn được áp dụng rộng rãi là gì?",
+    "options": [
+      "Làm cho con đường theo chuẩn là con đường dễ đi nhất",
+      "Ban hành quy định bắt buộc kèm cơ chế kiểm tra định kỳ",
+      "Tổ chức đào tạo cho toàn bộ đội ngũ kỹ thuật",
+      "Yêu cầu người quản lý từng đội chịu trách nhiệm giám sát"
+    ],
+    "correct": 0,
+    "explanation": "Một khuôn dự án dựng sẵn đã cấu hình đúng nhật ký, chỉ số và xác thực sẽ được dùng vì nó tiết kiệm thời gian, không phải vì có quy định. Quy định mà đường theo chuẩn lại khó đi hơn thì người ta sẽ lách, và bạn mất luôn khả năng biết ai đang lách."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao chuẩn hoá ở ranh giới có lợi hơn chuẩn hoá bên trong?",
+      "options": [
+        "Vì lợi ích lớn mà phần tự chủ bị lấy đi lại nhỏ",
+        "Vì ranh giới ít thay đổi hơn phần bên trong",
+        "Vì chuẩn ở ranh giới dễ kiểm tra tự động hơn",
+        "Vì phần bên trong không ảnh hưởng tới chất lượng sản phẩm"
+      ],
+      "correct": 0,
+      "explanation": "Ranh giới là nơi các phần gặp nhau, nên thống nhất ở đó cho lợi ích chung ngay lập tức. Còn ngôn ngữ hay cấu trúc thư mục chỉ ảnh hưởng một đội, nên ép chung lấy đi nhiều mà trả lại ít."
+    },
+    {
+      "question": "Chuẩn chung mua lại điều gì?",
+      "options": [
+        "Khả năng dùng chung công cụ và chuyển người giữa các đội",
+        "Chất lượng mã cao hơn ở từng đội riêng lẻ",
+        "Tốc độ phát triển nhanh hơn cho mọi loại công việc",
+        "Sự giảm bớt số lượng cuộc họp phối hợp diễn ra giữa các đội"
+      ],
+      "correct": 0,
+      "explanation": "Đó là hai lợi tức chính: một bảng theo dõi dùng chung được, và người chuyển đội chỉ phải học phần nghiệp vụ. Chất lượng và tốc độ thì phụ thuộc nhiều thứ khác."
+    },
+    {
+      "question": "Vì sao con đường dễ đi hiệu quả hơn quy định bắt buộc?",
+      "options": [
+        "Vì người ta theo nó do tiện chứ không phải do bị bắt",
+        "Vì quy định bắt buộc thường không được phổ biến đầy đủ",
+        "Vì con đường dễ đi không cần ai kiểm tra việc tuân thủ",
+        "Vì quy định bắt buộc chỉ áp dụng được cho các dự án mới"
+      ],
+      "correct": 0,
+      "explanation": "Quy định mà đường theo chuẩn lại khó đi hơn sẽ bị lách trong im lặng, và bạn mất khả năng biết ai đang lách. Một khuôn dựng sẵn tiết kiệm thời gian thì không cần ai cưỡng chế."
+    },
+    {
+      "question": "Vì sao chuẩn cần có cơ chế xin ngoại lệ?",
+      "options": [
+        "Vì luôn có trường hợp chuẩn không phù hợp, và ngoại lệ công khai tốt hơn lách ngầm",
+        "Vì các đội lớn cần được đối xử khác với các đội nhỏ",
+        "Vì quy định của công ty yêu cầu phải có quy trình miễn trừ",
+        "Vì ngoại lệ giúp giảm số lượng chuẩn cần duy trì"
+      ],
+      "correct": 0,
+      "explanation": "Không có cửa xin thì người gặp trường hợp thật sự đặc biệt sẽ tự tìm đường vòng, và tổ chức mất luôn thông tin về chỗ chuẩn đang không hoạt động."
+    },
+    {
+      "question": "Thước đo thực dụng cho hiệu quả của chuẩn chung là gì?",
+      "options": [
+        "Người chuyển sang đội khác mất bao lâu để đóng góp được",
+        "Tỷ lệ đội tuân thủ đầy đủ mọi chuẩn đã ban hành",
+        "Số lượng chuẩn mà tổ chức đã ban hành và còn đang duy trì được",
+        "Mức độ giống nhau giữa mã nguồn của các đội"
+      ],
+      "correct": 0,
+      "explanation": "Đó là lợi ích cụ thể mà chuẩn được sinh ra để mang lại. Đếm số chuẩn hay đo mức tuân thủ là đo hoạt động chứ không đo kết quả - đúng cái bẫy của bài về chỉ số ở chặng trước."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mỗi chuẩn chung lấy đi một phần tự chủ của các đội và trả lại một thứ khác. Câu hỏi không phải nên có chuẩn hay không, mà là ở đâu thì khoản đổi ấy có lãi."
+    },
+    {
+      "type": "heading",
+      "text": "Ranh giới thì thống nhất, bên trong thì tự do"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Chuẩn ở đâu thì đáng",
+      "subtitle": "Đo bằng lợi ích chung chia cho tự chủ bị lấy đi",
+      "concepts": [
+        {
+          "vi": "Ở ranh giới",
+          "en": "at the seams",
+          "def": "Nhật ký, chỉ số, xác thực, định dạng dữ liệu trao đổi. Lợi ích chung lớn, tự chủ mất ít."
+        },
+        {
+          "vi": "Ở nền móng",
+          "en": "foundations",
+          "def": "Cách triển khai, cách quản lý bí mật, cách xử lý sự cố. Đáng thống nhất vì rủi ro là của cả tổ chức."
+        },
+        {
+          "vi": "Bên trong đội",
+          "en": "internal",
+          "def": "Ngôn ngữ, cấu trúc thư mục, thư viện nội bộ. Ép chung thì mất nhiều, được ít."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Đường dễ đi thắng quy định"
+    },
+    {
+      "type": "paragraph",
+      "text": "Một khuôn dự án dựng sẵn đã cấu hình đúng nhật ký, chỉ số, xác thực và triển khai sẽ được dùng rộng rãi mà không cần ai ép, vì nó tiết kiệm hai ngày cho mỗi dự án mới. Cùng chuẩn ấy ban hành dưới dạng tài liệu mười trang thì sẽ bị đọc lướt và làm cho có."
+    },
+    {
+      "type": "callout",
+      "label": "Ngoại lệ phải công khai được",
+      "text": "Luôn có trường hợp chuẩn không phù hợp. Nếu không có cửa xin ngoại lệ thì người ta lách trong im lặng, và tổ chức mất cả sự nhất quán lẫn thông tin về chỗ chuẩn đang sai."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Thống nhất ở chỗ các phần gặp nhau, để tự do ở chỗ chỉ ảnh hưởng bên trong - đó là toàn bộ nguyên tắc.",
+        "Bài sau nói về hình thức tổ chức thường được dựng để giữ những chuẩn ấy: đội nền tảng nội bộ."
+      ]
+    }
+  ]
+}

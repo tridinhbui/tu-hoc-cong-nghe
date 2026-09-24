@@ -45,29 +45,29 @@ export default function CommunityModerationPanel() {
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-xl divide-y divide-stone-200 dark:divide-stone-800">
+    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl divide-y divide-stone-200 dark:divide-stone-800">
       {posts.map((post) => (
         <div key={post.id} className={`p-4 flex items-start justify-between gap-4 ${post.is_hidden ? "opacity-50" : ""}`}>
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="font-bold text-sm text-stone-900 dark:text-stone-100">
+              <span className="font-bold text-sm text-ink">
                 {post.user_name || post.user_email || tc.unknownUser}
               </span>
               <span className="text-[10px] font-bold uppercase text-stone-400">{post.kind}</span>
               {post.is_hidden && (
-                <span className="text-[10px] font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/30 px-1.5 py-0.5 rounded">
+                <span className="text-[10px] font-bold text-alert bg-rose-50 dark:bg-rose-950/30 px-1.5 py-0.5 rounded">
                   {tc.hidden}
                 </span>
               )}
             </div>
-            <p className="text-sm text-stone-700 dark:text-stone-300 mt-1">{post.content}</p>
+            <p className="text-sm text-ink-body mt-1">{post.content}</p>
             <p className="text-[10px] text-stone-400 mt-1">{new Date(post.created_at).toLocaleString(intlLocale(locale))}</p>
           </div>
           <button
             onClick={() => toggleHidden(post)}
             disabled={updatingId === post.id}
             title={post.is_hidden ? tc.showPost : tc.hidePost}
-            className="flex-shrink-0 p-2 rounded-lg border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition disabled:opacity-40"
+            className="flex-shrink-0 p-2 rounded-lg border border-line-mid text-ink-muted hover:text-ink transition disabled:opacity-40"
           >
             {post.is_hidden ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
           </button>

@@ -28,10 +28,10 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
 
   if (status === "sent") {
     return (
-      <div className="bg-accent-soft/50 border border-accent-line rounded-[20px] p-6 text-center shadow-[0_10px_24px_-24px_rgba(16,185,129,0.18)]">
+      <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-accent-line rounded-[20px] p-6 text-center shadow-[0_10px_24px_-24px_rgba(16,185,129,0.18)]">
         <div className="text-4xl mb-3">🎉</div>
-        <p className="font-bold text-emerald-900 dark:text-emerald-400 text-lg mb-2">{t.lessonFeedback.thanksTitle}</p>
-        <p className="text-emerald-700 dark:text-emerald-500 text-sm">{t.lessonFeedback.thanksSubtitle}</p>
+        <p className="font-bold text-accent-ink-strong text-lg mb-2">{t.lessonFeedback.thanksTitle}</p>
+        <p className="text-accent-strong text-sm">{t.lessonFeedback.thanksSubtitle}</p>
       </div>
     );
   }
@@ -44,7 +44,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
         </div>
         <div className="flex-1">
           <h3 className="font-bold text-ink text-lg mb-1">{t.lessonFeedback.title}</h3>
-          <p className="text-stone-600 dark:text-stone-400 text-sm">
+          <p className="text-ink-soft text-sm">
             {t.lessonFeedback.subtitle}
           </p>
         </div>
@@ -82,7 +82,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
         className={`w-full py-3 rounded-[18px] text-sm font-bold transition-all cursor-pointer focus-visible:outline-none ${
           rating > 0 && status !== "sending"
             ? "bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white dark:text-stone-950 shadow-md active:scale-98"
-            : "bg-stone-200 dark:bg-stone-800 text-ink-faint cursor-not-allowed"
+            : "bg-surface-sunken text-ink-faint cursor-not-allowed"
         }`}
       >
         {status === "sending" ? t.lessonFeedback.sendingButton : t.lessonFeedback.submitButton}

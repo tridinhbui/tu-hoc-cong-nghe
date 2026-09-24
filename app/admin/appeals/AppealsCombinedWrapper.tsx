@@ -35,14 +35,14 @@ export default function AppealsCombinedWrapper({
   return (
     <div className="space-y-6">
       {/* Top Section Switcher */}
-      <div className="flex items-center gap-3 border-b border-stone-200 dark:border-stone-800 pb-3">
+      <div className="flex items-center gap-3 border-b border-line pb-3">
         <button
           type="button"
           onClick={() => setSection("appeals")}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "appeals"
-              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
-              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+              ? "bg-surface-invert text-ink-invert shadow-sm"
+              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
           }`}
         >
           <ShieldQuestion className="w-4 h-4 text-emerald-500" />
@@ -54,8 +54,8 @@ export default function AppealsCombinedWrapper({
           onClick={() => setSection("ai-reports")}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "ai-reports"
-              ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
-              : "bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-700"
+              ? "bg-surface-invert text-ink-invert shadow-sm"
+              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
           }`}
         >
           <AlertTriangle className="w-4 h-4 text-rose-500" />
@@ -73,7 +73,7 @@ export default function AppealsCombinedWrapper({
               className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors cursor-pointer ${
                 view === "pending"
                   ? "bg-emerald-600 text-white"
-                  : "bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-300 dark:hover:bg-stone-700"
+                  : "bg-surface-sunken text-ink-body hover:bg-surface-deep"
               }`}
             >
               {format(ta.pendingTab, { count: pendingAppealsCount })}
@@ -84,7 +84,7 @@ export default function AppealsCombinedWrapper({
               className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors cursor-pointer ${
                 view === "all"
                   ? "bg-emerald-600 text-white"
-                  : "bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-300 dark:hover:bg-stone-700"
+                  : "bg-surface-sunken text-ink-body hover:bg-surface-deep"
               }`}
             >
               {format(ta.allTab, { count: appeals.length })}

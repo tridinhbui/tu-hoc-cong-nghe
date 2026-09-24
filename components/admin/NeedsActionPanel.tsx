@@ -76,16 +76,16 @@ export default async function NeedsActionPanel({
                 key={item.key}
                 className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-3 ${
                   pending
-                    ? "bg-warn-soft/20 border border-amber-200 dark:border-amber-900/50"
+                    ? "bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50"
                     : "bg-stone-50 dark:bg-stone-950/40 border border-line-soft"
                 }`}
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <Icon className={`w-4 h-4 shrink-0 ${pending ? "text-warn" : "text-stone-400 dark:text-stone-600"}`} />
+                  <Icon className={`w-4 h-4 shrink-0 ${pending ? "text-warn" : "text-ink-faint"}`} />
                   <span className="text-sm font-semibold text-ink-body truncate">{item.label}</span>
                   <span
                     className={`text-sm font-extrabold shrink-0 ${
-                      pending ? "text-amber-700 dark:text-amber-400" : "text-stone-400 dark:text-stone-600"
+                      pending ? "text-warn-strong" : "text-ink-faint"
                     }`}
                   >
                     {item.count}
@@ -94,12 +94,12 @@ export default async function NeedsActionPanel({
                 {pending ? (
                   <Link
                     href={item.href}
-                    className="shrink-0 inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-lg bg-surface-invert text-white dark:text-stone-900 hover:opacity-90 transition-opacity"
+                    className="shrink-0 inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-lg bg-surface-invert text-ink-invert hover:opacity-90 transition-opacity"
                   >
                     {ta.actionNow}
                   </Link>
                 ) : (
-                  <span className="shrink-0 text-xs font-semibold text-stone-400 dark:text-stone-600">{ta.done}</span>
+                  <span className="shrink-0 text-xs font-semibold text-ink-faint">{ta.done}</span>
                 )}
               </div>
             );

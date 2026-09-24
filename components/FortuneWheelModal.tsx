@@ -101,12 +101,12 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200 transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full hover:bg-surface-raised text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <span className="text-xs font-black uppercase tracking-widest text-warn bg-warn-soft/40 px-3 py-1 rounded-full border border-amber-200 dark:border-amber-900">
+        <span className="text-xs font-black uppercase tracking-widest text-warn bg-amber-50 dark:bg-amber-950/40 px-3 py-1 rounded-full border border-warn-line">
           {t.fortuneWheel.badge}
         </span>
         <h2 className="text-xl font-black text-stone-900 dark:text-white mt-2">
@@ -184,7 +184,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
           disabled={spinning || hasSpunToday}
           className={`w-full py-3.5 rounded-2xl font-black text-sm transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer ${
             hasSpunToday
-              ? "bg-stone-200 dark:bg-stone-800 text-stone-400 cursor-not-allowed"
+              ? "bg-surface-sunken text-stone-400 cursor-not-allowed"
               : spinning
               ? "bg-amber-500/50 text-white cursor-wait animate-pulse"
               : "bg-gradient-to-r from-amber-500 via-rose-500 to-amber-500 text-white hover:scale-105 shadow-amber-500/30"

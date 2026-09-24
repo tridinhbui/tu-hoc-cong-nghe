@@ -1,0 +1,173 @@
+{
+  "id": 162,
+  "slug": "chi-so-do-suc-khoe-dich-vu",
+  "title": "Chọn chỉ số: dịch vụ có đang phục vụ được không",
+  "subtitle": "Máy chủ còn sống không giống với người dùng làm được việc.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🩺",
+  "track": "professional",
+  "whyItMatters": "Mọi mục tiêu độ tin cậy đều đặt trên một chỉ số. Chọn nhầm chỉ số thì bảng theo dõi xanh trong lúc người dùng không dùng được, và không cảnh báo nào nổ.",
+  "openingQuestion": "Chỉ số nào phản ánh đúng nhất việc dịch vụ đang phục vụ được?",
+  "openingOptions": [
+    "Tỷ lệ yêu cầu được trả lời đúng và đủ nhanh",
+    "Tỷ lệ thời gian máy chủ ở trạng thái đang chạy",
+    "Mức sử dụng bộ xử lý và bộ nhớ của các máy chủ",
+    "Số lượng yêu cầu mà hệ thống nhận được mỗi giây"
+  ],
+  "correctOption": 0,
+  "explanation": "Một tiến trình đang chạy vẫn có thể trả về lỗi cho mọi yêu cầu, hoặc trả lời sau ba mươi giây. Chỉ số tốt phải gộp cả tính đúng lẫn tính kịp thời, vì một câu trả lời đến quá muộn thì với người dùng không khác gì không có câu trả lời. Mức dùng tài nguyên và lưu lượng là thông tin để chẩn đoán chứ không cho biết dịch vụ có phục vụ được hay không.",
+  "diagram": [
+    {
+      "label": "Tiến trình còn sống - chưa nói lên gì",
+      "arrow": true
+    },
+    {
+      "label": "Yêu cầu được trả lời - gần hơn",
+      "arrow": true
+    },
+    {
+      "label": "Trả lời đúng và trong ngưỡng thời gian",
+      "arrow": true
+    },
+    {
+      "label": "Đó là chỉ số đặt mục tiêu lên được"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Xanh toàn bảng, không ai đăng nhập được",
+    "description": "Dịch vụ xác thực trả về lỗi cho mọi yêu cầu suốt hai mươi phút. Mọi máy chủ đều đang chạy, mức tài nguyên bình thường, và không cảnh báo nào nổ vì cảnh báo được đặt trên trạng thái tiến trình."
+  },
+  "keyTakeaways": [
+    "Chỉ số phải gộp cả tính đúng lẫn tính kịp thời của câu trả lời.",
+    "Đo ở chỗ gần người dùng nhất mà bạn còn kiểm soát được.",
+    "Mỗi hành trình quan trọng cần chỉ số riêng, không gộp làm một.",
+    "Mức dùng tài nguyên dùng để chẩn đoán, không dùng để đặt mục tiêu."
+  ],
+  "summary": {
+    "keyIdea": "Chỉ số độ tin cậy phải trả lời được câu hỏi người dùng có làm được việc hay không.",
+    "formula": "Tỷ lệ yêu cầu vừa đúng vừa kịp.",
+    "commonMistake": "Đặt cảnh báo trên trạng thái tiến trình thay vì trên kết quả phục vụ."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Liệt kê ba hành trình quan trọng nhất của người dùng và viết ra chỉ số đo được cho từng cái. Nếu một hành trình không có chỉ số nào thì nó đang không được bảo vệ."
+  },
+  "practicePrompt": {
+    "question": "Vì sao không nên gộp mọi hành trình vào một chỉ số duy nhất?",
+    "options": [
+      "Vì hành trình ít lưu lượng sẽ bị hành trình nhiều lưu lượng che mất",
+      "Vì mỗi hành trình có một đội khác nhau chịu trách nhiệm vận hành",
+      "Vì các hành trình có yêu cầu về thời gian phản hồi khác nhau",
+      "Vì công cụ giám sát không cho phép tổng hợp nhiều nguồn dữ liệu"
+    ],
+    "correct": 0,
+    "explanation": "Nếu chín mươi lăm phần trăm lưu lượng là một hành trình đơn giản, thì chức năng thanh toán hỏng hoàn toàn cũng chỉ kéo con số chung xuống vài phần trăm. Yêu cầu thời gian khác nhau cũng là lý do thật, nhưng nó chỉ làm ngưỡng khó đặt chứ không giấu hẳn một sự cố đi."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao trạng thái tiến trình là chỉ số kém?",
+      "options": [
+        "Vì tiến trình đang chạy vẫn có thể trả lỗi cho mọi yêu cầu",
+        "Vì trạng thái tiến trình chỉ được cập nhật sau mỗi vài phút",
+        "Vì một số hệ điều hành báo trạng thái tiến trình không chính xác",
+        "Vì tiến trình có thể được khởi động lại tự động khi gặp lỗi"
+      ],
+      "correct": 0,
+      "explanation": "Đây là kiểu sự cố khó chịu nhất: mọi thứ trông sống, không cảnh báo nào nổ, và người dùng thì không đăng nhập được suốt hai mươi phút. Chỉ có chỉ số nhìn vào kết quả trả về mới bắt được nó."
+    },
+    {
+      "question": "Vì sao chỉ số phải gộp cả yếu tố thời gian?",
+      "options": [
+        "Vì câu trả lời đến quá muộn thì với người dùng cũng như không có",
+        "Vì thời gian phản hồi là thứ dễ đo nhất trong các chỉ số",
+        "Vì các trình duyệt tự động huỷ yêu cầu sau một khoảng thời gian chờ",
+        "Vì thời gian phản hồi phản ánh mức tải hiện tại của hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Một dịch vụ trả về đúng kết quả sau ba mươi giây thì tỷ lệ thành công của nó là một trăm phần trăm trong khi người dùng đã bỏ đi. Ngưỡng thời gian phải nằm ngay trong định nghĩa của chỉ số."
+    },
+    {
+      "question": "Nên đo ở vị trí nào trong hệ thống?",
+      "options": [
+        "Ở chỗ gần người dùng nhất mà bạn vẫn còn kiểm soát được",
+        "Ở ngay bên trong dịch vụ, nơi số liệu là chính xác nhất",
+        "Ở tầng cơ sở dữ liệu, nơi phần lớn thời gian bị tiêu tốn",
+        "Ở nhiều tầng cùng lúc rồi lấy giá trị trung bình của chúng"
+      ],
+      "correct": 0,
+      "explanation": "Càng đo sâu bên trong thì càng bỏ sót các tầng phía ngoài - cân bằng tải, cổng vào, tầng bộ nhớ đệm - và đó chính là chỗ nhiều sự cố xảy ra. Đo bên trong vẫn cần, nhưng để chẩn đoán chứ không để đặt mục tiêu."
+    },
+    {
+      "question": "Mức sử dụng bộ xử lý nên được dùng vào việc gì?",
+      "options": [
+        "Chẩn đoán nguyên nhân sau khi đã biết dịch vụ có vấn đề",
+        "Đặt mục tiêu độ tin cậy vì nó phản ánh sức khoẻ hệ thống",
+        "Phát cảnh báo chính cho đội trực khi vượt một ngưỡng nhất định",
+        "Báo cáo cho lãnh đạo về chất lượng vận hành trong từng tháng"
+      ],
+      "correct": 0,
+      "explanation": "Bộ xử lý cạn mà người dùng không bị ảnh hưởng thì không phải sự cố; bộ xử lý rảnh mà mọi yêu cầu đều lỗi thì là sự cố nặng. Nó không tương ứng với trải nghiệm nên không đặt mục tiêu lên được."
+    },
+    {
+      "question": "Một hành trình quan trọng không có chỉ số riêng nghĩa là gì?",
+      "options": [
+        "Nó đang không được bảo vệ, và sự cố ở đó sẽ không ai biết",
+        "Nó sẽ được tính vào chỉ số chung của toàn bộ dịch vụ",
+        "Nó cần được bổ sung vào bảng theo dõi trong quý tới",
+        "Nó có thể chưa đủ lưu lượng để đo lường được một cách ổn định"
+      ],
+      "correct": 0,
+      "explanation": "Chỉ số chung có tồn tại nhưng nó bị lưu lượng lớn chi phối, nên một hành trình nhỏ hỏng hoàn toàn cũng gần như không dịch được con số. Không có chỉ số riêng thì không có cảnh báo riêng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước nói mục tiêu độ tin cậy phải là một con số. Bài này về việc con số ấy đo cái gì - và đây là chỗ nhiều hệ thống chọn sai ngay từ đầu."
+    },
+    {
+      "type": "heading",
+      "text": "Ba tầng chỉ số, chỉ tầng cuối đáng đặt mục tiêu"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Tiến trình đang chạy: rẻ nhất để đo, và gần như không nói gì về việc người dùng có dùng được không.",
+        "Yêu cầu được trả lời: tốt hơn, nhưng trả về lỗi cũng là một câu trả lời.",
+        "Yêu cầu được trả lời đúng, trong ngưỡng thời gian: đây mới là thứ tương ứng với trải nghiệm."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Thời gian nằm trong định nghĩa",
+      "text": "Một dịch vụ trả đúng kết quả sau ba mươi giây có tỷ lệ thành công một trăm phần trăm và không người dùng nào còn ở đó để nhận. Ngưỡng thời gian phải là một phần của chỉ số, không phải một chỉ số riêng đứng cạnh."
+    },
+    {
+      "type": "heading",
+      "text": "Mỗi hành trình một chỉ số"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nếu chín mươi lăm phần trăm lưu lượng là một hành trình đơn giản, thì chức năng thanh toán hỏng hoàn toàn cũng chỉ kéo chỉ số chung xuống vài phần trăm - dưới mọi ngưỡng cảnh báo. Tách chỉ số theo hành trình là cách duy nhất để những phần quan trọng nhưng ít lưu lượng không bị che mất."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Chỉ số để đặt mục tiêu",
+        "text": "Đo ở chỗ gần người dùng nhất mà bạn còn kiểm soát. Ít con số, mỗi con số ứng với một việc người dùng làm."
+      },
+      "right": {
+        "label": "Chỉ số để chẩn đoán",
+        "text": "Mức tài nguyên, độ dài hàng đợi, số kết nối. Rất nhiều, rất chi tiết, và không cái nào đặt mục tiêu lên được."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bảng theo dõi xanh trong lúc không ai đăng nhập được là một lỗi chọn chỉ số, không phải một lỗi giám sát.",
+        "Bài sau biến chỉ số ấy thành một mục tiêu có ngưỡng và có khung thời gian."
+      ]
+    }
+  ]
+}

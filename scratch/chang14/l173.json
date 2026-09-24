@@ -1,0 +1,171 @@
+{
+  "id": 173,
+  "slug": "giao-tiep-trong-su-co",
+  "title": "Nói gì khi bạn chưa biết chuyện gì đang xảy ra",
+  "subtitle": "Im lặng không phải trung lập. Người dùng lấp khoảng trống ấy bằng giả định tệ hơn sự thật.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📢",
+  "track": "professional",
+  "whyItMatters": "Cách một sự cố được kể lại ảnh hưởng tới niềm tin nhiều hơn độ dài của nó. Một sự cố hai giờ có cập nhật đều đặn để lại ít tổn thất hơn một sự cố hai mươi phút trong im lặng hoàn toàn.",
+  "openingQuestion": "Mười phút sau khi tuyên bố, bạn vẫn chưa biết nguyên nhân. Nên thông báo gì ra ngoài?",
+  "openingOptions": [
+    "Nói rõ cái gì đang hỏng, ai bị ảnh hưởng, và khi nào sẽ cập nhật tiếp",
+    "Chờ tới khi xác định được nguyên nhân rồi thông báo một lần cho đầy đủ",
+    "Thông báo rằng hệ thống đang gặp sự cố kỹ thuật và đội đang xử lý",
+    "Ước tính thời gian khắc phục để người dùng biết mà sắp xếp công việc"
+  ],
+  "correctOption": 0,
+  "explanation": "Điều người bị ảnh hưởng cần không phải nguyên nhân mà là ba thứ: cái gì đang không dùng được, có phải mình không, và bao giờ biết thêm. Cả ba đều trả lời được ngay từ phút thứ mười mà không cần biết nguyên nhân. Một thông báo chung chung kiểu đang gặp sự cố kỹ thuật thì không nói được gì trong ba thứ ấy, còn ước tính thời gian khi chưa biết nguyên nhân là cách nhanh nhất để phải xin lỗi lần thứ hai.",
+  "diagram": [
+    {
+      "label": "Cái gì đang không dùng được",
+      "arrow": true
+    },
+    {
+      "label": "Ai bị ảnh hưởng, ai không",
+      "arrow": true
+    },
+    {
+      "label": "Khi nào có cập nhật tiếp",
+      "arrow": true
+    },
+    {
+      "label": "Ba điều này trả lời được trước khi biết nguyên nhân"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Im lặng bị đọc thành tệ hơn",
+    "description": "Một dịch vụ gián đoạn hai mươi phút không có thông báo nào. Diễn đàn khách hàng kết luận rằng dữ liệu đã mất, và đội mất ba ngày để sửa lại nhận định đó - lâu hơn nhiều so với chính sự cố."
+  },
+  "keyTakeaways": [
+    "Cập nhật theo nhịp cố định, kể cả khi chưa có gì mới để nói.",
+    "Hứa thời điểm cập nhật tiếp, không hứa thời điểm khắc phục.",
+    "Nói phạm vi ảnh hưởng cụ thể để người không bị ảnh hưởng yên tâm.",
+    "Tránh thuật ngữ nội bộ, vì người đọc không ở trong hệ thống của bạn."
+  ],
+  "summary": {
+    "keyIdea": "Thông báo sớm về phạm vi và nhịp cập nhật, thay vì chờ đủ thông tin.",
+    "formula": "Cái gì hỏng, ai bị ảnh hưởng, khi nào cập nhật tiếp.",
+    "commonMistake": "Hứa thời điểm khắc phục khi còn chưa biết nguyên nhân."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Viết sẵn mẫu thông báo đầu tiên với ba chỗ trống cho phạm vi, ảnh hưởng và thời điểm cập nhật. Lúc sự cố, không ai còn đầu óc để nghĩ cách diễn đạt."
+  },
+  "practicePrompt": {
+    "question": "Vì sao nên hứa thời điểm cập nhật thay vì thời điểm khắc phục?",
+    "options": [
+      "Vì thời điểm cập nhật là thứ bạn kiểm soát được, còn thời điểm sửa xong thì không",
+      "Vì người dùng quan tâm tới tần suất thông tin hơn là tới kết quả cuối",
+      "Vì thời điểm khắc phục cần được cấp quản lý phê duyệt trước khi công bố",
+      "Vì hứa thời điểm khắc phục có thể tạo ra ràng buộc pháp lý với khách hàng"
+    ],
+    "correct": 0,
+    "explanation": "Bạn chắc chắn viết được một dòng sau ba mươi phút nữa, kể cả khi dòng đó nói rằng chưa có gì mới. Còn hứa sửa xong trong một giờ khi chưa biết nguyên nhân là đặt cược, và nếu thua thì bạn mất niềm tin lần thứ hai ngay giữa lúc đang xử lý sự cố."
+  },
+  "quiz": [
+    {
+      "question": "Ba điều cần có trong thông báo đầu tiên là gì?",
+      "options": [
+        "Cái gì đang hỏng, ai bị ảnh hưởng, và khi nào cập nhật tiếp",
+        "Nguyên nhân sơ bộ, mức độ nghiêm trọng, và thời gian khắc phục",
+        "Thời điểm bắt đầu, số người bị ảnh hưởng, và kênh liên hệ hỗ trợ",
+        "Lời xin lỗi, cam kết khắc phục, và biện pháp bồi thường dự kiến"
+      ],
+      "correct": 0,
+      "explanation": "Cả ba đều trả lời được từ phút thứ mười mà không cần biết nguyên nhân. Nguyên nhân và thời gian khắc phục thì không, nên đưa chúng vào thông báo đầu là tự tạo ra một lời hứa sẽ phải rút lại."
+    },
+    {
+      "question": "Vì sao im lặng gây hại?",
+      "options": [
+        "Vì người dùng lấp khoảng trống bằng giả định thường tệ hơn sự thật",
+        "Vì các quy định về dịch vụ yêu cầu thông báo trong một khung giờ nhất định",
+        "Vì bộ phận hỗ trợ không có thông tin để trả lời khách hàng",
+        "Vì đối thủ có thể lợi dụng khoảng lặng để tiếp cận khách hàng"
+      ],
+      "correct": 0,
+      "explanation": "Một gián đoạn hai mươi phút không thông báo có thể bị đọc thành mất dữ liệu, và sửa lại nhận định đó tốn nhiều ngày. Bộ phận hỗ trợ thiếu thông tin cũng là vấn đề thật nhưng nó là hệ quả, không phải nguyên nhân gốc."
+    },
+    {
+      "question": "Vì sao nên nói rõ phạm vi ảnh hưởng?",
+      "options": [
+        "Để những người không bị ảnh hưởng không phải lo lắng và liên hệ hỗ trợ",
+        "Để bộ phận hỗ trợ ưu tiên xử lý đúng nhóm khách hàng bị ảnh hưởng",
+        "Để đội kỹ thuật khoanh vùng được nguyên nhân nhanh hơn",
+        "Để có cơ sở tính mức bồi thường theo cam kết dịch vụ đã ký"
+      ],
+      "correct": 0,
+      "explanation": "Một thông báo nói cả hệ thống đang gián đoạn khi thật ra chỉ chức năng xuất báo cáo bị ảnh hưởng sẽ tạo ra một làn sóng liên hệ từ những người vốn không gặp vấn đề gì. Cụ thể hoá phạm vi là cách giảm tải cho chính đội hỗ trợ."
+    },
+    {
+      "question": "Khi chưa có gì mới thì nên làm gì vào thời điểm đã hứa cập nhật?",
+      "options": [
+        "Vẫn cập nhật, nói rằng chưa có tiến triển và hẹn mốc tiếp theo",
+        "Lùi thời điểm cập nhật lại cho tới khi có được thông tin gì đáng kể",
+        "Gửi thông báo ngắn cho riêng nhóm khách hàng lớn nhất",
+        "Chuyển sang cập nhật qua kênh hỗ trợ thay vì kênh công khai"
+      ],
+      "correct": 0,
+      "explanation": "Bỏ lỡ một mốc đã hứa gây tổn thất lớn hơn nội dung của mốc ấy, vì nó khiến mọi mốc sau đó mất giá trị. Một dòng thừa nhận chưa có tiến triển vẫn giữ được cam kết về nhịp."
+    },
+    {
+      "question": "Vì sao nên tránh thuật ngữ nội bộ trong thông báo?",
+      "options": [
+        "Vì người đọc không biết các thành phần bên trong hệ thống của bạn",
+        "Vì thuật ngữ kỹ thuật có thể tiết lộ thông tin về kiến trúc hệ thống",
+        "Vì các bản dịch sang ngôn ngữ khác sẽ không chính xác",
+        "Vì thuật ngữ làm thông báo dài hơn mức cần thiết"
+      ],
+      "correct": 0,
+      "explanation": "Nói rằng cụm xử lý hàng đợi đang suy giảm thì với người dùng cũng như không nói gì. Điều họ cần biết là chức năng nào của sản phẩm hiện không dùng được, diễn đạt bằng tên mà họ nhìn thấy trên màn hình."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Vai liên lạc là vai bị bỏ trống nhiều nhất, vì nó có vẻ ít quan trọng hơn việc sửa. Nhưng cách một sự cố được kể lại ảnh hưởng tới niềm tin nhiều hơn độ dài của nó."
+    },
+    {
+      "type": "heading",
+      "text": "Ba thứ trả lời được ngay"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Cái gì đang không dùng được - bằng tên chức năng người dùng nhìn thấy, không bằng tên dịch vụ nội bộ.",
+        "Ai bị ảnh hưởng và ai không - để người ngoài phạm vi không phải lo và không phải liên hệ.",
+        "Khi nào có cập nhật tiếp - một mốc cụ thể, và giữ đúng mốc ấy."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Không có thứ nào trong ba thứ này cần biết nguyên nhân. Đó là lý do thông báo đầu tiên gửi được sau mười phút chứ không phải sau hai giờ."
+    },
+    {
+      "type": "callout",
+      "label": "Hứa nhịp, đừng hứa kết quả",
+      "text": "Bạn chắc chắn viết được một dòng sau ba mươi phút nữa. Bạn không chắc sửa xong trong một giờ khi còn chưa biết nguyên nhân. Hứa cái thứ hai rồi trượt là mất niềm tin lần thứ hai, ngay giữa lúc đang xử lý lần thứ nhất."
+    },
+    {
+      "type": "heading",
+      "text": "Im lặng không phải trung lập"
+    },
+    {
+      "type": "paragraph",
+      "text": "Khoảng trống thông tin luôn được lấp, và thứ lấp vào thường tệ hơn sự thật. Một gián đoạn hai mươi phút không thông báo có thể bị hiểu thành mất dữ liệu, và việc sửa lại nhận định ấy tốn nhiều ngày - dài hơn chính sự cố nhiều lần."
+    },
+    {
+      "type": "callout",
+      "label": "Viết mẫu trước",
+      "text": "Giữa lúc sự cố, không ai còn đầu óc để cân nhắc cách diễn đạt. Một mẫu có ba chỗ trống cho phạm vi, ảnh hưởng và mốc cập nhật biến việc soạn thông báo từ mười phút thành một phút."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Người bị ảnh hưởng không cần biết nguyên nhân. Họ cần biết mình có bị ảnh hưởng không và bao giờ được nghe tin tiếp.",
+        "Bài sau về thứ tự ưu tiên bên trong cuộc ứng phó: chữa cháy trước hay tìm nguồn lửa trước."
+      ]
+    }
+  ]
+}

@@ -98,7 +98,7 @@ export default function DashboardRecommendations() {
       </div>
 
       <p className="mt-2.5 flex items-baseline gap-1.5">
-        <span className="text-[34px] font-black leading-none tracking-tight tabular-nums text-stone-900 dark:text-stone-50">
+        <span className="text-[34px] font-black leading-none tracking-tight tabular-nums text-ink">
           {liveCompletedCount.toLocaleString(intlLocale(locale))}
         </span>
         <span className="text-xs font-semibold text-ink-faint">

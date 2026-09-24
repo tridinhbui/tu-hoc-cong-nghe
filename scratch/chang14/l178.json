@@ -1,0 +1,168 @@
+{
+  "id": 178,
+  "slug": "dien-tap-su-co",
+  "title": "Diễn tập: tự làm hỏng trước khi thực tế làm hỏng",
+  "subtitle": "Mọi giả định về độ tin cậy đều đúng cho tới lần đầu tiên có người thử.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🎭",
+  "track": "professional",
+  "whyItMatters": "Cả chặng này dựng lên một loạt cơ chế - dự phòng, cầu dao, sao lưu, quy trình ứng phó - và mỗi cơ chế là một giả định chưa được kiểm chứng cho tới khi ai đó cố tình phá thứ nó bảo vệ.",
+  "openingQuestion": "Diễn tập sự cố nên bắt đầu ở đâu?",
+  "openingOptions": [
+    "Ở môi trường thử, với một kịch bản hẹp và một nút dừng rõ ràng",
+    "Ở môi trường thật, vì chỉ ở đó kết quả mới phản ánh đúng thực tế",
+    "Ở một buổi thảo luận trên giấy, không đụng tới hệ thống nào",
+    "Ở thành phần mà đội tin là kém tin cậy nhất trong hệ thống"
+  ],
+  "correctOption": 0,
+  "explanation": "Bắt đầu nhỏ và có kiểm soát là cách xây được niềm tin để đi tiếp; bài học từ vài lần đầu thường đủ nhiều mà chưa cần chạm vào môi trường thật. Thảo luận trên giấy cũng là một hình thức diễn tập có giá trị thật, đặc biệt cho phần quy trình và phân vai, nhưng nó không kiểm chứng được hệ thống. Chọn thành phần đội nghi là yếu nhất nghe hợp lý mà thường sai, vì chỗ đổ vỡ hay nằm ở thứ không ai nghi.",
+  "diagram": [
+    {
+      "label": "Giả thuyết: hệ thống chịu được X",
+      "arrow": true
+    },
+    {
+      "label": "Gây ra X trong phạm vi hẹp, có nút dừng",
+      "arrow": true
+    },
+    {
+      "label": "Quan sát: có đúng như giả thuyết không",
+      "arrow": true
+    },
+    {
+      "label": "Chỗ lệch chính là thứ bạn vừa học được"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cầu dao chưa từng ngắt",
+    "description": "Một hệ thống có cầu dao cho mọi phụ thuộc ngoài. Lần đầu diễn tập cho một phụ thuộc chậm lại, cầu dao không ngắt - ngưỡng đã được đặt cao tới mức không tình huống thực tế nào chạm tới."
+  },
+  "keyTakeaways": [
+    "Diễn tập là một phép thử có giả thuyết, không phải phá hoại ngẫu nhiên.",
+    "Bắt đầu hẹp, có nút dừng, và thông báo cho những người liên quan.",
+    "Diễn tập cả phần con người, không chỉ phần hệ thống.",
+    "Diễn tập không tìm ra gì cũng là kết quả, nếu giả thuyết đủ chặt."
+  ],
+  "summary": {
+    "keyIdea": "Chủ động gây ra tình huống hỏng trong phạm vi kiểm soát để kiểm chứng giả định.",
+    "formula": "Giả thuyết, phạm vi hẹp, nút dừng, quan sát.",
+    "commonMistake": "Coi diễn tập là gây hỗn loạn ngẫu nhiên để xem chuyện gì xảy ra."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Chọn một giả định bạn chưa từng kiểm chứng - bản sao chuyển đổi được, cầu dao ngắt được, sao lưu khôi phục được - và lên lịch một phép thử hẹp cho nó."
+  },
+  "practicePrompt": {
+    "question": "Vì sao diễn tập phải bắt đầu bằng một giả thuyết cụ thể?",
+    "options": [
+      "Vì không có giả thuyết thì không biết kết quả nào là bất thường",
+      "Vì giả thuyết giúp thuyết phục lãnh đạo phê duyệt buổi diễn tập",
+      "Vì các công cụ diễn tập yêu cầu khai báo kịch bản trước khi chạy",
+      "Vì giả thuyết cho phép ước lượng trước mức rủi ro của buổi diễn tập"
+    ],
+    "correct": 0,
+    "explanation": "Nếu bạn chỉ tắt một máy chủ rồi xem chuyện gì xảy ra, thì bất kỳ điều gì diễn ra cũng đều là chuyện đã diễn ra và bạn không học được gì. Viết trước rằng lưu lượng phải chuyển sang hai máy còn lại trong dưới ba mươi giây thì bạn có một câu để đối chiếu."
+  },
+  "quiz": [
+    {
+      "question": "Diễn tập khác phá hoại ngẫu nhiên ở điểm nào?",
+      "options": [
+        "Nó có giả thuyết viết trước, phạm vi hẹp và một nút dừng",
+        "Nó được thực hiện trên môi trường thử thay vì môi trường thật",
+        "Nó được lên lịch vào giờ có ít người dùng nhất trong ngày",
+        "Nó có sự tham gia của toàn bộ đội thay vì chỉ một vài người"
+      ],
+      "correct": 0,
+      "explanation": "Diễn tập trưởng thành vẫn chạy trên môi trường thật, và điều làm nó an toàn không phải là chọn môi trường mà là ba yếu tố kia. Không có chúng thì đó là một sự cố tự gây ra, có thêm cái tên nghe hay hơn."
+    },
+    {
+      "question": "Vì sao chọn thành phần đội nghi là yếu nhất thường không hiệu quả?",
+      "options": [
+        "Vì chỗ thật sự đổ vỡ thường là thứ không ai nghi ngờ",
+        "Vì thành phần yếu nhất thường đã được đội theo dõi sát rồi",
+        "Vì việc gây lỗi ở đó có nguy cơ ảnh hưởng tới người dùng thật",
+        "Vì kết quả sẽ đúng như dự đoán nên không thu được thông tin"
+      ],
+      "correct": 0,
+      "explanation": "Chỗ đội đã nghi ngờ thì thường đã có phòng bị. Giá trị lớn nhất của diễn tập nằm ở những giả định vững tới mức không ai nghĩ tới việc kiểm chứng chúng."
+    },
+    {
+      "question": "Vì sao nên diễn tập cả phần con người?",
+      "options": [
+        "Vì quy trình ứng phó cũng là một giả định chưa được kiểm chứng",
+        "Vì đội cần làm quen với áp lực trước khi gặp sự cố thật",
+        "Vì các vai trò cần được phân công lại sau mỗi lần thay đổi nhân sự",
+        "Vì tài liệu ứng phó cần được cập nhật định kỳ theo quy định"
+      ],
+      "correct": 0,
+      "explanation": "Cùng loại phát hiện với hệ thống: tài liệu chỉ tới một bảng theo dõi đã bị xoá, không ai có quyền truy cập cần thiết, danh sách liên lạc đã cũ hai năm. Chúng chỉ lộ ra khi có người thật sự đi theo quy trình từ đầu tới cuối."
+    },
+    {
+      "question": "Một buổi diễn tập không tìm ra vấn đề nào nghĩa là gì?",
+      "options": [
+        "Là một kết quả hợp lệ, nếu giả thuyết đủ cụ thể để có thể sai",
+        "Là dấu hiệu kịch bản được chọn quá dễ so với thực tế",
+        "Là dấu hiệu hệ thống đã đủ tin cậy cho tình huống đó",
+        "Là dấu hiệu cần mở rộng phạm vi trong lần diễn tập kế tiếp theo"
+      ],
+      "correct": 0,
+      "explanation": "Kiểm chứng được một giả định là kết quả thật, và nó có giá trị vì bạn không còn phải đoán về nó nữa. Điều kiện duy nhất là giả thuyết phải đủ cụ thể để có khả năng bị bác bỏ."
+    },
+    {
+      "question": "Vì sao phải thông báo trước cho những người liên quan?",
+      "options": [
+        "Để không có ai tưởng đây là sự cố thật và bắt đầu ứng phó nhầm",
+        "Để mọi người có thời gian chuẩn bị cho tình huống được diễn tập",
+        "Để có đủ người quan sát và ghi lại kết quả của buổi diễn tập",
+        "Để đội có thể tạm dừng các thay đổi khác trong thời gian đó"
+      ],
+      "correct": 0,
+      "explanation": "Một buổi diễn tập không báo trước có thể kích hoạt một cuộc ứng phó thật với đầy đủ chi phí của nó. Diễn tập bất ngờ có chỗ trong những tổ chức đã rất trưởng thành, nhưng khi ấy vẫn phải có người biết và có nút dừng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Chặng này đã dựng lên nhiều cơ chế: dự phòng, cầu dao, sao lưu, quy trình ứng phó. Mỗi cơ chế là một giả định, và mọi giả định đều đúng cho tới lần đầu tiên có người thử."
+    },
+    {
+      "type": "heading",
+      "text": "Bốn phần của một phép thử"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Giả thuyết viết trước: lưu lượng sẽ chuyển sang hai máy còn lại trong dưới ba mươi giây.",
+        "Phạm vi hẹp: một máy, một vùng, một phần trăm lưu lượng - không phải cả hệ thống.",
+        "Nút dừng: một cách quay lại trạng thái bình thường trong vài giây, đã thử trước.",
+        "Quan sát: so kết quả với giả thuyết, và chỗ lệch chính là thứ vừa học được."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Không có giả thuyết thì không có bài học",
+      "text": "Tắt một máy rồi xem chuyện gì xảy ra thì bất kỳ điều gì diễn ra cũng đều là chuyện đã diễn ra. Chỉ khi có một câu viết trước, bạn mới phân biệt được kết quả bình thường với kết quả bất thường."
+    },
+    {
+      "type": "heading",
+      "text": "Phần dễ bỏ sót: con người"
+    },
+    {
+      "type": "paragraph",
+      "text": "Quy trình ứng phó cũng là một giả định. Cho một người đi hết quy trình từ đầu tới cuối sẽ lộ ra những thứ cùng loại với lỗi hệ thống: tài liệu chỉ tới một bảng theo dõi đã bị xoá, người trực không có quyền truy cập cần thiết, danh sách liên lạc đã cũ hai năm."
+    },
+    {
+      "type": "callout",
+      "label": "Chỗ đổ vỡ nằm ở thứ không ai nghi",
+      "text": "Thành phần đội đã nghi ngờ thì thường đã có phòng bị. Giá trị lớn nhất nằm ở những giả định vững tới mức không ai nghĩ tới việc kiểm chứng - như một cầu dao có ngưỡng cao tới mức chưa tình huống thực tế nào chạm tới."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Câu hỏi không phải hệ thống có chịu được không, mà là bạn muốn biết điều đó vào lúc nào và trong hoàn cảnh nào.",
+        "Bài sau đi qua một dòng thời gian sự cố cụ thể, áp dụng mọi thứ chặng này đã dựng."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "id": 52,
+  "slug": "gioi-han-toc-do-goi",
+  "title": "Giới hạn tốc độ: từ chối bớt để còn phục vụ được ai đó",
+  "subtitle": "Không giới hạn thì một người gọi sai cũng đủ làm cả dịch vụ ngừng phục vụ mọi người.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🚧",
+  "track": "professional",
+  "whyItMatters": "Sự cố quá tải hiếm khi do lượng người dùng tăng đều. Nó thường do một vòng lặp lỗi ở phía một khách hàng, một tác vụ chạy lại hàng nghìn lần, hoặc một cơn thử lại đồng loạt. Giới hạn tốc độ là thứ giữ cho một nguồn duy nhất không kéo sập phần còn lại.",
+  "openingQuestion": "Vì sao nên đặt giới hạn tốc độ cho từng người gọi thay vì cho toàn hệ thống?",
+  "openingOptions": [
+    "Để một người gọi quá đà không làm những người còn lại bị từ chối theo",
+    "Để tổng số yêu cầu hệ thống nhận được mỗi giây giảm xuống mức an toàn",
+    "Để dễ tính toán dung lượng máy chủ cần chuẩn bị cho giai đoạn cao điểm",
+    "Để người gọi biết chính xác họ còn bao nhiêu lượt trong hạn mức của mình"
+  ],
+  "correctOption": 0,
+  "explanation": "Giới hạn chung cho toàn hệ thống vẫn bảo vệ được máy chủ, nhưng nó không phân biệt ai gây ra tải. Khi một khách hàng có vòng lặp lỗi và bắn hàng chục nghìn yêu cầu mỗi phút, hạn mức chung sẽ cạn và mọi khách hàng khác cùng bị từ chối - lỗi của một người thành sự cố của tất cả. Đặt hạn mức theo từng người gọi thì phần vượt bị chặn đúng ở nguồn gây ra nó, và những người dùng bình thường không hề biết có chuyện gì xảy ra.",
+  "diagram": [
+    {
+      "label": "Một người gọi rơi vào vòng lặp lỗi",
+      "arrow": true
+    },
+    {
+      "label": "Hạn mức chung: mọi người cùng bị từ chối",
+      "arrow": true
+    },
+    {
+      "label": "Hạn mức theo người gọi: chỉ họ bị chặn",
+      "arrow": true
+    },
+    {
+      "label": "Phần còn lại không nhận ra có sự cố"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cơn thử lại đồng loạt",
+    "description": "Một dịch vụ chậm đi vài giây, hàng nghìn máy khách cùng hết thời gian chờ và cùng thử lại đúng lúc. Đợt thử lại đó nặng hơn tải bình thường nhiều lần và giết hẳn dịch vụ vốn chỉ đang chậm. Giới hạn tốc độ cộng với giãn cách ngẫu nhiên là thứ cắt vòng xoáy đó."
+  },
+  "keyTakeaways": [
+    "Giới hạn theo từng người gọi ngăn lỗi của một bên lan thành sự cố chung.",
+    "Phản hồi bị giới hạn nên nói rõ khi nào được gọi lại.",
+    "Giới hạn bảo vệ hệ thống, không thay được việc sửa nguyên nhân gây tải.",
+    "Thử lại phải có giãn cách tăng dần và độ lệch ngẫu nhiên, nếu không sẽ dồn cục."
+  ],
+  "summary": {
+    "keyIdea": "Từ chối một phần có kiểm soát tốt hơn là sập toàn bộ vì cố phục vụ hết.",
+    "formula": "Hạn mức theo người gọi + báo rõ khi nào gọi lại được.",
+    "commonMistake": "Đặt một hạn mức chung, để lỗi của một khách hàng chặn đường mọi khách hàng."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Kiểm xem dịch vụ của bạn có hạn mức theo từng người gọi chưa. Nếu chưa, thử tính xem một vòng lặp lỗi ở phía một khách hàng sẽ bắn được bao nhiêu yêu cầu mỗi phút trước khi có ai kịp nhận ra."
+  },
+  "practicePrompt": {
+    "question": "Máy khách của bạn bị từ chối vì vượt hạn mức. Cách xử lý đúng là gì?",
+    "options": [
+      "Chờ theo hướng dẫn trong phản hồi rồi thử lại, mỗi lần giãn cách xa hơn",
+      "Thử lại ngay lập tức cho tới khi có một lần được chấp nhận",
+      "Chuyển sang gọi bằng một tài khoản khác để có hạn mức mới",
+      "Bỏ qua yêu cầu đó và coi như thao tác đã thất bại vĩnh viễn"
+    ],
+    "correct": 0,
+    "explanation": "Phản hồi bị giới hạn thường kèm thông tin khi nào gọi lại được, và tôn trọng nó là cách nhanh nhất để được phục vụ. Thử lại ngay chỉ làm tình hình nặng thêm, còn đổi tài khoản để lách hạn mức là cách chắc chắn bị chặn ở mức cao hơn."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao hạn mức nên đặt theo từng người gọi?",
+      "options": [
+        "Để phần vượt bị chặn đúng ở nguồn gây ra nó",
+        "Để tổng tải lên hệ thống được giữ ở mức thấp hơn hẳn",
+        "Để việc tính chi phí hạ tầng cho mỗi khách hàng dễ dàng hơn",
+        "Để mỗi người gọi nhận được tốc độ phản hồi như nhau"
+      ],
+      "correct": 0,
+      "explanation": "Hạn mức chung cũng bảo vệ máy chủ nhưng phạt cả người vô can. Đặt theo từng người gọi khiến hậu quả rơi đúng vào bên gây ra tải, và những người còn lại không nhận ra có chuyện gì."
+    },
+    {
+      "question": "Phản hồi khi bị giới hạn nên chứa thông tin gì?",
+      "options": [
+        "Thời điểm hoặc khoảng chờ trước khi được gọi lại",
+        "Danh sách những người gọi khác đang chiếm phần lớn hạn mức",
+        "Địa chỉ của một máy chủ dự phòng để chuyển sang gọi thay thế",
+        "Tổng số yêu cầu mà toàn hệ thống đã nhận trong phút vừa rồi"
+      ],
+      "correct": 0,
+      "explanation": "Không có thông tin đó thì máy khách chỉ còn cách đoán, và đoán sai theo hướng thử lại quá sớm là chuyện thường. Nói rõ khi nào quay lại giúp cả hai bên."
+    },
+    {
+      "question": "Cơn thử lại đồng loạt xảy ra như thế nào?",
+      "options": [
+        "Nhiều máy khách cùng hết thời gian chờ và cùng thử lại vào một thời điểm",
+        "Một máy khách gửi quá nhiều yêu cầu trong một khoảng thời gian ngắn",
+        "Máy chủ tự gửi lại các phản hồi bị lỗi cho toàn bộ người gọi",
+        "Bộ cân bằng tải dồn hết mọi yêu cầu vào đúng một máy chủ duy nhất trong nhóm"
+      ],
+      "correct": 0,
+      "explanation": "Sự đồng bộ vô tình là chỗ nguy hiểm: một sự chậm nhẹ khiến hàng nghìn máy khách cùng đếm ngược tới cùng một mốc. Độ lệch ngẫu nhiên trong thời gian chờ là thứ phá vỡ sự đồng bộ đó."
+    },
+    {
+      "question": "Vì sao thử lại cần giãn cách tăng dần?",
+      "options": [
+        "Để không dồn thêm tải lên một hệ thống vốn đang gặp khó",
+        "Để mỗi lần thử lại có nhiều thời gian xử lý hơn lần trước đó",
+        "Để máy khách kịp làm mới thông tin xác thực trước lần gọi sau",
+        "Để bộ nhớ đệm kịp làm mới giữa hai lần gọi"
+      ],
+      "correct": 0,
+      "explanation": "Thử lại dày đặc vào lúc dịch vụ đang khó khăn là đổ thêm dầu vào lửa. Giãn cách tăng dần cho hệ thống cơ hội hồi phục, và độ lệch ngẫu nhiên tránh cho các máy khách dồn vào cùng một thời điểm."
+    },
+    {
+      "question": "Giới hạn tốc độ không giải quyết được vấn đề gì?",
+      "options": [
+        "Nguyên nhân thật sự khiến một bên gọi quá nhiều",
+        "Việc một người gọi làm cạn tài nguyên của cả hệ thống",
+        "Chi phí hạ tầng tăng vọt khi có tải bất thường ập tới",
+        "Sự lan rộng của một cơn thử lại đồng loạt giữa các máy khách"
+      ],
+      "correct": 0,
+      "explanation": "Nó là van an toàn chứ không phải cách sửa. Chặn được rồi vẫn phải đi tìm vì sao có vòng lặp lỗi hay vì sao một tác vụ chạy lại hàng nghìn lần."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Mọi dịch vụ đều có giới hạn. Câu hỏi không phải là có từ chối yêu cầu hay không, mà là bạn chọn từ chối theo cách nào - có kiểm soát, hay bằng cách sập."
+    },
+    {
+      "type": "heading",
+      "text": "Vì sao đặt theo từng người gọi"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tải bất thường hiếm khi trải đều. Nó thường tới từ một nguồn duy nhất: một vòng lặp lỗi, một tác vụ cấu hình sai, một đợt nhập liệu ai đó chạy tay. Hạn mức chung sẽ cạn vì nguồn đó, rồi từ chối luôn những người dùng bình thường - biến lỗi của một bên thành sự cố của tất cả."
+    },
+    {
+      "type": "callout",
+      "label": "Nói rõ khi nào quay lại",
+      "text": "Phản hồi từ chối mà không kèm hướng dẫn buộc máy khách phải đoán, và chúng luôn đoán theo hướng thử lại quá sớm. Một dòng thông tin về thời điểm được gọi lại tiết kiệm cho cả hai bên rất nhiều lưu lượng vô ích."
+    },
+    {
+      "type": "heading",
+      "text": "Thử lại cho đúng cách"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Giãn cách tăng dần: mỗi lần thất bại thì chờ lâu hơn lần trước.",
+        "Thêm độ lệch ngẫu nhiên, để hàng nghìn máy khách không cùng quay lại một lúc.",
+        "Đặt số lần thử tối đa, vì thử mãi cũng là một dạng vòng lặp lỗi.",
+        "Chỉ thử lại với lỗi phía máy chủ; lỗi phía người gọi thì gọi lại bao nhiêu cũng vậy."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Từ chối một phần có kiểm soát là cách giữ cho phần còn lại vẫn chạy. Cố phục vụ tất cả là cách không phục vụ được ai.",
+        "Bài sau nói về hệ quả trực tiếp của việc thử lại: nếu một yêu cầu được gửi hai lần, chuyện gì xảy ra?"
+      ]
+    }
+  ]
+}

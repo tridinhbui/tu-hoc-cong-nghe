@@ -1,0 +1,168 @@
+{
+  "id": 105,
+  "slug": "kho-ma-chung-hay-tach",
+  "title": "Kho mã chung hay tách: đánh đổi chứ không có đáp án đúng",
+  "subtitle": "Cả hai lựa chọn đều hoạt động ở quy mô lớn - chúng chỉ đắt ở hai chỗ khác nhau.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🗂️",
+  "track": "professional",
+  "whyItMatters": "Đây là quyết định khó đảo ngược nhất trong chặng này, và nó định hình cách các đội làm việc suốt nhiều năm. Hiểu nó là đánh đổi chứ không phải cuộc thi đúng sai là bước đầu tiên để chọn cho hợp hoàn cảnh.",
+  "openingQuestion": "Lợi thế lớn nhất của việc để mọi đội chung một kho mã là gì?",
+  "openingOptions": [
+    "Một thay đổi xuyên nhiều phần được làm và kiểm trong đúng một lần",
+    "Mỗi đội triển khai độc lập mà không ảnh hưởng đội khác",
+    "Kho mã nhỏ gọn nên các công cụ chạy nhanh hơn",
+    "Mỗi đội tự do chọn ngôn ngữ và công cụ riêng của mình"
+  ],
+  "correctOption": 0,
+  "explanation": "Kho chung làm cho thay đổi xuyên ranh giới trở nên rẻ: đổi tên một hàm dùng ở năm chỗ là một lần sửa, một lần rà soát, một lần chạy kiểm thử toàn bộ. Với kho tách, cùng việc ấy là năm lần phát hành có phối hợp thứ tự. Đổi lại, kho chung đòi hỏi công cụ mạnh để còn dùng được ở quy mô lớn, và nó khiến việc phát hành độc lập khó hơn. Hai lợi ích còn lại trong danh sách - triển khai độc lập và tự do công nghệ - đúng là điểm mạnh của kho tách chứ không phải kho chung.",
+  "diagram": [
+    {
+      "label": "Thay đổi xuyên năm phần",
+      "arrow": true
+    },
+    {
+      "label": "Kho chung: một lần sửa, một lần kiểm",
+      "arrow": true
+    },
+    {
+      "label": "Kho tách: năm lần phát hành có thứ tự",
+      "arrow": true
+    },
+    {
+      "label": "Đổi lại kho tách cho tự chủ khi phát hành"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cả hai đều chạy ở quy mô rất lớn",
+    "description": "Có những công ty rất lớn dùng một kho duy nhất cho toàn bộ mã, và những công ty cùng quy mô dùng hàng nghìn kho tách. Điều đó cho thấy không có lựa chọn nào sai - chỉ có lựa chọn kèm theo bộ công cụ và thói quen tương ứng."
+  },
+  "keyTakeaways": [
+    "Kho chung làm thay đổi xuyên ranh giới rẻ, đổi lại cần công cụ mạnh.",
+    "Kho tách cho tự chủ khi phát hành, đổi lại thay đổi xuyên ranh giới đắt.",
+    "Kho chung không có nghĩa là mọi thứ triển khai cùng nhau.",
+    "Chọn theo việc bạn làm thường xuyên hơn: đổi xuyên ranh giới hay phát hành riêng."
+  ],
+  "summary": {
+    "keyIdea": "Kho chung và kho tách chuyển chi phí sang hai chỗ khác nhau, không cái nào rẻ hơn tuyệt đối.",
+    "formula": "Chọn theo thứ bạn làm nhiều hơn.",
+    "commonMistake": "Coi đây là cuộc tranh luận đúng sai thay vì một đánh đổi phụ thuộc hoàn cảnh."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Đếm trong quý vừa rồi: bao nhiêu thay đổi phải chạm nhiều thành phần, và bao nhiêu lần một đội bị chặn vì phải phát hành cùng đội khác. Tỷ lệ giữa hai con số ấy chỉ ra lựa chọn hợp với bạn."
+  },
+  "practicePrompt": {
+    "question": "Một quan niệm sai phổ biến về kho mã chung là gì?",
+    "options": [
+      "Rằng chung kho thì buộc phải triển khai mọi thứ cùng một lúc",
+      "Rằng chung kho thì các đội không có ranh giới sở hữu rõ ràng",
+      "Rằng chung kho thì không dùng được nhiều ngôn ngữ lập trình",
+      "Rằng chung kho thì lịch sử thay đổi trở nên khó theo dõi"
+    ],
+    "correct": 0,
+    "explanation": "Nơi lưu mã và đơn vị triển khai là hai chuyện tách rời hẳn nhau. Nhiều tổ chức dùng một kho duy nhất mà vẫn triển khai hàng trăm dịch vụ độc lập theo lịch riêng - kho quyết định cách bạn sửa mã, không quyết định cách bạn phát hành."
+  },
+  "quiz": [
+    {
+      "question": "Lợi thế chính của kho mã chung là gì?",
+      "options": [
+        "Thay đổi xuyên nhiều thành phần làm được trong một lần",
+        "Mỗi đội phát hành theo lịch riêng mà không phụ thuộc ai",
+        "Công cụ phát triển chạy nhanh hơn vì kho nhỏ gọn",
+        "Các đội tự do chọn ngôn ngữ và thư viện riêng"
+      ],
+      "correct": 0,
+      "explanation": "Một lần sửa, một lần rà soát, một lần chạy kiểm thử cho toàn bộ. Ba đáp án còn lại mô tả điểm mạnh của kho tách, và kho chung phải bỏ công mới đạt được chúng."
+    },
+    {
+      "question": "Cái giá của kho mã chung là gì?",
+      "options": [
+        "Cần công cụ mạnh để kho khổng lồ còn dùng được",
+        "Không thể có ranh giới sở hữu giữa các đội",
+        "Không dùng được nhiều ngôn ngữ trong cùng kho",
+        "Lịch sử thay đổi bị trộn lẫn không tách ra được"
+      ],
+      "correct": 0,
+      "explanation": "Ở quy mô lớn, thao tác cơ bản như lấy mã về hay tìm kiếm trở nên chậm nếu không có công cụ chuyên biệt. Đó là khoản đầu tư thật mà tổ chức nhỏ thường không cần tới."
+    },
+    {
+      "question": "Kho mã tách gây khó khăn ở đâu?",
+      "options": [
+        "Thay đổi xuyên nhiều kho phải phát hành theo thứ tự có phối hợp",
+        "Mỗi đội sẽ không còn tự quyết định được lịch triển khai của mình",
+        "Không thể áp dụng chuẩn chung cho toàn bộ tổ chức",
+        "Việc tìm kiếm trong một kho trở nên chậm hơn nhiều"
+      ],
+      "correct": 0,
+      "explanation": "Đổi một giao diện dùng ở năm kho là năm lần phát hành, phải đúng thứ tự, và có giai đoạn hai phiên bản cùng tồn tại. Với kho chung thì đó là một lần sửa duy nhất."
+    },
+    {
+      "question": "Quan hệ giữa cách lưu mã và cách triển khai là gì?",
+      "options": [
+        "Hai chuyện độc lập: chung kho vẫn triển khai độc lập được",
+        "Chung kho thì buộc phải triển khai toàn bộ cùng lúc",
+        "Kho tách thì buộc mỗi kho phải là một đơn vị triển khai riêng",
+        "Cách lưu mã quyết định số lượng môi trường cần có"
+      ],
+      "correct": 0,
+      "explanation": "Đây là nhầm lẫn phổ biến nhất về chủ đề này. Kho quyết định cách bạn sửa và rà soát mã; đơn vị triển khai là một quyết định hoàn toàn khác."
+    },
+    {
+      "question": "Tiêu chí nào giúp chọn giữa hai mô hình?",
+      "options": [
+        "Bạn làm thay đổi xuyên ranh giới hay phát hành riêng nhiều hơn",
+        "Số lượng lập trình viên hiện có trong tổ chức",
+        "Ngôn ngữ lập trình chính mà đội đang sử dụng",
+        "Số lượng môi trường triển khai mà công ty duy trì"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi mô hình làm rẻ một loại thao tác và làm đắt loại kia. Đếm xem loại nào bạn làm thường xuyên hơn là cách chọn thực dụng nhất."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ít chủ đề nào trong ngành gây tranh cãi dai dẳng như câu hỏi này, và phần lớn tranh cãi vô ích vì cả hai bên đều đúng - họ chỉ đang trả lời cho hai hoàn cảnh khác nhau."
+    },
+    {
+      "type": "heading",
+      "text": "Chi phí chuyển chỗ chứ không mất đi"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Kho chung",
+        "text": "Đổi một giao diện dùng khắp nơi là một lần sửa. Nhìn thấy toàn bộ ảnh hưởng ngay. Đổi lại cần công cụ mạnh, và phải chủ động giữ ranh giới sở hữu vì không có tường tự nhiên."
+      },
+      "right": {
+        "label": "Kho tách",
+        "text": "Mỗi đội tự chủ hoàn toàn, ranh giới rõ vì có tường thật. Đổi lại thay đổi xuyên kho tốn nhiều lần phát hành có thứ tự, và dễ có phiên bản lệch nhau."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Hai điều hay bị nhầm"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Chung kho không có nghĩa là triển khai cùng lúc - đó là hai quyết định riêng biệt.",
+        "Tách kho không tự sinh ra ranh giới tốt; một dịch vụ vẫn có thể phụ thuộc chằng chịt vào dịch vụ khác."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Quyết định khó đảo ngược",
+      "text": "Chuyển từ mô hình này sang mô hình kia là một dự án nhiều tháng đụng tới mọi công cụ và mọi thói quen. Vì thế nên chọn theo hoàn cảnh thật của tổ chức chứ không theo bài viết của một công ty có quy mô khác bạn."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Không có lựa chọn đúng, chỉ có lựa chọn hợp với thứ bạn làm nhiều hơn - và bộ công cụ đi kèm nó.",
+        "Bài sau nói về một đánh đổi cùng họ: chuẩn chung tới đâu và tự chủ tới đâu."
+      ]
+    }
+  ]
+}

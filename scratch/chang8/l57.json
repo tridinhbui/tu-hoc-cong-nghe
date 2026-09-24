@@ -1,0 +1,163 @@
+{
+  "id": 57,
+  "slug": "phien-ban-api",
+  "title": "Phiên bản: sống chung với nhiều thế hệ máy khách",
+  "subtitle": "Bạn không tắt được phiên bản cũ cho tới khi người cuối cùng dùng nó chuyển đi.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔢",
+  "track": "professional",
+  "whyItMatters": "Ứng dụng di động là ví dụ rõ nhất: người dùng không cập nhật thì phiên bản cũ vẫn gọi tới bạn nhiều năm. Kế hoạch phiên bản không phải chuyện kỹ thuật thuần tuý mà là chuyện bạn cam kết hỗ trợ ai, trong bao lâu.",
+  "openingQuestion": "Khi nào bắt buộc phải ra một phiên bản API mới?",
+  "openingOptions": [
+    "Khi thay đổi khiến máy khách hiện tại ngừng hoạt động đúng",
+    "Khi có thêm bất kỳ trường mới nào được bổ sung vào phản hồi",
+    "Khi mã xử lý phía máy chủ được viết lại bằng công nghệ khác",
+    "Khi hiệu năng của một đường dẫn được cải thiện đáng kể"
+  ],
+  "correctOption": 0,
+  "explanation": "Phiên bản mới tồn tại để cho phép một thay đổi phá vỡ tương thích diễn ra mà không làm hỏng những máy khách đang chạy. Chỉ những thay đổi thuộc loại đó mới đáng đánh đổi, vì mỗi phiên bản còn sống là thêm một nhánh mã phải bảo trì, thêm một bộ kiểm thử phải chạy, thêm một cột trong mọi bảng theo dõi. Thêm trường mới, viết lại nội bộ hay cải thiện hiệu năng đều vô hình với người gọi, nên chúng không cần và không nên sinh ra phiên bản.",
+  "diagram": [
+    {
+      "label": "Thay đổi phá vỡ tương thích",
+      "arrow": true
+    },
+    {
+      "label": "Ra phiên bản mới, giữ phiên bản cũ chạy song song",
+      "arrow": true
+    },
+    {
+      "label": "Đo xem còn ai dùng phiên bản cũ",
+      "arrow": true
+    },
+    {
+      "label": "Tắt khi số đó về không, không phải khi tới hạn"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Ứng dụng di động không tự cập nhật",
+    "description": "Một tỷ lệ người dùng luôn tắt tự động cập nhật. Nghĩa là phiên bản ứng dụng phát hành hôm nay vẫn sẽ gọi tới máy chủ của bạn sau ba năm nữa - và nếu API cũ bị tắt, ứng dụng của họ hỏng mà họ không hiểu vì sao."
+  },
+  "keyTakeaways": [
+    "Chỉ ra phiên bản mới khi thay đổi phá vỡ tương thích, vì mỗi phiên bản là chi phí bảo trì.",
+    "Đo lưu lượng theo phiên bản, nếu không sẽ không biết khi nào tắt được cái cũ.",
+    "Tắt dựa trên số liệu người còn dùng, không chỉ dựa trên ngày đã thông báo.",
+    "Ứng dụng cài trên máy người dùng buộc thời gian hỗ trợ dài hơn hẳn dịch vụ trên web."
+  ],
+  "summary": {
+    "keyIdea": "Phiên bản là cách để thay đổi mà không bắt mọi người đổi cùng lúc với bạn.",
+    "formula": "Chạy song song, đo, rồi mới tắt.",
+    "commonMistake": "Ra phiên bản mới cho mọi thay đổi, rồi phải nuôi năm nhánh mã cùng lúc."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Kiểm xem bảng theo dõi của bạn có tách lưu lượng theo phiên bản API không. Nếu không thì bạn không có cách nào biết tắt phiên bản cũ có an toàn hay chưa, ngoài việc tắt thử rồi chờ người kêu."
+  },
+  "practicePrompt": {
+    "question": "Bạn đã thông báo tắt phiên bản cũ sau sáu tháng. Tới hạn, vẫn còn 3% lưu lượng dùng nó. Nên làm gì?",
+    "options": [
+      "Tìm xem 3% đó là ai và vì sao chưa chuyển, trước khi quyết định tắt",
+      "Tắt đúng hạn, vì đã thông báo trước những sáu tháng là đủ thời gian rồi",
+      "Gia hạn thêm sáu tháng nữa mà không cần tìm hiểu lý do gì thêm",
+      "Giữ phiên bản cũ vĩnh viễn vì luôn sẽ còn người chưa chuyển đổi"
+    ],
+    "correct": 0,
+    "explanation": "3% có thể là hàng nghìn người dùng lẻ, hoặc một khách hàng lớn duy nhất - hai tình huống dẫn tới hai quyết định khác nhau. Tắt đúng hạn mà không nhìn con số là biến một quy trình thành một sự cố, còn gia hạn vô điều kiện thì phiên bản cũ sẽ sống mãi."
+  },
+  "quiz": [
+    {
+      "question": "Khi nào nên ra một phiên bản API mới?",
+      "options": [
+        "Khi thay đổi làm máy khách hiện tại ngừng hoạt động đúng",
+        "Khi bổ sung thêm trường mới vào phần phản hồi trả về",
+        "Khi mã nguồn phía máy chủ được viết lại bằng ngôn ngữ khác",
+        "Khi một đường dẫn được tối ưu để phản hồi nhanh hơn trước"
+      ],
+      "correct": 0,
+      "explanation": "Phiên bản chỉ đáng ra khi không còn cách nào thay đổi mà giữ được tương thích. Ba việc còn lại đều vô hình với người gọi, nên thêm phiên bản chỉ tạo ra chi phí bảo trì mà không mua được gì."
+    },
+    {
+      "question": "Chi phí của việc giữ nhiều phiên bản cùng lúc là gì?",
+      "options": [
+        "Mỗi phiên bản là một nhánh mã, một bộ kiểm thử và một đường theo dõi riêng",
+        "Máy chủ phải phân bổ bộ nhớ riêng cho từng phiên bản đang hoạt động",
+        "Cơ sở dữ liệu phải lưu mỗi bản ghi thành nhiều định dạng khác nhau",
+        "Người gọi phải khai báo phiên bản trong mọi yêu cầu nên tốn thêm băng thông"
+      ],
+      "correct": 0,
+      "explanation": "Chi phí thật nằm ở công sức bảo trì lâu dài chứ không ở tài nguyên máy. Mỗi lần sửa lỗi bạn phải hỏi nó ảnh hưởng tới những phiên bản nào, và câu hỏi đó không bao giờ dễ hơn theo thời gian."
+    },
+    {
+      "question": "Vì sao phải đo lưu lượng theo từng phiên bản?",
+      "options": [
+        "Để biết còn ai dùng phiên bản cũ trước khi quyết định tắt nó",
+        "Để tính chi phí hạ tầng mỗi phiên bản gây ra",
+        "Để phân bổ số lượng máy chủ phù hợp cho từng phiên bản API",
+        "Để xác định phiên bản nào có tỷ lệ lỗi cao hơn mức cho phép"
+      ],
+      "correct": 0,
+      "explanation": "Không có số liệu thì quyết định tắt chỉ là phỏng đoán, và cách duy nhất còn lại để kiểm chứng là tắt rồi chờ xem ai kêu - dùng người dùng thật làm công cụ kiểm thử."
+    },
+    {
+      "question": "Vì sao ứng dụng cài trên máy người dùng khiến vòng đời phiên bản dài hơn?",
+      "options": [
+        "Vì người dùng có thể không bao giờ cập nhật lên bản mới",
+        "Vì ứng dụng đã cài không gọi được tới các phiên bản API mới hơn",
+        "Vì cửa hàng ứng dụng không cho phép gỡ các phiên bản đã phát hành",
+        "Vì mỗi lần cập nhật ứng dụng đều phải qua quá trình duyệt kéo dài"
+      ],
+      "correct": 0,
+      "explanation": "Với dịch vụ trên web, bạn triển khai là mọi người dùng bản mới ngay lần tải sau. Với ứng dụng đã cài, phiên bản cũ nằm trên máy người dùng và chỉ đổi khi chính họ chịu cập nhật."
+    },
+    {
+      "question": "Cách tắt một phiên bản cũ đúng đắn là gì?",
+      "options": [
+        "Thông báo trước, theo dõi số liệu, liên hệ những bên còn dùng, rồi mới tắt",
+        "Tắt đúng ngày đã thông báo bất kể còn bao nhiêu người đang sử dụng",
+        "Tắt dần từng đường dẫn một để giảm mức ảnh hưởng của việc dừng",
+        "Làm phiên bản cũ chậm dần để người dùng tự chuyển sang bản mới"
+      ],
+      "correct": 0,
+      "explanation": "Thông báo là điều kiện cần nhưng chưa đủ; số liệu mới cho biết thực tế. Cố tình làm chậm bản cũ là gây sự cố có chủ đích cho người dùng mà không nói với họ, và nó phá vỡ lòng tin nhiều hơn cái lợi thu được."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài 46 nói API là hợp đồng và thay đổi phá vỡ tương thích thì phải làm nhiều bước. Nhưng có những thay đổi không cách nào giữ tương thích được. Lúc đó bạn cần một cách để hai thế hệ cùng sống."
+    },
+    {
+      "type": "heading",
+      "text": "Chỉ khi thật sự cần"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mỗi phiên bản còn sống là một nhánh mã phải bảo trì, một bộ kiểm thử phải chạy, một cột nữa trong mọi bảng theo dõi, và một câu hỏi thêm mỗi lần sửa lỗi: cái này ảnh hưởng tới những phiên bản nào. Chi phí ấy tích luỹ, nên chỉ những thay đổi thật sự phá vỡ tương thích mới đáng đánh đổi."
+    },
+    {
+      "type": "callout",
+      "label": "Ngày hết hạn không tự làm việc",
+      "text": "Thông báo trước sáu tháng là cần thiết nhưng không đủ. Tới ngày, thứ quyết định phải là con số lưu lượng còn lại và bạn biết nó thuộc về ai - chứ không phải cái ngày ghi trên thông báo."
+    },
+    {
+      "type": "heading",
+      "text": "Vòng đời một phiên bản"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ra bản mới, chạy song song với bản cũ, không ép ai chuyển ngay.",
+        "Đo lưu lượng theo phiên bản và theo từng khách hàng lớn.",
+        "Liên hệ trực tiếp những bên còn lại - thường chỉ là vài cái tên.",
+        "Tắt khi số liệu đã về gần không, và có sẵn cách bật lại nếu sót ai đó."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Ra phiên bản mới là chuyện dễ. Tắt phiên bản cũ mới là phần cần kỷ luật và số liệu.",
+        "Bài sau nói về thứ mọi quyết định trong chặng này đều dựa vào: đo lường, và vì sao giá trị trung bình hay nói dối."
+      ]
+    }
+  ]
+}

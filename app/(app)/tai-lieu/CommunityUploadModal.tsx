@@ -39,44 +39,44 @@ export default function CommunityUploadModal({ open, onClose, loggedIn }: Commun
   return (
     <Modal open={open} onClose={onClose} title={t.communityUpload.modalTitle}>
       {!loggedIn ? (
-        <div className="text-sm text-stone-600 dark:text-stone-400 space-y-4">
+        <div className="text-sm text-ink-soft space-y-4">
           <p>{t.communityUpload.loginRequiredMessage}</p>
           <a
             href="/login"
-            className="inline-flex items-center justify-center w-full py-3 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
+            className="inline-flex items-center justify-center w-full py-3 rounded-xl bg-surface-invert text-ink-invert text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
           >
             {t.communityUpload.loginButton}
           </a>
         </div>
       ) : (
         <form ref={formRef} action={handleSubmit} className="space-y-4">
-          <p className="text-xs text-stone-500 dark:text-stone-400 -mt-1">
+          <p className="text-xs text-ink-muted -mt-1">
             {t.communityUpload.visibilityNote}
           </p>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{t.communityUpload.titleLabel}</label>
+            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{t.communityUpload.titleLabel}</label>
             <input
               name="title"
               required
               placeholder={t.communityUpload.titlePlaceholder}
-              className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
+              className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{t.communityUpload.descriptionLabel}</label>
+            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{t.communityUpload.descriptionLabel}</label>
             <textarea
               name="description"
               rows={3}
               placeholder={t.communityUpload.descriptionPlaceholder}
-              className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100 resize-none"
+              className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink resize-none"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-stone-600 dark:text-stone-400 uppercase tracking-wider block">{t.communityUpload.categoryLabel}</label>
+            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{t.communityUpload.categoryLabel}</label>
             <select
               name="category"
               defaultValue="khac"
-              className="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-stone-900 dark:text-stone-100"
+              className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink"
             >
               {documentCategoriesOf(t).map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
@@ -93,14 +93,14 @@ export default function CommunityUploadModal({ open, onClose, loggedIn }: Commun
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-lg border border-stone-200 dark:border-stone-800 text-sm font-bold text-stone-700 dark:text-stone-300"
+              className="px-4 py-2 rounded-lg border border-line text-sm font-bold text-ink-body"
             >
               {t.communityUpload.cancelButton}
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-bold disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold disabled:opacity-50"
             >
               <Upload className="w-4 h-4" />
               {submitting ? t.communityUpload.submittingButton : t.communityUpload.submitButton}

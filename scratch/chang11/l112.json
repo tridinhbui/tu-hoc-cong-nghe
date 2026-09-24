@@ -1,0 +1,158 @@
+{
+  "id": 112,
+  "slug": "phoi-hop-trien-khai-nhieu-doi",
+  "title": "Khi buộc phải triển khai cùng nhau",
+  "subtitle": "Mỗi lần phải khớp lịch giữa các đội là một dấu hiệu, không phải một quy trình cần hoàn thiện.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🕰️",
+  "track": "professional",
+  "whyItMatters": "Triển khai phối hợp có rủi ro cao hơn hẳn: nhiều thay đổi vào cùng lúc, đường lui phức tạp, và nếu hỏng thì không biết phần nào gây ra. Giảm số lần phải làm vậy có giá trị hơn là làm nó cho khéo.",
+  "openingQuestion": "Hai đội phải triển khai đúng cùng lúc thì mới chạy được. Đó là dấu hiệu của gì?",
+  "openingOptions": [
+    "Một thay đổi phá vỡ tương thích chưa được chia thành các bước tương thích",
+    "Hai đội chưa phối hợp tốt trong việc lập kế hoạch",
+    "Công cụ triển khai chưa hỗ trợ đồng bộ nhiều dịch vụ",
+    "Hai dịch vụ đó vốn nên được gộp thành một dịch vụ duy nhất"
+  ],
+  "correctOption": 0,
+  "explanation": "Phải triển khai đồng thời nghĩa là có một khoảnh khắc mà bản cũ của bên này không làm việc được với bản mới của bên kia. Đó luôn là dấu hiệu của một thay đổi phá vỡ tương thích chưa được chia nhỏ. Cách xử lý giống hệt việc đổi lược đồ ở chặng nền tảng dữ liệu: thêm cái mới bên cạnh, hỗ trợ cả hai một thời gian, chuyển từng bên, rồi mới bỏ cái cũ. Mỗi bước đứng được một mình, nên không ai phải khớp lịch với ai.",
+  "diagram": [
+    {
+      "label": "Bên A hỗ trợ cả dạng cũ lẫn dạng mới",
+      "arrow": true
+    },
+    {
+      "label": "Bên B chuyển sang dạng mới khi họ sẵn sàng",
+      "arrow": true
+    },
+    {
+      "label": "A bỏ dạng cũ sau khi xác nhận không ai dùng",
+      "arrow": true
+    },
+    {
+      "label": "Ba bước độc lập, không cần khớp lịch"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cửa sổ triển khai đêm chủ nhật",
+    "description": "Tổ chức phải gom nhiều đội vào một cửa sổ triển khai cuối tuần thường không có vấn đề về quy trình mà có vấn đề về tương thích. Khi mỗi thay đổi đều tương thích hai chiều, cửa sổ ấy tự biến mất."
+  },
+  "keyTakeaways": [
+    "Phải triển khai đồng thời luôn là dấu hiệu của thay đổi phá vỡ tương thích chưa chia nhỏ.",
+    "Chia thành các bước tương thích hai chiều thì mỗi bên tự chọn lịch của mình.",
+    "Triển khai phối hợp có đường lui phức tạp hơn nhiều so với triển khai đơn lẻ.",
+    "Đếm số lần phải phối hợp là thước đo trực tiếp cho chất lượng ranh giới."
+  ],
+  "summary": {
+    "keyIdea": "Mục tiêu không phải là phối hợp triển khai cho khéo mà là không phải phối hợp.",
+    "formula": "Tương thích hai chiều ở mỗi bước.",
+    "commonMistake": "Xây quy trình phối hợp ngày càng công phu thay vì gỡ nguyên nhân phải phối hợp."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Đếm số lần trong quý vừa rồi đội bạn phải triển khai cùng lúc với đội khác. Với mỗi lần, hỏi xem thay đổi đó có chia được thành các bước tương thích không."
+  },
+  "practicePrompt": {
+    "question": "Vì sao quay lui một lần triển khai phối hợp lại khó hơn nhiều?",
+    "options": [
+      "Phải lui đồng thời nhiều bên, và bên nào lui trước cũng tạo ra trạng thái không tương thích",
+      "Mỗi đội dùng một công cụ triển khai khác nhau nên khó đồng bộ",
+      "Số lượng mã thay đổi trong một lần phối hợp thường rất lớn",
+      "Các đội thường không có mặt đầy đủ khi cần quay lui gấp"
+    ],
+    "correct": 0,
+    "explanation": "Nếu bản mới của A chỉ chạy với bản mới của B thì khi lui, bạn có một khoảng thời gian A cũ gặp B mới hoặc ngược lại - và chính khoảng đó là thứ mà việc triển khai đồng thời sinh ra để tránh. Đường lui vì thế cũng phải đồng thời, và nó khó hơn nhiều so với một nút bấm."
+  },
+  "quiz": [
+    {
+      "question": "Nhu cầu triển khai đồng thời cho thấy điều gì?",
+      "options": [
+        "Có một thay đổi phá vỡ tương thích chưa được chia nhỏ",
+        "Hai đội cần cải thiện cách lập kế hoạch chung",
+        "Hệ thống chưa có công cụ điều phối triển khai đủ tốt",
+        "Hai dịch vụ đang có quá nhiều điểm giao tiếp với nhau"
+      ],
+      "correct": 0,
+      "explanation": "Nó nghĩa là tồn tại một khoảnh khắc bản cũ bên này không chạy được với bản mới bên kia. Chia thành các bước tương thích hai chiều thì khoảnh khắc ấy biến mất."
+    },
+    {
+      "question": "Ba bước để tránh triển khai đồng thời là gì?",
+      "options": [
+        "Thêm dạng mới bên cạnh, chuyển từng bên, rồi bỏ dạng cũ",
+        "Thông báo trước, triển khai theo thứ tự, rồi kiểm tra lại",
+        "Kiểm thử chung, triển khai thử, rồi triển khai thật",
+        "Đóng băng thay đổi, triển khai, rồi mở lại"
+      ],
+      "correct": 0,
+      "explanation": "Đây đúng hình dạng của việc đổi lược đồ và đổi API ở các chặng trước. Mấu chốt là giai đoạn hỗ trợ cả hai dạng, vì nó cho mỗi bên tự chọn thời điểm."
+    },
+    {
+      "question": "Vì sao triển khai phối hợp rủi ro hơn?",
+      "options": [
+        "Nhiều thay đổi vào cùng lúc và đường lui phức tạp hơn hẳn",
+        "Số người tham gia đông nên dễ có thao tác nhầm",
+        "Thời điểm triển khai thường rơi vào ngoài giờ làm việc hành chính",
+        "Các đội không quen với quy trình của nhau"
+      ],
+      "correct": 0,
+      "explanation": "Đây là bài toán kích thước lô ở chặng trước, đặt vào bối cảnh nhiều đội. Lô lớn thì khó tìm nguyên nhân, và ở đây lô còn trải trên nhiều hệ thống."
+    },
+    {
+      "question": "Thước đo tốt cho chất lượng ranh giới giữa các đội là gì?",
+      "options": [
+        "Số lần phải triển khai phối hợp trong một quý",
+        "Số lượng dịch vụ mà mỗi đội đang sở hữu",
+        "Tần suất triển khai trung bình của mỗi đội trong tháng",
+        "Số lượng cuộc họp kỹ thuật giữa các đội"
+      ],
+      "correct": 0,
+      "explanation": "Ranh giới tốt thì các đội phát hành độc lập gần như luôn luôn. Con số này đo trực tiếp mức độ họ còn dính vào nhau, và nó giảm được bằng kỹ thuật chứ không bằng quy trình."
+    },
+    {
+      "question": "Cách xử lý đúng khi số lần phối hợp tăng dần là gì?",
+      "options": [
+        "Tìm nguyên nhân về tương thích hoặc ranh giới, thay vì hoàn thiện quy trình",
+        "Lập một lịch triển khai chung cố định cho toàn tổ chức",
+        "Chỉ định một người điều phối triển khai cho tất cả các đội",
+        "Giảm tần suất triển khai để mỗi lần gom được nhiều thay đổi"
+      ],
+      "correct": 0,
+      "explanation": "Quy trình công phu hơn chỉ làm cho việc phối hợp bớt đau chứ không bớt xảy ra. Giảm tần suất triển khai còn làm lô to lên và rủi ro tăng theo."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Có những lúc hai đội phải triển khai cùng một giờ thì hệ thống mới chạy. Điều đó luôn có thể làm được, và nó luôn là dấu hiệu của một thứ đáng sửa ở tầng dưới."
+    },
+    {
+      "type": "heading",
+      "text": "Tương thích hai chiều xoá nhu cầu phối hợp"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nếu bản mới của A vẫn hiểu được dạng cũ, và bản cũ của A vẫn xử lý được dạng mới, thì thứ tự triển khai không còn quan trọng. Mỗi đội đi theo nhịp của mình, và trạng thái trung gian nào cũng chạy được. Toàn bộ kỹ thuật ở đây đã gặp ở chặng nền tảng dữ liệu và chặng mạng - chỉ là áp dụng cho ranh giới giữa hai tổ chức nhỏ thay vì giữa hai phiên bản."
+    },
+    {
+      "type": "callout",
+      "label": "Đường lui cũng phải phối hợp",
+      "text": "Điều làm triển khai đồng thời thật sự đắt là đường lui. Lui một bên trước thì tạo ra đúng trạng thái không tương thích mà bạn vừa cố tránh, nên bạn cần lui đồng thời - dưới áp lực, vào ban đêm, với nhiều đội."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đếm số lần phải phối hợp mỗi quý và coi nó là chỉ số cần giảm.",
+        "Khi buộc phải phối hợp, viết trước kịch bản lui và diễn thử nó.",
+        "Nếu cùng hai đội liên tục phải phối hợp, vấn đề nằm ở ranh giới chứ không ở lịch."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Mục tiêu không phải phối hợp cho khéo mà là không phải phối hợp. Mỗi lần buộc phải làm là một chỉ dẫn về chỗ cần sửa.",
+        "Bài sau nói về chuyện xảy ra khi nhiều đội cùng chờ nhau trên một chuỗi dài: đường găng."
+      ]
+    }
+  ]
+}

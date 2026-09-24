@@ -47,7 +47,7 @@ export default function InteractiveMultiples() {
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.multiplesCalc.peakLoadLabel}</span>
-            <span className="font-bold text-stone-800 dark:text-stone-100">{format(t.multiplesCalc.peakLoadAmount, { amount: peakLoad })}</span>
+            <span className="font-bold text-ink-heading">{format(t.multiplesCalc.peakLoadAmount, { amount: peakLoad })}</span>
           </div>
           <input type="range" min={50} max={600} step={10} value={peakLoad} onChange={(e) => setPeakLoad(+e.target.value)} className="w-full" aria-label={t.multiplesCalc.peakLoadLabel} />
         </div>
@@ -61,14 +61,14 @@ export default function InteractiveMultiples() {
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.multiplesCalc.headroomLabel}</span>
-            <span className="font-bold text-stone-800 dark:text-stone-100">{format(t.multiplesCalc.headroomAmount, { amount: headroom })}</span>
+            <span className="font-bold text-ink-heading">{format(t.multiplesCalc.headroomAmount, { amount: headroom })}</span>
           </div>
           <input type="range" min={-200} max={1200} step={20} value={headroom} onChange={(e) => setHeadroom(+e.target.value)} className="w-full" aria-label={t.multiplesCalc.headroomAriaLabel} />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.multiplesCalc.regionsLabel}</span>
-            <span className="font-bold text-stone-800 dark:text-stone-100">{format(t.multiplesCalc.regionsAmount, { amount: regions })}</span>
+            <span className="font-bold text-ink-heading">{format(t.multiplesCalc.regionsAmount, { amount: regions })}</span>
           </div>
           <input type="range" min={10} max={200} step={5} value={regions} onChange={(e) => setRegions(+e.target.value)} className="w-full" aria-label={t.multiplesCalc.regionsAriaLabel} />
         </div>
@@ -81,20 +81,20 @@ export default function InteractiveMultiples() {
         </div>
         <div className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-800/60">
           <p className="text-[11px] font-bold text-ink-muted">{t.multiplesCalc.usableLabel}</p>
-          <p className={`text-lg font-extrabold ${usable < 0 ? "text-rose-600 dark:text-rose-400" : "text-ink"}`}>
+          <p className={`text-lg font-extrabold ${usable < 0 ? "text-alert" : "text-ink"}`}>
             {format(t.multiplesCalc.usableAmount, { amount: usable.toLocaleString(intlLocale(locale)) })}
           </p>
         </div>
         <div className="rounded-2xl bg-emerald-50 p-3 dark:bg-emerald-950/30">
-          <p className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300">{t.multiplesCalc.perRegionLabel}</p>
-          <p className="text-lg font-extrabold text-emerald-700 dark:text-emerald-300">
+          <p className="text-[11px] font-bold text-accent-strong">{t.multiplesCalc.perRegionLabel}</p>
+          <p className="text-lg font-extrabold text-accent-strong">
             {format(t.multiplesCalc.perRegionAmount, { amount: perRegion.toFixed(1) })}
           </p>
         </div>
       </div>
 
       <div className="rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
-        <p className="text-sm text-stone-700 dark:text-stone-200">
+        <p className="text-sm text-ink-body">
           {t.multiplesCalc.rangePart1} {format(t.multiplesCalc.rangeFactorX, { factor: Math.max(1, factor - 2) })} {t.multiplesCalc.rangePart2}{" "}
           {format(t.multiplesCalc.rangeFactorX, { factor: factor + 2 })}, {t.multiplesCalc.rangePart3}{" "}
           <b>{format(t.multiplesCalc.rangeAmount, { amount: low.toFixed(1) })}</b> {t.multiplesCalc.rangePart4}{" "}

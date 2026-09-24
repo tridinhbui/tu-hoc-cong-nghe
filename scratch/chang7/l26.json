@@ -1,0 +1,174 @@
+{
+  "id": 26,
+  "slug": "bien-tham-chieu-va-ban-sao",
+  "title": "Biến và tham chiếu: vì sao sửa cái này lại đổi cái kia",
+  "subtitle": "Gán một danh sách cho biến khác không tạo ra danh sách thứ hai.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔗",
+  "track": "professional",
+  "isFundamental": true,
+  "whyItMatters": "Lỗi này không làm chương trình dừng, nên nó không hiện ra trong nhật ký lỗi. Nó chỉ khiến một bảng dữ liệu bị sửa ở nơi không ai đụng vào, và người ta đi tìm nguyên nhân ở chỗ dữ liệu sai thay vì ở chỗ đã tạo ra tham chiếu chung.",
+  "openingQuestion": "Bạn gán danh sách A cho biến B, rồi thêm một phần tử vào B. Danh sách A giờ ra sao?",
+  "openingOptions": [
+    "Cũng có thêm phần tử đó, vì hai biến trỏ vào cùng một danh sách",
+    "Giữ nguyên như cũ, vì phép gán đã tạo ra một bản sao riêng",
+    "Giữ nguyên, nhưng chỉ khi danh sách A chưa bị sửa lần nào",
+    "Bị xoá rỗng, vì quyền sở hữu của danh sách đã chuyển sang biến B"
+  ],
+  "correctOption": 0,
+  "explanation": "Với kiểu tham chiếu, biến không chứa dữ liệu mà chứa địa chỉ tới dữ liệu. Phép gán sao chép địa chỉ chứ không sao chép thứ nằm ở địa chỉ đó, nên sau khi gán bạn có hai biến và vẫn chỉ một danh sách. Mọi thay đổi qua biến này đều nhìn thấy được qua biến kia, vì chúng là hai cái tên của cùng một vật. Kiểu giá trị thì ngược lại: phép gán sao chép chính nội dung, nên hai biến độc lập với nhau hoàn toàn.",
+  "diagram": [
+    {
+      "label": "Biến A giữ địa chỉ tới danh sách",
+      "arrow": true
+    },
+    {
+      "label": "Gán A cho B - chỉ sao chép địa chỉ",
+      "arrow": true
+    },
+    {
+      "label": "Hai biến, một danh sách duy nhất",
+      "arrow": true
+    },
+    {
+      "label": "Sửa qua B thì A cũng thấy"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Cấu hình mặc định dùng chung",
+    "description": "Một hàm nhận vào đối tượng cấu hình mặc định rồi sửa một trường trên đó cho riêng lần gọi này. Vì đó là tham chiếu tới cùng một đối tượng, lần gọi tiếp theo nhận được cấu hình đã bị sửa. Lỗi chỉ lộ ra khi chạy hai lần liên tiếp, nên kiểm thử đơn lẻ luôn xanh."
+  },
+  "keyTakeaways": [
+    "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+    "Bản sao nông chỉ tách lớp ngoài cùng, các lớp bên trong vẫn dùng chung.",
+    "Truyền một đối tượng vào hàm là trao cho hàm đó quyền sửa dữ liệu gốc.",
+    "Không dùng đối tượng có thể thay đổi làm giá trị mặc định của tham số."
+  ],
+  "summary": {
+    "keyIdea": "Biến kiểu tham chiếu là cái tên trỏ tới dữ liệu, không phải cái hộp chứa dữ liệu.",
+    "formula": "Gán = sao chép địa chỉ, không phải sao chép nội dung.",
+    "commonMistake": "Tưởng bản sao nông là bản sao độc lập, rồi sửa lớp trong và làm hỏng bản gốc."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Tạo một danh sách lồng trong một danh sách, tạo bản sao nông của nó, rồi sửa phần tử ở lớp trong. In cả hai ra và xem bản gốc có đổi theo không - đó là thí nghiệm mất ba mươi giây và nhớ được nhiều năm."
+  },
+  "practicePrompt": {
+    "question": "Một hàm nhận danh sách người dùng rồi sắp xếp nó tại chỗ. Sau khi gọi hàm, thứ tự danh sách ở nơi gọi cũng đổi theo. Cách sửa gọn nhất là gì?",
+    "options": [
+      "Sắp xếp trên một bản sao rồi trả bản sao đó về nơi gọi",
+      "Sắp xếp xong thì đảo danh sách về đúng thứ tự ban đầu",
+      "Khai báo tham số của hàm là hằng để ngăn không cho sửa",
+      "Gọi hàm bằng cách truyền từng phần tử thay vì cả danh sách"
+    ],
+    "correct": 0,
+    "explanation": "Hàm nhận tham chiếu tới chính danh sách gốc, nên sắp xếp tại chỗ là sửa dữ liệu của người gọi. Tạo bản sao rồi làm việc trên đó giữ cho hàm không có tác dụng phụ, và người gọi tự quyết định có nhận kết quả mới hay không."
+  },
+  "quiz": [
+    {
+      "question": "Phép gán giữa hai biến kiểu tham chiếu sao chép cái gì?",
+      "options": [
+        "Địa chỉ trỏ tới dữ liệu",
+        "Toàn bộ nội dung dữ liệu sang một vùng nhớ mới hoàn toàn",
+        "Chỉ những trường ở lớp ngoài cùng của đối tượng nguồn",
+        "Không sao chép gì cả, biến đích chỉ được đánh dấu là đã dùng"
+      ],
+      "correct": 0,
+      "explanation": "Chỉ địa chỉ được sao chép, nên hai biến cùng trỏ vào một vật. Sao chép nội dung là việc bạn phải yêu cầu rõ ràng, và ngay cả khi đó cũng cần chọn giữa bản sao nông và bản sao sâu."
+    },
+    {
+      "question": "Bản sao nông khác bản sao sâu ở chỗ nào?",
+      "options": [
+        "Bản sao nông chỉ tách lớp ngoài, lớp trong vẫn dùng chung",
+        "Bản sao nông chỉ chép được đối tượng nhỏ",
+        "Bản sao nông tạo ra bản chỉ đọc",
+        "Bản sao nông bỏ qua tên các trường"
+      ],
+      "correct": 0,
+      "explanation": "Bản sao nông tạo vỏ mới nhưng các trường bên trong vẫn là những tham chiếu cũ, nên sửa vào lớp trong là sửa cả bản gốc. Bản sao sâu đi hết mọi lớp, an toàn hơn nhưng tốn kém hơn nhiều."
+    },
+    {
+      "question": "Vì sao không nên dùng danh sách rỗng làm giá trị mặc định của tham số?",
+      "options": [
+        "Vì mọi lần gọi dùng chung đúng một danh sách đó",
+        "Vì danh sách rỗng bị ngôn ngữ tự đổi thành giá trị rỗng",
+        "Vì giá trị mặc định phải là kiểu số hoặc chuỗi mới hợp lệ",
+        "Vì danh sách rỗng làm hàm chạy chậm hơn khi có nhiều lần gọi"
+      ],
+      "correct": 0,
+      "explanation": "Ở nhiều ngôn ngữ, giá trị mặc định được tạo một lần lúc định nghĩa hàm chứ không phải mỗi lần gọi. Lần gọi đầu thêm phần tử vào đó thì lần gọi sau nhận được danh sách đã có sẵn phần tử - một lỗi rất khó lần ra."
+    },
+    {
+      "question": "Truyền một đối tượng vào hàm có ý nghĩa gì về mặt quyền hạn?",
+      "options": [
+        "Hàm đó có thể sửa trực tiếp dữ liệu gốc của người gọi",
+        "Hàm chỉ đọc được dữ liệu chứ không sửa được gì bên trong",
+        "Hàm nhận bản sao độc lập nên thay đổi là cục bộ",
+        "Hàm phải xin quyền ghi trước khi sửa"
+      ],
+      "correct": 0,
+      "explanation": "Người gọi trao cho hàm một tham chiếu tới dữ liệu thật, nên hàm sửa được. Đó là lý do một hàm nên nói rõ trong tên hoặc tài liệu rằng nó sửa tại chỗ hay trả về giá trị mới."
+    },
+    {
+      "question": "Vì sao lỗi do dùng chung tham chiếu thường khó tìm?",
+      "options": [
+        "Vì dữ liệu đổi ở nơi không có dòng mã nào sửa nó cả",
+        "Vì lỗi chỉ xuất hiện trên máy chủ chứ không hiện trên máy cá nhân",
+        "Vì chương trình dừng ngay lập tức và không kịp ghi lại nhật ký",
+        "Vì trình gỡ lỗi không hiển thị được địa chỉ mà biến đang trỏ tới"
+      ],
+      "correct": 0,
+      "explanation": "Người tìm lỗi đọc quanh chỗ dữ liệu sai và không thấy gì sửa nó, vì thủ phạm nằm ở một tên khác trỏ vào cùng vật. Chương trình vẫn chạy bình thường nên không có ngoại lệ nào để lần theo."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Có hai cách một biến giữ dữ liệu: chứa chính nó, hoặc chứa địa chỉ tới nó. Khác biệt ấy vô hình khi đọc mã, và lộ ra đúng lúc bạn sửa dữ liệu qua một cái tên rồi thấy một cái tên khác cũng đổi theo."
+    },
+    {
+      "type": "heading",
+      "text": "Cái hộp và tấm biển chỉ đường"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Kiểu giá trị",
+        "text": "Biến là cái hộp chứa dữ liệu. Gán cho biến khác là chép nội dung sang hộp mới, và từ đó hai hộp không liên quan gì tới nhau nữa."
+      },
+      "right": {
+        "label": "Kiểu tham chiếu",
+        "text": "Biến là tấm biển chỉ tới dữ liệu. Gán cho biến khác là dựng thêm một tấm biển chỉ vào đúng chỗ cũ - vẫn chỉ một dữ liệu duy nhất."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Bản sao nông chỉ tách được lớp ngoài"
+    },
+    {
+      "type": "paragraph",
+      "text": "Yêu cầu sao chép một đối tượng thường cho bạn bản sao nông: vỏ ngoài là mới, nhưng mọi trường bên trong vẫn là những tham chiếu cũ trỏ vào đúng dữ liệu cũ. Với đối tượng phẳng thì đủ dùng. Với đối tượng lồng nhau thì bạn có cảm giác an toàn mà không có sự an toàn."
+    },
+    {
+      "type": "callout",
+      "label": "Cái bẫy hay gặp nhất",
+      "text": "Đặt một danh sách hoặc từ điển làm giá trị mặc định của tham số. Ở nhiều ngôn ngữ, nó chỉ được tạo một lần, nên mọi lần gọi hàm về sau dùng chung đúng một vật - và nó nhớ hết những gì lần gọi trước đã thêm vào."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Đặt tên hàm cho biết nó sửa tại chỗ hay trả về giá trị mới.",
+        "Khi cần bản sao độc lập của dữ liệu lồng nhau, phải nói rõ là bản sao sâu.",
+        "Giá trị mặc định của tham số nên là rỗng, rồi tạo dữ liệu mới bên trong thân hàm."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Hai cái tên trỏ vào một vật thì sửa ở đâu cũng như nhau. Biết chỗ nào đang dùng chung tham chiếu là biết trước chỗ nào sẽ đổi ngoài ý muốn.",
+        "Bài sau nói về cách chặn hẳn loại lỗi này từ gốc: dữ liệu bất biến, và vì sao không sửa được lại là một tính năng."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "id": 166,
+  "slug": "du-phong-va-diem-hong-don-le",
+  "title": "Dự phòng: nhân đôi cái gì, và cái gì không nhân đôi được",
+  "subtitle": "Hai máy chủ không giúp gì nếu cả hai cùng đọc một cơ sở dữ liệu, và cơ sở dữ liệu ấy chết.",
+  "duration": "9 phút",
+  "difficulty": "Khó",
+  "emoji": "🧯",
+  "track": "professional",
+  "whyItMatters": "Dự phòng là khoản đầu tư đắt nhất trong vận hành, và rất dễ mua nhầm chỗ. Tìm ra điểm hỏng đơn lẻ thật sự thường rẻ hơn và hiệu quả hơn việc nhân đôi mọi thứ.",
+  "openingQuestion": "Dịch vụ chạy trên ba máy chủ nhưng vẫn ngừng hoàn toàn khi một thành phần hỏng. Vì sao?",
+  "openingOptions": [
+    "Vì cả ba cùng phụ thuộc vào một thành phần không được nhân đôi",
+    "Vì cơ chế chuyển đổi giữa các máy chủ chưa được cấu hình cho đúng",
+    "Vì ba máy chủ đó cùng nằm trên một máy vật lý duy nhất",
+    "Vì tải dồn hết sang hai máy còn lại khiến chúng quá tải theo"
+  ],
+  "correctOption": 0,
+  "explanation": "Nhân đôi tầng ứng dụng là phần dễ nhất và cũng là phần ít khi là nút thắt. Bên dưới nó thường còn một cơ sở dữ liệu, một dịch vụ xác thực, một bộ cân bằng tải, một vùng hạ tầng - và chỉ cần một thứ trong đó không có bản thay thế thì độ tin cậy của cả hệ thống rơi về đúng mức của nó. Ba nguyên nhân còn lại đều có thật và đều xảy ra, nhưng chúng là những cách hỏng cụ thể chứ không giải thích được vì sao dự phòng nói chung lại không có tác dụng.",
+  "diagram": [
+    {
+      "label": "3 máy chủ ứng dụng - phần dễ nhân đôi",
+      "arrow": true
+    },
+    {
+      "label": "1 cơ sở dữ liệu, 1 dịch vụ xác thực",
+      "arrow": true
+    },
+    {
+      "label": "Độ tin cậy rơi về mức của mắt xích đơn lẻ",
+      "arrow": true
+    },
+    {
+      "label": "Vẽ sơ đồ ra rồi tìm chỗ chỉ có một"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Bản sao chưa từng được thử",
+    "description": "Nhiều hệ thống có bản sao dự phòng nhưng chưa bao giờ chạy thử chuyển đổi sang nó. Lần đầu tiên thử là lúc bản chính đã chết, và đó cũng là lúc phát hiện ra bản sao thiếu một phần cấu hình."
+  },
+  "keyTakeaways": [
+    "Nhân đôi tầng dễ nhất thường không phải nhân đôi đúng chỗ.",
+    "Vẽ sơ đồ phụ thuộc rồi tìm mọi chỗ chỉ có đúng một.",
+    "Bản sao chưa từng được chuyển sang thì chưa phải bản sao.",
+    "Dự phòng không cứu được lỗi lan theo cấu hình hoặc theo mã."
+  ],
+  "summary": {
+    "keyIdea": "Dự phòng chỉ có giá trị ở đúng điểm hỏng đơn lẻ, và chỉ khi đã được thử.",
+    "formula": "Tìm chỗ chỉ có một, rồi hỏi nếu nó chết thì sao.",
+    "commonMistake": "Nhân đôi phần dễ nhân đôi rồi coi hệ thống đã an toàn."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Vẽ mọi thứ dịch vụ của bạn phụ thuộc vào và khoanh tròn những chỗ chỉ có đúng một bản. Với mỗi vòng tròn, hỏi lần cuối cùng ai đó thử cho nó chết là khi nào."
+  },
+  "practicePrompt": {
+    "question": "Vì sao dự phòng không cứu được một bản phát hành có lỗi?",
+    "options": [
+      "Vì mọi bản sao đều chạy cùng một đoạn mã và cùng hỏng như nhau",
+      "Vì bản phát hành mới thường được đưa lên từng máy chủ một",
+      "Vì cơ chế chuyển đổi chỉ hoạt động khi máy chủ ngừng hẳn",
+      "Vì lỗi trong mã không được các phép kiểm tra sức khoẻ phát hiện"
+    ],
+    "correct": 0,
+    "explanation": "Dự phòng chống được lỗi độc lập - một máy chết, một đĩa hỏng - chứ không chống được nguyên nhân chung. Mã sai, cấu hình sai và chứng chỉ hết hạn đều lan tới mọi bản sao cùng lúc, và chống chúng cần triển khai theo đợt cùng khả năng quay lui chứ không cần thêm máy."
+  },
+  "quiz": [
+    {
+      "question": "Điểm hỏng đơn lẻ là gì?",
+      "options": [
+        "Thành phần mà nếu nó chết thì cả hệ thống ngừng theo",
+        "Thành phần có tần suất hỏng cao nhất trong cả hệ thống",
+        "Thành phần chưa được đưa vào hệ thống giám sát tự động",
+        "Thành phần được nhiều dịch vụ khác nhau cùng sử dụng"
+      ],
+      "correct": 0,
+      "explanation": "Chia sẻ giữa nhiều dịch vụ làm hậu quả rộng hơn nhưng tự nó chưa phải điều kiện - một thành phần dùng chung mà có bản thay thế thì không phải điểm hỏng đơn lẻ. Điều kiện duy nhất là không có gì thay thế nó được."
+    },
+    {
+      "question": "Vì sao bản sao chưa được thử chuyển sang thì chưa đáng tin?",
+      "options": [
+        "Vì nó có thể thiếu cấu hình hoặc dữ liệu mà không ai phát hiện ra",
+        "Vì dữ liệu trên bản sao luôn cũ hơn bản chính một khoảng thời gian",
+        "Vì phần cứng của bản sao thường yếu hơn phần cứng bản chính",
+        "Vì các phép kiểm tra sức khoẻ không chạy trên bản sao dự phòng"
+      ],
+      "correct": 0,
+      "explanation": "Một bản sao chỉ ngồi đó nhận dữ liệu trông giống hệt một bản sao đã sẵn sàng, cho tới lúc phải dùng. Diễn tập chuyển đổi định kỳ là cách duy nhất biến giả định thành sự thật đã kiểm chứng."
+    },
+    {
+      "question": "Loại lỗi nào dự phòng không giúp được?",
+      "options": [
+        "Lỗi có nguyên nhân chung, lan tới mọi bản sao cùng lúc",
+        "Lỗi phần cứng xảy ra đồng thời trên nhiều máy khác nhau",
+        "Lỗi mạng làm mất kết nối giữa các vùng hạ tầng",
+        "Lỗi do quá tải khi lượng truy cập tăng đột biến"
+      ],
+      "correct": 0,
+      "explanation": "Mã sai, cấu hình sai, chứng chỉ hết hạn - chúng đi cùng nhau tới mọi bản sao. Cách chống là triển khai theo đợt và có đường quay lui, tức là một loại biện pháp hoàn toàn khác với việc thêm máy."
+    },
+    {
+      "question": "Vì sao nhân đôi tầng ứng dụng thường chưa đủ?",
+      "options": [
+        "Vì bên dưới nó vẫn còn những thành phần chỉ có đúng một bản",
+        "Vì tầng ứng dụng ít khi là nơi xảy ra sự cố nhất trong hệ thống",
+        "Vì các bản sao ứng dụng cần một cơ chế đồng bộ phức tạp",
+        "Vì chi phí nhân đôi tầng ứng dụng cao hơn các tầng khác"
+      ],
+      "correct": 0,
+      "explanation": "Đó là phần dễ nhân đôi nhất, nên nó luôn được làm trước, và cảm giác an toàn đến ngay sau đó. Cơ sở dữ liệu, dịch vụ xác thực, bộ cân bằng tải hay cả một vùng hạ tầng vẫn có thể là chỗ chỉ có một."
+    },
+    {
+      "question": "Cách rẻ nhất để tìm điểm hỏng đơn lẻ là gì?",
+      "options": [
+        "Vẽ sơ đồ phụ thuộc rồi tìm mọi chỗ chỉ có đúng một bản",
+        "Chờ sự cố xảy ra rồi ghi lại thành phần đã gây ra nó",
+        "Chạy công cụ quét hạ tầng để liệt kê toàn bộ tài nguyên",
+        "Xem lại nhật ký hệ thống của mười hai tháng gần nhất"
+      ],
+      "correct": 0,
+      "explanation": "Nó mất một buổi chiều và không tốn đồng nào, mà thường tìm ra hai hoặc ba thứ không ai để ý. Ba cách còn lại đều cho dữ liệu về những gì đã hỏng, chứ không cho danh sách những gì sẽ kéo sập hệ thống nếu hỏng."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Sau khi biết khi nào phải phản ứng, câu hỏi tiếp theo là làm sao để phải phản ứng ít hơn. Dự phòng là câu trả lời quen thuộc nhất, và cũng là câu trả lời hay được mua nhầm chỗ nhất."
+    },
+    {
+      "type": "heading",
+      "text": "Nhân đôi phần dễ không giải quyết được gì"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tầng ứng dụng không giữ trạng thái nên nhân đôi nó rất rẻ, và vì thế nó luôn được làm trước. Nhưng bên dưới thường còn một cơ sở dữ liệu, một dịch vụ xác thực, một bộ cân bằng tải, đôi khi cả một vùng hạ tầng. Chỉ cần một thứ trong đó không có bản thay thế thì độ tin cậy của cả hệ thống rơi về đúng mức của nó."
+    },
+    {
+      "type": "callout",
+      "label": "Chưa thử thì chưa có",
+      "text": "Một bản sao ngồi nhận dữ liệu trông giống hệt một bản sao sẵn sàng phục vụ. Khác biệt chỉ lộ ra vào lần đầu tiên bạn chuyển sang nó - và nếu lần đầu tiên ấy là lúc bản chính đã chết thì bạn đang gỡ lỗi trong sự cố."
+    },
+    {
+      "type": "heading",
+      "text": "Có loại lỗi thêm máy không chữa được"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Lỗi độc lập",
+        "text": "Một máy chết, một đĩa hỏng, một vùng mất điện. Đây đúng là chỗ dự phòng phát huy tác dụng."
+      },
+      "right": {
+        "label": "Lỗi nguyên nhân chung",
+        "text": "Mã sai, cấu hình sai, chứng chỉ hết hạn. Lan tới mọi bản sao cùng lúc; chống bằng triển khai theo đợt và đường quay lui."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Phân biệt hai loại này quyết định bạn tiêu tiền vào đâu. Một đội gặp toàn sự cố loại thứ hai mà lại đầu tư vào dự phòng đa vùng sẽ trả rất nhiều để phòng một thứ chưa từng xảy ra với mình."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Câu hỏi hiệu quả nhất trong cả bài này chỉ có một dòng: chỗ nào trong sơ đồ chỉ có đúng một?",
+        "Bài sau về lựa chọn khác khi không nhân đôi được: hỏng một phần thay vì hỏng toàn bộ."
+      ]
+    }
+  ]
+}

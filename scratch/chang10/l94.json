@@ -1,0 +1,124 @@
+{
+  "id": 94,
+  "slug": "uu-tien-va-chi-phi-tri-hoan",
+  "title": "Ưu tiên: danh sách luôn dài hơn thời gian",
+  "subtitle": "Câu hỏi không phải việc này có đáng làm không, mà là nó có đáng làm trước việc kia không.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "📌",
+  "track": "professional",
+  "whyItMatters": "Mọi việc trong danh sách đều đáng làm - nếu không nó đã bị loại từ trước. Vì thế câu hỏi có đáng làm không luôn cho câu trả lời có, và nó không giúp sắp xếp được gì.",
+  "openingQuestion": "Hai việc đều hữu ích và tốn công như nhau. Yếu tố nào giúp chọn việc làm trước?",
+  "openingOptions": [
+    "Chi phí của việc trì hoãn: hoãn cái nào thì mất nhiều hơn",
+    "Việc nào được nhiều người trong đội ủng hộ hơn",
+    "Việc nào đã nằm trong danh sách lâu hơn",
+    "Việc nào do người có vị trí cao hơn đề xuất"
+  ],
+  "correctOption": 0,
+  "explanation": "Khi lợi ích và chi phí ngang nhau, thứ phân biệt hai việc là điều gì xảy ra nếu hoãn chúng. Một việc chặn ba đội khác thì mỗi tuần hoãn là ba đội đứng chờ. Một việc chỉ có giá trị trước một sự kiện cụ thể thì hoãn qua ngày đó là mất trắng. Một việc mà giá trị không đổi theo thời gian thì hoãn gần như không mất gì. Đó là ba tình huống hoàn toàn khác nhau mà mọi cách xếp hạng theo lợi ích đơn thuần đều không phân biệt được.",
+  "diagram": [
+    { "label": "Hai việc lợi ích ngang nhau", "arrow": true },
+    { "label": "Hoãn việc A: ba đội đứng chờ", "arrow": true },
+    { "label": "Hoãn việc B: gần như không mất gì", "arrow": true },
+    { "label": "Chi phí trì hoãn quyết định thứ tự" }
+  ],
+  "realWorldExample": {
+    "company": "Việc chặn người khác",
+    "description": "Một việc nhỏ hai ngày đang chặn ba đội khác. Xếp theo lợi ích trực tiếp thì nó nằm cuối danh sách; xếp theo chi phí trì hoãn thì nó đứng đầu, vì mỗi tuần hoãn tốn của công ty ba tuần công việc của người khác."
+  },
+  "keyTakeaways": [
+    "Chi phí trì hoãn phân biệt được những việc mà lợi ích đơn thuần không phân biệt nổi.",
+    "Việc chặn người khác có chi phí trì hoãn nhân lên theo số người bị chặn.",
+    "Việc gắn với một mốc thời gian mất toàn bộ giá trị nếu lỡ mốc đó.",
+    "Danh sách không có thứ tự nghĩa là thứ tự sẽ do người nói to nhất quyết định."
+  ],
+  "summary": {
+    "keyIdea": "Ưu tiên là so sánh giữa các việc, không phải đánh giá từng việc riêng lẻ.",
+    "formula": "Hoãn cái này thì mất gì, so với hoãn cái kia?",
+    "commonMistake": "Hỏi việc này có đáng làm không - câu trả lời luôn là có, nên nó không sắp xếp được gì."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy năm việc trên đầu danh sách và với mỗi việc, viết một câu: nếu hoãn ba tháng thì mất gì? Năm câu trả lời ấy thường sắp xếp lại danh sách ngay lập tức."
+  },
+  "practicePrompt": {
+    "question": "Một việc nhỏ tốn hai ngày nhưng đang chặn ba đội khác. Nên xếp nó ở đâu?",
+    "options": [
+      "Rất cao, vì chi phí trì hoãn của nó được nhân lên theo số đội bị chặn",
+      "Thấp, vì bản thân nó mang lại rất ít giá trị trực tiếp",
+      "Trung bình, vì cần cân bằng với các việc lớn hơn đang chờ",
+      "Tuỳ vào việc ba đội kia có thuộc cùng bộ phận hay không"
+    ],
+    "correct": 0,
+    "explanation": "Giá trị trực tiếp của nó nhỏ, nhưng mỗi tuần hoãn khiến ba đội đứng chờ - nên chi phí thật lớn gấp nhiều lần công sức bỏ ra. Đây là loại việc mà mọi cách xếp hạng theo lợi ích trực tiếp đều bỏ sót một cách có hệ thống."
+  },
+  "quiz": [
+    {
+      "question": "Vì sao câu hỏi việc này có đáng làm không không giúp sắp xếp ưu tiên?",
+      "options": [
+        "Vì mọi việc còn trong danh sách đều đã đáng làm rồi",
+        "Vì không ai đánh giá được giá trị của một việc chính xác",
+        "Vì giá trị của một việc thay đổi theo từng tháng",
+        "Vì câu hỏi đó thuộc thẩm quyền của người quản lý sản phẩm"
+      ],
+      "correct": 0,
+      "explanation": "Việc không đáng làm đã bị loại từ trước, nên câu hỏi ấy luôn cho câu trả lời có. Ưu tiên là bài toán so sánh, và nó cần một tiêu chí phân biệt được giữa hai việc cùng đáng."
+    },
+    {
+      "question": "Chi phí trì hoãn đo cái gì?",
+      "options": [
+        "Thứ bị mất đi nếu việc này được làm muộn hơn",
+        "Tổng công sức cần bỏ ra để hoàn thành việc đó",
+        "Số người trong đội cần tham gia vào việc đó",
+        "Mức độ phức tạp kỹ thuật của việc đang xét"
+      ],
+      "correct": 0,
+      "explanation": "Nó là câu hỏi về thời gian chứ không về giá trị tuyệt đối. Hai việc cùng giá trị có thể có chi phí trì hoãn khác nhau hàng chục lần."
+    },
+    {
+      "question": "Loại việc nào có chi phí trì hoãn cao bất thường?",
+      "options": [
+        "Việc đang chặn nhiều người hoặc gắn với một mốc thời gian cố định",
+        "Việc có khối lượng công việc lớn nhất trong danh sách",
+        "Việc được đề xuất bởi khách hàng lớn nhất của công ty",
+        "Việc đã nằm trong danh sách chờ lâu nhất tính tới nay"
+      ],
+      "correct": 0,
+      "explanation": "Chặn người khác thì chi phí nhân lên theo số người; gắn mốc thì lỡ mốc là mất trắng. Cả hai đều không lộ ra nếu chỉ nhìn vào giá trị của bản thân việc đó."
+    },
+    {
+      "question": "Điều gì xảy ra khi danh sách việc không có thứ tự rõ ràng?",
+      "options": [
+        "Thứ tự sẽ do người nói to nhất hoặc gần nhất quyết định",
+        "Đội sẽ tự chọn những việc phù hợp năng lực nhất",
+        "Các việc sẽ được làm theo đúng thứ tự thời gian đề xuất",
+        "Người quản lý sẽ phải phê duyệt từng việc một"
+      ],
+      "correct": 0,
+      "explanation": "Khoảng trống về ưu tiên luôn được lấp bởi thứ khác, thường là mức độ khẩn thiết trong giọng nói của người yêu cầu. Đó không phải cách tệ nhất, nhưng nó không liên quan gì tới giá trị."
+    },
+    {
+      "question": "Vì sao việc nhỏ đôi khi nên xếp trên việc lớn hơn nhiều?",
+      "options": [
+        "Vì tỷ lệ giữa chi phí trì hoãn và công sức của nó rất cao",
+        "Vì việc nhỏ luôn có rủi ro thấp hơn khi triển khai",
+        "Vì hoàn thành việc nhỏ giúp đội có thêm động lực làm việc",
+        "Vì việc nhỏ không cần trải qua quy trình phê duyệt"
+      ],
+      "correct": 0,
+      "explanation": "Hai ngày công gỡ được ba đội đang đứng chờ là một tỷ lệ rất khó vượt qua. Xếp hạng theo tỷ lệ giữa chi phí trì hoãn và công sức thường đảo lộn danh sách so với xếp theo giá trị."
+    }
+  ],
+  "sections": [
+    { "type": "lead", "text": "Danh sách việc luôn dài hơn thời gian có, và mọi việc trong đó đều hữu ích. Vì thế công cụ ưu tiên phải phân biệt được giữa hai thứ cùng đáng làm." },
+    { "type": "heading", "text": "Hỏi về việc hoãn, đừng hỏi về giá trị" },
+    { "type": "paragraph", "text": "Câu hỏi việc này có giá trị không luôn cho câu trả lời có. Câu hỏi hoãn nó ba tháng thì mất gì lại cho những câu trả lời rất khác nhau: mất một khách hàng lớn, mất mùa cao điểm, ba đội tiếp tục đứng chờ, hoặc gần như không mất gì. Chính sự khác nhau đó mới sắp xếp được danh sách." },
+    { "type": "comparison", "left": { "label": "Chi phí trì hoãn cao", "text": "Việc chặn người khác, việc gắn với một mốc cố định, việc mà đối thủ đang tiến nhanh hơn. Hoãn là mất, và mất theo thời gian." }, "right": { "label": "Chi phí trì hoãn thấp", "text": "Việc cải thiện dần dần mà giá trị không đổi theo thời gian. Làm tháng này hay tháng sau gần như không khác nhau." } },
+    { "type": "callout", "label": "Chia cho công sức", "text": "Xếp theo tỷ lệ giữa chi phí trì hoãn và công sức bỏ ra, chứ không xếp theo riêng một trong hai. Một việc hai ngày gỡ được ba đội đứng chờ sẽ nhảy lên đầu danh sách, đúng chỗ của nó." },
+    { "type": "closing", "lines": [
+      "Ưu tiên không phải chọn giữa tốt và xấu. Nó là chọn giữa hai thứ cùng tốt, và chi phí trì hoãn là thứ phân biệt được chúng.",
+      "Bài sau nói về nửa còn lại của việc ưu tiên, phần khó hơn nhiều: nói không."
+    ]}
+  ]
+}

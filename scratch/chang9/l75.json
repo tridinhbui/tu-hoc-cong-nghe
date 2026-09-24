@@ -1,0 +1,176 @@
+{
+  "id": 75,
+  "slug": "canh-bao-va-truc-he-thong",
+  "title": "Cảnh báo: đánh thức người đúng, vì việc đáng thức",
+  "subtitle": "Cảnh báo không ai xử lý được là cảnh báo dạy người ta tắt thông báo.",
+  "duration": "8 phút",
+  "difficulty": "Trung bình",
+  "emoji": "🔔",
+  "track": "professional",
+  "whyItMatters": "Đội bị đánh thức ba lần mỗi đêm vì những việc không cần làm gì sẽ mất khả năng phản ứng với lần thứ tư - lần thật sự quan trọng. Chất lượng cảnh báo quyết định hệ thống có được bảo vệ hay không, nhiều hơn là số lượng cảnh báo.",
+  "openingQuestion": "Điều kiện để một tín hiệu xứng đáng trở thành cảnh báo đánh thức người là gì?",
+  "openingOptions": [
+    "Có người đang chịu ảnh hưởng và có hành động cụ thể để làm ngay",
+    "Có một chỉ số kỹ thuật vượt qua ngưỡng đã đặt trước",
+    "Có bất thường xuất hiện trong nhật ký của hệ thống",
+    "Có nguy cơ sự cố xảy ra trong vài giờ tới"
+  ],
+  "correctOption": 0,
+  "explanation": "Hai điều kiện phải cùng đúng. Nếu chưa có ai bị ảnh hưởng thì việc đó chờ tới sáng được, và đánh thức người bây giờ là lấy đi khả năng tỉnh táo của họ cho lần sau. Nếu có ảnh hưởng nhưng người bị gọi không làm được gì - chẳng hạn phụ thuộc bên ngoài đang hỏng và ta chỉ ngồi chờ - thì cuộc gọi ấy cũng vô ích. Ngưỡng kỹ thuật vượt qua mà người dùng không hề hấn gì là loại cảnh báo phổ biến nhất và cũng vô dụng nhất.",
+  "diagram": [
+    {
+      "label": "Tín hiệu bất thường xuất hiện",
+      "arrow": true
+    },
+    {
+      "label": "Có ai đang bị ảnh hưởng không?",
+      "arrow": true
+    },
+    {
+      "label": "Có hành động cụ thể để làm ngay không?",
+      "arrow": true
+    },
+    {
+      "label": "Cả hai đúng thì mới đánh thức người"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Mệt vì cảnh báo",
+    "description": "Một đội nhận trung bình bốn mươi cảnh báo mỗi ngày, phần lớn tự hết sau vài phút. Sau vài tuần, phản xạ chung là tắt thông báo và xem lại vào sáng hôm sau - kể cả với những cảnh báo đúng là sự cố thật."
+  },
+  "keyTakeaways": [
+    "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+    "Mỗi cảnh báo phải kèm hành động cụ thể; không có hành động thì đó là bảng theo dõi.",
+    "Cảnh báo giả nhiều lần sẽ huấn luyện đội bỏ qua cả cảnh báo thật.",
+    "Không có gì cần làm ngay thì để tới giờ hành chính, đừng đánh thức ai."
+  ],
+  "summary": {
+    "keyIdea": "Mỗi lần đánh thức người là tiêu một phần khả năng phản ứng của đội, nên phải tiêu cho việc đáng.",
+    "formula": "Có người bị ảnh hưởng + có việc làm được ngay.",
+    "commonMistake": "Đặt cảnh báo trên chỉ số tài nguyên, rồi đội bị gọi vì những thứ không ai cần làm gì."
+  },
+  "application": {
+    "title": "Làm ngay hôm nay",
+    "message": "Lấy danh sách cảnh báo đã kích hoạt trong tháng qua và đánh dấu cái nào dẫn tới một hành động thật. Những cái còn lại nên bị xoá hoặc hạ xuống thành mục trên bảng theo dõi."
+  },
+  "practicePrompt": {
+    "question": "Một cảnh báo kích hoạt lúc hai giờ sáng, và người trực xem xong thấy không cần làm gì. Nên xử lý thế nào?",
+    "options": [
+      "Sửa hoặc gỡ cảnh báo đó, vì nó vừa tiêu một lần đánh thức vô ích",
+      "Giữ nguyên vì lần sau nó có thể báo đúng một sự cố thật",
+      "Nâng ngưỡng lên một chút để nó ít kích hoạt hơn trước",
+      "Chuyển nó sang gửi cho cả đội thay vì chỉ người trực"
+    ],
+    "correct": 0,
+    "explanation": "Một lần đánh thức không dẫn tới hành động là bằng chứng cảnh báo sai chỗ, và giữ nguyên là chấp nhận trả cái giá đó mỗi lần nó lặp lại. Nâng ngưỡng đôi khi đúng, nhưng phải bắt đầu từ câu hỏi cảnh báo này gắn với triệu chứng nào của người dùng."
+  },
+  "quiz": [
+    {
+      "question": "Cảnh báo nên gắn với điều gì?",
+      "options": [
+        "Triệu chứng mà người dùng đang cảm nhận được",
+        "Ngưỡng tài nguyên của máy chủ đang phục vụ",
+        "Số dòng lỗi xuất hiện trong nhật ký",
+        "Thay đổi bất thường trong lưu lượng"
+      ],
+      "correct": 0,
+      "explanation": "Bộ xử lý cao mà người dùng vẫn dùng tốt thì không phải sự cố. Bộ xử lý thấp mà không ai đặt hàng được thì là sự cố nặng. Chỉ có triệu chứng phía người dùng mới phân biệt được hai tình huống đó."
+    },
+    {
+      "question": "Vì sao cảnh báo giả lại nguy hiểm?",
+      "options": [
+        "Vì chúng huấn luyện đội phản xạ bỏ qua mọi cảnh báo",
+        "Vì chúng chiếm dung lượng lưu trữ của hệ thống giám sát",
+        "Vì chúng làm hệ thống giám sát chạy chậm đi theo thời gian",
+        "Vì chúng che mất các chỉ số quan trọng trên bảng theo dõi"
+      ],
+      "correct": 0,
+      "explanation": "Thứ bị hỏng là phản xạ của con người chứ không phải hệ thống. Sau vài chục lần báo động giả, cảnh báo thật cũng bị xử lý y như tiếng ồn."
+    },
+    {
+      "question": "Khi nào một tín hiệu chỉ nên nằm trên bảng theo dõi thay vì thành cảnh báo?",
+      "options": [
+        "Khi không có hành động cụ thể nào cần làm ngay lúc đó",
+        "Khi chỉ số đó thay đổi quá thường xuyên trong ngày",
+        "Khi nó chỉ liên quan tới một dịch vụ nhỏ trong hệ thống",
+        "Khi đội chưa có đủ người để trực suốt hai mươi tư giờ"
+      ],
+      "correct": 0,
+      "explanation": "Không có hành động thì đánh thức người chỉ để họ nhìn thấy một con số. Thông tin ấy vẫn đáng theo dõi, nhưng chỗ của nó là bảng theo dõi và buổi rà soát định kỳ."
+    },
+    {
+      "question": "Mỗi cảnh báo nên đi kèm thứ gì?",
+      "options": [
+        "Hướng dẫn ngắn về việc cần kiểm tra và cần làm gì",
+        "Danh sách toàn bộ chỉ số của dịch vụ tại thời điểm đó",
+        "Tên của người đã viết đoạn mã liên quan tới cảnh báo",
+        "Lịch sử đầy đủ các lần cảnh báo này từng kích hoạt"
+      ],
+      "correct": 0,
+      "explanation": "Người bị gọi lúc hai giờ sáng không ở trạng thái tốt nhất để tự suy luận từ đầu. Vài dòng hướng dẫn rút ngắn thời gian xử lý và giảm khả năng làm hỏng thêm."
+    },
+    {
+      "question": "Vì sao số lượng cảnh báo cần được giới hạn có chủ đích?",
+      "options": [
+        "Vì khả năng phản ứng của đội là nguồn lực hữu hạn",
+        "Vì hệ thống giám sát tính phí theo số lượng cảnh báo",
+        "Vì quá nhiều cảnh báo sẽ làm chậm việc gửi thông báo",
+        "Vì mỗi cảnh báo cần một người chịu trách nhiệm riêng"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi lần đánh thức tiêu một phần sự tỉnh táo và thiện chí của người trực. Coi nó như nguồn lực hữu hạn thì việc thêm một cảnh báo mới trở thành quyết định có cân nhắc."
+    }
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Bài trước dựng các tín hiệu. Bài này nói về việc biến tín hiệu thành hành động - và về cái giá của việc biến nhầm."
+    },
+    {
+      "type": "heading",
+      "text": "Hai câu hỏi trước khi tạo cảnh báo"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Có ai đang bị ảnh hưởng không? Nếu chưa, việc này chờ tới sáng được.",
+        "Có hành động cụ thể để làm ngay không? Nếu không, đánh thức người chỉ để họ nhìn một con số."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Triệu chứng, không phải nguyên nhân"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cảnh báo theo triệu chứng",
+        "text": "Tỷ lệ đặt hàng thành công tụt dưới ngưỡng. Luôn đáng quan tâm, dù nguyên nhân là gì - kể cả nguyên nhân bạn chưa từng nghĩ tới."
+      },
+      "right": {
+        "label": "Cảnh báo theo nguyên nhân",
+        "text": "Bộ xử lý vượt tám mươi phần trăm. Thường xuyên kích hoạt khi không có vấn đề gì, và im lặng khi có vấn đề theo cách khác."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Khả năng phản ứng là hữu hạn",
+      "text": "Đội bị gọi ba lần một đêm vì những việc không cần làm gì sẽ không còn tỉnh táo cho lần thứ tư. Mỗi cảnh báo thêm vào phải trả lời được câu hỏi: nó đáng để tiêu một lần đánh thức không?"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Rà soát định kỳ danh sách cảnh báo và xoá những cái chưa từng dẫn tới hành động.",
+        "Kèm hướng dẫn xử lý ngắn ngay trong nội dung cảnh báo.",
+        "Với việc không gấp, gửi vào hàng đợi công việc thay vì gọi điện thoại."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Cảnh báo tốt là cảnh báo hiếm và luôn đáng. Cảnh báo nhiều là cách chắc chắn để không ai còn phản ứng nữa.",
+        "Bài sau nói về chuyện xảy ra sau khi cảnh báo đúng kích hoạt: xử lý sự cố."
+      ]
+    }
+  ]
+}

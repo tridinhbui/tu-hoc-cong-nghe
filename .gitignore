@@ -47,3 +47,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 pics/
+
+# Cloudflare Workers (adapter OpenNext) - thư mục build, sinh lại được
+.open-next/
+.wrangler/
+
+# Dữ liệu xuất từ Supabase phục vụ di trú D1: 25 MB và chứa dữ liệu cá nhân thật
+# (email, tên, nội dung tin nhắn của 3.652 người dùng). Tái tạo được bất cứ lúc
+# nào bằng `node scripts/d1/export.mjs`, nên không có lý do gì để nó nằm trong git.
+scripts/d1/data/
+scripts/d1/sql/
