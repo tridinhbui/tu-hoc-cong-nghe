@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { getSystemDb } from "@/lib/d1/server";
 
 // Vercel Cron hits this via GET (see vercel.json: "0 14 * * *" = daily,
 // after the weekly-study-match run so a freshly-formed room gets its first
@@ -44,11 +44,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createAdminClient();
+  const db = getSystemDb();
   const todayStart = new Date();
   todayStart.setUTCHours(0, 0, 0, 0);
 
-  const { data: rooms, error: roomsError } = await supabase
+  const { data: roomsRaw, error: roomsError } = await db
     .from("study_rooms")
     .select("id, weekly_xp_goal");
 
@@ -56,30 +56,33 @@ export async function GET(request: NextRequest) {
     console.error("[daily-study-group-update] Failed to load rooms:", roomsError);
     return NextResponse.json({ error: "Failed to load rooms" }, { status: 500 });
   }
+  const rooms = roomsRaw as unknown as RoomRow[];
 
   let posted = 0;
 
-  for (const room of (rooms ?? []) as RoomRow[]) {
-    const { data: members } = await supabase
+  for (const room of rooms ?? []) {
+    const { data: members } = await db
       .from("study_room_members")
       .select("user_id")
       .eq("room_id", room.id)
       .is("left_at", null);
 
-    const memberIds = (members ?? []).map((m: { user_id: string }) => m.user_id);
+    const memberIds = ((members ?? []) as unknown as { user_id: string }[]).map((m) => m.user_id);
     if (memberIds.length === 0) continue;
 
-    // study_room_members.user_id references auth.users, not user_profiles
-    // directly, so PostgREST can't embed the join - fetch profiles separately.
-    const { data: profiles } = await supabase
+    // study_room_members.user_id references auth_users, not user_profiles
+    // directly, nên vẫn tách hai truy vấn thay vì nối bảng.
+    const { data: profiles } = await db
       .from("user_profiles")
       .select("id, full_name")
       .in("id", memberIds);
 
-    const nameById = new Map((profiles ?? []).map((p: { id: string; full_name: string | null }) => [p.id, p.full_name]));
+    const nameById = new Map(
+      ((profiles ?? []) as unknown as { id: string; full_name: string | null }[]).map((p) => [p.id, p.full_name])
+    );
     const memberList: MemberRow[] = memberIds.map((id) => ({ user_id: id, full_name: nameById.get(id) ?? null }));
 
-    const { data: todayProgress } = await supabase
+    const { data: todayProgress } = await db
       .from("user_progress")
       .select("user_id")
       .in(
@@ -89,7 +92,7 @@ export async function GET(request: NextRequest) {
       .eq("completed", true)
       .gte("completed_at", todayStart.toISOString());
 
-    const activeToday = new Set((todayProgress ?? []).map((r: { user_id: string }) => r.user_id));
+    const activeToday = new Set(((todayProgress ?? []) as unknown as { user_id: string }[]).map((r) => r.user_id));
     // Tin nhắn đăng vào phòng chung, một bản cho cả nhóm - không dịch theo
     // người xem được, cùng lý do với bot ở app/api/study-room-bot.
     /* i18n-ignore-start: nội dung tin nhắn đã lưu vào phòng, cả nhóm đọc chung một bản */
@@ -111,7 +114,7 @@ export async function GET(request: NextRequest) {
               notYet: notYetCount,
             });
 
-    const { error: insertError } = await supabase.from("study_room_messages").insert({
+    const { error: insertError } = await db.from("study_room_messages").insert({
       room_id: room.id,
       sender_id: null,
       is_bot: true,

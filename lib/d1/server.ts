@@ -1,7 +1,7 @@
 import "server-only";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import type { D1Database } from "@cloudflare/workers-types";
-import { createD1Client, type ColumnTypes, type PolicyRegistry, type ManualPredicates } from "./query-builder";
+import { createD1Client, ADMIN_BYPASS, type ColumnTypes, type PolicyRegistry, type ManualPredicates } from "./query-builder";
 import snapshot from "../../scripts/d1/schema-snapshot.json";
 import registryJson from "../../scripts/d1/policy-registry.json";
 import predicatesJson from "../../scripts/d1/manual-predicates.json";
@@ -34,4 +34,20 @@ export function getDb(): D1Database {
  */
 export function getClient(actor: string | null) {
   return createD1Client(getDb(), types, registry, actor, predicates);
+}
+
+/**
+ * Client bỏ qua chính sách, cho các route đã tự xác thực bằng cách KHÁC với
+ * phiên người dùng - cron (bí mật Bearer token, xem lib/cron-auth.ts), hoặc
+ * bất kỳ tác vụ hệ thống nào ghi/đọc thay nhiều người dùng cùng lúc mà không
+ * có một "actor" cụ thể nào.
+ *
+ * KHÁC requireAdminDb() (lib/admin/db.ts): hàm đó GỘP kiểm quyền (role ===
+ * "admin" qua getCurrentUser()) với việc cấp client, nên không thể lấy được
+ * ADMIN_BYPASS mà chưa qua kiểm. Hàm NÀY không tự kiểm gì cả - nó CHỈ được
+ * gọi sau khi route đã tự xác thực bằng cơ chế của riêng nó. Đặt tên khác
+ * hẳn (getSystemDb, không phải getAdminDb) để không ai nhầm hai thứ.
+ */
+export function getSystemDb() {
+  return createD1Client(getDb(), types, registry, ADMIN_BYPASS, predicates);
 }

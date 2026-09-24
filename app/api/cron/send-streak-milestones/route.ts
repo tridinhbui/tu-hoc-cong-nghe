@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { getSystemDb } from "@/lib/d1/server";
 import { isAuthorizedCronRequest } from "@/lib/cron-auth";
 import { getDictionary, format } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/i18n/locales";
@@ -40,42 +40,40 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createAdminClient();
+  const db = getSystemDb();
 
   // Capped per run for the same reason as send-reminders - bound the blast
   // radius of a single invocation.
   const MAX_CANDIDATES_PER_RUN = 500;
 
-  const { data: candidates, error } = await supabase
+  const { data: candidatesRaw, error } = await db
     .from("user_streaks")
     .select("user_id, current_streak, last_milestone_notified")
     .in("current_streak", MILESTONES as unknown as number[])
     .limit(MAX_CANDIDATES_PER_RUN);
 
   if (error) {
-    // last_milestone_notified column not migrated yet on this environment.
-    if (error.code === "42703" || error.code === "PGRST204") {
-      return NextResponse.json({ processed: 0, sent: 0, note: "migration not applied yet" });
-    }
     console.error("[send-streak-milestones] Failed to query user_streaks:", error);
     return NextResponse.json({ error: "Failed to query candidates" }, { status: 500 });
   }
+  const candidates = candidatesRaw as unknown as StreakRow[];
 
   let processed = 0;
   let sent = 0;
 
-  for (const row of (candidates ?? []) as StreakRow[]) {
+  for (const row of candidates ?? []) {
     processed += 1;
     const alreadyNotified = (row.last_milestone_notified ?? 0) >= row.current_streak;
     if (alreadyNotified) continue;
 
-    const { data: profile } = await supabase
+    const { data: profileRaw } = await db
       .from("user_profiles")
       .select("full_name, preferred_locale")
       .eq("id", row.user_id)
       .maybeSingle();
+    const profile = profileRaw as unknown as { full_name: string | null; preferred_locale: string | null } | null;
 
-    const { error: insertError } = await supabase.from("chat_messages").insert({
+    const { error: insertError } = await db.from("chat_messages").insert({
       user_id: row.user_id,
       sender: "admin",
       content: milestoneMessage(profile?.full_name ?? "", row.current_streak, profile?.preferred_locale),
@@ -88,14 +86,14 @@ export async function GET(request: NextRequest) {
 
     // Best-effort - a failed feed post shouldn't block the DM/milestone
     // marker above, which is why this isn't checked for errors.
-    await supabase.from("community_posts").insert({
+    await db.from("community_posts").insert({
       user_id: row.user_id,
       kind: "streak",
       content: feedPostContent(profile?.full_name ?? "", row.current_streak),
       metadata: { streak_days: row.current_streak },
     });
 
-    await supabase
+    await db
       .from("user_streaks")
       .update({ last_milestone_notified: row.current_streak })
       .eq("user_id", row.user_id);

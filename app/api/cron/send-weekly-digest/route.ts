@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { getSystemDb } from "@/lib/d1/server";
 import { sendEmail } from "@/lib/send-email";
 import { isAuthorizedCronRequest } from "@/lib/cron-auth";
 import { getDictionary } from "@/lib/i18n";
@@ -26,25 +26,26 @@ interface DigestCandidate {
 // of all-time. Good enough for a friendly recap; not written back anywhere,
 // so it doesn't need to be as strictly abuse-proof as the real total.
 async function getWeeklyStats(
-  supabase: ReturnType<typeof createAdminClient>,
+  db: ReturnType<typeof getSystemDb>,
   userId: string,
   weekStart: string
 ) {
-  const [{ data: lessonsRows }, { data: quizRows }, { data: gameRows }, { data: streakRow }] = await Promise.all([
-    supabase
+  const [{ data: lessonsRows }, { data: quizRows }, { data: gameRows }, { data: streakRowRaw }] = await Promise.all([
+    db
       .from("user_progress")
       .select("id")
       .eq("user_id", userId)
       .eq("completed", true)
       .gte("completed_at", weekStart),
-    supabase.from("user_quiz_sessions").select("xp_earned").eq("user_id", userId).gte("completed_at", weekStart),
-    supabase.from("game_sessions").select("xp_earned").eq("user_id", userId).gte("created_at", weekStart),
-    supabase.from("user_streaks").select("current_streak, longest_streak").eq("user_id", userId).maybeSingle(),
+    db.from("user_quiz_sessions").select("xp_earned").eq("user_id", userId).gte("completed_at", weekStart),
+    db.from("game_sessions").select("xp_earned").eq("user_id", userId).gte("created_at", weekStart),
+    db.from("user_streaks").select("current_streak, longest_streak").eq("user_id", userId).maybeSingle(),
   ]);
+  const streakRow = streakRowRaw as unknown as { current_streak: number; longest_streak: number } | null;
 
-  const lessonsCompleted = lessonsRows?.length ?? 0;
-  const quizXp = (quizRows ?? []).reduce((sum: number, r: { xp_earned: number }) => sum + (r.xp_earned || 0), 0);
-  const gameXp = (gameRows ?? []).reduce((sum: number, r: { xp_earned: number }) => sum + (r.xp_earned || 0), 0);
+  const lessonsCompleted = (lessonsRows as unknown[] | null)?.length ?? 0;
+  const quizXp = ((quizRows ?? []) as unknown as { xp_earned: number }[]).reduce((sum, r) => sum + (r.xp_earned || 0), 0);
+  const gameXp = ((gameRows ?? []) as unknown as { xp_earned: number }[]).reduce((sum, r) => sum + (r.xp_earned || 0), 0);
   const xpThisWeek = lessonsCompleted * 10 + quizXp + gameXp;
 
   return {
@@ -87,7 +88,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createAdminClient();
+  const db = getSystemDb();
 
   // Only sends once every ~6 days per user even if the cron somehow fires
   // more than once a week, without hardcoding "must be exactly Monday".
@@ -96,7 +97,7 @@ export async function GET(request: NextRequest) {
 
   const MAX_CANDIDATES_PER_RUN = 500;
 
-  const { data: candidates, error } = await supabase
+  const { data: candidates, error } = await db
     .from("notification_preferences")
     .select("user_id")
     .eq("weekly_digest_enabled", true)
@@ -111,18 +112,19 @@ export async function GET(request: NextRequest) {
   let processed = 0;
   let sent = 0;
 
-  for (const candidate of (candidates ?? []) as DigestCandidate[]) {
+  for (const candidate of (candidates ?? []) as unknown as DigestCandidate[]) {
     processed += 1;
 
-    const { data: profile } = await supabase
+    const { data: profileRaw } = await db
       .from("user_profiles")
       .select("email, full_name, preferred_locale")
       .eq("id", candidate.user_id)
       .maybeSingle();
+    const profile = profileRaw as unknown as { email: string | null; full_name: string | null; preferred_locale: string | null } | null;
 
     if (!profile?.email) continue;
 
-    const stats = await getWeeklyStats(supabase, candidate.user_id, weekStart);
+    const stats = await getWeeklyStats(db, candidate.user_id, weekStart);
     const t = getDictionary(resolveLocale(profile.preferred_locale));
     const { subject, html } = buildDigestEmail(profile.full_name || t.emails.fallbackName, stats, profile.preferred_locale);
 
@@ -131,7 +133,7 @@ export async function GET(request: NextRequest) {
 
     // Mark as attempted regardless of send success, same reasoning as the
     // daily reminder cron - avoids retrying more than once per window.
-    await supabase
+    await db
       .from("notification_preferences")
       .update({ last_weekly_digest_sent_at: new Date().toISOString() })
       .eq("user_id", candidate.user_id);

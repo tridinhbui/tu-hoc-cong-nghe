@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { getSystemDb } from "@/lib/d1/server";
 import { sendPushNotification } from "@/lib/web-push";
 import { isAuthorizedCronRequest } from "@/lib/cron-auth";
 import { MORNING_REVIEW_SIZE } from "@/lib/morning-review";
@@ -43,10 +43,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createAdminClient();
+  const db = getSystemDb();
   const cutoff = new Date(Date.now() - SEND_COOLDOWN_HOURS * 60 * 60 * 1000).toISOString();
 
-  const { data: candidates, error } = await supabase
+  const { data: candidates, error } = await db
     .from("notification_preferences")
     .select("user_id")
     .eq("morning_review_enabled", true)
@@ -54,20 +54,11 @@ export async function GET(request: NextRequest) {
     .limit(MAX_CANDIDATES_PER_RUN);
 
   if (error) {
-    // Until 20260822_morning_review_push.sql is applied, morning_review_enabled
-    // does not exist and PostgREST rejects the filter. That is a deploy
-    // ordering issue, not a failure - report it as "nobody to notify" so the
-    // daily run does not alert every morning until the migration lands.
-    const missingColumn = error.code === "42703" || error.code === "PGRST204";
-    if (missingColumn) {
-      console.warn("[morning-review] morning_review_enabled column missing - migration not applied yet.");
-      return NextResponse.json({ processed: 0, pushSent: 0, skippedTooFewItems: 0, pushSkippedNoVapidKeys: 0, migrationPending: true });
-    }
     console.error("[morning-review] Failed to query notification_preferences:", error);
     return NextResponse.json({ error: "Failed to query candidates" }, { status: 500 });
   }
 
-  const candidateIds = ((candidates ?? []) as { user_id: string }[]).map((c) => c.user_id);
+  const candidateIds = ((candidates ?? []) as unknown as { user_id: string }[]).map((c) => c.user_id);
   const processed = candidateIds.length;
 
   if (processed === 0) {
@@ -77,7 +68,7 @@ export async function GET(request: NextRequest) {
   // One query for the whole batch rather than a count per user. Only the
   // key columns are pulled; the questions themselves are re-derived from
   // lesson content on the client.
-  const { data: mistakeRows, error: mistakeError } = await supabase
+  const { data: mistakeRows, error: mistakeError } = await db
     .from("quiz_mistakes")
     .select("user_id")
     .in("user_id", candidateIds)
@@ -89,7 +80,7 @@ export async function GET(request: NextRequest) {
   }
 
   const itemCountByUser = new Map<string, number>();
-  for (const row of (mistakeRows ?? []) as { user_id: string }[]) {
+  for (const row of (mistakeRows ?? []) as unknown as { user_id: string }[]) {
     itemCountByUser.set(row.user_id, (itemCountByUser.get(row.user_id) ?? 0) + 1);
   }
 
@@ -102,21 +93,21 @@ export async function GET(request: NextRequest) {
 
   // Push là thông báo riêng cho từng người, nên đọc ngôn ngữ của chính họ.
   // Cron không có cookie nào để đọc - xem migration 20260902.
-  const { data: localeRows } = await supabase
+  const { data: localeRows } = await db
     .from("user_profiles")
     .select("id, preferred_locale")
     .in("id", notifiableIds);
   const localeByUser = new Map(
-    ((localeRows ?? []) as { id: string; preferred_locale: string | null }[]).map((r) => [r.id, r.preferred_locale])
+    ((localeRows ?? []) as unknown as { id: string; preferred_locale: string | null }[]).map((r) => [r.id, r.preferred_locale])
   );
 
-  const { data: subscriptionRows } = await supabase
+  const { data: subscriptionRows } = await db
     .from("push_subscriptions")
     .select("id, user_id, endpoint, p256dh, auth")
     .in("user_id", notifiableIds);
 
   const subscriptionsByUser = new Map<string, { id: number; endpoint: string; p256dh: string; auth: string }[]>();
-  for (const sub of (subscriptionRows ?? []) as {
+  for (const sub of (subscriptionRows ?? []) as unknown as {
     id: number;
     user_id: string;
     endpoint: string;
@@ -166,10 +157,10 @@ export async function GET(request: NextRequest) {
   }
 
   if (expiredSubscriptionIds.length > 0) {
-    await supabase.from("push_subscriptions").delete().in("id", expiredSubscriptionIds);
+    await db.from("push_subscriptions").delete().in("id", expiredSubscriptionIds);
   }
   if (notifiedIds.length > 0) {
-    await supabase
+    await db
       .from("notification_preferences")
       .update({ last_morning_review_sent_at: new Date().toISOString() })
       .in("user_id", notifiedIds);

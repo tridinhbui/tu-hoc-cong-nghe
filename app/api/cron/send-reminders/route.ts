@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { getSystemDb } from "@/lib/d1/server";
 import { getStreakRiskStatus, getInactiveDaysCount } from "@/lib/streak-reminders";
 import { sendEmail } from "@/lib/send-email";
 import { sendPushNotification } from "@/lib/web-push";
@@ -70,7 +70,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createAdminClient();
+  const db = getSystemDb();
 
   const cutoff = new Date(Date.now() - REMINDER_COOLDOWN_HOURS * 60 * 60 * 1000).toISOString();
 
@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
   // Candidate pool now spans both channels - a user only opted into browser
   // push (no email) still needs to show up here, since last_reminder_sent_at
   // is a single shared cooldown for "was this user reminded today at all".
-  const { data: candidates, error } = await supabase
+  const { data: candidates, error } = await db
     .from("notification_preferences")
     .select("user_id, email_reminders_enabled, browser_reminders_enabled")
     .or("email_reminders_enabled.eq.true,browser_reminders_enabled.eq.true")
@@ -95,7 +95,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Failed to query candidates" }, { status: 500 });
   }
 
-  const candidateList = (candidates ?? []) as ReminderCandidate[];
+  const candidateList = (candidates ?? []) as unknown as ReminderCandidate[];
   const processed = candidateList.length;
   let emailSent = 0;
   let skippedNoApiKey = 0;
@@ -108,12 +108,12 @@ export async function GET(request: NextRequest) {
   const candidateIds = candidateList.map((c) => c.user_id);
 
   const { data: streakRows } = candidateIds.length
-    ? await supabase
+    ? await db
         .from("user_streaks")
         .select("id, user_id, current_streak, longest_streak, last_activity_date, created_at, updated_at")
         .in("user_id", candidateIds)
     : { data: [] };
-  const streakByUser = new Map(((streakRows ?? []) as UserStreak[]).map((s) => [s.user_id, s]));
+  const streakByUser = new Map(((streakRows ?? []) as unknown as UserStreak[]).map((s) => [s.user_id, s]));
 
   const needyCandidates = candidateList
     .map((candidate) => ({ candidate, decision: needsReminder(streakByUser.get(candidate.user_id) ?? null) }))
@@ -124,17 +124,17 @@ export async function GET(request: NextRequest) {
 
   const [{ data: profileRows }, { data: subscriptionRows }] = await Promise.all([
     emailUserIds.length
-      ? supabase.from("user_profiles").select("id, email, full_name, preferred_locale").in("id", emailUserIds)
+      ? db.from("user_profiles").select("id, email, full_name, preferred_locale").in("id", emailUserIds)
       : Promise.resolve({ data: [] }),
     pushUserIds.length
-      ? supabase.from("push_subscriptions").select("id, user_id, endpoint, p256dh, auth").in("user_id", pushUserIds)
+      ? db.from("push_subscriptions").select("id, user_id, endpoint, p256dh, auth").in("user_id", pushUserIds)
       : Promise.resolve({ data: [] }),
   ]);
   const profileByUser = new Map(
-    ((profileRows ?? []) as { id: string; email: string | null; full_name: string | null; preferred_locale: string | null }[]).map((p) => [p.id, p])
+    ((profileRows ?? []) as unknown as { id: string; email: string | null; full_name: string | null; preferred_locale: string | null }[]).map((p) => [p.id, p])
   );
   const subscriptionsByUser = new Map<string, { id: number; endpoint: string; p256dh: string; auth: string }[]>();
-  for (const sub of (subscriptionRows ?? []) as { id: number; user_id: string; endpoint: string; p256dh: string; auth: string }[]) {
+  for (const sub of (subscriptionRows ?? []) as unknown as { id: number; user_id: string; endpoint: string; p256dh: string; auth: string }[]) {
     const list = subscriptionsByUser.get(sub.user_id) ?? [];
     list.push(sub);
     subscriptionsByUser.set(sub.user_id, list);
@@ -202,11 +202,11 @@ export async function GET(request: NextRequest) {
   // user at once (same semantics as before - only users we actually
   // attempted get marked, so the untouched rest stay eligible next run).
   if (expiredSubscriptionIds.length > 0) {
-    await supabase.from("push_subscriptions").delete().in("id", expiredSubscriptionIds);
+    await db.from("push_subscriptions").delete().in("id", expiredSubscriptionIds);
   }
   const needyIds = needyCandidates.map(({ candidate }) => candidate.user_id);
   if (needyIds.length > 0) {
-    await supabase
+    await db
       .from("notification_preferences")
       .update({ last_reminder_sent_at: new Date().toISOString() })
       .in("user_id", needyIds);
