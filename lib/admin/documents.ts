@@ -2,6 +2,26 @@ import "server-only";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { generateExcelPreviewSvg, isExcelFileName } from "@/lib/excel-preview";
 import { STORAGE_CACHE_CONTROL } from "@/lib/storage-cache";
+import { getStorage } from "@/lib/r2/server";
+
+/** Client lưu trữ R2. Bảng `documents` (CSDL) VẪN qua Supabase ở tệp này -
+ *  đó là việc của bước sau (thay client D1 vào chỗ createAdminClient()).
+ *  Đây chỉ là bước chuyển ba bucket sang R2. */
+const storage = () => getStorage().from("documents");
+
+/** Đường dẫn lưu trong R2 rút ra từ một URL công khai.
+ *
+ *  Nhận CẢ HAI dạng: URL Supabase cũ (".../object/public/documents/<path>",
+ *  dữ liệu tài liệu đã có từ trước khi chuyển) và URL R2 mới
+ *  ("/api/files/documents/<path>", mọi lượt tải lên từ giờ). Không nhận ra
+ *  dạng cũ thì tệp cũ không bao giờ dọn được khi thay thế - vô hại về đúng
+ *  sai (Supabase Storage đằng nào cũng sắp bị cắt) nhưng để lại rác trong
+ *  bảng dữ liệu. */
+function storagePathFromUrl(url: string | null | undefined): string | null {
+  if (!url) return null;
+  const m = url.match(/\/(?:object\/public|api\/files)\/documents\/(.+)$/);
+  return m ? m[1] : null;
+}
 
 export type DocumentStatus = "pending" | "approved" | "rejected";
 
@@ -85,23 +105,21 @@ function isMissingColumnError(error: { code?: string } | null): boolean {
 }
 
 /** Uploads an optional cover image to the same "documents" storage bucket, under a covers/ prefix. Returns its public URL, or null if no image was given. */
-async function uploadCoverImage(
-  supabase: ReturnType<typeof createAdminClient>,
-  image: File | null | undefined
-): Promise<string | null> {
+async function uploadCoverImage(image: File | null | undefined): Promise<string | null> {
   if (!image || image.size === 0) return null;
   assertAllowedCoverImage(image);
 
   const ext = image.name.split(".").pop() || "jpg";
   const path = `covers/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
-  const { error: uploadError } = await supabase.storage
-    .from("documents")
-    .upload(path, image, { contentType: image.type || "image/jpeg", cacheControl: STORAGE_CACHE_CONTROL });
+  const { error: uploadError } = await storage().upload(path, await image.arrayBuffer(), {
+    contentType: image.type || "image/jpeg",
+    cacheControl: STORAGE_CACHE_CONTROL,
+  });
 
   if (uploadError) throw new Error(uploadError.message);
 
-  const { data } = supabase.storage.from("documents").getPublicUrl(path);
+  const { data } = storage().getPublicUrl(path);
   return data.publicUrl;
 }
 
@@ -113,10 +131,7 @@ async function uploadCoverImage(
  * .xls, encrypted workbook) just skips the cover image entirely, same as if
  * no image had been given - it must never fail the document upload itself.
  */
-async function uploadAutoExcelPreview(
-  supabase: ReturnType<typeof createAdminClient>,
-  file: File
-): Promise<string | null> {
+async function uploadAutoExcelPreview(file: File): Promise<string | null> {
   if (!isExcelFileName(file.name)) return null;
   try {
     const buffer = await file.arrayBuffer();
@@ -127,15 +142,16 @@ async function uploadAutoExcelPreview(
     // không nạp được mã máy - xem lib/excel-preview.ts. Ảnh bìa vẫn chỉ là một
     // URL đặt vào <img>, nên phía hiển thị không đổi gì.
     const path = `covers/${Date.now()}-${Math.random().toString(36).slice(2, 8)}-auto.svg`;
-    const { error: uploadError } = await supabase.storage
-      .from("documents")
-      .upload(path, svg, { contentType: "image/svg+xml", cacheControl: STORAGE_CACHE_CONTROL });
+    const { error: uploadError } = await storage().upload(path, new TextEncoder().encode(svg), {
+      contentType: "image/svg+xml",
+      cacheControl: STORAGE_CACHE_CONTROL,
+    });
     if (uploadError) {
       console.error("Error uploading auto-generated Excel preview:", uploadError);
       return null;
     }
 
-    const { data } = supabase.storage.from("documents").getPublicUrl(path);
+    const { data } = storage().getPublicUrl(path);
     return data.publicUrl;
   } catch (err) {
     console.error("Error generating Excel preview:", err);
@@ -233,26 +249,27 @@ export async function uploadDocument(params: {
   const ext = file.name.split(".").pop() || "bin";
   const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
-  const { error: uploadError } = await supabase.storage
-    .from("documents")
-    .upload(path, file, { contentType: file.type || "application/octet-stream", cacheControl: STORAGE_CACHE_CONTROL });
+  const { error: uploadError } = await storage().upload(path, await file.arrayBuffer(), {
+    contentType: file.type || "application/octet-stream",
+    cacheControl: STORAGE_CACHE_CONTROL,
+  });
 
   if (uploadError) throw new Error(uploadError.message);
 
   let imageUrl: string | null = null;
   try {
-    imageUrl = await uploadCoverImage(supabase, image);
+    imageUrl = await uploadCoverImage(image);
     if (!imageUrl) {
-      imageUrl = await uploadAutoExcelPreview(supabase, file);
+      imageUrl = await uploadAutoExcelPreview(file);
     }
   } catch (err) {
     // The document file already uploaded - don't leave it orphaned just
     // because the optional cover image failed.
-    await supabase.storage.from("documents").remove([path]);
+    await storage().remove([path]);
     throw err;
   }
 
-  const { data: publicUrlData } = supabase.storage.from("documents").getPublicUrl(path);
+  const { data: publicUrlData } = storage().getPublicUrl(path);
 
   const baseRow = {
     title,
@@ -275,7 +292,7 @@ export async function uploadDocument(params: {
     // marked 'pending' without it, so refuse rather than silently
     // publishing it straight to the public page.
     if (status !== "approved") {
-      await supabase.storage.from("documents").remove([path]);
+      await storage().remove([path]);
       throw new Error("Tính năng chia sẻ tài liệu chưa sẵn sàng (thiếu migration). Vui lòng thử lại sau.");
     }
     const { status: _status, ...baseRowWithoutStatus } = baseRow;
@@ -286,7 +303,7 @@ export async function uploadDocument(params: {
   if (insertError) {
     // Clean up the uploaded file(s) if the metadata insert fails, so storage
     // doesn't accumulate orphaned files with no corresponding row.
-    await supabase.storage.from("documents").remove([path]);
+    await storage().remove([path]);
     throw new Error(insertError.message);
   }
 }
@@ -337,18 +354,19 @@ export async function updateDocument(params: {
     const ext = file.name.split(".").pop() || "bin";
     const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
-    const { error: uploadError } = await supabase.storage
-      .from("documents")
-      .upload(path, file, { contentType: file.type || "application/octet-stream", cacheControl: STORAGE_CACHE_CONTROL });
+    const { error: uploadError } = await storage().upload(path, await file.arrayBuffer(), {
+      contentType: file.type || "application/octet-stream",
+      cacheControl: STORAGE_CACHE_CONTROL,
+    });
     if (uploadError) throw new Error(uploadError.message);
     uploadedPaths.push(path);
 
-    const { data: publicUrlData } = supabase.storage.from("documents").getPublicUrl(path);
+    const { data: publicUrlData } = storage().getPublicUrl(path);
     fields.file_url = publicUrlData.publicUrl;
     fields.file_name = file.name;
     fields.file_size = file.size;
 
-    const oldPath = existing.file_url?.split("/documents/")[1];
+    const oldPath = storagePathFromUrl(existing.file_url);
     if (oldPath) oldPathsToCleanUp.push(oldPath);
   }
 
@@ -357,23 +375,23 @@ export async function updateDocument(params: {
   // re-upload of the document file itself.
   if (image && image.size > 0) {
     try {
-      fields.image_url = await uploadCoverImage(supabase, image);
+      fields.image_url = await uploadCoverImage(image);
     } catch (err) {
-      for (const p of uploadedPaths) await supabase.storage.from("documents").remove([p]);
+      for (const p of uploadedPaths) await storage().remove([p]);
       throw err;
     }
-    const oldImagePath = existing.image_url?.split("/documents/")[1];
+    const oldImagePath = storagePathFromUrl(existing.image_url);
     if (oldImagePath) oldPathsToCleanUp.push(oldImagePath);
   } else if (removeImage) {
     fields.image_url = null;
-    const oldImagePath = existing.image_url?.split("/documents/")[1];
+    const oldImagePath = storagePathFromUrl(existing.image_url);
     if (oldImagePath) oldPathsToCleanUp.push(oldImagePath);
   } else if (file && file.size > 0 && !existing.image_url) {
     // The file itself was replaced, no manual cover was given, and there
     // was no existing cover to preserve - regenerate from the new file's
     // own content the same way a fresh upload would, instead of leaving
     // the card without a preview until someone edits it again.
-    const autoUrl = await uploadAutoExcelPreview(supabase, file);
+    const autoUrl = await uploadAutoExcelPreview(file);
     if (autoUrl) fields.image_url = autoUrl;
   }
 
@@ -389,11 +407,11 @@ export async function updateDocument(params: {
   if (updateError) {
     // Roll back anything newly uploaded since the row was never updated to
     // point at it.
-    for (const p of uploadedPaths) await supabase.storage.from("documents").remove([p]);
+    for (const p of uploadedPaths) await storage().remove([p]);
     throw new Error(updateError.message);
   }
 
-  for (const p of oldPathsToCleanUp) await supabase.storage.from("documents").remove([p]);
+  for (const p of oldPathsToCleanUp) await storage().remove([p]);
 }
 
 export async function deleteDocument(id: number): Promise<void> {
@@ -407,8 +425,8 @@ export async function deleteDocument(id: number): Promise<void> {
 
   if (fetchError || !doc) throw new Error(fetchError?.message ?? "Không tìm thấy tài liệu");
 
-  const path = doc.file_url.split("/documents/")[1];
-  if (path) await supabase.storage.from("documents").remove([path]);
+  const path = storagePathFromUrl(doc.file_url);
+  if (path) await storage().remove([path]);
 
   const { error: deleteError } = await supabase.from("documents").delete().eq("id", id);
   if (deleteError) throw new Error(deleteError.message);
@@ -446,13 +464,13 @@ export async function rejectDocument(id: number): Promise<void> {
   if (fetchError || !doc) throw new Error(fetchError?.message ?? "Không tìm thấy tài liệu");
 
   const pathsToRemove: string[] = [];
-  const filePath = doc.file_url?.split("/documents/")[1];
+  const filePath = storagePathFromUrl(doc.file_url);
   if (filePath) pathsToRemove.push(filePath);
-  const imagePath = doc.image_url?.split("/documents/")[1];
+  const imagePath = storagePathFromUrl(doc.image_url);
   if (imagePath) pathsToRemove.push(imagePath);
 
   if (pathsToRemove.length > 0) {
-    const { error: removeError } = await supabase.storage.from("documents").remove(pathsToRemove);
+    const { error: removeError } = await storage().remove(pathsToRemove);
     if (removeError) console.error("Error removing rejected document files from storage:", removeError);
   }
 

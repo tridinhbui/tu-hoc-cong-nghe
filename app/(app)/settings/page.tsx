@@ -13,7 +13,6 @@ import { format, intlLocale } from "@/lib/i18n";
 import { getNotificationPreferences, saveNotificationPreferences } from "@/lib/notification-preferences";
 import { isPushSupported, subscribeToPush, unsubscribeFromPush } from "@/lib/push-notifications";
 import { downscaleImage } from "@/lib/downscale-image";
-import { STORAGE_CACHE_CONTROL } from "@/lib/storage-cache";
 
 
 interface CurrentUser {
@@ -40,14 +39,14 @@ function SectionCard({
   children: ReactNode;
 }) {
   return (
-    <div className="border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6 bg-white dark:bg-stone-900">
+    <div className="border-2 border-line rounded-2xl p-6 bg-white dark:bg-stone-900">
       <div className="flex items-start gap-4 mb-5">
-        <div className="w-11 h-11 rounded-2xl bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-700 dark:text-stone-200">
+        <div className="w-11 h-11 rounded-2xl bg-surface-raised flex items-center justify-center text-ink-body">
           {icon}
         </div>
         <div>
-          <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">{title}</h3>
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">{description}</p>
+          <h3 className="text-lg font-extrabold text-ink">{title}</h3>
+          <p className="text-sm text-ink-muted mt-1">{description}</p>
         </div>
       </div>
       {children}
@@ -216,30 +215,27 @@ export default function SettingsPage() {
       // khi cạnh dài đã dưới 512, nên ảnh vốn nhỏ không bị mã hoá lại vô ích.
       const upload = await downscaleImage(file, { maxEdge: 512, minBytes: 0 });
 
-      // Đuôi tệp lấy từ tệp SẮP tải lên, không phải tệp người dùng chọn:
-      // downscaleImage trả về .webp khi nó thu được, và giữ nguyên đuôi cũ thì
-      // đường dẫn nói .heic trong khi nội dung là WebP.
-      const fileExt = upload.name.split(".").pop();
-      const fileName = `${user.id}-${Date.now()}.${fileExt}`;
-      const filePath = `avatars/${fileName}`;
+      // Ghi qua route máy chủ, không gọi storage thẳng từ trình duyệt: R2
+      // không có RLS để kiểm auth.uid() như bucket Supabase gốc, nên id
+      // người dùng trong tên tệp phải lấy từ phiên đã xác thực ở phía máy
+      // chủ - xem app/api/uploads/avatar/route.ts.
+      const form = new FormData();
+      form.append("file", upload, upload.name);
+      const uploadRes = await fetch("/api/uploads/avatar", { method: "POST", body: form });
+      const uploadBody = (await uploadRes.json().catch(() => ({}))) as {
+        publicUrl?: string;
+        error?: string;
+      };
 
-      const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, upload, {
-        upsert: true,
-        contentType: upload.type || "image/jpeg",
-        cacheControl: STORAGE_CACHE_CONTROL,
-      });
-
-      if (uploadError) {
+      if (!uploadRes.ok || !uploadBody.publicUrl) {
         showFlash(
           "error",
-          format(t.settings.profile.uploadErrorPrefix, { message: uploadError.message })
+          format(t.settings.profile.uploadErrorPrefix, { message: uploadBody.error || "" })
         );
         return;
       }
 
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("avatars").getPublicUrl(filePath);
+      const publicUrl = uploadBody.publicUrl;
 
       const [{ error: updateError }, profile] = await Promise.all([
         supabase.auth.updateUser({
@@ -445,22 +441,22 @@ export default function SettingsPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
-        <p className="text-stone-500 dark:text-stone-400">{t.settings.loading}</p>
+        <p className="text-ink-muted">{t.settings.loading}</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100">
-      <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+    <div className="min-h-screen bg-surface text-ink">
+      <div className="border-b border-line bg-white dark:bg-stone-950">
         <div className="max-w-4xl mx-auto px-6 py-4">
-          <Link href="/profile" className="text-stone-500 dark:text-stone-400 hover:opacity-70 text-sm font-semibold">
+          <Link href="/profile" className="text-ink-muted hover:opacity-70 text-sm font-semibold">
             {t.settings.back}
           </Link>
-          <h1 className="text-2xl font-bold mt-2 text-stone-900 dark:text-stone-100">
+          <h1 className="text-2xl font-bold mt-2 text-ink">
             {t.settings.title}
           </h1>
-          <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">{t.settings.subtitle}</p>
+          <p className="text-sm text-ink-muted mt-1">{t.settings.subtitle}</p>
         </div>
       </div>
 
@@ -469,8 +465,8 @@ export default function SettingsPage() {
           <div
             className={`px-4 py-3 rounded-2xl text-sm font-semibold border ${
               flash.tone === "error"
-                ? "bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-400 border-red-200 dark:border-red-900"
-                : "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900"
+                ? "bg-red-50 dark:bg-red-950/50 text-danger border-danger-line"
+                : "bg-emerald-50 dark:bg-emerald-950/50 text-accent border-accent-line"
             }`}
           >
             {flash.text}
@@ -485,11 +481,11 @@ export default function SettingsPage() {
           >
             <form onSubmit={handleSaveProfile} className="space-y-5">
               <div>
-                <label className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
+                <label className="text-xs font-extrabold uppercase tracking-widest text-ink-muted">
                   {t.settings.profile.avatarLabel}
                 </label>
                 <div className="mt-3 flex items-center gap-4">
-                  <div className="w-20 h-20 rounded-full overflow-hidden bg-stone-100 dark:bg-stone-800 border-2 border-stone-200 dark:border-stone-700 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full overflow-hidden bg-surface-raised border-2 border-line flex items-center justify-center">
                     {avatarPreview ? (
                       <Image src={avatarPreview} alt={t.settings.profile.avatarAlt} width={80} height={80} className="w-full h-full object-cover" />
                     ) : (
@@ -509,15 +505,15 @@ export default function SettingsPage() {
                       htmlFor="avatar-upload"
                       className={`inline-block px-4 py-2 rounded-xl text-sm font-bold cursor-pointer transition-colors ${
                         avatarUploading
-                          ? "bg-stone-200 dark:bg-stone-800 text-stone-500 dark:text-stone-600 cursor-not-allowed"
-                          : "bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900"
+                          ? "bg-surface-sunken text-ink-faint cursor-not-allowed"
+                          : "bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert"
                       }`}
                     >
                       {avatarUploading
                         ? t.settings.profile.avatarUploading
                         : t.settings.profile.avatarPick}
                     </label>
-                    <p className="text-xs text-stone-500 dark:text-stone-400 mt-2">
+                    <p className="text-xs text-ink-muted mt-2">
                       {t.settings.profile.avatarHint}
                     </p>
                   </div>
@@ -525,7 +521,7 @@ export default function SettingsPage() {
               </div>
 
               <div>
-                <label className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
+                <label className="text-xs font-extrabold uppercase tracking-widest text-ink-muted">
                   {t.settings.profile.nameLabel}
                 </label>
                 <input
@@ -533,12 +529,12 @@ export default function SettingsPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder={t.settings.profile.namePlaceholder}
-                  className="w-full mt-2 px-4 py-3 rounded-xl border-2 border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 transition-colors focus:outline-none focus:border-stone-400 dark:focus:border-stone-500"
+                  className="w-full mt-2 px-4 py-3 rounded-xl border-2 border-line bg-white dark:bg-stone-800 transition-colors focus:outline-none focus:border-line-firm"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
+                <label className="text-xs font-extrabold uppercase tracking-widest text-ink-muted">
                   {t.settings.profile.bioLabel}
                 </label>
                 <textarea
@@ -546,9 +542,9 @@ export default function SettingsPage() {
                   onChange={(e) => setBio(e.target.value.slice(0, 240))}
                   rows={4}
                   placeholder={t.settings.profile.bioPlaceholder}
-                  className="w-full mt-2 px-4 py-3 rounded-xl border-2 border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 transition-colors focus:outline-none focus:border-stone-400 dark:focus:border-stone-500 resize-none"
+                  className="w-full mt-2 px-4 py-3 rounded-xl border-2 border-line bg-white dark:bg-stone-800 transition-colors focus:outline-none focus:border-line-firm resize-none"
                 />
-                <p className="text-xs text-stone-500 dark:text-stone-400 mt-2">
+                <p className="text-xs text-ink-muted mt-2">
                   {format(t.settings.profile.bioCount, { count: bio.length })}
                 </p>
               </div>
@@ -556,7 +552,7 @@ export default function SettingsPage() {
               <button
                 type="submit"
                 disabled={savingProfile}
-                className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
+                className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
               >
                 {savingProfile ? t.settings.profile.saving : t.settings.profile.save}
               </button>
@@ -572,10 +568,10 @@ export default function SettingsPage() {
               <div className="space-y-5">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="font-bold text-stone-900 dark:text-stone-100">
+                    <p className="font-bold text-ink">
                       {t.settings.appearance.darkMode}
                     </p>
-                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                    <p className="text-sm text-ink-muted mt-1">
                       {format(t.settings.appearance.current, {
                         mode:
                           theme === "dark"
@@ -604,7 +600,7 @@ export default function SettingsPage() {
                 </div>
 
                 <div>
-                  <p className="font-bold text-stone-900 dark:text-stone-100 mb-3">
+                  <p className="font-bold text-ink mb-3">
                     {t.settings.appearance.preferredTrack}
                   </p>
                   <div className="space-y-3">
@@ -613,8 +609,8 @@ export default function SettingsPage() {
                         key={trackId}
                         className={`block rounded-2xl border p-4 cursor-pointer transition-colors ${
                           preferredTrack === trackId
-                            ? "border-stone-900 dark:border-stone-100 bg-stone-50 dark:bg-stone-800"
-                            : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700"
+                            ? "border-ink bg-surface"
+                            : "border-line hover:border-line-strong"
                         }`}
                       >
                         <div className="flex items-start gap-3">
@@ -631,13 +627,13 @@ export default function SettingsPage() {
                                 previewSlug, and the `stages` list that
                                 stage-numbering.test.ts holds against
                                 lib/track-stages.ts). */}
-                            <p className="font-bold text-stone-900 dark:text-stone-100">
+                            <p className="font-bold text-ink">
                               {t.tracks[trackId].tab}
                             </p>
-                            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                            <p className="text-sm text-ink-muted mt-1">
                               {t.tracks[trackId].subtitle}
                             </p>
-                            <p className="text-sm text-stone-600 dark:text-stone-300 mt-2">
+                            <p className="text-sm text-ink-body mt-2">
                               {t.tracks[trackId].description}
                             </p>
                           </div>
@@ -651,7 +647,7 @@ export default function SettingsPage() {
                   type="button"
                   onClick={handleSavePreferences}
                   disabled={savingPreferences}
-                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
+                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
                 >
                   {savingPreferences ? t.settings.appearance.saving : t.settings.appearance.save}
                 </button>
@@ -666,10 +662,10 @@ export default function SettingsPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="font-bold text-stone-900 dark:text-stone-100">
+                    <p className="font-bold text-ink">
                       {t.settings.reminders.email}
                     </p>
-                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                    <p className="text-sm text-ink-muted mt-1">
                       {t.settings.reminders.emailHint}
                     </p>
                   </div>
@@ -692,16 +688,16 @@ export default function SettingsPage() {
                     />
                   </button>
                 </div>
-                <p className="text-xs text-stone-500 dark:text-stone-400">
+                <p className="text-xs text-ink-muted">
                   {t.settings.reminders.emailFootnote}
                 </p>
 
-                <div className="flex items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+                <div className="flex items-center justify-between gap-4 pt-4 border-t border-line-soft">
                   <div>
-                    <p className="font-bold text-stone-900 dark:text-stone-100">
+                    <p className="font-bold text-ink">
                       {t.settings.reminders.weekly}
                     </p>
-                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                    <p className="text-sm text-ink-muted mt-1">
                       {t.settings.reminders.weeklyHint}
                     </p>
                   </div>
@@ -726,12 +722,12 @@ export default function SettingsPage() {
                 </div>
 
                 {isPushSupported() && (
-                  <div className="flex items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+                  <div className="flex items-center justify-between gap-4 pt-4 border-t border-line-soft">
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">
+                      <p className="font-bold text-ink">
                         {t.settings.reminders.browser}
                       </p>
-                      <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                      <p className="text-sm text-ink-muted mt-1">
                         {t.settings.reminders.browserHint}
                       </p>
                     </div>
@@ -757,12 +753,12 @@ export default function SettingsPage() {
                 )}
 
                 {isPushSupported() && (
-                  <div className="flex items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+                  <div className="flex items-center justify-between gap-4 pt-4 border-t border-line-soft">
                     <div>
-                      <p className="font-bold text-stone-900 dark:text-stone-100">
+                      <p className="font-bold text-ink">
                         {t.settings.reminders.morning}
                       </p>
-                      <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                      <p className="text-sm text-ink-muted mt-1">
                         {t.settings.reminders.morningHint}
                       </p>
                     </div>
@@ -795,35 +791,35 @@ export default function SettingsPage() {
               description={t.settings.quickActions.description}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <Link href="/analytics" className="rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
-                  <p className="font-bold text-stone-900 dark:text-stone-100">
+                <Link href="/analytics" className="rounded-xl border border-line px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
+                  <p className="font-bold text-ink">
                     {t.settings.quickActions.analytics}
                   </p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                  <p className="text-sm text-ink-muted mt-1">
                     {t.settings.quickActions.analyticsHint}
                   </p>
                 </Link>
-                <Link href="/ghi-chu" className="rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
-                  <p className="font-bold text-stone-900 dark:text-stone-100">
+                <Link href="/ghi-chu" className="rounded-xl border border-line px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
+                  <p className="font-bold text-ink">
                     {t.settings.quickActions.notes}
                   </p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                  <p className="text-sm text-ink-muted mt-1">
                     {t.settings.quickActions.notesHint}
                   </p>
                 </Link>
-                <Link href="/ban-be" className="rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
-                  <p className="font-bold text-stone-900 dark:text-stone-100">
+                <Link href="/ban-be" className="rounded-xl border border-line px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
+                  <p className="font-bold text-ink">
                     {t.settings.quickActions.friends}
                   </p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                  <p className="text-sm text-ink-muted mt-1">
                     {t.settings.quickActions.friendsHint}
                   </p>
                 </Link>
-                <Link href="/tai-lieu" className="rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
-                  <p className="font-bold text-stone-900 dark:text-stone-100">
+                <Link href="/tai-lieu" className="rounded-xl border border-line px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors">
+                  <p className="font-bold text-ink">
                     {t.settings.quickActions.documents}
                   </p>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                  <p className="text-sm text-ink-muted mt-1">
                     {t.settings.quickActions.documentsHint}
                   </p>
                 </Link>
@@ -840,16 +836,16 @@ export default function SettingsPage() {
           >
             <div className="space-y-4">
               <div>
-                <p className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
+                <p className="text-xs font-extrabold uppercase tracking-widest text-ink-muted">
                   {t.settings.security.emailLabel}
                 </p>
-                <p className="text-sm font-semibold mt-1 text-stone-900 dark:text-stone-100">{user?.email}</p>
+                <p className="text-sm font-semibold mt-1 text-ink">{user?.email}</p>
               </div>
               <div>
-                <p className="text-xs font-extrabold uppercase tracking-widest text-stone-600 dark:text-stone-400">
+                <p className="text-xs font-extrabold uppercase tracking-widest text-ink-muted">
                   {t.settings.security.joinedLabel}
                 </p>
-                <p className="text-sm font-semibold mt-1 text-stone-900 dark:text-stone-100">
+                <p className="text-sm font-semibold mt-1 text-ink">
                   {user?.created_at
                     ? new Date(user.created_at).toLocaleDateString(intlLocale(locale))
                     : t.settings.security.joinedUnknown}
@@ -859,11 +855,11 @@ export default function SettingsPage() {
                 type="button"
                 onClick={handlePasswordReset}
                 disabled={sendingReset}
-                className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
+                className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-60"
               >
                 {sendingReset ? t.settings.security.sendingReset : t.settings.security.sendReset}
               </button>
-              <p className="text-xs text-stone-500 dark:text-stone-400">
+              <p className="text-xs text-ink-muted">
                 {t.settings.security.resetFootnote}
               </p>
             </div>
@@ -875,11 +871,11 @@ export default function SettingsPage() {
             description={t.settings.session.description}
           >
             <div className="space-y-4">
-              <div className="rounded-2xl bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-800 p-4">
-                <p className="font-bold text-stone-900 dark:text-stone-100">
+              <div className="rounded-2xl bg-stone-50 dark:bg-stone-900/50 border border-line p-4">
+                <p className="font-bold text-ink">
                   {t.settings.session.statusTitle}
                 </p>
-                <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                <p className="text-sm text-ink-muted mt-1">
                   {t.settings.session.statusBody}
                 </p>
               </div>

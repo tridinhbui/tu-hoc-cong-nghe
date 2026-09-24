@@ -2,7 +2,6 @@ import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
 import { downscaleImage } from "@/lib/downscale-image";
-import { STORAGE_CACHE_CONTROL } from "@/lib/storage-cache";
 
 export interface ChatMessage {
   id: number;
@@ -51,7 +50,12 @@ export function isAllowedChatImage(file: File): ChatUploadRejection | null {
   return null;
 }
 
-export async function uploadChatImage(userId: string, file: File): Promise<string> {
+export async function uploadChatImage(
+  // Không còn dùng để dựng đường dẫn ghi - route máy chủ tự lấy id người
+  // dùng từ phiên đã xác thực. Giữ trong chữ ký để 4 nơi gọi không phải đổi.
+  _userId: string,
+  file: File
+): Promise<string> {
   const invalidReason = isAllowedChatImage(file);
   if (invalidReason) throw new Error(invalidReason);
 
@@ -65,17 +69,17 @@ export async function uploadChatImage(userId: string, file: File): Promise<strin
   // lib/downscale-image.ts - nó trả lại chính tệp gốc khi thu không có lợi.
   const upload = await downscaleImage(file);
 
-  const supabase = createClient();
-  const ext = upload.name.split(".").pop() || "png";
-  const path = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-
-  const { error } = await supabase.storage
-    .from("chat-images")
-    .upload(path, upload, { contentType: upload.type || "image/png", cacheControl: STORAGE_CACHE_CONTROL });
-  if (error) throw handleSupabaseError(error);
-
-  const { data } = supabase.storage.from("chat-images").getPublicUrl(path);
-  return data.publicUrl;
+  // Ghi qua route máy chủ, không gọi storage thẳng từ trình duyệt: R2 không
+  // có RLS để kiểm auth.uid() như bucket Supabase gốc, nên id người dùng
+  // trong đường dẫn phải lấy từ phiên đã xác thực ở phía máy chủ - xem
+  // app/api/uploads/chat-image/route.ts. `userId` ở tham số hàm này KHÔNG
+  // còn quyết định đường dẫn ghi; nó chỉ còn dùng ở nơi gọi để gắn tin nhắn.
+  const form = new FormData();
+  form.append("file", upload, upload.name);
+  const res = await fetch("/api/uploads/chat-image", { method: "POST", body: form });
+  const body = (await res.json().catch(() => ({}))) as { publicUrl?: string; error?: string };
+  if (!res.ok || !body.publicUrl) throw new Error(body.error || "Tải ảnh lên thất bại.");
+  return body.publicUrl;
 }
 
 const FILE_EXTENSION_ALLOWLIST = new Set([
@@ -101,21 +105,22 @@ export function isAllowedChatFile(file: File): ChatUploadRejection | null {
   return null;
 }
 
-export async function uploadChatFile(userId: string, file: File): Promise<{ url: string; name: string }> {
+export async function uploadChatFile(
+  _userId: string,
+  file: File
+): Promise<{ url: string; name: string }> {
   const invalidReason = isAllowedChatFile(file);
   if (invalidReason) throw new Error(invalidReason);
 
-  const supabase = createClient();
-  const ext = file.name.split(".").pop() || "bin";
-  const path = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-
-  const { error } = await supabase.storage
-    .from("chat-images")
-    .upload(path, file, { contentType: file.type || "application/octet-stream", cacheControl: STORAGE_CACHE_CONTROL });
-  if (error) throw handleSupabaseError(error);
-
-  const { data } = supabase.storage.from("chat-images").getPublicUrl(path);
-  return { url: data.publicUrl, name: file.name };
+  // Ghi qua cùng route máy chủ với uploadChatImage, đánh dấu kind="file" để
+  // route áp đúng luật kiểm (đuôi tệp thay vì danh sách MIME ảnh).
+  const form = new FormData();
+  form.append("file", file, file.name);
+  form.append("kind", "file");
+  const res = await fetch("/api/uploads/chat-image", { method: "POST", body: form });
+  const body = (await res.json().catch(() => ({}))) as { publicUrl?: string; error?: string };
+  if (!res.ok || !body.publicUrl) throw new Error(body.error || "Tải tệp lên thất bại.");
+  return { url: body.publicUrl, name: file.name };
 }
 
 export async function getChatHistory(userId: string) {

@@ -6,8 +6,7 @@
 declare global {
   interface CloudflareEnv {
     DB: import("@cloudflare/workers-types").D1Database;
-    /** Chỉ có sau khi gắn R2 ở bước lưu trữ. */
-    FILES?: import("@cloudflare/workers-types").R2Bucket;
+    FILES: import("@cloudflare/workers-types").R2Bucket;
   }
 }
 export {};

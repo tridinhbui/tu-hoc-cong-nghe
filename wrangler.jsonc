@@ -1,0 +1,37 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "tu-hoc-cong-nghe",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2026-08-22",
+	// nodejs_compat: adapter OpenNext cần các API Node mà Next dựa vào.
+	// global_fetch_strictly_public: fetch() tới chính tên miền của Worker đi ra
+	// Internet rồi quay lại, thay vì bị nối tắt trong máy - giữ hành vi giống
+	// môi trường chạy thật của Next.
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"observability": {
+		"enabled": true
+	},
+	// GIAI ĐOẠN 1: chưa gắn D1 hay R2. Bước này chỉ chứng minh ứng dụng chạy
+	// được trên Workers trong khi VẪN đọc Supabase. Gắn kho dữ liệu là giai
+	// đoạn 4, sau khi lớp kho dữ liệu và bộ kiểm phân quyền đã xong.
+	//
+	"r2_buckets": [{ "binding": "FILES", "bucket_name": "thcn-files" }],
+	// "kv_namespaces":[{ "binding": "SESSIONS", "id": "<điền sau>" }],
+	"vars": {
+		"NEXT_PUBLIC_SITE_URL": "https://tuhoccongnghe.vn"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "tu-hoc-cong-nghe",
+			"database_id": "b2fbf614-dfed-4fff-a01b-315afa79f4e4"
+		}
+	]
+}
