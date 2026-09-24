@@ -1,12 +1,11 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { requireAdminDb } from "@/lib/admin/db";
 import { generateExcelPreviewSvg, isExcelFileName } from "@/lib/excel-preview";
 import { STORAGE_CACHE_CONTROL } from "@/lib/storage-cache";
 import { getStorage } from "@/lib/r2/server";
 
-/** Client lưu trữ R2. Bảng `documents` (CSDL) VẪN qua Supabase ở tệp này -
- *  đó là việc của bước sau (thay client D1 vào chỗ createAdminClient()).
- *  Đây chỉ là bước chuyển ba bucket sang R2. */
+/** Client lưu trữ R2. Bảng `documents` (CSDL) giờ cũng qua requireAdminDb() -
+ *  xem từng hàm dưới đây. */
 const storage = () => getStorage().from("documents");
 
 /** Đường dẫn lưu trong R2 rút ra từ một URL công khai.
@@ -100,8 +99,9 @@ function assertAllowedCoverImage(file: File): void {
 // schema-cache layer (which is what actually rejects the request here, since
 // it validates against its cached schema before ever reaching Postgres)
 // reports it as PGRST204 - both need to be treated as "missing column".
-function isMissingColumnError(error: { code?: string } | null): boolean {
-  return error?.code === "42703" || error?.code === "PGRST204";
+function isMissingColumnError(error: { code?: string } | Error | null): boolean {
+  const code = error && "code" in error ? error.code : undefined;
+  return code === "42703" || code === "PGRST204";
 }
 
 /** Uploads an optional cover image to the same "documents" storage bucket, under a covers/ prefix. Returns its public URL, or null if no image was given. */
@@ -192,8 +192,8 @@ function getPlaceholderImageUrl(category: string): string {
 }
 
 export async function getDocuments(): Promise<DocumentRow[]> {
-  const supabase = createAdminClient();
-  const { data, error } = await supabase
+  const { db } = await requireAdminDb();
+  const { data, error } = await db
     .from("documents")
     .select("*")
     .order("created_at", { ascending: false });
@@ -204,7 +204,7 @@ export async function getDocuments(): Promise<DocumentRow[]> {
   }
 
   // Add placeholder images for documents missing images
-  const docs = (data as DocumentRow[]) ?? [];
+  const docs = (data as unknown as DocumentRow[]) ?? [];
   return docs.map(doc => ({
     ...doc,
     image_url: doc.image_url || getPlaceholderImageUrl(doc.category),
@@ -212,8 +212,8 @@ export async function getDocuments(): Promise<DocumentRow[]> {
 }
 
 export async function getDocumentCount(): Promise<number> {
-  const supabase = createAdminClient();
-  const { count, error } = await supabase
+  const { db } = await requireAdminDb();
+  const { count, error } = await db
     .from("documents")
     .select("*", { count: "exact", head: true });
   if (error) return 0;
@@ -221,8 +221,8 @@ export async function getDocumentCount(): Promise<number> {
 }
 
 export async function getPendingDocumentCount(): Promise<number> {
-  const supabase = createAdminClient();
-  const { count, error } = await supabase
+  const { db } = await requireAdminDb();
+  const { count, error } = await db
     .from("documents")
     .select("*", { count: "exact", head: true })
     .eq("status", "pending");
@@ -244,7 +244,7 @@ export async function uploadDocument(params: {
 }): Promise<void> {
   const { title, description, category, file, image, uploadedBy, status = "approved" } = params;
   assertAllowedDocumentFile(file);
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
   const ext = file.name.split(".").pop() || "bin";
   const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
@@ -282,9 +282,9 @@ export async function uploadDocument(params: {
     status,
   };
 
-  let { error: insertError } = await supabase.from("documents").insert({ ...baseRow, image_url: imageUrl });
+  let { error: insertError } = await db.from("documents").insert({ ...baseRow, image_url: imageUrl });
   if (insertError && isMissingColumnError(insertError)) {
-    ({ error: insertError } = await supabase.from("documents").insert(baseRow));
+    ({ error: insertError } = await db.from("documents").insert(baseRow));
   }
   if (insertError && isMissingColumnError(insertError)) {
     // The 20260709_community_documents.sql migration (adds `status`) hasn't
@@ -297,7 +297,7 @@ export async function uploadDocument(params: {
     }
     const { status: _status, ...baseRowWithoutStatus } = baseRow;
     void _status;
-    ({ error: insertError } = await supabase.from("documents").insert(baseRowWithoutStatus));
+    ({ error: insertError } = await db.from("documents").insert(baseRowWithoutStatus));
   }
 
   if (insertError) {
@@ -318,7 +318,7 @@ export async function updateDocument(params: {
   removeImage?: boolean;
 }): Promise<void> {
   const { id, title, description, category, file, image, removeImage } = params;
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
   const fields: Record<string, unknown> = {
     title,
@@ -326,7 +326,7 @@ export async function updateDocument(params: {
     category,
   };
 
-  let { data: existing, error: fetchError } = await supabase
+  let { data: existingRaw, error: fetchError } = await db
     .from("documents")
     .select("file_url, image_url")
     .eq("id", id)
@@ -334,12 +334,13 @@ export async function updateDocument(params: {
 
   // If image_url column doesn't exist, retry without it
   if (fetchError && isMissingColumnError(fetchError)) {
-    ({ data: existing, error: fetchError } = await supabase
+    ({ data: existingRaw, error: fetchError } = await db
       .from("documents")
       .select("file_url")
       .eq("id", id)
       .single());
   }
+  const existing = existingRaw as unknown as { file_url: string; image_url?: string | null } | null;
 
   if (fetchError || !existing) throw new Error(fetchError?.message ?? "Không tìm thấy tài liệu");
 
@@ -395,13 +396,13 @@ export async function updateDocument(params: {
     if (autoUrl) fields.image_url = autoUrl;
   }
 
-  let { error: updateError } = await supabase.from("documents").update(fields).eq("id", id);
+  let { error: updateError } = await db.from("documents").update(fields).eq("id", id);
 
   // If update fails due to missing columns (e.g., image_url), retry without those fields
   if (updateError && isMissingColumnError(updateError)) {
     const fieldsWithoutImage = { ...fields };
     delete fieldsWithoutImage.image_url;
-    ({ error: updateError } = await supabase.from("documents").update(fieldsWithoutImage).eq("id", id));
+    ({ error: updateError } = await db.from("documents").update(fieldsWithoutImage).eq("id", id));
   }
 
   if (updateError) {
@@ -415,27 +416,28 @@ export async function updateDocument(params: {
 }
 
 export async function deleteDocument(id: number): Promise<void> {
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
-  const { data: doc, error: fetchError } = await supabase
+  const { data: docRaw, error: fetchError } = await db
     .from("documents")
     .select("file_url")
     .eq("id", id)
     .single();
+  const doc = docRaw as unknown as { file_url: string } | null;
 
   if (fetchError || !doc) throw new Error(fetchError?.message ?? "Không tìm thấy tài liệu");
 
   const path = storagePathFromUrl(doc.file_url);
   if (path) await storage().remove([path]);
 
-  const { error: deleteError } = await supabase.from("documents").delete().eq("id", id);
+  const { error: deleteError } = await db.from("documents").delete().eq("id", id);
   if (deleteError) throw new Error(deleteError.message);
 }
 
 /** Publishes a pending community submission so it appears on /tai-lieu. */
 export async function approveDocument(id: number): Promise<void> {
-  const supabase = createAdminClient();
-  const { error } = await supabase.from("documents").update({ status: "approved" }).eq("id", id);
+  const { db } = await requireAdminDb();
+  const { error } = await db.from("documents").update({ status: "approved" }).eq("id", id);
   if (error) throw new Error(error.message);
 }
 
@@ -453,13 +455,14 @@ export async function approveDocument(id: number): Promise<void> {
  * reject at all).
  */
 export async function rejectDocument(id: number): Promise<void> {
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
-  const { data: doc, error: fetchError } = await supabase
+  const { data: docRaw, error: fetchError } = await db
     .from("documents")
     .select("file_url, image_url")
     .eq("id", id)
     .single();
+  const doc = docRaw as unknown as { file_url: string; image_url: string | null } | null;
 
   if (fetchError || !doc) throw new Error(fetchError?.message ?? "Không tìm thấy tài liệu");
 
@@ -474,6 +477,6 @@ export async function rejectDocument(id: number): Promise<void> {
     if (removeError) console.error("Error removing rejected document files from storage:", removeError);
   }
 
-  const { error } = await supabase.from("documents").update({ status: "rejected" }).eq("id", id);
+  const { error } = await db.from("documents").update({ status: "rejected" }).eq("id", id);
   if (error) throw new Error(error.message);
 }

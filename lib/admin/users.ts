@@ -1,5 +1,8 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { requireAdminDb } from "@/lib/admin/db";
+import { getDb } from "@/lib/d1/server";
+import { adminResyncAllUserStats } from "@/lib/d1/rpc";
+import { revokeAllSessions } from "@/lib/auth/session";
 import { buildOrIlikeFilter } from "@/lib/admin/search-filter";
 
 export interface AdminUserRow {
@@ -29,9 +32,9 @@ export interface UsersResult {
 
 export async function getUsers(query: UsersQuery = {}): Promise<UsersResult> {
   const { search = "", page = 1, pageSize = 20 } = query;
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
-  let q = supabase
+  let q = db
     .from("user_profiles")
     .select("id, email, full_name, role, is_disabled, created_at, last_login_at, lessons_completed", {
       count: "exact",
@@ -54,7 +57,7 @@ export async function getUsers(query: UsersQuery = {}): Promise<UsersResult> {
 
   const total = count ?? 0;
   return {
-    users: (data as AdminUserRow[]) ?? [],
+    users: (data as unknown as AdminUserRow[]) ?? [],
     total,
     page,
     pageSize,
@@ -63,32 +66,37 @@ export async function getUsers(query: UsersQuery = {}): Promise<UsersResult> {
 }
 
 export async function updateUserRole(userId: string, role: "user" | "admin") {
-  const supabase = createAdminClient();
-  const { error } = await supabase.from("user_profiles").update({ role }).eq("id", userId);
+  const { db } = await requireAdminDb();
+  const { error } = await db.from("user_profiles").update({ role }).eq("id", userId);
   if (error) throw new Error(error.message);
 }
 
+/**
+ * Khoá/mở tài khoản. Thay hai bước của bản Supabase (cờ hiển thị trong bảng
+ * + auth.admin.updateUserById() để chặn phiên) bằng một bước, vì thiết kế
+ * phiên D1 đã giải quyết gọn hơn: getCurrentUser() kiểm is_disabled ở MỖI
+ * yêu cầu (xem lib/auth/current-user.ts), nên chỉ cần cờ trong bảng là phiên
+ * hiện có đã ngừng dùng được ngay ở lượt gọi kế tiếp - không cần một cơ chế
+ * "ban" riêng nào khác.
+ *
+ * Vẫn gọi revokeAllSessions(): is_disabled chặn được YÊU CẦU TIẾP THEO, còn
+ * thu hồi phiên chặn NGAY LẬP TỨC một request đang xử lý dở dùng cùng token -
+ * khoảng cách rất nhỏ, nhưng không có lý do gì để lại nó khi thu hồi rẻ.
+ */
 export async function setUserDisabled(userId: string, isDisabled: boolean) {
-  const supabase = createAdminClient();
-
-  // Flip the flag used for display/filtering in the admin table...
-  const { error } = await supabase
+  const { db } = await requireAdminDb();
+  const { error } = await db
     .from("user_profiles")
     .update({ is_disabled: isDisabled })
     .eq("id", userId);
   if (error) throw new Error(error.message);
 
-  // ...and actually prevent the account from authenticating via Supabase Auth
-  // (a DB flag alone wouldn't stop a valid session/JWT from continuing to work).
-  const { error: banError } = await supabase.auth.admin.updateUserById(userId, {
-    ban_duration: isDisabled ? "876000h" : "none", // ~100 years, effectively indefinite
-  });
-  if (banError) throw new Error(banError.message);
+  if (isDisabled) await revokeAllSessions(getDb(), userId);
 }
 
 export async function getUserCount(): Promise<number> {
-  const supabase = createAdminClient();
-  const { count, error } = await supabase
+  const { db } = await requireAdminDb();
+  const { count, error } = await db
     .from("user_profiles")
     .select("*", { count: "exact", head: true });
   if (error) return 0;
@@ -97,17 +105,13 @@ export async function getUserCount(): Promise<number> {
 
 /**
  * Recomputes lessons_completed/total_xp/current_level/avg_quiz_score for
- * EVERY user in one set-based SQL pass (see
- * 20260722_admin_resync_all_user_stats.sql) - the bulk counterpart to
+ * EVERY user in one set-based SQL pass - the bulk counterpart to
  * lib/supabase-user.ts#recalculateUserStats, which only self-heals one
  * account at a time, the next time that person visits the dashboard/profile.
- * This fixes everyone already affected by a past silent-failure right now,
- * in one call, instead of waiting for each of them to log back in. Returns
- * the number of accounts whose stats actually changed.
+ * adminResyncAllUserStats() (lib/d1/rpc.ts) là bản dịch tay của hàm SQL gốc,
+ * không qua bộ điều phối .rpc() vì hàm này không nhận actor.
  */
 export async function resyncAllUserStats(): Promise<number> {
-  const supabase = createAdminClient();
-  const { data, error } = await supabase.rpc("admin_resync_all_user_stats");
-  if (error) throw new Error(error.message);
-  return (data as number) ?? 0;
+  await requireAdminDb(); // chỉ để kiểm quyền - hàm dưới nhận D1Like thô
+  return adminResyncAllUserStats(getDb());
 }

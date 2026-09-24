@@ -1,5 +1,5 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { requireAdminDb } from "@/lib/admin/db";
 
 export interface AdminAnnouncement {
   id: number;
@@ -14,28 +14,34 @@ export interface AdminAnnouncement {
 }
 
 export async function listAnnouncements(): Promise<AdminAnnouncement[]> {
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
-  const { data: rows, error } = await supabase
+  const { data: rowsRaw, error } = await db
     .from("announcements")
     .select("id, title, body, severity, active, expires_at, created_at, created_by")
     .order("created_at", { ascending: false });
 
   if (error) throw new Error(error.message);
-  if (!rows || rows.length === 0) return [];
+  const rows = (rowsRaw ?? []) as {
+    id: number; title: string; body: string; severity: string; active: boolean;
+    expires_at: string | null; created_at: string; created_by: string | null;
+  }[];
+  if (rows.length === 0) return [];
 
   const creatorIds = Array.from(new Set(rows.map((r) => r.created_by).filter((id): id is string => !!id)));
-  const [{ data: profiles }, { data: reads }] = await Promise.all([
+  const [{ data: profilesRaw }, { data: readsRaw }] = await Promise.all([
     creatorIds.length > 0
-      ? supabase.from("user_profiles").select("id, email").in("id", creatorIds)
+      ? db.from("user_profiles").select("id, email").in("id", creatorIds)
       : Promise.resolve({ data: [] as { id: string; email: string | null }[] }),
-    supabase.from("announcement_reads").select("announcement_id"),
+    db.from("announcement_reads").select("announcement_id"),
   ]);
+  const profiles = (profilesRaw ?? []) as { id: string; email: string | null }[];
+  const reads = (readsRaw ?? []) as { announcement_id: number }[];
 
-  const emailById = new Map((profiles ?? []).map((p) => [p.id, p.email]));
+  const emailById = new Map(profiles.map((p) => [p.id, p.email]));
   const readCountById = new Map<number, number>();
-  for (const r of reads ?? []) {
-    const id = r.announcement_id as number;
+  for (const r of reads) {
+    const id = r.announcement_id;
     readCountById.set(id, (readCountById.get(id) ?? 0) + 1);
   }
 
@@ -66,8 +72,8 @@ export async function createAnnouncement(adminId: string, input: CreateAnnouncem
     throw new Error("Tiêu đề và nội dung không được để trống.");
   }
 
-  const supabase = createAdminClient();
-  const { error } = await supabase.from("announcements").insert({
+  const { db } = await requireAdminDb();
+  const { error } = await db.from("announcements").insert({
     title,
     body,
     severity: input.severity,
@@ -81,7 +87,7 @@ export async function createAnnouncement(adminId: string, input: CreateAnnouncem
 /** Retracting a broadcast - flips `active` off so it stops showing up for
  *  anyone who hasn't already dismissed it, without deleting the audit trail. */
 export async function deactivateAnnouncement(id: number): Promise<void> {
-  const supabase = createAdminClient();
-  const { error } = await supabase.from("announcements").update({ active: false }).eq("id", id);
+  const { db } = await requireAdminDb();
+  const { error } = await db.from("announcements").update({ active: false }).eq("id", id);
   if (error) throw new Error(error.message);
 }

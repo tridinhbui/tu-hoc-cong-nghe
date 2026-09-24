@@ -1,5 +1,5 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { requireAdminDb } from "@/lib/admin/db";
 import { buildOrIlikeFilter } from "@/lib/admin/search-filter";
 
 export interface ContactMessage {
@@ -30,9 +30,9 @@ export interface MessagesResult {
 
 export async function getMessages(query: MessagesQuery = {}): Promise<MessagesResult> {
   const { search = "", filter = "all", page = 1, pageSize = 20 } = query;
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
-  let q = supabase.from("contact_messages").select("*", { count: "exact" });
+  let q = db.from("contact_messages").select("*", { count: "exact" });
 
   if (filter === "read") q = q.eq("is_read", true);
   if (filter === "unread") q = q.eq("is_read", false);
@@ -53,7 +53,7 @@ export async function getMessages(query: MessagesQuery = {}): Promise<MessagesRe
 
   const total = count ?? 0;
   return {
-    messages: (data as ContactMessage[]) ?? [],
+    messages: (data as unknown as ContactMessage[]) ?? [],
     total,
     page,
     pageSize,
@@ -62,8 +62,8 @@ export async function getMessages(query: MessagesQuery = {}): Promise<MessagesRe
 }
 
 export async function markMessageRead(id: number, isRead: boolean) {
-  const supabase = createAdminClient();
-  const { error } = await supabase
+  const { db } = await requireAdminDb();
+  const { error } = await db
     .from("contact_messages")
     .update({ is_read: isRead })
     .eq("id", id);
@@ -71,14 +71,14 @@ export async function markMessageRead(id: number, isRead: boolean) {
 }
 
 export async function deleteMessage(id: number) {
-  const supabase = createAdminClient();
-  const { error } = await supabase.from("contact_messages").delete().eq("id", id);
+  const { db } = await requireAdminDb();
+  const { error } = await db.from("contact_messages").delete().eq("id", id);
   if (error) throw new Error(error.message);
 }
 
 export async function getUnreadMessageCount(): Promise<number> {
-  const supabase = createAdminClient();
-  const { count, error } = await supabase
+  const { db } = await requireAdminDb();
+  const { count, error } = await db
     .from("contact_messages")
     .select("*", { count: "exact", head: true })
     .eq("is_read", false);

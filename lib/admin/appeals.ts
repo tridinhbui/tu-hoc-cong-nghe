@@ -1,5 +1,5 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { requireAdminDb } from "@/lib/admin/db";
 import { REFERRER_BONUS_XP, REFERRED_BONUS_XP } from "@/lib/referrals";
 
 export interface AdminLessonAppeal {
@@ -17,8 +17,8 @@ export interface AdminLessonAppeal {
 }
 
 export async function getPendingAppealCount(): Promise<number> {
-  const supabase = createAdminClient();
-  const { count, error } = await supabase
+  const { db } = await requireAdminDb();
+  const { count, error } = await db
     .from("lesson_completion_appeals")
     .select("*", { count: "exact", head: true })
     .eq("status", "pending");
@@ -27,22 +27,24 @@ export async function getPendingAppealCount(): Promise<number> {
 }
 
 export async function listAppeals(status: "pending" | "approved" | "rejected" | "all" = "pending"): Promise<AdminLessonAppeal[]> {
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
-  let query = supabase
+  let query = db
     .from("lesson_completion_appeals")
     .select("id, user_id, lesson_id, lesson_slug, note, status, admin_note, created_at, reviewed_at")
     .order("created_at", { ascending: false });
 
   if (status !== "all") query = query.eq("status", status);
 
-  const { data: rows, error } = await query;
+  const { data: rowsRaw, error } = await query;
   if (error) throw new Error(error.message);
-  if (!rows || rows.length === 0) return [];
+  const rows = (rowsRaw ?? []) as unknown as Omit<AdminLessonAppeal, "user_email" | "user_name">[];
+  if (rows.length === 0) return [];
 
   const userIds = Array.from(new Set(rows.map((r) => r.user_id)));
-  const { data: profiles } = await supabase.from("user_profiles").select("id, email, full_name").in("id", userIds);
-  const profileById = new Map((profiles ?? []).map((p) => [p.id, p]));
+  const { data: profilesRaw } = await db.from("user_profiles").select("id, email, full_name").in("id", userIds);
+  const profiles = (profilesRaw ?? []) as unknown as { id: string; email: string | null; full_name: string | null }[];
+  const profileById = new Map(profiles.map((p) => [p.id, p]));
 
   return rows.map((row) => ({
     ...row,
@@ -54,21 +56,22 @@ export async function listAppeals(status: "pending" | "approved" | "rejected" | 
 /**
  * Approves an appeal: marks the lesson genuinely completed for that user
  * (same effect as passing the quiz normally) and recomputes their XP/level.
- * Uses the service-role client throughout rather than reusing
- * lib/supabase-progress.ts's markLessonComplete/lib/supabase-user.ts's
- * recalculateUserStats - those call createClient() (the anon-key browser
- * client), which has no user session to act as here; an admin approving
- * someone else's appeal has no session for that user at all, only
- * service-role can write on their behalf.
+ *
+ * Dùng requireAdminDb() (ADMIN_BYPASS) xuyên suốt, thay createAdminClient()
+ * cũ - cùng lý do bản Supabase ghi lại: markLessonComplete/recalculateUserStats
+ * chạy trên client trình duyệt, gắn với PHIÊN của người dùng; admin duyệt hộ
+ * khiếu nại của người khác không có phiên nào của họ để mượn, chỉ có đường
+ * bỏ qua chính sách mới ghi thay được.
  */
 export async function approveAppeal(appealId: number, adminId: string): Promise<void> {
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
-  const { data: appeal, error: fetchError } = await supabase
+  const { data: appealRaw, error: fetchError } = await db
     .from("lesson_completion_appeals")
     .select("id, user_id, lesson_id, status")
     .eq("id", appealId)
     .single();
+  const appeal = appealRaw as unknown as { id: number; user_id: string; lesson_id: number; status: string } | null;
 
   if (fetchError) throw new Error(fetchError.message);
   if (!appeal) throw new Error("Không tìm thấy khiếu nại.");
@@ -82,12 +85,13 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
   // đối giả vào chỉ số đó.
   //
   // Bỏ hẳn khoá này khỏi payload chứ không đặt `quiz_score: null`: upsert của
-  // PostgREST chỉ UPDATE đúng những cột có trong payload, nên bỏ đi sẽ giữ
-  // nguyên điểm thật nếu học viên đã từng làm quiz bài này, và để NULL khi
-  // đây là hàng mới. Phép tính trung bình bên dưới đã lọc `quiz_score !== null`
-  // sẵn, nên một lần hoàn thành không điểm không kéo trung bình xuống - nó
-  // đơn giản là không được tính.
-  const { error: progressError } = await supabase.from("user_progress").upsert(
+  // D1 (giống PostgREST) chỉ UPDATE đúng những cột có trong payload - xem
+  // build() trong lib/d1/query-builder.ts, SET chỉ lặp qua `names` lấy từ
+  // Object.keys(payload) - nên bỏ đi sẽ giữ nguyên điểm thật nếu học viên đã
+  // từng làm quiz bài này, và để NULL khi đây là hàng mới. Phép tính trung
+  // bình bên dưới đã lọc `quiz_score !== null` sẵn, nên một lần hoàn thành
+  // không điểm không kéo trung bình xuống - nó đơn giản là không được tính.
+  const { error: progressError } = await db.from("user_progress").upsert(
     [
       {
         user_id: appeal.user_id,
@@ -102,32 +106,34 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
 
   // Recompute lessons_completed/total_xp/current_level from scratch, same
   // formula as lib/supabase-user.ts#recalculateUserStats.
-  const { data: progress, error: progressReadError } = await supabase
+  const { data: progressRaw, error: progressReadError } = await db
     .from("user_progress")
     .select("completed, quiz_score")
     .eq("user_id", appeal.user_id)
     .eq("completed", true);
   if (progressReadError) throw new Error(progressReadError.message);
+  const progress = (progressRaw ?? []) as unknown as { completed: boolean; quiz_score: number | null }[];
 
-  const { data: quizSessions } = await supabase
+  const { data: quizSessionsRaw } = await db
     .from("user_quiz_sessions")
     .select("xp_earned")
     .eq("user_id", appeal.user_id);
-  const quizXp = (quizSessions ?? []).reduce((sum, row) => sum + (row.xp_earned as number), 0);
+  const quizXp = ((quizSessionsRaw ?? []) as unknown as { xp_earned: number }[])
+    .reduce((sum, row) => sum + row.xp_earned, 0);
 
   // Best xp_earned per game_type, summed - same rule as
   // lib/games.ts#getTotalGameXp (kept as a duplicate formula rather than a
-  // shared import since this runs on the admin service-role client, not the
+  // shared import since this runs on the admin bypass client, not the
   // browser client getTotalGameXp uses). Missing this previously meant
   // approving an appeal overwrote total_xp and silently dropped any
   // mini-game XP the user had earned, until it happened to self-correct on
   // their next dashboard/profile visit.
-  const { data: gameSessions } = await supabase
+  const { data: gameSessionsRaw } = await db
     .from("game_sessions")
     .select("game_type, xp_earned")
     .eq("user_id", appeal.user_id);
   const bestGameXpByType = new Map<string, number>();
-  for (const row of (gameSessions ?? []) as { game_type: string; xp_earned: number }[]) {
+  for (const row of (gameSessionsRaw ?? []) as unknown as { game_type: string; xp_earned: number }[]) {
     const cur = bestGameXpByType.get(row.game_type) ?? 0;
     if (row.xp_earned > cur) bestGameXpByType.set(row.game_type, row.xp_earned);
   }
@@ -137,22 +143,22 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
   // plenty of cases (that's often exactly why they're appealing) - convert
   // any pending referral the same way recalculateUserStats does client-side,
   // using a direct update instead of the reward_my_referral() RPC since that
-  // RPC is bound to auth.uid() and this runs on the service-role client
-  // (no authenticated caller, RLS bypassed entirely).
-  const lessonsCompleted = progress?.length ?? 0;
+  // RPC is bound to a real actor and this runs on the admin bypass client
+  // (no authenticated caller, chính sách bị bỏ qua hoàn toàn).
+  const lessonsCompleted = progress.length;
   if (lessonsCompleted >= 1) {
-    await supabase
+    await db
       .from("referrals")
       .update({ status: "rewarded", rewarded_at: new Date().toISOString() })
       .eq("referred_id", appeal.user_id)
       .eq("status", "pending");
   }
-  const { data: referralRows } = await supabase
+  const { data: referralRowsRaw } = await db
     .from("referrals")
     .select("referrer_id, referred_id")
     .eq("status", "rewarded")
     .or(`referrer_id.eq.${appeal.user_id},referred_id.eq.${appeal.user_id}`);
-  const referralXp = ((referralRows ?? []) as { referrer_id: string; referred_id: string }[]).reduce(
+  const referralXp = ((referralRowsRaw ?? []) as unknown as { referrer_id: string; referred_id: string }[]).reduce(
     (sum, row) =>
       sum +
       (row.referrer_id === appeal.user_id ? REFERRER_BONUS_XP : 0) +
@@ -162,10 +168,10 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
 
   const totalXp = lessonsCompleted * 10 + quizXp + gameXp + referralXp;
   const currentLevel = Math.floor(totalXp / 150) + 1;
-  const quizScores = (progress ?? []).filter((p) => p.quiz_score !== null).map((p) => p.quiz_score as number);
+  const quizScores = progress.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score as number);
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
 
-  await supabase
+  await db
     .from("user_profiles")
     .update({
       lessons_completed: lessonsCompleted,
@@ -175,7 +181,7 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
     })
     .eq("id", appeal.user_id);
 
-  await supabase.from("user_stats").upsert(
+  await db.from("user_stats").upsert(
     [
       {
         user_id: appeal.user_id,
@@ -188,7 +194,7 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
     { onConflict: "user_id" }
   );
 
-  const { error: updateError } = await supabase
+  const { error: updateError } = await db
     .from("lesson_completion_appeals")
     .update({ status: "approved", reviewed_by: adminId, reviewed_at: new Date().toISOString() })
     .eq("id", appealId);
@@ -196,8 +202,8 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
 }
 
 export async function rejectAppeal(appealId: number, adminId: string, adminNote: string): Promise<void> {
-  const supabase = createAdminClient();
-  const { error } = await supabase
+  const { db } = await requireAdminDb();
+  const { error } = await db
     .from("lesson_completion_appeals")
     .update({
       status: "rejected",

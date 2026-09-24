@@ -1,5 +1,5 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { requireAdminDb } from "@/lib/admin/db";
 import { buildOrIlikeFilter } from "@/lib/admin/search-filter";
 
 export interface AdminLessonRow {
@@ -28,11 +28,13 @@ export interface LessonsResult {
   totalPages: number;
 }
 
+type Db = Awaited<ReturnType<typeof requireAdminDb>>["db"];
+
 export async function getLessons(query: LessonsQuery = {}): Promise<LessonsResult> {
   const { search = "", page = 1, pageSize = 20 } = query;
-  const supabase = createAdminClient();
+  const { db } = await requireAdminDb();
 
-  let q = supabase
+  let q = db
     .from("lessons")
     .select("id, slug, title, subtitle, track, is_fundamental, prerequisite_id, is_visible", {
       count: "exact",
@@ -44,17 +46,18 @@ export async function getLessons(query: LessonsQuery = {}): Promise<LessonsResul
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  const { data, error, count } = await q.order("id", { ascending: true }).range(from, to);
+  const { data: dataRaw, error, count } = await q.order("id", { ascending: true }).range(from, to);
 
   if (error) {
     console.error("Error fetching admin lessons:", error);
     return { lessons: [], total: 0, page, pageSize, totalPages: 0 };
   }
+  const data = (dataRaw ?? []) as unknown as Omit<AdminLessonRow, "completions">[];
 
-  const lessonIds = (data ?? []).map((l) => l.id);
-  const completionsByLesson = await getCompletionCounts(lessonIds);
+  const lessonIds = data.map((l) => l.id);
+  const completionsByLesson = await getCompletionCounts(db, lessonIds);
 
-  const lessons: AdminLessonRow[] = (data ?? []).map((l) => ({
+  const lessons: AdminLessonRow[] = data.map((l) => ({
     ...l,
     completions: completionsByLesson[l.id] ?? 0,
   }));
@@ -69,10 +72,9 @@ export async function getLessons(query: LessonsQuery = {}): Promise<LessonsResul
   };
 }
 
-async function getCompletionCounts(lessonIds: number[]): Promise<Record<number, number>> {
+async function getCompletionCounts(db: Db, lessonIds: number[]): Promise<Record<number, number>> {
   if (lessonIds.length === 0) return {};
-  const supabase = createAdminClient();
-  const { data, error } = await supabase
+  const { data, error } = await db
     .from("user_progress")
     .select("lesson_id")
     .in("lesson_id", lessonIds)
@@ -84,7 +86,7 @@ async function getCompletionCounts(lessonIds: number[]): Promise<Record<number, 
   }
 
   const counts: Record<number, number> = {};
-  for (const row of data ?? []) {
+  for (const row of (data ?? []) as unknown as { lesson_id: number }[]) {
     counts[row.lesson_id] = (counts[row.lesson_id] ?? 0) + 1;
   }
   return counts;
@@ -99,14 +101,14 @@ export interface LessonUpdateFields {
 }
 
 export async function updateLessonAdmin(id: number, fields: LessonUpdateFields) {
-  const supabase = createAdminClient();
-  const { error } = await supabase.from("lessons").update(fields).eq("id", id);
+  const { db } = await requireAdminDb();
+  const { error } = await db.from("lessons").update(fields as Record<string, unknown>).eq("id", id);
   if (error) throw new Error(error.message);
 }
 
 export async function getLessonCount(): Promise<number> {
-  const supabase = createAdminClient();
-  const { count, error } = await supabase
+  const { db } = await requireAdminDb();
+  const { count, error } = await db
     .from("lessons")
     .select("*", { count: "exact", head: true });
   if (error) return 0;
