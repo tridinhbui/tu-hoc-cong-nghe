@@ -81,7 +81,17 @@ export type PolicyRegistry = Record<string, Policy>;
 export type ManualPredicates = Record<string, Partial<Record<"select" | "insert" | "update" | "delete", string>>>;
 
 /** Ai dang chay truy van. `null` = khach chua dang nhap. */
-export type Actor = string | null;
+/**
+ * Cờ CHỈ được cấp sau khi requireAdminDb() (lib/admin/db.ts) đã xác nhận
+ * người gọi thật sự là admin qua getCurrentUser() - không nơi nào khác được
+ * tự tạo giá trị này. Đây là Symbol, không phải chuỗi: một client viết
+ * "__admin__" làm actor không đi qua được, chỉ import đúng ký hiệu này mới
+ * được. Thay cho service-role key của Supabase - key ấy tự nó không kiểm gì,
+ * chỗ kiểm nằm ở lib/admin-auth.ts; ở đây gộp cả hai làm một để không ai lấy
+ * được cờ bỏ qua chính sách mà chưa qua đúng cổng.
+ */
+export const ADMIN_BYPASS: unique symbol = Symbol("d1-admin-bypass");
+export type Actor = string | null | typeof ADMIN_BYPASS;
 
 type Op = { sql: string; args: unknown[] };
 
@@ -135,6 +145,11 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
    * doc duoc du lieu nguoi khac.
    */
   private applyPolicy() {
+    // Admin: bỏ qua MỌI chính sách, cả "owner" lẫn "manual" - đúng cách
+    // service-role key của Supabase bỏ qua RLS hoàn toàn. Chỉ đạt tới đây khi
+    // requireAdminDb() đã xác nhận vai trò admin trước đó.
+    if (this.actor === ADMIN_BYPASS) return;
+
     const p = this.policy;
 
     if (p.kind === "manual") {
@@ -438,7 +453,12 @@ export function createD1Client(
      *
      * Ở đây chỉ nối vào chứ không dựng: bảng ánh xạ tên→hàm và thứ tự tham số
      * là việc riêng, và nó có bộ kiểm riêng đối chiếu với chữ ký thật.
+     *
+     * ADMIN_BYPASS không truyền được xuống đây - 53 hàm là SQL viết tay, không
+     * đi qua applyPolicy(), nên "bỏ qua chính sách" không có nghĩa gì với
+     * chúng. Admin gọi .rpc() (chưa ai làm) sẽ cần thiết kế riêng cho hàm đó,
+     * không phải một cờ chung.
      */
-    rpc: createD1Rpc(db, actor),
+    rpc: createD1Rpc(db, typeof actor === "string" ? actor : null),
   };
 }

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync, existsSync } from "node:fs";
 import {
-  createD1Client, D1QueryError, D1PolicyError,
+  createD1Client, D1QueryError, D1PolicyError, ADMIN_BYPASS,
   type ColumnTypes, type PolicyRegistry, type ManualPredicates,
 } from "../query-builder";
 import { openLocalD1 } from "./d1-shim";
@@ -239,5 +239,65 @@ describe("chính sách truy cập - thứ thay cho RLS", () => {
     const partial = { lessons: registry.lessons } as PolicyRegistry;
     const client = createD1Client(openLocalD1() as never, types, partial, ACTOR, predicates);
     expect(() => client.from("user_progress")).toThrow(D1PolicyError);
+  });
+});
+
+describe("ADMIN_BYPASS", () => {
+  it("chỉ import đúng Symbol mới bỏ qua được chính sách - chuỗi giống hệt không đi qua", async () => {
+    // Đây là tính chất quan trọng nhất: một chuỗi ai đó gõ trùng tên biến,
+    // hay đọc được từ đâu đó, KHÔNG được coi là admin. Symbol không serialize
+    // được thành chuỗi rồi so lại đúng, khác actor thường là string.
+    if (!hasLocalData) return;
+    const db = openLocalD1();
+    const table = Object.entries(registry).find(([, p]) => p.kind === "owner" && !p.publicRead)?.[0];
+    if (!table) return;
+
+    const fake = "d1-admin-bypass" as unknown as Parameters<typeof createD1Client>[3];
+    expect(() => createD1Client(db, types, registry, fake, predicates).from(table).select("*"))
+      .not.toThrow(); // xay dung khong nem, loi (neu co) chi lo khi build()/run()
+
+    // Chuoi gia van bi coi la actor thuong, nen van bi loc theo chinh no -
+    // khong phai ADMIN_BYPASS that.
+    const built = (
+      createD1Client(db, types, registry, fake, predicates).from(table).select("*") as unknown as {
+        build(): { sql: string; args: unknown[] };
+      }
+    ).build();
+    expect(built.args).toContain("d1-admin-bypass");
+  });
+
+  it("ADMIN_BYPASS thật thì bỏ qua điều kiện chủ sở hữu, đọc được mọi hàng", async () => {
+    if (!hasLocalData) return;
+    const db = openLocalD1();
+    const table = Object.entries(registry).find(([, p]) => p.kind === "owner" && !p.publicRead)?.[0];
+    if (!table) return;
+
+    const normal = createD1Client(db, types, registry, "mot-uuid-bat-ky", predicates)
+      .from(table).select("*") as unknown as { build(): { sql: string } };
+    const admin = createD1Client(db, types, registry, ADMIN_BYPASS, predicates)
+      .from(table).select("*") as unknown as { build(): { sql: string } };
+
+    expect(normal.build().sql).toMatch(/WHERE/i);
+    expect(admin.build().sql).not.toMatch(/WHERE/i);
+  });
+
+  it("ADMIN_BYPASS cũng bỏ qua bảng 'manual' dù chưa gọi unsafeManualPolicy()", async () => {
+    if (!hasLocalData) return;
+    const db = openLocalD1();
+        // Chỉ 8/30 bảng "manual" KHÔNG có predicate tự động (xem applyPolicy())
+    // - đó mới là những bảng thật sự cần unsafeManualPolicy() với actor
+    // thường. Một bảng CÓ predicate thì "u1" không throw, làm sai tiền đề.
+    const table = Object.entries(registry).find(
+      ([t, p]) => p.kind === "manual" && !predicates[t]
+    )?.[0];
+    if (!table) return;
+
+    // Actor thường thì phải throw vì chưa acknowledge - xác nhận trước, để
+    // biết bảng này THẬT SỰ cần acknowledge, rồi mới kiểm ADMIN_BYPASS tránh
+    // được nó.
+    expect(() => (createD1Client(db, types, registry, "u1", predicates).from(table).select("*") as unknown as { build(): unknown }).build())
+      .toThrow();
+    expect(() => (createD1Client(db, types, registry, ADMIN_BYPASS, predicates).from(table).select("*") as unknown as { build(): unknown }).build())
+      .not.toThrow();
   });
 });
