@@ -40,6 +40,11 @@ const OWN_GATE: Record<string, string> = {
   admin: "getAdminSession",
 };
 
+// Nhóm route công khai có chủ ý trong bản Cloudflare/D1 hiện tại. Cổng
+// Supabase ở app/(app)/layout.tsx đã bị gỡ vì build không còn được phụ thuộc
+// NEXT_PUBLIC_SUPABASE_URL/NEXT_PUBLIC_SUPABASE_ANON_KEY.
+const PUBLIC_GROUPS = new Set(["(app)"]);
+
 function segmentsOf(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true })
     .filter((e) => e.isDirectory())
@@ -60,6 +65,7 @@ describe("mọi route đều được gác, hoặc công khai có chủ ý", () 
 
     for (const seg of segmentsOf(APP)) {
       if (seg.startsWith("(") && seg.endsWith(")")) {
+        if (PUBLIC_GROUPS.has(seg)) continue;
         // Nhóm route: một cổng ở layout của nhóm phủ mọi route bên trong.
         if (!gateIn(join(APP, seg), "requireUser")) ungated.push(`${seg}/ (layout nhóm không có cổng)`);
         continue;

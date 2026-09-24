@@ -4,7 +4,6 @@ import { Toaster } from "sonner";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 import ThemeLoader from "@/components/ThemeLoader";
-import GlobalChatWrapper from "@/components/GlobalChatWrapper";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import { I18nProvider } from "@/lib/i18n/context";
 import { getDictionary } from "@/lib/i18n";
@@ -80,7 +79,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <I18nProvider>
         <ThemeLoader />
         {children}
-        <GlobalChatWrapper />
         <Toaster position="top-right" richColors closeButton />
         </I18nProvider>
       </body>
