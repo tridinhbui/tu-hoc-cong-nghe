@@ -33,10 +33,5 @@
 			"database_name": "tu-hoc-cong-nghe",
 			"database_id": "b2fbf614-dfed-4fff-a01b-315afa79f4e4"
 		}
-	],
-	// Worker riêng cho realtime (WebSocket + Durable Object), không đi qua
-	// OpenNext - xem workers/realtime/src/index.ts. App chính chỉ dùng binding
-	// này để PUBLISH sau khi ghi D1 (lib/realtime/server.ts); trình duyệt nối
-	// WebSocket thẳng vào domain của worker kia, không qua service binding.
-	"services": [{ "binding": "REALTIME", "service": "thcn-realtime" }]
+	]
 }
