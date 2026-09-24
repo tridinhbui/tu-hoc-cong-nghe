@@ -7,7 +7,7 @@ import Link from "next/link";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
 import { useI18n } from "@/lib/i18n/context";
-import { getCurrentUser, metadataString } from "@/lib/current-user";
+import { getCurrentUser } from "@/lib/current-user";
 
 interface Profile {
   id: string;
@@ -48,8 +48,8 @@ export default function UserProfile() {
       const fallback: Profile = {
         id: user.id,
         email: user.email || "",
-        full_name: metadataString(user, "full_name"),
-        avatar_url: metadataString(user, "avatar_url"),
+        full_name: user.fullName,
+        avatar_url: user.avatarUrl,
         total_xp: 0,
         current_level: 1,
         lessons_completed: 0,
@@ -77,7 +77,7 @@ export default function UserProfile() {
 
   if (loading || !profile) {
     return (
-      <div className="w-10 h-10 bg-stone-200 dark:bg-stone-700 rounded-full animate-pulse" />
+      <div className="w-10 h-10 bg-surface-sunken rounded-full animate-pulse" />
     );
   }
 
@@ -85,7 +85,7 @@ export default function UserProfile() {
     <div className="relative">
       <button
         onClick={() => setShowDropdown(!showDropdown)}
-        className="flex items-center gap-2 p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition"
+        className="flex items-center gap-2 p-2 rounded-lg hover:bg-surface-raised transition"
       >
         {isValidAvatar(profile.avatar_url) ? (
           <Image
@@ -145,35 +145,35 @@ export default function UserProfile() {
                 setShowDropdown(false);
                 setShowCustomizer(true);
               }}
-              className="w-full text-left px-3 py-2 text-sm font-black text-warn bg-warn-soft/40 hover:bg-amber-100/80 rounded-lg transition border border-amber-200 dark:border-amber-900/60 flex items-center gap-1.5"
+              className="w-full text-left px-3 py-2 text-sm font-black text-warn bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100/80 rounded-lg transition border border-amber-200 dark:border-amber-900/60 flex items-center gap-1.5"
             >
               {t.userProfile.customizeAvatar}
             </button>
             <Link
               href="/analytics"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-surface rounded-lg transition"
             >
               {t.userProfile.analytics}
             </Link>
             <Link
               href="/tai-lieu"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-surface rounded-lg transition"
             >
               {t.userProfile.documents}
             </Link>
             <Link
               href="/profile"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-surface rounded-lg transition"
             >
               {t.userProfile.profile}
             </Link>
             <Link
               href="/settings"
               onClick={() => setShowDropdown(false)}
-              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 rounded-lg transition"
+              className="block px-3 py-2 text-sm font-semibold text-ink hover:bg-surface rounded-lg transition"
             >
               {t.userProfile.settings}
             </Link>
@@ -182,7 +182,7 @@ export default function UserProfile() {
           <button
             onClick={handleSignOut}
             disabled={signingOut}
-            className="w-full px-4 py-2 text-sm font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50"
+            className="w-full px-4 py-2 text-sm font-bold text-alert hover:bg-rose-50 dark:hover:bg-rose-950/50 rounded-lg transition disabled:opacity-50"
           >
             {signingOut ? t.userProfile.signingOut : t.userProfile.signOut}
           </button>

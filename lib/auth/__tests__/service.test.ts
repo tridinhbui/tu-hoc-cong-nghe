@@ -153,6 +153,34 @@ describe("đăng nhập bằng Google", () => {
   let db: ReturnType<typeof makeDb>;
   beforeEach(() => { db = makeDb(); });
 
+  it("mồi tên và ảnh đại diện từ Google lúc tạo tài khoản mới", async () => {
+    const a = await signInWithIdentity(db, "google", "sub-1", "ai@example.vn", true, {
+      name: "Nguyễn Văn A", picture: "https://lh3.googleusercontent.com/x",
+    });
+    const p = db.raw.prepare(`SELECT full_name, avatar_url FROM user_profiles WHERE id = ?`)
+      .all(a.user.id) as { full_name: string; avatar_url: string }[];
+    expect(p[0].full_name).toBe("Nguyễn Văn A");
+    expect(p[0].avatar_url).toBe("https://lh3.googleusercontent.com/x");
+  });
+
+  it("KHÔNG ghi đè hồ sơ đã có ở những lần đăng nhập sau", async () => {
+    // Người dùng có thể đã tự đổi tên hiển thị hoặc tải ảnh riêng; một lượt
+    // đăng nhập Google sau đó không được âm thầm ghi đè lựa chọn ấy.
+    const a = await signInWithIdentity(db, "google", "sub-1", "ai@example.vn", true, {
+      name: "Tên Gốc", picture: "https://x/goc.png",
+    });
+    db.raw.prepare(`UPDATE user_profiles SET full_name = ?, avatar_url = ? WHERE id = ?`)
+      .run("Tên Đã Đổi", "https://x/da-doi.png", a.user.id);
+
+    await signInWithIdentity(db, "google", "sub-1", "ai@example.vn", true, {
+      name: "Tên Từ Google Lần Sau", picture: "https://x/lan-sau.png",
+    });
+    const p = db.raw.prepare(`SELECT full_name, avatar_url FROM user_profiles WHERE id = ?`)
+      .all(a.user.id) as { full_name: string; avatar_url: string }[];
+    expect(p[0].full_name).toBe("Tên Đã Đổi");
+    expect(p[0].avatar_url).toBe("https://x/da-doi.png");
+  });
+
   it("tạo tài khoản mới ở lần đầu, rồi nhận ra ở lần sau", async () => {
     const a = await signInWithIdentity(db, "google", "sub-123", "ai@example.vn", true);
     expect(a.created).toBe(true);

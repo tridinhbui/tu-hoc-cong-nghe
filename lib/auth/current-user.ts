@@ -14,6 +14,8 @@ export interface CurrentUser {
   id: string;
   email: string;
   role: string;
+  fullName: string | null;
+  avatarUrl: string | null;
 }
 
 export async function getCurrentUser(): Promise<CurrentUser | null> {
@@ -28,10 +30,15 @@ export async function getCurrentUser(): Promise<CurrentUser | null> {
   // Đọc thẳng bảng chứ không qua client có gác quyền: ở đây chưa biết người
   // gọi là ai, nên chưa có gì để gác. Đây là lượt đọc XÁC LẬP danh tính.
   const r = await db
-    .prepare(`SELECT p.email, p.role, p.is_disabled FROM user_profiles p WHERE p.id = ?`)
+    .prepare(
+      `SELECT p.email, p.role, p.is_disabled, p.full_name, p.avatar_url
+         FROM user_profiles p WHERE p.id = ?`
+    )
     .bind(s.userId)
     .all();
-  const row = r.results[0] as { email: string; role: string; is_disabled: number } | undefined;
+  const row = r.results[0] as
+    | { email: string; role: string; is_disabled: number; full_name: string | null; avatar_url: string | null }
+    | undefined;
   if (!row) return null;
 
   // Tài khoản bị khoá sau khi phiên được cấp. Kiểm ở MỖI yêu cầu chứ không
@@ -39,7 +46,7 @@ export async function getCurrentUser(): Promise<CurrentUser | null> {
   // vì JWT tự chứng.
   if (row.is_disabled) return null;
 
-  return { id: s.userId, email: row.email, role: row.role };
+  return { id: s.userId, email: row.email, role: row.role, fullName: row.full_name, avatarUrl: row.avatar_url };
 }
 
 /** Như trên nhưng ném khi chưa đăng nhập. Dùng ở route bắt buộc đăng nhập,

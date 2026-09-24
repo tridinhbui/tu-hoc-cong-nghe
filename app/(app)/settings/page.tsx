@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Bell, BookOpen, LogOut, MoonStar, Shield, UserRound } from "lucide-react";
 import { createClient } from "@/lib/supabase";
+import { signOut as signOutD1 } from "@/lib/current-user";
 import { getUserProfile, setDarkMode, setPreferredTrack, updateUserProfile } from "@/lib/supabase-user";
 import { getInitialTheme, setTheme, type Theme } from "@/lib/theme";
 import { useI18n } from "@/lib/i18n/context";
@@ -434,7 +435,7 @@ export default function SettingsPage() {
 
   const handleSignOut = async () => {
     setSigningOut(true);
-    await supabase.auth.signOut();
+    await signOutD1();
     router.replace("/login");
   };
 

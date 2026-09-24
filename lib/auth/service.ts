@@ -232,7 +232,11 @@ export async function signInWithIdentity(
    *
    * Google trả `email_verified` trong id token; đọc nó chứ đừng mặc định true.
    */
-  emailVerified: boolean
+  emailVerified: boolean,
+  /** `name`/`picture` từ id token, chỉ dùng để MỒI hồ sơ lúc tạo tài khoản
+   *  mới - không bao giờ ghi đè lên tài khoản đã có, vì người dùng có thể đã
+   *  tự đổi tên hiển thị hoặc tải ảnh đại diện riêng sau đó. */
+  profile?: { name?: string; picture?: string }
 ): Promise<{ user: AuthUser; token: string; expiresAt: string; created: boolean }> {
   const e = email.trim().toLowerCase();
   const link = await rows<{ user_id: string }>(
@@ -279,7 +283,11 @@ export async function signInWithIdentity(
       // luôn trả false - khoá đường mật khẩu mà không cần thêm cột cờ.
       await run(db, `INSERT INTO auth_users (id, email, password_hash, email_verified) VALUES (?, ?, ?, ?)`,
         userId, e, "không-đăng-nhập-bằng-mật-khẩu", emailVerified ? 1 : 0);
-      await run(db, `INSERT INTO user_profiles (id, email) VALUES (?, ?)`, userId, e);
+      await run(
+        db,
+        `INSERT INTO user_profiles (id, email, full_name, avatar_url) VALUES (?, ?, ?, ?)`,
+        userId, e, profile?.name?.trim() || null, profile?.picture || null
+      );
       created = true;
     }
     await run(db, `INSERT INTO auth_identities (provider, provider_user_id, user_id) VALUES (?, ?, ?)`,

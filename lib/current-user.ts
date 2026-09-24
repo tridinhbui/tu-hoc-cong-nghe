@@ -1,79 +1,57 @@
-import { createClient } from "@/lib/supabase";
+"use client";
 
 /** Một chỗ hỏi "tôi là ai", dùng chung cho mọi component trên cùng một trang.
+ *  Thay bản Supabase - xem lib/auth/current-user.ts cho phía máy chủ.
  *
- *  VÌ SAO. 32 component phía client gọi `supabase.auth.getUser()`, và trên một
- *  trang bài học có năm sáu cái cùng chạy lúc gắn - LessonNotes, BookmarkButton,
- *  LessonPageLayout, LessonStatsHover, ManualLessonFlagButton - mỗi cái mở một
- *  vòng mạng riêng ra Supabase Auth để hỏi đúng một câu, và nhận đúng một câu
- *  trả lời.
+ *  VÌ SAO. 32 component phía client gọi hàm này, và trên một trang bài học có
+ *  năm sáu cái cùng chạy lúc gắn - LessonNotes, BookmarkButton,
+ *  LessonPageLayout, LessonStatsHover, ManualLessonFlagButton - mỗi cái hỏi
+ *  đúng một câu "ai đang đăng nhập" và nhận đúng một câu trả lời.
  *
- *  Hai thứ hàm này làm:
+ *  Hai thứ hàm này làm, không đổi so với bản cũ:
  *
  *  1. GỘP LỜI GỌI ĐANG BAY. Năm component gắn trong cùng một lượt render thì
  *     chỉ có một request; bốn cái còn lại chờ chung lời hứa đó.
  *  2. NHỚ KẾT QUẢ. Component gắn muộn hơn - panel mở ra, danh sách cuộn tới -
  *     lấy luôn kết quả đã có thay vì hỏi lại.
  *
- *  DÙNG getSession() CHỨ KHÔNG getUser(). `getUser()` gửi một request tới
- *  `/auth/v1/user` để máy chủ xác thực JWT; `getSession()` đọc phiên đã lưu sẵn
- *  và không đi mạng. Ở phía client thì phân biệt đó không mua được gì: người
- *  dùng nào cũng nói dối được với trình duyệt của chính mình, và thứ thật sự
- *  chặn là RLS trên từng truy vấn phía Supabase. Đây cũng là hướng dẫn của
- *  chính Supabase - `getUser()` cho phía máy chủ, `getSession()` cho phía
- *  client - và GlobalChatWrapper trong repo này đã làm đúng thế từ trước.
- *
- *  KHÔNG dùng cho quyết định phân quyền phía máy chủ. Ở đó vẫn phải là
- *  `getUser()` trên một server client, như proxy.ts và các route handler đang
- *  làm. */
+ *  KHÔNG CÒN onAuthStateChange ĐỂ LẮNG NGHE. Cookie phiên là httpOnly - trình
+ *  duyệt không thấy nó đổi, nên không có sự kiện nào để lắng nghe nữa. Thay
+ *  vào đó, MỌI THAO TÁC ĐỔI PHIÊN (đăng nhập, đăng xuất) phải tự gọi
+ *  `resetCurrentUserCache()` ngay sau khi request xong - xem signOut() dưới
+ *  đây và app/login/page.tsx sau khi đăng nhập/đăng ký thành công.
+ */
 
 export type CachedUser = {
   id: string;
-  email: string | null;
-  /** Dữ liệu do nhà cung cấp đăng nhập gắn kèm - `full_name`, `avatar_url` từ
-   *  Google. UserProfile dùng nó làm hồ sơ dự phòng khi bảng `user_profiles`
-   *  chưa có hàng cho người này. Giữ nguyên kiểu lỏng của Supabase vì nội dung
-   *  phụ thuộc nhà cung cấp; đây không phải chỗ để siết nó. */
-  user_metadata: Record<string, unknown> | undefined;
+  email: string;
+  role: string;
+  /** Trực tiếp từ user_profiles - không còn "metadata" của nhà cung cấp tách
+   *  riêng khỏi hồ sơ như Supabase. Cả hai đường tạo tài khoản (đăng ký,
+   *  Google) đều ghi thẳng vào đây ngay lúc tạo - xem lib/auth/service.ts. */
+  fullName: string | null;
+  avatarUrl: string | null;
 } | null;
 
 let cached: { value: CachedUser } | null = null;
 let inflight: Promise<CachedUser> | null = null;
-let listening = false;
 
-/** Quên kết quả đã nhớ. Gọi khi phiên đổi, và trong test. */
+/** Quên kết quả đã nhớ. Gọi ngay sau bất kỳ thao tác nào đổi phiên. */
 export function resetCurrentUserCache() {
   cached = null;
   inflight = null;
 }
 
-function listenOnce() {
-  if (listening) return;
-  listening = true;
-  // Đăng nhập, đăng xuất, đổi phiên: bỏ hết phần đã nhớ. Không có dòng này thì
-  // một người đăng xuất rồi đăng nhập bằng tài khoản khác trong cùng tab sẽ
-  // thấy dữ liệu của tài khoản cũ cho tới khi tải lại trang.
-  createClient().auth.onAuthStateChange(() => resetCurrentUserCache());
-}
-
 /** Người đang đăng nhập, hoặc null. Nhiều lời gọi cùng lúc chia chung một request. */
 export async function getCurrentUser(): Promise<CachedUser> {
-  listenOnce();
   if (cached) return cached.value;
   if (inflight) return inflight;
 
   inflight = (async () => {
     try {
-      const {
-        data: { session },
-      } = await createClient().auth.getSession();
-      const value: CachedUser = session?.user
-        ? {
-            id: session.user.id,
-            email: session.user.email ?? null,
-            user_metadata: session.user.user_metadata,
-          }
-        : null;
+      const res = await fetch("/api/auth/me");
+      const body = (await res.json().catch(() => ({ user: null }))) as { user: CachedUser };
+      const value = body.user ?? null;
       cached = { value };
       return value;
     } finally {
@@ -89,15 +67,15 @@ export async function getCurrentUserId(): Promise<string | null> {
   return (await getCurrentUser())?.id ?? null;
 }
 
-/** Đọc một trường chuỗi trong `user_metadata`.
+/**
+ * Đăng xuất. Thay `supabase.auth.signOut()`.
  *
- *  `user_metadata` là `Record<string, unknown>` vì nội dung do nhà cung cấp
- *  đăng nhập quyết định - đó là kiểu trung thực, và cái giá của nó là chỗ gọi
- *  phải tự ép kiểu. Hàm này nêu tên phép ép đó đúng một lần, và trả null cho
- *  cả trường thiếu lẫn trường có kiểu khác, thay vì để một `String(undefined)`
- *  lọt xuống thành chuỗi "undefined" hiện trên màn hình.
+ * Gọi route máy chủ để THU HỒI PHIÊN THẬT SỰ (xem lib/auth/session.ts) rồi
+ * mới quên bộ nhớ đệm cục bộ - làm ngược lại (quên trước, gọi sau) để lại một
+ * khoảng ngắn nơi getCurrentUser() gọi lại và có thể vẫn thấy phiên cũ nếu
+ * request đăng xuất chưa xong.
  */
-export function metadataString(user: CachedUser, key: string): string | null {
-  const value = user?.user_metadata?.[key];
-  return typeof value === "string" && value.trim() !== "" ? value : null;
+export async function signOut(): Promise<void> {
+  await fetch("/api/auth/sign-out", { method: "POST" }).catch(() => {});
+  resetCurrentUserCache();
 }

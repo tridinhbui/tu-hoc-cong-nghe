@@ -56,7 +56,7 @@ import {
 } from "@/lib/supabase-community";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { animateCountTo } from "@/lib/animate-count";
-import { getCurrentUser, metadataString } from "@/lib/current-user";
+import { getCurrentUser } from "@/lib/current-user";
 import { timeAgo } from "@/lib/time-ago";
 import FollowButton from "@/components/FollowButton";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
@@ -563,14 +563,14 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     const init = async () => {
       const sessionUser = await getCurrentUser();
       if (sessionUser) {
-        // `user_metadata` của Supabase là `Record<string, unknown>` vì nội dung
-        // do nhà cung cấp đăng nhập quyết; `metadataString` là chỗ nêu tên phép
-        // ép kiểu đó đúng một lần thay vì rải ra khắp phần JSX bên dưới.
+        // Giữ nguyên hình dạng `user_metadata` cục bộ ở đây dù lib/current-user.ts
+        // giờ trả fullName/avatarUrl trực tiếp - đổi hình dạng này thì phải sửa
+        // theo cả sáu chỗ đọc user_metadata bên dưới, ngoài phạm vi lần sửa này.
         setUser({
           id: sessionUser.id,
           user_metadata: {
-            full_name: metadataString(sessionUser, "full_name") ?? undefined,
-            avatar_url: metadataString(sessionUser, "avatar_url") ?? undefined,
+            full_name: sessionUser.fullName ?? undefined,
+            avatar_url: sessionUser.avatarUrl ?? undefined,
           },
         });
         userIdRef.current = sessionUser.id;

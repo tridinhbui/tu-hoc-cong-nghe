@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createClient } from "@/lib/supabase";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import { getCurrentUser, metadataString } from "@/lib/current-user";
+import { getCurrentUser } from "@/lib/current-user";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -59,7 +59,7 @@ export default function FloatingContact() {
 
     const { error } = await supabase.from("contact_messages").insert({
       user_id: user?.id ?? null,
-      name: name.trim() || metadataString(user, "full_name") || t.chatbot.anonName,
+      name: name.trim() || user?.fullName || t.chatbot.anonName,
       email: email.trim() || user?.email || null,
       subject: t.chatbot.feedbackSubject,
       message: message.trim(),

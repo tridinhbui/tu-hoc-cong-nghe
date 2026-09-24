@@ -16,7 +16,7 @@ import NotificationBell from "@/components/NotificationBell";
 import Logo from "@/components/Logo";
 import { claimPendingReferral } from "@/lib/referrals";
 import { earnChest } from "@/lib/chests";
-import { getCurrentUser, metadataString } from "@/lib/current-user";
+import { getCurrentUser } from "@/lib/current-user";
 import { getNavState } from "@/lib/supabase-nav-state";
 import { useLevelUpWatcher } from "@/lib/use-level-up-watcher";
 import { trackFeatureClick } from "@/lib/feature-events";
@@ -286,9 +286,9 @@ export default function AppNavbar() {
       if (!user) return;
       setUserId(user.id);
       const fallback: NavProfile = {
-        full_name: metadataString(user, "full_name"),
+        full_name: user.fullName,
         email: user.email || "",
-        avatar_url: metadataString(user, "avatar_url"),
+        avatar_url: user.avatarUrl,
         total_xp: 0,
         current_level: 1,
         lessons_completed: 0,
@@ -681,13 +681,13 @@ export default function AppNavbar() {
           <button
             type="button"
             onClick={() => setSearchModalOpen(true)}
-            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-xl bg-stone-100 dark:bg-stone-900 border border-line text-xs font-bold text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors cursor-pointer"
+            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-xl bg-surface-raised border border-line text-xs font-bold text-stone-500 hover:bg-surface-sunken transition-colors cursor-pointer"
           >
             <span className="flex items-center gap-2">
               <Search className="w-3.5 h-3.5 text-stone-400" />
               <span>{t.nav.searchPlaceholder}</span>
             </span>
-            <kbd className="px-1.5 py-0.5 rounded-md bg-white dark:bg-stone-800 text-[10px] font-mono border border-stone-200 dark:border-stone-700">
+            <kbd className="px-1.5 py-0.5 rounded-md bg-white dark:bg-stone-800 text-[10px] font-mono border border-line-mid">
               {t.dataRest.appNavbar.cmdKHint}
             </kbd>
           </button>
@@ -717,7 +717,7 @@ export default function AppNavbar() {
             )}
 
             {!profile ? (
-              <div className="h-12 rounded-xl bg-stone-100 dark:bg-stone-900 animate-pulse" />
+              <div className="h-12 rounded-xl bg-surface-raised animate-pulse" />
             ) : (
               /* Panel không nằm ở đây nữa - nó bay NGANG ra khỏi sidebar và
                  được render ngay dưới khối cuộn, xem chú thích ở đó. */
@@ -782,7 +782,7 @@ export default function AppNavbar() {
               {t.nav.menuSettings}
             </button>
             <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2">
-              <span className="flex items-center gap-2.5 text-xs font-bold text-stone-800 dark:text-stone-200">
+              <span className="flex items-center gap-2.5 text-xs font-bold text-ink-heading">
                 <Globe className="h-4 w-4 shrink-0 text-ink-muted" />
                 {t.language.label}
               </span>
@@ -819,8 +819,8 @@ export default function AppNavbar() {
               href="/tai-lieu"
               className={`flex items-center gap-1 text-xs font-bold px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl border transition-colors duration-200 whitespace-nowrap ${
                 pathname === "/tai-lieu"
-                  ? "bg-accent-soft/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
-                  : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border-line hover:bg-stone-100 dark:hover:bg-stone-800"
+                  ? "bg-emerald-50 dark:bg-emerald-950/40 text-accent-strong border-accent-line"
+                  : "bg-white dark:bg-stone-900 text-ink-soft border-line hover:bg-surface-raised"
               }`}
             >
               <FileText className="w-3.5 h-3.5 shrink-0" />
@@ -831,7 +831,7 @@ export default function AppNavbar() {
             {profile && (
               <button
                 onClick={() => setShowQuickShop(true)}
-                className="flex items-center gap-1 text-xs font-black px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-xl bg-warn-soft/40 text-warn border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 transition-colors cursor-pointer whitespace-nowrap"
+                className="flex items-center gap-1 text-xs font-black px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-warn border border-warn-line hover:bg-amber-100/80 transition-colors cursor-pointer whitespace-nowrap"
                 title={t.nav.coinBalanceTitle}
               >
                 <GoldCoinIcon className="w-4 h-4" />
@@ -843,7 +843,7 @@ export default function AppNavbar() {
 
             <button
               onClick={toggleMobileMenu}
-              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl border border-line text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
+              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl border border-line text-ink-soft hover:bg-surface transition-colors shrink-0"
               aria-label={t.nav.openMenu}
               aria-expanded={mobileMenuOpen}
             >
@@ -851,12 +851,12 @@ export default function AppNavbar() {
             </button>
 
             {!profile ? (
-              <div className="w-8 h-8 sm:w-9 sm:h-9 bg-stone-200 dark:bg-stone-700 rounded-full animate-pulse shrink-0" />
+              <div className="w-8 h-8 sm:w-9 sm:h-9 bg-surface-sunken rounded-full animate-pulse shrink-0" />
             ) : (
               <div className="relative shrink-0" ref={mobileDropdownRef}>
                 <button
                   onClick={toggleProfileDropdown}
-                  className="flex items-center p-0.5 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                  className="flex items-center p-0.5 rounded-full hover:bg-surface-raised transition-colors"
                 >
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={34} height={34} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover" />
@@ -966,7 +966,7 @@ export default function AppNavbar() {
                       setMobileMenuOpen(false);
                       setShowQuickShop(true);
                     }}
-                    className="flex items-center gap-1 text-xs font-black px-2.5 py-1.5 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 shrink-0"
+                    className="flex items-center gap-1 text-xs font-black px-2.5 py-1.5 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-warn-strong border border-warn-line-mid shrink-0"
                   >
                     <GoldCoinIcon className="w-3.5 h-3.5" />
                     <span>{profile.coins ?? 0}</span>

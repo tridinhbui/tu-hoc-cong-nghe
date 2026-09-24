@@ -43,7 +43,7 @@ export async function GET(req: Request) {
   try {
     const redirectUri = new URL("/api/auth/google/callback", url.origin).toString();
     const id = await exchangeCode(code, verifier, redirectUri);
-    const r = await signInWithIdentity(getDb(), "google", id.sub, id.email, id.emailVerified);
+    const r = await signInWithIdentity(getDb(), "google", id.sub, id.email, id.emailVerified, { name: id.name, picture: id.picture });
     await setSessionCookie(r.token, r.expiresAt);
     const done = Response.redirect(new URL(next, url.origin).toString(), 302);
     done.headers.append("Set-Cookie", clearOAuthNextCookie());

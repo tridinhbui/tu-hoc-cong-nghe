@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase";
+import { signOut } from "@/lib/current-user";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 
@@ -17,7 +17,6 @@ interface UserMenuProps {
 export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
   const { t } = useI18n();
   const router = useRouter();
-  const supabase = createClient();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +36,7 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
   }, [isOpen]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    await signOut();
     router.replace("/login");
   };
 
@@ -54,7 +53,7 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
       {/* Avatar Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-9 h-9 rounded-full overflow-hidden bg-stone-200 dark:bg-stone-700 hover:bg-stone-300 dark:hover:bg-stone-600 transition-colors flex items-center justify-center text-xs font-extrabold text-ink-body border border-stone-300 dark:border-stone-600"
+        className="w-9 h-9 rounded-full overflow-hidden bg-surface-sunken hover:bg-surface-deep transition-colors flex items-center justify-center text-xs font-extrabold text-ink-body border border-line-strong"
       >
         {isValidAvatar(avatarUrl) ? (
           <Image src={avatarUrl} alt={displayName} width={36} height={36} className="w-full h-full object-cover" />
@@ -77,21 +76,21 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
             <Link
               href="/profile"
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+              className="block px-4 py-2 text-sm font-semibold text-ink hover:bg-surface transition-colors"
             >
               {t.userMenu.menuProfile}
             </Link>
             <Link
               href="/ban-be"
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+              className="block px-4 py-2 text-sm font-semibold text-ink hover:bg-surface transition-colors"
             >
               {t.userMenu.menuFriendsChat}
             </Link>
             <Link
               href="/ghi-chu"
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+              className="block px-4 py-2 text-sm font-semibold text-ink hover:bg-surface transition-colors"
             >
               {t.userMenu.menuMyNotes}
             </Link>
@@ -105,7 +104,7 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
             <Link
               href="/settings"
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
+              className="block px-4 py-2 text-sm font-semibold text-ink hover:bg-surface transition-colors"
             >
               {t.userMenu.menuSettings}
             </Link>
