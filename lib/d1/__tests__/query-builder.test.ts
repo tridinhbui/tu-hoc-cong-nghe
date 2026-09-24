@@ -301,3 +301,97 @@ describe("ADMIN_BYPASS", () => {
       .not.toThrow();
   });
 });
+
+describe(".or() - đo được ở 9 chỗ gọi thật trước khi dựng", () => {
+  // Chỉ kiểm build(), không chạm DB thật - một binding giả đủ dùng, vì các
+  // bài kiểm dưới đây không bao giờ gọi .run().
+  const fakeDb = { prepare: () => ({ bind: () => ({ all: async () => ({ results: [] }) }) }) } as unknown as Parameters<typeof createD1Client>[0];
+  const client = () => createD1Client(fakeDb, types, registry, ADMIN_BYPASS, predicates);
+
+  it("dựng đúng SQL cho từng toán tử: eq, is null, lt, gt, ilike, in", () => {
+    const cases: [string, RegExp][] = [
+      ["a.eq.5", /"a" = \?/],
+      ["a.is.null", /"a" IS NULL/],
+      ["a.lt.5", /"a" < \?/],
+      ["a.gt.5", /"a" > \?/],
+      ["a.ilike.%x%", /"a" LIKE \?/],
+      ["a.in.(1,2,3)", /"a" IN \(\?,\?,\?\)/],
+    ];
+    for (const [filter, re] of cases) {
+      const q = client().from("user_profiles").select("*").or(filter) as unknown as { build(): { sql: string } };
+      expect(q.build().sql, filter).toMatch(re);
+    }
+  });
+
+  it("nối nhiều mệnh đề bằng OR, cả cụm nằm trong một cặp ngoặc", () => {
+    const q = client().from("user_profiles").select("*")
+      .or("full_name.ilike.%an%,email.ilike.%an%") as unknown as { build(): { sql: string } };
+    expect(q.build().sql).toMatch(/\("full_name" LIKE \? OR "email" LIKE \?\)/);
+  });
+
+  it("TÁCH ĐÚNG khi in.(...) chứa dấu phẩy - không cắt đôi điều kiện IN", () => {
+    // Đây là lý do phải tách theo dấu phẩy NGOÀI ngoặc: tách ẩu thì
+    // "lesson_id.in.(1,2,3),content.ilike.%x%" vỡ thành ba mệnh đề thay vì
+    // hai, và mệnh đề IN chỉ còn "1" - không có gì báo lỗi, truy vấn vẫn
+    // chạy, chỉ trả sai dữ liệu.
+    const q = client().from("user_profiles").select("*")
+      .or("lesson_id.in.(1,2,3),content.ilike.%x%") as unknown as { build(): { sql: string; args: unknown[] } };
+    const built = q.build();
+    expect(built.sql).toMatch(/"lesson_id" IN \(\?,\?,\?\)/);
+    expect(built.args).toEqual(["1", "2", "3", "%x%"]);
+  });
+
+  it("toán tử không nằm trong 6 cái đã đo thì ném lỗi, không âm thầm bỏ qua", () => {
+    expect(() =>
+      (client().from("user_profiles").select("*").or("a.neq.5") as unknown as { build(): unknown }).build()
+    ).toThrow(/chưa được dựng/);
+  });
+
+  it("is dùng cho giá trị khác null thì ném lỗi", () => {
+    expect(() =>
+      (client().from("user_profiles").select("*").or("a.is.true") as unknown as { build(): unknown }).build()
+    ).toThrow(/chỉ dựng cho null/);
+  });
+
+  it("eq đổi true/false thành 1/0 khi cột là boolean", () => {
+    const q = client().from("user_profiles").select("*")
+      .or("dark_mode.eq.true") as unknown as { build(): { args: unknown[] } };
+    expect(q.build().args).toEqual([1]);
+  });
+});
+
+describe("count: \"exact\" - đo được ở 38 chỗ gọi thật trước khi dựng", () => {
+  it("đếm đúng số hàng khớp WHERE, độc lập với LIMIT", async () => {
+    if (!hasLocalData) return;
+    const db2 = openLocalD1();
+    const table = Object.entries(registry).find(([, p]) => p.kind === "owner" && p.publicRead)?.[0];
+    if (!table) return;
+    const client = createD1Client(db2, types, registry, ADMIN_BYPASS, predicates);
+    const { data, count, error } = await client.from(table).select("*", { count: "exact" }).limit(1);
+    expect(error).toBeNull();
+    expect(count).not.toBeNull();
+    expect((data as unknown[]).length).toBeLessThanOrEqual(1);
+    expect((count as number)).toBeGreaterThanOrEqual((data as unknown[]).length);
+  });
+
+  it("head: true thì không tải data, chỉ trả count", async () => {
+    if (!hasLocalData) return;
+    const db2 = openLocalD1();
+    const table = Object.entries(registry).find(([, p]) => p.kind === "owner" && p.publicRead)?.[0];
+    if (!table) return;
+    const client = createD1Client(db2, types, registry, ADMIN_BYPASS, predicates);
+    const { data, count } = await client.from(table).select("*", { count: "exact", head: true });
+    expect(data).toEqual([]);
+    expect(count).toBeGreaterThan(0);
+  });
+
+  it("không gọi count thì count là null, không tốn thêm một lượt đọc", async () => {
+    if (!hasLocalData) return;
+    const db2 = openLocalD1();
+    const table = Object.entries(registry).find(([, p]) => p.kind === "owner" && p.publicRead)?.[0];
+    if (!table) return;
+    const client = createD1Client(db2, types, registry, ADMIN_BYPASS, predicates);
+    const { count } = await client.from(table).select("*").limit(1);
+    expect(count).toBeNull();
+  });
+});

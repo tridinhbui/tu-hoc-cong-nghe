@@ -33,6 +33,23 @@ type Row = Record<string, unknown>;
 // giống hệt nhau sau khi qua SQLite.
 export type ColumnTypes = Record<string, Record<string, string>>;
 
+/** Tách một chuỗi theo dấu phẩy, bỏ qua dấu phẩy nằm trong ngoặc tròn - cần
+ *  cho or() vì "lesson_id.in.(1,2,3)" có dấu phẩy TRONG một mệnh đề. */
+function splitTopLevelCommas(s: string): string[] {
+  const out: string[] = [];
+  let depth = 0, start = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "(") depth++;
+    else if (s[i] === ")") depth--;
+    else if (s[i] === "," && depth === 0) {
+      out.push(s.slice(start, i));
+      start = i + 1;
+    }
+  }
+  out.push(s.slice(start));
+  return out;
+}
+
 function decodeValue(value: unknown, format: string | undefined): unknown {
   if (value === null || value === undefined) return null;
   switch (format) {
@@ -105,6 +122,8 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
   private payload: Row[] = [];
   private wantSingle: "one" | "maybe" | null = null;
   private conflictTarget: string | null = null;
+  private wantCount = false;
+  private headOnly = false;
 
   constructor(
     private db: D1Database,
@@ -144,6 +163,17 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
    * chu khong o cho goi - de mot truy van quen `.eq("user_id", ...)` van khong
    * doc duoc du lieu nguoi khac.
    */
+  private policyApplied = false;
+
+  /** applyPolicy() có side-effect (đẩy thêm điều kiện vào wheres) - gọi hai
+   *  lần là áp chính sách hai lần. build() và buildCountSql() đều cần where
+   *  đã áp chính sách, nên bọc lại để chỉ chạy đúng một lần. */
+  private applyPolicyOnce() {
+    if (this.policyApplied) return;
+    this.policyApplied = true;
+    this.applyPolicy();
+  }
+
   private applyPolicy() {
     // Admin: bỏ qua MỌI chính sách, cả "owner" lẫn "manual" - đúng cách
     // service-role key của Supabase bỏ qua RLS hoàn toàn. Chỉ đạt tới đây khi
@@ -201,7 +231,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
     return `"${name.replace(/"/g, '""')}"`;
   }
 
-  select(columns = "*") {
+  select(columns = "*", opts?: { count?: "exact"; head?: boolean }) {
     if (/\(/.test(columns)) {
       throw new D1QueryError(
         `select("${columns}") dùng cú pháp nhúng quan hệ của PostgREST. D1 không nối bảng ` +
@@ -209,6 +239,10 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
       );
     }
     if (this.mode === "select") this.columns = columns;
+    // 38 chỗ gọi thật dùng { count: "exact" } (đôi khi kèm { head: true } để
+    // không cần tải data, chỉ cần con số) - đo trước khi dựng, như .or().
+    this.wantCount = opts?.count === "exact";
+    this.headOnly = opts?.head === true;
     return this;
   }
 
@@ -260,6 +294,69 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
       return this;
     }
     throw new D1QueryError(`not("${column}", "${operator}", ...) chưa được dựng - chỉ có not(col, "is", null).`);
+  }
+
+  /**
+   * `.or("col1.op1.val1,col2.op2.val2")` - cú pháp lọc PostgREST, đo được ở
+   * 9 chỗ gọi thật trên toàn repo trước khi dựng.
+   *
+   * CHỈ 6 TOÁN TỬ, đúng những gì 9 chỗ gọi ấy dùng: eq, is (chỉ null), lt,
+   * gt, ilike, in. Gặp toán tử khác thì NÉM LỖI thay vì lặng lẽ bỏ qua mệnh
+   * đề - một mệnh đề bị bỏ qua âm thầm là bộ lọc lọc RỘNG HƠN ý định, và với
+   * .or() thì "rộng hơn" nghĩa là trả về nhiều hàng hơn nó nên trả.
+   *
+   * TÁCH THEO DẤU PHẨY NGOÀI NGOẶC, không tách thẳng: `lesson_id.in.(1,2,3)`
+   * có dấu phẩy nằm TRONG một mệnh đề duy nhất. Tách ẩu ở đây là cắt đôi một
+   * điều kiện IN thành hai mệnh đề vô nghĩa, và không có gì báo lỗi - truy
+   * vấn vẫn chạy, chỉ trả sai dữ liệu.
+   */
+  or(filter: string) {
+    const clauses = splitTopLevelCommas(filter).map((c) => this.parseOrClause(c));
+    this.wheres.push({
+      sql: `(${clauses.map((c) => c.sql).join(" OR ")})`,
+      args: clauses.flatMap((c) => c.args),
+    });
+    return this;
+  }
+
+  private parseOrClause(clause: string): { sql: string; args: unknown[] } {
+    const m = /^([a-zA-Z_][a-zA-Z0-9_]*)\.([a-z]+)\.(.*)$/.exec(clause);
+    if (!m) {
+      throw new D1QueryError(`or("${clause}") không đúng dạng "cột.toán_tử.giá_trị".`);
+    }
+    const [, column, op, rawValue] = m;
+    const col = this.col(column);
+    const fmt = this.types[this.table]?.[column];
+
+    switch (op) {
+      case "eq": {
+        const v = fmt === "boolean" ? (rawValue === "true" ? 1 : 0) : rawValue;
+        return { sql: `${col} = ?`, args: [v] };
+      }
+      case "is":
+        if (rawValue !== "null") {
+          throw new D1QueryError(`or(): "is" chỉ dựng cho null, nhận "${rawValue}".`);
+        }
+        return { sql: `${col} IS NULL`, args: [] };
+      case "lt":
+        return { sql: `${col} < ?`, args: [rawValue] };
+      case "gt":
+        return { sql: `${col} > ?`, args: [rawValue] };
+      case "ilike":
+        // Xem ghi chú ở ilike() phía trên: không tương đương ILIKE của
+        // Postgres với chữ có dấu, chỉ đúng với ASCII.
+        return { sql: `${col} LIKE ?`, args: [rawValue] };
+      case "in": {
+        const inner = rawValue.replace(/^\(|\)$/g, "");
+        const values = inner === "" ? [] : inner.split(",");
+        if (!values.length) return { sql: "0 = 1", args: [] };
+        return { sql: `${col} IN (${values.map(() => "?").join(",")})`, args: values };
+      }
+      default:
+        throw new D1QueryError(
+          `or(): toán tử "${op}" chưa được dựng - chỉ có eq/is/lt/gt/ilike/in, vì đó là những gì 9 chỗ gọi .or() trong repo thật sự dùng.`
+        );
+    }
   }
 
   order(column: string, opts?: { ascending?: boolean }) {
@@ -323,7 +420,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
     // (chỉ còn hàng của chính người gọi) nhưng một lệnh xoá quét sạch dữ liệu
     // của chính mình vẫn gần như luôn là lỗi, không phải chủ ý.
     const callerWheres = this.wheres.length;
-    this.applyPolicy();
+    this.applyPolicyOnce();
     const where = this.wheres.length
       ? " WHERE " + this.wheres.map((w) => w.sql).join(" AND ")
       : "";
@@ -386,8 +483,36 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
     });
   }
 
-  async run(): Promise<{ data: Row[] | Row | null; error: Error | null }> {
+  /** Câu đếm dùng CHUNG where đã áp chính sách với câu select - gọi
+   *  applyPolicyOnce() để chắc chắn không áp chính sách một lần nữa (và
+   *  không thiếu, nếu đây là lệnh gọi đầu tiên chạm tới where). */
+  private buildCountSql(): Op {
+    this.applyPolicyOnce();
+    const where = this.wheres.length
+      ? " WHERE " + this.wheres.map((w) => w.sql).join(" AND ")
+      : "";
+    return { sql: `SELECT count(*) as n FROM ${this.col(this.table)}${where}`, args: this.wheres.flatMap((w) => w.args) };
+  }
+
+  async run(): Promise<{ data: Row[] | Row | null; error: Error | null; count?: number | null }> {
     try {
+      // count TRƯỚC select: cả hai dùng chung this.wheres sau khi chính sách
+      // áp xong, và applyPolicyOnce() phải chạy đúng một lần trước khi câu
+      // nào trong hai câu đọc this.wheres.
+      let count: number | null = null;
+      if (this.wantCount) {
+        const cq = this.buildCountSql();
+        const cres = await this.db.prepare(cq.sql).bind(...cq.args).all();
+        count = Number((cres.results?.[0] as { n: number } | undefined)?.n ?? 0);
+      }
+
+      // head: true - chỉ cần con số, không tải data. 38 chỗ gọi count:"exact"
+      // phần lớn kèm head:true đúng cho việc này (đếm tin chưa đọc, đếm bài
+      // chờ duyệt) - tải cả data rồi vứt đi là lãng phí một lượt quét bảng.
+      if (this.headOnly) {
+        return { data: [], error: null, count };
+      }
+
       const { sql, args } = this.build();
       const res = await this.db.prepare(sql).bind(...args).all();
       const rows = this.decodeRows((res.results ?? []) as Row[]);
@@ -396,15 +521,15 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
         if (rows.length !== 1) {
           return { data: null, error: new D1QueryError(`single() cần đúng 1 hàng, nhận ${rows.length}`) };
         }
-        return { data: rows[0], error: null };
+        return { data: rows[0], error: null, count };
       }
       if (this.wantSingle === "maybe") {
         if (rows.length > 1) {
           return { data: null, error: new D1QueryError(`maybeSingle() nhận ${rows.length} hàng`) };
         }
-        return { data: rows[0] ?? null, error: null };
+        return { data: rows[0] ?? null, error: null, count };
       }
-      return { data: rows, error: null };
+      return { data: rows, error: null, count };
     } catch (err) {
       // Trả lỗi trong đối tượng thay vì ném, đúng như supabase-js: 527 chỗ gọi
       // hiện tại đều viết theo dạng `const { data, error } = await ...`, và đổi
@@ -414,7 +539,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
   }
 
   then<A, B = never>(
-    onfulfilled?: ((v: { data: Row[] | Row | null; error: Error | null }) => A | PromiseLike<A>) | null,
+    onfulfilled?: ((v: { data: Row[] | Row | null; error: Error | null; count?: number | null }) => A | PromiseLike<A>) | null,
     onrejected?: ((r: unknown) => B | PromiseLike<B>) | null
   ): PromiseLike<A | B> {
     return this.run().then(onfulfilled, onrejected);
