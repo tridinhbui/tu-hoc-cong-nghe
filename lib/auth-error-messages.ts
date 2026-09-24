@@ -37,3 +37,25 @@ export function translateAuthError(message: string | undefined | null, t: Dictio
 export function isUnconfirmedEmailError(message: string | undefined | null): boolean {
   return !!message && /email not confirmed/i.test(message);
 }
+
+/** Ánh xạ MÃ LỖI của lib/auth/service.ts (D1) sang câu đã dịch, theo đúng
+ *  ngôn ngữ giao diện hiện tại.
+ *
+ *  Khác `translateAuthError` ở trên: đó là khớp CHUỖI THÔ của Supabase bằng
+ *  biểu thức chính quy tiếng Anh, còn đây là khớp một MÃ ổn định
+ *  (`AuthError.code` trong lib/auth/service.ts) - không cần regex vì API mới
+ *  đã trả sẵn một mã rõ ràng thay vì một câu tự do phải đoán ý. */
+const CODE_TO_KEY: Partial<Record<string, keyof Dictionary["authErrors"]>> = {
+  email_invalid: "invalidEmail",
+  email_taken: "alreadyRegistered",
+  email_taken_unverified: "alreadyRegistered",
+  password_too_short: "passwordTooShort",
+  invalid_credentials: "badCredentials",
+  account_disabled: "accountDisabled",
+  reset_invalid: "resetInvalid",
+};
+
+export function translateAuthErrorCode(code: string | undefined | null, t: Dictionary): string {
+  const key = code ? CODE_TO_KEY[code] : undefined;
+  return key ? t.authErrors[key] : t.authErrors.generic;
+}

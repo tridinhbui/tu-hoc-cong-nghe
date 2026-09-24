@@ -5,9 +5,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { createClient } from "@/lib/supabase";
 import { roundedLessonCount } from "@/lib/track-totals";
-import { translateAuthError, isUnconfirmedEmailError } from "@/lib/auth-error-messages";
+import { translateAuthErrorCode } from "@/lib/auth-error-messages";
 import { stashReferralCodeFromUrl } from "@/lib/referrals";
 import { safeNextPath } from "@/lib/safe-next-path";
 import { rememberOAuthNext } from "@/lib/oauth-next-cookie";
@@ -20,7 +19,7 @@ import { format } from "@/lib/i18n";
 const MAX_ATTEMPTS = 5;
 const COOLDOWN_MS = 60_000;
 
-// Reads Supabase env vars at render time - never prerender statically.
+// Đọc cookie phiên lúc chạy (qua /api/auth/me) - không prerender tĩnh.
 export const dynamic = "force-dynamic";
 
 // Dedicated, minimal auth screen - the marketing pitch (hero, stats, trust
@@ -40,7 +39,6 @@ function LoginForm() {
   const { t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const supabase = createClient();
   const nextPath = safeNextPath(searchParams.get("next"));
 
   const [email, setEmail] = useState("");
@@ -62,13 +60,6 @@ function LoginForm() {
   );
   const [name, setName] = useState("");
   const [resetSent, setResetSent] = useState(false);
-  // Tài khoản đã tồn tại nhưng chưa bấm link trong hộp thư. Trạng thái riêng
-  // chứ không phải một chuỗi trong `error`, vì nó cần một NÚT đi kèm - và câu
-  // thông báo trong lib/auth-error-messages.ts đã hứa cái nút đó từ đầu ("hoặc
-  // gửi lại email xác nhận bên dưới") trong khi không có gì ở dưới cả.
-  const [needsEmailConfirm, setNeedsEmailConfirm] = useState(false);
-  const [confirmResent, setConfirmResent] = useState(false);
-
   const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
   const [cooldownLeft, setCooldownLeft] = useState(0);
   const failedAttemptsRef = useRef(0);
@@ -138,16 +129,17 @@ function LoginForm() {
 
   // Check if already logged in
   useEffect(() => {
-    const checkAuth = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      if (session) {
-        router.replace(nextPath);
-      }
+    let cancelled = false;
+    fetch("/api/auth/me")
+      .then((res) => (res.ok ? res.json() : { user: null }))
+      .then((body: { user: unknown }) => {
+        if (!cancelled && body.user) router.replace(nextPath);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
     };
-    checkAuth();
-  }, [router, supabase.auth]);
+  }, [router, nextPath]);
 
   // Handle email/password auth
   async function handleSubmit(e: React.FormEvent) {
@@ -175,41 +167,24 @@ function LoginForm() {
           return;
         }
 
-        const { error: signupError } = await supabase.auth.signUp({
-          email: email.toLowerCase().trim(),
-          password: password,
-          options: {
-            data: {
-              full_name: name.trim(),
-            },
-            emailRedirectTo: `${window.location.origin}/auth/callback`,
-          },
+        // Một lượt gọi duy nhất: /api/auth/sign-up vừa tạo tài khoản vừa cấp
+        // phiên ngay (xem lib/auth/service.ts). Không còn bước "đăng nhập lại
+        // sau khi đăng ký" như Supabase, vì hệ mới không có xác nhận email -
+        // không có trạng thái "chưa xác nhận" để xử lý riêng nữa.
+        const res = await fetch("/api/auth/sign-up", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email.toLowerCase().trim(),
+            password,
+            name: name.trim(),
+          }),
         });
+        const body = (await res.json().catch(() => ({}))) as { error?: string; code?: string };
 
-        if (signupError) {
+        if (!res.ok) {
           registerFailedAttempt();
-          setError(translateAuthError(signupError.message, t));
-          setLoading(false);
-          return;
-        }
-
-        // Auto-login after successful signup
-        const { error: loginError } = await supabase.auth.signInWithPassword({
-          email: email.toLowerCase().trim(),
-          password: password,
-        });
-
-        if (loginError) {
-          // Nếu dự án bật xác nhận email thì bước tự đăng nhập này LUÔN hỏng,
-          // và lời khuyên cũ - "vui lòng đăng nhập thủ công" - dẫn người mới
-          // đăng ký thẳng vào một lần thất bại nữa với đúng lý do đó. Phân
-          // biệt ra để nói đúng việc cần làm: mở hộp thư.
-          if (isUnconfirmedEmailError(loginError.message)) {
-            setNeedsEmailConfirm(true);
-            setError("");
-          } else {
-            setError(t.login.signupNoAutoLogin);
-          }
+          setError(translateAuthErrorCode(body.code, t));
           setLoading(false);
           return;
         }
@@ -225,22 +200,16 @@ function LoginForm() {
           return;
         }
 
-        const { error: loginError } = await supabase.auth.signInWithPassword({
-          email: email.toLowerCase().trim(),
-          password: password,
+        const res = await fetch("/api/auth/sign-in", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email.toLowerCase().trim(), password }),
         });
+        const body = (await res.json().catch(() => ({}))) as { error?: string; code?: string };
 
-        if (loginError) {
-          // Email chưa xác nhận KHÔNG phải một lần đăng nhập sai, nên nó
-          // không tính vào bộ đếm khoá 5 lần: gõ đúng mật khẩu mà bị khoá vì
-          // chưa bấm link trong hộp thư là phạt nhầm người.
-          if (isUnconfirmedEmailError(loginError.message)) {
-            setNeedsEmailConfirm(true);
-            setError("");
-          } else {
-            registerFailedAttempt();
-            setError(translateAuthError(loginError.message, t));
-          }
+        if (!res.ok) {
+          registerFailedAttempt();
+          setError(translateAuthErrorCode(body.code, t));
           setLoading(false);
           return;
         }
@@ -254,31 +223,8 @@ function LoginForm() {
     }
   }
 
-  // Gửi lại email xác nhận đăng ký. Dùng đúng emailRedirectTo như lúc đăng ký,
-  // nếu không thì link trong thư thứ hai đưa người dùng về một nơi khác thư
-  // thứ nhất.
-  async function handleResendConfirmation() {
-    if (!email.trim() || loading) return;
-    setLoading(true);
-    try {
-      const { error: resendError } = await supabase.auth.resend({
-        type: "signup",
-        email: email.toLowerCase().trim(),
-        options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
-      });
-      if (resendError) {
-        setError(translateAuthError(resendError.message, t));
-      } else {
-        setConfirmResent(true);
-      }
-    } catch {
-      setError(t.login.genericError);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  // Handle "forgot password" - sends a Supabase recovery email
+  // Quên mật khẩu. Route LUÔN trả về như nhau kể cả khi email không có tài
+  // khoản - xem app/api/auth/reset-request/route.ts về lý do (chống dò email).
   async function handleForgotPassword(e: React.FormEvent) {
     e.preventDefault();
     setError("");
@@ -290,16 +236,11 @@ function LoginForm() {
 
     setLoading(true);
     try {
-      const { error: resetError } = await supabase.auth.resetPasswordForEmail(email.toLowerCase().trim(), {
-        redirectTo: `${window.location.origin}/auth/reset-password`,
+      await fetch("/api/auth/reset-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.toLowerCase().trim() }),
       });
-
-      if (resetError) {
-        setError(translateAuthError(resetError.message, t));
-        setLoading(false);
-        return;
-      }
-
       setResetSent(true);
       setLoading(false);
     } catch {
@@ -308,46 +249,16 @@ function LoginForm() {
     }
   }
 
-  // Handle Google OAuth
-  async function handleGoogleLogin() {
+  // Đăng nhập Google. Chỉ còn một điều hướng thẳng - toàn bộ phần bắt tay
+  // (PKCE, state) nằm ở app/api/auth/google/start, không phải ở đây.
+  function handleGoogleLogin() {
     setError("");
     setLoading(true);
-
-    try {
-      // Đặt TRƯỚC khi gọi: signInWithOAuth điều hướng trình duyệt đi ngay, nên
-      // bất kỳ dòng nào sau nó đều có thể không kịp chạy.
-      rememberOAuthNext(nextPath);
-
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          // `redirectTo` KHÔNG mang query. Supabase khớp URL này với danh
-          // sách Redirect URLs trên TOÀN BỘ chuỗi, nên một mục đăng ký không
-          // có ký tự đại diện sẽ không khớp khi có `?next=` phía sau - và khi
-          // không khớp thì nó rơi về Site URL kèm `?code=`, tức trang chủ, và
-          // lần đăng nhập ấy không bao giờ hoàn tất. Xem
-          // lib/oauth-next-cookie.ts.
-          //
-          // `next` vẫn phải đi vòng qua Google rồi quay lại - callback là route
-          // handler chạy trên server, nó không thấy `?next=` của trang này -
-          // nên nó đi bằng cookie, đặt ngay trên dòng gọi hàm này.
-          redirectTo: `${window.location.origin}/auth/callback`,
-          // Without this, Google silently reuses whichever account is
-          // already active in the browser session instead of showing the
-          // account chooser - a problem on shared/multi-account devices
-          // where that's rarely the account the person meant to use.
-          queryParams: { prompt: "select_account" },
-        },
-      });
-
-      if (error) {
-        setError(translateAuthError(error.message, t));
-        setLoading(false);
-      }
-    } catch {
-      setError(t.login.genericError);
-      setLoading(false);
-    }
+    // Đặt TRƯỚC khi điều hướng đi: trang rời đi ngay sau dòng này, nên bất kỳ
+    // dòng nào sau nó đều có thể không kịp chạy. Route callback đọc lại cookie
+    // này - xem app/api/auth/google/callback/route.ts.
+    rememberOAuthNext(nextPath);
+    window.location.href = "/api/auth/google/start";
   }
 
   return (
@@ -364,7 +275,7 @@ function LoginForm() {
         <div className="shrink-0 mb-2">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-muted hover:text-ink"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             {t.login.backHome}
@@ -393,17 +304,17 @@ function LoginForm() {
                 <span className="shrink-0 font-black tabular-nums leading-none text-[1.75rem] text-stone-300 dark:text-stone-700">
                   01
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-400 sm:text-[11px]">
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent-strong sm:text-[11px]">
                   {t.login.freeForever}
                 </span>
               </div>
 
               <div className="mt-3 h-px w-full bg-stone-300/70 dark:bg-stone-700/70" />
 
-              <h1 className="mt-3.5 text-[1.9rem] xl:text-[2.25rem] font-black tracking-tight text-stone-950 dark:text-stone-50 leading-[1.08] text-balance">
+              <h1 className="mt-3.5 text-[1.9rem] xl:text-[2.25rem] font-black tracking-tight text-ink-max leading-[1.08] text-balance">
                 {t.login.heroTitle}
               </h1>
-              <p className="mt-2.5 max-w-lg text-[13px] leading-6 text-stone-600 dark:text-stone-400">
+              <p className="mt-2.5 max-w-lg text-[13px] leading-6 text-ink-soft">
                 {t.login.heroBody}
               </p>
 
@@ -422,8 +333,8 @@ function LoginForm() {
                 ].map((perk, i) => (
                   <div key={perk.t} className={i === 0 ? "pr-4" : i === 2 ? "pl-4" : "px-4"}>
                     <span aria-hidden="true" className="block h-1 w-5 bg-emerald-600 dark:bg-emerald-500" />
-                    <dt className="mt-1.5 text-[13px] font-black text-stone-900 dark:text-stone-100">{perk.t}</dt>
-                    <dd className="mt-0.5 text-[12px] leading-5 text-stone-600 dark:text-stone-400">{perk.b}</dd>
+                    <dt className="mt-1.5 text-[13px] font-black text-ink">{perk.t}</dt>
+                    <dd className="mt-0.5 text-[12px] leading-5 text-ink-soft">{perk.b}</dd>
                   </div>
                 ))}
               </dl>
@@ -432,10 +343,10 @@ function LoginForm() {
                   thay vì một thẻ bo tròn có đổ bóng. */}
               <div className="mt-5">
                 <div className="flex items-baseline justify-between gap-4">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-ink-muted">
                     {t.login.trackPickTitle}
                   </span>
-                  <span className="text-[11px] text-stone-500 dark:text-stone-400">{t.login.trackPickBody}</span>
+                  <span className="text-[11px] text-ink-muted">{t.login.trackPickBody}</span>
                 </div>
                 <div className="mt-2 h-px w-full bg-stone-300/70 dark:bg-stone-700/70" />
                 <div className="mt-2.5">
@@ -448,7 +359,7 @@ function LoginForm() {
           <div className="w-full max-w-md lg:max-w-none mx-auto">
             <div className="flex items-center gap-2 mb-3 lg:hidden">
               <Logo size={24} />
-              <span className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
+              <span className="text-xs font-bold text-ink-muted uppercase tracking-widest">
                 {t.login.brand}
               </span>
             </div>
@@ -461,11 +372,11 @@ function LoginForm() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: "easeOut" }}
-              className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl shadow-sm overflow-hidden"
+              className="bg-white dark:bg-stone-900 border border-line rounded-2xl shadow-sm overflow-hidden"
             >
               <div className="p-5 sm:p-6 xl:p-7 space-y-3.5 font-sans">
                 <div className="lg:hidden border-l-2 border-emerald-600 dark:border-emerald-500 pl-3">
-                  <p className="text-[13px] font-bold text-stone-900 dark:text-stone-100">
+                  <p className="text-[13px] font-bold text-ink">
                     {format(t.login.lessonCountLine, { count: lessonCountFloor })}
                   </p>
                 </div>
@@ -475,15 +386,15 @@ function LoginForm() {
                     <span className="shrink-0 font-black tabular-nums leading-none text-[1.4rem] text-stone-300 dark:text-stone-700">
                       02
                     </span>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-400">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent-strong">
                       {t.login.brand}
                     </span>
                   </div>
-                  <div className="mt-2.5 mb-3 h-px w-full bg-stone-200 dark:bg-stone-800" />
-                  <h1 className="text-[1.6rem] font-black leading-[1.15] tracking-tight text-stone-950 dark:text-stone-50 mb-1.5">
+                  <div className="mt-2.5 mb-3 h-px w-full bg-surface-sunken" />
+                  <h1 className="text-[1.6rem] font-black leading-[1.15] tracking-tight text-ink-max mb-1.5">
                     {mode === "login" ? t.login.modeLogin : mode === "signup" ? t.login.modeSignup : t.login.modeForgot}
                   </h1>
-                  <p className="text-[13px] leading-6 text-stone-600 dark:text-stone-400">
+                  <p className="text-[13px] leading-6 text-ink-soft">
                     {mode === "login"
                       ? t.login.subLogin
                       : mode === "signup"
@@ -497,7 +408,7 @@ function LoginForm() {
                     <button
                       onClick={handleGoogleLogin}
                       disabled={loading}
-                      className="button-premium w-full border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-950/40 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 py-2.5 rounded-lg font-bold text-[13px] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/30 cursor-pointer"
+                      className="button-premium w-full border border-line-strong bg-white dark:bg-stone-950/40 hover:bg-surface text-ink py-2.5 rounded-lg font-bold text-[13px] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/30 cursor-pointer"
                     >
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -509,18 +420,18 @@ function LoginForm() {
                     </button>
 
                     <div className="relative flex items-center">
-                      <div className="flex-1 border-t border-stone-100 dark:border-stone-800" />
-                      <span className="px-3 text-[10px] text-stone-500 dark:text-stone-400 font-extrabold uppercase tracking-wider">
+                      <div className="flex-1 border-t border-line-soft" />
+                      <span className="px-3 text-[10px] text-ink-muted font-extrabold uppercase tracking-wider">
                         {t.login.orEmail}
                       </span>
-                      <div className="flex-1 border-t border-stone-100 dark:border-stone-800" />
+                      <div className="flex-1 border-t border-line-soft" />
                     </div>
                   </>
                 )}
 
                 {mode === "forgot" ? (
                   resetSent ? (
-                    <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400 text-[13px] font-semibold rounded-lg px-3.5 py-3 text-center">
+                    <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-accent-line text-accent-ink text-[13px] font-semibold rounded-lg px-3.5 py-3 text-center">
                       {t.login.resetSentPart1}
                       <strong>{email}</strong>
                       {t.login.resetSentPart2}
@@ -536,7 +447,7 @@ function LoginForm() {
                             đọc được. Nó cũng đặt cứng `border-radius: 18px`, ghi
                             đè luôn bo góc của trang này. Viết thẳng bằng Tailwind
                             thì cả hai vấn đề biến mất và không đụng globals.css. */}
-                        <label className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-[0.18em] block">
+                        <label className="text-[10px] font-bold text-ink-muted uppercase tracking-[0.18em] block">
                           {t.login.emailLabel}
                         </label>
                         <input
@@ -549,7 +460,7 @@ function LoginForm() {
                       </div>
 
                       {error && (
-                        <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-[13px] font-semibold rounded-lg px-3 py-2">
+                        <div className="bg-red-50 dark:bg-red-950/50 border border-danger-line text-danger text-[13px] font-semibold rounded-lg px-3 py-2">
                           {error}
                         </div>
                       )}
@@ -567,7 +478,7 @@ function LoginForm() {
                   <form onSubmit={handleSubmit} className="space-y-2.5">
                     {mode === "signup" && (
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-[0.18em] block">
+                        <label className="text-[10px] font-bold text-ink-muted uppercase tracking-[0.18em] block">
                           {t.login.nameLabel}
                         </label>
                         <input
@@ -581,7 +492,7 @@ function LoginForm() {
                     )}
 
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-[0.18em] block">
+                      <label className="text-[10px] font-bold text-ink-muted uppercase tracking-[0.18em] block">
                         {t.login.emailLabel}
                       </label>
                       <input
@@ -595,7 +506,7 @@ function LoginForm() {
 
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <label className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-[0.18em] block">
+                        <label className="text-[10px] font-bold text-ink-muted uppercase tracking-[0.18em] block">
                           {t.login.passwordLabel}
                         </label>
                         {mode === "login" && (
@@ -606,7 +517,7 @@ function LoginForm() {
                               setError("");
                               setResetSent(false);
                             }}
-                            className="text-[11px] font-bold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:underline"
+                            className="text-[11px] font-bold text-ink-muted hover:text-ink hover:underline"
                           >
                             {t.login.forgotLink}
                           </button>
@@ -622,31 +533,13 @@ function LoginForm() {
                     </div>
 
                     {error && (
-                      <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-[13px] font-semibold rounded-lg px-3 py-2">
+                      <div className="bg-red-50 dark:bg-red-950/50 border border-danger-line text-danger text-[13px] font-semibold rounded-lg px-3 py-2">
                         <p>{error}</p>
                       </div>
                     )}
 
-                    {needsEmailConfirm && (
-                      <div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-300 text-[13px] font-semibold rounded-lg px-3 py-2.5 space-y-2">
-                        <p>{t.login.emailNotConfirmed}</p>
-                        {confirmResent ? (
-                          <p className="font-bold">{t.login.confirmResent}</p>
-                        ) : (
-                          <button
-                            type="button"
-                            onClick={handleResendConfirmation}
-                            disabled={loading}
-                            className="underline font-black disabled:opacity-60 cursor-pointer"
-                          >
-                            {t.login.resendConfirm}
-                          </button>
-                        )}
-                      </div>
-                    )}
-
                     {cooldownUntil && (
-                      <div className="bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-400 text-[13px] font-semibold rounded-lg px-3 py-2">
+                      <div className="bg-amber-50 dark:bg-amber-950/50 border border-warn-line text-warn-ink text-[13px] font-semibold rounded-lg px-3 py-2">
                         {format(t.login.tooManyAttempts, { seconds: cooldownLeft })}
                       </div>
                     )}
@@ -671,15 +564,15 @@ function LoginForm() {
                     { k: t.login.statSupport, v: t.login.statSupportValue },
                   ].map((stat, i) => (
                     <div key={stat.k} className={i === 0 ? "pr-3" : i === 2 ? "pl-3" : "px-3"}>
-                      <dd className="text-[13px] font-black tabular-nums text-stone-900 dark:text-stone-100">{stat.v}</dd>
-                      <dt className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">
+                      <dd className="text-[13px] font-black tabular-nums text-ink">{stat.v}</dd>
+                      <dt className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-ink-muted">
                         {stat.k}
                       </dt>
                     </div>
                   ))}
                 </dl>
 
-                <div className="text-center text-xs text-stone-600 dark:text-stone-400">
+                <div className="text-center text-xs text-ink-soft">
                   {mode === "login" ? (
                     <>
                       {t.login.noAccount}{" "}
@@ -688,7 +581,7 @@ function LoginForm() {
                           setMode("signup");
                           setError("");
                         }}
-                        className="text-stone-900 dark:text-stone-100 font-bold hover:underline cursor-pointer"
+                        className="text-ink font-bold hover:underline cursor-pointer"
                       >
                         {t.login.signUp}
                       </button>
@@ -702,7 +595,7 @@ function LoginForm() {
                           setError("");
                           setResetSent(false);
                         }}
-                        className="text-stone-900 dark:text-stone-100 font-bold hover:underline cursor-pointer"
+                        className="text-ink font-bold hover:underline cursor-pointer"
                       >
                         {t.login.modeLogin}
                       </button>
@@ -710,13 +603,13 @@ function LoginForm() {
                   )}
                 </div>
 
-                <p className="text-center text-[10px] text-stone-400 dark:text-stone-500 pt-1">
+                <p className="text-center text-[10px] text-ink-faint pt-1">
                   {t.login.termsPart1}{" "}
-                  <Link href="/dieu-khoan" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
+                  <Link href="/dieu-khoan" className="underline underline-offset-2 hover:text-ink-soft">
                     {t.login.terms}
                   </Link>{" "}
                   {t.login.termsAnd}{" "}
-                  <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2 hover:text-stone-600 dark:hover:text-stone-400">
+                  <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2 hover:text-ink-soft">
                     {t.login.privacy}
                   </Link>
                   .

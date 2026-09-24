@@ -58,6 +58,8 @@ export const miscDataVi = {
     rateLimit: "Bạn đã thử quá nhiều lần. Vui lòng đợi một chút rồi thử lại.",
     network: "Không thể kết nối. Vui lòng kiểm tra mạng và thử lại.",
     generic: "Có lỗi xảy ra. Vui lòng thử lại.",
+    accountDisabled: "Tài khoản này đã bị khoá.",
+    resetInvalid: "Liên kết đã hết hạn hoặc đã dùng rồi. Hãy yêu cầu một liên kết mới.",
   },
   worryThemes: {
     "so-sanh": "So với người khác",
@@ -85,6 +87,8 @@ export const miscDataEn: typeof miscDataVi = {
     rateLimit: "Too many attempts. Please wait a moment and try again.",
     network: "Couldn't connect. Please check your network and try again.",
     generic: "Something went wrong. Please try again.",
+    accountDisabled: "This account has been suspended.",
+    resetInvalid: "That link has expired or was already used. Request a new one.",
   },
   worryThemes: {
     "so-sanh": "Comparing myself to others",

@@ -46,6 +46,10 @@ export async function buildAuthUrl(redirectUri: string) {
   u.searchParams.set("state", state);
   u.searchParams.set("code_challenge", challenge);
   u.searchParams.set("code_challenge_method", "S256");
+  // Không thì Google tự dùng lại tài khoản đang mở sẵn trong trình duyệt thay
+  // vì hiện bộ chọn - vấn đề trên thiết bị dùng chung/nhiều tài khoản, nơi đó
+  // hiếm khi là tài khoản người dùng thật sự định chọn.
+  u.searchParams.set("prompt", "select_account");
   return { url: u.toString(), state, verifier };
 }
 

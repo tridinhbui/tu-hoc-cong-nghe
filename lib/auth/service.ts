@@ -56,7 +56,8 @@ export interface AuthUser {
 export async function signUp(
   db: D1Like,
   email: string,
-  password: string
+  password: string,
+  fullName?: string
 ): Promise<{ user: AuthUser; token: string; expiresAt: string }> {
   const e = email.trim().toLowerCase();
   if (!e.includes("@")) throw new AuthError("Email không hợp lệ.", "email_invalid");
@@ -79,7 +80,7 @@ export async function signUp(
     }
     throw err;
   }
-  await run(db, `INSERT INTO user_profiles (id, email) VALUES (?, ?)`, id, e);
+  await run(db, `INSERT INTO user_profiles (id, email, full_name) VALUES (?, ?, ?)`, id, e, fullName?.trim() || null);
 
   const s = await createSession(db, id);
   return { user: { id, email: e }, ...s };
