@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getCurrentUser } from "@/lib/auth/current-user";
 
 /**
  * Cổng xác thực phía máy chủ cho một nhánh route.
@@ -23,14 +23,9 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
  * PUBLIC_PREFIXES trong proxy.ts cũ.
  */
 export async function requireUser() {
-  const supabase = await createServerSupabaseClient();
-
-  // getUser() chứ không phải getSession(): getSession() chỉ đọc cookie và tin
-  // những gì đọc được, nên một cookie bịa ra cũng qua được. getUser() hỏi
-  // Supabase để xác thực chữ ký. Ở một cổng thì phải là getUser().
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // getCurrentUser() xác thực token phiên qua D1 (lib/auth/session.ts), không
+  // chỉ đọc cookie và tin những gì đọc được.
+  const user = await getCurrentUser();
 
   if (!user) redirect("/login");
   return user;
@@ -41,10 +36,7 @@ export async function requireUser() {
  * chỗ. Proxy cũ gắn `?next=<pathname>` vào /login và trang đăng nhập đọc nó.
  */
 export async function requireUserReturningTo(pathname: string) {
-  const supabase = await createServerSupabaseClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getCurrentUser();
 
   if (!user) {
     const next = encodeURIComponent(pathname);

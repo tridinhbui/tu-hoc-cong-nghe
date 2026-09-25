@@ -1,8 +1,16 @@
 import "server-only";
-import type { SupabaseClient } from "@supabase/supabase-js";
-import { getCompletedLessons } from "./supabase-progress";
+import { getDb } from "./d1/server";
 import { getLessonsMeta } from "./lessons-loader";
 import { isLessonIdInTrack, orderLessonsForTrack } from "./track-stages";
+
+async function getCompletedLessonIds(userId: string): Promise<number[]> {
+  const db = getDb();
+  const { results } = await db
+    .prepare(`select lesson_id from user_progress where user_id = ? and completed = 1`)
+    .bind(userId)
+    .all<{ lesson_id: number }>();
+  return (results ?? []).map((row) => row.lesson_id);
+}
 
 // Reads the full lesson dataset via getLessonsMeta() - must only ever be
 // called from server-side code (a Server Action, e.g. app/dashboard/actions.ts,
@@ -22,8 +30,8 @@ function isInTrack(lesson: { id: number; track?: "professional" | "personal" | "
  * Get the next lesson to continue learning
  * Returns the first incomplete lesson in the curriculum
  */
-export async function getResumeLesson(userId: string, track: "personal" | "professional", client?: SupabaseClient) {
-  const completedLessons = await getCompletedLessons(userId, client);
+export async function getResumeLesson(userId: string, track: "personal" | "professional") {
+  const completedLessons = await getCompletedLessonIds(userId);
   const allLessons = await getLessonsMeta();
 
   // Follow the actual curriculum order shown on the dashboard instead of raw
@@ -40,8 +48,8 @@ export async function getResumeLesson(userId: string, track: "personal" | "profe
 /**
  * Get the last completed lesson for resume context
  */
-export async function getLastCompletedLesson(userId: string, track: "personal" | "professional", client?: SupabaseClient) {
-  const completedLessons = await getCompletedLessons(userId, client);
+export async function getLastCompletedLesson(userId: string, track: "personal" | "professional") {
+  const completedLessons = await getCompletedLessonIds(userId);
   const allLessons = await getLessonsMeta();
 
   const trackLessons = orderLessonsForTrack(allLessons.filter((l) => isInTrack(l, track)), track);

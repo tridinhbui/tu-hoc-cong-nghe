@@ -1,29 +1,24 @@
-import { redirect } from "next/navigation";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import { getLessonOverrides } from "@/lib/lesson-overrides";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
 import DashboardClient from "@/components/DashboardClient";
 
-// Auth-gated and reads Supabase env vars at render time - never prerender statically.
+// Auth-gated and reads D1 at render time - never prerender statically.
 export const dynamic = "force-dynamic";
 
 // Server Component: uses dynamic import to load lesson metadata only,
 // preventing the entire 1.2MB lessons.ts from being bundled with the dashboard.
 export default async function Dashboard() {
-  const supabase = await createServerSupabaseClient();
-
-  // Don't check auth on the server side - getUser() and getSession() can both return
-  // null immediately after OAuth callback (race condition with cookie settling).
-  // Let DashboardClient handle auth state on the client side using INITIAL_SESSION,
-  // which properly waits for the browser to fully parse auth cookies from OAuth flow.
-  // This prevents the "redirect to login then back to dashboard" flashing bug.
+  // Don't check auth on the server side here - let DashboardClient handle auth
+  // state on the client side, which properly waits for the browser to settle
+  // auth cookies after the OAuth flow. This prevents the "redirect to login
+  // then back to dashboard" flashing bug.
 
   const [lessonsMeta, overrides] = await Promise.all([
     getLessonsMeta(),
     getLessonOverrides(),
   ]);
 
-  // Merge admin-controlled lock/visibility flags (from the `lessons` Supabase
+  // Merge admin-controlled lock/visibility flags (from the `lessons` D1
   // table) onto the static lesson metadata. Falls back to the static
   // defaults (isFundamental from lib/lessons.ts, no prerequisite override,
   // always visible) when a lesson has no override row yet.

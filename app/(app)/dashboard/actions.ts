@@ -1,8 +1,7 @@
 "use server";
 
 import { getResumeLesson } from "@/lib/resume-learning";
-import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-progress";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getDb } from "@/lib/d1/server";
 import { getLessonsMeta, getLessonById } from "@/lib/lessons-loader";
 import { isLessonIdInTrack, isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { stageTopicFor, TOPIC_ADVICE, type StageTopicId, type TopicAdviceId } from "@/lib/stage-topics";
@@ -79,6 +78,24 @@ function getStageReviewInsight(
   return null;
 }
 
+async function getCompletedLessonIds(userId: string): Promise<number[]> {
+  const db = getDb();
+  const { results } = await db
+    .prepare(`select lesson_id from user_progress where user_id = ? and completed = 1`)
+    .bind(userId)
+    .all<{ lesson_id: number }>();
+  return (results ?? []).map((row) => row.lesson_id);
+}
+
+async function getTotalTimeSpentMinutes(userId: string): Promise<number> {
+  const db = getDb();
+  const row = await db
+    .prepare(`select coalesce(sum(time_spent_seconds), 0) as total from user_progress where user_id = ?`)
+    .bind(userId)
+    .first<{ total: number }>();
+  return Math.round((row?.total ?? 0) / 60);
+}
+
 // Wraps lib/resume-learning.ts as a Server Action. That module reads the
 // full lesson dataset (lib/lessons.ts, ~1.3MB of lesson content) via
 // getLessonsMeta() - it must run server-side. Before this,
@@ -88,18 +105,8 @@ function getStageReviewInsight(
 // separate ~1.3MB chunk containing every lesson's content, shipped on every
 // /dashboard load). A Server Action keeps that data server-only and returns
 // only the small resolved lesson object to the client.
-//
-// Every Supabase call in this file must use createServerSupabaseClient()
-// (reads the session from request cookies), never the plain createClient()
-// from lib/supabase.ts. That one builds a browser client with no cookie jar
-// - calling it here queried as an anonymous user, so RLS silently returned
-// zero rows no matter how much progress the account actually had. That's
-// what caused the dashboard to say "you haven't completed any lesson" for
-// users who genuinely had (reported: completed lessons, but going back to
-// the dashboard showed no progress and no way to tell where to continue).
 export async function getResumeLessonAction(userId: string, track: "personal" | "professional") {
-  const supabase = await createServerSupabaseClient();
-  return getResumeLesson(userId, track, supabase);
+  return getResumeLesson(userId, track);
 }
 
 // Feeds the Tài Tài greeting card on the dashboard: the next lesson to
@@ -107,26 +114,28 @@ export async function getResumeLessonAction(userId: string, track: "personal" | 
 // lesson has been completed at all) for the greeting text to actually
 // reflect the learner's real progress instead of being a generic label.
 export async function getDashboardGreetingAction(userId: string, track: "personal" | "professional") {
-  const supabase = await createServerSupabaseClient();
-  const [nextLesson, completedLessons, totalMinutes, profile, allLessons, mistakeRows] = await Promise.all([
-    getResumeLesson(userId, track, supabase),
-    getCompletedLessons(userId, supabase),
-    getTotalTimeSpentMinutes(userId, supabase),
-    supabase.from("user_profiles").select("full_name, email").eq("id", userId).single(),
+  const db = getDb();
+  const [nextLesson, completedLessons, totalMinutes, profileRow, allLessons, mistakeRows] = await Promise.all([
+    getResumeLesson(userId, track),
+    getCompletedLessonIds(userId),
+    getTotalTimeSpentMinutes(userId),
+    db.prepare(`select full_name, email from user_profiles where id = ?`).bind(userId).first<{ full_name: string | null; email: string | null }>(),
     getLessonsMeta(),
-    supabase
-      .from("quiz_mistakes")
-      .select("lesson_id, question_index, wrong_count, last_attempt_at")
-      .eq("user_id", userId)
-      .eq("resolved", false)
-      .order("wrong_count", { ascending: false })
-      .order("last_attempt_at", { ascending: false })
-      .limit(30),
+    db
+      .prepare(
+        `select lesson_id, question_index, wrong_count, last_attempt_at
+           from quiz_mistakes
+          where user_id = ? and coalesce(resolved, 0) = 0
+          order by wrong_count desc, last_attempt_at desc
+          limit 30`
+      )
+      .bind(userId)
+      .all<{ lesson_id: number; question_index: number; wrong_count: number; last_attempt_at: string }>(),
   ]);
 
   const firstName =
-    profile.data?.full_name?.trim().split(/\s+/).pop() || // Vietnamese names: given name is last
-    profile.data?.email?.split("@")[0] ||
+    profileRow?.full_name?.trim().split(/\s+/).pop() || // Vietnamese names: given name is last
+    profileRow?.email?.split("@")[0] ||
     null;
 
   // Track-scoped completion, for the "Chặng X · Y% track" progress bar on
@@ -144,16 +153,14 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
   let nextLessonCriteria: { readPercent: number; quizTotal: number } | null = null;
   if (nextLesson) {
     const [readingRow, fullLesson] = await Promise.all([
-      supabase
-        .from("reading_progress")
-        .select("max_percent_reached")
-        .eq("user_id", userId)
-        .eq("lesson_id", nextLesson.id)
-        .maybeSingle(),
+      db
+        .prepare(`select max_percent_reached from reading_progress where user_id = ? and lesson_id = ?`)
+        .bind(userId, nextLesson.id)
+        .first<{ max_percent_reached: number | null }>(),
       getLessonById(nextLesson.id),
     ]);
     nextLessonCriteria = {
-      readPercent: Math.round(readingRow.data?.max_percent_reached ?? 0),
+      readPercent: Math.round(readingRow?.max_percent_reached ?? 0),
       quizTotal: fullLesson?.quiz?.length ?? 0,
     };
   }
@@ -175,7 +182,7 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
   const topicCounts = new Map<StageTopicId, number>();
   let criticalMistake: CriticalMistakeInsight | null = null;
 
-  for (const row of mistakeRows.data ?? []) {
+  for (const row of mistakeRows.results ?? []) {
     const lesson = visibleTrackLessons.find((item) => item.id === row.lesson_id);
     if (!lesson) continue;
     const topicId = stageTopicFor(lesson.id, track);
