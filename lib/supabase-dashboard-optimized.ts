@@ -1,5 +1,3 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
 import type { UserProfile, UserStats } from "./supabase-user";
 import type { MilestoneCompletion } from "./supabase-milestones";
 import type { LessonManualFlag } from "./supabase-lesson-flags";
@@ -21,31 +19,23 @@ export interface LessonState {
 }
 
 /**
- * Fetch dashboard summary details in a single grouped secure query.
- * Restricts user internally via auth.uid() in PostgreSQL.
+ * Fetch dashboard summary details in a single grouped call.
+ * Server route (app/api/dashboard-summary) restricts the user via the
+ * session cookie - the client never picks who it's asking for.
  */
 export async function getDashboardSummary(): Promise<DashboardSummary> {
-  const supabase = createClient();
-  const { data, error } = await supabase.rpc("get_dashboard_summary");
-
-  if (error) {
-    throw handleSupabaseError(error);
-  }
-
-  return data as DashboardSummary;
+  const res = await fetch("/api/dashboard-summary");
+  if (!res.ok) throw new Error(`get_dashboard_summary failed: ${res.status}`);
+  return (await res.json()) as DashboardSummary;
 }
 
 /**
- * Fetch lesson progress and state in a single grouped secure query.
- * Restricts user internally via auth.uid() in PostgreSQL.
+ * Fetch lesson progress and state in a single grouped call.
+ * Server route (app/api/lesson-state) restricts the user via the session
+ * cookie - the client never picks who it's asking for.
  */
 export async function getLessonState(): Promise<LessonState> {
-  const supabase = createClient();
-  const { data, error } = await supabase.rpc("get_lesson_state");
-
-  if (error) {
-    throw handleSupabaseError(error);
-  }
-
-  return data as LessonState;
+  const res = await fetch("/api/lesson-state");
+  if (!res.ok) throw new Error(`get_lesson_state failed: ${res.status}`);
+  return (await res.json()) as LessonState;
 }

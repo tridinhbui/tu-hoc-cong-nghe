@@ -1,5 +1,5 @@
 import "server-only";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getDb } from "@/lib/d1/server";
 
 export interface LessonOverride {
   id: number;
@@ -9,34 +9,44 @@ export interface LessonOverride {
 }
 
 /**
- * Reads the admin-controlled lock/visibility flags for every lesson from
- * Supabase. Uses the regular (RLS-respecting) server client since `lessons`
- * has a public SELECT policy - no need for the service-role client here.
- * Falls back to an empty map (nothing overridden) if the table hasn't been
- * synced yet, so the dashboard degrades to "no overrides" rather than
+ * Reads the admin-controlled lock/visibility flags for every lesson from D1
+ * (`lessons` table). Falls back to an empty map (nothing overridden) if the
+ * query fails, so the dashboard degrades to "no overrides" rather than
  * breaking.
  */
 export async function getLessonOverrides(): Promise<Map<number, LessonOverride>> {
-  const supabase = await createServerSupabaseClient();
-  const { data, error } = await supabase
-    .from("lessons")
-    .select("id, is_fundamental, prerequisite_id, is_visible");
+  try {
+    const db = getDb();
+    const { results } = await db
+      .prepare(`select id, is_fundamental, prerequisite_id, is_visible from lessons`)
+      .all<{ id: number; is_fundamental: number; prerequisite_id: number | null; is_visible: number }>();
 
-  if (error || !data) {
+    return new Map(
+      (results ?? []).map((row) => [
+        row.id,
+        {
+          id: row.id,
+          is_fundamental: Boolean(row.is_fundamental),
+          prerequisite_id: row.prerequisite_id,
+          is_visible: Boolean(row.is_visible),
+        },
+      ])
+    );
+  } catch {
     return new Map();
   }
-
-  return new Map(data.map((row) => [row.id, row as LessonOverride]));
 }
 
 /** Lesson ids a specific user has been granted early access to via admin approval. */
 export async function getUserLessonUnlocks(userId: string): Promise<Set<number>> {
-  const supabase = await createServerSupabaseClient();
-  const { data, error } = await supabase
-    .from("user_lesson_unlocks")
-    .select("lesson_id")
-    .eq("user_id", userId);
-
-  if (error || !data) return new Set();
-  return new Set(data.map((row) => row.lesson_id));
+  try {
+    const db = getDb();
+    const { results } = await db
+      .prepare(`select lesson_id from user_lesson_unlocks where user_id = ?`)
+      .bind(userId)
+      .all<{ lesson_id: number }>();
+    return new Set((results ?? []).map((row) => row.lesson_id));
+  } catch {
+    return new Set();
+  }
 }
