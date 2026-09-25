@@ -26,7 +26,21 @@ export async function GET(req: Request) {
   // Đọc TRƯỚC khi xoá, dùng cả trên nhánh lỗi lẫn nhánh thành công - đúng cách
   // app/auth/callback/route.ts (bản Supabase cũ) từng làm, để một lần OAuth
   // lỗi giữa chừng không làm mất đích đến khi người dùng thử lại.
-  const next = safeNextPath(jar.get(OAUTH_NEXT_COOKIE)?.value ? decodeURIComponent(jar.get(OAUTH_NEXT_COOKIE)!.value) : null);
+  //
+  // decodeURIComponent ném URIError trên một chuỗi phần trăm không hợp lệ -
+  // cookie cũ từ một phiên bản khác, hoặc bị cắt bớt - và dòng này chạy trước
+  // try/catch bên dưới, nên trước đây một cookie hỏng làm cả route trả 500
+  // thô thay vì redirect về /login?error=... như mọi nhánh lỗi khác.
+  const rawNext = jar.get(OAUTH_NEXT_COOKIE)?.value;
+  let decodedNext: string | null = null;
+  if (rawNext) {
+    try {
+      decodedNext = decodeURIComponent(rawNext);
+    } catch {
+      decodedNext = null;
+    }
+  }
+  const next = safeNextPath(decodedNext);
   jar.delete(GOOGLE_STATE_COOKIE);
   jar.delete(GOOGLE_VERIFIER_COOKIE);
 
