@@ -18,6 +18,21 @@ function loi(req: Request, code: string, next: string) {
 }
 
 export async function GET(req: Request) {
+  try {
+    return await handle(req);
+  } catch (err) {
+    // DEBUG TẠM THỜI: trả lỗi thẳng ra response vì log Cloudflare liên tục
+    // cắt mất dòng đầu (tên lỗi) của exception này. Gỡ khối try/catch này
+    // sau khi tìm ra nguyên nhân thật.
+    const e = err as Error;
+    return Response.json(
+      { debugError: e?.message, debugName: e?.name, debugStack: e?.stack },
+      { status: 500 }
+    );
+  }
+}
+
+async function handle(req: Request) {
   const url = new URL(req.url);
   const jar = await cookies();
 
