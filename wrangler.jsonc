@@ -25,7 +25,13 @@
 	"r2_buckets": [{ "binding": "FILES", "bucket_name": "thcn-files" }],
 	// "kv_namespaces":[{ "binding": "SESSIONS", "id": "<điền sau>" }],
 	"vars": {
-		"NEXT_PUBLIC_SITE_URL": "https://tuhoccongnghe.vn"
+		"NEXT_PUBLIC_SITE_URL": "https://tuhoccongnghe.vn",
+		// Client ID OAuth của Google không phải bí mật - nó lộ công khai trong
+		// chính URL điều hướng sang accounts.google.com. Khai ở đây để không bị
+		// `wrangler deploy` xoá mất, khác với vars thêm qua dashboard (bị reset
+		// về đúng nội dung file này ở mỗi lần deploy). GOOGLE_CLIENT_SECRET vẫn
+		// phải là secret qua `wrangler secret put`, không đưa vào đây.
+		"GOOGLE_CLIENT_ID": "547056401603-e08mrddducarimdgkah9eijo5vb1nnua.apps.googleusercontent.com"
 	},
 	"d1_databases": [
 		{
