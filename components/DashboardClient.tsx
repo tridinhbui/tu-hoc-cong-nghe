@@ -15,7 +15,7 @@ import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { getCompletedLessons } from "@/lib/supabase-progress";
 import type { Difficulty } from "@/lib/lesson-types";
 import { createClient } from "@/lib/supabase";
-import type { Session } from "@supabase/supabase-js";
+import { getCurrentUser } from "@/lib/current-user";
 import UserStats from "@/components/UserStats";
 import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
 import FloatingStudyGroupChat from "@/components/FloatingStudyGroupChat";
@@ -322,7 +322,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  const [user, setUser] = useState<{ id?: string; email?: string; user_metadata?: { full_name?: string } } | null>(null);
+  const [user, setUser] = useState<{ id?: string; email?: string; fullName?: string | null } | null>(null);
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(0);
   const [avgQuizScore, setAvgQuizScore] = useState(0);
@@ -715,57 +715,34 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     setAvgQuizScore(75);
   }, [activeTrack]);
 
-  // Check auth on mount
+  // Check auth on mount.
+  //
+  // This used to wait on supabase.auth.onAuthStateChange()/getSession(), but
+  // auth moved to a D1-backed session cookie (lib/auth/session.ts) - the
+  // browser Supabase client has no real session to ever report, so that
+  // check always timed out to "no session" and redirected to /login, which
+  // then immediately bounced back once ITS OWN check (lib/current-user.ts's
+  // getCurrentUser(), hitting /api/auth/me) found the real session. That
+  // login->dashboard->login loop is what showed up as the page flashing and
+  // kicking back out right after loading. getCurrentUser() is the one source
+  // of truth for "who is logged in" now - every other client component uses
+  // it already (see lib/current-user.ts).
   useEffect(() => {
     const checkAuth = async () => {
-      // Resolve via the INITIAL_SESSION event instead of calling
-      // getSession() directly. A freshly-created browser client (e.g. right
-      // after redirecting here from /login or the OAuth callback) can have
-      // getSession() report a false "no session" before it's finished
-      // parsing the just-set auth cookie - a fixed timeout race (the
-      // previous fix here) still lost that race often enough in production
-      // to redirect to /login, which then bounced straight back once ITS
-      // own check resolved a moment later. supabase-js guarantees
-      // INITIAL_SESSION fires exactly once with the fully-resolved session
-      // (or null), so waiting for that event is what actually removes the
-      // race instead of just narrowing it.
-      const session = await new Promise<Session | null>((resolve) => {
-        let settled = false;
-        const {
-          data: { subscription },
-        } = supabase.auth.onAuthStateChange((event, s) => {
-          if (settled) return;
-          if (event === "INITIAL_SESSION" || event === "SIGNED_IN") {
-            settled = true;
-            subscription.unsubscribe();
-            resolve(s);
-          }
-        });
-        // Safety net in case INITIAL_SESSION never fires (e.g. storage
-        // access blocked) - fall back to a direct check rather than hanging.
-        setTimeout(async () => {
-          if (settled) return;
-          settled = true;
-          subscription.unsubscribe();
-          const {
-            data: { session: fallback },
-          } = await supabase.auth.getSession();
-          resolve(fallback);
-        }, 3000);
-      });
+      const current = await getCurrentUser();
 
-      if (!session) {
+      if (!current) {
         router.replace("/login");
         return;
       }
 
-      setUser(session.user);
-      await syncProgressAndXP(session.user.id);
+      setUser(current);
+      await syncProgressAndXP(current.id);
       setLoading(false);
     };
 
     checkAuth();
-  }, [router, supabase.auth, syncProgressAndXP]);
+  }, [router, syncProgressAndXP]);
 
   // Listen for Visibility Change (Wake Up) and Online events to trigger sync
   useEffect(() => {
@@ -2569,7 +2546,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         <CertificateModal
           stageLabel={selectedCertStage.label}
           stageName={selectedCertStage.name}
-          userName={user?.user_metadata?.full_name || user?.email || t.dashboard.defaultUserName}
+          userName={user?.fullName || user?.email || t.dashboard.defaultUserName}
           userId={user.id}
           onClose={() => setSelectedCertStage(null)}
         />
