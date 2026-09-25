@@ -7,29 +7,23 @@ import { OAUTH_NEXT_COOKIE, clearOAuthNextCookie } from "@/lib/oauth-next-cookie
 import { safeNextPath } from "@/lib/safe-next-path";
 
 /** Về trang đăng nhập kèm mã lỗi, thay vì trả JSON: đây là một lượt điều
- *  hướng của trình duyệt, người dùng đang nhìn một trang chứ không đọc JSON. */
+ *  hướng của trình duyệt, người dùng đang nhìn một trang chứ không đọc JSON.
+ *
+ *  `Response.redirect()` trả về headers BẤT BIẾN theo đặc tả Fetch - gọi
+ *  `.headers.append()` lên nó ném "TypeError: Can't modify immutable
+ *  headers." trên Workers. Dùng `new Response(null, { headers })` để headers
+ *  còn sửa được, vì còn phải thêm Set-Cookie sau khi tạo response. */
 function loi(req: Request, code: string, next: string) {
   const u = new URL("/login", new URL(req.url).origin);
   u.searchParams.set("error", code);
   u.searchParams.set("next", next);
-  const res = Response.redirect(u.toString(), 302);
+  const res = new Response(null, { status: 302, headers: { Location: u.toString() } });
   res.headers.append("Set-Cookie", clearOAuthNextCookie());
   return res;
 }
 
 export async function GET(req: Request) {
-  try {
-    return await handle(req);
-  } catch (err) {
-    // DEBUG TẠM THỜI: trả lỗi thẳng ra response vì log Cloudflare liên tục
-    // cắt mất dòng đầu (tên lỗi) của exception này. Gỡ khối try/catch này
-    // sau khi tìm ra nguyên nhân thật.
-    const e = err as Error;
-    return Response.json(
-      { debugError: e?.message, debugName: e?.name, debugStack: e?.stack },
-      { status: 500 }
-    );
-  }
+  return handle(req);
 }
 
 async function handle(req: Request) {
@@ -74,7 +68,10 @@ async function handle(req: Request) {
     const id = await exchangeCode(code, verifier, redirectUri);
     const r = await signInWithIdentity(getDb(), "google", id.sub, id.email, id.emailVerified, { name: id.name, picture: id.picture });
     await setSessionCookie(r.token, r.expiresAt);
-    const done = Response.redirect(new URL(next, url.origin).toString(), 302);
+    const done = new Response(null, {
+      status: 302,
+      headers: { Location: new URL(next, url.origin).toString() },
+    });
     done.headers.append("Set-Cookie", clearOAuthNextCookie());
     return done;
   } catch (err) {
