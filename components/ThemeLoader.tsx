@@ -45,20 +45,20 @@ export default function ThemeLoader() {
       .theme-emerald { --accent: #059669; --accent-strong: #059669; }
 
       /* Gold theme overrides */
-      .theme-gold .bg-emerald-500 { background-color: #d97706 !important; }
-      .theme-gold .bg-emerald-600 { background-color: #b45309 !important; }
-      .theme-gold .text-emerald-500 { color: #d97706 !important; }
-      .theme-gold .text-emerald-600 { color: #b45309 !important; }
-      .theme-gold .border-emerald-500 { border-color: #d97706 !important; }
-      .theme-gold .border-emerald-600 { border-color: #b45309 !important; }
+      .theme-gold .bg-brand-500 { background-color: #d97706 !important; }
+      .theme-gold .bg-brand-600 { background-color: #b45309 !important; }
+      .theme-gold .text-brand-500 { color: #d97706 !important; }
+      .theme-gold .text-brand-600 { color: #b45309 !important; }
+      .theme-gold .border-brand-500 { border-color: #d97706 !important; }
+      .theme-gold .border-brand-600 { border-color: #b45309 !important; }
       
       /* Emerald theme overrides */
-      .theme-emerald .bg-emerald-500 { background-color: #10b981 !important; }
-      .theme-emerald .bg-emerald-600 { background-color: #059669 !important; }
-      .theme-emerald .text-emerald-500 { color: #10b981 !important; }
-      .theme-emerald .text-emerald-600 { color: #059669 !important; }
-      .theme-emerald .border-emerald-500 { border-color: #10b981 !important; }
-      .theme-emerald .border-emerald-600 { border-color: #059669 !important; }
+      .theme-emerald .bg-brand-500 { background-color: #10b981 !important; }
+      .theme-emerald .bg-brand-600 { background-color: #059669 !important; }
+      .theme-emerald .text-brand-500 { color: #10b981 !important; }
+      .theme-emerald .text-brand-600 { color: #059669 !important; }
+      .theme-emerald .border-brand-500 { border-color: #10b981 !important; }
+      .theme-emerald .border-brand-600 { border-color: #059669 !important; }
     `}} />
   );
 }
