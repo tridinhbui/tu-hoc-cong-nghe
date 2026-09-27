@@ -8,7 +8,7 @@ import { signQuestionToken, verifyQuestionToken } from "@/lib/quiz-tokens";
 // this would score every in-flight answer as wrong.
 
 beforeAll(() => {
-  process.env.SUPABASE_SERVICE_ROLE_KEY ??= "test-secret-for-quiz-token-signing";
+  process.env.CLOUDFLARE_SERVICE_ROLE_KEY ??= "test-secret-for-quiz-token-signing";
 });
 
 describe("question token with category", () => {

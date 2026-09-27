@@ -1,6 +1,6 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
-import { getUserBadges } from "@/lib/supabase-badges";
+import { createClient } from "@/lib/cloudflare";
+import { handleCloudflareError } from "@/lib/errors";
+import { getUserBadges } from "@/lib/cloudflare-badges";
 
 function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01";
@@ -33,10 +33,10 @@ const LESSON_MILESTONE_THRESHOLDS = [1, 10, 25, 50, 100, 150, 200, 250, 300];
  * getJourneyStats) rather than fabricated timeline entries.
  */
 export async function getMyJourney(userId: string): Promise<JourneyMilestone[]> {
-  const supabase = createClient();
+  const cloudflare = createClient();
   const milestones: JourneyMilestone[] = [];
 
-  const { data: profile } = await supabase
+  const { data: profile } = await cloudflare
     .from("user_profiles")
     .select("created_at")
     .eq("id", userId)
@@ -52,7 +52,7 @@ export async function getMyJourney(userId: string): Promise<JourneyMilestone[]> 
     });
   }
 
-  const { data: progressRows, error: progressError } = await supabase
+  const { data: progressRows, error: progressError } = await cloudflare
     .from("user_progress")
     .select("completed_at")
     .eq("user_id", userId)
@@ -61,7 +61,7 @@ export async function getMyJourney(userId: string): Promise<JourneyMilestone[]> 
     .order("completed_at", { ascending: true });
 
   if (progressError && !isMissingTableError(progressError)) {
-    throw handleSupabaseError(progressError);
+    throw handleCloudflareError(progressError);
   }
 
   const completedDates = (progressRows ?? []).map((r) => r.completed_at as string);
@@ -96,10 +96,10 @@ export async function getMyJourney(userId: string): Promise<JourneyMilestone[]> 
 }
 
 export async function getJourneyStats(userId: string): Promise<JourneyStats> {
-  const supabase = createClient();
+  const cloudflare = createClient();
   const [{ data: streak }, { count }] = await Promise.all([
-    supabase.from("user_streaks").select("current_streak, longest_streak").eq("user_id", userId).maybeSingle(),
-    supabase
+    cloudflare.from("user_streaks").select("current_streak, longest_streak").eq("user_id", userId).maybeSingle(),
+    cloudflare
       .from("user_progress")
       .select("*", { count: "exact", head: true })
       .eq("user_id", userId)

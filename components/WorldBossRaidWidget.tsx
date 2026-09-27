@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Swords, Flame, Trophy, ShieldAlert, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
-import { recalculateUserStats } from "@/lib/supabase-user";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
 import { DAMAGE_PER_CORRECT, bossHpPercent } from "@/lib/world-boss";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";

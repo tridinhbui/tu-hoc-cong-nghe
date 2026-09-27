@@ -17,7 +17,7 @@ Mọi con số dưới đây là **đo trực tiếp trên repo lúc viết**, k
 | 8 | Route HTTP cho auth (`/api/auth/*`) | 7 route, đã kiểm |
 | 9 | 3 bucket Storage → 1 bucket R2 (`thcn-files`) | `lib/r2/storage.ts`, 12 test |
 | 10 | 2 route upload chuyển từ trình duyệt sang máy chủ (avatar, chat-image) | bắt buộc vì R2 không có RLS |
-| 11 | 69 tệp nhị phân đã copy thật từ Supabase Storage sang R2 | `scripts/migrate-storage-to-r2.mjs`, chạy xong |
+| 11 | 69 tệp nhị phân đã copy thật từ Cloudflare Storage sang R2 | `scripts/migrate-storage-to-r2.mjs`, chạy xong |
 | 12 | Câu SQL cập nhật URL đã sinh sẵn | `scripts/d1/r2-url-updates.sql`, chờ D1 có dữ liệu |
 
 ## CHƯA làm — theo mức độ chặn
@@ -29,40 +29,40 @@ Mọi con số dưới đây là **đo trực tiếp trên repo lúc viết**, k
       đều chạy trên bản sao **local**. Cần: chạy `migrations-d1/000*.sql` lên `--remote`,
       rồi nạp toàn bộ `scripts/d1/data/*.jsonl` lên `--remote`. **Việc lớn nhất còn lại.**
 - [ ] **Trang đăng nhập/đăng ký chưa đổi sang API mới.** `app/login/page.tsx` vẫn gọi
-      thẳng `supabase.auth.signUp/signInWithPassword/resend/resetPasswordForEmail/
+      thẳng `cloudflare.auth.signUp/signInWithPassword/resend/resetPasswordForEmail/
       signInWithOAuth` — toàn bộ `lib/auth/service.ts` + 7 route `/api/auth/*` đã dựng
       xong ở bước trước **nhưng chưa có UI nào gọi tới chúng**. Đây là khoảng cách lớn
       nhất giữa "đã viết code" và "app dùng được".
 - [ ] **`lib/current-user.ts`** — hook `onAuthStateChange` phía trình duyệt, nền tảng
       cho trạng thái đăng nhập toàn app (dùng trong `GlobalChatWrapper`,
       `DashboardClient`). Chưa có bản thay thế cho kiến trúc cookie-phiên.
-- [ ] **36 tệp `lib/supabase*.ts` vẫn còn**, và **195 tệp** trong `app/lib/components`
+- [ ] **36 tệp `lib/cloudflare*.ts` vẫn còn**, và **195 tệp** trong `app/lib/components`
       còn import chúng.
 
 ### Dữ liệu bảng (`.from()`) — chưa đụng tới
 
-- [ ] **89 lời gọi `.from("bang")` qua Supabase** ở **51 tệp** chưa chuyển sang
+- [ ] **89 lời gọi `.from("bang")` qua Cloudflare** ở **51 tệp** chưa chuyển sang
       `createD1Client`/`getClient()`. Đây là khối việc lớn thứ hai, độc lập với auth:
-      mỗi tệp `lib/supabase-*.ts` (chat, community, study-rooms, social, lobby,
+      mỗi tệp `lib/cloudflare-*.ts` (chat, community, study-rooms, social, lobby,
       study-world, bugs, admin/*, v.v.) đang tự viết `.from()`/`.insert()`/`.update()`
-      thẳng vào Supabase.
+      thẳng vào Cloudflare.
 
 ### Realtime (`.channel`) — quay lại từ đầu
 
-- [ ] **7 module** (`lib/supabase-social.ts`, `-study-rooms.ts`, `-community.ts`,
+- [ ] **7 module** (`lib/cloudflare-social.ts`, `-study-rooms.ts`, `-community.ts`,
       `-chat.ts`, `-bugs.ts`, `-lobby.ts`, `-study-world.ts`) vẫn gọi
-      `supabase.channel()`. Bản Durable Object trước đã bị bỏ theo yêu cầu — **chưa có
+      `cloudflare.channel()`. Bản Durable Object trước đã bị bỏ theo yêu cầu — **chưa có
       kiến trúc thay thế nào đang đứng**. Cần quyết định lại hướng đi trước khi dựng.
 
-### Bí mật vay mượn từ Supabase
+### Bí mật vay mượn từ Cloudflare
 
 - [ ] `lib/quiz-tokens.ts` và `lib/level-exam-tokens.ts` dùng
-      `SUPABASE_SERVICE_ROLE_KEY` làm khoá HMAC ký token câu trả lời quiz — **không
-      liên quan gì tới Supabase API**, chỉ mượn tạm một chuỗi bí mật có sẵn. Xoá biến
+      `CLOUDFLARE_SERVICE_ROLE_KEY` làm khoá HMAC ký token câu trả lời quiz — **không
+      liên quan gì tới Cloudflare API**, chỉ mượn tạm một chuỗi bí mật có sẵn. Xoá biến
       đó mà không thay bằng khoá riêng (ví dụ `QUIZ_TOKEN_SECRET`) là **mọi token quiz
       đang lưu hành hỏng ngay lập tức**.
 - [ ] `app/admin/users.ts` — khoá tài khoản (`setUserDisabled`) gọi
-      `supabase.auth.admin.updateUserById(..., ban_duration)`. Thiết kế D1 mới
+      `cloudflare.auth.admin.updateUserById(..., ban_duration)`. Thiết kế D1 mới
       (`getCurrentUser()` kiểm `is_disabled` mỗi yêu cầu) **đã giải quyết đúng vấn đề
       này gọn hơn** — chỉ cần đổi `setUserDisabled` sang ghi D1 và gọi
       `revokeAllSessions()`, không cần cơ chế "ban" nào khác.
@@ -70,26 +70,24 @@ Mọi con số dưới đây là **đo trực tiếp trên repo lúc viết**, k
 ### Hạ tầng triển khai
 
 - [ ] **Cron:** 7 route (`app/api/cron/*`, `app/api/admin/sync-lessons`) vẫn gọi
-      Supabase trực tiếp. Không có Cloudflare Cron Trigger nào khai trong
+      Cloudflare trực tiếp. Không có Cloudflare Cron Trigger nào khai trong
       `wrangler.jsonc` (`triggers.crons` rỗng), và `vercel.json` không có cấu hình
       cron — nghĩa là **hiện tại không rõ cái gì đang gọi các route này theo lịch**.
       Cần xác nhận nguồn gọi cũ trước khi thay.
-- [ ] `next.config.ts` → `images.remotePatterns` còn khai `*.supabase.co`. Không xoá
-      ngay được (69 tệp cũ có thể vẫn còn URL Supabase ở nơi khác), nhưng cần dọn sau
+- [ ] `next.config.ts` → `images.remotePatterns` còn khai `*.cloudflare.co`. Không xoá
+      ngay được (69 tệp cũ có thể vẫn còn URL Cloudflare ở nơi khác), nhưng cần dọn sau
       khi toàn bộ URL đã trỏ về R2.
-- [ ] `app/auth/callback/route.ts` — route callback OAuth cũ của Supabase, dùng
-      `createServerClient` từ `@supabase/ssr`. Trở nên thừa sau khi trang đăng nhập
-      chuyển sang `/api/auth/google/start`, nhưng **chưa xoá** vì trang đăng nhập chưa
-      chuyển.
-- [ ] `package.json` vẫn khai `@supabase/ssr` và `@supabase/supabase-js`. Gỡ được
-      **sau cùng**, khi mục "36 tệp lib/supabase*" ở trên về 0.
+- [x] `app/auth/callback/route.ts` không còn gọi SDK auth cũ; route chỉ dọn cookie
+      đích đến và chuyển hướng an toàn.
+- [x] `package.json` không còn khai SDK auth/database cũ; runtime dùng D1/R2 và shim
+      Cloudflare nội bộ trong `lib/cloudflare.ts` cho các call site chưa port xong.
 
 ### Việc phụ, không chặn nhưng cần biết
 
-- [ ] 5 tệp test (`lib/__tests__/*.test.ts`) còn import từ `@/lib/supabase*` —
+- [ ] 5 tệp test (`lib/__tests__/*.test.ts`) còn import từ `@/lib/cloudflare*` —
       sẽ đỏ ngay khi các tệp nguồn bị xoá, cần cập nhật cùng lúc.
 - [ ] `lib/__tests__/realtime-channel-remount.test.ts` kiểm hành vi riêng của
-      `supabase-js` (channel cho cùng topic không tạo lại) — vô nghĩa với kiến trúc
+      `cloudflare-js` (channel cho cùng topic không tạo lại) — vô nghĩa với kiến trúc
       mới bất kể chọn hướng nào, xoá khi thay `.channel()`.
 
 ## Thứ tự khuyến nghị (phụ thuộc lẫn nhau)
@@ -100,9 +98,9 @@ Mọi con số dưới đây là **đo trực tiếp trên repo lúc viết**, k
 3. lib/current-user.ts bản D1                   ← để phần còn lại của UI có user
 4. Chuyển 89 lời gọi .from() ở 51 tệp sang D1   ← khối lớn nhất, làm dần theo module
 5. Quyết định lại kiến trúc .channel()          ← 7 module, làm sau cùng
-6. Xoá 36 tệp lib/supabase*, gỡ 2 dependency    ← chỉ làm khi 1-5 xong hết
+6. Xoá 36 tệp lib/cloudflare*, gỡ 2 dependency    ← chỉ làm khi 1-5 xong hết
 ```
 
 Bước 4 không phụ thuộc bước 5 và ngược lại — có thể làm song song nếu muốn,
 nhưng KHÔNG làm bước 6 trước khi cả hai xong, vì bất kỳ tệp nào còn sót lại
-một `import` từ `lib/supabase*` sẽ làm build đỏ ngay khi tệp đó bị xoá.
+một `import` từ `lib/cloudflare*` sẽ làm build đỏ ngay khi tệp đó bị xoá.

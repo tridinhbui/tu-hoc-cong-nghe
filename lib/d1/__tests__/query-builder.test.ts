@@ -49,7 +49,7 @@ const STRANGER = "00000000-0000-0000-0000-0000000000ff";
 describe("bộ dựng truy vấn D1", () => {
   it("từ chối cú pháp nhúng quan hệ thay vì trả thiếu cột", () => {
     const c = createD1Client({} as never, types, registry, ACTOR, predicates);
-    // `select("*, user:user_id(*)")` là cách supabase-js nối bảng. D1 không nối
+    // `select("*, user:user_id(*)")` là cách cloudflare-js nối bảng. D1 không nối
     // được, và im lặng bỏ qua phần nhúng sẽ trả về hàng thiếu trường - thứ chỉ
     // lộ ra ở chỗ hiển thị, cách xa nguyên nhân.
     expect(() => c.from("user_progress").select("*, user_profiles(*)")).toThrow(D1QueryError);
@@ -57,7 +57,7 @@ describe("bộ dựng truy vấn D1", () => {
 
   it("chặn update không có WHERE", () => {
     const c = createD1Client({} as never, types, registry, ACTOR, predicates);
-    // Supabase CHO PHÉP update toàn bảng, nên một `.eq()` viết thiếu ở đó là
+    // Cloudflare CHO PHÉP update toàn bảng, nên một `.eq()` viết thiếu ở đó là
     // ghi đè mọi hàng mà không có gì báo. Ở đây nó là lỗi ngay lập tức.
     return expect(c.from("user_progress").update({ completed: true }).run()).resolves.toMatchObject({
       error: expect.any(D1QueryError),
@@ -393,5 +393,35 @@ describe("count: \"exact\" - đo được ở 38 chỗ gọi thật trước khi
     const client = createD1Client(db2, types, registry, ADMIN_BYPASS, predicates);
     const { count } = await client.from(table).select("*").limit(1);
     expect(count).toBeNull();
+  });
+});
+
+describe("cột được bảo vệ trên user_profiles", () => {
+  const fakeDb = { prepare: () => ({ bind: () => ({ all: async () => ({ results: [] }) }) }) } as unknown as Parameters<typeof createD1Client>[0];
+  const build = (actor: Parameters<typeof createD1Client>[3], q: (c: ReturnType<typeof createD1Client>) => unknown) =>
+    () => (q(createD1Client(fakeDb, types, registry, actor, predicates)) as { build(): unknown }).build();
+
+  it("người dùng không tự cộng coins cho mình được, kể cả trên hàng của chính mình", () => {
+    // Đúng lỗ mà trigger guard_coins_column của Postgres từng chặn: owner
+    // policy lọc theo HÀNG, nên .eq("id", tôi) thoả điều kiện chủ sở hữu.
+    expect(build("u1", (c) => c.from("user_profiles").update({ coins: 999999 }).eq("id", "u1"))).toThrow(/coins/);
+  });
+
+  it("không tự nâng mình lên admin, không tự mở khoá tài khoản - lỗ mà bản Postgres để hở", () => {
+    expect(build("u1", (c) => c.from("user_profiles").update({ role: "admin" }).eq("id", "u1"))).toThrow(/role/);
+    expect(build("u1", (c) => c.from("user_profiles").update({ is_disabled: false }).eq("id", "u1"))).toThrow(/is_disabled/);
+  });
+
+  it("chặn cả insert và upsert, không chỉ update", () => {
+    expect(build("u1", (c) => c.from("user_profiles").insert({ id: "u1", email: "a@b.vn", coins: 5 }))).toThrow();
+    expect(build("u1", (c) => c.from("user_profiles").upsert({ id: "u1", role: "admin" }, { onConflict: "id" }))).toThrow(/role/);
+  });
+
+  it("ghi các cột thường thì vẫn được", () => {
+    expect(build("u1", (c) => c.from("user_profiles").update({ full_name: "Trí" }).eq("id", "u1"))).not.toThrow();
+  });
+
+  it("ADMIN_BYPASS (mã máy chủ đã xác thực) thì ghi được", () => {
+    expect(build(ADMIN_BYPASS, (c) => c.from("user_profiles").update({ coins: 10, role: "admin" }).eq("id", "u1"))).not.toThrow();
   });
 });

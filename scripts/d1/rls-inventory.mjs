@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-// Kiểm kê chính sách RLS của Supabase, thành danh sách việc cho tầng D1.
+// Kiểm kê chính sách RLS của Cloudflare, thành danh sách việc cho tầng D1.
 //
 // VÌ SAO CẦN: D1 không có row level security. 197 chính sách trong
-// supabase/migrations là 197 quy tắc hiện đang được cơ sở dữ liệu áp - và khi
+// cloudflare/migrations là 197 quy tắc hiện đang được cơ sở dữ liệu áp - và khi
 // chuyển sang D1 chúng phải được áp ở tầng ứng dụng, từng cái một. Sót một cái
 // là lộ dữ liệu mà không có gì báo: truy vấn vẫn chạy, chỉ là nó trả về cả hàng
 // của người khác.
@@ -16,7 +16,7 @@
 //   node scripts/d1/rls-inventory.mjs --json     # dữ liệu đầy đủ
 import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 
-const DIR = "supabase/migrations";
+const DIR = "cloudflare/migrations";
 let src = "";
 for (const f of readdirSync(DIR).filter((f) => f.endsWith(".sql")).sort()) {
   src += "\n" + readFileSync(`${DIR}/${f}`, "utf8");

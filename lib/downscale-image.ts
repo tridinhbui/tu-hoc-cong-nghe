@@ -1,6 +1,6 @@
 /** Thu nhỏ ảnh ngay trong trình duyệt, trước khi tải lên.
  *
- *  VÌ SAO. `uploadChatImage` nhận ảnh tới 8MB và đẩy nguyên xi vào Supabase
+ *  VÌ SAO. `uploadChatImage` nhận ảnh tới 8MB và đẩy nguyên xi vào Cloudflare
  *  storage. Chỗ dựng chúng ra là một thẻ `<img>` với `max-h-40` - tức cao 160
  *  điểm ảnh. Nên một tấm ảnh chụp điện thoại 8MB được lưu trọn vẹn, rồi mỗi
  *  người trong nhóm tải về trọn vẹn 8MB đó, để nhìn một ảnh cao bằng một dòng

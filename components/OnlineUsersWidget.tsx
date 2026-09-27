@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Users } from "lucide-react";
-import { observeLobbyCount } from "@/lib/supabase-lobby";
+import { observeLobbyCount } from "@/lib/cloudflare-lobby";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -17,7 +17,7 @@ import { format } from "@/lib/i18n";
  * thật với lập trình viên rằng đấy là số dựng.
  *
  * Lúc viết con số dựng ấy thì chưa có presence nào để đọc. Giờ có: sảnh 3D ở
- * /cong-dong dùng Supabase presence, nên số thật lấy được.
+ * /cong-dong dùng Cloudflare presence, nên số thật lấy được.
  *
  * `observeLobbyCount` NGHE MÀ KHÔNG GHI DANH. Nếu nó track thì mỗi người chỉ
  * mở dashboard sẽ hiện ra thành một nhân vật đứng bất động giữa thư viện, và

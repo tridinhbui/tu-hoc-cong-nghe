@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import dynamicImport from "next/dynamic";
 import Leaderboard from "@/components/Leaderboard";
 import FocusTimePanel from "@/components/FocusTimePanel";
@@ -22,12 +22,12 @@ const LearningAnalytics = dynamicImport(() => import("@/components/LearningAnaly
   loading: AnalyticsLoadingFallback,
 });
 
-// Auth-gated and reads Supabase env vars at render time - never prerender statically.
+// Auth-gated and reads Cloudflare env vars at render time - never prerender statically.
 
 export default function AnalyticsPage() {
   const { t } = useI18n();
   const router = useRouter();
-  const supabase = createClient();
+  const cloudflare = createClient();
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | undefined>(undefined);
 
@@ -35,7 +35,7 @@ export default function AnalyticsPage() {
     const checkAuth = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await cloudflare.auth.getSession();
 
       if (!session) {
         router.replace("/login");
@@ -47,7 +47,7 @@ export default function AnalyticsPage() {
     };
 
     void checkAuth();
-  }, [router, supabase.auth]);
+  }, [router, cloudflare.auth]);
 
   if (loading) {
     return (

@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { Shield, Sword } from "lucide-react";
 import Avatar2DCanvas from "@/components/Avatar2DCanvas";
 import { type AvatarConfig } from "@/lib/avatar-customizer-types";
-import { getLocalAvatarConfig } from "@/lib/supabase-avatar";
+import { getLocalAvatarConfig } from "@/lib/cloudflare-avatar";
 import { ITEM_DESCRIPTIONS, type CharacterEquipments } from "@/lib/rpg-items";
 import { useI18n } from "@/lib/i18n/context";
 

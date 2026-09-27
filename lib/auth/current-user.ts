@@ -58,7 +58,7 @@ export async function requireUser(): Promise<CurrentUser> {
 }
 
 /** Client D1 chạy dưới danh nghĩa người dùng hiện tại. Thay cho việc lấy
- *  client Supabase rồi dựa vào RLS. */
+ *  client Cloudflare rồi dựa vào RLS. */
 export async function getUserClient() {
   const u = await getCurrentUser();
   const { getClient } = await import("../d1/server");

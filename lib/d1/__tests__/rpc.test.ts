@@ -1188,7 +1188,7 @@ describe.skipIf(!hasLocalData)("NHÓM C - cần nguyên tử", () => {
     // Hoặc chưa đủ nhiệm vụ (cả hai lần đều false), hoặc lần đầu thành công và
     // lần hai báo đã nhận. Không bao giờ hai lần cùng ok.
     expect(a.ok && b.ok).toBe(false);
-    // Client dịch theo `code`; `message` chỉ là bản dự phòng cho đường Supabase.
+    // Client dịch theo `code`; `message` chỉ là bản dự phòng cho đường Cloudflare.
     if (a.ok) expect(b.code).toBe("already_claimed");
   });
 });

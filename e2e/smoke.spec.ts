@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 // Manual-only smoke suite (npm run test:e2e - see playwright.config.ts).
-// Scoped to what's testable WITHOUT a real Supabase session: the public
+// Scoped to what's testable WITHOUT a real Cloudflare session: the public
 // marketing/login pages render, and proxy.ts's auth gate (lib default-deny
 // route gate - see proxy.ts's PUBLIC_PATHS/PUBLIC_PREFIXES) correctly
 // redirects protected routes to /login instead of leaking content. A full

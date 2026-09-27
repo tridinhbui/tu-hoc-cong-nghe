@@ -14,7 +14,7 @@ export interface BadgeDefinition {
    chứ không có mục riêng, để hai bên không lệch nhau; mô tả dùng mẫu
    `t.badgeLevelDescription`. Huy hiệu khác cấp độ tra `t.badges[key]`. Tất cả
    đi qua lib/badge-label.ts, dịch ở CHỖ HIỂN THỊ chứ không ở tầng đọc dữ liệu,
-   vì `badge_name` là một cột trên Supabase. lib/__tests__/badges-competency-i18n.test.ts
+   vì `badge_name` là một cột trên Cloudflare. lib/__tests__/badges-competency-i18n.test.ts
    giữ chúng khớp nhau và chặn việc chép tên cấp sang bảng huy hiệu. */
 export const LEVEL_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
   level_2: {
@@ -157,7 +157,7 @@ export const LEADERBOARD_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
 
 // Career-map milestones - unlike level/leaderboard badges these are keyed
 // off real state in user_career_goals / user_quest_completions / user_progress
-// (resolved by lib/supabase-badges.ts's getEligibleUserBadges), not level.
+// (resolved by lib/cloudflare-badges.ts's getEligibleUserBadges), not level.
 export const CAREER_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
   career_goal_set: {
     key: "career_goal_set",

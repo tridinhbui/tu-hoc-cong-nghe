@@ -1,5 +1,5 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 
 export interface ChatThread {
   user_id: string;
@@ -25,9 +25,9 @@ export interface ChatThreadMessage {
 // chat_messages by user so an admin can see every conversation, not just
 // one-way submissions.
 export async function getChatThreads(): Promise<ChatThread[]> {
-  const supabase = createAdminClient();
+  const cloudflare = createAdminClient();
 
-  const { data, error } = await supabase
+  const { data, error } = await cloudflare
     .from("chat_messages")
     .select("*")
     .order("created_at", { ascending: false });
@@ -44,11 +44,15 @@ export async function getChatThreads(): Promise<ChatThread[]> {
   const userIds = [...byUser.keys()];
   if (userIds.length === 0) return [];
 
-  const { data: users } = await supabase
+  const { data: users } = await cloudflare
     .from("user_profiles")
     .select("id, email, full_name")
     .in("id", userIds);
-  const userMap = new Map((users ?? []).map((u) => [u.id, u]));
+  const userMap = new Map<string, { email?: string | null; full_name?: string | null }>(
+    ((users ?? []) as Array<{ id: string; email?: string | null; full_name?: string | null }>).map(
+      (u) => [u.id, u]
+    )
+  );
 
   const threads: ChatThread[] = userIds.map((userId) => {
     const messages = byUser.get(userId)!;
@@ -69,8 +73,8 @@ export async function getChatThreads(): Promise<ChatThread[]> {
 }
 
 export async function getChatThreadMessages(userId: string): Promise<ChatThreadMessage[]> {
-  const supabase = createAdminClient();
-  const { data, error } = await supabase
+  const cloudflare = createAdminClient();
+  const { data, error } = await cloudflare
     .from("chat_messages")
     .select("*")
     .eq("user_id", userId)
@@ -81,16 +85,16 @@ export async function getChatThreadMessages(userId: string): Promise<ChatThreadM
 }
 
 export async function sendAdminChatReply(userId: string, content: string, imageUrl?: string | null) {
-  const supabase = createAdminClient();
-  const { error } = await supabase
+  const cloudflare = createAdminClient();
+  const { error } = await cloudflare
     .from("chat_messages")
     .insert({ user_id: userId, sender: "admin", content, image_url: imageUrl ?? null });
   if (error) throw new Error(error.message);
 }
 
 export async function markThreadRead(userId: string) {
-  const supabase = createAdminClient();
-  const { error } = await supabase
+  const cloudflare = createAdminClient();
+  const { error } = await cloudflare
     .from("chat_messages")
     .update({ read: true })
     .eq("user_id", userId)
@@ -100,8 +104,8 @@ export async function markThreadRead(userId: string) {
 }
 
 export async function getUnreadChatCount(): Promise<number> {
-  const supabase = createAdminClient();
-  const { count, error } = await supabase
+  const cloudflare = createAdminClient();
+  const { count, error } = await cloudflare
     .from("chat_messages")
     .select("*", { count: "exact", head: true })
     .eq("sender", "user")

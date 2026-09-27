@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import { getServerDictionary } from "@/lib/i18n/server";
 
 // GET active challenge for the week
 export async function GET(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   
   // Lấy ngày đầu tuần hiện tại (Thứ Hai)
   const today = new Date();
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   const monday = new Date(today.setDate(diff));
   monday.setHours(0, 0, 0, 0);
 
-  const { data: challenge, error } = await supabase
+  const { data: challenge, error } = await cloudflare
     .from("weekly_challenges")
     .select("*")
     .gte("week_start_date", monday.toISOString().split("T")[0])
@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(mockChallenge);
   }
 
-  // Thử thách lấy từ Supabase thì KHÔNG có đường dịch nào. Nội dung nằm trong
+  // Thử thách lấy từ Cloudflare thì KHÔNG có đường dịch nào. Nội dung nằm trong
   // cơ sở dữ liệu, giống quiz module CFA mà AGENTS.md đã ghi: không script
   // tĩnh nào với tới được, và chỗ duy nhất chặn được là đường ghi. Hiện chưa
   // có đường ghi nào, nên chưa có gì để chặn - ghi lại để lần đầu ai đó thêm
@@ -66,10 +66,10 @@ export async function GET(request: NextRequest) {
 
 // POST: Submit challenge answers
 export async function POST(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -104,7 +104,7 @@ export async function POST(request: NextRequest) {
       coin_reward: 100,
     };
   } else {
-    const { data } = await supabase
+    const { data } = await cloudflare
       .from("weekly_challenges")
       .select("*")
       .eq("id", challengeId)
@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
 
   // Lưu lịch sử
   if (challengeId !== "fpt-mock-challenge-uuid") {
-    await supabase
+    await cloudflare
       .from("user_challenge_attempts")
       .upsert({
         user_id: user.id,
@@ -155,7 +155,7 @@ export async function POST(request: NextRequest) {
 
     // Cập nhật XP/Coins của User Profile
     if (coinsEarned > 0) {
-      const { data: profile } = await supabase
+      const { data: profile } = await cloudflare
         .from("user_profiles")
         .select("coins")
         .eq("id", user.id)
@@ -181,7 +181,7 @@ export async function POST(request: NextRequest) {
         .eq("id", user.id);
     }
 
-    await supabase.from("game_sessions").insert({
+    await cloudflare.from("game_sessions").insert({
       user_id: user.id,
       game_type: "weekly-case-challenge",
       score,

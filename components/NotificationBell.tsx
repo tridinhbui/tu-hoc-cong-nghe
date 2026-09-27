@@ -11,7 +11,7 @@ import {
   markNotificationsRead,
   subscribeToCommunityNotifications,
   type CommunityNotification,
-} from "@/lib/supabase-community";
+} from "@/lib/cloudflare-community";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { timeAgo } from "@/lib/time-ago";
 import { useI18n } from "@/lib/i18n/context";
@@ -50,7 +50,7 @@ function systemIcon(type: CommunityNotification["type"]) {
 }
 
 /** Bell icon for Bảng tin's comment/reaction notifications (see
- *  supabase/migrations/20260821_community_notifications.sql). Mounted once
+ *  cloudflare/migrations/20260821_community_notifications.sql). Mounted once
  *  in AppNavbar, same as the rest of the always-visible chrome, so it works
  *  from any page - not just while looking at the feed itself. */
 export default function NotificationBell({ userId }: { userId: string }) {

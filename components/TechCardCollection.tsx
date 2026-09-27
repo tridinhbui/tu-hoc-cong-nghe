@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState, useEffect } from "react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { Lock, Trophy, Zap } from "lucide-react";
 import { TECH_CARDS, techCardsOf, type TechCardRarity } from "@/lib/tech-cards";
 import { useI18n } from "@/lib/i18n/context";
@@ -21,7 +21,7 @@ export default function TechCardCollection({ userId }: { userId: string }) {
   const { t } = useI18n();
   const rarityLabel = useMemo(() => rarityLabels(t), [t]);
   const cards = useMemo(() => techCardsOf(t), [t]);
-  const supabase = createClient();
+  const cloudflare = createClient();
   const [unlockedCardKeys, setUnlockedCardKeys] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const progress = Math.round((unlockedCardKeys.size / TECH_CARDS.length) * 100);
@@ -39,12 +39,12 @@ export default function TechCardCollection({ userId }: { userId: string }) {
     async function loadInventory() {
       if (!userId) return;
       try {
-        const { data } = await supabase
+        const { data } = await cloudflare
           .from("user_inventories")
           .select("asset_id, gamification_assets(asset_key)")
           .eq("user_id", userId);
 
-        // Xem ghi chú ở lib/tech-cards.ts: Supabase khai quan hệ lồng là mảng
+        // Xem ghi chú ở lib/tech-cards.ts: Cloudflare khai quan hệ lồng là mảng
         // còn runtime trả về object, nên ép một lần ở đây thay vì dùng any.
         const rows = (data ?? []) as unknown as { gamification_assets?: { asset_key?: string | null } | null }[];
         const keys = new Set(rows.map((inv) => inv.gamification_assets?.asset_key).filter((k): k is string => Boolean(k)));
@@ -60,7 +60,7 @@ export default function TechCardCollection({ userId }: { userId: string }) {
     const handleCardDrop = () => loadInventory();
     window.addEventListener("thtcdn:finance-card-dropped", handleCardDrop);
     return () => window.removeEventListener("thtcdn:finance-card-dropped", handleCardDrop);
-  }, [userId, supabase]);
+  }, [userId, cloudflare]);
 
   if (loading) return <div className="text-center p-4">{t.cardCollection.loading}</div>;
 

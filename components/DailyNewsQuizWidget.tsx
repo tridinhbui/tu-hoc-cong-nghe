@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { toast } from "sonner";
 import { Newspaper, HelpCircle, CheckCircle2, XCircle, Award, Flame } from "lucide-react";
-import { claimQuestReward } from "@/lib/supabase-quests";
+import { claimQuestReward } from "@/lib/cloudflare-quests";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

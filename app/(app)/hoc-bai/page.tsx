@@ -3,7 +3,7 @@ import { getLessonsMeta } from "@/lib/lessons-loader";
 import { getLessonOverrides } from "@/lib/lesson-overrides";
 import DashboardClient from "@/components/DashboardClient";
 
-// Auth-gated and reads Supabase env vars at render time - never prerender statically.
+// Auth-gated and reads Cloudflare env vars at render time - never prerender statically.
 
 // The dedicated "Học bài" route: the learning path on its own page, so the
 // lesson list has one obvious home instead of being buried in the dashboard

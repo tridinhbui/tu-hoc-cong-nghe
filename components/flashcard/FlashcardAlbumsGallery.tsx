@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Download, ArrowLeft } from "lucide-react";
 import { FLASHCARD_ALBUMS, type FlashcardAlbum } from "@/lib/flashcard-albums";
-import { saveFlashcardsBulk } from "@/lib/supabase-flashcards";
+import { saveFlashcardsBulk } from "@/lib/cloudflare-flashcards";
 import { useI18n } from "@/lib/i18n/context";
 import { mergeFlashcardAlbums } from "@/lib/flashcard-albums-i18n";
 import { format } from "@/lib/i18n";

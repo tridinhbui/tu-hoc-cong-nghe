@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { VIETNAMESE_DIACRITICS } from "./vietnamese-diacritics";
-import { DEFAULT_FINANCIAL_GLOSSARY } from "@/lib/supabase-flashcards";
-import { defaultGlossaryEn } from "@/lib/supabase-flashcards-i18n/en";
-import { localizedDefaultGlossary } from "@/lib/supabase-flashcards-i18n";
+import { DEFAULT_FINANCIAL_GLOSSARY } from "@/lib/cloudflare-flashcards";
+import { defaultGlossaryEn } from "@/lib/cloudflare-flashcards-i18n/en";
+import { localizedDefaultGlossary } from "@/lib/cloudflare-flashcards-i18n";
 
 /** Cổng đủ-100% cho bộ thẻ mặc định, và cổng CHỐNG TRÙNG khi đổi ngôn ngữ.
  *

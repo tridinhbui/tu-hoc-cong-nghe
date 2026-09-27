@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { toDownloadUrl } from "../storage-download";
 
 const PUBLIC_URL =
-  "https://abc.supabase.co/storage/v1/object/public/chat-files/9f2c1a.pdf";
+  "https://abc.cloudflare.co/storage/v1/object/public/chat-files/9f2c1a.pdf";
 
 describe("toDownloadUrl", () => {
   it("thêm ?download với tên tệp gốc", () => {
@@ -25,7 +25,7 @@ describe("toDownloadUrl", () => {
     );
   });
 
-  it("để Supabase tự chọn tên khi không có file_name", () => {
+  it("để Cloudflare tự chọn tên khi không có file_name", () => {
     expect(toDownloadUrl(PUBLIC_URL, null)).toBe(`${PUBLIC_URL}?download`);
     expect(toDownloadUrl(PUBLIC_URL)).toBe(`${PUBLIC_URL}?download`);
   });

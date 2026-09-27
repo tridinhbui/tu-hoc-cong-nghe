@@ -2,12 +2,12 @@ import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 /**
  * Phục vụ công khai cho tệp lưu trong R2. Thay domain công khai tự động mà
- * Supabase Storage cấp cho mỗi bucket - R2 không có domain ấy trừ khi gắn
+ * Cloudflare Storage cấp cho mỗi bucket - R2 không có domain ấy trừ khi gắn
  * riêng, xem lib/r2/storage.ts.
  *
  * KHÔNG XÁC THỰC Ở ĐÂY, có chủ ý: cả ba bucket gốc (documents, avatars,
- * chat-images) đều public-read trong chính sách Supabase gốc - xem
- * supabase/migrations/20260706_documents.sql, 20260712_avatars_bucket.sql,
+ * chat-images) đều public-read trong chính sách Cloudflare gốc - xem
+ * cloudflare/migrations/20260706_documents.sql, 20260712_avatars_bucket.sql,
  * 20260718_chat_images.sql. Route này giữ nguyên tính chất đó, không thắt
  * chặt hơn bản gốc.
  */

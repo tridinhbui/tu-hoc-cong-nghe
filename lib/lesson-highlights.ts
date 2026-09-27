@@ -1,5 +1,5 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
+import { createClient } from "@/lib/cloudflare";
+import { handleCloudflareError } from "@/lib/errors";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
 // (raw Postgres) - highlights are a non-critical UX nicety, so a missing
@@ -21,8 +21,8 @@ export interface LessonHighlight {
 }
 
 export async function getLessonHighlights(userId: string, lessonId: number): Promise<LessonHighlight[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("lesson_highlights")
     .select("*")
     .eq("user_id", userId)
@@ -31,7 +31,7 @@ export async function getLessonHighlights(userId: string, lessonId: number): Pro
 
   if (error) {
     if (isMissingTableError(error)) return [];
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
 
   return data as LessonHighlight[];
@@ -43,8 +43,8 @@ export async function getLessonHighlights(userId: string, lessonId: number): Pro
  * something the learner wants to revise.
  */
 export async function getAllUserHighlights(userId: string): Promise<LessonHighlight[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("lesson_highlights")
     .select("*")
     .eq("user_id", userId)
@@ -53,7 +53,7 @@ export async function getAllUserHighlights(userId: string): Promise<LessonHighli
 
   if (error) {
     if (isMissingTableError(error)) return [];
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
 
   return data as LessonHighlight[];
@@ -66,8 +66,8 @@ export async function createHighlight(
   quote: string,
   kind: HighlightKind
 ): Promise<LessonHighlight> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("lesson_highlights")
     .insert([
       {
@@ -82,17 +82,17 @@ export async function createHighlight(
     .single();
 
   if (error) {
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
 
   return data as LessonHighlight;
 }
 
 export async function deleteHighlight(id: number): Promise<void> {
-  const supabase = createClient();
-  const { error } = await supabase.from("lesson_highlights").delete().eq("id", id);
+  const cloudflare = createClient();
+  const { error } = await cloudflare.from("lesson_highlights").delete().eq("id", id);
 
   if (error) {
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
 }

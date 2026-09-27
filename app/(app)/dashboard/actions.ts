@@ -1,8 +1,8 @@
 "use server";
 
 import { getResumeLesson } from "@/lib/resume-learning";
-import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/supabase-progress";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/cloudflare-progress";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getLessonsMeta, getLessonById } from "@/lib/lessons-loader";
 import { isLessonIdInTrack, isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { stageTopicFor, TOPIC_ADVICE, type StageTopicId, type TopicAdviceId } from "@/lib/stage-topics";
@@ -89,17 +89,17 @@ function getStageReviewInsight(
 // /dashboard load). A Server Action keeps that data server-only and returns
 // only the small resolved lesson object to the client.
 //
-// Every Supabase call in this file must use createServerSupabaseClient()
+// Every Cloudflare call in this file must use createServerCloudflareClient()
 // (reads the session from request cookies), never the plain createClient()
-// from lib/supabase.ts. That one builds a browser client with no cookie jar
+// from lib/cloudflare.ts. That one builds a browser client with no cookie jar
 // - calling it here queried as an anonymous user, so RLS silently returned
 // zero rows no matter how much progress the account actually had. That's
 // what caused the dashboard to say "you haven't completed any lesson" for
 // users who genuinely had (reported: completed lessons, but going back to
 // the dashboard showed no progress and no way to tell where to continue).
 export async function getResumeLessonAction(userId: string, track: "personal" | "professional") {
-  const supabase = await createServerSupabaseClient();
-  return getResumeLesson(userId, track, supabase);
+  const cloudflare = await createServerCloudflareClient();
+  return getResumeLesson(userId, track, cloudflare);
 }
 
 // Feeds the Tài Tài greeting card on the dashboard: the next lesson to
@@ -107,14 +107,14 @@ export async function getResumeLessonAction(userId: string, track: "personal" | 
 // lesson has been completed at all) for the greeting text to actually
 // reflect the learner's real progress instead of being a generic label.
 export async function getDashboardGreetingAction(userId: string, track: "personal" | "professional") {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const [nextLesson, completedLessons, totalMinutes, profile, allLessons, mistakeRows] = await Promise.all([
-    getResumeLesson(userId, track, supabase),
-    getCompletedLessons(userId, supabase),
-    getTotalTimeSpentMinutes(userId, supabase),
-    supabase.from("user_profiles").select("full_name, email").eq("id", userId).single(),
+    getResumeLesson(userId, track, cloudflare),
+    getCompletedLessons(userId, cloudflare),
+    getTotalTimeSpentMinutes(userId, cloudflare),
+    cloudflare.from("user_profiles").select("full_name, email").eq("id", userId).single(),
     getLessonsMeta(),
-    supabase
+    cloudflare
       .from("quiz_mistakes")
       .select("lesson_id, question_index, wrong_count, last_attempt_at")
       .eq("user_id", userId)
@@ -144,7 +144,7 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
   let nextLessonCriteria: { readPercent: number; quizTotal: number } | null = null;
   if (nextLesson) {
     const [readingRow, fullLesson] = await Promise.all([
-      supabase
+      cloudflare
         .from("reading_progress")
         .select("max_percent_reached")
         .eq("user_id", userId)

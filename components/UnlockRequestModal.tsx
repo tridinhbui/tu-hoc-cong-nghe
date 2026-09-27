@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import Modal from "@/components/admin/Modal";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 
 interface LessonInfo {
@@ -20,14 +20,14 @@ interface UnlockRequestModalProps {
 
 export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson, onClose }: UnlockRequestModalProps) {
   const { t } = useI18n();
-  const supabase = createClient();
+  const cloudflare = createClient();
   const [note, setNote] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
 
   const handleSubmit = async () => {
     setSubmitting(true);
-    const { error } = await supabase.from("lesson_unlock_requests").insert({
+    const { error } = await cloudflare.from("lesson_unlock_requests").insert({
       user_id: userId,
       lesson_id: lesson.id,
       note: note.trim() || null,

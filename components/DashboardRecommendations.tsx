@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getTotalCompletedLessonsCount } from "@/lib/supabase-user";
+import { getTotalCompletedLessonsCount } from "@/lib/cloudflare-user";
 import { useI18n } from "@/lib/i18n/context";
 import { intlLocale } from "@/lib/i18n";
 

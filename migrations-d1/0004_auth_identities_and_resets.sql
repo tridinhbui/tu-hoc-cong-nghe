@@ -4,7 +4,7 @@
 -- còn đây là hai đường VÀO tài khoản ngoài cặp email/mật khẩu.
 
 -- Đăng nhập Google. App đang gọi signInWithOAuth({provider:"google"}) và
--- Supabase lo toàn bộ phần bắt tay; bỏ Supabase thì phần ấy phải tự dựng.
+-- Cloudflare lo toàn bộ phần bắt tay; bỏ Cloudflare thì phần ấy phải tự dựng.
 --
 -- Bảng riêng chứ không phải cột google_id trên auth_users: một người có thể
 -- có nhiều định danh (Google hôm nay, thứ khác sau này), và khoá duy nhất
@@ -24,7 +24,7 @@ CREATE INDEX IF NOT EXISTS "auth_identities_user" ON "auth_identities" ("user_id
 -- Token đặt lại mật khẩu.
 --
 -- Cần ngay từ đầu chứ không phải tính năng để sau: 3.652 tài khoản hiện có
--- nằm trong Supabase Auth, và băm mật khẩu của họ không xuất sang được. Đặt
+-- nằm trong Cloudflare Auth, và băm mật khẩu của họ không xuất sang được. Đặt
 -- lại mật khẩu là đường DUY NHẤT để họ vào lại tài khoản của mình.
 --
 -- Giống auth_sessions: lưu BĂM của token chứ không phải token. Ai đọc được

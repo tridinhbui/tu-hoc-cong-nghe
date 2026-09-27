@@ -58,7 +58,7 @@ export async function listAppeals(status: "pending" | "approved" | "rejected" | 
  * (same effect as passing the quiz normally) and recomputes their XP/level.
  *
  * Dùng requireAdminDb() (ADMIN_BYPASS) xuyên suốt, thay createAdminClient()
- * cũ - cùng lý do bản Supabase ghi lại: markLessonComplete/recalculateUserStats
+ * cũ - cùng lý do bản Cloudflare ghi lại: markLessonComplete/recalculateUserStats
  * chạy trên client trình duyệt, gắn với PHIÊN của người dùng; admin duyệt hộ
  * khiếu nại của người khác không có phiên nào của họ để mượn, chỉ có đường
  * bỏ qua chính sách mới ghi thay được.
@@ -105,7 +105,7 @@ export async function approveAppeal(appealId: number, adminId: string): Promise<
   if (progressError) throw new Error(progressError.message);
 
   // Recompute lessons_completed/total_xp/current_level from scratch, same
-  // formula as lib/supabase-user.ts#recalculateUserStats.
+  // formula as lib/cloudflare-user.ts#recalculateUserStats.
   const { data: progressRaw, error: progressReadError } = await db
     .from("user_progress")
     .select("completed, quiz_score")

@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getLessonsMeta } from "@/lib/lessons-loader";
-import { getCompletedLessons } from "@/lib/supabase-progress";
+import { getCompletedLessons } from "@/lib/cloudflare-progress";
 import { isLessonIdInTrack } from "@/lib/track-stages";
-import type { QuizTrack, QuizDifficulty } from "@/lib/supabase-quiz-sessions";
+import type { QuizTrack, QuizDifficulty } from "@/lib/cloudflare-quiz-sessions";
 
 // Picks one lesson at random from what the learner has ALREADY completed,
 // and suggests a matching kiểm tra (track + difficulty) for it - this is
@@ -12,17 +12,17 @@ import type { QuizTrack, QuizDifficulty } from "@/lib/supabase-quiz-sessions";
 // that nudges the learner toward a concrete next action instead of just
 // reporting numbers back at them.
 export async function GET() {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     return NextResponse.json({ suggestion: null });
   }
 
   const [completedIds, lessonsMeta] = await Promise.all([
-    getCompletedLessons(user.id, supabase),
+    getCompletedLessons(user.id, cloudflare),
     getLessonsMeta(),
   ]);
 

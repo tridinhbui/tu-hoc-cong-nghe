@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getLessonById } from "@/lib/lessons-loader";
 import type { QuizQuestion } from "@/lib/lesson-types";
 
@@ -16,16 +16,16 @@ function shuffle<T>(items: T[]) {
 }
 
 export async function GET() {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { data: progressRows, error } = await supabase
+  const { data: progressRows, error } = await cloudflare
     .from("user_progress")
     .select("lesson_id")
     .eq("user_id", user.id)
@@ -35,7 +35,9 @@ export async function GET() {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  const completedLessonIds = [...new Set((progressRows ?? []).map((row) => Number(row.lesson_id)).filter(Number.isFinite))];
+  const completedLessonIds: number[] = [
+    ...new Set<number>((progressRows ?? []).map((row: { lesson_id: unknown }) => Number(row.lesson_id)).filter((n: number) => Number.isFinite(n))),
+  ];
 
   if (completedLessonIds.length === 0) {
     return NextResponse.json({ questions: [] });

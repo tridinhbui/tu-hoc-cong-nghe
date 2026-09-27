@@ -616,7 +616,7 @@ chứ không phải một câu "kho này không còn nữa".
 **Quiz cũng nằm trong `app/bai-hoc/<slug>/page.tsx`.** Một số bài có trang
 viết tay riêng, và mảng `quiz` của chúng là literal trong chính file đó - không
 có bản nào trong `lib/lessons-data`. Suốt đời bộ kiểm này chúng vô hình, trong
-khi `LessonPageLayout` vẫn ghi `quiz_score` của chúng vào Supabase như mọi bài
+khi `LessonPageLayout` vẫn ghi `quiz_score` của chúng vào Cloudflare như mọi bài
 khác. Lúc phát hiện, 58 câu ở đó đứng ở **z = +9,03** cho mẹo "chọn phương án
 dài nhất" - đúng cái lỗi 91% mà cả kho kia đã mất công dọn - trong khi mọi con
 số bộ kiểm in ra đều xanh, vì nó chỉ đọc `lib/lessons-data`.
@@ -641,7 +641,7 @@ nó tồn tại.
 | **đề thi thăng cấp** | **`lib/level-exams.ts`** | **`scripts/audit-level-exam-length.mjs` - chỉ IN, không gác** |
 
 Ba dòng từng đứng ở đây - ngân hàng IB, item set CFA, quiz module CFA trên
-Supabase - đã đi cùng các module bị gỡ ở `d092dd4`. Dòng còn lại là dòng mới, và
+Cloudflare - đã đi cùng các module bị gỡ ở `d092dd4`. Dòng còn lại là dòng mới, và
 nó đúng cái hình dạng mà bảng này sinh ra để ghi: `LEVEL_EXAMS` có **380 câu qua
 14 cấp**, chấm điểm thật và ghi vào bảng `user_level_exams`, nhưng
 `audit-lesson-content.mjs` chỉ đọc `lib/lessons-data` và các trang viết tay - nên
@@ -663,7 +663,7 @@ trường thật tên là `correctIndex`, nên `lens[undefined]` không bao gi�
 Một tỷ lệ 0% hay 100% gần như luôn là lỗi probe chứ không phải phát hiện.
 
 Quiz module CFA được gõ qua `/admin/cfa-library` và ghi `quiz_score` vào
-`cfa_module_progress` qua `lib/supabase-cfa-progress.ts`. Không script tĩnh nào
+`cfa_module_progress` qua `lib/cloudflare-cfa-progress.ts`. Không script tĩnh nào
 với tới được nó.
 
 Điểm đó **không** chảy vào `avg_quiz_score` - `recalculateUserStats` chỉ đọc
@@ -686,7 +686,7 @@ viết lệch sang chiều ngược lại - đúng cách kho bài học từng t
 
 Nếu sau này có thêm nội dung học nào chuyển vào cơ sở dữ liệu, đây là hình dạng
 cần lặp lại: kiểm ở đường ghi, cảnh báo chứ không chặn, và ngưỡng hẹp. Đừng dựng
-một bộ kiểm đọc Supabase - nó cần thông tin đăng nhập, không chạy được trong CI,
+một bộ kiểm đọc Cloudflare - nó cần thông tin đăng nhập, không chạy được trong CI,
 và một cổng chỉ chạy khi có người nhớ chạy tay thì không phải cổng.
 
 The lesson audit gates CI on four things:

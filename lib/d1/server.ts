@@ -7,7 +7,7 @@ import registryJson from "../../scripts/d1/policy-registry.json";
 import predicatesJson from "../../scripts/d1/manual-predicates.json";
 
 /**
- * Client D1 phía máy chủ, thay cho createServerSupabaseClient().
+ * Client D1 phía máy chủ, thay cho createServerCloudflareClient().
  *
  * BA TỆP JSON ĐƯỢC NHẬP CHỨ KHÔNG ĐỌC TỪ ĐĨA. Bộ kiểm đọc chúng bằng
  * readFileSync vì chạy trên Node; Workers không có hệ tệp, nên ở đây chúng

@@ -1,6 +1,6 @@
 import "server-only";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 
 export interface AdminSession {
   userId: string;
@@ -15,10 +15,10 @@ export interface AdminSession {
  * Must be called from a Server Component / Route Handler / Server Action - * never trust a client-side check alone for admin gating.
  */
 export async function getAdminSession(): Promise<AdminSession | null> {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) return null;
 

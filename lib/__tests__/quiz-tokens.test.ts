@@ -3,7 +3,7 @@ import { createHmac } from "crypto";
 import { signQuestionToken, verifyQuestionToken } from "@/lib/quiz-tokens";
 
 beforeAll(() => {
-  process.env.SUPABASE_SERVICE_ROLE_KEY = "test-secret-key";
+  process.env.CLOUDFLARE_SERVICE_ROLE_KEY = "test-secret-key";
 });
 
 describe("signQuestionToken / verifyQuestionToken", () => {
@@ -33,9 +33,9 @@ describe("signQuestionToken / verifyQuestionToken", () => {
 
   it("rejects a token signed with a different secret", () => {
     const token = signQuestionToken({ lessonId: 42, correct: 2 });
-    process.env.SUPABASE_SERVICE_ROLE_KEY = "different-secret";
+    process.env.CLOUDFLARE_SERVICE_ROLE_KEY = "different-secret";
     expect(verifyQuestionToken(token)).toBeNull();
-    process.env.SUPABASE_SERVICE_ROLE_KEY = "test-secret-key";
+    process.env.CLOUDFLARE_SERVICE_ROLE_KEY = "test-secret-key";
   });
 
   it("rejects a body that isn't valid JSON", () => {

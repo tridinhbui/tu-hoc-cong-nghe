@@ -7,9 +7,9 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { Flame, BookOpen, Target, Sparkles } from "lucide-react";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, getCfaGateRemaining, LEVELS } from "@/lib/levels";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
-import { getLevelStats, getCfaCompletedCount, type LevelStats } from "@/lib/supabase-user";
+import { getLevelStats, getCfaCompletedCount, type LevelStats } from "@/lib/cloudflare-user";
 import {
   getUserStreak,
   hasActivityToday as checkActivityToday,
@@ -18,8 +18,8 @@ import {
   restoreStreakWithXp,
   STREAK_RESTORE_XP_COST,
   type UserStreak,
-} from "@/lib/supabase-streak";
-import { recalculateUserStats } from "@/lib/supabase-user";
+} from "@/lib/cloudflare-streak";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -117,14 +117,14 @@ export default function UserStats({
   useEffect(() => {
     if (!userId) return;
     let cancelled = false;
-    const supabase = createClient();
+    const cloudflare = createClient();
     
     // Fetch RPG Equipped gear & Coins
     async function loadUserData() {
       try {
         const [{ data: equipData }, { data: profileData }] = await Promise.all([
-          supabase.from("user_equipments").select("slot, asset_key").eq("user_id", userId),
-          supabase.from("user_profiles").select("coins").eq("id", userId).single(),
+          cloudflare.from("user_equipments").select("slot, asset_key").eq("user_id", userId),
+          cloudflare.from("user_profiles").select("coins").eq("id", userId).single(),
         ]);
 
         if (!cancelled) {

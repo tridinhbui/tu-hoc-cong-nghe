@@ -60,7 +60,12 @@ export type LessonSectionBlock =
       variables?: { symbol: string; name: string; description?: string }[];
       example?: { title?: string; calculation: string; result: string; explanation?: string };
     }
-  | { type: "closing"; lines: string[] };
+  | { type: "closing"; lines: string[] }
+  // Chế độ Feynman: ví dụ đời thường → bảng so sánh ba cột → chốt một câu.
+  // Cùng hình dạng với thẻ trên /hoc-theo-nhu-cau (components/learning-flows/
+  // FeynmanCard.tsx), để một cách giải thích viết một lần dùng được ở cả hai.
+  // `rows[i]` có đúng `columns.length` phần tử, theo thứ tự cột.
+  | { type: "feynman"; title?: string; intro: string; columns: string[]; rows: string[][]; oneLiner: string };
 
 export interface Lesson {
   id: number;
@@ -268,7 +273,8 @@ export type TranslatedSectionBlock =
       variables?: { symbol?: string; name?: string; description?: string }[];
       example?: { title?: string; calculation?: string; result?: string; explanation?: string };
     }
-  | { type: "closing"; lines?: string[] };
+  | { type: "closing"; lines?: string[] }
+  | { type: "feynman"; title?: string; intro?: string; columns?: string[]; rows?: string[][]; oneLiner?: string };
 
 /** A lesson plus the provenance of the text it carries. */
 export interface LocalizedLesson extends Lesson {

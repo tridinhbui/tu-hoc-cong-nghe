@@ -7,7 +7,7 @@
  * tồn tại bên trong một component 1.300 dòng.
  *
  * Thứ hai, và đây mới là lý do thật: cùng một phép tính chạy ở HAI chỗ - chỗ
- * hiển thị cho người học và chỗ ghi xuống Supabase. Hai bản chép tay của cùng
+ * hiển thị cho người học và chỗ ghi xuống Cloudflare. Hai bản chép tay của cùng
  * một biểu thức là cách chắc chắn nhất để một ngày nào đó người học đọc một
  * con số còn hệ thống lưu một con số khác.
  *

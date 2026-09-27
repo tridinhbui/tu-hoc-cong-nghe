@@ -95,7 +95,7 @@ export async function GET() {
 
   // Check user's current guild if logged in. Cũng tách hai truy vấn thay vì
   // "role, financial_guilds(*)" - cùng lý do trên.
-  let myGuild = null;
+  let myGuild: Record<string, unknown> | null = null;
   if (user) {
     const { data: memberRaw } = await db
       .from("guild_members")

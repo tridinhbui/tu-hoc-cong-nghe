@@ -89,7 +89,7 @@ export const DOMAIN_WEIGHTS: Record<DomainType, number> = {
 // (t.domains[...]), nơi corporate_finance đã là "Backend & API".
 //
 // Bản thân các KHOÁ - corporate_finance, ai_for_finance - thì ở lại: chúng là
-// giá trị đã ghi xuống Supabase kèm ràng buộc check trong
+// giá trị đã ghi xuống Cloudflare kèm ràng buộc check trong
 // 20260806_gamification_system.sql, nên đổi tên là mồ côi mọi hàng đã có.
 
 /** Công thức tính XP yêu cầu cho mỗi level của từng Domain: 200 * (L_d - 1)^1.5 + 100 */

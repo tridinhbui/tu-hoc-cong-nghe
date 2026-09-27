@@ -1,4 +1,4 @@
-import type { CommunityFeedPost } from "@/lib/supabase-community";
+import type { CommunityFeedPost } from "@/lib/cloudflare-community";
 
 /** Số ngày trên huy hiệu chuỗi ngày, đọc từ một bài feed `kind = "streak"`.
  *

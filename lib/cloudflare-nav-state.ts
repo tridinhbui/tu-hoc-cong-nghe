@@ -1,0 +1,127 @@
+import { createClient } from "@/lib/cloudflare";
+import type { CloudflareClient } from "@/lib/cloudflare";
+
+/** Ba thứ thanh điều hướng cần lúc gắn, trong MỘT request.
+ *
+ *  VÌ SAO. AppNavbar nằm ở app/(app)/layout.tsx nên nó gắn ở mọi trang trong
+ *  ứng dụng, và lúc gắn nó hỏi ba chỗ riêng biệt: `user_profiles`,
+ *  `quiz_mistakes`, `user_chests`. Ba request ấy độc lập nhưng luôn đi cùng
+ *  nhau và luôn cùng một người dùng - tức là chúng là một request được.
+ *
+ *  Đo trên Cloudflare Observability: 20.439 request API Gateway mỗi giờ, và mỗi
+ *  lượt tải trang đóng góp ba trong số đó chỉ riêng cho thanh điều hướng.
+ *
+ *  DANH TÍNH lấy từ `auth.uid()` bên trong RPC, không nhận từ ngoài - cùng
+ *  khuôn với lib/cloudflare-dashboard-optimized.ts. Một `p_user_id` sẽ cho bất kỳ
+ *  ai đọc hồ sơ của bất kỳ ai, vì `security definer` đã bỏ qua RLS.
+ *
+ *  `p_day_start` thì khác và được nhận từ ngoài: nó không chọn NGƯỜI, nó chỉ
+ *  hẹp một cửa sổ thời gian trên dữ liệu của chính người gọi. Nó phải ở ngoài
+ *  vì mốc ngày là nửa đêm ĐỊA PHƯƠNG - cắt trong SQL sẽ ra nửa đêm UTC, tức
+ *  07:00 giờ Việt Nam.
+ *
+ *  HẠ CÁNH MỀM KHI CHƯA CHẠY MIGRATION. Migration trong repo này chạy TAY qua
+ *  SQL Editor (xem scripts/check-migrations.mjs), nên khoảng giữa lúc deploy mã
+ *  và lúc ai đó chạy SQL là chuyện thường. `PGRST202` nghĩa là chưa có hàm; khi
+ *  đó rơi về đúng ba truy vấn cũ. Thanh điều hướng vẫn vẽ đủ, chỉ là chưa
+ *  tiết kiệm được gì - thay vì trống trơn trên mọi trang. */
+
+export type NavProfileRow = {
+  full_name: string | null;
+  email: string;
+  avatar_url: string | null;
+  total_xp: number;
+  current_level: number;
+  lessons_completed: number;
+  coins?: number;
+};
+
+export type NavState = {
+  profile: NavProfileRow | null;
+  unresolvedMistakes: number;
+  /** Hôm nay đã có rương đăng nhập chưa. `true` thì phía gọi khỏi ghi gì cả. */
+  dailyChestClaimed: boolean;
+};
+
+/** Nửa đêm THEO GIỜ MÁY người dùng, dạng ISO. Cùng phép tính mà lib/chests.ts
+ *  vẫn dùng trước khi phần kiểm rương chuyển vào `get_nav_state`. */
+function startOfLocalDay(): string {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d.toISOString();
+}
+
+function isMissingFunction(error: { code?: string } | null): boolean {
+  return error?.code === "PGRST202" || error?.code === "42883" || error?.code === "PGRST205";
+}
+
+type RpcShape = {
+  profile: NavProfileRow | null;
+  unresolved_mistakes: number;
+  daily_chest_claimed: boolean;
+};
+
+/** Đường cũ: ba truy vấn, giữ nguyên hình dạng cũ. Chỉ chạy khi chưa có RPC. */
+async function readSeparately(
+  cloudflare: CloudflareClient,
+  userId: string,
+  dayStart: string
+): Promise<NavState> {
+  const [profile, mistakes, chest] = await Promise.all([
+    cloudflare
+      .from("user_profiles")
+      .select("full_name, email, avatar_url, total_xp, current_level, lessons_completed, coins")
+      .eq("id", userId)
+      .maybeSingle(),
+    cloudflare
+      .from("quiz_mistakes")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", userId)
+      .eq("resolved", false),
+    cloudflare
+      .from("user_chests")
+      .select("id")
+      .eq("user_id", userId)
+      .eq("source", "daily_login")
+      .gte("earned_at", dayStart)
+      .limit(1)
+      .maybeSingle(),
+  ]);
+
+  return {
+    profile: (profile.data as NavProfileRow | null) ?? null,
+    unresolvedMistakes: mistakes.count ?? 0,
+    dailyChestClaimed: Boolean(chest.data),
+  };
+}
+
+export async function getNavState(userId: string): Promise<NavState> {
+  const cloudflare = createClient();
+  // Mốc ngày tính ở ĐÂY, không trong SQL. `date_trunc('day', now())` phía máy
+  // chủ là nửa đêm UTC, tức 07:00 giờ Việt Nam - ai học từ 00:00 tới 07:00 sẽ
+  // bị cửa sổ nới rộng về hôm qua và mất rương của ngày mới. Xem
+  // cloudflare/migrations/20260910_nav_state_rpc_day_start.sql.
+  //
+  // Mọi phép cắt ngày khác trong repo cũng tính ở trình duyệt, nên đây là chỗ
+  // nhất quán chứ không phải chỗ tiện.
+  const dayStart = startOfLocalDay();
+  const { data, error } = await cloudflare.rpc("get_nav_state", { p_day_start: dayStart });
+
+  if (error) {
+    if (isMissingFunction(error)) return readSeparately(cloudflare, userId, dayStart);
+    // Không ném: thanh điều hướng hỏng không đáng làm hỏng cả trang. Phía gọi
+    // đã có hồ sơ dự phòng dựng từ `user_metadata` của phiên.
+    console.error("get_nav_state:", error.message);
+    return { profile: null, unresolvedMistakes: 0, dailyChestClaimed: true };
+  }
+
+  const row = data as RpcShape | null;
+  return {
+    profile: row?.profile ?? null,
+    unresolvedMistakes: row?.unresolved_mistakes ?? 0,
+    // Mặc định `true` khi thiếu dữ liệu: không biết chắc thì ĐỪNG trao thêm
+    // rương. Đoán nhầm chiều này chỉ làm chậm một phần thưởng tới lượt tải sau;
+    // đoán nhầm chiều kia là trao hai rương cho một ngày.
+    dailyChestClaimed: row?.daily_chest_claimed ?? true,
+  };
+}

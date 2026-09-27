@@ -6,18 +6,18 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, GraduationCap, Gamepad2, Menu, X, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Landmark, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, GraduationCap, Gamepad2, Menu, X, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Landmark, User, Settings, Globe, LogOut, Compass, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import NotificationBell from "@/components/NotificationBell";
 import Logo from "@/components/Logo";
 import { claimPendingReferral } from "@/lib/referrals";
 import { earnChest } from "@/lib/chests";
 import { getCurrentUser } from "@/lib/current-user";
-import { getNavState } from "@/lib/supabase-nav-state";
+import { getNavState } from "@/lib/cloudflare-nav-state";
 import { useLevelUpWatcher } from "@/lib/use-level-up-watcher";
 import { trackFeatureClick } from "@/lib/feature-events";
 import LevelUpModal from "@/components/LevelUpModal";
@@ -267,13 +267,13 @@ export default function AppNavbar() {
   // Effect đọc mục tiêu nghề đã gỡ cùng huy hiệu "chưa chọn nghề": nó là thứ
   // duy nhất dùng `careerGoalId`, và /nghe-nghiep-hoc - trang mà huy hiệu ấy
   // mời người đọc đi tới - không còn. Đáng gỡ chứ không để lại: thanh này gắn ở
-  // MỌI trang, nên effect cũ là một truy vấn Supabase trên mỗi lượt tải trang
+  // MỌI trang, nên effect cũ là một truy vấn Cloudflare trên mỗi lượt tải trang
   // của cả hệ thống, để nuôi một huy hiệu không còn hiện ra nữa.
 
 
   // Thanh này gắn ở mọi trang trong ứng dụng, nên mỗi request nó mở là một
   // request nhân với số lượt tải trang của cả hệ thống. Trước đây là bốn:
-  // `auth.getUser()` (một vòng mạng ra Supabase Auth), rồi `user_profiles`,
+  // `auth.getUser()` (một vòng mạng ra Cloudflare Auth), rồi `user_profiles`,
   // `quiz_mistakes`, `user_chests`.
   //
   // Giờ là một. `getCurrentUser()` đọc phiên đã lưu sẵn bằng `getSession()` và

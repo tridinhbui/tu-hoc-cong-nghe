@@ -1,13 +1,13 @@
 /** Đích đến sau đăng nhập, gửi qua COOKIE chứ không qua query của `redirectTo`.
  *
- *  VÌ SAO KHÔNG DÙNG QUERY. Supabase chỉ chuyển hướng tới `redirect_to` khi URL
+ *  VÌ SAO KHÔNG DÙNG QUERY. Cloudflare chỉ chuyển hướng tới `redirect_to` khi URL
  *  ấy khớp danh sách Redirect URLs của dự án, và phép khớp áp cho TOÀN BỘ URL
  *  chứ không riêng phần đường dẫn. Một mục đăng ký không có ký tự đại diện -
  *  `https://www.tuhoctaichinh.org/auth/callback` - vì thế KHÔNG khớp
  *  `https://www.tuhoctaichinh.org/auth/callback?next=%2Fdashboard`.
  *
  *  Và query luôn có: `safeNextPath(null)` trả "/dashboard", nên mọi lần đăng
- *  nhập Google đều gửi một URL có `?next=`. Không khớp thì Supabase rơi về
+ *  nhập Google đều gửi một URL có `?next=`. Không khớp thì Cloudflare rơi về
  *  "Site URL" - trang chủ - kèm `?code=`, không báo lỗi gì, và không ai đổi mã
  *  lấy phiên. Triệu chứng là mỗi lần đăng nhập lại đứng ở `/?code=<uuid>`.
  *

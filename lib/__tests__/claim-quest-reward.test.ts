@@ -10,12 +10,12 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 // up the week's quest XP still saw "+10 XP" while their real total never
 // moved.
 
-vi.mock("./supabase", () => ({ createClient: () => ({}) }));
-vi.mock("./supabase-user", () => ({ recalculateUserStats: vi.fn().mockResolvedValue(undefined) }));
+vi.mock("./cloudflare", () => ({ createClient: () => ({}) }));
+vi.mock("./cloudflare-user", () => ({ recalculateUserStats: vi.fn().mockResolvedValue(undefined) }));
 
 // jsdom isn't a project dependency (vitest.config.ts runs environment:
 // "node"), so localStorage - needed by the missing-table fallback path -
-// is stubbed the same way lib/__tests__/supabase-flashcards.test.ts does.
+// is stubbed the same way lib/__tests__/cloudflare-flashcards.test.ts does.
 class MemoryStorage {
   private store = new Map<string, string>();
   getItem(k: string) { return this.store.has(k) ? this.store.get(k)! : null; }
@@ -41,7 +41,7 @@ function mockFetchOnce(status: number, body: unknown) {
 //
 // Bản cũ chỉ gọi `vi.resetModules()` trong `afterEach`, nên câu kiểm ĐẦU TIÊN
 // của tệp này chạy với bất cứ thứ gì tệp chạy trước đó để lại trong registry -
-// kể cả một bản `lib/supabase-quests` đã nạp sẵn và đóng gói một `fetch` khác.
+// kể cả một bản `lib/cloudflare-quests` đã nạp sẵn và đóng gói một `fetch` khác.
 // Chạy riêng tệp thì registry vốn đã sạch nên 6/6 xanh; chạy trong cả bộ thì
 // đỏ lúc được lúc không, tuỳ tệp nào rơi vào cùng worker trước nó.
 //
@@ -61,8 +61,8 @@ afterEach(() => {
   (globalThis as Record<string, unknown>).fetch = originalFetch;
 });
 
-async function claimQuestReward(...args: Parameters<typeof import("../supabase-quests").claimQuestReward>) {
-  const mod = await import("@/lib/supabase-quests");
+async function claimQuestReward(...args: Parameters<typeof import("../cloudflare-quests").claimQuestReward>) {
+  const mod = await import("@/lib/cloudflare-quests");
   return mod.claimQuestReward(...args);
 }
 

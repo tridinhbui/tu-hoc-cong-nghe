@@ -8,7 +8,7 @@ import { getSystemDb } from "@/lib/d1/server";
 // message per active study room, acting as the group's "quản lý" - who
 // studied today, who hasn't yet, and how close the room is to its weekly
 // XP goal. Posted as is_bot=true/sender_id=null (see
-// supabase/migrations/20260720_study_room_bot_messages.sql) via the
+// cloudflare/migrations/20260720_study_room_bot_messages.sql) via the
 // service-role client, which bypasses study_room_messages' RLS (that
 // policy only ever governs human sends).
 import { encodeBotEvent } from "@/lib/study-room-bot-messages";

@@ -30,7 +30,7 @@ Dành cho người đã biết lập trình cơ bản — kiến trúc hệ th�
 ## Công nghệ
 
 - **Frontend**: Next.js 16 (App Router, Turbopack), React 19, TailwindCSS
-- **Backend**: Supabase (auth, progress, bảng xếp hạng)
+- **Backend**: Cloudflare (auth, progress, bảng xếp hạng)
 - **i18n**: từ điển tiếng Việt/tiếng Anh, có bộ kiểm đối chiếu hai chiều
 - **Kiểm thử**: Vitest (bộ kiểm nội dung, i18n và widget), Playwright cho e2e
 

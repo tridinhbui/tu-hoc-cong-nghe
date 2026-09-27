@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { RefreshCw, CheckCircle, XCircle, HelpCircle, Sparkles, ChevronDown, ChevronUp, AlertCircle } from "lucide-react";
-import { getLessonRecalls, processRecallAttempt, type LessonRecall } from "@/lib/supabase-recalls";
+import { getLessonRecalls, processRecallAttempt, type LessonRecall } from "@/lib/cloudflare-recalls";
 import { getLessonDetailsForRecall } from "@/app/actions/flashcard-actions";
-import { recalculateUserStats } from "@/lib/supabase-user";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

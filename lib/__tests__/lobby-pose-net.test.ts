@@ -8,7 +8,7 @@ import {
   quantizePose,
   smoothingFactor,
 } from "@/lib/lobby-pose-net";
-import { MOVE_BROADCAST_MS } from "@/lib/supabase-lobby";
+import { MOVE_BROADCAST_MS } from "@/lib/cloudflare-lobby";
 
 /** Đường truyền vị trí 3D.
  *
@@ -127,7 +127,7 @@ describe("nội suy bám theo nhịp gửi", () => {
 
 describe("nhịp gửi", () => {
   it("là 200ms và vẫn nằm dưới trần 10 sự kiện/giây của Realtime", () => {
-    // Trần là của Supabase, không phải của mình: vượt nó thì kênh rớt gói của
+    // Trần là của Cloudflare, không phải của mình: vượt nó thì kênh rớt gói của
     // TẤT CẢ mọi người trong phòng, chứ không riêng người gửi nhiều.
     expect(MOVE_BROADCAST_MS).toBe(200);
     expect(1000 / MOVE_BROADCAST_MS).toBeLessThanOrEqual(10);

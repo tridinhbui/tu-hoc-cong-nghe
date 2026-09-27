@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 
-// Reads Supabase env vars at render time - never prerender statically.
+// Reads Cloudflare env vars at render time - never prerender statically.
 
 export default function ResetPasswordPage() {
   const { t } = useI18n();
   const router = useRouter();
-  const supabase = createClient();
+  const cloudflare = createClient();
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -19,19 +19,19 @@ export default function ResetPasswordPage() {
   const [checkingSession, setCheckingSession] = useState(true);
   const [hasRecoverySession, setHasRecoverySession] = useState(false);
 
-  // The reset-password link from Supabase exchanges its token for a temporary
+  // The reset-password link from Cloudflare exchanges its token for a temporary
   // session on redirect - if there's no session here, the link was invalid
   // or already used.
   useEffect(() => {
     const checkSession = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await cloudflare.auth.getSession();
       setHasRecoverySession(!!session);
       setCheckingSession(false);
     };
     checkSession();
-  }, [supabase.auth]);
+  }, [cloudflare.auth]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -48,7 +48,7 @@ export default function ResetPasswordPage() {
 
     setLoading(true);
     try {
-      const { error: updateError } = await supabase.auth.updateUser({ password });
+      const { error: updateError } = await cloudflare.auth.updateUser({ password });
 
       if (updateError) {
         setError(updateError.message || t.resetPassword.updateErrorFallback);

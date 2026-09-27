@@ -32,13 +32,13 @@ graph TB
     subgraph "Business Logic Layer"
         Q[lib/auth.ts<br/>Session Management]
         R[lib/lessons.ts<br/>Lesson Content]
-        S[lib/supabase-*.ts<br/>Database Operations]
+        S[lib/cloudflare-*.ts<br/>Database Operations]
         T[lib/progress.ts<br/>Local Progress]
         U[lib/badges.ts<br/>Badge System]
         V[lib/levels.ts<br/>XP & Levels]
     end
     
-    subgraph "Database Layer - Supabase"
+    subgraph "Database Layer - Cloudflare"
         W[(lessons table)]
         X[(user_profiles table)]
         Y[(user_progress table)]
@@ -49,7 +49,7 @@ graph TB
     
     subgraph "External Services"
         AC[Google OAuth]
-        AD[Supabase Auth]
+        AD[Cloudflare Auth]
     end
     
     A --> B
@@ -102,37 +102,37 @@ graph TB
 sequenceDiagram
     participant User
     participant NextJS
-    participant Supabase
+    participant Cloudflare
     participant LessonsDB
     
     User->>NextJS: Visit /login
-    NextJS->>Supabase: Check session
+    NextJS->>Cloudflare: Check session
     alt Not logged in
         NextJS->>User: Show login form
         User->>NextJS: Submit credentials
-        NextJS->>Supabase: signInWithPassword()
-        Supabase->>NextJS: Session token
-        NextJS->>Supabase: createUserProfile()
+        NextJS->>Cloudflare: signInWithPassword()
+        Cloudflare->>NextJS: Session token
+        NextJS->>Cloudflare: createUserProfile()
         NextJS->>User: Redirect to /dashboard
     end
     
     User->>NextJS: Visit /dashboard
     NextJS->>LessonsDB: Load lesson metadata
-    NextJS->>Supabase: getUserProgress()
-    NextJS->>Supabase: getUserStats()
+    NextJS->>Cloudflare: getUserProgress()
+    NextJS->>Cloudflare: getUserStats()
     NextJS->>User: Render dashboard with progress
     
     User->>NextJS: Click lesson
     NextJS->>LessonsDB: Load full lesson content
-    NextJS->>Supabase: getReadingProgress()
+    NextJS->>Cloudflare: getReadingProgress()
     NextJS->>User: Render lesson page
     
     User->>NextJS: Complete quiz
-    NextJS->>Supabase: markLessonComplete()
-    Supabase->>Supabase: Update user_progress
-    Supabase->>Supabase: Update user_stats
-    Supabase->>Supabase: Check badges
-    Supabase->>NextJS: Return updated stats
+    NextJS->>Cloudflare: markLessonComplete()
+    Cloudflare->>Cloudflare: Update user_progress
+    Cloudflare->>Cloudflare: Update user_stats
+    Cloudflare->>Cloudflare: Check badges
+    Cloudflare->>NextJS: Return updated stats
     NextJS->>User: Show completion + badge
 ```
 
@@ -263,7 +263,7 @@ graph TD
 ## Key Modules and Responsibilities
 
 ### Authentication Module
-- **Files**: `lib/auth.ts`, `lib/supabase.ts`, `app/login/page.tsx`, `app/auth/`
+- **Files**: `lib/auth.ts`, `lib/cloudflare.ts`, `app/login/page.tsx`, `app/auth/`
 - **Responsibilities**: 
   - Email/password authentication
   - Google OAuth integration
@@ -279,7 +279,7 @@ graph TD
   - Track reading progress
 
 ### Progress Tracking Module
-- **Files**: `lib/supabase-progress.ts`, `lib/progress.ts`, `lib/supabase-reading.ts`
+- **Files**: `lib/cloudflare-progress.ts`, `lib/progress.ts`, `lib/cloudflare-reading.ts`
 - **Responsibilities**:
   - Track lesson completion
   - Store quiz scores
@@ -287,7 +287,7 @@ graph TD
   - Calculate streaks
 
 ### Gamification Module
-- **Files**: `lib/badges.ts`, `lib/levels.ts`, `lib/supabase-badges.ts`
+- **Files**: `lib/badges.ts`, `lib/levels.ts`, `lib/cloudflare-badges.ts`
 - **Responsibilities**:
   - XP calculation and leveling
   - Badge awarding system
@@ -314,9 +314,9 @@ graph TD
 - **Language**: TypeScript 5
 
 ### Backend
-- **Database**: Supabase (PostgreSQL)
-- **Authentication**: Supabase Auth
-- **ORM**: Supabase Client SDK
+- **Database**: Cloudflare (PostgreSQL)
+- **Authentication**: Cloudflare Auth
+- **ORM**: Cloudflare Client SDK
 
 ### Key Features
 - Two-track learning system (Personal vs Professional)
@@ -335,5 +335,5 @@ graph TD
 - X-Content-Type-Options: nosniff
 - Referrer-Policy: strict-origin-when-cross-origin
 - Permissions-Policy: restricted
-- Supabase RLS (Row Level Security)
+- Cloudflare RLS (Row Level Security)
 - Environment variable protection

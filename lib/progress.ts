@@ -17,7 +17,7 @@ export function getProgress(): Progress {
 }
 
 /**
- * Reconcile the local snapshot with Supabase `user_progress` (the source of
+ * Reconcile the local snapshot with Cloudflare `user_progress` (the source of
  * truth) by replacing `completedLessons` with the server's list. This used
  * to union the two lists instead of replacing, which meant a lesson marked
  * complete locally but never actually saved server-side (e.g. during the
@@ -62,7 +62,7 @@ const QUIZ_KEY_PREFIX = "thtcdn_quiz_";
 /**
  * Remembers exactly which option was picked for each quiz question, so
  * revisiting a lesson can show precisely which one was wrong (and what was
- * picked) instead of guessing. The Supabase-persisted `quiz_score` is only
+ * picked) instead of guessing. The Cloudflare-persisted `quiz_score` is only
  * an aggregate count, not per-question - restoring from it alone had no way
  * to know *which* questions were right, so it arbitrarily marked the first
  * `quiz_score` questions "correct", which usually didn't match what the

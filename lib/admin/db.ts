@@ -8,10 +8,10 @@ import predicatesJson from "../../scripts/d1/manual-predicates.json";
 import type { ColumnTypes, PolicyRegistry, ManualPredicates } from "@/lib/d1/query-builder";
 
 /**
- * Cổng admin cho D1 - thay lib/admin-auth.ts + lib/supabase-admin.ts.
+ * Cổng admin cho D1 - thay lib/admin-auth.ts + lib/cloudflare-admin.ts.
  *
- * Bản Supabase tách hai việc làm hai module: getAdminSession()/requireAdmin()
- * (lib/admin-auth.ts) kiểm vai trò, createAdminClient() (lib/supabase-admin.ts)
+ * Bản Cloudflare tách hai việc làm hai module: getAdminSession()/requireAdmin()
+ * (lib/admin-auth.ts) kiểm vai trò, createAdminClient() (lib/cloudflare-admin.ts)
  * tạo client bỏ qua RLS - và HAI THỨ ẤY KHÔNG BUỘC ĐI CÙNG NHAU. Bất kỳ mã nào
  * import được createAdminClient() là có client bỏ qua RLS, bất kể đã qua
  * requireAdmin() hay chưa; an toàn chỉ tới từ việc mọi chỗ gọi ĐỀU TỰ GIÁC gọi

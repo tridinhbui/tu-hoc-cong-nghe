@@ -1,7 +1,7 @@
 "use server";
 
 import { requireAdmin } from "@/lib/admin-auth";
-import { saveLessonVideoUrl, deleteLessonVideoUrl } from "@/lib/supabase-lesson-videos";
+import { saveLessonVideoUrl, deleteLessonVideoUrl } from "@/lib/cloudflare-lesson-videos";
 import { getServerDictionary } from "@/lib/i18n/server";
 
 export async function saveLessonVideoAction(lessonId: number, videoUrl: string): Promise<void> {

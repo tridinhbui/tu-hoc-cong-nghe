@@ -6,7 +6,7 @@ import {
   type FeedVisibilityPost,
 } from "@/lib/community-feed-visibility";
 
-// Màn hình feed tự lấy dữ liệu từ Supabase sau tường đăng nhập, nên đây là chỗ
+// Màn hình feed tự lấy dữ liệu từ Cloudflare sau tường đăng nhập, nên đây là chỗ
 // duy nhất kiểm được luật hiển thị mà không cần một phiên đăng nhập thật và vài
 // chục bài dựng sẵn.
 

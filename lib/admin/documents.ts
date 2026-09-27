@@ -10,11 +10,11 @@ const storage = () => getStorage().from("documents");
 
 /** Đường dẫn lưu trong R2 rút ra từ một URL công khai.
  *
- *  Nhận CẢ HAI dạng: URL Supabase cũ (".../object/public/documents/<path>",
+ *  Nhận CẢ HAI dạng: URL Cloudflare cũ (".../object/public/documents/<path>",
  *  dữ liệu tài liệu đã có từ trước khi chuyển) và URL R2 mới
  *  ("/api/files/documents/<path>", mọi lượt tải lên từ giờ). Không nhận ra
  *  dạng cũ thì tệp cũ không bao giờ dọn được khi thay thế - vô hại về đúng
- *  sai (Supabase Storage đằng nào cũng sắp bị cắt) nhưng để lại rác trong
+ *  sai (Cloudflare Storage đằng nào cũng sắp bị cắt) nhưng để lại rác trong
  *  bảng dữ liệu. */
 function storagePathFromUrl(url: string | null | undefined): string | null {
   if (!url) return null;

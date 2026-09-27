@@ -2,7 +2,7 @@ import type { D1Database } from "@cloudflare/workers-types";
 import { createD1Rpc } from "./rpc-dispatch";
 
 /**
- * Bộ dựng truy vấn D1 nhại bề mặt API của supabase-js.
+ * Bộ dựng truy vấn D1 nhại bề mặt API của cloudflare-js.
  *
  * VÌ SAO NHẠI CHỨ KHÔNG VIẾT LẠI. Repo có 527 lời gọi `.from()` trải trên 225
  * tệp. Viết lại từng chỗ thành SQL là 527 cơ hội sai lặng lẽ, và không có bộ
@@ -14,13 +14,13 @@ import { createD1Rpc } from "./rpc-dispatch";
  * hiện tại thật sự dùng, đếm bằng grep trên toàn repo. Cố ý KHÔNG dựng đủ
  * PostgREST: mỗi toán tử thừa là mã không ai gọi và không bộ kiểm nào chạy tới.
  *
- * KHÁC BIỆT PHẢI BIẾT SO VỚI SUPABASE:
+ * KHÁC BIỆT PHẢI BIẾT SO VỚI CLOUDFLARE:
  *
  *  - `.select()` KHÔNG hiểu cú pháp nhúng quan hệ (`select("*, user:user_id(*)")`).
  *    Postgres nối bảng qua khoá ngoại còn ở đây phải viết JOIN tay. Bộ dựng NÉM
  *    LỖI khi gặp cú pháp ấy thay vì lặng lẽ trả thiếu cột - hỏng to còn hơn
  *    hỏng nhỏ mà không ai thấy.
- *  - Không có RLS. Supabase lọc theo `auth.uid()` ở tầng cơ sở dữ liệu; D1 thì
+ *  - Không có RLS. Cloudflare lọc theo `auth.uid()` ở tầng cơ sở dữ liệu; D1 thì
  *    không có gì tương đương, nên MỌI truy vấn chạm dữ liệu người dùng phải tự
  *    mang điều kiện chủ sở hữu. Đây là rủi ro lớn nhất của cả cuộc chuyển đổi.
  *  - Boolean là 0/1 và jsonb là chuỗi; `decode()` đổi ngược theo lược đồ đã chụp.
@@ -103,11 +103,35 @@ export type ManualPredicates = Record<string, Partial<Record<"select" | "insert"
  * người gọi thật sự là admin qua getCurrentUser() - không nơi nào khác được
  * tự tạo giá trị này. Đây là Symbol, không phải chuỗi: một client viết
  * "__admin__" làm actor không đi qua được, chỉ import đúng ký hiệu này mới
- * được. Thay cho service-role key của Supabase - key ấy tự nó không kiểm gì,
+ * được. Thay cho service-role key của Cloudflare - key ấy tự nó không kiểm gì,
  * chỗ kiểm nằm ở lib/admin-auth.ts; ở đây gộp cả hai làm một để không ai lấy
  * được cờ bỏ qua chính sách mà chưa qua đúng cổng.
  */
 export const ADMIN_BYPASS: unique symbol = Symbol("d1-admin-bypass");
+
+/**
+ * Cột mà người dùng KHÔNG được tự ghi, kể cả trên chính hàng của mình.
+ *
+ * Chính sách "owner" lọc theo HÀNG, không theo CỘT: nó chỉ hỏi "hàng này có
+ * phải của người gọi không", nên một lệnh cập nhật đặt coins tuỳ ý trên hàng
+ * của chính mình đi qua trót lọt. Postgres chặn chuyện ấy bằng trigger guard_coins_column
+ * (20260914_lock_coins_column.sql), gắn theo VAI TRÒ - thứ D1 không có.
+ *
+ * Danh sách này RỘNG HƠN bản gốc, có chủ ý. Bản gốc chỉ khoá `coins`; policy
+ * "Users can update their own profile" cho ghi cả hàng, nên `role` và
+ * `is_disabled` ghi được từ console - tức người dùng tự nâng mình lên admin,
+ * hoặc tự mở khoá tài khoản vừa bị khoá. Chuyển sang D1 là dịp đóng lỗ ấy,
+ * không phải mang nó theo. `email` khoá vì nó phải khớp auth_users; đổi email
+ * là việc của lớp tài khoản, không phải một lệnh UPDATE hồ sơ.
+ *
+ * CHẶN CỨNG, không lặng lẽ bỏ qua như trigger Postgres (trigger ấy đặt
+ * NEW.coins := OLD.coins rồi báo thành công). Đo trước khi chọn: mọi lượt ghi
+ * user_profiles từ client đều nêu đích danh cột, không chỗ nào gửi cả hàng,
+ * nên không có lượt ghi hợp lệ nào vô tình mang theo các cột này.
+ */
+const PROTECTED_COLUMNS: Record<string, readonly string[]> = {
+  user_profiles: ["coins", "role", "is_disabled", "email"],
+};
 export type Actor = string | null | typeof ADMIN_BYPASS;
 
 type Op = { sql: string; args: unknown[] };
@@ -176,7 +200,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
 
   private applyPolicy() {
     // Admin: bỏ qua MỌI chính sách, cả "owner" lẫn "manual" - đúng cách
-    // service-role key của Supabase bỏ qua RLS hoàn toàn. Chỉ đạt tới đây khi
+    // service-role key của Cloudflare bỏ qua RLS hoàn toàn. Chỉ đạt tới đây khi
     // requireAdminDb() đã xác nhận vai trò admin trước đó.
     if (this.actor === ADMIN_BYPASS) return;
 
@@ -274,7 +298,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
 
   in(column: string, values: readonly unknown[]) {
     if (!values.length) {
-      // `IN ()` là lỗi cú pháp ở SQLite. Supabase trả mảng rỗng cho trường hợp
+      // `IN ()` là lỗi cú pháp ở SQLite. Cloudflare trả mảng rỗng cho trường hợp
       // này, nên phải khớp hành vi đó chứ không được ném lỗi.
       this.wheres.push({ sql: "0 = 1", args: [] });
       return this;
@@ -387,17 +411,34 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
   upsert(values: Row | Row[], opts?: { onConflict?: string }) {
     this.mode = "upsert";
     this.payload = Array.isArray(values) ? values : [values];
-    // Supabase mặc định coi khoá chính là đích xung đột. SQLite bắt buộc phải
+    // Cloudflare mặc định coi khoá chính là đích xung đột. SQLite bắt buộc phải
     // nêu rõ cột trong `ON CONFLICT(...)`, nên thiếu onConflict là lỗi ngay chứ
     // không phải một câu UPSERT lặng lẽ biến thành INSERT rồi ném lỗi trùng khoá.
     if (!opts?.onConflict) {
       throw new D1QueryError(
         `upsert vào "${this.table}" thiếu { onConflict }. SQLite cần biết cột xung đột; ` +
-          `Supabase suy ra từ khoá chính, D1 thì không.`
+          `Cloudflare suy ra từ khoá chính, D1 thì không.`
       );
     }
     this.conflictTarget = opts.onConflict;
     return this;
+  }
+
+  private guardProtectedColumns() {
+    if (this.actor === ADMIN_BYPASS) return;
+    if (this.mode !== "insert" && this.mode !== "update" && this.mode !== "upsert") return;
+    const blocked = PROTECTED_COLUMNS[this.table];
+    if (!blocked) return;
+    for (const row of this.payload) {
+      for (const col of blocked) {
+        if (col in row) {
+          throw new D1PolicyError(
+            `Không được tự ghi "${this.table}.${col}". Cột này chỉ đổi được qua mã máy chủ ` +
+              `(grant_coins/purchase_cosmetic cho coins, trang quản trị cho role/is_disabled).`
+          );
+        }
+      }
+    }
   }
 
   private encode(row: Row): Row {
@@ -420,6 +461,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
     // (chỉ còn hàng của chính người gọi) nhưng một lệnh xoá quét sạch dữ liệu
     // của chính mình vẫn gần như luôn là lỗi, không phải chủ ý.
     const callerWheres = this.wheres.length;
+    this.guardProtectedColumns();
     this.applyPolicyOnce();
     const where = this.wheres.length
       ? " WHERE " + this.wheres.map((w) => w.sql).join(" AND ")
@@ -455,7 +497,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
         const row = this.encode(this.payload[0]);
         const names = Object.keys(row);
         if (!callerWheres) {
-          // Supabase cho phép UPDATE toàn bảng, và đó chính là lý do phải chặn
+          // Cloudflare cho phép UPDATE toàn bảng, và đó chính là lý do phải chặn
           // ở đây: một `.eq()` viết thiếu là ghi đè cả bảng mà không có gì báo
           // cho tới khi ai đó đọc lại.
           throw new D1QueryError(`update trên "${this.table}" không có điều kiện WHERE - sẽ ghi đè MỌI hàng.`);
@@ -531,7 +573,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
       }
       return { data: rows, error: null, count };
     } catch (err) {
-      // Trả lỗi trong đối tượng thay vì ném, đúng như supabase-js: 527 chỗ gọi
+      // Trả lỗi trong đối tượng thay vì ném, đúng như cloudflare-js: 527 chỗ gọi
       // hiện tại đều viết theo dạng `const { data, error } = await ...`, và đổi
       // sang ném sẽ làm mọi chỗ ấy nuốt lỗi thành sự cố chưa bắt.
       return { data: null, error: err as Error };
@@ -584,6 +626,6 @@ export function createD1Client(
      * chúng. Admin gọi .rpc() (chưa ai làm) sẽ cần thiết kế riêng cho hàm đó,
      * không phải một cờ chung.
      */
-    rpc: createD1Rpc(db, typeof actor === "string" ? actor : null),
+    rpc: createD1Rpc(db, typeof actor === "string" ? actor : null, { serviceRole: actor === ADMIN_BYPASS }),
   };
 }

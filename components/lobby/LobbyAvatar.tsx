@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { nameplateTexture, speechBubbleTexture, type NameplateStatus } from "./room-textures";
-import { CHAT_BUBBLE_MS, MOVE_BROADCAST_MS } from "@/lib/supabase-lobby";
+import { CHAT_BUBBLE_MS, MOVE_BROADCAST_MS } from "@/lib/cloudflare-lobby";
 import { makeIntervalTracker, smoothingFactor } from "@/lib/lobby-pose-net";
 import AvatarGear from "./AvatarGear";
 import { type CharacterEquipments } from "@/lib/rpg-items";
@@ -43,7 +43,7 @@ interface Props {
   ghost?: boolean;
 }
 
-/** Ảnh đại diện dán lên mặt. Ảnh nằm ở miền khác (Supabase storage, Google),
+/** Ảnh đại diện dán lên mặt. Ảnh nằm ở miền khác (Cloudflare storage, Google),
  *  nên cần crossOrigin - thiếu nó thì WebGL từ chối texture vì canvas bị coi
  *  là "tainted". Hỏng thì trả null và nhân vật giữ khuôn mặt trơn, không phải
  *  lý do để cả căn phòng không dựng được. */

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import Image from "next/image";
 import Link from "next/link";
 import { isValidAvatar } from "@/lib/avatar-utils";
@@ -35,7 +35,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const supabase = createClient();
+      const cloudflare = createClient();
 
       const user = await getCurrentUser();
       if (!user) {
@@ -58,7 +58,7 @@ export default function UserProfile() {
       try {
         await fetch("/api/auth/create-profile", { method: "POST" });
 
-        const { data } = await supabase
+        const { data } = await cloudflare
           .from("user_profiles")
           .select("*")
           .eq("id", user.id)

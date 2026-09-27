@@ -1,10 +1,10 @@
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 
 /** Người học thật đang có chuỗi ngày, để màn hình "Học bài" nói được cộng đồng
  *  đang học gì bằng người thay vì bằng một con số băm ra từ slug.
  *
  *  Đường đọc là RPC `get_community_learning_now` (SECURITY DEFINER, xem
- *  supabase/migrations/20260903_community_learning_now.sql). Không thể thay bằng
+ *  cloudflare/migrations/20260903_community_learning_now.sql). Không thể thay bằng
  *  một câu select từ trình duyệt: RLS của `user_profiles` chỉ cho
  *  `auth.uid() = id`, nên câu join sẽ trả về đúng một dòng - của chính người
  *  đang đăng nhập - mà không báo lỗi gì. Đó là lỗi mà bảng xếp hạng đã mắc một
@@ -47,8 +47,8 @@ export async function getCommunityLearningNow(
   limit = 24,
   days = 7
 ): Promise<CommunityLearner[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase.rpc("get_community_learning_now", {
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare.rpc("get_community_learning_now", {
     p_limit: limit,
     p_days: days,
   });

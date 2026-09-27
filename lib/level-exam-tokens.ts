@@ -21,7 +21,7 @@ import { createHmac, timingSafeEqual } from "crypto";
 // and compares. The client cannot invert the MAC or test candidate indices,
 // since producing any MAC requires the server-only secret.
 //
-// Reuses SUPABASE_SERVICE_ROLE_KEY as the HMAC secret - already a server-only
+// Reuses CLOUDFLARE_SERVICE_ROLE_KEY as the HMAC secret - already a server-only
 // secret never sent to the browser, so no new env var is needed. Same choice
 // as lib/quiz-tokens.ts.
 
@@ -38,9 +38,9 @@ export interface ExamTokenBody {
 }
 
 function getSecret(): string {
-  const secret = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const secret = process.env.CLOUDFLARE_SERVICE_ROLE_KEY;
   if (!secret) {
-    throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY - required to sign level exam answer tokens");
+    throw new Error("Missing CLOUDFLARE_SERVICE_ROLE_KEY - required to sign level exam answer tokens");
   }
   return secret;
 }

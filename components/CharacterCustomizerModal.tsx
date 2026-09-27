@@ -25,7 +25,7 @@ import {
   AVATAR_PRESETS,
   type AvatarConfig,
 } from "@/lib/avatar-customizer-types";
-import { fetchUserAvatarConfig, saveUserAvatarConfig } from "@/lib/supabase-avatar";
+import { fetchUserAvatarConfig, saveUserAvatarConfig } from "@/lib/cloudflare-avatar";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

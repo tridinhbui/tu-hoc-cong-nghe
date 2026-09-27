@@ -1,6 +1,6 @@
 import "server-only";
-import type { SupabaseClient } from "@supabase/supabase-js";
-import { getCompletedLessons } from "./supabase-progress";
+import type { CloudflareClient } from "@/lib/cloudflare";
+import { getCompletedLessons } from "./cloudflare-progress";
 import { getLessonsMeta } from "./lessons-loader";
 import { isLessonIdInTrack, orderLessonsForTrack } from "./track-stages";
 
@@ -22,7 +22,7 @@ function isInTrack(lesson: { id: number; track?: "professional" | "personal" | "
  * Get the next lesson to continue learning
  * Returns the first incomplete lesson in the curriculum
  */
-export async function getResumeLesson(userId: string, track: "personal" | "professional", client?: SupabaseClient) {
+export async function getResumeLesson(userId: string, track: "personal" | "professional", client?: CloudflareClient) {
   const completedLessons = await getCompletedLessons(userId, client);
   const allLessons = await getLessonsMeta();
 
@@ -40,7 +40,7 @@ export async function getResumeLesson(userId: string, track: "personal" | "profe
 /**
  * Get the last completed lesson for resume context
  */
-export async function getLastCompletedLesson(userId: string, track: "personal" | "professional", client?: SupabaseClient) {
+export async function getLastCompletedLesson(userId: string, track: "personal" | "professional", client?: CloudflareClient) {
   const completedLessons = await getCompletedLessons(userId, client);
   const allLessons = await getLessonsMeta();
 

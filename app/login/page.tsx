@@ -97,7 +97,7 @@ function LoginForm() {
   }, []);
 
   // Basic client-side throttle: after MAX_ATTEMPTS failed logins/signups, force
-  // a short wait before allowing another attempt. Supabase also rate-limits
+  // a short wait before allowing another attempt. Cloudflare also rate-limits
   // auth endpoints server-side; this just gives the user a clearer local signal.
   useEffect(() => {
     if (!cooldownUntil) return;
@@ -170,7 +170,7 @@ function LoginForm() {
 
         // Một lượt gọi duy nhất: /api/auth/sign-up vừa tạo tài khoản vừa cấp
         // phiên ngay (xem lib/auth/service.ts). Không còn bước "đăng nhập lại
-        // sau khi đăng ký" như Supabase, vì hệ mới không có xác nhận email -
+        // sau khi đăng ký" như Cloudflare, vì hệ mới không có xác nhận email -
         // không có trạng thái "chưa xác nhận" để xử lý riêng nữa.
         const res = await fetch("/api/auth/sign-up", {
           method: "POST",

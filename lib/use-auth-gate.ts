@@ -6,13 +6,13 @@ import { getLocalPlayer } from "@/lib/local-store";
 /**
  * Không còn cổng nào để gác.
  *
- * Bản cũ chờ Supabase phát `INITIAL_SESSION`, rồi đá về `/login` nếu không có
- * phiên. Gỡ Supabase là gỡ luôn đăng nhập, nên hook này chỉ còn cấp danh tính
+ * Bản cũ chờ Cloudflare phát `INITIAL_SESSION`, rồi đá về `/login` nếu không có
+ * phiên. Gỡ Cloudflare là gỡ luôn đăng nhập, nên hook này chỉ còn cấp danh tính
  * cục bộ - `getLocalPlayer()` tự tạo id ở lần mở đầu tiên.
  *
  * Tên hàm giữ nguyên có chủ đích: bốn nơi gọi đều rã `{ userId, checking }`,
  * và đổi tên ở bước này chỉ tạo nhiễu trong diff của một cuộc đại phẫu vốn đã
- * lớn. Đổi tên khi Supabase đã ra khỏi repo hoàn toàn.
+ * lớn. Đổi tên khi Cloudflare đã ra khỏi repo hoàn toàn.
  *
  * `checking` vẫn tồn tại chứ không cứng thành `false`: localStorage chỉ đọc
  * được ở client, nên lượt render đầu (trên máy chủ và lượt hydrate) chưa có

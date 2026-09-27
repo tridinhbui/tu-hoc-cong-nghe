@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 /** Phễu bài học.
  *
- *  Không dựng Supabase lên: thứ có thể sai ở đây không phải truy vấn mà là
+ *  Không dựng Cloudflare lên: thứ có thể sai ở đây không phải truy vấn mà là
  *  CÁCH ĐẾM, và cách đếm đọc được thẳng từ mã nguồn. Ba thứ được canh, cả ba
  *  đều là loại sai âm thầm - bảng vẫn hiện số, chỉ là số sai.
  *

@@ -1,5 +1,5 @@
 /**
- * Lưu trữ cục bộ thay cho Supabase.
+ * Lưu trữ cục bộ thay cho Cloudflare.
  *
  * Cố ý KHÔNG có `"use client"`: `lib/games.ts` vừa được component client gọi
  * vừa được trang server import để dựng metadata, nên đánh dấu client ở đây sẽ
@@ -7,7 +7,7 @@
  * `typeof window === "undefined"` thay vì dựa vào chỉ thị.
  *
  * Dự án tài chính cũ đặt mọi thứ - danh tính, tiến độ, phiên chơi, bảng xếp
- * hạng - trên Supabase. Khi gỡ Supabase, thứ thay thế KHÔNG phải là một client
+ * hạng - trên Cloudflare. Khi gỡ Cloudflare, thứ thay thế KHÔNG phải là một client
  * giả mạo lại `.from().select().eq()`: 39 module gọi nó theo 39 kiểu khác nhau,
  * và một bản giả đủ giống để cả 39 chạy được thì đã là một cơ sở dữ liệu.
  *

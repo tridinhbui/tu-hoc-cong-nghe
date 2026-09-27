@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // Chụp lược đồ SỐNG từ PostgREST và lưu vào scripts/d1/schema-snapshot.json.
 //
-// Vì sao đọc PostgREST chứ không đọc 380 tệp trong supabase/migrations: migration
+// Vì sao đọc PostgREST chứ không đọc 380 tệp trong cloudflare/migrations: migration
 // là LỊCH SỬ, không phải trạng thái. Một cột bị đổi kiểu ở tệp thứ 200 thì tệp thứ
 // 40 vẫn khai kiểu cũ, và không có gì trong repo nói tệp nào thắng. PostgREST mô tả
 // đúng cái đang chạy - kèm khoá chính, khoá ngoại, kiểu, mặc định và cho phép rỗng.
 //
 // Cái nó KHÔNG thấy: chính sách RLS, trigger, index, ràng buộc CHECK, thân hàm RPC.
-// Những thứ đó phải lấy từ supabase/migrations, và đó là việc riêng.
+// Những thứ đó phải lấy từ cloudflare/migrations, và đó là việc riêng.
 import { writeFileSync } from "node:fs";
 import { readFileSync } from "node:fs";
 
@@ -15,9 +15,9 @@ for (const line of readFileSync(".env.local", "utf8").split("\n")) {
   const m = line.match(/^([A-Z_]+)=(.*)$/);
   if (m) process.env[m[1]] ??= m[2];
 }
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (!url || !key) throw new Error("thiếu NEXT_PUBLIC_SUPABASE_URL hoặc SUPABASE_SERVICE_ROLE_KEY trong .env.local");
+const url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL;
+const key = process.env.CLOUDFLARE_SERVICE_ROLE_KEY;
+if (!url || !key) throw new Error("thiếu NEXT_PUBLIC_CLOUDFLARE_URL hoặc CLOUDFLARE_SERVICE_ROLE_KEY trong .env.local");
 
 const res = await fetch(`${url}/rest/v1/`, {
   headers: { apikey: key, Authorization: `Bearer ${key}` },

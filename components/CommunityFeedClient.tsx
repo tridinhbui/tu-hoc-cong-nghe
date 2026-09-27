@@ -33,9 +33,9 @@ import {
   CheckCircle2,
   Pencil,
 } from "lucide-react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import EmojiPicker from "@/components/EmojiPicker";
-import { uploadChatImage, isAllowedChatImage } from "@/lib/supabase-chat";
+import { uploadChatImage, isAllowedChatImage } from "@/lib/cloudflare-chat";
 import {
   COMMENT_MAX_LENGTH,
   MANUAL_POST_MAX_LENGTH,
@@ -53,7 +53,7 @@ import {
   updateOwnPost,
   type CommunityFeedPost,
   type CommunityPostComment,
-} from "@/lib/supabase-community";
+} from "@/lib/cloudflare-community";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { animateCountTo } from "@/lib/animate-count";
 import { getCurrentUser } from "@/lib/current-user";
@@ -447,7 +447,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
 
 export default function CommunityFeedClient({ embedded = false }: { embedded?: boolean }) {
   const { t } = useI18n();
-  const supabase = createClient();
+  const cloudflare = createClient();
   const searchParams = useSearchParams();
   const [user, setUser] = useState<SessionUser | null>(null);
   const [posts, setPosts] = useState<CommunityFeedPost[]>([]);
@@ -585,7 +585,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
       }
     };
     void init();
-  }, [refreshFeed, supabase]);
+  }, [refreshFeed, cloudflare]);
 
   useEffect(() => {
     const unsubscribe = subscribeToCommunityFeed(() => {
@@ -940,7 +940,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
   // Quy tắc "bài thành tựu ra khỏi dòng chính" nằm ở
   // lib/community-feed-visibility.ts cùng bộ test của nó - màn hình này tự lấy
-  // dữ liệu từ Supabase sau tường đăng nhập, nên đó là chỗ duy nhất kiểm được
+  // dữ liệu từ Cloudflare sau tường đăng nhập, nên đó là chỗ duy nhất kiểm được
   // nó mà không cần một phiên đăng nhập thật và vài chục bài dựng sẵn.
   // Vẫn gọi visibleFeedPosts: ngoài tìm kiếm nó còn lọc bài hệ thống ra khỏi
   // dòng (xem isSystemPost). Bỏ ô tìm kiếm chỉ làm tham số thứ hai luôn rỗng.
@@ -1460,8 +1460,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             Lần đầu, chú thích nói lý do là bucket không nằm
                             trong remotePatterns. Lý do đó sai và bị bác đúng:
                             uploadChatImage() ghi vào "chat-images" của chính
-                            project này, tức `<ref>.supabase.co`, mà
-                            remotePatterns có `*.supabase.co`. Nhưng kết luận
+                            project này, tức `<ref>.cloudflare.co`, mà
+                            remotePatterns có `*.cloudflare.co`. Nhưng kết luận
                             "vậy thì đổi sang next/image được" lại không được
                             KIỂM: /bang-tin cần đăng nhập, không phiên nào mở
                             được nó, và ảnh chết ngay trên production sau khi

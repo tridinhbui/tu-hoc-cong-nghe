@@ -83,11 +83,26 @@ const RPC_TABLE: Record<string, Spec> = {
 /** Số hàm được phủ. Bộ kiểm khoá con số này để một hàm bị rơi ra là đỏ. */
 export const RPC_COUNT = Object.keys(RPC_TABLE).length;
 
-export function createD1Rpc(db: D1Like, actor: string | null) {
+/**
+ * Hàm chỉ service_role gọi được - bản dịch của `revoke all ... from public,
+ * anon, authenticated; grant execute ... to service_role` trong migration gốc.
+ * Mở chúng ra endpoint công khai /api/db/rpc là để bất kỳ ai tính lại XP của
+ * toàn bộ người dùng, ghi đè kho bài học, hay xáo lại mọi phòng học.
+ */
+const SERVICE_ROLE_ONLY = new Set([
+  "admin_resync_all_user_stats",
+  "sync_lessons_atomic",
+  "weekly_rematch_study_rooms",
+]);
+
+export function createD1Rpc(db: D1Like, actor: string | null, opts: { serviceRole?: boolean } = {}) {
   return async function rpc(
     name: string,
     params: Record<string, unknown> = {}
   ): Promise<{ data: unknown; error: Error | null }> {
+    if (SERVICE_ROLE_ONLY.has(name) && !opts.serviceRole) {
+      throw new D1RpcError(`Hàm "${name}" chỉ mã máy chủ đã xác thực mới gọi được.`);
+    }
     const spec = RPC_TABLE[name];
     if (!spec) {
       throw new D1RpcError(`Không có hàm RPC "${name}". Gõ nhầm tên, hoặc hàm chưa được dịch sang D1?`);
@@ -111,7 +126,7 @@ export function createD1Rpc(db: D1Like, actor: string | null) {
       const fn = R[spec.fn] as unknown as (db: D1Like, ...rest: unknown[]) => Promise<unknown>;
       return { data: await fn(db, ...args), error: null };
     } catch (err) {
-      // Supabase trả lỗi trong { error } chứ không ném; 60 chỗ gọi đang đọc
+      // Cloudflare trả lỗi trong { error } chứ không ném; 60 chỗ gọi đang đọc
       // theo kiểu ấy, nên ném ở đây sẽ thành sự cố chưa bắt.
       return { data: null, error: err as Error };
     }

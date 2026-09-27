@@ -8,7 +8,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
  *  có bản trong `lib/lessons-data`, nên `npm run audit:lessons` - vốn chỉ đọc
  *  thư mục đó - chưa bao giờ nhìn thấy chúng.
  *
- *  Chúng KHÔNG phải quiz nháp: LessonPageLayout gọi completeLessonInSupabase
+ *  Chúng KHÔNG phải quiz nháp: LessonPageLayout gọi completeLessonInCloudflare
  *  và ghi `quiz_score`, tức chúng chảy thẳng vào `avg_quiz_score` cùng với
  *  1.500 câu còn lại. Lúc phát hiện, 58 câu ở đây đứng ở z = +9,03 cho mẹo
  *  "chọn phương án dài nhất" - đúng cái lỗi mà cả kho kia đã mất công dọn -

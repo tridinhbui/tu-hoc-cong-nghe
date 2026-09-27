@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 
 // "Table/column not found in schema cache" (PostgREST) or "relation/column
 // does not exist" (raw Postgres) - tour flags are a non-critical UX nicety,
@@ -26,8 +26,8 @@ function isMissingSchemaError(error: { code?: string } | null): boolean {
  * `tour_flags` JSON column so new tours don't need new migrations.
  */
 export async function hasSeenTour(userId: string, key: string): Promise<boolean> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("user_profiles")
     .select("tour_flags")
     .eq("id", userId)
@@ -49,11 +49,11 @@ export async function hasSeenTour(userId: string, key: string): Promise<boolean>
  * is reset), so it never plays again on any device signed into this account.
  */
 export async function markTourSeen(userId: string, key: string): Promise<void> {
-  const supabase = createClient();
+  const cloudflare = createClient();
 
   // Read first so we don't clobber other tour flags already recorded for
   // this account.
-  const { data, error: readError } = await supabase
+  const { data, error: readError } = await cloudflare
     .from("user_profiles")
     .select("tour_flags")
     .eq("id", userId)
@@ -71,7 +71,7 @@ export async function markTourSeen(userId: string, key: string): Promise<void> {
   // First try a normal UPDATE. If it matches 0 rows (no user_profiles for
   // this account yet - should not happen with the new auth trigger, but
   // handle it anyway), then INSERT a new row.
-  const { error: updateError } = await supabase
+  const { error: updateError } = await cloudflare
     .from("user_profiles")
     .update({ tour_flags: updatedFlags })
     .eq("id", userId);
@@ -82,13 +82,13 @@ export async function markTourSeen(userId: string, key: string): Promise<void> {
   }
 
   // Check if UPDATE matched any rows. If not, INSERT instead.
-  const { count, error: countError } = await supabase
+  const { count, error: countError } = await cloudflare
     .from("user_profiles")
     .select("id", { count: "exact", head: true })
     .eq("id", userId);
 
   if (!countError && count === 0) {
-    const { error: insertError } = await supabase
+    const { error: insertError } = await cloudflare
       .from("user_profiles")
       .insert({ id: userId, tour_flags: updatedFlags });
 

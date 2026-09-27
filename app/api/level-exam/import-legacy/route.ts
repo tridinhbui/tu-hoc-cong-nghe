@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import { LEVEL_EXAMS } from "@/lib/level-exams";
 
 // One-time upward migration of promotion-exam passes that only ever existed in
@@ -36,11 +36,11 @@ function isLegacyRecord(value: unknown): value is LegacyRecord {
 }
 
 export async function POST(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
     error: userError,
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (userError || !user) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });

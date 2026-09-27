@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 /** Hai hành vi của thanh điều hướng khi đổi trang.
  *
- *  AppNavbar.tsx nằm sau tường đăng nhập và kéo theo supabase, i18n cùng hai
+ *  AppNavbar.tsx nằm sau tường đăng nhập và kéo theo cloudflare, i18n cùng hai
  *  chục thứ khác, nên không dựng nguyên nó lên để nhìn được. Bài này dựng lại
  *  ĐÚNG hai cơ chế vừa sửa, trên dữ liệu giả:
  *

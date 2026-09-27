@@ -18,7 +18,7 @@ import {
   getFriendsLeaderboard,
   type LeaderboardMetric,
   type LeaderboardRow,
-} from "@/lib/supabase-user";
+} from "@/lib/cloudflare-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
 

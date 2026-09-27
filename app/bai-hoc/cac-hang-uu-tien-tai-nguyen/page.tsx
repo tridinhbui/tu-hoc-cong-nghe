@@ -24,7 +24,7 @@ const LESSON: LessonMeta = {
 /* i18n-ignore-end */
 
 /* i18n-ignore-start: `correct` là chỉ số vào mảng options và LessonPageLayout
-   ghi `quiz_score` xuống Supabase - để nó trong từ điển là để một bản dịch sửa
+   ghi `quiz_score` xuống Cloudflare - để nó trong từ điển là để một bản dịch sửa
    được đáp án. Câu hỏi, phương án và lời giải nằm ở
    lib/i18n/dictionaries/sections/bespoke-lessons.ts. */
 const QUIZ_CORRECT = [2, 3, 0, 3, 1];

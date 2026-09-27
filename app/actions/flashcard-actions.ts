@@ -12,7 +12,7 @@ export interface GeneratedFlashcardCandidate {
 
 // Takes the caller's own unresolved-mistake rows (fetched client-side via
 // lib/quiz-mistakes.ts#getUnresolvedMistakeRows, which uses the browser
-// Supabase client and therefore has a real session/auth.uid() for the
+// Cloudflare client and therefore has a real session/auth.uid() for the
 // quiz_mistakes RLS check to pass) rather than re-querying by userId here.
 // This Server Action previously called getUnresolvedMistakeRows(userId)
 // itself - but that function's browser client has no session when invoked
@@ -21,7 +21,7 @@ export interface GeneratedFlashcardCandidate {
 // returned zero rows every time, regardless of how many real mistakes the
 // user had. "Tạo từ lỗi sai" always reported "không tìm thấy" as a result.
 // This action now only needs lesson content lookups, which are genuinely
-// server-only (lib/lessons.ts, ~1.3MB) and don't touch Supabase at all.
+// server-only (lib/lessons.ts, ~1.3MB) and don't touch Cloudflare at all.
 export async function getMistakeFlashcardCandidates(rows: QuizMistakeRow[]): Promise<GeneratedFlashcardCandidate[]> {
   try {
     if (!rows || rows.length === 0) return [];

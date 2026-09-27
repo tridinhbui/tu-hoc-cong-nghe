@@ -12,13 +12,13 @@ import {
   deleteFlashcard,
   calculateSM2,
   type Flashcard,
-} from "@/lib/supabase-flashcards";
+} from "@/lib/cloudflare-flashcards";
 import { getUnresolvedMistakeRows } from "@/lib/quiz-mistakes";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { getMistakeFlashcardCandidates } from "@/app/actions/flashcard-actions";
 import FlashcardAlbumsGallery from "@/components/flashcard/FlashcardAlbumsGallery";
 import { useI18n } from "@/lib/i18n/context";
-import { localizedDefaultGlossary } from "@/lib/supabase-flashcards-i18n";
+import { localizedDefaultGlossary } from "@/lib/cloudflare-flashcards-i18n";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
 

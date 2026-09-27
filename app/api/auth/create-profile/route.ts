@@ -1,15 +1,15 @@
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createServerSupabaseClient();
+    const cloudflare = await createServerCloudflareClient();
 
     // Get current user
     const {
       data: { user },
       error: userError,
-    } = await supabase.auth.getUser();
+    } = await cloudflare.auth.getUser();
 
     if (userError || !user) {
       return NextResponse.json(
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     // insert defaults only if the row is genuinely new, and on an existing
     // row only refresh the fields that can legitimately change (name/avatar
     // from the OAuth provider) without touching progress or role.
-    const { data: existing, error: fetchError } = await supabase
+    const { data: existing, error: fetchError } = await cloudflare
       .from("user_profiles")
       .select("id")
       .eq("id", user.id)
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!existing) {
-      const { data, error } = await supabase
+      const { data, error } = await cloudflare
         .from("user_profiles")
         .insert({
           id: user.id,
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true, profile: data });
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await cloudflare
       .from("user_profiles")
       .update({
         email: user.email,

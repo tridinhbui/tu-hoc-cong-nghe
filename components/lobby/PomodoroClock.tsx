@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { pomodoroTexture } from "./room-textures";
-import { POMODORO_MS } from "@/lib/supabase-lobby";
+import { POMODORO_MS } from "@/lib/cloudflare-lobby";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

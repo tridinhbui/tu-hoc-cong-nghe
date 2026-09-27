@@ -6,7 +6,7 @@ import { organicBuildingsOf, type OrganicBuilding } from "@/lib/rpg-buildings";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, Coins, Zap, Trophy, Lock, Flame, Shield, ShoppingBag, Layers, Activity, Clock, Crown, Compass } from "lucide-react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { getRequiredLevelForBuilding } from "@/lib/levels";
 import { toast } from "sonner";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
@@ -87,12 +87,12 @@ export default function TechRpgWorldMap() {
   const [completedLessonIds, setCompletedLessonIds] = useState<number[]>([]);
 
   useEffect(() => {
-    const supabase = createClient();
+    const cloudflare = createClient();
     void getCurrentUser().then((authUser) => {
       if (authUser) {
         setUser({ id: authUser.id, email: authUser.email ?? undefined });
         
-        supabase
+        cloudflare
           .from("user_profiles")
           .select("current_level, coins, discovered_buildings")
           .eq("id", authUser.id)
@@ -110,7 +110,7 @@ export default function TechRpgWorldMap() {
             }
           });
 
-        supabase
+        cloudflare
           .from("user_equipments")
           .select("slot, asset_key")
           .eq("user_id", authUser.id)
@@ -124,7 +124,7 @@ export default function TechRpgWorldMap() {
             }
           });
 
-        supabase
+        cloudflare
           .from("user_progress")
           .select("lesson_id")
           .eq("user_id", authUser.id)
@@ -198,7 +198,7 @@ export default function TechRpgWorldMap() {
         // tham chiếu, nên khám phá lại cùng một khu không trả tiền lần hai.
         client.from("user_profiles").update({ discovered_buildings: updated }).eq("id", user.id)
           .then(({ error }) => {
-            if (error) console.warn("Supabase user_profiles update notice:", error.message);
+            if (error) console.warn("Cloudflare user_profiles update notice:", error.message);
           });
         client.rpc("grant_coins", { p_source: "building", p_ref: id, p_amount: 5 })
           .then(({ data, error }) => {

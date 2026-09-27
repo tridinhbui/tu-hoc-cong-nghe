@@ -14,7 +14,7 @@ import {
   freezeStreakManually,
   MAX_STREAK_FREEZES,
   type UserStreak,
-} from "@/lib/supabase-streak";
+} from "@/lib/cloudflare-streak";
 
 export default function DashboardStreakWidget({ userId }: { userId: string }) {
   const { t } = useI18n();

@@ -1,6 +1,6 @@
 import { Play } from "lucide-react";
 import { getLessonsMeta } from "@/lib/lessons-loader";
-import { getAllLessonVideoUrls } from "@/lib/supabase-lesson-videos";
+import { getAllLessonVideoUrls } from "@/lib/cloudflare-lesson-videos";
 import VideosAdminClient from "./VideosAdminClient";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary } from "@/lib/i18n";

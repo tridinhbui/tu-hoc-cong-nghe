@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Brain, CheckCircle2, Shield, Trophy, X, XCircle } from "lucide-react";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import { toast } from "sonner";
-import { recalculateUserStats } from "@/lib/supabase-user";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
 import { recordCustomGameSession } from "@/lib/games";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 import { useI18n } from "@/lib/i18n/context";

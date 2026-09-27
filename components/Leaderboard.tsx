@@ -14,7 +14,7 @@ import {
   type LeaderboardMetric,
   type LeaderboardRow,
   type CompositeRank,
-} from "@/lib/supabase-user";
+} from "@/lib/cloudflare-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";

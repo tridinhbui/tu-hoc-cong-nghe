@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getLessonById } from "@/lib/lessons-loader";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
 import { questionFingerprint } from "@/lib/stable-hash";
@@ -31,8 +31,8 @@ export interface QuizMistakeReviewItem {
 // or removed question naturally drops out of review instead of showing
 // stale text.
 export async function getQuizMistakesReviewAction(userId: string): Promise<QuizMistakeReviewItem[]> {
-  const supabase = await createServerSupabaseClient();
-  const { data, error } = await supabase
+  const cloudflare = await createServerCloudflareClient();
+  const { data, error } = await cloudflare
     .from("quiz_mistakes")
     .select("lesson_id, question_index, wrong_count, last_attempt_at, question_hash")
     .eq("user_id", userId)
@@ -54,7 +54,9 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
   // flow look like it simply ignored interview practice.
   const lessonRows = data.filter((row) => row.lesson_id > 0);
 
-  const lessonIds = Array.from(new Set(lessonRows.map((row) => row.lesson_id)));
+  const lessonIds = Array.from(new Set<number>(lessonRows.map((row) => Number(row.lesson_id)))).filter(
+    (n: number) => Number.isFinite(n)
+  );
   const lessons = await Promise.all(lessonIds.map((id) => getLessonById(id)));
   const lessonById = new Map(lessons.filter(Boolean).map((l) => [l!.id, l!]));
 

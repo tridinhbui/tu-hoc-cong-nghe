@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { notFound, redirect } from "next/navigation";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getPublicUserProfile } from "@/lib/public-user-profile";
 import MessageUserButton from "@/components/MessageUserButton";
 import FollowButton from "@/components/FollowButton";
@@ -39,10 +39,10 @@ export default async function PublicUserProfilePage({
 }) {
   const locale = await getServerLocale();
   const t = getDictionary(locale);
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     redirect("/login");
@@ -59,15 +59,15 @@ export default async function PublicUserProfilePage({
     notFound();
   }
 
-  // Fetched with the server client (not lib/supabase-follows.ts, which is
+  // Fetched with the server client (not lib/cloudflare-follows.ts, which is
   // built for the browser client and wouldn't carry this request's auth
   // cookie) so the follow button and counts are correct on first paint -
   // no flash from an initial "not following yet" before a client fetch
   // resolves.
   const [{ count: followerCount }, { count: followingCount }, { data: followRow }] = await Promise.all([
-    supabase.from("user_follows").select("follower_id", { count: "exact", head: true }).eq("followed_id", userId),
-    supabase.from("user_follows").select("followed_id", { count: "exact", head: true }).eq("follower_id", userId),
-    supabase.from("user_follows").select("follower_id").eq("follower_id", user.id).eq("followed_id", userId).maybeSingle(),
+    cloudflare.from("user_follows").select("follower_id", { count: "exact", head: true }).eq("followed_id", userId),
+    cloudflare.from("user_follows").select("followed_id", { count: "exact", head: true }).eq("follower_id", userId),
+    cloudflare.from("user_follows").select("follower_id").eq("follower_id", user.id).eq("followed_id", userId).maybeSingle(),
   ]);
   const isFollowing = Boolean(followRow);
 

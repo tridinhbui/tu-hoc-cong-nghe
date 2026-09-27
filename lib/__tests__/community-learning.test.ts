@@ -30,11 +30,17 @@ function withoutComments(source: string, kind: "ts" | "sql"): string {
 
 const read = (path: string) => readFileSync(new URL(path, import.meta.url), "utf-8");
 
-const SQL_RAW = read("../../supabase/migrations/20260903_community_learning_now.sql");
+// Hàm plpgsql gốc (20260903_community_learning_now.sql) đã dịch sang D1 ở
+// lib/d1/rpc.ts#getCommunityLearningNow - đó mới là thứ chạy thật. Đọc đúng
+// thân hàm ấy, không đọc cả tệp: tệp có 53 hàm, và một phép "không chứa email"
+// trên cả tệp sẽ đỏ vì một hàm khác chẳng liên quan.
+const RPC_TS = read("../d1/rpc.ts");
+const fnStart = RPC_TS.indexOf("export async function getCommunityLearningNow");
+const SQL_RAW = RPC_TS.slice(fnStart, RPC_TS.indexOf("\nexport ", fnStart + 10));
 const LIB_RAW = read("../community-learning.ts");
 const COMPONENT_RAW = read("../../components/CommunityLearningNow.tsx");
 
-const SQL = withoutComments(SQL_RAW, "sql");
+const SQL = withoutComments(SQL_RAW, "ts");
 const LIB = withoutComments(LIB_RAW, "ts");
 const COMPONENT = withoutComments(COMPONENT_RAW, "ts");
 
@@ -68,7 +74,7 @@ describe("shortLearnerName", () => {
 });
 
 describe("đường đọc phải là RPC SECURITY DEFINER", () => {
-  // Đây là cái bẫy đã sập một lần rồi, và ghi lại ở lib/supabase-user.ts: RLS
+  // Đây là cái bẫy đã sập một lần rồi, và ghi lại ở lib/cloudflare-user.ts: RLS
   // của user_profiles chỉ cho `auth.uid() = id`, còn embedded resource của
   // PostgREST là inner join - nên một câu select từ trình duyệt không trả về ít
   // dòng hơn, nó trả về ĐÚNG MỘT DÒNG của chính người đang đăng nhập, không kèm
@@ -79,47 +85,29 @@ describe("đường đọc phải là RPC SECURITY DEFINER", () => {
     expect(LIB).not.toMatch(/from\(["']user_streaks["']\)/);
   });
 
-  it("hàm SQL là security definer và cố định search_path", () => {
-    expect(SQL).toMatch(/security definer/i);
-    expect(SQL).toMatch(/set search_path = public/i);
-  });
 
-  it("chỉ cấp execute cho authenticated, thu hồi khỏi public", () => {
-    expect(SQL).toMatch(/revoke all on function public\.get_community_learning_now/i);
-    expect(SQL).toMatch(/grant execute on function public\.get_community_learning_now\(int, int\) to authenticated/i);
-  });
 
   it("KHÔNG trả về cột nhạy cảm nào", () => {
-    // Một hàm security definer bỏ qua RLS, nên danh sách cột nó trả về CHÍNH LÀ
-    // policy. Bốn cột dưới đây đều nằm trên user_profiles và đều đọc được từ
+    // Hàm RPC chạy SQL thô, không qua policy registry, nên danh sách cột nó
+    // trả về CHÍNH LÀ policy - đúng như hàm security definer của bản gốc. Bốn cột dưới đây đều nằm trên user_profiles và đều đọc được từ
     // trong hàm; việc chúng không xuất hiện là một lựa chọn, không phải may.
     for (const secret of ["email", "bio", "total_xp", "avg_quiz_score"]) {
       expect(SQL).not.toContain(secret);
     }
   });
 
-  it("kiểu cột trong returns table khớp schema thật", () => {
-    // Đây là lỗi chỉ nổ LÚC GỌI, không phải lúc viết: khai lệch kiểu thì
-    // Postgres báo "structure of query does not match function result type",
-    // nên nó sống sót qua mọi lần đọc lại file và chỉ hiện ra sau khi ai đó đã
-    // dán SQL vào SQL Editor. `user_progress.lesson_id` là bigint,
-    // `user_streaks.current_streak` là integer - hai bảng, hai kiểu khác nhau.
-    expect(SQL).toMatch(/lesson_id bigint/);
-    expect(SQL).not.toMatch(/lesson_id int\b/);
-    expect(SQL).toMatch(/current_streak int\b/);
-  });
 
   it("chặn theo số ngày hoạt động, không chỉ theo current_streak", () => {
     // Không có vế này thì danh sách đầy người có chuỗi ngày cao nhưng đã nghỉ
     // hàng tháng, và "đang giữ chuỗi ngày" thành một câu sai theo cách tệ hơn cả
     // con số bịa - vì nó có người thật đứng tên.
-    expect(SQL).toMatch(/last_activity_date >= \(current_date - p_days\)/);
+    expect(SQL).toMatch(/date\(s\.last_activity_date\) >= date\('now', '-' \|\| \?2 \|\| ' days'\)/);
   });
 
-  it("loại người đã bị vô hiệu hoá, và so bằng is not true", () => {
-    // `is_disabled = false` bỏ sót mọi hàng cũ có giá trị null.
-    expect(SQL).toMatch(/is_disabled is not true/);
-    expect(SQL).not.toMatch(/is_disabled = false/);
+  it("loại người đã bị vô hiệu hoá, kể cả hàng cũ có is_disabled null", () => {
+    // `is_disabled = 0` bỏ sót mọi hàng cũ có giá trị null - bản D1 dùng
+    // coalesce, tương đương `is not true` của bản Postgres.
+    expect(SQL).toMatch(/coalesce\(prof\.is_disabled, 0\) = 0/);
   });
 });
 
@@ -150,6 +138,6 @@ describe("chỉ hiện con số đếm được", () => {
     // kiểm nói về chuyện khác. Một bộ kiểm bắt đúng thứ nó nói mới ngăn được
     // người ta nới nó ra cho qua chuyện.
     expect(COMPONENT).toMatch(/getCommunityLearningNow\(\s*\d+\s*,\s*7\s*\)/);
-    expect(SQL).toMatch(/p_days int default 7/);
+    expect(SQL).toMatch(/clampLimit\(days, 7,/);
   });
 });

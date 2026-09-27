@@ -82,11 +82,11 @@ export function roundedLessonCount(total: number = TOTAL_LESSONS): number {
  *
  *  Con số này đếm mọi bài trong kho lúc build. Nó KHÔNG bằng con số dashboard
  *  hiện ("3 / 778"): dashboard lọc thêm theo cờ `is_visible` trong bảng
- *  `lessons` trên Supabase, thứ chỉ biết được lúc chạy và do quản trị viên
+ *  `lessons` trên Cloudflare, thứ chỉ biết được lúc chạy và do quản trị viên
  *  đặt. Chênh lệch hiện tại là 36 bài đang bị ẩn.
  *
  *  Nên dùng TOTAL_LESSONS cho câu chữ giới thiệu (trang chủ, trang đăng nhập -
- *  nơi chưa có phiên đăng nhập để hỏi Supabase), và dùng số đã lọc cho mọi chỗ
+ *  nơi chưa có phiên đăng nhập để hỏi Cloudflare), và dùng số đã lọc cho mọi chỗ
  *  nói về tiến độ của một người học cụ thể. Đổi chỗ hai con số này cho nhau là
  *  cách sinh ra một lỗi không ai thấy: cả hai đều là số thật, chỉ trả lời hai
  *  câu hỏi khác nhau. */

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { UserPlus, UserCheck } from "lucide-react";
-import { followUser, unfollowUser } from "@/lib/supabase-follows";
+import { followUser, unfollowUser } from "@/lib/cloudflare-follows";
 import { useI18n } from "@/lib/i18n/context";
 
 interface FollowButtonProps {

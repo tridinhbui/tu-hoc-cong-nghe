@@ -111,7 +111,7 @@ for (const [table, def] of Object.entries(snap.tables).sort()) {
       notes.droppedDefault.push(`${table}.${col.name} = ${col.default}`);
 
     if (col.foreignKey) {
-      // auth.users nằm ở lược đồ auth của Supabase và KHÔNG đi cùng sang D1.
+      // auth.users nằm ở lược đồ auth của Cloudflare và KHÔNG đi cùng sang D1.
       // Giai đoạn xác thực sẽ dựng bảng người dùng riêng; tới lúc đó khoá ngoại
       // này mới nối được, nên giờ để nguyên tên bảng đích và kiểm ở đó.
       line += ` REFERENCES "${col.foreignKey.table}"("${col.foreignKey.column}")`;

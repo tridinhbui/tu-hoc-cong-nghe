@@ -11,7 +11,7 @@ import { createHmac, timingSafeEqual } from "crypto";
 // token (or a `selected` value swapped after the fact) simply fails
 // verification and scores as wrong instead of trusting the client.
 //
-// Reuses SUPABASE_SERVICE_ROLE_KEY as the HMAC secret - it's already a
+// Reuses CLOUDFLARE_SERVICE_ROLE_KEY as the HMAC secret - it's already a
 // server-only secret never sent to the browser, so no new env var is
 // required for this to work.
 export interface QuestionTokenPayload {
@@ -37,9 +37,9 @@ export interface QuestionTokenPayload {
 }
 
 function getSecret(): string {
-  const secret = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const secret = process.env.CLOUDFLARE_SERVICE_ROLE_KEY;
   if (!secret) {
-    throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY - required to sign quiz answer tokens");
+    throw new Error("Missing CLOUDFLARE_SERVICE_ROLE_KEY - required to sign quiz answer tokens");
   }
   return secret;
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 
 // Vercel Cron hits this via GET (see vercel.json: "0 13 * * 1" = Monday
 // 20:00 giờ Việt Nam, an hour after send-weekly-digest so the digest email
@@ -8,7 +8,7 @@ import { createAdminClient } from "@/lib/supabase-admin";
 // study_room_members row and re-groups everyone active in the last 7 days
 // into fresh random rooms by preferred_track - see
 // public.weekly_rematch_study_rooms() in
-// supabase/migrations/20260719_study_room_weekly_match_and_chat.sql for the
+// cloudflare/migrations/20260719_study_room_weekly_match_and_chat.sql for the
 // actual grouping logic. Manual join_study_room/leave_study_room stay
 // available afterward for anyone who wants to switch mid-week.
 export const dynamic = "force-dynamic";
@@ -32,9 +32,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createAdminClient();
+  const cloudflare = createAdminClient();
 
-  const { data, error } = await supabase.rpc("weekly_rematch_study_rooms");
+  const { data, error } = await cloudflare.rpc("weekly_rematch_study_rooms");
 
   if (error) {
     console.error("[weekly-study-match] weekly_rematch_study_rooms failed:", error);

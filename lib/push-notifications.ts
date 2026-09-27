@@ -1,5 +1,5 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
+import { createClient } from "@/lib/cloudflare";
+import { handleCloudflareError } from "@/lib/errors";
 
 function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01";
@@ -47,8 +47,8 @@ export async function subscribeToPush(userId: string): Promise<void> {
     throw new Error("Không lấy được thông tin đăng ký thông báo.");
   }
 
-  const supabase = createClient();
-  const { error } = await supabase.from("push_subscriptions").upsert(
+  const cloudflare = createClient();
+  const { error } = await cloudflare.from("push_subscriptions").upsert(
     {
       user_id: userId,
       endpoint: json.endpoint,
@@ -58,7 +58,7 @@ export async function subscribeToPush(userId: string): Promise<void> {
     { onConflict: "endpoint" }
   );
 
-  if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+  if (error && !isMissingTableError(error)) throw handleCloudflareError(error);
 }
 
 export async function unsubscribeFromPush(userId: string): Promise<void> {
@@ -71,12 +71,12 @@ export async function unsubscribeFromPush(userId: string): Promise<void> {
   if (subscription) await subscription.unsubscribe();
 
   if (!endpoint) return;
-  const supabase = createClient();
-  const { error } = await supabase
+  const cloudflare = createClient();
+  const { error } = await cloudflare
     .from("push_subscriptions")
     .delete()
     .eq("user_id", userId)
     .eq("endpoint", endpoint);
 
-  if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+  if (error && !isMissingTableError(error)) throw handleCloudflareError(error);
 }

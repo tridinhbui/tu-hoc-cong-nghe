@@ -6,7 +6,7 @@
  * định. `.rpc()` thì không: mỗi hàm là một thân plpgsql riêng, nên không có
  * quy tắc chung nào để nhại. 53 hàm là 53 bản dịch tay.
  *
- * QUY ƯỚC KHÁC VỚI SUPABASE:
+ * QUY ƯỚC KHÁC VỚI CLOUDFLARE:
  *
  *  - Không có `auth.uid()`. 32/53 hàm gốc gọi nó; ở đây id người gọi luôn là
  *    THAM SỐ ĐẦU TIÊN và bắt buộc. Hàm nào không cần thì không nhận.
@@ -120,7 +120,7 @@ export async function getFollowCounts(
  *  đúng từ hàm gốc, và nó đã lỗi thời: đo trên kho hiện tại, nó chỉ đếm
  *  108/220 bài `personal` và 181/323 bài `professional`. Tức là bảng xếp hạng
  *  theo track đang bỏ sót khoảng một nửa số bài của mỗi track, và điều đó đúng
- *  cả trên Supabase lúc này chứ không phải lỗi do chuyển đổi.
+ *  cả trên Cloudflare lúc này chứ không phải lỗi do chuyển đổi.
  *
  *  Sửa nó là một thay đổi HÀNH VI (thứ hạng của mọi người đổi), nên nó phải là
  *  một quyết định riêng chứ không lẫn vào đợt di trú. Xem RPC-MIGRATION-MAP.md.
@@ -329,7 +329,7 @@ export async function getStudyRoomReactions(
  *  nhất trong 53 hàm cần tới nó.
  *
  *  MÚI GIỜ. `current_date` của Postgres theo múi giờ máy chủ (UTC trên
- *  Supabase) còn `date('now')` của SQLite cũng là UTC, nên hai bên khớp nhau.
+ *  Cloudflare) còn `date('now')` của SQLite cũng là UTC, nên hai bên khớp nhau.
  *  Nhưng cả hai đều KHÔNG phải "hôm nay" theo giờ Việt Nam: một lượt học lúc
  *  6 giờ sáng giờ Việt Nam rơi vào ngày hôm trước theo UTC. Đây là hành vi có
  *  sẵn của bản gốc, dịch giữ nguyên; muốn đổi thì là một quyết định riêng.
@@ -1603,7 +1603,7 @@ async function isActiveRoomMember(db: D1Like, actor: string, roomId: number): Pr
 }
 
 /** `record_study_room_checkin(p_room_id, p_source)`.
- *  `current_date` → `date('now')` (UTC, giống bản gốc trên Supabase).
+ *  `current_date` → `date('now')` (UTC, giống bản gốc trên Cloudflare).
  *  Cùng cảnh báo UNIQUE như `recordReferral`: `on conflict (room_id, user_id,
  *  day_key)` cần ràng buộc duy nhất mà lược đồ D1 chưa có. */
 export async function recordStudyRoomCheckin(
@@ -1708,7 +1708,7 @@ const COIN_CAPS: Record<string, number> = {
  *  đã cấp rồi. Tương đương về ngữ nghĩa và không cần bắt ngoại lệ.
  *
  *  CHỖ KHÔNG PORT ĐƯỢC: `set_config('app.coin_write','on',true)`. Trigger
- *  `guard_coins_on_user_profiles` trên Supabase từ chối mọi lệnh ghi vào cột
+ *  `guard_coins_on_user_profiles` trên Cloudflare từ chối mọi lệnh ghi vào cột
  *  `coins` trừ khi cờ phiên ấy bật. SQLite không có biến phạm vi transaction,
  *  nên lớp bảo vệ ấy BIẾN MẤT. Thay thế: mọi thay đổi `coins` phải đi qua đúng
  *  hai hàm trong tệp này (`grantCoins`, `purchaseCosmetic`) và bảng `coin_grants`
@@ -2165,7 +2165,7 @@ export async function claimStudyRoomWeeklyReward(
 ): Promise<{
   ok: boolean;
   /** Mã để client tra từ điển. `message` ở lại làm bản dự phòng cho client cũ
-   *  và cho đường Supabase, vốn trả về đúng cùng hình dạng này. */
+   *  và cho đường Cloudflare, vốn trả về đúng cùng hình dạng này. */
   code: "missions_incomplete" | "already_claimed" | "chest_opened";
   message: string;
   streak_weeks: number;
@@ -2465,7 +2465,7 @@ export async function weeklyRematchStudyRooms(
   //    Bản gốc chỉ có MỘT lệnh `delete from study_rooms` và dựa vào
   //    `on delete cascade` để dọn tin nhắn với thành viên. Lược đồ D1 có 0
   //    mệnh đề ON DELETE (bản chụp PostgREST không lấy được chúng, trong khi
-  //    migration Supabase có 111 chỗ), nên lệnh xoá thẳng sẽ đụng khoá ngoại.
+  //    migration Cloudflare có 111 chỗ), nên lệnh xoá thẳng sẽ đụng khoá ngoại.
   //    Xoá tường minh theo thứ tự phụ thuộc - đúng dù lược đồ có cascade hay
   //    không, nên không phải sửa lại khi cascade được bổ sung.
   const boDi = (

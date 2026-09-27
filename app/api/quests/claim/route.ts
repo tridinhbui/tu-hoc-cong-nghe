@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import {
   getQuestXpReward,
   getWeekStartKey,
@@ -11,10 +11,10 @@ import { checkQuestEligibility } from "@/lib/quest-eligibility";
 
 // Server-authoritative quest claiming. user_quest_completions used to be
 // insertable straight from the browser with a client-supplied xp_earned
-// (lib/supabase-quests.ts#claimQuestReward), and recalculateUserStats sums
+// (lib/cloudflare-quests.ts#claimQuestReward), and recalculateUserStats sums
 // that column into total_xp - so devtools could mint unlimited XP. Direct
 // insert from `authenticated` is revoked in
-// supabase/migrations/20260813_harden_quest_and_recall_xp.sql; this route is
+// cloudflare/migrations/20260813_harden_quest_and_recall_xp.sql; this route is
 // the only writer now and derives the amount from lib/quest-rewards.ts
 // instead of trusting the request body.
 
@@ -22,11 +22,11 @@ import { checkQuestEligibility } from "@/lib/quest-eligibility";
 const DAY_KEY_RE = /^\d{4}-\d{2}-\d{2}$/;
 
 export async function POST(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
     error: userError,
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (userError || !user) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });

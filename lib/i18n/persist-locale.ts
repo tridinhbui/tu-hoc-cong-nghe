@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import type { Locale } from "./locales";
 
 /** Ghi ngôn ngữ đang chọn vào hồ sơ người dùng.
@@ -16,12 +16,12 @@ import type { Locale } from "./locales";
  *  có hồ sơ để ghi, và đó là trường hợp bình thường chứ không phải lỗi. */
 export async function persistPreferredLocale(locale: Locale): Promise<void> {
   try {
-    const supabase = createClient();
+    const cloudflare = createClient();
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await cloudflare.auth.getUser();
     if (!user) return;
-    await supabase.from("user_profiles").update({ preferred_locale: locale }).eq("id", user.id);
+    await cloudflare.from("user_profiles").update({ preferred_locale: locale }).eq("id", user.id);
   } catch {
     // Xem chú thích trên: cookie đã đổi, giao diện đã đổi.
   }

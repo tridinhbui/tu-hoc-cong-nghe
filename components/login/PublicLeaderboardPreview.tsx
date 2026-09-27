@@ -20,7 +20,7 @@ import {
   ArrowRight,
   UserCheck,
 } from "lucide-react";
-import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
+import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/cloudflare-user";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";

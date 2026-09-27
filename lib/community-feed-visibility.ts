@@ -1,7 +1,7 @@
 /** Quy tắc bài nào hiện ở dòng chính của feed cộng đồng.
  *
  *  Tách khỏi CommunityFeedClient.tsx vì đây là phần duy nhất của màn hình đó
- *  kiểm được mà không cần trình duyệt: màn hình tự lấy dữ liệu từ Supabase sau
+ *  kiểm được mà không cần trình duyệt: màn hình tự lấy dữ liệu từ Cloudflare sau
  *  tường đăng nhập, nên "bài chuỗi ngày có bị lọc đúng không" không có cách nào
  *  nhìn thấy bằng ảnh chụp trong lúc dựng.
  *

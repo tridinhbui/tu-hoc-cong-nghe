@@ -4,13 +4,13 @@
 // OpenAPI thì trống - nên DDL sinh ra là NOT NULL không mặc định, và mọi lệnh
 // chèn không nêu cột đó sẽ hỏng. Postgres nhận, D1 từ chối.
 //
-// Script này đọc supabase/migrations để vá đúng phần thiếu ấy, và CHỈ phần ấy:
+// Script này đọc cloudflare/migrations để vá đúng phần thiếu ấy, và CHỈ phần ấy:
 // nó không thay bản chụp làm nguồn tin cậy, vì migration là lịch sử và một cột
 // có thể được đổi mặc định ở tệp sau. Nó lấy lần khai BÁO CUỐI CÙNG theo thứ tự
 // tên tệp, vốn là thứ tự thời gian trong repo này.
 import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 
-const dirs = ["supabase/migrations", "sql-canchay"];
+const dirs = ["cloudflare/migrations", "sql-canchay"];
 const files = dirs.flatMap((d) =>
   readdirSync(d).filter((f) => f.endsWith(".sql")).map((f) => `${d}/${f}`)
 ).sort();

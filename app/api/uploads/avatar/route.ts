@@ -7,7 +7,7 @@ const MAX_BYTES = 5 * 1024 * 1024;
 /**
  * Ghi ảnh đại diện vào R2, dưới danh nghĩa người đang đăng nhập.
  *
- * CHUYỂN TỪ CLIENT SANG SERVER. Bản Supabase gọi storage.from("avatars")
+ * CHUYỂN TỪ CLIENT SANG SERVER. Bản Cloudflare gọi storage.from("avatars")
  * thẳng từ trình duyệt, an toàn vì RLS kiểm auth.uid() ở tầng cơ sở dữ liệu.
  * R2 không có RLS - ai cũng ghi được vào bất kỳ khoá nào nếu binding lộ ra
  * trình duyệt. Route này THAY CHO RLS: id trong đường dẫn lấy từ phiên đã
@@ -42,8 +42,8 @@ export async function POST(req: Request) {
   const { data } = storage.from("avatars").getPublicUrl(path);
 
   // Chỉ ghi tệp. KHÔNG cập nhật user_profiles.avatar_url ở đây - bảng đó vẫn
-  // đang sống ở Supabase cho tới bước thay client (auth/DB) sang D1, và ghi
+  // đang sống ở Cloudflare cho tới bước thay client (auth/DB) sang D1, và ghi
   // vào D1 song song lúc này tạo ra hai nguồn sự thật cùng lúc. Nơi gọi vẫn tự
-  // cập nhật hồ sơ bằng con đường Supabase như trước.
+  // cập nhật hồ sơ bằng con đường Cloudflare như trước.
   return Response.json({ publicUrl: data.publicUrl });
 }

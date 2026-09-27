@@ -1,5 +1,5 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
+import { createClient } from "@/lib/cloudflare";
+import { handleCloudflareError } from "@/lib/errors";
 import { questionFingerprint } from "@/lib/stable-hash";
 
 function isMissingTableError(error: { code?: string } | null): boolean {
@@ -16,12 +16,12 @@ export async function recordQuizMistake(
   correct: boolean,
   /** Nội dung câu hỏi tại thời điểm trả lời. Dùng để đường đọc biết hàng này
    *  còn nói về đúng câu hỏi đó không sau khi nội dung bài được sửa - xem
-   *  supabase/migrations/20260902_quiz_mistake_question_hash.sql. Không truyền
+   *  cloudflare/migrations/20260902_quiz_mistake_question_hash.sql. Không truyền
    *  thì hàng được ghi với hash NULL, tức quay về hành vi cũ cho riêng hàng đó. */
   questionText?: string
 ): Promise<void> {
-  const supabase = createClient();
-  const { error } = await supabase.rpc("record_quiz_mistake", {
+  const cloudflare = createClient();
+  const { error } = await cloudflare.rpc("record_quiz_mistake", {
     p_lesson_id: lessonId,
     p_question_index: questionIndex,
     p_correct: correct,
@@ -40,8 +40,8 @@ export interface QuizMistakeRow {
 }
 
 export async function getUnresolvedMistakeRows(userId: string): Promise<QuizMistakeRow[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("quiz_mistakes")
     .select("lesson_id, question_index, wrong_count, last_attempt_at")
     .eq("user_id", userId)
@@ -50,14 +50,14 @@ export async function getUnresolvedMistakeRows(userId: string): Promise<QuizMist
 
   if (error) {
     if (isMissingTableError(error)) return [];
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
   return (data ?? []) as QuizMistakeRow[];
 }
 
 export async function getUnresolvedMistakeCount(userId: string): Promise<number> {
-  const supabase = createClient();
-  const { count, error } = await supabase
+  const cloudflare = createClient();
+  const { count, error } = await cloudflare
     .from("quiz_mistakes")
     .select("*", { count: "exact", head: true })
     .eq("user_id", userId)

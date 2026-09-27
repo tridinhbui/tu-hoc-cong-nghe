@@ -72,7 +72,7 @@ export async function updateUserRole(userId: string, role: "user" | "admin") {
 }
 
 /**
- * Khoá/mở tài khoản. Thay hai bước của bản Supabase (cờ hiển thị trong bảng
+ * Khoá/mở tài khoản. Thay hai bước của bản Cloudflare (cờ hiển thị trong bảng
  * + auth.admin.updateUserById() để chặn phiên) bằng một bước, vì thiết kế
  * phiên D1 đã giải quyết gọn hơn: getCurrentUser() kiểm is_disabled ở MỖI
  * yêu cầu (xem lib/auth/current-user.ts), nên chỉ cần cờ trong bảng là phiên
@@ -106,7 +106,7 @@ export async function getUserCount(): Promise<number> {
 /**
  * Recomputes lessons_completed/total_xp/current_level/avg_quiz_score for
  * EVERY user in one set-based SQL pass - the bulk counterpart to
- * lib/supabase-user.ts#recalculateUserStats, which only self-heals one
+ * lib/cloudflare-user.ts#recalculateUserStats, which only self-heals one
  * account at a time, the next time that person visits the dashboard/profile.
  * adminResyncAllUserStats() (lib/d1/rpc.ts) là bản dịch tay của hàm SQL gốc,
  * không qua bộ điều phối .rpc() vì hàm này không nhận actor.

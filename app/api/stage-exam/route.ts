@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { signQuestionToken, verifyQuestionToken } from "@/lib/quiz-tokens";
 import {
@@ -101,11 +101,11 @@ async function lastFailedAt(
 }
 
 export async function GET(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
     error: userError,
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
   if (userError || !user) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
@@ -122,12 +122,12 @@ export async function GET(request: NextRequest) {
 
   // No stage given: list what's available to test out of.
   if (!stageLabel) {
-    const { data: progress } = await supabase
+    const { data: progress } = await cloudflare
       .from("user_progress")
       .select("lesson_id")
       .eq("user_id", user.id)
       .eq("completed", true);
-    const completed = new Set((progress ?? []).map((r) => r.lesson_id as number));
+    const completed = new Set<number>((progress ?? []).map((r) => Number(r.lesson_id)));
 
     const stages: StageExamEligibility[] = [];
     for (const stage of getTrackStages(track)) {
@@ -207,11 +207,11 @@ function isAnswerInput(value: unknown): value is AnswerInput {
 }
 
 export async function POST(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
     error: userError,
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
   if (userError || !user) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }

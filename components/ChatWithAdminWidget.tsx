@@ -25,7 +25,7 @@ import Logo from "@/components/Logo";
 import EmojiPicker from "@/components/EmojiPicker";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
-import { getRandomCommunityShoutout, type CommunityShoutout } from "@/lib/supabase-user";
+import { getRandomCommunityShoutout, type CommunityShoutout } from "@/lib/cloudflare-user";
 import { resolveOpenChange } from "@/lib/controlled-open";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -42,7 +42,7 @@ import {
   toggleChatReaction,
   type ChatMessage,
   type ChatReactionMap,
-} from "@/lib/supabase-chat";
+} from "@/lib/cloudflare-chat";
 import { useResizablePanel } from "@/lib/use-resizable-panel";
 import { getCurrentUserId } from "@/lib/current-user";
 

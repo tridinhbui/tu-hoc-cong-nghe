@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Shield, Zap, TrendingUp, TrendingDown, DollarSign, Award, AlertTriangle, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
-import { addXpToUser } from "@/lib/supabase-progress";
+import { addXpToUser } from "@/lib/cloudflare-progress";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

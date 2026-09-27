@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import { BOSS_QUESTION_COUNT } from "@/lib/world-boss";
 import { getServerDictionary } from "@/lib/i18n/server";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -58,10 +58,10 @@ interface BossQuestion {
 }
 
 export async function GET(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const t = await getServerDictionary();
 
-  const { data: boss } = await supabase
+  const { data: boss } = await cloudflare
     .from("world_bosses")
     .select("*")
     .eq("is_active", true)
@@ -116,7 +116,7 @@ export async function GET(request: NextRequest) {
   };
 
   // Lấy Top 10 Leaderboard Sát thương
-  const { data: logs } = await supabase
+  const { data: logs } = await cloudflare
     .from("world_boss_damage_logs")
     .select("user_id, damage_dealt, user_profiles(full_name, email, avatar_url)")
     .eq("boss_id", activeBoss.id)
@@ -151,10 +151,10 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -177,7 +177,7 @@ export async function POST(request: NextRequest) {
   // Boss phải là một hàng thật. Bản dự phòng trong mã nguồn có id là chuỗi
   // thường trong khi cột id là uuid, nên nó không bao giờ khớp hàng nào - và
   // nhánh trừ máu cũ bị bỏ qua đúng vì thế.
-  const { data: activeBoss } = await supabase
+  const { data: activeBoss } = await cloudflare
     .from("world_bosses")
     .select("id")
     .eq("is_active", true)
@@ -202,7 +202,7 @@ export async function POST(request: NextRequest) {
   // Trừ máu và ghi log trong MỘT lệnh, bằng hàm SECURITY DEFINER. Bảng chỉ
   // cấp quyền select cho người dùng, nên câu update trực tiếp bị RLS chặn im
   // lặng - đó là chỗ hỏng thứ hai, độc lập với chỗ trên.
-  const { data: hit, error: rpcError } = await supabase
+  const { data: hit, error: rpcError } = await cloudflare
     .rpc("apply_world_boss_damage", { p_boss_id: bossId, p_score: score })
     .maybeSingle<{ current_hp: number; max_hp: number; damage_applied: number }>();
 
@@ -219,7 +219,7 @@ export async function POST(request: NextRequest) {
   const xpReward = Math.min(50, Math.max(0, score * 5));
   const coinReward = score * 35;
 
-  const { data: profile } = await supabase
+  const { data: profile } = await cloudflare
     .from("user_profiles")
     .select("coins")
     .eq("id", user.id)
@@ -245,7 +245,7 @@ export async function POST(request: NextRequest) {
     })
     .eq("id", user.id);
 
-  await supabase.from("game_sessions").insert({
+  await cloudflare.from("game_sessions").insert({
     user_id: user.id,
     game_type: "world-boss-raid",
     score: damageDealt,

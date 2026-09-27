@@ -10,8 +10,8 @@ import {
 import { toast } from "sonner";
 import { advanceMarket } from "@/lib/market-sim";
 import { INITIAL_VN30_STOCKS, MARKET_NEWS_POOL, type StockItem, type MarketNewsEvent } from "@/lib/vn30-stock-data";
-import { createClient } from "@/lib/supabase";
-import { recalculateUserStats } from "@/lib/supabase-user";
+import { createClient } from "@/lib/cloudflare";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
 import { recordCustomGameSession } from "@/lib/games";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 import { useI18n } from "@/lib/i18n/context";

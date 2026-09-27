@@ -1,6 +1,6 @@
 // Curated "hot" preset flashcard decks a learner can browse and import into
 // their own deck in one click - static content (same pattern as
-// DEFAULT_FINANCIAL_GLOSSARY in lib/supabase-flashcards.ts), no admin UI or
+// DEFAULT_FINANCIAL_GLOSSARY in lib/cloudflare-flashcards.ts), no admin UI or
 // extra table needed for a first version. Each album gets a gradient +
 // emoji "cover" instead of an uploaded image - consistent with how mini-game
 // cards and level badges already represent themselves visually elsewhere in

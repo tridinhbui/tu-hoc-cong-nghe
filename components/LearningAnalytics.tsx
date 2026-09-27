@@ -33,9 +33,9 @@ import {
   Target,
   TrendingUp,
 } from "lucide-react";
-import { getUserAnalytics } from "@/lib/supabase-analytics";
-import { createClient } from "@/lib/supabase";
-import type { LearningAnalytics as LearningAnalyticsType } from "@/lib/supabase-analytics";
+import { getUserAnalytics } from "@/lib/cloudflare-analytics";
+import { createClient } from "@/lib/cloudflare";
+import type { LearningAnalytics as LearningAnalyticsType } from "@/lib/cloudflare-analytics";
 import LeaderboardSection from "@/components/analytics/LeaderboardSection";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -240,7 +240,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const supabase = createClient();
+        const cloudflare = createClient();
         const user = await getCurrentUser();
 
         if (user) {

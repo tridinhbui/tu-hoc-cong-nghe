@@ -69,11 +69,11 @@ export function minutesPerDay(pace: Pace): number {
   return pace.perDay * MEDIAN_LESSON_MINUTES;
 }
 
-/** Nhận một nhịp từ NGUỒN NGOÀI (cột Supabase, JSON cũ) và trả về nhịp hợp lệ,
+/** Nhận một nhịp từ NGUỒN NGOÀI (cột Cloudflare, JSON cũ) và trả về nhịp hợp lệ,
  *  hoặc null nếu chưa đặt.
  *
  *  Tách khỏi readPace vì hai nguồn có hình dạng khác nhau nhưng cùng một tập
- *  giá trị hợp lệ: localStorage giữ một object, Supabase giữ hai cột rời có thể
+ *  giá trị hợp lệ: localStorage giữ một object, Cloudflare giữ hai cột rời có thể
  *  NULL. Viết phép kiểm hai lần là để hai bên trôi khỏi nhau - và bên trôi sẽ
  *  là bên ít người đọc hơn.
  *

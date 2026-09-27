@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll } from "vitest";
 import { signExamAnswerToken, gradeExamAnswerToken, type ExamTokenBody } from "@/lib/level-exam-tokens";
 
 beforeAll(() => {
-  process.env.SUPABASE_SERVICE_ROLE_KEY = "test-secret-key";
+  process.env.CLOUDFLARE_SERVICE_ROLE_KEY = "test-secret-key";
 });
 
 const body: ExamTokenBody = {
@@ -81,11 +81,11 @@ describe("signExamAnswerToken / gradeExamAnswerToken", () => {
 
   it("does not accept a token signed with a different secret", () => {
     const token = signExamAnswerToken(body, 1);
-    process.env.SUPABASE_SERVICE_ROLE_KEY = "different-secret";
+    process.env.CLOUDFLARE_SERVICE_ROLE_KEY = "different-secret";
     try {
       expect(gradeExamAnswerToken(token, 1)).toBeNull();
     } finally {
-      process.env.SUPABASE_SERVICE_ROLE_KEY = "test-secret-key";
+      process.env.CLOUDFLARE_SERVICE_ROLE_KEY = "test-secret-key";
     }
   });
 });

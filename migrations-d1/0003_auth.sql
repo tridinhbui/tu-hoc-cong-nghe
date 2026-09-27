@@ -1,13 +1,13 @@
--- Lớp tài khoản và phiên, thay cho schema `auth` của Supabase.
+-- Lớp tài khoản và phiên, thay cho schema `auth` của Cloudflare.
 --
--- VÌ SAO PHẢI VIẾT MỚI. Supabase giữ tài khoản trong schema `auth`, thuộc về
+-- VÌ SAO PHẢI VIẾT MỚI. Cloudflare giữ tài khoản trong schema `auth`, thuộc về
 -- nó chứ không thuộc về ứng dụng, nên `scripts/d1/export.mjs` không xuất được
 -- và `migrations-d1/0001_schema.sql` không có bảng nào chứa mật khẩu. 88/88
 -- bảng dữ liệu đã sang D1, nhưng chỗ biết "người này là ai" thì chưa từng tồn
 -- tại ở phía Cloudflare. Đây là khoảng trống chặn mọi thứ còn lại: 32/53 hàm
 -- RPC cần `userId`, và không có lớp này thì không có gì cấp giá trị ấy.
 --
--- `user_profiles.id` vốn khoá ngoại tới `auth.users(id)` bên Supabase. Ở đây
+-- `user_profiles.id` vốn khoá ngoại tới `auth.users(id)` bên Cloudflare. Ở đây
 -- `auth_users.id` giữ đúng những giá trị id cũ, nên toàn bộ dữ liệu đã nạp
 -- không phải đánh số lại.
 
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS "auth_users" (
   "updated_at" TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- Trùng email không phân biệt hoa thường, đúng như Supabase vẫn làm. Đặt ở
+-- Trùng email không phân biệt hoa thường, đúng như Cloudflare vẫn làm. Đặt ở
 -- tầng cơ sở dữ liệu chứ không phải trong mã đăng ký: hai yêu cầu đăng ký
 -- cùng lúc thì phép kiểm trong mã đều thấy trống và cùng ghi.
 CREATE UNIQUE INDEX IF NOT EXISTS "auth_users_email_lower"

@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 
 /** Phễu của từng bài học: mở ra → đọc hết thân bài → hoàn thành.

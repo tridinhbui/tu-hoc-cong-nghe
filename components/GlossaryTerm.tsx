@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { findGlossaryMatches } from "@/lib/tech-glossary";
-import { createClient } from "@/lib/supabase";
-import { saveFlashcard, getFlashcards } from "@/lib/supabase-flashcards";
+import { createClient } from "@/lib/cloudflare";
+import { saveFlashcard, getFlashcards } from "@/lib/cloudflare-flashcards";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -46,8 +46,8 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
   const rootRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const cloudflare = createClient();
+    cloudflare.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
         setUserId(session.user.id);
         checkIsTermSaved(session.user.id, term).then((saved) => {

@@ -12,10 +12,10 @@ import { useProgress } from "@/lib/client-hooks";
 import { DEFAULT_PRESET, getStoredPreset, storePreset, type DashboardPreset } from "@/lib/dashboard-preset";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
-import { getCompletedLessons } from "@/lib/supabase-progress";
+import { getCompletedLessons } from "@/lib/cloudflare-progress";
 import type { Difficulty } from "@/lib/lesson-types";
-import { createClient } from "@/lib/supabase";
-import type { Session } from "@supabase/supabase-js";
+import { createClient } from "@/lib/cloudflare";
+import type { CloudflareSession as Session } from "@/lib/cloudflare";
 import UserStats from "@/components/UserStats";
 import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
 import FloatingStudyGroupChat from "@/components/FloatingStudyGroupChat";
@@ -36,10 +36,10 @@ import OnlineUsersWidget from "@/components/OnlineUsersWidget";
 import ReferralPromptModal from "@/components/ReferralPromptModal";
 import DiagnosticPlacementModal from "@/components/DiagnosticPlacementModal";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
-import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboarding";
-import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
-import { syncLocalLevelExams } from "@/lib/supabase-level-exams";
-import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/supabase-dashboard-optimized";
+import { hasCompletedOnboarding, completeOnboarding } from "@/lib/cloudflare-onboarding";
+import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/cloudflare-user";
+import { syncLocalLevelExams } from "@/lib/cloudflare-level-exams";
+import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/cloudflare-dashboard-optimized";
 import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
@@ -49,10 +49,10 @@ import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange, PROFESSIONAL_BRANC
 import { getLessonShortTitle } from "@/lib/lesson-labels";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_FALLBACK, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
 import { TRACKS } from "@/lib/tracks";
-import { getChallengePassedLessonIds } from "@/lib/supabase-challenges";
-import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/supabase-lesson-flags";
-import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
-import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/supabase-milestones";
+import { getChallengePassedLessonIds } from "@/lib/cloudflare-challenges";
+import { addLessonFlag, getUserLessonFlags, removeLessonFlag } from "@/lib/cloudflare-lesson-flags";
+import { getUserBookmarks, type LessonBookmark } from "@/lib/cloudflare-bookmarks";
+import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/cloudflare-milestones";
 import { syncOfflineQueue } from "@/lib/offline-sync";
 import { isValidAvatar } from "@/lib/avatar-utils";
 // CosmeticStore/TechCardCollection/WeeklyChallengeWidget không còn import ở
@@ -225,12 +225,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const { locale, t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const supabase = createClient();
+  const cloudflare = createClient();
   const progress = useProgress();
   const completed = progress.completedLessons;
   // localStorage alone can't be trusted as the progress source of truth - a
   // new browser/device/incognito session has none of it even though the
-  // user's real progress lives in Supabase (user_progress). Bumping this
+  // user's real progress lives in Cloudflare (user_progress). Bumping this
   // after merging server data forces a re-render, which makes useProgress()
   // pick up the freshly-merged localStorage snapshot (see mergeCompletedLessons).
   const [, forceProgressResync] = useState(0);
@@ -698,7 +698,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       }
 
       // Fetch RPG Equipped gear
-      const { data: equips } = await supabase
+      const { data: equips } = await cloudflare
         .from("user_equipments")
         .select("slot, asset_key")
         .eq("user_id", userId);
@@ -725,7 +725,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       // parsing the just-set auth cookie - a fixed timeout race (the
       // previous fix here) still lost that race often enough in production
       // to redirect to /login, which then bounced straight back once ITS
-      // own check resolved a moment later. supabase-js guarantees
+      // own check resolved a moment later. cloudflare-js guarantees
       // INITIAL_SESSION fires exactly once with the fully-resolved session
       // (or null), so waiting for that event is what actually removes the
       // race instead of just narrowing it.
@@ -733,7 +733,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         let settled = false;
         const {
           data: { subscription },
-        } = supabase.auth.onAuthStateChange((event, s) => {
+        } = cloudflare.auth.onAuthStateChange((event, s) => {
           if (settled) return;
           if (event === "INITIAL_SESSION" || event === "SIGNED_IN") {
             settled = true;
@@ -749,7 +749,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           subscription.unsubscribe();
           const {
             data: { session: fallback },
-          } = await supabase.auth.getSession();
+          } = await cloudflare.auth.getSession();
           resolve(fallback);
         }, 3000);
       });
@@ -765,7 +765,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     };
 
     checkAuth();
-  }, [router, supabase.auth, syncProgressAndXP]);
+  }, [router, cloudflare.auth, syncProgressAndXP]);
 
   // Listen for Visibility Change (Wake Up) and Online events to trigger sync
   useEffect(() => {
@@ -783,7 +783,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       }
     };
 
-    // recalculateUserStats (lib/supabase-user.ts) dispatches this on every
+    // recalculateUserStats (lib/cloudflare-user.ts) dispatches this on every
     // XP change app-wide (chest opened, quest claimed, milestone passed,
     // lesson/quiz/game completed...). AppNavbar already listens for it to
     // drive its level-up celebration, but the dashboard's own XP-derived UI
@@ -1241,7 +1241,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         >
                                           {isValidAvatar(m.avatarUrl) ? (
                                             // next/image chứ không phải <img>: đây là ảnh trong
-                                            // Supabase Storage (hoặc Google OAuth), và một thẻ <img>
+                                            // Cloudflare Storage (hoặc Google OAuth), và một thẻ <img>
                                             // trần kéo về BẢN GỐC - tới 2MB - để vẽ ra 32 điểm ảnh,
                                             // cho từng người xem, mỗi lần cache hết hạn.
                                             <Image src={m.avatarUrl} alt={m.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover shrink-0" />
@@ -1859,7 +1859,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             // Chữ hiển thị của chặng. Tra theo VỊ TRÍ trong `track.stages`, còn
             // `stage.label` thì giữ nguyên tiếng Việt ở mọi chỗ nó là khoá:
             // `lessonsByStageLabel`, `id={`stage-...`}` và cột `stage_label` đã
-            // ghi xuống Supabase cho mốc đã qua. Dịch khoá là mất tiến độ của
+            // ghi xuống Cloudflare cho mốc đã qua. Dịch khoá là mất tiến độ của
             // người học, không phải mất một dòng chữ.
             const stageCopy = t.trackStages[activeTrack]?.stages[stageIdx];
             let isStageLockedByMilestone = false;
@@ -2516,7 +2516,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     Hiện ở cả hai nơi KHÔNG cộng XP hai lần: `claimQuestReward`
                     chặn theo ngày ở phía máy chủ và trả về `claimed: false`
                     cho lần thứ hai - xem chú thích "false only means already
-                    claimed today" trong lib/supabase-quests.ts. Sau khi hết
+                    claimed today" trong lib/cloudflare-quests.ts. Sau khi hết
                     lượt nhận thưởng, widget vẫn còn chế độ luyện không giới
                     hạn, nên thẻ không biến thành một ô chết trong ngày. */}
                 {showOptional && user?.id && <DailyNewsQuizWidget userId={user.id} compact />}
@@ -2630,7 +2630,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             // lại - điểm số do client báo và không có gì ở server dựng lại được
             // ván đấu - nhưng mọi lượt cấp đều để lại một hàng trong
             // `coin_grants`, nên chuyện đó đọc ra được.
-            const { data: grant } = await supabase.rpc("grant_coins", {
+            const { data: grant } = await cloudflare.rpc("grant_coins", {
               p_source: "game",
               p_ref: null,
               p_amount: coins,
@@ -2639,7 +2639,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             const newCoins = grantRow?.coins_left ?? 0;
             const userId = user.id;
             if (!userId) return;
-            await supabase.from("game_sessions").insert({
+            await cloudflare.from("game_sessions").insert({
               user_id: userId,
               game_type: "boss-battle",
               score: 1,

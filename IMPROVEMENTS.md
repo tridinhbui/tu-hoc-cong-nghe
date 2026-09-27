@@ -25,10 +25,10 @@ export async function getLessonsMeta() {
 
 ### 1.2 Database Query Optimization
 **Vấn đề**: Nhiều query riêng lẻ trong DashboardClient
-**Giải pháp**: Sử dụng Supabase joins
+**Giải pháp**: Sử dụng Cloudflare joins
 ```typescript
 // Thay vì nhiều query riêng lẻ
-const { data } = await supabase
+const { data } = await cloudflare
   .from('user_profiles')
   .select(`
     *,
@@ -85,10 +85,10 @@ export function useAuth() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const supabase = createClient();
+  const cloudflare = createClient();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    cloudflare.auth.getSession().then(({ data: { session } }) => {
       if (!session) {
         router.replace('/login');
       } else {
@@ -96,7 +96,7 @@ export function useAuth() {
       }
       setLoading(false);
     });
-  }, [router, supabase]);
+  }, [router, cloudflare]);
 
   return { user, loading };
 }
@@ -177,7 +177,7 @@ const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>
 
 ### 3.3 Database Response Types
 ```typescript
-// lib/supabase-types.ts
+// lib/cloudflare-types.ts
 export type Database = {
   public: {
     Tables: {
@@ -191,7 +191,7 @@ export type Database = {
   };
 }
 
-// Generate với: npx supabase gen types typescript --project-id YOUR_PROJECT_ID
+// Generate với: npx cloudflare gen types typescript --project-id YOUR_PROJECT_ID
 ```
 
 ## 4. Cải tiến Error Handling
@@ -210,8 +210,8 @@ export class AppError extends Error {
   }
 }
 
-export function handleSupabaseError(error: any) {
-  console.error('Supabase error:', error);
+export function handleCloudflareError(error: any) {
+  console.error('Cloudflare error:', error);
   if (error.code === 'PGRST116') {
     throw new AppError('Resource not found', 'NOT_FOUND', 404);
   }
@@ -277,8 +277,8 @@ test('dashboard shows user progress', async ({ page }) => {
 import { z } from 'zod';
 
 const envSchema = z.object({
-  NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
-  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1),
+  NEXT_PUBLIC_CLOUDFLARE_URL: z.string().url(),
+  NEXT_PUBLIC_CLOUDFLARE_ANON_KEY: z.string().min(1),
 });
 
 export const env = envSchema.parse(process.env);

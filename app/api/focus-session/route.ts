@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/supabase-admin";
-import { updateStreak } from "@/lib/supabase-streak";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
+import { updateStreak } from "@/lib/cloudflare-streak";
 
 /** Phiên ngồi học trong thế giới 3D.
  *
@@ -11,7 +11,7 @@ import { updateStreak } from "@/lib/supabase-streak";
  *
  *  Ghi bằng service role vì bảng focus_sessions không mở quyền ghi cho
  *  `authenticated` - cùng cách các bảng điểm đã siết ở
- *  supabase/migrations/20260714_harden_quiz_writes.sql. */
+ *  cloudflare/migrations/20260714_harden_quiz_writes.sql. */
 
 /** Trần một phiên. Dài hơn thế gần như chắc chắn là tab bị bỏ quên chứ không
  *  phải người ngồi học, và một phiên tám tiếng làm hỏng mọi con số trung bình
@@ -23,10 +23,10 @@ const MIN_SESSION_SECONDS = 60;
 const VALID_WORLDS = new Set(["thu-vien", "nhom-hoc", "pho-nghe"]);
 
 export async function POST(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = (await request.json().catch(() => null)) as {
@@ -98,15 +98,15 @@ export async function POST(request: NextRequest) {
 
 /** Tổng thời gian đã ngồi học hôm nay, tính bằng giây. */
 export async function GET() {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const since = new Date();
   since.setHours(0, 0, 0, 0);
-  const { data } = await supabase
+  const { data } = await cloudflare
     .from("focus_sessions")
     .select("seconds")
     .eq("user_id", user.id)

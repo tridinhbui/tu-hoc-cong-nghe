@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Loader2, Rocket, CheckCircle2, XCircle, ChevronLeft } from "lucide-react";
-import { recalculateUserStats } from "@/lib/supabase-user";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
 import {
   STAGE_EXAM_PASS_RATIO,
   STAGE_EXAM_QUESTION_COUNT,

@@ -6,7 +6,7 @@
  *  MAX_LENGTH_BIAS_Z, MAX_TELL_SHARE, cổng của ngân hàng IB - đều là script
  *  hoặc test đọc file trong repo. Quiz của module CFA không nằm trong repo: nó
  *  được gõ qua /admin/cfa-library và lưu thẳng vào bảng `ModuleQuizQuestion`
- *  trên Supabase. Không bộ kiểm tĩnh nào với tới được nó.
+ *  trên Cloudflare. Không bộ kiểm tĩnh nào với tới được nó.
  *
  *  Điểm của nó KHÔNG chảy vào `avg_quiz_score` và không vào `cfa_readiness` -
  *  cái sau đếm số module hoàn thành, mà hoàn thành được ghi ngay khi làm xong

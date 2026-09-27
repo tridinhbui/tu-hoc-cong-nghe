@@ -15,8 +15,8 @@ import {
   getPendingFriendRequestCount,
   getUnreadDirectMessageCount,
   subscribeToSocialGraph,
-} from "@/lib/supabase-social";
-import { getUnreadAdminReplyCount, subscribeToChatMessages } from "@/lib/supabase-chat";
+} from "@/lib/cloudflare-social";
+import { getUnreadAdminReplyCount, subscribeToChatMessages } from "@/lib/cloudflare-chat";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
 
 /** Một nút duy nhất ở góc phải dưới, thay cho ba nút nổi chồng lên nhau.

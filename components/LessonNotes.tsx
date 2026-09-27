@@ -11,8 +11,8 @@ import {
   saveNoteDraft,
   readNoteDraft,
   clearNoteDraft,
-} from "@/lib/supabase-notes";
-import type { LessonNote } from "@/lib/supabase-notes";
+} from "@/lib/cloudflare-notes";
+import type { LessonNote } from "@/lib/cloudflare-notes";
 import NoteContent, { hasMathContent } from "@/components/NoteContent";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";

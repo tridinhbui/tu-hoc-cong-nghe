@@ -483,7 +483,7 @@ const MIN_QUESTIONS_FOR_SHARE_GATES = 400;
 // `handAuthored` là bốn bài học có trang riêng dưới app/bai-hoc/<slug>/ với
 // quiz nằm thẳng trong page.tsx. Chúng KHÔNG có bản trong lib/lessons-data,
 // nên suốt đời bộ kiểm này chúng vô hình - trong khi LessonPageLayout vẫn ghi
-// quiz_score của chúng vào Supabase như mọi bài khác. Lúc phát hiện, 58 câu ở
+// quiz_score của chúng vào Cloudflare như mọi bài khác. Lúc phát hiện, 58 câu ở
 // đó đứng ở z = +9,03 cho mẹo "chọn phương án dài nhất", tức đúng cái lỗi mà
 // cả kho kia đã mất công dọn, trong khi mọi con số bộ kiểm in ra đều xanh.
 const quizStats = { personal: null, professional: null, bonus: null, handAuthored: null };

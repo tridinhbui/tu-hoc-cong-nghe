@@ -1,5 +1,5 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import type { AdminAiReportRow } from "@/lib/admin/ai-report-grouping";
 
@@ -23,7 +23,7 @@ function isMissingReportStatusColumn(error: { code?: string } | null): boolean {
   return error?.code === "42703" || error?.code === "PGRST204";
 }
 
-/* i18n-ignore-start: danh sách CỘT gửi cho Supabase, không phải chữ. */
+/* i18n-ignore-start: danh sách CỘT gửi cho Cloudflare, không phải chữ. */
 const REPORT_SELECT = `
   id,
   user_id,
@@ -41,10 +41,10 @@ const REPORT_SELECT = `
 export async function listAiReports(
   status: AiReportStatus | "all" = "open"
 ): Promise<AdminAiReportRow[]> {
-  const supabase = createAdminClient();
+  const cloudflare = createAdminClient();
 
   function baseQuery() {
-    return supabase
+    return cloudflare
       .from("lesson_highlights")
       .select(REPORT_SELECT)
       .eq("kind", "ai_flag")
@@ -70,9 +70,9 @@ export async function listAiReports(
   }
 
   // Fetch lesson metadata to resolve missing slugs and titles
-  const lessonsMeta = await getLessonsMeta().catch(() => []);
-  const lessonSlugMap = new Map(lessonsMeta.map((l) => [l.id, l.slug]));
-  const lessonTitleMap = new Map(lessonsMeta.map((l) => [l.id, l.title]));
+  const lessonsMeta: Awaited<ReturnType<typeof getLessonsMeta>> = await getLessonsMeta().catch(() => []);
+  const lessonSlugMap = new Map<number, string>(lessonsMeta.map((l) => [l.id, l.slug]));
+  const lessonTitleMap = new Map<number, string>(lessonsMeta.map((l) => [l.id, l.title]));
 
   /** Hàng báo cáo kèm quan hệ hồ sơ người dùng; chỉ khai phần hàm này đọc. */
   interface ReportRow {
@@ -86,8 +86,8 @@ export async function listAiReports(
   }
 
   return ((data ?? []) as unknown as ReportRow[]).map((row) => {
-    const resolvedSlug = row.lesson_slug || lessonSlugMap.get(row.lesson_id) || "";
-    const resolvedTitle = lessonTitleMap.get(row.lesson_id) || `Bài học #${row.lesson_id}`;
+    const resolvedSlug = String(row.lesson_slug || lessonSlugMap.get(row.lesson_id) || "");
+    const resolvedTitle = String(lessonTitleMap.get(row.lesson_id) || `Bài học #${row.lesson_id}`);
 
     return {
       id: row.id,
@@ -126,8 +126,8 @@ const MIGRATION_REQUIRED =
  * của những báo cáo đã đóng từ trước ở cùng bài.
  */
 export async function resolveAiReportsForLesson(lessonId: number, adminId: string): Promise<void> {
-  const supabase = createAdminClient();
-  const { error } = await supabase
+  const cloudflare = createAdminClient();
+  const { error } = await cloudflare
     .from("lesson_highlights")
     .update({ report_status: "resolved", resolved_at: new Date().toISOString(), resolved_by: adminId })
     .eq("lesson_id", lessonId)
@@ -143,8 +143,8 @@ export async function resolveAiReportsForLesson(lessonId: number, adminId: strin
 
 /** Bỏ qua một báo cáo lẻ: đã xem, không phải lỗi, không cần sửa nội dung. */
 export async function ignoreAiReport(id: number, adminId: string): Promise<void> {
-  const supabase = createAdminClient();
-  const { error } = await supabase
+  const cloudflare = createAdminClient();
+  const { error } = await cloudflare
     .from("lesson_highlights")
     .update({ report_status: "ignored", resolved_at: new Date().toISOString(), resolved_by: adminId })
     .eq("id", id)

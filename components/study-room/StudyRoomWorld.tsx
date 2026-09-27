@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Joystick from "@/components/world-controls/joystick";
 import dynamic from "next/dynamic";
-import { CHAT_MAX_LENGTH, POMODORO_MS, colorForUser, type LobbyChatMessage } from "@/lib/supabase-lobby";
-import { sayInStudyWorld } from "@/lib/supabase-study-world";
+import { CHAT_MAX_LENGTH, POMODORO_MS, colorForUser, type LobbyChatMessage } from "@/lib/cloudflare-lobby";
+import { sayInStudyWorld } from "@/lib/cloudflare-study-world";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import { useWorldSound } from "@/components/world-controls/world-sound";
 import type { CharacterEquipments } from "@/lib/rpg-items";

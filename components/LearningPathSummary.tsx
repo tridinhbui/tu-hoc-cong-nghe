@@ -23,7 +23,7 @@ import { useCollapsibleCard } from "@/lib/use-collapsible-card";
  * dẫn thì có một đường sang trang đầy đủ.
  *
  * Không tự lấy dữ liệu: track, số bài đã học và tổng số bài đều đã có sẵn ở
- * DashboardClient nên nhận qua props. Thêm một truy vấn Supabase ở đây là trả
+ * DashboardClient nên nhận qua props. Thêm một truy vấn Cloudflare ở đây là trả
  * tiền lần thứ hai cho con số đang nằm ngay trên cùng một màn hình.
  */
 export default function LearningPathSummary({

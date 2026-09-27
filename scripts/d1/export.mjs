@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Xuất dữ liệu Supabase ra tệp JSONL, một tệp mỗi bảng.
+// Xuất dữ liệu Cloudflare ra tệp JSONL, một tệp mỗi bảng.
 //
 // Tách xuất khỏi nạp là cố ý: xuất đọc mạng và chậm, nạp thì chạy đi chạy lại
 // nhiều lần trong lúc sửa lược đồ. Gộp hai việc lại thì mỗi lần sửa một cột phải
@@ -15,8 +15,8 @@ for (const line of readFileSync(".env.local", "utf8").split("\n")) {
   const m = line.match(/^([A-Z_]+)=(.*)$/);
   if (m) process.env[m[1]] ??= m[2];
 }
-const URL_ = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const URL_ = process.env.NEXT_PUBLIC_CLOUDFLARE_URL;
+const KEY = process.env.CLOUDFLARE_SERVICE_ROLE_KEY;
 const H = { apikey: KEY, Authorization: `Bearer ${KEY}` };
 
 const snap = JSON.parse(readFileSync("scripts/d1/schema-snapshot.json", "utf8"));

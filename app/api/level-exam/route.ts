@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { LEVEL_EXAMS, shuffleArray } from "@/lib/level-exams";
 import { localizeLevelExam } from "@/lib/level-exams-i18n";
 import { getServerLocale } from "@/lib/i18n/server";
@@ -28,11 +28,11 @@ export interface ServedExam {
 }
 
 export async function GET(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
     error: userError,
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (userError || !user) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });

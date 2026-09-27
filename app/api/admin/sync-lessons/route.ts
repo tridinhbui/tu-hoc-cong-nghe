@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import { loadLessons } from "@/lib/lessons-loader";
 import { NextRequest } from "next/server";
 
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const supabase = createAdminClient();
+    const cloudflare = createAdminClient();
     const lessons = await loadLessons();
 
     const lessonData = lessons.map((lesson: { id: number; slug: string; title: string; subtitle: string; duration: string; difficulty: string; emoji: string; openingQuestion: string; openingOptions: string[]; correctOption: number; explanation: string; keyTakeaways: string[]; track?: string }) => ({
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       day_number: lesson.id,
     }));
 
-    const { data, error } = await supabase.rpc("sync_lessons_atomic", {
+    const { data, error } = await cloudflare.rpc("sync_lessons_atomic", {
       p_lessons: lessonData,
     });
 
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       if (isMissingAtomicSyncFunction(error)) {
         return Response.json(
           {
-            error: "Missing required SQL function sync_lessons_atomic(jsonb). Run the latest Supabase migration first.",
+            error: "Missing required SQL function sync_lessons_atomic(jsonb). Run the latest Cloudflare migration first.",
             details: error.message,
           },
           { status: 500 }
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
 
     return Response.json({
       success: true,
-      message: `Synced ${typeof data === "number" ? data : lessonData.length} lessons to Supabase`,
+      message: `Synced ${typeof data === "number" ? data : lessonData.length} lessons to Cloudflare`,
       count: typeof data === "number" ? data : lessonData.length,
     });
   } catch (error) {

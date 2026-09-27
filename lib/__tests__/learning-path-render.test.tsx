@@ -24,7 +24,7 @@ vi.mock("@/app/(app)/dashboard/actions", () => ({
 }));
 
 // Server action: import thẳng vào một component "use client" thì vitest kéo
-// theo cả supabase-server, vốn đọc biến môi trường lúc import.
+// theo cả cloudflare-server, vốn đọc biến môi trường lúc import.
 vi.mock("@/app/(app)/lo-trinh/actions", () => ({
   saveLearningPathPrefs: vi.fn(async () => ({ ok: true })),
 }));

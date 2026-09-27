@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import OnTapCauSaiClient from "./OnTapCauSaiClient";
 
 // Vỏ tĩnh: trang này không đọc gì ở phía server - mọi dữ liệu do client
-// component bên trong tự lấy từ Supabase sau khi tải. Không có `force-static`
+// component bên trong tự lấy từ Cloudflare sau khi tải. Không có `force-static`
 // thì nó bị dựng lại ở server cho MỖI lượt xem, để trả về đúng một khung HTML
 // không đổi.
 //

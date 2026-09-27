@@ -6,14 +6,14 @@ import { toast } from "sonner";
 import { MessageCircle, Send, ImagePlus, X, Loader2, Trash2 } from "lucide-react";
 import type { ChatThread, ChatThreadMessage } from "@/lib/admin/chat";
 import { sendAdminChatReplyAction, markThreadReadAction, getChatThreadMessagesAction, getChatThreadsAction } from "./actions";
-import { uploadChatImage, isAllowedChatImage, deleteChatMessage } from "@/lib/supabase-chat";
+import { uploadChatImage, isAllowedChatImage, deleteChatMessage } from "@/lib/cloudflare-chat";
 import EmptyState from "@/components/admin/EmptyState";
 import EmojiPicker from "@/components/EmojiPicker";
 import { useI18n } from "@/lib/i18n/context";
 import { intlLocale } from "@/lib/i18n";
 import { getCurrentUserId } from "@/lib/current-user";
 
-// 15 giây, không phải 4. Mỗi nhịp là hai Server Action đọc Supabase, chạy
+// 15 giây, không phải 4. Mỗi nhịp là hai Server Action đọc Cloudflare, chạy
 // suốt thời gian trang quản trị mở - 900 lần mỗi giờ ở mức 4 giây. Hộp thư
 // quản trị không phải phòng chat thời gian thực.
 const POLL_INTERVAL_MS = 15000;
@@ -40,7 +40,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
   // Polls the whole thread list (badges, last message, ordering) so the
   // sidebar stays live without a full page reload. Skips ticks while the
   // tab is hidden - an admin tab forgotten overnight was otherwise ~43k
-  // pointless Supabase queries (2 queries / 4s).
+  // pointless Cloudflare queries (2 queries / 4s).
   useEffect(() => {
     const interval = setInterval(() => {
       if (document.visibilityState === "hidden") return;

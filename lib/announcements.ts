@@ -1,5 +1,5 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
+import { createClient } from "@/lib/cloudflare";
+import { handleCloudflareError } from "@/lib/errors";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not
 // exist" (raw Postgres) - degrade to "no announcements" instead of
@@ -18,25 +18,25 @@ export interface Announcement {
 
 /** Active, non-expired announcements the given user hasn't dismissed yet. */
 export async function getUnreadAnnouncements(userId: string): Promise<Announcement[]> {
-  const supabase = createClient();
+  const cloudflare = createClient();
   const nowIso = new Date().toISOString();
 
   const [{ data: active, error: activeError }, { data: reads, error: readsError }] = await Promise.all([
-    supabase
+    cloudflare
       .from("announcements")
       .select("id, title, body, severity, created_at")
       .eq("active", true)
       .or(`expires_at.is.null,expires_at.gt.${nowIso}`)
       .order("created_at", { ascending: false }),
-    supabase.from("announcement_reads").select("announcement_id").eq("user_id", userId),
+    cloudflare.from("announcement_reads").select("announcement_id").eq("user_id", userId),
   ]);
 
   if (activeError) {
     if (isMissingTableError(activeError)) return [];
-    throw handleSupabaseError(activeError);
+    throw handleCloudflareError(activeError);
   }
   if (readsError && !isMissingTableError(readsError)) {
-    throw handleSupabaseError(readsError);
+    throw handleCloudflareError(readsError);
   }
 
   const readIds = new Set((reads ?? []).map((r) => r.announcement_id as number));
@@ -53,10 +53,10 @@ export async function getUnreadAnnouncements(userId: string): Promise<Announceme
 }
 
 export async function markAnnouncementRead(userId: string, announcementId: number): Promise<void> {
-  const supabase = createClient();
-  const { error } = await supabase
+  const cloudflare = createClient();
+  const { error } = await cloudflare
     .from("announcement_reads")
     .upsert([{ announcement_id: announcementId, user_id: userId }], { onConflict: "announcement_id,user_id" });
 
-  if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+  if (error && !isMissingTableError(error)) throw handleCloudflareError(error);
 }

@@ -124,7 +124,7 @@ function Weapon({ assetKey }: { assetKey: string }) {
   // Bàn phím cơ (weapon_valuation_pen).
   //
   // Khoá `weapon_valuation_pen` giữ nguyên có chủ ý dù vật phẩm đã đổi tên và
-  // đổi hình: nó được ghi vào `user_equipments.asset_key` trên Supabase, nên
+  // đổi hình: nó được ghi vào `user_equipments.asset_key` trên Cloudflare, nên
   // đổi khoá là làm mồ côi trang bị của mọi người đã mua. Chỉ phần NHÌN THẤY
   // đổi - tên ở lib/rpg-items.ts, và hình ở đây.
   //
@@ -191,7 +191,7 @@ function Companion({ assetKey, still }: { assetKey: string; still: boolean }) {
   // đổi tên thành thứ không có sừng - "cá heo" chẳng hạn - thì cửa hàng bán
   // một đằng còn nhân vật đeo một nẻo, và không cổng nào bắt được vì tên nằm
   // ở lib/rpg-items.ts còn hình nằm ở đây. Khoá `pet_bull` giữ nguyên vì nó
-  // đã được ghi vào user_equipments trên Supabase.
+  // đã được ghi vào user_equipments trên Cloudflare.
   const horned = assetKey === "pet_bull";
   useFrame((state) => {
     if (!ref.current || still) return;

@@ -30,7 +30,7 @@ import {
   type LobbyChatMessage,
   type LobbyIdentity,
   type LobbyPeer,
-} from "@/lib/supabase-lobby";
+} from "@/lib/cloudflare-lobby";
 import { disposeRoomTextures } from "./room-textures";
 import {
   inputTowardTarget,
@@ -467,7 +467,7 @@ export default function LobbySceneInner({
       }}
       // Đứng ở tab khác mà vẫn render cả một con phố là đốt pin cho một khung
       // hình không ai nhìn. Người bên cạnh vẫn thấy ta đứng yên trong phòng vì
-      // presence do Supabase giữ, không do vòng lặp vẽ.
+      // presence do Cloudflare giữ, không do vòng lặp vẽ.
       frameloop={pageVisible ? "always" : "never"}
     >
       {/* Đo khung hình thật và hạ chất lượng nếu cảnh không theo kịp. */}

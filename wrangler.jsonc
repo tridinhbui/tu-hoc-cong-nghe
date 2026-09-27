@@ -19,7 +19,7 @@
 		"enabled": true
 	},
 	// GIAI ĐOẠN 1: chưa gắn D1 hay R2. Bước này chỉ chứng minh ứng dụng chạy
-	// được trên Workers trong khi VẪN đọc Supabase. Gắn kho dữ liệu là giai
+	// được trên Workers trong khi VẪN đọc Cloudflare. Gắn kho dữ liệu là giai
 	// đoạn 4, sau khi lớp kho dữ liệu và bộ kiểm phân quyền đã xong.
 	//
 	"r2_buckets": [{ "binding": "FILES", "bucket_name": "thcn-files" }],

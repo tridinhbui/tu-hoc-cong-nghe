@@ -39,7 +39,7 @@ export function isLessonInRange(
    `t.trackStages[track]` theo VỊ TRÍ và chỉ rơi về bản Việt khi từ điển lệch -
    trường hợp mà lib/__tests__/track-stages-i18n.test.ts bắt được, cả về số
    lượng lẫn thứ tự. `label` còn là khoá của `lessonsByStageLabel` và của cột
-   `stage_label` đã ghi xuống Supabase, nên nó KHÔNG được dịch tại đây. */
+   `stage_label` đã ghi xuống Cloudflare, nên nó KHÔNG được dịch tại đây. */
 export const TRACK_PERSONAL = {
   id: "personal",
   title: "Nền tảng công nghệ",

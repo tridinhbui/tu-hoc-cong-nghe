@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { MessageCircle, UserPlus, Check, Clock } from "lucide-react";
 import { getCurrentUserId } from "@/lib/current-user";
-import { getMySocialGraph, respondToFriendRequest, sendFriendRequest, type SocialConnection } from "@/lib/supabase-social";
+import { getMySocialGraph, respondToFriendRequest, sendFriendRequest, type SocialConnection } from "@/lib/cloudflare-social";
 import { useI18n } from "@/lib/i18n/context";
 
 // Public profile pages (reached from the leaderboard / "nguoi-hoc") had no

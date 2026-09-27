@@ -21,7 +21,7 @@
  *     lại, nếu có sự kiện bị bỏ lỡ thì tải lại đúng MỘT lần - người dùng thấy
  *     nội dung mới ngay lúc họ quay lại nhìn, không sớm hơn.
  *
- *  Tách khỏi supabase-community.ts để kiểm được bằng đồng hồ giả, không cần
+ *  Tách khỏi cloudflare-community.ts để kiểm được bằng đồng hồ giả, không cần
  *  websocket. */
 
 export type CoalescerOptions = {

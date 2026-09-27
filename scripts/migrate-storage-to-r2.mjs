@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-// Di chuyển tệp nhị phân từ Supabase Storage sang R2, một lần duy nhất.
+// Di chuyển tệp nhị phân từ Cloudflare Storage sang R2, một lần duy nhất.
 //
-// VÌ SAO CẦN. Dữ liệu đã xuất sang D1 giữ nguyên URL Supabase Storage trong
+// VÌ SAO CẦN. Dữ liệu đã xuất sang D1 giữ nguyên URL Cloudflare Storage trong
 // user_profiles.avatar_url, documents.file_url/image_url, và
 // chat_messages.image_url - mã ứng dụng đã đổi để tải lên MỚI đi qua R2
 // (xem lib/r2/storage.ts), nhưng tệp CŨ chưa từng được chuyển nội dung nhị
-// phân. Cắt Supabase là toàn bộ số đó thành liên kết chết ngay lập tức.
+// phân. Cắt Cloudflare là toàn bộ số đó thành liên kết chết ngay lập tức.
 //
 // CƠ CHẾ. Với mỗi URL dạng .../object/public/<bucket>/<path>, tải qua fetch
-// công khai (không cần khoá Supabase - bucket đều public-read), ghi vào R2
+// công khai (không cần khoá Cloudflare - bucket đều public-read), ghi vào R2
 // dưới đúng khoá <bucket>/<path> bằng `wrangler r2 object put --remote`, rồi
 // sinh câu UPDATE trỏ cột về /api/files/<bucket>/<path>.
 //
@@ -33,7 +33,7 @@ const SOURCES = [
   { file: "scripts/d1/data/chat_messages.jsonl", table: "chat_messages", pk: "id", column: "image_url" },
 ];
 
-const SUPA_RE = /^https:\/\/[a-z0-9]+\.supabase\.co\/storage\/v1\/object\/public\/([a-z0-9-]+)\/(.+)$/;
+const SUPA_RE = /^https:\/\/[a-z0-9]+\.cloudflare\.co\/storage\/v1\/object\/public\/([a-z0-9-]+)\/(.+)$/;
 
 function readJsonl(path) {
   return readFileSync(path, "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l));

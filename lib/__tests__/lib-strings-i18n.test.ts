@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { LAMP_SIZE_LABELS } from "@/lib/warm-lamps";
-import { STUDY_ROOM_TOPICS } from "@/lib/supabase-study-rooms";
+import { STUDY_ROOM_TOPICS } from "@/lib/cloudflare-study-rooms";
 import { SCHEDULE_PRE_2026, SCHEDULE_2026 } from "@/lib/vn-income-tax";
 import { formatCooldown } from "@/lib/stage-exam";
 import { getLessonDisplayLabel } from "@/lib/lesson-labels";

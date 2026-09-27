@@ -3,7 +3,7 @@
 // decision logic ("should we nag the user right now?") can be reasoned
 // about/tested without touching the Notification API or localStorage.
 //
-// Reuses lib/supabase-streak.ts's UserStreak (current_streak,
+// Reuses lib/cloudflare-streak.ts's UserStreak (current_streak,
 // last_activity_date). Recall-item counting used to live here too (reading
 // lib/recall-schedule.ts's RECALL_SCHEDULE directly), but that's a ~5000-line
 // generated dataset - importing it here pulled the whole thing into the
@@ -12,7 +12,7 @@
 // lib/recall-actions.ts's getRecallCountAction, a Server Action that returns
 // just the count.
 
-import type { UserStreak } from "@/lib/supabase-streak";
+import type { UserStreak } from "@/lib/cloudflare-streak";
 
 // After this local hour, an active streak with no activity yet today is
 // treated as "about to be lost" - the whole rest of the evening is prime

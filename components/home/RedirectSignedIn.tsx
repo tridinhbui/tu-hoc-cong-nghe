@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 
 /**
  * Người ĐÃ đăng nhập vào "/" thì đưa sang /dashboard.
@@ -11,14 +11,14 @@ import { createClient } from "@/lib/supabase";
  * sức ép - giữ trang marketing kết xuất TĨNH:
  *
  *  1. `app/page.tsx` với `force-dynamic` + getSession(). Mọi lượt khách vãng
- *     lai và mọi lượt bot quét đều tốn một function và một vòng mạng ra Supabase
+ *     lai và mọi lượt bot quét đều tốn một function và một vòng mạng ra Cloudflare
  *     cho một quyết định gần như luôn là "không chuyển hướng".
  *  2. `proxy.ts`, nơi câu trả lời có sẵn miễn phí. Đó là chỗ đúng, và nó đã đi
  *     cùng proxy vì Workers không chạy được Node middleware.
  *  3. Ở đây, phía trình duyệt.
  *
  * Vì sao không đưa vào `next.config` với `has: [{ type: "cookie" }]`, thứ chạy
- * ở tầng định tuyến và không tốn gì: @supabase/ssr tách cookie phiên thành
+ * ở tầng định tuyến và không tốn gì: @cloudflarecookie phiên được tách thành
  * `sb-<ref>-auth-token.0` và `.1` khi phiên dài quá một cookie, mà `has` chỉ
  * khớp tên CHÍNH XÁC. Quy tắc ấy sẽ chạy đúng với phần lớn người dùng và im
  * lặng bỏ sót đúng những người có phiên lớn - hỏng theo kiểu không ai báo.
@@ -33,7 +33,7 @@ export default function RedirectSignedIn() {
   useEffect(() => {
     let cancelled = false;
 
-    // MÃ OAUTH RƠI XUỐNG TRANG CHỦ. Supabase chỉ dùng `redirect_to` khi URL ấy
+    // MÃ OAUTH RƠI XUỐNG TRANG CHỦ. Cloudflare chỉ dùng `redirect_to` khi URL ấy
     // khớp danh sách Redirect URLs của dự án; không khớp thì nó lặng lẽ rơi về
     // "Site URL" - trang chủ - và gắn `?code=` vào đó. Không lỗi nào hiện ra,
     // chỉ là người dùng đứng ở `/?code=<uuid>` mà chưa đăng nhập.
@@ -56,7 +56,7 @@ export default function RedirectSignedIn() {
       return;
     }
 
-    // createClient() trả về một thực thể dùng chung - xem lib/supabase.ts về lý
+    // createClient() trả về một thực thể dùng chung - xem lib/cloudflare.ts về lý
     // do không được tạo client mới ở mỗi component.
     createClient().auth.getSession().then(({ data }) => {
       if (!cancelled && data.session) router.replace("/dashboard");

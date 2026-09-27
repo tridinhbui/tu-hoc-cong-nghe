@@ -1,6 +1,6 @@
 import "server-only";
 
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import { getLevelByXp } from "@/lib/levels";
 import { getLessonsMeta, type LessonMeta } from "@/lib/lessons-loader";
 import {

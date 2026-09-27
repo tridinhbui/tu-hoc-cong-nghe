@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

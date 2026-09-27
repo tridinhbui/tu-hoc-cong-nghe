@@ -7,7 +7,7 @@ import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
  *  phải quên kết quả cũ, và một lần hỏng mạng không được kẹt vĩnh viễn.
  *
  *  VIẾT LẠI SAU KHI CHUYỂN SANG D1. Bản trước mô phỏng
- *  supabase.auth.getSession()/onAuthStateChange(); bản này mô phỏng thẳng
+ *  cloudflare.auth.getSession()/onAuthStateChange(); bản này mô phỏng thẳng
  *  fetch() toàn cục, vì đó là API duy nhất module mới gọi tới - không còn sự
  *  kiện đổi phiên nào để lắng nghe (cookie phiên là httpOnly, trình duyệt
  *  không thấy nó đổi), nên mọi thao tác đổi phiên phải tự gọi
@@ -141,7 +141,7 @@ describe("không cắt nhầm", () => {
 
 describe("đọc hồ sơ", () => {
   it("fullName/avatarUrl đi thẳng từ phản hồi, không cần hàm phụ trợ nào", async () => {
-    // Khác bản Supabase cũ: không còn "user_metadata" tách khỏi hồ sơ - cả hai
+    // Khác bản Cloudflare cũ: không còn "user_metadata" tách khỏi hồ sơ - cả hai
     // đường tạo tài khoản (đăng ký, Google) đều ghi thẳng vào user_profiles
     // ngay lúc tạo, xem lib/auth/service.ts.
     const { getCurrentUser } = await freshModule();

@@ -1,5 +1,5 @@
-import { createClient } from "@/lib/supabase";
-import { markLessonComplete } from "@/lib/supabase-progress";
+import { createClient } from "@/lib/cloudflare";
+import { markLessonComplete } from "@/lib/cloudflare-progress";
 
 export interface OfflineCompletion {
   userId: string;
@@ -67,7 +67,7 @@ export async function syncOfflineQueue(userId: string): Promise<boolean> {
 
     for (const item of userQueue) {
       try {
-        // Try saving to Supabase
+        // Try saving to Cloudflare
         await markLessonComplete(item.userId, item.lessonId, item.score, item.timeSpentSeconds);
         didSyncAny = true;
       } catch (err) {

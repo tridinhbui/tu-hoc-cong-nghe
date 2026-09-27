@@ -16,7 +16,7 @@
  *  trên; đây là chỗ nó đau nhất nên sửa trước.
  *
  *  KHÔNG phải toàn bộ độ trễ. Mỗi lần điều hướng còn kèm một `getUser()` của
- *  proxy - một vòng mạng ra Supabase TRƯỚC khi trang bắt đầu dựng. Cái đó phải
+ *  proxy - một vòng mạng ra Cloudflare TRƯỚC khi trang bắt đầu dựng. Cái đó phải
  *  sửa ở proxy (`getClaims()` xác thực JWT tại chỗ), và nó cần dự án chuyển
  *  sang khoá ký bất đối xứng trước.
  *

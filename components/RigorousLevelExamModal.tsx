@@ -12,7 +12,7 @@ import {
   submitLevelExam,
   type ServedExam,
   type LevelExamResult,
-} from "@/lib/supabase-level-exams";
+} from "@/lib/cloudflare-level-exams";
 import { LEVELS } from "@/lib/levels";
 import { useIsClient } from "@/lib/use-is-client";
 import { useI18n } from "@/lib/i18n/context";
@@ -283,7 +283,7 @@ export default function RigorousLevelExamModal({
                       type="button"
                       onClick={async () => {
                         try {
-                          const { createManualPost } = await import("@/lib/supabase-community");
+                          const { createManualPost } = await import("@/lib/cloudflare-community");
                           await createManualPost(
                             userId,
                             format(t.levelExam.shareText, {

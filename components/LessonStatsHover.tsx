@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BarChart3 } from "lucide-react";
-import { getUserAnalytics, type LearningAnalytics } from "@/lib/supabase-analytics";
+import { getUserAnalytics, type LearningAnalytics } from "@/lib/cloudflare-analytics";
 import { useI18n } from "@/lib/i18n/context";
 import { getCurrentUser } from "@/lib/current-user";
 

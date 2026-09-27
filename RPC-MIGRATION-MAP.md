@@ -1,8 +1,8 @@
 # Bản đồ 53 hàm RPC Postgres → Cloudflare D1
 
-Sinh bằng cách đọc 127 migration trong `supabase/migrations` + `sql-canchay`,
+Sinh bằng cách đọc 127 migration trong `cloudflare/migrations` + `sql-canchay`,
 đối chiếu với 56 lời gọi `.rpc(...)` trong `app/`, `components/`, `lib/`.
-Cả 53 hàm được gọi đều có định nghĩa trong repo — không phải đi hỏi Supabase.
+Cả 53 hàm được gọi đều có định nghĩa trong repo — không phải đi hỏi Cloudflare.
 
 Đây là đầu vào cho phase 4 (thay lớp truy cập dữ liệu). Đọc phần "Bốn vấn đề
 cắt ngang" trước, vì chúng quyết định thứ tự làm chứ không phải danh sách hàm.
@@ -20,7 +20,7 @@ là toàn bộ 53 hàm đang cố ý đi vòng qua RLS, và RLS mới là thứ 
 biến mất, còn 53 cái lỗ thì vẫn còn — nên mỗi hàm phải tự kiểm tra quyền trong
 mã ứng dụng. Bỏ sót một chỗ là lỗ hổng phân quyền, không phải bug hiển thị.
 
-**3. 11 trigger trong Supabase, 0 trong `migrations-d1/0001_schema.sql`.**
+**3. 11 trigger trong Cloudflare, 0 trong `migrations-d1/0001_schema.sql`.**
 SQLite *có* trigger, nên phần lớn port được — nhưng không phải tất cả:
 
 | Trigger | Việc nó làm | Port sang D1 |
@@ -35,7 +35,7 @@ SQLite *có* trigger, nên phần lớn port được — nhưng không phải t
 Hai cái cuối cần thiết kế mới, xem mục dưới.
 
 **4. Kho tiền đang được bảo vệ bằng một cơ chế chỉ Postgres mới có.**
-`supabase/migrations/20260914_lock_coins_column.sql` đặt trigger
+`cloudflare/migrations/20260914_lock_coins_column.sql` đặt trigger
 `guard_coins_column()` từ chối mọi lệnh ghi vào `user_profiles.coins` trừ khi
 biến phiên `app.coin_write` bằng `'on'`, và chỉ `grant_coins()` /
 `purchase_cosmetic()` được bật cờ ấy qua `set_config(..., true)` — phạm vi
@@ -172,7 +172,7 @@ professional : lesson_id 21-200 hoặc 1036
 
 Không bài nào bị tính nhầm sang track kia - chỉ là **khoảng một nửa số bài của
 mỗi track không được tính vào bảng xếp hạng**, và điều đó đang đúng trên
-Supabase lúc này. Bản dịch trong `lib/d1/rpc.ts` **chép nguyên dải cũ** kèm chú
+Cloudflare lúc này. Bản dịch trong `lib/d1/rpc.ts` **chép nguyên dải cũ** kèm chú
 thích: sửa nó làm đổi thứ hạng của mọi người, nên phải là một quyết định riêng
 chứ không lẫn vào đợt di trú.
 
@@ -203,14 +203,14 @@ nên mọi lệnh chèn không nêu `id` đều ném `NOT NULL constraint failed
 `coin_grants` khi chạy `grantCoins`. Tạm thời sinh id ở TypeScript; đúng ra
 lược đồ phải có mặc định.
 
-**2. Mất toàn bộ 111 mệnh đề `ON DELETE`.** Migration Supabase có 111 chỗ, lược
+**2. Mất toàn bộ 111 mệnh đề `ON DELETE`.** Migration Cloudflare có 111 chỗ, lược
 đồ D1 có **0**. Hậu quả gặp thật: `weekly_rematch_study_rooms` xoá phòng và dựa
 vào cascade để dọn tin nhắn với thành viên; trên D1 nó ném `FOREIGN KEY
 constraint failed`. Bản dịch xoá tường minh theo thứ tự phụ thuộc - đúng dù có
 cascade hay không.
 
 **3. `0002_unique_constraints.sql`** (mới, 38 chỉ mục) trích từ 127 migration
-Supabase. Không có nó thì chín chỗ `ON CONFLICT` trong các hàm RPC ném "does not
+Cloudflare. Không có nó thì chín chỗ `ON CONFLICT` trong các hàm RPC ném "does not
 match any PRIMARY KEY or UNIQUE constraint". Đã thử áp lên dữ liệu thật: **38/38
 tạo được, 0 dòng trùng** - tức là vẫn kịp thêm ràng buộc, nhưng chỉ tới khi có
 dòng trùng đầu tiên lọt vào.

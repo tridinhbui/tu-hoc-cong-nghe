@@ -31,7 +31,7 @@ import { usePageVisible } from "@/components/world-controls/use-page-visible";
 import LobbyAvatar, { type AvatarPose } from "@/components/lobby/LobbyAvatar";
 import { disposeRoomTextures } from "@/components/lobby/room-textures";
 import PomodoroClock from "@/components/lobby/PomodoroClock";
-import { CHAT_BUBBLE_MS, MOVE_BROADCAST_MS, type LobbyChatMessage } from "@/lib/supabase-lobby";
+import { CHAT_BUBBLE_MS, MOVE_BROADCAST_MS, type LobbyChatMessage } from "@/lib/cloudflare-lobby";
 import { earliestSessionStart } from "@/lib/study-session";
 import {
   SPAWN_RY,
@@ -41,7 +41,7 @@ import {
   setStudySeat,
   type StudyWorldIdentity,
   type StudyWorldPeer,
-} from "@/lib/supabase-study-world";
+} from "@/lib/cloudflare-study-world";
 
 const WALK_SPEED = 3.6;
 

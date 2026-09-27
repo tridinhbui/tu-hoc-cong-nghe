@@ -62,7 +62,7 @@ describe("vercel.json", () => {
   });
 
   it("không khai báo cron nào khi chưa có máy chủ để cron gọi tới", () => {
-    // Sáu cron cũ trỏ vào /api/cron/* và cả sáu đều đọc Supabase của dự án tài
+    // Sáu cron cũ trỏ vào /api/cron/* và cả sáu đều đọc Cloudflare của dự án tài
     // chính cũ. Khi ngắt cơ sở dữ liệu đó, để lịch cron nguyên vẹn nghĩa là
     // Vercel vẫn gọi sáu endpoint mỗi ngày và cả sáu lỗi lặng lẽ - đúng kiểu
     // hỏng-không-tín-hiệu mà chú thích đầu file này nói tới.

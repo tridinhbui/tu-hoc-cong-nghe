@@ -7,7 +7,7 @@ import { OAUTH_NEXT_COOKIE, clearOAuthNextCookie } from "@/lib/oauth-next-cookie
  * ĐÃ VIẾT LẠI SAU KHI TRANG ĐĂNG NHẬP CHUYỂN SANG /api/auth/google/*.
  *
  * Bản trước kiểm chuỗi `redirectTo:` không mang query - một ràng buộc của
- * Supabase (khớp URL với danh sách Redirect Urls TRÊN TOÀN BỘ chuỗi). Google
+ * Cloudflare (khớp URL với danh sách Redirect Urls TRÊN TOÀN BỘ chuỗi). Google
  * OAuth tự viết ở đây không có ràng buộc ấy: redirect_uri gửi cho Google
  * (lib/auth/google.ts) LUÔN là chính route callback, cố định, không phụ
  * thuộc danh sách bên ngoài nào để trượt khỏi - nên phép kiểm đó không còn ý
@@ -36,7 +36,7 @@ describe("đăng nhập Google", () => {
     ).toBeLessThan(navCall);
   });
 
-  it("không còn gọi thẳng Supabase cho luồng Google", () => {
+  it("không còn gọi thẳng Cloudflare cho luồng Google", () => {
     expect(loginSource).not.toContain("signInWithOAuth");
   });
 });

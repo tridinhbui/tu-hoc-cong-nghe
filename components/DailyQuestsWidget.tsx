@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { ListChecks, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp, ArrowRight, BookOpen, Gamepad2, Award } from "lucide-react";
-import { getDailyQuests, claimQuestReward, getWeeklyQuestXpBudget, type Quest } from "@/lib/supabase-quests";
+import { getDailyQuests, claimQuestReward, getWeeklyQuestXpBudget, type Quest } from "@/lib/cloudflare-quests";
 import { WEEKLY_CHEST_QUESTS_REQUIRED } from "@/lib/quest-rewards";
 import { earnChest } from "@/lib/chests";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -41,8 +41,8 @@ interface DailyQuestsWidgetProps {
 // anything unrecognised keeps the old /game default (the game quests are the
 // majority, and a new quest is far likelier to be one of those than a lesson).
 const QUEST_DESTINATIONS: Record<string, string> = {
-  // Check-in is a message sent in the 2D group chat - lib/supabase-study-rooms.ts
-  // sets the localStorage key that lib/supabase-quests.ts reads.
+  // Check-in is a message sent in the 2D group chat - lib/cloudflare-study-rooms.ts
+  // sets the localStorage key that lib/cloudflare-quests.ts reads.
   daily_study_group: "/nhom-hoc",
   // Server-measured seat time. Both places that call startFocusSession() for
   // this count ("thư viện" = /cong-dong, "phòng nhóm 3D" = /nhom-hoc); send
@@ -107,8 +107,8 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
 
         // Load weekly chest claim status from the real DB record.
         const weeklyKey = getWeeklyDayKey();
-        const supabase = createClient();
-        const { data: claimedRow } = await supabase
+        const cloudflare = createClient();
+        const { data: claimedRow } = await cloudflare
           .from("user_quest_completions")
           .select("id")
           .eq("user_id", userId)
@@ -211,8 +211,8 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
     const weeklyKey = getWeeklyDayKey();
 
     try {
-      const supabase = createClient();
-      const { error } = await supabase
+      const cloudflare = createClient();
+      const { error } = await cloudflare
         .from("user_quest_completions")
         .insert([{ user_id: userId, quest_type: "weekly_chest", day_key: weeklyKey, xp_earned: 0 }]);
 

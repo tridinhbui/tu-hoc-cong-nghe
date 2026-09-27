@@ -1,13 +1,13 @@
 "use server";
 
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 
-async function getAdminOrServerSupabase() {
+async function getAdminOrServerCloudflare() {
   try {
     return createAdminClient();
   } catch {
-    return await createServerSupabaseClient();
+    return await createServerCloudflareClient();
   }
 }
 
@@ -28,11 +28,11 @@ export interface GameSessionStats {
 }
 
 export async function getGameSessionStats(): Promise<GameSessionStats> {
-  const supabase = await getAdminOrServerSupabase();
+  const cloudflare = await getAdminOrServerCloudflare();
 
   try {
     // Total games played
-    const { data: totalData, error: totalError } = await supabase
+    const { data: totalData, error: totalError } = await cloudflare
       .from("game_sessions")
       .select("id", { count: "exact" });
 
@@ -40,7 +40,7 @@ export async function getGameSessionStats(): Promise<GameSessionStats> {
     const totalGamesPlayed = totalData?.length || 0;
 
     // Unique players
-    const { data: playersData, error: playersError } = await supabase
+    const { data: playersData, error: playersError } = await cloudflare
       .from("game_sessions")
       .select("user_id", { count: "exact" })
       .not("user_id", "is", null);
@@ -48,7 +48,7 @@ export async function getGameSessionStats(): Promise<GameSessionStats> {
     if (playersError) throw playersError;
 
     // Get unique player count
-    const { data: uniquePlayersData, error: uniqueError } = await supabase
+    const { data: uniquePlayersData, error: uniqueError } = await cloudflare
       .from("game_sessions")
       .select("user_id")
       .not("user_id", "is", null)
@@ -61,7 +61,7 @@ export async function getGameSessionStats(): Promise<GameSessionStats> {
     const totalPlayersEngaged = uniquePlayersData?.length || 0;
 
     // Average score and total XP
-    const { data: statsData, error: statsError } = await supabase
+    const { data: statsData, error: statsError } = await cloudflare
       .from("game_sessions")
       .select("xp_earned, score, game_type");
 
@@ -82,7 +82,7 @@ export async function getGameSessionStats(): Promise<GameSessionStats> {
     const mostPlayedGame = Object.entries(gameTypeCounts).sort(([, a], [, b]) => b - a)[0]?.[0] || "N/A";
 
     // Daily active gamers (played in last 24 hours)
-    const { data: dailyData, error: dailyError } = await supabase
+    const { data: dailyData, error: dailyError } = await cloudflare
       .from("game_sessions")
       .select("user_id")
       .gt("created_at", new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
@@ -124,10 +124,10 @@ export async function getGameSessionStats(): Promise<GameSessionStats> {
 }
 
 export async function getGamePerformanceByType(gameType: string) {
-  const supabase = await getAdminOrServerSupabase();
+  const cloudflare = await getAdminOrServerCloudflare();
 
   try {
-    const { data, error } = await supabase
+    const { data, error } = await cloudflare
       .from("game_sessions")
       .select("user_id, xp_earned, score, difficulty, created_at")
       .eq("game_type", gameType)

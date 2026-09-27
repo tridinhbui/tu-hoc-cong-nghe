@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { X, Sparkles, Trophy, Award, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -62,7 +62,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
       // Update user DB
       if (userId) {
         try {
-          const supabase = createClient();
+          const cloudflare = createClient();
           if (prize.coins > 0) {
             // Qua `grant_coins` chứ không cập nhật thẳng: cột `coins` bị trigger
             // khoá với vai trò của trình duyệt (20260914). Đọc-rồi-ghi từ client
@@ -71,7 +71,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
             // Server chặn trên ở 100 - đúng giải cao nhất của vòng quay này.
             // Nó CHƯA chặn được việc gọi lại, vì giải vẫn do trình duyệt bốc;
             // muốn thế thì lượt quay phải chuyển sang server.
-            const { data, error } = await supabase.rpc("grant_coins", {
+            const { data, error } = await cloudflare.rpc("grant_coins", {
               p_source: "wheel",
               p_ref: null,
               p_amount: prize.coins,

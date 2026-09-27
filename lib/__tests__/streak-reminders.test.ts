@@ -8,7 +8,7 @@ import {
   reminderShownKey,
   STREAK_AT_RISK_HOUR,
 } from "@/lib/streak-reminders";
-import type { UserStreak } from "@/lib/supabase-streak";
+import type { UserStreak } from "@/lib/cloudflare-streak";
 
 function makeStreak(overrides: Partial<UserStreak>): UserStreak {
   return {

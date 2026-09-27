@@ -1,0 +1,359 @@
+import { createClient } from "@/lib/cloudflare";
+import type { RealtimeChannel } from "@/lib/cloudflare";
+import type { CharacterEquipments } from "@/lib/rpg-items";
+import { quantizePose } from "@/lib/lobby-pose-net";
+
+/** Đại sảnh dùng CHUNG một topic cố định cho mọi client - đó là điều kiện để
+ *  presence hoạt động, và cũng là lý do không được dùng uniqueRealtimeTopic()
+ *  ở đây (xem lib/cloudflare-realtime-topic.ts: helper đó thêm hậu tố cho mỗi
+ *  lần subscribe, nên hai client sẽ nằm ở hai phòng khác nhau và không bao giờ
+ *  thấy nhau).
+ *
+ *  Nhưng bỏ helper đi thì lại gặp đúng cái nó sinh ra để né: cloudflare trả về
+ *  channel ĐANG CÓ khi topic đã đăng ký, và gọi subscribe() lần hai trên cùng
+ *  channel là lỗi. React StrictMode mount hai lần, hoặc người dùng rời trang
+ *  rồi quay lại trước khi removeChannel() kịp xong, đều rơi vào đó.
+ *
+ *  Cách xử lý: giữ đúng MỘT channel ở tầng module và đếm tham chiếu. Mọi
+ *  component gọi joinLobby() đều dùng chung channel ấy; channel chỉ thực sự
+ *  đóng khi người cuối cùng rời đi. */
+const LOBBY_TOPIC = "lobby:reading-room";
+
+/** Vị trí gửi tối đa 5 lần/giây. Realtime của Cloudflare mặc định chặn ở 10 sự
+ *  kiện/giây cho mỗi client, nên 200ms để lại biên rộng; phần mượt do phía nhận
+ *  nội suy chứ không phải do gửi dày hơn.
+ *
+ *  Từ 120ms lên 200ms: chi phí của một phòng tăng theo BÌNH PHƯƠNG số người -
+ *  mỗi gói mình gửi là N gói cả phòng phải nhận - nên cắt nhịp đi 40% cắt luôn
+ *  40% của cái bình phương ấy. Ở phòng 20 người, đó là chênh lệch giữa 33.000
+ *  và 20.000 lượt nhận mỗi phút.
+ *
+ *  Đi kèm hai thứ trong lib/lobby-pose-net.ts, và bỏ thứ nào cũng hỏng:
+ *  lượng tử hoá làm mỗi gói nhỏ đi (nhân chứ không cộng với việc giãn nhịp), và
+ *  hệ số nội suy suy TỪ con số này chứ không phải một hằng số - giữ nguyên hằng
+ *  số cũ thì nhân vật tới đích rồi đứng chờ, thành nhịp đi-dừng-đi-dừng mà mắt
+ *  bắt được ngay. */
+export const MOVE_BROADCAST_MS = 200;
+
+export interface LobbyIdentity {
+  userId: string;
+  name: string;
+  avatarUrl: string | null;
+  /** Màu áo nhân vật, suy ra tất định từ userId nên mỗi lần vào vẫn là màu cũ. */
+  color: string;
+  /** Chuỗi ngày học liên tiếp. Khắc lên biển tên vì thấy người bên cạnh đang
+   *  giữ chuỗi 40 ngày có sức thúc mạnh hơn mọi thông báo đẩy. */
+  streak: number;
+  level: number;
+  /** Hôm nay đã học chưa - suy từ last_activity_date của bảng streak. */
+  doneToday: boolean;
+  /** Bàn đang ngồi và mốc bắt đầu phiên. null là đang đứng. */
+  seat: LobbySeat | null;
+  /** Đồ đang trang bị, đi kèm presence. Gửi cùng danh tính chứ không mở kênh
+   *  riêng: nó đổi vài lần một phiên chứ không phải vài lần một giây, và
+   *  presence vốn đã là nơi chở "người này là ai". */
+  gear?: CharacterEquipments | null;
+}
+
+export interface LobbySeat {
+  tableId: number;
+  /** Epoch ms lúc phiên bắt đầu. Đồng hồ của cả bàn suy từ mốc SỚM NHẤT trong
+   *  số người đang ngồi đó, nên ai vào sau vẫn thấy đúng thời gian còn lại, và
+   *  phiên không chết khi người mở nó rời đi. */
+  startedAt: number;
+}
+
+/** Một phiên Pomodoro. 25 phút là con số kinh điển và cũng là thứ người dùng
+ *  kỳ vọng khi nghe "Pomodoro"; đổi đi thì phải giải thích, mà không được gì. */
+export const POMODORO_MS = 25 * 60 * 1000;
+
+export interface LobbyPose {
+  x: number;
+  z: number;
+  /** Cao độ chân nhân vật. Có tầng hai và bậc thềm ra phố rồi nên vị trí không
+   *  còn nằm gọn trên một mặt phẳng; thiếu số này thì người đang đứng trên ban
+   *  công hiện ra dưới sàn với người khác. Để tuỳ chọn cho tương thích ngược:
+   *  gói cũ không có y nghĩa là đang ở tầng trệt. */
+  y?: number;
+  /** Góc quay quanh trục đứng, radian. */
+  ry: number;
+}
+
+export interface LobbyPeer extends LobbyIdentity, LobbyPose {
+  /** Mốc thời gian nhận gói vị trí gần nhất, dùng để nội suy phía client. */
+  updatedAt: number;
+}
+
+export interface LobbyChatMessage {
+  /** Khoá cục bộ cho React - không đến từ server, chỉ cần duy nhất trong phiên. */
+  id: string;
+  userId: string;
+  name: string;
+  text: string;
+  at: number;
+}
+
+/** Chat đi qua CHÍNH kênh broadcast đang chở vị trí, không mở kênh thứ hai:
+ *  cùng một topic đã join, cùng một ngân sách sự kiện, và tin nhắn tới đúng
+ *  tập người đang ở trong phòng mà không cần lọc gì thêm.
+ *
+ *  Tin nhắn KHÔNG được lưu vào database. Đây là lời nói trong một căn phòng -
+ *  ai đang đứng đó thì nghe, ai vào sau thì không. Muốn để lại thứ đọc được
+ *  sau đã có FinSocial; nhân đôi nó ở đây chỉ tạo ra hai nơi cùng lưu một
+ *  loại nội dung với hai luật kiểm duyệt khác nhau. */
+export const CHAT_MAX_LENGTH = 160;
+/** Bong bóng trên đầu nhân vật sống bằng này rồi tự tan. */
+export const CHAT_BUBBLE_MS = 7000;
+
+type PeersListener = (peers: LobbyPeer[]) => void;
+type ChatListener = (message: LobbyChatMessage) => void;
+
+let channel: RealtimeChannel | null = null;
+let refCount = 0;
+let selfId: string | null = null;
+/** Danh tính đã track gần nhất. Ngồi xuống hay đứng lên là track() lại CẢ bản
+ *  ghi presence - Cloudflare không có cập nhật từng trường, gửi thiếu là những
+ *  trường kia biến mất khỏi bản ghi của mình trên máy mọi người. */
+let lastIdentity: LobbyIdentity | null = null;
+const listeners = new Set<PeersListener>();
+const chatListeners = new Set<ChatListener>();
+/** Trạng thái hợp nhất: danh tính đến từ presence, vị trí đến từ broadcast. */
+const peers = new Map<string, LobbyPeer>();
+
+function emit() {
+  const list = [...peers.values()];
+  for (const listener of listeners) listener(list);
+}
+
+function emitChat(message: LobbyChatMessage) {
+  for (const listener of chatListeners) listener(message);
+}
+
+/** Màu tất định theo userId - không lưu đâu cả, chỉ cần cùng một người thì
+ *  mọi máy vẽ ra cùng một màu. */
+export function colorForUser(userId: string): string {
+  let hash = 0;
+  for (let i = 0; i < userId.length; i += 1) {
+    hash = (hash * 31 + userId.charCodeAt(i)) >>> 0;
+  }
+  const palette = [
+    "#b45309", "#0f766e", "#7c3aed", "#be123c", "#1d4ed8",
+    "#a16207", "#15803d", "#c2410c", "#4338ca", "#9d174d",
+  ];
+  return palette[hash % palette.length];
+}
+
+/** Tham gia thư viện. Trả về hàm rời đi; gọi nó trong cleanup của useEffect. */
+export function joinLobby(
+  identity: LobbyIdentity,
+  onPeers: PeersListener,
+  onChat?: ChatListener
+): () => void {
+  listeners.add(onPeers);
+  if (onChat) chatListeners.add(onChat);
+  refCount += 1;
+  selfId = identity.userId;
+
+  if (!channel) {
+    const cloudflare = createClient();
+    channel = cloudflare.channel(LOBBY_TOPIC, {
+      config: { presence: { key: identity.userId } },
+    });
+
+    channel
+      .on("presence", { event: "sync" }, () => {
+        const state = channel?.presenceState<LobbyIdentity>() ?? {};
+        const seen = new Set<string>();
+        for (const entries of Object.values(state)) {
+          for (const entry of entries) {
+            if (!entry?.userId) continue;
+            seen.add(entry.userId);
+            const existing = peers.get(entry.userId);
+            peers.set(entry.userId, {
+              ...entry,
+              // Người mới vào đứng ở cửa cho tới khi gói vị trí đầu tiên tới;
+              // giữ lại vị trí cũ nếu đã biết, để presence sync không kéo
+              // người đang đi bộ giật về cửa.
+              x: existing?.x ?? 0,
+              z: existing?.z ?? 12,
+              y: existing?.y ?? 0,
+              ry: existing?.ry ?? Math.PI,
+              updatedAt: existing?.updatedAt ?? Date.now(),
+            });
+          }
+        }
+        // Ai không còn trong presence nghĩa là đã rời phòng hoặc mất kết nối.
+        for (const id of [...peers.keys()]) {
+          if (!seen.has(id)) peers.delete(id);
+        }
+        emit();
+      })
+      .on("broadcast", { event: "move" }, ({ payload }) => {
+        const pose = payload as LobbyPose & { userId?: string };
+        if (!pose?.userId || pose.userId === selfId) return;
+        const existing = peers.get(pose.userId);
+        // Bỏ qua gói vị trí của người chưa có trong presence: chưa biết tên
+        // và màu thì vẽ ra cũng không đúng ai cả.
+        if (!existing) return;
+        peers.set(pose.userId, {
+          ...existing,
+          x: pose.x,
+          z: pose.z,
+          y: pose.y ?? 0,
+          ry: pose.ry,
+          updatedAt: Date.now(),
+        });
+        emit();
+      })
+      .on("broadcast", { event: "chat" }, ({ payload }) => {
+        const raw = payload as Partial<LobbyChatMessage>;
+        if (!raw?.userId || typeof raw.text !== "string") return;
+        // Người gửi đã tự hiển thị câu của mình ngay lúc bấm gửi, không chờ
+        // vòng về từ server - nếu nhận lại ở đây nữa thì câu bị nhân đôi.
+        if (raw.userId === selfId) return;
+        const text = raw.text.trim().slice(0, CHAT_MAX_LENGTH);
+        if (!text) return;
+        emitChat({
+          id: `${raw.userId}:${Date.now()}:${Math.random().toString(36).slice(2, 7)}`,
+          userId: raw.userId,
+          // Tên lấy từ presence chứ không tin phần name trong gói tin: gói tin
+          // do client gửi nên sửa được, còn presence là bản ghi đã join.
+          name: peers.get(raw.userId)?.name ?? raw.name ?? "Người học",
+          text,
+          at: Date.now(),
+        });
+      })
+      .subscribe((status) => {
+        if (status === "SUBSCRIBED") {
+          void channel?.track(identity);
+        }
+      });
+  } else {
+    // Channel đã mở sẵn từ một component khác: chỉ cần cập nhật danh tính,
+    // tuyệt đối không gọi subscribe() lần nữa.
+    void channel.track(identity);
+    onPeers([...peers.values()]);
+  }
+
+  lastIdentity = identity;
+
+  return () => {
+    listeners.delete(onPeers);
+    if (onChat) chatListeners.delete(onChat);
+    refCount -= 1;
+    if (refCount > 0) return;
+    const closing = channel;
+    channel = null;
+    selfId = null;
+    lastIdentity = null;
+    peers.clear();
+    if (closing) {
+      void closing.untrack();
+      void createClient().removeChannel(closing);
+    }
+  };
+}
+
+/** Đếm số người đang ở trong sảnh, KHÔNG ghi danh mình vào đó.
+ *
+ *  Dùng cho widget trên dashboard. Điểm mấu chốt là không gọi `track()`: nếu
+ *  gọi, mọi người chỉ mở dashboard sẽ hiện ra thành một nhân vật đứng bất động
+ *  giữa thư viện 3D, và con số cũng tự phồng lên bằng chính người đang xem nó.
+ *  Presence của Cloudflare cho phép nghe mà không tham gia; đó là cả lý do hàm
+ *  này tồn tại thay vì gọi `joinLobby` rồi bỏ phần vẽ.
+ *
+ *  Mở một thực thể kênh RIÊNG trên CÙNG topic, không dùng chung biến `channel`
+ *  của joinLobby: dùng chung thì refCount và vòng đời hai bên trộn vào nhau -
+ *  rời sảnh 3D trong khi dashboard còn mở sẽ đóng kênh của dashboard, hoặc tệ
+ *  hơn, giữ `track()` của người đã rời phòng. Hai màn hình này nằm ở hai route
+ *  khác nhau nên trong thực tế không cùng gắn kết một lúc.
+ *
+ *  Trả về hàm huỷ đăng ký. */
+export function observeLobbyCount(onCount: (count: number) => void): () => void {
+  const cloudflare = createClient();
+  // ĐÚNG TOPIC của sảnh, không phải một topic phái sinh. Presence gắn với
+  // topic: một kênh `lobby:reading-room:observe` là một phòng khác hẳn và sẽ
+  // luôn báo 0 người - trông y như code chạy đúng mà phòng đang vắng.
+  const observer = cloudflare.channel(LOBBY_TOPIC, {
+    // Không đặt presence.key: ta không track nên không cần khoá cho chính mình.
+    config: { presence: {} },
+  });
+
+  const read = () => {
+    const state = observer.presenceState<LobbyIdentity>();
+    const ids = new Set<string>();
+    for (const entries of Object.values(state)) {
+      for (const entry of entries) if (entry?.userId) ids.add(entry.userId);
+    }
+    onCount(ids.size);
+  };
+
+  observer.on("presence", { event: "sync" }, read).subscribe();
+
+  return () => {
+    void cloudflare.removeChannel(observer);
+  };
+}
+
+/** Ngồi xuống một bàn, hoặc đứng lên khi truyền null.
+ *
+ *  Chỗ ngồi đi qua PRESENCE chứ không phải broadcast: nó là trạng thái bền,
+ *  không phải sự kiện. Người vào phòng sau phải thấy ngay ai đang ngồi ở đâu
+ *  và phiên bắt đầu từ lúc nào - broadcast chỉ tới được những ai đang online
+ *  đúng khoảnh khắc phát, nên người vào sau sẽ thấy một cái bàn trống trong
+ *  khi có hai người đang ngồi học ở đó. */
+export function setSeat(seat: LobbySeat | null) {
+  if (!channel || !lastIdentity) return;
+  lastIdentity = { ...lastIdentity, seat };
+  void channel.track(lastIdentity);
+}
+
+/** Mốc bắt đầu phiên của một bàn: SỚM NHẤT trong số người đang ngồi đó.
+ *
+ *  Lấy mốc sớm nhất chứ không phải mốc của người mở phiên, vì "người mở" là
+ *  một khái niệm không tồn tại sau khi họ rời đi. Ai ngồi xuống một bàn đang
+ *  có phiên thì nhận luôn đồng hồ đang chạy - đó mới là "cùng ngồi học", chứ
+ *  không phải mỗi người một đồng hồ riêng cạnh nhau. */
+export function tableSessionStart(peersAtTable: Array<{ seat: LobbySeat | null }>): number | null {
+  let earliest: number | null = null;
+  for (const p of peersAtTable) {
+    if (!p.seat) continue;
+    if (earliest === null || p.seat.startedAt < earliest) earliest = p.seat.startedAt;
+  }
+  return earliest;
+}
+
+/** Gửi một câu vào phòng. Trả về đúng bản tin đã phát để phía gọi hiển thị
+ *  ngay cho chính mình, thay vì chờ nó vòng qua server rồi quay lại. */
+export function sendChat(userId: string, name: string, rawText: string): LobbyChatMessage | null {
+  const text = rawText.trim().slice(0, CHAT_MAX_LENGTH);
+  if (!text || !channel) return null;
+  const message: LobbyChatMessage = {
+    id: `${userId}:${Date.now()}:${Math.random().toString(36).slice(2, 7)}`,
+    userId,
+    name,
+    text,
+    at: Date.now(),
+  };
+  void channel.send({
+    type: "broadcast",
+    event: "chat",
+    payload: { userId, name, text },
+  });
+  return message;
+}
+
+/** Gửi vị trí của mình. Không tự tiết chế tần suất - phía gọi giữ nhịp bằng
+ *  MOVE_BROADCAST_MS, vì nó mới biết khi nào nhân vật thực sự di chuyển.
+ *
+ *  Lượng tử hoá nằm ở ĐÂY chứ không ở phía gọi: ba cảnh 3D cùng gửi vị trí, và
+ *  một trong ba quên gọi thì không có gì đỏ - chỉ là gói của phòng đó to hơn
+ *  gói của hai phòng kia, mãi mãi. Đặt ở cửa ra thì không có đường vòng. */
+export function sendPose(userId: string, pose: LobbyPose) {
+  if (!channel) return;
+  void channel.send({
+    type: "broadcast",
+    event: "move",
+    payload: { userId, ...quantizePose(pose) },
+  });
+}

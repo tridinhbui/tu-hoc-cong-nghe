@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
@@ -17,7 +17,7 @@ const SUBMIT_COOLDOWN_MS = 30_000;
 
 export default function FloatingContact() {
   const { t } = useI18n();
-  const supabase = createClient();
+  const cloudflare = createClient();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -57,7 +57,7 @@ export default function FloatingContact() {
 
     const user = await getCurrentUser();
 
-    const { error } = await supabase.from("contact_messages").insert({
+    const { error } = await cloudflare.from("contact_messages").insert({
       user_id: user?.id ?? null,
       name: name.trim() || user?.fullName || t.chatbot.anonName,
       email: email.trim() || user?.email || null,

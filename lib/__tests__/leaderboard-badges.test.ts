@@ -14,13 +14,13 @@ import { BADGE_DEFINITIONS, LEADERBOARD_TOP_10_BADGE_KEYS } from "@/lib/badges";
 
 const getMyLeaderboardRank = vi.fn();
 
-vi.mock("@/lib/supabase", () => ({ createClient: () => ({}) }));
-vi.mock("@/lib/supabase-user", () => ({
+vi.mock("@/lib/cloudflare", () => ({ createClient: () => ({}) }));
+vi.mock("@/lib/cloudflare-user", () => ({
   getMyLeaderboardRank: (...args: unknown[]) => getMyLeaderboardRank(...args),
 }));
 
 const { LEADERBOARD_BADGE_BY_METRIC, LEADERBOARD_BADGE_TOP_N, getEarnedLeaderboardBadgeKeys } =
-  await import("@/lib/supabase-badges");
+  await import("@/lib/cloudflare-badges");
 
 beforeEach(() => {
   getMyLeaderboardRank.mockReset();

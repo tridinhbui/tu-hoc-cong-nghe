@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Gift, Sparkles, Trophy, CheckCircle2, Flame, BookOpen, ChevronDown, ChevronUp, Zap } from "lucide-react";
 import { toast } from "sonner";
-import { recalculateUserStats } from "@/lib/supabase-user";
-import { getUserStreak } from "@/lib/supabase-streak";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
+import { getUserStreak } from "@/lib/cloudflare-streak";
 import { getUnopenedChestCount, openNextChest, earnChest, type ChestReward } from "@/lib/chests";
 import { WEEKLY_CHEST_QUESTS_REQUIRED } from "@/lib/quest-rewards";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 import { useIsClient } from "@/lib/use-is-client";
 import { useI18n } from "@/lib/i18n/context";
@@ -28,7 +28,7 @@ interface CombinedRewardsWidgetProps {
 //    only called recalculateUserStats(), which has no concept of "chest
 //    XP" and recomputes total_xp purely from real activity tables. Chests
 //    (and their reward-picking) now live in lib/chests.ts, persisted in
-//    Supabase, and getTotalChestXp() is folded into that same formula - so
+//    Cloudflare, and getTotalChestXp() is folded into that same formula - so
 //    the XP a chest promises is now real and cross-device.
 // 2. The weekly "Chuỗi Học Tập" quest tracked its own `thtcdn_streak_*`
 //    localStorage key, which nothing in the entire codebase ever WROTE to -
@@ -117,8 +117,8 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
     // the real DB record (user_quest_completions), not a localStorage flag
     // that clearing browser data could bypass.
     try {
-      const supabase = createClient();
-      const { data } = await supabase
+      const cloudflare = createClient();
+      const { data } = await cloudflare
         .from("user_quest_completions")
         .select("id")
         .eq("user_id", userId)
@@ -132,8 +132,8 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
     // Check weekly chest claim status
     try {
-      const supabase = createClient();
-      const { data: claimedRow } = await supabase
+      const cloudflare = createClient();
+      const { data: claimedRow } = await cloudflare
         .from("user_quest_completions")
         .select("id")
         .eq("user_id", userId)
@@ -195,8 +195,8 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
     if (weeklyClaimed || completedQuestsCount < WEEKLY_CHEST_QUESTS_REQUIRED) return;
 
     try {
-      const supabase = createClient();
-      const { error } = await supabase
+      const cloudflare = createClient();
+      const { error } = await cloudflare
         .from("user_quest_completions")
         .insert([{ user_id: userId, quest_type: "weekly_chest", day_key: weekKey, xp_earned: 0 }]);
 
@@ -230,12 +230,12 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
     setClaiming(true);
 
     try {
-      const supabase = createClient();
+      const cloudflare = createClient();
       // Insert-only, guarded by the same unique(user_id, quest_type, day_key)
       // constraint every other quest claim uses - a duplicate claim (e.g.
       // from a second tab, or clearing localStorage and retrying) fails here
       // instead of silently granting a second set of chests.
-      const { error } = await supabase
+      const { error } = await cloudflare
         .from("user_quest_completions")
         .insert([{ user_id: userId, quest_type: "weekly_epic", day_key: weekKey, xp_earned: 0 }]);
 

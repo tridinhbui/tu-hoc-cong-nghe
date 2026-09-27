@@ -12,10 +12,10 @@
 // GIỚI HẠN PHẢI BIẾT: đây vẫn là lịch sử trong repo, không phải cơ sở dữ liệu
 // đang chạy. Một chính sách tạo bằng tay trên Dashboard sẽ không có ở đây, và
 // không có cách nào đọc pg_policies qua PostgREST. Con số cuối phải được đối
-// chiếu với `select * from pg_policies` chạy trong SQL Editor của Supabase.
+// chiếu với `select * from pg_policies` chạy trong SQL Editor của Cloudflare.
 import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 
-const files = ["supabase/migrations", "sql-canchay"]
+const files = ["cloudflare/migrations", "sql-canchay"]
   .flatMap((d) => readdirSync(d).filter((f) => f.endsWith(".sql")).map((f) => `${d}/${f}`))
   .sort();
 

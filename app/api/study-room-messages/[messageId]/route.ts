@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase-admin";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 
 export const dynamic = "force-dynamic";
 
@@ -16,10 +16,10 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: "Invalid message id" }, { status: 400 });
   }
 
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -78,10 +78,10 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "Invalid message id" }, { status: 400 });
   }
 
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

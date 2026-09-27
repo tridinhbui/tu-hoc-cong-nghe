@@ -1,5 +1,5 @@
 import "server-only";
-import type { createAdminClient } from "@/lib/supabase-admin";
+import type { createAdminClient } from "@/lib/cloudflare-admin";
 import {
   DAILY_FOCUS_TARGET_MINUTES,
   DAILY_STREET_TARGET_MINUTES,
@@ -121,7 +121,7 @@ const QUEST_CHECKS: Record<string, Check> = {
   },
 
   // Ngồi học đủ mốc, CỘNG DỒN cả ngày qua cả ba phòng. Cùng phép tính với
-  // lib/supabase-quests.ts, và cùng hằng số - hai nơi lệch nhau nghĩa là giao
+  // lib/cloudflare-quests.ts, và cùng hằng số - hai nơi lệch nhau nghĩa là giao
   // diện mời người ta bấm một nút mà máy chủ sẽ từ chối.
   daily_focus: async (admin, userId, dayKey) => {
     const { start, end } = localDayWindowUtc(dayKey);

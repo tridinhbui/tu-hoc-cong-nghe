@@ -1,6 +1,6 @@
 /**
  * Các thao tác tài khoản: đăng ký, đăng nhập, đổi và đặt lại mật khẩu, đăng
- * nhập bằng Google. Thay phần việc của Supabase Auth.
+ * nhập bằng Google. Thay phần việc của Cloudflare Auth.
  *
  * TẦNG NÀY KHÔNG BIẾT GÌ VỀ HTTP. Không đọc cookie, không đặt header, không
  * chuyển hướng. Nó nhận dữ liệu và trả kết quả, nên bộ kiểm chạy được trên
@@ -48,7 +48,7 @@ export interface AuthUser {
 /**
  * Đăng ký. Tạo cả bản ghi tài khoản lẫn hồ sơ.
  *
- * Supabase làm việc thứ hai bằng một trigger trên auth.users
+ * Cloudflare làm việc thứ hai bằng một trigger trên auth.users
  * (`on_auth_user_created`), thứ RPC-MIGRATION-MAP đã ghi là không port được.
  * Ở đây nó là một lệnh ghi tường minh trong cùng lô - dễ đọc hơn một trigger
  * vô hình, và quan trọng hơn là nó KHÔNG âm thầm biến mất khi đổi kho dữ liệu.

@@ -1,6 +1,6 @@
 import { requireUser } from "@/lib/auth/current-user";
 import { getStorage } from "@/lib/r2/server";
-import { isAllowedChatImage, isAllowedChatFile } from "@/lib/supabase-chat";
+import { isAllowedChatImage, isAllowedChatFile } from "@/lib/cloudflare-chat";
 
 const STORAGE_CACHE_CONTROL = "public, max-age=31536000, immutable";
 
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   if (!(file instanceof File)) return Response.json({ error: "Thiếu tệp." }, { status: 400 });
 
   // Cùng bucket chat-images chứa cả ảnh dán trực tiếp lẫn tệp đính kèm
-  // (pdf, docx, zip...) - đúng cách bucket gốc trong Supabase được dùng.
+  // (pdf, docx, zip...) - đúng cách bucket gốc trong Cloudflare được dùng.
   // Phân biệt bằng cờ "kind" trình duyệt gửi lên, vì hai hàm kiểm có luật
   // khác nhau (đuôi tệp so với danh sách MIME ảnh).
   const kind = form.get("kind") === "file" ? "file" : "image";

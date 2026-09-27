@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 
 /** Ghi hai lựa chọn của /lo-trinh lên user_profiles.
  *
@@ -13,7 +13,7 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
  *  KHÔNG revalidatePath: trang đọc hai giá trị này để dựng trạng thái ban đầu,
  *  còn sau đó chính client giữ trạng thái. Làm mới đường dẫn sẽ dựng lại cả
  *  trang sau mỗi lần bấm một viên nhịp - tức mỗi lần đổi từ 3 sang 4 ngày là
- *  một vòng gọi Supabase cộng một lần dựng lại RSC, để hiển thị đúng thứ màn
+ *  một vòng gọi Cloudflare cộng một lần dựng lại RSC, để hiển thị đúng thứ màn
  *  hình đã hiển thị.
  *
  *  Trả về `ok` để giao diện nói được "đã lưu" một cách trung thực. Trước đây
@@ -24,10 +24,10 @@ export async function saveLearningPathPrefs(input: {
   perDay?: 1 | 2;
   daysPerWeek?: number;
 }): Promise<{ ok: boolean }> {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
   if (!user) return { ok: false };
 
   const patch: Record<string, string | number> = {};
@@ -48,6 +48,6 @@ export async function saveLearningPathPrefs(input: {
 
   if (Object.keys(patch).length === 0) return { ok: false };
 
-  const { error } = await supabase.from("user_profiles").update(patch).eq("id", user.id);
+  const { error } = await cloudflare.from("user_profiles").update(patch).eq("id", user.id);
   return { ok: !error };
 }

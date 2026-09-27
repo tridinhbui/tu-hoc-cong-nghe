@@ -1,5 +1,5 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
+import { createClient } from "@/lib/cloudflare";
+import { handleCloudflareError } from "@/lib/errors";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not exist"
 // (raw Postgres) - notification preferences are non-critical, so a missing
@@ -22,8 +22,8 @@ export interface NotificationPreferences {
 export async function getNotificationPreferences(
   userId: string
 ): Promise<NotificationPreferences | null> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("notification_preferences")
     .select("email_reminders_enabled, browser_reminders_enabled, weekly_digest_enabled, morning_review_enabled")
     .eq("user_id", userId)
@@ -31,7 +31,7 @@ export async function getNotificationPreferences(
 
   if (error) {
     if (isMissingTableError(error)) return null;
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
   if (!data) return null;
 
@@ -47,7 +47,7 @@ export async function saveNotificationPreferences(
   userId: string,
   prefs: Partial<NotificationPreferences>
 ): Promise<void> {
-  const supabase = createClient();
+  const cloudflare = createClient();
 
   const payload: Record<string, unknown> = {
     user_id: userId,
@@ -66,9 +66,9 @@ export async function saveNotificationPreferences(
     payload.morning_review_enabled = prefs.morningReviewEnabled;
   }
 
-  const { error } = await supabase
+  const { error } = await cloudflare
     .from("notification_preferences")
     .upsert(payload, { onConflict: "user_id" });
 
-  if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+  if (error && !isMissingTableError(error)) throw handleCloudflareError(error);
 }

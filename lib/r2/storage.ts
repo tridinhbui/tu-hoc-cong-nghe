@@ -2,17 +2,17 @@ import "server-only";
 import type { R2Bucket } from "@cloudflare/workers-types";
 
 /**
- * Client lưu trữ tệp, nhại một phần bề mặt `supabase.storage.from(bucket)`.
- * Thay ba bucket Supabase Storage: documents, avatars, chat-images.
+ * Client lưu trữ tệp, nhại một phần bề mặt `cloudflare.storage.from(bucket)`.
+ * Thay ba bucket Cloudflare Storage: documents, avatars, chat-images.
  *
  * MỘT BUCKET R2, BA TIỀN TỐ. wrangler.jsonc chỉ khai một binding "FILES" -
  * điều đó đã có sẵn trong bản nháp giai đoạn 1 trước khi tôi chạm vào, và nó
- * đúng: ba bucket Supabase khác nhau chỉ khác nhau ở chính sách RLS
+ * đúng: ba bucket Cloudflare khác nhau chỉ khác nhau ở chính sách RLS
  * (public-read, authenticated-write ở CẢ BA), không khác gì về hạ tầng. Một
  * bucket R2 với khoá `documents/…`, `avatars/…`, `chat-images/…` cho đúng
  * hiệu quả mà không phải quản ba binding.
  *
- * KHÔNG CÓ URL CÔNG KHAI TỰ ĐỘNG. Supabase cấp domain công khai cho mỗi
+ * KHÔNG CÓ URL CÔNG KHAI TỰ ĐỘNG. Cloudflare cấp domain công khai cho mỗi
  * bucket; R2 thì không, trừ khi gắn domain riêng hoặc bật r2.dev. URL trả về
  * ở đây trỏ vào /api/files/<khoá>, một route đọc thẳng từ R2 - xem
  * app/api/files/[...path]/route.ts. Route ấy chỉ phục vụ những khoá đã ghi
@@ -63,7 +63,7 @@ export function createStorageClient(bucket: R2Bucket, publicBase: string) {
           }
         },
 
-        /** Đồng bộ, giống supabase-js: không cần đọc gì để dựng URL, vì URL
+        /** Đồng bộ, giống cloudflare-js: không cần đọc gì để dựng URL, vì URL
          *  chỉ trỏ tới route phục vụ chứ không xác nhận tệp có tồn tại. */
         getPublicUrl(path: string): { data: { publicUrl: string } } {
           return { data: { publicUrl: publicUrl(publicBase, `${prefix}/${path}`) } };

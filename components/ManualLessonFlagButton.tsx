@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { CheckCheck, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
-import { getLessonProgress } from "@/lib/supabase-progress";
-import { isLessonFlagged, toggleLessonFlag } from "@/lib/supabase-lesson-flags";
+import { getLessonProgress } from "@/lib/cloudflare-progress";
+import { isLessonFlagged, toggleLessonFlag } from "@/lib/cloudflare-lesson-flags";
 import { useI18n } from "@/lib/i18n/context";
 import { getCurrentUser } from "@/lib/current-user";
 

@@ -1,5 +1,5 @@
-import { createAdminClient } from "@/lib/supabase-admin";
-import { handleSupabaseError } from "@/lib/errors";
+import { createAdminClient } from "@/lib/cloudflare-admin";
+import { handleCloudflareError } from "@/lib/errors";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 
 export interface SystemAnalytics {
@@ -173,7 +173,7 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
       })),
     };
   } catch (error) {
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
 }
 
@@ -185,7 +185,7 @@ export async function getLessonCompletionStats() {
     .select("lesson_id, completed, quiz_score")
     .eq("completed", true);
 
-  if (error) throw handleSupabaseError(error);
+  if (error) throw handleCloudflareError(error);
 
   return data || [];
 }

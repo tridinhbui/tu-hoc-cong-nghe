@@ -24,7 +24,7 @@ export async function GET(req: Request) {
   const state = jar.get(GOOGLE_STATE_COOKIE)?.value;
   const verifier = jar.get(GOOGLE_VERIFIER_COOKIE)?.value;
   // Đọc TRƯỚC khi xoá, dùng cả trên nhánh lỗi lẫn nhánh thành công - đúng cách
-  // app/auth/callback/route.ts (bản Supabase cũ) từng làm, để một lần OAuth
+  // app/auth/callback/route.ts (bản Cloudflare cũ) từng làm, để một lần OAuth
   // lỗi giữa chừng không làm mất đích đến khi người dùng thử lại.
   const next = safeNextPath(jar.get(OAUTH_NEXT_COOKIE)?.value ? decodeURIComponent(jar.get(OAUTH_NEXT_COOKIE)!.value) : null);
   jar.delete(GOOGLE_STATE_COOKIE);

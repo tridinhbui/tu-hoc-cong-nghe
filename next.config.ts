@@ -42,18 +42,18 @@ const nextConfig: NextConfig = {
     // đang tắt. Giữ lại để bật lại là đủ, đừng xoá.
     unoptimized: true,
 
-    // Bao lâu Vercel giữ một BẢN ĐÃ TỐI ƯU trước khi đi hỏi lại Supabase.
+    // Bao lâu Vercel giữ một BẢN ĐÃ TỐI ƯU trước khi đi hỏi lại Cloudflare.
     //
     // Đây là dòng cắt egress mạnh nhất trong tệp này, và lý do nằm ở chỗ nó
     // KHÔNG trùng với `cacheControl` lúc tải lên. Hai thứ khác nhau:
     //
-    //   - `cacheControl` (xem lib/admin/documents.ts, lib/supabase-chat.ts,
+    //   - `cacheControl` (xem lib/admin/documents.ts, lib/cloudflare-chat.ts,
     //     app/(app)/settings/page.tsx) chỉ áp cho object MỚI. Mọi tấm ảnh đã
-    //     nằm sẵn trong storage vẫn mang `max-age=3600` mặc định của Supabase
+    //     nằm sẵn trong storage vẫn mang `max-age=3600` mặc định của Cloudflare
     //     cho tới khi có ai tải nó lên lần nữa - tức là không bao giờ.
     //   - `minimumCacheTTL` áp ngay cho TẤT CẢ, cũ lẫn mới, vì trình tối ưu lấy
     //     max(minimumCacheTTL, max-age của nguồn). Không có nó thì header 1 giờ
-    //     kia thắng, và mỗi tấm ảnh cũ vẫn bị hỏi lại Supabase mỗi giờ.
+    //     kia thắng, và mỗi tấm ảnh cũ vẫn bị hỏi lại Cloudflare mỗi giờ.
     //
     // Một năm là an toàn vì mọi đường dẫn trong storage đều bất biến: đường dẫn
     // nào cũng là `<timestamp>-<random>.<ext>` hoặc `<userId>-<timestamp>.<ext>`
@@ -71,7 +71,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "*.supabase.co",
+        hostname: "*.cloudflare.co",
       },
     ],
   },
@@ -114,9 +114,9 @@ const nextConfig: NextConfig = {
       //
       // Rủi ro thấp: blob URL là đối tượng do chính trang này tạo ra và chỉ
       // trang này đọc được - nó không mở đường cho nguồn ngoài nào.
-      "img-src 'self' data: blob: https://lh3.googleusercontent.com https://*.googleusercontent.com https://*.supabase.co",
+      "img-src 'self' data: blob: https://lh3.googleusercontent.com https://*.googleusercontent.com https://*.cloudflare.co",
       "font-src 'self' data:",
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
+      "connect-src 'self' https://*.cloudflare.co wss://*.cloudflare.co",
       // CFA module content (CfaContentRenderer) auto-embeds any YouTube link
       // as a real <iframe> player - without this, "default-src 'self'"
       // falls back to blocking frame-src too and every embed would be

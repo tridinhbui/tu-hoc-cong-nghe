@@ -1,4 +1,4 @@
-import type { LobbyPose } from "@/lib/supabase-lobby";
+import type { LobbyPose } from "@/lib/cloudflare-lobby";
 
 /** Phần tính toán của đường truyền vị trí 3D: lượng tử hoá gói gửi đi, và hệ
  *  số nội suy phía nhận.

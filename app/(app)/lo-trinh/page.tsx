@@ -1,12 +1,12 @@
 import { redirect } from "next/navigation";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import { isLessonIdInTrack } from "@/lib/track-stages";
 import { stageTopicFor, type StageTopicId } from "@/lib/stage-topics";
 import { paceFromParts, type Pace } from "@/lib/learning-pace";
 import LearningPathClient from "@/components/LearningPathClient";
 
-// Đọc Supabase lúc render, nên không prerender tĩnh.
+// Đọc Cloudflare lúc render, nên không prerender tĩnh.
 export const dynamic = "force-dynamic";
 
 type Track = "personal" | "professional";
@@ -31,14 +31,14 @@ type Track = "personal" | "professional";
  *
  * HAI LỰA CHỌN CỦA TRANG ĐỌC TỪ SERVER, không từ localStorage. Chúng từng chỉ
  * sống trong trình duyệt, nên đổi máy là mất - xem
- * supabase/migrations/20260912_learning_path_prefs.sql. Client vẫn ghi
+ * cloudflare/migrations/20260912_learning_path_prefs.sql. Client vẫn ghi
  * localStorage song song, vì dashboard đọc `activeTrack` từ đó.
  */
 export default async function LearningPathPage() {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     redirect("/login");
@@ -46,8 +46,8 @@ export default async function LearningPathPage() {
 
   const [lessonsMeta, { data: progressRows }, { data: profile }] = await Promise.all([
     getLessonsMeta(),
-    supabase.from("user_progress").select("lesson_id").eq("user_id", user.id).eq("completed", true),
-    supabase
+    cloudflare.from("user_progress").select("lesson_id").eq("user_id", user.id).eq("completed", true),
+    cloudflare
       .from("user_profiles")
       .select("learning_track, learning_pace_per_day, learning_pace_days_per_week")
       .eq("id", user.id)

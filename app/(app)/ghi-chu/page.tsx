@@ -2,17 +2,17 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getLessonsMeta } from "@/lib/lessons-loader";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import NotesOverviewClient from "@/components/NotesOverviewClient";
 import HighlightNotebook from "@/components/HighlightNotebook";
 import FlashcardClient from "@/components/flashcard/FlashcardClient";
-import { NOTES_PAGE_SIZE, type LessonNote } from "@/lib/supabase-notes";
-import type { Flashcard } from "@/lib/supabase-flashcards";
+import { NOTES_PAGE_SIZE, type LessonNote } from "@/lib/cloudflare-notes";
+import type { Flashcard } from "@/lib/cloudflare-flashcards";
 import type { LessonHighlight } from "@/lib/lesson-highlights";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary } from "@/lib/i18n";
 
-// Auth-gated and reads Supabase env vars at render time - never prerender statically.
+// Auth-gated and reads Cloudflare env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
 
 // Server Component: only pulls id/slug/title out of lesson metadata, so the
@@ -26,10 +26,10 @@ export const dynamic = "force-dynamic";
 export default async function GhiChuPage() {
   const locale = await getServerLocale();
   const t = getDictionary(locale);
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     redirect("/login");
@@ -44,26 +44,26 @@ export default async function GhiChuPage() {
   // itself) instead of letting each client component do its own fetch after
   // hydration. That used to mean the page painted its shell immediately but
   // then sat on two sequential "Đang tải..." spinners while two separate
-  // client-side Supabase round trips ran - this is what made the page feel
+  // client-side Cloudflare round trips ran - this is what made the page feel
   // slow on every visit, not just the first one. Fetching both in parallel
   // here means the page can render with data already in hand.
   const [notesResult, flashcardsResult, highlightsResult] = await Promise.all([
     // First page only - NotesOverviewClient loads more on demand and queries
     // the server directly when searching, so the whole notebook no longer has
     // to travel with the page.
-    supabase
+    cloudflare
       .from("lesson_notes")
       .select("*")
       .eq("user_id", user.id)
       .order("updated_at", { ascending: false })
       .range(0, NOTES_PAGE_SIZE - 1),
-    supabase
+    cloudflare
       .from("user_flashcards")
       .select("term, definition, interval, ease_factor, repetitions, next_review_at")
       .eq("user_id", user.id),
     // Highlighted passages, which read as notes the learner wrote by pointing
     // rather than typing - same page, grouped by chặng.
-    supabase
+    cloudflare
       .from("lesson_highlights")
       .select("*")
       .eq("user_id", user.id)

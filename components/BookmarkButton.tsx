@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Bookmark, BookmarkCheck } from "lucide-react";
-import { toggleBookmark, isLessonBookmarked } from "@/lib/supabase-bookmarks";
+import { toggleBookmark, isLessonBookmarked } from "@/lib/cloudflare-bookmarks";
 import { useI18n } from "@/lib/i18n/context";
 import { getCurrentUser } from "@/lib/current-user";
 

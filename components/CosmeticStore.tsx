@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { errorMessage } from "@/lib/errors";
 import Image from "next/image";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { toast } from "sonner";
 import { ShoppingBag, Check, Zap } from "lucide-react";
 import TechCharacterAvatar, { CharacterEquipments, ITEM_DESCRIPTIONS } from "@/components/TechCharacterAvatar";
@@ -16,7 +16,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 /**
  * Hàng tồn kho kèm quan hệ `gamification_assets`.
  *
- * Kiểu Supabase sinh ra cho quan hệ lồng nhau là một MẢNG, nhưng với khoá
+ * Kiểu Cloudflare sinh ra cho quan hệ lồng nhau là một MẢNG, nhưng với khoá
  * ngoại nhiều-một thì runtime trả về một OBJECT. Chỗ này trước đây dùng `any`
  * để đi qua khoảng vênh đó, tức tắt luôn kiểm tra kiểu ở đúng nơi dữ liệu đến
  * từ bên ngoài. Khai đúng hình dạng runtime rồi ép một lần, có ghi lý do, giữ
@@ -63,7 +63,7 @@ function buildCosmeticItems(t: Dictionary): CosmeticItem[] {
 
 export default function CosmeticStore({ userId, onBack }: { userId: string; onBack?: () => void }) {
   const { t } = useI18n();
-  const supabase = createClient();
+  const cloudflare = createClient();
   const [showCustomizer, setShowCustomizer] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const items = useMemo(() => buildCosmeticItems(t), [t]);
@@ -79,7 +79,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
       if (!userId) return;
       try {
         // Lấy số coins & level từ user_profiles
-        const { data: profile, error: profileError } = await supabase
+        const { data: profile, error: profileError } = await cloudflare
           .from("user_profiles")
           .select("total_xp, current_level, coins")
           .eq("id", userId)
@@ -91,7 +91,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
         setCoins(profile?.coins || 0);
 
         // Lấy danh sách sở hữu
-        const { data: inventory, error: inventoryError } = await supabase
+        const { data: inventory, error: inventoryError } = await cloudflare
           .from("user_inventories")
           .select("asset_id, gamification_assets(asset_key)")
           .eq("user_id", userId);
@@ -105,7 +105,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
         setOwnedAssets(keys);
 
         // Lấy danh sách đang trang bị
-        const { data: equips, error: equipsError } = await supabase
+        const { data: equips, error: equipsError } = await cloudflare
           .from("user_equipments")
           .select("slot, asset_key")
           .eq("user_id", userId);
@@ -124,14 +124,14 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
       }
     }
     loadData();
-  }, [userId, supabase]);
+  }, [userId, cloudflare]);
 
   /**
    * Mua một món qua RPC `purchase_cosmetic` (20260913).
    *
    * Bản trước làm ba việc từ trình duyệt - tạo asset, ghi inventory, trừ coin -
    * và không việc nào chạy được: gamification_assets chỉ grant select, nên câu
-   * insert bị RLS chặn. Nó hỏng trong im lặng vì supabase-js KHÔNG throw khi
+   * insert bị RLS chặn. Nó hỏng trong im lặng vì cloudflare-js KHÔNG throw khi
    * lỗi, nó trả `{ data, error }`, và `error` không chỗ nào được đọc. Người mua
    * bấm nút và không thấy gì cả - không thành công, không lỗi.
    *
@@ -146,7 +146,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
     }
 
     try {
-      const { data, error } = await supabase
+      const { data, error } = await cloudflare
         .rpc("purchase_cosmetic", { p_asset_key: item.id })
         .select("coins_left")
         .single();
@@ -198,7 +198,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
     try {
       if (isCurrentlyEquipped) {
         // Tháo đồ
-        const { error } = await supabase
+        const { error } = await cloudflare
           .from("user_equipments")
           .delete()
           .eq("user_id", userId)
@@ -210,7 +210,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
         toast.message(format(t.cosmeticStore.toastUnequipped, { name: item.name }));
       } else {
         // Mặc đồ mới
-        const { error } = await supabase
+        const { error } = await cloudflare
           .from("user_equipments")
           .upsert({
             user_id: userId,

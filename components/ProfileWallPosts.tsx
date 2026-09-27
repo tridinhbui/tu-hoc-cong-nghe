@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MessageCircle, Heart } from "lucide-react";
-import type { CommunityFeedPost } from "@/lib/supabase-community";
-import { getUserCommunityPosts } from "@/lib/supabase-follows";
+import type { CommunityFeedPost } from "@/lib/cloudflare-community";
+import { getUserCommunityPosts } from "@/lib/cloudflare-follows";
 import { timeAgo } from "@/lib/time-ago";
 import { useI18n } from "@/lib/i18n/context";
 

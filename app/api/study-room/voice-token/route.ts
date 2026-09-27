@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AccessToken, type VideoGrant } from "livekit-server-sdk";
 import { TrackSource } from "@livekit/protocol";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 
 // Mints a LiveKit access token for the caller's study-room voice channel.
 //
@@ -35,11 +35,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ code: "voiceNotConfigured", configured: false }, { status: 503 });
   }
 
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
     error: userError,
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (userError || !user) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
 
   // Membership check against the same "active member" definition the chat RLS
   // uses (left_at is null), so leaving a room also takes away the mic.
-  const { data: membership, error: membershipError } = await supabase
+  const { data: membership, error: membershipError } = await cloudflare
     .from("study_room_members")
     .select("id")
     .eq("room_id", roomId)
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ code: "notInStudyRoom" }, { status: 403 });
   }
 
-  const { data: profile } = await supabase
+  const { data: profile } = await cloudflare
     .from("user_profiles")
     .select("full_name")
     .eq("id", user.id)
@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
     canPublishData: false,
   };
 
-  // identity is the Supabase user id so the client can match a LiveKit
+  // identity is the Cloudflare user id so the client can match a LiveKit
   // participant back to the seat it belongs to in the 3D room.
   const at = new AccessToken(apiKey, apiSecret, {
     identity: user.id,

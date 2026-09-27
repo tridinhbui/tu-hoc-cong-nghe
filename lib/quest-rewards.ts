@@ -5,7 +5,7 @@
 // the user_quest_completions insert - which recalculateUserStats() sums into
 // total_xp. RLS on that table only checked `auth.uid() = user_id`, never the
 // amount, so anyone with devtools could claim a quest for an arbitrary
-// xp_earned. Same hole that supabase/migrations/20260714_harden_quiz_writes.sql
+// xp_earned. Same hole that cloudflare/migrations/20260714_harden_quiz_writes.sql
 // closed for quiz sessions, left open on quests.
 //
 // app/api/quests/claim/route.ts now re-derives the amount from this table
@@ -64,7 +64,7 @@ export const ONCE_ONLY_QUESTS = new Set(["career_assessment"]);
  *  mà 2 trong số đó tự hoàn thành ngay khi mở trang ("Đăng nhập mỗi ngày",
  *  "Khám phá Vương Quốc Game"). Điều kiện thật vì thế chỉ là MỘT việc có thật.
  *
- *  Ba nhiệm vụ 0 XP giờ đã bị lọc khỏi danh sách (lib/supabase-quests.ts), nên
+ *  Ba nhiệm vụ 0 XP giờ đã bị lọc khỏi danh sách (lib/cloudflare-quests.ts), nên
  *  giữ nguyên số 3 sẽ lặng lẽ biến điều kiện thành 3 trên 4 nhiệm vụ thật -
  *  siết gấp ba mà không ai định làm thế. 2 giữ cái rương ở gần chỗ cũ nhất:
  *  vẫn phải học thật, nhưng không thành một buổi cày cả bốn nhiệm vụ. */

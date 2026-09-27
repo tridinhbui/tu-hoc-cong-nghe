@@ -16,9 +16,9 @@ export class AppError extends Error {
 }
 
 /**
- * Handle Supabase errors consistently
+ * Handle Cloudflare errors consistently
  */
-export function handleSupabaseError(error: unknown): AppError {
+export function handleCloudflareError(error: unknown): AppError {
   if (!error) {
     return new AppError('Unknown error', 'UNKNOWN_ERROR', 500);
   }
@@ -27,14 +27,14 @@ export function handleSupabaseError(error: unknown): AppError {
     return new AppError('Unknown error', 'UNKNOWN_ERROR', 500);
   }
 
-  const supabaseError = error as {
+  const cloudflareError = error as {
     code?: string;
     message?: string;
     details?: unknown;
   };
 
-  // Handle specific Supabase error codes
-  switch (supabaseError.code) {
+  // Handle specific Cloudflare error codes
+  switch (cloudflareError.code) {
     case 'PGRST116':
       return new AppError('Resource not found', 'NOT_FOUND', 404);
     case '23505':
@@ -52,12 +52,12 @@ export function handleSupabaseError(error: unknown): AppError {
     case 'PGRST205':
       return new AppError('Table does not exist', 'TABLE_NOT_FOUND', 500);
     default:
-      console.error('Unhandled Supabase error:', error);
+      console.error('Unhandled Cloudflare error:', error);
       return new AppError(
-        supabaseError.message || 'Database error',
+        cloudflareError.message || 'Database error',
         'DATABASE_ERROR',
         500,
-        supabaseError.details
+        cloudflareError.details
       );
   }
 }
@@ -106,9 +106,9 @@ export async function withErrorHandling<T>(
       return { data: null, error };
     }
     
-    // Handle Supabase errors
+    // Handle Cloudflare errors
     if (error && typeof error === 'object' && 'code' in error) {
-      const appError = handleSupabaseError(error);
+      const appError = handleCloudflareError(error);
       return { data: null, error: appError };
     }
     

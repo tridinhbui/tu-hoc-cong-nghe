@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronLeft, Gift } from "lucide-react";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getServerDictionary } from "@/lib/i18n/server";
 import DocumentsList from "./DocumentsList";
 
@@ -23,7 +23,7 @@ export interface PublicDocument {
   uploaded_by: string | null;
 }
 
-/* i18n-ignore-start: Supabase select() column list, not display copy */
+/* i18n-ignore-start: Cloudflare select() column list, not display copy */
 const BASE_COLUMNS = "id, title, description, category, file_url, file_name, file_size, download_count, created_at";
 /* i18n-ignore-end */
 
@@ -61,10 +61,10 @@ function getPlaceholderImageUrl(category: string): string {
   return `data:image/svg+xml;base64,${encoded}`;
 }
 
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   // image_url and status/uploaded_by (the community-upload columns) were
   // added by later migrations that may not have run on every environment
@@ -73,7 +73,7 @@ function getPlaceholderImageUrl(category: string): string {
   // column doesn't exist.
   let documents: PublicDocument[] = [];
 
-  const withAll = await supabase
+  const withAll = await cloudflare
     .from("documents")
     .select(`${BASE_COLUMNS}, image_url, status, uploaded_by`)
     .order("created_at", { ascending: false });
@@ -81,7 +81,7 @@ function getPlaceholderImageUrl(category: string): string {
   if (!withAll.error) {
     documents = withAll.data ?? [];
   } else {
-    const withoutImage = await supabase
+    const withoutImage = await cloudflare
       .from("documents")
       .select(`${BASE_COLUMNS}, status, uploaded_by`)
       .order("created_at", { ascending: false });
@@ -89,7 +89,7 @@ function getPlaceholderImageUrl(category: string): string {
     if (!withoutImage.error) {
       documents = (withoutImage.data ?? []).map((d) => ({ ...d, image_url: null }));
     } else {
-      const bare = await supabase
+      const bare = await cloudflare
         .from("documents")
         .select(BASE_COLUMNS)
         .order("created_at", { ascending: false });

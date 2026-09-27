@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Flame, BookOpen, Trophy, CheckCircle2, Gift } from "lucide-react";
 import { toast } from "sonner";
-import { recalculateUserStats } from "@/lib/supabase-user";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

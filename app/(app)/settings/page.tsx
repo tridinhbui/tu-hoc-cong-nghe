@@ -5,9 +5,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Bell, BookOpen, LogOut, MoonStar, Shield, UserRound } from "lucide-react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { signOut as signOutD1 } from "@/lib/current-user";
-import { getUserProfile, setDarkMode, setPreferredTrack, updateUserProfile } from "@/lib/supabase-user";
+import { getUserProfile, setDarkMode, setPreferredTrack, updateUserProfile } from "@/lib/cloudflare-user";
 import { getInitialTheme, setTheme, type Theme } from "@/lib/theme";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
@@ -58,7 +58,7 @@ function SectionCard({
 export default function SettingsPage() {
   const router = useRouter();
   const { locale, t } = useI18n();
-  const supabase = createClient();
+  const cloudflare = createClient();
   const [user, setUser] = useState<CurrentUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
@@ -85,7 +85,7 @@ export default function SettingsPage() {
     const checkAuth = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await cloudflare.auth.getSession();
 
       if (!session) {
         router.replace("/login");
@@ -122,7 +122,7 @@ export default function SettingsPage() {
     };
 
     void checkAuth();
-  }, [router, supabase.auth]);
+  }, [router, cloudflare.auth]);
 
   useEffect(() => {
     if (!flash) return;
@@ -144,7 +144,7 @@ export default function SettingsPage() {
       const trimmedBio = bio.trim();
 
       const [{ error: authError }, profile] = await Promise.all([
-        supabase.auth.updateUser({
+        cloudflare.auth.updateUser({
           data: {
             full_name: trimmedName,
           },
@@ -156,7 +156,7 @@ export default function SettingsPage() {
       ]);
 
       if (authError) {
-        // Supabase error text is always English; the prefix is what gets
+        // Cloudflare error text is always English; the prefix is what gets
         // translated, so the untranslated tail reads as quoted detail.
         showFlash("error", format(t.settings.profile.errorPrefix, { message: authError.message }));
       } else {
@@ -202,7 +202,7 @@ export default function SettingsPage() {
       // Thu nhỏ TRƯỚC khi tải lên. Giới hạn 2MB ở trên là thứ người dùng được
       // báo, và nó vẫn kiểm trên tệp gốc - nén sau khi kiểm sẽ biến một giới
       // hạn rõ ràng thành một giới hạn tuỳ ảnh. Cùng cách xếp thứ tự với
-      // `uploadChatImage` trong lib/supabase-chat.ts.
+      // `uploadChatImage` trong lib/cloudflare-chat.ts.
       //
       // 512 chứ không phải 1600 của chat: chỗ vẽ avatar to nhất trong toàn app
       // là trang hồ sơ ở `sm:w-28`, tức 112 điểm ảnh, nên 512 đã dư cho cả màn
@@ -217,7 +217,7 @@ export default function SettingsPage() {
       const upload = await downscaleImage(file, { maxEdge: 512, minBytes: 0 });
 
       // Ghi qua route máy chủ, không gọi storage thẳng từ trình duyệt: R2
-      // không có RLS để kiểm auth.uid() như bucket Supabase gốc, nên id
+      // không có RLS để kiểm auth.uid() như bucket Cloudflare gốc, nên id
       // người dùng trong tên tệp phải lấy từ phiên đã xác thực ở phía máy
       // chủ - xem app/api/uploads/avatar/route.ts.
       const form = new FormData();
@@ -239,7 +239,7 @@ export default function SettingsPage() {
       const publicUrl = uploadBody.publicUrl;
 
       const [{ error: updateError }, profile] = await Promise.all([
-        supabase.auth.updateUser({
+        cloudflare.auth.updateUser({
           data: {
             avatar_url: publicUrl,
           },
@@ -416,7 +416,7 @@ export default function SettingsPage() {
     setFlash(null);
 
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(user.email, {
+      const { error } = await cloudflare.auth.resetPasswordForEmail(user.email, {
         redirectTo: `${window.location.origin}/auth/reset-password`,
       });
 

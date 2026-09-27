@@ -1,7 +1,7 @@
 "use client";
 
 /** Một chỗ hỏi "tôi là ai", dùng chung cho mọi component trên cùng một trang.
- *  Thay bản Supabase - xem lib/auth/current-user.ts cho phía máy chủ.
+ *  Thay bản Cloudflare - xem lib/auth/current-user.ts cho phía máy chủ.
  *
  *  VÌ SAO. 32 component phía client gọi hàm này, và trên một trang bài học có
  *  năm sáu cái cùng chạy lúc gắn - LessonNotes, BookmarkButton,
@@ -27,7 +27,7 @@ export type CachedUser = {
   email: string;
   role: string;
   /** Trực tiếp từ user_profiles - không còn "metadata" của nhà cung cấp tách
-   *  riêng khỏi hồ sơ như Supabase. Cả hai đường tạo tài khoản (đăng ký,
+   *  riêng khỏi hồ sơ như Cloudflare. Cả hai đường tạo tài khoản (đăng ký,
    *  Google) đều ghi thẳng vào đây ngay lúc tạo - xem lib/auth/service.ts. */
   fullName: string | null;
   avatarUrl: string | null;
@@ -68,7 +68,7 @@ export async function getCurrentUserId(): Promise<string | null> {
 }
 
 /**
- * Đăng xuất. Thay `supabase.auth.signOut()`.
+ * Đăng xuất. Thay `cloudflare.auth.signOut()`.
  *
  * Gọi route máy chủ để THU HỒI PHIÊN THẬT SỰ (xem lib/auth/session.ts) rồi
  * mới quên bộ nhớ đệm cục bộ - làm ngược lại (quên trước, gọi sau) để lại một

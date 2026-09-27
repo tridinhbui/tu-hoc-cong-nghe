@@ -10,7 +10,7 @@ function eventLabel(t: Dictionary, eventName: string): string {
 
 // Shows which tracked features get clicked most, over the last 30 days - see
 // lib/feature-events.ts for the client-side tracking helper and
-// supabase/migrations/20260719_feature_click_events.sql for the underlying
+// cloudflare/migrations/20260719_feature_click_events.sql for the underlying
 // table. Purely a "what to build/improve next" signal, not a full analytics
 // suite - grouped by (event_name, metadata.label) so e.g. "game_open" shows
 // per-game breakdown instead of one lump count.

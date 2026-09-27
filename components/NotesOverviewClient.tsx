@@ -11,7 +11,7 @@ import {
   deleteNote,
   NOTES_PAGE_SIZE,
   type LessonNote,
-} from "@/lib/supabase-notes";
+} from "@/lib/cloudflare-notes";
 import NoteContent, { hasMathContent } from "@/components/NoteContent";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";

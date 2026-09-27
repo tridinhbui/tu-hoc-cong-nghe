@@ -1,0 +1,437 @@
+import { createClient } from "./cloudflare";
+import { QUEST_XP_REWARDS } from "./quest-rewards";
+import { recalculateUserStats } from "./cloudflare-user";
+import {
+  DAILY_FOCUS_TARGET_MINUTES,
+  DAILY_STREET_TARGET_MINUTES,
+  PILLAR_QUIZ_SOURCE,
+} from "./study-session";
+
+export interface Quest {
+  id: string; // daily_1, daily_2, daily_3
+  title: string;
+  description: string;
+  target: number;
+  current: number;
+  xpReward: number;
+  claimed: boolean;
+}
+
+function isMissingTableError(error: { code?: string; message?: string } | null): boolean {
+  if (!error) return false;
+  return error.code === "PGRST116" || error.code === "42P01" || error.message?.includes("does not exist") || false;
+}
+
+// Generates daily quests and counts progress
+export async function getDailyQuests(userId: string, dayKey: string): Promise<Quest[]> {
+  const cloudflare = createClient();
+  
+  // 1. Fetch completed lessons today
+  const { data: progressToday } = await cloudflare
+    .from("user_progress")
+    .select("completed_at")
+    .eq("user_id", userId)
+    .eq("completed", true);
+
+  const completedTodayCount = (progressToday ?? []).filter((p) => {
+    if (!p.completed_at) return false;
+    const d = new Date(p.completed_at);
+    // Convert to local YYYY-MM-DD
+    const localKey = d.toLocaleDateString("sv-SE"); // sv-SE returns YYYY-MM-DD
+    return localKey === dayKey;
+  }).length;
+
+  // 2. Fetch game sessions today
+  const { data: gamesToday } = await cloudflare
+    .from("game_sessions")
+    .select("score, total, created_at")
+    .eq("user_id", userId);
+
+  const gamesTodayList = (gamesToday ?? []).filter((g) => {
+    if (!g.created_at) return false;
+    const d = new Date(g.created_at);
+    const localKey = d.toLocaleDateString("sv-SE");
+    return localKey === dayKey;
+  });
+
+  const gamesPlayedCount = gamesTodayList.length;
+  const perfectGamesCount = gamesTodayList.filter((g) => g.total > 0 && g.score === g.total).length;
+
+  // 3. Fetch mistake reviews today
+  // Let's check how many mistakes have been solved or reviewed today. Since we don't have a direct solved logs table,
+  // we can use games played or lessons finished as proxy, or simply check if they solved at least one standalone quiz.
+  const solvedQuizCount = completedTodayCount; // reuse completed lessons/quizzes as indicator
+
+  // 3b. Phiên ngồi học trong thế giới 3D hôm nay. Đọc thẳng focus_sessions -
+  // bảng do /api/focus-session ghi với hai mốc thời gian server tự đặt, nên
+  // con số này không giả được bằng devtools như một cờ trong localStorage.
+  const startOfDay = new Date(`${dayKey}T00:00:00`);
+  // `world` đi kèm trong CÙNG truy vấn này chứ không phải một truy vấn thứ hai
+  // lọc world='pho-nghe'. Hai lý do: một vòng đi-về ít hơn, và bộ kiểm
+  // lib/__tests__/quest-rewards.test.ts đếm số lần đọc bảng này trong file phải
+  // đúng bằng 1 - để không ai bám thêm một nhiệm vụ nữa vào đây mà quên mất
+  // nhánh lọc lúc bảng chưa tồn tại. Phép đếm ấy quét mã nguồn dạng chữ, nên
+  // nhắc lại nguyên văn lời gọi trong một chú thích cũng làm nó đỏ.
+  const { data: focusToday, error: focusError } = await cloudflare
+    .from("focus_sessions")
+    .select("seconds, world")
+    .eq("user_id", userId)
+    .gte("started_at", startOfDay.toISOString());
+  // PGRST205 = bảng không tồn tại, tức migration 20260824_focus_sessions.sql
+  // chưa chạy. Phải phân biệt với "hôm nay chưa ngồi phiên nào".
+  //
+  // Bản trước bỏ luôn `error` đi, nên bảng thiếu cho ra 0 giây - giống hệt một
+  // ngày chưa học - và nhiệm vụ đứng mãi ở 0/15. Người học nhìn thấy một
+  // nhiệm vụ KHÔNG BAO GIỜ hoàn thành được, không có lý do nào hiện ra, và nó
+  // vẫn chiếm chỗ trong danh sách mỗi ngày. Thà không hiện còn hơn.
+  const focusAvailable = focusError?.code !== "PGRST205";
+  if (!focusAvailable) {
+    console.warn(
+      "focus_sessions chưa tồn tại - ẩn nhiệm vụ daily_focus. Chạy cloudflare/migrations/20260824_focus_sessions.sql"
+    );
+  }
+  const focusSecondsToday = (focusToday ?? []).reduce((sum, r) => sum + ((r.seconds as number) ?? 0), 0);
+  // Riêng thời gian ngồi Ở PHỐ NGHỀ. `world` là chuỗi tự do trong bảng
+  // (xem 20260824_focus_sessions.sql) nhưng /api/focus-session chỉ nhận ba giá
+  // trị trong VALID_WORLDS, nên so sánh thẳng là đủ.
+  const streetSecondsToday = (focusToday ?? [])
+    .filter((r) => r.world === "pho-nghe")
+    .reduce((sum, r) => sum + ((r.seconds as number) ?? 0), 0);
+
+  // 3c. Thử thách cột trụ ở Phố Nghề hôm nay.
+  //
+  // Đọc user_quiz_sessions chứ không đọc user_lesson_recalls, dù PillarQuiz có
+  // gọi cả hai. user_lesson_recalls là upsert khoá (user_id, lesson_id), nên
+  // created_at của nó là lần ĐẦU chạm bài đó - không có mốc nào nói "làm hôm
+  // nay", và next_recall_at thì luôn nằm ở tương lai. Đếm bằng bảng ấy sẽ cho
+  // ra một nhiệm vụ hoặc xong sẵn từ hôm trước, hoặc không bao giờ xong.
+  //
+  // `source` phân biệt cột trụ với thử thách kiến thức thường: PillarQuiz gửi
+  // đúng track/difficulty như mọi lượt khác, nên nếu không có cột này thì làm
+  // quiz ở nhà cũng tính là đã ra phố.
+  const { data: pillarToday, error: pillarError } = await cloudflare
+    .from("user_quiz_sessions")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("source", PILLAR_QUIZ_SOURCE)
+    .gte("completed_at", startOfDay.toISOString());
+  // Cột `source` cần migration 20260912_daily_quest_signals.sql. 42703 =
+  // undefined_column. Chưa chạy thì nhánh cột trụ im lặng, nhưng nhiệm vụ vẫn
+  // hoàn thành được bằng nhánh ngồi học ở phố - nên không lọc bỏ cả nhiệm vụ.
+  const pillarCountToday = pillarError ? 0 : (pillarToday ?? []).length;
+
+  // 3d. Quiz nhóm trong phòng 3D hôm nay.
+  const { data: roomQuizToday } = await cloudflare
+    .from("study_room_quiz_attempts")
+    .select("id")
+    .eq("user_id", userId)
+    .gte("created_at", startOfDay.toISOString());
+  const roomQuizCountToday = (roomQuizToday ?? []).length;
+
+  // 4. Fetch claimed status from DB
+  const claimedSet = new Set<string>();
+  const { data: claims, error: claimsError } = await cloudflare
+    .from("user_quest_completions")
+    .select("quest_type")
+    .eq("user_id", userId)
+    .eq("day_key", dayKey);
+
+  if (!claimsError && claims) {
+    claims.forEach((c) => claimedSet.add(c.quest_type));
+  } else if (claimsError && isMissingTableError(claimsError)) {
+    // Fallback to LocalStorage if DB table hasn't been migrated yet
+    if (typeof window !== "undefined") {
+      const localClaims = window.localStorage.getItem(`quests_claimed_${userId}_${dayKey}`);
+      if (localClaims) {
+        try {
+          const arr = JSON.parse(localClaims) as string[];
+          arr.forEach((item) => claimedSet.add(item));
+        } catch {
+          // ignore
+        }
+      }
+    }
+  }
+
+  // 5. Fetch study group check-in status today
+  const checkinKey = userId ? `study_group_checkin_${userId}_${dayKey}` : `study_group_checkin_guest_${dayKey}`;
+  const hasCheckedInStudyGroup = typeof window !== "undefined" && Boolean(localStorage.getItem(checkinKey));
+
+  return [
+    {
+      id: "daily_1",
+      title: "Khởi động ngày mới",
+      description: "Hoàn thành 1 bài học bất kỳ",
+      target: 1,
+      current: Math.min(1, completedTodayCount),
+      xpReward: QUEST_XP_REWARDS.daily_1,
+      claimed: claimedSet.has("daily_1"),
+    },
+    {
+      id: "daily_study_group",
+      title: "Điểm danh Học Nhóm",
+      description: "Vào học nhóm & gửi 1 tin nhắn check-in hôm nay",
+      target: 1,
+      current: hasCheckedInStudyGroup ? 1 : 0,
+      xpReward: QUEST_XP_REWARDS.daily_study_group,
+      claimed: claimedSet.has("daily_study_group"),
+    },
+    {
+      id: "daily_2",
+      title: "Thạo thủ trò chơi",
+      description: "Chơi ít nhất 1 ván mini game bất kỳ",
+      target: 1,
+      current: Math.min(1, gamesPlayedCount),
+      xpReward: QUEST_XP_REWARDS.daily_2,
+      claimed: claimedSet.has("daily_2"),
+    },
+    {
+      id: "daily_3",
+      title: "Trí tuệ hoàn hảo",
+      description: "Đạt điểm số 100% trong bất kỳ mini game nào",
+      target: 1,
+      current: Math.min(1, perfectGamesCount),
+      xpReward: QUEST_XP_REWARDS.daily_3,
+      claimed: claimedSet.has("daily_3"),
+    },
+    {
+      // Auto-complete: just visiting the platform today satisfies it -
+      // "current" is always 1 the moment this list is fetched, no separate
+      // activity check needed like the other 3 quests.
+      id: "daily_4",
+      title: "Đăng nhập mỗi ngày",
+      description: "Ghé thăm nền tảng hôm nay",
+      target: 1,
+      current: 1,
+      xpReward: QUEST_XP_REWARDS.daily_4,
+      claimed: claimedSet.has("daily_4"),
+    },
+    {
+      // 25 phút CỘNG DỒN cả ngày, không phải trọn một phiên liên tục. Hai
+      // chuyện khác nhau, và chỗ này là nơi dễ lẫn nhất: đứng dậy giữa chừng
+      // hay đổi phòng đều không mất gì, vì tổng lấy từ `focus_sessions` của cả
+      // ngày. Xem DAILY_FOCUS_TARGET_MINUTES trong lib/study-session.ts.
+      id: "daily_focus",
+      title: "Ngồi học trong thành phố",
+      description: "Ngồi học 25 phút ở thư viện hoặc phòng nhóm 3D",
+      target: DAILY_FOCUS_TARGET_MINUTES,
+      current: Math.min(DAILY_FOCUS_TARGET_MINUTES, Math.floor(focusSecondsToday / 60)),
+      xpReward: QUEST_XP_REWARDS.daily_focus,
+      claimed: claimedSet.has("daily_focus"),
+    },
+    {
+      id: "daily_game",
+      title: "Khám phá Vương Quốc Game",
+      description: "Tiến vào thế giới Game Tài Chính hôm nay",
+      target: 1,
+      current: 1,
+      xpReward: QUEST_XP_REWARDS.daily_game,
+      claimed: claimedSet.has("daily_game"),
+    },
+    {
+      // Học sâu. Mốc 3 chứ không phải 2: daily_1 đã đòi 1 bài, nên 2 gần như
+      // tự xong theo và thành nhiệm vụ thừa nằm cạnh nó.
+      id: "daily_lessons_3",
+      title: "Buổi học tử tế",
+      description: "Hoàn thành 3 bài học trong hôm nay",
+      target: 3,
+      current: Math.min(3, completedTodayCount),
+      xpReward: QUEST_XP_REWARDS.daily_lessons_3,
+      claimed: claimedSet.has("daily_lessons_3"),
+    },
+    {
+      // Hai đường hoàn thành, xong một là đủ - và cả hai đều bắt phải Ở Phố
+      // Nghề. Để một đường thôi thì hoặc phụ thuộc vào việc có cột trụ đang mở
+      // (chưa học bài nào thì không có câu hỏi), hoặc biến nó thành daily_focus
+      // thứ hai.
+      id: "daily_street",
+      title: "Xuống Phố Nghề",
+      description: `Làm 1 thử thách cột trụ, hoặc ngồi học ${DAILY_STREET_TARGET_MINUTES} phút ở Phố Nghề`,
+      target: 1,
+      current:
+        pillarCountToday > 0 || streetSecondsToday >= DAILY_STREET_TARGET_MINUTES * 60 ? 1 : 0,
+      xpReward: QUEST_XP_REWARDS.daily_street,
+      claimed: claimedSet.has("daily_street"),
+    },
+    {
+      // Tương tác thật trong phòng 3D: làm bài cùng phòng, không phải gõ một
+      // tin nhắn. Khác daily_study_group ở chỗ nó đọc bảng máy chủ ghi
+      // (study_room_quiz_attempts) chứ không đọc một cờ trong localStorage.
+      id: "daily_room_quiz",
+      title: "Học cùng phòng",
+      description: "Làm 1 quiz nhóm trong phòng học 3D",
+      target: 1,
+      current: Math.min(1, roomQuizCountToday),
+      xpReward: QUEST_XP_REWARDS.daily_room_quiz,
+      claimed: claimedSet.has("daily_room_quiz"),
+    },
+    // Lọc bỏ nhiệm vụ không đo được. Hiện tại chỉ có daily_focus rơi vào đây,
+    // và chỉ khi migration focus_sessions chưa chạy.
+  ]
+    .filter((q) => focusAvailable || q.id !== "daily_focus")
+    // Và lọc bỏ nhiệm vụ không cộng XP.
+    //
+    // Ba nhiệm vụ - điểm danh học nhóm, đăng nhập, vào Game - bị đặt về 0
+    // trong lib/quest-rewards.ts, có chủ ý: chuyện có mặt không nên đúc ra XP.
+    // Nhưng chúng vẫn nằm trong danh sách với một cái nút "Nhận" bên cạnh, nên
+    // ba trong bảy nhiệm vụ hàng ngày là lời hứa hụt. Người học bấm, được cộng
+    // 0, và kết luận đúng như phản hồi nhận được: "làm nhiệm vụ hàng ngày ko
+    // có XP".
+    //
+    // Lọc ở ĐÂY chứ không ở giao diện: đây là nơi duy nhất dựng danh sách, nên
+    // mọi thứ đếm nhiệm vụ (số đã xong, rương tuần) cùng thấy một danh sách.
+    // Đường NHẬN thưởng không bị đụng tới - hàng đã claim từ trước vẫn hợp lệ,
+    // và đặt lại một mức thưởng > 0 trong quest-rewards.ts là đủ để nhiệm vụ
+    // hiện lại.
+    .filter((q) => q.xpReward > 0);
+}
+
+export interface ClaimQuestResult {
+  /** false only means "already claimed today" - not an error. */
+  claimed: boolean;
+  /** What the server actually banked. Can be LESS than the quest's nominal
+   *  QUEST_XP_REWARDS value (even 0) if WEEKLY_QUEST_XP_CAP was already hit
+   *  this week - a learner can complete every daily quest correctly and
+   *  still see 0 XP from the later ones once the weekly budget runs out.
+   *  Callers must show THIS number, not the nominal one, or the toast
+   *  promises XP that recalculateUserStats will never actually add - which
+   *  is exactly the "did the quest, XP didn't move" report this was added
+   *  to fix. */
+  xpEarned: number;
+}
+
+// Records quest completion claim via the server-authoritative route.
+//
+// The XP amount is NOT sent - app/api/quests/claim derives it from
+// lib/quest-rewards.ts. This used to insert straight into
+// user_quest_completions with a client-supplied xp_earned, which
+// recalculateUserStats sums into total_xp, so devtools could mint arbitrary
+// XP. Direct insert is revoked in
+// cloudflare/migrations/20260813_harden_quest_and_recall_xp.sql.
+export async function claimQuestReward(
+  userId: string,
+  questType: string,
+  dayKey: string
+): Promise<ClaimQuestResult> {
+  const res = await fetch("/api/quests/claim", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ questType, dayKey }),
+  });
+  const payload = (await res.json().catch(() => null)) as
+    | { claimed?: boolean; xpEarned?: number; error?: string; code?: string }
+    | null;
+
+  let xpEarned = 0;
+
+  if (res.ok) {
+    // claimed: false = already claimed; no XP moved, so skip the recompute.
+    if (!payload?.claimed) return { claimed: false, xpEarned: 0 };
+    xpEarned = payload.xpEarned ?? 0;
+  } else {
+    const error = { code: payload?.code, message: payload?.error };
+    if (isMissingTableError(error)) {
+      // Fallback: save to LocalStorage. No server to ask "how much is left
+      // in the weekly budget," so this degraded path can't cap the amount -
+      // the caller gets the nominal reward, same as the pre-hardening
+      // behavior. Acceptable: this path only runs if the table itself is
+      // missing (an unmigrated environment), not in normal operation.
+      const { getQuestXpReward } = await import("./quest-rewards");
+      xpEarned = getQuestXpReward(questType) ?? 0;
+      if (typeof window !== "undefined") {
+        const storeKey = `quests_claimed_${userId}_${dayKey}`;
+        const localClaims = window.localStorage.getItem(storeKey);
+        let claimsArr: string[] = [];
+        if (localClaims) {
+          try { claimsArr = JSON.parse(localClaims) as string[]; } catch {}
+        }
+        if (!claimsArr.includes(questType)) {
+          claimsArr.push(questType);
+          window.localStorage.setItem(storeKey, JSON.stringify(claimsArr));
+        }
+      }
+    } else {
+      console.error("Error saving quest claim:", error);
+      return { claimed: false, xpEarned: 0 };
+    }
+  }
+
+  // Instantly recalculate user stats to reflect in total_xp
+  void recalculateUserStats(userId).catch(() => {});
+  return { claimed: true, xpEarned };
+}
+
+/**
+ * XP nhiệm vụ lặp lại đã tiêu trong tuần này, và phần ngân sách còn lại.
+ *
+ * Phải khớp từng bước với phép tính trong app/api/quests/claim/route.ts - đó
+ * mới là nơi quyết định thực sự cộng bao nhiêu. Hàm này chỉ để giao diện nói
+ * đúng con số sắp nhận được: trước đây nút bấm luôn hứa mức thưởng danh nghĩa
+ * (`quest.xpReward`), nên một người đã tiêu hết 120 XP của tuần vẫn thấy
+ * "Nhận +10 XP", bấm vào, và nhận 0. Đó chính là "làm nhiệm vụ hàng ngày ko có
+ * XP" mà người học báo lại. Lần sửa trước đã chỉnh cái toast sau khi bấm; lời
+ * hứa nằm ở cái nút thì vẫn còn nguyên.
+ *
+ * Nhiệm vụ một-lần (career_assessment) nằm ngoài ngân sách, đúng như phía máy chủ.
+ */
+export async function getWeeklyQuestXpBudget(
+  userId: string
+): Promise<{ spent: number; remaining: number }> {
+  const { getWeekStartKey, ONCE_ONLY_QUESTS, WEEKLY_QUEST_XP_CAP } = await import("./quest-rewards");
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
+    .from("user_quest_completions")
+    .select("xp_earned, quest_type")
+    .eq("user_id", userId)
+    .gte("day_key", getWeekStartKey());
+
+  // Đọc lỗi thì coi như còn nguyên ngân sách: hiển thị mức thưởng danh nghĩa
+  // là hành vi cũ, và nó chỉ sai khi người dùng đã sát trần - thà thế còn hơn
+  // báo "hết XP" cho người vẫn còn ngân sách vì một lần đọc hỏng.
+  if (error) return { spent: 0, remaining: WEEKLY_QUEST_XP_CAP };
+
+  const spent = (data ?? [])
+    .filter((row) => !ONCE_ONLY_QUESTS.has(row.quest_type as string))
+    .reduce((sum, row) => sum + (Number(row.xp_earned) || 0), 0);
+
+  return { spent, remaining: Math.max(0, WEEKLY_QUEST_XP_CAP - spent) };
+}
+
+// Calculates overall quest XP claimed by user
+export async function getTotalQuestXp(userId: string): Promise<number> {
+  const { getQuestXpReward } = await import("./quest-rewards");
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
+    .from("user_quest_completions")
+    .select("xp_earned")
+    .eq("user_id", userId);
+
+  if (error) {
+    console.warn("Cloudflare Quest Total XP read failed, falling back to localStorage:", error);
+    if (typeof window !== "undefined") {
+      let total = 0;
+      for (let i = 0; i < window.localStorage.length; i++) {
+        const key = window.localStorage.key(i);
+        if (key && key.startsWith(`quests_claimed_${userId}_`)) {
+          try {
+            const items = JSON.parse(window.localStorage.getItem(key) ?? "[]") as string[];
+            // Đọc từ QUEST_XP_REWARDS, KHÔNG chép lại số.
+            //
+            // Nhánh này từng giữ một bảng thưởng riêng viết tay, và nó đã lệch
+            // hẳn khỏi bảng thật sau lần siết nền kinh tế XP: daily_2 cộng 5
+            // (thật ra 2), daily_news_quiz cộng 15 (thật ra 8), và daily_3
+            // cộng 15 trong khi bảng thật cho 2 - sai gấp bảy lần rưỡi. Không
+            // ai thấy vì đây là nhánh dự phòng, chỉ chạy khi Cloudflare lỗi.
+            items.forEach((item) => {
+              total += getQuestXpReward(item) ?? 0;
+            });
+          } catch {}
+        }
+      }
+      return total;
+    }
+    return 0;
+  }
+
+  return (data ?? []).reduce((sum, item) => sum + item.xp_earned, 0);
+}

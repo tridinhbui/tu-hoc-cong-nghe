@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, PlayCircle, X } from "lucide-react";
-import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/supabase-user";
+import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/cloudflare-user";
 import { roundedLessonCount } from "@/lib/track-totals";
 import { animateCountTo } from "@/lib/animate-count";
 import { TRACKS } from "@/lib/tracks";

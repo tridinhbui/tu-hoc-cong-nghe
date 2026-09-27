@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { toast } from "sonner";
 import { ArrowLeft, ArrowRight, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X, MoreVertical, Trash2, Copy, Pin, PinOff, CheckCheck, Pencil } from "lucide-react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { translateApiError } from "@/lib/api-error-code";
 import {
   STUDY_ROOM_TOPICS,
@@ -40,7 +40,7 @@ import {
   subscribeToRoomMessages,
   subscribeToStudyRoomMembers,
   toggleStudyRoomReaction,
-} from "@/lib/supabase-study-rooms";
+} from "@/lib/cloudflare-study-rooms";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useStudyRoomVoice } from "@/lib/use-study-room-voice";
@@ -53,11 +53,11 @@ import {
   type StudyRoomQuizAttempt,
   type StudyRoomSummary,
   type StudyRoomTopic,
-} from "@/lib/supabase-study-rooms";
+} from "@/lib/cloudflare-study-rooms";
 import { getRoomLighting, getRoomPhase } from "@/lib/study-room-lighting";
 import StudyRoomWorld from "@/components/study-room/StudyRoomWorld";
-import { getEquippedGear } from "@/lib/supabase-equipment";
-import { colorForUser } from "@/lib/supabase-lobby";
+import { getEquippedGear } from "@/lib/cloudflare-equipment";
+import { colorForUser } from "@/lib/cloudflare-lobby";
 import type { CharacterEquipments } from "@/lib/rpg-items";
 import { useI18n } from "@/lib/i18n/context";
 import { renderBotMessage } from "@/lib/study-room-bot-messages";
@@ -200,7 +200,7 @@ const ARRIVAL_HIGHLIGHT_MS = 2600;
 /** Roster poll interval - see the live-roster effect for why it exists
  *  alongside the realtime subscription. */
 // 60 giây, không phải 25. Đây chỉ là SÀN cho lúc realtime không bật (bảng
-// chưa nằm trong publication supabase_realtime); khi realtime chạy thì danh
+// chưa nằm trong publication cloudflare_realtime); khi realtime chạy thì danh
 // sách đã cập nhật tức thì và mọi lần poll đều thừa. Danh sách thành viên một
 // phòng học không cần tươi hơn một phút.
 const ROSTER_POLL_MS = 60_000;
@@ -252,7 +252,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const quickCheers = useMemo(() => quickCheersOf(t), [t]);
   const holoPylons = useMemo(() => holoPylonsOf(t), [t]);
   const router = useRouter();
-  const supabase = createClient();
+  const cloudflare = createClient();
   const [user, setUser] = useState<SessionUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [myRoom, setMyRoom] = useState<StudyRoomSummary | null>(null);
@@ -712,7 +712,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     };
 
     const unsubscribe = subscribeToStudyRoomMembers(roomId, () => void pull());
-    // Realtime only fires if study_room_members is in the supabase_realtime
+    // Realtime only fires if study_room_members is in the cloudflare_realtime
     // publication. The poll is the floor: one RPC per interval, skipped while
     // the tab is hidden, and it makes the roster converge either way.
     const interval = window.setInterval(() => {
@@ -788,7 +788,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     const init = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await cloudflare.auth.getSession();
       if (!session?.user) {
         router.replace("/login");
         return;
@@ -805,7 +805,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       setLoading(false);
     };
     void init();
-  }, [router, supabase.auth, refreshMyRoom]);
+  }, [router, cloudflare.auth, refreshMyRoom]);
 
   useEffect(() => {
     if (myRoom) return; // no need to browse while already in a room
@@ -1021,7 +1021,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     try {
       const result = await claimStudyRoomWeeklyReward(myRoom.room_id);
       await refreshRoomEngagement(myRoom.room_id);
-      // Máy chủ trả về MÃ; `message` chỉ là bản dự phòng cho đường Supabase,
+      // Máy chủ trả về MÃ; `message` chỉ là bản dự phòng cho đường Cloudflare,
       // vốn chưa gắn mã và vẫn trả chuỗi tiếng Việt dựng sẵn.
       const text = (result.code && t.dataRest.studyGroupsClient.rewardClaim[result.code]) || result.message;
       if (result.ok) {
@@ -1948,7 +1948,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         return SEAT_ANGLES.map((angle, idx) => {
                           const member = sortedMembers[idx];
                           const isMe = member?.user_id === user?.id;
-                          // LiveKit participant identity is the Supabase user
+                          // LiveKit participant identity is the Cloudflare user
                           // id (see the token route), so voice state maps onto
                           // seats without a second lookup table.
                           const inVoice = member ? voice.participantIds.includes(member.user_id) : false;

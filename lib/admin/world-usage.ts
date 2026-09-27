@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 
 /** Ai thật sự vào phòng nào trong thành phố 3D.
  *
@@ -47,7 +47,7 @@ export async function getWorldUsage(days = 30): Promise<WorldUsage> {
       /* i18n-ignore-start: thông báo vận hành - nó bảo quản trị viên chạy một
          tệp migration cụ thể. Dịch tên tệp SQL là làm hướng dẫn sai. */
       reason: missing
-        ? "Bảng focus_sessions chưa tồn tại - chạy supabase/migrations/20260824_focus_sessions.sql"
+        ? "Bảng focus_sessions chưa tồn tại - chạy cloudflare/migrations/20260824_focus_sessions.sql"
       /* i18n-ignore-end */
         : error.message,
       rows: [],

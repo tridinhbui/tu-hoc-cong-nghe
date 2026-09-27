@@ -126,10 +126,23 @@ describe("điều phối từ chối sai sót thay vì nuốt", () => {
   });
 
   it("lỗi lúc chạy trả về trong { error }, không ném", async () => {
-    // 60 chỗ gọi đang đọc theo kiểu Supabase; ném sẽ thành sự cố chưa bắt.
+    // 60 chỗ gọi đang đọc theo kiểu Cloudflare; ném sẽ thành sự cố chưa bắt.
     const vo = { prepare: () => ({ bind: () => ({ all: async () => { throw new Error("D1 hỏng"); } }) }) } as unknown as D1Like;
     const r = await createD1Rpc(vo, "u1")("get_dashboard_summary");
     expect(r.error).toBeInstanceOf(Error);
     expect(r.data).toBeNull();
+  });
+});
+
+describe("hàm chỉ dành cho service_role", () => {
+  const db = { prepare: () => ({ bind: () => ({ all: async () => ({ results: [] }) }) }) } as unknown as D1Like;
+  it("người dùng thường không gọi được, kể cả đã đăng nhập", async () => {
+    for (const n of ["admin_resync_all_user_stats", "sync_lessons_atomic", "weekly_rematch_study_rooms"]) {
+      await expect(createD1Rpc(db, "u1")(n)).rejects.toThrow(/chỉ mã máy chủ/);
+    }
+  });
+  it("mã máy chủ đã xác thực thì gọi được", async () => {
+    const r = await createD1Rpc(db, null, { serviceRole: true })("admin_resync_all_user_stats");
+    expect(r.error === null || r.error instanceof Error).toBe(true);
   });
 });

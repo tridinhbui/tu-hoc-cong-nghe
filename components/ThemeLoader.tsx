@@ -7,7 +7,7 @@ export default function ThemeLoader() {
     const applyTheme = () => {
       if (typeof window === "undefined") return;
       
-      let activeTheme = null;
+      let activeTheme: string | null = null;
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key && key.startsWith("thtcdn_active_theme_")) {

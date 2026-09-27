@@ -6,9 +6,9 @@ import { isValidAvatar } from "@/lib/avatar-utils";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { toast } from "sonner";
 import { Users, Send, X, ImagePlus, Paperclip, FileText, Download, Trash2, CornerUpLeft, MoreVertical, Copy, Pin, PinOff, CheckCheck, Pencil, Clock } from "lucide-react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { trackFeatureClick } from "@/lib/feature-events";
-import { uploadChatImage, isAllowedChatImage, uploadChatFile, isAllowedChatFile } from "@/lib/supabase-chat";
+import { uploadChatImage, isAllowedChatImage, uploadChatFile, isAllowedChatFile } from "@/lib/cloudflare-chat";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
 import { toDownloadUrl } from "@/lib/storage-download";
 import EmojiPicker from "@/components/EmojiPicker";
@@ -35,7 +35,7 @@ import {
   type StudyRoomSummary,
   type StudyRoomMessage,
   type StudyRoomMember,
-} from "@/lib/supabase-study-rooms";
+} from "@/lib/cloudflare-study-rooms";
 
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
 
@@ -167,16 +167,16 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   // đếm không tải hàng nào. Thành viên và tin nhắn chỉ dùng bên trong panel đã
   // mở, nên chúng chuyển sang effect bên dưới, chạy lần đầu người dùng mở.
   //
-  // getSession() thay cho getUser(): getUser() đi hỏi máy chủ Supabase mỗi lần,
+  // getSession() thay cho getUser(): getUser() đi hỏi máy chủ Cloudflare mỗi lần,
   // còn getSession() đọc phiên đã lưu sẵn. Với một huy hiệu ở phía client thì
   // thế là đủ, và GlobalChatWrapper - component bọc chính widget này - đã dùng
   // đúng getSession() từ trước.
   useEffect(() => {
     const init = async () => {
-      const supabase = createClient();
+      const cloudflare = createClient();
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await cloudflare.auth.getSession();
       if (!session?.user) return;
       setUserId(session.user.id);
 
@@ -695,7 +695,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                             msg.file_url ? (
                               <a
                                 // `download` trên thẻ <a> bị bỏ qua với link
-                                // khác origin, mà file_url là Supabase Storage.
+                                // khác origin, mà file_url là Cloudflare Storage.
                                 // Tên tệp và Content-Disposition phải do máy chủ
                                 // nói - xem toDownloadUrl. Không đặt
                                 // target="_blank": phản hồi là attachment nên

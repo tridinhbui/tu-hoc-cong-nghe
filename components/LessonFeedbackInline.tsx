@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { submitLessonFeedback } from "@/lib/supabase-feedback";
+import { submitLessonFeedback } from "@/lib/cloudflare-feedback";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 

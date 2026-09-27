@@ -1,5 +1,5 @@
 /**
- * Cấp, kiểm và thu hồi phiên đăng nhập. Thay `auth.getSession()` của Supabase.
+ * Cấp, kiểm và thu hồi phiên đăng nhập. Thay `auth.getSession()` của Cloudflare.
  *
  * TOKEN KHÔNG BAO GIỜ ĐƯỢC LƯU. Bảng `auth_sessions` giữ SHA-256 của token
  * làm khoá chính; bản thân token chỉ tồn tại trong cookie của người dùng. Ai

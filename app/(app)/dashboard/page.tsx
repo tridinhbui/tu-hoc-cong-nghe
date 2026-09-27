@@ -1,16 +1,16 @@
 import { redirect } from "next/navigation";
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import { getLessonOverrides } from "@/lib/lesson-overrides";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import DashboardClient from "@/components/DashboardClient";
 
-// Auth-gated and reads Supabase env vars at render time - never prerender statically.
+// Auth-gated and reads Cloudflare env vars at render time - never prerender statically.
 export const dynamic = "force-dynamic";
 
 // Server Component: uses dynamic import to load lesson metadata only,
 // preventing the entire 1.2MB lessons.ts from being bundled with the dashboard.
 export default async function Dashboard() {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
 
   // Don't check auth on the server side - getUser() and getSession() can both return
   // null immediately after OAuth callback (race condition with cookie settling).
@@ -23,7 +23,7 @@ export default async function Dashboard() {
     getLessonOverrides(),
   ]);
 
-  // Merge admin-controlled lock/visibility flags (from the `lessons` Supabase
+  // Merge admin-controlled lock/visibility flags (from the `lessons` Cloudflare
   // table) onto the static lesson metadata. Falls back to the static
   // defaults (isFundamental from lib/lessons.ts, no prerequisite override,
   // always visible) when a lesson has no override row yet.

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FileText, Download, FileSpreadsheet, FileImage, Archive, Plus } from "lucide-react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { toDownloadUrl } from "@/lib/storage-download";
 import { documentCategoriesOf, documentCategoryLabel } from "@/lib/document-categories";
@@ -26,7 +26,7 @@ function categoryLabel(value: string, t: Dictionary) {
 }
 
 // A non-approved row can only ever belong to the viewer themself (see the
-// documents select RLS policy in supabase/migrations/20260709_community_documents.sql),
+// documents select RLS policy in cloudflare/migrations/20260709_community_documents.sql),
 // so this badge always means "your own pending/rejected submission", never
 // someone else's.
 function statusBadge(status: PublicDocument["status"], t: Dictionary) {
@@ -102,7 +102,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
   const [filter, setFilter] = useState<string>("all");
   const [openDoc, setOpenDoc] = useState<PublicDocument | null>(null);
   const [showUpload, setShowUpload] = useState(false);
-  const supabase = createClient();
+  const cloudflare = createClient();
   const categoryFilters = getCategoryFilters(t);
 
   const filtered = filter === "all" ? documents : documents.filter((d) => d.category === filter);
@@ -111,7 +111,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
     trackFeatureClick("document_download", { label: doc.file_name });
     // Best-effort counter - a logged-out visitor or a missing RPC (migration
     // not run yet) should never block the actual download.
-    await supabase.rpc("increment_document_download", { doc_id: doc.id }).then(
+    await cloudflare.rpc("increment_document_download", { doc_id: doc.id }).then(
       () => {},
       () => {}
     );
@@ -288,7 +288,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
             <a
               // Tải về thật, không phải mở trong tab mới: `download` trên thẻ
               // <a> vô hiệu với link khác origin, nên Content-Disposition và
-              // tên tệp phải do Supabase Storage đặt. Xem toDownloadUrl.
+              // tên tệp phải do Cloudflare Storage đặt. Xem toDownloadUrl.
               href={toDownloadUrl(openDoc.file_url, openDoc.file_name)}
               onClick={() => handleDownload(openDoc)}
               className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-surface-invert text-ink-invert text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"

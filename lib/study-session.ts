@@ -10,9 +10,9 @@
  * tạo ra - lại là thứ nó không bảo vệ.
  */
 
-/** Một phiên Pomodoro. Giữ ở lib/supabase-lobby.ts vì phòng thư viện cũng dùng;
+/** Một phiên Pomodoro. Giữ ở lib/cloudflare-lobby.ts vì phòng thư viện cũng dùng;
  *  ở đây chỉ nhập lại để các hàm dưới đây tự đủ nghĩa. */
-export { POMODORO_MS } from "./supabase-lobby";
+export { POMODORO_MS } from "./cloudflare-lobby";
 
 /**
  * Ẩn tab bao lâu thì coi như đã rời đi.
@@ -31,7 +31,7 @@ export const AWAY_MS = 3 * 60 * 1000;
  * Mốc để nhiệm vụ hằng ngày `daily_focus` tính là xong, tính bằng phút CỘNG DỒN
  * cả ngày qua cả ba phòng - không phải trọn một phiên Pomodoro.
  *
- * Ở đây chứ không phải trong lib/supabase-quests.ts, vì giờ có HAI nơi đọc nó:
+ * Ở đây chứ không phải trong lib/cloudflare-quests.ts, vì giờ có HAI nơi đọc nó:
  * chỗ chấm nhiệm vụ, và đồng hồ trên HUD phòng 3D nói cho người ngồi biết còn
  * bao lâu nữa. Để mỗi nơi tự viết `15` là cách chắc chắn nhất để một hôm nào đó
  * đồng hồ hứa một mốc mà nhiệm vụ không công nhận.
@@ -70,7 +70,7 @@ export const DAILY_STREET_TARGET_MINUTES = 10;
  * Sống ở đây - chứ không viết thẳng chuỗi ở ba nơi - vì nó phải khớp giữa client
  * gửi (components/career-district/PillarQuiz.tsx), route nhận
  * (app/api/knowledge-challenge/submit/route.ts) và truy vấn đếm
- * (lib/supabase-quests.ts). Lệch một ký tự thì nhiệm vụ không bao giờ xong và
+ * (lib/cloudflare-quests.ts). Lệch một ký tự thì nhiệm vụ không bao giờ xong và
  * không có lỗi nào hiện ra.
  */
 export const PILLAR_QUIZ_SOURCE = "pho-nghe-pillar";
@@ -197,7 +197,7 @@ export function notifySessionDone(minutes: number): boolean {
  * thời gian còn lại của phiên đang chạy, thay vì mở một phiên 25 phút riêng
  * ngay cạnh người khác - đó là khác biệt giữa "cùng học" và "ngồi gần nhau".
  *
- * Thư viện đã có quy tắc này trong lib/supabase-lobby.ts nhưng gắn với hình
+ * Thư viện đã có quy tắc này trong lib/cloudflare-lobby.ts nhưng gắn với hình
  * dạng dữ liệu chỗ ngồi của riêng nó (`seat.startedAt`), còn phòng học nhóm
  * giữ chỗ ngồi và mốc bắt đầu ở hai trường tách rời. Hàm này nhận thẳng danh
  * sách mốc để cả hai cách lưu đều dùng được.

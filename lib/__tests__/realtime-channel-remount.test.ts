@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-/** Fake that mirrors the two supabase-js behaviours that combined to take down
+/** Fake that mirrors the two cloudflare-js behaviours that combined to take down
  *  every page mounting NotificationBell (AppNavbar):
  *    - RealtimeClient.channel(topic) returns the *existing* channel for a topic
  *    - RealtimeChannel.on("postgres_changes") throws once the channel is joined
@@ -23,7 +23,7 @@ class FakeChannel {
   }
 }
 
-const fakeSupabase = {
+const fakeCloudflare = {
   channel(topic: string) {
     const existing = channels.get(topic);
     if (existing) return existing;
@@ -36,14 +36,14 @@ const fakeSupabase = {
   removeChannel: vi.fn(),
 };
 
-vi.mock("@/lib/supabase", () => ({ createClient: () => fakeSupabase }));
+vi.mock("@/lib/cloudflare", () => ({ createClient: () => fakeCloudflare }));
 
 const subscriberModules = [
-  ["lib/supabase-community.ts", () => import("@/lib/supabase-community")],
-  ["lib/supabase-social.ts", () => import("@/lib/supabase-social")],
-  ["lib/supabase-chat.ts", () => import("@/lib/supabase-chat")],
-  ["lib/supabase-bugs.ts", () => import("@/lib/supabase-bugs")],
-  ["lib/supabase-study-rooms.ts", () => import("@/lib/supabase-study-rooms")],
+  ["lib/cloudflare-community.ts", () => import("@/lib/cloudflare-community")],
+  ["lib/cloudflare-social.ts", () => import("@/lib/cloudflare-social")],
+  ["lib/cloudflare-chat.ts", () => import("@/lib/cloudflare-chat")],
+  ["lib/cloudflare-bugs.ts", () => import("@/lib/cloudflare-bugs")],
+  ["lib/cloudflare-study-rooms.ts", () => import("@/lib/cloudflare-study-rooms")],
 ] as const;
 
 describe("realtime subscriptions survive a remount", () => {
@@ -52,7 +52,7 @@ describe("realtime subscriptions survive a remount", () => {
   });
 
   it("gives the notification bell a fresh channel on every mount", async () => {
-    const { subscribeToCommunityNotifications } = await import("@/lib/supabase-community");
+    const { subscribeToCommunityNotifications } = await import("@/lib/cloudflare-community");
     const userId = "a637f453-2c46-4265-b8f6-00e47f3532d5";
 
     const unsubscribe = subscribeToCommunityNotifications(userId, () => {});

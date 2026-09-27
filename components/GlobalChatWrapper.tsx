@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase";
-import type { User } from "@supabase/supabase-js";
+import { createClient } from "@/lib/cloudflare";
+import type { CloudflareUser as User } from "@/lib/cloudflare";
 import ChatWithAdminWidget from "./ChatWithAdminWidget";
 import FloatingStudyGroupChat from "./FloatingStudyGroupChat";
 import ReferralPromptModal from "./ReferralPromptModal";
@@ -13,22 +13,22 @@ export default function GlobalChatWrapper() {
   const [user, setUser] = useState<User | null>(null);
   const [activeChatWidget, setActiveChatWidget] = useState<"admin" | "group" | "invite" | null>(null);
   const [groupUnread, setGroupUnread] = useState(0);
-  const supabase = createClient();
+  const cloudflare = createClient();
   const pathname = usePathname();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    cloudflare.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = cloudflare.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null);
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [supabase]);
+  }, [cloudflare]);
 
   // Hide chat widgets on auth pages
   if (!user || pathname === "/login" || pathname === "/auth/reset-password") {

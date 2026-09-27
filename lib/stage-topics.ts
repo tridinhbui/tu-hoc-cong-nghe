@@ -110,7 +110,7 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
 /** Chủ đề học của một bài, suy ra từ chặng nó nằm trong.
  *
  *  Đây là bản DUY NHẤT. Trước đó logic này tồn tại hai bản riêng - một trong
- *  lib/supabase-analytics.ts, một trong app/(app)/dashboard/actions.ts - và
+ *  lib/cloudflare-analytics.ts, một trong app/(app)/dashboard/actions.ts - và
  *  chuyện đúng như đã lo: khi track cá nhân dời số ("Chặng 0 - Biết mình"
  *  thành Chặng 1, rồi chèn chặng Thuế vào giữa), CHỈ MỘT bản được sửa.
  *

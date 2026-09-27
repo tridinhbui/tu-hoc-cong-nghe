@@ -19,17 +19,17 @@ import {
   Target,
   Trophy,
   } from "lucide-react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import { getLevelByXp, getLevelProgress, getXpToNextLevel } from "@/lib/levels";
-import { getMyLeaderboardRank, getUserProfile, recalculateUserStats, type UserProfile } from "@/lib/supabase-user";
-import { getEligibleUserBadges, type UserBadge } from "@/lib/supabase-badges";
+import { getMyLeaderboardRank, getUserProfile, recalculateUserStats, type UserProfile } from "@/lib/cloudflare-user";
+import { getEligibleUserBadges, type UserBadge } from "@/lib/cloudflare-badges";
 import { getUnlockedCosmetics } from "@/lib/chests";
 import { getMyGameTitles, type EarnedGameTitle } from "@/lib/games";
 import { getMyJourney, type JourneyMilestone } from "@/lib/journey";
-import { getUserStreak, type UserStreak } from "@/lib/supabase-streak";
-import { countUserNotes } from "@/lib/supabase-notes";
-import { getUserLessonFlags } from "@/lib/supabase-lesson-flags";
-import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks";
+import { getUserStreak, type UserStreak } from "@/lib/cloudflare-streak";
+import { countUserNotes } from "@/lib/cloudflare-notes";
+import { getUserLessonFlags } from "@/lib/cloudflare-lesson-flags";
+import { getUserBookmarks, type LessonBookmark } from "@/lib/cloudflare-bookmarks";
 import { TRACKS } from "@/lib/tracks";
 import { useI18n } from "@/lib/i18n/context";
 import { badgeDescription, badgeName } from "@/lib/badge-label";
@@ -208,7 +208,7 @@ function formatDate(iso: string): string {
 export default function ProfilePage() {
   const { locale, t } = useI18n();
   const router = useRouter();
-  const [supabase] = useState(() => createClient());
+  const [cloudflare] = useState(() => createClient());
   const [user, setUser] = useState<CurrentUser | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -292,7 +292,7 @@ export default function ProfilePage() {
     const checkAuth = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await cloudflare.auth.getSession();
 
       if (!session) {
         router.replace("/login");
@@ -322,12 +322,12 @@ export default function ProfilePage() {
           getUserLessonFlags(session.user.id),
           getUserBookmarks(session.user.id),
           getMyLeaderboardRank("xp", session.user.id),
-          supabase
+          cloudflare
             .from("user_progress")
             .select("lesson_id, completed, completed_at, quiz_score, time_spent_seconds")
             .eq("user_id", session.user.id)
             .order("completed_at", { ascending: false }),
-          supabase.from("lessons").select("id, slug, title, track").order("id", { ascending: true }),
+          cloudflare.from("lessons").select("id, slug, title, track").order("id", { ascending: true }),
           getMyJourney(session.user.id),
         ]);
 
@@ -418,7 +418,7 @@ export default function ProfilePage() {
     };
 
     void checkAuth();
-  }, [router, supabase]);
+  }, [router, cloudflare]);
 
   if (loading) {
     return (

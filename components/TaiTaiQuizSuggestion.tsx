@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { RefreshCcw } from "lucide-react";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
-import type { QuizTrack, QuizDifficulty } from "@/lib/supabase-quiz-sessions";
+import type { QuizTrack, QuizDifficulty } from "@/lib/cloudflare-quiz-sessions";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 

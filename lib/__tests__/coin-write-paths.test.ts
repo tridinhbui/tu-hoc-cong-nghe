@@ -24,11 +24,10 @@ const root = join(__dirname, "..", "..");
 /** route này chạy bằng service role và số tiền do server quyết; trigger cố ý
  *  không chặn vai trò ấy. Xem chú thích trong 20260914. */
 const ALLOWED = new Set([
-  // Bốn route chạy ở server và SỐ TIỀN do server quyết. Chúng ghi bằng service
+  // Ba route chạy ở server và SỐ TIỀN do server quyết. Chúng ghi bằng service
   // role, vai trò mà trigger cố ý miễn trừ - xem chú thích trong 20260914.
   // Điều kiện để có mặt ở đây là cả hai: chạy ở server, VÀ không nhận số tiền
   // từ thân request.
-  "app/api/career-profile/claim/route.ts",
   "app/api/pvp/route.ts",
   "app/api/weekly-challenge/route.ts",
   "app/api/world-boss/route.ts",
@@ -79,17 +78,19 @@ describe("đường ghi coins", () => {
     }
   });
 
-  it("migration khoá cột và chừa đúng một lối đi", () => {
-    const sql = readFileSync(
-      join(root, "supabase/migrations/20260914_lock_coins_column.sql"),
-      "utf8",
-    );
-    // Trigger phải đặt lại giá trị, không ném - ném sẽ làm hỏng những lượt cập
-    // nhật hồ sơ vô tình mang theo cột này.
-    expect(sql).toContain("new.coins := old.coins");
-    // Và chỉ chặn hai vai trò của trình duyệt.
-    expect(sql).toContain("current_user in ('authenticated', 'anon')");
-    // purchase_cosmetic phải bật cờ, nếu không nó tự chặn chính mình.
-    expect(sql).toMatch(/purchase_cosmetic[\s\S]*set_config\('app\.coin_write', 'on', true\)/);
+  it("D1 khoá cột coins ở tầng truy vấn, thay trigger guard_coins_column của Postgres", () => {
+    // Trigger Postgres cũ (20260914_lock_coins_column.sql) gắn theo VAI TRÒ,
+    // thứ D1 không có. Thay thế là PROTECTED_COLUMNS trong query-builder: mọi
+    // actor không phải ADMIN_BYPASS ghi vào đây thì bị chặn cứng. Bài kiểm
+    // hành vi nằm ở lib/d1/__tests__/query-builder.test.ts; ở đây chỉ giữ
+    // cho danh sách không bị ai rút mất coins.
+    const src = readFileSync(join(root, "lib/d1/query-builder.ts"), "utf8");
+    const list = /PROTECTED_COLUMNS[^=]*=\s*\{([\s\S]*?)\};/.exec(src)?.[1] ?? "";
+    expect(list).toMatch(/user_profiles:\s*\[[^\]]*"coins"/);
+    // Bốn route được phép ghi coins phải ghi bằng client bỏ qua chính sách -
+    // client theo phiên sẽ bị cổng cột chặn.
+    for (const rel of ALLOWED) {
+      expect(readFileSync(join(root, rel), "utf8"), rel).toMatch(/createAdminClient|getSystemDb|requireAdminDb/);
+    }
   });
 });

@@ -6,8 +6,8 @@ import { I18nProvider } from "@/lib/i18n/context";
 // Component chỉ chạm tới những thứ này khi người dùng bấm Lưu; bài test dừng
 // ở lớp đánh dấu nên không cái nào được gọi tới.
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }) }));
-vi.mock("@/lib/supabase", () => ({ createClient: () => ({ auth: { getUser: vi.fn() } }) }));
-vi.mock("@/lib/supabase-flashcards", () => ({ saveFlashcard: vi.fn(), getFlashcards: vi.fn() }));
+vi.mock("@/lib/cloudflare", () => ({ createClient: () => ({ auth: { getUser: vi.fn() } }) }));
+vi.mock("@/lib/cloudflare-flashcards", () => ({ saveFlashcard: vi.fn(), getFlashcards: vi.fn() }));
 vi.mock("sonner", () => ({ toast: { error: vi.fn(), success: vi.fn() } }));
 
 // Người dùng báo: rê chuột từ từ gạch chân lên nút "Lưu vào Flashcard" thì

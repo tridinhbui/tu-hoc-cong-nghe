@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/supabase-admin";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { createAdminClient } from "@/lib/cloudflare-admin";
 import { LOCALE_COOKIE, getDictionary, resolveLocale } from "@/lib/i18n";
 
 // `MOCK_OPPONENTS`, an unused block of Vietnamese display names, used to sit
@@ -9,12 +9,12 @@ import { LOCALE_COOKIE, getDictionary, resolveLocale } from "@/lib/i18n";
 // translated.
 
 export async function GET(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   // Đọc cookie thẳng từ request thay vì gọi `cookies()`: route handler vốn đã
   // động, và tên thay thế bên dưới đi thẳng vào danh sách người dùng nhìn thấy.
   const t = getDictionary(resolveLocale(request.cookies.get(LOCALE_COOKIE)?.value));
 
-  const { data: topUsers } = await supabase
+  const { data: topUsers } = await cloudflare
     .from("user_profiles")
     .select("id, full_name, email, avatar_url, total_xp, current_level")
     .order("total_xp", { ascending: false })
@@ -45,10 +45,10 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
   const isWin = safeScore >= 4;
 
   // Lấy số coins hiện tại
-  const { data: profile } = await supabase
+  const { data: profile } = await cloudflare
     .from("user_profiles")
     .select("coins")
     .eq("id", user.id)
@@ -102,14 +102,14 @@ export async function POST(request: NextRequest) {
     .eq("id", user.id);
 
   // Record PvP log
-  await supabase.from("pvp_duels").insert({
+  await cloudflare.from("pvp_duels").insert({
     challenger_id: user.id,
     winner_id: isWin ? user.id : null,
     wager_coins: wagerCoins,
     challenger_score: safeScore,
   });
 
-  await supabase.from("game_sessions").insert({
+  await cloudflare.from("game_sessions").insert({
     user_id: user.id,
     game_type: "pvp-duel",
     score: safeScore,

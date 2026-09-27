@@ -5,8 +5,8 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { ROOM } from "./ReadingRoom";
 import { boardTexture } from "./room-textures";
-import { getCommunityFeed } from "@/lib/supabase-community";
-import { getLeaderboardByMetric, type LeaderboardMetric } from "@/lib/supabase-user";
+import { getCommunityFeed } from "@/lib/cloudflare-community";
+import { getLeaderboardByMetric, type LeaderboardMetric } from "@/lib/cloudflare-user";
 import { useI18n } from "@/lib/i18n/context";
 import { gatesOf, type GateTarget } from "./gates";
 import type { Dictionary } from "@/lib/i18n";
@@ -21,7 +21,7 @@ import type { Dictionary } from "@/lib/i18n";
 /** Mười phút, và bỏ qua khi tab đang ẩn.
  *
  *  Trước đây là 2 phút với 2 truy vấn. Giờ có 4 bảng xếp hạng nên mỗi nhịp là
- *  5 truy vấn Supabase, cho mỗi tab sảnh đang mở - ở nhịp cũ là 150 truy vấn
+ *  5 truy vấn Cloudflare, cho mỗi tab sảnh đang mở - ở nhịp cũ là 150 truy vấn
  *  mỗi giờ cho một người ngồi yên trong phòng đọc. Nội dung trên tường là bảng
  *  tin cộng đồng và thứ hạng tuần: không thứ nào đổi trong hai phút, và không
  *  ai đứng nhìn một tấm bảng gỗ chờ nó nhảy số.

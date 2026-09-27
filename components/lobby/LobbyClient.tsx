@@ -4,9 +4,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase";
-import { getUserStreak } from "@/lib/supabase-streak";
-import { getEquippedGear } from "@/lib/supabase-equipment";
+import { createClient } from "@/lib/cloudflare";
+import { getUserStreak } from "@/lib/cloudflare-streak";
+import { getEquippedGear } from "@/lib/cloudflare-equipment";
 import { getResumeLessonAction } from "@/app/(app)/dashboard/actions";
 import { finishFocusSession, getTodayFocusSeconds, startFocusSession } from "@/lib/focus-session";
 import { stationRoomHref, type Station } from "./stations";
@@ -28,7 +28,7 @@ import {
   sendChat,
   type LobbyChatMessage,
   type LobbyIdentity,
-} from "@/lib/supabase-lobby";
+} from "@/lib/cloudflare-lobby";
 
 /** three.js chỉ chạy phía trình duyệt - ssr:false giữ nó ngoài bundle server,
  *  và người dùng thấy khung chờ thay vì lỗi hydrate. */
@@ -104,8 +104,8 @@ export default function LobbyClient() {
   const [chimed, setChimed] = useState(false);
 
   useEffect(() => {
-    const supabase = createClient();
-    supabase.auth
+    const cloudflare = createClient();
+    cloudflare.auth
       .getUser()
       .then(async ({ data: { user } }) => {
         if (!user) {
@@ -118,7 +118,7 @@ export default function LobbyClient() {
         let avatarUrl: string | null = user.user_metadata?.avatar_url || null;
         let level = 1;
         try {
-          const { data } = await supabase
+          const { data } = await cloudflare
             .from("user_profiles")
             .select("full_name, avatar_url, current_level")
             .eq("id", user.id)
@@ -148,7 +148,7 @@ export default function LobbyClient() {
         // không, không phải không vào được.
         let gear = {};
         try {
-          gear = await getEquippedGear(user.id, supabase);
+          gear = await getEquippedGear(user.id, cloudflare);
         } catch {
           // giữ tay không
         }

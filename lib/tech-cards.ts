@@ -1,10 +1,10 @@
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /**
  * Hàng tồn kho kèm quan hệ `gamification_assets`.
  *
- * Kiểu Supabase sinh ra cho quan hệ lồng nhau là một MẢNG, nhưng với khoá
+ * Kiểu Cloudflare sinh ra cho quan hệ lồng nhau là một MẢNG, nhưng với khoá
  * ngoại nhiều-một thì runtime trả về một OBJECT. Chỗ này trước đây dùng `any`
  * để đi qua khoảng vênh đó, tức tắt luôn kiểm tra kiểu ở đúng nơi dữ liệu đến
  * từ bên ngoài. Khai đúng hình dạng runtime rồi ép một lần, có ghi lý do, giữ
@@ -179,12 +179,12 @@ function pickWeighted(cards: TechCardDefinition[]) {
 }
 
 export async function maybeAwardTechCardDrop(userId: string, score = 100): Promise<CardDropResult> {
-  const supabase = createClient();
+  const cloudflare = createClient();
   const todayStart = new Date();
   todayStart.setHours(0, 0, 0, 0);
 
   try {
-    const { data: inventory } = await supabase
+    const { data: inventory } = await cloudflare
       .from("user_inventories")
       .select("asset_id, acquired_at, gamification_assets(asset_key, asset_type)")
       .eq("user_id", userId);
@@ -203,7 +203,7 @@ export async function maybeAwardTechCardDrop(userId: string, score = 100): Promi
     if (missingCards.length === 0) return { dropped: false, reason: "complete_collection" };
 
     const selected = pickWeighted(missingCards);
-    const { data: asset } = await supabase
+    const { data: asset } = await cloudflare
       .from("gamification_assets")
       .select("id")
       .eq("asset_key", selected.id)
@@ -212,7 +212,7 @@ export async function maybeAwardTechCardDrop(userId: string, score = 100): Promi
 
     if (!asset) return { dropped: false, reason: "missing_asset" };
 
-    const { error } = await supabase.from("user_inventories").insert({
+    const { error } = await cloudflare.from("user_inventories").insert({
       user_id: userId,
       asset_id: asset.id,
     });

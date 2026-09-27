@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getLessonVideoUrl } from "@/lib/supabase-lesson-videos";
+import { getLessonVideoUrl } from "@/lib/cloudflare-lesson-videos";
 
 // Public, unauthenticated - the video player fetches this itself instead of
 // lib/lessons-loader.ts's getLessonBySlug carrying a DB lookup, since that

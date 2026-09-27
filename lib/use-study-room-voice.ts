@@ -28,9 +28,9 @@ export type VoiceStatus = "idle" | "connecting" | "connected" | "unavailable" | 
 
 export interface StudyRoomVoiceState {
   status: VoiceStatus;
-  /** Supabase user ids currently connected to the voice channel, including self. */
+  /** Cloudflare user ids currently connected to the voice channel, including self. */
   participantIds: string[];
-  /** Supabase user ids currently speaking - drives the glow on the 3D seats. */
+  /** Cloudflare user ids currently speaking - drives the glow on the 3D seats. */
   speakingIds: string[];
   micEnabled: boolean;
   /** Browser blocked autoplay; the user has to tap once to hear anything. */

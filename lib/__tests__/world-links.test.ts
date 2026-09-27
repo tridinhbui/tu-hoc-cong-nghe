@@ -11,7 +11,7 @@ import { describe, expect, it } from "vitest";
  *  không kiểm được, nên nó phải có người kiểm.
  *
  *  Cách kiểm là đọc MÃ NGUỒN chứ không import component: mấy file kia là client
- *  component kéo theo three.js và supabase, và một bài kiểm chuỗi không đáng
+ *  component kéo theo three.js và cloudflare, và một bài kiểm chuỗi không đáng
  *  kéo cả cây đó vào. Đổi lại, regex phải rộng - nó bắt cả href trong chú thích
  *  - nhưng thà kiểm thừa một dòng chú thích còn hơn bỏ sót một cánh cửa. */
 
@@ -105,7 +105,7 @@ describe("RPC được gọi", () => {
     //
     // Nó từng chứa `get_dashboard_summary` và `get_lesson_state` kèm chú thích
     // rằng hai hàm ấy "được tạo ngoài thư mục migrations". Không đúng: cả hai
-    // nằm trong supabase/migrations/20260804_dashboard_optimized_rpcs.sql, ngay
+    // nằm trong cloudflare/migrations/20260804_dashboard_optimized_rpcs.sql, ngay
     // trong repo. Thứ bỏ sót chúng là biểu thức dưới đây - nó đòi tên phải có
     // tiền tố `public.`, mà không tệp migration nào trong repo viết như vậy.
     // Nên hai cái tên bị xếp vào ngoại lệ để bộ kiểm xanh trở lại, và cổng này
@@ -125,18 +125,14 @@ describe("RPC được gọi", () => {
       [...sources.matchAll(/\.rpc\(\s*"([a-z_]+)"/g)].map((m) => m[1])
     );
 
-    const migrations = readdirSync("supabase/migrations")
-      .filter((f) => f.endsWith(".sql"))
-      .map((f) => readFileSync(join("supabase/migrations", f), "utf8"))
-      .join("\n");
-    // `public.` là TUỲ CHỌN. Không tệp migration nào trong repo viết tiền tố
-    // đó - chúng dựa vào `search_path` mặc định - nên đòi nó là đòi một quy
-    // ước không tồn tại, và kết quả là bộ kiểm không thấy hàm nào cả.
-    const defined = new Set(
-      [...migrations.matchAll(/create\s+(?:or\s+replace\s+)?function\s+(?:public\.)?([a-z_]+)/gi)].map(
-        (m) => m[1].toLowerCase()
-      )
-    );
+    // Trên D1, "có định nghĩa" nghĩa là có mặt trong bảng điều phối
+    // lib/d1/rpc-dispatch.ts - hàm plpgsql không còn; 53 hàm đã dịch tay sang
+    // lib/d1/rpc.ts, và một tên không có trong bảng điều phối sẽ ném "Không có
+    // hàm RPC" lúc chạy. Bản trước đọc cloudflare/migrations (vốn là
+    // supabase/migrations trước lượt đổi tên), thư mục đã bị xoá.
+    const dispatch = readFileSync("lib/d1/rpc-dispatch.ts", "utf8");
+    const defined = new Set([...dispatch.matchAll(/^\s*"([a-z_]+)":\s*\{\s*fn:/gm)].map((m) => m[1]));
+    expect(defined.size, "không đọc được bảng điều phối - phép đo hỏng, không phải kết quả").toBeGreaterThan(40);
 
     const undefinedCalls = [...called].filter(
       (fn) => !defined.has(fn) && !CREATED_OUTSIDE_MIGRATIONS.has(fn)
@@ -148,13 +144,15 @@ describe("RPC được gọi", () => {
     // focus_sessions là bài học cụ thể: nó được viết, được gọi từ ba nơi, và
     // migration chưa từng chạy - nên tính năng nằm im mà không ai biết. Bài
     // này ít nhất bắt được trường hợp còn tệ hơn: bảng không có cả migration.
-    const migrations = readdirSync("supabase/migrations")
+    // Nguồn lược đồ giờ là migrations-d1/ (D1), không còn thư mục migration
+    // Postgres nào.
+    const migrations = readdirSync("migrations-d1")
       .filter((f) => f.endsWith(".sql"))
-      .map((f) => readFileSync(join("supabase/migrations", f), "utf8"))
+      .map((f) => readFileSync(join("migrations-d1", f), "utf8"))
       .join("\n");
     for (const table of ["focus_sessions", "user_equipments", "study_room_pomodoro"]) {
       expect(
-        new RegExp(`create table if not exists public\\.${table}\\b`, "i").test(migrations),
+        new RegExp(`create table if not exists "?${table}"?`, "i").test(migrations),
         `${table}: không có migration nào tạo bảng này`
       ).toBe(true);
     }

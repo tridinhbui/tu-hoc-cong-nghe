@@ -4,7 +4,7 @@ import path from "path";
 
 /** Mã OAuth rơi xuống trang chủ thì phải được chuyển tiếp sang /auth/callback.
  *
- *  Supabase chỉ dùng `redirect_to` khi URL ấy khớp danh sách Redirect URLs của
+ *  Cloudflare chỉ dùng `redirect_to` khi URL ấy khớp danh sách Redirect URLs của
  *  dự án. Không khớp thì nó rơi về "Site URL" - trang chủ - và gắn `?code=` vào
  *  đó, không báo lỗi gì. Người dùng đứng ở `/?code=<uuid>` và chưa đăng nhập.
  *

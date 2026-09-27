@@ -19,13 +19,13 @@ import { getLessonHighlights, type LessonHighlight } from "@/lib/lesson-highligh
 import { useLessonHighlightPaint } from "@/lib/hooks/useLessonHighlightPaint";
 import { LessonCompletionContext } from "@/lib/lesson-completion-context";
 import { isPreviewLessonSlug } from "@/lib/preview-lessons";
-import { markLessonComplete as markLessonCompleteSupabase } from "@/lib/supabase-progress";
-import { getLessonProgress } from "@/lib/supabase-progress";
+import { markLessonComplete as markLessonCompleteCloudflare } from "@/lib/cloudflare-progress";
+import { getLessonProgress } from "@/lib/cloudflare-progress";
 import { queueOfflineCompletion, removeOfflineCompletion } from "@/lib/offline-sync";
-import { recalculateUserStats } from "@/lib/supabase-user";
-import { updateStreak, MAX_STREAK_FREEZES } from "@/lib/supabase-streak";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
+import { updateStreak, MAX_STREAK_FREEZES } from "@/lib/cloudflare-streak";
 import { maybeAwardTechCardDrop } from "@/lib/tech-cards";
-import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
+import { getReadingProgress, updateReadingProgress } from "@/lib/cloudflare-reading";
 import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getRecallItemsAction } from "@/lib/recall-actions";
 import type { RecallItem } from "@/lib/recall-schedule";
@@ -91,7 +91,7 @@ const ACCENTS: Record<string, { bg: string; text: string; border: string; badge:
 };
 
 // A set of older hand-written pages still declare their pre-resync lesson id
-// inline, while the dashboard and Supabase `lessons` table use the canonical
+// inline, while the dashboard and Cloudflare `lessons` table use the canonical
 // ids from lib/lessons-data/_index.json. Persisting with the stale inline id
 // makes the quiz look complete locally but invisible on the dashboard.
 const CANONICAL_LESSON_IDS_BY_SLUG: Record<string, number> = {
@@ -167,7 +167,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const [authState, setAuthState] = useState<"unknown" | "guest" | "member">("unknown");
   const [recallItems, setRecallItems] = useState<RecallItem[]>([]);
   const [highlights, setHighlights] = useState<LessonHighlight[]>([]);
-  // Admin-set video URL lives in its own table (see lib/supabase-lesson-videos.ts)
+  // Admin-set video URL lives in its own table (see lib/cloudflare-lesson-videos.ts)
   // rather than the static lesson data, so it's fetched separately here instead
   // of adding a DB round-trip to the shared getLessonBySlug hot path.
   const [adminVideoUrl, setAdminVideoUrl] = useState<string | null>(null);
@@ -284,7 +284,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       // mount with no way to become true again short of redoing everything
       // - even though the lesson is already marked done in `user_progress`.
       // That's the "did everything right, still not counted" bug: whenever
-      // Supabase says this lesson is already completed, short-circuit every
+      // Cloudflare says this lesson is already completed, short-circuit every
       // gate to done immediately instead of re-deriving it from local state.
       if (quiz.length > 0) {
         // Prefer the exact per-question record saved locally (which option
@@ -386,7 +386,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         } catch (error) {
           // Reading progress is a passive nicety (resume-scroll position,
           // milestone toasts) - never worth crashing the page over, e.g.
-          // when a lesson hasn't been synced into the Supabase mirror table
+          // when a lesson hasn't been synced into the Cloudflare mirror table
           // yet and the FK constraint on lesson_id rejects the row.
           console.error("Error saving reading progress:", error);
         }
@@ -470,7 +470,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // learner would see all three checkmarks green yet the lesson never
   // registered as done. Driving it off this derived value guarantees: if
   // the user sees every box checked, completion fires. The refs are still
-  // synced here so completeLessonInSupabase persists the right quiz score.
+  // synced here so completeLessonInCloudflare persists the right quiz score.
   const quizCriterionMet = quiz.length === 0 || submittedCount === quiz.length;
   // KHÔNG có `|| quizCriterionMet` ở đây, dù nó từng có.
   //
@@ -513,7 +513,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       const finalResults = quiz.length > 0 ? firstAttemptResults(results, firstResults) : [];
       for (let attempt = 0; ; attempt++) {
         if (cancelled) return;
-        const result = await completeLessonInSupabase(finalResults);
+        const result = await completeLessonInCloudflare(finalResults);
         // Khách xem thử: không có gì để lưu, và thử lại bốn lần cũng không làm
         // xuất hiện một tài khoản. Tấm thẻ mời đăng ký ở cuối bài là câu trả
         // lời cho trường hợp này, không phải một cái toast báo lỗi.
@@ -643,13 +643,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // dashboard reads to show a lesson as "Xong") was successfully persisted.
   // Callers use this to reset the fired-guard and retry on failure instead
   // of leaving a lesson permanently unsaved for the session.
-  async function completeLessonInSupabase(finalResults: boolean[]): Promise<"saved" | "failed" | "guest"> {
+  async function completeLessonInCloudflare(finalResults: boolean[]): Promise<"saved" | "failed" | "guest"> {
     // Don't trust the `userId` state here - it's only set once the mount
     // effect's getCurrentUser() round trip resolves, and a fast
     // reader can finish the quiz before that happens. Falling back to
     // state left this silently no-op-ing: the quiz still showed as done
     // locally (markLessonComplete above writes to localStorage regardless),
-    // but nothing was ever saved to Supabase, so the dashboard's "next
+    // but nothing was ever saved to Cloudflare, so the dashboard's "next
     // lesson" greeting kept saying the lesson was never started. Resolve
     // the current user directly instead of relying on state timing.
     let uid = userId;
@@ -677,7 +677,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     // completed everywhere. If it fails, report failure so the caller can
     // retry - nothing else matters if this didn't land.
     try {
-      await markLessonCompleteSupabase(uid, persistedLessonId, finalScore, durationMin * 60);
+      await markLessonCompleteCloudflare(uid, persistedLessonId, finalScore, durationMin * 60);
       removeOfflineCompletion(uid, persistedLessonId);
 
       // Track weekly quests progress

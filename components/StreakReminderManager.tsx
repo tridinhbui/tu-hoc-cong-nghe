@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Bell, X } from "lucide-react";
-import { getUserStreak } from "@/lib/supabase-streak";
+import { getUserStreak } from "@/lib/cloudflare-streak";
 import {
   decideReminder,
   getInactiveDaysCount,

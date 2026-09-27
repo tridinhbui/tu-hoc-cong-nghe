@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/lib/auth/current-user";
 
 /**
- * Ai đang đăng nhập, theo cookie phiên. Thay `supabase.auth.getSession()`.
+ * Ai đang đăng nhập, theo cookie phiên. Thay `cloudflare.auth.getSession()`.
  *
  * PHẢI LÀ MỘT LƯỢT GỌI MẠNG - trình duyệt không đọc được cookie phiên (nó
  * `httpOnly`, đúng như thiết kế: JavaScript trên trang đọc được là token lộ

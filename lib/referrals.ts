@@ -1,5 +1,5 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
+import { createClient } from "@/lib/cloudflare";
+import { handleCloudflareError } from "@/lib/errors";
 
 function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01" || error?.code === "PGRST202" || error?.code === "42883";
@@ -37,8 +37,8 @@ export async function claimPendingReferral(): Promise<void> {
   if (!referrerId) return;
   window.localStorage.removeItem(PENDING_REFERRAL_KEY);
 
-  const supabase = createClient();
-  const { error } = await supabase.rpc("record_referral", { p_referrer_id: referrerId });
+  const cloudflare = createClient();
+  const { error } = await cloudflare.rpc("record_referral", { p_referrer_id: referrerId });
   if (error && !isMissingTableError(error)) {
     console.error("Error recording referral:", error);
   }
@@ -49,8 +49,8 @@ export async function claimPendingReferral(): Promise<void> {
  *  safe to call unconditionally on every recompute, it's a no-op update
  *  when there's nothing pending. */
 export async function rewardMyReferralIfPending(): Promise<void> {
-  const supabase = createClient();
-  const { error } = await supabase.rpc("reward_my_referral");
+  const cloudflare = createClient();
+  const { error } = await cloudflare.rpc("reward_my_referral");
   if (error && !isMissingTableError(error)) {
     console.error("Error rewarding referral:", error);
   }
@@ -61,8 +61,8 @@ export async function rewardMyReferralIfPending(): Promise<void> {
  *  if they themselves were referred and converted. Folded into
  *  recalculateUserStats' total_xp formula the same way quiz/game XP are. */
 export async function getTotalReferralXp(userId: string): Promise<number> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("referrals")
     .select("referrer_id, referred_id")
     .eq("status", "rewarded")
@@ -70,7 +70,7 @@ export async function getTotalReferralXp(userId: string): Promise<number> {
 
   if (error) {
     if (isMissingTableError(error)) return 0;
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
 
   let xp = 0;
@@ -90,15 +90,15 @@ export interface MyReferralStats {
  *  user's link, and how many of those have converted (completed a lesson,
  *  triggering both sides' bonus). */
 export async function getMyReferralStats(userId: string): Promise<MyReferralStats> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("referrals")
     .select("status")
     .eq("referrer_id", userId);
 
   if (error) {
     if (isMissingTableError(error)) return { totalInvited: 0, totalRewarded: 0 };
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
 
   const rows = (data ?? []) as { status: string }[];

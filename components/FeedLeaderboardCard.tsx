@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Trophy } from "lucide-react";
-import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
+import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/cloudflare-user";
 import Avatar from "@/components/Avatar";
 import { useI18n } from "@/lib/i18n/context";
 
@@ -14,7 +14,7 @@ import { useI18n } from "@/lib/i18n/context";
  *  `user_stats` join `user_profiles` từ trình duyệt: RLS của `user_profiles`
  *  chỉ cho `auth.uid() = id`, và embed của PostgREST là inner join, nên câu ấy
  *  sẽ lặng lẽ trả về đúng một hàng của chính người đang xem. Chú thích ở
- *  lib/supabase-user.ts kể lại đúng lần mắc ấy.
+ *  lib/cloudflare-user.ts kể lại đúng lần mắc ấy.
  *
  *  KHỐI TỰ ẨN khi bảng rỗng, giống CommunityLearningNow: một thẻ xếp hạng
  *  không có ai trong đó chỉ chiếm chỗ ở cột vốn đã dài.

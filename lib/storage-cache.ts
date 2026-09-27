@@ -1,12 +1,12 @@
-/** `cacheControl` cho mọi lần tải lên Supabase Storage.
+/** `cacheControl` cho mọi lần tải lên Cloudflare Storage.
  *
  *  VÌ SAO CÓ TỆP NÀY. Không một lời gọi `.storage.upload()` nào trong kho từng
- *  đặt `cacheControl`, nên mọi object đều nhận mặc định của Supabase là một
+ *  đặt `cacheControl`, nên mọi object đều nhận mặc định của Cloudflare là một
  *  giờ. Ảnh đại diện, ảnh trong chat, ảnh bìa tài liệu - tất cả đều được tải
- *  lại từ Supabase mỗi giờ, cho từng trình duyệt, dù không byte nào trong
+ *  lại từ Cloudflare mỗi giờ, cho từng trình duyệt, dù không byte nào trong
  *  chúng thay đổi.
  *
- *  ĐỊNH DẠNG. Đây là SỐ GIÂY, không phải một header. supabase-js tự bọc nó
+ *  ĐỊNH DẠNG. Đây là SỐ GIÂY, không phải một header. cloudflare-js tự bọc nó
  *  lại - trong storage-js 2.110.0, `uploadOrUpdate` làm đúng một trong hai
  *  việc tuỳ kiểu dữ liệu tải lên:
  *
@@ -20,7 +20,7 @@
  *
  *  Một năm là con số đúng chứ không phải con số to cho oai: mọi đường dẫn
  *  storage trong kho này đều bất biến. Chúng được dựng từ `Date.now()` cộng
- *  một hậu tố ngẫu nhiên (`lib/admin/documents.ts`, `lib/supabase-chat.ts`)
+ *  một hậu tố ngẫu nhiên (`lib/admin/documents.ts`, `lib/cloudflare-chat.ts`)
  *  hoặc `<userId>-<timestamp>` (avatar trong `app/(app)/settings/page.tsx`),
  *  nên thay ảnh là sinh ra một URL mới. Không có URL nào đổi nội dung dưới
  *  chân người đang cache nó.

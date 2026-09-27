@@ -1,5 +1,5 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
+import { createClient } from "@/lib/cloudflare";
+import { handleCloudflareError } from "@/lib/errors";
 
 function isMissingTableError(error: { code?: string; message?: string } | null): boolean {
   if (!error) return true;
@@ -48,8 +48,8 @@ export const CHEST_REWARDS: ChestReward[] = [
 
 
 export async function getUnopenedChestCount(userId: string): Promise<number> {
-  const supabase = createClient();
-  const { count, error } = await supabase
+  const cloudflare = createClient();
+  const { count, error } = await cloudflare
     .from("user_chests")
     .select("*", { count: "exact", head: true })
     .eq("user_id", userId)
@@ -57,7 +57,7 @@ export async function getUnopenedChestCount(userId: string): Promise<number> {
 
   if (error) {
     if (isMissingTableError(error)) return 0;
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
   return count ?? 0;
 }
@@ -72,11 +72,11 @@ export async function getUnopenedChestCount(userId: string): Promise<number> {
  *  constraint doesn't allow yet) looks identical to success and the caller
  *  re-fires every time. AppNavbar trao rương đăng nhập hằng ngày qua đây, và
  *  nó đọc "hôm nay đã có chưa" từ `get_nav_state` chứ không mở thêm một truy
- *  vấn riêng - xem lib/supabase-nav-state.ts. */
+ *  vấn riêng - xem lib/cloudflare-nav-state.ts. */
 export async function earnChest(userId: string, source: ChestSource, count = 1): Promise<boolean> {
-  const supabase = createClient();
+  const cloudflare = createClient();
   const rows = Array.from({ length: count }, () => ({ user_id: userId, source }));
-  const { error } = await supabase.from("user_chests").insert(rows);
+  const { error } = await cloudflare.from("user_chests").insert(rows);
   if (error) {
     if (!isMissingTableError(error)) console.error("Error earning chest:", error);
     return false;
@@ -95,8 +95,8 @@ export interface OpenChestResult {
  *  this one to it, the update matches zero rows and this returns ok:false
  *  instead of silently double-granting a reward. */
 export async function openNextChest(userId: string): Promise<OpenChestResult> {
-  const supabase = createClient();
-  const { data: pending, error: fetchError } = await supabase
+  const cloudflare = createClient();
+  const { data: pending, error: fetchError } = await cloudflare
     .from("user_chests")
     .select("id")
     .eq("user_id", userId)
@@ -109,7 +109,7 @@ export async function openNextChest(userId: string): Promise<OpenChestResult> {
 
   const reward = CHEST_REWARDS[Math.floor(Math.random() * CHEST_REWARDS.length)];
 
-  const { data: updated, error: updateError } = await supabase
+  const { data: updated, error: updateError } = await cloudflare
     .from("user_chests")
     .update({
       opened: true,
@@ -131,8 +131,8 @@ export async function openNextChest(userId: string): Promise<OpenChestResult> {
  *  recalculateUserStats' total_xp formula the same way quiz/game/referral/
  *  milestone XP already are. */
 export async function getTotalChestXp(userId: string): Promise<number> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("user_chests")
     .select("xp_earned")
     .eq("user_id", userId)
@@ -140,7 +140,7 @@ export async function getTotalChestXp(userId: string): Promise<number> {
 
   if (error) {
     if (isMissingTableError(error)) return 0;
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
   return (data ?? []).reduce((sum, row) => sum + (row.xp_earned as number), 0);
 }
@@ -155,8 +155,8 @@ export interface ChestCosmetics {
  *  table - still server-persisted and cross-device now, unlike the old
  *  localStorage-only version. */
 export async function getUnlockedCosmetics(userId: string): Promise<ChestCosmetics> {
-  const supabase = createClient();
-  const { data, error } = await supabase
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare
     .from("user_chests")
     .select("reward_type, reward_value")
     .eq("user_id", userId)
@@ -165,7 +165,7 @@ export async function getUnlockedCosmetics(userId: string): Promise<ChestCosmeti
 
   if (error) {
     if (isMissingTableError(error)) return { titles: [], themes: [] };
-    throw handleSupabaseError(error);
+    throw handleCloudflareError(error);
   }
 
   const rows = (data ?? []) as { reward_type: string; reward_value: string }[];

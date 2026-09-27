@@ -5,7 +5,7 @@ import { sendEmail } from "@/lib/send-email";
 import { sendPushNotification } from "@/lib/web-push";
 import { isAuthorizedCronRequest } from "@/lib/cron-auth";
 import { getMotivationLine } from "@/lib/daily-motivation";
-import type { UserStreak } from "@/lib/supabase-streak";
+import type { UserStreak } from "@/lib/cloudflare-streak";
 import { getDictionary, format } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/i18n/locales";
 

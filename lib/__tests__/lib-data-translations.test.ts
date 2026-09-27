@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { libDataVi, libDataEn } from "@/lib/i18n/dictionaries/sections/lib-data";
 import { TECH_CARDS } from "@/lib/tech-cards";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
-import { SHOUTOUT_VARIANTS } from "@/lib/supabase-user";
+import { SHOUTOUT_VARIANTS } from "@/lib/cloudflare-user";
 
 /** Ba module dữ liệu được dịch qua TỪ ĐIỂN chứ không qua thư mục `-i18n/`:
  *  lib/tech-cards.ts, lib/document-categories.ts và

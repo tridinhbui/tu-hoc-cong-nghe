@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { Trophy, Sparkles, CheckCircle2, XCircle, ArrowRight, BookOpen, Flame, Award, Building2, ChevronRight, Zap, Target, Timer, BarChart3 } from "lucide-react";
 import { REAL_CASE_STUDIES, type CaseStudyItem, type CaseStudyQuestion } from "@/lib/case-studies-data";
-import { createClient } from "@/lib/supabase";
-import { recalculateUserStats } from "@/lib/supabase-user";
+import { createClient } from "@/lib/cloudflare";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import { recordCustomGameSession } from "@/lib/games";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
@@ -106,14 +106,14 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
     if (userId) {
       try {
-        const supabase = createClient();
+        const cloudflare = createClient();
         // Qua `grant_coins`, không đọc-rồi-ghi: trigger 20260914 khoá cột
         // `coins` với vai trò trình duyệt, nên câu update cũ sẽ báo thành công
         // mà số dư không đổi.
         //
         // Trần server là 100 - `coinReward` cao nhất đang là 80, nhân hệ số
         // 1.25 khi đạt trên 90% ra 100 tròn.
-        const { data: grant } = await supabase.rpc("grant_coins", {
+        const { data: grant } = await cloudflare.rpc("grant_coins", {
           p_source: "challenge",
           p_ref: null,
           p_amount: coins,

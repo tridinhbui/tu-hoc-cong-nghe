@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { Check, MessageCircle, Search, Send, UserPlus, UserRound, X, ArrowLeft } from "lucide-react";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/cloudflare";
 import ReferralCard from "@/components/ReferralCard";
 import {
   getDirectMessages,
@@ -21,7 +21,7 @@ import {
   type DirectMessage,
   type SearchAccountResult,
   type SocialConnection,
-} from "@/lib/supabase-social";
+} from "@/lib/cloudflare-social";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
@@ -75,7 +75,7 @@ export default function FriendsClient() {
   const { locale, t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const supabase = createClient();
+  const cloudflare = createClient();
   const [user, setUser] = useState<SessionUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [connections, setConnections] = useState<SocialConnection[]>([]);
@@ -131,7 +131,7 @@ export default function FriendsClient() {
     const init = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await cloudflare.auth.getSession();
 
       if (!session?.user) {
         router.replace("/login");
@@ -152,7 +152,7 @@ export default function FriendsClient() {
     };
 
     void init();
-  }, [router, supabase.auth]);
+  }, [router, cloudflare.auth]);
 
   useEffect(() => {
     if (!user?.id) return;

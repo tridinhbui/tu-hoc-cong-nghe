@@ -1,4 +1,4 @@
--- Ràng buộc UNIQUE, trích từ 127 migration trong supabase/migrations.
+-- Ràng buộc UNIQUE, trích từ 127 migration trong cloudflare/migrations.
 -- ĐỪNG sửa tay: chạy lại scripts/d1/generate-unique-indexes.mjs.
 --
 -- VÌ SAO CẦN TỆP NÀY. 0001_schema.sql sinh từ bản chụp PostgREST, mà PostgREST

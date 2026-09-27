@@ -8,7 +8,7 @@ import {
   getUserStreak,
   hasActivityToday as checkActivityToday,
   getStreakRestoreOffer,
-} from "@/lib/supabase-streak";
+} from "@/lib/cloudflare-streak";
 import {
   getDailyMotivation,
   daysSince,

@@ -3,8 +3,8 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { CheckCircle2, ChevronLeft, Sparkles } from "lucide-react";
-import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
-import { recalculateUserStats } from "@/lib/supabase-user";
+import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/cloudflare-quiz-sessions";
+import { recalculateUserStats } from "@/lib/cloudflare-user";
 import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
 import StageSkipExamPanel from "@/components/StageSkipExamPanel";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
@@ -28,7 +28,7 @@ interface ChallengeQuestion {
 // at render time, because module scope has no useI18n() to call.
 // Hai chặng "cfa" và "frm" đã rời khỏi danh sách cùng lib/cfa-track.ts và
 // lib/frm-track.ts: chúng vẫn hiện thành thẻ chọn được, và bấm vào thì bộ câu
-// hỏi rỗng. QuizTrack còn khai chúng vì bảng user_quiz_sessions trên Supabase
+// hỏi rỗng. QuizTrack còn khai chúng vì bảng user_quiz_sessions trên Cloudflare
 // đã lưu phiên cũ mang hai giá trị đó - xoá khỏi union sẽ làm dữ liệu cũ
 // không đọc lại được, nên chúng ở lại kiểu mà rời khỏi giao diện.
 const TRACK_IDS: QuizTrack[] = ["personal", "professional"];

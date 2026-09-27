@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { uploadDocument } from "@/lib/admin/documents";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary } from "@/lib/i18n";
@@ -16,10 +16,10 @@ export async function submitCommunityDocumentAction(formData: FormData) {
   // đổ thẳng `err.message` vào `toast.error`, nên đây là câu chữ người dùng
   // đọc. Server action không có `useI18n()`, nên đọc locale từ cookie.
   const t = getDictionary(await getServerLocale());
-  const supabase = await createServerSupabaseClient();
+  const cloudflare = await createServerCloudflareClient();
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await cloudflare.auth.getUser();
 
   if (!user) throw new Error(t.communityUpload.errNotSignedIn);
 

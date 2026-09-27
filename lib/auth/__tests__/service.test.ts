@@ -50,7 +50,7 @@ describe("đăng ký", () => {
   beforeEach(() => { db = makeDb(); });
 
   it("tạo cả tài khoản lẫn hồ sơ, và cấp phiên ngay", async () => {
-    // Supabase làm phần hồ sơ bằng một trigger trên auth.users, thứ không port
+    // Cloudflare làm phần hồ sơ bằng một trigger trên auth.users, thứ không port
     // sang D1 được. Ở đây phải là lệnh ghi tường minh, nên phải có bài kiểm.
     const r = await signUp(db, "Ai@Example.VN", "mat-khau-du-dai");
     expect(r.user.email).toBe("ai@example.vn");
