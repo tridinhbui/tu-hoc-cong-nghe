@@ -29,7 +29,7 @@ export default function Roadmap({ stages, activeTrack }: RoadmapProps) {
             key={stage.label}
             className={`px-3 py-2 rounded-lg text-xs border-l-4 transition-all ${
               stage.available
-                ? "bg-emerald-50 border-l-emerald-400 text-emerald-900"
+                ? "bg-brand-50 border-l-brand-400 text-brand-900"
                 : "bg-stone-50 border-l-stone-300 text-stone-500"
             }`}
           >

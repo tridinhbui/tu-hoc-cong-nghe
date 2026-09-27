@@ -79,7 +79,7 @@ export default function CommunityStreakWidget() {
           return (
             <li key={post.id} className="flex items-center gap-2.5 rounded-xl bg-stone-50 px-2.5 py-2 dark:bg-stone-950/50">
               {isValidAvatar(post.user_avatar) ? (
-                // 28 điểm ảnh trên màn hình, nên bản gốc trong Cloudflare Storage
+                // 28 điểm ảnh trên màn hình, nên bản gốc trong storage của hệ cũ
                 // không có việc gì phải đi hết đường dây tới đây. Xem chú thích
                 // dài hơn ở components/DashboardClient.tsx.
                 <Image src={post.user_avatar} alt={post.user_name} width={28} height={28} className="h-7 w-7 shrink-0 rounded-full object-cover" />

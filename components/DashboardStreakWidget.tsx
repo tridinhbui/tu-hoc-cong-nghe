@@ -131,7 +131,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
             </div>
             <div className="text-right">
               <span className="text-xs font-black text-orange-600 dark:text-orange-400 bg-white dark:bg-stone-800 px-3 py-1.5 rounded-[16px] border border-orange-200 dark:border-orange-900 shadow-xs">
-                🔥 {format(t.streakWidget.streakDaysSuffix, { count: streak })}
+                <Flame className="inline w-3.5 h-3.5 -mt-0.5" aria-hidden /> {format(t.streakWidget.streakDaysSuffix, { count: streak })}
               </span>
             </div>
           </div>

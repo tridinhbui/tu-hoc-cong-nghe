@@ -334,7 +334,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
       {view === "result" && result && (
         <div className="text-center py-4 space-y-3">
           {result.passed ? (
-            <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto" />
+            <CheckCircle2 className="w-10 h-10 text-brand-500 mx-auto" />
           ) : (
             <XCircle className="w-10 h-10 text-rose-400 mx-auto" />
           )}

@@ -194,7 +194,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
           </div>
           <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-emerald-500" : "bg-emerald-400"}`}
+              className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-brand-500" : "bg-brand-400"}`}
               style={{ width: `${(quizProgress / 3) * 100}%` }}
             />
           </div>
@@ -205,7 +205,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       {allQuestsDone ? (
         isEpicClaimed ? (
           <div className="p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+            <CheckCircle2 className="w-4 h-4 text-brand-500" />
             {t.weeklyQuests.claimedMessage}
           </div>
         ) : (

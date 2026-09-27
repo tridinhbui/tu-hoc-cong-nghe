@@ -277,7 +277,7 @@ export default function AppNavbar() {
 
   // Thanh này gắn ở mọi trang trong ứng dụng, nên mỗi request nó mở là một
   // request nhân với số lượt tải trang của cả hệ thống. Trước đây là bốn:
-  // `auth.getUser()` (một vòng mạng ra Cloudflare Auth), rồi `user_profiles`,
+  // `auth.getUser()` (một vòng mạng ra dịch vụ xác thực), rồi `user_profiles`,
   // `quiz_mistakes`, `user_chests`.
   //
   // Giờ là một. `getCurrentUser()` đọc phiên đã lưu sẵn bằng `getSession()` và
@@ -577,7 +577,7 @@ export default function AppNavbar() {
         }}
         className={`group relative flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-bold transition-colors duration-200 ${
           active
-            ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300"
+            ? "bg-brand-50 text-brand-700 dark:bg-brand-950/40 dark:text-brand-300"
             : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
         }`}
       >
@@ -640,7 +640,7 @@ export default function AppNavbar() {
             {/* A folded section holding the current page still needs to say so,
                 otherwise the only cue that you are somewhere is hidden. */}
             {collapsed && holdsCurrentPage && (
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-500 dark:bg-brand-400" />
             )}
             <ChevronDown
               className={`h-3.5 w-3.5 shrink-0 text-stone-400 transition-transform duration-200 dark:text-stone-500 ${
@@ -733,7 +733,7 @@ export default function AppNavbar() {
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
                   ) : (
-                    <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white font-bold text-xs shrink-0">
                       {initials || "?"}
                     </div>
                   )}
@@ -823,7 +823,7 @@ export default function AppNavbar() {
               href="/tai-lieu"
               className={`flex items-center gap-1 text-xs font-bold px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl border transition-colors duration-200 whitespace-nowrap ${
                 pathname === "/tai-lieu"
-                  ? "bg-emerald-50 dark:bg-emerald-950/40 text-accent-strong border-accent-line"
+                  ? "bg-brand-50 dark:bg-brand-950/40 text-accent-strong border-accent-line"
                   : "bg-white dark:bg-stone-900 text-ink-soft border-line hover:bg-surface-raised"
               }`}
             >
@@ -865,7 +865,7 @@ export default function AppNavbar() {
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={34} height={34} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover" />
                   ) : (
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-brand-500 flex items-center justify-center text-white font-bold text-xs">
                       {initials || "?"}
                     </div>
                   )}
@@ -898,7 +898,7 @@ export default function AppNavbar() {
               {isValidAvatar(profile.avatar_url) ? (
                 <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
               ) : (
-                <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs shrink-0">{initials || "?"}</div>
+                <div className="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white font-bold text-xs shrink-0">{initials || "?"}</div>
               )}
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-ink truncate text-xs">{profile.full_name || t.nav.user}</p>
@@ -956,7 +956,7 @@ export default function AppNavbar() {
                     {isValidAvatar(profile.avatar_url) ? (
                       <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
                     ) : (
-                      <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs shrink-0">
+                      <div className="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white font-bold text-xs shrink-0">
                         {initials || "?"}
                       </div>
                     )}

@@ -43,7 +43,7 @@ function notificationText(n: CommunityNotification, t: Dictionary): string {
  *  20260901: danh tính người duyệt không phải thứ người học cần thấy. Nên
  *  chúng lấy biểu tượng theo loại thay vì chữ cái đầu của một cái tên. */
 function systemIcon(type: CommunityNotification["type"]) {
-  if (type === "appeal_approved") return { Icon: CheckCircle2, tone: "bg-emerald-500" };
+  if (type === "appeal_approved") return { Icon: CheckCircle2, tone: "bg-brand-500" };
   if (type === "appeal_rejected") return { Icon: ShieldQuestion, tone: "bg-amber-500" };
   if (type === "ai_report_resolved") return { Icon: Sparkles, tone: "bg-sky-500" };
   return null;
@@ -242,7 +242,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                   type="button"
                   onClick={() => void handleItemClick(n)}
                   className={`w-full flex items-start gap-2.5 px-4 py-3 text-left transition-colors hover:bg-surface ${
-                    !n.read_at ? "bg-emerald-50/60 dark:bg-emerald-950/20" : ""
+                    !n.read_at ? "bg-brand-50/60 dark:bg-brand-950/20" : ""
                   }`}
                 >
                   {(() => {
@@ -264,7 +264,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                         className="w-8 h-8 rounded-full object-cover shrink-0"
                       />
                     ) : (
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white">
                         {n.actor_name.charAt(0).toUpperCase()}
                       </div>
                     );
@@ -281,7 +281,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                     )}
                     <p className="mt-0.5 text-[10px] text-stone-400">{timeAgo(n.created_at, t.libData.timeAgo)}</p>
                   </div>
-                  {!n.read_at && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />}
+                  {!n.read_at && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-brand-500" />}
                 </button>
               ))}
             </div>

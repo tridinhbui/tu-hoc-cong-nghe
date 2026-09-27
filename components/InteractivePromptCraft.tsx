@@ -83,7 +83,7 @@ export default function InteractivePromptCraft() {
               <span
                 className={`flex h-5 w-5 shrink-0 items-center justify-center rounded text-[10px] font-black ${
                   picked[slot.key]
-                    ? "bg-emerald-500 text-white"
+                    ? "bg-brand-500 text-white"
                     : "bg-stone-200 text-stone-500 dark:bg-stone-700 dark:text-stone-400"
                 }`}
               >
@@ -145,7 +145,7 @@ export default function InteractivePromptCraft() {
           ))}
         </div>
       ) : (
-        <p className="mt-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-[11px] leading-relaxed text-emerald-900 dark:border-emerald-900/60 dark:bg-emerald-950/30 dark:text-emerald-200">
+        <p className="mt-3 rounded-2xl border border-brand-200 bg-brand-50 px-3 py-2 text-[11px] leading-relaxed text-brand-900 dark:border-brand-900/60 dark:bg-brand-950/30 dark:text-brand-200">
           {tr.allSlotsFilled}
         </p>
       )}

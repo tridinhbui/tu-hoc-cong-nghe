@@ -41,7 +41,7 @@ export default function LessonVideoPlayer({ videoUrl, title }: LessonVideoPlayer
         onClick={() => setIsOpen(true)}
         className="w-full relative group overflow-hidden rounded-2xl bg-stone-900 hover:bg-stone-800 transition-colors aspect-video flex items-center justify-center mb-6"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-emerald-600/20 group-hover:from-purple-600/30 group-hover:to-emerald-600/30 transition-all" />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-brand-600/20 group-hover:from-purple-600/30 group-hover:to-brand-600/30 transition-all" />
         <div className="relative flex items-center justify-center gap-3">
           <div className="w-16 h-16 rounded-full bg-white/90 group-hover:bg-white transition-colors flex items-center justify-center">
             <Play className="w-6 h-6 text-purple-600 fill-purple-600" />

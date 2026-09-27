@@ -128,7 +128,7 @@ describe("decideReminder", () => {
       motivationLine: "Một bài thôi là nó sống tiếp.",
     });
     expect(result?.body).toContain("5 ngày");
-    expect(result?.body).toContain("🔥 Một bài thôi là nó sống tiếp.");
+    expect(result?.body).toContain("\nMột bài thôi là nó sống tiếp.");
   });
 
   it("leaves the body untouched when no motivation line is passed", () => {
@@ -138,7 +138,7 @@ describe("decideReminder", () => {
       dueRecallCount: 0,
       alreadyShown: notShownYet,
     });
-    expect(result?.body).not.toContain("🔥");
+    expect(result?.body).not.toContain("Một bài thôi");
   });
 
   it("falls back to recall reminder when streak isn't at risk", () => {

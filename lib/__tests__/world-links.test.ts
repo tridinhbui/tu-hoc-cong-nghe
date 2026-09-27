@@ -129,7 +129,7 @@ describe("RPC được gọi", () => {
     // lib/d1/rpc-dispatch.ts - hàm plpgsql không còn; 53 hàm đã dịch tay sang
     // lib/d1/rpc.ts, và một tên không có trong bảng điều phối sẽ ném "Không có
     // hàm RPC" lúc chạy. Bản trước đọc cloudflare/migrations (vốn là
-    // supabase/migrations trước lượt đổi tên), thư mục đã bị xoá.
+    // thư mục migration Postgres cũ trước lượt đổi tên), thư mục đã bị xoá.
     const dispatch = readFileSync("lib/d1/rpc-dispatch.ts", "utf8");
     const defined = new Set([...dispatch.matchAll(/^\s*"([a-z_]+)":\s*\{\s*fn:/gm)].map((m) => m[1]));
     expect(defined.size, "không đọc được bảng điều phối - phép đo hỏng, không phải kết quả").toBeGreaterThan(40);

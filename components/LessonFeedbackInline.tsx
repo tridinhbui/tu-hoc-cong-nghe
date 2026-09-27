@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { MessageSquare, PartyPopper } from "lucide-react";
 import { submitLessonFeedback } from "@/lib/cloudflare-feedback";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -28,8 +29,12 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
 
   if (status === "sent") {
     return (
-      <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-accent-line rounded-[20px] p-6 text-center shadow-[0_10px_24px_-24px_rgba(16,185,129,0.18)]">
-        <div className="text-4xl mb-3">🎉</div>
+      <div className="bg-brand-50 dark:bg-brand-950/50 border border-accent-line rounded-[20px] p-6 text-center shadow-[0_10px_24px_-24px_rgba(65, 122, 205,0.18)]">
+        <div className="mb-3 flex justify-center">
+          <span className="rounded-xl bg-accent-soft p-2.5 text-accent">
+            <PartyPopper aria-hidden className="h-8 w-8" strokeWidth={1.5} />
+          </span>
+        </div>
         <p className="font-bold text-accent-ink-strong text-lg mb-2">{t.lessonFeedback.thanksTitle}</p>
         <p className="text-accent-strong text-sm">{t.lessonFeedback.thanksSubtitle}</p>
       </div>
@@ -40,7 +45,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
     <div className="bg-white dark:bg-stone-900 border border-line rounded-[20px] p-6 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.18)]">
       <div className="flex items-start gap-4 mb-5">
         <div className="w-12 h-12 rounded-full bg-surface-raised flex items-center justify-center flex-shrink-0">
-          <span className="text-2xl">💬</span>
+          <MessageSquare aria-hidden className="h-6 w-6 text-accent" strokeWidth={1.75} />
         </div>
         <div className="flex-1">
           <h3 className="font-bold text-ink text-lg mb-1">{t.lessonFeedback.title}</h3>
@@ -81,7 +86,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
         disabled={rating === 0 || status === "sending"}
         className={`w-full py-3 rounded-[18px] text-sm font-bold transition-all cursor-pointer focus-visible:outline-none ${
           rating > 0 && status !== "sending"
-            ? "bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white dark:text-stone-950 shadow-md active:scale-98"
+            ? "bg-brand-600 hover:bg-brand-500 dark:bg-brand-500 dark:hover:bg-brand-400 text-white dark:text-stone-950 shadow-md active:scale-98"
             : "bg-surface-sunken text-ink-faint cursor-not-allowed"
         }`}
       >

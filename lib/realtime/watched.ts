@@ -38,7 +38,7 @@ export type RealtimeEvent = "INSERT" | "UPDATE" | "DELETE";
 /**
  * Tín hiệu "bảng X vừa đổi". CỐ Ý không mang nội dung hàng.
  *
- * `postgres_changes` của Supabase tôn trọng RLS: người nghe chỉ nhận hàng họ
+ * `postgres_changes` của hệ cũ tôn trọng RLS: người nghe chỉ nhận hàng họ
  * được phép đọc. Một hub phát nguyên hàng cho mọi người đang nghe bảng
  * `direct_messages` là rò tin nhắn riêng ra ngoài hai người trong cuộc. Nên hub
  * chỉ phát `id`, và client tự đọc lại hàng đó qua /api/db - nơi policy registry
@@ -62,7 +62,7 @@ export type WriteKind = { table: WatchedTable; event: RealtimeEvent };
  * chạy bộ phân loại này trên MỌI câu ghi vào bảng được theo dõi trong
  * lib/d1/rpc.ts và đòi nhận ra hết.
  *
- * UPSERT (`INSERT ... ON CONFLICT DO UPDATE`) báo là INSERT. Supabase báo đúng
+ * UPSERT (`INSERT ... ON CONFLICT DO UPDATE`) báo là INSERT. Hệ cũ báo đúng
  * kết quả thật; ở đây không biết được hàng đã có sẵn hay chưa. Chấp nhận được
  * vì cả năm module đều xử INSERT và UPDATE bằng cùng một hàm gộp theo id.
  */

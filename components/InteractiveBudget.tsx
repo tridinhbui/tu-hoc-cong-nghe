@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Calculator, HardDrive } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -21,7 +22,7 @@ function getCategories(t: Dictionary) {
   return [
     { key: "needs", label: t.budgetSim.categoryNeedsLabel, hint: t.budgetSim.categoryNeedsHint, tone: "bg-sky-500" },
     { key: "wants", label: t.budgetSim.categoryWantsLabel, hint: t.budgetSim.categoryWantsHint, tone: "bg-amber-500" },
-    { key: "save", label: t.budgetSim.categorySaveLabel, hint: t.budgetSim.categorySaveHint, tone: "bg-emerald-500" },
+    { key: "save", label: t.budgetSim.categorySaveLabel, hint: t.budgetSim.categorySaveHint, tone: "bg-brand-500" },
   ] as const;
 }
 
@@ -44,8 +45,8 @@ export default function InteractiveBudget() {
   return (
     <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6 dark:bg-stone-900 dark:border-stone-800">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
-          🧮 {t.budgetSim.title}
+        <h3 className="flex items-center gap-2 font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
+          <Calculator aria-hidden className="h-5 w-5 text-accent" strokeWidth={1.75} /> {t.budgetSim.title}
         </h3>
         <p className="text-stone-500 text-sm dark:text-stone-400">
           {t.budgetSim.subtitle}
@@ -54,7 +55,7 @@ export default function InteractiveBudget() {
 
       <div>
         <div className="flex justify-between text-sm mb-2">
-          <span className="font-medium text-ink-body">💵 {t.budgetSim.incomeLabel}</span>
+          <span className="inline-flex items-center gap-1.5 font-medium text-ink-body"><HardDrive aria-hidden className="h-4 w-4 text-accent" strokeWidth={1.75} /> {t.budgetSim.incomeLabel}</span>
           <span className="font-bold text-ink-heading">
             {format(t.budgetSim.incomeAmount, { amount: income })}
           </span>
@@ -133,7 +134,7 @@ export default function InteractiveBudget() {
           save === 0
             ? "bg-rose-50 dark:bg-rose-950/30"
             : months <= 12
-              ? "bg-emerald-50 dark:bg-emerald-950/30"
+              ? "bg-brand-50 dark:bg-brand-950/30"
               : "bg-amber-50 dark:bg-amber-950/30"
         }`}
       >

@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft, Crown, Volume2, VolumeX, Swords, Building2 } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { GAMES, GAME_DIFFICULTIES, getGameMeta, type GameType, type GameDifficulty } from "@/lib/games";
@@ -27,11 +28,11 @@ type HubTab = "games" | "pvp" | "guild" | "combined";
 
 const ACCENT: Record<string, { grad: string; ring: string; chip: string; glow: string; shadow: string }> = {
   emerald: {
-    grad: "from-emerald-500 to-teal-500",
-    ring: "hover:border-emerald-400",
-    chip: "bg-emerald-50 text-emerald-700",
-    glow: "bg-emerald-500/5",
-    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(16,185,129,0.15)]"
+    grad: "from-brand-500 to-brand-500",
+    ring: "hover:border-brand-400",
+    chip: "bg-brand-50 text-brand-700",
+    glow: "bg-brand-500/5",
+    shadow: "hover:shadow-[0_16px_32px_-10px_rgba(65, 122, 205,0.15)]"
   },
   sky: {
     grad: "from-sky-500 to-blue-500",
@@ -69,10 +70,10 @@ const ACCENT: Record<string, { grad: string; ring: string; chip: string; glow: s
     shadow: "hover:shadow-[0_16px_32px_-10px_rgba(99,102,241,0.15)]"
   },
   teal: {
-    grad: "from-teal-500 to-cyan-500",
-    ring: "hover:border-teal-400",
-    chip: "bg-teal-50 text-teal-700",
-    glow: "bg-teal-500/5",
+    grad: "from-brand-500 to-cyan-500",
+    ring: "hover:border-brand-400",
+    chip: "bg-brand-50 text-brand-700",
+    glow: "bg-brand-500/5",
     shadow: "hover:shadow-[0_16px_32px_-10px_rgba(20,184,166,0.15)]"
   },
   cyan: {
@@ -131,7 +132,7 @@ export default function GameHubClient() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
           <div className="mb-4 flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-emerald-700">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-brand-700">
                 <Gamepad2 className="w-3.5 h-3.5" /> {gameHub.miniGameBadge}
               </span>
             </div>
@@ -245,8 +246,8 @@ export default function GameHubClient() {
                     <div className={`absolute -bottom-8 -right-8 w-24 h-24 ${a.glow} rounded-full blur-xl pointer-events-none transition-transform duration-500 group-hover:scale-125`} />
                     
                     <div className="flex items-start gap-4 relative z-10">
-                      <span className={`flex-shrink-0 w-13 h-13 rounded-2xl bg-gradient-to-br ${a.grad} text-white text-2xl flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-2`}>
-                        {g.emoji}
+                      <span className={`flex-shrink-0 w-13 h-13 rounded-2xl bg-gradient-to-br ${a.grad} text-white flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-2`}>
+                        <Glyph emoji={g.emoji} className="w-6 h-6" />
                       </span>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center justify-between gap-2">
@@ -309,8 +310,8 @@ export default function GameHubClient() {
 
         <div className="mb-4 sm:mb-6 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <span className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${a.grad} text-white text-xl flex items-center justify-center flex-shrink-0`}>
-              {meta.emoji}
+            <span className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${a.grad} text-white flex items-center justify-center flex-shrink-0`}>
+              <Glyph emoji={meta.emoji} className="w-5 h-5" />
             </span>
             <h1 className="text-lg sm:text-xl font-bold text-stone-900">{t.gameMeta[meta.id]?.title ?? meta.title}</h1>
           </div>

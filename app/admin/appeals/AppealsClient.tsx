@@ -97,14 +97,14 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
   return (
     <div className="space-y-4">
       {selectedIds.size > 0 && (
-        <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-accent-line rounded-lg p-4 flex items-center justify-between">
+        <div className="bg-brand-50 dark:bg-brand-950/30 border border-accent-line rounded-lg p-4 flex items-center justify-between">
           <p className="text-sm font-semibold text-accent-ink-strong">
             {format(ta.selectedCount, { count: selectedIds.size })}
           </p>
           <button
             onClick={() => setShowBulkApproveConfirm(true)}
             disabled={isPending}
-            className="inline-flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-bold px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white disabled:opacity-50 transition-colors"
           >
             <Check className="w-4 h-4" />
             {format(ta.approveAllSelected, { count: selectedIds.size })}
@@ -130,7 +130,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
 
       <div className="space-y-3">
         {appeals.map((a) => (
-          <div key={a.id} className={`bg-white dark:bg-stone-900 border rounded-xl p-4 transition-colors ${selectedIds.has(a.id) ? 'border-emerald-400 dark:border-emerald-600 bg-emerald-50/30 dark:bg-emerald-950/20' : 'border-line'}`}>
+          <div key={a.id} className={`bg-white dark:bg-stone-900 border rounded-xl p-4 transition-colors ${selectedIds.has(a.id) ? 'border-brand-400 dark:border-brand-700 bg-brand-50/30 dark:bg-brand-950/20' : 'border-line'}`}>
             <div className="flex items-start justify-between gap-3 flex-wrap">
               <div className="flex items-start gap-3 flex-1 min-w-0">
                 <input
@@ -156,7 +156,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
                 <button
                   onClick={() => setApproveTarget(a.id)}
                   disabled={isPending}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white disabled:opacity-50 transition-colors"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   {ta.approve}

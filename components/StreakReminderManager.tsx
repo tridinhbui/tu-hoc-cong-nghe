@@ -148,7 +148,7 @@ export default function StreakReminderManager({
   return (
     <div className="max-w-6xl mx-auto mb-6">
       <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl px-4 py-3.5 flex items-center gap-3 flex-wrap">
-        <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 text-accent flex items-center justify-center flex-shrink-0">
+        <div className="w-9 h-9 rounded-xl bg-brand-50 dark:bg-brand-950/30 text-accent flex items-center justify-center flex-shrink-0">
           <Bell className="w-4 h-4" />
         </div>
         <div className="flex-1 min-w-[200px]">
@@ -162,7 +162,7 @@ export default function StreakReminderManager({
         <div className="flex items-center gap-2 flex-shrink-0">
           <button
             onClick={requestNotificationPermission}
-            className="px-3 py-2 text-sm font-bold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition-colors"
+            className="px-3 py-2 text-sm font-bold rounded-lg bg-brand-600 hover:bg-brand-700 text-white transition-colors"
           >
             {t.streakReminder.enable}
           </button>

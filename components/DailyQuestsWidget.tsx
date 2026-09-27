@@ -311,14 +311,14 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                   ? "bg-stone-500/[0.01] dark:bg-stone-950/[0.01] border-line-soft opacity-60"
                   : isDone
                   ? "bg-amber-500/[0.02] dark:bg-amber-500/[0.01] border-warn-line-mid shadow-sm shadow-amber-500/5 animate-[pulseGlow_2.5s_infinite]"
-                  : "bg-white dark:bg-stone-900 border-line hover:border-emerald-500/40 dark:hover:border-emerald-500/30 hover:shadow-[0_4px_12px_-4px_rgba(16,185,129,0.06)]"
+                  : "bg-white dark:bg-stone-900 border-line hover:border-brand-500/40 dark:hover:border-brand-500/30 hover:shadow-[0_4px_12px_-4px_rgba(65, 122, 205,0.06)]"
               }`}
             >
               <div className="flex items-center gap-3 min-w-0 flex-1">
                 {/* Left Icon Area */}
                 <div className="shrink-0">
                   {quest.claimed ? (
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-500 flex items-center justify-center border border-emerald-100 dark:border-emerald-900/30">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-50 dark:bg-brand-950/20 text-brand-500 flex items-center justify-center border border-brand-100 dark:border-brand-900/30">
                       <CheckCircle2 className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                     </div>
                   ) : (
@@ -348,7 +348,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                       ? "text-stone-400 line-through" 
                       : isDone 
                       ? "text-warn" 
-                      : "text-ink group-hover/item:text-emerald-600 dark:group-hover/item:text-emerald-400"
+                      : "text-ink group-hover/item:text-brand-600 dark:group-hover/item:text-brand-400"
                   }`}>
                     {t.questCopy[quest.id]?.title ?? quest.title}
                   </p>
@@ -363,7 +363,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
               {/* Action Buttons */}
               <div className="shrink-0 flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 border-stone-100 dark:border-stone-800/60">
                 {quest.claimed ? (
-                  <span className="text-[10px] font-black text-accent bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1.5 rounded-lg border border-emerald-100 dark:border-emerald-900/30 uppercase tracking-wider">
+                  <span className="text-[10px] font-black text-accent bg-brand-50 dark:bg-brand-950/30 px-2.5 py-1.5 rounded-lg border border-brand-100 dark:border-brand-900/30 uppercase tracking-wider">
                     {t.dailyQuests.claimed}
                   </span>
                 ) : isDone ? (
@@ -394,7 +394,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                     <button
                       onClick={() => goToQuestAction(quest.id, router)}
                       title={t.dailyQuests.doActionTitle}
-                      className="button-premium group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-[16px] transition-all duration-200 cursor-pointer shadow-[0_8px_18px_-16px_rgba(16,185,129,0.35)] active:scale-95 shrink-0 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-500/15"
+                      className="button-premium group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-brand-600 hover:bg-brand-700 px-3 py-1.5 rounded-[16px] transition-all duration-200 cursor-pointer shadow-[0_8px_18px_-16px_rgba(65, 122, 205,0.35)] active:scale-95 shrink-0 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500/15"
                     >
                       {t.dailyQuests.doNow} <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </button>

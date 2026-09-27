@@ -73,7 +73,7 @@ export function minutesPerDay(pace: Pace): number {
  *  hoặc null nếu chưa đặt.
  *
  *  Tách khỏi readPace vì hai nguồn có hình dạng khác nhau nhưng cùng một tập
- *  giá trị hợp lệ: localStorage giữ một object, Cloudflare giữ hai cột rời có thể
+ *  giá trị hợp lệ: localStorage giữ một object, cơ sở dữ liệu giữ hai cột rời có thể
  *  NULL. Viết phép kiểm hai lần là để hai bên trôi khỏi nhau - và bên trôi sẽ
  *  là bên ít người đọc hơn.
  *

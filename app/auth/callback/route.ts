@@ -5,7 +5,7 @@ import { OAUTH_NEXT_COOKIE, clearOAuthNextCookie } from "@/lib/oauth-next-cookie
 /** Đích đến sau đăng nhập.
  *
  *  COOKIE TRƯỚC, query sau. `redirectTo` của luồng Google không còn mang query
- *  - nó phải khớp chính xác danh sách Redirect URLs của Cloudflare, xem
+ *  - nó phải khớp chính xác danh sách Redirect URLs của dịch vụ xác thực cũ, xem
  *  lib/oauth-next-cookie.ts - nên `next` đi bằng cookie.
  *
  *  Vẫn đọc `?next=` làm đường lui: nhánh lỗi ngay bên dưới tự gắn tham số đó

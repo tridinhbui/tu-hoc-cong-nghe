@@ -45,7 +45,7 @@ export default function AppealsCombinedWrapper({
               : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
           }`}
         >
-          <ShieldQuestion className="w-4 h-4 text-emerald-500" />
+          <ShieldQuestion className="w-4 h-4 text-brand-500" />
           {format(ta.lessonAppealsTab, { count: appeals.length })}
         </button>
 
@@ -72,7 +72,7 @@ export default function AppealsCombinedWrapper({
               onClick={() => setView("pending")}
               className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors cursor-pointer ${
                 view === "pending"
-                  ? "bg-emerald-600 text-white"
+                  ? "bg-brand-600 text-white"
                   : "bg-surface-sunken text-ink-body hover:bg-surface-deep"
               }`}
             >
@@ -83,7 +83,7 @@ export default function AppealsCombinedWrapper({
               onClick={() => setView("all")}
               className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors cursor-pointer ${
                 view === "all"
-                  ? "bg-emerald-600 text-white"
+                  ? "bg-brand-600 text-white"
                   : "bg-surface-sunken text-ink-body hover:bg-surface-deep"
               }`}
             >

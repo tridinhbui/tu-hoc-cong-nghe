@@ -125,7 +125,7 @@ export function decideReminder(params: {
 }): ReminderDecision | null {
   const { streakRisk, dueRecallCount, alreadyShown, motivationLine, strings } = params;
   const withMotivation = (body: string) =>
-    motivationLine ? `${body}\n🔥 ${motivationLine}` : body;
+    motivationLine ? `${body}\n${motivationLine}` : body;
 
   if (streakRisk.isAtRisk && !alreadyShown("streak")) {
     return {

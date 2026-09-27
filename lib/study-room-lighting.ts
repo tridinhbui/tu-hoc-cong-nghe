@@ -46,7 +46,7 @@ const LIGHTING: Record<RoomTimeOfDay, Omit<RoomLighting, "phase">> = {
     sideWallLeft: "linear-gradient(90deg, #0f172a 0%, #1c1917 100%)",
     sideWallRight: "linear-gradient(270deg, #0f172a 0%, #1c1917 100%)",
     floorPool:
-      "radial-gradient(circle, rgba(125,211,252,0.14) 0%, rgba(16,185,129,0.06) 45%, transparent 72%)",
+      "radial-gradient(circle, rgba(125,211,252,0.14) 0%, rgba(65, 122, 205,0.06) 45%, transparent 72%)",
     vignette: 0.5,
   },
   // 7–11h. Sáng nhất trong ngày, nắng xiên qua cửa sổ.
@@ -58,7 +58,7 @@ const LIGHTING: Record<RoomTimeOfDay, Omit<RoomLighting, "phase">> = {
     sideWallLeft: "linear-gradient(90deg, #1c1917 0%, #3f3a36 100%)",
     sideWallRight: "linear-gradient(270deg, #1c1917 0%, #3f3a36 100%)",
     floorPool:
-      "radial-gradient(circle, rgba(224,242,254,0.16) 0%, rgba(16,185,129,0.07) 45%, transparent 72%)",
+      "radial-gradient(circle, rgba(224,242,254,0.16) 0%, rgba(65, 122, 205,0.07) 45%, transparent 72%)",
     vignette: 0.34,
   },
   // 11–16h. Nắng gắt, tường sáng đều, bóng đổ ít nhất.
@@ -70,7 +70,7 @@ const LIGHTING: Record<RoomTimeOfDay, Omit<RoomLighting, "phase">> = {
     sideWallLeft: "linear-gradient(90deg, #292524 0%, #44403c 100%)",
     sideWallRight: "linear-gradient(270deg, #292524 0%, #44403c 100%)",
     floorPool:
-      "radial-gradient(circle, rgba(254,243,199,0.15) 0%, rgba(16,185,129,0.07) 45%, transparent 72%)",
+      "radial-gradient(circle, rgba(254,243,199,0.15) 0%, rgba(65, 122, 205,0.07) 45%, transparent 72%)",
     vignette: 0.3,
   },
   // 16–19h. Hoàng hôn - khoảnh khắc căn phòng đẹp nhất, nên cho nó màu đậm nhất.
@@ -82,19 +82,19 @@ const LIGHTING: Record<RoomTimeOfDay, Omit<RoomLighting, "phase">> = {
     sideWallLeft: "linear-gradient(90deg, #1c1917 0%, #3b2318 100%)",
     sideWallRight: "linear-gradient(270deg, #1c1917 0%, #3b2318 100%)",
     floorPool:
-      "radial-gradient(circle, rgba(251,146,60,0.16) 0%, rgba(16,185,129,0.06) 45%, transparent 72%)",
+      "radial-gradient(circle, rgba(251,146,60,0.16) 0%, rgba(65, 122, 205,0.06) 45%, transparent 72%)",
     vignette: 0.44,
   },
   // 19–24h. Cảnh gốc: skyline đêm, đèn bàn xanh là nguồn sáng chính.
   night: {
     label: "Buổi tối",
     windowSky: "linear-gradient(165deg, #0b3b33 0%, #052e2b 55%, #03211f 100%)",
-    windowGlow: "0 0 46px rgba(16,185,129,0.28)",
+    windowGlow: "0 0 46px rgba(65, 122, 205,0.28)",
     backWall: "linear-gradient(180deg, #0a0908 0%, #1c1917 60%, #292524 100%)",
     sideWallLeft: "linear-gradient(90deg, #0a0908 0%, #191614 100%)",
     sideWallRight: "linear-gradient(270deg, #0a0908 0%, #191614 100%)",
     floorPool:
-      "radial-gradient(circle, rgba(16,185,129,0.17) 0%, rgba(16,185,129,0.05) 45%, transparent 72%)",
+      "radial-gradient(circle, rgba(65, 122, 205,0.17) 0%, rgba(65, 122, 205,0.05) 45%, transparent 72%)",
     vignette: 0.6,
   },
   // 0–5h. Chỉ còn đèn bàn. Tường gần như tắt hẳn, cửa sổ tối hơn cả tường -
@@ -108,7 +108,7 @@ const LIGHTING: Record<RoomTimeOfDay, Omit<RoomLighting, "phase">> = {
     sideWallLeft: "linear-gradient(90deg, #030303 0%, #0f0e0d 100%)",
     sideWallRight: "linear-gradient(270deg, #030303 0%, #0f0e0d 100%)",
     floorPool:
-      "radial-gradient(circle, rgba(251,191,36,0.16) 0%, rgba(16,185,129,0.05) 45%, transparent 72%)",
+      "radial-gradient(circle, rgba(251,191,36,0.16) 0%, rgba(65, 122, 205,0.05) 45%, transparent 72%)",
     vignette: 0.72,
   },
 };

@@ -146,7 +146,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
   if (correctRatio >= 0.9) {
     rankGrade = { label: t.caseArena.rankS, color: "text-amber-700 border-amber-300", badgeBg: "bg-amber-50" };
   } else if (correctRatio >= 0.75) {
-    rankGrade = { label: t.caseArena.rankA, color: "text-emerald-600 border-emerald-300", badgeBg: "bg-emerald-50" };
+    rankGrade = { label: t.caseArena.rankA, color: "text-brand-600 border-brand-300", badgeBg: "bg-brand-50" };
   } else if (correctRatio >= 0.6) {
     rankGrade = { label: t.caseArena.rankB, color: "text-sky-600 border-sky-300", badgeBg: "bg-sky-50" };
   }
@@ -249,11 +249,11 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 px-3 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700 block">
+            <div className="rounded-2xl border border-brand-200 bg-brand-50/70 px-3 py-3">
+              <span className="text-[10px] font-black uppercase tracking-wider text-brand-700 block">
                 {t.caseArena.xpReward}
               </span>
-              <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-emerald-700">
+              <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-brand-700">
                 <Sparkles className="w-3.5 h-3.5" /> +{Math.min(50, activeCase.xpReward)}
               </span>
             </div>
@@ -302,7 +302,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
             <p className="text-xs text-stone-600 leading-relaxed mb-4">{activeCase.description}</p>
 
             <div className="flex items-center gap-4 text-xs font-bold text-stone-500 pt-3 border-t border-purple-200">
-              <span className="flex items-center gap-1 text-emerald-600">
+              <span className="flex items-center gap-1 text-brand-600">
                 <Sparkles className="w-4 h-4" /> {format(t.caseArena.maxReward, { xp: Math.min(50, activeCase.xpReward) })}
               </span>
               <span className="flex items-center gap-1 text-amber-600">
@@ -349,9 +349,9 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                 <Flame className="w-4 h-4 fill-rose-500" /> x{(1 + Math.min(streakCombo, 4) * 0.25).toFixed(1)}
               </span>
             </div>
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 px-3.5 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-700 block">{t.caseArena.currentCorrect}</span>
-              <span className="mt-1 text-lg font-black text-emerald-700">{correctCount}/{Math.max(currentQIndex, 0) + (selectedOpt !== null ? 1 : 0)}</span>
+            <div className="rounded-2xl border border-brand-200 bg-brand-50/70 px-3.5 py-3">
+              <span className="text-[10px] font-black uppercase tracking-wider text-brand-700 block">{t.caseArena.currentCorrect}</span>
+              <span className="mt-1 text-lg font-black text-brand-700">{correctCount}/{Math.max(currentQIndex, 0) + (selectedOpt !== null ? 1 : 0)}</span>
             </div>
           </div>
 
@@ -379,7 +379,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
               let btnStyle = "bg-white border-stone-200 hover:border-purple-300 text-stone-700";
               if (selectedOpt !== null) {
                 if (isCorrect) {
-                  btnStyle = "bg-emerald-50 border-emerald-300 text-emerald-700 font-bold shadow-sm";
+                  btnStyle = "bg-brand-50 border-brand-300 text-brand-700 font-bold shadow-sm";
                 } else if (isSelected) {
                   btnStyle = "bg-rose-50 border-rose-300 text-rose-700 font-bold shadow-sm";
                 } else {
@@ -395,7 +395,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                   className={`w-full text-left p-4 rounded-2xl border-2 transition-all flex items-start justify-between gap-3 text-xs sm:text-sm font-medium ${btnStyle}`}
                 >
                   <span className="flex-1">{optText}</span>
-                  {selectedOpt !== null && isCorrect && <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />}
+                  {selectedOpt !== null && isCorrect && <CheckCircle2 className="w-5 h-5 text-brand-600 shrink-0" />}
                   {selectedOpt !== null && isSelected && !isCorrect && <XCircle className="w-5 h-5 text-rose-500 shrink-0" />}
                 </button>
               );
@@ -437,7 +437,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           <div className="bg-white border border-purple-200 p-5 rounded-2xl max-w-md mx-auto grid grid-cols-2 gap-4 text-left shadow-sm">
             <div>
               <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.correctCount}</span>
-              <span className="text-lg font-black text-emerald-600">{format(t.caseArena.correctOf, { correct: correctCount, total: totalCount })}</span>
+              <span className="text-lg font-black text-brand-600">{format(t.caseArena.correctOf, { correct: correctCount, total: totalCount })}</span>
             </div>
             <div>
               <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.totalGameScore}</span>
@@ -449,7 +449,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
             </div>
             <div>
               <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.reward}</span>
-              <span className="text-xs font-bold text-emerald-600 flex items-center gap-1">
+              <span className="text-xs font-bold text-brand-600 flex items-center gap-1">
                 {format(t.caseArena.rewardXp, { xp: rewardEarned?.xp ?? 0 })} | <GoldCoinIcon className="w-3.5 h-3.5" /> +{rewardEarned?.coins ?? 0}
               </span>
             </div>
@@ -470,7 +470,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                   href={`/bai-hoc/${l.slug}`}
                   className="flex items-center justify-between p-2.5 rounded-xl bg-white hover:bg-amber-50 border border-amber-200 hover:border-amber-300 text-xs font-bold text-amber-700 transition-all"
                 >
-                  <span>📖 {l.title}</span>
+                  <span className="flex items-center gap-1.5"><BookOpen className="w-3.5 h-3.5 shrink-0" aria-hidden /> {l.title}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               ))}

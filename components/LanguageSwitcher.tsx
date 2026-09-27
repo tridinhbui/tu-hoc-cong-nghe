@@ -35,7 +35,7 @@ export default function LanguageSwitcher({ compact = false }: { compact?: boolea
                 ? format(t.language.current, { name: LOCALE_LABELS[code] })
                 : format(t.language.switchTo, { name: LOCALE_LABELS[code] })
             }
-            className={`cursor-pointer rounded-lg px-2 py-1 text-[11px] font-extrabold uppercase tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 ${
+            className={`cursor-pointer rounded-lg px-2 py-1 text-[11px] font-extrabold uppercase tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 ${
               isActive
                 ? "bg-white dark:bg-stone-700 text-ink shadow-2xs"
                 : "text-ink-muted hover:text-ink-heading"

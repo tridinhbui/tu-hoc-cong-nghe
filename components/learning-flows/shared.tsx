@@ -18,7 +18,7 @@ export function flowStats(flow: LearningFlow, bySlug: Map<string, LessonMeta>) {
 
 export function StatusPill({ status, t }: { status: FlowStatus; t: FlowsCopy }) {
   const map = {
-    ready: { label: t.statusReady, cls: "bg-emerald-100 text-emerald-800 dark:bg-emerald-500/15 dark:text-emerald-300" },
+    ready: { label: t.statusReady, cls: "bg-brand-100 text-brand-800 dark:bg-brand-500/15 dark:text-brand-300" },
     partial: { label: t.statusPartial, cls: "bg-sky-100 text-sky-800 dark:bg-sky-500/15 dark:text-sky-300" },
     soon: { label: t.statusSoon, cls: "bg-stone-200 text-stone-700 dark:bg-stone-700 dark:text-stone-200" },
   } as const;

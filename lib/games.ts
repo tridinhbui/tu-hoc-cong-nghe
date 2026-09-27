@@ -97,7 +97,7 @@ export interface GameMeta {
 export const GAMES: GameMeta[] = [
   {
     id: "random-mix",
-    title: "🎲 Trộn ngẫu nhiên tất cả chủ đề",
+    title: "Trộn ngẫu nhiên tất cả chủ đề",
     description: "Thách thức tổng hợp: Trộn ngẫu nhiên kiến thức từ Tầng hệ thống, Thuật ngữ, Chỉ số, Công thức và Rủi ro!",
     emoji: "🎲",
     mechanic: "pair",

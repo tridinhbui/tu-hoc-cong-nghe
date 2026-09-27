@@ -231,7 +231,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                       compact ? "p-2.5 text-[11px]" : "p-3.5 text-xs"
                     } ${
                       showSuccess
-                        ? "border-emerald-500 bg-emerald-500/[0.04] dark:bg-emerald-950/20 text-accent-ink-strong font-bold"
+                        ? "border-brand-500 bg-brand-500/[0.04] dark:bg-brand-950/20 text-accent-ink-strong font-bold"
                         : showFailure
                         ? "border-rose-500 bg-rose-500/[0.04] dark:bg-rose-950/20 text-alert-ink"
                         : isSelected
@@ -241,7 +241,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                   >
                     <span className="mt-0.5 shrink-0">
                       {showSuccess ? (
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                        <CheckCircle2 className="w-4 h-4 text-brand-500" />
                       ) : showFailure ? (
                         <XCircle className="w-4 h-4 text-rose-500" />
                       ) : (
@@ -273,7 +273,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           ) : (
             <div className={`rounded-2xl bg-surface border border-stone-200/60 dark:border-stone-800/80 animate-[fadeIn_0.35s_ease-out] ${compact ? "p-3" : "p-4.5"}`}>
               <h5 className="text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 text-ink-body mb-2">
-                <Award className={`w-4 h-4 ${activeIsCorrect ? "text-emerald-500" : "text-stone-400"}`} />
+                <Award className={`w-4 h-4 ${activeIsCorrect ? "text-brand-500" : "text-stone-400"}`} />
                 <span>{activeIsCorrect ? t.newsQuiz.correctAnswerLabel : format(t.newsQuiz.wrongAnswerLabel, { letter: String.fromCharCode(65 + activeQuiz.correctIndex) })}</span>
               </h5>
               <p className="text-[11px] text-ink-soft leading-relaxed">

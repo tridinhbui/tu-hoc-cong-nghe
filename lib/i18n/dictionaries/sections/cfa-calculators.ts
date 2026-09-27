@@ -3,7 +3,7 @@
 
 export const cfaCalculatorsVi = {
   bondCalc: {
-    title: "🏛️ Lãi suất vs Giá trái phiếu",
+    title: "Lãi suất vs Giá trái phiếu",
     descPart1: "Trái phiếu này trả lãi cố định",
     descCouponRate: "{rate}%/năm",
     descPart2: "Kéo lãi suất thị trường để xem giá thay đổi.",
@@ -38,7 +38,7 @@ export const cfaCalculatorsVi = {
     goldenRuleBody: "Lãi suất tăng → Giá trái phiếu giảm. Lãi suất giảm → Giá trái phiếu tăng. Chúng luôn ngược chiều nhau!",
   },
   multiplesCalc: {
-    title: "🔢 Từ hệ số so sánh ra số máy mỗi vùng",
+    title: "Từ hệ số so sánh ra số máy mỗi vùng",
     desc: "Tổng dung lượng = tải giờ cao điểm × hệ số so sánh. Dung lượng khả dụng = tổng − phần dự phòng. Số máy mỗi vùng = khả dụng ÷ số vùng.",
     peakLoadLabel: "Tải giờ cao điểm",
     peakLoadAmount: "{amount} nghìn req/phút",
@@ -70,7 +70,7 @@ export const cfaCalculatorsVi = {
 
 export const cfaCalculatorsEn: typeof cfaCalculatorsVi = {
   bondCalc: {
-    title: "🏛️ Interest rates vs bond price",
+    title: "Interest rates vs bond price",
     descPart1: "This bond pays a fixed coupon of",
     descCouponRate: "{rate}%/year",
     descPart2: "Drag the market rate to see the price change.",
@@ -105,7 +105,7 @@ export const cfaCalculatorsEn: typeof cfaCalculatorsVi = {
     goldenRuleBody: "Rates up → bond price down. Rates down → bond price up. They always move in opposite directions!",
   },
   multiplesCalc: {
-    title: "🔢 From a comparison factor to machines per region",
+    title: "From a comparison factor to machines per region",
     desc: "Total capacity = peak load × comparison factor. Usable capacity = total − headroom held back. Machines per region = usable ÷ regions.",
     peakLoadLabel: "Peak load",
     peakLoadAmount: "{amount}k req/min",

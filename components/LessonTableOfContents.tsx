@@ -78,7 +78,7 @@ export default function LessonTableOfContents({ sections }: LessonTableOfContent
               onClick={() => handleClick(item.id)}
               className={`block w-full text-left text-xs font-semibold px-2 py-1.5 rounded-lg transition-colors ${
                 activeId === item.id
-                  ? "bg-emerald-50 dark:bg-emerald-950/40 text-accent-strong"
+                  ? "bg-brand-50 dark:bg-brand-950/40 text-accent-strong"
                   : "text-ink-soft hover:bg-surface hover:text-ink"
               }`}
             >

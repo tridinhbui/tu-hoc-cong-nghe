@@ -94,7 +94,7 @@ export default function LearningProgressHeader({
               đọc và chia. */}
           <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-surface-sunken">
             <div
-              className="h-full rounded-full bg-emerald-600 transition-[width] duration-500 ease-out dark:bg-emerald-500"
+              className="h-full rounded-full bg-brand-600 transition-[width] duration-500 ease-out dark:bg-brand-500"
               style={{ width: `${levelPct}%` }}
             />
           </div>
@@ -121,7 +121,7 @@ export default function LearningProgressHeader({
 
               <Link
                 href={`/bai-hoc/${nextMission.slug}`}
-                className="mt-3.5 inline-flex items-center gap-2 rounded-lg bg-stone-950 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-stone-800 dark:bg-emerald-600 dark:hover:bg-emerald-500"
+                className="mt-3.5 inline-flex items-center gap-2 rounded-lg bg-stone-950 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-stone-800 dark:bg-brand-600 dark:hover:bg-brand-500"
               >
                 {p.cta}
                 <ArrowRight className="h-4 w-4" />

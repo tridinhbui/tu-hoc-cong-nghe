@@ -9,7 +9,7 @@ import { quantizePose } from "@/lib/lobby-pose-net";
  *  lần subscribe, nên hai client sẽ nằm ở hai phòng khác nhau và không bao giờ
  *  thấy nhau).
  *
- *  Nhưng bỏ helper đi thì lại gặp đúng cái nó sinh ra để né: cloudflare trả về
+ *  Nhưng bỏ helper đi thì lại gặp đúng cái nó sinh ra để né: SDK cũ trả về
  *  channel ĐANG CÓ khi topic đã đăng ký, và gọi subscribe() lần hai trên cùng
  *  channel là lỗi. React StrictMode mount hai lần, hoặc người dùng rời trang
  *  rồi quay lại trước khi removeChannel() kịp xong, đều rơi vào đó.
@@ -259,7 +259,7 @@ export function joinLobby(
  *  Dùng cho widget trên dashboard. Điểm mấu chốt là không gọi `track()`: nếu
  *  gọi, mọi người chỉ mở dashboard sẽ hiện ra thành một nhân vật đứng bất động
  *  giữa thư viện 3D, và con số cũng tự phồng lên bằng chính người đang xem nó.
- *  Presence của Cloudflare cho phép nghe mà không tham gia; đó là cả lý do hàm
+ *  Presence (cả hệ cũ lẫn hub Durable Object hiện tại) cho phép nghe mà không tham gia; đó là cả lý do hàm
  *  này tồn tại thay vì gọi `joinLobby` rồi bỏ phần vẽ.
  *
  *  Mở một thực thể kênh RIÊNG trên CÙNG topic, không dùng chung biến `channel`

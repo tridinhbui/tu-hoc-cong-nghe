@@ -128,7 +128,7 @@ export function createD1Rpc(db: D1Like, actor: string | null, opts: { serviceRol
       const fn = R[spec.fn] as unknown as (db: D1Like, ...rest: unknown[]) => Promise<unknown>;
       return { data: await fn(db, ...args), error: null };
     } catch (err) {
-      // Cloudflare trả lỗi trong { error } chứ không ném; 60 chỗ gọi đang đọc
+      // SDK client cũ trả lỗi trong { error } chứ không ném; 60 chỗ gọi đang đọc
       // theo kiểu ấy, nên ném ở đây sẽ thành sự cố chưa bắt.
       return { data: null, error: err as Error };
     }

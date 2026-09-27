@@ -202,7 +202,7 @@ export default function LearningPathClient({
       </nav>
 
       {/* Câu trả lời trước tiên: mỗi ngày 6 phút, và hôm nay là bài này. */}
-      <section className="rounded-2xl border border-emerald-200 bg-gradient-to-b from-emerald-50 to-white p-5 dark:border-emerald-900 dark:from-emerald-950/40 dark:to-stone-900">
+      <section className="rounded-2xl border border-brand-200 bg-gradient-to-b from-brand-50 to-white p-5 dark:border-brand-900 dark:from-brand-950/40 dark:to-stone-900">
         <div className="flex items-center gap-2">
           <Flame className="h-5 w-5 shrink-0 text-orange-500" />
           <p className="text-xl font-black text-ink">{p.heroMinutes}</p>
@@ -222,7 +222,7 @@ export default function LearningPathClient({
               </p>
               <Link
                 href={`/bai-hoc/${nextLesson.slug}`}
-                className="mt-3 inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-emerald-700"
+                className="mt-3 inline-flex items-center gap-1.5 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-700"
               >
                 {p.heroOpen} <ArrowRight className="h-4 w-4" />
               </Link>
@@ -243,7 +243,7 @@ export default function LearningPathClient({
                 aria-pressed={picked}
                 className={`cursor-pointer rounded-2xl border p-4 text-left transition-all ${
                   picked
-                    ? "border-emerald-400 bg-emerald-50 dark:border-emerald-700 dark:bg-emerald-950/40"
+                    ? "border-brand-400 bg-brand-50 dark:border-brand-700 dark:bg-brand-950/40"
                     : "border-stone-200 bg-white hover:border-stone-400 dark:border-stone-800 dark:bg-stone-900"
                 }`}
               >
@@ -251,7 +251,7 @@ export default function LearningPathClient({
                   <span className="text-base font-black text-ink">
                     {id === "personal" ? p.trackPersonalName : p.trackProfessionalName}
                   </span>
-                  {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-500" />}
+                  {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-brand-500" />}
                 </div>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
                   {id === "personal" ? p.trackPersonalFor : p.trackProfessionalFor}
@@ -434,7 +434,7 @@ export default function LearningPathClient({
               className="h-2 w-full overflow-hidden rounded-full bg-surface-sunken"
             >
               <div
-                className="h-full rounded-full bg-emerald-500 transition-all duration-500"
+                className="h-full rounded-full bg-brand-500 transition-all duration-500"
                 style={{ width: `${total > 0 ? Math.round((done[track] / total) * 100) : 0}%` }}
               />
             </div>

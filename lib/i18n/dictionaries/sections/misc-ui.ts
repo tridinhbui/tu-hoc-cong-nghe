@@ -39,9 +39,9 @@ export const miscUiVi = {
       selectEmoji: "Chọn emoji",
     },
     financialRpgWorldMap: {
-      levelLocked: "🔒 Công trình này yêu cầu Level {level}! Hãy hoàn thành thêm bài học để mở khóa.",
-      regionDiscovered: "🕵️ ĐÃ GIẢI MÃ VÙNG ĐẤT BÍ ẨN! Thưởng thám hiểm +5 Coins!",
-      underConstruction: '🏗️ Vùng đất "{name}" đang trong quá trình mở rộng & thi công! Yêu cầu Level {level} để khám phá.',
+      levelLocked: "Công trình này yêu cầu Level {level}! Hãy hoàn thành thêm bài học để mở khóa.",
+      regionDiscovered: "ĐÃ GIẢI MÃ VÙNG ĐẤT BÍ ẨN! Thưởng thám hiểm +5 Coins!",
+      underConstruction: 'Vùng đất "{name}" đang trong quá trình mở rộng & thi công! Yêu cầu Level {level} để khám phá.',
     },
     followButton: {
       follow: "Theo dõi",
@@ -54,8 +54,8 @@ export const miscUiVi = {
       substitution: "Thay số",
     },
     jobSearchClient: {
-      goalSetSuccess: "🎯 Đã đặt làm Mục tiêu Sự nghiệp mới!",
-      quizRewardSuccess: "Chúc mừng! Bạn đã nhận được +{xp} XP cho Trắc nghiệm Hướng nghiệp! 🧭",
+      goalSetSuccess: "Đã đặt làm Mục tiêu Sự nghiệp mới!",
+      quizRewardSuccess: "Chúc mừng! Bạn đã nhận được +{xp} XP cho Trắc nghiệm Hướng nghiệp!",
     },
     joystick: {
       ariaLabel: "Cần điều khiển: kéo để đi",
@@ -67,9 +67,9 @@ export const miscUiVi = {
       title: "Đoạn bạn đã đánh dấu trong bài này",
     },
     lessonPageLayout: {
-      cardDropped: "📇 Rơi thẻ mới: {ticker} - {name}!",
+      cardDropped: "Rơi thẻ mới: {ticker} - {name}!",
       lessonCompletedLabel: "Hoàn thành bài học!",
-      streakFreezeUsed: "🧊 Bạn đã lỡ mất 1 ngày, nhưng chuỗi {streak} ngày vẫn được giữ nguyên nhờ lượt bảo vệ chuỗi (còn {remaining} lượt).",
+      streakFreezeUsed: "Bạn đã lỡ mất 1 ngày, nhưng chuỗi {streak} ngày vẫn được giữ nguyên nhờ lượt bảo vệ chuỗi (còn {remaining} lượt).",
     },
     lessonRoomCard: {
       fallbackDistrictLabel: "Phố nghề",
@@ -148,10 +148,10 @@ export const miscUiVi = {
       visitQuietCorner: "Ghé góc yên tĩnh một phút ›",
     },
     worldBossRaidWidget: {
-      comboDamage: "💥 Nổ sát thương Combo: +{damage} DMG!",
-      hitDamage: "💥 -{damage} DMG!",
-      missCounterattack: "⚠️ MISS! BOSS PHẢN CÔNG",
-      raidSummary: "🎉 Tổng sát thương trận này: {damage} DMG! +{xp} XP & +{coins} Coins",
+      comboDamage: "Nổ sát thương Combo: +{damage} DMG!",
+      hitDamage: "-{damage} DMG!",
+      missCounterattack: "MISS! BOSS PHẢN CÔNG",
+      raidSummary: "Tổng sát thương trận này: {damage} DMG! +{xp} XP & +{coins} Coins",
       submitFailedError: "Không ghi được sát thương lên máy chủ.",
     },
     xpFloatingPopup: {
@@ -198,9 +198,9 @@ export const miscUiEn: typeof miscUiVi = {
       selectEmoji: "Choose emoji",
     },
     financialRpgWorldMap: {
-      levelLocked: "🔒 This building requires Level {level}! Finish more lessons to unlock it.",
-      regionDiscovered: "🕵️ MYSTERY REGION UNCOVERED! Exploration bonus +5 Coins!",
-      underConstruction: '🏗️ "{name}" is still under expansion & construction! Requires Level {level} to explore.',
+      levelLocked: "This building requires Level {level}! Finish more lessons to unlock it.",
+      regionDiscovered: "MYSTERY REGION UNCOVERED! Exploration bonus +5 Coins!",
+      underConstruction: '"{name}" is still under expansion & construction! Requires Level {level} to explore.',
     },
     followButton: {
       follow: "Follow",
@@ -213,8 +213,8 @@ export const miscUiEn: typeof miscUiVi = {
       substitution: "Substituting the numbers",
     },
     jobSearchClient: {
-      goalSetSuccess: "🎯 New career goal set!",
-      quizRewardSuccess: "Congrats! You earned +{xp} XP for the Career Quiz! 🧭",
+      goalSetSuccess: "New career goal set!",
+      quizRewardSuccess: "Congrats! You earned +{xp} XP for the Career Quiz!",
     },
     joystick: {
       ariaLabel: "Joystick: drag to move",
@@ -226,9 +226,9 @@ export const miscUiEn: typeof miscUiVi = {
       title: "Passages you've highlighted in this lesson",
     },
     lessonPageLayout: {
-      cardDropped: "📇 New card dropped: {ticker} - {name}!",
+      cardDropped: "New card dropped: {ticker} - {name}!",
       lessonCompletedLabel: "Lesson completed!",
-      streakFreezeUsed: "🧊 You missed a day, but your {streak}-day streak was saved by a streak freeze ({remaining} left).",
+      streakFreezeUsed: "You missed a day, but your {streak}-day streak was saved by a streak freeze ({remaining} left).",
     },
     lessonRoomCard: {
       fallbackDistrictLabel: "Phố nghề",
@@ -307,10 +307,10 @@ export const miscUiEn: typeof miscUiVi = {
       visitQuietCorner: "Visit the quiet corner for a minute ›",
     },
     worldBossRaidWidget: {
-      comboDamage: "💥 Combo damage: +{damage} DMG!",
-      hitDamage: "💥 -{damage} DMG!",
-      missCounterattack: "⚠️ MISS! BOSS COUNTERATTACKS",
-      raidSummary: "🎉 Total damage this raid: {damage} DMG! +{xp} XP & +{coins} Coins",
+      comboDamage: "Combo damage: +{damage} DMG!",
+      hitDamage: "-{damage} DMG!",
+      missCounterattack: "MISS! BOSS COUNTERATTACKS",
+      raidSummary: "Total damage this raid: {damage} DMG! +{xp} XP & +{coins} Coins",
       submitFailedError: "Couldn't record damage on the server.",
     },
     xpFloatingPopup: {

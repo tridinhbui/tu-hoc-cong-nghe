@@ -1,7 +1,7 @@
 import { hubNameForTable, hubNameForTopic, isWatchedTable, type ChangeSignal } from "./watched";
 
 /**
- * Kênh realtime phía trình duyệt, nhại bề mặt RealtimeChannel của supabase-js mà
+ * Kênh realtime phía trình duyệt, nhại bề mặt RealtimeChannel của SDK client cũ mà
  * bảy module lib/cloudflare-*.ts đang gọi - để chúng không phải đổi dòng nào.
  *
  * Một kênh mở tối đa hai loại kết nối tới Durable Object:
@@ -16,9 +16,13 @@ import { hubNameForTable, hubNameForTopic, isWatchedTable, type ChangeSignal } f
  */
 
 export type ChannelStatus = "SUBSCRIBED" | "CHANNEL_ERROR" | "TIMED_OUT" | "CLOSED";
+// Handler nhận payload hình dạng khác nhau theo loại sự kiện, đúng như bề mặt
+// không định kiểu của SDK client cũ mà bảy module đang viết theo.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- xem trên
 type Cb = (...args: any[]) => void;
 type Filter = { event?: string; table?: string; schema?: string; filter?: string };
 type Listener = { type: string; filter: Filter; cb: Cb };
+type ChannelOptions = { config?: { broadcast?: { self?: boolean }; presence?: { key?: string } } };
 type RowFetcher = (table: string, id: number) => Promise<Record<string, unknown> | null>;
 
 /** Chưa từng mở được lần nào mà hỏng chừng này lần thì dừng, đừng thử mãi. */
@@ -149,7 +153,7 @@ export class CloudflareRealtimeChannel {
 
   constructor(
     readonly topic: string,
-    private readonly options: Record<string, any> | undefined,
+    private readonly options: ChannelOptions | undefined,
     private readonly fetchRow: RowFetcher
   ) {}
 
@@ -194,7 +198,7 @@ export class CloudflareRealtimeChannel {
     return "ok";
   }
 
-  presenceState<T = any>(): Record<string, T[]> {
+  presenceState<T = unknown>(): Record<string, T[]> {
     return this.presence as Record<string, T[]>;
   }
 
@@ -314,7 +318,7 @@ export class CloudflareRealtimeChannel {
 
     // DELETE: hàng đã mất, không đọc lại được. Chỉ có id - và mọi handler DELETE
     // trong repo chỉ đọc đúng `payload.old.id`. Không lọc theo `filter` được vì
-    // không còn hàng để so; supabase-js cũng vậy (old record chỉ mang khoá chính
+    // không còn hàng để so; SDK client cũ cũng vậy (old record chỉ mang khoá chính
     // trừ khi bảng bật REPLICA IDENTITY FULL). Handler xoá theo id vốn vô hại
     // với id không có trong danh sách của nó.
     if (s.event === "DELETE") {

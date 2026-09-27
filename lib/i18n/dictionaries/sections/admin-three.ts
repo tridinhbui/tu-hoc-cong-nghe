@@ -110,7 +110,7 @@ export const adminThreeVi = {
     chatThreadsPanel: {
       sessionExpired: "Phiên đăng nhập đã hết hạn",
       sendFailed: "Không gửi được tin nhắn",
-      messageDeleted: "🗑️ Đã thu hồi và xóa vĩnh viễn tin nhắn khỏi DB!",
+      messageDeleted: "Đã thu hồi và xóa vĩnh viễn tin nhắn khỏi DB!",
       emptyTitle: "Chưa có cuộc trò chuyện nào",
       emptyDescription: "Tin nhắn từ khung chat trực tiếp của người dùng sẽ hiện ở đây.",
       unknownUser: "Người dùng",
@@ -417,7 +417,7 @@ export const adminThreeEn: typeof adminThreeVi = {
     chatThreadsPanel: {
       sessionExpired: "Your session has expired",
       sendFailed: "Could not send the message",
-      messageDeleted: "🗑️ Message recalled and permanently deleted from the DB!",
+      messageDeleted: "Message recalled and permanently deleted from the DB!",
       emptyTitle: "No conversations yet",
       emptyDescription: "Messages from the user's live chat widget will show up here.",
       unknownUser: "User",

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swords, Flame, Trophy, ShieldAlert, RefreshCw } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { toast } from "sonner";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
@@ -231,8 +232,8 @@ export default function WorldBossRaidWidget({
       {/* Header World Boss Banner */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-red-100 pb-6 mb-6">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-4xl shadow-lg border border-orange-200 shrink-0">
-            {boss.boss_emoji}
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white shadow-lg border border-orange-200 shrink-0">
+            <Glyph emoji={boss.boss_emoji} className="w-8 h-8" strokeWidth={1.5} />
           </div>
           <div>
             <span className="text-[10px] uppercase font-black tracking-widest text-red-700 bg-white border border-red-200 px-3 py-1 rounded-full shadow-sm">
@@ -325,7 +326,7 @@ export default function WorldBossRaidWidget({
                       <div>
                         <span className="text-xs font-bold text-stone-900 block">{t.worldBoss.heroPower}</span>
                         <span className="text-[11px] text-stone-500">{t.worldBoss.levelPrefix}<strong className="text-orange-600">{format(t.worldBoss.levelValue, { level: userLevel })}</strong></span>
-                        <p className="text-[10px] text-emerald-600 mt-1">
+                        <p className="text-[10px] text-brand-600 mt-1">
                           {t.worldBoss.damagePerAnswer}
                         </p>
                       </div>
@@ -335,8 +336,8 @@ export default function WorldBossRaidWidget({
                         <span className="text-[10px] font-black uppercase text-amber-700 block">{t.worldBoss.raidQuestionCount}</span>
                         <span className="text-base font-black text-stone-900">{format(t.worldBoss.questionCount, { count: boss.questions.length })}</span>
                       </div>
-                      <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 px-3 py-2.5">
-                        <span className="text-[10px] font-black uppercase text-emerald-700 block">{t.worldBoss.maxDamagePerQuestion}</span>
+                      <div className="rounded-xl border border-brand-200 bg-brand-50/70 px-3 py-2.5">
+                        <span className="text-[10px] font-black uppercase text-brand-700 block">{t.worldBoss.maxDamagePerQuestion}</span>
                         <span className="text-base font-black text-stone-900">~7,000</span>
                       </div>
                     </div>
@@ -407,16 +408,16 @@ export default function WorldBossRaidWidget({
                       >
                         <div className="relative">
                           <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
-                          <span className="absolute -bottom-1 -right-1 text-[9px] font-black bg-emerald-500 text-white px-1.5 py-0.5 rounded-full shadow-xs">
+                          <span className="absolute -bottom-1 -right-1 text-[9px] font-black bg-brand-500 text-white px-1.5 py-0.5 rounded-full shadow-xs">
                             {format(t.worldBoss.levelShort, { level: userLevel })}
                           </span>
                         </div>
                         <span className="text-[11px] font-extrabold text-stone-800 mt-1 truncate max-w-full">{t.worldBoss.heroName}</span>
                         {/* Hero HP Bar */}
-                        <div className="w-full bg-emerald-100 h-2 rounded-full overflow-hidden mt-1 border border-emerald-200">
-                          <div className="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-300" style={{ width: `${heroHp}%` }} />
+                        <div className="w-full bg-brand-100 h-2 rounded-full overflow-hidden mt-1 border border-brand-200">
+                          <div className="bg-gradient-to-r from-brand-500 to-brand-400 h-full transition-all duration-300" style={{ width: `${heroHp}%` }} />
                         </div>
-                        <span className="text-[9px] font-bold text-emerald-400 mt-0.5">{format(t.worldBoss.heroHp, { hp: heroHp })}</span>
+                        <span className="text-[9px] font-bold text-brand-400 mt-0.5">{format(t.worldBoss.heroHp, { hp: heroHp })}</span>
                       </motion.div>
 
                       {/* Center: VS & Damage Pop-up */}
@@ -487,9 +488,9 @@ export default function WorldBossRaidWidget({
                       const isCorrect = oIdx === boss.questions[qIndex].correct;
                       let bg = "bg-white border-stone-200 hover:border-amber-400 hover:bg-amber-50/60 text-stone-700";
                       if (selectedOpt !== null) {
-                        if (isSelected && isCorrect) bg = "bg-emerald-50 border-emerald-400 text-emerald-700 font-bold shadow-sm";
+                        if (isSelected && isCorrect) bg = "bg-brand-50 border-brand-400 text-brand-700 font-bold shadow-sm";
                         else if (isSelected && !isCorrect) bg = "bg-red-50 border-red-400 text-red-700 font-bold shadow-sm";
-                        else if (isCorrect) bg = "bg-emerald-50/70 border-emerald-200 text-emerald-700";
+                        else if (isCorrect) bg = "bg-brand-50/70 border-brand-200 text-brand-700";
                       }
 
                       return (
@@ -500,7 +501,7 @@ export default function WorldBossRaidWidget({
                           className={`w-full text-left text-xs sm:text-sm font-semibold p-3.5 rounded-xl border-2 transition-all flex items-center justify-between gap-2 shadow-sm ${bg}`}
                         >
                           <span>{opt}</span>
-                          {selectedOpt !== null && isCorrect && <span className="text-emerald-400 font-bold">✓</span>}
+                          {selectedOpt !== null && isCorrect && <span className="text-brand-400 font-bold">✓</span>}
                           {selectedOpt !== null && isSelected && !isCorrect && <span className="text-red-400 font-bold">✕</span>}
                         </button>
                       );

@@ -85,8 +85,8 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
     return (
       <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-3 flex items-center gap-3">
         <div className="relative w-8 h-8 flex-shrink-0">
-          <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping" />
-          <span className="absolute -inset-0.5 rounded-full border border-emerald-400/60 border-t-transparent animate-spin" />
+          <span className="absolute inset-0 rounded-full bg-brand-400/30 animate-ping" />
+          <span className="absolute -inset-0.5 rounded-full border border-brand-400/60 border-t-transparent animate-spin" />
           <div className="relative w-8 h-8 rounded-full overflow-hidden bg-surface-raised">
             <TaiTaiAvatar size={32} />
           </div>
@@ -137,7 +137,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
   if (!nextLesson) {
     return (
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white">
+      <div className="bg-gradient-to-r from-brand-500 to-brand-600 rounded-2xl p-6 text-white">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
             <BookOpen className="w-6 h-6" />
@@ -177,15 +177,15 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
 
           <div className="flex items-start gap-3.5 pr-6">
             <div className="relative w-11 h-11 flex-shrink-0 mt-0.5">
-              <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
-              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 shadow-sm bg-surface-raised">
+              <span className="absolute inset-0 rounded-full bg-brand-400/20 dark:bg-brand-400/10 animate-ping [animation-duration:2.5s]" />
+              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-brand-100 dark:border-brand-900/50 shadow-sm bg-surface-raised">
                 <TaiTaiAvatar size={44} />
               </div>
-              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
+              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-brand-500 border-2 border-white dark:border-stone-900" />
             </div>
 
             <div className="flex-1 min-w-0">
-              <span className="text-[9px] font-extrabold text-accent-strong uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
+              <span className="text-[9px] font-extrabold text-accent-strong uppercase tracking-widest bg-brand-50 dark:bg-brand-950/40 px-2 py-0.5 rounded-md">
                 {t.resume.quickGuideTitle}
               </span>
               <p className="mt-1.5 text-ink-heading text-sm sm:text-[15px] font-bold leading-relaxed">
@@ -205,20 +205,20 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                 <p className="text-xs sm:text-sm font-extrabold text-ink">{t.resume.step1Title}</p>
                 <p className="text-[10px] text-ink-faint font-bold mt-0.5">{t.resume.step1Body}</p>
               </div>
-              <Map className="w-4 h-4 text-stone-400 group-hover:text-emerald-500 shrink-0" />
+              <Map className="w-4 h-4 text-stone-400 group-hover:text-brand-500 shrink-0" />
             </a>
 
             <Link
               href={`/bai-hoc/${nextLesson.slug}`}
               onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-              className="group flex items-center gap-3 bg-emerald-50/70 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/50 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-xl p-3 transition-colors"
+              className="group flex items-center gap-3 bg-brand-50/70 dark:bg-brand-950/20 border border-brand-200/60 dark:border-brand-900/50 hover:border-brand-400 dark:hover:border-brand-700 rounded-xl p-3 transition-colors"
             >
-              <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-600 text-white text-[11px] font-extrabold flex items-center justify-center">2</span>
+              <span className="shrink-0 w-6 h-6 rounded-full bg-brand-600 text-white text-[11px] font-extrabold flex items-center justify-center">2</span>
               <div className="flex-1 min-w-0">
                 <p className="text-xs sm:text-sm font-extrabold text-ink truncate">{format(t.resume.step2Title, { lesson: nextLessonShortTitle ?? "" })}</p>
                 <p className="text-[10px] text-ink-faint font-bold mt-0.5">{format(t.resume.step2Body, { duration: nextLesson.duration })}</p>
               </div>
-              <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl transition-all">{t.resume.study}</span>
+              <span className="shrink-0 text-[11px] font-extrabold bg-brand-600 group-hover:bg-brand-500 text-white px-3 py-1.5 rounded-xl transition-all">{t.resume.study}</span>
             </Link>
 
             <Link
@@ -247,18 +247,18 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         className="group relative block h-full bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 hover:border-line-strong rounded-3xl p-5 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col justify-between overflow-hidden"
       >
         {/* Top accent bar */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-400" />
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 via-brand-400 to-amber-400" />
 
 
         <div className="flex items-start gap-3 sm:gap-4 relative z-10">
           {/* Avatar with soft energetic halo */}
           <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 mt-0.5">
-            <span className="absolute inset-0 rounded-full bg-emerald-400/20 dark:bg-emerald-400/10 animate-ping [animation-duration:2.5s]" />
+            <span className="absolute inset-0 rounded-full bg-brand-400/20 dark:bg-brand-400/10 animate-ping [animation-duration:2.5s]" />
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-line-mid shadow-sm bg-surface-raised flex items-center justify-center">
               <TaiTaiAvatar size={44} />
             </div>
             {/* Online status indicator */}
-            <span className="absolute bottom-0 right-0 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900 shadow-2xs" />
+            <span className="absolute bottom-0 right-0 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-brand-500 border-2 border-white dark:border-stone-900 shadow-2xs" />
           </div>
 
           <div className="flex-1 min-w-0 pr-5 sm:pr-8">
@@ -286,7 +286,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
                 </div>
                 <div className="w-full h-2 bg-surface-raised rounded-full overflow-hidden shadow-inner">
                   <div
-                    className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-brand-500 to-brand-400 rounded-full transition-all duration-500"
                     style={{ width: `${Math.max(5, trackProgress.percent)}%` }}
                   />
                 </div>
@@ -308,7 +308,7 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
               </div>
 
               {/* Eye-Catching Clean Hero CTA button */}
-              <div className="flex items-center justify-center gap-1.5 text-xs font-black bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl transition-all duration-200 shadow-sm border border-emerald-500/20 w-full sm:w-auto text-center shrink-0 active:scale-95">
+              <div className="flex items-center justify-center gap-1.5 text-xs font-black bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-xl transition-all duration-200 shadow-sm border border-brand-500/20 w-full sm:w-auto text-center shrink-0 active:scale-95">
                 {t.resume.continueNow}
               </div>
             </div>
@@ -320,10 +320,10 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         <div className="mt-2 rounded-2xl border border-line bg-white dark:bg-stone-900 p-4 shadow-sm">
           <div className="flex items-start gap-3">
             <div className="relative w-9 h-9 flex-shrink-0 mt-0.5">
-              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-surface-raised">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-brand-100 dark:border-brand-900/50 bg-surface-raised">
                 <TaiTaiAvatar size={36} />
               </div>
-              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-brand-500 border-2 border-white dark:border-stone-900" />
             </div>
 
             <div className="flex-1 min-w-0">

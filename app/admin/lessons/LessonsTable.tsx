@@ -106,7 +106,7 @@ export default function LessonsTable({
                           <Lock className="w-3 h-3" /> {format(tl.requiresLessonBadge, { id: lesson.prerequisite_id })}
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-accent-strong bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-accent-strong bg-brand-50 dark:bg-brand-950/40 px-2 py-0.5 rounded-full">
                           <Unlock className="w-3 h-3" /> {tl.freeUnlockBadge}
                         </span>
                       )}

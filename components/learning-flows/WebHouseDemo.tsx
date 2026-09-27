@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
+import { PartyPopper } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -20,15 +21,15 @@ function jsString(s: string): string {
 const HOUSE_CSS = `
 body{margin:0;font-family:system-ui,sans-serif;background:#fef9ef;color:#1c1917;transition:background .3s,color .3s}
 body.dark{background:#1c1917;color:#fafaf9}
-.house{max-width:420px;margin:16px auto;padding:20px;border-radius:18px;background:#fff;box-shadow:0 8px 30px rgba(0,0,0,.08);border-top:14px solid #059669}
+.house{max-width:420px;margin:16px auto;padding:20px;border-radius:18px;background:#fff;box-shadow:0 8px 30px rgba(0,0,0,.08);border-top:14px solid #2961b8}
 body.dark .house{background:#292524}
-h1{margin:0 0 6px;font-size:24px;color:#047857}
-body.dark h1{color:#34d399}
+h1{margin:0 0 6px;font-size:24px;color:#214e96}
+body.dark h1{color:#6c9bdc}
 p{margin:0 0 14px;color:#57534e}
 body.dark p{color:#d6d3d1}
 ul{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0;margin:0 0 16px;list-style:none}
-li{padding:14px 6px;border-radius:12px;background:#ecfdf5;text-align:center;font-weight:700;font-size:13px}
-body.dark li{background:#064e3b}
+li{padding:14px 6px;border-radius:12px;background:#f3f7fc;text-align:center;font-weight:700;font-size:13px}
+body.dark li{background:#1c3862}
 .row{display:flex;gap:8px;flex-wrap:wrap}
 button{flex:1;padding:10px 12px;border:0;border-radius:10px;background:#f59e0b;color:#1c1917;font-weight:800;cursor:pointer}
 button + button{background:#1c1917;color:#fff}
@@ -86,7 +87,7 @@ document.getElementById("light").onclick=function(){document.body.classList.togg
   const chip = (on: boolean, locked = false) =>
     `inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-bold transition-colors ${
       on
-        ? "border-emerald-600 bg-emerald-600 text-white dark:border-emerald-500 dark:bg-emerald-500 dark:text-stone-950"
+        ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500 dark:text-stone-950"
         : "border-stone-300 bg-white text-ink-muted hover:border-stone-500 dark:border-stone-600 dark:bg-stone-900"
     } ${locked ? "cursor-not-allowed opacity-90" : ""}`;
 
@@ -106,7 +107,7 @@ document.getElementById("light").onclick=function(){document.body.classList.togg
               value={name}
               maxLength={40}
               onChange={(e) => setName(e.target.value)}
-              className="w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-base text-ink-max outline-none focus:border-emerald-600 dark:border-stone-600 dark:bg-stone-950"
+              className="w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-base text-ink-max outline-none focus:border-brand-600 dark:border-stone-600 dark:bg-stone-950"
             />
           </div>
 
@@ -135,8 +136,9 @@ document.getElementById("light").onclick=function(){document.body.classList.togg
       </div>
 
       {name.trim() && name.trim() !== d.defaultName ? (
-        <p className="mt-4 rounded-lg bg-emerald-50 px-3 py-2 text-sm font-bold text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-300">
-          🎉 {d.win}
+        <p className="mt-4 flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-2 text-sm font-bold text-brand-800 dark:bg-brand-500/10 dark:text-brand-300">
+          <PartyPopper className="h-4 w-4 shrink-0" strokeWidth={1.75} aria-hidden />
+          {d.win}
         </p>
       ) : null}
     </div>

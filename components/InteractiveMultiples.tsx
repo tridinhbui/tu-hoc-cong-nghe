@@ -85,7 +85,7 @@ export default function InteractiveMultiples() {
             {format(t.multiplesCalc.usableAmount, { amount: usable.toLocaleString(intlLocale(locale)) })}
           </p>
         </div>
-        <div className="rounded-2xl bg-emerald-50 p-3 dark:bg-emerald-950/30">
+        <div className="rounded-2xl bg-brand-50 p-3 dark:bg-brand-950/30">
           <p className="text-[11px] font-bold text-accent-strong">{t.multiplesCalc.perRegionLabel}</p>
           <p className="text-lg font-extrabold text-accent-strong">
             {format(t.multiplesCalc.perRegionAmount, { amount: perRegion.toFixed(1) })}

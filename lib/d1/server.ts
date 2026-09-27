@@ -6,6 +6,7 @@ import snapshot from "../../scripts/d1/schema-snapshot.json";
 import registryJson from "../../scripts/d1/policy-registry.json";
 import predicatesJson from "../../scripts/d1/manual-predicates.json";
 import { withRealtimePublishing } from "../realtime/publishing-db";
+import { typesFromSnapshot } from "./schema-types";
 import { hubNameForTable, type ChangeSignal } from "../realtime/watched";
 
 /**
@@ -16,7 +17,7 @@ import { hubNameForTable, type ChangeSignal } from "../realtime/watched";
  * phải nằm trong gói build. Đó cũng là lý do chúng vừa được đưa vào git.
  */
 
-const types = (snapshot as { columns?: ColumnTypes }).columns ?? (snapshot as unknown as ColumnTypes);
+const types: ColumnTypes = typesFromSnapshot(snapshot);
 const registry = registryJson as unknown as PolicyRegistry;
 const predicates = predicatesJson as unknown as ManualPredicates;
 

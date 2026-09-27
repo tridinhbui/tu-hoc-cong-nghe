@@ -32,7 +32,7 @@ export default function TaiTaiAvatar({ size = 32, className = "" }: TaiTaiAvatar
           </linearGradient>
           {/* Eye glows */}
           <filter id="eyeGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <stop offset="0%" stopColor="#10B981" />
+            <stop offset="0%" stopColor="#417ACD" />
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
@@ -53,8 +53,8 @@ export default function TaiTaiAvatar({ size = 32, className = "" }: TaiTaiAvatar
             50% { transform: scaleY(0.1); }
           }
           @keyframes antenna-pulse {
-            0%, 100% { fill: #10B981; filter: drop-shadow(0 0 1px #10B981); }
-            50% { fill: #34D399; filter: drop-shadow(0 0 5px #34D399); }
+            0%, 100% { fill: #417ACD; filter: drop-shadow(0 0 1px #417ACD); }
+            50% { fill: #6C9BDC; filter: drop-shadow(0 0 5px #6C9BDC); }
           }
           @keyframes cheek-pulse {
             0%, 100% { opacity: 0.4; }
@@ -99,7 +99,7 @@ export default function TaiTaiAvatar({ size = 32, className = "" }: TaiTaiAvatar
         <g className="robot-container">
           {/* Antenna */}
           <path d="M50 25 V12" stroke="#94A3B8" strokeWidth="4" strokeLinecap="round" />
-          <circle cx="50" cy="10" r="6" className="antenna-light" fill="#10B981" filter="url(#lightGlow)" />
+          <circle cx="50" cy="10" r="6" className="antenna-light" fill="#417ACD" filter="url(#lightGlow)" />
 
           {/* Ears */}
           <g className="ear-left">
@@ -127,13 +127,13 @@ export default function TaiTaiAvatar({ size = 32, className = "" }: TaiTaiAvatar
             <path
               className="eye-left"
               d="M31 46 C32 42, 38 42, 39 46 C40 48, 30 48, 31 46 Z"
-              fill="#10B981"
+              fill="#417ACD"
             />
             {/* Right Eye: Cute Curved Arch */}
             <path
               className="eye-right"
               d="M61 46 C62 42, 68 42, 69 46 C70 48, 60 48, 61 46 Z"
-              fill="#10B981"
+              fill="#417ACD"
             />
           </g>
 
@@ -144,7 +144,7 @@ export default function TaiTaiAvatar({ size = 32, className = "" }: TaiTaiAvatar
           {/* Cute Little Smile */}
           <path
             d="M46 56 Q50 60 54 56"
-            stroke="#10B981"
+            stroke="#417ACD"
             strokeWidth="2.5"
             strokeLinecap="round"
             fill="none"

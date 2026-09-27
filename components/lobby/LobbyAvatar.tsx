@@ -43,7 +43,7 @@ interface Props {
   ghost?: boolean;
 }
 
-/** Ảnh đại diện dán lên mặt. Ảnh nằm ở miền khác (Cloudflare storage, Google),
+/** Ảnh đại diện dán lên mặt. Ảnh nằm ở miền khác (storage của hệ cũ, Google),
  *  nên cần crossOrigin - thiếu nó thì WebGL từ chối texture vì canvas bị coi
  *  là "tainted". Hỏng thì trả null và nhân vật giữ khuôn mặt trơn, không phải
  *  lý do để cả căn phòng không dựng được. */

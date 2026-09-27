@@ -59,7 +59,7 @@ export default async function WorldUsagePanel({ usage }: { usage: WorldUsage }) 
                     {r.roomKey && <span className="font-normal text-stone-400"> · {r.roomKey}</span>}
                   </span>
                   <div className="h-2 flex-1 overflow-hidden rounded-full bg-stone-100">
-                    <div className="h-full rounded-full bg-emerald-500" style={{ width: `${share * 100}%` }} />
+                    <div className="h-full rounded-full bg-brand-500" style={{ width: `${share * 100}%` }} />
                   </div>
                   <span className="w-24 shrink-0 text-right tabular-nums text-stone-500">
                     {format(tw.rowCaption, { minutes: r.minutes, learners: r.learners })}

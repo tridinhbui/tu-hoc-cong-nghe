@@ -3,12 +3,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Trophy } from "lucide-react";
+import RankBadge from "@/components/games/RankBadge";
 import { getGameLeaderboard, getGameTitle, type GameLeaderboardRow, type GameType } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 import { localizeGameTitle } from "@/lib/games-i18n";
-
-const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
 export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
   const { t, locale } = useI18n();
@@ -62,8 +61,8 @@ export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
                 : "border-stone-200 bg-white"
             }`}
           >
-            <span className="w-7 text-center text-sm font-extrabold text-stone-500 flex-shrink-0">
-              {RANK_MEDAL[rank] ?? rank}
+            <span className="w-7 flex justify-center text-sm font-extrabold text-stone-500 flex-shrink-0">
+              <RankBadge rank={rank} />
             </span>
             {isValidAvatar(row.avatarUrl) ? (
               <Image src={row.avatarUrl} alt={row.name} width={28} height={28} className="w-7 h-7 rounded-full object-cover flex-shrink-0" />

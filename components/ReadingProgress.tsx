@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Flag, PartyPopper } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -130,7 +131,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
             animate={{ bottom: `${Math.min(progress, 95)}%` }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            🏃
+            <span className="block w-2 h-2 rounded-full bg-brand-500 ring-2 ring-white shadow" aria-hidden />
           </motion.div>
           {/* Progress percentage */}
           <div className="absolute inset-0 flex items-center justify-center">
@@ -146,8 +147,8 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
           onPointerCancel={handleDragEnd}
         >
           {/* Finish flag at top */}
-          <div className={`text-xl transition-opacity ${progress >= 100 ? "opacity-100" : "opacity-30"}`}>
-            🏁
+          <div className={`text-stone-900 transition-opacity ${progress >= 100 ? "opacity-100" : "opacity-30"}`}>
+            <Flag className="w-5 h-5" strokeWidth={1.75} aria-hidden />
           </div>
 
           {/* Race track (vertical) */}
@@ -183,7 +184,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
                     progress >= cp ? "text-stone-900" : "text-stone-500"
                   }`}
                 >
-                  {cp === 100 ? "🏁" : `${cp}%`}
+                  {cp === 100 ? <Flag className="w-3 h-3" aria-hidden /> : `${cp}%`}
                 </span>
               </div>
             ))}
@@ -194,7 +195,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
               animate={{ bottom: `${Math.min(progress, 97)}%` }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              🏃
+              <span className="block w-3 h-3 rounded-full bg-brand-500 ring-2 ring-white shadow" aria-hidden />
             </motion.div>
           </div>
 
@@ -227,7 +228,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
             exit={{ opacity: 0, scale: 0.5, y: -20 }}
             className="fixed left-1/2 top-1/4 -translate-x-1/2 z-50 bg-stone-900 text-white rounded-xl px-6 py-4 text-center shadow-2xl"
           >
-            <p className="text-2xl mb-1">{celebratingMilestone === 100 ? "🏁" : "🎉"}</p>
+            <div className="mb-1 flex justify-center text-brand-300">{celebratingMilestone === 100 ? <Flag className="w-6 h-6" strokeWidth={1.75} aria-hidden /> : <PartyPopper className="w-6 h-6" strokeWidth={1.75} aria-hidden />}</div>
             <p className="font-bold">
               {celebratingMilestone === 100
                 ? t.readingProgress.finished

@@ -62,7 +62,7 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
                 let stateClass = "border-line-mid hover:border-warn-line-mid";
                 if (answered) {
                   if (isCorrect(optIndex)) {
-                    stateClass = "border-accent-line-mid bg-emerald-50 dark:bg-emerald-950/40";
+                    stateClass = "border-accent-line-mid bg-brand-50 dark:bg-brand-950/40";
                   } else if (chosen) {
                     stateClass = "border-rose-300 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/40";
                   } else {

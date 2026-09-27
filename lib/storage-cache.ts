@@ -1,4 +1,4 @@
-/** `cacheControl` cho mọi lần tải lên Cloudflare Storage.
+/** `cacheControl` cho mọi lần tải lên storage của hệ cũ.
  *
  *  VÌ SAO CÓ TỆP NÀY. Không một lời gọi `.storage.upload()` nào trong kho từng
  *  đặt `cacheControl`, nên mọi object đều nhận mặc định của Cloudflare là một
@@ -6,7 +6,7 @@
  *  lại từ Cloudflare mỗi giờ, cho từng trình duyệt, dù không byte nào trong
  *  chúng thay đổi.
  *
- *  ĐỊNH DẠNG. Đây là SỐ GIÂY, không phải một header. cloudflare-js tự bọc nó
+ *  ĐỊNH DẠNG. Đây là SỐ GIÂY, không phải một header. SDK client cũ tự bọc nó
  *  lại - trong storage-js 2.110.0, `uploadOrUpdate` làm đúng một trong hai
  *  việc tuỳ kiểu dữ liệu tải lên:
  *

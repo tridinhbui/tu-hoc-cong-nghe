@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2, Hammer, Mic2, PlayCircle } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { getDictionary, format } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getLessonsMeta } from "@/lib/lessons-loader";
@@ -84,7 +85,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
         {/* ── Mở đầu: câu nhu cầu bằng lời của người học ── */}
         <div className="mb-8">
           <div className="mb-3 flex items-center gap-3">
-            <span className="text-5xl" aria-hidden>{flow.emoji}</span>
+            <span className="rounded-2xl bg-accent-soft p-3 text-accent"><Glyph emoji={flow.emoji} className="h-9 w-9" strokeWidth={1.5} /></span>
             <StatusPill status={flow.status} t={t} />
           </div>
           <p className="text-base font-semibold text-ink-muted">“{copy.need}”</p>

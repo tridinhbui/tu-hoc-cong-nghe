@@ -111,7 +111,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
               <button
                 onClick={() => setResolveTarget(group.lesson_id)}
                 disabled={isPending}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 hover:bg-brand-700 text-white disabled:opacity-50 transition-colors"
               >
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 {ta.markFixed}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, useRef } from "react";
-import { RefreshCw, Timer } from "lucide-react";
+import { RefreshCw, Timer, Snowflake, Zap, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { getPairConfig, pickPairRoundFrom, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
@@ -266,17 +266,17 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
   function cardClass(kind: "left" | "right", index: number, cs: CardState | undefined, selected: boolean) {
     const base = "w-full text-left px-3.5 py-3 rounded-xl border font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer select-none";
     if (!cs) return base;
-    if (cs.matched) return `${base} border-emerald-500 bg-emerald-50/50 text-emerald-600 opacity-75 cursor-default flex items-center justify-between shadow-sm scale-[0.98]`;
+    if (cs.matched) return `${base} border-brand-500 bg-brand-50/50 text-brand-600 opacity-75 cursor-default flex items-center justify-between shadow-sm scale-[0.98]`;
     const shaking = kind === "left" ? shakePair.left === index : shakePair.right === index;
     if (shaking) return `${base} border-red-500 bg-red-50/60 text-red-700 shadow-[0_0_12px_rgba(239,68,68,0.25)] animate-[pg-wiggle_0.4s_ease-in-out]`;
-    if (selected) return `${base} border-emerald-500 bg-emerald-50/40 ring-2 ring-emerald-500 text-emerald-700 shadow-md scale-[1.03]`;
-    return `${base} border-stone-200 bg-white text-stone-900 hover:border-emerald-500 hover:shadow-md hover:-translate-y-0.5 active:scale-95`;
+    if (selected) return `${base} border-brand-500 bg-brand-50/40 ring-2 ring-brand-500 text-brand-700 shadow-md scale-[1.03]`;
+    return `${base} border-stone-200 bg-white text-stone-900 hover:border-brand-500 hover:shadow-md hover:-translate-y-0.5 active:scale-95`;
   }
 
   return (
     <div className="bg-white border border-stone-200 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm relative overflow-hidden">
       {/* Decorative subtle background glows */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <style>{`
@@ -304,7 +304,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
             )}
           </p>
           <div className="w-36 sm:w-44 lg:w-60 h-2 bg-stone-100 rounded-full mt-1.5 overflow-hidden shadow-inner">
-            <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300" style={{ width: `${round.length ? (matchedCount / round.length) * 100 : 0}%` }} />
+            <div className="h-full bg-gradient-to-r from-brand-500 to-brand-500 transition-all duration-300" style={{ width: `${round.length ? (matchedCount / round.length) * 100 : 0}%` }} />
           </div>
         </div>
         
@@ -323,7 +323,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
               }`}
               title={pg.freezeTitle}
             >
-              ❄️
+              <Snowflake className="w-4 h-4" strokeWidth={1.75} aria-hidden />
             </button>
           )}
 
@@ -339,7 +339,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
               }`}
               title={pg.helperTitle}
             >
-              ⚡
+              <Zap className="w-4 h-4" strokeWidth={1.75} aria-hidden />
             </button>
           )}
 
@@ -365,7 +365,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                           ? "text-rose-500"
                           : timeLeft <= 10
                             ? "text-amber-500"
-                            : "text-emerald-500"
+                            : "text-brand-500"
                     }
                     strokeWidth="3.5"
                     strokeDasharray="100"
@@ -380,7 +380,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                   />
                 </svg>
                 <span className="absolute text-[9px] font-black text-stone-700">
-                  {freezeActive ? "❄️" : `${timeLeft}s`}
+                  {freezeActive ? <Snowflake className="w-3 h-3 text-sky-500" strokeWidth={2} aria-hidden /> : `${timeLeft}s`}
                 </span>
               </div>
             </div>
@@ -404,7 +404,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
 
       {finished ? (
         <div className="text-center py-10 relative z-10 flex flex-col items-center">
-          <span className="text-4xl mb-3 animate-bounce">🏆</span>
+          <span className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 ring-1 ring-amber-200"><Trophy className="h-8 w-8" strokeWidth={1.5} aria-hidden /></span>
           <p className="text-lg font-extrabold text-stone-900">
             {submitting ? pg.savingResult : pg.finishedRound}
           </p>
@@ -426,7 +426,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                 className={cardClass("left", idx, leftCards[idx], selectedLeft === idx)}
               >
                 <span className="truncate">{round[idx]?.left}</span>
-                {leftCards[idx]?.matched && <span className="text-emerald-500 ml-1.5 shrink-0">✓</span>}
+                {leftCards[idx]?.matched && <span className="text-brand-500 ml-1.5 shrink-0">✓</span>}
               </div>
             ))}
           </div>
@@ -442,7 +442,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                 className={cardClass("right", idx, rightCards[idx], selectedRight === idx)}
               >
                 <span className="line-clamp-2">{round[idx]?.right}</span>
-                {rightCards[idx]?.matched && <span className="text-emerald-500 ml-1.5 shrink-0">✓</span>}
+                {rightCards[idx]?.matched && <span className="text-brand-500 ml-1.5 shrink-0">✓</span>}
               </div>
             ))}
           </div>

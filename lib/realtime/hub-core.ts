@@ -5,12 +5,12 @@
  * đây chạy được trong vitest mà không cần runtime Workers. Vỏ chỉ đổi WebSocket
  * thật sang giao diện HubSocket bên dưới.
  *
- * BA CHỖ CHẶT HƠN SUPABASE, cố ý:
+ * BA CHỖ CHẶT HƠN HỆ CŨ, cố ý:
  *
  *  - DANH TÍNH DO MÁY CHỦ CẤP. `userId` của một kết nối đến từ phiên đăng nhập
  *    đã xác thực ở worker, không bao giờ từ thứ client gửi. Presence bị ép khoá
  *    và `userId` về đúng người đó; broadcast có trường `userId` cũng bị ép. Trên
- *    Supabase broadcast không xác thực người gửi - ai cũng phát được một bước đi
+ *    Broadcast của hệ cũ không xác thực người gửi - ai cũng phát được một bước đi
  *    dưới tên người khác.
  *  - TÍN HIỆU THAY ĐỔI KHÔNG MANG NỘI DUNG. Xem ChangeSignal trong watched.ts.
  *  - CLIENT KHÔNG PHÁT ĐƯỢC TÍN HIỆU THAY ĐỔI. Chỉ máy chủ, qua onPublish, mà
@@ -134,7 +134,7 @@ export class HubCore {
       const att = ws.getAttachment();
       if (!att?.state) continue;
       // Một người mở hai tab là hai phần tử trong cùng một khoá - đúng hình
-      // dạng presenceState() của supabase-js, nên các chỗ gọi hiện có đọc
+      // dạng presenceState() của SDK client cũ, nên các chỗ gọi hiện có đọc
       // `state[userId][0]` vẫn đúng.
       (state[att.userId] ??= []).push(att.state);
     }

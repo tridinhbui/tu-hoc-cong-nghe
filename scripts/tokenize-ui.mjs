@@ -25,9 +25,9 @@ const EXACT = {
   line:             ["stone-200", "stone-800"],
   "line-soft":      ["stone-100", "stone-800"],
   "line-strong":    ["stone-300", "stone-700"],
-  accent:           ["emerald-600", "emerald-400"],
-  "accent-soft":    ["emerald-50",  "emerald-950"],
-  "accent-line":    ["emerald-200", "emerald-900"],
+  accent:           ["brand-600", "brand-400"],
+  "accent-soft":    ["brand-50",  "brand-950"],
+  "accent-line":    ["brand-200", "brand-900"],
   warn:             ["amber-600", "amber-400"],
   "warn-soft":      ["amber-50",  "amber-950"],
   danger:           ["red-700", "red-400"],
@@ -50,9 +50,9 @@ const EXACT = {
   "alert-line":       ["rose-200", "rose-900"],
   "info":             ["sky-600", "sky-400"],
   "info-line":        ["sky-300", "sky-800"],
-  "accent-ink":       ["emerald-800", "emerald-300"],
-  "accent-ink-strong":["emerald-900", "emerald-400"],
-  "accent-line-mid":  ["emerald-300", "emerald-800"],
+  "accent-ink":       ["brand-800", "brand-300"],
+  "accent-ink-strong":["brand-900", "brand-400"],
+  "accent-line-mid":  ["brand-300", "brand-800"],
   "warn-ink":         ["amber-800", "amber-300"],
   "warn-line-mid":    ["amber-300", "amber-800"],
   "line-firm":        ["stone-400", "stone-600"],
@@ -60,7 +60,7 @@ const EXACT = {
   "line-invert":      ["stone-900", "stone-100"],
   "ink-max":          ["stone-950", "stone-50"],
   "line-mid":       ["stone-200", "stone-700"],
-  "accent-strong":  ["emerald-700", "emerald-400"],
+  "accent-strong":  ["brand-700", "brand-400"],
   "warn-strong":    ["amber-700", "amber-400"],
   "warn-line":      ["amber-200", "amber-900"],
 };
@@ -131,7 +131,7 @@ for (const f of files) {
   let s = truoc;
   for (const [from, to] of RULES) {
     // Ranh giới cuối BẮT BUỘC. Không có nó, một lớp như
-    // `bg-emerald-50 dark:bg-emerald-950/50` (độ mờ CHỈ ở chế độ tối) vẫn khớp
+    // `bg-brand-50 dark:bg-brand-950/50` (độ mờ CHỈ ở chế độ tối) vẫn khớp
     // phần đầu, `/50` bị bỏ lại lơ lửng và thành `bg-accent-soft/50` - tức là
     // độ mờ giờ áp cho CẢ HAI chế độ. Lần chạy đầu tiên của script này đã làm
     // đúng như vậy ở 186 chỗ trước khi được phát hiện.

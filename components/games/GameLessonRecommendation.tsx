@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
+import { BookOpen, ArrowRight, Sparkles, Lightbulb } from "lucide-react";
 import { getGameRelatedLessons, getGameMeta, type GameType } from "@/lib/games";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -35,15 +35,15 @@ export default function GameLessonRecommendation({
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3.5 mb-3.5 border-b border-amber-200/50">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-lg shrink-0 shadow-xs">
-            💡
+          <div className="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 shadow-xs">
+            <Lightbulb className="w-5 h-5" strokeWidth={1.75} aria-hidden />
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200/60">
                 {gl.badge}
               </span>
-              <span className="text-[10px] font-extrabold text-emerald-600 flex items-center gap-1">
+              <span className="text-[10px] font-extrabold text-brand-600 flex items-center gap-1">
                 <Sparkles className="w-3 h-3" /> {gl.bonusXp}
               </span>
             </div>

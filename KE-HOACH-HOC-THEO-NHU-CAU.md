@@ -92,7 +92,16 @@ cùng vị trí, nếu không cả phần thân bài rơi về tiếng Việt.
 Marketing với AI chuyển từ "Sắp có" sang "Đủ bài". 30 câu quiz qua audit; độ dài
 đáp án đúng: dài nhất 6, ngắn nhất 5, ở giữa 19.
 
-**Còn lại:** bài dựng AI Agent hoàn chỉnh, demo tương tác cho hành trình AI.
+Chặng 23 "AI Agent đơn giản hơn bạn nghĩ" — 4 bài (`lib/ai-agent-lessons.ts`,
+id 1780–1783): vòng lặp bằng giấy bút, mô tả công cụ, dựng agent từ đầu đến
+cuối, chốt an toàn. Hành trình AI Agent chuyển sang "Đủ bài" và có thêm chặng
+"Dựng agent". Độ dài đáp án đúng ở 28 câu mới: dài nhất 10, ngắn nhất 9, giữa 9.
+
+**Bài học khi viết quiz:** viết theo khuôn "một phương án rất dài + hai rất
+ngắn" làm đáp án đúng luôn nằm GIỮA (28/28) — cũng là một mách nước. Đo phân
+bố ngay sau khi viết, trước khi chạy audit toàn kho.
+
+**Còn lại:** demo tương tác cho hành trình AI, thêm bài mức Dễ.
 
 | Việc | Vì sao |
 |---|---|

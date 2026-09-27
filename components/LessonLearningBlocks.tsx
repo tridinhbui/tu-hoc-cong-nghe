@@ -27,7 +27,7 @@ export function LessonQuestionCard({
   return (
     <div className="space-y-4 rounded-[24px] border border-stone-200/90 bg-gradient-to-br from-white via-stone-50 to-white p-5 shadow-[0_10px_40px_rgba(15,23,42,0.06)] dark:border-stone-800 dark:from-stone-900 dark:via-stone-900 dark:to-stone-950">
       <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.28em] text-ink-muted">
-        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-brand-500" />
         {resolvedTitle}
       </div>
       <p className="text-base font-semibold leading-relaxed text-ink-heading">
@@ -39,7 +39,7 @@ export function LessonQuestionCard({
           let btnCls = "border-stone-200 bg-white text-stone-700 hover:border-stone-300 hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300 dark:hover:border-stone-700 dark:hover:bg-stone-800/60";
           if (submitted) {
             if (i === correct) {
-              btnCls = "border-emerald-500 bg-emerald-50 text-emerald-800 dark:border-emerald-500/70 dark:bg-emerald-950/50 dark:text-emerald-400 font-semibold";
+              btnCls = "border-brand-500 bg-brand-50 text-brand-800 dark:border-brand-500/70 dark:bg-brand-950/50 dark:text-brand-400 font-semibold";
             } else if (i === selected) {
               btnCls = "border-rose-500 bg-rose-50 text-rose-800 dark:border-rose-500/70 dark:bg-rose-950/50 dark:text-rose-400";
             } else {
@@ -86,7 +86,7 @@ export function LessonQuestionCard({
           animate={{ opacity: 1, y: 0 }}
           className={`rounded-xl border p-4 text-xs leading-relaxed ${
             selected === correct
-              ? "border-emerald-100 bg-emerald-50/60 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-400"
+              ? "border-brand-100 bg-brand-50/60 text-brand-800 dark:border-brand-900 dark:bg-brand-950/50 dark:text-brand-400"
               : "border-rose-100 bg-rose-50/50 text-rose-800 dark:border-rose-900 dark:bg-rose-950/50 dark:text-rose-400"
           }`}
         >
@@ -156,13 +156,13 @@ export function LessonApplicationCard({ title, message, secondary }: LessonAppli
   const { t } = useI18n();
   const resolvedTitle = title ?? t.learningBlocks.defaultApplicationTitle;
   return (
-    <div className="rounded-[24px] border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 p-5 shadow-[0_10px_40px_rgba(16,185,129,0.1)] dark:border-emerald-900/70 dark:from-emerald-950/30 dark:via-stone-950 dark:to-emerald-950/30">
+    <div className="rounded-[24px] border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-brand-50 p-5 shadow-[0_10px_40px_rgba(65, 122, 205,0.1)] dark:border-brand-900/70 dark:from-brand-950/30 dark:via-stone-950 dark:to-brand-950/30">
       <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-accent-strong">
-        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-brand-500" />
         {resolvedTitle}
       </div>
       <p className="text-sm font-semibold leading-relaxed text-accent-ink-strong">{message}</p>
-      {secondary && <p className="mt-2 text-sm leading-relaxed text-emerald-800/80 dark:text-emerald-300/80">{secondary}</p>}
+      {secondary && <p className="mt-2 text-sm leading-relaxed text-brand-800/80 dark:text-brand-300/80">{secondary}</p>}
     </div>
   );
 }

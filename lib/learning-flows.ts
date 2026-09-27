@@ -132,12 +132,12 @@ export const LEARNING_FLOWS: LearningFlow[] = [
   {
     id: "ai-agent",
     emoji: "🧑‍🚀",
-    status: "partial",
-    firstWinSlug: "api-la-gi-va-hop-dong-giua-hai-he-thong",
+    status: "ready",
+    firstWinSlug: "vong-lap-cua-mot-ai-agent",
     steps: [
       {
         id: "employee",
-        lessonSlugs: ["ai-lam-duoc-gi-va-khong-lam-duoc-gi", "case-ai-trong-san-pham-that"],
+        lessonSlugs: ["vong-lap-cua-mot-ai-agent", "ai-lam-duoc-gi-va-khong-lam-duoc-gi", "case-ai-trong-san-pham-that"],
       },
       {
         id: "hands",
@@ -146,6 +146,7 @@ export const LEARNING_FLOWS: LearningFlow[] = [
           "json-va-cach-doc-tai-lieu-api",
           "goi-api-dau-tien-tu-dong-lenh-toi-ma",
           "xac-thuc-khoa-api-va-ma-thong-bao",
+          "mo-ta-cong-cu-cho-agent",
         ],
       },
       {
@@ -166,8 +167,12 @@ export const LEARNING_FLOWS: LearningFlow[] = [
           "ranh-gioi-an-toan-khi-dung-ai",
         ],
       },
+      {
+        id: "build",
+        lessonSlugs: ["dung-agent-dau-tien-tu-dau-den-cuoi", "chot-an-toan-cho-agent"],
+      },
     ],
-    branches: { deepenSlug: "case-ai-trong-san-pham-that", buildSlug: "tong-ket-ghep-dich-vu-ngoai" },
+    branches: { deepenSlug: "case-ai-trong-san-pham-that", buildSlug: "dung-agent-dau-tien-tu-dau-den-cuoi" },
   },
   {
     id: "ai-marketing",

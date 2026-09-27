@@ -7,7 +7,7 @@ import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route, Users, Construction, Clock } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
 import { DEFAULT_PRESET, getStoredPreset, storePreset, type DashboardPreset } from "@/lib/dashboard-preset";
 import { mergeCompletedLessons } from "@/lib/progress";
@@ -99,7 +99,7 @@ const STAGE_THEMES: Record<string, { emoji: string; bg: string; text: string; ba
   "professional-Chặng 10": { emoji: "👑", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
   "professional-Chặng 11": { emoji: "🏛️", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
   "professional-Chặng 12": { emoji: "🧬", bg: "bg-stone-50 dark:bg-stone-900/60 border border-line", text: "text-ink-soft", barColor: "bg-stone-400" },
-  "professional-Chặng 13": { emoji: "🤖", bg: "bg-emerald-50/60 dark:bg-emerald-950/40 border border-accent-line-mid", text: "text-accent-strong", barColor: "bg-emerald-500" },
+  "professional-Chặng 13": { emoji: "🤖", bg: "bg-brand-50/60 dark:bg-brand-950/40 border border-accent-line-mid", text: "text-accent-strong", barColor: "bg-brand-500" },
 };
 /* i18n-ignore-end */
 
@@ -726,7 +726,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       // parsing the just-set auth cookie - a fixed timeout race (the
       // previous fix here) still lost that race often enough in production
       // to redirect to /login, which then bounced straight back once ITS
-      // own check resolved a moment later. cloudflare-js guarantees
+      // own check resolved a moment later. SDK client cũ guarantees
       // INITIAL_SESSION fires exactly once with the fully-resolved session
       // (or null), so waiting for that event is what actually removes the
       // race instead of just narrowing it.
@@ -821,8 +821,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     return (
       <div className="min-h-screen bg-white dark:bg-stone-950 flex flex-col items-center justify-center gap-4">
         <div className="relative w-16 h-16">
-          <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping" />
-          <span className="absolute -inset-1.5 rounded-full border-4 border-emerald-500/70 border-t-transparent animate-spin" />
+          <span className="absolute inset-0 rounded-full bg-brand-400/30 animate-ping" />
+          <span className="absolute -inset-1.5 rounded-full border-4 border-brand-500/70 border-t-transparent animate-spin" />
           <div className="relative w-16 h-16 rounded-full overflow-hidden bg-surface-raised">
             <TaiTaiAvatar size={64} />
           </div>
@@ -1064,8 +1064,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               { text: "text-info", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-info-line", solid: "bg-sky-500" },
               { text: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/30", border: "border-cyan-300 dark:border-cyan-800", solid: "bg-cyan-500" },
               { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30", border: "border-violet-400 dark:border-violet-700", solid: "bg-violet-500" },
-              { text: "text-accent", bg: "bg-emerald-50 dark:bg-emerald-950/30", border: "border-emerald-400 dark:border-emerald-700", solid: "bg-emerald-500" },
-              { text: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-950/30", border: "border-teal-400 dark:border-teal-700", solid: "bg-teal-500" },
+              { text: "text-accent", bg: "bg-brand-50 dark:bg-brand-950/30", border: "border-brand-400 dark:border-brand-700", solid: "bg-brand-500" },
+              { text: "text-accent", bg: "bg-brand-50 dark:bg-brand-950/30", border: "border-brand-400 dark:border-brand-700", solid: "bg-brand-500" },
               { text: "text-orange-600 dark:text-orange-400", bg: "bg-orange-50 dark:bg-orange-950/30", border: "border-orange-400 dark:border-orange-700", solid: "bg-orange-500" },
               { text: "text-alert", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500" },
               { text: "text-warn", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-700", solid: "bg-gradient-to-r from-amber-400 to-yellow-500" },
@@ -1149,7 +1149,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                 return (
                                   <div key={lvl.level} className="flex items-stretch sm:animate-fade-in [backface-visibility:hidden]">
                                     {idx > 0 && (
-                                      <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-surface-sunken"}`} />
+                                      <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-brand-400 dark:bg-brand-600" : "bg-surface-sunken"}`} />
                                     )}
                                     <div className="flex flex-col items-center gap-2 shrink-0">
                                       <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-surface shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
@@ -1204,7 +1204,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                           </p>
                                         ) : null}
                                         <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-surface-raised text-ink-faint"}`}>
-                                          👥 {members.length}
+                                          <Users className="w-2.5 h-2.5" aria-hidden /> {members.length}
                                         </div>
                                       </button>
                                     </div>
@@ -1242,7 +1242,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         >
                                           {isValidAvatar(m.avatarUrl) ? (
                                             // next/image chứ không phải <img>: đây là ảnh trong
-                                            // Cloudflare Storage (hoặc Google OAuth), và một thẻ <img>
+                                            // storage của hệ cũ (hoặc Google OAuth), và một thẻ <img>
                                             // trần kéo về BẢN GỐC - tới 2MB - để vẽ ra 32 điểm ảnh,
                                             // cho từng người xem, mỗi lần cache hết hạn.
                                             <Image src={m.avatarUrl} alt={m.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover shrink-0" />
@@ -1428,9 +1428,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {!isLessonsView && (
               <Link
                 href="/lo-trinh"
-                className="group flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 transition-all hover:border-emerald-300 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-emerald-800"
+                className="group flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 transition-all hover:border-brand-300 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-brand-800"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-400">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-100 dark:bg-brand-950/40 dark:text-brand-400">
                   <Route className="h-5 w-5" />
                 </div>
                 <div className="min-w-0 flex-1">
@@ -1441,7 +1441,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     {t.dashboard.learningPathCardSub}
                   </p>
                 </div>
-                <span className="shrink-0 text-lg font-bold text-stone-300 transition-all group-hover:translate-x-0.5 group-hover:text-emerald-500 dark:text-stone-600">
+                <span className="shrink-0 text-lg font-bold text-stone-300 transition-all group-hover:translate-x-0.5 group-hover:text-brand-500 dark:text-stone-600">
                   ›
                 </span>
               </Link>
@@ -1616,7 +1616,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 }`}
               >
                 <div className={`absolute top-0 left-0 right-0 h-0.5 transition-colors ${
-                  isTrackView && activeTrack === "professional" ? "bg-emerald-500" : "bg-emerald-500/30"
+                  isTrackView && activeTrack === "professional" ? "bg-brand-500" : "bg-brand-500/30"
                 }`} />
                 <div className="flex items-center gap-2 flex-wrap mt-1">
                   <div className="text-base font-extrabold tracking-tight text-ink">
@@ -1751,7 +1751,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 value={stageSearchQuery}
                 onChange={(e) => setStageSearchQuery(e.target.value)}
                 placeholder={t.dashboard.searchPlaceholder}
-                className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-line bg-white dark:bg-stone-900 text-sm font-medium text-ink placeholder:text-stone-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+                className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-line bg-white dark:bg-stone-900 text-sm font-medium text-ink placeholder:text-stone-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
               />
               {stageSearchQuery && (
                 <button
@@ -1780,7 +1780,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   <button
                     onClick={applyManualFlags}
                     disabled={flagSaving || selectedFlagLessonIds.size === 0}
-                    className="px-3 py-2 text-xs font-bold rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                    className="px-3 py-2 text-xs font-bold rounded-xl bg-brand-600 hover:bg-brand-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
                   >
                     {flagSaving ? t.dashboard.markLearned.saving : t.dashboard.markLearned.confirm}
                   </button>
@@ -1909,13 +1909,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       }}
                       className={`w-full flex items-center gap-3 cursor-pointer text-left flex-wrap sm:flex-nowrap transition-all ${
                         isCurrentMilestonePassed
-                          ? "bg-emerald-500/[0.04] dark:bg-emerald-500/[0.02] border border-emerald-500/20 px-4 py-3 rounded-xl mb-4"
+                          ? "bg-brand-500/[0.04] dark:bg-brand-500/[0.02] border border-brand-500/20 px-4 py-3 rounded-xl mb-4"
                           : "border-b border-stone-100 dark:border-stone-800/40 pb-3 mb-4"
                       }`}
                     >
                       <span className={`text-xs font-extrabold px-3 py-1.5 rounded-lg flex items-center ${
                         isCurrentMilestonePassed
-                          ? "bg-emerald-500 text-white"
+                          ? "bg-brand-500 text-white"
                           : `${theme.bg} ${theme.text}`
                       }`}>
                         {stageDisplayLabels.get(stage.label) || stageCopy?.label || stage.label}
@@ -1957,11 +1957,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       {stage.available && stageLessons.length > 0 && (
                         <div className="flex items-center gap-3 shrink-0 ml-auto sm:ml-0">
                           <div className="w-16 h-1.5 bg-surface-raised rounded-full overflow-hidden hidden sm:block">
-                            <div className={`h-full ${isCurrentMilestonePassed ? "bg-emerald-500" : theme.barColor}`} style={{ width: `${percent}%` }} />
+                            <div className={`h-full ${isCurrentMilestonePassed ? "bg-brand-500" : theme.barColor}`} style={{ width: `${percent}%` }} />
                           </div>
                           <span className={`text-sm font-bold px-3 py-1 rounded-lg ${
                             isCurrentMilestonePassed
-                              ? "text-accent-ink bg-emerald-100 dark:bg-emerald-950/60"
+                              ? "text-accent-ink bg-brand-100 dark:bg-brand-950/60"
                               : "text-ink-heading bg-surface-raised"
                           }`}>
                             {stageDone}/{stageLessons.length}
@@ -1970,10 +1970,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       )}
                       <span className={`text-sm transition-transform shrink-0 ${
                         isCurrentMilestonePassed
-                          ? "text-emerald-500 dark:text-emerald-400"
+                          ? "text-brand-500 dark:text-brand-400"
                           : "text-ink-muted"
                       } ${stageOpen ? "rotate-180" : ""}`}>
-                        {isStageLockedByMilestone ? "🔒" : "▾"}
+                        {isStageLockedByMilestone ? <Lock className="w-3.5 h-3.5" aria-hidden /> : "▾"}
                       </span>
                     </div>
                   );
@@ -2002,7 +2002,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                 {/* Available but no lessons in DB yet - with building animation */}
                 {stageOpen && stage.available && stageLessons.length === 0 && (
-                  <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-emerald-50 dark:bg-emerald-950/50 relative overflow-hidden">
+                  <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-brand-50 dark:bg-brand-950/50 relative overflow-hidden">
                     {/* Construction bars */}
                     <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
                       <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
@@ -2013,7 +2013,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                     {/* Content */}
                     <div className="relative z-10 flex flex-col items-center gap-2">
-                      <div className="text-3xl animate-bounce">🏗️</div>
+                      <div className="animate-bounce rounded-xl bg-accent-soft text-accent p-2"><Construction className="w-7 h-7" strokeWidth={1.75} aria-hidden /></div>
                       <p className="text-ink-soft text-sm font-extrabold">{t.dashboard.buildingTitle}</p>
                       <p className="text-ink-muted text-xs">{t.dashboard.buildingSubtitle}</p>
                     </div>
@@ -2105,7 +2105,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                     onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
                                     className={`block rounded-lg border transition-all ${
                                       isDone
-                                        ? "bg-emerald-50 dark:bg-emerald-950/50 border-accent-line hover:border-accent-line-mid hover:bg-emerald-100 dark:hover:bg-emerald-950"
+                                        ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line hover:border-accent-line-mid hover:bg-brand-100 dark:hover:bg-brand-950"
                                         : isSelectedForFlag
                                           ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
                                           : isFlagged
@@ -2124,7 +2124,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                       {/* Status circle */}
                                       <div className="flex-shrink-0">
                                         {isDone ? (
-                                          <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                                          <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
                                             <CheckCircle2 className="w-5 h-5 text-white" />
                                           </div>
                                         ) : isFlagged ? (
@@ -2157,7 +2157,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                               column to the right, which is `hidden sm:flex` -
                                               so on mobile it would never be shown at all
                                               without repeating it here. */}
-                                          <span className="sm:hidden">⏱ {formatLessonTime(lesson, t.dashboard.minutesShort)} · </span>
+                                          <span className="sm:hidden"><Clock className="inline w-3 h-3 -mt-0.5" aria-hidden /> {formatLessonTime(lesson, t.dashboard.minutesShort)} · </span>
                                           {format(t.dashboard.learnerCount, { count: getIllustrativeCount(lesson.slug, 60, 480) })}
                                         </div>
                                       </Link>
@@ -2187,7 +2187,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         </span>
                                         <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
                                           isDone
-                                            ? "bg-emerald-200 dark:bg-emerald-900 text-accent-ink-strong"
+                                            ? "bg-brand-200 dark:bg-brand-900 text-accent-ink-strong"
                                             : isFlagged
                                               ? "bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300"
                                             : "bg-surface-raised text-ink-body"
@@ -2339,7 +2339,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
                         className={`block rounded-lg border transition-all ${
                           isDone
-                            ? "bg-emerald-50 dark:bg-emerald-950/50 border-accent-line hover:border-accent-line-mid hover:bg-emerald-100 dark:hover:bg-emerald-950"
+                            ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line hover:border-accent-line-mid hover:bg-brand-100 dark:hover:bg-brand-950"
                             : isSelectedForFlag
                               ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
                               : isFlagged
@@ -2350,7 +2350,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <div className="flex items-center gap-4 px-6 py-4">
                           <div className="flex-shrink-0">
                             {isDone ? (
-                              <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                              <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
                                 <CheckCircle2 className="w-5 h-5 text-white" />
                               </div>
                             ) : isFlagged ? (

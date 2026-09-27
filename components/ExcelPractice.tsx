@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Calculator, Database, Eraser } from "lucide-react";
 import {
   EXCEL_PRACTICE_SETS,
   gradeSqlTask,
@@ -128,7 +129,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
   return (
     <div className="bg-white rounded-3xl border border-stone-100 p-4 sm:p-6 space-y-4 dark:bg-stone-900 dark:border-stone-800">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">🧮 {set.title}</h3>
+        <h3 className="flex items-center gap-2 font-bold text-stone-800 text-lg mb-1 dark:text-stone-100"><Calculator aria-hidden className="h-5 w-5 flex-shrink-0 text-accent" strokeWidth={1.75} /> {set.title}</h3>
         <p className="text-stone-500 text-sm leading-relaxed dark:text-stone-400">{set.intro}</p>
       </div>
 
@@ -229,7 +230,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
               className={[
                 "w-7 h-7 rounded-lg text-[11px] font-bold transition-colors",
                 solved.includes(i)
-                  ? "bg-emerald-500 text-white"
+                  ? "bg-brand-500 text-white"
                   : i === taskIndex
                     ? "bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900"
                     : "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400",
@@ -254,7 +255,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
             className={[
               "rounded-xl px-3 py-2.5 text-xs leading-relaxed",
               grade.ok
-                ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-300"
+                ? "bg-brand-50 text-brand-800 dark:bg-brand-500/10 dark:text-brand-300"
                 : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200",
             ].join(" ")}
           >
@@ -290,7 +291,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
       </div>
 
       {allDone && (
-        <p className="text-xs text-center text-emerald-700 font-semibold dark:text-emerald-400">
+        <p className="text-xs text-center text-brand-700 font-semibold dark:text-brand-400">
           {format(t.excelPractice.allDone, { n: set.tasks.length })}
         </p>
       )}
@@ -337,7 +338,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
   return (
     <div className="bg-white rounded-3xl border border-stone-100 p-4 sm:p-6 space-y-4 dark:bg-stone-900 dark:border-stone-800">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">🗄️ {set.title}</h3>
+        <h3 className="flex items-center gap-2 font-bold text-stone-800 text-lg mb-1 dark:text-stone-100"><Database aria-hidden className="h-5 w-5 flex-shrink-0 text-accent" strokeWidth={1.75} /> {set.title}</h3>
         <p className="text-stone-500 text-sm leading-relaxed dark:text-stone-400">{set.intro}</p>
       </div>
 
@@ -385,7 +386,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
               className={[
                 "w-7 h-7 rounded-lg text-[11px] font-bold transition-colors",
                 solved.includes(i)
-                  ? "bg-emerald-500 text-white"
+                  ? "bg-brand-500 text-white"
                   : i === taskIndex
                     ? "bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900"
                     : "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400",
@@ -460,7 +461,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
             className={[
               "rounded-xl px-3 py-2.5 text-xs leading-relaxed whitespace-pre-line",
               grade.ok
-                ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-300"
+                ? "bg-brand-50 text-brand-800 dark:bg-brand-500/10 dark:text-brand-300"
                 : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200",
             ].join(" ")}
           >
@@ -531,7 +532,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
   return (
     <div className="bg-white rounded-3xl border border-stone-100 p-4 sm:p-6 space-y-4 dark:bg-stone-900 dark:border-stone-800">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">🧹 {set.title}</h3>
+        <h3 className="flex items-center gap-2 font-bold text-stone-800 text-lg mb-1 dark:text-stone-100"><Eraser aria-hidden className="h-5 w-5 flex-shrink-0 text-accent" strokeWidth={1.75} /> {set.title}</h3>
         <p className="text-stone-500 text-sm leading-relaxed dark:text-stone-400">{set.intro}</p>
       </div>
 
@@ -546,7 +547,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
                 misplaced
                   ? "border-amber-300 bg-amber-50 dark:border-amber-500/40 dark:bg-amber-500/10"
                   : checked
-                    ? "border-emerald-300 bg-emerald-50 dark:border-emerald-500/40 dark:bg-emerald-500/10"
+                    ? "border-brand-300 bg-brand-50 dark:border-brand-500/40 dark:bg-brand-500/10"
                     : "border-line-mid",
               ].join(" ")}
             >
@@ -590,7 +591,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
           className={[
             "rounded-xl px-3 py-2.5 text-xs leading-relaxed whitespace-pre-line",
             correct
-              ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-300"
+              ? "bg-brand-50 text-brand-800 dark:bg-brand-500/10 dark:text-brand-300"
               : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200",
           ].join(" ")}
         >

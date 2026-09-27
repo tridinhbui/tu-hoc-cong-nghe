@@ -45,10 +45,10 @@ export const libDataVi = {
     // Bốn biến thể để không lặp lại y hệt mỗi lần mở; hàm ở tầng dữ liệu chỉ
     // chọn CHỈ SỐ biến thể, câu dựng ở phía người đọc.
     shoutouts: [
-      "🎉 {name} vừa đạt {value} XP - một trong những học viên chăm chỉ nhất cộng đồng!",
-      "👏 Chúc mừng {name} đã tích luỹ {value} XP - hành trình học tập rất ấn tượng!",
-      "🔥 {name} đang giữ phong độ cực tốt với {value} XP tích luỹ được!",
-      "⭐ Vinh danh {name} - đã đạt {value} XP nhờ học đều đặn mỗi ngày!",
+      "{name} vừa đạt {value} XP - một trong những học viên chăm chỉ nhất cộng đồng!",
+      "Chúc mừng {name} đã tích luỹ {value} XP - hành trình học tập rất ấn tượng!",
+      "{name} đang giữ phong độ cực tốt với {value} XP tích luỹ được!",
+      "Vinh danh {name} - đã đạt {value} XP nhờ học đều đặn mỗi ngày!",
     ],
     // lib/cloudflare-chat.ts - lý do một tệp bị từ chối khi gửi trong chat.
     chatUpload: {
@@ -173,10 +173,10 @@ export const libDataEn: typeof libDataVi = {
       days: "{n}d ago",
     },
     shoutouts: [
-      "🎉 {name} just hit {value} XP - one of the hardest-working learners here!",
-      "👏 Congratulations {name} on {value} XP - a genuinely impressive run.",
-      "🔥 {name} is on great form, {value} XP and counting!",
-      "⭐ Hats off to {name} - {value} XP from showing up every day.",
+      "{name} just hit {value} XP - one of the hardest-working learners here!",
+      "Congratulations {name} on {value} XP - a genuinely impressive run.",
+      "{name} is on great form, {value} XP and counting!",
+      "Hats off to {name} - {value} XP from showing up every day.",
     ],
     chatUpload: {
       imageType: "Only PNG, JPG, WEBP or GIF images are accepted.",

@@ -152,7 +152,7 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
             <h4 className="text-sm font-extrabold text-white">{format(t.goldmanWidget.valuationTitle, { name: selectedCase.name })}</h4>
             <p className="text-xs text-slate-400 mt-0.5">{format(t.goldmanWidget.valuationMultiple, { multiple: selectedCase.headroomMultiple })}</p>
           </div>
-          <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">
+          <span className="text-xs font-mono font-bold text-brand-400 bg-brand-950/60 px-3 py-1 rounded-full border border-brand-500/30">
             {format(t.goldmanWidget.revenueBadge, { peak: rps(selectedCase.peakRps) })}
           </span>
         </div>
@@ -187,7 +187,7 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
           <div className="p-4 rounded-xl bg-slate-900 border border-sky-500/40 text-xs space-y-2 mt-4">
             <div className="flex items-center justify-between">
               <span className="font-extrabold text-sky-300 uppercase tracking-wider">{t.goldmanWidget.reviewLabel}</span>
-              <span className="font-black text-emerald-400 text-sm">{format(t.goldmanWidget.reviewScore, { score })}</span>
+              <span className="font-black text-brand-400 text-sm">{format(t.goldmanWidget.reviewScore, { score })}</span>
             </div>
             <p className="text-slate-300 leading-relaxed">
               {t.goldmanWidget.reviewNotePart1}<strong>{format(t.goldmanWidget.reviewAmount, { count: recommendedNodes(selectedCase) })}</strong>{t.goldmanWidget.reviewNotePart2}

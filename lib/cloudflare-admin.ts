@@ -5,7 +5,7 @@ import { serverClientShape } from "@/lib/cloudflare-server-shape";
 import type { CloudflareClient } from "@/lib/cloudflare";
 
 /**
- * Client bỏ qua chính sách, thay service-role key của Supabase. Chạy D1 THẬT
+ * Client bỏ qua chính sách, thay khoá service-role của hệ Postgres cũ. Chạy D1 THẬT
  * (bản trước trả stub rỗng).
  *
  * Như service-role key cũ, hàm này TỰ NÓ KHÔNG KIỂM GÌ - chỗ gọi phải đã xác

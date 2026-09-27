@@ -49,7 +49,7 @@ const STRANGER = "00000000-0000-0000-0000-0000000000ff";
 describe("bộ dựng truy vấn D1", () => {
   it("từ chối cú pháp nhúng quan hệ thay vì trả thiếu cột", () => {
     const c = createD1Client({} as never, types, registry, ACTOR, predicates);
-    // `select("*, user:user_id(*)")` là cách cloudflare-js nối bảng. D1 không nối
+    // `select("*, user:user_id(*)")` là cách SDK client cũ nối bảng. D1 không nối
     // được, và im lặng bỏ qua phần nhúng sẽ trả về hàng thiếu trường - thứ chỉ
     // lộ ra ở chỗ hiển thị, cách xa nguyên nhân.
     expect(() => c.from("user_progress").select("*, user_profiles(*)")).toThrow(D1QueryError);
@@ -57,7 +57,7 @@ describe("bộ dựng truy vấn D1", () => {
 
   it("chặn update không có WHERE", () => {
     const c = createD1Client({} as never, types, registry, ACTOR, predicates);
-    // Cloudflare CHO PHÉP update toàn bảng, nên một `.eq()` viết thiếu ở đó là
+    // PostgREST cũ CHO PHÉP update toàn bảng, nên một `.eq()` viết thiếu ở đó là
     // ghi đè mọi hàng mà không có gì báo. Ở đây nó là lỗi ngay lập tức.
     return expect(c.from("user_progress").update({ completed: true }).run()).resolves.toMatchObject({
       error: expect.any(D1QueryError),

@@ -35,7 +35,7 @@ type Row = {
 };
 
 /** `PGRST202` là "không tìm thấy function" - tức migration chưa chạy trên môi
- *  trường này. Migration trong repo này được chạy TAY qua SQL Editor (thời Supabase), nên khoảng thời gian giữa lúc deploy code và
+ *  trường này. Migration trong repo này được chạy TAY qua SQL Editor (thời Postgres), nên khoảng thời gian giữa lúc deploy code và
  *  lúc ai đó chạy SQL là chuyện thường, không phải sự cố. Trả về mảng rỗng để
  *  khối này không hiện, thay vì làm sập cả trang Học bài. */
 function isMissingFunction(error: { code?: string } | null): boolean {

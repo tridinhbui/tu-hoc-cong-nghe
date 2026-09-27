@@ -77,7 +77,7 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
                 {t.fedVault.fedEyebrow}
               </span>
               {completedScenario && (
-                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-accent-ink border border-accent-line-mid">
+                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-brand-100 dark:bg-brand-950/60 text-accent-ink border border-accent-line-mid">
                   {t.fedVault.completedBadge}
                 </span>
               )}
@@ -128,7 +128,7 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
         </div>
 
         <div className="bg-stone-50/80 dark:bg-stone-950/60 p-4.5 rounded-2xl border border-stone-200/80 dark:border-stone-800 flex flex-col justify-between shadow-2xs">
-          <span className="text-[10px] font-black text-teal-700 dark:text-sky-400 uppercase tracking-widest">{t.fedVault.gdpLabel}</span>
+          <span className="text-[10px] font-black text-brand-700 dark:text-sky-400 uppercase tracking-widest">{t.fedVault.gdpLabel}</span>
           <div className="my-2">
             <span className={`text-2xl sm:text-3xl font-black ${gdp >= 1.5 ? "text-accent" : "text-warn"}`}>
               {gdp}%
@@ -158,14 +158,14 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
         <div className="flex items-center justify-center gap-3 flex-wrap">
           <button
             onClick={() => handleAdjustRate(-0.5)}
-            className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 font-bold text-xs text-white transition-all shadow-sm cursor-pointer flex items-center gap-1.5 active:scale-95"
+            className="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 font-bold text-xs text-white transition-all shadow-sm cursor-pointer flex items-center gap-1.5 active:scale-95"
           >
             <TrendingDown className="w-4 h-4" />
             <span>{t.fedVault.decreaseLarge}</span>
           </button>
           <button
             onClick={() => handleAdjustRate(-0.25)}
-            className="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 font-bold text-xs text-white transition-all shadow-sm cursor-pointer flex items-center gap-1.5 active:scale-95"
+            className="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 font-bold text-xs text-white transition-all shadow-sm cursor-pointer flex items-center gap-1.5 active:scale-95"
           >
             <TrendingDown className="w-4 h-4" />
             <span>{t.fedVault.decreaseSmall}</span>

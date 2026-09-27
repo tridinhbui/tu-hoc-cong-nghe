@@ -23,9 +23,9 @@ const TONE_VISUAL = {
     icon: "text-orange-500",
   },
   steady: {
-    face: "from-emerald-500 to-teal-600 border-emerald-400/50",
+    face: "from-brand-500 to-brand-600 border-brand-400/50",
     revealBorder: "border-accent-line",
-    icon: "text-emerald-500",
+    icon: "text-brand-500",
   },
 } as const;
 

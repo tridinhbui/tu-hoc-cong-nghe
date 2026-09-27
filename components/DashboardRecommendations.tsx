@@ -91,7 +91,7 @@ export default function DashboardRecommendations() {
           giãn chữ, viền, nền và một biểu tượng nhấp nháy - năm thứ trang trí
           cho một thông tin mà cái chấm nói xong. */}
       <div className="flex items-center gap-2">
-        <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-emerald-500" aria-hidden />
+        <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-brand-500" aria-hidden />
         <p className="truncate text-[11px] font-semibold tracking-wide text-ink-muted">
           {t.recommendations.liveTitle}
         </p>

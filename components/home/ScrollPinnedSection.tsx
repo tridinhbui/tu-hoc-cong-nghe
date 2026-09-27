@@ -8,7 +8,7 @@ interface ScrollPinnedSectionProps {
   title: React.ReactNode;
   description?: React.ReactNode;
   children: React.ReactNode[];
-  theme?: "light" | "soft" | "emerald";
+  theme?: "light" | "soft" | "brand";
 }
 
 export default function ScrollPinnedSection({
@@ -33,8 +33,8 @@ export default function ScrollPinnedSection({
   const bgClasses =
     theme === "soft"
       ? "bg-stone-50/80 dark:bg-stone-950/80"
-      : theme === "emerald"
-      ? "bg-emerald-50/40 dark:bg-emerald-950/20"
+      : theme === "brand"
+      ? "bg-brand-50/40 dark:bg-brand-950/20"
       : "bg-white dark:bg-stone-950";
 
   return (

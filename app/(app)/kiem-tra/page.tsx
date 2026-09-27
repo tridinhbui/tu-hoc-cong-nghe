@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { CheckCircle2, ChevronLeft, Sparkles } from "lucide-react";
+import { CheckCircle2, ChevronLeft, Dumbbell, PartyPopper, Sparkles, Trophy } from "lucide-react";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/cloudflare-quiz-sessions";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
 import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
@@ -185,8 +185,8 @@ export default function KiemTraPage() {
             </div>
           </div>
 
-          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-200 bg-emerald-50 text-emerald-700 text-xs font-extrabold">
-            <Sparkles className="w-4 h-4 text-emerald-600" />
+          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-200 bg-brand-50 text-brand-700 text-xs font-extrabold">
+            <Sparkles className="w-4 h-4 text-brand-600" />
             <span>{format(t.quizPage.xpPerQuestion, { xp: XP_PER_QUESTION })}</span>
           </div>
         </div>
@@ -195,7 +195,7 @@ export default function KiemTraPage() {
       <div className="flex-1 min-h-0 overflow-y-auto max-w-6xl mx-auto w-full px-4 sm:px-6 py-3 sm:py-4">
         {stage === "setup" && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-stretch">
-            {/* 📰 LEFT COLUMN: Daily Financial News Quiz */}
+            {/* LEFT COLUMN: Daily Financial News Quiz */}
             <div className="lg:col-span-6 h-full flex flex-col">
               <div className="rounded-3xl border border-rose-200/90 dark:border-rose-900/60 bg-gradient-to-b from-rose-50/80 via-white to-amber-50/40 dark:from-rose-950/40 dark:via-stone-900 dark:to-stone-950 p-3.5 sm:p-4 shadow-md h-full flex flex-col justify-between">
                 <div>
@@ -210,8 +210,8 @@ export default function KiemTraPage() {
                       </h3>
                     </div>
                     {isNewsAnswered ? (
-                      <span className="shrink-0 text-xs font-extrabold px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-accent-strong border border-accent-line flex items-center gap-1.5 shadow-2xs">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <span className="shrink-0 text-xs font-extrabold px-3 py-1.5 rounded-full bg-brand-100 dark:bg-brand-950/80 text-accent-strong border border-accent-line flex items-center gap-1.5 shadow-2xs">
+                        <CheckCircle2 className="w-4 h-4 text-brand-600" />
                         {t.quizPage.newsDone}
                       </span>
                     ) : (
@@ -235,12 +235,12 @@ export default function KiemTraPage() {
               </div>
             </div>
 
-            {/* 🎯 RIGHT COLUMN: Enhanced Test Creation Form */}
+            {/* RIGHT COLUMN: Enhanced Test Creation Form */}
             <div className="lg:col-span-6 h-full flex flex-col">
               <div className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-3.5 sm:p-4 shadow-md space-y-3 h-full flex flex-col justify-between">
                 <div className="flex items-center justify-between border-b border-line-soft pb-2">
                   <div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950 text-accent-strong border border-accent-line">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-100 dark:bg-brand-950 text-accent-strong border border-accent-line">
                       <span>{t.quizPage.rightEyebrow}</span>
                     </div>
                     <h3 className="mt-1.5 text-base font-black text-ink">
@@ -278,7 +278,7 @@ export default function KiemTraPage() {
                           onClick={() => setTrack(id)}
                           className={`w-full text-left rounded-2xl border-2 p-2.5 transition-all duration-200 cursor-pointer flex items-start justify-between gap-3 ${
                             selected
-                              ? "border-emerald-500 bg-gradient-to-r from-emerald-50/90 to-teal-50/40 dark:from-emerald-950/60 dark:to-stone-900 ring-2 ring-emerald-400/30 text-ink shadow-sm"
+                              ? "border-brand-500 bg-gradient-to-r from-brand-50/90 to-brand-50/40 dark:from-brand-950/60 dark:to-stone-900 ring-2 ring-brand-400/30 text-ink shadow-sm"
                               : "border-line hover:border-line-strong bg-stone-50/50 dark:bg-stone-800/40 text-ink-body"
                           }`}
                         >
@@ -286,7 +286,7 @@ export default function KiemTraPage() {
                             <div className="font-extrabold text-sm flex items-center gap-2">
                               <span>{label}</span>
                               {selected && (
-                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-emerald-500 text-white">
+                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-brand-500 text-white">
                                   {t.quizPage.selecting}
                                 </span>
                               )}
@@ -334,7 +334,7 @@ export default function KiemTraPage() {
                 </div>
 
                 {/* XP Reward hint */}
-                <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/80 dark:bg-emerald-950/40 p-2.5 flex items-center gap-3">
+                <div className="rounded-2xl border border-brand-200 dark:border-brand-900/60 bg-brand-50/80 dark:bg-brand-950/40 p-2.5 flex items-center gap-3">
                   <p className="text-xs font-bold text-accent-ink">
                     {t.quizPage.rewardPart1}
                     <strong>{format(t.quizPage.rewardXp, { xp: XP_PER_QUESTION })}</strong>
@@ -345,7 +345,7 @@ export default function KiemTraPage() {
                 {/* Start Action Button */}
                 <button
                   onClick={() => startSelectedQuiz(track, difficulty)}
-                  className="w-full py-2.5 rounded-2xl font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded-2xl font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 hover:from-brand-500 hover:to-brand-500 shadow-lg shadow-brand-500/20 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
                 >
                   <span>{t.quizPage.start}</span>
                   <span>→</span>
@@ -396,7 +396,7 @@ export default function KiemTraPage() {
               </div>
               <div className="mt-3 h-2 rounded-full overflow-hidden bg-surface-raised">
                 <div
-                  className="h-full rounded-full transition-all duration-500 bg-emerald-500"
+                  className="h-full rounded-full transition-all duration-500 bg-brand-500"
                   style={{ width: `${Math.max(6, progressPct)}%` }}
                 />
               </div>
@@ -410,7 +410,7 @@ export default function KiemTraPage() {
                 const isCorrectOpt = oi === q.correct;
                 let cls = "border-2 border-line-strong bg-white dark:bg-stone-900 text-ink hover:border-line-firm";
                 if (submitted) {
-                  if (isCorrectOpt) cls = "border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-accent-ink-strong font-semibold";
+                  if (isCorrectOpt) cls = "border-2 border-brand-500 bg-brand-50 dark:bg-brand-950/50 text-accent-ink-strong font-semibold";
                   else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-alert-ink font-semibold";
                   else cls = "border-2 border-line bg-stone-50 dark:bg-stone-900/50 text-ink-muted";
                 } else if (isSelected) {
@@ -430,7 +430,7 @@ export default function KiemTraPage() {
             </div>
 
             {submitted && (
-              <div className={`rounded-xl p-4 text-sm leading-relaxed border ${results[activeQ] ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-accent-ink" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"}`}>
+              <div className={`rounded-xl p-4 text-sm leading-relaxed border ${results[activeQ] ? "bg-brand-50 dark:bg-brand-950/50 border-brand-100 dark:border-brand-900 text-accent-ink" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"}`}>
                 <p className="font-bold mb-1">{results[activeQ] ? format(t.quizPage.correctWithXp, { xp: XP_PER_QUESTION }) : t.quizPage.explanation}</p>
                 <p>{q.explanation}</p>
               </div>
@@ -459,7 +459,17 @@ export default function KiemTraPage() {
 
         {stage === "done" && (
           <div className="mx-auto max-w-2xl text-center space-y-5">
-            <div className="text-5xl">{score === questions.length ? "🏆" : score >= questions.length * 0.7 ? "🎉" : "💪"}</div>
+            <div className="flex justify-center">
+              <span className="rounded-2xl bg-accent-soft p-3 text-accent">
+                {score === questions.length ? (
+                  <Trophy aria-hidden className="h-10 w-10" strokeWidth={1.5} />
+                ) : score >= questions.length * 0.7 ? (
+                  <PartyPopper aria-hidden className="h-10 w-10" strokeWidth={1.5} />
+                ) : (
+                  <Dumbbell aria-hidden className="h-10 w-10" strokeWidth={1.5} />
+                )}
+              </span>
+            </div>
             <div>
               <h3 className="font-bold text-xl text-ink">{t.quizPage.doneTitle}</h3>
               <p className="text-sm mt-1 text-ink-muted">
@@ -467,7 +477,7 @@ export default function KiemTraPage() {
               </p>
             </div>
 
-            <div className="rounded-2xl border-2 p-5 border-accent-line bg-emerald-50 dark:bg-emerald-950/40">
+            <div className="rounded-2xl border-2 p-5 border-accent-line bg-brand-50 dark:bg-brand-950/40">
               <p className="text-xs font-bold uppercase tracking-wide mb-1 text-accent-strong">{t.quizPage.xpEarned}</p>
               <p className="text-3xl font-extrabold text-accent-strong">
                 {xpAwarded === null ? "..." : format(t.miscUi.xpGain, { count: xpAwarded })}
@@ -476,7 +486,7 @@ export default function KiemTraPage() {
 
             <div className="flex flex-wrap gap-2 justify-center">
               {results.map((ok, i) => (
-                <div key={i} className={`w-8 h-8 rounded-full text-xs flex items-center justify-center text-white font-bold ${ok ? "bg-emerald-500" : "bg-rose-400"}`}>
+                <div key={i} className={`w-8 h-8 rounded-full text-xs flex items-center justify-center text-white font-bold ${ok ? "bg-brand-500" : "bg-rose-400"}`}>
                   {ok ? "✓" : "✗"}
                 </div>
               ))}

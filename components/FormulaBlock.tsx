@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Copy, Check, Calculator, HelpCircle } from "lucide-react";
+import { Copy, Check, Calculator, HelpCircle, Lightbulb } from "lucide-react";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
@@ -95,8 +95,8 @@ export default function FormulaBlock({
         >
           {copied ? (
             <>
-              <Check className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-emerald-400">{t.formulaBlock.copiedLabel}</span>
+              <Check className="w-3.5 h-3.5 text-brand-400" />
+              <span className="text-brand-400">{t.formulaBlock.copiedLabel}</span>
             </>
           ) : (
             <>
@@ -121,7 +121,7 @@ export default function FormulaBlock({
               </span>
             </div>
             {multiplier && (
-              <span className="font-bold text-emerald-400 font-sans text-base sm:text-lg">
+              <span className="font-bold text-brand-400 font-sans text-base sm:text-lg">
                 × {multiplier}
               </span>
             )}
@@ -165,24 +165,24 @@ export default function FormulaBlock({
 
       {/* Real-World Numerical Example */}
       {example && (
-        <div className="p-5 bg-emerald-50/30 dark:bg-emerald-950/20 border-t border-emerald-100 dark:border-emerald-900/40">
+        <div className="p-5 bg-brand-50/30 dark:bg-brand-950/20 border-t border-brand-100 dark:border-brand-900/40">
           <div className="flex items-center gap-2 mb-2">
             <p className="text-xs font-extrabold text-accent-ink uppercase tracking-wider">
               {example.title || t.formulaBlock.defaultExampleTitle}
             </p>
           </div>
 
-          <div className="bg-white dark:bg-stone-900 p-3.5 rounded-xl border border-emerald-200/60 dark:border-emerald-800/60 text-xs space-y-1.5 shadow-2xs">
+          <div className="bg-white dark:bg-stone-900 p-3.5 rounded-xl border border-brand-200/60 dark:border-brand-800/60 text-xs space-y-1.5 shadow-2xs">
             <div className="flex items-baseline justify-between gap-2 flex-wrap font-mono font-bold">
               <span className="text-ink-body">{format(t.formulaBlock.calculationPrefix, { calculation: example.calculation })}</span>
-              <span className="text-accent text-sm font-extrabold bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-lg border border-accent-line">
+              <span className="text-accent text-sm font-extrabold bg-brand-50 dark:bg-brand-950/60 px-2.5 py-0.5 rounded-lg border border-accent-line">
                 = {example.result}
               </span>
             </div>
 
             {example.explanation && (
-              <p className="text-ink-soft text-xs pt-1 leading-relaxed border-t border-line-soft mt-2">
-                💡 <span className="font-semibold">{example.explanation}</span>
+              <p className="flex items-start gap-1.5 text-ink-soft text-xs pt-1 leading-relaxed border-t border-line-soft mt-2">
+                <Lightbulb aria-hidden className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-accent" strokeWidth={1.75} /> <span className="font-semibold">{example.explanation}</span>
               </p>
             )}
           </div>

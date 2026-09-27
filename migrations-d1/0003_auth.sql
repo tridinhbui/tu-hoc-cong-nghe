@@ -1,7 +1,7 @@
 -- Lớp tài khoản và phiên, thay cho schema `auth` của Cloudflare.
 --
--- VÌ SAO PHẢI VIẾT MỚI. Cloudflare giữ tài khoản trong schema `auth`, thuộc về
--- nó chứ không thuộc về ứng dụng, nên `scripts/d1/export.mjs` không xuất được
+-- VÌ SAO PHẢI VIẾT MỚI. Hệ Postgres cũ giữ tài khoản trong schema `auth`, thuộc về
+-- nó chứ không thuộc về ứng dụng, nên công cụ xuất dữ liệu (đã gỡ) không xuất được
 -- và `migrations-d1/0001_schema.sql` không có bảng nào chứa mật khẩu. 88/88
 -- bảng dữ liệu đã sang D1, nhưng chỗ biết "người này là ai" thì chưa từng tồn
 -- tại ở phía Cloudflare. Đây là khoảng trống chặn mọi thứ còn lại: 32/53 hàm

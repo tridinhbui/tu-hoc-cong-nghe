@@ -1,4 +1,12 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+// Cho `next dev` dùng binding thật của wrangler.jsonc (D1, R2, Durable Object)
+// ở chế độ cục bộ. Không có dòng này thì mọi route đọc phiên đăng nhập ném
+// "getCloudflareContext has been called without initOpenNextCloudflareForDev",
+// nên cả phần ứng dụng sau cửa đăng nhập không chạy được trên máy dev. Chỉ có
+// tác dụng lúc dev; build và deploy không đổi.
+initOpenNextCloudflareForDev();
 
 const nextConfig: NextConfig = {
   // Don't advertise the framework to would-be attackers scanning for

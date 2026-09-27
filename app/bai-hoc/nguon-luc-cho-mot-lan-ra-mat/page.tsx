@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { createElement, useState } from "react";
+import { Check, Link2, Plug, TrendingDown, Wrench, X } from "lucide-react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -26,19 +27,19 @@ const META: LessonMeta = {
 
 
 /* i18n-ignore-start: sáu chuỗi dưới đây GIỐNG HỆT nhau ở cả hai ngôn ngữ -
-   emoji, và bốn tên nguồn lực cùng hai nhãn đã là tiếng Anh trong bản gốc.
+   bốn tên nguồn lực cùng hai nhãn đã là tiếng Anh trong bản gốc.
    Chúng nằm ngoài từ điển có chủ đích: một cặp giá trị trùng nhau ở đó không
    phân biệt được với một bản dịch bị bỏ quên, và dictionary-parity đã bắt đúng
    cả ba khi tôi thử đưa chúng vào. */
-/** Emoji và TÊN bốn nguồn lực. Không nằm trong từ điển vì chúng giống hệt nhau
- *  ở cả hai ngôn ngữ: emoji không dịch, còn "In-House Effort" / "Technical Debt"
+/** Icon và TÊN bốn nguồn lực. Không nằm trong từ điển vì chúng giống hệt nhau
+ *  ở cả hai ngôn ngữ: "In-House Effort" / "Technical Debt"
  *  vốn đã là tiếng Anh trong bản gốc tiếng Việt. Một cặp giá trị trùng nhau
  *  trong từ điển không phân biệt được với một bản dịch bị bỏ quên. */
-const SOURCE_ICONS = ["💵", "", "", "🔗"];
+const SOURCE_ICONS = [Wrench, TrendingDown, Plug, Link2];
 const SOURCE_TYPES = ["In-House Effort", "Technical Debt", "Third-Party Service", "Open Source + Hybrid"];
 
 /** Cùng lý do: hai nhãn này đã là tiếng Anh trong bản gốc. */
-const SIMULATOR_HEADING = "⚙️ Technical Debt Leverage Simulator";
+const SIMULATOR_HEADING = "Technical Debt Leverage Simulator";
 const MOIC_LABEL = "Return on in-house effort";
 /* i18n-ignore-end */
 
@@ -58,11 +59,11 @@ function FundingStructure({ c }: { c: LaunchEffortLessonCopy }) {
   const moic = exitEquity / equity;
 
   return (
-    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-5 border border-stone-200 my-6">
+    <div className="bg-gradient-to-br from-brand-50 to-brand-50 rounded-2xl p-5 border border-stone-200 my-6">
       <h3 className="font-bold text-stone-700 mb-4 text-sm">{SIMULATOR_HEADING}</h3>
       <div className="mb-4">
         <label className="text-xs font-semibold text-stone-600 block mb-1">{format(c.debtShareLabel, { debt: debtPct, equity: equityPct })}</label>
-        <input type="range" min={20} max={80} value={debtPct} onChange={e => setDebtPct(+e.target.value)} className="w-full accent-emerald-500" />
+        <input type="range" min={20} max={80} value={debtPct} onChange={e => setDebtPct(+e.target.value)} className="w-full accent-brand-500" />
       </div>
 
       <div className="bg-white rounded-xl p-4 mb-4">
@@ -138,14 +139,16 @@ export default function Page() {
           {c.sources.map((s, i) => (
             <div key={SOURCE_TYPES[i]} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xl">{SOURCE_ICONS[i]}</span>
+                <span className="rounded-lg bg-accent-soft p-1.5 text-accent">
+                  {createElement(SOURCE_ICONS[i], { "aria-hidden": true, className: "h-4 w-4", strokeWidth: 1.75 })}
+                </span>
                 <span className="font-bold text-stone-800">{SOURCE_TYPES[i]}</span>
               </div>
               <p className="text-stone-600 text-sm mb-2">{s.desc}</p>
               <div className="bg-white rounded-lg p-2 mb-2 text-xs text-stone-500 italic">{s.example}</div>
               <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="flex gap-1"><span className="text-stone-700"></span><span className="text-stone-600">{s.pro}</span></div>
-                <div className="flex gap-1"><span className="text-stone-700">✗</span><span className="text-stone-600">{s.con}</span></div>
+                <div className="flex gap-1"><Check aria-hidden className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-accent" strokeWidth={2} /><span className="text-stone-600">{s.pro}</span></div>
+                <div className="flex gap-1"><X aria-hidden className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-alert" strokeWidth={2} /><span className="text-stone-600">{s.con}</span></div>
               </div>
             </div>
           ))}

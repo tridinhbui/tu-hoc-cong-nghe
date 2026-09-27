@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { X, Sparkles, Trophy, Award, RefreshCw } from "lucide-react";
+import { X, Sparkles, Trophy, Award, RefreshCw, Coins, Zap, Wine, Contact, ScrollText, Watch, FlaskConical } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
@@ -20,14 +20,14 @@ interface FortuneWheelModalProps {
 // (xp/coins carry the actual reward), so it is safe to translate.
 function buildSectors(t: Dictionary) {
   return [
-    { label: t.fortuneWheel.sectorCoins50, emoji: "🪙", color: "#f59e0b", xp: 0, coins: 50 },
-    { label: t.fortuneWheel.sectorXp30Cfa, emoji: "⚡", color: "#10b981", xp: 30, coins: 0 },
-    { label: t.fortuneWheel.sectorChampagne, emoji: "🍷", color: "#8b5cf6", xp: 20, coins: 0 },
-    { label: t.fortuneWheel.sectorVn30Card, emoji: "📇", color: "#0284c7", xp: 15, coins: 25 },
-    { label: t.fortuneWheel.sectorCoins100Ma, emoji: "🪙", color: "#eab308", xp: 0, coins: 100 },
-    { label: t.fortuneWheel.sectorMaContract, emoji: "📜", color: "#ec4899", xp: 50, coins: 0 },
-    { label: t.fortuneWheel.sectorRolex, emoji: "⌚", color: "#6366f1", xp: 40, coins: 50 },
-    { label: t.fortuneWheel.sectorDoubleXpPotion, emoji: "🧪", color: "#14b8a6", xp: 60, coins: 0 },
+    { label: t.fortuneWheel.sectorCoins50, icon: Coins, color: "#f59e0b", xp: 0, coins: 50 },
+    { label: t.fortuneWheel.sectorXp30Cfa, icon: Zap, color: "#417acd", xp: 30, coins: 0 },
+    { label: t.fortuneWheel.sectorChampagne, icon: Wine, color: "#8b5cf6", xp: 20, coins: 0 },
+    { label: t.fortuneWheel.sectorVn30Card, icon: Contact, color: "#0284c7", xp: 15, coins: 25 },
+    { label: t.fortuneWheel.sectorCoins100Ma, icon: Coins, color: "#eab308", xp: 0, coins: 100 },
+    { label: t.fortuneWheel.sectorMaContract, icon: ScrollText, color: "#ec4899", xp: 50, coins: 0 },
+    { label: t.fortuneWheel.sectorRolex, icon: Watch, color: "#6366f1", xp: 40, coins: 50 },
+    { label: t.fortuneWheel.sectorDoubleXpPotion, icon: FlaskConical, color: "#2961b8", xp: 60, coins: 0 },
   ];
 }
 
@@ -57,7 +57,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
       const prize = SECTORS[randomIndex];
       setWonSector(prize);
 
-      toast.success(format(t.fortuneWheel.wonToast, { emoji: prize.emoji, label: prize.label }));
+      toast.success(format(t.fortuneWheel.wonToast, { label: prize.label }));
 
       // Update user DB
       if (userId) {
@@ -129,13 +129,13 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
             style={{
               background: `conic-gradient(
                 #f59e0b 0deg 45deg,
-                #10b981 45deg 90deg,
+                #417acd 45deg 90deg,
                 #8b5cf6 90deg 135deg,
                 #0284c7 135deg 180deg,
                 #eab308 180deg 225deg,
                 #ec4899 225deg 270deg,
                 #6366f1 270deg 315deg,
-                #14b8a6 315deg 360deg
+                #2961b8 315deg 360deg
               )`,
             }}
           >
@@ -151,7 +151,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
                   }}
                 >
                   <span className="flex items-center gap-1">
-                    <span>{sec.emoji}</span>
+                    <sec.icon className="w-3.5 h-3.5 shrink-0" strokeWidth={2} aria-hidden />
                     <span className="truncate max-w-[80px]">{sec.label}</span>
                   </span>
                 </div>
@@ -173,7 +173,7 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
             className="mb-4 bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/10 border border-amber-300 rounded-2xl p-3 text-stone-900 dark:text-white"
           >
             <p className="text-xs font-black">
-              {t.fortuneWheel.receivedPrefix} <span className="text-warn">{wonSector.emoji} {wonSector.label}</span>
+              {t.fortuneWheel.receivedPrefix} <span className="text-warn inline-flex items-center gap-1 align-middle"><wonSector.icon className="w-3.5 h-3.5" aria-hidden /> {wonSector.label}</span>
             </p>
           </motion.div>
         )}

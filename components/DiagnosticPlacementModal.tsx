@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { createElement, useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Compass, CheckCircle2, ArrowRight, X, BrainCircuit, Award } from "lucide-react";
+import { Compass, CheckCircle2, ArrowRight, X, BrainCircuit, Award, Sprout, Briefcase, GraduationCap, Bot, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -92,30 +92,30 @@ export default function DiagnosticPlacementModal({
 
   const recommendedTrack = getRecommendedTrack();
 
-  const trackNames: Record<string, { title: string; desc: string; url: string; emoji: string }> = {
+  const trackNames: Record<string, { title: string; desc: string; url: string; icon: LucideIcon }> = {
     personal: {
       title: t.diagnostic.trackPersonalTitle,
       desc: t.diagnostic.trackPersonalDesc,
       url: "/dashboard?track=personal",
-      emoji: "🌱",
+      icon: Sprout,
     },
     professional: {
       title: t.diagnostic.trackProfessionalTitle,
       desc: t.diagnostic.trackProfessionalDesc,
       url: "/dashboard?track=professional",
-      emoji: "💼",
+      icon: Briefcase,
     },
     cfa: {
       title: t.diagnostic.trackCfaTitle,
       desc: t.diagnostic.trackCfaDesc,
       url: "/cfa",
-      emoji: "🎓",
+      icon: GraduationCap,
     },
     ai: {
       title: t.diagnostic.trackAiTitle,
       desc: t.diagnostic.trackAiDesc,
       url: "/dashboard?track=professional",
-      emoji: "🤖",
+      icon: Bot,
     },
   };
 
@@ -151,7 +151,7 @@ export default function DiagnosticPlacementModal({
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b border-line-soft">
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-accent">
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-100 dark:bg-brand-950/80 text-accent">
                 <Compass className="w-4 h-4" />
               </span>
               <div>
@@ -199,7 +199,7 @@ export default function DiagnosticPlacementModal({
                           key={idx}
                           type="button"
                           onClick={() => handleSelectOption(opt.scoreTrack)}
-                          className="w-full text-left p-3.5 rounded-2xl border border-line bg-stone-50 dark:bg-stone-950/60 hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 text-xs sm:text-sm font-semibold text-ink-heading transition-all cursor-pointer flex items-center justify-between"
+                          className="w-full text-left p-3.5 rounded-2xl border border-line bg-stone-50 dark:bg-stone-950/60 hover:border-brand-500 hover:bg-brand-50/50 dark:hover:bg-brand-950/30 text-xs sm:text-sm font-semibold text-ink-heading transition-all cursor-pointer flex items-center justify-between"
                         >
                           <span>{opt.text}</span>
                           <ArrowRight className="w-4 h-4 text-stone-400 shrink-0" />
@@ -212,9 +212,9 @@ export default function DiagnosticPlacementModal({
             ) : (
               /* Result Step */
               <div className="text-center py-4 space-y-4">
-                <div className="text-5xl">{rec.emoji}</div>
+                <div className="mx-auto w-fit rounded-2xl bg-accent-soft text-accent p-3">{createElement(rec.icon, { className: "w-10 h-10", strokeWidth: 1.5, "aria-hidden": true })}</div>
                 <div>
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-accent-ink text-[10px] font-black uppercase tracking-wider border border-accent-line-mid">
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-950 text-accent-ink text-[10px] font-black uppercase tracking-wider border border-accent-line-mid">
                     {t.diagnostic.resultBadge}
                   </span>
                   <h3 className="text-lg font-black text-ink mt-2">
@@ -228,7 +228,7 @@ export default function DiagnosticPlacementModal({
                 <button
                   type="button"
                   onClick={handleComplete}
-                  className="w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-2xl bg-brand-600 hover:bg-brand-500 text-white font-black text-sm transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
                 >
                   {t.diagnostic.startLearningNow} <ArrowRight className="w-4 h-4" />
                 </button>

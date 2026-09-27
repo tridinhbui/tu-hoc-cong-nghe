@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, CheckCircle2, Shield, Trophy, X, XCircle } from "lucide-react";
+import { Brain, CheckCircle2, Shield, Swords, Trophy, X, XCircle } from "lucide-react";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
@@ -204,7 +204,7 @@ export default function PvpDuelModal({
           : "rounded-[28px] p-6 sm:p-7 max-w-4xl w-full"
       }`}
     >
-      <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-sky-400 via-emerald-400 to-amber-300" />
+      <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-sky-400 via-brand-400 to-amber-300" />
       {!embedded && (
         <button
           onClick={onClose}
@@ -245,7 +245,7 @@ export default function PvpDuelModal({
               </div>
             </div>
 
-            <div className={`grid ${embedded ? "grid-cols-1 sm:grid-cols-[auto_1fr]" : "md:grid-cols-[auto_1fr]"} gap-4 items-center bg-gradient-to-br from-sky-50 to-emerald-50 border border-sky-100 ${embedded ? "p-4" : "p-5 sm:p-6"} rounded-2xl`}>
+            <div className={`grid ${embedded ? "grid-cols-1 sm:grid-cols-[auto_1fr]" : "md:grid-cols-[auto_1fr]"} gap-4 items-center bg-gradient-to-br from-sky-50 to-brand-50 border border-sky-100 ${embedded ? "p-4" : "p-5 sm:p-6"} rounded-2xl`}>
               <div className={embedded ? "justify-self-center sm:justify-self-start" : ""}>
                 <TechCharacterAvatar level={userLevel} equipments={equipments} size={embedded ? "sm" : "md"} />
               </div>
@@ -298,15 +298,15 @@ export default function PvpDuelModal({
                 </div>
 
                 <div className="flex flex-col items-center text-center">
-                  <span className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-emerald-500 text-white font-black text-xs flex items-center justify-center shadow-md">
+                  <span className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-brand-500 text-white font-black text-xs flex items-center justify-center shadow-md">
                     {t.pvpDuel.vs}
                   </span>
                   <span className="text-[10px] font-bold text-amber-400 mt-1">{format(t.pvpDuel.questionCounter, { progress: progressLabel })}</span>
                 </div>
 
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-3xl shadow-lg">
-                    🐂
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
+                    <Swords className="w-7 h-7" strokeWidth={1.75} aria-hidden />
                   </div>
                   <span className="text-[10px] sm:text-[11px] font-extrabold text-amber-400 mt-0.5 leading-tight">{t.pvpDuel.bullNickname}</span>
                 </div>
@@ -319,7 +319,7 @@ export default function PvpDuelModal({
                 </div>
                 <div className="h-2.5 rounded-full bg-stone-800 border border-stone-700 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-emerald-400 via-sky-400 to-amber-400 transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-brand-400 via-sky-400 to-amber-400 transition-all duration-500"
                     style={{ width: `${bossHp}%` }}
                   />
                 </div>
@@ -342,7 +342,7 @@ export default function PvpDuelModal({
                 let cls = "bg-white border-stone-200 hover:border-sky-300 hover:bg-sky-50";
 
                 if (selectedOpt !== null) {
-                  if (isCorrect) cls = "bg-emerald-50 border-emerald-300 text-emerald-800";
+                  if (isCorrect) cls = "bg-brand-50 border-brand-300 text-brand-800";
                   else if (isSelected) cls = "bg-rose-50 border-rose-300 text-rose-800";
                   else cls = "bg-stone-50 border-stone-100 text-stone-400";
                 }
@@ -371,14 +371,14 @@ export default function PvpDuelModal({
         ) : (
           <motion.div key="result" className={`text-center ${embedded ? "py-5 space-y-4" : "py-8 space-y-5"}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <Trophy className={`w-16 h-16 mx-auto ${resultWon ? "text-amber-400" : "text-stone-300"}`} />
-            <h3 className={`text-2xl font-black ${resultWon ? "text-emerald-600" : "text-sky-700"}`}>
+            <h3 className={`text-2xl font-black ${resultWon ? "text-brand-600" : "text-sky-700"}`}>
               {resultWon ? t.pvpDuel.resultWonTitle : t.pvpDuel.resultLostTitle}
             </h3>
             <p className={`${embedded ? "text-sm" : "text-base"} text-stone-500`}>
               {t.pvpDuel.resultScorePart1}<strong className="text-stone-900">{score}/{totalQuestions}</strong>{t.pvpDuel.resultScorePart2}
             </p>
             {resultReward && (
-              <p className="text-sm font-bold text-emerald-600">
+              <p className="text-sm font-bold text-brand-600">
                 {format(t.pvpDuel.rewardBase, { xp: resultReward.xp })}
                 {resultReward.coins > 0 ? format(t.pvpDuel.rewardCoinsSuffix, { coins: resultReward.coins }) : ""}
               </p>

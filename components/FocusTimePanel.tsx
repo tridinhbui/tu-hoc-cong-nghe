@@ -138,7 +138,7 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
           {stats.days.map((d) => (
             <div key={d.key} className="flex flex-1 flex-col items-center gap-1">
               <div
-                className="w-full rounded-t-md bg-emerald-500/80 transition-all"
+                className="w-full rounded-t-md bg-brand-500/80 transition-all"
                 style={{ height: `${Math.max(2, (d.minutes / peak) * 100)}%` }}
                 title={format(t.focusTime.barTooltip, { day: d.key, minutes: d.minutes })}
               />
@@ -160,7 +160,7 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
               </span>
               <div className="h-2 flex-1 overflow-hidden rounded-full bg-surface-raised">
                 <div
-                  className="h-full rounded-full bg-emerald-500"
+                  className="h-full rounded-full bg-brand-500"
                   style={{ width: `${Math.round((w.minutes / Math.max(1, stats.totalMinutes)) * 100)}%` }}
                 />
               </div>

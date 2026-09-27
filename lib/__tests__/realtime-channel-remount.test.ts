@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-/** Fake that mirrors the two cloudflare-js behaviours that combined to take down
+/** Fake that mirrors the two SDK client cũ behaviours that combined to take down
  *  every page mounting NotificationBell (AppNavbar):
  *    - RealtimeClient.channel(topic) returns the *existing* channel for a topic
  *    - RealtimeChannel.on("postgres_changes") throws once the channel is joined

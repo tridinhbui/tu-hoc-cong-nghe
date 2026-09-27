@@ -241,7 +241,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t.notes.searchPlaceholder}
-            className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
           {search && (
             <button
@@ -304,7 +304,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                               <textarea
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
-                                className="w-full px-3.5 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-ink text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                                className="w-full px-3.5 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-ink text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500"
                                 rows={3}
                                 autoFocus
                               />
@@ -320,7 +320,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                                 <button
                                   onClick={() => void saveEdit(note.id)}
                                   disabled={saving || !editContent.trim()}
-                                  className="px-3.5 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors shadow-xs disabled:opacity-50 inline-flex items-center gap-1.5"
+                                  className="px-3.5 py-1.5 text-xs font-bold bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition-colors shadow-xs disabled:opacity-50 inline-flex items-center gap-1.5"
                                 >
                                   {saving && <Loader2 className="w-3 h-3 animate-spin" />}
                                   {saving ? t.notes.saving : t.notes.saveChanges}

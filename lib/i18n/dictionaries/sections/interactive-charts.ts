@@ -5,7 +5,7 @@
 export const interactiveChartsVi = {
 
   chartDemo: {
-    title: "📊 Tải nhân bội tách khỏi tải tuyến tính từ lúc nào",
+    title: "Tải nhân bội tách khỏi tải tuyến tính từ lúc nào",
     subtitle: "100 đơn vị tải ban đầu. Kéo mức tăng mỗi tháng và số tháng để xem hai đường rời nhau.",
     chartAriaLabel: "Sau {years} tháng ở mức tăng {rate}%, tăng nhân bội cho {compound} đơn vị, tăng tuyến tính cho {simple} đơn vị",
     compoundLegend: "Tăng nhân bội",
@@ -52,7 +52,7 @@ export const interactiveChartsVi = {
 export const interactiveChartsEn: typeof interactiveChartsVi = {
 
   chartDemo: {
-    title: "📊 When multiplicative load pulls away from linear load",
+    title: "When multiplicative load pulls away from linear load",
     subtitle: "100 units of load to start. Drag the monthly growth and the number of months to watch the two curves separate.",
     chartAriaLabel: "After {years} months at {rate}% growth, multiplicative reaches {compound} units and linear reaches {simple} units",
     compoundLegend: "Multiplicative growth",

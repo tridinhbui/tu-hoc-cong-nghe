@@ -164,7 +164,7 @@ export default function CharacterCustomizerModal({
             {/* LEFT PANEL: AVATAR LIVE PREVIEW */}
             <div className="md:col-span-5 bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950 p-6 flex flex-col items-center justify-between border-b md:border-b-0 md:border-r border-stone-800 relative">
               <div className="text-center w-full">
-                <span className="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1 rounded-full">
+                <span className="text-[10px] uppercase font-bold text-brand-400 bg-brand-950/60 border border-brand-800 px-3 py-1 rounded-full">
                   {t.characterCustomizer.livePreviewBadge}
                 </span>
               </div>
@@ -237,7 +237,7 @@ export default function CharacterCustomizerModal({
                               : "bg-stone-800 border-stone-800 text-stone-400 hover:border-stone-700"
                           }`}
                         >
-                          <span className="text-lg">👨</span> {t.characterCustomizer.genderMale}
+                          {t.characterCustomizer.genderMale}
                         </button>
                         <button
                           onClick={() => updateConfig("gender", "female")}
@@ -247,7 +247,7 @@ export default function CharacterCustomizerModal({
                               : "bg-stone-800 border-stone-800 text-stone-400 hover:border-stone-700"
                           }`}
                         >
-                          <span className="text-lg">👩</span> {t.characterCustomizer.genderFemale}
+                          {t.characterCustomizer.genderFemale}
                         </button>
                       </div>
                     </div>

@@ -52,7 +52,7 @@ export default function UnlockRequestsPanel({ requests }: { requests: UnlockRequ
               <button
                 onClick={() => handle(req.id, true)}
                 disabled={processingId === req.id}
-                className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-950/50 text-accent-strong hover:bg-emerald-200 dark:hover:bg-emerald-900 disabled:opacity-50"
+                className="p-2 rounded-lg bg-brand-100 dark:bg-brand-950/50 text-accent-strong hover:bg-brand-200 dark:hover:bg-brand-900 disabled:opacity-50"
                 title={tu.approve}
               >
                 <Check className="w-4 h-4" />

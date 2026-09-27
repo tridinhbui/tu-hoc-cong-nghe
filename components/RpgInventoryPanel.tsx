@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
@@ -79,7 +80,7 @@ const DEFAULT_ITEMS_SHAPE: Omit<InventoryItem, "name" | "description">[] = [
     slot: "potion",
     emoji: "🧪",
     rarity: "Hiếm",
-    rarityColor: "from-emerald-400 to-teal-600",
+    rarityColor: "from-brand-400 to-brand-600",
     stats: { speed: 50 },
     isEquipped: false,
   },
@@ -196,7 +197,7 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
             {t.rpgInventory.description}
           </p>
         </div>
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700">
+        <div className="rounded-2xl border border-brand-200 bg-brand-50 px-3.5 py-2 text-sm font-bold text-brand-700">
           {format(t.rpgInventory.equippedCount, { count: equippedItems.length })}
         </div>
       </div>
@@ -230,7 +231,7 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
               </div>
               <div className="flex items-center justify-between rounded-xl border border-stone-200 bg-stone-50 p-2">
                 <span className="text-stone-500">{t.rpgInventory.statValuation}</span>
-                <span className="text-emerald-600">{totalStats.valuation}</span>
+                <span className="text-brand-600">{totalStats.valuation}</span>
               </div>
               <div className="flex items-center justify-between rounded-xl border border-stone-200 bg-stone-50 p-2">
                 <span className="text-stone-500">{t.rpgInventory.statDefense}</span>
@@ -279,12 +280,12 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
                     isSelected
                       ? "border-amber-500 bg-amber-50 ring-2 ring-amber-400/40"
                       : item.isEquipped
-                        ? "border-emerald-400 bg-emerald-50/60"
+                        ? "border-brand-400 bg-brand-50/60"
                         : "border-stone-200 bg-white"
                   }`}
                 >
-                  {item.isEquipped && <span className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-emerald-500 ring-2 ring-white" />}
-                  <span className="mt-1 text-2xl">{item.emoji}</span>
+                  {item.isEquipped && <span className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-brand-500 ring-2 ring-white" />}
+                  <Glyph emoji={item.emoji} className="mt-1 w-7 h-7 text-accent" strokeWidth={1.5} />
                   <span className="w-full truncate text-center text-[9px] font-black text-stone-700">{item.name.split(" ")[0]}</span>
                 </motion.button>
               );
@@ -304,7 +305,9 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
             <div className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
               <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex min-w-0 items-center gap-3">
-                  <span className="rounded-2xl border border-amber-200 bg-amber-50 p-2 text-3xl">{selectedItem.emoji}</span>
+                  <span className="rounded-2xl border border-amber-200 bg-amber-50 p-2 text-amber-600">
+                    <Glyph emoji={selectedItem.emoji} className="w-8 h-8" strokeWidth={1.5} />
+                  </span>
                   <div className="min-w-0">
                     <h4 className="break-words text-sm font-black leading-none text-stone-900">{selectedItem.name}</h4>
                     <span className={`mt-1 inline-block rounded-full bg-gradient-to-r px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white ${selectedItem.rarityColor}`}>
@@ -317,7 +320,7 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
                   onClick={() => handleToggleEquip(selectedItem)}
                   className={`w-full rounded-xl px-4 py-2 text-xs font-black transition-all sm:w-auto ${
                     selectedItem.slot === "potion"
-                      ? "bg-emerald-500 text-white hover:bg-emerald-600"
+                      ? "bg-brand-500 text-white hover:bg-brand-600"
                       : selectedItem.isEquipped
                         ? "bg-stone-200 text-stone-600 hover:bg-stone-300"
                         : "bg-amber-500 text-white hover:bg-amber-600"
@@ -332,7 +335,7 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
               </div>
 
               <p className="text-xs leading-6 text-stone-500">{selectedItem.description}</p>
-              <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-700">
+              <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-2.5 py-1 text-[10px] font-bold text-brand-700">
                 <CheckCircle2 className="h-3.5 w-3.5" />
                 {t.rpgInventory.detailsHint}
               </div>

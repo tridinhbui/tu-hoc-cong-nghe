@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { Flame, BookOpen, Target, Sparkles } from "lucide-react";
+import { Flame, BookOpen, Target, Sparkles, Trophy, HeartCrack, GraduationCap, Crown, Hourglass, ShieldCheck } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, getCfaGateRemaining, LEVELS } from "@/lib/levels";
 import { createClient } from "@/lib/cloudflare";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
@@ -242,17 +243,17 @@ export default function UserStats({
       }`}
     >
       {/* Subtle background glow bubbles for gamified accent */}
-      {!embedded && <div className="absolute -top-6 -right-6 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none transition-transform duration-500 group-hover:scale-125" />}
+      {!embedded && <div className="absolute -top-6 -right-6 w-24 h-24 bg-brand-500/5 dark:bg-brand-500/10 rounded-full blur-2xl pointer-events-none transition-transform duration-500 group-hover:scale-125" />}
       {!embedded && <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-amber-500/5 dark:bg-amber-500/10 rounded-full blur-2xl pointer-events-none transition-transform duration-500 group-hover:scale-125" />}
       {/* Top accent bar - subtle gradient tied to level progress */}
-      {!embedded && <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 opacity-70" />}
+      {!embedded && <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-400 via-brand-400 to-brand-500 opacity-70" />}
 
       <div className={`flex items-center gap-2.5 relative z-10 ${sidebar ? "mb-2" : "mb-4"}`}>
         <motion.div
           whileHover={{ scale: 1.12, rotate: [0, -6, 6, 0] }}
           whileTap={{ scale: 0.9 }}
           onClick={() => {
-            toast.success(`✨ ${format(t.userStats.activateWarrior, { level: currentLevel.level })}`);
+            toast.success(`${format(t.userStats.activateWarrior, { level: currentLevel.level })}`);
           }}
           className="relative shrink-0 cursor-pointer group/avatar"
           title={t.userStats.clickToActivate}
@@ -269,13 +270,13 @@ export default function UserStats({
             {t.levelTitles[currentLevel.level] ?? currentLevel.name}
           </h3>
           {activeTitle && (
-            <span className="text-[9px] font-black text-amber-500 dark:text-amber-400 mt-1 block leading-none truncate">
-              🏆 {activeTitle}
+            <span className="text-[9px] font-black text-amber-500 dark:text-amber-400 mt-1 flex items-center gap-1 leading-none truncate">
+              <Trophy className="w-2.5 h-2.5 shrink-0" aria-hidden /> {activeTitle}
             </span>
           )}
         </div>
         <div className="text-right shrink-0">
-          <span className={`inline-flex items-center gap-1 font-black text-white bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-500 dark:to-teal-600 rounded-full shadow-sm shadow-emerald-500/25 ${
+          <span className={`inline-flex items-center gap-1 font-black text-white bg-gradient-to-r from-brand-500 to-brand-500 dark:from-brand-500 dark:to-brand-600 rounded-full shadow-sm shadow-brand-500/25 ${
             sidebar ? "text-[10px] px-2.5 py-0.5" : "text-[11px] px-3 py-1.5"
           }`}>
             <Sparkles className={sidebar ? "w-2.5 h-2.5" : "w-3 h-3"} />
@@ -301,19 +302,19 @@ export default function UserStats({
                     title={format(t.userStats.levelTooltip, { level: lvl.level, name: t.levelTitles[lvl.level] ?? lvl.name, xp: lvl.minXp })}
                     className={`flex flex-col items-center gap-1 rounded-xl px-2.5 py-2 border transition-all ${
                       isCurrent
-                        ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 shadow-sm scale-105"
+                        ? "border-brand-500 bg-brand-50 dark:bg-brand-950/40 shadow-sm scale-105"
                         : reached
-                        ? "border-accent-line bg-emerald-50/40 dark:bg-emerald-950/10"
+                        ? "border-accent-line bg-brand-50/40 dark:bg-brand-950/10"
                         : "border-line bg-stone-50/60 dark:bg-stone-900/30 opacity-60"
                     }`}
                   >
-                    <span className="text-base leading-none">{LEVEL_EMOJIS[lvl.level] || "🌱"}</span>
+                    <Glyph emoji={LEVEL_EMOJIS[lvl.level] || "🌱"} className={`w-4 h-4 ${reached ? "text-accent" : "text-ink-muted"}`} />
                     <span className={`text-[8px] font-black uppercase tracking-wide ${isCurrent ? "text-accent-strong" : "text-ink-muted"}`}>
                       L{lvl.level}
                     </span>
                   </div>
                   {idx < LEVELS.length - 1 && (
-                    <div className={`w-4 h-0.5 rounded-full shrink-0 ${reached ? "bg-emerald-400 dark:bg-emerald-600" : "bg-surface-sunken"}`} />
+                    <div className={`w-4 h-0.5 rounded-full shrink-0 ${reached ? "bg-brand-400 dark:bg-brand-600" : "bg-surface-sunken"}`} />
                   )}
                 </div>
               );
@@ -339,10 +340,10 @@ export default function UserStats({
         <div className={`grid grid-cols-1 gap-2 rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white/90 dark:bg-stone-900/85 ${
           sidebar ? "p-1.5" : "p-3"
         }`}>
-          <div className="min-w-0 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/15 border border-emerald-100/70 dark:border-emerald-900/30 px-2.5 py-1.5">
+          <div className="min-w-0 rounded-xl bg-brand-50/50 dark:bg-brand-950/15 border border-brand-100/70 dark:border-brand-900/30 px-2.5 py-1.5">
             <span className="text-[8px] sm:text-[9px] font-black text-ink-muted uppercase tracking-wider block">{t.userStats.quizAvg}</span>
             <div className="flex items-center gap-1 mt-1">
-              <Target className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 shrink-0" />
+              <Target className="w-3.5 h-3.5 text-brand-500 dark:text-brand-400 shrink-0" />
               <span className={`font-black text-accent ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}%</span>
             </div>
           </div>
@@ -354,7 +355,7 @@ export default function UserStats({
           XP instead of losing it for good. */}
       {restoreOffer.canRestore && (
         <div className="mt-2.5 p-3 bg-orange-50/60 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-900 rounded-xl flex items-center gap-3 relative z-10">
-          <span className="text-xl shrink-0">💔</span>
+          <HeartCrack className="w-5 h-5 shrink-0 text-orange-600 dark:text-orange-400" strokeWidth={1.75} aria-hidden />
           <div className="flex-1 min-w-0">
             <p className="text-xs font-extrabold text-ink">
               {format(t.userStats.lostStreak, { days: restoreOffer.lostStreak })}
@@ -400,7 +401,7 @@ export default function UserStats({
           <div className="flex items-center justify-between text-[10px] mb-1 font-bold text-ink-muted">
             <span>{format(t.userStats.progressLabel, { level: currentLevel.level })} <span className="text-accent">({Math.round(progress)}%)</span></span>
             <span className="inline-flex items-center gap-1 text-ink-soft">
-              {format(t.userStats.nextLevelLabel, { level: nextLevel.level, name: t.levelTitles[nextLevel.level] ?? nextLevel.name })} <span>{LEVEL_EMOJIS[nextLevel.level] || "🌱"}</span>
+              {format(t.userStats.nextLevelLabel, { level: nextLevel.level, name: t.levelTitles[nextLevel.level] ?? nextLevel.name })} <Glyph emoji={LEVEL_EMOJIS[nextLevel.level] || "🌱"} className="w-3 h-3 text-accent" />
               {/* Số XP còn thiếu đứng CẠNH tên cấp sắp tới, không còn là một ô
                   riêng ghi "+54 XP" không nói đi đâu. Ô đó, dòng "Tiến độ cấp
                   2 (23%)" và tên cấp kế tiếp là ba cách nói cùng một câu, xếp
@@ -414,7 +415,7 @@ export default function UserStats({
           </div>
           <div className="w-full h-2 bg-stone-100 dark:bg-stone-800/70 rounded-full overflow-hidden relative shadow-inner">
             <div
-              className="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 rounded-full transition-all duration-500 relative shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+              className="h-full bg-gradient-to-r from-brand-500 via-brand-500 to-brand-400 rounded-full transition-all duration-500 relative shadow-[0_0_8px_rgba(65, 122, 205,0.5)]"
               style={{ width: `${progress}%` }}
             >
               <div className="absolute inset-0 bg-white/20 animate-[pulse_1.5s_infinite]" />
@@ -424,7 +425,7 @@ export default function UserStats({
           {!sidebar && (
             <div className="mt-3.5 p-3 bg-stone-50/80 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/60 rounded-xl space-y-2">
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-ink-soft">
-                <span className="text-sm shrink-0">🎯</span>
+                <Target className="w-3.5 h-3.5 shrink-0 text-accent" aria-hidden />
                 <span>
                   {t.userStats.lessonsToLevelUpPart1}{" "}
                   <span className="font-extrabold text-ink">
@@ -434,14 +435,14 @@ export default function UserStats({
                 </span>
               </div>
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-ink-soft">
-                <span className="text-sm shrink-0">🏆</span>
+                <Trophy className="w-3.5 h-3.5 shrink-0 text-amber-500" aria-hidden />
                 <span>
                   {t.userStats.upcomingTitlePart1} <span className="font-extrabold text-warn">{t.levelTitles[nextLevel.level] ?? nextLevel.name}</span>
                 </span>
               </div>
               {cfaGateRemaining > 0 && (
                 <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-warn-strong">
-                  <span className="text-sm shrink-0">🎓</span>
+                  <GraduationCap className="w-3.5 h-3.5 shrink-0" aria-hidden />
                   <span>
                     {format(t.userStats.cfaGateRemainingPart1, { level: nextLevel.level })} <span className="font-extrabold">{format(t.userStats.cfaGateRemainingCount, { count: cfaGateRemaining })}</span> {t.userStats.cfaGateRemainingPart2}
                   </span>
@@ -455,7 +456,7 @@ export default function UserStats({
       {!nextLevel && (
         <div className="mt-2.5 pt-2.5 border-t border-stone-100 dark:border-stone-800/80 relative z-10">
           <div className="p-3 bg-amber-50/40 dark:bg-amber-950/10 border border-amber-200/50 dark:border-amber-900/30 rounded-xl flex items-center gap-2 text-xs text-warn-strong font-bold">
-            <span>👑 {format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
+            <Crown className="w-4 h-4 shrink-0" aria-hidden /><span>{format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
           </div>
         </div>
       )}
@@ -470,7 +471,7 @@ export default function UserStats({
             className={`w-full flex items-center justify-between gap-2 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-black text-xs transition-all shadow-md cursor-pointer ${compact ? "p-2" : "p-3"}`}
           >
             <div className="text-left">
-              <p className="leading-tight font-extrabold text-[11px]">⏳ {format(t.userStats.recertTitle, { level: recert.level, days: RECERTIFICATION_DAYS })}</p>
+              <p className="leading-tight font-extrabold text-[11px] flex items-center gap-1"><Hourglass className="w-3 h-3 shrink-0" aria-hidden /> {format(t.userStats.recertTitle, { level: recert.level, days: RECERTIFICATION_DAYS })}</p>
               <p className="text-[10px] text-rose-100 font-bold">{format(t.userStats.recertHint, { xp: recert.xp })}</p>
             </div>
             <span className="rounded-xl bg-white/15 px-2 py-0.5 text-[10px] shrink-0">{t.userStats.recertCta}</span>
@@ -486,21 +487,21 @@ export default function UserStats({
               setSelectedExamLevel(nextLevel.level);
               setShowExamModal(true);
             }}
-            className={`w-full flex items-center justify-between rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-xs transition-all shadow-md hover:scale-[1.01] cursor-pointer ${compact ? "p-2" : "p-3"}`}
+            className={`w-full flex items-center justify-between rounded-2xl bg-gradient-to-r from-brand-500 via-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-400 text-stone-950 font-black text-xs transition-all shadow-md hover:scale-[1.01] cursor-pointer ${compact ? "p-2" : "p-3"}`}
           >
             <div className="flex items-center gap-2 text-left">
-              <span className={compact ? "text-base" : "text-lg"}>🛡️</span>
+              <ShieldCheck className={`${compact ? "w-4 h-4" : "w-5 h-5"} text-white shrink-0`} strokeWidth={1.75} aria-hidden />
               <div>
                 <p className="leading-tight text-white drop-shadow-sm font-extrabold text-[11px]">{format(t.userStats.examBannerTitle, { level: nextLevel.level })}</p>
                 {/* Dòng điều kiện điểm chỉ có ở bản đầy đủ. Ở bản gọn nó đẩy
                     banner cao gấp đôi để nói một thứ modal thi cũng nói lại
                     ngay khi mở. */}
                 {!compact && (
-                  <p className="text-[10px] text-emerald-100 font-bold">{format(t.userStats.examBannerHint, { percent: LEVEL_EXAMS[nextLevel.level]?.minPassPercentage || 80 })}</p>
+                  <p className="text-[10px] text-brand-100 font-bold">{format(t.userStats.examBannerHint, { percent: LEVEL_EXAMS[nextLevel.level]?.minPassPercentage || 80 })}</p>
                 )}
               </div>
             </div>
-            <span className={`rounded-xl bg-stone-950 text-emerald-400 text-[10px] font-black tracking-wide shrink-0 ${compact ? "px-2 py-0.5" : "px-3 py-1"}`}>
+            <span className={`rounded-xl bg-stone-950 text-brand-400 text-[10px] font-black tracking-wide shrink-0 ${compact ? "px-2 py-0.5" : "px-3 py-1"}`}>
               {t.userStats.examBannerCta}
             </span>
           </button>

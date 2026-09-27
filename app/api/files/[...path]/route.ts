@@ -2,7 +2,7 @@ import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 /**
  * Phục vụ công khai cho tệp lưu trong R2. Thay domain công khai tự động mà
- * Cloudflare Storage cấp cho mỗi bucket - R2 không có domain ấy trừ khi gắn
+ * storage của hệ cũ cấp cho mỗi bucket - R2 không có domain ấy trừ khi gắn
  * riêng, xem lib/r2/storage.ts.
  *
  * KHÔNG XÁC THỰC Ở ĐÂY, có chủ ý: cả ba bucket gốc (documents, avatars,

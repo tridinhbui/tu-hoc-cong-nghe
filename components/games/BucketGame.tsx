@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect, useRef } from "react";
-import { RotateCcw, Timer } from "lucide-react";
+import { RotateCcw, Timer, Snowflake, Zap, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { getBucketConfig, getDifficultyTimeLimitSeconds, recordGameSession, type GameType, type GameDifficulty } from "@/lib/games";
@@ -193,7 +193,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
   return (
     <div className="bg-white border border-stone-200 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm relative overflow-hidden">
       {/* Decorative subtle background glows */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <style>{`
@@ -222,7 +222,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
             )}
           </p>
           <div className="w-36 sm:w-44 lg:w-60 h-2 bg-stone-100 rounded-full overflow-hidden mt-1.5 shadow-inner">
-            <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300" style={{ width: `${total > 0 ? (placedCount / total) * 100 : 0}%` }} />
+            <div className="h-full bg-gradient-to-r from-brand-500 to-brand-500 transition-all duration-300" style={{ width: `${total > 0 ? (placedCount / total) * 100 : 0}%` }} />
           </div>
         </div>
         
@@ -241,7 +241,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
               }`}
               title={bg.freezeTitle}
             >
-              ❄️
+              <Snowflake className="w-4 h-4" strokeWidth={1.75} aria-hidden />
             </button>
           )}
 
@@ -257,7 +257,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
               }`}
               title={bg.helperTitle}
             >
-              ⚡
+              <Zap className="w-4 h-4" strokeWidth={1.75} aria-hidden />
             </button>
           )}
 
@@ -283,7 +283,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                           ? "text-rose-500"
                           : timeLeft <= 10
                             ? "text-amber-500"
-                            : "text-emerald-500"
+                            : "text-brand-500"
                     }
                     strokeWidth="3.5"
                     strokeDasharray="100"
@@ -298,7 +298,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                   />
                 </svg>
                 <span className="absolute text-[9px] font-black text-stone-700">
-                  {freezeActive ? "❄️" : `${timeLeft}s`}
+                  {freezeActive ? <Snowflake className="w-3 h-3 text-sky-500" strokeWidth={2} aria-hidden /> : `${timeLeft}s`}
                 </span>
               </div>
             </div>
@@ -316,7 +316,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
 
       {finished ? (
         <div className="text-center py-10 relative z-10 flex flex-col items-center">
-          <span className="text-4xl mb-3 animate-bounce">🏆</span>
+          <span className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 ring-1 ring-amber-200"><Trophy className="h-8 w-8" strokeWidth={1.5} aria-hidden /></span>
           <p className="text-lg font-extrabold text-stone-900">{bg.finishedRound}</p>
           <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-xs">
             {bg.finishedDesc}
@@ -342,8 +342,8 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                       isWrong
                         ? "bg-shake border-red-500 bg-red-50/50 text-red-700 shadow-[0_0_12px_rgba(239,68,68,0.2)]"
                         : isSelected
-                        ? "border-emerald-500 bg-emerald-50/50 text-emerald-700 shadow-[0_0_12px_rgba(16,185,129,0.2)] scale-[1.04]"
-                        : "border-stone-200 bg-white text-stone-800 hover:border-emerald-300 hover:shadow"
+                        ? "border-brand-500 bg-brand-50/50 text-brand-700 shadow-[0_0_12px_rgba(65, 122, 205,0.2)] scale-[1.04]"
+                        : "border-stone-200 bg-white text-stone-800 hover:border-brand-300 hover:shadow"
                     }`}
                   >
                     {item.term}
@@ -367,9 +367,9 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                   onClick={() => selectedId !== null && attemptPlace(selectedId, bucket.id)}
                   className={`min-h-[140px] rounded-2xl border-2 p-4 transition-all duration-300 ${
                     isDragOver
-                      ? "border-dashed border-emerald-500 bg-emerald-50/50 shadow-[0_0_15px_rgba(16,185,129,0.1)] scale-[1.02]"
+                      ? "border-dashed border-brand-500 bg-brand-50/50 shadow-[0_0_15px_rgba(65, 122, 205,0.1)] scale-[1.02]"
                       : selectedId !== null 
-                      ? "cursor-pointer border-dashed border-stone-300 bg-stone-50/60 hover:border-emerald-400"
+                      ? "cursor-pointer border-dashed border-stone-300 bg-stone-50/60 hover:border-brand-400"
                       : "border-stone-200 bg-stone-50/40 hover:bg-stone-50/80"
                   }`}
                 >
@@ -378,14 +378,14 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                       {bucket.label}
                     </p>
                     {selectedId !== null && (
-                      <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 animate-pulse">
+                      <span className="text-[10px] font-black text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full border border-brand-200 animate-pulse">
                         {bg.tapToDrop}
                       </span>
                     )}
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {bucketItems.map((item) => (
-                      <span key={item.id} className="rounded-lg border border-emerald-200 bg-emerald-50/60 text-emerald-700 px-3 py-1.5 text-xs font-extrabold shadow-sm transition-transform duration-250 hover:scale-105">
+                      <span key={item.id} className="rounded-lg border border-brand-200 bg-brand-50/60 text-brand-700 px-3 py-1.5 text-xs font-extrabold shadow-sm transition-transform duration-250 hover:scale-105">
                         {item.term}
                       </span>
                     ))}
@@ -397,7 +397,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                         e.stopPropagation();
                         attemptPlace(selectedId, bucket.id);
                       }}
-                      className="mt-3 w-full py-2 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-extrabold shadow-sm active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                      className="mt-3 w-full py-2 px-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-xs font-extrabold shadow-sm active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-1.5"
                     >
                       <span>{bg.dropHere}</span>
                     </button>

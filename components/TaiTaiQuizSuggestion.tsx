@@ -96,7 +96,7 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
   }
 
   return (
-    <section className="rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/40 dark:bg-emerald-950/20 p-4 sm:p-5 shadow-sm">
+    <section className="rounded-2xl border border-brand-200 dark:border-brand-900/50 bg-brand-50/40 dark:bg-brand-950/20 p-4 sm:p-5 shadow-sm">
       <div className="flex items-start gap-3">
         <TaiTaiAvatar size={44} />
         <div className="min-w-0 flex-1">
@@ -112,7 +112,7 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
           <div className="mt-3 flex items-center gap-2">
             <button
               onClick={() => onSelect(suggestion.track, suggestion.difficulty)}
-              className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold uppercase tracking-wide cursor-pointer transition-colors"
+              className="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold uppercase tracking-wide cursor-pointer transition-colors"
             >
               {t.quizSuggestion.ctaButton}
             </button>

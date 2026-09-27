@@ -67,7 +67,7 @@ export default function MidpointInteractive({
                 ? "border-line-invert bg-white dark:bg-stone-900 text-ink font-semibold"
                 : submitted
                   ? i === question.correct
-                    ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-accent-ink-strong"
+                    ? "border-brand-500 bg-brand-50 dark:bg-brand-950/50 text-accent-ink-strong"
                     : "border-line bg-stone-50 dark:bg-stone-900/50 text-ink-soft opacity-50"
                   : "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-line-firm"
             }`}
@@ -103,7 +103,7 @@ export default function MidpointInteractive({
           animate={{ opacity: 1, scale: 1 }}
           className={`mt-4 p-4 rounded-xl ${
             isCorrect
-              ? "bg-emerald-100 dark:bg-emerald-950/50 border border-accent-line-mid"
+              ? "bg-brand-100 dark:bg-brand-950/50 border border-accent-line-mid"
               : "bg-surface-raised border border-line-strong"
           }`}
         >

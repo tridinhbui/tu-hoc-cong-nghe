@@ -32,7 +32,10 @@ import {
   Vote,
   CheckCircle2,
   Pencil,
+  TrendingDown,
+  ThumbsUp,
 } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { createClient } from "@/lib/cloudflare";
 import EmojiPicker from "@/components/EmojiPicker";
 import { uploadChatImage, isAllowedChatImage } from "@/lib/cloudflare-chat";
@@ -146,12 +149,12 @@ const REACTION_OPTIONS = ["💡 Hay", "🧠 Cần phản biện", "❓ Cùng th�
 
 const TONE_STYLES = {
   emerald: {
-    chip: "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300",
-    chipActive: "border-emerald-300 bg-emerald-500 text-white shadow-[0_10px_22px_-18px_rgba(16,185,129,0.45)] dark:border-emerald-700 dark:bg-emerald-400 dark:text-stone-950",
-    soft: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/35 dark:text-emerald-300",
-    softSurface: "bg-emerald-50/70 dark:bg-emerald-950/20",
+    chip: "border-brand-200 bg-brand-50 text-brand-700 dark:border-brand-900 dark:bg-brand-950/30 dark:text-brand-300",
+    chipActive: "border-brand-300 bg-brand-500 text-white shadow-[0_10px_22px_-18px_rgba(65, 122, 205,0.45)] dark:border-brand-700 dark:bg-brand-400 dark:text-stone-950",
+    soft: "bg-brand-50 text-brand-700 dark:bg-brand-950/35 dark:text-brand-300",
+    softSurface: "bg-brand-50/70 dark:bg-brand-950/20",
     icon: "text-accent",
-    border: "border-emerald-200/70 dark:border-emerald-900/50",
+    border: "border-brand-200/70 dark:border-brand-900/50",
   },
   sky: {
     chip: "border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-900 dark:bg-sky-950/30 dark:text-sky-300",
@@ -276,15 +279,15 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
   const bearishPct = 100 - bullishPct;
 
   return (
-    <div className="mb-6 overflow-hidden rounded-[24px] bg-gradient-to-br from-stone-900 via-stone-950 to-emerald-950 p-4 sm:p-5 text-white shadow-xl border border-stone-800 font-sans">
+    <div className="mb-6 overflow-hidden rounded-[24px] bg-gradient-to-br from-stone-900 via-stone-950 to-brand-950 p-4 sm:p-5 text-white shadow-xl border border-stone-800 font-sans">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
         <div className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-lg shadow-sm">
-            📊
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500/20 text-brand-400 border border-brand-500/30 shadow-sm">
+            <BarChart3 className="h-5 w-5" strokeWidth={1.75} aria-hidden />
           </span>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
+              <span className="text-[10px] font-black uppercase tracking-widest text-brand-400 bg-brand-950 px-2 py-0.5 rounded-full border border-brand-500/40">
                 {t.feed.sentimentTitle}
               </span>
               <span className="text-[10px] font-bold text-stone-400">{todayStr}</span>
@@ -305,7 +308,7 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
               });
               onShareSentiment(text);
             }}
-            className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs transition-all cursor-pointer shrink-0 shadow-sm"
+            className="px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-black text-xs transition-all cursor-pointer shrink-0 shadow-sm"
           >
             {t.feed.sentimentShare}
           </button>
@@ -319,18 +322,18 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
           onClick={() => handleVote("bullish")}
           className={`flex items-center justify-between p-3 rounded-2xl border transition-all cursor-pointer ${
             votedOption === "bullish"
-              ? "bg-emerald-500/25 border-emerald-400 text-emerald-300 ring-2 ring-emerald-500/40"
-              : "bg-stone-900/80 border-stone-800 hover:border-emerald-500/50 text-stone-300"
+              ? "bg-brand-500/25 border-brand-400 text-brand-300 ring-2 ring-brand-500/40"
+              : "bg-stone-900/80 border-stone-800 hover:border-brand-500/50 text-stone-300"
           }`}
         >
           <div className="flex items-center gap-2">
-            <span className="text-xl">🐂</span>
+            <TrendingUp className="h-5 w-5 shrink-0 text-brand-400" strokeWidth={1.75} aria-hidden />
             <div className="text-left">
               <p className="font-black text-xs sm:text-sm text-stone-100">{t.feed.bullishTitle}</p>
               <p className="text-[10px] text-stone-400">{t.feed.bullishSub}</p>
             </div>
           </div>
-          <span className="font-black text-sm text-emerald-400">{bullishPct}%</span>
+          <span className="font-black text-sm text-brand-400">{bullishPct}%</span>
         </button>
 
         <button
@@ -343,7 +346,7 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
           }`}
         >
           <div className="flex items-center gap-2">
-            <span className="text-xl">🐻</span>
+            <TrendingDown className="h-5 w-5 shrink-0 text-rose-400" strokeWidth={1.75} aria-hidden />
             <div className="text-left">
               <p className="font-black text-xs sm:text-sm text-stone-100">{t.feed.bearishTitle}</p>
               <p className="text-[10px] text-stone-400">{t.feed.bearishSub}</p>
@@ -358,7 +361,7 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
         <div className="h-3.5 w-full rounded-full bg-stone-800 overflow-hidden flex p-0.5 border border-stone-700">
           <div
             style={{ width: `${bullishPct}%` }}
-            className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-l-full transition-all duration-500"
+            className="h-full bg-gradient-to-r from-brand-500 to-brand-400 rounded-l-full transition-all duration-500"
           />
           <div
             style={{ width: `${bearishPct}%` }}
@@ -394,7 +397,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
   const totalVotes = options.reduce((acc, curr) => acc + curr.votes, 0);
 
   return (
-    <div className="mt-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-teal-500/10 border border-amber-500/30 text-ink font-sans space-y-3 shadow-xs">
+    <div className="mt-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-brand-500/10 to-brand-500/10 border border-amber-500/30 text-ink font-sans space-y-3 shadow-xs">
       <div className="flex items-center justify-between">
         <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[10px] font-black uppercase tracking-wider">
           {t.feed.pollTitle}
@@ -419,7 +422,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
               disabled={userVotedId !== null}
               className={`relative w-full text-left p-3 rounded-xl border text-xs font-bold transition-all overflow-hidden cursor-pointer ${
                 isMyChoice
-                  ? "border-emerald-500 bg-emerald-500/15 text-accent-ink-strong ring-2 ring-emerald-400/40"
+                  ? "border-brand-500 bg-brand-500/15 text-accent-ink-strong ring-2 ring-brand-400/40"
                   : "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-stone-400"
               }`}
             >
@@ -427,12 +430,12 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
               <div
                 style={{ width: `${pct}%` }}
                 className={`absolute inset-y-0 left-0 transition-all duration-500 opacity-20 ${
-                  isMyChoice ? "bg-emerald-500" : "bg-stone-400 dark:bg-stone-600"
+                  isMyChoice ? "bg-brand-500" : "bg-stone-400 dark:bg-stone-600"
                 }`}
               />
               <div className="relative z-10 flex items-center justify-between">
                 <span className="flex items-center gap-1.5 font-bold">
-                  {isMyChoice && <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />}
+                  {isMyChoice && <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />}
                   {opt.text}
                 </span>
                 <span className="font-black text-ink-muted">{pct}% ({opt.votes})</span>
@@ -1043,7 +1046,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 {/* Nhãn mắt dùng lớp `.eyebrow` chung: chữ và màu, không hộp.
                     Xanh lá ở đây là trạng thái "đang hoạt động", đúng vai trò
                     duy nhất nó được giữ trong hệ. */}
-                <p className="eyebrow flex items-center gap-2 text-emerald-400">
+                <p className="eyebrow flex items-center gap-2 text-brand-400">
                   <MessageCircle className="h-3.5 w-3.5" />
                   {t.feed.eyebrow}
                 </p>
@@ -1094,7 +1097,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   onClick={() => setIsComposeModalOpen(true)}
                   className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-bold text-ink-soft hover:bg-surface-raised transition-colors cursor-pointer"
                 >
-                  <ImageIcon className="w-4 h-4 text-emerald-500" />
+                  <ImageIcon className="w-4 h-4 text-brand-500" />
                   <span>{t.feed.addMedia}</span>
                 </button>
                 <button
@@ -1152,7 +1155,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           </p>
                           <div className="flex flex-wrap items-center gap-1.5 mt-1">
 
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-[11px] font-extrabold text-accent-strong border border-emerald-200 dark:border-emerald-900/50">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-50 dark:bg-brand-950/40 text-[11px] font-extrabold text-accent-strong border border-brand-200 dark:border-brand-900/50">
                               {t.feed.visibilityPublic}
                             </span>
                           </div>
@@ -1255,7 +1258,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="p-2 rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-accent transition-colors cursor-pointer"
+                            className="p-2 rounded-full hover:bg-brand-50 dark:hover:bg-brand-950/40 text-accent transition-colors cursor-pointer"
                             title={t.feed.addImageTitle}
                           >
                             <ImageIcon className="w-5 h-5" />
@@ -1286,7 +1289,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         type="button"
                         onClick={handlePost}
                         disabled={posting || (!content.trim() && !pendingImage && !(isPollMode && pollQuestion.trim()))}
-                        className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white font-black text-sm py-2.5 transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full rounded-xl bg-brand-600 hover:bg-brand-500 disabled:opacity-40 text-white font-black text-sm py-2.5 transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <Send className="w-4 h-4" />
                         {posting ? t.feed.posting : t.feed.post}
@@ -1312,7 +1315,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             <button
               type="button"
               onClick={() => setIsComposeModalOpen(true)}
-              className="mt-3 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300"
+              className="mt-3 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-bold text-brand-700 transition hover:bg-brand-100 dark:border-brand-900 dark:bg-brand-950/30 dark:text-brand-300"
             >
               {t.feed.feedEmptyWrite}
             </button>
@@ -1393,7 +1396,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             if (e.key === "Escape") cancelEditPost();
                             if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) void handleSaveEdit(post.id);
                           }}
-                          className="w-full resize-none rounded-2xl border border-stone-200 bg-white p-3 text-[15px] leading-7 text-stone-800 outline-none focus:border-emerald-400 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+                          className="w-full resize-none rounded-2xl border border-stone-200 bg-white p-3 text-[15px] leading-7 text-stone-800 outline-none focus:border-brand-400 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
                         />
                         <div className="mt-2 flex items-center justify-between gap-3">
                           <span className="text-[11px] font-bold tabular-nums text-ink-faint">
@@ -1409,7 +1412,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             <button
                               onClick={() => void handleSaveEdit(post.id)}
                               disabled={savingEdit || !editDraft.trim()}
-                              className="rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-black text-white transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-50"
+                              className="rounded-full bg-brand-500 px-4 py-1.5 text-xs font-black text-white transition hover:bg-brand-400 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                               {savingEdit ? t.feed.saving : t.feed.save}
                             </button>
@@ -1426,11 +1429,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
                     {/* Special Achievement Certificate Card */}
                     {post.metadata && typeof post.metadata === "object" && "type" in post.metadata && post.metadata.type === "level_up_achievement" && (
-                      <div className="mt-3.5 p-4 rounded-2xl bg-gradient-to-r from-emerald-950 via-stone-900 to-teal-950 border border-emerald-500/40 text-white space-y-2 shadow-lg">
+                      <div className="mt-3.5 p-4 rounded-2xl bg-gradient-to-r from-brand-950 via-stone-900 to-brand-950 border border-brand-500/40 text-white space-y-2 shadow-lg">
                         <div className="flex items-center gap-3">
-                          <span className="text-3xl">{String(post.metadata.emoji || "🏆")}</span>
+                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/20 text-brand-300">
+                            <Glyph emoji={String(post.metadata.emoji || "🏆")} className="h-6 w-6" />
+                          </span>
                           <div>
-                            <span className="inline-block px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-[10px] font-black uppercase tracking-wider border border-emerald-400/30">
+                            <span className="inline-block px-2 py-0.5 rounded-md bg-brand-500/20 text-brand-300 text-[10px] font-black uppercase tracking-wider border border-brand-400/30">
                               {t.feed.levelCertTitle}
                             </span>
                             <h4 className="font-black text-sm text-white mt-0.5">
@@ -1440,7 +1445,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         </div>
                         <p className="text-xs text-stone-300 font-medium">
                           {t.feed.levelCertBodyPart1}
-                          <strong className="text-emerald-400">{String(post.metadata.score)}%</strong>
+                          <strong className="text-brand-400">{String(post.metadata.score)}%</strong>
                           {t.feed.levelCertBodyPart2}
                         </p>
                       </div>
@@ -1519,21 +1524,25 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           disabled={!user}
                           className={`inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold transition duration-200 ease-out cursor-pointer ${
                             post.my_reaction
-                              ? "bg-emerald-50 text-emerald-700 shadow-[0_10px_20px_-18px_rgba(16,185,129,0.35)]"
+                              ? "bg-brand-50 text-brand-700 shadow-[0_10px_20px_-18px_rgba(65, 122, 205,0.35)]"
                               : "bg-stone-100 text-stone-600 hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
                           }`}
                           whileHover={{ y: -2 }}
                           whileTap={{ scale: 0.96 }}
                           transition={{ type: "spring", stiffness: 420, damping: 24 }}
                         >
-                          <span className="text-sm leading-none">{post.my_reaction ?? "👍"}</span>
+                          {post.my_reaction ? (
+                            <span className="text-sm leading-none">{post.my_reaction}</span>
+                          ) : (
+                            <ThumbsUp className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
+                          )}
                           <span>{post.my_reaction ? t.feed.reacted : t.feed.react}</span>
                         </motion.button>
 
                         <AnimatePresence>
                           {reactionBurstFor === post.id && (
                             <div className="pointer-events-none absolute left-6 top-0 z-20">
-                              {["bg-emerald-400", "bg-sky-400", "bg-amber-400", "bg-violet-400", "bg-red-400"].map((color, particleIndex) => (
+                              {["bg-brand-400", "bg-sky-400", "bg-amber-400", "bg-violet-400", "bg-red-400"].map((color, particleIndex) => (
                                 <motion.span
                                   key={`${post.id}-${color}`}
                                   className={`absolute h-1.5 w-1.5 rounded-full ${color}`}
@@ -1569,7 +1578,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 }}
                                 className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 hover:scale-105 active:scale-95 cursor-pointer shrink-0 ${
                                   post.my_reaction === item
-                                    ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-accent-line-mid"
+                                    ? "bg-brand-100 text-brand-800 dark:bg-brand-950 dark:text-brand-300 border border-accent-line-mid"
                                     : "bg-surface-raised text-ink-body hover:bg-surface-sunken"
                                 }`}
                               >
@@ -1600,7 +1609,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       {canEditPost(post, user?.id ?? null) && editingPostId !== post.id && (
                         <button
                           onClick={() => startEditPost(post)}
-                          className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold text-stone-400 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-950/30"
+                          className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold text-stone-400 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-brand-950/30"
                         >
                           <Pencil className="w-3.5 h-3.5" /> {t.feed.editComment}
                         </button>
@@ -1634,7 +1643,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 <div className="flex items-center gap-2 text-xs text-stone-400">
                                   <button
                                     type="button"
-                                    onClick={() => setCommentDrafts((prev) => ({ ...prev, [post.id]: `${prev[post.id] ?? ""}✨` }))}
+                                    onClick={() => setCommentDrafts((prev) => ({ ...prev, [post.id]: `${prev[post.id] ?? ""}` }))}
                                   className="inline-flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-surface-raised"
                                 >
                                     <SmilePlus className="h-3.5 w-3.5" />
@@ -1689,7 +1698,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                             void handleSaveCommentEdit(post.id, comment.id);
                                           }
                                         }}
-                                        className="w-full resize-none rounded-xl border border-stone-200 bg-white p-2 text-sm text-stone-700 outline-none focus:border-emerald-400 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-200"
+                                        className="w-full resize-none rounded-xl border border-stone-200 bg-white p-2 text-sm text-stone-700 outline-none focus:border-brand-400 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-200"
                                       />
                                       <div className="mt-1.5 flex items-center justify-between gap-2">
                                         <span className="text-[10px] font-bold tabular-nums text-stone-400">
@@ -1707,7 +1716,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                             type="button"
                                             onClick={() => void handleSaveCommentEdit(post.id, comment.id)}
                                             disabled={savingCommentEdit || !commentEditDraft.trim()}
-                                            className="rounded-full bg-emerald-500 px-3 py-1 text-[11px] font-black text-white hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-50"
+                                            className="rounded-full bg-brand-500 px-3 py-1 text-[11px] font-black text-white hover:bg-brand-400 disabled:cursor-not-allowed disabled:opacity-50"
                                           >
                                             {savingCommentEdit ? t.feed.saving : t.feed.save}
                                           </button>
@@ -1726,7 +1735,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                       type="button"
                                       onClick={() => startEditComment(comment)}
                                       aria-label={t.feed.editCommentAria}
-                                      className="rounded-full p-1.5 text-stone-400 transition duration-150 ease-out hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-950/30"
+                                      className="rounded-full p-1.5 text-stone-400 transition duration-150 ease-out hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-brand-950/30"
                                     >
                                       <Pencil className="h-3.5 w-3.5" />
                                     </button>
@@ -1786,7 +1795,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 className="w-full flex items-center justify-between gap-2 text-left cursor-pointer"
               >
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-5 w-5 text-emerald-600" />
+                  <ShieldCheck className="h-5 w-5 text-brand-600" />
                   <h2 className="text-sm font-black uppercase tracking-[0.14em] text-ink">{t.feed.rulesTitle}</h2>
                 </div>
                 {rulesOpen ? <ChevronUp className="h-4 w-4 text-stone-400" /> : <ChevronDown className="h-4 w-4 text-stone-400" />}
@@ -1888,7 +1897,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     key={idea}
                     type="button"
                     onClick={() => setContent((prev) => (prev ? prev : idea))}
-                    className="rounded-[18px] border border-stone-200 bg-stone-50 px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-300"
+                    className="rounded-[18px] border border-stone-200 bg-stone-50 px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-300"
                   >
                     {idea}
                   </button>

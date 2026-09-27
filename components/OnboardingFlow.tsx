@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ArrowRight, ArrowLeft, X } from "lucide-react";
+import { CheckCircle2, ArrowRight, ArrowLeft, X, GraduationCap, Rocket, Sparkles, Medal, TrendingUp, PenLine, Gamepad2, Bot } from "lucide-react";
 import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -22,7 +22,7 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       description: oc.step1Description,
       content: (
         <div className="text-center py-8">
-          <div className="text-6xl mb-4">🎓</div>
+          <div className="mx-auto mb-4 w-fit rounded-2xl bg-accent-soft text-accent p-4"><GraduationCap className="w-12 h-12" strokeWidth={1.5} aria-hidden /></div>
           <p className="text-ink-soft text-lg">
             {oc.step1Body}
           </p>
@@ -34,7 +34,7 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       description: oc.step2Description,
       content: (
         <div className="space-y-4 py-4">
-          <div className="p-4 border-2 border-accent-line rounded-xl bg-emerald-50 dark:bg-emerald-950/30">
+          <div className="p-4 border-2 border-accent-line rounded-xl bg-brand-50 dark:bg-brand-950/30">
             <h3 className="font-bold text-accent-ink-strong mb-2">{oc.personalTrackTitle}</h3>
             <p className="text-sm text-ink-soft">
               {oc.personalTrackBody}
@@ -55,21 +55,21 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       content: (
         <div className="space-y-4 py-4">
           <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="text-4xl">⭐</div>
+            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><Sparkles className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
               <p className="font-bold">{oc.xpLabel}</p>
               <p className="text-xs text-stone-500">{oc.xpBody}</p>
             </div>
           </div>
           <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="text-4xl">🏅</div>
+            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><Medal className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
               <p className="font-bold">{oc.badgeLabel}</p>
               <p className="text-xs text-stone-500">{oc.badgeBody}</p>
             </div>
           </div>
           <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="text-4xl">📈</div>
+            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><TrendingUp className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
               <p className="font-bold">{oc.levelUpLabel}</p>
               <p className="text-xs text-stone-500">{oc.levelUpBody}</p>
@@ -84,21 +84,21 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       content: (
         <div className="space-y-4 py-4">
           <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="text-4xl">📝</div>
+            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><PenLine className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
               <p className="font-bold">{oc.quizLabel}</p>
               <p className="text-xs text-stone-500">{oc.quizBody}</p>
             </div>
           </div>
           <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="text-4xl">🎮</div>
+            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><Gamepad2 className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
               <p className="font-bold">{oc.widgetLabel}</p>
               <p className="text-xs text-stone-500">{oc.widgetBody}</p>
             </div>
           </div>
           <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="text-4xl">🤖</div>
+            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><Bot className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
               <p className="font-bold">{oc.assistantLabel}</p>
               <p className="text-xs text-stone-500">{oc.assistantBody}</p>
@@ -112,7 +112,7 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       description: oc.step5Description,
       content: (
         <div className="text-center py-8">
-          <div className="text-6xl mb-4">🚀</div>
+          <div className="mx-auto mb-4 w-fit rounded-2xl bg-accent-soft text-accent p-4"><Rocket className="w-12 h-12" strokeWidth={1.5} aria-hidden /></div>
           <p className="text-ink-soft text-lg">
             {oc.step5Body}
           </p>
@@ -228,14 +228,14 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
                     onClick={() => setSelectedTrack("personal")}
                     className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
                       selectedTrack === "personal"
-                        ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30"
+                        ? "border-brand-500 bg-brand-50 dark:bg-brand-950/30"
                         : "border-line hover:border-line-strong"
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                         selectedTrack === "personal"
-                          ? "border-emerald-500 bg-emerald-500"
+                          ? "border-brand-500 bg-brand-500"
                           : "border-line-strong"
                       }`}>
                         {selectedTrack === "personal" && (

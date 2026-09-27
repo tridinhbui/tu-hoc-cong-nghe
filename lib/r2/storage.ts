@@ -2,8 +2,8 @@ import "server-only";
 import type { R2Bucket } from "@cloudflare/workers-types";
 
 /**
- * Client lưu trữ tệp, nhại một phần bề mặt `cloudflare.storage.from(bucket)`.
- * Thay ba bucket Cloudflare Storage: documents, avatars, chat-images.
+ * Client lưu trữ tệp, nhại một phần bề mặt `storage.from(bucket)` của SDK cũ.
+ * Thay ba bucket storage của hệ cũ: documents, avatars, chat-images.
  *
  * MỘT BUCKET R2, BA TIỀN TỐ. wrangler.jsonc chỉ khai một binding "FILES" -
  * điều đó đã có sẵn trong bản nháp giai đoạn 1 trước khi tôi chạm vào, và nó
@@ -63,7 +63,7 @@ export function createStorageClient(bucket: R2Bucket, publicBase: string) {
           }
         },
 
-        /** Đồng bộ, giống cloudflare-js: không cần đọc gì để dựng URL, vì URL
+        /** Đồng bộ, giống SDK client cũ: không cần đọc gì để dựng URL, vì URL
          *  chỉ trỏ tới route phục vụ chứ không xác nhận tệp có tồn tại. */
         getPublicUrl(path: string): { data: { publicUrl: string } } {
           return { data: { publicUrl: publicUrl(publicBase, `${prefix}/${path}`) } };

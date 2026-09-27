@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Factory, Home, Landmark } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -16,7 +17,7 @@ export default function InteractiveInterestRate() {
 
   const getRateColor = () => {
     if (rate <= 4) return "text-blue-600";
-    if (rate <= 7) return "text-emerald-600";
+    if (rate <= 7) return "text-brand-600";
     if (rate <= 10) return "text-amber-600";
     return "text-rose-600";
   };
@@ -48,7 +49,7 @@ export default function InteractiveInterestRate() {
           value={rate}
           onChange={(e) => setRate(+e.target.value)}
           className="w-full"
-          style={{ background: `linear-gradient(to right, #059669 ${((rate - 1) / 14) * 100}%, #e5e7eb ${((rate - 1) / 14) * 100}%)` }}
+          style={{ background: `linear-gradient(to right, #2961b8 ${((rate - 1) / 14) * 100}%, #e5e7eb ${((rate - 1) / 14) * 100}%)` }}
         />
         <div className="flex justify-between text-xs text-stone-500 mt-1">
           <span>1%</span>
@@ -59,7 +60,7 @@ export default function InteractiveInterestRate() {
 
       <div className="grid grid-cols-1 gap-3">
         <div className="bg-blue-50 rounded-2xl p-4 flex items-center gap-4">
-          <div className="text-3xl">🏦</div>
+          <div className="rounded-xl bg-white/70 p-2 text-blue-600"><Landmark aria-hidden className="h-7 w-7" strokeWidth={1.75} /></div>
           <div className="flex-1">
             <div className="font-semibold text-stone-800">{t.interestRateCalc.savingsTitle}</div>
             <div className="text-stone-500 text-sm">{t.interestRateCalc.savingsSubtitle}</div>
@@ -71,7 +72,7 @@ export default function InteractiveInterestRate() {
         </div>
 
         <div className="bg-rose-50 rounded-2xl p-4 flex items-center gap-4">
-          <div className="text-3xl">🏠</div>
+          <div className="rounded-xl bg-white/70 p-2 text-rose-600"><Home aria-hidden className="h-7 w-7" strokeWidth={1.75} /></div>
           <div className="flex-1">
             <div className="font-semibold text-stone-800">{t.interestRateCalc.loanTitle}</div>
             <div className="text-stone-500 text-sm">{t.interestRateCalc.loanSubtitle}</div>
@@ -83,13 +84,13 @@ export default function InteractiveInterestRate() {
         </div>
 
         <div className="bg-amber-50 rounded-2xl p-4 flex items-center gap-4">
-          <div className="text-3xl">🏭</div>
+          <div className="rounded-xl bg-white/70 p-2 text-amber-600"><Factory aria-hidden className="h-7 w-7" strokeWidth={1.75} /></div>
           <div className="flex-1">
             <div className="font-semibold text-stone-800">{t.interestRateCalc.businessTitle}</div>
             <div className="text-stone-500 text-sm">{t.interestRateCalc.businessSubtitle}</div>
           </div>
           <div className="text-right">
-            <div className={`text-sm font-bold ${rate > 8 ? "text-rose-600" : "text-emerald-600"}`}>
+            <div className={`text-sm font-bold ${rate > 8 ? "text-rose-600" : "text-brand-600"}`}>
               {rate > 10 ? t.interestRateCalc.businessVeryHard : rate > 7 ? t.interestRateCalc.businessHarder : t.interestRateCalc.businessFavorable}
             </div>
           </div>

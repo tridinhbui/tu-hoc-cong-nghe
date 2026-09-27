@@ -4,6 +4,7 @@ import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Trophy, Award, Lock, CheckCircle2, Sparkles, Star, Shield, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
+import Glyph from "@/components/Glyph";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -53,7 +54,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
   const handleClaim = (reward: PassReward) => {
     if (!reward.isUnlocked || reward.isClaimed) return;
     setClaimedLevels((prev) => [...prev, reward.level]);
-    toast.success(format(t.seasonPass.claimToast, { level: reward.level, emoji: reward.freeEmoji, reward: reward.freeReward }));
+    toast.success(format(t.seasonPass.claimToast, { level: reward.level, reward: reward.freeReward }));
   };
 
   return (
@@ -106,7 +107,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
                 {format(t.seasonPass.milestoneLabel, { level: r.level })}
               </span>
               {r.isClaimed ? (
-                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                <CheckCircle2 className="w-5 h-5 text-brand-500" />
               ) : r.isUnlocked ? (
                 <Sparkles className="w-5 h-5 text-amber-500 animate-pulse" />
               ) : (
@@ -117,7 +118,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
             {/* Reward Items */}
             <div className="space-y-2 mb-4">
               <div className="bg-white dark:bg-stone-900 border border-line p-2 rounded-xl flex items-center gap-2">
-                <span className="text-xl">{r.freeEmoji}</span>
+                <Glyph emoji={r.freeEmoji} className="w-5 h-5 shrink-0 text-ink-muted" />
                 <div className="min-w-0 flex-1">
                   <span className="text-[9px] font-black uppercase text-stone-400 block">{t.seasonPass.freeLabel}</span>
                   <p className="text-xs font-black text-ink truncate">{r.freeReward}</p>
@@ -125,7 +126,7 @@ export default function SeasonPassWidget({ userId, userLevel = 5, userXp = 450 }
               </div>
 
               <div className="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-950/40 dark:to-yellow-950/30 border border-amber-300 dark:border-amber-700/60 p-2 rounded-xl flex items-center gap-2">
-                <span className="text-xl">{r.vipEmoji}</span>
+                <Glyph emoji={r.vipEmoji} className="w-5 h-5 shrink-0 text-warn" />
                 <div className="min-w-0 flex-1">
                   <span className="text-[9px] font-black uppercase text-warn block">{t.seasonPass.vipLabel}</span>
                   <p className="text-xs font-black text-warn-strong truncate">{r.vipReward}</p>

@@ -100,7 +100,7 @@ export default async function AdminOverviewPage() {
       value: userCount,
       icon: Users,
       color: "text-accent",
-      bg: "bg-emerald-50 dark:bg-emerald-950/40",
+      bg: "bg-brand-50 dark:bg-brand-950/40",
     },
     {
       href: "/admin/lessons",
@@ -147,7 +147,7 @@ export default async function AdminOverviewPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-ink mb-1 flex items-center gap-2">
-          <BarChart3 className="w-6 h-6 text-emerald-500" />
+          <BarChart3 className="w-6 h-6 text-brand-500" />
           {ta.title}
         </h1>
         <p className="text-sm text-ink-muted">
@@ -186,7 +186,7 @@ export default async function AdminOverviewPage() {
 
       {/* Analytics KPI Performance Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="rounded-xl p-5 border border-emerald-100 dark:border-emerald-900/50 bg-emerald-50/50 dark:bg-emerald-950/20 flex flex-col justify-between">
+        <div className="rounded-xl p-5 border border-brand-100 dark:border-brand-900/50 bg-brand-50/50 dark:bg-brand-950/20 flex flex-col justify-between">
           <div>
             <p className="text-[11px] font-extrabold text-ink-muted uppercase tracking-widest mb-1.5">
               {ta.kpis.activeThisWeek}
@@ -240,7 +240,7 @@ export default async function AdminOverviewPage() {
         {/* Left/Middle: DAU Visual Chart */}
         <div className="lg:col-span-2 bg-white dark:bg-stone-900 border border-line rounded-xl p-5 shadow-xs">
           <h2 className="text-sm font-extrabold text-ink-heading uppercase tracking-wider mb-4 flex items-center gap-1.5">
-            <TrendingUp className="w-4 h-4 text-emerald-500" />
+            <TrendingUp className="w-4 h-4 text-brand-500" />
             {ta.dauHeading}
           </h2>
 
@@ -260,7 +260,7 @@ export default async function AdminOverviewPage() {
                       </div>
                       <div
                         style={{ height: `${Math.max(barHeightPercent, 4)}%` }}
-                        className="w-full bg-emerald-500/80 dark:bg-emerald-600/80 rounded-t-sm group-hover:bg-emerald-500 transition-colors"
+                        className="w-full bg-brand-500/80 dark:bg-brand-600/80 rounded-t-sm group-hover:bg-brand-500 transition-colors"
                       />
                       <div className="text-[9px] text-ink-muted mt-2 truncate w-full text-center">
                         {day.date.split("-").slice(1).join("/")}

@@ -1,5 +1,6 @@
 "use client";
 
+import { Compass } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
@@ -73,7 +74,8 @@ export default function LobbyDirectory() {
         onClick={() => toggle(true)}
         className="pointer-events-auto rounded-2xl bg-stone-900/85 px-4 py-2.5 text-xs font-bold text-amber-200 shadow-lg backdrop-blur transition hover:bg-stone-800"
       >
-        🧭 {t.lobby.directoryToggle}
+        <Compass className="mr-1.5 inline h-4 w-4 align-[-3px]" strokeWidth={1.75} aria-hidden />
+        {t.lobby.directoryToggle}
       </button>
     );
   }

@@ -203,7 +203,7 @@ export default function InteractiveJournalEntry() {
           <p
             className={`rounded-2xl px-3 py-2 text-xs font-bold ${
               debitOk && creditOk
-                ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-200"
+                ? "bg-brand-50 text-brand-800 dark:bg-brand-950/40 dark:text-brand-200"
                 : "bg-amber-50 text-amber-900 dark:bg-amber-950/30 dark:text-amber-200"
             }`}
           >
@@ -291,7 +291,7 @@ function Side({
           !checked
             ? "border-line-strong"
             : ok
-              ? "border-emerald-400 dark:border-emerald-600"
+              ? "border-brand-400 dark:border-brand-700"
               : "border-rose-400 dark:border-rose-700"
         }`}
       >

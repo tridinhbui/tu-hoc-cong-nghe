@@ -15,13 +15,13 @@ export const questsReferralVi = {
     quizProgress: "{progress}/3 bài 100%",
     claimedMessage: "Đã nhận phần thưởng tuần này!",
     claiming: "Đang nhận quà...",
-    claimButton: "Mở Rương Sử Thi! 🎁",
-    locked: "🔒 Rương Sử Thi đang bị khóa",
-    claimSuccessToast: "Chúc mừng! Bạn đã mở khóa Rương Sử Thi: nhận +3 Rương Quà! 🎁🏆👑",
+    claimButton: "Mở Rương Sử Thi!",
+    locked: "Rương Sử Thi đang bị khóa",
+    claimSuccessToast: "Chúc mừng! Bạn đã mở khóa Rương Sử Thi: nhận +3 Rương Quà!  ",
     claimErrorToast: "Lỗi khi nhận phần thưởng. Hãy thử lại.",
   },
   seasonPass: {
-    badge: "📜 Season 1: Silicon Valley Empire Pass",
+    badge: "Season 1: Silicon Valley Empire Pass",
     title: "Thẻ Mùa Chiến Thắng Silicon Valley (30 Cấp)",
     subtitle: "Tích lũy Season XP để mở khóa danh hiệu, phụ kiện Armani & Rolex đẳng cấp!",
     levelLabel: "Season Pass Level",
@@ -32,7 +32,7 @@ export const questsReferralVi = {
     claimed: "Đã Nhận",
     claim: "Nhận Thưởng",
     locked: "Chưa Mở",
-    claimToast: "🎉 Đã nhận thưởng Season Pass Cấp {level}: {emoji} {reward}!",
+    claimToast: "Đã nhận thưởng Season Pass Cấp {level}: {reward}!",
     // Positional, parallel to REWARD_LEVELS in SeasonPassWidget.tsx - index i
     // here is the reward text for level REWARD_LEVELS[i]. The levels
     // themselves, and their unlock/claim logic, stay as plain data.
@@ -93,7 +93,7 @@ export const questsReferralVi = {
     miniGameLabel: "Mini Game {emoji}",
     hotTitle: "Đang hot tuần này",
     hotBadge: "Đang hot",
-    studyingCount: "👥 {count} người đang học",
+    studyingCount: "{count} người đang học",
   },
   freeRecall: {
     headerTitle: "Đổ não 60 giây",
@@ -125,13 +125,13 @@ export const questsReferralEn: typeof questsReferralVi = {
     quizProgress: "{progress}/3 perfect quizzes",
     claimedMessage: "You already claimed this week's reward!",
     claiming: "Claiming reward...",
-    claimButton: "Open the Epic Chest! 🎁",
-    locked: "🔒 The Epic Chest is locked",
-    claimSuccessToast: "Congrats! You unlocked the Epic Chest: +3 Reward Chests! 🎁🏆👑",
+    claimButton: "Open the Epic Chest!",
+    locked: "The Epic Chest is locked",
+    claimSuccessToast: "Congrats! You unlocked the Epic Chest: +3 Reward Chests!  ",
     claimErrorToast: "Error claiming the reward. Please try again.",
   },
   seasonPass: {
-    badge: "📜 Season 1: Silicon Valley Empire Pass",
+    badge: "Season 1: Silicon Valley Empire Pass",
     title: "Silicon Valley Victory Pass (30 Levels)",
     subtitle: "Earn Season XP to unlock titles and premium Armani & Rolex gear!",
     levelLabel: "Season Pass Level",
@@ -142,7 +142,7 @@ export const questsReferralEn: typeof questsReferralVi = {
     claimed: "Claimed",
     claim: "Claim",
     locked: "Locked",
-    claimToast: "🎉 Claimed Season Pass Level {level} reward: {emoji} {reward}!",
+    claimToast: "Claimed Season Pass Level {level} reward: {reward}!",
     rewards: [
       { freeReward: "+50 Coins", freeEmoji: "🪙", vipReward: "+100 Coins", vipEmoji: "💰" },
       { freeReward: "X2 XP Scroll 1H", freeEmoji: "📜", vipReward: "Rolex Submariner", vipEmoji: "⌚" },
@@ -200,7 +200,7 @@ export const questsReferralEn: typeof questsReferralVi = {
     miniGameLabel: "Mini Game {emoji}",
     hotTitle: "Trending this week",
     hotBadge: "Trending",
-    studyingCount: "👥 {count} people studying",
+    studyingCount: "{count} people studying",
   },
   freeRecall: {
     headerTitle: "60-Second Brain Dump",

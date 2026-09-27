@@ -45,7 +45,7 @@ export const gamesEn: GamesTranslation = {
 
   games: {
     "random-mix": {
-      title: "🎲 Random mix of every topic",
+      title: "Random mix of every topic",
       description:
         "The all-round challenge: statements, terms, ratios, formulas and risk, shuffled together.",
     },

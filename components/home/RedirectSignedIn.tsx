@@ -33,8 +33,8 @@ export default function RedirectSignedIn() {
   useEffect(() => {
     let cancelled = false;
 
-    // MÃ OAUTH RƠI XUỐNG TRANG CHỦ. Cloudflare chỉ dùng `redirect_to` khi URL ấy
-    // khớp danh sách Redirect URLs của dự án; không khớp thì nó lặng lẽ rơi về
+    // MÃ OAUTH RƠI XUỐNG TRANG CHỦ. Dịch vụ xác thực cũ chỉ dùng `redirect_to` khi URL ấy
+    // khớp danh sách Redirect URLs của dự án xác thực cũ; không khớp thì nó lặng lẽ rơi về
     // "Site URL" - trang chủ - và gắn `?code=` vào đó. Không lỗi nào hiện ra,
     // chỉ là người dùng đứng ở `/?code=<uuid>` mà chưa đăng nhập.
     //

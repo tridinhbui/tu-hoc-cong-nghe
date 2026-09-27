@@ -51,7 +51,7 @@ export default async function FeatureEventsPanel({ stats }: { stats: FeatureEven
               </div>
               <div className="h-1.5 rounded-full bg-surface-raised overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                  className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-500"
                   style={{ width: `${(stat.count / maxCount) * 100}%` }}
                 />
               </div>

@@ -157,27 +157,27 @@ export const vn30En: Vn30Translation = {
 
   news: [
     {
-      headline: "📢 Chip demand surges on the wave of AI model training",
+      headline: "Chip demand surges on the wave of AI model training",
       explanation: "Accelerator orders are booked out two years ahead, lifting margins at both foundries and chip designers.",
     },
     {
-      headline: "📊 Enterprise cloud infrastructure spending up 18% year on year",
+      headline: "Enterprise cloud infrastructure spending up 18% year on year",
       explanation: "Budgets shift from self-managed servers to rented services, raising recurring revenue across the infrastructure group.",
     },
     {
-      headline: "🛡️ A large breach gets security budgets approved in a hurry",
+      headline: "A large breach gets security budgets approved in a hurry",
       explanation: "After a major incident, security spending is one of the few lines approved quickly, because the risk has become a concrete number.",
     },
     {
-      headline: "🌐 A core network fault disrupts many services for four hours",
+      headline: "A core network fault disrupts many services for four hours",
       explanation: "A wide outage pushes large customers to demand multi-provider plans, slowing the pace of new contracts.",
     },
     {
-      headline: "🛒 Peak-season e-commerce sales beat forecasts by 12%",
+      headline: "Peak-season e-commerce sales beat forecasts by 12%",
       explanation: "Higher order volumes lift both delivery volume and the number of payment API calls.",
     },
     {
-      headline: "⚠️ With rates staying high, unprofitable tech companies get repriced",
+      headline: "With rates staying high, unprofitable tech companies get repriced",
       explanation: "Cash flows far in the future are discounted harder, so unprofitable growth names come under pressure first.",
     },
   ],

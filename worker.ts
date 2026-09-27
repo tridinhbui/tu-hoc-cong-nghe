@@ -9,13 +9,17 @@
  * `opennextjs-cloudflare build` sinh ra, nên phải build trước khi deploy.
  */
 
-// @ts-ignore - sinh ra lúc build, không có trong kho mã.
+// Tệp CÓ sau khi build và KHÔNG có trong CI, nên @ts-expect-error sẽ đỏ ở một
+// trong hai môi trường - chỉ @ts-ignore đúng ở cả hai.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment -- xem trên
+// @ts-ignore
 import openNextWorker from "./.open-next/worker.js";
 import { handleRealtime } from "./lib/realtime/gate";
 
 // Durable Object của chính OpenNext (hàng đợi ISR, bộ đệm thẻ). Xuất lại để hành
 // vi giống hệt khi `main` trỏ thẳng vào worker của nó.
-// @ts-ignore - sinh ra lúc build.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment -- cùng lý do như import ở trên
+// @ts-ignore
 export { DOQueueHandler, DOShardedTagCache, BucketCachePurge } from "./.open-next/worker.js";
 export { RealtimeHub } from "./lib/realtime/hub";
 
@@ -23,7 +27,7 @@ type Env = Record<string, unknown>;
 
 type Ctx = { waitUntil(p: Promise<unknown>): void };
 
-export default {
+const worker = {
   async fetch(request: Request, env: Env, ctx: Ctx): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/realtime/")) {
@@ -32,3 +36,5 @@ export default {
     return openNextWorker.fetch(request, env, ctx);
   },
 };
+
+export default worker;

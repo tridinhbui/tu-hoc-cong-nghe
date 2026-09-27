@@ -27,7 +27,7 @@ export const dataRestVi = {
       userStatsText: "Theo dõi XP, cấp độ và số ngày học liên tiếp ở đây.",
       freeDocsTitle: "Tài liệu miễn phí & Thống kê",
       freeDocsText:
-        "Trên máy tính, hai mục này nằm ở đây. Trên điện thoại, bấm vào biểu tượng menu (☰) để mở.",
+        "Trên máy tính, hai mục này nằm ở đây. Trên điện thoại, bấm vào biểu tượng menu () để mở.",
       resumeLearningTitle: "Học tiếp từ đâu",
       resumeLearningText:
         "Bấm vào đây để quay lại đúng bài học tiếp theo trong lộ trình, không cần tự tìm.",
@@ -45,10 +45,10 @@ export const dataRestVi = {
         chest_opened: "Đã mở rương nhóm: mỗi thành viên nhận +25 coin và 1 rương.",
       },
       quickCheers: {
-        clap: { label: "Đập tay", message: "👋 Đập tay cổ vũ mọi người cùng học bài nào!" },
-        heart: { label: "Bắn tim", message: "❤️ Bắn tim yêu thương tiếp năng lượng học tập!" },
-        reminder: { label: "Nhắc học", message: "🔔 Ới ời cả nhóm ơi vào làm bài thôi nào!" },
-        boost: { label: "Tiếp sức", message: "🔥 Tiếp sức cháy hết mình hôm nay!" },
+        clap: { label: "Đập tay", message: "Đập tay cổ vũ mọi người cùng học bài nào!" },
+        heart: { label: "Bắn tim", message: "Bắn tim yêu thương tiếp năng lượng học tập!" },
+        reminder: { label: "Nhắc học", message: "Ới ời cả nhóm ơi vào làm bài thôi nào!" },
+        boost: { label: "Tiếp sức", message: "Tiếp sức cháy hết mình hôm nay!" },
       },
       holoPylons: {
         valuation: "Kiến Trúc",
@@ -84,10 +84,10 @@ export const dataRestVi = {
           desc: "Đọc mã người khác, thiết kế API, đo độ trễ và quản trị sự cố.",
         },
       },
-      updatedToast: "Đã cập nhật lộ trình học: {goal}! 🎯",
+      updatedToast: "Đã cập nhật lộ trình học: {goal}!",
       currentGoalLabel: "Mục tiêu hiện tại của bạn",
       changeButton: "Thay đổi",
-      selectorTitle: "Chọn mục tiêu học tập của bạn 🎯",
+      selectorTitle: "Chọn mục tiêu học tập của bạn",
       selectorSubtitle:
         "Hệ thống sẽ điều chỉnh lộ trình gợi ý và ưu tiên các bài học phù hợp nhất với mục tiêu của bạn.",
     },
@@ -238,7 +238,7 @@ export const dataRestEn: typeof dataRestVi = {
       userStatsText: "Track your XP, level, and study streak here.",
       freeDocsTitle: "Free resources & Stats",
       freeDocsText:
-        "On desktop, these two entries live here. On mobile, tap the menu icon (☰) to open them.",
+        "On desktop, these two entries live here. On mobile, tap the menu icon () to open them.",
       resumeLearningTitle: "Where to continue",
       resumeLearningText:
         "Click here to jump straight to the next lesson in your track, no need to search for it.",
@@ -256,10 +256,10 @@ export const dataRestEn: typeof dataRestVi = {
         chest_opened: "Group chest opened: every member gets +25 coins and 1 chest.",
       },
       quickCheers: {
-        clap: { label: "Clap", message: "👋 Give everyone a clap to cheer them on!" },
-        heart: { label: "Heart", message: "❤️ Send a heart to boost the study energy!" },
-        reminder: { label: "Reminder", message: "🔔 Hey everyone, come do your lesson!" },
-        boost: { label: "Boost", message: "🔥 Bring the energy today!" },
+        clap: { label: "Clap", message: "Give everyone a clap to cheer them on!" },
+        heart: { label: "Heart", message: "Send a heart to boost the study energy!" },
+        reminder: { label: "Reminder", message: "Hey everyone, come do your lesson!" },
+        boost: { label: "Boost", message: "Bring the energy today!" },
       },
       holoPylons: {
         valuation: "Architecture",
@@ -294,10 +294,10 @@ export const dataRestEn: typeof dataRestVi = {
           desc: "Reading other people's code, API design, measuring latency and handling incidents.",
         },
       },
-      updatedToast: "Track updated: {goal}! 🎯",
+      updatedToast: "Track updated: {goal}!",
       currentGoalLabel: "Your current goal",
       changeButton: "Change",
-      selectorTitle: "Choose your learning goal 🎯",
+      selectorTitle: "Choose your learning goal",
       selectorSubtitle:
         "The system will adjust its recommended track and prioritize the lessons that best fit your goal.",
     },

@@ -1,5 +1,6 @@
 "use client";
 
+import { BookOpen, Landmark } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -56,7 +57,7 @@ function SceneFallback({ label }: { label: string }) {
   return (
     <div className="flex h-full items-center justify-center bg-stone-950">
       <div className="text-center">
-        <div className="mb-3 text-4xl">🏛️</div>
+        <Landmark className="mx-auto mb-3 h-9 w-9 text-brand-300" strokeWidth={1.5} aria-hidden />
         <p className="text-sm font-medium text-stone-400">{label}</p>
       </div>
     </div>
@@ -335,7 +336,7 @@ export default function LobbyClient() {
             href={`/bai-hoc/${nextLesson.slug}`}
             className="pointer-events-auto flex max-w-[min(22rem,90vw)] items-center gap-3 rounded-2xl border border-amber-400/40 bg-stone-900/85 px-4 py-2.5 text-left shadow-xl backdrop-blur transition hover:border-amber-300 hover:bg-stone-900"
           >
-            <span className="shrink-0 text-xl">📖</span>
+            <BookOpen className="h-5 w-5 shrink-0 text-amber-300" strokeWidth={1.75} aria-hidden />
             <span className="min-w-0">
               <span className="block text-[10px] font-black uppercase tracking-widest text-amber-300">
                 {t.lobby.nextLessonLabel}
@@ -369,7 +370,7 @@ export default function LobbyClient() {
                 setSeatStartedAt(Date.now());
                 setChimed(false);
               }}
-              className="pointer-events-auto rounded-2xl bg-emerald-500 px-6 py-3 text-sm font-bold text-white shadow-xl transition hover:bg-emerald-400"
+              className="pointer-events-auto rounded-2xl bg-brand-500 px-6 py-3 text-sm font-bold text-white shadow-xl transition hover:bg-brand-400"
             >
               {t.lobby.sitDown}
             </button>
@@ -389,7 +390,7 @@ export default function LobbyClient() {
                     Chữ "hôm nay" trong chuỗi là thứ duy nhất phân biệt - ai đã
                     ngồi buổi sáng sẽ thấy mốc đủ trước khi đồng hồ về 0, và đó
                     là đúng chứ không phải lỗi. */}
-                <span className={`text-[11px] font-bold ${focusGoalReached ? "text-emerald-400" : "text-stone-400"}`}>
+                <span className={`text-[11px] font-bold ${focusGoalReached ? "text-brand-400" : "text-stone-400"}`}>
                   {focusGoalReached
                     ? format(t.lobby.focusGoalReached, { xp: QUEST_XP_REWARDS.daily_focus })
                     : format(t.lobby.focusGoalProgress, {

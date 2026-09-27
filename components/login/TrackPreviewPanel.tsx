@@ -70,7 +70,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
               )}
               {isActive && (
                 <motion.div
-                  className="absolute inset-x-2 bottom-0 h-1 rounded-t-full bg-emerald-400 dark:bg-emerald-600"
+                  className="absolute inset-x-2 bottom-0 h-1 rounded-t-full bg-brand-400 dark:bg-brand-600"
                   layoutId={compact ? "track-indicator-compact" : "track-indicator"}
                   transition={{ type: "spring", stiffness: 380, damping: 28 }}
                 />
@@ -92,7 +92,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
         >
           {/* Header Badge */}
           <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-300">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-brand-700 dark:border-brand-900/50 dark:bg-brand-950/40 dark:text-brand-300">
               {t.trackPanel.standardised}
             </span>
             <span className="inline-flex items-center gap-1 text-[10px] font-bold text-warn bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900/50">
@@ -118,7 +118,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
                     transition={{ duration: 0.25, delay: idx * 0.04 }}
                     className="flex items-center gap-2 rounded-xl border border-line-soft bg-stone-50/70 dark:bg-stone-950/40 px-3 py-2 text-xs font-semibold text-ink-body"
                   >
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-brand-500 shrink-0" />
                     <span className="truncate">{s}</span>
                   </motion.div>
                 ))}
@@ -129,7 +129,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           {/* Action CTA Button */}
           <a
             href={track.previewSlug ? `/bai-hoc/${track.previewSlug}` : "/cfa"}
-            className={`cta-electric flex items-center justify-between gap-3 rounded-xl transition-all group bg-emerald-600 hover:bg-emerald-500 text-white shadow-md hover:shadow-lg active:scale-[0.99] ${
+            className={`cta-electric flex items-center justify-between gap-3 rounded-xl transition-all group bg-brand-600 hover:bg-brand-500 text-white shadow-md hover:shadow-lg active:scale-[0.99] ${
               compact ? "px-4 py-3" : "px-5 py-3.5"
             }`}
           >

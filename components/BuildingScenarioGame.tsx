@@ -88,10 +88,10 @@ export default function BuildingScenarioGame({ buildingId, userId }: { buildingI
         {done ? (
           <div className="rounded-2xl bg-slate-800 p-5 space-y-3 text-center">
             <p className="text-lg font-black">{format(copy.resultTitle, { score, total })}</p>
-            <p className={xp > 0 ? "text-emerald-300 font-bold" : "text-amber-300 font-bold"}>
+            <p className={xp > 0 ? "text-brand-300 font-bold" : "text-amber-300 font-bold"}>
               {xp > 0 ? format(copy.resultXp, { xp }) : copy.resultNoXp}
             </p>
-            <button onClick={restart} className="rounded-xl bg-emerald-500 px-4 py-2 font-black text-slate-950 hover:bg-emerald-400">
+            <button onClick={restart} className="rounded-xl bg-brand-500 px-4 py-2 font-black text-slate-950 hover:bg-brand-400">
               {copy.playAgain}
             </button>
           </div>
@@ -108,7 +108,7 @@ export default function BuildingScenarioGame({ buildingId, userId }: { buildingI
                 const tone = !reveal
                   ? "bg-slate-700 hover:bg-slate-600"
                   : originalIndex === 0
-                    ? "bg-emerald-600"
+                    ? "bg-brand-600"
                     : isPicked
                       ? "bg-rose-600"
                       : "bg-slate-700 opacity-60";
@@ -127,12 +127,12 @@ export default function BuildingScenarioGame({ buildingId, userId }: { buildingI
             {picked !== null && (
               <div className="space-y-3">
                 <p className="text-sm">
-                  <span className={picked === 0 ? "text-emerald-300 font-black" : "text-rose-300 font-black"}>
+                  <span className={picked === 0 ? "text-brand-300 font-black" : "text-rose-300 font-black"}>
                     {picked === 0 ? copy.correct : copy.wrong}
                   </span>{" "}
                   <span className="text-slate-200">{scenario.why}</span>
                 </p>
-                <button onClick={advance} className="rounded-xl bg-emerald-500 px-4 py-2 font-black text-slate-950 hover:bg-emerald-400">
+                <button onClick={advance} className="rounded-xl bg-brand-500 px-4 py-2 font-black text-slate-950 hover:bg-brand-400">
                   {step + 1 < total ? copy.next : copy.finish}
                 </button>
               </div>

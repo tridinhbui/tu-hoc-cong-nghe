@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { toast } from "sonner";
-import { Search, Play, ExternalLink, Trash2, Save } from "lucide-react";
+import { Search, Play, ExternalLink, Trash2, Save, Lightbulb } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
 import { saveLessonVideoAction, deleteLessonVideoAction } from "./actions";
 import { useI18n } from "@/lib/i18n/context";
@@ -171,7 +171,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
                             <button
                               onClick={() => handleSaveVideo(lesson.id)}
                               disabled={saving}
-                              className="p-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50"
+                              className="p-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white disabled:opacity-50"
                             >
                               <Save className="w-4 h-4" />
                             </button>
@@ -212,8 +212,9 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
 
       {/* Info Box */}
       <div className="bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/50 rounded-xl p-4">
-        <p className="text-sm text-indigo-900 dark:text-indigo-300">
-          💡 <span className="font-semibold">{tv.tipLabel}</span> {tv.tipText}
+        <p className="flex items-start gap-1.5 text-sm text-indigo-900 dark:text-indigo-300">
+          <Lightbulb aria-hidden className="mt-0.5 h-4 w-4 flex-shrink-0" strokeWidth={1.75} />
+          <span><span className="font-semibold">{tv.tipLabel}</span> {tv.tipText}</span>
         </p>
       </div>
     </div>

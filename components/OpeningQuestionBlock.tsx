@@ -38,7 +38,7 @@ export default function OpeningQuestionBlock({
         {options.map((opt, i) => {
           let btnCls = "border-line bg-white/95 dark:bg-stone-900 text-ink-heading hover:border-line-firm hover:bg-stone-50 dark:hover:bg-stone-800/60 font-medium";
           if (submitted) {
-            if (i === correct) btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-accent-ink-strong font-bold";
+            if (i === correct) btnCls = "border-brand-500 bg-brand-50 dark:bg-brand-950/50 text-accent-ink-strong font-bold";
             else if (i === selected) btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-alert-ink font-bold";
             else btnCls = "border-line-soft bg-stone-50/20 dark:bg-stone-900/20 text-ink-muted opacity-60";
           } else if (selected === i) {
@@ -77,7 +77,7 @@ export default function OpeningQuestionBlock({
           initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
           className={`rounded-xl p-4 text-xs leading-relaxed border ${
-            selected === correct ? "bg-emerald-50/50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-accent-ink" : "bg-rose-50/40 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"
+            selected === correct ? "bg-brand-50/50 dark:bg-brand-950/50 border-brand-100 dark:border-brand-900 text-accent-ink" : "bg-rose-50/40 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"
           }`}
         >
           <p className="font-semibold mb-1">

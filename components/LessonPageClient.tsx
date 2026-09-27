@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Lightbulb } from "lucide-react";
 import type { Lesson, LocalizedLesson } from "@/lib/lesson-types";
 import LessonPageLayout from "@/components/LessonPageLayout";
 import LessonTranslationBadge from "@/components/LessonTranslationBadge";
@@ -203,7 +204,9 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           className="rounded-2xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/40 dark:bg-amber-950/40 p-5 space-y-4"
         >
           <div className="flex items-center gap-2.5">
-            <span className="text-2xl animate-bounce">🦖</span>
+            <span className="rounded-xl bg-amber-100/70 p-2 text-warn-strong dark:bg-amber-900/40">
+              <Lightbulb aria-hidden className="h-5 w-5" strokeWidth={1.75} />
+            </span>
             <div>
               <h5 className="text-xs font-extrabold text-warn-strong">{t.lessonPage.feynmanCardTitle}</h5>
               <p className="text-[10px] text-ink-muted font-bold uppercase tracking-wider">{t.lessonPage.feynmanCardSubtitle}</p>

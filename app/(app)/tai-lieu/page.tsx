@@ -31,20 +31,27 @@ export default async function DocumentsGiveawayPage() {
   const t = await getServerDictionary();
 // Generate placeholder image URL based on category
 function getPlaceholderImageUrl(category: string): string {
-  const categoryEmojis: Record<string, string> = {
-    "excel": "📊",
-    "checklist": "✅",
-    "ebook": "📚",
-    "template": "📋",
-    "guide": "📖",
-    "worksheet": "📝",
-    "cheat-sheet": "📄",
-    "tool": "🛠️",
+  // Nét vẽ icon Lucide (viewBox 24), chép tay vì đây là chuỗi SVG data-URI
+  // chứ không phải JSX. Trước đây là emoji vẽ bằng <text>, mỗi hệ điều hành
+  // vẽ một kiểu.
+  /* i18n-ignore-start: SVG path data, not display copy */
+  const FILE_TEXT = '<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>';
+  const BOOK_OPEN = '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>';
+  const categoryIcons: Record<string, string> = {
+    "excel": '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+    "checklist": '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+    "ebook": BOOK_OPEN,
+    "template": '<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>',
+    "guide": '<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>',
+    "worksheet": '<path d="M13 21h8"/><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>',
+    "cheat-sheet": FILE_TEXT,
+    "tool": '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/>',
   };
+  /* i18n-ignore-end */
 
-  const emoji = categoryEmojis[(category || "").toLowerCase()] || "📄";
+  const icon = categoryIcons[(category || "").toLowerCase()] || FILE_TEXT;
 
-  // Generate a simple SVG placeholder with emoji
+  // Generate a simple SVG placeholder with a line icon
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">
     <defs>
       <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -54,7 +61,8 @@ function getPlaceholderImageUrl(category: string): string {
     </defs>
     <rect width="200" height="280" fill="url(#grad)"/>
     <rect x="10" y="10" width="180" height="260" rx="8" fill="white" stroke="#d1d5db" stroke-width="1"/>
-    <text x="100" y="140" font-size="60" text-anchor="middle" dominant-baseline="middle">${emoji}</text>
+    <circle cx="100" cy="140" r="44" fill="#f3f7fc"/>
+    <g transform="translate(76 116) scale(2)" fill="none" stroke="#2961b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icon}</g>
   </svg>`;
 
   const encoded = Buffer.from(svg).toString('base64');

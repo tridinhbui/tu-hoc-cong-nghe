@@ -46,7 +46,7 @@ export default function InteractiveProfitCalc() {
             value={revenue}
             onChange={(e) => setRevenue(+e.target.value)}
             className="w-full"
-            style={{ background: `linear-gradient(to right, #059669 ${((revenue - 10) / 90) * 100}%, #e5e7eb ${((revenue - 10) / 90) * 100}%)` }}
+            style={{ background: `linear-gradient(to right, #2961b8 ${((revenue - 10) / 90) * 100}%, #e5e7eb ${((revenue - 10) / 90) * 100}%)` }}
           />
         </div>
 
@@ -88,9 +88,9 @@ export default function InteractiveProfitCalc() {
 
       {/* Results */}
       <div className="grid grid-cols-2 gap-4">
-        <div className={`rounded-2xl p-4 text-center ${profit >= 0 ? "bg-emerald-50" : "bg-rose-50"}`}>
+        <div className={`rounded-2xl p-4 text-center ${profit >= 0 ? "bg-brand-50" : "bg-rose-50"}`}>
           <div className="text-xs font-medium text-stone-500 mb-1">{t.profitCalc.profitResultLabel}</div>
-          <div className={`text-2xl font-bold ${profit >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
+          <div className={`text-2xl font-bold ${profit >= 0 ? "text-brand-600" : "text-rose-600"}`}>
             {profit >= 0 ? "+" : ""}{format(t.profitCalc.millionUnit, { value: profit })}
           </div>
           <div className="text-xs text-stone-500 mt-1">{profit >= 0 ? t.profitCalc.profitPositiveNote : t.profitCalc.profitNegativeNote}</div>
@@ -113,7 +113,7 @@ export default function InteractiveProfitCalc() {
       )}
 
       {!isShortOfCash && cashReceived === revenue && (
-        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-emerald-800 text-sm">
+        <div className="bg-brand-50 border border-brand-200 rounded-2xl p-4 text-brand-800 text-sm">
           {t.profitCalc.fullPaymentBody}
         </div>
       )}

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { toast } from "sonner";
-import { ArrowLeft, ArrowRight, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X, MoreVertical, Trash2, Copy, Pin, PinOff, CheckCheck, Pencil } from "lucide-react";
+import { ArrowLeft, ArrowRight, Shuffle, Users, LogOut, Send, CornerUpLeft, Smile, X, MoreVertical, Trash2, Copy, Pin, PinOff, CheckCheck, Pencil, BookOpen, Zap, MapPin, Castle, Landmark, Anchor, Headphones, Mic, MicOff, PhoneOff, Flame, Crown, Lightbulb, Gift, Dumbbell, Target } from "lucide-react";
 import { createClient } from "@/lib/cloudflare";
 import { translateApiError } from "@/lib/api-error-code";
 import {
@@ -116,15 +116,16 @@ function topicLabel(topic: StudyRoomTopic, topics: Record<string, string>) {
   return topics[topic] ?? STUDY_ROOM_TOPICS.find((entry) => entry.id === topic)?.label ?? topic;
 }
 
-function missionIcon(key: StudyRoomMission["mission_key"]) {
-  if (key === "lessons") return "📚";
-  if (key === "quizzes") return "⚡";
-  return "📍";
+function MissionIcon({ missionKey }: { missionKey: StudyRoomMission["mission_key"] }) {
+  const cls = "inline w-3.5 h-3.5 mr-0.5 align-[-2px] text-accent";
+  if (missionKey === "lessons") return <BookOpen className={cls} strokeWidth={1.75} aria-hidden />;
+  if (missionKey === "quizzes") return <Zap className={cls} strokeWidth={1.75} aria-hidden />;
+  return <MapPin className={cls} strokeWidth={1.75} aria-hidden />;
 }
 
 function noteColorClass(color: string) {
   const colors: Record<string, string> = {
-    emerald: "bg-emerald-50 dark:bg-emerald-950/50 border-accent-line text-emerald-950 dark:text-emerald-100",
+    emerald: "bg-brand-50 dark:bg-brand-950/50 border-accent-line text-brand-950 dark:text-brand-100",
     amber: "bg-amber-50 dark:bg-amber-950/50 border-warn-line text-amber-950 dark:text-amber-100",
     sky: "bg-sky-50 dark:bg-sky-950/50 border-sky-200 dark:border-sky-800 text-sky-950 dark:text-sky-100",
     rose: "bg-rose-50 dark:bg-rose-950/50 border-alert-line text-rose-950 dark:text-rose-100",
@@ -232,10 +233,10 @@ function quickCheersOf(t: Dictionary) {
 function holoPylonsOf(t: Dictionary) {
   const d = t.dataRest.studyGroupsClient.holoPylons;
   return [
-    { id: "valuation" as const, name: d.valuation, icon: "🏰", angle: 42 },
-    { id: "trading" as const, name: d.trading, icon: "🏛️", angle: 138 },
-    { id: "cashflow" as const, name: d.cashflow, icon: "⚓", angle: 222 },
-    { id: "fed" as const, name: d.fed, icon: "⚡", angle: 318 },
+    { id: "valuation" as const, name: d.valuation, icon: Castle, angle: 42 },
+    { id: "trading" as const, name: d.trading, icon: Landmark, angle: 138 },
+    { id: "cashflow" as const, name: d.cashflow, icon: Anchor, angle: 222 },
+    { id: "fed" as const, name: d.fed, icon: Zap, angle: 318 },
   ];
 }
 
@@ -1291,8 +1292,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {/* Top Room Info, Lofi Audio & Mobile Segmented Tab Bar */}
             <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl px-3 sm:px-4 py-2 shrink-0 flex items-center justify-between gap-2 sm:gap-3 shadow-xs">
               <div className="flex items-center gap-2.5 min-w-0">
-                <span className="w-8 h-8 rounded-xl bg-emerald-600 text-white font-black flex items-center justify-center text-xs shrink-0 shadow-xs">
-                  👥
+                <span className="w-8 h-8 rounded-xl bg-brand-600 text-white font-black flex items-center justify-center text-xs shrink-0 shadow-xs">
+                  <Users className="w-4 h-4" strokeWidth={1.75} aria-hidden />
                 </span>
                 <div className="min-w-0">
                   <h2 className="text-xs sm:text-sm font-black text-ink truncate">
@@ -1301,7 +1302,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   <div className="flex items-center gap-2 mt-0.5">
                     <div className="w-20 sm:w-32 h-2 rounded-full bg-surface-raised overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-emerald-500 transition-all duration-500"
+                        className="h-full rounded-full bg-brand-500 transition-all duration-500"
                         style={{ width: `${Math.min(100, (myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)}%` }}
                       />
                     </div>
@@ -1314,9 +1315,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
               {/* Center/Right Action Bar: Group Co-Pomodoro + Lofi Focus Sound + Mic Toggle + Mobile Segmented Tab Toggle */}
               <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                {/* ⏱️ Group Co-Pomodoro Timer Widget */}
+                {/* Group Co-Pomodoro Timer Widget */}
                 <div className="flex items-center gap-1.5 bg-surface-raised px-2.5 py-1 rounded-xl border border-line-mid text-[10px] font-mono font-black">
-                  <span className={pomoRunning ? "animate-pulse text-emerald-500" : "text-amber-500"}>
+                  <span className={pomoRunning ? "animate-pulse text-brand-500" : "text-amber-500"}>
                     {pomoMode === "focus" ? t.studyGroups.pomodoroFocus : t.studyGroups.pomodoroBreak}
                   </span>
                   <span className="text-ink font-extrabold">{formatPomoTime(pomoSeconds)}</span>
@@ -1328,22 +1329,22 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     {pomoRunning ? t.studyGroups.pomodoroPause : t.studyGroups.pomodoroStart}
                   </button>
                 </div>
-                {/* 🎧 Lofi Chill Focus Audio Button */}
+                {/* Lofi Chill Focus Audio Button */}
                 <button
                   type="button"
                   onClick={toggleLofiMusic}
                   className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
                     lofiPlaying
-                      ? "bg-emerald-500 text-white border-emerald-400 animate-pulse shadow-xs"
+                      ? "bg-brand-500 text-white border-brand-400 animate-pulse shadow-xs"
                       : "bg-surface-raised text-ink-body border-line-mid hover:bg-stone-200"
                   }`}
                   title={t.studyGroups.lofiToggleTitle}
                 >
-                  <span>🎧</span>
+                  <Headphones className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden />
                   <span className="hidden sm:inline">{lofiPlaying ? t.studyGroups.lofiPlaying : t.studyGroups.lofiIdle}</span>
                 </button>
 
-                {/* 🎙️ Voice chat - opt in, then unmute. Two separate steps on
+                {/* Voice chat - opt in, then unmute. Two separate steps on
                     purpose: rooms are re-matched with strangers every Monday,
                     so nothing connects and no microphone opens until the user
                     asks for it twice. */}
@@ -1354,12 +1355,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       onClick={() => void voice.toggleMic()}
                       className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
                         voice.micEnabled
-                          ? "bg-emerald-600 text-white border-emerald-500"
+                          ? "bg-brand-600 text-white border-brand-500"
                           : "bg-surface-raised text-ink-muted border-line-mid"
                       }`}
                       title={t.studyGroups.micToggleTitle}
                     >
-                      <span>{voice.micEnabled ? "🎙️" : "🔇"}</span>
+                      {voice.micEnabled ? <Mic className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden /> : <MicOff className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden />}
                       <span className="hidden md:inline">{voice.micEnabled ? t.studyGroups.micOn : t.studyGroups.micOff}</span>
                     </button>
                     <button
@@ -1368,7 +1369,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       className="inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border bg-rose-500 text-white border-rose-400 transition-all cursor-pointer"
                       title={t.studyGroups.leaveVoiceTitle}
                     >
-                      <span>📴</span>
+                      <PhoneOff className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden />
                       <span className="hidden md:inline">{format(t.studyGroups.leaveVoice, { count: voice.participantIds.length })}</span>
                     </button>
                     {voice.needsAudioUnlock && (
@@ -1398,7 +1399,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         : t.studyGroups.voiceJoinTitle
                     }
                   >
-                    <span>🎙️</span>
+                    <Mic className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden />
                     <span className="hidden md:inline">
                       {voice.status === "connecting"
                         ? t.studyGroups.voiceJoining
@@ -1409,7 +1410,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   </button>
                 )}
 
-                {/* 📱 Mobile Segmented Tab Control (< lg screens) */}
+                {/* Mobile Segmented Tab Control (< lg screens) */}
                 <div className="lg:hidden flex bg-surface-raised p-0.5 rounded-xl border border-line-mid text-[10px] font-extrabold">
                   <button
                     type="button"
@@ -1442,11 +1443,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             </div>
 
-            {/* 💡 Group Attendance & Daily Quest Guidance Banner */}
-            <div className="mb-3 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-500/40 text-xs font-medium text-ink-heading flex flex-wrap items-center justify-between gap-2 shadow-xs">
+            {/* Group Attendance & Daily Quest Guidance Banner */}
+            <div className="mb-3 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-brand-500/15 to-brand-500/15 border border-amber-500/40 text-xs font-medium text-ink-heading flex flex-wrap items-center justify-between gap-2 shadow-xs">
               <div className="flex items-center gap-2 min-w-0">
                 <span className="w-7 h-7 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-sm shrink-0 shadow-xs">
-                  📍
+                  <MapPin className="w-4 h-4" strokeWidth={2} aria-hidden />
                 </span>
                 <div>
                   <p className="flex flex-wrap items-center gap-1.5 font-extrabold text-ink">
@@ -1465,7 +1466,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               <button
                 type="button"
                 onClick={() => void handleManualCheckin()}
-                className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black transition-all shadow-xs cursor-pointer shrink-0 active:scale-95 flex items-center gap-1"
+                className="px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-black transition-all shadow-xs cursor-pointer shrink-0 active:scale-95 flex items-center gap-1"
               >
                 <span>{t.studyGroups.checkInNow}</span>
               </button>
@@ -1484,7 +1485,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
                           <p className="text-xs font-black text-ink truncate">
-                            {missionIcon(mission.mission_key)} {mission.title}
+                            <MissionIcon missionKey={mission.mission_key} /> {mission.title}
                           </p>
                           <p className="text-[10px] text-ink-muted mt-0.5 line-clamp-2">{mission.description}</p>
                         </div>
@@ -1497,7 +1498,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         </span>
                       </div>
                       <div className="mt-2 h-2 rounded-full bg-surface-raised overflow-hidden">
-                        <div className="h-full rounded-full bg-emerald-500 transition-all duration-500" style={{ width: `${pct}%` }} />
+                        <div className="h-full rounded-full bg-brand-500 transition-all duration-500" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
                   );
@@ -1529,10 +1530,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     ? t.studyGroups.stageAriaWalk
                     : t.studyGroups.stageAriaDesk
                 }
-                className={`lg:col-span-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
+                className={`lg:col-span-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 ${
                   mobileTab === "3d" ? "flex" : "hidden lg:flex"
                 } flex-col h-[64vh] min-h-[440px] sm:h-[74vh] sm:min-h-[600px] lg:h-[78vh] lg:min-h-[640px] flex-1 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-4 shadow-2xl relative overflow-hidden text-white justify-between select-none transition-colors ${
-                  walkMode ? "" : isDragging3D ? "cursor-grabbing border-emerald-500/70" : "cursor-grab"
+                  walkMode ? "" : isDragging3D ? "cursor-grabbing border-brand-500/70" : "cursor-grab"
                 }`}
                 // touchAction "pan-y" is the other half of the scroll fix in
                 // handleStageMouseDown: the browser keeps vertical panning
@@ -1550,7 +1551,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     cụm trái được co, và giấu bớt phần nhãn ở màn hẹp. */}
                 <div className="relative z-30 mb-1 flex shrink-0 flex-wrap items-center justify-between gap-1.5">
                   <div className="flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2">
-                    <span className="max-w-full truncate text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 backdrop-blur-md">
+                    <span className="max-w-full truncate text-[10px] font-black uppercase tracking-widest text-brand-300 bg-brand-950/80 px-2.5 py-0.5 rounded-full border border-brand-500/40 backdrop-blur-md">
                       {walkMode ? t.studyGroups.modeWalk : t.studyGroups.modeDesk}
                       {/* Chủ đề và buổi trong ngày là thông tin phụ: trên màn
                           hẹp chúng đẩy cả hàng vỡ ra, và cả hai đều đã hiện ở
@@ -1566,7 +1567,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         e.stopPropagation();
                         setWalkMode((prev) => !prev);
                       }}
-                      className="text-[9px] font-bold text-emerald-200 bg-emerald-950/80 hover:bg-emerald-900 px-2 py-0.5 rounded-full border border-emerald-500/40 transition-all cursor-pointer"
+                      className="text-[9px] font-bold text-brand-200 bg-brand-950/80 hover:bg-brand-900 px-2 py-0.5 rounded-full border border-brand-500/40 transition-all cursor-pointer"
                       title={walkMode ? t.studyGroups.viewDeskTitle : t.studyGroups.viewWalkTitle}
                     >
                       {walkMode ? t.studyGroups.viewDesk : t.studyGroups.viewWalk}
@@ -1662,8 +1663,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       XP figure covered by their nameplates in turn. Out here it
                       also escapes the 3D rasterizer, so the text stays crisp
                       instead of shimmering as the room turns. */}
-                  <div className="absolute left-0 bottom-0 z-30 w-40 rounded-2xl border border-emerald-400/40 bg-stone-950/85 backdrop-blur-md px-3 py-2.5 text-center shadow-[0_0_28px_rgba(16,185,129,0.25)]">
-                    <p className="text-[9px] font-black uppercase tracking-[0.18em] text-emerald-300">
+                  <div className="absolute left-0 bottom-0 z-30 w-40 rounded-2xl border border-brand-400/40 bg-stone-950/85 backdrop-blur-md px-3 py-2.5 text-center shadow-[0_0_28px_rgba(65, 122, 205,0.25)]">
+                    <p className="text-[9px] font-black uppercase tracking-[0.18em] text-brand-300">
                       {t.studyGroups.weeklyGoalTitle}
                     </p>
                     <p className="text-sm font-black text-white mt-0.5 tabular-nums">
@@ -1671,7 +1672,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     </p>
                     <div className="mt-1.5 h-1.5 rounded-full bg-stone-800 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-emerald-400 transition-all duration-500"
+                        className="h-full rounded-full bg-brand-400 transition-all duration-500"
                         style={{
                           width: `${Math.min(
                             100,
@@ -1692,7 +1693,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           ? "bg-amber-500 text-stone-950 border-amber-300 shadow-md"
                           : !allMissionsDone
                           ? "bg-stone-900/90 text-stone-500 border-stone-700 cursor-not-allowed"
-                          : "bg-emerald-950/90 text-emerald-300 border-emerald-400/40 hover:bg-emerald-800"
+                          : "bg-brand-950/90 text-brand-300 border-brand-400/40 hover:bg-brand-800"
                       }`}
                     >
                       {rewardClaimed || isChestUnlocked
@@ -1736,8 +1737,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           style={{ background: lighting.floorPool }}
                         />
                         {/* Rug under the table */}
-                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] rounded-full border border-emerald-500/20 bg-emerald-950/30" />
-                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full border border-dashed border-emerald-400/25" />
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] rounded-full border border-brand-500/20 bg-brand-950/30" />
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full border border-dashed border-brand-400/25" />
                       </div>
 
                       {/* ── BACK WALL ── */}
@@ -1770,7 +1771,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         </div>
                         {/* Whiteboard */}
                         <div className="absolute bottom-[92px] right-8 w-[148px] h-[80px] rounded-md border-2 border-stone-700 bg-stone-800/80 p-2.5">
-                          <div className="h-1.5 w-2/3 rounded-full bg-emerald-500/60" />
+                          <div className="h-1.5 w-2/3 rounded-full bg-brand-500/60" />
                           <div className="mt-2 h-1.5 w-1/2 rounded-full bg-stone-600" />
                           <div className="mt-2 h-1.5 w-3/5 rounded-full bg-stone-600" />
                           <div className="mt-2 h-1.5 w-1/3 rounded-full bg-stone-600" />
@@ -1842,16 +1843,16 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                               ? undefined
                               : {
                                   boxShadow: [
-                                    "0 10px 60px rgba(16,185,129,0.36)",
-                                    "0 10px 78px rgba(16,185,129,0.48)",
-                                    "0 10px 60px rgba(16,185,129,0.36)",
+                                    "0 10px 60px rgba(65, 122, 205,0.36)",
+                                    "0 10px 78px rgba(65, 122, 205,0.48)",
+                                    "0 10px 60px rgba(65, 122, 205,0.36)",
                                   ],
                                 }
                           }
                           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                          className="w-16 h-7 mx-auto rounded-b-[32px] bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-600 shadow-[0_10px_60px_rgba(16,185,129,0.36)]"
+                          className="w-16 h-7 mx-auto rounded-b-[32px] bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-600 shadow-[0_10px_60px_rgba(65, 122, 205,0.36)]"
                         />
-                        <div className="w-7 h-2.5 mx-auto -mt-1 rounded-full bg-emerald-200/90 blur-[5px]" />
+                        <div className="w-7 h-2.5 mx-auto -mt-1 rounded-full bg-brand-200/90 blur-[5px]" />
                       </div>
 
                       {/* ── ROUND TABLE ── */}
@@ -1872,23 +1873,23 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       <button
                         type="button"
                         aria-label={t.studyGroups.boostAria}
-                        className="absolute left-1/2 top-1/2 rounded-full border-2 border-emerald-400/60 cursor-pointer"
+                        className="absolute left-1/2 top-1/2 rounded-full border-2 border-brand-400/60 cursor-pointer"
                         style={{
                           width: 208,
                           height: 208,
                           transform: `translate(-50%, -50%) translateY(${FLOOR_Y - 74}px) rotateX(90deg)`,
                           background:
                             "radial-gradient(circle at 38% 32%, #2c2724 0%, #1c1917 48%, #0a0908 100%)",
-                          boxShadow: "0 0 54px rgba(16,185,129,0.22)",
+                          boxShadow: "0 0 54px rgba(65, 122, 205,0.22)",
                         }}
                         onClick={() => toast.success(t.studyGroups.boostDone)}
                       >
                         <div
-                          className={`absolute inset-5 rounded-full border border-dashed border-emerald-300/30 ${
+                          className={`absolute inset-5 rounded-full border border-dashed border-brand-300/30 ${
                             reduceMotion ? "" : "animate-spin [animation-duration:20s]"
                           }`}
                         />
-                        <div className="absolute inset-[38%] rounded-full bg-emerald-500/15 blur-md" />
+                        <div className="absolute inset-[38%] rounded-full bg-brand-500/15 blur-md" />
                       </button>
 
                       {/* ── HOLO PYLONS around the room ── */}
@@ -1916,13 +1917,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             }
                             className={`flex flex-col items-center gap-1 px-2.5 py-1.5 rounded-xl border backdrop-blur-md text-[9px] font-black shadow-lg cursor-pointer transition-all hover:scale-110 ${
                               isActive
-                                ? "border-emerald-300 bg-emerald-900/90 text-emerald-200 shadow-[0_0_24px_rgba(16,185,129,0.6)]"
+                                ? "border-brand-300 bg-brand-900/90 text-brand-200 shadow-[0_0_24px_rgba(65, 122, 205,0.6)]"
                                 : isLit
-                                ? "border-emerald-400/70 bg-emerald-950/90 text-emerald-300 shadow-[0_0_14px_rgba(16,185,129,0.35)]"
-                                : "border-emerald-500/40 bg-stone-900/90 text-emerald-300"
+                                ? "border-brand-400/70 bg-brand-950/90 text-brand-300 shadow-[0_0_14px_rgba(65, 122, 205,0.35)]"
+                                : "border-brand-500/40 bg-stone-900/90 text-brand-300"
                             }`}
                           >
-                            <span className="text-sm leading-none">{node.icon}</span>
+                            <node.icon className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden />
                             <span className="whitespace-nowrap">
                               {node.name}
                               {isLit ? " ✓" : ""}
@@ -1934,7 +1935,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                               reward for having found it. */}
                           <div
                             className={`w-px h-11 mx-auto bg-gradient-to-b to-transparent ${
-                              isLit ? "from-emerald-300" : "from-emerald-400/60"
+                              isLit ? "from-brand-300" : "from-brand-400/60"
                             }`}
                           />
                         </div>
@@ -2019,11 +2020,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                         pushed them off the bottom of the stage.
                                         Up here they have empty air to live in. */}
                                     <div className="mb-0.5 flex items-center gap-1">
-                                      <span className="px-1.5 py-0.5 rounded-full bg-emerald-600 text-[9px] font-black text-white">
+                                      <span className="px-1.5 py-0.5 rounded-full bg-brand-600 text-[9px] font-black text-white">
                                         {format(t.studyGroups.levelShort, { level: member.current_level })}
                                       </span>
-                                      <span className="text-[9px] font-black text-emerald-300 whitespace-nowrap">
-                                        🔥 {member.weekly_lessons}
+                                      <span className="inline-flex items-center gap-0.5 text-[9px] font-black text-brand-300 whitespace-nowrap">
+                                        <Flame className="w-2.5 h-2.5" strokeWidth={2} aria-hidden /> {member.weekly_lessons}
                                       </span>
                                     </div>
                                     <span className="mb-1 text-[9px] font-black text-amber-300 truncate max-w-[100px]">
@@ -2040,7 +2041,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                         isArriving
                                           ? "bg-amber-400 border-amber-200 text-stone-950"
                                           : isMe
-                                          ? "bg-emerald-500 border-emerald-300 text-stone-950"
+                                          ? "bg-brand-500 border-brand-300 text-stone-950"
                                           : "bg-stone-900/95 border-stone-700 text-white"
                                       }`}
                                       title={member.full_name || t.studyGroups.memberRole}
@@ -2055,10 +2056,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                     <div className="relative">
                                       {idx === 0 && (
                                         <span
-                                          className="absolute -top-4 left-1/2 -translate-x-1/2 text-base animate-bounce"
+                                          className="absolute -top-4 left-1/2 -translate-x-1/2 text-amber-400 animate-bounce"
                                           title={t.studyGroups.topLessonTitle}
                                         >
-                                          👑
+                                          <Crown className="w-4 h-4" strokeWidth={2} aria-hidden />
                                         </span>
                                       )}
                                       {/* Speaking halo. Rendered behind the
@@ -2066,14 +2067,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                           "who is talking" is readable at the
                                           size a phone actually shows a seat. */}
                                       {isSpeaking && (
-                                        <span className="absolute -inset-2 rounded-full bg-emerald-400/40 blur-md animate-pulse pointer-events-none" />
+                                        <span className="absolute -inset-2 rounded-full bg-brand-400/40 blur-md animate-pulse pointer-events-none" />
                                       )}
                                       <div
                                         className={`relative rounded-full p-0.5 bg-stone-900 shadow-[0_8px_18px_rgba(0,0,0,0.7)] ${
                                           isSpeaking
-                                            ? "ring-[3px] ring-emerald-300"
+                                            ? "ring-[3px] ring-brand-300"
                                             : isMe
-                                            ? "ring-2 ring-emerald-400"
+                                            ? "ring-2 ring-brand-400"
                                             : "ring-2 ring-stone-700"
                                         }`}
                                       >
@@ -2081,10 +2082,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       </div>
                                       {inVoice && (
                                         <span
-                                          className="absolute -right-1 -bottom-1 w-4 h-4 rounded-full bg-emerald-600 border border-emerald-300 text-[8px] flex items-center justify-center shadow-md"
+                                          className="absolute -right-1 -bottom-1 w-4 h-4 rounded-full bg-brand-600 border border-brand-300 text-white flex items-center justify-center shadow-md"
                                           title={t.studyGroups.inVoiceTitle}
                                         >
-                                          🎙️
+                                          <Mic className="w-2.5 h-2.5" strokeWidth={2.25} aria-hidden />
                                         </span>
                                       )}
                                     </div>
@@ -2093,7 +2094,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                     <div
                                       className={`-mt-2 w-[56px] h-[44px] rounded-t-[28px] rounded-b-sm border-t border-x shadow-[0_10px_20px_rgba(0,0,0,0.6)] ${
                                         isMe
-                                          ? "bg-gradient-to-b from-emerald-500 to-emerald-700 border-emerald-300"
+                                          ? "bg-gradient-to-b from-brand-500 to-brand-700 border-brand-300"
                                           : "bg-gradient-to-b from-stone-600 to-stone-800 border-stone-500"
                                       }`}
                                     />
@@ -2182,14 +2183,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       {t.studyGroups.quizTab}
                     </button>
                   </div>
-                  <span className="text-[10px] font-bold text-accent bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-accent-line">
+                  <span className="text-[10px] font-bold text-accent bg-brand-50 dark:bg-brand-950/60 px-2 py-0.5 rounded-full border border-accent-line">
                     {t.studyGroups.live}
                   </span>
                 </div>
                 {chatSubTab === "chat" && (
                   <div className="flex-1 flex flex-col min-h-0">
-                    <div className="mb-2 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-accent-line shrink-0 text-[10px] text-accent-ink font-semibold flex items-center gap-1">
-                      <span>💡</span>
+                    <div className="mb-2 px-2.5 py-1 rounded-xl bg-brand-50 dark:bg-brand-950/30 border border-accent-line shrink-0 text-[10px] text-accent-ink font-semibold flex items-center gap-1">
+                      <Lightbulb className="w-3 h-3 shrink-0" strokeWidth={2} aria-hidden />
                       <span>{t.studyGroups.chatCheckinHint}</span>
                     </div>
                     {pinnedMessage && (
@@ -2209,7 +2210,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   <button
                     onClick={() => void loadOlderMessages()}
                     disabled={loadingOlder}
-                    className="px-3 py-1 rounded-full bg-white dark:bg-stone-900 border border-line-mid text-[10px] font-black text-ink-muted hover:text-emerald-600 disabled:opacity-60 cursor-pointer"
+                    className="px-3 py-1 rounded-full bg-white dark:bg-stone-900 border border-line-mid text-[10px] font-black text-ink-muted hover:text-brand-600 disabled:opacity-60 cursor-pointer"
                   >
                     {loadingOlder ? t.studyGroups.loading : t.studyGroups.loadOlder}
                   </button>
@@ -2259,7 +2260,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       id={`room-msg-${msg.id}`}
                       className={`group relative flex flex-col transition-colors duration-500 ${
                         isMine ? "items-end" : "items-start"
-                      } ${highlightedMsgId === msg.id ? "bg-emerald-500/15 rounded-2xl -mx-1 px-1 py-0.5" : ""} ${
+                      } ${highlightedMsgId === msg.id ? "bg-brand-500/15 rounded-2xl -mx-1 px-1 py-0.5" : ""} ${
                         isPending && !hasFailed ? "opacity-60" : ""
                       }`}
                     >
@@ -2268,7 +2269,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           isDragon
                             ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-tr-xs border-2 border-amber-400 shadow-[0_0_12px_rgba(249,115,22,0.7)]"
                             : isDiamond
-                            ? "bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 text-white rounded-tr-xs border-2 border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.7)]"
+                            ? "bg-gradient-to-r from-cyan-600 via-brand-600 to-brand-600 text-white rounded-tr-xs border-2 border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.7)]"
                             : isMine
                             ? "bg-surface-invert text-ink-invert rounded-tr-xs"
                             : "bg-white dark:bg-stone-900 border border-line text-ink rounded-tl-xs"
@@ -2291,7 +2292,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 window.setTimeout(() => setHighlightedMsgId((cur) => (cur === repliedTo.id ? null : cur)), 1600);
                               }}
                               disabled={!repliedTo}
-                              className="mb-1.5 w-full text-left p-1.5 rounded-lg border-l-2 border-emerald-400 bg-emerald-500/10 text-[11px] font-medium leading-snug disabled:cursor-default"
+                              className="mb-1.5 w-full text-left p-1.5 rounded-lg border-l-2 border-brand-400 bg-brand-500/10 text-[11px] font-medium leading-snug disabled:cursor-default"
                             >
                               {repliedTo ? (
                                 <>
@@ -2350,7 +2351,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   setReplyingTo({ id: msg.id, senderName: isMine ? t.chat.you : senderName, content: msg.content });
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-ink-heading font-bold transition-colors text-left"
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-brand-50 dark:hover:bg-brand-950/40 text-ink-heading font-bold transition-colors text-left"
                               >
                                 <CornerUpLeft className="w-3.5 h-3.5 text-accent" />
                                 <span>{t.chat.reply}</span>
@@ -2456,7 +2457,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 onClick={() => void toggleReaction(msg.id, emoji)}
                                 className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all ${
                                   hasMyReaction
-                                    ? "bg-accent-soft border-emerald-300 text-accent-strong shadow-2xs"
+                                    ? "bg-accent-soft border-brand-300 text-accent-strong shadow-2xs"
                                     : "bg-white dark:bg-stone-900 border-line text-ink-body"
                                 }`}
                               >
@@ -2469,7 +2470,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       )}
                       {isMine && (
                         <div className="mt-1 flex items-center justify-end gap-1 text-[10px] font-bold text-ink-faint whitespace-nowrap">
-                          <CheckCheck className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
+                          <CheckCheck className="h-3.5 w-3.5 text-brand-500 shrink-0" />
                           <span className="whitespace-nowrap">{myRoomMembers.length > 1 ? t.chat.seen : t.chat.sent}</span>
                         </div>
                       )}
@@ -2488,7 +2489,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
                   setHasUnseenBelow(false);
                 }}
-                className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white text-[10px] font-black shadow-lg cursor-pointer"
+                className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3 py-1.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white text-[10px] font-black shadow-lg cursor-pointer"
               >
                 {t.studyGroups.newMessages}
               </button>
@@ -2497,7 +2498,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             {/* Replying Banner Preview */}
             {replyingTo && (
-              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-accent-line text-xs text-ink-heading mt-2">
+              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-brand-50 dark:bg-brand-950/40 border border-accent-line text-xs text-ink-heading mt-2">
                 <div className="min-w-0 flex-1">
                   <span className="font-bold text-accent">{format(t.chat.replyingTo, { name: replyingTo.senderName })}</span>
                   <p className="truncate text-[11px] text-ink-soft mt-0.5">{replyingTo.content}</p>
@@ -2549,7 +2550,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       : t.studyGroups.chatPlaceholder
                 }
                 maxLength={2000}
-                className="flex-1 px-3.5 py-2.5 rounded-xl border border-line bg-white dark:bg-stone-900 text-sm text-ink placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/50"
+                className="flex-1 px-3.5 py-2.5 rounded-xl border border-line bg-white dark:bg-stone-900 text-sm text-ink placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-400/50"
               />
               <button
                 onClick={() => void handleSendMessage()}
@@ -2576,7 +2577,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               <button
                 type="button"
                 onClick={() => void handleAddNote()}
-                className="px-3 py-2 rounded-xl bg-emerald-600 text-white font-black text-xs hover:bg-emerald-500 cursor-pointer shrink-0"
+                className="px-3 py-2 rounded-xl bg-brand-600 text-white font-black text-xs hover:bg-brand-500 cursor-pointer shrink-0"
               >
                 {t.studyGroups.noteAdd}
               </button>
@@ -2596,7 +2597,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   return (
                     <div key={note.id} className={`p-3 rounded-2xl border ${noteColorClass(note.color)} text-xs space-y-1 shadow-xs`}>
                       <div className="flex items-center justify-between gap-2 font-black text-[10px] opacity-80">
-                        <span className="truncate">📌 {isAuthor ? t.studyGroups.noteAuthorYou : author?.full_name || t.studyGroups.memberRole}</span>
+                        <span className="truncate inline-flex items-center gap-1"><Pin className="w-3 h-3 shrink-0" strokeWidth={2} aria-hidden /> {isAuthor ? t.studyGroups.noteAuthorYou : author?.full_name || t.studyGroups.memberRole}</span>
                         <span className="shrink-0">{formatShortTime(note.created_at)}</span>
                       </div>
                       <p className="font-semibold leading-relaxed whitespace-pre-wrap break-words">{note.content}</p>
@@ -2620,7 +2621,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
         {chatSubTab === "quiz" && (
           <div className="flex-1 flex flex-col min-h-0 overflow-y-auto p-1 space-y-3">
-            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-500/40 text-xs space-y-1 shrink-0">
+            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-brand-500/15 to-brand-500/15 border border-amber-500/40 text-xs space-y-1 shrink-0">
               <p className="font-black text-ink flex items-center gap-1.5">
                 <span>{t.studyGroups.quizChallengeTitle}</span>
                 <span className="px-2 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[9px]">{t.studyGroups.quizReward}</span>
@@ -2654,7 +2655,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             onClick={() => setGroupQuizAnswers((prev) => ({ ...prev, [qIdx]: optIdx }))}
                             className={`w-full text-left p-2 rounded-xl text-[11px] font-bold border transition-all cursor-pointer ${
                               groupQuizAnswers[qIdx] === optIdx
-                                ? "bg-emerald-500 text-stone-950 border-emerald-400 font-black"
+                                ? "bg-brand-500 text-stone-950 border-brand-400 font-black"
                                 : "bg-white dark:bg-stone-900 border-line text-ink-body"
                             }`}
                           >
@@ -2670,14 +2671,20 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   type="button"
                   onClick={() => void handleSubmitGroupQuiz()}
                   disabled={loadingGroupQuiz || groupQuizQuestions.length === 0 || Object.keys(groupQuizAnswers).length < groupQuizQuestions.length}
-                  className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white font-black text-xs transition-all cursor-pointer shadow-md"
+                  className="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 disabled:opacity-40 text-white font-black text-xs transition-all cursor-pointer shadow-md"
                 >
                   {t.studyGroups.quizSubmit}
                 </button>
               </div>
             ) : (
               <div className="py-6 text-center space-y-3">
-                <div className="text-4xl">{groupQuizScore && groupQuizScore >= 80 ? "🎁" : "💪"}</div>
+                <div className="mx-auto w-fit rounded-xl bg-accent-soft text-accent p-2.5">
+                  {groupQuizScore && groupQuizScore >= 80 ? (
+                    <Gift className="w-8 h-8" strokeWidth={1.5} aria-hidden />
+                  ) : (
+                    <Dumbbell className="w-8 h-8" strokeWidth={1.5} aria-hidden />
+                  )}
+                </div>
                 <h4 className="font-black text-sm text-ink">
                   {format(t.studyGroups.quizResult, { score: groupQuizScore ?? 0 })}
                 </h4>
@@ -2729,14 +2736,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
           Giờ nó đọc đúng thứ phòng thật sự có: nhiệm vụ tuần và chủ đề phòng.
           Không có khái niệm "bài học của phòng hôm nay" trong dữ liệu, nên
           không dựng ra một cái. */}
-            <div className="bg-gradient-to-r from-emerald-950 via-stone-900 to-emerald-950 border border-emerald-500/30 rounded-2xl p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white shadow-lg">
+            <div className="bg-gradient-to-r from-brand-950 via-stone-900 to-brand-950 border border-brand-500/30 rounded-2xl p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white shadow-lg">
               <div className="flex items-center gap-3 min-w-0">
-                <span className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 flex items-center justify-center text-lg shrink-0 shadow-xs">
-                  🎯
+                <span className="w-9 h-9 rounded-xl bg-brand-500/20 text-brand-400 border border-brand-400/40 flex items-center justify-center shrink-0 shadow-xs">
+                  <Target className="w-5 h-5" strokeWidth={1.75} aria-hidden />
                 </span>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-brand-400 bg-brand-950 px-2 py-0.5 rounded-full border border-brand-500/40">
                       {t.studyGroups.roomGoalTitle}
                     </span>
                   </div>
@@ -2762,7 +2769,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
               <Link
                 href="/hoc-bai"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black px-4 py-2 rounded-xl text-xs transition-all shadow-md active:scale-95 shrink-0 cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-400 text-stone-950 font-black px-4 py-2 rounded-xl text-xs transition-all shadow-md active:scale-95 shrink-0 cursor-pointer"
               >
                 <span>{t.studyGroups.studyNow}</span>
                 <ArrowRight className="w-3.5 h-3.5" />

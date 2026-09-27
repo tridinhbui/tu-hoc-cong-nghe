@@ -192,7 +192,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                     <span className="text-[11px] font-bold uppercase tracking-wide bg-surface-raised text-ink-soft px-2.5 py-1 rounded-full">
                       {categoryLabel(doc.category, t)}
                     </span>
-                    <span className="text-[11px] font-black bg-emerald-500/10 dark:bg-emerald-500/20 text-accent px-2.5 py-1 rounded-full border border-emerald-500/20 animate-pulse flex items-center gap-0.5">
+                    <span className="text-[11px] font-black bg-brand-500/10 dark:bg-brand-500/20 text-accent px-2.5 py-1 rounded-full border border-brand-500/20 animate-pulse flex items-center gap-0.5">
                       {t.documentsList.freeBadge}
                     </span>
                     {statusBadge(doc.status, t) && (
@@ -288,7 +288,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
             <a
               // Tải về thật, không phải mở trong tab mới: `download` trên thẻ
               // <a> vô hiệu với link khác origin, nên Content-Disposition và
-              // tên tệp phải do Cloudflare Storage đặt. Xem toDownloadUrl.
+              // tên tệp phải do storage của hệ cũ đặt. Xem toDownloadUrl.
               href={toDownloadUrl(openDoc.file_url, openDoc.file_name)}
               onClick={() => handleDownload(openDoc)}
               className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-surface-invert text-ink-invert text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"

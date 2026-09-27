@@ -14,7 +14,7 @@ interface LevelUpModalProps {
   onClose: () => void;
 }
 
-const CONFETTI_COLORS = ["#10b981", "#f59e0b", "#3b82f6", "#ec4899", "#8b5cf6", "#14b8a6"];
+const CONFETTI_COLORS = ["#417acd", "#f59e0b", "#3b82f6", "#ec4899", "#8b5cf6", "#6c9bdc"];
 
 // Deterministic-per-mount confetti pieces (no external library - a burst of
 // small divs animated via CSS custom properties for random-looking start
@@ -164,8 +164,8 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
         </button>
 
         <div className="relative w-24 h-24 mx-auto mb-5">
-          <span className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-400 to-emerald-500 animate-ping opacity-30" />
-          <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-amber-400 via-emerald-500 to-teal-500 flex items-center justify-center shadow-lg animate-[level-pop_0.5s_ease-out]">
+          <span className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-400 to-brand-500 animate-ping opacity-30" />
+          <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-amber-400 via-brand-500 to-brand-500 flex items-center justify-center shadow-lg animate-[level-pop_0.5s_ease-out]">
             <span className="text-4xl font-extrabold text-white">{level}</span>
           </div>
           <Sparkles className="absolute -top-1 -right-1 w-7 h-7 text-amber-400 animate-pulse" />
@@ -237,8 +237,8 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
           </linearGradient>
           <linearGradient id="levelAccent" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#f59e0b" />
-            <stop offset="50%" stopColor="#10b981" />
-            <stop offset="100%" stopColor="#14b8a6" />
+            <stop offset="50%" stopColor="#417acd" />
+            <stop offset="100%" stopColor="#6c9bdc" />
           </linearGradient>
         </defs>
 

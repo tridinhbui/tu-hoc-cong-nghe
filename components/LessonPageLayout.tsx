@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { CheckCircle2, Circle, ArrowLeft, ChevronDown, ChevronUp } from "lucide-react";
+import { CheckCircle2, Circle, ArrowLeft, ChevronDown, ChevronUp, TriangleAlert } from "lucide-react";
 import { markLessonComplete, saveQuizAnswers, getQuizAnswers, clearQuizAnswers } from "@/lib/progress";
 import { firstAttemptResults, firstAttemptScore } from "@/lib/quiz-scoring";
 import FloatingContact from "@/components/FloatingChatbot";
@@ -77,11 +77,11 @@ interface Props {
 }
 
 const ACCENTS: Record<string, { bg: string; text: string; border: string; badge: string; bar: string; btn: string }> = {
-  emerald: { bg: "bg-emerald-50 dark:bg-emerald-950/40",  text: "text-accent-strong", border: "border-accent-line", badge: "bg-emerald-100 dark:bg-emerald-950/60 text-accent-strong", bar: "bg-emerald-500", btn: "bg-emerald-600 hover:bg-emerald-700" },
+  emerald: { bg: "bg-brand-50 dark:bg-brand-950/40",  text: "text-accent-strong", border: "border-accent-line", badge: "bg-brand-100 dark:bg-brand-950/60 text-accent-strong", bar: "bg-brand-500", btn: "bg-brand-600 hover:bg-brand-700" },
   blue:    { bg: "bg-blue-50 dark:bg-blue-950/40",     text: "text-blue-700 dark:text-blue-400",    border: "border-blue-200 dark:border-blue-900",    badge: "bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400",    bar: "bg-blue-500",    btn: "bg-blue-600 hover:bg-blue-700" },
   violet:  { bg: "bg-violet-50 dark:bg-violet-950/40",   text: "text-violet-700 dark:text-violet-400",  border: "border-violet-200 dark:border-violet-900",  badge: "bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-400", bar: "bg-violet-500",  btn: "bg-violet-600 hover:bg-violet-700" },
   orange:  { bg: "bg-orange-50 dark:bg-orange-950/40",   text: "text-orange-700 dark:text-orange-300",  border: "border-orange-200 dark:border-orange-900",  badge: "bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-300", bar: "bg-orange-500",  btn: "bg-orange-600 hover:bg-orange-700" },
-  teal:    { bg: "bg-teal-50 dark:bg-teal-950/40",     text: "text-teal-700 dark:text-teal-400",    border: "border-teal-200 dark:border-teal-900",    badge: "bg-teal-100 dark:bg-teal-950/60 text-teal-700 dark:text-teal-400",    bar: "bg-teal-500",    btn: "bg-teal-600 hover:bg-teal-700" },
+  teal:    { bg: "bg-brand-50 dark:bg-brand-950/40",     text: "text-accent-strong",    border: "border-accent-line",    badge: "bg-brand-100 dark:bg-brand-950/60 text-accent-strong",    bar: "bg-brand-500",    btn: "bg-brand-600 hover:bg-brand-700" },
   cyan:    { bg: "bg-cyan-50 dark:bg-cyan-950/40",     text: "text-cyan-700 dark:text-cyan-400",    border: "border-cyan-200 dark:border-cyan-900",    badge: "bg-cyan-100 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-400",    bar: "bg-cyan-500",    btn: "bg-cyan-600 hover:bg-cyan-700" },
   rose:    { bg: "bg-rose-50 dark:bg-rose-950/40",     text: "text-alert-strong",    border: "border-alert-line",    badge: "bg-rose-100 dark:bg-rose-950/60 text-alert-strong",    bar: "bg-rose-500",    btn: "bg-rose-600 hover:bg-rose-700" },
   indigo:  { bg: "bg-indigo-50 dark:bg-indigo-950/40",   text: "text-indigo-700 dark:text-indigo-400",  border: "border-indigo-200 dark:border-indigo-900",  badge: "bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400", bar: "bg-indigo-500",  btn: "bg-indigo-600 hover:bg-indigo-700" },
@@ -936,9 +936,13 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   const allDoneNow = checklistItems.every((it) => it.done);
 
                   return (
-                    <div className={`rounded-xl border-2 ${allDoneNow ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30" : c.border} ${allDoneNow ? "" : c.bg} px-4 py-3.5 space-y-2.5`}>
+                    <div className={`rounded-xl border-2 ${allDoneNow ? "border-brand-500 bg-brand-50 dark:bg-brand-950/30" : c.border} ${allDoneNow ? "" : c.bg} px-4 py-3.5 space-y-2.5`}>
                       <p className={`text-xs font-extrabold uppercase tracking-widest flex items-center gap-1.5 ${allDoneNow ? "text-accent-strong" : c.text}`}>
-                        <span>{allDoneNow ? "✅" : "⚠️"}</span>
+                        {allDoneNow ? (
+                          <CheckCircle2 aria-hidden className="w-4 h-4 flex-shrink-0" />
+                        ) : (
+                          <TriangleAlert aria-hidden className="w-4 h-4 flex-shrink-0" />
+                        )}
                         {t.lessonLayout.checklistTitle}
                       </p>
                       <ul className="space-y-1.5">
@@ -976,7 +980,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <StageTipsBanner lessonId={persistedLessonId} lessonTitle={lesson.title} />
             </div>
 
-            {/* 📺 Lesson Video Player / Curated Video Section */}
+            {/* Lesson Video Player / Curated Video Section */}
             <div className="my-6 rounded-2xl overflow-hidden border-2 border-line-invert bg-stone-900 text-white p-5 shadow-lg">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
@@ -1123,7 +1127,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     title={submitted[i] ? t.lessonLayout.reviewQuestion : undefined}
                     className={`flex-1 h-3 rounded-full transition-all cursor-pointer ${
                       submitted[i]
-                        ? results[i] ? "bg-emerald-500" : "bg-rose-500"
+                        ? results[i] ? "bg-brand-500" : "bg-rose-500"
                         : i === activeQ ? `${c.bar}` : "bg-surface-deep"
                     }`}
                   />
@@ -1142,7 +1146,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       {format(t.lessonLayout.questionCounter, { current: activeQ + 1, total: quiz.length })}
                     </span>
                     {qSubmitted && (
-                      <span className={`text-sm font-bold px-3 py-1.5 rounded-lg ${qCorrect ? "bg-emerald-100 dark:bg-emerald-950/50 text-accent-ink-strong" : "bg-rose-100 dark:bg-rose-950/50 text-alert-ink"}`}>
+                      <span className={`text-sm font-bold px-3 py-1.5 rounded-lg ${qCorrect ? "bg-brand-100 dark:bg-brand-950/50 text-accent-ink-strong" : "bg-rose-100 dark:bg-rose-950/50 text-alert-ink"}`}>
                         {qCorrect ? t.lessonLayout.answerRight : t.lessonLayout.answerWrong}
                       </span>
                     )}
@@ -1156,7 +1160,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     const isCorrectOpt = oi === q.correct;
                     let cls = "border-2 border-line-strong bg-white/95 dark:bg-stone-900 text-ink hover:border-line-firm hover:bg-surface";
                     if (qSubmitted) {
-                      if (isCorrectOpt) cls = "border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-accent-ink-strong font-semibold";
+                      if (isCorrectOpt) cls = "border-2 border-brand-500 bg-brand-50 dark:bg-brand-950/50 text-accent-ink-strong font-semibold";
                       else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-alert-ink font-semibold";
                       else cls = "border-2 border-line bg-stone-50 dark:bg-stone-900/50 text-ink-muted";
                     } else if (isSelected) {
@@ -1185,7 +1189,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 </div>
 
                 {qSubmitted && (
-                  <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-100 dark:border-emerald-900 text-accent-ink" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"}`}>
+                  <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-brand-50 dark:bg-brand-950/50 border-brand-100 dark:border-brand-900 text-accent-ink" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"}`}>
                     <p className="font-bold mb-1.5">{qCorrect ? t.lessonLayout.exactly : t.lessonLayout.explanation}</p>
                     {/* Contrast the learner's own wrong pick against the correct
                         one before explaining - naming the exact misconception
@@ -1263,7 +1267,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               </div>
             ) : (
               /* Completion card */
-              <div className={`rounded-2xl border p-7 text-center space-y-4 ${score === quiz.length ? "bg-emerald-50 dark:bg-emerald-950/50 border-accent-line" : "bg-indigo-50 dark:bg-indigo-950/50 border-indigo-200 dark:border-indigo-900"}`}>
+              <div className={`rounded-2xl border p-7 text-center space-y-4 ${score === quiz.length ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line" : "bg-indigo-50 dark:bg-indigo-950/50 border-indigo-200 dark:border-indigo-900"}`}>
                 <div className="text-5xl">{score === quiz.length ? "★" : score >= quiz.length * 0.7 ? "+" : "↑"}</div>
                 <div>
                   <h3 className="font-bold text-ink text-xl">{t.lessonLayout.doneTitle}</h3>
@@ -1286,7 +1290,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       key={i}
                       onClick={() => (ok ? viewQuestion(i) : retry(i))}
                       title={ok ? t.lessonLayout.reviewQuestion : t.lessonLayout.retryQuestion}
-                      className={`w-9 h-9 rounded-full text-sm flex items-center justify-center text-white font-bold cursor-pointer ${ok ? "bg-emerald-500 hover:bg-emerald-600" : "bg-rose-400 hover:bg-rose-500"}`}
+                      className={`w-9 h-9 rounded-full text-sm flex items-center justify-center text-white font-bold cursor-pointer ${ok ? "bg-brand-500 hover:bg-brand-600" : "bg-rose-400 hover:bg-rose-500"}`}
                     >
                       {ok ? "✓" : "✗"}
                     </button>
@@ -1307,7 +1311,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     lời mời nói thẳng thứ họ sẽ mất nếu bỏ đi: bài vừa đọc.
                     Bài kế tiếp chỉ hiện khi nó cũng là bài xem thử. */}
                 {authState === "guest" ? (
-                  <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/70 dark:bg-emerald-950/30 p-4 space-y-2.5">
+                  <div className="rounded-2xl border border-brand-200 dark:border-brand-900/60 bg-brand-50/70 dark:bg-brand-950/30 p-4 space-y-2.5">
                     <p className="text-sm font-black text-accent-ink">
                       {t.lessonLayout.guestSaveTitle}
                     </p>
@@ -1372,7 +1376,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         i === activeQ
                           ? `${c.bar} text-white`
                           : submitted[i]
-                          ? results[i] ? "bg-emerald-100 dark:bg-emerald-950/50 text-accent-strong" : "bg-rose-100 dark:bg-rose-950/50 text-alert-strong"
+                          ? results[i] ? "bg-brand-100 dark:bg-brand-950/50 text-accent-strong" : "bg-rose-100 dark:bg-rose-950/50 text-alert-strong"
                           : "bg-surface-raised text-ink-muted hover:bg-surface-sunken"
                       }`}
                     >

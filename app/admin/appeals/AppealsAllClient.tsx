@@ -16,7 +16,7 @@ function getStatusBadge(status: string, t: Dictionary) {
   switch (status) {
     case "approved":
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-emerald-100 dark:bg-emerald-950 text-accent-strong">
+        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-brand-100 dark:bg-brand-950 text-accent-strong">
           <CheckCircle2 className="w-3 h-3" />
           {ta.statusApproved}
         </span>
@@ -81,7 +81,7 @@ export default function AppealsAllClient({ initialAppeals }: { initialAppeals: A
                   </div>
                   <Link
                     href="/admin/appeals"
-                    className="text-xs font-bold px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition-colors shrink-0"
+                    className="text-xs font-bold px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white transition-colors shrink-0"
                   >
                     {ta.approve}
                   </Link>
@@ -100,7 +100,7 @@ export default function AppealsAllClient({ initialAppeals }: { initialAppeals: A
           </h2>
           <div className="space-y-3">
             {grouped.approved.map((a) => (
-              <div key={a.id} className="bg-white dark:bg-stone-900 border border-emerald-200 dark:border-emerald-900/30 rounded-xl p-4 opacity-75">
+              <div key={a.id} className="bg-white dark:bg-stone-900 border border-brand-200 dark:border-brand-900/30 rounded-xl p-4 opacity-75">
                 <div className="flex items-start justify-between gap-3 flex-wrap">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1">

@@ -5,7 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { organicBuildingsOf, type OrganicBuilding } from "@/lib/rpg-buildings";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, Coins, Zap, Trophy, Lock, Flame, Shield, ShoppingBag, Layers, Activity, Clock, Crown, Compass } from "lucide-react";
+import { ChevronLeft, Coins, Zap, Trophy, Lock, Flame, Shield, ShoppingBag, Layers, Activity, Clock, Crown, Compass, Cloud, Construction } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { createClient } from "@/lib/cloudflare";
 import { getRequiredLevelForBuilding } from "@/lib/levels";
 import BuildingScenarioGame, { SCENARIO_BUILDINGS, type ScenarioBuildingId } from "@/components/BuildingScenarioGame";
@@ -242,8 +243,8 @@ export default function TechRpgWorldMap() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/70 via-stone-50 to-emerald-50/50 text-stone-900 p-3 sm:p-5 relative overflow-x-hidden transition-colors duration-500 font-sans">
-      {/* 👑 Top Gaming HUD Bar (Light Mode) */}
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/70 via-stone-50 to-brand-50/50 text-stone-900 p-3 sm:p-5 relative overflow-x-hidden transition-colors duration-500 font-sans">
+      {/* Top Gaming HUD Bar (Light Mode) */}
       <div className="max-w-6xl mx-auto mb-4 bg-white/95 backdrop-blur-xl border border-amber-300/90 rounded-2xl p-2.5 sm:p-3.5 shadow-[0_10px_30px_-10px_rgba(245,158,11,0.2)] flex flex-wrap items-center justify-between gap-3 relative z-30">
         {/* Left Player Level & Info */}
         <div className="flex items-center gap-3">
@@ -261,7 +262,7 @@ export default function TechRpgWorldMap() {
           <div>
             <div className="flex items-center gap-1.5">
               <h2 className="text-xs font-black uppercase text-amber-900 tracking-wider">{t.worldMap.empireTitle}</h2>
-              <span className="text-[9px] font-black uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-300">
+              <span className="text-[9px] font-black uppercase bg-brand-100 text-brand-800 px-2 py-0.5 rounded-full border border-brand-300">
                 {t.worldMap.online}
               </span>
             </div>
@@ -291,7 +292,7 @@ export default function TechRpgWorldMap() {
               <p className="text-[9px] font-extrabold uppercase text-sky-800/80 leading-none">{t.worldMap.energyLabel}</p>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <div className="w-16 h-2 bg-stone-200 rounded-full overflow-hidden border border-sky-300 p-[1px]">
-                  <div className="h-full bg-gradient-to-r from-sky-400 to-emerald-400 rounded-full w-[100%] animate-pulse" />
+                  <div className="h-full bg-gradient-to-r from-sky-400 to-brand-400 rounded-full w-[100%] animate-pulse" />
                 </div>
                 <span className="text-[10px] font-black text-sky-900">100%</span>
               </div>
@@ -322,12 +323,12 @@ export default function TechRpgWorldMap() {
       </div>
 
       {/* Wall Street Bloomberg Terminal LED Ticker Tape (Deep Black) */}
-      <div className="bg-stone-950 border-y border-emerald-500/30 text-emerald-400 py-2 px-4 -mx-3 -mt-2 sm:-mx-5 sm:-mt-3 mb-4 text-[11px] font-mono shadow-md overflow-hidden relative z-10 flex items-center justify-between">
+      <div className="bg-stone-950 border-y border-brand-500/30 text-brand-400 py-2 px-4 -mx-3 -mt-2 sm:-mx-5 sm:-mt-3 mb-4 text-[11px] font-mono shadow-md overflow-hidden relative z-10 flex items-center justify-between">
         <div className="flex items-center gap-6 whitespace-nowrap overflow-x-auto scrollbar-none">
           <span className="font-black text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-500/40 flex items-center gap-1.5 shrink-0">
             <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping inline-block" /> {t.worldMap.tickerLabel}
           </span>
-          <span className="shrink-0 font-bold text-emerald-400">{t.worldMap.tickerIndex}</span>
+          <span className="shrink-0 font-bold text-brand-400">{t.worldMap.tickerIndex}</span>
           <span className="shrink-0 font-bold text-amber-300">{t.worldMap.tickerBoss}</span>
           <span className="shrink-0 font-bold text-cyan-300">{t.worldMap.tickerCase}</span>
           <span className="shrink-0 font-bold text-purple-300">{t.worldMap.tickerClan}</span>
@@ -348,7 +349,7 @@ export default function TechRpgWorldMap() {
           </div>
 
           <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20 pointer-events-none z-0" />
-          <div className="absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:32px_32px] pointer-events-none opacity-[0.05] z-0" />
+          <div className="absolute inset-0 bg-[radial-gradient(#417acd_1.5px,transparent_1.5px)] [background-size:32px_32px] pointer-events-none opacity-[0.05] z-0" />
         </>
       )}
 
@@ -363,7 +364,7 @@ export default function TechRpgWorldMap() {
                   language - NYSE, Times Square, the Fed vault, Singapore Dock.
                   The one Vietnamese label is the generic "all mini games" tile,
                   which does go through the dictionary. */}
-              {["🏛️ NYSE CENTRAL", t.worldMap.zoneMiniGames, "🏙️ TIMES SQUARE", "🏰 HEDGE FUND QUARTER", "🏦 FED VAULT", "🚀 SILICON BAY", "🏛️ CAPITOL HILL", "🌾 CME COMMODITY", "💎 SWISS HAVEN", "🚢 SINGAPORE DOCK" /* i18n-ignore-end */].map((districtBadge) => {
+              {["NYSE CENTRAL", t.worldMap.zoneMiniGames, "TIMES SQUARE", "HEDGE FUND QUARTER", "FED VAULT", "SILICON BAY", "CAPITOL HILL", "CME COMMODITY", "SWISS HAVEN", "SINGAPORE DOCK" /* i18n-ignore-end */].map((districtBadge) => {
                 const districtBuildings = MAP_BUILDINGS.filter((b) => b.badge.includes(districtBadge.split(" ")[1] || districtBadge.split(" ")[0] || ""));
                 if (districtBuildings.length === 0) return null;
                 return (
@@ -393,7 +394,7 @@ export default function TechRpgWorldMap() {
                             {!isDiscovered && (
                               <div className="absolute inset-0 bg-white/95 backdrop-blur-md z-30 flex items-center justify-between px-4 border-2 border-dashed border-amber-400">
                                 <div className="flex items-center gap-2">
-                                  <span className="text-xl animate-bounce">☁️</span>
+                                  <Cloud className="w-5 h-5 text-amber-600 animate-bounce shrink-0" strokeWidth={1.75} aria-hidden />
                                   <div>
                                     <p className="text-[10px] font-black text-amber-900">{t.worldMap.fogTitle}</p>
                                     <p className="text-[9px] font-extrabold text-amber-700">{t.worldMap.fogHint}</p>
@@ -406,7 +407,7 @@ export default function TechRpgWorldMap() {
                             {b.isUnderConstruction && isDiscovered && (
                               <div className="absolute inset-0 bg-stone-900/85 backdrop-blur-xs z-25 flex items-center justify-between px-4 border-2 border-dashed border-amber-400 text-white">
                                 <div className="flex items-center gap-2">
-                                  <span className="text-xl animate-pulse">🏗️</span>
+                                  <Construction className="w-5 h-5 text-amber-300 animate-pulse shrink-0" strokeWidth={1.75} aria-hidden />
                                   <div>
                                     <p className="text-xs font-black text-amber-300 uppercase">{t.worldMap.underConstruction}</p>
                                     <p className="text-[9px] font-bold text-stone-300">{format(t.worldMap.lockedLevel, { level: reqLevel })}</p>
@@ -428,11 +429,11 @@ export default function TechRpgWorldMap() {
                               </div>
                             )}
 
-                            <div className="w-15 h-15 rounded-2xl bg-amber-50 border-2 border-amber-300 flex items-center justify-center text-3xl shadow-md shrink-0 group-hover:rotate-12 transition-transform overflow-hidden relative">
+                            <div className="w-15 h-15 rounded-2xl bg-amber-50 border-2 border-amber-300 flex items-center justify-center text-amber-700 shadow-md shrink-0 group-hover:rotate-12 transition-transform overflow-hidden relative">
                               {b.imageSrc ? (
                                 <Image src={b.imageSrc} alt={b.name} fill className="object-cover" />
                               ) : (
-                                b.emoji
+                                <Glyph emoji={b.emoji} className="w-7 h-7" strokeWidth={1.5} />
                               )}
                             </div>
 
@@ -459,13 +460,13 @@ export default function TechRpgWorldMap() {
                 <Compass className="w-4 h-4 text-amber-700 animate-spin-slow" />
                 <span>{t.worldMap.dragHint}</span>
               </div>
-              <span className="text-xs font-black text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300 shadow-2xs">
+              <span className="text-xs font-black text-brand-800 bg-brand-100 px-3 py-1 rounded-full border border-brand-300 shadow-2xs">
                 {t.worldMap.zoneCount}
               </span>
             </div>
 
-            {/* 🏰 Desktop 3D Isometric RPG World Map Container (Fixed Viewport Canva Canvas) */}
-            <div className="hidden md:block relative max-w-6xl mx-auto rounded-[36px] border-2 border-amber-300 shadow-[0_20px_60px_-15px_rgba(245,158,11,0.25)] overflow-hidden bg-gradient-to-b from-white/95 via-amber-50/30 to-emerald-50/40 backdrop-blur-2xl transition-all duration-300 h-[720px] sm:h-[780px]">
+            {/* Desktop 3D Isometric RPG World Map Container (Fixed Viewport Canva Canvas) */}
+            <div className="hidden md:block relative max-w-6xl mx-auto rounded-[36px] border-2 border-amber-300 shadow-[0_20px_60px_-15px_rgba(245,158,11,0.25)] overflow-hidden bg-gradient-to-b from-white/95 via-amber-50/30 to-brand-50/40 backdrop-blur-2xl transition-all duration-300 h-[720px] sm:h-[780px]">
               
               {/* Canva Navigation Badge Overlay */}
               <div className="absolute top-4 left-4 z-40 flex items-center gap-2 pointer-events-none">
@@ -485,7 +486,7 @@ export default function TechRpgWorldMap() {
                 <div className="flex items-center gap-3">
                   <div className="relative flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 ring-1 ring-amber-300 shadow-inner">
                     <ShoppingBag className="h-6 w-6 text-amber-700" />
-                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-[9px] font-black text-white ring-2 ring-white">
+                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-500 text-[9px] font-black text-white ring-2 ring-white">
                       {Object.keys(equippedGear).length}
                     </span>
                   </div>
@@ -511,9 +512,9 @@ export default function TechRpgWorldMap() {
                 style={{ touchAction: "none" }}
               >
                 {/* Isometric Perspective Grid Layer */}
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:36px_36px] opacity-[0.12]" />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#417acd_1.5px,transparent_1.5px)] [background-size:36px_36px] opacity-[0.12]" />
 
-                {/* ⚡ Dynamic Animated Laser Energy Flow Paths (SVG Laser Lines) */}
+                {/* Dynamic Animated Laser Energy Flow Paths (SVG Laser Lines) */}
                 <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                   <defs>
                     {/* Glowing Laser Color Gradients */}
@@ -542,7 +543,7 @@ export default function TechRpgWorldMap() {
                   <path d="M82 68 C76 78 72 84 82 88" fill="none" stroke="url(#laser-gold)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.85" />
                 </svg>
 
-                {/* 🏃 Smooth Interactive Hero Pathfinding Marker (Slightly Smaller) */}
+                {/* Smooth Interactive Hero Pathfinding Marker (Slightly Smaller) */}
                 <motion.div
                   className="pointer-events-none absolute z-50 -ml-5 -mt-5"
                   animate={{
@@ -566,7 +567,7 @@ export default function TechRpgWorldMap() {
                   </div>
                 </motion.div>
 
-                {/* 🏛️ 3D Isometric Building Grid (Enlarged Images & Cards) */}
+                {/* 3D Isometric Building Grid (Enlarged Images & Cards) */}
                 <div className="relative grid grid-cols-2 gap-x-6 gap-y-7 lg:grid-cols-3">
                   {MAP_BUILDINGS.map((b) => {
                     const isDiscovered = discoveredBuildings.includes(b.id);
@@ -585,12 +586,12 @@ export default function TechRpgWorldMap() {
                       >
                         {/* Special Effects & Flames */}
                         {b.id === "arcade" && (
-                          <div className="absolute -top-1 -right-1 z-40 text-lg animate-bounce pointer-events-none drop-shadow-md">
-                            🔥
+                          <div className="absolute -top-1 -right-1 z-40 text-orange-500 animate-bounce pointer-events-none drop-shadow-md">
+                            <Flame className="w-5 h-5" strokeWidth={2} aria-hidden />
                           </div>
                         )}
 
-                        {/* 🔴 Live Status & Boss HP Badge Overlays */}
+                        {/* Live Status & Boss HP Badge Overlays */}
                         {b.id === "world-boss" && (
                           <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1 rounded-full bg-red-100 px-2.5 py-0.5 text-[9px] font-black text-red-700 border border-red-300 shadow-xs">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping" />
@@ -607,7 +608,7 @@ export default function TechRpgWorldMap() {
                         {/* Fog Unveil Overlay */}
                         {!isDiscovered && (
                           <div className="absolute inset-0 bg-white/95 backdrop-blur-md z-30 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-amber-400 group-hover:bg-white/90 transition-all">
-                            <span className="text-2xl mb-1 animate-bounce">☁️</span>
+                            <Cloud className="w-6 h-6 mb-1 text-amber-600 animate-bounce" strokeWidth={1.75} aria-hidden />
                             <span className="text-[10px] font-black text-amber-900 uppercase tracking-wider">
                               {t.worldMap.fogTitle}
                             </span>
@@ -620,7 +621,7 @@ export default function TechRpgWorldMap() {
                         {/* Under Construction Overlay */}
                         {b.isUnderConstruction && isDiscovered && (
                           <div className="absolute inset-0 bg-stone-900/85 backdrop-blur-xs z-25 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-amber-500/80 text-white">
-                            <span className="text-2xl mb-1 animate-pulse">🏗️</span>
+                            <Construction className="w-6 h-6 mb-1 text-amber-300 animate-pulse" strokeWidth={1.75} aria-hidden />
                             <span className="text-xs font-black uppercase text-amber-300 tracking-wider">
                               {t.worldMap.underConstruction}
                             </span>
@@ -641,11 +642,11 @@ export default function TechRpgWorldMap() {
                           </div>
                         )}
 
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-50 border-2 border-amber-300 flex items-center justify-center text-4xl shadow-md shrink-0 group-hover:rotate-6 transition-transform overflow-hidden relative">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-50 border-2 border-amber-300 flex items-center justify-center text-amber-700 shadow-md shrink-0 group-hover:rotate-6 transition-transform overflow-hidden relative">
                           {b.imageSrc ? (
                             <Image src={b.imageSrc} alt={b.name} fill className="object-cover" />
                           ) : (
-                            b.emoji
+                            <Glyph emoji={b.emoji} className="w-9 h-9" strokeWidth={1.5} />
                           )}
                         </div>
 

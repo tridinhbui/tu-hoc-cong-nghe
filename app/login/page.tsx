@@ -1,5 +1,6 @@
 "use client";
 
+import { MIN_PASSWORD_LENGTH } from "@/lib/auth/password-policy";
 import React, { Suspense, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -162,7 +163,7 @@ function LoginForm() {
           setLoading(false);
           return;
         }
-        if (password.length < 6) {
+        if (password.length < MIN_PASSWORD_LENGTH) {
           setError(t.login.passwordTooShort);
           setLoading(false);
           return;
@@ -335,7 +336,7 @@ function LoginForm() {
                   { t: t.login.perk3Title, b: t.login.perk3Body },
                 ].map((perk, i) => (
                   <div key={perk.t} className={i === 0 ? "pr-4" : i === 2 ? "pl-4" : "px-4"}>
-                    <span aria-hidden="true" className="block h-1 w-5 bg-emerald-600 dark:bg-emerald-500" />
+                    <span aria-hidden="true" className="block h-1 w-5 bg-brand-600 dark:bg-brand-500" />
                     <dt className="mt-1.5 text-[13px] font-black text-ink">{perk.t}</dt>
                     <dd className="mt-0.5 text-[12px] leading-5 text-ink-soft">{perk.b}</dd>
                   </div>
@@ -378,7 +379,7 @@ function LoginForm() {
               className="bg-white dark:bg-stone-900 border border-line rounded-2xl shadow-sm overflow-hidden"
             >
               <div className="p-5 sm:p-6 xl:p-7 space-y-3.5 font-sans">
-                <div className="lg:hidden border-l-2 border-emerald-600 dark:border-emerald-500 pl-3">
+                <div className="lg:hidden border-l-2 border-brand-600 dark:border-brand-500 pl-3">
                   <p className="text-[13px] font-bold text-ink">
                     {format(t.login.lessonCountLine, { count: lessonCountFloor })}
                   </p>
@@ -411,7 +412,7 @@ function LoginForm() {
                     <button
                       onClick={handleGoogleLogin}
                       disabled={loading}
-                      className="button-premium w-full border border-line-strong bg-white dark:bg-stone-950/40 hover:bg-surface text-ink py-2.5 rounded-lg font-bold text-[13px] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/30 cursor-pointer"
+                      className="button-premium w-full border border-line-strong bg-white dark:bg-stone-950/40 hover:bg-surface text-ink py-2.5 rounded-lg font-bold text-[13px] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/30 cursor-pointer"
                     >
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -434,7 +435,7 @@ function LoginForm() {
 
                 {mode === "forgot" ? (
                   resetSent ? (
-                    <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-accent-line text-accent-ink text-[13px] font-semibold rounded-lg px-3.5 py-3 text-center">
+                    <div className="bg-brand-50 dark:bg-brand-950/50 border border-accent-line text-accent-ink text-[13px] font-semibold rounded-lg px-3.5 py-3 text-center">
                       {t.login.resetSentPart1}
                       <strong>{email}</strong>
                       {t.login.resetSentPart2}
@@ -458,7 +459,7 @@ function LoginForm() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="email@vi-du.com"
-                          className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
+                          className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
                         />
                       </div>
 
@@ -489,7 +490,7 @@ function LoginForm() {
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           placeholder={t.login.namePlaceholder}
-                          className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
+                          className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
                         />
                       </div>
                     )}
@@ -503,7 +504,7 @@ function LoginForm() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="email@vi-du.com"
-                        className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
+                        className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
                       />
                     </div>
 
@@ -531,7 +532,7 @@ function LoginForm() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••"
-                        className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
+                        className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
                       />
                     </div>
 

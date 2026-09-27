@@ -148,7 +148,7 @@ export default function GlobalSearchModal({
           <div className="max-h-[60vh] overflow-y-auto p-4 space-y-3">
             {query.trim() === "" ? (
               <div className="text-center py-8 text-stone-400 space-y-2">
-                <Sparkles className="w-8 h-8 text-emerald-500 mx-auto opacity-70" />
+                <Sparkles className="w-8 h-8 text-brand-500 mx-auto opacity-70" />
                 <p className="text-xs font-bold">{t.globalSearch.emptyPrompt}</p>
                 <div className="flex flex-wrap justify-center gap-2 pt-2 text-[11px]">
                   {/* i18n-ignore-start: these are search query seeds, not UI copy - they
@@ -181,11 +181,11 @@ export default function GlobalSearchModal({
                       onClose();
                       router.push(item.url);
                     }}
-                    className="w-full text-left p-3 rounded-2xl border border-line hover:border-emerald-500 hover:bg-stone-50 dark:hover:bg-stone-800/60 transition-all cursor-pointer flex items-center justify-between group"
+                    className="w-full text-left p-3 rounded-2xl border border-line hover:border-brand-500 hover:bg-stone-50 dark:hover:bg-stone-800/60 transition-all cursor-pointer flex items-center justify-between group"
                   >
                     <div className="flex items-center gap-3">
                       <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-raised text-ink-body">
-                        {item.category === "lesson" && <BookOpen className="w-4 h-4 text-emerald-500" />}
+                        {item.category === "lesson" && <BookOpen className="w-4 h-4 text-brand-500" />}
                         {item.category === "tool" && <Calculator className="w-4 h-4 text-sky-500" />}
                         {item.category === "glossary" && <HelpCircle className="w-4 h-4 text-amber-500" />}
                       </span>
@@ -205,7 +205,7 @@ export default function GlobalSearchModal({
                         <p className="text-[11px] text-ink-muted line-clamp-1">{item.desc}</p>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-brand-500 group-hover:translate-x-1 transition-all shrink-0" />
                   </button>
                 ))}
               </div>

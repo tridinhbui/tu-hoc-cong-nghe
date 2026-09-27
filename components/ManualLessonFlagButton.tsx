@@ -106,7 +106,7 @@ export default function ManualLessonFlagButton({
       }
       className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
         completed
-          ? "bg-emerald-100 dark:bg-emerald-900/30 text-accent"
+          ? "bg-brand-100 dark:bg-brand-900/30 text-accent"
           : flagged
             ? "bg-sky-100 dark:bg-sky-900/30 text-info"
             : "bg-surface-raised text-ink-muted hover:bg-surface-sunken"

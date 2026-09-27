@@ -20,9 +20,9 @@ export const finalTwoVi = {
       emptyHint: "Chọn một môn ở trên để mở tình huống.",
     },
     financialGuildWidget: {
-      advancedDays: "📈 Đã tua +{numDays} ngày giao dịch thị trường!",
+      advancedDays: "Đã tua +{numDays} ngày giao dịch thị trường!",
       boughtShares: "Đã MUA {shares} cổ phần {ticker} tại giá {price} VNĐ",
-      soldProfit: "Đã BÁN {shares} {ticker}. Lãi thực tế: +{pnl} VNĐ! 🎉",
+      soldProfit: "Đã BÁN {shares} {ticker}. Lãi thực tế: +{pnl} VNĐ!",
       soldLoss: "Đã BÁN {shares} {ticker}. Lỗ thực tế: {pnl} VNĐ!",
     },
     mistakeReviewWidget: {
@@ -93,7 +93,7 @@ export const finalTwoVi = {
       subtitle: "CFA Level I - 10 môn thi chính thức",
     },
     gamePage: {
-      metaTitle: "Thế Giới Game Tài Chính | TuHocTaiChinh.org",
+      metaTitle: "Thế Giới Game Công Nghệ | Tự học Công nghệ",
       metaDescription:
         "Bản đồ thị trấn RPG Công nghệ nhập vai với các chế độ săn boss máy chủ, Bang Hội và Đấu Trường 1v1 PvP.",
       loading: "Đang tải Thế Giới Game...",
@@ -158,9 +158,9 @@ export const finalTwoEn: typeof finalTwoVi = {
       emptyHint: "Pick a subject above to open a vignette.",
     },
     financialGuildWidget: {
-      advancedDays: "📈 Advanced +{numDays} market trading day(s)!",
+      advancedDays: "Advanced +{numDays} market trading day(s)!",
       boughtShares: "BOUGHT {shares} shares of {ticker} at {price} VND",
-      soldProfit: "SOLD {shares} {ticker}. Realized gain: +{pnl} VND! 🎉",
+      soldProfit: "SOLD {shares} {ticker}. Realized gain: +{pnl} VND!",
       soldLoss: "SOLD {shares} {ticker}. Realized loss: {pnl} VND!",
     },
     mistakeReviewWidget: {
@@ -226,7 +226,7 @@ export const finalTwoEn: typeof finalTwoVi = {
       subtitle: "CFA Level I - 10 official exam topics",
     },
     gamePage: {
-      metaTitle: "Tech Game World | TuHocCongNghe.org",
+      metaTitle: "Tech Game World | Learn Technology",
       metaDescription:
         "An RPG town map with Server Boss Hunt, Guild, and 1v1 PvP Arena modes for technology role-play.",
       loading: "Loading the Game World...",

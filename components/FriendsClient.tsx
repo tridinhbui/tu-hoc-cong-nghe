@@ -372,7 +372,7 @@ export default function FriendsClient() {
                         <button
                           onClick={() => void handleRespond(relation.friendship_id, "accepted")}
                           disabled={busyUserId === String(relation.friendship_id)}
-                          className="px-3 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold disabled:opacity-60"
+                          className="px-3 py-2 rounded-lg bg-brand-600 text-white text-xs font-bold disabled:opacity-60"
                         >
                           {t.friends.accept}
                         </button>
@@ -428,7 +428,7 @@ export default function FriendsClient() {
                       <button
                         onClick={() => void handleRespond(connection.friendship_id, "accepted")}
                         disabled={busyUserId === String(connection.friendship_id)}
-                        className="flex-1 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold disabled:opacity-60 flex items-center justify-center gap-1.5"
+                        className="flex-1 py-2 rounded-lg bg-brand-600 text-white text-xs font-bold disabled:opacity-60 flex items-center justify-center gap-1.5"
                       >
                         <Check className="w-3.5 h-3.5" />
                         {t.friends.accept}

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Building2, TrendingUp, TrendingDown, ArrowUpRight, ArrowDownRight, 
   RefreshCw, Calendar, BookOpen, AlertTriangle, ShieldCheck, 
-  DollarSign, PieChart, Layers, ChevronRight, Zap, CheckCircle2 
+  DollarSign, PieChart, Layers, ChevronRight, Zap, CheckCircle2, Lightbulb
 } from "lucide-react";
 import { toast } from "sonner";
 import { advanceMarket } from "@/lib/market-sim";
@@ -253,7 +253,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
     <div className="h-full min-h-0 bg-white border-2 border-amber-200 rounded-3xl p-5 sm:p-7 shadow-xl text-stone-900 relative overflow-hidden flex flex-col">
       {/* Visual Background Lighting */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/8 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-500/8 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-amber-200 pb-5 mb-6">
@@ -262,7 +262,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
             <span className="text-[10px] uppercase font-black tracking-widest text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">
               {t.guild.clanTitle}
             </span>
-            <span className="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
+            <span className="text-[10px] font-extrabold text-brand-600 bg-brand-50 border border-brand-200 px-2.5 py-1 rounded-full">
               {t.guild.universe}
             </span>
           </div>
@@ -289,7 +289,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
           </button>
           <button
             onClick={() => advanceDays(30)}
-            className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95"
+            className="bg-gradient-to-r from-brand-500 to-brand-500 hover:from-brand-400 hover:to-brand-400 text-stone-950 font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center gap-1.5 cursor-pointer active:scale-95"
           >
             <Zap className="w-4 h-4" /> {t.guild.advance30}
           </button>
@@ -304,7 +304,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto pr-1">
-        {/* 📖 GAME PLAY GUIDE ACCORDION BANNER */}
+        {/* GAME PLAY GUIDE ACCORDION BANNER */}
         <AnimatePresence>
           {showGuide && (
             <motion.div
@@ -315,7 +315,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
             >
               <div className="flex items-center justify-between gap-3 mb-3 border-b border-amber-200/80 pb-2.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl">💡</span>
+                  <Lightbulb className="w-5 h-5 text-amber-600" strokeWidth={1.75} aria-hidden />
                   <h4 className="text-sm font-black uppercase text-amber-900 tracking-wider">
                     {t.guild.guideTitle}
                   </h4>
@@ -340,15 +340,15 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
                   </p>
                 </div>
 
-                <div className="bg-white/95 border border-emerald-200 rounded-xl p-3 shadow-2xs space-y-1">
-                  <span className="text-[10px] font-black text-emerald-800 uppercase tracking-wider block">
+                <div className="bg-white/95 border border-brand-200 rounded-xl p-3 shadow-2xs space-y-1">
+                  <span className="text-[10px] font-black text-brand-800 uppercase tracking-wider block">
                     {t.guild.step2Title}
                   </span>
                   <p className="text-stone-700 font-semibold leading-relaxed">
                     {t.guild.step2Part1}
-                    <strong className="text-emerald-800">{t.guild.step2Tickers}</strong>
+                    <strong className="text-brand-800">{t.guild.step2Tickers}</strong>
                     {t.guild.step2Part2}
-                    <strong className="text-emerald-700">{t.guild.buy}</strong>
+                    <strong className="text-brand-700">{t.guild.buy}</strong>
                     {t.guild.step2Part3}
                     <strong className="text-rose-600">{t.guild.sell}</strong>
                     {t.guild.step2Part4}
@@ -387,7 +387,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
         <div className="bg-amber-50/70 border border-amber-200 p-4 rounded-2xl">
           <span className="text-[10px] font-black uppercase text-amber-700 block mb-1">{t.guild.totalAssets}</span>
           <span className="text-lg font-black text-amber-600">{totalFundValue.toLocaleString()} {t.guild.currency}</span>
-          <span className={`text-xs font-extrabold flex items-center gap-1 mt-1 ${fundReturnPercent >= 0 ? "text-emerald-600" : "text-rose-500"}`}>
+          <span className={`text-xs font-extrabold flex items-center gap-1 mt-1 ${fundReturnPercent >= 0 ? "text-brand-600" : "text-rose-500"}`}>
             {fundReturnPercent >= 0 ? <ArrowUpRight className="w-3.5 h-3.5" /> : <ArrowDownRight className="w-3.5 h-3.5" />}
             {fundReturnPercent >= 0 ? "+" : ""}{fundReturnPercent.toFixed(2)}{t.guild.percentOfFund}
           </span>
@@ -395,7 +395,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
 
         <div className="bg-white border border-stone-200 p-4 rounded-2xl">
           <span className="text-[10px] font-black uppercase text-stone-500 block mb-1">{t.guild.availableCash}</span>
-          <span className="text-base font-black text-emerald-600">{cash.toLocaleString()} {t.guild.currency}</span>
+          <span className="text-base font-black text-brand-600">{cash.toLocaleString()} {t.guild.currency}</span>
           <span className="text-[10px] text-stone-400 block mt-1">{t.guild.buyingPowerLeft}</span>
         </div>
 
@@ -519,7 +519,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
                     </td>
 
                     <td className="py-3 px-4 text-right font-extrabold">
-                      <span className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded ${percentChange >= 0 ? "bg-emerald-50 text-emerald-600 border border-emerald-200" : "bg-rose-50 text-rose-500 border border-rose-200"}`}>
+                      <span className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded ${percentChange >= 0 ? "bg-brand-50 text-brand-600 border border-brand-200" : "bg-rose-50 text-rose-500 border border-rose-200"}`}>
                         {percentChange >= 0 ? "+" : ""}{percentChange.toFixed(1)}%
                       </span>
                     </td>
@@ -537,7 +537,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
 
                     <td className="py-3 px-4 text-right font-bold">
                       {pos && pos.shares > 0 ? (
-                        <span className={unrealizedPnL >= 0 ? "text-emerald-600" : "text-rose-500"}>
+                        <span className={unrealizedPnL >= 0 ? "text-brand-600" : "text-rose-500"}>
                           {unrealizedPnL >= 0 ? "+" : ""}{unrealizedPnL.toLocaleString()} đ
                           <span className="block text-[10px]">({unrealizedPnLPercent >= 0 ? "+" : ""}{unrealizedPnLPercent.toFixed(1)}%)</span>
                         </span>
@@ -554,7 +554,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
                             setTradeType("buy");
                             setTradeShares(100);
                           }}
-                          className="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-black px-2.5 py-1 rounded-lg transition-all"
+                          className="bg-brand-600 hover:bg-brand-500 text-white text-[11px] font-black px-2.5 py-1 rounded-lg transition-all"
                         >
                           {t.guild.buy}
                         </button>
@@ -595,7 +595,7 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
 
               <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-1">
                 <h4 className="font-bold text-sm text-amber-700">{activeTradeStock.name} ({activeTradeStock.ticker})</h4>
-                <p className="text-xs text-stone-600">{t.guild.currentPrice} <strong className="text-emerald-600">{activeTradeStock.currentPrice.toLocaleString()} {t.guild.currency}</strong></p>
+                <p className="text-xs text-stone-600">{t.guild.currentPrice} <strong className="text-brand-600">{activeTradeStock.currentPrice.toLocaleString()} {t.guild.currency}</strong></p>
                 <p className="text-[11px] text-stone-500">{activeTradeStock.description}</p>
               </div>
 
@@ -632,14 +632,14 @@ export default function TechGuildWidget({ userId }: { userId: string }) {
                   </div>
                   <div className="flex justify-between text-stone-500">
                     <span>{t.guild.cashAvailable}</span>
-                    <strong className="text-emerald-600">{cash.toLocaleString()} {t.guild.currency}</strong>
+                    <strong className="text-brand-600">{cash.toLocaleString()} {t.guild.currency}</strong>
                   </div>
                 </div>
 
                 <button
                   onClick={executeTrade}
                   className={`w-full py-3.5 rounded-2xl font-black text-white text-sm shadow-lg transition-all ${
-                    tradeType === "buy" ? "bg-emerald-600 hover:bg-emerald-500" : "bg-rose-600 hover:bg-rose-500"
+                    tradeType === "buy" ? "bg-brand-600 hover:bg-brand-500" : "bg-rose-600 hover:bg-rose-500"
                   }`}
                 >
                   {t.guild.confirmPrefix} {tradeType === "buy" ? t.guild.buy : t.guild.sell} {tradeShares.toLocaleString()} {t.guild.confirmSuffix} {activeTradeStock.ticker}

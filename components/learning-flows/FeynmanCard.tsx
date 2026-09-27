@@ -86,7 +86,7 @@ export default function FeynmanCard({
 
       {children ? <div className="mt-5">{children}</div> : null}
 
-      <div className="mt-5 rounded-xl border-l-4 border-emerald-600 bg-white px-4 py-3 dark:border-emerald-500 dark:bg-stone-900">
+      <div className="mt-5 rounded-xl border-l-4 border-brand-600 bg-white px-4 py-3 dark:border-brand-500 dark:bg-stone-900">
         <p className="eyebrow mb-1 text-accent-strong">{oneLinerLabel}</p>
         <p className="text-base font-bold leading-7 text-ink-max sm:text-lg">{copy.oneLiner}</p>
       </div>

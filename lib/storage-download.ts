@@ -1,5 +1,5 @@
 /**
- * Biến một public URL của Cloudflare Storage thành URL *tải về* thật sự.
+ * Biến một public URL của storage của hệ cũ thành URL *tải về* thật sự.
  *
  * VÌ SAO CẦN: thuộc tính `download` trên thẻ `<a>` chỉ có tác dụng khi link
  * cùng origin với trang. Tệp đính kèm và tài liệu của app nằm trên Cloudflare
@@ -10,7 +10,7 @@
  * Không có lỗi nào được ném ra, không có cảnh báo nào trong console - nút vẫn
  * "chạy", chỉ là làm việc khác với điều nó hứa. Đó là lý do nó sống lâu.
  *
- * Cloudflare Storage nhận tham số `?download=<tên tệp>` và trả về
+ * storage của hệ cũ nhận tham số `?download=<tên tệp>` và trả về
  * `Content-Disposition: attachment; filename="<tên tệp>"`. Header do máy chủ
  * đặt thì cross-origin không còn là vấn đề, và tên tệp cũng do máy chủ nói.
  * Một tham số, không phải tải cả tệp về client rồi dựng blob.

@@ -196,7 +196,7 @@ export function nameplateTexture(
   // hôm nay đứng cuối vì nó là trạng thái nhị phân, đọc lướt vẫn thấy.
   const bits: string[] = [];
   if (status) {
-    if (status.streak > 0) bits.push(`🔥 ${status.streak}`);
+    if (status.streak > 0) bits.push(`${status.streak}`);
     bits.push(`Lv.${status.level}`);
     bits.push(status.doneToday ? `✓ ${labels.doneToday}` : `· ${labels.notYet}`);
   }

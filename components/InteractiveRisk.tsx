@@ -116,7 +116,7 @@ export default function InteractiveRisk() {
             rủi ro cao nhất đẩy mọi cột khác bẹp xuống và không so được nữa. */}
         <div className="relative mt-4 h-3 w-full overflow-hidden rounded-full bg-surface-sunken">
           <div
-            className="absolute inset-y-0 rounded-full bg-gradient-to-r from-rose-400 via-stone-400 to-emerald-400"
+            className="absolute inset-y-0 rounded-full bg-gradient-to-r from-rose-400 via-stone-400 to-brand-400"
             style={{
               left: `${Math.min(90, (Math.log(band.low) / Math.log(12)) * 100)}%`,
               right: `${Math.max(0, 100 - (Math.log(band.high) / Math.log(12)) * 100)}%`,

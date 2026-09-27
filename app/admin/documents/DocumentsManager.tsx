@@ -161,7 +161,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                       <button
                         onClick={() => handleApprove(doc)}
                         title={td.approveTitle}
-                        className="p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-ink-muted hover:text-accent"
+                        className="p-2 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-950/40 text-ink-muted hover:text-accent"
                       >
                         <Check className="w-4 h-4" />
                       </button>

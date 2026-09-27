@@ -8,7 +8,7 @@ import { enSections } from "./sections";
 export const en: Dictionary = {
   ...enSections,
   emails: {
-    milestoneMessage: "Hi {name}! 🎉 You have just hit a {days}-day study streak - thank you for sticking with us. Consistency is key to success: keep this pace and the results will come. The team is here if you need anything! 💪",
+    milestoneMessage: "Hi {name}! You have just hit a {days}-day study streak - thank you for sticking with us. Consistency is key to success: keep this pace and the results will come. The team is here if you need anything!",
     morningReviewTitle: "{count} morning review questions",
     digestSubject: "Your weekly study summary",
     digestGreeting: "Hi {name}, here is your summary for the past week:",
@@ -207,11 +207,11 @@ export const en: Dictionary = {
     },
 
     brand: "Self-Taught Tech",
-    brandBadge: "🇻🇳 VIETNAM",
+    brandBadge: "VIETNAM",
     navCta: "Start learning",
 
     hero: {
-      badge: "International standards · Genuinely Vietnamese in practice 🇻🇳",
+      badge: "International standards · Genuinely Vietnamese in practice",
       titlePart1: "Step into the world of",
       titleHighlight: "technology",
       titlePart2: "starting from zero, together",
@@ -328,7 +328,7 @@ export const en: Dictionary = {
       privacy: "Privacy policy",
       login: "Sign in / Sign up",
       copyright: "© 2026 Self-Taught Tech. All rights reserved.",
-      tagline: "Free technology education for Vietnam 🇻🇳",
+      tagline: "Free technology education for Vietnam",
       sovereignty: "Hoang Sa & Truong Sa belong to Vietnam!",
     },
   },
@@ -346,7 +346,7 @@ export const en: Dictionary = {
     newsPendingNote: "(the menu shows a warning)",
     newsBodyPart1: "Answer today's macro-news scenario correctly to earn ",
     newsXp: "+{xp} XP",
-    newsBodyPart2: " and clear the 🔴 warning icon in the navbar.",
+    newsBodyPart2: " and clear the warning icon in the navbar.",
 
     rightEyebrow: "Right • Build your own test",
     builderTitle: "Configure & start a test",
@@ -448,7 +448,7 @@ export const en: Dictionary = {
     comingSoon: "Coming soon",
     restart: "↺ Start over",
     questionList: "Questions",
-    guestSaveTitle: "You just finished this lesson 🎉",
+    guestSaveTitle: "You just finished this lesson",
     guestSaveBody:
       "This progress lives in your browser and disappears when you switch devices. Create a free account to keep it, open every lesson, and start a streak.",
     guestSaveCta: "Sign up free to save your progress",
@@ -496,7 +496,7 @@ export const en: Dictionary = {
     damageValue: "{value} DMG",
 
     arenaTitle: "BATTLE ARENA - QUESTION {current}/{total}",
-    exit: "✕ Exit",
+    exit: "Exit",
     levelShort: "Lv.{level}",
     heroName: "Warrior",
     heroHp: "{hp}/100 HP",
@@ -572,7 +572,7 @@ export const en: Dictionary = {
     srsBadge: "SPACED REPETITION SM-2",
     title: "3D flashcard review of your mistakes",
     subtitle:
-      "The review rhythm is spaced automatically: 1 day ➔ 3 days ➔ 7 days ➔ 30 days.",
+      "The review rhythm is spaced automatically: 1 day 3 days 7 days 30 days.",
     tabCards: "3D cards",
     tabList: "List",
 
@@ -732,7 +732,7 @@ export const en: Dictionary = {
     tooManyAttempts: "Too many attempts. Please wait {seconds} seconds and try again.",
     genericError: "Something went wrong. Please try again.",
     fillAllSignup: "Please fill in your name, email and password.",
-    passwordTooShort: "Password must be at least 6 characters.",
+    passwordTooShort: "Password must be at least 8 characters.",
     signupNoAutoLogin: "Your account was created but we couldn't sign you in automatically. Please sign in manually.",
     fillEmailPassword: "Please fill in your email and password.",
     enterEmail: "Please enter your email address.",
@@ -960,7 +960,7 @@ export const en: Dictionary = {
     chatPlaceholder: "Send encouragement, ask a question...",
 
     feedPanelTitle: "The community feed, live",
-    feedPanelSub: "Try the ❤️ button to interact with a real post",
+    feedPanelSub: "Try the button to interact with a real post",
     feedCta: "Go to the community feed",
     postStats: "{comments} comments · {shares} shares",
 
@@ -1088,7 +1088,7 @@ export const en: Dictionary = {
     mistakeTerm: "[Mistake: {title}] {question}",
     mistakeDefinition: "Correct answer: {answer}. Explanation: {explanation}",
     noMistakesFound:
-      "No unresolved wrong answers found. 🌟 Keep working through the lessons.",
+      "No unresolved wrong answers found. Keep working through the lessons.",
     mistakesAlreadyMade: "Cards have already been created for every wrong answer.",
     mistakesScanFailed: "Something went wrong scanning your mistake history.",
     markedForReview: "Marked to review again soon.",
@@ -1102,7 +1102,7 @@ export const en: Dictionary = {
     cardDeleted: "Card deleted.",
     cardDeleteFailed: "Couldn't delete the card.",
     sampleImportFailed: "Something went wrong importing the sample cards.",
-    generatedFromMistakes: "Created {count} review cards from your wrong answers. ⚡🗂️",
+    generatedFromMistakes: "Created {count} review cards from your wrong answers. ",
     nextReview: "Got it! Next review in {days} days.",
     bulkAdded: "Added {added} new cards.",
     // Optional tail appended to the sentence above when some cards were
@@ -1114,7 +1114,7 @@ export const en: Dictionary = {
     copiedToClipboard: "Copied {count} cards to the clipboard.",
     copyToClipboardFailed: "Couldn't copy the card list",
     confirmDelete: "Delete the card \"{term}\"?",
-    sampleImported: "Imported {count} sample vocabulary cards. 🎉",
+    sampleImported: "Imported {count} sample vocabulary cards.",
 
     // components/flashcard/FlashcardAlbumsGallery.tsx
     albumImported: "Imported {added} cards from \"{title}\" into your deck.",
@@ -1162,12 +1162,12 @@ export const en: Dictionary = {
     emptyBody:
       "You don't have any flashcards yet. Create some of your own, or import the sample list below to start straight away.",
     importSamples: "Import 8 sample cards",
-    quickFromMistakes: "Build from mistakes ⚡",
+    quickFromMistakes: "Build from mistakes",
 
     reviewing: "Reviewing",
     cardsLeft: "{count} cards left",
-    rememberedShort: "Knew it 👍",
-    forgotShort: "Forgot ❌",
+    rememberedShort: "Knew it",
+    forgotShort: "Forgot",
     faceDefinition: "Definition",
     faceTerm: "Term",
     flipToTerm: "Tap to see the term",
@@ -1212,7 +1212,7 @@ export const en: Dictionary = {
     rebalanceTitle: "Rebalance back to 1 billion VND",
 
     guideTitle: "How the fund simulator works, in detail",
-    close: "✕ Close",
+    close: "Close",
     step1Title: "1️⃣ Starting capital: 1 billion",
     step1Part1: "You're given ",
     step1Amount: "1,000,000,000 VND",
@@ -1411,10 +1411,10 @@ export const en: Dictionary = {
 
 
   resume: {
-    greeting1: "Hello{name}! The book is open and the knowledge is ready. Let's take the next lesson and earn some XP. 🔥",
-    greeting2: "Excellent{name}! You have finished {count} lessons. Let's keep that momentum going. 🌟",
-    greeting3: "Hello{name}! Today's goal is the next level. Start the lesson below. 🏆",
-    greeting4: "Energy up{name}! One more lesson is one more piece of knowledge you can actually use. 💪",
+    greeting1: "Hello{name}! The book is open and the knowledge is ready. Let's take the next lesson and earn some XP.",
+    greeting2: "Excellent{name}! You have finished {count} lessons. Let's keep that momentum going.",
+    greeting3: "Hello{name}! Today's goal is the next level. Start the lesson below.",
+    greeting4: "Energy up{name}! One more lesson is one more piece of knowledge you can actually use.",
     criteriaQuizLeft: "{count} quick-check questions",
     criteriaReadAll: "read the whole lesson",
     congrats: "Congratulations{name}!",
@@ -1536,7 +1536,7 @@ export const en: Dictionary = {
   },
 
   levelExam: {
-    shareText: "I just passed the Rigorous Promotion Exam - Level {level}: {name} with a score of {percent}%! 🔥 #LevelUp",
+    shareText: "I just passed the Rigorous Promotion Exam - Level {level}: {name} with a score of {percent}%! #LevelUp",
     loadFailed: "We could not load the exam.",
     passedToast: "Congratulations - you passed level {level} with {percent}%.",
     timedOutToast: "The time ran out, so this attempt doesn't count. You can retake it.",
@@ -1671,11 +1671,11 @@ export const en: Dictionary = {
   },
 
   caseArena: {
-    rankS: "Rank S - Silicon Valley Analysis Legend 🏆",
-    rankA: "Rank A - Corporate Analysis Expert 🥇",
-    rankB: "Rank B - Silicon Valley Trainee 🥈",
+    rankS: "Rank S - Silicon Valley Analysis Legend",
+    rankA: "Rank A - Corporate Analysis Expert",
+    rankB: "Rank B - Silicon Valley Trainee",
     rankC: "Rank C - Needs Review",
-    correctToast: "Correct! +{score} points (combo x{multiplier}) 🔥",
+    correctToast: "Correct! +{score} points (combo x{multiplier})",
     wrongToast: "Not quite - you lost your combo.",
 
     hubTitle: "Times Square technology hub",
@@ -1752,7 +1752,7 @@ export const en: Dictionary = {
     attachFile: "Attach a file",
     attachmentAlt: "Attachment",
     previewAlt: "Preview",
-    dropImage: "Drop an image here to attach it 📂",
+    dropImage: "Drop an image here to attach it",
     imagePlaceholder: "[Image]",
     filePlaceholder: "[File: {name}]",
     deleted: "Message deleted",
@@ -1806,15 +1806,15 @@ export const en: Dictionary = {
     pinnedByAdmin: "Tài Tài • group admin • pinned",
     byAdmin: "Tài Tài • group admin",
 
-    botDailyNone: "Today's update: nobody in the group has studied yet 👀 Who goes first?",
-    botDailyAll: "Today's update: all {count} members have done at least one lesson. The group is holding its rhythm 🔥",
+    botDailyNone: "Today's update: nobody in the group has studied yet Who goes first?",
+    botDailyAll: "Today's update: all {count} members have done at least one lesson. The group is holding its rhythm",
     botDailyPartial: "Today's update: {names} have studied. {notYet} still haven't today - don't let it pile up.",
     botDailyExtra: " +{extra} more",
-    botRules: "Tài Tài here 👋 This group is studying {topic}, with around {count} lessons to work through together. The rules, briefly: keep to at least 3 lessons a week each, hit the target and the group carries on, and hold it for 3 weeks running to become a permanent group.",
+    botRules: "Tài Tài here This group is studying {topic}, with around {count} lessons to work through together. The rules, briefly: keep to at least 3 lessons a week each, hit the target and the group carries on, and hold it for 3 weeks running to become a permanent group.",
     botTopicPersonal: "Tech foundations",
     botTopicProfessional: "Advanced technology",
     botTopicCfa: "AWS certification",
-    dropImage: "Drop an image here to send it 📂",
+    dropImage: "Drop an image here to send it",
     emptyPart1: "No messages yet.",
     emptyPart2: "Say hello to the group.",
     uploading: "{name} · uploading...",
@@ -1837,7 +1837,7 @@ export const en: Dictionary = {
     pomodoroPause: "Pause",
     pomodoroStart: "Start",
     breakStarted:
-      "25 minutes done! The whole room takes a 5-minute break (+15 group focus XP)! 🎉",
+      "25 minutes done! The whole room takes a 5-minute break (+15 group focus XP)!",
     focusStarted: "Break over! Starting the next 25-minute focus session.",
 
     lofiOn: "Focus [{track}] chill music on.",
@@ -1887,7 +1887,7 @@ export const en: Dictionary = {
     resetViewTitle: "Reset the 3D angle and zoom",
     resetView: "Angle & zoom ({zoom}%)",
     cheerLabel: "Cheer:",
-    cheerSent: "Cheer sent to the whole room! 🎉",
+    cheerSent: "Cheer sent to the whole room!",
     cheerFailed: "Couldn't send the cheer",
     boostAria: "Charge a 3D spatial boost for the whole room",
     boostDone: "3D spatial boost charged for the whole room!",
@@ -1898,7 +1898,7 @@ export const en: Dictionary = {
     topLessonTitle: "Top for lessons this week",
     emptySeat: "Empty seat",
     hint3dDesktop:
-      "Drag to rotate the room 360° · 🔍 Scroll to zoom · ⌨️ Arrow keys / +− / 0 · Press 🔄 to reset the angle",
+      "Drag to rotate the room 360° · Scroll to zoom · Arrow keys / +− / 0 · Press to reset the angle",
     hint3dMobile:
       "Swipe sideways to rotate (flick to keep spinning) · swipe vertically to scroll the page",
 
@@ -2018,7 +2018,7 @@ export const en: Dictionary = {
     minutesShort: "{count} min",
     markedRead: "Marked {count} lessons as done.",
     unmarkedRead: "Unmarked {count} lessons.",
-    offlineSynced: "Your offline progress has been synced. 🌟",
+    offlineSynced: "Your offline progress has been synced.",
     lessonLocked: "This lesson is locked. Complete the earlier lessons to unlock it.",
     defaultUserName: "Learner",
     caseStudies: "Deep-dive cases",
@@ -2038,7 +2038,7 @@ export const en: Dictionary = {
 
     stageLockedTitle: "This stage is locked",
     stageLockedHint: "Finish the previous stage to open it",
-    stageLockedBadge: "This stage is locked 🔒",
+    stageLockedBadge: "This stage is locked",
     unlockByChallenge: "Pass the knowledge challenge to unlock",
     unlockByRequest: "Requires the earlier lessons - tap to ask an admin to unlock",
 
@@ -2121,7 +2121,7 @@ export const en: Dictionary = {
       eligibleBodyPart1:
         "You've finished every lesson in this stage. Pass the 15-question milestone exam to earn ",
       eligibleBodyPart2: " and unlock the next stage.",
-      start: "Start the exam 🏆",
+      start: "Start the exam",
       lockedPart1: "You need to finish every lesson and pass the ",
       lockedExamName: "{stage} milestone exam",
       lockedPart2: " before the next stage opens.",
@@ -2415,7 +2415,7 @@ export const en: Dictionary = {
   // components/LessonRecallWidget.tsx - the spaced-repetition due list.
   recallWidget: {
     noQuizFound: "No quiz questions found for this lesson.",
-    passedToast: "Excellent! You cleared this review cycle and earned +10 study XP! 🔄🏆",
+    passedToast: "Excellent! You cleared this review cycle and earned +10 study XP! ",
     partialToast:
       "Review complete. Some answers were wrong, so this lesson will come back sooner for another pass.",
     updateFailed: "Could not update your review progress.",
@@ -2429,7 +2429,7 @@ export const en: Dictionary = {
     reviewingLesson: "Reviewing: {title}",
     questionCounter: "Question {index}/{total}",
     confirm: "Confirm",
-    correct: "Correct! 🎉",
+    correct: "Correct!",
     wrong: "Not quite!",
     finish: "Finish",
     nextQuestion: "Next question",

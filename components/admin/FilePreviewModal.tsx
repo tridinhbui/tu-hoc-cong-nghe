@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { X, Download, Eye } from "lucide-react";
+import { X, Download, Eye, FileText } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -122,7 +122,7 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
           {!isImage && !isPdf && !isExcel && fileInfo && (
             <div className="space-y-4">
               <div className="bg-surface-raised border border-line-strong rounded-lg p-6 text-center">
-                <p className="text-2xl mb-2">📄</p>
+                <FileText aria-hidden className="mx-auto mb-2 h-8 w-8 text-ink-muted" strokeWidth={1.5} />
                 <p className="font-semibold text-ink mb-2">{file.name}</p>
                 <p className="text-sm text-ink-soft">
                   {tp.unsupportedPreview}
@@ -162,7 +162,7 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
           </a>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition-colors"
+            className="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition-colors"
           >
             {tp.close}
           </button>

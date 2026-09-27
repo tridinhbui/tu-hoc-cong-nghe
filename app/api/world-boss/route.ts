@@ -127,7 +127,7 @@ export async function GET(request: NextRequest) {
 
   // Tên người chơi đọc bằng client máy chủ, CHỈ full_name và avatar_url - đúng
   // hai cột mà get_leaderboard vốn đã công khai. user_profiles chỉ chủ sở hữu
-  // đọc được, nên phép nhúng quan hệ của bản Supabase chỉ trả tên của CHÍNH
+  // đọc được, nên phép nhúng quan hệ của bản Postgres cũ chỉ trả tên của CHÍNH
   // người gọi; mọi người khác rơi về tên mặc định. Bản cũ còn lấy phần trước
   // "@" của email làm tên dự phòng - tức lộ email lên bảng công khai; bỏ.
   const logs = rawLogs

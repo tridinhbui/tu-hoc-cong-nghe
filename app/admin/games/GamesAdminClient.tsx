@@ -89,7 +89,7 @@ export default function GamesAdminClient() {
       value: stats?.totalXpFromGames ?? 0,
       icon: Zap,
       color: "text-accent",
-      bg: "bg-emerald-50 dark:bg-emerald-950/40",
+      bg: "bg-brand-50 dark:bg-brand-950/40",
     },
   ];
 

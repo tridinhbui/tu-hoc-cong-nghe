@@ -46,7 +46,7 @@ export default function OnlineUsersWidget() {
       className="block overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition-colors hover:border-stone-300 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-stone-700"
     >
       <div className="flex items-center gap-2.5 px-5 py-4">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30 dark:text-emerald-400">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950/30 dark:text-brand-400">
           <Users className="h-4.5 w-4.5" />
         </div>
         <div className="min-w-0">
@@ -55,8 +55,8 @@ export default function OnlineUsersWidget() {
                 nháy bên cạnh số 0 là đúng loại tín hiệu giả đang gỡ bỏ. */}
             {!empty && (
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
               </span>
             )}
             {t.miscUi.onlineUsersWidget.communityLibrary}

@@ -1,11 +1,12 @@
 /**
  * Các thao tác tài khoản: đăng ký, đăng nhập, đổi và đặt lại mật khẩu, đăng
- * nhập bằng Google. Thay phần việc của Cloudflare Auth.
+ * nhập bằng Google. Thay phần việc của dịch vụ xác thực cũ.
  *
  * TẦNG NÀY KHÔNG BIẾT GÌ VỀ HTTP. Không đọc cookie, không đặt header, không
  * chuyển hướng. Nó nhận dữ liệu và trả kết quả, nên bộ kiểm chạy được trên
  * SQLite thật mà không cần dựng một yêu cầu giả nào.
  */
+import { MIN_PASSWORD_LENGTH } from "./password-policy";
 import type { D1Like } from "../d1/rpc";
 import { hashPassword, verifyPassword, needsRehash } from "./password";
 import { createSession, revokeAllSessions } from "./session";
@@ -61,7 +62,7 @@ export async function signUp(
 ): Promise<{ user: AuthUser; token: string; expiresAt: string }> {
   const e = email.trim().toLowerCase();
   if (!e.includes("@")) throw new AuthError("Email không hợp lệ.", "email_invalid");
-  if (password.length < 8) throw new AuthError("Mật khẩu phải từ 8 ký tự.", "password_too_short");
+  if (password.length < MIN_PASSWORD_LENGTH) throw new AuthError(`Mật khẩu phải từ ${MIN_PASSWORD_LENGTH} ký tự.`, "password_too_short");
 
   const existing = await rows<{ id: string }>(
     db, `SELECT id FROM auth_users WHERE lower(email) = ?`, e
@@ -165,7 +166,7 @@ export async function resetPassword(
   token: string,
   newPassword: string
 ): Promise<{ userId: string }> {
-  if (newPassword.length < 8) throw new AuthError("Mật khẩu phải từ 8 ký tự.", "password_too_short");
+  if (newPassword.length < MIN_PASSWORD_LENGTH) throw new AuthError(`Mật khẩu phải từ ${MIN_PASSWORD_LENGTH} ký tự.`, "password_too_short");
   const id = await sha256(token);
   const found = await rows<{ user_id: string }>(
     db,
@@ -197,7 +198,7 @@ export async function changePassword(
   currentPassword: string,
   newPassword: string
 ): Promise<void> {
-  if (newPassword.length < 8) throw new AuthError("Mật khẩu phải từ 8 ký tự.", "password_too_short");
+  if (newPassword.length < MIN_PASSWORD_LENGTH) throw new AuthError(`Mật khẩu phải từ ${MIN_PASSWORD_LENGTH} ký tự.`, "password_too_short");
   const found = await rows<{ password_hash: string }>(
     db, `SELECT password_hash FROM auth_users WHERE id = ?`, userId
   );

@@ -22,7 +22,7 @@ interface HighlightNotebookProps {
 }
 
 const TRACK_STYLES = {
-  personal: "border-emerald-200 bg-emerald-50/60 dark:border-emerald-900 dark:bg-emerald-950/20",
+  personal: "border-brand-200 bg-brand-50/60 dark:border-brand-900 dark:bg-brand-950/20",
   professional: "border-indigo-200 bg-indigo-50/60 dark:border-indigo-900 dark:bg-indigo-950/20",
   other: "border-stone-200 bg-stone-50/60 dark:border-stone-800 dark:bg-stone-900/40",
 } as const;

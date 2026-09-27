@@ -116,8 +116,8 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
         <div className="relative w-8 h-8 flex-shrink-0">
           {phase === "waiting" && (
             <>
-              <span className="absolute inset-0 rounded-full bg-emerald-400/40 animate-ping" />
-              <span className="absolute -inset-1 rounded-full border-2 border-emerald-400/60 animate-spin [animation-duration:1.4s] [border-top-color:transparent] [border-left-color:transparent]" />
+              <span className="absolute inset-0 rounded-full bg-brand-400/40 animate-ping" />
+              <span className="absolute -inset-1 rounded-full border-2 border-brand-400/60 animate-spin [animation-duration:1.4s] [border-top-color:transparent] [border-left-color:transparent]" />
             </>
           )}
           <div className="relative w-8 h-8 rounded-full overflow-hidden bg-stone-800">

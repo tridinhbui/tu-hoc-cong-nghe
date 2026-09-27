@@ -168,7 +168,7 @@ function MetricCard({
       initial="hidden"
       animate="visible"
       variants={fadeUp}
-      className="group relative overflow-hidden rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white/90 dark:bg-stone-900/80 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_20px_35px_-15px_rgba(16,185,129,0.1)] dark:hover:shadow-[0_20px_35px_-15px_rgba(16,185,129,0.06)]"
+      className="group relative overflow-hidden rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white/90 dark:bg-stone-900/80 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:shadow-[0_20px_35px_-15px_rgba(65, 122, 205,0.1)] dark:hover:shadow-[0_20px_35px_-15px_rgba(65, 122, 205,0.06)]"
     >
       <div className={`absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r ${accent}`} />
       <div className="flex items-start justify-between gap-4">
@@ -179,7 +179,7 @@ function MetricCard({
           <p className="mt-3 text-2xl sm:text-3xl font-extrabold text-ink-max tracking-tight">{value}</p>
           <p className="mt-2 text-xs text-ink-muted leading-relaxed truncate">{hint}</p>
         </div>
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-stone-50 dark:bg-stone-800/60 text-ink-muted group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950/30 group-hover:text-accent transition-colors duration-300">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-stone-50 dark:bg-stone-800/60 text-ink-muted group-hover:bg-brand-50 dark:group-hover:bg-brand-950/30 group-hover:text-accent transition-colors duration-300">
           {icon}
         </div>
       </div>
@@ -266,7 +266,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   const trackPieData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { name: t.analytics.trackPersonal, value: analytics.lessonsByTrack.personal, color: "#10b981" },
+      { name: t.analytics.trackPersonal, value: analytics.lessonsByTrack.personal, color: "#417acd" },
       { name: t.analytics.trackProfessional, value: analytics.lessonsByTrack.professional, color: "#57534e" },
       { name: "Bonus", value: analytics.lessonsByTrack.bonus, color: "#f59e0b" },
     ].filter((item) => item.value > 0);
@@ -275,7 +275,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   const difficultyData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { label: t.difficulty["Dễ"], value: analytics.lessonsByDifficulty.easy, color: "#10b981" },
+      { label: t.difficulty["Dễ"], value: analytics.lessonsByDifficulty.easy, color: "#417acd" },
       { label: t.difficulty["Trung bình"], value: analytics.lessonsByDifficulty.medium, color: "#f59e0b" },
       { label: t.difficulty["Khó"], value: analytics.lessonsByDifficulty.hard, color: "#78716c" },
     ];
@@ -308,10 +308,10 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
         variants={fadeUp}
         className="relative overflow-hidden rounded-[26px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-xs"
       >
-        <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500" />
+        <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-brand-500 via-brand-500 to-sky-500" />
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0 flex-1">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-accent-line bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-accent-strong">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-accent-line bg-brand-50 dark:bg-brand-950/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-accent-strong">
               {t.analytics.personal}
             </div>
             <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-ink">
@@ -377,7 +377,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               {isActive && (
                 <motion.div
                   layoutId="activeTabUnderline"
-                  className="absolute bottom-0 inset-x-0 h-[2.5px] bg-emerald-500 rounded-full"
+                  className="absolute bottom-0 inset-x-0 h-[2.5px] bg-brand-500 rounded-full"
                   transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 />
               )}
@@ -403,7 +403,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               label={t.analytics.cardWeekRhythm}
               value={format(t.analytics.lessonCount, { count: analytics.recentMomentum.last7DaysLessons })}
               hint={format(t.analytics.minutesDone, { count: analytics.recentMomentum.last7DaysMinutes })}
-              accent="from-emerald-500 to-teal-500"
+              accent="from-brand-500 to-brand-500"
               delay={0.06}
             />
             <MetricCard
@@ -419,7 +419,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               label={t.analytics.cardWeekTrend}
               value={`${analytics.recentMomentum.weeklyTrendPercent > 0 ? "+" : ""}${analytics.recentMomentum.weeklyTrendPercent}%`}
               hint={format(t.analytics.lessons30d, { count: analytics.recentMomentum.last30DaysLessons })}
-              accent="from-teal-400 to-emerald-600"
+              accent="from-brand-400 to-brand-600"
               delay={0.14}
             />
           </div>
@@ -446,8 +446,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   <AreaChart data={analytics.weeklyActivity} margin={{ left: -10, right: 0, top: 12, bottom: 0 }}>
                     <defs>
                       <linearGradient id="weeklyLessons" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="#10b981" stopOpacity={0.25} />
-                        <stop offset="100%" stopColor="#10b981" stopOpacity={0.0} />
+                        <stop offset="0%" stopColor="#417acd" stopOpacity={0.25} />
+                        <stop offset="100%" stopColor="#417acd" stopOpacity={0.0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" className="dark:stroke-stone-800" opacity={0.6} />
@@ -465,7 +465,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                         />
                       }
                     />
-                    <Area type="monotone" dataKey="lessonsCompleted" stroke="#10b981" strokeWidth={2.5} fill="url(#weeklyLessons)" />
+                    <Area type="monotone" dataKey="lessonsCompleted" stroke="#417acd" strokeWidth={2.5} fill="url(#weeklyLessons)" />
                     <Area type="monotone" dataKey="minutesSpent" stroke="#78716c" strokeWidth={1.5} fillOpacity={0} />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -513,7 +513,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                         {studyHourData.map((entry) => (
                           <Cell
                             key={entry.hour}
-                            fill={entry.hour === analytics.bestStudyHour ? "#10b981" : "#78716c"}
+                            fill={entry.hour === analytics.bestStudyHour ? "#417acd" : "#78716c"}
                             fillOpacity={entry.hour === analytics.bestStudyHour ? 1 : 0.65}
                           />
                         ))}
@@ -543,7 +543,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               label={t.analytics.cardCompleted}
               value={`${analytics.totalLessonsCompleted}`}
               hint={format(t.analytics.completionOfStarted, { percent: analytics.completionRate, count: analytics.totalLessonsStarted })}
-              accent="from-emerald-500 to-teal-500"
+              accent="from-brand-500 to-brand-500"
               delay={0.06}
             />
             <MetricCard
@@ -722,7 +722,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                     <Link
                       key={lesson.lessonId}
                       href={lesson.slug ? `/bai-hoc/${lesson.slug}` : "/ghi-chu"}
-                      className="group flex items-center justify-between gap-4 rounded-xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/30 px-3.5 py-3 transition-all hover:bg-emerald-50/20 dark:hover:bg-emerald-950/10 hover:border-emerald-500/20"
+                      className="group flex items-center justify-between gap-4 rounded-xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/30 px-3.5 py-3 transition-all hover:bg-brand-50/20 dark:hover:bg-brand-950/10 hover:border-brand-500/20"
                     >
                       <div className="flex min-w-0 items-center gap-3">
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-stone-900 text-xs font-bold text-ink border border-line">
@@ -737,7 +737,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                           </p>
                         </div>
                       </div>
-                      <ArrowRight className="h-4 w-4 shrink-0 text-stone-300 dark:text-stone-600 transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-500" />
+                      <ArrowRight className="h-4 w-4 shrink-0 text-stone-300 dark:text-stone-600 transition-transform group-hover:translate-x-0.5 group-hover:text-brand-500" />
                     </Link>
                   ))}
                 </div>

@@ -1,7 +1,7 @@
 /** Đích đến sau đăng nhập, gửi qua COOKIE chứ không qua query của `redirectTo`.
  *
  *  VÌ SAO KHÔNG DÙNG QUERY. Cloudflare chỉ chuyển hướng tới `redirect_to` khi URL
- *  ấy khớp danh sách Redirect URLs của dự án, và phép khớp áp cho TOÀN BỘ URL
+ *  ấy khớp danh sách Redirect URLs của dự án xác thực cũ, và phép khớp áp cho TOÀN BỘ URL
  *  chứ không riêng phần đường dẫn. Một mục đăng ký không có ký tự đại diện -
  *  `https://www.tuhoctaichinh.org/auth/callback` - vì thế KHÔNG khớp
  *  `https://www.tuhoctaichinh.org/auth/callback?next=%2Fdashboard`.

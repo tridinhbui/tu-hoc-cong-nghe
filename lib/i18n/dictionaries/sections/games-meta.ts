@@ -33,7 +33,7 @@ export const gamesMetaVi = {
   } as Record<string, string>,
   gameMeta: {
     "random-mix": {
-      title: "🎲 Trộn ngẫu nhiên tất cả chủ đề",
+      title: "Trộn ngẫu nhiên tất cả chủ đề",
       description:
         "Thách thức tổng hợp: Trộn ngẫu nhiên kiến thức từ Tầng hệ thống, Thuật ngữ, Chỉ số, Công thức và Rủi ro!",
     },
@@ -87,7 +87,7 @@ export const gamesMetaEn: typeof gamesMetaVi = {
   },
   gameMeta: {
     "random-mix": {
-      title: "🎲 Everything, shuffled",
+      title: "Everything, shuffled",
       description:
         "The all-in challenge: system tiers, terminology, metrics, formulas and risk, drawn at random.",
     },

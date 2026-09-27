@@ -39,7 +39,7 @@ function buildLeaderboard(t: Dictionary) {
 
 // Honest, labeled UI mockup of the actual product (dashboard + a lesson
 // screen) - not a real screenshot (no image-capture pipeline exists in this
-// project), but built from the same design tokens (stone/emerald palette,
+// project), but built from the same design tokens (stone/brand-blue palette,
 // rounded-xl cards, the same card shapes UserStats/lesson pages actually
 // use) so it reads as a faithful preview rather than a generic stock
 // illustration. Framed in a browser chrome so it's unambiguous this is
@@ -101,8 +101,8 @@ export default function ProductPreview() {
         }
       `}</style>
       <div className="pointer-events-none absolute inset-0 opacity-60">
-        <div className="absolute left-[-10%] top-[-15%] h-44 w-44 rounded-full bg-emerald-400/10 blur-3xl" />
-        <div className="absolute right-[-12%] bottom-[-18%] h-56 w-56 rounded-full bg-teal-400/10 blur-3xl" />
+        <div className="absolute left-[-10%] top-[-15%] h-44 w-44 rounded-full bg-brand-400/10 blur-3xl" />
+        <div className="absolute right-[-12%] bottom-[-18%] h-56 w-56 rounded-full bg-brand-400/10 blur-3xl" />
         <div className="preview-scan-line absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.28),transparent)] opacity-40" />
       </div>
       {/* Browser chrome */}
@@ -155,15 +155,15 @@ export default function ProductPreview() {
                     <p className="text-[10px] font-black uppercase tracking-widest text-ink-faint">{t.productPreview.level}</p>
                     <p className="text-sm font-extrabold text-ink">{t.productPreview.role}</p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full px-2.5 py-1">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-gradient-to-r from-brand-500 to-brand-500 rounded-full px-2.5 py-1">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-white/90" />
                     {format(t.productPreview.xpLabel, { xp: "1,240" })}
                   </span>
                 </div>
                 <div className="h-2 rounded-full bg-surface-raised overflow-hidden mb-4">
                   <motion.div
-                    className="preview-progress-live h-full w-2/3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
-                    animate={{ boxShadow: ["0 0 0 rgba(16,185,129,0)", "0 0 18px rgba(16,185,129,0.35)", "0 0 0 rgba(16,185,129,0)"] }}
+                    className="preview-progress-live h-full w-2/3 rounded-full bg-gradient-to-r from-brand-500 to-brand-500"
+                    animate={{ boxShadow: ["0 0 0 rgba(65,122,205,0)", "0 0 18px rgba(65,122,205,0.35)", "0 0 0 rgba(65,122,205,0)"] }}
                     transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </div>
@@ -173,7 +173,7 @@ export default function ProductPreview() {
                       key={l.title}
                       className={`flex items-center gap-2.5 min-w-0 rounded-xl border px-3 py-2.5 text-xs font-semibold ${
                         l.done
-                          ? "border-accent-line bg-emerald-50/60 dark:bg-emerald-950/30 text-accent-ink"
+                          ? "border-accent-line bg-brand-50/60 dark:bg-brand-950/30 text-accent-ink"
                           : "border-line text-ink-soft"
                       }`}
                       initial={{ opacity: 0, x: -8 }}
@@ -181,7 +181,7 @@ export default function ProductPreview() {
                       transition={{ duration: 0.28, delay: l.done ? 0.05 : 0.12 }}
                     >
                       {l.done ? (
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />
                       ) : (
                         <Circle className="w-4 h-4 text-stone-300 dark:text-stone-700 shrink-0" />
                       )}
@@ -213,7 +213,7 @@ export default function ProductPreview() {
                   transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
                 >
                   <p className="text-[10px] font-black uppercase tracking-widest text-ink-faint mb-2.5 flex items-center gap-1.5">
-                    <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-brand-500" />
                     {t.productPreview.topWeek}
                   </p>
                   <div className="space-y-2">
@@ -267,7 +267,7 @@ export default function ProductPreview() {
                         key={opt}
                         className={`text-[11px] font-semibold rounded-lg px-3 py-2 border ${
                           i === 1
-                            ? "border-accent-line-mid bg-emerald-50 dark:bg-emerald-950/30 text-accent-ink"
+                            ? "border-accent-line-mid bg-brand-50 dark:bg-brand-950/30 text-accent-ink"
                             : "border-line text-ink-muted"
                         }`}
                         initial={{ opacity: 0, x: -6 }}
@@ -282,7 +282,7 @@ export default function ProductPreview() {
               </div>
               <div className="flex items-center gap-2 text-[11px] font-bold text-ink-faint">
                 <div className="h-1.5 flex-1 rounded-full bg-surface-raised overflow-hidden">
-                  <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500" />
+                  <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-brand-500 to-brand-500" />
                 </div>
                 {format(t.productPreview.readTime, { min: 5 })}
               </div>

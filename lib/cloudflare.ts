@@ -1,7 +1,7 @@
 /**
  * Client dữ liệu phía trình duyệt, chạy trên Cloudflare D1 THẬT.
  *
- * Giữ nguyên bề mặt API của supabase-js (from/rpc/auth) để hơn 40 module đang
+ * Giữ nguyên bề mặt API của SDK client cũ (from/rpc/auth) để hơn 40 module đang
  * gọi nó không phải đổi một dòng nào. Nhưng khác bản trước ở đúng một điểm
  * quan trọng: bản trước là một stub trả rỗng cho MỌI truy vấn - ứng dụng
  * build được, chạy được, và không có dữ liệu nào cả, mà không một lỗi nào báo.

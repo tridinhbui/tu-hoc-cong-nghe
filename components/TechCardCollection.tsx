@@ -80,13 +80,13 @@ export default function TechCardCollection({ userId }: { userId: string }) {
             {t.cardCollection.description}
           </p>
         </div>
-        <div className="min-w-[220px] rounded-2xl border border-emerald-200 bg-emerald-50 p-3">
-          <div className="flex items-center justify-between text-xs font-extrabold text-emerald-800">
+        <div className="min-w-[220px] rounded-2xl border border-brand-200 bg-brand-50 p-3">
+          <div className="flex items-center justify-between text-xs font-extrabold text-brand-800">
             <span>{format(t.cardCollection.cardsCount, { unlocked: unlockedCardKeys.size, total: cards.length })}</span>
             <span>{progress}%</span>
           </div>
           <div className="mt-2 h-2 rounded-full bg-white">
-            <div className="h-full rounded-full bg-emerald-500" style={{ width: `${progress}%` }} />
+            <div className="h-full rounded-full bg-brand-500" style={{ width: `${progress}%` }} />
           </div>
         </div>
       </div>
@@ -174,7 +174,7 @@ export default function TechCardCollection({ userId }: { userId: string }) {
                 </div>
               )}
               {isUnlocked && (
-                <div className="mt-2 flex items-center gap-1 text-[10px] font-black text-emerald-700">
+                <div className="mt-2 flex items-center gap-1 text-[10px] font-black text-brand-700">
                   <Zap className="h-3 w-3" /> {t.cardCollection.unlockedBadge}
                 </div>
               )}

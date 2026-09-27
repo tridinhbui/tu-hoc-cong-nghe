@@ -225,6 +225,11 @@ export const trackStagesVi = {
           name: "Marketing với AI đơn giản hơn bạn nghĩ",
           parts: ["Hiểu khách và viết đúng giọng", "Đo, giữ ranh giới và làm đều mỗi tuần"],
         },
+        {
+          label: "Chặng 23",
+          name: "AI Agent đơn giản hơn bạn nghĩ",
+          parts: ["Vòng lặp và công cụ", "Dựng agent và đặt chốt an toàn"],
+        },
       ],
     },
     professional: {
@@ -795,6 +800,11 @@ export const trackStagesEn: typeof trackStagesVi = {
           label: "Stage 22",
           name: "Marketing with AI is simpler than you think",
           parts: ["Knowing your customer and writing in your voice", "Measuring, staying honest, and a weekly rhythm"],
+        },
+        {
+          label: "Stage 23",
+          name: "AI agents are simpler than you think",
+          parts: ["The loop and the tools", "Building the agent, and its safety catches"],
         },
       ],
     },

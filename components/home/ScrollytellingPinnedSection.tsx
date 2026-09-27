@@ -94,7 +94,7 @@ export default function ScrollytellingPinnedSection() {
         {/* Top Header & Segmented Tab Controller */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 sm:mb-8">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse" />
             <span className="text-xs font-black uppercase tracking-widest text-accent">
               {t.miscUi.scrollytellingPinnedSection.exploreProduct}
             </span>
@@ -121,7 +121,7 @@ export default function ScrollytellingPinnedSection() {
                   {isActive && (
                     <motion.div
                       layoutId="scrollyTabPill"
-                      className="absolute inset-0 bg-white dark:bg-emerald-400 rounded-xl"
+                      className="absolute inset-0 bg-white dark:bg-brand-400 rounded-xl"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -150,7 +150,7 @@ export default function ScrollytellingPinnedSection() {
             >
               {/* Panel Header */}
               <div className="text-center max-w-2xl mx-auto mb-6">
-                <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/50 mb-2">
+                <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-brand-50 text-brand-700 dark:bg-brand-950/60 dark:text-brand-300 border border-brand-200 dark:border-brand-900/50 mb-2">
                   {currentPanel.tag}
                 </span>
                 <h2 className="text-xl sm:text-3xl font-black text-ink-max tracking-tight leading-snug">
@@ -169,15 +169,15 @@ export default function ScrollytellingPinnedSection() {
                     <motion.div
                       key={idx}
                       whileHover={{ scale: 1.03, y: -2 }}
-                      className="p-4 rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900/90 shadow-xs hover:border-emerald-400/60 transition-all flex flex-col justify-between"
+                      className="p-4 rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900/90 shadow-xs hover:border-brand-400/60 transition-all flex flex-col justify-between"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <div className="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center shadow-xs">
+                          <div className="w-8 h-8 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-xs">
                             <Icon className="w-4 h-4" />
                           </div>
                           {"step" in item && item.step && (
-                            <span className="text-[10px] font-black text-accent bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-900/50">
+                            <span className="text-[10px] font-black text-accent bg-brand-50 dark:bg-brand-950/60 px-2 py-0.5 rounded-md border border-brand-200 dark:border-brand-900/50">
                               {format(t.miscUi.scrollytellingPinnedSection.stepLabel, { step: item.step })}
                             </span>
                           )}
@@ -212,7 +212,7 @@ export default function ScrollytellingPinnedSection() {
                   setIsPaused(true);
                 }}
                 className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeTab === idx ? "w-8 bg-emerald-500" : "w-2 bg-surface-deep"
+                  activeTab === idx ? "w-8 bg-brand-500" : "w-2 bg-surface-deep"
                 }`}
                 title={format(t.miscUi.scrollytelling.goToTab, { index: idx + 1 })}
               />

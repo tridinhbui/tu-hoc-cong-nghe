@@ -2,6 +2,7 @@ import type { Lesson } from "./lesson-types";
 import { ADVANCED_MASTERCLASS_LESSONS } from "./advanced-masterclass-lessons";
 import { GIT_LESSONS } from "./git-lessons";
 import { AI_MARKETING_LESSONS } from "./ai-marketing-lessons";
+import { AI_AGENT_LESSONS } from "./ai-agent-lessons";
 import { AUTH_LESSONS } from "./auth-lessons";
 import { PERFORMANCE_TUNING_LESSONS } from "./performance-tuning-lessons";
 import { QUANT_METHODS_LESSONS } from "./quant-methods-lessons";
@@ -40,6 +41,7 @@ export const lessons: Lesson[] = [
   ...ADVANCED_MASTERCLASS_LESSONS,
   ...GIT_LESSONS,
   ...AI_MARKETING_LESSONS,
+  ...AI_AGENT_LESSONS,
   ...AUTH_LESSONS,
   ...PERFORMANCE_TUNING_LESSONS,
   ...QUANT_METHODS_LESSONS,

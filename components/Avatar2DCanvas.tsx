@@ -78,7 +78,7 @@ export default function Avatar2DCanvas({
         return (
           <g>
             <rect width="200" height="200" fill="url(#zenBg)" />
-            <circle cx="100" cy="100" r="85" fill="#10B981" opacity="0.15" />
+            <circle cx="100" cy="100" r="85" fill="#417acd" opacity="0.15" />
           </g>
         );
       case "minimal-gradient":
@@ -89,7 +89,7 @@ export default function Avatar2DCanvas({
           <g>
             <rect width="200" height="200" fill="url(#wallstreetBg)" />
             {/* Ticker candlestick chart lines in background */}
-            <path d="M10 160 L30 140 L50 150 L80 110 L110 120 L140 80 L170 90 L190 60" stroke="#10B981" strokeWidth="2.5" fill="none" opacity="0.4" />
+            <path d="M10 160 L30 140 L50 150 L80 110 L110 120 L140 80 L170 90 L190 60" stroke="#417acd" strokeWidth="2.5" fill="none" opacity="0.4" />
             <path d="M10 170 L40 165 L70 175 L100 160 L130 168 L170 155 L190 145" stroke="#F59E0B" strokeWidth="1.5" fill="none" strokeDasharray="3 3" opacity="0.3" />
           </g>
         );
@@ -397,14 +397,14 @@ export default function Avatar2DCanvas({
             <path d="M72 46 L82 26 L100 40 L118 26 L128 46 Z" fill="#F59E0B" stroke="#B45309" strokeWidth="1.5" />
             <circle cx="82" cy="26" r="3" fill="#EF4444" />
             <circle cx="100" cy="38" r="3.5" fill="#3B82F6" />
-            <circle cx="118" cy="26" r="3" fill="#10B981" />
+            <circle cx="118" cy="26" r="3" fill="#417acd" />
           </motion.g>
         );
       case "rolex-watch":
         return (
           <g>
             <circle cx="168" cy="168" r="14" fill="#D4AF37" stroke="#92400E" strokeWidth="1.5" />
-            <circle cx="168" cy="168" r="11" fill="#065F46" />
+            <circle cx="168" cy="168" r="11" fill="#1C3862" />
             <line x1="168" y1="168" x2="168" y2="162" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" />
             <line x1="168" y1="168" x2="173" y2="168" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" />
           </g>
@@ -428,7 +428,7 @@ export default function Avatar2DCanvas({
         return (
           <g transform="translate(148, 142) scale(0.65)">
             <rect x="10" y="10" width="25" height="35" rx="3" fill="#FFFFFF" stroke="#D1D5DB" strokeWidth="1.5" />
-            <rect x="8" y="22" width="29" height="12" fill="#047857" />
+            <rect x="8" y="22" width="29" height="12" fill="#214e96" />
             <path d="M35 18 C42 18, 42 32, 35 32" stroke="#FFFFFF" strokeWidth="2" fill="none" />
           </g>
         );
@@ -459,8 +459,8 @@ export default function Avatar2DCanvas({
             <stop offset="100%" stopColor="#581C87" />
           </linearGradient>
           <linearGradient id="zenBg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#064E3B" />
-            <stop offset="100%" stopColor="#047857" />
+            <stop offset="0%" stopColor="#1c3862" />
+            <stop offset="100%" stopColor="#214e96" />
           </linearGradient>
           <linearGradient id="minimalBg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#334155" />

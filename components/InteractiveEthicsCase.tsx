@@ -144,7 +144,7 @@ export default function InteractiveEthicsCase() {
               verdict === null
                 ? "border-stone-300 text-stone-700 hover:border-stone-500 dark:border-stone-700 dark:text-stone-200"
                 : v === c.violates
-                  ? "border-emerald-400 bg-emerald-50 text-emerald-800 dark:border-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-200"
+                  ? "border-brand-400 bg-brand-50 text-brand-800 dark:border-brand-700 dark:bg-brand-950/40 dark:text-brand-200"
                   : verdict === v
                     ? "border-rose-400 bg-rose-50 text-rose-800 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-200"
                     : "border-stone-200 text-stone-400 dark:border-stone-800 dark:text-stone-600"
@@ -175,7 +175,7 @@ export default function InteractiveEthicsCase() {
                     !done
                       ? "cursor-pointer border-stone-200 text-stone-700 hover:border-stone-400 dark:border-stone-700 dark:text-stone-200"
                       : isAnswer
-                        ? "border-emerald-400 bg-emerald-50 text-emerald-900 dark:border-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-200"
+                        ? "border-brand-400 bg-brand-50 text-brand-900 dark:border-brand-700 dark:bg-brand-950/40 dark:text-brand-200"
                         : picked === option
                           ? "border-rose-400 bg-rose-50 text-rose-900 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-200"
                           : "border-stone-200 text-stone-400 dark:border-stone-800 dark:text-stone-600"

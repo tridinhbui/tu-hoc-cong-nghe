@@ -11,8 +11,8 @@ const snap = JSON.parse(readFileSync("scripts/d1/schema-snapshot.json", "utf8"))
 // PostgREST bỏ sót đúng một dạng mặc định: jsonb. Bốn cột NOT NULL kiểu jsonb có
 // `default '{}'::jsonb` trong Postgres mà OpenAPI khai là không có, nên nếu tin
 // bản chụp thì D1 sẽ từ chối đúng những lệnh chèn mà Postgres vẫn nhận.
-// scripts/d1/defaults-from-migrations.mjs dựng lại phần thiếu ấy từ migration.
-// Nếu bản vá lệch với bản chụp thì chạy lại cả hai script, đừng sửa tay tệp JSON.
+// defaults-patch.json dựng lại phần thiếu ấy từ migration của hệ cũ; công cụ
+// dựng nó đã gỡ cùng thư mục migration ấy, nên tệp JSON giờ là bản cuối.
 const patch = JSON.parse(readFileSync("scripts/d1/defaults-patch.json", "utf8"));
 let patched = 0;
 for (const [key, value] of Object.entries(patch)) {

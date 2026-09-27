@@ -98,9 +98,18 @@ export default function MotivationShareCard({
         <text x="400" y="135" textAnchor="middle" fill="#fbbf24" fontSize="14" fontWeight="900" letterSpacing="5">
           {t.motivationShare.brandHeader}
         </text>
-        <text x="400" y="240" textAnchor="middle" fontSize="86">
-          🔥
-        </text>
+        {/* Icon ngọn lửa của Lucide, vẽ thẳng bằng path để handleShare
+            serialize được - không dùng glyph emoji. */}
+        <g transform="translate(364 168) scale(3)">
+          <path
+            d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"
+            fill="none"
+            stroke="#fbbf24"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
 
         {/* Câu nói được cắt dòng sẵn - SVG không tự xuống dòng. Khối chữ căn
             giữa theo chiều dọc quanh y=430 nên câu ngắn hay dài đều cân. */}

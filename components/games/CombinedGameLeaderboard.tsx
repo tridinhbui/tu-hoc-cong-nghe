@@ -3,13 +3,12 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Trophy, Gamepad2 } from "lucide-react";
+import RankBadge from "@/components/games/RankBadge";
 import { getCombinedGameLeaderboard, getCombinedGameTitle, GAMES, type CombinedLeaderboardRow } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 import { localizeCombinedGameTitle } from "@/lib/games-i18n";
 import { format } from "@/lib/i18n";
-
-const RANK_MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
 // Sums each player's best-per-game XP across every mini-game (see
 // getCombinedGameXp/get_combined_game_leaderboard) so playing a variety of
@@ -66,8 +65,8 @@ export default function CombinedGameLeaderboard() {
                 : "border-stone-200 bg-white"
             }`}
           >
-            <span className="w-7 text-center text-sm font-extrabold text-stone-500 flex-shrink-0">
-              {RANK_MEDAL[rank] ?? rank}
+            <span className="w-7 flex justify-center text-sm font-extrabold text-stone-500 flex-shrink-0">
+              <RankBadge rank={rank} />
             </span>
             {isValidAvatar(row.avatarUrl) ? (
               <Image src={row.avatarUrl} alt={row.name} width={28} height={28} className="w-7 h-7 rounded-full object-cover flex-shrink-0" />

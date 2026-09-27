@@ -63,7 +63,7 @@ export const FLASHCARD_ALBUMS: FlashcardAlbum[] = [
     title: "Định giá & Đầu tư",
     description: "Bộ công cụ dân đầu tư nào cũng cần thuộc nằm lòng",
     emoji: "💹",
-    gradient: "from-emerald-500 to-teal-600",
+    gradient: "from-brand-500 to-brand-600",
     cards: [
       { term: "P/E (Price-to-Earnings)", definition: "Giá cổ phiếu chia lợi nhuận mỗi cổ phần - đo thị trường đang trả bao nhiêu cho mỗi đồng lợi nhuận." },
       { term: "P/B (Price-to-Book)", definition: "Giá cổ phiếu chia giá trị sổ sách mỗi cổ phần - so sánh giá thị trường với giá trị tài sản ròng." },

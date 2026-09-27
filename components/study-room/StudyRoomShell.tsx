@@ -145,7 +145,7 @@ export default function StudyRoomShell({ boardTitle, boardRows, lampColor, dayli
   // boardTexture dựng canvas mới mỗi lần gọi (không qua cache của room-textures),
   // nên phải tự dọn - nội dung bảng đổi mỗi khi mục tiêu tuần nhích lên.
   const board = useMemo(
-    () => boardTexture(boardTitle, boardRows, { accent: "#34d399", emptyText: t.miscUi.canvasBoard.empty }),
+    () => boardTexture(boardTitle, boardRows, { accent: "#6c9bdc", emptyText: t.miscUi.canvasBoard.empty }),
     [boardTitle, boardRows, t]
   );
   useEffect(() => () => board.dispose(), [board]);

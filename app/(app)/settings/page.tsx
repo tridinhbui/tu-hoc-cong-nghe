@@ -467,7 +467,7 @@ export default function SettingsPage() {
             className={`px-4 py-3 rounded-2xl text-sm font-semibold border ${
               flash.tone === "error"
                 ? "bg-red-50 dark:bg-red-950/50 text-danger border-danger-line"
-                : "bg-emerald-50 dark:bg-emerald-950/50 text-accent border-accent-line"
+                : "bg-brand-50 dark:bg-brand-950/50 text-accent border-accent-line"
             }`}
           >
             {flash.text}
@@ -490,7 +490,7 @@ export default function SettingsPage() {
                     {avatarPreview ? (
                       <Image src={avatarPreview} alt={t.settings.profile.avatarAlt} width={80} height={80} className="w-full h-full object-cover" />
                     ) : (
-                      <span className="text-3xl">👤</span>
+                      <UserRound className="w-9 h-9 text-ink-muted" strokeWidth={1.5} aria-hidden />
                     )}
                   </div>
                   <div className="flex-1">
@@ -589,7 +589,7 @@ export default function SettingsPage() {
                         : t.settings.appearance.switchToDark
                     }
                     className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer ${
-                      theme === "dark" ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+                      theme === "dark" ? "bg-brand-600 border-brand-700" : "bg-stone-200 border-stone-300"
                     }`}
                   >
                     <div
@@ -679,7 +679,7 @@ export default function SettingsPage() {
                         : t.settings.reminders.emailOn
                     }
                     className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 ${
-                      emailRemindersEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+                      emailRemindersEnabled ? "bg-brand-600 border-brand-700" : "bg-stone-200 border-stone-300"
                     }`}
                   >
                     <div
@@ -711,7 +711,7 @@ export default function SettingsPage() {
                         : t.settings.reminders.weeklyOn
                     }
                     className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 flex-shrink-0 ${
-                      weeklyDigestEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+                      weeklyDigestEnabled ? "bg-brand-600 border-brand-700" : "bg-stone-200 border-stone-300"
                     }`}
                   >
                     <div
@@ -741,7 +741,7 @@ export default function SettingsPage() {
                           : t.settings.reminders.browserOn
                       }
                       className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 flex-shrink-0 ${
-                        browserRemindersEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+                        browserRemindersEnabled ? "bg-brand-600 border-brand-700" : "bg-stone-200 border-stone-300"
                       }`}
                     >
                       <div
@@ -772,7 +772,7 @@ export default function SettingsPage() {
                           : t.settings.reminders.morningOn
                       }
                       className={`w-14 h-7 rounded-full border-2 transition-colors flex items-center cursor-pointer disabled:opacity-60 flex-shrink-0 ${
-                        morningReviewEnabled ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+                        morningReviewEnabled ? "bg-brand-600 border-brand-700" : "bg-stone-200 border-stone-300"
                       }`}
                     >
                       <div

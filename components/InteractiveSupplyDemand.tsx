@@ -1,21 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { createElement, useState } from "react";
+import { ArrowDown, ArrowDownRight, ArrowUpRight, Flame, Rocket, Scale, TrendingDown, TrendingUp, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-function getPriceLabels(t: Dictionary): Record<number, { label: string; color: string; emoji: string }> {
+function getPriceLabels(t: Dictionary): Record<number, { label: string; color: string; icon: LucideIcon }> {
   return {
-    1: { label: t.supplyDemand.priceLevel1, color: "text-blue-600", emoji: "📉" },
-    2: { label: t.supplyDemand.priceLevel2, color: "text-blue-500", emoji: "↘️" },
-    3: { label: t.supplyDemand.priceLevel3, color: "text-cyan-600", emoji: "↘️" },
-    4: { label: t.supplyDemand.priceLevel4, color: "text-teal-600", emoji: "⬇️" },
-    5: { label: t.supplyDemand.priceLevel5, color: "text-emerald-600", emoji: "⚖️" },
-    6: { label: t.supplyDemand.priceLevel6, color: "text-yellow-600", emoji: "↗️" },
-    7: { label: t.supplyDemand.priceLevel7, color: "text-amber-600", emoji: "↗️" },
-    8: { label: t.supplyDemand.priceLevel8, color: "text-orange-600", emoji: "📈" },
-    9: { label: t.supplyDemand.priceLevel9, color: "text-rose-500", emoji: "🚀" },
-    10: { label: t.supplyDemand.priceLevel10, color: "text-rose-600", emoji: "🔥" },
+    1: { label: t.supplyDemand.priceLevel1, color: "text-blue-600", icon: TrendingDown },
+    2: { label: t.supplyDemand.priceLevel2, color: "text-blue-500", icon: ArrowDownRight },
+    3: { label: t.supplyDemand.priceLevel3, color: "text-cyan-600", icon: ArrowDownRight },
+    4: { label: t.supplyDemand.priceLevel4, color: "text-brand-600", icon: ArrowDown },
+    5: { label: t.supplyDemand.priceLevel5, color: "text-brand-600", icon: Scale },
+    6: { label: t.supplyDemand.priceLevel6, color: "text-yellow-600", icon: ArrowUpRight },
+    7: { label: t.supplyDemand.priceLevel7, color: "text-amber-600", icon: ArrowUpRight },
+    8: { label: t.supplyDemand.priceLevel8, color: "text-orange-600", icon: TrendingUp },
+    9: { label: t.supplyDemand.priceLevel9, color: "text-rose-500", icon: Rocket },
+    10: { label: t.supplyDemand.priceLevel10, color: "text-rose-600", icon: Flame },
   };
 }
 
@@ -35,7 +36,7 @@ export default function InteractiveSupplyDemand() {
     if (balance > 10) return { text: t.supplyDemand.scenarioHigherDemand, bg: "bg-orange-50 border-orange-200 text-orange-800" };
     if (balance < -30) return { text: t.supplyDemand.scenarioMuchHigherSupply, bg: "bg-blue-50 border-blue-200 text-blue-800" };
     if (balance < -10) return { text: t.supplyDemand.scenarioHigherSupply, bg: "bg-cyan-50 border-cyan-200 text-cyan-800" };
-    return { text: t.supplyDemand.scenarioBalanced, bg: "bg-emerald-50 border-emerald-200 text-emerald-800" };
+    return { text: t.supplyDemand.scenarioBalanced, bg: "bg-brand-50 border-brand-200 text-brand-800" };
   };
 
   const scenario = getScenario();
@@ -84,8 +85,8 @@ export default function InteractiveSupplyDemand() {
       {/* Visual Price Meter */}
       <div className="bg-stone-50 rounded-2xl p-6 text-center">
         <div className="text-stone-500 text-sm mb-2">{t.supplyDemand.priceMeterTitle}</div>
-        <div className={`text-5xl font-bold ${price.color} mb-1`}>
-          {price.emoji}
+        <div className={`flex justify-center ${price.color} mb-1`}>
+          {createElement(price.icon, { "aria-hidden": true, className: "h-12 w-12", strokeWidth: 1.5 })}
         </div>
         <div className={`text-xl font-bold ${price.color}`}>{price.label}</div>
 
@@ -99,7 +100,7 @@ export default function InteractiveSupplyDemand() {
                   ? i < 3
                     ? "bg-blue-400"
                     : i < 5
-                    ? "bg-emerald-400"
+                    ? "bg-brand-400"
                     : i < 7
                     ? "bg-amber-400"
                     : "bg-rose-500"
@@ -133,7 +134,7 @@ export default function InteractiveSupplyDemand() {
         </button>
         <button
           onClick={() => { setSupply(50); setDemand(50); }}
-          className="bg-emerald-50 text-emerald-700 rounded-xl py-2 px-3 font-medium hover:bg-emerald-100 transition-colors"
+          className="bg-brand-50 text-brand-700 rounded-xl py-2 px-3 font-medium hover:bg-brand-100 transition-colors"
         >
           {t.supplyDemand.presetBalancedTitle}<br /><span className="text-xs font-normal">{t.supplyDemand.presetBalancedSubtitle}</span>
         </button>

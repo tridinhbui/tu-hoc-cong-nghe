@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Di chuyển tệp nhị phân từ Cloudflare Storage sang R2, một lần duy nhất.
+// Di chuyển tệp nhị phân từ storage của hệ cũ sang R2, một lần duy nhất.
 //
-// VÌ SAO CẦN. Dữ liệu đã xuất sang D1 giữ nguyên URL Cloudflare Storage trong
+// VÌ SAO CẦN. Dữ liệu đã xuất sang D1 giữ nguyên URL storage của hệ cũ trong
 // user_profiles.avatar_url, documents.file_url/image_url, và
 // chat_messages.image_url - mã ứng dụng đã đổi để tải lên MỚI đi qua R2
 // (xem lib/r2/storage.ts), nhưng tệp CŨ chưa từng được chuyển nội dung nhị

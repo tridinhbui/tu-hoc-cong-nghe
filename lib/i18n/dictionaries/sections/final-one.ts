@@ -26,7 +26,7 @@ export const finalOneVi = {
     taiLieuPage: {
       backHome: "Về trang chủ",
       title: "Kho Tài liệu Miễn phí",
-      freeBadge: "Miễn phí 100% 🎁",
+      freeBadge: "Miễn phí 100%",
       subtitle:
         "Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học công nghệ của bạn - tải về hoàn toàn miễn phí không giới hạn. Đóng góp tài liệu của riêng bạn để chia sẻ cho cộng đồng nhé!",
       giftTitle: "Món quà tri thức từ cộng đồng",
@@ -35,7 +35,7 @@ export const finalOneVi = {
     },
     // components/DashboardClient.tsx
     dashboardClient: {
-      soloLabel: "🧠 Solo",
+      soloLabel: "Solo",
       xpValue: "{xp} XP",
       // Cấp có thêm cổng CFA (hiện chỉ L9) phải nói ra điều đó ngay trên thẻ:
       // thẻ chỉ ghi ngưỡng XP là lý do người học 5.036 XP tưởng mình đang bị
@@ -43,7 +43,7 @@ export const finalOneVi = {
       levelCfaGate: "+ {count} mô-đun chứng chỉ",
       milestoneBonusXp: "+50 XP",
       bonusLabel: "Bonus",
-      bossDefeatedToast: "🎉 Hạ gục Boss thành công! Nhận +{xp} XP & 🪙 +{coins} Coins!",
+      bossDefeatedToast: "Hạ gục Boss thành công! Nhận +{xp} XP & +{coins} Coins!",
     },
     // components/MidpointInteractive.tsx
     midpointInteractive: {
@@ -91,7 +91,7 @@ export const finalOneEn: typeof finalOneVi = {
     taiLieuPage: {
       backHome: "Back to dashboard",
       title: "Free Document Library",
-      freeBadge: "100% Free 🎁",
+      freeBadge: "100% Free",
       subtitle:
         "Templates, ebooks, checklists and tools to support your technology learning journey - download for free with no limits. Contribute your own documents to share with the community!",
       giftTitle: "A gift of knowledge from the community",
@@ -99,12 +99,12 @@ export const finalOneEn: typeof finalOneVi = {
         "All documents, ebooks, Excel templates and checklists here are shared completely free for personal learning purposes.",
     },
     dashboardClient: {
-      soloLabel: "🧠 Solo",
+      soloLabel: "Solo",
       xpValue: "{xp} XP",
       levelCfaGate: "+ {count} certification modules",
       milestoneBonusXp: "+50 XP",
       bonusLabel: "Bonus",
-      bossDefeatedToast: "🎉 Boss defeated! Earned +{xp} XP & 🪙 +{coins} Coins!",
+      bossDefeatedToast: "Boss defeated! Earned +{xp} XP & +{coins} Coins!",
     },
     midpointInteractive: {
       stopAndCheck: "Stop & Check",

@@ -63,7 +63,7 @@ export default async function NeedsActionPanel({
 
       {totalPending === 0 ? (
         <div className="py-8 flex flex-col items-center gap-2 text-center">
-          <PartyPopper className="w-8 h-8 text-emerald-500" />
+          <PartyPopper className="w-8 h-8 text-brand-500" />
           <p className="text-sm font-bold text-ink-body">{ta.allClear}</p>
         </div>
       ) : (

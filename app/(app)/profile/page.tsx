@@ -19,6 +19,7 @@ import {
   Target,
   Trophy,
   } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { createClient } from "@/lib/cloudflare";
 import { getLevelByXp, getLevelProgress, getXpToNextLevel } from "@/lib/levels";
 import { getMyLeaderboardRank, getUserProfile, recalculateUserStats, type UserProfile } from "@/lib/cloudflare-user";
@@ -196,13 +197,28 @@ function summarizeTrackProgress(
 }
 
 const TYPE_ACCENT: Record<JourneyMilestone["type"], string> = {
-  signup: "border-accent-line-mid bg-emerald-50 dark:bg-emerald-950/30",
+  signup: "border-accent-line-mid bg-brand-50 dark:bg-brand-950/30",
   lesson_milestone: "border-info-line bg-sky-50 dark:bg-sky-950/30",
   badge: "border-warn-line-mid bg-amber-50 dark:bg-amber-950/30",
 };
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" });
+}
+
+/** Huy hiệu cấp trong lib/badges.ts dùng chữ số khoanh tròn ("②"), là ký
+ *  tự chữ chứ không phải emoji - vẽ thành một pill số nhỏ. Mọi huy hiệu
+ *  khác là emoji dữ liệu, đi qua Glyph. */
+function BadgeGlyph({ icon, className }: { icon: string | null | undefined; className?: string }) {
+  const cp = icon && [...icon].length === 1 ? icon.codePointAt(0) ?? 0 : 0;
+  if (cp >= 0x2460 && cp <= 0x2473) {
+    return (
+      <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-soft px-1 text-[10px] font-black tabular-nums text-accent not-italic">
+        {cp - 0x2460 + 1}
+      </span>
+    );
+  }
+  return <Glyph emoji={icon} className={className} />;
 }
 
 export default function ProfilePage() {
@@ -469,8 +485,8 @@ export default function ProfilePage() {
 
         {/* Premium Dark Hero Header */}
         <div className="relative overflow-hidden rounded-2xl bg-surface-invert text-white p-6 sm:p-8 shadow-lg border border-stone-800">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
@@ -484,17 +500,17 @@ export default function ProfilePage() {
                   />
                 </div>
               ) : (
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-emerald-500 border-4 border-white/10 dark:border-stone-800 shadow-md flex items-center justify-center text-4xl font-extrabold text-white flex-shrink-0">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-brand-500 border-4 border-white/10 dark:border-stone-800 shadow-md flex items-center justify-center text-4xl font-extrabold text-white flex-shrink-0">
                   {initials}
                 </div>
               )}
 
               <div className="min-w-0">
                 <div className="flex flex-wrap justify-center sm:justify-start items-center gap-2 mb-2.5">
-                  <span className="inline-flex items-center rounded-full bg-white/10 dark:bg-stone-800 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-300">
+                  <span className="inline-flex items-center rounded-full bg-white/10 dark:bg-stone-800 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-brand-300">
                     {currentTrackLabel}
                   </span>
-                  <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-300">
+                  <span className="inline-flex items-center rounded-full bg-brand-500/20 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-brand-300">
                     {format(t.profile.levelLine, { level: currentLevel.level, name: currentLevel.name })}
                   </span>
                 </div>
@@ -503,7 +519,7 @@ export default function ProfilePage() {
                 </h2>
                 {activeTitle && (
                   <p className="text-xs font-bold text-amber-300 mt-1 flex items-center gap-1 justify-center sm:justify-start">
-                    🏆 {activeTitle}
+                    <Trophy className="w-3.5 h-3.5 shrink-0" aria-hidden /> {activeTitle}
                   </p>
                 )}
                 <p className="text-sm text-stone-400 mt-1.5">{user?.email}</p>
@@ -542,7 +558,7 @@ export default function ProfilePage() {
             </div>
             <div className="h-2 rounded-full bg-white/10 dark:bg-stone-800 overflow-hidden">
               <div
-                className="h-full rounded-full bg-emerald-500 transition-all duration-500"
+                className="h-full rounded-full bg-brand-500 transition-all duration-500"
                 style={{ width: `${levelProgress}%` }}
               />
             </div>
@@ -558,7 +574,7 @@ export default function ProfilePage() {
             {/* Track Progress Summary Card */}
             <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 sm:p-6 shadow-sm">
               <div className="flex items-start gap-4 mb-5 border-b border-line-soft pb-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-accent flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/40 text-accent flex items-center justify-center flex-shrink-0">
                   <Target className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
@@ -575,7 +591,7 @@ export default function ProfilePage() {
                       key={track.track}
                       className={`rounded-xl border p-4 transition-all ${
                         isCurrent
-                          ? "border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/20 dark:bg-emerald-950/5 shadow-[0_8px_20px_-12px_rgba(16,185,129,0.15)]"
+                          ? "border-brand-200 dark:border-brand-900/60 bg-brand-50/20 dark:bg-brand-950/5 shadow-[0_8px_20px_-12px_rgba(65, 122, 205,0.15)]"
                           : "border-stone-200 dark:border-stone-800/80 bg-stone-50/40 dark:bg-stone-900/10"
                       }`}
                     >
@@ -584,7 +600,7 @@ export default function ProfilePage() {
                           <div className="flex items-center gap-1.5 flex-wrap">
                             <p className="text-xs sm:text-sm font-extrabold text-ink">{track.title}</p>
                             {isCurrent && (
-                              <span className="inline-flex rounded bg-emerald-100/70 dark:bg-emerald-950 text-accent-ink px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
+                              <span className="inline-flex rounded bg-brand-100/70 dark:bg-brand-950 text-accent-ink px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
                                 {t.profile.inProgress}
                               </span>
                             )}
@@ -605,7 +621,7 @@ export default function ProfilePage() {
 
                       <div className="h-2 rounded-full bg-surface-sunken overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all duration-300 ${isCurrent ? "bg-emerald-500" : "bg-stone-400 dark:bg-stone-600"}`}
+                          className={`h-full rounded-full transition-all duration-300 ${isCurrent ? "bg-brand-500" : "bg-stone-400 dark:bg-stone-600"}`}
                           style={{ width: `${track.percent}%` }}
                         />
                       </div>
@@ -656,7 +672,7 @@ export default function ProfilePage() {
                           </span>
                           <p className="text-[9px] text-ink-faint">{t.profile.readAndQuiz}</p>
                         </div>
-                        <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-emerald-500 transition-colors" />
+                        <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-brand-500 transition-colors" />
                       </div>
                     </Link>
                   ))}
@@ -689,7 +705,7 @@ export default function ProfilePage() {
                         <span
                           className={`absolute -left-6 top-1.5 w-6 h-6 rounded-full border flex items-center justify-center text-xs bg-white dark:bg-stone-900 ${TYPE_ACCENT[m.type]}`}
                         >
-                          {m.emoji}
+                          <BadgeGlyph icon={m.emoji} className="w-3.5 h-3.5 text-ink-soft" />
                         </span>
                         <div className="bg-stone-50/50 dark:bg-stone-950/20 border border-stone-100 dark:border-stone-800/80 rounded-xl px-4 py-2.5 ml-2.5">
                           <p className="text-[9px] font-black text-ink-faint mb-0.5">{formatDate(m.date)}</p>
@@ -753,7 +769,7 @@ export default function ProfilePage() {
                       key={gt.gameType}
                       className="flex items-center gap-3 rounded-xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/30 dark:bg-amber-950/10 px-3.5 py-2.5"
                     >
-                      <span className="text-xl flex-shrink-0">{gt.gameEmoji}</span>
+                      <Glyph emoji={gt.gameEmoji} className="w-5 h-5 flex-shrink-0 text-warn" />
                       <div className="min-w-0 flex-1">
                         <p className="text-xs font-extrabold text-warn-strong truncate">{gt.title}</p>
                         <p className="text-[10px] text-ink-muted truncate">{gt.gameLabel}</p>
@@ -776,7 +792,7 @@ export default function ProfilePage() {
                       title={badgeDescription(badge, t)}
                       className="flex flex-col items-center text-center gap-1 p-2.5 rounded-xl border border-line bg-stone-50/50 dark:bg-stone-900/30"
                     >
-                      <span className="text-2xl">{badge.badge_icon}</span>
+                      <span className="flex h-7 items-center justify-center"><BadgeGlyph icon={badge.badge_icon} className="w-6 h-6 text-accent" /></span>
                       <span className="text-[9px] font-extrabold text-ink leading-tight truncate w-full">
                         {badgeName(badge, t)}
                       </span>
@@ -837,7 +853,7 @@ export default function ProfilePage() {
                     {unlockedThemes.map((th) => {
                       const isEquipped = activeTheme === th;
                       const themeName = th === "gold" ? t.profile.themeGold : t.profile.themeEmerald;
-                      const colorClass = th === "gold" ? "text-amber-500" : "text-emerald-500";
+                      const colorClass = th === "gold" ? "text-amber-500" : "text-brand-500";
                       return (
                         <button
                           key={th}
@@ -846,7 +862,7 @@ export default function ProfilePage() {
                             isEquipped
                               ? th === "gold"
                                 ? "bg-amber-500 text-white border-amber-500 shadow-sm"
-                                : "bg-emerald-500 text-white border-emerald-500 shadow-sm"
+                                : "bg-brand-500 text-white border-brand-500 shadow-sm"
                               : "border-line text-ink-body hover:border-line-firm"
                           }`}
                         >
@@ -863,7 +879,7 @@ export default function ProfilePage() {
             {bookmarks.length > 0 && (
               <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
                 <h4 className="text-sm font-extrabold text-ink mb-3.5 flex items-center gap-1.5">
-                  <Bookmark className="w-4 h-4 text-emerald-500" />
+                  <Bookmark className="w-4 h-4 text-brand-500" />
                   {format(t.profile.savedLessons, { count: bookmarks.length })}
                 </h4>
                 <div className="space-y-2">

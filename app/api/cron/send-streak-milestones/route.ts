@@ -25,7 +25,7 @@ function milestoneMessage(name: string, days: number, locale: string | null | un
 /* i18n-ignore-start: nội dung bài đăng đã lưu, cả cộng đồng đọc chung một bản */
 function feedPostContent(name: string, days: number): string {
   const label = name && name.trim() ? name.trim() : "Một bạn học";
-  return `${label} vừa đạt chuỗi ${days} ngày học liên tục! 🔥`;
+  return `${label} vừa đạt chuỗi ${days} ngày học liên tục!`;
 }
 /* i18n-ignore-end */
 

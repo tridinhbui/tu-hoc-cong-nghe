@@ -170,7 +170,7 @@ export async function GET(request: NextRequest) {
           { name }
         );
 
-        const result = await sendReminderEmail(profile.email, title, [body, `🔥 ${motivation}`]);
+        const result = await sendReminderEmail(profile.email, title, [body, `${motivation}`]);
         if (result.sent) {
           emailSent += 1;
         } else if (result.reason === "no_api_key") {
@@ -182,7 +182,7 @@ export async function GET(request: NextRequest) {
     if (candidate.browser_reminders_enabled) {
       const pushBody = reason === "streak_at_risk" ? t.emails.streakAtRiskBody : t.emails.comebackBody;
       // Push chỉ hiện được vài dòng, nên lời nhắn đứng trước câu nhắc việc.
-      const pushBodyWithMotivation = `🔥 ${motivation}\n${pushBody}`;
+      const pushBodyWithMotivation = `${motivation}\n${pushBody}`;
 
       for (const sub of subscriptionsByUser.get(candidate.user_id) ?? []) {
         const result = await sendPushNotification(sub, { title, body: pushBodyWithMotivation, url: "/dashboard" });

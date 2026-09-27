@@ -3,7 +3,7 @@
  * chuỗi thao tác `[tên, ...đối số]`, đúng thứ tự người gọi đã viết.
  *
  * VÌ SAO MỘT ENDPOINT CHUNG CHỨ KHÔNG PHẢI MỘT ROUTE CHO MỖI TÍNH NĂNG.
- * Supabase cho trình duyệt nói chuyện thẳng với cơ sở dữ liệu, và RLS là thứ
+ * Hệ Postgres cũ cho trình duyệt nói chuyện thẳng với cơ sở dữ liệu, và RLS là thứ
  * gác. query-builder.ts được dựng để thay RLS bằng policy registry, áp ở
  * build() - tức nó chạy đúng như nhau bất kể truy vấn tới từ đâu. Nên cách
  * trung thực nhất là giữ nguyên mô hình ấy: trình duyệt dựng truy vấn, máy

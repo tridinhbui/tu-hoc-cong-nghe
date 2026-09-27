@@ -67,8 +67,6 @@ function RankAvatarFrame({ rank, children }: { rank: number; children: ReactNode
   );
 }
 
-const RANK_MEDALS: Record<number, string> = { 1: "🏆", 2: "🥈", 3: "🥉" };
-
 type TabId = LeaderboardMetric | "track_personal" | "track_professional" | "weekly" | "monthly" | "friends" | "game";
 
 interface TabDef {
@@ -223,7 +221,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
               }}
               className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer select-none ${
                 activeTab === tabItem.id
-                  ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm"
+                  ? "bg-brand-600 dark:bg-brand-500 text-white shadow-sm"
                   : "bg-white/95 dark:bg-stone-900 text-ink-soft border border-stone-200 dark:border-stone-800/80 hover:bg-surface"
               }`}
             >
@@ -258,7 +256,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
                   href={href}
                   className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm transition-all ${
                     isCurrent
-                      ? "bg-emerald-50 dark:bg-emerald-950/50 border border-accent-line"
+                      ? "bg-brand-50 dark:bg-brand-950/50 border border-accent-line"
                       : "bg-white/95 dark:bg-stone-900 border border-line hover:border-accent-line-mid"
                   }`}
                 >
@@ -274,7 +272,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
                               : "bg-surface-raised text-ink-body"
                       }`}
                     >
-                      {RANK_MEDALS[rank] ?? rank}
+                      {rank}
                     </div>
                     <RankAvatarFrame rank={rank}>
                       <LeaderboardAvatar name={entry.name} avatarUrl={entry.avatarUrl} />

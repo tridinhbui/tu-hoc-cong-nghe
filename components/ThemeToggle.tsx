@@ -18,7 +18,7 @@ export default function ThemeToggle() {
       }}
       aria-label={isDark ? t.miscUi.themeToggle.toLight : t.miscUi.themeToggle.toDark}
       className={`w-12 h-6 rounded-full border-2 transition-colors flex items-center cursor-pointer ${
-        isDark ? "bg-emerald-600 border-emerald-700" : "bg-stone-200 border-stone-300"
+        isDark ? "bg-brand-600 border-brand-700" : "bg-stone-200 border-stone-300"
       }`}
     >
       <div

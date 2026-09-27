@@ -58,7 +58,7 @@ export default function GameHistory({ userId, gameType }: { userId: string; game
           <span
             className={`text-xs font-extrabold px-2.5 py-1 rounded-full ${
               s.xp_earned > 0
-                ? "bg-emerald-50 text-emerald-700"
+                ? "bg-brand-50 text-brand-700"
                 : "bg-stone-100 text-stone-500"
             }`}
           >

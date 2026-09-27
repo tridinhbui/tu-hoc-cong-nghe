@@ -97,7 +97,7 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
             <Link
               href="/game"
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-sm font-bold text-accent hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors"
+              className="block px-4 py-2 text-sm font-bold text-accent hover:bg-brand-50 dark:hover:bg-brand-950/30 transition-colors"
             >
               {t.userMenu.menuMiniGame}
             </Link>

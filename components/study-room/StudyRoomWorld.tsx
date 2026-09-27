@@ -1,5 +1,6 @@
 "use client";
 
+import { DoorOpen, Volume2, VolumeX } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Joystick from "@/components/world-controls/joystick";
 import dynamic from "next/dynamic";
@@ -43,7 +44,7 @@ function SceneFallback({ label }: { label: string }) {
   return (
     <div className="flex h-full w-full items-center justify-center rounded-2xl bg-stone-950">
       <div className="text-center">
-        <div className="mb-3 text-4xl">🚪</div>
+        <DoorOpen className="mx-auto mb-3 h-9 w-9 text-brand-300" strokeWidth={1.5} aria-hidden />
         <p className="text-sm font-medium text-stone-400">{label}</p>
       </div>
     </div>
@@ -311,7 +312,7 @@ export default function StudyRoomWorld({
           khác hẳn, và là thông tin cần biết. */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-center gap-2 p-3">
         <div className="rounded-2xl bg-stone-900/75 px-4 py-1.5 text-center shadow-lg backdrop-blur">
-          <p className="text-[11px] font-bold text-emerald-300">
+          <p className="text-[11px] font-bold text-brand-300">
             {format(t.studyWorld.roomHeader, { topic: topicLabel })}
           </p>
           <p className="text-[10px] text-stone-400">
@@ -329,7 +330,7 @@ export default function StudyRoomWorld({
               không hiện sẵn số 0: một dòng "0 phút" ngay lúc vừa vào phòng là
               lời trách móc, không phải thông tin. */}
           {todayClosedSeconds !== null && focusMinutes > 0 && (
-            <p className="mt-0.5 text-[10px] font-bold text-emerald-300">
+            <p className="mt-0.5 text-[10px] font-bold text-brand-300">
               {format(t.studyWorld.todayMinutes, { minutes: focusMinutes })}
             </p>
           )}
@@ -342,7 +343,11 @@ export default function StudyRoomWorld({
           aria-label={sound.enabled ? t.studyWorld.soundOnAria : t.studyWorld.soundOffAria}
           className="pointer-events-auto cursor-pointer rounded-2xl bg-stone-900/75 px-3 py-2 text-[13px] shadow-lg backdrop-blur transition hover:bg-stone-800"
         >
-          {sound.enabled ? "🔊" : "🔈"}
+          {sound.enabled ? (
+            <Volume2 className="h-4 w-4 text-stone-100" strokeWidth={1.75} aria-hidden />
+          ) : (
+            <VolumeX className="h-4 w-4 text-stone-400" strokeWidth={1.75} aria-hidden />
+          )}
         </button>
       </div>
 
@@ -361,18 +366,18 @@ export default function StudyRoomWorld({
                 // không cần rời mắt khỏi chỗ đang nhìn.
                 sound.play("sit");
               }}
-              className="pointer-events-auto cursor-pointer rounded-2xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-white shadow-xl transition hover:bg-emerald-400"
+              className="pointer-events-auto cursor-pointer rounded-2xl bg-brand-500 px-5 py-2.5 text-xs font-bold text-white shadow-xl transition hover:bg-brand-400"
             >
               {t.studyWorld.sitButton}
             </button>
           ) : (
             <div
               className={`pointer-events-auto flex items-center gap-3 rounded-2xl px-4 py-2 shadow-xl backdrop-blur ${
-                sessionDone ? "bg-emerald-600/90" : "bg-stone-900/85"
+                sessionDone ? "bg-brand-600/90" : "bg-stone-900/85"
               }`}
             >
               <div className="flex flex-col items-start">
-                <span className="font-mono text-base font-bold tabular-nums text-emerald-300">
+                <span className="font-mono text-base font-bold tabular-nums text-brand-300">
                   {sessionDone ? (
                     <span className="text-white">{t.studyWorld.sessionDone}</span>
                   ) : (
@@ -384,7 +389,7 @@ export default function StudyRoomWorld({
                     cùng là 25, nên chữ "hôm nay" trong chuỗi là thứ duy nhất
                     phân biệt chúng - xem chú thích dài hơn ở
                     components/lobby/LobbyClient.tsx. */}
-                <span className={`text-[10px] font-bold ${focusGoalReached ? "text-emerald-200" : "text-stone-400"}`}>
+                <span className={`text-[10px] font-bold ${focusGoalReached ? "text-brand-200" : "text-stone-400"}`}>
                   {focusGoalReached
                     ? format(t.studyWorld.focusGoalReached, { xp: QUEST_XP_REWARDS.daily_focus })
                     : format(t.studyWorld.focusGoalProgress, {
@@ -456,7 +461,7 @@ export default function StudyRoomWorld({
                 className="pointer-events-auto group flex items-start gap-1.5 rounded-xl bg-stone-900/70 px-2.5 py-1 text-[11px] text-stone-200 backdrop-blur"
               >
                 <span className="min-w-0 flex-1">
-                  <span className="font-bold text-emerald-300">{m.name}</span>{" "}
+                  <span className="font-bold text-brand-300">{m.name}</span>{" "}
                   <span className="text-stone-300">{m.text}</span>
                 </span>
                 {m.userId !== userId && (
@@ -494,12 +499,12 @@ export default function StudyRoomWorld({
               onChange={(e) => setDraft(e.target.value)}
               maxLength={CHAT_MAX_LENGTH}
               placeholder={t.studyWorld.speakPlaceholder}
-              className="min-w-0 flex-1 rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-xs text-stone-100 placeholder:text-stone-500 shadow-lg backdrop-blur outline-none focus:border-emerald-500"
+              className="min-w-0 flex-1 rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-xs text-stone-100 placeholder:text-stone-500 shadow-lg backdrop-blur outline-none focus:border-brand-500"
             />
             <button
               type="submit"
               disabled={!draft.trim()}
-              className="shrink-0 cursor-pointer rounded-2xl bg-emerald-500 px-3 py-2 text-xs font-bold text-white shadow-lg transition hover:bg-emerald-400 disabled:opacity-40"
+              className="shrink-0 cursor-pointer rounded-2xl bg-brand-500 px-3 py-2 text-xs font-bold text-white shadow-lg transition hover:bg-brand-400 disabled:opacity-40"
             >
               {t.studyWorld.speakButton}
             </button>

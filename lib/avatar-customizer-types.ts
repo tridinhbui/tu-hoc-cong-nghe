@@ -74,7 +74,7 @@ export const HAIR_COLORS: { id: string; hex: string; label: string }[] = [
 export const OUTFIT_COLORS: { id: string; hex: string; label: string }[] = [
   { id: "navy-suit", hex: "#1E293B", label: "Navy Wall Street" },
   { id: "midnight-black", hex: "#0F172A", label: "Đen Đêm Phố Wall" },
-  { id: "emerald-wealth", hex: "#047857", label: "Xanh Ngọc Bảo Vốn" },
+  { id: "emerald-wealth", hex: "#214e96", label: "Xanh Ngọc Bảo Vốn" },
   { id: "royal-blue", hex: "#1E3A8A", label: "Xanh Hoàng Gia" },
   { id: "deep-purple", hex: "#7C3AED", label: "Tím Huyền Thoại M&A" },
   { id: "crimson-red", hex: "#991B1B", label: "Đỏ Bùng Nổ VN30" },

@@ -3,7 +3,7 @@ import { classifyWrite, signalsFromResult, type ChangeSignal, type WriteKind } f
 /**
  * Bọc binding D1 để mọi lệnh ghi vào bảng được theo dõi phát tín hiệu realtime.
  *
- * VÌ SAO Ở ĐÂY. Supabase có dòng thay đổi (logical replication) - cơ sở dữ liệu
+ * VÌ SAO Ở ĐÂY. Postgres có dòng thay đổi (logical replication) - cơ sở dữ liệu
  * tự báo mỗi khi một hàng đổi, bất kể ai ghi. D1 không có gì tương đương, nên
  * người GHI phải tự báo. Móc ở /api/db thì trông tự nhiên nhưng bỏ sót: đo được
  * 13 câu SQL thô trong lib/d1/rpc.ts ghi vào ba bảng được theo dõi (vào phòng

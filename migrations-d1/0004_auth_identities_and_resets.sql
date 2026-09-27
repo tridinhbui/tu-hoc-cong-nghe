@@ -24,7 +24,7 @@ CREATE INDEX IF NOT EXISTS "auth_identities_user" ON "auth_identities" ("user_id
 -- Token đặt lại mật khẩu.
 --
 -- Cần ngay từ đầu chứ không phải tính năng để sau: 3.652 tài khoản hiện có
--- nằm trong Cloudflare Auth, và băm mật khẩu của họ không xuất sang được. Đặt
+-- nằm trong dịch vụ xác thực cũ, và băm mật khẩu của họ không xuất sang được. Đặt
 -- lại mật khẩu là đường DUY NHẤT để họ vào lại tài khoản của mình.
 --
 -- Giống auth_sessions: lưu BĂM của token chứ không phải token. Ai đọc được

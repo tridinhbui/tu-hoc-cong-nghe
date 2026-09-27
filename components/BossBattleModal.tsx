@@ -54,7 +54,6 @@ interface BossBattleModalProps {
 
 export default function BossBattleModal({
   bossName,
-  bossEmoji = "🐂",
   bossImage = "/boss-wallstreet-bull.png",
   userLevel,
   equipments = {},
@@ -173,7 +172,7 @@ export default function BossBattleModal({
         <div className="grid grid-cols-2 gap-4 items-center justify-between bg-stone-950/60 border border-stone-800 rounded-2xl p-4 mb-6">
           {/* Hero Side */}
           <div className="flex flex-col items-center">
-            <span className="text-xs font-bold text-emerald-400 mb-1">{t.bossBattle.heroLabel}</span>
+            <span className="text-xs font-bold text-brand-400 mb-1">{t.bossBattle.heroLabel}</span>
             <motion.div animate={battleState === "hit_hero" ? { x: [-10, 10, -10, 0] } : {}}>
               <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
             </motion.div>
@@ -181,7 +180,7 @@ export default function BossBattleModal({
             {/* Hero HP */}
             <div className="w-full bg-stone-800 h-3 rounded-full mt-3 overflow-hidden border border-stone-700">
               <div
-                className="bg-emerald-500 h-full transition-all duration-500"
+                className="bg-brand-500 h-full transition-all duration-500"
                 style={{ width: `${heroHp}%` }}
               />
             </div>
@@ -292,7 +291,7 @@ export default function BossBattleModal({
 
                 let btnBg = "bg-stone-800 border-stone-800 hover:border-amber-500/50";
                 if (selectedOption !== null) {
-                  if (isSelected && isCorrect) btnBg = "bg-emerald-950/60 border-emerald-500 text-emerald-300";
+                  if (isSelected && isCorrect) btnBg = "bg-brand-950/60 border-brand-500 text-brand-300";
                   else if (isSelected && !isCorrect) btnBg = "bg-rose-950/60 border-rose-500 text-rose-300";
                 }
 

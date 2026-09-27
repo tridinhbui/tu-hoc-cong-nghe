@@ -44,6 +44,7 @@ export const TRACKS = {
       "Chặng 20 - Nghề công nghệ theo giai đoạn sự nghiệp",
       "Chặng 21 - Công cụ và vận hành",
       "Chặng 22 - Marketing với AI đơn giản hơn bạn nghĩ",
+      "Chặng 23 - AI Agent đơn giản hơn bạn nghĩ",
     ],
     previewSlug: "he-dieu-hanh-lam-gi",
     previewLabel: "Chặng 1: Hệ điều hành làm gì khi bạn không nhìn",

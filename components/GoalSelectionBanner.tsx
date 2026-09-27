@@ -30,8 +30,8 @@ export function goalsOf(t: Dictionary): { id: LearningGoal; name: string; desc: 
       name: d.basicInvesting.name,
       desc: d.basicInvesting.desc,
       icon: TrendingUp,
-      color: "text-emerald-500",
-      bg: "bg-emerald-50 dark:bg-emerald-950/20"
+      color: "text-brand-500",
+      bg: "bg-brand-50 dark:bg-brand-950/20"
     },
     {
       id: "corporate-finance",
@@ -141,7 +141,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                   onClick={() => handleSelectGoal(g.id)}
                   className={`text-left p-4.5 rounded-2xl border transition-all flex flex-col justify-between space-y-3 cursor-pointer focus:outline-none ${
                     isSelected
-                      ? "border-emerald-500 bg-emerald-500/[0.03] dark:bg-emerald-950/20"
+                      ? "border-brand-500 bg-brand-500/[0.03] dark:bg-brand-950/20"
                       : "border-line hover:border-line-strong bg-white dark:bg-stone-900"
                   }`}
                 >
@@ -150,7 +150,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                       <g.icon className="w-5 h-5" />
                     </div>
                     {isSelected && (
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                      <CheckCircle2 className="w-5 h-5 text-brand-500 shrink-0" />
                     )}
                   </div>
                   <div>

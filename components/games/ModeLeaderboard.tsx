@@ -72,7 +72,7 @@ export default function ModeLeaderboard({
                 </span>
                 <span className="max-w-[150px] truncate text-xs font-bold text-stone-800">{row.name}</span>
               </div>
-              <span className="text-xs font-black text-emerald-600">
+              <span className="text-xs font-black text-brand-600">
                 {formatter ? formatter(row) : `${row.bestScore}/${row.bestTotal}`}
               </span>
             </div>

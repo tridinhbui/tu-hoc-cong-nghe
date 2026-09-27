@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Edit2, Trash2, Plus, X, Loader2 } from "lucide-react";
+import { Edit2, Trash2, Plus, X, Loader2, NotebookPen, FileText } from "lucide-react";
 import { toast } from "sonner";
 import {
   getLessonNotes,
@@ -202,7 +202,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
       {/* Header */}
       <div className="px-5 py-4 border-b border-line flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-lg">📝</span>
+          <NotebookPen aria-hidden className="h-5 w-5 text-accent" strokeWidth={1.75} />
           <h3 className="font-bold text-ink">{t.notes.heading}</h3>
           <span className="text-xs text-ink-muted">({notes.length})</span>
         </div>
@@ -322,8 +322,8 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
             <div className="mt-4 pt-4 border-t border-line-mid">
               {hasRecoveredDraft && (
                 <div className="mb-2 flex items-center justify-between gap-2 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-warn-line px-3 py-2">
-                  <p className="text-xs font-bold text-warn-ink">
-                    📄 {t.notes.recoveredDraft}
+                  <p className="flex items-center gap-1.5 text-xs font-bold text-warn-ink">
+                    <FileText aria-hidden className="h-3.5 w-3.5 flex-shrink-0" strokeWidth={1.75} /> {t.notes.recoveredDraft}
                   </p>
                   <button
                     onClick={discardDraft}

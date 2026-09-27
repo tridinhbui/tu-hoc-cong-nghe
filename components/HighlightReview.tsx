@@ -142,7 +142,7 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
             <button
               type="button"
               onClick={() => next(true)}
-              className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-2 text-xs font-black text-white hover:bg-emerald-500 transition-colors cursor-pointer"
+              className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-600 px-3 py-2 text-xs font-black text-white hover:bg-brand-500 transition-colors cursor-pointer"
             >
               <Check className="w-3.5 h-3.5" />
               {isLast ? t.highlightReview.recalledLast : t.highlightReview.recalledNext}

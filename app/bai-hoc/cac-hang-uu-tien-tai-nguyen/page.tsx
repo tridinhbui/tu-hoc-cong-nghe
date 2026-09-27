@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { X } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -90,8 +92,9 @@ function CapacityWaterfallAnimation({ c }: { c: ResourceClassLessonCopy }) {
             <div key={layer.name} className={`rounded-2xl p-4 border-2 transition-all ${fullPaid ? "bg-stone-50 border-stone-100" : "bg-stone-50 border-stone-200"}`}>
               <div className="flex justify-between items-center mb-2">
                 <span className="font-semibold text-sm text-stone-700">{layer.name}</span>
-                <span className="text-sm font-bold text-stone-700">
-                  {format(c.payoutLine, { paid: payouts[i], total: layer.amount })} {fullPaid ? "" : "❌"}
+                <span className="inline-flex items-center gap-1 text-sm font-bold text-stone-700">
+                  {format(c.payoutLine, { paid: payouts[i], total: layer.amount })}
+                  {!fullPaid && <X aria-hidden className="h-4 w-4 text-alert" strokeWidth={2} />}
                 </span>
               </div>
               <div className="h-3 bg-stone-200 rounded-full overflow-hidden">
@@ -148,7 +151,7 @@ export default function CacHangUuTienTaiNguyenPage() {
               <div key={d.id} className="w-full text-left rounded-2xl border p-4 bg-white border-stone-200">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <span className="text-xl flex-shrink-0">{d.emoji}</span>
+                    <span className="flex-shrink-0 rounded-xl bg-accent-soft p-2 text-accent"><Glyph emoji={d.emoji} className="h-5 w-5" /></span>
                     <div>
                       <div className="font-bold text-sm text-stone-800">{d.name}</div>
                       <div className="text-xs mt-0.5 text-stone-500">

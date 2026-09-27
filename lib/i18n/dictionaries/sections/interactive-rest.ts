@@ -51,7 +51,7 @@ export const interactiveRestVi = {
     },
 
     prospect: {
-      title: "🎲 Hai câu hỏi, cùng một kết quả",
+      title: "Hai câu hỏi, cùng một kết quả",
       subtitle: "Chọn theo cảm giác đầu tiên, đừng tính toán. Đối chiếu ở cuối.",
       gainFrame: "Bạn vừa được cho 100 triệu. Chọn một trong hai:",
       gainSafe: "Nhận thêm chắc chắn 50 triệu",
@@ -120,10 +120,10 @@ export const interactiveRestVi = {
       itemGoldDesc: "Giữ được giá trị đúng lúc hệ thống hỏng",
       analyzeButton: "Phân tích",
       analysisEmpty: "Chọn ít nhất một mục để phân tích",
-      analysisMoreLiabilities: "⚠️ Kho mã của bạn nhiều gánh nặng hơn tài sản. Cân nhắc biến chúng thành thứ người sau đọc và sửa được.",
-      analysisBalanced: "✅ Tốt! Bạn cân được giữa thứ chạy nhanh và thứ giữ được lâu.",
-      analysisOnlyCash: "💡 Bạn chỉ có mã viết vội. Nó hỏng dần theo thời gian, cân nhắc thêm kiểm thử và tài liệu.",
-      analysisDefault: "📊 Phân tích kho mã của bạn để biết chỗ nào đang lấy đi thời gian.",
+      analysisMoreLiabilities: "Kho mã của bạn nhiều gánh nặng hơn tài sản. Cân nhắc biến chúng thành thứ người sau đọc và sửa được.",
+      analysisBalanced: "Tốt! Bạn cân được giữa thứ chạy nhanh và thứ giữ được lâu.",
+      analysisOnlyCash: "Bạn chỉ có mã viết vội. Nó hỏng dần theo thời gian, cân nhắc thêm kiểm thử và tài liệu.",
+      analysisDefault: "Phân tích kho mã của bạn để biết chỗ nào đang lấy đi thời gian.",
       coreRulesTitle: "Nguyên tắc cốt lõi:",
       ruleAsset: "Tài sản: trả lại thời gian cho bạn (người sau đọc và sửa được)",
       ruleLiability: "Gánh nặng: lấy thời gian của bạn (chỉ mình bạn hiểu)",
@@ -131,7 +131,7 @@ export const interactiveRestVi = {
     },
 
     process: {
-      title: "🔗 Một giao dịch chạy qua ba báo cáo",
+      title: "Một giao dịch chạy qua ba báo cáo",
       subtitle: "Chọn một giao dịch rồi bấm từng bước để xem nó chạm vào đâu.",
       saleFlowLabel: "Bán hàng 100 triệu, khách nợ 60 ngày",
       saleStep1At: "Kết quả kinh doanh",
@@ -260,7 +260,7 @@ export const interactiveRestEn: typeof interactiveRestVi = {
     },
 
     prospect: {
-      title: "🎲 Two questions, one outcome",
+      title: "Two questions, one outcome",
       subtitle: "Go with your first instinct, don't calculate. We'll compare at the end.",
       gainFrame: "You've just been given 100 million. Pick one:",
       gainSafe: "Take a guaranteed extra 50 million",
@@ -329,10 +329,10 @@ export const interactiveRestEn: typeof interactiveRestVi = {
       itemGoldDesc: "Holds its value at exactly the moment things break",
       analyzeButton: "Analyze",
       analysisEmpty: "Select at least one item to analyze",
-      analysisMoreLiabilities: "⚠️ Your codebase carries more burden than asset. Consider turning it into something the next person can read and change.",
-      analysisBalanced: "✅ Good balance between what ships fast and what lasts.",
-      analysisOnlyCash: "💡 It's all hurried code. That decays over time - consider adding tests and documentation.",
-      analysisDefault: "📊 Sort your codebase to see what is taking your time.",
+      analysisMoreLiabilities: "Your codebase carries more burden than asset. Consider turning it into something the next person can read and change.",
+      analysisBalanced: "Good balance between what ships fast and what lasts.",
+      analysisOnlyCash: "It's all hurried code. That decays over time - consider adding tests and documentation.",
+      analysisDefault: "Sort your codebase to see what is taking your time.",
       coreRulesTitle: "Core principles:",
       ruleAsset: "Asset: gives you time back (the next person can read and change it)",
       ruleLiability: "Burden: takes your time (only you understand it)",
@@ -340,7 +340,7 @@ export const interactiveRestEn: typeof interactiveRestVi = {
     },
 
     process: {
-      title: "🔗 One transaction flowing through three statements",
+      title: "One transaction flowing through three statements",
       subtitle: "Pick a transaction, then click through each step to see where it lands.",
       saleFlowLabel: "Sell goods for 100 million, customer pays in 60 days",
       saleStep1At: "Income statement",

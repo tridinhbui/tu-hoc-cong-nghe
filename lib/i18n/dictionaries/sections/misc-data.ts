@@ -41,22 +41,17 @@
 // vẫn tham chiếu `Dictionary["authErrors"]` - build hỏng, và chú thích trong
 // chính tệp đó nói rằng chuỗi "nằm ở misc-data.ts". Nên chúng ở đây.
 //
-// Mẫu khớp trong auth-error-messages.ts là TIẾNG ANH THÔ của Cloudflare và không
-// bao giờ dịch; thứ được dịch là câu trả về. Bản tiếng Anh cũng không phải
-// chuỗi thô ấy mà là câu viết lại cho người đọc, cùng giọng với bản Việt.
+// Khoá ở đây được chọn theo MÃ lỗi của lib/auth/service.ts. Bản tiếng Anh là
+// câu viết lại cho người đọc, cùng giọng với bản Việt, không phải chuỗi lỗi thô.
 //
 // Xem AGENTS.md, mục "Translating the UI".
 
 export const miscDataVi = {
   authErrors: {
     invalidEmail: "Địa chỉ email không hợp lệ. Vui lòng kiểm tra lại.",
-    notConfirmed:
-      "Email chưa được xác nhận. Kiểm tra hộp thư của bạn hoặc gửi lại email xác nhận bên dưới.",
     badCredentials: "Email hoặc mật khẩu không đúng.",
     alreadyRegistered: "Email này đã có tài khoản. Hãy đăng nhập thay vì đăng ký.",
-    passwordTooShort: "Mật khẩu phải có ít nhất 6 ký tự.",
-    rateLimit: "Bạn đã thử quá nhiều lần. Vui lòng đợi một chút rồi thử lại.",
-    network: "Không thể kết nối. Vui lòng kiểm tra mạng và thử lại.",
+    passwordTooShort: "Mật khẩu phải có ít nhất 8 ký tự.",
     generic: "Có lỗi xảy ra. Vui lòng thử lại.",
     accountDisabled: "Tài khoản này đã bị khoá.",
     resetInvalid: "Liên kết đã hết hạn hoặc đã dùng rồi. Hãy yêu cầu một liên kết mới.",
@@ -79,13 +74,9 @@ export const miscDataVi = {
 export const miscDataEn: typeof miscDataVi = {
   authErrors: {
     invalidEmail: "That email address isn't valid. Please check it and try again.",
-    notConfirmed:
-      "This email hasn't been confirmed yet. Check your inbox, or resend the confirmation below.",
     badCredentials: "That email or password is incorrect.",
     alreadyRegistered: "There is already an account with this email. Sign in instead of signing up.",
-    passwordTooShort: "The password must be at least 6 characters.",
-    rateLimit: "Too many attempts. Please wait a moment and try again.",
-    network: "Couldn't connect. Please check your network and try again.",
+    passwordTooShort: "The password must be at least 8 characters.",
     generic: "Something went wrong. Please try again.",
     accountDisabled: "This account has been suspended.",
     resetInvalid: "That link has expired or was already used. Request a new one.",

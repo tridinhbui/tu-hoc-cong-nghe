@@ -78,7 +78,7 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
   return (
     <section className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
       <div className="mb-3 flex items-center gap-2">
-        <Users className="h-4.5 w-4.5 text-emerald-500" />
+        <Users className="h-4.5 w-4.5 text-brand-500" />
         <div className="min-w-0">
           <h2 className="text-sm font-black uppercase tracking-[0.12em] text-ink">
             {t.communityLearning.title}
@@ -149,7 +149,7 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
             <Link
               key={learner.userId}
               href={`/bai-hoc/${lesson.slug}`}
-              className={`${shell} transition hover:bg-emerald-50 dark:hover:bg-emerald-950/20`}
+              className={`${shell} transition hover:bg-brand-50 dark:hover:bg-brand-950/20`}
             >
               {card}
             </Link>

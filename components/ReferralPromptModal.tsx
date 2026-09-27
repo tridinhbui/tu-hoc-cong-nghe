@@ -119,7 +119,7 @@ export default function ReferralPromptModal({
               <X className="w-4 h-4" />
             </button>
 
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-accent flex items-center justify-center mb-3">
+            <div className="w-12 h-12 rounded-2xl bg-brand-50 dark:bg-brand-950/40 text-accent flex items-center justify-center mb-3">
               <Gift className="w-6 h-6" />
             </div>
             <h2 className="text-lg font-extrabold text-ink">{t.referralPrompt.title}</h2>

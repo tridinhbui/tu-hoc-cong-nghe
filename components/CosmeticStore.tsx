@@ -6,7 +6,8 @@ import Image from "next/image";
 import { createClient } from "@/lib/cloudflare";
 import { embedRelated } from "@/lib/embed-related";
 import { toast } from "sonner";
-import { ShoppingBag, Check, Zap } from "lucide-react";
+import { ShoppingBag, Check, Zap, Sparkles } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import TechCharacterAvatar, { CharacterEquipments, ITEM_DESCRIPTIONS } from "@/components/TechCharacterAvatar";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
@@ -125,7 +126,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
    *
    * Bản trước làm ba việc từ trình duyệt - tạo asset, ghi inventory, trừ coin -
    * và không việc nào chạy được: gamification_assets chỉ grant select, nên câu
-   * insert bị RLS chặn. Nó hỏng trong im lặng vì cloudflare-js KHÔNG throw khi
+   * insert bị RLS chặn. Nó hỏng trong im lặng vì SDK client cũ KHÔNG throw khi
    * lỗi, nó trả `{ data, error }`, và `error` không chỗ nào được đọc. Người mua
    * bấm nút và không thấy gì cả - không thành công, không lỗi.
    *
@@ -365,7 +366,11 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
                   <span className={`text-[10px] uppercase font-black px-2 py-0.5 rounded-full border ${rarityColor}`}>
                     {item.rarity}
                   </span>
-                  <span className="text-xl">{meta?.icon || "✨"}</span>
+                  {meta ? (
+                    <Glyph emoji={meta.icon} className="w-5 h-5 text-accent" />
+                  ) : (
+                    <Sparkles className="w-5 h-5 text-accent" strokeWidth={1.75} aria-hidden />
+                  )}
                 </div>
                 <h4 className="font-extrabold text-ink mt-3 flex items-center gap-1.5">
                   {item.name}
@@ -384,7 +389,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
                     className={`flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-xl transition-all ${
                       isEquipped
                         ? "bg-amber-500 text-white shadow-sm hover:bg-amber-600"
-                        : "bg-emerald-50 dark:bg-emerald-950/40 text-accent border border-emerald-200 hover:bg-emerald-100"
+                        : "bg-brand-50 dark:bg-brand-950/40 text-accent border border-brand-200 hover:bg-brand-100"
                     }`}
                   >
                     {isEquipped ? <Zap className="w-3.5 h-3.5" /> : <Check className="w-3.5 h-3.5" />}

@@ -192,10 +192,10 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
             disabled={saveState === "saving" || isSaved}
             className={`w-full text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-sm active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
               isSaved || saveState === "saved"
-                ? "bg-emerald-600 text-white cursor-default"
+                ? "bg-brand-600 text-white cursor-default"
                 : saveState === "error"
                   ? "bg-rose-600 hover:bg-rose-700 text-white"
-                  : "bg-emerald-500 hover:bg-emerald-400 text-white font-bold"
+                  : "bg-brand-500 hover:bg-brand-400 text-white font-bold"
             }`}
           >
             {saveState === "saving"

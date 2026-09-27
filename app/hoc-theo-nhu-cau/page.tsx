@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { getDictionary, format } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getLessonsMeta } from "@/lib/lessons-loader";
@@ -27,7 +28,7 @@ export default async function LearningFlowsPage() {
 
       <main className="mx-auto max-w-5xl px-4 pb-16 pt-8 sm:px-6 sm:pt-12">
         <p className="eyebrow mb-3 flex items-center gap-3 text-ink-muted">
-          <span aria-hidden className="h-px w-8 bg-emerald-600 dark:bg-emerald-500" />
+          <span aria-hidden className="h-px w-8 bg-brand-600 dark:bg-brand-500" />
           {t.eyebrow}
         </p>
         <h1 className="mb-3 text-[2.2rem] font-black leading-[1.05] tracking-tight text-ink-max sm:text-5xl">{t.title}</h1>
@@ -41,10 +42,10 @@ export default async function LearningFlowsPage() {
               <li key={flow.id}>
                 <Link
                   href={`/hoc-theo-nhu-cau/${flow.id}`}
-                  className="group flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 transition-colors hover:border-emerald-600 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-emerald-500"
+                  className="group flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 transition-colors hover:border-brand-600 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-brand-500"
                 >
                   <div className="mb-3 flex items-start justify-between gap-3">
-                    <span className="text-4xl" aria-hidden>{flow.emoji}</span>
+                    <span className="rounded-xl bg-accent-soft p-2.5 text-accent"><Glyph emoji={flow.emoji} className="h-7 w-7" /></span>
                     <StatusPill status={flow.status} t={t} />
                   </div>
                   <p className="text-sm font-semibold text-ink-muted">“{copy.need}”</p>

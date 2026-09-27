@@ -30,7 +30,7 @@ export const questsVi = {
     },
     daily_game: {
       title: "Khám phá Vương Quốc Game",
-      description: "Tiến vào thế giới Game Tài Chính hôm nay",
+      description: "Tiến vào thế giới Game Công Nghệ hôm nay",
     },
     daily_lessons_3: {
       title: "Buổi học tử tế",

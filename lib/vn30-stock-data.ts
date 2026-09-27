@@ -52,37 +52,37 @@ export interface MarketNewsEvent {
 
 export const MARKET_NEWS_POOL: MarketNewsEvent[] = [
   {
-    headline: "📢 Nhu cầu chip tăng vọt vì làn sóng huấn luyện mô hình AI",
+    headline: "Nhu cầu chip tăng vọt vì làn sóng huấn luyện mô hình AI",
     affectedSectors: ["Bán dẫn & chip", "Trí tuệ nhân tạo"],
     impactMultiplier: 0.05,
     explanation: "Đơn hàng bộ tăng tốc kín tới hai năm, kéo biên lợi nhuận của cả xưởng đúc lẫn hãng thiết kế chip đi lên.",
   },
   {
-    headline: "📊 Chi tiêu hạ tầng đám mây của doanh nghiệp tăng 18% so với cùng kỳ",
+    headline: "Chi tiêu hạ tầng đám mây của doanh nghiệp tăng 18% so với cùng kỳ",
     affectedSectors: ["Điện toán đám mây", "Cơ sở dữ liệu", "Dữ liệu & phân tích"],
     impactMultiplier: 0.035,
     explanation: "Ngân sách chuyển từ máy chủ tự quản sang dịch vụ thuê, làm tăng doanh thu định kỳ của nhóm hạ tầng.",
   },
   {
-    headline: "🛡️ Lộ dữ liệu diện rộng khiến ngân sách an toàn thông tin được duyệt gấp",
+    headline: "Lộ dữ liệu diện rộng khiến ngân sách an toàn thông tin được duyệt gấp",
     affectedSectors: ["An toàn thông tin"],
     impactMultiplier: 0.045,
     explanation: "Sau một sự cố lớn, chi cho bảo mật là khoản hiếm hoi được duyệt nhanh vì rủi ro đã thành con số cụ thể.",
   },
   {
-    headline: "🌐 Sự cố mạng lõi làm gián đoạn nhiều dịch vụ trong bốn giờ",
+    headline: "Sự cố mạng lõi làm gián đoạn nhiều dịch vụ trong bốn giờ",
     affectedSectors: ["Mạng phân phối & CDN", "Điện toán đám mây"],
     impactMultiplier: -0.03,
     explanation: "Gián đoạn diện rộng khiến khách hàng lớn yêu cầu phương án đa nhà cung cấp, làm chậm tốc độ ký hợp đồng mới.",
   },
   {
-    headline: "🛒 Doanh số thương mại điện tử mùa cao điểm vượt dự báo 12%",
+    headline: "Doanh số thương mại điện tử mùa cao điểm vượt dự báo 12%",
     affectedSectors: ["Thương mại điện tử", "Logistics công nghệ", "Nền tảng API"],
     impactMultiplier: 0.028,
     explanation: "Lượng đơn tăng kéo theo cả khối lượng giao vận và số lượt gọi API thanh toán.",
   },
   {
-    headline: "⚠️ Lãi suất neo cao, các công ty công nghệ chưa có lãi bị định giá lại",
+    headline: "Lãi suất neo cao, các công ty công nghệ chưa có lãi bị định giá lại",
     affectedSectors: ["Nền tảng số & giải trí", "Công cụ lập trình", "Nền tảng API"],
     impactMultiplier: -0.025,
     explanation: "Dòng tiền xa trong tương lai bị chiết khấu mạnh hơn, nên nhóm tăng trưởng chưa có lãi chịu áp lực trước tiên.",

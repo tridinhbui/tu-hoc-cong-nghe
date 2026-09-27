@@ -24,6 +24,10 @@ import {
   Swords,
   Shield,
   Coins,
+  Landmark,
+  Globe,
+  Ship,
+  type LucideIcon,
 } from "lucide-react";
 
 type PreviewTab = "map" | "minigame" | "boss";
@@ -36,10 +40,9 @@ interface KingdomBuilding {
   minLevel: number;
   progress: string;
   xpReward: number;
-  // Emoji là trang trí đứng cạnh nhãn, không phải một phần của câu chữ.
-  // `copy-tone.test.ts` chặn chuỗi giao diện mở đầu bằng emoji, và nó đúng:
-  // nhãn phải dịch được, hình thì không.
-  icon: string;
+  // Icon là trang trí đứng cạnh nhãn, không phải một phần của câu chữ:
+  // nhãn phải dịch được, hình thì không. Vẽ bằng Lucide, không bằng emoji.
+  icon: LucideIcon;
   badge: string;
   description: string;
   tags: string[];
@@ -57,7 +60,7 @@ const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
     minLevel: 5,
     progress: "72%",
     xpReward: 350,
-    icon: "🏛️",
+    icon: Landmark,
     badge: t.kingdomPreview.goldmanBadge,
     description: t.kingdomPreview.goldmanDescription,
     tags: [t.kingdomPreview.goldmanTag1, t.kingdomPreview.goldmanTag2, t.kingdomPreview.goldmanTag3],
@@ -70,7 +73,7 @@ const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
     minLevel: 3,
     progress: "48%",
     xpReward: 250,
-    icon: "🌐",
+    icon: Globe,
     badge: t.kingdomPreview.fedBadge,
     description: t.kingdomPreview.fedDescription,
     tags: [t.kingdomPreview.fedTag1, t.kingdomPreview.fedTag2, t.kingdomPreview.fedTag3],
@@ -83,7 +86,7 @@ const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
     minLevel: 2,
     progress: "65%",
     xpReward: 180,
-    icon: "🚢",
+    icon: Ship,
     badge: t.kingdomPreview.singaporeBadge,
     description: t.kingdomPreview.singaporeDescription,
     tags: [
@@ -100,7 +103,7 @@ const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
     minLevel: 1,
     progress: "90%",
     xpReward: 400,
-    icon: "⚔️",
+    icon: Swords,
     badge: t.kingdomPreview.pvpBadge,
     description: t.kingdomPreview.pvpDescription,
     tags: [t.kingdomPreview.pvpTag1, t.kingdomPreview.pvpTag2, format(t.kingdomPreview.pvpTag3, { count: roundedLessonCount() })],
@@ -340,8 +343,8 @@ export default function InteractiveKingdomPreview() {
 
                     {/* Nhãn phân loại: chữ trần trên ảnh, không còn viên thuốc
                         nền cam có viền. */}
-                    <span className="absolute left-2 top-2 text-[8px] font-black uppercase tracking-widest text-amber-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
-                      {b.icon} {b.badge}
+                    <span className="absolute left-2 top-2 inline-flex items-center gap-1 text-[8px] font-black uppercase tracking-widest text-amber-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+                      <b.icon className="h-2.5 w-2.5" strokeWidth={2} aria-hidden /> {b.badge}
                     </span>
 
                     <div className="absolute inset-x-0 bottom-0 p-2 pb-2.5">
@@ -384,8 +387,8 @@ export default function InteractiveKingdomPreview() {
                 // hoạt động. Nét stone mảnh, còn vàng để cho nút chính bên dưới.
                 className="h-full flex flex-col justify-between rounded-2xl border border-stone-800 bg-stone-900/90 p-3.5 sm:p-4 backdrop-blur-xl relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 p-6 pointer-events-none opacity-10 text-6xl">
-                  🏛️
+                <div className="absolute top-0 right-0 p-6 pointer-events-none opacity-10 text-white">
+                  <Landmark className="h-14 w-14" strokeWidth={1.25} aria-hidden />
                 </div>
 
                 <div>
@@ -413,7 +416,7 @@ export default function InteractiveKingdomPreview() {
                         đã nói đủ rằng đây là thứ mở khoá được. */}
                     <div className="flex flex-wrap gap-x-3 gap-y-1">
                       {selectedBuilding.tags.map((tag) => (
-                        <span key={tag} className="text-[11px] font-bold text-emerald-300">
+                        <span key={tag} className="text-[11px] font-bold text-brand-300">
                           ✓ {tag}
                         </span>
                       ))}
@@ -459,7 +462,7 @@ export default function InteractiveKingdomPreview() {
               // dùng để vẽ khung cho cả tấm.
               className="rounded-3xl border border-stone-800 bg-stone-900/90 p-6 backdrop-blur-xl text-white"
             >
-              <div className="flex items-center justify-between mb-3 text-xs font-black uppercase text-emerald-400 tracking-wider">
+              <div className="flex items-center justify-between mb-3 text-xs font-black uppercase text-brand-400 tracking-wider">
                 <span className="flex items-center gap-1.5">
                   <Gamepad2 className="w-4 h-4" /> {format(t.kingdomPreview.samplerQuestion, { index: samplerIndex + 1 })}
                 </span>
@@ -473,11 +476,11 @@ export default function InteractiveKingdomPreview() {
               <div className="space-y-2.5">
                 {currentQuestion.options.map((opt, idx) => {
                   const isSelected = selectedOption === idx;
-                  let btnStyle = "border-stone-700 bg-stone-950/70 hover:border-emerald-400/60 hover:bg-stone-800";
+                  let btnStyle = "border-stone-700 bg-stone-950/70 hover:border-brand-400/60 hover:bg-stone-800";
 
                   if (answered) {
                     if (opt.correct) {
-                      btnStyle = "border-emerald-400 bg-emerald-950/90 text-emerald-200 shadow-[0_0_20px_rgba(16,185,129,0.3)]";
+                      btnStyle = "border-brand-400 bg-brand-950/90 text-brand-200 shadow-[0_0_20px_rgba(65,122,205,0.3)]";
                     } else if (isSelected) {
                       btnStyle = "border-rose-500 bg-rose-950/90 text-rose-200";
                     }
@@ -491,7 +494,7 @@ export default function InteractiveKingdomPreview() {
                       className={`w-full text-left p-3.5 rounded-2xl border text-xs sm:text-sm font-bold transition-all duration-200 flex items-center justify-between cursor-pointer ${btnStyle}`}
                     >
                       <span>{opt.text}</span>
-                      {answered && opt.correct && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
+                      {answered && opt.correct && <CheckCircle2 className="w-5 h-5 text-brand-400 shrink-0" />}
                       {answered && isSelected && !opt.correct && <XCircle className="w-5 h-5 text-rose-400 shrink-0" />}
                     </button>
                   );
@@ -503,7 +506,7 @@ export default function InteractiveKingdomPreview() {
                   <div
                     className={`p-3.5 rounded-2xl border text-xs leading-relaxed font-semibold ${
                       isCorrect
-                        ? "bg-emerald-950/80 border-emerald-400/50 text-emerald-200"
+                        ? "bg-brand-950/80 border-brand-400/50 text-brand-200"
                         : "bg-rose-950/80 border-rose-500/50 text-rose-200"
                     }`}
                   >
@@ -609,7 +612,7 @@ export default function InteractiveKingdomPreview() {
           <div className="flex items-center gap-2">
             {/* Chấm "đang diễn ra" thôi nhấp nháy: nó luôn bật, nên nhấp nháy
                 vĩnh viễn không báo tin gì mới. */}
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            <span className="w-2 h-2 rounded-full bg-brand-400" />
             <span>{t.kingdomPreview.ongoing}</span>
           </div>
 

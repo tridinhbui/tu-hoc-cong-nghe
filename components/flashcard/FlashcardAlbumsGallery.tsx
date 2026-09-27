@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Download, ArrowLeft } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { FLASHCARD_ALBUMS, type FlashcardAlbum } from "@/lib/flashcard-albums";
 import { saveFlashcardsBulk } from "@/lib/cloudflare-flashcards";
 import { useI18n } from "@/lib/i18n/context";
@@ -62,7 +63,7 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
             <ArrowLeft className="w-3.5 h-3.5" /> {t.flashcards.albumBack}
           </button>
           <div className="flex items-start gap-3">
-            <span className="text-4xl flex-shrink-0">{openAlbum.emoji}</span>
+            <span className="flex-shrink-0 rounded-xl bg-white/15 p-2 text-white"><Glyph emoji={openAlbum.emoji} className="h-8 w-8" strokeWidth={1.5} /></span>
             <div className="min-w-0">
               <h3 className="text-lg font-extrabold">{openAlbum.title}</h3>
               <p className="text-sm text-white/85 mt-0.5">{openAlbum.description}</p>
@@ -106,7 +107,7 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
             className="group text-left rounded-2xl border border-line bg-white dark:bg-stone-900 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
           >
             <div className={`bg-gradient-to-br ${album.gradient} h-20 flex items-center justify-center relative overflow-hidden`}>
-              <span className="text-4xl transition-transform duration-300 group-hover:scale-110">{album.emoji}</span>
+              <span className="text-white transition-transform duration-300 group-hover:scale-110"><Glyph emoji={album.emoji} className="h-9 w-9" strokeWidth={1.5} /></span>
               <span className="absolute top-2 right-2 text-[10px] font-extrabold text-white/90 bg-black/20 rounded-full px-2 py-0.5">
                 {album.cards.length} {t.flashcards.albumCards}
               </span>

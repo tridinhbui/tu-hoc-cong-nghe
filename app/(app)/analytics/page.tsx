@@ -80,7 +80,7 @@ export default function AnalyticsPage() {
         >
           {t.finalTwo.analyticsPage.backToDashboard}
         </Link>
-        <div className="inline-flex items-center gap-2 rounded-full border border-accent-line bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent-strong">
+        <div className="inline-flex items-center gap-2 rounded-full border border-accent-line bg-brand-50 dark:bg-brand-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent-strong">
           {t.finalTwo.analyticsPage.statsAndLeaderboard}
         </div>
       </div>

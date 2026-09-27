@@ -75,12 +75,12 @@ export default function InteractiveChart() {
       >
         <line x1={0} y1={HEIGHT} x2={WIDTH} y2={HEIGHT} className="stroke-stone-200 dark:stroke-stone-700" strokeWidth={1} />
         <path d={simplePath} fill="none" className="stroke-stone-400" strokeWidth={2} strokeDasharray="4 3" />
-        <path d={compoundPath} fill="none" className="stroke-emerald-500" strokeWidth={2.5} />
+        <path d={compoundPath} fill="none" className="stroke-brand-500" strokeWidth={2.5} />
       </svg>
 
       <div className="flex flex-wrap gap-x-5 gap-y-1 text-[11px]">
         <span className="flex items-center gap-1.5 text-ink-soft">
-          <span className="inline-block h-0.5 w-4 bg-emerald-500" /> {t.chartDemo.compoundLegend}
+          <span className="inline-block h-0.5 w-4 bg-brand-500" /> {t.chartDemo.compoundLegend}
         </span>
         <span className="flex items-center gap-1.5 text-ink-soft">
           <span className="inline-block h-0.5 w-4 border-t-2 border-dashed border-stone-400" /> {t.chartDemo.simpleLegend}
@@ -120,7 +120,7 @@ export default function InteractiveChart() {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-emerald-50 p-4 dark:bg-emerald-950/30">
+      <div className="rounded-2xl bg-brand-50 p-4 dark:bg-brand-950/30">
         <p className="text-sm text-ink-body">
           {format(t.chartDemo.summaryPart1, { years })}{" "}
           <b>{format(t.chartDemo.summaryCompound, { compound: (compoundEnd * 100).toFixed(0) })}</b>

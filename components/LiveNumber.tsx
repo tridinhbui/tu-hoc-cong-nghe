@@ -25,8 +25,8 @@ export default function LiveNumber({ value, className = "" }: { value: number; c
   return (
     <span className={`relative inline-flex items-baseline font-bold text-ink tabular-nums ${className}`}>
       <span className="relative flex w-1.5 h-1.5 mr-1.5">
-        <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
-        <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
+        <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-brand-400 opacity-75" />
+        <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-brand-500" />
       </span>
       {displayValue.toLocaleString(intlLocale(locale))}+
     </span>

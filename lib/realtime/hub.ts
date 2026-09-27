@@ -1,6 +1,7 @@
-// @ts-ignore - module của runtime Workers. Không kéo kiểu của nó vào tsconfig
-// chung: nạp @cloudflare/workers-types toàn cục sẽ đè kiểu DOM (Response,
-// WebSocket, Request) cho TOÀN BỘ ứng dụng Next. Tệp này chỉ worker.ts nạp.
+// Module của runtime Workers. Không kéo kiểu của nó vào tsconfig chung: nạp
+// @cloudflare/workers-types toàn cục sẽ đè kiểu DOM (Response, WebSocket,
+// Request) cho TOÀN BỘ ứng dụng Next. Tệp này chỉ worker.ts nạp.
+// @ts-expect-error - không bao giờ phân giải được trong tsc
 import { DurableObject } from "cloudflare:workers";
 import { HubCore, type Attachment, type HubSocket } from "./hub-core";
 

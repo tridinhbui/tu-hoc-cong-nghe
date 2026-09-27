@@ -67,7 +67,7 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
           </div>
         </div>
 
-        {/* 👑 Prominent 3D Gold Crown Trophy */}
+        {/* Prominent 3D Gold Crown Trophy */}
         <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-amber-950 border-2 border-amber-400 shadow-xl overflow-hidden animate-bounce">
           <Image
             src="/trophy-gold-3d.jpg"
@@ -99,7 +99,7 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
           </div>
         </div>
 
-        {/* 🛡️ 3D Silver Trophy */}
+        {/* 3D Silver Trophy */}
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-slate-950 border-2 border-slate-300 shadow-lg overflow-hidden">
           <Image
             src="/trophy-silver-3d.jpg"
@@ -126,7 +126,7 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
           </div>
         </div>
 
-        {/* 🏆 3D Bronze Chalice Trophy */}
+        {/* 3D Bronze Chalice Trophy */}
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-amber-950 border-2 border-amber-600 shadow-lg overflow-hidden">
           <Image
             src="/trophy-bronze-3d.jpg"
@@ -298,10 +298,10 @@ function getPodiumTone(rank: number) {
     };
   }
   return {
-    card: "border-accent-line bg-gradient-to-b from-emerald-50/70 via-white to-emerald-50/30 dark:from-emerald-950/40 dark:via-stone-900 dark:to-stone-900 shadow-sm",
-    pedestal: "from-emerald-400/20 via-emerald-300/10 to-transparent border-emerald-200/70",
-    chip: "bg-emerald-600 text-white font-black",
-    name: "text-stone-900 dark:text-emerald-200",
+    card: "border-accent-line bg-gradient-to-b from-brand-50/70 via-white to-brand-50/30 dark:from-brand-950/40 dark:via-stone-900 dark:to-stone-900 shadow-sm",
+    pedestal: "from-brand-400/20 via-brand-300/10 to-transparent border-brand-200/70",
+    chip: "bg-brand-600 text-white font-black",
+    name: "text-stone-900 dark:text-brand-200",
     value: "text-accent-strong",
     pedestalLabel: "5th",
   };
@@ -407,7 +407,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             </div>
             <h2 className="mt-2.5 text-2xl font-black tracking-tight text-ink">{t.leaderboard.titleCompact}</h2>
           </div>
-          <div className="inline-flex items-center gap-1.5 rounded-2xl border border-accent-line bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1.5 text-xs font-bold text-accent-strong shadow-xs">
+          <div className="inline-flex items-center gap-1.5 rounded-2xl border border-accent-line bg-brand-50 dark:bg-brand-950/60 px-3 py-1.5 text-xs font-bold text-accent-strong shadow-xs">
             {t.leaderboard[activeTab.labelKey]}
           </div>
         </div>
@@ -458,7 +458,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         </div>
 
         {metric === "composite" && (
-          <div className="mt-3 rounded-2xl border border-violet-200 dark:border-violet-900 bg-gradient-to-r from-violet-50 via-white to-emerald-50 dark:from-violet-950/50 dark:via-stone-900 dark:to-emerald-950/30 px-4 py-3 shadow-xs">
+          <div className="mt-3 rounded-2xl border border-violet-200 dark:border-violet-900 bg-gradient-to-r from-violet-50 via-white to-brand-50 dark:from-violet-950/50 dark:via-stone-900 dark:to-brand-950/30 px-4 py-3 shadow-xs">
             <div className="flex items-start gap-2.5">
               <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-violet-600 text-white shadow-sm">
                 <ShieldCheck className="h-4 w-4" />
@@ -535,7 +535,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                         <p className={`text-xs font-black leading-tight line-clamp-1 break-words ${tone.name}`}>{entry.name}</p>
                         <p className="mt-0.5 text-[8px] font-extrabold uppercase leading-tight text-accent line-clamp-1 break-words">
-                          {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(t, metric, rank).nickname}
+                          {entry.careerTitle ? entry.careerTitle : getLeaderboardHonor(t, metric, rank).nickname}
                         </p>
                         <p className={`mt-1 text-[11px] font-black leading-tight ${tone.value}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
                       </div>
@@ -573,7 +573,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     href={href}
                     className={`flex items-center justify-between gap-3 rounded-2xl border p-2.5 transition-all shadow-xs group ${
                       isCurrent
-                        ? "border-accent-line-mid bg-gradient-to-r from-emerald-50 via-white to-emerald-50/80 dark:from-emerald-950/50 dark:via-stone-900 dark:to-emerald-950/30 ring-2 ring-emerald-400/50 shadow-md"
+                        ? "border-accent-line-mid bg-gradient-to-r from-brand-50 via-white to-brand-50/80 dark:from-brand-950/50 dark:via-stone-900 dark:to-brand-950/30 ring-2 ring-brand-400/50 shadow-md"
                         : "border-stone-200/90 dark:border-stone-800 bg-gradient-to-r from-stone-50/80 via-white to-amber-50/20 dark:from-stone-900 dark:via-stone-900 dark:to-stone-900 hover:border-warn-line-mid hover:shadow-md hover:-translate-y-0.5"
                     }`}
                   >
@@ -589,7 +589,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-xs font-black text-ink group-hover:text-warn transition-colors">{entry.name}</p>
                         <p className="truncate text-[9px] font-extrabold uppercase tracking-wider text-accent">
-                          {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
+                          {entry.careerTitle ? entry.careerTitle : honor.nickname}
                         </p>
                       </div>
                     </div>
@@ -645,7 +645,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           </div>
           <h2 className="mt-2.5 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">{t.leaderboard.titleFull}</h2>
         </div>
-        <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700 shadow-xs">
+        <div className="inline-flex items-center gap-2 rounded-2xl border border-brand-200 bg-brand-50 px-3.5 py-2 text-sm font-bold text-brand-700 shadow-xs">
           {t.leaderboard[activeTab.labelKey]}
         </div>
       </div>
@@ -714,7 +714,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                       <p className="text-sm font-black leading-tight text-stone-900 line-clamp-1 break-words">{entry.name}</p>
                       <p className="mt-1 text-[9px] font-extrabold uppercase leading-tight text-accent line-clamp-1 break-words">
-                        {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : getLeaderboardHonor(t, metric, rank).nickname}
+                        {entry.careerTitle ? entry.careerTitle : getLeaderboardHonor(t, metric, rank).nickname}
                       </p>
                       <p className={`mt-1.5 text-sm font-black ${tone.value}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
                     </div>
@@ -754,7 +754,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     href={href}
                     className={`flex items-center justify-between gap-4 rounded-2xl border p-3 transition-all shadow-xs group ${
                       isCurrent
-                        ? "border-emerald-300 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/90 ring-2 ring-emerald-400/60 shadow-md"
+                        ? "border-brand-300 bg-gradient-to-r from-brand-50 via-white to-brand-50/90 ring-2 ring-brand-400/60 shadow-md"
                         : "border-stone-200/90 bg-gradient-to-r from-stone-50/90 via-white to-amber-50/30 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5"
                     }`}
                   >
@@ -770,7 +770,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       <div className="min-w-0">
                         <p className="truncate font-black text-stone-900 group-hover:text-amber-700 transition-colors">{entry.name}</p>
                         <p className="truncate text-[11px] font-extrabold uppercase tracking-wider text-accent">
-                          {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
+                          {entry.careerTitle ? entry.careerTitle : honor.nickname}
                         </p>
                       </div>
                     </div>
@@ -780,7 +780,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                         <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
                         <span>{honor.badge}</span>
                       </div>
-                      <p className={`font-black ${isCurrent ? "text-emerald-700" : "text-stone-800"}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
+                      <p className={`font-black ${isCurrent ? "text-brand-700" : "text-stone-800"}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
                     </div>
                   </Link>
                 );

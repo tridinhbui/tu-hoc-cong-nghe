@@ -215,14 +215,14 @@ export default function FreeRecallCard({
                       aria-pressed={isTicked}
                       className={`w-full text-left flex items-start gap-3 px-4 py-3 rounded-xl border-2 transition-all ${
                         isTicked
-                          ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40"
+                          ? "border-brand-500 bg-brand-50 dark:bg-brand-950/40"
                           : "border-line-mid bg-white dark:bg-stone-950 hover:border-line-firm"
                       }`}
                     >
                       <span
                         className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 ${
                           isTicked
-                            ? "border-emerald-500 bg-emerald-500 text-white"
+                            ? "border-brand-500 bg-brand-500 text-white"
                             : "border-line-strong text-transparent"
                         }`}
                       >

@@ -360,7 +360,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                         shaking ? "chest-shake" : ""
                       }`}
                     >
-                      <span className="text-2xl">🎁</span>
+                      <Gift className="w-7 h-7" strokeWidth={1.75} aria-hidden />
                     </button>
                     <div className="space-y-1">
                       <p className="text-xs font-bold text-ink-heading">{t.rewards.hasUnopenedChest}</p>
@@ -425,11 +425,11 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
-                      <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-emerald-500" /> {t.rewards.perfectQuizQuest}</span>
+                      <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-brand-500" /> {t.rewards.perfectQuizQuest}</span>
                       <span>{quizProgress}/3</span>
                     </div>
                     <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
-                      <div className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-emerald-500" : "bg-emerald-400"}`} style={{ width: `${(quizProgress / 3) * 100}%` }} />
+                      <div className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-brand-500" : "bg-brand-400"}`} style={{ width: `${(quizProgress / 3) * 100}%` }} />
                     </div>
                   </div>
                 </div>
@@ -437,7 +437,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 {allQuestsDone ? (
                   isEpicClaimed ? (
                     <div className="mt-4 p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" /> {t.rewards.epicClaimed}
+                      <CheckCircle2 className="w-4 h-4 text-brand-500" /> {t.rewards.epicClaimed}
                     </div>
                   ) : (
                     <button
@@ -476,7 +476,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
             </div>
             <button
               onClick={handleClaimReward}
-              className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs font-extrabold tracking-wider uppercase transition-colors cursor-pointer"
+              className="w-full py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-xs font-extrabold tracking-wider uppercase transition-colors cursor-pointer"
             >
               {t.rewards.collectReward} <CheckCircle2 className="w-4 h-4 inline-block ml-1" />
             </button>

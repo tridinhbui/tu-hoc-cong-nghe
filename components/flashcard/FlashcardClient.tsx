@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { ArrowLeft, Plus, Trash2, GraduationCap, Sparkles, Upload, Download, Copy, Flame, Layers, Target, Trophy } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, GraduationCap, Sparkles, Upload, Download, Copy, Flame, Layers, Target, Trophy, FolderOpen, X, ThumbsUp, Star, PartyPopper } from "lucide-react";
 import Link from "next/link";
 import { useAuthGate } from "@/lib/use-auth-gate";
 import {
@@ -335,9 +335,9 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         )}
 
         {/* Hero header */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-emerald-600 to-teal-700 dark:from-emerald-800 dark:via-emerald-800 dark:to-teal-900 p-5 sm:p-7 mb-6 shadow-lg">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 dark:from-brand-800 dark:via-brand-800 dark:to-brand-900 p-5 sm:p-7 mb-6 shadow-lg">
           <div className="absolute top-0 right-0 w-56 h-56 bg-white/10 rounded-full blur-3xl pointer-events-none -mr-16 -mt-16" />
-          <div className="absolute bottom-0 left-1/4 w-40 h-40 bg-teal-300/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute bottom-0 left-1/4 w-40 h-40 bg-brand-300/10 rounded-full blur-2xl pointer-events-none" />
 
           <div className="relative flex items-center gap-3 mb-5">
             <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center shrink-0 shadow-inner">
@@ -349,7 +349,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
               ) : (
                 <h1 className="text-lg sm:text-xl font-extrabold text-white leading-tight">{t.flashcards.title}</h1>
               )}
-              <p className="text-[11px] sm:text-xs text-emerald-100/90 font-semibold">{t.flashcards.algorithm}</p>
+              <p className="text-[11px] sm:text-xs text-brand-100/90 font-semibold">{t.flashcards.algorithm}</p>
             </div>
           </div>
 
@@ -360,21 +360,21 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 <Target className="w-3.5 h-3.5" />
                 <span className="text-lg sm:text-xl font-extrabold text-white">{dueCards.length}</span>
               </div>
-              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">{t.flashcards.statDue}</p>
+              <p className="text-[9px] sm:text-[10px] font-bold text-brand-100/80 uppercase tracking-wider">{t.flashcards.statDue}</p>
             </div>
             <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
               <div className="flex items-center justify-center gap-1 text-white mb-0.5">
                 <Layers className="w-3.5 h-3.5" />
                 <span className="text-lg sm:text-xl font-extrabold text-white">{cards.length}</span>
               </div>
-              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">{t.flashcards.statTotal}</p>
+              <p className="text-[9px] sm:text-[10px] font-bold text-brand-100/80 uppercase tracking-wider">{t.flashcards.statTotal}</p>
             </div>
             <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
-              <div className="flex items-center justify-center gap-1 text-emerald-200 mb-0.5">
+              <div className="flex items-center justify-center gap-1 text-brand-200 mb-0.5">
                 <Trophy className="w-3.5 h-3.5" />
                 <span className="text-lg sm:text-xl font-extrabold text-white">{masteredCount}</span>
               </div>
-              <p className="text-[9px] sm:text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">{t.flashcards.statMastered}</p>
+              <p className="text-[9px] sm:text-[10px] font-bold text-brand-100/80 uppercase tracking-wider">{t.flashcards.statMastered}</p>
             </div>
           </div>
 
@@ -389,7 +389,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             </button>
             <button
               onClick={() => setShowAddForm(!showAddForm)}
-              className="inline-flex items-center gap-1.5 text-xs font-bold bg-white text-emerald-700 px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs font-bold bg-white text-brand-700 px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" /> {t.flashcards.addCard}
             </button>
@@ -437,7 +437,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 placeholder={t.flashcards.bulkPlaceholder}
                 value={bulkText}
                 onChange={(e) => setBulkText(e.target.value)}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-emerald-500 font-mono"
+                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-brand-500 font-mono"
               />
               {bulkText.trim() && (
                 <p className="text-[11px] text-ink-faint mt-1.5">
@@ -464,7 +464,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 type="button"
                 onClick={handleBulkImport}
                 disabled={bulkImporting || !bulkText.trim()}
-                className="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-50 transition-colors"
+                className="px-4 py-2 text-xs font-bold rounded-xl bg-brand-500 hover:bg-brand-600 text-white disabled:opacity-50 transition-colors"
               >
                 {bulkImporting ? t.flashcards.bulkImporting : t.flashcards.bulkImport}
               </button>
@@ -484,7 +484,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   placeholder={t.flashcards.termPlaceholder}
                   value={newTerm}
                   onChange={(e) => setNewTerm(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-emerald-500"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-brand-500"
                 />
               </div>
               <div>
@@ -495,7 +495,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   placeholder={t.flashcards.definitionPlaceholder}
                   value={newDef}
                   onChange={(e) => setNewDef(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-emerald-500"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-brand-500"
                 />
               </div>
             </div>
@@ -510,7 +510,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
               <button
                 type="submit"
                 disabled={saving}
-                className="px-4 py-2 text-xs font-bold rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-50 transition-colors"
+                className="px-4 py-2 text-xs font-bold rounded-xl bg-brand-500 hover:bg-brand-600 text-white disabled:opacity-50 transition-colors"
               >
                 {saving ? t.flashcards.saving : t.flashcards.saveCard}
               </button>
@@ -520,12 +520,14 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
 
         {loading ? (
           <div className="text-center py-20">
-            <div className="w-8 h-8 border-2 border-stone-300 border-t-emerald-500 rounded-full animate-spin mx-auto mb-3" />
+            <div className="w-8 h-8 border-2 border-stone-300 border-t-brand-500 rounded-full animate-spin mx-auto mb-3" />
             <p className="text-xs text-stone-500">{t.flashcards.loading}</p>
           </div>
         ) : cards.length === 0 ? (
           <div className="text-center py-16 px-6 bg-white dark:bg-stone-900 border border-line rounded-3xl shadow-sm max-w-md mx-auto">
-            <span className="text-4xl mb-4 block animate-pulse">🗂️</span>
+            <span className="mx-auto mb-4 flex w-fit rounded-2xl bg-accent-soft p-3 text-accent">
+              <FolderOpen aria-hidden className="h-8 w-8" strokeWidth={1.5} />
+            </span>
             <h2 className="text-lg font-extrabold text-ink">{t.flashcards.emptyTitle}</h2>
             <p className="text-xs text-ink-muted mt-2 leading-relaxed">
               {t.flashcards.emptyBody}
@@ -533,7 +535,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center items-center">
               <button
                 onClick={bootstrapDefaultGlossary}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-extrabold bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-md cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-extrabold bg-gradient-to-r from-brand-500 to-brand-500 text-white px-4 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-md cursor-pointer"
               >
                 <GraduationCap className="w-4 h-4" /> {t.flashcards.importSamples}
               </button>
@@ -558,7 +560,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   </div>
                   <div className="h-1.5 rounded-full bg-surface-raised overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
+                      className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-500 transition-all duration-500"
                       style={{
                         width: cards.length > 0 ? `${Math.round(((cards.length - dueCards.length) / cards.length) * 100)}%` : "0%",
                       }}
@@ -570,7 +572,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
               {currentCard ? (
                 <div className="w-full relative min-h-[340px] flex flex-col items-center justify-center">
                   {/* Ambient glow behind the card */}
-                  <div className="absolute w-64 h-64 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+                  <div className="absolute w-64 h-64 bg-brand-500/10 dark:bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
 
                   {/* Spaced Repetition Card Wrapper */}
                   <div
@@ -592,17 +594,17 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                     }}
                     className={`relative w-full max-w-sm min-h-[300px] rounded-[28px] border-2 p-6 flex flex-col items-center justify-center text-center transition-shadow select-none bg-white/95 dark:bg-stone-900 shadow-xl ${
                       swipeOffset > 40
-                        ? "border-emerald-400 bg-emerald-50/[0.04] dark:bg-emerald-950/[0.05]"
+                        ? "border-brand-400 bg-brand-50/[0.04] dark:bg-brand-950/[0.05]"
                         : swipeOffset < -40
                         ? "border-red-400 bg-red-50/[0.04] dark:bg-red-950/[0.05]"
                         : isFlipped
-                          ? "border-teal-300 dark:border-teal-800"
+                          ? "border-accent-line-mid"
                           : "border-line"
                     }`}
                   >
                     {/* Swipe Overlay Hints */}
                     {swipeOffset > 60 && (
-                      <div className="absolute top-4 right-4 bg-emerald-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
+                      <div className="absolute top-4 right-4 bg-brand-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
                         {t.flashcards.rememberedShort}
                       </div>
                     )}
@@ -615,8 +617,8 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                     <span
                       className={`text-[10px] font-extrabold uppercase tracking-widest absolute top-6 px-2.5 py-1 rounded-full ${
                         isFlipped
-                          ? "text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/40"
-                          : "text-accent-strong bg-emerald-50 dark:bg-emerald-950/40"
+                          ? "text-accent-strong bg-brand-50 dark:bg-brand-950/40"
+                          : "text-accent-strong bg-brand-50 dark:bg-brand-950/40"
                       }`}
                     >
                       {isFlipped ? t.flashcards.faceDefinition : t.flashcards.faceTerm}
@@ -635,7 +637,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                       )}
                     </div>
 
-                    <span className="text-[10px] font-bold text-ink-faint absolute bottom-6 hover:text-emerald-500 transition-colors flex items-center gap-1">
+                    <span className="text-[10px] font-bold text-ink-faint absolute bottom-6 hover:text-brand-500 transition-colors flex items-center gap-1">
                       {isFlipped ? t.flashcards.flipToTerm : t.flashcards.flipToDefinition}
                     </span>
                   </div>
@@ -646,25 +648,27 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                       onClick={() => handleSM2Action(1)}
                       className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-danger-line bg-red-50/40 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
-                      <span className="text-lg leading-none">❌</span> {t.flashcards.gradeForgot}
+                      <X aria-hidden className="h-5 w-5" strokeWidth={2} /> {t.flashcards.gradeForgot}
                     </button>
                     <button
                       onClick={() => handleSM2Action(3)}
                       className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-line bg-white/95 dark:bg-stone-900 text-ink-body hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
-                      <span className="text-lg leading-none">👍</span> {t.flashcards.gradeMedium}
+                      <ThumbsUp aria-hidden className="h-5 w-5" strokeWidth={1.75} /> {t.flashcards.gradeMedium}
                     </button>
                     <button
                       onClick={() => handleSM2Action(5)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-accent-line bg-emerald-50/40 dark:bg-emerald-950/20 text-accent hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-accent-line bg-brand-50/40 dark:bg-brand-950/20 text-accent hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
                     >
-                      <span className="text-lg leading-none">⭐️</span> {t.flashcards.gradeEasy}
+                      <Star aria-hidden className="h-5 w-5" strokeWidth={1.75} /> {t.flashcards.gradeEasy}
                     </button>
                   </div>
                 </div>
               ) : (
                 <div className="w-full text-center py-10 px-6 bg-white dark:bg-stone-900 border border-line rounded-3xl shadow-sm">
-                  <span className="text-3xl mb-2.5 block animate-bounce">🎉</span>
+                  <span className="mx-auto mb-2.5 flex w-fit rounded-xl bg-accent-soft p-2 text-accent">
+                    <PartyPopper aria-hidden className="h-7 w-7" strokeWidth={1.5} />
+                  </span>
                   <p className="text-base font-extrabold text-ink">{t.flashcards.doneTitle}</p>
                   <p className="text-xs text-ink-muted mt-1 max-w-sm mx-auto">
                     {t.flashcards.doneBody}
@@ -698,7 +702,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                               <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-stone-50 dark:bg-stone-950/40 text-stone-500 border border-line-soft">{t.flashcards.badgeReviewed}</span>
                             )}
                             {c.repetitions >= 5 && (
-                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-accent-strong border border-emerald-200/50 flex items-center gap-0.5">
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-brand-50 dark:bg-brand-950/40 text-accent-strong border border-brand-200/50 flex items-center gap-0.5">
                                 <Trophy className="w-2.5 h-2.5" /> {t.flashcards.badgeMastered}
                               </span>
                             )}
@@ -716,7 +720,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                       {/* Mastery progress (repetitions towards 5 = "mastered") */}
                       <div className="h-1 rounded-full bg-surface-raised overflow-hidden mt-3">
                         <div
-                          className={`h-full rounded-full transition-all duration-300 ${mastery >= 100 ? "bg-emerald-500" : "bg-teal-400"}`}
+                          className={`h-full rounded-full transition-all duration-300 ${mastery >= 100 ? "bg-brand-500" : "bg-brand-400"}`}
                           style={{ width: `${mastery}%` }}
                         />
                       </div>

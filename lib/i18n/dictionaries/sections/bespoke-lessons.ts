@@ -54,14 +54,14 @@ export const bespokeLessonsVi = {
         "Không ai giữ được cùng một mức cam kết dịch vụ trên công suất có thể mất bất cứ lúc nào mà không mua dư. Đây là lý do spot phải dự phòng 18% trong khi chỗ đặt trước chỉ cần 5%.",
       typesHeading: "9 hạng công suất",
       rateSuffix: "{tag} · Dự phòng ~{rate}%",
-      waterfallHeading: "🏗️ Thác phân bổ công suất - ai còn chỗ khi cụm co lại?",
+      waterfallHeading: "Thác phân bổ công suất - ai còn chỗ khi cụm co lại?",
       scenarioNormal: " Bình thường (cụm 600 vCPU)",
-      scenarioDistress: "🔥 Sự cố vùng (cụm 280 vCPU)",
+      scenarioDistress: "Sự cố vùng (cụm 280 vCPU)",
       payoutLine: "{paid}/{total} vCPU",
       verdictNormal:
         " Cụm 600 vCPU > tổng nhu cầu 450 vCPU → mọi hạng đều đủ chỗ. Còn dư 150 vCPU cho tải đột biến.",
       verdictDistress:
-        "🔥 Cụm 280 vCPU < tổng nhu cầu 450 vCPU → hạng hệ thống đủ, từ tầng 3 trở xuống không còn chỗ. Tải nền bị thu hồi sạch.",
+        "Cụm 280 vCPU < tổng nhu cầu 450 vCPU → hạng hệ thống đủ, từ tầng 3 trở xuống không còn chỗ. Tải nền bị thu hồi sạch.",
       lboHeading: "Trộn hạng - ứng dụng thực tế của thứ tự ưu tiên",
       lboLead:
         "Trộn nhiều hạng công suất là cách điển hình nhất để thấy thứ tự ưu tiên hoạt động. Đội hạ tầng ghép nhiều tầng cam kết dài hạn với càng ít công suất trả theo giờ càng tốt - để kéo chi phí mỗi đơn vị xuống mà vẫn giữ được cam kết dịch vụ.",
@@ -146,7 +146,7 @@ export const bespokeLessonsVi = {
       nextTitle: "Cộng hưởng khi gộp hai dịch vụ",
       heading: "Nguồn Lực Cho Một Lần Ra Mắt",
       intro: "Công sức để ra mắt một hệ thống đến từ đâu - và cấu trúc nào cho hiệu quả cao nhất?",
-      sourcesHeading: "🧰 4 nguồn lực chính khi ra mắt",
+      sourcesHeading: "4 nguồn lực chính khi ra mắt",
       debtShareLabel: "Tỷ lệ vay nợ kỹ thuật ({debt}% / {equity}% làm chuẩn)",
       dealSizeLabel: "Tổng công sức: {size} người-giờ",
       equityShare: "{pct}% làm chuẩn",
@@ -157,7 +157,7 @@ export const bespokeLessonsVi = {
       exitEvLabel: "Giá trị hệ thống ({multiple}x × {ebitda} người-giờ giữ được mỗi quý)",
       remainingDebtLabel: "Nợ kỹ thuật còn lại",
       billion: "{value} người-giờ",
-      checklistHeading: "📋 Checklist khi cân nhắc vay nợ kỹ thuật",
+      checklistHeading: "Checklist khi cân nhắc vay nợ kỹ thuật",
       sources: [
         {
           desc: "Đội tự viết, tự kiểm thử, tự vận hành. Đơn giản nhất, không phụ thuộc ai và không nợ ai.",
@@ -331,14 +331,14 @@ export const bespokeLessonsEn: typeof bespokeLessonsVi = {
         "Nobody holds the same service-level commitment on capacity that can vanish at any moment without buying spare. That is why spot needs 18% headroom while a reservation needs only 5%.",
       typesHeading: "The nine capacity classes",
       rateSuffix: "{tag} · around {rate}% headroom",
-      waterfallHeading: "🏗️ The capacity waterfall - who still has room when the cluster shrinks?",
+      waterfallHeading: "The capacity waterfall - who still has room when the cluster shrinks?",
       scenarioNormal: " Normal (cluster of 600 vCPU)",
-      scenarioDistress: "🔥 Zone failure (cluster of 280 vCPU)",
+      scenarioDistress: "Zone failure (cluster of 280 vCPU)",
       payoutLine: "{paid}/{total} vCPU",
       verdictNormal:
         " Cluster 600 vCPU > total demand 450 vCPU → every class fits. 150 vCPU are left over to absorb spikes.",
       verdictDistress:
-        "🔥 Cluster 280 vCPU < total demand 450 vCPU → the system class is covered; from the third layer down there is no room left. Background work is reclaimed entirely.",
+        "Cluster 280 vCPU < total demand 450 vCPU → the system class is covered; from the third layer down there is no room left. Background work is reclaimed entirely.",
       lboHeading: "Mixing classes - priority order in practice",
       lboLead:
         "Blending capacity classes is the clearest place to watch priority order at work. The infrastructure team stacks several tiers of long-term commitment with as little pay-by-the-hour capacity as possible - to pull the cost per unit down while still holding the service-level commitment.",
@@ -423,7 +423,7 @@ export const bespokeLessonsEn: typeof bespokeLessonsVi = {
       nextTitle: "The gains from merging two services",
       heading: "Where the Effort for a Launch Comes From",
       intro: "Where does the effort to launch a system come from - and which structure gives the best return?",
-      sourcesHeading: "🧰 The four main sources of effort at launch",
+      sourcesHeading: "The four main sources of effort at launch",
       debtShareLabel: "Share taken as technical debt ({debt}% / {equity}% done properly)",
       dealSizeLabel: "Total effort: {size} person-hours",
       equityShare: "{pct}% done properly",
@@ -434,7 +434,7 @@ export const bespokeLessonsEn: typeof bespokeLessonsVi = {
       exitEvLabel: "System value ({multiple}x × {ebitda} person-hours saved per quarter)",
       remainingDebtLabel: "Technical debt left",
       billion: "{value} person-hours",
-      checklistHeading: "📋 Checklist before taking on technical debt",
+      checklistHeading: "Checklist before taking on technical debt",
       sources: [
         {
           desc: "The team writes it, tests it and runs it. The simplest option: nobody to depend on and nobody to repay.",

@@ -372,6 +372,19 @@ export const TRACK_PERSONAL = {
         { name: "Đo, giữ ranh giới và làm đều mỗi tuần", days: [1773, 1775] as [number, number] },
       ],
     },
+    {
+      // Bài "làm ra một cái chạy được" của hành trình /hoc-theo-nhu-cau/ai-agent.
+      // Dải 1780-1789 còn trống sáu id.
+      label: "Chặng 23",
+      name: "AI Agent đơn giản hơn bạn nghĩ",
+      days: [1780, 1789] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Vòng lặp và công cụ", days: [1780, 1781] as [number, number] },
+        { name: "Dựng agent và đặt chốt an toàn", days: [1782, 1783] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 

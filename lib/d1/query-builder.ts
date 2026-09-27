@@ -2,7 +2,7 @@ import type { D1Database } from "@cloudflare/workers-types";
 import { createD1Rpc } from "./rpc-dispatch";
 
 /**
- * Bộ dựng truy vấn D1 nhại bề mặt API của cloudflare-js.
+ * Bộ dựng truy vấn D1 nhại bề mặt API của SDK client cũ.
  *
  * VÌ SAO NHẠI CHỨ KHÔNG VIẾT LẠI. Repo có 527 lời gọi `.from()` trải trên 225
  * tệp. Viết lại từng chỗ thành SQL là 527 cơ hội sai lặng lẽ, và không có bộ
@@ -68,6 +68,39 @@ function decodeValue(value: unknown, format: string | undefined): unknown {
   }
 }
 
+/** Trần số hàng cho một lệnh có kiểm hàng mới. Xem buildCheckedInsert/Update. */
+const MAX_CHECKED_ROWS = 20;
+
+/**
+ * Cột của bảng mà vị từ nhắc tới. Thừa thì vô hại - `id` trong `p.id` của một
+ * bảng khác cũng lọt vào, và chỉ tốn thêm một cột trong bảng dẫn xuất - còn
+ * thiếu thì vị từ đọc một cột không tồn tại và câu lệnh hỏng. Nên cố ý khớp
+ * rộng: mọi định danh trùng tên cột, sau khi bỏ chuỗi trong nháy để `'manual'`
+ * không bị nhầm thành cột tên manual.
+ */
+function predicateColumns(pred: string, columns: string[]): string[] {
+  const ids = new Set(pred.replace(/'(?:[^']|'')*'/g, "''").match(/[A-Za-z_][A-Za-z0-9_]*/g) ?? []);
+  return columns.filter((c) => ids.has(c));
+}
+
+/**
+ * Biểu thức mặc định của từng cột, đọc từ CHÍNH bảng qua PRAGMA table_info - đúng
+ * thứ SQLite sẽ điền khi cột bị bỏ trống, kể cả các migration thêm sau bản chụp
+ * lược đồ. Lược đồ không đổi trong đời một isolate, nên mỗi bảng đọc một lần.
+ */
+const defaultsCache = new Map<string, Record<string, string | null>>();
+async function loadDefaults(db: D1Database, table: string): Promise<Record<string, string | null>> {
+  const hit = defaultsCache.get(table);
+  if (hit) return hit;
+  const res = await db.prepare(`PRAGMA table_info("${table.replace(/"/g, '""')}")`).bind().all();
+  const out: Record<string, string | null> = {};
+  for (const r of (res.results ?? []) as { name: string; dflt_value: string | null }[]) {
+    out[r.name] = r.dflt_value ?? null;
+  }
+  defaultsCache.set(table, out);
+  return out;
+}
+
 export class D1QueryError extends Error {}
 
 /** Vi pham chinh sach truy cap - tach rieng de khong lan voi loi SQL. */
@@ -103,7 +136,7 @@ export type ManualPredicates = Record<string, Partial<Record<"select" | "insert"
  * người gọi thật sự là admin qua getCurrentUser() - không nơi nào khác được
  * tự tạo giá trị này. Đây là Symbol, không phải chuỗi: một client viết
  * "__admin__" làm actor không đi qua được, chỉ import đúng ký hiệu này mới
- * được. Thay cho service-role key của Cloudflare - key ấy tự nó không kiểm gì,
+ * được. Thay cho khoá service-role của hệ cũ - key ấy tự nó không kiểm gì,
  * chỗ kiểm nằm ở lib/admin-auth.ts; ở đây gộp cả hai làm một để không ai lấy
  * được cờ bỏ qua chính sách mà chưa qua đúng cổng.
  */
@@ -195,12 +228,37 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
   private applyPolicyOnce() {
     if (this.policyApplied) return;
     this.policyApplied = true;
+    // Ghi lại số điều kiện NGƯỜI GỌI viết, trước khi chính sách thêm của nó.
+    // Phép chặn "update/delete không có WHERE" trong build() đọc con số này;
+    // đếm sau khi áp chính sách thì điều kiện do máy thêm sẽ trông như điều
+    // kiện người viết mã cố ý đặt, và phép chặn thành vô dụng.
+    this.callerWhereCount = this.wheres.length;
     this.applyPolicy();
   }
 
+  private callerWhereCount: number | null = null;
+
+  /**
+   * WITH CHECK cho bảng dùng vị từ: điều kiện phải đúng trên HÀNG MỚI.
+   *
+   * Bản đầu của bộ dựng này đẩy vị từ vào `wheres` cho MỌI loại lệnh. Với
+   * SELECT/DELETE/UPDATE thì `WHERE` là USING - đúng. Với INSERT thì không có
+   * `WHERE` nào để đẩy vào, nên điều kiện bị BỎ QUA HOÀN TOÀN: đo trên SQL thật,
+   * một người dùng gửi được tin nhắn riêng dưới tên người khác vào bất kỳ cuộc
+   * trò chuyện nào, đăng bài cộng đồng dưới tên người khác, và tự tạo đơn khiếu
+   * nại đã được duyệt sẵn. UPDATE thì chỉ kiểm hàng CŨ - sửa bài của mình rồi
+   * đặt `user_id` sang người khác là qua. Bộ kiểm hai tài khoản không bắt được
+   * vì nó chỉ thử lệnh chèn ở bảng "owner", chưa từng ở bảng vị từ.
+   */
+  private writeCheck: { pred: string; n: number; cols: string[] } | null = null;
+  /** Hàng cũ (kèm rowid) đã đọc trước để dựng hàng mới cho WITH CHECK của UPDATE. */
+  private checkRows: Row[] | null = null;
+  /** Biểu thức mặc định thật của bảng, từ PRAGMA table_info. */
+  private tableDefaults: Record<string, string | null> | null = null;
+
   private applyPolicy() {
     // Admin: bỏ qua MỌI chính sách, cả "owner" lẫn "manual" - đúng cách
-    // service-role key của Cloudflare bỏ qua RLS hoàn toàn. Chỉ đạt tới đây khi
+    // khoá service-role của hệ cũ bỏ qua RLS hoàn toàn. Chỉ đạt tới đây khi
     // requireAdminDb() đã xác nhận vai trò admin trước đó.
     if (this.actor === ADMIN_BYPASS) return;
 
@@ -218,7 +276,31 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
             `Bang "${this.table}" can biet nguoi goi de kiem quyen nhung truy van chay khong co nguoi dung.`
           );
         }
+        if (this.mode === "upsert") {
+          // UPSERT cần cả điều kiện INSERT lẫn điều kiện UPDATE trên hai hàng
+          // khác nhau. Lệnh upsert duy nhất vào bảng vị từ trong repo nằm ở
+          // trang quản trị, vốn bỏ qua chính sách - nên từ chối ở đây không làm
+          // hỏng gì đang chạy, còn cho qua thì là đúng lỗ hổng vừa vá.
+          throw new D1PolicyError(
+            `upsert vào "${this.table}" không được hỗ trợ dưới danh nghĩa người dùng - dùng insert hoặc update.`
+          );
+        }
+        const cols = predicateColumns(pred, Object.keys(this.types[this.table] ?? {}));
+        if (this.mode === "insert") {
+          this.writeCheck = { pred, n, cols };
+          return;
+        }
+        // SELECT / DELETE / UPDATE: vị từ trên hàng CŨ - đây là USING.
         this.wheres.push({ sql: `(${pred})`, args: Array(n).fill(this.actor) });
+        if (this.mode === "update") {
+          // Hàng mới chỉ có thể khác hàng cũ ở những cột được SET. Không cột
+          // nào được SET nằm trong vị từ thì vị từ trên hàng mới BẰNG vị từ
+          // trên hàng cũ, vốn đã kiểm ở trên - khỏi tốn thêm lượt đọc. Đây là
+          // trường hợp của gần như mọi lệnh sửa thật: đánh dấu đã đọc, sửa nội
+          // dung bài, chấp nhận lời mời kết bạn.
+          const setCols = Object.keys(this.payload[0] ?? {});
+          if (setCols.some((c) => cols.includes(c))) this.writeCheck = { pred, n, cols };
+        }
         return;
       }
       if (!this.manualAcknowledged) {
@@ -247,6 +329,18 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
       // NGUOI KHAC - vo tinh hoac co y - va WHERE khong chan duoc lenh INSERT.
       for (const row of this.payload) row[p.column] = this.actor;
       return;
+    }
+    if (this.mode === "update") {
+      // WITH CHECK của bảng owner: hàng mới vẫn phải thuộc người gọi. WHERE chỉ
+      // kiểm hàng cũ, nên `update({ user_id: "người khác" }).eq("id", x)` sẽ
+      // chuyển hàng của mình sang tên người khác - một bài đăng, một đánh giá,
+      // một kết quả thi hiện ra như của họ.
+      const v = this.payload[0]?.[p.column];
+      if (v !== undefined && v !== this.actor) {
+        throw new D1PolicyError(
+          `Không được đổi "${p.column}" của "${this.table}" sang người dùng khác.`
+        );
+      }
     }
     this.wheres.push({ sql: `${this.col(p.column)} = ?`, args: [this.actor] });
   }
@@ -298,7 +392,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
 
   in(column: string, values: readonly unknown[]) {
     if (!values.length) {
-      // `IN ()` là lỗi cú pháp ở SQLite. Cloudflare trả mảng rỗng cho trường hợp
+      // `IN ()` là lỗi cú pháp ở SQLite. SDK client cũ trả mảng rỗng cho trường hợp
       // này, nên phải khớp hành vi đó chứ không được ném lỗi.
       this.wheres.push({ sql: "0 = 1", args: [] });
       return this;
@@ -417,7 +511,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
     if (!opts?.onConflict) {
       throw new D1QueryError(
         `upsert vào "${this.table}" thiếu { onConflict }. SQLite cần biết cột xung đột; ` +
-          `Cloudflare suy ra từ khoá chính, D1 thì không.`
+          `PostgREST suy ra từ khoá chính, D1 thì không.`
       );
     }
     this.conflictTarget = opts.onConflict;
@@ -460,9 +554,9 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
     // định của người viết mã: bộ lọc chủ sở hữu tuy có thu hẹp phạm vi lại
     // (chỉ còn hàng của chính người gọi) nhưng một lệnh xoá quét sạch dữ liệu
     // của chính mình vẫn gần như luôn là lỗi, không phải chủ ý.
-    const callerWheres = this.wheres.length;
     this.guardProtectedColumns();
     this.applyPolicyOnce();
+    const callerWheres = this.callerWhereCount ?? 0;
     const where = this.wheres.length
       ? " WHERE " + this.wheres.map((w) => w.sql).join(" AND ")
       : "";
@@ -481,6 +575,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
       }
       case "insert":
       case "upsert": {
+        if (this.writeCheck) return this.buildCheckedInsert(T);
         const rows = this.payload.map((r) => this.encode(r));
         const names = [...new Set(rows.flatMap((r) => Object.keys(r)))];
         const tuples = rows.map(() => `(${names.map(() => "?").join(",")})`).join(",");
@@ -497,11 +592,12 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
         const row = this.encode(this.payload[0]);
         const names = Object.keys(row);
         if (!callerWheres) {
-          // Cloudflare cho phép UPDATE toàn bảng, và đó chính là lý do phải chặn
+          // PostgREST cũ cho phép UPDATE toàn bảng, và đó chính là lý do phải chặn
           // ở đây: một `.eq()` viết thiếu là ghi đè cả bảng mà không có gì báo
           // cho tới khi ai đó đọc lại.
           throw new D1QueryError(`update trên "${this.table}" không có điều kiện WHERE - sẽ ghi đè MỌI hàng.`);
         }
+        if (this.writeCheck) return this.buildCheckedUpdate(T, row, where, whereArgs);
         return {
           sql: `UPDATE ${T} SET ${names.map((n) => `${this.col(n)} = ?`).join(", ")}${where} RETURNING *`,
           args: [...names.map((n) => row[n] ?? null), ...whereArgs],
@@ -528,6 +624,98 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
   /** Câu đếm dùng CHUNG where đã áp chính sách với câu select - gọi
    *  applyPolicyOnce() để chắc chắn không áp chính sách một lần nữa (và
    *  không thiếu, nếu đây là lệnh gọi đầu tiên chạm tới where). */
+  /**
+   * INSERT có WITH CHECK: `INSERT ... SELECT ... FROM (hàng mới) AS <bảng> WHERE <vị từ>`.
+   *
+   * Mẹo nằm ở bí danh: bảng dẫn xuất chứa hàng mới được đặt TRÙNG TÊN bảng
+   * thật, nên vị từ gốc dùng nguyên văn - cả cột trần (`sender_id`) lẫn dạng
+   * có tên bảng (`direct_messages.friendship_id`) đều trỏ vào hàng MỚI, không
+   * phải viết lại vị từ. Truy vấn con trong EXISTS vẫn tham chiếu bảng thật của
+   * nó (`from user_friendships f`) như trước.
+   *
+   * `NOT EXISTS (... WHERE NOT vị từ)` làm lệnh thành tất-cả-hoặc-không: một hàng
+   * sai là không hàng nào được chèn, đúng như Postgres huỷ cả câu lệnh. COALESCE
+   * vì vị từ trên NULL cho NULL - không đúng cũng không sai - và NULL phải tính
+   * là không qua.
+   *
+   * Cột mà vị từ đọc nhưng người gọi bỏ trống (vd `status` để bảng tự điền
+   * 'pending') lấy BIỂU THỨC MẶC ĐỊNH THẬT của bảng, nạp trong run(). Không có
+   * thì NULL, và vị từ không qua - sai về phía từ chối.
+   */
+  private buildCheckedInsert(T: string): Op {
+    const { pred, n, cols } = this.writeCheck!;
+    const rows = this.payload.map((r) => this.encode(r));
+    if (rows.length > MAX_CHECKED_ROWS) {
+      throw new D1PolicyError(
+        `Chèn ${rows.length} hàng một lần vào "${this.table}" vượt mức ${MAX_CHECKED_ROWS} cho bảng có kiểm quyền hàng mới.`
+      );
+    }
+    const names = [...new Set(rows.flatMap((r) => Object.keys(r)))];
+    const extra = cols.filter((c) => !names.includes(c));
+    const dflt = this.tableDefaults ?? {};
+    const derived = rows
+      .map((_, i) => {
+        const alias = (c: string) => (i === 0 ? ` AS ${this.col(c)}` : "");
+        return "SELECT " + [
+          ...names.map((c) => `?${alias(c)}`),
+          ...extra.map((c) => `${dflt[c] ?? "NULL"}${alias(c)}`),
+        ].join(", ");
+      })
+      .join(" UNION ALL ");
+    const rowArgs = rows.flatMap((r) => names.map((c) => r[c] ?? null));
+    const predArgs = Array(n).fill(this.actor);
+    const list = names.map((c) => this.col(c)).join(",");
+    return {
+      sql:
+        `INSERT INTO ${T} (${list}) SELECT ${list} FROM (${derived}) AS ${T} ` +
+        `WHERE COALESCE((${pred}), 0) ` +
+        `AND NOT EXISTS (SELECT 1 FROM (${derived}) AS ${T} WHERE NOT COALESCE((${pred}), 0)) ` +
+        `RETURNING *`,
+      args: [...rowArgs, ...predArgs, ...rowArgs, ...predArgs],
+    };
+  }
+
+  /**
+   * UPDATE có WITH CHECK, chỉ khi lệnh SET một cột mà vị từ đọc.
+   *
+   * Hàng mới = hàng cũ (đọc trước trong run(), kèm rowid) chồng giá trị SET lên.
+   * Dựng chúng thành bảng dẫn xuất đặt bí danh trùng tên bảng - cùng mẹo như
+   * INSERT - và đòi mọi hàng mới qua vị từ. Ghim đúng các rowid đã đọc, để
+   * hàng được cập nhật chính là hàng đã được kiểm.
+   */
+  private buildCheckedUpdate(T: string, row: Row, where: string, whereArgs: unknown[]): Op {
+    const { pred, n, cols } = this.writeCheck!;
+    const old = this.checkRows;
+    if (!old) {
+      throw new D1PolicyError(`update có kiểm hàng mới trên "${this.table}" phải chạy qua run().`);
+    }
+    if (old.length > MAX_CHECKED_ROWS) {
+      throw new D1PolicyError(
+        `Sửa ${old.length} hàng "${this.table}" một lần, có đổi cột dùng để kiểm quyền, vượt mức ${MAX_CHECKED_ROWS}.`
+      );
+    }
+    const names = Object.keys(row);
+    const derived = old
+      .map((_, i) => "SELECT " + cols.map((c) => `?${i === 0 ? ` AS ${this.col(c)}` : ""}`).join(", "))
+      .join(" UNION ALL ");
+    const derivedArgs = old.flatMap((o) => cols.map((c) => (c in row ? row[c] : o[c]) ?? null));
+    const rowids = old.map((o) => o.__rowid);
+    const pin = ` AND rowid IN (${rowids.map(() => "?").join(",")})`;
+    return {
+      sql:
+        `UPDATE ${T} SET ${names.map((c) => `${this.col(c)} = ?`).join(", ")}${where}${pin} ` +
+        `AND NOT EXISTS (SELECT 1 FROM (${derived}) AS ${T} WHERE NOT COALESCE((${pred}), 0)) ` +
+        `RETURNING *`,
+      args: [
+        ...names.map((c) => row[c] ?? null),
+        ...whereArgs,
+        ...rowids,
+        ...derivedArgs,
+        ...Array(n).fill(this.actor),
+      ],
+    };
+  }
+
   private buildCountSql(): Op {
     this.applyPolicyOnce();
     const where = this.wheres.length
@@ -555,9 +743,48 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
         return { data: [], error: null, count };
       }
 
+      if (this.mode === "insert" || this.mode === "update") {
+        this.guardProtectedColumns();
+        this.applyPolicyOnce();
+      }
+      if (this.writeCheck && this.mode === "insert") {
+        this.tableDefaults = await loadDefaults(this.db, this.table);
+      }
+      if (this.writeCheck && this.mode === "update") {
+        if (!this.callerWhereCount) {
+          throw new D1QueryError(`update trên "${this.table}" không có điều kiện WHERE - sẽ ghi đè MỌI hàng.`);
+        }
+        // Đọc trước hàng cũ mà lệnh sẽ chạm - cùng WHERE, tức cùng USING - để
+        // dựng hàng mới cho WITH CHECK.
+        const where = " WHERE " + this.wheres.map((w) => w.sql).join(" AND ");
+        const cols = this.writeCheck.cols.map((c) => this.col(c)).join(", ");
+        const pre = await this.db
+          .prepare(`SELECT rowid AS "__rowid"${cols ? ", " + cols : ""} FROM ${this.col(this.table)}${where}`)
+          .bind(...this.wheres.flatMap((w) => w.args))
+          .all();
+        this.checkRows = (pre.results ?? []) as Row[];
+        if (!this.checkRows.length) {
+          return this.wantSingle === "one"
+            ? { data: null, error: new D1QueryError("single() cần đúng 1 hàng, nhận 0"), count }
+            : { data: this.wantSingle === "maybe" ? null : [], error: null, count };
+        }
+      }
+
       const { sql, args } = this.build();
       const res = await this.db.prepare(sql).bind(...args).all();
       const rows = this.decodeRows((res.results ?? []) as Row[]);
+
+      // Vị từ chặn thì câu lệnh chạy xong mà không ghi hàng nào - và lặng im.
+      // Postgres báo lỗi ở đây; báo lại đúng như vậy, để chỗ gọi đang kiểm
+      // `error` biết thao tác đã KHÔNG xảy ra thay vì tưởng đã lưu.
+      const expected = this.mode === "insert" ? this.payload.length : this.checkRows?.length ?? 0;
+      if (this.writeCheck && rows.length < expected) {
+        return {
+          data: null,
+          error: new D1PolicyError(`new row violates row-level security policy for table "${this.table}"`),
+          count,
+        };
+      }
 
       if (this.wantSingle === "one") {
         if (rows.length !== 1) {
@@ -573,7 +800,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
       }
       return { data: rows, error: null, count };
     } catch (err) {
-      // Trả lỗi trong đối tượng thay vì ném, đúng như cloudflare-js: 527 chỗ gọi
+      // Trả lỗi trong đối tượng thay vì ném, đúng như SDK client cũ: 527 chỗ gọi
       // hiện tại đều viết theo dạng `const { data, error } = await ...`, và đổi
       // sang ném sẽ làm mọi chỗ ấy nuốt lỗi thành sự cố chưa bắt.
       return { data: null, error: err as Error };

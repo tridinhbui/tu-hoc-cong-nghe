@@ -2,7 +2,7 @@ import "server-only";
 import { AuthError } from "./service";
 
 /**
- * Luồng mã uỷ quyền của Google, phần Cloudflare Auth vẫn làm thay.
+ * Luồng mã uỷ quyền của Google, phần dịch vụ xác thực cũ từng làm thay.
  *
  * DÙNG PKCE dù đây là client có bí mật. PKCE gắn lượt đổi mã với đúng trình
  * duyệt đã bắt đầu luồng, nên một mã bị lộ qua lịch sử duyệt web hay log

@@ -11,6 +11,7 @@ import { animateCountTo } from "@/lib/animate-count";
 import { TRACKS } from "@/lib/tracks";
 import { LEARNING_FLOWS } from "@/lib/learning-flows";
 import Logo from "@/components/Logo";
+import Glyph from "@/components/Glyph";
 import LiveNumber from "@/components/LiveNumber";
 import ScrollReveal from "@/components/home/ScrollReveal";
 import ProductPreview from "@/components/home/ProductPreview";
@@ -88,7 +89,7 @@ function ChapterHeading({
         </span>
         <span
           className={`eyebrow ${
-            dark ? "text-emerald-300/90" : "text-accent-strong"
+            dark ? "text-brand-300/90" : "text-accent-strong"
           }`}
         >
           {eyebrow}
@@ -345,14 +346,14 @@ export default function HomePage() {
               <Logo size={28} />
               <span className="text-sm sm:text-base font-black text-ink-heading uppercase tracking-widest flex items-center gap-2">
                 {t.home.brand}
-                <span className="text-[9px] font-black text-accent bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200/50 hidden xs:inline-block">
+                <span className="text-[9px] font-black text-accent bg-brand-50 dark:bg-brand-950/40 px-2 py-0.5 rounded border border-brand-200/50 hidden xs:inline-block">
                   {t.home.brandBadge}
                 </span>
               </span>
             </div>
             <Link
               href="/login"
-              className="group inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500"
+              className="group inline-flex items-center gap-2 rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-800 dark:bg-brand-600 dark:hover:bg-brand-500"
             >
               {t.home.navCta}
               <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -402,7 +403,7 @@ export default function HomePage() {
                   {...heroReveal(0)}
                   className="eyebrow mb-5 flex items-center gap-3 text-ink-muted"
                 >
-                  <span aria-hidden className="h-px w-8 bg-emerald-600 dark:bg-emerald-500" />
+                  <span aria-hidden className="h-px w-8 bg-brand-600 dark:bg-brand-500" />
                   {t.home.hero.badge}
                 </motion.div>
 
@@ -460,7 +461,7 @@ export default function HomePage() {
                   className="w-full border-t border-stone-300/70 pt-4 dark:border-stone-700/70 sm:w-fit"
                 >
                   <div className="eyebrow mb-3 flex items-center gap-2 text-accent-strong">
-                    <span aria-hidden className="h-px w-4 bg-emerald-600/70 dark:bg-emerald-500/70" />
+                    <span aria-hidden className="h-px w-4 bg-brand-600/70 dark:bg-brand-500/70" />
                     {t.home.hero.liveLabel}
                   </div>
                   <div className="flex items-stretch divide-x divide-stone-300/70 dark:divide-stone-700/70">
@@ -502,7 +503,7 @@ export default function HomePage() {
                       sizes="520px"
                       className="object-cover object-center opacity-55"
                     />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(16,185,129,0.24),transparent_28%),linear-gradient(115deg,rgba(15,23,42,0.96),rgba(15,23,42,0.76)_44%,rgba(6,78,59,0.62))]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(65,122,205,0.24),transparent_28%),linear-gradient(115deg,rgba(15,23,42,0.96),rgba(15,23,42,0.76)_44%,rgba(15,31,58,0.72))]" />
                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-stone-950/90 to-transparent" />
                   </div>
 
@@ -513,8 +514,8 @@ export default function HomePage() {
                       }}
                   >
                     <div className="flex items-center justify-between gap-3">
-                      <div className="inline-flex items-center gap-2 rounded border border-emerald-300/25 bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                      <div className="inline-flex items-center gap-2 rounded border border-brand-300/25 bg-brand-400/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-brand-200">
+                        <span className="h-1.5 w-1.5 rounded-full bg-brand-300" />
                         {t.home.card.studyingNow}
                       </div>
                       <div className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-amber-100">
@@ -531,10 +532,10 @@ export default function HomePage() {
                       >
                         <div className="mb-3 flex items-center justify-between gap-2">
                           <div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">{t.home.card.todayLabel}</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-brand-200">{t.home.card.todayLabel}</p>
                             <p className="mt-1 text-base font-black leading-tight text-white xl:text-lg">{t.home.card.todayTitle}</p>
                           </div>
-                          <div className="shrink-0 rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black text-emerald-200">
+                          <div className="shrink-0 rounded-full bg-brand-400/10 px-2.5 py-1 text-[10px] font-black text-brand-200">
                             {t.home.card.comprehension}
                           </div>
                         </div>
@@ -569,7 +570,7 @@ export default function HomePage() {
                               ["3", t.home.card.tip3],
                             ].map(([step, text]) => (
                               <div key={step} className="flex items-center gap-2 rounded-md bg-white/7 px-2.5 py-2 text-[11px] font-bold leading-snug text-stone-200">
-                                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-300/15 text-[10px] text-emerald-100">{step}</span>
+                                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-300/15 text-[10px] text-brand-100">{step}</span>
                                 {text}
                               </div>
                             ))}
@@ -604,7 +605,7 @@ export default function HomePage() {
                           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-stone-300">{t.home.card.quizLabel}</p>
                           <p className="mt-2 text-sm font-black text-white">{t.home.card.quizQuestion}</p>
                           <div className="mt-3 space-y-2">
-                            <div className="rounded-full bg-emerald-300/18 px-3 py-2 text-xs font-black text-emerald-100">{t.home.card.quizRight}</div>
+                            <div className="rounded-full bg-brand-300/18 px-3 py-2 text-xs font-black text-brand-100">{t.home.card.quizRight}</div>
                             <div className="rounded-full bg-white/8 px-3 py-2 text-xs font-bold text-stone-300">{t.home.card.quizWrong}</div>
                           </div>
                         </div>
@@ -618,11 +619,11 @@ export default function HomePage() {
                           <p className="mt-2 text-sm font-black text-white">{t.home.card.flashQuestion}</p>
                           <p className="mt-1 text-xs leading-relaxed text-stone-300">{t.home.card.flashAnswer}</p>
                           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-                            <div className="preview-progress-live h-full w-3/4 rounded-full bg-gradient-to-r from-amber-300 to-emerald-300" />
+                            <div className="preview-progress-live h-full w-3/4 rounded-full bg-gradient-to-r from-amber-300 to-brand-300" />
                           </div>
                         </div>
-                        <div className="rounded-xl border border-emerald-300/20 bg-emerald-400/[0.07] p-3.5 xl:p-4">
-                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">{t.home.card.noteLabel}</p>
+                        <div className="rounded-xl border border-brand-300/20 bg-brand-400/[0.07] p-3.5 xl:p-4">
+                          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-brand-200">{t.home.card.noteLabel}</p>
                           <p className="mt-2 text-sm font-black text-white">{t.home.card.noteTitle}</p>
                           <p className="mt-1 text-xs leading-relaxed text-stone-300">{t.home.card.noteBody}</p>
                         </div>
@@ -656,9 +657,9 @@ export default function HomePage() {
                   <li key={flow.id}>
                     <Link
                       href={`/hoc-theo-nhu-cau/${flow.id}`}
-                      className="group flex h-full flex-col rounded-xl border border-stone-200 bg-white p-4 transition-colors hover:border-emerald-600 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-emerald-500"
+                      className="group flex h-full flex-col rounded-xl border border-stone-200 bg-white p-4 transition-colors hover:border-brand-600 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-brand-500"
                     >
-                      <span className="text-3xl" aria-hidden>{flow.emoji}</span>
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent"><Glyph emoji={flow.emoji} className="h-5 w-5" /></span>
                       <span className="mt-2 text-xs font-semibold text-ink-muted">“{t.learningFlows.flows[flow.id].need}”</span>
                       <span className="mt-1 font-black text-ink-max">{t.learningFlows.flows[flow.id].title}</span>
                       <span className="mt-3 inline-flex items-center gap-1 text-xs font-black text-accent-strong">
@@ -718,7 +719,7 @@ export default function HomePage() {
               t.home.ticker.studyGroup,
             ].map((item) => (
               <li key={item} className="flex items-center gap-2">
-                <span aria-hidden className="h-px w-3 bg-emerald-600/80 dark:bg-emerald-500/80" />
+                <span aria-hidden className="h-px w-3 bg-brand-600/80 dark:bg-brand-500/80" />
                 {item}
               </li>
             ))}
@@ -814,8 +815,8 @@ export default function HomePage() {
               <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(300px,0.95fr)] lg:items-center">
                 <div>
                   <p className="mb-2 inline-flex items-center gap-2 text-xs font-black text-accent uppercase tracking-widest">
-                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50 text-xs shadow-xs border border-emerald-200/80 dark:bg-emerald-950/40 dark:border-emerald-900/50">
-                      🇻🇳
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#DA251D] shadow-xs" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" className="h-2.5 w-2.5 text-[#FFCD00]" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.2 5.8 20.9l1.6-7L2 9.2l7.1-.6L12 2Z" /></svg>
                     </span>
                     {t.home.vision.eyebrow}
                   </p>
@@ -880,9 +881,9 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <div className="rounded-xl border border-emerald-200/70 dark:border-emerald-900/40 bg-gradient-to-b from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 p-4 shadow-xs">
+                  <div className="rounded-xl border border-brand-200/70 dark:border-brand-900/40 bg-gradient-to-b from-brand-50/50 to-brand-50/30 dark:from-brand-950/20 dark:to-brand-950/10 p-4 shadow-xs">
                     <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-black text-accent-strong uppercase tracking-widest">
-                      <span>🇻🇳</span>
+                      <span className="inline-flex h-4 w-4 items-center justify-center rounded-sm bg-[#DA251D]" aria-hidden="true"><svg viewBox="0 0 24 24" className="h-2.5 w-2.5 text-[#FFCD00]" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.2 5.8 20.9l1.6-7L2 9.2l7.1-.6L12 2Z" /></svg></span>
                       {t.home.vision.missionLabel}
                     </p>
                     <p className="text-xs leading-relaxed text-ink-body font-medium">
@@ -891,7 +892,7 @@ export default function HomePage() {
                     <div className="mt-3">
                       <Link
                         href="/login?mode=signup"
-                        className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-stone-950 px-4 py-2 text-xs font-black text-white transition-colors hover:bg-stone-800 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-500"
+                        className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-stone-950 px-4 py-2 text-xs font-black text-white transition-colors hover:bg-stone-800 dark:bg-brand-600 dark:text-white dark:hover:bg-brand-500"
                       >
                         {t.home.vision.cta}
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -918,8 +919,8 @@ export default function HomePage() {
                 <p className="text-xs text-stone-400 leading-relaxed max-w-sm">
                   {t.home.footer.blurb}
                 </p>
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3 py-1 text-[11px] font-bold text-emerald-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-950/60 px-3 py-1 text-[11px] font-bold text-brand-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-400" />
                   <span>{format(t.home.footer.community, { count: roundedLessonCount() })}</span>
                 </div>
               </div>
@@ -929,16 +930,16 @@ export default function HomePage() {
                 <p className="text-xs font-black uppercase tracking-widest text-white">{t.home.footer.tracksTitle}</p>
                 <ul className="space-y-2 text-xs text-stone-400 font-semibold">
                   <li>
-                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">{t.home.footer.trackPersonal}</Link>
+                    <Link href="/dashboard" className="hover:text-brand-400 transition-colors">{t.home.footer.trackPersonal}</Link>
                   </li>
                   <li>
-                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">{t.home.footer.trackCorporate}</Link>
+                    <Link href="/dashboard" className="hover:text-brand-400 transition-colors">{t.home.footer.trackCorporate}</Link>
                   </li>
                   <li>
-                    <Link href="/dashboard" className="hover:text-emerald-400 transition-colors">{t.home.footer.trackCfa}</Link>
+                    <Link href="/dashboard" className="hover:text-brand-400 transition-colors">{t.home.footer.trackCfa}</Link>
                   </li>
                   <li>
-                    <Link href="/game" className="hover:text-emerald-400 transition-colors">{t.home.footer.trackGame}</Link>
+                    <Link href="/game" className="hover:text-brand-400 transition-colors">{t.home.footer.trackGame}</Link>
                   </li>
                 </ul>
               </div>
@@ -948,16 +949,16 @@ export default function HomePage() {
                 <p className="text-xs font-black uppercase tracking-widest text-white">{t.home.footer.ecoTitle}</p>
                 <ul className="space-y-2 text-xs text-stone-400 font-semibold">
                   <li>
-                    <Link href="/nhom-hoc" className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                    <Link href="/nhom-hoc" className="hover:text-brand-400 transition-colors flex items-center gap-1.5">
                       <span>{t.home.footer.ecoStudyRoom}</span>
                       <span className="text-[9px] font-bold text-amber-400 bg-amber-950 px-1.5 py-0.2 rounded-md">{t.home.footer.ecoHot}</span>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/bang-tin" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoFeed}</Link>
+                    <Link href="/bang-tin" className="hover:text-brand-400 transition-colors">{t.home.footer.ecoFeed}</Link>
                   </li>
                   <li>
-                    <Link href="/cua-hang" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoShop}</Link>
+                    <Link href="/cua-hang" className="hover:text-brand-400 transition-colors">{t.home.footer.ecoShop}</Link>
                   </li>
                 </ul>
               </div>
@@ -967,20 +968,20 @@ export default function HomePage() {
                 <p className="text-xs font-black uppercase tracking-widest text-white">{t.home.footer.supportTitle}</p>
                 <ul className="space-y-2 text-xs text-stone-400 font-semibold">
                   <li>
-                    <Link href="/dieu-khoan" className="hover:text-emerald-400 transition-colors">{t.home.footer.terms}</Link>
+                    <Link href="/dieu-khoan" className="hover:text-brand-400 transition-colors">{t.home.footer.terms}</Link>
                   </li>
                   <li>
-                    <Link href="/chinh-sach-bao-mat" className="hover:text-emerald-400 transition-colors">{t.home.footer.privacy}</Link>
+                    <Link href="/chinh-sach-bao-mat" className="hover:text-brand-400 transition-colors">{t.home.footer.privacy}</Link>
                   </li>
                   <li>
-                    <Link href="/login" className="hover:text-emerald-400 transition-colors">{t.home.footer.login}</Link>
+                    <Link href="/login" className="hover:text-brand-400 transition-colors">{t.home.footer.login}</Link>
                   </li>
                 </ul>
               </div>
             </div>
 
             {/* Khẩu hiệu chủ quyền. Ngôi sao vẽ bằng SVG chứ không dùng emoji
-                ⭐: emoji sao vàng trên nền đỏ render khác nhau tuỳ hệ điều
+: emoji sao vàng trên nền đỏ render khác nhau tuỳ hệ điều
                 hành, và trên Windows nó ra màu cam. */}
             <div className="pt-6 flex justify-center">
               <p className="inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-gradient-to-r from-red-800 to-red-700 px-4 py-2 text-xs font-bold text-white shadow-lg">

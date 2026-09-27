@@ -14,7 +14,7 @@ import { viSections } from "./sections";
 export const vi = {
   ...viSections,
   emails: {
-    milestoneMessage: "Chào {name}! 🎉 Bạn vừa đạt chuỗi {days} ngày học liên tục - cảm ơn bạn rất nhiều vì đã kiên trì đồng hành cùng nền tảng. Consistent is key to success - cứ giữ nhịp độ này, thành quả sẽ đến sớm thôi. Đội ngũ luôn ở đây nếu bạn cần hỗ trợ gì nhé! 💪",
+    milestoneMessage: "Chào {name}! Bạn vừa đạt chuỗi {days} ngày học liên tục - cảm ơn bạn rất nhiều vì đã kiên trì đồng hành cùng nền tảng. Consistent is key to success - cứ giữ nhịp độ này, thành quả sẽ đến sớm thôi. Đội ngũ luôn ở đây nếu bạn cần hỗ trợ gì nhé!",
     morningReviewTitle: "{count} câu ôn buổi sáng",
     digestSubject: "Tổng kết tuần học tập của bạn",
     digestGreeting: "Chào {name}, đây là tổng kết tuần vừa qua của bạn:",
@@ -244,11 +244,11 @@ export const vi = {
     },
 
     brand: "Tự Học Công Nghệ",
-    brandBadge: "🇻🇳 VIỆT NAM",
+    brandBadge: "VIỆT NAM",
     navCta: "Vào học ngay",
 
     hero: {
-      badge: "Kiến thức chuẩn quốc tế · Bản sắc thực tế Việt Nam 🇻🇳",
+      badge: "Kiến thức chuẩn quốc tế · Bản sắc thực tế Việt Nam",
       // The headline wraps a coloured <span> and a <br>, so it is split rather
       // than assembled from one string.
       titlePart1: "Bước vào thế giới",
@@ -368,7 +368,7 @@ export const vi = {
       privacy: "Chính sách bảo mật",
       login: "Đăng nhập / Đăng ký",
       copyright: "© 2026 Tự Học Công Nghệ. Tất cả quyền được bảo lưu.",
-      tagline: "Học công nghệ miễn phí cho người Việt 🇻🇳",
+      tagline: "Học công nghệ miễn phí cho người Việt",
       sovereignty: "Hoàng Sa & Trường Sa là của Việt Nam!",
     },
   },
@@ -388,7 +388,7 @@ export const vi = {
     // Split around the inline <strong> holding the XP.
     newsBodyPart1: "Trả lời chính xác tình huống tin tức vĩ mô hôm nay để nhận ",
     newsXp: "+{xp} XP",
-    newsBodyPart2: " và giải tỏa biểu tượng cảnh báo 🔴 trên Navbar.",
+    newsBodyPart2: " và giải tỏa biểu tượng cảnh báo trên Navbar.",
 
     rightEyebrow: "Bên Phải • Tạo bài kiểm tra tự chọn",
     builderTitle: "Tùy chỉnh & bắt đầu kiểm tra",
@@ -496,7 +496,7 @@ export const vi = {
     // Chỉ hiện cho khách đọc bài xem thử (lib/preview-lessons.ts). Nói thứ họ
     // vừa có và sắp mất, không nói tính năng - "tiến độ bài này" là thứ duy
     // nhất người vừa đọc xong đang thực sự cầm trong tay.
-    guestSaveTitle: "Bạn vừa học xong bài này 🎉",
+    guestSaveTitle: "Bạn vừa học xong bài này",
     guestSaveBody:
       "Tiến độ này đang nằm trên trình duyệt và sẽ mất khi bạn đổi máy. Tạo tài khoản miễn phí để lưu lại, mở toàn bộ bài học và theo dõi chuỗi ngày học của mình.",
     guestSaveCta: "Đăng ký miễn phí để lưu tiến độ",
@@ -547,7 +547,7 @@ export const vi = {
     damageValue: "{value} DMG",
 
     arenaTitle: "BATTLE ARENA - CÂU {current}/{total}",
-    exit: "✕ Thoát",
+    exit: "Thoát",
     levelShort: "Lv.{level}",
     heroName: "Chiến Binh",
     heroHp: "{hp}/100 HP",
@@ -625,7 +625,7 @@ export const vi = {
     srsBadge: "SPACED REPETITION SM-2",
     title: "Ôn tập câu sai Flashcard 3D",
     subtitle:
-      "Tự động phân nhịp sinh học ôn tập theo chu kỳ 1 ngày ➔ 3 ngày ➔ 7 ngày ➔ 30 ngày.",
+      "Tự động phân nhịp sinh học ôn tập theo chu kỳ 1 ngày 3 ngày 7 ngày 30 ngày.",
     tabCards: "Thẻ 3D",
     tabList: "Danh sách",
 
@@ -792,7 +792,7 @@ export const vi = {
     tooManyAttempts: "Quá nhiều lần thử. Vui lòng đợi {seconds} giây rồi thử lại.",
     genericError: "Có lỗi xảy ra. Vui lòng thử lại.",
     fillAllSignup: "Vui lòng điền đầy đủ tên, email và mật khẩu.",
-    passwordTooShort: "Mật khẩu phải ít nhất 6 ký tự.",
+    passwordTooShort: "Mật khẩu phải ít nhất 8 ký tự.",
     signupNoAutoLogin: "Đã tạo tài khoản nhưng không thể tự động đăng nhập. Vui lòng đăng nhập thủ công.",
     fillEmailPassword: "Vui lòng điền email và mật khẩu.",
     enterEmail: "Vui lòng nhập email của bạn.",
@@ -1031,7 +1031,7 @@ export const vi = {
     chatPlaceholder: "Gửi lời chúc, hỏi bài...",
 
     feedPanelTitle: "Bảng tin feed trực tuyến",
-    feedPanelSub: "Bấm thử nút Thả tim ❤️ tương tác với bài viết thực tế",
+    feedPanelSub: "Bấm thử nút Thả tim tương tác với bài viết thực tế",
     feedCta: "Vào Bảng tin Feed",
     postStats: "{comments} bình luận · {shares} chia sẻ",
 
@@ -1163,7 +1163,7 @@ export const vi = {
     mistakeTerm: "[Lỗi sai: {title}] {question}",
     mistakeDefinition: "Đáp án đúng: {answer}. Giải thích: {explanation}",
     noMistakesFound:
-      "Không tìm thấy câu trắc nghiệm làm sai chưa giải quyết nào! 🌟 Hãy tiếp tục học bài nhé.",
+      "Không tìm thấy câu trắc nghiệm làm sai chưa giải quyết nào! Hãy tiếp tục học bài nhé.",
     mistakesAlreadyMade: "Tất cả câu lỗi sai đã được tạo thẻ trước đó.",
     mistakesScanFailed: "Có lỗi xảy ra khi quét lịch sử lỗi sai.",
     markedForReview: "Đã đánh dấu cần học lại sớm!",
@@ -1177,7 +1177,7 @@ export const vi = {
     cardDeleted: "Đã xoá thẻ thành công.",
     cardDeleteFailed: "Không thể xoá thẻ.",
     sampleImportFailed: "Lỗi khi nhập thẻ mẫu.",
-    generatedFromMistakes: "Đã tự động tạo thành công {count} thẻ ôn tập từ các câu làm sai! ⚡🗂️",
+    generatedFromMistakes: "Đã tự động tạo thành công {count} thẻ ôn tập từ các câu làm sai! ",
     nextReview: "Đã nhớ! Lần ôn tiếp theo: {days} ngày tới.",
     bulkAdded: "Đã thêm {added} thẻ mới!",
     // Đuôi tuỳ chọn, ghép sau câu chính khi có thẻ bị bỏ qua. Tách thành khoá
@@ -1188,7 +1188,7 @@ export const vi = {
     copiedToClipboard: "Đã sao chép {count} thẻ vào clipboard.",
     copyToClipboardFailed: "Không sao chép được danh sách thẻ",
     confirmDelete: "Bạn có chắc chắn muốn xoá thẻ \"{term}\"?",
-    sampleImported: "Đã nhập thành công {count} thẻ từ vựng mẫu! 🎉",
+    sampleImported: "Đã nhập thành công {count} thẻ từ vựng mẫu!",
 
     // components/flashcard/FlashcardAlbumsGallery.tsx
     albumImported: "Đã nhập {added} thẻ từ \"{title}\" vào bộ của bạn!",
@@ -1236,12 +1236,12 @@ export const vi = {
     emptyBody:
       "Bạn chưa có thẻ ghi nhớ nào trong hệ thống. Hãy tự tạo một số thẻ từ vựng mới hoặc nhập danh sách mẫu bên dưới để học ngay!",
     importSamples: "Nhập 8 thẻ mẫu",
-    quickFromMistakes: "Tạo nhanh từ lỗi sai ⚡",
+    quickFromMistakes: "Tạo nhanh từ lỗi sai",
 
     reviewing: "Đang ôn tập",
     cardsLeft: "Còn {count} thẻ",
-    rememberedShort: "Nhớ 👍",
-    forgotShort: "Quên ❌",
+    rememberedShort: "Nhớ",
+    forgotShort: "Quên",
     faceDefinition: "Định nghĩa",
     faceTerm: "Thuật ngữ",
     flipToTerm: "Chạm để xem thuật ngữ",
@@ -1287,7 +1287,7 @@ export const vi = {
     rebalanceTitle: "Tái cơ cấu về 1 Tỷ VNĐ",
 
     guideTitle: "Hướng dẫn chi tiết cách chơi mô phỏng quỹ công nghệ",
-    close: "✕ Đóng",
+    close: "Đóng",
     // Each step's body wraps inline <strong> emphasis, so it is split into
     // segments rather than carrying markup through the dictionary.
     step1Title: "1️⃣ vốn ban đầu 1 tỷ",
@@ -1508,10 +1508,10 @@ export const vi = {
 
   // components/ResumeLearningButton.tsx - the "continue learning" hero card.
   resume: {
-    greeting1: "Chào{name}! Sách đã mở, kiến thức đã sẵn sàng. Cùng chinh phục bài tiếp theo để nhận XP nào! 🔥",
-    greeting2: "Tuyệt vời{name}! Bạn đã hoàn thành {count} bài học. Cùng duy trì đà tiến bộ này ngay nhé! 🌟",
-    greeting3: "Chào{name}! Hôm nay mục tiêu là lên cấp tiếp theo. Học ngay bài học dưới đây thôi nào! 🏆",
-    greeting4: "Năng lượng lên nào{name}! Thêm một bài học là thêm một phần kiến thức thực chiến vững chắc! 💪",
+    greeting1: "Chào{name}! Sách đã mở, kiến thức đã sẵn sàng. Cùng chinh phục bài tiếp theo để nhận XP nào!",
+    greeting2: "Tuyệt vời{name}! Bạn đã hoàn thành {count} bài học. Cùng duy trì đà tiến bộ này ngay nhé!",
+    greeting3: "Chào{name}! Hôm nay mục tiêu là lên cấp tiếp theo. Học ngay bài học dưới đây thôi nào!",
+    greeting4: "Năng lượng lên nào{name}! Thêm một bài học là thêm một phần kiến thức thực chiến vững chắc!",
     criteriaQuizLeft: "{count} câu Kiểm tra nhanh",
     criteriaReadAll: "đọc hết bài",
     congrats: "Chúc mừng{name}!",
@@ -1644,7 +1644,7 @@ export const vi = {
 
   // components/RigorousLevelExamModal.tsx - the level-up exam.
   levelExam: {
-    shareText: "Tôi vừa xuất sắc vượt qua bài thi thăng cấp khắt khe - cấp độ {level}: {name} với điểm số {percent}%! 🔥 #levelup",
+    shareText: "Tôi vừa xuất sắc vượt qua bài thi thăng cấp khắt khe - cấp độ {level}: {name} với điểm số {percent}%! #levelup",
     loadFailed: "Không tải được đề thi.",
     passedToast: "Chúc mừng! Bạn đã thi đỗ xuất sắc Cấp độ {level} ({percent}%)!",
     timedOutToast: "Đã quá thời gian làm bài nên kết quả không được tính. Bạn có thể thi lại.",
@@ -1791,11 +1791,11 @@ export const vi = {
 
   // components/WeeklyChallengeWidget.tsx - the Times Square case-study arena.
   caseArena: {
-    rankS: "Hạng S - huyền thoại phân tích Silicon Valley 🏆",
-    rankA: "Hạng A - chuyên gia phân tích doanh nghiệp 🥇",
-    rankB: "Hạng B - học viên Silicon Valley 🥈",
+    rankS: "Hạng S - huyền thoại phân tích Silicon Valley",
+    rankA: "Hạng A - chuyên gia phân tích doanh nghiệp",
+    rankB: "Hạng B - học viên Silicon Valley",
     rankC: "Hạng C - cần ôn tập",
-    correctToast: "Chính xác! +{score} điểm (Combo x{multiplier}) 🔥",
+    correctToast: "Chính xác! +{score} điểm (Combo x{multiplier})",
     wrongToast: "Chưa chính xác! Thất thoát Combo.",
 
     hubTitle: "Trung tâm công nghệ Times Square",
@@ -1878,7 +1878,7 @@ export const vi = {
     attachFile: "Đính kèm tệp",
     attachmentAlt: "Đính kèm",
     previewAlt: "Preview",
-    dropImage: "Thả ảnh vào đây để đính kèm 📂",
+    dropImage: "Thả ảnh vào đây để đính kèm",
     imagePlaceholder: "[Hình ảnh]",
     filePlaceholder: "[Tệp: {name}]",
     deleted: "Tin nhắn đã bị xoá",
@@ -1942,15 +1942,15 @@ export const vi = {
     // Tin nhắn bot: lưu dưới dạng SỰ KIỆN trong study_room_messages.content
     // (xem lib/study-room-bot-messages.ts) rồi dựng câu ở đây, nên mỗi người
     // đọc thấy tiếng của mình kể cả với dòng ghi trước khi họ đổi ngôn ngữ.
-    botDailyNone: "Cập nhật hôm nay: chưa ai trong nhóm học bài nào cả 👀 Ai học đầu tiên hôm nay nào?",
-    botDailyAll: "Cập nhật hôm nay: cả {count} thành viên đều đã học ít nhất 1 bài! Nhóm đang giữ nhịp rất tốt 🔥",
+    botDailyNone: "Cập nhật hôm nay: chưa ai trong nhóm học bài nào cả Ai học đầu tiên hôm nay nào?",
+    botDailyAll: "Cập nhật hôm nay: cả {count} thành viên đều đã học ít nhất 1 bài! Nhóm đang giữ nhịp rất tốt",
     botDailyPartial: "Cập nhật hôm nay: {names} đã học rồi. Còn {notYet} bạn chưa học hôm nay - đừng để mai dồn nhé!",
     botDailyExtra: " +{extra} bạn nữa",
-    botRules: "Tài tài đây 👋 nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
+    botRules: "Tài tài đây nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
     botTopicPersonal: "Nền tảng công nghệ",
     botTopicProfessional: "Công nghệ chuyên sâu",
     botTopicCfa: "Chứng chỉ AWS",
-    dropImage: "Thả ảnh vào đây để gửi 📂",
+    dropImage: "Thả ảnh vào đây để gửi",
     emptyPart1: "Chưa có tin nhắn nào.",
     emptyPart2: "Nhắn gì đó chào các bạn trong nhóm nhé!",
     uploading: "{name} · Đang tải lên...",
@@ -1975,7 +1975,7 @@ export const vi = {
     pomodoroPause: "Tạm dừng",
     pomodoroStart: "Bắt đầu",
     breakStarted:
-      "Hết 25 phút học tập! Cả nhóm nghỉ giải lao 5 phút (+15 XP Tập trung nhóm)! 🎉",
+      "Hết 25 phút học tập! Cả nhóm nghỉ giải lao 5 phút (+15 XP Tập trung nhóm)!",
     focusStarted: "Hết giờ nghỉ! Bắt đầu phiên 25 phút tập trung tiếp theo!",
 
     // Lofi + voice
@@ -2027,7 +2027,7 @@ export const vi = {
     resetViewTitle: "Đặt lại góc 3D và độ Zoom",
     resetView: "Góc & Zoom ({zoom}%)",
     cheerLabel: "Cổ vũ:",
-    cheerSent: "Đã gửi lời cổ vũ đến cả nhóm! 🎉",
+    cheerSent: "Đã gửi lời cổ vũ đến cả nhóm!",
     cheerFailed: "Không thể gửi lời cổ vũ",
     boostAria: "Nạp năng lượng 3D Spatial Boost cho cả phòng",
     boostDone: "Đã nạp năng lượng 3D Spatial Boost cho cả phòng!",
@@ -2038,7 +2038,7 @@ export const vi = {
     topLessonTitle: "Top 1 bài học tuần này",
     emptySeat: "Ghế trống",
     hint3dDesktop:
-      "Kéo chuột để xoay phòng 360° · 🔍 Lăn chuột để Zoom · ⌨️ Phím mũi tên / +− / 0 · Bấm 🔄 để về góc gốc",
+      "Kéo chuột để xoay phòng 360° · Lăn chuột để Zoom · Phím mũi tên / +− / 0 · Bấm để về góc gốc",
     hint3dMobile:
       "Vuốt ngang để xoay (vẩy mạnh để quay tiếp) · vuốt dọc để cuộn trang",
 
@@ -2175,7 +2175,7 @@ export const vi = {
     minutesShort: "{count} phút",
     markedRead: "Đã đánh dấu {count} bài là bạn đã học.",
     unmarkedRead: "Đã bỏ đánh dấu {count} bài.",
-    offlineSynced: "Tiến độ học tập offline đã được đồng bộ thành công! 🌟",
+    offlineSynced: "Tiến độ học tập offline đã được đồng bộ thành công!",
     lessonLocked: "Bài học này đang bị khoá. Hoàn thành các bài trước để mở khoá.",
     defaultUserName: "Người học",
     // Fallback bucket for a bonus lesson with no category in BONUS_CATEGORIES.
@@ -2197,7 +2197,7 @@ export const vi = {
 
     stageLockedTitle: "Chặng này bị khoá",
     stageLockedHint: "Hoàn thành chặng trước để mở",
-    stageLockedBadge: "Chặng này đang bị khoá 🔒",
+    stageLockedBadge: "Chặng này đang bị khoá",
     unlockByChallenge: "Vượt qua thử thách kiến thức để mở khoá",
     unlockByRequest: "Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá",
 
@@ -2292,7 +2292,7 @@ export const vi = {
       eligibleBodyPart1:
         "Chúc mừng bạn đã học xong tất cả bài học trong chặng này! Hãy vượt qua bài thi trắc nghiệm cột mốc (15 câu) để nhận ",
       eligibleBodyPart2: " và mở khóa chặng sau.",
-      start: "Bắt đầu thi 🏆",
+      start: "Bắt đầu thi",
       // Split around the inline <strong>Kỳ thi Vượt ải {stage}</strong>.
       lockedPart1: "Bạn cần hoàn thành toàn bộ bài học và vượt qua ",
       lockedExamName: "Kỳ thi Vượt ải {stage}",
@@ -2608,7 +2608,7 @@ export const vi = {
   // components/LessonRecallWidget.tsx - the spaced-repetition due list.
   recallWidget: {
     noQuizFound: "Không tìm thấy câu hỏi trắc nghiệm cho bài này.",
-    passedToast: "Tuyệt vời! Bạn đã vượt qua chu kỳ ôn tập và nhận +10 XP học thuật! 🔄🏆",
+    passedToast: "Tuyệt vời! Bạn đã vượt qua chu kỳ ôn tập và nhận +10 XP học thuật! ",
     partialToast:
       "Ôn tập hoàn tất. Một số câu chưa đúng, bài học sẽ hiển thị lại sớm hơn để bạn ôn luyện.",
     updateFailed: "Không thể cập nhật tiến độ ôn tập.",
@@ -2622,7 +2622,7 @@ export const vi = {
     reviewingLesson: "Ôn tập: {title}",
     questionCounter: "Câu {index}/{total}",
     confirm: "Xác nhận",
-    correct: "Đúng rồi! 🎉",
+    correct: "Đúng rồi!",
     wrong: "Chưa đúng!",
     finish: "Hoàn tất",
     nextQuestion: "Câu tiếp theo",

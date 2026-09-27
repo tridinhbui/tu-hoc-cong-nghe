@@ -116,8 +116,8 @@ export default function PublicLeaderboardPreview() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-500" />
             </span>
             <p className="text-xs font-black uppercase tracking-widest text-accent-ink">
               {t.leaderboardPreview.liveTitle}
@@ -125,12 +125,12 @@ export default function PublicLeaderboardPreview() {
           </div>
 
           {/* Interactive Metric Filters */}
-          <div className="flex items-center gap-1 rounded-2xl border border-emerald-300/40 dark:border-emerald-800/60 bg-white/90 dark:bg-stone-950/80 p-1 text-xs font-black shadow-inner">
+          <div className="flex items-center gap-1 rounded-2xl border border-brand-300/40 dark:border-brand-800/60 bg-white/90 dark:bg-stone-950/80 p-1 text-xs font-black shadow-inner">
             <button
               onClick={() => setMetric("xp")}
               className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1 ${
                 metric === "xp"
-                  ? "bg-emerald-500 text-stone-950 shadow-md scale-102"
+                  ? "bg-brand-500 text-stone-950 shadow-md scale-102"
                   : "text-ink-soft hover:text-ink"
               }`}
             >
@@ -152,7 +152,7 @@ export default function PublicLeaderboardPreview() {
               onClick={() => setMetric("lessons")}
               className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1 ${
                 metric === "lessons"
-                  ? "bg-teal-500 text-stone-950 shadow-md scale-102"
+                  ? "bg-brand-500 text-stone-950 shadow-md scale-102"
                   : "text-ink-soft hover:text-ink"
               }`}
             >
@@ -199,7 +199,7 @@ export default function PublicLeaderboardPreview() {
                   {/* Floating User Avatar Pod */}
                   <div className="relative mb-1 flex flex-col items-center">
                     {meta.rank === 1 && (
-                      <span className="absolute -top-4 text-sm animate-bounce z-20">👑</span>
+                      <Crown className="absolute -top-4 z-20 h-3.5 w-3.5 text-amber-500" strokeWidth={2} aria-hidden />
                     )}
 
                     <div className="relative">
@@ -266,20 +266,20 @@ export default function PublicLeaderboardPreview() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="p-4 rounded-2xl border-2 border-emerald-400/60 bg-emerald-950/90 text-white backdrop-blur-md flex flex-wrap items-center justify-between gap-3 shadow-xl"
+              className="p-4 rounded-2xl border-2 border-brand-400/60 bg-brand-950/90 text-white backdrop-blur-md flex flex-wrap items-center justify-between gap-3 shadow-xl"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center font-black text-sm text-emerald-300">
+                <div className="w-10 h-10 rounded-full bg-brand-500/20 border border-brand-400 flex items-center justify-center font-black text-sm text-brand-300">
                   {selectedUser.name.slice(0, 2).toUpperCase()}
                 </div>
                 <div>
                   <p className="text-sm font-black text-white flex items-center gap-2">
                     <span>{selectedUser.name}</span>
-                    <span className="text-[10px] font-extrabold bg-emerald-500 text-stone-950 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-extrabold bg-brand-500 text-stone-950 px-2 py-0.5 rounded-full">
                       {t.leaderboardPreview.activeLearnerBadge}
                     </span>
                   </p>
-                  <p className="text-xs text-emerald-200 mt-0.5">
+                  <p className="text-xs text-brand-200 mt-0.5">
                     {format(t.leaderboardPreview.achievementLine, { metric: getMetricUnit(selectedUser.value) })}
                   </p>
                 </div>
@@ -313,7 +313,7 @@ export default function PublicLeaderboardPreview() {
                 key={entry.user_id}
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setSelectedUser(entry)}
-                className="cursor-pointer flex items-center justify-between p-3 rounded-2xl border border-stone-200/70 dark:border-stone-800 bg-white dark:bg-stone-950/60 hover:border-emerald-400/60 transition-all shadow-xs"
+                className="cursor-pointer flex items-center justify-between p-3 rounded-2xl border border-stone-200/70 dark:border-stone-800 bg-white dark:bg-stone-950/60 hover:border-brand-400/60 transition-all shadow-xs"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="relative shrink-0">
@@ -326,7 +326,7 @@ export default function PublicLeaderboardPreview() {
                         className="w-9 h-9 rounded-full object-cover border border-line-mid"
                       />
                     ) : (
-                      <div className="w-9 h-9 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-accent flex items-center justify-center font-black text-xs">
+                      <div className="w-9 h-9 rounded-full bg-brand-500/10 border border-brand-400/40 text-accent flex items-center justify-center font-black text-xs">
                         {entry.name.trim().charAt(0).toUpperCase() || "?"}
                       </div>
                     )}
@@ -363,7 +363,7 @@ export default function PublicLeaderboardPreview() {
         {/* CTA Footer Bar */}
         <div className="pt-3 border-t border-stone-200/80 dark:border-stone-800 flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2 text-ink-soft font-semibold">
-            <UserCheck className="w-4 h-4 text-emerald-500" />
+            <UserCheck className="w-4 h-4 text-brand-500" />
             <span>{t.leaderboardPreview.footerActiveLearners}</span>
           </div>
 

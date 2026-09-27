@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Lightbulb } from "lucide-react";
+import Glyph from "@/components/Glyph";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { LEARNING_FLOWS, getLearningFlow, type FlowId } from "@/lib/learning-flows";
@@ -70,9 +71,9 @@ export default function LearningGoalCard() {
                 type="button"
                 disabled={pending}
                 onClick={() => choose(f.id)}
-                className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white p-3 text-left transition-colors hover:border-emerald-600 disabled:opacity-60 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-emerald-500"
+                className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white p-3 text-left transition-colors hover:border-brand-600 disabled:opacity-60 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-brand-500"
               >
-                <span className="text-2xl" aria-hidden>{f.emoji}</span>
+                <span className="flex-shrink-0 rounded-xl bg-accent-soft p-2 text-accent"><Glyph emoji={f.emoji} className="h-5 w-5" /></span>
                 <span className="min-w-0">
                   <span className="block text-xs font-semibold text-ink-muted">“{t.learningFlows.flows[f.id].need}”</span>
                   <span className="block font-black text-ink-max">{t.learningFlows.flows[f.id].title}</span>
@@ -99,7 +100,7 @@ export default function LearningGoalCard() {
     <section className="rounded-2xl border border-stone-200 bg-white p-4 sm:p-5 dark:border-stone-800 dark:bg-stone-900">
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="text-3xl" aria-hidden>{flow.emoji}</span>
+          <span className="flex-shrink-0 rounded-xl bg-accent-soft p-2 text-accent"><Glyph emoji={flow.emoji} className="h-7 w-7" /></span>
           <div className="min-w-0">
             <p className="eyebrow text-accent-strong">{c.yourGoal}</p>
             <p className="font-black leading-snug text-ink-max">{copy.title}</p>
@@ -121,7 +122,7 @@ export default function LearningGoalCard() {
           <span className="tabular-nums">{format(c.progress, { done: p.done, total: p.total })}</span>
         </div>
         <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-surface-raised">
-          <div className="h-full rounded-full bg-emerald-600 dark:bg-emerald-500" style={{ width: `${pct}%` }} />
+          <div className="h-full rounded-full bg-brand-600 dark:bg-brand-500" style={{ width: `${pct}%` }} />
         </div>
       </div>
 
@@ -140,14 +141,14 @@ export default function LearningGoalCard() {
           </div>
           <Link
             href={`/bai-hoc/${p.next.slug}`}
-            className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-emerald-700"
+            className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-700"
           >
             {c.nextCta} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       ) : (
         <p className="mt-4 flex gap-2 text-sm font-semibold leading-6 text-ink-max">
-          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" aria-hidden />
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" aria-hidden />
           {c.finished}
         </p>
       )}

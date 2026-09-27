@@ -210,7 +210,7 @@ export default function StageMilestoneExamModal({
                   let btnCls = "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-line-strong";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
-                      btnCls = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-accent-ink font-bold";
+                      btnCls = "border-brand-500 bg-brand-50 dark:bg-brand-950/40 text-accent-ink font-bold";
                     } else if (i === selectedOpt) {
                       btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-alert-deep";
                     } else {
@@ -248,7 +248,7 @@ export default function StageMilestoneExamModal({
                 <div className="space-y-4">
                   <div className={`p-4 rounded-2xl text-xs leading-relaxed border ${
                     selectedOpt === questions[currentQIndex].correct
-                      ? "bg-emerald-50/20 border-emerald-100 dark:border-emerald-900/30 text-accent-ink"
+                      ? "bg-brand-50/20 border-brand-100 dark:border-brand-900/30 text-accent-ink"
                       : "bg-rose-50/20 border-rose-100 dark:border-rose-900/30 text-alert-deep"
                   }`}>
                     <p className="font-bold mb-1">
@@ -259,7 +259,7 @@ export default function StageMilestoneExamModal({
                   
                   <button
                     onClick={nextQuestion}
-                    className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-1 shadow-md hover:scale-[1.01] active:scale-[0.99]"
+                    className="w-full bg-brand-500 hover:bg-brand-600 text-white py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-1 shadow-md hover:scale-[1.01] active:scale-[0.99]"
                   >
                     {currentQIndex + 1 === questions.length ? t.stageExam.finishExam : t.stageExam.nextQuestion} <ChevronRight className="w-4 h-4" />
                   </button>

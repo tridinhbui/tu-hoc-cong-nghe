@@ -70,9 +70,9 @@ function buildDigestEmail(
     ? `
       <p>${greeting}</p>
       <ul>
-        <li>📚 ${format(t.emails.digestLessons, { count: stats.lessonsCompleted })}</li>
-        <li>⭐ ${format(t.emails.digestXp, { count: stats.xpThisWeek })}</li>
-        <li>🔥 ${format(t.emails.digestStreak, { days: stats.currentStreak, record: stats.longestStreak })}</li>
+        <li>${format(t.emails.digestLessons, { count: stats.lessonsCompleted })}</li>
+        <li>${format(t.emails.digestXp, { count: stats.xpThisWeek })}</li>
+        <li>${format(t.emails.digestStreak, { days: stats.currentStreak, record: stats.longestStreak })}</li>
       </ul>
       <p>${t.emails.digestKeepGoing}</p>
     `

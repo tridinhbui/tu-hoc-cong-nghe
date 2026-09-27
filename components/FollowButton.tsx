@@ -75,12 +75,12 @@ export default function FollowButton({ currentUserId, targetUserId, initialFollo
           ? `inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-bold transition-colors disabled:opacity-50 ${
               following
                 ? "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400"
-                : "bg-emerald-500 text-white hover:bg-emerald-600"
+                : "bg-brand-500 text-white hover:bg-brand-600"
             }`
           : `inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold transition-colors disabled:opacity-50 ${
               following
                 ? "border border-stone-200 text-stone-600 hover:bg-stone-50 dark:border-stone-800 dark:text-stone-300 dark:hover:bg-stone-900"
-                : "bg-emerald-500 text-white hover:bg-emerald-600"
+                : "bg-brand-500 text-white hover:bg-brand-600"
             }`
       }
     >

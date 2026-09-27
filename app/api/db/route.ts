@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     });
   } catch (err) {
     // Lỗi chính sách, bảng lạ, thao tác sai hình dạng: trả trong { error } như
-    // supabase-js, để các chỗ gọi đang đọc `const { data, error }` vẫn đúng.
+    // SDK client cũ, để các chỗ gọi đang đọc `const { data, error }` vẫn đúng.
     const status = err instanceof WireError ? 400 : 403;
     return Response.json({ data: null, error: { message: (err as Error).message }, count: null }, { status });
   }

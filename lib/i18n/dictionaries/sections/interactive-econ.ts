@@ -4,7 +4,7 @@
 
 export const interactiveEconVi = {
   riskCalc: {
-    title: "⚖️ Rủi ro cao hơn đổi lại được gì",
+    title: "Rủi ro cao hơn đổi lại được gì",
     subtitle: "100 đơn vị năng lực ban đầu. Kéo để đổi mức rủi ro và số kỳ theo đuổi.",
     profileSafeLabel: "Giữ nguyên hiện trạng",
     profileBondLabel: "Nâng cấp từng phần",
@@ -26,7 +26,7 @@ export const interactiveEconVi = {
   },
 
   payoffCalc: {
-    title: "📐 Lãi lỗ tại ngày đáo hạn",
+    title: "Lãi lỗ tại ngày đáo hạn",
     subtitle: "Trục ngang là giá tài sản cơ sở lúc đáo hạn. Đường nằm ngang nghĩa là giá đổi mà lãi lỗ không đổi.",
     positionLongCallLabel: "Mua quyền chọn mua",
     positionShortCallLabel: "Bán quyền chọn mua",
@@ -75,10 +75,10 @@ export const interactiveEconVi = {
   },
 
   supplyDemand: {
-    title: "⚖️ Cung cầu quyết định giá",
+    title: "Cung cầu quyết định giá",
     subtitle: "Kéo cung và cầu để xem giá thay đổi thế nào",
-    supplyLabel: "📦 Nguồn cung (bao nhiêu hàng trên thị trường)",
-    demandLabel: "🛒 Nhu cầu mua (bao nhiêu người muốn mua)",
+    supplyLabel: "Nguồn cung (bao nhiêu hàng trên thị trường)",
+    demandLabel: "Nhu cầu mua (bao nhiêu người muốn mua)",
     priceMeterTitle: "Mức giá thị trường",
     cheapestLabel: "Rẻ nhất",
     mostExpensiveLabel: "Đắt nhất",
@@ -96,12 +96,12 @@ export const interactiveEconVi = {
     scenarioHigherDemand: "Cầu nhỉnh hơn cung → giá tăng nhẹ. Thị trường nghiêng về phía người bán.",
     scenarioMuchHigherSupply: "Cung cao hơn cầu rất nhiều → giá giảm mạnh. Người mua có lợi thế!",
     scenarioHigherSupply: "Cung nhỉnh hơn cầu → giá giảm nhẹ. Thị trường nghiêng về phía người mua.",
-    scenarioBalanced: "Cung = Cầu → giá ổn định. Thị trường cân bằng ⚖️",
-    presetHousingTitle: "🏠 Nhà Hà Nội",
+    scenarioBalanced: "Cung = Cầu → giá ổn định. Thị trường cân bằng",
+    presetHousingTitle: "Nhà Hà Nội",
     presetHousingSubtitle: "Cung thấp, cầu cao",
-    presetFlightsTitle: "✈️ Vé bay COVID",
+    presetFlightsTitle: "Vé bay COVID",
     presetFlightsSubtitle: "Cung cao, cầu thấp",
-    presetBalancedTitle: "⚖️ Cân bằng",
+    presetBalancedTitle: "Cân bằng",
     presetBalancedSubtitle: "Reset",
   },
 
@@ -129,7 +129,7 @@ export const interactiveEconVi = {
 
 export const interactiveEconEn: typeof interactiveEconVi = {
   riskCalc: {
-    title: "⚖️ What higher risk buys you",
+    title: "What higher risk buys you",
     subtitle: "Starting with 100 units of capability. Drag to change the risk level and how many periods you stay with it.",
     profileSafeLabel: "Leave things as they are",
     profileBondLabel: "Upgrade piece by piece",
@@ -151,7 +151,7 @@ export const interactiveEconEn: typeof interactiveEconVi = {
   },
 
   payoffCalc: {
-    title: "📐 Payoff at expiration",
+    title: "Payoff at expiration",
     subtitle: "The horizontal axis is the underlying asset's price at expiration. A flat line means the price can change without changing the payoff.",
     positionLongCallLabel: "Long call",
     positionShortCallLabel: "Short call",
@@ -200,10 +200,10 @@ export const interactiveEconEn: typeof interactiveEconVi = {
   },
 
   supplyDemand: {
-    title: "⚖️ Supply and demand set the price",
+    title: "Supply and demand set the price",
     subtitle: "Drag supply and demand to see how the price changes",
-    supplyLabel: "📦 Supply (how much stock is on the market)",
-    demandLabel: "🛒 Demand (how many people want to buy)",
+    supplyLabel: "Supply (how much stock is on the market)",
+    demandLabel: "Demand (how many people want to buy)",
     priceMeterTitle: "Market price level",
     cheapestLabel: "Cheapest",
     mostExpensiveLabel: "Most expensive",
@@ -221,12 +221,12 @@ export const interactiveEconEn: typeof interactiveEconVi = {
     scenarioHigherDemand: "Demand edges out supply → prices rise slightly. The market tilts toward sellers.",
     scenarioMuchHigherSupply: "Supply is far higher than demand → prices fall sharply. Buyers have the upper hand!",
     scenarioHigherSupply: "Supply edges out demand → prices fall slightly. The market tilts toward buyers.",
-    scenarioBalanced: "Supply = Demand → prices stay stable. The market is balanced ⚖️",
-    presetHousingTitle: "🏠 Hanoi housing",
+    scenarioBalanced: "Supply = Demand → prices stay stable. The market is balanced",
+    presetHousingTitle: "Hanoi housing",
     presetHousingSubtitle: "Low supply, high demand",
-    presetFlightsTitle: "✈️ COVID flights",
+    presetFlightsTitle: "COVID flights",
     presetFlightsSubtitle: "High supply, low demand",
-    presetBalancedTitle: "⚖️ Balanced",
+    presetBalancedTitle: "Balanced",
     presetBalancedSubtitle: "Reset",
   },
 

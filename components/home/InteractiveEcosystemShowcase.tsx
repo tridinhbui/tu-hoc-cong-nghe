@@ -23,11 +23,24 @@ import {
   Bookmark,
   Target,
   BookOpen,
+  Hand,
+  Bell,
+  MessageSquare,
+  type LucideIcon,
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 
 type TabId = "roadmap" | "study-group" | "feed";
+
+// Nút cổ vũ nhanh vẽ bằng icon; tin nhắn sinh ra mang theo icon đó thay vì
+// chèn emoji vào chuỗi.
+const CHEER_ICONS: { id: string; Icon: LucideIcon }[] = [
+  { id: "wave", Icon: Hand },
+  { id: "heart", Icon: Heart },
+  { id: "bell", Icon: Bell },
+  { id: "flame", Icon: Flame },
+];
 
 // Sample posts for the Bảng tin preview. A function of the dictionary rather
 // than a module constant: it is module scope, so there is no useI18n() to call
@@ -84,9 +97,9 @@ export default function InteractiveEcosystemShowcase() {
   const [quizScore, setQuizScore] = useState<number>(0);
 
   // Study Group Interactive Mock State
-  const [cheerLog, setCheerLog] = useState<{ id: string; user: string; text: string }[]>([
-    { id: "1", user: "Hà Hồng", text: "Hôm nay mình vừa hoàn thành bài P/E rồi nhé! 🔥" },
-    { id: "2", user: "Nguyễn Thị Thu", text: "Tuyệt vời! Cùng đua 500 XP tuần này nào! 🚀" },
+  const [cheerLog, setCheerLog] = useState<{ id: string; user: string; text: string; icon?: string }[]>([
+    { id: "1", user: "Hà Hồng", text: "Hôm nay mình vừa hoàn thành bài P/E rồi nhé!" },
+    { id: "2", user: "Nguyễn Thị Thu", text: "Tuyệt vời! Cùng đua 500 XP tuần này nào!" },
   ]);
   const [cheerInput, setCheerInput] = useState("");
 
@@ -105,10 +118,10 @@ export default function InteractiveEcosystemShowcase() {
     setCheerInput("");
   }
 
-  function handleQuickCheer(emojiText: string) {
+  function handleQuickCheer(iconId: string) {
     setCheerLog((prev) => [
       ...prev,
-      { id: String(Date.now()), user: t.ecosystem.cheerYou, text: emojiText },
+      { id: String(Date.now()), user: t.ecosystem.cheerYou, text: format(t.ecosystem.cheerAll, { emoji: "" }).trim(), icon: iconId },
     ]);
   }
 
@@ -135,20 +148,20 @@ export default function InteractiveEcosystemShowcase() {
           onClick={() => setActiveTab("roadmap")}
           className={`group cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 p-4.5 flex flex-col justify-between ${
             activeTab === "roadmap"
-              ? "border-emerald-500 bg-white shadow-md ring-1 ring-emerald-400/50"
-              : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-emerald-400/60"
+              ? "border-brand-500 bg-white shadow-md ring-1 ring-brand-400/50"
+              : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-brand-400/60"
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
-                <Target className="w-3 h-3 text-emerald-600" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-brand-700">
+                <Target className="w-3 h-3 text-brand-600" />
                 {t.ecosystem.roadmapTab}
               </span>
               {activeTab === "roadmap" && (
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500" />
                 </span>
               )}
             </div>
@@ -161,10 +174,10 @@ export default function InteractiveEcosystemShowcase() {
           </div>
 
           <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
-            <span className={activeTab === "roadmap" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
+            <span className={activeTab === "roadmap" ? "text-brand-700 font-extrabold" : "text-stone-400"}>
               {activeTab === "roadmap" ? t.ecosystem.livePreview : t.ecosystem.tapToTry}
             </span>
-            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "roadmap" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "roadmap" ? "translate-x-1 text-brand-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
 
@@ -173,20 +186,20 @@ export default function InteractiveEcosystemShowcase() {
           onClick={() => setActiveTab("study-group")}
           className={`group cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 p-4.5 flex flex-col justify-between ${
             activeTab === "study-group"
-              ? "border-emerald-500 bg-white shadow-md ring-1 ring-emerald-400/50"
-              : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-emerald-400/60"
+              ? "border-brand-500 bg-white shadow-md ring-1 ring-brand-400/50"
+              : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-brand-400/60"
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
-                <Users className="w-3 h-3 text-emerald-600" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-brand-700">
+                <Users className="w-3 h-3 text-brand-600" />
                 {t.ecosystem.groupTab}
               </span>
               {activeTab === "study-group" && (
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500" />
                 </span>
               )}
             </div>
@@ -199,10 +212,10 @@ export default function InteractiveEcosystemShowcase() {
           </div>
 
           <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
-            <span className={activeTab === "study-group" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
+            <span className={activeTab === "study-group" ? "text-brand-700 font-extrabold" : "text-stone-400"}>
               {activeTab === "study-group" ? t.ecosystem.livePreview : t.ecosystem.tapToTry}
             </span>
-            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "study-group" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "study-group" ? "translate-x-1 text-brand-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
 
@@ -211,20 +224,20 @@ export default function InteractiveEcosystemShowcase() {
           onClick={() => setActiveTab("feed")}
           className={`group cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 p-4.5 flex flex-col justify-between ${
             activeTab === "feed"
-              ? "border-emerald-500 bg-white shadow-md ring-1 ring-emerald-400/50"
-              : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-emerald-400/60"
+              ? "border-brand-500 bg-white shadow-md ring-1 ring-brand-400/50"
+              : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-brand-400/60"
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
-                <MessageSquareMore className="w-3 h-3 text-emerald-600" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-brand-700">
+                <MessageSquareMore className="w-3 h-3 text-brand-600" />
                 {t.ecosystem.feedTab}
               </span>
               {activeTab === "feed" && (
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500" />
                 </span>
               )}
             </div>
@@ -237,10 +250,10 @@ export default function InteractiveEcosystemShowcase() {
           </div>
 
           <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
-            <span className={activeTab === "feed" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
+            <span className={activeTab === "feed" ? "text-brand-700 font-extrabold" : "text-stone-400"}>
               {activeTab === "feed" ? t.ecosystem.livePreview : t.ecosystem.tapToTry}
             </span>
-            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "feed" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "feed" ? "translate-x-1 text-brand-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
       </div>
@@ -259,13 +272,13 @@ export default function InteractiveEcosystemShowcase() {
           >
             <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-stone-100">
               <div className="flex items-center gap-2">
-                <span className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 font-black text-sm">🎯</span>
+                <span className="p-1.5 rounded-lg bg-brand-50 text-brand-700"><Target className="h-4 w-4" strokeWidth={1.75} aria-hidden /></span>
                 <div>
                   <h4 className="text-xs sm:text-sm font-black text-stone-900">{t.ecosystem.roadmapPanelTitle}</h4>
                   <p className="text-[11px] text-stone-500 font-medium">{t.ecosystem.roadmapPanelSub}</p>
                 </div>
               </div>
-              <div className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-black text-[11px]">
+              <div className="px-2.5 py-0.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 font-black text-[11px]">
                 {format(t.ecosystem.xpEarned, { xp: quizScore })}
               </div>
             </div>
@@ -282,13 +295,13 @@ export default function InteractiveEcosystemShowcase() {
                     key={item.step}
                     className={`p-2.5 sm:p-3 rounded-xl border transition-all ${
                       item.active
-                        ? "border-emerald-500 bg-emerald-50/70 shadow-xs ring-1 ring-emerald-400/30"
+                        ? "border-brand-500 bg-brand-50/70 shadow-xs ring-1 ring-brand-400/30"
                         : "border-stone-200/80 bg-stone-50/50"
                     }`}
                   >
                     <div className="flex items-center justify-between text-[10px] font-black">
-                      <span className={item.active ? "text-emerald-700" : "text-stone-500"}>{item.step}</span>
-                      <span className={item.active ? "text-emerald-700 bg-white px-2 py-0.5 rounded-full border border-emerald-300" : "text-stone-400"}>
+                      <span className={item.active ? "text-brand-700" : "text-stone-500"}>{item.step}</span>
+                      <span className={item.active ? "text-brand-700 bg-white px-2 py-0.5 rounded-full border border-brand-300" : "text-stone-400"}>
                         {item.status}
                       </span>
                     </div>
@@ -298,9 +311,9 @@ export default function InteractiveEcosystemShowcase() {
               </div>
 
               {/* Right Column: Mini Interactive Quiz Sampler */}
-              <div className="lg:col-span-6 p-3.5 rounded-xl border border-emerald-200/90 bg-gradient-to-br from-emerald-50/40 to-teal-50/20 space-y-2.5">
+              <div className="lg:col-span-6 p-3.5 rounded-xl border border-brand-200/90 bg-gradient-to-br from-brand-50/40 to-brand-50/20 space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-black uppercase text-emerald-800 bg-emerald-100/90 px-2 py-0.5 rounded-full">
+                  <span className="text-[9px] font-black uppercase text-brand-800 bg-brand-100/90 px-2 py-0.5 rounded-full">
                     {t.ecosystem.samplerLabel}
                   </span>
                   <span className="text-[11px] font-bold text-stone-500">{t.ecosystem.samplerCounter}</span>
@@ -329,9 +342,9 @@ export default function InteractiveEcosystemShowcase() {
                         className={`w-full text-left p-2 sm:p-2.5 rounded-lg text-[11px] font-bold transition-all border cursor-pointer ${
                           isSelected
                             ? isCorrect
-                              ? "bg-emerald-500 text-stone-950 border-emerald-400 shadow-xs font-black"
+                              ? "bg-brand-500 text-stone-950 border-brand-400 shadow-xs font-black"
                               : "bg-rose-500 text-white border-rose-400"
-                            : "bg-white text-stone-800 border-stone-200 hover:border-emerald-400"
+                            : "bg-white text-stone-800 border-stone-200 hover:border-brand-400"
                         }`}
                       >
                         {opt}
@@ -341,9 +354,9 @@ export default function InteractiveEcosystemShowcase() {
                 </div>
 
                 {selectedAnswer !== null && (
-                  <div className="p-2 rounded-lg bg-white border border-emerald-300 text-[11px] font-medium text-stone-800 animate-in fade-in">
+                  <div className="p-2 rounded-lg bg-white border border-brand-300 text-[11px] font-medium text-stone-800 animate-in fade-in">
                     {selectedAnswer === 0 ? (
-                      <span className="text-emerald-700 font-bold">{t.ecosystem.samplerCorrect}</span>
+                      <span className="text-brand-700 font-bold">{t.ecosystem.samplerCorrect}</span>
                     ) : (
                       <span className="text-rose-600 font-bold">{t.ecosystem.samplerWrong}</span>
                     )}
@@ -362,24 +375,25 @@ export default function InteractiveEcosystemShowcase() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden rounded-3xl border-2 border-emerald-400/60 bg-white shadow-xl text-stone-900 p-4 sm:p-6 lg:p-8 relative"
+            className="overflow-hidden rounded-3xl border-2 border-brand-400/60 bg-white shadow-xl text-stone-900 p-4 sm:p-6 lg:p-8 relative"
           >
             <div className="grid gap-6 lg:grid-cols-12 items-stretch">
               {/* Left Column: 3D Roundtable Stage Preview (Light Theme) */}
-              <div className="lg:col-span-7 flex flex-col justify-between rounded-3xl border-2 border-emerald-300 bg-gradient-to-b from-emerald-50/80 via-teal-50/40 to-stone-50 p-5 shadow-sm relative overflow-hidden text-stone-900 min-h-[420px]">
+              <div className="lg:col-span-7 flex flex-col justify-between rounded-3xl border-2 border-brand-300 bg-gradient-to-b from-brand-50/80 via-brand-50/40 to-stone-50 p-5 shadow-sm relative overflow-hidden text-stone-900 min-h-[420px]">
                 <div className="flex items-center justify-between shrink-0 mb-2">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-brand-800 bg-brand-100 px-3 py-1 rounded-full border border-brand-300">
                     {t.ecosystem.deskLabel}
                   </span>
                   <div className="flex items-center gap-1 bg-white px-2 py-1 rounded-2xl border border-stone-200 shadow-xs">
                     <span className="text-[9px] font-bold text-stone-500 mr-1">{t.ecosystem.cheerLabel}</span>
-                    {["👋", "❤️", "🔔", "🔥"].map((emoji) => (
+                    {CHEER_ICONS.map(({ id, Icon }) => (
                       <button
-                        key={emoji}
-                        onClick={() => handleQuickCheer(format(t.ecosystem.cheerAll, { emoji }))}
-                        className="hover:scale-130 transition-transform p-1 text-xs cursor-pointer"
+                        key={id}
+                        onClick={() => handleQuickCheer(id)}
+                        aria-label={t.ecosystem.cheerLabel}
+                        className="hover:scale-130 transition-transform p-1 text-brand-600 cursor-pointer"
                       >
-                        {emoji}
+                        <Icon className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
                       </button>
                     ))}
                   </div>
@@ -387,15 +401,15 @@ export default function InteractiveEcosystemShowcase() {
 
                 {/* Center 3D Roundtable */}
                 <div className="relative flex-1 min-h-[260px] flex items-center justify-center my-auto">
-                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-gradient-to-b from-amber-100 via-amber-50 to-emerald-50 border-4 border-amber-400 shadow-xl flex flex-col items-center justify-center text-center p-3 z-10 shrink-0">
-                    <span className="text-3xl mb-0.5 animate-bounce inline-block">🔮</span>
+                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-gradient-to-b from-amber-100 via-amber-50 to-brand-50 border-4 border-amber-400 shadow-xl flex flex-col items-center justify-center text-center p-3 z-10 shrink-0">
+                    <Sparkles className="mb-0.5 h-7 w-7 text-amber-600" strokeWidth={1.75} aria-hidden />
                     <p className="text-[10px] font-black text-amber-800 uppercase tracking-widest">
                       {t.ecosystem.roomLabel}
                     </p>
                     <p className="text-xs sm:text-sm font-black text-stone-900 mt-0.5">
                       {t.ecosystem.roomXp}
                     </p>
-                    <span className="mt-1 inline-block text-[9px] font-extrabold text-emerald-800 bg-emerald-200/80 px-2 py-0.5 rounded-full border border-emerald-400">
+                    <span className="mt-1 inline-block text-[9px] font-extrabold text-brand-800 bg-brand-200/80 px-2 py-0.5 rounded-full border border-brand-400">
                       {t.ecosystem.xpBonus}
                     </span>
                   </div>
@@ -418,16 +432,16 @@ export default function InteractiveEcosystemShowcase() {
                       key={m.name}
                       className={`${m.pos} flex flex-col items-center text-center p-2 rounded-2xl border transition-all duration-300 w-24 sm:w-28 bg-white shadow-md ${
                         m.me
-                          ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-400/40 scale-105"
-                          : "border-stone-200 hover:border-emerald-400"
+                          ? "border-brand-500 bg-brand-50 ring-2 ring-brand-400/40 scale-105"
+                          : "border-stone-200 hover:border-brand-400"
                       }`}
                     >
-                      {m.top && <span className="absolute -top-3 text-base animate-bounce drop-shadow-md z-30">👑</span>}
-                      <div className="w-8 h-8 rounded-full bg-emerald-100 border border-emerald-400 flex items-center justify-center font-black text-xs text-emerald-900 mb-0.5">
+                      {m.top && <Crown className="absolute -top-3 z-30 h-4 w-4 text-amber-500 drop-shadow-sm" strokeWidth={1.75} aria-hidden />}
+                      <div className="w-8 h-8 rounded-full bg-brand-100 border border-brand-400 flex items-center justify-center font-black text-xs text-brand-900 mb-0.5">
                         {m.name.slice(0, 2).toUpperCase()}
                       </div>
                       <p className="text-[9px] font-black text-stone-900 truncate max-w-[80px]">{m.name}</p>
-                      <span className="text-[8px] font-extrabold text-emerald-700 mt-0.5">{format(t.ecosystem.memberLessons, { count: m.lessons })}</span>
+                      <span className="text-[8px] font-extrabold text-brand-700 mt-0.5">{format(t.ecosystem.memberLessons, { count: m.lessons })}</span>
                     </div>
                   ))}
                 </div>
@@ -443,7 +457,7 @@ export default function InteractiveEcosystemShowcase() {
                   <h4 className="text-xs font-black uppercase text-stone-800 tracking-wider flex items-center gap-2">
                     <span>{t.ecosystem.chatLive}</span>
                   </h4>
-                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
+                  <span className="text-[10px] font-bold text-brand-700 bg-brand-100 px-2 py-0.5 rounded-full border border-brand-300">
                     {t.ecosystem.online}
                   </span>
                 </div>
@@ -460,14 +474,20 @@ export default function InteractiveEcosystemShowcase() {
                       key={log.id}
                       className={`p-2.5 rounded-2xl text-xs shadow-xs border ${
                         log.user === t.ecosystem.cheerYou
-                          ? "bg-emerald-500 text-stone-950 font-bold border-emerald-400 ml-4"
+                          ? "bg-brand-500 text-stone-950 font-bold border-brand-400 ml-4"
                           : "bg-white border-stone-200 text-stone-800 mr-4"
                       }`}
                     >
-                      <p className={`text-[9px] font-black ${log.user === t.ecosystem.cheerYou ? "text-stone-950" : "text-emerald-700"}`}>
+                      <p className={`text-[9px] font-black ${log.user === t.ecosystem.cheerYou ? "text-stone-950" : "text-brand-700"}`}>
                         {log.user}
                       </p>
-                      <p className="mt-0.5 leading-relaxed">{log.text}</p>
+                      <p className="mt-0.5 leading-relaxed">
+                        {(() => {
+                          const cheer = CHEER_ICONS.find((c) => c.id === log.icon);
+                          return cheer ? <cheer.Icon className="mr-1 inline h-3.5 w-3.5 align-[-2px]" strokeWidth={1.75} aria-hidden /> : null;
+                        })()}
+                        {log.text}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -480,11 +500,11 @@ export default function InteractiveEcosystemShowcase() {
                     onChange={(e) => setCheerInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSendGroupMsg()}
                     placeholder={t.ecosystem.chatPlaceholder}
-                    className="flex-1 px-3 py-2 text-xs bg-white border border-stone-200 rounded-xl text-stone-900 placeholder:text-stone-400 outline-none focus:border-emerald-400"
+                    className="flex-1 px-3 py-2 text-xs bg-white border border-stone-200 rounded-xl text-stone-900 placeholder:text-stone-400 outline-none focus:border-brand-400"
                   />
                   <button
                     onClick={handleSendGroupMsg}
-                    className="p-2 rounded-xl bg-emerald-500 text-stone-950 font-bold hover:bg-emerald-400 transition-colors cursor-pointer"
+                    className="p-2 rounded-xl bg-brand-500 text-stone-950 font-bold hover:bg-brand-400 transition-colors cursor-pointer"
                   >
                     <Send className="w-3.5 h-3.5" />
                   </button>
@@ -506,7 +526,7 @@ export default function InteractiveEcosystemShowcase() {
           >
             <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-stone-200">
               <div className="flex items-center gap-2">
-                <span className="p-2 rounded-xl bg-sky-100 text-sky-700 font-black">💬</span>
+                <span className="p-2 rounded-xl bg-sky-100 text-sky-700"><MessageSquare className="h-5 w-5" strokeWidth={1.75} aria-hidden /></span>
                 <div>
                   <h4 className="text-base font-black text-stone-900">{t.ecosystem.feedPanelTitle}</h4>
                   <p className="text-xs text-stone-500 font-medium">{t.ecosystem.feedPanelSub}</p>

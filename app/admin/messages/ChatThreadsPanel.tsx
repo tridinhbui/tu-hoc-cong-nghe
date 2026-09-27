@@ -271,7 +271,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                 pickImage(e.dataTransfer.files?.[0]);
               }}
               className={`p-3 border-t transition-colors ${
-                isDraggingImage ? "border-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20" : "border-line"
+                isDraggingImage ? "border-brand-400 bg-brand-50/50 dark:bg-brand-950/20" : "border-line"
               }`}
             >
               {pendingImagePreview && (
