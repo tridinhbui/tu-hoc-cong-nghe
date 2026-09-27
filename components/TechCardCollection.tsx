@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useEffect } from "react";
 import { createClient } from "@/lib/cloudflare";
+import { embedRelated } from "@/lib/embed-related";
 import { Lock, Trophy, Zap } from "lucide-react";
 import { TECH_CARDS, techCardsOf, type TechCardRarity } from "@/lib/tech-cards";
 import { useI18n } from "@/lib/i18n/context";
@@ -39,10 +40,13 @@ export default function TechCardCollection({ userId }: { userId: string }) {
     async function loadInventory() {
       if (!userId) return;
       try {
-        const { data } = await cloudflare
+        const { data: raw } = await cloudflare
           .from("user_inventories")
-          .select("asset_id, gamification_assets(asset_key)")
+          .select("asset_id")
           .eq("user_id", userId);
+        const data = await embedRelated(cloudflare, (raw ?? []) as Record<string, unknown>[], {
+          fk: "asset_id", table: "gamification_assets", columns: "asset_key",
+        });
 
         // Xem ghi chú ở lib/tech-cards.ts: Cloudflare khai quan hệ lồng là mảng
         // còn runtime trả về object, nên ép một lần ở đây thay vì dùng any.

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { embedRelated } from "@/lib/embed-related";
 import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { createAdminClient } from "@/lib/cloudflare-admin";
 import { BOSS_QUESTION_COUNT } from "@/lib/world-boss";
@@ -116,23 +117,34 @@ export async function GET(request: NextRequest) {
   };
 
   // Lấy Top 10 Leaderboard Sát thương
-  const { data: logs } = await cloudflare
+  const { data: rawLogs } = await cloudflare
     .from("world_boss_damage_logs")
-    .select("user_id, damage_dealt, user_profiles(full_name, email, avatar_url)")
+    .select("user_id, damage_dealt")
     .eq("boss_id", activeBoss.id)
     .order("damage_dealt", { ascending: false })
     .limit(10);
 
+  // Tên người chơi đọc bằng client máy chủ, CHỈ full_name và avatar_url - đúng
+  // hai cột mà get_leaderboard vốn đã công khai. user_profiles chỉ chủ sở hữu
+  // đọc được, nên phép nhúng quan hệ của bản Supabase chỉ trả tên của CHÍNH
+  // người gọi; mọi người khác rơi về tên mặc định. Bản cũ còn lấy phần trước
+  // "@" của email làm tên dự phòng - tức lộ email lên bảng công khai; bỏ.
+  const logs = rawLogs
+    ? await embedRelated(createAdminClient(), rawLogs as Record<string, unknown>[], {
+        fk: "user_id", table: "user_profiles", columns: "full_name, avatar_url",
+      })
+    : null;
+
   interface DamageLogRow {
     user_id: string;
     damage_dealt: number;
-    user_profiles?: { full_name: string | null; email: string | null; avatar_url: string | null } | null;
+    user_profiles?: { full_name: string | null; avatar_url: string | null } | null;
   }
 
   const leaderboard = (logs as unknown as DamageLogRow[] | null)?.map((log, index) => ({
     rank: index + 1,
     userId: log.user_id,
-    name: log.user_profiles?.full_name || log.user_profiles?.email?.split("@")[0] || t.worldSpaces.worldBoss.defaultWarriorName,
+    name: log.user_profiles?.full_name || t.worldSpaces.worldBoss.defaultWarriorName,
     avatarUrl: log.user_profiles?.avatar_url,
     totalDamage: log.damage_dealt,
   })) ||

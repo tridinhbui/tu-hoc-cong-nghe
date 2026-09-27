@@ -82,14 +82,23 @@ export async function getCompletedLessons(userId: string, client?: CloudflareCli
 // Lấy progress của user cho một stage
 export async function getStageProgress(userId: string, stageNumber: number) {
   const cloudflare = createClient();
+  // `lessons!inner(stage_number)` là inner join của PostgREST, D1 không có.
+  // Tách hai bước: lấy id bài của chặng (bảng lessons đọc công khai), rồi lọc
+  // tiến độ theo danh sách ấy.
+  const { data: stageLessons, error: lessonsError } = await cloudflare
+    .from("lessons")
+    .select("id")
+    .eq("stage_number", stageNumber);
+  if (lessonsError) throw handleCloudflareError(lessonsError);
+
+  const ids = ((stageLessons ?? []) as { id: number }[]).map((l) => l.id);
+  if (ids.length === 0) return [];
+
   const { data, error } = await cloudflare
     .from("user_progress")
-    .select(`
-      *,
-      lessons!inner(stage_number)
-    `)
+    .select("*")
     .eq("user_id", userId)
-    .eq("lessons.stage_number", stageNumber);
+    .in("lesson_id", ids);
 
   if (error) {
     throw handleCloudflareError(error);

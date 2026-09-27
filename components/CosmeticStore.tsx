@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { errorMessage } from "@/lib/errors";
 import Image from "next/image";
 import { createClient } from "@/lib/cloudflare";
+import { embedRelated } from "@/lib/embed-related";
 import { toast } from "sonner";
 import { ShoppingBag, Check, Zap } from "lucide-react";
 import TechCharacterAvatar, { CharacterEquipments, ITEM_DESCRIPTIONS } from "@/components/TechCharacterAvatar";
@@ -91,12 +92,15 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
         setCoins(profile?.coins || 0);
 
         // Lấy danh sách sở hữu
-        const { data: inventory, error: inventoryError } = await cloudflare
+        const { data: rawInventory, error: inventoryError } = await cloudflare
           .from("user_inventories")
-          .select("asset_id, gamification_assets(asset_key)")
+          .select("asset_id")
           .eq("user_id", userId);
 
         if (inventoryError) throw inventoryError;
+        const inventory = await embedRelated(cloudflare, (rawInventory ?? []) as Record<string, unknown>[], {
+          fk: "asset_id", table: "gamification_assets", columns: "asset_key",
+        });
 
         const rows = (inventory ?? []) as unknown as InventoryRow[];
         const keys = new Set(

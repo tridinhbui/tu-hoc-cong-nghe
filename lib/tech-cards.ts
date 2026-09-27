@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/cloudflare";
+import { embedRelated } from "@/lib/embed-related";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /**
@@ -186,10 +187,14 @@ export async function maybeAwardTechCardDrop(userId: string, score = 100): Promi
   try {
     const { data: inventory } = await cloudflare
       .from("user_inventories")
-      .select("asset_id, acquired_at, gamification_assets(asset_key, asset_type)")
+      .select("asset_id, acquired_at")
       .eq("user_id", userId);
 
-    const rows = (inventory ?? []) as unknown as CardInventoryRow[];
+    const rows = (await embedRelated(cloudflare, (inventory ?? []) as Record<string, unknown>[], {
+      fk: "asset_id",
+      table: "gamification_assets",
+      columns: "asset_key, asset_type",
+    })) as unknown as CardInventoryRow[];
     const cardInventory = rows.filter((item) => item.gamification_assets?.asset_type === "card");
     const dropsToday = cardInventory.filter((item) => new Date(item.acquired_at ?? 0).getTime() >= todayStart.getTime()).length;
 
