@@ -1,12 +1,8 @@
 import { redirect } from "next/navigation";
 
-// Vỏ tĩnh: trang này không đọc gì ở phía server - mọi dữ liệu do client
-// component bên trong tự lấy từ Cloudflare sau khi tải. Không có `force-static`
-// thì nó bị dựng lại ở server cho MỖI lượt xem, để trả về đúng một khung HTML
-// không đổi.
-//
-// Vẫn được proxy chặn trước khi tới đây, nên tĩnh không có nghĩa là công khai.
-export const dynamic = "force-static";
+// KHÔNG `force-static`: layout (app) gọi requireUser() đọc phiên D1 cho mỗi
+// lượt xem. Ép tĩnh thì build vỡ (getCloudflareContext lúc prerender), và nếu
+// có dựng được thì cổng đăng nhập cũng chỉ chạy một lần lúc build.
 
 
 
