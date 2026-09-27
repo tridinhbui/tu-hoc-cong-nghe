@@ -17,6 +17,7 @@ import {
 } from "@/lib/cloudflare-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import MyRankRow from "@/components/leaderboard/MyRankRow";
 import { useI18n } from "@/lib/i18n/context";
 import { format as formatI18n } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n";
@@ -607,27 +608,9 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
               })}
             </div>
 
-            {/* User MyRank Banner */}
-            {myRank && (
-              <div className="rounded-2xl border border-dashed border-amber-300 dark:border-amber-700/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/40 to-amber-50/80 dark:from-amber-950/50 dark:via-amber-900/30 dark:to-amber-950/50 px-4 py-3 shadow-xs">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400 text-amber-950 shadow">
-                      <Trophy className="h-4 w-4 fill-amber-950 text-amber-950" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-black text-ink">{t.leaderboard.yourRank}</p>
-                      <p className="text-[10px] font-semibold text-ink-muted">
-                        {formatI18n(t.leaderboard.byMetricCompact, { metric: t.leaderboard[activeTab.labelKey].toLowerCase() })}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-black text-warn">#{myRank.rank}</p>
-                    <p className="text-xs font-extrabold text-ink-body">{activeTab.format(myRank.value, t.leaderboard.units)}</p>
-                  </div>
-                </div>
-              </div>
+            {/* Dòng "Bạn" LUÔN hiện khi có người đăng nhập, kể cả chưa có hạng. */}
+            {userId && !entries.some((e) => e.user_id === userId) && (
+              <MyRankRow rank={myRank?.rank ?? null} valueLabel={myRank ? activeTab.format(myRank.value, t.leaderboard.units) : null} compact />
             )}
           </div>
         )}
@@ -787,26 +770,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
               })}
             </div>
 
-            {/* My Rank Footer */}
-            {myRank && (
-              <div className="mt-4 rounded-2xl border border-dashed border-amber-300 bg-gradient-to-r from-amber-50/80 via-yellow-50/40 to-amber-50/80 px-4 py-3 shadow-xs">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-yellow-500 text-amber-950 shadow">
-                      <Trophy className="h-5 w-5 fill-amber-950 text-amber-950" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-black text-stone-900">{t.leaderboard.yourRank}</p>
-                      <p className="text-xs text-stone-500">
-                        {formatI18n(t.leaderboard.byMetricFull, { metric: t.leaderboard[activeTab.labelKey].toLowerCase() })}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-base font-black text-amber-600">#{myRank.rank}</p>
-                    <p className="text-xs font-extrabold text-stone-700">{activeTab.format(myRank.value, t.leaderboard.units)}</p>
-                  </div>
-                </div>
+            {/* Dòng "Bạn" LUÔN hiện khi có người đăng nhập, kể cả chưa có hạng. */}
+            {userId && !entries.some((e) => e.user_id === userId) && (
+              <div className="mt-4">
+                <MyRankRow rank={myRank?.rank ?? null} valueLabel={myRank ? activeTab.format(myRank.value, t.leaderboard.units) : null} />
               </div>
             )}
           </div>

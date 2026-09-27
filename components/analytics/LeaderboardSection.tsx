@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { trackFeatureClick } from "@/lib/feature-events";
+import MyRankRow from "@/components/leaderboard/MyRankRow";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -289,17 +290,10 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
             })}
           </div>
 
-          {myRank !== null && !myRankInTop10 && (
+          {/* Dòng "Bạn" LUÔN hiện khi có người đăng nhập, kể cả chưa có hạng. */}
+          {userId !== undefined && !myRankInTop10 && (
             <div className="mt-3 pt-3 border-t border-line">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm bg-stone-50 dark:bg-stone-800/50 border border-dashed border-line-strong">
-                <div className="w-7 h-7 rounded flex items-center justify-center flex-shrink-0 font-extrabold bg-surface-sunken text-ink-body text-[11px]">
-                  #{myRank.rank}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="font-bold text-ink">{t.leaderboardSection.myRankLabel}</div>
-                  <div className="text-ink-muted">{tab.format(myRank.value)}</div>
-                </div>
-              </div>
+              <MyRankRow rank={myRank?.rank ?? null} valueLabel={myRank ? tab.format(myRank.value) : null} compact />
             </div>
           )}
         </div>

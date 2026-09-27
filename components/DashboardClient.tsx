@@ -28,6 +28,7 @@ import DashboardTour from "@/components/DashboardTour";
 import DashboardRecommendations from "@/components/DashboardRecommendations";
 import LearningGoalCard from "@/components/learning-flows/LearningGoalCard";
 import CommunityLearningNow from "@/components/CommunityLearningNow";
+import DashboardLeaderboardCard from "@/components/DashboardLeaderboardCard";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import DashboardArenaCard from "@/components/DashboardArenaCard";
 import MistakeReviewWidget from "@/components/MistakeReviewWidget";
@@ -2499,6 +2500,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               >
                 {/* Hành trình theo nhu cầu đứng trên gợi ý chung: nó trả lời
                     "hôm nay học gì" bằng chính mục tiêu người học đã chọn. */}
+                {/* Bảng xếp hạng thu nhỏ, luôn kèm dòng "Bạn" - xem
+                    DashboardLeaderboardCard. Đứng đầu cột phải: người học mở
+                    dashboard hỏi "mình đang ở đâu" trước "hôm nay học gì". */}
+                {!isLessonsView && <DashboardLeaderboardCard userId={user.id} />}
                 {!isLessonsView && <LearningGoalCard />}
                 <DashboardRecommendations />
                 {/* Người thật, dưới phần gợi ý. Cố ý đặt SAU băng chuyền bài
