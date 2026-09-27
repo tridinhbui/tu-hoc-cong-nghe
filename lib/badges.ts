@@ -179,9 +179,33 @@ export const CAREER_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
   },
 };
 
+// Huy hiệu Vương quốc - suy ra từ game_sessions / pvp_duels / ván lưu ở trình
+// duyệt (lib/cloudflare-badges.ts, getEarnedGameBadgeKeys). Không ghi bảng nào.
+export const GAME_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
+  boss_slayer: {
+    key: "boss_slayer",
+    name: "Kẻ Diệt Boss",
+    description: "Gây sát thương cho World Boss và nhận XP",
+    icon: "🐉",
+  },
+  pvp_victor: {
+    key: "pvp_victor",
+    name: "Nhà Vô Địch Đấu Trí",
+    description: "Thắng một trận đấu PvP",
+    icon: "⚔️",
+  },
+  kingdom_explorer: {
+    key: "kingdom_explorer",
+    name: "Nhà Thám Hiểm Vương Quốc",
+    description: "Vượt qua game tình huống của cả 5 toà nhà công nghệ",
+    icon: "🗺️",
+  },
+};
+
 /* i18n-ignore-end */
 
 export const BADGE_DEFINITIONS = {
+  ...GAME_BADGE_DEFINITIONS,
   ...LEVEL_BADGE_DEFINITIONS,
   ...LEADERBOARD_BADGE_DEFINITIONS,
   ...CAREER_BADGE_DEFINITIONS,

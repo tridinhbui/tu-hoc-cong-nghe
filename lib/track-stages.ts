@@ -57,7 +57,7 @@ export const TRACK_PERSONAL = {
       // Ids 263-268 sort after 262 but stages render in array order, so this
       // block appears first on the dashboard as intended.
       label: "Chặng 1",
-      name: "Biết mình trước khi học: máy tính, hệ điều hành, dòng lệnh",
+      name: "Máy tính đơn giản hơn bạn nghĩ: hệ điều hành và dòng lệnh",
       days: [263, 268] as [number, number],
       // Ids 1351-1353 mở rộng chặng ở hai đầu: một bài đo chi tiêu đứng trước
       // phần lập ngân sách, hai bài tự động hóa và bảo hiểm đứng sau. Dải
@@ -77,7 +77,7 @@ export const TRACK_PERSONAL = {
       // which is what this chặng computes. Ids 1301-1308 sit above every
       // existing block so no renumbering (and no progress loss) is needed.
       label: "Chặng 2",
-      name: "Git & kho mã chung",
+      name: "Git đơn giản hơn bạn nghĩ: cuốn nhật ký của dự án",
       days: [1301, 1308] as [number, number],
       available: true,
       isNew: true,
@@ -88,7 +88,7 @@ export const TRACK_PERSONAL = {
     },
     {
       label: "Chặng 3",
-      name: "Tư duy lập trình và ngôn ngữ đầu tiên",
+      name: "Lập trình đơn giản hơn bạn nghĩ: tư duy và ngôn ngữ đầu tiên",
       days: [1, 20] as [number, number],
       // 1048 (tu-duy-tai-chinh) là trang viết tay được kéo về corpus. Nội dung
       // của nó đúng là chủ đề chặng này, nhưng id nằm ngoài dải 1-20.
@@ -101,7 +101,7 @@ export const TRACK_PERSONAL = {
     },
     {
       label: "Chặng 4",
-      name: "HTML, CSS và trang web đầu tiên",
+      name: "Trang web đầu tiên đơn giản hơn bạn nghĩ: HTML và CSS",
       days: [201, 220] as [number, number],
       available: true,
       // Display in numerical order to avoid lesson-number jumps on dashboard
@@ -114,7 +114,7 @@ export const TRACK_PERSONAL = {
     },
     {
       label: "Chặng 5",
-      name: "JavaScript và trình duyệt",
+      name: "JavaScript đơn giản hơn bạn nghĩ: cho trang web biết phản ứng",
       days: [221, 240] as [number, number],
       available: true,
       parts: [
@@ -124,7 +124,7 @@ export const TRACK_PERSONAL = {
     },
     {
       label: "Chặng 6",
-      name: "Cấu trúc dữ liệu và thuật toán cơ bản",
+      name: "Cấu trúc dữ liệu đơn giản hơn bạn nghĩ: sắp xếp để tìm cho nhanh",
       days: [241, 262] as [number, number],
       available: true,
       parts: [
@@ -134,7 +134,7 @@ export const TRACK_PERSONAL = {
     },
     {
       label: "Chặng 7",
-      name: "Gọi API và ghép dịch vụ ngoài",
+      name: "API đơn giản như gọi món: ghép dịch vụ ngoài",
       days: [269, 278] as [number, number],
       available: true,
       parts: [
@@ -144,7 +144,7 @@ export const TRACK_PERSONAL = {
     },
     {
       label: "Chặng 8",
-      name: "Cơ sở dữ liệu và truy vấn",
+      name: "Cơ sở dữ liệu đơn giản hơn bạn nghĩ: lưu và truy vấn",
       days: [279, 288] as [number, number],
       available: true,
       parts: [
@@ -154,7 +154,7 @@ export const TRACK_PERSONAL = {
     },
     {
       label: "Chặng 9",
-      name: "Triển khai, tên miền và bảo mật cơ bản",
+      name: "Đưa sản phẩm lên mạng đơn giản hơn bạn nghĩ: triển khai, tên miền, bảo mật",
       days: [289, 298] as [number, number],
       available: true,
       isNew: true,
@@ -229,7 +229,7 @@ export const TRACK_PERSONAL = {
       // Chặng 13: vàng là kênh giữ tiền phổ biến bậc nhất ở Việt Nam và track
       // này trước đó có ĐÚNG 0 bài về nó.
       label: "Chặng 13",
-      name: "Đám mây và hạ tầng thuê ngoài",
+      name: "Đám mây đơn giản hơn bạn nghĩ: thuê hạ tầng thay vì tự xây",
       days: [320, 327] as [number, number],
       available: true,
       isNew: true,
@@ -357,6 +357,19 @@ export const TRACK_PERSONAL = {
       parts: [
         { name: "Bộ công cụ tối thiểu và tự động hoá", days: [400, 401] as [number, number] },
         { name: "Rà soát hằng năm và tổng kết", days: [402, 403] as [number, number] },
+      ],
+    },
+    {
+      // Chặng của hành trình /hoc-theo-nhu-cau/ai-marketing. Dải 1770-1779
+      // còn trống bốn id để bổ sung mà không đánh số lại.
+      label: "Chặng 22",
+      name: "Marketing với AI đơn giản hơn bạn nghĩ",
+      days: [1770, 1779] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Hiểu khách và viết đúng giọng", days: [1770, 1772] as [number, number] },
+        { name: "Đo, giữ ranh giới và làm đều mỗi tuần", days: [1773, 1775] as [number, number] },
       ],
     },
   ] satisfies Stage[],

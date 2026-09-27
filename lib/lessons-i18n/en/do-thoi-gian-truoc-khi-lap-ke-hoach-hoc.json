@@ -13,10 +13,18 @@
   ],
   "explanation": "People estimate their free hours by taking the week and subtracting work and sleep, and the number that falls out is usually several times larger than what is genuinely usable. The gap sits in the fragments: fifteen minutes between two tasks, forty minutes after dinner when your head is already empty, evenings that something urgent takes away. A plan built on the imagined number slips in week two, and the worst part is that the learner concludes they lack discipline instead of noticing the plan was wrong from its very first calculation.",
   "diagram": [
-    { "label": "Estimate your free hours in your head" },
-    { "label": "Measure for real over two weeks" },
-    { "label": "The real number is usually several times smaller" },
-    { "label": "Build the plan on the real number" }
+    {
+      "label": "Estimate your free hours in your head"
+    },
+    {
+      "label": "Measure for real over two weeks"
+    },
+    {
+      "label": "The real number is usually several times smaller"
+    },
+    {
+      "label": "Build the plan on the real number"
+    }
   ],
   "realWorldExample": {
     "company": "Ten hours a week, and three",
@@ -101,19 +109,84 @@
     "secondary": "After two weeks, circle the highest-quality stretch and place your studying there before you place anything else."
   },
   "sections": [
-    { "type": "lead", "text": "The question of how many hours a week you can study usually gets answered by a subtraction done in your head, and that subtraction leaves out exactly the part that decides the answer." },
-    { "type": "heading", "text": "Free hours and usable hours are two different things" },
-    { "type": "paragraph", "text": "The total number of unscheduled hours is one figure; the number of hours where you still have focus left, long enough to get into a flow, and not taken by something urgent is a much smaller one. A plan built on the first figure slips in week two, and the way people read that slip - a lack of discipline - is what leads them to build the next wrong plan the same way." },
-    { "type": "conceptTable", "title": "Four things to note down, one line each evening", "concepts": [
-      { "en": "Block length", "def": "How long, uninterrupted. Four fifteen-minute stretches are not one hour for work that needs a flow." },
-      { "en": "Time of day", "def": "The same hours at two different times produce entirely different results. This is the half people skip." },
-      { "en": "Energy", "def": "Three rough levels is enough. One hour while fresh beats two hours once you are spent." },
-      { "en": "Interruptions", "def": "A stretch cut in the middle counts as two short ones, not one long one." }
-    ]},
-    { "type": "callout", "label": "A rough measurement finished beats a careful one abandoned", "text": "The temptation is to build a detailed log broken into thirty-minute blocks. Most people drop it in the first week, and three days of data is not usable for anything. One line each evening for two weeks is the worse measurement on precision and the better one on every other count." },
-    { "type": "closing", "lines": [
-      "Without measuring, every plan is a wish with a schedule attached.",
-      "Next: with a real number in hand, how to keep the plan from depending on willpower every evening."
-    ]}
+    {
+      "type": "lead",
+      "text": "The question of how many hours a week you can study usually gets answered by a subtraction done in your head, and that subtraction leaves out exactly the part that decides the answer."
+    },
+    {
+      "type": "feynman",
+      "title": "Studying regularly is simpler than you think",
+      "intro": "Planning your study time is like pouring water into a jar: before you pour, you need to know how much space is left.",
+      "columns": [
+        "Part",
+        "With the jar",
+        "With study time"
+      ],
+      "rows": [
+        [
+          "Capacity",
+          "How big the jar is",
+          "How many hours you really have each week"
+        ],
+        [
+          "Already full",
+          "Water already in the jar",
+          "Work, commuting, chores, scrolling"
+        ],
+        [
+          "Space left",
+          "What you can still pour in",
+          "Free hours when your mind is still fresh"
+        ],
+        [
+          "Measure first",
+          "Check the water line",
+          "Log one week to see where your hours go"
+        ]
+      ],
+      "oneLiner": "Measure where your time goes first, then promise how much you will study."
+    },
+    {
+      "type": "heading",
+      "text": "Free hours and usable hours are two different things"
+    },
+    {
+      "type": "paragraph",
+      "text": "The total number of unscheduled hours is one figure; the number of hours where you still have focus left, long enough to get into a flow, and not taken by something urgent is a much smaller one. A plan built on the first figure slips in week two, and the way people read that slip - a lack of discipline - is what leads them to build the next wrong plan the same way."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four things to note down, one line each evening",
+      "concepts": [
+        {
+          "en": "Block length",
+          "def": "How long, uninterrupted. Four fifteen-minute stretches are not one hour for work that needs a flow."
+        },
+        {
+          "en": "Time of day",
+          "def": "The same hours at two different times produce entirely different results. This is the half people skip."
+        },
+        {
+          "en": "Energy",
+          "def": "Three rough levels is enough. One hour while fresh beats two hours once you are spent."
+        },
+        {
+          "en": "Interruptions",
+          "def": "A stretch cut in the middle counts as two short ones, not one long one."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A rough measurement finished beats a careful one abandoned",
+      "text": "The temptation is to build a detailed log broken into thirty-minute blocks. Most people drop it in the first week, and three days of data is not usable for anything. One line each evening for two weeks is the worse measurement on precision and the better one on every other count."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Without measuring, every plan is a wish with a schedule attached.",
+        "Next: with a real number in hand, how to keep the plan from depending on willpower every evening."
+      ]
+    }
   ]
 }

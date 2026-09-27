@@ -151,6 +151,39 @@ export const MOBILE_APPS_VN_LESSONS: Lesson[] = [
         text: "Giữa một ứng dụng chạy được trên máy bạn và một ứng dụng người dùng tải được có một bước mà nhiều người mới không tính vào kế hoạch: có người khác đọc hồ sơ của bạn và quyết định cho qua hay không.",
       },
       {
+        type: "feynman",
+        title: "Đưa ứng dụng lên kho đơn giản hơn bạn nghĩ",
+        intro: "Nộp ứng dụng lên App Store hay Google Play giống xin giấy phép mở quán: có người kiểm theo một danh sách, và phần lớn bị trả về vì giấy tờ, không phải vì món ăn.",
+        columns: [
+          "Thành phần",
+          "Xin giấy phép quán",
+          "Nộp ứng dụng"
+        ],
+        rows: [
+          [
+            "Người duyệt",
+            "Cán bộ kiểm tra theo quy định",
+            "Đội duyệt của Apple, Google"
+          ],
+          [
+            "Giấy tờ",
+            "Hồ sơ đủ mẫu, đủ chữ ký",
+            "Chính sách quyền riêng tư, ảnh chụp, mô tả đúng"
+          ],
+          [
+            "An toàn",
+            "Bình chữa cháy, lối thoát hiểm",
+            "Xin quyền truy cập vừa đủ, có tài khoản thử"
+          ],
+          [
+            "Soát trước",
+            "Tự đi một vòng theo danh sách",
+            "Tự kiểm theo danh sách trước khi nộp"
+          ]
+        ],
+        oneLiner: "Phần lớn ứng dụng bị từ chối vì thiếu giấy tờ chứ không phải vì dở - soát danh sách trước là rẻ nhất."
+      },
+      {
         type: "heading",
         text: "Phần lớn từ chối không nói gì về sản phẩm",
       },

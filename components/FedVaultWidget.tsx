@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Shield, Zap, TrendingUp, TrendingDown, DollarSign, Award, AlertTriangle, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
-import { addXpToUser } from "@/lib/cloudflare-progress";
+import { recordCustomGameSession, MAX_GAME_XP_PER_TYPE } from "@/lib/games";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -47,7 +47,9 @@ export default function FedVaultWidget({ userId }: FedVaultWidgetProps) {
     if (newInflation <= 3.0 && newGdp >= 1.5 && !completedScenario) {
       setCompletedScenario(true);
       toast.success(t.fedVault.toastSoftLanding);
-      if (userId) void addXpToUser(userId, 100);
+      // Qua sổ ván game (ván tốt nhất, trần 50) - gọi thẳng addXpToUser thì XP
+      // bị xoá ở lần recalculateUserStats kế tiếp.
+      if (userId) void recordCustomGameSession(userId, "fed-vault-sim", 1, 1, MAX_GAME_XP_PER_TYPE);
     }
   };
 

@@ -445,7 +445,7 @@ slug: `lesson_highlights`, `lesson_bookmarks`, `lesson_notes`, `lesson_appeals`,
 mất đánh dấu, ghi chú và bôi vàng của người học. Đổi 27 slug ở mục 8.2 cần một
 bảng ánh xạ cũ→mới, chạy `UPDATE` cho sáu bảng đó, và một lớp chuyển hướng 301.
 
-**2. `label` của chặng ("Chặng 7") đã ghi xuống cột `stage_label` trong Supabase.**
+**2. `label` của chặng ("Chặng 7") đã ghi xuống cột `stage_label` trong Cloudflare.**
 Nó là khoá dữ liệu chứ không phải nhãn hiển thị — `lib/track-stages.ts` ghi rõ
 điều này và vì vậy nó **không được dịch**. Đánh số lại chặng sẽ làm mồ côi dữ
 liệu tiến độ đã ghi.

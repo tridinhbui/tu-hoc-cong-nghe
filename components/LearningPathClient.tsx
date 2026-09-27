@@ -1,5 +1,6 @@
 "use client";
 
+import LearningGoalCard from "@/components/learning-flows/LearningGoalCard";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, ListChecks } from "lucide-react";
@@ -164,6 +165,11 @@ export default function LearningPathClient({
         <h1 className="text-2xl font-black text-ink">{p.title}</h1>
         <p className="text-sm leading-relaxed text-ink-soft">{p.subtitle}</p>
       </header>
+
+      {/* Câu hỏi nhu cầu đứng TRƯỚC mục lục và mọi khối về track/nhịp: người
+          non-tech biết mình muốn LÀM gì trước khi biết mình thuộc track nào.
+          Xem lib/learning-flows.ts. */}
+      <LearningGoalCard />
 
       {/* Mục lục. Sáu khối, và người quay lại lần thứ hai gần như luôn chỉ muốn
           sửa nhịp - trước đây họ phải cuộn qua bốn khối để tới đó.

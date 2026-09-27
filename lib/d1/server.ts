@@ -5,6 +5,8 @@ import { createD1Client, ADMIN_BYPASS, type ColumnTypes, type PolicyRegistry, ty
 import snapshot from "../../scripts/d1/schema-snapshot.json";
 import registryJson from "../../scripts/d1/policy-registry.json";
 import predicatesJson from "../../scripts/d1/manual-predicates.json";
+import { withRealtimePublishing } from "../realtime/publishing-db";
+import { hubNameForTable, type ChangeSignal } from "../realtime/watched";
 
 /**
  * Client D1 phía máy chủ, thay cho createServerCloudflareClient().
@@ -18,11 +20,45 @@ const types = (snapshot as { columns?: ColumnTypes }).columns ?? (snapshot as un
 const registry = registryJson as unknown as PolicyRegistry;
 const predicates = predicatesJson as unknown as ManualPredicates;
 
-/** Binding D1 thô. Dùng cho lớp auth, vốn làm việc dưới mức phân quyền. */
+/**
+ * Binding D1 dưới mức phân quyền. Dùng cho lớp auth và cho RPC.
+ *
+ * Được bọc để phát tín hiệu realtime sau mỗi lệnh ghi vào bảng được theo dõi -
+ * đây là chỗ DUY NHẤT `env.DB` được chạm, nên bọc ở đây là phủ mọi đường ghi:
+ * bộ dựng truy vấn, 13 câu SQL thô trong rpc.ts, cron, trang quản trị. Xem
+ * lib/realtime/publishing-db.ts. Câu không ghi vào bảng được theo dõi đi thẳng
+ * vào D1 gốc, không qua lớp nào.
+ */
 export function getDb(): D1Database {
   const { env } = getCloudflareContext();
   if (!env.DB) throw new Error("Thiếu binding DB. Kiểm tra d1_databases trong wrangler.jsonc.");
-  return env.DB;
+  return withRealtimePublishing(env.DB, publishSignals);
+}
+
+type RealtimeNamespace = {
+  idFromName(name: string): unknown;
+  get(id: unknown): { fetch(url: string, init: RequestInit): Promise<Response> };
+};
+
+/**
+ * Gửi tín hiệu tới hub của từng bảng. Chạy trong `waitUntil`, SAU khi phản hồi
+ * đã đi - nên lệnh ghi không chờ realtime, và realtime hỏng không làm chậm hay
+ * hỏng lệnh ghi. Thiếu binding (chạy `next dev` không qua worker) thì im lặng
+ * bỏ qua: realtime là tầng phụ, không phải điều kiện để ghi được dữ liệu.
+ */
+function publishSignals(signals: ChangeSignal[]) {
+  const { env, ctx } = getCloudflareContext();
+  const ns = (env as unknown as { REALTIME?: RealtimeNamespace }).REALTIME;
+  if (!ns) return;
+  const byTable = new Map<string, ChangeSignal[]>();
+  for (const s of signals) (byTable.get(s.table) ?? byTable.set(s.table, []).get(s.table)!).push(s);
+  for (const [table, list] of byTable) {
+    const stub = ns.get(ns.idFromName(hubNameForTable(list[0].table)));
+    const p = stub
+      .fetch("https://realtime-hub/publish", { method: "POST", body: JSON.stringify(list) })
+      .catch((err) => console.error(`[realtime] không phát được tín hiệu cho ${table}:`, err));
+    ctx.waitUntil(p);
+  }
 }
 
 /**

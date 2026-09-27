@@ -140,6 +140,39 @@ export const PERSONAL_OPS_LESSONS: Lesson[] = [
         type: "lead",
         text: "Hai mươi chặng trước là kiến thức. Chặng này về thứ biến kiến thức thành kết quả - và thất bại phổ biến nhất ở đây không phải hiểu sai, mà là hiểu đúng rồi không duy trì được.",
       },
+      {
+        type: "feynman",
+        title: "Làm việc có hệ thống đơn giản hơn bạn nghĩ",
+        intro: "Bộ công cụ làm việc giống hộp đồ nghề của thợ: không cần cả trăm món, chỉ cần vài món dùng mỗi ngày và luôn để đúng chỗ.",
+        columns: [
+          "Thành phần",
+          "Hộp đồ nghề",
+          "Công cụ làm việc"
+        ],
+        rows: [
+          [
+            "Món cốt lõi",
+            "Búa, tua vít, thước",
+            "Trình soạn mã, Git, dòng lệnh, công cụ ghi chú"
+          ],
+          [
+            "Để đúng chỗ",
+            "Lấy ra là có ngay",
+            "Phím tắt, cấu hình lưu lại, dùng lại được"
+          ],
+          [
+            "Sổ tay thợ",
+            "Ghi số đo, mẹo sửa",
+            "Một tệp ghi chú chung cho mọi việc"
+          ],
+          [
+            "Quá nhiều đồ",
+            "Hộp nặng, không tìm ra gì",
+            "Mười công cụ mà không duy trì được cái nào"
+          ]
+        ],
+        oneLiner: "Ít công cụ nhưng dùng mỗi ngày tốt hơn nhiều công cụ mà không duy trì được."
+      },
       { type: "heading", text: "Bốn công cụ, một tệp ghi chú" },
       {
         type: "conceptTable",

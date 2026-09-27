@@ -9,6 +9,7 @@ import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/cloudfla
 import { roundedLessonCount } from "@/lib/track-totals";
 import { animateCountTo } from "@/lib/animate-count";
 import { TRACKS } from "@/lib/tracks";
+import { LEARNING_FLOWS } from "@/lib/learning-flows";
 import Logo from "@/components/Logo";
 import LiveNumber from "@/components/LiveNumber";
 import ScrollReveal from "@/components/home/ScrollReveal";
@@ -634,12 +635,60 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ── HỌC THEO NHU CẦU ── */}
+        {/* Chương 1, ngay dưới hero: người non-tech đến vì một VIỆC muốn làm,
+            nên câu đầu tiên trang chủ hỏi họ là "bạn muốn làm gì", trước cả
+            phần xem trước giao diện. Mỗi thẻ mở một hành trình trong
+            lib/learning-flows.ts. */}
+        <section className="band band-paper band-divider relative py-6 sm:py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ScrollReveal className="max-w-2xl mb-6">
+              <ChapterHeading
+                index={1}
+                eyebrow={t.learningFlows.homeEyebrow}
+                title={t.learningFlows.homeTitle}
+                sub={t.learningFlows.homeSub}
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={0.06}>
+              <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {LEARNING_FLOWS.map((flow) => (
+                  <li key={flow.id}>
+                    <Link
+                      href={`/hoc-theo-nhu-cau/${flow.id}`}
+                      className="group flex h-full flex-col rounded-xl border border-stone-200 bg-white p-4 transition-colors hover:border-emerald-600 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-emerald-500"
+                    >
+                      <span className="text-3xl" aria-hidden>{flow.emoji}</span>
+                      <span className="mt-2 text-xs font-semibold text-ink-muted">“{t.learningFlows.flows[flow.id].need}”</span>
+                      <span className="mt-1 font-black text-ink-max">{t.learningFlows.flows[flow.id].title}</span>
+                      <span className="mt-3 inline-flex items-center gap-1 text-xs font-black text-accent-strong">
+                        {t.learningFlows.openFlow}
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 max-w-3xl border-l-4 border-amber-400 pl-4 text-[15px] font-bold leading-7 text-ink-max">
+                {t.learningFlows.flows.website.steps.house.oneLiner}
+              </p>
+              <Link
+                href="/hoc-theo-nhu-cau"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-black text-accent-strong underline-offset-4 hover:underline"
+              >
+                {t.learningFlows.homeAll}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </ScrollReveal>
+          </div>
+        </section>
+
         {/* ── PRODUCT PREVIEW ── */}
         <section className="band band-paper band-divider relative py-6 sm:py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-2xl mb-8">
             <ChapterHeading
-              index={1}
+              index={2}
               eyebrow={t.home.preview.eyebrow}
               title={t.home.preview.title}
               sub={t.home.preview.sub}
@@ -686,7 +735,7 @@ export default function HomePage() {
                 thẳng một cột. */}
             <ScrollReveal className="mb-5">
               <ChapterHeading
-                index={2}
+                index={3}
                 eyebrow={t.home.social.eyebrow}
                 title={t.home.social.title}
                 sub={t.home.social.sub}
@@ -708,7 +757,7 @@ export default function HomePage() {
               đủ tương phản, và bóng chữ là thứ chỉ cần khi đặt chữ lên ảnh. */}
           <ScrollReveal className="max-w-3xl mb-4">
             <ChapterHeading
-              index={3}
+              index={4}
               tone="dark"
               eyebrow={t.home.kingdom.eyebrow}
               title={t.home.kingdom.title}
@@ -727,7 +776,7 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="max-w-3xl mb-4">
               <ChapterHeading
-                index={4}
+                index={5}
                 eyebrow={t.home.ecosystem.eyebrow}
                 sub={t.home.ecosystem.sub}
                 title={

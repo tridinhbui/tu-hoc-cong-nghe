@@ -21,7 +21,8 @@ import type { CloudflareClient } from "@/lib/cloudflare";
  *  07:00 giờ Việt Nam.
  *
  *  HẠ CÁNH MỀM KHI CHƯA CHẠY MIGRATION. Migration trong repo này chạy TAY qua
- *  SQL Editor (xem scripts/check-migrations.mjs), nên khoảng giữa lúc deploy mã
+ *  SQL Editor (thời Supabase - trên D1 hàm RPC nằm trong lib/d1/rpc.ts
+ *  nên nhánh này không còn kích hoạt), nên khoảng giữa lúc deploy mã
  *  và lúc ai đó chạy SQL là chuyện thường. `PGRST202` nghĩa là chưa có hàm; khi
  *  đó rơi về đúng ba truy vấn cũ. Thanh điều hướng vẫn vẽ đủ, chỉ là chưa
  *  tiết kiệm được gì - thay vì trống trơn trên mọi trang. */

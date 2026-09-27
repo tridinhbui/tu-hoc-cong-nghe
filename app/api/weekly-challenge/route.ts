@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { applyBooster, getXpMultiplier } from "@/lib/boosters";
 import { createAdminClient } from "@/lib/cloudflare-admin";
 import { getServerDictionary } from "@/lib/i18n/server";
 
@@ -138,6 +139,8 @@ export async function POST(request: NextRequest) {
     if (score === 5) {
       xpEarned = Math.min(50, Math.floor(xpEarned * 1.5));
     }
+    // Booster nhân trước trần 50 - xem lib/boosters.ts.
+    xpEarned = Math.min(50, applyBooster(xpEarned, await getXpMultiplier(cloudflare)));
   }
 
   // Lưu lịch sử

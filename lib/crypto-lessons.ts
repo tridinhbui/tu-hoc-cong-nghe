@@ -148,6 +148,44 @@ export const CRYPTO_LESSONS: Lesson[] = [
         type: "lead",
         text: "Chặng này không khuyên bạn dùng và cũng không khuyên bạn tránh. Nó đặt chuỗi khối vào cùng khung mà mười bốn chặng trước đã dùng cho mọi lựa chọn kỹ thuật khác: nó giải bài toán gì, và cái giá là bao nhiêu.",
       },
+      {
+        type: "feynman",
+        title: "Blockchain đơn giản hơn bạn nghĩ",
+        intro: "Hãy tưởng tượng một cuốn sổ ghi nợ của cả xóm, mà nhà nào cũng giữ một bản sao, và chỉ được viết thêm chứ không được tẩy.",
+        columns: [
+          "Thành phần",
+          "Cuốn sổ của xóm",
+          "Blockchain"
+        ],
+        rows: [
+          [
+            "Sổ cái",
+            "Cuốn sổ ghi ai nợ ai",
+            "Danh sách mọi giao dịch"
+          ],
+          [
+            "Nhiều bản sao",
+            "Nhà nào cũng giữ một bản",
+            "Hàng nghìn máy giữ cùng một dữ liệu"
+          ],
+          [
+            "Chỉ ghi thêm",
+            "Không ai được tẩy trang cũ",
+            "Khối mới nối vào sau, quá khứ không sửa được"
+          ],
+          [
+            "Đồng thuận",
+            "Cả xóm đối chiếu rồi mới ghi",
+            "Các máy thống nhất trước khi thêm khối"
+          ],
+          [
+            "Cái giá",
+            "Ghi một dòng mà cả xóm phải chép",
+            "Chậm và tốn hơn một cơ sở dữ liệu thường"
+          ]
+        ],
+        oneLiner: "Blockchain là cuốn sổ cả xóm cùng giữ và không ai tẩy được - đổi lại, ghi một dòng rất tốn công."
+      },
       { type: "heading", text: "Câu hỏi quen thuộc: nó giải bài toán gì" },
       {
         type: "paragraph",

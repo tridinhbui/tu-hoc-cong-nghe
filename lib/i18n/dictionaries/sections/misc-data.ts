@@ -41,7 +41,7 @@
 // vẫn tham chiếu `Dictionary["authErrors"]` - build hỏng, và chú thích trong
 // chính tệp đó nói rằng chuỗi "nằm ở misc-data.ts". Nên chúng ở đây.
 //
-// Mẫu khớp trong auth-error-messages.ts là TIẾNG ANH THÔ của Supabase và không
+// Mẫu khớp trong auth-error-messages.ts là TIẾNG ANH THÔ của Cloudflare và không
 // bao giờ dịch; thứ được dịch là câu trả về. Bản tiếng Anh cũng không phải
 // chuỗi thô ấy mà là câu viết lại cho người đọc, cùng giọng với bản Việt.
 //

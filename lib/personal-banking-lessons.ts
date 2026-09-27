@@ -144,6 +144,39 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         type: "lead",
         text: "Chặng này đi vào phần bên dưới mọi thứ bạn đã dựng: hệ điều hành và mạng. Bài đầu tiên bắt đầu từ đơn vị nhỏ nhất mà bạn sẽ nhắc tới hằng ngày - một tiến trình.",
       },
+      {
+        type: "feynman",
+        title: "Hệ điều hành đơn giản hơn bạn nghĩ",
+        intro: "Tệp mã trên ổ đĩa giống một cuốn sách công thức nằm trên kệ. Tiến trình là lúc đầu bếp mở sách ra và đang nấu thật.",
+        columns: [
+          "Thành phần",
+          "Trong nhà bếp",
+          "Trong máy tính"
+        ],
+        rows: [
+          [
+            "Tệp",
+            "Cuốn công thức nằm im trên kệ",
+            "Chương trình lưu trên ổ đĩa"
+          ],
+          [
+            "Tiến trình",
+            "Đầu bếp đang nấu theo công thức đó",
+            "Chương trình đang chạy, có bộ nhớ riêng"
+          ],
+          [
+            "Hệ điều hành",
+            "Bếp trưởng chia bếp, chia nồi cho từng người",
+            "Chia CPU, bộ nhớ cho các tiến trình"
+          ],
+          [
+            "Mạng",
+            "Người chạy bàn mang món sang bàn khác",
+            "Gửi dữ liệu giữa các máy theo giao thức chung"
+          ]
+        ],
+        oneLiner: "Tệp là công thức nằm trên kệ, tiến trình là đầu bếp đang nấu, và hệ điều hành là bếp trưởng."
+      },
       { type: "heading", text: "Tệp thì nằm im, tiến trình thì sống" },
       {
         type: "paragraph",

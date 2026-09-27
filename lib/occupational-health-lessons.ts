@@ -153,6 +153,39 @@ export const OCCUPATIONAL_HEALTH_LESSONS: Lesson[] = [
         "text": "Chặng này về những rủi ro mà nghề lập trình đặt lên chính người làm nghề. Bài đầu là rủi ro lớn nhất trong số đó, và cũng là rủi ro bị hiểu sai nhiều nhất."
       },
       {
+        "type": "feynman",
+        "title": "Hiểu về kiệt sức đơn giản hơn bạn nghĩ",
+        "intro": "Năng lượng của bạn giống pin điện thoại. Kiệt sức không phải do dùng nhiều, mà do chạy một ứng dụng ngốn pin mà bạn không tắt được.",
+        "columns": [
+          "Thành phần",
+          "Pin điện thoại",
+          "Người làm nghề"
+        ],
+        "rows": [
+          [
+            "Dung lượng",
+            "Pin đầy mỗi sáng",
+            "Sức lực sau một đêm ngủ đủ"
+          ],
+          [
+            "Ứng dụng ngốn pin",
+            "Chạy nền, không tắt được",
+            "Việc bạn không kiểm soát được: hạn chót vô lý, sửa mãi một lỗi của người khác"
+          ],
+          [
+            "Pin chai",
+            "Sạc đầy mà vẫn nhanh hết",
+            "Nghỉ cuối tuần mà thứ Hai vẫn mệt"
+          ],
+          [
+            "Sạc đúng cách",
+            "Tắt ứng dụng ngốn pin",
+            "Lấy lại quyền kiểm soát, nói không, nghỉ thật"
+          ]
+        ],
+        "oneLiner": "Kiệt sức không đến từ làm nhiều, mà từ làm nhiều vào thứ bạn không kiểm soát được."
+      },
+      {
         "type": "heading",
         "text": "Điều ngược trực giác"
       },

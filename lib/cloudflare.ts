@@ -9,11 +9,9 @@
  * nghĩa người đang đăng nhập, với policy registry làm thay RLS - xem
  * lib/d1/wire.ts.
  *
- * Những gì CHƯA có backend thì báo lỗi rõ ràng, không giả vờ thành công:
- * `storage` (đã chuyển sang /api/uploads/*) ném lỗi chỉ đường; `channel`
- * (realtime) chưa có hạ tầng trên Cloudflare - nó cảnh báo một lần trên
- * console mỗi topic và trả trạng thái CHANNEL_ERROR cho callback subscribe,
- * đúng cách supabase-js báo một kênh không nối được.
+ * `storage` đã chuyển sang /api/uploads/* (xem lib/r2/storage.ts) và ném lỗi
+ * chỉ đường nếu ai gọi. `channel` chạy trên Durable Objects - xem
+ * lib/realtime/client-channel.ts; trước đây nó là một stub trả CHANNEL_ERROR.
  */
 import {
   getCurrentUser,
@@ -22,6 +20,7 @@ import {
   type CachedUser,
 } from "@/lib/current-user";
 import type { WireOp } from "@/lib/d1/wire";
+import { CloudflareRealtimeChannel } from "@/lib/realtime/client-channel";
 
 export type CloudflareUser = {
   id: string;
@@ -120,25 +119,20 @@ function toCfUser(u: NonNullable<CachedUser>): CloudflareUser {
   };
 }
 
-const warnedTopics = new Set<string>();
 
-function unavailableChannel(topic: string): RealtimeChannel {
-  if (!warnedTopics.has(topic)) {
-    warnedTopics.add(topic);
-    console.warn(`[realtime] Kênh "${topic}" chưa có hạ tầng trên Cloudflare - không nhận cập nhật tức thời.`);
-  }
-  const c: RealtimeChannel = {
-    on: () => c,
-    subscribe: (cb?: (status: string) => void) => {
-      if (cb) setTimeout(() => cb("CHANNEL_ERROR"), 0);
-      return c;
-    },
-    send: async () => "error",
-    track: async () => "error",
-    untrack: async () => "error",
-    presenceState: () => ({}),
-  };
-  return c;
+
+/**
+ * Đọc lại MỘT hàng sau tín hiệu realtime, qua /api/db - tức dưới danh nghĩa
+ * người đang đăng nhập, với policy registry ép quyền. Đây là chỗ thay cho RLS
+ * của postgres_changes: hub chỉ phát id, và ai không được đọc hàng đó thì nhận
+ * null ở đây, nên handler của họ không bao giờ chạy.
+ */
+async function fetchRealtimeRow(table: string, id: number): Promise<Record<string, unknown> | null> {
+  const r = await post("/api/db", {
+    table,
+    ops: [["select", "*"], ["eq", "id", id], ["maybeSingle"]],
+  });
+  return r.error ? null : ((r.data as Record<string, unknown> | null) ?? null);
 }
 
 const client: CloudflareClient = {
@@ -209,10 +203,17 @@ const client: CloudflareClient = {
   rpc(fn, args) {
     return remoteQuery(() => post("/api/db/rpc", { name: fn, params: args ?? {} }));
   },
-  channel(topic) {
-    return unavailableChannel(topic);
+  channel(topic, options) {
+    // Kênh MỚI mỗi lần gọi - không bao giờ trả kênh cũ cùng tên. Xem
+    // lib/realtime/client-channel.ts về lỗi từng làm sập mọi trang có chuông.
+    return new CloudflareRealtimeChannel(topic, options, fetchRealtimeRow) as unknown as RealtimeChannel;
   },
-  removeChannel() {
+  removeChannel(channel?: unknown) {
+    // Trước đây là no-op: một kênh stub không mở gì nên không có gì để đóng.
+    // Giờ mỗi kênh giữ WebSocket thật - không đóng ở đây thì mỗi lần rời trang
+    // để lại một kết nối mồ côi, và presence của người đó không bao giờ rời phòng.
+    const c = channel as { unsubscribe?: () => Promise<unknown> } | undefined;
+    void c?.unsubscribe?.();
     return "ok";
   },
   storage: {

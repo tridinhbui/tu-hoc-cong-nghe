@@ -30,6 +30,8 @@ import { interactiveChartsVi, interactiveChartsEn } from "./interactive-charts";
 import { interactiveEconVi, interactiveEconEn } from "./interactive-econ";
 import { interactiveRestVi, interactiveRestEn } from "./interactive-rest";
 import { learningPathVi, learningPathEn } from "./learning-path";
+import { learningFlowsVi, learningFlowsEn } from "./learning-flows";
+import { buildingGamesVi, buildingGamesEn } from "./building-games";
 import { leaderboardHonorsVi, leaderboardHonorsEn } from "./leaderboard-honors";
 import { rpgBuildingsCopyVi, rpgBuildingsCopyEn } from "./rpg-buildings-copy";
 import { legalChatVi, legalChatEn } from "./legal-chat";
@@ -82,6 +84,8 @@ export const viSections = {
   ...interactiveEconVi,
   ...interactiveRestVi,
   ...learningPathVi,
+  ...learningFlowsVi,
+  ...buildingGamesVi,
   ...leaderboardHonorsVi,
   ...rpgBuildingsCopyVi,
   ...legalChatVi,
@@ -136,6 +140,8 @@ export const enSections: typeof viSections = {
   ...interactiveEconEn,
   ...interactiveRestEn,
   ...learningPathEn,
+  ...learningFlowsEn,
+  ...buildingGamesEn,
   ...leaderboardHonorsEn,
   ...rpgBuildingsCopyEn,
   ...legalChatEn,

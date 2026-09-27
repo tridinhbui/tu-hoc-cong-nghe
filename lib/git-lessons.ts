@@ -3,7 +3,7 @@ import type { Lesson } from "./lesson-types";
 // Chặng "Git & kho mã chung" (ids 1301-1308, personal track).
 //
 // Tám bài này thay cho chặng thuế TNCN cũ đứng ở đúng dải id này. Giữ
-// nguyên id là có chủ đích: `user_progress` trên Supabase theo dõi tiến
+// nguyên id là có chủ đích: `user_progress` trên Cloudflare theo dõi tiến
 // trình bằng chính những số này, nên đổi id là xoá tiến trình của mọi
 // người học đã đi qua chặng.
 //
@@ -144,6 +144,39 @@ export const GIT_LESSONS: Lesson[] = [
       {
         type: "lead",
         text: "Trước khi học lệnh nào, hãy nhìn cách làm mà gần như ai cũng từng dùng: chép cả thư mục ra thành bản lưu, đặt tên kèm ngày tháng, và khi cần thì đối chiếu bằng mắt. Cách này hỏng không phải vì tốn dung lượng. Nó hỏng vì đánh mất thứ duy nhất thật sự quan trọng: lý do.",
+      },
+      {
+        type: "feynman",
+        title: "Git đơn giản hơn bạn nghĩ",
+        intro: "Hãy tưởng tượng Git là cuốn nhật ký của một dự án: mỗi lần bạn thay đổi, nó ghi lại đã sửa gì, ai sửa, và vì sao.",
+        columns: [
+          "Thành phần",
+          "Trong cuốn nhật ký",
+          "Trong Git"
+        ],
+        rows: [
+          [
+            "Commit",
+            "Một trang nhật ký có ghi ngày giờ",
+            "Một lần lưu thay đổi, kèm lời nhắn giải thích"
+          ],
+          [
+            "Lịch sử",
+            "Lật lại các trang cũ",
+            "Xem lại, hoặc quay về bất kỳ phiên bản nào"
+          ],
+          [
+            "Nhánh",
+            "Viết nháp ở một cuốn sổ riêng",
+            "Thử ý tưởng mới mà không đụng bản chính"
+          ],
+          [
+            "Merge",
+            "Chép phần nháp hay vào sổ chính",
+            "Gộp thay đổi của một nhánh về bản chính"
+          ]
+        ],
+        oneLiner: "Git là cuốn nhật ký của dự án: ghi mọi thay đổi để bạn luôn quay lại được."
       },
       { type: "heading", text: "Thứ bạn mất khi chép thư mục" },
       {

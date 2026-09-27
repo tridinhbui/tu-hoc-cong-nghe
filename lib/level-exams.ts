@@ -4797,3 +4797,23 @@ export function checkExamOverdue(record?: UserExamRecord): boolean {
   const daysDiff = (Date.now() - record.passedAt) / (1000 * 60 * 60 * 24);
   return daysDiff > RECERTIFICATION_DAYS;
 }
+
+/** Phạt thi lại định kỳ, tính LẠI mỗi lần chứ không phải sổ trừ vĩnh viễn.
+ *
+ *  Chỉ xét bài thi của cấp CAO NHẤT đã đỗ, lấy lần đỗ gần nhất: quá
+ *  RECERTIFICATION_DAYS ngày thì trừ `penaltyXpIfOverdue` của cấp đó, và thi đỗ
+ *  lại là hết phạt ngay ở lần tính kế tiếp. Không cộng dồn qua các cấp - một
+ *  người đỗ 10 cấp rồi nghỉ hai tuần không nên mất vài nghìn XP một lúc. */
+export function getRecertPenaltyXp(
+  rows: { level: number; passed_at: string }[],
+  now: number = Date.now()
+): number {
+  if (!rows.length) return 0;
+  const top = Math.max(...rows.map((r) => r.level));
+  const latest = Math.max(
+    ...rows.filter((r) => r.level === top).map((r) => new Date(r.passed_at).getTime() || 0)
+  );
+  const overdue = checkExamOverdue({ passedLevel: top, passedAt: latest, score: 0 } as UserExamRecord);
+  if (!overdue || now < latest) return 0;
+  return LEVEL_EXAMS[top]?.penaltyXpIfOverdue ?? 0;
+}

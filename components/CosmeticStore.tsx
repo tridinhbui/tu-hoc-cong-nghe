@@ -11,7 +11,7 @@ import TechCharacterAvatar, { CharacterEquipments, ITEM_DESCRIPTIONS } from "@/c
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
 import { useI18n } from "@/lib/i18n/context";
-import { format } from "@/lib/i18n";
+import { format, intlLocale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /**
@@ -36,16 +36,6 @@ interface CosmeticItem {
   price: number;
 }
 
-/** Mốc hết hạn của thẻ nhân đôi XP: 24 giờ kể từ lúc kích hoạt.
- *
- *  Ngoài thân component vì Date.now() bên trong bị React Compiler chặn - nó
- *  không phân biệt được hàm chỉ chạy từ onClick với hàm chạy lúc render.
- */
-const BOOSTER_HOURS = 24;
-function boosterExpiry(): number {
-  return Date.now() + BOOSTER_HOURS * 60 * 60 * 1000;
-}
-
 function buildCosmeticItems(t: Dictionary): CosmeticItem[] {
   const names = t.cosmeticStore.items;
   return [
@@ -63,7 +53,7 @@ function buildCosmeticItems(t: Dictionary): CosmeticItem[] {
 }
 
 export default function CosmeticStore({ userId, onBack }: { userId: string; onBack?: () => void }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const cloudflare = createClient();
   const [showCustomizer, setShowCustomizer] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -149,6 +139,26 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
       return;
     }
 
+    // Booster là hàng tiêu hao có hạn, không phải món sở hữu: mỗi lần mua trả
+    // coin và nối thêm 24 giờ vào user_active_boosters (lib/d1/rpc.ts).
+    if (item.asset_type === "booster") {
+      try {
+        const { data, error } = await cloudflare
+          .rpc("activate_booster", { p_asset_key: item.id })
+          .select("coins_left, expires_at")
+          .single();
+        if (error) throw error;
+        const res = data as { coins_left: number; expires_at: string };
+        setCoins(res.coins_left);
+        window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: res.coins_left } }));
+        const until = new Date(res.expires_at).toLocaleString(intlLocale(locale), { hour: "2-digit", minute: "2-digit", day: "2-digit", month: "2-digit" });
+        toast.success(format(t.cosmeticStore.toastBoosterActivated, { until }));
+      } catch (error: unknown) {
+        toast.error(format(t.cosmeticStore.toastPurchaseFailed, { error: errorMessage(error) }));
+      }
+      return;
+    }
+
     try {
       const { data, error } = await cloudflare
         .rpc("purchase_cosmetic", { p_asset_key: item.id })
@@ -173,14 +183,6 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
 
   const handleToggleEquip = async (item: CosmeticItem) => {
     // Special activation for boosters / badges / chat effects
-    if (item.asset_type === "booster") {
-      const expiry = boosterExpiry();
-      try {
-        localStorage.setItem(`thtcdn_xp_booster_until_${userId}`, String(expiry));
-      } catch (e) {}
-      toast.success(t.cosmeticStore.toastBoosterActivated);
-      return;
-    }
     if (item.asset_type === "title") {
       try {
         localStorage.setItem(`thtcdn_vip_badge_${userId}`, t.cosmeticStore.vipDiamond);
@@ -344,7 +346,8 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
             return item.asset_type === selectedCategory;
           })
           .map((item) => {
-          const owned = ownedAssets.has(item.id);
+          // Booster luôn hiện nút mua: mua lại là nối thêm 24 giờ.
+          const owned = item.asset_type !== "booster" && ownedAssets.has(item.id);
           const slot = item.asset_type as keyof CharacterEquipments;
           const isEquipped = equippedGear[slot] === item.id;
 

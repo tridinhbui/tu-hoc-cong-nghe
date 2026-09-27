@@ -90,7 +90,7 @@ export const bossStudyWorldVi = {
     reviewNotePart1:
       "Số node hợp lý, tính bằng đỉnh tải chia dung lượng mỗi node rồi nhân hệ số dự phòng, là ~",
     reviewNotePart2: ".",
-    toastSuccess: "🎉 PHƯƠNG ÁN ĐƯỢC DUYỆT! Bạn đạt {score}/100 điểm, nhận +120 XP & 80 Coins!",
+    toastSuccess: "🎉 PHƯƠNG ÁN ĐƯỢC DUYỆT! Bạn đạt {score}/100 điểm, nhận +50 XP!",
     toastPartial: "Phương án hoàn tất với {score}/100 điểm. Định mức còn lệch khá xa so với tải thật!",
     synergyTechCorp: "Suy luận mô hình AI, tải dồn thành từng đợt",
     synergyRetailChain: "Đợt khuyến mãi, tải tăng gấp bốn trong hai giờ",
@@ -182,7 +182,7 @@ export const bossStudyWorldEn: typeof bossStudyWorldVi = {
     reviewNotePart1:
       "The sensible node count - peak load divided by per-node capacity, times the headroom multiple - is ~",
     reviewNotePart2: ".",
-    toastSuccess: "🎉 PLAN APPROVED! You scored {score}/100, earning +120 XP & 80 Coins!",
+    toastSuccess: "🎉 PLAN APPROVED! You scored {score}/100, earning +50 XP!",
     toastPartial: "Plan submitted with {score}/100 points. Your sizing was well off the real load!",
     synergyTechCorp: "AI model inference, load arrives in bursts",
     synergyRetailChain: "Flash sales, load quadruples within two hours",

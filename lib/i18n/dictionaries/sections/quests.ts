@@ -1,9 +1,9 @@
-// Bảy nhiệm vụ hằng ngày, khoá theo `id` - cùng `id` mà `lib/supabase-quests.ts`
+// Bảy nhiệm vụ hằng ngày, khoá theo `id` - cùng `id` mà `lib/cloudflare-quests.ts`
 // dùng để ghi tiến độ, nên nó ổn định theo đúng nghĩa cần thiết ở đây.
 //
 // Chuỗi của chúng nằm trong THÂN HÀM `getDailyQuests()` chứ không phải một
 // `const` ở đầu tệp, nên luật `[data]` của scripts/i18n-coverage.mjs không thấy:
-// `node scripts/i18n-coverage.mjs lib/supabase-quests.ts` báo 0 trong khi bảy
+// `node scripts/i18n-coverage.mjs lib/cloudflare-quests.ts` báo 0 trong khi bảy
 // nhiệm vụ hiện tiếng Việt trên dashboard. Đó là điểm mù thứ ba mà AGENTS.md đã
 // đoán trước ("display strings that pass through a local variable"), và nó có
 // thật - không tìm ra bằng thước đo, tìm ra bằng ảnh chụp màn hình.

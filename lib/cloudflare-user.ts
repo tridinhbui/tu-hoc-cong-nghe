@@ -5,7 +5,7 @@ import { getTotalGameXp } from "@/lib/games";
 import { getTotalReferralXp, rewardMyReferralIfPending } from "@/lib/referrals";
 import { getTotalQuestXp } from "@/lib/cloudflare-quests";
 import { getTotalChestXp } from "@/lib/chests";
-import { getLevelByXp, XP_PER_LESSON } from "@/lib/levels";
+import { getLevelByXp, getStreakMilestoneXp, XP_PER_LESSON } from "@/lib/levels";
 import { getDictionary, readLocaleCookie } from "@/lib/i18n";
 
 // Các môn CFA đã bị gỡ, nên không còn bài nào tính là "bài CFA".
@@ -653,6 +653,8 @@ export async function recalculateUserStats(userId: string) {
     cfaModuleProgressRes,
     userStatsRes,
     careerMissionXp,
+    streakRes,
+    levelExamsRes,
   ] = await Promise.all([
     getTotalQuizXp(userId).catch(() => 0), // "Kiểm tra" standalone quiz sessions
     getTotalGameXp(userId).catch(() => 0), // best-per-game mini-game XP (lib/games.ts)
@@ -669,6 +671,8 @@ export async function recalculateUserStats(userId: string) {
     Promise.resolve(cloudflare.from("user_stats").select("xp_spent").eq("user_id", userId).maybeSingle()).catch(() => ({ data: null, error: null })),
     // Nhiệm vụ nghề hằng tuần đã gỡ cùng /api/career-profile/claim.
     Promise.resolve(0),
+    Promise.resolve(cloudflare.from("user_streaks").select("longest_streak").eq("user_id", userId).maybeSingle()).catch(() => ({ data: null, error: null })),
+    Promise.resolve(cloudflare.from("user_level_exams").select("level, passed_at").eq("user_id", userId)).catch(() => ({ data: null, error: null })),
   ]);
 
   // Academic game bonus: +3 XP for 100% correct, +1 XP for >= 80% correct, capped at +30 XP overall.
@@ -748,9 +752,18 @@ export async function recalculateUserStats(userId: string) {
   // activity table. 20260816_bound_xp_ledger_sources.sql adds the DB-side
   // constraint; this keeps the formula honest before that migration lands.
   const xpSpent = Math.max(0, (userStatsRes as { data: { xp_spent: number } | null })?.data?.xp_spent ?? 0);
+  // Thưởng mốc streak 3/7/14/30 ngày theo KỶ LỤC - xem getStreakMilestoneXp.
+  const streakXp = getStreakMilestoneXp(
+    Number((streakRes as { data: { longest_streak: number } | null })?.data?.longest_streak) || 0
+  );
+  // Quá hạn thi lại cấp cao nhất → trừ tạm tới khi thi đỗ lại (lib/level-exams.ts).
+  const levelExamRows = (levelExamsRes as { data: { level: number; passed_at: string }[] | null })?.data ?? [];
+  const recertPenaltyXp = levelExamRows.length
+    ? (await import("@/lib/level-exams")).getRecertPenaltyXp(levelExamRows)
+    : 0;
   const totalXp = Math.max(
     0,
-    (lessonsCompleted + cfaModulesDone) * XP_PER_LESSON + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp + careerMissionXp - xpSpent
+    (lessonsCompleted + cfaModulesDone) * XP_PER_LESSON + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp + careerMissionXp + streakXp - xpSpent - recertPenaltyXp
   );
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;

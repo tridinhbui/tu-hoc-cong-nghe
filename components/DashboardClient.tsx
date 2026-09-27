@@ -26,6 +26,7 @@ import StreakReminderManager from "@/components/StreakReminderManager";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
 import DashboardRecommendations from "@/components/DashboardRecommendations";
+import LearningGoalCard from "@/components/learning-flows/LearningGoalCard";
 import CommunityLearningNow from "@/components/CommunityLearningNow";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import DashboardArenaCard from "@/components/DashboardArenaCard";
@@ -2496,6 +2497,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               <div
                 className={`space-y-4 ${isLessonsView ? "" : "xl:min-h-0 xl:overflow-y-auto"}`}
               >
+                {/* Hành trình theo nhu cầu đứng trên gợi ý chung: nó trả lời
+                    "hôm nay học gì" bằng chính mục tiêu người học đã chọn. */}
+                {!isLessonsView && <LearningGoalCard />}
                 <DashboardRecommendations />
                 {/* Người thật, dưới phần gợi ý. Cố ý đặt SAU băng chuyền bài
                     học: thứ tự đó nói rằng đây là bằng chứng cho những gợi ý

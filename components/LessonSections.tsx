@@ -4,6 +4,7 @@ import React from "react";
 import type { LessonSectionBlock } from "@/lib/lesson-types";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import FormulaBlock from "@/components/FormulaBlock";
+import FeynmanCard from "@/components/learning-flows/FeynmanCard";
 import { useI18n } from "@/lib/i18n/context";
 
 function renderFormattedText(text: string, seenTerms: Set<string>): React.ReactNode {
@@ -171,6 +172,19 @@ export default function LessonSections({
                 {line}
               </p>
             ))}
+          </div>
+        );
+
+      case "feynman":
+        return (
+          <div key={i} className="text-base">
+            {block.title ? <h3 className="mb-3 text-xl font-black text-ink-max">{block.title}</h3> : null}
+            <FeynmanCard
+              badge={t.learningFlows.feynmanBadge}
+              hint={t.learningFlows.feynmanHint}
+              oneLinerLabel={t.learningFlows.oneLinerLabel}
+              copy={block}
+            />
           </div>
         );
 

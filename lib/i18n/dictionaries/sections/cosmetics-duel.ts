@@ -66,7 +66,7 @@ export const cosmeticsDuelVi = {
     toastNotEnoughCoins: "Bạn không đủ Coin. Hãy hoàn thành thêm bài học để tích lũy Coin!",
     toastPurchaseSuccess: "Chúc mừng! Bạn đã sở hữu thành công: {name}",
     toastPurchaseFailed: "Giao dịch không thành công: {error}",
-    toastBoosterActivated: "⚡ Đã kích hoạt Thẻ X2 XP Booster (24 giờ)! Bạn sẽ nhận gấp đôi XP khi hoàn thành bài học!",
+    toastBoosterActivated: "⚡ Đã kích hoạt X2 XP tới {until}!",
     toastVipEquipped: "💎 Đã trang bị Huy Hiệu VIP Kim Cương lên Hồ Sơ Cá Nhân & Bảng Xếp Hạng!",
     toastChatEffectEquipped: "🎉 Đã trang bị {name} cho Phòng Học Nhóm 3D!",
     toastUnequipped: "Đã tháo {name}",
@@ -75,7 +75,7 @@ export const cosmeticsDuelVi = {
     items: {
       booster_xp_24h: {
         name: "⚡ Thẻ X2 XP Booster (24 giờ)",
-        description: "Kích hoạt nhân đôi 100% XP nhận được khi hoàn thành bài học & bài thi trong 24 giờ tiếp theo.",
+        description: "Nhân đôi XP từ World Boss và Thử thách tuần trong 24 giờ (tối đa 50 XP/game). Mua thêm khi đang chạy sẽ cộng dồn thời gian.",
       },
       title_vip_diamond: {
         name: "💎 Huy Hiệu VIP Kim Cương",
@@ -184,7 +184,7 @@ export const cosmeticsDuelVi = {
     decreaseSmall: "Giảm -0.25%",
     increaseSmall: "Tăng +0.25%",
     increaseLarge: "Tăng +0.50% (Thắt chặt)",
-    toastSoftLanding: "🎉 ĐẠT CHỈ TIÊU HẠ CÁNH MỀM (SOFT LANDING)! Bạn nhận +100 XP & 50 Coins từ Fed!",
+    toastSoftLanding: "🎉 ĐẠT CHỈ TIÊU HẠ CÁNH MỀM (SOFT LANDING)! Bạn nhận +50 XP!",
   },
 };
 
@@ -252,7 +252,7 @@ export const cosmeticsDuelEn: typeof cosmeticsDuelVi = {
     toastNotEnoughCoins: "You don't have enough Coins. Finish more lessons to earn Coins!",
     toastPurchaseSuccess: "Congrats! You now own: {name}",
     toastPurchaseFailed: "Purchase failed: {error}",
-    toastBoosterActivated: "⚡ X2 XP Booster activated (24 hours)! You'll earn double XP for completed lessons!",
+    toastBoosterActivated: "⚡ 2x XP active until {until}!",
     toastVipEquipped: "💎 Diamond VIP Badge equipped on your Profile & Leaderboard!",
     toastChatEffectEquipped: "🎉 Equipped {name} for the 3D Study Room!",
     toastUnequipped: "Unequipped {name}",
@@ -261,7 +261,7 @@ export const cosmeticsDuelEn: typeof cosmeticsDuelVi = {
     items: {
       booster_xp_24h: {
         name: "⚡ X2 XP Booster Card (24 hours)",
-        description: "Activates a 100% XP bonus on lessons & quizzes completed in the next 24 hours.",
+        description: "Doubles XP from World Boss and the Weekly Challenge for 24 hours (up to 50 XP per game). Buying again while active extends the time.",
       },
       title_vip_diamond: {
         name: "💎 Diamond VIP Badge",
@@ -368,6 +368,6 @@ export const cosmeticsDuelEn: typeof cosmeticsDuelVi = {
     decreaseSmall: "Cut -0.25%",
     increaseSmall: "Hike +0.25%",
     increaseLarge: "Hike +0.50% (Tighten)",
-    toastSoftLanding: "🎉 SOFT LANDING ACHIEVED! You earned +100 XP & 50 Coins from the Fed!",
+    toastSoftLanding: "🎉 SOFT LANDING ACHIEVED! You earned +50 XP!",
   },
 };

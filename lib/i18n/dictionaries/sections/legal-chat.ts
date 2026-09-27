@@ -22,13 +22,13 @@ export const legalChatVi = {
       "Thông tin trên chỉ được dùng để: vận hành tài khoản và lưu tiến độ học tập của bạn, phản hồi góp ý/hỗ trợ, và cải thiện nội dung bài học. Chúng tôi không bán dữ liệu cá nhân của bạn cho bên thứ ba.",
     section3Heading: "3. Nơi lưu trữ dữ liệu",
     section3Body:
-      "Dữ liệu tài khoản và tiến độ học tập được lưu trữ trên hạ tầng của Supabase (nhà cung cấp cơ sở dữ liệu/backend). Nếu bạn đăng nhập bằng Google, một phần thông tin (tên, ảnh đại diện, email) được lấy từ tài khoản Google của bạn theo sự đồng ý khi đăng nhập.",
+      "Dữ liệu tài khoản và tiến độ học tập được lưu trữ trên hạ tầng của Cloudflare (nhà cung cấp cơ sở dữ liệu/backend). Nếu bạn đăng nhập bằng Google, một phần thông tin (tên, ảnh đại diện, email) được lấy từ tài khoản Google của bạn theo sự đồng ý khi đăng nhập.",
     section4Heading: "4. Quyền của bạn",
     section4Body:
       "Bạn có thể yêu cầu xem, chỉnh sửa, hoặc xóa dữ liệu tài khoản của mình bất cứ lúc nào bằng cách liên hệ trực tiếp qua email bên dưới. Xóa tài khoản sẽ xóa toàn bộ tiến độ học tập liên quan.",
     section5Heading: "5. Bảo mật",
     section5Body:
-      "Mật khẩu được mã hóa và quản lý bởi Supabase Auth, chúng tôi không bao giờ nhìn thấy hoặc lưu trữ mật khẩu dạng văn bản thuần. Kết nối giữa trình duyệt và máy chủ được mã hóa qua HTTPS.",
+      "Mật khẩu được mã hóa và quản lý bởi Cloudflare Auth, chúng tôi không bao giờ nhìn thấy hoặc lưu trữ mật khẩu dạng văn bản thuần. Kết nối giữa trình duyệt và máy chủ được mã hóa qua HTTPS.",
     section6Heading: "6. Liên hệ",
     section6Part1: "Mọi câu hỏi về quyền riêng tư hoặc yêu cầu xóa dữ liệu, vui lòng liên hệ",
     section6Part2: ".",
@@ -126,13 +126,13 @@ export const legalChatEn: typeof legalChatVi = {
       "The information above is only used to: operate your account and save your learning progress, respond to feedback/support, and improve lesson content. We do not sell your personal data to third parties.",
     section3Heading: "3. Where data is stored",
     section3Body:
-      "Account data and learning progress are stored on Supabase's infrastructure (a database/backend provider). If you sign in with Google, some information (name, avatar, email) is taken from your Google account with your consent given at sign-in.",
+      "Account data and learning progress are stored on Cloudflare's infrastructure (a database/backend provider). If you sign in with Google, some information (name, avatar, email) is taken from your Google account with your consent given at sign-in.",
     section4Heading: "4. Your rights",
     section4Body:
       "You can request to view, edit, or delete your account data at any time by contacting us directly via the email below. Deleting your account will delete all related learning progress.",
     section5Heading: "5. Security",
     section5Body:
-      "Passwords are encrypted and managed by Supabase Auth; we never see or store passwords in plain text. The connection between the browser and the server is encrypted via HTTPS.",
+      "Passwords are encrypted and managed by Cloudflare Auth; we never see or store passwords in plain text. The connection between the browser and the server is encrypted via HTTPS.",
     section6Heading: "6. Contact",
     section6Part1: "For any questions about privacy or requests to delete data, please contact",
     section6Part2: ".",

@@ -64,7 +64,7 @@ export const trackStagesVi = {
       stages: [
         {
           label: "Chặng 1",
-          name: "Biết mình trước khi học: máy tính, hệ điều hành, dòng lệnh",
+          name: "Máy tính đơn giản hơn bạn nghĩ: hệ điều hành và dòng lệnh",
           parts: [
             "Đo trước: máy của bạn đang chạy gì",
             "Hệ điều hành và cấu trúc tập tin",
@@ -74,17 +74,17 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 2",
-          name: "Git & kho mã chung",
+          name: "Git đơn giản hơn bạn nghĩ: cuốn nhật ký của dự án",
           parts: ["Từ commit đầu tiên đến nhánh làm việc", "Merge, xung đột và pull request"],
         },
         {
           label: "Chặng 3",
-          name: "Tư duy lập trình và ngôn ngữ đầu tiên",
+          name: "Lập trình đơn giản hơn bạn nghĩ: tư duy và ngôn ngữ đầu tiên",
           parts: ["Biến, kiểu dữ liệu và luồng điều khiển", "Hàm, lỗi và cách chương trình chạy"],
         },
         {
           label: "Chặng 4",
-          name: "HTML, CSS và trang web đầu tiên",
+          name: "Trang web đầu tiên đơn giản hơn bạn nghĩ: HTML và CSS",
           parts: [
             "Thẻ HTML, bố cục CSS và trang tĩnh",
             "Lỗi hay gặp và kỳ vọng thực tế về giao diện",
@@ -93,17 +93,17 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 5",
-          name: "JavaScript và trình duyệt",
+          name: "JavaScript đơn giản hơn bạn nghĩ: cho trang web biết phản ứng",
           parts: ["Nền tảng JavaScript", "DOM, sự kiện và bất đồng bộ"],
         },
         {
           label: "Chặng 6",
-          name: "Cấu trúc dữ liệu và thuật toán cơ bản",
+          name: "Cấu trúc dữ liệu đơn giản hơn bạn nghĩ: sắp xếp để tìm cho nhanh",
           parts: ["Mảng, map, ngăn xếp và hàng đợi", "Tìm kiếm, sắp xếp và tổng kết hành trình"],
         },
         {
           label: "Chặng 7",
-          name: "Gọi API và ghép dịch vụ ngoài",
+          name: "API đơn giản như gọi món: ghép dịch vụ ngoài",
           parts: [
             "HTTP, JSON và một lệnh gọi đầu tiên",
             "Xác thực, giới hạn tần suất và xử lý lỗi",
@@ -111,12 +111,12 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 8",
-          name: "Cơ sở dữ liệu và truy vấn",
+          name: "Cơ sở dữ liệu đơn giản hơn bạn nghĩ: lưu và truy vấn",
           parts: ["Bảng, quan hệ, SELECT và chỉ mục", "Ghép bảng, giao dịch và truy vấn chậm"],
         },
         {
           label: "Chặng 9",
-          name: "Triển khai, tên miền và bảo mật cơ bản",
+          name: "Đưa sản phẩm lên mạng đơn giản hơn bạn nghĩ: triển khai, tên miền, bảo mật",
           parts: ["Máy chủ & tên miền", "HTTPS & bảo vệ dữ liệu người dùng"],
         },
         {
@@ -146,7 +146,7 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 13",
-          name: "Đám mây và hạ tầng thuê ngoài",
+          name: "Đám mây đơn giản hơn bạn nghĩ: thuê hạ tầng thay vì tự xây",
           parts: [
             "Đám mây thực chất là gì",
             "Chi phí thật và chuyện tiết kiệm hạ tầng",
@@ -219,6 +219,11 @@ export const trackStagesVi = {
           label: "Chặng 21",
           name: "Công cụ và vận hành",
           parts: ["Bộ công cụ tối thiểu và tự động hoá", "Rà soát hằng năm và tổng kết"],
+        },
+        {
+          label: "Chặng 22",
+          name: "Marketing với AI đơn giản hơn bạn nghĩ",
+          parts: ["Hiểu khách và viết đúng giọng", "Đo, giữ ranh giới và làm đều mỗi tuần"],
         },
       ],
     },
@@ -618,7 +623,7 @@ export const trackStagesEn: typeof trackStagesVi = {
       stages: [
         {
           label: "Stage 1",
-          name: "Know your setup first: computer, operating system, command line",
+          name: "Computers are simpler than you think: the OS and the command line",
           parts: [
             "Measure first: what your machine is running",
             "Operating systems and the file tree",
@@ -628,12 +633,12 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 2",
-          name: "Git & the shared repository",
+          name: "Git is simpler than you think: your project's diary",
           parts: ["From a first commit to a working branch", "Merges, conflicts and pull requests"],
         },
         {
           label: "Stage 3",
-          name: "Programming thinking and your first language",
+          name: "Programming is simpler than you think: thinking in code, and a first language",
           parts: [
             "Variables, data types and control flow",
             "Functions, errors and how a program runs",
@@ -641,7 +646,7 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 4",
-          name: "HTML, CSS and your first web page",
+          name: "Your first web page is simpler than you think: HTML and CSS",
           parts: [
             "HTML tags, CSS layout and a static page",
             "Common mistakes and realistic expectations about UI work",
@@ -650,12 +655,12 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 5",
-          name: "JavaScript and the browser",
+          name: "JavaScript is simpler than you think: making pages react",
           parts: ["JavaScript foundations", "The DOM, events and asynchronous code"],
         },
         {
           label: "Stage 6",
-          name: "Basic data structures and algorithms",
+          name: "Data structures are simpler than you think: arrange things to find them fast",
           parts: [
             "Arrays, maps, stacks and queues",
             "Searching, sorting and wrapping up the journey",
@@ -663,7 +668,7 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 7",
-          name: "Calling APIs and wiring in outside services",
+          name: "APIs are as simple as ordering food: wiring in outside services",
           parts: [
             "HTTP, JSON and a first request",
             "Authentication, rate limits and error handling",
@@ -671,7 +676,7 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 8",
-          name: "Databases and queries",
+          name: "Databases are simpler than you think: storing and querying",
           parts: [
             "Tables, relations, SELECT and indexes",
             "Searching, sorting and wrapping up the journey",
@@ -679,7 +684,7 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 9",
-          name: "Deployment, domains and basic security",
+          name: "Going online is simpler than you think: deployment, domains, security",
           parts: ["Servers & domains", "HTTPS & protecting user data"],
         },
         {
@@ -712,7 +717,7 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 13",
-          name: "The cloud and rented infrastructure",
+          name: "The cloud is simpler than you think: renting instead of building",
           parts: [
             "What the cloud actually is",
             "Real costs and saving money on infrastructure",
@@ -785,6 +790,11 @@ export const trackStagesEn: typeof trackStagesVi = {
           label: "Stage 21",
           name: "Tooling and operations",
           parts: ["A minimum toolkit and automation", "The annual review, and a wrap-up"],
+        },
+        {
+          label: "Stage 22",
+          name: "Marketing with AI is simpler than you think",
+          parts: ["Knowing your customer and writing in your voice", "Measuring, staying honest, and a weekly rhythm"],
         },
       ],
     },

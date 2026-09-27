@@ -151,6 +151,39 @@ export const CAREER_PROJECTS_LESSONS: Lesson[] = [
         text: "Những cam kết lớn của một người làm nghề gần như không bao giờ ập đến. Chúng được nhìn thấy trước hàng tháng, và vẫn gây quá tải.",
       },
       {
+        type: "feynman",
+        title: "Chuẩn bị cho việc lớn đơn giản hơn bạn nghĩ",
+        intro: "Việc lớn trong nghề giống mùa mưa: bạn biết trước nó sẽ đến, vậy mà năm nào cũng có nhà bị dột.",
+        columns: [
+          "Thành phần",
+          "Mùa mưa",
+          "Dự án lớn"
+        ],
+        rows: [
+          [
+            "Dự báo",
+            "Lịch thời tiết báo trước hàng tháng",
+            "Ra mắt, chuyển việc, thi chứng chỉ đều có hạn định trước"
+          ],
+          [
+            "Chuẩn bị",
+            "Sửa mái từ mùa khô",
+            "Dành thời gian và sức từ trước khi dự án bắt đầu"
+          ],
+          [
+            "Cộng dồn",
+            "Mưa dầm nhiều ngày mới ngập",
+            "Nhiều việc nhỏ chồng lên thành quá tải"
+          ],
+          [
+            "Dự phòng",
+            "Để sẵn xô, bạt",
+            "Để trống một phần lịch cho việc phát sinh"
+          ]
+        ],
+        oneLiner: "Việc lớn hiếm khi bất ngờ - thứ bất ngờ là tổng thời gian nó lấy đi, nên hãy sửa mái từ mùa khô."
+      },
+      {
         type: "heading",
         text: "Không có quyết định nào sai",
       },

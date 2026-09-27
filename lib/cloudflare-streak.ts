@@ -264,17 +264,6 @@ export async function hasActivityToday(userId: string): Promise<boolean> {
 }
 
 /**
- * Get streak bonus XP (optional: give bonus XP for maintaining streaks)
- */
-export function getStreakBonusXP(streak: number): number {
-  if (streak >= 30) return 50; // 30+ day streak: 50 bonus XP
-  if (streak >= 14) return 25; // 14+ day streak: 25 bonus XP
-  if (streak >= 7) return 10;  // 7+ day streak: 10 bonus XP
-  if (streak >= 3) return 5;   // 3+ day streak: 5 bonus XP
-  return 0;
-}
-
-/**
  * Freeze streak manually (uses 1 streak freeze protection)
  */
 export async function freezeStreakManually(userId: string): Promise<UserStreak> {

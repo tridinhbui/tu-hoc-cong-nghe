@@ -33,7 +33,7 @@ export const en: Dictionary = {
   weeklyChallenge: {
     // Weekly challenge content. This is NOT fallback data despite the code
     // calling it a mock: no migration seeds the `weekly_challenges` table on
-    // Supabase and nothing in the repo writes to it, so this branch is what
+    // Cloudflare and nothing in the repo writes to it, so this branch is what
     // every user actually sees.
     mockTitle: "Reviewing an order system's architecture",
     mockDescription: "Read the diagram of an overloaded order system, find the bottleneck and rank what to fix first.",
@@ -72,6 +72,7 @@ export const en: Dictionary = {
     quiz: "Test",
     notes: "Notes",
     learningPath: "Learning path",
+    learningByNeed: "Learn by goal",
     studyGroup: "Study groups",
     technicalInterview: "Technical Interview",
     career: "Careers",
@@ -150,15 +151,15 @@ export const en: Dictionary = {
       description:
         "Build the base, from the computer and the command line through Git, a first programming language, and a website that actually runs - no industry background needed.",
       stages: [
-        "Stage 1 - Know where you stand: computers, operating systems, the shell",
-        "Stage 2 - Git and working in a shared repository",
-        "Stage 3 - Thinking in code, and a first language",
-        "Stage 4 - HTML, CSS and your first web page",
-        "Stage 5 - JavaScript and the browser",
-        "Stage 6 - Data, data structures and basic algorithms",
-        "Stage 7 - Calling APIs and wiring up outside services",
-        "Stage 8 - Databases and queries",
-        "Stage 9 - Shipping it: deployment, domains, security",
+        "Stage 1 - Computers are simpler than you think: the OS and the command line",
+        "Stage 2 - Git is simpler than you think: your project's diary",
+        "Stage 3 - Programming is simpler than you think: thinking in code, and a first language",
+        "Stage 4 - Your first web page is simpler than you think: HTML and CSS",
+        "Stage 5 - JavaScript is simpler than you think: making pages react",
+        "Stage 6 - Data structures are simpler than you think: arrange things to find them fast",
+        "Stage 7 - APIs are as simple as ordering food: wiring in outside services",
+        "Stage 8 - Databases are simpler than you think: storing and querying",
+        "Stage 9 - Going online is simpler than you think: deployment, domains, security",
         "Stage 10 - Working on a team: code review, testing, documentation",
       ],
       previewLabel: "Stage 1: where do you stand?",
@@ -1873,7 +1874,7 @@ export const en: Dictionary = {
     checkInNow: "Check in now",
     checkedIn: "Checked in for today. Group quest progress updated.",
     questsEmpty:
-      "No weekly quest data yet. Once the new migration has run, progress will come from Supabase automatically.",
+      "No weekly quest data yet. Once the new migration has run, progress will come from Cloudflare automatically.",
 
     chestOpened: "Chest opened",
     chestOpening: "Opening...",
@@ -2264,7 +2265,7 @@ export const en: Dictionary = {
       description: "Sign out when you're on a shared machine, or once you've finished studying.",
       statusTitle: "Current status",
       statusBody:
-        "You're signed in with a Supabase account, and every change made here is saved straight to the system.",
+        "You're signed in with a Cloudflare account, and every change made here is saved straight to the system.",
       signOut: "Sign out",
       signingOut: "Signing out...",
     },

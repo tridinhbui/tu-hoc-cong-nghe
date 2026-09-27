@@ -192,7 +192,7 @@ export const adminTwoVi = {
       searchPlaceholder: "Tìm theo tiêu đề hoặc slug...",
       loadingLabel: "Đang tải...",
       emptyTitle: "Không tìm thấy bài học nào",
-      emptyDescription: "Bảng lessons trên Supabase có thể chưa được đồng bộ - chạy /api/admin/sync-lessons.",
+      emptyDescription: "Bảng lessons trên Cloudflare có thể chưa được đồng bộ - chạy /api/admin/sync-lessons.",
       tableHeaders: {
         lesson: "Bài học",
         status: "Trạng thái",
@@ -421,7 +421,7 @@ export const adminTwoEn: typeof adminTwoVi = {
       searchPlaceholder: "Search by title or slug...",
       loadingLabel: "Loading...",
       emptyTitle: "No lessons found",
-      emptyDescription: "The lessons table on Supabase may not be synced yet - run /api/admin/sync-lessons.",
+      emptyDescription: "The lessons table on Cloudflare may not be synced yet - run /api/admin/sync-lessons.",
       tableHeaders: {
         lesson: "Lesson",
         status: "Status",

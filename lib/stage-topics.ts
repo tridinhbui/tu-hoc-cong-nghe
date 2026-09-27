@@ -152,6 +152,9 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 19": "health-risk",
   "Chặng 20": "career-stage",
   "Chặng 21": "personal-ops",
+  // Marketing với AI - cùng chủ đề với chặng AI trong sản phẩm: cả hai dạy
+  // cách giao việc cho AI và kiểm lại kết quả của nó.
+  "Chặng 22": "ai-products",
 };
 
 /** Track chuyên ngành, 43 chặng, 16 chủ đề.

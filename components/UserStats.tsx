@@ -55,7 +55,8 @@ const LEVEL_EMOJIS: Record<number, string> = {
 };
 
 import RigorousLevelExamModal from "@/components/RigorousLevelExamModal";
-import { LEVEL_EXAMS } from "@/lib/level-exams";
+import { LEVEL_EXAMS, RECERTIFICATION_DAYS, getRecertPenaltyXp } from "@/lib/level-exams";
+import { getPassedLevelExams } from "@/lib/cloudflare-level-exams";
 
 export default function UserStats({
   xp,
@@ -77,6 +78,8 @@ export default function UserStats({
 
   const [showExamModal, setShowExamModal] = useState(false);
   const [selectedExamLevel, setSelectedExamLevel] = useState<number>(2);
+  // Bài thi cấp cao nhất đã quá hạn thi lại → đang bị trừ XP (getRecertPenaltyXp).
+  const [recert, setRecert] = useState<{ level: number; xp: number } | null>(null);
 
   const [levelStats, setLevelStats] = useState<LevelStats | null>(null);
   const [openLevelTooltip, setOpenLevelTooltip] = useState<number | null>(null);
@@ -180,6 +183,21 @@ export default function UserStats({
       cancelled = true;
     };
   }, [userId]);
+
+  useEffect(() => {
+    if (!userId) return;
+    let cancelled = false;
+    void getPassedLevelExams(userId)
+      .then((passed) => {
+        const rows = Object.values(passed).map((r) => ({ level: r.passedLevel, passed_at: new Date(r.passedAt).toISOString() }));
+        const xp = getRecertPenaltyXp(rows);
+        if (!cancelled) setRecert(xp > 0 ? { level: Math.max(...rows.map((r) => r.level)), xp } : null);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [userId, showExamModal]);
 
   useEffect(() => {
     if (openLevelTooltip === null) return;
@@ -439,6 +457,24 @@ export default function UserStats({
           <div className="p-3 bg-amber-50/40 dark:bg-amber-950/10 border border-amber-200/50 dark:border-amber-900/30 rounded-xl flex items-center gap-2 text-xs text-warn-strong font-bold">
             <span>👑 {format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
           </div>
+        </div>
+      )}
+
+      {recert && (
+        <div className="mt-3 relative z-10">
+          <button
+            onClick={() => {
+              setSelectedExamLevel(recert.level);
+              setShowExamModal(true);
+            }}
+            className={`w-full flex items-center justify-between gap-2 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-black text-xs transition-all shadow-md cursor-pointer ${compact ? "p-2" : "p-3"}`}
+          >
+            <div className="text-left">
+              <p className="leading-tight font-extrabold text-[11px]">⏳ {format(t.userStats.recertTitle, { level: recert.level, days: RECERTIFICATION_DAYS })}</p>
+              <p className="text-[10px] text-rose-100 font-bold">{format(t.userStats.recertHint, { xp: recert.xp })}</p>
+            </div>
+            <span className="rounded-xl bg-white/15 px-2 py-0.5 text-[10px] shrink-0">{t.userStats.recertCta}</span>
+          </button>
         </div>
       )}
 

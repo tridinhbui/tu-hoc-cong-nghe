@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Briefcase, Award, TrendingUp, DollarSign, Layers, CheckCircle2, Trophy } from "lucide-react";
 import { toast } from "sonner";
-import { addXpToUser } from "@/lib/cloudflare-progress";
+import { recordCustomGameSession, MAX_GAME_XP_PER_TYPE } from "@/lib/games";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -87,7 +87,9 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
 
     if (dealScore >= 80) {
       toast.success(format(t.goldmanWidget.toastSuccess, { score: dealScore }));
-      if (userId) void addXpToUser(userId, 120);
+      // Qua sổ ván game (ván tốt nhất, trần 50) - gọi thẳng addXpToUser thì XP
+      // bị xoá ở lần recalculateUserStats kế tiếp.
+      if (userId) void recordCustomGameSession(userId, "goldman-pitch", dealScore, 100, MAX_GAME_XP_PER_TYPE);
     } else {
       toast.info(format(t.goldmanWidget.toastPartial, { score: dealScore }));
     }

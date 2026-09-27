@@ -180,3 +180,20 @@ export function getLevelProgress(currentXp: number, cfaCompleted: number = 0) {
  *  "+15 XP" trong khi nhiệm vụ ấy trả 8. Một hằng số không ai đọc còn tệ hơn
  *  không có hằng số nào, vì nó trông như một nguồn sự thật. */
 export const XP_PER_LESSON = 10;
+
+/** Thưởng mốc streak, trả MỘT LẦN khi kỷ lục `longest_streak` chạm mốc.
+ *
+ *  Đọc kỷ lục chứ không đọc streak hiện tại, vì `total_xp` được tính lại từ đầu
+ *  mỗi lần: tính theo `current_streak` thì gãy streak là tụt XP - một hình phạt
+ *  thứ hai mà đặc tả nói rõ là không có ("mất streak không mất XP"). Kỷ lục chỉ
+ *  tăng, nên thưởng đã nhận không bao giờ bị lấy lại. Tối đa 90 XP. */
+export const STREAK_MILESTONE_XP = [
+  { days: 3, xp: 5 },
+  { days: 7, xp: 10 },
+  { days: 14, xp: 25 },
+  { days: 30, xp: 50 },
+] as const;
+
+export function getStreakMilestoneXp(longestStreak: number): number {
+  return STREAK_MILESTONE_XP.filter((m) => longestStreak >= m.days).reduce((sum, m) => sum + m.xp, 0);
+}

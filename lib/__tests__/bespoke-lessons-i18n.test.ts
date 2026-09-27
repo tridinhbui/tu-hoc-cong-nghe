@@ -64,7 +64,7 @@ describe("bản dịch trang bài học viết tay", () => {
     const vi = bespokeLessonsVi.bespokeLessons[slug];
     const en = bespokeLessonsEn.bespokeLessons[slug];
     // `correct` của quiz là chỉ số vào chính những mảng này, và điểm quiz được
-    // ghi xuống Supabase. Lệch độ dài là lệch ĐÁP ÁN, không phải lệch chữ.
+    // ghi xuống Cloudflare. Lệch độ dài là lệch ĐÁP ÁN, không phải lệch chữ.
     expect(en.quiz).toHaveLength(vi.quiz.length);
     en.quiz.forEach((q, i) => {
       expect(q.options, `${slug} câu ${i + 1}`).toHaveLength(vi.quiz[i].options.length);

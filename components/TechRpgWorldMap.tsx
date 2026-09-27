@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, Coins, Zap, Trophy, Lock, Flame, Shield, ShoppingBag, Layers, Activity, Clock, Crown, Compass } from "lucide-react";
 import { createClient } from "@/lib/cloudflare";
 import { getRequiredLevelForBuilding } from "@/lib/levels";
+import BuildingScenarioGame, { SCENARIO_BUILDINGS, type ScenarioBuildingId } from "@/components/BuildingScenarioGame";
 import { toast } from "sonner";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 
@@ -718,26 +719,14 @@ export default function TechRpgWorldMap() {
                 {selectedBuilding === "arcade" && (
                   <GameHubClient />
                 )}
-                {selectedBuilding === "capitol-hill" && (
-                  <WeeklyChallengeWidget userId={user?.id || ""} />
-                )}
-                {selectedBuilding === "swiss-haven" && (
-                  <TechCardCollection userId={user?.id || ""} />
-                )}
-                {/* Ba game đọc nến / MA speedrun / algo trader đã bị xoá: cơ chế
-                    của chúng chính là nội dung tài chính, không thay dữ liệu
-                    sang công nghệ được. Hai nhánh "candlestick-game",
-                    "ma-speedrun" và "algo-game" vốn đã chết - không có toà nhà
-                    nào mang ba id đó trong lib/rpg-buildings.ts.
-
-                    Ba toà nhà THẬT từng mở chúng (silicon-bay, cme-commodities,
-                    singapore-dock) tạm trỏ về sảnh game để không mở ra khoảng
-                    trắng. Cả ba đều là toà nhà tài chính và sẽ được thay ở bước
-                    dọn nội dung; đây là chỗ chống đỡ, không phải thiết kế. */}
-                {(selectedBuilding === "silicon-bay" ||
-                  selectedBuilding === "cme-commodities" ||
-                  selectedBuilding === "singapore-dock") && (
-                  <GameHubClient />
+                {/* Năm toà nhà từng chỉ trỏ tạm về sảnh game / widget khác giờ có game
+                    tình huống riêng theo chủ đề của toà (building-games.ts). */}
+                {(SCENARIO_BUILDINGS as readonly string[]).includes(selectedBuilding) && (
+                  <BuildingScenarioGame
+                    key={selectedBuilding}
+                    buildingId={selectedBuilding as ScenarioBuildingId}
+                    userId={user?.id || ""}
+                  />
                 )}
               </div>
             )}

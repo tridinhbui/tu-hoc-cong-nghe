@@ -22,7 +22,7 @@
 //   - `slug`, `id`, `accent`, `nextSlug`: cấu trúc và định tuyến.
 //
 // `options` của quiz LÀ THEO VỊ TRÍ - `correct` là chỉ số vào mảng gốc, và
-// `LessonPageLayout` ghi `quiz_score` xuống Supabase như mọi bài khác. Xáo thứ
+// `LessonPageLayout` ghi `quiz_score` xuống Cloudflare như mọi bài khác. Xáo thứ
 // tự khi dịch làm sai ĐÁP ÁN, không phải sai chữ. Cùng luật với
 // lib/lessons-i18n; xem AGENTS.md, mục "Translating lessons", luật số 2.
 //

@@ -17,7 +17,15 @@ export type SpecialGameType =
   | "world-boss-raid"
   | "solo-knowledge-boss"
   | "vn30-fund-sim"
-  | "pvp-duel";
+  | "pvp-duel"
+  | "fed-vault-sim"
+  | "goldman-pitch"
+  // Game tình huống của năm toà nhà - components/BuildingScenarioGame.tsx.
+  | "scenario-silicon-bay"
+  | "scenario-capitol-hill"
+  | "scenario-cme-commodities"
+  | "scenario-swiss-haven"
+  | "scenario-singapore-dock";
 
 // Special game metadata for non-bucket/pair games
 export interface SpecialGameMeta {
@@ -221,7 +229,7 @@ export function getGameRelatedLessons(gameType: GameType): RelatedLesson[] {
 // XP just for participating, but doesn't need to be perfect either.
 const PASS_RATIO = 0.7;
 const XP_PER_CORRECT = 2;
-const MAX_GAME_XP_PER_TYPE = 50;
+export const MAX_GAME_XP_PER_TYPE = 50;
 
 export function computeGameXp(score: number, total: number): number {
   if (total <= 0) return 0;

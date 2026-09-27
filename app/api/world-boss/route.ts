@@ -3,6 +3,7 @@ import { embedRelated } from "@/lib/embed-related";
 import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { createAdminClient } from "@/lib/cloudflare-admin";
 import { BOSS_QUESTION_COUNT } from "@/lib/world-boss";
+import { applyBooster, getXpMultiplier } from "@/lib/boosters";
 import { getServerDictionary } from "@/lib/i18n/server";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
@@ -228,7 +229,8 @@ export async function POST(request: NextRequest) {
   const damageDealt = hit.damage_applied;
 
   // Thưởng XP & Coins cho user
-  const xpReward = Math.min(50, Math.max(0, score * 5));
+  // Booster nhân trước trần 50 - xem lib/boosters.ts.
+  const xpReward = Math.min(50, applyBooster(score * 5, await getXpMultiplier(cloudflare)));
   const coinReward = score * 35;
 
   const { data: profile } = await cloudflare

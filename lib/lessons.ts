@@ -1,6 +1,7 @@
 import type { Lesson } from "./lesson-types";
 import { ADVANCED_MASTERCLASS_LESSONS } from "./advanced-masterclass-lessons";
 import { GIT_LESSONS } from "./git-lessons";
+import { AI_MARKETING_LESSONS } from "./ai-marketing-lessons";
 import { AUTH_LESSONS } from "./auth-lessons";
 import { PERFORMANCE_TUNING_LESSONS } from "./performance-tuning-lessons";
 import { QUANT_METHODS_LESSONS } from "./quant-methods-lessons";
@@ -38,6 +39,7 @@ export const lessons: Lesson[] = [
   ...READING_STATEMENTS_LESSONS,
   ...ADVANCED_MASTERCLASS_LESSONS,
   ...GIT_LESSONS,
+  ...AI_MARKETING_LESSONS,
   ...AUTH_LESSONS,
   ...PERFORMANCE_TUNING_LESSONS,
   ...QUANT_METHODS_LESSONS,
@@ -200,6 +202,39 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "Trước khi gõ dòng mã đầu tiên, có một câu hỏi đáng dừng lại năm phút: tệp văn bản bạn vừa lưu trở thành thứ máy chạy được bằng cách nào? Bỏ qua câu này thì mọi thông báo lỗi về sau đều là bí ẩn, vì bạn không biết lỗi đến từ khâu nào."
+      },
+      {
+        "type": "feynman",
+        "title": "Lập trình đơn giản hơn bạn nghĩ",
+        "intro": "Một chương trình giống một công thức nấu ăn: một danh sách các bước, viết đủ rõ để người khác làm theo mà không cần hỏi lại.",
+        "columns": [
+          "Thành phần",
+          "Khi nấu ăn",
+          "Khi lập trình"
+        ],
+        "rows": [
+          [
+            "Mã nguồn",
+            "Công thức viết trên giấy",
+            "Tệp văn bản bạn gõ ra"
+          ],
+          [
+            "Máy tính",
+            "Người đầu bếp làm theo từng chữ, không tự đoán",
+            "Máy chạy đúng từng lệnh, kể cả lệnh sai"
+          ],
+          [
+            "Dịch",
+            "Dịch công thức sang tiếng đầu bếp hiểu",
+            "Trình biên dịch/thông dịch đổi mã thành lệnh máy"
+          ],
+          [
+            "Lỗi",
+            "Công thức ghi thiếu bước hoặc ghi nhầm muối thành đường",
+            "Lỗi cú pháp, hoặc chạy được nhưng ra kết quả sai"
+          ]
+        ],
+        "oneLiner": "Chương trình là một công thức nấu ăn cho máy: máy làm đúng từng chữ bạn viết, không hơn không kém."
       },
       {
         "type": "heading",
@@ -35813,6 +35848,39 @@ export const lessons: Lesson[] = [
         "text": "Chặng này bạn sẽ dựng thứ nhìn thấy được. Nhưng trước khi viết thẻ HTML đầu tiên, hãy dành vài phút cho câu hỏi mà rất ít người mới đặt ra: từ lúc gõ một địa chỉ tới lúc trang hiện ra, chuyện gì thật sự xảy ra?"
       },
       {
+        "type": "feynman",
+        "title": "Mở một trang web đơn giản hơn bạn nghĩ",
+        "intro": "Hãy tưởng tượng mở một trang web giống như đi ăn nhà hàng. Bạn không vào bếp - bạn gọi món, và món được mang ra từng đĩa.",
+        "columns": [
+          "Bước",
+          "Ở nhà hàng",
+          "Khi mở một trang web"
+        ],
+        "rows": [
+          [
+            "Tìm địa chỉ",
+            "Tra danh bạ để biết nhà hàng nằm ở đâu",
+            "Trình duyệt tra tên miền ra địa chỉ máy chủ (DNS)"
+          ],
+          [
+            "Gọi món",
+            "Nói với người phục vụ bạn muốn món gì",
+            "Trình duyệt gửi một yêu cầu HTTP"
+          ],
+          [
+            "Bếp nấu",
+            "Bếp làm món rồi báo: có món, hoặc hết món",
+            "Máy chủ trả về HTML kèm mã trạng thái (200, 404…)"
+          ],
+          [
+            "Món ăn kèm",
+            "Món chính ra trước, nước chấm và rau mang ra sau",
+            "Trình duyệt đọc HTML rồi xin thêm CSS, ảnh, phông chữ"
+          ]
+        ],
+        "oneLiner": "Mở một trang web là gọi món: tra địa chỉ, gọi món, bếp nấu, rồi món được mang ra từng đĩa."
+      },
+      {
         "type": "heading",
         "text": "Bốn bước"
       },
@@ -36017,6 +36085,44 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "HTML không phải ngôn ngữ lập trình - nó không có biến, không có điều kiện, không có vòng lặp. Nó là ngôn ngữ đánh dấu: bạn dùng nó để nói phần này là tiêu đề, phần kia là đoạn văn, chỗ nọ là một danh sách. Ý nghĩa, không phải hình thức."
+      },
+      {
+        "type": "feynman",
+        "title": "HTML đơn giản hơn bạn nghĩ",
+        "intro": "HTML là bản vẽ khung của ngôi nhà. Nó không quyết định tường sơn màu gì - nó chỉ nói chỗ này là cửa, chỗ kia là cửa sổ.",
+        "columns": [
+          "Thẻ HTML",
+          "Trong ngôi nhà",
+          "Trên trang web"
+        ],
+        "rows": [
+          [
+            "Tiêu đề",
+            "Tấm biển tên gắn trước cổng",
+            "Dòng chữ lớn nói trang này về cái gì"
+          ],
+          [
+            "Đoạn văn",
+            "Bức tường có dán lời nhắn",
+            "Một khối chữ để đọc"
+          ],
+          [
+            "Ảnh",
+            "Khung tranh treo trên tường",
+            "Hình ảnh, kèm lời mô tả cho người không nhìn thấy"
+          ],
+          [
+            "Liên kết",
+            "Cánh cửa dẫn sang nhà khác",
+            "Chữ bấm vào thì mở trang khác"
+          ],
+          [
+            "Biểu mẫu",
+            "Hòm thư trước cửa",
+            "Ô nhập liệu để người dùng gửi thông tin"
+          ]
+        ],
+        "oneLiner": "HTML chỉ nói mỗi phần là cái gì, còn trông ra sao là việc của CSS."
       },
       {
         "type": "heading",
@@ -39791,6 +39897,34 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "HTML mô tả nội dung, CSS lo hình thức. JavaScript là phần còn lại: hành vi. Nó làm trang phản ứng lại người dùng thay vì chỉ nằm đó. Nhưng trước khi viết dòng đầu tiên, có một chuyện cần rõ, vì nó giải thích phần lớn nhầm lẫn của người mới."
+      },
+      {
+        "type": "feynman",
+        "title": "Website là một ngôi nhà - và JavaScript là hệ thống điện",
+        "intro": "Mọi trang web đều dựng từ ba thứ. Bạn đã có khung nhà (HTML) và nước sơn (CSS). Chặng này lắp điện.",
+        "columns": [
+          "Thành phần",
+          "Trong ngôi nhà",
+          "Trên website"
+        ],
+        "rows": [
+          [
+            "HTML",
+            "Khung nhà: mấy tầng, phòng khách, bếp ở đâu, cửa chỗ nào",
+            "Tiêu đề, đoạn văn, hình ảnh, nút bấm, ô nhập liệu"
+          ],
+          [
+            "CSS",
+            "Trang trí: màu sơn, rèm cửa, đồ nội thất",
+            "Màu sắc, cỡ chữ, hiệu ứng, vừa cả máy tính lẫn điện thoại"
+          ],
+          [
+            "JavaScript",
+            "Tiện ích: công tắc điện, chuông cửa",
+            "Bấm nút thì có chuyện xảy ra: mở menu, gửi form, hiện thông báo"
+          ]
+        ],
+        "oneLiner": "HTML tạo ra thứ để nhìn thấy, CSS làm cho nó đẹp mắt, còn JavaScript làm cho nó hoạt động."
       },
       {
         "type": "heading",
@@ -43746,6 +43880,39 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "Ở chặng lập trình bạn đã dùng mảng và từ điển, và đã gặp một câu hỏi lặp lại: cái nào hợp hơn. Chặng này trả lời câu đó một cách có hệ thống, và nó bắt đầu bằng việc đặt tên đúng cho thứ bạn đang chọn."
+      },
+      {
+        "type": "feynman",
+        "title": "Cấu trúc dữ liệu đơn giản hơn bạn nghĩ",
+        "intro": "Cấu trúc dữ liệu là cách bạn sắp đồ trong nhà. Cùng một đống đồ, xếp khác đi thì tìm một món nhanh hay chậm khác hẳn nhau.",
+        "columns": [
+          "Thành phần",
+          "Trong nhà",
+          "Trong chương trình"
+        ],
+        "rows": [
+          [
+            "Mảng",
+            "Một hàng hộp đánh số trên kệ",
+            "Danh sách theo thứ tự, lấy theo vị trí rất nhanh"
+          ],
+          [
+            "Từ điển",
+            "Tủ hồ sơ có dán nhãn tên",
+            "Tra theo tên (khoá) mà không phải lục từng ngăn"
+          ],
+          [
+            "Ngăn xếp",
+            "Chồng đĩa: đặt lên trên, lấy từ trên",
+            "Thứ vào sau thì ra trước"
+          ],
+          [
+            "Hàng đợi",
+            "Hàng người xếp mua vé",
+            "Thứ vào trước thì ra trước"
+          ]
+        ],
+        "oneLiner": "Cấu trúc dữ liệu là cách xếp đồ: xếp đúng kiểu thì tìm một món mất một giây thay vì mười phút."
       },
       {
         "type": "heading",
@@ -49282,6 +49449,39 @@ export const lessons: Lesson[] = [
         "text": "Chặng trước dừng ở chỗ dữ liệu nằm trong cơ sở dữ liệu của bạn. Chặng này là lúc bạn cần thứ không nằm ở đó: tỷ giá, bản đồ, thanh toán, gửi thư. Gần như luôn có người khác đã làm việc đó và mở cho bạn một cửa vào."
       },
       {
+        "type": "feynman",
+        "title": "API đơn giản như gọi món",
+        "intro": "Bạn không cần biết bếp nấu thế nào - chỉ cần biết thực đơn có gì và gọi cho đúng. API là thực đơn của một dịch vụ.",
+        "columns": [
+          "Thành phần",
+          "Ở nhà hàng",
+          "Với API"
+        ],
+        "rows": [
+          [
+            "API",
+            "Thực đơn: ghi rõ gọi được món gì",
+            "Danh sách những việc dịch vụ cho phép bạn nhờ"
+          ],
+          [
+            "Yêu cầu",
+            "Bạn gọi món với người phục vụ",
+            "Chương trình của bạn gửi một yêu cầu tới dịch vụ"
+          ],
+          [
+            "JSON",
+            "Tờ hoá đơn ghi rõ từng món",
+            "Dữ liệu trả về, viết theo khuôn máy đọc được"
+          ],
+          [
+            "Khoá API",
+            "Thẻ thành viên để được phục vụ",
+            "Mã bí mật chứng minh bạn được phép dùng dịch vụ"
+          ]
+        ],
+        "oneLiner": "API là thực đơn của một dịch vụ: gọi đúng món thì dịch vụ mang ra đúng thứ."
+      },
+      {
         "type": "heading",
         "text": "Cái cửa đó là một hợp đồng"
       },
@@ -51215,6 +51415,44 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "Chặng trước kết thúc bằng một câu: dữ liệu sắp rời khỏi bộ nhớ. Đây là lúc đó. Và câu hỏi đầu tiên không phải dùng cơ sở dữ liệu nào, mà là vì sao không tiếp tục dùng tệp."
+      },
+      {
+        "type": "feynman",
+        "title": "Cơ sở dữ liệu đơn giản hơn bạn nghĩ",
+        "intro": "Hãy tưởng tượng cơ sở dữ liệu là một thư viện có thủ thư, còn tệp là một chồng giấy trên bàn.",
+        "columns": [
+          "Thành phần",
+          "Ở thư viện",
+          "Trong cơ sở dữ liệu"
+        ],
+        "rows": [
+          [
+            "Bảng",
+            "Một dãy kệ cho một loại sách",
+            "Một bảng cho một loại dữ liệu: người dùng, đơn hàng"
+          ],
+          [
+            "Hàng",
+            "Một cuốn sách",
+            "Một bản ghi: một người, một đơn"
+          ],
+          [
+            "Chỉ mục",
+            "Tủ phiếu tra cứu theo tên sách",
+            "Giúp tìm nhanh mà không đọc hết mọi hàng"
+          ],
+          [
+            "Truy vấn",
+            "Nhờ thủ thư: tìm giúp sách của tác giả X",
+            "Câu lệnh SQL hỏi dữ liệu"
+          ],
+          [
+            "Giao dịch",
+            "Mượn trả được ghi sổ đầy đủ, không nửa vời",
+            "Hoặc cả thay đổi xảy ra, hoặc không có gì"
+          ]
+        ],
+        "oneLiner": "Cơ sở dữ liệu là thư viện có thủ thư: bạn chỉ cần hỏi, nó tìm, cất và giữ cho dữ liệu không lộn xộn."
       },
       {
         "type": "heading",
@@ -53158,6 +53396,39 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "Chặng trước bạn gọi tới dịch vụ của người khác. Chặng này là chiều ngược lại: đưa sản phẩm của bạn ra chỗ người khác gọi tới được. Bài đầu về khoảng cách giữa máy của bạn và một máy chủ."
+      },
+      {
+        "type": "feynman",
+        "title": "Triển khai đơn giản hơn bạn nghĩ",
+        "intro": "Chạy trên máy bạn giống nấu món ngon trong bếp nhà mình. Đưa lên máy chủ là mở quán - bếp khác, nguyên liệu khác, và khách đến lúc nào không biết.",
+        "columns": [
+          "Thành phần",
+          "Nấu ở nhà vs mở quán",
+          "Máy bạn vs máy chủ"
+        ],
+        "rows": [
+          [
+            "Môi trường",
+            "Bếp nhà có sẵn đủ gia vị quen tay",
+            "Máy chủ thiếu đúng thứ bạn quên là mình đã cài"
+          ],
+          [
+            "Cấu hình",
+            "Công thức ghi rõ lượng, không để \"nêm vừa ăn\"",
+            "Mọi thiết lập ghi ra, không nằm trong đầu bạn"
+          ],
+          [
+            "Bí mật",
+            "Không dán chìa khoá két lên cửa quán",
+            "Mật khẩu, khoá API không nằm trong mã"
+          ],
+          [
+            "Kiểm tra sức khoẻ",
+            "Chủ quán đi một vòng xem bếp còn lửa không",
+            "Một đường dẫn báo máy chủ còn sống"
+          ]
+        ],
+        "oneLiner": "Chạy được ở nhà chưa phải là mở được quán: triển khai là làm cho món ăn ngon ở cả bếp của người khác."
       },
       {
         "type": "heading",
@@ -71038,6 +71309,39 @@ export const lessons: Lesson[] = [
         "text": "Chặng này về việc đọc code - của mình và của người khác. Bài đầu tiên là lý do vì sao hai việc đó khó khác nhau tới vậy, và nó không phải chuyện kinh nghiệm."
       },
       {
+        "type": "feynman",
+        "title": "Rà soát code đơn giản hơn bạn nghĩ",
+        "intro": "Tự đọc lại bài văn của mình thì rất khó thấy lỗi chính tả, vì não đọc thứ bạn định viết. Code cũng vậy.",
+        "columns": [
+          "Thành phần",
+          "Khi viết văn",
+          "Khi viết code"
+        ],
+        "rows": [
+          [
+            "Điểm mù",
+            "Đọc lướt qua lỗi vì đã biết câu định nói gì",
+            "Không thấy lỗi trong code của chính mình"
+          ],
+          [
+            "Người đọc hộ",
+            "Nhờ bạn đọc bài trước khi nộp",
+            "Code review: đồng nghiệp đọc trước khi gộp"
+          ],
+          [
+            "Kiểm thử",
+            "Đọc to từng câu để nghe chỗ vấp",
+            "Viết test để máy kiểm từng trường hợp"
+          ],
+          [
+            "Tài liệu",
+            "Ghi chú vì sao chọn cách viết này",
+            "Chú thích và README giải thích lý do"
+          ]
+        ],
+        "oneLiner": "Bạn đọc thứ mình định viết chứ không phải thứ mình đã viết - nên hãy để người khác và máy đọc hộ."
+      },
+      {
         "type": "heading",
         "text": "Cơ chế"
       },
@@ -75443,6 +75747,39 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "Chặng này về việc dùng trợ lý AI trong công việc viết mã. Bài đầu không dạy câu lệnh nào cả - nó dạy cách phân loại việc, vì đó là thứ quyết định mọi thứ còn lại."
+      },
+      {
+        "type": "feynman",
+        "title": "AI giống một thực tập sinh siêu tốc",
+        "intro": "Hãy hình dung ChatGPT hay Claude là một thực tập sinh đã đọc gần hết sách trong thư viện. Rất nhanh, rất giỏi - nhưng mới vào làm ngày đầu.",
+        "columns": [
+          "Đặc điểm",
+          "Thực tập sinh",
+          "Trợ lý AI"
+        ],
+        "rows": [
+          [
+            "Kiến thức",
+            "Đọc rất nhiều, nhưng chưa biết gì về công ty bạn",
+            "Biết rộng, nhưng không biết bối cảnh của bạn nếu bạn không kể"
+          ],
+          [
+            "Tốc độ",
+            "Làm nháp trong vài phút",
+            "Viết nháp trong vài giây"
+          ],
+          [
+            "Điểm yếu",
+            "Ngại hỏi, đôi khi đoán bừa cho xong",
+            "Khi không biết vẫn trả lời rất tự tin - gọi là bịa"
+          ],
+          [
+            "Cách dùng tốt",
+            "Giao việc rõ, rồi xem lại trước khi gửi sếp",
+            "Mô tả rõ việc cần làm, rồi kiểm lại trước khi dùng"
+          ]
+        ],
+        "oneLiner": "AI là thực tập sinh đọc cả thư viện: giao việc rõ ràng, và luôn kiểm lại bài của nó."
       },
       {
         "type": "heading",

@@ -1,7 +1,7 @@
 // Phần chữ của màn hình chọn game: 9 mini game ghép/kéo-thả, 3 game đặc biệt,
 // 3 mức độ khó, và tên ba báo cáo dùng làm nhãn ô trong game "Báo cáo tài chính".
 //
-// Khoá theo `id` của game - cũng là khoá được ghi xuống Supabase trong bảng
+// Khoá theo `id` của game - cũng là khoá được ghi xuống Cloudflare trong bảng
 // điểm, nên nó ổn định.
 //
 // PHẠM VI, và đây là chỗ dễ tưởng nhầm đã xong: NỘI DUNG trong từng ván chưa

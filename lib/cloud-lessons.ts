@@ -149,6 +149,39 @@ export const CLOUD_LESSONS: Lesson[] = [
         "text": "Chặng trước bạn đưa sản phẩm lên một máy chủ. Chặng này về nơi máy chủ đó sống, và về một mô hình kinh doanh mà rất nhiều người dùng mà không hiểu mình đang mua cái gì."
       },
       {
+        "type": "feynman",
+        "title": "Đám mây đơn giản hơn bạn nghĩ",
+        "intro": "Đám mây giống việc thuê nhà thay vì xây nhà. Vẫn là một căn nhà thật ở đâu đó - chỉ là bạn trả tiền theo tháng, và chủ nhà lo sửa chữa.",
+        "columns": [
+          "Thành phần",
+          "Nhà ở",
+          "Máy chủ"
+        ],
+        "rows": [
+          [
+            "Tự vận hành",
+            "Tự xây nhà: tốn một cục, tự sửa mọi thứ",
+            "Tự mua máy chủ, tự lo điện, mạng, hỏng hóc"
+          ],
+          [
+            "Đám mây",
+            "Thuê nhà: trả hằng tháng, chủ nhà sửa",
+            "Thuê máy của người khác, trả theo mức dùng"
+          ],
+          [
+            "Co giãn",
+            "Đông khách thì thuê thêm phòng vài hôm",
+            "Nhiều người dùng thì bật thêm máy, vắng thì tắt"
+          ],
+          [
+            "Cái giá",
+            "Tiền thuê cộng dồn, và khó chuyển nhà",
+            "Hoá đơn tăng dần, và dễ bị trói vào một nhà cung cấp"
+          ]
+        ],
+        "oneLiner": "Đám mây là thuê nhà thay vì xây nhà: linh hoạt hơn, nhưng tiền thuê thì trả mãi."
+      },
+      {
         "type": "heading",
         "text": "Câu đùa đúng một nửa"
       },

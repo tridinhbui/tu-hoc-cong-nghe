@@ -148,6 +148,39 @@ export const FRAUD_SAFETY_LESSONS: Lesson[] = [
         type: "lead",
         text: "Phần lớn người đọc bài này sẽ nghĩ mình không thuộc nhóm dễ bị lừa. Đó là phản ứng bình thường, và nó cũng chính là lý do bài này cần thiết.",
       },
+      {
+        type: "feynman",
+        title: "Tự bảo vệ mình trên mạng đơn giản hơn bạn nghĩ",
+        intro: "Kẻ lừa đảo giống kẻ trộm canh lúc nhà vắng: chúng không cần bạn kém hiểu biết, chỉ cần bạn đang vội, đang sợ, hoặc đang mừng.",
+        columns: [
+          "Thành phần",
+          "Ngoài đời",
+          "Trên mạng"
+        ],
+        rows: [
+          [
+            "Tạo gấp gáp",
+            "\"Nhanh lên, xe sắp chạy!\"",
+            "\"Tài khoản bị khoá trong 30 phút\""
+          ],
+          [
+            "Giả người quen",
+            "Người lạ mặc đồng phục thợ điện",
+            "Tin nhắn giả ngân hàng, giả sếp, giả người thân"
+          ],
+          [
+            "Khoá cửa",
+            "Khoá hai lớp",
+            "Xác thực hai bước"
+          ],
+          [
+            "Gọi lại kiểm tra",
+            "Gọi cho công ty điện hỏi có cử thợ không",
+            "Tự mở ứng dụng chính thức, không bấm link trong tin"
+          ]
+        ],
+        oneLiner: "Lừa đảo nhắm vào lúc bạn vội chứ không nhắm vào kiến thức - nên hãy luôn dừng lại và tự kiểm tra."
+      },
       { type: "heading", text: "Trò lừa không nhắm vào kiến thức" },
       {
         type: "paragraph",

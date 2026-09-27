@@ -148,6 +148,39 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
         text: "Vài năm đầu là giai đoạn người ta lo lắng nhiều nhất về việc mình đang đi nhanh hay chậm, và đo bằng đúng những thứ không nói lên điều đó.",
       },
       {
+        type: "feynman",
+        title: "Những năm đầu trong nghề đơn giản hơn bạn nghĩ",
+        intro: "Những năm đầu giống gửi tiết kiệm lãi kép: số tiền ban đầu nhỏ, thứ quyết định là bạn gửi đều hay không.",
+        columns: [
+          "Thành phần",
+          "Gửi tiết kiệm",
+          "Những năm đầu"
+        ],
+        rows: [
+          [
+            "Vốn ban đầu",
+            "Số tiền nhỏ",
+            "Kỹ năng lúc mới vào nghề"
+          ],
+          [
+            "Lãi suất",
+            "Phần trăm mỗi kỳ",
+            "Thói quen: viết rõ, hỏi đúng, học đều"
+          ],
+          [
+            "Lãi kép",
+            "Lãi sinh ra lãi",
+            "Thói quen tốt kéo theo việc tốt hơn, người giỏi hơn"
+          ],
+          [
+            "Rút sớm",
+            "Rút ra là mất lãi",
+            "Chạy theo chức danh mà bỏ nền tảng"
+          ]
+        ],
+        oneLiner: "Những năm đầu, chức danh là số tiền nhỏ - thói quen mới là lãi kép."
+      },
+      {
         type: "heading",
         text: "Thứ cộng dồn không nằm trên hồ sơ",
       },

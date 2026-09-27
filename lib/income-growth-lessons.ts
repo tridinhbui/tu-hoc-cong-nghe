@@ -152,6 +152,39 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
         "text": "Chặng này về thu nhập từ nghề. Bài đầu không nói về tiền mà nói về thứ tạo ra tiền - và về lý do hai người cùng năm kinh nghiệm có thể chênh nhau gấp đôi."
       },
       {
+        "type": "feynman",
+        "title": "Tăng thu nhập trong nghề đơn giản hơn bạn nghĩ",
+        "intro": "Thu nhập trong nghề giống một cái đòn bẩy: không phải ai đẩy lâu hơn thì nâng được nhiều hơn, mà là ai đặt điểm tựa đúng chỗ.",
+        "columns": [
+          "Thành phần",
+          "Với đòn bẩy",
+          "Trong nghề lập trình"
+        ],
+        "rows": [
+          [
+            "Sức đẩy",
+            "Lực bạn bỏ ra",
+            "Số giờ và số năm làm việc"
+          ],
+          [
+            "Điểm tựa",
+            "Đặt đúng chỗ thì nâng được vật nặng",
+            "Kỹ năng gỡ được đúng nút thắt người khác kẹt"
+          ],
+          [
+            "Cánh tay dài",
+            "Tay đòn càng dài càng nhẹ",
+            "Kỹ năng nhân lên nhau: code giỏi + viết rõ + hiểu sản phẩm"
+          ],
+          [
+            "Vật được nâng",
+            "Tảng đá",
+            "Giá trị bạn tạo ra, và là thứ được trả tiền"
+          ]
+        ],
+        "oneLiner": "Thị trường không trả cho số năm bạn đẩy, mà trả cho việc bạn đặt điểm tựa đúng chỗ."
+      },
+      {
         "type": "heading",
         "text": "Thị trường trả cho cái gì"
       },

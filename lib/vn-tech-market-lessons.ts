@@ -146,6 +146,39 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         text: "Một vị trí lập trình viên ở Việt Nam thường nhận vài chục tới vài trăm hồ sơ. Người sàng vòng đầu không đọc mã của bạn; họ tìm lý do để đọc tiếp, và cũng tìm lý do để dừng.",
       },
       {
+        type: "feynman",
+        title: "Hồ sơ xin việc đơn giản hơn bạn nghĩ",
+        intro: "Hồ sơ của bạn giống một cửa hàng bên đường: khách chỉ liếc qua vài giây, và quyết định có bước vào hay không.",
+        columns: [
+          "Thành phần",
+          "Ở cửa hàng",
+          "Trong hồ sơ"
+        ],
+        rows: [
+          [
+            "Biển hiệu",
+            "Nhìn là biết bán gì",
+            "Dòng đầu CV nói rõ bạn làm được gì"
+          ],
+          [
+            "Tủ kính",
+            "Bày món đẹp nhất ra trước",
+            "Một hai dự án tốt nhất ở trên cùng"
+          ],
+          [
+            "Hàng thật",
+            "Khách vào sờ được hàng",
+            "GitHub có mã chạy được, có hướng dẫn"
+          ],
+          [
+            "Lý do rời đi",
+            "Cửa bụi, biển mờ",
+            "Lỗi chính tả, dự án bỏ dở, liên kết chết"
+          ]
+        ],
+        oneLiner: "Hồ sơ chỉ trả lời một câu: có đáng đọc tiếp không - nên đặt thứ tốt nhất ở ngay cửa."
+      },
+      {
         type: "heading",
         text: "Hồ sơ trả lời một câu hỏi duy nhất",
       },

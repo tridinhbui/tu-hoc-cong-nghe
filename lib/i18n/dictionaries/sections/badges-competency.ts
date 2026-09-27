@@ -2,7 +2,7 @@
 // (`lib/career-competency.ts`), khoá theo `key` / `id`.
 //
 // Khoá ổn định: `badge.key` được ghi xuống bảng huy hiệu của người dùng trên
-// Supabase, và `competency.id` là khoá của điểm năng lực trong
+// Cloudflare, và `competency.id` là khoá của điểm năng lực trong
 // `computeCompetencyScores`. Cả hai không đổi vì một lần sửa chữ.
 //
 // HUY HIỆU CẤP ĐỘ dùng lại `t.levelTitles`, không chép tên cấp vào đây: huy
@@ -43,6 +43,9 @@ export const badgesCompetencyVi = {
       name: "Top 10 Chuỗi ngày",
       description: "Lọt top 10 bảng xếp hạng chuỗi ngày",
     },
+    boss_slayer: { name: "Kẻ Diệt Boss", description: "Gây sát thương cho World Boss và nhận XP" },
+    pvp_victor: { name: "Nhà Vô Địch Đấu Trí", description: "Thắng một trận đấu PvP" },
+    kingdom_explorer: { name: "Nhà Thám Hiểm Vương Quốc", description: "Vượt qua game tình huống của cả 5 toà nhà công nghệ" },
     career_goal_set: {
       name: "Đã đặt Mục tiêu Sự nghiệp",
       description: "Đặt một vị trí trong Bản đồ Việc làm làm mục tiêu sự nghiệp",
@@ -77,6 +80,9 @@ export const badgesCompetencyEn: typeof badgesCompetencyVi = {
       name: "Top 10 Streak",
       description: "Reached the top 10 on the streak leaderboard",
     },
+    boss_slayer: { name: "Boss Slayer", description: "Dealt damage to the World Boss and earned XP" },
+    pvp_victor: { name: "Duel Champion", description: "Won a PvP duel" },
+    kingdom_explorer: { name: "Kingdom Explorer", description: "Passed the scenario game in all 5 tech buildings" },
     career_goal_set: {
       name: "Career Goal Set",
       description: "Set a role from the Job Map as your career goal",

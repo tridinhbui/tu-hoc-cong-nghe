@@ -119,6 +119,10 @@ const NAV_SECTIONS: NavSection[] = [
     titleKey: "sectionLearn",
     links: [
       { href: "/hoc-bai", dataLabelKey: "hocBai", icon: BookOpen },
+      // Lối vào theo VIỆC muốn làm (website, AI, agent, marketing), đặt ngay
+      // dưới Học bài vì nó là cùng kho bài nhìn từ phía người non-tech. Xem
+      // lib/learning-flows.ts.
+      { href: "/hoc-theo-nhu-cau", labelKey: "learningByNeed", icon: Compass, activePrefixes: ["/hoc-theo-nhu-cau/"] },
       // Tách khỏi dashboard cùng đợt với CFA và FRM. Cả ba trước đó là thẻ
       // trong dãy chọn track nhưng không phải track trong lộ trình đánh số
       // theo ngày - chúng là các lối học song song, nên thuộc navbar.

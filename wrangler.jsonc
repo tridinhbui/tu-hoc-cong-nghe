@@ -1,7 +1,10 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "tu-hoc-cong-nghe",
-	"main": ".open-next/worker.js",
+	// worker.ts bọc worker của OpenNext để thêm /realtime/* (Durable Objects).
+	// Phải chạy `opennextjs-cloudflare build` trước: worker.ts import
+	// .open-next/worker.js do bước đó sinh ra.
+	"main": "worker.ts",
 	"compatibility_date": "2026-08-22",
 	// nodejs_compat: adapter OpenNext cần các API Node mà Next dựa vào.
 	// global_fetch_strictly_public: fetch() tới chính tên miền của Worker đi ra
@@ -22,6 +25,15 @@
 	// được trên Workers trong khi VẪN đọc Cloudflare. Gắn kho dữ liệu là giai
 	// đoạn 4, sau khi lớp kho dữ liệu và bộ kiểm phân quyền đã xong.
 	//
+	"durable_objects": {
+		"bindings": [{ "name": "REALTIME", "class_name": "RealtimeHub" }]
+	},
+	// Cú pháp khai báo `exports` (thay mảng `migrations` từ 06/2026). Namespace
+	// được cấp ở lần deploy đầu. ĐỔI TÊN hay XOÁ lớp này phải dùng trạng thái
+	// tombstone - xoá dòng này đi là xoá namespace, kèm mọi presence đang sống.
+	"exports": {
+		"RealtimeHub": { "type": "durable-object", "storage": "sqlite" }
+	},
 	"r2_buckets": [{ "binding": "FILES", "bucket_name": "thcn-files" }],
 	// "kv_namespaces":[{ "binding": "SESSIONS", "id": "<điền sau>" }],
 	"vars": {

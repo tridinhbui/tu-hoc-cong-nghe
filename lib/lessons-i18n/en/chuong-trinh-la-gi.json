@@ -116,6 +116,39 @@
       "text": "Before you type the first line of code there is a question worth five minutes: how does the text file you just saved become something the machine can run? Skip it and every later error message is a mystery, because you have no idea which stage it came from."
     },
     {
+      "type": "feynman",
+      "title": "Programming is simpler than you think",
+      "intro": "A program is like a recipe: a list of steps written clearly enough that someone can follow them without asking.",
+      "columns": [
+        "Part",
+        "When cooking",
+        "When programming"
+      ],
+      "rows": [
+        [
+          "Source code",
+          "A recipe written on paper",
+          "The text file you type"
+        ],
+        [
+          "Computer",
+          "A cook who follows every word and never guesses",
+          "A machine that runs each instruction, even a wrong one"
+        ],
+        [
+          "Translation",
+          "Translating the recipe into the cook's language",
+          "A compiler/interpreter turning code into machine instructions"
+        ],
+        [
+          "Bugs",
+          "A missing step, or sugar written instead of salt",
+          "A syntax error, or code that runs but gives the wrong result"
+        ]
+      ],
+      "oneLiner": "A program is a recipe for a machine: it does exactly what you wrote, nothing more, nothing less."
+    },
+    {
       "type": "heading",
       "text": "The machine does not understand your language"
     },

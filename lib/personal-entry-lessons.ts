@@ -150,6 +150,39 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
         text: "Câu hỏi mỗi tuần học được mấy giờ thường được trả lời bằng một phép trừ trong đầu, và phép trừ đó bỏ sót đúng phần quyết định.",
       },
       {
+        type: "feynman",
+        title: "Học đều đơn giản hơn bạn nghĩ",
+        intro: "Lập kế hoạch học giống như đổ nước vào một cái bình: trước khi đổ, phải biết bình còn trống bao nhiêu.",
+        columns: [
+          "Thành phần",
+          "Với cái bình",
+          "Với thời gian học"
+        ],
+        rows: [
+          [
+            "Dung tích",
+            "Bình to hay nhỏ",
+            "Mỗi tuần bạn thật sự có bao nhiêu giờ"
+          ],
+          [
+            "Chỗ đã đầy",
+            "Phần nước đã có sẵn trong bình",
+            "Giờ làm, đi lại, việc nhà, lướt điện thoại"
+          ],
+          [
+            "Chỗ còn trống",
+            "Phần đổ thêm được",
+            "Giờ rảnh mà đầu óc còn tỉnh để học"
+          ],
+          [
+            "Đo trước",
+            "Nhìn vạch mức nước",
+            "Ghi lại một tuần xem giờ của mình đi đâu"
+          ]
+        ],
+        oneLiner: "Đo xem thời gian của bạn đang đi đâu trước, rồi mới hứa sẽ học bao nhiêu."
+      },
+      {
         type: "heading",
         text: "Giờ rảnh và giờ dùng được là hai thứ khác nhau",
       },

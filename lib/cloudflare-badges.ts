@@ -3,10 +3,13 @@ import { handleCloudflareError } from "@/lib/errors";
 import {
   BADGE_DEFINITIONS,
   CAREER_BADGE_DEFINITIONS,
+  GAME_BADGE_DEFINITIONS,
   LEADERBOARD_BADGE_DEFINITIONS,
   getLevelBadgeKeys,
 } from "@/lib/badges";
 import { getLevelByXp } from "@/lib/levels";
+import { computeGameXp } from "@/lib/games";
+import { listGameSessions } from "@/lib/local-store";
 import { getMyLeaderboardRank, type LeaderboardMetric } from "@/lib/cloudflare-user";
 
 export interface UserBadge {
@@ -95,6 +98,43 @@ async function getEarnedCareerBadgeKeys(
   return earned;
 }
 
+/** Năm game tình huống (components/BuildingScenarioGame.tsx) - qua cả năm ở
+ *  mức nhận XP thì được `kingdom_explorer`. */
+const SCENARIO_GAME_TYPES = [
+  "scenario-silicon-bay",
+  "scenario-capitol-hill",
+  "scenario-cme-commodities",
+  "scenario-swiss-haven",
+  "scenario-singapore-dock",
+];
+
+/** Huy hiệu Vương quốc, suy ra như huy hiệu sự nghiệp. Hai huy hiệu boss/PvP
+ *  bản cũ tìm `quest_type = world_boss / pvp_duel` trong user_quest_completions
+ *  mà không đường nào ghi giá trị ấy, nên chẳng ai đạt được; ở đây đọc thẳng
+ *  bảng mà hai route đó THẬT SỰ ghi. */
+async function getEarnedGameBadgeKeys(
+  cloudflare: ReturnType<typeof createClient>,
+  userId: string
+): Promise<string[]> {
+  const earned: string[] = [];
+  const [boss, duel] = await Promise.all([
+    Promise.resolve(
+      cloudflare.from("game_sessions").select("id").eq("user_id", userId).eq("game_type", "world-boss-raid").gt("xp_earned", 0).limit(1)
+    ).catch(() => ({ data: null })),
+    Promise.resolve(cloudflare.from("pvp_duels").select("id").eq("winner_id", userId).limit(1)).catch(() => ({ data: null })),
+  ]);
+  if ((boss as { data: unknown[] | null }).data?.length) earned.push("boss_slayer");
+  if ((duel as { data: unknown[] | null }).data?.length) earned.push("pvp_victor");
+
+  const passed = new Set(
+    listGameSessions()
+      .filter((row) => computeGameXp(row.score, row.total) > 0)
+      .map((row) => row.game_type as string)
+  );
+  if (SCENARIO_GAME_TYPES.every((type) => passed.has(type))) earned.push("kingdom_explorer");
+  return earned;
+}
+
 /** Hạng bao nhiêu thì được huy hiệu "Top 10". */
 export const LEADERBOARD_BADGE_TOP_N = 10;
 
@@ -170,10 +210,11 @@ export async function getEligibleUserBadges(userId: string) {
       ? profile.current_level
       : getLevelByXp(profile?.total_xp ?? 0).level;
 
-  const [badges, earnedCareerBadgeKeys, earnedLeaderboardBadgeKeys] = await Promise.all([
+  const [badges, earnedCareerBadgeKeys, earnedLeaderboardBadgeKeys, earnedGameBadgeKeys] = await Promise.all([
     getUserBadges(userId),
     getEarnedCareerBadgeKeys(cloudflare, userId),
     getEarnedLeaderboardBadgeKeys(userId),
+    getEarnedGameBadgeKeys(cloudflare, userId).catch(() => []),
   ]);
   const state = { currentLevel };
   const existingByKey = new Map(badges.map((badge) => [badge.badge_key, badge]));
@@ -182,6 +223,7 @@ export async function getEligibleUserBadges(userId: string) {
     ...getLevelBadgeKeys(currentLevel),
     ...earnedCareerBadgeKeys,
     ...earnedLeaderboardBadgeKeys,
+    ...earnedGameBadgeKeys,
   ];
 
   return allowedBadgeKeys
@@ -208,6 +250,7 @@ export async function getEligibleUserBadges(userId: string) {
         // trên sẽ bị chính bộ lọc này loại ngay: isBadgeEarnedByCurrentState
         // chỉ biết huy hiệu cấp, nên mọi khoá lạ đều rơi về false.
         badge.badge_key in LEADERBOARD_BADGE_DEFINITIONS ||
+        badge.badge_key in GAME_BADGE_DEFINITIONS ||
         isBadgeEarnedByCurrentState(badge.badge_key, state)
     );
 }

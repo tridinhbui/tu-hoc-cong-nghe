@@ -41,7 +41,7 @@ export const libDataVi = {
       hours: "{n} giờ trước",
       days: "{n} ngày trước",
     },
-    // lib/supabase-user.ts - câu vinh danh học viên trong lời chào của trợ lý.
+    // lib/cloudflare-user.ts - câu vinh danh học viên trong lời chào của trợ lý.
     // Bốn biến thể để không lặp lại y hệt mỗi lần mở; hàm ở tầng dữ liệu chỉ
     // chọn CHỈ SỐ biến thể, câu dựng ở phía người đọc.
     shoutouts: [
@@ -50,7 +50,7 @@ export const libDataVi = {
       "🔥 {name} đang giữ phong độ cực tốt với {value} XP tích luỹ được!",
       "⭐ Vinh danh {name} - đã đạt {value} XP nhờ học đều đặn mỗi ngày!",
     ],
-    // lib/supabase-chat.ts - lý do một tệp bị từ chối khi gửi trong chat.
+    // lib/cloudflare-chat.ts - lý do một tệp bị từ chối khi gửi trong chat.
     chatUpload: {
       imageType: "Chỉ chấp nhận ảnh PNG, JPG, WEBP hoặc GIF.",
       imageTooLarge: "Ảnh vượt quá giới hạn 8MB.",

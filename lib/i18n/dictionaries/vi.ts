@@ -38,7 +38,7 @@ export const vi = {
 
   weeklyChallenge: {
     // Nội dung thử thách tuần. Đây KHÔNG phải dữ liệu dự phòng dù mã gọi nó là
-    // mock: bảng `weekly_challenges` trên Supabase không có migration nào seed
+    // mock: bảng `weekly_challenges` trên Cloudflare không có migration nào seed
     // và không chỗ nào trong repo ghi vào, nên nhánh này là thứ mọi người dùng
     // thực sự thấy.
     mockTitle: "Rà soát kiến trúc hệ thống đặt hàng",
@@ -78,6 +78,7 @@ export const vi = {
     quiz: "Kiểm tra",
     notes: "Ghi chú",
     learningPath: "Lộ trình học",
+    learningByNeed: "Học theo nhu cầu",
     studyGroup: "Học nhóm",
     technicalInterview: "Phỏng vấn kỹ thuật",
     career: "Sự nghiệp",
@@ -183,15 +184,15 @@ export const vi = {
       description:
         "Dựng nền từ máy tính và dòng lệnh tới Git, một ngôn ngữ lập trình đầu tiên và trang web chạy được - không cần kiến thức ngành.",
       stages: [
-        "Chặng 1 - Biết mình: máy tính, hệ điều hành, dòng lệnh",
-        "Chặng 2 - Git và làm việc trên kho mã chung",
-        "Chặng 3 - Tư duy lập trình và ngôn ngữ đầu tiên",
-        "Chặng 4 - HTML, CSS và trang web đầu tiên",
-        "Chặng 5 - JavaScript và trình duyệt",
-        "Chặng 6 - Dữ liệu, cấu trúc dữ liệu và thuật toán cơ bản",
-        "Chặng 7 - Gọi API và ghép dịch vụ ngoài",
-        "Chặng 8 - Cơ sở dữ liệu và truy vấn",
-        "Chặng 9 - Đưa sản phẩm lên mạng: triển khai, tên miền, bảo mật",
+        "Chặng 1 - Máy tính đơn giản hơn bạn nghĩ: hệ điều hành và dòng lệnh",
+        "Chặng 2 - Git đơn giản hơn bạn nghĩ: cuốn nhật ký của dự án",
+        "Chặng 3 - Lập trình đơn giản hơn bạn nghĩ: tư duy và ngôn ngữ đầu tiên",
+        "Chặng 4 - Trang web đầu tiên đơn giản hơn bạn nghĩ: HTML và CSS",
+        "Chặng 5 - JavaScript đơn giản hơn bạn nghĩ: cho trang web biết phản ứng",
+        "Chặng 6 - Cấu trúc dữ liệu đơn giản hơn bạn nghĩ: sắp xếp để tìm cho nhanh",
+        "Chặng 7 - API đơn giản như gọi món: ghép dịch vụ ngoài",
+        "Chặng 8 - Cơ sở dữ liệu đơn giản hơn bạn nghĩ: lưu và truy vấn",
+        "Chặng 9 - Đưa sản phẩm lên mạng đơn giản hơn bạn nghĩ: triển khai, tên miền, bảo mật",
         "Chặng 10 - Làm việc nhóm: code review, kiểm thử, tài liệu",
       ],
       previewLabel: "Chặng 1: Bạn đang đứng ở đâu?",
@@ -2012,7 +2013,7 @@ export const vi = {
     checkInNow: "Bấm điểm danh ngay",
     checkedIn: "Đã điểm danh hôm nay. Tiến độ nhiệm vụ nhóm đã cập nhật!",
     questsEmpty:
-      "Chưa có dữ liệu nhiệm vụ tuần. Sau khi chạy migration mới, tiến độ sẽ tự lấy từ Supabase.",
+      "Chưa có dữ liệu nhiệm vụ tuần. Sau khi chạy migration mới, tiến độ sẽ tự lấy từ Cloudflare.",
 
     chestOpened: "Rương đã mở",
     chestOpening: "Đang mở...",
@@ -2346,7 +2347,7 @@ export const vi = {
       avatarFailed: "Có lỗi xảy ra khi upload avatar.",
       avatarTooLarge: "Lỗi: Kích thước file không được quá 2MB.",
       avatarNotImage: "Lỗi: Chỉ chấp nhận file hình ảnh.",
-      // Prefixes for a message that ends in an error string from Supabase,
+      // Prefixes for a message that ends in an error string from Cloudflare,
       // which is always English. Kept as a prefix rather than an interpolated
       // sentence so the untranslated tail reads as quoted detail.
       errorPrefix: "Lỗi: {message}",
@@ -2443,7 +2444,7 @@ export const vi = {
       description: "Thoát khỏi tài khoản khi dùng máy lạ hoặc sau khi hoàn tất phiên học.",
       statusTitle: "Trạng thái hiện tại",
       statusBody:
-        "Bạn đang đăng nhập bằng tài khoản Supabase và mọi thay đổi tại đây được lưu trực tiếp vào hệ thống.",
+        "Bạn đang đăng nhập bằng tài khoản Cloudflare và mọi thay đổi tại đây được lưu trực tiếp vào hệ thống.",
       signOut: "Đăng xuất",
       signingOut: "Đang đăng xuất...",
     },

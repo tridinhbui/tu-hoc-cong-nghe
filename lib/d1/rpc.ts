@@ -28,6 +28,8 @@ export interface D1Statement {
   run?(): Promise<{ meta?: { changes?: number; last_row_id?: number } }>;
 }
 
+import { LEVELS } from "@/lib/levels";
+
 export interface D1Like {
   /** Chạy nhiều lệnh trong MỘT transaction ngầm. Đây là tất cả những gì D1 có:
    *  không có transaction tương tác, tức là KHÔNG đọc được kết quả rồi mới
@@ -1813,6 +1815,75 @@ export async function purchaseCosmetic(
   return { asset_key: assetKey, coins_left: con?.coins ?? 0 };
 }
 
+/** Booster bán được: asset_key → hệ số. Giá đọc từ gamification_assets. */
+const XP_BOOSTERS: Record<string, number> = { booster_xp_24h: 2 };
+const BOOSTER_MS = 24 * 60 * 60 * 1000;
+/** Trần hệ số, kể cả khi sau này có nhiều loại booster chồng nhau. */
+export const MAX_XP_MULTIPLIER = 3;
+
+/** `activate_booster(p_asset_key)`: trừ coin rồi nối thêm 24 giờ.
+ *
+ *  Kích hoạt khi đang còn hạn thì CỘNG DỒN thời gian chứ không đặt lại - bấm
+ *  hai lần là 48 giờ, không mất tiền oan. Trừ tiền có điều kiện như
+ *  `purchaseCosmetic`, nên hai lần bấm song song không cùng tiêu một số dư. */
+export async function activateBooster(
+  db: D1Like,
+  actor: string,
+  assetKey: string
+): Promise<{ expires_at: string; coins_left: number }> {
+  if (!actor) throw new NotAuthenticatedError();
+  const multiplier = XP_BOOSTERS[assetKey];
+  if (!multiplier) throw new Error(`Không có booster tên ${assetKey}`);
+  const asset = await one<{ price: number }>(db, `select price from gamification_assets where asset_key = ?`, assetKey);
+  if (asset?.price == null) throw new Error("Món này không bán");
+
+  const tru = await exec(
+    db,
+    `update user_profiles set coins = coins - ? where id = ? and coins >= ?`,
+    asset.price,
+    actor,
+    asset.price
+  );
+  if (tru === 0) throw new Error("Không đủ xu");
+
+  const cur = await one<{ expires_at: string }>(
+    db,
+    `select expires_at from user_active_boosters where user_id = ? and kind = ?`,
+    actor,
+    assetKey
+  );
+  const base = Math.max(Date.now(), cur ? new Date(cur.expires_at).getTime() || 0 : 0);
+  const expiresAt = new Date(base + BOOSTER_MS).toISOString();
+  await exec(
+    db,
+    `insert into user_active_boosters (user_id, kind, multiplier, expires_at) values (?, ?, ?, ?)
+     on conflict (user_id, kind) do update set multiplier = excluded.multiplier, expires_at = excluded.expires_at`,
+    actor,
+    assetKey,
+    multiplier,
+    expiresAt
+  );
+  const con = await one<{ coins: number }>(db, `select coins from user_profiles where id = ?`, actor);
+  return { expires_at: expiresAt, coins_left: con?.coins ?? 0 };
+}
+
+/** `get_my_xp_multiplier()`: tích các booster còn hạn, kẹp trong [1, 3]. */
+export async function getMyXpMultiplier(
+  db: D1Like,
+  actor: string
+): Promise<{ multiplier: number; expires_at: string | null }> {
+  if (!actor) return { multiplier: 1, expires_at: null };
+  const live = await rows<{ multiplier: number; expires_at: string }>(
+    db,
+    `select multiplier, expires_at from user_active_boosters where user_id = ? and expires_at > ?`,
+    actor,
+    new Date().toISOString()
+  );
+  const m = live.reduce((acc, r) => acc * (Number(r.multiplier) || 1), 1);
+  const expires = live.map((r) => r.expires_at).sort().pop() ?? null;
+  return { multiplier: Math.min(MAX_XP_MULTIPLIER, Math.max(1, m)), expires_at: expires };
+}
+
 /** `toggle_chat_message_reaction(p_message_id, p_emoji)`.
  *
  *  Bản gốc đọc `exists(...)` rồi mới chọn `delete` hay `insert`. Đó là khoảng
@@ -2244,15 +2315,26 @@ export async function claimStudyRoomWeeklyReward(
   };
 }
 
+/** Bậc level trong SQL, sinh từ chính bảng `LEVELS` để TS và SQL không thể lệch
+ *  nhau nữa. Bản cũ dùng `floor(total_xp / 150) + 1` - 1.500 XP ra Lv 11 ở đây
+ *  nhưng Lv 7 ở `getLevelByXp`, nên mỗi lần admin đồng bộ là level nhảy loạn.
+ *  Bậc có `minCfaCompleted` bị bỏ qua: đợt đồng bộ không đếm module, tức là
+ *  `getLevelByXp(xp, 0)` - đúng như cách TS xử lý người chưa làm module nào. */
+function levelSqlExpr(xpCol: string): string {
+  const tiers = LEVELS.filter((l) => !("minCfaCompleted" in l) || !l.minCfaCompleted)
+    .slice()
+    .sort((a, b) => b.minXp - a.minXp);
+  return `(case ${tiers.map((l) => `when ${xpCol} >= ${l.minXp} then ${l.level}`).join(" ")} else 1 end)`;
+}
+const LEVEL_OF_C = levelSqlExpr("c.total_xp");
+
 /** CTE tính lại toàn bộ chỉ số của mọi người, dùng bởi `adminResyncAllUserStats`.
  *
  *  Ba chỗ đã đổi so với bản gốc:
  *   - `distinct on (user_id, game_type)` → `row_number()` (xem bẫy 6).
  *   - `avg(quiz_score) filter (where ...)` → `avg(...)` bỏ qua NULL sẵn trong
  *     SQLite, nên `filter` là thừa; giữ `case when` cho rõ ý.
- *   - `floor(total_xp / 150)` → `/ 150.0` rồi mới `cast(... as integer)`. Chia
- *     nguyên ở đây tình cờ cho cùng kết quả với `floor`, nhưng viết thập phân
- *     thì ý định rõ ràng và không phụ thuộc vào sự trùng hợp ấy. */
+ *   - `floor(total_xp / 150) + 1` → `LEVEL_OF_C`, sinh từ bảng `LEVELS`. */
 const RESYNC_COMPUTED = `with lesson_agg as (
      select user_id, count(*) as lessons_completed,
             avg(case when quiz_score is not null then quiz_score end) as avg_quiz_score
@@ -2319,13 +2401,13 @@ export async function adminResyncAllUserStats(db: D1Like): Promise<number> {
      update user_profiles set
        lessons_completed = (select c.lessons_completed from computed c where c.user_id = user_profiles.id),
        total_xp          = (select c.total_xp from computed c where c.user_id = user_profiles.id),
-       current_level     = (select cast(c.total_xp / 150.0 as integer) + 1 from computed c where c.user_id = user_profiles.id),
+       current_level     = (select ${LEVEL_OF_C} from computed c where c.user_id = user_profiles.id),
        avg_quiz_score    = (select round(c.avg_quiz_score, 2) from computed c where c.user_id = user_profiles.id)
      where exists (
        select 1 from computed c where c.user_id = user_profiles.id and (
             coalesce(user_profiles.lessons_completed, -1) <> c.lessons_completed
          or coalesce(user_profiles.total_xp, -1) <> c.total_xp
-         or coalesce(user_profiles.current_level, -1) <> cast(c.total_xp / 150.0 as integer) + 1
+         or coalesce(user_profiles.current_level, -1) <> ${LEVEL_OF_C}
        ))`
   );
 
@@ -2334,7 +2416,7 @@ export async function adminResyncAllUserStats(db: D1Like): Promise<number> {
     `${RESYNC_COMPUTED}
      insert into user_stats (user_id, total_lessons_completed, total_xp, current_level, avg_quiz_score)
      select c.user_id, c.lessons_completed, c.total_xp,
-            cast(c.total_xp / 150.0 as integer) + 1, round(c.avg_quiz_score, 2)
+            ${LEVEL_OF_C}, round(c.avg_quiz_score, 2)
        from computed c
       where true
      on conflict (user_id) do update set

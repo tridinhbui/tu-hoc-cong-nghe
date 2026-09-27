@@ -36,7 +36,7 @@ export const libStringsVi = {
   // (components/CombinedRewardsWidget.tsx, quanh dòng 472-475).
   // Năm khoá ĐẦU là danh hiệu công nghệ hiện hành; năm khoá sau là danh hiệu
   // tài chính cũ, GIỮ LẠI có chủ ý. `lib/chests.ts` ghi `reward_value` - chính
-  // chuỗi tiếng Việt này - vào Supabase, nên mọi danh hiệu đã trao trước lần
+  // chuỗi tiếng Việt này - vào Cloudflare, nên mọi danh hiệu đã trao trước lần
   // đổi này còn nằm nguyên trong bảng. Xoá khoá cũ thì hồ sơ của họ hiện ra
   // một chuỗi không tra được, và không có cách nào lấy lại. Chỉ được xoá sau
   // khi có một migration đổi giá trị đã lưu.
