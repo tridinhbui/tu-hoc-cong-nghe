@@ -13,7 +13,7 @@ export default async function AdminSettingsPage() {
         {tp.subtitle}
       </p>
       <div className="bg-white dark:bg-stone-900 border-2 border-dashed border-line-strong rounded-xl p-16 flex flex-col items-center text-center">
-        <Settings className="w-10 h-10 text-stone-300 dark:text-stone-700 mb-3" />
+        <Settings className="w-10 h-10 text-stone-300 dark:text-stone-600 mb-3" />
         <p className="font-semibold text-ink-soft">{tp.comingSoon}</p>
         <p className="text-sm text-ink-faint mt-1 max-w-sm">
           {tp.description}

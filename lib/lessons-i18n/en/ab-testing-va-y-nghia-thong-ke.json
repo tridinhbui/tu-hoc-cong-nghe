@@ -19,7 +19,7 @@
     { "label": "Conclude once, with no mid-flight peeking" }
   ],
   "realWorldExample": {
-    "company": "A sign-up flow experiment at a personal finance app",
+    "company": "A sign-up flow experiment at a mobile app",
     "description": "A product team tested cutting the sign-up form from eight fields to four. After four days the completion rate on the new version was 18% higher and the team was ready to ship. The sample size computed beforehand called for a two-week run. By day fourteen the gap was down to 3% and no longer statistically significant. The change was kept anyway for other reasons, but that 18% figure - had it been reported upward - would have become the basis for expectations that were never going to materialise."
   },
   "quiz": [

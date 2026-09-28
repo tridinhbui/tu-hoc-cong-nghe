@@ -1,37 +1,45 @@
 {
   "slug": "chuan-bi-modeling-test-va-case-interview",
-  "title": "Professional Skills, Lesson 3: Preparing for the modelling test and the case interview",
-  "subtitle": "Time management, the order in which you build a model, and how to think out loud while working",
+  "title": "Professional Skills, Lesson 3: Preparing for the timed coding test and the case interview",
+  "subtitle": "Time management, the order in which you build a solution, and how to think out loud while working",
   "duration": "12 min",
-  "whyItMatters": "The modelling test is the real screening round for almost every analytical role. Most candidates fail it not for lack of knowledge but for mismanaging time - and that is something you can train.",
-  "openingQuestion": "In a 90-minute modelling test, what should you do first?",
+  "whyItMatters": "The timed coding test is the real screening round for almost every engineering role. Most candidates fail it not for lack of knowledge but for mismanaging time - and that is something you can train.",
+  "openingQuestion": "In a 90-minute coding test, what should you do first?",
   "openingOptions": [
-    "Start entering historical figures immediately to make the most of the time available",
+    "Start writing code immediately to make the most of the time available in the test",
     "Read the whole brief, identify the deliverable, then allocate the hours",
-    "Build the valuation first because it carries the most marks in the exercise",
-    "Set up the formatting and colour conventions for the whole workbook before entering numbers"
+    "Optimise the hard algorithmic part first because it carries the most marks",
+    "Set up the folder structure, linter and code formatting before writing the first line"
   ],
-  "explanation": "The most common way candidates fail is by building the early sections meticulously and running out of time before reaching a final number. A rough model that runs and produces an answer always scores higher than a beautiful half-finished one, because the employer wants to know whether you can deliver under time pressure. Reading the brief first and working backwards from the deliverable is the simplest technique there is, and the most frequently skipped.",
+  "explanation": "The most common way candidates fail is by building the early parts meticulously and running out of time before the program runs end to end. A rough solution that runs and passes the main test cases always scores higher than a beautiful half-finished one, because the employer wants to know whether you can deliver under time pressure. Reading the brief first and working backwards from the deliverable is the simplest technique there is, and the most frequently skipped.",
   "diagram": [
-    { "label": "Read the brief, identify the final deliverable" },
-    { "label": "Allocate the time backwards across each section" },
-    { "label": "Build a working version first, refine afterwards" },
-    { "label": "Keep the last 10 minutes for checking and a written conclusion" }
+    {
+      "label": "Read the brief, identify the final deliverable"
+    },
+    {
+      "label": "Allocate the time backwards across each section"
+    },
+    {
+      "label": "Write a working version first, refine afterwards"
+    },
+    {
+      "label": "Keep the last 10 minutes for running the tests and writing notes"
+    }
   ],
   "realWorldExample": {
     "company": "Two candidates, one brief",
-    "description": "The first candidate builds a highly detailed revenue schedule by product line, formats it beautifully, and runs out of time just as the income statement is finished. The second projects revenue on a single simple growth assumption, links all three statements, produces a valuation, and then uses the remaining time to go back and refine the revenue build and note the assumptions. The second candidate is chosen almost every time, even though their revenue section is cruder."
+    "description": "The brief: build a small API that reads an orders file, totals the amount per customer and returns the result. The first candidate designs an elaborate data layer, writes error handling for every case, and runs out of time just as file reading is finished. The second writes a simple version that runs the whole flow from reading the file to returning the result, with a few test cases, and then uses the remaining time to go back, handle malformed data and note the assumptions. The second candidate is chosen almost every time, even though their error handling is cruder."
   },
   "quiz": [
     {
-      "question": "What is the principle for building a model under time pressure?",
+      "question": "What is the principle for writing code under time pressure?",
       "options": [
-        "Copy the structure from a template model prepared before the test",
+        "Copy the structure from a template project prepared before the test",
         "Perfect each section as far as possible before moving to the next",
-        "Prioritise the valuation and skip the cash flow statement when short",
-        "Build a simple end-to-end working version first, then refine each part"
+        "Prioritise the core algorithm and skip reading the input data if short of time",
+        "Write a simple end-to-end working version first, then refine each part"
       ],
-      "explanation": "This approach guarantees you have something submittable at any moment, and it also surfaces linking errors between sections early - the very errors that a section-by-section approach only reveals when it is far too late. Perfecting sequentially is what leaves candidates stranded, dropping the cash flow statement breaks the links the graders check first, and a memorised template rarely fits the brief in front of you."
+      "explanation": "This approach guarantees you have something submittable at any moment, and it also surfaces integration errors between parts early - the very errors that a part-by-part approach only reveals when it is far too late. Perfecting sequentially is what leaves candidates stranded, skipping the input handling means nothing actually runs, and a memorised template rarely fits the brief in front of you."
     },
     {
       "question": "Why should you think out loud in an observed case exercise?",
@@ -41,69 +49,69 @@
         "Because speaking aloud helps the candidate catch errors in their own arithmetic",
         "Because the assessor needs notes on the steps to compare candidates with each other"
       ],
-      "explanation": "A candidate who reaches the wrong number with coherent reasoning usually scores higher than one who reaches the right number and cannot explain why. It is not a procedural requirement and it is not primarily about catching your own slips or about the assessor's note-taking. In real work you always have to defend your number, not merely produce it."
+      "explanation": "A candidate who reaches a wrong answer with coherent reasoning usually scores higher than one who reaches the right one and cannot explain why. It is not a procedural requirement and it is not primarily about catching your own slips or about the assessor's note-taking. In real work you always have to defend your solution, not merely produce it."
     },
     {
-      "question": "When a piece of data is missing from the brief, what is the right way to handle it?",
+      "question": "When a piece of information is missing from the brief, what is the right way to handle it?",
       "options": [
-        "Stop and ask the examiner until you receive the exact figure needed",
-        "State your assumption clearly, note it in the model, and carry on",
-        "Skip the part that needs the data and move on to other sections",
-        "Use a random number since the aim is to complete the model structure"
+        "Stop and ask the examiner until you receive an exact answer",
+        "State your assumption clearly, note it in the code, and carry on",
+        "Skip the part that needs the information and move on to other sections",
+        "Pick any interpretation since the aim is to complete the program structure"
       ],
-      "explanation": "Missing data in a brief is usually deliberate, to see how you cope with incomplete information - exactly as in real work. Waiting for the examiner burns the clock, skipping the section leaves the model unlinked, and picking a number at random is only different from a stated assumption in one respect, which is the one that matters. Stating the assumption openly is the right answer; quietly choosing a number and saying nothing is the wrong one."
+      "explanation": "Missing information in a brief is usually deliberate, to see how you cope with incomplete requirements - exactly as in real work. Waiting for the examiner burns the clock, skipping the section leaves the program unconnected, and picking an interpretation at random is only different from a stated assumption in one respect, which is the one that matters. Stating the assumption openly is the right answer; quietly choosing an interpretation and saying nothing is the wrong one."
     },
     {
       "question": "What should most of the final 10 minutes be spent on?",
       "options": [
-        "Add several more forecast scenarios so the model looks more complete",
-        "Reformat the spreadsheet and harmonise the colour conventions across sheets",
-        "Check that it balances, sweep for errors, and write a short conclusion",
-        "Recheck all the historical data entered at the start of the exercise"
+        "Add several extra minor features so the solution looks more complete",
+        "Reformat the code and harmonise naming conventions across files",
+        "Rerun the tests, sweep for errors, and write a few notes on the solution",
+        "Recheck all the input-reading code written at the start of the exercise"
       ],
-      "explanation": "A model whose balance sheet does not balance is rejected outright no matter how good the rest is. Extra scenarios and tidy formatting add nothing when the core is unverified, and re-entering historical data at that point is the least likely place for a fatal error. A few lines of conclusion also show you understand what the number you just produced means - the part most candidates drop when the clock runs out."
+      "explanation": "A program that does not run or fails a basic test case is rejected outright no matter how good the rest is. Extra features and tidy formatting add nothing when the core is unverified, and rereading the input code at that point is the least likely place for a fatal error. A few lines of notes also show you understand what trade-offs your solution makes - the part most candidates drop when the clock runs out."
     },
     {
-      "question": "Why do employers accept a rough but working model?",
+      "question": "Why do employers accept a rough but working solution?",
       "options": [
         "Because they assume the candidate will be trained further after joining",
-        "Because a rough model is easier to grade, saving the panel time",
-        "Because model detail does not matter much in real day-to-day work",
+        "Because a rough solution is easier to grade, saving the panel time",
+        "Because code polish does not matter much in real day-to-day work",
         "Because it proves the candidate can deliver a finished product on time"
       ],
-      "explanation": "In real work, deadlines are real and always earlier than you would like. Detail does matter on the job, grading convenience is not a design goal of the exercise, and nobody is counting on post-hire training to supply the basics. The ability to break work down so that a usable version always exists is a core professional skill, and the test is designed to measure exactly that."
+      "explanation": "In real work, deadlines are real and always earlier than you would like. Code quality does matter on the job, grading convenience is not a design goal of the exercise, and nobody is counting on post-hire training to supply the basics. The ability to break work down so that a usable version always exists is a core professional skill, and the test is designed to measure exactly that."
     }
   ],
   "keyTakeaways": [
-    "Read the whole brief and allocate time backwards from the deliverable before typing into the first cell",
-    "Build an end-to-end working version first and refine later - do not perfect one section at a time",
-    "When data is missing, state the assumption clearly and note it; do not quietly pick a number",
-    "Keep the last 10 minutes for checking the balance sheet and writing a few lines of conclusion"
+    "Read the whole brief and allocate time backwards from the deliverable before typing the first line of code",
+    "Write an end-to-end working version first and refine later - do not perfect one section at a time",
+    "When information is missing, state the assumption clearly and note it; do not quietly pick one",
+    "Keep the last 10 minutes for rerunning the tests and writing a few notes"
   ],
   "practicePrompt": {
-    "question": "With 20 minutes left, your cash flow statement is not fully linked and the balance sheet does not balance. What should you do?",
+    "question": "With 20 minutes left, your processing step is not yet wired to the output step and two test cases are failing. What should you do?",
     "options": [
-      "Keep fixing the links until they are right, accepting no time for valuation",
-      "Note what is unfinished, use a simple number to run on and reach a valuation",
-      "Delete the part that is out of balance so the model looks clean, then submit",
+      "Keep fixing until every case is right, accepting no time for the output step",
+      "Note what is unfinished, use a simple workaround to run on and produce a result",
+      "Delete the failing test cases so the submission looks clean, then submit",
       "Stop and explain to the assessor that the task is too long for the time given"
     ],
-    "explanation": "The assessor needs to see you carry the whole line of thinking through to a final result. An honest note saying the linking is incomplete and this is the temporary workaround shows you have the situation under control. Deleting the section that does not balance is the worst option of the four - it conceals rather than acknowledges."
+    "explanation": "The assessor needs to see you carry the whole flow through to a final result. An honest note saying the wiring is incomplete and this is the temporary workaround shows you have the situation under control. Deleting the failing test cases is the worst option of the four - it conceals rather than acknowledges."
   },
   "summary": {
-    "keyIdea": "The test measures your ability to deliver under pressure, not the sophistication of the model",
+    "keyIdea": "The test measures your ability to deliver under pressure, not the sophistication of the code",
     "commonMistake": "Pouring time into the opening sections and running out before producing a final answer",
-    "action": "Time yourself for 90 minutes building a three-statement model with a valuation, and repeat it three times with three different companies."
+    "action": "Time yourself for 90 minutes solving a brief that builds a small API with tests, and repeat it three times with three different briefs."
   },
   "application": {
     "title": "A four-week practice plan",
-    "message": "Week 1: build models with no time limit until the structure is second nature. Week 2: time yourself at 120 minutes. Week 3: 90 minutes. Week 4: 90 minutes while narrating your reasoning out loud, as though someone were watching.",
+    "message": "Week 1: solve briefs with no time limit until the structure is second nature. Week 2: time yourself at 120 minutes. Week 3: 90 minutes. Week 4: 90 minutes while narrating your reasoning out loud, as though someone were watching.",
     "secondary": "The skill here is closer to sport than to academic study - it comes from the number of repetitions, not the number of pages read."
   },
   "sections": [
     {
       "type": "lead",
-      "text": "The financial modelling stage taught you structure; the Excel stage taught you execution. This lesson is about the situation where both are tested at once against a countdown clock, and about why most people who fail do not fail on knowledge."
+      "text": "Lesson 1 taught you to write a design doc; lesson 2 taught you to defend a proposal. This lesson is about the situation where writing code and explaining it are tested at once against a countdown clock, and about why most people who fail do not fail on knowledge."
     },
     {
       "type": "heading",
@@ -112,33 +120,33 @@
     {
       "type": "list",
       "items": [
-        "10 minutes: read the brief, identify the deliverable, sketch the structure and the assumptions block",
-        "20 minutes: enter the historical data and build the revenue forecast at the simplest acceptable level",
-        "30 minutes: build the three statements and link them until the balance sheet balances",
-        "20 minutes: valuation and one or two scenarios",
-        "10 minutes: sweep for errors, check the balance, write a short conclusion"
+        "10 minutes: read the brief, identify the deliverable, sketch the structure and write down the assumptions",
+        "20 minutes: write the input-reading part at the simplest acceptable level",
+        "30 minutes: write the core processing and wire it to input and output until the whole flow runs",
+        "20 minutes: write tests for the main cases and one or two edge cases",
+        "10 minutes: sweep for errors, rerun the tests, write short notes"
       ]
     },
     {
       "type": "callout",
       "label": "The working-version principle",
-      "text": "At any point in the 90 minutes you should have a model that runs end to end, differing only in how polished it is. The approach is identical to the minimum viable product principle in software development, and for the same reason: it protects you from running out of time with something half-built."
+      "text": "At any point in the 90 minutes you should have a program that runs end to end, differing only in how polished it is. This is exactly the minimum viable product principle, and for the same reason: it protects you from running out of time with something half-built."
     },
     {
       "type": "comparison",
       "left": {
         "label": "What you think is being graded",
-        "text": "The precision of every number and the granularity of the revenue forecast."
+        "text": "How optimal the algorithm is and how thoroughly every error case is handled."
       },
       "right": {
         "label": "What is actually being graded",
-        "text": "Whether the structure is clean, whether the three statements link correctly, how you handle missing data, and whether you reach a result inside the deadline."
+        "text": "Whether the structure is clean, whether the parts connect correctly, how you handle missing information, and whether you reach a result inside the deadline."
       }
     },
     {
       "type": "closing",
       "lines": [
-        "The modelling test does not measure knowledge; it measures working habits under pressure.",
+        "The timed coding test does not measure knowledge; it measures working habits under pressure.",
         "The final lesson of the stage steps back to view all of these skills within a career path."
       ]
     }

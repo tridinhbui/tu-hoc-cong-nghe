@@ -20,9 +20,9 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 function getCategories(t: Dictionary) {
   return [
-    { key: "needs", label: t.budgetSim.categoryNeedsLabel, hint: t.budgetSim.categoryNeedsHint, tone: "bg-sky-500" },
-    { key: "wants", label: t.budgetSim.categoryWantsLabel, hint: t.budgetSim.categoryWantsHint, tone: "bg-amber-500" },
-    { key: "save", label: t.budgetSim.categorySaveLabel, hint: t.budgetSim.categorySaveHint, tone: "bg-brand-500" },
+    { key: "needs", label: t.budgetSim.categoryNeedsLabel, hint: t.budgetSim.categoryNeedsHint, tone: "bg-stone-700 dark:bg-stone-300" },
+    { key: "wants", label: t.budgetSim.categoryWantsLabel, hint: t.budgetSim.categoryWantsHint, tone: "bg-stone-300 dark:bg-stone-600" },
+    { key: "save", label: t.budgetSim.categorySaveLabel, hint: t.budgetSim.categorySaveHint, tone: "bg-brand-600 dark:bg-brand-500" },
   ] as const;
 }
 
@@ -43,20 +43,20 @@ export default function InteractiveBudget() {
   const months = saveAmount > 0 ? Math.ceil(target / saveAmount) : Infinity;
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6 dark:bg-stone-900 dark:border-stone-800">
+    <div className="space-y-6 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="flex items-center gap-2 font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
-          <Calculator aria-hidden className="h-5 w-5 text-accent" strokeWidth={1.75} /> {t.budgetSim.title}
+        <h3 className="flex items-center gap-2 mb-1 text-lg font-black tracking-tight text-ink-max">
+          <Calculator aria-hidden className="h-5 w-5 text-ink-muted" strokeWidth={1.75} /> {t.budgetSim.title}
         </h3>
-        <p className="text-stone-500 text-sm dark:text-stone-400">
+        <p className="text-sm text-ink-soft">
           {t.budgetSim.subtitle}
         </p>
       </div>
 
       <div>
         <div className="flex justify-between text-sm mb-2">
-          <span className="inline-flex items-center gap-1.5 font-medium text-ink-body"><HardDrive aria-hidden className="h-4 w-4 text-accent" strokeWidth={1.75} /> {t.budgetSim.incomeLabel}</span>
-          <span className="font-bold text-ink-heading">
+          <span className="inline-flex items-center gap-1.5 font-medium text-ink-body"><HardDrive aria-hidden className="h-4 w-4 text-ink-muted" strokeWidth={1.75} /> {t.budgetSim.incomeLabel}</span>
+          <span className="font-bold tabular-nums text-ink-max">
             {format(t.budgetSim.incomeAmount, { amount: income })}
           </span>
         </div>
@@ -75,7 +75,7 @@ export default function InteractiveBudget() {
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.budgetSim.categoryNeedsLabel}</span>
-            <span className="font-bold text-info">{needs}%</span>
+            <span className="font-mono font-medium tabular-nums text-ink-max">{needs}%</span>
           </div>
           <input
             type="range"
@@ -90,7 +90,7 @@ export default function InteractiveBudget() {
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.budgetSim.categoryWantsLabel}</span>
-            <span className="font-bold text-warn">{wants}%</span>
+            <span className="font-mono font-medium tabular-nums text-ink-max">{wants}%</span>
           </div>
           <input
             type="range"
@@ -106,7 +106,7 @@ export default function InteractiveBudget() {
 
       {/* Một thanh duy nhất thay vì ba con số rời: mắt đọc tỷ lệ nhanh hơn đọc
           phần trăm, và tỷ lệ mới là thứ bài học nói tới. */}
-      <div className="flex h-4 w-full overflow-hidden rounded-full">
+      <div className="flex h-3 w-full overflow-hidden rounded-xs border border-line-strong">
         {CATEGORIES.map((c) => (
           <div
             key={c.key}
@@ -119,9 +119,9 @@ export default function InteractiveBudget() {
 
       <div className="grid gap-3 sm:grid-cols-3">
         {CATEGORIES.map((c) => (
-          <div key={c.key} className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-800/60">
+          <div key={c.key} className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
             <p className="text-xs font-bold text-ink-soft">{c.label}</p>
-            <p className="text-lg font-extrabold text-ink">
+            <p className="text-lg font-black tabular-nums text-ink-max">
               {format(t.budgetSim.categoryAmount, { amount: ((income * share[c.key]) / 100).toFixed(1) })}
             </p>
             <p className="mt-0.5 text-[11px] leading-snug text-ink-faint">{c.hint}</p>
@@ -130,12 +130,12 @@ export default function InteractiveBudget() {
       </div>
 
       <div
-        className={`rounded-2xl p-4 ${
+        className={`border-l-2 pl-4 ${
           save === 0
-            ? "bg-rose-50 dark:bg-rose-950/30"
+            ? "border-red-600 dark:border-red-400"
             : months <= 12
-              ? "bg-brand-50 dark:bg-brand-950/30"
-              : "bg-amber-50 dark:bg-amber-950/30"
+              ? "border-brand-600 dark:border-brand-400"
+              : "border-amber-500"
         }`}
       >
         {save === 0 ? (

@@ -5,6 +5,7 @@ import { Check, Link2, Plug, TrendingDown, Wrench, X } from "lucide-react";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Sys } from "@/components/ui/system";
 import type { LaunchEffortLessonCopy } from "@/lib/i18n/dictionaries/sections/bespoke-lessons";
 
 /* i18n-ignore-start: `title`, `subtitle` và `nextTitle` đã có lớp phủ trong
@@ -51,56 +52,61 @@ function FundingStructure({ c }: { c: LaunchEffortLessonCopy }) {
   const equity = (equityPct / 100) * dealSize;
 
   const exitMultiple = 10;
-  const entryEbitda = 80;
-  const exitEbitda = entryEbitda * 1.5;
-  const exitEV = exitMultiple * exitEbitda;
+  const entryHoursSaved = 80;
+  const exitHoursSaved = entryHoursSaved * 1.5;
+  const exitEV = exitMultiple * exitHoursSaved;
   const remainingDebt = debt * 0.5;
   const exitEquity = exitEV - remainingDebt;
   const moic = exitEquity / equity;
 
   return (
-    <div className="bg-gradient-to-br from-brand-50 to-brand-50 rounded-2xl p-5 border border-stone-200 my-6">
-      <h3 className="font-bold text-stone-700 mb-4 text-sm">{SIMULATOR_HEADING}</h3>
-      <div className="mb-4">
-        <label className="text-xs font-semibold text-stone-600 block mb-1">{format(c.debtShareLabel, { debt: debtPct, equity: equityPct })}</label>
-        <input type="range" min={20} max={80} value={debtPct} onChange={e => setDebtPct(+e.target.value)} className="w-full accent-brand-500" />
+    <div className="my-6 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="flex h-9 items-center border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+        <h3 className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{SIMULATOR_HEADING}</h3>
       </div>
+      <div className="space-y-5 p-4 sm:p-5">
+        <div>
+          <label className="mb-1 block text-xs font-semibold text-ink-soft">{format(c.debtShareLabel, { debt: debtPct, proper: equityPct })}</label>
+          <input type="range" min={20} max={80} value={debtPct} onChange={e => setDebtPct(+e.target.value)} className="w-full accent-brand-600" />
+        </div>
 
-      <div className="bg-white rounded-xl p-4 mb-4">
-        <div className="font-semibold text-stone-600 text-xs mb-3">{format(c.dealSizeLabel, { size: dealSize })}</div>
-        <div className="h-8 rounded-lg overflow-hidden flex mb-3">
-          <div className="bg-stone-50 flex items-center justify-center text-white text-xs font-bold transition-all" style={{ width: `${equityPct}%` }}>
-            {format(c.equityShare, { pct: equityPct })}
+        <div>
+          <div className="mb-2 text-xs font-semibold text-ink-soft">{format(c.dealSizeLabel, { size: dealSize })}</div>
+          <div className="mb-3 flex h-8 overflow-hidden rounded-sm border border-line-strong">
+            <div className="flex items-center justify-center bg-brand-600 text-xs font-bold text-white transition-[width] dark:bg-brand-500 dark:text-stone-950" style={{ width: `${equityPct}%` }}>
+              {format(c.equityShare, { pct: equityPct })}
+            </div>
+            <div className="flex items-center justify-center bg-stone-700 text-xs font-bold text-white transition-[width] dark:bg-stone-600" style={{ width: `${debtPct}%` }}>
+              {format(c.debtShare, { pct: debtPct })}
+            </div>
           </div>
-          <div className="bg-stone-600 flex items-center justify-center text-white text-xs font-bold transition-all" style={{ width: `${debtPct}%` }}>
-            {format(c.debtShare, { pct: debtPct })}
+          <div className="grid grid-cols-2 border-y border-stone-200 text-sm dark:border-stone-800">
+            <div className="py-2.5">
+              <div className="font-mono font-medium tabular-nums text-accent-strong">{format(c.billion, { value: equity.toFixed(0) })}</div>
+              <div className="text-xs text-ink-muted">{c.equityCaption}</div>
+            </div>
+            <div className="border-l border-stone-200 py-2.5 pl-3 dark:border-stone-800">
+              <div className="font-mono font-medium tabular-nums text-ink-max">{format(c.billion, { value: debt.toFixed(0) })}</div>
+              <div className="text-xs text-ink-muted">{c.debtCaption}</div>
+            </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-3 text-center text-sm">
-          <div className="bg-stone-50 rounded-lg p-2">
-            <div className="text-stone-700 font-bold">{format(c.billion, { value: equity.toFixed(0) })}</div>
-            <div className="text-xs text-stone-500">{c.equityCaption}</div>
-          </div>
-          <div className="bg-stone-50 rounded-lg p-2">
-            <div className="text-stone-700 font-bold">{format(c.billion, { value: debt.toFixed(0) })}</div>
-            <div className="text-xs text-stone-500">{c.debtCaption}</div>
-          </div>
-        </div>
-      </div>
 
-      <div className="bg-stone-800 rounded-xl p-4">
-        <div className="text-xs font-semibold text-stone-500 mb-2">{c.exitAssumption}</div>
-        <div className="flex justify-between text-sm mb-1">
-          <span className="text-stone-300">{format(c.exitEvLabel, { multiple: exitMultiple, ebitda: exitEbitda })}</span>
-          <span className="text-white font-bold">{format(c.billion, { value: exitEV.toFixed(0) })}</span>
-        </div>
-        <div className="flex justify-between text-sm mb-2">
-          <span className="text-stone-300">{c.remainingDebtLabel}</span>
-          <span className="text-stone-700">−{format(c.billion, { value: remainingDebt.toFixed(0) })}</span>
-        </div>
-        <div className="flex justify-between text-sm border-t border-stone-600 pt-2">
-          <span className="text-stone-700 font-bold">{MOIC_LABEL}</span>
-          <span className="text-stone-700 font-bold text-lg">{moic.toFixed(1)}x</span>
+        {/* Kết quả: khối mực, như terminal cuối HeroEditor. */}
+        <div className="rounded-sm bg-stone-950 p-4 text-sm text-stone-300">
+          <div className="mb-2 text-xs font-semibold text-stone-400">{c.exitAssumption}</div>
+          <div className="mb-1 flex justify-between gap-3">
+            <span>{format(c.exitEvLabel, { multiple: exitMultiple, hours: exitHoursSaved })}</span>
+            <span className="font-mono tabular-nums text-white">{format(c.billion, { value: exitEV.toFixed(0) })}</span>
+          </div>
+          <div className="mb-2 flex justify-between gap-3">
+            <span>{c.remainingDebtLabel}</span>
+            <span className="font-mono tabular-nums text-stone-300">−{format(c.billion, { value: remainingDebt.toFixed(0) })}</span>
+          </div>
+          <div className="flex items-baseline justify-between gap-3 border-t border-stone-700 pt-2">
+            <span className="font-bold text-white">{MOIC_LABEL}</span>
+            <span className="font-mono text-lg font-medium tabular-nums text-brand-300">{moic.toFixed(1)}x</span>
+          </div>
         </div>
       </div>
     </div>
@@ -130,25 +136,27 @@ export default function Page() {
 
   return (
     <LessonPageLayout lesson={lesson} quiz={quiz}>
-      <h2 className="text-2xl font-bold text-ink mb-2">{c.heading}</h2>
-      <p className="text-stone-600 text-sm mb-6 italic">{c.intro}</p>
+      <div>
+        <h2 className="text-2xl font-black leading-tight tracking-tight text-ink-max">{c.heading}</h2>
+        <p className="mt-2 max-w-[68ch] text-lg leading-8 text-ink-soft">{c.intro}</p>
+      </div>
 
-      <section className="mb-8">
-        <h3 className="text-lg font-bold text-ink-heading mb-3">{c.sourcesHeading}</h3>
+      <section>
+        <h3 className="mb-3 border-b border-stone-300 pb-2 text-lg font-black tracking-tight text-ink-max dark:border-stone-700">{c.sourcesHeading}</h3>
         <div className="space-y-3">
           {c.sources.map((s, i) => (
-            <div key={SOURCE_TYPES[i]} className="bg-stone-50 rounded-xl p-4 border border-stone-200">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="rounded-lg bg-accent-soft p-1.5 text-accent">
+            <div key={SOURCE_TYPES[i]} className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+              <div className="mb-2 flex items-center gap-2.5">
+                <span className="flex h-7 w-7 items-center justify-center rounded-sm border border-stone-300 text-ink-body dark:border-stone-700">
                   {createElement(SOURCE_ICONS[i], { "aria-hidden": true, className: "h-4 w-4", strokeWidth: 1.75 })}
                 </span>
-                <span className="font-bold text-stone-800">{SOURCE_TYPES[i]}</span>
+                <span className="font-bold text-ink-max">{SOURCE_TYPES[i]}</span>
               </div>
-              <p className="text-stone-600 text-sm mb-2">{s.desc}</p>
-              <div className="bg-white rounded-lg p-2 mb-2 text-xs text-stone-500 italic">{s.example}</div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="flex gap-1"><Check aria-hidden className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-accent" strokeWidth={2} /><span className="text-stone-600">{s.pro}</span></div>
-                <div className="flex gap-1"><X aria-hidden className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-alert" strokeWidth={2} /><span className="text-stone-600">{s.con}</span></div>
+              <p className="mb-2 max-w-[68ch] text-base leading-7 text-ink-body">{s.desc}</p>
+              <p className="mb-3 border-l-2 border-stone-300 pl-3 text-sm leading-6 text-ink-soft dark:border-stone-700">{s.example}</p>
+              <div className="grid grid-cols-1 gap-2 text-sm leading-6 sm:grid-cols-2">
+                <div className="flex gap-1.5"><Check aria-hidden className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-accent-strong" strokeWidth={2} /><span className="text-ink-body">{s.pro}</span></div>
+                <div className="flex gap-1.5"><X aria-hidden className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-red-600 dark:text-red-400" strokeWidth={2} /><span className="text-ink-body">{s.con}</span></div>
               </div>
             </div>
           ))}
@@ -158,15 +166,15 @@ export default function Page() {
       <FundingStructure c={c} />
 
       <section>
-        <h3 className="text-lg font-bold text-ink-heading mb-3">{c.checklistHeading}</h3>
-        <div className="space-y-2">
+        <h3 className="mb-3 border-b border-stone-300 pb-2 text-lg font-black tracking-tight text-ink-max dark:border-stone-700">{c.checklistHeading}</h3>
+        <ol className="divide-y divide-stone-200 rounded-md border border-stone-300 bg-white dark:divide-stone-800 dark:border-stone-700 dark:bg-stone-900">
           {c.checklist.map((item, i) => (
-            <div key={i} className="flex gap-3 bg-stone-50 rounded-lg p-3 text-sm border border-stone-200">
-              <span className="w-5 h-5 bg-stone-50 text-stone-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">{i + 1}</span>
-              <span className="text-stone-700">{item}</span>
-            </div>
+            <li key={i} className="flex items-baseline gap-3 px-4 py-3 text-base leading-7">
+              <Sys className="flex-shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>
+              <span className="text-ink-body">{item}</span>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
     </LessonPageLayout>
   );

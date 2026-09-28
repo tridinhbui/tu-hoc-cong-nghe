@@ -618,7 +618,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     application: {
       title: "Khối kiểm tra chuẩn",
       message:
-        "Đặt ở đầu sheet tóm tắt: bảng cân đối có cân không, tiền mặt hai nơi có khớp không, có ô lỗi nào không, có giá trị âm ở nơi không được phép âm không, và tỷ lệ nào vượt ngưỡng hợp lý. Dùng định dạng có điều kiện để ô chuyển đỏ ngay khi vi phạm.",
+        "Đặt ở đầu sheet tóm tắt: công suất cấp có khớp công suất đã phân bổ không, số máy chủ hai nơi có khớp không, có ô lỗi nào không, có giá trị âm ở nơi không được phép âm không, và tỷ lệ nào vượt ngưỡng hợp lý. Dùng định dạng có điều kiện để ô chuyển đỏ ngay khi vi phạm.",
       secondary: "Mục tiêu: người mở file lần đầu chỉ cần nhìn một khu vực là biết mô hình có đang khỏe mạnh hay không.",
     },
     sections: [

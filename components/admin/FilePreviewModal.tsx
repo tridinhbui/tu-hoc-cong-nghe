@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { X, Download, Eye, FileText } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { btnPrimary, btnSecondary, panel } from "@/components/ui/system";
 
 interface FilePreviewModalProps {
   open: boolean;
@@ -54,8 +55,8 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
     file.name.endsWith(".xls");
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/50">
-      <div className="bg-white dark:bg-stone-900 rounded-2xl border border-line w-full max-w-2xl max-h-[80vh] flex flex-col">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-stone-950/60">
+      <div className={`${panel} w-full max-w-2xl max-h-[80vh] flex flex-col`}>
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-line">
           <div className="flex items-center gap-2">
@@ -94,7 +95,7 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
 
           {isExcel && fileInfo && (
             <div className="space-y-4">
-              <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900 rounded-lg p-4">
+              <div className="border border-line-strong rounded-sm p-4">
                 <p className="text-sm text-ink-soft mb-2">{tp.fileInfoTitle}</p>
                 <div className="space-y-2 text-sm">
                   <p>
@@ -113,7 +114,7 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
                   </p>
                 </div>
               </div>
-              <div className="bg-amber-50 dark:bg-amber-950/20 border border-warn-line rounded-lg p-4 text-sm text-warn-ink">
+              <div className="bg-warn-soft border border-warn-line rounded-sm p-4 text-sm text-warn-ink">
                 {tp.excelCannotPreview}
               </div>
             </div>
@@ -151,18 +152,14 @@ export default function FilePreviewModal({ open, file, onClose }: FilePreviewMod
           <a
             href={previewUrl || "#"}
             download={file.name}
-            className={`inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg transition-colors ${
-              previewUrl
-                ? "bg-surface-raised text-ink-body hover:bg-surface-sunken"
-                : "opacity-50 cursor-not-allowed"
-            }`}
+            className={`${btnSecondary} ${previewUrl ? "" : "opacity-50 cursor-not-allowed"}`}
           >
             <Download className="w-4 h-4" />
             {tp.download}
           </a>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition-colors"
+            className={`${btnPrimary} cursor-pointer`}
           >
             {tp.close}
           </button>

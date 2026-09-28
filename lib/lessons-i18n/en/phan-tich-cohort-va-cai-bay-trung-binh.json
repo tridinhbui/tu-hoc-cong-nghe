@@ -27,7 +27,7 @@
     }
   ],
   "realWorldExample": {
-    "company": "A finance app and the growth that hides the problem",
+    "company": "A mobile app and the growth that hides the problem",
     "description": "An app grows its user base quickly, the monthly active share of total users holds steady, and management is relaxed. Split by cohort, the picture is completely different: the January cohort still has 45% active after six months, while the June cohort has only 22% at that same six-month mark. The quality of new users is deteriorating steadily, but because new sign-ups are growing fast the aggregate ratio still looks fine. That is accumulated debt: when growth slows, the entire problem surfaces at once."
   },
   "quiz": [
@@ -46,10 +46,10 @@
       "options": [
         "Because data from different calendar dates is usually collected by different methods",
         "Because the number of members in each group keeps changing, so no direct comparison works",
-        "Because different calendar periods are affected by quite different rates of inflation",
+        "Because calendar months have different numbers of days, so the figures cannot be added",
         "Because a newly joined group always shows higher activity, so a same-date comparison is skewed"
       ],
-      "explanation": "The comparison has to be fair: a three-month-old group against a three-month-old group. Measuring at the same calendar date makes whichever cohort joined most recently look artificially good, because it is being observed at the top of its own retention curve. Collection method, group size and inflation are real issues elsewhere, but none of them is what makes a same-date cohort comparison misleading."
+      "explanation": "The comparison has to be fair: a three-month-old group against a three-month-old group. Measuring at the same calendar date makes whichever cohort joined most recently look artificially good, because it is being observed at the top of its own retention curve. Collection method, group size and the length of a month are real issues elsewhere, but none of them is what makes a same-date cohort comparison misleading."
     },
     {
       "question": "The headline metric is flat while newer cohorts get steadily worse. What does that mean?",
@@ -94,7 +94,7 @@
     "options": [
       "Revenue is being under-recorded at several branches, so the reported total is understated",
       "The share of low-spending customers in the total is rising, pulling the average down",
-      "Inflation is eroding the real value of every dong of revenue collected",
+      "The price of every plan has just been cut for all customers",
       "Long-standing customers have started leaving in unusually large numbers"
     ],
     "explanation": "This is Simpson's paradox in its most common form: every group holds steady or improves, but the weights between groups shift, so the aggregate moves the other way. A successful campaign to acquire cheaper customers can drag average revenue down while nothing has actually got worse - and the right response is to look at the groups individually, not to panic about the average."

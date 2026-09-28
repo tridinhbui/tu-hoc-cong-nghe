@@ -3,7 +3,7 @@
   "title": "Excel, Lesson 4: Checking and debugging - turning a model into something that reports its own errors",
   "subtitle": "Trace precedents, partial F9, check cells, conditional formatting and the review routine before you send it",
   "duration": "11 min",
-  "whyItMatters": "A wrong model never reports an error; it just produces a plausible-looking number. Debugging skill is the thing standing between you and an investment recommendation built on a formula that is one row out.",
+  "whyItMatters": "A wrong model never reports an error; it just produces a plausible-looking number. Debugging skill is the thing standing between you and signing off an infrastructure upgrade plan built on a formula that is one row out.",
   "openingQuestion": "You suspect a result cell is wrong but the formula looks correct. What is the most effective checking technique?",
   "openingOptions": [
     "Delete the formula and type it again from scratch",
@@ -19,8 +19,8 @@
     { "label": "Fix the cause, not the symptom" }
   ],
   "realWorldExample": {
-    "company": "Model errors in real transactions",
-    "description": "There have been large transactions repriced by hundreds of millions of dollars because of a simple spreadsheet formula error - usually a sum range missing a few rows, or a hidden row left out of the total. None of them was a sophisticated financial error; every one of them was the kind a ten-minute review routine would have caught."
+    "company": "Spreadsheet errors in real projects",
+    "description": "There have been large projects that bought hundreds of servers too many because of a simple formula error in a load-forecast spreadsheet - usually a sum range missing a few rows, or a hidden row left out of the total. None of them was a sophisticated technical error; every one of them was the kind a ten-minute review routine would have caught."
   },
   "quiz": [
     {
@@ -51,7 +51,7 @@
         "Reviewing the headings and row labels for spelling mistakes there",
         "Comparing the file size against the last version that was saved"
       ],
-      "explanation": "This is the strongest and also the cheapest layer of defence. A model producing a 95% gross margin for a retailer is wrong somewhere, however smoothly every formula runs. Malware scanning is a security question, spelling is presentation, and file size tells you about the file rather than about the numbers inside it - none of them tests whether the output could be true."
+      "explanation": "This is the strongest and also the cheapest layer of defence. A spreadsheet producing a 95% cache hit rate for a system that writes more than it reads is wrong somewhere, however smoothly every formula runs. Malware scanning is a security question, spelling is presentation, and file size tells you about the file rather than about the numbers inside it - none of them tests whether the output could be true."
     },
     {
       "question": "Why are hidden rows and columns a dangerous source of error?",
@@ -88,7 +88,7 @@
       "Compress the file to reduce its size before sending",
       "Password-protect every sheet before sending it out"
     ],
-    "explanation": "Running an extreme scenario is the step most often skipped and one of the most effective: set revenue growth to minus 50% and see whether the model still behaves sensibly. A wrong model usually looks fine in the base case and only shows itself at the boundary values."
+    "explanation": "Running an extreme scenario is the step most often skipped and one of the most effective: set traffic growth to minus 50% and see whether the model still behaves sensibly. A wrong model usually looks fine in the base case and only shows itself at the boundary values."
   },
   "summary": {
     "keyIdea": "The goal is not to hunt for errors when you suspect one, but to design the model so errors reveal themselves",
@@ -97,7 +97,7 @@
   },
   "application": {
     "title": "The standard check block",
-    "message": "Put this at the top of the summary sheet: does the balance sheet balance, do the two cash figures agree, are there any error cells, are there negative values where negatives are not allowed, and does any ratio breach a plausible threshold. Use conditional formatting so the cell turns red the moment it is breached.",
+    "message": "Put this at the top of the summary sheet: does provisioned capacity match allocated capacity, do the two server counts agree, are there any error cells, are there negative values where negatives are not allowed, and does any ratio breach a plausible threshold. Use conditional formatting so the cell turns red the moment it is breached.",
     "secondary": "The aim: someone opening the file for the first time can look at one area and know whether the model is healthy."
   },
   "sections": [
@@ -119,7 +119,7 @@
     { "type": "heading", "text": "The check row: what catches errors while you build, not after you finish" },
     {
       "type": "paragraph",
-      "text": "The most effective technique is also the simplest: every schedule gets its own row computing the difference between two things that ought to be equal, and one cell aggregating every check row in the file. Balance sheet: total assets less total liabilities and equity. Debt schedule: closing balance less (opening + drawdowns − repayments). Cash flow: closing cash on the cash flow statement less closing cash on the balance sheet. All of them must come to 0. Set conditional formatting to turn red on anything else, and keep that aggregate cell in the top corner of every sheet - the error announces itself the moment you mistype, not when you send the file out."
+      "text": "The most effective technique is also the simplest: every schedule gets its own row computing the difference between two things that ought to be equal, and one cell aggregating every check row in the file. Capacity table: total provisioned capacity less total allocated capacity. Server table: closing server count less (opening + added − retired). Traffic table: total calls on the per-service table less total calls on the per-region table. All of them must come to 0. Set conditional formatting to turn red on anything else, and keep that aggregate cell in the top corner of every sheet - the error announces itself the moment you mistype, not when you send the file out."
     },
     {
       "type": "conceptTable",

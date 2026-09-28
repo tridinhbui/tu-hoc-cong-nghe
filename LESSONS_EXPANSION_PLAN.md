@@ -22,7 +22,7 @@
 
 ### 1. ESG Analyst 🌍 (3 → 6 bài)
 
-**Hiện tại:** rui-ro-la-gi, modern-portfolio-theory, enterprise-value
+**Hiện tại:** rui-ro-la-gi, nhieu-dich-vu-nho-hay-mot-dich-vu-lon, enterprise-value
 
 **Cần thêm 3 bài:**
 1. **"ESG là gì & Tại sao nó quan trọng"** (khái niệm + framework GRI/SASB)
@@ -70,7 +70,7 @@
 
 ### 3. Wealth Manager / Financial Planner 💼 (4 → 6 bài)
 
-**Hiện tại:** gia-tri-thoi-gian-cua-tien, modern-portfolio-theory, rui-ro-la-gi, ke-hoach-thua-ke
+**Hiện tại:** gia-tri-thoi-gian-cua-tien, nhieu-dich-vu-nho-hay-mot-dich-vu-lon, rui-ro-la-gi, ke-hoach-thua-ke
 
 **Cần thêm 2 bài:**
 1. **"Hoạch định tài chính toàn diện: 6 bước"** (methodology)
@@ -89,7 +89,7 @@
 
 ### 4. Risk Management Specialist 🛡️ (4 → 6 bài)
 
-**Hiện tại:** rui-ro-la-gi, quan-ly-rui-ro-lai-suat-doanh-nghiep, quan-ly-rui-ro-ty-gia-doanh-nghiep-xnk, modern-portfolio-theory, rui-ro-vo-no
+**Hiện tại:** rui-ro-la-gi, quan-ly-rui-ro-lai-suat-doanh-nghiep, quan-ly-rui-ro-ty-gia-doanh-nghiep-xnk, nhieu-dich-vu-nho-hay-mot-dich-vu-lon, rui-ro-vo-no
 
 **Cần thêm 1-2 bài:**
 1. **"Value at Risk (VaR) & Stress Testing"** (định lượng)
@@ -127,7 +127,7 @@
 
 ### 6. FP&A (Financial Planning & Analysis) 🧮 (4 → 6 bài)
 
-**Hiện tại:** fpa-la-gi-vai-tro-doanh-nghiep, xay-dung-ngan-sach-doanh-nghiep, du-bao-tai-chinh-rolling-forecast, phan-tich-variance-thuc-te-vs-ke-hoach, kpi-tai-chinh-doanh-nghiep-chon-dung-chi-so
+**Hiện tại:** fpa-la-gi-vai-tro-doanh-nghiep, xay-dung-ngan-sach-doanh-nghiep, du-bao-lan, phan-tich-variance-thuc-te-vs-ke-hoach, kpi-tai-chinh-doanh-nghiep-chon-dung-chi-so
 
 **Cần thêm 1-2 bài:**
 1. **"Driver-based Budgeting & Scenario Planning"** (advanced)
@@ -174,7 +174,7 @@
 
 ### 9. Stockbroker 📈 (4 → 6 bài)
 
-**Hiện tại:** thi-truong-tai-chinh, thanh-khoan-la-gi, rui-ro-la-gi, loi-nhuan-ky-vong, modern-portfolio-theory
+**Hiện tại:** thi-truong-tai-chinh, thanh-khoan-la-gi, rui-ro-la-gi, loi-nhuan-ky-vong, nhieu-dich-vu-nho-hay-mot-dich-vu-lon
 
 **Cần thêm 2 bài:**
 1. **"Phân tích kỹ thuật (Technical Analysis) cho môi giới"** (TA tools)
@@ -193,7 +193,7 @@
 
 ### 10. Treasury Officer 💼 (4 → 6 bài)
 
-**Hiện tại:** treasury-management-quan-ly-dong-tien, quan-ly-rui-ro-lai-suat-doanh-nghiep, quan-ly-rui-ro-ty-gia-doanh-nghiep-xnk, cau-truc-von-toi-uu-cho-doanh-nghiep, case-xuat-khau-phong-ho-ty-gia
+**Hiện tại:** treasury-management-quan-ly-dong-tien, quan-ly-rui-ro-lai-suat-doanh-nghiep, quan-ly-rui-ro-ty-gia-doanh-nghiep-xnk, cau-truc-so-huu-ha-tang, case-xuat-khau-phong-ho-ty-gia
 
 **Cần thêm 1 bài:**
 1. **"Hedging instruments & FX derivatives"** (advanced)

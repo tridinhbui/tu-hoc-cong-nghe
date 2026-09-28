@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Trophy } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/cloudflare-user";
-import Avatar from "@/components/Avatar";
+import RankTable from "@/components/analytics/RankTable";
+import { APP_SYS } from "@/components/analytics/system-codes";
+import { SectionHead, textLink } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 
 /** Bảng xếp hạng thu nhỏ ở cột phải của Bảng tin.
@@ -49,54 +51,27 @@ export default function FeedLeaderboardCard() {
   if (rows === null || rows.length === 0) return null;
 
   return (
-    <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
-      <div className="flex items-center gap-2">
-        <Trophy className="h-5 w-5 text-amber-500" />
-        <div className="min-w-0">
-          <h2 className="text-sm font-black uppercase tracking-[0.14em] text-ink">
-            {t.feed.rankTitle}
-          </h2>
-          <p className="text-[11px] font-medium text-ink-muted">{t.feed.rankSub}</p>
-        </div>
-      </div>
+    <section className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+      <SectionHead code={APP_SYS.feedRank} title={t.feed.rankTitle} sub={t.feed.rankSub} size="sm" />
 
-      <div className="mt-3.5 space-y-2">
-        {rows.map((row, index) => (
-          <div
-            key={row.user_id}
-            className="flex items-center gap-2.5 rounded-[16px] bg-stone-50 px-3 py-2 dark:bg-stone-950/60"
-          >
-            {/* Hạng bằng SỐ chứ không bằng huy chương: cột này hẹp, và ba màu
-                huy chương cạnh nhau ở cỡ 20px đọc ra như nhau. */}
-            <span
-              className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-black ${
-                index === 0
-                  ? "bg-amber-100 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300"
-                  : "bg-stone-200 text-stone-600 dark:bg-stone-800 dark:text-stone-300"
-              }`}
-            >
-              {index + 1}
-            </span>
-            <Avatar key={row.avatarUrl ?? row.user_id} name={row.name} url={row.avatarUrl} size={28} />
-            <p className="min-w-0 flex-1 truncate text-xs font-bold text-ink">
-              {row.name}
-            </p>
-            <span className="shrink-0 text-[11px] font-black tabular-nums text-accent">
-              {row.value.toLocaleString()} {t.feed.rankXpUnit}
-            </span>
-          </div>
-        ))}
+      {/* Hạng bằng SỐ trong rãnh mono; ba hạng đầu giữ chấm RankBadge nhỏ.
+          Hàng không bấm được, như bản trước - đây là thẻ dẫn sang bảng đầy đủ. */}
+      <div className="mt-3">
+        <RankTable
+          rows={rows}
+          formatValue={(v) => `${v.toLocaleString()} ${t.feed.rankXpUnit}`}
+          dense
+          linkRows={false}
+        />
       </div>
 
       {/* `/analytics`, KHÔNG phải `/bxh`. Bảng đầy đủ vừa được gộp vào trang
           phân tích và thư mục app/(app)/bxh/ đã bị xoá - trỏ sang đó là dẫn
           người đọc vào 404. */}
-      <Link
-        href="/analytics"
-        className="mt-3 block rounded-[16px] border border-stone-200 px-3 py-2 text-center text-xs font-bold text-stone-600 transition hover:border-amber-300 hover:bg-amber-50 hover:text-amber-700 dark:border-stone-800 dark:text-stone-300 dark:hover:bg-amber-950/20"
-      >
+      <Link href="/analytics" className={`mt-3 ${textLink}`}>
         {t.feed.rankViewAll}
+        <ArrowRight className="h-3.5 w-3.5" aria-hidden />
       </Link>
-    </div>
+    </section>
   );
 }

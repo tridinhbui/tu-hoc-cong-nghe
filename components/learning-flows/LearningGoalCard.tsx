@@ -9,6 +9,7 @@ import { format } from "@/lib/i18n";
 import { LEARNING_FLOWS, getLearningFlow, type FlowId } from "@/lib/learning-flows";
 import { getLearningGoalState, saveLearningGoal, type LearningGoalState } from "@/app/actions/learning-goal";
 import { cleanLessonTitle } from "@/components/learning-flows/lesson-title";
+import { btnPrimary, panel, textLink } from "@/components/ui/system";
 
 /**
  * "Bạn muốn làm gì?" - câu hỏi đầu tiên cho người mới, và thẻ tiến độ cho
@@ -23,7 +24,7 @@ import { cleanLessonTitle } from "@/components/learning-flows/lesson-title";
  * Feynman của chặng đang học, và nút vào đúng bài tiếp theo. Câu chốt đứng ở
  * đây vì nó là thứ ngắn nhất nhắc người học "mình đang học cái này để làm gì".
  */
-export default function LearningGoalCard() {
+export default function LearningGoalCard({ id }: { id?: string } = {}) {
   const { t } = useI18n();
   const c = t.learningFlows.goalCard;
   const [state, setState] = useState<LearningGoalState | null | undefined>(undefined);
@@ -59,29 +60,44 @@ export default function LearningGoalCard() {
 
   if (!flow) {
     return (
-      <section className="rounded-2xl border border-amber-300/70 bg-amber-50/70 p-4 sm:p-5 dark:border-amber-500/30 dark:bg-amber-500/[0.06]">
-        <p className="text-lg font-black text-ink-max">{c.pickTitle}</p>
-        <p className="mt-1 text-sm leading-6 text-ink-body">{c.pickSub}</p>
+      <section id={id} className={`scroll-mt-6 ${panel} p-4 sm:p-5`}>
+        <p className="text-lg font-black tracking-tight text-ink-max">{c.pickTitle}</p>
+        <p className="mt-1 text-sm leading-6 text-ink-soft">{c.pickSub}</p>
         <div className="mt-4 grid gap-2 sm:grid-cols-2">
           {LEARNING_FLOWS.map((f) => {
             const p = state.progress[f.id];
             return (
-              <button
+              // Nút chọn và link xem trước là hai phần tử ANH EM, không lồng:
+              // <a> trong <button> là HTML sai, và bấm vào đâu thì trình duyệt
+              // tự chọn một trong hai. Xem trước cần có vì /hoc-theo-nhu-cau
+              // chuyển người đã đăng nhập về đây - không có link này thì họ
+              // phải chọn mù rồi mới thấy hành trình gồm những gì.
+              <div
                 key={f.id}
-                type="button"
-                disabled={pending}
-                onClick={() => choose(f.id)}
-                className="flex items-start gap-3 rounded-xl border border-stone-200 bg-white p-3 text-left transition-colors hover:border-brand-600 disabled:opacity-60 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-brand-500"
+                className="flex flex-col rounded-sm border border-stone-300 bg-white transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
               >
-                <span className="flex-shrink-0 rounded-xl bg-accent-soft p-2 text-accent"><Glyph emoji={f.emoji} className="h-5 w-5" /></span>
-                <span className="min-w-0">
-                  <span className="block text-xs font-semibold text-ink-muted">“{t.learningFlows.flows[f.id].need}”</span>
-                  <span className="block font-black text-ink-max">{t.learningFlows.flows[f.id].title}</span>
-                  {p.done > 0 ? (
-                    <span className="block text-xs text-accent-strong">{format(c.progress, { done: p.done, total: p.total })}</span>
-                  ) : null}
-                </span>
-              </button>
+                <button
+                  type="button"
+                  disabled={pending}
+                  onClick={() => choose(f.id)}
+                  className="flex flex-1 items-start gap-3 p-3 text-left disabled:opacity-60"
+                >
+                  <span className="flex-shrink-0 rounded-sm border border-stone-300 bg-[#f3f1ec] p-2 text-ink-body dark:border-stone-700 dark:bg-stone-950"><Glyph emoji={f.emoji} className="h-5 w-5" /></span>
+                  <span className="min-w-0">
+                    <span className="block text-xs font-semibold text-ink-muted">“{t.learningFlows.flows[f.id].need}”</span>
+                    <span className="block font-black tracking-tight text-ink-max">{t.learningFlows.flows[f.id].title}</span>
+                    {p.done > 0 ? (
+                      <span className="block text-xs text-accent-strong">{format(c.progress, { done: p.done, total: p.total })}</span>
+                    ) : null}
+                  </span>
+                </button>
+                <Link
+                  href={`/hoc-theo-nhu-cau/${f.id}`}
+                  className="mx-3 mb-2.5 inline-flex items-center gap-1 self-start pl-12 text-xs font-bold text-accent-strong underline-offset-4 hover:underline"
+                >
+                  {c.preview} <ArrowRight className="h-3 w-3" aria-hidden />
+                </Link>
+              </div>
             );
           })}
         </div>
@@ -97,13 +113,13 @@ export default function LearningGoalCard() {
   const pct = p.total ? Math.round((p.done / p.total) * 100) : 0;
 
   return (
-    <section className="rounded-2xl border border-stone-200 bg-white p-4 sm:p-5 dark:border-stone-800 dark:bg-stone-900">
+    <section id={id} className={`scroll-mt-6 ${panel} p-4 sm:p-5`}>
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="flex-shrink-0 rounded-xl bg-accent-soft p-2 text-accent"><Glyph emoji={flow.emoji} className="h-7 w-7" /></span>
+          <span className="flex-shrink-0 rounded-sm border border-stone-300 bg-[#f3f1ec] p-2 text-ink-body dark:border-stone-700 dark:bg-stone-950"><Glyph emoji={flow.emoji} className="h-7 w-7" /></span>
           <div className="min-w-0">
-            <p className="eyebrow text-accent-strong">{c.yourGoal}</p>
-            <p className="font-black leading-snug text-ink-max">{copy.title}</p>
+            <p className="eyebrow text-ink-soft">{c.yourGoal}</p>
+            <p className="font-black leading-snug tracking-tight text-ink-max">{copy.title}</p>
           </div>
         </div>
         <button
@@ -119,15 +135,15 @@ export default function LearningGoalCard() {
       <div className="mt-4">
         <div className="flex items-center justify-between text-xs text-ink-muted">
           <span>{step ? format(c.stepNow, { n: p.stepIndex + 1 }) : null}</span>
-          <span className="tabular-nums">{format(c.progress, { done: p.done, total: p.total })}</span>
+          <span className="font-mono tabular-nums">{format(c.progress, { done: p.done, total: p.total })}</span>
         </div>
-        <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-surface-raised">
-          <div className="h-full rounded-full bg-brand-600 dark:bg-brand-500" style={{ width: `${pct}%` }} />
+        <div className="mt-1.5 h-1.5 overflow-hidden rounded-xs bg-surface-sunken">
+          <div className="h-full bg-brand-600 dark:bg-brand-500" style={{ width: `${pct}%` }} />
         </div>
       </div>
 
       {stepCopy ? (
-        <p className="mt-4 flex gap-2 rounded-xl bg-amber-50 px-3 py-2.5 text-sm font-semibold leading-6 text-ink-max dark:bg-amber-500/10">
+        <p className="mt-4 flex gap-2 rounded-sm border border-stone-300 bg-[#f3f1ec] px-3 py-2.5 text-sm font-semibold leading-6 text-ink-max dark:border-stone-700 dark:bg-stone-950">
           <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" aria-hidden />
           {stepCopy.oneLiner}
         </p>
@@ -141,21 +157,21 @@ export default function LearningGoalCard() {
           </div>
           <Link
             href={`/bai-hoc/${p.next.slug}`}
-            className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-700"
+            className={`${btnPrimary} shrink-0`}
           >
             {c.nextCta} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       ) : (
         <p className="mt-4 flex gap-2 text-sm font-semibold leading-6 text-ink-max">
-          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" aria-hidden />
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
           {c.finished}
         </p>
       )}
 
       <Link
         href={`/hoc-theo-nhu-cau/${flow.id}`}
-        className="mt-3 inline-flex items-center gap-1 text-sm font-black text-accent-strong underline-offset-4 hover:underline"
+        className={`mt-3 ${textLink}`}
       >
         {c.seeFlow} <ArrowRight className="h-3.5 w-3.5" />
       </Link>

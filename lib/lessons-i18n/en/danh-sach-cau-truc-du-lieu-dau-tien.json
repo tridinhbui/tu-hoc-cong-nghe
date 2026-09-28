@@ -113,6 +113,11 @@
       "left": { "label": "Shallow copy", "text": "Gives you a new list at the outer layer, so adding or removing elements does not touch the original. But if the elements are themselves compound data, both still point at those same elements." },
       "right": { "label": "Deep copy", "text": "Duplicates the whole thing down through every layer, so the two sides are entirely independent. In exchange it costs more, and on large data that cost is real rather than negligible." }
     },
+    {
+      "type": "code",
+      "caption": "Appending to alias changes cart too: they are two labels on the same list, exactly as the lesson on variables warned.",
+      "code": "cart = [\"pen\", \"notebook\"]\nalias = cart                # two names, ONE list\nalias.append(\"ruler\")\nprint(cart)\n\nreal_copy = cart.copy()     # a new list\nreal_copy.append(\"eraser\")\nprint(cart)\nprint(real_copy)"
+    },
     { "type": "heading", "text": "What each operation costs" },
     { "type": "list", "items": [
       "Reading an element by index: near instant, however long the list is.",
@@ -121,6 +126,18 @@
       "Searching for a value when unsorted: a sequential scan, with no shortcut available."
     ]},
     { "type": "paragraph", "text": "With a few dozen elements nobody notices the difference. With hundreds of thousands inside a loop, picking the wrong operation is the difference between one second and ten minutes. This is the doorway to complexity, the subject of the advanced stage later on." },
+    {
+      "type": "exercise",
+      "title": "Remove cancelled orders",
+      "task": "The code below means to delete every \"CANCEL\" order but one survives, with no error at all. Run it to see, then fix it.",
+      "starter": "orders = [\"OR01\", \"CANCEL\", \"CANCEL\", \"OR02\", \"OR03\", \"CANCEL\"]\n\nfor order in orders:\n    if order == \"CANCEL\":\n        orders.remove(order)\n\nprint(orders)\nprint(\"Left:\", len(orders))",
+      "solution": "orders = [\"OR01\", \"CANCEL\", \"CANCEL\", \"OR02\", \"OR03\", \"CANCEL\"]\n\nkept = []\nfor order in orders:\n    if order != \"CANCEL\":\n        kept.append(order)\norders = kept\n\nprint(orders)\nprint(\"Left:\", len(orders))",
+      "expectedOutput": "['OR01', 'OR02', 'OR03']\nLeft: 3",
+      "hints": [
+        "Removing an element while looping shifts the later ones down - the loop skips exactly the one that moved.",
+        "Don't modify the list you are looping over: build a new list and append only the orders that were not cancelled."
+      ]
+    },
     { "type": "closing", "lines": [
       "A list suits you when order means something and you need to walk everything. When the question is 'is this value in there', a set is the better choice.",
       "Next is the other structure you will use daily: dictionaries, where you look things up by name instead of by position."

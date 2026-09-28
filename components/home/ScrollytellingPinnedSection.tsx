@@ -101,7 +101,7 @@ export default function ScrollytellingPinnedSection() {
           </div>
 
           {/* Interactive 3 Tab Switcher */}
-          <div className="flex items-center gap-1.5 p-1 bg-surface-raised rounded-2xl border border-line shadow-xs">
+          <div className="flex items-center gap-1.5 p-1 bg-surface-raised rounded-md border border-line ">
             {PANELS.map((panel, idx) => {
               const isActive = activeTab === idx;
               return (
@@ -112,16 +112,16 @@ export default function ScrollytellingPinnedSection() {
                     setActiveTab(idx);
                     setIsPaused(true);
                   }}
-                  className={`relative px-3.5 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                  className={`relative px-3.5 py-1.5 rounded-md text-xs font-black transition-all cursor-pointer ${
                     isActive
-                      ? "text-ink-max shadow-sm"
+                      ? "text-ink-max "
                       : "text-ink-muted hover:text-ink-heading"
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="scrollyTabPill"
-                      className="absolute inset-0 bg-white dark:bg-brand-400 rounded-xl"
+                      className="absolute inset-0 bg-white dark:bg-brand-400 rounded-md"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -137,7 +137,7 @@ export default function ScrollytellingPinnedSection() {
           onWheel={handleWheel}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="relative min-h-[380px] sm:min-h-[340px] rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 p-5 sm:p-8 shadow-sm overflow-hidden"
+          className="relative min-h-[380px] sm:min-h-[340px] rounded-md border border-stone-200/90 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/40 p-5 sm:p-8 overflow-hidden"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -150,7 +150,7 @@ export default function ScrollytellingPinnedSection() {
             >
               {/* Panel Header */}
               <div className="text-center max-w-2xl mx-auto mb-6">
-                <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-brand-50 text-brand-700 dark:bg-brand-950/60 dark:text-brand-300 border border-brand-200 dark:border-brand-900/50 mb-2">
+                <span className="inline-block px-3 py-1 rounded-sm text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-brand-50 text-brand-700 dark:bg-brand-950/60 dark:text-brand-300 border border-brand-200 dark:border-brand-900/50 mb-2">
                   {currentPanel.tag}
                 </span>
                 <h2 className="text-xl sm:text-3xl font-black text-ink-max tracking-tight leading-snug">
@@ -169,11 +169,11 @@ export default function ScrollytellingPinnedSection() {
                     <motion.div
                       key={idx}
                       whileHover={{ scale: 1.03, y: -2 }}
-                      className="p-4 rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900/90 shadow-xs hover:border-brand-400/60 transition-all flex flex-col justify-between"
+                      className="p-4 rounded-md border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900/90 hover:border-brand-400/60 transition-all flex flex-col justify-between"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <div className="w-8 h-8 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-xs">
+                          <div className="w-8 h-8 rounded-md bg-brand-600 text-white flex items-center justify-center ">
                             <Icon className="w-4 h-4" />
                           </div>
                           {"step" in item && item.step && (

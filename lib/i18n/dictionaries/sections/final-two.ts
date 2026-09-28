@@ -1,8 +1,8 @@
 // Dictionary section for the last tail of components/pages picked up in the
-// i18n sweep: certification item-set practice, the tech fund widget, the
+// i18n sweep: the reading-mode control's aria label, the
 // mistake-review widget, the opening-question block, the analytics
 // competency stats card, the reading-mode control, the lobby room fixtures'
-// gate labels, the certification content renderer's YouTube embed title, the character
+// gate labels, the character
 // avatar level tag, the lesson-sections concept-table default subtitle, the
 // profile wall empty state, the Roadmap card title, and a handful of
 // page-level titles/subtitles/metadata across app/(app)/* and app/*. See
@@ -10,20 +10,8 @@
 
 export const finalTwoVi = {
   finalTwo: {
-    cfaItemSetPractice: {
-      optionsAria: "Các lựa chọn cho câu {index}",
+    readingModeControlLabels: {
       readingModeAria: "Chế độ đọc: {mode}",
-      scenarioLabel: "Tình huống · {topic}",
-      title: "Luyện item set - dạng đề Level II",
-      subtitle:
-        "Mỗi bộ là một tình huống dài kèm bốn câu hỏi cùng dựa vào nó. Tình huống cố ý chứa nhiều dữ kiện hơn số cần dùng - chọn đúng số là một nửa bài thi. Không tính điểm và không lưu lại: bốn câu không nói được gì về mức sẵn sàng thi.",
-      emptyHint: "Chọn một môn ở trên để mở tình huống.",
-    },
-    financialGuildWidget: {
-      advancedDays: "Đã tua +{numDays} ngày giao dịch thị trường!",
-      boughtShares: "Đã MUA {shares} cổ phần {ticker} tại giá {price} VNĐ",
-      soldProfit: "Đã BÁN {shares} {ticker}. Lãi thực tế: +{pnl} VNĐ!",
-      soldLoss: "Đã BÁN {shares} {ticker}. Lỗ thực tế: {pnl} VNĐ!",
     },
     mistakeReviewWidget: {
       title: "Câu sai cần ôn tập",
@@ -60,10 +48,7 @@ export const finalTwoVi = {
       districtShort: "Phố nghề",
       districtBlurb: "Thành phố nghề công nghệ ngay ngoài cửa thư viện",
     },
-    cfaContentRenderer: {
-      youtubeTitle: "YouTube video",
-    },
-    financeCharacterAvatar: {
+    characterAvatar: {
       levelPrefix: "Lv.",
     },
     lessonSections: {
@@ -81,17 +66,6 @@ export const finalTwoVi = {
       backToDashboard: "← Quay lại Dashboard",
       statsAndLeaderboard: "Thống kê & BXH",
     },
-    phongVanKyThuatDifficulty: {
-      fullMixedDrill: "Full mixed drill",
-      foundationScreen: "Foundation screen",
-      analystRound: "Analyst round",
-      pressureRound: "Pressure round",
-    },
-    cfaPage: {
-      backToDashboardAria: "Về Dashboard",
-      title: "Chứng chỉ công nghệ",
-      subtitle: "CFA Level I - 10 môn thi chính thức",
-    },
     gamePage: {
       metaTitle: "Thế Giới Game Công Nghệ | Tự học Công nghệ",
       metaDescription:
@@ -103,23 +77,13 @@ export const finalTwoVi = {
       subtitle: "Ghi chú theo bài học và thẻ ghi nhớ ôn tập, nằm cạnh nhau trong một khung",
       backLabel: "Quay lại",
     },
-    cfaThiThuPage: {
-      metaTitle: "Thi thử CFA Level I",
-      metaDescription:
-        "Bài thi thử đúng khuôn đề thật: 180 câu, hai ca 135 phút, ba lựa chọn mỗi câu, chấm điểm tách theo từng môn.",
-    },
     congDongPage: {
       metaTitle: "Thư viện cộng đồng",
       metaDescription: "Bước vào phòng đọc 3D giữa Sài Gòn cùng những người đang học khác.",
     },
-    frmThiThuPage: {
-      metaTitle: "Thi thử FRM",
-      metaDescription:
-        "Bài thi thử đúng khuôn đề GARP: Part I 100 câu, Part II 80 câu, mỗi phần một ca 4 tiếng, chấm điểm tách theo từng môn.",
-    },
     loiNhanPage: {
       metaTitle: "Góc yên tĩnh",
-      metaDescription: "Lời nhắn hôm nay, một phút thở, và một góc nhìn khác cho những nỗi lo về tiền.",
+      metaDescription: "Lời nhắn hôm nay, một phút thở, và một góc nhìn khác cho những nỗi lo khi học và làm nghề.",
     },
     notFoundPage: {
       title: "Không tìm thấy trang này",
@@ -148,20 +112,8 @@ export const finalTwoVi = {
 
 export const finalTwoEn: typeof finalTwoVi = {
   finalTwo: {
-    cfaItemSetPractice: {
-      optionsAria: "Options for question {index}",
+    readingModeControlLabels: {
       readingModeAria: "Reading mode: {mode}",
-      scenarioLabel: "Scenario · {topic}",
-      title: "Item set practice - Level II style",
-      subtitle:
-        "Each set is one long vignette with four questions that all rely on it. The vignette deliberately holds more data than any single question needs - picking the right numbers is half the exam. Unscored and not saved: four questions say nothing about exam readiness.",
-      emptyHint: "Pick a subject above to open a vignette.",
-    },
-    financialGuildWidget: {
-      advancedDays: "Advanced +{numDays} market trading day(s)!",
-      boughtShares: "BOUGHT {shares} shares of {ticker} at {price} VND",
-      soldProfit: "SOLD {shares} {ticker}. Realized gain: +{pnl} VND!",
-      soldLoss: "SOLD {shares} {ticker}. Realized loss: {pnl} VND!",
     },
     mistakeReviewWidget: {
       title: "Mistakes to review",
@@ -193,10 +145,7 @@ export const finalTwoEn: typeof finalTwoVi = {
       districtShort: "Career District",
       districtBlurb: "The technology career city just outside the library door",
     },
-    cfaContentRenderer: {
-      youtubeTitle: "YouTube video",
-    },
-    financeCharacterAvatar: {
+    characterAvatar: {
       levelPrefix: "Lv.",
     },
     lessonSections: {
@@ -214,17 +163,6 @@ export const finalTwoEn: typeof finalTwoVi = {
       backToDashboard: "← Back to Dashboard",
       statsAndLeaderboard: "Stats & Leaderboard",
     },
-    phongVanKyThuatDifficulty: {
-      fullMixedDrill: "Full mixed drill",
-      foundationScreen: "Foundation screen",
-      analystRound: "Analyst round",
-      pressureRound: "Pressure round",
-    },
-    cfaPage: {
-      backToDashboardAria: "Back to Dashboard",
-      title: "Certificate track",
-      subtitle: "CFA Level I - 10 official exam topics",
-    },
     gamePage: {
       metaTitle: "Tech Game World | Learn Technology",
       metaDescription:
@@ -236,23 +174,13 @@ export const finalTwoEn: typeof finalTwoVi = {
       subtitle: "Lesson notes and review flashcards, side by side in one panel",
       backLabel: "Back",
     },
-    cfaThiThuPage: {
-      metaTitle: "CFA Level I mock exam",
-      metaDescription:
-        "A mock exam matching the real format: 180 questions, two 135-minute sessions, three options per question, scored separately by topic.",
-    },
     congDongPage: {
       metaTitle: "Community library",
       metaDescription: "Step into a 3D reading room set in Saigon, alongside other people currently studying.",
     },
-    frmThiThuPage: {
-      metaTitle: "FRM mock exam",
-      metaDescription:
-        "A mock exam matching the real GARP format: Part I 100 questions, Part II 80 questions, one 4-hour session each, scored separately by topic.",
-    },
     loiNhanPage: {
       metaTitle: "Quiet corner",
-      metaDescription: "Today's message, a minute to breathe, and a different perspective on money worries.",
+      metaDescription: "Today's message, a minute to breathe, and a different perspective on the worries that come with learning and working in tech.",
     },
     notFoundPage: {
       title: "Page not found",

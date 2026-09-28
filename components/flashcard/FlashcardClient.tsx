@@ -21,6 +21,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { localizedDefaultGlossary } from "@/lib/cloudflare-flashcards-i18n";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
+import { StatTable, panel, btnPrimary, btnSecondary, textLink } from "@/components/ui/system";
 
 interface FlashcardClientProps {
   userId?: string;
@@ -328,80 +329,80 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         {!embedded && (
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink hover:bg-surface-raised rounded-xl px-3 py-2 -ml-3 mb-3 transition-all"
+            className={`${textLink} mb-3`}
           >
             <ArrowLeft className="w-4 h-4" /> {t.flashcards.back}
           </Link>
         )}
 
-        {/* Hero header */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 dark:from-brand-800 dark:via-brand-800 dark:to-brand-900 p-5 sm:p-7 mb-6 shadow-lg">
-          <div className="absolute top-0 right-0 w-56 h-56 bg-white/10 rounded-full blur-3xl pointer-events-none -mr-16 -mt-16" />
-          <div className="absolute bottom-0 left-1/4 w-40 h-40 bg-brand-300/10 rounded-full blur-2xl pointer-events-none" />
-
-          <div className="relative flex items-center gap-3 mb-5">
-            <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center shrink-0 shadow-inner">
-              <Layers className="w-5.5 h-5.5 text-white" />
-            </div>
-            <div className="min-w-0">
-              {embedded ? (
-                <h2 className="text-lg sm:text-xl font-extrabold text-white leading-tight">{t.flashcards.title}</h2>
-              ) : (
-                <h1 className="text-lg sm:text-xl font-extrabold text-white leading-tight">{t.flashcards.title}</h1>
-              )}
-              <p className="text-[11px] sm:text-xs text-brand-100/90 font-semibold">{t.flashcards.algorithm}</p>
-            </div>
+        {/* Đầu khu: eyebrow + tiêu đề, bảng số liệu, hàng hành động. Trước là
+            một khối gradient xanh có đốm sáng mờ và ba viên kính mờ. */}
+        <div className="mb-6">
+          <div className="flex items-center justify-between gap-4 border-b border-line-strong pb-2">
+            <span className="eyebrow inline-flex items-center gap-1.5 text-ink-soft">
+              <Layers className="w-3.5 h-3.5" /> {t.flashcards.algorithm}
+            </span>
           </div>
+          {embedded ? (
+            <h2 className="mt-3 text-xl sm:text-2xl font-black leading-[1.15] tracking-tight text-ink-max">{t.flashcards.title}</h2>
+          ) : (
+            <h1 className="mt-3 text-xl sm:text-2xl font-black leading-[1.15] tracking-tight text-ink-max">{t.flashcards.title}</h1>
+          )}
 
-          {/* Stat pills */}
-          <div className="relative grid grid-cols-3 gap-2.5 mb-5">
-            <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
-              <div className="flex items-center justify-center gap-1 text-amber-200 mb-0.5">
-                <Target className="w-3.5 h-3.5" />
-                <span className="text-lg sm:text-xl font-extrabold text-white">{dueCards.length}</span>
-              </div>
-              <p className="text-[9px] sm:text-[10px] font-bold text-brand-100/80 uppercase tracking-wider">{t.flashcards.statDue}</p>
-            </div>
-            <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
-              <div className="flex items-center justify-center gap-1 text-white mb-0.5">
-                <Layers className="w-3.5 h-3.5" />
-                <span className="text-lg sm:text-xl font-extrabold text-white">{cards.length}</span>
-              </div>
-              <p className="text-[9px] sm:text-[10px] font-bold text-brand-100/80 uppercase tracking-wider">{t.flashcards.statTotal}</p>
-            </div>
-            <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 py-2.5 text-center">
-              <div className="flex items-center justify-center gap-1 text-brand-200 mb-0.5">
-                <Trophy className="w-3.5 h-3.5" />
-                <span className="text-lg sm:text-xl font-extrabold text-white">{masteredCount}</span>
-              </div>
-              <p className="text-[9px] sm:text-[10px] font-bold text-brand-100/80 uppercase tracking-wider">{t.flashcards.statMastered}</p>
-            </div>
+          <div className={`${panel} mt-4 px-4 py-1`}>
+            <StatTable
+              rows={[
+                {
+                  label: (
+                    <span className="inline-flex items-center gap-1.5">
+                      <Target className="w-3.5 h-3.5 text-ink-muted" /> {t.flashcards.statDue}
+                    </span>
+                  ),
+                  value: <span className={dueCards.length > 0 ? "text-accent-strong" : ""}>{dueCards.length}</span>,
+                },
+                {
+                  label: (
+                    <span className="inline-flex items-center gap-1.5">
+                      <Layers className="w-3.5 h-3.5 text-ink-muted" /> {t.flashcards.statTotal}
+                    </span>
+                  ),
+                  value: cards.length,
+                },
+                {
+                  label: (
+                    <span className="inline-flex items-center gap-1.5">
+                      <Trophy className="w-3.5 h-3.5 text-ink-muted" /> {t.flashcards.statMastered}
+                    </span>
+                  ),
+                  value: masteredCount,
+                },
+              ]}
+            />
           </div>
 
           {/* Actions */}
-          <div className="relative flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button onClick={() => setShowAddForm(!showAddForm)} className={`${btnPrimary} px-3.5 py-2 text-xs cursor-pointer`}>
+              <Plus className="w-3.5 h-3.5" /> {t.flashcards.addCard}
+            </button>
             <button
               onClick={handleGenerateFromMistakes}
               disabled={generatingFromMistakes}
-              className="inline-flex items-center gap-1.5 text-xs font-bold bg-amber-500 hover:bg-amber-400 text-white px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer disabled:opacity-50"
+              className={`${btnSecondary} px-3.5 py-2 text-xs cursor-pointer`}
             >
               <Sparkles className="w-3.5 h-3.5" /> {generatingFromMistakes ? t.flashcards.generating : t.flashcards.generateFromMistakes}
             </button>
             <button
-              onClick={() => setShowAddForm(!showAddForm)}
-              className="inline-flex items-center gap-1.5 text-xs font-bold bg-white text-brand-700 px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer"
-            >
-              <Plus className="w-3.5 h-3.5" /> {t.flashcards.addCard}
-            </button>
-            <button
               onClick={() => setShowBulkPanel(!showBulkPanel)}
-              className="inline-flex items-center gap-1.5 text-xs font-bold bg-white/10 border border-white/20 text-white px-3.5 py-2.5 rounded-xl hover:bg-white/20 transition-all cursor-pointer"
+              aria-expanded={showBulkPanel}
+              className={`${btnSecondary} px-3.5 py-2 text-xs cursor-pointer`}
             >
               <Upload className="w-3.5 h-3.5" /> {t.flashcards.importExport}
             </button>
             <button
               onClick={() => setShowAlbums(!showAlbums)}
-              className="inline-flex items-center gap-1.5 text-xs font-bold bg-gradient-to-r from-rose-500 to-orange-500 text-white px-3.5 py-2.5 rounded-xl hover:scale-[1.03] active:scale-95 transition-all shadow-sm cursor-pointer"
+              aria-expanded={showAlbums}
+              className={`${btnSecondary} px-3.5 py-2 text-xs cursor-pointer`}
             >
               <Flame className="w-3.5 h-3.5" /> {t.flashcards.hotDecks}
             </button>
@@ -418,18 +419,18 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         )}
 
         {showBulkPanel && (
-          <div className="mb-6 p-5 rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
+          <div className={`${panel} mb-6 p-5 space-y-4`}>
             <div className="flex items-center justify-between gap-3">
-              <h3 className="text-sm font-extrabold text-ink">{t.flashcards.bulkTitle}</h3>
+              <h3 className="text-sm font-black tracking-tight text-ink-max">{t.flashcards.bulkTitle}</h3>
               <button
                 onClick={handleExport}
-                className="inline-flex items-center gap-1.5 text-[11px] font-bold text-ink-muted hover:text-ink-heading transition-colors"
+                className={`${textLink} text-[11px]`}
               >
                 <Download className="w-3.5 h-3.5" /> {format(t.flashcards.bulkExport, { count: cards.length })}
               </button>
             </div>
             <div>
-              <label className="block text-[10px] font-extrabold text-ink-faint uppercase tracking-widest mb-1.5">
+              <label className="block text-[11px] font-bold text-ink-muted uppercase tracking-[0.08em] mb-1.5">
                 {t.flashcards.bulkLabel}
               </label>
               <textarea
@@ -437,7 +438,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 placeholder={t.flashcards.bulkPlaceholder}
                 value={bulkText}
                 onChange={(e) => setBulkText(e.target.value)}
-                className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-brand-500 font-mono"
+                className="w-full text-sm px-3.5 py-2.5 rounded-sm border border-stone-300 bg-[#fbfaf7] text-ink focus:outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400 font-mono"
               />
               {bulkText.trim() && (
                 <p className="text-[11px] text-ink-faint mt-1.5">
@@ -449,14 +450,14 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
               <button
                 type="button"
                 onClick={handleExport}
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl border border-line text-ink-soft hover:bg-surface transition-colors sm:hidden"
+                className={`${btnSecondary} px-4 py-2 text-xs sm:hidden`}
               >
                 <Copy className="w-3.5 h-3.5" /> {t.flashcards.exportShort}
               </button>
               <button
                 type="button"
                 onClick={() => setShowBulkPanel(false)}
-                className="px-4 py-2 text-xs font-bold rounded-xl border border-line text-ink-soft hover:bg-surface transition-colors"
+                className={`${btnSecondary} px-4 py-2 text-xs`}
               >
                 {t.flashcards.cancel}
               </button>
@@ -464,7 +465,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 type="button"
                 onClick={handleBulkImport}
                 disabled={bulkImporting || !bulkText.trim()}
-                className="px-4 py-2 text-xs font-bold rounded-xl bg-brand-500 hover:bg-brand-600 text-white disabled:opacity-50 transition-colors"
+                className={`${btnPrimary} px-4 py-2 text-xs`}
               >
                 {bulkImporting ? t.flashcards.bulkImporting : t.flashcards.bulkImport}
               </button>
@@ -473,29 +474,29 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
         )}
 
         {showAddForm && (
-          <form onSubmit={handleAddCard} className="mb-6 p-5 rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-sm space-y-4 animate-[fadeIn_0.2s_ease-out]">
-            <h3 className="text-sm font-extrabold text-ink">{t.flashcards.newCardTitle}</h3>
+          <form onSubmit={handleAddCard} className={`${panel} mb-6 p-5 space-y-4`}>
+            <h3 className="text-sm font-black tracking-tight text-ink-max">{t.flashcards.newCardTitle}</h3>
             <div className="space-y-3">
               <div>
-                <label className="block text-[10px] font-extrabold text-ink-faint uppercase tracking-widest mb-1.5">{t.flashcards.termLabel}</label>
+                <label className="block text-[11px] font-bold text-ink-muted uppercase tracking-[0.08em] mb-1.5">{t.flashcards.termLabel}</label>
                 <input
                   type="text"
                   required
                   placeholder={t.flashcards.termPlaceholder}
                   value={newTerm}
                   onChange={(e) => setNewTerm(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-brand-500"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-sm border border-stone-300 bg-[#fbfaf7] text-ink focus:outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-extrabold text-ink-faint uppercase tracking-widest mb-1.5">{t.flashcards.definitionLabel}</label>
+                <label className="block text-[11px] font-bold text-ink-muted uppercase tracking-[0.08em] mb-1.5">{t.flashcards.definitionLabel}</label>
                 <textarea
                   required
                   rows={3}
                   placeholder={t.flashcards.definitionPlaceholder}
                   value={newDef}
                   onChange={(e) => setNewDef(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-line bg-stone-50/40 dark:bg-stone-950/30 text-ink focus:outline-none focus:border-brand-500"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-sm border border-stone-300 bg-[#fbfaf7] text-ink focus:outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
                 />
               </div>
             </div>
@@ -503,14 +504,14 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
               <button
                 type="button"
                 onClick={() => setShowAddForm(false)}
-                className="px-4 py-2 text-xs font-bold rounded-xl border border-line text-ink-soft hover:bg-surface transition-colors"
+                className={`${btnSecondary} px-4 py-2 text-xs`}
               >
                 {t.flashcards.cancel}
               </button>
               <button
                 type="submit"
                 disabled={saving}
-                className="px-4 py-2 text-xs font-bold rounded-xl bg-brand-500 hover:bg-brand-600 text-white disabled:opacity-50 transition-colors"
+                className={`${btnPrimary} px-4 py-2 text-xs`}
               >
                 {saving ? t.flashcards.saving : t.flashcards.saveCard}
               </button>
@@ -520,29 +521,29 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
 
         {loading ? (
           <div className="text-center py-20">
-            <div className="w-8 h-8 border-2 border-stone-300 border-t-brand-500 rounded-full animate-spin mx-auto mb-3" />
+            <div className="w-8 h-8 border-2 border-stone-300 border-t-stone-900 dark:border-stone-700 dark:border-t-stone-100 rounded-full animate-spin mx-auto mb-3" />
             <p className="text-xs text-stone-500">{t.flashcards.loading}</p>
           </div>
         ) : cards.length === 0 ? (
-          <div className="text-center py-16 px-6 bg-white dark:bg-stone-900 border border-line rounded-3xl shadow-sm max-w-md mx-auto">
-            <span className="mx-auto mb-4 flex w-fit rounded-2xl bg-accent-soft p-3 text-accent">
+          <div className={`${panel} text-center py-16 px-6 max-w-md mx-auto`}>
+            <span className="mx-auto mb-4 flex w-fit rounded-sm border border-stone-300 p-2.5 text-ink-muted dark:border-stone-700">
               <FolderOpen aria-hidden className="h-8 w-8" strokeWidth={1.5} />
             </span>
-            <h2 className="text-lg font-extrabold text-ink">{t.flashcards.emptyTitle}</h2>
-            <p className="text-xs text-ink-muted mt-2 leading-relaxed">
+            <h2 className="text-lg font-black tracking-tight text-ink-max">{t.flashcards.emptyTitle}</h2>
+            <p className="text-sm text-ink-muted mt-2 leading-7">
               {t.flashcards.emptyBody}
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center items-center">
               <button
                 onClick={bootstrapDefaultGlossary}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-extrabold bg-gradient-to-r from-brand-500 to-brand-500 text-white px-4 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-md cursor-pointer"
+                className={`${btnPrimary} w-full sm:w-auto text-xs cursor-pointer`}
               >
                 <GraduationCap className="w-4 h-4" /> {t.flashcards.importSamples}
               </button>
               <button
                 onClick={handleGenerateFromMistakes}
                 disabled={generatingFromMistakes}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-extrabold bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-md cursor-pointer disabled:opacity-50"
+                className={`${btnSecondary} w-full sm:w-auto text-xs cursor-pointer`}
               >
                 <Sparkles className="w-4 h-4" /> {t.flashcards.quickFromMistakes}
               </button>
@@ -554,13 +555,13 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             <div className="flex flex-col items-center">
               {currentCard && (
                 <div className="w-full max-w-sm mb-3">
-                  <div className="flex items-center justify-between text-[10px] font-extrabold text-ink-faint uppercase tracking-wider mb-1.5 px-0.5">
-                    <span>{t.flashcards.reviewing}</span>
-                    <span>{format(t.flashcards.cardsLeft, { count: dueCards.length })}</span>
+                  <div className="flex items-center justify-between text-[11px] font-bold text-ink-muted mb-1.5 px-0.5">
+                    <span className="uppercase tracking-[0.08em]">{t.flashcards.reviewing}</span>
+                    <span className="tabular-nums">{format(t.flashcards.cardsLeft, { count: dueCards.length })}</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-surface-raised overflow-hidden">
+                  <div className="h-1 bg-surface-sunken overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-500 transition-all duration-500"
+                      className="h-full bg-brand-600 dark:bg-brand-500 transition-all duration-500"
                       style={{
                         width: cards.length > 0 ? `${Math.round(((cards.length - dueCards.length) / cards.length) * 100)}%` : "0%",
                       }}
@@ -571,9 +572,6 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
 
               {currentCard ? (
                 <div className="w-full relative min-h-[340px] flex flex-col items-center justify-center">
-                  {/* Ambient glow behind the card */}
-                  <div className="absolute w-64 h-64 bg-brand-500/10 dark:bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
-
                   {/* Spaced Repetition Card Wrapper */}
                   <div
                     onMouseDown={(e) => handleDragStart(e.clientX)}
@@ -592,52 +590,46 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                       transform: `translateX(${swipeOffset}px) rotate(${swipeOffset * 0.05}deg)`,
                       cursor: isDragging ? "grabbing" : "grab",
                     }}
-                    className={`relative w-full max-w-sm min-h-[300px] rounded-[28px] border-2 p-6 flex flex-col items-center justify-center text-center transition-shadow select-none bg-white/95 dark:bg-stone-900 shadow-xl ${
+                    className={`relative w-full max-w-sm min-h-[300px] rounded-md border p-6 flex flex-col items-center justify-center text-center transition-colors select-none ${
                       swipeOffset > 40
-                        ? "border-brand-400 bg-brand-50/[0.04] dark:bg-brand-950/[0.05]"
+                        ? "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40"
                         : swipeOffset < -40
-                        ? "border-red-400 bg-red-50/[0.04] dark:bg-red-950/[0.05]"
+                        ? "border-red-600 bg-red-50 dark:border-red-400 dark:bg-red-950/40"
                         : isFlipped
-                          ? "border-accent-line-mid"
-                          : "border-line"
+                          ? "border-stone-950 bg-white dark:border-stone-300 dark:bg-stone-900"
+                          : "border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900"
                     }`}
                   >
                     {/* Swipe Overlay Hints */}
                     {swipeOffset > 60 && (
-                      <div className="absolute top-4 right-4 bg-brand-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
+                      <div className="absolute top-4 right-4 rounded-sm border border-brand-600 bg-white text-brand-700 text-[10px] font-bold px-2 py-0.5 uppercase tracking-[0.08em] dark:border-brand-400 dark:bg-stone-900 dark:text-brand-300">
                         {t.flashcards.rememberedShort}
                       </div>
                     )}
                     {swipeOffset < -60 && (
-                      <div className="absolute top-4 left-4 bg-red-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
+                      <div className="absolute top-4 left-4 rounded-sm border border-red-600 bg-white text-red-700 text-[10px] font-bold px-2 py-0.5 uppercase tracking-[0.08em] dark:border-red-400 dark:bg-stone-900 dark:text-red-300">
                         {t.flashcards.forgotShort}
                       </div>
                     )}
 
-                    <span
-                      className={`text-[10px] font-extrabold uppercase tracking-widest absolute top-6 px-2.5 py-1 rounded-full ${
-                        isFlipped
-                          ? "text-accent-strong bg-brand-50 dark:bg-brand-950/40"
-                          : "text-accent-strong bg-brand-50 dark:bg-brand-950/40"
-                      }`}
-                    >
+                    <span className="text-[11px] font-bold uppercase tracking-[0.08em] absolute top-6 text-ink-muted">
                       {isFlipped ? t.flashcards.faceDefinition : t.flashcards.faceTerm}
                     </span>
 
                     {/* Card Content with 3D Flip feel */}
                     <div className="my-auto px-4">
                       {isFlipped ? (
-                        <p className="text-sm sm:text-base font-medium text-ink-body leading-relaxed max-h-[160px] overflow-y-auto">
+                        <p className="text-sm sm:text-base font-medium text-ink-body leading-7 max-h-[160px] overflow-y-auto">
                           {currentCard.definition}
                         </p>
                       ) : (
-                        <h2 className="text-xl sm:text-2xl font-extrabold text-ink">
+                        <h2 className="text-xl sm:text-2xl font-black tracking-tight text-ink-max">
                           {currentCard.term}
                         </h2>
                       )}
                     </div>
 
-                    <span className="text-[10px] font-bold text-ink-faint absolute bottom-6 hover:text-brand-500 transition-colors flex items-center gap-1">
+                    <span className="text-[11px] font-semibold text-ink-faint absolute bottom-6 flex items-center gap-1">
                       {isFlipped ? t.flashcards.flipToTerm : t.flashcards.flipToDefinition}
                     </span>
                   </div>
@@ -646,31 +638,31 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   <div className="grid grid-cols-3 gap-2.5 mt-6 w-full max-w-sm">
                     <button
                       onClick={() => handleSM2Action(1)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-danger-line bg-red-50/40 dark:bg-red-950/20 text-red-600 dark:text-red-400 hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-sm border border-red-300 bg-white text-red-700 transition-colors hover:border-red-600 dark:border-red-900 dark:bg-stone-900 dark:text-red-300 dark:hover:border-red-400 cursor-pointer"
                     >
                       <X aria-hidden className="h-5 w-5" strokeWidth={2} /> {t.flashcards.gradeForgot}
                     </button>
                     <button
                       onClick={() => handleSM2Action(3)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-line bg-white/95 dark:bg-stone-900 text-ink-body hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-sm border border-stone-300 bg-white text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300 cursor-pointer"
                     >
                       <ThumbsUp aria-hidden className="h-5 w-5" strokeWidth={1.75} /> {t.flashcards.gradeMedium}
                     </button>
                     <button
                       onClick={() => handleSM2Action(5)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-2xl border border-accent-line bg-brand-50/40 dark:bg-brand-950/20 text-accent hover:scale-[1.04] hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-sm border border-brand-300 bg-white text-accent-strong transition-colors hover:border-brand-600 dark:border-brand-900 dark:bg-stone-900 dark:hover:border-brand-400 cursor-pointer"
                     >
                       <Star aria-hidden className="h-5 w-5" strokeWidth={1.75} /> {t.flashcards.gradeEasy}
                     </button>
                   </div>
                 </div>
               ) : (
-                <div className="w-full text-center py-10 px-6 bg-white dark:bg-stone-900 border border-line rounded-3xl shadow-sm">
-                  <span className="mx-auto mb-2.5 flex w-fit rounded-xl bg-accent-soft p-2 text-accent">
+                <div className={`${panel} w-full text-center py-10 px-6`}>
+                  <span className="mx-auto mb-2.5 flex w-fit rounded-sm border border-stone-300 p-2 text-ink-muted dark:border-stone-700">
                     <PartyPopper aria-hidden className="h-7 w-7" strokeWidth={1.5} />
                   </span>
-                  <p className="text-base font-extrabold text-ink">{t.flashcards.doneTitle}</p>
-                  <p className="text-xs text-ink-muted mt-1 max-w-sm mx-auto">
+                  <p className="text-base font-black tracking-tight text-ink-max">{t.flashcards.doneTitle}</p>
+                  <p className="text-sm leading-7 text-ink-muted mt-1 max-w-sm mx-auto">
                     {t.flashcards.doneBody}
                   </p>
                 </div>
@@ -678,10 +670,10 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
             </div>
 
             {/* Manage Cards Zone */}
-            <div className="border-t border-stone-100 dark:border-stone-800/80 pt-6">
+            <div className="border-t border-line pt-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xs font-extrabold text-ink-muted uppercase tracking-widest">{t.flashcards.listTitle}</h3>
-                <span className="text-[10px] font-bold text-ink-faint">{format(t.flashcards.cardCount, { count: cards.length })}</span>
+                <h3 className="text-[11px] font-bold text-ink-muted uppercase tracking-[0.08em]">{t.flashcards.listTitle}</h3>
+                <span className="text-[11px] font-bold tabular-nums text-ink-faint">{format(t.flashcards.cardCount, { count: cards.length })}</span>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {cards.map((c) => {
@@ -690,37 +682,37 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   return (
                     <div
                       key={c.term}
-                      className="group p-4 rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-sm hover:shadow-md hover:border-line-strong transition-all"
+                      className={`${panel} group p-4 transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
                     >
                       <div className="flex justify-between gap-4 items-start">
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <p className="font-extrabold text-xs sm:text-sm text-ink">{c.term}</p>
+                            <p className="font-bold text-xs sm:text-sm text-ink-max">{c.term}</p>
                             {isDue ? (
-                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-warn-strong border border-amber-200/50">{t.flashcards.badgeDue}</span>
+                              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-sm text-warn-strong border border-warn-line-mid">{t.flashcards.badgeDue}</span>
                             ) : (
-                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-stone-50 dark:bg-stone-950/40 text-stone-500 border border-line-soft">{t.flashcards.badgeReviewed}</span>
+                              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-sm text-ink-muted border border-line">{t.flashcards.badgeReviewed}</span>
                             )}
                             {c.repetitions >= 5 && (
-                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-brand-50 dark:bg-brand-950/40 text-accent-strong border border-brand-200/50 flex items-center gap-0.5">
+                              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-sm text-accent-strong border border-accent-line-mid flex items-center gap-0.5">
                                 <Trophy className="w-2.5 h-2.5" /> {t.flashcards.badgeMastered}
                               </span>
                             )}
                           </div>
-                          <p className="text-xs text-ink-muted mt-1.5 line-clamp-2 leading-relaxed">{c.definition}</p>
+                          <p className="text-xs text-ink-muted mt-1.5 line-clamp-2 leading-5">{c.definition}</p>
                         </div>
                         <button
                           onClick={() => handleDeleteCard(c.term)}
-                          className="text-stone-400 hover:text-red-500 p-1.5 hover:bg-surface rounded-lg transition-colors shrink-0 opacity-0 group-hover:opacity-100 sm:opacity-100"
+                          className="text-stone-400 hover:text-red-600 p-1.5 rounded-sm transition-colors shrink-0 opacity-0 group-hover:opacity-100 sm:opacity-100"
                           title={t.flashcards.deleteCardTitle}
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
                       {/* Mastery progress (repetitions towards 5 = "mastered") */}
-                      <div className="h-1 rounded-full bg-surface-raised overflow-hidden mt-3">
+                      <div className="h-1 bg-surface-sunken overflow-hidden mt-3">
                         <div
-                          className={`h-full rounded-full transition-all duration-300 ${mastery >= 100 ? "bg-brand-500" : "bg-brand-400"}`}
+                          className={`h-full transition-all duration-300 ${mastery >= 100 ? "bg-brand-600 dark:bg-brand-500" : "bg-stone-500 dark:bg-stone-400"}`}
                           style={{ width: `${mastery}%` }}
                         />
                       </div>

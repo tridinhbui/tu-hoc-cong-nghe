@@ -6,6 +6,7 @@ import Glyph from "@/components/Glyph";
 import LessonPageLayout, { QuizQuestion, LessonMeta } from "@/components/LessonPageLayout";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Sys, tabClass } from "@/components/ui/system";
 import type { ResourceClassLessonCopy } from "@/lib/i18n/dictionaries/sections/bespoke-lessons";
 
 /* i18n-ignore-start: `title`, `subtitle` và `nextTitle` đã có lớp phủ trong
@@ -74,38 +75,45 @@ function CapacityWaterfallAnimation({ c }: { c: ResourceClassLessonCopy }) {
   const payouts = WATERFALL_LAYERS.map(l => { const p = Math.min(remaining, l.amount); remaining = Math.max(0, remaining - l.amount); return p; });
 
   return (
-    <div className="bg-white border-2 border-stone-200 rounded-3xl p-6 space-y-4 my-6">
-      <div className="text-sm font-bold text-stone-700">{c.waterfallHeading}</div>
-      <div className="bg-stone-100 rounded-2xl p-1.5 flex gap-1.5">
-        {(["normal", "distress"] as const).map(sc => (
-          <button key={sc} onClick={() => setScenario(sc)}
-            className={`flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${scenario === sc ? "bg-white text-stone-800 shadow-sm" : "text-stone-500"}`}>
-            {sc === "normal" ? c.scenarioNormal : c.scenarioDistress}
-          </button>
-        ))}
+    <div className="my-6 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="flex h-9 items-center border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{c.waterfallHeading}</span>
       </div>
-      <div className="space-y-2">
-        {WATERFALL_LAYERS.map((layer, i) => {
-          const pct = (payouts[i] / layer.amount) * 100;
-          const fullPaid = payouts[i] >= layer.amount;
-          return (
-            <div key={layer.name} className={`rounded-2xl p-4 border-2 transition-all ${fullPaid ? "bg-stone-50 border-stone-100" : "bg-stone-50 border-stone-200"}`}>
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-semibold text-sm text-stone-700">{layer.name}</span>
-                <span className="inline-flex items-center gap-1 text-sm font-bold text-stone-700">
-                  {format(c.payoutLine, { paid: payouts[i], total: layer.amount })}
-                  {!fullPaid && <X aria-hidden className="h-4 w-4 text-alert" strokeWidth={2} />}
-                </span>
+      <div className="space-y-4 p-4 sm:p-5">
+        {/* Kịch bản: tab chữ, gạch dưới xanh - không phải viên thuốc. */}
+        <div role="tablist" className="flex gap-5 border-b border-line">
+          {(["normal", "distress"] as const).map(sc => (
+            <button key={sc} role="tab" aria-selected={scenario === sc} onClick={() => setScenario(sc)} className={tabClass(scenario === sc)}>
+              {sc === "normal" ? c.scenarioNormal : c.scenarioDistress}
+            </button>
+          ))}
+        </div>
+        <div className="divide-y divide-stone-200 border-y border-stone-200 dark:divide-stone-800 dark:border-stone-800">
+          {WATERFALL_LAYERS.map((layer, i) => {
+            const pct = (payouts[i] / layer.amount) * 100;
+            const fullPaid = payouts[i] >= layer.amount;
+            return (
+              <div key={layer.name} className="py-3">
+                <div className="mb-2 flex items-center justify-between gap-3">
+                  <span className="text-sm font-semibold text-ink-max">{layer.name}</span>
+                  <span className={`inline-flex items-center gap-1 font-mono text-sm tabular-nums ${fullPaid ? "text-ink-body" : "text-danger"}`}>
+                    {format(c.payoutLine, { paid: payouts[i], total: layer.amount })}
+                    {!fullPaid && <X aria-hidden className="h-4 w-4" strokeWidth={2} />}
+                  </span>
+                </div>
+                <div className="h-1.5 bg-surface-sunken">
+                  <div
+                    className={`h-full transition-[width] duration-700 ${fullPaid ? "bg-brand-600 dark:bg-brand-500" : "bg-red-500"}`}
+                    style={{ width: `${pct}%` }}
+                  />
+                </div>
               </div>
-              <div className="h-3 bg-stone-200 rounded-full overflow-hidden">
-                <div className="h-full rounded-full transition-all duration-700 bg-stone-50" style={{ width: `${pct}%` }} />
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="rounded-2xl p-4 text-sm font-medium border-2 bg-stone-50 border-stone-200 text-stone-700">
-        {scenario === "normal" ? c.verdictNormal : c.verdictDistress}
+            );
+          })}
+        </div>
+        <p className="border-l-2 border-stone-950 pl-4 text-sm leading-7 text-ink-body dark:border-stone-200">
+          {scenario === "normal" ? c.verdictNormal : c.verdictDistress}
+        </p>
       </div>
     </div>
   );
@@ -127,47 +135,45 @@ export default function CacHangUuTienTaiNguyenPage() {
 
   return (
     <LessonPageLayout lesson={lesson} quiz={quiz}>
-      <div className="space-y-8 text-stone-700 leading-relaxed">
+      <div className="space-y-8 text-lg leading-8 text-ink-body">
 
-        <section className="space-y-4">
-          <h2 className="text-xl font-bold text-ink">{c.heading}</h2>
+        <section className="max-w-[68ch] space-y-4">
+          <h2 className="text-2xl font-black leading-tight tracking-tight text-ink-max">{c.heading}</h2>
           <p>{c.intro}</p>
           <p>{c.intro2}</p>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-ink">{c.ruleHeading}</h2>
-          <p>{c.ruleLead}</p>
-          <div className="bg-stone-900 rounded-2xl p-5 text-white text-center">
-            <div className="text-2xl font-bold text-stone-700 mb-2">{c.ruleBanner}</div>
-            <p className="text-stone-300 text-sm">{c.ruleNote}</p>
+          <h2 className="border-t border-stone-300 pt-5 text-2xl font-black leading-tight tracking-tight text-ink-max dark:border-stone-700">{c.ruleHeading}</h2>
+          <p className="max-w-[68ch]">{c.ruleLead}</p>
+          <div className="rounded-md bg-stone-950 p-5 text-white">
+            <div className="mb-2 text-xl font-black tracking-tight text-white">{c.ruleBanner}</div>
+            <p className="text-sm leading-6 text-stone-300">{c.ruleNote}</p>
           </div>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-ink">{c.typesHeading}</h2>
-          <div className="space-y-2">
+          <h2 className="border-t border-stone-300 pt-5 text-2xl font-black leading-tight tracking-tight text-ink-max dark:border-stone-700">{c.typesHeading}</h2>
+          <div className="divide-y divide-stone-200 overflow-hidden rounded-md border border-stone-300 bg-white dark:divide-stone-800 dark:border-stone-700 dark:bg-stone-900">
             {DEBT_TYPES.map((d, i) => (
-              <div key={d.id} className="w-full text-left rounded-2xl border p-4 bg-white border-stone-200">
-                <div className="flex items-center justify-between">
+              <div key={d.id} className="p-4">
+                <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <span className="flex-shrink-0 rounded-xl bg-accent-soft p-2 text-accent"><Glyph emoji={d.emoji} className="h-5 w-5" /></span>
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm border border-stone-300 text-ink-body dark:border-stone-700"><Glyph emoji={d.emoji} className="h-4 w-4" /></span>
                     <div>
-                      <div className="font-bold text-sm text-stone-800">{d.name}</div>
-                      <div className="text-xs mt-0.5 text-stone-500">
+                      <div className="text-sm font-bold text-ink-max">{d.name}</div>
+                      <div className="mt-0.5 text-xs text-ink-muted">
                         {format(c.rateSuffix, { tag: c.debtTypes[i].tag, rate: d.rate })}
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 flex-shrink-0 ml-2">
-                    <div className="h-2 w-16 bg-stone-100 rounded-full overflow-hidden">
-                      <div className="h-full bg-current rounded-full" style={{ width: `${d.risk}%`, opacity: 0.5 }} />
-                    </div>
+                  <div className="ml-2 h-1.5 w-16 flex-shrink-0 bg-surface-sunken">
+                    <div className="h-full bg-stone-600 dark:bg-stone-400" style={{ width: `${d.risk}%` }} />
                   </div>
                 </div>
                 <div className="mt-3 space-y-2">
-                  <p className="text-sm leading-relaxed text-stone-700">{c.debtTypes[i].desc}</p>
-                  <div className="bg-stone-50 rounded-xl p-3 text-xs text-stone-500 border border-stone-100">{c.debtTypes[i].eg}</div>
+                  <p className="max-w-[68ch] text-base leading-7 text-ink-body">{c.debtTypes[i].desc}</p>
+                  <p className="border-l-2 border-stone-300 pl-3 text-sm leading-6 text-ink-soft dark:border-stone-700">{c.debtTypes[i].eg}</p>
                 </div>
               </div>
             ))}
@@ -177,34 +183,37 @@ export default function CacHangUuTienTaiNguyenPage() {
         <CapacityWaterfallAnimation c={c} />
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-ink">{c.lboHeading}</h2>
-          <p>{c.lboLead}</p>
-          <div className="bg-stone-900 rounded-2xl p-5 text-sm space-y-2">
-            <div className="text-stone-700 text-xs font-bold uppercase tracking-widest mb-2">{c.lboTableTitle}</div>
-            {LBO_ROWS.map((r, i) => (
-              <div key={r.layer} className="flex items-center gap-3 py-1.5 border-b border-stone-800 last:border-0">
-                <div className="w-1 h-8 rounded-full flex-shrink-0 bg-stone-50" />
-                <div className="flex-1">
-                  <div className="font-semibold text-xs text-stone-700">{r.layer}</div>
-                  <div className="text-stone-500 text-xs">
-                    {r.pct} · {c.lboAmounts[i]} · {r.rate || c.lboEquityRate}
+          <h2 className="border-t border-stone-300 pt-5 text-2xl font-black leading-tight tracking-tight text-ink-max dark:border-stone-700">{c.lboHeading}</h2>
+          <p className="max-w-[68ch]">{c.lboLead}</p>
+          <div className="overflow-hidden rounded-md border border-stone-300 bg-white text-sm dark:border-stone-700 dark:bg-stone-900">
+            <div className="border-b border-stone-300 bg-[#f3f1ec] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted dark:border-stone-700 dark:bg-stone-950">{c.lboTableTitle}</div>
+            <div className="divide-y divide-stone-200 dark:divide-stone-800">
+              {LBO_ROWS.map((r, i) => (
+                <div key={r.layer} className="flex items-baseline gap-3 px-4 py-2.5">
+                  <Sys className="flex-shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>
+                  <div className="flex-1">
+                    <div className="font-semibold text-ink-max">{r.layer}</div>
+                    <div className="text-xs text-ink-muted">
+                      {r.pct} · {c.lboAmounts[i]} · {r.rate || c.lboEquityRate}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          <p className="text-sm text-stone-500">{c.lboNote}</p>
+          <p className="max-w-[68ch] text-sm leading-6 text-ink-soft">{c.lboNote}</p>
         </section>
 
-        <div className="bg-stone-50 border border-stone-200 rounded-2xl p-6">
-          <h3 className="font-bold text-stone-700 mb-3">{c.takeawayHeading}</h3>
-          <div className="space-y-2">
+        <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+          <h3 className="mb-3 text-lg font-black tracking-tight text-ink-max">{c.takeawayHeading}</h3>
+          <ol className="space-y-2">
             {c.takeaways.map((item, i) => (
-              <div key={i} className="flex items-start gap-2 text-sm text-stone-700">
-                <span className="text-stone-700 font-bold flex-shrink-0 mt-0.5"></span>{item}
-              </div>
+              <li key={i} className="flex max-w-[68ch] items-baseline gap-3 text-base leading-7 text-ink-body">
+                <Sys className="flex-shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>
+                <span>{item}</span>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </LessonPageLayout>

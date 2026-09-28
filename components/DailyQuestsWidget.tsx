@@ -10,6 +10,7 @@ import { earnChest } from "@/lib/chests";
 import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Sys, panel } from "@/components/ui/system";
 
 interface DailyQuestsWidgetProps {
   userId: string;
@@ -236,42 +237,34 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
 
   if (loading) {
     return (
-      <div className={embedded ? "space-y-4 animate-pulse" : "rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.2)] space-y-4 animate-pulse"}>
-        <div className="h-5 skeleton-premium rounded w-1/3" />
+      <div className={embedded ? "space-y-4 animate-pulse" : `${panel} p-5 space-y-4 animate-pulse`}>
+        <div className="h-5 skeleton-premium rounded-sm w-1/3" />
         <div className="space-y-2">
-          <div className="h-10 skeleton-premium rounded-[18px]" />
-          <div className="h-10 skeleton-premium rounded-[18px]" />
-          <div className="h-10 skeleton-premium rounded-[18px]" />
+          <div className="h-10 skeleton-premium rounded-md" />
+          <div className="h-10 skeleton-premium rounded-md" />
+          <div className="h-10 skeleton-premium rounded-md" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className={embedded ? "relative" : "rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900 p-5 shadow-sm relative overflow-hidden group"}>
-      {/* Dynamic background lights */}
+    <div className={embedded ? "relative" : `${panel} p-5 relative overflow-hidden group`}>
       {!embedded && (
-        <>
-          <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/[0.03] rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-rose-500/[0.02] rounded-full blur-2xl pointer-events-none" />
-        </>
-      )}
-
-      {!embedded && (
-      <div className="w-full flex items-center justify-between mb-4 relative z-10">
+      <div className="w-full flex items-center justify-between mb-4 border-b border-line-strong pb-3 relative z-10">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-warn flex items-center justify-center">
+          <div className="w-8 h-8 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center">
             <ListChecks className="w-4 h-4" />
           </div>
           <div className="text-left">
-            <h3 className="text-sm font-extrabold text-ink">{t.dailyQuests.headerTitle}</h3>
-            <p className="text-[10px] text-ink-faint font-bold uppercase tracking-wider flex items-center gap-1 mt-0.5">
-              <Calendar className="w-3 h-3" /> {dayKey}
+            <h3 className="text-sm font-black tracking-tight text-ink-max">{t.dailyQuests.headerTitle}</h3>
+            <p className="text-ink-faint flex items-center gap-1 mt-0.5">
+              <Calendar className="w-3 h-3" /> <Sys>{dayKey}</Sys>
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-stone-50 dark:bg-stone-950/60 text-ink-soft border border-line-soft">
+          <span className="text-[11px] font-bold px-2 py-0.5 rounded-sm text-ink-soft border border-line-strong">
             {format(t.dailyQuests.doneCount, { count: completedQuestsCount })}
           </span>
         </div>
@@ -285,12 +278,6 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
           không đoán được cái nào chạy, và ở đây nó còn giấu bớt nhiệm vụ
           trong khi thẻ vẫn chừa một khoảng trắng ngay dưới. */}
       <div className="space-y-2.5 relative z-10">
-        <style>{`
-          @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.05); }
-            50% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.15); }
-          }
-        `}</style>
         {[...quests]
           .sort((a, b) => {
             // Sắp xếp: Chưa xong/Chờ nhận thưởng -> LÊN ĐẦU, Đã nhận thưởng -> TỤT XUỐNG CUỐI
@@ -306,34 +293,31 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
           return (
             <div
               key={quest.id}
-              className={`p-3 rounded-2xl border transition-all duration-300 group/item flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3.5 ${
+              className={`p-3 rounded-sm border transition-colors duration-200 group/item flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3.5 ${
                 quest.claimed
-                  ? "bg-stone-500/[0.01] dark:bg-stone-950/[0.01] border-line-soft opacity-60"
+                  ? "bg-[#fbfaf7] dark:bg-stone-950 border-line opacity-60"
                   : isDone
-                  ? "bg-amber-500/[0.02] dark:bg-amber-500/[0.01] border-warn-line-mid shadow-sm shadow-amber-500/5 animate-[pulseGlow_2.5s_infinite]"
-                  : "bg-white dark:bg-stone-900 border-line hover:border-brand-500/40 dark:hover:border-brand-500/30 hover:shadow-[0_4px_12px_-4px_rgba(65, 122, 205,0.06)]"
+                  ? "bg-white dark:bg-stone-900 border-warn-line-mid"
+                  : "bg-white dark:bg-stone-900 border-line-strong hover:border-stone-950 dark:hover:border-stone-300"
               }`}
             >
               <div className="flex items-center gap-3 min-w-0 flex-1">
                 {/* Left Icon Area */}
                 <div className="shrink-0">
                   {quest.claimed ? (
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-50 dark:bg-brand-950/20 text-brand-500 flex items-center justify-center border border-brand-100 dark:border-brand-900/30">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-brand-300 bg-brand-50 text-brand-600 dark:border-brand-900 dark:bg-brand-950/30 dark:text-brand-400 flex items-center justify-center">
                       <CheckCircle2 className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                     </div>
                   ) : (
                     (() => {
                       let IconComponent = BookOpen;
-                      let colorClass = "bg-indigo-50 dark:bg-indigo-950/30 text-indigo-500 border-indigo-100 dark:border-indigo-900/20";
                       if (quest.id === "daily_2") {
                         IconComponent = Gamepad2;
-                        colorClass = "bg-sky-50 dark:bg-sky-950/30 text-sky-500 border-sky-100 dark:border-sky-900/20";
                       } else if (quest.id === "daily_3") {
                         IconComponent = Award;
-                        colorClass = "bg-amber-50 dark:bg-amber-950/30 text-warn border-amber-100 dark:border-amber-900/20";
                       }
                       return (
-                        <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl border flex items-center justify-center transition-transform group-hover/item:scale-105 duration-300 ${colorClass}`}>
+                        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center">
                           <IconComponent className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                         </div>
                       );
@@ -348,7 +332,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                       ? "text-stone-400 line-through" 
                       : isDone 
                       ? "text-warn" 
-                      : "text-ink group-hover/item:text-brand-600 dark:group-hover/item:text-brand-400"
+                      : "text-ink"
                   }`}>
                     {t.questCopy[quest.id]?.title ?? quest.title}
                   </p>
@@ -363,14 +347,14 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
               {/* Action Buttons */}
               <div className="shrink-0 flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 border-stone-100 dark:border-stone-800/60">
                 {quest.claimed ? (
-                  <span className="text-[10px] font-black text-accent bg-brand-50 dark:bg-brand-950/30 px-2.5 py-1.5 rounded-lg border border-brand-100 dark:border-brand-900/30 uppercase tracking-wider">
+                  <span className="text-[10px] font-black text-accent-strong px-2.5 py-1.5 rounded-sm border border-brand-300 dark:border-brand-900 uppercase tracking-wider">
                     {t.dailyQuests.claimed}
                   </span>
                 ) : isDone ? (
                   <button
                     onClick={() => handleClaim(quest)}
                     disabled={claimingId !== null}
-                className="button-premium w-full sm:w-auto justify-center px-3 py-1.5 text-[10.5px] font-black rounded-[16px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-[0_3px_8px_-2px_rgba(245,158,11,0.45)] hover:scale-[1.02] active:scale-95 transition-all cursor-pointer flex items-center gap-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-500/15"
+                className="w-full sm:w-auto justify-center px-3 py-1.5 text-[10.5px] font-black rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 disabled:opacity-50 transition-colors cursor-pointer flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                 >
                   {/* Số hiển thị phải là số SẼ nhận, không phải mức thưởng
                       danh nghĩa: máy chủ kẹp nó theo ngân sách XP còn lại của
@@ -384,7 +368,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                 </button>
                 ) : (
                   <>
-                    <span className="text-[10px] font-black text-ink-soft bg-stone-50 dark:bg-stone-950/40 px-2 py-1 rounded-lg border border-stone-200/50 dark:border-stone-800">
+                    <span className="text-[10px] font-black text-ink-soft px-2 py-1 rounded-sm border border-line-strong">
                       {payoutOf(quest) > 0
                         ? format(t.dailyQuests.xpWithAmount, { xp: payoutOf(quest) })
                         : isCappedOut(quest)
@@ -394,7 +378,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                     <button
                       onClick={() => goToQuestAction(quest.id, router)}
                       title={t.dailyQuests.doActionTitle}
-                      className="button-premium group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-brand-600 hover:bg-brand-700 px-3 py-1.5 rounded-[16px] transition-all duration-200 cursor-pointer shadow-[0_8px_18px_-16px_rgba(65, 122, 205,0.35)] active:scale-95 shrink-0 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500/15"
+                      className="group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-stone-950 hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 px-3 py-1.5 rounded-sm transition-colors duration-200 cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                     >
                       {t.dailyQuests.doNow} <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </button>

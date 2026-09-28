@@ -27,17 +27,17 @@ export default function InteractiveProfitCalc() {
   const isShortOfCash = actualCash < 0;
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6">
+    <div className="space-y-6 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1">{t.profitCalc.title}</h3>
-        <p className="text-stone-500 text-sm">{t.profitCalc.subtitle}</p>
+        <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">{t.profitCalc.title}</h3>
+        <p className="text-sm text-ink-soft">{t.profitCalc.subtitle}</p>
       </div>
 
       <div className="space-y-5">
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700">{t.profitCalc.revenueLabel}</span>
-            <span className="font-bold text-stone-900">{format(t.profitCalc.millionUnit, { value: revenue })}</span>
+            <span className="font-medium text-ink-body">{t.profitCalc.revenueLabel}</span>
+            <span className="font-bold tabular-nums text-ink-max">{format(t.profitCalc.millionUnit, { value: revenue })}</span>
           </div>
           <input
             type="range"
@@ -52,8 +52,8 @@ export default function InteractiveProfitCalc() {
 
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700">{t.profitCalc.costLabel}</span>
-            <span className="font-bold text-stone-900">{format(t.profitCalc.millionUnit, { value: cost })}</span>
+            <span className="font-medium text-ink-body">{t.profitCalc.costLabel}</span>
+            <span className="font-bold tabular-nums text-ink-max">{format(t.profitCalc.millionUnit, { value: cost })}</span>
           </div>
           <input
             type="range"
@@ -68,8 +68,8 @@ export default function InteractiveProfitCalc() {
 
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700">{t.profitCalc.cashReceivedLabel}</span>
-            <span className="font-bold text-stone-900">{format(t.profitCalc.millionUnit, { value: cashReceived })}</span>
+            <span className="font-medium text-ink-body">{t.profitCalc.cashReceivedLabel}</span>
+            <span className="font-bold tabular-nums text-ink-max">{format(t.profitCalc.millionUnit, { value: cashReceived })}</span>
           </div>
           <input
             type="range"
@@ -78,9 +78,9 @@ export default function InteractiveProfitCalc() {
             value={cashReceived}
             onChange={(e) => setCashReceived(+e.target.value)}
             className="w-full"
-            style={{ background: `linear-gradient(to right, #0891b2 ${(cashReceived / revenue) * 100}%, #e5e7eb ${(cashReceived / revenue) * 100}%)` }}
+            style={{ background: `linear-gradient(to right, #57534e ${(cashReceived / revenue) * 100}%, #e5e7eb ${(cashReceived / revenue) * 100}%)` }}
           />
-          <p className="text-xs text-stone-500 mt-1">
+          <p className="mt-1 text-xs text-ink-muted">
             {format(t.profitCalc.remainingReceivable, { amount: revenue - cashReceived })}
           </p>
         </div>
@@ -88,32 +88,32 @@ export default function InteractiveProfitCalc() {
 
       {/* Results */}
       <div className="grid grid-cols-2 gap-4">
-        <div className={`rounded-2xl p-4 text-center ${profit >= 0 ? "bg-brand-50" : "bg-rose-50"}`}>
-          <div className="text-xs font-medium text-stone-500 mb-1">{t.profitCalc.profitResultLabel}</div>
-          <div className={`text-2xl font-bold ${profit >= 0 ? "text-brand-600" : "text-rose-600"}`}>
+        <div className={`rounded-sm border bg-[#fbfaf7] p-4 text-center dark:bg-stone-950 ${profit >= 0 ? "border-line-strong" : "border-red-500 dark:border-red-700"}`}>
+          <div className="mb-1 text-xs font-bold text-ink-muted">{t.profitCalc.profitResultLabel}</div>
+          <div className={`text-2xl font-black tabular-nums ${profit >= 0 ? "text-accent-strong" : "text-red-600 dark:text-red-400"}`}>
             {profit >= 0 ? "+" : ""}{format(t.profitCalc.millionUnit, { value: profit })}
           </div>
-          <div className="text-xs text-stone-500 mt-1">{profit >= 0 ? t.profitCalc.profitPositiveNote : t.profitCalc.profitNegativeNote}</div>
+          <div className="mt-1 text-xs text-ink-muted">{profit >= 0 ? t.profitCalc.profitPositiveNote : t.profitCalc.profitNegativeNote}</div>
         </div>
 
-        <div className={`rounded-2xl p-4 text-center ${actualCash >= 0 ? "bg-blue-50" : "bg-orange-50"}`}>
-          <div className="text-xs font-medium text-stone-500 mb-1">{t.profitCalc.cashResultLabel}</div>
-          <div className={`text-2xl font-bold ${actualCash >= 0 ? "text-blue-600" : "text-orange-600"}`}>
+        <div className={`rounded-sm border bg-[#fbfaf7] p-4 text-center dark:bg-stone-950 ${actualCash >= 0 ? "border-line-strong" : "border-red-500 dark:border-red-700"}`}>
+          <div className="mb-1 text-xs font-bold text-ink-muted">{t.profitCalc.cashResultLabel}</div>
+          <div className={`text-2xl font-black tabular-nums ${actualCash >= 0 ? "text-accent-strong" : "text-red-600 dark:text-red-400"}`}>
             {actualCash >= 0 ? "+" : ""}{format(t.profitCalc.millionUnit, { value: actualCash })}
           </div>
-          <div className="text-xs text-stone-500 mt-1">{actualCash >= 0 ? t.profitCalc.cashPositiveNote : t.profitCalc.cashNegativeNote}</div>
+          <div className="mt-1 text-xs text-ink-muted">{actualCash >= 0 ? t.profitCalc.cashPositiveNote : t.profitCalc.cashNegativeNote}</div>
         </div>
       </div>
 
       {profit > 0 && isShortOfCash && (
-        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-amber-800 text-sm">
+        <div className="border-l-2 border-amber-500 pl-4 text-sm text-ink-body">
           <span className="font-bold">{t.profitCalc.shortOfCashTitle}</span>{" "}
           {format(t.profitCalc.shortOfCashBody, { profit, cash: actualCash, receivable: revenue - cashReceived })}
         </div>
       )}
 
       {!isShortOfCash && cashReceived === revenue && (
-        <div className="bg-brand-50 border border-brand-200 rounded-2xl p-4 text-brand-800 text-sm">
+        <div className="border-l-2 border-stone-950 pl-4 text-sm text-ink-body dark:border-stone-200">
           {t.profitCalc.fullPaymentBody}
         </div>
       )}

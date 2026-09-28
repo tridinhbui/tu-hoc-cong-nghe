@@ -288,7 +288,17 @@ export function pomodoroTexture(
 
 /** Bong bóng thoại: nền trắng bo tròn, đuôi nhọn chỉ xuống đầu nhân vật, chữ
  *  tự xuống dòng. Trả về cả tỷ lệ khung để phía gọi đặt plane cho khỏi méo. */
-export function speechBubbleTexture(text: string): { texture: THREE.Texture; aspect: number } {
+/** Đuôi bong bóng: dưới đáy (mặc định, dùng ở sảnh 3D) hay bên trái.
+ *
+ *  Thêm tuỳ chọn thay vì dựng hàm thứ hai: toàn bộ phần đo chữ, xuống dòng và
+ *  dựng canvas là chung, chỉ khác đúng ba lệnh vẽ tam giác. Mặc định giữ nguyên
+ *  hành vi cũ nên `LobbyAvatar` không phải đổi gì. */
+export type BubbleTail = "bottom" | "left";
+
+export function speechBubbleTexture(
+  text: string,
+  tailSide: BubbleTail = "bottom"
+): { texture: THREE.Texture; aspect: number } {
   const W = 512;
   const PAD = 26;
   const FONT = "500 34px ui-sans-serif, system-ui, -apple-system, sans-serif";
@@ -299,7 +309,10 @@ export function speechBubbleTexture(text: string): { texture: THREE.Texture; asp
   if (!measure) throw new Error("Không lấy được canvas 2D context để dựng bong bóng thoại");
   measure.font = FONT;
 
-  const maxTextW = W - PAD * 2;
+  // Đuôi bên trái ăn mất một dải bề ngang, nên chữ phải xuống dòng sớm hơn
+  // đúng chừng ấy - nếu không, dòng dài nhất tràn vào ngay chỗ vẽ đuôi.
+  const TAIL_W = 22;
+  const maxTextW = W - PAD * 2 - (tailSide === "left" ? TAIL_W : 0);
   const lines: string[] = [];
   let line = "";
   for (const word of text.split(/\s+/)) {
@@ -314,8 +327,10 @@ export function speechBubbleTexture(text: string): { texture: THREE.Texture; asp
   if (line) lines.push(line);
 
   const lineH = 44;
-  const tail = 22;
-  const H = PAD * 2 + lines.length * lineH + tail;
+  const tail = TAIL_W;
+  // Đuôi bên trái ăn vào BỀ NGANG chứ không vào chiều cao, nên chiều cao chỉ
+  // cộng thêm đuôi khi đuôi nằm dưới đáy.
+  const H = PAD * 2 + lines.length * lineH + (tailSide === "bottom" ? tail : 0);
 
   const canvas = document.createElement("canvas");
   canvas.width = W;
@@ -323,16 +338,24 @@ export function speechBubbleTexture(text: string): { texture: THREE.Texture; asp
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Không lấy được canvas 2D context để dựng bong bóng thoại");
 
-  const bodyH = H - tail;
+  const bodyH = tailSide === "bottom" ? H - tail : H;
+  const bodyX = tailSide === "left" ? tail : 4;
   ctx.fillStyle = "rgba(253,246,227,0.96)";
   ctx.beginPath();
-  ctx.roundRect(4, 0, W - 8, bodyH, 28);
+  ctx.roundRect(bodyX, 0, W - bodyX - 4, bodyH, 28);
   ctx.fill();
   // đuôi bong bóng
   ctx.beginPath();
-  ctx.moveTo(W / 2 - 18, bodyH - 2);
-  ctx.lineTo(W / 2, H);
-  ctx.lineTo(W / 2 + 18, bodyH - 2);
+  if (tailSide === "bottom") {
+    ctx.moveTo(W / 2 - 18, bodyH - 2);
+    ctx.lineTo(W / 2, H);
+    ctx.lineTo(W / 2 + 18, bodyH - 2);
+  } else {
+    const y = bodyH * 0.62;
+    ctx.moveTo(bodyX + 2, y - 18);
+    ctx.lineTo(0, y);
+    ctx.lineTo(bodyX + 2, y + 18);
+  }
   ctx.closePath();
   ctx.fill();
 
@@ -340,8 +363,9 @@ export function speechBubbleTexture(text: string): { texture: THREE.Texture; asp
   ctx.font = FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
+  const textCx = bodyX + (W - bodyX - 4) / 2;
   lines.forEach((l, i) => {
-    ctx.fillText(l, W / 2, PAD + lineH / 2 + i * lineH);
+    ctx.fillText(l, textCx, PAD + lineH / 2 + i * lineH);
   });
 
   const texture = new THREE.CanvasTexture(canvas);

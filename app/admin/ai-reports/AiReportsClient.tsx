@@ -76,7 +76,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
       {groups.map((group) => (
         <div
           key={group.lesson_id}
-          className="bg-white dark:bg-stone-900 border border-line rounded-xl shadow-sm overflow-hidden"
+          className="bg-white dark:bg-stone-900 border border-line rounded-xl overflow-hidden"
         >
           <div className="flex items-start justify-between gap-3 flex-wrap px-5 py-4 border-b border-line-soft bg-stone-50/60 dark:bg-stone-950/40">
             <div className="min-w-0">
@@ -84,7 +84,7 @@ export default function AiReportsClient({ initialReports }: AiReportsClientProps
                 <h3 className="font-bold text-ink truncate" title={group.lesson_title}>
                   {group.lesson_title}
                 </h3>
-                <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-extrabold bg-rose-100 dark:bg-rose-950/40 text-alert-strong">
+                <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded-xs text-xs font-extrabold bg-danger-soft text-danger">
                   {format(ta.reportsCount, { count: group.total })}
                 </span>
               </div>

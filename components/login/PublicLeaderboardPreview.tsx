@@ -1,102 +1,90 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Award,
-  Crown,
-  Medal,
-  ShieldCheck,
-  Sparkles,
-  Trophy,
-  Flame,
-  Zap,
-  Heart,
-  TrendingUp,
-  Users2,
-  CheckCircle2,
-  ArrowRight,
-  UserCheck,
-} from "lucide-react";
+import { ArrowRight, Heart } from "lucide-react";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/cloudflare-user";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
-import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { Sys, StatusDot, btnPrimary, tabClass } from "@/components/ui/system";
 
 type MetricFilter = "xp" | "streak" | "lessons";
 
-// Mock fallback data in case the DB table is empty or loading. The names are
-// illustrative learners - proper nouns, not UI copy - so they come from the
-// dictionary only to satisfy the i18n coverage script; the Vietnamese and
-// English values are identical on purpose (see AGENTS.md instructions for
-// this component).
-function getMockLeaderboard(t: Dictionary): Record<MetricFilter, LeaderboardRow[]> {
-  const n = t.leaderboardPreview;
-  return {
-    xp: [
-      { user_id: "1", name: n.name1, value: 4639, avatarUrl: "/avatars/avatar-1.png" },
-      { user_id: "2", name: n.name2, value: 4558, avatarUrl: "/avatars/avatar-2.png" },
-      { user_id: "3", name: n.name3, value: 3256, avatarUrl: "" },
-      { user_id: "4", name: n.name4, value: 2987, avatarUrl: "" },
-      { user_id: "5", name: n.name5, value: 2606, avatarUrl: "" },
-      { user_id: "6", name: n.name6, value: 2449, avatarUrl: "" },
-    ],
-    streak: [
-      { user_id: "1", name: n.name1, value: 28, avatarUrl: "/avatars/avatar-1.png" },
-      { user_id: "4", name: n.name4, value: 21, avatarUrl: "" },
-      { user_id: "2", name: n.name2, value: 18, avatarUrl: "/avatars/avatar-2.png" },
-      { user_id: "3", name: n.name3, value: 14, avatarUrl: "" },
-      { user_id: "5", name: n.name5, value: 12, avatarUrl: "" },
-      { user_id: "6", name: n.name6, value: 9, avatarUrl: "" },
-    ],
-    lessons: [
-      { user_id: "2", name: n.name2, value: 64, avatarUrl: "/avatars/avatar-2.png" },
-      { user_id: "1", name: n.name1, value: 58, avatarUrl: "/avatars/avatar-1.png" },
-      { user_id: "3", name: n.name3, value: 42, avatarUrl: "" },
-      { user_id: "4", name: n.name4, value: 39, avatarUrl: "" },
-      { user_id: "5", name: n.name5, value: 31, avatarUrl: "" },
-      { user_id: "6", name: n.name6, value: 27, avatarUrl: "" },
-    ],
-  };
+/* i18n-ignore-start: định danh hạng (01, 02...) - số máy, cùng một chuỗi ở mọi
+   ngôn ngữ. */
+const rankId = (n: number) => String(n).padStart(2, "0");
+/* i18n-ignore-end */
+
+function Avatar({ entry, size }: { entry: LeaderboardRow; size: 36 | 40 }) {
+  const box = size === 40 ? "h-9 w-9 sm:h-10 sm:w-10" : "h-8 w-8";
+  return isValidAvatar(entry.avatarUrl) ? (
+    <Image
+      src={entry.avatarUrl}
+      alt={entry.name}
+      width={size}
+      height={size}
+      className={`${box} rounded-full border border-stone-300 object-cover dark:border-stone-700`}
+    />
+  ) : (
+    <div
+      className={`${box} flex items-center justify-center rounded-full border border-stone-300 bg-[#f3f1ec] text-xs font-black text-ink-soft dark:border-stone-700 dark:bg-stone-800`}
+    >
+      {entry.name.trim().charAt(0).toUpperCase() || "?"}
+    </div>
+  );
 }
 
+/*
+ * Bảng xếp hạng công khai, đặt TRONG một Frame của trang chủ
+ * (THCN://COMMUNITY/LEADERBOARD) - nên nó không tự vẽ khung, bóng hay nền
+ * riêng nữa, chỉ là thân của cửa sổ đó.
+ *
+ * Luật 5 - siêu dữ liệu không bịa - đã gỡ ba thứ khỏi đây:
+ *  - Dữ liệu giả lập dự phòng (sáu học viên với XP/streak gõ tay) từng hiện
+ *    mỗi khi bảng trống hoặc lỗi, dưới nhãn "LIVE". Giờ bảng trống thì nói là
+ *    trống.
+ *  - Tab "Số bài học" gọi RPC với metric "xp" rồi in số XP kèm chữ "bài hoàn
+ *    thành". get_leaderboard có cột `lessons` thật (lib/d1/rpc.ts), nên gọi
+ *    đúng nó.
+ *  - Dòng "Hơn 430+ học viên đang duy trì nhịp học" ở chân: không có phép đếm
+ *    nào đứng sau con số đó.
+ * Bục vinh danh cũng không còn nhân bản người đứng đầu vào ba chỗ khi bảng
+ * có ít hơn ba người.
+ */
 export default function PublicLeaderboardPreview() {
   const { t, locale } = useI18n();
-  const MOCK_LEADERBOARD = useMemo(() => getMockLeaderboard(t), [t]);
   const [metric, setMetric] = useState<MetricFilter>("xp");
-  const [leaderboardData, setLeaderboardData] = useState<LeaderboardRow[]>(MOCK_LEADERBOARD.xp);
+  // null = đang tải (hiện khung xương), [] = bảng thật sự trống.
+  const [rows, setRows] = useState<LeaderboardRow[] | null>(null);
   const [selectedUser, setSelectedUser] = useState<LeaderboardRow | null>(null);
   const [cheers, setCheers] = useState<Record<string, number>>({});
 
   useEffect(() => {
     let cancelled = false;
-    getLeaderboardByMetric(metric === "lessons" ? "xp" : metric, 9)
-      .then((rows) => {
-        if (!cancelled && rows && rows.length > 0) {
-          setLeaderboardData(rows);
-        } else if (!cancelled) {
-          setLeaderboardData(MOCK_LEADERBOARD[metric]);
-        }
+    getLeaderboardByMetric(metric, 9)
+      .then((data) => {
+        if (!cancelled) setRows(data ?? []);
       })
       .catch(() => {
-        if (!cancelled) setLeaderboardData(MOCK_LEADERBOARD[metric]);
+        if (!cancelled) setRows([]);
       });
     return () => {
       cancelled = true;
     };
-  }, [metric, MOCK_LEADERBOARD]);
+  }, [metric]);
 
-  const top = leaderboardData.length > 0 ? leaderboardData : MOCK_LEADERBOARD[metric];
-  const podium = [top[1] || top[0], top[0], top[2] || top[0]].filter(Boolean);
+  const top = rows ?? [];
+  // Thứ tự đứng trên bục: hạng 2 - hạng 1 - hạng 3. Chỉ những hạng có người.
+  const podium = ([1, 0, 2] as const)
+    .map((i) => ({ entry: top[i], rank: i + 1 }))
+    .filter((p): p is { entry: LeaderboardRow; rank: number } => !!p.entry);
 
-  const podiumMeta = [
-    { rank: 2, height: "h-8 sm:h-10", tone: "from-slate-300 via-slate-200 to-slate-100 text-slate-900 border-slate-300", ring: "ring-slate-300", title: t.leaderboardPreview.rankSilver },
-    { rank: 1, height: "h-12 sm:h-14", tone: "from-amber-400 via-amber-300 to-yellow-100 text-amber-950 border-amber-400", ring: "ring-amber-300", title: t.leaderboardPreview.rankGold },
-    { rank: 3, height: "h-6 sm:h-8", tone: "from-orange-300 via-amber-200 to-orange-100 text-orange-950 border-orange-300", ring: "ring-orange-300", title: t.leaderboardPreview.rankBronze },
-  ];
+  const rankTitle = (rank: number) =>
+    rank === 1 ? t.leaderboardPreview.rankGold : rank === 2 ? t.leaderboardPreview.rankSilver : t.leaderboardPreview.rankBronze;
+  const pillarHeight = (rank: number) => (rank === 1 ? "h-12 sm:h-14" : rank === 2 ? "h-8 sm:h-10" : "h-6 sm:h-8");
 
   function handleCheerUser(userId: string, e: React.MouseEvent) {
     e.stopPropagation();
@@ -109,272 +97,214 @@ export default function PublicLeaderboardPreview() {
     return format(t.leaderboardPreview.metricLessons, { value: val });
   }
 
-  return (
-    <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-sm relative font-sans">
-      {/* Header Bar with Live Indicator & Metric Tabs */}
-      <div className="border-b border-line-soft bg-stone-50/60 dark:bg-stone-950/40 px-4 py-3 sm:px-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-500" />
-            </span>
-            <p className="text-xs font-black uppercase tracking-widest text-accent-ink">
-              {t.leaderboardPreview.liveTitle}
-            </p>
-          </div>
+  function switchMetric(next: MetricFilter) {
+    if (next === metric) return;
+    setRows(null);
+    setSelectedUser(null);
+    setMetric(next);
+  }
 
-          {/* Interactive Metric Filters */}
-          <div className="flex items-center gap-1 rounded-2xl border border-brand-300/40 dark:border-brand-800/60 bg-white/90 dark:bg-stone-950/80 p-1 text-xs font-black shadow-inner">
+  const tabs: { id: MetricFilter; label: string }[] = [
+    { id: "xp", label: t.leaderboardPreview.tabXp },
+    { id: "streak", label: t.leaderboardPreview.tabStreak },
+    { id: "lessons", label: t.leaderboardPreview.tabLessons },
+  ];
+
+  return (
+    <div className="space-y-3 font-sans">
+      {/* Tiêu đề + tab chữ (gạch dưới xanh cho tab đang mở, không viên thuốc) */}
+      <div>
+        <p className="eyebrow flex items-center gap-1.5 text-ink-soft">
+          <StatusDot />
+          {t.leaderboardPreview.liveTitle}
+        </p>
+        <div className="mt-2 flex items-center gap-5 border-b border-line-strong">
+          {tabs.map((tab) => (
             <button
-              onClick={() => setMetric("xp")}
-              className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1 ${
-                metric === "xp"
-                  ? "bg-brand-500 text-stone-950 shadow-md scale-102"
-                  : "text-ink-soft hover:text-ink"
-              }`}
+              key={tab.id}
+              type="button"
+              aria-pressed={metric === tab.id}
+              onClick={() => switchMetric(tab.id)}
+              className={`${tabClass(metric === tab.id)} cursor-pointer`}
             >
-              <Zap className="w-3.5 h-3.5" />
-              <span>{t.leaderboardPreview.tabXp}</span>
+              {tab.label}
             </button>
-            <button
-              onClick={() => setMetric("streak")}
-              className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1 ${
-                metric === "streak"
-                  ? "bg-amber-500 text-stone-950 shadow-md scale-102"
-                  : "text-ink-soft hover:text-ink"
-              }`}
-            >
-              <Flame className="w-3.5 h-3.5" />
-              <span>{t.leaderboardPreview.tabStreak}</span>
-            </button>
-            <button
-              onClick={() => setMetric("lessons")}
-              className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1 ${
-                metric === "lessons"
-                  ? "bg-brand-500 text-stone-950 shadow-md scale-102"
-                  : "text-ink-soft hover:text-ink"
-              }`}
-            >
-              <Trophy className="w-3.5 h-3.5" />
-              <span>{t.leaderboardPreview.tabLessons}</span>
-            </button>
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* Main Body */}
-      <div className="p-2.5 sm:p-3 space-y-2 font-sans">
-        {/* Podium Stage Box */}
-        <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-950/40 p-2.5 sm:p-3 relative overflow-hidden">
-          <div className="mb-1.5 flex items-center justify-between">
-            <div>
-              <p className="text-[9px] font-black uppercase tracking-widest text-accent">
-                {t.leaderboardPreview.podiumBadge}
-              </p>
-              <p className="text-xs font-black text-ink mt-0.5">
+      {rows === null ? (
+        <ul aria-hidden className="divide-y divide-stone-200 dark:divide-stone-800">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <li key={i} className="flex items-center gap-3 py-2.5">
+              <span className="h-3 w-4 animate-pulse rounded-xs bg-surface-sunken" />
+              <span className="h-8 w-8 animate-pulse rounded-full bg-surface-sunken" />
+              <span className="h-3 flex-1 animate-pulse rounded-xs bg-surface-sunken" />
+              <span className="h-3 w-14 animate-pulse rounded-xs bg-surface-sunken" />
+            </li>
+          ))}
+        </ul>
+      ) : top.length === 0 ? (
+        <p className="rounded-sm border border-dashed border-stone-300 px-4 py-6 text-center text-sm text-ink-muted dark:border-stone-700">
+          {t.leaderboardPreview.empty}
+        </p>
+      ) : (
+        <>
+          {/* Bục vinh danh: ba cột phẳng, chiều cao cột nói thứ hạng; hạng 1
+              đứng trên nền mực thay cho vàng/bạc/đồng tô gradient. */}
+          <div className="rounded-sm border border-stone-300 bg-[#fbfaf7] p-2.5 sm:p-3 dark:border-stone-700 dark:bg-stone-950">
+            <div className="mb-2 flex items-baseline justify-between gap-3">
+              <p className="eyebrow text-ink-muted">{t.leaderboardPreview.podiumBadge}</p>
+              <p className="truncate text-xs font-bold text-ink">
                 {metric === "xp" && t.leaderboardPreview.podiumTitleXp}
                 {metric === "streak" && t.leaderboardPreview.podiumTitleStreak}
                 {metric === "lessons" && t.leaderboardPreview.podiumTitleLessons}
               </p>
             </div>
-            <Crown className="w-5 h-5 text-amber-400 animate-bounce shrink-0" />
-          </div>
 
-          {/* 3D Animated Podium Grid */}
-          <div className="grid grid-cols-3 items-end gap-1.5 sm:gap-2 min-h-[90px] pt-1">
-            {podium.map((entry, idx) => {
-              const meta = podiumMeta[idx];
-              const userCheers = cheers[entry.user_id] || 0;
-
-              return (
-                <motion.div
-                  key={entry.user_id + metric}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: idx * 0.06 }}
-                  onClick={() => setSelectedUser(entry)}
-                  className="group cursor-pointer flex flex-col items-center relative"
-                >
-                  {/* Floating User Avatar Pod */}
-                  <div className="relative mb-1 flex flex-col items-center">
-                    {meta.rank === 1 && (
-                      <Crown className="absolute -top-4 z-20 h-3.5 w-3.5 text-amber-500" strokeWidth={2} aria-hidden />
-                    )}
-
-                    <div className="relative">
-                      <div className={`absolute -inset-1.5 rounded-full bg-gradient-to-r ${meta.tone} opacity-40 blur-xs group-hover:opacity-100 transition-opacity`} />
-                      {isValidAvatar(entry.avatarUrl) ? (
-                        <Image
-                          src={entry.avatarUrl}
-                          alt={entry.name}
-                          width={40}
-                          height={40}
-                          className={`relative h-9 w-9 sm:h-10 sm:w-10 rounded-full border-2 border-white dark:border-stone-900 object-cover shadow-md ring-2 ${meta.ring}`}
-                        />
-                      ) : (
-                        <div
-                          className={`relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-white dark:border-stone-900 bg-gradient-to-br ${meta.tone} text-xs font-black shadow-md ring-2 ${meta.ring}`}
-                        >
-                          {entry.name.trim().charAt(0).toUpperCase() || "?"}
-                        </div>
-                      )}
-                      <span
-                        className={`absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full border border-white dark:border-stone-900 bg-gradient-to-br ${meta.tone} text-[9px] font-black shadow-xs`}
-                      >
-                        {meta.rank}
-                      </span>
-                    </div>
-
-                    <p className="mt-1 text-[11px] font-black text-ink text-center truncate max-w-[80px] sm:max-w-[100px] leading-none">
-                      {entry.name}
-                    </p>
-                    <p className="text-[9px] font-bold text-accent mt-0.5">
-                      {getMetricUnit(entry.value)}
-                    </p>
-
-                    {/* Interactive Cheer Button */}
-                    <button
-                      onClick={(e) => handleCheerUser(entry.user_id, e)}
-                      className="mt-0.5 inline-flex items-center gap-0.5 text-[8px] font-black px-1.5 py-0.2 rounded-full bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-alert hover:scale-105 active:scale-95 transition-transform shadow-2xs"
-                      title={t.leaderboardPreview.cheerButtonTitle}
-                    >
-                      <Heart className="w-2.5 h-2.5 fill-rose-500 text-rose-500" />
-                      <span>{userCheers > 0 ? format(t.leaderboardPreview.cheerButtonCount, { count: userCheers }) : t.leaderboardPreview.cheerButtonIdle}</span>
-                    </button>
-                  </div>
-
-                  {/* 3D Pillar */}
-                  <div
-                    className={`w-full rounded-t-xl bg-gradient-to-b ${meta.tone} border-t-2 ${meta.tone} flex items-center justify-center p-1 shadow-inner backdrop-blur-md transition-all duration-300 group-hover:brightness-110 ${meta.height}`}
+            <div className="grid min-h-[90px] grid-cols-3 items-end gap-1.5 pt-1 sm:gap-2">
+              {podium.map(({ entry, rank }, idx) => {
+                const userCheers = cheers[entry.user_id] || 0;
+                return (
+                  <motion.div
+                    key={entry.user_id + metric}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25, delay: idx * 0.05 }}
+                    onClick={() => setSelectedUser(entry)}
+                    className={`group flex cursor-pointer flex-col items-center ${
+                      podium.length < 3 && rank === 1 ? "col-start-2" : ""
+                    }`}
                   >
-                    <div className="text-center">
-                      <Medal className="mx-auto w-3.5 h-3.5 sm:w-4 sm:h-4 opacity-90" />
-                      <p className="text-[8px] font-black uppercase tracking-wider">{meta.title}</p>
+                    <div className="mb-1 flex flex-col items-center">
+                      <Avatar entry={entry} size={40} />
+                      <p className="mt-1 max-w-[80px] truncate text-center text-[11px] font-black leading-none text-ink-max sm:max-w-[100px]">
+                        {entry.name}
+                      </p>
+                      <p className="mt-0.5 text-[10px] font-semibold tabular-nums text-ink-muted">{getMetricUnit(entry.value)}</p>
+                      <button
+                        type="button"
+                        onClick={(e) => handleCheerUser(entry.user_id, e)}
+                        className={`mt-1 inline-flex items-center gap-1 rounded-xs border px-1.5 py-px text-[10px] font-bold transition-colors ${
+                          userCheers > 0
+                            ? "border-brand-600 text-accent-strong dark:border-brand-400"
+                            : "border-stone-300 text-ink-muted hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
+                        }`}
+                        title={t.leaderboardPreview.cheerButtonTitle}
+                      >
+                        <Heart className={`h-2.5 w-2.5 ${userCheers > 0 ? "fill-current" : ""}`} />
+                        <span>
+                          {userCheers > 0
+                            ? format(t.leaderboardPreview.cheerButtonCount, { count: userCheers })
+                            : t.leaderboardPreview.cheerButtonIdle}
+                        </span>
+                      </button>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+
+                    <div
+                      className={`flex w-full flex-col items-center justify-center rounded-t-xs border border-b-0 ${pillarHeight(rank)} ${
+                        rank === 1
+                          ? "border-stone-950 bg-stone-950 text-white dark:border-stone-200 dark:bg-stone-100 dark:text-stone-950"
+                          : "border-stone-300 bg-white text-ink-soft dark:border-stone-700 dark:bg-stone-900"
+                      }`}
+                    >
+                      <Sys className="opacity-70">{rankId(rank)}</Sys>
+                      <span className="text-[9px] font-bold uppercase tracking-wider">{rankTitle(rank)}</span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </div>
 
-        {/* Selected Member Detail Modal / Card Popup */}
-        <AnimatePresence>
-          {selectedUser && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="p-4 rounded-2xl border-2 border-brand-400/60 bg-brand-950/90 text-white backdrop-blur-md flex flex-wrap items-center justify-between gap-3 shadow-xl"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-brand-500/20 border border-brand-400 flex items-center justify-center font-black text-sm text-brand-300">
-                  {selectedUser.name.slice(0, 2).toUpperCase()}
-                </div>
-                <div>
-                  <p className="text-sm font-black text-white flex items-center gap-2">
-                    <span>{selectedUser.name}</span>
-                    <span className="text-[10px] font-extrabold bg-brand-500 text-stone-950 px-2 py-0.5 rounded-full">
-                      {t.leaderboardPreview.activeLearnerBadge}
-                    </span>
-                  </p>
-                  <p className="text-xs text-brand-200 mt-0.5">
-                    {format(t.leaderboardPreview.achievementLine, { metric: getMetricUnit(selectedUser.value) })}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={(e) => handleCheerUser(selectedUser.user_id, e)}
-                  className="px-3 py-1.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white text-xs font-black transition-colors cursor-pointer flex items-center gap-1.5"
-                >
-                  <Heart className="w-3.5 h-3.5 fill-white" />
-                  <span>{format(t.leaderboardPreview.cheerActionLabel, { count: cheers[selectedUser.user_id] || 0 })}</span>
-                </button>
-                <button
-                  onClick={() => setSelectedUser(null)}
-                  className="px-3 py-1.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-bold transition-colors cursor-pointer"
-                >
-                  {t.leaderboardPreview.closeButton}
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Member Grid Teaser (Rank 1 to 6) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-          {top.slice(0, 6).map((entry, idx) => {
-            const isCheers = (cheers[entry.user_id] || 0) > 0;
-            return (
+          <AnimatePresence>
+            {selectedUser && (
               <motion.div
-                key={entry.user_id}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setSelectedUser(entry)}
-                className="cursor-pointer flex items-center justify-between p-3 rounded-2xl border border-stone-200/70 dark:border-stone-800 bg-white dark:bg-stone-950/60 hover:border-brand-400/60 transition-all shadow-xs"
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 4 }}
+                className="flex flex-wrap items-center justify-between gap-3 rounded-sm border border-stone-950 bg-stone-950 p-3 text-white dark:border-stone-700"
               >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="relative shrink-0">
-                    {isValidAvatar(entry.avatarUrl) ? (
-                      <Image
-                        src={entry.avatarUrl}
-                        alt={entry.name}
-                        width={36}
-                        height={36}
-                        className="w-9 h-9 rounded-full object-cover border border-line-mid"
-                      />
-                    ) : (
-                      <div className="w-9 h-9 rounded-full bg-brand-500/10 border border-brand-400/40 text-accent flex items-center justify-center font-black text-xs">
-                        {entry.name.trim().charAt(0).toUpperCase() || "?"}
-                      </div>
-                    )}
-                    <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-stone-900 text-white text-[9px] font-black flex items-center justify-center border border-white dark:border-stone-900">
-                      {idx + 1}
-                    </span>
+                <div className="flex min-w-0 items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-stone-600 text-xs font-black text-stone-200">
+                    {selectedUser.name.slice(0, 2).toUpperCase()}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs font-black text-ink truncate">
-                      {entry.name}
+                    <p className="flex flex-wrap items-center gap-2 text-sm font-black">
+                      <span className="truncate">{selectedUser.name}</span>
+                      <span className="rounded-xs border border-stone-600 px-1.5 py-px text-[10px] font-bold text-stone-300">
+                        {t.leaderboardPreview.activeLearnerBadge}
+                      </span>
                     </p>
-                    <p className="text-[10px] font-bold text-ink-muted truncate">
-                      {getMetricUnit(entry.value)}
+                    <p className="mt-0.5 text-xs text-stone-400">
+                      {format(t.leaderboardPreview.achievementLine, { metric: getMetricUnit(selectedUser.value) })}
                     </p>
                   </div>
                 </div>
 
-                <button
-                  onClick={(e) => handleCheerUser(entry.user_id, e)}
-                  className={`p-1.5 rounded-xl border transition-all cursor-pointer ${
-                    isCheers
-                      ? "bg-rose-50 dark:bg-rose-950 border-rose-400 text-rose-500"
-                      : "bg-surface border-line text-stone-400 hover:text-rose-500"
-                  }`}
-                  title={t.leaderboardPreview.cheerShortTitle}
-                >
-                  <Heart className={`w-3.5 h-3.5 ${isCheers ? "fill-rose-500" : ""}`} />
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={(e) => handleCheerUser(selectedUser.user_id, e)}
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-sm bg-white px-3 py-1.5 text-xs font-bold text-stone-950 transition-colors hover:bg-brand-300"
+                  >
+                    <Heart className="h-3.5 w-3.5" />
+                    <span>{format(t.leaderboardPreview.cheerActionLabel, { count: cheers[selectedUser.user_id] || 0 })}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedUser(null)}
+                    className="cursor-pointer rounded-sm border border-stone-600 px-3 py-1.5 text-xs font-bold text-stone-300 transition-colors hover:border-stone-300"
+                  >
+                    {t.leaderboardPreview.closeButton}
+                  </button>
+                </div>
               </motion.div>
-            );
-          })}
-        </div>
+            )}
+          </AnimatePresence>
 
-        {/* CTA Footer Bar */}
-        <div className="pt-3 border-t border-stone-200/80 dark:border-stone-800 flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2 text-ink-soft font-semibold">
-            <UserCheck className="w-4 h-4 text-brand-500" />
-            <span>{t.leaderboardPreview.footerActiveLearners}</span>
-          </div>
+          {/* Bảng hạng: hạng mono trái, số mono căn phải - khuôn StatTable. */}
+          <ol className="divide-y divide-stone-200 border-t border-stone-300 dark:divide-stone-800 dark:border-stone-700">
+            {top.slice(0, 6).map((entry, idx) => {
+              const cheered = (cheers[entry.user_id] || 0) > 0;
+              return (
+                <li
+                  key={entry.user_id}
+                  onClick={() => setSelectedUser(entry)}
+                  className="flex cursor-pointer items-center gap-3 py-2 transition-colors hover:bg-[#fbfaf7] dark:hover:bg-stone-800/50"
+                >
+                  <Sys className="w-5 shrink-0 text-ink-faint">{rankId(idx + 1)}</Sys>
+                  <Avatar entry={entry} size={36} />
+                  <span className="min-w-0 flex-1 truncate text-sm font-semibold text-ink-body">{entry.name}</span>
+                  <span className="shrink-0 text-[13px] font-bold tabular-nums text-ink-max">
+                    {getMetricUnit(entry.value)}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={(e) => handleCheerUser(entry.user_id, e)}
+                    aria-pressed={cheered}
+                    className={`shrink-0 cursor-pointer rounded-sm border p-1.5 transition-colors ${
+                      cheered
+                        ? "border-brand-600 text-accent-strong dark:border-brand-400"
+                        : "border-stone-300 text-ink-muted hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
+                    }`}
+                    title={t.leaderboardPreview.cheerShortTitle}
+                    aria-label={t.leaderboardPreview.cheerShortTitle}
+                  >
+                    <Heart className={`h-3.5 w-3.5 ${cheered ? "fill-current" : ""}`} />
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+        </>
+      )}
 
-          <Link
-            href="/login?mode=signup"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-surface-invert hover:bg-stone-800 dark:hover:bg-white text-ink-invert px-5 py-2.5 font-black transition-all hover:scale-102 shadow-md cursor-pointer"
-          >
-            <span>{t.leaderboardPreview.footerCta}</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+      <div className="flex justify-end border-t border-stone-300 pt-3 dark:border-stone-700">
+        <Link href="/login?mode=signup" className={btnPrimary}>
+          <span>{t.leaderboardPreview.footerCta}</span>
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </Link>
       </div>
     </div>
   );

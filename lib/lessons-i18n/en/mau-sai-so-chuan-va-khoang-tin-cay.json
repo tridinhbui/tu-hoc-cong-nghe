@@ -1,9 +1,9 @@
 {
   "slug": "mau-sai-so-chuan-va-khoang-tin-cay",
   "title": "Quant, Lesson 2: Samples, standard errors and confidence intervals - how precise is your number really",
-  "subtitle": "Why every estimate has to carry an interval, and why 36 months of data is nowhere near enough",
+  "subtitle": "Why every estimate has to carry an interval, and why three weeks of data is usually nowhere near enough",
   "duration": "11 min",
-  "whyItMatters": "Every number in finance is an estimate drawn from a sample: beta, expected return, correlation, a fund's alpha. If you do not know the standard error of that estimate, you will make decisions on noise and believe you are acting on signal.",
+  "whyItMatters": "Every number on an operations dashboard is an estimate drawn from a sample: average latency, error rate, conversion rate, the improvement from a release. If you do not know the standard error of that estimate, you will make decisions on noise and believe you are acting on signal.",
   "openingQuestion": "How fast does the standard error of the sample mean fall as the sample grows?",
   "openingOptions": [
     "Inversely proportional to the sample size n",
@@ -11,7 +11,7 @@
     "Inversely proportional to the square of the sample size n",
     "It does not depend on the sample size at all"
   ],
-  "explanation": "The standard error is the standard deviation divided by the square root of n. The consequence is intensely practical and fairly brutal: to halve your error you need four times the data. That is why judging a fund manager's skill on three years of performance is close to hopeless - the confidence interval around their alpha is wide enough to contain both skill and luck.",
+  "explanation": "The standard error is the standard deviation divided by the square root of n. The consequence is intensely practical and fairly brutal: to halve your error you need four times the data. That is why judging a product change on a few weeks of aggregate data is close to hopeless - the confidence interval around the improvement is wide enough to contain both a real effect and random fluctuation.",
   "diagram": [
     {
       "label": "The population, never observed"
@@ -27,19 +27,19 @@
     }
   ],
   "realWorldExample": {
-    "company": "Assessing an investment fund",
-    "description": "A fund posts alpha of 2% a year with tracking error of 6% a year. After three years the standard error of the alpha estimate is 6% divided by the square root of 3, roughly 3.5%. The 95% confidence interval therefore runs from about −5% to +9%. Put another way, three years of data cannot tell a skilful manager apart from a lucky one. It would take roughly 36 years for a 2% alpha to reach conventional statistical significance."
+    "company": "Judging a change on weekly data",
+    "description": "A UI change lifts the order completion rate above the control group by an average of 2 percentage points a week, but that gap fluctuates from week to week with a standard deviation of 6 points. After three weeks the standard error of the estimate is 6 divided by the square root of 3, roughly 3.5 points. The 95% confidence interval therefore runs from about −5 to +9 points. Put another way, three weeks of data cannot tell a good change apart from a lucky streak. It would take roughly 36 weeks for a 2-point gap to reach conventional statistical significance."
   },
   "quiz": [
     {
       "question": "What does the central limit theorem actually say?",
       "options": [
-        "Every financial data series is normally distributed if it runs long enough",
-        "The returns of every asset converge to zero given enough time",
+        "Every operational metric series is normally distributed if it runs long enough",
+        "Each individual latency measurement drifts towards the mean if you measure long enough",
         "The mean of a large enough sample is approximately normal",
         "The larger the sample, the smaller the variance of the parent population"
       ],
-      "explanation": "This is why inferential statistics still works on financial data with fat tails. But note the scope carefully: the theorem applies to the sample mean, not to individual observations - so it does nothing to rescue tail risk models. It says nothing about the shape of the underlying series itself, which can stay violently non-normal forever. It makes no claim that returns drift to zero over time. And the variance of the parent population is a fixed property of the process; collecting more data measures it more precisely rather than shrinking it."
+      "explanation": "This is why inferential statistics still works on operational data with fat tails, such as latency. But note the scope carefully: the theorem applies to the sample mean, not to individual observations - so it does nothing to rescue tail metrics like p99. It says nothing about the shape of the underlying series itself, which can stay violently non-normal forever. It makes no claim that individual measurements drift towards the mean. And the variance of the parent population is a fixed property of the process; collecting more data measures it more precisely rather than shrinking it."
     },
     {
       "question": "What does a 95% confidence interval actually mean?",
@@ -59,60 +59,60 @@
         "Four times as much, since it falls with the square root of n",
         "It cannot be reduced, since the standard error does not depend on n"
       ],
-      "explanation": "Because the standard error is inversely proportional to the square root of n. This is a hard constraint, and it is why tests on financial data so rarely deliver the strong conclusions people want from them. Proportionality to n itself would be far kinder and is simply not what the algebra gives. The cube root belongs to no part of this formula. And the standard error clearly does depend on sample size - it is the whole reason more data is worth collecting at all."
+      "explanation": "Because the standard error is inversely proportional to the square root of n. This is a hard constraint, and it is why experiments on noisy metrics so rarely deliver the strong conclusions people want from them. Proportionality to n itself would be far kinder and is simply not what the algebra gives. The cube root belongs to no part of this formula. And the standard error clearly does depend on sample size - it is the whole reason more data is worth collecting at all."
     },
     {
-      "question": "Does moving from monthly to daily data give a more precise estimate of expected return?",
+      "question": "Does measuring more often, from once a day to once a minute, give a more precise estimate of a metric's average growth rate?",
       "options": [
-        "Yes, the observation count rises more than twentyfold against monthly data",
+        "Yes, the observation count rises more than a thousandfold against daily data",
         "No - precision depends on the length of the window, not the frequency",
         "Yes, and the standard error falls linearly with the number of observations",
-        "No, because daily data carries only noise and no information at all"
+        "No, because per-minute data carries only noise and no information at all"
       ],
-      "explanation": "This is a surprising result: sampling more finely improves your estimate of variance but does almost nothing for your estimate of the mean. When you cut the period shorter, the average return per period shrinks by exactly the proportion the noise shrinks, so the signal-to-noise ratio is unchanged. Counting observations is therefore misleading here. The standard error never falls linearly in the number of observations in any case. And daily data is genuinely informative - it is the workhorse of volatility estimation - just not for the mean. The only way to pin down expected return is to wait more years."
+      "explanation": "This is a surprising result: sampling more finely improves your estimate of variability but does almost nothing for your estimate of the average trend. When you cut the period shorter, the average gain per period shrinks faster than the noise per period, and summed over the whole window the signal-to-noise ratio is unchanged. Counting observations is therefore misleading here. The standard error never falls linearly in the number of observations in any case. And per-minute data is genuinely informative - it is the workhorse for measuring variability - just not for the trend. The only way to pin down the average growth rate is to observe for more weeks."
     },
     {
-      "question": "Why are three years of performance almost never enough to conclude that a fund manager has skill?",
+      "question": "Why are three weeks of data almost never enough to conclude that a change really improved a metric?",
       "options": [
-        "Because the fund may have changed its investment strategy over that window",
-        "Because three years of performance has not spanned a full economic cycle",
-        "Because the standard error is so large that luck and skill cannot be separated",
-        "Because the returns of the last three years are reduced by management fees"
+        "Because the team may have shipped other features during that window",
+        "Because three weeks has not spanned a full seasonal cycle of the product",
+        "Because the standard error is so large that a real effect and luck cannot be separated",
+        "Because the metric over the last three weeks was affected by a promotion"
       ],
-      "explanation": "At the volatility typical of equity markets, it takes several decades of data to separate a few percentage points of outperformance from random noise. Strategy drift and cycle coverage are real concerns, but they are second-order: even a manager who never changed anything and traded across a full cycle would still fail the test on three years. Fees reduce the level of the return without widening or narrowing the interval around it. This is one of the most uncomfortable results of statistics applied to investing - and the most widely ignored."
+      "explanation": "At the fluctuation typical of weekly aggregate metrics, it takes dozens of weeks of data to separate an improvement of a few percentage points from random noise. Concurrent releases and seasonality are real concerns, but they are second-order: even a change tested with nothing else shipping and across a full season would still fail the test on three weeks. A promotion shifts the level of the metric without widening or narrowing the interval around the gap. This is one of the most uncomfortable results of statistics applied to products - and the most widely ignored."
     }
   ],
   "keyTakeaways": [
     "Standard error = standard deviation / square root of n; twice the precision costs four times the data",
     "Every estimate must carry a confidence interval, or it is just a number with no context",
-    "Three years of performance is not enough to conclude anything about a fund manager's skill",
-    "Higher-frequency data improves volatility estimates but barely improves estimates of expected return"
+    "Three weeks of aggregate data is not enough to conclude that a small change really works",
+    "Measuring more often improves estimates of variability but barely improves estimates of the average trend"
   ],
   "practicePrompt": {
-    "question": "A strategy shows average excess return of 4% a year with a standard deviation of 20% a year, over 10 years of data. Which conclusion is correct?",
+    "question": "A change shows an average improvement of 4 points a week with a standard deviation of 20 points, over 10 weeks of data. Which conclusion is correct?",
     "options": [
-      "The strategy definitely generates alpha because the mean is positive",
-      "The standard error of 6.3% is larger than the 4% observed",
-      "Adding daily frequency data would be enough to settle the question",
-      "The strategy fails: its deviation is too high"
+      "The change definitely works because the mean is positive",
+      "The standard error of 6.3 points is larger than the 4 points observed",
+      "Measuring every hour would be enough data to settle the question",
+      "The change fails: its deviation is too high"
     ],
-    "explanation": "The t-ratio is roughly 4 divided by 6.3, about 0.63 - a long way from statistical significance. This is exactly the position most investment strategy pitches are in: a handsome average, presented as evidence, that never actually clears the noise floor."
+    "explanation": "The t-ratio is roughly 4 divided by 6.3, about 0.63 - a long way from statistical significance. This is exactly the position many product experiment reports are in: a handsome average, presented as evidence, that never actually clears the noise floor."
   },
   "summary": {
     "keyIdea": "An estimate without a standard error is not yet information",
     "formula": "SE = s / √n; 95% confidence interval ≈ estimate ± 1.96 × SE",
-    "commonMistake": "Judging investment skill on a few years of data, where the noise is many times larger than the signal",
-    "action": "For any performance figure you read, work out the standard error quickly before you believe it."
+    "commonMistake": "Concluding a change works on a few weeks of data, where the noise is many times larger than the signal",
+    "action": "For any improvement figure you read, work out the standard error quickly before you believe it."
   },
   "application": {
     "title": "The professional reflex",
-    "message": "When somebody hands you a number - beta of 1.2, alpha of 3%, correlation of 0.4 - the first question is always the same: computed over how many observations, and with what standard error. If the person presenting it cannot answer, the number is not yet fit to decide anything.",
-    "secondary": "A rough rule: it takes about 30 years of data for an alpha of 2% a year to reach conventional statistical significance."
+    "message": "When somebody hands you a number - latency down 12%, conversion up 3%, correlation of 0.4 - the first question is always the same: computed over how many observations, and with what standard error. If the person presenting it cannot answer, the number is not yet fit to decide anything.",
+    "secondary": "A rough rule: with a standard deviation of 6 points a week, it takes about 36 weeks of data for a 2-point improvement to reach conventional statistical significance."
   },
   "sections": [
     {
       "type": "lead",
-      "text": "In finance you never observe the truth. You have a sample - a few hundred observations drawn from a process that is still running and still changing. The whole of inferential statistics exists to answer one question: given this sample, how confident am I entitled to be?"
+      "text": "With a running system you never observe the truth. You have a sample - a few hundred observations drawn from a process that is still running and still changing. The whole of inferential statistics exists to answer one question: given this sample, how confident am I entitled to be?"
     },
     {
       "type": "formula",
@@ -128,14 +128,14 @@
         {
           "symbol": "n",
           "name": "Number of observations",
-          "description": "With financial data this is usually the number of years rather than the number of days when you are estimating a mean"
+          "description": "When estimating an average trend, n is really the number of independent periods (weeks), not the number of measurements"
         }
       ],
       "example": {
         "title": "Why the square root matters so much",
         "calculation": "n = 100 → SE = s/10;  n = 400 → SE = s/20",
         "result": "Four times the data for twice the precision",
-        "explanation": "This rule explains why the investment industry finds it so hard to prove anything with data: the cost of extra confidence rises exponentially, while the market keeps changing character over the very period you are measuring."
+        "explanation": "This rule explains why small changes are so hard to prove with data: the cost of extra confidence rises with the square, while the product and its users keep changing character over the very period you are measuring."
       }
     },
     {
@@ -144,12 +144,12 @@
     },
     {
       "type": "paragraph",
-      "text": "Intuition says daily data beats monthly data because there are more observations. That holds for variance and fails for the mean. The reason: as you cut the period shorter, the average return per period shrinks by exactly the proportion by which the noise shrinks, so the signal-to-noise ratio is unchanged. The only way to become more certain about expected return is to observe over more years."
+      "text": "Intuition says measuring every minute beats measuring every day because there are more observations. That holds for variability and fails for the average trend. The reason: as you cut the period shorter, the average gain per period shrinks faster than the noise per period, and summed over the whole window the signal-to-noise ratio is unchanged. The only way to become more certain about a metric's average growth rate is to observe over more weeks."
     },
     {
       "type": "callout",
-      "label": "What this means for the fund industry",
-      "text": "If three years of performance cannot separate skill from luck, then allocating capital off a three-year league table is acting on noise. This is one of the most robust empirical findings in asset management, and one of the most ignored."
+      "label": "What this means for judging releases",
+      "text": "If three weeks of data cannot separate a real effect from luck, then keeping or removing a feature on the strength of a three-week chart is acting on noise. This is one of the most common mistakes, and one of the most ignored, when product teams read the dashboard after each release."
     },
     {
       "type": "closing",

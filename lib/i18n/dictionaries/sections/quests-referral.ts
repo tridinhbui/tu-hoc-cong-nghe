@@ -1,4 +1,4 @@
-// Weekly quests, season pass, referral, dashboard recommendations, and the
+// Weekly quests, referral, dashboard recommendations, and the
 // free-recall exercise. Grouped in one file because they were converted in
 // the same pass - see AGENTS.md "Translating the UI".
 
@@ -19,33 +19,6 @@ export const questsReferralVi = {
     locked: "Rương Sử Thi đang bị khóa",
     claimSuccessToast: "Chúc mừng! Bạn đã mở khóa Rương Sử Thi: nhận +3 Rương Quà!  ",
     claimErrorToast: "Lỗi khi nhận phần thưởng. Hãy thử lại.",
-  },
-  seasonPass: {
-    badge: "Season 1: Silicon Valley Empire Pass",
-    title: "Thẻ Mùa Chiến Thắng Silicon Valley (30 Cấp)",
-    subtitle: "Tích lũy Season XP để mở khóa danh hiệu, phụ kiện Armani & Rolex đẳng cấp!",
-    levelLabel: "Season Pass Level",
-    levelValue: "Lv. {level} / 30",
-    milestoneLabel: "Mốc Lv.{level}",
-    freeLabel: "Miễn Phí",
-    vipLabel: "VIP Pass",
-    claimed: "Đã Nhận",
-    claim: "Nhận Thưởng",
-    locked: "Chưa Mở",
-    claimToast: "Đã nhận thưởng Season Pass Cấp {level}: {reward}!",
-    // Positional, parallel to REWARD_LEVELS in SeasonPassWidget.tsx - index i
-    // here is the reward text for level REWARD_LEVELS[i]. The levels
-    // themselves, and their unlock/claim logic, stay as plain data.
-    rewards: [
-      { freeReward: "+50 Coins", freeEmoji: "🪙", vipReward: "+100 Coins", vipEmoji: "💰" },
-      { freeReward: "X2 XP Scroll 1H", freeEmoji: "📜", vipReward: "Rolex Submariner", vipEmoji: "⌚" },
-      { freeReward: "Bút Vàng M&A", freeEmoji: "🖋️", vipReward: "Kính Bloomberg", vipEmoji: "🕶️" },
-      { freeReward: "Vest Armani", freeEmoji: "👔", vipReward: "Hào Quang Silicon Valley", vipEmoji: "✨" },
-      { freeReward: "Thẻ VN30 Vinamilk", freeEmoji: "📇", vipReward: "+500 Coins", vipEmoji: "💎" },
-      { freeReward: "Thắt Lưng Hermes", freeEmoji: "🎗️", vipReward: "Cúp Vô Địch Server", vipEmoji: "🏆" },
-      { freeReward: "Title 'Silicon Valley Shark'", freeEmoji: "🦈", vipReward: "Siêu Xe Wall St.", vipEmoji: "🏎️" },
-      { freeReward: "Golden Crown Legend", freeEmoji: "👑", vipReward: "Silicon Valley Legend", vipEmoji: "🏛️" },
-    ],
   },
   referralCard: {
     title: "Mời bạn học cùng",
@@ -76,15 +49,6 @@ export const questsReferralVi = {
     viewMore: "Xem thêm →",
   },
   recommendations: {
-    topicNewbie: "Nhập môn",
-    topicInvesting: "Đầu tư",
-    topicAccounting: "Kế toán",
-    topicPfBasic: "Tài chính Cá nhân",
-    topicPfDebt: "Tín dụng & Nợ",
-    topicBiSave: "Tích lũy",
-    topicBiRisk: "Rủi ro & Kế hoạch",
-    topicCfReports: "Báo cáo hệ thống",
-    topicCfValuation: "Định giá & Cổ phiếu",
     todayTitle: "Gợi ý hôm nay",
     liveTitle: "Cộng đồng đang học",
     liveSubtitle: "Tổng số bài học đã được hoàn thành trên hệ thống",
@@ -130,30 +94,6 @@ export const questsReferralEn: typeof questsReferralVi = {
     claimSuccessToast: "Congrats! You unlocked the Epic Chest: +3 Reward Chests!  ",
     claimErrorToast: "Error claiming the reward. Please try again.",
   },
-  seasonPass: {
-    badge: "Season 1: Silicon Valley Empire Pass",
-    title: "Silicon Valley Victory Pass (30 Levels)",
-    subtitle: "Earn Season XP to unlock titles and premium Armani & Rolex gear!",
-    levelLabel: "Season Pass Level",
-    levelValue: "Lv. {level} / 30",
-    milestoneLabel: "Milestone Lv.{level}",
-    freeLabel: "Free",
-    vipLabel: "VIP Pass",
-    claimed: "Claimed",
-    claim: "Claim",
-    locked: "Locked",
-    claimToast: "Claimed Season Pass Level {level} reward: {reward}!",
-    rewards: [
-      { freeReward: "+50 Coins", freeEmoji: "🪙", vipReward: "+100 Coins", vipEmoji: "💰" },
-      { freeReward: "X2 XP Scroll 1H", freeEmoji: "📜", vipReward: "Rolex Submariner", vipEmoji: "⌚" },
-      { freeReward: "Golden M&A Pen", freeEmoji: "🖋️", vipReward: "Bloomberg Glasses", vipEmoji: "🕶️" },
-      { freeReward: "Armani Suit", freeEmoji: "👔", vipReward: "Silicon Valley Aura", vipEmoji: "✨" },
-      { freeReward: "VN30 Vinamilk Card", freeEmoji: "📇", vipReward: "+500 Coins", vipEmoji: "💎" },
-      { freeReward: "Hermes Belt", freeEmoji: "🎗️", vipReward: "Server Champion Cup", vipEmoji: "🏆" },
-      { freeReward: "Title 'Silicon Valley Shark'", freeEmoji: "🦈", vipReward: "Wall St. Supercar", vipEmoji: "🏎️" },
-      { freeReward: "Golden Crown Legend", freeEmoji: "👑", vipReward: "Silicon Valley Legend", vipEmoji: "🏛️" },
-    ],
-  },
   referralCard: {
     title: "Invite a study buddy",
     descPart1: "You get",
@@ -183,15 +123,6 @@ export const questsReferralEn: typeof questsReferralVi = {
     viewMore: "See more →",
   },
   recommendations: {
-    topicNewbie: "Getting Started",
-    topicInvesting: "Investing",
-    topicAccounting: "Accounting",
-    topicPfBasic: "Tech Foundations",
-    topicPfDebt: "Credit & Debt",
-    topicBiSave: "Saving",
-    topicBiRisk: "Risk & Planning",
-    topicCfReports: "System reports",
-    topicCfValuation: "Valuation & Equities",
     todayTitle: "Today's picks",
     liveTitle: "The community is learning",
     liveSubtitle: "Total lessons completed across the whole platform",

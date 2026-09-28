@@ -3,6 +3,18 @@ import { ADVANCED_MASTERCLASS_LESSONS } from "./advanced-masterclass-lessons";
 import { GIT_LESSONS } from "./git-lessons";
 import { AI_MARKETING_LESSONS } from "./ai-marketing-lessons";
 import { AI_AGENT_LESSONS } from "./ai-agent-lessons";
+import { WORK_TECH_MAP_LESSONS } from "./work-tech-map-lessons";
+import { WORK_AI_DAILY_LESSONS } from "./work-ai-daily-lessons";
+import { WORK_DATA_AI_LESSONS } from "./work-data-ai-lessons";
+import { WORK_AUTOMATION_LESSONS } from "./work-automation-lessons";
+import { WORK_AI_TEAMS_LESSONS } from "./work-ai-teams-lessons";
+import { WORK_AI_SAFETY_LESSONS } from "./work-ai-safety-lessons";
+import { BUILDER_LLM_API_LESSONS } from "./builder-llm-api-lessons";
+import { BUILDER_RAG_LESSONS } from "./builder-rag-lessons";
+import { BUILDER_AGENTS_LESSONS } from "./builder-agents-lessons";
+import { BUILDER_EVALS_LESSONS } from "./builder-evals-lessons";
+import { BUILDER_LLM_SECURITY_LESSONS } from "./builder-llm-security-lessons";
+import { BUILDER_LLMOPS_LESSONS } from "./builder-llmops-lessons";
 import { AUTH_LESSONS } from "./auth-lessons";
 import { PERFORMANCE_TUNING_LESSONS } from "./performance-tuning-lessons";
 import { QUANT_METHODS_LESSONS } from "./quant-methods-lessons";
@@ -42,6 +54,18 @@ export const lessons: Lesson[] = [
   ...GIT_LESSONS,
   ...AI_MARKETING_LESSONS,
   ...AI_AGENT_LESSONS,
+  ...WORK_TECH_MAP_LESSONS,
+  ...WORK_AI_DAILY_LESSONS,
+  ...WORK_DATA_AI_LESSONS,
+  ...WORK_AUTOMATION_LESSONS,
+  ...WORK_AI_TEAMS_LESSONS,
+  ...WORK_AI_SAFETY_LESSONS,
+  ...BUILDER_LLM_API_LESSONS,
+  ...BUILDER_RAG_LESSONS,
+  ...BUILDER_AGENTS_LESSONS,
+  ...BUILDER_EVALS_LESSONS,
+  ...BUILDER_LLM_SECURITY_LESSONS,
+  ...BUILDER_LLMOPS_LESSONS,
   ...AUTH_LESSONS,
   ...PERFORMANCE_TUNING_LESSONS,
   ...QUANT_METHODS_LESSONS,
@@ -263,6 +287,13 @@ export const lessons: Lesson[] = [
         "text": "Điều này làm nhiều người mới ngạc nhiên: một tệp .py hay .js mở được bằng Notepad và bên trong chỉ có chữ. Phần mở rộng chỉ để công cụ biết nên đối xử thế nào. Chính vì là văn bản thuần mà Git so sánh được từng dòng và bạn đọc được lịch sử thay đổi ở chặng trước."
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "# Dòng bắt đầu bằng # là chú thích - máy bỏ qua nó.\nprint(\"Xin chào!\")\nprint(2 + 3)",
+        "caption": "Ba dòng văn bản thuần. Bấm Chạy thử: Python đọc từ trên xuống, bỏ qua chú thích và làm theo từng dòng còn lại.",
+        "runnable": true
+      },
+      {
         "type": "heading",
         "text": "Hai loại lỗi, và loại nào đáng sợ hơn"
       },
@@ -303,6 +334,19 @@ export const lessons: Lesson[] = [
             "en": "Syntax",
             "def": "Bộ quy tắc viết đúng của ngôn ngữ. Đúng cú pháp không có nghĩa là đúng việc."
           }
+        ]
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Sửa lỗi cú pháp đầu tiên của bạn",
+        "task": "Đoạn mã dưới đây có một lỗi cú pháp. Chạy thử trước, đọc thông báo lỗi xem nó chỉ vào dòng nào, rồi sửa để chương trình in ra đúng một dòng.",
+        "starter": "# Chạy thử trước: Python sẽ chỉ ra dòng bị lỗi.\nprint(\"Chào thế giới\"",
+        "solution": "print(\"Chào thế giới\")",
+        "expectedOutput": "Chào thế giới",
+        "hints": [
+          "Thông báo lỗi chỉ vào dòng 2 - chỗ print mở ngoặc tròn.",
+          "Mở ngoặc thì phải có ngoặc đóng."
         ]
       },
       {
@@ -475,6 +519,13 @@ export const lessons: Lesson[] = [
         }
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "a = 5\nb = a      # b nhận giá trị 5 ngay tại dòng này\na = 9      # gỡ nhãn a, dán sang giá trị 9\nprint(a)\nprint(b)   # b vẫn là 5",
+        "caption": "Chạy thử để thấy tận mắt: gán là một sự kiện xảy ra một lần, không phải một liên kết sống như công thức bảng tính.",
+        "runnable": true
+      },
+      {
         "type": "paragraph",
         "text": "Có một ngoại lệ quan trọng sẽ gặp ở bài về danh sách: với dữ liệu phức hợp, thứ được chép sang là chỗ trỏ tới dữ liệu chứ không phải bản thân dữ liệu. Lúc đó hai tên cùng trỏ vào một chỗ, và sửa qua tên này thì nhìn qua tên kia cũng thấy đổi. Ghi nhớ trước để khi gặp bạn không tưởng máy hỏng."
       },
@@ -493,6 +544,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Cuối cùng là phạm vi: một biến khai báo bên trong một khối mã thường chỉ có nghĩa trong khối đó. Dùng nó ở ngoài sẽ báo lỗi không tìm thấy tên. Điều này nghe như một hạn chế nhưng thật ra là một sự bảo vệ - nó cho phép hai đoạn mã dùng cùng một tên mà không giẫm lên nhau."
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Đổi chỗ hai giá trị",
+        "task": "Hai biến sang và chieu đang ghi nhầm người trực. Viết mã đổi giá trị của chúng cho nhau.",
+        "starter": "sang = \"Minh\"\nchieu = \"Hà\"\n\n# Viết mã đổi chỗ ở đây\n\n\nprint(\"sang =\", sang)\nprint(\"chieu =\", chieu)",
+        "solution": "sang = \"Minh\"\nchieu = \"Hà\"\n\ntam = sang\nsang = chieu\nchieu = tam\n\nprint(\"sang =\", sang)\nprint(\"chieu =\", chieu)",
+        "expectedOutput": "sang = Hà\nchieu = Minh",
+        "hints": [
+          "Nếu viết sang = chieu trước, giá trị \"Minh\" mất luôn - không còn cái tên nào gắn vào nó.",
+          "Dùng một biến thứ ba để giữ tạm giá trị cũ của sang."
+        ]
       },
       {
         "type": "closing",
@@ -617,7 +681,7 @@ export const lessons: Lesson[] = [
         "Cộng theo thứ tự từ số lớn tới số nhỏ để sai số không kịp tích luỹ lại"
       ],
       "correct": 0,
-      "explanation": "Đây là cách các hệ thống tài chính thật sự làm: lưu 12500 thay vì 125,00 và chỉ chia ra lúc hiển thị. Sai số biến mất hoàn toàn vì số nguyên là chính xác tuyệt đối. Làm tròn ở cuối chỉ giấu bớt triệu chứng, còn chuỗi thì không cộng được."
+      "explanation": "Đây là cách các hệ thống thanh toán thật sự làm: lưu 12500 thay vì 125,00 và chỉ chia ra lúc hiển thị. Sai số biến mất hoàn toàn vì số nguyên là chính xác tuyệt đối. Làm tròn ở cuối chỉ giấu bớt triệu chứng, còn chuỗi thì không cộng được."
     },
     "summary": {
       "keyIdea": "Kiểu quyết định máy hiểu một giá trị thế nào và phép toán trên nó mang nghĩa gì.",
@@ -685,6 +749,13 @@ export const lessons: Lesson[] = [
         "text": "Đừng để ngôn ngữ tự đoán ý bạn, vì nó đoán sai một cách lặng lẽ. Hãy tự gọi lệnh đổi chuỗi thành số. Việc này còn có lợi thứ hai: nếu chuỗi không phải số hợp lệ - người dùng gõ chữ vào ô số là chuyện thường - bạn biết ngay tại đó thay vì để một giá trị kỳ lạ lan đi khắp chương trình."
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "tuoi_nhap = \"25\"           # dữ liệu gõ vào hay đọc từ tệp luôn là chuỗi\nprint(tuoi_nhap + \"1\")     # nối chữ: 251\nprint(int(tuoi_nhap) + 1)  # đổi sang số rồi mới cộng: 26\nprint(type(tuoi_nhap))",
+        "caption": "Cùng dấu +, hai kết quả khác hẳn nhau - và không dòng nào báo lỗi. Đó là lý do phải tự đổi kiểu, đừng để ngôn ngữ đoán.",
+        "runnable": true
+      },
+      {
         "type": "heading",
         "text": "Cái bẫy thứ hai: số thực không chính xác"
       },
@@ -710,6 +781,19 @@ export const lessons: Lesson[] = [
           "label": "Ngôn ngữ kiểu động",
           "text": "Kiểu được xét trong lúc chạy. Viết nhanh và ngắn gọn hơn, nhưng lỗi kiểu chỉ lộ ra khi chạy đúng tới dòng đó, đôi khi là trên máy người dùng."
         }
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Chuỗi trông như số",
+        "task": "Hai giá trị dưới đây đọc từ một tệp nên đều là chuỗi. Chương trình đang in ra một con số vô lý. Sửa dòng tính tổng.",
+        "starter": "gia_ao = \"200\"\ngia_quan = \"150\"\n\ntong = gia_ao + gia_quan\nprint(\"Tổng:\", tong)",
+        "solution": "gia_ao = \"200\"\ngia_quan = \"150\"\n\ntong = int(gia_ao) + int(gia_quan)\nprint(\"Tổng:\", tong)",
+        "expectedOutput": "Tổng: 350",
+        "hints": [
+          "Dấu + giữa hai chuỗi là nối chữ, không phải cộng số.",
+          "Hàm int() đổi chuỗi \"200\" thành số 200."
+        ]
       },
       {
         "type": "closing",
@@ -913,6 +997,13 @@ export const lessons: Lesson[] = [
         "text": "Máy so sánh từng ký tự một, nên một dấu cách thừa ở cuối làm hai chuỗi khác nhau - dù trên màn hình chúng trông giống hệt. Đây là lý do mọi ô tìm kiếm và mọi biểu mẫu đăng nhập đều chuẩn hoá trước: cắt hai đầu, đưa về cùng kiểu chữ, đôi khi bỏ cả dấu tiếng Việt."
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "ten_nhap = \"  Nguyễn Văn An \"\nten_luu = \"nguyễn văn an\"\n\nprint(ten_nhap == ten_luu)                  # False\nprint(ten_nhap.strip().lower() == ten_luu)  # True",
+        "caption": "Với máy, khoảng trắng thừa và chữ hoa là những ký tự khác nhau. Chuẩn hoá cả hai phía rồi mới so.",
+        "runnable": true
+      },
+      {
         "type": "comparison",
         "left": {
           "label": "Ghép chuỗi để hiển thị",
@@ -922,6 +1013,19 @@ export const lessons: Lesson[] = [
           "label": "Ghép chuỗi thành câu lệnh",
           "text": "Nguy hiểm. Khi dữ liệu người dùng bị trộn vào một câu truy vấn, họ viết được nội dung mà cơ sở dữ liệu hiểu thành lệnh. Dùng tham số hoá để dữ liệu và lệnh không bao giờ trộn."
         }
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Chuẩn hoá email trước khi so",
+        "task": "Người dùng gõ email với khoảng trắng và chữ hoa lộn xộn, nên hệ thống báo \"không tìm thấy tài khoản\". Sửa dòng gán email.",
+        "starter": "email_nhap = \"  An.Nguyen@Gmail.com  \"\nemail_da_luu = \"an.nguyen@gmail.com\"\n\nemail = email_nhap   # sửa dòng này\n\nprint(email)\nprint(\"Trùng với tài khoản:\", email == email_da_luu)",
+        "solution": "email_nhap = \"  An.Nguyen@Gmail.com  \"\nemail_da_luu = \"an.nguyen@gmail.com\"\n\nemail = email_nhap.strip().lower()\n\nprint(email)\nprint(\"Trùng với tài khoản:\", email == email_da_luu)",
+        "expectedOutput": "an.nguyen@gmail.com\nTrùng với tài khoản: True",
+        "hints": [
+          ".strip() bỏ khoảng trắng ở hai đầu chuỗi.",
+          ".lower() đổi mọi chữ sang chữ thường - và hai phương thức nối tiếp nhau được."
+        ]
       },
       {
         "type": "closing",
@@ -1078,6 +1182,13 @@ export const lessons: Lesson[] = [
         "text": "Nhớ lại bài về kiểu dữ liệu: số thực chỉ là xấp xỉ. Vì vậy đừng dùng dấu bằng với chúng - hãy xét xem chênh lệch giữa hai số có nhỏ hơn một ngưỡng bạn chấp nhận được hay không."
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "print(0.1 + 0.2)\nprint(0.1 + 0.2 == 0.3)                # đừng so số thực bằng ==\nprint(abs((0.1 + 0.2) - 0.3) < 1e-9)   # so \"đủ gần\" thay vào đó\nprint(7 // 2, 7 % 2)                   # chia lấy phần nguyên, lấy phần dư",
+        "caption": "Dòng đầu là lý do dòng thứ hai in False. Chạy thử trước khi tin.",
+        "runnable": true
+      },
+      {
         "type": "heading",
         "text": "Ba phép ghép"
       },
@@ -1129,6 +1240,19 @@ export const lessons: Lesson[] = [
           "label": "Dễ đọc",
           "text": "Tách thành hai biến tên là daDuTuoi và daCoGiayTo, rồi câu điều kiện chỉ ghép hai biến đó. Đọc gần như tiếng Việt, và hiệu năng không đổi chút nào."
         }
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Xếp học viên vào phòng",
+        "task": "Có 47 học viên, mỗi phòng tối đa 10 người. Tính số phòng đầy, số người ở phòng cuối, và tổng số phòng cần mở.",
+        "starter": "hoc_vien = 47\nsuc_chua = 10\n\nphong_day = hoc_vien / suc_chua   # sửa: đây là phép chia thường\ncon_lai = 0                       # sửa\nso_phong = 0                      # sửa\n\nprint(\"Phòng đầy:\", phong_day)\nprint(\"Người ở phòng cuối:\", con_lai)\nprint(\"Số phòng cần mở:\", so_phong)",
+        "solution": "hoc_vien = 47\nsuc_chua = 10\n\nphong_day = hoc_vien // suc_chua\ncon_lai = hoc_vien % suc_chua\nso_phong = phong_day + (con_lai > 0)\n\nprint(\"Phòng đầy:\", phong_day)\nprint(\"Người ở phòng cuối:\", con_lai)\nprint(\"Số phòng cần mở:\", so_phong)",
+        "expectedOutput": "Phòng đầy: 4\nNgười ở phòng cuối: 7\nSố phòng cần mở: 5",
+        "hints": [
+          "// cho phần nguyên của phép chia, % cho phần dư.",
+          "Còn người dư thì phải mở thêm một phòng. Trong Python, True cộng như 1 và False như 0."
+        ]
       },
       {
         "type": "closing",
@@ -1285,6 +1409,13 @@ export const lessons: Lesson[] = [
         "text": "Một số ngôn ngữ có quy tắc coi vài giá trị khác như là sai khi đặt trong câu điều kiện - số không, chuỗi rỗng, giá trị rỗng. Tiện nhưng dễ gây bất ngờ, nên khi mới học hãy viết phép so sánh tường minh thay vì dựa vào quy tắc chuyển đổi ngầm."
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "diem = 7.5\n\nif diem >= 8:\n    print(\"Giỏi\")\nelif diem >= 6.5:\n    print(\"Khá\")\nelse:\n    print(\"Cần cố gắng\")",
+        "caption": "Python dùng thụt lề để biết dòng nào thuộc nhánh nào - thụt lệch là lỗi cú pháp. Đổi diem rồi chạy lại để đi qua từng nhánh.",
+        "runnable": true
+      },
+      {
         "type": "heading",
         "text": "Vì sao lồng sâu là dấu hiệu xấu"
       },
@@ -1323,6 +1454,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Thói quen đáng hình thành ngay từ tuần đầu: mỗi lần viết một phép so sánh có ngưỡng, tự hỏi giá trị đúng bằng ngưỡng nên đi về đâu. Câu hỏi mất năm giây và nó chặn được loại lỗi tốn nhiều giờ nhất để tìm ra."
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Hai trường hợp biên",
+        "task": "Quy định phí giao hàng: đơn dưới 200 nghìn phí 30, từ 200 tới dưới 500 phí 15, từ 500 trở lên miễn phí. Mã dưới đây sai đúng ở hai trường hợp biên - chạy thử để tìm ra chúng.",
+        "starter": "# Dòng for chạy phần thụt vào bên dưới lần lượt với từng giá trị.\n# Bài 7 sẽ nói kỹ về nó - ở đây bạn chỉ cần sửa khối if.\nfor tong_don in [150, 200, 499, 500]:\n    if tong_don > 500:\n        phi = 0\n    elif tong_don > 200:\n        phi = 15\n    else:\n        phi = 30\n    print(tong_don, \"->\", phi)",
+        "solution": "for tong_don in [150, 200, 499, 500]:\n    if tong_don >= 500:\n        phi = 0\n    elif tong_don >= 200:\n        phi = 15\n    else:\n        phi = 30\n    print(tong_don, \"->\", phi)",
+        "expectedOutput": "150 -> 30\n200 -> 15\n499 -> 15\n500 -> 0",
+        "hints": [
+          "\"Từ 200 trở lên\" gồm cả 200.",
+          "> là \"lớn hơn hẳn\"; >= là \"lớn hơn hoặc bằng\"."
+        ]
       },
       {
         "type": "closing",
@@ -1486,6 +1630,13 @@ export const lessons: Lesson[] = [
         "text": "Viết xong, hãy chỉ tay vào đúng dòng làm điều kiện tiến gần tới chỗ dừng. Không chỉ ra được dòng nào thì bạn vừa viết một vòng lặp vô hạn. Trình dịch không bắt được lỗi này, vì nó không biết trước điều kiện có đổi hay không - đó là chuyện chỉ xác định được lúc chạy."
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "nguoi_dung = 1000\nthang = 0\nwhile nguoi_dung < 2000:\n    nguoi_dung = nguoi_dung * 1.1   # dòng này đưa vòng lặp tới gần điểm dừng\n    thang = thang + 1\nprint(\"Số tháng để gấp đôi:\", thang)",
+        "caption": "Chỉ tay vào dòng có chú thích: đó là dòng làm điều kiện tiến gần tới chỗ dừng. Xoá nó đi và chạy thử - bộ chạy sẽ dừng vòng lặp vô hạn sau vài giây.",
+        "runnable": true
+      },
+      {
         "type": "heading",
         "text": "Lỗi lệch một đơn vị"
       },
@@ -1530,6 +1681,20 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Điểm cuối đáng nhấn mạnh vì nó im lặng: xoá phần tử ở vị trí ba thì phần tử thứ tư dịch xuống thành thứ ba, trong khi vòng lặp đã tăng chỉ số lên bốn. Phần tử vừa dịch bị bỏ qua, không có lỗi nào được báo, và bạn chỉ phát hiện khi đối chiếu kết quả. Hãy dựng một danh sách mới thay vì sửa tại chỗ."
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Lỗi lệch một đơn vị",
+        "task": "Mã dưới đây tính tổng lượt xem một tuần nhưng ra số quá nhỏ. Sửa nó, rồi tìm thêm ngày có lượt xem cao nhất - không dùng hàm max().",
+        "starter": "luot_xem = [120, 95, 140, 80, 210, 175, 60]\n\ntong = 0\ncao_nhat = 0\nfor i in range(1, len(luot_xem)):\n    tong = tong + luot_xem[i]\n\nprint(\"Tổng lượt xem:\", tong)\nprint(\"Cao nhất:\", cao_nhat)",
+        "solution": "luot_xem = [120, 95, 140, 80, 210, 175, 60]\n\ntong = 0\ncao_nhat = luot_xem[0]\nfor x in luot_xem:\n    tong = tong + x\n    if x > cao_nhat:\n        cao_nhat = x\n\nprint(\"Tổng lượt xem:\", tong)\nprint(\"Cao nhất:\", cao_nhat)",
+        "expectedOutput": "Tổng lượt xem: 880\nCao nhất: 210",
+        "hints": [
+          "Chỉ số bắt đầu từ 0, nên range(1, ...) bỏ sót phần tử đầu tiên.",
+          "Duyệt thẳng từng phần tử bằng for x in luot_xem thì không còn chỉ số nào để lệch.",
+          "Giữ một biến cao_nhat và cập nhật nó mỗi khi gặp giá trị lớn hơn."
+        ]
       },
       {
         "type": "closing",
@@ -1705,6 +1870,13 @@ export const lessons: Lesson[] = [
         }
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "gio_hang = [\"bút\", \"vở\"]\nban_sao = gio_hang          # hai cái tên, MỘT danh sách\nban_sao.append(\"thước\")\nprint(gio_hang)\n\nban_that = gio_hang.copy()  # một danh sách mới\nban_that.append(\"tẩy\")\nprint(gio_hang)\nprint(ban_that)",
+        "caption": "Thêm vào ban_sao mà gio_hang cũng đổi: đó là hai cái nhãn dán lên cùng một danh sách, như bài về biến đã báo trước.",
+        "runnable": true
+      },
+      {
         "type": "heading",
         "text": "Chi phí của từng thao tác"
       },
@@ -1720,6 +1892,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Với vài chục phần tử thì không ai nhận ra khác biệt. Với hàng trăm nghìn phần tử trong một vòng lặp thì chọn sai thao tác là chênh nhau giữa một giây và mười phút. Đây là cửa vào của khái niệm độ phức tạp, chủ đề của chặng chuyên sâu về sau."
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Loại đơn đã huỷ",
+        "task": "Mã dưới đây định xoá mọi đơn \"HUY\" nhưng vẫn sót một đơn, và không báo lỗi gì. Chạy thử để thấy, rồi sửa.",
+        "starter": "don_hang = [\"DH01\", \"HUY\", \"HUY\", \"DH02\", \"DH03\", \"HUY\"]\n\nfor don in don_hang:\n    if don == \"HUY\":\n        don_hang.remove(don)\n\nprint(don_hang)\nprint(\"Còn lại:\", len(don_hang))",
+        "solution": "don_hang = [\"DH01\", \"HUY\", \"HUY\", \"DH02\", \"DH03\", \"HUY\"]\n\ncon_lai = []\nfor don in don_hang:\n    if don != \"HUY\":\n        con_lai.append(don)\ndon_hang = con_lai\n\nprint(don_hang)\nprint(\"Còn lại:\", len(don_hang))",
+        "expectedOutput": "['DH01', 'DH02', 'DH03']\nCòn lại: 3",
+        "hints": [
+          "Xoá một phần tử trong lúc đang duyệt làm các phần tử sau dịch xuống - vòng lặp bỏ qua đúng phần tử vừa dịch.",
+          "Đừng sửa danh sách đang duyệt: tạo một danh sách mới và chỉ append những đơn không bị huỷ."
+        ]
       },
       {
         "type": "closing",
@@ -1884,6 +2069,13 @@ export const lessons: Lesson[] = [
         "text": "Gần như mọi thứ tải về từ một dịch vụ trên mạng đều là từ điển lồng nhau: giá trị của một khoá lại là một từ điển khác, hoặc một danh sách các từ điển. Một người dùng có khoá địa chỉ, mà giá trị của nó là từ điển gồm đường, phường, thành phố."
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "hoc_vien = {\n    \"ten\": \"An\",\n    \"tuoi\": 24,\n    \"khoa_hoc\": [\"Python\", \"SQL\"],\n}\nprint(hoc_vien[\"ten\"])\nprint(hoc_vien[\"khoa_hoc\"][1])\nprint(hoc_vien.get(\"email\", \"(chưa có email)\"))",
+        "caption": "Tra bằng tên thay vì bằng vị trí. .get() cho một giá trị mặc định khi khoá không có, thay vì làm chương trình dừng với KeyError.",
+        "runnable": true
+      },
+      {
         "type": "list",
         "items": [
           "Mỗi tầng đều có thể thiếu, nên kiểm tra tồn tại trước khi đi sâu xuống tầng dưới.",
@@ -1909,6 +2101,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Trong thực tế người ta thường giữ cả hai cho cùng một tập dữ liệu: một danh sách để hiển thị đúng thứ tự, và một từ điển để tra nhanh theo mã. Tốn thêm bộ nhớ, đổi lại cả hai thao tác đều nhanh - một đánh đổi rất phổ biến và đáng biết từ sớm."
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Đếm số lần mỗi món được gọi",
+        "task": "Đếm mỗi món trong danh sách đơn được gọi bao nhiêu lần, bằng một từ điển.",
+        "starter": "don_hang = [\"cà phê\", \"trà\", \"cà phê\", \"bánh\", \"cà phê\", \"trà\"]\n\ndem = {}\nfor mon in don_hang:\n    pass   # thay dòng này: tăng số đếm của món lên 1\n\nfor mon in dem:\n    print(mon, dem[mon])",
+        "solution": "don_hang = [\"cà phê\", \"trà\", \"cà phê\", \"bánh\", \"cà phê\", \"trà\"]\n\ndem = {}\nfor mon in don_hang:\n    dem[mon] = dem.get(mon, 0) + 1\n\nfor mon in dem:\n    print(mon, dem[mon])",
+        "expectedOutput": "cà phê 3\ntrà 2\nbánh 1",
+        "hints": [
+          "Món xuất hiện lần đầu chưa có trong dem - đọc dem[mon] lúc đó sẽ báo KeyError.",
+          "dem.get(mon, 0) trả về 0 khi chưa có khoá."
+        ]
       },
       {
         "type": "closing",
@@ -2082,6 +2287,13 @@ export const lessons: Lesson[] = [
         "text": "Khuôn hình này lặp lại ở gần như mọi quy mô, từ một đoạn hai mươi dòng tới một hệ thống lớn. Nhận ra nó giúp bạn chia một bài toán lạ thành bốn phần quen, và cũng giúp gỡ lỗi: bạn kiểm tra ranh giới giữa các bước để khoanh vùng chỗ hỏng."
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "# 1. Dữ liệu vào\ndiem = [8.5, 6.0, 9.0, 4.5, 7.0]\n\n# 2. Xử lý\ntong = 0\ndat = 0\nfor d in diem:\n    tong = tong + d\n    if d >= 5:\n        dat = dat + 1\n\n# 3. Kết quả ra\nprint(\"Điểm trung bình:\", tong / len(diem))\nprint(\"Số bài đạt:\", dat, \"/\", len(diem))",
+        "caption": "Một chương trình trọn vẹn dùng mọi thứ của chặng này: biến, danh sách, vòng lặp, điều kiện. Đọc từng khối theo khuôn vào - xử lý - ra.",
+        "runnable": true
+      },
+      {
         "type": "heading",
         "text": "Viết năm dòng rồi chạy"
       },
@@ -2104,6 +2316,19 @@ export const lessons: Lesson[] = [
         "type": "callout",
         "label": "Dữ liệu mẫu luôn quá sạch",
         "text": "Dữ liệu bạn tự nghĩ ra để thử phản ánh đúng hình dung của bạn, nên nó không bao giờ có dòng trống, ô thiếu, số âm hay ngày sai định dạng. Dữ liệu thật thì có đủ. Hãy lấy một mẫu thật càng sớm càng tốt."
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Dữ liệu thật có dòng rỗng",
+        "task": "Chương trình tính trung bình mỗi ngày chạy tốt với dữ liệu mẫu, nhưng dữ liệu thật có ngày không có đơn nào. Chạy thử để thấy nó dừng ở đâu, rồi sửa để ngày trống in ra \"Không có đơn\".",
+        "starter": "cac_ngay = [[120, 80, 100], [], [50]]\n\nfor don in cac_ngay:\n    trung_binh = sum(don) / len(don)\n    print(\"Trung bình:\", trung_binh)",
+        "solution": "cac_ngay = [[120, 80, 100], [], [50]]\n\nfor don in cac_ngay:\n    if len(don) == 0:\n        print(\"Không có đơn\")\n    else:\n        print(\"Trung bình:\", sum(don) / len(don))",
+        "expectedOutput": "Trung bình: 100.0\nKhông có đơn\nTrung bình: 50.0",
+        "hints": [
+          "Chia cho len([]) là chia cho 0.",
+          "Kiểm danh sách rỗng TRƯỚC khi chia."
+        ]
       },
       {
         "type": "closing",
@@ -2268,6 +2493,13 @@ export const lessons: Lesson[] = [
         "text": "Phép thử nhanh nhất: nếu bạn phải dùng chữ và trong tên hàm thì nó đang làm hai việc. Hàm tên docTepVaTinhTong nên tách thành docTep và tinhTong. Số dòng không phải tiêu chí - có hàm ba dòng làm hai việc, và có hàm ba mươi dòng làm đúng một việc rất rõ ràng."
       },
       {
+        "type": "code",
+        "language": "python",
+        "code": "def phi_giao_hang(can_nang_kg):\n    if can_nang_kg <= 1:\n        return 20\n    return 20 + (can_nang_kg - 1) * 5\n\nprint(phi_giao_hang(0.5))\nprint(phi_giao_hang(3))",
+        "caption": "Quy tắc tính phí nằm ở đúng một chỗ. Đổi giá hôm nay là sửa một dòng, không phải đi tìm mọi nơi đã chép công thức.",
+        "runnable": true
+      },
+      {
         "type": "conceptTable",
         "title": "Bốn phần của một hàm",
         "concepts": [
@@ -2318,6 +2550,19 @@ export const lessons: Lesson[] = [
           "Tên hàm là động từ, tên biến là danh từ - dòng gọi hàm sẽ đọc như một câu.",
           "Đẩy phần đọc ghi ra rìa chương trình, giữ phần tính toán ở giữa cho thuần khiết.",
           "Ít tham số thì dễ dùng; quá năm tham số là dấu hiệu nên gom chúng thành một cấu trúc."
+        ]
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Gom mã chép thành một hàm",
+        "task": "Ba đoạn mã gần giống nhau, và một đoạn đã chép sai mà không ai để ý. Viết hàm chao(ten) trả về câu chào, rồi dùng nó cho cả ba tên.",
+        "starter": "ten = \"  an  \"\nprint(\"Xin chào, \" + ten.strip().title() + \"!\")\n\nten = \"BÌNH\"\nprint(\"Xin chào, \" + ten.strip().title() + \"!\")\n\nten = \" chi \"\nprint(\"Xin chao, \" + ten.strip().title() + \"!\")",
+        "solution": "def chao(ten):\n    return \"Xin chào, \" + ten.strip().title() + \"!\"\n\nprint(chao(\"  an  \"))\nprint(chao(\"BÌNH\"))\nprint(chao(\" chi \"))",
+        "expectedOutput": "Xin chào, An!\nXin chào, Bình!\nXin chào, Chi!",
+        "hints": [
+          "So kỹ dòng cuối với hai dòng trên - lỗi nằm ngay trong chữ.",
+          "def chao(ten): rồi return câu chào; mỗi lần in chỉ còn print(chao(...))."
         ]
       },
       {
@@ -16238,7 +16483,7 @@ export const lessons: Lesson[] = [
     ],
     "realWorldExample": {
       "company": "Hai báo cáo, hai con số",
-      "description": "Đội sản phẩm báo cáo tám mươi nghìn người dùng hoạt động, đội tài chính báo sáu mươi nghìn. Cả hai đều đúng: một bên đếm mọi phiên mở ứng dụng, bên kia chỉ đếm người có ít nhất một hành động. Không ai sai, và cuộc họp vẫn mất một tiếng."
+      "description": "Đội sản phẩm báo cáo tám mươi nghìn người dùng hoạt động, đội kinh doanh báo sáu mươi nghìn. Cả hai đều đúng: một bên đếm mọi phiên mở ứng dụng, bên kia chỉ đếm người có ít nhất một hành động. Không ai sai, và cuộc họp vẫn mất một tiếng."
     },
     "keyTakeaways": [
       "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được.",
@@ -16295,7 +16540,7 @@ export const lessons: Lesson[] = [
           "Đánh dấu điểm thay đổi hoặc tính lại toàn bộ lịch sử",
           "Thông báo cho toàn bộ nhân viên trong công ty biết",
           "Giữ lại định nghĩa cũ chạy song song trong một năm",
-          "Chờ tới đầu năm tài chính mới để áp dụng định nghĩa mới"
+          "Chờ tới đầu năm kế hoạch mới để áp dụng định nghĩa mới"
         ],
         "correct": 0,
         "explanation": "Không đánh dấu thì đường biểu đồ có một cú nhảy mà người đọc sẽ hiểu là sự kiện thật. Sáu tháng sau sẽ có người viết cả một bản phân tích về nguyên nhân của cú nhảy ấy."
@@ -55425,7 +55670,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu ba quý liên tiếp đều có khoản một lần lớn, hãy vẽ riêng đường của phần lặp lại được. Đường ấy mới cho biết hệ thống đang đi đâu."
     },
     "id": 1001,
-    "slug": "discontinued-operations",
+    "slug": "mot-lan-toi-uu-lon",
     "track": "bonus"
   },
   {
@@ -55922,7 +56167,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì lời hứa phải sống sót qua mọi kỳ trước đó",
           "Vì chi phí cơ hội của đội tăng dần lên theo từng kỳ trong suốt dự án",
-          "Vì các công thức tài chính chuẩn đều dùng luỹ thừa cho phép tính loại này",
+          "Vì các công thức chiết khấu chuẩn đều dùng luỹ thừa cho phép tính loại này",
           "Vì mức độ sai số của ước lượng nhân lên sau mỗi lần đội cập nhật kế hoạch"
         ],
         "correct": 0,
@@ -56180,7 +56425,7 @@ export const lessons: Lesson[] = [
     },
     "id": 1048,
     "interactiveType": "chart",
-    "slug": "tu-duy-tai-chinh",
+    "slug": "cong-suc-tieu-di-va-tich-lai",
     "track": "bonus"
   },
   {
@@ -56370,7 +56615,7 @@ export const lessons: Lesson[] = [
       "secondary": "Hai câu đầu cho ra con số; hai câu sau quyết định con số ấy có đáng nghe theo không."
     },
     "id": 1049,
-    "slug": "danh-gia-deal-dau-tu",
+    "slug": "tu-xay-hay-mua-san",
     "track": "bonus"
   },
   {
@@ -57448,7 +57693,7 @@ export const lessons: Lesson[] = [
       "secondary": "Ba câu này trả lời được trong một buổi chiều, còn mọi phương án phụ thuộc người khác thì tính bằng tuần."
     },
     "id": 1005,
-    "slug": "commodity-phan-2",
+    "slug": "tai-nguyen-tinh-toan-khan-hiem",
     "track": "bonus"
   },
   {
@@ -57647,7 +57892,7 @@ export const lessons: Lesson[] = [
       "secondary": "Sau đó chạy bốn câu hỏi độ nhạy: gấp đôi lưu lượng, tắt môi trường thử nghiệm, tăng trúng cache mười điểm, hạ dự phòng một bậc. Biến nào lay chuyển nhiều nhất là biến cần đo lại trước."
     },
     "id": 1006,
-    "slug": "market-fair-value",
+    "slug": "chi-phi-moi-request-co-hop-ly",
     "track": "bonus"
   },
   {
@@ -57826,7 +58071,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nhóm tăng nhanh nhất hầu như không bao giờ là nhóm đội đoán, và đó là toàn bộ giá trị của việc tách."
     },
     "id": 1007,
-    "slug": "vingroup-cash-flow",
+    "slug": "doc-dong-tai-nguyen-he-thong-lon",
     "track": "bonus"
   },
   {
@@ -58393,7 +58638,7 @@ export const lessons: Lesson[] = [
     },
     "id": 1010,
     "interactiveType": "chart",
-    "slug": "operating-leverage",
+    "slug": "chi-phi-co-dinh-va-theo-luong-dung",
     "track": "bonus"
   },
   {
@@ -58571,7 +58816,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu câu đầu trả lời là đội vận hành và câu sau là không, dịch vụ ấy sẽ vừa đắt lên vừa mất người."
     },
     "id": 1011,
-    "slug": "income-affiliates-jv",
+    "slug": "chia-chi-phi-dich-vu-dung-chung",
     "track": "bonus"
   },
   {
@@ -59133,7 +59378,7 @@ export const lessons: Lesson[] = [
       "secondary": "Sau đó lọc riêng phần nợ có hạn chót do bên ngoài đặt. Đó mới là phần quyết định bạn có được chọn thời điểm hay không."
     },
     "id": 1014,
-    "slug": "maple-leaf-leverage",
+    "slug": "ty-le-no-ky-thuat",
     "track": "bonus"
   },
   {
@@ -59312,7 +59557,7 @@ export const lessons: Lesson[] = [
     },
     "id": 1015,
     "interactiveType": "chart",
-    "slug": "tesla-cash-flow",
+    "slug": "dong-tai-nguyen-san-pham-tang-nhanh",
     "track": "bonus"
   },
   {
@@ -59515,7 +59760,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1017,
-    "slug": "dividend",
+    "slug": "slo-cam-ket-do-tin-cay",
     "title": "SLO - Cam Kết Độ Tin Cậy",
     "subtitle": "Ngân sách lỗi và chất lượng dung lượng dự phòng",
     "duration": "6 phút",
@@ -60078,7 +60323,7 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1020,
-    "slug": "post-ipo-dividend",
+    "slug": "sau-khi-ra-mat-co-nen-cong-bo-slo",
     "title": "Sau Khi Ra Mắt: Nên Công Bố SLO?",
     "subtitle": "Dung lượng dư thật so với nhịp phát hành - khi nào nên cam kết ra ngoài",
     "duration": "6 phút",
@@ -60838,7 +61083,7 @@ export const lessons: Lesson[] = [
       "secondary": "Ghi phần dư thành việc cụ thể có người phụ trách. Phần trăm không gắn với việc nào là phần trăm sẽ biến mất trước khi hết quý."
     },
     "id": 1023,
-    "slug": "fpt-cfo-cash",
+    "slug": "doi-co-20-phan-tram-nang-luc-du",
     "track": "bonus"
   },
   {
@@ -62371,7 +62616,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu câu cuối trả lời là không phần nào, việc tách chỉ đang mua thêm cách hỏng."
     },
     "id": 1032,
-    "slug": "modern-portfolio-theory",
+    "slug": "nhieu-dich-vu-nho-hay-mot-dich-vu-lon",
     "track": "bonus"
   },
   {
@@ -63054,7 +63299,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1054,
     "interactiveType": "multiples",
-    "slug": "10-cong-thuc-finance",
+    "slug": "10-cong-thuc-phong-van-ky-thuat",
     "title": "10 Công Thức Phỏng Vấn Kỹ Thuật",
     "subtitle": "Lưu lượng → tải tới gốc → số node → chi phí mỗi request - một dòng chảy liên thông",
     "duration": "10 phút",
@@ -63483,7 +63728,7 @@ export const lessons: Lesson[] = [
     },
     "id": 1055,
     "interactiveType": "multiples",
-    "slug": "bang-can-doi-ke-toan",
+    "slug": "he-thong-dang-co-gi",
     "track": "bonus"
   },
   {
@@ -63670,7 +63915,7 @@ export const lessons: Lesson[] = [
     },
     "id": 1056,
     "interactiveType": "multiples",
-    "slug": "chon-phuong-phap-dinh-gia",
+    "slug": "chon-cach-uoc-luong",
     "track": "bonus"
   },
   {
@@ -63968,7 +64213,7 @@ export const lessons: Lesson[] = [
           "Vì phần tiết kiệm ở quý xa thường được tính trùng với phần của quý gần"
         ],
         "correct": 0,
-        "explanation": "Chiết khấu ở đây không phải về lạm phát mà về xác suất. Quý thứ tám đòi hỏi sản phẩm còn sống, đội còn nguyên và nhu cầu chưa đổi - ba điều kiện mà mỗi cái đều có thể sai."
+        "explanation": "Chiết khấu ở đây không phải về tiền mà về xác suất. Quý thứ tám đòi hỏi sản phẩm còn sống, đội còn nguyên và nhu cầu chưa đổi - ba điều kiện mà mỗi cái đều có thể sai."
       },
       {
         "question": "Chi phí 6 tháng công, tiết kiệm 1 tháng mỗi quý, chân trời 8 quý. Chưa chiết khấu thì hiệu số là bao nhiêu?",
@@ -64017,7 +64262,7 @@ export const lessons: Lesson[] = [
     ],
     "keyTakeaways": [
       "Chi phí trả ngay và đo được; lợi ích trải dài và phụ thuộc vào giả định",
-      "Chiết khấu ở đây là về xác suất giả định còn đúng, không phải về lạm phát",
+      "Chiết khấu ở đây là về xác suất giả định còn đúng, không phải về tiền",
       "Trừ chi phí duy trì trước khi so, nếu không là so chi phí một lần với lợi ích vĩnh viễn",
       "Chân trời chọn theo độ tin cậy của giả định, không theo con số muốn thấy"
     ],
@@ -66283,7 +66528,7 @@ export const lessons: Lesson[] = [
       "secondary": "Việc thứ ba không cho ra con số nào và là việc duy nhất còn giá trị sau khi năm kết thúc."
     },
     "id": 1203,
-    "slug": "du-bao-tai-chinh-rolling-forecast",
+    "slug": "du-bao-lan",
     "track": "professional"
   },
   {
@@ -67241,7 +67486,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu chỉ đo được một, hãy đo mức nền - nó là con số duy nhất an toàn để cam kết."
     },
     "id": 1209,
-    "slug": "cau-truc-von-toi-uu-cho-doanh-nghiep",
+    "slug": "cau-truc-so-huu-ha-tang",
     "track": "professional"
   },
   {
@@ -67432,7 +67677,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu ba câu trỏ vào ba người khác nhau thì đánh đổi giữa chúng đang không ai cầm."
     },
     "id": 1210,
-    "slug": "tong-ket-vai-tro-cfo-hien-dai",
+    "slug": "tong-ket-ky-su-truong-van-hanh",
     "track": "professional"
   },
   {
@@ -69739,7 +69984,7 @@ export const lessons: Lesson[] = [
       "secondary": "Bốn câu này mất khoảng một giờ để trả lời và hầu như không đội nào từng bỏ ra một giờ ấy."
     },
     "id": 1328,
-    "slug": "rui-ro-khi-hau-nhu-rui-ro-tai-chinh",
+    "slug": "rui-ro-vat-ly-va-dia-ly-ha-tang",
     "track": "bonus"
   },
   {
@@ -69926,7 +70171,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu không trả lời được câu thứ hai từ chính bảng ấy, bảng đang giấu thứ quan trọng nhất của nó."
     },
     "id": 1329,
-    "slug": "esg-trong-dinh-gia-doanh-nghiep",
+    "slug": "chi-so-phi-chuc-nang-khi-danh-gia-dich-vu",
     "track": "bonus"
   },
   {
@@ -70635,7 +70880,7 @@ export const lessons: Lesson[] = [
       "secondary": "Bước thứ ba thường rút ngắn danh sách nhiều hơn cả hai bước đầu cộng lại."
     },
     "id": 1231,
-    "slug": "esg-investing-screening-den-portfolio",
+    "slug": "tu-sang-loc-toi-uu-tien-sua-dich-vu",
     "track": "bonus"
   },
   {

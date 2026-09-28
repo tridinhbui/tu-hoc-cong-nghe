@@ -6,6 +6,7 @@ import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import type { QuizTrack, QuizDifficulty } from "@/lib/cloudflare-quiz-sessions";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { btnPrimary, panel } from "@/components/ui/system";
 
 interface Suggestion {
   lessonTitle: string;
@@ -23,6 +24,7 @@ function trackLabels(t: Dictionary): Record<QuizTrack, string> {
     frm: t.quizSuggestion.trackFrm,
     ib: t.quizSuggestion.trackIb,
     "mock-interview": t.quizSuggestion.trackMockInterview,
+    cert: t.nav.certificates,
   };
 }
 
@@ -71,7 +73,7 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
       <div className="rounded-2xl border border-line bg-white dark:bg-stone-900 p-4 sm:p-5 animate-pulse">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-surface-sunken" />
-          <div className="h-4 flex-1 rounded-full bg-surface-sunken" />
+          <div className="h-4 flex-1 rounded-xs bg-surface-sunken" />
         </div>
       </div>
     );
@@ -96,7 +98,7 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
   }
 
   return (
-    <section className="rounded-2xl border border-brand-200 dark:border-brand-900/50 bg-brand-50/40 dark:bg-brand-950/20 p-4 sm:p-5 shadow-sm">
+    <section className={`${panel} p-4 sm:p-5`}>
       <div className="flex items-start gap-3">
         <TaiTaiAvatar size={44} />
         <div className="min-w-0 flex-1">
@@ -112,13 +114,13 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
           <div className="mt-3 flex items-center gap-2">
             <button
               onClick={() => onSelect(suggestion.track, suggestion.difficulty)}
-              className="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold uppercase tracking-wide cursor-pointer transition-colors"
+              className={`${btnPrimary} !px-4 !py-2 !text-xs cursor-pointer`}
             >
               {t.quizSuggestion.ctaButton}
             </button>
             <button
               onClick={() => void loadSuggestion()}
-              className="p-2 rounded-xl text-ink-muted hover:bg-white dark:hover:bg-stone-900 hover:text-ink-body transition-colors cursor-pointer"
+              className="p-2 rounded-sm text-ink-muted hover:bg-surface-raised hover:text-ink-body transition-colors cursor-pointer"
               aria-label={t.quizSuggestion.refreshAria}
               title={t.quizSuggestion.refreshAria}
             >

@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import Modal from "@/components/admin/Modal";
 import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
+import { btnPrimary, btnSecondary } from "@/components/ui/system";
 
 interface LessonInfo {
   id: number;
@@ -51,24 +52,18 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
       title={t.unlockRequest.modalTitle}
       footer={
         sent ? (
-          <button
-            onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold"
-          >
+          <button onClick={onClose} className={btnPrimary}>
             {t.unlockRequest.close}
           </button>
         ) : (
           <>
-            <button
-              onClick={onClose}
-              className="px-4 py-2 rounded-lg border border-line text-sm font-bold text-ink-body"
-            >
+            <button onClick={onClose} className={btnSecondary}>
               {t.unlockRequest.cancel}
             </button>
             <button
               onClick={handleSubmit}
               disabled={submitting}
-              className="px-4 py-2 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold disabled:opacity-50"
+              className={btnPrimary}
             >
               {submitting ? t.unlockRequest.submittingButton : t.unlockRequest.submitButton}
             </button>
@@ -82,7 +77,7 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
         </p>
       ) : (
         <div className="space-y-3">
-          <p className="text-sm text-ink-body">
+          <p className="text-sm leading-7 text-ink-body">
             {t.unlockRequest.requiresPrereqPart1} <strong>{lesson.title}</strong> {t.unlockRequest.requiresPrereqPart2}
             {prerequisiteLesson ? (
               <>
@@ -101,7 +96,7 @@ export default function UnlockRequestModal({ userId, lesson, prerequisiteLesson,
             onChange={(e) => setNote(e.target.value)}
             placeholder={t.unlockRequest.notePlaceholder}
             rows={3}
-            className="w-full rounded-lg border border-line bg-white dark:bg-stone-900 px-3 py-2 text-sm text-ink placeholder:text-stone-400"
+            className="w-full rounded-sm border border-line-strong bg-white dark:bg-stone-900 px-3 py-2 text-sm text-ink placeholder:text-stone-400"
           />
         </div>
       )}

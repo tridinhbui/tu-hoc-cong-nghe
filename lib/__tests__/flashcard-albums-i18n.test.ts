@@ -70,7 +70,7 @@ describe("chống trùng khi người học đổi ngôn ngữ", () => {
   });
 
   it("thẻ KHÔNG đổi tên thì không mang alsoKnownAs rỗng nghĩa", () => {
-    // `alsoKnownAs: ["Sharpe Ratio"]` cho một thẻ vẫn tên "Sharpe Ratio" là dữ
+    // `alsoKnownAs: ["Runbook"]` cho một thẻ vẫn tên "Runbook" là dữ
     // liệu vô nghĩa đi qua cả đường nhập thẻ.
     for (const album of FLASHCARD_ALBUMS) {
       mergeFlashcardAlbum(album, "en").cards.forEach((card, i) => {
@@ -84,7 +84,7 @@ describe("chống trùng khi người học đổi ngôn ngữ", () => {
   it("mô phỏng đúng cảnh đã hỏng: nhập tiếng Việt rồi nhập lại tiếng Anh", () => {
     // Đây là phép kiểm quan trọng nhất trong tệp. Nó dựng lại chính luật của
     // saveFlashcardsBulk và bắt buộc lần nhập thứ hai KHÔNG thêm thẻ nào.
-    const album = FLASHCARD_ALBUMS.find((a) => a.id === "ke-toan-co-ban")!;
+    const album = FLASHCARD_ALBUMS.find((a) => a.id === "lap-trinh-co-ban")!;
     const stored = new Set(mergeFlashcardAlbum(album, "vi").cards.map((c) => c.term));
     const isNew = (c: { term: string; alsoKnownAs?: string[] }) =>
       !stored.has(c.term) && !(c.alsoKnownAs ?? []).some((alias) => stored.has(alias));
@@ -99,7 +99,7 @@ describe("chống trùng khi người học đổi ngôn ngữ", () => {
     // chỗ tưởng đã kín: người nhập bằng tiếng Anh trước rồi đổi sang tiếng Việt
     // sẽ nhận bản trùng. Đóng chiều này cần một khoá không phụ thuộc ngôn ngữ,
     // tức một cột mới trên user_flashcards.
-    const album = FLASHCARD_ALBUMS.find((a) => a.id === "ke-toan-co-ban")!;
+    const album = FLASHCARD_ALBUMS.find((a) => a.id === "lap-trinh-co-ban")!;
     const stored = new Set(mergeFlashcardAlbum(album, "en").cards.map((c) => c.term));
     const isNew = (c: { term: string; alsoKnownAs?: string[] }) =>
       !stored.has(c.term) && !(c.alsoKnownAs ?? []).some((alias) => stored.has(alias));
@@ -117,18 +117,18 @@ describe("những thứ không được đổi", () => {
   });
 
   it("công thức trong definition giữ nguyên từng ký tự", () => {
-    // "FCFF = NI + NCC + Int(1-T) - FCInv - WCInv" là thứ người học phải nhớ
+    // "Availability = MTBF / (MTBF + MTTR)" là thứ người học phải nhớ
     // đúng, nên nó không được diễn đạt lại.
-    const cfa = mergeFlashcardAlbum(
-      FLASHCARD_ALBUMS.find((a) => a.id === "cfa-level-1-terms")!,
+    const sre = mergeFlashcardAlbum(
+      FLASHCARD_ALBUMS.find((a) => a.id === "sre-reliability-terms")!,
       "en"
     );
-    const all = cfa.cards.map((c) => c.definition).join(" ");
+    const all = sre.cards.map((c) => c.definition).join(" ");
     for (const formula of [
-      "FCFF = NI + NCC + Int(1-T) - FCInv - WCInv",
-      "E(R) = Rf + Beta × [E(Rm) - Rf]",
-      "WACC = (Wd × Rd × (1-T)) + (Wp × Rp) + (We × Re)",
-      "(Rp - Rf) / StdDev(p)",
+      "Error budget = 1 − SLO",
+      "Availability = MTBF / (MTBF + MTTR)",
+      "MTTR = Total recovery time / Number of incidents",
+      "A = A1 × A2 × ... × An",
     ]) {
       expect(all, formula).toContain(formula);
     }

@@ -2,6 +2,7 @@ import { MousePointerClick } from "lucide-react";
 import type { FeatureEventStat } from "@/lib/admin/feature-events";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary, format, type Dictionary } from "@/lib/i18n";
+import { panel } from "@/components/ui/system";
 
 function eventLabel(t: Dictionary, eventName: string): string {
   const labels: Record<string, string> = t.adminOne.featureEvents.eventNames;
@@ -24,10 +25,10 @@ export default async function FeatureEventsPanel({ stats }: { stats: FeatureEven
   const maxCount = Math.max(...top.map((s) => s.count), 1);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-5">
+    <div className={`${panel} p-5`}>
       <div className="flex items-center justify-between mb-1">
-        <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest flex items-center gap-2">
-          <MousePointerClick className="w-4 h-4 text-stone-400" />
+        <h2 className="eyebrow text-ink-soft flex items-center gap-2">
+          <MousePointerClick className="w-4 h-4 text-ink-faint" />
           {tf.title}
         </h2>
         <span className="text-xs text-ink-muted">
@@ -47,11 +48,11 @@ export default async function FeatureEventsPanel({ stats }: { stats: FeatureEven
                   {eventLabel(t, stat.eventName)}
                   {stat.label && <span className="text-ink-faint"> · {stat.label}</span>}
                 </span>
-                <span className="font-extrabold text-ink shrink-0 ml-2">{stat.count}</span>
+                <span className="font-mono font-medium tabular-nums text-ink-max shrink-0 ml-2">{stat.count}</span>
               </div>
-              <div className="h-1.5 rounded-full bg-surface-raised overflow-hidden">
+              <div className="h-1.5 rounded-xs bg-surface-raised overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-500"
+                  className="h-full bg-brand-600 dark:bg-brand-500"
                   style={{ width: `${(stat.count / maxCount) * 100}%` }}
                 />
               </div>

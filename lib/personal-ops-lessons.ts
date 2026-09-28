@@ -375,7 +375,7 @@ export const PERSONAL_OPS_LESSONS: Lesson[] = [
   },
   {
     id: 402,
-    slug: "buoi-ra-soat-tai-chinh-hang-nam",
+    slug: "buoi-ra-soat-hang-nam",
     title: "Chặng 21, Bài 3: Buổi rà soát hằng năm",
     subtitle: "Một buổi mỗi năm để làm những việc mà tự động hóa không làm được",
     duration: "7 phút",

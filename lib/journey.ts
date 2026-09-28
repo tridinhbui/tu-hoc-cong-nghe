@@ -47,7 +47,7 @@ export async function getMyJourney(userId: string): Promise<JourneyMilestone[]> 
       type: "signup",
       date: profile.created_at,
       title: "Bắt đầu hành trình",
-      description: "Ngày bạn tạo tài khoản Tự Học Tài Chính",
+      description: "Ngày bạn tạo tài khoản Tự Học Công Nghệ",
       emoji: "🚀",
     });
   }

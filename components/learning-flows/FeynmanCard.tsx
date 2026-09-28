@@ -33,62 +33,67 @@ export default function FeynmanCard({
   children?: ReactNode;
 }) {
   const [c0, c1, c2] = copy.columns;
+  // Khuôn của Frame (thanh tiêu đề #f3f1ec + thân trắng, viền 1px), nhưng
+  // thanh tiêu đề mang chữ đã dịch nên đi bằng sans - luật 4 không cho đặt
+  // nhãn tiếng Việt vào phông mono của Frame.
   return (
-    <div className="rounded-2xl border border-amber-300/60 bg-amber-50/60 p-4 sm:p-6 dark:border-amber-500/25 dark:bg-amber-500/[0.06]">
-      <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-400/90 px-2.5 py-1 text-[11px] font-black uppercase tracking-wide text-amber-950">
+    <div className="overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-stone-300 bg-[#f3f1ec] px-4 py-2 dark:border-stone-700 dark:bg-stone-950">
+        <span className="eyebrow inline-flex items-center gap-1.5 text-ink-max">
           <Lightbulb className="h-3.5 w-3.5" aria-hidden />
           {badge}
         </span>
         <span className="text-xs text-ink-muted">{hint}</span>
       </div>
 
-      <p className="mb-4 text-[15px] leading-7 text-ink-body">{copy.intro}</p>
+      <div className="p-4 sm:p-5">
+        <p className="mb-4 text-[15px] leading-7 text-ink-body">{copy.intro}</p>
 
-      {/* Màn hình rộng: bảng. */}
-      <div className="hidden overflow-hidden rounded-xl border border-stone-200 bg-white sm:block dark:border-stone-700 dark:bg-stone-900">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-stone-100 text-xs uppercase tracking-wide text-ink-muted dark:bg-stone-800">
-            <tr>
-              <th scope="col" className="w-[18%] px-4 py-2.5 font-bold">{c0}</th>
-              <th scope="col" className="w-[41%] px-4 py-2.5 font-bold">{c1}</th>
-              <th scope="col" className="w-[41%] px-4 py-2.5 font-bold">{c2}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {copy.rows.map((row) => (
-              <tr key={row[0]} className="border-t border-stone-200 align-top dark:border-stone-700">
-                <th scope="row" className="px-4 py-3 font-black text-ink-max">{row[0]}</th>
-                <td className="px-4 py-3 leading-6 text-ink-body">{row[1]}</td>
-                <td className="px-4 py-3 leading-6 text-ink-body">{row[2]}</td>
+        {/* Màn hình rộng: bảng. */}
+        <div className="hidden overflow-hidden rounded-sm border border-stone-300 sm:block dark:border-stone-700">
+          <table className="w-full text-left text-sm">
+            <thead className="border-b border-stone-300 bg-[#fbfaf7] text-ink-muted dark:border-stone-700 dark:bg-stone-950">
+              <tr>
+                <th scope="col" className="eyebrow w-[18%] px-4 py-2.5">{c0}</th>
+                <th scope="col" className="eyebrow w-[41%] px-4 py-2.5">{c1}</th>
+                <th scope="col" className="eyebrow w-[41%] px-4 py-2.5">{c2}</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody className="divide-y divide-stone-200 dark:divide-stone-800">
+              {copy.rows.map((row) => (
+                <tr key={row[0]} className="align-top">
+                  <th scope="row" className="px-4 py-3 font-black text-ink-max">{row[0]}</th>
+                  <td className="px-4 py-3 leading-6 text-ink-body">{row[1]}</td>
+                  <td className="px-4 py-3 leading-6 text-ink-body">{row[2]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-      {/* Điện thoại: mỗi hàng một thẻ. */}
-      <ul className="space-y-2.5 sm:hidden">
-        {copy.rows.map((row) => (
-          <li key={row[0]} className="rounded-xl border border-stone-200 bg-white p-3 dark:border-stone-700 dark:bg-stone-900">
-            <p className="mb-1.5 font-black text-ink-max">{row[0]}</p>
-            <p className="text-sm leading-6 text-ink-body">
-              <span className="font-semibold text-ink-muted">{c1}: </span>
-              {row[1]}
-            </p>
-            <p className="mt-1 text-sm leading-6 text-ink-body">
-              <span className="font-semibold text-ink-muted">{c2}: </span>
-              {row[2]}
-            </p>
-          </li>
-        ))}
-      </ul>
+        {/* Điện thoại: mỗi hàng một khối, chia bằng gạch mảnh. */}
+        <ul className="divide-y divide-stone-200 rounded-sm border border-stone-300 sm:hidden dark:divide-stone-800 dark:border-stone-700">
+          {copy.rows.map((row) => (
+            <li key={row[0]} className="p-3">
+              <p className="mb-1.5 font-black text-ink-max">{row[0]}</p>
+              <p className="text-sm leading-6 text-ink-body">
+                <span className="font-semibold text-ink-muted">{c1}: </span>
+                {row[1]}
+              </p>
+              <p className="mt-1 text-sm leading-6 text-ink-body">
+                <span className="font-semibold text-ink-muted">{c2}: </span>
+                {row[2]}
+              </p>
+            </li>
+          ))}
+        </ul>
 
-      {children ? <div className="mt-5">{children}</div> : null}
+        {children ? <div className="mt-5">{children}</div> : null}
 
-      <div className="mt-5 rounded-xl border-l-4 border-brand-600 bg-white px-4 py-3 dark:border-brand-500 dark:bg-stone-900">
-        <p className="eyebrow mb-1 text-accent-strong">{oneLinerLabel}</p>
-        <p className="text-base font-bold leading-7 text-ink-max sm:text-lg">{copy.oneLiner}</p>
+        <blockquote className="mt-5 border-l-2 border-stone-950 pl-4 dark:border-stone-200">
+          <p className="eyebrow mb-1 text-ink-soft">{oneLinerLabel}</p>
+          <p className="text-base font-bold leading-7 text-ink-max sm:text-lg">{copy.oneLiner}</p>
+        </blockquote>
       </div>
     </div>
   );

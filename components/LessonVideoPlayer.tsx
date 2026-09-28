@@ -39,12 +39,11 @@ export default function LessonVideoPlayer({ videoUrl, title }: LessonVideoPlayer
       {/* Video Thumbnail Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="w-full relative group overflow-hidden rounded-2xl bg-stone-900 hover:bg-stone-800 transition-colors aspect-video flex items-center justify-center mb-6"
+        className="w-full relative group overflow-hidden rounded-md border border-stone-800 bg-stone-950 hover:bg-stone-900 transition-colors aspect-video flex items-center justify-center mb-6"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-brand-600/20 group-hover:from-purple-600/30 group-hover:to-brand-600/30 transition-all" />
         <div className="relative flex items-center justify-center gap-3">
-          <div className="w-16 h-16 rounded-full bg-white/90 group-hover:bg-white transition-colors flex items-center justify-center">
-            <Play className="w-6 h-6 text-purple-600 fill-purple-600" />
+          <div className="w-14 h-14 rounded-sm border border-white/30 group-hover:border-white group-hover:bg-brand-700 transition-colors flex items-center justify-center">
+            <Play className="w-6 h-6 text-white fill-white" />
           </div>
           <div className="text-left">
             <p className="text-sm font-semibold text-white">{t.miscUi.lessonVideoPlayer.watchLessonVideo}</p>
@@ -55,13 +54,14 @@ export default function LessonVideoPlayer({ videoUrl, title }: LessonVideoPlayer
 
       {/* Modal Video Player */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-          <div className="bg-stone-900 rounded-2xl overflow-hidden w-full max-w-4xl">
-            <div className="flex items-center justify-between p-4 border-b border-stone-800">
+        <div className="fixed inset-0 z-50 bg-stone-950/60 flex items-center justify-center p-4">
+          <div className="rounded-md border border-stone-800 bg-stone-950 overflow-hidden w-full max-w-4xl">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-stone-800">
               <h3 className="text-white font-semibold">{title}</h3>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-stone-400 hover:text-white transition-colors p-1"
+                aria-label={t.common.close}
+                className="rounded-sm text-stone-400 hover:text-white transition-colors p-1 cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { X, ShieldQuestion } from "lucide-react";
 import { submitLessonAppeal } from "@/lib/lesson-appeals";
 import { useI18n } from "@/lib/i18n/context";
+import { btnPrimary } from "@/components/ui/system";
 
 interface LessonAppealModalProps {
   userId: string;
@@ -38,16 +39,16 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4 bg-black/50" onClick={onClose}>
       <div
-        className="bg-white dark:bg-stone-900 rounded-2xl border border-line w-full max-w-sm my-auto p-5 space-y-4"
+        className="bg-white dark:bg-stone-900 rounded-md border border-line-strong w-full max-w-sm my-auto p-5 space-y-4"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <span className="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/40 text-info flex items-center justify-center flex-shrink-0">
+            <span className="w-9 h-9 rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 text-ink-body flex items-center justify-center flex-shrink-0">
               <ShieldQuestion className="w-4.5 h-4.5" />
             </span>
             <div>
-              <h3 className="font-bold text-ink text-sm">{t.lessonAppeal.title}</h3>
+              <h3 className="font-black tracking-tight text-ink-max text-sm">{t.lessonAppeal.title}</h3>
               <p className="text-xs text-ink-muted mt-0.5 line-clamp-1">{lesson.title}</p>
             </div>
           </div>
@@ -56,7 +57,7 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
           </button>
         </div>
 
-        <p className="text-sm text-ink-soft leading-relaxed">
+        <p className="text-sm text-ink-soft leading-7">
           {t.lessonAppeal.blurb}
         </p>
 
@@ -66,13 +67,13 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
           placeholder={t.lessonAppeal.notePlaceholder}
           rows={3}
           maxLength={500}
-          className="w-full px-3 py-2.5 rounded-lg border border-line-mid bg-white dark:bg-stone-800 text-sm text-ink placeholder:text-stone-400 focus:outline-none focus:border-stone-400 resize-none"
+          className="w-full px-3 py-2.5 rounded-sm border border-line-strong bg-white dark:bg-stone-900 text-sm text-ink placeholder:text-stone-400 focus:outline-none focus:border-brand-600 dark:focus:border-brand-400 resize-none"
         />
 
         <button
           onClick={() => void handleSubmit()}
           disabled={sending}
-          className="w-full py-3 rounded-xl font-bold text-sm bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert disabled:opacity-60 transition-colors"
+          className={`${btnPrimary} w-full`}
         >
           {sending ? t.lessonAppeal.sending : t.lessonAppeal.submit}
         </button>

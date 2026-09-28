@@ -38,14 +38,14 @@ export interface SpecialGameMeta {
 
 /* i18n-ignore-start: mọi chuỗi hiển thị trong phần dữ liệu của tệp này đã có
    lớp phủ trong lib/i18n/dictionaries/sections/games-meta.ts - tên game, mô tả,
-   ba mức độ khó, nhãn ô, 47 khoản mục báo cáo, ba bộ kéo-thả còn lại, nhãn và
+   ba mức độ khó, nhãn ô, các thành phần hệ thống, ba bộ kéo-thả còn lại, nhãn và
    gợi ý của game ghép cặp, và danh hiệu hạng 1-2-3. Component đắp qua
    `localizeBucketConfig`/`localizePairConfig` (lib/games-i18n.ts).
 
    BA THỨ CỐ Ý KHÔNG DỊCH, và đây là lý do:
-   - `TICKER_PAIRS` ghép tên doanh nghiệp với mã cổ phiếu (Vinamilk ↔ VNM). Cả
+   - `TICKER_PAIRS` ghép tên công ty với công nghệ họ tạo ra (Meta ↔ React). Cả
      hai vế là danh từ riêng.
-   - Vế trái của mọi game ghép cặp: ký hiệu chỉ số (ROE, P/E), tên doanh nghiệp,
+   - Vế trái của mọi game ghép cặp: tên chỉ số (MTTR, uptime), tên công ty,
      hoặc thuật ngữ vốn đã là tiếng Anh.
    - `en-vi-terms` và phần glossary của `random-mix` ĐÃ song ngữ sẵn - trò chơi
      chính là ghép thuật ngữ Anh với thuật ngữ Việt. Dịch vế Việt sang Anh thì
@@ -181,43 +181,43 @@ export interface RelatedLesson {
 
 export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
   "system-dashboard-match": [
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Phân biệt Báo cáo kết quả kinh doanh, Bảng cân đối & Lưu chuyển tiền tệ" },
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Nền tảng phân bổ nguồn lực và đọc hiểu thông số" },
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Phân loại dòng tiền vào ra" },
+    { slug: "he-thong-dang-co-gi", title: "Hệ thống đang có gì và dung lượng đến từ đâu", subtitle: "Một cách đọc hạ tầng cho biết phần nào là của bạn và phần nào đang đi mượn" },
+    { slug: "ba-tang-dich-vu-dam-may", title: "Chặng 13, Bài 2: Ba tầng dịch vụ đám mây", subtitle: "Càng lên cao càng ít việc phải làm, và càng khó rời đi." },
+    { slug: "api-la-hop-dong", title: "API: bản hợp đồng giữa hai đội không ngồi cạnh nhau", subtitle: "Người dùng API của bạn không đọc mã của bạn - họ đọc lời hứa của bạn." },
   ],
   "en-vi-terms": [
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Các thuật ngữ tài chính Anh - Việt cốt lõi" },
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Các thuộc tính và từ vựng tiền tệ" },
+    { slug: "api-la-gi-va-hop-dong-giua-hai-he-thong", title: "Bài 269: API là gì và vì sao mọi thứ đều có API", subtitle: "Không phải một công nghệ - là một lời hứa, và lời hứa đó ràng buộc cả hai bên." },
+    { slug: "json-va-cach-doc-tai-lieu-api", title: "Bài 271: JSON và cách đọc một tài liệu API", subtitle: "Định dạng thì học trong mười phút; đọc tài liệu mới là kỹ năng thật." },
   ],
   "ratio-category": [
-    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Hiểu rõ nhóm chỉ số Thanh khoản, Sinh lời, Đòn bẩy" },
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Chỉ số lưu chuyển tiền tệ và khả năng thanh toán" },
+    { slug: "do-tre-va-bang-thong", title: "Độ trễ và băng thông: hai thứ hoàn toàn khác nhau", subtitle: "Đường truyền rộng hơn không làm một lần gọi về nhanh hơn." },
+    { slug: "sli-slo-va-sla", title: "SLI, SLO và SLA - ba thứ hay bị nhầm", subtitle: "Một cái là phép đo, một cái là mục tiêu, một cái là hợp đồng có tiền phạt." },
   ],
   "term-definition": [
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Thuật ngữ và khái niệm định nghĩa gốc" },
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Hiểu đúng bản chất từng khái niệm" },
+    { slug: "api-la-gi-va-hop-dong-giua-hai-he-thong", title: "Bài 269: API là gì và vì sao mọi thứ đều có API", subtitle: "Không phải một công nghệ - là một lời hứa, và lời hứa đó ràng buộc cả hai bên." },
+    { slug: "case-ty-le-trung-cache", title: "Case chuyên sâu: Tỷ lệ trúng bộ nhớ đệm", subtitle: "Một con số phần trăm quyết định cơ sở dữ liệu của bạn sống hay chết" },
   ],
   "formula-match": [
-    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Công thức ROE, ROA, P/E, Current Ratio" },
-    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Công thức và tác động của lãi suất" },
-    { slug: "10-cong-thuc-finance", title: "Present Value: giá trị hiện tại", subtitle: "Công thức tính giá trị theo thời gian của tiền" },
+    { slug: "10-cong-thuc-phong-van-ky-thuat", title: "10 Công Thức Phỏng Vấn Kỹ Thuật", subtitle: "Lưu lượng → tải tới gốc → số node → chi phí mỗi request - một dòng chảy liên thông" },
+    { slug: "sli-slo-va-sla", title: "SLI, SLO và SLA - ba thứ hay bị nhầm", subtitle: "Một cái là phép đo, một cái là mục tiêu, một cái là hợp đồng có tiền phạt." },
+    { slug: "case-chi-phi-moi-request", title: "Case chuyên sâu: Chi phí mỗi request", subtitle: "Hoá đơn hạ tầng chia cho lưu lượng - con số nói lên nhiều hơn bạn tưởng" },
   ],
   "risk-category": [
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Đánh giá mức độ rủi ro và giá trị tài sản" },
-    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Rủi ro biến động lãi suất và thị trường" },
+    { slug: "financial-risk", title: "Phân loại rủi ro kỹ thuật", subtitle: "Bốn nhóm, và vì sao gọi đúng tên quyết định ai xử lý được" },
+    { slug: "muc-nghiem-trong-va-rui-ro-trong-kiem-thu", title: "Kiểm thử, Bài 2: Mức nghiêm trọng và rủi ro - cách quyết định kiểm cái gì", subtitle: "Không kiểm hết được, nên câu hỏi thật là chọn mẫu thế nào - kiểm cái gì trước." },
   ],
   "ticker-match": [
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tìm hiểu doanh nghiệp và niêm yết trên thị trường" },
-    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Đánh giá các doanh nghiệp VN30 hàng đầu" },
+    { slug: "native-hay-da-nen-tang", title: "Chặng 17, Bài 6: Native hay đa nền tảng, và giá của việc đổi ý", subtitle: "Quyết định này rẻ lúc đầu và đắt về sau, nên nó đáng nghĩ kỹ đúng một lần" },
+    { slug: "nen-tang-dung-chung-cai-ban-khong-kiem-soat", title: "Chặng 17, Bài 5: Nền tảng dùng chung - những gì bạn không quyết định", subtitle: "Chính sách đổi, quyền bị siết, và cách một bản cập nhật hệ điều hành làm hỏng tính năng của bạn" },
   ],
   "cost-category": [
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Phân loại chi phí cố định và chi phí biến đổi" },
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tác động của chi phí đến dòng tiền doanh nghiệp" },
+    { slug: "chi-phi-co-dinh-va-bien-doi-khi-tach-dich-vu", title: "Quy mô, Bài 1: Chi phí cố định và biến đổi khi tách dịch vụ", subtitle: "Mỗi dịch vụ tách ra mang theo một khoản chi phí cố định mà không ai tính vào lúc quyết định." },
+    { slug: "case-tong-chi-phi-so-huu", title: "Case chuyên sâu: Tổng chi phí sở hữu", subtitle: "Giá thuê máy chỉ là phần nổi - phần chìm là công người vận hành nó" },
   ],
   "random-mix": [
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tổng hợp kiến thức nền tảng tài chính" },
-    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tổng hợp phân tích dòng tiền & Báo cáo" },
-    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Tổng hợp công thức và tỷ số tài chính" },
+    { slug: "10-cong-thuc-phong-van-ky-thuat", title: "10 Công Thức Phỏng Vấn Kỹ Thuật", subtitle: "Lưu lượng → tải tới gốc → số node → chi phí mỗi request - một dòng chảy liên thông" },
+    { slug: "tong-ket-dam-may-va-ha-tang", title: "Chặng 13, Bài 8: Tổng kết - đám mây và hạ tầng thuê ngoài", subtitle: "Bốn câu hỏi thay cho việc nhớ tên dịch vụ, vốn đổi mỗi năm." },
+    { slug: "do-tre-duoi-vi-sao-trung-binh-noi-doi", title: "Tối ưu, Bài 4: Độ trễ đuôi - vì sao trung bình nói dối", subtitle: "Người dùng không trải nghiệm giá trị trung bình; họ trải nghiệm lượt chậm nhất của mình." },
   ],
 };
 
@@ -494,8 +494,8 @@ const PAIR_CONFIGS: Partial<Record<GameType, PairConfig>> = {
   "ticker-match": {
     pool: TICKER_PAIRS,
     roundSize: 6,
-    leftLabel: "Doanh nghiệp",
-    rightLabel: "Mã cổ phiếu",
+    leftLabel: "Công ty",
+    rightLabel: "Công nghệ",
     hint: "Bấm 1 công ty rồi bấm đúng công nghệ (hoặc kéo thả) để ghép cặp.",
   },
 };

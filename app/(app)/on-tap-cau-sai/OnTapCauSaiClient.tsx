@@ -27,6 +27,10 @@ import { calculateNextSRS, isDueForReview, type SRSItemState } from "@/lib/space
 import { selectMorningReview } from "@/lib/morning-review";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Sys, panel, tabClass, btnPrimary, btnSecondary, textLink } from "@/components/ui/system";
+
+/** Mã định vị mono ở đầu trang: chính đường dẫn của route, không phải nhãn dịch. */
+const ROUTE_CODE = "THCN://APP/ON-TAP-CAU-SAI";
 
 interface CardAnswerState {
   picked: number | null;
@@ -177,14 +181,14 @@ export default function OnTapCauSaiClient() {
         {/* Arriving from the 7:30 push: say why this is a short list, so a
             trimmed session doesn't read as missing mistakes. */}
         {isMorningSession && (
-          <div className="mb-6 rounded-2xl border-2 border-warn-line-mid bg-amber-50 dark:bg-amber-950/30 px-5 py-4">
-            <p className="text-xs font-black uppercase tracking-widest text-warn-strong">
+          <div className="mb-6 border-l-2 border-stone-950 pl-4 dark:border-stone-200">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
               {t.mistakeReview.morningSession}
             </p>
-            <p className="text-sm text-ink-body mt-1 leading-relaxed">
+            <p className="text-sm text-ink-body mt-1 max-w-[68ch] leading-7">
               {format(t.mistakeReview.morningSub, { count: items.length })}
               {t.mistakeReview.enoughForToday}{" "}
-              <Link href="/on-tap-cau-sai" className="font-bold underline">
+              <Link href="/on-tap-cau-sai" className="font-bold text-accent-strong underline-offset-4 hover:underline">
                 {t.mistakeReview.seeAllMistakes}
               </Link>
             </p>
@@ -192,42 +196,37 @@ export default function OnTapCauSaiClient() {
         )}
 
         {/* Header Title Bar */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-100 dark:bg-brand-950/60 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-accent-ink border border-accent-line-mid">
-                <BrainCircuit className="w-3.5 h-3.5 text-accent" /> {t.mistakeReview.srsBadge}
-              </span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-ink">
-              {t.mistakeReview.title}
-            </h1>
-            <p className="text-xs sm:text-sm text-ink-muted mt-1">
-              {t.mistakeReview.subtitle}
-            </p>
+        <div className="mb-6">
+          <div className="flex items-center justify-between gap-4 border-b border-line-strong pb-2">
+            <Sys className="text-ink-muted">{ROUTE_CODE}</Sys>
+            <span className="eyebrow inline-flex items-center gap-1.5 text-right text-ink-soft">
+              <BrainCircuit className="w-3.5 h-3.5" /> {t.mistakeReview.srsBadge}
+            </span>
           </div>
+          <h1 className="mt-3 text-2xl sm:text-3xl font-black leading-[1.15] tracking-tight text-ink-max">
+            {t.mistakeReview.title}
+          </h1>
+          <p className="mt-2 max-w-[68ch] text-sm leading-6 text-ink-soft">
+            {t.mistakeReview.subtitle}
+          </p>
 
-          {/* View Mode Switcher Button */}
-          <div className="flex items-center gap-1 bg-surface-sunken p-1 rounded-xl border border-line-strong shrink-0">
+          {/* View Mode Switcher: text tabs */}
+          <div role="tablist" className="mt-4 flex items-center gap-5 border-b border-line">
             <button
               type="button"
+              role="tab"
+              aria-selected={viewMode === "flashcard"}
               onClick={() => setViewMode("flashcard")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black transition-all cursor-pointer ${
-                viewMode === "flashcard"
-                  ? "bg-white dark:bg-stone-800 text-accent shadow-xs"
-                  : "text-stone-500 hover:text-ink-heading"
-              }`}
+              className={`${tabClass(viewMode === "flashcard")} inline-flex items-center gap-1.5 cursor-pointer`}
             >
               <Layers className="w-3.5 h-3.5" /> {t.mistakeReview.tabCards}
             </button>
             <button
               type="button"
+              role="tab"
+              aria-selected={viewMode === "list"}
               onClick={() => setViewMode("list")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black transition-all cursor-pointer ${
-                viewMode === "list"
-                  ? "bg-white dark:bg-stone-800 text-accent shadow-xs"
-                  : "text-stone-500 hover:text-ink-heading"
-              }`}
+              className={`${tabClass(viewMode === "list")} inline-flex items-center gap-1.5 cursor-pointer`}
             >
               <List className="w-3.5 h-3.5" /> {t.mistakeReview.tabList}
             </button>
@@ -239,15 +238,15 @@ export default function OnTapCauSaiClient() {
             {t.mistakeReview.loading}
           </div>
         ) : items.length === 0 ? (
-          <div className="text-center py-16 px-4 bg-white dark:bg-stone-900 border-2 border-line rounded-3xl shadow-sm space-y-3">
-            <PartyPopper className="w-12 h-12 text-brand-500 mx-auto" />
-            <h3 className="font-black text-lg text-ink">{t.mistakeReview.emptyTitle}</h3>
-            <p className="text-xs sm:text-sm text-ink-muted max-w-md mx-auto">
+          <div className={`${panel} text-center py-16 px-4 space-y-3`}>
+            <PartyPopper className="w-10 h-10 text-ink-muted mx-auto" strokeWidth={1.5} />
+            <h3 className="font-black tracking-tight text-lg text-ink-max">{t.mistakeReview.emptyTitle}</h3>
+            <p className="text-sm leading-7 text-ink-muted max-w-md mx-auto">
               {t.mistakeReview.emptyBody}
             </p>
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-black text-xs transition-all shadow-sm cursor-pointer mt-2"
+              className={`${btnPrimary} mt-2`}
             >
               {t.mistakeReview.backToDashboard} <ArrowRight className="w-4 h-4" />
             </Link>
@@ -257,12 +256,12 @@ export default function OnTapCauSaiClient() {
              Trạng thái này trước đây không tồn tại được: bộ thẻ luôn là toàn
              bộ danh sách nên nó không bao giờ rỗng. Vẫn để một lối đi vòng -
              lịch là gợi ý cho việc học, không phải cái khoá. */
-          <div className="text-center py-16 px-4 bg-white dark:bg-stone-900 border-2 border-line rounded-3xl shadow-sm space-y-3">
-            <Calendar className="w-12 h-12 text-brand-500 mx-auto" />
-            <h3 className="font-black text-lg text-ink">
+          <div className={`${panel} text-center py-16 px-4 space-y-3`}>
+            <Calendar className="w-10 h-10 text-ink-muted mx-auto" strokeWidth={1.5} />
+            <h3 className="font-black tracking-tight text-lg text-ink-max">
               {t.mistakeReview.noneDueTitle}
             </h3>
-            <p className="text-xs sm:text-sm text-ink-muted max-w-md mx-auto">
+            <p className="text-sm leading-7 text-ink-muted max-w-md mx-auto">
               {format(t.mistakeReview.noneDueBody, { count: items.length })}
             </p>
             <div className="pt-2 flex flex-wrap justify-center gap-3">
@@ -274,13 +273,13 @@ export default function OnTapCauSaiClient() {
                   setIsFlipped(false);
                   setSessionCompleted(false);
                 }}
-                className="px-4 py-2.5 rounded-xl bg-surface-raised text-ink font-black text-xs hover:bg-surface-sunken cursor-pointer"
+                className={`${btnSecondary} cursor-pointer`}
               >
                 {t.mistakeReview.reviewAllAnyway}
               </button>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-black text-xs transition-all shadow-sm cursor-pointer"
+                className={btnPrimary}
               >
                 {t.mistakeReview.backToDashboard} <ArrowRight className="w-4 h-4" />
               </Link>
@@ -290,31 +289,31 @@ export default function OnTapCauSaiClient() {
           /* ── 3D FLASHCARD INTERACTION MODE ── */
           <div className="space-y-4">
             {/* Progress Counter & SRS Stats Bar */}
-            <div className="flex items-center justify-between text-xs font-black text-ink-muted px-1">
-              <span>
+            <div className="flex items-center justify-between text-xs font-bold text-ink-muted px-1">
+              <span className="tabular-nums">
                 {format(t.mistakeReview.cardCounter, {
                   current: currentIndex + 1,
                   total: items.length,
                   due: sessionDeck.length,
                 })}
               </span>
-              <span className="text-accent flex items-center gap-1">
+              <span className="text-accent-strong flex items-center gap-1">
                 <Zap className="w-3.5 h-3.5" /> {t.mistakeReview.algorithmActive}
               </span>
             </div>
 
             {/* Session Completed View */}
             {sessionCompleted ? (
-              <div className="text-center py-12 px-6 bg-gradient-to-br from-brand-950 via-stone-900 to-brand-950 border border-brand-500/40 rounded-3xl text-white space-y-4 shadow-xl">
+              <div className="text-center py-12 px-6 bg-stone-950 border border-stone-700 rounded-md text-white space-y-4">
                 <div className="flex justify-center">
-                  <span className="rounded-2xl bg-brand-500/15 p-3 text-brand-300">
-                    <PartyPopper aria-hidden className="h-10 w-10" strokeWidth={1.5} />
+                  <span className="rounded-sm border border-stone-700 p-2.5 text-stone-300">
+                    <PartyPopper aria-hidden className="h-8 w-8" strokeWidth={1.5} />
                   </span>
                 </div>
-                <h3 className="text-xl font-black text-stone-100">
+                <h3 className="text-xl font-black tracking-tight text-white">
                   {t.mistakeReview.doneTitle}
                 </h3>
-                <p className="text-xs sm:text-sm text-stone-300 max-w-md mx-auto leading-relaxed">
+                <p className="text-sm text-stone-300 max-w-md mx-auto leading-7">
                   {format(t.mistakeReview.doneBody, { count: items.length })}
                 </p>
                 <div className="pt-2 flex justify-center gap-3">
@@ -325,13 +324,13 @@ export default function OnTapCauSaiClient() {
                       setIsFlipped(false);
                       setSessionCompleted(false);
                     }}
-                    className="px-4 py-2.5 rounded-xl bg-stone-100 text-stone-900 font-black text-xs hover:bg-white cursor-pointer"
+                    className="inline-flex items-center justify-center rounded-sm border border-stone-600 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:border-stone-200 cursor-pointer"
                   >
                     {t.mistakeReview.restart}
                   </button>
                   <Link
                     href="/dashboard"
-                    className="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-black text-xs cursor-pointer shadow-md"
+                    className="inline-flex items-center justify-center rounded-sm bg-white px-4 py-2.5 text-sm font-bold text-stone-950 transition-colors hover:bg-brand-300 cursor-pointer"
                   >
                     {t.mistakeReview.backToDashboardShort}
                   </Link>
@@ -357,28 +356,28 @@ export default function OnTapCauSaiClient() {
                       >
                         {/* ── CARD FRONT (MẶT TRƯỚC: CÂU HỎI & ĐÁP ÁN) ── */}
                         <div
-                          className={`absolute inset-0 w-full h-full p-5 sm:p-6 rounded-3xl border-2 bg-white dark:bg-stone-900 shadow-xl flex flex-col justify-between space-y-4 backface-hidden ${
+                          className={`absolute inset-0 w-full h-full p-5 sm:p-6 rounded-md border bg-white dark:bg-stone-900 flex flex-col justify-between space-y-4 backface-hidden ${
                             isFlipped ? "pointer-events-none" : ""
                           } ${
                             isDueForReview(srsInfo.nextReviewAt)
-                              ? "border-amber-400/80 dark:border-amber-600/80"
-                              : "border-line"
+                              ? "border-amber-500 dark:border-amber-600"
+                              : "border-line-strong"
                           }`}
                         >
                           <div className="space-y-3">
-                            <div className="flex items-center justify-between gap-2 border-b border-line-soft pb-3">
+                            <div className="flex items-center justify-between gap-2 border-b border-line pb-3">
                               <Link
                                 href={currentCardItem.href}
-                                className="text-xs font-black text-accent hover:underline truncate"
+                                className="text-xs font-bold text-accent-strong underline-offset-4 hover:underline truncate"
                               >
                                 {currentCardItem.lessonLabel}: {currentCardItem.lessonTitle}
                               </Link>
-                              <span className="px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/80 text-[10px] font-black uppercase text-warn-ink border border-warn-line-mid shrink-0">
+                              <span className="px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tabular-nums text-warn-ink border border-warn-line-mid shrink-0">
                                 {format(t.mistakeReview.srsLevel, { level: srsInfo.level, days: srsInfo.intervalDays })}
                               </span>
                             </div>
 
-                            <p className="font-extrabold text-base sm:text-lg text-ink leading-snug">
+                            <p className="font-bold text-base sm:text-lg text-ink-max leading-7">
                               {currentCardItem.question}
                             </p>
 
@@ -386,36 +385,42 @@ export default function OnTapCauSaiClient() {
                               {currentCardItem.options.map((opt, oi) => {
                                 const isCorrectOpt = oi === currentCardItem.correct;
                                 const chosen = answerState.picked === oi;
-                                let cls = "border-line bg-stone-50 dark:bg-stone-950/60 hover:border-brand-400/60 text-ink-heading";
+                                let cls = "border-stone-300 bg-white hover:border-stone-950 text-ink-heading dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+                                let gutter = "text-ink-faint";
                                 if (answered) {
-                                  if (isCorrectOpt) cls = "border-brand-400 bg-brand-50 dark:bg-brand-950/60 text-accent-ink-strong font-black";
-                                  else if (chosen) cls = "border-rose-400 bg-rose-50 dark:bg-rose-950/60 text-alert-ink font-bold";
-                                  else cls = "border-line opacity-50";
+                                  if (isCorrectOpt) {
+                                    cls = "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200 font-bold";
+                                    gutter = "text-accent-strong";
+                                  } else if (chosen) {
+                                    cls = "border-red-600 bg-red-50 text-red-800 dark:border-red-400 dark:bg-red-950/40 dark:text-red-200 font-bold";
+                                    gutter = "text-danger";
+                                  } else cls = "border-stone-200 text-ink-muted dark:border-stone-800";
                                 }
                                 return (
                                   <button
                                     key={oi}
                                     disabled={answered}
                                     onClick={() => handlePickAnswer(currentCardItem, oi)}
-                                    className={`w-full text-left p-3 rounded-2xl border text-xs sm:text-sm font-semibold transition-all flex items-center justify-between cursor-pointer disabled:cursor-default ${cls}`}
+                                    className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)_auto] items-baseline gap-x-1 text-left px-3 py-2.5 rounded-sm border text-xs sm:text-sm font-semibold transition-colors cursor-pointer disabled:cursor-default ${cls}`}
                                   >
+                                    <Sys className={gutter}>{String.fromCharCode(65 + oi)}</Sys>
                                     <span>{opt}</span>
-                                    {answered && isCorrectOpt && <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />}
-                                    {answered && chosen && !isCorrectOpt && <X className="w-4 h-4 text-rose-500 shrink-0" />}
+                                    {answered && isCorrectOpt && <CheckCircle2 className="w-4 h-4 self-center text-accent-strong shrink-0" />}
+                                    {answered && chosen && !isCorrectOpt && <X className="w-4 h-4 self-center text-red-600 dark:text-red-400 shrink-0" />}
                                   </button>
                                 );
                               })}
                             </div>
                           </div>
 
-                          <div className="pt-2 border-t border-line-soft flex items-center justify-between">
-                            <span className="text-[11px] font-bold text-stone-400">
+                          <div className="pt-2 border-t border-line flex items-center justify-between gap-3">
+                            <span className="text-[11px] font-semibold text-ink-muted">
                               {t.mistakeReview.pickOrFlip}
                             </span>
                             <button
                               type="button"
                               onClick={() => setIsFlipped(true)}
-                              className="px-3 py-1.5 rounded-xl bg-surface-invert text-ink-invert font-black text-xs hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
+                              className={`${btnPrimary} px-3 py-1.5 text-xs cursor-pointer`}
                             >
                               {t.mistakeReview.flipToExplanation}
                             </button>
@@ -424,34 +429,34 @@ export default function OnTapCauSaiClient() {
 
                         {/* ── CARD BACK (MẶT SAU: LỜI GIẢI THÍCH & ĐÁNH GIÁ SM-2) ── */}
                         <div
-                          className={`absolute inset-0 w-full h-full p-5 sm:p-6 rounded-3xl border-2 border-brand-500/40 bg-gradient-to-b from-stone-900 to-stone-950 text-white shadow-2xl flex flex-col justify-between space-y-4 rotate-y-180 backface-hidden ${
+                          className={`absolute inset-0 w-full h-full p-5 sm:p-6 rounded-md border border-stone-700 bg-stone-950 text-white flex flex-col justify-between space-y-4 rotate-y-180 backface-hidden ${
                             !isFlipped ? "pointer-events-none" : ""
                           }`}
                         >
                           <div className="space-y-3">
                             <div className="flex items-center justify-between border-b border-stone-800 pb-3">
-                              <span className="px-2.5 py-0.5 rounded-full bg-brand-500/20 text-brand-300 text-[10px] font-black uppercase tracking-wider border border-brand-500/40">
+                              <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-stone-400">
                                 {t.mistakeReview.explanationTitle}
                               </span>
                               <button
                                 type="button"
                                 onClick={() => setIsFlipped(false)}
-                                className="text-[11px] font-bold text-stone-400 hover:text-white underline cursor-pointer"
+                                className="text-[11px] font-bold text-brand-300 underline-offset-4 hover:underline cursor-pointer"
                               >
                                 {t.mistakeReview.flipBack}
                               </button>
                             </div>
 
-                            <div className="p-3 rounded-2xl bg-brand-950/60 border border-brand-500/30 text-brand-200 text-xs font-bold space-y-1">
-                              <p className="text-[10px] uppercase font-black tracking-widest text-brand-400">
+                            <div className="border-l-2 border-brand-400 pl-4 text-xs font-bold space-y-1">
+                              <p className="text-[10px] uppercase font-bold tracking-[0.08em] text-brand-300">
                                 {t.mistakeReview.correctAnswer}
                               </p>
-                              <p className="text-sm font-black text-white">
+                              <p className="text-sm font-bold text-white">
                                 {currentCardItem.options[currentCardItem.correct]}
                               </p>
                             </div>
 
-                            <div className="p-3 rounded-2xl bg-stone-900 border border-stone-800 text-stone-300 text-xs leading-relaxed max-h-48 overflow-y-auto">
+                            <div className="p-3 rounded-sm bg-stone-900 border border-stone-800 text-stone-300 text-sm leading-7 max-h-48 overflow-y-auto">
                               <p className="font-bold text-white mb-1">{t.mistakeReview.financeExplanation}</p>
                               <p>{currentCardItem.explanation || t.mistakeReview.noExplanation}</p>
                             </div>
@@ -459,44 +464,44 @@ export default function OnTapCauSaiClient() {
 
                           {/* SM-2 Quality Evaluation Rating Buttons */}
                           <div className="space-y-2 pt-2 border-t border-stone-800">
-                            <p className="text-[11px] font-black text-center text-stone-400 uppercase tracking-widest">
+                            <p className="text-[11px] font-bold text-center text-stone-400 uppercase tracking-[0.08em]">
                               {t.mistakeReview.ratePrompt}
                             </p>
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                               <button
                                 type="button"
                                 onClick={() => handleRateSRS(currentCardItem, "forget")}
-                                className="p-2 rounded-xl bg-rose-950/80 hover:bg-rose-900 border border-rose-800 text-rose-200 text-xs font-black transition-all cursor-pointer text-center"
+                                className="p-2 rounded-sm border border-red-800 text-red-200 text-xs font-bold transition-colors hover:border-red-400 cursor-pointer text-center"
                               >
                                 {t.mistakeReview.rateForgot}
-                                <span className="block text-[9px] font-normal opacity-80">{t.mistakeReview.plus1Day}</span>
+                                <span className="block text-[10px] font-normal tabular-nums opacity-80">{t.mistakeReview.plus1Day}</span>
                               </button>
 
                               <button
                                 type="button"
                                 onClick={() => handleRateSRS(currentCardItem, "hard")}
-                                className="p-2 rounded-xl bg-amber-950/80 hover:bg-amber-900 border border-amber-800 text-amber-200 text-xs font-black transition-all cursor-pointer text-center"
+                                className="p-2 rounded-sm border border-amber-800 text-amber-200 text-xs font-bold transition-colors hover:border-amber-400 cursor-pointer text-center"
                               >
                                 {t.mistakeReview.rateOk}
-                                <span className="block text-[9px] font-normal opacity-80">{t.mistakeReview.plus3Days}</span>
+                                <span className="block text-[10px] font-normal tabular-nums opacity-80">{t.mistakeReview.plus3Days}</span>
                               </button>
 
                               <button
                                 type="button"
                                 onClick={() => handleRateSRS(currentCardItem, "good")}
-                                className="p-2 rounded-xl bg-brand-950/80 hover:bg-brand-900 border border-brand-800 text-brand-200 text-xs font-black transition-all cursor-pointer text-center"
+                                className="p-2 rounded-sm border border-stone-700 text-stone-100 text-xs font-bold transition-colors hover:border-brand-400 cursor-pointer text-center"
                               >
                                 {t.mistakeReview.rateGood}
-                                <span className="block text-[9px] font-normal opacity-80">{t.mistakeReview.plus7Days}</span>
+                                <span className="block text-[10px] font-normal tabular-nums opacity-80">{t.mistakeReview.plus7Days}</span>
                               </button>
 
                               <button
                                 type="button"
                                 onClick={() => handleRateSRS(currentCardItem, "mastered")}
-                                className="p-2 rounded-xl bg-brand-950/80 hover:bg-brand-900 border border-brand-800 text-brand-200 text-xs font-black transition-all cursor-pointer text-center"
+                                className="p-2 rounded-sm border border-stone-700 text-stone-100 text-xs font-bold transition-colors hover:border-brand-400 cursor-pointer text-center"
                               >
                                 {t.mistakeReview.rateEasy}
-                                <span className="block text-[9px] font-normal opacity-80">{t.mistakeReview.plus30Days}</span>
+                                <span className="block text-[10px] font-normal tabular-nums opacity-80">{t.mistakeReview.plus30Days}</span>
                               </button>
                             </div>
                           </div>
@@ -513,7 +518,7 @@ export default function OnTapCauSaiClient() {
                           setIsFlipped(false);
                           setCurrentIndex((prev) => Math.max(0, prev - 1));
                         }}
-                        className="px-3 py-1.5 rounded-xl border border-line-strong text-xs font-bold text-ink-soft hover:bg-surface-sunken disabled:opacity-40 cursor-pointer"
+                        className={`${btnSecondary} px-3 py-1.5 text-xs cursor-pointer`}
                       >
                         {t.mistakeReview.prevCard}
                       </button>
@@ -528,7 +533,7 @@ export default function OnTapCauSaiClient() {
                             setSessionCompleted(true);
                           }
                         }}
-                        className="px-3 py-1.5 rounded-xl bg-brand-600 text-white font-black text-xs hover:bg-brand-500 transition-colors cursor-pointer"
+                        className={`${btnPrimary} px-3 py-1.5 text-xs cursor-pointer`}
                       >
                         {t.mistakeReview.nextCard}
                       </button>
@@ -541,7 +546,7 @@ export default function OnTapCauSaiClient() {
         ) : (
           /* ── CLASSIC LIST VIEW MODE ── */
           <div className="space-y-4">
-            <p className="text-xs font-bold text-ink-muted mb-3">
+            <p className="text-xs font-bold tabular-nums text-ink-muted mb-3">
               {format(t.mistakeReview.totalMistakes, { count: items.length })}
             </p>
             <div className="space-y-4">
@@ -554,47 +559,53 @@ export default function OnTapCauSaiClient() {
                 return (
                   <div
                     key={k}
-                    className={`bg-white dark:bg-stone-900 rounded-2xl border-2 p-5 space-y-3 transition-opacity ${
-                      state.resolved ? "border-accent-line opacity-60" : "border-line"
+                    className={`bg-white dark:bg-stone-900 rounded-md border p-5 space-y-3 transition-opacity ${
+                      state.resolved ? "border-brand-600 opacity-60 dark:border-brand-400" : "border-line-strong"
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
                       <Link
                         href={item.href}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline"
+                        className={`${textLink} text-xs`}
                       >
                         {item.lessonLabel}: {item.lessonTitle}
                         <ArrowRight className="w-3 h-3" />
                       </Link>
                       {srsInfo && (
-                        <span className="text-[11px] font-bold text-warn-strong bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full border border-warn-line-mid">
+                        <span className="text-[11px] font-bold tabular-nums text-warn-strong px-2 py-0.5 rounded-sm border border-warn-line-mid">
                           {format(t.mistakeReview.srsLevelShort, { level: srsInfo.level, days: srsInfo.intervalDays })}
                         </span>
                       )}
                     </div>
 
-                    <p className="font-bold text-ink leading-relaxed">{item.question}</p>
+                    <p className="font-bold text-ink-max leading-7">{item.question}</p>
 
                     <div className="space-y-2">
                       {item.options.map((opt, oi) => {
                         const isCorrectOpt = oi === item.correct;
                         const chosen = state.picked === oi;
-                        let cls = "border-line-mid bg-white dark:bg-stone-800 hover:border-line-strong";
+                        let cls = "border-stone-300 bg-white hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+                        let gutter = "text-ink-faint";
                         if (answered) {
-                          if (isCorrectOpt) cls = "border-brand-400 dark:border-brand-700 bg-brand-50 dark:bg-brand-950/50 font-black";
-                          else if (chosen) cls = "border-rose-400 dark:border-rose-700 bg-rose-50 dark:bg-rose-950/50";
-                          else cls = "border-line opacity-60";
+                          if (isCorrectOpt) {
+                            cls = "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40 font-bold";
+                            gutter = "text-accent-strong";
+                          } else if (chosen) {
+                            cls = "border-red-600 bg-red-50 dark:border-red-400 dark:bg-red-950/40";
+                            gutter = "text-danger";
+                          } else cls = "border-stone-200 opacity-60 dark:border-stone-800";
                         }
                         return (
                           <button
                             key={oi}
                             disabled={answered}
                             onClick={() => handlePickAnswer(item, oi)}
-                            className={`w-full text-left text-sm rounded-xl border px-4 py-2.5 transition-colors flex items-start gap-2 disabled:cursor-default cursor-pointer ${cls}`}
+                            className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)_auto] items-baseline gap-x-1 text-left text-sm leading-6 rounded-sm border px-3 py-2.5 transition-colors disabled:cursor-default cursor-pointer ${cls}`}
                           >
-                            {answered && isCorrectOpt && <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />}
-                            {answered && chosen && !isCorrectOpt && <X className="w-4 h-4 text-alert flex-shrink-0 mt-0.5" />}
+                            <Sys className={gutter}>{String.fromCharCode(65 + oi)}</Sys>
                             <span className="text-ink-heading">{opt}</span>
+                            {answered && isCorrectOpt && <Check className="w-4 h-4 self-center text-accent-strong flex-shrink-0" />}
+                            {answered && chosen && !isCorrectOpt && <X className="w-4 h-4 self-center text-red-600 dark:text-red-400 flex-shrink-0" />}
                           </button>
                         );
                       })}
@@ -602,29 +613,29 @@ export default function OnTapCauSaiClient() {
 
                     {answered && (
                       <div className="space-y-2">
-                        <p className={`text-xs leading-relaxed rounded-xl p-3 border ${state.resolved ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line text-accent-ink-strong" : "bg-rose-50 dark:bg-rose-950/50 border-alert-line text-alert-ink"}`}>
+                        <p className={`max-w-[68ch] border-l-2 pl-4 text-sm leading-7 text-ink-body ${state.resolved ? "border-brand-600 dark:border-brand-400" : "border-red-600 dark:border-red-400"}`}>
                           {item.explanation}
                         </p>
                         <div className="flex items-center gap-2 pt-1">
-                          <span className="text-[11px] font-bold text-stone-400">{t.mistakeReview.rateSrs}</span>
+                          <span className="text-[11px] font-semibold text-ink-muted">{t.mistakeReview.rateSrs}</span>
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "forget")}
-                            className="px-2 py-1 rounded-lg bg-surface-raised text-[10px] font-bold text-ink-body hover:bg-stone-200"
+                            className="px-2 py-1 rounded-sm border border-stone-300 text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
                           >
                             {t.mistakeReview.plus1Day}
                           </button>
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "good")}
-                            className="px-2 py-1 rounded-lg bg-brand-100 dark:bg-brand-950 text-[10px] font-bold text-accent-strong hover:bg-brand-200"
+                            className="px-2 py-1 rounded-sm border border-stone-300 text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
                           >
                             {t.mistakeReview.plus7Days}
                           </button>
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "mastered")}
-                            className="px-2 py-1 rounded-lg bg-brand-100 dark:bg-brand-950 text-[10px] font-bold text-accent-strong hover:bg-brand-200"
+                            className="px-2 py-1 rounded-sm border border-stone-300 text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
                           >
                             {t.mistakeReview.plus30Days}
                           </button>

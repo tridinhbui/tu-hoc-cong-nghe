@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { MessageSquare, PartyPopper } from "lucide-react";
+import { Check, MessageSquare } from "lucide-react";
+import { btnPrimary, panel } from "@/components/ui/system";
 import { submitLessonFeedback } from "@/lib/cloudflare-feedback";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -29,33 +30,31 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
 
   if (status === "sent") {
     return (
-      <div className="bg-brand-50 dark:bg-brand-950/50 border border-accent-line rounded-[20px] p-6 text-center shadow-[0_10px_24px_-24px_rgba(65, 122, 205,0.18)]">
-        <div className="mb-3 flex justify-center">
-          <span className="rounded-xl bg-accent-soft p-2.5 text-accent">
-            <PartyPopper aria-hidden className="h-8 w-8" strokeWidth={1.5} />
-          </span>
-        </div>
-        <p className="font-bold text-accent-ink-strong text-lg mb-2">{t.lessonFeedback.thanksTitle}</p>
-        <p className="text-accent-strong text-sm">{t.lessonFeedback.thanksSubtitle}</p>
+      <div className="border-l-2 border-brand-600 py-1 pl-4 dark:border-brand-400">
+        <p className="flex items-center gap-2 text-lg font-black tracking-tight text-ink-max">
+          <Check aria-hidden className="h-5 w-5 text-accent-strong" strokeWidth={2.5} />
+          {t.lessonFeedback.thanksTitle}
+        </p>
+        <p className="mt-1 text-sm leading-6 text-ink-soft">{t.lessonFeedback.thanksSubtitle}</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-line rounded-[20px] p-6 shadow-[0_10px_24px_-24px_rgba(15,23,42,0.18)]">
-      <div className="flex items-start gap-4 mb-5">
-        <div className="w-12 h-12 rounded-full bg-surface-raised flex items-center justify-center flex-shrink-0">
-          <MessageSquare aria-hidden className="h-6 w-6 text-accent" strokeWidth={1.75} />
-        </div>
+    <div className={`${panel} p-5 sm:p-6`}>
+      <div className="mb-5 flex items-start gap-3">
+        <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-stone-300 text-ink-body dark:border-stone-700">
+          <MessageSquare aria-hidden className="h-4 w-4" strokeWidth={1.75} />
+        </span>
         <div className="flex-1">
-          <h3 className="font-bold text-ink text-lg mb-1">{t.lessonFeedback.title}</h3>
-          <p className="text-ink-soft text-sm">
+          <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">{t.lessonFeedback.title}</h3>
+          <p className="text-sm leading-6 text-ink-soft">
             {t.lessonFeedback.subtitle}
           </p>
         </div>
       </div>
 
-      <div className="flex justify-center gap-3 mb-5">
+      <div className="mb-5 flex gap-1.5">
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
@@ -64,11 +63,14 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
             onMouseEnter={() => setHoverRating(star)}
             onMouseLeave={() => setHoverRating(0)}
             aria-label={format(t.lessonFeedback.starAriaLabel, { star })}
-            className="text-4xl transition-transform duration-200 ease-out hover:scale-110 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/10 rounded-full"
+            aria-pressed={star <= rating}
+            className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-sm border text-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+              star <= shownRating
+                ? "border-brand-600 bg-brand-50 text-accent-strong dark:border-brand-400 dark:bg-brand-950/40"
+                : "border-stone-300 text-stone-300 hover:border-stone-950 dark:border-stone-700 dark:text-stone-600"
+            }`}
           >
-            <span className={star <= shownRating ? "text-amber-400" : "text-stone-200 dark:text-stone-700"}>
-              ★
-            </span>
+            <span aria-hidden>★</span>
           </button>
         ))}
       </div>
@@ -78,17 +80,13 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
         onChange={(e) => setComment(e.target.value)}
         rows={4}
         placeholder={t.lessonFeedback.commentPlaceholder}
-        className="input-premium w-full px-4 py-3 text-base text-ink placeholder:text-stone-500 dark:bg-stone-800 resize-none mb-4"
+        className="mb-4 w-full resize-none rounded-sm border border-stone-300 bg-white px-3 py-2.5 text-base leading-7 text-ink placeholder:text-stone-500 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
       />
 
       <button
         onClick={handleSubmit}
         disabled={rating === 0 || status === "sending"}
-        className={`w-full py-3 rounded-[18px] text-sm font-bold transition-all cursor-pointer focus-visible:outline-none ${
-          rating > 0 && status !== "sending"
-            ? "bg-brand-600 hover:bg-brand-500 dark:bg-brand-500 dark:hover:bg-brand-400 text-white dark:text-stone-950 shadow-md active:scale-98"
-            : "bg-surface-sunken text-ink-faint cursor-not-allowed"
-        }`}
+        className={`${btnPrimary} w-full`}
       >
         {status === "sending" ? t.lessonFeedback.sendingButton : t.lessonFeedback.submitButton}
       </button>

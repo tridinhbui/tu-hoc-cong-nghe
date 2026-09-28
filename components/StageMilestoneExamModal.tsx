@@ -11,6 +11,7 @@ import { earnChest } from "@/lib/chests";
 import { useIsClient } from "@/lib/use-is-client";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { btnPrimary, btnSecondary, panel } from "@/components/ui/system";
 
 interface StageMilestoneExamModalProps {
   userId: string;
@@ -137,18 +138,18 @@ export default function StageMilestoneExamModal({
   if (!mounted) return null;
 
   return createPortal(
-    <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center z-[9999] p-4 animate-[fadeIn_0.2s_ease-out]">
-      <div className="bg-white dark:bg-stone-900 border border-line rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 bg-stone-950/60 flex items-center justify-center z-[9999] p-4 animate-[fadeIn_0.2s_ease-out]">
+      <div className={`${panel} w-full max-w-lg overflow-hidden relative flex flex-col max-h-[90vh]`}>
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4.5 border-b border-stone-100 dark:border-stone-800/80">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-line-strong bg-[#f3f1ec] dark:bg-stone-950">
           <div>
-            <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-warn-strong uppercase tracking-wider">
+            <span className="eyebrow text-ink-soft">
               {format(t.stageExam.badgeLabel, { stageLabel })}
             </span>
             <h3 className="text-sm font-extrabold text-ink mt-1">{stageName}</h3>
           </div>
-          <button onClick={onClose} className="p-1.5 hover:bg-surface rounded-xl text-stone-400 hover:text-ink transition-colors">
+          <button onClick={onClose} aria-label={t.stageExam.closeWindow} className="p-1.5 hover:bg-surface-raised rounded-sm text-ink-faint hover:text-ink transition-colors cursor-pointer">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -157,15 +158,15 @@ export default function StageMilestoneExamModal({
         <div className="flex-1 overflow-y-auto p-6">
           {loading ? (
             <div className="text-center py-20">
-              <div className="w-8 h-8 border-2 border-stone-300 border-t-amber-500 rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-xs text-stone-500">{t.stageExam.preparing}</p>
+              <div className="w-8 h-8 border-2 border-stone-300 border-t-brand-600 rounded-full animate-spin mx-auto mb-3" />
+              <p className="text-xs text-ink-muted">{t.stageExam.preparing}</p>
             </div>
           ) : examFinished ? (
             <div className="text-center py-8 space-y-6">
               {correctCount / questions.length >= 0.8 ? (
                 <div className="space-y-4">
-                  <div className="w-20 h-20 bg-amber-50 dark:bg-amber-950/40 rounded-3xl text-amber-500 flex items-center justify-center mx-auto shadow-inner animate-[bounce_1s_infinite]">
-                    <Trophy className="w-10 h-10" />
+                  <div className="w-16 h-16 rounded-sm border border-brand-600 bg-accent-soft text-accent flex items-center justify-center mx-auto dark:border-brand-400">
+                    <Trophy className="w-8 h-8" />
                   </div>
                   <h4 className="text-lg font-extrabold text-ink">{t.stageExam.passedTitle}</h4>
                   <p className="text-xs text-ink-muted leading-relaxed max-w-sm mx-auto">
@@ -174,8 +175,8 @@ export default function StageMilestoneExamModal({
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <div className="w-20 h-20 bg-surface rounded-3xl text-stone-400 flex items-center justify-center mx-auto shadow-inner">
-                    <XCircle className="w-10 h-10" />
+                  <div className="w-16 h-16 rounded-sm border border-line-strong text-ink-faint flex items-center justify-center mx-auto">
+                    <XCircle className="w-8 h-8" />
                   </div>
                   <h4 className="text-lg font-extrabold text-ink">{t.stageExam.failedTitle}</h4>
                   <p className="text-xs text-ink-muted leading-relaxed max-w-sm mx-auto">
@@ -186,20 +187,20 @@ export default function StageMilestoneExamModal({
 
               <button
                 onClick={onClose}
-                className="w-full bg-surface-invert hover:bg-stone-800 dark:hover:bg-white text-ink-invert py-3 rounded-2xl font-bold text-xs uppercase tracking-widest cursor-pointer active:scale-95 transition-all shadow-md"
+                className={`${btnSecondary} w-full cursor-pointer`}
               >
                 {t.stageExam.closeWindow}
               </button>
             </div>
           ) : (
             <div className="space-y-5">
-              <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-faint uppercase tracking-widest bg-surface px-3 py-1.5 rounded-lg border border-line-soft">
+              <div className="flex justify-between items-center gap-3 text-[11px] font-bold text-ink-muted border-b border-line-strong pb-2">
                 <span>{format(t.stageExam.questionCounter, { current: currentQIndex + 1, total: questions.length })}</span>
                 <span>{t.stageExam.minCorrectRequired}</span>
               </div>
 
               <div className="space-y-1">
-                <p className="text-[9px] font-bold text-warn uppercase tracking-wider">{format(t.stageExam.fromLesson, { lessonTitle: questions[currentQIndex].lessonTitle })}</p>
+                <p className="eyebrow text-ink-faint">{format(t.stageExam.fromLesson, { lessonTitle: questions[currentQIndex].lessonTitle })}</p>
                 <p className="text-sm font-bold text-ink-heading leading-relaxed">
                   {questions[currentQIndex].question}
                 </p>
@@ -207,17 +208,17 @@ export default function StageMilestoneExamModal({
 
               <div className="space-y-2.5">
                 {questions[currentQIndex].options.map((opt: string, i: number) => {
-                  let btnCls = "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-line-strong";
+                  let btnCls = "border-line-strong bg-white dark:bg-stone-900 text-ink-body hover:border-stone-950 dark:hover:border-stone-300";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
-                      btnCls = "border-brand-500 bg-brand-50 dark:bg-brand-950/40 text-accent-ink font-bold";
+                      btnCls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";
                     } else if (i === selectedOpt) {
-                      btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-alert-deep";
+                      btnCls = "border-red-600 dark:border-red-400 bg-danger-soft text-ink-max";
                     } else {
-                      btnCls = "border-line-soft opacity-60";
+                      btnCls = "border-line text-ink-faint";
                     }
                   } else if (selectedOpt === i) {
-                    btnCls = "border-line-invert bg-surface text-ink border-2 font-bold";
+                    btnCls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";
                   }
 
                   return (
@@ -225,9 +226,9 @@ export default function StageMilestoneExamModal({
                       key={i}
                       disabled={answersChecked}
                       onClick={() => handleOptionSelect(i)}
-                      className={`w-full text-left p-3.5 rounded-2xl border text-xs sm:text-sm transition-all flex items-center gap-3 cursor-pointer ${btnCls}`}
+                      className={`w-full text-left p-3.5 rounded-sm border text-xs sm:text-sm transition-colors flex items-center gap-3 cursor-pointer ${btnCls}`}
                     >
-                      <span className="w-5 h-5 rounded-lg text-[10px] font-bold flex items-center justify-center border bg-surface text-ink-muted">
+                      <span className="w-5 h-5 shrink-0 rounded-xs font-mono text-[10px] font-medium flex items-center justify-center border border-current/40 text-ink-muted">
                         {["A", "B", "C", "D"][i]}
                       </span>
                       <span className="line-clamp-2">{opt}</span>
@@ -240,18 +241,18 @@ export default function StageMilestoneExamModal({
                 <button
                   onClick={checkAnswer}
                   disabled={selectedOpt === null}
-                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-50 cursor-pointer shadow-md"
+                  className={`${btnPrimary} w-full cursor-pointer`}
                 >
                   {t.stageExam.confirmAnswer}
                 </button>
               ) : (
                 <div className="space-y-4">
-                  <div className={`p-4 rounded-2xl text-xs leading-relaxed border ${
+                  <div className={`p-4 rounded-sm text-xs leading-relaxed border border-l-2 text-ink-body ${
                     selectedOpt === questions[currentQIndex].correct
-                      ? "bg-brand-50/20 border-brand-100 dark:border-brand-900/30 text-accent-ink"
-                      : "bg-rose-50/20 border-rose-100 dark:border-rose-900/30 text-alert-deep"
+                      ? "bg-accent-soft border-accent-line border-l-brand-600 dark:border-l-brand-400"
+                      : "bg-danger-soft border-danger-line border-l-red-600 dark:border-l-red-400"
                   }`}>
-                    <p className="font-bold mb-1">
+                    <p className={`font-bold mb-1 ${selectedOpt === questions[currentQIndex].correct ? "text-accent-strong" : "text-danger"}`}>
                       {selectedOpt === questions[currentQIndex].correct ? t.stageExam.correctFeedback : t.stageExam.incorrectFeedback}
                     </p>
                     <p>{questions[currentQIndex].explanation}</p>
@@ -259,7 +260,7 @@ export default function StageMilestoneExamModal({
                   
                   <button
                     onClick={nextQuestion}
-                    className="w-full bg-brand-500 hover:bg-brand-600 text-white py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-1 shadow-md hover:scale-[1.01] active:scale-[0.99]"
+                    className={`${btnPrimary} w-full cursor-pointer`}
                   >
                     {currentQIndex + 1 === questions.length ? t.stageExam.finishExam : t.stageExam.nextQuestion} <ChevronRight className="w-4 h-4" />
                   </button>

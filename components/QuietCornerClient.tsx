@@ -33,6 +33,7 @@ import {
   orderWorriesByTheme,
 } from "@/lib/quiet-corner-themes";
 import { useI18n } from "@/lib/i18n/context";
+import { btnSecondary, panel } from "@/components/ui/system";
 
 // "Góc yên tĩnh" - trang riêng đằng sau thẻ lời nhắn.
 //
@@ -144,11 +145,11 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                     return next;
                   })
                 }
-                className="relative w-full overflow-visible rounded-2xl border border-dashed border-stone-200 px-4 py-2.5 text-left dark:border-stone-800"
+                className="relative w-full overflow-visible rounded-sm border border-dashed border-line-strong px-4 py-2.5 text-left cursor-pointer"
               >
                 <motion.span
                   aria-hidden
-                  className="absolute right-5 top-1 h-1.5 w-1.5 rounded-full bg-orange-400"
+                  className="absolute right-5 top-1 h-1.5 w-1.5 rounded-[1px] bg-ink-faint"
                   initial={{ y: 4, opacity: 0.9, scale: 1 }}
                   animate={{ y: -22, opacity: 0, scale: 0.5 }}
                   transition={{ duration: 1.8, ease: "easeOut" }}
@@ -170,10 +171,10 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               type="button"
               onClick={() => setOpenWorry(open ? null : item.id)}
               aria-expanded={open}
-              className={`w-full rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition-colors ${
+              className={`w-full rounded-sm border px-4 py-3 text-left text-sm font-semibold transition-colors cursor-pointer ${
                 open
-                  ? "border-orange-300 bg-orange-50 text-stone-900 dark:border-orange-900 dark:bg-orange-950/30 dark:text-stone-100"
-                  : "border-stone-200 bg-stone-50 text-stone-700 hover:bg-stone-100 dark:border-stone-800 dark:bg-stone-800/50 dark:text-stone-300 dark:hover:bg-stone-800"
+                  ? "border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
+                  : "border-line-strong bg-white text-ink-body hover:border-stone-950 dark:bg-stone-900 dark:hover:border-stone-200"
               }`}
             >
               “{t.worryReframes[item.id]?.worry ?? item.worry}”
@@ -182,7 +183,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               <motion.div
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-2 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 px-4 py-3.5 dark:from-stone-800 dark:to-stone-800/60"
+                className="mt-2 rounded-sm border border-line-strong border-l-2 border-l-stone-950 bg-[#f3f1ec] px-4 py-3.5 dark:border-l-stone-200 dark:bg-stone-950"
               >
                 <p className="text-sm leading-relaxed text-ink-body">
                   {t.worryReframes[item.id]?.reframe ?? item.reframe}
@@ -194,7 +195,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                       setSetDownIds((prev) => new Set(prev).add(item.id));
                       setOpenWorry(null);
                     }}
-                    className="rounded-full border border-orange-200 px-3.5 py-1.5 text-[11px] font-bold text-orange-700 transition-colors hover:bg-orange-100/60 dark:border-orange-900 dark:text-orange-300 dark:hover:bg-orange-950/40"
+                    className={`${btnSecondary} !px-3.5 !py-1.5 !text-[11px] cursor-pointer`}
                   >
                     {t.worrySetDown.action}
                   </button>
@@ -213,7 +214,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
     <div className="mx-auto max-w-2xl px-4 py-6 sm:py-10 lg:max-w-5xl">
       <Link
         href="/dashboard"
-        className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-500 transition-colors hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200"
+        className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-muted transition-colors hover:text-ink"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
         {t.quietCorner.home}
@@ -224,8 +225,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           nền xám cho ra một mảng nâu đục, và ngọn lửa mất hết chiều sâu. Ở đây
           nền lùi hẳn xuống để quầng lửa là nguồn sáng duy nhất của khối. */}
       <section
-        className="relative mt-4 overflow-hidden rounded-[28px] border-2 bg-white px-6 py-12 text-center shadow-sm dark:bg-[#0a0806]"
-        style={{ borderColor: `rgba(249, 115, 22, ${0.18 + warmth * 0.42})` }}
+        className="relative mt-4 overflow-hidden rounded-md border border-line-strong bg-white px-6 py-12 text-center dark:bg-[#0a0806]"
       >
         {/* Sáng: nền kem ấm. Tối: chỉ một vầng sáng rất nhạt hắt từ chỗ ngọn
             lửa đứng, phần còn lại để nguyên đen. */}
@@ -276,13 +276,13 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                 </p>,
                 <p
                   key="tone"
-                  className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-orange-700 dark:text-orange-300"
+                  className="eyebrow mt-4 text-ink-soft"
                 >
                   {MOTIVATION_TONE_LABEL[motivation.tone]}
                 </p>,
                 <p
                   key="text"
-                  className="mx-auto mt-4 max-w-lg text-lg font-bold leading-relaxed text-stone-800 sm:text-xl dark:text-stone-100"
+                  className="mx-auto mt-4 max-w-lg text-lg font-bold leading-relaxed text-ink-heading sm:text-xl"
                 >
                   {motivation.message.text}
                 </p>,
@@ -313,7 +313,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           khối thở ngắn không bị kéo cao bằng danh sách nỗi lo. */}
       <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:items-start">
       {/* --- Một phút thở -------------------------------------------------- */}
-      <section className="rounded-[28px] border border-stone-200 bg-stone-50 px-6 py-7 dark:border-stone-800 dark:bg-stone-900/50">
+      <section className="rounded-md border border-line-strong bg-[#f3f1ec] px-6 py-7 dark:bg-stone-950">
         <h2 className="text-center text-base font-extrabold text-ink-heading">
           {t.quietCorner.breatheTitle}
         </h2>
@@ -324,7 +324,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       </section>
 
       {/* --- Đặt xuống một gánh nặng --------------------------------------- */}
-      <section className="rounded-[28px] border border-stone-200 bg-white px-5 py-7 dark:border-stone-800 dark:bg-stone-900">
+      <section className={`${panel} px-5 py-7`}>
         <div className="px-1 text-center">
           <h2 className="text-base font-extrabold text-ink-heading">
             {t.quietCorner.burdenTitle}
@@ -348,10 +348,10 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                   type="button"
                   aria-pressed={chosen}
                   onClick={() => setWorryTheme(chosen ? null : theme.id)}
-                  className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                  className={`rounded-sm border px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
                     chosen
-                      ? "border-orange-300 bg-orange-50 text-orange-800 dark:border-orange-900 dark:bg-orange-950/40 dark:text-orange-200"
-                      : "border-stone-200 bg-white text-stone-600 hover:bg-stone-100 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-400 dark:hover:bg-stone-800"
+                      ? "border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
+                      : "border-line-strong bg-white text-ink-soft hover:border-stone-950 hover:text-ink dark:bg-stone-900 dark:hover:border-stone-200"
                   }`}
                 >
                   {t.worryThemes[theme.id] ?? theme.label}
@@ -362,7 +362,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               <button
                 type="button"
                 onClick={() => setWorryTheme(null)}
-                className="rounded-full px-3 py-1.5 text-xs font-semibold text-stone-400 underline-offset-2 hover:underline dark:text-stone-500"
+                className="rounded-sm px-3 py-1.5 text-xs font-semibold text-ink-faint underline-offset-2 hover:underline cursor-pointer"
               >
                 {t.worryThemePrompt.clear}
               </button>
@@ -389,7 +389,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       {/* --- Ba câu hỏi cho nỗi lo của riêng bạn -----------------------------
           Danh sách nỗi lo phía trên là những nỗi lo viết sẵn; khối này dành
           cho nỗi lo không nằm trong danh sách nào - phần lớn trường hợp thật. */}
-      <section className="mt-6 rounded-[28px] border border-stone-200 bg-white px-5 py-7 dark:border-stone-800 dark:bg-stone-900">
+      <section className={`${panel} mt-6 px-5 py-7`}>
         <h2 className="text-center text-base font-extrabold text-ink-heading">
           {t.quietQuestions.title}
         </h2>
@@ -400,9 +400,9 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           {QUIET_CORNER_QUESTIONS.items.map((item, i) => (
             <li
               key={item.id}
-              className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 dark:border-stone-800 dark:bg-stone-800/50"
+              className="rounded-sm border border-line-strong px-4 py-4"
             >
-              <span className="text-[11px] font-bold text-orange-700 dark:text-orange-300">
+              <span className="font-mono text-[10.5px] font-medium text-ink-faint">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <p className="mt-1 text-sm font-bold leading-snug text-ink-heading">
@@ -438,9 +438,9 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       {/* --- Ranh giới ------------------------------------------------------
           Luôn hiện, không gập lại được, không đặt sau một cú bấm. Nếu người
           đọc chỉ nhìn trang này một lần thì đây là phần họ cần đọc nhất. */}
-      <section className="mt-6 mb-4 rounded-[28px] border border-stone-200 bg-stone-50 px-5 py-6 dark:border-stone-800 dark:bg-stone-900/50">
+      <section className="mt-6 mb-4 rounded-md border border-line-strong bg-[#f3f1ec] px-5 py-6 dark:bg-stone-950">
         <div className="flex items-start gap-3">
-          <Info className="mt-0.5 h-4 w-4 shrink-0 text-stone-400" />
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-ink-faint" />
           <div>
             <h2 className="text-sm font-extrabold text-ink-body">
               {t.quietLimits.title}
@@ -452,7 +452,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         </div>
       </section>
 
-      <p className="flex items-center justify-center gap-1.5 pb-6 text-[11px] font-semibold text-stone-400">
+      <p className="flex items-center justify-center gap-1.5 pb-6 text-[11px] font-semibold text-ink-faint">
         <Heart className="h-3 w-3" />
         {t.quietCorner.noXp}
       </p>

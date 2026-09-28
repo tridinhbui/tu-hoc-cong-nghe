@@ -12,6 +12,13 @@ import { DAMAGE_PER_CORRECT, bossHpPercent } from "@/lib/world-boss";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { translateApiError, ApiError } from "@/lib/api-error-code";
+import { btnPrimary, btnSecondary, panel, SectionHead } from "@/components/ui/system";
+
+/* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị */
+const SYS = {
+  boss: "THCN://GAME/WORLD-BOSS",
+};
+/* i18n-ignore-end */
 
 interface BossQuestion {
   prompt: string;
@@ -224,51 +231,44 @@ export default function WorldBossRaidWidget({
   const hpPercent = bossHpPercent(boss.current_hp, boss.max_hp);
 
   return (
-    <div className="h-full min-h-0 bg-gradient-to-b from-white via-orange-50 to-red-50 border-2 border-red-200 rounded-3xl p-6 text-stone-900 shadow-[0_24px_80px_rgba(239,68,68,0.16)] relative overflow-hidden flex flex-col">
-      {/* Visual background aura */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-orange-300/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-red-500 via-orange-400 to-amber-300" />
-
+    <div className="relative flex h-full min-h-0 flex-col overflow-hidden rounded-md border border-stone-300 bg-white p-6 text-ink dark:border-stone-700 dark:bg-stone-900">
       {/* Header World Boss Banner */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-red-100 pb-6 mb-6">
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white shadow-lg border border-orange-200 shrink-0">
-            <Glyph emoji={boss.boss_emoji} className="w-8 h-8" strokeWidth={1.5} />
+      <div className="mb-6 flex flex-col items-start justify-between gap-6 border-b border-stone-300 pb-6 md:flex-row md:items-end dark:border-stone-700">
+        <div className="flex min-w-0 flex-1 items-start gap-4">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md border border-stone-300 bg-[#f3f1ec] text-rose-600 dark:border-stone-700 dark:bg-stone-950 dark:text-rose-400">
+            <Glyph emoji={boss.boss_emoji} className="w-7 h-7" strokeWidth={1.5} />
           </div>
-          <div>
-            <span className="text-[10px] uppercase font-black tracking-widest text-red-700 bg-white border border-red-200 px-3 py-1 rounded-full shadow-sm">
-              {t.worldBoss.eventTitle}
-            </span>
-            <h3 className="text-xl font-black text-stone-950 mt-1.5 flex items-center gap-2">
-              {boss.name}
-            </h3>
-            <p className="text-xs text-stone-500 mt-1 max-w-lg leading-relaxed">
-              {boss.description}
-            </p>
-          </div>
+          <SectionHead
+            code={SYS.boss}
+            eyebrow={t.worldBoss.eventTitle}
+            title={boss.name}
+            sub={boss.description}
+            size="sm"
+            className="min-w-0 flex-1"
+          />
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-auto">
+        <div className="flex w-full flex-col items-center gap-2 sm:flex-row md:w-auto">
           <button
             onClick={() => setShowBossGuide((prev) => !prev)}
-            className="w-full sm:w-auto bg-surface-raised text-ink-body font-bold text-xs px-4 py-3.5 rounded-2xl hover:bg-stone-200 cursor-pointer flex items-center justify-center gap-1.5 shrink-0"
+            className={`${btnSecondary} w-full shrink-0 sm:w-auto`}
           >
             {t.worldBoss.guideToggle}
           </button>
 
           <button
             onClick={handleStartRaid}
-            className="w-full sm:w-auto bg-gradient-to-r from-red-500 via-orange-400 to-amber-300 text-white font-black text-sm px-6 py-3.5 rounded-2xl shadow-[0_18px_40px_rgba(249,115,22,0.28)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2 border border-orange-200 cursor-pointer shrink-0"
+            className={`${btnPrimary} w-full shrink-0 sm:w-auto`}
           >
-            <Swords className="w-5 h-5 text-white" /> {t.worldBoss.huntNow}
+            <Swords className="w-4 h-4" /> {t.worldBoss.huntNow}
           </button>
         </div>
       </div>
 
       {/* World Boss How-to-Play Guide Box */}
       {showBossGuide && (
-        <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 border border-red-200 dark:border-red-900/50 text-xs text-ink-heading space-y-2">
-          <h4 className="font-black text-sm text-danger flex items-center gap-1.5">
+        <div className="mb-6 space-y-2 rounded-md border border-stone-300 bg-[#fbfaf7] p-4 text-xs text-ink-heading dark:border-stone-700 dark:bg-stone-950">
+          <h4 className="flex items-center gap-1.5 text-sm font-black text-ink-max">
             {t.worldBoss.rulesTitle}
           </h4>
           <ul className="list-disc list-inside space-y-1 font-semibold text-ink-body">
@@ -287,25 +287,25 @@ export default function WorldBossRaidWidget({
       )}
 
       {/* Shared Server HP Bar */}
-      <div className="bg-white border border-red-100 rounded-2xl p-4 mb-6 space-y-2 shadow-sm">
-        <div className="flex justify-between items-center text-xs font-bold">
-          <span className="text-stone-700 flex items-center gap-1.5">
-            <Flame className="w-4 h-4 text-red-500 animate-pulse" /> {t.worldBoss.serverHpLabel}
+      <div className="mb-6 space-y-2 rounded-md border border-stone-300 bg-[#fbfaf7] p-4 dark:border-stone-700 dark:bg-stone-950">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-bold">
+          <span className="flex items-center gap-1.5 text-ink-body">
+            <Flame className="w-4 h-4 text-alert" /> {t.worldBoss.serverHpLabel}
           </span>
-          <span className="text-red-600 font-extrabold">
+          <span className="font-mono tabular-nums text-alert-strong">
             {format(t.worldBoss.hpLine, { current: boss.current_hp.toLocaleString(), max: boss.max_hp.toLocaleString(), percent: hpPercent })}
           </span>
         </div>
-        <div className="w-full h-4 bg-red-100 rounded-full overflow-hidden border border-red-200 p-0.5">
+        <div className="h-3 w-full overflow-hidden rounded-xs border border-stone-300 bg-stone-100 dark:border-stone-700 dark:bg-stone-900">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${hpPercent}%` }}
-            className="h-full bg-gradient-to-r from-red-600 via-amber-500 to-red-500 rounded-full transition-all duration-700 shadow-inner"
+            className="h-full bg-rose-600 transition-all duration-700 dark:bg-rose-500"
           />
         </div>
       </div>
 
-      <div className="mt-5 rounded-[28px] border-2 border-amber-300 bg-white p-3 sm:p-4 shadow-xl flex-1 min-h-0 overflow-hidden">
+      <div className="min-h-0 flex-1 overflow-hidden rounded-md border border-stone-300 bg-white p-3 sm:p-4 dark:border-stone-700 dark:bg-stone-900">
         <AnimatePresence mode="wait">
           {!inCombat ? (
             <motion.div
@@ -316,55 +316,54 @@ export default function WorldBossRaidWidget({
               className="h-full min-h-0 overflow-y-auto pr-1"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white border border-orange-100 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+                <div className={`${panel} flex flex-col justify-between p-4`}>
                   <div>
-                    <h4 className="text-xs font-black uppercase text-orange-600 mb-3 flex items-center gap-1.5">
+                    <h4 className="mb-3 flex items-center gap-1.5 text-xs font-black uppercase text-ink-soft">
                       {t.worldBoss.gearTitle}
                     </h4>
-                    <div className="flex items-center gap-4 bg-gradient-to-br from-orange-50 to-white p-3 rounded-xl border border-orange-100">
+                    <div className="flex items-center gap-4 rounded-md border border-stone-300 bg-[#fbfaf7] p-3 dark:border-stone-700 dark:bg-stone-950">
                       <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
                       <div>
-                        <span className="text-xs font-bold text-stone-900 block">{t.worldBoss.heroPower}</span>
-                        <span className="text-[11px] text-stone-500">{t.worldBoss.levelPrefix}<strong className="text-orange-600">{format(t.worldBoss.levelValue, { level: userLevel })}</strong></span>
-                        <p className="text-[10px] text-brand-600 mt-1">
+                        <span className="block text-xs font-bold text-ink-max">{t.worldBoss.heroPower}</span>
+                        <span className="text-[11px] text-ink-muted">{t.worldBoss.levelPrefix}<strong className="font-mono tabular-nums text-ink-max">{format(t.worldBoss.levelValue, { level: userLevel })}</strong></span>
+                        <p className="mt-1 text-[10px] text-ink-soft">
                           {t.worldBoss.damagePerAnswer}
                         </p>
                       </div>
                     </div>
                     <div className="mt-4 grid grid-cols-2 gap-2">
-                      <div className="rounded-xl border border-amber-200 bg-amber-50/70 px-3 py-2.5">
-                        <span className="text-[10px] font-black uppercase text-amber-700 block">{t.worldBoss.raidQuestionCount}</span>
-                        <span className="text-base font-black text-stone-900">{format(t.worldBoss.questionCount, { count: boss.questions.length })}</span>
+                      <div className="rounded-sm border border-stone-300 px-3 py-2.5 dark:border-stone-700">
+                        <span className="block text-[10px] font-black uppercase text-ink-muted">{t.worldBoss.raidQuestionCount}</span>
+                        <span className="text-base font-black text-ink-max">{format(t.worldBoss.questionCount, { count: boss.questions.length })}</span>
                       </div>
-                      <div className="rounded-xl border border-brand-200 bg-brand-50/70 px-3 py-2.5">
-                        <span className="text-[10px] font-black uppercase text-brand-700 block">{t.worldBoss.maxDamagePerQuestion}</span>
-                        <span className="text-base font-black text-stone-900">~7,000</span>
+                      <div className="rounded-sm border border-stone-300 px-3 py-2.5 dark:border-stone-700">
+                        <span className="block text-[10px] font-black uppercase text-ink-muted">{t.worldBoss.maxDamagePerQuestion}</span>
+                        <span className="font-mono text-base font-medium tabular-nums text-alert-strong">{DAMAGE_PER_CORRECT.toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white border border-red-100 rounded-2xl p-4 shadow-sm">
-                  <h4 className="text-xs font-black uppercase text-orange-600 mb-3 flex items-center justify-between">
-                    <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-orange-500" /> {t.worldBoss.leaderboardTitle}</span>
-                    <button onClick={fetchBossData} className="text-stone-400 hover:text-red-500" title={t.worldBoss.refreshTitle}><RefreshCw className="w-3.5 h-3.5" /></button>
+                <div className={`${panel} p-4`}>
+                  <h4 className="mb-3 flex items-center justify-between border-b border-stone-300 pb-2 text-xs font-black uppercase text-ink-soft dark:border-stone-700">
+                    <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-ink-muted" /> {t.worldBoss.leaderboardTitle}</span>
+                    <button onClick={fetchBossData} className="text-ink-faint hover:text-accent-strong" title={t.worldBoss.refreshTitle}><RefreshCw className="w-3.5 h-3.5" /></button>
                   </h4>
 
-                  <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+                  <div className="max-h-56 divide-y divide-stone-200 overflow-y-auto pr-1 dark:divide-stone-800">
                     {leaderboard.map((item) => (
-                      <div key={item.rank} className="flex items-center justify-between bg-gradient-to-r from-white to-red-50 px-3 py-2 rounded-xl text-xs border border-red-100">
+                      <div key={item.rank} className="flex items-center justify-between py-2 text-xs">
                         <div className="flex items-center gap-2">
-                          <span className={`w-5 h-5 rounded-full flex items-center justify-center font-black text-[10px] ${
-                            item.rank === 1 ? "bg-amber-400 text-amber-950" :
-                            item.rank === 2 ? "bg-stone-300 text-stone-900" :
-                            item.rank === 3 ? "bg-orange-500 text-white" :
-                            "bg-red-100 text-red-500"
+                          <span className={`flex h-5 w-5 items-center justify-center rounded-xs font-mono text-[10px] font-bold tabular-nums ${
+                            item.rank <= 3
+                              ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
+                              : "border border-stone-300 text-ink-muted dark:border-stone-700"
                           }`}>
                             {item.rank}
                           </span>
-                          <span className="font-bold text-stone-800">{item.name}</span>
+                          <span className="font-bold text-ink">{item.name}</span>
                         </div>
-                        <span className="font-extrabold text-red-500">{format(t.worldBoss.damageValue, { value: item.totalDamage.toLocaleString() })}</span>
+                        <span className="font-mono font-medium tabular-nums text-alert-strong">{format(t.worldBoss.damageValue, { value: item.totalDamage.toLocaleString() })}</span>
                       </div>
                     ))}
                   </div>
@@ -377,19 +376,16 @@ export default function WorldBossRaidWidget({
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
-              className="bg-gradient-to-b from-white via-amber-50/70 to-orange-50 border-2 border-amber-300 rounded-3xl p-5 sm:p-6 max-w-2xl w-full h-full mx-auto text-stone-900 shadow-[0_22px_60px_rgba(245,158,11,0.16)] relative overflow-hidden flex flex-col"
+              className="relative mx-auto flex h-full w-full max-w-2xl flex-col overflow-hidden rounded-md border border-stone-800 bg-stone-950 p-5 text-stone-100 sm:p-6"
             >
-              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-amber-400 via-orange-400 to-red-400" />
-              <div className="absolute -top-10 right-0 h-36 w-36 rounded-full bg-orange-200/35 blur-3xl pointer-events-none" />
-
               {/* Header bar */}
-              <div className="relative z-10 flex items-center justify-between border-b border-amber-100 pb-3 mb-4">
-                <span className="text-xs font-black tracking-wider text-orange-700 bg-white border border-orange-200 px-3 py-1 rounded-full shadow-sm">
+              <div className="relative z-10 mb-4 flex items-center justify-between border-b border-white/15 pb-3">
+                <span className="font-mono text-xs font-medium tabular-nums text-stone-300">
                   {format(t.worldBoss.arenaTitle, { current: qIndex + 1, total: boss.questions.length })}
                 </span>
                 <button
                   onClick={() => setInCombat(false)}
-                  className="text-stone-500 hover:text-stone-900 text-xs font-bold bg-stone-100 hover:bg-stone-200 px-2.5 py-1 rounded-lg transition-colors border border-stone-200"
+                  className="rounded-sm border border-white/15 px-2.5 py-1 text-xs font-bold text-stone-300 transition-colors hover:border-white/40 hover:text-white"
                 >
                   {t.worldBoss.exit}
                 </button>
@@ -398,7 +394,7 @@ export default function WorldBossRaidWidget({
               {!combatFinished ? (
                 <div className="flex-1 min-h-0 overflow-y-auto pr-1">
                   {/* VS ARENA HEADER: HERO VS 3D WALL STREET BULL */}
-                  <div className="bg-gradient-to-r from-amber-50 via-white to-orange-50 border border-amber-200 rounded-2xl p-3 sm:p-4 mb-4 relative overflow-hidden shadow-sm">
+                  <div className="relative mb-4 overflow-hidden rounded-md border border-white/10 bg-stone-900 p-3 sm:p-4">
                     <div className="grid grid-cols-3 items-center gap-2">
                       {/* Left: Hero Warrior */}
                       <motion.div
@@ -408,21 +404,21 @@ export default function WorldBossRaidWidget({
                       >
                         <div className="relative">
                           <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
-                          <span className="absolute -bottom-1 -right-1 text-[9px] font-black bg-brand-500 text-white px-1.5 py-0.5 rounded-full shadow-xs">
+                          <span className="absolute -bottom-1 -right-1 rounded-xs border border-white/15 bg-stone-950 px-1.5 py-0.5 font-mono text-[9px] font-medium tabular-nums text-white">
                             {format(t.worldBoss.levelShort, { level: userLevel })}
                           </span>
                         </div>
-                        <span className="text-[11px] font-extrabold text-stone-800 mt-1 truncate max-w-full">{t.worldBoss.heroName}</span>
+                        <span className="mt-1 max-w-full truncate text-[11px] font-extrabold text-stone-200">{t.worldBoss.heroName}</span>
                         {/* Hero HP Bar */}
-                        <div className="w-full bg-brand-100 h-2 rounded-full overflow-hidden mt-1 border border-brand-200">
-                          <div className="bg-gradient-to-r from-brand-500 to-brand-400 h-full transition-all duration-300" style={{ width: `${heroHp}%` }} />
+                        <div className="mt-1 h-2 w-full overflow-hidden rounded-xs border border-white/15 bg-stone-950">
+                          <div className="h-full bg-brand-500 transition-all duration-300" style={{ width: `${heroHp}%` }} />
                         </div>
-                        <span className="text-[9px] font-bold text-brand-400 mt-0.5">{format(t.worldBoss.heroHp, { hp: heroHp })}</span>
+                        <span className="mt-0.5 font-mono text-[9px] font-medium tabular-nums text-stone-400">{format(t.worldBoss.heroHp, { hp: heroHp })}</span>
                       </motion.div>
 
                       {/* Center: VS & Damage Pop-up */}
-                      <div className="flex flex-col items-center justify-center text-center relative">
-                        <span className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-red-500 text-white font-black text-sm flex items-center justify-center shadow-lg border border-amber-200 animate-pulse">
+                      <div className="relative flex flex-col items-center justify-center text-center">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-sm border border-white/15 text-sm font-black text-stone-300">
                           {t.worldBoss.vs}
                         </span>
                         {lastDamageText && (
@@ -430,12 +426,12 @@ export default function WorldBossRaidWidget({
                             initial={{ opacity: 0, scale: 0.5, y: 10 }}
                             animate={{ opacity: 1, scale: 1.2, y: -10 }}
                             exit={{ opacity: 0 }}
-                            className="absolute -top-3 font-black text-xs sm:text-sm text-red-600 bg-white border border-red-200 px-2.5 py-1 rounded-full shadow-xl whitespace-nowrap z-20"
+                            className="absolute -top-3 z-20 whitespace-nowrap rounded-sm border border-rose-500/60 bg-stone-950 px-2.5 py-1 font-mono text-xs font-bold tabular-nums text-rose-400 sm:text-sm"
                           >
                             {lastDamageText}
                           </motion.span>
                         )}
-                        <span className="text-[9px] font-bold text-orange-600 mt-1">{format(t.worldBoss.sessionDamage, { value: sessionDamage.toLocaleString() })}</span>
+                        <span className="mt-1 font-mono text-[9px] font-medium tabular-nums text-stone-400">{format(t.worldBoss.sessionDamage, { value: sessionDamage.toLocaleString() })}</span>
                       </div>
 
                       {/* Right: 3D Wall Street Bull Boss */}
@@ -446,19 +442,19 @@ export default function WorldBossRaidWidget({
                       >
                         <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0">
                           <Image
-                            src="/boss-wallstreet-bull.png"
+                            src="/boss-server-outage.svg"
                             alt={t.worldBoss.bossAlt}
                             width={80}
                             height={80}
-                            className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
+                            className="w-full h-full object-contain"
                           />
                         </div>
-                        <span className="text-[11px] font-extrabold text-orange-700 mt-0.5 truncate max-w-full">{t.worldBoss.bossName}</span>
+                        <span className="mt-0.5 max-w-full truncate text-[11px] font-extrabold text-stone-200">{t.worldBoss.bossName}</span>
                         {/* Boss HP Bar */}
-                        <div className="w-full bg-red-100 h-2 rounded-full overflow-hidden mt-1 border border-red-200">
-                          <div className="bg-gradient-to-r from-red-600 via-amber-500 to-red-500 h-full transition-all duration-500" style={{ width: `${hpPercent}%` }} />
+                        <div className="mt-1 h-2 w-full overflow-hidden rounded-xs border border-white/15 bg-stone-950">
+                          <div className="h-full bg-rose-600 transition-all duration-500" style={{ width: `${hpPercent}%` }} />
                         </div>
-                        <span className="text-[9px] font-bold text-red-400 mt-0.5">{format(t.worldBoss.bossHpPercent, { percent: hpPercent })}</span>
+                        <span className="mt-0.5 font-mono text-[9px] font-medium tabular-nums text-rose-400">{format(t.worldBoss.bossHpPercent, { percent: hpPercent })}</span>
                       </motion.div>
                     </div>
                   </div>
@@ -469,28 +465,28 @@ export default function WorldBossRaidWidget({
                       dưới lại vẽ ra một màn hình trắng im lặng. Nói thẳng ra
                       vẫn hơn. */}
                   {!boss.questions[qIndex] && (
-                    <p className="mb-4 rounded-2xl border border-amber-200 bg-white p-4 text-sm font-bold leading-relaxed text-stone-900 shadow-sm">
+                    <p className="mb-4 rounded-md border border-white/10 bg-stone-900 p-4 text-sm font-bold leading-relaxed text-stone-100">
                       {t.worldBoss.noQuestions}
                     </p>
                   )}
 
                   {/* Question Prompt */}
                   {boss.questions[qIndex] && (
-                  <h3 className="text-sm font-bold bg-white p-4 rounded-2xl border border-amber-200 mb-4 leading-relaxed text-stone-900 shadow-sm">
+                  <h3 className="mb-4 rounded-md border border-white/10 bg-stone-900 p-4 text-sm font-bold leading-relaxed text-stone-100">
                     {boss.questions[qIndex]?.prompt}
                   </h3>
                   )}
 
                   {/* Options */}
-                  <div className="space-y-2.5">
+                  <div className="space-y-2">
                     {boss.questions[qIndex]?.options.map((opt, oIdx) => {
                       const isSelected = selectedOpt === oIdx;
                       const isCorrect = oIdx === boss.questions[qIndex].correct;
-                      let bg = "bg-white border-stone-200 hover:border-amber-400 hover:bg-amber-50/60 text-stone-700";
+                      let bg = "border-white/15 bg-stone-900 text-stone-200 hover:border-brand-400";
                       if (selectedOpt !== null) {
-                        if (isSelected && isCorrect) bg = "bg-brand-50 border-brand-400 text-brand-700 font-bold shadow-sm";
-                        else if (isSelected && !isCorrect) bg = "bg-red-50 border-red-400 text-red-700 font-bold shadow-sm";
-                        else if (isCorrect) bg = "bg-brand-50/70 border-brand-200 text-brand-700";
+                        if (isSelected && isCorrect) bg = "border-brand-500 bg-brand-950/40 text-brand-300 font-bold";
+                        else if (isSelected && !isCorrect) bg = "border-rose-500 bg-rose-950/40 text-rose-300 font-bold";
+                        else if (isCorrect) bg = "border-brand-700 bg-stone-900 text-brand-300";
                       }
 
                       return (
@@ -498,11 +494,11 @@ export default function WorldBossRaidWidget({
                           key={oIdx}
                           disabled={selectedOpt !== null}
                           onClick={() => handleAnswerSelect(oIdx)}
-                          className={`w-full text-left text-xs sm:text-sm font-semibold p-3.5 rounded-xl border-2 transition-all flex items-center justify-between gap-2 shadow-sm ${bg}`}
+                          className={`flex w-full items-center justify-between gap-2 rounded-sm border p-3.5 text-left text-xs font-semibold transition-colors sm:text-sm ${bg}`}
                         >
                           <span>{opt}</span>
-                          {selectedOpt !== null && isCorrect && <span className="text-brand-400 font-bold">✓</span>}
-                          {selectedOpt !== null && isSelected && !isCorrect && <span className="text-red-400 font-bold">✕</span>}
+                          {selectedOpt !== null && isCorrect && <span className="font-bold text-brand-400">✓</span>}
+                          {selectedOpt !== null && isSelected && !isCorrect && <span className="font-bold text-rose-400">✕</span>}
                         </button>
                       );
                     })}
@@ -510,16 +506,16 @@ export default function WorldBossRaidWidget({
                 </div>
               ) : (
                 <div className="text-center py-6 space-y-4">
-                  <Trophy className="w-16 h-16 text-amber-400 mx-auto animate-bounce" />
-                  <h3 className="text-2xl font-black text-orange-600">{t.worldBoss.doneTitle}</h3>
-                  <p className="text-sm text-stone-600">
+                  <Trophy className="mx-auto h-14 w-14 text-stone-300" strokeWidth={1.5} />
+                  <h3 className="text-2xl font-black text-white">{t.worldBoss.doneTitle}</h3>
+                  <p className="text-sm text-stone-300">
                     {t.worldBoss.donePart1}
-                    <strong className="text-orange-600 text-base">{format(t.worldBoss.doneDamage, { value: sessionDamage.toLocaleString() })}</strong>
+                    <strong className="font-mono text-base tabular-nums text-rose-400">{format(t.worldBoss.doneDamage, { value: sessionDamage.toLocaleString() })}</strong>
                     {t.worldBoss.donePart2}
                   </p>
                   <button
                     onClick={() => setInCombat(false)}
-                    className="w-full bg-gradient-to-r from-amber-500 to-red-600 text-white font-black py-3.5 rounded-xl hover:brightness-110 transition-all shadow-lg"
+                    className="w-full rounded-sm bg-white px-4 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-brand-300"
                   >
                     {t.worldBoss.closeAndSeeBoard}
                   </button>

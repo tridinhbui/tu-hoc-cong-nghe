@@ -72,18 +72,18 @@ export default function LearningPathSummary({
             thước đó nó cũng nặng ngang tiêu đề, nên mắt dừng ở màu trước rồi
             mới đọc chữ. Nét 16px giữ nguyên chức năng phân biệt hai hàng (xanh
             / hổ phách) mà không tranh phần với dòng chữ nó đang chú thích. */}
-        <Compass className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+        <Compass className="mt-0.5 h-4 w-4 shrink-0 text-ink-muted" />
 
         <div className="min-w-0 flex-1">
           {/* Nhãn mào lùi về màu trung tính và bỏ font-black: hai hàng này
               trước đây có tới ba mức nhấn (nhãn mào đậm màu, tiêu đề đậm, ô
               biểu tượng đặc màu) nên không mức nào còn nhấn được gì. Giữ đúng
               một: tiêu đề. */}
-          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
+          <p className="eyebrow text-ink-faint">
             {p.summaryEyebrow}
           </p>
 
-          <p className="mt-0.5 text-[17px] font-black tracking-tight text-ink">{trackName}</p>
+          <p className="mt-0.5 text-[17px] font-black tracking-tight text-ink-max">{trackName}</p>
 
           {/* Phần gấp được. `grid-rows-[0fr]` → `[1fr]` chứ không phải max-height:
               chiều cao thật do nội dung quyết định, nên không phải đoán một con
@@ -121,7 +121,7 @@ export default function LearningPathSummary({
 
               <Link
                 href="/lo-trinh"
-                className="mt-2.5 inline-block text-xs font-bold text-accent-strong hover:underline"
+                className="mt-2.5 inline-block text-xs font-bold text-accent-strong underline-offset-4 hover:underline"
               >
                 {p.summaryFull}
               </Link>
@@ -135,7 +135,7 @@ export default function LearningPathSummary({
           aria-expanded={!collapsed}
           title={collapsed ? p.cardExpand : p.cardCollapse}
           aria-label={collapsed ? p.cardExpand : p.cardCollapse}
-          className="-mr-1 -mt-1 shrink-0 cursor-pointer rounded-lg p-1.5 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700 dark:text-stone-500 dark:hover:bg-stone-800 dark:hover:text-stone-200"
+          className="-mr-1 -mt-1 shrink-0 cursor-pointer rounded-sm p-1.5 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700 dark:text-stone-500 dark:hover:bg-stone-800 dark:hover:text-stone-200"
         >
           <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${collapsed ? "-rotate-90" : ""}`} />
         </button>

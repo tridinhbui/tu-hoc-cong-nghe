@@ -25,8 +25,52 @@ const nextConfig: NextConfig = {
       { source: "/bai-hoc/credit-debit-phan-1", destination: "/bai-hoc/but-toan-ghi-so-kep-hai-ve", permanent: true },
       { source: "/bai-hoc/time-value-of-money", destination: "/bai-hoc/gia-tri-thoi-gian-cua-tien", permanent: true },
       { source: "/bai-hoc/interest-coverage", destination: "/bai-hoc/interest-coverage-chi-so", permanent: true },
-      { source: "/bai-hoc/fair-value", destination: "/bai-hoc/market-fair-value", permanent: true },
+      { source: "/bai-hoc/fair-value", destination: "/bai-hoc/chi-phi-moi-request-co-hop-ly", permanent: true },
       { source: "/bai-hoc/free-cash-flow", destination: "/bai-hoc/fcff-la-gi", permanent: true },
+      { source: "/bai-hoc/du-an-phan-tich-du-lieu-tai-chinh-bang-ai", destination: "/bai-hoc/du-an-phan-tich-du-lieu-kinh-doanh-bang-ai", permanent: true },
+      { source: "/bai-hoc/ir-guidance-va-ky-vong-thi-truong", destination: "/bai-hoc/lo-trinh-cong-bo-va-moc-thoi-gian", permanent: true },
+      { source: "/bai-hoc/thue-thu-nhap-doanh-nghiep-cach-tinh", destination: "/bai-hoc/nghi-dinh-13-du-lieu-ca-nhan-la-gi", permanent: true },
+      { source: "/bai-hoc/thue-gtgt-va-thue-nha-thau", destination: "/bai-hoc/su-dong-y-va-quyen-chu-the-du-lieu", permanent: true },
+      { source: "/bai-hoc/thue-hoan-lai-deferred-tax", destination: "/bai-hoc/danh-gia-tac-dong-xu-ly-du-lieu", permanent: true },
+      { source: "/bai-hoc/chi-phi-duoc-tru-va-khong-duoc-tru", destination: "/bai-hoc/luu-tru-du-lieu-trong-nuoc", permanent: true },
+      { source: "/bai-hoc/uu-dai-thue-va-chuyen-gia", destination: "/bai-hoc/chuyen-du-lieu-ra-nuoc-ngoai", permanent: true },
+      { source: "/bai-hoc/quyet-toan-va-thanh-tra-thue", destination: "/bai-hoc/kiem-tra-xu-phat-va-ho-so-du-lieu", permanent: true },
+      { source: "/bai-hoc/lai-suat-thuc-sau-lam-phat", destination: "/bai-hoc/tap-tin-thu-muc-va-quyen-truy-cap", permanent: true },
+      { source: "/bai-hoc/phi-ngan-hang-va-cach-khong-mat-oan", destination: "/bai-hoc/ssh-dang-nhap-bang-khoa", permanent: true },
+      { source: "/bai-hoc/ngan-hang-so-va-vi-dien-tu", destination: "/bai-hoc/shell-script-gom-viec-lap-lai", permanent: true },
+      { source: "/bai-hoc/phan-bo-chi-phi-va-loi-nhuan-bo-phan", destination: "/bai-hoc/phan-bo-chi-phi-nen-tang-dung-chung", permanent: true },
+      { source: "/bai-hoc/discontinued-operations", destination: "/bai-hoc/mot-lan-toi-uu-lon", permanent: true },
+      { source: "/bai-hoc/danh-gia-deal-dau-tu", destination: "/bai-hoc/tu-xay-hay-mua-san", permanent: true },
+      { source: "/bai-hoc/commodity-phan-2", destination: "/bai-hoc/tai-nguyen-tinh-toan-khan-hiem", permanent: true },
+      { source: "/bai-hoc/market-fair-value", destination: "/bai-hoc/chi-phi-moi-request-co-hop-ly", permanent: true },
+      { source: "/bai-hoc/dividend", destination: "/bai-hoc/slo-cam-ket-do-tin-cay", permanent: true },
+      { source: "/bai-hoc/post-ipo-dividend", destination: "/bai-hoc/sau-khi-ra-mat-co-nen-cong-bo-slo", permanent: true },
+      { source: "/bai-hoc/modern-portfolio-theory", destination: "/bai-hoc/nhieu-dich-vu-nho-hay-mot-dich-vu-lon", permanent: true },
+      { source: "/bai-hoc/esg-investing-screening-den-portfolio", destination: "/bai-hoc/tu-sang-loc-toi-uu-tien-sua-dich-vu", permanent: true },
+      // 22 slug mang tên tài chính từ trang cũ (TuHocTaiChinh) đổi sang tên theo
+      // nội dung công nghệ hiện tại của bài; link cũ vẫn tới đúng bài.
+      { source: "/bai-hoc/tai-chinh-khoi-nghiep-cap-table-vc-valuation", destination: "/bai-hoc/ky-thuat-giai-doan-dau-khoi-nghiep", permanent: true },
+      { source: "/bai-hoc/tai-chinh-xanh-tieu-chuan-esg-tin-chi-carbon", destination: "/bai-hoc/phan-mem-tiet-kiem-nang-luong", permanent: true },
+      { source: "/bai-hoc/vas-vs-ifrs-khac-biet-nen-tang", destination: "/bai-hoc/quy-uoc-ma-vi-sao-ca-doi-viet-giong-nhau", permanent: true },
+      { source: "/bai-hoc/lo-trinh-ifrs-tai-viet-nam", destination: "/bai-hoc/chuyen-kho-ma-sang-chuan-moi", permanent: true },
+      { source: "/bai-hoc/crypto-la-gi-ve-mat-tai-chinh", destination: "/bai-hoc/chuoi-khoi-la-gi-ve-mat-ky-thuat", permanent: true },
+      { source: "/bai-hoc/buoi-ra-soat-tai-chinh-hang-nam", destination: "/bai-hoc/buoi-ra-soat-hang-nam", permanent: true },
+      { source: "/bai-hoc/lo-trinh-nghe-phan-tich-tai-chinh", destination: "/bai-hoc/lo-trinh-nghe-tu-chuyen-vien-den-truong-nhom", permanent: true },
+      { source: "/bai-hoc/tu-duy-tai-chinh", destination: "/bai-hoc/cong-suc-tieu-di-va-tich-lai", permanent: true },
+      { source: "/bai-hoc/vingroup-cash-flow", destination: "/bai-hoc/doc-dong-tai-nguyen-he-thong-lon", permanent: true },
+      { source: "/bai-hoc/operating-leverage", destination: "/bai-hoc/chi-phi-co-dinh-va-theo-luong-dung", permanent: true },
+      { source: "/bai-hoc/income-affiliates-jv", destination: "/bai-hoc/chia-chi-phi-dich-vu-dung-chung", permanent: true },
+      { source: "/bai-hoc/maple-leaf-leverage", destination: "/bai-hoc/ty-le-no-ky-thuat", permanent: true },
+      { source: "/bai-hoc/tesla-cash-flow", destination: "/bai-hoc/dong-tai-nguyen-san-pham-tang-nhanh", permanent: true },
+      { source: "/bai-hoc/fpt-cfo-cash", destination: "/bai-hoc/doi-co-20-phan-tram-nang-luc-du", permanent: true },
+      { source: "/bai-hoc/10-cong-thuc-finance", destination: "/bai-hoc/10-cong-thuc-phong-van-ky-thuat", permanent: true },
+      { source: "/bai-hoc/bang-can-doi-ke-toan", destination: "/bai-hoc/he-thong-dang-co-gi", permanent: true },
+      { source: "/bai-hoc/chon-phuong-phap-dinh-gia", destination: "/bai-hoc/chon-cach-uoc-luong", permanent: true },
+      { source: "/bai-hoc/du-bao-tai-chinh-rolling-forecast", destination: "/bai-hoc/du-bao-lan", permanent: true },
+      { source: "/bai-hoc/cau-truc-von-toi-uu-cho-doanh-nghiep", destination: "/bai-hoc/cau-truc-so-huu-ha-tang", permanent: true },
+      { source: "/bai-hoc/tong-ket-vai-tro-cfo-hien-dai", destination: "/bai-hoc/tong-ket-ky-su-truong-van-hanh", permanent: true },
+      { source: "/bai-hoc/rui-ro-khi-hau-nhu-rui-ro-tai-chinh", destination: "/bai-hoc/rui-ro-vat-ly-va-dia-ly-ha-tang", permanent: true },
+      { source: "/bai-hoc/esg-trong-dinh-gia-doanh-nghiep", destination: "/bai-hoc/chi-so-phi-chuc-nang-khi-danh-gia-dich-vu", permanent: true },
     ];
   },
   images: {
@@ -135,16 +179,41 @@ const nextConfig: NextConfig = {
       "form-action 'self' https://accounts.google.com",
     ].join("; ");
 
+    // Bộ chạy mã của bài tập (public/runners/*.js) là Web Worker, và CSP của
+    // một worker lấy từ phản hồi của CHÍNH tệp worker, không từ trang. Worker
+    // cần hai thứ trang không bao giờ được có: `'unsafe-eval'` (chạy mã
+    // JavaScript người học gõ) và `'wasm-unsafe-eval'` + CDN của Pyodide (chạy
+    // Python). Nên nó có chính sách riêng, hẹp: không nguồn nào khác ngoài
+    // đúng thư mục /pyodide/ trên jsDelivr, không kết nối đi đâu khác.
+    //
+    // Hai chính sách không được cùng áp lên một tệp - CSP nhiều header là
+    // PHÉP GIAO, nên CSP chung ở dưới sẽ lại chặn eval. Vì thế luật chung loại
+    // trừ /runners/. Trên Cloudflare, tệp tĩnh được phục vụ thẳng từ assets và
+    // không đi qua đây; public/_headers mang cùng chính sách cho đường đó.
+    const runnerCsp = [
+      "default-src 'none'",
+      "script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net/pyodide/",
+      "connect-src https://cdn.jsdelivr.net/pyodide/",
+    ].join("; ");
+
+    const common = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+    ];
+
     return [
       {
-        source: "/:path*",
+        source: "/((?!runners/).*)",
         headers: [
           { key: "X-Frame-Options", value: "DENY" },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          ...common,
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
           { key: "Content-Security-Policy", value: csp },
         ],
+      },
+      {
+        source: "/runners/:path*",
+        headers: [...common, { key: "Content-Security-Policy", value: runnerCsp }],
       },
     ];
   },

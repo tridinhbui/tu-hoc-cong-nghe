@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Flag, PartyPopper } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Sys } from "@/components/ui/system";
 
 interface ReadingProgressProps {
   progress: number; // 0-100
@@ -112,106 +113,79 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
 
   return (
     <div data-progress-bar className={`flex flex-col items-center gap-3 transition-opacity duration-150 ${isNearMilestone ? "opacity-100" : "opacity-30"}`}>
-      {/* Collapsed state - small indicator */}
+      {/* Thu gọn: một thước nhỏ, vuông cạnh, phần đã đọc tô xanh. */}
       {isCollapsed ? (
         <button
           onClick={() => flashOpen()}
-          className="relative w-6 h-20 bg-stone-100 rounded-full overflow-hidden border-2 border-stone-300 hover:border-stone-400 transition-colors cursor-pointer group"
+          className="group flex cursor-pointer flex-col items-center gap-1.5"
           title={t.readingProgress.open}
         >
-          {/* Filled progress */}
-          <motion.div
-            className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-900 to-stone-700 rounded-full"
-            animate={{ height: `${progress}%` }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          />
-          {/* Small runner */}
-          <motion.div
-            className="absolute left-1/2 -translate-x-1/2 text-xs"
-            animate={{ bottom: `${Math.min(progress, 95)}%` }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          >
-            <span className="block w-2 h-2 rounded-full bg-brand-500 ring-2 ring-white shadow" aria-hidden />
-          </motion.div>
-          {/* Progress percentage */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-[10px] font-black text-white drop-shadow-md">{progress}%</span>
-          </div>
+          <span className="relative block h-20 w-2 overflow-hidden rounded-xs border border-stone-300 bg-white transition-colors group-hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900">
+            <motion.span
+              className="absolute inset-x-0 bottom-0 block bg-brand-600 dark:bg-brand-500"
+              animate={{ height: `${progress}%` }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            />
+          </span>
+          <Sys className="tabular-nums text-ink-muted">{progress}%</Sys>
         </button>
       ) : (
         <div
-          className="flex flex-col items-center gap-3 touch-none"
+          className="flex touch-none flex-col items-center gap-3"
           onPointerDown={handleDragStart}
           onPointerMove={handleDragMove}
           onPointerUp={handleDragEnd}
           onPointerCancel={handleDragEnd}
         >
-          {/* Finish flag at top */}
-          <div className={`text-stone-900 transition-opacity ${progress >= 100 ? "opacity-100" : "opacity-30"}`}>
-            <Flag className="w-5 h-5" strokeWidth={1.75} aria-hidden />
+          <div className={`text-ink-max transition-opacity ${progress >= 100 ? "opacity-100" : "opacity-30"}`}>
+            <Flag className="h-4 w-4" strokeWidth={1.75} aria-hidden />
           </div>
 
-          {/* Race track (vertical) */}
-          <div className="relative w-10 h-72 bg-stone-100 rounded-full overflow-hidden border-2 border-stone-300">
-            {/* Lane dashes down the middle, like a race track */}
-            <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-0.5 flex flex-col justify-between py-2">
-              {Array.from({ length: 10 }).map((_, i) => (
-                <div key={i} className="w-0.5 h-3 bg-white/70 mx-auto" />
-              ))}
-            </div>
-
-            {/* Filled progress (bottom to top, black) */}
+          {/* Thước dọc: rãnh 1px, vạch mốc mono bên phải. */}
+          <div className="relative h-72 w-2 rounded-xs border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
             <motion.div
-              className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-900 to-stone-700 rounded-full"
+              className="absolute inset-x-0 bottom-0 bg-brand-600 dark:bg-brand-500"
               animate={{ height: `${progress}%` }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             />
 
-            {/* Checkpoint flags */}
             {CHECKPOINTS.map((cp) => (
               <div
                 key={cp}
-                className="absolute left-0 right-0 flex items-center justify-center"
+                className="absolute left-0 flex items-center"
                 style={{ bottom: `${cp}%`, transform: "translateY(50%)" }}
               >
-                <div
-                  className={`w-full border-t-2 border-dashed ${
-                    progress >= cp ? "border-white/60" : "border-stone-400/60"
-                  }`}
-                />
                 <span
-                  className={`absolute -right-8 text-[10px] font-black ${
-                    progress >= cp ? "text-stone-900" : "text-stone-500"
-                  }`}
-                >
-                  {cp === 100 ? <Flag className="w-3 h-3" aria-hidden /> : `${cp}%`}
-                </span>
+                  aria-hidden
+                  className={`block h-px w-3 ${progress >= cp ? "bg-brand-600 dark:bg-brand-500" : "bg-stone-400 dark:bg-stone-600"}`}
+                />
+                <Sys className={`ml-1.5 tabular-nums ${progress >= cp ? "text-ink-max" : "text-ink-faint"}`}>
+                  {cp === 100 ? <Flag className="h-3 w-3" aria-hidden /> : `${cp}%`}
+                </Sys>
               </div>
             ))}
 
-            {/* Runner marker at current position */}
+            {/* Vị trí hiện tại: ô vuông mực */}
             <motion.div
-              className="absolute left-1/2 -translate-x-1/2 text-base"
+              className="absolute left-1/2 -translate-x-1/2"
               animate={{ bottom: `${Math.min(progress, 97)}%` }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <span className="block w-3 h-3 rounded-full bg-brand-500 ring-2 ring-white shadow" aria-hidden />
+              <span className="block h-2.5 w-2.5 rounded-[1px] border border-white bg-stone-950 dark:border-stone-950 dark:bg-stone-100" aria-hidden />
             </motion.div>
           </div>
 
-          {/* Progress text */}
           <div className="text-center">
-            <p className="text-2xl font-black text-stone-900">{progress}%</p>
-            <p className="text-[10px] text-stone-500 font-bold uppercase tracking-wide">{t.readingProgress.reading}</p>
+            <p className="font-mono text-xl font-medium tabular-nums text-ink-max">{progress}%</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.readingProgress.reading}</p>
           </div>
 
-          {/* Collapse button */}
           <button
             onClick={() => {
               clearHideTimer();
               setIsCollapsed(true);
             }}
-            className="text-[10px] text-stone-500 hover:text-stone-900 font-bold uppercase tracking-wide transition-colors"
+            className="text-[10px] font-bold uppercase tracking-[0.08em] text-ink-muted transition-colors hover:text-ink-max"
             title={t.readingProgress.closeTitle}
           >
             {t.readingProgress.close}
@@ -223,10 +197,10 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
       <AnimatePresence>
         {celebratingMilestone && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.5, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.5, y: -20 }}
-            className="fixed left-1/2 top-1/4 -translate-x-1/2 z-50 bg-stone-900 text-white rounded-xl px-6 py-4 text-center shadow-2xl"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="fixed left-1/2 top-1/4 z-50 -translate-x-1/2 rounded-md border border-stone-700 bg-stone-950 px-5 py-3.5 text-center text-white"
           >
             <div className="mb-1 flex justify-center text-brand-300">{celebratingMilestone === 100 ? <Flag className="w-6 h-6" strokeWidth={1.75} aria-hidden /> : <PartyPopper className="w-6 h-6" strokeWidth={1.75} aria-hidden />}</div>
             <p className="font-bold">
@@ -234,7 +208,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
                 ? t.readingProgress.finished
                 : format(t.readingProgress.congrats, { percent: celebratingMilestone })}
             </p>
-            <p className="text-xs text-stone-300 mt-1">{t.readingProgress.keepGoing}</p>
+            <p className="mt-1 text-xs text-stone-300">{t.readingProgress.keepGoing}</p>
           </motion.div>
         )}
       </AnimatePresence>

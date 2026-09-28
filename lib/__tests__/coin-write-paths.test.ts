@@ -62,11 +62,10 @@ describe("đường ghi coins", () => {
     expect(offenders, "dùng rpc('grant_coins') hoặc rpc('purchase_cosmetic')").toEqual([]);
   });
 
-  it("ba nguồn cấp coin đều gọi grant_coins với đúng tên nguồn", () => {
+  it("các nguồn cấp coin đều gọi grant_coins với đúng tên nguồn", () => {
     // Tên nguồn phải khớp mệnh đề CASE trong grant_coins; sai một chữ thì hàm
     // ném 'Nguồn không hợp lệ' và người chơi mất phần thưởng.
     const expected: Array<[string, string]> = [
-      ["components/FortuneWheelModal.tsx", "wheel"],
       ["components/TechRpgWorldMap.tsx", "building"],
       ["components/DashboardClient.tsx", "game"],
       ["components/WeeklyChallengeWidget.tsx", "challenge"],

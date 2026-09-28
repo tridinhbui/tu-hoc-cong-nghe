@@ -15,7 +15,7 @@ import type { Lesson } from "./lesson-types";
 export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
   {
     id: 1441,
-    slug: "vas-vs-ifrs-khac-biet-nen-tang",
+    slug: "quy-uoc-ma-vi-sao-ca-doi-viet-giong-nhau",
     title: "Chuẩn mực & Dữ liệu, Bài 1: Quy ước mã - vì sao cả đội viết giống nhau",
     subtitle: "Không phải để đẹp, mà để phần khác biệt trong diff là khác biệt thật",
     duration: "7 phút",
@@ -187,7 +187,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
   {
     id: 1442,
     interactiveType: "ethics-case",
-    slug: "lo-trinh-ifrs-tai-viet-nam",
+    slug: "chuyen-kho-ma-sang-chuan-moi",
     title: "Chuẩn mực & Dữ liệu, Bài 2: Chuyển kho mã sang một chuẩn mới",
     subtitle: "Một lượt định dạng, một tệp bỏ qua khi truy nguồn, và không trộn logic vào",
     duration: "7 phút",
@@ -358,7 +358,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
   },
   {
     id: 1443,
-    slug: "thue-thu-nhap-doanh-nghiep-cach-tinh",
+    slug: "nghi-dinh-13-du-lieu-ca-nhan-la-gi",
     title: "Chuẩn mực & Dữ liệu, Bài 3: Nghị định 13 - dữ liệu cá nhân là gì",
     subtitle: "Định nghĩa rộng hơn bạn tưởng, và nó quyết định phần lớn việc còn lại",
     duration: "8 phút",
@@ -530,7 +530,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
   },
   {
     id: 1444,
-    slug: "thue-gtgt-va-thue-nha-thau",
+    slug: "su-dong-y-va-quyen-chu-the-du-lieu",
     title: "Chuẩn mực & Dữ liệu, Bài 4: Sự đồng ý và quyền của chủ thể dữ liệu",
     subtitle: "Đồng ý phải rõ ràng và rút được, còn quyền thì phải thực hiện được bằng mã",
     duration: "8 phút",
@@ -702,7 +702,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
   },
   {
     id: 1445,
-    slug: "thue-hoan-lai-deferred-tax",
+    slug: "danh-gia-tac-dong-xu-ly-du-lieu",
     title: "Chuẩn mực & Dữ liệu, Bài 5: Đánh giá tác động xử lý dữ liệu",
     subtitle: "Hồ sơ phải lập trước khi xử lý, không phải sau khi có sự cố",
     duration: "8 phút",
@@ -874,7 +874,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
   },
   {
     id: 1446,
-    slug: "chi-phi-duoc-tru-va-khong-duoc-tru",
+    slug: "luu-tru-du-lieu-trong-nuoc",
     title: "Chuẩn mực & Dữ liệu, Bài 6: Lưu trữ dữ liệu trong nước",
     subtitle: "Yêu cầu áp cho một số nhóm dịch vụ, không phải cho mọi hệ thống",
     duration: "7 phút",
@@ -1046,7 +1046,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
   },
   {
     id: 1447,
-    slug: "uu-dai-thue-va-chuyen-gia",
+    slug: "chuyen-du-lieu-ra-nuoc-ngoai",
     title: "Chuẩn mực & Dữ liệu, Bài 7: Chuyển dữ liệu ra nước ngoài",
     subtitle: "Dùng một dịch vụ đám mây nước ngoài đã là chuyển dữ liệu ra ngoài",
     duration: "8 phút",
@@ -1130,7 +1130,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         question: "Cách rẻ nhất để giữ danh sách bên nhận luôn đúng là gì?",
         options: [
           "Biến việc thêm một bên nhận thành một bước trong quy trình rà soát mã",
-          "Rà soát lại toàn bộ danh sách một lần vào cuối mỗi năm tài chính",
+          "Rà soát lại toàn bộ danh sách một lần vào cuối mỗi năm dương lịch",
           "Giao cho bộ phận pháp chế tự theo dõi các công cụ mà đội đang dùng",
           "Yêu cầu mọi nhà cung cấp gửi báo cáo định kỳ về dữ liệu đã nhận",
         ],
@@ -1218,7 +1218,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
   },
   {
     id: 1448,
-    slug: "quyet-toan-va-thanh-tra-thue",
+    slug: "kiem-tra-xu-phat-va-ho-so-du-lieu",
     title: "Chuẩn mực & Dữ liệu, Bài 8: Kiểm tra, xử phạt và hồ sơ phải có",
     subtitle: "Thứ quyết định buổi kiểm tra không phải hệ thống tốt, mà là hồ sơ có sẵn",
     duration: "7 phút",
@@ -1302,7 +1302,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         question: "Cách bền nhất để hồ sơ không lạc hậu là gì?",
         options: [
           "Gắn việc cập nhật vào đúng chỗ thay đổi xảy ra trong quy trình phát triển",
-          "Đặt lịch rà soát lại toàn bộ hồ sơ vào tháng cuối của mỗi năm tài chính",
+          "Đặt lịch rà soát lại toàn bộ hồ sơ vào tháng cuối cùng của mỗi năm",
           "Giao cho bộ phận pháp chế chủ động hỏi đội kỹ thuật mỗi khi cần",
           "Lưu hồ sơ ngay trong cùng kho mã để mọi người đều nhìn thấy khi làm việc",
         ],

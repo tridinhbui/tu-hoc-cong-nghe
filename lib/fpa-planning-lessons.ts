@@ -1,13 +1,13 @@
 import type { Lesson } from "./lesson-types";
 
-// Chặng "Lập kế hoạch tài chính vận hành" (ids 1511-1516, professional track).
+// Chặng "Lập kế hoạch vận hành cho đội sản phẩm và kỹ thuật" (ids 1511-1516, professional track).
 //
 // Chặng 11 và các bài FP&A rời rạc đã dạy ngân sách là gì, rolling forecast
 // là gì, variance là gì - tức là các sản phẩm đầu ra của FP&A. Chặng này lo
 // phần trước đó: con số trong ngân sách từ đâu mà có.
 //
 // Đó là phần chiếm gần hết thời gian thật của một người làm FP&A và gần như
-// không xuất hiện trong tài liệu nhập môn: nối chỉ tiêu tài chính về yếu tố
+// không xuất hiện trong tài liệu nhập môn: nối doanh thu và chi phí về yếu tố
 // vận hành, lập kế hoạch nhân sự, dự báo thanh khoản ngắn hạn, dựng kịch bản,
 // phân bổ chi phí giữa các phòng ban, và đóng sổ hằng tháng.
 
@@ -29,7 +29,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
     openingOptions: [
       "Vì tỷ lệ tăng trưởng quá khứ không bao giờ lặp lại trong tương lai",
       "Vì con số đó không cho biết yếu tố nào gây lệch",
-      "Vì cách này vi phạm chuẩn mực kế toán về lập báo cáo",
+      "Vì các công cụ lập ngân sách không hỗ trợ cách làm này",
       "Vì nó luôn cho ra con số thấp hơn thực tế",
     ],
     correctOption: 1,
@@ -37,7 +37,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       "Cả hai cách đều ra một con số, và con số từ cách nhân tỷ lệ đôi khi còn gần thực tế hơn. Khác biệt nằm ở chỗ khác: khi doanh thu hụt 12%, kế hoạch dạng một cục chỉ nói rằng bạn hụt 12%. Kế hoạch tách thành số khách nhân giá trị đơn hàng bình quân nhân tần suất mua cho biết hụt vì ít khách hơn, hay vì khách mua ít hơn - và hai nguyên nhân đó dẫn tới hai hành động hoàn toàn khác nhau.",
     diagram: [
       { label: "Chọn 2-4 yếu tố vận hành thật", arrow: true },
-      { label: "Nối chỉ tiêu tài chính về chúng", arrow: true },
+      { label: "Nối doanh thu và chi phí về chúng", arrow: true },
       { label: "Giao mỗi yếu tố cho một người", arrow: true },
       { label: "Khi lệch: soi từng yếu tố" },
     ],
@@ -51,9 +51,9 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         question: "Yếu tố dẫn dắt tốt cần có đặc điểm gì?",
         options: [
           "Có người trong tổ chức thực sự tác động được lên nó và chịu trách nhiệm về nó",
-          "Được đo bằng đơn vị tiền tệ để có thể cộng thẳng vào các dòng của báo cáo tài chính",
+          "Được đo bằng đơn vị tiền tệ để có thể cộng thẳng vào các dòng của bảng ngân sách",
           "Có dữ liệu lịch sử ít nhất năm năm để mô hình dự báo đủ tin cậy",
-          "Do phòng tài chính tự tính ra mà không cần số liệu từ bộ phận vận hành",
+          "Do người lập kế hoạch tự tính ra mà không cần số liệu từ đội sản phẩm",
         ],
         correct: 0,
         explanation:
@@ -88,7 +88,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         options: [
           "Mô hình trở nên phức tạp tới mức không ai ngoài người dựng nó hiểu và kiểm tra được",
           "Kết quả dự báo sẽ luôn lạc quan hơn hẳn so với cách lập kế hoạch truyền thống trước đây",
-          "Phòng tài chính mất quyền kiểm soát ngân sách vào tay các bộ phận vận hành",
+          "Người lập kế hoạch mất quyền kiểm soát ngân sách vào tay các đội sản phẩm",
           "Số liệu vận hành thường không được kiểm toán nên không dùng trong kế hoạch được",
         ],
         correct: 0,
@@ -163,7 +163,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         title: "Ba câu hỏi sàng lọc một yếu tố dẫn dắt",
         subtitle: "Trượt câu nào cũng nghĩa là yếu tố đó chưa dùng được",
         concepts: [
-          { vi: "Có tác động được không", en: "Controllable", def: "Phải có người trong tổ chức thay đổi được nó. Tỷ giá và lãi suất là biến số quan trọng nhưng không phải cần gạt kế hoạch." },
+          { vi: "Có tác động được không", en: "Controllable", def: "Phải có người trong tổ chức thay đổi được nó. Bảng giá của nhà cung cấp đám mây hay mặt bằng lương thị trường là biến số quan trọng nhưng không phải cần gạt kế hoạch." },
           { vi: "Có đo được không", en: "Measurable", def: "Phải có hệ thống nào đó ghi lại số thực tế, nếu không thì cuối kỳ không đối chiếu được và kế hoạch trở thành một lời hứa." },
           { vi: "Có ai chịu trách nhiệm không", en: "Owned", def: "Một yếu tố không thuộc về ai sẽ không ai theo dõi. Đây là điều kiện tổ chức, không phải điều kiện kỹ thuật." },
         ],
@@ -561,7 +561,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         question: "Vì sao trong một kịch bản phải thay đổi nhiều biến cùng lúc?",
         options: [
           "Vì thay đổi một biến duy nhất mô tả một tình huống không xảy ra trong thực tế",
-          "Vì mô hình tài chính chỉ cho kết quả ổn định khi có tối thiểu ba biến thay đổi",
+          "Vì mô hình kế hoạch chỉ cho kết quả ổn định khi có tối thiểu ba biến thay đổi",
           "Vì thay đổi nhiều biến giúp kết quả cuối cùng ít biến động hơn so với chỉ đổi một biến",
           "Vì ban lãnh đạo thường yêu cầu xem tác động của toàn bộ các biến số trong mô hình",
         ],
@@ -573,7 +573,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         question: "Phân tích độ nhạy dùng để làm gì trước khi dựng kịch bản?",
         options: [
           "Để tìm ra vài biến có ảnh hưởng lớn nhất, rồi mới dựng kịch bản quanh chính chúng",
-          "Để kiểm tra xem mô hình tài chính có đang chứa lỗi công thức ở bất kỳ ô nào hay không",
+          "Để kiểm tra xem mô hình kế hoạch có đang chứa lỗi công thức ở bất kỳ ô nào hay không",
           "Để xác định giá trị chính xác nhất cho từng biến số trước khi đưa vào kế hoạch",
           "Để giảm số lượng biến trong mô hình xuống mức tối thiểu cần thiết cho tính toán",
         ],
@@ -587,7 +587,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
           "Giá trị của một biến mà tại đó quyết định nên đổi từ phương án này sang phương án khác",
           "Giá trị lớn nhất mà một biến số có thể đạt tới trong toàn bộ dữ liệu lịch sử đã có",
           "Mức lợi nhuận tối thiểu mà ban lãnh đạo đặt ra làm mục tiêu cho kỳ kế hoạch tới",
-          "Điểm mà tại đó hai kịch bản khác nhau cho ra cùng một kết quả tài chính giống hệt",
+          "Điểm mà tại đó hai kịch bản khác nhau cho ra cùng một con số lợi nhuận giống hệt",
         ],
         correct: 0,
         explanation:
@@ -597,7 +597,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         question: "Vì sao không nên trình bày quá nhiều kịch bản cùng lúc?",
         options: [
           "Vì người ra quyết định mất khả năng so sánh và thường quay về chỉ nhìn kịch bản giữa",
-          "Vì mỗi kịch bản được thêm vào làm tăng đáng kể thời gian tính toán của mô hình tài chính",
+          "Vì mỗi kịch bản được thêm vào làm tăng đáng kể thời gian tính toán của mô hình kế hoạch",
           "Vì các chuẩn mực trình bày báo cáo giới hạn số phương án được nêu trong một tài liệu",
           "Vì càng nhiều kịch bản thì xác suất kịch bản cơ sở xảy ra trong thực tế càng thấp đi",
         ],
@@ -670,7 +670,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       {
         type: "callout",
         label: "Kịch bản phải nhất quán bên trong",
-        text: "Lỗi phổ biến nhất là gọi một bản là kịch bản xấu nhưng chỉ hạ mỗi doanh thu xuống 20%, giữ nguyên biên lợi nhuận, số ngày thu tiền và chi phí vốn. Trong thực tế những đại lượng đó đi cùng nhau: doanh thu giảm thường kéo theo phải giảm giá, khách trả chậm hơn, và ngân hàng khắt khe hơn. Một kịch bản chỉ hữu ích khi nó mô tả một thế giới có thể tồn tại.",
+        text: "Lỗi phổ biến nhất là gọi một bản là kịch bản xấu nhưng chỉ hạ mỗi doanh thu xuống 20%, giữ nguyên biên lợi nhuận, số ngày thu tiền và tỷ lệ huỷ gói. Trong thực tế những đại lượng đó đi cùng nhau: doanh thu giảm thường kéo theo phải giảm giá, khách trả chậm hơn, và nhiều khách huỷ gói hơn. Một kịch bản chỉ hữu ích khi nó mô tả một thế giới có thể tồn tại.",
       },
       {
         type: "heading",
@@ -707,7 +707,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
   },
   {
     id: 1515,
-    slug: "phan-bo-chi-phi-va-loi-nhuan-bo-phan",
+    slug: "phan-bo-chi-phi-nen-tang-dung-chung",
     title: "Kế hoạch, Bài 5: Phân bổ chi phí - vì sao lợi nhuận từng bộ phận luôn gây tranh cãi",
     subtitle: "Chi phí trực tiếp, chi phí chung và tiêu thức phân bổ: khi con số quyết định ai bị cắt ngân sách",
     duration: "11 phút",
@@ -715,14 +715,14 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
     emoji: "⚖️",
     track: "professional",
     whyItMatters:
-      "Ngay khi doanh nghiệp bắt đầu đo lợi nhuận theo từng bộ phận hay từng dòng sản phẩm, phân bổ chi phí chung trở thành chủ đề chính trị nhất trong tài chính. Một tiêu thức phân bổ khác nhau có thể biến một dòng sản phẩm từ lãi thành lỗ mà không có gì trong hoạt động thực tế thay đổi.",
+      "Ngay khi doanh nghiệp bắt đầu đo lợi nhuận theo từng bộ phận hay từng dòng sản phẩm, phân bổ chi phí chung trở thành chủ đề chính trị nhất trong mọi kỳ lập kế hoạch. Một tiêu thức phân bổ khác nhau có thể biến một dòng sản phẩm từ lãi thành lỗ mà không có gì trong hoạt động thực tế thay đổi.",
     openingQuestion:
       "Vì sao việc chọn tiêu thức phân bổ chi phí chung lại quan trọng đến vậy?",
     openingOptions: [
       "Vì nó ảnh hưởng tới tổng lợi nhuận của toàn doanh nghiệp",
       "Vì tiêu thức khác nhau cho kết quả khác nhau",
-      "Vì chuẩn mực kế toán quy định bắt buộc một tiêu thức duy nhất",
-      "Vì cơ quan thuế yêu cầu doanh nghiệp giải trình cách phân bổ",
+      "Vì nhà cung cấp đám mây chỉ tính tiền theo một tiêu thức duy nhất",
+      "Vì hoá đơn hạ tầng phải được chia hết cho các đội mỗi tháng",
     ],
     correctOption: 1,
     explanation:
@@ -734,9 +734,9 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       { label: "Công khai tiêu thức cho mọi bộ phận" },
     ],
     realWorldExample: {
-      company: "Ngân hàng phân bổ chi phí công nghệ",
+      company: "Công ty phần mềm phân bổ chi phí nền tảng dùng chung",
       description:
-        "Chi phí trung tâm dữ liệu và hệ thống lõi được phân bổ cho các khối kinh doanh. Nếu phân bổ theo doanh thu, khối bán lẻ có doanh thu lớn sẽ gánh phần lớn chi phí. Nếu phân bổ theo số lượng giao dịch xử lý, kết quả đảo ngược đáng kể vì khối bán lẻ tuy nhiều giao dịch nhưng mỗi giao dịch rất nhỏ, trong khi khối doanh nghiệp dùng nhiều tài nguyên hệ thống cho các giao dịch phức tạp. Cùng một khoản chi phí, hai tiêu thức, hai bức tranh hiệu quả hoàn toàn khác nhau - và hai kết luận khác nhau về khối nào nên được đầu tư thêm.",
+        "Chi phí cụm máy chủ và nền tảng dữ liệu dùng chung được phân bổ cho các đội sản phẩm. Nếu phân bổ theo doanh thu, sản phẩm cho người dùng cá nhân có doanh thu lớn sẽ gánh phần lớn chi phí. Nếu phân bổ theo lượng tài nguyên tính toán thực dùng, kết quả đảo ngược đáng kể vì sản phẩm cá nhân tuy nhiều yêu cầu nhưng mỗi yêu cầu rất nhẹ, trong khi sản phẩm cho doanh nghiệp chạy nhiều tác vụ báo cáo nặng. Cùng một khoản chi phí, hai tiêu thức, hai bức tranh hiệu quả hoàn toàn khác nhau - và hai kết luận khác nhau về đội nào nên được đầu tư thêm.",
     },
     quiz: [
       {
@@ -755,7 +755,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         question: "Tiêu thức phân bổ tốt cần có đặc điểm gì?",
         options: [
           "Phản ánh được mức độ bộ phận đó thực sự sử dụng nguồn lực chung được phân bổ",
-          "Dễ tính toán nhất trong số các tiêu thức mà hệ thống kế toán hiện có thể cung cấp",
+          "Dễ tính toán nhất trong số các tiêu thức mà hệ thống giám sát chi phí có thể cung cấp",
           "Chia đều chi phí chung cho tất cả các bộ phận để bảo đảm tính công bằng",
           "Cho ra kết quả ổn định qua các kỳ để tiện so sánh giữa các năm với nhau",
         ],
@@ -767,9 +767,9 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         question: "Vì sao nên báo cáo lợi nhuận bộ phận cả trước và sau phân bổ chi phí chung?",
         options: [
           "Vì con số trước phân bổ đo phần bộ phận kiểm soát được, con số sau đo đóng góp toàn phần",
-          "Vì hai con số này được lập theo hai chuẩn mực kế toán khác nhau nên phải trình bày cả hai",
+          "Vì hai con số này được lấy từ hai hệ thống dữ liệu khác nhau nên phải trình bày cả hai",
           "Vì con số sau phân bổ luôn chính xác hơn nên con số trước chỉ mang tính tham khảo",
-          "Vì cơ quan thuế yêu cầu doanh nghiệp trình bày lợi nhuận theo cả hai cách tính toán",
+          "Vì ban lãnh đạo luôn yêu cầu trình bày lợi nhuận bộ phận theo cả hai cách tính toán",
         ],
         correct: 0,
         explanation:
@@ -792,12 +792,12 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       "question": "Vì sao nên công khai tiêu thức phân bổ cho các bộ phận thay vì chỉ gửi con số cuối cùng?",
       "options": [
         "Vì phần lớn tranh cãi đến từ chỗ không ai biết con số được tính ra sao",
-        "Vì chuẩn mực kế toán bắt buộc thuyết minh tiêu thức cho từng bộ phận",
+        "Vì công cụ quản lý chi phí đám mây bắt buộc ghi tiêu thức cho từng đội",
         "Vì công khai tiêu thức sẽ làm tổng chi phí chung được phân bổ giảm xuống",
         "Vì mỗi bộ phận có quyền chọn tiêu thức có lợi nhất cho chính mình"
       ],
       "correct": 0,
-      "explanation": "Người phụ trách một mảng phản đối con số phân bổ không phải vì con số to, mà vì họ không kiểm tra được nó đến từ đâu. Đưa tiêu thức ra thì tranh luận chuyển từ \"tôi không chịu\" sang \"số mét vuông này tính sai\" - loại tranh luận giải quyết được, và đôi khi phát hiện tiêu thức sai thật."
+      "explanation": "Người phụ trách một mảng phản đối con số phân bổ không phải vì con số to, mà vì họ không kiểm tra được nó đến từ đâu. Đưa tiêu thức ra thì tranh luận chuyển từ \"tôi không chịu\" sang \"số giờ máy này tính sai\" - loại tranh luận giải quyết được, và đôi khi phát hiện tiêu thức sai thật."
     }
     ],
     keyTakeaways: [

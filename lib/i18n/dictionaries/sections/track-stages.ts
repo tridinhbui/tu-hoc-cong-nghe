@@ -51,7 +51,7 @@ export const trackStagesVi = {
     },
     ai: {
       label: "AI trong sản phẩm",
-      subtitle: "Dùng ChatGPT/Claude để đọc mã, rà lỗi và viết tài liệu",
+      subtitle: "Dùng AI để viết mã, rồi xây hệ thống có LLM bên trong: API, RAG, agent, evals, bảo mật, vận hành",
     },
   },
   trackStages: {
@@ -229,6 +229,36 @@ export const trackStagesVi = {
           label: "Chặng 23",
           name: "AI Agent đơn giản hơn bạn nghĩ",
           parts: ["Vòng lặp và công cụ", "Dựng agent và đặt chốt an toàn"],
+        },
+        {
+          label: "Chặng 24",
+          name: "Công nghệ trong công việc đơn giản hơn bạn nghĩ",
+          parts: ["Bản đồ: phần mềm, đám mây và API", "Dữ liệu, chọn công cụ và bản đồ của phòng bạn"],
+        },
+        {
+          label: "Chặng 25",
+          name: "Dùng AI mỗi ngày ở chỗ làm",
+          parts: ["Hiểu AI và giao việc cho nó", "Nghiên cứu, kiểm chứng và dùng chung"],
+        },
+        {
+          label: "Chặng 26",
+          name: "Phân tích dữ liệu với AI đơn giản hơn bạn nghĩ",
+          parts: ["Dữ liệu sạch, câu hỏi đúng, công thức đúng", "Phân tích biến động và kể chuyện bằng số"],
+        },
+        {
+          label: "Chặng 27",
+          name: "Tự động hoá công việc đơn giản hơn bạn nghĩ",
+          parts: ["Workflow đầu tiên và khi nó hỏng", "Dự án: báo cáo tháng và dashboard tự làm mới"],
+        },
+        {
+          label: "Chặng 28",
+          name: "AI theo phòng ban: bán hàng, chăm sóc khách hàng, vận hành",
+          parts: ["Bán hàng và chăm sóc khách hàng", "Vận hành, tài liệu nội bộ và đo giá trị"],
+        },
+        {
+          label: "Chặng 29",
+          name: "Dùng AI an toàn ở nơi làm việc",
+          parts: ["Dữ liệu, deepfake và câu lệnh ẩn", "Người duyệt, chính sách và tài khoản"],
         },
       ],
     },
@@ -581,6 +611,36 @@ export const trackStagesVi = {
             "Bất cân xứng thông tin và biên lợi nhuận nhà cung cấp đám mây",
           ],
         },
+        {
+          label: "Chặng 44",
+          name: "Gọi LLM qua API: token, chi phí và độ tin cậy",
+          parts: ["Token, lời gọi và đầu ra có cấu trúc", "Chi phí, độ tin cậy và chọn mô hình"],
+        },
+        {
+          label: "Chặng 45",
+          name: "RAG: cho mô hình đọc tài liệu của bạn",
+          parts: ["Chia nhỏ, embedding và truy xuất", "Truy xuất tốt hơn, trả lời bám nguồn và đánh giá"],
+        },
+        {
+          label: "Chặng 46",
+          name: "Tool use, agent và MCP trong hệ thống thật",
+          parts: ["Gọi công cụ, vòng lặp agent và MCP", "Quyền tối thiểu, workflow hay agent, quan sát"],
+        },
+        {
+          label: "Chặng 47",
+          name: "Đánh giá hệ thống LLM (evals)",
+          parts: ["Bộ dữ liệu vàng và kiểm tất định", "LLM làm giám khảo, eval trong CI và sau ra mắt"],
+        },
+        {
+          label: "Chặng 48",
+          name: "Bảo mật và quản trị hệ thống LLM",
+          parts: ["Mô hình đe doạ, prompt injection và rò rỉ dữ liệu", "Đầu ra không tin cậy, phân quyền và quản trị"],
+        },
+        {
+          label: "Chặng 49",
+          name: "Pipeline dữ liệu và vận hành LLM",
+          parts: ["Pipeline, phiên bản, chi phí và giám sát", "Dự án: bot tài liệu nội bộ và agent CSKH lên production"],
+        },
       ],
     },
   },
@@ -615,7 +675,7 @@ export const trackStagesEn: typeof trackStagesVi = {
     },
     ai: {
       label: "AI in the product",
-      subtitle: "Using ChatGPT/Claude to read code, hunt bugs and write documentation",
+      subtitle: "Using AI to write code, then building systems with an LLM inside: APIs, RAG, agents, evals, security, operations",
     },
   },
   trackStages: {
@@ -805,6 +865,36 @@ export const trackStagesEn: typeof trackStagesVi = {
           label: "Stage 23",
           name: "AI agents are simpler than you think",
           parts: ["The loop and the tools", "Building the agent, and its safety catches"],
+        },
+        {
+          label: "Stage 24",
+          name: "Technology at work is simpler than you think",
+          parts: ["The map: software, cloud and APIs", "Data, choosing tools, and your team's map"],
+        },
+        {
+          label: "Stage 25",
+          name: "Using AI every day at work",
+          parts: ["Understanding AI and briefing it", "Research, verification and sharing"],
+        },
+        {
+          label: "Stage 26",
+          name: "Data analysis with AI is simpler than you think",
+          parts: ["Clean data, the right question, the right formula", "Variance analysis and telling the story with numbers"],
+        },
+        {
+          label: "Stage 27",
+          name: "Automating your work is simpler than you think",
+          parts: ["Your first workflow, and when it breaks", "Projects: the monthly report and a self-refreshing dashboard"],
+        },
+        {
+          label: "Stage 28",
+          name: "AI by department: sales, support and operations",
+          parts: ["Sales and customer support", "Operations, internal documents and measuring value"],
+        },
+        {
+          label: "Stage 29",
+          name: "Using AI safely at work",
+          parts: ["Data, deepfakes and hidden instructions", "Reviewers, policy and accounts"],
         },
       ],
     },
@@ -1169,6 +1259,36 @@ export const trackStagesEn: typeof trackStagesVi = {
             "Quotas, standby resources and cross-region failover infrastructure",
             "Information asymmetry and cloud-provider margins",
           ],
+        },
+        {
+          label: "Stage 44",
+          name: "Calling LLMs over an API: tokens, cost and reliability",
+          parts: ["Tokens, requests and structured output", "Cost, reliability and choosing a model"],
+        },
+        {
+          label: "Stage 45",
+          name: "RAG: letting the model read your documents",
+          parts: ["Chunking, embeddings and retrieval", "Better retrieval, grounded answers and evaluation"],
+        },
+        {
+          label: "Stage 46",
+          name: "Tool use, agents and MCP in real systems",
+          parts: ["Tool calling, the agent loop and MCP", "Least privilege, workflow vs agent, observability"],
+        },
+        {
+          label: "Stage 47",
+          name: "Evaluating LLM systems (evals)",
+          parts: ["Golden sets and deterministic checks", "LLM-as-judge, evals in CI and after launch"],
+        },
+        {
+          label: "Stage 48",
+          name: "Securing and governing LLM systems",
+          parts: ["Threat model, prompt injection and data leakage", "Untrusted output, access control and governance"],
+        },
+        {
+          label: "Stage 49",
+          name: "Data pipelines and running LLMs in production",
+          parts: ["Pipelines, versioning, cost and monitoring", "Projects: an internal docs bot and a support agent in production"],
         },
       ],
     },

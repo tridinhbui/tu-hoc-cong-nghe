@@ -2,8 +2,8 @@ import type { Lesson } from "./lesson-types";
 
 // Chặng "Công cụ phân tích dữ liệu" (ids 1491-1496, professional track).
 //
-// Chặng Excel (1431-1436) dừng ở SQL cơ bản, và dừng đúng chỗ: với một mô
-// hình định giá thì Excel vẫn là công cụ đúng. Nhưng công việc phân tích
+// Chặng Excel (1431-1436) dừng ở SQL cơ bản, và dừng đúng chỗ: với một bảng
+// ước tính làm một lần thì Excel vẫn là công cụ đúng. Nhưng công việc phân tích
 // thực tế thường bắt đầu ở chỗ Excel hết chịu nổi - vài trăm nghìn dòng
 // log giao dịch, dữ liệu phải làm lại mỗi tháng, hoặc một dashboard mà
 // mười người cùng xem. Chặng này là cây cầu sang phần đó.
@@ -43,9 +43,9 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       { label: "Cần người khác kiểm chứng lại: script" },
     ],
     realWorldExample: {
-      company: "Báo cáo dòng tiền hợp nhất hàng tháng",
+      company: "Báo cáo vận hành tổng hợp hàng tháng",
       description:
-        "Một bộ phận tài chính ghép số liệu từ bốn chi nhánh, mỗi nơi xuất một file với tên cột hơi khác nhau. Quy trình Excel mất khoảng bốn giờ mỗi tháng và đã hai lần ra sai số do dán nhầm vùng. Sau khi viết thành script, việc chạy còn vài phút - nhưng lợi ích lớn hơn nằm ở chỗ khác: mỗi bước biến đổi giờ nằm trong file code đọc được, nên khi kiểm toán hỏi một con số đến từ đâu, câu trả lời mất ba mươi giây thay vì phải dựng lại cả quy trình trong trí nhớ.",
+        "Một đội vận hành ghép số liệu từ bốn cụm máy chủ khu vực, mỗi nơi xuất một file với tên cột hơi khác nhau. Quy trình Excel mất khoảng bốn giờ mỗi tháng và đã hai lần ra sai số do dán nhầm vùng. Sau khi viết thành script, việc chạy còn vài phút - nhưng lợi ích lớn hơn nằm ở chỗ khác: mỗi bước biến đổi giờ nằm trong file code đọc được, nên khi có người hỏi một con số đến từ đâu, câu trả lời mất ba mươi giây thay vì phải dựng lại cả quy trình trong trí nhớ.",
     },
     quiz: [
       {
@@ -70,7 +70,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         ],
         correct: 0,
         explanation:
-          "Đây là lý do mô hình định giá vẫn sống trong Excel: người đọc cần bấm vào một ô và thấy ngay nó đến từ đâu. Một mô hình viết bằng code đúng hơn nhưng khó bảo vệ trước hội đồng đầu tư hơn.",
+          "Đây là lý do bảng ước tính chi phí dự án vẫn sống trong Excel: người đọc cần bấm vào một ô và thấy ngay nó đến từ đâu. Một mô hình viết bằng code đúng hơn nhưng khó giải thích với người duyệt không đọc code hơn.",
       },
       {
         question: "Một bảng ba trăm nghìn dòng, chỉ dùng đúng một lần để trả lời một câu hỏi. Nên dùng gì?",
@@ -94,7 +94,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Đây là giá trị bị đánh giá thấp nhất. Câu hỏi \"con số này đến từ đâu\" là câu hỏi kiểm toán và cấp trên hỏi thường xuyên nhất, và một quy trình thủ công gần như không trả lời được sau vài tháng.",
+          "Đây là giá trị bị đánh giá thấp nhất. Câu hỏi \"con số này đến từ đâu\" là câu hỏi người rà soát và cấp trên hỏi thường xuyên nhất, và một quy trình thủ công gần như không trả lời được sau vài tháng.",
       },
     
     {
@@ -111,7 +111,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
     ],
     keyTakeaways: [
       "Tính lặp lại, không phải số dòng, là dấu hiệu chính để chuyển sang code",
-      "Excel thắng khi cần nhìn thấy và sửa trực tiếp từng ô - lý do mô hình định giá vẫn nằm ở đó",
+      "Excel thắng khi cần nhìn thấy và sửa trực tiếp từng ô - lý do bảng ước tính chi phí vẫn nằm ở đó",
       "Script biến quy trình thành văn bản đọc được, nên trả lời được câu hỏi số này đến từ đâu",
       "Chi phí học công cụ mới chỉ hoàn vốn khi công việc còn lặp lại",
     ],
@@ -142,7 +142,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Chặng Excel dừng lại ở SQL cơ bản, và dừng đúng chỗ. Với một mô hình định giá, bảng tính vẫn là công cụ tốt nhất. Chặng này nói về phần công việc còn lại - phần mà bảng tính bắt đầu trở thành gánh nặng thay vì công cụ.",
+        text: "Chặng Excel dừng lại ở SQL cơ bản, và dừng đúng chỗ. Với một bảng ước tính chi phí làm một lần, bảng tính vẫn là công cụ tốt nhất. Chặng này nói về phần công việc còn lại - phần mà bảng tính bắt đầu trở thành gánh nặng thay vì công cụ.",
       },
       {
         type: "heading",
@@ -162,7 +162,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         type: "comparison",
         left: {
           label: "Excel mạnh khi",
-          text: "Bài toán làm một lần, cần nhìn thấy từng ô, cần người khác mở ra sửa trực tiếp, hoặc kết quả phải trình bày cho người không đọc code. Mô hình định giá là ví dụ điển hình.",
+          text: "Bài toán làm một lần, cần nhìn thấy từng ô, cần người khác mở ra sửa trực tiếp, hoặc kết quả phải trình bày cho người không đọc code. Bảng ước tính chi phí một dự án là ví dụ điển hình.",
         },
         right: {
           label: "Code mạnh khi",
@@ -382,7 +382,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         options: [
           "Vì phép tính giá trị trung bình đòi hỏi bộ dữ liệu phải đầy đủ toàn bộ mới thực hiện được",
           "Vì nó làm hẹp độ phân tán một cách giả tạo, khiến dữ liệu trông chắc chắn hơn thực tế",
-          "Vì giá trị trung bình luôn cao hơn giá trị trung vị trong hầu hết các bộ dữ liệu tài chính",
+          "Vì giá trị trung bình luôn cao hơn giá trị trung vị trong hầu hết các bộ dữ liệu vận hành",
           "Vì các phần mềm thống kê hiện đại đều đã loại bỏ hoàn toàn cách xử lý này khỏi thư viện",
         ],
         correct: 1,
@@ -411,7 +411,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Trong tài chính, ngoại lai thường là thứ đáng quan tâm nhất chứ không phải thứ cần loại. Một hợp đồng lớn bất thường có thể chính là câu chuyện, còn xóa nó đi là xóa mất phát hiện.",
+          "Trong dữ liệu kinh doanh và vận hành, ngoại lai thường là thứ đáng quan tâm nhất chứ không phải thứ cần loại. Một đơn hàng lớn bất thường hay một đợt lưu lượng tăng vọt có thể chính là câu chuyện, còn xóa nó đi là xóa mất phát hiện.",
       },
       {
         question: "Vì sao nên ghi lại các bước làm sạch thay vì sửa trực tiếp vào dữ liệu gốc?",
@@ -442,7 +442,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       "Hỏi vì sao thiếu trước khi quyết định xử lý thế nào - thiếu có hệ thống làm lệch kết luận",
       "Điền trung bình làm hẹp độ phân tán giả tạo, khiến bạn tự tin hơn mức đáng có",
       "Trùng do ghép sai là triệu chứng: xóa đi sẽ che mất lỗi thật",
-      "Ngoại lai trong tài chính thường là phát hiện, không phải rác",
+      "Ngoại lai trong dữ liệu kinh doanh thường là phát hiện, không phải rác",
       "Ghi lại các bước làm sạch, vì mỗi bước là một phán đoán có thể sai",
     ],
     practicePrompt: {
@@ -486,7 +486,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
           { vi: "Thiếu", en: "Missing", def: "Câu hỏi: thiếu ngẫu nhiên hay thiếu có hệ thống? Nếu nhóm nào đó thiếu nhiều hơn hẳn, bản thân điều đó đã là phát hiện." },
           { vi: "Trùng", en: "Duplicates", def: "Câu hỏi: trùng trong dữ liệu gốc, hay do phép ghép nhân bản ra? Hai nguyên nhân này cần hai cách xử lý hoàn toàn khác nhau." },
           { vi: "Sai kiểu", en: "Type mismatch", def: "Câu hỏi: cột này đang được hiểu là gì? Ngày thành chuỗi, số có dấu phân cách thành chuỗi - đều gây lỗi im lặng." },
-          { vi: "Ngoại lai", en: "Outliers", def: "Câu hỏi: lỗi nhập liệu hay giá trị thật? Trong tài chính, phần lớn là thật, và thường là phần đáng phân tích nhất." },
+          { vi: "Ngoại lai", en: "Outliers", def: "Câu hỏi: lỗi nhập liệu hay giá trị thật? Trong dữ liệu kinh doanh, phần lớn là thật, và thường là phần đáng phân tích nhất." },
         ],
       },
       {
@@ -738,9 +738,9 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       { label: "Có bộ lọc để tự đào sâu" },
     ],
     realWorldExample: {
-      company: "Dashboard công nợ của một phòng tài chính",
+      company: "Dashboard trực sự cố của một đội vận hành",
       description:
-        "Phiên bản đầu có mười bốn biểu đồ, hiển thị đủ mọi cách cắt lát dữ liệu công nợ, và gần như không ai mở sau tháng đầu. Phiên bản thứ hai chỉ còn ba khối: danh sách khách hàng quá hạn trên 90 ngày, xu hướng số ngày thu tiền bình quân, và các hóa đơn sắp đến hạn trong hai tuần tới. Ba khối này gắn trực tiếp với ba hành động mà bộ phận thu hồi công nợ phải làm mỗi tuần, và nó trở thành thứ được mở đầu tiên mỗi sáng thứ Hai.",
+        "Phiên bản đầu có mười bốn biểu đồ, hiển thị đủ mọi cách cắt lát dữ liệu cảnh báo, và gần như không ai mở sau tháng đầu. Phiên bản thứ hai chỉ còn ba khối: danh sách sự cố mở quá bảy ngày, xu hướng thời gian khắc phục bình quân, và các chứng chỉ bảo mật sắp hết hạn trong hai tuần tới. Ba khối này gắn trực tiếp với ba hành động mà đội trực phải làm mỗi tuần, và nó trở thành thứ được mở đầu tiên mỗi sáng thứ Hai.",
     },
     quiz: [
       {

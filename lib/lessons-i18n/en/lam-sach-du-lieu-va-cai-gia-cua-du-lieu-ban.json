@@ -36,7 +36,7 @@
       "options": [
         "Because computing a mean requires the data set to be completely free of gaps first",
         "Because it artificially narrows the dispersion, making the data look firmer than it is",
-        "Because the mean is higher than the median in most financial data sets anyway",
+        "Because the mean is higher than the median in most operational data sets anyway",
         "Because modern statistical packages have dropped this method from their libraries entirely"
       ],
       "explanation": "Every filled cell sits exactly at the centre, so the standard deviation falls. The confidence intervals you compute afterwards come out narrower than the truth, and you end up more confident than you have any right to be. The other options fail on the facts: a mean can be computed on whatever values are present, the mean-versus-median relationship depends on the skew of each particular data set, and mean imputation is still shipped in every mainstream statistical library precisely because it is sometimes defensible."
@@ -59,7 +59,7 @@
         "Replace it with the second-largest value in the column to preserve the ranking",
         "Check whether it is a data-entry error or a large transaction that genuinely happened"
       ],
-      "explanation": "In finance the outlier is usually the most interesting thing in the column rather than something to strip out. An unusually large contract may be the whole story, and deleting it deletes the finding. Log-scaling and capping at the second-largest value both make the chart look calmer without answering the only question that matters, which is whether the number is real."
+      "explanation": "In business and operational data the outlier is usually the most interesting thing in the column rather than something to strip out. An unusually large order or a sudden traffic spike may be the whole story, and deleting it deletes the finding. Log-scaling and capping at the second-largest value both make the chart look calmer without answering the only question that matters, which is whether the number is real."
     },
     {
       "question": "Why should you log the cleaning steps rather than editing the raw data directly?",
@@ -86,7 +86,7 @@
     "Ask why the data is missing before deciding how to treat it - systematic gaps bend the conclusion",
     "Mean imputation narrows dispersion artificially, leaving you more confident than you should be",
     "Duplicates from a bad join are a symptom: deleting them hides the real error",
-    "In finance an outlier is usually a finding, not garbage",
+    "In business data an outlier is usually a finding, not garbage",
     "Log your cleaning steps, because each one is a judgement that can be wrong"
   ],
   "practicePrompt": {
@@ -133,7 +133,7 @@
           "def": "The question: what is this column being read as? Dates read as text, numbers with separators read as text - both cause silent errors."
         },
         {
-          "def": "The question: an entry error or a genuine value? In finance most are genuine, and often the most worthwhile part of the analysis."
+          "def": "The question: an entry error or a genuine value? In business data most are genuine, and often the most worthwhile part of the analysis."
         }
       ]
     },

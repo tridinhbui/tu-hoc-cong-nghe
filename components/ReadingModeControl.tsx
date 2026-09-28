@@ -50,17 +50,18 @@ export default function ReadingModeControl({ mode, onChange }: Props) {
   }
 
   return (
-    <div className="flex items-center gap-0.5 bg-stone-50 dark:bg-stone-900/50 border border-line rounded-full px-1 py-1">
+    <div className="flex items-center gap-0.5 border border-line-strong rounded-sm p-0.5">
       {MODES.map(({ id, label, icon: Icon }) => (
         <button
           key={id}
           onClick={() => select(id)}
-          aria-label={format(t.finalTwo.cfaItemSetPractice.readingModeAria, { mode: label })}
+          aria-label={format(t.finalTwo.readingModeControlLabels.readingModeAria, { mode: label })}
           title={label}
-          className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
+          aria-pressed={mode === id}
+          className={`w-7 h-7 rounded-xs flex items-center justify-center transition-colors cursor-pointer ${
             mode === id
-              ? "bg-surface-invert text-ink-invert"
-              : "text-ink-muted hover:bg-surface-sunken"
+              ? "bg-accent-soft text-accent-strong"
+              : "text-ink-muted hover:bg-surface-raised hover:text-ink"
           }`}
         >
           <Icon className="w-3.5 h-3.5" />

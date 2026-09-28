@@ -3,10 +3,14 @@
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ArrowRight, ArrowLeft, X, GraduationCap, Rocket, Sparkles, Medal, TrendingUp, PenLine, Gamepad2, Bot } from "lucide-react";
+import { Check, ArrowRight, ArrowLeft, X, GraduationCap, Rocket, Sparkles, Medal, TrendingUp, PenLine, Gamepad2, Bot } from "lucide-react";
 import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { btnPrimary } from "@/components/ui/system";
+
+const ICON_TILE =
+  "rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950";
 
 interface OnboardingStep {
   title: string;
@@ -22,7 +26,7 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       description: oc.step1Description,
       content: (
         <div className="text-center py-8">
-          <div className="mx-auto mb-4 w-fit rounded-2xl bg-accent-soft text-accent p-4"><GraduationCap className="w-12 h-12" strokeWidth={1.5} aria-hidden /></div>
+          <div className={`mx-auto mb-4 w-fit p-4 ${ICON_TILE}`}><GraduationCap className="w-12 h-12" strokeWidth={1.5} aria-hidden /></div>
           <p className="text-ink-soft text-lg">
             {oc.step1Body}
           </p>
@@ -34,14 +38,14 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       description: oc.step2Description,
       content: (
         <div className="space-y-4 py-4">
-          <div className="p-4 border-2 border-accent-line rounded-xl bg-brand-50 dark:bg-brand-950/30">
-            <h3 className="font-bold text-accent-ink-strong mb-2">{oc.personalTrackTitle}</h3>
+          <div className="p-4 border border-stone-300 rounded-md dark:border-stone-700">
+            <h3 className="font-bold text-ink-max mb-2">{oc.personalTrackTitle}</h3>
             <p className="text-sm text-ink-soft">
               {oc.personalTrackBody}
             </p>
           </div>
-          <div className="p-4 border-2 border-blue-200 dark:border-blue-900 rounded-xl bg-blue-50 dark:bg-blue-950/30">
-            <h3 className="font-bold text-blue-900 dark:text-blue-400 mb-2">{oc.professionalTrackTitle}</h3>
+          <div className="p-4 border border-stone-300 rounded-md dark:border-stone-700">
+            <h3 className="font-bold text-ink-max mb-2">{oc.professionalTrackTitle}</h3>
             <p className="text-sm text-ink-soft">
               {oc.professionalTrackBody}
             </p>
@@ -53,26 +57,26 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       title: oc.step3Title,
       description: oc.step3Description,
       content: (
-        <div className="space-y-4 py-4">
-          <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><Sparkles className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
+        <div className="my-4 divide-y divide-stone-200 rounded-md border border-stone-300 dark:divide-stone-800 dark:border-stone-700">
+          <div className="flex items-center gap-4 p-4">
+            <div className={`shrink-0 p-2.5 ${ICON_TILE}`}><Sparkles className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
-              <p className="font-bold">{oc.xpLabel}</p>
-              <p className="text-xs text-stone-500">{oc.xpBody}</p>
+              <p className="font-bold text-ink-max">{oc.xpLabel}</p>
+              <p className="text-xs text-ink-muted">{oc.xpBody}</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><Medal className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
+          <div className="flex items-center gap-4 p-4">
+            <div className={`shrink-0 p-2.5 ${ICON_TILE}`}><Medal className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
-              <p className="font-bold">{oc.badgeLabel}</p>
-              <p className="text-xs text-stone-500">{oc.badgeBody}</p>
+              <p className="font-bold text-ink-max">{oc.badgeLabel}</p>
+              <p className="text-xs text-ink-muted">{oc.badgeBody}</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><TrendingUp className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
+          <div className="flex items-center gap-4 p-4">
+            <div className={`shrink-0 p-2.5 ${ICON_TILE}`}><TrendingUp className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
-              <p className="font-bold">{oc.levelUpLabel}</p>
-              <p className="text-xs text-stone-500">{oc.levelUpBody}</p>
+              <p className="font-bold text-ink-max">{oc.levelUpLabel}</p>
+              <p className="text-xs text-ink-muted">{oc.levelUpBody}</p>
             </div>
           </div>
         </div>
@@ -82,26 +86,26 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       title: oc.step4Title,
       description: oc.step4Description,
       content: (
-        <div className="space-y-4 py-4">
-          <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><PenLine className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
+        <div className="my-4 divide-y divide-stone-200 rounded-md border border-stone-300 dark:divide-stone-800 dark:border-stone-700">
+          <div className="flex items-center gap-4 p-4">
+            <div className={`shrink-0 p-2.5 ${ICON_TILE}`}><PenLine className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
-              <p className="font-bold">{oc.quizLabel}</p>
-              <p className="text-xs text-stone-500">{oc.quizBody}</p>
+              <p className="font-bold text-ink-max">{oc.quizLabel}</p>
+              <p className="text-xs text-ink-muted">{oc.quizBody}</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><Gamepad2 className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
+          <div className="flex items-center gap-4 p-4">
+            <div className={`shrink-0 p-2.5 ${ICON_TILE}`}><Gamepad2 className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
-              <p className="font-bold">{oc.widgetLabel}</p>
-              <p className="text-xs text-stone-500">{oc.widgetBody}</p>
+              <p className="font-bold text-ink-max">{oc.widgetLabel}</p>
+              <p className="text-xs text-ink-muted">{oc.widgetBody}</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 p-4 bg-surface rounded-xl">
-            <div className="shrink-0 rounded-xl bg-accent-soft text-accent p-2.5"><Bot className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
+          <div className="flex items-center gap-4 p-4">
+            <div className={`shrink-0 p-2.5 ${ICON_TILE}`}><Bot className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
-              <p className="font-bold">{oc.assistantLabel}</p>
-              <p className="text-xs text-stone-500">{oc.assistantBody}</p>
+              <p className="font-bold text-ink-max">{oc.assistantLabel}</p>
+              <p className="text-xs text-ink-muted">{oc.assistantBody}</p>
             </div>
           </div>
         </div>
@@ -112,7 +116,7 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       description: oc.step5Description,
       content: (
         <div className="text-center py-8">
-          <div className="mx-auto mb-4 w-fit rounded-2xl bg-accent-soft text-accent p-4"><Rocket className="w-12 h-12" strokeWidth={1.5} aria-hidden /></div>
+          <div className={`mx-auto mb-4 w-fit p-4 ${ICON_TILE}`}><Rocket className="w-12 h-12" strokeWidth={1.5} aria-hidden /></div>
           <p className="text-ink-soft text-lg">
             {oc.step5Body}
           </p>
@@ -165,18 +169,18 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
   const progress = ((currentStep + 1) / ONBOARDING_STEPS.length) * 100;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center overflow-y-auto p-4">
+    <div className="fixed inset-0 bg-stone-950/60 z-50 flex items-center justify-center overflow-y-auto p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white dark:bg-stone-900 rounded-2xl max-w-lg w-full my-auto shadow-2xl overflow-hidden"
+        className="bg-white dark:bg-stone-900 rounded-md border border-line-strong max-w-lg w-full my-auto overflow-hidden"
       >
         {/* Header */}
-        <div className="p-6 border-b border-line">
+        <div className="p-6 border-b border-line-strong">
           <div className="flex items-center justify-between mb-4">
             <button
               onClick={handleSkip}
-              className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200 text-sm font-semibold"
+              className="text-ink-muted hover:text-ink text-sm font-semibold"
             >
               {t.onboarding.skip}
             </button>
@@ -184,9 +188,9 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
               {ONBOARDING_STEPS.map((_, index) => (
                 <div
                   key={index}
-                  className={`h-1 rounded-full transition-all ${
+                  className={`h-1 rounded-xs transition-all ${
                     index === currentStep
-                      ? "bg-surface-invert w-8"
+                      ? "bg-brand-600 dark:bg-brand-500 w-8"
                       : index < currentStep
                       ? "bg-stone-400 dark:bg-stone-600 w-2"
                       : "bg-surface-sunken w-2"
@@ -196,12 +200,12 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
             </div>
             <button
               onClick={handleSkip}
-              className="text-stone-400 hover:text-stone-600 dark:text-stone-600 dark:hover:text-stone-400"
+              className="text-ink-muted hover:text-ink"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
-          <h2 className="text-2xl font-bold text-ink">
+          <h2 className="text-2xl font-black tracking-tight text-ink-max">
             {ONBOARDING_STEPS[currentStep].title}
           </h2>
           <p className="text-ink-soft mt-1">
@@ -226,27 +230,27 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
                 <div className="mt-6 space-y-3">
                   <button
                     onClick={() => setSelectedTrack("personal")}
-                    className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
+                    className={`w-full p-4 rounded-sm border text-left transition-colors ${
                       selectedTrack === "personal"
-                        ? "border-brand-500 bg-brand-50 dark:bg-brand-950/30"
-                        : "border-line hover:border-line-strong"
+                        ? "border-brand-600 dark:border-brand-400"
+                        : "border-stone-300 hover:border-stone-500 dark:border-stone-700 dark:hover:border-stone-500"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                      <div className={`w-5 h-5 rounded-xs border flex items-center justify-center ${
                         selectedTrack === "personal"
-                          ? "border-brand-500 bg-brand-500"
+                          ? "border-brand-600 bg-brand-600 dark:border-brand-400 dark:bg-brand-500"
                           : "border-line-strong"
                       }`}>
                         {selectedTrack === "personal" && (
-                          <CheckCircle2 className="w-4 h-4 text-white" />
+                          <Check className="w-3.5 h-3.5 text-white dark:text-stone-950" strokeWidth={3} />
                         )}
                       </div>
                       <div>
-                        <p className="font-bold text-ink">
+                        <p className="font-bold text-ink-max">
                           {t.onboarding.personalTrackName}
                         </p>
-                        <p className="text-xs text-stone-500">
+                        <p className="text-xs text-ink-muted">
                           {t.onboarding.personalTrackHint}
                         </p>
                       </div>
@@ -255,27 +259,27 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
                   
                   <button
                     onClick={() => setSelectedTrack("professional")}
-                    className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
+                    className={`w-full p-4 rounded-sm border text-left transition-colors ${
                       selectedTrack === "professional"
-                        ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30"
-                        : "border-line hover:border-line-strong"
+                        ? "border-brand-600 dark:border-brand-400"
+                        : "border-stone-300 hover:border-stone-500 dark:border-stone-700 dark:hover:border-stone-500"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                      <div className={`w-5 h-5 rounded-xs border flex items-center justify-center ${
                         selectedTrack === "professional"
-                          ? "border-blue-500 bg-blue-500"
+                          ? "border-brand-600 bg-brand-600 dark:border-brand-400 dark:bg-brand-500"
                           : "border-line-strong"
                       }`}>
                         {selectedTrack === "professional" && (
-                          <CheckCircle2 className="w-4 h-4 text-white" />
+                          <Check className="w-3.5 h-3.5 text-white dark:text-stone-950" strokeWidth={3} />
                         )}
                       </div>
                       <div>
-                        <p className="font-bold text-ink">
+                        <p className="font-bold text-ink-max">
                           {t.onboarding.professionalTrackName}
                         </p>
-                        <p className="text-xs text-stone-500">
+                        <p className="text-xs text-ink-muted">
                           {t.onboarding.professionalTrackHint}
                         </p>
                       </div>
@@ -288,11 +292,11 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-line flex justify-between">
+        <div className="p-6 border-t border-line-strong flex justify-between">
           <button
             onClick={handlePrevious}
             disabled={currentStep === 0}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-ink-soft hover:bg-surface-raised disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-bold text-ink-soft hover:text-ink disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             {t.onboarding.previous}
@@ -301,7 +305,7 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
           {currentStep === ONBOARDING_STEPS.length - 1 ? (
             <button
               onClick={handleComplete}
-              className="flex items-center gap-2 px-6 py-2 rounded-xl font-semibold bg-surface-invert text-ink-invert hover:bg-stone-800 dark:hover:bg-white transition-colors"
+              className={btnPrimary}
             >
               {t.onboarding.start}
               <ArrowRight className="w-4 h-4" />
@@ -309,7 +313,7 @@ export default function OnboardingFlow({ onComplete, onSkip }: OnboardingFlowPro
           ) : (
             <button
               onClick={handleNext}
-              className="flex items-center gap-2 px-6 py-2 rounded-xl font-semibold bg-surface-invert text-ink-invert hover:bg-stone-800 dark:hover:bg-white transition-colors"
+              className={btnPrimary}
             >
               {t.onboarding.next}
               <ArrowRight className="w-4 h-4" />

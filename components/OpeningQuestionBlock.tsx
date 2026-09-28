@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n/context";
+import { btnPrimary } from "@/components/ui/system";
 
 interface OpeningQuestionBlockProps {
   question: React.ReactNode;
@@ -27,7 +28,7 @@ export default function OpeningQuestionBlock({
 
   return (
     <div className="space-y-4">
-      <div className="text-[10px] font-extrabold text-ink-muted uppercase tracking-widest">
+      <div className="eyebrow border-b border-line-strong pb-2 text-ink-muted">
         {t.finalTwo.openingQuestionBlock.header}
       </div>
       <p className="text-ink-heading font-bold leading-relaxed text-base sm:text-lg">
@@ -36,13 +37,13 @@ export default function OpeningQuestionBlock({
 
       <div className="space-y-2.5">
         {options.map((opt, i) => {
-          let btnCls = "border-line bg-white/95 dark:bg-stone-900 text-ink-heading hover:border-line-firm hover:bg-stone-50 dark:hover:bg-stone-800/60 font-medium";
+          let btnCls = "border-line-strong bg-white dark:bg-stone-900 text-ink-heading hover:border-stone-950 dark:hover:border-stone-300 font-medium";
           if (submitted) {
-            if (i === correct) btnCls = "border-brand-500 bg-brand-50 dark:bg-brand-950/50 text-accent-ink-strong font-bold";
-            else if (i === selected) btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-alert-ink font-bold";
-            else btnCls = "border-line-soft bg-stone-50/20 dark:bg-stone-900/20 text-ink-muted opacity-60";
+            if (i === correct) btnCls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";
+            else if (i === selected) btnCls = "border-red-600 dark:border-red-400 bg-danger-soft text-ink-max font-bold";
+            else btnCls = "border-line bg-white dark:bg-stone-900 text-ink-faint";
           } else if (selected === i) {
-            btnCls = "border-line-invert bg-surface-raised text-ink font-bold border-2";
+            btnCls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";
           }
 
           return (
@@ -50,10 +51,10 @@ export default function OpeningQuestionBlock({
               key={i}
               disabled={submitted}
               onClick={() => setSelected(i)}
-              className={`w-full text-left px-4 py-3.5 rounded-xl border text-sm transition-all flex items-center gap-3 cursor-pointer ${btnCls}`}
+              className={`w-full text-left px-4 py-3.5 rounded-sm border text-sm transition-colors flex items-center gap-3 cursor-pointer ${btnCls}`}
             >
-              <span className={`w-6 h-6 rounded-lg text-xs font-black flex items-center justify-center border shrink-0 ${
-                selected === i ? "bg-white/80 dark:bg-stone-900/80 border-current" : "bg-surface-raised text-ink-body border-line-mid"
+              <span className={`w-6 h-6 rounded-xs font-mono text-xs font-medium flex items-center justify-center border shrink-0 ${
+                selected === i ? "border-current" : "text-ink-muted border-line-strong"
               }`}>
                 {["A", "B", "C", "D"][i]}
               </span>
@@ -66,7 +67,7 @@ export default function OpeningQuestionBlock({
       {selected !== null && !submitted && (
         <button
           onClick={() => setSubmitted(true)}
-          className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-[0.98]"
+          className={`${btnPrimary} w-full cursor-pointer`}
         >
           {t.finalTwo.openingQuestionBlock.confirmButton}
         </button>
@@ -76,11 +77,11 @@ export default function OpeningQuestionBlock({
         <motion.div
           initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`rounded-xl p-4 text-xs leading-relaxed border ${
-            selected === correct ? "bg-brand-50/50 dark:bg-brand-950/50 border-brand-100 dark:border-brand-900 text-accent-ink" : "bg-rose-50/40 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"
+          className={`rounded-sm p-4 text-xs leading-relaxed border border-l-2 text-ink-body ${
+            selected === correct ? "bg-accent-soft border-accent-line border-l-brand-600 dark:border-l-brand-400" : "bg-danger-soft border-danger-line border-l-red-600 dark:border-l-red-400"
           }`}
         >
-          <p className="font-semibold mb-1">
+          <p className={`font-bold mb-1 ${selected === correct ? "text-accent-strong" : "text-danger"}`}>
             {selected === correct ? t.finalTwo.openingQuestionBlock.correctFeedback : t.finalTwo.openingQuestionBlock.incorrectFeedback}
           </p>
           <p>{explanation}</p>

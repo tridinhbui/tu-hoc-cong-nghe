@@ -3764,7 +3764,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Web hoạt động thế nào",
       "text": "Trình duyệt tải HTML trước, rồi mới biết cần tải thêm CSS, ảnh, phông chữ.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     },
@@ -3784,7 +3784,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "HTML - cấu trúc của một trang",
       "text": "HTML mô tả nội dung LÀ gì, không mô tả nó TRÔNG thế nào.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     },
@@ -3804,7 +3804,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Thẻ ngữ nghĩa và cây tài liệu",
       "text": "Thẻ ngữ nghĩa không đổi giao diện - đó là lý do chúng dễ bị bỏ qua.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     },
@@ -3824,7 +3824,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Liên kết, ảnh và biểu mẫu",
       "text": "Chữ trong liên kết phải tự đủ nghĩa khi đọc tách khỏi câu văn quanh nó.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     },
@@ -3844,7 +3844,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "CSS - chọn phần tử và đặt kiểu",
       "text": "Độ cụ thể quyết định trước, thứ tự chỉ quyết định khi độ cụ thể bằng nhau.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     }
@@ -3856,7 +3856,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Mặc định, chiều rộng chỉ tính nội dung - đệm và viền cộng thêm ra ngoài.",
       "distractors": [
         "Cuộn ngang luôn do một phần tử cụ thể - hãy tìm nó, đừng ẩn thanh cuộn đi.",
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc"
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ."
       ]
     }
   ],
@@ -3955,7 +3955,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Web hoạt động thế nào",
       "text": "Trình duyệt tải HTML trước, rồi mới biết cần tải thêm CSS, ảnh, phông chữ.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     }
@@ -3975,7 +3975,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "HTML - cấu trúc của một trang",
       "text": "HTML mô tả nội dung LÀ gì, không mô tả nó TRÔNG thế nào.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     }
@@ -3995,7 +3995,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Thẻ ngữ nghĩa và cây tài liệu",
       "text": "Thẻ ngữ nghĩa không đổi giao diện - đó là lý do chúng dễ bị bỏ qua.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     }
@@ -4015,7 +4015,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Liên kết, ảnh và biểu mẫu",
       "text": "Chữ trong liên kết phải tự đủ nghĩa khi đọc tách khỏi câu văn quanh nó.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     }
@@ -4035,7 +4035,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "CSS - chọn phần tử và đặt kiểu",
       "text": "Độ cụ thể quyết định trước, thứ tự chỉ quyết định khi độ cụ thể bằng nhau.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
         "Flexbox xếp theo một chiều: chiều chính là chiều xếp, chiều phụ vuông góc."
       ]
     }
@@ -4056,7 +4056,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Mặc định, chiều rộng chỉ tính nội dung - đệm và viền cộng thêm ra ngoài.",
       "distractors": [
         "Cuộn ngang luôn do một phần tử cụ thể - hãy tìm nó, đừng ẩn thanh cuộn đi.",
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc"
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ."
       ]
     }
   ],

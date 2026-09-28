@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { SectionHead, panel } from "@/components/ui/system";
+import { APP_SYS } from "@/components/analytics/system-codes";
 
 /** Thời gian đã ngồi học trong thế giới 3D.
  *
@@ -102,75 +104,60 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
 
   const peak = Math.max(1, ...stats.days.map((d) => d.minutes));
 
-  return (
-    <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <h3 className="text-sm font-black text-ink">
-            {t.focusTime.cardTitle}
-          </h3>
-          <p className="mt-0.5 text-xs text-ink-muted">
-            {t.focusTime.cardSubtitle}
-          </p>
-        </div>
-      </div>
+  const eyebrow = "text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted";
 
-      <div className="mt-4 grid grid-cols-3 gap-3">
+  return (
+    <section className={`${panel} p-4 sm:p-5`}>
+      <SectionHead code={APP_SYS.focus} title={t.focusTime.cardTitle} sub={t.focusTime.cardSubtitle} size="sm" />
+
+      <dl className="mt-4 grid grid-cols-3 divide-x divide-stone-200 border-y border-line dark:divide-stone-800">
         {[
           { label: t.focusTime.statTotal, value: format(t.focusTime.statTotalValue, { minutes: stats.totalMinutes }) },
           { label: t.focusTime.statSessions, value: String(stats.sessions) },
           { label: t.focusTime.statAverage, value: format(t.focusTime.statAverageValue, { minutes: stats.averageMinutes }) },
         ].map((s) => (
-          <div key={s.label} className="rounded-2xl bg-stone-50 px-3 py-2 dark:bg-stone-800">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-              {s.label}
-            </p>
-            <p className="mt-0.5 text-lg font-black tabular-nums text-ink">{s.value}</p>
+          <div key={s.label} className="min-w-0 px-3 py-2 first:pl-0">
+            <dt className="truncate text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{s.label}</dt>
+            <dd className="mt-0.5 font-mono text-lg font-medium tabular-nums text-ink-max">{s.value}</dd>
           </div>
         ))}
-      </div>
+      </dl>
 
-      <div className="mt-4">
-        <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-          {t.focusTime.last7DaysTitle}
-        </p>
-        <div className="flex h-20 items-end gap-1.5">
-          {stats.days.map((d) => (
-            <div key={d.key} className="flex flex-1 flex-col items-center gap-1">
+      <figure className="mt-4">
+        <figcaption className={`mb-1.5 border-b border-line pb-1.5 ${eyebrow}`}>{t.focusTime.last7DaysTitle}</figcaption>
+        <div className="flex h-20 items-end gap-[3px]">
+          {stats.days.map((d, i) => (
+            <div key={d.key} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
               <div
-                className="w-full rounded-t-md bg-brand-500/80 transition-all"
+                className={`w-full ${i === stats.days.length - 1 ? "bg-brand-700 dark:bg-brand-300" : "bg-brand-600/70 dark:bg-brand-400/70"}`}
                 style={{ height: `${Math.max(2, (d.minutes / peak) * 100)}%` }}
                 title={format(t.focusTime.barTooltip, { day: d.key, minutes: d.minutes })}
               />
-              <span className="text-[9px] tabular-nums text-stone-400">{d.minutes}</span>
+              <span className="font-mono text-[10px] tabular-nums text-ink-faint">{d.minutes}</span>
             </div>
           ))}
         </div>
-      </div>
+      </figure>
 
       <div className="mt-4">
-        <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-          {t.focusTime.whereSatTitle}
-        </p>
-        <div className="space-y-1">
+        <p className={`mb-1 border-b border-line pb-1.5 ${eyebrow}`}>{t.focusTime.whereSatTitle}</p>
+        <dl className="divide-y divide-stone-200 dark:divide-stone-800">
           {stats.worlds.map((w) => (
-            <div key={w.world} className="flex items-center gap-2 text-xs">
-              <span className="w-24 shrink-0 font-bold text-ink-body">
-                {WORLD_LABELS[w.world] ?? w.world}
-              </span>
-              <div className="h-2 flex-1 overflow-hidden rounded-full bg-surface-raised">
+            <div key={w.world} className="flex items-center gap-3 py-1.5 text-xs">
+              <dt className="w-24 shrink-0 font-semibold text-ink-body">{WORLD_LABELS[w.world] ?? w.world}</dt>
+              <div className="h-1.5 flex-1 overflow-hidden rounded-xs bg-surface-sunken" aria-hidden>
                 <div
-                  className="h-full rounded-full bg-brand-500"
+                  className="h-full bg-brand-600 dark:bg-brand-500"
                   style={{ width: `${Math.round((w.minutes / Math.max(1, stats.totalMinutes)) * 100)}%` }}
                 />
               </div>
-              <span className="w-14 shrink-0 text-right tabular-nums text-ink-muted">
+              <dd className="w-16 shrink-0 text-right font-mono tabular-nums text-ink-max">
                 {format(t.focusTime.minutesSuffix, { minutes: w.minutes })}
-              </span>
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
-    </div>
+    </section>
   );
 }

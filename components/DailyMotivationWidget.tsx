@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
 import {
   getUserStreak,
@@ -23,8 +22,8 @@ import { useI18n } from "@/lib/i18n/context";
  * "Ngọn lửa đinh hoả" - lời nhắn mỗi ngày.
  *
  * Ngọn lửa cháy to nhất khi người học nguội nhất: streak vừa đứt hoặc vắng
- * nhiều ngày thì `warmth` gần 1, card sáng và ấm hơn hẳn ngày thường. Đây là
- * chủ ý, không phải lỗi tương phản - lúc dễ bỏ cuộc nhất là lúc cần thấy lửa.
+ * nhiều ngày thì `warmth` gần 1 và cạnh trái của thẻ thành vạch xanh. Đây là
+ * chủ ý - lúc dễ bỏ cuộc nhất là lúc cần thấy lửa.
  */
 
 /** `compact` để thẻ này nằm BÊN TRONG một thẻ khác (bản đồ cấp độ).
@@ -84,41 +83,28 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
   // Câu tra theo `message.id`: pool được chọn bằng hash nên vị trí không ổn định.
   const line = t.motivationLines[message.id] ?? message.text;
 
+  // Lửa to khi người học nguội: bản trước phủ quầng cam và gradient theo
+  // `warmth`. Hệ thiết kế không có quầng sáng, nên cùng tín hiệu giờ nói bằng
+  // cạnh trái: ngày thường là nét kẻ xám, lúc streak vừa đứt hoặc vắng lâu
+  // (warmth cao) nó thành vạch xanh - màu của "dữ liệu sống, nhìn vào đây".
+  const hot = warmth >= 0.5;
+
   return (
     <div
-      className={`relative overflow-hidden bg-white shadow-sm dark:bg-stone-900 ${compact ? "rounded-2xl border p-2.5" : "rounded-[24px] border-2 p-5"}`}
-      style={{ borderColor: `rgba(249, 115, 22, ${0.2 + warmth * 0.5})` }}
+      className={`relative rounded-md border border-l-2 bg-white dark:bg-stone-900 ${
+        hot ? "border-line-strong border-l-brand-600 dark:border-l-brand-400" : "border-line-strong"
+      } ${compact ? "p-2.5" : "p-5"}`}
     >
-      {/* Lớp ấm phủ trên nền theo warmth - để riêng thay vì đặt thẳng vào
-          `background` của card, nhờ vậy nền gốc vẫn đổi theo light/dark và chữ
-          luôn đủ tương phản ở cả hai chế độ. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: `linear-gradient(135deg, rgba(251, 146, 60, ${0.1 + warmth * 0.22}), rgba(249, 115, 22, ${0.04 + warmth * 0.12}))`,
-        }}
-      />
-
-      {/* Quầng sáng của ngọn lửa - chỉ đủ thấy, không cản chữ */}
-      <motion.div
-        aria-hidden
-        className={`pointer-events-none absolute -left-10 -top-12 rounded-full blur-3xl ${compact ? "h-24 w-24" : "h-40 w-40"}`}
-        style={{ background: `rgba(251, 146, 60, ${0.25 + warmth * 0.45})` }}
-        animate={{ opacity: [0.65, 1, 0.65], scale: [1, 1.08, 1] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-      />
-
       {/* Phần chữ là link sang trang riêng; nút chia sẻ nằm ngoài link, vì một
           <button> lồng trong <a> là HTML không hợp lệ và bàn phím sẽ lạc. */}
       <Link href="/loi-nhan" className={`relative flex items-start group ${compact ? "gap-3" : "gap-3.5"}`}>
-        <motion.div
-          className={`mt-0.5 flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 shadow-md ${compact ? "h-7 w-7" : "h-10 w-10"}`}
-          animate={{ scale: [1, 1.06, 1] }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+        <div
+          className={`mt-0.5 flex shrink-0 items-center justify-center rounded-sm border ${
+            hot ? "border-brand-600 text-accent dark:border-brand-400" : "border-line-strong text-ink-soft"
+          } ${compact ? "h-7 w-7" : "h-10 w-10"}`}
         >
-          <Flame className={compact ? "h-4 w-4 text-white" : "h-5 w-5 text-white"} />
-        </motion.div>
+          <Flame className={compact ? "h-4 w-4" : "h-5 w-5"} />
+        </div>
 
         <div className="min-w-0">
           {lateNight && (
@@ -126,13 +112,13 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
               {lateNight}
             </p>
           )}
-          <p className={`font-bold uppercase tracking-wide text-orange-700 dark:text-orange-300 ${compact ? "text-[9px]" : "text-[10px]"}`}>
+          <p className={`eyebrow text-ink-soft ${compact ? "!text-[9px]" : ""}`}>
             {t.motivationToneLabel[tone] ?? MOTIVATION_TONE_LABEL[tone]}
           </p>
           <p className={`font-semibold leading-relaxed text-ink-heading ${compact ? "mt-1 text-[11px]" : "mt-1.5 text-sm"}`}>
             {line}
           </p>
-          <p className={`font-bold text-orange-600 dark:text-orange-400 group-hover:underline ${compact ? "mt-1 text-[10px]" : "mt-2 text-[11px]"}`}>
+          <p className={`font-bold text-accent-strong underline-offset-4 group-hover:underline ${compact ? "mt-1 text-[10px]" : "mt-2 text-[11px]"}`}>
             {t.miscUi.dailyMotivationWidget.openQuietCorner}
           </p>
         </div>

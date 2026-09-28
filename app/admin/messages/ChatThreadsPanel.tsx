@@ -183,7 +183,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                 {t.user_name || t.user_email || tc.unknownUser}
               </span>
               {t.unread_count > 0 && (
-                <span className="text-[10px] font-bold bg-blue-600 text-white rounded-full px-1.5 py-0.5">{t.unread_count}</span>
+                <span className="rounded-xs bg-brand-600 px-1.5 py-0.5 font-mono text-[10px] font-medium tabular-nums text-white">{t.unread_count}</span>
               )}
             </div>
             <p className="text-xs text-ink-muted truncate mt-0.5">{t.last_message}</p>
@@ -217,7 +217,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                     <div
                       className={`max-w-xs px-3 py-2 rounded-xl text-sm ${
                         m.sender === "admin"
-                          ? "bg-surface-invert text-ink-invert"
+                          ? "bg-accent-soft text-ink-max"
                           : "bg-surface-raised text-ink"
                       }`}
                     >
@@ -280,7 +280,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                   <img src={pendingImagePreview} alt={tc.previewAlt} className="h-16 rounded-lg border border-line-mid object-cover" />
                   <button
                     onClick={clearPendingImage}
-                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center"
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-xs bg-stone-950 text-white flex items-center justify-center"
                   >
                     <X className="w-3 h-3" />
                   </button>

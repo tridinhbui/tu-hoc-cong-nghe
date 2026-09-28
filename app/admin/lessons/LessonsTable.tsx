@@ -98,20 +98,20 @@ export default function LessonsTable({
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap items-center gap-1.5">
                       {lesson.is_fundamental ? (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 rounded-full">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-accent-strong bg-accent-soft px-2 py-0.5 rounded-xs">
                           <Star className="w-3 h-3" /> {tl.fundamentalBadge}
                         </span>
                       ) : lesson.prerequisite_id ? (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-warn-strong bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-warn-strong bg-warn-soft px-2 py-0.5 rounded-xs">
                           <Lock className="w-3 h-3" /> {format(tl.requiresLessonBadge, { id: lesson.prerequisite_id })}
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-accent-strong bg-brand-50 dark:bg-brand-950/40 px-2 py-0.5 rounded-full">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-ink-body bg-surface-raised px-2 py-0.5 rounded-xs">
                           <Unlock className="w-3 h-3" /> {tl.freeUnlockBadge}
                         </span>
                       )}
                       {!lesson.is_visible && (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-ink-muted bg-surface-raised px-2 py-0.5 rounded-full">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-ink-muted bg-surface-raised px-2 py-0.5 rounded-xs">
                           <EyeOff className="w-3 h-3" /> {tl.hiddenBadge}
                         </span>
                       )}

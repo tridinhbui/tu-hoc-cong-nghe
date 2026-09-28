@@ -23,6 +23,8 @@ import {
   type SocialConnection,
 } from "@/lib/cloudflare-social";
 import { isValidAvatar } from "@/lib/avatar-utils";
+import { APP_SYS } from "@/components/analytics/system-codes";
+import { Sys, textLink } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 
@@ -296,21 +298,24 @@ export default function FriendsClient() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
+      <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950 flex items-center justify-center">
         <p className="text-ink-muted">{t.friends.loading}</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-line bg-white dark:bg-stone-950">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink hover:bg-surface-raised rounded-lg px-3 py-2 -ml-3 transition-colors">
-            <ArrowLeft className="w-4 h-4" />
-            {t.friends.back}
-          </Link>
-          <h1 className="text-xl font-bold text-ink mt-2">{t.friends.title}</h1>
+    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+      <div className="border-b border-line-strong">
+        <div className="max-w-6xl mx-auto px-6 py-5">
+          <div className="flex items-center justify-between gap-4 border-b border-line pb-2">
+            <Link href="/dashboard" className={`${textLink} text-xs`}>
+              <ArrowLeft className="w-3.5 h-3.5" aria-hidden />
+              {t.friends.back}
+            </Link>
+            <Sys className="text-ink-muted">{APP_SYS.friends}</Sys>
+          </div>
+          <h1 className="mt-3 text-2xl font-black tracking-tight text-ink-max">{t.friends.title}</h1>
         </div>
       </div>
 
@@ -318,10 +323,10 @@ export default function FriendsClient() {
         <div className="space-y-6">
           <ReferralCard />
 
-          <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-5">
+          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
             <div className="flex items-center gap-2 mb-4">
               <Search className="w-4 h-4 text-stone-400" />
-              <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest">
+              <h2 className="text-sm font-black tracking-tight text-ink-max">
                 {t.friends.findAccount}
               </h2>
             </div>
@@ -329,7 +334,7 @@ export default function FriendsClient() {
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
               placeholder={t.friends.searchPlaceholder}
-              className="w-full px-4 py-3 rounded-xl border border-line-mid bg-white dark:bg-stone-800 text-sm text-ink focus:outline-none focus:border-stone-500"
+              className="w-full px-3.5 py-2.5 rounded-sm border border-line-mid bg-white dark:bg-stone-800 text-sm text-ink focus:outline-none focus:border-brand-500"
             />
 
             <div className="mt-4 space-y-3">
@@ -341,7 +346,7 @@ export default function FriendsClient() {
                   return (
                     <div
                       key={account.id}
-                      className="flex items-center gap-3 rounded-xl border border-line bg-stone-50 dark:bg-stone-800/50 p-3"
+                      className="flex items-center gap-3 rounded-sm border border-line p-3"
                     >
                       <Link
                         href={`/nguoi-hoc/${account.id}`}
@@ -364,7 +369,7 @@ export default function FriendsClient() {
                             setMessages([]);
                             setActiveFriendshipId(relation.friendship_id);
                           }}
-                          className="px-3 py-2 rounded-lg bg-surface-invert text-ink-invert text-xs font-bold"
+                          className="px-3 py-2 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors text-xs font-bold"
                         >
                           {t.friends.message}
                         </button>
@@ -372,19 +377,19 @@ export default function FriendsClient() {
                         <button
                           onClick={() => void handleRespond(relation.friendship_id, "accepted")}
                           disabled={busyUserId === String(relation.friendship_id)}
-                          className="px-3 py-2 rounded-lg bg-brand-600 text-white text-xs font-bold disabled:opacity-60"
+                          className="px-3 py-2 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors text-xs font-bold disabled:opacity-60"
                         >
                           {t.friends.accept}
                         </button>
                       ) : relation?.direction === "outgoing" ? (
-                        <div className="text-[11px] font-bold text-warn whitespace-nowrap">
+                        <div className="text-[11px] font-bold text-ink-muted whitespace-nowrap">
                           {t.friends.sent}
                         </div>
                       ) : (
                         <button
                           onClick={() => void handleSendFriendRequest(account.id)}
                           disabled={busyUserId === account.id}
-                          className="px-3 py-2 rounded-lg bg-surface-invert text-ink-invert text-xs font-bold disabled:opacity-60 flex items-center gap-1.5"
+                          className="px-3 py-2 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors text-xs font-bold disabled:opacity-60 flex items-center gap-1.5"
                         >
                           <UserPlus className="w-3.5 h-3.5" />
                           {t.friends.addFriend}
@@ -401,8 +406,8 @@ export default function FriendsClient() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-5">
-            <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest mb-4">
+          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
+            <h2 className="text-sm font-black tracking-tight text-ink-max mb-4">
               {format(t.friends.incoming, { count: incomingRequests.length })}
             </h2>
             <div className="space-y-3">
@@ -410,7 +415,7 @@ export default function FriendsClient() {
                 <p className="text-xs text-stone-400">{t.friends.noIncoming}</p>
               ) : (
                 incomingRequests.map((connection) => (
-                  <div key={connection.friendship_id} className="rounded-xl border border-line p-3">
+                  <div key={connection.friendship_id} className="rounded-sm border border-line p-3">
                     <Link
                       href={`/nguoi-hoc/${connection.user_id}`}
                       className="flex items-center gap-3 group"
@@ -428,7 +433,7 @@ export default function FriendsClient() {
                       <button
                         onClick={() => void handleRespond(connection.friendship_id, "accepted")}
                         disabled={busyUserId === String(connection.friendship_id)}
-                        className="flex-1 py-2 rounded-lg bg-brand-600 text-white text-xs font-bold disabled:opacity-60 flex items-center justify-center gap-1.5"
+                        className="flex-1 py-2 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors text-xs font-bold disabled:opacity-60 flex items-center justify-center gap-1.5"
                       >
                         <Check className="w-3.5 h-3.5" />
                         {t.friends.accept}
@@ -436,7 +441,7 @@ export default function FriendsClient() {
                       <button
                         onClick={() => void handleRespond(connection.friendship_id, "rejected")}
                         disabled={busyUserId === String(connection.friendship_id)}
-                        className="flex-1 py-2 rounded-lg bg-surface-raised text-ink-body text-xs font-bold disabled:opacity-60 flex items-center justify-center gap-1.5"
+                        className="flex-1 py-2 rounded-sm border border-stone-400 text-ink text-xs font-bold hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
                       >
                         <X className="w-3.5 h-3.5" />
                         {t.friends.decline}
@@ -448,8 +453,8 @@ export default function FriendsClient() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-5">
-            <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest mb-4">
+          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
+            <h2 className="text-sm font-black tracking-tight text-ink-max mb-4">
               {format(t.friends.friendsList, { count: acceptedFriends.length })}
             </h2>
             <div className="space-y-2">
@@ -461,10 +466,10 @@ export default function FriendsClient() {
                 acceptedFriends.map((connection) => (
                   <div
                     key={connection.friendship_id}
-                    className={`flex items-center gap-2 rounded-xl border px-3 py-3 transition-colors ${
+                    className={`flex items-center gap-2 rounded-sm border px-3 py-2.5 transition-colors ${
                       currentFriendshipId === connection.friendship_id
-                        ? "border-line-invert bg-surface-raised"
-                        : "border-line hover:bg-stone-50 dark:hover:bg-stone-800/50"
+                        ? "border-accent-line bg-brand-50 dark:bg-brand-950/40"
+                        : "border-line hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50"
                     }`}
                   >
                     <button
@@ -487,7 +492,7 @@ export default function FriendsClient() {
                     </button>
                     <Link
                       href={`/nguoi-hoc/${connection.user_id}`}
-                      className="shrink-0 p-2 rounded-lg text-ink-muted hover:bg-surface-sunken hover:text-ink transition-colors"
+                      className="shrink-0 p-2 rounded-sm text-ink-muted hover:bg-surface-sunken hover:text-ink transition-colors"
                       title={t.friends.viewProfileTitle}
                       aria-label={format(t.friends.viewProfileAria, { name: connection.full_name || t.friends.unnamedUser })}
                     >
@@ -500,13 +505,13 @@ export default function FriendsClient() {
           </div>
 
           {outgoingRequests.length > 0 && (
-            <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-5">
-              <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest mb-4">
+            <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
+              <h2 className="text-sm font-black tracking-tight text-ink-max mb-4">
                 {format(t.friends.pending, { count: outgoingRequests.length })}
               </h2>
               <div className="space-y-2">
                 {outgoingRequests.map((connection) => (
-                  <div key={connection.friendship_id} className="rounded-xl border border-line p-3">
+                  <div key={connection.friendship_id} className="rounded-sm border border-line p-3">
                     <p className="text-sm font-bold text-ink truncate">
                       {connection.full_name || t.friends.fallbackName}
                     </p>
@@ -517,10 +522,10 @@ export default function FriendsClient() {
           )}
         </div>
 
-        <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl overflow-hidden min-h-[640px] flex flex-col">
+        <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 overflow-hidden min-h-[640px] flex flex-col">
           {!activeConnection ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
-              <MessageCircle className="w-10 h-10 text-stone-300 dark:text-stone-700 mb-3" />
+              <MessageCircle className="w-10 h-10 text-stone-300 dark:text-stone-600 mb-3" />
               <p className="text-sm font-bold text-ink-body">{t.friends.pickFriend}</p>
               <p className="text-xs text-stone-400 mt-1">{t.friends.pickFriendHint}</p>
             </div>
@@ -544,14 +549,14 @@ export default function FriendsClient() {
                 </Link>
                 <Link
                   href={`/nguoi-hoc/${activeConnection.user_id}`}
-                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-line-mid text-xs font-bold text-ink-body hover:bg-surface-raised transition-colors"
+                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-sm border border-stone-400 text-xs font-bold text-ink hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200 transition-colors"
                 >
                   <UserRound className="w-3.5 h-3.5" />
                   {t.friends.profile}
                 </Link>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3 bg-stone-50/70 dark:bg-stone-950/40">
+              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3 bg-[#fbfaf7] dark:bg-stone-950/40">
                 {loadingMessages ? (
                   <p className="text-xs text-stone-400">{t.friends.loadingMessages}</p>
                 ) : messages.length === 0 ? (
@@ -562,14 +567,14 @@ export default function FriendsClient() {
                     return (
                       <div key={message.id} className={`flex ${isMine ? "justify-end" : "justify-start"}`}>
                         <div
-                          className={`max-w-md px-4 py-2.5 rounded-2xl text-sm ${
+                          className={`max-w-md px-3.5 py-2 rounded-md text-sm ${
                             isMine
-                              ? "bg-surface-invert text-ink-invert rounded-br-md"
-                              : "bg-white dark:bg-stone-800 text-ink border border-line-mid rounded-bl-md"
+                              ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
+                              : "bg-white dark:bg-stone-800 text-ink border border-line-mid"
                           }`}
                         >
                           <p className="leading-relaxed whitespace-pre-wrap">{message.content}</p>
-                          <p className={`text-[10px] mt-1 ${isMine ? "text-stone-300 dark:text-stone-600" : "text-ink-faint"}`}>
+                          <p className={`font-mono tabular-nums text-[10px] mt-1 ${isMine ? "text-stone-300 dark:text-stone-600" : "text-ink-faint"}`}>
                             {new Date(message.created_at).toLocaleTimeString(intlLocale(locale), {
                               hour: "2-digit",
                               minute: "2-digit",
@@ -595,12 +600,12 @@ export default function FriendsClient() {
                       }
                     }}
                     placeholder={t.friends.messagePlaceholder}
-                    className="flex-1 px-4 py-3 rounded-xl border border-line-mid bg-white dark:bg-stone-800 text-sm text-ink focus:outline-none focus:border-stone-500"
+                    className="flex-1 px-3.5 py-2.5 rounded-sm border border-line-mid bg-white dark:bg-stone-800 text-sm text-ink focus:outline-none focus:border-brand-500"
                   />
                   <button
                     onClick={() => void handleSendMessage()}
                     disabled={!messageInput.trim() || sendingMessage}
-                    className="px-4 py-3 rounded-xl bg-surface-invert text-ink-invert disabled:opacity-50"
+                    className="px-4 py-2.5 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
                   </button>

@@ -21,7 +21,7 @@ export default function StudyGroupsPage() {
     //
     // h-dvh chứ không phải h-screen: trên trình duyệt di động 100vh tính cả
     // thanh địa chỉ đang thu lại, nên h-screen tràn thêm đúng bằng ngần ấy.
-    <div className="min-h-[calc(100dvh-3.5rem)] lg:h-dvh w-full bg-stone-50/60 dark:bg-stone-950 lg:overflow-hidden flex flex-col p-2 sm:p-3 lg:p-3 font-sans">
+    <div className="min-h-[calc(100dvh-3.5rem)] lg:h-dvh w-full bg-[#fbfaf7] dark:bg-stone-950 lg:overflow-hidden flex flex-col p-2 sm:p-3 lg:p-3 font-sans">
       <StudyGroupsClient embedded />
     </div>
   );

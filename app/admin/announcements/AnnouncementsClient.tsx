@@ -20,9 +20,9 @@ function getSeverities(t: Dictionary): { id: AdminAnnouncement["severity"]; labe
 }
 
 const SEVERITY_STYLE: Record<AdminAnnouncement["severity"], { badge: string; icon: typeof Info }> = {
-  info: { badge: "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/40 dark:text-sky-400 dark:border-sky-900", icon: Info },
-  warning: { badge: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-900", icon: AlertTriangle },
-  critical: { badge: "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-900", icon: ShieldAlert },
+  info: { badge: "bg-accent-soft text-accent-strong border-accent-line", icon: Info },
+  warning: { badge: "bg-warn-soft text-warn-strong border-warn-line", icon: AlertTriangle },
+  critical: { badge: "bg-danger-soft text-danger border-danger-line", icon: ShieldAlert },
 };
 
 function formatDate(iso: string, locale: Locale): string {
@@ -139,7 +139,7 @@ export default function AnnouncementsClient({
                   onClick={() => setSeverity(s.id)}
                   className={`flex-1 text-xs font-bold py-2 rounded-lg border-2 transition-colors ${
                     severity === s.id
-                      ? "border-line-invert bg-surface-invert text-ink-invert"
+                      ? "border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
                       : "border-line-mid text-ink-muted hover:border-line-firm"
                   }`}
                 >
@@ -190,12 +190,12 @@ export default function AnnouncementsClient({
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border ${style.badge}`}>
+                        <span className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-xs border ${style.badge}`}>
                           <Icon className="w-3 h-3" />
                           {SEVERITIES.find((s) => s.id === a.severity)?.label}
                         </span>
                         {!a.active && (
-                          <span className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border border-line-mid text-ink-faint">
+                          <span className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-xs border border-line-mid text-ink-faint">
                             {ta.deactivatedBadge}
                           </span>
                         )}

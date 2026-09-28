@@ -5,7 +5,9 @@ import { handleCloudflareError } from "@/lib/errors";
 // components/MockInterviewModal.tsx, kept distinct from the 5-question "ib"
 // drill on /kiem-tra because Interview readiness weights the two very
 // differently (lib/career-competency.ts).
-export type QuizTrack = "personal" | "professional" | "cfa" | "frm" | "ib" | "mock-interview";
+// "cert" là luyện một miền thi trên /chung-chi/<certId> - câu lấy từ quiz của
+// đúng những bài thuộc miền đó (lib/cert-tracks.ts).
+export type QuizTrack = "personal" | "professional" | "cfa" | "frm" | "ib" | "mock-interview" | "cert";
 export type QuizDifficulty = "de" | "trung-binh" | "kho" | "tat-ca";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not
@@ -24,6 +26,16 @@ function isMissingTableError(error: { code?: string } | null): boolean {
 // than "read one lesson".
 const XP_PER_CORRECT_ANSWER = 5;
 export const STANDALONE_QUIZ_DAILY_XP_CAP = 30;
+
+/** XP mỗi câu đúng theo độ khó, để giao diện hiện "+5 XP / câu". Bản công nghệ
+ *  không phân XP theo độ khó (computeQuizXp bên dưới), nên cả bốn mức bằng
+ *  nhau - khai thành bảng chỉ để các màn chép từ bản tài chính đọc được. */
+export const QUIZ_XP_PER_CORRECT: Record<QuizDifficulty, number> = {
+  de: XP_PER_CORRECT_ANSWER,
+  "trung-binh": XP_PER_CORRECT_ANSWER,
+  kho: XP_PER_CORRECT_ANSWER,
+  "tat-ca": XP_PER_CORRECT_ANSWER,
+};
 
 export function computeQuizXp(score: number, total: number): number {
   if (total <= 0) return 0;
@@ -78,4 +90,38 @@ export async function getTotalQuizXp(userId: string): Promise<number> {
     throw handleCloudflareError(error);
   }
   return (data ?? []).reduce((sum, row) => sum + (row.xp_earned as number), 0);
+}
+
+/** Thống kê các lượt trắc nghiệm đứng riêng, tuỳ chọn lọc theo track - bảng
+ *  "tiến độ của bạn" ở /phong-van-ky-thuat đọc từ đây thay vì số gõ cứng. */
+export interface QuizStats {
+  rounds: number;
+  solved: number;
+  correct: number;
+  /** `null` khi chưa làm câu nào: khác với 0% (đã làm và sai hết). */
+  accuracyPct: number | null;
+  xp: number;
+}
+
+export const EMPTY_QUIZ_STATS: QuizStats = { rounds: 0, solved: 0, correct: 0, accuracyPct: null, xp: 0 };
+
+export async function getQuizStats(userId: string, track?: QuizTrack): Promise<QuizStats> {
+  const cloudflare = createClient();
+  let query = cloudflare.from("user_quiz_sessions").select("score, total, xp_earned").eq("user_id", userId);
+  if (track) query = query.eq("track", track);
+  const { data, error } = await query;
+  if (error) {
+    if (isMissingTableError(error)) return EMPTY_QUIZ_STATS;
+    throw handleCloudflareError(error);
+  }
+  const list = (data ?? []) as { score: number; total: number; xp_earned: number }[];
+  const solved = list.reduce((n, r) => n + (Number(r.total) || 0), 0);
+  const correct = list.reduce((n, r) => n + (Number(r.score) || 0), 0);
+  return {
+    rounds: list.length,
+    solved,
+    correct,
+    accuracyPct: solved > 0 ? Math.round((correct / solved) * 100) : null,
+    xp: list.reduce((n, r) => n + (Number(r.xp_earned) || 0), 0),
+  };
 }

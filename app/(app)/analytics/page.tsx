@@ -8,6 +8,7 @@ import dynamicImport from "next/dynamic";
 import Leaderboard from "@/components/Leaderboard";
 import FocusTimePanel from "@/components/FocusTimePanel";
 import { useI18n } from "@/lib/i18n/context";
+import { textLink } from "@/components/ui/system";
 
 // next/dynamic's `loading` option is rendered as its own component, so it can
 // call useI18n() even though the dynamicImport() call site itself is at
@@ -51,7 +52,7 @@ export default function AnalyticsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] dark:bg-stone-950">
         <p className="text-ink-muted">{t.finalTwo.analyticsPage.loading}</p>
       </div>
     );
@@ -72,16 +73,15 @@ export default function AnalyticsPage() {
     //
     // Cuộn tài liệu bình thường xử lý cả hai chuyện, và đó cũng đúng khuôn mà
     // trang /bxh cũ dùng.
-    <div className="min-h-screen bg-stone-50 pb-12 dark:bg-stone-950">
-      <div className="max-w-6xl mx-auto w-full px-6 pt-3 pb-2 flex items-center justify-between gap-4">
-        <Link
-          href="/dashboard"
-          className="text-ink-muted hover:text-ink-heading text-xs font-extrabold uppercase tracking-wider flex items-center gap-1"
-        >
-          {t.finalTwo.analyticsPage.backToDashboard}
-        </Link>
-        <div className="inline-flex items-center gap-2 rounded-full border border-accent-line bg-brand-50 dark:bg-brand-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent-strong">
-          {t.finalTwo.analyticsPage.statsAndLeaderboard}
+    <div className="min-h-screen bg-[#fbfaf7] pb-12 dark:bg-stone-950">
+      {/* Thanh định vị: liên kết về + mã khu, trên một đường kẻ 1px - cùng khuôn
+          với đầu section của trang chủ, thay cho viên thuốc xanh. */}
+      <div className="mx-auto flex w-full max-w-[1480px] items-center justify-between gap-4 px-5 pt-4 pb-4 sm:px-6">
+        <div className="flex w-full items-center justify-between gap-4 border-b border-line-strong pb-2">
+          <Link href="/dashboard" className={`${textLink} text-xs`}>
+            {t.finalTwo.analyticsPage.backToDashboard}
+          </Link>
+          <span className="eyebrow text-right text-ink-soft">{t.finalTwo.analyticsPage.statsAndLeaderboard}</span>
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { computeGameXp, recordGameSession, type SpecialGameType } from "@/lib/games";
+import { btnPrimary } from "@/components/ui/system";
 
 /** Toà nhà có game tình huống. Nội dung ở lib/i18n/dictionaries/sections/building-games.ts,
  *  nơi phần tử đầu của mỗi `options` là đáp án đúng. */
@@ -78,46 +79,46 @@ export default function BuildingScenarioGame({ buildingId, userId }: { buildingI
   };
 
   return (
-    <div className="h-full overflow-y-auto p-4 sm:p-6 bg-gradient-to-b from-slate-900 to-slate-950 text-white">
+    <div className="h-full overflow-y-auto bg-[#fbfaf7] p-4 text-ink sm:p-6 dark:bg-stone-950">
       <div className="max-w-2xl mx-auto space-y-4">
         <header>
-          <h2 className="text-xl font-black">{game.title}</h2>
-          <p className="text-sm text-slate-300">{game.intro}</p>
+          <h2 className="text-xl font-black tracking-tight text-ink-max">{game.title}</h2>
+          <p className="mt-1 text-sm text-ink-soft">{game.intro}</p>
         </header>
 
         {done ? (
-          <div className="rounded-2xl bg-slate-800 p-5 space-y-3 text-center">
-            <p className="text-lg font-black">{format(copy.resultTitle, { score, total })}</p>
-            <p className={xp > 0 ? "text-brand-300 font-bold" : "text-amber-300 font-bold"}>
+          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 space-y-3 p-5 text-center">
+            <p className="text-lg font-black tabular-nums tracking-tight text-ink-max">{format(copy.resultTitle, { score, total })}</p>
+            <p className={xp > 0 ? "font-bold text-accent-strong" : "font-bold text-warn-strong"}>
               {xp > 0 ? format(copy.resultXp, { xp }) : copy.resultNoXp}
             </p>
-            <button onClick={restart} className="rounded-xl bg-brand-500 px-4 py-2 font-black text-slate-950 hover:bg-brand-400">
+            <button onClick={restart} className={btnPrimary}>
               {copy.playAgain}
             </button>
           </div>
         ) : (
-          <div className="rounded-2xl bg-slate-800 p-5 space-y-4">
-            <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
+          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 space-y-4 p-5">
+            <p className="text-xs font-bold uppercase tracking-wide tabular-nums text-ink-muted">
               {format(copy.progress, { n: step + 1, total })}
             </p>
-            <p className="font-bold">{scenario.q}</p>
+            <p className="font-bold text-ink-max">{scenario.q}</p>
             <div className="grid gap-2">
               {current.order.map((originalIndex) => {
                 const isPicked = picked === originalIndex;
                 const reveal = picked !== null;
                 const tone = !reveal
-                  ? "bg-slate-700 hover:bg-slate-600"
+                  ? "border-stone-300 text-ink-body hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
                   : originalIndex === 0
-                    ? "bg-brand-600"
+                    ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
                     : isPicked
-                      ? "bg-rose-600"
-                      : "bg-slate-700 opacity-60";
+                      ? "border-red-500 bg-red-50 text-red-800 dark:border-red-700 dark:bg-red-950/40 dark:text-red-200"
+                      : "border-stone-200 text-ink-faint dark:border-stone-800";
                 return (
                   <button
                     key={originalIndex}
                     onClick={() => pick(originalIndex)}
                     disabled={reveal}
-                    className={`text-left rounded-xl px-4 py-3 text-sm font-semibold transition ${tone}`}
+                    className={`rounded-sm border px-4 py-3 text-left text-sm font-semibold transition-colors ${tone}`}
                   >
                     {scenario.options[originalIndex]}
                   </button>
@@ -127,12 +128,12 @@ export default function BuildingScenarioGame({ buildingId, userId }: { buildingI
             {picked !== null && (
               <div className="space-y-3">
                 <p className="text-sm">
-                  <span className={picked === 0 ? "text-brand-300 font-black" : "text-rose-300 font-black"}>
+                  <span className={picked === 0 ? "font-black text-accent-strong" : "font-black text-red-600 dark:text-red-400"}>
                     {picked === 0 ? copy.correct : copy.wrong}
                   </span>{" "}
-                  <span className="text-slate-200">{scenario.why}</span>
+                  <span className="text-ink-body">{scenario.why}</span>
                 </p>
-                <button onClick={advance} className="rounded-xl bg-brand-500 px-4 py-2 font-black text-slate-950 hover:bg-brand-400">
+                <button onClick={advance} className={btnPrimary}>
                   {step + 1 < total ? copy.next : copy.finish}
                 </button>
               </div>

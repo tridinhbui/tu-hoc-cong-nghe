@@ -17,13 +17,15 @@ export default function ThemeToggle() {
         persistTheme(next);
       }}
       aria-label={isDark ? t.miscUi.themeToggle.toLight : t.miscUi.themeToggle.toDark}
-      className={`w-12 h-6 rounded-full border-2 transition-colors flex items-center cursor-pointer ${
-        isDark ? "bg-brand-600 border-brand-700" : "bg-stone-200 border-stone-300"
+      role="switch"
+      aria-checked={isDark}
+      className={`w-11 h-6 rounded-sm border transition-colors flex items-center cursor-pointer ${
+        isDark ? "bg-brand-600 border-brand-600" : "bg-surface-raised border-line-firm"
       }`}
     >
       <div
-        className={`w-4 h-4 rounded-full bg-white transition-transform ${
-          isDark ? "translate-x-6" : "translate-x-1"
+        className={`w-4 h-4 rounded-xs bg-white border border-line-strong transition-transform ${
+          isDark ? "translate-x-5.5" : "translate-x-0.5"
         }`}
       />
     </button>

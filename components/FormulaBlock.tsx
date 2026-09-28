@@ -68,19 +68,19 @@ export default function FormulaBlock({
   };
 
   return (
-    <div className="my-8 border-2 border-stone-900 dark:border-amber-500/40 rounded-2xl bg-white/95 dark:bg-stone-900 shadow-lg overflow-hidden transition-all">
+    <div className="my-8 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
       {/* Header Bar */}
-      <div className="bg-surface-invert px-5 py-3.5 flex items-center justify-between border-b border-stone-800">
+      <div className="flex items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-4 py-2.5 dark:border-stone-700 dark:bg-stone-950">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-xs font-black">
+          <div className="flex h-7 w-7 items-center justify-center rounded-sm border border-stone-300 text-ink-muted dark:border-stone-700">
             <Calculator className="w-4 h-4" />
           </div>
           <div>
-            <p className="text-[10px] font-extrabold text-amber-400 uppercase tracking-widest leading-none">
+            <p className="text-[10.5px] font-bold uppercase leading-none tracking-[0.08em] text-ink-muted">
               {resolvedLabel}
             </p>
             {title && (
-              <h4 className="text-sm font-extrabold text-white mt-1 tracking-wide">
+              <h4 className="mt-1 text-sm font-black tracking-tight text-ink-max">
                 {title}
               </h4>
             )}
@@ -90,13 +90,13 @@ export default function FormulaBlock({
         <button
           type="button"
           onClick={copyFormulaText}
-          className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 transition-colors cursor-pointer border border-stone-700"
+          className="flex cursor-pointer items-center gap-1.5 rounded-sm border border-stone-400 px-2.5 py-1 text-xs font-bold text-ink transition-colors hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200"
           title={t.formulaBlock.copyTooltip}
         >
           {copied ? (
             <>
-              <Check className="w-3.5 h-3.5 text-brand-400" />
-              <span className="text-brand-400">{t.formulaBlock.copiedLabel}</span>
+              <Check className="w-3.5 h-3.5 text-accent-strong" />
+              <span className="text-accent-strong">{t.formulaBlock.copiedLabel}</span>
             </>
           ) : (
             <>
@@ -108,26 +108,26 @@ export default function FormulaBlock({
       </div>
 
       {/* Formula Display Area (Stacked Math Fraction or Plain Equation) */}
-      <div className="p-6 bg-gradient-to-b from-stone-900 to-stone-950 text-white flex flex-col items-center justify-center border-b border-stone-800/80 min-h-[120px]">
+      <div className="flex min-h-[120px] flex-col items-center justify-center border-b border-stone-200 bg-[#fbfaf7] p-6 text-ink-max dark:border-stone-800 dark:bg-stone-950">
         {numerator && denominator ? (
           <div className="flex items-center justify-center gap-3 text-lg sm:text-xl lg:text-2xl font-serif tracking-wide py-2 flex-wrap">
-            {title && <span className="font-bold text-amber-300 font-sans text-sm sm:text-base">{title} =</span>}
+            {title && <span className="font-sans text-sm font-bold text-ink-muted sm:text-base">{title} =</span>}
             <div className="flex flex-col items-center px-2">
-              <span className="pb-1 border-b-2 border-amber-400 text-amber-200 font-bold text-center px-2">
+              <span className="border-b-2 border-stone-950 px-2 pb-1 text-center font-bold text-ink-max dark:border-stone-200">
                 {numerator}
               </span>
-              <span className="pt-1 text-stone-300 font-bold text-center px-2">
+              <span className="px-2 pt-1 text-center font-bold text-ink-max">
                 {denominator}
               </span>
             </div>
             {multiplier && (
-              <span className="font-bold text-brand-400 font-sans text-base sm:text-lg">
+              <span className="font-sans text-base font-bold text-ink-max sm:text-lg">
                 × {multiplier}
               </span>
             )}
           </div>
         ) : equation ? (
-          <div className="text-center font-serif text-lg sm:text-xl text-amber-200 py-2 leading-relaxed tracking-wide font-bold">
+          <div className="py-2 text-center font-serif text-lg font-bold leading-relaxed tracking-wide text-ink-max sm:text-xl">
             {equation}
           </div>
         ) : null}
@@ -135,22 +135,22 @@ export default function FormulaBlock({
 
       {/* Variables Explanation Table */}
       {variables.length > 0 && (
-        <div className="p-5 bg-stone-50/50 dark:bg-stone-900/60 border-b border-stone-200/80 dark:border-stone-800">
-          <p className="text-[11px] font-extrabold text-ink-muted uppercase tracking-widest mb-3 flex items-center gap-1.5">
-            <HelpCircle className="w-3.5 h-3.5 text-amber-500" />
+        <div className="border-b border-stone-200 p-5 dark:border-stone-800">
+          <p className="mb-3 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
+            <HelpCircle className="w-3.5 h-3.5 text-ink-muted" />
             {t.formulaBlock.variablesTitle}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {variables.map((v) => (
               <div
                 key={v.symbol}
-                className="flex items-start gap-2.5 bg-white/95 dark:bg-stone-800 p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-700/80 text-xs shadow-2xs"
+                className="flex items-start gap-2.5 rounded-sm border border-stone-200 bg-white p-2.5 text-xs dark:border-stone-800 dark:bg-stone-900"
               >
-                <span className="font-mono font-bold text-warn-strong bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/60 shrink-0">
+                <span className="shrink-0 rounded-xs border border-stone-300 bg-[#f3f1ec] px-2 py-0.5 font-mono font-medium text-ink-max dark:border-stone-700 dark:bg-stone-950">
                   {v.symbol}
                 </span>
                 <div>
-                  <p className="font-bold text-ink">{v.name}</p>
+                  <p className="font-bold text-ink-max">{v.name}</p>
                   {v.description && (
                     <p className="text-ink-muted mt-0.5 leading-normal">
                       {v.description}
@@ -165,24 +165,24 @@ export default function FormulaBlock({
 
       {/* Real-World Numerical Example */}
       {example && (
-        <div className="p-5 bg-brand-50/30 dark:bg-brand-950/20 border-t border-brand-100 dark:border-brand-900/40">
+        <div className="p-5">
           <div className="flex items-center gap-2 mb-2">
-            <p className="text-xs font-extrabold text-accent-ink uppercase tracking-wider">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
               {example.title || t.formulaBlock.defaultExampleTitle}
             </p>
           </div>
 
-          <div className="bg-white dark:bg-stone-900 p-3.5 rounded-xl border border-brand-200/60 dark:border-brand-800/60 text-xs space-y-1.5 shadow-2xs">
-            <div className="flex items-baseline justify-between gap-2 flex-wrap font-mono font-bold">
+          <div className="space-y-1.5 rounded-sm border border-stone-200 bg-[#fbfaf7] p-3.5 text-xs dark:border-stone-800 dark:bg-stone-950">
+            <div className="flex flex-wrap items-baseline justify-between gap-2 font-bold tabular-nums">
               <span className="text-ink-body">{format(t.formulaBlock.calculationPrefix, { calculation: example.calculation })}</span>
-              <span className="text-accent text-sm font-extrabold bg-brand-50 dark:bg-brand-950/60 px-2.5 py-0.5 rounded-lg border border-accent-line">
+              <span className="font-mono text-sm font-medium tabular-nums text-accent-strong">
                 = {example.result}
               </span>
             </div>
 
             {example.explanation && (
               <p className="flex items-start gap-1.5 text-ink-soft text-xs pt-1 leading-relaxed border-t border-line-soft mt-2">
-                <Lightbulb aria-hidden className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-accent" strokeWidth={1.75} /> <span className="font-semibold">{example.explanation}</span>
+                <Lightbulb aria-hidden className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-ink-muted" strokeWidth={1.75} /> <span className="font-semibold">{example.explanation}</span>
               </p>
             )}
           </div>

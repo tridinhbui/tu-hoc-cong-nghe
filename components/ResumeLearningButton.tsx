@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, BookOpen, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
@@ -14,6 +14,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
 import { XP_PER_LESSON } from "@/lib/levels";
+import { StatusDot, btnPrimary, panel } from "@/components/ui/system";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
@@ -81,11 +82,11 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
 
   if (loading) {
     return (
-      <div className="bg-white dark:bg-stone-900 border border-line rounded-3xl p-6 flex items-center gap-4 animate-pulse">
-      <div className="w-12 h-12 rounded-2xl bg-surface-sunken" />
+      <div className={`${panel} p-6 flex items-center gap-4 animate-pulse`}>
+      <div className="w-12 h-12 rounded-sm bg-surface-sunken" />
       <div className="flex-1 space-y-2">
-      <div className="h-4 bg-surface-sunken rounded w-1/3" />
-      <div className="h-5 bg-surface-sunken rounded w-3/4" />
+      <div className="h-4 bg-surface-sunken rounded-xs w-1/3" />
+      <div className="h-5 bg-surface-sunken rounded-xs w-3/4" />
           </div>
       </div>
     );
@@ -102,14 +103,14 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
 
   if (!nextLesson) {
     return (
-      <div className="bg-gradient-to-r from-brand-600 to-brand-700 rounded-3xl p-6 text-white shadow-md">
+      <div className="rounded-md border border-stone-950 bg-stone-950 p-6 text-white dark:border-stone-700">
         <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center">
+        <div className="w-12 h-12 rounded-sm border border-white/15 flex items-center justify-center">
             <BookOpen className="w-6 h-6" />
           </div>
           <div className="flex-1">
-            <p className="font-bold text-lg">{format(t.resume.congrats, { name: firstName ? `, ${firstName}` : "" })}</p>
-            <p className="text-sm text-white/90">{t.resume.allDone}</p>
+            <p className="font-black tracking-tight text-lg">{format(t.resume.congrats, { name: firstName ? `, ${firstName}` : "" })}</p>
+            <p className="text-sm text-stone-300">{t.resume.allDone}</p>
           </div>
         </div>
       </div>
@@ -141,12 +142,12 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
       <Link
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-        className="group relative overflow-hidden block rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xs transition-all duration-300 hover:border-brand-600/80 hover:shadow-md min-h-[175px]"
+        className="group relative overflow-hidden block rounded-md border border-line-strong bg-white dark:bg-stone-900 transition-colors hover:border-stone-950 dark:hover:border-stone-300 min-h-[175px]"
       >
-        {/* Floating Top-Left Dark Green Book Icon Badge */}
+        {/* Ô biểu tượng trung tính ở góc trên trái */}
         <div className="absolute top-5 left-5 z-20 hidden sm:flex items-center justify-center pointer-events-none">
-          <div className="w-12 h-12 rounded-2xl bg-brand-900 text-white flex items-center justify-center shadow-md border-2 border-white dark:border-stone-800">
-            <BookOpen className="w-6 h-6 text-brand-400" />
+          <div className="w-12 h-12 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
+            <BookOpen className="w-6 h-6" />
           </div>
         </div>
 
@@ -155,12 +156,11 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
           <div className="min-w-0 flex-1 space-y-2.5 flex flex-col justify-between">
             {/* Top Badges */}
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="inline-flex items-center gap-1.5 text-[10.5px] font-mono font-black uppercase text-accent-ink bg-brand-100/90 dark:bg-brand-950/80 px-2.5 py-0.5 rounded-full border border-brand-300/80 dark:border-brand-800">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-600 animate-pulse" />
+              <span className="eyebrow inline-flex items-center gap-1.5 text-ink-soft">
+                <StatusDot />
                 {t.resume.resumeBadge}
               </span>
-              <span className="inline-flex items-center gap-1 text-[10.5px] font-mono font-bold text-amber-900 dark:text-amber-300 bg-amber-100/90 dark:bg-amber-950/80 px-2.5 py-0.5 rounded-full border border-amber-300/80 dark:border-amber-800">
-                <Sparkles className="w-3 h-3 text-amber-600 fill-amber-500" />
+              <span className="inline-flex items-center rounded-sm border border-stone-300 px-2 py-0.5 font-mono text-[10.5px] font-medium tabular-nums text-ink-muted dark:border-stone-700">
                 {format(t.resume.resumeXpBadge, { xp: XP_PER_LESSON })}
               </span>
             </div>
@@ -170,7 +170,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
               <span className="text-xs font-bold text-ink-muted block">
                 {lessonLabel}
               </span>
-              <h2 className="text-lg sm:text-2xl font-black text-ink-max tracking-tight leading-snug group-hover:text-brand-800 dark:group-hover:text-brand-400 transition-colors mt-0.5">
+              <h2 className="text-lg sm:text-2xl font-black text-ink-max tracking-tight leading-snug transition-colors mt-0.5">
                 {getLessonShortTitle({ title: nextLesson.title })}
               </h2>
             </div>
@@ -183,7 +183,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 một <Link>: một <a> lồng trong <a> là HTML không hợp lệ, nên
                 đây là một cái nút TRÔNG như nút, còn cú bấm vẫn do thẻ nhận. */}
             <div className="pt-0.5">
-              <span className="inline-flex items-center gap-1.5 rounded-xl bg-brand-900 px-4 py-2 text-xs font-black text-white shadow-md shadow-brand-950/15 transition-colors group-hover:bg-brand-700 pointer-events-none">
+              <span className={`${btnPrimary} group-hover:bg-brand-700 dark:group-hover:bg-brand-300 pointer-events-none`}>
                 {t.resume.resumeCta}
                 <ArrowRight className="w-3.5 h-3.5" />
               </span>
@@ -205,19 +205,19 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                   })}
                 </span>
               )}
-              <div className="flex-1 max-w-xs h-2 rounded-full bg-stone-200/80 dark:bg-stone-800 overflow-hidden relative">
+              <div className="flex-1 max-w-xs h-1.5 rounded-xs bg-surface-sunken overflow-hidden relative">
                 <div
-                  className="h-full rounded-full bg-brand-600 dark:bg-brand-500 transition-all duration-700"
+                  className="h-full bg-brand-600 dark:bg-brand-500 transition-all duration-700"
                   style={{ width: `${Math.max(2, progressPercent)}%` }}
                 />
               </div>
-              <span className="text-xs font-mono font-black text-brand-800 dark:text-brand-400">
+              <span className="text-xs font-mono font-medium tabular-nums text-ink-max">
                 {progressPercent}%
               </span>
             </div>
           </div>
 
-          {/* Right Side: High-fidelity Storybook Watercolor Mountain Scene */}
+          {/* Bên phải: tranh minh hoạ */}
           {/* Bề rộng ảnh ở khoảng 1024-1279px: PHÉP TÍNH CỦA CHÍNH THẺ NÀY
               không đóng được. Cột trái là `lg:col-span-7` của khung 720px
               (~412px), trừ `sm:pl-20` + `pr-6` còn ~308px chỗ cho nội dung,
@@ -226,7 +226,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
               của thẻ cắt mất. Không có bề rộng ảnh nào ở dải đó vừa đủ cho chữ
               vừa đủ để ảnh còn ra hình, nên ảnh ẩn hẳn từ `lg` tới `xl` và
               quay lại ở `xl`, nơi cột trái là `col-span-8` (~814px). */}
-          <div className="relative w-full md:w-88 lg:hidden xl:block xl:w-88 h-38 shrink-0 rounded-2xl overflow-hidden select-none border border-amber-900/10 dark:border-stone-800 bg-surface">
+          <div className="relative w-full md:w-88 lg:hidden xl:block xl:w-88 h-38 shrink-0 rounded-sm overflow-hidden select-none border border-line-strong bg-surface">
             <Image
               src="/images/dashboard/hero_mountain.jpg"
               alt={t.dashCards.resumeHeroAlt}
@@ -234,10 +234,8 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
               /* Không có `sizes` thì Next phục vụ biến thể rộng nhất - 1,03MB
                  cho một hộp rộng nhất 352px. */
               sizes="(min-width: 1280px) 352px, (min-width: 768px) 352px, 100vw"
-              className="object-cover object-right-top transition-transform duration-500 group-hover:scale-105"
+              className="object-cover object-right-top"
             />
-            {/* Subtle soft gradient blend on the left edge */}
-            <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white dark:from-stone-900 to-transparent pointer-events-none" />
           </div>
         </div>
       </Link>

@@ -4,6 +4,7 @@ import { useId, useMemo, useState } from "react";
 import { PartyPopper } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Frame, StatusDot } from "@/components/ui/system";
 
 function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (ch) => `&#${ch.charCodeAt(0)};`);
@@ -35,6 +36,9 @@ button{flex:1;padding:10px 12px;border:0;border-radius:10px;background:#f59e0b;c
 button + button{background:#1c1917;color:#fff}
 #msg{margin-top:12px;font-weight:700;min-height:1.4em}
 `;
+/* Nhãn máy của khung xem trước: tên tệp thật mà srcDoc dựng ra. */
+const DEMO_FILE = "index.html";
+const DEMO_LIVE = "LIVE";
 /* i18n-ignore-end */
 
 /**
@@ -84,22 +88,24 @@ document.getElementById("light").onclick=function(){document.body.classList.togg
     /* i18n-ignore-end */
   }, [name, css, js, d]);
 
+  // Công tắc: bật là trạng thái được chọn nên dùng xanh (chức năng, luật 3),
+  // viền 1px, bo 2px - không phải viên thuốc.
   const chip = (on: boolean, locked = false) =>
-    `inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-bold transition-colors ${
+    `inline-flex items-center gap-2 rounded-sm border px-3 py-1.5 text-sm font-bold transition-colors ${
       on
-        ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500 dark:text-stone-950"
-        : "border-stone-300 bg-white text-ink-muted hover:border-stone-500 dark:border-stone-600 dark:bg-stone-900"
-    } ${locked ? "cursor-not-allowed opacity-90" : ""}`;
+        ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
+        : "border-stone-300 bg-white text-ink-muted hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+    } ${locked ? "cursor-not-allowed" : ""}`;
 
   return (
-    <div className="rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
-      <p className="font-black text-ink-max">{d.title}</p>
+    <div className="rounded-sm border border-stone-300 bg-[#fbfaf7] p-4 dark:border-stone-700 dark:bg-stone-950">
+      <p className="font-black tracking-tight text-ink-max">{d.title}</p>
       <p className="mb-4 text-sm leading-6 text-ink-muted">{d.sub}</p>
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
         <div className="space-y-4">
           <div>
-            <label htmlFor={nameId} className="mb-1 block text-xs font-bold uppercase tracking-wide text-ink-muted">
+            <label htmlFor={nameId} className="eyebrow mb-1 block text-ink-muted">
               {d.nameLabel}
             </label>
             <input
@@ -107,19 +113,22 @@ document.getElementById("light").onclick=function(){document.body.classList.togg
               value={name}
               maxLength={40}
               onChange={(e) => setName(e.target.value)}
-              className="w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-base text-ink-max outline-none focus:border-brand-600 dark:border-stone-600 dark:bg-stone-950"
+              className="w-full rounded-sm border border-stone-300 bg-white px-3 py-2 text-base text-ink-max outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-900"
             />
           </div>
 
           <div className="flex flex-col items-start gap-2">
             <button type="button" aria-pressed disabled className={chip(true, true)} title={d.htmlAlways}>
+              <StatusDot />
               {d.toggleHtml}
             </button>
             <p className="-mt-1 text-xs text-ink-muted">{d.htmlAlways}</p>
             <button type="button" aria-pressed={css} onClick={() => setCss((v) => !v)} className={chip(css)}>
+              <StatusDot tone={css ? "brand" : "muted"} />
               {d.toggleCss}
             </button>
             <button type="button" aria-pressed={js} onClick={() => setJs((v) => !v)} className={chip(js)}>
+              <StatusDot tone={js ? "brand" : "muted"} />
               {d.toggleJs}
             </button>
           </div>
@@ -127,16 +136,18 @@ document.getElementById("light").onclick=function(){document.body.classList.togg
           <p className="text-sm leading-6 text-ink-body">{d.tryHint}</p>
         </div>
 
-        <iframe
-          title={d.iframeTitle}
-          sandbox="allow-scripts"
-          srcDoc={srcDoc}
-          className="h-[330px] w-full rounded-lg border border-stone-200 bg-white dark:border-stone-700"
-        />
+        <Frame title={DEMO_FILE} meta={DEMO_LIVE}>
+          <iframe
+            title={d.iframeTitle}
+            sandbox="allow-scripts"
+            srcDoc={srcDoc}
+            className="block h-[330px] w-full bg-white"
+          />
+        </Frame>
       </div>
 
       {name.trim() && name.trim() !== d.defaultName ? (
-        <p className="mt-4 flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-2 text-sm font-bold text-brand-800 dark:bg-brand-500/10 dark:text-brand-300">
+        <p className="mt-4 flex items-center gap-2 rounded-sm border border-brand-600 bg-brand-50 px-3 py-2 text-sm font-bold text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200">
           <PartyPopper className="h-4 w-4 shrink-0" strokeWidth={1.75} aria-hidden />
           {d.win}
         </p>

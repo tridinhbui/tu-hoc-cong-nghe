@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { CheckCircle2, Circle, ArrowLeft, ChevronDown, ChevronUp, TriangleAlert } from "lucide-react";
+import { Check, X, ArrowLeft, ArrowUpRight, ChevronDown, ChevronUp } from "lucide-react";
 import { markLessonComplete, saveQuizAnswers, getQuizAnswers, clearQuizAnswers } from "@/lib/progress";
 import { firstAttemptResults, firstAttemptScore } from "@/lib/quiz-scoring";
 import FloatingContact from "@/components/FloatingChatbot";
@@ -43,6 +43,8 @@ import type { QuizQuestion } from "@/lib/lesson-types";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
+import { XP_PER_LESSON } from "@/lib/levels";
+import { btnPrimary, btnSecondary, Sys, StatusDot } from "@/components/ui/system";
 
 export type { QuizQuestion };
 
@@ -76,65 +78,43 @@ interface Props {
   children: React.ReactNode;
 }
 
-const ACCENTS: Record<string, { bg: string; text: string; border: string; badge: string; bar: string; btn: string }> = {
-  emerald: { bg: "bg-brand-50 dark:bg-brand-950/40",  text: "text-accent-strong", border: "border-accent-line", badge: "bg-brand-100 dark:bg-brand-950/60 text-accent-strong", bar: "bg-brand-500", btn: "bg-brand-600 hover:bg-brand-700" },
-  blue:    { bg: "bg-blue-50 dark:bg-blue-950/40",     text: "text-blue-700 dark:text-blue-400",    border: "border-blue-200 dark:border-blue-900",    badge: "bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400",    bar: "bg-blue-500",    btn: "bg-blue-600 hover:bg-blue-700" },
-  violet:  { bg: "bg-violet-50 dark:bg-violet-950/40",   text: "text-violet-700 dark:text-violet-400",  border: "border-violet-200 dark:border-violet-900",  badge: "bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-400", bar: "bg-violet-500",  btn: "bg-violet-600 hover:bg-violet-700" },
-  orange:  { bg: "bg-orange-50 dark:bg-orange-950/40",   text: "text-orange-700 dark:text-orange-300",  border: "border-orange-200 dark:border-orange-900",  badge: "bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-300", bar: "bg-orange-500",  btn: "bg-orange-600 hover:bg-orange-700" },
-  teal:    { bg: "bg-brand-50 dark:bg-brand-950/40",     text: "text-accent-strong",    border: "border-accent-line",    badge: "bg-brand-100 dark:bg-brand-950/60 text-accent-strong",    bar: "bg-brand-500",    btn: "bg-brand-600 hover:bg-brand-700" },
-  cyan:    { bg: "bg-cyan-50 dark:bg-cyan-950/40",     text: "text-cyan-700 dark:text-cyan-400",    border: "border-cyan-200 dark:border-cyan-900",    badge: "bg-cyan-100 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-400",    bar: "bg-cyan-500",    btn: "bg-cyan-600 hover:bg-cyan-700" },
-  rose:    { bg: "bg-rose-50 dark:bg-rose-950/40",     text: "text-alert-strong",    border: "border-alert-line",    badge: "bg-rose-100 dark:bg-rose-950/60 text-alert-strong",    bar: "bg-rose-500",    btn: "bg-rose-600 hover:bg-rose-700" },
-  indigo:  { bg: "bg-indigo-50 dark:bg-indigo-950/40",   text: "text-indigo-700 dark:text-indigo-400",  border: "border-indigo-200 dark:border-indigo-900",  badge: "bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400", bar: "bg-indigo-500",  btn: "bg-indigo-600 hover:bg-indigo-700" },
-  amber:   { bg: "bg-amber-50 dark:bg-amber-950/40",    text: "text-warn-strong",   border: "border-warn-line",   badge: "bg-amber-100 dark:bg-amber-950/60 text-warn-strong",  bar: "bg-amber-500",   btn: "bg-amber-600 hover:bg-amber-700" },
-  purple:  { bg: "bg-purple-50 dark:bg-purple-950/40",   text: "text-purple-700 dark:text-purple-400",  border: "border-purple-200 dark:border-purple-900",  badge: "bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400", bar: "bg-purple-500",  btn: "bg-purple-600 hover:bg-purple-700" },
-  stone:   { bg: "bg-surface-raised",   text: "text-ink-soft",   border: "border-line",   badge: "bg-surface-sunken text-ink-soft",  bar: "bg-stone-500",   btn: "bg-stone-700 hover:bg-stone-800" },
+/* i18n-ignore-start: định danh máy trên khung soạn thảo của bài - tên tệp và
+   đường dẫn, cùng một chuỗi ở mọi ngôn ngữ, như trên trang giới thiệu
+   (components/home/HomePage.tsx, hằng SYS). */
+const SYS = {
+  path: (slug: string) => `THCN://LESSON/${slug.toUpperCase()}`,
+  file: (slug: string) => `${slug}.md`,
+  quiz: "quiz.ts",
+  notes: "notes.md",
+  xp: (n: number) => `+${n} XP`,
+  letters: ["A", "B", "C", "D", "E", "F"],
 };
+/* i18n-ignore-end */
 
 // A set of older hand-written pages still declare their pre-resync lesson id
 // inline, while the dashboard and Cloudflare `lessons` table use the canonical
 // ids from lib/lessons-data/_index.json. Persisting with the stale inline id
 // makes the quiz look complete locally but invisible on the dashboard.
 const CANONICAL_LESSON_IDS_BY_SLUG: Record<string, number> = {
-  "bds-business-model": 1028,
-  "bitcoin-crypto": 1025,
-  "cap-rate": 1009,
-  "commodity-phan-2": 1005,
-  "discontinued-operations": 1001,
-  "disney-pixar-ma": 1021,
-  "dividend": 1017,
-  "dupont-analysis": 1016,
-  "enterprise-value": 1008,
-  "fcf-deep-dive": 1035,
-  "finance-as-math": 1033,
+  "tai-nguyen-tinh-toan-khan-hiem": 1005,
+  "mot-lan-toi-uu-lon": 1001,
+  "slo-cam-ket-do-tin-cay": 1017,
   "financial-risk": 1029,
-  "fpt-cfo-cash": 1023,
-  "hoc-tai-chinh-hanh-trinh": 1030,
-  "income-affiliates-jv": 1011,
+  "doi-co-20-phan-tram-nang-luc-du": 1023,
+  "chia-chi-phi-dich-vu-dung-chung": 1011,
   "interim-comprehensive-income": 1012,
-  "inventory-turnover": 1019,
-  "maple-leaf-leverage": 1014,
-  "market-fair-value": 1006,
-  "modern-portfolio-theory": 1032,
-  "nvidia-cash-securities": 1022,
-  "oil-gas-business-model": 1024,
-  "on-tap-wacc": 1002,
-  "operating-leverage": 1010,
-  "post-ipo-dividend": 1020,
-  "pvgas-bad-debt": 1026,
-  "retail-store-analysis": 1027,
-  "roic": 1003,
-  "roic-phan-2": 1004,
-  "samsung-ai-finance": 1034,
-  "tesla-cash-flow": 1015,
-  "transfer-pricing": 1013,
-  "vingroup-cash-flow": 1007,
-  "walmart-earnings": 1018,
+  "ty-le-no-ky-thuat": 1014,
+  "chi-phi-moi-request-co-hop-ly": 1006,
+  "nhieu-dich-vu-nho-hay-mot-dich-vu-lon": 1032,
+  "chi-phi-co-dinh-va-theo-luong-dung": 1010,
+  "sau-khi-ra-mat-co-nen-cong-bo-slo": 1020,
+  "dong-tai-nguyen-san-pham-tang-nhanh": 1015,
+  "doc-dong-tai-nguyen-he-thong-lon": 1007,
   "wealth-management": 1031,
 };
 
 export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const { t } = useI18n();
-  const c = ACCENTS[lesson.accent] ?? ACCENTS.indigo;
   const persistedLessonId = lesson.slug ? CANONICAL_LESSON_IDS_BY_SLUG[lesson.slug] ?? lesson.id : lesson.id;
 
   const [selected, setSelected]   = useState<(number | null)[]>(new Array(quiz.length).fill(null));
@@ -732,7 +712,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     }
 
     if (typeof window !== "undefined") {
-      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: 10, label: t.miscUi.lessonPageLayout.lessonCompletedLabel } }));
+      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: XP_PER_LESSON, label: t.miscUi.lessonPageLayout.lessonCompletedLabel } }));
     }
     toast.success(t.lessonLayout.saved);
     return "saved";
@@ -770,622 +750,615 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   const qCorrect   = results[activeQ];
   const qSelected  = selected[activeQ];
 
+  const slug = lesson.slug || "";
+  // Nhãn nhỏ kiểu bảng hệ thống: chữ hoa sans (không phải mono - đây là chữ
+  // tiếng Việt đã dịch), giống các nhãn "VÍ DỤ", "QUIZ" trong HeroEditor.
+  const label = "text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted";
+  const shell = "overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900";
+  const titleBar = "flex h-9 items-stretch justify-between border-b border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950";
+
   return (
-    <div className="min-h-screen bg-[#FAFAFC] dark:bg-stone-950 font-sans antialiased text-[#1A1A1E] dark:text-stone-100">
-      {/* Reading Progress Bar (Fixed Left, race track style) - bright near milestones, dim otherwise.
-          Only shown from 2xl up: below that the centered max-w-7xl article's left edge sits too
-          close to the viewport edge, and the fixed bar ends up overlapping lesson text. */}
-      <div className="fixed left-4 top-1/2 -translate-y-1/2 z-10 hidden 2xl:block">
+    <div className="min-h-screen bg-[#fbfaf7] font-sans text-ink antialiased dark:bg-stone-950">
+      {/* Thước đọc cố định bên trái - chỉ từ 2xl, vì dưới mức đó cột bài
+          học căn giữa nằm quá sát mép và thước đè lên chữ. */}
+      <div className="fixed left-4 top-1/2 z-10 hidden -translate-y-1/2 2xl:block">
         <ReadingProgress progress={readPct} onMilestone={handleMilestone} />
       </div>
 
-      {/* Sticky header */}
-      <header className="bg-white dark:bg-stone-900 border-b border-line sticky top-0 z-50">
-        {/* Scroll progress bar: full width, 4px, sits at very top of header */}
-        <div className="h-1.5 w-full bg-surface-raised">
-          <div
-            className={`h-full ${c.bar} transition-all duration-150`}
-            style={{ width: `${readPct}%` }}
-          />
+      {/* Thanh trên cùng */}
+      <header className="sticky top-0 z-50 border-b border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+        {/* Tiến độ cuộn: 2px, xanh vì nó là dữ liệu sống. */}
+        <div className="h-0.5 w-full bg-surface-sunken">
+          <div className="h-full bg-brand-600 transition-[width] duration-150 dark:bg-brand-500" style={{ width: `${readPct}%` }} />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <Link
               href="/hoc-bai"
               aria-label={t.lessonLayout.backAria}
-              className="inline-flex flex-shrink-0 items-center gap-1.5 whitespace-nowrap w-9 h-9 sm:w-auto sm:px-4 sm:py-2 justify-center rounded-full sm:rounded-lg border-2 border-line-strong text-ink-body font-bold hover:bg-surface-raised hover:border-line-firm hover:text-ink bg-white dark:bg-stone-900 transition-all"
+              className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-sm border border-stone-300 text-sm font-bold text-ink-body transition-colors hover:border-stone-950 hover:text-ink-max dark:border-stone-700 dark:hover:border-stone-200 sm:w-auto sm:px-3"
             >
-              <ArrowLeft className="w-4 h-4 flex-shrink-0" />
+              <ArrowLeft className="h-4 w-4 flex-shrink-0" />
               <span className="hidden sm:inline">{t.lessonLayout.back}</span>
             </Link>
             <div className="min-w-0">
-              <p className="font-extrabold text-ink text-base sm:text-lg leading-tight line-clamp-1">{lesson.title}</p>
-              <p className="text-sm text-ink-muted hidden sm:block font-semibold">{lessonLabel}</p>
+              {slug && <Sys className="hidden truncate text-ink-faint sm:block">{SYS.path(slug)}</Sys>}
+              <p className="line-clamp-1 text-base font-black leading-tight tracking-tight text-ink-max sm:text-[17px]">{lesson.title}</p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto sm:justify-end">
-            {/* Reading font-size control */}
+          <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:justify-end sm:gap-3">
             <FontSizeControl scale={fontScale} onChange={setFontScale} />
-
-            {/* Kindle-style reading theme: sáng / dịu nhẹ (sepia) / tối */}
             <ReadingModeControl mode={readingMode} onChange={setReadingMode} />
 
-            {/* Bookmark button */}
             <div data-tour="lesson-bookmark">
-              <BookmarkButton
-                lessonId={persistedLessonId}
-                lessonSlug={lesson.slug || ""}
-                lessonTitle={lesson.title}
-              />
+              <BookmarkButton lessonId={persistedLessonId} lessonSlug={slug} lessonTitle={lesson.title} />
             </div>
 
-            <ManualLessonFlagButton
-              lessonId={persistedLessonId}
-              lessonSlug={lesson.slug || ""}
-              lessonTitle={lesson.title}
-            />
+            <ManualLessonFlagButton lessonId={persistedLessonId} lessonSlug={slug} lessonTitle={lesson.title} />
 
-            {/* Quick stats peek */}
             <LessonStatsHover />
 
-            {/* Reading progress badge */}
-            <div className="hidden sm:flex items-center gap-2 bg-stone-50 dark:bg-stone-900/50 border border-line rounded-full px-3 py-1.5">
-              <div className="w-4 h-4 rounded-full bg-surface-sunken overflow-hidden flex-shrink-0 relative">
-                <div
-                  className={`absolute bottom-0 left-0 right-0 ${c.bar} transition-all duration-150`}
-                  style={{ height: `${readPct}%` }}
-                />
-              </div>
-              <span className="text-xs font-bold text-ink-soft">
-                {readPct < 100
-                  ? readPct === 0
-                    ? format(t.lessonLayout.readMinutes, { minutes: readingMin })
-                    : format(t.lessonLayout.readProgress, { percent: readPct, minutes: remainMin })
-                  : t.lessonLayout.readDone}
-              </span>
-            </div>
-
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="h-2 w-28 bg-surface-raised rounded-full overflow-hidden">
-                <div className={`h-full ${c.bar} rounded-full transition-all duration-500`} style={{ width: `${pct}%` }} />
-              </div>
-              <span className="text-xs text-ink-muted font-semibold">{submittedCount}/{quiz.length}</span>
-            </div>
-            <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full ${c.badge}`}>
-              {lessonLabel}
+            {/* Trạng thái đọc: câu tiếng Việt, nên đi bằng sans. */}
+            <span className="hidden text-xs font-semibold text-ink-soft sm:inline">
+              {readPct < 100
+                ? readPct === 0
+                  ? format(t.lessonLayout.readMinutes, { minutes: readingMin })
+                  : format(t.lessonLayout.readProgress, { percent: readPct, minutes: remainMin })
+                : t.lessonLayout.readDone}
             </span>
+
+            {quiz.length > 0 && (
+              <div className="hidden items-center gap-2 sm:flex">
+                <div className="h-1 w-20 bg-surface-sunken">
+                  <div className="h-full bg-brand-600 transition-[width] duration-500 dark:bg-brand-500" style={{ width: `${pct}%` }} />
+                </div>
+                <Sys className="tabular-nums text-ink-muted">
+                  {submittedCount}/{quiz.length}
+                </Sys>
+              </div>
+            )}
+            <Sys className="rounded-sm border border-stone-300 px-2 py-1 text-ink-body dark:border-stone-700">{lessonLabel}</Sys>
           </div>
         </div>
       </header>
 
-      {/* 2-column layout */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-6 sm:py-8 lg:py-12">
-        <div className="flex flex-col xl:flex-row gap-6 sm:gap-8 lg:gap-12 items-start">
-
-          {/* ── LEFT: Article ─────────────────────────────────────── */}
-          <div className="flex-1 min-w-0">
+      <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6 lg:py-10">
+        <div className="flex flex-col items-start gap-6 sm:gap-8 xl:flex-row lg:gap-10">
+          {/* ── TRÁI: bài đọc ───────────────────────────────────────── */}
+          <div className="min-w-0 flex-1">
             <TextHighlightMenu
-            containerRef={articleRef}
-            lessonId={persistedLessonId}
-            lessonSlug={lesson.slug || ""}
-            onCreated={(h) => setHighlights((prev) => [...prev, h])}
-          />
+              containerRef={articleRef}
+              lessonId={persistedLessonId}
+              lessonSlug={slug}
+              onCreated={(h) => setHighlights((prev) => [...prev, h])}
+            />
 
-          <article ref={articleRef} className="flex-1 min-w-0 space-y-8 pb-20 lg:pb-0">
-            {/* Hero */}
-            <div className={`rounded-2xl ${c.bg} border-2 ${c.border} p-8 sm:p-10`}>
-              <div className={`text-sm font-extrabold uppercase tracking-widest ${c.text} mb-3`}>
-                {lessonLabel} · {lesson.difficulty}
+            <article ref={articleRef} className="min-w-0 flex-1 space-y-8 pb-20 lg:pb-0">
+              {/* Đầu bài: một cửa sổ soạn thảo, đúng khuôn HeroEditor ở trang
+                  giới thiệu - tab tệp, thân bài, thanh trạng thái. Các tab
+                  quiz.ts / notes.md là liên kết thật tới cột bên phải. */}
+              <div className={shell}>
+                <div className={titleBar}>
+                  <div className="flex min-w-0">
+                    <span className="relative flex min-w-0 items-center border-r border-stone-300 bg-white px-3.5 dark:border-stone-700 dark:bg-stone-900">
+                      <span aria-hidden className="absolute inset-x-0 top-0 h-[2px] bg-brand-600 dark:bg-brand-500" />
+                      <Sys className="truncate normal-case text-ink">{slug ? SYS.file(slug) : lessonLabel}</Sys>
+                    </span>
+                    {quiz.length > 0 && (
+                      <a href="#lesson-quiz" className="hidden items-center border-r border-stone-300 px-3.5 hover:bg-white dark:border-stone-700 dark:hover:bg-stone-900 sm:flex">
+                        <Sys className="normal-case text-ink-muted">{SYS.quiz}</Sys>
+                      </a>
+                    )}
+                    <a href="#lesson-notes" className="hidden items-center border-r border-stone-300 px-3.5 hover:bg-white dark:border-stone-700 dark:hover:bg-stone-900 md:flex">
+                      <Sys className="normal-case text-ink-muted">{SYS.notes}</Sys>
+                    </a>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-3 px-3">
+                    <Sys className="hidden text-ink-muted xs:inline">{lessonLabel}</Sys>
+                    <Sys className="text-accent-strong">{SYS.xp(XP_PER_LESSON)}</Sys>
+                  </div>
+                </div>
+
+                <div className="p-5 sm:p-8">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <StatusDot tone={readPct > 0 ? "brand" : "muted"} />
+                    <span className="text-[11px] font-semibold text-ink-muted">{lesson.difficulty}</span>
+                  </div>
+                  <h1 className="mt-3 text-[1.9rem] font-black leading-[1.1] tracking-tight text-ink-max sm:text-[2.6rem]">
+                    {lesson.title}
+                  </h1>
+                  <p className="mt-4 max-w-[68ch] text-lg leading-8 text-ink-body">{lesson.subtitle}</p>
+
+                  <div className="mt-6 grid grid-cols-3 border-y border-stone-200 text-sm dark:border-stone-800">
+                    {[
+                      format(t.lessonLayout.durationRead, { duration: lesson.duration }),
+                      format(t.lessonLayout.quizCount, { count: quiz.length }),
+                      readPct === 0
+                        ? t.lessonLayout.notStarted
+                        : readPct >= 100
+                          ? t.lessonLayout.readDone
+                          : format(t.lessonLayout.readPercent, { percent: readPct }),
+                    ].map((value, i) => (
+                      <div key={i} className={`min-w-0 py-2.5 ${i > 0 ? "border-l border-stone-200 pl-3 dark:border-stone-800" : ""}`}>
+                        <p className={`truncate font-semibold ${i === 2 && readPct > 0 ? "text-accent-strong" : "text-ink-max"}`}>{value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div data-tour="lesson-progress" className="mt-4 h-1 bg-surface-sunken">
+                    <div className="h-full bg-brand-600 transition-[width] duration-150 dark:bg-brand-500" style={{ width: `${readPct}%` }} />
+                  </div>
+                  {readPct > 0 && readPct < 100 && (
+                    <p className="mt-2 text-sm text-ink-soft">
+                      {t.lessonLayout.remainingPart1}
+                      <strong className="font-semibold text-ink-max">{format(t.lessonLayout.remainingMinutes, { minutes: remainMin })}</strong>
+                      {t.lessonLayout.remainingPart2}
+                    </p>
+                  )}
+
+                  {(() => {
+                    // Dùng chung đúng `scrolledFully` mà điều kiện hoàn thành
+                    // dùng, thay vì một biến cùng tên che nó với ngưỡng 95 và
+                    // chỉ đọc readPct. Hai chỗ lệch nhau theo hai hướng: từ 90
+                    // tới 95 thì bài đã lưu xong mà ô vẫn chưa tick, còn cuộn
+                    // ngược lên thì ô tự bỏ tick dù bài đã hoàn thành - vì
+                    // readPct là vị trí hiện tại, maxReachedRef mới là chỗ xa
+                    // nhất đã tới. Đây đúng là họ lỗi "checklist nói một đằng,
+                    // dữ liệu lưu một nẻo" mà comment ở trên nói đã dẹp.
+                    const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
+                    const checklistItems: { label: string; done: boolean }[] = [
+                      { label: t.lessonLayout.checkReadAll, done: scrolledFully },
+                    ];
+                    if (hasMidpoint) {
+                      checklistItems.push({ label: t.lessonLayout.checkMidpoint, done: midpointDone });
+                    }
+                    if (quiz.length > 0) {
+                      checklistItems.push({
+                        label: format(t.lessonLayout.checkQuiz, { done: submittedCount, total: quiz.length }),
+                        done: sidebarQuizDone,
+                      });
+                    }
+                    const allDoneNow = checklistItems.every((it) => it.done);
+
+                    return (
+                      <div
+                        className={`mt-6 border-l-2 pl-4 ${
+                          allDoneNow ? "border-brand-600 dark:border-brand-400" : "border-stone-950 dark:border-stone-300"
+                        }`}
+                      >
+                        <p className={`${label} ${allDoneNow ? "text-accent-strong" : ""}`}>{t.lessonLayout.checklistTitle}</p>
+                        <ul className="mt-2 space-y-1.5">
+                          {checklistItems.map((item, i) => (
+                            <li key={i} className="flex items-center gap-2.5">
+                              <span
+                                aria-hidden
+                                className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-xs border ${
+                                  item.done
+                                    ? "border-brand-600 bg-brand-600 text-white dark:border-brand-400 dark:bg-brand-400 dark:text-stone-950"
+                                    : "border-line-firm"
+                                }`}
+                              >
+                                {item.done && <Check className="h-3 w-3" strokeWidth={3} />}
+                              </span>
+                              <span
+                                className={`text-sm font-semibold sm:text-[15px] ${
+                                  item.done ? "text-ink-muted line-through decoration-stone-400" : "text-ink-body"
+                                }`}
+                              >
+                                {item.label}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })()}
+                </div>
               </div>
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 dark:text-white leading-tight mb-4">
-                {lesson.title}
-              </h1>
-              <p className="text-ink-body text-lg sm:text-xl leading-relaxed">{lesson.subtitle}</p>
-              <div className="mt-7 pt-5 border-t-2 border-line-strong space-y-4">
-                <div className="flex items-center gap-4 text-base text-ink-body font-semibold">
-                  <span>{format(t.lessonLayout.durationRead, { duration: lesson.duration })}</span>
-                  <span>·</span>
-                  <span>{format(t.lessonLayout.quizCount, { count: quiz.length })}</span>
-                  <span>·</span>
-                  <span className="font-bold text-stone-900 dark:text-white">
-                    {readPct === 0
-                      ? t.lessonLayout.notStarted
-                      : readPct >= 100
-                        ? t.lessonLayout.readDone
-                        : format(t.lessonLayout.readPercent, { percent: readPct })}
-                  </span>
-                </div>
-                {/* Reading progress bar inside hero */}
-                <div data-tour="lesson-progress" className="h-2.5 bg-surface-deep rounded-full overflow-hidden">
-                  <div
-                    className={`h-full ${c.bar} rounded-full transition-all duration-150`}
-                    style={{ width: `${readPct}%` }}
-                  />
-                </div>
-                {readPct > 0 && readPct < 100 && (
-                  <p className="text-sm text-ink-body font-semibold">
-                    {t.lessonLayout.remainingPart1}
-                    <strong className="text-stone-900 dark:text-white">{format(t.lessonLayout.remainingMinutes, { minutes: remainMin })}</strong>
-                    {t.lessonLayout.remainingPart2}
-                  </p>
-                )}
-                {(() => {
-                  // Dùng chung đúng `scrolledFully` mà điều kiện hoàn thành
-                  // dùng, thay vì một biến cùng tên che nó với ngưỡng 95 và
-                  // chỉ đọc readPct. Hai chỗ lệch nhau theo hai hướng: từ 90
-                  // tới 95 thì bài đã lưu xong mà ô vẫn chưa tick, còn cuộn
-                  // ngược lên thì ô tự bỏ tick dù bài đã hoàn thành - vì
-                  // readPct là vị trí hiện tại, maxReachedRef mới là chỗ xa
-                  // nhất đã tới. Đây đúng là họ lỗi "checklist nói một đằng,
-                  // dữ liệu lưu một nẻo" mà comment ở trên nói đã dẹp.
-                  const sidebarQuizDone = quiz.length > 0 && submittedCount === quiz.length;
-                  const checklistItems: { label: string; done: boolean }[] = [
-                    { label: t.lessonLayout.checkReadAll, done: scrolledFully },
-                  ];
-                  if (hasMidpoint) {
-                    checklistItems.push({ label: t.lessonLayout.checkMidpoint, done: midpointDone });
-                  }
-                  if (quiz.length > 0) {
-                    checklistItems.push({
-                      label: format(t.lessonLayout.checkQuiz, { done: submittedCount, total: quiz.length }),
-                      done: sidebarQuizDone,
-                    });
-                  }
-                  const allDoneNow = checklistItems.every((it) => it.done);
 
-                  return (
-                    <div className={`rounded-xl border-2 ${allDoneNow ? "border-brand-500 bg-brand-50 dark:bg-brand-950/30" : c.border} ${allDoneNow ? "" : c.bg} px-4 py-3.5 space-y-2.5`}>
-                      <p className={`text-xs font-extrabold uppercase tracking-widest flex items-center gap-1.5 ${allDoneNow ? "text-accent-strong" : c.text}`}>
-                        {allDoneNow ? (
-                          <CheckCircle2 aria-hidden className="w-4 h-4 flex-shrink-0" />
-                        ) : (
-                          <TriangleAlert aria-hidden className="w-4 h-4 flex-shrink-0" />
-                        )}
-                        {t.lessonLayout.checklistTitle}
-                      </p>
-                      <ul className="space-y-1.5">
-                        {checklistItems.map((item, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            {item.done ? (
-                              <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0" />
-                            ) : (
-                              <Circle className="w-4 h-4 text-ink-faint flex-shrink-0" />
-                            )}
-                            <span
-                              className={`text-sm sm:text-base font-bold ${
-                                item.done ? "text-accent-strong line-through decoration-2" : c.text
-                              }`}
-                            >
-                              {item.label}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
+              {/* Ôn cách quãng - khái niệm từ ~5 và ~12 bài trước, trước khi
+                  vào nội dung mới. */}
+              {recallItems.length > 0 && <RecallCard items={recallItems} />}
+
+              <div data-tour="lesson-tai-tai">
+                <StageTipsBanner lessonId={persistedLessonId} lessonTitle={lesson.title} />
+              </div>
+
+              {/* Video bài giảng */}
+              <div className={shell}>
+                <div className="flex h-9 items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+                  <span className={label}>{t.lessonLayout.videoTitle}</span>
+                  <span className="text-[11px] font-semibold text-ink-muted">{t.lessonLayout.videoBadge}</span>
+                </div>
+
+                {(() => {
+                  const vUrl = adminVideoUrl ?? (lesson as { videoUrl?: string }).videoUrl;
+                  // Admins may enter a full watch URL, a youtu.be link, or just
+                  // the bare video ID (see app/admin/videos placeholder text) -
+                  // normalize all of those to a real embeddable URL instead of
+                  // only handling the one "youtube.com/watch?v=" shape.
+                  const embedSrc = (() => {
+                    if (!vUrl) return "";
+                    if (vUrl.includes("/embed/")) return vUrl;
+                    const watchMatch = vUrl.match(/[?&]v=([^&]+)/);
+                    if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+                    const pathMatch = vUrl.match(/youtu\.be\/([^?&/]+)/);
+                    if (pathMatch) return `https://www.youtube.com/embed/${pathMatch[1]}`;
+                    if (/^[\w-]{6,}$/.test(vUrl)) return `https://www.youtube.com/embed/${vUrl}`;
+                    return vUrl;
+                  })();
+                  return vUrl ? (
+                    <div className="aspect-video w-full bg-black">
+                      <iframe
+                        src={embedSrc}
+                        title={lesson.title}
+                        className="h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-start justify-between gap-3 p-4 sm:flex-row sm:items-center">
+                      <p className="text-sm leading-6 text-ink-body">{t.lessonLayout.videoNote}</p>
+                      <a
+                        href={`https://www.youtube.com/results?search_query=T%E1%BB%B1+h%E1%BB%8Dc+t%C3%A0i+ch%C3%ADnh+${encodeURIComponent(lesson.title)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${btnSecondary} shrink-0`}
+                      >
+                        <span>{t.lessonLayout.videoCta}</span>
+                        <ArrowUpRight aria-hidden className="h-4 w-4" />
+                      </a>
                     </div>
                   );
                 })()}
               </div>
-            </div>
 
-            {/* Spaced-repetition recall - surfaces concepts from ~5 and ~12
-                lessons back before introducing new material, so review is
-                distributed across the course instead of only happening once
-                at the end of a chặng. */}
-            {recallItems.length > 0 && <RecallCard items={recallItems} />}
-
-            {/* Tài Tài auto-tip */}
-            <div data-tour="lesson-tai-tai">
-              <StageTipsBanner lessonId={persistedLessonId} lessonTitle={lesson.title} />
-            </div>
-
-            {/* Lesson Video Player / Curated Video Section */}
-            <div className="my-6 rounded-2xl overflow-hidden border-2 border-line-invert bg-stone-900 text-white p-5 shadow-lg">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-7 h-7 rounded-lg bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 font-bold text-xs">▶️</span>
-                  <h3 className="text-sm font-extrabold text-white uppercase tracking-wider">{t.lessonLayout.videoTitle}</h3>
-                </div>
-                <span className="text-[10px] font-bold text-stone-400 bg-stone-800 px-2 py-0.5 rounded">{t.lessonLayout.videoBadge}</span>
+              {/* Content - `zoom` (not fontSize) so the reading-size control
+                  rescales every lesson page uniformly regardless of the
+                  explicit Tailwind text-sm/lg/xl classes each hand-written
+                  lesson sets on its own child elements. */}
+              <div
+                className={`space-y-8 text-lg leading-8 text-ink-body ${readingMode === "sepia" ? "reading-sepia" : ""}`}
+                style={{ zoom: fontScale }}
+              >
+                <LessonCompletionContext.Provider value={{ registerMidpoint, markMidpointDone }}>
+                  {children}
+                </LessonCompletionContext.Provider>
               </div>
 
-              {(() => {
-                const vUrl = adminVideoUrl ?? (lesson as { videoUrl?: string }).videoUrl;
-                // Admins may enter a full watch URL, a youtu.be link, or just
-                // the bare video ID (see app/admin/videos placeholder text) -
-                // normalize all of those to a real embeddable URL instead of
-                // only handling the one "youtube.com/watch?v=" shape.
-                const embedSrc = (() => {
-                  if (!vUrl) return "";
-                  if (vUrl.includes("/embed/")) return vUrl;
-                  const watchMatch = vUrl.match(/[?&]v=([^&]+)/);
-                  if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
-                  const pathMatch = vUrl.match(/youtu\.be\/([^?&/]+)/);
-                  if (pathMatch) return `https://www.youtube.com/embed/${pathMatch[1]}`;
-                  if (/^[\w-]{6,}$/.test(vUrl)) return `https://www.youtube.com/embed/${vUrl}`;
-                  return vUrl;
-                })();
-                return vUrl ? (
-                  <div className="aspect-video w-full rounded-xl overflow-hidden border border-stone-800 bg-black">
-                    <iframe
-                      src={embedSrc}
-                      title={lesson.title}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                ) : (
-                  <div className="bg-stone-950 p-4 rounded-xl border border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                    <p className="text-stone-300">
-                      {t.lessonLayout.videoNote}
-                    </p>
-                    <a
-                      href={`https://www.youtube.com/results?search_query=T%E1%BB%B1+h%E1%BB%8Dc+t%C3%A0i+ch%C3%ADnh+${encodeURIComponent(lesson.title)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 font-bold text-white transition-all shadow-md shrink-0 flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <span>{t.lessonLayout.videoCta}</span>
-                    </a>
-                  </div>
-                );
-              })()}
-            </div>
+              <div className="mt-12 border-t border-stone-300 pt-8 dark:border-stone-700">
+                <LessonFeedbackInline lessonId={persistedLessonId} userId={userId} />
+              </div>
 
-            {/* Content - `zoom` (not fontSize) so the reading-size control
-                rescales every lesson page uniformly regardless of the
-                explicit Tailwind text-sm/lg/xl classes each hand-written
-                lesson sets on its own child elements. */}
-            <div
-              className={`space-y-8 text-ink-heading leading-relaxed text-lg sm:text-xl font-medium ${readingMode === "sepia" ? "reading-sepia" : ""}`}
-              style={{ zoom: fontScale }}
-            >
-              <LessonCompletionContext.Provider value={{ registerMidpoint, markMidpointDone }}>
-                {children}
-              </LessonCompletionContext.Provider>
-            </div>
+              <div className="mt-8 border-t border-stone-200 pt-6 dark:border-stone-800 lg:hidden">
+                <p className="text-center text-sm font-semibold text-ink-muted">{t.lessonLayout.scrollForQuiz}</p>
+              </div>
 
-            {/* Feedback form at the bottom */}
-            <div className="mt-12 pt-8 border-t border-line">
-              <LessonFeedbackInline lessonId={persistedLessonId} userId={userId} />
-            </div>
-
-            {/* Mobile quiz prompt */}
-            <div className="lg:hidden mt-8 border-t border-line pt-6">
-              <p className="text-base text-ink-muted text-center">{t.lessonLayout.scrollForQuiz}</p>
-            </div>
-
-            {/* Bottom-of-article sentinel for IntersectionObserver-based
-                scroll completion - see the effect above. Must be the very
-                last thing in the article. */}
-            <div ref={bottomSentinelRef} className="h-px" aria-hidden="true" />
-          </article>
+              {/* Bottom-of-article sentinel for IntersectionObserver-based
+                  scroll completion - see the effect above. Must be the very
+                  last thing in the article. */}
+              <div ref={bottomSentinelRef} className="h-px" aria-hidden="true" />
+            </article>
           </div>
 
-          {/* ── RIGHT: Table of Contents (XL+) ─────────────────────────── */}
-          {/* Most lessons are quiz/explanation-based (no `sections`), or
-              have fewer than 3 headings - LessonTableOfContents renders
-              null for those, but this wrapper used to render unconditionally
-              regardless, reserving 256px + gap of dead flex space between
-              the article and quiz sidebar on every lesson without a real
-              TOC. That's what squeezed both columns narrow with a large
-              blank gap between them on laptop-width screens (reported:
-              "phần các bài học trên laptop screen bị co lại"). Only
-              reserving the space when there's an actual TOC to show fixes it. */}
+          {/* ── PHẢI: mục lục (XL+) - chỉ giữ chỗ khi thật sự có mục lục,
+              nếu không cột trống 256px bóp hẹp cả bài lẫn quiz trên laptop. */}
           {hasToc && (
-            <div className="hidden xl:block w-64 flex-shrink-0">
+            <div className="hidden w-64 flex-shrink-0 xl:block">
               <LessonTableOfContents sections={lesson.sections} />
             </div>
           )}
 
-          {/* ── RIGHT: Quiz sidebar ────────────────────────────────── */}
-          {/* max-h + overflow-y-auto so the sticky column scrolls internally
-              once its content (notes + quiz + explanation + mini nav) is
-              taller than the viewport - without this, anything past the
-              fold (e.g. the "Câu tiếp theo" button) was stuck off-screen
-              with no way to reach it, since a sticky element doesn't scroll
-              on its own past its container's height.
+          {/* ── PHẢI: cột quiz ──────────────────────────────────────────
+              max-h + overflow-y-auto để cột sticky tự cuộn khi cao hơn màn
+              hình. Mọi breakpoint ở đây phải là `xl`, khớp `xl:flex-row` của
+              cha: giữa 1024 và 1279px cột này vẫn xếp dưới bài đọc. */}
+          <aside
+            id="lesson-quiz"
+            data-tour="lesson-quiz"
+            className="w-full flex-shrink-0 scroll-mt-24 space-y-4 xl:sticky xl:top-24 xl:max-h-[calc(100vh-7rem)] xl:w-[440px] xl:overflow-y-auto"
+          >
+            <div id="lesson-notes" className="scroll-mt-24">
+              <LessonNotes lessonId={persistedLessonId} lessonSlug={slug} />
+            </div>
 
-              Every breakpoint here must be `xl`, matching the parent's
-              `xl:flex-row`. They used to be `lg`, which meant that between
-              1024px and 1279px the sidebar was still stacked *below* the
-              article in a column, yet already sticky and clipped to viewport
-              height - so it simply scrolled away instead of following, and a
-              440px column sat oddly in a full-width stack. Sticky positioning
-              only means anything once this is actually a side column. */}
-          <aside data-tour="lesson-quiz" className="w-full xl:w-[440px] flex-shrink-0 xl:sticky xl:top-24 xl:max-h-[calc(100vh-7rem)] xl:overflow-y-auto space-y-4">
-            {/* Lesson Notes */}
-            <LessonNotes lessonId={persistedLessonId} lessonSlug={lesson.slug || ""} />
-
-            {/* Saved text highlights / AI-content flags for this lesson */}
             <LessonHighlightsList
               highlights={highlights}
               onDeleted={(id) => setHighlights((prev) => prev.filter((h) => h.id !== id))}
             />
 
-            {/* Quiz progress - collapsible */}
-            <div className="bg-white/95 dark:bg-stone-900 rounded-2xl border-2 border-line-strong overflow-hidden">
+            {/* Cửa sổ quiz: thanh tiêu đề là nút thu gọn dải tiến độ. */}
+            <div className={shell}>
               <button
                 onClick={() => setQuizCollapsed(!quizCollapsed)}
-                className="w-full flex items-center justify-between p-4 hover:bg-surface transition-colors"
+                aria-expanded={!quizCollapsed}
+                className="flex h-9 w-full items-center justify-between border-b border-stone-300 bg-[#f3f1ec] px-3 transition-colors hover:bg-[#ece9e2] dark:border-stone-700 dark:bg-stone-950 dark:hover:bg-stone-900"
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-base font-extrabold text-ink uppercase tracking-wide">{t.lessonLayout.quickCheck}</span>
-                  <span className="text-base font-bold text-ink-body bg-surface-raised px-3 py-1 rounded-lg">{submittedCount}/{quiz.length}</span>
-                </div>
-                {quizCollapsed ? <ChevronDown className="w-5 h-5 text-ink-muted" /> : <ChevronUp className="w-5 h-5 text-ink-muted" />}
+                <span className="flex min-w-0 items-center gap-3">
+                  <Sys className="normal-case text-ink">{SYS.quiz}</Sys>
+                  <span className={label}>{t.lessonLayout.quickCheck}</span>
+                </span>
+                <span className="flex items-center gap-2">
+                  <Sys className="tabular-nums text-ink-muted">
+                    {submittedCount}/{quiz.length}
+                  </Sys>
+                  {quizCollapsed ? <ChevronDown className="h-4 w-4 text-ink-muted" /> : <ChevronUp className="h-4 w-4 text-ink-muted" />}
+                </span>
               </button>
+
               {!quizCollapsed && (
-                <div className="p-6 pt-0">
-              <div className="flex gap-2">
-                {quiz.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => viewQuestion(i)}
-                    title={submitted[i] ? t.lessonLayout.reviewQuestion : undefined}
-                    className={`flex-1 h-3 rounded-full transition-all cursor-pointer ${
-                      submitted[i]
-                        ? results[i] ? "bg-brand-500" : "bg-rose-500"
-                        : i === activeQ ? `${c.bar}` : "bg-surface-deep"
-                    }`}
-                  />
-                ))}
-              </div>
-                </div>
-              )}
-            </div>
-
-            {/* Active question */}
-            {!finished || reviewMode ? (
-              <div className="bg-white/95 dark:bg-stone-900 rounded-2xl border-2 border-line-strong p-8 space-y-6">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-extrabold text-ink-body uppercase tracking-wider bg-surface-raised px-3 py-1 rounded-lg">
-                      {format(t.lessonLayout.questionCounter, { current: activeQ + 1, total: quiz.length })}
-                    </span>
-                    {qSubmitted && (
-                      <span className={`text-sm font-bold px-3 py-1.5 rounded-lg ${qCorrect ? "bg-brand-100 dark:bg-brand-950/50 text-accent-ink-strong" : "bg-rose-100 dark:bg-rose-950/50 text-alert-ink"}`}>
-                        {qCorrect ? t.lessonLayout.answerRight : t.lessonLayout.answerWrong}
-                      </span>
-                    )}
-                  </div>
-                  <p className="font-bold text-ink text-lg leading-relaxed select-text">{q.question}</p>
-                </div>
-
-                <div className="space-y-3">
-                  {q.options.map((opt, oi) => {
-                    const isSelected = qSelected === oi;
-                    const isCorrectOpt = oi === q.correct;
-                    let cls = "border-2 border-line-strong bg-white/95 dark:bg-stone-900 text-ink hover:border-line-firm hover:bg-surface";
-                    if (qSubmitted) {
-                      if (isCorrectOpt) cls = "border-2 border-brand-500 bg-brand-50 dark:bg-brand-950/50 text-accent-ink-strong font-semibold";
-                      else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-alert-ink font-semibold";
-                      else cls = "border-2 border-line bg-stone-50 dark:bg-stone-900/50 text-ink-muted";
-                    } else if (isSelected) {
-                      // Fixed high-contrast style, independent of the lesson's decorative
-                      // accent color - the "stone" accent (most common) was nearly
-                      // identical to the unselected style, leaving no visible confirmation
-                      // that a tap registered before the user hits "Kiểm tra".
-                      cls = "border-2 border-line-invert bg-surface-invert text-ink-invert font-semibold";
-                    }
-                    return (
-                      <button
-                        key={oi}
-                        disabled={qSubmitted}
-                        onClick={() => choose(activeQ, oi)}
-                        className={`w-full text-left px-5 py-4 rounded-xl border transition-all flex items-center gap-4 cursor-pointer font-medium text-base select-text ${cls}`}
-                      >
-                        <span className="w-8 h-8 rounded-lg text-xs font-extrabold flex items-center justify-center flex-shrink-0 bg-surface-sunken text-ink-heading select-none">
-                          {["A", "B", "C", "D"][oi]}
-                        </span>
-                        <span className="flex-1 text-base leading-snug select-text">{opt}</span>
-                        {qSubmitted && isCorrectOpt && <span className="text-accent font-bold text-xl">✓</span>}
-                        {qSubmitted && isSelected && !isCorrectOpt && <span className="text-alert font-bold text-xl">✗</span>}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {qSubmitted && (
-                  <div className={`rounded-xl p-4 text-sm leading-relaxed border ${qCorrect ? "bg-brand-50 dark:bg-brand-950/50 border-brand-100 dark:border-brand-900 text-accent-ink" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"}`}>
-                    <p className="font-bold mb-1.5">{qCorrect ? t.lessonLayout.exactly : t.lessonLayout.explanation}</p>
-                    {/* Contrast the learner's own wrong pick against the correct
-                        one before explaining - naming the exact misconception
-                        they just revealed, not just restating the right answer. */}
-                    {!qCorrect && qSelected !== null && (
-                      <p className="mb-2 pb-2 border-b border-alert-line">
-                        <span className="font-semibold">{t.lessonLayout.youChose}</span> "{q.options[qSelected]}"
-                        <br />
-                        <span className="font-semibold">{t.lessonLayout.correctIs}</span> "{q.options[q.correct]}"
-                      </p>
-                    )}
-                    <p>{q.explanation}</p>
-                  </div>
-                )}
-
-                {/* Sticky to the bottom of the quiz sidebar's own scroll
-                    container (see the `aside`'s xl:overflow-y-auto above) so
-                    the action button is always in reach right after picking
-                    an option, instead of requiring a scroll down to find it
-                    and then back up to see the feedback - the exact
-                    complaint from user feedback ("chọn đáp án phải lăn
-                    xuống để click xác nhận... rồi lại lăn lên"). The
-                    negative margin+matching padding cancels out the parent
-                    card's own padding so this reaches the card's true edges
-                    while staying flush against them, not floating with a
-                    gap. */}
-                <div className="sticky bottom-0 -mx-8 -mb-8 px-8 pb-6 pt-3 bg-gradient-to-t from-white dark:from-stone-900 from-70% to-transparent">
-                  {!qSubmitted ? (
-                    <button
-                      disabled={qSelected === null}
-                      onClick={() => verify(activeQ)}
-                      className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white transition-all cursor-pointer shadow-lg ${
-                        qSelected !== null ? `${c.btn}` : "bg-surface-sunken text-ink-muted cursor-not-allowed shadow-none"
-                      }`}
-                    >
-                      {t.lessonLayout.check}
-                    </button>
-                  ) : (
-                    <div className="flex gap-3">
-                      {!qCorrect && (
-                        <button
-                          onClick={() => retry(activeQ)}
-                          className="flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider border-2 border-line-strong bg-white dark:bg-stone-900 text-ink-body hover:bg-surface transition-colors cursor-pointer shadow-lg"
-                        >
-                          {t.lessonLayout.tryAgain}
-                        </button>
-                      )}
-                      {reviewMode && finished ? (
-                        <button
-                          onClick={() => setReviewMode(false)}
-                          className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
-                        >
-                          {t.lessonLayout.backToResults}
-                        </button>
-                      ) : activeQ < quiz.length - 1 ? (
-                        <button
-                          onClick={() => setActiveQ(activeQ + 1)}
-                          className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
-                        >
-                          {t.lessonLayout.nextQuestion}
-                        </button>
-                      ) : (
-                        !reviewMode && allDone && (
-                          <button
-                            onClick={() => setFinished(true)}
-                            className={`flex-1 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-white ${c.btn} cursor-pointer shadow-lg`}
-                          >
-                            {t.lessonLayout.seeResults}
-                          </button>
-                        )
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ) : (
-              /* Completion card */
-              <div className={`rounded-2xl border p-7 text-center space-y-4 ${score === quiz.length ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line" : "bg-indigo-50 dark:bg-indigo-950/50 border-indigo-200 dark:border-indigo-900"}`}>
-                <div className="text-5xl">{score === quiz.length ? "★" : score >= quiz.length * 0.7 ? "+" : "↑"}</div>
-                <div>
-                  <h3 className="font-bold text-ink text-xl">{t.lessonLayout.doneTitle}</h3>
-                  <p className="text-ink-muted text-sm mt-1">{format(t.lessonLayout.doneScore, { score, total: quiz.length })}</p>
-                  {/* Hai con số, và nói rõ con số nào được ghi lại.
-                      Chỉ hiện khi chúng khác nhau: người làm đúng hết ngay lần
-                      đầu không cần đọc một dòng giải thích về việc thử lại. */}
-                  {firstScore !== score && (
-                    <p className="text-ink-muted text-xs mt-2 leading-relaxed">
-                      <strong className="text-ink-body">
-                        {format(t.lessonLayout.firstAttemptScore, { score: firstScore, total: quiz.length })}
-                      </strong>{" "}
-                      {t.lessonLayout.firstAttemptNote}
-                    </p>
-                  )}
-                </div>
-                <div className="flex gap-2 justify-center">
-                  {results.map((ok, i) => (
-                    <button
-                      key={i}
-                      onClick={() => (ok ? viewQuestion(i) : retry(i))}
-                      title={ok ? t.lessonLayout.reviewQuestion : t.lessonLayout.retryQuestion}
-                      className={`w-9 h-9 rounded-full text-sm flex items-center justify-center text-white font-bold cursor-pointer ${ok ? "bg-brand-500 hover:bg-brand-600" : "bg-rose-400 hover:bg-rose-500"}`}
-                    >
-                      {ok ? "✓" : "✗"}
-                    </button>
-                  ))}
-                </div>
-                <WisdomCardFlip score={score} total={quiz.length} />
-                {results.some((r) => !r) && authState !== "guest" && (
-                  <Link
-                    href="/on-tap-cau-sai"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs sm:text-sm font-black transition-colors cursor-pointer shadow-sm"
-                  >
-                    {t.lessonLayout.reviewMistakes}
-                  </Link>
-                )}
-                {/* Khách đọc bài xem thử: mọi nút bên dưới đều dẫn vào vùng
-                    phải đăng nhập, nên chúng sẽ bật ngược về /login - đúng cú
-                    cụt mà việc mở bài xem thử sinh ra để tránh. Thay bằng một
-                    lời mời nói thẳng thứ họ sẽ mất nếu bỏ đi: bài vừa đọc.
-                    Bài kế tiếp chỉ hiện khi nó cũng là bài xem thử. */}
-                {authState === "guest" ? (
-                  <div className="rounded-2xl border border-brand-200 dark:border-brand-900/60 bg-brand-50/70 dark:bg-brand-950/30 p-4 space-y-2.5">
-                    <p className="text-sm font-black text-accent-ink">
-                      {t.lessonLayout.guestSaveTitle}
-                    </p>
-                    <p className="text-xs font-medium leading-relaxed text-ink-soft">
-                      {t.lessonLayout.guestSaveBody}
-                    </p>
-                    <Link
-                      href={`/login?mode=signup&next=${encodeURIComponent(`/bai-hoc/${lesson.slug ?? ""}`)}`}
-                      className={`w-full inline-flex items-center justify-center py-3.5 rounded-xl text-white text-sm font-black text-center ${c.btn} transition-colors`}
-                    >
-                      {t.lessonLayout.guestSaveCta}
-                    </Link>
-                    {lesson.nextSlug && isPreviewLessonSlug(lesson.nextSlug) && (
-                      <Link
-                        href={`/bai-hoc/${lesson.nextSlug}`}
-                        className="w-full inline-flex items-center justify-center py-3 rounded-xl border border-line-mid text-ink-soft text-sm font-bold text-center hover:bg-white dark:hover:bg-stone-800 transition-colors"
-                      >
-                        {t.lessonLayout.nextLesson}
-                      </Link>
-                    )}
-                  </div>
-                ) : (
-                  <>
-                    <div className="grid grid-cols-2 gap-3 pt-1">
-                      <Link href="/dashboard" className="py-3.5 rounded-xl border border-line-mid text-ink-soft text-sm font-bold text-center hover:bg-surface transition-colors">
-                        {t.lessonLayout.dashboard}
-                      </Link>
-                      {lesson.nextSlug ? (
-                        <Link href={`/bai-hoc/${lesson.nextSlug}`} className={`py-3.5 rounded-xl text-white text-sm font-bold text-center ${c.btn} transition-colors`}>
-                          {t.lessonLayout.nextLesson}
-                        </Link>
-                      ) : (
-                        <div className="py-3.5 rounded-xl bg-surface-raised text-ink-muted text-sm font-bold text-center">{t.lessonLayout.comingSoon}</div>
-                      )}
-                    </div>
-                    <ShareCompletionButton
-                      lessonSlug={lesson.slug || ""}
-                      lessonTitle={lesson.title}
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-white text-sm font-bold transition-colors cursor-pointer hover:brightness-110"
-                    />
-                  </>
-                )}
-                <button
-                  onClick={restartQuiz}
-                  className="text-xs font-bold text-ink-muted hover:text-ink-body uppercase tracking-wide transition-colors cursor-pointer"
-                >
-                  {t.lessonLayout.restart}
-                </button>
-              </div>
-            )}
-
-            {/* Mini nav between questions */}
-            {(!finished || reviewMode) && quiz.length > 1 && (
-              <div className="bg-white dark:bg-stone-900 rounded-2xl border border-line p-4">
-                <div className="text-xs text-ink-muted font-bold uppercase tracking-wide mb-3">{t.lessonLayout.questionList}</div>
-                <div className="grid grid-cols-5 gap-2">
+                <div className="flex gap-1 border-b border-stone-200 px-4 py-3 dark:border-stone-800">
                   {quiz.map((_, i) => (
                     <button
                       key={i}
                       onClick={() => viewQuestion(i)}
-                      className={`h-10 rounded-xl text-sm font-bold transition-all cursor-pointer ${
-                        i === activeQ
-                          ? `${c.bar} text-white`
-                          : submitted[i]
-                          ? results[i] ? "bg-brand-100 dark:bg-brand-950/50 text-accent-strong" : "bg-rose-100 dark:bg-rose-950/50 text-alert-strong"
-                          : "bg-surface-raised text-ink-muted hover:bg-surface-sunken"
+                      title={submitted[i] ? t.lessonLayout.reviewQuestion : undefined}
+                      className={`h-1.5 flex-1 cursor-pointer rounded-[1px] transition-colors ${
+                        submitted[i]
+                          ? results[i]
+                            ? "bg-brand-600 dark:bg-brand-500"
+                            : "bg-red-500"
+                          : i === activeQ
+                            ? "bg-stone-950 dark:bg-stone-100"
+                            : "bg-surface-sunken"
                       }`}
-                    >
-                      {i + 1}
-                    </button>
+                    />
                   ))}
                 </div>
-              </div>
-            )}
+              )}
+
+              {!finished || reviewMode ? (
+                <div className="space-y-5 p-5 sm:p-6">
+                  <div>
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <span className={label}>{format(t.lessonLayout.questionCounter, { current: activeQ + 1, total: quiz.length })}</span>
+                      {qSubmitted && (
+                        <span
+                          className={`rounded-sm border px-2 py-0.5 text-[11px] font-bold ${
+                            qCorrect
+                              ? "border-brand-600 text-accent-strong dark:border-brand-400"
+                              : "border-red-500 text-danger"
+                          }`}
+                        >
+                          {qCorrect ? t.lessonLayout.answerRight : t.lessonLayout.answerWrong}
+                        </span>
+                      )}
+                    </div>
+                    <p className="select-text text-lg font-bold leading-7 text-ink-max">{q.question}</p>
+                  </div>
+
+                  {/* Phương án: hàng vuông viền 1px, rãnh chữ cái mono bên
+                      trái - cùng khuôn với phần trả lời trong HeroEditor. */}
+                  <ul className="space-y-2">
+                    {q.options.map((opt, oi) => {
+                      const isSelected = qSelected === oi;
+                      const isCorrectOpt = oi === q.correct;
+                      let cls =
+                        "border-stone-300 bg-white text-ink hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+                      let gutter = "text-ink-faint";
+                      if (qSubmitted) {
+                        if (isCorrectOpt) {
+                          cls = "border-brand-600 bg-brand-50 font-semibold text-brand-900 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-100";
+                          gutter = "text-accent-strong";
+                        } else if (isSelected) {
+                          cls = "border-red-500 bg-red-50 font-semibold text-red-900 dark:border-red-500/70 dark:bg-red-950/40 dark:text-red-200";
+                          gutter = "text-red-600 dark:text-red-400";
+                        } else {
+                          cls = "border-stone-200 bg-white text-ink-muted dark:border-stone-800 dark:bg-stone-900";
+                        }
+                      } else if (isSelected) {
+                        cls = "border-brand-600 bg-brand-50 font-semibold text-brand-900 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-100";
+                        gutter = "text-accent-strong";
+                      }
+                      return (
+                        <li key={oi}>
+                          <button
+                            disabled={qSubmitted}
+                            onClick={() => choose(activeQ, oi)}
+                            aria-pressed={isSelected}
+                            className={`flex w-full cursor-pointer select-text items-start gap-3 rounded-sm border px-3 py-2.5 text-left text-[15px] leading-6 transition-colors disabled:cursor-default ${cls}`}
+                          >
+                            <Sys className={`mt-[3px] w-4 flex-shrink-0 select-none text-[11px] ${gutter}`}>{SYS.letters[oi]}</Sys>
+                            <span className="flex-1 select-text">{opt}</span>
+                            {qSubmitted && isCorrectOpt && <Check aria-hidden className="mt-1 h-4 w-4 flex-shrink-0 text-accent-strong" />}
+                            {qSubmitted && isSelected && !isCorrectOpt && <X aria-hidden className="mt-1 h-4 w-4 flex-shrink-0 text-red-600 dark:text-red-400" />}
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                  {qSubmitted && (
+                    <div
+                      className={`border-l-2 pl-4 text-sm leading-7 text-ink-body ${
+                        qCorrect ? "border-brand-600 dark:border-brand-400" : "border-red-500"
+                      }`}
+                    >
+                      <p className={`mb-1 font-bold ${qCorrect ? "text-accent-strong" : "text-danger"}`}>
+                        {qCorrect ? t.lessonLayout.exactly : t.lessonLayout.explanation}
+                      </p>
+                      {/* Đặt lựa chọn sai của người học cạnh đáp án đúng trước
+                          khi giải thích - gọi tên đúng ngộ nhận họ vừa lộ ra. */}
+                      {!qCorrect && qSelected !== null && (
+                        <p className="mb-2 border-b border-stone-200 pb-2 dark:border-stone-800">
+                          <span className="font-semibold text-ink-max">{t.lessonLayout.youChose}</span> &quot;{q.options[qSelected]}&quot;
+                          <br />
+                          <span className="font-semibold text-ink-max">{t.lessonLayout.correctIs}</span> &quot;{q.options[q.correct]}&quot;
+                        </p>
+                      )}
+                      <p>{q.explanation}</p>
+                    </div>
+                  )}
+
+                  {/* Dính đáy vùng cuộn của cột quiz, để nút hành động luôn
+                      trong tầm tay ngay sau khi chọn - không phải lăn xuống
+                      bấm rồi lăn lên đọc phản hồi. Nền đặc + viền trên thay
+                      cho lớp mờ dần cũ. */}
+                  <div className="sticky bottom-0 -mx-5 -mb-5 border-t border-stone-200 bg-white px-5 pb-5 pt-3 dark:border-stone-800 dark:bg-stone-900 sm:-mx-6 sm:-mb-6 sm:px-6 sm:pb-6">
+                    {!qSubmitted ? (
+                      <button disabled={qSelected === null} onClick={() => verify(activeQ)} className={`${btnPrimary} w-full`}>
+                        {t.lessonLayout.check}
+                      </button>
+                    ) : (
+                      <div className="flex gap-2">
+                        {!qCorrect && (
+                          <button onClick={() => retry(activeQ)} className={`${btnSecondary} flex-1`}>
+                            {t.lessonLayout.tryAgain}
+                          </button>
+                        )}
+                        {reviewMode && finished ? (
+                          <button onClick={() => setReviewMode(false)} className={`${btnPrimary} flex-1`}>
+                            {t.lessonLayout.backToResults}
+                          </button>
+                        ) : activeQ < quiz.length - 1 ? (
+                          <button onClick={() => setActiveQ(activeQ + 1)} className={`${btnPrimary} flex-1`}>
+                            {t.lessonLayout.nextQuestion}
+                          </button>
+                        ) : (
+                          !reviewMode &&
+                          allDone && (
+                            <button onClick={() => setFinished(true)} className={`${btnPrimary} flex-1`}>
+                              {t.lessonLayout.seeResults}
+                            </button>
+                          )
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                /* Thẻ hoàn thành */
+                <div className="space-y-5 p-5 sm:p-6">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <StatusDot tone={score === quiz.length ? "brand" : "muted"} />
+                      <span className={label}>{t.lessonLayout.quickCheck}</span>
+                    </div>
+                    <h3 className="mt-2 text-xl font-black tracking-tight text-ink-max">{t.lessonLayout.doneTitle}</h3>
+                    <p className={`mt-1 text-sm font-semibold ${score === quiz.length ? "text-accent-strong" : "text-ink-soft"}`}>
+                      {format(t.lessonLayout.doneScore, { score, total: quiz.length })}
+                    </p>
+                    {/* Hai con số, và nói rõ con số nào được ghi lại.
+                        Chỉ hiện khi chúng khác nhau: người làm đúng hết ngay lần
+                        đầu không cần đọc một dòng giải thích về việc thử lại. */}
+                    {firstScore !== score && (
+                      <p className="mt-3 border-l-2 border-stone-950 pl-3 text-xs leading-6 text-ink-muted dark:border-stone-200">
+                        <strong className="font-semibold text-ink-body">
+                          {format(t.lessonLayout.firstAttemptScore, { score: firstScore, total: quiz.length })}
+                        </strong>{" "}
+                        {t.lessonLayout.firstAttemptNote}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {results.map((ok, i) => (
+                      <button
+                        key={i}
+                        onClick={() => (ok ? viewQuestion(i) : retry(i))}
+                        title={ok ? t.lessonLayout.reviewQuestion : t.lessonLayout.retryQuestion}
+                        className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border transition-colors ${
+                          ok
+                            ? "border-brand-600 bg-brand-50 text-accent-strong hover:bg-brand-100 dark:border-brand-400 dark:bg-brand-950/40"
+                            : "border-red-500 bg-red-50 text-red-700 hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400"
+                        }`}
+                      >
+                        {ok ? <Check aria-hidden className="h-4 w-4" /> : <X aria-hidden className="h-4 w-4" />}
+                      </button>
+                    ))}
+                  </div>
+
+                  <WisdomCardFlip score={score} total={quiz.length} />
+
+                  {results.some((r) => !r) && authState !== "guest" && (
+                    <Link href="/on-tap-cau-sai" className={`${btnSecondary} w-full`}>
+                      {t.lessonLayout.reviewMistakes}
+                    </Link>
+                  )}
+
+                  {/* Khách đọc bài xem thử: mọi nút bên dưới đều dẫn vào vùng
+                      phải đăng nhập, nên chúng sẽ bật ngược về /login - đúng cú
+                      cụt mà việc mở bài xem thử sinh ra để tránh. Thay bằng một
+                      lời mời nói thẳng thứ họ sẽ mất nếu bỏ đi: bài vừa đọc.
+                      Bài kế tiếp chỉ hiện khi nó cũng là bài xem thử. */}
+                  {authState === "guest" ? (
+                    <div className="space-y-3 border-l-2 border-brand-600 pl-4 dark:border-brand-400">
+                      <p className="text-sm font-black text-ink-max">{t.lessonLayout.guestSaveTitle}</p>
+                      <p className="text-sm leading-6 text-ink-soft">{t.lessonLayout.guestSaveBody}</p>
+                      <Link
+                        href={`/login?mode=signup&next=${encodeURIComponent(`/bai-hoc/${lesson.slug ?? ""}`)}`}
+                        className={`${btnPrimary} w-full`}
+                      >
+                        {t.lessonLayout.guestSaveCta}
+                      </Link>
+                      {lesson.nextSlug && isPreviewLessonSlug(lesson.nextSlug) && (
+                        <Link href={`/bai-hoc/${lesson.nextSlug}`} className={`${btnSecondary} w-full`}>
+                          {t.lessonLayout.nextLesson}
+                        </Link>
+                      )}
+                    </div>
+                  ) : (
+                    <>
+                      <div className="grid grid-cols-2 gap-2">
+                        <Link href="/dashboard" className={btnSecondary}>
+                          {t.lessonLayout.dashboard}
+                        </Link>
+                        {lesson.nextSlug ? (
+                          <Link href={`/bai-hoc/${lesson.nextSlug}`} className={btnPrimary}>
+                            {t.lessonLayout.nextLesson}
+                          </Link>
+                        ) : (
+                          <span aria-disabled className={`${btnSecondary} cursor-not-allowed opacity-50`}>
+                            {t.lessonLayout.comingSoon}
+                          </span>
+                        )}
+                      </div>
+                      <ShareCompletionButton
+                        lessonSlug={slug}
+                        lessonTitle={lesson.title}
+                        className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-sm py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
+                      />
+                    </>
+                  )}
+                  <button
+                    onClick={restartQuiz}
+                    className="w-full cursor-pointer text-center text-xs font-bold text-ink-muted transition-colors hover:text-ink-max"
+                  >
+                    {t.lessonLayout.restart}
+                  </button>
+                </div>
+              )}
+
+              {/* Danh sách câu: số mono, câu đang mở là mực, đúng xanh, sai đỏ. */}
+              {(!finished || reviewMode) && quiz.length > 1 && (
+                <div className="border-t border-stone-200 p-4 dark:border-stone-800">
+                  <div className={`${label} mb-2.5`}>{t.lessonLayout.questionList}</div>
+                  <div className="grid grid-cols-5 gap-1.5">
+                    {quiz.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => viewQuestion(i)}
+                        aria-current={i === activeQ ? "true" : undefined}
+                        className={`h-9 cursor-pointer rounded-sm border font-mono text-[13px] font-medium tabular-nums transition-colors ${
+                          i === activeQ
+                            ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                            : submitted[i]
+                              ? results[i]
+                                ? "border-brand-600 bg-brand-50 text-accent-strong dark:border-brand-400 dark:bg-brand-950/40"
+                                : "border-red-500 bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400"
+                              : "border-stone-200 text-ink-muted hover:border-stone-950 dark:border-stone-800 dark:hover:border-stone-300"
+                        }`}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </aside>
         </div>
       </div>

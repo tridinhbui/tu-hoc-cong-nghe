@@ -1,4 +1,4 @@
-import { shuffle } from "./market-sim";
+import { shuffle } from "./shuffle";
 
 // Xáo câu hỏi và xáo cả thứ tự đáp án bên trong mỗi câu.
 //

@@ -12,6 +12,18 @@
         "4000"
       ],
       "port": 4000
+    },
+    {
+      "name": "CF Preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "wrangler",
+        "dev",
+        "--port",
+        "8788",
+        "--local"
+      ],
+      "port": 8788
     }
   ]
 }

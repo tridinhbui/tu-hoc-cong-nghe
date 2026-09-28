@@ -33,13 +33,9 @@ export async function GET(request: NextRequest) {
     avatarUrl: u.avatar_url,
     level: u.current_level || 1,
     pvpScore: (u.current_level || 1) * 120 + 50,
-  })) || [
-    /* i18n-ignore-start: tên hiển thị giả lập, cùng loại với biệt danh meme tài chính ở Leaderboard - dịch ra là hỏng câu đùa */
-    { rank: 1, name: "Thần Thoại Valuation", level: 10, pvpScore: 1850, avatarUrl: null },
-    { rank: 2, name: "Master Corporate Finance", level: 8, pvpScore: 1520, avatarUrl: null },
-    { rank: 3, name: "Vua Tích Sản VN30", level: 7, pvpScore: 1340, avatarUrl: null },
-    /* i18n-ignore-end */
-  ];
+  })) ?? [];
+  // Không còn danh sách ba "đối thủ" dựng sẵn khi truy vấn trả về rỗng: đó là
+  // người chơi bịa, lại mang tên từ thời kho bài tài chính. Rỗng thì hiện rỗng.
 
   return NextResponse.json({ leaderboard });
 }

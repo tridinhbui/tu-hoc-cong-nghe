@@ -67,7 +67,7 @@ export default function ProductPreview() {
   return (
     <div
       style={{ contain: "layout paint" }}
-      className="relative overflow-hidden rounded-xl border border-stone-300/80 bg-white dark:border-stone-800 dark:bg-stone-900 transform-gpu will-change-transform"
+      className="relative overflow-hidden rounded-md border border-stone-300/80 bg-white dark:border-stone-800 dark:bg-stone-900 transform-gpu will-change-transform"
     >
       <style>{`
         @keyframes preview-progress-pulse {
@@ -101,8 +101,6 @@ export default function ProductPreview() {
         }
       `}</style>
       <div className="pointer-events-none absolute inset-0 opacity-60">
-        <div className="absolute left-[-10%] top-[-15%] h-44 w-44 rounded-full bg-brand-400/10 blur-3xl" />
-        <div className="absolute right-[-12%] bottom-[-18%] h-56 w-56 rounded-full bg-brand-400/10 blur-3xl" />
         <div className="preview-scan-line absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.28),transparent)] opacity-40" />
       </div>
       {/* Browser chrome */}
@@ -113,7 +111,7 @@ export default function ProductPreview() {
             <span className="w-2.5 h-2.5 rounded-full bg-surface-deep" />
             <span className="w-2.5 h-2.5 rounded-full bg-surface-deep" />
           </div>
-          <div className="flex-1 min-w-0 text-[11px] font-semibold text-ink-faint bg-white dark:bg-stone-900 border border-line rounded-full px-4 py-1 text-center truncate">
+          <div className="flex-1 min-w-0 text-[11px] font-semibold text-ink-faint bg-white dark:bg-stone-900 border border-line rounded-sm px-4 py-1 text-center truncate">
             tuhoccongnghe.vn/{tab === "dashboard" ? "dashboard" : "bai-hoc"}
           </div>
         </div>
@@ -122,9 +120,9 @@ export default function ProductPreview() {
             <button
               key={tabItem.id}
               onClick={() => setTab(tabItem.id)}
-              className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all duration-200 whitespace-nowrap ${
+              className={`text-[10px] font-bold px-2.5 py-1 rounded-sm transition-all duration-200 whitespace-nowrap ${
                 tab === tabItem.id
-                  ? "bg-surface-invert text-ink-invert shadow-[0_8px_18px_-14px_rgba(15,23,42,0.45)]"
+                  ? "bg-surface-invert text-ink-invert "
                   : "text-ink-faint hover:text-ink-soft"
               }`}
             >
@@ -146,7 +144,7 @@ export default function ProductPreview() {
               className="grid grid-cols-1 gap-4 sm:grid-cols-[1.3fr_1fr]"
             >
               <motion.div
-                className="preview-card-float rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.22)]"
+                className="preview-card-float rounded-md border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 "
                 animate={{ y: [0, -3, 0] }}
                 transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
               >
@@ -155,14 +153,14 @@ export default function ProductPreview() {
                     <p className="text-[10px] font-black uppercase tracking-widest text-ink-faint">{t.productPreview.level}</p>
                     <p className="text-sm font-extrabold text-ink">{t.productPreview.role}</p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-gradient-to-r from-brand-500 to-brand-500 rounded-full px-2.5 py-1">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-brand-600 rounded-sm px-2.5 py-1">
                     <span className="preview-live-dot h-1.5 w-1.5 rounded-full bg-white/90" />
                     {format(t.productPreview.xpLabel, { xp: "1,240" })}
                   </span>
                 </div>
                 <div className="h-2 rounded-full bg-surface-raised overflow-hidden mb-4">
                   <motion.div
-                    className="preview-progress-live h-full w-2/3 rounded-full bg-gradient-to-r from-brand-500 to-brand-500"
+                    className="preview-progress-live h-full w-2/3 rounded-full bg-brand-600"
                     animate={{ boxShadow: ["0 0 0 rgba(65,122,205,0)", "0 0 18px rgba(65,122,205,0.35)", "0 0 0 rgba(65,122,205,0)"] }}
                     transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
                   />
@@ -171,7 +169,7 @@ export default function ProductPreview() {
                   {dashboardLessons.map((l) => (
                     <motion.div
                       key={l.title}
-                      className={`flex items-center gap-2.5 min-w-0 rounded-xl border px-3 py-2.5 text-xs font-semibold ${
+                      className={`flex items-center gap-2.5 min-w-0 rounded-md border px-3 py-2.5 text-xs font-semibold ${
                         l.done
                           ? "border-accent-line bg-brand-50/60 dark:bg-brand-950/30 text-accent-ink"
                           : "border-line text-ink-soft"
@@ -183,7 +181,7 @@ export default function ProductPreview() {
                       {l.done ? (
                         <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />
                       ) : (
-                        <Circle className="w-4 h-4 text-stone-300 dark:text-stone-700 shrink-0" />
+                        <Circle className="w-4 h-4 text-stone-300 dark:text-stone-600 shrink-0" />
                       )}
                       <span className="truncate min-w-0 flex-1">{l.title}</span>
                     </motion.div>
@@ -193,7 +191,7 @@ export default function ProductPreview() {
 
               <div className="grid gap-4">
                 <motion.div
-                  className="preview-card-float rounded-[20px] border border-orange-100/80 dark:border-orange-950/40 bg-orange-50/60 dark:bg-orange-950/10 p-5 flex items-center gap-3 shadow-[0_12px_28px_-24px_rgba(249,115,22,0.18)]"
+                  className="preview-card-float rounded-md border border-orange-100/80 dark:border-orange-950/40 bg-orange-50/60 dark:bg-orange-950/10 p-5 flex items-center gap-3 "
                   animate={{ y: [0, -2, 0] }}
                   transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
                 >
@@ -208,7 +206,7 @@ export default function ProductPreview() {
                   </div>
                 </motion.div>
                 <motion.div
-                  className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]"
+                  className="rounded-md border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 "
                   animate={{ y: [0, 2, 0] }}
                   transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
                 >
@@ -244,7 +242,7 @@ export default function ProductPreview() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8, scale: 0.985 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
-              className="rounded-[20px] border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.2)]"
+              className="rounded-md border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 "
             >
               <p className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">
                 {t.productPreview.chapterBadge}
@@ -255,7 +253,7 @@ export default function ProductPreview() {
               <p className="text-xs text-ink-soft leading-relaxed mb-4">
                 {t.productPreview.lessonBody}
               </p>
-              <div className="rounded-[18px] border border-stone-200/80 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/40 p-4 mb-4">
+              <div className="rounded-md border border-stone-200/80 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/40 p-4 mb-4">
                 <p className="text-[11px] font-black uppercase tracking-widest text-ink-faint mb-2">{t.productPreview.quickQuestion}</p>
                 <p className="text-xs font-bold text-ink mb-3">
                   {t.productPreview.quizQuestion}
@@ -265,7 +263,7 @@ export default function ProductPreview() {
                     (opt, i) => (
                       <motion.div
                         key={opt}
-                        className={`text-[11px] font-semibold rounded-lg px-3 py-2 border ${
+                        className={`text-[11px] font-semibold rounded-md px-3 py-2 border ${
                           i === 1
                             ? "border-accent-line-mid bg-brand-50 dark:bg-brand-950/30 text-accent-ink"
                             : "border-line text-ink-muted"
@@ -282,7 +280,7 @@ export default function ProductPreview() {
               </div>
               <div className="flex items-center gap-2 text-[11px] font-bold text-ink-faint">
                 <div className="h-1.5 flex-1 rounded-full bg-surface-raised overflow-hidden">
-                  <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-brand-500 to-brand-500" />
+                  <div className="h-full w-1/3 rounded-full bg-brand-600" />
                 </div>
                 {format(t.productPreview.readTime, { min: 5 })}
               </div>

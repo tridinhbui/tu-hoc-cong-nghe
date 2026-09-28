@@ -47,12 +47,12 @@ export default function InteractiveRisk() {
   const money = (multiple: number) => format(t.riskCalc.moneyAmount, { amount: (100 * multiple).toFixed(0) });
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6 dark:bg-stone-900 dark:border-stone-800">
+    <div className="space-y-6 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
+        <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">
           {t.riskCalc.title}
         </h3>
-        <p className="text-stone-500 text-sm dark:text-stone-400">
+        <p className="text-sm text-ink-soft">
           {t.riskCalc.subtitle}
         </p>
       </div>
@@ -60,7 +60,7 @@ export default function InteractiveRisk() {
       <div>
         <div className="flex justify-between text-sm mb-2">
           <span className="font-medium text-ink-body">{t.riskCalc.riskLevelLabel}</span>
-          <span className="font-bold text-ink-heading">{profile.label}</span>
+          <span className="font-bold tabular-nums text-ink-max">{profile.label}</span>
         </div>
         <input
           type="range"
@@ -79,7 +79,7 @@ export default function InteractiveRisk() {
       <div>
         <div className="flex justify-between text-sm mb-2">
           <span className="font-medium text-ink-body">{t.riskCalc.holdingYearsLabel}</span>
-          <span className="font-bold text-ink-heading">{format(t.riskCalc.holdingYearsValue, { years })}</span>
+          <span className="font-bold tabular-nums text-ink-max">{format(t.riskCalc.holdingYearsValue, { years })}</span>
         </div>
         <input
           type="range"
@@ -92,31 +92,31 @@ export default function InteractiveRisk() {
         />
       </div>
 
-      <div className="rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
+      <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200">
         <p className="text-xs font-bold uppercase tracking-wider text-ink-muted">
           {t.riskCalc.rangeTitle}
         </p>
         <div className="mt-3 flex items-end justify-between gap-2 text-center">
           <div className="flex-1">
             <p className="text-[11px] text-ink-muted">{t.riskCalc.worstCaseLabel}</p>
-            <p className="text-base font-extrabold text-alert">{money(band.low)}</p>
+            <p className="text-base font-black tabular-nums text-alert">{money(band.low)}</p>
           </div>
           <div className="flex-1">
             <p className="text-[11px] text-ink-muted">{t.riskCalc.midCaseLabel}</p>
-            <p className="text-lg font-extrabold text-ink">{money(band.mid)}</p>
+            <p className="text-lg font-black tabular-nums text-ink-max">{money(band.mid)}</p>
           </div>
           <div className="flex-1">
             <p className="text-[11px] text-ink-muted">{t.riskCalc.bestCaseLabel}</p>
-            <p className="text-base font-extrabold text-accent">
+            <p className="text-base font-black tabular-nums text-accent-strong">
               {money(band.high)}
             </p>
           </div>
         </div>
         {/* Dải vẽ theo thang log: nếu vẽ tuyến tính thì kịch bản tốt của mức
             rủi ro cao nhất đẩy mọi cột khác bẹp xuống và không so được nữa. */}
-        <div className="relative mt-4 h-3 w-full overflow-hidden rounded-full bg-surface-sunken">
+        <div className="relative mt-4 h-2 w-full overflow-hidden rounded-xs bg-surface-sunken">
           <div
-            className="absolute inset-y-0 rounded-full bg-gradient-to-r from-rose-400 via-stone-400 to-brand-400"
+            className="absolute inset-y-0 bg-brand-600 dark:bg-brand-500"
             style={{
               left: `${Math.min(90, (Math.log(band.low) / Math.log(12)) * 100)}%`,
               right: `${Math.max(0, 100 - (Math.log(band.high) / Math.log(12)) * 100)}%`,

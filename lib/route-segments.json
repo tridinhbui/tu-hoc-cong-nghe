@@ -8,6 +8,8 @@
   "ban-be",
   "bang-tin",
   "chinh-sach-bao-mat",
+  "chung-chi",
+  "cong-cu",
   "cong-dong",
   "cua-hang",
   "dashboard",
@@ -23,8 +25,10 @@
   "nguoi-hoc",
   "nhom-hoc",
   "on-tap-cau-sai",
+  "phong-van-ky-thuat",
   "profile",
   "rpg",
   "settings",
-  "tai-lieu"
+  "tai-lieu",
+  "thi-vuot-chang"
 ]

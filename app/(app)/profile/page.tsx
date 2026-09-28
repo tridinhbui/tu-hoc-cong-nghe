@@ -5,21 +5,10 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
-import {
-  ArrowRight,
-  Bookmark,
-  BookOpen,
-  CheckCircle2,
-  Clock3,
-  Edit3,
-  Flame,
-  Medal,
-  NotebookPen,
-  ShieldCheck,
-  Target,
-  Trophy,
-  } from "lucide-react";
+import { ArrowRight, Bookmark, CheckCircle2, Edit3, Trophy } from "lucide-react";
 import Glyph from "@/components/Glyph";
+import { APP_SYS } from "@/components/analytics/system-codes";
+import { StatusDot, Sys, panel, textLink } from "@/components/ui/system";
 import { createClient } from "@/lib/cloudflare";
 import { getLevelByXp, getLevelProgress, getXpToNextLevel } from "@/lib/levels";
 import { getMyLeaderboardRank, getUserProfile, recalculateUserStats, type UserProfile } from "@/lib/cloudflare-user";
@@ -91,53 +80,6 @@ interface TrackProgressSummary {
   }>;
 }
 
-function SectionCard({
-  icon,
-  title,
-  description,
-  children,
-}: {
-  icon: ReactNode;
-  title: string;
-  description: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-4 sm:p-6 min-w-0">
-      <div className="flex items-start gap-4 mb-5">
-        <div className="w-11 h-11 rounded-2xl bg-surface-raised flex items-center justify-center text-ink-body flex-shrink-0">
-          {icon}
-        </div>
-        <div className="min-w-0">
-          <h3 className="text-lg font-extrabold text-ink">{title}</h3>
-          <p className="text-sm text-ink-muted mt-1">{description}</p>
-        </div>
-      </div>
-      {children}
-    </div>
-  );
-}
-
-function StatCard({
-  label,
-  value,
-  hint,
-}: {
-  label: string;
-  value: string;
-  hint: string;
-}) {
-  return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-5">
-      <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest mb-2">
-        {label}
-      </p>
-      <p className="text-2xl font-extrabold text-ink">{value}</p>
-      <p className="text-xs text-ink-muted mt-1">{hint}</p>
-    </div>
-  );
-}
-
 function normalizeTrack(track: string | null | undefined): TrackId {
   return track === "professional" ? "professional" : "personal";
 }
@@ -196,11 +138,18 @@ function summarizeTrackProgress(
   };
 }
 
-const TYPE_ACCENT: Record<JourneyMilestone["type"], string> = {
-  signup: "border-accent-line-mid bg-brand-50 dark:bg-brand-950/30",
-  lesson_milestone: "border-info-line bg-sky-50 dark:bg-sky-950/30",
-  badge: "border-warn-line-mid bg-amber-50 dark:bg-amber-950/30",
-};
+/** Đầu một khối trong hồ sơ: tiêu đề đậm trên đường kẻ 1px, không ô icon màu. */
+function CardHead({ title, sub, aside }: { title: string; sub?: string; aside?: ReactNode }) {
+  return (
+    <div className="mb-4 flex items-start justify-between gap-4">
+      <div className="min-w-0">
+        <h3 className="text-base font-black tracking-tight text-ink-max">{title}</h3>
+        {sub && <p className="mt-0.5 text-xs text-ink-muted">{sub}</p>}
+      </div>
+      {aside}
+    </div>
+  );
+}
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" });
@@ -213,7 +162,7 @@ function BadgeGlyph({ icon, className }: { icon: string | null | undefined; clas
   const cp = icon && [...icon].length === 1 ? icon.codePointAt(0) ?? 0 : 0;
   if (cp >= 0x2460 && cp <= 0x2473) {
     return (
-      <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-soft px-1 text-[10px] font-black tabular-nums text-accent not-italic">
+      <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-sm bg-accent-soft px-1 font-mono text-[10px] font-medium tabular-nums text-accent not-italic">
         {cp - 0x2460 + 1}
       </span>
     );
@@ -459,18 +408,26 @@ export default function ProfilePage() {
     .toUpperCase()
     .slice(0, 2);
 
+  // Khối số liệu của hồ sơ: nhãn sans chữ hoa nhỏ, giá trị mono căn thẳng.
+  const summaryRows = [
+    { label: t.profile.studyTime, value: format(t.profile.minutes, { count: studyMinutes }), hint: format(t.profile.lessonsOpened, { count: lessonsStarted }) },
+    { label: t.profile.weeklyRank, value: xpRank ? `#${xpRank.rank}` : t.profile.unranked, hint: xpRank ? format(t.profile.xpWithPercent, { xp: xpRank.value }) : t.profile.rankKeepGoing },
+    { label: t.profile.streakLabel, value: format(t.profile.days, { count: streak?.current_streak || 0 }), hint: format(t.profile.streakRecord, { count: streak?.longest_streak || 0 }) },
+    { label: t.profile.notesAndFlags, value: format(t.profile.noteCount, { count: notesCount }), hint: format(t.profile.flaggedCount, { count: flaggedLessonCount }) },
+  ];
+
   return (
-    <div className="min-h-screen bg-surface overflow-x-hidden">
-      <div className="border-b border-line bg-white dark:bg-stone-950">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4">
-          <Link
-            href="/dashboard"
-            className="text-ink-muted hover:text-ink-body text-sm font-semibold"
-          >
-            {t.profile.back}
-          </Link>
-          <h1 className="text-2xl font-bold text-ink mt-2">{t.profile.title}</h1>
-          <p className="text-sm text-ink-muted mt-1">
+    <div className="min-h-screen bg-[#fbfaf7] overflow-x-hidden dark:bg-stone-950">
+      <div className="border-b border-line-strong">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5">
+          <div className="flex items-center justify-between gap-4 border-b border-line pb-2">
+            <Link href="/dashboard" className={`${textLink} text-xs`}>
+              {t.profile.back}
+            </Link>
+            <Sys className="text-ink-muted">{APP_SYS.profile}</Sys>
+          </div>
+          <h1 className="mt-3 text-2xl font-black tracking-tight text-ink-max">{t.profile.title}</h1>
+          <p className="text-sm text-ink-soft mt-1">
             {t.profile.subtitle}
           </p>
         </div>
@@ -478,20 +435,17 @@ export default function ProfilePage() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
         {errorMessage && (
-          <div className="rounded-2xl border border-danger-line bg-red-50 dark:bg-red-950/40 px-4 py-3 text-sm font-semibold text-danger">
+          <div role="alert" className="rounded-sm border border-danger-line bg-red-50 dark:bg-red-950/40 px-4 py-3 text-sm font-semibold text-danger">
             {errorMessage}
           </div>
         )}
 
-        {/* Premium Dark Hero Header */}
-        <div className="relative overflow-hidden rounded-2xl bg-surface-invert text-white p-6 sm:p-8 shadow-lg border border-stone-800">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        {/* Đầu hồ sơ: dải mực phẳng (stone-950) - không vầng sáng mờ, không bóng. */}
+        <div className="rounded-md border border-stone-800 bg-stone-950 p-6 text-white sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
               {isValidAvatar(avatarUrl) ? (
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-4 border-white/10 dark:border-stone-800 shadow-md flex-shrink-0">
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-white/15 flex-shrink-0">
                   <Image
                     src={avatarUrl}
                     alt={displayName}
@@ -500,25 +454,25 @@ export default function ProfilePage() {
                   />
                 </div>
               ) : (
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-brand-500 border-4 border-white/10 dark:border-stone-800 shadow-md flex items-center justify-center text-4xl font-extrabold text-white flex-shrink-0">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-stone-800 border border-white/15 flex items-center justify-center text-4xl font-black text-white flex-shrink-0">
                   {initials}
                 </div>
               )}
 
               <div className="min-w-0">
                 <div className="flex flex-wrap justify-center sm:justify-start items-center gap-2 mb-2.5">
-                  <span className="inline-flex items-center rounded-full bg-white/10 dark:bg-stone-800 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-brand-300">
+                  <span className="inline-flex items-center rounded-sm border border-white/15 px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.06em] text-stone-300">
                     {currentTrackLabel}
                   </span>
-                  <span className="inline-flex items-center rounded-full bg-brand-500/20 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-brand-300">
+                  <span className="inline-flex items-center rounded-sm border border-white/15 px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.06em] text-stone-300">
                     {format(t.profile.levelLine, { level: currentLevel.level, name: currentLevel.name })}
                   </span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
                   {displayName}
                 </h2>
                 {activeTitle && (
-                  <p className="text-xs font-bold text-amber-300 mt-1 flex items-center gap-1 justify-center sm:justify-start">
+                  <p className="text-xs font-bold text-stone-300 mt-1 flex items-center gap-1 justify-center sm:justify-start">
                     <Trophy className="w-3.5 h-3.5 shrink-0" aria-hidden /> {activeTitle}
                   </p>
                 )}
@@ -535,72 +489,52 @@ export default function ProfilePage() {
             <div className="flex flex-col gap-2.5 self-stretch sm:self-auto shrink-0">
               <Link
                 href="/settings"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-stone-100 text-stone-900 font-bold px-4 py-2.5 text-xs transition-all shadow-sm active:scale-95 w-full sm:w-auto"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-white px-4 py-2.5 text-sm font-bold text-stone-950 transition-colors hover:bg-brand-100 sm:w-auto"
               >
-                <Edit3 className="w-3.5 h-3.5" />
+                <Edit3 className="w-3.5 h-3.5" aria-hidden />
                 {t.profile.accountSettings}
               </Link>
             </div>
           </div>
 
-          {/* Integrated Level Progress Bar */}
-          <div className="mt-8 pt-5 border-t border-white/5">
+          <div className="mt-8 pt-5 border-t border-white/15">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 text-xs text-stone-400">
               <div className="flex items-center gap-1.5">
                 <span className="font-bold text-stone-200">{format(t.profile.progressToLevel, { level: currentLevel.level + 1 })}</span>
                 <span>·</span>
                 <span>{xpToNextLevel > 0 ? format(t.profile.xpToGo, { xp: xpToNextLevel }) : t.profile.maxLevel}</span>
               </div>
-              <div className="font-extrabold text-stone-200">
+              <div className="font-mono tabular-nums text-stone-200">
                 {format(t.profile.xpWithPercent, { xp: profile?.total_xp || 0 })}{" "}
-                <span className="text-stone-500 font-normal">({levelProgress}%)</span>
+                <span className="text-stone-500">({levelProgress}%)</span>
               </div>
             </div>
-            <div className="h-2 rounded-full bg-white/10 dark:bg-stone-800 overflow-hidden">
+            <div className="h-1.5 rounded-xs bg-white/10 overflow-hidden">
               <div
-                className="h-full rounded-full bg-brand-500 transition-all duration-500"
+                className="h-full bg-brand-500 transition-[width] duration-500"
                 style={{ width: `${levelProgress}%` }}
               />
             </div>
           </div>
         </div>
 
-        {/* 2-Column Responsive Dashboard Body */}
         <div className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr] min-w-0">
-
-          {/* Left Column: Learning Track Progress & Recent Lessons */}
           <div className="space-y-6 min-w-0">
-            
-            {/* Track Progress Summary Card */}
-            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 sm:p-6 shadow-sm">
-              <div className="flex items-start gap-4 mb-5 border-b border-line-soft pb-4">
-                <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/40 text-accent flex items-center justify-center flex-shrink-0">
-                  <Target className="w-5 h-5" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-ink">{t.profile.trackProgressTitle}</h3>
-                  <p className="text-xs text-ink-muted mt-0.5">{t.profile.trackProgressSub}</p>
-                </div>
-              </div>
+            <section className={`${panel} p-5 sm:p-6`}>
+              <CardHead title={t.profile.trackProgressTitle} sub={t.profile.trackProgressSub} />
 
-              <div className="space-y-4">
+              <div className="divide-y divide-stone-200 border-y border-line dark:divide-stone-800">
                 {trackProgress.map((track) => {
                   const isCurrent = track.track === currentTrack;
                   return (
-                    <div
-                      key={track.track}
-                      className={`rounded-xl border p-4 transition-all ${
-                        isCurrent
-                          ? "border-brand-200 dark:border-brand-900/60 bg-brand-50/20 dark:bg-brand-950/5 shadow-[0_8px_20px_-12px_rgba(65, 122, 205,0.15)]"
-                          : "border-stone-200 dark:border-stone-800/80 bg-stone-50/40 dark:bg-stone-900/10"
-                      }`}
-                    >
+                    <div key={track.track} className="py-4">
                       <div className="flex items-start justify-between gap-4 mb-2">
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <p className="text-xs sm:text-sm font-extrabold text-ink">{track.title}</p>
+                            <p className="text-sm font-bold text-ink-max">{track.title}</p>
                             {isCurrent && (
-                              <span className="inline-flex rounded bg-brand-100/70 dark:bg-brand-950 text-accent-ink px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider">
+                              <span className="inline-flex items-center gap-1.5 rounded-sm border border-accent-line px-1.5 py-0.5 text-[10.5px] font-bold text-accent-strong">
+                                <StatusDot />
                                 {t.profile.inProgress}
                               </span>
                             )}
@@ -610,18 +544,18 @@ export default function ProfilePage() {
                           </p>
                         </div>
                         <div className="text-right shrink-0">
-                          <p className="text-xs sm:text-sm font-extrabold text-ink">
+                          <p className="font-mono text-sm tabular-nums text-ink-max">
                             {format(t.profile.lessonsOf, { done: track.completed, total: track.total })}
                           </p>
-                          <p className="text-[10px] text-ink-faint mt-0.5">
+                          <p className="font-mono text-[10.5px] tabular-nums text-ink-faint mt-0.5">
                             {format(t.profile.percentAndHours, { percent: track.percent, hours: track.estimatedHours })}
                           </p>
                         </div>
                       </div>
 
-                      <div className="h-2 rounded-full bg-surface-sunken overflow-hidden">
+                      <div className="h-1.5 rounded-xs bg-surface-sunken overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all duration-300 ${isCurrent ? "bg-brand-500" : "bg-stone-400 dark:bg-stone-600"}`}
+                          className={`h-full ${isCurrent ? "bg-brand-600 dark:bg-brand-500" : "bg-stone-400 dark:bg-stone-600"}`}
                           style={{ width: `${track.percent}%` }}
                         />
                       </div>
@@ -629,152 +563,113 @@ export default function ProfilePage() {
                   );
                 })}
               </div>
-            </div>
+            </section>
 
-            {/* Recent Lessons Card */}
-            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 sm:p-6 shadow-sm">
-              <div className="flex items-start gap-4 mb-5 border-b border-line-soft pb-4">
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-warn flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-5 h-5" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-ink">{t.profile.recentTitle}</h3>
-                  <p className="text-xs text-ink-muted mt-0.5">{t.profile.recentSub}</p>
-                </div>
-              </div>
+            <section className={`${panel} p-5 sm:p-6`}>
+              <CardHead title={t.profile.recentTitle} sub={t.profile.recentSub} />
 
               {recentLessons.length === 0 ? (
                 <p className="text-xs text-ink-muted py-2">
                   {t.profile.recentEmpty}
                 </p>
               ) : (
-                <div className="space-y-2.5">
+                <div className="divide-y divide-stone-200 border-y border-line dark:divide-stone-800">
                   {recentLessons.map((lesson) => (
                     <Link
                       key={`${lesson.id}-${lesson.completedAt ?? "pending"}`}
                       href={`/bai-hoc/${lesson.slug}`}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-stone-100 dark:border-stone-800/80 px-4 py-3 hover:bg-stone-50/70 dark:hover:bg-stone-800/50 transition-colors group"
+                      className="flex items-center justify-between gap-3 px-1 py-3 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors group"
                     >
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs sm:text-sm font-bold text-ink group-hover:text-accent transition-colors truncate">
+                        <p className="text-sm font-semibold text-ink group-hover:text-accent-strong transition-colors truncate">
                           {lesson.title}
                         </p>
-                        <p className="text-[10px] text-ink-faint mt-0.5">
+                        <p className="text-[11px] text-ink-faint mt-0.5">
                           {lesson.completedAt ? format(t.profile.completedOn, { date: new Date(lesson.completedAt).toLocaleDateString(intlLocale(locale)) }) : t.profile.dateUnknown}
                         </p>
                       </div>
                       <div className="flex items-center gap-3 shrink-0">
                         <div className="text-right">
-                          <span className="text-xs font-extrabold text-ink">
+                          <span className="font-mono text-sm tabular-nums text-ink-max">
                             {/* i18n-ignore-start: "N/A" is language-neutral, the same in both locales */}
                             {lesson.quizScore !== null && lesson.quizScore !== undefined ? `${Math.round(lesson.quizScore)}%` : "N/A"}
                             {/* i18n-ignore-end */}
                           </span>
-                          <p className="text-[9px] text-ink-faint">{t.profile.readAndQuiz}</p>
+                          <p className="text-[10px] text-ink-faint">{t.profile.readAndQuiz}</p>
                         </div>
-                        <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-brand-500 transition-colors" />
+                        <ArrowRight className="w-3.5 h-3.5 text-ink-faint group-hover:text-accent transition-colors" aria-hidden />
                       </div>
                     </Link>
                   ))}
                 </div>
               )}
-            </div>
+            </section>
 
-            {/* Learning Journey Timeline Card */}
-            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 sm:p-6 shadow-sm">
-              <div className="flex items-start gap-4 mb-5 border-b border-line-soft pb-4">
-                <div className="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0">
-                  <Target className="w-5 h-5 text-violet-500" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-extrabold text-ink">{t.profile.journeyTitle}</h3>
-                  <p className="text-xs text-ink-muted mt-0.5">{t.profile.journeySub}</p>
-                </div>
-              </div>
+            <section className={`${panel} p-5 sm:p-6`}>
+              <CardHead title={t.profile.journeyTitle} sub={t.profile.journeySub} />
 
               {milestones.length === 0 ? (
                 <p className="text-xs text-ink-muted py-2">
                   {t.profile.journeyEmpty}
                 </p>
               ) : (
-                <div className="relative pl-6 max-h-[350px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800">
-                  <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-surface-sunken" aria-hidden="true" />
-                  <div className="space-y-4">
-                    {[...milestones].reverse().map((m, i) => (
-                      <div key={`${m.type}-${m.date}-${i}`} className="relative">
-                        <span
-                          className={`absolute -left-6 top-1.5 w-6 h-6 rounded-full border flex items-center justify-center text-xs bg-white dark:bg-stone-900 ${TYPE_ACCENT[m.type]}`}
-                        >
-                          <BadgeGlyph icon={m.emoji} className="w-3.5 h-3.5 text-ink-soft" />
-                        </span>
-                        <div className="bg-stone-50/50 dark:bg-stone-950/20 border border-stone-100 dark:border-stone-800/80 rounded-xl px-4 py-2.5 ml-2.5">
-                          <p className="text-[9px] font-black text-ink-faint mb-0.5">{formatDate(m.date)}</p>
-                          <p className="font-extrabold text-ink text-xs">{m.title}</p>
-                          <p className="text-[10px] text-ink-muted mt-0.5">{m.description}</p>
-                        </div>
+                <ol className="max-h-[350px] divide-y divide-stone-200 overflow-y-auto border-y border-line pr-2 dark:divide-stone-800">
+                  {[...milestones].reverse().map((m, i) => (
+                    <li key={`${m.type}-${m.date}-${i}`} className="flex items-start gap-3 py-2.5">
+                      <time dateTime={m.date} className="w-[5.5rem] shrink-0 pt-0.5 font-mono text-[11px] tabular-nums text-ink-faint">
+                        {formatDate(m.date)}
+                      </time>
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border border-line text-xs">
+                        <BadgeGlyph icon={m.emoji} className="w-3.5 h-3.5 text-ink-soft" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-sm font-bold text-ink-max">{m.title}</p>
+                        <p className="text-[11px] text-ink-muted mt-0.5">{m.description}</p>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </li>
+                  ))}
+                </ol>
               )}
-            </div>
+            </section>
           </div>
 
-          {/* Right Column: Key Stats, Achievements & Shortcuts */}
           <div className="space-y-6 min-w-0">
+            <section className={`${panel} p-5`}>
+              <CardHead title={t.profile.summaryTitle} />
+              <dl className="grid grid-cols-2 border-y border-line">
+                {summaryRows.map((row, i) => (
+                  <div
+                    key={row.label}
+                    className={`min-w-0 py-3 ${i % 2 === 0 ? "pr-3" : "border-l border-line pl-3"} ${i >= 2 ? "border-t border-line" : ""}`}
+                  >
+                    <dt className="truncate text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{row.label}</dt>
+                    <dd className="mt-1 truncate font-mono text-base font-medium tabular-nums text-ink-max">{row.value}</dd>
+                    <dd className="mt-0.5 truncate text-[11px] text-ink-faint">{row.hint}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
 
-            {/* Unified Key Stats Grid */}
-            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
-              <h4 className="text-sm font-extrabold text-ink mb-4 tracking-tight">{t.profile.summaryTitle}</h4>
-              <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-ink-faint uppercase tracking-wider block mb-1">{t.profile.studyTime}</span>
-                  <p className="text-base font-extrabold text-ink truncate">{format(t.profile.minutes, { count: studyMinutes })}</p>
-                  <p className="text-[10px] text-ink-faint mt-0.5 truncate">{format(t.profile.lessonsOpened, { count: lessonsStarted })}</p>
-                </div>
-                <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-ink-faint uppercase tracking-wider block mb-1">{t.profile.weeklyRank}</span>
-                  <p className="text-base font-extrabold text-ink truncate">{xpRank ? `#${xpRank.rank}` : t.profile.unranked}</p>
-                  <p className="text-[10px] text-ink-faint mt-0.5 truncate">{xpRank ? format(t.profile.xpWithPercent, { xp: xpRank.value }) : t.profile.rankKeepGoing}</p>
-                </div>
-                <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-ink-faint uppercase tracking-wider block mb-1">{t.profile.streakLabel}</span>
-                  <p className="text-base font-extrabold text-ink truncate">{format(t.profile.days, { count: streak?.current_streak || 0 })}</p>
-                  <p className="text-[10px] text-ink-faint mt-0.5 truncate">{format(t.profile.streakRecord, { count: streak?.longest_streak || 0 })}</p>
-                </div>
-                <div className="min-w-0 bg-stone-50/70 dark:bg-stone-900/30 border border-stone-200/50 dark:border-stone-800 rounded-xl p-3.5">
-                  <span className="text-[10px] font-extrabold text-ink-faint uppercase tracking-wider block mb-1">{t.profile.notesAndFlags}</span>
-                  <p className="text-base font-extrabold text-ink truncate">{format(t.profile.noteCount, { count: notesCount })}</p>
-                  <p className="text-[10px] text-ink-faint mt-0.5 truncate">{format(t.profile.flaggedCount, { count: flaggedLessonCount })}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Achievements & Badges */}
-            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
-              <div className="flex items-center justify-between mb-4 border-b border-line-soft pb-3">
-                <h4 className="text-sm font-extrabold text-ink flex items-center gap-1.5">
-                  <Trophy className="w-4 h-4 text-amber-500" />
-                  {t.profile.badgesTitle}
-                </h4>
-                <span className="text-[10px] font-extrabold text-ink-faint bg-surface-raised px-2 py-0.5 rounded">
-                  {format(t.profile.badgesTotal, { count: badges.length + gameTitles.length })}
-                </span>
-              </div>
+            <section className={`${panel} p-5`}>
+              <CardHead
+                title={t.profile.badgesTitle}
+                aside={
+                  <span className="font-mono text-[11px] tabular-nums text-ink-muted">
+                    {format(t.profile.badgesTotal, { count: badges.length + gameTitles.length })}
+                  </span>
+                }
+              />
 
               {gameTitles.length > 0 && (
-                <div className="space-y-2 mb-4">
+                <div className="mb-4 divide-y divide-stone-200 border-y border-line dark:divide-stone-800">
                   {gameTitles.map((gt) => (
-                    <div
-                      key={gt.gameType}
-                      className="flex items-center gap-3 rounded-xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/30 dark:bg-amber-950/10 px-3.5 py-2.5"
-                    >
-                      <Glyph emoji={gt.gameEmoji} className="w-5 h-5 flex-shrink-0 text-warn" />
+                    <div key={gt.gameType} className="flex items-center gap-3 py-2.5">
+                      <Glyph emoji={gt.gameEmoji} className="w-5 h-5 flex-shrink-0 text-ink-soft" />
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs font-extrabold text-warn-strong truncate">{gt.title}</p>
-                        <p className="text-[10px] text-ink-muted truncate">{gt.gameLabel}</p>
+                        <p className="text-sm font-bold text-ink-max truncate">{gt.title}</p>
+                        <p className="text-[11px] text-ink-muted truncate">{gt.gameLabel}</p>
                       </div>
-                      <span className="text-[10px] font-extrabold text-warn shrink-0">{format(t.profile.rankNumber, { rank: gt.rank })}</span>
+                      <span className="shrink-0 font-mono text-xs tabular-nums text-ink-max">{format(t.profile.rankNumber, { rank: gt.rank })}</span>
                     </div>
                   ))}
                 </div>
@@ -785,34 +680,30 @@ export default function ProfilePage() {
                   {t.profile.badgesEmpty}
                 </p>
               ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {badges.map((badge) => (
                     <div
                       key={badge.id}
                       title={badgeDescription(badge, t)}
-                      className="flex flex-col items-center text-center gap-1 p-2.5 rounded-xl border border-line bg-stone-50/50 dark:bg-stone-900/30"
+                      className="flex flex-col items-center text-center gap-1 p-2.5 rounded-sm border border-line"
                     >
-                      <span className="flex h-7 items-center justify-center"><BadgeGlyph icon={badge.badge_icon} className="w-6 h-6 text-accent" /></span>
-                      <span className="text-[9px] font-extrabold text-ink leading-tight truncate w-full">
+                      <span className="flex h-7 items-center justify-center"><BadgeGlyph icon={badge.badge_icon} className="w-6 h-6 text-ink-soft" /></span>
+                      <span className="text-[10px] font-bold text-ink leading-tight truncate w-full">
                         {badgeName(badge, t)}
                       </span>
                     </div>
                   ))}
                 </div>
               )}
-            </div>
+            </section>
 
-            {/* Unlocked Titles & Themes */}
-            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
-              <h4 className="text-sm font-extrabold text-ink flex items-center gap-1.5 border-b border-line-soft pb-3 mb-4">
-                {t.profile.chestItems}
-              </h4>
-              
-              {/* Titles Section */}
-              <div className="space-y-2 mb-4">
-                <h5 className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
+            <section className={`${panel} p-5`}>
+              <CardHead title={t.profile.chestItems} />
+
+              <div className="space-y-2 mb-5">
+                <h3 className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
                   {format(t.profile.titlesSection, { count: unlockedTitles.length })}
-                </h5>
+                </h3>
                 {unlockedTitles.length === 0 ? (
                   <p className="text-xs text-ink-muted italic">
                     {t.profile.titlesEmpty}
@@ -824,11 +715,13 @@ export default function ProfilePage() {
                       return (
                         <button
                           key={title}
+                          type="button"
                           onClick={() => handleEquipTitle(title)}
-                          className={`px-3 py-1.5 rounded-xl border text-[10px] sm:text-[11px] font-bold transition-all focus:outline-none cursor-pointer whitespace-nowrap ${
+                          aria-pressed={isEquipped}
+                          className={`cursor-pointer whitespace-nowrap rounded-sm border px-2.5 py-1.5 text-[11px] font-bold transition-colors ${
                             isEquipped
-                              ? "bg-amber-500 text-white border-amber-500 shadow-sm shadow-amber-500/20"
-                              : "border-line text-ink-body hover:border-amber-400 dark:hover:border-amber-700"
+                              ? "border-brand-600 bg-brand-50 text-accent-strong dark:border-brand-400 dark:bg-brand-950/40"
+                              : "border-line text-ink-body hover:border-stone-500"
                           }`}
                         >
                           {title} {isEquipped ? "✓" : ""}
@@ -839,11 +732,10 @@ export default function ProfilePage() {
                 )}
               </div>
 
-              {/* Themes Section */}
               <div className="space-y-2">
-                <h5 className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
+                <h3 className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
                   {format(t.profile.themesSection, { count: unlockedThemes.length })}
-                </h5>
+                </h3>
                 {unlockedThemes.length === 0 ? (
                   <p className="text-xs text-ink-muted italic">
                     {t.profile.themesEmpty}
@@ -853,74 +745,69 @@ export default function ProfilePage() {
                     {unlockedThemes.map((th) => {
                       const isEquipped = activeTheme === th;
                       const themeName = th === "gold" ? t.profile.themeGold : t.profile.themeEmerald;
-                      const colorClass = th === "gold" ? "text-amber-500" : "text-brand-500";
+                      // Ô màu là mẫu của chính giao diện đó - màu ở đây mô tả
+                      // lựa chọn, không phải trang trí.
+                      const swatch = th === "gold" ? "bg-amber-500" : "bg-brand-500";
                       return (
                         <button
                           key={th}
+                          type="button"
                           onClick={() => handleEquipTheme(th)}
-                          className={`px-3 py-1.5 rounded-xl border text-[10px] sm:text-[11px] font-bold transition-all focus:outline-none cursor-pointer whitespace-nowrap ${
+                          aria-pressed={isEquipped}
+                          className={`inline-flex cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-sm border px-2.5 py-1.5 text-[11px] font-bold transition-colors ${
                             isEquipped
-                              ? th === "gold"
-                                ? "bg-amber-500 text-white border-amber-500 shadow-sm"
-                                : "bg-brand-500 text-white border-brand-500 shadow-sm"
-                              : "border-line text-ink-body hover:border-line-firm"
+                              ? "border-brand-600 bg-brand-50 text-accent-strong dark:border-brand-400 dark:bg-brand-950/40"
+                              : "border-line text-ink-body hover:border-stone-500"
                           }`}
                         >
-                          <span className={isEquipped ? "text-white" : colorClass}>✦</span> {format(t.profile.themeLabel, { name: themeName })} {isEquipped ? "✓" : ""}
+                          <span className={`h-2 w-2 rounded-[1px] ${swatch}`} aria-hidden />
+                          {format(t.profile.themeLabel, { name: themeName })} {isEquipped ? "✓" : ""}
                         </button>
                       );
                     })}
                   </div>
                 )}
               </div>
-            </div>
+            </section>
 
-            {/* Bookmarked Lessons Card */}
             {bookmarks.length > 0 && (
-              <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
-                <h4 className="text-sm font-extrabold text-ink mb-3.5 flex items-center gap-1.5">
-                  <Bookmark className="w-4 h-4 text-brand-500" />
-                  {format(t.profile.savedLessons, { count: bookmarks.length })}
-                </h4>
-                <div className="space-y-2">
+              <section className={`${panel} p-5`}>
+                <CardHead title={format(t.profile.savedLessons, { count: bookmarks.length })} />
+                <div className="divide-y divide-stone-200 border-y border-line dark:divide-stone-800">
                   {bookmarks.map((bookmark) => (
                     <Link
                       key={bookmark.id}
                       href={`/bai-hoc/${bookmark.lesson_slug}`}
-                      className="flex items-center justify-between gap-2.5 rounded-xl border border-stone-100 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
+                      className="flex items-center justify-between gap-2.5 px-1 py-2.5 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors group"
                     >
-                      <span className="text-xs font-bold text-ink-heading group-hover:text-accent transition-colors truncate">
+                      <span className="text-sm font-semibold text-ink-heading group-hover:text-accent-strong transition-colors truncate">
                         {bookmark.lesson_title}
                       </span>
-                      <Bookmark className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                      <Bookmark className="w-3.5 h-3.5 text-ink-faint shrink-0" aria-hidden />
                     </Link>
                   ))}
                 </div>
-              </div>
+              </section>
             )}
 
-            {/* Flagged Lessons Shortcuts */}
             {flaggedLessons.length > 0 && (
-              <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl p-5 shadow-sm">
-                <h4 className="text-sm font-extrabold text-ink mb-3.5 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-amber-500" />
-                  {format(t.profile.flaggedLessons, { count: flaggedLessonCount })}
-                </h4>
-                <div className="space-y-2">
+              <section className={`${panel} p-5`}>
+                <CardHead title={format(t.profile.flaggedLessons, { count: flaggedLessonCount })} />
+                <div className="divide-y divide-stone-200 border-y border-line dark:divide-stone-800">
                   {flaggedLessons.map((lesson) => (
                     <Link
                       key={lesson.lesson_id}
                       href={`/bai-hoc/${lesson.lesson_slug}`}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-stone-100 dark:border-stone-800/80 px-3 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors group"
+                      className="flex items-center justify-between gap-3 px-1 py-2.5 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors group"
                     >
-                      <span className="text-xs font-bold text-ink-heading group-hover:text-accent transition-colors truncate">
+                      <span className="text-sm font-semibold text-ink-heading group-hover:text-accent-strong transition-colors truncate">
                         {lesson.lesson_title}
                       </span>
-                      <CheckCircle2 className="w-4 h-4 shrink-0 text-accent" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-ink-faint" aria-hidden />
                     </Link>
                   ))}
                 </div>
-              </div>
+              </section>
             )}
           </div>
         </div>

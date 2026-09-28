@@ -2,11 +2,9 @@ import type { Lesson } from "./lesson-types";
 
 // Chặng "Phương pháp định lượng" (ids 1421-1426, professional track).
 //
-// Lý do tồn tại: mục Quantitative Methods trên trang CFA hiện chỉ trỏ ngược
-// về các bài giá trị thời gian của tiền. Đó là một nửa môn học. Nửa còn lại -
-// phân phối xác suất, suy diễn thống kê, hồi quy, chuỗi thời gian - chưa có
-// bài nào, dù nó là nền của beta, của backtest, của mọi câu "số này có ý
-// nghĩa thống kê không". Sáu bài dưới đây dạy phần đó theo hướng đọc và
+// Lý do tồn tại: phân phối xác suất, suy diễn thống kê, hồi quy, chuỗi thời
+// gian là nền của mọi dashboard vận hành, mọi thử nghiệm A/B, mọi câu "số này
+// có ý nghĩa thống kê không". Sáu bài dưới đây dạy phần đó theo hướng đọc và
 // phản biện kết quả người khác đưa cho mình, chứ không theo hướng chứng minh
 // định lý - vì đó mới là việc người làm nghề thực sự phải làm hằng ngày.
 
@@ -169,13 +167,13 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
     slug: "mau-sai-so-chuan-va-khoang-tin-cay",
     interactiveType: "sampling",
     title: "Định lượng, Bài 2: Mẫu, sai số chuẩn và khoảng tin cậy - con số của bạn chính xác đến đâu",
-    subtitle: "Vì sao mọi ước lượng đều phải đi kèm một khoảng, và vì sao 36 tháng dữ liệu là quá ít",
+    subtitle: "Vì sao mọi ước lượng đều phải đi kèm một khoảng, và vì sao ba tuần số liệu thường là quá ít",
     duration: "11 phút",
     difficulty: "Khó",
     emoji: "📏",
     track: "professional",
     whyItMatters:
-      "Mọi con số trong tài chính đều là ước lượng từ một mẫu: beta, lợi suất kỳ vọng, tương quan, alpha của quỹ. Nếu không biết sai số chuẩn của ước lượng đó, bạn sẽ ra quyết định dựa trên nhiễu và tưởng đó là tín hiệu.",
+      "Mọi con số trên dashboard vận hành đều là ước lượng từ một mẫu: độ trễ trung bình, tỷ lệ lỗi, tỷ lệ chuyển đổi, mức cải thiện của một bản phát hành. Nếu không biết sai số chuẩn của ước lượng đó, bạn sẽ ra quyết định dựa trên nhiễu và tưởng đó là tín hiệu.",
     openingQuestion:
       "Sai số chuẩn của trung bình mẫu giảm theo tốc độ nào khi tăng cỡ mẫu?",
     openingOptions: [
@@ -186,7 +184,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
     ],
     correctOption: 1,
     explanation:
-      "Sai số chuẩn bằng độ lệch chuẩn chia cho căn bậc hai của n. Hệ quả rất thực dụng và cũng khá tàn nhẫn: muốn giảm một nửa sai số, bạn cần gấp bốn lần dữ liệu. Đây là lý do đánh giá kỹ năng của một nhà quản lý quỹ dựa trên ba năm hiệu suất là gần như vô vọng - khoảng tin cậy quanh alpha của họ rộng đến mức bao trùm cả kỹ năng lẫn may mắn.",
+      "Sai số chuẩn bằng độ lệch chuẩn chia cho căn bậc hai của n. Hệ quả rất thực dụng và cũng khá tàn nhẫn: muốn giảm một nửa sai số, bạn cần gấp bốn lần dữ liệu. Đây là lý do đánh giá một thay đổi sản phẩm chỉ bằng vài tuần số liệu tổng hợp là gần như vô vọng - khoảng tin cậy quanh mức cải thiện rộng đến mức bao trùm cả hiệu ứng thật lẫn dao động ngẫu nhiên.",
     diagram: [
       { label: "Tổng thể không quan sát được", arrow: true },
       { label: "Mẫu hữu hạn", arrow: true },
@@ -194,22 +192,22 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       { label: "Khoảng tin cậy - phạm vi hợp lý của sự thật" },
     ],
     realWorldExample: {
-      company: "Đánh giá quỹ đầu tư",
+      company: "Đánh giá một thay đổi bằng số liệu theo tuần",
       description:
-        "Một quỹ có alpha 2%/năm với sai số theo dõi 6%/năm. Sai số chuẩn của ước lượng alpha sau ba năm là 6% chia căn bậc hai của 3, tức khoảng 3,5%. Khoảng tin cậy 95% do đó trải từ khoảng −5% đến +9%. Nói cách khác, ba năm dữ liệu không phân biệt nổi một nhà quản lý giỏi với một người may mắn. Cần khoảng 36 năm để alpha 2% đạt ý nghĩa thống kê ở mức thông thường.",
+        "Một thay đổi giao diện làm tỷ lệ hoàn tất đơn cao hơn nhóm đối chứng trung bình 2 điểm phần trăm mỗi tuần, nhưng mức chênh này dao động với độ lệch chuẩn 6 điểm từ tuần này sang tuần khác. Sai số chuẩn của ước lượng sau ba tuần là 6 chia căn bậc hai của 3, tức khoảng 3,5 điểm. Khoảng tin cậy 95% do đó trải từ khoảng −5 đến +9 điểm. Nói cách khác, ba tuần số liệu không phân biệt nổi một thay đổi tốt với một đợt may mắn. Cần khoảng 36 tuần để mức chênh 2 điểm đạt ý nghĩa thống kê ở mức thông thường.",
     },
     quiz: [
       {
         question: "Định lý giới hạn trung tâm nói gì?",
         options: [
-          "Mọi chuỗi dữ liệu tài chính đều tuân theo phân phối chuẩn nếu đủ dài",
+          "Mọi chuỗi số liệu vận hành đều tuân theo phân phối chuẩn nếu đủ dài",
           "Trung bình của mẫu đủ lớn có phân phối xấp xỉ chuẩn",
-          "Lợi suất của mọi tài sản đều hội tụ về 0 khi thời gian đủ dài",
+          "Từng lần đo độ trễ riêng lẻ đều tiến dần về giá trị trung bình khi đo đủ lâu",
           "Cỡ mẫu càng lớn thì phương sai của tổng thể gốc càng nhỏ đi",
         ],
         correct: 1,
         explanation:
-          "Đây là lý do thống kê suy diễn hoạt động được ngay cả với dữ liệu tài chính có đuôi dày. Nhưng lưu ý: định lý áp dụng cho trung bình mẫu, không phải cho từng quan sát riêng lẻ - nên nó không cứu được các mô hình rủi ro đuôi.",
+          "Đây là lý do thống kê suy diễn hoạt động được ngay cả với số liệu vận hành có đuôi dày như độ trễ. Nhưng lưu ý: định lý áp dụng cho trung bình mẫu, không phải cho từng quan sát riêng lẻ - nên nó không cứu được các chỉ số đuôi như p99.",
       },
       {
         question: "Khoảng tin cậy 95% nghĩa là gì?",
@@ -233,68 +231,68 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Vì sai số chuẩn tỷ lệ nghịch với căn bậc hai của n. Đây là ràng buộc cứng, và là lý do các bài kiểm định trên dữ liệu tài chính hiếm khi cho kết luận mạnh như người ta mong muốn.",
+          "Vì sai số chuẩn tỷ lệ nghịch với căn bậc hai của n. Đây là ràng buộc cứng, và là lý do các thử nghiệm trên chỉ số dao động mạnh hiếm khi cho kết luận mạnh như người ta mong muốn.",
       },
       {
-        question: "Tăng tần suất dữ liệu từ tháng lên ngày có giúp ước lượng lợi suất kỳ vọng chính xác hơn không?",
+        question: "Đo dày hơn, từ mỗi ngày lên mỗi phút, có giúp ước lượng tốc độ tăng trưởng trung bình của một chỉ số chính xác hơn không?",
         options: [
-          "Có, vì số quan sát tăng hơn hai mươi lần so với dữ liệu theo tháng",
+          "Có, vì số quan sát tăng hơn một nghìn lần so với số liệu theo ngày",
           "Không - độ chính xác phụ thuộc độ dài giai đoạn, không phải tần suất",
           "Có, và sai số chuẩn giảm theo đúng tỷ lệ tuyến tính với số quan sát",
-          "Không, vì dữ liệu theo ngày chỉ chứa nhiễu và không mang thông tin nào",
+          "Không, vì số liệu theo phút chỉ chứa nhiễu và không mang thông tin nào",
         ],
         correct: 1,
         explanation:
-          "Đây là một kết quả gây ngạc nhiên: chia nhỏ tần suất giúp ước lượng phương sai tốt hơn nhưng gần như không giúp gì cho ước lượng trung bình. Muốn biết lợi suất kỳ vọng chính xác hơn, bạn chỉ có một cách là chờ thêm nhiều năm.",
+          "Đây là một kết quả gây ngạc nhiên: chia nhỏ tần suất giúp ước lượng phương sai tốt hơn nhưng gần như không giúp gì cho ước lượng trung bình. Muốn biết tốc độ tăng trưởng trung bình chính xác hơn, bạn chỉ có một cách là quan sát thêm nhiều tuần.",
       },
     
     {
-      "question": "Vì sao ba năm hiệu suất gần như không đủ để kết luận một nhà quản lý quỹ có kỹ năng?",
+      "question": "Vì sao ba tuần số liệu gần như không đủ để kết luận một thay đổi thật sự cải thiện chỉ số?",
       "options": [
-        "Vì sai số chuẩn quá lớn nên may mắn và kỹ năng không tách được",
-        "Vì hiệu suất ba năm chưa đi qua đủ một chu kỳ kinh tế trọn vẹn",
-        "Vì quỹ có thể thay đổi chiến lược đầu tư trong khoảng thời gian đó",
-        "Vì lợi suất của ba năm gần nhất chịu ảnh hưởng của chi phí quản lý"
+        "Vì sai số chuẩn quá lớn nên hiệu ứng thật và may mắn không tách được",
+        "Vì ba tuần chưa đi qua đủ một chu kỳ mùa vụ trọn vẹn của sản phẩm",
+        "Vì đội có thể phát hành thêm tính năng khác trong khoảng thời gian đó",
+        "Vì chỉ số của ba tuần gần nhất chịu ảnh hưởng của một đợt khuyến mãi"
       ],
       "correct": 0,
-      "explanation": "Với độ biến động thường thấy của thị trường cổ phiếu, cần vài chục năm dữ liệu mới phân biệt được mức vượt trội vài phần trăm với nhiễu ngẫu nhiên. Đây là một trong những kết quả khó chịu nhất của thống kê áp vào đầu tư - và bị bỏ qua nhiều nhất."
+      "explanation": "Với độ dao động thường thấy của các chỉ số tổng hợp theo tuần, cần vài chục tuần số liệu mới phân biệt được mức cải thiện vài điểm phần trăm với nhiễu ngẫu nhiên. Đây là một trong những kết quả khó chịu nhất của thống kê áp vào sản phẩm - và bị bỏ qua nhiều nhất."
     }
     ],
     keyTakeaways: [
       "Sai số chuẩn = độ lệch chuẩn / căn bậc hai của n; muốn chính xác gấp đôi cần dữ liệu gấp bốn",
       "Mọi ước lượng phải đi kèm khoảng tin cậy, nếu không nó chỉ là một con số không có ngữ cảnh",
-      "Ba năm hiệu suất không đủ để kết luận về kỹ năng của nhà quản lý quỹ",
-      "Tăng tần suất dữ liệu cải thiện ước lượng độ biến động nhưng gần như không cải thiện ước lượng lợi suất kỳ vọng",
+      "Ba tuần số liệu tổng hợp không đủ để kết luận một thay đổi nhỏ có hiệu quả thật",
+      "Đo dày hơn cải thiện ước lượng độ dao động nhưng gần như không cải thiện ước lượng xu hướng trung bình",
     ],
     practicePrompt: {
       question:
-        "Một chiến lược cho lợi suất vượt trội trung bình 4%/năm, độ lệch chuẩn 20%/năm, dựa trên 10 năm dữ liệu. Kết luận nào đúng?",
+        "Một thay đổi cho mức cải thiện trung bình 4 điểm mỗi tuần, độ lệch chuẩn 20 điểm, dựa trên 10 tuần số liệu. Kết luận nào đúng?",
       options: [
-        "Chiến lược chắc chắn tạo alpha vì trung bình dương",
-        "Sai số chuẩn 6,3% lớn hơn mức 4% quan sát được",
-        "Cần thêm dữ liệu tần suất ngày là đủ để kết luận",
-        "Chiến lược thất bại vì độ lệch chuẩn quá cao",
+        "Thay đổi chắc chắn có hiệu quả vì trung bình dương",
+        "Sai số chuẩn 6,3 điểm lớn hơn mức 4 điểm quan sát được",
+        "Chỉ cần đo theo từng giờ là đủ số liệu để kết luận",
+        "Thay đổi thất bại vì độ lệch chuẩn quá cao",
       ],
       correct: 1,
       explanation:
-        "Tỷ số t xấp xỉ 4 chia 6,3, tức khoảng 0,63 - xa mức có ý nghĩa thống kê. Đây chính xác là tình huống mà rất nhiều bài giới thiệu chiến lược đầu tư rơi vào: một con số trung bình đẹp, được trình bày như bằng chứng, nhưng không hề vượt qua nổi mức nhiễu.",
+        "Tỷ số t xấp xỉ 4 chia 6,3, tức khoảng 0,63 - xa mức có ý nghĩa thống kê. Đây chính xác là tình huống mà rất nhiều báo cáo thử nghiệm sản phẩm rơi vào: một con số trung bình đẹp, được trình bày như bằng chứng, nhưng không hề vượt qua nổi mức nhiễu.",
     },
     summary: {
       keyIdea: "Một ước lượng không kèm sai số chuẩn thì chưa phải là thông tin",
       formula: "SE = s / √n; Khoảng tin cậy 95% ≈ ước lượng ± 1,96 × SE",
-      commonMistake: "Đánh giá kỹ năng đầu tư dựa trên vài năm dữ liệu, nơi nhiễu lớn hơn tín hiệu nhiều lần",
-      action: "Với bất kỳ con số hiệu suất nào bạn đọc được, hãy tính nhanh sai số chuẩn trước khi tin vào nó.",
+      commonMistake: "Kết luận một thay đổi hiệu quả dựa trên vài tuần số liệu, nơi nhiễu lớn hơn tín hiệu nhiều lần",
+      action: "Với bất kỳ con số cải thiện nào bạn đọc được, hãy tính nhanh sai số chuẩn trước khi tin vào nó.",
     },
     application: {
       title: "Phản xạ nghề nghiệp",
       message:
-        "Khi ai đó đưa bạn một con số - beta 1,2, alpha 3%, tương quan 0,4 - câu hỏi đầu tiên luôn là: tính trên bao nhiêu quan sát, và sai số chuẩn bao nhiêu. Nếu người trình bày không trả lời được, con số đó chưa đủ điều kiện để ra quyết định.",
-      secondary: "Quy tắc thô: cần khoảng 30 năm dữ liệu để một mức alpha 2%/năm đạt ý nghĩa thống kê thông thường.",
+        "Khi ai đó đưa bạn một con số - độ trễ giảm 12%, tỷ lệ chuyển đổi tăng 3%, tương quan 0,4 - câu hỏi đầu tiên luôn là: tính trên bao nhiêu quan sát, và sai số chuẩn bao nhiêu. Nếu người trình bày không trả lời được, con số đó chưa đủ điều kiện để ra quyết định.",
+      secondary: "Quy tắc thô: với độ lệch chuẩn 6 điểm mỗi tuần, cần khoảng 36 tuần số liệu để một mức cải thiện 2 điểm đạt ý nghĩa thống kê thông thường.",
     },
     sections: [
       {
         type: "lead",
-        text: "Trong tài chính, bạn không bao giờ quan sát được sự thật. Bạn chỉ có một mẫu - vài trăm quan sát rút ra từ một quá trình vẫn đang tiếp diễn và còn thay đổi theo thời gian. Toàn bộ thống kê suy diễn tồn tại để trả lời một câu: từ mẫu này, tôi được phép tự tin đến đâu.",
+        text: "Với một hệ thống đang chạy, bạn không bao giờ quan sát được sự thật. Bạn chỉ có một mẫu - vài trăm quan sát rút ra từ một quá trình vẫn đang tiếp diễn và còn thay đổi theo thời gian. Toàn bộ thống kê suy diễn tồn tại để trả lời một câu: từ mẫu này, tôi được phép tự tin đến đâu.",
       },
       {
         type: "formula",
@@ -303,14 +301,14 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
         equation: "SE = s / √n",
         variables: [
           { symbol: "s", name: "Độ lệch chuẩn mẫu", description: "Mức phân tán của dữ liệu" },
-          { symbol: "n", name: "Số quan sát", description: "Với dữ liệu tài chính, thường là số năm chứ không phải số ngày khi ước lượng trung bình" },
+          { symbol: "n", name: "Số quan sát", description: "Khi ước lượng xu hướng trung bình, n thực chất là số chu kỳ độc lập (số tuần), không phải số lần đo" },
         ],
         example: {
           title: "Vì sao căn bậc hai lại quan trọng đến vậy",
           calculation: "n = 100 → SE = s/10;  n = 400 → SE = s/20",
           result: "Gấp bốn dữ liệu chỉ để chính xác gấp đôi",
           explanation:
-            "Quy luật này giải thích vì sao ngành đầu tư khó chứng minh bất cứ điều gì bằng dữ liệu: chi phí để tăng độ tin cậy tăng theo cấp số nhân, còn thị trường thì lại thay đổi bản chất theo thời gian.",
+            "Quy luật này giải thích vì sao các thay đổi nhỏ rất khó chứng minh bằng dữ liệu: chi phí để tăng độ tin cậy tăng theo bình phương, còn sản phẩm và người dùng thì lại thay đổi bản chất theo thời gian.",
         },
       },
       {
@@ -319,12 +317,12 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       },
       {
         type: "paragraph",
-        text: "Trực giác nói rằng dùng dữ liệu ngày thay vì dữ liệu tháng sẽ cho ước lượng tốt hơn vì có nhiều quan sát hơn. Điều đó đúng với phương sai nhưng sai với trung bình. Lý do: khi chia nhỏ kỳ, lợi suất trung bình mỗi kỳ nhỏ đi đúng bằng tỷ lệ mà độ nhiễu giảm, nên tỷ số tín hiệu trên nhiễu không đổi. Muốn biết chắc hơn về lợi suất kỳ vọng, chỉ có một cách duy nhất là quan sát trong nhiều năm hơn.",
+        text: "Trực giác nói rằng đo mỗi phút thay vì mỗi ngày sẽ cho ước lượng tốt hơn vì có nhiều quan sát hơn. Điều đó đúng với độ dao động nhưng sai với xu hướng trung bình. Lý do: khi chia nhỏ kỳ, mức tăng trung bình mỗi kỳ nhỏ đi nhanh hơn độ nhiễu mỗi kỳ, và cộng hết các kỳ lại thì tỷ số tín hiệu trên nhiễu của cả giai đoạn không đổi. Muốn biết chắc hơn về tốc độ tăng trưởng trung bình của một chỉ số, chỉ có một cách duy nhất là quan sát trong nhiều tuần hơn.",
       },
       {
         type: "callout",
-        label: "Hệ quả với ngành quỹ",
-        text: "Nếu ba năm hiệu suất không phân biệt được kỹ năng với may mắn, thì việc rót vốn theo bảng xếp hạng ba năm là hành động dựa trên nhiễu. Đây là một trong những phát hiện thực nghiệm vững chắc nhất và cũng bị phớt lờ nhiều nhất trong ngành quản lý tài sản.",
+        label: "Hệ quả với việc đánh giá bản phát hành",
+        text: "Nếu ba tuần số liệu không phân biệt được hiệu ứng thật với may mắn, thì việc giữ hay gỡ một tính năng dựa trên biểu đồ ba tuần là hành động dựa trên nhiễu. Đây là một trong những sai lầm phổ biến nhất và cũng bị phớt lờ nhiều nhất khi đội sản phẩm đọc dashboard sau mỗi bản phát hành.",
       },
       {
         type: "closing",

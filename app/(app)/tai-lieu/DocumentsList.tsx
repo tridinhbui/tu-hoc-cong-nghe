@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { FileText, Download, FileSpreadsheet, FileImage, Archive, Plus } from "lucide-react";
 import { createClient } from "@/lib/cloudflare";
@@ -13,6 +13,7 @@ import CommunityUploadModal from "./CommunityUploadModal";
 import type { PublicDocument } from "./page";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { StatusDot, btnPrimary, tabClass } from "@/components/ui/system";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 function formatBytes(bytes: number) {
@@ -30,8 +31,8 @@ function categoryLabel(value: string, t: Dictionary) {
 // so this badge always means "your own pending/rejected submission", never
 // someone else's.
 function statusBadge(status: PublicDocument["status"], t: Dictionary) {
-  if (status === "pending") return { label: t.documentsList.statusPending, className: "bg-amber-100 dark:bg-amber-950/60 text-warn-strong" };
-  if (status === "rejected") return { label: t.documentsList.statusRejected, className: "bg-rose-100 dark:bg-rose-950/60 text-alert-strong" };
+  if (status === "pending") return { label: t.documentsList.statusPending, className: "border-warn-line-mid text-warn-strong" };
+  if (status === "rejected") return { label: t.documentsList.statusRejected, className: "border-danger-line text-alert-strong" };
   return null;
 }
 
@@ -47,52 +48,25 @@ function getCategoryFilters(t: Dictionary) {
   return [{ value: "all", label: t.documentsList.allCategoriesFilter }, ...documentCategoriesOf(t)];
 }
 
-function TypingBanner() {
+/** Tài liệu sắp có. Từng là một dòng gõ-xoá chữ chạy mãi kèm chấm đỏ nhấp
+ *  nháy - chuyển động trang trí đúng loại hệ thiết kế bỏ đi. Giờ là một danh
+ *  sách tĩnh: cùng nội dung, đọc được một lượt, không đòi mắt chạy theo. */
+function UpcomingBanner() {
   const { t } = useI18n();
   const words = t.documentsList.typingWords;
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(100);
-
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    const fullWord = words[currentWordIndex];
-
-    if (isDeleting) {
-      timer = setTimeout(() => {
-        setCurrentText(fullWord.substring(0, currentText.length - 1));
-        setTypingSpeed(40);
-      }, typingSpeed);
-    } else {
-      timer = setTimeout(() => {
-        setCurrentText(fullWord.substring(0, currentText.length + 1));
-        setTypingSpeed(100);
-      }, typingSpeed);
-    }
-
-    if (!isDeleting && currentText === fullWord) {
-      timer = setTimeout(() => setIsDeleting(true), 2500);
-    } else if (isDeleting && currentText === "") {
-      setIsDeleting(false);
-      setCurrentWordIndex((prev) => (prev + 1) % words.length);
-      setTypingSpeed(300);
-    }
-
-    return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentWordIndex, typingSpeed]);
-
   return (
-    <div className="mb-6 p-4 rounded-xl border border-rose-100 dark:border-rose-950/40 bg-rose-50/20 dark:bg-rose-950/5 flex items-center gap-3">
-      <span className="flex h-2 w-2 relative shrink-0">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
-      </span>
-      <p className="text-xs font-bold text-ink-soft">
-        <span className="text-rose-600/60 dark:text-rose-400/50 mr-1.5 font-bold uppercase tracking-wider">{t.documentsList.updatingLabel}</span>
-        <span className="text-alert font-extrabold">{currentText}</span>
-        <span className="animate-pulse font-extrabold text-alert">|</span>
+    <div className="mb-6 rounded-sm border border-line bg-white p-4 dark:bg-stone-900">
+      <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
+        <StatusDot />
+        {t.documentsList.updatingLabel}
       </p>
+      <ul className="mt-2 divide-y divide-stone-200 dark:divide-stone-800">
+        {words.map((w) => (
+          <li key={w} className="py-1.5 text-xs font-semibold text-ink-body">
+            {w}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -119,18 +93,17 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
 
   return (
     <div>
-      <TypingBanner />
+      <UpcomingBanner />
       <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
-        <div className="flex gap-2 flex-wrap">
+        <div role="tablist" className="flex flex-wrap gap-x-5 gap-y-2 border-b border-line">
           {categoryFilters.map((c) => (
             <button
               key={c.value}
+              type="button"
+              role="tab"
+              aria-selected={filter === c.value}
               onClick={() => setFilter(c.value)}
-              className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
-                filter === c.value
-                  ? "bg-surface-invert text-ink-invert"
-                  : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
-              }`}
+              className={`cursor-pointer ${tabClass(filter === c.value)}`}
             >
               {c.label}
             </button>
@@ -138,7 +111,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
         </div>
         <button
           onClick={() => setShowUpload(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-dashed border-line-strong hover:border-line-firm text-xs font-bold text-ink-soft transition-colors flex-shrink-0"
+          className="flex flex-shrink-0 items-center gap-1.5 rounded-sm border border-stone-400 px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200"
         >
           <Plus className="w-3.5 h-3.5" />
           {t.documentsList.shareButton}
@@ -152,7 +125,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
           description={t.documentsList.emptyDescription}
         />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((doc) => {
             const Icon = iconFor(doc.file_name);
             return (
@@ -163,11 +136,11 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                   setOpenDoc(doc);
                   trackFeatureClick("document_open", { label: doc.file_name });
                 }}
-                className="group text-left rounded-2xl border border-line hover:border-line-firm hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all overflow-hidden bg-white/95 dark:bg-stone-900"
+                className="group overflow-hidden rounded-md border border-stone-300 bg-white text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
               >
                 {/* Cover image or icon */}
                 {doc.image_url ? (
-                  <div className="relative w-full h-48 bg-surface-raised overflow-hidden">
+                  <div className="relative w-full h-44 border-b border-line bg-surface-raised overflow-hidden">
                     {/* Khung đã có kích thước cố định (h-48) và `relative`, nên
                         `fill` là dạng đúng ở đây - không phải đoán tỉ lệ. Ảnh
                         bìa nằm trong bucket "documents"; trang này là lưới thẻ
@@ -177,32 +150,33 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                       alt=""
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover"
                     />
                   </div>
                 ) : (
-                  <div className="w-full h-48 bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center">
-                    <Icon className="w-16 h-16 text-stone-300 dark:text-stone-700" />
+                  <div className="w-full h-44 border-b border-line bg-[#f3f1ec] dark:bg-stone-950 flex items-center justify-center">
+                    <Icon className="w-12 h-12 text-ink-faint" aria-hidden />
                   </div>
                 )}
 
                 {/* Content */}
-                <div className="p-5">
+                <div className="p-4">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <span className="text-[11px] font-bold uppercase tracking-wide bg-surface-raised text-ink-soft px-2.5 py-1 rounded-full">
+                    <span className="rounded-sm border border-line px-1.5 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-soft">
                       {categoryLabel(doc.category, t)}
                     </span>
-                    <span className="text-[11px] font-black bg-brand-500/10 dark:bg-brand-500/20 text-accent px-2.5 py-1 rounded-full border border-brand-500/20 animate-pulse flex items-center gap-0.5">
+                    <span className="flex items-center gap-1.5 rounded-sm border border-line px-1.5 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-soft">
+                      <StatusDot />
                       {t.documentsList.freeBadge}
                     </span>
                     {statusBadge(doc.status, t) && (
-                      <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(doc.status, t)!.className}`}>
+                      <span className={`rounded-sm border px-1.5 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.06em] ${statusBadge(doc.status, t)!.className}`}>
                         {statusBadge(doc.status, t)!.label}
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-lg font-bold text-ink mb-2 line-clamp-2 group-hover:text-ink-body transition-colors">
+                  <h3 className="mb-2 line-clamp-2 text-base font-black tracking-tight text-ink-max">
                     {doc.title}
                   </h3>
 
@@ -213,10 +187,10 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                   )}
 
                   <div className="flex items-center justify-between pt-3 border-t border-line-soft">
-                    <span className="text-xs font-medium text-ink-muted">
+                    <span className="font-mono text-xs tabular-nums text-ink-muted">
                       {formatBytes(doc.file_size)}
                     </span>
-                    <span className="text-xs font-bold text-ink-soft group-hover:text-ink transition-colors">
+                    <span className="text-xs font-bold text-accent-strong group-hover:underline underline-offset-4">
                       {t.documentsList.viewDetails}
                     </span>
                   </div>
@@ -236,24 +210,24 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
         {openDoc && (
           <div className="space-y-4">
             {openDoc.image_url ? (
-              <div className="relative w-full h-56 rounded-xl overflow-hidden bg-surface-raised">
+              <div className="relative w-full h-56 rounded-sm border border-line overflow-hidden bg-surface-raised">
                 <Image src={openDoc.image_url} alt="" fill sizes="(max-width: 640px) 100vw, 560px" className="object-cover" />
               </div>
             ) : (
               (() => {
                 const Icon = iconFor(openDoc.file_name);
                 return (
-                  <div className="w-full h-40 rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center">
-                    <Icon className="w-14 h-14 text-stone-300 dark:text-stone-700" />
+                  <div className="w-full h-40 rounded-sm border border-line bg-[#f3f1ec] dark:bg-stone-950 flex items-center justify-center">
+                    <Icon className="w-12 h-12 text-ink-faint" aria-hidden />
                   </div>
                 );
               })()
             )}
 
             <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="text-xl font-bold text-ink">{openDoc.title}</h3>
+              <h3 className="text-xl font-black tracking-tight text-ink-max">{openDoc.title}</h3>
               {statusBadge(openDoc.status, t) && (
-                <span className={`text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${statusBadge(openDoc.status, t)!.className}`}>
+                <span className={`rounded-sm border px-1.5 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.06em] ${statusBadge(openDoc.status, t)!.className}`}>
                   {statusBadge(openDoc.status, t)!.label}
                 </span>
               )}
@@ -275,10 +249,10 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
               </p>
             )}
 
-            <div className="flex items-center gap-3 text-xs text-ink-muted pt-2 border-t border-line-soft">
-              <span>{openDoc.file_name}</span>
+            <div className="flex flex-wrap items-center gap-3 text-xs text-ink-muted pt-2 border-t border-line">
+              <span className="font-mono">{openDoc.file_name}</span>
               <span>·</span>
-              <span>{formatBytes(openDoc.file_size)}</span>
+              <span className="font-mono tabular-nums">{formatBytes(openDoc.file_size)}</span>
               <span>·</span>
               <span>{format(t.documentsList.downloadCount, { count: openDoc.download_count })}</span>
             </div>
@@ -291,7 +265,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
               // tên tệp phải do storage của hệ cũ đặt. Xem toDownloadUrl.
               href={toDownloadUrl(openDoc.file_url, openDoc.file_name)}
               onClick={() => handleDownload(openDoc)}
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-surface-invert text-ink-invert text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
+              className={`${btnPrimary} w-full`}
             >
               <Download className="w-4 h-4" />
               {t.documentsList.downloadButton}

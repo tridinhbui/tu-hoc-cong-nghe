@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { UserPlus, UserCheck } from "lucide-react";
 import { followUser, unfollowUser } from "@/lib/cloudflare-follows";
 import { useI18n } from "@/lib/i18n/context";
+import { btnPrimary, btnSecondary } from "@/components/ui/system";
 
 interface FollowButtonProps {
   currentUserId: string;
@@ -72,16 +73,12 @@ export default function FollowButton({ currentUserId, targetUserId, initialFollo
       disabled={busy}
       className={
         isSmall
-          ? `inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-bold transition-colors disabled:opacity-50 ${
+          ? `inline-flex items-center gap-1 rounded-sm border px-2.5 py-1 text-[11px] font-bold transition-colors disabled:opacity-50 cursor-pointer ${
               following
-                ? "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400"
-                : "bg-brand-500 text-white hover:bg-brand-600"
+                ? "border-line-strong text-ink-muted hover:border-stone-950 dark:hover:border-stone-300"
+                : "border-stone-950 bg-stone-950 text-white hover:border-brand-700 hover:bg-brand-700 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950 dark:hover:border-brand-300 dark:hover:bg-brand-300"
             }`
-          : `inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold transition-colors disabled:opacity-50 ${
-              following
-                ? "border border-stone-200 text-stone-600 hover:bg-stone-50 dark:border-stone-800 dark:text-stone-300 dark:hover:bg-stone-900"
-                : "bg-brand-500 text-white hover:bg-brand-600"
-            }`
+          : `${following ? btnSecondary : btnPrimary} cursor-pointer`
       }
     >
       <Icon className={isSmall ? "h-3 w-3" : "h-4 w-4"} />

@@ -1,28 +1,7 @@
-// Dictionary section for four smaller calculators: EmergencyFundCalculator,
-// InteractiveInflationCalculator, InteractiveBudget, InteractiveLiquidityRun.
+// Dictionary section for the budget simulator (InteractiveBudget).
 // See lib/i18n/dictionaries/sections/index.ts for how sections are wired in.
 
 export const moreCalculatorsVi = {
-
-  inflationCalc: {
-    title: "Máy tính Lạm phát",
-    subtitle: "Xem tiền của bạn mất giá như thế nào theo thời gian",
-    amountLabel: "Số tiền hiện tại (triệu VNĐ): {amount}M",
-    yearsLabel: "Số năm: {years}",
-    rateLabel: "Tỷ lệ lạm phát (%/năm): {rate}%",
-    currentValueLabel: "Giá trị hiện tại",
-    valueAfterYearsLabel: "Giá trị sau {years} năm",
-    millionSuffix: "{amount}M",
-    lossTitle: "Mất sức mua",
-    lossPercentOfOriginal: "({pct}% giá trị ban đầu)",
-    formulaTitle: "Công thức tính:",
-    formulaLine: "Giá trị tương lai = Hiện tại / (1 + lạm phát)^năm",
-    formulaApplied: "{amount} / (1 + {rate})^{years} = {result}M",
-    meaningTitle: "Ý nghĩa:",
-    meaningBody:
-      "Nếu bạn giữ {amount} triệu tiền mặt trong {years} năm với lạm phát {rate}%/năm, số tiền đó chỉ còn giá trị mua được tương đương {result} triệu ngày nay. Đây là lý do cần đầu tư để lợi nhuận vượt lạm phát.",
-  },
-
   budgetSim: {
     categoryNeedsLabel: "Tải nền",
     categoryNeedsHint: "Phần luôn chạy: dịch vụ thường trực, CSDL, hàng đợi",
@@ -53,26 +32,6 @@ export const moreCalculatorsVi = {
 };
 
 export const moreCalculatorsEn: typeof moreCalculatorsVi = {
-
-  inflationCalc: {
-    title: "Inflation Calculator",
-    subtitle: "See how your money loses value over time",
-    amountLabel: "Current amount (million VND): {amount}M",
-    yearsLabel: "Years: {years}",
-    rateLabel: "Inflation rate (%/year): {rate}%",
-    currentValueLabel: "Current value",
-    valueAfterYearsLabel: "Value after {years} years",
-    millionSuffix: "{amount}M",
-    lossTitle: "Loss of purchasing power",
-    lossPercentOfOriginal: "({pct}% of original value)",
-    formulaTitle: "Formula:",
-    formulaLine: "Future value = Current / (1 + inflation)^years",
-    formulaApplied: "{amount} / (1 + {rate})^{years} = {result}M",
-    meaningTitle: "What this means:",
-    meaningBody:
-      "If you hold {amount} million in cash for {years} years at {rate}%/year inflation, that money will only buy what {result} million buys today. This is why you need to invest at a return above inflation.",
-  },
-
   budgetSim: {
     categoryNeedsLabel: "Baseline load",
     categoryNeedsHint: "Always on: long-running services, databases, queues",

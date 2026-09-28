@@ -144,6 +144,11 @@
       }
     },
     {
+      "type": "code",
+      "caption": "Run it and see for yourself: assignment happens once, it is not a live link like a spreadsheet formula.",
+      "code": "a = 5\nb = a      # b gets the value 5 at this line\na = 9      # peel label a off and stick it on 9\nprint(a)\nprint(b)   # b is still 5"
+    },
+    {
       "type": "paragraph",
       "text": "There is one important exception you will meet in the lesson on lists: with compound data, what gets copied across is the pointer to the data rather than the data itself. Two names then point at the same place, and editing through one shows up when you look through the other. Note it now so that you do not think the machine is broken when you meet it."
     },
@@ -162,6 +167,18 @@
     {
       "type": "paragraph",
       "text": "Last comes scope: a variable declared inside a block usually only has meaning within that block. Using it outside reports a name-not-found error. That sounds like a restriction but it is really a protection - it lets two pieces of code use the same name without treading on each other."
+    },
+    {
+      "type": "exercise",
+      "title": "Swap two values",
+      "task": "The variables morning and evening have the people on duty the wrong way round. Write code that swaps their values.",
+      "starter": "morning = \"Minh\"\nevening = \"Ha\"\n\n# Write the swap here\n\n\nprint(\"morning =\", morning)\nprint(\"evening =\", evening)",
+      "solution": "morning = \"Minh\"\nevening = \"Ha\"\n\ntemp = morning\nmorning = evening\nevening = temp\n\nprint(\"morning =\", morning)\nprint(\"evening =\", evening)",
+      "expectedOutput": "morning = Ha\nevening = Minh",
+      "hints": [
+        "If you write morning = evening first, the value \"Minh\" is lost - no name points at it any more.",
+        "Use a third variable to hold the old value of morning for a moment."
+      ]
     },
     {
       "type": "closing",

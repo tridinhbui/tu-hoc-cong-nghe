@@ -1,6 +1,7 @@
 import type { LessonFunnel } from "@/lib/admin/lesson-funnel";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary, format, intlLocale } from "@/lib/i18n";
+import { panel } from "@/components/ui/system";
 
 /** Bài nào bị bỏ dở, và `whyItMatters` có giữ chân được ai không.
  *
@@ -18,18 +19,18 @@ export default async function LessonFunnelPanel({ funnel }: { funnel: LessonFunn
   const locale = await getServerLocale();
   const t = getDictionary(locale);
   return (
-    <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
-      <h2 className="text-sm font-black uppercase tracking-widest text-stone-500">
+    <section className={`${panel} p-5`}>
+      <h2 className="eyebrow border-b border-line-strong pb-2 text-ink-soft">
         {t.adminFunnel.title}
       </h2>
 
       {!funnel.available ? (
-        <p className="mt-3 rounded-xl bg-amber-50 p-3 text-[13px] leading-relaxed text-amber-900 dark:bg-amber-950/40 dark:text-amber-200">
+        <p className="mt-3 rounded-sm border border-warn-line bg-warn-soft p-3 text-[13px] leading-relaxed text-warn-ink">
           {funnel.reason ?? t.adminFunnel.noDataFallback}
         </p>
       ) : (
         <>
-          <p className="mt-1 text-[12px] text-stone-500">
+          <p className="mt-2 text-[12px] text-ink-muted">
             {format(t.adminFunnel.totalOpens, { total: funnel.totalOpens.toLocaleString(intlLocale(locale)) })}
           </p>
 
@@ -43,12 +44,12 @@ export default async function LessonFunnelPanel({ funnel }: { funnel: LessonFunn
               ).map(([label, b]) => {
                 const rate = b.opens > 0 ? b.reachedRecall / b.opens : 0;
                 return (
-                  <div key={label} className="rounded-xl bg-stone-100 p-3 dark:bg-stone-800">
-                    <p className="text-[11px] font-bold text-stone-500">{label}</p>
-                    <p className="font-mono text-2xl font-black text-ink">
+                  <div key={label} className="rounded-sm border border-line-strong p-3">
+                    <p className="text-[11px] font-bold text-ink-muted">{label}</p>
+                    <p className="font-mono text-2xl font-medium tabular-nums text-ink-max">
                       {(rate * 100).toFixed(0)}%
                     </p>
-                    <p className="text-[11px] text-stone-500">
+                    <p className="text-[11px] text-ink-muted">
                       {format(t.adminFunnel.splitCaption, {
                         lessons: b.lessons,
                         opens: b.opens.toLocaleString(intlLocale(locale)),
@@ -60,14 +61,14 @@ export default async function LessonFunnelPanel({ funnel }: { funnel: LessonFunn
             </div>
           )}
           {funnel.whySplit && (
-            <p className="mt-2 text-[11px] leading-relaxed text-stone-500">
+            <p className="mt-2 text-[11px] leading-relaxed text-ink-muted">
               {format(t.adminFunnel.splitNote, { min: funnel.minOpensForSplit })}{" "}
               <code>{t.adminFunnel.splitNoteWhyItMattersCode}</code> {t.adminFunnel.splitNoteSuffix}
             </p>
           )}
 
           <table className="mt-4 w-full text-left text-[12px]">
-            <thead className="text-[10px] uppercase tracking-widest text-stone-400">
+            <thead className="text-[10px] uppercase tracking-widest text-ink-faint">
               <tr>
                 <th className="pb-1">{t.adminFunnel.colLesson}</th>
                 <th className="pb-1 text-right">{t.adminFunnel.colOpens}</th>
@@ -80,11 +81,11 @@ export default async function LessonFunnelPanel({ funnel }: { funnel: LessonFunn
                 <tr key={r.slug} className="border-t border-line-soft">
                   <td className="py-1.5 pr-2">
                     <span className="font-medium text-ink-heading">{r.title}</span>
-                    <span className="ml-1 font-mono text-[10px] text-stone-400">{r.slug}</span>
+                    <span className="ml-1 font-mono text-[10px] text-ink-faint">{r.slug}</span>
                   </td>
                   <td className="py-1.5 text-right font-mono tabular-nums">{r.opens}</td>
                   <td className="py-1.5 text-right font-mono tabular-nums">{r.reachedRecall}</td>
-                  <td className="py-1.5 text-right font-mono font-bold tabular-nums text-alert">
+                  <td className="py-1.5 text-right font-mono font-bold tabular-nums text-danger">
                     {r.dropBeforeEnd}
                   </td>
                 </tr>
@@ -92,7 +93,7 @@ export default async function LessonFunnelPanel({ funnel }: { funnel: LessonFunn
             </tbody>
           </table>
           {funnel.rows.length === 0 && (
-            <p className="mt-2 text-[12px] text-stone-500">{t.adminFunnel.noRowsData}</p>
+            <p className="mt-2 text-[12px] text-ink-muted">{t.adminFunnel.noRowsData}</p>
           )}
         </>
       )}

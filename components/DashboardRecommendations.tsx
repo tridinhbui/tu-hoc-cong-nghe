@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getTotalCompletedLessonsCount } from "@/lib/cloudflare-user";
 import { useI18n } from "@/lib/i18n/context";
 import { intlLocale } from "@/lib/i18n";
+import { StatusDot, panel } from "@/components/ui/system";
 
 // Topic titles are copy, slugs/icons/colors are structure - so these are
 // built from `t` rather than kept as a static module-scope array. See
@@ -86,19 +87,19 @@ export default function DashboardRecommendations() {
     // và đặt nó cạnh ba dòng chữ thì nó phải nhỏ lại vừa chiều cao của chúng.
     // Xếp dọc, nó được cỡ chữ của một tiêu đề, còn nhãn và câu giải thích lùi
     // xuống làm chú thích - đúng thứ tự đọc mà khối này muốn.
-    <section className="w-full rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+    <section className={`w-full ${panel} p-5`}>
       {/* Màu xanh còn đúng một chấm 6px. Huy hiệu "LIVE" trước đây là chữ hoa,
           giãn chữ, viền, nền và một biểu tượng nhấp nháy - năm thứ trang trí
           cho một thông tin mà cái chấm nói xong. */}
       <div className="flex items-center gap-2">
-        <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-brand-500" aria-hidden />
+        <StatusDot />
         <p className="truncate text-[11px] font-semibold tracking-wide text-ink-muted">
           {t.recommendations.liveTitle}
         </p>
       </div>
 
       <p className="mt-2.5 flex items-baseline gap-1.5">
-        <span className="text-[34px] font-black leading-none tracking-tight tabular-nums text-ink">
+        <span className="font-mono text-[34px] font-medium leading-none tracking-tight tabular-nums text-ink-max">
           {liveCompletedCount.toLocaleString(intlLocale(locale))}
         </span>
         <span className="text-xs font-semibold text-ink-faint">

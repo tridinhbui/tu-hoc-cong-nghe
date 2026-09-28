@@ -5,7 +5,7 @@ export const networthUnlockVi = {
     tabStreak: "Streak",
     tabLessons: "Số bài học",
     podiumBadge: "BỤC VINH QUANG",
-    podiumTitleXp: "Học viên xuất sắc nhất tuần này",
+    podiumTitleXp: "Học viên nhiều XP nhất",
     podiumTitleStreak: "Top học viên kiên trì giữ chuỗi streak",
     podiumTitleLessons: "Học viên chinh phục nhiều bài học nhất",
     rankSilver: "BẠC",
@@ -16,7 +16,7 @@ export const networthUnlockVi = {
     cheerButtonIdle: "Thả tim",
     cheerButtonCount: "+{count}",
     activeLearnerBadge: "Học viên tích cực",
-    achievementLine: "Thành tích: {metric} · CFA Candidate",
+    achievementLine: "Thành tích: {metric}",
     cheerActionLabel: "Cổ vũ (+{count})",
     closeButton: "Đóng",
     metricXp: "{value} XP",
@@ -24,6 +24,7 @@ export const networthUnlockVi = {
     metricLessons: "{value} bài hoàn thành",
     footerActiveLearners: "Hơn 430+ học viên đang duy trì nhịp học mỗi ngày",
     footerCta: "Vào học cùng cộng đồng",
+    empty: "Chưa có ai trên bảng này. Người hoàn thành bài đầu tiên sẽ đứng ở đây.",
     // Illustrative learner names in the mock leaderboard data. These are
     // proper nouns, not UI copy - left identical in both languages on
     // purpose so the coverage script has an entry for them without
@@ -124,7 +125,7 @@ export const networthUnlockEn: typeof networthUnlockVi = {
     tabStreak: "Streak",
     tabLessons: "Lessons",
     podiumBadge: "HALL OF FAME",
-    podiumTitleXp: "Top learners this week",
+    podiumTitleXp: "Learners with the most XP",
     podiumTitleStreak: "Learners with the longest active streak",
     podiumTitleLessons: "Learners who finished the most lessons",
     rankSilver: "SILVER",
@@ -135,7 +136,7 @@ export const networthUnlockEn: typeof networthUnlockVi = {
     cheerButtonIdle: "Cheer",
     cheerButtonCount: "+{count}",
     activeLearnerBadge: "Active learner",
-    achievementLine: "Achievement: {metric} · CFA Candidate",
+    achievementLine: "Achievement: {metric}",
     cheerActionLabel: "Cheer (+{count})",
     closeButton: "Close",
     metricXp: "{value} XP",
@@ -143,6 +144,7 @@ export const networthUnlockEn: typeof networthUnlockVi = {
     metricLessons: "{value} lessons completed",
     footerActiveLearners: "430+ learners keep up their daily rhythm",
     footerCta: "Join the community",
+    empty: "Nobody is on this board yet. The first learner to finish a lesson will be here.",
     // Illustrative learner names in the mock leaderboard data - proper
     // nouns, kept identical to the Vietnamese side rather than translated.
     name1: "Thúy Đặng",

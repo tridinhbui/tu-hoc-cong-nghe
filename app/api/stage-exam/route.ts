@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { createAdminClient } from "@/lib/cloudflare-admin";
 import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
+import { getServerLocale } from "@/lib/i18n/server";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
 import { signQuestionToken, verifyQuestionToken } from "@/lib/quiz-tokens";
 import {
   buildEligibility,
@@ -48,9 +50,16 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-/** Every (lessonId, questionIndex) pair in a stage that has a usable quiz. */
-async function stageQuestionPool(lessonIds: number[]) {
-  const lessons = await Promise.all(lessonIds.map((id) => getLessonById(id)));
+/** Every (lessonId, questionIndex) pair in a stage that has a usable quiz.
+ *
+ *  `locale` chỉ đổi phần CHỮ. `getLessonById` ghép bản dịch qua
+ *  `mergeLessonTranslation`, mà hàm đó không bao giờ ghi đè `correct` - chỉ số
+ *  đáp án luôn đọc từ bài học gốc. Nên chấm điểm không phụ thuộc locale, và
+ *  hai chỗ chỉ cần ĐẾM (đếm câu để xét đủ điều kiện, và đếm để biết một bài
+ *  thi đầy đủ là bao nhiêu câu) vẫn để mặc định: số lượng câu giống nhau ở mọi
+ *  ngôn ngữ, nên gọi thêm một vòng dịch ở đó là tốn công vô ích. */
+async function stageQuestionPool(lessonIds: number[], locale: Locale = DEFAULT_LOCALE) {
+  const lessons = await Promise.all(lessonIds.map((id) => getLessonById(id, locale)));
   const pool: {
     lessonId: number;
     questionIndex: number;
@@ -117,7 +126,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Invalid track" }, { status: 400 });
   }
 
-  const meta = await getLessonsMeta();
+  const meta = await getLessonsMeta(await getServerLocale());
   const allLessonIds = meta.map((l) => l.id);
 
   // No stage given: list what's available to test out of.
@@ -159,7 +168,11 @@ export async function GET(request: NextRequest) {
   }
 
   const ids = stageLessonIds(stage, allLessonIds);
-  const pool = await stageQuestionPool(ids);
+  /* Đây là chỗ DUY NHẤT trả chữ về cho người học, nên cũng là chỗ duy nhất
+     cần locale. Trước đây nó gọi `getLessonById(id)` không tham số, tức luôn
+     lấy bài học tiếng Việt - người đọc tiếng Anh vào Thi vượt chặng là gặp
+     nguyên đề tiếng Việt giữa một giao diện tiếng Anh. */
+  const pool = await stageQuestionPool(ids, await getServerLocale());
   if (pool.length === 0) {
     return NextResponse.json({ questions: [], totalAvailable: 0 });
   }
@@ -234,7 +247,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unknown stage" }, { status: 404 });
   }
 
-  const meta = await getLessonsMeta();
+  const meta = await getLessonsMeta(await getServerLocale());
   const lessonIds = stageLessonIds(stage, meta.map((l) => l.id));
   const stageLessonSet = new Set(lessonIds);
 
@@ -243,6 +256,14 @@ export async function POST(request: NextRequest) {
   const seen = new Set<string>();
   let score = 0;
   let counted = 0;
+  /* Chấm xong thì nói rõ TỪNG CÂU, không chỉ trả về một tỉ số.
+   *
+   *  Chỉ số đáp án đúng nằm trong token đã ký, nên client không có cách nào tự
+   *  biết nó - và vì thế màn kết quả cũ chỉ in được "12/15": người thi trượt
+   *  không thấy mình sai câu nào, không đọc được lời giải, không có gì để học.
+   *  Trả về SAU khi lượt thi đã được ghi (và cooldown đã bắt đầu), nên nó không
+   *  mở đường xem trước đáp án. */
+  const details: { token: string; correct: number; selected: number }[] = [];
   for (const answer of body.answers as AnswerInput[]) {
     if (seen.has(answer.token)) continue;
     seen.add(answer.token);
@@ -250,6 +271,7 @@ export async function POST(request: NextRequest) {
     if (!payload || !stageLessonSet.has(payload.lessonId)) continue;
     counted++;
     if (payload.correct === answer.selected) score++;
+    details.push({ token: answer.token, correct: payload.correct, selected: answer.selected });
   }
 
   // How many questions this stage's exam is worth. A submission has to carry
@@ -277,6 +299,7 @@ export async function POST(request: NextRequest) {
       expected,
       passed: false,
       creditedLessons: 0,
+      details,
       retryAfterMs: STAGE_EXAM_RETRY_COOLDOWN_MS,
     });
   }
@@ -295,18 +318,33 @@ export async function POST(request: NextRequest) {
 
   if (toCredit.length > 0) {
     const now = new Date().toISOString();
-    const { error } = await admin.from("user_progress").upsert(
-      toCredit.map((lessonId) => ({
-        user_id: user.id,
-        lesson_id: lessonId,
-        completed: true,
-        completed_at: now,
-        // Recorded so these are distinguishable from lessons actually read -
-        // the score that earned the credit, not a per-lesson quiz result.
-        quiz_score: Math.round((score / Math.max(1, counted)) * 100),
+    const rows = toCredit.map((lessonId) => ({
+      user_id: user.id,
+      lesson_id: lessonId,
+      completed: true,
+      completed_at: now,
+      // Điểm của BÀI THI đã mang lại credit, không phải điểm quiz của bài này.
+      quiz_score: Math.round((score / Math.max(1, counted)) * 100),
+    }));
+    let { error } = await admin.from("user_progress").upsert(
+      rows.map((row) => ({
+        ...row,
+        // Đây mới là thứ tách credit khỏi bài đọc thật. `quiz_score` phía dưới
+        // KHÔNG làm được việc đó dù chú thích cũ nói vậy: nó ghi cùng một con
+        // số vào mọi bài của chặng, nên một người đọc thật và được 87 điểm
+        // trông giống hệt một credit 87 điểm.
+        completion_source: "stage_exam" as const,
       })),
       { onConflict: "user_id,lesson_id" }
     );
+    // Chưa chạy migrations-d1/0006_completion_source.sql thì credit vẫn phải
+    // được ghi: mất phần phân loại còn hơn mất cả việc mở khoá chặng mà người
+    // học vừa thi đỗ. D1 báo cột lạ bằng "no such column" / "has no column".
+    if (error && /no such column|has no column/i.test(error.message ?? "")) {
+      ({ error } = await admin
+        .from("user_progress")
+        .upsert(rows, { onConflict: "user_id,lesson_id" }));
+    }
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
@@ -318,5 +356,6 @@ export async function POST(request: NextRequest) {
     passed: true,
     creditedLessons: toCredit.length,
     alreadyCompleted: already.size,
+    details,
   });
 }

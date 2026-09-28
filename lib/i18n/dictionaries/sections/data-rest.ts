@@ -14,6 +14,7 @@ export const dataRestVi = {
       // "Học bài" / "Học theo nghề" have no existing dictionary key
       // (t.nav only covers the entries that already went through labelKey).
       hocBai: "Học bài",
+      loTrinh: "Bắt đầu từ đâu",
       hocTheoNghe: "Học theo nghề",
       // Parity exemptions: proper noun / symbol, identical in both languages.
       gameKingdomLabel: "Game Kingdom",
@@ -33,7 +34,7 @@ export const dataRestVi = {
         "Bấm vào đây để quay lại đúng bài học tiếp theo trong lộ trình, không cần tự tìm.",
       trackSelectorTitle: "Chọn lộ trình",
       trackSelectorText:
-        "Bạn có 2 lộ trình: Tài chính cá nhân (ngắn hơn, cho người mới) và Tài chính chuyên ngành (sâu hơn). Có thể đổi qua lại bất cứ lúc nào.",
+        "Bạn có 2 lộ trình: Nền tảng công nghệ (ngắn hơn, cho người mới) và Công nghệ chuyên sâu (sâu hơn). Có thể đổi qua lại bất cứ lúc nào.",
       stageListTitle: "Lộ trình học",
       stageListText:
         "Toàn bộ bài học được chia theo từng Chặng, mở khoá tuần tự. Bấm vào một Chặng để xem danh sách bài bên trong.",
@@ -91,61 +92,6 @@ export const dataRestVi = {
       selectorSubtitle:
         "Hệ thống sẽ điều chỉnh lộ trình gợi ý và ưu tiên các bài học phù hợp nhất với mục tiêu của bạn.",
     },
-    jobSearchClient: {
-      // Career-fit quiz: 5 questions x 4 options. Each option's `type`
-      // (Analytical / Compliance / Client-facing / Quantitative) is
-      // structural - it drives scoring - and stays in the component.
-      quizQuestions: [
-        {
-          question: "Phong cách xử lý thông tin ưa thích của bạn là gì?",
-          options: [
-            "Phân tích số liệu, lập mô hình dự báo tương lai",
-            "Kiểm tra tính chính xác, rà soát tính tuân thủ quy trình",
-            "Giao tiếp, tư vấn, xây dựng và kết nối mối quan hệ khách hàng",
-            "Phân tích thống kê định lượng, tính toán xác suất rủi ro",
-          ],
-        },
-        {
-          question: "Môi trường làm việc lý tưởng trong mơ của bạn là:",
-          options: [
-            "Các quỹ đầu tư lớn, công ty chứng khoán năng động",
-            "Phòng kế toán tập đoàn lớn, hoặc công ty kiểm toán Big4 chuyên nghiệp",
-            "Các chi nhánh ngân hàng thương mại, sàn giao dịch nhộn nhịp",
-            "Phòng nguồn vốn, ban quản trị rủi ro ở hội sở ngân hàng lớn",
-          ],
-        },
-        {
-          question: "Bạn đối diện thế nào với áp lực và cân bằng cuộc sống (WLB)?",
-          options: [
-            "Sẵn sàng OT khuya, chịu áp lực tiến độ để đạt thu nhập vượt trội",
-            "Muốn giờ giấc hành chính rõ ràng, công việc ổn định ít đột xuất",
-            "Chấp nhận áp lực chạy doanh số (KPI) để nhận hoa hồng không giới hạn",
-            "Muốn công việc thiên về kỹ thuật chuyên sâu, ít áp lực doanh số",
-          ],
-        },
-        {
-          question: "Điểm mạnh nhất mà bạn tự tin muốn phát huy là gì?",
-          options: [
-            "Lập mô hình Excel, phân tích chi phí - lợi ích chiến lược",
-            "Sự cẩn thận, chi tiết tỉ mỉ, tuân thủ nguyên tắc tuyệt đối",
-            "Khả năng ăn nói thuyết phục, đồng cảm và mở rộng quan hệ",
-            "Tư duy toán học logic, lập trình mô phỏng định lượng (SQL/Python)",
-          ],
-        },
-        {
-          question: "Nhóm chứng chỉ nghề nghiệp nào thu hút bạn nhất?",
-          options: [
-            "CFA (Phân tích đầu tư) / CMA (Quản trị tài chính)",
-            "ACCA (Kế toán công chứng) / CPA (Kiểm toán viên)",
-            "Chứng chỉ hành nghề Môi giới chứng khoán hoặc Tín dụng ngân hàng",
-            "FRM (Quản lý rủi ro) / Chứng chỉ nguồn vốn ACI",
-          ],
-        },
-      ],
-      // Label for the synthetic "all categories" filter tab. Every other tab
-      // label comes from careerCategoryLabelsOf() (lib/career-categories.ts).
-      allCategoriesLabel: "Tất cả",
-    },
     globalSearchModal: {
       // Stub search-result data (the real corpus isn't wired in yet - a
       // separate task tracks replacing these). Translated anyway so the
@@ -175,44 +121,44 @@ export const dataRestVi = {
       ],
       sampleGlossary: [
         {
-          id: "g-dcf",
+          id: "g-idempotency",
           title: "Idempotency",
           desc: "Thao tác lặp lại bao nhiêu lần cũng cho cùng một kết quả - điều kiện để thử lại an toàn.",
         },
         {
-          id: "g-wacc",
+          id: "g-slo",
           title: "SLO (Service Level Objective)",
           desc: "Mức độ tin cậy đã cam kết, kèm ngân sách lỗi được phép tiêu.",
         },
         {
-          id: "g-pe",
+          id: "g-p99",
           title: "p99",
           desc: "Ngưỡng độ trễ mà 99% request nằm dưới nó.",
         },
         {
-          id: "g-roe",
+          id: "g-cache-hit",
           title: "Cache hit ratio",
           desc: "Tỷ lệ yêu cầu được phục vụ từ bộ nhớ đệm thay vì đi tới nguồn dữ liệu.",
         },
       ],
       sampleTools: [
         {
-          id: "t-networth",
+          id: "t-big-o",
           title: "Máy tính độ phức tạp",
           desc: "Ước lượng số bước của một thuật toán theo cỡ dữ liệu.",
         },
         {
-          id: "t-budget",
+          id: "t-capacity",
           title: "Định mức dung lượng máy chủ",
           desc: "Chia đỉnh tải cho dung lượng mỗi node, nhân hệ số dự phòng.",
         },
         {
-          id: "t-fire",
+          id: "t-infra-budget",
           title: "Ngân sách hạ tầng hàng tháng",
           desc: "Ước tính chi phí máy chủ, băng thông và lưu trữ theo quy mô.",
         },
         {
-          id: "t-dcf",
+          id: "t-latency",
           title: "Máy tính độ trễ & thông lượng",
           desc: "Mô phỏng độ trễ đuôi và số request mỗi giây một dịch vụ chịu được.",
         },
@@ -226,6 +172,7 @@ export const dataRestEn: typeof dataRestVi = {
     appNavbar: {
       library: "Library",
       hocBai: "Lessons",
+      loTrinh: "Where to start",
       hocTheoNghe: "Learn by career",
       gameKingdomLabel: "Game Kingdom",
       cmdKHint: "⌘K",
@@ -301,56 +248,6 @@ export const dataRestEn: typeof dataRestVi = {
       selectorSubtitle:
         "The system will adjust its recommended track and prioritize the lessons that best fit your goal.",
     },
-    jobSearchClient: {
-      quizQuestions: [
-        {
-          question: "Which style of processing information do you prefer?",
-          options: [
-            "Analyzing numbers, building forecast models",
-            "Checking accuracy, reviewing process compliance",
-            "Communicating, advising, building client relationships",
-            "Quantitative statistical analysis, calculating risk probabilities",
-          ],
-        },
-        {
-          question: "Your dream ideal work environment is:",
-          options: [
-            "Large investment funds, fast-moving securities firms",
-            "A large corporate accounting department, or a professional Big4 audit firm",
-            "Busy commercial bank branches, trading floors",
-            "A treasury or risk management division at a large bank's head office",
-          ],
-        },
-        {
-          question: "How do you handle pressure and work-life balance (WLB)?",
-          options: [
-            "Ready to work late, handle deadline pressure for outsized income",
-            "Want clear office hours, a stable job with few surprises",
-            "Accept sales-quota (KPI) pressure for unlimited commission",
-            "Want deep technical work, with less sales pressure",
-          ],
-        },
-        {
-          question: "What is the strongest skill you'd want to put to use?",
-          options: [
-            "Building Excel models, strategic cost-benefit analysis",
-            "Careful attention to detail, absolute adherence to rules",
-            "Persuasive communication, empathy and relationship-building",
-            "Logical math thinking, quantitative simulation programming (SQL/Python)",
-          ],
-        },
-        {
-          question: "Which group of professional certifications appeals to you most?",
-          options: [
-            "CFA (Investment Analysis) / CMA (Management Accounting)",
-            "ACCA (Chartered Accounting) / CPA (Auditor)",
-            "Securities Brokerage or Bank Credit practicing certificate",
-            "FRM (Risk Management) / ACI treasury certificate",
-          ],
-        },
-      ],
-      allCategoriesLabel: "All",
-    },
     globalSearchModal: {
       sampleLessons: [
         {
@@ -376,44 +273,44 @@ export const dataRestEn: typeof dataRestVi = {
       ],
       sampleGlossary: [
         {
-          id: "g-dcf",
+          id: "g-idempotency",
           title: "Idempotency",
           desc: "An operation that gives the same result however many times it repeats - the precondition for safe retries.",
         },
         {
-          id: "g-wacc",
+          id: "g-slo",
           title: "SLO (Service Level Objective)",
           desc: "The reliability level you committed to, with an error budget you are allowed to spend.",
         },
         {
-          id: "g-pe",
+          id: "g-p99",
           title: "p99",
           desc: "The latency threshold that 99% of requests come in under.",
         },
         {
-          id: "g-roe",
+          id: "g-cache-hit",
           title: "Cache hit ratio",
           desc: "The share of requests served from cache instead of going to the data source.",
         },
       ],
       sampleTools: [
         {
-          id: "t-networth",
+          id: "t-big-o",
           title: "Complexity calculator",
           desc: "Estimate an algorithm's step count against the size of the data.",
         },
         {
-          id: "t-budget",
+          id: "t-capacity",
           title: "Server capacity sizing",
           desc: "Divide peak load by per-node capacity, times a headroom multiple.",
         },
         {
-          id: "t-fire",
+          id: "t-infra-budget",
           title: "Monthly infrastructure budget",
           desc: "Estimate server, bandwidth and storage cost against your scale.",
         },
         {
-          id: "t-dcf",
+          id: "t-latency",
           title: "Latency & throughput calculator",
           desc: "Model tail latency and how many requests per second a service can take.",
         },

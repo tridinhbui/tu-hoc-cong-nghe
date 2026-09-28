@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Trophy } from "lucide-react";
 import RankBadge from "@/components/games/RankBadge";
 import { getGameLeaderboard, getGameTitle, type GameLeaderboardRow, type GameType } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
+import { panel } from "@/components/ui/system";
 import { localizeGameTitle } from "@/lib/games-i18n";
 
 export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
@@ -36,51 +36,44 @@ export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
   }, [gameType]);
 
   if (loading) {
-    return <div className="py-10 text-center text-sm text-stone-400">{gl.loading}</div>;
+    return <div className="py-10 text-center text-sm text-ink-faint">{gl.loading}</div>;
   }
 
   if (rows.length === 0) {
     return (
-      <div className="py-10 text-center text-sm text-stone-500">
+      <div className="py-10 text-center text-sm text-ink-muted">
         {gl.empty}
       </div>
     );
   }
 
   return (
-    <div className="space-y-2">
+    <div className={`${panel} divide-y divide-stone-200 dark:divide-stone-800`}>
       {rows.map((row, i) => {
         const rank = i + 1;
         const title = localizeGameTitle(getGameTitle(gameType, rank), gameType, rank, locale);
         return (
           <div
             key={row.user_id}
-            className={`flex items-center gap-3 rounded-xl border px-3.5 py-2.5 ${
-              rank <= 3
-                ? "border-amber-200 bg-amber-50/60"
-                : "border-stone-200 bg-white"
-            }`}
+            className="flex items-center gap-3 px-3.5 py-2.5"
           >
-            <span className="w-7 flex justify-center text-sm font-extrabold text-stone-500 flex-shrink-0">
+            <span className="flex w-7 flex-shrink-0 justify-center text-sm text-ink-muted">
               <RankBadge rank={rank} />
             </span>
             {isValidAvatar(row.avatarUrl) ? (
               <Image src={row.avatarUrl} alt={row.name} width={28} height={28} className="w-7 h-7 rounded-full object-cover flex-shrink-0" />
             ) : (
-              <div className="w-7 h-7 rounded-full bg-stone-200 flex items-center justify-center text-[10px] font-extrabold text-stone-600 flex-shrink-0">
+              <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-stone-200 text-[10px] font-extrabold text-stone-600 dark:bg-stone-700 dark:text-stone-200">
                 {row.name.trim().charAt(0).toUpperCase() || "?"}
               </div>
             )}
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-bold text-stone-900 truncate">{row.name}</p>
+              <p className="truncate text-sm font-bold text-ink-max">{row.name}</p>
               {title && (
-                <p className="text-[11px] font-bold text-amber-600 flex items-center gap-1">
-                  <Trophy className="w-3 h-3" />
-                  {title}
-                </p>
+                <p className="text-[11px] font-semibold text-ink-muted">{title}</p>
               )}
             </div>
-            <span className="text-sm font-extrabold text-stone-900 flex-shrink-0">
+            <span className="flex-shrink-0 font-mono text-sm font-medium tabular-nums text-ink-max">
               {row.bestScore}/{row.bestTotal}
             </span>
           </div>

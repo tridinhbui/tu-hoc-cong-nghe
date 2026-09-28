@@ -17,6 +17,7 @@ import { timeAgo } from "@/lib/time-ago";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { StatusDot } from "@/components/ui/system";
 
 /** Nhận `t` thay vì tự nội suy chuỗi: hai dòng này trước đây là tiếng Việt
  *  cứng trong mã, nên chuông vẫn nói tiếng Việt với người đọc bản tiếng Anh
@@ -43,9 +44,9 @@ function notificationText(n: CommunityNotification, t: Dictionary): string {
  *  20260901: danh tính người duyệt không phải thứ người học cần thấy. Nên
  *  chúng lấy biểu tượng theo loại thay vì chữ cái đầu của một cái tên. */
 function systemIcon(type: CommunityNotification["type"]) {
-  if (type === "appeal_approved") return { Icon: CheckCircle2, tone: "bg-brand-500" };
-  if (type === "appeal_rejected") return { Icon: ShieldQuestion, tone: "bg-amber-500" };
-  if (type === "ai_report_resolved") return { Icon: Sparkles, tone: "bg-sky-500" };
+  if (type === "appeal_approved") return { Icon: CheckCircle2, tone: "text-accent" };
+  if (type === "appeal_rejected") return { Icon: ShieldQuestion, tone: "text-warn" };
+  if (type === "ai_report_resolved") return { Icon: Sparkles, tone: "text-ink-body" };
   return null;
 }
 
@@ -199,11 +200,11 @@ export default function NotificationBell({ userId }: { userId: string }) {
         onClick={() => void toggleOpen()}
         aria-label={t.notifications.ariaLabel}
         aria-expanded={open}
-        className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-line text-ink-soft hover:bg-surface transition-colors shrink-0"
+        className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-stone-300 text-ink-soft hover:border-stone-950 transition-colors shrink-0 dark:border-stone-700 dark:hover:border-stone-200"
       >
         <Bell className="w-4.5 h-4.5" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[9px] font-black text-white ring-2 ring-white dark:ring-stone-950">
+          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-xs bg-brand-600 px-1 font-mono text-[9px] font-bold tabular-nums text-white dark:bg-brand-500">
             {unreadCount > 9 ? "9+" : unreadCount}
           </span>
         )}
@@ -213,15 +214,15 @@ export default function NotificationBell({ userId }: { userId: string }) {
         <div
           ref={panelRef}
           style={panelStyle}
-          className="overflow-y-auto overscroll-contain rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-xl z-[60]"
+          className="overflow-y-auto overscroll-contain rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 z-[60]"
         >
-          <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-line-soft">
-            <p className="text-xs font-black uppercase tracking-wide text-ink-muted">{t.notifications.title}</p>
+          <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
+            <p className="eyebrow text-ink-soft">{t.notifications.title}</p>
             {unreadCount > 0 && (
               <button
                 type="button"
                 onClick={() => void handleMarkAllRead()}
-                className="text-[11px] font-bold text-accent hover:underline"
+                className="text-[11px] font-bold text-accent-strong underline-offset-4 hover:underline"
               >
                 {t.notifications.markAllRead}
               </button>
@@ -229,20 +230,20 @@ export default function NotificationBell({ userId }: { userId: string }) {
           </div>
 
           {loading ? (
-            <p className="px-4 py-6 text-center text-xs text-stone-400">{t.notifications.loading}</p>
+            <p className="px-4 py-6 text-center text-xs text-ink-muted">{t.notifications.loading}</p>
           ) : !notifications || notifications.length === 0 ? (
-            <p className="px-4 py-6 text-center text-xs text-stone-400">
+            <p className="px-4 py-6 text-center text-xs text-ink-muted">
               {t.notifications.empty}
             </p>
           ) : (
-            <div className="divide-y divide-stone-100 dark:divide-stone-800">
+            <div className="divide-y divide-stone-200 dark:divide-stone-800">
               {notifications.map((n) => (
                 <button
                   key={n.id}
                   type="button"
                   onClick={() => void handleItemClick(n)}
                   className={`w-full flex items-start gap-2.5 px-4 py-3 text-left transition-colors hover:bg-surface ${
-                    !n.read_at ? "bg-brand-50/60 dark:bg-brand-950/20" : ""
+                    !n.read_at ? "bg-[#fbfaf7] dark:bg-stone-950/60" : ""
                   }`}
                 >
                   {(() => {
@@ -250,8 +251,8 @@ export default function NotificationBell({ userId }: { userId: string }) {
                     if (system) {
                       const { Icon, tone } = system;
                       return (
-                        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${tone}`}>
-                          <Icon className="h-4 w-4 text-white" aria-hidden />
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
+                          <Icon className={`h-4 w-4 ${tone}`} aria-hidden />
                         </div>
                       );
                     }
@@ -264,7 +265,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                         className="w-8 h-8 rounded-full object-cover shrink-0"
                       />
                     ) : (
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-stone-200 text-xs font-bold text-ink-body dark:bg-stone-800">
                         {n.actor_name.charAt(0).toUpperCase()}
                       </div>
                     );
@@ -275,13 +276,13 @@ export default function NotificationBell({ userId }: { userId: string }) {
                         này: ô ghi chú admin gõ vào trước đây không có đường
                         nào đến được người đọc nó. */}
                     {n.detail && (
-                      <p className="mt-1 rounded-lg bg-surface-raised px-2 py-1 text-[11px] font-medium text-ink-soft leading-snug whitespace-pre-wrap">
+                      <p className="mt-1 rounded-sm border border-stone-200 bg-[#f3f1ec] px-2 py-1 dark:border-stone-800 dark:bg-stone-950 text-[11px] font-medium text-ink-soft leading-snug whitespace-pre-wrap">
                         {n.detail}
                       </p>
                     )}
-                    <p className="mt-0.5 text-[10px] text-stone-400">{timeAgo(n.created_at, t.libData.timeAgo)}</p>
+                    <p className="mt-0.5 text-[10px] text-ink-faint">{timeAgo(n.created_at, t.libData.timeAgo)}</p>
                   </div>
-                  {!n.read_at && <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-brand-500" />}
+                  {!n.read_at && <span className="mt-1.5 shrink-0 leading-none"><StatusDot /></span>}
                 </button>
               ))}
             </div>

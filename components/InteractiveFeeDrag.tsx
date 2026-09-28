@@ -58,8 +58,8 @@ export default function InteractiveFeeDrag() {
   const contributed = monthly * years * 12;
 
   return (
-    <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-ink">
+    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+      <h3 className="text-base font-black tracking-tight text-ink-max">
         {t.feeDrag.headerTitle}
       </h3>
 
@@ -92,7 +92,7 @@ export default function InteractiveFeeDrag() {
         <Card label={t.feeDrag.feeLostLabel} value={fmt(t, lost)} tone="bad" />
       </div>
 
-      <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
+      <p className="mt-4 border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
         {t.feeDrag.explanationPart1}{" "}
         <span className="font-bold">{format(t.feeDrag.explanationLostShare, { lostShare: lostShare.toFixed(1) })}</span>{" "}
         {format(t.feeDrag.explanationPart2, { fee })}
@@ -116,14 +116,14 @@ function Row({ label, value, children }: { label: string; value: string; childre
 function Card({ label, value, tone }: { label: string; value: string; tone: "neutral" | "good" | "bad" }) {
   const color =
     tone === "good"
-      ? "text-accent"
+      ? "text-accent-strong"
       : tone === "bad"
         ? "text-alert"
-        : "text-ink-body";
+        : "text-ink-max";
   return (
-    <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
+    <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
       <p className="text-[11px] font-bold uppercase tracking-wide text-ink-muted">{label}</p>
-      <p className={`mt-0.5 text-lg font-extrabold tabular-nums ${color}`}>{value}</p>
+      <p className={`mt-0.5 text-lg font-black tabular-nums ${color}`}>{value}</p>
     </div>
   );
 }

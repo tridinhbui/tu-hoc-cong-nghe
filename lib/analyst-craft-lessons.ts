@@ -1,11 +1,11 @@
 import type { Lesson } from "./lesson-types";
 
-// Chặng "Kỹ năng nghề phân tích tài chính" (ids 1481-1484).
+// Chặng "Kỹ năng nghề kỹ sư" (ids 1481-1484).
 //
 // App có trang /phong-van-ky-thuat với ngân hàng câu hỏi, nhưng không có bài
-// học nào dạy phần kỹ năng đứng sau: viết một trang memo mà người bận rộn đọc
-// được, bảo vệ luận điểm trước hội đồng, và chuẩn bị cho bài kiểm tra dựng mô
-// hình. Đây là những thứ quyết định kết quả tuyển dụng và cả sự nghiệp về sau,
+// học nào dạy phần kỹ năng đứng sau: viết một tài liệu thiết kế mà người bận rộn
+// đọc được, bảo vệ phương án trước hội đồng, và chuẩn bị cho bài kiểm tra lập
+// trình có giờ. Đây là những thứ quyết định kết quả tuyển dụng và cả sự nghiệp về sau,
 // nhưng gần như không được dạy ở đâu ngoài việc làm sai vài lần rồi tự rút ra.
 
 export const ANALYST_CRAFT_LESSONS: Lesson[] = [
@@ -363,48 +363,48 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
   {
     id: 1483,
     slug: "chuan-bi-modeling-test-va-case-interview",
-    title: "Kỹ năng nghề, Bài 3: Chuẩn bị bài kiểm tra dựng mô hình và phỏng vấn tình huống",
-    subtitle: "Quản lý thời gian, thứ tự dựng mô hình và cách nói ra suy nghĩ khi làm bài",
+    title: "Kỹ năng nghề, Bài 3: Chuẩn bị bài kiểm tra lập trình có giờ và phỏng vấn tình huống",
+    subtitle: "Quản lý thời gian, thứ tự xây lời giải và cách nói ra suy nghĩ khi làm bài",
     duration: "12 phút",
     difficulty: "Khó",
     emoji: "⏳",
     track: "professional",
     whyItMatters:
-      "Bài kiểm tra dựng mô hình là vòng loại thực tế của gần như mọi vị trí phân tích. Phần lớn ứng viên trượt không vì thiếu kiến thức mà vì quản lý thời gian sai - và đó là thứ luyện được.",
+      "Bài kiểm tra lập trình có giới hạn thời gian là vòng loại thực tế của gần như mọi vị trí kỹ sư. Phần lớn ứng viên trượt không vì thiếu kiến thức mà vì quản lý thời gian sai - và đó là thứ luyện được.",
     openingQuestion:
-      "Trong một bài kiểm tra dựng mô hình 90 phút, việc đầu tiên nên làm là gì?",
+      "Trong một bài kiểm tra lập trình 90 phút, việc đầu tiên nên làm là gì?",
     openingOptions: [
-      "Bắt đầu nhập ngay số liệu lịch sử để tận dụng tối đa thời gian có sẵn",
+      "Bắt đầu viết code ngay để tận dụng tối đa thời gian có sẵn trong bài",
       "Đọc hết đề, xác định kết quả cần nộp, rồi phân bổ giờ",
-      "Dựng trước phần định giá vì đó là phần chiếm nhiều điểm nhất trong bài",
-      "Thiết lập định dạng và quy ước màu cho toàn bộ bảng tính trước khi nhập số",
+      "Tối ưu trước phần thuật toán khó vì đó là phần chiếm nhiều điểm nhất",
+      "Thiết lập cấu trúc thư mục, linter và định dạng code trước khi viết dòng đầu",
     ],
     correctOption: 1,
     explanation:
-      "Ứng viên trượt nhiều nhất vì dựng rất kỹ phần đầu rồi hết giờ khi chưa ra kết quả cuối. Một mô hình thô nhưng chạy được và ra được con số luôn được chấm cao hơn một mô hình đẹp nhưng dở dang, vì nhà tuyển dụng muốn biết bạn có giao được sản phẩm dưới áp lực thời gian không. Đọc đề trước và phân bổ ngược từ kết quả cần nộp là kỹ thuật đơn giản nhất nhưng bị bỏ qua nhiều nhất.",
+      "Ứng viên trượt nhiều nhất vì làm rất kỹ phần đầu rồi hết giờ khi chưa có chương trình chạy được từ đầu tới cuối. Một lời giải thô nhưng chạy được và qua được các ca kiểm thử chính luôn được chấm cao hơn một lời giải đẹp nhưng dở dang, vì nhà tuyển dụng muốn biết bạn có giao được sản phẩm dưới áp lực thời gian không. Đọc đề trước và phân bổ ngược từ kết quả cần nộp là kỹ thuật đơn giản nhất nhưng bị bỏ qua nhiều nhất.",
     diagram: [
       { label: "Đọc đề, xác định sản phẩm cuối cần nộp", arrow: true },
       { label: "Phân bổ thời gian ngược lại cho từng phần", arrow: true },
-      { label: "Dựng bản chạy được trước, tinh chỉnh sau", arrow: true },
-      { label: "Dành 10 phút cuối để kiểm tra và viết kết luận" },
+      { label: "Viết bản chạy được trước, tinh chỉnh sau", arrow: true },
+      { label: "Dành 10 phút cuối để chạy kiểm thử và viết ghi chú" },
     ],
     realWorldExample: {
       company: "Hai ứng viên cùng một đề bài",
       description:
-        "Ứng viên thứ nhất dựng bảng doanh thu rất chi tiết theo từng dòng sản phẩm, định dạng đẹp, và hết giờ khi vừa xong báo cáo kết quả kinh doanh. Ứng viên thứ hai dựng dự phóng doanh thu bằng một giả định tăng trưởng đơn giản, chạy hết ba báo cáo, ra được định giá, rồi dùng thời gian còn lại quay lại làm mịn phần doanh thu và ghi chú các giả định. Người thứ hai gần như luôn được chọn, kể cả khi phần doanh thu của họ thô hơn.",
+        "Đề bài: dựng một API nhỏ đọc file đơn hàng, tính tổng theo từng khách hàng và trả kết quả. Ứng viên thứ nhất thiết kế lớp dữ liệu rất công phu, viết xử lý lỗi cho mọi trường hợp, và hết giờ khi vừa xong phần đọc file. Ứng viên thứ hai viết một bản đơn giản chạy hết luồng từ đọc file tới trả kết quả, kèm vài ca kiểm thử, rồi dùng thời gian còn lại quay lại xử lý dữ liệu lỗi và ghi chú các giả định. Người thứ hai gần như luôn được chọn, kể cả khi phần xử lý lỗi của họ thô hơn.",
     },
     quiz: [
       {
-        question: "Nguyên tắc dựng mô hình dưới áp lực thời gian là gì?",
+        question: "Nguyên tắc viết code dưới áp lực thời gian là gì?",
         options: [
-          "Dựng bản đơn giản chạy được từ đầu tới cuối trước, rồi mới làm mịn từng phần",
+          "Viết bản đơn giản chạy được từ đầu tới cuối trước, rồi mới làm mịn từng phần",
           "Hoàn thiện từng phần đến mức tốt nhất trước khi chuyển sang phần tiếp theo",
-          "Ưu tiên phần định giá và bỏ qua báo cáo lưu chuyển tiền tệ nếu thiếu thời gian",
-          "Sao chép cấu trúc từ một mô hình mẫu đã chuẩn bị sẵn trước buổi kiểm tra",
+          "Ưu tiên phần thuật toán chính và bỏ qua phần đọc dữ liệu đầu vào nếu thiếu giờ",
+          "Sao chép cấu trúc từ một dự án mẫu đã chuẩn bị sẵn trước buổi kiểm tra",
         ],
         correct: 0,
         explanation:
-          "Cách này đảm bảo bạn luôn có một sản phẩm nộp được ở bất kỳ thời điểm nào, và nó cũng giúp phát hiện sớm các lỗi liên kết giữa các phần - thứ mà cách làm tuần tự chỉ lộ ra khi đã quá muộn.",
+          "Cách này đảm bảo bạn luôn có một sản phẩm nộp được ở bất kỳ thời điểm nào, và nó cũng giúp phát hiện sớm các lỗi ghép nối giữa các phần - thứ mà cách làm tuần tự chỉ lộ ra khi đã quá muộn.",
       },
       {
         question: "Vì sao nên nói ra suy nghĩ khi làm bài tình huống có người quan sát?",
@@ -419,35 +419,35 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
           "Một ứng viên ra kết quả sai nhưng có lập luận mạch lạc thường được đánh giá cao hơn một ứng viên ra kết quả đúng mà không giải thích được vì sao. Trong công việc thật, bạn luôn phải bảo vệ con số của mình chứ không chỉ đưa ra nó.",
       },
       {
-        question: "Khi thiếu một dữ liệu trong đề bài, cách xử lý đúng là gì?",
+        question: "Khi đề bài thiếu một thông tin, cách xử lý đúng là gì?",
         options: [
-          "Nêu rõ giả định của mình, ghi chú vào mô hình, và tiếp tục làm",
-          "Dừng lại và hỏi người ra đề cho tới khi nhận được số liệu chính xác",
-          "Bỏ qua phần cần dữ liệu đó và chuyển sang các phần khác của bài",
-          "Dùng một con số ngẫu nhiên vì mục tiêu chính là hoàn thành cấu trúc mô hình",
+          "Nêu rõ giả định của mình, ghi chú vào code, và tiếp tục làm",
+          "Dừng lại và hỏi người ra đề cho tới khi nhận được câu trả lời chính xác",
+          "Bỏ qua phần cần thông tin đó và chuyển sang các phần khác của bài",
+          "Tự chọn một cách hiểu bất kỳ vì mục tiêu chính là hoàn thành cấu trúc chương trình",
         ],
         correct: 0,
         explanation:
-          "Đề bài thiếu dữ liệu thường là cố ý, để xem bạn xử lý thế nào với thông tin không đầy đủ - đúng như trong công việc thật. Nêu giả định rõ ràng là câu trả lời đúng; im lặng tự chọn một con số rồi không nói gì là câu trả lời sai.",
+          "Đề bài thiếu thông tin thường là cố ý, để xem bạn xử lý thế nào với yêu cầu không đầy đủ - đúng như trong công việc thật. Nêu giả định rõ ràng là câu trả lời đúng; im lặng tự chọn một cách hiểu rồi không nói gì là câu trả lời sai.",
       },
       {
         question: "Phần lớn thời gian trong 10 phút cuối nên dùng để làm gì?",
         options: [
-          "Kiểm tra tính cân đối, rà lỗi và viết vài dòng kết luận về kết quả",
-          "Định dạng lại bảng tính cho đẹp và thống nhất màu sắc trên các sheet",
-          "Bổ sung thêm các kịch bản dự phóng để mô hình trông đầy đủ hơn",
-          "Kiểm tra lại toàn bộ số liệu lịch sử đã nhập ở phần đầu bài làm",
+          "Chạy lại kiểm thử, rà lỗi và viết vài dòng ghi chú về lời giải",
+          "Định dạng lại code cho đẹp và thống nhất cách đặt tên trên các file",
+          "Bổ sung thêm các tính năng phụ để lời giải trông đầy đủ hơn",
+          "Kiểm tra lại toàn bộ phần đọc dữ liệu đã viết ở đầu bài làm",
         ],
         correct: 0,
         explanation:
-          "Một mô hình có bảng cân đối lệch sẽ bị loại ngay bất kể phần còn lại tốt đến đâu. Và vài dòng kết luận cho thấy bạn hiểu con số mình vừa tạo ra có ý nghĩa gì - phần rất nhiều ứng viên bỏ qua vì hết giờ.",
+          "Một chương trình không chạy được hoặc trượt ca kiểm thử cơ bản sẽ bị loại ngay bất kể phần còn lại tốt đến đâu. Và vài dòng ghi chú cho thấy bạn hiểu lời giải của mình đánh đổi những gì - phần rất nhiều ứng viên bỏ qua vì hết giờ.",
       },
       {
-        question: "Vì sao nhà tuyển dụng chấp nhận một mô hình thô nhưng chạy được?",
+        question: "Vì sao nhà tuyển dụng chấp nhận một lời giải thô nhưng chạy được?",
         options: [
           "Vì nó chứng minh ứng viên giao được sản phẩm hoàn chỉnh trong thời hạn",
-          "Vì mô hình thô dễ chấm hơn nên tiết kiệm thời gian cho hội đồng tuyển dụng",
-          "Vì độ chi tiết của mô hình không quan trọng trong công việc thực tế hằng ngày",
+          "Vì lời giải thô dễ chấm hơn nên tiết kiệm thời gian cho hội đồng tuyển dụng",
+          "Vì độ chỉn chu của code không quan trọng trong công việc thực tế hằng ngày",
           "Vì họ giả định ứng viên sẽ được đào tạo thêm về kỹ thuật sau khi vào làm",
         ],
         correct: 0,
@@ -456,39 +456,39 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       },
     ],
     keyTakeaways: [
-      "Đọc hết đề và phân bổ thời gian ngược từ sản phẩm cuối trước khi gõ ô đầu tiên",
-      "Dựng bản chạy được từ đầu tới cuối trước, làm mịn sau - không hoàn thiện tuần tự từng phần",
-      "Thiếu dữ liệu thì nêu giả định rõ ràng và ghi chú, đừng im lặng tự chọn",
-      "Dành 10 phút cuối cho kiểm tra cân đối và vài dòng kết luận",
+      "Đọc hết đề và phân bổ thời gian ngược từ sản phẩm cuối trước khi gõ dòng code đầu tiên",
+      "Viết bản chạy được từ đầu tới cuối trước, làm mịn sau - không hoàn thiện tuần tự từng phần",
+      "Thiếu thông tin thì nêu giả định rõ ràng và ghi chú, đừng im lặng tự chọn",
+      "Dành 10 phút cuối cho chạy lại kiểm thử và vài dòng ghi chú",
     ],
     practicePrompt: {
       question:
-        "Còn 20 phút, mô hình của bạn chưa liên kết xong báo cáo lưu chuyển tiền tệ và bảng cân đối đang lệch. Nên làm gì?",
+        "Còn 20 phút, chương trình của bạn chưa ghép xong phần xử lý với phần trả kết quả và hai ca kiểm thử đang trượt. Nên làm gì?",
       options: [
-        "Tiếp tục hoàn thiện liên kết cho đúng, chấp nhận không kịp phần định giá",
-        "Ghi chú rõ phần chưa xong, dùng con số đơn giản để chạy tiếp và ra được định giá",
-        "Xóa phần đang lệch để mô hình trông sạch rồi nộp phần đã hoàn chỉnh",
+        "Tiếp tục sửa cho đúng mọi ca, chấp nhận không kịp phần trả kết quả",
+        "Ghi chú rõ phần chưa xong, dùng cách xử lý đơn giản để chạy tiếp và ra kết quả",
+        "Xóa các ca kiểm thử đang trượt để bài trông sạch rồi nộp phần đã xong",
         "Dừng lại và giải thích với người chấm rằng đề bài quá dài so với thời gian cho phép",
       ],
       correct: 1,
       explanation:
-        "Người chấm cần thấy bạn đi hết được quy trình tư duy tới kết quả cuối. Một ghi chú trung thực rằng phần liên kết chưa hoàn tất và đây là cách xử lý tạm thời cho thấy bạn kiểm soát được tình hình. Xóa phần lệch đi là lựa chọn tệ nhất - nó che giấu thay vì thừa nhận.",
+        "Người chấm cần thấy bạn đi hết được luồng xử lý tới kết quả cuối. Một ghi chú trung thực rằng phần ghép nối chưa hoàn tất và đây là cách xử lý tạm thời cho thấy bạn kiểm soát được tình hình. Xóa ca kiểm thử đang trượt là lựa chọn tệ nhất - nó che giấu thay vì thừa nhận.",
     },
     summary: {
-      keyIdea: "Bài kiểm tra đo khả năng giao sản phẩm dưới áp lực, không đo độ tinh xảo của mô hình",
+      keyIdea: "Bài kiểm tra đo khả năng giao sản phẩm dưới áp lực, không đo độ tinh xảo của code",
       commonMistake: "Dồn thời gian vào phần đầu và hết giờ trước khi ra được kết quả cuối cùng",
-      action: "Tự bấm giờ 90 phút dựng một mô hình ba báo cáo kèm định giá, làm lại ba lần với ba doanh nghiệp khác nhau.",
+      action: "Tự bấm giờ 90 phút giải một đề dựng API nhỏ có kiểm thử, làm lại ba lần với ba đề khác nhau.",
     },
     application: {
       title: "Kế hoạch luyện tập bốn tuần",
       message:
-        "Tuần 1: dựng mô hình không giới hạn thời gian cho tới khi thành thạo cấu trúc. Tuần 2: bấm giờ 120 phút. Tuần 3: 90 phút. Tuần 4: 90 phút và vừa làm vừa nói to lập luận như đang có người quan sát.",
+        "Tuần 1: giải đề không giới hạn thời gian cho tới khi thành thạo cấu trúc. Tuần 2: bấm giờ 120 phút. Tuần 3: 90 phút. Tuần 4: 90 phút và vừa làm vừa nói to lập luận như đang có người quan sát.",
       secondary: "Kỹ năng ở đây gần với thể thao hơn với học thuật - nó đến từ số lần lặp chứ không từ số trang đã đọc.",
     },
     sections: [
       {
         type: "lead",
-        text: "Chặng mô hình tài chính dạy bạn cấu trúc, chặng Excel dạy bạn thao tác. Bài này nói về tình huống mà cả hai được kiểm tra cùng lúc dưới đồng hồ đếm ngược, và về lý do phần lớn người trượt không phải vì thiếu kiến thức.",
+        text: "Bài 1 dạy bạn viết tài liệu thiết kế, bài 2 dạy bạn bảo vệ phương án. Bài này nói về tình huống mà kỹ năng viết code và kỹ năng trình bày được kiểm tra cùng lúc dưới đồng hồ đếm ngược, và về lý do phần lớn người trượt không phải vì thiếu kiến thức.",
       },
       {
         type: "heading",
@@ -497,33 +497,33 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       {
         type: "list",
         items: [
-          "10 phút: đọc đề, xác định sản phẩm cuối, phác cấu trúc và vùng giả định",
-          "20 phút: nhập số liệu lịch sử và dựng dự phóng doanh thu ở mức đơn giản nhất chấp nhận được",
-          "30 phút: dựng ba báo cáo và liên kết chúng cho tới khi bảng cân đối cân",
-          "20 phút: định giá và chạy một hai kịch bản",
-          "10 phút: rà lỗi, kiểm tra cân đối, viết kết luận ngắn",
+          "10 phút: đọc đề, xác định sản phẩm cuối, phác cấu trúc và ghi các giả định",
+          "20 phút: viết phần đọc dữ liệu đầu vào ở mức đơn giản nhất chấp nhận được",
+          "30 phút: viết phần xử lý chính và ghép với đầu vào, đầu ra cho tới khi chạy hết luồng",
+          "20 phút: viết kiểm thử cho các ca chính và một hai ca biên",
+          "10 phút: rà lỗi, chạy lại kiểm thử, viết ghi chú ngắn",
         ],
       },
       {
         type: "callout",
         label: "Nguyên tắc bản chạy được",
-        text: "Ở bất kỳ thời điểm nào trong 90 phút, bạn nên có một mô hình chạy được từ đầu tới cuối, chỉ khác nhau ở mức độ tinh xảo. Cách làm này giống hệt nguyên tắc phát triển phần mềm theo bản khả dụng tối thiểu, và lý do cũng giống nhau: nó bảo vệ bạn khỏi việc hết giờ với một sản phẩm dở dang.",
+        text: "Ở bất kỳ thời điểm nào trong 90 phút, bạn nên có một chương trình chạy được từ đầu tới cuối, chỉ khác nhau ở mức độ tinh xảo. Đây chính là nguyên tắc phát triển theo bản khả dụng tối thiểu, và lý do cũng giống nhau: nó bảo vệ bạn khỏi việc hết giờ với một sản phẩm dở dang.",
       },
       {
         type: "comparison",
         left: {
           label: "Điều bạn nghĩ đang bị chấm",
-          text: "Độ chính xác của từng con số và mức độ chi tiết của dự phóng doanh thu.",
+          text: "Độ tối ưu của thuật toán và mức độ xử lý mọi trường hợp lỗi.",
         },
         right: {
           label: "Điều thực sự bị chấm",
-          text: "Cấu trúc có sạch không, ba báo cáo có liên kết đúng không, bạn xử lý thế nào khi thiếu dữ liệu, và bạn có ra được kết quả trong thời hạn không.",
+          text: "Cấu trúc có sạch không, các phần có ghép với nhau đúng không, bạn xử lý thế nào khi thiếu thông tin, và bạn có ra được kết quả trong thời hạn không.",
         },
       },
       {
         type: "closing",
         lines: [
-          "Bài kiểm tra dựng mô hình không đo kiến thức mà đo thói quen làm việc dưới áp lực.",
+          "Bài kiểm tra lập trình có giờ không đo kiến thức mà đo thói quen làm việc dưới áp lực.",
           "Bài cuối chặng lùi lại một bước: nhìn toàn bộ những kỹ năng này trong một lộ trình nghề nghiệp.",
         ],
       },
@@ -531,8 +531,8 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
   },
   {
     id: 1484,
-    slug: "lo-trinh-nghe-phan-tich-tai-chinh",
-    title: "Kỹ năng nghề, Bài 4: Lộ trình nghề - từ chuyên viên phân tích đến người ra quyết định",
+    slug: "lo-trinh-nghe-tu-chuyen-vien-den-truong-nhom",
+    title: "Kỹ năng nghề, Bài 4: Lộ trình nghề - từ kỹ sư đến người ra quyết định",
     subtitle: "Kỹ năng đổi theo cấp bậc, chọn giữa chuyên sâu và quản lý, và cách xây hồ sơ nghề nghiệp",
     duration: "11 phút",
     difficulty: "Trung bình",
@@ -541,16 +541,16 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
     whyItMatters:
       "Kỹ năng đưa bạn qua vòng tuyển dụng không phải kỹ năng giúp bạn thăng tiến, và điều này gây bất ngờ cho rất nhiều người sau vài năm đi làm. Biết trước bản đồ giúp bạn đầu tư đúng thứ vào đúng giai đoạn.",
     openingQuestion:
-      "Khác biệt lớn nhất giữa công việc của chuyên viên phân tích và người ra quyết định đầu tư là gì?",
+      "Khác biệt lớn nhất giữa công việc của một kỹ sư và người ra quyết định kỹ thuật là gì?",
     openingOptions: [
-      "Chuyên viên tạo phân tích; người quyết định chịu trách nhiệm",
-      "Chuyên viên làm việc với số liệu còn người ra quyết định chỉ làm việc với con người",
-      "Người ra quyết định dựng mô hình phức tạp hơn và sử dụng nhiều công cụ chuyên sâu hơn",
-      "Chuyên viên tập trung vào ngắn hạn còn người ra quyết định chỉ quan tâm tới dài hạn",
+      "Kỹ sư tạo ra lời giải; người quyết định chịu trách nhiệm",
+      "Kỹ sư làm việc với code còn người ra quyết định chỉ làm việc với con người",
+      "Người ra quyết định viết code phức tạp hơn và sử dụng nhiều công cụ chuyên sâu hơn",
+      "Kỹ sư tập trung vào ngắn hạn còn người ra quyết định chỉ quan tâm tới dài hạn",
     ],
     correctOption: 0,
     explanation:
-      "Chuyển đổi khó nhất trong nghề này là từ việc sản xuất phân tích sang việc chịu trách nhiệm cho một quyết định dựa trên thông tin không bao giờ đầy đủ. Chuyên viên giỏi có thể trì hoãn bằng cách đòi thêm dữ liệu; người ra quyết định thì không, vì không quyết định cũng chính là một quyết định. Kỹ năng cần cho hai vai trò vì thế khác nhau về bản chất, và người giỏi nhất ở vai trò thứ nhất không tự động giỏi ở vai trò thứ hai.",
+      "Chuyển đổi khó nhất trong nghề này là từ việc tạo ra lời giải sang việc chịu trách nhiệm cho một quyết định dựa trên thông tin không bao giờ đầy đủ. Kỹ sư giỏi có thể trì hoãn bằng cách đòi thêm dữ liệu hay thêm một vòng thử nghiệm; người ra quyết định thì không, vì không quyết định cũng chính là một quyết định. Kỹ năng cần cho hai vai trò vì thế khác nhau về bản chất, và người giỏi nhất ở vai trò thứ nhất không tự động giỏi ở vai trò thứ hai.",
     diagram: [
       { label: "Cấp đầu: chính xác và tốc độ", arrow: true },
       { label: "Cấp giữa: phán đoán và ưu tiên", arrow: true },
@@ -560,7 +560,7 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
     realWorldExample: {
       company: "Bước hụt ở năm thứ ba",
       description:
-        "Một mô thức lặp lại trong ngành: chuyên viên xuất sắc ở hai năm đầu nhờ làm nhanh, chính xác và không bao giờ sai số. Đến năm thứ ba, họ được kỳ vọng tự chọn việc gì đáng làm và tự đưa ra quan điểm, nhưng vẫn tiếp tục tối ưu cho sự chính xác và chờ được giao việc. Đánh giá của họ chững lại mà không ai giải thích rõ vì sao. Vấn đề không phải năng lực mà là họ chưa nhận ra tiêu chí đã đổi.",
+        "Một mô thức lặp lại trong ngành: kỹ sư xuất sắc ở hai năm đầu nhờ làm nhanh, chính xác và hiếm khi để lọt lỗi. Đến năm thứ ba, họ được kỳ vọng tự chọn việc gì đáng làm và tự đưa ra quan điểm, nhưng vẫn tiếp tục tối ưu cho sự chính xác và chờ được giao việc. Đánh giá của họ chững lại mà không ai giải thích rõ vì sao. Vấn đề không phải năng lực mà là họ chưa nhận ra tiêu chí đã đổi.",
     },
     quiz: [
       {
@@ -568,18 +568,18 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
         options: [
           "Độ chính xác và tốc độ - làm đúng, làm nhanh, không để sót lỗi",
           "Khả năng xây dựng quan hệ với khách hàng và đối tác bên ngoài tổ chức",
-          "Kinh nghiệm ra quyết định đầu tư độc lập với quy mô vốn nhỏ",
+          "Kinh nghiệm tự quyết định kiến trúc cho cả một hệ thống lớn",
           "Hiểu biết chiến lược về hướng phát triển dài hạn của cả tổ chức",
         ],
         correct: 0,
         explanation:
-          "Ở giai đoạn này bạn được giao việc rõ ràng, và giá trị bạn tạo ra là làm việc đó chính xác và nhanh. Cố nhảy sang phần chiến lược quá sớm trong khi vẫn để sót lỗi trong bảng tính là cách chắc chắn để mất uy tín.",
+          "Ở giai đoạn này bạn được giao việc rõ ràng, và giá trị bạn tạo ra là làm việc đó chính xác và nhanh. Cố nhảy sang phần chiến lược quá sớm trong khi vẫn để lọt lỗi trong code là cách chắc chắn để mất uy tín.",
       },
       {
         question: "Điều gì thay đổi khi lên cấp giữa?",
         options: [
           "Bạn phải tự xác định việc gì đáng làm và bảo vệ quan điểm của mình",
-          "Bạn không còn phải làm việc trực tiếp với số liệu và mô hình tài chính nữa",
+          "Bạn không còn phải trực tiếp viết code và gỡ lỗi hệ thống nữa",
           "Bạn chuyển hoàn toàn sang quản lý con người thay vì làm chuyên môn",
           "Bạn chỉ cần rà soát công việc của người khác chứ không tạo ra sản phẩm mới",
         ],
@@ -593,11 +593,11 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
           "Vì kỹ năng kỹ thuật là điều kiện cần mà nhiều ứng viên đều có, quan điểm mới tạo khác biệt",
           "Vì nhà tuyển dụng không có thời gian đọc phần liệt kê kỹ năng trong hồ sơ",
           "Vì các kỹ năng kỹ thuật đều có thể kiểm tra trực tiếp trong vòng phỏng vấn",
-          "Vì quy ước trình bày hồ sơ trong ngành tài chính không cho phép liệt kê kỹ năng",
+          "Vì quy ước trình bày hồ sơ trong ngành phần mềm không khuyến khích liệt kê kỹ năng",
         ],
         correct: 0,
         explanation:
-          "Ai cũng ghi thành thạo Excel và định giá DCF. Rất ít người có thể trình bày một luận điểm đầu tư mà họ đã theo dõi qua thời gian và rút ra bài học. Thứ hai mới là bằng chứng cho khả năng phán đoán - phần không kiểm tra được bằng bài thi.",
+          "Ai cũng ghi thành thạo Python và SQL. Rất ít người có thể trình bày một quyết định kỹ thuật mà họ đã theo dõi hệ quả qua thời gian và rút ra bài học. Thứ hai mới là bằng chứng cho khả năng phán đoán - phần không kiểm tra được bằng bài thi.",
       },
       {
         question: "Chọn giữa hướng chuyên sâu và hướng quản lý nên dựa vào đâu?",
@@ -613,15 +613,15 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Bước chuyển khó nhất trong nghề phân tích tài chính là gì?",
+      "question": "Bước chuyển khó nhất trong nghề kỹ sư là gì?",
       "options": [
-        "Từ sản xuất phân tích sang chịu trách nhiệm cho quyết định thiếu dữ liệu",
-        "Từ làm việc với báo cáo tài chính sang làm việc với mô hình định giá",
-        "Từ vị trí chuyên viên sang vị trí quản lý một nhóm phân tích",
-        "Từ phân tích một ngành sang phân tích nhiều ngành cùng lúc"
+        "Từ tạo ra lời giải sang chịu trách nhiệm cho quyết định thiếu dữ liệu",
+        "Từ viết code theo yêu cầu có sẵn sang tự thiết kế kiến trúc hệ thống",
+        "Từ vị trí kỹ sư sang vị trí quản lý một nhóm kỹ thuật",
+        "Từ làm một sản phẩm sang làm nhiều sản phẩm cùng lúc"
       ],
       "correct": 0,
-      "explanation": "Chuyên viên giỏi luôn có thể xin thêm thời gian và thêm dữ liệu. Người ra quyết định thì không - dữ liệu không bao giờ đủ và cửa sổ cơ hội thì đóng. Đây là chỗ nhiều người phân tích xuất sắc dừng lại, và nó là kỹ năng khác chứ không phải mức độ cao hơn của cùng kỹ năng."
+      "explanation": "Kỹ sư giỏi luôn có thể xin thêm thời gian và thêm dữ liệu. Người ra quyết định thì không - dữ liệu không bao giờ đủ và cửa sổ cơ hội thì đóng. Đây là chỗ nhiều kỹ sư xuất sắc dừng lại, và nó là kỹ năng khác chứ không phải mức độ cao hơn của cùng kỹ năng."
     }
     ],
     keyTakeaways: [
@@ -632,7 +632,7 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
     ],
     practicePrompt: {
       question:
-        "Bạn đã làm chuyên viên phân tích hai năm, luôn hoàn thành việc được giao rất tốt nhưng đánh giá gần đây nói bạn cần chủ động hơn. Nên hiểu thế nào?",
+        "Bạn đã làm kỹ sư hai năm, luôn hoàn thành việc được giao rất tốt nhưng đánh giá gần đây nói bạn cần chủ động hơn. Nên hiểu thế nào?",
       options: [
         "Tổ chức muốn bạn làm thêm giờ và nhận thêm khối lượng công việc lớn hơn",
         "Tiêu chí đã đổi: bạn được kỳ vọng tự chọn vấn đề và đưa ra quan điểm, không chỉ thực thi",
@@ -651,8 +651,8 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
     application: {
       title: "Xây hồ sơ bằng sản phẩm thật",
       message:
-        "Chọn hai đến ba doanh nghiệp và theo dõi chúng liên tục trong một năm: viết luận điểm ban đầu, ghi lại các mốc kiểm chứng, và tổng kết mình đúng sai ở đâu. Một tài liệu như vậy có sức thuyết phục hơn mọi dòng liệt kê kỹ năng trong hồ sơ.",
-      secondary: "Nó cũng chính là thứ bạn mang vào phòng phỏng vấn khi được hỏi hãy nói về một khoản đầu tư bạn quan tâm.",
+        "Chọn hai đến ba quyết định kỹ thuật bạn tham gia và theo dõi chúng liên tục trong một năm: viết lập luận ban đầu, ghi lại các mốc kiểm chứng, và tổng kết mình đúng sai ở đâu. Một tài liệu như vậy có sức thuyết phục hơn mọi dòng liệt kê kỹ năng trong hồ sơ.",
+      secondary: "Nó cũng chính là thứ bạn mang vào phòng phỏng vấn khi được hỏi hãy kể về một quyết định kỹ thuật bạn từng đưa ra.",
     },
     sections: [
       {
@@ -688,7 +688,7 @@ export const ANALYST_CRAFT_LESSONS: Lesson[] = [
       {
         type: "closing",
         lines: [
-          "Kết thúc chặng: phân tích đúng chỉ là một nửa; nửa còn lại là làm cho phân tích đó được tin và được hành động theo.",
+          "Kết thúc chặng: lời giải đúng chỉ là một nửa; nửa còn lại là làm cho lời giải đó được tin và được hành động theo.",
           "Và kỹ năng cuối cùng, dùng được suốt sự nghiệp, vẫn là kỹ năng đơn giản nhất: biết rõ mình đang chắc điều gì và đang giả định điều gì.",
         ],
       },

@@ -212,7 +212,7 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
           except the tooltip controls, so the tour can't be accidentally
           dismissed by clicking the dimmed backdrop. */}
       <div
-        className="fixed rounded-xl transition-all duration-300 pointer-events-none"
+        className="fixed rounded-sm outline outline-1 outline-brand-400 transition-all duration-300 pointer-events-none"
         style={{
           top: rect.top - padding,
           left: rect.left - padding,
@@ -223,7 +223,7 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
       />
 
       <div
-        className="fixed bg-stone-900 text-white rounded-xl shadow-2xl p-3.5"
+        className="fixed rounded-md border border-stone-700 bg-stone-950 text-white p-3.5"
         style={{
           top: tooltipTop,
           left: tooltipLeft,
@@ -235,7 +235,7 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
       >
         <div className="flex items-center justify-between mb-1.5">
           <p className="font-bold text-sm">{step.title}</p>
-          <span className="text-[10px] font-bold text-stone-500 flex-shrink-0 ml-2">
+          <span className="font-mono text-[10.5px] font-medium tabular-nums text-stone-400 flex-shrink-0 ml-2">
             {stepIndex + 1}/{steps.length}
           </span>
         </div>
@@ -246,7 +246,7 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
           </button>
           <button
             onClick={next}
-            className="bg-white text-stone-900 text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-stone-200 transition-colors cursor-pointer"
+            className="rounded-sm bg-white px-3 py-1.5 text-xs font-bold text-stone-950 transition-colors hover:bg-brand-300 cursor-pointer"
           >
             {isLast ? t.miscUi.spotlightTour.done : t.miscUi.spotlightTour.next}
           </button>

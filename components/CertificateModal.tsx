@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { svgToPngBlob, shareOrDownloadImage } from "@/lib/share-image";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
+import { btnPrimary, btnSecondary, panel } from "@/components/ui/system";
 
 /** Băm một chuỗi thành 8 ký tự base36 - đủ để hai tài khoản bất kỳ không đụng
  *  nhau trên thực tế, và ngắn để in vừa một dòng dưới chân tấm chứng chỉ.
@@ -116,33 +117,34 @@ export default function CertificateModal({ stageLabel, stageName, userName, user
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 overflow-y-auto p-4 animate-[fadeIn_0.2s_ease-out]">
-      <div className="bg-stone-900 border border-stone-800 rounded-3xl w-full max-w-4xl my-auto p-6 md:p-8 flex flex-col items-center shadow-2xl relative animate-[scaleIn_0.3s_ease-out] text-white">
+    <div className="fixed inset-0 bg-stone-950/60 flex items-center justify-center z-50 overflow-y-auto p-4 animate-[fadeIn_0.2s_ease-out]">
+      <div className={`${panel} w-full max-w-4xl my-auto p-6 md:p-8 flex flex-col items-center relative animate-[scaleIn_0.3s_ease-out]`}>
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-800 hover:bg-stone-700 text-stone-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+          aria-label={t.common.close}
+          className="absolute top-4 right-4 w-9 h-9 rounded-sm text-ink-muted hover:bg-surface-raised hover:text-ink flex items-center justify-center transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Header Title */}
         <div className="text-center space-y-1 mb-6">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-500 flex items-center justify-center gap-1.5">
+          <span className="eyebrow text-ink-soft flex items-center justify-center gap-1.5">
             <Award className="w-4.5 h-4.5" />
             {t.certificate.academyBadge}
           </span>
-          <h3 className="text-xl md:text-2xl font-black text-stone-100">
+          <h3 className="text-xl md:text-2xl font-black text-ink-max">
             {t.certificate.modalTitle}
           </h3>
-          <p className="text-xs text-stone-400 max-w-md mx-auto">
+          <p className="text-xs text-ink-soft max-w-md mx-auto">
             {t.certificate.modalSubtitle}
           </p>
         </div>
 
         {/* Certificate Rendering Box (Premium Styling) */}
-        <div className="w-full border border-stone-800 rounded-2xl overflow-hidden shadow-inner bg-stone-950 flex items-center justify-center p-2 md:p-4 max-h-[60vh]">
+        <div className="w-full border border-line-strong rounded-sm overflow-hidden bg-stone-950 flex items-center justify-center p-2 md:p-4 max-h-[60vh]">
           <svg
             ref={svgRef}
             id="cert-svg"
@@ -152,7 +154,7 @@ export default function CertificateModal({ stageLabel, stageName, userName, user
             // ra thành ảnh, khi không còn CSS nào áp vào nữa.
             width="800"
             height="600"
-            className="w-full h-auto aspect-[4/3] rounded-lg"
+            className="w-full h-auto aspect-[4/3] rounded-xs"
             xmlns="http://www.w3.org/2000/svg"
           >
             {/* Dark Navy Gradient Background */}
@@ -253,11 +255,11 @@ export default function CertificateModal({ stageLabel, stageName, userName, user
           <button
             onClick={handleDownload}
             disabled={downloading}
-            className="flex-1 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 disabled:from-stone-800 disabled:to-stone-800 text-white rounded-2xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-amber-500/10 focus:outline-none"
+            className={`${btnPrimary} flex-1 cursor-pointer`}
           >
             {downloading ? (
               <>
-                <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                <span className="w-4 h-4 border-2 border-current/20 border-t-current rounded-full animate-spin" />
                 {t.certificate.rendering}
               </>
             ) : downloaded ? (
@@ -275,10 +277,10 @@ export default function CertificateModal({ stageLabel, stageName, userName, user
           <button
             onClick={handleShare}
             disabled={sharing}
-            className="flex-1 py-3.5 bg-stone-800 hover:bg-stone-700 disabled:opacity-60 text-white rounded-2xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none"
+            className={`${btnSecondary} flex-1 cursor-pointer`}
           >
             {sharing ? (
-              <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+              <span className="w-4 h-4 border-2 border-current/20 border-t-current rounded-full animate-spin" />
             ) : (
               <Share2 className="w-4.5 h-4.5" />
             )}

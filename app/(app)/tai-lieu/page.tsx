@@ -3,6 +3,8 @@ import { ChevronLeft, Gift } from "lucide-react";
 import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getServerDictionary } from "@/lib/i18n/server";
 import DocumentsList from "./DocumentsList";
+import { APP_SYS } from "@/components/analytics/system-codes";
+import { StatusDot, Sys, textLink } from "@/components/ui/system";
 
 export const dynamic = "force-dynamic";
 
@@ -121,30 +123,31 @@ function getPlaceholderImageUrl(category: string): string {
     }));
 
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-line">
-        <div className="max-w-4xl mx-auto px-6 py-8">
-          <Link
-            href="/dashboard"
-            className="inline-flex items-center gap-1 text-sm font-medium text-ink-soft hover:text-ink mb-4 transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            {t.finalOne.taiLieuPage.backHome}
-          </Link>
-          <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-2xl font-black text-ink">{t.finalOne.taiLieuPage.title}</h1>
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black uppercase bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-lg shadow-rose-500/20 animate-bounce">
+    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+      <div className="border-b border-line-strong">
+        <div className="max-w-4xl mx-auto px-6 py-6">
+          <div className="flex items-center justify-between gap-4 border-b border-line pb-2">
+            <Link href="/dashboard" className={`${textLink} text-xs`}>
+              <ChevronLeft className="w-3.5 h-3.5" aria-hidden />
+              {t.finalOne.taiLieuPage.backHome}
+            </Link>
+            <Sys className="text-ink-muted">{APP_SYS.documents}</Sys>
+          </div>
+          <div className="mt-3 flex items-center gap-3 flex-wrap">
+            <h1 className="text-2xl font-black tracking-tight text-ink-max">{t.finalOne.taiLieuPage.title}</h1>
+            <span className="inline-flex items-center gap-1.5 rounded-sm border border-line-strong px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.06em] text-ink-body">
+              <StatusDot />
               {t.finalOne.taiLieuPage.freeBadge}
             </span>
           </div>
-          <p className="text-sm text-ink-muted mt-2">
+          <p className="text-sm text-ink-soft mt-2">
             {t.finalOne.taiLieuPage.subtitle}
           </p>
-          <div className="mt-4 p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 flex items-start gap-3 shadow-[0_0_12px_rgba(244,63,94,0.05)]">
-            <Gift className="w-5 h-5 text-rose-500 shrink-0 mt-0.5 animate-bounce" />
+          <div className="mt-4 flex items-start gap-3 rounded-sm border border-line bg-white p-4 dark:bg-stone-900">
+            <Gift className="w-4 h-4 text-ink-faint shrink-0 mt-0.5" aria-hidden />
             <div>
-              <p className="text-xs font-black text-alert-strong uppercase tracking-wider">{t.finalOne.taiLieuPage.giftTitle}</p>
-              <p className="text-xs text-rose-600/90 dark:text-rose-300 mt-1 leading-relaxed">
+              <p className="text-sm font-black text-ink-max">{t.finalOne.taiLieuPage.giftTitle}</p>
+              <p className="text-xs text-ink-soft mt-1 leading-relaxed">
                 {t.finalOne.taiLieuPage.giftBody}
               </p>
             </div>

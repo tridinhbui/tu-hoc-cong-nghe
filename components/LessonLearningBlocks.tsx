@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n/context";
+import { btnPrimary, StatusDot, Sys } from "@/components/ui/system";
 
 interface LessonQuestionCardProps {
   title?: string;
@@ -25,77 +26,73 @@ export function LessonQuestionCard({
   const resolvedTitle = title ?? t.learningBlocks.defaultQuestionTitle;
 
   return (
-    <div className="space-y-4 rounded-[24px] border border-stone-200/90 bg-gradient-to-br from-white via-stone-50 to-white p-5 shadow-[0_10px_40px_rgba(15,23,42,0.06)] dark:border-stone-800 dark:from-stone-900 dark:via-stone-900 dark:to-stone-950">
-      <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.28em] text-ink-muted">
-        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-brand-500" />
-        {resolvedTitle}
+    <div className="overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="flex h-9 items-center gap-2 border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+        <StatusDot />
+        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</span>
       </div>
-      <p className="text-base font-semibold leading-relaxed text-ink-heading">
-        {question}
-      </p>
+      <div className="space-y-4 p-5">
+        <p className="max-w-[68ch] text-base font-bold leading-7 text-ink-max">{question}</p>
 
-      <div className="space-y-2.5">
-        {options.map((opt, i) => {
-          let btnCls = "border-stone-200 bg-white text-stone-700 hover:border-stone-300 hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300 dark:hover:border-stone-700 dark:hover:bg-stone-800/60";
-          if (submitted) {
-            if (i === correct) {
-              btnCls = "border-brand-500 bg-brand-50 text-brand-800 dark:border-brand-500/70 dark:bg-brand-950/50 dark:text-brand-400 font-semibold";
-            } else if (i === selected) {
-              btnCls = "border-rose-500 bg-rose-50 text-rose-800 dark:border-rose-500/70 dark:bg-rose-950/50 dark:text-rose-400";
-            } else {
-              btnCls = "border-stone-100 bg-stone-50 text-stone-500 opacity-60 dark:border-stone-800 dark:bg-stone-900/40 dark:text-stone-400";
+        {/* Cùng khuôn phương án với cột quiz của LessonPageLayout: hàng vuông
+            viền 1px, rãnh chữ cái mono, chọn = xanh, sai = đỏ. */}
+        <ul className="space-y-2">
+          {options.map((opt, i) => {
+            let btnCls =
+              "border-stone-300 bg-white text-ink hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+            let gutter = "text-ink-faint";
+            if (submitted) {
+              if (i === correct) {
+                btnCls = "border-brand-600 bg-brand-50 font-semibold text-brand-900 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-100";
+                gutter = "text-accent-strong";
+              } else if (i === selected) {
+                btnCls = "border-red-500 bg-red-50 text-red-900 dark:border-red-500/70 dark:bg-red-950/40 dark:text-red-200";
+                gutter = "text-red-600 dark:text-red-400";
+              } else {
+                btnCls = "border-stone-200 bg-white text-ink-muted dark:border-stone-800 dark:bg-stone-900";
+              }
+            } else if (selected === i) {
+              btnCls = "border-brand-600 bg-brand-50 font-semibold text-brand-900 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-100";
+              gutter = "text-accent-strong";
             }
-          } else if (selected === i) {
-            btnCls = "border-stone-900 bg-stone-100 text-stone-900 font-semibold border-2 dark:border-stone-100 dark:bg-stone-800 dark:text-stone-100";
-          }
 
-          return (
-            <button
-              key={i}
-              disabled={submitted}
-              onClick={() => setSelected(i)}
-              className={`flex w-full items-center gap-3 rounded-xl border px-4 py-3.5 text-left text-sm transition-all duration-200 ${btnCls}`}
-            >
-              <span
-                className={`flex h-5 w-5 items-center justify-center rounded-lg border text-[10px] font-bold ${
-                  selected === i
-                    ? "border-current bg-white/80 dark:bg-stone-900/80"
-                    : "border-stone-200 bg-stone-50 text-stone-500 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-400"
-                }`}
-              >
-                {String.fromCharCode(65 + i)}
-              </span>
-              <span>{opt}</span>
-            </button>
-          );
-        })}
+            return (
+              <li key={i}>
+                <button
+                  disabled={submitted}
+                  onClick={() => setSelected(i)}
+                  aria-pressed={selected === i}
+                  className={`flex w-full items-start gap-3 rounded-sm border px-3 py-2.5 text-left text-[15px] leading-6 transition-colors disabled:cursor-default ${btnCls}`}
+                >
+                  <Sys className={`mt-[3px] w-4 flex-shrink-0 text-[11px] ${gutter}`}>{String.fromCharCode(65 + i)}</Sys>
+                  <span className="flex-1">{opt}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        {selected !== null && !submitted && (
+          <button onClick={() => setSubmitted(true)} className={`${btnPrimary} w-full`}>
+            {t.learningBlocks.confirmAnswer}
+          </button>
+        )}
+
+        {submitted && (
+          <motion.div
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`max-w-[68ch] border-l-2 pl-4 text-sm leading-7 text-ink-body ${
+              selected === correct ? "border-brand-600 dark:border-brand-400" : "border-red-500"
+            }`}
+          >
+            <p className={`mb-1 font-bold ${selected === correct ? "text-accent-strong" : "text-danger"}`}>
+              {selected === correct ? t.learningBlocks.correctFeedbackTitle : t.learningBlocks.incorrectFeedbackTitle}
+            </p>
+            <p>{explanation}</p>
+          </motion.div>
+        )}
       </div>
-
-      {selected !== null && !submitted && (
-        <button
-          onClick={() => setSubmitted(true)}
-          className="w-full rounded-xl bg-stone-900 px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-stone-800 active:scale-[0.98] dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
-        >
-          {t.learningBlocks.confirmAnswer}
-        </button>
-      )}
-
-      {submitted && (
-        <motion.div
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={`rounded-xl border p-4 text-xs leading-relaxed ${
-            selected === correct
-              ? "border-brand-100 bg-brand-50/60 text-brand-800 dark:border-brand-900 dark:bg-brand-950/50 dark:text-brand-400"
-              : "border-rose-100 bg-rose-50/50 text-rose-800 dark:border-rose-900 dark:bg-rose-950/50 dark:text-rose-400"
-          }`}
-        >
-          <p className="mb-1 font-semibold">
-            {selected === correct ? t.learningBlocks.correctFeedbackTitle : t.learningBlocks.incorrectFeedbackTitle}
-          </p>
-          <p>{explanation}</p>
-        </motion.div>
-      )}
     </div>
   );
 }
@@ -113,35 +110,28 @@ interface LessonSummaryCardProps {
 
 export function LessonSummaryCard({ summary }: LessonSummaryCardProps) {
   const { t } = useI18n();
+  const rows = [
+    { label: t.learningBlocks.keyIdeaLabel, value: summary.keyIdea, strong: true },
+    summary.formula ? { label: t.learningBlocks.formulaLabel, value: summary.formula } : null,
+    summary.commonMistake ? { label: t.learningBlocks.mistakeLabel, value: summary.commonMistake } : null,
+    summary.action ? { label: t.learningBlocks.actionLabel, value: summary.action } : null,
+  ].filter((r): r is { label: string; value: string; strong?: boolean } => r !== null);
   return (
-    <div className="rounded-[24px] border border-stone-200/80 bg-stone-900 p-5 text-stone-100 shadow-[0_10px_40px_rgba(15,23,42,0.14)] dark:border-stone-800">
-      <div className="mb-4 text-[10px] font-bold uppercase tracking-[0.25em] text-stone-400">
-        {t.learningBlocks.summaryTitle}
+    <div className="overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="flex h-9 items-center border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.learningBlocks.summaryTitle}</span>
       </div>
-      <div className="space-y-3 text-sm leading-relaxed">
-        <div>
-          <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">{t.learningBlocks.keyIdeaLabel}</p>
-          <p className="font-semibold text-white">{summary.keyIdea}</p>
-        </div>
-        {summary.formula && (
-          <div>
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">{t.learningBlocks.formulaLabel}</p>
-            <p className="font-medium text-stone-200">{summary.formula}</p>
+      <dl className="divide-y divide-stone-200 dark:divide-stone-800">
+        {rows.map((row, i) => (
+          <div key={row.label} className="flex items-baseline gap-4 px-4 py-3.5 sm:px-5">
+            <Sys className="flex-shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>
+            <div className="min-w-0 flex-1">
+              <dt className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{row.label}</dt>
+              <dd className={`mt-1 max-w-[68ch] text-[15px] leading-7 ${row.strong ? "font-bold text-ink-max" : "text-ink-body"}`}>{row.value}</dd>
+            </div>
           </div>
-        )}
-        {summary.commonMistake && (
-          <div>
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">{t.learningBlocks.mistakeLabel}</p>
-            <p className="font-medium text-stone-200">{summary.commonMistake}</p>
-          </div>
-        )}
-        {summary.action && (
-          <div>
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">{t.learningBlocks.actionLabel}</p>
-            <p className="font-medium text-stone-200">{summary.action}</p>
-          </div>
-        )}
-      </div>
+        ))}
+      </dl>
     </div>
   );
 }
@@ -156,13 +146,10 @@ export function LessonApplicationCard({ title, message, secondary }: LessonAppli
   const { t } = useI18n();
   const resolvedTitle = title ?? t.learningBlocks.defaultApplicationTitle;
   return (
-    <div className="rounded-[24px] border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-brand-50 p-5 shadow-[0_10px_40px_rgba(65, 122, 205,0.1)] dark:border-brand-900/70 dark:from-brand-950/30 dark:via-stone-950 dark:to-brand-950/30">
-      <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-accent-strong">
-        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-brand-500" />
-        {resolvedTitle}
-      </div>
-      <p className="text-sm font-semibold leading-relaxed text-accent-ink-strong">{message}</p>
-      {secondary && <p className="mt-2 text-sm leading-relaxed text-brand-800/80 dark:text-brand-300/80">{secondary}</p>}
+    <div className="max-w-[68ch] border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+      <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</p>
+      <p className="text-base font-semibold leading-7 text-ink-max">{message}</p>
+      {secondary && <p className="mt-2 text-[15px] leading-7 text-ink-body">{secondary}</p>}
     </div>
   );
 }
@@ -178,15 +165,12 @@ export function ReviewLoopCard({ title, prompt, cta }: ReviewLoopCardProps) {
   const resolvedTitle = title ?? t.learningBlocks.defaultReviewTitle;
   const resolvedCta = cta ?? t.learningBlocks.defaultReviewCta;
   return (
-    <div className="rounded-[24px] border border-amber-200 bg-gradient-to-br from-amber-50 via-white to-amber-50 p-5 shadow-[0_10px_40px_rgba(245,158,11,0.12)] dark:border-amber-900/70 dark:from-amber-950/30 dark:via-stone-950 dark:to-amber-950/30">
-      <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-warn-strong">
-        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-amber-500" />
-        {resolvedTitle}
-      </div>
-      <p className="text-sm font-semibold leading-relaxed text-amber-900 dark:text-amber-300">{prompt}</p>
-      <div className="mt-3 inline-flex rounded-full border border-amber-300/70 bg-white/70 px-3 py-1 text-[11px] font-semibold text-amber-800 dark:border-amber-800/70 dark:bg-stone-900/70 dark:text-amber-300">
+    <div className="max-w-[68ch] border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+      <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</p>
+      <p className="text-base font-semibold leading-7 text-ink-max">{prompt}</p>
+      <p className="mt-3 inline-flex rounded-sm border border-stone-300 px-2.5 py-1 text-xs font-semibold text-ink-body dark:border-stone-700">
         {resolvedCta}
-      </div>
+      </p>
     </div>
   );
 }

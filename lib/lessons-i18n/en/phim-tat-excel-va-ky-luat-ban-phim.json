@@ -1,17 +1,17 @@
 {
   "slug": "phim-tat-excel-va-ky-luat-ban-phim",
-  "title": "Excel, Lesson 1: Keyboard discipline - why a modelling test bans the mouse",
-  "subtitle": "The core shortcut groups, navigating a data range, and the working habits of a professional modeller",
+  "title": "Excel, Lesson 1: Keyboard discipline - why a data test bans the mouse",
+  "subtitle": "The core shortcut groups, navigating a data range, and the working habits of a professional data handler",
   "duration": "10 min",
-  "whyItMatters": "A modelling test for an analyst role usually allows 60 to 90 minutes for a model you will not finish if you use the mouse. Speed here is not about looking impressive: it decides whether you have any time left to check your work.",
-  "openingQuestion": "Why do modelling tests usually assess keyboard speed as well as the answer?",
+  "whyItMatters": "A data-processing test for a technical role usually allows 60 to 90 minutes for a sheet you will not finish if you use the mouse. Speed here is not about looking impressive: it decides whether you have any time left to check your work.",
+  "openingQuestion": "Why do data-processing tests usually assess keyboard speed as well?",
   "openingOptions": [
     "Because employers want staff who work fast enough to hit deadlines",
     "Because working with the mouse is several times slower",
     "Because shortcuts make the file smaller",
     "Because Excel calculates faster when shortcuts are used"
   ],
-  "explanation": "A mouse user takes roughly three to five times as long for the same operation. In a 90-minute test, that gap is precisely the budget available for reviewing the model and running scenarios - the part that actually separates a correct model from one that merely produces numbers. Put differently, keyboard discipline is not a performance skill; it is the condition for having any time left to think.",
+  "explanation": "A mouse user takes roughly three to five times as long for the same operation. In a 90-minute test, that gap is precisely the time available for reviewing and test runs - the part that actually separates a correct result from one that only looks correct. Put differently, keyboard discipline is not a performance skill; it is the condition for having any time left to think.",
   "diagram": [
     {
       "label": "Navigate: Ctrl + arrow key"
@@ -27,8 +27,8 @@
     }
   ],
   "realWorldExample": {
-    "company": "The modelling test in analyst recruitment",
-    "description": "A common format: you are given a printed page of financial statements and asked to build a three-statement linked model with a five-year forecast in 90 minutes. Candidates who fail almost never fail because they do not know the accounting - they fail because time runs out before the three statements are linked, most of it spent on manual operations that should have taken seconds."
+    "company": "The data test in technical recruitment",
+    "description": "A common format: you are given a raw log file and asked to build a three-level linked summary and a load forecast for the next five periods in 90 minutes. Candidates who fail almost never fail because they do not understand the data - they fail because time runs out before the three tables are linked, most of it spent on manual operations that should have taken seconds."
   },
   "quiz": [
     {
@@ -39,7 +39,7 @@
         "Inserts an extra row or column at the position the cursor is currently in",
         "Jumps straight to the last cell of the contiguous data range in that direction"
       ],
-      "explanation": "Adding Shift makes it jump and select at the same time. This is the foundational pair of operations: almost every range-selection shortcut in a financial model is built on top of it. Formatting and inserting rows have their own shortcuts, and single-cell movement is what the arrow key does on its own - Ctrl is exactly what turns that into a jump to the edge of the block."
+      "explanation": "Adding Shift makes it jump and select at the same time. This is the foundational pair of operations: almost every range-selection shortcut in a spreadsheet is built on top of it. Formatting and inserting rows have their own shortcuts, and single-cell movement is what the arrow key does on its own - Ctrl is exactly what turns that into a jump to the edge of the block."
     },
     {
       "question": "What is F2 for, and why does it matter when hunting for an error?",
@@ -62,7 +62,7 @@
       "explanation": "A firm grasp of absolute and relative references is what lets you write one formula and drag it across a whole table - the core technique that keeps a model consistent and sharply reduces the scope for error. F4 does repeat the last action, but only outside formula editing; inside a formula it is the reference toggle, which is where it earns its place."
     },
     {
-      "question": "Why should merged cells be avoided in a financial model?",
+      "question": "Why should merged cells be avoided in a data-processing spreadsheet?",
       "options": [
         "Because a merged cell materially increases the size of the saved workbook file",
         "Because Excel is unable to print a merged cell out to a PDF file",
@@ -75,7 +75,7 @@
       "question": "Why does a modelling test mark the speed of your operations and not just the result?",
       "options": [
         "Because the employer needs to measure how a candidate copes under time pressure",
-        "Because typing speed reflects how fluent a candidate is with financial formulas",
+        "Because typing speed reflects how fluent a candidate is with spreadsheet functions and formulas",
         "Because a model built quickly tends to contain fewer formula errors than a slow one",
         "Because the time saved is the time available for review and scenario testing"
       ],
@@ -111,7 +111,7 @@
   "sections": [
     {
       "type": "lead",
-      "text": "The financial modelling track taught you the structure and the thinking behind a good model. This track adds the missing piece, and the one tested directly in recruitment: turning that thinking into a finished file, inside a time limit."
+      "text": "The statistics stage taught you how to read and verify a dataset. This stage adds the missing piece, and the one tested directly in recruitment: turning that thinking into a finished results table, inside a time limit."
     },
     {
       "type": "heading",

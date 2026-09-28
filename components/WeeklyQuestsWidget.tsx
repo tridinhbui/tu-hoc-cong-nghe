@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { btnPrimary, panel } from "@/components/ui/system";
 
 interface WeeklyQuestsWidgetProps {
   userId: string;
@@ -131,19 +132,19 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
   };
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-line rounded-3xl p-5 shadow-sm space-y-4">
+    <div className={`${panel} p-5 space-y-4`}>
       {/* Title */}
-      <div className="flex items-center justify-between border-b border-line-soft pb-3">
+      <div className="flex items-center justify-between border-b border-line-strong pb-3">
         <div>
-          <h4 className="text-xs font-extrabold text-ink flex items-center gap-1.5">
-            <Trophy className="w-4 h-4 text-amber-500" />
+          <h4 className="text-xs font-black tracking-tight text-ink-max flex items-center gap-1.5">
+            <Trophy className="w-4 h-4 text-ink-muted" />
             {t.weeklyQuests.title}
           </h4>
           <p className="text-[9px] text-ink-faint font-semibold mt-0.5">
             {t.weeklyQuests.subtitle}
           </p>
         </div>
-        <span className="text-[10px] font-black text-warn bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded">
+        <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-muted border border-line-strong px-2 py-0.5 rounded-xs">
           {format(t.weeklyQuests.questCount, { done: (quest1Done ? 1 : 0) + (quest2Done ? 1 : 0) + (quest3Done ? 1 : 0) })}
         </span>
       </div>
@@ -154,14 +155,14 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
         <div className="space-y-1.5">
           <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
             <span className="flex items-center gap-1">
-              <Flame className="w-3.5 h-3.5 text-orange-500" />
+              <Flame className="w-3.5 h-3.5 text-warn" />
               {t.weeklyQuests.streakLabel}
             </span>
             <span>{format(t.weeklyQuests.streakProgress, { progress: streakProgress })}</span>
           </div>
-          <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-surface-sunken rounded-xs overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-500 ${quest1Done ? "bg-orange-500" : "bg-orange-400"}`}
+              className={`h-full rounded-xs transition-all duration-500 ${quest1Done ? "bg-brand-600" : "bg-brand-500"}`}
               style={{ width: `${(streakProgress / 5) * 100}%` }}
             />
           </div>
@@ -171,14 +172,14 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
         <div className="space-y-1.5">
           <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
             <span className="flex items-center gap-1">
-              <BookOpen className="w-3.5 h-3.5 text-sky-500" />
+              <BookOpen className="w-3.5 h-3.5 text-ink-muted" />
               {t.weeklyQuests.lessonsLabel}
             </span>
             <span>{format(t.weeklyQuests.lessonsProgress, { progress: lessonsProgress })}</span>
           </div>
-          <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-surface-sunken rounded-xs overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-500 ${quest2Done ? "bg-sky-500" : "bg-sky-400"}`}
+              className={`h-full rounded-xs transition-all duration-500 ${quest2Done ? "bg-brand-600" : "bg-brand-500"}`}
               style={{ width: `${(lessonsProgress / 10) * 100}%` }}
             />
           </div>
@@ -192,9 +193,9 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
             </span>
             <span>{format(t.weeklyQuests.quizProgress, { progress: quizProgress })}</span>
           </div>
-          <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-surface-sunken rounded-xs overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-brand-500" : "bg-brand-400"}`}
+              className={`h-full rounded-xs transition-all duration-500 ${quest3Done ? "bg-brand-600" : "bg-brand-500"}`}
               style={{ width: `${(quizProgress / 3) * 100}%` }}
             />
           </div>
@@ -204,22 +205,22 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       {/* Epic Chest Claim Button */}
       {allQuestsDone ? (
         isEpicClaimed ? (
-          <div className="p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-brand-500" />
+          <div className="p-3 bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong rounded-sm text-center text-[10px] text-ink-muted font-bold flex items-center justify-center gap-1.5">
+            <CheckCircle2 className="w-4 h-4 text-accent" />
             {t.weeklyQuests.claimedMessage}
           </div>
         ) : (
           <button
             onClick={handleClaimEpic}
             disabled={claiming}
-            className="w-full py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-amber-500/20 active:scale-95 animate-pulse"
+            className={`${btnPrimary} w-full cursor-pointer`}
           >
             <Gift className="w-4.5 h-4.5" />
             {claiming ? t.weeklyQuests.claiming : t.weeklyQuests.claimButton}
           </button>
         )
       ) : (
-        <div className="p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold">
+        <div className="p-3 bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong rounded-sm text-center text-[10px] text-ink-muted font-bold">
           {t.weeklyQuests.locked}
         </div>
       )}

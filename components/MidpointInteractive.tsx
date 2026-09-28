@@ -6,6 +6,7 @@ import type { QuizQuestion } from "@/lib/lesson-types";
 import { useLessonCompletion } from "@/lib/lesson-completion-context";
 import { getMidpointDone, saveMidpointDone } from "@/lib/progress";
 import { useI18n } from "@/lib/i18n/context";
+import { btnPrimary, textLink } from "@/components/ui/system";
 
 interface MidpointInteractiveProps {
   question: QuizQuestion;
@@ -45,11 +46,11 @@ export default function MidpointInteractive({
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-stone-50 dark:bg-stone-900/50 border-2 border-line rounded-2xl p-6 my-8"
+      className="rounded-md border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 p-6 my-8"
     >
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-4 border-b border-line-strong pb-2">
         <h3 className="text-base font-bold text-ink">{t.finalOne.midpointInteractive.stopAndCheck}</h3>
-        <span className="ml-auto text-xs font-bold text-ink-muted bg-surface-raised px-3 py-1 rounded-full">
+        <span className="eyebrow ml-auto text-ink-muted">
           {t.finalOne.midpointInteractive.midpointBadge}
         </span>
       </div>
@@ -62,17 +63,19 @@ export default function MidpointInteractive({
             key={i}
             disabled={submitted}
             onClick={() => setSelected(i)}
-            className={`w-full text-left px-4 py-3 rounded-xl border-2 transition-all ${
-              selected === i
-                ? "border-line-invert bg-white dark:bg-stone-900 text-ink font-semibold"
-                : submitted
-                  ? i === question.correct
-                    ? "border-brand-500 bg-brand-50 dark:bg-brand-950/50 text-accent-ink-strong"
-                    : "border-line bg-stone-50 dark:bg-stone-900/50 text-ink-soft opacity-50"
-                  : "border-line bg-white dark:bg-stone-900 text-ink-body hover:border-line-firm"
+            className={`w-full text-left px-4 py-3 rounded-sm border transition-colors cursor-pointer ${
+              submitted
+                ? i === question.correct
+                  ? "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-semibold"
+                  : selected === i
+                    ? "border-red-600 dark:border-red-400 bg-danger-soft text-ink-max font-semibold"
+                    : "border-line bg-white dark:bg-stone-900 text-ink-faint"
+                : selected === i
+                  ? "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-semibold"
+                  : "border-line-strong bg-white dark:bg-stone-900 text-ink-body hover:border-stone-950 dark:hover:border-stone-300"
             }`}
           >
-            <span className="font-bold text-sm">{String.fromCharCode(65 + i)}.</span>{" "}
+            <span className="font-mono text-sm font-medium">{String.fromCharCode(65 + i)}.</span>{" "}
             {opt}
           </button>
         ))}
@@ -91,7 +94,7 @@ export default function MidpointInteractive({
             saveMidpointDone(lessonId);
             lessonCompletion?.markMidpointDone();
           }}
-          className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert py-2.5 rounded-xl font-bold text-sm transition"
+          className={`${btnPrimary} w-full cursor-pointer`}
         >
           {t.finalOne.midpointInteractive.checkButton}
         </button>
@@ -101,16 +104,16 @@ export default function MidpointInteractive({
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className={`mt-4 p-4 rounded-xl ${
+          className={`mt-4 p-4 rounded-sm border border-l-2 bg-white dark:bg-stone-900 ${
             isCorrect
-              ? "bg-brand-100 dark:bg-brand-950/50 border border-accent-line-mid"
-              : "bg-surface-raised border border-line-strong"
+              ? "border-accent-line border-l-brand-600 dark:border-l-brand-400"
+              : "border-danger-line border-l-red-600 dark:border-l-red-400"
           }`}
         >
-          <p className={`font-bold ${isCorrect ? "text-accent-ink-strong" : "text-ink"}`}>
+          <p className={`font-bold ${isCorrect ? "text-accent-strong" : "text-danger"}`}>
             {isCorrect ? t.finalOne.midpointInteractive.correct : t.finalOne.midpointInteractive.incorrect}
           </p>
-          <p className={`text-sm mt-1 ${isCorrect ? "text-accent-ink" : "text-ink-body"}`}>
+          <p className="text-sm mt-1 text-ink-body">
             {question.explanation}
           </p>
           <button
@@ -121,7 +124,7 @@ export default function MidpointInteractive({
               lessonCompletion?.markMidpointDone();
               onComplete?.();
             }}
-            className="mt-3 text-sm font-bold text-ink-body hover:text-ink underline"
+            className={`${textLink} mt-3 cursor-pointer`}
           >
             {t.finalOne.midpointInteractive.continueReading}
           </button>

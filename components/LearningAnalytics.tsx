@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
 import {
   Area,
   AreaChart,
@@ -25,7 +24,6 @@ import {
   BookMarked,
   Brain,
   CheckCircle2,
-  ChevronRight,
   Clock3,
   Flame,
   NotebookPen,
@@ -34,44 +32,36 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { getUserAnalytics } from "@/lib/cloudflare-analytics";
-import { createClient } from "@/lib/cloudflare";
 import type { LearningAnalytics as LearningAnalyticsType } from "@/lib/cloudflare-analytics";
 import LeaderboardSection from "@/components/analytics/LeaderboardSection";
+import { APP_SYS } from "@/components/analytics/system-codes";
+import { SectionHead, StatusDot, btnPrimary, btnSecondary, panel, tabClass, textLink } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import { getCurrentUser } from "@/lib/current-user";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.45,
-      delay,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  }),
-};
+/*
+ * Cùng ngôn ngữ với trang chủ (xem components/ui/system.tsx): khung viền 1px,
+ * không bóng, không dải gradient trang trí trên đầu thẻ. Số liệu đi bằng mono
+ * tabular-nums; xanh chỉ tô dữ liệu chính trên biểu đồ và tab đang mở - các
+ * chuỗi phụ đi bằng sắc độ đá (stone) thay cho cam/tím/vàng.
+ */
+
+/* Màu biểu đồ: brand-600 cho dữ liệu chính, hai sắc độ đá cho phần còn lại. */
+const CHART_BRAND = "#417acd";
+const CHART_STONE = "#78716c";
+const CHART_STONE_LIGHT = "#a8a29e";
+const CHART_STONE_DARK = "#44403c";
 
 function formatHour(hour: number) {
   return `${hour.toString().padStart(2, "0")}:00`;
 }
 
-function metricTone(score: number) {
-  if (score >= 75) return "text-accent-strong";
-  if (score >= 45) return "text-warn-strong";
-  return "text-ink-body";
-}
-
-const panelClass =
-  "min-w-0 overflow-hidden rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900";
-const panelSoftClass =
-  "rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-stone-50/50 dark:bg-stone-800/40";
+const panelClass = `min-w-0 overflow-hidden ${panel}`;
 type AnalyticsSection = "overview" | "knowledge" | "memory" | "competency" | "leaderboard";
 
-const sectionLabelClass = "text-xs font-extrabold uppercase tracking-[0.22em] text-ink-muted";
+const eyebrowClass = "text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted";
 
 /** Recharts truyền vào tooltip nhiều trường hơn ba trường dưới đây, nhưng đây
  *  là toàn bộ phần component này đọc - khai đúng phần dùng thì đổi phiên bản
@@ -97,9 +87,9 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: Cu
   if (active && payload && payload.length) {
     const formattedLabel = labelFormatter && label !== undefined ? labelFormatter(label) : label;
     return (
-      <div className="bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-line rounded-xl p-3 shadow-xl text-xs space-y-1.5 z-50">
+      <div className="z-50 space-y-1 rounded-sm border border-stone-300 bg-white p-2.5 text-xs dark:border-stone-700 dark:bg-stone-900">
         {formattedLabel && (
-          <p className="font-extrabold text-ink border-b border-stone-100 dark:border-stone-800/80 pb-1 mb-1.5">
+          <p className="mb-1 border-b border-line pb-1 font-bold text-ink">
             {formattedLabel}
           </p>
         )}
@@ -107,11 +97,9 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: Cu
           const displayVal = formatter ? formatter(item.value, item.name) : item.value;
           const displayName = item.name === "lessonsCompleted" ? t.analytics.seriesLessons : item.name === "minutesSpent" ? t.analytics.seriesMinutes : item.name;
           return (
-            <div key={idx} className="flex items-center gap-4 justify-between">
-              <span className="text-ink-muted font-medium">{displayName}:</span>
-              <span className="font-bold text-ink" style={{ color: item.color || undefined }}>
-                {displayVal}
-              </span>
+            <div key={idx} className="flex items-center justify-between gap-4">
+              <span className="font-medium text-ink-muted">{displayName}:</span>
+              <span className="font-mono font-medium tabular-nums text-ink-max">{displayVal}</span>
             </div>
           );
         })}
@@ -147,80 +135,48 @@ function insightFromAnalytics(analytics: LearningAnalyticsType, t: Dictionary) {
   return insights.slice(0, 3);
 }
 
-function MetricCard({
-  icon,
-  label,
-  value,
-  hint,
-  accent,
-  delay,
-}: {
-  icon: ReactNode;
-  label: string;
-  value: string;
-  hint: string;
-  accent: string;
-  delay: number;
-}) {
+/** Ô số liệu: nhãn sans chữ hoa nhỏ, giá trị mono căn thẳng, gợi ý một dòng.
+ *  Không dải màu trên đầu, không nhấc lên khi rê chuột. */
+function MetricCard({ icon, label, value, hint }: { icon: ReactNode; label: string; value: string; hint: string }) {
   return (
-    <motion.div
-      custom={delay}
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
-      className="group relative overflow-hidden rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white/90 dark:bg-stone-900/80 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:shadow-[0_20px_35px_-15px_rgba(65, 122, 205,0.1)] dark:hover:shadow-[0_20px_35px_-15px_rgba(65, 122, 205,0.06)]"
-    >
-      <div className={`absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r ${accent}`} />
-      <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0">
-          <p className={`${sectionLabelClass} text-[10px] tracking-[0.2em] opacity-80`}>
-            {label}
-          </p>
-          <p className="mt-3 text-2xl sm:text-3xl font-extrabold text-ink-max tracking-tight">{value}</p>
-          <p className="mt-2 text-xs text-ink-muted leading-relaxed truncate">{hint}</p>
-        </div>
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-stone-50 dark:bg-stone-800/60 text-ink-muted group-hover:bg-brand-50 dark:group-hover:bg-brand-950/30 group-hover:text-accent transition-colors duration-300">
+    <div className={`${panel} p-4`}>
+      <div className="flex items-center justify-between gap-3 border-b border-line pb-2">
+        <p className={eyebrowClass}>{label}</p>
+        <span className="shrink-0 text-ink-faint" aria-hidden>
           {icon}
-        </div>
+        </span>
       </div>
-    </motion.div>
+      <p className="mt-3 font-mono text-2xl font-medium tabular-nums tracking-tight text-ink-max">{value}</p>
+      <p className="mt-1 truncate text-xs leading-5 text-ink-muted">{hint}</p>
+    </div>
   );
 }
 
-function SummaryStat({
-  label,
-  value,
-  hint,
-}: {
-  label: string;
-  value: string;
-  hint: string;
-}) {
+function PanelHead({ eyebrow, title, sub, aside }: { eyebrow: string; title: string; sub?: string; aside?: ReactNode }) {
   return (
-    <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4">
-      <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-ink-faint">{label}</p>
-      <p className="mt-2 text-2xl font-black tracking-tight text-ink">{value}</p>
-      <p className="mt-1 text-xs leading-5 text-ink-muted">{hint}</p>
+    <div className="mb-5 flex items-start justify-between gap-4 border-b border-line pb-3">
+      <div className="min-w-0">
+        <p className={eyebrowClass}>{eyebrow}</p>
+        <h3 className="mt-1 text-base font-black tracking-tight text-ink-max">{title}</h3>
+        {sub && <p className="mt-1 text-xs text-ink-muted">{sub}</p>}
+      </div>
+      {aside}
     </div>
   );
 }
 
 function AnalyticsSkeleton() {
   return (
-    <div className="space-y-6 animate-pulse">
-      <div className="rounded-2xl border-2 border-line bg-white dark:bg-stone-900 p-5 sm:p-8">
-        <div className="h-6 w-40 rounded-full bg-surface-sunken" />
-        <div className="mt-4 h-10 w-72 rounded-2xl bg-surface-sunken" />
-        <div className="mt-3 h-5 w-full max-w-2xl rounded-full bg-surface-sunken" />
+    <div className="space-y-6" aria-hidden>
+      <div className={`${panel} p-5`}>
+        <div className="h-4 w-40 rounded-xs bg-surface-sunken" />
+        <div className="mt-4 h-7 w-72 rounded-xs bg-surface-sunken" />
+        <div className="mt-3 h-4 w-full max-w-2xl rounded-xs bg-surface-sunken" />
       </div>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {Array.from({ length: 8 }).map((_, index) => (
-          <div key={index} className="h-36 rounded-2xl border border-line bg-surface-sunken" />
+      <div className="grid gap-4 md:grid-cols-2">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div key={index} className="h-32 rounded-md border border-line bg-surface-sunken" />
         ))}
-      </div>
-      <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="h-96 rounded-2xl border border-line bg-surface-sunken" />
-        <div className="h-96 rounded-2xl border border-line bg-surface-sunken" />
       </div>
     </div>
   );
@@ -240,7 +196,6 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const cloudflare = createClient();
         const user = await getCurrentUser();
 
         if (user) {
@@ -266,18 +221,18 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   const trackPieData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { name: t.analytics.trackPersonal, value: analytics.lessonsByTrack.personal, color: "#417acd" },
-      { name: t.analytics.trackProfessional, value: analytics.lessonsByTrack.professional, color: "#57534e" },
-      { name: "Bonus", value: analytics.lessonsByTrack.bonus, color: "#f59e0b" },
+      { name: t.analytics.trackPersonal, value: analytics.lessonsByTrack.personal, color: CHART_BRAND },
+      { name: t.analytics.trackProfessional, value: analytics.lessonsByTrack.professional, color: CHART_STONE_DARK },
+      { name: "Bonus", value: analytics.lessonsByTrack.bonus, color: CHART_STONE_LIGHT },
     ].filter((item) => item.value > 0);
   }, [analytics]);
 
   const difficultyData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { label: t.difficulty["Dễ"], value: analytics.lessonsByDifficulty.easy, color: "#417acd" },
-      { label: t.difficulty["Trung bình"], value: analytics.lessonsByDifficulty.medium, color: "#f59e0b" },
-      { label: t.difficulty["Khó"], value: analytics.lessonsByDifficulty.hard, color: "#78716c" },
+      { label: t.difficulty["Dễ"], value: analytics.lessonsByDifficulty.easy, color: CHART_STONE_LIGHT },
+      { label: t.difficulty["Trung bình"], value: analytics.lessonsByDifficulty.medium, color: CHART_STONE },
+      { label: t.difficulty["Khó"], value: analytics.lessonsByDifficulty.hard, color: CHART_STONE_DARK },
     ];
   }, [analytics]);
 
@@ -294,69 +249,61 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
 
   if (!analytics) {
     return (
-      <div className="rounded-2xl border border-line bg-white dark:bg-stone-900 p-6 sm:p-8 text-center text-ink-muted">
+      <div className={`${panel} p-6 text-center text-sm text-ink-muted sm:p-8`}>
         {t.analytics.noData}
       </div>
     );
   }
 
+  const quickStats = [
+    {
+      label: t.analytics.streakLabel,
+      value: format(t.analytics.streakDays, { count: analytics.streakDays }),
+      hint: format(t.analytics.streakRecord, { count: analytics.longestStreak }),
+    },
+    {
+      label: t.analytics.quizScoreLabel,
+      value: `${analytics.averageQuizScore}%`,
+      hint: format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted }),
+    },
+    {
+      label: t.analytics.studyHourLabel,
+      value: analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown,
+      hint: t.analytics.peakWindow[analytics.peakStudyWindow],
+    },
+  ];
+
   return (
     <div className="space-y-6">
-      <motion.section
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-        className="relative overflow-hidden rounded-[26px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-xs"
-      >
-        <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-brand-500 via-brand-500 to-sky-500" />
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="min-w-0 flex-1">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-accent-line bg-brand-50 dark:bg-brand-950/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-accent-strong">
-              {t.analytics.personal}
-            </div>
-            <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-ink">
-              {t.analytics.currentRhythm}
-            </h2>
+      <section className={`${panel} p-4 sm:p-5`}>
+        <SectionHead code={APP_SYS.analytics} eyebrow={t.analytics.personal} title={t.analytics.currentRhythm} size="sm" />
 
-            <div className="mt-3 flex flex-wrap gap-1.5 sm:gap-2">
-              {insights.map((insight, index) => (
-                <div
-                  key={index}
-                  className="rounded-xl border border-stone-200/90 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-800/80 px-2.5 py-1 text-xs font-bold text-ink-body shadow-2xs"
-                >
-                  {insight}
-                </div>
-              ))}
-            </div>
-          </div>
+        {insights.length > 0 && (
+          <ul className="mt-3 space-y-1.5">
+            {insights.map((insight, index) => (
+              <li key={index} className="flex items-center gap-2 text-sm font-semibold text-ink-body">
+                <StatusDot tone={index === 0 ? "brand" : "muted"} />
+                {insight}
+              </li>
+            ))}
+          </ul>
+        )}
 
-          {/* Compact Horizontal Quick Stats */}
-          <div className="grid grid-cols-3 gap-1.5 sm:gap-3 shrink-0">
-            <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-ink-faint">{t.analytics.streakLabel}</p>
-              <p className="mt-1 text-base sm:text-lg font-black text-ink whitespace-nowrap">{format(t.analytics.streakDays, { count: analytics.streakDays })}</p>
-              <p className="text-[9px] font-semibold text-ink-muted truncate">{format(t.analytics.streakRecord, { count: analytics.longestStreak })}</p>
+        {/* Ba số nhanh: một bảng ba cột chia bằng đường kẻ 1px. */}
+        <dl className="mt-4 grid grid-cols-3 divide-x divide-stone-200 border-y border-line dark:divide-stone-800">
+          {quickStats.map((stat) => (
+            <div key={stat.label} className="min-w-0 px-2 py-2.5 first:pl-0 sm:px-3">
+              <dt className="truncate text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{stat.label}</dt>
+              <dd className="mt-1 whitespace-nowrap font-mono text-base font-medium tabular-nums text-ink-max sm:text-lg">
+                {stat.value}
+              </dd>
+              <dd className="truncate text-[11px] text-ink-muted">{stat.hint}</dd>
             </div>
+          ))}
+        </dl>
+      </section>
 
-            <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-ink-faint">{t.analytics.quizScoreLabel}</p>
-              <p className="mt-1 text-base sm:text-lg font-black text-accent whitespace-nowrap">{analytics.averageQuizScore}%</p>
-              <p className="text-[9px] font-semibold text-ink-muted truncate">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</p>
-            </div>
-
-            <div className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-gradient-to-b from-stone-50/80 to-white dark:from-stone-800/60 dark:to-stone-900 p-2 sm:p-3 text-center min-w-[72px] sm:min-w-[85px]">
-              <p className="text-[9px] font-extrabold uppercase tracking-wider text-ink-faint">{t.analytics.studyHourLabel}</p>
-              <p className="mt-1 text-base sm:text-lg font-black text-ink whitespace-nowrap">
-                {analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown}
-              </p>
-              <p className="text-[9px] font-semibold text-stone-500 truncate">{t.analytics.peakWindow[analytics.peakStudyWindow]}</p>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Premium Tab Selector */}
-      <div className="flex border-b border-line gap-6 mt-2 pb-0 overflow-x-auto scrollbar-none">
+      <div role="tablist" className="flex gap-6 overflow-x-auto border-b border-line scrollbar-none">
         {([
           { id: "overview", label: t.analytics.tabOverview },
           { id: "knowledge", label: t.analytics.tabKnowledge },
@@ -368,91 +315,64 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           return (
             <button
               key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
               onClick={() => setActiveSection(tab.id)}
-              className="relative pb-3 text-sm font-bold transition-all cursor-pointer focus:outline-none whitespace-nowrap shrink-0"
+              className={`shrink-0 cursor-pointer whitespace-nowrap ${tabClass(isActive)}`}
             >
-              <span className={`transition-colors duration-200 ${isActive ? "text-ink" : "text-ink-faint hover:text-ink-body"}`}>
-                {tab.label}
-              </span>
-              {isActive && (
-                <motion.div
-                  layoutId="activeTabUnderline"
-                  className="absolute bottom-0 inset-x-0 h-[2.5px] bg-brand-500 rounded-full"
-                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                />
-              )}
+              {tab.label}
             </button>
           );
         })}
       </div>
 
-      {/* Tab Contents */}
       {activeSection === "overview" && (
         <div className="space-y-6">
-          <div className="grid gap-3.5 grid-cols-2 sm:grid-cols-2">
+          <div className="grid grid-cols-2 gap-3">
             <MetricCard
-              icon={<Flame className="h-5 w-5" />}
+              icon={<Flame className="h-4 w-4" />}
               label={t.analytics.cardStreak}
               value={`${analytics.streakDays}`}
               hint={format(t.analytics.streakRecordHint, { count: analytics.longestStreak })}
-              accent="from-orange-500 to-red-600"
-              delay={0.02}
             />
             <MetricCard
-              icon={<Sparkles className="h-5 w-5" />}
+              icon={<Sparkles className="h-4 w-4" />}
               label={t.analytics.cardWeekRhythm}
               value={format(t.analytics.lessonCount, { count: analytics.recentMomentum.last7DaysLessons })}
               hint={format(t.analytics.minutesDone, { count: analytics.recentMomentum.last7DaysMinutes })}
-              accent="from-brand-500 to-brand-500"
-              delay={0.06}
             />
             <MetricCard
-              icon={<Clock3 className="h-5 w-5" />}
+              icon={<Clock3 className="h-4 w-4" />}
               label={t.analytics.cardStudyTime}
               value={format(t.analytics.minutesValue, { count: analytics.totalTimeSpent })}
               hint={`${t.analytics.peakWindow[analytics.peakStudyWindow]} · ${analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown}`}
-              accent="from-sky-400 to-blue-600"
-              delay={0.1}
             />
             <MetricCard
-              icon={<TrendingUp className="h-5 w-5" />}
+              icon={<TrendingUp className="h-4 w-4" />}
               label={t.analytics.cardWeekTrend}
               value={`${analytics.recentMomentum.weeklyTrendPercent > 0 ? "+" : ""}${analytics.recentMomentum.weeklyTrendPercent}%`}
               hint={format(t.analytics.lessons30d, { count: analytics.recentMomentum.last30DaysLessons })}
-              accent="from-brand-400 to-brand-600"
-              delay={0.14}
             />
           </div>
 
-          <div className="grid gap-6 grid-cols-1">
-            <motion.section
-              custom={0.08}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className={panelClass + " p-4 sm:p-6"}
-            >
-              <div className="mb-6 flex items-center justify-between gap-4">
-                <div>
-                  <p className={sectionLabelClass}>{t.analytics.rhythmEyebrow}</p>
-                  <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.rhythmTitle}</h3>
-                </div>
-                <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-ink-soft font-bold"}>
-                  {format(t.analytics.rhythmPeak, { count: weeklyPeak })}
-                </div>
-              </div>
+          <div className="grid grid-cols-1 gap-6">
+            <section className={panelClass + " p-4 sm:p-5"}>
+              <PanelHead
+                eyebrow={t.analytics.rhythmEyebrow}
+                title={t.analytics.rhythmTitle}
+                aside={
+                  <span className="shrink-0 font-mono text-xs tabular-nums text-ink-muted">
+                    {format(t.analytics.rhythmPeak, { count: weeklyPeak })}
+                  </span>
+                }
+              />
               <div className="h-[280px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={analytics.weeklyActivity} margin={{ left: -10, right: 0, top: 12, bottom: 0 }}>
-                    <defs>
-                      <linearGradient id="weeklyLessons" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="#417acd" stopOpacity={0.25} />
-                        <stop offset="100%" stopColor="#417acd" stopOpacity={0.0} />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" className="dark:stroke-stone-800" opacity={0.6} />
-                    <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: "#78716c" }} />
-                    <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: "#78716c" }} allowDecimals={false} />
+                    <CartesianGrid vertical={false} stroke="#e7e5e4" className="dark:stroke-stone-800" opacity={0.6} />
+                    <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: CHART_STONE }} />
+                    <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: CHART_STONE }} allowDecimals={false} />
                     <Tooltip
                       content={
                         <CustomTooltip
@@ -465,42 +385,32 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                         />
                       }
                     />
-                    <Area type="monotone" dataKey="lessonsCompleted" stroke="#417acd" strokeWidth={2.5} fill="url(#weeklyLessons)" />
-                    <Area type="monotone" dataKey="minutesSpent" stroke="#78716c" strokeWidth={1.5} fillOpacity={0} />
+                    <Area type="linear" dataKey="lessonsCompleted" stroke={CHART_BRAND} strokeWidth={2} fill={CHART_BRAND} fillOpacity={0.08} />
+                    <Area type="linear" dataKey="minutesSpent" stroke={CHART_STONE} strokeWidth={1.5} fillOpacity={0} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
-            </motion.section>
+            </section>
 
-            <motion.section
-              custom={0.12}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className={panelClass + " p-4 sm:p-6"}
-            >
-              <div className="mb-6">
-                <p className={sectionLabelClass}>{t.analytics.hoursEyebrow}</p>
-                <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.hoursTitle}</h3>
-                <p className="mt-1 text-xs text-ink-muted">{t.analytics.hoursSub}</p>
-              </div>
+            <section className={panelClass + " p-4 sm:p-5"}>
+              <PanelHead eyebrow={t.analytics.hoursEyebrow} title={t.analytics.hoursTitle} sub={t.analytics.hoursSub} />
               {studyHourData.length === 0 ? (
-                <div className="flex h-[300px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-800/40 text-xs text-ink-faint border border-stone-200/50 dark:border-stone-800/80">
+                <div className="flex h-[240px] items-center justify-center rounded-sm border border-dashed border-line text-xs text-ink-faint">
                   {t.analytics.hoursEmpty}
                 </div>
               ) : (
                 <div className="h-[280px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={studyHourData} margin={{ left: -22, right: 0, top: 12, bottom: 0 }}>
-                      <CartesianGrid vertical={false} stroke="#e7e5e4" strokeDasharray="4 4" className="dark:stroke-stone-800" opacity={0.6} />
+                      <CartesianGrid vertical={false} stroke="#e7e5e4" className="dark:stroke-stone-800" opacity={0.6} />
                       <XAxis
                         dataKey="hour"
                         tickFormatter={(value) => `${value}h`}
                         tickLine={false}
                         axisLine={false}
-                        tick={{ fontSize: 11, fill: "#78716c" }}
+                        tick={{ fontSize: 11, fill: CHART_STONE }}
                       />
-                      <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: "#78716c" }} allowDecimals={false} />
+                      <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: CHART_STONE }} allowDecimals={false} />
                       <Tooltip
                         content={
                           <CustomTooltip
@@ -509,12 +419,11 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                           />
                         }
                       />
-                      <Bar dataKey="lessonsCompleted" radius={[10, 10, 2, 2]}>
+                      <Bar dataKey="lessonsCompleted" radius={[2, 2, 0, 0]}>
                         {studyHourData.map((entry) => (
                           <Cell
                             key={entry.hour}
-                            fill={entry.hour === analytics.bestStudyHour ? "#417acd" : "#78716c"}
-                            fillOpacity={entry.hour === analytics.bestStudyHour ? 1 : 0.65}
+                            fill={entry.hour === analytics.bestStudyHour ? CHART_BRAND : CHART_STONE_LIGHT}
                           />
                         ))}
                       </Bar>
@@ -522,68 +431,54 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                   </ResponsiveContainer>
                 </div>
               )}
-            </motion.section>
+            </section>
           </div>
         </div>
       )}
 
       {activeSection === "knowledge" && (
         <div className="space-y-6">
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-3">
             <MetricCard
-              icon={<Brain className="h-5 w-5" />}
+              icon={<Brain className="h-4 w-4" />}
               label={t.analytics.cardAvgQuiz}
               value={`${analytics.averageQuizScore}%`}
               hint={format(t.analytics.avgMinutesPerLesson, { count: analytics.averageMinutesPerLesson })}
-              accent="from-amber-400 to-orange-500"
-              delay={0.02}
             />
             <MetricCard
-              icon={<Target className="h-5 w-5" />}
+              icon={<Target className="h-4 w-4" />}
               label={t.analytics.cardCompleted}
               value={`${analytics.totalLessonsCompleted}`}
               hint={format(t.analytics.completionOfStarted, { percent: analytics.completionRate, count: analytics.totalLessonsStarted })}
-              accent="from-brand-500 to-brand-500"
-              delay={0.06}
             />
             <MetricCard
-              icon={<CheckCircle2 className="h-5 w-5" />}
+              icon={<CheckCircle2 className="h-4 w-4" />}
               label={t.analytics.cardCompletionRate}
               value={`${analytics.completionRate}%`}
               hint={t.analytics.hintCompletionRatio}
-              accent="from-indigo-400 to-purple-600"
-              delay={0.1}
             />
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <motion.section
-              custom={0.16}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className={panelClass + " p-4 sm:p-6"}
-            >
-              <div className="mb-6">
-                <p className={sectionLabelClass}>{t.analytics.trackEyebrow}</p>
-                <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.trackTitle}</h3>
-              </div>
+            <section className={panelClass + " p-4 sm:p-5"}>
+              <PanelHead eyebrow={t.analytics.trackEyebrow} title={t.analytics.trackTitle} />
               {trackPieData.length === 0 ? (
-                <div className="flex h-[260px] items-center justify-center rounded-2xl bg-stone-50/50 dark:bg-stone-800/40 text-xs text-ink-faint border border-stone-200/50 dark:border-stone-800/80">
+                <div className="flex h-[220px] items-center justify-center rounded-sm border border-dashed border-line text-xs text-ink-faint">
                   {t.analytics.trackEmpty}
                 </div>
               ) : (
                 <div className="grid min-w-0 items-center gap-6 md:grid-cols-[1fr_1.1fr]">
-                  <div className="h-[250px] relative flex items-center justify-center">
+                  <div className="relative flex h-[230px] items-center justify-center">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
                           data={trackPieData}
                           dataKey="value"
                           nameKey="name"
-                          innerRadius={60}
-                          outerRadius={88}
-                          paddingAngle={4}
+                          innerRadius={62}
+                          outerRadius={86}
+                          paddingAngle={2}
+                          stroke="none"
                         >
                           {trackPieData.map((entry) => (
                             <Cell key={entry.name} fill={entry.color} />
@@ -593,44 +488,37 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       </PieChart>
                     </ResponsiveContainer>
                     <div className="absolute flex flex-col items-center justify-center">
-                      <span className="text-[10px] uppercase font-extrabold tracking-widest text-ink-faint">{t.analytics.total}</span>
-                      <span className="text-xl font-extrabold text-ink">{format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}</span>
+                      <span className="text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-faint">{t.analytics.total}</span>
+                      <span className="font-mono text-lg font-medium tabular-nums text-ink-max">
+                        {format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted })}
+                      </span>
                     </div>
                   </div>
-                  <div className="space-y-2.5">
+                  <dl className="divide-y divide-stone-200 border-y border-line dark:divide-stone-800">
                     {trackPieData.map((item) => (
-                      <div
-                        key={item.name}
-                        className="rounded-xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/30 dark:bg-stone-900/30 px-3.5 py-2.5 flex items-center justify-between text-xs"
-                      >
-                        <div className="flex items-center gap-2.5">
-                          <span className="h-3 w-3 rounded-full ring-2 ring-white dark:ring-stone-900 shrink-0" style={{ backgroundColor: item.color }} />
-                          <span className="font-bold text-ink-heading">{item.name}</span>
-                        </div>
-                        <span className="font-extrabold text-ink">{format(t.analytics.lessonCount, { count: item.value })}</span>
+                      <div key={item.name} className="flex items-center justify-between gap-3 py-2 text-sm">
+                        <dt className="flex items-center gap-2.5">
+                          <span className="h-2.5 w-2.5 shrink-0 rounded-[1px]" style={{ backgroundColor: item.color }} aria-hidden />
+                          <span className="font-semibold text-ink-body">{item.name}</span>
+                        </dt>
+                        <dd className="font-mono tabular-nums text-ink-max">{format(t.analytics.lessonCount, { count: item.value })}</dd>
                       </div>
                     ))}
-                  </div>
+                  </dl>
                 </div>
               )}
-            </motion.section>
+            </section>
 
-            <motion.section
-              custom={0.2}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className={panelClass + " p-4 sm:p-6"}
-            >
-              <div className="mb-6 flex items-center justify-between gap-4">
-                <div>
-                  <p className={sectionLabelClass}>{t.analytics.difficultyEyebrow}</p>
-                  <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.difficultyTitle}</h3>
-                </div>
-                <div className={panelSoftClass + " px-3.5 py-1.5 text-xs text-ink-soft font-bold"}>
-                  {format(t.analytics.lessonsDone, { count: analytics.totalLessonsCompleted })}
-                </div>
-              </div>
+            <section className={panelClass + " p-4 sm:p-5"}>
+              <PanelHead
+                eyebrow={t.analytics.difficultyEyebrow}
+                title={t.analytics.difficultyTitle}
+                aside={
+                  <span className="shrink-0 font-mono text-xs tabular-nums text-ink-muted">
+                    {format(t.analytics.lessonsDone, { count: analytics.totalLessonsCompleted })}
+                  </span>
+                }
+              />
               <div className="space-y-4">
                 {difficultyData.map((item) => {
                   const width = analytics.totalLessonsCompleted > 0 ? (item.value / analytics.totalLessonsCompleted) * 100 : 0;
@@ -638,183 +526,142 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                     <div key={item.label} className="text-xs">
                       <div className="mb-1.5 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: item.color }} />
-                          <span className="font-bold text-ink-heading">{item.label}</span>
+                          <span className="h-2.5 w-2.5 rounded-[1px]" style={{ backgroundColor: item.color }} aria-hidden />
+                          <span className="font-semibold text-ink-body">{item.label}</span>
                         </div>
-                        <span className="font-extrabold text-ink">{format(t.analytics.lessonsWithPercent, { count: item.value, percent: Math.round(width) })}</span>
+                        <span className="font-mono tabular-nums text-ink-max">
+                          {format(t.analytics.lessonsWithPercent, { count: item.value, percent: Math.round(width) })}
+                        </span>
                       </div>
-                      <div className="h-2.5 rounded-full bg-surface-raised overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${width}%` }}
-                          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                          className="h-full rounded-full"
-                          style={{ backgroundColor: item.color }}
-                        />
+                      <div className="h-1.5 overflow-hidden rounded-xs bg-surface-sunken">
+                        <div className="h-full" style={{ width: `${width}%`, backgroundColor: item.color }} />
                       </div>
                     </div>
                   );
                 })}
               </div>
-            </motion.section>
+            </section>
           </div>
         </div>
       )}
 
       {activeSection === "memory" && (
         <div className="space-y-6">
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-3">
             <MetricCard
-              icon={<NotebookPen className="h-5 w-5" />}
+              icon={<NotebookPen className="h-4 w-4" />}
               label={t.analytics.cardTotalNotes}
               value={`${analytics.notes.totalNotes} note`}
               hint={format(t.analytics.lessonsWithNotes, { count: analytics.notes.lessonsWithNotes })}
-              accent="from-indigo-400 to-purple-600"
-              delay={0.02}
             />
             <MetricCard
-              icon={<BookMarked className="h-5 w-5" />}
+              icon={<BookMarked className="h-4 w-4" />}
               label={t.analytics.cardManualFlags}
               value={format(t.analytics.lessonCount, { count: analytics.manualFlags.totalFlags })}
               hint={t.analytics.hintSelfMarked}
-              accent="from-cyan-400 to-sky-500"
-              delay={0.06}
             />
             <MetricCard
-              icon={<Award className="h-5 w-5" />}
+              icon={<Award className="h-4 w-4" />}
               label={t.analytics.cardRhythmStability}
               value={`${analytics.consistencyScore}%`}
               hint={t.analytics.hintConsistency}
-              accent="from-stone-500 to-stone-700"
-              delay={0.1}
             />
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-            <motion.section
-              custom={0.24}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className={panelClass + " p-4 sm:p-6"}
-            >
-              <div className="mb-6 flex items-center justify-between gap-4">
-                <div>
-                  <p className={sectionLabelClass}>{t.analytics.notesEyebrow}</p>
-                  <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.notesTitle}</h3>
-                </div>
-                <Link
-                  href="/ghi-chu"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline"
-                >
-                  {t.analytics.seeAll}
-                  <ChevronRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
+            <section className={panelClass + " p-4 sm:p-5"}>
+              <PanelHead
+                eyebrow={t.analytics.notesEyebrow}
+                title={t.analytics.notesTitle}
+                aside={
+                  <Link href="/ghi-chu" className={`shrink-0 ${textLink} text-xs`}>
+                    {t.analytics.seeAll}
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                  </Link>
+                }
+              />
 
               {analytics.notes.topLessons.length === 0 ? (
-                <div className="rounded-xl border border-stone-200/50 dark:border-stone-800/80 bg-stone-50/50 dark:bg-stone-800/40 px-5 py-8 text-xs text-ink-faint text-center leading-relaxed">
+                <div className="rounded-sm border border-dashed border-line px-5 py-8 text-center text-xs leading-relaxed text-ink-faint">
                   {t.analytics.notesEmpty}
                 </div>
               ) : (
-                <div className="space-y-2.5">
+                <ol className="divide-y divide-stone-200 border-y border-line dark:divide-stone-800">
                   {analytics.notes.topLessons.map((lesson, index) => (
-                    <Link
-                      key={lesson.lessonId}
-                      href={lesson.slug ? `/bai-hoc/${lesson.slug}` : "/ghi-chu"}
-                      className="group flex items-center justify-between gap-4 rounded-xl border border-stone-200/60 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/30 px-3.5 py-3 transition-all hover:bg-brand-50/20 dark:hover:bg-brand-950/10 hover:border-brand-500/20"
-                    >
-                      <div className="flex min-w-0 items-center gap-3">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-stone-900 text-xs font-bold text-ink border border-line">
-                          {index + 1}
+                    <li key={lesson.lessonId}>
+                      <Link
+                        href={lesson.slug ? `/bai-hoc/${lesson.slug}` : "/ghi-chu"}
+                        className="group flex items-center justify-between gap-4 px-1 py-2.5 transition-colors hover:bg-[#f3f1ec] dark:hover:bg-stone-800/60"
+                      >
+                        <div className="flex min-w-0 items-center gap-3">
+                          <span className="w-6 shrink-0 text-center font-mono text-xs tabular-nums text-ink-faint">
+                            {APP_SYS.rank(index + 1)}
+                          </span>
+                          <div className="min-w-0">
+                            <p className="truncate text-sm font-semibold text-ink group-hover:text-accent-strong">{lesson.title}</p>
+                            <p className="mt-0.5 font-mono text-[11px] tabular-nums text-ink-faint">
+                              {format(t.analytics.notesSaved, { count: lesson.notesCount })}
+                            </p>
+                          </div>
                         </div>
-                        <div className="min-w-0">
-                          <p className="truncate text-xs font-bold text-ink group-hover:text-accent-strong transition-colors">
-                            {lesson.title}
-                          </p>
-                          <p className="mt-1 text-[10px] text-ink-faint font-medium">
-                            {format(t.analytics.notesSaved, { count: lesson.notesCount })}
-                          </p>
-                        </div>
-                      </div>
-                      <ArrowRight className="h-4 w-4 shrink-0 text-stone-300 dark:text-stone-600 transition-transform group-hover:translate-x-0.5 group-hover:text-brand-500" />
-                    </Link>
+                        <ArrowRight className="h-4 w-4 shrink-0 text-ink-faint group-hover:text-accent" aria-hidden />
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ol>
               )}
-            </motion.section>
+            </section>
 
-            <motion.section
-              custom={0.28}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className={panelClass + " p-4 sm:p-6"}
-            >
-              <div className="mb-6">
-                <p className={sectionLabelClass}>{t.analytics.nextEyebrow}</p>
-                <h3 className="mt-2 text-lg font-bold text-ink">{t.analytics.nextTitle}</h3>
-              </div>
+            <section className={panelClass + " p-4 sm:p-5"}>
+              <PanelHead eyebrow={t.analytics.nextEyebrow} title={t.analytics.nextTitle} />
 
-              <div className="space-y-3">
-                <div className="rounded-xl border border-stone-200/65 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/30 p-3.5 text-xs">
-                  <div className="flex items-start gap-2.5">
-                    <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 text-accent shrink-0" />
-                    <div>
-                      <p className="font-bold text-ink">{t.analytics.tipFinishTitle}</p>
-                      <p className="mt-1 text-ink-muted leading-relaxed">
-                        {format(t.analytics.tipFinishBody, { rate: analytics.completionRate })}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-xl border border-stone-200/65 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/30 p-3.5 text-xs">
-                  <div className="flex items-start gap-2.5">
-                    <BarChart3 className="mt-0.5 h-4.5 w-4.5 text-blue-500 dark:text-blue-400 shrink-0" />
-                    <div>
-                      <p className="font-bold text-ink">{t.analytics.tipHoursTitle}</p>
-                      <p className="mt-1 text-ink-muted leading-relaxed">
-                        {format(t.analytics.tipHoursBody, { hour: analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.tipHoursFallback })}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-xl border border-stone-200/65 dark:border-stone-800 bg-stone-50/20 dark:bg-stone-900/30 p-3.5 text-xs">
-                  <div className="flex items-start gap-2.5">
-                    <NotebookPen className="mt-0.5 h-4.5 w-4.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
-                    <div>
-                      <p className="font-bold text-ink">{t.analytics.tipNotesTitle}</p>
-                      <p className="mt-1 text-ink-muted leading-relaxed">
-                        {format(t.analytics.tipNotesBody, { count: analytics.notes.totalNotes })}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ul className="divide-y divide-stone-200 border-y border-line text-sm dark:divide-stone-800">
+                {[
+                  {
+                    icon: CheckCircle2,
+                    title: t.analytics.tipFinishTitle,
+                    body: format(t.analytics.tipFinishBody, { rate: analytics.completionRate }),
+                  },
+                  {
+                    icon: BarChart3,
+                    title: t.analytics.tipHoursTitle,
+                    body: format(t.analytics.tipHoursBody, {
+                      hour: analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.tipHoursFallback,
+                    }),
+                  },
+                  {
+                    icon: NotebookPen,
+                    title: t.analytics.tipNotesTitle,
+                    body: format(t.analytics.tipNotesBody, { count: analytics.notes.totalNotes }),
+                  },
+                ].map((tip) => {
+                  const Icon = tip.icon;
+                  return (
+                    <li key={tip.title} className="flex items-start gap-2.5 py-3">
+                      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-ink-faint" aria-hidden />
+                      <div>
+                        <p className="font-bold text-ink-max">{tip.title}</p>
+                        <p className="mt-0.5 text-xs leading-relaxed text-ink-muted">{tip.body}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                <Link
-                  href="/dashboard"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-stone-900 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white cursor-pointer"
-                >
+                <Link href="/dashboard" className={btnPrimary}>
                   {t.analytics.continueLearning}
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                 </Link>
-                <Link
-                  href="/ghi-chu"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-line bg-white dark:bg-stone-900 px-4 py-2.5 text-xs font-bold text-ink-heading transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/50 cursor-pointer"
-                >
+                <Link href="/ghi-chu" className={btnSecondary}>
                   {t.analytics.openNotes}
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                 </Link>
               </div>
-            </motion.section>
+            </section>
           </div>
         </div>
       )}
-
 
       {activeSection === "leaderboard" && <LeaderboardSection userId={userId} />}
     </div>

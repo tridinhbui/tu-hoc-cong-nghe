@@ -45,7 +45,7 @@ function getNavItems(t: Dictionary) {
 function NavBadge({ count }: { count: number }) {
   if (count <= 0) return null;
   return (
-    <span className="ml-auto shrink-0 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-rose-500 text-white text-[10px] font-bold">
+    <span className="ml-auto shrink-0 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-xs bg-brand-600 font-mono text-white text-[10px] font-medium tabular-nums">
       {count > 99 ? "99+" : count}
     </span>
   );
@@ -89,7 +89,7 @@ export default function AdminSidebar({
             onClick={() => setMobileOpen(false)}
             className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
               active
-                ? "bg-surface-invert text-ink-invert"
+                ? "bg-accent-soft text-ink-max"
                 : "text-ink-soft hover:bg-surface-raised"
             }`}
           >

@@ -320,14 +320,14 @@ export async function deleteFlashcard(userId: string, term: string): Promise<boo
   return true;
 }
 
-// Initial finance glossary list to bootstrap flashcards for new users
-export const DEFAULT_FINANCIAL_GLOSSARY: { term: string; definition: string }[] = [
-  { term: "Thanh khoản (Liquidity)", definition: "Khả năng chuyển đổi một tài sản thành tiền mặt nhanh chóng mà không làm suy giảm giá trị của nó." },
-  { term: "Lãi kép (Compound Interest)", definition: "Phần lãi tính trên số tiền gốc ban đầu cộng với số tiền lãi tích lũy qua các kỳ trước đó." },
-  { term: "Đòn bẩy tài chính (Leverage)", definition: "Việc sử dụng vốn đi vay (nợ) để gia tăng khả năng sinh lời của một khoản đầu tư." },
-  { term: "WACC (Weighted Average Cost of Capital)", definition: "Chi phí sử dụng vốn bình quân gia quyền, phản ánh mức sinh lời tối thiểu cần đạt để đáp ứng mong đợi của chủ nợ và cổ đông." },
-  { term: "NPV (Net Present Value)", definition: "Giá trị hiện tại ròng, là tổng dòng tiền thu hồi trong tương lai chiết khấu về hiện tại trừ đi chi phí đầu tư ban đầu." },
-  { term: "Cổ tức (Dividend)", definition: "Một phần lợi nhuận sau thuế được doanh nghiệp chia cho các cổ đông bằng tiền mặt hoặc cổ phiếu." },
-  { term: "Hàng tồn kho (Inventory)", definition: "Tài sản ngắn hạn của công ty bao gồm nguyên vật liệu, bán thành phẩm và thành phẩm đang chờ tiêu thụ." },
-  { term: "Bảng cân đối kế toán (Balance Sheet)", definition: "Báo cáo tài chính phản ánh tổng thể tài sản, nợ phải trả và vốn chủ sở hữu tại một thời điểm nhất định." },
+// Initial technology glossary list to bootstrap flashcards for new users
+export const DEFAULT_TECH_GLOSSARY: { term: string; definition: string }[] = [
+  { term: "Bộ nhớ đệm (Cache)", definition: "Nơi giữ tạm kết quả đã tính hoặc đã tải, để lần sau lấy lại nhanh mà không phải làm lại từ đầu." },
+  { term: "Độ trễ (Latency)", definition: "Khoảng thời gian từ lúc gửi một request tới lúc nhận được phản hồi đầu tiên." },
+  { term: "Thông lượng (Throughput)", definition: "Lượng công việc hệ thống xử lý được trong một đơn vị thời gian, ví dụ số request mỗi giây." },
+  { term: "API (Application Programming Interface)", definition: "Giao diện quy định cách hai chương trình gọi nhau: gửi gì, nhận lại gì, lỗi trả về ra sao." },
+  { term: "SQL (Structured Query Language)", definition: "Ngôn ngữ truy vấn dùng để đọc, ghi và tổng hợp dữ liệu trong cơ sở dữ liệu quan hệ." },
+  { term: "Kiểm thử (Testing)", definition: "Chạy mã với đầu vào đã biết để kiểm tra kết quả có đúng như mong đợi hay không." },
+  { term: "Triển khai (Deployment)", definition: "Đưa một phiên bản mã mới lên môi trường chạy thật để người dùng sử dụng." },
+  { term: "Kiểm soát phiên bản (Version Control)", definition: "Hệ thống ghi lại lịch sử mọi thay đổi của mã, cho phép quay lại và làm việc song song (ví dụ Git)." },
 ];

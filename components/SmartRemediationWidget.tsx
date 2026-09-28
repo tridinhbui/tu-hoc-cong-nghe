@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { AlertCircle, ArrowRight, Sparkles } from "lucide-react";
+import { AlertCircle, ArrowRight } from "lucide-react";
 import { getUnresolvedMistakeRows, type QuizMistakeRow } from "@/lib/quiz-mistakes";
 import type { LessonMeta } from "@/lib/lesson-types";
 import { useI18n } from "@/lib/i18n/context";
+import { btnPrimary, btnSecondary, panel } from "@/components/ui/system";
 
 interface SmartRemediationWidgetProps {
   userId: string;
@@ -48,30 +49,27 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
   const { row, lesson } = criticalMistake;
 
   return (
-    <div className="rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/10 dark:bg-rose-950/10 p-4.5 shadow-sm relative overflow-hidden group">
-      {/* Light glow effects */}
-      <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/[0.03] rounded-full blur-2xl pointer-events-none" />
+    <div className={`${panel} p-4.5 relative overflow-hidden`}>
 
       <div className="flex gap-3.5 items-start">
-        <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-alert flex items-center justify-center shrink-0">
-          <AlertCircle className="w-5.5 h-5.5" />
+        <div className="w-10 h-10 rounded-sm border border-stone-300 bg-[#f3f1ec] text-alert dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
+          <AlertCircle className="w-5 h-5" />
         </div>
         
         <div className="min-w-0 flex-1 space-y-2">
           <div>
             <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-100/60 dark:bg-rose-900/40 text-alert-strong border border-rose-200/40">
+              <span className="text-[10.5px] font-bold px-2 py-0.5 rounded-sm border border-red-300 dark:border-red-800 text-alert-strong">
                 {t.smartRemediation.badge}
               </span>
-              <span className="text-[10px] font-extrabold text-warn flex items-center gap-1">
-                <Sparkles className="w-3 h-3" /> {t.smartRemediation.xpBonus}
-              </span>
+              {/* Huy hiệu "x1.5 XP" đã bỏ: không đường ghi XP nào nhân thưởng cho
+                  việc ôn lại câu sai, nên con số ấy là siêu dữ liệu bịa. */}
             </div>
 
-            <h4 className="text-xs font-bold text-ink mt-1.5 leading-snug">
+            <h4 className="text-sm font-black tracking-tight text-ink-max mt-1.5 leading-snug">
               {t.smartRemediation.titlePart1} {row.wrong_count} {t.smartRemediation.titlePart2} &quot;{lesson.title}&quot;
             </h4>
-            <p className="text-[10px] text-ink-muted mt-1 leading-relaxed">
+            <p className="text-xs text-ink-soft mt-1 leading-relaxed">
               {t.smartRemediation.description}
             </p>
           </div>
@@ -79,13 +77,13 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
           <div className="flex gap-2">
             <Link
               href={`/bai-hoc/${lesson.slug}`}
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-surface-invert text-ink-invert hover:scale-105 active:scale-95 transition-all shadow-sm"
+              className={`${btnPrimary} !px-3 !py-1.5 !text-xs !gap-1`}
             >
               {t.smartRemediation.reviewNow} <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <Link
               href="/game"
-              className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-line bg-white dark:bg-stone-900 text-ink-body hover:bg-surface transition-all"
+              className={`${btnSecondary} !px-3 !py-1.5 !text-xs !gap-1`}
             >
               {t.smartRemediation.playMiniGame}
             </Link>

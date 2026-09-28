@@ -50,10 +50,10 @@ export default function CommunityStreakWidget() {
   if (!posts || posts.length === 0) return null;
 
   return (
-    <div className="rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 shadow-sm">
+    <div className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
       <div className="mb-3 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-950/40 dark:text-orange-400">
+          <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-line-strong text-ink-soft">
             <Flame className="h-4 w-4" />
           </span>
           <div>
@@ -92,7 +92,7 @@ export default function CommunityStreakWidget() {
                 {post.user_name}
               </span>
               {days !== null && (
-                <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-black text-orange-700 dark:bg-orange-950/50 dark:text-orange-300">
+                <span className="inline-flex shrink-0 items-center gap-1 rounded-xs border border-line-strong px-1.5 py-0.5 text-[10px] font-bold text-ink-soft">
                   <Flame className="h-2.5 w-2.5" />
                   {format(t.dashboard.streakFeedDays, { days })}
                 </span>

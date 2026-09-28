@@ -64,7 +64,7 @@ export default function Joystick({
   return (
     <div
       ref={base}
-      className="pointer-events-auto relative h-28 w-28 touch-none rounded-full border border-stone-700/70 bg-stone-900/60 backdrop-blur"
+      className="pointer-events-auto relative h-28 w-28 touch-none rounded-full border border-stone-700 bg-stone-950/80"
       onPointerDown={(e) => {
         e.preventDefault();
         active.current = true;
@@ -81,7 +81,7 @@ export default function Joystick({
       aria-label={t.miscUi.joystick.ariaLabel}
     >
       <div
-        className="absolute left-1/2 top-1/2 h-12 w-12 rounded-full bg-brand-500/85 shadow-lg transition-[background] duration-150"
+        className="absolute left-1/2 top-1/2 h-12 w-12 rounded-full border border-brand-300 bg-brand-600 transition-[background] duration-150"
         style={{ transform: `translate(calc(-50% + ${knob.x}px), calc(-50% + ${knob.y}px))` }}
       />
       <span className="pointer-events-none absolute inset-x-0 -bottom-5 text-center text-[10px] font-bold text-stone-400">

@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, X, Download, Share2, Check } from "lucide-react";
+import { X, Download, Share2, Check } from "lucide-react";
 import { toast } from "sonner";
 import { LEVELS } from "@/lib/levels";
 import { svgToPngBlob, shareOrDownloadImage } from "@/lib/share-image";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Frame, Sys, btnPrimary, btnSecondary } from "@/components/ui/system";
 
 interface LevelUpModalProps {
   level: number;
@@ -14,26 +15,13 @@ interface LevelUpModalProps {
   onClose: () => void;
 }
 
-const CONFETTI_COLORS = ["#417acd", "#f59e0b", "#3b82f6", "#ec4899", "#8b5cf6", "#6c9bdc"];
-
-// Deterministic-per-mount confetti pieces (no external library - a burst of
-// small divs animated via CSS custom properties for random-looking start
-// position/drift/rotation, generated once and never re-derived on re-render).
-function useConfettiPieces(count: number) {
-  const [pieces] = useState(() =>
-    Array.from({ length: count }, (_, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      delay: Math.random() * 0.4,
-      duration: 2.2 + Math.random() * 1.2,
-      drift: (Math.random() - 0.5) * 160,
-      rotate: Math.random() * 720 - 360,
-      size: 6 + Math.random() * 6,
-      color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
-    }))
-  );
-  return pieces;
-}
+/* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị */
+const SYS = {
+  path: "THCN://APP/LEVEL-UP",
+  level: (n: number) => `LVL ${String(n).padStart(2, "0")}`,
+  minXp: (n: number) => `MIN ${n} XP`,
+};
+/* i18n-ignore-end */
 
 // Full-screen celebratory moment for leveling up - the emotional touchpoint
 // this app had for lesson completion (score card, share button) but not for
@@ -44,7 +32,6 @@ function useConfettiPieces(count: number) {
 // of which page/action caused it.
 export default function LevelUpModal({ level, userName, onClose }: LevelUpModalProps) {
   const { t } = useI18n();
-  const confetti = useConfettiPieces(48);
   const levelInfo = LEVELS.find((l) => l.level === level);
   const [visible, setVisible] = useState(false);
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -124,103 +111,75 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
       aria-modal="true"
       aria-label={t.levelUp.dialogAriaLabel}
     >
-      {/* `fixed` chứ không `absolute`: lớp phủ ngoài giờ cuộn được, mà
-          `absolute inset-0` bám vào khung cuộn nên nền mờ và mưa giấy sẽ trôi
-          đi cùng nội dung, để lộ trang bên dưới ở phần vừa cuộn tới. */}
-      <div className="fixed inset-0 bg-stone-950/70 backdrop-blur-sm" onClick={onClose} />
+      <div className="fixed inset-0 bg-stone-950/60" onClick={onClose} />
 
-      <div className="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        {confetti.map((p) => (
-          <span
-            key={p.id}
-            className="absolute top-0 rounded-sm animate-[confetti-fall_var(--dur)_ease-in_var(--delay)_forwards]"
-            style={
-              {
-                left: `${p.left}%`,
-                width: p.size,
-                height: p.size * 1.6,
-                backgroundColor: p.color,
-                "--dur": `${p.duration}s`,
-                "--delay": `${p.delay}s`,
-                "--drift": `${p.drift}px`,
-                "--rot": `${p.rotate}deg`,
-              } as React.CSSProperties
-            }
-          />
-        ))}
-      </div>
-
-      <div
-        className={`relative w-full max-w-sm my-auto bg-white dark:bg-stone-900 rounded-3xl p-8 text-center shadow-2xl transition-all duration-300 ${
-          visible ? "scale-100 translate-y-0" : "scale-90 translate-y-4"
+      <Frame
+        title={SYS.path}
+        meta={SYS.level(level)}
+        actions={
+          <button
+            onClick={onClose}
+            aria-label={t.levelUp.closeAriaLabel}
+            className="text-ink-muted transition-colors hover:text-ink"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        }
+        className={`relative my-auto w-full max-w-sm transition-all duration-300 ${
+          visible ? "translate-y-0" : "translate-y-2"
         }`}
+        bodyClassName="p-6"
       >
-        <button
-          onClick={onClose}
-          aria-label={t.levelUp.closeAriaLabel}
-          className="absolute top-4 right-4 text-stone-400 hover:text-ink-soft transition-colors"
-        >
-          <X className="w-5 h-5" />
-        </button>
-
-        <div className="relative w-24 h-24 mx-auto mb-5">
-          <span className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-400 to-brand-500 animate-ping opacity-30" />
-          <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-amber-400 via-brand-500 to-brand-500 flex items-center justify-center shadow-lg animate-[level-pop_0.5s_ease-out]">
-            <span className="text-4xl font-extrabold text-white">{level}</span>
-          </div>
-          <Sparkles className="absolute -top-1 -right-1 w-7 h-7 text-amber-400 animate-pulse" />
+        <div className="flex items-end justify-between gap-4 border-b border-line-strong pb-4">
+          <span className="text-6xl font-black leading-none tracking-tight tabular-nums text-ink-max">{level}</span>
+          {levelInfo && <Sys className="pb-1 text-ink-muted">{SYS.minXp(levelInfo.minXp)}</Sys>}
         </div>
 
-        <p className="text-xs font-extrabold uppercase tracking-widest text-accent mb-1.5">
-          {t.levelUp.kicker}
-        </p>
-        <h2 className="text-2xl font-extrabold text-ink mb-1">
+        <p className="eyebrow mt-4 text-ink-soft">{t.levelUp.kicker}</p>
+        <h2 className="mt-1 text-xl font-black tracking-tight text-ink-max">
           {levelInfo ? format(t.levelUp.headingWithName, { level, name: t.levelTitles[level] ?? levelInfo.name }) : format(t.levelUp.heading, { level })}
         </h2>
-        <p className="text-sm text-ink-muted mb-6">
+        <p className="mt-1 mb-6 text-sm text-ink-soft">
           {t.levelUp.subtitle}
         </p>
 
-        <div className="flex gap-2 mb-3">
+        <div className="mb-3 flex gap-2">
           <button
             onClick={handleDownload}
             disabled={downloading}
-            className="flex-1 py-3 rounded-xl border border-line-mid text-ink-body font-bold text-xs hover:bg-surface transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
+            className={`${btnSecondary} flex-1 text-xs`}
           >
             {downloading ? (
-              <span className="w-3.5 h-3.5 border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200 rounded-full animate-spin" />
+              <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200" />
             ) : downloaded ? (
-              <Check className="w-3.5 h-3.5" />
+              <Check className="h-3.5 w-3.5" />
             ) : (
-              <Download className="w-3.5 h-3.5" />
+              <Download className="h-3.5 w-3.5" />
             )}
             {t.levelUp.download}
           </button>
           <button
             onClick={handleShare}
             disabled={sharing}
-            className="flex-1 py-3 rounded-xl border border-line-mid text-ink-body font-bold text-xs hover:bg-surface transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
+            className={`${btnSecondary} flex-1 text-xs`}
           >
             {sharing ? (
-              <span className="w-3.5 h-3.5 border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200 rounded-full animate-spin" />
+              <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-stone-300 border-t-stone-600 dark:border-stone-600 dark:border-t-stone-200" />
             ) : (
-              <Share2 className="w-3.5 h-3.5" />
+              <Share2 className="h-3.5 w-3.5" />
             )}
             {t.levelUp.share}
           </button>
         </div>
 
-        <button
-          onClick={onClose}
-          className="w-full py-3.5 rounded-xl bg-surface-invert text-ink-invert font-bold text-sm hover:bg-stone-800 dark:hover:bg-white transition-colors"
-        >
+        <button onClick={onClose} className={`${btnPrimary} w-full`}>
           {t.levelUp.confirm}
         </button>
-      </div>
+      </Frame>
 
       {/* Hidden square achievement card - only rendered to be serialized
           into a shareable PNG by handleDownload/handleShare above, never
-          shown on screen (the celebratory circle above is the visual). */}
+          shown on screen (the level number in the dialog above is the visual). */}
       <svg
         ref={svgRef}
         viewBox="0 0 800 800"
@@ -229,21 +188,9 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
         className="hidden"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <defs>
-          <linearGradient id="levelBg" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#0c0a09" />
-            <stop offset="55%" stopColor="#0f1115" />
-            <stop offset="100%" stopColor="#052e2b" />
-          </linearGradient>
-          <linearGradient id="levelAccent" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#f59e0b" />
-            <stop offset="50%" stopColor="#417acd" />
-            <stop offset="100%" stopColor="#6c9bdc" />
-          </linearGradient>
-        </defs>
 
-        <rect width="800" height="800" fill="url(#levelBg)" />
-        <path d="M 50 50 L 750 50 L 750 750 L 50 750 Z" fill="none" stroke="url(#levelAccent)" strokeWidth="3" opacity="0.85" />
+        <rect width="800" height="800" fill="#0c0a09" />
+        <path d="M 50 50 L 750 50 L 750 750 L 50 750 Z" fill="none" stroke="#6c9bdc" strokeWidth="3" opacity="0.85" />
         <path d="M 62 62 L 738 62 L 738 738 L 62 738 Z" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.15" />
 
         <text x="400" y="140" textAnchor="middle" fill="#fbbf24" fontSize="14" fontWeight="900" letterSpacing="5">
@@ -252,11 +199,11 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
         <text x="400" y="185" textAnchor="middle" fill="#ffffff" fontSize="26" fontWeight="800" letterSpacing="3">
           {t.levelUp.svgTitle}
         </text>
-        <line x1="300" y1="215" x2="500" y2="215" stroke="url(#levelAccent)" strokeWidth="1.5" />
+        <line x1="300" y1="215" x2="500" y2="215" stroke="#6c9bdc" strokeWidth="1.5" />
 
-        <circle cx="400" cy="380" r="130" fill="none" stroke="url(#levelAccent)" strokeWidth="3" opacity="0.9" />
+        <circle cx="400" cy="380" r="130" fill="none" stroke="#6c9bdc" strokeWidth="3" opacity="0.9" />
         <circle cx="400" cy="380" r="115" fill="#0f1115" opacity="0.6" />
-        <text x="400" y="405" textAnchor="middle" fill="url(#levelAccent)" fontSize="90" fontWeight="900">
+        <text x="400" y="405" textAnchor="middle" fill="#6c9bdc" fontSize="90" fontWeight="900">
           {level}
         </text>
 
@@ -273,17 +220,6 @@ export default function LevelUpModal({ level, userName, onClose }: LevelUpModalP
         </text>
       </svg>
 
-      <style>{`
-        @keyframes confetti-fall {
-          0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 1; }
-          100% { transform: translateY(100vh) translateX(var(--drift)) rotate(var(--rot)); opacity: 0; }
-        }
-        @keyframes level-pop {
-          0% { transform: scale(0.5); }
-          60% { transform: scale(1.12); }
-          100% { transform: scale(1); }
-        }
-      `}</style>
     </div>
   );
 }

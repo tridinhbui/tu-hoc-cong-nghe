@@ -156,6 +156,12 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   // cách giao việc cho AI và kiểm lại kết quả của nó.
   "Chặng 22": "ai-products",
   "Chặng 23": "ai-products",
+  "Chặng 24": "ai-products",
+  "Chặng 25": "ai-products",
+  "Chặng 26": "quant-data",
+  "Chặng 27": "personal-ops",
+  "Chặng 28": "ai-products",
+  "Chặng 29": "fraud-safety",
 };
 
 /** Track chuyên ngành, 43 chặng, 16 chủ đề.
@@ -226,6 +232,12 @@ const PROFESSIONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 41": "accounting-reporting", // Bút toán và sổ sách
   "Chặng 42": "infra-project", // Tài chính dự án bất động sản
   "Chặng 43": "wealth-insurance", // Định phí bảo hiểm
+  "Chặng 44": "ai-products",
+  "Chặng 45": "ai-products",
+  "Chặng 46": "ai-products",
+  "Chặng 47": "ai-products",
+  "Chặng 48": "ai-products",
+  "Chặng 49": "ai-products",
 };
 
 export const STAGE_TOPIC_TABLES = {

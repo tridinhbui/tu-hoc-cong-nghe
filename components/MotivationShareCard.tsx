@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { svgToPngBlob, shareOrDownloadImage } from "@/lib/share-image";
 import { wrapQuoteLines } from "@/lib/daily-motivation";
 import { useI18n } from "@/lib/i18n/context";
+import { btnSecondary } from "@/components/ui/system";
 
 // Nút chia sẻ + card PNG ẩn, gói chung một chỗ. Trước đây phần này nằm thẳng
 // trong DailyMotivationWidget; khi trang /loi-nhan cần đúng tấm ảnh đó thì tách
@@ -56,8 +57,8 @@ export default function MotivationShareCard({
         disabled={sharing}
         className={
           size === "lg"
-            ? "inline-flex items-center gap-2 rounded-full border-2 border-orange-400 bg-white/90 px-5 py-2.5 text-sm font-bold text-orange-700 transition-colors hover:bg-orange-50 disabled:opacity-60 dark:border-orange-800 dark:bg-stone-900/90 dark:text-orange-300 dark:hover:bg-stone-800"
-            : "inline-flex items-center gap-1.5 rounded-full border border-orange-300 bg-white/80 px-3 py-1.5 text-[11px] font-bold text-orange-700 transition-colors hover:bg-orange-50 disabled:opacity-60 dark:border-orange-900 dark:bg-stone-900/80 dark:text-orange-300 dark:hover:bg-stone-800"
+            ? `${btnSecondary} bg-white dark:bg-stone-900 cursor-pointer`
+            : "inline-flex items-center gap-1.5 rounded-sm border border-line-strong bg-white px-3 py-1.5 text-[11px] font-bold text-ink-body transition-colors hover:border-stone-950 disabled:opacity-60 dark:bg-stone-900 dark:hover:border-stone-200 cursor-pointer"
         }
       >
         <Share2 className={size === "lg" ? "h-4 w-4" : "h-3.5 w-3.5"} />

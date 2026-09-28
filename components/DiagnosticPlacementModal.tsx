@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { btnPrimary } from "@/components/ui/system";
 
 interface DiagnosticQuestion {
   id: number;
@@ -108,7 +109,7 @@ export default function DiagnosticPlacementModal({
     cfa: {
       title: t.diagnostic.trackCfaTitle,
       desc: t.diagnostic.trackCfaDesc,
-      url: "/cfa",
+      url: "/chung-chi",
       icon: GraduationCap,
     },
     ai: {
@@ -141,30 +142,30 @@ export default function DiagnosticPlacementModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 bg-black/70 backdrop-blur-xs font-sans">
+      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 bg-stone-950/60 font-sans">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="relative w-full max-w-lg my-auto rounded-3xl bg-white dark:bg-stone-900 shadow-2xl border border-line overflow-hidden"
+          className="relative w-full max-w-lg my-auto rounded-md bg-white dark:bg-stone-900 border border-line-strong overflow-hidden"
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-line-soft">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-100 dark:bg-brand-950/80 text-accent">
+              <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-stone-300 bg-white text-ink-body dark:border-stone-700 dark:bg-stone-900">
                 <Compass className="w-4 h-4" />
               </span>
               <div>
-                <h3 className="text-sm font-black text-ink">
+                <h3 className="text-sm font-black tracking-tight text-ink-max">
                   {t.diagnostic.modalTitle}
                 </h3>
-                <p className="text-[11px] font-bold text-stone-400">{t.diagnostic.modalSubtitle}</p>
+                <p className="text-[11px] font-semibold text-ink-muted">{t.diagnostic.modalSubtitle}</p>
               </div>
             </div>
             <button
               type="button"
               onClick={handleDismiss}
-              className="p-1.5 rounded-full text-stone-400 hover:bg-surface-raised cursor-pointer transition-colors"
+              className="p-1.5 rounded-sm text-ink-muted hover:text-ink cursor-pointer transition-colors"
               title={t.diagnostic.dismissTitle}
             >
               <X className="w-4 h-4" />
@@ -178,18 +179,18 @@ export default function DiagnosticPlacementModal({
                 const q = DIAGNOSTIC_QUESTIONS[currentIndex];
                 return (
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between text-xs font-black text-stone-400">
+                    <div className="flex items-center justify-between text-xs font-bold text-ink-muted">
                       <span>{format(t.diagnostic.questionCounter, { current: currentIndex + 1, total: DIAGNOSTIC_QUESTIONS.length })}</span>
                       <button
                         type="button"
                         onClick={handleDismiss}
-                        className="text-[11px] font-bold text-stone-400 hover:text-ink-soft underline cursor-pointer"
+                        className="text-[11px] font-bold text-ink-muted hover:text-ink underline underline-offset-4 cursor-pointer"
                       >
                         {t.diagnostic.skipForNow}
                       </button>
                     </div>
 
-                    <p className="font-extrabold text-base text-ink leading-snug">
+                    <p className="font-black tracking-tight text-base text-ink-max leading-snug">
                       {q.question}
                     </p>
 
@@ -199,10 +200,10 @@ export default function DiagnosticPlacementModal({
                           key={idx}
                           type="button"
                           onClick={() => handleSelectOption(opt.scoreTrack)}
-                          className="w-full text-left p-3.5 rounded-2xl border border-line bg-stone-50 dark:bg-stone-950/60 hover:border-brand-500 hover:bg-brand-50/50 dark:hover:bg-brand-950/30 text-xs sm:text-sm font-semibold text-ink-heading transition-all cursor-pointer flex items-center justify-between"
+                          className="w-full text-left p-3.5 rounded-sm border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 hover:border-brand-600 dark:hover:border-brand-400 text-xs sm:text-sm font-semibold text-ink-body transition-colors cursor-pointer flex items-center justify-between"
                         >
                           <span>{opt.text}</span>
-                          <ArrowRight className="w-4 h-4 text-stone-400 shrink-0" />
+                          <ArrowRight className="w-4 h-4 text-ink-muted shrink-0" />
                         </button>
                       ))}
                     </div>
@@ -212,15 +213,15 @@ export default function DiagnosticPlacementModal({
             ) : (
               /* Result Step */
               <div className="text-center py-4 space-y-4">
-                <div className="mx-auto w-fit rounded-2xl bg-accent-soft text-accent p-3">{createElement(rec.icon, { className: "w-10 h-10", strokeWidth: 1.5, "aria-hidden": true })}</div>
+                <div className="mx-auto w-fit rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body p-3 dark:border-stone-700 dark:bg-stone-950">{createElement(rec.icon, { className: "w-10 h-10", strokeWidth: 1.5, "aria-hidden": true })}</div>
                 <div>
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-950 text-accent-ink text-[10px] font-black uppercase tracking-wider border border-accent-line-mid">
+                  <span className="eyebrow text-ink-soft">
                     {t.diagnostic.resultBadge}
                   </span>
-                  <h3 className="text-lg font-black text-ink mt-2">
+                  <h3 className="text-lg font-black tracking-tight text-ink-max mt-2">
                     {rec.title}
                   </h3>
-                  <p className="text-xs text-ink-muted mt-1 max-w-sm mx-auto leading-relaxed">
+                  <p className="text-xs text-ink-soft mt-1 max-w-sm mx-auto leading-relaxed">
                     {rec.desc}
                   </p>
                 </div>
@@ -228,7 +229,7 @@ export default function DiagnosticPlacementModal({
                 <button
                   type="button"
                   onClick={handleComplete}
-                  className="w-full py-3 rounded-2xl bg-brand-600 hover:bg-brand-500 text-white font-black text-sm transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+                  className={`${btnPrimary} w-full cursor-pointer`}
                 >
                   {t.diagnostic.startLearningNow} <ArrowRight className="w-4 h-4" />
                 </button>

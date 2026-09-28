@@ -88,7 +88,7 @@
       "Hire somebody else to do this part of the work",
       "Move to quarterly reporting so it happens less often"
     ],
-    "explanation": "This is a simple investment calculation: three hours spent once buys back roughly twenty hours a year, plus the far larger benefit that every period is processed identically and therefore genuinely comparable."
+    "explanation": "This is a simple trade-off: three hours spent once buys back roughly twenty hours a year, plus the far larger benefit that every period is processed identically and therefore genuinely comparable."
   },
   "summary": {
     "keyIdea": "Cleaning data is a process to be documented, not manual labour to be repeated",
@@ -98,7 +98,7 @@
   "application": {
     "title": "The single-source-of-truth principle",
     "message": "Keep the source data in one place nobody edits. Every transformation happens in steps you can review. The final result loads out to its own table. Those three separated layers make every number in the report traceable back to its source.",
-    "secondary": "This is exactly the input - calculation - output separation of financial modelling, applied to data."
+    "secondary": "This is exactly the input - calculation - output layering of a data pipeline, applied to the cleaning step."
   },
   "sections": [
     {

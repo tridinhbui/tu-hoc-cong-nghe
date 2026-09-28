@@ -5,18 +5,24 @@ import { AlertTriangle, Info, ShieldAlert, X } from "lucide-react";
 import { getUnreadAnnouncements, markAnnouncementRead, type Announcement } from "@/lib/announcements";
 import { useI18n } from "@/lib/i18n/context";
 
-const SEVERITY_STYLE: Record<Announcement["severity"], { wrap: string; icon: typeof Info }> = {
+/** Mức độ nói bằng CẠNH TRÁI và biểu tượng, trên cùng một mặt giấy: xanh
+ *  (thông tin, dữ liệu sống), hổ phách (cảnh báo), đỏ (nghiêm trọng). Bản trước
+ *  tô cả khối bằng ba nền sky/amber/rose. */
+const SEVERITY_STYLE: Record<Announcement["severity"], { wrap: string; icon: typeof Info; iconCls: string }> = {
   info: {
-    wrap: "bg-sky-50 dark:bg-sky-950/30 border-sky-200 dark:border-sky-900 text-sky-800 dark:text-sky-300",
+    wrap: "border-l-brand-600 dark:border-l-brand-400",
     icon: Info,
+    iconCls: "text-accent",
   },
   warning: {
-    wrap: "bg-amber-50 dark:bg-amber-950/30 border-warn-line text-warn-ink",
+    wrap: "border-l-amber-500 dark:border-l-amber-400",
     icon: AlertTriangle,
+    iconCls: "text-warn",
   },
   critical: {
-    wrap: "bg-rose-50 dark:bg-rose-950/30 border-alert-line text-alert-deep",
+    wrap: "border-l-red-600 dark:border-l-red-400",
     icon: ShieldAlert,
+    iconCls: "text-danger",
   },
 };
 
@@ -61,17 +67,17 @@ export default function AnnouncementBanner({ userId }: { userId: string }) {
         const style = SEVERITY_STYLE[a.severity];
         const Icon = style.icon;
         return (
-          <div key={a.id} className={`rounded-xl border-2 px-4 py-3.5 flex items-start gap-3 ${style.wrap}`}>
-            <Icon className="w-5 h-5 flex-shrink-0 mt-0.5" />
+          <div key={a.id} className={`rounded-md border border-l-2 border-line-strong bg-white dark:bg-stone-900 px-4 py-3.5 flex items-start gap-3 ${style.wrap}`}>
+            <Icon className={`w-5 h-5 flex-shrink-0 mt-0.5 ${style.iconCls}`} />
             <div className="flex-1 min-w-0">
-              <p className="font-bold text-sm">{a.title}</p>
-              <p className="text-sm mt-0.5 opacity-90 whitespace-pre-wrap">{a.body}</p>
+              <p className="font-bold text-sm text-ink-max">{a.title}</p>
+              <p className="text-sm mt-0.5 text-ink-body whitespace-pre-wrap">{a.body}</p>
             </div>
             <button
               onClick={() => dismiss(a.id)}
               disabled={dismissing === a.id}
               aria-label={t.miscUi.announcementBanner.closeLabel}
-              className="flex-shrink-0 p-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors disabled:opacity-50"
+              className="flex-shrink-0 p-1 rounded-sm text-ink-faint hover:bg-surface-raised hover:text-ink transition-colors disabled:opacity-50 cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>

@@ -33,12 +33,12 @@ export default function InteractiveMultiples() {
   const high = (peakLoad * (factor + 2) - headroom) / (regions || 1);
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-5 dark:bg-stone-900 dark:border-stone-800">
+    <div className="space-y-5 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
+        <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">
           {t.multiplesCalc.title}
         </h3>
-        <p className="text-stone-500 text-sm dark:text-stone-400">
+        <p className="text-sm text-ink-soft">
           {t.multiplesCalc.desc}
         </p>
       </div>
@@ -47,53 +47,53 @@ export default function InteractiveMultiples() {
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.multiplesCalc.peakLoadLabel}</span>
-            <span className="font-bold text-ink-heading">{format(t.multiplesCalc.peakLoadAmount, { amount: peakLoad })}</span>
+            <span className="font-bold tabular-nums text-ink-max">{format(t.multiplesCalc.peakLoadAmount, { amount: peakLoad })}</span>
           </div>
           <input type="range" min={50} max={600} step={10} value={peakLoad} onChange={(e) => setPeakLoad(+e.target.value)} className="w-full" aria-label={t.multiplesCalc.peakLoadLabel} />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.multiplesCalc.factorLabel}</span>
-            <span className="font-bold text-accent">{format(t.multiplesCalc.factorAmount, { amount: factor })}</span>
+            <span className="font-bold tabular-nums text-accent-strong">{format(t.multiplesCalc.factorAmount, { amount: factor })}</span>
           </div>
           <input type="range" min={3} max={20} value={factor} onChange={(e) => setFactor(+e.target.value)} className="w-full" aria-label={t.multiplesCalc.factorAriaLabel} />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.multiplesCalc.headroomLabel}</span>
-            <span className="font-bold text-ink-heading">{format(t.multiplesCalc.headroomAmount, { amount: headroom })}</span>
+            <span className="font-bold tabular-nums text-ink-max">{format(t.multiplesCalc.headroomAmount, { amount: headroom })}</span>
           </div>
           <input type="range" min={-200} max={1200} step={20} value={headroom} onChange={(e) => setHeadroom(+e.target.value)} className="w-full" aria-label={t.multiplesCalc.headroomAriaLabel} />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.multiplesCalc.regionsLabel}</span>
-            <span className="font-bold text-ink-heading">{format(t.multiplesCalc.regionsAmount, { amount: regions })}</span>
+            <span className="font-bold tabular-nums text-ink-max">{format(t.multiplesCalc.regionsAmount, { amount: regions })}</span>
           </div>
           <input type="range" min={10} max={200} step={5} value={regions} onChange={(e) => setRegions(+e.target.value)} className="w-full" aria-label={t.multiplesCalc.regionsAriaLabel} />
         </div>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-3">
-        <div className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-800/60">
+        <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
           <p className="text-[11px] font-bold text-ink-muted">{t.multiplesCalc.totalCapacityLabel}</p>
-          <p className="text-lg font-extrabold text-ink">{format(t.multiplesCalc.totalCapacityAmount, { amount: totalCapacity.toLocaleString(intlLocale(locale)) })}</p>
+          <p className="text-lg font-black tabular-nums text-ink">{format(t.multiplesCalc.totalCapacityAmount, { amount: totalCapacity.toLocaleString(intlLocale(locale)) })}</p>
         </div>
-        <div className="rounded-2xl bg-stone-50 p-3 dark:bg-stone-800/60">
+        <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
           <p className="text-[11px] font-bold text-ink-muted">{t.multiplesCalc.usableLabel}</p>
-          <p className={`text-lg font-extrabold ${usable < 0 ? "text-alert" : "text-ink"}`}>
+          <p className={`text-lg font-black tabular-nums ${usable < 0 ? "text-alert" : "text-ink"}`}>
             {format(t.multiplesCalc.usableAmount, { amount: usable.toLocaleString(intlLocale(locale)) })}
           </p>
         </div>
-        <div className="rounded-2xl bg-brand-50 p-3 dark:bg-brand-950/30">
+        <div className="rounded-sm border border-brand-600 bg-[#fbfaf7] p-3 dark:border-brand-400 dark:bg-stone-950">
           <p className="text-[11px] font-bold text-accent-strong">{t.multiplesCalc.perRegionLabel}</p>
-          <p className="text-lg font-extrabold text-accent-strong">
+          <p className="text-lg font-black tabular-nums text-accent-strong">
             {format(t.multiplesCalc.perRegionAmount, { amount: perRegion.toFixed(1) })}
           </p>
         </div>
       </div>
 
-      <div className="rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
+      <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200">
         <p className="text-sm text-ink-body">
           {t.multiplesCalc.rangePart1} {format(t.multiplesCalc.rangeFactorX, { factor: Math.max(1, factor - 2) })} {t.multiplesCalc.rangePart2}{" "}
           {format(t.multiplesCalc.rangeFactorX, { factor: factor + 2 })}, {t.multiplesCalc.rangePart3}{" "}

@@ -64,6 +64,16 @@ import { isValidAvatar } from "@/lib/avatar-utils";
 // đây: các nhánh render của chúng đã bỏ cùng những giá trị tab không ai chọn
 // được. Ba widget đó sống ở RPG hub.
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
+import { Frame, Sys, StatusDot, panel, btnPrimary, btnSecondary, tabClass } from "@/components/ui/system";
+
+/* i18n-ignore-start: định danh hệ thống trong thanh tiêu đề khung, không phải
+   chữ hiển thị để dịch - cùng một chuỗi ở mọi ngôn ngữ, như đường dẫn tệp. */
+const SYS = {
+  dashboard: "THCN://APP/DASHBOARD",
+  lessons: "THCN://APP/HOC-BAI",
+  bonus: "THCN://APP/HOC-BAI/BONUS",
+};
+/* i18n-ignore-end */
 import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
@@ -349,6 +359,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const [challengeGateLesson, setChallengeGateLesson] = useState<LessonMeta | null>(null);
   const [showChallenge, setShowChallenge] = useState(false);
   const [flaggedLessonIds, setFlaggedLessonIds] = useState<Set<number>>(new Set());
+  /** Bài tính hoàn thành nhờ thi vượt chặng (/thi-vuot-chang), chưa đọc thật. */
+  const [examCreditedIds, setExamCreditedIds] = useState<Set<number>>(new Set());
   const [bookmarks, setBookmarks] = useState<LessonBookmark[]>([]);
   const [flagSelectionMode, setFlagSelectionMode] = useState(false);
   const [selectedFlagLessonIds, setSelectedFlagLessonIds] = useState<Set<number>>(new Set());
@@ -466,7 +478,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       .then((count) => {
         if (!cancelled) setCfaCompletedForLevel(count);
       })
-      .catch((err) => console.error("Error loading CFA completed count:", err));
+      .catch((err) => console.error("Error loading certification completed count:", err));
     return () => {
       cancelled = true;
     };
@@ -642,9 +654,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const subtitleById = useMemo(() => new Map(lessonsMeta.map((l) => [l.id, l.subtitle])), [lessonsMeta]);
   const renderSubtitle = (lessonId: number) => subtitleById.get(lessonId) ?? null;
 
-  /** Bản công nghệ chưa có thi vượt chặng ghi điểm cho từng bài, nên tập này
-   *  luôn rỗng; giữ lại để hàng bài dựng đúng như bản gốc khi tính năng đó tới. */
-  const examCreditedIds = useMemo(() => new Set<number>(), []);
 
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
@@ -737,6 +746,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       mergeCompletedLessons(cachedLessonState.completed_lessons);
       forceProgressResync((n) => n + 1);
       setFlaggedLessonIds(new Set(cachedLessonState.user_lesson_flags));
+      setExamCreditedIds(new Set(cachedLessonState.exam_credited_lessons ?? []));
       setBookmarks(cachedLessonState.bookmarks.slice(0, 6));
 
       if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
@@ -775,6 +785,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       mergeCompletedLessons(lessonState.completed_lessons);
       forceProgressResync((n) => n + 1);
       setFlaggedLessonIds(new Set(lessonState.user_lesson_flags));
+      setExamCreditedIds(new Set(lessonState.exam_credited_lessons ?? []));
       setBookmarks(lessonState.bookmarks.slice(0, 6));
 
       if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
@@ -909,20 +920,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-stone-950 flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950 flex flex-col items-center justify-center gap-4">
         <div className="relative w-16 h-16">
-          <span className="absolute inset-0 rounded-full bg-brand-400/30 animate-ping" />
-          <span className="absolute -inset-1.5 rounded-full border-4 border-brand-500/70 border-t-transparent animate-spin" />
-          <div className="relative w-16 h-16 rounded-full overflow-hidden bg-surface-raised">
+          <span className="absolute -inset-1.5 rounded-full border-2 border-stone-300 border-t-brand-600 animate-spin dark:border-stone-700 dark:border-t-brand-400" />
+          <div className="relative w-16 h-16 rounded-full overflow-hidden bg-[#f3f1ec] dark:bg-stone-900">
             <TaiTaiAvatar size={64} />
           </div>
         </div>
         <p className="text-ink-muted font-semibold text-sm flex items-center gap-1.5">
           {t.dashboard.loading}
           <span className="inline-flex gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-stone-400 animate-bounce" style={{ animationDelay: "0ms" }} />
-            <span className="w-1.5 h-1.5 rounded-full bg-stone-400 animate-bounce" style={{ animationDelay: "150ms" }} />
-            <span className="w-1.5 h-1.5 rounded-full bg-stone-400 animate-bounce" style={{ animationDelay: "300ms" }} />
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-stone-400" style={{ animationDelay: "0ms" }} />
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-stone-400" style={{ animationDelay: "150ms" }} />
+            <span className="w-1.5 h-1.5 rounded-[1px] bg-stone-400" style={{ animationDelay: "300ms" }} />
           </span>
         </p>
       </div>
@@ -1135,7 +1145,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             same panels just stack and the page scrolls normally - there is no
             honest way to fit this much on a phone screen. */}
         <div
-          className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 xl:rounded-2xl xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:p-3.5 ${
+          className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 ${
             isLessonsView
               ? "max-w-[1500px] xl:flex xl:flex-col"
               : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_auto_minmax(0,1fr)] xl:gap-3.5"
@@ -1149,20 +1159,17 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             const levelProgress = getLevelProgress(userXp, cfaCompletedForLevel);
             const openLevel = activeTooltipLevel;
 
-            const ACCENTS = [
-              { text: "text-slate-600 dark:text-slate-400", bg: "bg-slate-50 dark:bg-slate-900/50", border: "border-slate-300 dark:border-slate-700", solid: "bg-slate-400" },
-              { text: "text-info", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-info-line", solid: "bg-sky-500" },
-              { text: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/30", border: "border-cyan-300 dark:border-cyan-800", solid: "bg-cyan-500" },
-              { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30", border: "border-violet-400 dark:border-violet-700", solid: "bg-violet-500" },
-              { text: "text-accent", bg: "bg-brand-50 dark:bg-brand-950/30", border: "border-brand-400 dark:border-brand-700", solid: "bg-brand-500" },
-              { text: "text-accent", bg: "bg-brand-50 dark:bg-brand-950/30", border: "border-brand-400 dark:border-brand-700", solid: "bg-brand-500" },
-              { text: "text-orange-600 dark:text-orange-400", bg: "bg-orange-50 dark:bg-orange-950/30", border: "border-orange-400 dark:border-orange-700", solid: "bg-orange-500" },
-              { text: "text-alert", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500" },
-              { text: "text-warn", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-700", solid: "bg-gradient-to-r from-amber-400 to-yellow-500" },
-            ];
+            // Mảng ACCENTS cầu vồng (xám/xanh trời/lục lam/tím/cam/đỏ/vàng
+            // chuyển sắc - mỗi cấp một màu) đã gỡ. Luật 3 của hệ thiết kế chung:
+            // xanh chỉ đánh dấu CẤP ĐANG ĐỨNG (dữ liệu sống), còn lại trung tính.
 
             return (
-              <div className={`rounded-xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 xl:col-span-12 xl:min-h-0 xl:overflow-hidden ${isCompactCard ? "p-2.5" : "p-3 sm:p-3.5"}`}>
+              <Frame
+                title={SYS.dashboard}
+                meta={`L${currentUserLevel}/${LEVELS.length}`}
+                className="xl:col-span-12 xl:min-h-0"
+                bodyClassName={isCompactCard ? "p-2.5" : "p-3 sm:p-3.5"}
+              >
                 <div className="grid grid-cols-1 gap-2.5 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   {/* self-stretch (not the grid's items-start) so this column
                       fills the row height set by the taller UserStats sidebar -
@@ -1171,14 +1178,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   <div className="min-w-0 xl:flex xl:flex-col">
                     <div className="relative z-10 mb-2 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                       <div>
-                        <h3 className="text-[15px] font-bold text-ink">
+                        <h3 className="text-base font-black tracking-tight text-ink-max">
                           {t.dashboard.levelMapTitle}
                         </h3>
                         {/* Dòng giải thích bản đồ chỉ có ở bản đầy đủ: nó nói
                             cách đọc dải cấp độ, và người đã chọn "Gọn" là
                             người đã đọc nó rồi. */}
                         {!isCompactCard && (
-                          <p className="text-[10px] text-ink-muted mt-0.5">
+                          <p className="text-[11px] text-ink-soft mt-0.5">
                             {t.dashboard.levelMapNote}
                           </p>
                         )}
@@ -1202,14 +1209,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <div className="relative group/level-strip">
                           <button
                             onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
-                            className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-line-mid shadow-md items-center justify-center text-ink-soft hover:bg-surface transition-all opacity-0 group-hover/level-strip:opacity-100"
+                            className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-sm bg-white dark:bg-stone-900 border border-line-strong items-center justify-center text-ink-soft hover:border-stone-950 dark:hover:border-stone-300 transition-all opacity-0 group-hover/level-strip:opacity-100"
                             aria-label={t.dashboard.scrollLeft}
                           >
                             <ChevronLeft className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => levelStripRef.current?.scrollBy({ left: 220, behavior: "smooth" })}
-                            className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-stone-900 border border-line-mid shadow-md items-center justify-center text-ink-soft hover:bg-surface transition-all opacity-0 group-hover/level-strip:opacity-100"
+                            className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-sm bg-white dark:bg-stone-900 border border-line-strong items-center justify-center text-ink-soft hover:border-stone-950 dark:hover:border-stone-300 transition-all opacity-0 group-hover/level-strip:opacity-100"
                             aria-label={t.dashboard.scrollRight}
                           >
                             <ChevronRight className="w-4 h-4" />
@@ -1233,16 +1240,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                 const isPassed = currentUserLevel > lvl.level;
                                 const isReached = isPassed || isUserCurrent;
                                 const members = communityUsersByLevel.get(lvl.level) || [];
-                                const accent = ACCENTS[idx % ACCENTS.length];
                                 const isOpen = openLevel === lvl.level;
 
                                 return (
                                   <div key={lvl.level} className="flex items-stretch sm:animate-fade-in [backface-visibility:hidden]">
                                     {idx > 0 && (
-                                      <div className={`w-7 sm:w-9 h-0.5 self-end mb-[42px] shrink-0 ${isReached ? "bg-brand-400 dark:bg-brand-600" : "bg-surface-sunken"}`} />
+                                      <div className={`w-7 sm:w-9 h-px self-end mb-[42px] shrink-0 ${isReached ? "bg-stone-500 dark:bg-stone-400" : "bg-surface-deep"}`} />
                                     )}
                                     <div className="flex flex-col items-center gap-2 shrink-0">
-                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-full border border-stone-200/50 dark:border-stone-800/50 bg-surface shadow-inner [backface-visibility:hidden] [transform:translateZ(0)]">
+                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 [backface-visibility:hidden] [transform:translateZ(0)]">
                                         <img
                                           src={`/levels/level${lvl.level}.jpg`}
                                           alt={t.levelTitles[lvl.level] ?? lvl.name}
@@ -1259,29 +1265,31 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         // dài hơn, nên dòng XP và huy hiệu số người bị đẩy ra ngoài khung.
                                         // Hàng cha là `items-stretch`, nên thẻ cao nhất kéo cả hàng theo -
                                         // chúng vẫn bằng nhau, chỉ là bằng nhau ở chiều cao đủ chứa chữ.
-                                        className={`relative text-left rounded-xl border p-1.5 w-[92px] min-h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${
-                                          isReached
-                                            ? `${accent.border} ${isOpen ? "scale-[1.02]" : ""}`
-                                            : "border-line-soft opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
+                                        aria-expanded={isOpen}
+                                        aria-current={isUserCurrent ? "step" : undefined}
+                                        className={`relative text-left rounded-sm border p-1.5 w-[92px] min-h-[88px] shrink-0 transition-colors cursor-pointer flex flex-col [backface-visibility:hidden] ${
+                                          isUserCurrent
+                                            ? "border-brand-600 bg-white dark:border-brand-400 dark:bg-stone-900"
+                                            : isReached
+                                            ? `bg-white dark:bg-stone-900 hover:border-stone-950 dark:hover:border-stone-300 ${isOpen ? "border-stone-950 dark:border-stone-300" : "border-line-strong"}`
+                                            : "border-stone-200 bg-[#f3f1ec] opacity-60 hover:opacity-90 dark:border-stone-800 dark:bg-stone-950"
                                         }`}
                                       >
-                                        {isUserCurrent && (
-                                          <span className="absolute -top-1 -left-1 flex w-3 h-3">
-                                            <span className={`relative inline-flex w-3 h-3 rounded-full border-2 border-white dark:border-stone-900 ${accent.solid}`} />
-                                          </span>
-                                        )}
                                         <div className="flex items-center justify-between gap-1">
-                                          <span className={`text-[10px] font-black uppercase tracking-wider ${isReached ? accent.text : "text-ink-faint"}`}>
+                                          <Sys className={isUserCurrent ? "text-accent-strong" : isReached ? "text-ink-body" : "text-ink-faint"}>
                                             L{lvl.level}
-                                          </span>
+                                          </Sys>
                                           {isUserCurrent && (
-                                            <span className={`text-[7px] font-black uppercase text-white px-1 py-0.5 rounded-full ${accent.solid}`}>{t.dashboard.youBadge}</span>
+                                            <span className="inline-flex items-center gap-1 text-[8px] font-black uppercase text-accent-strong">
+                                              <StatusDot />
+                                              {t.dashboard.youBadge}
+                                            </span>
                                           )}
                                         </div>
                                         <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isReached ? "text-ink" : "text-ink-muted"}`}>
                                           {t.levelTitles[lvl.level] ?? lvl.name}
                                         </p>
-                                        <p className="text-[9px] text-ink-faint mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
+                                        <p className="font-mono text-[9.5px] tabular-nums text-ink-muted mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
                                         {/* Cấp có cổng CFA phải nói ra, nếu không thẻ đang nói dối
                                             bằng cách nói thiếu. L9 đòi 3.600 XP VÀ 5 mô-đun CFA
                                             (lib/levels.ts), nhưng thẻ chỉ ghi ngưỡng XP - nên người học
@@ -1293,7 +1301,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             {format(t.finalOne.dashboardClient.levelCfaGate, { count: lvl.minCfaCompleted })}
                                           </p>
                                         ) : null}
-                                        <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-surface-raised text-ink-faint"}`}>
+                                        <div className={`inline-flex items-center gap-1 font-mono text-[9px] font-medium tabular-nums mt-1 px-1.5 py-px rounded-xs border w-fit ${isReached ? "border-stone-300 text-ink-body dark:border-stone-700" : "border-stone-200 text-ink-faint dark:border-stone-800"}`}>
                                           <Users className="w-2.5 h-2.5" aria-hidden /> {members.length}
                                         </div>
                                       </button>
@@ -1309,7 +1317,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           {openLevel !== null && (() => {
                             const lvl = LEVELS.find((l) => l.level === openLevel)!;
                             const members = communityUsersByLevel.get(openLevel) || [];
-                            const accent = ACCENTS[LEVELS.indexOf(lvl) % ACCENTS.length];
                             return (
                               <motion.div
                                 initial={{ height: 0, opacity: 0 }}
@@ -1318,8 +1325,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                 transition={{ duration: 0.2 }}
                                 className="overflow-hidden"
                               >
-                                <div className={`mt-4 rounded-xl ${accent.bg} p-4`}>
-                                  <p className={`text-xs font-black uppercase tracking-wider ${accent.text} mb-3`}>
+                                <div className="mt-4 rounded-sm border border-stone-300 bg-[#f3f1ec] p-4 dark:border-stone-700 dark:bg-stone-950">
+                                  <p className="eyebrow text-ink-body mb-3">
                                     {format(t.dashboard.levelMembers, { level: lvl.level, name: t.levelTitles[lvl.level] ?? lvl.name, count: members.length })}
                                   </p>
                                   {members.length > 0 ? (
@@ -1328,7 +1335,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         <Link
                                           key={i}
                                           href={`/nguoi-hoc/${m.userId}`}
-                                          className="flex items-center gap-2.5 bg-white dark:bg-stone-900 rounded-lg px-3 py-2.5 hover:bg-surface-raised transition-colors"
+                                          className="flex items-center gap-2.5 bg-white dark:bg-stone-900 rounded-xs border border-stone-200 px-3 py-2.5 hover:border-stone-950 transition-colors dark:border-stone-800 dark:hover:border-stone-300"
                                         >
                                           {isValidAvatar(m.avatarUrl) ? (
                                             // next/image chứ không phải <img>: đây là ảnh trong
@@ -1337,14 +1344,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             // cho từng người xem, mỗi lần cache hết hạn.
                                             <Image src={m.avatarUrl} alt={m.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover shrink-0" />
                                           ) : (
-                                            <div className="w-8 h-8 rounded-full bg-surface-raised text-ink-soft flex items-center justify-center text-xs font-black shrink-0">
+                                            <div className="w-8 h-8 rounded-full bg-[#f3f1ec] text-ink-soft flex items-center justify-center text-xs font-black shrink-0 dark:bg-stone-800">
                                               {m.name.charAt(0).toUpperCase()}
                                             </div>
                                           )}
                                           <span className="flex-1 min-w-0 text-sm font-bold text-ink-heading truncate">
                                             {m.name}
                                           </span>
-                                          <span className="text-xs font-black text-accent shrink-0">
+                                          <span className="font-mono text-xs font-medium tabular-nums text-ink-max shrink-0">
                                             {format(t.finalOne.dashboardClient.xpValue, { xp: m.xp })}
                                           </span>
                                         </Link>
@@ -1404,7 +1411,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                   </div>
 
-                  <div className="min-w-0 rounded-xl bg-stone-50/85 dark:bg-stone-900/60 p-3 xl:p-3.5">
+                  <div className="min-w-0 rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950 xl:p-3.5">
                     <UserStats
                       xp={userXp}
                       lessonsCompleted={totalDone}
@@ -1417,7 +1424,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     />
                   </div>
                 </div>
-              </div>
+              </Frame>
             );
           })()}
 
@@ -1447,13 +1454,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           // và kéo theo một khoảng trống nửa màn hình. Còn ở đây dải vẫn trải
           // đủ 12 cột, chỉ là nội dung neo về đầu hàng.
           <div className="flex items-center justify-start gap-2 xl:col-span-12">
-            <span className="text-xs text-ink-muted">
+            <span className="eyebrow text-ink-muted">
               {t.dashboard.presetLabel}
             </span>
             <div
               role="group"
               aria-label={t.dashboard.presetLabel}
-              className="inline-flex rounded-xl border border-stone-200 bg-white p-0.5 dark:border-stone-800 dark:bg-stone-900"
+              className="inline-flex rounded-sm border border-stone-300 bg-white p-0.5 dark:border-stone-700 dark:bg-stone-900"
             >
               {([
                 { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
@@ -1465,10 +1472,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   onClick={() => choosePreset(opt.id)}
                   aria-pressed={preset === opt.id}
                   title={opt.hint}
-                  className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
+                  className={`cursor-pointer rounded-xs px-3 py-1.5 text-xs font-bold transition-colors ${
                     preset === opt.id
-                      ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900"
-                      : "text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800"
+                      ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
+                      : "text-ink-soft hover:bg-[#f3f1ec] hover:text-ink-max dark:hover:bg-stone-800"
                   }`}
                 >
                   {opt.label}
@@ -1503,7 +1510,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               onPointerCancel={sidebar.endDrag}
               onKeyDown={sidebar.onKeyDown}
               style={{ right: "calc(var(--sidebar-w) + 0.4375rem)" }}
-              className={`absolute inset-y-0 z-20 hidden w-1.5 -translate-x-1/2 cursor-col-resize rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 xl:block ${
+              className={`absolute inset-y-0 z-20 hidden w-1.5 -translate-x-1/2 cursor-col-resize rounded-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 xl:block ${
                 sidebar.isDragging ? "bg-brand-500" : "bg-transparent hover:bg-surface-deep"
               }`}
             />
@@ -1547,20 +1554,20 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {!isLessonsView && (
               <Link
                 href="/lo-trinh"
-                className="group flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 transition-all hover:border-brand-300 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-brand-800"
+                className={`group flex items-center gap-3.5 ${panel} p-4 transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-100 dark:bg-brand-950/40 dark:text-brand-400">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
                   <Route className="h-5 w-5" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-bold leading-tight text-ink">
+                  <p className="text-sm font-black tracking-tight leading-tight text-ink-max">
                     {t.nav.learningPath}
                   </p>
                   <p className="mt-0.5 text-xs leading-snug text-ink-muted">
                     {t.dashboard.learningPathCardSub}
                   </p>
                 </div>
-                <span className="shrink-0 text-lg font-bold text-stone-300 transition-all group-hover:translate-x-0.5 group-hover:text-brand-500 dark:text-stone-600">
+                <span className="shrink-0 text-lg font-bold text-ink-faint transition-all group-hover:translate-x-0.5 group-hover:text-accent-strong">
                   ›
                 </span>
               </Link>
@@ -1615,10 +1622,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
             {/* Bookmarks Section */}
             {bookmarks.length > 0 && (
-              <div className="rounded-xl border border-line bg-white dark:bg-stone-900 px-4 py-4">
+              <div className={`${panel} px-4 py-4`}>
                 <div className="flex items-center justify-between gap-3 mb-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-warn flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
                       <Bookmark className="w-4 h-4" />
                     </div>
                     <div>
@@ -1639,7 +1646,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     <Link
                       key={bookmark.id}
                       href={`/bai-hoc/${bookmark.lesson_slug}`}
-                      className="group rounded-lg bg-stone-50 dark:bg-stone-950/40 px-4 py-3 hover:bg-surface-raised transition-colors"
+                      className="group rounded-sm border border-stone-200 bg-[#fbfaf7] dark:border-stone-800 dark:bg-stone-950/40 px-4 py-3 hover:border-stone-950 dark:hover:border-stone-300 transition-colors"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -1650,7 +1657,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             {format(t.dashboard.bookmarkedOn, { date: new Date(bookmark.created_at).toLocaleDateString(intlLocale(locale)) })}
                           </p>
                         </div>
-                        <Bookmark className="w-4 h-4 shrink-0 text-amber-500 dark:text-amber-400 group-hover:scale-110 transition-transform" />
+                        <Bookmark className="w-4 h-4 shrink-0 text-ink-faint group-hover:text-accent-strong transition-colors" />
                       </div>
                     </Link>
                   ))}
@@ -1668,23 +1675,21 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <div
  id="lo-trinh" data-tour="track-selector" className="scroll-mt-24 max-w-full overflow-hidden"
  >
- {/* Primary Track Segmented Pills - chia đôi đúng chiều ngang khung. Trước là sm:inline-flex nên khung co theo nội dung và dạt về trái. */}
- <div className="flex w-full p-1 rounded-2xl gap-2 select-none">
+ {/* Chọn track: tab chữ theo hệ thiết kế chung (gạch dưới xanh cho tab
+     đang mở), không còn hai viên thuốc nền brand đậm. Vẫn chia đôi đúng
+     chiều ngang khung. */}
+ <div role="tablist" className="flex w-full gap-6 border-b border-line-strong select-none">
  {(["personal", "professional"] as const).map((trackId) => {
  const isActive = isTrackView && activeTrack === trackId;
  return (
  <button
  key={trackId}
- type="button" onClick={() => setActiveTrack(trackId)}
- className={`flex-1 min-w-0 cursor-pointer rounded-2xl px-3 sm:px-5 py-3 text-xs font-black transition-all flex items-center justify-center gap-2.5 border ${
- isActive
- ? "bg-brand-900 text-white border-brand-900 shadow-xs"
- : "bg-white dark:bg-stone-900 text-ink-body border-stone-200/90 dark:border-stone-800 hover:bg-stone-100"
- }`}
+ type="button" role="tab" aria-selected={isActive} onClick={() => setActiveTrack(trackId)}
+ className={`${tabClass(isActive)} flex-1 min-w-0 cursor-pointer pt-1 flex items-center justify-center gap-2.5`}
  >
  <span className="text-center leading-snug">{t.trackStages[trackId].title}</span>
- <span className={`shrink-0 text-[11px] tabular-nums font-bold px-2 py-0.5 rounded-full ${
- isActive ? "bg-white/20 text-white" : "bg-stone-200/80 text-stone-600 dark:bg-stone-800 dark:text-stone-400"
+ <span className={`shrink-0 font-mono text-[11px] font-medium tabular-nums ${
+ isActive ? "text-accent-strong" : "text-ink-faint"
  }`}>
  {format(t.dashboard.trackDoneOfTotal, trackCounts[trackId])}
  </span>
@@ -1704,17 +1709,18 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <button
  key={branch.id}
  onClick={() => handleSetProfessionalBranch(branch.id)}
- className={`shrink-0 whitespace-nowrap px-4 py-2 text-xs font-black rounded-xl transition-all cursor-pointer border ${
+ aria-pressed={isActive}
+ className={`shrink-0 whitespace-nowrap px-3.5 py-2 text-xs font-bold rounded-sm transition-colors cursor-pointer border ${
  isActive
- ? "bg-surface-invert text-ink-invert border-line-invert shadow-md scale-[1.02]"
- : "bg-white dark:bg-stone-900 text-ink-body border-stone-200/90 dark:border-stone-800 hover:border-brand-500 dark:hover:border-brand-500 hover:text-stone-900"
+ ? "border-brand-600 bg-white text-accent-strong dark:border-brand-400 dark:bg-stone-900"
+ : "bg-white dark:bg-stone-900 text-ink-body border-line-strong hover:border-stone-950 dark:hover:border-stone-300"
  }`}
  >
  <span>{t.professionalBranches[branch.id]?.label ?? branch.label}</span>
  {(branchProgress.get(branch.id)?.total ?? 0) > 0 && (
  <span
- className={`ml-2 text-[10px] tabular-nums font-semibold ${
- isActive ? "text-white/70 dark:text-stone-900/70" : "text-ink-faint"
+ className={`ml-2 font-mono text-[10px] tabular-nums font-medium ${
+ isActive ? "text-accent-strong" : "text-ink-faint"
  }`}
  >
  {branchProgress.get(branch.id)!.done}/{branchProgress.get(branch.id)!.total}
@@ -1739,7 +1745,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Bảy nhánh kèm mô tả */}
  {showAllBranches && (
- <ul className="mt-2.5 divide-y divide-stone-100 overflow-hidden rounded-xl border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
+ <ul className="mt-2.5 divide-y divide-stone-200 overflow-hidden rounded-md border border-stone-300 bg-white dark:divide-stone-800 dark:border-stone-700 dark:bg-stone-900">
  {PROFESSIONAL_BRANCHES.map((branch) => (
  <li key={branch.id}>
  <button
@@ -1747,11 +1753,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  handleSetProfessionalBranch(branch.id);
  setShowAllBranches(false);
  }}
- className={`w-full cursor-pointer px-3.5 py-2.5 text-left transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/60 ${
- professionalBranch === branch.id ? "bg-stone-50 dark:bg-stone-800/60" : ""
+ className={`w-full cursor-pointer px-3.5 py-2.5 text-left transition-colors hover:bg-[#f3f1ec] dark:hover:bg-stone-800/60 ${
+ professionalBranch === branch.id ? "bg-[#f3f1ec] dark:bg-stone-800/60" : ""
  }`}
  >
- <span className="block text-xs font-bold text-ink">
+ <span className={`block text-xs font-bold ${professionalBranch === branch.id ? "text-accent-strong" : "text-ink"}`}>
  {t.professionalBranches[branch.id]?.label ?? branch.label}
  </span>
  <span className="mt-0.5 block text-[11px] leading-relaxed text-ink-muted">
@@ -1775,7 +1781,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  value={stageSearchQuery}
  onChange={(e) => setStageSearchQuery(e.target.value)}
  placeholder={t.dashboard.searchPlaceholder}
- className="w-full pl-10 pr-9 py-2.5 rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs font-medium text-ink placeholder:text-stone-400 focus:outline-none focus:border-brand-600 shadow-2xs transition-all"
+ className="w-full pl-10 pr-9 py-2.5 rounded-sm border border-line-strong bg-white dark:bg-stone-900 text-xs font-medium text-ink placeholder:text-stone-400 focus:outline-none focus:border-brand-600 transition-colors"
  />
  {stageSearchQuery && (
  <button
@@ -1791,19 +1797,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
  {flagSelectionMode && (
  <>
- <span className="text-xs font-bold text-info hidden lg:inline">
+ <span className="font-mono text-[11px] font-medium tabular-nums text-accent-strong hidden lg:inline">
  {format(t.dashboard.selectedCount, { count: selectedFlagLessonIds.size })}
  </span>
  <button
  onClick={clearFlagSelection}
- className="px-3 py-2 text-xs font-bold rounded-xl border border-line text-ink-soft hover:bg-surface transition-colors cursor-pointer"
+ className={`${btnSecondary} px-3 py-2 text-xs cursor-pointer`}
  >
  {t.dashboard.cancel}
  </button>
  <button
  onClick={applyManualFlags}
  disabled={flagSaving || selectedFlagLessonIds.size === 0}
- className="px-3 py-2 text-xs font-bold rounded-xl bg-brand-600 hover:bg-brand-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
+ className={`${btnPrimary} px-3 py-2 text-xs cursor-pointer`}
  >
  {flagSaving ? t.dashboard.markLearned.saving : t.dashboard.markLearned.confirm}
  </button>
@@ -1816,10 +1822,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  if (flagSelectionMode) clearFlagSelection();
  else setFlagSelectionMode(true);
  }}
- className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition-colors cursor-pointer flex items-center gap-1.5 ${
+ aria-pressed={flagSelectionMode}
+ className={`px-3.5 py-2 text-xs font-bold rounded-sm border transition-colors cursor-pointer flex items-center gap-1.5 ${
  flagSelectionMode
- ? "border-info-line bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-400"
- : "border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 text-ink-body hover:bg-stone-50 shadow-2xs"
+ ? "border-brand-600 bg-white text-accent-strong dark:border-brand-400 dark:bg-stone-900"
+ : "border-line-strong bg-white dark:bg-stone-900 text-ink-body hover:border-stone-950 dark:hover:border-stone-300"
  }`}
  >
  <span>{t.dashboard.markLearned.button}</span>
@@ -1828,28 +1835,28 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  e.stopPropagation();
  setManualFlagInfoOpen((current) => !current);
  }}
- className="inline-flex items-center justify-center rounded-full border border-line-strong w-4 h-4 text-[10px] font-black text-stone-500 transition-colors hover:bg-stone-100 dark:text-stone-400" aria-expanded={manualFlagInfoOpen}
+ className="inline-flex items-center justify-center rounded-xs border border-line-strong w-4 h-4 text-[10px] font-black text-stone-500 transition-colors hover:bg-[#f3f1ec] dark:text-stone-400 dark:hover:bg-stone-800" aria-expanded={manualFlagInfoOpen}
  aria-label={t.dashboard.markLearned.help}
  >
  ?
  </span>
  </button>
 
- <div className={`absolute right-0 top-full z-30 mt-2 w-80 max-w-[90vw] rounded-xl border border-line bg-white dark:bg-stone-900 p-4 text-xs text-ink-body leading-relaxed shadow-xl origin-top-right transition-all duration-150 space-y-2 ${
+ <div className={`absolute right-0 top-full z-30 mt-2 w-80 max-w-[90vw] rounded-md border border-line-strong bg-white dark:bg-stone-900 p-4 text-xs text-ink-body leading-relaxed origin-top-right transition-all duration-150 space-y-2 ${
  manualFlagInfoOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
  }`}>
  <p>
  {t.dashboard.markLearned.autoPart1}
  <strong>{t.dashboard.markLearned.autoAnd}</strong>
  {t.dashboard.markLearned.autoPart2}
- <span className="font-semibold text-accent">
+ <span className="font-semibold text-accent-strong">
  {t.dashboard.markLearned.autoColour}
  </span>
  {t.dashboard.markLearned.autoPart3}
  </p>
  <p>
  {t.dashboard.markLearned.manualPart1}
- <span className="font-semibold text-info">
+ <span className="font-semibold text-accent-strong">
  {t.dashboard.markLearned.manualColour}
  </span>
  {t.dashboard.markLearned.manualPart2}
@@ -1885,7 +1892,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <div
  key={stage.label}
  id={`stage-${stage.label}`}
- className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 shadow-xs transition-all"
+ className={`${panel} p-4 sm:p-5`}
  >
  {/* Stage header - click to expand/collapse */}
  {(() => {
@@ -1903,28 +1910,28 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  className="w-full flex items-center justify-between gap-3 cursor-pointer text-left select-none"
  >
  <div className="flex items-center gap-3 min-w-0 flex-1">
- {/* Biểu tượng chặng. Kiểu dáng giữ đúng bản tài chính (chặng 1 là lá cờ
-     trên nền vàng, còn lại là ô brand đậm); chỉ hình bên trong đổi theo
-     nội dung công nghệ, vì "%" hay thẻ tín dụng là của chặng thuế và nợ. */}
+ {/* Biểu tượng chặng. Chặng 1 là lá cờ trên ô giấy, còn lại là ô mực
+     đậm (stone-950) - trước đây là nền vàng và nền brand, nhưng xanh chỉ
+     dành cho chức năng. Hình bên trong đổi theo nội dung công nghệ. */}
  {stageIdx === 0 ? (
- <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs tabular-nums font-black bg-[#fef08a] border border-amber-300">
- <Flag className="w-5 h-5 text-rose-600 fill-rose-600" />
+ <div className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0 border border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
+ <Flag className="w-5 h-5 text-ink-body" />
  </div>
  ) : (() => {
    const StageIcon = STAGE_ICONS[(stageIdx - 1) % STAGE_ICONS.length];
    return (
-     <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs tabular-nums font-black bg-brand-900 text-white border border-brand-900">
-       <StageIcon className="w-5 h-5 text-white" />
+     <div className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0 bg-stone-950 text-white border border-stone-950 dark:bg-stone-100 dark:border-stone-100">
+       <StageIcon className="w-5 h-5 text-white dark:text-stone-950" />
      </div>
    );
  })()}
 
  <div className="flex items-center gap-2 flex-wrap min-w-0">
- <span className="text-[10px] tabular-nums font-black uppercase text-ink-body bg-surface-raised px-2 py-0.5 rounded-md border border-line-mid shrink-0">
+ <span className="text-[10px] tabular-nums font-black uppercase text-ink-body bg-[#f3f1ec] px-2 py-0.5 rounded-xs border border-stone-300 shrink-0 dark:bg-stone-950 dark:border-stone-700">
  {stageDisplayLabels.get(stage.label) || stageCopy?.label || stage.label}
  </span>
  {stage.isNew && (
- <span className="text-[9px] tabular-nums font-black uppercase text-accent-ink bg-brand-100 dark:bg-brand-950/80 px-1.5 py-0.2 rounded border border-brand-300 shrink-0">
+ <span className="text-[9px] font-black uppercase text-ink-body px-1.5 py-px rounded-xs border border-stone-400 shrink-0 dark:border-stone-600">
  {t.dashboard.isNew}
  </span>
  )}
@@ -1951,7 +1958,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
      `onClose`, nên linter thấy nó "có dùng". */}
  {isCurrentMilestonePassed && (
    <div className="flex items-center gap-2 shrink-0">
-     <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-black text-accent-ink bg-brand-100 dark:bg-brand-950/60 px-2.5 py-1 rounded-lg">
+     <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold text-brand-800 border border-brand-300 px-2 py-0.5 rounded-xs dark:text-brand-300 dark:border-brand-800">
        {t.dashboard.milestone.passed}
      </span>
      <button
@@ -1960,7 +1967,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
          e.stopPropagation();
          setSelectedCertStage({ label: stage.label, name: stage.name });
        }}
-       className="inline-flex items-center gap-1 text-[11px] font-black text-white bg-brand-600 hover:bg-brand-700 px-2.5 py-1 rounded-md transition-colors cursor-pointer"
+       className={`${btnPrimary} px-2.5 py-1 text-[11px] cursor-pointer`}
      >
        <Award className="w-3.5 h-3.5" />
        {t.dashboard.milestone.certificate}
@@ -1969,20 +1976,17 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  )}
  {stage.available && learnersInStage(stageLessons) > 0 && (
  <span className="hidden md:inline-flex items-center gap-1.5 text-[11px] text-stone-500 font-medium">
- <span className="flex -space-x-1.5 overflow-hidden">
- <span className="inline-block h-4 w-4 rounded-full bg-brand-200 ring-1 ring-white" />
- <span className="inline-block h-4 w-4 rounded-full bg-amber-200 ring-1 ring-white" />
- </span>
+ <Users className="h-3.5 w-3.5 text-ink-faint" aria-hidden />
  <span>{format(t.dashboard.stageLearners, { count: learnersInStage(stageLessons) })}</span>
  </span>
  )}
 
  {stage.available && stageLessons.length > 0 && (
  <div className="flex items-center gap-2.5">
- <div className="w-14 h-1.5 bg-surface-sunken rounded-full overflow-hidden hidden sm:block">
+ <div className="w-14 h-1.5 bg-surface-sunken rounded-xs overflow-hidden hidden sm:block">
  <div className="h-full bg-brand-600 dark:bg-brand-500 transition-all" style={{ width: `${percent}%` }} />
  </div>
- <span className="text-xs tabular-nums font-bold text-ink-body bg-white dark:bg-stone-800 px-2.5 py-1 rounded-xl border border-line-mid shadow-2xs">
+ <span className="font-mono text-xs tabular-nums font-medium text-ink-max">
  {stageDone}/{stageLessons.length}
  </span>
  </div>
@@ -1996,13 +2000,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Not available yet - with lock and loading animation */}
  {stageOpen && !stage.available && (
- <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-stone-50 dark:bg-stone-900/50 relative overflow-hidden">
- {/* Building background */}
- <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 dark:via-stone-800 to-transparent opacity-30" />
+ <div className="mt-4 border border-dashed border-line-strong rounded-sm px-5 py-6 text-center bg-[#fbfaf7] dark:bg-stone-900/50 relative overflow-hidden">
 
  {/* Lock icon */}
  <div className="relative z-10 flex flex-col items-center gap-3">
- <div className="w-12 h-12 rounded-lg bg-surface-sunken flex items-center justify-center animate-bounce">
+ <div className="w-12 h-12 rounded-sm border border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center">
  <svg className="w-6 h-6 text-ink-soft" fill="currentColor" viewBox="0 0 24 24">
  <path d="M12 1C6.48 1 2 5.48 2 11v10c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V11c0-5.52-4.48-10-10-10zm0 2c4.41 0 8 3.59 8 8v2H4v-2c0-4.41 3.59-8 8-8zm-3 13h6v2H9z"/>
  </svg>
@@ -2017,14 +2019,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Available but no lessons in DB yet - with building animation */}
  {stageOpen && stage.available && stageLessons.length === 0 && (
- <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-brand-50 dark:bg-brand-950/50 relative overflow-hidden">
- {/* Construction bars */}
- <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
- <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
- <div className="w-1 bg-stone-400 rounded-full" style={{ height: '28px' }} />
- <div className="w-1 bg-stone-400 rounded-full" style={{ height: '24px' }} />
- <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
- </div>
+ <div className="mt-4 border border-dashed border-line-strong rounded-sm px-5 py-6 text-center bg-[#fbfaf7] dark:bg-stone-900/50 relative overflow-hidden">
 
  {/* Content */}
  <div className="relative z-10 flex flex-col items-center gap-2">
@@ -2037,7 +2032,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Parts (sub-stages) - each its own collapsible accordion */}
  {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && (
- <div className="space-y-3">
+ <div className="mt-4 space-y-2">
  {stage.parts.map((part, partIdx) => {
  const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
  if (partLessons.length === 0) return null;
@@ -2050,22 +2045,23 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  const partOpen = openParts.has(partKey) || (isSearchingStages && partHasSearchMatch);
 
  return (
- <div key={part.name} className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900/80 overflow-hidden shadow-2xs">
+ <div key={part.name} className="rounded-sm border border-line-strong bg-white dark:bg-stone-900 overflow-hidden">
  <button
  onClick={() => togglePart(partKey)}
- className="w-full flex items-center gap-3 px-4 py-3 hover:bg-stone-50/80 dark:hover:bg-stone-800/50 transition-colors cursor-pointer text-left select-none"
+ aria-expanded={partOpen}
+ className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors cursor-pointer text-left select-none ${partOpen ? "border-b border-stone-200 bg-[#f3f1ec] dark:border-stone-800 dark:bg-stone-950" : ""}`}
  >
  <div className="shrink-0">
  {partDone === partLessons.length && partLessons.length > 0 ? (
- <div className="w-7 h-7 rounded-full bg-brand-100 dark:bg-brand-950/60 text-accent-strong flex items-center justify-center">
+ <div className="w-7 h-7 rounded-sm border border-brand-300 text-brand-700 flex items-center justify-center dark:border-brand-800 dark:text-brand-400">
  <CheckCircle2 className="w-4 h-4" />
  </div>
  ) : partIdx === 0 && stageIdx === 0 ? (
- <div className="w-7 h-7 rounded-full bg-brand-900 text-white flex items-center justify-center shadow-xs">
- <Play className="w-3.5 h-3.5 fill-white translate-x-0.5" />
+ <div className="w-7 h-7 rounded-sm bg-stone-950 text-white flex items-center justify-center dark:bg-stone-100 dark:text-stone-950">
+ <Play className="w-3.5 h-3.5 fill-current translate-x-0.5" />
  </div>
  ) : (
- <div className="w-7 h-7 rounded-full bg-surface-raised text-stone-400 flex items-center justify-center">
+ <div className="w-7 h-7 rounded-sm border border-stone-300 bg-[#f3f1ec] text-stone-400 flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
  <Lock className="w-3.5 h-3.5" />
  </div>
  )}
@@ -2077,11 +2073,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  {stageCopy?.parts[partIdx] ?? part.name}
  </span>
  
- <span className="text-[10px] text-ink-muted tabular-nums bg-surface-raised px-2 py-0.5 rounded-md border border-stone-200/60 dark:border-stone-700">
+ <span className="hidden sm:inline font-mono text-[10px] text-ink-muted tabular-nums">
  {format(t.dashboard.lessonRange, { from: lessonOrdinal.get(partLessons[0].id) ?? "", to: lessonOrdinal.get(partLessons[partLessons.length - 1].id) ?? "" })}
  </span>
 
- <span className="text-xs tabular-nums font-bold text-ink-soft bg-surface-raised px-2.5 py-0.5 rounded-lg border border-stone-200/60 dark:border-stone-700">
+ <span className="font-mono text-xs tabular-nums font-medium text-ink-max">
  {partDone}/{partLessons.length}
  </span>
  
@@ -2102,16 +2098,16 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <button
  key={lesson.id}
  onClick={() => handleLockedLessonClick(lesson)}
- className="w-full text-left block rounded-lg border border-line bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+ className="w-full text-left block rounded-sm border border-stone-200 bg-[#f3f1ec] dark:border-stone-800 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
  >
  <div className="flex items-center gap-4 px-6 py-5">
  <div className="w-12 flex-shrink-0 text-center">
- <span className="tabular-nums text-sm font-extrabold text-ink-faint">
+ <span className="font-mono tabular-nums text-sm font-medium text-ink-faint">
  {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
  </span>
  </div>
  <div className="flex-shrink-0">
- <div className="w-6 h-6 rounded-full bg-surface-sunken flex items-center justify-center">
+ <div className="w-6 h-6 rounded-xs border border-stone-300 flex items-center justify-center dark:border-stone-700">
  <Lock className="w-3.5 h-3.5 text-ink-muted" />
  </div>
  </div>
@@ -2134,22 +2130,22 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <div
  key={lesson.id}
  onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
- className={`relative block rounded-lg border transition-all ${
+ className={`relative block rounded-sm border transition-colors ${
  isDone
- ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line hover:border-accent-line-mid hover:bg-brand-100 dark:hover:bg-brand-950"
+ ? "bg-[#fbfaf7] dark:bg-stone-900/60 border-line hover:border-stone-950 dark:hover:border-stone-300"
  : lesson.id === currentLessonId
  ? "border-stone-900 bg-white dark:border-stone-100 dark:bg-stone-900"
  : isSelectedForFlag
- ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
+ ? "bg-white dark:bg-stone-900 border-brand-600 dark:border-brand-400"
  : isFlagged
- ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-info-line"
- : "bg-white dark:bg-stone-900 border-line hover:border-line-firm hover:bg-surface"
+ ? "bg-white dark:bg-stone-900 border-accent-line-mid hover:border-brand-600"
+ : "bg-white dark:bg-stone-900 border-line-strong hover:border-stone-950 dark:hover:border-stone-300"
  }`}
  >
  <div className="flex items-center gap-4 px-6 py-5">
  {/* Day number */}
  <div className="w-12 flex-shrink-0 text-center">
- <span className={`tabular-nums text-sm font-extrabold ${isDone ? "text-accent" : isFlagged ? "text-info" : "text-ink-muted"}`}>
+ <span className={`font-mono tabular-nums text-sm font-medium ${isDone ? "text-accent-strong" : isFlagged ? "text-accent-strong" : "text-ink-muted"}`}>
  {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
  </span>
  </div>
@@ -2159,19 +2155,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  {isExamCredited ? (
  // Hổ phách chứ không xanh: đã mở khoá là đúng, nhưng ghi "xong" là
  // ghi sai - người học chưa mở bài này ra lần nào.
- <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center" title={t.dashboard.examCreditedHint}>
+ <div className="w-6 h-6 rounded-xs bg-amber-500 flex items-center justify-center" title={t.dashboard.examCreditedHint}>
  <LockOpen className="w-3.5 h-3.5 text-white" />
  </div>
  ) : isDone ? (
- <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
- <CheckCircle2 className="w-5 h-5 text-white" />
+ <div className="w-6 h-6 rounded-xs bg-brand-600 flex items-center justify-center dark:bg-brand-500">
+ <CheckCircle2 className="w-4 h-4 text-white" />
  </div>
  ) : isFlagged ? (
- <div className="w-6 h-6 rounded-full bg-sky-500 flex items-center justify-center">
+ <div className="w-6 h-6 rounded-xs bg-brand-600 flex items-center justify-center dark:bg-brand-500">
  <CheckCheck className="w-4 h-4 text-white" />
  </div>
  ) : (
- <div className="w-6 h-6 rounded-full border-3 border-line-strong" />
+ <div className="w-6 h-6 rounded-xs border-2 border-line-strong" />
  )}
  </div>
 
@@ -2185,10 +2181,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  }}
  className="flex-1 min-w-0 block"
  >
- <div className={`text-base font-bold leading-snug ${isDone ? "text-accent-ink-strong" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
+ <div className={`text-base font-bold leading-snug ${isDone ? "text-ink-body" : "text-ink-max"}`}>
  {stripStageLessonPrefix(lesson.title)}
  </div>
- <div className={`text-sm mt-1 line-clamp-2 ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
+ <div className={`text-sm mt-1 line-clamp-2 ${isDone ? "text-ink-muted" : isFlagged ? "text-accent-strong" : "text-ink-soft"}`}>
  {isExamCredited ? t.dashboard.examCreditedSubtitle : isFlagged ? t.dashboard.markLearned.flaggedSubtitle : renderSubtitle(lesson.id)}
  </div>
  <div className="text-[11px] mt-0.5 text-ink-faint font-semibold">
@@ -2215,9 +2211,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  event.stopPropagation();
  toggleFlagSelection(lesson.id);
  }}
- className={`flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center ${
+ className={`flex-shrink-0 w-6 h-6 rounded-xs border-2 flex items-center justify-center ${
  isSelectedForFlag
- ? "border-sky-500 bg-sky-500 text-white"
+ ? "border-brand-600 bg-brand-600 text-white"
  : "border-line-strong text-transparent"
  }`}
  aria-label={t.dashboard.markLearned.selectAria}
@@ -2228,24 +2224,25 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Meta */}
  <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
- <span className={`text-sm font-semibold ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
+ <span className={`text-sm font-semibold ${isDone ? "text-ink-muted" : isFlagged ? "text-accent-strong" : "text-ink-soft"}`}>
  {formatLessonTime(lesson, t.dashboard.minutesShort)}
  </span>
  {/* Ba trạng thái, ba cách đọc: đã học
- (bạc hà), ĐANG HỌC (nền mực - chỉ
+ (xanh lá - khớp chữ "autoColour" trong
+ hộp giải thích), ĐANG HỌC (nền mực - chỉ
  đúng một hàng trong cả danh sách
  mang nó), chưa học (nhãn độ khó).
  Trước đây chỉ có hai, nên một chặng
  21 bài chưa học là 21 hàng giống hệt
  nhau. */}
- <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
+ <span className={`text-xs font-bold rounded-xs border px-2.5 py-1 ${
  isDone
- ? "bg-brand-200 dark:bg-brand-900 text-brand-900 dark:text-brand-300"
+ ? "border-brand-300 text-brand-800 dark:border-brand-800 dark:text-brand-300"
  : lesson.id === currentLessonId
- ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900"
+ ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
  : isFlagged
- ? "bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300"
- : "bg-surface-raised text-ink-body"
+ ? "border-brand-300 text-accent-strong dark:border-brand-800"
+ : "border-stone-300 text-ink-body dark:border-stone-700"
  }`}>
  {isDone
  ? t.dashboard.markLearned.doneBadge
@@ -2262,14 +2259,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  event.preventDefault();
  setAppealTarget({ id: lesson.id, slug: lesson.slug, title: lesson.title });
  }}
- className="text-xs font-bold text-ink-faint hover:text-info underline underline-offset-2"
+ className="text-xs font-bold text-ink-faint hover:text-accent-strong underline underline-offset-2"
  >
  {t.dashboard.appeal}
  </button>
  )}
  </div>
 
- <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-accent" : "text-ink-muted"}`}>
+ <div className="flex-shrink-0 text-lg font-bold text-ink-faint">
  ›
  </div>
  </div>
@@ -2286,7 +2283,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Milestone Exam Banner (if current stage is completed but milestone is not passed) */}
  {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && stageDone === stageLessons.length && !passedMilestones.some((m) => m.stage_label === stage.label) && (
- <div className="mt-4 p-5 rounded-xl border border-amber-300 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+ <div className="mt-4 p-5 rounded-sm border border-amber-300 bg-amber-50/60 dark:border-amber-900 dark:bg-amber-950/20 flex flex-col sm:flex-row items-center justify-between gap-4">
  <div className="min-w-0 flex-1">
  <h4 className="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1.5">
  {format(t.dashboard.milestone.eligible, { stage: stage.label })}
@@ -2301,7 +2298,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  name: stage.name,
  lessonIds: stageLessons.map((l) => l.id)
  })}
- className="px-4 py-2 text-xs font-extrabold bg-amber-500 hover:bg-amber-600 text-white rounded-xl hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
+ className={`${btnPrimary} px-4 py-2 text-xs cursor-pointer shrink-0`}
  >
  {t.dashboard.milestone.start}
  </button>
@@ -2310,9 +2307,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Locked Stage Banner (if stage is locked by previous stage milestone) */}
  {stageOpen && stage.available && isStageLockedByMilestone && (
- <div className="border-2 border-dashed border-rose-200/60 dark:border-rose-950/40 rounded-xl px-5 py-8 text-center bg-rose-500/[0.02] relative overflow-hidden">
+ <div className="mt-4 border border-dashed border-rose-300 dark:border-rose-900 rounded-sm px-5 py-8 text-center bg-[#fbfaf7] dark:bg-stone-900/50 relative overflow-hidden">
  <div className="flex flex-col items-center gap-3">
- <div className="w-12 h-12 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center">
+ <div className="w-12 h-12 rounded-sm border border-rose-300 text-rose-600 flex items-center justify-center dark:border-rose-900 dark:text-rose-400">
  <Lock className="w-6 h-6" />
  </div>
  <div>
@@ -2332,19 +2329,25 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  {/* Case chuyên sâu - real company/topic deep-dives outside the day curriculum */}
  {bonusLessons.length > 0 && (
  <div className="mt-6">
+ {/* Đầu khu theo khuôn SectionHead: mã định vị mono + eyebrow trên
+     đường kẻ 1px, rồi tiêu đề đậm - nhưng cả khối là nút gập/mở. */}
  <button
  onClick={() => toggleStage("bonus")}
- className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
+ aria-expanded={bonusOpen}
+ className="w-full mb-4 cursor-pointer text-left"
  >
- <span className="text-xs font-extrabold text-ink uppercase tracking-widest bg-surface-raised px-3 py-1 rounded-lg">
- {t.finalOne.dashboardClient.bonusLabel}
+ <span className="flex items-center justify-between gap-4 border-b border-line-strong pb-2">
+ <Sys className="text-ink-muted">{SYS.bonus}</Sys>
+ <span className="eyebrow text-ink-soft">{t.finalOne.dashboardClient.bonusLabel}</span>
  </span>
- <span className="text-lg font-extrabold text-ink" role="heading" aria-level={2}>{t.dashboard.caseStudies}</span>
- <span className="ml-auto text-base font-bold text-ink bg-surface-raised px-4 py-1 rounded-lg">
+ <span className="mt-3 flex items-baseline gap-4">
+ <span className="text-lg font-black tracking-tight text-ink-max" role="heading" aria-level={2}>{t.dashboard.caseStudies}</span>
+ <span className="ml-auto font-mono text-base font-medium tabular-nums text-ink-max">
  {bonusDone}/{bonusLessons.length}
  </span>
  <span className={`text-ink-faint text-sm transition-transform ${bonusOpen ? "rotate-180" : ""}`}>
  ▾
+ </span>
  </span>
  </button>
 
@@ -2352,7 +2355,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <div className="space-y-5">
  {bonusGroups.map((group) => (
  <div key={group.category} className="space-y-2">
- <div className="text-xs font-extrabold text-ink-muted uppercase tracking-widest px-1">
+ <div className="eyebrow text-ink-muted px-1">
  {group.label}
  </div>
  {group.lessons.map((lesson) => {
@@ -2367,11 +2370,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <button
  key={lesson.id}
  onClick={() => handleLockedLessonClick(lesson)}
- className="w-full text-left block rounded-lg border border-line bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+ className="w-full text-left block rounded-sm border border-stone-200 bg-[#f3f1ec] dark:border-stone-800 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
  >
  <div className="flex items-center gap-4 px-6 py-4">
  <div className="flex-shrink-0">
- <div className="w-6 h-6 rounded-full bg-surface-sunken flex items-center justify-center">
+ <div className="w-6 h-6 rounded-xs border border-stone-300 flex items-center justify-center dark:border-stone-700">
  <Lock className="w-3.5 h-3.5 text-ink-muted" />
  </div>
  </div>
@@ -2394,14 +2397,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <div
  key={lesson.id}
  onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
- className={`block rounded-lg border transition-all ${
+ className={`block rounded-sm border transition-colors ${
  isDone
- ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line hover:border-accent-line-mid hover:bg-brand-100 dark:hover:bg-brand-950"
+ ? "bg-[#fbfaf7] dark:bg-stone-900/60 border-line hover:border-stone-950 dark:hover:border-stone-300"
  : isSelectedForFlag
- ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
+ ? "bg-white dark:bg-stone-900 border-brand-600 dark:border-brand-400"
  : isFlagged
- ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-info-line"
- : "bg-white dark:bg-stone-900 border-line hover:border-line-firm hover:bg-surface"
+ ? "bg-white dark:bg-stone-900 border-accent-line-mid hover:border-brand-600"
+ : "bg-white dark:bg-stone-900 border-line-strong hover:border-stone-950 dark:hover:border-stone-300"
  }`}
  >
  <div className="flex items-center gap-4 px-6 py-4">
@@ -2409,19 +2412,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  {isExamCredited ? (
  // Hổ phách chứ không xanh: đã mở khoá là đúng, nhưng ghi "xong" là
  // ghi sai - người học chưa mở bài này ra lần nào.
- <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center" title={t.dashboard.examCreditedHint}>
+ <div className="w-6 h-6 rounded-xs bg-amber-500 flex items-center justify-center" title={t.dashboard.examCreditedHint}>
  <LockOpen className="w-3.5 h-3.5 text-white" />
  </div>
  ) : isDone ? (
- <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
- <CheckCircle2 className="w-5 h-5 text-white" />
+ <div className="w-6 h-6 rounded-xs bg-brand-600 flex items-center justify-center dark:bg-brand-500">
+ <CheckCircle2 className="w-4 h-4 text-white" />
  </div>
  ) : isFlagged ? (
- <div className="w-6 h-6 rounded-full bg-sky-500 flex items-center justify-center">
+ <div className="w-6 h-6 rounded-xs bg-brand-600 flex items-center justify-center dark:bg-brand-500">
  <CheckCheck className="w-4 h-4 text-white" />
  </div>
  ) : (
- <div className="w-6 h-6 rounded-full border-2 border-line-strong" />
+ <div className="w-6 h-6 rounded-xs border-2 border-line-strong" />
  )}
  </div>
  <Link
@@ -2433,10 +2436,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  }}
  className="flex-1 min-w-0 block"
  >
- <div className={`text-base font-bold leading-snug ${isDone ? "text-accent-ink-strong" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
+ <div className={`text-base font-bold leading-snug ${isDone ? "text-ink-body" : "text-ink-max"}`}>
  {stripStageLessonPrefix(lesson.title)}
  </div>
- <div className={`text-sm mt-0.5 line-clamp-2 ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
+ <div className={`text-sm mt-0.5 line-clamp-2 ${isDone ? "text-ink-muted" : isFlagged ? "text-accent-strong" : "text-ink-soft"}`}>
  {isExamCredited ? t.dashboard.examCreditedSubtitle : isFlagged ? t.dashboard.markLearned.flaggedSubtitle : renderSubtitle(lesson.id)}
  </div>
  </Link>
@@ -2446,9 +2449,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  event.stopPropagation();
  toggleFlagSelection(lesson.id);
  }}
- className={`flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center ${
+ className={`flex-shrink-0 w-6 h-6 rounded-xs border-2 flex items-center justify-center ${
  isSelectedForFlag
- ? "border-sky-500 bg-sky-500 text-white"
+ ? "border-brand-600 bg-brand-600 text-white"
  : "border-line-strong text-transparent"
  }`}
  aria-label={t.dashboard.markLearned.selectAria}
@@ -2456,7 +2459,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <CheckCheck className="w-3.5 h-3.5" />
  </button>
  )}
- <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-accent" : "text-ink-faint"}`}>
+ <div className="flex-shrink-0 text-lg font-bold text-ink-faint">
  ›
  </div>
  </div>
@@ -2548,33 +2551,33 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {isLessonsView && user?.id && <DailyNewsQuizWidget userId={user.id} compact />}
 
             {isLessonsView && (
-              <div className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-xs flex items-center justify-between gap-3 select-none">
+              <div className={`${panel} p-5 flex items-center justify-between gap-3 select-none`}>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center shrink-0">
-                    <Trophy className="w-5 h-5 text-warn fill-amber-400" />
+                  <div className="w-10 h-10 rounded-sm border border-stone-300 bg-[#f3f1ec] flex items-center justify-center shrink-0 dark:border-stone-700 dark:bg-stone-950">
+                    <Trophy className="w-5 h-5 text-ink-body" />
                   </div>
                   <div>
-                    <span className="text-[9.5px] tabular-nums font-black uppercase tracking-wider text-ink-faint block">
+                    <span className="eyebrow text-ink-muted block">
                       {t.dashboard.nextChallenge}
                     </span>
-                    <h4 className="text-xs font-black text-ink mt-0.5 uppercase">
+                    <h4 className="text-sm font-black tracking-tight text-ink-max mt-0.5">
                       {format(t.dashboard.rigorousExamTitle, { level: getLevelByXp(userXp, cfaCompletedForLevel).level + 1 })}
                     </h4>
                   </div>
                 </div>
                 <Link
                   href="/kiem-tra"
-                  className="shrink-0 px-3 py-1.5 rounded-xl bg-surface-raised hover:bg-surface-sunken text-ink-heading tabular-nums font-black text-[10.5px] transition-colors flex items-center gap-1 cursor-pointer"
+                  className={`${btnPrimary} shrink-0 px-3 py-1.5 text-[11px] cursor-pointer`}
                 >
                   <span>{t.dashboard.takeExamNow}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
             )}
 
             {isLessonsView && (
-              <section className="rounded-xl border border-line bg-white p-3.5 dark:bg-stone-900">
-                <h3 className="mb-2.5 text-[11px] font-semibold uppercase tracking-wider text-ink-faint">
+              <section className={`${panel} p-3.5`}>
+                <h3 className="eyebrow mb-2.5 border-b border-stone-200 pb-2 text-ink-muted dark:border-stone-800">
                   {t.dashboard.communityTodayTitle}
                 </h3>
                 <div className="[&>*]:border-0 [&>*]:bg-transparent [&>*]:p-0 [&>*]:shadow-none">

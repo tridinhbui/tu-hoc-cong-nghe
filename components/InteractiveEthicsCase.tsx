@@ -4,15 +4,17 @@ import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { btnPrimary } from "@/components/ui/system";
 
 // Phán một tình huống đạo đức, widget cho các bài khai `interactiveType:
 // "ethics-case"`.
 //
-// Ethics là môn nặng nhất kỳ CFA, và cái khó của nó không phải là thuộc bảy
-// nhóm Standards - đọc một lượt là nhớ. Cái khó là đứng trước một tình huống
-// bình thường tới mức không thấy gì sai, rồi phải nói được nó chạm vào điều
-// khoản nào. Nên widget này không hỏi "Standard III là gì"; nó đưa ra một mẩu
-// chuyện đúng kiểu người ta gặp ở công ty và bắt phán.
+// Khung đối chiếu là Bộ quy tắc đạo đức kỹ sư phần mềm của ACM/IEEE-CS (tám
+// nguyên tắc). Cái khó không phải là thuộc tám nguyên tắc - đọc một lượt là
+// nhớ. Cái khó là đứng trước một tình huống bình thường tới mức không thấy gì
+// sai, rồi phải nói được nó chạm vào nguyên tắc nào. Nên widget này không hỏi
+// "Nguyên tắc 3 là gì"; nó đưa ra một mẩu chuyện đúng kiểu người ta gặp ở công
+// ty và bắt phán.
 //
 // Hai bước, cố ý tách rời: có vi phạm không, rồi vi phạm điều nào. Tách ra vì
 // đó là hai lỗi khác nhau - người thấy sai mà chỉ sai điều khoản khác hẳn
@@ -27,7 +29,7 @@ interface EthicsCase {
   id: string;
   scenario: string;
   violates: boolean;
-  /** Điều khoản bị chạm, hoặc điều khoản người ta HAY tưởng bị chạm nếu không vi phạm. */
+  /** Nguyên tắc bị chạm, hoặc nguyên tắc người ta HAY tưởng bị chạm nếu không vi phạm. */
   standard: string;
   distractors: string[];
   reasoning: string;
@@ -37,12 +39,12 @@ function getCases(t: Dictionary): EthicsCase[] {
   const tr = t.interactiveRest.ethicsCase;
   return [
     {
-      id: "mnpi",
-      scenario: tr.mnpiScenario,
+      id: "data",
+      scenario: tr.dataScenario,
       violates: true,
-      standard: tr.mnpiStandard,
-      distractors: [tr.mnpiDistractor1, tr.mnpiDistractor2, tr.mnpiDistractor3],
-      reasoning: tr.mnpiReasoning,
+      standard: tr.dataStandard,
+      distractors: [tr.dataDistractor1, tr.dataDistractor2, tr.dataDistractor3],
+      reasoning: tr.dataReasoning,
     },
     {
       id: "gift",
@@ -53,20 +55,20 @@ function getCases(t: Dictionary): EthicsCase[] {
       reasoning: tr.giftReasoning,
     },
     {
-      id: "fair",
-      scenario: tr.fairScenario,
+      id: "safety",
+      scenario: tr.safetyScenario,
       violates: true,
-      standard: tr.fairStandard,
-      distractors: [tr.fairDistractor1, tr.fairDistractor2, tr.fairDistractor3],
-      reasoning: tr.fairReasoning,
+      standard: tr.safetyStandard,
+      distractors: [tr.safetyDistractor1, tr.safetyDistractor2, tr.safetyDistractor3],
+      reasoning: tr.safetyReasoning,
     },
     {
-      id: "record",
-      scenario: tr.recordScenario,
+      id: "credit",
+      scenario: tr.creditScenario,
       violates: true,
-      standard: tr.recordStandard,
-      distractors: [tr.recordDistractor1, tr.recordDistractor2, tr.recordDistractor3],
-      reasoning: tr.recordReasoning,
+      standard: tr.creditStandard,
+      distractors: [tr.creditDistractor1, tr.creditDistractor2, tr.creditDistractor3],
+      reasoning: tr.creditReasoning,
     },
   ];
 }
@@ -106,9 +108,9 @@ export default function InteractiveEthicsCase() {
   }
 
   return (
-    <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
+    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-sm font-extrabold text-ink">
+        <h3 className="text-base font-black tracking-tight text-ink-max">
           {format(tr.caseCounter, { current: index + 1, total: CASES.length })}
         </h3>
         <div className="flex gap-1">
@@ -119,8 +121,8 @@ export default function InteractiveEthicsCase() {
               onClick={() => goTo(i)}
               aria-label={format(tr.caseAriaLabel, { n: i + 1 })}
               aria-current={i === index}
-              className={`h-2 w-6 cursor-pointer rounded-full ${
-                i === index ? "bg-surface-invert" : "bg-surface-sunken"
+              className={`h-1.5 w-6 cursor-pointer rounded-xs ${
+                i === index ? "bg-brand-600 dark:bg-brand-500" : "bg-surface-sunken"
               }`}
             />
           ))}
@@ -140,13 +142,13 @@ export default function InteractiveEthicsCase() {
             type="button"
             disabled={verdict !== null}
             onClick={() => setVerdict(v)}
-            className={`cursor-pointer rounded-xl border px-4 py-2 text-xs font-bold disabled:cursor-default ${
+            className={`cursor-pointer rounded-sm border px-4 py-2 text-xs font-bold disabled:cursor-default ${
               verdict === null
                 ? "border-stone-300 text-stone-700 hover:border-stone-500 dark:border-stone-700 dark:text-stone-200"
                 : v === c.violates
-                  ? "border-brand-400 bg-brand-50 text-brand-800 dark:border-brand-700 dark:bg-brand-950/40 dark:text-brand-200"
+                  ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
                   : verdict === v
-                    ? "border-rose-400 bg-rose-50 text-rose-800 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-200"
+                    ? "border-red-500 bg-red-50 text-red-800 dark:border-red-700 dark:bg-red-950/40 dark:text-red-200"
                     : "border-stone-200 text-stone-400 dark:border-stone-800 dark:text-stone-600"
             }`}
           >
@@ -171,13 +173,13 @@ export default function InteractiveEthicsCase() {
                   type="button"
                   disabled={done}
                   onClick={() => setPicked(option)}
-                  className={`block w-full rounded-xl border px-3 py-2 text-left text-xs font-medium disabled:cursor-default ${
+                  className={`block w-full rounded-sm border px-3 py-2 text-left text-xs font-medium disabled:cursor-default ${
                     !done
                       ? "cursor-pointer border-stone-200 text-stone-700 hover:border-stone-400 dark:border-stone-700 dark:text-stone-200"
                       : isAnswer
-                        ? "border-brand-400 bg-brand-50 text-brand-900 dark:border-brand-700 dark:bg-brand-950/40 dark:text-brand-200"
+                        ? "border-brand-600 bg-brand-50 text-brand-900 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
                         : picked === option
-                          ? "border-rose-400 bg-rose-50 text-rose-900 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-200"
+                          ? "border-red-500 bg-red-50 text-red-900 dark:border-red-700 dark:bg-red-950/40 dark:text-red-200"
                           : "border-stone-200 text-stone-400 dark:border-stone-800 dark:text-stone-600"
                   }`}
                 >
@@ -190,13 +192,13 @@ export default function InteractiveEthicsCase() {
       )}
 
       {done && (
-        <div className="mt-4 rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
+        <div className="mt-4 border-l-2 border-stone-950 pl-4 dark:border-stone-200">
           <p className="text-xs leading-relaxed text-ink-soft">{c.reasoning}</p>
           {index < CASES.length - 1 && (
             <button
               type="button"
               onClick={() => goTo(index + 1)}
-              className="mt-3 cursor-pointer rounded-full bg-stone-900 px-4 py-2 text-[11px] font-bold text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900"
+              className={`mt-3 cursor-pointer ${btnPrimary}`}
             >
               {tr.nextCaseButton}
             </button>

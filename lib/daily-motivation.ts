@@ -83,7 +83,7 @@ export const MOTIVATION_MESSAGES: MotivationMessage[] = [
   // --- milestone: vừa chạm mốc ---------------------------------------------
   { id: "mv-ms-01", tone: "milestone", text: "Chuỗi ngày này không tự có. Nó là kết quả của rất nhiều lần bạn chọn học thay vì lướt." },
   { id: "mv-ms-02", tone: "milestone", text: "Điều bạn vừa chứng minh không phải là kiến thức, mà là tính kỷ luật - thứ đắt hơn nhiều." },
-  { id: "mv-ms-03", tone: "milestone", text: "Lãi kép áp dụng cho cả việc học. Bạn đang ở đoạn đường cong bắt đầu dốc lên." },
+  { id: "mv-ms-03", tone: "milestone", text: "Kiến thức cộng dồn giống như mã được dùng lại: càng về sau càng nhanh. Bạn đang ở đoạn đường cong bắt đầu dốc lên." },
   { id: "mv-ms-04", tone: "milestone", text: "Giữ được đến đây nghĩa là bạn đã vượt phần lớn người từng bắt đầu cùng bạn." },
   { id: "mv-ms-05", tone: "milestone", text: "Ngọn lửa đã cháy đủ lâu để tự giữ nhiệt. Đừng để một ngày lười thổi tắt nó." },
   { id: "mv-ms-06", tone: "milestone", text: "Cột mốc chỉ là con số. Thói quen bạn xây để tới đó mới là tài sản thật." },

@@ -1,6 +1,6 @@
 export const searchUploadVi = {
   globalSearch: {
-    inputPlaceholder: "Tìm bài học, thuật ngữ, công cụ định giá... (ví dụ: DCF, WACC, P/E)",
+    inputPlaceholder: "Tìm bài học, thuật ngữ, công cụ... (ví dụ: API, SQL, Docker)",
     closeAriaLabel: "Đóng tìm kiếm",
     emptyPrompt: "Nhập từ khóa bất kỳ để tìm kiếm toàn bộ hệ thống",
     noResults: 'Không tìm thấy kết quả nào phù hợp với "{query}".',
@@ -33,7 +33,7 @@ export const searchUploadVi = {
 
 export const searchUploadEn: typeof searchUploadVi = {
   globalSearch: {
-    inputPlaceholder: "Search lessons, terms, valuation tools... (e.g. DCF, WACC, P/E)",
+    inputPlaceholder: "Search lessons, terms, tools... (e.g. API, SQL, Docker)",
     closeAriaLabel: "Close search",
     emptyPrompt: "Type any keyword to search the whole system",
     noResults: 'No results found for "{query}".',

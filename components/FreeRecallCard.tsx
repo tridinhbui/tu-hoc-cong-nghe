@@ -7,6 +7,7 @@ import { trackFeatureClick } from "@/lib/feature-events";
 import { getFreeRecallDone, saveFreeRecallDone } from "@/lib/progress";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { btnPrimary } from "@/components/ui/system";
 
 // Free recall: write down everything you remember, unprompted, before being
 // shown the answers. It is the single strongest retrieval-practice technique
@@ -131,18 +132,18 @@ export default function FreeRecallCard({
   const progressPct = ((RECALL_SECONDS - secondsLeft) / RECALL_SECONDS) * 100;
 
   return (
-    <div className="rounded-2xl border-2 border-line-invert overflow-hidden shadow-xl">
-      <div className="bg-surface-invert px-6 py-5 flex items-center gap-3">
-        <Brain className="w-5 h-5 text-amber-400 flex-shrink-0" />
+    <div className="overflow-hidden rounded-md border border-line-strong">
+      <div className="flex items-center gap-3 border-b border-stone-300 bg-[#f3f1ec] px-6 py-4 dark:border-stone-700 dark:bg-stone-950">
+        <Brain className="w-5 h-5 text-ink-muted flex-shrink-0" />
         <div className="min-w-0">
-          <p className="text-white font-extrabold text-lg tracking-wide">{t.freeRecall.headerTitle}</p>
-          <p className="text-stone-400 text-xs mt-0.5">
+          <p className="text-lg font-black tracking-tight text-ink-max">{t.freeRecall.headerTitle}</p>
+          <p className="mt-0.5 text-xs text-ink-soft">
             {t.freeRecall.headerSubtitle}
           </p>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-stone-900 p-6 space-y-4">
+      <div className="space-y-4 bg-white p-6 dark:bg-stone-900">
         <AnimatePresence mode="wait">
           {phase === "idle" && (
             <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
@@ -152,7 +153,7 @@ export default function FreeRecallCard({
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={start}
-                  className="bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert px-5 py-2.5 rounded-xl font-bold text-sm transition"
+                  className={btnPrimary}
                 >
                   {t.freeRecall.startButton}
                 </button>
@@ -169,7 +170,7 @@ export default function FreeRecallCard({
           {phase === "writing" && (
             <motion.div key="writing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-3">
               <div className="flex items-center justify-between gap-4">
-                <span className="text-sm font-bold text-ink-soft">
+                <span className="text-sm font-bold tabular-nums text-ink-soft">
                   {format(t.freeRecall.secondsLeft, { seconds: secondsLeft })}
                 </span>
                 <button
@@ -179,9 +180,9 @@ export default function FreeRecallCard({
                   {t.freeRecall.finishEarly}
                 </button>
               </div>
-              <div className="h-1.5 bg-surface-raised rounded-full overflow-hidden">
+              <div className="h-1 overflow-hidden bg-surface-sunken">
                 <div
-                  className="h-full bg-amber-500 rounded-full transition-all duration-1000 ease-linear"
+                  className="h-full bg-brand-600 transition-all duration-1000 ease-linear dark:bg-brand-500"
                   style={{ width: `${progressPct}%` }}
                 />
               </div>
@@ -192,7 +193,7 @@ export default function FreeRecallCard({
                 rows={6}
                 placeholder={t.freeRecall.textareaPlaceholder}
                 aria-label={t.freeRecall.textareaAriaLabel}
-                className="w-full rounded-xl border-2 border-line-mid bg-surface p-4 text-ink-heading leading-relaxed focus:outline-hidden focus:border-line-invert resize-none"
+                className="w-full resize-none rounded-sm border border-stone-300 bg-[#fbfaf7] p-4 leading-relaxed text-ink-heading focus:border-brand-600 focus:outline-hidden dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
               />
               <p className="text-xs text-ink-faint">
                 {t.freeRecall.privacyNote}
@@ -213,16 +214,16 @@ export default function FreeRecallCard({
                       key={i}
                       onClick={() => toggleTicked(i)}
                       aria-pressed={isTicked}
-                      className={`w-full text-left flex items-start gap-3 px-4 py-3 rounded-xl border-2 transition-all ${
+                      className={`w-full text-left flex items-start gap-3 px-4 py-3 rounded-sm border transition-colors ${
                         isTicked
-                          ? "border-brand-500 bg-brand-50 dark:bg-brand-950/40"
-                          : "border-line-mid bg-white dark:bg-stone-950 hover:border-line-firm"
+                          ? "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40"
+                          : "border-stone-300 bg-white hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200"
                       }`}
                     >
                       <span
-                        className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 ${
+                        className={`mt-0.5 w-5 h-5 rounded-xs border flex items-center justify-center flex-shrink-0 ${
                           isTicked
-                            ? "border-brand-500 bg-brand-500 text-white"
+                            ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500"
                             : "border-line-strong text-transparent"
                         }`}
                       >
@@ -236,12 +237,12 @@ export default function FreeRecallCard({
                 })}
               </div>
               <div className="flex items-center justify-between gap-4 flex-wrap">
-                <p className="text-sm font-bold text-ink-soft">
+                <p className="text-sm font-bold tabular-nums text-ink-soft">
                   {format(t.freeRecall.recalledCount, { recalled: ticked.size, total: takeaways.length })}
                 </p>
                 <button
                   onClick={submitScore}
-                  className="bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert px-5 py-2.5 rounded-xl font-bold text-sm transition"
+                  className={btnPrimary}
                 >
                   {t.freeRecall.viewSummaryButton}
                 </button>

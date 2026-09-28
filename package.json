@@ -22,6 +22,7 @@
     "build:routes": "node scripts/build-route-segments.mjs",
     "audit:lessons": "node scripts/generate-lesson-data.mjs && node scripts/audit-lesson-content.mjs",
     "audit:lessons:en": "node scripts/generate-lesson-data.mjs && node scripts/build-translation-index.mjs && node scripts/audit-lesson-content.mjs --locale=en",
+    "audit:exercises": "node scripts/generate-lesson-data.mjs && node scripts/verify-exercises.mjs",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare preview",
     "cf:deploy": "opennextjs-cloudflare deploy"

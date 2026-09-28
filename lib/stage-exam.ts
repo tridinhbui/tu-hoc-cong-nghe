@@ -92,9 +92,20 @@ export function stageLessonIds(stage: Stage, allLessonIds: number[]): number[] {
   return ids.sort((a, b) => a - b);
 }
 
+/** Số câu đúng tối thiểu để vượt một đề `total` câu.
+ *
+ *  Tách ra vì giao diện cũng cần con số này - nó hiện "cần đúng 12/15" trước
+ *  và trong lúc thi. Trước đây giao diện chỉ nói được tỷ lệ phần trăm, và nếu
+ *  nó tự nhân rồi làm tròn thì công thức tồn tại hai chỗ: sửa `ceil` thành
+ *  `round` ở một chỗ là mục tiêu hiện trên màn hình lệch với mục tiêu server
+ *  chấm. */
+export function stageExamPassMark(total: number): number {
+  return Math.ceil(total * STAGE_EXAM_PASS_RATIO);
+}
+
 export function passedStageExam(score: number, total: number): boolean {
   if (total <= 0) return false;
-  return score >= Math.ceil(total * STAGE_EXAM_PASS_RATIO);
+  return score >= stageExamPassMark(total);
 }
 
 /** The rule the route actually applies.

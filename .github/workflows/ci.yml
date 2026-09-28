@@ -39,3 +39,8 @@ jobs:
       # một phần giải thích 75 ký tự, và không có gì chặn được lần đẩy đó.
       # 1,2 giây, đúng bằng bản tiếng Việt ngay trên.
       - run: npm run audit:lessons:en
+
+      # Chạy thật mọi bài tập viết mã: lời giải phải in đúng đầu ra mong đợi,
+      # và mã khởi đầu không được qua sẵn. Python chạy bằng python3 có sẵn trên
+      # ubuntu-latest - thiếu nó thì script dừng đỏ, không lặng lẽ bỏ qua.
+      - run: npm run audit:exercises

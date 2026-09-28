@@ -2,7 +2,6 @@ import InteractiveProfitCalc from "./InteractiveProfitCalc";
 import InteractiveInterestRate from "./InteractiveInterestRate";
 import InteractiveSupplyDemand from "./InteractiveSupplyDemand";
 import InteractiveMultiples from "./InteractiveMultiples";
-import InteractiveInflationCalculator from "./InteractiveInflationCalculator";
 import InteractiveBudget from "./InteractiveBudget";
 import InteractiveRisk from "./InteractiveRisk";
 import InteractiveChart from "./InteractiveChart";
@@ -23,7 +22,6 @@ export type WidgetType =
   | "interest-rate"
   | "supply-demand"
   | "profit-calc"
-  | "inflation-calculator"
   | "budget"
   | "chart"
   | "risk"
@@ -58,8 +56,6 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveInterestRate />;
     case "supply-demand":
       return <InteractiveSupplyDemand />;
-    case "inflation-calculator":
-      return <InteractiveInflationCalculator />;
     case "budget":
       return <InteractiveBudget />;
     case "risk":

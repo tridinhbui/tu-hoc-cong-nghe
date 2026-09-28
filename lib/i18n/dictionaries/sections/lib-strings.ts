@@ -35,7 +35,9 @@ export const libStringsVi = {
   // và `reward.value` đều hiện ở modal mở rương
   // (components/CombinedRewardsWidget.tsx, quanh dòng 472-475).
   // Năm khoá ĐẦU là danh hiệu công nghệ hiện hành; năm khoá sau là danh hiệu
-  // tài chính cũ, GIỮ LẠI có chủ ý. `lib/chests.ts` ghi `reward_value` - chính
+  // cũ, GIỮ LẠI có chủ ý nhưng HIỂN THỊ bằng đúng danh hiệu công nghệ cùng vị
+  // trí - khoá là giá trị đã lưu, còn chữ người chơi thấy không còn gì của thời
+  // kho bài tài chính. `lib/chests.ts` ghi `reward_value` - chính
   // chuỗi tiếng Việt này - vào Cloudflare, nên mọi danh hiệu đã trao trước lần
   // đổi này còn nằm nguyên trong bảng. Xoá khoá cũ thì hồ sơ của họ hiện ra
   // một chuỗi không tra được, và không có cách nào lấy lại. Chỉ được xoá sau
@@ -46,11 +48,11 @@ export const libStringsVi = {
     "Sói già Silicon Valley": "Sói già Silicon Valley",
     "Đại gia thông lượng": "Đại gia thông lượng",
     "Bậc thầy gỡ lỗi": "Bậc thầy gỡ lỗi",
-    "Chiến thần tích lũy": "Chiến thần tích lũy",
-    "Kẻ hủy diệt nợ nần": "Kẻ hủy diệt nợ nần",
-    "Sói già phố Wall": "Sói già phố Wall",
-    "Đại gia lãi kép": "Đại gia lãi kép",
-    "Bậc thầy định giá": "Bậc thầy định giá",
+    "Chiến thần tích lũy": "Chiến thần commit",
+    "Kẻ hủy diệt nợ nần": "Kẻ hủy diệt nợ kỹ thuật",
+    "Sói già phố Wall": "Sói già Silicon Valley",
+    "Đại gia lãi kép": "Đại gia thông lượng",
+    "Bậc thầy định giá": "Bậc thầy gỡ lỗi",
   } as Record<string, string>,
   chestDescriptions: {
     "Danh hiệu tôn vinh kỷ luật đẩy mã mỗi ngày": "Danh hiệu tôn vinh kỷ luật đẩy mã mỗi ngày",
@@ -58,11 +60,11 @@ export const libStringsVi = {
     "Danh hiệu của bậc thầy thiết kế hệ thống": "Danh hiệu của bậc thầy thiết kế hệ thống",
     "Danh hiệu dành cho tín đồ tối ưu hiệu năng": "Danh hiệu dành cho tín đồ tối ưu hiệu năng",
     "Danh hiệu của chuyên gia đọc nhật ký hệ thống": "Danh hiệu của chuyên gia đọc nhật ký hệ thống",
-    "Danh hiệu tôn vinh kỷ luật tích sản": "Danh hiệu tôn vinh kỷ luật tích sản",
-    "Danh hiệu dành cho người làm chủ tài chính": "Danh hiệu dành cho người làm chủ tài chính",
-    "Danh hiệu của bậc thầy phân tích thị trường": "Danh hiệu của bậc thầy phân tích thị trường",
-    "Danh hiệu dành cho tín đồ dòng tiền dài hạn": "Danh hiệu dành cho tín đồ dòng tiền dài hạn",
-    "Danh hiệu của chuyên gia đọc báo cáo tài chính": "Danh hiệu của chuyên gia đọc báo cáo tài chính",
+    "Danh hiệu tôn vinh kỷ luật tích sản": "Danh hiệu tôn vinh kỷ luật đẩy mã mỗi ngày",
+    "Danh hiệu dành cho người làm chủ tài chính": "Danh hiệu dành cho người dọn sạch mã cũ",
+    "Danh hiệu của bậc thầy phân tích thị trường": "Danh hiệu của bậc thầy thiết kế hệ thống",
+    "Danh hiệu dành cho tín đồ dòng tiền dài hạn": "Danh hiệu dành cho tín đồ tối ưu hiệu năng",
+    "Danh hiệu của chuyên gia đọc báo cáo tài chính": "Danh hiệu của chuyên gia đọc nhật ký hệ thống",
     "Cộng nhẹ +10 XP vào tổng điểm tích lũy": "Cộng nhẹ +10 XP vào tổng điểm tích lũy",
     "Cộng nhẹ +15 XP vào tổng điểm tích lũy": "Cộng nhẹ +15 XP vào tổng điểm tích lũy",
     "Mở khóa Giao diện Hoàng Kim quý tộc": "Mở khóa Giao diện Hoàng Kim quý tộc",
@@ -126,11 +128,11 @@ export const libStringsEn: typeof libStringsVi = {
     "Sói già Silicon Valley": "Wolf of Silicon Valley",
     "Đại gia thông lượng": "Throughput Magnate",
     "Bậc thầy gỡ lỗi": "Master of Debugging",
-    "Chiến thần tích lũy": "God of Accumulation",
-    "Kẻ hủy diệt nợ nần": "Debt Destroyer",
+    "Chiến thần tích lũy": "God of the Commit Log",
+    "Kẻ hủy diệt nợ nần": "Technical-Debt Destroyer",
     "Sói già phố Wall": "Wolf of Silicon Valley",
-    "Đại gia lãi kép": "Compounding Magnate",
-    "Bậc thầy định giá": "Master of Valuation",
+    "Đại gia lãi kép": "Throughput Magnate",
+    "Bậc thầy định giá": "Master of Debugging",
   },
   chestDescriptions: {
     "Danh hiệu tôn vinh kỷ luật đẩy mã mỗi ngày": "A title honouring the discipline of shipping every day",
@@ -138,11 +140,11 @@ export const libStringsEn: typeof libStringsVi = {
     "Danh hiệu của bậc thầy thiết kế hệ thống": "The title of a master system designer",
     "Danh hiệu dành cho tín đồ tối ưu hiệu năng": "A title for the devotee of performance tuning",
     "Danh hiệu của chuyên gia đọc nhật ký hệ thống": "The title of an expert reader of system logs",
-    "Danh hiệu tôn vinh kỷ luật tích sản": "A title honouring the discipline of building assets",
-    "Danh hiệu dành cho người làm chủ tài chính": "A title for whoever has their money in hand",
-    "Danh hiệu của bậc thầy phân tích thị trường": "The title of a master market analyst",
-    "Danh hiệu dành cho tín đồ dòng tiền dài hạn": "A title for the devotee of long-run cash flow",
-    "Danh hiệu của chuyên gia đọc báo cáo tài chính": "The title of an expert reader of financial statements",
+    "Danh hiệu tôn vinh kỷ luật tích sản": "A title honouring the discipline of shipping every day",
+    "Danh hiệu dành cho người làm chủ tài chính": "A title for whoever clears out the old code",
+    "Danh hiệu của bậc thầy phân tích thị trường": "The title of a master system designer",
+    "Danh hiệu dành cho tín đồ dòng tiền dài hạn": "A title for the devotee of performance tuning",
+    "Danh hiệu của chuyên gia đọc báo cáo tài chính": "The title of an expert reader of system logs",
     "Cộng nhẹ +10 XP vào tổng điểm tích lũy": "A small +10 XP added to your total",
     "Cộng nhẹ +15 XP vào tổng điểm tích lũy": "A small +15 XP added to your total",
     "Mở khóa Giao diện Hoàng Kim quý tộc": "Unlocks the noble Gold theme",

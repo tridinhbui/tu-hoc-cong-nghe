@@ -29,14 +29,14 @@ export default function UnlockRequestsPanel({ requests }: { requests: UnlockRequ
   }
 
   return (
-    <div className="bg-amber-50 dark:bg-amber-950/20 border-2 border-amber-200 dark:border-amber-900/50 rounded-xl overflow-hidden">
-      <div className="px-4 py-3 border-b border-amber-200 dark:border-amber-900/50 flex items-center gap-2">
+    <div className="rounded-md border border-line-strong border-l-2 border-l-amber-500 bg-white dark:bg-stone-900 dark:border-l-amber-400 overflow-hidden">
+      <div className="px-4 py-3 border-b border-line-strong bg-[#f3f1ec] dark:bg-stone-950 flex items-center gap-2">
         <Inbox className="w-4 h-4 text-warn-strong" />
-        <h2 className="font-bold text-sm text-amber-900 dark:text-amber-300">
+        <h2 className="font-bold text-sm text-ink-max">
           {format(tu.pendingTitle, { count: requests.length })}
         </h2>
       </div>
-      <div className="divide-y divide-amber-200 dark:divide-amber-900/50">
+      <div className="divide-y divide-line">
         {requests.map((req) => (
           <div key={req.id} className="p-4 flex items-start justify-between gap-3">
             <div>
@@ -52,7 +52,8 @@ export default function UnlockRequestsPanel({ requests }: { requests: UnlockRequ
               <button
                 onClick={() => handle(req.id, true)}
                 disabled={processingId === req.id}
-                className="p-2 rounded-lg bg-brand-100 dark:bg-brand-950/50 text-accent-strong hover:bg-brand-200 dark:hover:bg-brand-900 disabled:opacity-50"
+                aria-label={tu.approve}
+                className="p-2 rounded-sm border border-brand-600 text-accent-strong hover:bg-accent-soft disabled:opacity-50 cursor-pointer dark:border-brand-400"
                 title={tu.approve}
               >
                 <Check className="w-4 h-4" />
@@ -60,7 +61,8 @@ export default function UnlockRequestsPanel({ requests }: { requests: UnlockRequ
               <button
                 onClick={() => handle(req.id, false)}
                 disabled={processingId === req.id}
-                className="p-2 rounded-lg bg-rose-100 dark:bg-rose-950/50 text-alert-strong hover:bg-rose-200 dark:hover:bg-rose-900 disabled:opacity-50"
+                aria-label={tu.reject}
+                className="p-2 rounded-sm border border-red-600 text-danger hover:bg-danger-soft disabled:opacity-50 cursor-pointer dark:border-red-400"
                 title={tu.reject}
               >
                 <X className="w-4 h-4" />

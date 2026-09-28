@@ -1,20 +1,21 @@
 /**
- * Số hạng trong bảng xếp hạng. Ba hạng đầu là một chấm tròn tô màu kim loại
- * (vàng, bạc, đồng) thay cho emoji huy chương - emoji vẽ khác nhau theo hệ
- * điều hành và đọc là trang trí rẻ tiền. Từ hạng 4 trở đi chỉ là con số.
+ * Số hạng trong bảng xếp hạng. Ba hạng đầu là một ô vuông viền 1px (hạng 1 nền
+ * mực) thay cho emoji huy chương - emoji vẽ khác nhau theo hệ điều hành và đọc
+ * là trang trí rẻ tiền. Không tô vàng/bạc/đồng: màu trong hệ này có chức năng,
+ * và thứ hạng đã nói bằng chính con số. Từ hạng 4 trở đi chỉ là con số.
  */
 const PODIUM_TONE: Record<number, string> = {
-  1: "bg-amber-100 text-amber-800 ring-amber-300 dark:bg-amber-950/50 dark:text-amber-300 dark:ring-amber-800",
-  2: "bg-stone-100 text-stone-700 ring-stone-300 dark:bg-stone-800 dark:text-stone-200 dark:ring-stone-600",
-  3: "bg-orange-100 text-orange-800 ring-orange-300 dark:bg-orange-950/50 dark:text-orange-300 dark:ring-orange-800",
+  1: "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+  2: "border-stone-400 text-ink-max dark:border-stone-500",
+  3: "border-stone-300 text-ink-body dark:border-stone-600",
 };
 
 export default function RankBadge({ rank, className = "" }: { rank: number; className?: string }) {
   const tone = PODIUM_TONE[rank];
-  if (!tone) return <span className={className}>{rank}</span>;
+  if (!tone) return <span className={`font-mono tabular-nums ${className}`}>{rank}</span>;
   return (
     <span
-      className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-black tabular-nums ring-1 ${tone} ${className}`}
+      className={`inline-flex h-6 w-6 items-center justify-center rounded-xs border font-mono text-xs font-medium tabular-nums ${tone} ${className}`}
     >
       {rank}
     </span>

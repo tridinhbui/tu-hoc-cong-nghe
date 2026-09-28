@@ -439,7 +439,7 @@ export default function Avatar2DCanvas({
 
   return (
     <div className={`relative shrink-0 flex items-center justify-center rounded-full overflow-hidden ${dimensions} ${className}`}>
-      <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-md">
+      <svg viewBox="0 0 200 200" className="w-full h-full">
         <defs>
           {/* Gradients */}
           <linearGradient id="wallstreetBg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">

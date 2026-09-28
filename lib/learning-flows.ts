@@ -24,7 +24,7 @@
  * một chặng ở đây mà thiếu chữ ở đó là lỗi `tsc`.
  */
 
-export type FlowId = "website" | "ai-assistant" | "ai-agent" | "ai-marketing";
+export type FlowId = "website" | "ai-assistant" | "ai-agent" | "ai-marketing" | "automation" | "data-ai";
 
 /** `ready`: đủ bài để đi hết. `partial`: bài nền có, bài dựng hoàn chỉnh đang
  *  viết. `soon`: mới có khung và thẻ Feynman, bài chuyên đang viết. Ghi thật,
@@ -100,34 +100,34 @@ export const LEARNING_FLOWS: LearningFlow[] = [
     id: "ai-assistant",
     emoji: "🤖",
     status: "ready",
-    firstWinSlug: "ai-trong-cong-viec-lap-trinh-bat-dau-tu-dau",
+    // Trước đây hành trình này trỏ vào chặng "AI trong sản phẩm" - viết cho
+    // lập trình viên (đọc mã, viết commit). Người đến đây là dân văn phòng,
+    // nên giờ nó đi qua chặng 25 (AI mỗi ngày), 29 (an toàn) và 28 (phòng ban).
+    firstWinSlug: "ai-tao-sinh-lam-duoc-gi-o-van-phong",
     steps: [
       {
         id: "intern",
-        lessonSlugs: [
-          "ai-trong-cong-viec-lap-trinh-bat-dau-tu-dau",
-          "ai-lam-duoc-gi-va-khong-lam-duoc-gi",
-          "giao-viec-cho-ai-mo-ta-bai-toan",
-        ],
+        lessonSlugs: ["ai-tao-sinh-lam-duoc-gi-o-van-phong", "moi-cong-nghe-giai-mot-bai-toan-kinh-doanh"],
       },
       {
         id: "brief",
-        lessonSlugs: ["bat-ai-lam-tung-buoc", "doc-tai-lieu-ky-thuat-bang-ai", "xay-thu-vien-cau-lenh-ca-nhan"],
+        lessonSlugs: ["viet-yeu-cau-cho-ai-prompt", "tom-tat-tai-lieu-va-bien-ban-hop", "thu-vien-prompt-cho-ca-phong"],
       },
       {
         id: "verify",
-        lessonSlugs: ["kiem-tra-gia-dinh-ai-ngam-dat", "chong-ai-bia-thu-vien-va-ham", "ranh-gioi-an-toan-khi-dung-ai"],
+        lessonSlugs: ["kiem-chung-dau-ra-ai-bia", "du-lieu-nao-khong-duoc-dan-vao-ai", "khi-tai-lieu-ra-lenh-cho-ai"],
       },
       {
         id: "daily",
         lessonSlugs: [
-          "viet-tai-lieu-va-thong-diep-commit",
-          "du-an-nho-viet-tai-lieu-mot-trang",
-          "tong-ket-quy-trinh-dung-ai-cho-nguoi-viet-ma",
+          "du-an-tro-ly-nghien-cuu-bang-ai",
+          "ai-cho-ban-hang-truoc-va-sau-cuoc-goi",
+          "ai-cho-cham-soc-khach-hang-phan-loai-va-tra-loi-nhap",
+          "du-an-bot-hoi-dap-tai-lieu-noi-bo",
         ],
       },
     ],
-    branches: { deepenSlug: "kiem-tra-gia-dinh-ai-ngam-dat", buildSlug: "du-an-nho-hieu-mot-kho-ma-la" },
+    branches: { deepenSlug: "vong-lap-cua-mot-ai-agent", buildSlug: "du-an-bot-hoi-dap-tai-lieu-noi-bo" },
   },
   {
     id: "ai-agent",
@@ -192,6 +192,72 @@ export const LEARNING_FLOWS: LearningFlow[] = [
     branches: { deepenSlug: "dashboard-va-bao-cao-tu-phuc-vu", buildSlug: "quy-trinh-noi-dung-hang-tuan-voi-ai" },
   },
 ];
+
+/** Hai hành trình cho người đi làm không học CS (chặng 24-29). Đặt sau bốn
+ *  hành trình cũ để thứ tự thẻ đã quen không đổi. */
+LEARNING_FLOWS.push(
+  {
+    id: "automation",
+    emoji: "⚙️",
+    status: "ready",
+    firstWinSlug: "giai-phau-mot-workflow-tu-dong",
+    steps: [
+      {
+        id: "map",
+        lessonSlugs: [
+          "moi-cong-nghe-giai-mot-bai-toan-kinh-doanh",
+          "saas-va-dam-may-du-lieu-nam-o-dau",
+          "api-la-o-cam-giua-hai-phan-mem",
+          "bang-tinh-la-co-so-du-lieu-dau-tien",
+        ],
+      },
+      {
+        id: "workflow",
+        lessonSlugs: [
+          "giai-phau-mot-workflow-tu-dong",
+          "chon-viec-dang-tu-dong-hoa",
+          "workflow-dau-tien-bieu-mau-bang-tinh-email",
+          "khi-workflow-hong",
+        ],
+      },
+      {
+        id: "projects",
+        lessonSlugs: ["du-an-tu-dong-hoa-bao-cao-thang", "du-an-dashboard-tu-lam-moi-tu-api"],
+      },
+      {
+        id: "guard",
+        lessonSlugs: ["con-nguoi-trong-vong-lap", "bao-mat-tai-khoan-lam-viec"],
+      },
+    ],
+    branches: { deepenSlug: "goi-api-dau-tien-tu-dong-lenh-toi-ma", buildSlug: "du-an-dashboard-tu-lam-moi-tu-api" },
+  },
+  {
+    id: "data-ai",
+    emoji: "📊",
+    status: "ready",
+    firstWinSlug: "lam-sach-bang-truoc-khi-hoi-ai",
+    steps: [
+      {
+        id: "clean",
+        lessonSlugs: ["lam-sach-bang-truoc-khi-hoi-ai", "bang-tinh-la-co-so-du-lieu-dau-tien", "hoi-dung-cau-voi-bang-tong-hop"],
+      },
+      {
+        id: "ask",
+        lessonSlugs: ["nho-ai-viet-cong-thuc-va-sql-roi-tu-kiem", "kiem-chung-dau-ra-ai-bia"],
+      },
+      {
+        id: "story",
+        lessonSlugs: [
+          "phan-tich-bien-dong-doanh-thu-chi-phi-voi-ai",
+          "tu-bang-toi-bieu-do-ke-chuyen",
+          "du-an-phan-tich-du-lieu-kinh-doanh-bang-ai",
+        ],
+      },
+    ],
+    branches: { deepenSlug: "select-loc-sap-xep-va-gioi-han", buildSlug: "du-an-phan-tich-du-lieu-kinh-doanh-bang-ai" },
+  },
+);
+
 
 export function getLearningFlow(id: string): LearningFlow | undefined {
   return LEARNING_FLOWS.find((f) => f.id === id);

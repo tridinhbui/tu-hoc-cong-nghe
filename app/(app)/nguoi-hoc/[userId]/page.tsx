@@ -7,6 +7,8 @@ import { getPublicUserProfile } from "@/lib/public-user-profile";
 import MessageUserButton from "@/components/MessageUserButton";
 import FollowButton from "@/components/FollowButton";
 import ProfileWallPosts from "@/components/ProfileWallPosts";
+import { APP_SYS } from "@/components/analytics/system-codes";
+import { Sys, textLink } from "@/components/ui/system";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary, format, intlLocale } from "@/lib/i18n";
 
@@ -22,11 +24,11 @@ function StatCard({
   hint: string;
 }) {
   return (
-    <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-5">
-      <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest mb-2">
+    <div className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+      <p className="mb-2 border-b border-line pb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
         {label}
       </p>
-      <p className="text-2xl font-extrabold text-ink">{value}</p>
+      <p className="font-mono text-2xl font-medium tabular-nums text-ink-max">{value}</p>
       <p className="text-xs text-ink-muted mt-1">{hint}</p>
     </div>
   );
@@ -83,32 +85,29 @@ export default async function PublicUserProfilePage({
     .slice(0, 2);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="border-b border-line bg-white dark:bg-stone-950">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-          <div>
-            <Link
-              href="/dashboard"
-              className="text-ink-muted hover:text-ink-body text-sm font-semibold"
-            >
+    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+      <div className="border-b border-line-strong">
+        <div className="max-w-5xl mx-auto px-6 py-5">
+          <div className="flex items-center justify-between gap-4 border-b border-line pb-2">
+            <Link href="/dashboard" className={`${textLink} text-xs`}>
               {t.publicProfile.backToLeaderboard}
             </Link>
-            <h1 className="text-xl font-bold text-ink mt-2">
+            <Sys className="text-ink-muted">{APP_SYS.learner(userId)}</Sys>
+          </div>
+          <div className="mt-3 flex items-end justify-between gap-4">
+            <h1 className="text-2xl font-black tracking-tight text-ink-max">
               {t.publicProfile.heading}
             </h1>
+            <Link href="/profile" className={`${textLink} text-xs`}>
+              {t.publicProfile.yourProfile}
+            </Link>
           </div>
-          <Link
-            href="/profile"
-            className="text-sm font-semibold text-ink-soft hover:text-ink"
-          >
-            {t.publicProfile.yourProfile}
-          </Link>
         </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-7">
+          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-7">
             <div className="flex items-start gap-5">
               {isValidAvatar(profile.avatarUrl) ? (
                 <Image
@@ -116,19 +115,19 @@ export default async function PublicUserProfilePage({
                   alt={displayName}
                   width={88}
                   height={88}
-                  className="w-[88px] h-[88px] rounded-full object-cover border-2 border-line-mid"
+                  className="w-[88px] h-[88px] rounded-full object-cover border border-line-mid"
                 />
               ) : (
-                <div className="w-[88px] h-[88px] rounded-full bg-surface-sunken border-2 border-line-strong flex items-center justify-center text-2xl font-extrabold text-ink-body">
+                <div className="w-[88px] h-[88px] rounded-full bg-surface-sunken border border-line-strong flex items-center justify-center text-2xl font-extrabold text-ink-body">
                   {initials}
                 </div>
               )}
 
               <div className="min-w-0 flex-1">
-                <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest mb-2">
+                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
                   {t.publicProfile.eyebrow}
                 </p>
-                <h2 className="text-3xl font-extrabold text-ink leading-tight">
+                <h2 className="text-3xl font-black tracking-tight text-ink-max leading-tight">
                   {displayName}
                 </h2>
                 <p className="text-sm text-ink-muted mt-2">
@@ -145,10 +144,10 @@ export default async function PublicUserProfilePage({
                 )}
                 <div className="mt-3 flex items-center gap-4 text-sm text-ink-muted">
                   <span>
-                    <span className="font-extrabold text-ink">{followerCount ?? 0}</span> {t.publicProfile.followers}
+                    <span className="font-mono tabular-nums text-ink-max">{followerCount ?? 0}</span> {t.publicProfile.followers}
                   </span>
                   <span>
-                    <span className="font-extrabold text-ink">{followingCount ?? 0}</span> {t.publicProfile.following}
+                    <span className="font-mono tabular-nums text-ink-max">{followingCount ?? 0}</span> {t.publicProfile.following}
                   </span>
                 </div>
                 <div className="mt-5 flex items-center gap-2.5">
@@ -184,10 +183,10 @@ export default async function PublicUserProfilePage({
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
+          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
             <div className="flex items-center justify-between gap-3 mb-5">
               <div>
-                <h3 className="text-lg font-extrabold text-ink">
+                <h3 className="text-base font-black tracking-tight text-ink-max">
                   {t.publicProfile.progressTitle}
                 </h3>
                 <p className="text-sm text-ink-muted mt-1">
@@ -209,7 +208,7 @@ export default async function PublicUserProfilePage({
               {profile.trackProgress.map((track) => (
                 <div
                   key={track.track}
-                  className="rounded-xl border border-line p-4 bg-stone-50/70 dark:bg-stone-950/40"
+                  className="rounded-sm border border-line p-4"
                 >
                   <div className="flex items-center justify-between gap-3 mb-3">
                     <div>
@@ -221,7 +220,7 @@ export default async function PublicUserProfilePage({
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-extrabold text-ink">
+                      <p className="font-mono text-sm tabular-nums text-ink-max">
                         {track.completed}/{track.total}
                       </p>
                       <p className="text-xs text-ink-muted">
@@ -230,16 +229,16 @@ export default async function PublicUserProfilePage({
                     </div>
                   </div>
 
-                  <div className="h-2.5 rounded-full bg-surface-sunken overflow-hidden mb-4">
+                  <div className="h-1.5 rounded-xs bg-surface-sunken overflow-hidden mb-4">
                     <div
-                      className="h-full rounded-full bg-surface-invert"
+                      className="h-full bg-stone-950 dark:bg-stone-200"
                       style={{ width: `${track.percent}%` }}
                     />
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="divide-y divide-stone-200 border-t border-line dark:divide-stone-800">
                     {track.stages.map((stage) => (
-                      <div key={`${track.track}-${stage.label}`} className="flex items-center justify-between gap-3 text-sm">
+                      <div key={`${track.track}-${stage.label}`} className="flex items-center justify-between gap-3 py-2 text-sm">
                         <div className="min-w-0">
                           <p className="font-semibold text-ink">
                             {stage.label}
@@ -249,10 +248,10 @@ export default async function PublicUserProfilePage({
                           </p>
                         </div>
                         <div className="text-right flex-shrink-0">
-                          <p className="font-bold text-ink">
+                          <p className="font-mono tabular-nums text-ink-max">
                             {stage.completed}/{stage.total}
                           </p>
-                          <p className="text-xs text-ink-muted">
+                          <p className="font-mono text-xs tabular-nums text-ink-muted">
                             {stage.percent}%
                           </p>
                         </div>
@@ -265,28 +264,28 @@ export default async function PublicUserProfilePage({
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
-              <h3 className="text-lg font-extrabold text-ink mb-4">
+            <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
+              <h3 className="text-base font-black tracking-tight text-ink-max mb-4">
                 {t.publicProfile.quickSummary}
               </h3>
-              <div className="space-y-4 text-sm">
-                <div className="flex items-center justify-between gap-4">
+              <div className="divide-y divide-stone-200 border-y border-line text-sm dark:divide-stone-800">
+                <div className="flex items-center justify-between gap-4 py-2">
                   <span className="text-ink-muted">{t.publicProfile.currentStreak}</span>
-                  <span className="font-bold text-ink">{format(t.publicProfile.days, { days: profile.currentStreak })}</span>
+                  <span className="font-mono tabular-nums text-ink-max">{format(t.publicProfile.days, { days: profile.currentStreak })}</span>
                 </div>
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-4 py-2">
                   <span className="text-ink-muted">{t.publicProfile.longestStreak}</span>
-                  <span className="font-bold text-ink">{format(t.publicProfile.days, { days: profile.longestStreak })}</span>
+                  <span className="font-mono tabular-nums text-ink-max">{format(t.publicProfile.days, { days: profile.longestStreak })}</span>
                 </div>
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-4 py-2">
                   <span className="text-ink-muted">{t.publicProfile.studyTime}</span>
-                  <span className="font-bold text-ink">{format(t.publicProfile.minutes, { minutes: profile.totalStudyMinutes })}</span>
+                  <span className="font-mono tabular-nums text-ink-max">{format(t.publicProfile.minutes, { minutes: profile.totalStudyMinutes })}</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
-              <h3 className="text-lg font-extrabold text-ink mb-4">
+            <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
+              <h3 className="text-base font-black tracking-tight text-ink-max mb-4">
                 {t.publicProfile.recentLessons}
               </h3>
               {profile.recentLessons.length === 0 ? (
@@ -299,7 +298,7 @@ export default async function PublicUserProfilePage({
                     <Link
                       key={`${lesson.id}-${lesson.completedAt ?? "pending"}`}
                       href={`/bai-hoc/${lesson.slug}`}
-                      className="block rounded-xl border border-line px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
+                      className="block rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors"
                     >
                       <p className="text-sm font-bold text-ink">
                         {lesson.title}
@@ -322,12 +321,12 @@ export default async function PublicUserProfilePage({
               )}
             </div>
 
-            <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
+            <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
               <div className="flex items-center justify-between gap-3 mb-4">
-                <h3 className="text-lg font-extrabold text-ink">
+                <h3 className="text-base font-black tracking-tight text-ink-max">
                   {t.publicProfile.recentPosts}
                 </h3>
-                <Link href="/bang-tin" className="text-xs font-bold text-accent hover:underline">
+                <Link href="/bang-tin" className={`${textLink} text-xs`}>
                   {t.publicProfile.viewFeed}
                 </Link>
               </div>

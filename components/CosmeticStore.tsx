@@ -14,6 +14,7 @@ import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { btnPrimary, btnSecondary, tabClass } from "@/components/ui/system";
 
 /**
  * Hàng tồn kho kèm quan hệ `gamification_assets`.
@@ -239,13 +240,13 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
   if (loading) return <div className="text-center p-4">{t.cosmeticStore.loadingText}</div>;
 
   return (
-    <div className={`bg-white dark:bg-stone-900 rounded-2xl ${onBack ? "p-2 sm:p-4 mt-0 shadow-none border-0" : "p-6 mt-6 border border-line shadow-sm"}`}>
+    <div className={`bg-white dark:bg-stone-900 rounded-md ${onBack ? "p-2 sm:p-4 mt-0 border-0" : "p-6 mt-6 border border-line-strong"}`}>
       
       {onBack && (
         <div className="mb-4">
           <button
             onClick={onBack}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-stone-100 px-3 py-1.5 text-xs font-bold text-stone-600 transition-colors cursor-pointer hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
+            className={`${btnSecondary} cursor-pointer px-3 py-1.5 text-xs`}
           >
             {t.cosmeticStore.backButton}
           </button>
@@ -253,41 +254,41 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
       )}
 
       {/* Wolf of Wall Street Hero Banner */}
-      <div className="relative w-full h-36 sm:h-44 rounded-2xl overflow-hidden mb-6 border border-line shadow-md">
+      <div className="relative w-full h-36 sm:h-44 rounded-md overflow-hidden mb-6 border border-line-strong">
         <Image
-          src="/rpg/wolf_of_wall_street.jpg"
+          src="/rpg/city_skyline.jpg"
           alt={t.cosmeticStore.storeAlt}
           fill
           className="object-cover object-center brightness-[0.85] contrast-[1.05]"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/40 to-transparent flex flex-col justify-end p-4 text-white">
-          <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-stone-950/60 backdrop-blur-md px-2.5 py-0.5 rounded-md w-fit border border-amber-400/30">
+        <div className="absolute inset-0 bg-stone-950/55 flex flex-col justify-end p-4 text-white">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-stone-200 bg-stone-950 px-2 py-0.5 rounded-sm w-fit border border-white/15">
             {t.cosmeticStore.arsenalEyebrow}
           </span>
-          <h3 className="text-lg sm:text-xl font-black text-white mt-1 drop-shadow-md">
+          <h3 className="text-lg sm:text-xl font-black tracking-tight text-white mt-1">
             {t.cosmeticStore.heroTitle}
           </h3>
         </div>
       </div>
 
       {/* Top Banner & RPG Character Preview */}
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-6 border-b pb-6 mb-6">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-6 border-b border-line-strong pb-6 mb-6">
         <div>
-          <span className="text-[10px] font-black uppercase tracking-wider text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-lg border border-warn-line">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-soft px-2 py-0.5 rounded-sm border border-line-strong">
             {t.cosmeticStore.arsenalTitle}
           </span>
-          <h3 className="text-xl font-black text-ink mt-2 flex items-center gap-2">
+          <h3 className="text-xl font-black tracking-tight text-ink-max mt-2 flex items-center gap-2">
             {t.cosmeticStore.sectionTitle}
           </h3>
           <p className="text-xs text-ink-muted mt-1 max-w-md">
             {t.cosmeticStore.sectionDesc}
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 bg-amber-50 dark:bg-amber-950/40 border border-warn-line px-4 py-2 rounded-xl">
+          <div className="mt-4 inline-flex items-center gap-2 bg-[#fbfaf7] dark:bg-stone-950 border border-line-strong px-4 py-2 rounded-sm">
             <span className="text-xs font-bold text-ink-body">{t.cosmeticStore.coinBalanceLabel}</span>
             <div className="flex items-center gap-1">
               <GoldCoinIcon className="w-5 h-5" />
-              <span className="text-base font-black text-amber-500">{format(t.cosmeticStore.coinsSuffix, { coins })}</span>
+              <span className="font-mono tabular-nums text-base font-medium text-warn">{format(t.cosmeticStore.coinsSuffix, { coins })}</span>
             </div>
           </div>
         </div>
@@ -300,7 +301,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
           <TechCharacterAvatar level={userLevel} equipments={equippedGear} size="md" />
           <button
             onClick={() => setShowCustomizer(true)}
-            className="mt-1 bg-gradient-to-r from-amber-500 to-yellow-500 hover:brightness-110 text-stone-950 text-xs font-black px-3.5 py-1.5 rounded-xl transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"
+            className={`${btnPrimary} mt-1 cursor-pointer px-3.5 py-1.5 text-xs`}
           >
             {t.cosmeticStore.customizeButton}
           </button>
@@ -315,7 +316,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
       />
 
       {/* Shop Category Tabs */}
-      <div className="flex flex-wrap items-center gap-2 mb-6 border-b border-line pb-3">
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-6 border-b border-line-strong">
         {[
           { id: "all", label: t.cosmeticStore.categoryAll },
           { id: "booster", label: t.cosmeticStore.categoryBooster },
@@ -327,11 +328,8 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
             key={tab.id}
             type="button"
             onClick={() => setSelectedCategory(tab.id)}
-            className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
-              selectedCategory === tab.id
-                ? "bg-amber-500 text-stone-950 shadow-sm"
-                : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
-            }`}
+            aria-pressed={selectedCategory === tab.id}
+            className={`${tabClass(selectedCategory === tab.id)} cursor-pointer`}
           >
             {tab.label}
           </button>
@@ -353,43 +351,44 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
           const isEquipped = equippedGear[slot] === item.id;
 
           const rarityColor = 
-            item.rarity === "legendary" ? "border-amber-400 text-amber-500 bg-amber-500/10" :
-            item.rarity === "epic" ? "border-purple-400 text-purple-500 bg-purple-500/10" :
-            "border-sky-400 text-sky-500 bg-sky-500/10";
+            item.rarity === "legendary" ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950" :
+            item.rarity === "epic" ? "border-stone-500 text-ink dark:border-stone-400" :
+            item.rarity === "rare" ? "border-brand-400 text-accent-strong dark:border-brand-600" :
+            "border-stone-300 text-ink-muted dark:border-stone-700";
 
           const meta = ITEM_DESCRIPTIONS[item.id];
 
           return (
-            <div key={item.id} className="border dark:border-stone-800 rounded-2xl p-4 flex flex-col justify-between hover:shadow-md transition-shadow relative">
+            <div key={item.id} className="border border-line-strong bg-white dark:bg-stone-900 rounded-md p-4 flex flex-col justify-between hover:border-stone-500 dark:hover:border-stone-400 transition-colors relative">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className={`text-[10px] uppercase font-black px-2 py-0.5 rounded-full border ${rarityColor}`}>
+                  <span className={`font-mono text-[10px] uppercase font-medium tracking-wider px-1.5 py-0.5 rounded-sm border ${rarityColor}`}>
                     {item.rarity}
                   </span>
                   {meta ? (
-                    <Glyph emoji={meta.icon} className="w-5 h-5 text-accent" />
+                    <Glyph emoji={meta.icon} className="w-5 h-5 text-ink-muted" />
                   ) : (
-                    <Sparkles className="w-5 h-5 text-accent" strokeWidth={1.75} aria-hidden />
+                    <Sparkles className="w-5 h-5 text-ink-muted" strokeWidth={1.75} aria-hidden />
                   )}
                 </div>
-                <h4 className="font-extrabold text-ink mt-3 flex items-center gap-1.5">
+                <h4 className="font-bold text-ink-max mt-3 flex items-center gap-1.5">
                   {item.name}
                 </h4>
                 <p className="text-xs text-ink-muted mt-1 leading-relaxed">{item.description}</p>
               </div>
 
-              <div className="mt-4 pt-3 border-t dark:border-stone-800 flex items-center justify-between">
-                <span className="font-black text-ink-heading text-sm flex items-center gap-1">
+              <div className="mt-4 pt-3 border-t border-line flex items-center justify-between">
+                <span className="font-mono tabular-nums font-medium text-warn text-sm flex items-center gap-1">
                   <GoldCoinIcon className="w-4 h-4" /> {item.price}
                 </span>
                 
                 {owned ? (
                   <button
                     onClick={() => handleToggleEquip(item)}
-                    className={`flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-xl transition-all ${
+                    className={`flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-sm border transition-colors cursor-pointer ${
                       isEquipped
-                        ? "bg-amber-500 text-white shadow-sm hover:bg-amber-600"
-                        : "bg-brand-50 dark:bg-brand-950/40 text-accent border border-brand-200 hover:bg-brand-100"
+                        ? "border-brand-600 bg-brand-600 text-white hover:bg-brand-700 dark:border-brand-500 dark:bg-brand-500"
+                        : "border-stone-400 text-ink hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200"
                     }`}
                   >
                     {isEquipped ? <Zap className="w-3.5 h-3.5" /> : <Check className="w-3.5 h-3.5" />}
@@ -398,7 +397,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
                 ) : (
                   <button
                     onClick={() => handlePurchase(item)}
-                    className="flex items-center gap-1 text-xs text-white font-bold bg-stone-900 hover:bg-stone-800 dark:bg-white dark:text-stone-900 dark:hover:bg-stone-100 px-3.5 py-1.5 rounded-xl transition-colors shadow-sm"
+                    className={`${btnPrimary} cursor-pointer px-3.5 py-1.5 text-xs`}
                   >
                     <ShoppingBag className="w-3.5 h-3.5" /> {t.cosmeticStore.buyButton}
                   </button>

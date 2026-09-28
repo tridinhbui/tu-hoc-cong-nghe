@@ -313,10 +313,10 @@ export default function LobbyClient() {
 
       {/* Tiêu đề + số người THẬT trong phòng (đếm từ presence, không phải số dựng) */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col items-center gap-2 p-4 pt-[max(1rem,env(safe-area-inset-top))]">
-        <div className="rounded-2xl bg-stone-900/75 px-5 py-2.5 text-center shadow-lg backdrop-blur">
-          <h1 className="text-sm font-bold text-amber-200">{t.lobby.title}</h1>
+        <div className="rounded-md border border-white/15 bg-stone-950 px-5 py-2.5 text-center">
+          <h1 className="text-sm font-bold text-white">{t.lobby.title}</h1>
           {todayClosedSeconds !== null && focusMinutes > 0 && (
-            <p className="text-[11px] font-bold text-amber-300">
+            <p className="text-[11px] font-bold text-brand-300">
               {format(t.lobby.studiedToday, { minutes: focusMinutes })}
             </p>
           )}
@@ -334,16 +334,16 @@ export default function LobbyClient() {
         {nextLesson && !nearGate && !station && (
           <Link
             href={`/bai-hoc/${nextLesson.slug}`}
-            className="pointer-events-auto flex max-w-[min(22rem,90vw)] items-center gap-3 rounded-2xl border border-amber-400/40 bg-stone-900/85 px-4 py-2.5 text-left shadow-xl backdrop-blur transition hover:border-amber-300 hover:bg-stone-900"
+            className="pointer-events-auto group flex max-w-[min(22rem,90vw)] items-center gap-3 rounded-md border border-white/15 bg-stone-950 px-4 py-2.5 text-left transition-colors hover:border-white/40"
           >
-            <BookOpen className="h-5 w-5 shrink-0 text-amber-300" strokeWidth={1.75} aria-hidden />
+            <BookOpen className="h-5 w-5 shrink-0 text-stone-300" strokeWidth={1.75} aria-hidden />
             <span className="min-w-0">
-              <span className="block text-[10px] font-black uppercase tracking-widest text-amber-300">
+              <span className="block text-[10px] font-black uppercase tracking-widest text-stone-400">
                 {t.lobby.nextLessonLabel}
               </span>
               <span className="block truncate text-sm font-bold text-white">{nextLesson.title}</span>
             </span>
-            <span className="ml-auto shrink-0 rounded-xl bg-amber-400 px-3 py-1.5 text-[11px] font-black text-stone-950">
+            <span className="ml-auto shrink-0 rounded-sm bg-white px-3 py-1.5 text-[11px] font-black text-stone-950 group-hover:bg-brand-300">
               {t.lobby.startLesson}
             </span>
           </Link>
@@ -370,14 +370,14 @@ export default function LobbyClient() {
                 setSeatStartedAt(Date.now());
                 setChimed(false);
               }}
-              className="pointer-events-auto rounded-2xl bg-brand-500 px-6 py-3 text-sm font-bold text-white shadow-xl transition hover:bg-brand-400"
+              className="pointer-events-auto rounded-sm bg-white px-6 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-brand-300"
             >
               {t.lobby.sitDown}
             </button>
           ) : (
-            <div className="pointer-events-auto flex items-center gap-3 rounded-2xl bg-stone-900/85 px-4 py-2.5 shadow-xl backdrop-blur">
+            <div className="pointer-events-auto flex items-center gap-3 rounded-md border border-white/15 bg-stone-950 px-4 py-2.5">
               <div className="flex flex-col items-start">
-                <span className="font-mono text-lg font-bold tabular-nums text-amber-300">
+                <span className="font-mono text-lg font-bold tabular-nums text-white">
                   {(() => {
                     const left = remainingMs(seatStartedAt, nowTick, POMODORO_MS);
                     return left === 0 ? t.lobby.sessionDone : formatCountdown(left);
@@ -406,7 +406,7 @@ export default function LobbyClient() {
                   setSeatedTable(null);
                   setSeatStartedAt(null);
                 }}
-                className="rounded-xl bg-stone-700 px-3 py-1.5 text-xs font-bold text-stone-100 transition hover:bg-stone-600"
+                className="rounded-sm border border-white/20 px-3 py-1.5 text-xs font-bold text-stone-100 transition-colors hover:border-white/50"
               >
                 {t.lobby.standUp}
               </button>
@@ -421,7 +421,7 @@ export default function LobbyClient() {
         <div className="pointer-events-none absolute inset-x-0 top-24 z-10 flex justify-center px-4">
           <Link
             href={nearGate.href}
-            className="pointer-events-auto rounded-2xl px-5 py-3 text-sm font-bold text-stone-950 shadow-xl backdrop-blur transition hover:brightness-110"
+            className="pointer-events-auto rounded-sm px-5 py-3 text-sm font-bold text-stone-950 transition hover:brightness-110"
             style={{ backgroundColor: nearGate.accent }}
           >
             {nearGate.label}
@@ -435,9 +435,9 @@ export default function LobbyClient() {
           {log.slice(-6).map((m) => (
             <div
               key={m.id}
-              className="rounded-xl bg-stone-900/70 px-3 py-1.5 text-xs text-stone-200 backdrop-blur"
+              className="rounded-md border border-white/10 bg-stone-950 px-3 py-1.5 text-xs text-stone-200"
             >
-              <span className="font-bold text-amber-300">{m.name}</span>{" "}
+              <span className="font-bold text-white">{m.name}</span>{" "}
               <span className="text-stone-300">{m.text}</span>
             </div>
           ))}
@@ -450,7 +450,7 @@ export default function LobbyClient() {
       {station && (
         <div className="pointer-events-none absolute inset-x-0 bottom-56 z-10 flex justify-center px-4 sm:bottom-44">
           <div
-            className="pointer-events-auto w-full max-w-sm rounded-2xl border bg-stone-900/90 p-4 shadow-2xl backdrop-blur"
+            className="pointer-events-auto w-full max-w-sm rounded-md border bg-stone-950 p-4"
             style={{ borderColor: station.accent }}
           >
             <p className="text-[11px] font-bold uppercase tracking-wider" style={{ color: station.accent }}>
@@ -462,7 +462,7 @@ export default function LobbyClient() {
               <p className="min-w-0 flex-1 truncate text-xs text-stone-300">{station.blurb}</p>
               <Link
                 href={stationRoomHref(station)}
-                className="shrink-0 rounded-xl px-3.5 py-2 text-xs font-bold text-stone-900 transition hover:brightness-110"
+                className="shrink-0 rounded-sm px-3.5 py-2 text-xs font-bold text-stone-900 transition hover:brightness-110"
                 style={{ backgroundColor: station.accent }}
               >
                 {t.lobby.enterRoom}
@@ -490,19 +490,19 @@ export default function LobbyClient() {
               onChange={(e) => setDraft(e.target.value)}
               maxLength={CHAT_MAX_LENGTH}
               placeholder={t.lobby.chatPlaceholder}
-              className="min-w-0 flex-1 rounded-2xl border border-stone-700 bg-stone-900/85 px-4 py-2.5 text-sm text-stone-100 placeholder:text-stone-500 shadow-lg backdrop-blur outline-none focus:border-amber-500"
+              className="min-w-0 flex-1 rounded-sm border border-white/15 bg-stone-950 px-4 py-2.5 text-sm text-stone-100 placeholder:text-stone-500 outline-none focus:border-brand-400"
             />
             <button
               type="submit"
               disabled={!draft.trim()}
-              className="shrink-0 rounded-2xl bg-amber-500 px-4 py-2.5 text-sm font-bold text-stone-900 shadow-lg transition hover:bg-amber-400 disabled:opacity-40"
+              className="shrink-0 rounded-sm bg-white px-4 py-2.5 text-sm font-bold text-stone-950 transition-colors hover:bg-brand-300 disabled:opacity-40"
             >
               {t.lobby.send}
             </button>
           </form>
           <div className="pointer-events-none hidden text-[11px] font-medium text-stone-400 pointer-fine:sm:block">
             {t.lobby.hintPart1}
-            <kbd className="rounded bg-stone-800 px-1.5 py-0.5">{t.lobby.hintKeys}</kbd>
+            <kbd className="rounded-xs border border-white/15 bg-stone-950 px-1.5 py-0.5">{t.lobby.hintKeys}</kbd>
             {t.lobby.hintPart2}
           </div>
           <div className="pointer-events-none hidden truncate text-[11px] font-medium text-stone-400 max-sm:block pointer-coarse:block">

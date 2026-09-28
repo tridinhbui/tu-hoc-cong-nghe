@@ -9,8 +9,8 @@ import { flashcardAlbumsEn } from "./en";
  * ĐIỀU PHẢI ĐỌC TRƯỚC KHI SỬA: `term` không chỉ là chữ hiển thị. Album được
  * NHẬP vào bộ thẻ của người học, và `saveFlashcardsBulk` chống trùng bằng cách
  * so `term` với những thẻ ĐÃ LƯU của họ. Dịch `term` mà không làm gì thêm thì
- * một người đã nhập "Tài sản (Assets)" lúc dùng tiếng Việt, sang tiếng Anh nhập
- * lại cùng album ấy, sẽ nhận thêm một thẻ "Assets" - trùng nội dung với thẻ họ
+ * một người đã nhập "Biến (Variable)" lúc dùng tiếng Việt, sang tiếng Anh nhập
+ * lại cùng album ấy, sẽ nhận thêm một thẻ "Variable" - trùng nội dung với thẻ họ
  * đang có. Chú thích ở đầu FlashcardAlbumsGallery.tsx hứa đúng điều ngược lại:
  * "importing the same album twice ... never creates duplicates".
  *
@@ -64,8 +64,8 @@ export function mergeFlashcardAlbum(
     return {
       term,
       definition: c.definition ?? card.definition,
-      // Chỉ ghi khi tên thật sự đổi. `alsoKnownAs: ["Sharpe Ratio"]` cho một
-      // thẻ vẫn tên "Sharpe Ratio" là dữ liệu vô nghĩa đi qua cả đường nhập.
+      // Chỉ ghi khi tên thật sự đổi. `alsoKnownAs: ["Runbook"]` cho một
+      // thẻ vẫn tên "Runbook" là dữ liệu vô nghĩa đi qua cả đường nhập.
       ...(term !== card.term ? { alsoKnownAs: [card.term] } : {}),
     };
   });

@@ -4,50 +4,51 @@ import type { GlossaryTranslation } from "./index";
  * Bản tiếng Anh của 8 thẻ mặc định, khoá theo tên tiếng Việt gốc.
  *
  * Tên gốc đã kèm tiếng Anh trong ngoặc, nên bản tiếng Anh CHÍNH LÀ phần trong
- * ngoặc - "Thanh khoản (Liquidity)" thành "Liquidity". Dịch lại từ đầu sẽ ra
+ * ngoặc - "Độ trễ (Latency)" thành "Latency". Dịch lại từ đầu sẽ ra
  * một cách gọi khác với chính chữ người học vừa thấy ở bản tiếng Việt.
  *
- * Ba thẻ vốn đã là tiếng Anh trong ngoặc kép của chính nó (WACC, NPV) thì tên
+ * Hai thẻ vốn đã là tiếng Anh (API, SQL) thì tên
  * giữ nguyên; chỉ định nghĩa được dịch.
  */
 export const defaultGlossaryEn: GlossaryTranslation = {
-  "Thanh khoản (Liquidity)": {
-    term: "Liquidity",
+  "Bộ nhớ đệm (Cache)": {
+    term: "Cache",
     definition:
-      "How quickly an asset can be turned into cash without losing value in the process.",
+      "A place that temporarily keeps a computed or fetched result, so the next request gets it quickly without redoing the work.",
   },
-  "Lãi kép (Compound Interest)": {
-    term: "Compound interest",
+  "Độ trễ (Latency)": {
+    term: "Latency",
     definition:
-      "Interest calculated on the original principal plus the interest already accumulated in earlier periods.",
+      "The time from sending a request to receiving the first byte of its response.",
   },
-  "Đòn bẩy tài chính (Leverage)": {
-    term: "Financial leverage",
-    definition: "Using borrowed money to increase the return an investment can produce.",
-  },
-  "WACC (Weighted Average Cost of Capital)": {
-    term: "WACC (Weighted Average Cost of Capital)",
+  "Thông lượng (Throughput)": {
+    term: "Throughput",
     definition:
-      "The blended cost of capital, and the minimum return needed to satisfy both creditors and shareholders.",
+      "How much work a system gets through per unit of time, such as requests per second.",
   },
-  "NPV (Net Present Value)": {
-    term: "NPV (Net Present Value)",
+  "API (Application Programming Interface)": {
+    term: "API (Application Programming Interface)",
     definition:
-      "Net present value: future cash inflows discounted back to today, less the upfront investment.",
+      "The interface that defines how two programs call each other: what to send, what comes back, and how errors are returned.",
   },
-  "Cổ tức (Dividend)": {
-    term: "Dividend",
+  "SQL (Structured Query Language)": {
+    term: "SQL (Structured Query Language)",
     definition:
-      "A share of after-tax profit distributed to shareholders, in cash or in shares.",
+      "The query language used to read, write and aggregate data in a relational database.",
   },
-  "Hàng tồn kho (Inventory)": {
-    term: "Inventory",
+  "Kiểm thử (Testing)": {
+    term: "Testing",
     definition:
-      "A current asset covering raw materials, work in progress and finished goods waiting to be sold.",
+      "Running code on known inputs to check that the results are what you expect.",
   },
-  "Bảng cân đối kế toán (Balance Sheet)": {
-    term: "Balance sheet",
+  "Triển khai (Deployment)": {
+    term: "Deployment",
     definition:
-      "The statement showing total assets, liabilities and equity at one point in time.",
+      "Putting a new version of the code into the live environment for users to use.",
+  },
+  "Kiểm soát phiên bản (Version Control)": {
+    term: "Version control",
+    definition:
+      "A system that records the history of every change to the code, so you can roll back and work in parallel (Git, for example).",
   },
 };

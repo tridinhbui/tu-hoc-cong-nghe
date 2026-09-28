@@ -1268,12 +1268,26 @@ export async function getLessonState(
   unlocked_lesson_ids: number[];
   user_lesson_flags: number[];
   bookmarks: unknown[];
+  exam_credited_lessons: number[];
 }> {
   if (!actor) throw new NotAuthenticatedError();
   const ids = async (sql: string) =>
     (await rows<{ lesson_id: number }>(db, sql, actor)).map((r) => r.lesson_id);
 
+  // Bài được tính hoàn thành nhờ thi vượt chặng chứ không phải đọc thật - /hoc-bai
+  // đánh dấu riêng chúng. Chưa chạy migrations-d1/0006 thì cột chưa có: trả
+  // rỗng thay vì làm hỏng cả lượt tải trang học bài.
+  let examCredited: number[] = [];
+  try {
+    examCredited = await ids(
+      `select lesson_id from user_progress where user_id = ? and completed = 1 and completion_source = 'stage_exam'`
+    );
+  } catch {
+    examCredited = [];
+  }
+
   return {
+    exam_credited_lessons: examCredited,
     completed_lessons: await ids(
       `select lesson_id from user_progress where user_id = ? and completed = 1`
     ),

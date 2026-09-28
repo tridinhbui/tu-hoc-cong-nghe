@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getGameHistory, type GameSession, type GameType } from "@/lib/games";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
+import { panel } from "@/components/ui/system";
 
 export default function GameHistory({ userId, gameType }: { userId: string; gameType: GameType }) {
   const { t, locale } = useI18n();
@@ -33,33 +34,33 @@ export default function GameHistory({ userId, gameType }: { userId: string; game
   }, [userId, gameType, loadedFor]);
 
   if (loading) {
-    return <div className="py-10 text-center text-sm text-stone-400">{gh.loading}</div>;
+    return <div className="py-10 text-center text-sm text-ink-faint">{gh.loading}</div>;
   }
 
   if (sessions.length === 0) {
-    return <div className="py-10 text-center text-sm text-stone-500">{gh.empty}</div>;
+    return <div className="py-10 text-center text-sm text-ink-muted">{gh.empty}</div>;
   }
 
   return (
-    <div className="space-y-2">
+    <div className={`${panel} divide-y divide-stone-200 dark:divide-stone-800`}>
       {sessions.map((s) => (
         <div
           key={s.id}
-          className="flex items-center justify-between rounded-xl border border-stone-200 bg-white px-3.5 py-2.5"
+          className="flex items-center justify-between gap-3 px-3.5 py-2.5"
         >
           <div>
-            <p className="text-sm font-bold text-stone-900">
+            <p className="text-sm font-bold text-ink-max">
               {format(gh.scoreCorrect, { score: s.score, total: s.total })}
             </p>
-            <p className="text-xs text-stone-500">
+            <p className="font-mono text-[11px] tabular-nums text-ink-muted">
               {new Date(s.created_at).toLocaleString(intlLocale(locale), { dateStyle: "short", timeStyle: "short" })}
             </p>
           </div>
           <span
-            className={`text-xs font-extrabold px-2.5 py-1 rounded-full ${
+            className={`rounded-xs border px-1.5 py-0.5 font-mono text-xs font-medium tabular-nums ${
               s.xp_earned > 0
-                ? "bg-brand-50 text-brand-700"
-                : "bg-stone-100 text-stone-500"
+                ? "border-brand-300 text-brand-700 dark:border-brand-700 dark:text-brand-300"
+                : "border-stone-300 text-ink-muted dark:border-stone-700"
             }`}
           >
             {s.xp_earned > 0 ? format(gh.xpEarned, { xp: s.xp_earned }) : gh.noXp}

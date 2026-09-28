@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import { Sys } from "@/components/ui/system";
 import type { Metadata } from "next";
 import { getDictionary, format } from "@/lib/i18n";
 import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
@@ -13,6 +14,13 @@ import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
 // này cần một segment ngôn ngữ trong đường dẫn mới làm được mà vẫn tĩnh.
 export const dynamic = "force-static";
 
+/* i18n-ignore-start: định danh hệ thống và ngày ISO - cùng một chuỗi ở mọi
+   ngôn ngữ. Ngày là ngày cập nhật thật của văn bản, trước đây viết thẳng
+   trong lời gọi format(). */
+const SYS_CODE = "THCN://LEGAL/TERMS";
+const SYS_DATE = "2026-07-06";
+/* i18n-ignore-end */
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = getDictionary(DEFAULT_LOCALE);
   return { title: t.finalTwo.termsPage.metaTitle };
@@ -23,55 +31,58 @@ export default async function TermsPage() {
   const p = t.terms;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
-      <div className="max-w-2xl mx-auto px-6 py-10">
+    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+      <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
         <Link
           href="/login"
-          className="inline-flex items-center gap-1 text-sm font-medium text-ink-soft hover:text-ink mb-6 transition-colors"
+          className="mb-8 inline-flex items-center gap-1 text-sm font-bold text-ink-muted transition-colors hover:text-ink-max"
         >
           <ChevronLeft className="w-4 h-4" />
           {p.backLink}
         </Link>
 
-        <h1 className="text-2xl font-bold text-ink mb-1">{p.title}</h1>
-        <p className="text-sm text-ink-muted mb-8">{format(p.updatedAt, { date: "2026-07-06" })}</p>
+        <div className="border-b border-line-strong pb-2">
+          <Sys className="text-ink-muted">{SYS_CODE}</Sys>
+        </div>
+        <h1 className="mt-4 text-[1.9rem] font-black leading-[1.1] tracking-tight text-ink-max sm:text-4xl">{p.title}</h1>
+        <p className="mt-2 mb-8 text-sm text-ink-muted">{format(p.updatedAt, { date: SYS_DATE })}</p>
 
-        <div className="space-y-6 text-sm text-ink-body leading-relaxed">
-          <section>
-            <h2 className="text-base font-bold text-ink mb-2">{p.section1Heading}</h2>
+        <div className="divide-y divide-stone-200 border-t border-stone-300 text-sm leading-relaxed text-ink-body dark:divide-stone-800 dark:border-stone-700">
+          <section className="py-5">
+            <h2 className="mb-2 text-base font-black tracking-tight text-ink-max">{p.section1Heading}</h2>
             <p>{p.section1Body}</p>
           </section>
 
-          <section>
-            <h2 className="text-base font-bold text-ink mb-2">{p.section2Heading}</h2>
+          <section className="py-5">
+            <h2 className="mb-2 text-base font-black tracking-tight text-ink-max">{p.section2Heading}</h2>
             <p>{p.section2Body}</p>
           </section>
 
-          <section>
-            <h2 className="text-base font-bold text-ink mb-2">{p.section3Heading}</h2>
+          <section className="py-5">
+            <h2 className="mb-2 text-base font-black tracking-tight text-ink-max">{p.section3Heading}</h2>
             <p>{p.section3Body}</p>
           </section>
 
-          <section>
-            <h2 className="text-base font-bold text-ink mb-2">{p.section4Heading}</h2>
+          <section className="py-5">
+            <h2 className="mb-2 text-base font-black tracking-tight text-ink-max">{p.section4Heading}</h2>
             <p>{p.section4Body}</p>
           </section>
 
-          <section>
-            <h2 className="text-base font-bold text-ink mb-2">{p.section5Heading}</h2>
+          <section className="py-5">
+            <h2 className="mb-2 text-base font-black tracking-tight text-ink-max">{p.section5Heading}</h2>
             <p>{p.section5Body}</p>
           </section>
 
-          <section>
-            <h2 className="text-base font-bold text-ink mb-2">{p.section6Heading}</h2>
+          <section className="py-5">
+            <h2 className="mb-2 text-base font-black tracking-tight text-ink-max">{p.section6Heading}</h2>
             <p>{p.section6Body}</p>
           </section>
 
-          <section>
-            <h2 className="text-base font-bold text-ink mb-2">{p.section7Heading}</h2>
+          <section className="py-5">
+            <h2 className="mb-2 text-base font-black tracking-tight text-ink-max">{p.section7Heading}</h2>
             <p>
               {p.section7Part1}{" "}
-              <a href="mailto:tribd.tec@gmail.com" className="underline underline-offset-2 hover:text-ink">
+              <a href="mailto:tribd.tec@gmail.com" className="font-bold text-accent-strong underline-offset-4 hover:underline">
                 tribd.tec@gmail.com
               </a>
               {p.section7Part2}

@@ -82,9 +82,10 @@ const IS_DICTIONARY = (rel) => rel.startsWith("lib/i18n/dictionaries/");
  *  tracked as "N of 723 lessons" - a different unit of work from a dictionary
  *  key, on a different pipeline, so mixing it into the same total buries the
  *  part that a UI translation pass can actually finish. `lessons.ts` alone is
- *  31,167 strings; left in, it is the only number anyone would ever see. */
+ *  31,167 strings; left in, it is the only number anyone would ever see.
+ *  lib/interview-bank/ là kho câu hỏi phỏng vấn - cùng loại nội dung, cùng lý do. */
 const IS_LESSON_CONTENT = (rel) =>
-  /^lib\/(lessons|.*-lessons|level-exams|recall-schedule)\.ts$/.test(
+  /^lib\/(lessons|.*-lessons|level-exams|recall-schedule|interview-bank\/[a-z0-9-]+)\.ts$/.test(
     rel
   );
 
@@ -122,7 +123,6 @@ const OVERLAY_COMPLETE = new Map([
   ["lib/streak-reminders.ts", "lib/__tests__/streak-reminders.test.ts"],
   ["lib/cloudflare-chat.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/excel-practice-data.ts", "lib/__tests__/excel-practice-i18n.test.ts"],
-  ["lib/vn30-stock-data.ts", "lib/__tests__/vn30-i18n.test.ts"],
   ["lib/flashcard-albums.ts", "lib/__tests__/flashcard-albums-i18n.test.ts"],
   ["lib/cloudflare-flashcards.ts", "lib/__tests__/default-glossary-i18n.test.ts"],
 ]);

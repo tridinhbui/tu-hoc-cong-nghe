@@ -69,7 +69,7 @@ describe("override che khuất nội dung trong lessons.ts", () => {
 
   it("không override nào trùng khít lessons.ts - vá mà không đổi gì là bẫy nằm chờ", () => {
     // 19 khoá đã ở trạng thái này: `wealth-management` và
-    // `modern-portfolio-theory` được rút `sections` ra bằng cách xoá đúng khoá
+    // `nhieu-dich-vu-nho-hay-mot-dich-vu-lon` được rút `sections` ra bằng cách xoá đúng khoá
     // đó, để lại chín khoá chép y nguyên lessons.ts. Chúng không đổi gì HÔM
     // NAY, nên không cổng nào kêu - và sửa lessons.ts cho một trong chín
     // trường đó ngày mai sẽ không có tác dụng.
@@ -98,9 +98,9 @@ describe("override che khuất nội dung trong lessons.ts", () => {
     // override thì không có gì che được, nên đó là mức mạnh hơn chứ không phải
     // một vi phạm. Giờ nó chấp nhận cả hai: không có override, hoặc có nhưng
     // không mang phần dạy.
-    const o = (lessonOverrides as Record<string, Record<string, unknown>>)["modern-portfolio-theory"];
+    const o = (lessonOverrides as Record<string, Record<string, unknown>>)["nhieu-dich-vu-nho-hay-mot-dich-vu-lon"];
     expect(o?.sections).toBeUndefined();
-    const src = bySlug.get("modern-portfolio-theory") as { sections?: unknown[] };
+    const src = bySlug.get("nhieu-dich-vu-nho-hay-mot-dich-vu-lon") as { sections?: unknown[] };
     expect((src.sections ?? []).length).toBeGreaterThan(6);
   });
 });

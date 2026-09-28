@@ -31,7 +31,15 @@ import { interactiveEconVi, interactiveEconEn } from "./interactive-econ";
 import { interactiveRestVi, interactiveRestEn } from "./interactive-rest";
 import { learningPathVi, learningPathEn } from "./learning-path";
 import { learningFlowsVi, learningFlowsEn } from "./learning-flows";
+import { certTracksVi, certTracksEn } from "./cert-tracks";
+import { lessonCodeVi, lessonCodeEn } from "./lesson-code";
 import { dashboardCardsVi, dashboardCardsEn } from "./dashboard-cards";
+import { toolSimsVi, toolSimsEn } from "./tool-sims";
+import { toolTerminalVi, toolTerminalEn } from "./tool-terminal";
+import { toolEditorVi, toolEditorEn } from "./tool-editor";
+import { toolSqlVi, toolSqlEn } from "./tool-sql";
+import { toolApiVi, toolApiEn } from "./tool-api";
+import { toolCloudVi, toolCloudEn } from "./tool-cloud";
 import { buildingGamesVi, buildingGamesEn } from "./building-games";
 import { rankWidgetVi, rankWidgetEn } from "./rank-widget";
 import { leaderboardHonorsVi, leaderboardHonorsEn } from "./leaderboard-honors";
@@ -87,7 +95,15 @@ export const viSections = {
   ...interactiveRestVi,
   ...learningPathVi,
   ...learningFlowsVi,
+  ...certTracksVi,
+  ...lessonCodeVi,
   ...dashboardCardsVi,
+  ...toolSimsVi,
+  ...toolTerminalVi,
+  ...toolEditorVi,
+  ...toolSqlVi,
+  ...toolApiVi,
+  ...toolCloudVi,
   ...buildingGamesVi,
   ...rankWidgetVi,
   ...leaderboardHonorsVi,
@@ -145,7 +161,15 @@ export const enSections: typeof viSections = {
   ...interactiveRestEn,
   ...learningPathEn,
   ...learningFlowsEn,
+  ...certTracksEn,
+  ...lessonCodeEn,
   ...dashboardCardsEn,
+  ...toolSimsEn,
+  ...toolTerminalEn,
+  ...toolEditorEn,
+  ...toolSqlEn,
+  ...toolApiEn,
+  ...toolCloudEn,
   ...buildingGamesEn,
   ...rankWidgetEn,
   ...leaderboardHonorsEn,

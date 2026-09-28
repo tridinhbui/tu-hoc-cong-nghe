@@ -111,12 +111,11 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
   }, [phase, tip]);
 
   return (
-    <div className="rounded-2xl border-2 border-stone-200 bg-stone-50 overflow-hidden">
-      <div className="bg-stone-900 px-5 py-3.5 flex items-center gap-3">
+    <div className="rounded-md border border-stone-300 bg-white overflow-hidden dark:border-stone-700 dark:bg-stone-900">
+      <div className="border-b border-stone-800 bg-stone-950 px-5 py-3 flex items-center gap-3">
         <div className="relative w-8 h-8 flex-shrink-0">
           {phase === "waiting" && (
             <>
-              <span className="absolute inset-0 rounded-full bg-brand-400/40 animate-ping" />
               <span className="absolute -inset-1 rounded-full border-2 border-brand-400/60 animate-spin [animation-duration:1.4s] [border-top-color:transparent] [border-left-color:transparent]" />
             </>
           )}
@@ -129,31 +128,25 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
           <span className="text-stone-500 text-xs ml-2">{t.miscUi.stageTipsBanner.autoTipSuffix}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-stone-500 text-xs uppercase tracking-wide">{t.miscUi.stageTipsBanner.auto}</span>
+          <span className="text-stone-400 text-[11px] font-bold uppercase tracking-[0.14em]">{t.miscUi.stageTipsBanner.auto}</span>
         </div>
       </div>
 
       <div className="px-5 py-5">
-        <p className="text-stone-800 text-lg leading-relaxed font-medium min-h-[2.5rem]">
+        <p className="text-ink-heading text-lg leading-relaxed font-medium min-h-[2.5rem]">
           {phase === "waiting" ? (
             <span className="flex flex-col gap-2 mt-1">
-              <span className="h-3 rounded-full bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite] w-full" />
-              <span className="h-3 rounded-full bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite] w-2/3" style={{ animationDelay: "120ms" }} />
-              <style>{`
-                @keyframes shimmer {
-                  0% { background-position: 200% 0; }
-                  100% { background-position: -200% 0; }
-                }
-              `}</style>
+              <span className="h-3 rounded-xs bg-surface-sunken animate-pulse w-full" />
+              <span className="h-3 rounded-xs bg-surface-sunken animate-pulse w-2/3" style={{ animationDelay: "120ms" }} />
             </span>
           ) : (
             <>
               {displayed}
               {phase === "typing" && (
                 <span className="inline-flex gap-1 ml-1 align-middle">
-                  <span className="w-2 h-2 rounded-full bg-stone-400 animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-2 h-2 rounded-full bg-stone-400 animate-bounce" style={{ animationDelay: "160ms" }} />
-                  <span className="w-2 h-2 rounded-full bg-stone-400 animate-bounce" style={{ animationDelay: "320ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-[1px] bg-ink-faint" style={{ animationDelay: "0ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-[1px] bg-ink-faint" style={{ animationDelay: "160ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-[1px] bg-ink-faint" style={{ animationDelay: "320ms" }} />
                 </span>
               )}
             </>

@@ -5,7 +5,10 @@ import type { LessonSectionBlock } from "@/lib/lesson-types";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import FormulaBlock from "@/components/FormulaBlock";
 import FeynmanCard from "@/components/learning-flows/FeynmanCard";
+import CodeBlock from "@/components/lesson-blocks/CodeBlock";
+import ExerciseBlock from "@/components/lesson-blocks/ExerciseBlock";
 import { useI18n } from "@/lib/i18n/context";
+import { Sys } from "@/components/ui/system";
 
 function renderFormattedText(text: string, seenTerms: Set<string>): React.ReactNode {
   // Split on double or single line breaks for clean paragraph spacing
@@ -22,7 +25,7 @@ function renderFormattedText(text: string, seenTerms: Set<string>): React.ReactN
           if (part.startsWith("**") && part.endsWith("**")) {
             const inner = part.slice(2, -2);
             return (
-              <strong key={pIdx} className="font-extrabold text-ink">
+              <strong key={pIdx} className="font-bold text-ink-max">
                 {highlightGlossaryTerms(inner, seenTerms)}
               </strong>
             );
@@ -31,7 +34,7 @@ function renderFormattedText(text: string, seenTerms: Set<string>): React.ReactN
         });
 
         return (
-          <span key={lineIdx} className="block leading-relaxed">
+          <span key={lineIdx} className="block">
             {formattedParts}
           </span>
         );
@@ -68,31 +71,31 @@ export default function LessonSections({
     switch (block.type) {
       case "lead":
         return (
-          <div key={i} className="text-xl leading-relaxed font-normal text-ink-heading">
+          <div key={i} className="max-w-[68ch] text-xl leading-8 text-ink-heading">
             {renderFormattedText(block.text, seenTerms)}
           </div>
         );
 
       case "heading":
         return (
-          <h2 key={i} id={`heading-${i}`} className="text-2xl font-bold text-stone-900 dark:text-white scroll-mt-24 pt-4 border-t border-stone-200/60 dark:border-stone-800/60">
+          <h2 key={i} id={`heading-${i}`} className="scroll-mt-24 border-t border-stone-300 pt-5 text-2xl font-black leading-tight tracking-tight text-ink-max dark:border-stone-700">
             {block.text}
           </h2>
         );
 
       case "paragraph":
         return (
-          <div key={i} className="text-lg leading-relaxed">
+          <div key={i} className="max-w-[68ch] text-lg leading-8">
             {renderFormattedText(block.text, seenTerms)}
           </div>
         );
 
       case "list":
         return (
-          <ul key={i} className="space-y-3 pl-1 my-4">
+          <ul key={i} className="my-4 max-w-[68ch] space-y-3 pl-1">
             {block.items.map((item, j) => (
-              <li key={j} className="flex items-start gap-3 text-ink-body text-lg">
-                <span className="mt-2.5 w-2 h-2 rounded-full bg-amber-500 flex-shrink-0" />
+              <li key={j} className="flex items-start gap-3 text-lg leading-8 text-ink-body">
+                <span aria-hidden className="mt-[0.8rem] h-1.5 w-1.5 flex-shrink-0 rounded-[1px] bg-stone-950 dark:bg-stone-200" />
                 <div className="flex-1">{renderFormattedText(item, seenTerms)}</div>
               </li>
             ))}
@@ -101,19 +104,22 @@ export default function LessonSections({
 
       case "callout":
         return (
-          <div key={i} className="border-l-4 border-l-stone-900 dark:border-l-amber-400 bg-stone-50 dark:bg-stone-900/80 rounded-r-2xl p-5 sm:p-6 space-y-2 border border-line my-6">
-            <p className="text-xs font-black text-ink-muted uppercase tracking-widest">{block.label}</p>
-            <div className="text-ink-heading text-base leading-relaxed">{renderFormattedText(block.text, seenTerms)}</div>
+          <div key={i} className="my-6 max-w-[68ch] space-y-1.5 border-l-2 border-stone-950 py-1 pl-4 dark:border-stone-200 sm:pl-5">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{block.label}</p>
+            <div className="text-base leading-7 text-ink-heading sm:text-[17px] sm:leading-8">{renderFormattedText(block.text, seenTerms)}</div>
           </div>
         );
 
       case "comparison":
         return (
-          <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
-            {[block.left, block.right].map((side) => (
-              <div key={side.label} className="border border-line bg-white/95 dark:bg-stone-900 rounded-2xl p-5 space-y-2 shadow-2xs">
-                <p className="text-xs font-black text-ink-muted uppercase tracking-widest">{side.label}</p>
-                <div className="text-base text-ink-body leading-relaxed">{renderFormattedText(side.text, seenTerms)}</div>
+          <div key={i} className="my-6 grid grid-cols-1 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 sm:grid-cols-2">
+            {[block.left, block.right].map((side, j) => (
+              <div
+                key={side.label}
+                className={`space-y-2 p-5 ${j > 0 ? "border-t border-line-strong sm:border-l sm:border-t-0" : ""}`}
+              >
+                <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{side.label}</p>
+                <div className="text-base leading-7 text-ink-body">{renderFormattedText(side.text, seenTerms)}</div>
               </div>
             ))}
           </div>
@@ -121,28 +127,26 @@ export default function LessonSections({
 
       case "conceptTable":
         return (
-          <div key={i} className="rounded-2xl overflow-hidden border-2 border-line-invert shadow-lg my-6">
-            <div className="bg-surface-invert px-6 py-4">
-              <p className="text-white font-extrabold text-lg tracking-wide">{block.title}</p>
-              <p className="text-stone-300 text-sm mt-0.5">{block.subtitle ?? t.finalTwo.lessonSections.defaultConceptTableSubtitle}</p>
+          <div key={i} className="my-6 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+            <div className="border-b border-stone-300 bg-[#f3f1ec] px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
+              <p className="text-lg font-black tracking-tight text-ink-max">{block.title}</p>
+              <p className="mt-0.5 text-sm text-ink-soft">{block.subtitle ?? t.finalTwo.lessonSections.defaultConceptTableSubtitle}</p>
             </div>
-            <div className="divide-y divide-stone-100 dark:divide-stone-800 bg-white/95 dark:bg-stone-900">
-              {block.concepts.map(({ vi, en, def }) => (
-                <div
-                  key={en}
-                  className="group px-6 py-4 flex items-start gap-4 cursor-default transition-all duration-200 hover:bg-surface hover:pl-8"
-                >
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-baseline gap-3 flex-wrap">
-                      <span className="font-bold text-ink text-base group-hover:text-ink-body transition-colors">{vi}</span>
-                      <span className="text-sm text-ink-muted font-mono bg-surface-raised px-2 py-0.5 rounded group-hover:bg-surface-sunken transition-colors">{en}</span>
-                    </div>
-                    <p className="text-ink-muted text-base mt-1 leading-relaxed group-hover:text-ink-body transition-colors">{def}</p>
+            <dl className="divide-y divide-stone-200 dark:divide-stone-800">
+              {block.concepts.map(({ vi, en, def }, j) => (
+                <div key={en} className="flex items-baseline gap-4 px-4 py-4 sm:px-5">
+                  <Sys className="flex-shrink-0 text-ink-faint">{String(j + 1).padStart(2, "0")}</Sys>
+                  <div className="min-w-0 flex-1">
+                    <dt className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span className="text-base font-bold text-ink-max">{vi}</span>
+                      {/* Thuật ngữ gốc tiếng Anh: định danh, nên đi mono. */}
+                      <span className="font-mono text-[13px] text-ink-muted">{en}</span>
+                    </dt>
+                    <dd className="mt-1 max-w-[68ch] text-base leading-7 text-ink-body">{def}</dd>
                   </div>
-                  <span className="text-stone-200 dark:text-stone-600 group-hover:text-ink-muted transition-colors text-lg mt-0.5 flex-shrink-0">→</span>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
         );
 
@@ -163,11 +167,11 @@ export default function LessonSections({
 
       case "closing":
         return (
-          <div key={i} className="text-center space-y-2 py-6 border-t border-stone-200/80 dark:border-stone-800 my-6">
+          <div key={i} className="my-6 max-w-[68ch] space-y-2 border-t border-stone-300 py-6 dark:border-stone-700">
             {block.lines.map((line, j) => (
               <p
                 key={j}
-                className={j === block.lines.length - 1 ? "text-stone-900 dark:text-white font-bold text-xl" : "text-ink-soft text-base"}
+                className={j === block.lines.length - 1 ? "text-xl font-black tracking-tight text-ink-max" : "text-base leading-7 text-ink-soft"}
               >
                 {line}
               </p>
@@ -178,7 +182,7 @@ export default function LessonSections({
       case "feynman":
         return (
           <div key={i} className="text-base">
-            {block.title ? <h3 className="mb-3 text-xl font-black text-ink-max">{block.title}</h3> : null}
+            {block.title ? <h3 className="mb-3 text-xl font-black tracking-tight text-ink-max">{block.title}</h3> : null}
             <FeynmanCard
               badge={t.learningFlows.feynmanBadge}
               hint={t.learningFlows.feynmanHint}
@@ -188,13 +192,30 @@ export default function LessonSections({
           </div>
         );
 
+      case "code":
+        return <CodeBlock key={i} language={block.language} code={block.code} caption={block.caption} runnable={block.runnable} />;
+
+      case "exercise":
+        return (
+          <ExerciseBlock
+            key={i}
+            language={block.language}
+            title={block.title}
+            task={block.task}
+            starter={block.starter}
+            solution={block.solution}
+            expectedOutput={block.expectedOutput}
+            hints={block.hints}
+          />
+        );
+
       default:
         return null;
     }
   };
 
   return (
-    <div className="space-y-8 text-ink-body leading-relaxed text-lg">
+    <div className="space-y-8 text-lg leading-8 text-ink-body">
       {sections.map((block, i) => {
         const rendered = renderBlock(block, i);
         if (checkpoint && i === checkpointAfterIndex) {

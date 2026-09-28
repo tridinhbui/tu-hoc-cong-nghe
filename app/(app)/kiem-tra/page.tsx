@@ -2,16 +2,19 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { CheckCircle2, ChevronLeft, Dumbbell, PartyPopper, Sparkles, Trophy } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronLeft, Dumbbell, PartyPopper, Sparkles, Trophy } from "lucide-react";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/cloudflare-quiz-sessions";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
 import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
-import StageSkipExamPanel from "@/components/StageSkipExamPanel";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { QUEST_XP_REWARDS } from "@/lib/quest-rewards";
 import { getCurrentUserId } from "@/lib/current-user";
+import { SectionHead, Sys, StatusDot, StatTable, panel, tabClass, btnPrimary, btnSecondary, textLink } from "@/components/ui/system";
+
+/** Mã định vị mono ở đầu trang: chính đường dẫn của route, không phải nhãn dịch. */
+const ROUTE_CODE = "THCN://APP/KIEM-TRA";
 
 interface ChallengeQuestion {
   lessonId: number;
@@ -167,28 +170,29 @@ export default function KiemTraPage() {
     // which is exactly what pinning to one screen is meant to prevent. The
     // desktop sidebar is `fixed` and costs no height, hence lg:h-dvh.
     <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-surface">
-      <div className="shrink-0 border-b border-line bg-white dark:bg-stone-950">
-        <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+      <div className="shrink-0 border-b border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
+          <div className="flex min-w-0 items-center gap-3">
             <Link
               href="/dashboard"
-              className="flex items-center justify-center w-9 h-9 rounded-full text-ink-muted hover:bg-surface-raised transition-colors"
+              className="flex shrink-0 items-center justify-center w-8 h-8 rounded-sm border border-stone-300 text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
               aria-label={t.quizPage.backAria}
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4" />
             </Link>
-            <div>
-              <h1 className="text-xl font-black text-ink tracking-tight">{t.quizPage.title}</h1>
-              <p className="text-xs font-semibold text-ink-muted mt-0.5">
+            <div className="min-w-0">
+              <Sys className="text-ink-muted">{ROUTE_CODE}</Sys>
+              <h1 className="text-lg font-black leading-tight text-ink-max tracking-tight">{t.quizPage.title}</h1>
+              <p className="hidden sm:block truncate text-xs font-semibold text-ink-muted mt-0.5">
                 {t.quizPage.subtitle}
               </p>
             </div>
           </div>
 
-          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-200 bg-brand-50 text-brand-700 text-xs font-extrabold">
-            <Sparkles className="w-4 h-4 text-brand-600" />
+          <span className="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-accent-strong">
+            <Sparkles className="w-3.5 h-3.5" />
             <span>{format(t.quizPage.xpPerQuestion, { xp: XP_PER_QUESTION })}</span>
-          </div>
+          </span>
         </div>
       </div>
 
@@ -197,34 +201,27 @@ export default function KiemTraPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-stretch">
             {/* LEFT COLUMN: Daily Financial News Quiz */}
             <div className="lg:col-span-6 h-full flex flex-col">
-              <div className="rounded-3xl border border-rose-200/90 dark:border-rose-900/60 bg-gradient-to-b from-rose-50/80 via-white to-amber-50/40 dark:from-rose-950/40 dark:via-stone-900 dark:to-stone-950 p-3.5 sm:p-4 shadow-md h-full flex flex-col justify-between">
+              <div className={`${panel} p-3.5 sm:p-4 h-full flex flex-col justify-between`}>
                 <div>
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-2.5 pb-2 border-b border-rose-100 dark:border-rose-900/40">
-                    <div>
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-rose-500 text-white shadow-2xs">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                        <span>{t.quizPage.leftEyebrow}</span>
-                      </div>
-                      <h3 className="mt-1.5 text-base font-black text-ink">
-                        {t.quizPage.newsTitle}
-                      </h3>
-                    </div>
+                  <SectionHead eyebrow={t.quizPage.leftEyebrow} title={t.quizPage.newsTitle} size="sm" />
+                  <div className="mt-2 flex items-center gap-2 text-xs font-bold">
                     {isNewsAnswered ? (
-                      <span className="shrink-0 text-xs font-extrabold px-3 py-1.5 rounded-full bg-brand-100 dark:bg-brand-950/80 text-accent-strong border border-accent-line flex items-center gap-1.5 shadow-2xs">
-                        <CheckCircle2 className="w-4 h-4 text-brand-600" />
+                      <span className="inline-flex items-center gap-1.5 text-accent-strong">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
                         {t.quizPage.newsDone}
                       </span>
                     ) : (
-                      <span className="shrink-0 text-xs font-extrabold px-3 py-1.5 rounded-full bg-rose-500 text-white animate-pulse shadow-2xs flex items-center gap-1">
+                      <span className="inline-flex items-center gap-1.5 text-ink-body">
+                        <StatusDot />
                         <span>{t.quizPage.newsPending}</span>
-                        <span className="text-[10px] opacity-90">{t.quizPage.newsPendingNote}</span>
+                        <span className="font-medium text-ink-muted">{t.quizPage.newsPendingNote}</span>
                       </span>
                     )}
                   </div>
 
-                  <p className="text-xs text-ink-soft mb-2.5 leading-snug">
+                  <p className="mt-2.5 mb-2.5 max-w-[68ch] border-l-2 border-stone-950 pl-4 text-xs leading-6 text-ink-soft dark:border-stone-200">
                     {t.quizPage.newsBodyPart1}
-                    <strong>{format(t.quizPage.newsXp, { xp: QUEST_XP_REWARDS.daily_news_quiz })}</strong>
+                    <strong className="font-mono tabular-nums text-ink-max">{format(t.quizPage.newsXp, { xp: QUEST_XP_REWARDS.daily_news_quiz })}</strong>
                     {t.quizPage.newsBodyPart2}
                   </p>
                 </div>
@@ -237,17 +234,8 @@ export default function KiemTraPage() {
 
             {/* RIGHT COLUMN: Enhanced Test Creation Form */}
             <div className="lg:col-span-6 h-full flex flex-col">
-              <div className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-3.5 sm:p-4 shadow-md space-y-3 h-full flex flex-col justify-between">
-                <div className="flex items-center justify-between border-b border-line-soft pb-2">
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-100 dark:bg-brand-950 text-accent-strong border border-accent-line">
-                      <span>{t.quizPage.rightEyebrow}</span>
-                    </div>
-                    <h3 className="mt-1.5 text-base font-black text-ink">
-                      {t.quizPage.builderTitle}
-                    </h3>
-                  </div>
-                </div>
+              <div className={`${panel} p-3.5 sm:p-4 space-y-3 h-full flex flex-col justify-between`}>
+                <SectionHead eyebrow={t.quizPage.rightEyebrow} title={t.quizPage.builderTitle} size="sm" />
 
                 {userId && (
                   <TaiTaiQuizSuggestion
@@ -262,11 +250,11 @@ export default function KiemTraPage() {
 
                 {/* Track Selector */}
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-ink-muted mb-1.5">
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted mb-1.5">
                     {t.quizPage.step1}
                   </label>
                   <div className="space-y-1.5">
-                    {TRACK_IDS.map((id) => {
+                    {TRACK_IDS.map((id, i) => {
                       const label = id === "personal" ? t.quizPage.trackPersonal : t.quizPage.trackProfessional;
                       const desc =
                         id === "personal" ? t.quizPage.trackPersonalDesc : t.quizPage.trackProfessionalDesc;
@@ -276,17 +264,19 @@ export default function KiemTraPage() {
                           key={id}
                           type="button"
                           onClick={() => setTrack(id)}
-                          className={`w-full text-left rounded-2xl border-2 p-2.5 transition-all duration-200 cursor-pointer flex items-start justify-between gap-3 ${
+                          aria-pressed={selected}
+                          className={`w-full text-left rounded-sm border px-3 py-2.5 transition-colors cursor-pointer flex items-start gap-3 ${
                             selected
-                              ? "border-brand-500 bg-gradient-to-r from-brand-50/90 to-brand-50/40 dark:from-brand-950/60 dark:to-stone-900 ring-2 ring-brand-400/30 text-ink shadow-sm"
-                              : "border-line hover:border-line-strong bg-stone-50/50 dark:bg-stone-800/40 text-ink-body"
+                              ? "border-brand-600 bg-brand-50 text-ink dark:border-brand-400 dark:bg-brand-950/40"
+                              : "border-stone-300 bg-white text-ink-body hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
                           }`}
                         >
+                          <Sys className={`pt-0.5 ${selected ? "text-accent-strong" : "text-ink-faint"}`}>{String.fromCharCode(65 + i)}</Sys>
                           <div className="min-w-0 flex-1">
-                            <div className="font-extrabold text-sm flex items-center gap-2">
+                            <div className="font-bold text-sm flex items-center gap-2">
                               <span>{label}</span>
                               {selected && (
-                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-brand-500 text-white">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-accent-strong">
                                   {t.quizPage.selecting}
                                 </span>
                               )}
@@ -301,10 +291,10 @@ export default function KiemTraPage() {
 
                 {/* Difficulty Selector */}
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-ink-muted mb-1.5">
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted mb-1.5">
                     {t.quizPage.step2}
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                  <div className="flex flex-wrap gap-x-5 gap-y-1 border-b border-line">
                     {DIFFICULTY_IDS.map((id) => {
                       const label =
                         id === "tat-ca"
@@ -320,11 +310,8 @@ export default function KiemTraPage() {
                           key={id}
                           type="button"
                           onClick={() => setDifficulty(id)}
-                          className={`rounded-xl border-2 px-3 py-1.5 text-xs font-extrabold transition-all cursor-pointer text-center ${
-                            selected
-                              ? "border-line-invert bg-surface-invert text-ink-invert shadow-sm"
-                              : "border-line text-ink-soft hover:border-line-strong bg-stone-50/50 dark:bg-stone-800/40"
-                          }`}
+                          aria-pressed={selected}
+                          className={`${tabClass(selected)} cursor-pointer`}
                         >
                           {label}
                         </button>
@@ -334,27 +321,36 @@ export default function KiemTraPage() {
                 </div>
 
                 {/* XP Reward hint */}
-                <div className="rounded-2xl border border-brand-200 dark:border-brand-900/60 bg-brand-50/80 dark:bg-brand-950/40 p-2.5 flex items-center gap-3">
-                  <p className="text-xs font-bold text-accent-ink">
-                    {t.quizPage.rewardPart1}
-                    <strong>{format(t.quizPage.rewardXp, { xp: XP_PER_QUESTION })}</strong>
-                    {t.quizPage.rewardPart2}
-                  </p>
-                </div>
+                <p className="border-l-2 border-stone-950 pl-4 text-xs font-semibold leading-6 text-ink-body dark:border-stone-200">
+                  {t.quizPage.rewardPart1}
+                  <strong className="font-mono tabular-nums text-accent-strong">{format(t.quizPage.rewardXp, { xp: XP_PER_QUESTION })}</strong>
+                  {t.quizPage.rewardPart2}
+                </p>
 
                 {/* Start Action Button */}
-                <button
-                  onClick={() => startSelectedQuiz(track, difficulty)}
-                  className="w-full py-2.5 rounded-2xl font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-brand-600 via-brand-600 to-brand-600 hover:from-brand-500 hover:to-brand-500 shadow-lg shadow-brand-500/20 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
-                >
+                <button onClick={() => startSelectedQuiz(track, difficulty)} className={`${btnPrimary} w-full cursor-pointer`}>
                   <span>{t.quizPage.start}</span>
-                  <span>→</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
+            {/* Thi vượt chặng từng nằm ngay đây. Nó đã có trang riêng
+                (/thi-vuot-chang): đây là bàn tập, đó là phòng thi - đạt là cả
+                chặng được tính hoàn thành. Dòng này ở lại đúng chỗ cũ để người
+                đã quen không kết luận là tính năng đã bị gỡ. */}
             <div className="lg:col-span-12">
-              <StageSkipExamPanel userId={userId} />
+              <Link
+                href="/thi-vuot-chang"
+                className={`${panel} group flex items-center justify-between gap-3 px-4 py-3 text-ink transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
+              >
+                <span className="flex items-center gap-2.5">
+                  <Trophy className="w-4 h-4 text-ink-muted" />
+                  <span className="text-sm font-black group-hover:text-accent-strong">{t.nav.stageSkipExam}</span>
+                  <span className="hidden sm:inline text-xs font-medium text-ink-muted">{t.stageSkip.pageSubtitle}</span>
+                </span>
+                <ArrowRight className="w-4 h-4 shrink-0 text-accent-strong" />
+              </Link>
             </div>
 
           </div>
@@ -368,7 +364,7 @@ export default function KiemTraPage() {
             {stage === "error" && (
               <div className="text-center py-16 space-y-4">
                 <p className="text-ink-muted">{t.quizPage.loadFailed}</p>
-                <button onClick={() => setStage("setup")} className="text-sm font-bold text-ink-body underline cursor-pointer">
+                <button onClick={() => setStage("setup")} className={`${textLink} cursor-pointer`}>
                   {t.quizPage.backToTrack}
                 </button>
               </div>
@@ -377,7 +373,7 @@ export default function KiemTraPage() {
             {stage === "empty" && (
               <div className="text-center py-16 space-y-4">
                 <p className="text-ink-muted">{t.quizPage.noQuestions}</p>
-                <button onClick={() => setStage("setup")} className="text-sm font-bold text-ink-body underline cursor-pointer">
+                <button onClick={() => setStage("setup")} className={`${textLink} cursor-pointer`}>
                   {t.quizPage.backToTrack}
                 </button>
               </div>
@@ -389,68 +385,69 @@ export default function KiemTraPage() {
           <div className="mx-auto max-w-2xl space-y-5">
             <div>
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs font-extrabold uppercase tracking-wide text-ink-muted">
+                <span className="text-xs font-bold tabular-nums text-ink-muted">
                   {format(t.quizPage.questionCounter, { current: activeQ + 1, total: questions.length })}
                 </span>
                 <span className="text-xs truncate max-w-[60%] text-ink-faint">{q.lessonTitle}</span>
               </div>
-              <div className="mt-3 h-2 rounded-full overflow-hidden bg-surface-raised">
+              <div className="mt-3 h-1 overflow-hidden bg-surface-sunken">
                 <div
-                  className="h-full rounded-full transition-all duration-500 bg-brand-500"
+                  className="h-full transition-all duration-500 bg-brand-600 dark:bg-brand-500"
                   style={{ width: `${Math.max(6, progressPct)}%` }}
                 />
               </div>
             </div>
 
-            <p className="font-bold text-lg leading-relaxed select-text text-ink">{q.question}</p>
+            <p className="font-bold text-lg leading-7 select-text text-ink-max">{q.question}</p>
 
             <div className="space-y-2">
               {q.options.map((opt, oi) => {
                 const isSelected = selected === oi;
                 const isCorrectOpt = oi === q.correct;
-                let cls = "border-2 border-line-strong bg-white dark:bg-stone-900 text-ink hover:border-line-firm";
+                let cls = "border-stone-300 bg-white text-ink hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+                let gutter = "text-ink-faint";
                 if (submitted) {
-                  if (isCorrectOpt) cls = "border-2 border-brand-500 bg-brand-50 dark:bg-brand-950/50 text-accent-ink-strong font-semibold";
-                  else if (isSelected) cls = "border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-alert-ink font-semibold";
-                  else cls = "border-2 border-line bg-stone-50 dark:bg-stone-900/50 text-ink-muted";
+                  if (isCorrectOpt) {
+                    cls = "border-brand-600 bg-brand-50 text-brand-800 font-semibold dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200";
+                    gutter = "text-accent-strong";
+                  } else if (isSelected) {
+                    cls = "border-red-600 bg-red-50 text-red-800 font-semibold dark:border-red-400 dark:bg-red-950/40 dark:text-red-200";
+                    gutter = "text-danger";
+                  } else cls = "border-stone-200 bg-white text-ink-muted dark:border-stone-800 dark:bg-stone-900";
                 } else if (isSelected) {
-                  cls = "border-2 border-line-invert bg-surface-invert text-ink-invert font-semibold";
+                  cls = "border-brand-600 bg-brand-50 text-ink-max font-semibold dark:border-brand-400 dark:bg-brand-950/40";
+                  gutter = "text-accent-strong";
                 }
                 return (
                   <button
                     key={oi}
                     disabled={submitted}
                     onClick={() => choose(oi)}
-                    className={`w-full text-left px-4 py-3 rounded-xl transition-all cursor-pointer text-sm select-text ${cls}`}
+                    className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)] items-baseline text-left px-3 py-2.5 rounded-sm border transition-colors cursor-pointer text-sm leading-6 select-text ${cls}`}
                   >
-                    {opt}
+                    <Sys className={gutter}>{String.fromCharCode(65 + oi)}</Sys>
+                    <span>{opt}</span>
                   </button>
                 );
               })}
             </div>
 
             {submitted && (
-              <div className={`rounded-xl p-4 text-sm leading-relaxed border ${results[activeQ] ? "bg-brand-50 dark:bg-brand-950/50 border-brand-100 dark:border-brand-900 text-accent-ink" : "bg-rose-50 dark:bg-rose-950/50 border-rose-100 dark:border-rose-900 text-alert-deep"}`}>
-                <p className="font-bold mb-1">{results[activeQ] ? format(t.quizPage.correctWithXp, { xp: XP_PER_QUESTION }) : t.quizPage.explanation}</p>
-                <p>{q.explanation}</p>
+              <div className={`border-l-2 pl-4 text-sm leading-7 ${results[activeQ] ? "border-brand-600 text-ink-body dark:border-brand-400" : "border-red-600 text-ink-body dark:border-red-400"}`}>
+                <p className={`font-bold mb-1 ${results[activeQ] ? "text-accent-strong" : "text-danger"}`}>
+                  {results[activeQ] ? format(t.quizPage.correctWithXp, { xp: XP_PER_QUESTION }) : t.quizPage.explanation}
+                </p>
+                <p className="max-w-[68ch]">{q.explanation}</p>
               </div>
             )}
 
             {!submitted ? (
-              <button
-                disabled={selected === null}
-                onClick={verify}
-                className={`w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide cursor-pointer flex items-center justify-center gap-2 ${
-                  selected !== null
-                    ? "bg-surface-invert dark:text-stone-900 text-white hover:opacity-90"
-                    : "bg-surface-sunken text-ink-muted cursor-not-allowed"
-                }`}
-              >
-                <CheckCircle2 className="w-5 h-5" />
+              <button disabled={selected === null} onClick={verify} className={`${btnPrimary} w-full py-3 cursor-pointer`}>
+                <CheckCircle2 className="w-4 h-4" />
                 {t.quizPage.checkAnswer}
               </button>
             ) : (
-              <button onClick={next} className="w-full py-4 rounded-xl font-extrabold text-base uppercase tracking-wide cursor-pointer text-white bg-surface-invert dark:text-stone-900 hover:opacity-90">
+              <button onClick={next} className={`${btnPrimary} w-full py-3 cursor-pointer`}>
                 {allDone ? t.quizPage.seeResults : t.quizPage.nextQuestion}
               </button>
             )}
@@ -458,49 +455,65 @@ export default function KiemTraPage() {
         )}
 
         {stage === "done" && (
-          <div className="mx-auto max-w-2xl text-center space-y-5">
-            <div className="flex justify-center">
-              <span className="rounded-2xl bg-accent-soft p-3 text-accent">
+          <div className="mx-auto max-w-2xl space-y-5">
+            <div className="flex items-start gap-4">
+              <span className="rounded-sm border border-stone-300 p-2.5 text-ink-body dark:border-stone-700">
                 {score === questions.length ? (
-                  <Trophy aria-hidden className="h-10 w-10" strokeWidth={1.5} />
+                  <Trophy aria-hidden className="h-7 w-7" strokeWidth={1.5} />
                 ) : score >= questions.length * 0.7 ? (
-                  <PartyPopper aria-hidden className="h-10 w-10" strokeWidth={1.5} />
+                  <PartyPopper aria-hidden className="h-7 w-7" strokeWidth={1.5} />
                 ) : (
-                  <Dumbbell aria-hidden className="h-10 w-10" strokeWidth={1.5} />
+                  <Dumbbell aria-hidden className="h-7 w-7" strokeWidth={1.5} />
                 )}
               </span>
-            </div>
-            <div>
-              <h3 className="font-bold text-xl text-ink">{t.quizPage.doneTitle}</h3>
-              <p className="text-sm mt-1 text-ink-muted">
-                {format(t.quizPage.doneScore, { score, total: questions.length })}{passed ? t.quizPage.donePassed : ""}
-              </p>
-            </div>
-
-            <div className="rounded-2xl border-2 p-5 border-accent-line bg-brand-50 dark:bg-brand-950/40">
-              <p className="text-xs font-bold uppercase tracking-wide mb-1 text-accent-strong">{t.quizPage.xpEarned}</p>
-              <p className="text-3xl font-extrabold text-accent-strong">
-                {xpAwarded === null ? "..." : format(t.miscUi.xpGain, { count: xpAwarded })}
-              </p>
+              <div>
+                <h3 className="font-black tracking-tight text-xl text-ink-max">{t.quizPage.doneTitle}</h3>
+                <p className="text-sm mt-1 tabular-nums text-ink-muted">
+                  {format(t.quizPage.doneScore, { score, total: questions.length })}
+                  {passed ? <span className="font-bold text-accent-strong">{t.quizPage.donePassed}</span> : ""}
+                </p>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-2 justify-center">
+            <div className={`${panel} px-4 py-2`}>
+              <StatTable
+                rows={[
+                  {
+                    label: t.quizPage.xpEarned,
+                    value: (
+                      <span className="text-accent-strong">
+                        {xpAwarded === null ? "..." : format(t.miscUi.xpGain, { count: xpAwarded })}
+                      </span>
+                    ),
+                  },
+                ]}
+              />
+            </div>
+
+            <div className="flex flex-wrap gap-1.5">
               {results.map((ok, i) => (
-                <div key={i} className={`w-8 h-8 rounded-full text-xs flex items-center justify-center text-white font-bold ${ok ? "bg-brand-500" : "bg-rose-400"}`}>
+                <div
+                  key={i}
+                  className={`w-8 h-8 rounded-sm border font-mono text-xs flex items-center justify-center font-bold ${
+                    ok
+                      ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
+                      : "border-red-600 bg-red-50 text-red-800 dark:border-red-400 dark:bg-red-950/40 dark:text-red-200"
+                  }`}
+                >
                   {ok ? "✓" : "✗"}
                 </div>
               ))}
             </div>
 
             {questions.some((_, i) => !results[i]) && (
-              <div className="text-left rounded-xl p-4 space-y-1.5 bg-surface">
-                <p className="text-xs font-bold text-ink-muted uppercase tracking-wide mb-2">
+              <div className="border-l-2 border-stone-950 pl-4 space-y-1.5 dark:border-stone-200">
+                <p className="text-[11px] font-bold text-ink-muted uppercase tracking-[0.08em] mb-2">
                   {t.quizPage.reviewWrongLessons}
                 </p>
                 {Array.from(new Set(questions.filter((_, i) => !results[i]).map((qq) => qq.lessonId))).map((lessonId) => {
                   const lq = questions.find((qq) => qq.lessonId === lessonId)!;
                   return (
-                    <Link key={lessonId} href={`/bai-hoc/${lq.lessonSlug}`} className="block text-sm text-ink-body hover:underline">
+                    <Link key={lessonId} href={`/bai-hoc/${lq.lessonSlug}`} className={`${textLink} flex`}>
                       → {lq.lessonTitle}
                     </Link>
                   );
@@ -509,10 +522,10 @@ export default function KiemTraPage() {
             )}
 
             <div className="grid grid-cols-2 gap-3 pt-2">
-              <Link href="/dashboard" className="py-3 rounded-xl border text-sm font-bold text-center border-line-mid text-ink-soft hover:bg-surface">
+              <Link href="/dashboard" className={btnSecondary}>
                 {t.quizPage.backToDashboard}
               </Link>
-              <button onClick={() => setStage("setup")} className="py-3 rounded-xl text-sm font-bold hover:opacity-90 cursor-pointer text-white bg-surface-invert dark:text-stone-900">
+              <button onClick={() => setStage("setup")} className={`${btnPrimary} cursor-pointer`}>
                 {t.quizPage.newQuiz}
               </button>
             </div>

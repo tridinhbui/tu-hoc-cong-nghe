@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Zap, Trophy } from "lucide-react";
+import { Zap, Trophy } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 
 interface XpEventDetail {
@@ -98,29 +98,23 @@ export default function XpFloatingPopup() {
               rotate: [-4, 2, -1, 0, 0],
             }}
             transition={{ duration: 2.7, times: [0, 0.15, 0.4, 0.8, 1], ease: "easeOut" }}
-            className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-gradient-to-r from-brand-600 via-brand-600 to-amber-500 text-white shadow-[0_8px_30px_rgba(65, 122, 205,0.5)] border-2 border-white/40 backdrop-blur-md"
+            className="flex items-center gap-2.5 rounded-sm border border-stone-700 bg-stone-950 px-3 py-2 text-white dark:border-stone-300 dark:bg-stone-100 dark:text-stone-950"
           >
-            {/* Sparkle Icon */}
-            <div className="w-7 h-7 rounded-full bg-white/25 backdrop-blur-xs flex items-center justify-center shrink-0 border border-white/40 animate-bounce">
-              {item.xp >= 30 ? (
-                <Trophy className="w-4 h-4 text-amber-200" />
-              ) : (
-                <Zap className="w-4 h-4 text-yellow-200 fill-yellow-300" />
-              )}
-            </div>
+            {item.xp >= 30 ? (
+              <Trophy className="w-4 h-4 shrink-0 text-brand-300 dark:text-brand-700" />
+            ) : (
+              <Zap className="w-4 h-4 shrink-0 text-brand-300 dark:text-brand-700" />
+            )}
 
-            {/* XP Count & Label */}
-            <div className="flex items-center gap-1.5 pr-1">
-              <span className="font-black text-xl tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
-                +{item.xp} {t.miscUi.xpFloatingPopup.xpUnit}
+            {/* Số XP là dữ liệu sống: mono, xanh. Nhãn đi bằng sans. */}
+            <span className="font-mono text-base font-medium tabular-nums">
+              +{item.xp} {t.miscUi.xpFloatingPopup.xpUnit}
+            </span>
+            {item.label && (
+              <span className="hidden sm:inline border-l border-white/20 pl-2 text-xs font-bold text-stone-300 dark:border-stone-950/20 dark:text-stone-600">
+                {item.label}
               </span>
-              <Sparkles className="w-4 h-4 text-amber-200 animate-spin" style={{ animationDuration: "2.5s" }} />
-              {item.label && (
-                <span className="hidden sm:inline text-xs font-bold text-brand-100/90 pl-1 border-l border-white/20">
-                  {item.label}
-                </span>
-              )}
-            </div>
+            )}
           </motion.div>
         ))}
       </AnimatePresence>

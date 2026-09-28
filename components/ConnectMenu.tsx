@@ -156,7 +156,7 @@ export default function ConnectMenu({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-40 bg-stone-950/20 backdrop-blur-[2px]"
+              className="fixed inset-0 z-40 bg-stone-950/20"
             />
             <motion.div
               initial={{ opacity: 0, y: 8, scale: 0.97 }}
@@ -167,15 +167,15 @@ export default function ConnectMenu({
               // thì kéo nút sang chỗ khác rồi mở ra, bảng vẫn bung ở góc phải
               // dưới - trông như bấm nhầm vào thứ gì đó.
               style={{ x: bubbleDrag.x, y: bubbleDrag.y }}
-              className="fixed bottom-24 right-4 sm:right-6 z-50 w-[17.5rem] overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-900"
+              className="fixed bottom-24 right-4 sm:right-6 z-50 w-[17.5rem] overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900"
             >
-              <div className="flex items-center justify-between border-b border-stone-100 px-4 py-3 dark:border-stone-800">
+              <div className="flex items-center justify-between border-b border-line-strong bg-[#f3f1ec] px-4 py-2.5 dark:bg-stone-950">
                 <p className="text-sm font-black text-ink">{t.connectMenu.title}</p>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label={t.connectMenu.close}
-                  className="rounded-full p-1 text-stone-400 transition-colors hover:bg-stone-100 hover:text-stone-700 dark:hover:bg-stone-800 dark:hover:text-stone-200 cursor-pointer"
+                  className="rounded-sm p-1 text-ink-faint transition-colors hover:bg-surface-raised hover:text-ink cursor-pointer"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -186,10 +186,10 @@ export default function ConnectMenu({
                   const Icon = item.icon;
                   const body = (
                     <>
-                      <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+                      <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-line-strong text-ink-soft">
                         <Icon className="h-4.5 w-4.5" />
                         {item.dot && (
-                          <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-rose-500 ring-2 ring-white dark:ring-stone-900" />
+                          <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-[1px] bg-brand-600 dark:bg-brand-500" />
                         )}
                       </span>
                       <span className="min-w-0 flex-1 text-left">
@@ -201,14 +201,14 @@ export default function ConnectMenu({
                         </span>
                       </span>
                       {item.count > 0 && (
-                        <span className="shrink-0 rounded-full bg-rose-500 px-2 py-0.5 text-[10px] font-black tabular-nums text-white">
+                        <span className="shrink-0 rounded-xs bg-brand-600 px-1.5 py-0.5 font-mono text-[10px] font-medium tabular-nums text-white">
                           {item.count > 9 ? "9+" : item.count}
                         </span>
                       )}
                     </>
                   );
                   const cls =
-                    "flex w-full items-center gap-3 rounded-2xl px-2.5 py-2.5 transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/60 cursor-pointer";
+                    "flex w-full items-center gap-3 rounded-sm px-2.5 py-2.5 transition-colors hover:bg-surface-raised cursor-pointer";
 
                   return item.href ? (
                     <Link key={item.key} href={item.href} onClick={() => setOpen(false)} className={cls}>
@@ -255,11 +255,11 @@ export default function ConnectMenu({
         }}
         aria-label={t.connectMenu.open}
         title={t.connectMenu.dragTitle}
-        className="fixed bottom-6 right-4 sm:right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-stone-900 text-white shadow-xl transition-transform hover:scale-105 dark:border-stone-800 dark:bg-stone-100 dark:text-stone-900 cursor-grab active:cursor-grabbing select-none touch-none"
+        className="fixed bottom-6 right-4 sm:right-6 z-50 flex h-12 w-12 items-center justify-center rounded-md border border-stone-950 bg-stone-950 text-white transition-colors hover:bg-brand-700 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 cursor-grab active:cursor-grabbing select-none touch-none"
       >
         {open ? <X className="h-5.5 w-5.5 pointer-events-none" /> : <Menu className="h-5.5 w-5.5 pointer-events-none" />}
         {!open && badge && (
-          <span className="absolute -right-1 -top-1 flex min-w-5 items-center justify-center rounded-full bg-rose-500 px-1.5 py-0.5 text-[10px] font-black tabular-nums text-white ring-2 ring-white dark:ring-stone-900">
+          <span className="absolute -right-1 -top-1 flex min-w-5 items-center justify-center rounded-xs border border-white bg-brand-600 px-1 py-0.5 font-mono text-[10px] font-medium tabular-nums text-white dark:border-stone-950">
             {badge}
           </span>
         )}

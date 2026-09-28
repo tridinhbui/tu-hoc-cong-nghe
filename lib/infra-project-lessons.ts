@@ -71,7 +71,7 @@ export const INFRA_PROJECT_LESSONS: Lesson[] = [
         options: [
           "Vì người vẫn bị giữ chỗ và ngân sách vẫn được tính cho quý đó",
           "Vì phải duy trì hạ tầng đã dựng trong giai đoạn chờ đợi để không phải dựng lại",
-          "Vì chờ lâu thì chi phí tăng theo lạm phát",
+          "Vì chờ lâu thì giá thuê máy chủ đám mây sẽ tăng lên",
           "Vì đội phải liên tục cập nhật lại kế hoạch mỗi khi có thay đổi về thời hạn",
         ],
         correct: 0,

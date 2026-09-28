@@ -9,6 +9,8 @@ import FlashcardClient from "@/components/flashcard/FlashcardClient";
 import { NOTES_PAGE_SIZE, type LessonNote } from "@/lib/cloudflare-notes";
 import type { Flashcard } from "@/lib/cloudflare-flashcards";
 import type { LessonHighlight } from "@/lib/lesson-highlights";
+import { APP_SYS } from "@/components/analytics/system-codes";
+import { Sys, textLink } from "@/components/ui/system";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary } from "@/lib/i18n";
 
@@ -82,33 +84,34 @@ export default async function GhiChuPage() {
   // scrolls inside its own cell. Below xl they stack and the page scrolls,
   // since neither panel is usable at a third of a phone screen.
   return (
-    <div className="min-h-screen xl:h-screen xl:overflow-hidden bg-white dark:bg-stone-950">
+    <div className="min-h-screen xl:h-screen xl:overflow-hidden bg-[#fbfaf7] dark:bg-stone-950">
       <div className="px-4 py-4 sm:px-5 sm:py-5 xl:h-full xl:flex xl:flex-col xl:min-h-0">
-        <div className="mx-auto w-full max-w-[1500px] xl:flex-1 xl:min-h-0 xl:rounded-[28px] xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:shadow-sm xl:p-3.5 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5">
+        <div className="mx-auto w-full max-w-[1500px] xl:flex-1 xl:min-h-0 xl:rounded-md xl:border xl:border-stone-300 xl:dark:border-stone-700 xl:bg-[#f3f1ec] xl:dark:bg-stone-900/40 xl:p-3.5 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5">
           <div className="flex items-center justify-between gap-3 mb-5 xl:mb-0 xl:col-span-12">
             <div className="min-w-0">
-              <h1 className="text-xl font-bold text-ink">{t.finalTwo.ghiChuPage.title}</h1>
+              <Sys className="text-ink-muted">{APP_SYS.notes}</Sys>
+              <h1 className="mt-1 text-xl font-black tracking-tight text-ink-max">{t.finalTwo.ghiChuPage.title}</h1>
               <p className="text-xs text-ink-muted mt-0.5">
                 {t.finalTwo.ghiChuPage.subtitle}
               </p>
             </div>
             <Link
               href="/dashboard"
-              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink hover:bg-surface-raised rounded-lg px-3 py-2 transition-colors"
+              className={`${textLink} shrink-0 text-xs`}
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-3.5 h-3.5" aria-hidden />
               {t.finalTwo.ghiChuPage.backLabel}
             </Link>
           </div>
 
-          <section className="min-w-0 mb-8 xl:mb-0 xl:col-span-7 xl:min-h-0 xl:overflow-y-auto xl:rounded-[22px] xl:border xl:border-stone-200/80 xl:dark:border-stone-800 xl:bg-white xl:dark:bg-stone-900 xl:p-3.5">
+          <section className="min-w-0 mb-8 xl:mb-0 xl:col-span-7 xl:min-h-0 xl:overflow-y-auto xl:rounded-md xl:border xl:border-stone-300 xl:dark:border-stone-700 xl:bg-white xl:dark:bg-stone-900 xl:p-3.5">
             <NotesOverviewClient lessonsById={lessonsById} userId={user.id} initialNotes={initialNotes} embedded />
 
             <div className="mt-6 pt-5 border-t border-line">
               <HighlightNotebook highlights={initialHighlights} lessonsById={lessonsById} />
             </div>
           </section>
-          <section className="min-w-0 xl:col-span-5 xl:min-h-0 xl:overflow-y-auto xl:rounded-[22px] xl:border xl:border-stone-200/80 xl:dark:border-stone-800 xl:bg-white xl:dark:bg-stone-900 xl:p-3.5">
+          <section className="min-w-0 xl:col-span-5 xl:min-h-0 xl:overflow-y-auto xl:rounded-md xl:border xl:border-stone-300 xl:dark:border-stone-700 xl:bg-white xl:dark:bg-stone-900 xl:p-3.5">
             <FlashcardClient userId={user.id} initialCards={initialCards} embedded />
           </section>
         </div>

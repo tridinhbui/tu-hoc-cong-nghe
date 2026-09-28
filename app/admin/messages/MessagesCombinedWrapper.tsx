@@ -45,8 +45,8 @@ export default function MessagesCombinedWrapper({
           onClick={() => setSection("messages")}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "messages"
-              ? "bg-surface-invert text-ink-invert shadow-sm"
-              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
+              ? "bg-accent-soft text-ink-max border border-brand-600 dark:border-brand-400"
+              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
           }`}
         >
           <MessageSquare className="w-4 h-4" />
@@ -58,11 +58,11 @@ export default function MessagesCombinedWrapper({
           onClick={() => setSection("announcements")}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "announcements"
-              ? "bg-surface-invert text-ink-invert shadow-sm"
-              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
+              ? "bg-accent-soft text-ink-max border border-brand-600 dark:border-brand-400"
+              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
           }`}
         >
-          <Megaphone className="w-4 h-4 text-amber-500" />
+          <Megaphone className="w-4 h-4" />
           {format(tm.announcementsTab, { count: announcements.length })}
         </button>
       </div>

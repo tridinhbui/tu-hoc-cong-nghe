@@ -8,6 +8,7 @@ import { getCommunityLearningNow, shortLearnerName, type CommunityLearner } from
 import Avatar from "@/components/Avatar";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { panel } from "@/components/ui/system";
 
 /** Cộng đồng đang học gì, bằng NGƯỜI THẬT.
  *
@@ -76,11 +77,11 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
   const lessonById = new Map(lessonsMeta.map((lesson) => [lesson.id, lesson]));
 
   return (
-    <section className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
+    <section className={`p-4.5 ${panel}`}>
       <div className="mb-3 flex items-center gap-2">
-        <Users className="h-4.5 w-4.5 text-brand-500" />
+        <Users className="h-4.5 w-4.5 text-ink-muted" />
         <div className="min-w-0">
-          <h2 className="text-sm font-black uppercase tracking-[0.12em] text-ink">
+          <h2 className="text-sm font-black tracking-tight text-ink-max">
             {t.communityLearning.title}
           </h2>
           <p className="mt-0.5 text-[11px] font-medium text-ink-muted">
@@ -96,13 +97,13 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
             vệt nằm ĐÈ lên dải cuộn, nên chúng phải tan vào mặt thẻ. */}
         <div
           aria-hidden="true"
-          className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-8 rounded-l-[16px] bg-gradient-to-r from-white to-transparent transition-opacity duration-200 dark:from-stone-900 ${
+          className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent transition-opacity duration-200 dark:from-stone-900 ${
             edges.left ? "opacity-100" : "opacity-0"
           }`}
         />
         <div
           aria-hidden="true"
-          className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-8 rounded-r-[16px] bg-gradient-to-l from-white to-transparent transition-opacity duration-200 dark:from-stone-900 ${
+          className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent transition-opacity duration-200 dark:from-stone-900 ${
             edges.right ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -131,7 +132,7 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
               </div>
               {lesson && (
                 <div className="mt-2">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
+                  <p className="eyebrow text-ink-faint">
                     {t.communityLearning.justStudied}
                   </p>
                   <p className="mt-0.5 line-clamp-2 text-[11px] font-semibold leading-snug text-ink-soft">
@@ -143,13 +144,13 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
           );
 
           const shell =
-            "w-[10.5rem] shrink-0 snap-start rounded-[16px] bg-stone-50 p-2.5 dark:bg-stone-950/60";
+            "w-[10.5rem] shrink-0 snap-start rounded-sm border border-stone-300 bg-[#fbfaf7] p-2.5 dark:border-stone-700 dark:bg-stone-950";
 
           return lesson ? (
             <Link
               key={learner.userId}
               href={`/bai-hoc/${lesson.slug}`}
-              className={`${shell} transition hover:bg-brand-50 dark:hover:bg-brand-950/20`}
+              className={`${shell} transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
             >
               {card}
             </Link>

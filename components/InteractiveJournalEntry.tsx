@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { btnPrimary, btnSecondary } from "@/components/ui/system";
 
 // Ghi hai vế cho một sự kiện, widget cho các bài khai `interactiveType:
 // "journal-entry"`.
@@ -141,9 +142,9 @@ export default function InteractiveJournalEntry() {
   }
 
   return (
-    <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
+    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-sm font-extrabold text-ink">
+        <h3 className="text-base font-black tracking-tight text-ink-max">
           {format(dict.journalEntry.transactionCounter, { current: index + 1, total: transactions.length })}
         </h3>
         <div className="flex gap-1">
@@ -154,15 +155,15 @@ export default function InteractiveJournalEntry() {
               onClick={() => goTo(i)}
               aria-label={format(dict.journalEntry.transactionAriaLabel, { n: i + 1 })}
               aria-current={i === index}
-              className={`h-2 w-6 cursor-pointer rounded-full ${
-                i === index ? "bg-surface-invert" : "bg-surface-sunken"
+              className={`h-1.5 w-6 cursor-pointer rounded-xs ${
+                i === index ? "bg-brand-600 dark:bg-brand-500" : "bg-surface-sunken"
               }`}
             />
           ))}
         </div>
       </div>
 
-      <p className="mt-3 rounded-2xl bg-stone-50 px-3 py-2.5 text-sm font-semibold leading-snug text-stone-800 dark:bg-stone-800/60 dark:text-stone-100">
+      <p className="mt-3 rounded-sm border border-stone-200 bg-[#fbfaf7] px-3 py-2.5 text-sm font-semibold leading-snug text-ink-max dark:border-stone-800 dark:bg-stone-950">
         {txn.text}
       </p>
 
@@ -193,7 +194,7 @@ export default function InteractiveJournalEntry() {
         type="button"
         disabled={!debit || !credit}
         onClick={() => setChecked(true)}
-        className="mt-3 cursor-pointer rounded-full bg-stone-900 px-4 py-2 text-[11px] font-bold text-white hover:bg-stone-700 disabled:cursor-default disabled:opacity-40 dark:bg-stone-100 dark:text-stone-900"
+        className={`mt-3 cursor-pointer ${btnPrimary}`}
       >
         {dict.journalEntry.checkButton}
       </button>
@@ -201,10 +202,10 @@ export default function InteractiveJournalEntry() {
       {checked && (
         <div className="mt-4 space-y-3">
           <p
-            className={`rounded-2xl px-3 py-2 text-xs font-bold ${
+            className={`border-l-2 pl-3 text-xs font-bold ${
               debitOk && creditOk
-                ? "bg-brand-50 text-brand-800 dark:bg-brand-950/40 dark:text-brand-200"
-                : "bg-amber-50 text-amber-900 dark:bg-amber-950/30 dark:text-amber-200"
+                ? "border-brand-600 text-brand-800 dark:border-brand-400 dark:text-brand-200"
+                : "border-amber-500 text-warn-ink"
             }`}
           >
             {debitOk && creditOk
@@ -216,11 +217,11 @@ export default function InteractiveJournalEntry() {
                   : dict.journalEntry.creditWrong}
           </p>
 
-          <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
+          <div className="rounded-sm border border-stone-200 p-3 dark:border-stone-800">
             <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">
               {dict.journalEntry.equationTitle}
             </p>
-            <p className="mt-1 font-mono text-[12px] text-ink-body">
+            <p className="mt-1 text-[12px] font-semibold tabular-nums text-ink-body">
               {format(dict.journalEntry.equationFormula, {
                 assetsSign: sign(dict, delta.assets),
                 claimsSign: sign(dict, delta.claims),
@@ -233,7 +234,7 @@ export default function InteractiveJournalEntry() {
             </p>
           </div>
 
-          <p className="rounded-2xl bg-stone-50 px-3 py-2.5 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
+          <p className="border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
             {txn.why}
           </p>
 
@@ -241,7 +242,7 @@ export default function InteractiveJournalEntry() {
             <button
               type="button"
               onClick={() => goTo(index + 1)}
-              className="cursor-pointer rounded-full border border-stone-300 px-4 py-2 text-[11px] font-bold text-stone-700 hover:border-stone-500 dark:border-stone-700 dark:text-stone-200"
+              className={`cursor-pointer ${btnSecondary}`}
             >
               {dict.journalEntry.nextTransaction}
             </button>
@@ -287,12 +288,12 @@ function Side({
         value={value}
         onChange={(e) => onChange(e.target.value as AccountId)}
         aria-label={format(t.journalEntry.selectAccountAriaLabel, { side })}
-        className={`mt-1.5 w-full cursor-pointer rounded-xl border bg-white px-3 py-2 text-xs text-stone-800 dark:bg-stone-900 dark:text-stone-100 ${
+        className={`mt-1.5 w-full cursor-pointer rounded-sm border bg-white px-3 py-2 text-xs text-stone-800 dark:bg-stone-900 dark:text-stone-100 ${
           !checked
             ? "border-line-strong"
             : ok
-              ? "border-brand-400 dark:border-brand-700"
-              : "border-rose-400 dark:border-rose-700"
+              ? "border-brand-600 dark:border-brand-400"
+              : "border-red-500 dark:border-red-700"
         }`}
       >
         <option value="">{t.journalEntry.selectAccountPlaceholder}</option>

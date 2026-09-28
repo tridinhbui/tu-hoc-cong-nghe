@@ -267,7 +267,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
     realWorldExample: {
       company: "Cùng một chức danh, hai mức lương",
       description:
-        "Hai người cùng làm kế toán tổng hợp ba năm kinh nghiệm ở Hà Nội. Người thứ nhất đề nghị 15 triệu vì đang nhận 13 và muốn tăng một chút. Người thứ hai tra được dải thật cho vị trí ấy là 16 đến 22 triệu, đề nghị 20 và nhận được 19. Khác biệt không nằm ở năng lực mà ở việc một người biết dải còn người kia thì không.",
+        "Hai người cùng làm kiểm thử phần mềm ba năm kinh nghiệm ở Hà Nội. Người thứ nhất đề nghị 15 triệu vì đang nhận 13 và muốn tăng một chút. Người thứ hai tra được dải thật cho vị trí ấy là 16 đến 22 triệu, đề nghị 20 và nhận được 19. Khác biệt không nằm ở năng lực mà ở việc một người biết dải còn người kia thì không.",
     },
     quiz: [
       {
@@ -286,7 +286,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
         question: "Vì sao chi phí sinh hoạt của bạn không phải căn cứ đàm phán?",
         options: [
           "Vì nó đo nhu cầu của bạn chứ không đo giá trị công việc trên thị trường",
-          "Vì nhà tuyển dụng không có quyền hỏi về tình hình tài chính của ứng viên",
+          "Vì nhà tuyển dụng không có quyền hỏi về hoàn cảnh cá nhân của ứng viên",
           "Vì chi phí sinh hoạt thay đổi theo từng tháng nên không dùng làm mốc được",
           "Vì mức lương tối thiểu vùng đã bao hàm toàn bộ chi phí sinh hoạt cơ bản",
         ],
@@ -304,7 +304,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
         ],
         correct: 0,
         explanation:
-          "Chức danh giống nhau không có nghĩa công việc giống nhau. Kế toán ở công ty sản xuất trăm người và kế toán ở tập đoàn niêm yết là hai vị trí khác nhau, và trộn chúng vào một dải sẽ cho ra con số không dùng được cho trường hợp nào cả.",
+          "Chức danh giống nhau không có nghĩa công việc giống nhau. Kiểm thử viên ở công ty phần mềm trăm người và ở một tập đoàn công nghệ lớn là hai vị trí khác nhau, và trộn chúng vào một dải sẽ cho ra con số không dùng được cho trường hợp nào cả.",
       },
       {
         question:
@@ -398,7 +398,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
       {
         type: "callout",
         label: "Chức danh giống nhau không có nghĩa công việc giống nhau",
-        text: "Cùng gọi là chuyên viên phân tích, nhưng ở công ty ba mươi người và ở tập đoàn niêm yết là hai phạm vi trách nhiệm khác hẳn, và thị trường trả khác nhau. Khi lọc dải, hãy lọc theo quy mô doanh nghiệp và phạm vi công việc chứ không chỉ theo tên gọi vị trí.",
+        text: "Cùng gọi là kỹ sư phần mềm, nhưng ở công ty ba mươi người và ở tập đoàn công nghệ lớn là hai phạm vi trách nhiệm khác hẳn, và thị trường trả khác nhau. Khi lọc dải, hãy lọc theo quy mô doanh nghiệp và phạm vi công việc chứ không chỉ theo tên gọi vị trí.",
       },
       {
         type: "list",
@@ -979,7 +979,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
     realWorldExample: {
       company: "Hai người cùng bỏ ra mười giờ mỗi tuần",
       description:
-        "Một kế toán viên nhận làm sổ sách cho ba hộ kinh doanh nhỏ vào cuối tuần: thu nhập thêm khoảng sáu triệu mỗi tháng, và sau hai năm là kinh nghiệm xử lý ba mô hình kinh doanh khác nhau cùng một mạng lưới khách hàng. Một người khác chạy xe công nghệ buổi tối, thu nhập tương đương, và sau hai năm vẫn là một người chạy xe buổi tối. Cả hai đều làm việc thật; chỉ một người có thứ tích lũy lại.",
+        "Một lập trình viên nhận làm và bảo trì website cho ba cửa hàng nhỏ vào cuối tuần: thu nhập thêm khoảng sáu triệu mỗi tháng, và sau hai năm là kinh nghiệm xử lý ba mô hình kinh doanh khác nhau cùng một mạng lưới khách hàng. Một người khác chạy xe công nghệ buổi tối, thu nhập tương đương, và sau hai năm vẫn là một người chạy xe buổi tối. Cả hai đều làm việc thật; chỉ một người có thứ tích lũy lại.",
     },
     quiz: [
       {
@@ -1518,7 +1518,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
           "Vì kỹ năng không được dùng sẽ mai một trước khi kịp tạo ra thu nhập nào",
           "Vì chứng chỉ có thời hạn hiệu lực và sẽ hết giá trị sau một khoảng thời gian",
           "Vì nhà tuyển dụng chỉ công nhận kỹ năng được học trong vòng mười hai tháng",
-          "Vì học phí chỉ được khấu trừ thuế nếu bạn dùng kỹ năng đó trong năm tài chính",
+          "Vì học phí chỉ được công ty hoàn lại nếu bạn dùng kỹ năng đó ngay trong năm",
         ],
         correct: 0,
         explanation:
@@ -1618,7 +1618,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
       {
         type: "conceptTable",
         title: "Ba loại chi cho việc học",
-        subtitle: "Chỉ loại đầu tiên là đầu tư theo đúng nghĩa tài chính",
+        subtitle: "Chỉ loại đầu tiên là khoản đầu tư có hoàn vốn tính được",
         concepts: [
           {
             vi: "Có thị trường, có chỗ dùng",
@@ -1699,8 +1699,8 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
       {
         question: "Vì sao ngân sách phải chạy song song suốt cả năm?",
         options: [
-          "Vì không có nó thì phần thu nhập tăng thêm bị lạm phát lối sống nuốt mất",
-          "Vì ngân hàng yêu cầu bảng ngân sách khi xét duyệt các khoản vay tiêu dùng",
+          "Vì không có nó thì phần thu nhập tăng thêm bị chi tiêu dâng theo nuốt mất",
+          "Vì phòng nhân sự cần bảng ngân sách cá nhân khi xét duyệt tạm ứng lương",
           "Vì phần thu nhập tăng thêm phải được kê khai riêng với cơ quan thuế",
           "Vì chỉ khi có ngân sách thì công ty mới đồng ý xem xét tăng lương",
         ],
@@ -1737,7 +1737,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
         options: [
           "Làm cả bốn nhánh cùng lúc rồi không nhánh nào đủ sâu để tạo ra kết quả",
           "Dành quá nhiều thời gian cho việc tra cứu dải lương thị trường",
-          "Đàm phán tăng lương quá sớm trước khi hết năm tài chính của công ty",
+          "Đàm phán tăng lương quá sớm, trước kỳ đánh giá hiệu suất cuối năm",
           "Ghi chép kết quả công việc quá chi tiết khiến người quản lý khó đọc",
         ],
         correct: 0,

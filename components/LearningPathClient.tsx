@@ -19,6 +19,10 @@ import {
 } from "@/lib/learning-pace";
 import { format, intlLocale } from "@/lib/i18n";
 import type { StageTopicId } from "@/lib/stage-topics";
+import { Sys, panel, btnPrimary, textLink } from "@/components/ui/system";
+
+/** Mã định vị mono ở đầu trang: chính đường dẫn của route, không phải nhãn dịch. */
+const ROUTE_CODE = "THCN://APP/LO-TRINH";
 
 type Track = "personal" | "professional";
 
@@ -150,26 +154,29 @@ export default function LearningPathClient({
     // cuối nằm dưới nó, và trên màn hình hẹp cái bị che là đúng phần "chủ đề
     // yếu nhất" - phần vừa được cho link để bấm.
     <div className="mx-auto max-w-2xl space-y-4 px-4 pt-8 pb-28">
-      <header className="space-y-1.5">
+      <header>
         {/* Lối ra. Trang này là một trang riêng chứ không phải tab dashboard,
             nên không có gì đưa người dùng về ngoài nút Back của trình duyệt -
             mà vào đây bằng cách bấm thẻ trên dashboard thì Back là thao tác
             người ta phải NGHĨ ra, không phải thao tác nhìn thấy. */}
         <Link
           href="/dashboard"
-          className="inline-flex items-center gap-1.5 text-sm font-bold text-stone-600 transition-colors hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+          className={textLink}
         >
           <ArrowLeft className="h-4 w-4" />
           {p.backToDashboard}
         </Link>
-        <h1 className="text-2xl font-black text-ink">{p.title}</h1>
-        <p className="text-sm leading-relaxed text-ink-soft">{p.subtitle}</p>
+        <div className="mt-4 border-b border-line-strong pb-2">
+          <Sys className="text-ink-muted">{ROUTE_CODE}</Sys>
+        </div>
+        <h1 className="mt-3 text-2xl font-black leading-[1.15] tracking-tight text-ink-max sm:text-[2rem]">{p.title}</h1>
+        <p className="mt-1.5 max-w-[68ch] text-sm leading-7 text-ink-soft">{p.subtitle}</p>
       </header>
 
       {/* Câu hỏi nhu cầu đứng TRƯỚC mục lục và mọi khối về track/nhịp: người
           non-tech biết mình muốn LÀM gì trước khi biết mình thuộc track nào.
           Xem lib/learning-flows.ts. */}
-      <LearningGoalCard />
+      <LearningGoalCard id="goal" />
 
       {/* Mục lục. Sáu khối, và người quay lại lần thứ hai gần như luôn chỉ muốn
           sửa nhịp - trước đây họ phải cuộn qua bốn khối để tới đó.
@@ -177,12 +184,13 @@ export default function LearningPathClient({
           Dùng <a href="#..."> chứ không phải <Link>: đây là nhảy trong cùng
           một trang, và next/link sẽ chạy qua router cho một việc mà trình duyệt
           làm sẵn tốt hơn - kèm cả `scroll-margin` khi quay lại bằng nút Back. */}
-      <nav aria-label={p.tocTitle} className="rounded-2xl border border-stone-200 bg-white p-3.5 dark:border-stone-800 dark:bg-stone-900">
-        <p className="text-xs font-black uppercase tracking-wider text-ink-muted">
+      <nav aria-label={p.tocTitle} className={`${panel} p-3.5`}>
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
           {p.tocTitle}
         </p>
-        <div className="mt-2 flex flex-wrap gap-1.5">
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5">
           {[
+            ["goal", p.tocGoal],
             ["pick", p.stepPickTitle],
             ["pace", p.stepPaceTitle],
             ["how", p.stepHowTitle],
@@ -193,7 +201,7 @@ export default function LearningPathClient({
             <a
               key={id}
               href={`#${id}`}
-              className="rounded-lg border border-stone-200 px-2.5 py-1 text-xs font-bold text-stone-700 transition-colors hover:border-stone-400 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
+              className={`${textLink} text-xs`}
             >
               {label}
             </a>
@@ -202,27 +210,27 @@ export default function LearningPathClient({
       </nav>
 
       {/* Câu trả lời trước tiên: mỗi ngày 6 phút, và hôm nay là bài này. */}
-      <section className="rounded-2xl border border-brand-200 bg-gradient-to-b from-brand-50 to-white p-5 dark:border-brand-900 dark:from-brand-950/40 dark:to-stone-900">
+      <section className={`${panel} p-5`}>
         <div className="flex items-center gap-2">
-          <Flame className="h-5 w-5 shrink-0 text-orange-500" />
-          <p className="text-xl font-black text-ink">{p.heroMinutes}</p>
+          <Flame className="h-5 w-5 shrink-0 text-ink-muted" />
+          <p className="text-xl font-black tracking-tight text-ink-max">{p.heroMinutes}</p>
         </div>
-        <p className="mt-1.5 text-sm leading-relaxed text-ink-body">{p.heroBody}</p>
+        <p className="mt-1.5 max-w-[68ch] text-sm leading-7 text-ink-body">{p.heroBody}</p>
 
-        <div className="mt-4 rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
+        <div className="mt-4 rounded-sm border border-stone-200 bg-[#fbfaf7] p-4 dark:border-stone-800 dark:bg-stone-950">
           {loading ? (
             <p className="text-sm text-ink-muted">{p.heroLoading}</p>
           ) : !nextLesson ? (
-            <p className="text-sm leading-relaxed text-ink-soft">{p.heroNoLesson}</p>
+            <p className="text-sm leading-7 text-ink-soft">{p.heroNoLesson}</p>
           ) : (
             <>
-              <p className="text-xs font-bold text-ink-muted">{p.heroTodayLabel}</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{p.heroTodayLabel}</p>
               <p className="mt-1 text-base font-bold leading-snug text-ink">
                 {getLessonShortTitle({ title: nextLesson.title })}
               </p>
               <Link
                 href={`/bai-hoc/${nextLesson.slug}`}
-                className="mt-3 inline-flex items-center gap-1.5 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-700"
+                className={`${btnPrimary} mt-3`}
               >
                 {p.heroOpen} <ArrowRight className="h-4 w-4" />
               </Link>
@@ -241,19 +249,19 @@ export default function LearningPathClient({
                 type="button"
                 onClick={() => pickTrack(id)}
                 aria-pressed={picked}
-                className={`cursor-pointer rounded-2xl border p-4 text-left transition-all ${
+                className={`cursor-pointer rounded-sm border p-4 text-left transition-colors ${
                   picked
-                    ? "border-brand-400 bg-brand-50 dark:border-brand-700 dark:bg-brand-950/40"
-                    : "border-stone-200 bg-white hover:border-stone-400 dark:border-stone-800 dark:bg-stone-900"
+                    ? "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40"
+                    : "border-stone-300 bg-white hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
-                  <span className="text-base font-black text-ink">
+                  <span className="text-base font-black tracking-tight text-ink-max">
                     {id === "personal" ? p.trackPersonalName : p.trackProfessionalName}
                   </span>
-                  {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-brand-500" />}
+                  {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-accent-strong" />}
                 </div>
-                <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
+                <p className="mt-1.5 text-sm leading-6 text-ink-soft">
                   {id === "personal" ? p.trackPersonalFor : p.trackProfessionalFor}
                 </p>
                 {/* Thẻ ĐANG CHỌN đếm số bài còn lại, thẻ kia đếm tổng.
@@ -265,7 +273,7 @@ export default function LearningPathClient({
                     Thẻ CHƯA chọn vẫn dùng tổng, và đó không phải cẩu thả: câu
                     hỏi ở đó là "hướng này to cỡ nào", không phải "tôi còn bao
                     nhiêu" - người đọc chưa học bài nào của nó. */}
-                <p className="mt-3 text-xs font-bold text-ink-muted">
+                <p className="mt-3 text-xs font-bold tabular-nums text-ink-muted">
                   {picked
                     ? format(p.trackLessonsLeft, { count: Math.max(0, counts[id] - done[id]) })
                     : format(p.trackLessons, { count: counts[id] })}{" "}
@@ -287,9 +295,9 @@ export default function LearningPathClient({
                     thì vẫn trúng, nên lỗi này không bao giờ lộ ra thành khiếu
                     nại; nó chỉ làm chỗ bấm trông nhỏ hơn thực tế. */}
                 {picked ? (
-                  <p className="mt-2 text-xs font-black text-accent-strong">{p.trackPicked}</p>
+                  <p className="mt-2 text-xs font-bold text-accent-strong">{p.trackPicked}</p>
                 ) : (
-                  <span className="mt-2 inline-flex rounded-lg border border-stone-300 px-2.5 py-1 text-xs font-bold text-stone-700 dark:border-stone-700 dark:text-stone-300">
+                  <span className="mt-2 inline-flex rounded-sm border border-stone-300 px-2.5 py-1 text-xs font-bold text-stone-700 dark:border-stone-700 dark:text-stone-300">
                     {p.trackPick}
                   </span>
                 )}
@@ -298,7 +306,7 @@ export default function LearningPathClient({
           })}
         </div>
         {track === "professional" && (
-          <p className="mt-3 rounded-xl border-l-2 border-amber-400 bg-amber-50 p-3 text-sm leading-relaxed text-stone-700 dark:bg-amber-950/30 dark:text-stone-300">
+          <p className="mt-3 max-w-[68ch] border-l-2 border-stone-950 pl-4 text-sm leading-7 text-ink-body dark:border-stone-200">
             {p.proNote}
           </p>
         )}
@@ -328,8 +336,8 @@ export default function LearningPathClient({
             ))}
           </Field>
         </div>
-        <div className="mt-4 rounded-xl bg-stone-50 p-3.5 dark:bg-stone-950/50">
-          <p className="text-sm font-bold text-ink-heading">
+        <div className="mt-4 rounded-sm border border-stone-200 bg-[#fbfaf7] p-3.5 dark:border-stone-800 dark:bg-stone-950">
+          <p className="text-sm font-bold tabular-nums text-ink-heading">
             {format(p.paceEstimate, { count: remaining, weeks })}
           </p>
           <p className="mt-0.5 text-sm text-ink-muted">
@@ -380,12 +388,12 @@ export default function LearningPathClient({
             [p.howPracticeTitle, p.howPracticeBody],
           ].map(([title, body], i) => (
             <li key={title} className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-stone-800 text-xs font-black text-white dark:bg-stone-700">
-                {i + 1}
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border border-stone-300 font-mono text-xs font-medium tabular-nums text-ink-body dark:border-stone-700">
+                {String(i + 1).padStart(2, "0")}
               </span>
               <div>
                 <p className="text-sm font-bold text-ink">{title}</p>
-                <p className="mt-1 text-sm leading-relaxed text-ink-soft">{body}</p>
+                <p className="mt-1 max-w-[68ch] text-sm leading-7 text-ink-soft">{body}</p>
               </div>
             </li>
           ))}
@@ -402,9 +410,9 @@ export default function LearningPathClient({
       </Card>
 
       <Card id="check" icon={<CheckCircle2 className="h-4 w-4" />} title={p.stepCheckTitle}>
-        <p className="text-sm leading-relaxed text-ink-soft">{p.stepCheckBody}</p>
+        <p className="max-w-[68ch] text-sm leading-7 text-ink-soft">{p.stepCheckBody}</p>
         <p className="mt-4 text-sm font-bold text-ink-heading">{p.weekRhythmTitle}</p>
-        <ul className="mt-1.5 space-y-1 text-sm leading-relaxed text-ink-soft">
+        <ul className="mt-1.5 space-y-1 text-sm leading-7 text-ink-soft">
           <li>· {format(p.weekStudy, { days: Math.max(1, pace.daysPerWeek - 1) })}</li>
           <li>· {p.weekReview}</li>
           <li>· {p.weekRest}</li>
@@ -415,10 +423,10 @@ export default function LearningPathClient({
         {loading ? (
           <p className="text-sm text-ink-muted">{p.adjustLoading}</p>
         ) : !nextLesson ? (
-          <p className="text-sm leading-relaxed text-ink-soft">{p.adjustNoData}</p>
+          <p className="text-sm leading-7 text-ink-soft">{p.adjustNoData}</p>
         ) : (
           <div className="space-y-3.5">
-            <p className="text-sm font-bold text-ink-heading">
+            <p className="text-sm font-bold tabular-nums text-ink-heading">
               {format(p.adjustProgress, { done: done[track], total })}
             </p>
             {/* Hai <div> trần không nói gì với trình đọc màn hình, mà đây là
@@ -431,10 +439,10 @@ export default function LearningPathClient({
               aria-valuemax={total}
               aria-valuenow={done[track]}
               aria-label={format(p.progressAria, { done: done[track], total })}
-              className="h-2 w-full overflow-hidden rounded-full bg-surface-sunken"
+              className="h-1 w-full overflow-hidden bg-surface-sunken"
             >
               <div
-                className="h-full rounded-full bg-brand-500 transition-all duration-500"
+                className="h-full bg-brand-600 transition-all duration-500 dark:bg-brand-500"
                 style={{ width: `${total > 0 ? Math.round((done[track] / total) * 100) : 0}%` }}
               />
             </div>
@@ -459,13 +467,13 @@ export default function LearningPathClient({
                     {gaps.map((g: { topicId: StageTopicId; count: number }) => {
                       const entry = topicEntry[track]?.[g.topicId];
                       const chip =
-                        "rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-bold text-rose-700 dark:border-rose-900/40 dark:bg-rose-950/20 dark:text-rose-300";
+                        "rounded-sm border border-red-300 bg-white px-2.5 py-1 text-xs font-bold text-red-700 dark:border-red-900 dark:bg-stone-900 dark:text-red-300";
                       return entry ? (
                         <Link
                           key={g.topicId}
                           href={`/bai-hoc/${entry.slug}`}
                           title={`${p.adjustWeakestOpen}: ${entry.title}`}
-                          className={`${chip} inline-flex items-center gap-1 transition-colors hover:border-rose-400 hover:bg-rose-100 dark:hover:bg-rose-950/40`}
+                          className={`${chip} inline-flex items-center gap-1 transition-colors hover:border-red-600 dark:hover:border-red-400`}
                         >
                           {t.topics[g.topicId]}
                           <ArrowRight className="h-3 w-3" />
@@ -477,7 +485,7 @@ export default function LearningPathClient({
                       );
                     })}
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                  <p className="mt-2 max-w-[68ch] text-sm leading-7 text-ink-muted">
                     {p.adjustWeakestHint}
                   </p>
                 </>
@@ -507,14 +515,14 @@ function Card({
     // `scroll-mt-6` để tiêu đề khối không dính sát mép trên sau khi nhảy neo -
     // không có nó thì dòng chữ đầu tiên nằm đúng ranh giới khung nhìn và đọc
     // như bị cắt.
-    <section id={id} className="scroll-mt-6 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+    <section id={id} className={`scroll-mt-6 ${panel} p-5`}>
       <div className="flex items-center gap-2.5">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
           {icon}
         </span>
-        <h2 className="text-base font-black text-ink">{title}</h2>
+        <h2 className="text-base font-black tracking-tight text-ink-max">{title}</h2>
       </div>
-      {hint && <p className="mt-2 text-sm leading-relaxed text-ink-soft">{hint}</p>}
+      {hint && <p className="mt-2 max-w-[68ch] text-sm leading-7 text-ink-soft">{hint}</p>}
       <div className="mt-4">{children}</div>
     </section>
   );
@@ -535,10 +543,10 @@ function Pill({ active, onClick, children }: { active: boolean; onClick: () => v
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`cursor-pointer rounded-full px-3.5 py-2 text-sm font-bold transition-colors ${
+      className={`cursor-pointer rounded-sm border px-3 py-1.5 text-sm font-bold transition-colors ${
         active
-          ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900"
-          : "bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
+          ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
+          : "border-stone-300 bg-white text-ink-body hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
       }`}
     >
       {children}
@@ -551,12 +559,12 @@ function Pill({ active, onClick, children }: { active: boolean; onClick: () => v
  *  được khi đóng - nên người học biết ở đây có gì mà không phải mở ra. */
 function Disclosure({ question, answer }: { question: string; answer: string }) {
   return (
-    <details className="group border-b border-stone-100 py-2.5 last:border-0 dark:border-stone-800">
+    <details className="group border-b border-stone-200 py-2.5 last:border-0 dark:border-stone-800">
       <summary className="cursor-pointer list-none text-sm font-bold text-stone-800 marker:content-none dark:text-stone-200">
         <span className="mr-1.5 inline-block text-stone-400 transition-transform group-open:rotate-90">›</span>
         {question}
       </summary>
-      <p className="mt-2 pl-4 text-sm leading-relaxed text-ink-soft">{answer}</p>
+      <p className="mt-2 max-w-[68ch] pl-4 text-sm leading-7 text-ink-soft">{answer}</p>
     </details>
   );
 }

@@ -1,6 +1,6 @@
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-/** Mười ba địa điểm của Thế Giới Game Tài Chính.
+/** Mười ba địa điểm của Thế Giới Game Công Nghệ.
  *
  *  Tách khỏi TechRpgWorldMap để khu game trong thế giới 3D dựng được từ
  *  ĐÚNG danh sách này. Trước đó nó là một const nằm trong một client component
@@ -36,7 +36,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     badgeBg: "bg-gradient-to-r from-amber-500 to-red-500 text-white font-black",
     posClass: "top-4 left-1/2 -translate-x-1/2 sm:top-6",
     desktopClass: "lg:col-start-2 lg:row-start-1",
-    imageSrc: "/boss-wallstreet-bull.png",
+    imageSrc: "/boss-server-outage.svg",
   },
   {
     id: "pvp",
@@ -83,7 +83,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     badgeBg: "bg-gradient-to-r from-sky-600 via-indigo-600 to-slate-800 text-white font-black",
     posClass: "top-[320px] right-8 sm:right-20",
     desktopClass: "lg:col-start-3 lg:row-start-4",
-    imageSrc: "/rpg/goldman_sachs.png",
+    imageSrc: "/rpg/silicon_valley.png",
   },
   {
     id: "cards",
@@ -94,7 +94,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     badgeBg: "bg-gradient-to-r from-sky-500 to-cyan-500 text-white font-black",
     posClass: "top-[480px] left-12 sm:left-28",
     desktopClass: "lg:col-start-1 lg:row-start-6",
-    imageSrc: "/rpg/vn30-market.png",
+    imageSrc: "/images/dashboard/notebook_field_art.jpg",
   },
   {
     id: "shop",
@@ -105,7 +105,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     badgeBg: "bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-black",
     posClass: "top-[480px] right-12 sm:right-28",
     desktopClass: "lg:col-start-3 lg:row-start-6",
-    imageSrc: "/rpg/wolf_of_wall_street.jpg",
+    imageSrc: "/rpg/city_skyline.jpg",
   },
 
   // 🏗️ KHU VỰC 4: VÙNG ĐẤT TÀI CHÍNH TOÀN CẦU
@@ -118,7 +118,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     badgeBg: "bg-gradient-to-r from-amber-600 to-stone-700 text-white font-black",
     posClass: "top-[620px] left-1/2 -translate-x-1/2",
     desktopClass: "lg:col-start-2 lg:row-start-7",
-    imageSrc: "/rpg/fed_reserve.jpg",
+    imageSrc: "/rpg/singapore_dock.jpg",
   },
   {
     id: "silicon-bay",
@@ -140,7 +140,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     badgeBg: "bg-gradient-to-r from-stone-900 via-stone-800 to-stone-950 text-white font-black",
     posClass: "top-[760px] right-8 sm:right-20",
     desktopClass: "lg:col-start-3 lg:row-start-8",
-    imageSrc: "/rpg/blackstone.png",
+    imageSrc: "/rpg/empire_state_building.jpg",
   },
   {
     id: "cme-commodities",
@@ -151,7 +151,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     badgeBg: "bg-gradient-to-r from-brand-600 to-brand-600 text-white font-black",
     posClass: "top-[900px] left-12 sm:left-28",
     desktopClass: "lg:col-start-1 lg:row-start-9",
-    imageSrc: "/rpg/chicago-board-of-trade.png",
+    imageSrc: "/rpg/silicon_valley.png",
   },
   {
     id: "swiss-haven",

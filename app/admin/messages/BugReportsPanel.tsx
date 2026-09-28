@@ -120,17 +120,17 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
                 </p>
               </div>
               {report.unread_user_messages ? (
-                <span className="text-[10px] font-bold bg-blue-600 text-white rounded-full px-1.5 py-0.5">
+                <span className="rounded-xs bg-brand-600 px-1.5 py-0.5 font-mono text-[10px] font-medium tabular-nums text-white">
                   {report.unread_user_messages}
                 </span>
               ) : null}
             </div>
 
             <div className="flex items-center gap-2 mt-2 text-[10px] uppercase tracking-wide">
-              <span className="px-2 py-0.5 rounded-full bg-surface-raised text-ink-soft">
+              <span className="px-2 py-0.5 rounded-xs bg-surface-raised text-ink-soft">
                 {STATUS_OPTIONS.find((option) => option.value === report.status)?.label}
               </span>
-              <span className="px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/50 text-warn-strong">
+              <span className="px-2 py-0.5 rounded-xs bg-warn-soft text-warn-strong">
                 {SEVERITY_LABELS[report.severity]}
               </span>
             </div>
@@ -192,7 +192,7 @@ export default function BugReportsPanel({ bugReports }: { bugReports: BugReport[
                     <div
                       className={`max-w-md px-3 py-2 rounded-xl text-sm ${
                         message.sender === "admin"
-                          ? "bg-surface-invert text-ink-invert"
+                          ? "bg-accent-soft text-ink-max"
                           : "bg-surface-raised text-ink"
                       }`}
                     >

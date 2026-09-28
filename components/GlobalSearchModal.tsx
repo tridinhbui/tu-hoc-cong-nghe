@@ -3,10 +3,11 @@
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, BookOpen, Calculator, MessageCircle, ArrowRight, X, Sparkles, HelpCircle } from "lucide-react";
+import { Search, BookOpen, Calculator, MessageCircle, ArrowRight, X, HelpCircle } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { panel } from "@/components/ui/system";
 
 interface SearchResultItem {
   id: string;
@@ -26,20 +27,20 @@ const SAMPLE_LESSON_URLS: Record<string, string> = {
   "l-4": "/dashboard",
 };
 const SAMPLE_GLOSSARY_URLS: Record<string, string> = {
-  "g-dcf": "/tai-lieu",
-  "g-wacc": "/tai-lieu",
-  "g-pe": "/tai-lieu",
-  "g-roe": "/tai-lieu",
+  "g-idempotency": "/tai-lieu",
+  "g-slo": "/tai-lieu",
+  "g-p99": "/tai-lieu",
+  "g-cache-hit": "/tai-lieu",
 };
 // Cả bốn công cụ mẫu từng trỏ vào /cong-cu, route đã gỡ cùng tám máy tính tài
 // chính cá nhân của nó. Đây là dữ liệu MẪU cho ô tìm kiếm (xem chú thích đầu
 // tệp: sẽ thay bằng kho thật), nên chúng trỏ tạm về thư viện thay vì biến mất -
 // nhóm "công cụ" trống trơn trông như ô tìm kiếm hỏng.
 const SAMPLE_TOOL_URLS: Record<string, string> = {
-  "t-networth": "/tai-lieu",
-  "t-budget": "/tai-lieu",
-  "t-fire": "/tai-lieu",
-  "t-dcf": "/tai-lieu",
+  "t-big-o": "/tai-lieu",
+  "t-capacity": "/tai-lieu",
+  "t-infra-budget": "/tai-lieu",
+  "t-latency": "/tai-lieu",
 };
 
 function sampleLessonsOf(t: Dictionary): SearchResultItem[] {
@@ -116,29 +117,29 @@ export default function GlobalSearchModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/70 backdrop-blur-xs font-sans">
+      <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-stone-950/60 font-sans">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: -10 }}
-          className="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-stone-900 shadow-2xl border border-line overflow-hidden"
+          className={`${panel} relative w-full max-w-2xl overflow-hidden`}
         >
           {/* Search Input Header */}
-          <div className="relative border-b border-line-soft p-4">
-            <Search className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-stone-400" />
+          <div className="relative border-b border-line-strong p-4">
+            <Search className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-ink-faint" />
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t.globalSearch.inputPlaceholder}
               autoFocus
-              className="w-full bg-transparent pl-9 pr-10 text-base font-bold text-ink placeholder:text-stone-400 focus:outline-none"
+              className="w-full bg-transparent pl-9 pr-10 text-base font-bold text-ink placeholder:text-ink-faint focus:outline-none"
             />
             <button
               type="button"
               onClick={onClose}
               aria-label={t.globalSearch.closeAriaLabel}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-full text-stone-400 hover:bg-surface-raised cursor-pointer"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-sm text-ink-faint hover:bg-surface-raised hover:text-ink cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -147,8 +148,7 @@ export default function GlobalSearchModal({
           {/* Results Area */}
           <div className="max-h-[60vh] overflow-y-auto p-4 space-y-3">
             {query.trim() === "" ? (
-              <div className="text-center py-8 text-stone-400 space-y-2">
-                <Sparkles className="w-8 h-8 text-brand-500 mx-auto opacity-70" />
+              <div className="text-center py-8 text-ink-muted space-y-2">
                 <p className="text-xs font-bold">{t.globalSearch.emptyPrompt}</p>
                 <div className="flex flex-wrap justify-center gap-2 pt-2 text-[11px]">
                   {/* i18n-ignore-start: these are search query seeds, not UI copy - they
@@ -159,7 +159,7 @@ export default function GlobalSearchModal({
                       key={kw}
                       type="button"
                       onClick={() => setQuery(kw)}
-                      className="px-2.5 py-1 rounded-full bg-surface-raised text-ink-soft font-bold hover:bg-stone-200 cursor-pointer"
+                      className="px-2.5 py-1 rounded-sm border border-line-strong font-mono text-ink-soft hover:border-stone-950 hover:text-ink dark:hover:border-stone-200 cursor-pointer"
                     >
                       {kw}
                     </button>
@@ -168,7 +168,7 @@ export default function GlobalSearchModal({
                 </div>
               </div>
             ) : results.length === 0 ? (
-              <p className="text-center py-8 text-xs text-stone-400">
+              <p className="text-center py-8 text-xs text-ink-muted">
                 {format(t.globalSearch.noResults, { query })}
               </p>
             ) : (
@@ -181,17 +181,17 @@ export default function GlobalSearchModal({
                       onClose();
                       router.push(item.url);
                     }}
-                    className="w-full text-left p-3 rounded-2xl border border-line hover:border-brand-500 hover:bg-stone-50 dark:hover:bg-stone-800/60 transition-all cursor-pointer flex items-center justify-between group"
+                    className="w-full text-left p-3 rounded-sm border border-line-strong hover:border-stone-950 dark:hover:border-stone-300 transition-colors cursor-pointer flex items-center justify-between group"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-raised text-ink-body">
-                        {item.category === "lesson" && <BookOpen className="w-4 h-4 text-brand-500" />}
-                        {item.category === "tool" && <Calculator className="w-4 h-4 text-sky-500" />}
-                        {item.category === "glossary" && <HelpCircle className="w-4 h-4 text-amber-500" />}
+                      <span className="flex h-9 w-9 items-center justify-center rounded-sm border border-line-strong text-ink-soft">
+                        {item.category === "lesson" && <BookOpen className="w-4 h-4" />}
+                        {item.category === "tool" && <Calculator className="w-4 h-4" />}
+                        {item.category === "glossary" && <HelpCircle className="w-4 h-4" />}
                       </span>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-surface-raised text-ink-muted">
+                          <span className="eyebrow text-ink-faint">
                             {item.category === "lesson"
                               ? t.globalSearch.categoryLesson
                               : item.category === "tool"
@@ -205,7 +205,7 @@ export default function GlobalSearchModal({
                         <p className="text-[11px] text-ink-muted line-clamp-1">{item.desc}</p>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-brand-500 group-hover:translate-x-1 transition-all shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-ink-faint group-hover:text-accent transition-colors shrink-0" />
                   </button>
                 ))}
               </div>

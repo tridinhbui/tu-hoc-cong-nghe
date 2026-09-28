@@ -18,6 +18,8 @@ export interface LessonState {
   unlocked_lesson_ids: number[];
   user_lesson_flags: number[];
   bookmarks: LessonBookmark[];
+  /** Bài tính hoàn thành nhờ thi vượt chặng. Tuỳ chọn: bản RPC cũ không trả. */
+  exam_credited_lessons?: number[];
 }
 
 /**

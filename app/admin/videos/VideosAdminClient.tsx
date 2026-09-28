@@ -155,7 +155,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
                           href={`https://youtube.com/watch?v=${extractYouTubeId(lesson.videoUrl)}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
+                          className="text-accent-strong underline-offset-4 hover:underline flex items-center gap-1"
                         >
                           <Play className="w-3 h-3" />
                           {tv.watchVideo}
@@ -186,7 +186,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
                           <>
                             <button
                               onClick={() => handleStartEdit(lesson)}
-                              className="px-2 py-1 rounded text-xs bg-indigo-100 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-950/60"
+                              className="px-2 py-1 rounded text-xs border border-line-strong text-ink-body hover:border-stone-950 dark:hover:border-stone-300"
                             >
                               {lesson.videoUrl ? tv.edit : tv.add}
                             </button>
@@ -211,8 +211,8 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
       </div>
 
       {/* Info Box */}
-      <div className="bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/50 rounded-xl p-4">
-        <p className="flex items-start gap-1.5 text-sm text-indigo-900 dark:text-indigo-300">
+      <div className="bg-surface border border-line-strong rounded-xl p-4">
+        <p className="flex items-start gap-1.5 text-sm text-ink-body">
           <Lightbulb aria-hidden className="mt-0.5 h-4 w-4 flex-shrink-0" strokeWidth={1.75} />
           <span><span className="font-semibold">{tv.tipLabel}</span> {tv.tipText}</span>
         </p>

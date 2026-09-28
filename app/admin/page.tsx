@@ -26,6 +26,7 @@ import LessonFunnelPanel from "@/components/admin/LessonFunnelPanel";
 import { getLessonFunnel, type LessonFunnel } from "@/lib/admin/lesson-funnel";
 import { getWorldUsage, type WorldUsage } from "@/lib/admin/world-usage";
 import NeedsActionPanel from "@/components/admin/NeedsActionPanel";
+import { panel } from "@/components/ui/system";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary, format } from "@/lib/i18n";
 
@@ -91,40 +92,30 @@ export default async function AdminOverviewPage() {
       label: ta.cards.unreadMessages,
       value: unreadMessages + unreadChat,
       icon: MessageSquare,
-      color: "text-blue-600 dark:text-blue-400",
-      bg: "bg-blue-50 dark:bg-blue-950/40",
     },
     {
       href: "/admin/users",
       label: ta.cards.totalUsers,
       value: userCount,
       icon: Users,
-      color: "text-accent",
-      bg: "bg-brand-50 dark:bg-brand-950/40",
     },
     {
       href: "/admin/lessons",
       label: ta.cards.totalLessons,
       value: lessonCount,
       icon: BookOpen,
-      color: "text-purple-600 dark:text-purple-400",
-      bg: "bg-purple-50 dark:bg-purple-950/40",
     },
     {
       href: "/admin/lessons",
       label: ta.cards.pendingUnlocks,
       value: pendingUnlocks,
       icon: Clock,
-      color: "text-warn",
-      bg: "bg-amber-50 dark:bg-amber-950/40",
     },
     {
       href: "/admin/documents",
       label: ta.cards.documents,
       value: documentCount,
       icon: FileText,
-      color: "text-alert",
-      bg: "bg-rose-50 dark:bg-rose-950/40",
     },
   ];
 
@@ -147,7 +138,7 @@ export default async function AdminOverviewPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-ink mb-1 flex items-center gap-2">
-          <BarChart3 className="w-6 h-6 text-brand-500" />
+          <BarChart3 className="w-6 h-6 text-ink-soft" />
           {ta.title}
         </h1>
         <p className="text-sm text-ink-muted">
@@ -172,12 +163,12 @@ export default async function AdminOverviewPage() {
             <Link
               key={card.label}
               href={card.href}
-              className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-5 hover:border-line-firm transition-all shadow-xs"
+              className={`${panel} p-5 hover:border-stone-950 dark:hover:border-stone-300 transition-colors`}
             >
-              <div className={`w-10 h-10 rounded-lg ${card.bg} flex items-center justify-center mb-3`}>
-                <Icon className={`w-5 h-5 ${card.color}`} />
+              <div className="w-9 h-9 rounded-sm border border-line-strong flex items-center justify-center mb-3">
+                <Icon className="w-4.5 h-4.5 text-ink-soft" />
               </div>
-              <p className="text-2xl font-bold text-ink">{card.value}</p>
+              <p className="font-mono text-2xl font-medium tabular-nums text-ink-max">{card.value}</p>
               <p className="text-xs font-semibold text-ink-muted mt-1">{card.label}</p>
             </Link>
           );
@@ -186,51 +177,51 @@ export default async function AdminOverviewPage() {
 
       {/* Analytics KPI Performance Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="rounded-xl p-5 border border-brand-100 dark:border-brand-900/50 bg-brand-50/50 dark:bg-brand-950/20 flex flex-col justify-between">
+        <div className={`${panel} p-5 flex flex-col justify-between`}>
           <div>
-            <p className="text-[11px] font-extrabold text-ink-muted uppercase tracking-widest mb-1.5">
+            <p className="eyebrow text-ink-muted mb-1.5">
               {ta.kpis.activeThisWeek}
             </p>
-            <p className="text-2xl font-extrabold text-ink">{activeThisWeek}</p>
+            <p className="font-mono text-2xl font-medium tabular-nums text-ink-max">{activeThisWeek}</p>
           </div>
           <div className="flex justify-end mt-2">
-            <TrendingUp className="text-accent w-5 h-5 opacity-70" />
+            <TrendingUp className="text-ink-faint w-5 h-5" />
           </div>
         </div>
 
-        <div className="rounded-xl p-5 border border-purple-100 dark:border-purple-900/50 bg-purple-50/50 dark:bg-purple-950/20 flex flex-col justify-between">
+        <div className={`${panel} p-5 flex flex-col justify-between`}>
           <div>
-            <p className="text-[11px] font-extrabold text-ink-muted uppercase tracking-widest mb-1.5">
+            <p className="eyebrow text-ink-muted mb-1.5">
               {ta.kpis.lessonsCompleted}
             </p>
-            <p className="text-2xl font-extrabold text-ink">{analytics?.totalLessonsCompleted || 0}</p>
+            <p className="font-mono text-2xl font-medium tabular-nums text-ink-max">{analytics?.totalLessonsCompleted || 0}</p>
           </div>
           <div className="flex justify-end mt-2">
-            <BookOpen className="text-purple-600 dark:text-purple-400 w-5 h-5 opacity-70" />
+            <BookOpen className="text-ink-faint w-5 h-5" />
           </div>
         </div>
 
-        <div className="rounded-xl p-5 border border-orange-100 dark:border-orange-900/50 bg-orange-50/50 dark:bg-orange-950/20 flex flex-col justify-between">
+        <div className={`${panel} p-5 flex flex-col justify-between`}>
           <div>
-            <p className="text-[11px] font-extrabold text-ink-muted uppercase tracking-widest mb-1.5">
+            <p className="eyebrow text-ink-muted mb-1.5">
               {ta.kpis.avgQuizScore}
             </p>
-            <p className="text-2xl font-extrabold text-ink">{analytics?.avgQuizScore || 0}%</p>
+            <p className="font-mono text-2xl font-medium tabular-nums text-ink-max">{analytics?.avgQuizScore || 0}%</p>
           </div>
           <div className="flex justify-end mt-2">
-            <Award className="text-orange-600 dark:text-orange-400 w-5 h-5 opacity-70" />
+            <Award className="text-ink-faint w-5 h-5" />
           </div>
         </div>
 
-        <div className="rounded-xl p-5 border border-pink-100 dark:border-pink-900/50 bg-pink-50/50 dark:bg-pink-950/20 flex flex-col justify-between">
+        <div className={`${panel} p-5 flex flex-col justify-between`}>
           <div>
-            <p className="text-[11px] font-extrabold text-ink-muted uppercase tracking-widest mb-1.5">
+            <p className="eyebrow text-ink-muted mb-1.5">
               {ta.kpis.avgStudyTime}
             </p>
-            <p className="text-2xl font-extrabold text-ink">{analytics?.avgStudyTimeMinutes || 0} {ta.minutesUnit}</p>
+            <p className="font-mono text-2xl font-medium tabular-nums text-ink-max">{analytics?.avgStudyTimeMinutes || 0} {ta.minutesUnit}</p>
           </div>
           <div className="flex justify-end mt-2">
-            <Clock className="text-pink-600 dark:text-pink-400 w-5 h-5 opacity-70" />
+            <Clock className="text-ink-faint w-5 h-5" />
           </div>
         </div>
       </div>
@@ -238,14 +229,14 @@ export default async function AdminOverviewPage() {
       {/* Main Charts & Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left/Middle: DAU Visual Chart */}
-        <div className="lg:col-span-2 bg-white dark:bg-stone-900 border border-line rounded-xl p-5 shadow-xs">
-          <h2 className="text-sm font-extrabold text-ink-heading uppercase tracking-wider mb-4 flex items-center gap-1.5">
-            <TrendingUp className="w-4 h-4 text-brand-500" />
+        <div className={`lg:col-span-2 ${panel} p-5`}>
+          <h2 className="eyebrow text-ink-soft border-b border-line-strong pb-2 mb-4 flex items-center gap-1.5">
+            <TrendingUp className="w-4 h-4" />
             {ta.dauHeading}
           </h2>
 
           {dauData.length === 0 ? (
-            <div className="h-48 flex items-center justify-center text-xs text-stone-400">
+            <div className="h-48 flex items-center justify-center text-xs text-ink-faint">
               {ta.noActivityData}
             </div>
           ) : (
@@ -255,14 +246,14 @@ export default async function AdminOverviewPage() {
                   const barHeightPercent = Math.round((day.count / maxDau) * 100);
                   return (
                     <div key={idx} className="flex-1 flex flex-col items-center group h-full justify-end">
-                      <div className="text-[10px] font-bold text-ink-heading opacity-0 group-hover:opacity-100 transition-opacity mb-1">
+                      <div className="font-mono text-[10px] font-medium tabular-nums text-ink-heading opacity-0 group-hover:opacity-100 transition-opacity mb-1">
                         {day.count}
                       </div>
                       <div
                         style={{ height: `${Math.max(barHeightPercent, 4)}%` }}
-                        className="w-full bg-brand-500/80 dark:bg-brand-600/80 rounded-t-sm group-hover:bg-brand-500 transition-colors"
+                        className="w-full bg-brand-600 dark:bg-brand-500 rounded-t-xs group-hover:bg-brand-700 dark:group-hover:bg-brand-300 transition-colors"
                       />
-                      <div className="text-[9px] text-ink-muted mt-2 truncate w-full text-center">
+                      <div className="font-mono text-[9px] tabular-nums text-ink-muted mt-2 truncate w-full text-center">
                         {day.date.split("-").slice(1).join("/")}
                       </div>
                     </div>
@@ -274,44 +265,44 @@ export default async function AdminOverviewPage() {
         </div>
 
         {/* Right: Track Breakdown */}
-        <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-5 shadow-xs flex flex-col justify-between">
+        <div className={`${panel} p-5 flex flex-col justify-between`}>
           <div>
-            <h2 className="text-sm font-extrabold text-ink-heading uppercase tracking-wider mb-4 flex items-center gap-1.5">
+            <h2 className="eyebrow text-ink-soft border-b border-line-strong pb-2 mb-4 flex items-center gap-1.5">
               {ta.trackRatioHeading}
             </h2>
             <div className="space-y-4">
-              <div className="h-5 w-full rounded-full overflow-hidden flex bg-surface-raised">
-                <div style={{ width: `${personalPct}%` }} className="bg-blue-500" title={format(ta.trackTitles.personal, { pct: personalPct })} />
-                <div style={{ width: `${professionalPct}%` }} className="bg-purple-500" title={format(ta.trackTitles.professional, { pct: professionalPct })} />
-                <div style={{ width: `${cfaPct}%` }} className="bg-amber-500" title={format(ta.trackTitles.cfa, { pct: cfaPct })} />
+              <div className="h-4 w-full rounded-xs overflow-hidden flex bg-surface-raised">
+                <div style={{ width: `${personalPct}%` }} className="bg-brand-600 dark:bg-brand-500" title={format(ta.trackTitles.personal, { pct: personalPct })} />
+                <div style={{ width: `${professionalPct}%` }} className="bg-stone-500" title={format(ta.trackTitles.professional, { pct: professionalPct })} />
+                <div style={{ width: `${cfaPct}%` }} className="bg-stone-300 dark:bg-stone-600" title={format(ta.trackTitles.cfa, { pct: cfaPct })} />
               </div>
 
               <div className="space-y-2.5 pt-2">
                 <div className="flex justify-between items-center text-xs">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0" />
+                    <span className="w-2.5 h-2.5 rounded-[1px] bg-brand-600 dark:bg-brand-500 shrink-0" />
                     <span className="text-ink-soft">{ta.trackNames.personal}</span>
                   </div>
-                  <span className="font-bold text-ink">{personalCount} ({personalPct}%)</span>
+                  <span className="font-mono font-medium tabular-nums text-ink-max">{personalCount} ({personalPct}%)</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-purple-500 shrink-0" />
+                    <span className="w-2.5 h-2.5 rounded-[1px] bg-stone-500 shrink-0" />
                     <span className="text-ink-soft">{ta.trackNames.professional}</span>
                   </div>
-                  <span className="font-bold text-ink">{professionalCount} ({professionalPct}%)</span>
+                  <span className="font-mono font-medium tabular-nums text-ink-max">{professionalCount} ({professionalPct}%)</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" />
+                    <span className="w-2.5 h-2.5 rounded-[1px] bg-stone-300 dark:bg-stone-600 shrink-0" />
                     <span className="text-ink-soft">{ta.trackNames.cfa}</span>
                   </div>
-                  <span className="font-bold text-ink">{cfaCount} ({cfaPct}%)</span>
+                  <span className="font-mono font-medium tabular-nums text-ink-max">{cfaCount} ({cfaPct}%)</span>
                 </div>
               </div>
             </div>
           </div>
-          <div className="pt-4 border-t border-line-soft text-[10px] text-stone-400 text-center">
+          <div className="pt-4 border-t border-line-soft text-[10px] text-ink-faint text-center">
             {format(ta.totalAccountsFooter, { total: totalUsers })}
           </div>
         </div>
@@ -320,9 +311,9 @@ export default async function AdminOverviewPage() {
       {/* Top Lessons & System Details */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left: Popular Lessons (2 cols) */}
-        <div className="lg:col-span-2 bg-white dark:bg-stone-900 border border-line rounded-xl p-5 shadow-xs">
-          <h2 className="text-sm font-extrabold text-ink-heading uppercase tracking-wider mb-4 flex items-center gap-1.5">
-            <BookMarked className="w-4 h-4 text-indigo-500" />
+        <div className={`lg:col-span-2 ${panel} p-5`}>
+          <h2 className="eyebrow text-ink-soft border-b border-line-strong pb-2 mb-4 flex items-center gap-1.5">
+            <BookMarked className="w-4 h-4" />
             {ta.topLessonsHeading}
           </h2>
           {!analytics?.topLessons || analytics.topLessons.length === 0 ? (
@@ -331,28 +322,28 @@ export default async function AdminOverviewPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
-                  <tr className="border-b border-line-soft text-stone-500 font-bold uppercase tracking-wider">
+                  <tr className="border-b border-line-strong text-ink-muted font-bold uppercase tracking-wider">
                     <th className="py-2.5">{ta.tableHeaders.lesson}</th>
                     <th className="py-2.5 text-center">{ta.tableHeaders.completions}</th>
                     <th className="py-2.5 text-right">{ta.tableHeaders.avgScore}</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-stone-50 dark:divide-stone-800/50">
+                <tbody className="divide-y divide-line">
                   {analytics.topLessons.map((lesson) => (
-                    <tr key={lesson.id} className="hover:bg-stone-50/50 dark:hover:bg-stone-900/50 transition-colors">
+                    <tr key={lesson.id} className="hover:bg-surface transition-colors">
                       <td className="py-3 font-semibold text-ink">
                         {lesson.slug ? (
-                          <Link href={`/bai-hoc/${lesson.slug}`} className="hover:underline hover:text-indigo-600 dark:hover:text-indigo-400">
+                          <Link href={`/bai-hoc/${lesson.slug}`} className="underline-offset-4 hover:underline hover:text-accent-strong">
                             {lesson.title}
                           </Link>
                         ) : (
                           lesson.title
                         )}
                       </td>
-                      <td className="py-3 text-center font-bold text-ink-body">
+                      <td className="py-3 text-center font-mono font-medium tabular-nums text-ink-body">
                         {lesson.completions}
                       </td>
-                      <td className="py-3 text-right font-bold text-accent">
+                      <td className="py-3 text-right font-mono font-medium tabular-nums text-ink-max">
                         {lesson.avgScore}%
                       </td>
                     </tr>
@@ -364,32 +355,32 @@ export default async function AdminOverviewPage() {
         </div>
 
         {/* Right: Study metrics summary */}
-        <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-5 shadow-xs">
-          <h2 className="text-sm font-extrabold text-ink-heading uppercase tracking-wider mb-4">
+        <div className={`${panel} p-5`}>
+          <h2 className="eyebrow text-ink-soft border-b border-line-strong pb-2 mb-4">
             {ta.avgPerformanceHeading}
           </h2>
           <div className="space-y-4">
-            <div className="flex justify-between items-center border-b border-stone-50 dark:border-stone-800/50 pb-2 text-xs">
+            <div className="flex justify-between items-center border-b border-line pb-2 text-xs">
               <span className="text-ink-soft">{ta.rows.lessonsPerUser}</span>
-              <span className="font-extrabold text-ink">
+              <span className="font-mono font-medium tabular-nums text-ink-max">
                 {(analytics?.avgLessonsPerUser || 0).toFixed(1)} {ta.rows.lessonsPerUserUnit}
               </span>
             </div>
-            <div className="flex justify-between items-center border-b border-stone-50 dark:border-stone-800/50 pb-2 text-xs">
+            <div className="flex justify-between items-center border-b border-line pb-2 text-xs">
               <span className="text-ink-soft">{ta.rows.lessonsCompleted}</span>
-              <span className="font-extrabold text-ink">
+              <span className="font-mono font-medium tabular-nums text-ink-max">
                 {analytics?.totalLessonsCompleted || 0} {ta.rows.lessonsCompletedUnit}
               </span>
             </div>
-            <div className="flex justify-between items-center border-b border-stone-50 dark:border-stone-800/50 pb-2 text-xs">
+            <div className="flex justify-between items-center border-b border-line pb-2 text-xs">
               <span className="text-ink-soft">{ta.rows.avgStudyTime}</span>
-              <span className="font-extrabold text-ink">
+              <span className="font-mono font-medium tabular-nums text-ink-max">
                 {analytics?.avgStudyTimeMinutes || 0} {ta.rows.avgStudyTimeUnit}
               </span>
             </div>
             <div className="flex justify-between items-center text-xs">
               <span className="text-ink-soft">{ta.rows.avgQuizScore}</span>
-              <span className="font-extrabold text-ink">
+              <span className="font-mono font-medium tabular-nums text-ink-max">
                 {analytics?.avgQuizScore || 0}%
               </span>
             </div>

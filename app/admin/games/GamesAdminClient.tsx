@@ -67,29 +67,29 @@ export default function GamesAdminClient() {
       label: tg.statLabels.gamesPlayed,
       value: stats?.totalGamesPlayed ?? 0,
       icon: Gamepad2,
-      color: "text-purple-600 dark:text-purple-400",
-      bg: "bg-purple-50 dark:bg-purple-950/40",
+      color: "text-ink-soft",
+      bg: "border border-line-strong",
     },
     {
       label: tg.statLabels.playersEngaged,
       value: stats?.totalPlayersEngaged ?? 0,
       icon: Users,
-      color: "text-blue-600 dark:text-blue-400",
-      bg: "bg-blue-50 dark:bg-blue-950/40",
+      color: "text-ink-soft",
+      bg: "border border-line-strong",
     },
     {
       label: tg.statLabels.avgScore,
       value: stats?.averageScorePerGame ?? 0,
       icon: Trophy,
       color: "text-warn",
-      bg: "bg-amber-50 dark:bg-amber-950/40",
+      bg: "border border-line-strong",
     },
     {
       label: tg.statLabels.xpFromGames,
       value: stats?.totalXpFromGames ?? 0,
       icon: Zap,
       color: "text-accent",
-      bg: "bg-brand-50 dark:bg-brand-950/40",
+      bg: "border border-line-strong",
     },
   ];
 
@@ -152,7 +152,7 @@ export default function GamesAdminClient() {
                 onClick={() => setSelectedMetric(tab.id)}
                 className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold border-b-2 transition-colors ${
                   isActive
-                    ? "border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400"
+                    ? "border-brand-600 dark:border-brand-400 text-ink-max"
                     : "border-transparent text-ink-soft hover:text-ink"
                 }`}
               >
@@ -192,7 +192,7 @@ export default function GamesAdminClient() {
                           <p className="font-semibold text-ink text-sm capitalize">
                             {game.gameType.replace(/-/g, " ")}
                           </p>
-                          <span className="text-xs bg-purple-100 dark:bg-purple-950/40 text-purple-700 dark:text-purple-400 px-2 py-1 rounded">
+                          <span className="text-xs bg-surface-raised text-ink-body px-2 py-1 rounded">
                             {format(tg.timesPlayedSuffix, { count: game.timesPlayed })}
                           </span>
                         </div>
@@ -306,7 +306,7 @@ export default function GamesAdminClient() {
       <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-6">
         <h3 className="font-bold text-ink mb-4">{tg.actionsHeading}</h3>
         <div className="flex flex-wrap gap-3">
-          <button className="px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm transition-colors">
+          <button className="px-4 py-2 rounded-lg bg-stone-950 hover:bg-brand-700 text-white dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 font-semibold text-sm transition-colors">
             {tg.checkStatusButton}
           </button>
           <button className="px-4 py-2 rounded-lg bg-surface-sunken hover:bg-surface-deep text-ink font-semibold text-sm transition-colors">

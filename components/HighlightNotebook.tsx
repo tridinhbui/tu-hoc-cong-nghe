@@ -22,15 +22,15 @@ interface HighlightNotebookProps {
 }
 
 const TRACK_STYLES = {
-  personal: "border-brand-200 bg-brand-50/60 dark:border-brand-900 dark:bg-brand-950/20",
-  professional: "border-indigo-200 bg-indigo-50/60 dark:border-indigo-900 dark:bg-indigo-950/20",
-  other: "border-stone-200 bg-stone-50/60 dark:border-stone-800 dark:bg-stone-900/40",
+  personal: "border-stone-300 bg-[#fbfaf7] dark:border-stone-700 dark:bg-stone-950",
+  professional: "border-stone-300 bg-[#fbfaf7] dark:border-stone-700 dark:bg-stone-950",
+  other: "border-stone-300 bg-[#fbfaf7] dark:border-stone-700 dark:bg-stone-950",
 } as const;
 
 const TRACK_LABEL_STYLES = {
-  personal: "text-accent-strong",
-  professional: "text-indigo-700 dark:text-indigo-400",
-  other: "text-ink-soft",
+  personal: "text-ink-muted",
+  professional: "text-ink-muted",
+  other: "text-ink-muted",
 } as const;
 
 export default function HighlightNotebook({ highlights, lessonsById }: HighlightNotebookProps) {
@@ -57,7 +57,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
 
   if (rows.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-line-strong p-6 text-center">
+      <div className="rounded-md border border-dashed border-line-strong p-6 text-center">
         <Highlighter className="w-6 h-6 mx-auto text-stone-300 dark:text-stone-600 mb-2" />
         <p className="text-sm font-bold text-ink-body">{t.highlightNotebook.emptyTitle}</p>
         <p className="text-xs text-ink-muted mt-1 leading-relaxed">
@@ -81,13 +81,13 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
   return (
     <div className="space-y-3.5">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-xs font-extrabold text-ink-muted uppercase tracking-widest">
+        <p className="text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">
           {format(t.highlightNotebook.countLabel, { count: rows.length })}
         </p>
         <button
           type="button"
           onClick={() => setDeck(shuffleArray(rows))}
-          className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 px-3 py-1.5 text-xs font-black text-white shadow-xs transition-colors hover:bg-amber-400 cursor-pointer"
+          className="inline-flex cursor-pointer items-center gap-1.5 rounded-sm bg-stone-950 px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
         >
           <Repeat className="w-3.5 h-3.5" />
           {t.highlightNotebook.reviewButton}
@@ -99,7 +99,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
         return (
           <section
             key={group.stage.key}
-            className={`rounded-2xl border ${TRACK_STYLES[group.stage.track]} overflow-hidden`}
+            className={`rounded-md border ${TRACK_STYLES[group.stage.track]} overflow-hidden`}
           >
             <button
               type="button"
@@ -108,10 +108,10 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
               className="w-full flex items-start justify-between gap-3 px-3.5 py-3 text-left cursor-pointer"
             >
               <div className="min-w-0">
-                <p className={`text-[11px] font-black uppercase tracking-wider ${TRACK_LABEL_STYLES[group.stage.track]}`}>
+                <p className={`text-[11px] font-bold uppercase tracking-[0.08em] ${TRACK_LABEL_STYLES[group.stage.track]}`}>
                   {format(t.highlightNotebook.groupCountLabel, { label: group.stage.label, count: group.items.length })}
                 </p>
-                <p className="text-xs font-bold text-ink-heading mt-0.5 leading-snug">
+                <p className="mt-0.5 text-xs font-black leading-snug tracking-tight text-ink-max">
                   {group.stage.name}
                 </p>
               </div>
@@ -128,11 +128,11 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
                   return (
                     <div
                       key={h.id}
-                      className="group rounded-xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 px-3 py-2.5"
+                      className="group rounded-sm border border-stone-200 bg-white px-3 py-2.5 dark:border-stone-800 dark:bg-stone-900"
                     >
                       <Link href={href} className="block">
                         <p className="text-sm leading-relaxed text-ink-heading">
-                          <mark className="bg-amber-200 dark:bg-amber-900 dark:text-amber-100 rounded-sm px-0.5">
+                          <mark className="bg-amber-200 dark:bg-amber-900 dark:text-amber-100 rounded-xs px-0.5">
                             {h.quote}
                           </mark>
                         </p>
@@ -146,7 +146,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
                           onClick={() => handleDelete(h.id)}
                           disabled={deletingId === h.id}
                           aria-label={t.highlightNotebook.deleteAria}
-                          className="p-1 rounded-lg text-stone-300 dark:text-stone-600 hover:text-rose-500 dark:hover:text-rose-400 transition-colors disabled:opacity-50 cursor-pointer"
+                          className="p-1 rounded-sm text-ink-faint hover:text-red-500 dark:hover:text-red-400 transition-colors disabled:opacity-50 cursor-pointer"
                         >
                           {deletingId === h.id ? (
                             <Loader2 className="w-3.5 h-3.5 animate-spin" />

@@ -10,32 +10,17 @@ import type { GamesTranslation } from "./index";
  *     của nó dựng thẳng từ TECH_GLOSSARY. Dịch vế trái sang tiếng Anh thì
  *     hai cột cùng một thứ tiếng và trò chơi không còn gì để ghép. `random-mix`
  *     trộn chính pool đó vào nên dính theo.
- *   - `TICKER_PAIRS` là tên doanh nghiệp ↔ mã cổ phiếu ("Vingroup ↔ VIC").
+ *   - `TICKER_PAIRS` là tên công ty ↔ công nghệ họ tạo ra ("Meta ↔ React").
  *     Danh từ riêng; dịch là sai chứ không phải là thừa.
  *
- * Các pool còn lại (khoản mục báo cáo, tỷ số, nhóm rủi ro, chi phí, cặp
+ * Các pool còn lại (thành phần hệ thống, chỉ số, rủi ro thay đổi, chi phí, cặp
  * thuật ngữ - định nghĩa, tên - công thức) nằm trong `content` bên dưới.
  *
  * `emoji`, `accent`, `id`, `mechanic` là cấu trúc - đọc từ phía tiếng Việt.
  */
 export const gamesEn: GamesTranslation = {
-  special: {
-    "wall-street-millionaire": {
-      title: "Who Wants to Be a Wall Street Millionaire",
-      description:
-        "15 advanced technology questions with game-show style lifelines.",
-    },
-    "dcf-mastermind": {
-      title: "DCF & M&A Valuation Arena",
-      description:
-        "Work through 5 M&A deals, set an intrinsic target price, and call buy or walk away.",
-    },
-    "snowball-racer": {
-      title: "Compounding Snowball Race",
-      description:
-        "Pick an investment strategy across 20 years and try to reach $1,000,000 on compounding alone.",
-    },
-  },
+  // SPECIAL_GAMES trong lib/games.ts đang rỗng, nên không còn gì để dịch ở đây.
+  special: {},
 
   difficulties: {
     de: { label: "Easy", hint: "Fewer cards, no time limit" },
@@ -47,7 +32,7 @@ export const gamesEn: GamesTranslation = {
     "random-mix": {
       title: "Random mix of every topic",
       description:
-        "The all-round challenge: statements, terms, ratios, formulas and risk, shuffled together.",
+        "The all-round challenge: system tiers, terms, metrics, formulas and risk, shuffled together.",
     },
     "system-dashboard-match": {
       title: "System dashboards",
@@ -62,7 +47,7 @@ export const gamesEn: GamesTranslation = {
     "ratio-category": {
       title: "Sorting system metrics",
       description:
-        "Drag each ratio into the right family: liquidity / profitability / leverage / efficiency.",
+        "Drag each metric into the right family: latency / throughput / reliability / cost.",
     },
     "term-definition": {
       title: "Terms & definitions",
@@ -71,19 +56,19 @@ export const gamesEn: GamesTranslation = {
     "formula-match": {
       title: "Names & formulas",
       description:
-        "Match each ratio's name with the formula that computes it (ROE, P/E, current ratio...).",
+        "Match each metric's name with the formula that computes it (uptime, error rate, MTTR...).",
     },
     "risk-category": {
-      title: "Sorting investment risk",
-      description: "Drag each asset type into the right risk band: low / medium / high.",
+      title: "Sorting change risk",
+      description: "Drag each code change into the right risk band: low / medium / high.",
     },
     "ticker-match": {
-      title: "Stock tickers",
-      description: "Match each listed company with its ticker on the exchange.",
+      title: "Companies & technologies",
+      description: "Match each company with the technology it created.",
     },
     "cost-category": {
       title: "Sorting costs",
-      description: "Drag each cost into the right group: fixed or variable.",
+      description: "Drag each infrastructure cost into the right group: fixed or variable.",
     },
   },
 
@@ -95,10 +80,10 @@ export const gamesEn: GamesTranslation = {
 
   buckets: {
     "system-dashboard-match": {
-      sourceHint: "Drag or tap a card, then drop it on the right statement",
+      sourceHint: "Drag or tap a card, then drop it on the right tier",
     },
     "ratio-category": {
-      sourceHint: "Drag or tap a ratio, then drop it in the right family",
+      sourceHint: "Drag or tap a metric, then drop it in the right family",
       labels: {
         latency: "Latency",
         throughput: "Throughput",
@@ -130,18 +115,18 @@ export const gamesEn: GamesTranslation = {
       hint: "Tap a term then tap its definition (or drag and drop) to make a pair.",
     },
     "formula-match": {
-      leftLabel: "Ratio name",
+      leftLabel: "Metric name",
       rightLabel: "Formula",
-      hint: "Tap a ratio name then tap its formula (or drag and drop) to make a pair.",
+      hint: "Tap a metric name then tap its formula (or drag and drop) to make a pair.",
     },
     "ticker-match": {
       leftLabel: "Company",
-      rightLabel: "Ticker",
-      hint: "Tap a company then tap its ticker (or drag and drop) to make a pair.",
+      rightLabel: "Technology",
+      hint: "Tap a company then tap its technology (or drag and drop) to make a pair.",
     },
     randomMix: {
       leftLabel: "Term / name",
-      rightLabel: "Definition / ticker / concept",
+      rightLabel: "Definition / technology / concept",
       hint: "Random mix: match pairs drawn from several different topics.",
     },
     // Nhãn cột của `en-vi-terms`. Hai nhãn này PHẢI giữ đúng nghĩa ngôn ngữ:
@@ -166,11 +151,11 @@ export const gamesEn: GamesTranslation = {
     "term-definition": ["Living Dictionary", "Tech Scholar", "Encyclopaedic Brain"],
     "formula-match": ["Formula Prodigy", "Sorcerer of Numbers", "Quant Champion"],
     "risk-category": ["Guardian of the Release", "Risk Management Champion", "Master of Change Review"],
-    "ticker-match": ["Spirit of the Trading Floor", "Champion Tape Reader", "Ticker Legend"],
+    "ticker-match": ["Spirit of the Tech Village", "Champion Tech Spotter", "Open Source Legend"],
     "cost-category": [
-      "Cost Accountant Supreme",
+      "Cost Optimisation Supreme",
       "Master of Fixed & Variable",
-      "Legend of Cost Classification",
+      "Legend of Lean Infrastructure",
     ],
   },
 
@@ -294,27 +279,5 @@ export const gamesEn: GamesTranslation = {
     "Chi phí trên mỗi request": "Cost per request",
     "Mức dùng CPU trung bình": "Average CPU utilisation",
     "Tỷ lệ trúng cache": "Cache hit rate",
-    // ── Khoản mục bảng cân đối kế toán ──
-
-    // ── Khoản mục báo cáo kết quả kinh doanh ──
-
-    // ── Khoản mục báo cáo lưu chuyển tiền tệ ──
-
-    // ── Tỷ số tài chính (những cái còn tiếng Việt; ROE, Quick Ratio... đã là
-    //    tiếng Anh sẵn nên không có mặt ở đây) ──
-
-    // ── Nhóm rủi ro đầu tư ──
-
-    // ── Chi phí cố định / biến đổi. Chú thích trong ngoặc là ĐỀ BÀI, không
-    //    phải trang trí: "(theo sản lượng)" chính là thứ khiến khoản mục đó
-    //    là chi phí biến đổi, nên nó phải sang tiếng Anh nguyên vẹn. ──
-
-    // ── Cặp thuật ngữ - định nghĩa (vế trái nào đã là tiếng Anh thì vắng mặt) ──
-
-    // ── Cặp tên chỉ số - công thức. Giữ nguyên dấu "/" và "−" của bản gốc:
-    //    đây là công thức, không phải câu văn. Hai dòng cuối trông na ná hai
-    //    dòng ngay trên trong nhóm định nghĩa và ĐÚNG là phải khác nhau -
-    //    trộn ngẫu nhiên có thể rút cả hai vào cùng một ván, và hai thẻ giống
-    //    hệt nhau ở cột phải là một ván không giải được. ──
   },
 };

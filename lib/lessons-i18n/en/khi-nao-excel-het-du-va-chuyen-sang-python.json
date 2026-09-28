@@ -27,8 +27,8 @@
     }
   ],
   "realWorldExample": {
-    "company": "The monthly consolidated cash flow report",
-    "description": "A finance team joins figures from four branches, each exporting a file with slightly different column names. The Excel process took about four hours a month and had twice produced a wrong figure from pasting into the wrong range. Written as a script, the run takes minutes - but the larger benefit is elsewhere: every transformation step now sits in a readable code file, so when the auditor asks where a number came from, the answer takes thirty seconds instead of a reconstruction from memory."
+    "company": "The monthly consolidated operations report",
+    "description": "An operations team joins figures from four regional server clusters, each exporting a file with slightly different column names. The Excel process took about four hours a month and had twice produced a wrong figure from pasting into the wrong range. Written as a script, the run takes minutes - but the larger benefit is elsewhere: every transformation step now sits in a readable code file, so when someone asks where a number came from, the answer takes thirty seconds instead of a reconstruction from memory."
   },
   "quiz": [
     {
@@ -49,7 +49,7 @@
         "Automatically recording the full change history of every cell as edits happen in real time",
         "Re-running an entire calculation pipeline without any manual intervention at any step"
       ],
-      "explanation": "This is why valuation models still live in spreadsheets: the reader needs to click a cell and see immediately where it came from. A model written in code may be more correct and is harder to defend in front of an investment committee. The other options describe things code does better, or things Excel does not do at all."
+      "explanation": "This is why project cost estimates still live in spreadsheets: the reader needs to click a cell and see immediately where it came from. A model written in code may be more correct and is harder to explain to an approver who does not read code. The other options describe things code does better, or things Excel does not do at all."
     },
     {
       "question": "A table of three hundred thousand rows, used exactly once to answer one question. What should you use?",
@@ -69,7 +69,7 @@
         "Because the transformation steps exist as readable text rather than in the analyst's memory",
         "Because every analytics library automatically cross-checks its results before returning them"
       ],
-      "explanation": "This is the most undervalued benefit of the lot. \"Where did this number come from\" is the question auditors and managers ask most often, and a manual process is close to unable to answer it after a few months. The alternatives credit code with properties it does not have: the arithmetic is the same, nothing is immutable, and no library checks your logic for you."
+      "explanation": "This is the most undervalued benefit of the lot. \"Where did this number come from\" is the question reviewers and managers ask most often, and a manual process is close to unable to answer it after a few months. The alternatives credit code with properties it does not have: the arithmetic is the same, nothing is immutable, and no library checks your logic for you."
     },
     {
       "question": "Why does repetition matter more than data size when choosing between a spreadsheet and code?",
@@ -84,7 +84,7 @@
   ],
   "keyTakeaways": [
     "Repetition, not row count, is the main signal to move to code",
-    "Excel wins where you need to see and edit individual cells - which is why valuation models still live there",
+    "Excel wins where you need to see and edit individual cells - which is why cost estimates still live there",
     "A script turns a process into readable text, so it can answer where a number came from",
     "The cost of learning a new tool only pays back while the work keeps repeating"
   ],
@@ -111,7 +111,7 @@
   "sections": [
     {
       "type": "lead",
-      "text": "The Excel stage stopped at basic SQL, and it stopped in the right place. For a valuation model, the spreadsheet is still the best tool there is. This stage is about the rest of the work - the part where a spreadsheet starts being a burden rather than a tool."
+      "text": "The Excel stage stopped at basic SQL, and it stopped in the right place. For a one-off cost estimate, the spreadsheet is still the best tool there is. This stage is about the rest of the work - the part where a spreadsheet starts being a burden rather than a tool."
     },
     {
       "type": "heading",
@@ -137,7 +137,7 @@
       "type": "comparison",
       "left": {
         "label": "Excel is strong when",
-        "text": "The job is one-off, you need to see individual cells, someone else has to open and edit it directly, or the result has to be presented to people who do not read code. A valuation model is the classic case."
+        "text": "The job is one-off, you need to see individual cells, someone else has to open and edit it directly, or the result has to be presented to people who do not read code. A project cost estimate is the classic case."
       },
       "right": {
         "label": "Code is strong when",

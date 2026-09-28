@@ -4,11 +4,6 @@
     "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
     "duration": "12 min"
   },
-  "bang-can-doi-ke-toan": {
-    "title": "What the system holds and where its capacity comes from",
-    "subtitle": "A way of reading infrastructure that shows what is yours and what is borrowed",
-    "duration": "8 min"
-  },
   "bao-hiem-la-gi-mo-hinh-kinh-doanh": {
     "title": "Pooled spare capacity: why no team should hold its own",
     "subtitle": "Gathering several services' spare capacity into one pool, and the condition for it to work",
@@ -29,6 +24,21 @@
     "subtitle": "From a straight run of instructions to a program that picks a road.",
     "duration": "7 min"
   },
+  "chi-phi-co-dinh-va-theo-luong-dung": {
+    "title": "Fixed cost and cost that scales with usage",
+    "subtitle": "Why two systems with the same revenue react in opposite ways as load grows",
+    "duration": "8 min"
+  },
+  "chi-so-phi-chuc-nang-khi-danh-gia-dich-vu": {
+    "title": "Non-functional measures when judging a service",
+    "subtitle": "Combining three things with no common unit into one score, and who picks the weights",
+    "duration": "9 min"
+  },
+  "chia-chi-phi-dich-vu-dung-chung": {
+    "title": "Splitting cost and credit for a shared service",
+    "subtitle": "When one system serves several teams, who pays and who gets the credit",
+    "duration": "8 min"
+  },
   "chon-chi-so-do-luong-va-vanity-metric": {
     "title": "Data Thinking, Lesson 1: Choosing a metric - and why the pretty ones are usually useless",
     "subtitle": "Telling a vanity metric from one that drives action, and the trap of turning a metric into a target",
@@ -40,8 +50,8 @@
     "duration": "8 min"
   },
   "chuan-bi-modeling-test-va-case-interview": {
-    "title": "Professional Skills, Lesson 3: Preparing for the modelling test and the case interview",
-    "subtitle": "Time management, the order in which you build a model, and how to think out loud while working",
+    "title": "Professional Skills, Lesson 3: Preparing for the timed coding test and the case interview",
+    "subtitle": "Time management, the order in which you build a solution, and how to think out loud while working",
     "duration": "12 min"
   },
   "chuoi-va-thao-tac-van-ban": {
@@ -54,10 +64,10 @@
     "subtitle": "From the text file you type to the thing the machine really runs.",
     "duration": "7 min"
   },
-  "commodity-phan-2": {
-    "title": "Deep dive: scarce compute",
-    "subtitle": "When supply is capped by physics and demand rises everywhere at once",
-    "duration": "8 min"
+  "cong-suc-tieu-di-va-tich-lai": {
+    "title": "Effort that is spent and effort that compounds",
+    "subtitle": "The same week of work, two completely different places to be in two years",
+    "duration": "7 min"
   },
   "danh-gia-du-an-npv-irr": {
     "title": "Evaluating an internal platform project",
@@ -71,7 +81,7 @@
   },
   "dao-duc-du-lieu-va-thien-lech-thuat-toan": {
     "title": "Data Thinking, Lesson 6: Data ethics - privacy, bias and accountability",
-    "subtitle": "Why a credit scoring model can discriminate without using any sensitive data at all",
+    "subtitle": "Why a CV screening model can discriminate without using any sensitive data at all",
     "duration": "11 min"
   },
   "dashboard-va-bao-cao-tu-phuc-vu": {
@@ -94,49 +104,34 @@
     "subtitle": "Which one warns and which one only confirms, and why every team tracks the second",
     "duration": "9 min"
   },
-  "du-bao-tai-chinh-rolling-forecast": {
+  "du-bao-lan": {
     "title": "Engineering Lead & Operations, Lesson 2: Rolling forecasts",
     "subtitle": "Update the forecast monthly instead of defending the plan you made in January",
     "duration": "9 min"
-  },
-  "esg-investing-screening-den-portfolio": {
-    "title": "From screening to priority: which service to fix first",
-    "subtitle": "Three ways to allocate effort across a portfolio of services, and the price of each",
-    "duration": "8 min"
   },
   "esg-la-gi-va-tai-sao-quan-trong": {
     "title": "What non-functional measures are, and why they matter",
     "subtitle": "The things users cannot click on, and leave because of",
     "duration": "7 min"
   },
-  "esg-trong-dinh-gia-doanh-nghiep": {
-    "title": "Non-functional measures when judging a service",
-    "subtitle": "Combining three things with no common unit into one score, and who picks the weights",
-    "duration": "9 min"
-  },
   "financial-risk": {
     "title": "Classifying technical risk",
     "subtitle": "Four groups, and why naming it right decides who can fix it",
     "duration": "8 min"
   },
-  "income-affiliates-jv": {
-    "title": "Splitting cost and credit for a shared service",
-    "subtitle": "When one system serves several teams, who pays and who gets the credit",
+  "he-thong-dang-co-gi": {
+    "title": "What the system holds and where its capacity comes from",
+    "subtitle": "A way of reading infrastructure that shows what is yours and what is borrowed",
     "duration": "8 min"
   },
   "ir-cong-bo-thong-tin-va-thoi-diem": {
-    "title": "IR, Part 2: Materiality and timing - what you must say, and when",
-    "subtitle": "How to recognise material information, how the deadline is counted, and why silence is a choice with consequences",
-    "duration": "11 min"
-  },
-  "ir-guidance-va-ky-vong-thi-truong": {
-    "title": "IR, Part 3: Guidance - put out a number and then live with it",
-    "subtitle": "Why companies publish targets, what missing one costs, and how to give a range instead of a point",
+    "title": "DevRel, Part 2: Materiality and timing - what you must say, and when",
+    "subtitle": "How to recognise that an incident or change is material, how the deadline is counted, and why silence is a choice with consequences",
     "duration": "11 min"
   },
   "ir-khung-hoang-va-tin-xau": {
-    "title": "IR, Part 5: Bad news and crisis - say it before you are asked",
-    "subtitle": "The sequence to follow when something goes wrong, how to write a bad-news announcement, and why drip-feeding is the worst option",
+    "title": "DevRel, Part 5: Bad news and crises - speak before you are asked",
+    "subtitle": "The sequence for handling an incident, how to write a bad-news announcement, and why drip-feeding is the worst approach",
     "duration": "11 min"
   },
   "ke-chuyen-bang-du-lieu": {
@@ -179,8 +174,13 @@
     "subtitle": "Tie revenue and cost back to operating quantities, so that when the plan slips you know where it slipped",
     "duration": "11 min"
   },
-  "lo-trinh-nghe-phan-tich-tai-chinh": {
-    "title": "Professional Skills, Lesson 4: The career path - from analyst to decision maker",
+  "lo-trinh-cong-bo-va-moc-thoi-gian": {
+    "title": "DevRel, Part 3: Public roadmaps - commit to a date and then live with it",
+    "subtitle": "Why product teams publish roadmaps, what a missed date costs, and how to give a range instead of a point",
+    "duration": "11 min"
+  },
+  "lo-trinh-nghe-tu-chuyen-vien-den-truong-nhom": {
+    "title": "Professional Skills, Lesson 4: The career path - from engineer to decision maker",
     "subtitle": "How the skills change by level, choosing between depth and management, and how to build a professional record",
     "duration": "11 min"
   },
@@ -201,7 +201,7 @@
   },
   "mau-sai-so-chuan-va-khoang-tin-cay": {
     "title": "Quant, Lesson 2: Samples, standard errors and confidence intervals - how precise is your number really",
-    "subtitle": "Why every estimate has to carry an interval, and why 36 months of data is nowhere near enough",
+    "subtitle": "Why every estimate has to carry an interval, and why three weeks of data is usually nowhere near enough",
     "duration": "11 min"
   },
   "mo-hinh-tc-nganh-dac-thu": {
@@ -209,7 +209,7 @@
     "subtitle": "Three kinds of system where the familiar arithmetic gives a badly wrong answer",
     "duration": "9 min"
   },
-  "modern-portfolio-theory": {
+  "nhieu-dich-vu-nho-hay-mot-dich-vu-lon": {
     "title": "Many small services or one large one",
     "subtitle": "Splitting only reduces risk when the pieces fail independently",
     "duration": "9 min"
@@ -219,12 +219,7 @@
     "subtitle": "Why an hour saved next year is not worth an hour saved next month",
     "duration": "6 min"
   },
-  "operating-leverage": {
-    "title": "Fixed cost and cost that scales with usage",
-    "subtitle": "Why two systems with the same revenue react in opposite ways as load grows",
-    "duration": "8 min"
-  },
-  "phan-bo-chi-phi-va-loi-nhuan-bo-phan": {
+  "phan-bo-chi-phi-nen-tang-dung-chung": {
     "title": "Planning, part 5: cost allocation - why segment profit is always contested",
     "subtitle": "Direct costs, overheads and the allocation basis: when a number decides whose budget gets cut",
     "duration": "11 min"
@@ -240,8 +235,8 @@
     "duration": "7 min"
   },
   "phim-tat-excel-va-ky-luat-ban-phim": {
-    "title": "Excel, Lesson 1: Keyboard discipline - why a modelling test bans the mouse",
-    "subtitle": "The core shortcut groups, navigating a data range, and the working habits of a professional modeller",
+    "title": "Excel, Lesson 1: Keyboard discipline - why a data test bans the mouse",
+    "subtitle": "The core shortcut groups, navigating a data range, and the working habits of a professional data handler",
     "duration": "10 min"
   },
   "power-query-lam-sach-du-lieu": {
@@ -254,7 +249,7 @@
     "subtitle": "Why the hardest pillar to see is the one that warns of incidents earliest",
     "duration": "8 min"
   },
-  "rui-ro-khi-hau-nhu-rui-ro-tai-chinh": {
+  "rui-ro-vat-ly-va-dia-ly-ha-tang": {
     "title": "The physical and geographic risk in infrastructure",
     "subtitle": "Power, cooling, network paths and location - four things absent from every architecture diagram",
     "duration": "8 min"
@@ -263,6 +258,11 @@
     "title": "Data, Lesson 6: Advanced SQL - joining tables and computing over windows",
     "subtitle": "The four kinds of JOIN, the row-duplication trap, and the family of functions that solves ranking and running totals",
     "duration": "12 min"
+  },
+  "tai-nguyen-tinh-toan-khan-hiem": {
+    "title": "Deep dive: scarce compute",
+    "subtitle": "When supply is capped by physics and demand rises everywhere at once",
+    "duration": "8 min"
   },
   "truc-quan-hoa-va-bieu-do-noi-doi": {
     "title": "Data, Lesson 4: Visualisation - picking the right chart, and spotting the one that lies",
@@ -274,10 +274,10 @@
     "subtitle": "Whatever has to be decided again each evening is what will stop on some evening",
     "duration": "7 min"
   },
-  "tu-duy-tai-chinh": {
-    "title": "Effort that is spent and effort that compounds",
-    "subtitle": "The same week of work, two completely different places to be in two years",
-    "duration": "7 min"
+  "tu-sang-loc-toi-uu-tien-sua-dich-vu": {
+    "title": "From screening to priority: which service to fix first",
+    "subtitle": "Three ways to allocate effort across a portfolio of services, and the price of each",
+    "duration": "8 min"
   },
   "tuong-quan-khong-phai-nhan-qua": {
     "title": "Data Thinking, Lesson 4: Correlation is not causation - and three ways to be fooled",

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Dices, Swords, Users } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { trackFeatureClick } from "@/lib/feature-events";
+import { panel } from "@/components/ui/system";
 
 /** Ba lối vào "thử sức", ở cột phải dashboard dưới băng chuyền người đang học.
  *
@@ -30,12 +31,12 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
   const { t } = useI18n();
 
   const rowClass =
-    "group flex w-full items-center gap-3 rounded-2xl bg-stone-50 px-3 py-2.5 text-left transition-colors hover:bg-stone-100 dark:bg-stone-950/50 dark:hover:bg-stone-800/60";
+    "group flex w-full items-center gap-3 px-1 py-2.5 text-left transition-colors hover:bg-[#f3f1ec] dark:hover:bg-stone-950";
 
   return (
-    <div className="mt-4 rounded-[24px] border border-stone-200/90 bg-white/95 p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
-      <div className="mb-3">
-        <p className="text-[13px] font-extrabold text-ink">
+    <div className={`mt-4 p-4 ${panel}`}>
+      <div className="mb-2 border-b border-line-strong pb-2">
+        <p className="text-[13px] font-black tracking-tight text-ink-max">
           {t.dashboardArena.title}
         </p>
         <p className="text-[10px] text-ink-muted">
@@ -43,13 +44,13 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
         </p>
       </div>
 
-      <div className="space-y-1.5">
+      <div className="divide-y divide-stone-200 dark:divide-stone-800">
         <Link
           href="/kiem-tra"
           onClick={() => trackFeatureClick("dashboard_arena_click", { label: "quiz" })}
           className={rowClass}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-950/40 dark:text-sky-400">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
             <Dices className="h-4 w-4" />
           </span>
           <span className="min-w-0 flex-1">
@@ -70,7 +71,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
           }}
           className={rowClass}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-950/40 dark:text-orange-400">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
             <Swords className="h-4 w-4" />
           </span>
           <span className="min-w-0 flex-1">
@@ -91,7 +92,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
           }}
           className={rowClass}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-violet-600 dark:bg-violet-950/40 dark:text-violet-400">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
             <Users className="h-4 w-4" />
           </span>
           <span className="min-w-0 flex-1">

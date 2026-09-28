@@ -1,10 +1,8 @@
-// UI copy for the small finance calculators under components/tools/ and the
+// UI copy for the small calculators under components/tools/ and the
 // standalone Interactive* widgets embedded in lesson content. Not wired into
 // the main dictionary yet - see AGENTS.md "Translating the UI".
 
 export const toolsSectionVi = {
-
-
   profitCalc: {
     title: "Thử nghiệm: Dư địa trên giấy vs dư địa thật",
     subtitle: "Kéo để thay đổi số liệu và xem điều gì xảy ra",
@@ -50,30 +48,9 @@ export const toolsSectionVi = {
     lowRateBody: "Việc dài hạn dễ bảo vệ, đội dám dựng nền tảng, nhưng thứ cần kết quả nhanh lại phải xếp hàng chờ.",
   },
 
-  accretionCalc: {
-    title: "Thương vụ này làm EPS tăng hay pha loãng",
-    subtitle: "Bên mua: lợi nhuận 100 tỷ, 100 triệu cổ phiếu. Bên bán: lợi nhuận 40 tỷ.",
-    acquirerPeLabel: "P/E bên mua",
-    targetPeLabel: "P/E bên bán",
-    cashShareLabel: "Trả bằng tiền mặt",
-    acquirerPeAria: "P/E bên mua",
-    targetPeAria: "P/E bên bán",
-    cashShareAria: "Tỷ lệ thanh toán bằng tiền mặt",
-    epsBeforeLabel: "EPS trước thương vụ",
-    epsAfterLabel: "EPS sau thương vụ",
-    changeLabel: "Thay đổi",
-    allStockPrefix: "Thương vụ toàn cổ phiếu: bên mua P/E {acquirerPe}x, bên bán {targetPe}x - {comparison}.",
-    comparisonHigher: "cao hơn nên EPS tăng",
-    comparisonLower: "thấp hơn nên EPS bị pha loãng",
-    comparisonEqual: "bằng nhau nên EPS gần như không đổi",
-    cashDealNarrative: "Trả {cashShare}% bằng tiền mặt nên phát hành ít cổ phiếu hơn ({newShares} triệu), đổi lại mất phần lãi tiền gửi. Quy tắc so P/E chỉ áp thẳng cho thương vụ toàn cổ phiếu.",
-    footnote: "EPS tăng không có nghĩa là thương vụ tạo ra giá trị. Phép chia này không biết bạn đã trả cao hơn giá trị nội tại bao nhiêu, cũng không biết bảng cân đối vừa gánh thêm rủi ro gì. Đây là phép tính đầu tiên, không phải phép tính quyết định.",
-  },
 };
 
 export const toolsSectionEn: typeof toolsSectionVi = {
-
-
   profitCalc: {
     title: "Experiment: Paper headroom vs real headroom",
     subtitle: "Drag the sliders to change the numbers and see what happens",
@@ -119,23 +96,4 @@ export const toolsSectionEn: typeof toolsSectionVi = {
     lowRateBody: "Long-term work is easy to defend and teams dare to build foundations, but anything needing a fast result has to queue up and wait.",
   },
 
-  accretionCalc: {
-    title: "Is this deal accretive or dilutive to EPS",
-    subtitle: "Acquirer: 100B net income, 100M shares. Target: 40B net income.",
-    acquirerPeLabel: "Acquirer P/E",
-    targetPeLabel: "Target P/E",
-    cashShareLabel: "Paid in cash",
-    acquirerPeAria: "Acquirer P/E",
-    targetPeAria: "Target P/E",
-    cashShareAria: "Share of consideration paid in cash",
-    epsBeforeLabel: "EPS before deal",
-    epsAfterLabel: "EPS after deal",
-    changeLabel: "Change",
-    allStockPrefix: "All-stock deal: acquirer P/E {acquirerPe}x, target {targetPe}x - {comparison}.",
-    comparisonHigher: "higher, so EPS is accretive",
-    comparisonLower: "lower, so EPS is diluted",
-    comparisonEqual: "equal, so EPS is roughly unchanged",
-    cashDealNarrative: "Paying {cashShare}% in cash means fewer new shares are issued ({newShares}M), at the cost of the foregone interest income. The P/E comparison rule only applies directly to an all-stock deal.",
-    footnote: "A higher EPS doesn't mean the deal creates value. This calculation doesn't know how much you overpaid relative to intrinsic value, or what new risk the balance sheet just took on. It's the first calculation, not the deciding one.",
-  },
 };

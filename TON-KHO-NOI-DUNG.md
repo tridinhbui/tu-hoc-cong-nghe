@@ -345,33 +345,33 @@ Nội dung được thay nhưng `slug` giữ nguyên, nên địa chỉ nói m�
 một nẻo. Đây là thứ người học thấy trên thanh địa chỉ và khi chia sẻ link.
 | Track | URL hiện tại | Nội dung thật |
 |---|---|---|
-| bonus | `/bai-hoc/tai-chinh-khoi-nghiep-cap-table-vc-valuation` | Chuyên Đề Masterclass 3: Kỹ thuật ở giai đoạn đầu |
-| bonus | `/bai-hoc/tai-chinh-xanh-tieu-chuan-esg-tin-chi-carbon` | Chuyên Đề Masterclass 5: Phần mềm tiết kiệm năng lượng |
-| bonus | `/bai-hoc/discontinued-operations` | Case chuyên sâu: Một lần tối ưu lớn |
-| bonus | `/bai-hoc/commodity-phan-2` | Case chuyên sâu: Tài nguyên tính toán khan hiếm |
-| bonus | `/bai-hoc/market-fair-value` | Case chuyên sâu: Chi Phí Mỗi Request Có Hợp Lý? |
-| bonus | `/bai-hoc/vingroup-cash-flow` | Case chuyên sâu: Đọc dòng tài nguyên của một hệ thống lớn |
-| bonus | `/bai-hoc/operating-leverage` | Chi phí cố định và chi phí theo lượng dùng |
-| bonus | `/bai-hoc/income-affiliates-jv` | Chia chi phí và công cho dịch vụ dùng chung |
+| bonus | `/bai-hoc/ky-thuat-giai-doan-dau-khoi-nghiep` | Chuyên Đề Masterclass 3: Kỹ thuật ở giai đoạn đầu |
+| bonus | `/bai-hoc/phan-mem-tiet-kiem-nang-luong` | Chuyên Đề Masterclass 5: Phần mềm tiết kiệm năng lượng |
+| bonus | `/bai-hoc/mot-lan-toi-uu-lon` | Case chuyên sâu: Một lần tối ưu lớn |
+| bonus | `/bai-hoc/tai-nguyen-tinh-toan-khan-hiem` | Case chuyên sâu: Tài nguyên tính toán khan hiếm |
+| bonus | `/bai-hoc/chi-phi-moi-request-co-hop-ly` | Case chuyên sâu: Chi Phí Mỗi Request Có Hợp Lý? |
+| bonus | `/bai-hoc/doc-dong-tai-nguyen-he-thong-lon` | Case chuyên sâu: Đọc dòng tài nguyên của một hệ thống lớn |
+| bonus | `/bai-hoc/chi-phi-co-dinh-va-theo-luong-dung` | Chi phí cố định và chi phí theo lượng dùng |
+| bonus | `/bai-hoc/chia-chi-phi-dich-vu-dung-chung` | Chia chi phí và công cho dịch vụ dùng chung |
 | bonus | `/bai-hoc/interim-comprehensive-income` | Số liệu giữa kỳ và thay đổi không hiện lên chỉ số chính |
-| bonus | `/bai-hoc/maple-leaf-leverage` | Tỷ Lệ Nợ Kỹ Thuật |
-| bonus | `/bai-hoc/tesla-cash-flow` | Case: dòng tài nguyên của một sản phẩm tăng nhanh |
-| bonus | `/bai-hoc/tu-duy-tai-chinh` | Công sức tiêu đi và công sức tích lại |
+| bonus | `/bai-hoc/ty-le-no-ky-thuat` | Tỷ Lệ Nợ Kỹ Thuật |
+| bonus | `/bai-hoc/dong-tai-nguyen-san-pham-tang-nhanh` | Case: dòng tài nguyên của một sản phẩm tăng nhanh |
+| bonus | `/bai-hoc/cong-suc-tieu-di-va-tich-lai` | Công sức tiêu đi và công sức tích lại |
 | bonus | `/bai-hoc/khau-hao` | Phân bổ chi phí trả trước: ba cách và đường đi qua hoá đơn |
-| bonus | `/bai-hoc/bang-can-doi-ke-toan` | Hệ thống đang có gì và dung lượng đến từ đâu |
-| bonus | `/bai-hoc/esg-investing-screening-den-portfolio` | Từ sàng lọc tới ưu tiên: sửa dịch vụ nào trước |
+| bonus | `/bai-hoc/he-thong-dang-co-gi` | Hệ thống đang có gì và dung lượng đến từ đâu |
+| bonus | `/bai-hoc/tu-sang-loc-toi-uu-tien-sua-dich-vu` | Từ sàng lọc tới ưu tiên: sửa dịch vụ nào trước |
 | bonus | `/bai-hoc/quan-tri-doanh-nghiep-g-trong-esg` | Chất lượng vận hành: trụ cột ít được nhắc nhất |
 | personal | `/bai-hoc/gui-tiet-kiem-hoat-dong-the-nao` | Chặng 12, Bài 1: Tiến trình - chương trình đang chạy là gì |
-| personal | `/bai-hoc/lai-suat-thuc-sau-lam-phat` | Chặng 12, Bài 2: Tập tin, thư mục và quyền truy cập |
+| personal | `/bai-hoc/tap-tin-thu-muc-va-quyen-truy-cap` | Chặng 12, Bài 2: Tập tin, thư mục và quyền truy cập |
 | personal | `/bai-hoc/rut-tiet-kiem-truoc-han` | Chặng 12, Bài 3: Cổng và dịch vụ đang lắng nghe |
 | personal | `/bai-hoc/bac-thang-tien-gui` | Chặng 12, Bài 4: Tường lửa - mặc định là chặn |
-| personal | `/bai-hoc/ngan-hang-so-va-vi-dien-tu` | Chặng 12, Bài 8: Shell script - gom việc lặp lại |
+| personal | `/bai-hoc/shell-script-gom-viec-lap-lai` | Chặng 12, Bài 8: Shell script - gom việc lặp lại |
 | personal | `/bai-hoc/ty-trong-va-bien-dong-crypto` | Chặng 15, Bài 7: Giới hạn thật - khi nào KHÔNG nên dùng chuỗi khối |
 | personal | `/bai-hoc/tham-gia-crypto-the-nao` | Chặng 15, Bài 8: Tổng kết - dựng một ứng dụng phi tập trung nhỏ |
 | professional | `/bai-hoc/bao-hiem-la-gi-mo-hinh-kinh-doanh` | Dự phòng dùng chung: vì sao không đội nào tự lo hết |
-| professional | `/bai-hoc/thue-thu-nhap-doanh-nghiep-cach-tinh` | Chuẩn mực & Dữ liệu, Bài 3: Nghị định 13 - dữ liệu cá nhân là gì |
-| professional | `/bai-hoc/thue-gtgt-va-thue-nha-thau` | Chuẩn mực & Dữ liệu, Bài 4: Sự đồng ý và quyền của chủ thể dữ liệu |
-| professional | `/bai-hoc/thue-hoan-lai-deferred-tax` | Chuẩn mực & Dữ liệu, Bài 5: Đánh giá tác động xử lý dữ liệu |
+| professional | `/bai-hoc/nghi-dinh-13-du-lieu-ca-nhan-la-gi` | Chuẩn mực & Dữ liệu, Bài 3: Nghị định 13 - dữ liệu cá nhân là gì |
+| professional | `/bai-hoc/su-dong-y-va-quyen-chu-the-du-lieu` | Chuẩn mực & Dữ liệu, Bài 4: Sự đồng ý và quyền của chủ thể dữ liệu |
+| professional | `/bai-hoc/danh-gia-tac-dong-xu-ly-du-lieu` | Chuẩn mực & Dữ liệu, Bài 5: Đánh giá tác động xử lý dữ liệu |
 
 Đo bằng cách: lấy từ khoá trong slug, bỏ dấu, bỏ từ dừng, so với từ khoá trong
 tiêu đề. 56 bài không trùng một từ nào; trong đó 27 bài có slug mang khái niệm

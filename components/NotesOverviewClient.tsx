@@ -15,6 +15,7 @@ import {
 import NoteContent, { hasMathContent } from "@/components/NoteContent";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
+import { btnPrimary, panel } from "@/components/ui/system";
 
 interface LessonInfo {
   slug: string;
@@ -241,7 +242,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t.notes.searchPlaceholder}
-            className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-500"
+            className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-sm text-ink focus:outline-none focus:border-brand-600"
           />
           {search && (
             <button
@@ -285,26 +286,26 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                 const lessonInfo = lessonsById[lessonId];
                 const lessonNotes = grouped.get(lessonId)!;
                 return (
-                  <div key={lessonId} className="bg-white/95 dark:bg-stone-900 border border-line rounded-2xl overflow-hidden shadow-xs">
-                    <div className="px-5 py-3.5 border-b border-line flex items-center justify-between bg-stone-50/80 dark:bg-stone-850/80">
+                  <div key={lessonId} className={`${panel} overflow-hidden`}>
+                    <div className="px-5 py-3 border-b border-line-strong flex items-center justify-between bg-[#f3f1ec] dark:bg-stone-950">
                       {lessonInfo ? (
-                        <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-extrabold text-ink hover:text-accent transition-colors">
+                        <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-extrabold text-ink underline-offset-4 hover:text-accent-strong hover:underline transition-colors">
                           {lessonInfo.title}
                         </Link>
                       ) : (
                         <span className="font-bold text-ink-soft">{format(t.notes.lessonFallback, { id: lessonId })}</span>
                       )}
-                      <span className="text-xs font-semibold text-ink-muted bg-stone-200/60 dark:bg-stone-800 px-2.5 py-1 rounded-full">{format(t.notes.noteCount, { count: lessonNotes.length })}</span>
+                      <span className="text-xs font-semibold text-ink-muted">{format(t.notes.noteCount, { count: lessonNotes.length })}</span>
                     </div>
                     <div className="p-5 space-y-3">
                       {lessonNotes.map((note) => (
-                        <div key={note.id} className="bg-stone-50 dark:bg-stone-800/80 border border-stone-200/60 dark:border-stone-700/60 rounded-xl p-4 group transition-colors">
+                        <div key={note.id} className="border border-line-strong rounded-sm p-4 group transition-colors">
                           {editingNoteId === note.id ? (
                             <div className="space-y-2">
                               <textarea
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
-                                className="w-full px-3.5 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-ink text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500"
+                                className="w-full px-3.5 py-2.5 rounded-xl border border-line-strong bg-white dark:bg-stone-900 text-ink text-sm resize-none focus:outline-none focus:border-brand-600"
                                 rows={3}
                                 autoFocus
                               />
@@ -320,7 +321,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                                 <button
                                   onClick={() => void saveEdit(note.id)}
                                   disabled={saving || !editContent.trim()}
-                                  className="px-3.5 py-1.5 text-xs font-bold bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition-colors shadow-xs disabled:opacity-50 inline-flex items-center gap-1.5"
+                                  className={`${btnPrimary} !px-3.5 !py-1.5 !text-xs cursor-pointer`}
                                 >
                                   {saving && <Loader2 className="w-3 h-3 animate-spin" />}
                                   {saving ? t.notes.saving : t.notes.saveChanges}

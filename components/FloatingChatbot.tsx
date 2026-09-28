@@ -5,6 +5,7 @@ import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
+import { btnPrimary, btnSecondary } from "@/components/ui/system";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -89,10 +90,10 @@ export default function FloatingContact() {
         onClick={() => setOpen((v) => !v)}
         aria-label={t.chatbot.fabAriaLabel}
         title={t.chatbot.fabTitle}
-        className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer select-none ${
+        className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-md border flex items-center justify-center transition-colors cursor-pointer select-none ${
           open
-            ? "bg-stone-600 scale-95"
-            : "bg-stone-800 hover:bg-stone-700 hover:scale-110"
+            ? "border-stone-700 bg-stone-700"
+            : "border-stone-950 bg-stone-950 hover:border-brand-700 hover:bg-brand-700"
         }`}
       >
         {open ? (
@@ -109,7 +110,7 @@ export default function FloatingContact() {
       {/* Backdrop on mobile */}
       {open && (
         <div
-          className="fixed inset-0 bg-black/20 z-40 sm:hidden"
+          className="fixed inset-0 bg-stone-950/60 z-40 sm:hidden"
           onClick={handleClose}
         />
       )}
@@ -122,18 +123,18 @@ export default function FloatingContact() {
           ${open ? "translate-y-0 opacity-100 pointer-events-auto" : "translate-y-4 opacity-0 pointer-events-none"}
         `}
       >
-        <div className="bg-white sm:rounded-2xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl">
+        <div className="bg-white dark:bg-stone-900 border border-line-strong flex flex-col overflow-hidden rounded-t-md sm:rounded-md">
 
           {/* Header */}
-          <div className="bg-stone-800 px-5 py-5 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+          <div className="bg-stone-950 px-5 py-4 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-sm border border-white/15 flex items-center justify-center flex-shrink-0">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
             <div className="flex-1">
               <p className="text-white font-bold text-base">{t.chatbot.headerTitle}</p>
-              <p className="text-stone-500 text-sm mt-0.5">{t.chatbot.headerSubtitle}</p>
+              <p className="text-stone-400 text-sm mt-0.5">{t.chatbot.headerSubtitle}</p>
             </div>
           </div>
 
@@ -141,16 +142,16 @@ export default function FloatingContact() {
           <div className="px-5 py-5">
             {status === "sent" ? (
               <div className="text-center py-6 space-y-3">
-                <div className="w-14 h-14 rounded-full bg-stone-100 flex items-center justify-center mx-auto text-2xl">
+                <div className="w-12 h-12 rounded-sm border border-brand-600 text-accent flex items-center justify-center mx-auto text-xl dark:border-brand-400">
                   ✓
                 </div>
-                <p className="font-bold text-stone-900 text-lg">{t.chatbot.sentTitle}</p>
-                <p className="text-stone-500 text-base leading-relaxed">
+                <p className="font-bold text-ink-max text-lg">{t.chatbot.sentTitle}</p>
+                <p className="text-ink-muted text-base leading-relaxed">
                   {t.chatbot.sentBody}
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
-                  className="mt-2 px-5 py-2.5 rounded-xl border border-stone-200 text-stone-600 text-sm font-semibold hover:bg-stone-50 transition-colors cursor-pointer"
+                  className={`${btnSecondary} mt-2 cursor-pointer`}
                 >
                   {t.chatbot.sentAnother}
                 </button>
@@ -170,40 +171,40 @@ export default function FloatingContact() {
                 />
 
                 <div className="space-y-1.5">
-                  <label className="text-sm font-semibold text-stone-700">{t.chatbot.nameLabel}</label>
+                  <label className="text-sm font-semibold text-ink-body">{t.chatbot.nameLabel}</label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t.chatbot.namePlaceholder}
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all"
+                    className="w-full px-4 py-3 rounded-sm border border-line-strong bg-white dark:bg-stone-900 text-base text-ink placeholder:text-ink-faint focus:outline-none focus:border-brand-600 transition-colors"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-sm font-semibold text-stone-700">{t.chatbot.emailLabel}</label>
+                  <label className="text-sm font-semibold text-ink-body">{t.chatbot.emailLabel}</label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t.chatbot.emailPlaceholder}
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all"
+                    className="w-full px-4 py-3 rounded-sm border border-line-strong bg-white dark:bg-stone-900 text-base text-ink placeholder:text-ink-faint focus:outline-none focus:border-brand-600 transition-colors"
                   />
                 </div>
 
                 {status === "error" && (
-                  <p className="text-sm text-red-600 font-semibold">
+                  <p className="text-sm text-danger font-semibold">
                     {t.chatbot.errorSend}
                   </p>
                 )}
 
                 {cooldownError && (
-                  <p className="text-sm text-red-600 font-semibold">{cooldownError}</p>
+                  <p className="text-sm text-danger font-semibold">{cooldownError}</p>
                 )}
 
                 <div className="space-y-1.5">
-                  <label className="text-sm font-semibold text-stone-700">
-                    {t.chatbot.messageLabel} <span className="text-stone-500 font-normal">{t.chatbot.messageLabelRequired}</span>
+                  <label className="text-sm font-semibold text-ink-body">
+                    {t.chatbot.messageLabel} <span className="text-ink-muted font-normal">{t.chatbot.messageLabelRequired}</span>
                   </label>
                   <textarea
                     value={message}
@@ -211,7 +212,7 @@ export default function FloatingContact() {
                     required
                     rows={4}
                     placeholder={t.chatbot.messagePlaceholder}
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 text-base text-stone-900 placeholder:text-stone-500 focus:outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-100 transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-sm border border-line-strong bg-white dark:bg-stone-900 text-base text-ink placeholder:text-ink-faint focus:outline-none focus:border-brand-600 transition-colors resize-none"
                   />
                 </div>
 
@@ -219,20 +220,16 @@ export default function FloatingContact() {
                   <button
                     type="submit"
                     disabled={!message.trim() || status === "sending"}
-                    className={`w-full py-3.5 rounded-xl font-bold text-base text-white transition-all cursor-pointer ${
-                      message.trim() && status !== "sending"
-                        ? "bg-stone-900 hover:bg-stone-700"
-                        : "bg-stone-200 text-stone-500 cursor-not-allowed"
-                    }`}
+                    className={`${btnPrimary} w-full !py-3 cursor-pointer`}
                   >
                     {status === "sending" ? t.chatbot.submitSending : t.chatbot.submitIdle}
                   </button>
 
-                  <p className="text-xs text-stone-500 text-center leading-relaxed">
+                  <p className="text-xs text-ink-muted text-center leading-relaxed">
                     {t.chatbot.contactViaEmail}{" "}
                     <a
                       href="mailto:tribd.tec@gmail.com"
-                      className="text-stone-600 underline underline-offset-2 hover:text-stone-900"
+                      className="text-accent-strong underline underline-offset-2"
                     >
                       tribd.tec@gmail.com
                     </a>

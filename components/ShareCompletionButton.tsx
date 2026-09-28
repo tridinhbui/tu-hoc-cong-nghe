@@ -2,6 +2,7 @@
 
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { btnSecondary } from "@/components/ui/system";
 
 interface ShareCompletionButtonProps {
   lessonSlug: string;
@@ -26,13 +27,14 @@ export default function ShareCompletionButton({ lessonSlug, lessonTitle, classNa
     <button
       onClick={handleShare}
       title={format(t.miscUi.shareCompletionButton.shareTitle, { title: lessonTitle })}
-      className={
-        className ??
-        "inline-flex items-center justify-center gap-2 py-3 rounded-xl text-white text-sm font-bold transition-colors cursor-pointer"
-      }
-      style={{ backgroundColor: "#1877F2" }}
+      // Nút phụ của hệ thống, không phải khối xanh Facebook: màu thương hiệu
+      // của Facebook chỉ còn ở chính biểu tượng. `className` của nơi gọi chỉ
+      // được dùng cho bố cục (độ rộng, khoảng cách); `!text-ink` thắng mọi
+      // `text-white` còn sót lại từ thời nút có nền xanh, để chữ không trắng
+      // trên nền trắng.
+      className={`${btnSecondary} !text-ink cursor-pointer ${className ?? ""}`}
     >
-      <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="currentColor" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="#1877F2" aria-hidden="true">
         <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z" />
       </svg>
       {t.miscUi.shareCompletionButton.shareButton}

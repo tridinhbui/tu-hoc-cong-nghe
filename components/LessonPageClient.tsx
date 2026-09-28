@@ -20,6 +20,11 @@ import TypingText from "@/components/TypingText";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Sys, panel } from "@/components/ui/system";
+
+// Nhãn mục kiểu bảng hệ thống - chữ hoa sans, vì đó là chữ tiếng Việt đã
+// dịch chứ không phải định danh máy (luật 4 ở components/ui/system.tsx).
+const blockLabel = "border-b border-stone-300 pb-2 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted dark:border-stone-700";
 
 interface Props {
   // LocalizedLesson when it came through the locale-aware loader, plain Lesson
@@ -162,23 +167,23 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           the subtitle shown in the hero above, so there's nothing to
           duplicate here. */}
       {lesson.whyItMatters && (
-        <div className="rounded-xl border-2 border-warn-line bg-amber-50 dark:bg-amber-950/30 p-5 sm:p-6">
-          <p className="text-xs font-extrabold uppercase tracking-widest text-warn-strong mb-2">
+        <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+          <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
             {t.lessonPage.whyItMattersTitle}
           </p>
-          <p className="text-ink-heading text-base sm:text-lg leading-relaxed font-medium">
+          <p className="max-w-[68ch] text-base leading-8 text-ink-max sm:text-lg">
             {lesson.whyItMatters}
           </p>
         </div>
       )}
 
       {/* Feynman ELI5 Mode Toggle */}
-      <div className="rounded-2xl border border-line bg-stone-50/60 dark:bg-stone-900/80 p-4.5 flex items-center justify-between gap-4">
+      <div className={`${panel} flex items-center justify-between gap-4 p-4`}>
         <div className="min-w-0 flex-1">
-          <h4 className="text-xs font-bold text-ink flex items-center gap-1.5">
+          <h4 className="text-sm font-black tracking-tight text-ink-max">
             {t.lessonPage.feynmanTitle}
           </h4>
-          <p className="text-[10px] text-ink-soft mt-1 leading-relaxed">
+          <p className="mt-1 text-xs leading-5 text-ink-soft">
             {t.lessonPage.feynmanSubtitle}
           </p>
         </div>
@@ -187,10 +192,11 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             setFeynmanMode(!feynmanMode);
             setMetaphorTyped(false);
           }}
-          className={`px-3.5 py-2 text-xs font-bold rounded-xl shadow-sm hover:scale-[1.03] active:scale-95 transition-all cursor-pointer ${
+          aria-pressed={feynmanMode}
+          className={`shrink-0 cursor-pointer rounded-sm border px-3 py-2 text-xs font-bold transition-colors ${
             feynmanMode
-              ? "bg-amber-500 text-white"
-              : "bg-white dark:bg-stone-800 text-ink-body border border-line-mid"
+              ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
+              : "border-stone-300 text-ink-body hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
           }`}
         >
           {feynmanMode ? t.lessonPage.feynmanOn : t.lessonPage.feynmanOff}
@@ -201,28 +207,28 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="rounded-2xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/40 dark:bg-amber-950/40 p-5 space-y-4"
+          className={`${panel} space-y-4 p-5`}
         >
-          <div className="flex items-center gap-2.5">
-            <span className="rounded-xl bg-amber-100/70 p-2 text-warn-strong dark:bg-amber-900/40">
-              <Lightbulb aria-hidden className="h-5 w-5" strokeWidth={1.75} />
+          <div className="flex items-center gap-3 border-b border-stone-200 pb-3 dark:border-stone-800">
+            <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-stone-300 text-ink-body dark:border-stone-700">
+              <Lightbulb aria-hidden className="h-4 w-4" strokeWidth={1.75} />
             </span>
             <div>
-              <h5 className="text-xs font-extrabold text-warn-strong">{t.lessonPage.feynmanCardTitle}</h5>
-              <p className="text-[10px] text-ink-muted font-bold uppercase tracking-wider">{t.lessonPage.feynmanCardSubtitle}</p>
+              <h5 className="text-sm font-black tracking-tight text-ink-max">{t.lessonPage.feynmanCardTitle}</h5>
+              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.lessonPage.feynmanCardSubtitle}</p>
             </div>
           </div>
-          <div className="text-xs leading-relaxed text-ink-body space-y-3 font-medium">
+          <div className="max-w-[68ch] space-y-3 text-sm leading-7 text-ink-body">
             <p>
               {t.lessonPage.feynmanIntroPart1} <strong>&quot;{lesson.title}&quot;</strong> {t.lessonPage.feynmanIntroPart2}
             </p>
-            <div className="bg-amber-100/60 dark:bg-amber-950/50 p-3.5 rounded-xl border border-amber-200 dark:border-amber-900/60 text-amber-950 dark:text-amber-200 font-bold">
+            <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3.5 font-semibold text-ink-max dark:border-stone-800 dark:bg-stone-950">
               {t.lessonPage.feynmanMetaphorLeadIn}{" "}
               <TypingText text={`${t.lessonPage.metaphors[getMetaphorForLesson(lesson.title)]}.`} onDone={() => setMetaphorTyped(true)} />
             </div>
             {metaphorTyped && (
               <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
-                <p className="font-semibold text-ink">{t.lessonPage.feynmanTakeawaysTitle}</p>
+                <p className="font-bold text-ink-max">{t.lessonPage.feynmanTakeawaysTitle}</p>
                 <ul className="list-disc pl-4 space-y-1.5 text-ink-body">
                   {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => (
                     <li key={idx}>
@@ -231,7 +237,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
                   ))}
                 </ul>
                 {lesson.summary?.commonMistake && (
-                  <p className="text-[11px] text-red-600 dark:text-red-400 bg-red-50/60 dark:bg-red-950/40 p-2.5 rounded-lg border border-red-200/60 dark:border-red-900/40 font-bold">
+                  <p className="border-l-2 border-red-500 pl-3 text-sm font-semibold text-danger">
                     {t.lessonPage.feynmanMistakePrefix} {lesson.summary.commonMistake}
                   </p>
                 )}
@@ -266,10 +272,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       ) : (
         lesson.explanation && (
           <div className="space-y-3">
-            <div className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">
+            <div className={blockLabel}>
               {t.lessonPage.explanationTitle}
             </div>
-            <p className="text-ink-body leading-relaxed text-base">
+            <p className="max-w-[68ch] text-lg leading-8 text-ink-body">
               {highlightGlossaryTerms(lesson.explanation, new Set())}
             </p>
           </div>
@@ -285,17 +291,18 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 3. Diagram block */}
       {lesson.diagram && lesson.diagram.length > 0 && (
         <div className="space-y-4">
-          <div className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">
+          <div className={blockLabel}>
             {t.lessonPage.diagramTitle}
           </div>
-          <div className="flex flex-col items-center py-4 bg-stone-50/50 dark:bg-stone-900/50 rounded-2xl border border-line-soft">
+          <div className="flex flex-col items-center rounded-md border border-stone-300 bg-[#fbfaf7] px-4 py-5 dark:border-stone-700 dark:bg-stone-950">
             {lesson.diagram.map((node: { label: string; arrow?: boolean }, i: number) => (
               <React.Fragment key={i}>
-                <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-xl px-5 py-3.5 text-ink-body font-semibold text-sm text-center w-full max-w-xs shadow-sm">
-                  {node.label}
+                <div className="flex w-full max-w-sm items-baseline gap-3 rounded-sm border border-stone-300 bg-white px-4 py-3 text-sm font-semibold text-ink-max dark:border-stone-700 dark:bg-stone-900">
+                  <Sys className="text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>
+                  <span className="flex-1">{node.label}</span>
                 </div>
                 {node.arrow && i < lesson.diagram.length - 1 && (
-                  <div className="text-stone-300 dark:text-stone-600 text-lg my-1">↓</div>
+                  <div aria-hidden className="my-1 h-4 w-px bg-stone-400 dark:bg-stone-600" />
                 )}
               </React.Fragment>
             ))}
@@ -311,7 +318,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           không khớp đó khỏi TypeScript. */}
       {hasInteractiveWidget(lesson.interactiveType) && (
         <div className="space-y-3">
-          <div className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">
+          <div className={blockLabel}>
             {t.lessonPage.interactiveTitle}
           </div>
           <InteractiveWidget type={lesson.interactiveType} />
@@ -321,10 +328,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 4.5. Visual summary image (optional hand-crafted infographic recap) */}
       {lesson.summaryImage && (
         <div className="space-y-3">
-          <div className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">
+          <div className={blockLabel}>
             {t.lessonPage.summaryImageTitle}
           </div>
-          <div className="rounded-2xl overflow-hidden border border-line shadow-lg">
+          <div className="overflow-hidden rounded-md border border-line-strong">
             <Image
               src={lesson.summaryImage}
               alt={format(t.lessonPage.summaryImageAlt, { title: lesson.title })}
@@ -338,11 +345,11 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
 
       {/* 5. Real-life Example block */}
       {lesson.realWorldExample && lesson.realWorldExample.company && (
-        <div className="border border-line rounded-2xl p-6 bg-stone-50 dark:bg-stone-900/50 space-y-3">
-          <p className="text-xs font-bold text-ink-muted uppercase tracking-widest">
+        <div className="space-y-2 border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
             {format(t.lessonPage.realWorldExampleTitle, { company: lesson.realWorldExample.company })}
           </p>
-          <p className="text-ink-body text-base leading-relaxed">
+          <p className="max-w-[68ch] text-base leading-8 text-ink-body sm:text-lg">
             {lesson.realWorldExample.description}
           </p>
         </div>
@@ -412,20 +419,18 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
 
       {/* 6. Key Takeaways block */}
       {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
-        <div className="rounded-2xl overflow-hidden shadow-xl">
-          <div className="bg-surface-invert px-6 py-5">
-            <p className="text-white font-extrabold text-xl tracking-wide">{t.lessonPage.keyTakeawaysTitle}</p>
+        <div className={`${panel} overflow-hidden`}>
+          <div className="border-b border-stone-300 bg-[#f3f1ec] px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
+            <p className="text-lg font-black tracking-tight text-ink-max">{t.lessonPage.keyTakeawaysTitle}</p>
           </div>
-          <div className="bg-stone-800 divide-y divide-stone-700">
-            {lesson.keyTakeaways.map((t: string, i: number) => (
-              <div key={i} className="flex items-start gap-4 px-6 py-5">
-                <span className="w-8 h-8 rounded-full bg-stone-600 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-0.5">
-                  {i + 1}
-                </span>
-                <p className="text-stone-200 text-base leading-relaxed font-medium">{t}</p>
-              </div>
+          <ol className="divide-y divide-stone-200 dark:divide-stone-800">
+            {lesson.keyTakeaways.map((takeaway: string, i: number) => (
+              <li key={i} className="flex items-baseline gap-4 px-4 py-4 sm:px-5">
+                <Sys className="flex-shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>
+                <p className="max-w-[68ch] text-base leading-7 text-ink-body">{takeaway}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       )}
       {/* 6.5. Đường sang căn phòng 3D dạy đúng điều này, nếu bài có một

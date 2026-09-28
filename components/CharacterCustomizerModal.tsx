@@ -133,27 +133,27 @@ export default function CharacterCustomizerModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 bg-stone-950/85 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-5">
+      <div className="fixed inset-0 bg-stone-950/85 z-50 flex items-center justify-center p-3 sm:p-5">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="bg-stone-900 border-2 border-amber-500/60 rounded-3xl max-w-4xl w-full text-white shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
+          className="bg-stone-900 border border-stone-700 rounded-md max-w-4xl w-full text-white overflow-hidden flex flex-col max-h-[92vh]"
         >
           {/* Header Dialog */}
-          <div className="flex items-center justify-between border-b border-stone-800 p-4 sm:p-5 bg-stone-950/80">
+          <div className="flex items-center justify-between border-b border-stone-800 p-4 sm:p-5 bg-stone-950">
             <div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-950/80 border border-amber-800 px-3 py-1 rounded-full">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-stone-300 border border-white/15 px-2 py-0.5 rounded-sm">
                 {t.characterCustomizer.badge}
               </span>
-              <h2 className="text-lg sm:text-xl font-black text-white mt-1">
+              <h2 className="text-lg sm:text-xl font-black tracking-tight text-white mt-2">
                 {t.characterCustomizer.title}
               </h2>
             </div>
 
             <button
               onClick={onClose}
-              className="p-2 text-stone-400 hover:text-white rounded-full bg-stone-800 hover:bg-stone-700 transition-colors"
+              className="p-2 text-stone-400 hover:text-white rounded-sm border border-stone-700 hover:border-stone-500 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -162,9 +162,9 @@ export default function CharacterCustomizerModal({
           {/* Main Grid: Left Preview / Right Controls */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-0 overflow-hidden flex-1">
             {/* LEFT PANEL: AVATAR LIVE PREVIEW */}
-            <div className="md:col-span-5 bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950 p-6 flex flex-col items-center justify-between border-b md:border-b-0 md:border-r border-stone-800 relative">
+            <div className="md:col-span-5 bg-stone-950 p-6 flex flex-col items-center justify-between border-b md:border-b-0 md:border-r border-stone-800 relative">
               <div className="text-center w-full">
-                <span className="text-[10px] uppercase font-bold text-brand-400 bg-brand-950/60 border border-brand-800 px-3 py-1 rounded-full">
+                <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-stone-300 border border-white/15 px-2 py-0.5 rounded-sm">
                   {t.characterCustomizer.livePreviewBadge}
                 </span>
               </div>
@@ -172,14 +172,14 @@ export default function CharacterCustomizerModal({
               {/* Large 2D Avatar Canvas */}
               <div className="my-4 relative">
                 <Avatar2DCanvas config={config} size="xl" animated showBackground />
-                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-stone-950/90 border border-amber-500/60 text-amber-300 text-[10px] font-black px-3 py-0.5 rounded-full shadow-lg">
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-stone-950 border border-stone-700 text-stone-200 text-[10px] font-bold tabular-nums px-2 py-0.5 rounded-sm">
                   {format(t.characterCustomizer.levelTrader, { level: userLevel })}
                 </span>
               </div>
 
               {/* Preset Quick Selectors */}
               <div className="w-full space-y-2">
-                <span className="text-[10px] uppercase font-extrabold text-stone-400 block text-center">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 block text-center">
                   {t.characterCustomizer.presetsLabel}
                 </span>
                 <div className="grid grid-cols-3 gap-1.5">
@@ -187,7 +187,7 @@ export default function CharacterCustomizerModal({
                     <button
                       key={p.name}
                       onClick={() => setConfig(p.config)}
-                      className="bg-stone-800 hover:bg-stone-800 border border-stone-700 hover:border-amber-400 text-stone-200 text-[10px] font-bold p-2 rounded-xl text-center transition-all flex flex-col items-center gap-1"
+                      className="bg-stone-900 border border-stone-700 hover:border-stone-500 text-stone-200 text-[10px] font-bold p-2 rounded-sm text-center transition-colors flex flex-col items-center gap-1"
                     >
                       <span className="text-base">{p.icon}</span>
                       <span className="truncate w-full">{t.avatarPresets[p.name] ?? p.name}</span>
@@ -200,17 +200,17 @@ export default function CharacterCustomizerModal({
             {/* RIGHT PANEL: TABS & CONTROLS */}
             <div className="md:col-span-7 flex flex-col justify-between overflow-hidden bg-stone-900">
               {/* Category Tabs Header */}
-              <div className="flex items-center overflow-x-auto scrollbar-none border-b border-stone-800 bg-stone-950/40 p-2 gap-1">
+              <div className="flex items-end overflow-x-auto scrollbar-none border-b border-stone-800 bg-stone-950 px-4 pt-3 gap-5">
                 {tabs.map((tab) => {
                   const isActive = activeTab === tab.id;
                   return (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold shrink-0 transition-all ${
+                      className={`-mb-px flex items-center gap-1.5 border-b-2 pb-2 text-xs font-bold shrink-0 transition-colors ${
                         isActive
-                          ? "bg-amber-500 text-stone-950 shadow-md font-black"
-                          : "text-stone-300 hover:bg-stone-800 hover:text-white"
+                          ? "border-brand-400 text-white"
+                          : "border-transparent text-stone-400 hover:text-white"
                       }`}
                     >
                       {tab.icon}
@@ -227,24 +227,24 @@ export default function CharacterCustomizerModal({
                   <div className="space-y-6">
                     {/* Gender Selection */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.genderLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.genderLabel}</label>
                       <div className="grid grid-cols-2 gap-3">
                         <button
                           onClick={() => updateConfig("gender", "male")}
-                          className={`p-3 rounded-2xl border-2 font-bold text-xs flex items-center justify-center gap-2 transition-all ${
+                          className={`p-3 rounded-sm border font-bold text-xs flex items-center justify-center gap-2 transition-colors ${
                             config.gender === "male"
-                              ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                              : "bg-stone-800 border-stone-800 text-stone-400 hover:border-stone-700"
+                              ? "bg-stone-950 border-brand-400 text-white"
+                              : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                           }`}
                         >
                           {t.characterCustomizer.genderMale}
                         </button>
                         <button
                           onClick={() => updateConfig("gender", "female")}
-                          className={`p-3 rounded-2xl border-2 font-bold text-xs flex items-center justify-center gap-2 transition-all ${
+                          className={`p-3 rounded-sm border font-bold text-xs flex items-center justify-center gap-2 transition-colors ${
                             config.gender === "female"
-                              ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                              : "bg-stone-800 border-stone-800 text-stone-400 hover:border-stone-700"
+                              ? "bg-stone-950 border-brand-400 text-white"
+                              : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                           }`}
                         >
                           {t.characterCustomizer.genderFemale}
@@ -254,7 +254,7 @@ export default function CharacterCustomizerModal({
 
                     {/* Skin Tone Palette */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.skinToneLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.skinToneLabel}</label>
                       <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
                         {SKIN_TONES.map((tone) => {
                           const isSelected = config.skinTone === tone.hex;
@@ -262,8 +262,8 @@ export default function CharacterCustomizerModal({
                             <button
                               key={tone.id}
                               onClick={() => updateConfig("skinTone", tone.hex)}
-                              className={`w-full aspect-square rounded-2xl border-2 flex items-center justify-center transition-all ${
-                                isSelected ? "border-amber-400 scale-110 shadow-lg" : "border-stone-800 hover:scale-105"
+                              className={`w-full aspect-square rounded-sm border-2 flex items-center justify-center transition-colors ${
+                                isSelected ? "border-brand-400" : "border-stone-800 hover:border-stone-500"
                               }`}
                               style={{ backgroundColor: tone.hex }}
                               title={t.avatarOptions.skinTones[tone.id] ?? tone.label}
@@ -282,7 +282,7 @@ export default function CharacterCustomizerModal({
                   <div className="space-y-6">
                     {/* Hair Styles */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.hairStyleLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.hairStyleLabel}</label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                         {HAIR_STYLES.map((h) => {
                           const isSelected = config.hairStyle === h.id;
@@ -290,10 +290,10 @@ export default function CharacterCustomizerModal({
                             <button
                               key={h.id}
                               onClick={() => updateConfig("hairStyle", h.id)}
-                              className={`p-3 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center gap-2 ${
+                              className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center gap-2 ${
                                 isSelected
-                                  ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  ? "bg-stone-950 border-brand-400 text-white"
+                                  : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                               }`}
                             >
                               <span className="text-base">{h.iconEmoji}</span>
@@ -306,7 +306,7 @@ export default function CharacterCustomizerModal({
 
                     {/* Hair Color Palette */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.hairColorLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.hairColorLabel}</label>
                       <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
                         {HAIR_COLORS.map((c) => {
                           const isSelected = config.hairColor === c.hex;
@@ -314,8 +314,8 @@ export default function CharacterCustomizerModal({
                             <button
                               key={c.id}
                               onClick={() => updateConfig("hairColor", c.hex)}
-                              className={`w-full aspect-square rounded-2xl border-2 flex items-center justify-center transition-all ${
-                                isSelected ? "border-amber-400 scale-110 shadow-lg" : "border-stone-800 hover:scale-105"
+                              className={`w-full aspect-square rounded-sm border-2 flex items-center justify-center transition-colors ${
+                                isSelected ? "border-brand-400" : "border-stone-800 hover:border-stone-500"
                               }`}
                               style={{ backgroundColor: c.hex }}
                               title={t.avatarOptions.hairColors[c.id] ?? c.label}
@@ -334,16 +334,16 @@ export default function CharacterCustomizerModal({
                   <div className="space-y-6">
                     {/* Face Shape */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.faceShapeLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.faceShapeLabel}</label>
                       <div className="grid grid-cols-2 gap-2.5">
                         {FACE_SHAPES.map((f) => (
                           <button
                             key={f.id}
                             onClick={() => updateConfig("faceShape", f.id)}
-                            className={`p-3 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center gap-2 ${
+                            className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center gap-2 ${
                               config.faceShape === f.id
-                                ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                                : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
+                                ? "bg-stone-950 border-brand-400 text-white"
+                                : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                             }`}
                           >
                             <span>{f.iconEmoji}</span>
@@ -355,16 +355,16 @@ export default function CharacterCustomizerModal({
 
                     {/* Eyes Expression */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.eyeExpressionLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.eyeExpressionLabel}</label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                         {EYE_EXPRESSIONS.map((e) => (
                           <button
                             key={e.id}
                             onClick={() => updateConfig("eyeExpression", e.id)}
-                            className={`p-3 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center gap-2 ${
+                            className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center gap-2 ${
                               config.eyeExpression === e.id
-                                ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                                : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
+                                ? "bg-stone-950 border-brand-400 text-white"
+                                : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                             }`}
                           >
                             <span>{e.iconEmoji}</span>
@@ -376,7 +376,7 @@ export default function CharacterCustomizerModal({
 
                     {/* Glasses */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.glassesLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.glassesLabel}</label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                         {GLASSES_OPTIONS.map((g) => {
                           const isLocked = !!g.requiredLevel && userLevel < g.requiredLevel;
@@ -385,12 +385,12 @@ export default function CharacterCustomizerModal({
                               key={g.id}
                               disabled={Boolean(isLocked)}
                               onClick={() => updateConfig("glasses", g.id)}
-                              className={`p-3 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center justify-between gap-1 ${
+                              className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center justify-between gap-1 ${
                                 config.glasses === g.id
-                                  ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
+                                  ? "bg-stone-950 border-brand-400 text-white"
                                   : isLocked
                                   ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
-                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                               }`}
                             >
                               <div className="flex items-center gap-2 truncate">
@@ -407,16 +407,16 @@ export default function CharacterCustomizerModal({
                     {/* Beard (Male only) */}
                     {config.gender === "male" && (
                       <div>
-                        <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.beardLabel}</label>
+                        <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.beardLabel}</label>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                           {BEARD_OPTIONS.map((b) => (
                             <button
                               key={b.id}
                               onClick={() => updateConfig("beard", b.id)}
-                              className={`p-3 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center gap-2 ${
+                              className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center gap-2 ${
                                 config.beard === b.id
-                                  ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
-                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  ? "bg-stone-950 border-brand-400 text-white"
+                                  : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                               }`}
                             >
                               <span>{b.iconEmoji}</span>
@@ -434,7 +434,7 @@ export default function CharacterCustomizerModal({
                   <div className="space-y-6">
                     {/* Outfit Style */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.outfitStyleLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.outfitStyleLabel}</label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         {OUTFIT_STYLES.map((o) => {
                           const isLocked = !!o.requiredLevel && userLevel < o.requiredLevel;
@@ -443,12 +443,12 @@ export default function CharacterCustomizerModal({
                               key={o.id}
                               disabled={Boolean(isLocked)}
                               onClick={() => updateConfig("outfitStyle", o.id)}
-                              className={`p-3.5 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center justify-between gap-2 ${
+                              className={`p-3.5 rounded-sm border text-left text-xs font-bold transition-colors flex items-center justify-between gap-2 ${
                                 config.outfitStyle === o.id
-                                  ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
+                                  ? "bg-stone-950 border-brand-400 text-white"
                                   : isLocked
                                   ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
-                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                               }`}
                             >
                               <div className="flex items-center gap-2">
@@ -464,7 +464,7 @@ export default function CharacterCustomizerModal({
 
                     {/* Outfit Color Palette */}
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.outfitColorLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.outfitColorLabel}</label>
                       <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                         {OUTFIT_COLORS.map((c) => {
                           const isSelected = config.outfitColor === c.hex;
@@ -472,8 +472,8 @@ export default function CharacterCustomizerModal({
                             <button
                               key={c.id}
                               onClick={() => updateConfig("outfitColor", c.hex)}
-                              className={`w-full aspect-square rounded-2xl border-2 flex items-center justify-center transition-all ${
-                                isSelected ? "border-amber-400 scale-110 shadow-lg" : "border-stone-800 hover:scale-105"
+                              className={`w-full aspect-square rounded-sm border-2 flex items-center justify-center transition-colors ${
+                                isSelected ? "border-brand-400" : "border-stone-800 hover:border-stone-500"
                               }`}
                               style={{ backgroundColor: c.hex }}
                               title={t.avatarOptions.outfitColors[c.id] ?? c.label}
@@ -491,7 +491,7 @@ export default function CharacterCustomizerModal({
                 {activeTab === "accessories" && (
                   <div className="space-y-6">
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.accessoriesLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.accessoriesLabel}</label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         {ACCESSORIES_OPTIONS.map((a) => {
                           const isLocked = !!a.requiredLevel && userLevel < a.requiredLevel;
@@ -500,19 +500,19 @@ export default function CharacterCustomizerModal({
                               key={a.id}
                               disabled={Boolean(isLocked)}
                               onClick={() => updateConfig("accessory", a.id)}
-                              className={`p-3.5 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center justify-between gap-2 ${
+                              className={`p-3.5 rounded-sm border text-left text-xs font-bold transition-colors flex items-center justify-between gap-2 ${
                                 config.accessory === a.id
-                                  ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
+                                  ? "bg-stone-950 border-brand-400 text-white"
                                   : isLocked
                                   ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
-                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                               }`}
                             >
                               <div className="flex items-center gap-2">
                                 <span className="text-lg">{a.iconEmoji}</span>
                                 <span>{t.avatarOptions.accessories[a.id] ?? a.label}</span>
                               </div>
-                              {isLocked && <span className="text-[10px] font-bold text-amber-500">{format(t.characterCustomizer.unlockAtLevel, { level: a.requiredLevel ?? 0 })}</span>}
+                              {isLocked && <span className="text-[10px] font-bold tabular-nums text-stone-400">{format(t.characterCustomizer.unlockAtLevel, { level: a.requiredLevel ?? 0 })}</span>}
                             </button>
                           );
                         })}
@@ -525,7 +525,7 @@ export default function CharacterCustomizerModal({
                 {activeTab === "background" && (
                   <div className="space-y-6">
                     <div>
-                      <label className="text-xs font-black uppercase text-amber-400 block mb-2">{t.characterCustomizer.backgroundLabel}</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-stone-400 block mb-2">{t.characterCustomizer.backgroundLabel}</label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         {BACKGROUND_OPTIONS.map((bg) => {
                           const isLocked = !!bg.requiredLevel && userLevel < bg.requiredLevel;
@@ -534,19 +534,19 @@ export default function CharacterCustomizerModal({
                               key={bg.id}
                               disabled={Boolean(isLocked)}
                               onClick={() => updateConfig("background", bg.id)}
-                              className={`p-3.5 rounded-2xl border-2 text-left text-xs font-bold transition-all flex items-center justify-between gap-2 ${
+                              className={`p-3.5 rounded-sm border text-left text-xs font-bold transition-colors flex items-center justify-between gap-2 ${
                                 config.background === bg.id
-                                  ? "bg-amber-500/20 border-amber-400 text-amber-300 font-black"
+                                  ? "bg-stone-950 border-brand-400 text-white"
                                   : isLocked
                                   ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
-                                  : "bg-stone-800 border-stone-800 text-stone-300 hover:border-stone-700"
+                                  : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                               }`}
                             >
                               <div className="flex items-center gap-2">
                                 <span className="text-lg">{bg.iconEmoji}</span>
                                 <span>{t.avatarOptions.backgrounds[bg.id] ?? bg.label}</span>
                               </div>
-                              {isLocked && <span className="text-[10px] font-bold text-amber-500">{format(t.characterCustomizer.unlockAtLevel, { level: bg.requiredLevel ?? 0 })}</span>}
+                              {isLocked && <span className="text-[10px] font-bold tabular-nums text-stone-400">{format(t.characterCustomizer.unlockAtLevel, { level: bg.requiredLevel ?? 0 })}</span>}
                             </button>
                           );
                         })}
@@ -557,17 +557,17 @@ export default function CharacterCustomizerModal({
               </div>
 
               {/* ACTION CONTROL BUTTONS FOOTER */}
-              <div className="p-4 border-t border-stone-800 bg-stone-950/90 flex items-center justify-between gap-3 flex-wrap">
+              <div className="p-4 border-t border-stone-800 bg-stone-950 flex items-center justify-between gap-3 flex-wrap">
                 <div className="flex items-center gap-2">
                   <button
                     onClick={handleRandomize}
-                    className="bg-purple-950/80 hover:bg-purple-900 border border-purple-700 text-purple-200 text-xs font-bold px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer"
+                    className="border border-stone-600 hover:border-stone-300 text-stone-200 text-xs font-bold px-3.5 py-2.5 rounded-sm transition-colors flex items-center gap-1.5 cursor-pointer"
                   >
-                    <Dices className="w-4 h-4 text-purple-400" /> {t.characterCustomizer.randomizeButton}
+                    <Dices className="w-4 h-4 text-stone-400" /> {t.characterCustomizer.randomizeButton}
                   </button>
                   <button
                     onClick={handleReset}
-                    className="bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-bold px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer"
+                    className="border border-stone-600 hover:border-stone-300 text-stone-200 text-xs font-bold px-3.5 py-2.5 rounded-sm transition-colors flex items-center gap-1.5 cursor-pointer"
                   >
                     <RefreshCw className="w-3.5 h-3.5" /> {t.characterCustomizer.resetButton}
                   </button>
@@ -576,14 +576,14 @@ export default function CharacterCustomizerModal({
                 <div className="flex items-center gap-2">
                   <button
                     onClick={onClose}
-                    className="bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-bold px-4 py-2.5 rounded-xl transition-all cursor-pointer"
+                    className="border border-stone-600 hover:border-stone-300 text-stone-200 text-xs font-bold px-4 py-2.5 rounded-sm transition-colors cursor-pointer"
                   >
                     {t.characterCustomizer.cancelButton}
                   </button>
                   <button
                     onClick={handleSave}
                     disabled={saving}
-                    className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:brightness-110 text-stone-950 font-black text-xs px-5 py-2.5 rounded-xl transition-all shadow-lg flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                    className="rounded-sm bg-white px-4 py-2.5 text-xs font-bold text-stone-950 transition-colors hover:bg-brand-300 flex items-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Save className="w-4 h-4" /> {saving ? t.characterCustomizer.savingButton : t.characterCustomizer.saveButton}
                   </button>

@@ -11,6 +11,13 @@ import { recordCustomGameSession } from "@/lib/games";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { btnPrimary, btnSecondary, Sys } from "@/components/ui/system";
+
+/* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị */
+const SYS = {
+  duel: "THCN://GAME/SOLO-BOSS",
+};
+/* i18n-ignore-end */
 
 interface SoloBossModalProps {
   userId?: string;
@@ -198,81 +205,81 @@ export default function PvpDuelModal({
       initial={{ opacity: 0, scale: 0.96, y: 12 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96, y: 12 }}
-      className={`bg-white border border-sky-100 text-stone-900 shadow-2xl relative overflow-hidden ${
+      className={`bg-white border border-stone-300 text-ink dark:bg-stone-900 dark:border-stone-700 relative overflow-hidden ${
         embedded
-          ? "rounded-[28px] p-6 sm:p-7 max-w-4xl w-full mx-auto"
-          : "rounded-[28px] p-6 sm:p-7 max-w-4xl w-full"
+          ? "rounded-md p-6 sm:p-7 max-w-4xl w-full mx-auto"
+          : "rounded-md p-6 sm:p-7 max-w-4xl w-full"
       }`}
     >
-      <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-sky-400 via-brand-400 to-amber-300" />
       {!embedded && (
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-700 rounded-full bg-stone-100 transition-colors z-10"
+          className="absolute top-4 right-4 p-1.5 text-ink-muted hover:text-ink-max rounded-sm border border-stone-300 hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200 transition-colors z-10"
           aria-label={t.pvpDuel.closeAriaLabel}
         >
           <X className="w-5 h-5" />
         </button>
       )}
 
-      <div className={`border-b border-stone-100 ${embedded ? "pb-4 mb-5" : "pb-5 mb-6 pr-10"}`}>
-        <span className="inline-flex max-w-full text-[10px] uppercase font-black tracking-widest text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-100">
-          {t.pvpDuel.soloBossBadge}
-        </span>
-        <h3 className={`${embedded ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} font-black mt-2 flex items-start sm:items-center gap-2 leading-tight`}>
-          <Brain className="w-5 h-5 text-sky-600 shrink-0 mt-1 sm:mt-0" />
+      <div className={`border-b border-line-strong ${embedded ? "pb-4 mb-5" : "pb-5 mb-6 pr-10"}`}>
+        <div className="flex max-w-full items-center gap-3">
+          <Sys className="text-ink-muted">{SYS.duel}</Sys>
+          <span className="eyebrow text-ink-soft">{t.pvpDuel.soloBossBadge}</span>
+        </div>
+        <h3 className={`${embedded ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} font-black mt-2 flex items-start sm:items-center gap-2 leading-tight text-ink-max`}>
+          <Brain className="w-5 h-5 text-ink-muted shrink-0 mt-1 sm:mt-0" />
           <span>{t.pvpDuel.title}</span>
         </h3>
-        <p className={`${embedded ? "text-xs sm:text-sm" : "text-sm"} font-semibold text-stone-500 mt-1`}>{learnedTone}</p>
+        <p className={`${embedded ? "text-xs sm:text-sm" : "text-sm"} font-semibold text-ink-soft mt-1`}>{learnedTone}</p>
       </div>
 
       <AnimatePresence mode="wait">
         {battleState === "intro" ? (
           <motion.div key="intro" className={embedded ? "space-y-5" : "space-y-6"} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="relative h-44 sm:h-52 w-full rounded-2xl overflow-hidden border border-sky-200/80 shadow-md">
+            <div className="relative h-44 sm:h-52 w-full rounded-md overflow-hidden border border-line-strong">
               <Image
                 src="/images/dau-truong-kien-thuc.jpg"
                 alt={t.pvpDuel.heroAlt}
                 fill
                 className="object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/40 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-20 bg-stone-950/75" />
               <div className="absolute bottom-3 left-4 right-4 text-white">
-                <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 bg-black/40 px-2.5 py-0.5 rounded-md backdrop-blur-sm border border-amber-300/30">
+                <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">
                   {t.pvpDuel.arenaEyebrow}
                 </span>
-                <h4 className="text-lg sm:text-xl font-black text-white mt-1 drop-shadow">{t.pvpDuel.heroTitle}</h4>
+                <h4 className="text-lg sm:text-xl font-black text-white mt-1">{t.pvpDuel.heroTitle}</h4>
               </div>
             </div>
 
-            <div className={`grid ${embedded ? "grid-cols-1 sm:grid-cols-[auto_1fr]" : "md:grid-cols-[auto_1fr]"} gap-4 items-center bg-gradient-to-br from-sky-50 to-brand-50 border border-sky-100 ${embedded ? "p-4" : "p-5 sm:p-6"} rounded-2xl`}>
+            <div className={`grid ${embedded ? "grid-cols-1 sm:grid-cols-[auto_1fr]" : "md:grid-cols-[auto_1fr]"} gap-4 items-center bg-[#fbfaf7] border border-stone-300 dark:bg-stone-950 dark:border-stone-700 ${embedded ? "p-4" : "p-5 sm:p-6"} rounded-md`}>
               <div className={embedded ? "justify-self-center sm:justify-self-start" : ""}>
                 <TechCharacterAvatar level={userLevel} equipments={equipments} size={embedded ? "sm" : "md"} />
               </div>
               <div className={embedded ? "text-center sm:text-left" : ""}>
-                <p className="text-xs font-black uppercase tracking-wide text-sky-700">{format(t.pvpDuel.learnerLevelLabel, { level: userLevel })}</p>
-                <p className={`${embedded ? "text-sm" : "text-base"} font-bold text-stone-800 mt-1`}>
+                <p className="font-mono text-xs font-medium uppercase tabular-nums tracking-wide text-ink-muted">{format(t.pvpDuel.learnerLevelLabel, { level: userLevel })}</p>
+                <p className={`${embedded ? "text-sm" : "text-base"} font-bold text-ink mt-1`}>
                   {t.pvpDuel.introDesc}
                 </p>
               </div>
             </div>
 
-            <div className={`bg-amber-50 border border-amber-100 ${embedded ? "p-3" : "p-4"} rounded-2xl flex items-start gap-2`}>
-              <Shield className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
-              <p className={`${embedded ? "text-xs" : "text-sm"} font-semibold text-amber-800`}>
+            <div className={`border border-line-strong ${embedded ? "p-3" : "p-4"} rounded-md flex items-start gap-2`}>
+              <Shield className="w-4 h-4 text-ink-muted mt-0.5 shrink-0" />
+              <p className={`${embedded ? "text-xs" : "text-sm"} font-semibold text-ink-body`}>
                 {t.pvpDuel.noticeText}
               </p>
             </div>
 
             {error && (
-              <div className="bg-rose-50 border border-rose-100 p-3 rounded-2xl text-xs font-semibold text-rose-700">
+              <div className="bg-rose-50 border border-rose-300 p-3 rounded-sm text-xs font-semibold text-rose-700 dark:bg-rose-950/40 dark:border-rose-800 dark:text-rose-300">
                 {error}
               </div>
             )}
 
             <button
               onClick={startBattle}
-              className={`w-full bg-sky-600 hover:bg-sky-500 font-black ${embedded ? "py-3.5 text-base" : "py-4 text-lg"} rounded-2xl text-white shadow-lg transition-colors flex items-center justify-center gap-2 cursor-pointer text-center leading-tight`}
+              className={`${btnPrimary} w-full cursor-pointer text-center leading-tight`}
             >
               {t.pvpDuel.startButton}
             </button>
@@ -285,41 +292,41 @@ export default function PvpDuelModal({
           </motion.div>
         ) : battleState === "loading" ? (
           <motion.div key="loading" className="py-12 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="w-10 h-10 border-2 border-sky-100 border-t-sky-500 rounded-full animate-spin mx-auto" />
-            <p className="text-sm font-bold text-stone-500 mt-4">{t.pvpDuel.loadingText}</p>
+            <div className="w-10 h-10 border-2 border-stone-200 border-t-brand-600 rounded-full animate-spin mx-auto dark:border-stone-700 dark:border-t-brand-400" />
+            <p className="text-sm font-bold text-ink-muted mt-4">{t.pvpDuel.loadingText}</p>
           </motion.div>
         ) : battleState === "fighting" && currentQuestion ? (
           <motion.div key="fighting" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className={`bg-stone-900 border border-sky-500/30 rounded-2xl ${embedded ? "p-3 sm:p-4 mb-4" : "p-4 sm:p-5 mb-5"} text-white`}>
+            <div className={`bg-stone-950 border border-stone-800 rounded-md ${embedded ? "p-3 sm:p-4 mb-4" : "p-4 sm:p-5 mb-5"} text-white`}>
               <div className="grid grid-cols-3 items-center gap-2 sm:gap-3">
                 <div className="flex flex-col items-center text-center">
                   <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
-                  <span className="text-[10px] sm:text-[11px] font-extrabold text-sky-300 mt-1">{format(t.pvpDuel.youLabel, { level: userLevel })}</span>
+                  <span className="font-mono text-[10px] sm:text-[11px] font-medium tabular-nums text-stone-300 mt-1">{format(t.pvpDuel.youLabel, { level: userLevel })}</span>
                 </div>
 
                 <div className="flex flex-col items-center text-center">
-                  <span className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-brand-500 text-white font-black text-xs flex items-center justify-center shadow-md">
+                  <span className="w-8 h-8 rounded-sm border border-white/15 text-stone-300 font-black text-xs flex items-center justify-center">
                     {t.pvpDuel.vs}
                   </span>
-                  <span className="text-[10px] font-bold text-amber-400 mt-1">{format(t.pvpDuel.questionCounter, { progress: progressLabel })}</span>
+                  <span className="font-mono text-[10px] font-medium tabular-nums text-stone-400 mt-1">{format(t.pvpDuel.questionCounter, { progress: progressLabel })}</span>
                 </div>
 
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white shadow-lg">
+                  <div className="w-14 h-14 rounded-md border border-rose-500/50 bg-stone-900 flex items-center justify-center text-rose-400">
                     <Swords className="w-7 h-7" strokeWidth={1.75} aria-hidden />
                   </div>
-                  <span className="text-[10px] sm:text-[11px] font-extrabold text-amber-400 mt-0.5 leading-tight">{t.pvpDuel.bullNickname}</span>
+                  <span className="text-[10px] sm:text-[11px] font-extrabold text-stone-200 mt-0.5 leading-tight">{t.pvpDuel.bullNickname}</span>
                 </div>
               </div>
 
               <div className="mt-3">
                 <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-300 mb-1">
                   <span>{t.pvpDuel.bossHpLabel}</span>
-                  <span className="text-sky-400">{format(t.pvpDuel.hpSuffix, { hp: bossHp, max: BOSS_MAX_HP })}</span>
+                  <span className="font-mono font-medium tabular-nums text-rose-400">{format(t.pvpDuel.hpSuffix, { hp: bossHp, max: BOSS_MAX_HP })}</span>
                 </div>
-                <div className="h-2.5 rounded-full bg-stone-800 border border-stone-700 overflow-hidden">
+                <div className="h-2.5 rounded-xs bg-stone-950 border border-white/15 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-brand-400 via-sky-400 to-amber-400 transition-all duration-500"
+                    className="h-full bg-rose-600 transition-all duration-500"
                     style={{ width: `${bossHp}%` }}
                   />
                 </div>
@@ -327,10 +334,10 @@ export default function PvpDuelModal({
             </div>
 
             <div className="mb-4">
-              <p className="text-[10px] font-black uppercase tracking-widest text-sky-600 mb-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted mb-2">
                 {format(t.pvpDuel.fromLessonLabel, { title: currentQuestion.lessonTitle })}
               </p>
-              <h3 className={`${embedded ? "text-sm" : "text-base sm:text-lg"} font-bold bg-white p-4 rounded-2xl border border-stone-200 shadow-sm leading-relaxed break-words`}>
+              <h3 className={`${embedded ? "text-sm" : "text-base sm:text-lg"} font-bold bg-[#fbfaf7] p-4 rounded-md border border-stone-300 text-ink-max dark:bg-stone-950 dark:border-stone-700 leading-relaxed break-words`}>
                 {currentQuestion.prompt}
               </h3>
             </div>
@@ -339,12 +346,12 @@ export default function PvpDuelModal({
               {currentQuestion.options.map((opt, oIdx) => {
                 const isSelected = selectedOpt === oIdx;
                 const isCorrect = oIdx === currentQuestion.correct;
-                let cls = "bg-white border-stone-200 hover:border-sky-300 hover:bg-sky-50";
+                let cls = "bg-white border-stone-300 text-ink hover:border-brand-500 dark:bg-stone-900 dark:border-stone-700 dark:hover:border-brand-400";
 
                 if (selectedOpt !== null) {
-                  if (isCorrect) cls = "bg-brand-50 border-brand-300 text-brand-800";
-                  else if (isSelected) cls = "bg-rose-50 border-rose-300 text-rose-800";
-                  else cls = "bg-stone-50 border-stone-100 text-stone-400";
+                  if (isCorrect) cls = "bg-brand-50 border-brand-500 text-brand-800 dark:bg-brand-950/40 dark:text-brand-300";
+                  else if (isSelected) cls = "bg-rose-50 border-rose-500 text-rose-800 dark:bg-rose-950/40 dark:text-rose-300";
+                  else cls = "bg-white border-stone-200 text-ink-faint dark:bg-stone-900 dark:border-stone-800";
                 }
 
                 return (
@@ -352,7 +359,7 @@ export default function PvpDuelModal({
                     key={oIdx}
                     disabled={selectedOpt !== null}
                     onClick={() => handleSelectOption(oIdx)}
-                    className={`w-full text-left ${embedded ? "text-xs p-3.5" : "text-sm p-4"} font-bold rounded-2xl border transition-colors flex items-start gap-2 ${cls}`}
+                    className={`w-full text-left ${embedded ? "text-xs p-3.5" : "text-sm p-4"} font-bold rounded-sm border transition-colors flex items-start gap-2 ${cls}`}
                   >
                     {selectedOpt !== null && isCorrect && <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />}
                     {selectedOpt !== null && isSelected && !isCorrect && <XCircle className="w-4 h-4 shrink-0 mt-0.5" />}
@@ -363,39 +370,39 @@ export default function PvpDuelModal({
             </div>
 
             {selectedOpt !== null && (
-              <p className={`mt-3 ${embedded ? "text-xs p-3" : "text-sm p-4"} leading-relaxed bg-sky-50 border border-sky-100 text-sky-800 rounded-2xl`}>
+              <p className={`mt-3 ${embedded ? "text-xs p-3" : "text-sm p-4"} leading-relaxed bg-[#fbfaf7] border border-stone-300 text-ink-body rounded-md dark:bg-stone-950 dark:border-stone-700`}>
                 {currentQuestion.explanation}
               </p>
             )}
           </motion.div>
         ) : (
           <motion.div key="result" className={`text-center ${embedded ? "py-5 space-y-4" : "py-8 space-y-5"}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Trophy className={`w-16 h-16 mx-auto ${resultWon ? "text-amber-400" : "text-stone-300"}`} />
-            <h3 className={`text-2xl font-black ${resultWon ? "text-brand-600" : "text-sky-700"}`}>
+            <Trophy className={`w-14 h-14 mx-auto ${resultWon ? "text-ink-max" : "text-ink-faint"}`} strokeWidth={1.5} />
+            <h3 className="text-2xl font-black text-ink-max">
               {resultWon ? t.pvpDuel.resultWonTitle : t.pvpDuel.resultLostTitle}
             </h3>
-            <p className={`${embedded ? "text-sm" : "text-base"} text-stone-500`}>
-              {t.pvpDuel.resultScorePart1}<strong className="text-stone-900">{score}/{totalQuestions}</strong>{t.pvpDuel.resultScorePart2}
+            <p className={`${embedded ? "text-sm" : "text-base"} text-ink-soft`}>
+              {t.pvpDuel.resultScorePart1}<strong className="font-mono tabular-nums text-ink-max">{score}/{totalQuestions}</strong>{t.pvpDuel.resultScorePart2}
             </p>
             {resultReward && (
-              <p className="text-sm font-bold text-brand-600">
+              <p className="font-mono text-sm font-medium tabular-nums text-accent-strong">
                 {format(t.pvpDuel.rewardBase, { xp: resultReward.xp })}
                 {resultReward.coins > 0 ? format(t.pvpDuel.rewardCoinsSuffix, { coins: resultReward.coins }) : ""}
               </p>
             )}
             {submittingResult && (
-              <p className="text-xs font-semibold text-stone-400">{t.pvpDuel.submittingText}</p>
+              <p className="text-xs font-semibold text-ink-faint">{t.pvpDuel.submittingText}</p>
             )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <button
                   onClick={resetBattle}
-                  className={`bg-stone-100 hover:bg-stone-200 font-black ${embedded ? "py-3" : "py-4"} rounded-2xl text-stone-800 transition-colors`}
+                  className={btnSecondary}
               >
                 {t.pvpDuel.retryButton}
               </button>
               <button
                 onClick={onClose}
-                className={`bg-sky-600 hover:bg-sky-500 font-black ${embedded ? "py-3" : "py-4"} rounded-2xl text-white transition-colors`}
+                className={btnPrimary}
               >
                 {t.pvpDuel.closeButton}
               </button>
@@ -411,7 +418,7 @@ export default function PvpDuelModal({
   }
 
   return (
-    <div className="fixed inset-0 bg-white/90 backdrop-blur-sm z-50 overflow-y-auto">
+    <div className="fixed inset-0 bg-stone-950/70 z-50 overflow-y-auto">
       <div className="min-h-full px-4 py-8 sm:px-6 sm:py-10 flex items-start justify-center">
         {cardContent}
       </div>

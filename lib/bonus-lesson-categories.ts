@@ -1,9 +1,8 @@
 // Purely presentational grouping for the dashboard's "Case chuyên sâu"
 // section (the flat list of bonus/case-study lessons, ids 1001+). That list
 // renders sorted by id, so a newly added lesson always lands at the very
-// bottom regardless of topic - e.g. dinh-gia-tai-san-rong (asset-based
-// valuation) landed after 35 unrelated cases instead of near ROIC/
-// Enterprise Value/WACC, making it effectively impossible to find. This map
+// bottom regardless of topic, landing after dozens of unrelated cases and
+// becoming effectively impossible to find. This map
 // clusters bonus lessons by topic so the section can render sub-headers
 // instead. Does not affect lesson ids, unlock logic, or the day-numbered
 // Personal/Professional tracks - display grouping only.
@@ -16,30 +15,29 @@ export const BONUS_CATEGORIES: Record<string, string> = {
   "case-uoc-luong-dung-luong": "Đo lường & vận hành hệ thống",
   "case-chi-phi-moi-request": "Đo lường & vận hành hệ thống",
   "case-chi-phi-va-kien-truc": "Đo lường & vận hành hệ thống",
-  "chon-phuong-phap-dinh-gia": "Định giá doanh nghiệp",
-  "bang-can-doi-ke-toan": "Đọc báo cáo tài chính",
-  "10-cong-thuc-finance": "Định giá doanh nghiệp",
-  "market-fair-value": "Định giá doanh nghiệp",
+  "chon-cach-uoc-luong": "Ước lượng & quyết định kỹ thuật",
+  "he-thong-dang-co-gi": "Đọc số liệu hệ thống",
+  "10-cong-thuc-phong-van-ky-thuat": "Ước lượng & quyết định kỹ thuật",
+  "chi-phi-moi-request-co-hop-ly": "Ước lượng & quyết định kỹ thuật",
   "case-tong-chi-phi-so-huu": "Đo lường & vận hành hệ thống",
   "case-tach-do-tre-thanh-phan": "Đo lường & vận hành hệ thống",
   "case-lap-trinh-quy-ve-may-y-tuong": "Đo lường & vận hành hệ thống",
   "case-hai-cach-do-do-kha-dung": "Đo lường & vận hành hệ thống",
-  "danh-gia-du-an-npv-irr": "Định giá doanh nghiệp",
+  "danh-gia-du-an-npv-irr": "Ước lượng & quyết định kỹ thuật",
 
-  "discontinued-operations": "Đọc báo cáo tài chính",
-  "vingroup-cash-flow": "Đọc báo cáo tài chính",
-  "interim-comprehensive-income": "Đọc báo cáo tài chính",
-  "tesla-cash-flow": "Đọc báo cáo tài chính",
+  "mot-lan-toi-uu-lon": "Đọc số liệu hệ thống",
+  "doc-dong-tai-nguyen-he-thong-lon": "Đọc số liệu hệ thống",
+  "interim-comprehensive-income": "Đọc số liệu hệ thống",
+  "dong-tai-nguyen-san-pham-tang-nhanh": "Đọc số liệu hệ thống",
   "case-dat-truoc-hay-tra-theo-dung": "Đo lường & vận hành hệ thống",
-  "fpt-cfo-cash": "Đọc báo cáo tài chính",
+  "doi-co-20-phan-tram-nang-luc-du": "Đọc số liệu hệ thống",
   "case-no-ky-thuat-tich-luy": "Đo lường & vận hành hệ thống",
-  "inventory-turnover": "Đọc báo cáo tài chính",
-  "operating-leverage": "Đọc báo cáo tài chính",
-  "income-affiliates-jv": "Đọc báo cáo tài chính",
+  "chi-phi-co-dinh-va-theo-luong-dung": "Đọc số liệu hệ thống",
+  "chia-chi-phi-dich-vu-dung-chung": "Đọc số liệu hệ thống",
   "case-tinh-phi-ha-tang-noi-bo": "Đo lường & vận hành hệ thống",
-  "maple-leaf-leverage": "Đọc báo cáo tài chính",
+  "ty-le-no-ky-thuat": "Đọc số liệu hệ thống",
   "case-doc-sau-nhat-ky": "Đo lường & vận hành hệ thống",
-  "financial-risk": "Đọc báo cáo tài chính",
+  "financial-risk": "Đọc số liệu hệ thống",
   "case-doc-bao-cao-su-co": "Đo lường & vận hành hệ thống",
   "case-ghep-hai-he-thong": "Đo lường & vận hành hệ thống",
   "case-bon-mo-hinh-trien-khai": "Đo lường & vận hành hệ thống",
@@ -47,18 +45,18 @@ export const BONUS_CATEGORIES: Record<string, string> = {
   "case-phan-tich-mot-dich-vu": "Đo lường & vận hành hệ thống",
   "case-ai-trong-san-pham-that": "Đo lường & vận hành hệ thống",
   "case-cong-nghe-moi-co-that-khong": "Đo lường & vận hành hệ thống",
-  "commodity-phan-2": "Case công ty thực tế",
+  "tai-nguyen-tinh-toan-khan-hiem": "Case sản phẩm thực tế",
   "case-ty-le-trung-cache": "Đo lường & vận hành hệ thống",
 
-  dividend: "Vốn & cổ đông",
-  "post-ipo-dividend": "Vốn & cổ đông",
+  "slo-cam-ket-do-tin-cay": "Cam kết độ tin cậy",
+  "sau-khi-ra-mat-co-nen-cong-bo-slo": "Cam kết độ tin cậy",
 
-  "modern-portfolio-theory": "Đầu tư & danh mục",
-  "wealth-management": "Đầu tư & danh mục",
+  "nhieu-dich-vu-nho-hay-mot-dich-vu-lon": "Kiến trúc & nền tảng",
+  "wealth-management": "Kiến trúc & nền tảng",
   "case-ba-dieu-nan-khi-hoc-lap-trinh": "Đo lường & vận hành hệ thống",
 };
 
-// Render order - "Định giá doanh nghiệp" first since it's the cluster most
+// Render order - "Ước lượng & quyết định kỹ thuật" first since it's the cluster most
 // people look for (ROIC/EV/WACC/asset-based valuation).
 /** Nhóm dành cho bài chưa được gán. Là KHOÁ, không phải nhãn hiển thị. */
 export const BONUS_CATEGORY_FALLBACK = "Khác";
@@ -77,11 +75,11 @@ export const BONUS_CATEGORY_FALLBACK = "Khác";
  * lại của bảng nối vào sau, nhóm dự phòng luôn cuối. Thêm một nhóm mới vào
  * `BONUS_CATEGORIES` là đủ để nó hiện ra. */
 export const BONUS_CATEGORY_PREFERRED_ORDER = [
-  "Định giá doanh nghiệp",
-  "Đọc báo cáo tài chính",
-  "Case công ty thực tế",
-  "Vốn & cổ đông",
-  "Đầu tư & danh mục",
+  "Ước lượng & quyết định kỹ thuật",
+  "Đọc số liệu hệ thống",
+  "Case sản phẩm thực tế",
+  "Cam kết độ tin cậy",
+  "Kiến trúc & nền tảng",
 ];
 
 export const BONUS_CATEGORY_ORDER: string[] = (() => {

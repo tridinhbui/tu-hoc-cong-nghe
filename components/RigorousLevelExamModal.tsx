@@ -18,6 +18,14 @@ import { LEVELS } from "@/lib/levels";
 import { useIsClient } from "@/lib/use-is-client";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Sys, btnPrimary, btnSecondary } from "@/components/ui/system";
+
+/* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị */
+const SYS = {
+  level: (n: number) => `LVL ${String(n).padStart(2, "0")}`,
+  qid: (n: number) => String(n).padStart(2, "0"),
+};
+/* i18n-ignore-end */
 
 interface RigorousLevelExamModalProps {
   levelToTest: number;
@@ -152,23 +160,24 @@ export default function RigorousLevelExamModal({
   if (!mounted) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-stone-950/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-stone-950/60 animate-in fade-in duration-200">
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="relative w-full max-w-3xl overflow-hidden rounded-3xl border-2 border-brand-500/40 bg-white dark:bg-stone-900 shadow-2xl flex flex-col max-h-[90vh]"
+        className="relative w-full max-w-3xl overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 flex flex-col max-h-[90vh]"
       >
         {/* Top Header */}
-        <div className="border-b border-line bg-gradient-to-r from-brand-950 via-stone-900 to-brand-950 px-6 py-4 text-white flex items-center justify-between shrink-0">
+        <div className="border-b border-stone-300 bg-[#f3f1ec] px-6 py-4 dark:border-stone-700 dark:bg-stone-950 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <span className="shrink-0 rounded-xl bg-brand-500/20 text-brand-300 p-2"><Glyph emoji={levelMeta.emoji || fallbackConfig.badgeEmoji || "🏆"} className="w-7 h-7" /></span>
+            <span className="shrink-0 rounded-sm border border-stone-300 bg-white text-ink-body p-2 dark:border-stone-700 dark:bg-stone-900"><Glyph emoji={levelMeta.emoji || fallbackConfig.badgeEmoji || "🏆"} className="w-7 h-7" /></span>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-500/20 border border-brand-400/40 text-[10px] font-black uppercase text-brand-300">
-                <ShieldCheck className="w-3 h-3 text-brand-400" />
-                <span>{isRecertificationRetake ? t.levelExam.titleRetake : t.levelExam.title}</span>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-3.5 h-3.5 text-ink-muted" aria-hidden />
+                <span className="eyebrow text-ink-soft">{isRecertificationRetake ? t.levelExam.titleRetake : t.levelExam.title}</span>
+                <Sys className="text-ink-muted">{SYS.level(levelToTest)}</Sys>
               </div>
-              <h2 className="text-lg font-black tracking-tight text-white mt-1">
+              <h2 className="text-lg font-black tracking-tight text-ink-max mt-1">
                 {examTitle}
               </h2>
             </div>
@@ -176,16 +185,16 @@ export default function RigorousLevelExamModal({
 
           <button
             onClick={onClose}
-            className="rounded-full p-2 text-stone-400 hover:bg-stone-800 hover:text-white transition-colors cursor-pointer"
+            className="rounded-sm p-2 text-ink-muted hover:text-ink transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Info Strip */}
-        <div className="bg-brand-50/70 dark:bg-brand-950/40 border-b border-brand-100 dark:border-brand-900 px-6 py-2.5 flex items-center justify-between text-xs font-bold text-accent-ink-strong shrink-0">
+        <div className="border-b border-line-strong px-6 py-2.5 flex items-center justify-between text-xs font-bold text-ink-body shrink-0">
           <div className="flex items-center gap-2">
-            <Trophy className="w-4 h-4 text-amber-500" />
+            <Trophy className="w-4 h-4 text-ink-muted" aria-hidden />
             <span>
               {format(t.levelExam.passRequirement, { percent: minPassPercentage })}
               {questions.length > 0 &&
@@ -195,7 +204,7 @@ export default function RigorousLevelExamModal({
                 })}
             </span>
           </div>
-          <div className={`flex items-center gap-1.5 font-mono px-3 py-1 rounded-full border shadow-xs ${timeLeft < 60 ? "bg-rose-500 text-white border-rose-400 animate-pulse font-black" : "bg-white dark:bg-stone-800 text-ink border-line-mid"}`}>
+          <div className={`flex items-center gap-1.5 font-mono tabular-nums px-3 py-1 rounded-sm border ${timeLeft < 60 ? "border-rose-400 bg-rose-50 text-rose-700 font-black dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-400" : "bg-white dark:bg-stone-900 text-ink border-line-strong"}`}>
             <Clock className="w-3.5 h-3.5" />
             <span>{formatTime(timeLeft)}</span>
           </div>
@@ -208,7 +217,7 @@ export default function RigorousLevelExamModal({
               <p className="text-sm font-bold text-alert">{loadError}</p>
               <button
                 onClick={retryExam}
-                className="px-5 py-2.5 rounded-xl bg-brand-500 text-stone-950 font-black text-xs hover:bg-brand-400 cursor-pointer inline-flex items-center gap-2"
+                className={`${btnPrimary} cursor-pointer text-xs`}
               >
                 <RefreshCw className="w-4 h-4" />
                 {t.levelExam.reloadExam}
@@ -216,19 +225,17 @@ export default function RigorousLevelExamModal({
             </div>
           ) : !exam ? (
             <div className="py-16 flex flex-col items-center justify-center gap-3">
-              <Loader2 className="w-8 h-8 animate-spin text-brand-500" />
+              <Loader2 className="w-8 h-8 animate-spin text-ink-muted" />
               <p className="text-xs font-semibold text-ink-muted">{t.levelExam.loading}</p>
             </div>
           ) : !submitted ? (
             questions.map((q, qIdx) => (
               <div
                 key={q.id || qIdx}
-                className="p-5 rounded-2xl border border-line bg-stone-50/60 dark:bg-stone-950/40 space-y-3"
+                className="p-5 rounded-md border border-line-strong space-y-3"
               >
-                <p className="text-sm font-black text-ink flex items-start gap-2.5">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500 text-xs font-black text-stone-950 mt-0.5">
-                    {qIdx + 1}
-                  </span>
+                <p className="text-sm font-black text-ink-max flex items-start gap-2.5">
+                  <Sys className="shrink-0 pt-[3px] text-ink-muted">{SYS.qid(qIdx + 1)}</Sys>
                   <span className="leading-snug">{q.question}</span>
                 </p>
 
@@ -240,14 +247,14 @@ export default function RigorousLevelExamModal({
                         key={optIdx}
                         type="button"
                         onClick={() => handleSelectOption(qIdx, optIdx)}
-                        className={`w-full text-left p-3.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-between border ${
+                        className={`w-full text-left p-3.5 rounded-sm text-xs font-bold transition-colors cursor-pointer flex items-center justify-between border ${
                           isSelected
-                            ? "bg-brand-500 text-stone-950 border-brand-400 shadow-md font-black"
-                            : "bg-white dark:bg-stone-900 text-ink-body border-line hover:border-brand-400 hover:bg-brand-50/30 dark:hover:bg-stone-800"
+                            ? "bg-white dark:bg-stone-900 text-ink-max border-brand-600 ring-1 ring-brand-600 dark:border-brand-400 dark:ring-brand-400"
+                            : "bg-white dark:bg-stone-900 text-ink-body border-stone-300 hover:border-stone-500 dark:border-stone-700 dark:hover:border-stone-500"
                         }`}
                       >
                         <span className="leading-snug">{opt}</span>
-                        {isSelected && <CheckCircle2 className="w-4 h-4 shrink-0 text-stone-950 ml-2" />}
+                        {isSelected && <CheckCircle2 className="w-4 h-4 shrink-0 text-accent-strong ml-2" />}
                       </button>
                     );
                   })}
@@ -258,14 +265,18 @@ export default function RigorousLevelExamModal({
             /* Result View with Detailed Explanations */
             <div className="space-y-6 py-2">
               <div className="text-center space-y-3">
-                <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-xl">
+                <div className={`inline-flex h-16 w-16 items-center justify-center rounded-sm border ${
+                    passed
+                      ? "border-brand-300 bg-brand-50 text-brand-700 dark:border-brand-800 dark:bg-brand-950/40 dark:text-brand-300"
+                      : "border-rose-300 bg-rose-50 text-rose-700 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-400"
+                  }`}>
                   {passed ? <Trophy className="w-10 h-10" strokeWidth={1.75} aria-hidden /> : <XCircle className="w-10 h-10" strokeWidth={1.75} aria-hidden />}
                 </div>
-                <h3 className="text-2xl font-black text-ink">
+                <h3 className="text-2xl font-black tracking-tight text-ink-max">
                   {passed ? t.levelExam.resultPassed : t.levelExam.resultFailed}
                 </h3>
                 <p className="text-sm text-ink-soft">
-                  {t.levelExam.resultPart1}<span className="font-black text-accent text-lg">{format(t.levelExam.resultScore, { correct: correctCount, total: result?.total ?? questions.length })}{format(t.levelExam.resultPart2, { percent: scorePercentage })}</span>{format(t.levelExam.resultRequired, { percent: result?.minPassPercentage ?? minPassPercentage })}
+                  {t.levelExam.resultPart1}<span className="font-black tabular-nums text-ink-max text-lg">{format(t.levelExam.resultScore, { correct: correctCount, total: result?.total ?? questions.length })}{format(t.levelExam.resultPart2, { percent: scorePercentage })}</span>{format(t.levelExam.resultRequired, { percent: result?.minPassPercentage ?? minPassPercentage })}
                 </p>
 
                 {result?.expired && (
@@ -275,9 +286,9 @@ export default function RigorousLevelExamModal({
                 )}
 
                 {passed ? (
-                  <div className="p-4 rounded-2xl bg-brand-50 dark:bg-brand-950/60 border border-accent-line text-xs text-accent-ink space-y-3 font-medium text-left">
+                  <div className="p-4 rounded-md bg-brand-50/60 dark:bg-brand-950/30 border border-brand-300 dark:border-brand-900 text-xs text-ink-body space-y-3 font-medium text-left">
                     <div>
-                      <p className="font-black text-sm text-accent-ink-strong">{format(t.levelExam.promotedTitle, { level: levelToTest, name: t.levelTitles[levelToTest] ?? levelMeta.name })}</p>
+                      <p className="font-black text-sm text-accent-ink">{format(t.levelExam.promotedTitle, { level: levelToTest, name: t.levelTitles[levelToTest] ?? levelMeta.name })}</p>
                       <p className="mt-0.5">{t.levelExam.promotedBody}</p>
                     </div>
                     <button
@@ -306,13 +317,13 @@ export default function RigorousLevelExamModal({
                           toast.error(errorMessage(err, t.levelExam.shareError));
                         }
                       }}
-                      className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-600 hover:from-brand-500 hover:to-brand-500 text-white font-black text-xs flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all active:scale-98"
+                      className={`${btnPrimary} w-full cursor-pointer text-xs`}
                     >
                       <span>{t.levelExam.shareCta}</span>
                     </button>
                   </div>
                 ) : (
-                  <div className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-alert-line text-xs text-alert-deep space-y-1 font-medium text-left">
+                  <div className="p-4 rounded-md bg-rose-50 dark:bg-rose-950/40 border border-alert-line text-xs text-alert-deep space-y-1 font-medium text-left">
                     <p className="font-black text-sm text-alert-ink">{t.levelExam.reviewTitle}</p>
                     <p>{t.levelExam.reviewBody}</p>
                   </div>
@@ -320,8 +331,8 @@ export default function RigorousLevelExamModal({
               </div>
 
               {/* Detailed Question Review */}
-              <div className="space-y-4 pt-2 border-t border-line">
-                <h4 className="text-xs font-black uppercase tracking-wider text-ink-muted">
+              <div className="space-y-4 pt-4 border-t border-line-strong">
+                <h4 className="eyebrow text-ink-soft">
                   {t.levelExam.answerAnalysis}
                 </h4>
                 {questions.map((q, qIdx) => {
@@ -335,17 +346,17 @@ export default function RigorousLevelExamModal({
                   return (
                     <div
                       key={q.id || qIdx}
-                      className={`p-4 rounded-2xl border text-xs space-y-2 ${
+                      className={`p-4 rounded-md border text-xs space-y-2 ${
                         isCorrect
                           ? "bg-brand-50/50 dark:bg-brand-950/20 border-brand-200 dark:border-brand-900/60"
                           : "bg-rose-50/50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-900/60"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-2 font-bold">
-                        <p className="text-ink">
+                        <p className="text-ink-max">
                           {format(t.levelExam.questionLine, { index: qIdx + 1, question: q.question })}
                         </p>
-                        <span className={`shrink-0 px-2 py-0.5 rounded-full font-black text-[10px] ${isCorrect ? "bg-brand-500 text-stone-950" : "bg-rose-500 text-white"}`}>
+                        <span className={`shrink-0 px-2 py-0.5 rounded-sm font-black text-[10px] ${isCorrect ? "bg-brand-600 text-white" : "bg-rose-600 text-white"}`}>
                           {isCorrect ? t.levelExam.markCorrect : t.levelExam.markWrong}
                         </span>
                       </div>
@@ -362,8 +373,8 @@ export default function RigorousLevelExamModal({
                       </div>
 
                       {explanation && (
-                        <div className="mt-2 p-2.5 rounded-xl bg-white dark:bg-stone-900 border border-line text-[11px] text-ink-soft italic">
-                          <Lightbulb className="inline w-3.5 h-3.5 -mt-0.5 text-accent not-italic" aria-hidden /> <strong>{t.levelExam.explanationLabel}</strong> {explanation}
+                        <div className="mt-2 p-2.5 rounded-sm bg-white dark:bg-stone-900 border border-line text-[11px] text-ink-soft italic">
+                          <Lightbulb className="inline w-3.5 h-3.5 -mt-0.5 text-ink-muted not-italic" aria-hidden /> <strong>{t.levelExam.explanationLabel}</strong> {explanation}
                         </div>
                       )}
                     </div>
@@ -375,16 +386,16 @@ export default function RigorousLevelExamModal({
         </div>
 
         {/* Footer Action Buttons */}
-        <div className="border-t border-line px-6 py-4 bg-surface flex items-center justify-between shrink-0">
+        <div className="border-t border-stone-300 px-6 py-4 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950 flex items-center justify-between shrink-0">
           {!submitted ? (
             <>
-              <p className="text-xs text-stone-500 font-semibold">
+              <p className="text-xs text-ink-muted font-semibold">
                 {format(t.levelExam.answered, { done: Object.keys(answers).length, total: questions.length })}
               </p>
               <button
                 onClick={() => void handleSubmitExam()}
                 disabled={!exam || submitting || Object.keys(answers).length < questions.length}
-                className="button-premium bg-brand-500 hover:bg-brand-400 text-stone-950 px-6 py-2.5 rounded-xl font-black text-xs transition-all disabled:opacity-50 cursor-pointer flex items-center gap-2 shadow-md"
+                className={`${btnPrimary} cursor-pointer text-xs`}
               >
                 {submitting ? (
                   <>
@@ -404,7 +415,7 @@ export default function RigorousLevelExamModal({
               {!passed && (
                 <button
                   onClick={retryExam}
-                  className="px-4 py-2.5 rounded-xl bg-surface-sunken text-ink font-bold text-xs hover:bg-surface-deep cursor-pointer flex items-center gap-1.5"
+                  className={`${btnSecondary} cursor-pointer text-xs`}
                 >
                   <RefreshCw className="w-4 h-4" />
                   <span>{t.levelExam.retakeNow}</span>
@@ -412,7 +423,7 @@ export default function RigorousLevelExamModal({
               )}
               <button
                 onClick={onClose}
-                className="px-6 py-2.5 rounded-xl bg-brand-500 text-stone-950 font-black text-xs hover:bg-brand-400 cursor-pointer shadow-md"
+                className={`${btnPrimary} cursor-pointer text-xs`}
               >
                 {t.levelExam.finish}
               </button>

@@ -1,0 +1,161 @@
+{
+  "slug": "lo-trinh-cong-bo-va-moc-thoi-gian",
+  "title": "DevRel, Part 3: Public roadmaps - commit to a date and then live with it",
+  "subtitle": "Why product teams publish roadmaps, what a missed date costs, and how to give a range instead of a point",
+  "duration": "11 min",
+  "whyItMatters": "A public launch date is the only promise a product team makes that the developer community grades at every release. Set it too early and you lose trust when you slip; set it too far out and you lose trust a different way - and both land on the DevRel team before they land on anyone else.",
+  "openingQuestion": "The team promised the new SDK for 1 October and shipped it on 3 October. The forum fills with disappointed comments. Why?",
+  "openingOptions": [
+    "Because slipping makes users trust every date the team promises from now on less",
+    "Because two days' delay is too long for an SDK release",
+    "Because users always complain after every new release",
+    "Because tech news sites are obliged to report a missed date"
+  ],
+  "explanation": "Two days on a three-month roadmap is under 3%, not enough to wreck anyone's plan. What changes is the credibility of every date after it. Users build their own plans on the assumption that the product team knows its own progress; a slip, even of two days, is evidence to the contrary - and it forces them to add a safety margin to every future date, not just this one. That is why a team that slips two days can lose more trust than a team that pushes a whole quarter back but warned early.",
+  "diagram": [
+    {
+      "label": "Publish a launch date"
+    },
+    {
+      "label": "Users plan around that date"
+    },
+    {
+      "label": "Actual release date versus the promised one"
+    },
+    {
+      "label": "On time → trust accumulates · Late → a safety margin on every later date"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Time-based release schedules in large open-source projects",
+    "description": "Many large projects such as Ubuntu and Kubernetes release on a fixed schedule: when the date arrives, whatever is ready ships, and unfinished features wait for the next cycle. The date becomes a promise that is kept, while the feature scope is what flexes - and users learn to read those two things with two different levels of trust."
+  },
+  "quiz": [
+    {
+      "question": "Why can a two-day slip cost so much trust?",
+      "options": [
+        "Because the contract requires compensation for delays",
+        "Because it lowers the credibility of every future date, not just this one",
+        "Because integration partners must cancel the entire launch plans they had built",
+        "Because the delayed part is the most important feature"
+      ],
+      "explanation": "Users are not counting those two days. They are re-estimating the probability that the next dates are wrong too - and that probability applies to every plan they have built around your product. A partner who scheduled their own launch against your date now schedules the next one with a buffer, and so does everyone they talk to."
+    },
+    {
+      "question": "What happens when dates are set far too conservatively?",
+      "options": [
+        "Large partners will object to the roadmap",
+        "Sales will demand that the team justify the basis of every single date on it",
+        "Users discount them, so the published dates gradually stop meaning anything",
+        "The team has to republish mid-cycle"
+      ],
+      "explanation": "If every launch arrives two months ahead of its date, users will apply their own discount and the published date no longer carries any information. A roadmap that is always early is as uninformative as one that is always late; it has just picked a more flattering way to be wrong."
+    },
+    {
+      "question": "Why give a range rather than a specific date?",
+      "options": [
+        "Because Agile requires two scenarios",
+        "Because a range avoids having to explain",
+        "Because enterprise customers only accept roadmaps presented as ranges",
+        "Because a range reflects the real uncertainty in the estimate"
+      ],
+      "explanation": "A single date implies a precision nobody has. A range tells the truth about the uncertainty, and that uncertainty is itself information: a wide range tells users to plan a fallback, a narrow one tells them they can commit. Saying which assumption decides which end of the range makes it more useful still."
+    },
+    {
+      "question": "Once you know for certain the date will slip, what should DevRel do?",
+      "options": [
+        "Revise the date and announce it as soon as there is enough basis",
+        "Wait until the promised day and say so then",
+        "Keep the date and stress the other features finished on time",
+        "Quietly tell a few large customers first so they can push back gradually"
+      ],
+      "explanation": "Revising early is bad news; staying silent and then slipping is bad news plus lost trust. The last option is also unfair to the rest of the community, who will find out that some users were told and they were not - and remember it at the next launch."
+    },
+    {
+      "question": "What makes the community forgive a slipped date?",
+      "options": [
+        "The delay is shorter than the average delay for similar products",
+        "It was flagged in advance and the cause matches what the team had warned about",
+        "The team promises to make up all the delay in the next release",
+        "The team announces a big batch of new features at the same time"
+      ],
+      "explanation": "Users accept that a team runs into difficulty. What they do not accept is discovering that the team did not see the difficulty coming, because that says something about every future date, not just this one."
+    }
+  ],
+  "practicePrompt": {
+    "question": "The team promised a new search API in Q3, shipped it on the last day of the quarter with two features cut, and trial sign-ups fell sharply through the following quarter. What is the most plausible explanation?",
+    "options": [
+      "Users re-assessed how far they can trust every future date",
+      "An overreaction, because cutting two features is normal",
+      "A competitor cut its price, so users went to trial that one instead",
+      "Because the release still had fewer features than the previous version"
+    ],
+    "explanation": "Two cut features are not worth a whole quarter of sign-ups - what was re-assessed was not this release but every one after it. A roadmap is the team declaring that it can see the near future of its own product; shipping short at the last minute means that declaration was wrong, so every date the team gives from now on carries an extra layer of uncertainty. That is why, once you know you will slip or cut scope, you revise EARLY and in public: revising early costs one painful moment on the schedule, while letting it surface on release day also costs credibility - something far more expensive that takes years to win back."
+  },
+  "keyTakeaways": [
+    "A slip is punished for lost trust in future dates, not for the number of days late.",
+    "Too much caution and users discount the date until it stops working.",
+    "Give a range, not a point: the uncertainty is itself information.",
+    "If you know you will slip, revise early; tipping off a few large customers is unfair."
+  ],
+  "summary": {
+    "keyIdea": "A slip is punished for lost trust in the roadmap, not for the days of delay",
+    "commonMistake": "Setting dates very far out so you are sure to hit them - users discount them and the dates stop working.",
+    "action": "Give a range instead of a point, and say which assumption decides which end of the range."
+  },
+  "application": {
+    "title": "Compare promised dates with release dates over three years",
+    "message": "Take the public roadmap and actual release dates of a product you use over the last three years. If every release lands a little ahead of its date, that is not good estimation but a date set far out on purpose.",
+    "secondary": "If you know you will slip, revise early and in public; telling a few large customers privately is unfair."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A public roadmap is the only promise a product team makes that the community grades at every release. And like every promise, its value lies not in the making but in the run of times it was kept."
+    },
+    {
+      "type": "heading",
+      "text": "Why slipping by a little costs so much"
+    },
+    {
+      "type": "paragraph",
+      "text": "Users plan on the assumption that the product team understands its own progress better than outsiders do. A slip is evidence against that, so it does not merely move this date - it forces them to add a safety margin to every future date. A team that slips two days can lose more trust than a team that pushed a whole quarter back with warning."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Set early",
+        "text": "Gets attention in the short run, and loses more than that on the day it slips. The cost is paid later, and paid in something hard to buy back."
+      },
+      "right": {
+        "label": "Set far out",
+        "text": "Shipping ahead of the date looks good every time, until users apply their own discount and the published date no longer says anything."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "When you know you will slip"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Revise and announce as soon as there is enough basis - do not wait for the promised day.",
+        "Name the specific cause; do not say 'we ran into some technical difficulties'.",
+        "Say clearly what is temporary and what is a change of scope.",
+        "Never tip off a few large customers first so they can adjust gradually - the rest of the community will find out, and they will remember."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "What actually gets forgiven",
+      "text": "The community accepts a slip if it was flagged and the cause matches what the team had said. What is not forgiven is discovering that the team did not see it coming - because that says something about every future release, not just this one."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A date you publish is a date you live with until release day.",
+        "So the hard part of a roadmap is not the day you publish it, but every day after."
+      ]
+    }
+  ]
+}

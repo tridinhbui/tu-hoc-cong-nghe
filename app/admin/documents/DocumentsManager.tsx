@@ -133,16 +133,16 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-bold text-sm text-ink">{doc.title}</span>
-                    <span className="text-[10px] font-bold uppercase tracking-wide bg-surface-raised text-ink-soft px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-bold uppercase tracking-wide bg-surface-raised text-ink-soft px-2 py-0.5 rounded-xs">
                       {documentCategoryLabel(doc.category, t)}
                     </span>
                     {doc.status === "pending" && (
-                      <span className="text-[10px] font-bold uppercase tracking-wide bg-amber-100 dark:bg-amber-950/60 text-warn-strong px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wide bg-warn-soft text-warn-strong px-2 py-0.5 rounded-xs">
                         {td.pendingBadge}
                       </span>
                     )}
                     {doc.status === "rejected" && (
-                      <span className="text-[10px] font-bold uppercase tracking-wide bg-rose-100 dark:bg-rose-950/60 text-alert-strong px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wide bg-danger-soft text-danger px-2 py-0.5 rounded-xs">
                         {td.rejectedBadge}
                       </span>
                     )}
@@ -258,7 +258,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
             <button
               type="button"
               onClick={() => setShowPreview(true)}
-              className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-sm border border-line-strong text-ink-body hover:border-stone-950 dark:hover:border-stone-300 transition-colors"
             >
               <Eye className="w-4 h-4" />
               {format(td.previewButton, { fileName: previewFile.name })}
@@ -337,7 +337,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               <button
                 type="button"
                 onClick={() => setShowPreview(true)}
-                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-lg bg-blue-100 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-sm border border-line-strong text-ink-body hover:border-stone-950 dark:hover:border-stone-300 transition-colors"
               >
                 <Eye className="w-4 h-4" />
                 {format(td.previewButton, { fileName: previewFile.name })}

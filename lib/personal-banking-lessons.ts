@@ -220,7 +220,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
   },
   {
     id: 311,
-    slug: "lai-suat-thuc-sau-lam-phat",
+    slug: "tap-tin-thu-muc-va-quyen-truy-cap",
     title: "Chặng 12, Bài 2: Tập tin, thư mục và quyền truy cập",
     subtitle: "Ba nhóm, ba quyền, và một con số ba chữ số nói hết",
     duration: "7 phút",
@@ -1075,7 +1075,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
   },
   {
     id: 316,
-    slug: "phi-ngan-hang-va-cach-khong-mat-oan",
+    slug: "ssh-dang-nhap-bang-khoa",
     title: "Chặng 12, Bài 7: SSH - đăng nhập bằng khoá thay mật khẩu",
     subtitle: "Cùng cặp khoá của Chặng 15, lần này dùng để vào máy chủ",
     duration: "7 phút",
@@ -1246,7 +1246,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
   },
   {
     id: 317,
-    slug: "ngan-hang-so-va-vi-dien-tu",
+    slug: "shell-script-gom-viec-lap-lai",
     title: "Chặng 12, Bài 8: Shell script - gom việc lặp lại",
     subtitle: "Gõ ba lần cùng một dãy lệnh là lúc nên viết nó ra một tệp",
     duration: "7 phút",

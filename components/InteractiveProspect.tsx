@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { btnSecondary } from "@/components/ui/system";
 
 // Cặp lựa chọn của Prospect Theory, widget cho các bài khai `interactiveType:
 // "prospect"`.
@@ -51,18 +52,18 @@ export default function InteractiveProspect() {
   const consistent = done && answers.gain === answers.loss;
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-5 dark:bg-stone-900 dark:border-stone-800">
+    <div className="space-y-5 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
+        <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">
           {tr.title}
         </h3>
-        <p className="text-stone-500 text-sm dark:text-stone-400">
+        <p className="text-sm text-ink-soft">
           {tr.subtitle}
         </p>
       </div>
 
       {QUESTIONS.map((q) => (
-        <div key={q.id} className="rounded-2xl border border-stone-200 p-4 dark:border-stone-800">
+        <div key={q.id} className="rounded-sm border border-stone-200 p-4 dark:border-stone-800">
           <p className="text-sm font-bold text-ink-heading">{q.frame}</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {(["safe", "risky"] as const).map((c) => (
@@ -71,10 +72,10 @@ export default function InteractiveProspect() {
                 type="button"
                 onClick={() => setAnswers((prev) => ({ ...prev, [q.id]: c }))}
                 aria-pressed={answers[q.id] === c}
-                className={`rounded-xl border px-3 py-2.5 text-left text-[13px] leading-snug transition-colors ${
+                className={`rounded-sm border px-3 py-2.5 text-left text-[13px] leading-snug transition-colors ${
                   answers[q.id] === c
-                    ? "border-stone-900 bg-stone-900 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900"
-                    : "border-stone-200 bg-stone-50 text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-800/60 dark:text-stone-200 dark:hover:bg-stone-800"
+                    ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
+                    : "border-stone-200 text-ink-body hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-500"
                 }`}
               >
                 {c === "safe" ? q.safe : q.risky}
@@ -86,8 +87,8 @@ export default function InteractiveProspect() {
 
       {done && (
         <div
-          className={`rounded-2xl p-4 ${
-            flipped ? "bg-amber-50 dark:bg-amber-950/30" : "bg-brand-50 dark:bg-brand-950/30"
+          className={`border-l-2 pl-4 ${
+            flipped ? "border-amber-500" : "border-brand-600 dark:border-brand-400"
           }`}
         >
           <p className="text-sm text-ink-body">
@@ -109,7 +110,7 @@ export default function InteractiveProspect() {
           <button
             type="button"
             onClick={() => setAnswers({})}
-            className="mt-3 rounded-full bg-white px-3.5 py-1.5 text-[11px] font-bold text-stone-700 shadow-2xs dark:bg-stone-800 dark:text-stone-200"
+            className={`mt-3 ${btnSecondary}`}
           >
             {tr.resetButton}
           </button>

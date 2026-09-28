@@ -96,14 +96,14 @@ export default function UserProfile() {
             className="w-10 h-10 rounded-full object-cover"
           />
         ) : (
-          <div className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-sm">
+          <div className="w-10 h-10 rounded-full bg-stone-950 flex items-center justify-center text-white font-bold text-sm dark:bg-stone-100 dark:text-stone-950">
             {(profile.full_name || profile.email).charAt(0).toUpperCase()}
           </div>
         )}
       </button>
 
       {showDropdown && (
-        <div className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-line shadow-lg z-50 p-4">
+        <div className="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-md border border-line-strong z-50 p-4">
           <div className="flex gap-3 mb-4 pb-4 border-b border-line-soft">
             {isValidAvatar(profile.avatar_url) ? (
               <Image
@@ -114,7 +114,7 @@ export default function UserProfile() {
                 className="w-12 h-12 rounded-full object-cover"
               />
             ) : (
-              <div className="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold">
+              <div className="w-12 h-12 rounded-full bg-stone-950 flex items-center justify-center text-white font-bold dark:bg-stone-100 dark:text-stone-950">
                 {(profile.full_name || profile.email).charAt(0).toUpperCase()}
               </div>
             )}
@@ -126,15 +126,15 @@ export default function UserProfile() {
 
           <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-line-soft text-center">
             <div>
-              <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{profile.current_level}</p>
+              <p className="font-mono text-lg font-medium tabular-nums text-ink-max">{profile.current_level}</p>
               <p className="text-xs text-ink-muted">{t.userProfile.level}</p>
             </div>
             <div>
-              <p className="text-lg font-bold text-accent">{profile.total_xp}</p>
+              <p className="font-mono text-lg font-medium tabular-nums text-ink-max">{profile.total_xp}</p>
               <p className="text-xs text-ink-muted">{t.userProfile.xp}</p>
             </div>
             <div>
-              <p className="text-lg font-bold text-ink">{profile.lessons_completed}</p>
+              <p className="font-mono text-lg font-medium tabular-nums text-ink-max">{profile.lessons_completed}</p>
               <p className="text-xs text-ink-muted">{t.userProfile.lessons}</p>
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function UserProfile() {
                 setShowDropdown(false);
                 setShowCustomizer(true);
               }}
-              className="w-full text-left px-3 py-2 text-sm font-black text-warn bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100/80 rounded-lg transition border border-amber-200 dark:border-amber-900/60 flex items-center gap-1.5"
+              className="w-full text-left px-3 py-2 text-sm font-bold text-ink-body rounded-sm transition-colors border border-line-strong hover:border-stone-950 dark:hover:border-stone-300 flex items-center gap-1.5 cursor-pointer"
             >
               {t.userProfile.customizeAvatar}
             </button>

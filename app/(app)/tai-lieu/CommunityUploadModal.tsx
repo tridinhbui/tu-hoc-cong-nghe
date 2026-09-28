@@ -9,6 +9,7 @@ import Modal from "@/components/admin/Modal";
 import FileDropzone from "@/components/admin/FileDropzone";
 import { submitCommunityDocumentAction } from "./actions";
 import { useI18n } from "@/lib/i18n/context";
+import { btnPrimary, btnSecondary } from "@/components/ui/system";
 
 interface CommunityUploadModalProps {
   open: boolean;
@@ -43,7 +44,7 @@ export default function CommunityUploadModal({ open, onClose, loggedIn }: Commun
           <p>{t.communityUpload.loginRequiredMessage}</p>
           <a
             href="/login"
-            className="inline-flex items-center justify-center w-full py-3 rounded-xl bg-surface-invert text-ink-invert text-sm font-bold hover:bg-stone-800 dark:hover:bg-white transition-colors"
+            className={`${btnPrimary} w-full`}
           >
             {t.communityUpload.loginButton}
           </a>
@@ -54,29 +55,29 @@ export default function CommunityUploadModal({ open, onClose, loggedIn }: Commun
             {t.communityUpload.visibilityNote}
           </p>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{t.communityUpload.titleLabel}</label>
+            <label className="block text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.communityUpload.titleLabel}</label>
             <input
               name="title"
               required
               placeholder={t.communityUpload.titlePlaceholder}
-              className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink"
+              className="w-full px-3 py-2 rounded-sm border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink focus:border-brand-500 focus:outline-none"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{t.communityUpload.descriptionLabel}</label>
+            <label className="block text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.communityUpload.descriptionLabel}</label>
             <textarea
               name="description"
               rows={3}
               placeholder={t.communityUpload.descriptionPlaceholder}
-              className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink resize-none"
+              className="w-full px-3 py-2 rounded-sm border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink focus:border-brand-500 focus:outline-none resize-none"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">{t.communityUpload.categoryLabel}</label>
+            <label className="block text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.communityUpload.categoryLabel}</label>
             <select
               name="category"
               defaultValue="khac"
-              className="w-full px-3 py-2 rounded-lg border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink"
+              className="w-full px-3 py-2 rounded-sm border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink focus:border-brand-500 focus:outline-none"
             >
               {documentCategoriesOf(t).map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
@@ -93,14 +94,14 @@ export default function CommunityUploadModal({ open, onClose, loggedIn }: Commun
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-lg border border-line text-sm font-bold text-ink-body"
+              className={btnSecondary}
             >
               {t.communityUpload.cancelButton}
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-invert text-ink-invert text-sm font-bold disabled:opacity-50"
+              className={btnPrimary}
             >
               <Upload className="w-4 h-4" />
               {submitting ? t.communityUpload.submittingButton : t.communityUpload.submitButton}

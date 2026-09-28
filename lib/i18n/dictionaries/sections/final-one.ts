@@ -8,20 +8,6 @@
 
 export const finalOneVi = {
   finalOne: {
-    // components/games/DcfValuationGame.tsx - industry copy for the seven
-    // fictional deals in DEAL_SHAPE, keyed by deal id. Company names stay in
-    // the module (proper nouns, identical in both languages).
-    dcfGame: {
-      industries: {
-        "tech-titan": "SaaS & AI Software",
-        "consumer-staple": "FMCG & Thực phẩm",
-        "green-energy": "Năng lượng tái tạo",
-        "retail-chain": "Bán lẻ đa kênh",
-        "biotech-pharma": "Dược phẩm & Sinh học",
-        "payments-platform": "Payments & Digital Wallets",
-        "real-estate-reit": "Bất động sản & REIT",
-      },
-    },
     // app/(app)/tai-lieu/page.tsx
     taiLieuPage: {
       backHome: "Về trang chủ",
@@ -54,15 +40,6 @@ export const finalOneVi = {
       incorrect: "Chưa đúng - xem giải thích",
       continueReading: "Tiếp tục đọc →",
     },
-    // app/api/guilds/route.ts - fallback guild names, keyed by id. `tag` stays
-    // in the route module (short acronym badge, identical in both languages).
-    guildsRoute: {
-      fallbackNames: {
-        "guild-wallstreet": "Liên Minh Silicon Valley",
-        "guild-tichsan": "Hội Đầu Tư Tích Sản",
-        "guild-pe": "Private Equity Syndicate",
-      },
-    },
     // components/home/HomePage.tsx - short labels in the hero preview cards.
     // All under 16 chars, so identical-value parity is expected, not a
     // copy-paste mistake (see lib/__tests__/dictionary-parity.test.ts).
@@ -77,17 +54,6 @@ export const finalOneVi = {
 
 export const finalOneEn: typeof finalOneVi = {
   finalOne: {
-    dcfGame: {
-      industries: {
-        "tech-titan": "SaaS & AI Software",
-        "consumer-staple": "FMCG & Food",
-        "green-energy": "Renewable Energy",
-        "retail-chain": "Multi-channel Retail",
-        "biotech-pharma": "Pharma & Biotech",
-        "payments-platform": "Payments & Digital Wallets",
-        "real-estate-reit": "Real Estate & REIT",
-      },
-    },
     taiLieuPage: {
       backHome: "Back to dashboard",
       title: "Free Document Library",
@@ -113,13 +79,6 @@ export const finalOneEn: typeof finalOneVi = {
       correct: "Correct!",
       incorrect: "Not quite - see the explanation",
       continueReading: "Continue reading →",
-    },
-    guildsRoute: {
-      fallbackNames: {
-        "guild-wallstreet": "Silicon Valley Alliance",
-        "guild-tichsan": "FIRE Investors Guild",
-        "guild-pe": "Private Equity Syndicate",
-      },
     },
     homePage: {
       bigOBadge: "Big-O",

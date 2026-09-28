@@ -4,14 +4,14 @@
   "subtitle": "Confounding, reverse causality, survivorship bias: three mechanisms that turn real data into a wrong conclusion",
   "duration": "11 min",
   "whyItMatters": "Everyone knows the slogan that correlation is not causation, and it still gets violated constantly in practice, because in any specific situation the causal story looks obvious. Knowing the names of the three common mechanisms lets you spot them at the moment they matter, rather than merely reciting the slogan.",
-  "openingQuestion": "The data shows that customers who use the bank's mobile app hold markedly higher balances. Which conclusion is reasonable?",
+  "openingQuestion": "The data shows that users who turn on push notifications spend markedly more time in the app. Which conclusion is reasonable?",
   "openingOptions": [
-    "Push app installations hard, because the app raises customer balances",
-    "No conclusion yet: high-balance customers already differ",
-    "The mobile app is the bank's most profitable channel",
-    "The app should be redesigned to serve low-balance customers"
+    "Turn notifications on for everyone, because they increase time in the app",
+    "No conclusion yet: heavy users were already different",
+    "Push notifications are the product's best retention feature",
+    "The app should be redesigned to serve the less active users"
   ],
-  "explanation": "This is reverse causality in its classic form. It is far more likely that customers with large assets and frequent transactions naturally use the app more, rather than the app making them wealthy. There may also be a confounder standing behind both: young high earners like technology and accumulate quickly at the same time. The only way to separate the two is a controlled experiment, or at minimum a comparison of the same customer before and after installing the app.",
+  "explanation": "This is reverse causality in its classic form. It is far more likely that people who already use the app a lot are the ones willing to turn notifications on, rather than notifications making them use it more. There may also be a confounder standing behind both: people whose work is closely tied to the product switch on every feature and also open the app every day. The only way to separate the two is a controlled experiment, or at minimum a comparison of the same user before and after turning notifications on.",
   "diagram": [
     {
       "label": "A and B move together"
@@ -27,8 +27,8 @@
     }
   ],
   "realWorldExample": {
-    "company": "Survivorship bias in fund data",
-    "description": "When you average the performance of the investment funds currently in operation, the result usually beats the market index. The reason is not that funds are better managers: the poor performers were closed or merged away and have disappeared from the database. What remains is the sample of survivors. This is why serious data vendors maintain a separate dataset that includes terminated funds, and the gap between the two ways of counting often exceeds one percentage point per year."
+    "company": "Survivorship bias in user surveys",
+    "description": "When you survey the satisfaction of currently active users, the result usually looks excellent. The reason is not that the product is better: the dissatisfied users closed their accounts and have disappeared from the survey list. What remains is the sample of survivors. This is why serious product teams separately ask the group that has just churned, and the gap between the two ways of counting is often large enough to reorder the priorities on the roadmap."
   },
   "quiz": [
     {
@@ -106,7 +106,7 @@
   },
   "application": {
     "title": "What to do",
-    "message": "Find a causal claim in a recent internal report or financial article. For that claim, try to answer: is the reverse direction plausible, is there a third variable that explains both, and what filtered the sample before it reached the analyst.",
+    "message": "Find a causal claim in a recent internal report or technology article. For that claim, try to answer: is the reverse direction plausible, is there a third variable that explains both, and what filtered the sample before it reached the analyst.",
     "secondary": "The third question is the one fewest people ask and usually produces the largest finding."
   },
   "sections": [
@@ -127,10 +127,10 @@
           "def": "A third factor acting on both variables. Ice-cream sales and drowning incidents correlate tightly because temperature stands behind both."
         },
         {
-          "def": "The direction of the effect runs opposite to your assumption. Wealthy customers use the app heavily, rather than the app making customers wealthy."
+          "def": "The direction of the effect runs opposite to your assumption. Active users turn on notifications, rather than notifications making users active."
         },
         {
-          "def": "The sample contains only survivors. Average performance of operating funds looks better than reality because weak funds closed and vanished from the data."
+          "def": "The sample contains only survivors. A survey of active users gives a rosier satisfaction score than reality because unhappy users left and vanished from the list."
         }
       ]
     },

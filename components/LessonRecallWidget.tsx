@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { RefreshCw, CheckCircle, XCircle, HelpCircle, Sparkles, ChevronDown, ChevronUp, AlertCircle } from "lucide-react";
+import { btnPrimary } from "@/components/ui/system";
 import { getLessonRecalls, processRecallAttempt, type LessonRecall } from "@/lib/cloudflare-recalls";
 import { getLessonDetailsForRecall } from "@/app/actions/flashcard-actions";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
@@ -148,42 +149,31 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
   const hasWarning = dueRecalls.length > 0;
 
   return (
-    <div className={`rounded-2xl border shadow-sm overflow-hidden relative transition-all ${
+    <div className={`rounded-md border overflow-hidden relative bg-white dark:bg-stone-900 ${
       hasWarning
-        ? 'border-red-300 dark:border-red-800/70 bg-red-50 dark:bg-stone-900'
-        : 'border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900'
+        ? 'border-amber-400 dark:border-amber-700'
+        : 'border-line-strong'
     }`}>
-      {hasWarning && <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/[0.03] rounded-full blur-2xl pointer-events-none" />}
 
       {/* Collapsible Header */}
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className={`w-full flex items-center justify-between gap-2 p-4 cursor-pointer transition-all ${
-          hasWarning
-            ? 'hover:bg-red-100/60 dark:hover:bg-red-950/20'
-            : 'hover:bg-stone-50/50 dark:hover:bg-stone-950/30'
-        }`}
+        className="w-full flex items-center justify-between gap-2 p-4 cursor-pointer transition-colors hover:bg-[#f3f1ec] dark:hover:bg-stone-950"
       >
           <div className="flex items-center gap-2 min-w-0">
-            <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
-              hasWarning
-                ? 'bg-red-100 dark:bg-red-950/50 text-danger animate-pulse'
-                : 'bg-brand-50 dark:bg-brand-950/40 text-accent animate-spin-slow'
+            <div className={`w-8 h-8 rounded-sm border border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0 ${
+              hasWarning ? 'text-warn' : 'text-ink-body'
           }`}>
             {hasWarning ? <AlertCircle className="w-4 h-4" /> : <RefreshCw className="w-4 h-4" />}
           </div>
           <div className="text-left min-w-0">
-            <h3 className={`text-sm font-extrabold truncate ${
-              hasWarning
-                ? 'text-red-800 dark:text-red-200'
-                : 'text-ink'
-            }`}>
+            <h3 className="text-sm font-black tracking-tight truncate text-ink-max">
               {t.recallWidget.heading}
               {hasWarning && format(t.recallWidget.headingCount, { count: dueRecalls.length })}
             </h3>
-            <p className={`text-[10px] mt-0.5 truncate ${
+            <p className={`text-[11px] mt-0.5 truncate ${
               hasWarning
-                ? 'text-danger'
+                ? 'text-warn-strong'
                 : 'text-ink-muted'
             }`}>
               {hasWarning ? t.recallWidget.warningSubtitle : t.recallWidget.normalSubtitle}
@@ -191,55 +181,55 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
           </div>
         </div>
         {collapsed ? (
-          <ChevronDown className={`w-5 h-5 shrink-0 ${hasWarning ? 'text-red-600 dark:text-red-400' : 'text-stone-400'}`} />
+          <ChevronDown className="w-5 h-5 shrink-0 text-stone-400" />
         ) : (
-          <ChevronUp className={`w-5 h-5 shrink-0 ${hasWarning ? 'text-red-600 dark:text-red-400' : 'text-stone-400'}`} />
+          <ChevronUp className="w-5 h-5 shrink-0 text-stone-400" />
         )}
       </button>
 
       {/* Collapsible Content */}
       {!collapsed && (
-      <div className="px-4 pb-4 space-y-4 border-t border-stone-200/50 dark:border-stone-800/50">
+      <div className="px-4 pb-4 space-y-4 border-t border-line-strong">
         {!activeItem ? (
           <div className="space-y-4 pt-4">
 
-          <div className="space-y-2">
+          <div className="divide-y divide-stone-200 dark:divide-stone-800 rounded-sm border border-line-strong">
             {dueRecalls.slice(0, 3).map((item) => (
               <div
                 key={item.lessonId}
-                className="flex items-center justify-between gap-3 p-3 bg-white dark:bg-stone-800 rounded-xl border border-line-mid hover:border-line-strong transition-all"
+                className="flex items-center justify-between gap-3 p-3"
               >
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-extrabold text-ink truncate">
+                  <p className="text-xs font-bold text-ink-max truncate">
                     {item.lessonTitle}
                   </p>
-                  <p className="text-[9px] text-ink-muted mt-0.5">
+                  <p className="text-[10px] text-ink-muted mt-0.5">
                     {format(t.recallWidget.stageLine, { stage: item.recallStage })}
                   </p>
                 </div>
                 <button
                   onClick={() => startReview(item)}
-                  className="px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-brand-500 hover:bg-brand-600 text-white shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-1 shrink-0"
+                  className={`${btnPrimary} shrink-0 cursor-pointer !px-3 !py-1.5 !text-[11px] !gap-1`}
                 >
                   <RefreshCw className="w-3 h-3" /> {t.recallWidget.reviewNow}
                 </button>
               </div>
             ))}
+          </div>
             {dueRecalls.length > 3 && (
-              <p className="text-[10px] text-ink-faint text-center font-bold">
+              <p className="text-[11px] text-ink-faint text-center font-semibold">
                 {format(t.recallWidget.moreWaiting, { count: dueRecalls.length - 3 })}
               </p>
             )}
-          </div>
         </div>
       ) : (
         // Active Quiz modal/card view inside widget
         <div className="space-y-4">
-          <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800/80 pb-2">
-            <span className="text-xs font-extrabold text-ink truncate max-w-[70%]">
+          <div className="flex items-center justify-between border-b border-line pb-2">
+            <span className="text-xs font-bold text-ink-max truncate max-w-[70%]">
               {format(t.recallWidget.reviewingLesson, { title: activeItem.lessonTitle })}
             </span>
-            <span className="text-[10px] font-extrabold text-ink-soft bg-surface-raised px-2 py-0.5 rounded-md shrink-0">
+            <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-muted border border-line-strong px-2 py-0.5 rounded-sm shrink-0">
               {format(t.recallWidget.questionCounter, { index: currentQIndex + 1, total: questions.length })}
             </span>
           </div>
@@ -252,17 +242,17 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
 
               <div className="space-y-2">
                 {questions[currentQIndex].options.map((opt: string, i: number) => {
-                  let btnCls = "border-line-mid bg-white dark:bg-stone-800 text-ink-heading hover:border-line-strong";
+                  let btnCls = "border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 text-ink-heading hover:border-stone-950 dark:hover:border-stone-300";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
-                      btnCls = "border-brand-500 bg-brand-50 dark:bg-brand-950/50 text-accent-ink-strong font-bold";
+                      btnCls = "border-brand-600 bg-brand-50 dark:border-brand-500 dark:bg-brand-950/40 text-brand-900 dark:text-brand-200 font-bold";
                     } else if (i === selectedOpt) {
-                      btnCls = "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-alert-ink";
+                      btnCls = "border-red-500 bg-red-50 dark:bg-red-950/40 text-alert-ink";
                     } else {
-                      btnCls = "border-line-soft opacity-60";
+                      btnCls = "border-line opacity-60";
                     }
                   } else if (selectedOpt === i) {
-                    btnCls = "border-line-invert bg-surface-raised text-stone-950 dark:text-white border-2 font-bold";
+                    btnCls = "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40 text-ink-max font-bold";
                   }
 
                   return (
@@ -270,9 +260,9 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                       key={i}
                       onClick={() => handleOptionSelect(i)}
                       disabled={answersChecked}
-                      className={`w-full text-left p-3 rounded-xl border text-xs transition-all flex items-center gap-2 cursor-pointer ${btnCls}`}
+                      className={`w-full text-left p-3 rounded-sm border text-xs transition-colors flex items-center gap-2 cursor-pointer ${btnCls}`}
                     >
-                      <span className="font-bold shrink-0">{["A", "B", "C", "D"][i]}.</span>
+                      <span className="font-mono font-medium shrink-0">{["A", "B", "C", "D"][i]}.</span>
                       <span className="line-clamp-2">{opt}</span>
                     </button>
                   );
@@ -283,16 +273,16 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                 <button
                   onClick={checkAnswer}
                   disabled={selectedOpt === null}
-                  className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer"
+                  className={`${btnPrimary} w-full cursor-pointer`}
                 >
                   {t.recallWidget.confirm}
                 </button>
               ) : (
                 <div className="space-y-3">
-                  <div className={`p-3 rounded-xl text-[10px] leading-relaxed border ${
+                  <div className={`p-3 rounded-sm text-[11px] leading-relaxed border ${
                     selectedOpt === questions[currentQIndex].correct
-                      ? "bg-brand-50 border-brand-200 dark:bg-brand-950/50 dark:border-brand-800 text-accent-ink-strong"
-                      : "bg-rose-50 border-rose-200 dark:bg-rose-950/50 dark:border-rose-800 text-alert-ink"
+                      ? "bg-brand-50 border-brand-300 dark:bg-brand-950/40 dark:border-brand-800 text-brand-900 dark:text-brand-200"
+                      : "bg-red-50 border-red-300 dark:bg-red-950/40 dark:border-red-800 text-alert-ink"
                   }`}>
                     <p className="font-bold mb-0.5">
                       {selectedOpt === questions[currentQIndex].correct ? t.recallWidget.correct : t.recallWidget.wrong}
@@ -301,7 +291,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                   </div>
                   <button
                     onClick={nextQuestion}
-                    className="w-full bg-brand-500 hover:bg-brand-600 text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                    className={`${btnPrimary} w-full cursor-pointer`}
                   >
                     {currentQIndex + 1 === questions.length ? t.recallWidget.finish : t.recallWidget.nextQuestion}
                   </button>

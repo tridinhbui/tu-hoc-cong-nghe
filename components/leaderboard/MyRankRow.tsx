@@ -27,22 +27,22 @@ export default function MyRankRow({
   const ranked = rank !== null;
   return (
     <div
-      className={`flex items-center gap-3 rounded-xl border border-accent-line bg-accent-soft ${
+      className={`flex items-center gap-3 rounded-sm border border-accent-line bg-accent-soft ${
         compact ? "px-3 py-2" : "px-3.5 py-2.5"
       }`}
     >
       <span
-        className={`inline-flex shrink-0 items-center justify-center rounded-lg bg-white font-black tabular-nums text-accent-strong ring-1 ring-accent-line dark:bg-stone-900 ${
+        className={`inline-flex shrink-0 items-center justify-center rounded-xs border border-accent-line bg-white font-mono font-medium tabular-nums text-accent-strong dark:bg-stone-900 ${
           compact ? "h-7 min-w-7 px-1 text-xs" : "h-8 min-w-8 px-1.5 text-sm"
         }`}
       >
         {ranked ? rank : "–"}
       </span>
       <div className="min-w-0 flex-1">
-        <p className={`font-black text-ink ${compact ? "text-sm" : "text-[15px]"}`}>{t.rankWidget.you}</p>
+        <p className={`font-black tracking-tight text-ink-max ${compact ? "text-sm" : "text-[15px]"}`}>{t.rankWidget.you}</p>
         {!ranked && <p className="truncate text-[11px] font-medium text-ink-muted">{t.rankWidget.unrankedHint}</p>}
       </div>
-      <span className={`shrink-0 font-black tabular-nums ${ranked ? "text-accent-strong" : "text-ink-muted"} ${compact ? "text-sm" : "text-[15px]"}`}>
+      <span className={`shrink-0 tabular-nums ${ranked ? "font-mono font-medium text-accent-strong" : "font-bold text-ink-muted"} ${compact ? "text-sm" : "text-[15px]"}`}>
         {ranked ? valueLabel : t.rankWidget.unranked}
       </span>
     </div>

@@ -275,7 +275,7 @@ comparison passes no matter what you did. The digest held at `e44d40f2…` acros
 all 34.
 
 The two slugs pulled out *before* this — `wealth-management` and
-`modern-portfolio-theory` — were done the other way, by deleting the `sections`
+`nhieu-dich-vu-nho-hay-mot-dich-vu-lon` — were done the other way, by deleting the `sections`
 key, and that left nine keys per slug copied verbatim from `lib/lessons.ts`.
 They changed nothing, so nothing complained; they were also a live version of
 the same trap, armed for whoever next edited one of those nine fields. A second
@@ -572,6 +572,44 @@ reader. The test flags English values containing Vietnamese diacritics, verbatim
 copies of the Vietnamese longer than a shared loanword, and keys left in `en.ts`
 after being removed from `vi.ts`.
 
+## Code blocks and exercises
+
+Until these block types existed, 3 of 653 lessons contained any code at all:
+the programming track taught variables and loops in prose and graded them with
+multiple choice. `code` shows a highlighted snippet (optionally runnable);
+`exercise` gives the learner an editor, runs their code and **grades the
+output, not the source** - the same rule as the SQL Console. Both render from
+`components/lesson-blocks/`, and the code runs in a Web Worker
+(`public/runners/`), so an infinite loop is killed by `terminate()` instead of
+freezing the lesson. Python is Pyodide, loaded from jsDelivr only on first Run.
+
+Rules that are easy to get wrong:
+
+1. **Every exercise is executed in CI** by `npm run audit:exercises`
+   (`scripts/verify-exercises.mjs`): the `solution` must print exactly
+   `expectedOutput`, and the `starter` must NOT already pass. It runs Python
+   with the machine's `python3` and stops red if there is none - a gate that
+   silently skips when a tool is missing is a gate nobody knows is off.
+2. **Make the output depend on the work.** Output grading can be gamed by
+   printing the expected text. Prefer tasks where the starter already prints
+   the right *shape* and gets the *values* wrong (the off-by-one in
+   `vong-lap-for-va-while`, the silent skip in `danh-sach-...`), or that check
+   several inputs at once (the four boundary values in `cau-dieu-kien-if-else`).
+3. **Translations take `solution` and `expectedOutput` as a pair or not at all**
+   (`lib/lesson-translations.js`). Translating the printed strings in one and
+   not the other produces an exercise its own solution fails.
+4. **Adding a block to a translated lesson shifts `sections` positions.** Insert
+   the matching block into `lib/lessons-i18n/<locale>/<slug>.json` at the same
+   index, or the whole English body falls back to Vietnamese - the same rule as
+   the `feynman` block.
+5. `runnable` only works for `python` and `javascript`; the audit flags it on
+   anything else rather than rendering a Run button that cannot run.
+
+The runner workers need `'unsafe-eval'` and `'wasm-unsafe-eval'`, which the page
+must never have, so `/runners/` gets its own CSP - in `next.config.ts` for dev
+and in `public/_headers` for Cloudflare, which serves static files without going
+through Next. Change one, change both.
+
 ## The content gates
 
 `scripts/audit-lesson-content.mjs` holds four per-lesson minimums, and each is
@@ -596,6 +634,7 @@ measuring by hand rather than by the audit.
 ```
 npm run audit:lessons                                  # lesson quizzes
 npm run audit:lessons:en                               # translated lessons
+npm run audit:exercises                                # run every code exercise
 node scripts/i18n-coverage.mjs                         # untranslated UI strings
 node scripts/i18n-coverage.mjs <file>                  # per-file, with line numbers
 ```

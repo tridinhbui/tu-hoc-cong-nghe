@@ -42,9 +42,9 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "Có bị lách được không?" },
     ],
     realWorldExample: {
-      company: "Ngân hàng đo số tài khoản mở mới",
+      company: "Ứng dụng đo số tài khoản đăng ký mới",
       description:
-        "Một chỉ tiêu phổ biến của mạng lưới chi nhánh là số tài khoản mở mới trong kỳ. Chỉ số này dễ đo, tăng đều và trông rất tốt trên báo cáo. Vấn đề là nó bị lách quá dễ: nhân viên mở tài khoản cho người thân, cho khách không có nhu cầu thật, và con số vẫn đạt trong khi số tài khoản có phát sinh giao dịch không hề tăng. Khi chuyển sang đo số tài khoản còn hoạt động sau 90 ngày, chỉ tiêu khó đạt hơn nhiều nhưng bắt đầu phản ánh đúng thứ ngân hàng thực sự cần.",
+        "Một chỉ tiêu phổ biến của đội tăng trưởng là số tài khoản đăng ký mới trong kỳ. Chỉ số này dễ đo, tăng đều và trông rất tốt trên báo cáo. Vấn đề là nó bị lách quá dễ: tặng quà cho mỗi lượt đăng ký, kéo về người không có nhu cầu thật, và con số vẫn đạt trong khi số tài khoản thực sự dùng sản phẩm không hề tăng. Khi chuyển sang đo số tài khoản còn hoạt động sau 90 ngày, chỉ tiêu khó đạt hơn nhiều nhưng bắt đầu phản ánh đúng thứ sản phẩm thực sự cần.",
     },
     quiz: [
       {
@@ -53,7 +53,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
           "Vì con số này thường được các doanh nghiệp báo cáo với độ chính xác không cao lắm",
           "Vì nó chỉ có thể tăng, nên không phát tín hiệu nào để ai đó phải thay đổi hành động",
           "Vì việc thu thập nó đòi hỏi hệ thống theo dõi phức tạp và tốn kém hơn các chỉ số khác",
-          "Vì các nhà đầu tư chuyên nghiệp hiện nay đều đã không còn quan tâm tới chỉ số này nữa",
+          "Vì các đội sản phẩm chuyên nghiệp hiện nay đều đã không còn quan tâm tới chỉ số này nữa",
         ],
         correct: 1,
         explanation:
@@ -225,7 +225,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       { label: "Nhóm mới tốt hơn hay xấu hơn?" },
     ],
     realWorldExample: {
-      company: "Ứng dụng tài chính và cái bẫy tăng trưởng che lấp",
+      company: "Ứng dụng di động và cái bẫy tăng trưởng che lấp",
       description:
         "Một ứng dụng tăng trưởng người dùng nhanh, tỷ lệ hoạt động hằng tháng trên tổng người dùng giữ ổn định, ban lãnh đạo yên tâm. Khi chia theo cohort, bức tranh khác hẳn: nhóm gia nhập tháng 1 còn 45% hoạt động sau sáu tháng, nhóm tháng 6 chỉ còn 22% ở cùng mốc sáu tháng. Chất lượng người dùng mới đang giảm đều, nhưng vì số lượng người mới tăng nhanh nên tỷ lệ tổng thể vẫn đẹp. Đó là một khoản nợ tích lũy: khi tốc độ tăng trưởng chậm lại, toàn bộ vấn đề hiện ra cùng lúc.",
     },
@@ -247,7 +247,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         options: [
           "Vì dữ liệu ở các thời điểm lịch khác nhau thường được thu thập bằng phương pháp khác nhau",
           "Vì nhóm mới gia nhập luôn có tỷ lệ hoạt động cao hơn, nên so cùng thời điểm là so lệch",
-          "Vì các thời điểm lịch khác nhau chịu ảnh hưởng của những mức lạm phát không giống nhau",
+          "Vì các tháng lịch khác nhau có số ngày không giống nhau nên số liệu không cộng được",
           "Vì số lượng thành viên trong mỗi nhóm thay đổi liên tục nên không thể so sánh trực tiếp",
         ],
         correct: 1,
@@ -304,7 +304,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       options: [
         "Dữ liệu doanh thu đang bị ghi nhận thiếu ở một số chi nhánh",
         "Tỷ trọng khách hàng chi tiêu thấp trong tổng số đang tăng lên, kéo giá trị trung bình xuống",
-        "Lạm phát làm giảm giá trị thực của doanh thu",
+        "Giá các gói dịch vụ vừa giảm cho mọi khách hàng",
         "Khách hàng cũ đang rời bỏ hàng loạt",
       ],
       correct: 1,
@@ -409,7 +409,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     ],
     interactiveType: "regression",
     realWorldExample: {
-      company: "Thử nghiệm giao diện đăng ký của một ứng dụng tài chính",
+      company: "Thử nghiệm giao diện đăng ký của một ứng dụng di động",
       description:
         "Một đội sản phẩm thử nghiệm rút gọn biểu mẫu đăng ký từ tám trường xuống bốn trường. Sau bốn ngày, tỷ lệ hoàn tất đăng ký của phiên bản mới cao hơn 18% và cả đội chuẩn bị triển khai. Cỡ mẫu tính trước đó yêu cầu chạy hai tuần. Đến ngày thứ mười bốn, chênh lệch còn 3% và không đạt ngưỡng ý nghĩa thống kê. Thay đổi vẫn được giữ vì có lý do khác, nhưng con số 18% - nếu được báo cáo lên - sẽ trở thành cơ sở cho những kỳ vọng không bao giờ thành hiện thực.",
     },
@@ -560,16 +560,16 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     whyItMatters:
       "Câu tương quan không phải nhân quả ai cũng thuộc, nhưng vẫn liên tục bị vi phạm trong thực tế, vì trong tình huống cụ thể mối quan hệ nhân quả trông rất hiển nhiên. Biết tên ba cơ chế đánh lừa phổ biến giúp bạn nhận ra chúng đúng lúc, thay vì chỉ nhớ câu khẩu hiệu.",
     openingQuestion:
-      "Dữ liệu cho thấy khách hàng dùng ứng dụng di động của ngân hàng có số dư cao hơn hẳn. Kết luận nào hợp lý?",
+      "Dữ liệu cho thấy người dùng bật thông báo đẩy có thời gian dùng ứng dụng cao hơn hẳn. Kết luận nào hợp lý?",
     openingOptions: [
-      "Nên đẩy mạnh cài đặt ứng dụng vì nó làm tăng số dư của khách hàng",
-      "Chưa kết luận được: khách số dư cao vốn đã khác",
-      "Ứng dụng di động là kênh sinh lời tốt nhất của ngân hàng",
-      "Cần thiết kế lại ứng dụng để phục vụ khách hàng số dư thấp",
+      "Nên bật sẵn thông báo cho mọi người vì nó làm tăng thời gian dùng",
+      "Chưa kết luận được: người dùng nhiều vốn đã khác",
+      "Thông báo đẩy là tính năng giữ chân tốt nhất của sản phẩm",
+      "Cần thiết kế lại ứng dụng để phục vụ nhóm người dùng ít hoạt động",
     ],
     correctOption: 1,
     explanation:
-      "Đây là nhân quả ngược ở dạng kinh điển. Nhiều khả năng là khách hàng có tài sản lớn và giao dịch thường xuyên thì tự nhiên dùng ứng dụng nhiều hơn, chứ không phải ứng dụng làm họ giàu lên. Cũng có thể có một biến gây nhiễu đứng sau cả hai: người trẻ có thu nhập cao vừa thích công nghệ vừa tích lũy nhanh. Cách duy nhất tách bạch được là một thử nghiệm có đối chứng, hoặc ít nhất là so sánh cùng một khách hàng trước và sau khi cài ứng dụng.",
+      "Đây là nhân quả ngược ở dạng kinh điển. Nhiều khả năng là người vốn đã dùng ứng dụng thường xuyên thì mới chịu bật thông báo, chứ không phải thông báo làm họ dùng nhiều lên. Cũng có thể có một biến gây nhiễu đứng sau cả hai: người có công việc gắn chặt với sản phẩm vừa bật mọi tính năng vừa mở ứng dụng mỗi ngày. Cách duy nhất tách bạch được là một thử nghiệm có đối chứng, hoặc ít nhất là so sánh cùng một người dùng trước và sau khi bật thông báo.",
     diagram: [
       { label: "A và B đi cùng nhau", arrow: true },
       { label: "A gây ra B? B gây ra A?", arrow: true },
@@ -578,9 +578,9 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     ],
     interactiveType: "regression",
     realWorldExample: {
-      company: "Thiên lệch sống sót trong dữ liệu quỹ đầu tư",
+      company: "Thiên lệch sống sót trong khảo sát người dùng",
       description:
-        "Khi thống kê hiệu suất trung bình của các quỹ đầu tư đang hoạt động, kết quả thường vượt trội so với chỉ số thị trường. Lý do không phải các quỹ giỏi hơn: những quỹ hoạt động kém đã bị đóng hoặc sáp nhập và biến khỏi cơ sở dữ liệu. Mẫu còn lại chỉ gồm bên sống sót. Đây là lý do các nhà cung cấp dữ liệu nghiêm túc phải duy trì riêng bộ dữ liệu có cả quỹ đã chấm dứt, và chênh lệch giữa hai cách tính thường lên tới hơn một điểm phần trăm mỗi năm.",
+        "Khi khảo sát mức hài lòng của những người dùng đang hoạt động, kết quả thường rất đẹp. Lý do không phải sản phẩm tốt hơn: những người không hài lòng đã huỷ tài khoản và biến khỏi danh sách nhận khảo sát. Mẫu còn lại chỉ gồm bên sống sót. Đây là lý do các đội sản phẩm nghiêm túc phải hỏi riêng cả nhóm vừa rời bỏ, và chênh lệch giữa hai cách tính thường đủ lớn để đổi hẳn thứ tự ưu tiên trong lộ trình.",
     },
     quiz: [
       {
@@ -672,7 +672,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     application: {
       title: "Việc cần làm",
       message:
-        "Tìm một kết luận nhân quả trong báo cáo nội bộ hoặc bài báo tài chính gần đây. Với kết luận đó, thử trả lời: chiều ngược lại có hợp lý không, có biến thứ ba nào giải thích được cả hai không, và mẫu dữ liệu đã bị sàng lọc bởi cái gì trước khi đến tay người phân tích.",
+        "Tìm một kết luận nhân quả trong báo cáo nội bộ hoặc bài viết công nghệ gần đây. Với kết luận đó, thử trả lời: chiều ngược lại có hợp lý không, có biến thứ ba nào giải thích được cả hai không, và mẫu dữ liệu đã bị sàng lọc bởi cái gì trước khi đến tay người phân tích.",
       secondary: "Câu hỏi thứ ba là câu ít người hỏi nhất và thường cho ra phát hiện lớn nhất.",
     },
     sections: [
@@ -690,8 +690,8 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         subtitle: "Ba cơ chế này giải thích phần lớn các kết luận nhân quả sai trong phân tích kinh doanh",
         concepts: [
           { vi: "Biến gây nhiễu", en: "Confounding", def: "Một yếu tố thứ ba tác động lên cả hai biến. Doanh số kem và số vụ đuối nước tương quan chặt vì nhiệt độ đứng sau cả hai." },
-          { vi: "Nhân quả ngược", en: "Reverse causality", def: "Chiều tác động đi ngược điều bạn giả định. Khách giàu dùng ứng dụng nhiều, chứ không phải ứng dụng làm khách giàu lên." },
-          { vi: "Thiên lệch sống sót", en: "Survivorship bias", def: "Mẫu chỉ còn bên sống sót. Hiệu suất trung bình của quỹ đang hoạt động đẹp hơn thực tế vì quỹ kém đã đóng cửa và biến mất khỏi dữ liệu." },
+          { vi: "Nhân quả ngược", en: "Reverse causality", def: "Chiều tác động đi ngược điều bạn giả định. Người dùng tích cực mới bật thông báo, chứ không phải thông báo làm họ tích cực lên." },
+          { vi: "Thiên lệch sống sót", en: "Survivorship bias", def: "Mẫu chỉ còn bên sống sót. Khảo sát người dùng đang hoạt động cho điểm hài lòng đẹp hơn thực tế vì người không hài lòng đã rời đi và biến mất khỏi danh sách." },
         ],
       },
       {
@@ -895,15 +895,15 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     slug: "dao-duc-du-lieu-va-thien-lech-thuat-toan",
     interactiveType: "ethics-case",
     title: "Tư duy DL, Bài 6: Đạo đức dữ liệu - quyền riêng tư, thiên lệch và trách nhiệm giải trình",
-    subtitle: "Vì sao một mô hình chấm điểm tín dụng có thể phân biệt đối xử mà không dùng bất kỳ dữ liệu nhạy cảm nào",
+    subtitle: "Vì sao một mô hình sàng lọc hồ sơ ứng tuyển có thể phân biệt đối xử mà không dùng bất kỳ dữ liệu nhạy cảm nào",
     duration: "11 phút",
     difficulty: "Trung bình",
     emoji: "⚖️",
     track: "professional",
     whyItMatters:
-      "Trong tài chính, mô hình dữ liệu quyết định ai được vay, ai bị từ chối, ai bị đánh dấu là rủi ro. Sai sót ở đây không dừng ở một con số lệch - nó ảnh hưởng trực tiếp tới người thật, và thường ảnh hưởng nặng nhất lên nhóm vốn đã yếu thế.",
+      "Trong các hệ thống tự động, mô hình dữ liệu quyết định ai được gọi phỏng vấn, tài khoản nào bị khoá vì nghi gian lận, nội dung nào bị gỡ. Sai sót ở đây không dừng ở một con số lệch - nó ảnh hưởng trực tiếp tới người thật, và thường ảnh hưởng nặng nhất lên nhóm vốn đã yếu thế.",
     openingQuestion:
-      "Một mô hình chấm điểm tín dụng không hề dùng giới tính làm biến đầu vào. Nó có thể phân biệt đối xử theo giới không?",
+      "Một mô hình sàng lọc hồ sơ ứng tuyển không hề dùng giới tính làm biến đầu vào. Nó có thể phân biệt đối xử theo giới không?",
     openingOptions: [
       "Không, vì biến giới tính đã bị loại khỏi mô hình",
       "Có, vì các biến khác có thể tương quan với giới tính",
@@ -912,7 +912,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     ],
     correctOption: 1,
     explanation:
-      "Loại bỏ biến nhạy cảm là bước cần thiết nhưng hoàn toàn không đủ. Ngành nghề, lịch sử gián đoạn công việc, khu vực cư trú hay thậm chí thói quen chi tiêu đều có thể tương quan mạnh với giới tính hoặc dân tộc, và mô hình sẽ học được đúng ranh giới đó thông qua chúng. Hiện tượng này gọi là biến thay thế, và cách duy nhất phát hiện là đo kết quả đầu ra theo từng nhóm - chứ không phải kiểm tra danh sách biến đầu vào.",
+      "Loại bỏ biến nhạy cảm là bước cần thiết nhưng hoàn toàn không đủ. Ngành học, lịch sử gián đoạn công việc, khu vực cư trú hay thậm chí cách dùng từ trong hồ sơ đều có thể tương quan mạnh với giới tính hoặc dân tộc, và mô hình sẽ học được đúng ranh giới đó thông qua chúng. Hiện tượng này gọi là biến thay thế, và cách duy nhất phát hiện là đo kết quả đầu ra theo từng nhóm - chứ không phải kiểm tra danh sách biến đầu vào.",
     diagram: [
       { label: "Dữ liệu lịch sử có thiên lệch không?", arrow: true },
       { label: "Biến nào đang thay thế biến nhạy cảm?", arrow: true },
@@ -922,7 +922,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     realWorldExample: {
       company: "Mô hình duyệt hồ sơ học từ dữ liệu lịch sử",
       description:
-        "Một mô hình được huấn luyện trên các quyết định duyệt hồ sơ trong quá khứ sẽ học lại chính những thiên lệch đã có trong các quyết định đó. Nếu trước đây một nhóm khách hàng bị từ chối nhiều hơn vì định kiến của người thẩm định, mô hình sẽ thấy nhóm đó có tỷ lệ được duyệt thấp và tái tạo lại đúng khuôn mẫu ấy - lần này ở quy mô lớn hơn, nhanh hơn, và khoác vẻ khách quan của một con số. Mô hình không phát minh ra thiên lệch, nó chỉ tự động hóa cái đã có.",
+        "Một mô hình được huấn luyện trên các quyết định duyệt hồ sơ trong quá khứ sẽ học lại chính những thiên lệch đã có trong các quyết định đó. Nếu trước đây một nhóm ứng viên bị loại nhiều hơn vì định kiến của người tuyển dụng, mô hình sẽ thấy nhóm đó có tỷ lệ được duyệt thấp và tái tạo lại đúng khuôn mẫu ấy - lần này ở quy mô lớn hơn, nhanh hơn, và khoác vẻ khách quan của một con số. Mô hình không phát minh ra thiên lệch, nó chỉ tự động hóa cái đã có.",
     },
     quiz: [
       {
@@ -947,7 +947,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Mô hình không phân biệt được khuôn mẫu nào phản ánh rủi ro thật và khuôn mẫu nào phản ánh định kiến của người ra quyết định trước đây. Nó học cả hai như nhau.",
+          "Mô hình không phân biệt được khuôn mẫu nào phản ánh năng lực thật và khuôn mẫu nào phản ánh định kiến của người ra quyết định trước đây. Nó học cả hai như nhau.",
       },
       {
         question: "Cách kiểm tra thiên lệch đáng tin cậy nhất là gì?",
@@ -962,10 +962,10 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
           "Thiên lệch nằm ở kết quả đầu ra, không nằm ở danh sách biến. Chỉ có đo theo nhóm mới phát hiện được, và đó cũng là thứ cơ quan quản lý sẽ hỏi.",
       },
       {
-        question: "Vì sao khả năng giải thích quyết định lại quan trọng trong tài chính?",
+        question: "Vì sao khả năng giải thích quyết định lại quan trọng với hệ thống ra quyết định tự động?",
         options: [
           "Vì mô hình giải thích được thường có độ chính xác dự báo cao hơn mô hình phức tạp",
-          "Vì khách hàng bị từ chối có quyền được biết lý do, và tổ chức phải trả lời được",
+          "Vì người bị từ chối có quyền được biết lý do, và tổ chức phải trả lời được",
           "Vì mô hình giải thích được sẽ chạy nhanh hơn khi triển khai trên hệ thống thực tế",
           "Vì các thư viện học máy hiện nay chỉ hỗ trợ diễn giải cho một số loại mô hình nhất định",
         ],
@@ -975,7 +975,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Vì sao bỏ biến giới tính khỏi mô hình chấm điểm tín dụng vẫn chưa loại được thiên lệch giới?",
+      "question": "Vì sao bỏ biến giới tính khỏi mô hình sàng lọc hồ sơ vẫn chưa loại được thiên lệch giới?",
       "options": [
         "Vì nhiều biến còn lại tương quan mạnh với giới tính và thay thế cho nó",
         "Vì mô hình vẫn lưu lại thông tin giới tính từ các lần huấn luyện trước",
@@ -983,7 +983,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         "Vì quy định buộc theo dõi kết quả theo giới"
       ],
       "correct": 0,
-      "explanation": "Ngành nghề, quãng gián đoạn công việc, thậm chí thói quen chi tiêu đều có thể vẽ lại đường ranh giới mà bạn vừa xóa. Cách kiểm tra duy nhất đáng tin là đo tỷ lệ chấp thuận và tỷ lệ sai theo từng nhóm ở đầu ra, chứ không rà lại danh sách biến đầu vào."
+      "explanation": "Ngành học, quãng gián đoạn công việc, thậm chí cách dùng từ trong hồ sơ đều có thể vẽ lại đường ranh giới mà bạn vừa xóa. Cách kiểm tra duy nhất đáng tin là đo tỷ lệ chấp thuận và tỷ lệ sai theo từng nhóm ở đầu ra, chứ không rà lại danh sách biến đầu vào."
     }
     ],
     keyTakeaways: [
@@ -995,12 +995,12 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     ],
     practicePrompt: {
       question:
-        "Mô hình mới có độ chính xác tổng thể cao hơn mô hình cũ, nhưng tỷ lệ từ chối nhầm ở nhóm khách hàng thu nhập thấp tăng gấp đôi. Nên làm gì?",
+        "Mô hình mới có độ chính xác tổng thể cao hơn mô hình cũ, nhưng tỷ lệ loại nhầm ở nhóm ứng viên đến từ các tỉnh nhỏ tăng gấp đôi. Nên làm gì?",
       options: [
         "Triển khai vì độ chính xác tổng thể đã tốt hơn",
         "Xem đây là vấn đề phải xử lý trước khi triển khai",
         "Giữ mô hình cũ vì mô hình mới có lỗi kỹ thuật",
-        "Bổ sung thêm dữ liệu về nhóm thu nhập thấp rồi triển khai ngay",
+        "Bổ sung thêm dữ liệu về nhóm ứng viên đó rồi triển khai ngay",
       ],
       correct: 1,
       explanation:
@@ -1009,18 +1009,18 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     summary: {
       keyIdea: "Thiên lệch nằm ở kết quả đầu ra theo từng nhóm, không nằm ở danh sách biến đầu vào",
       commonMistake: "Cho rằng bỏ biến nhạy cảm ra khỏi mô hình là đã xử lý xong vấn đề phân biệt đối xử",
-      action: "Với mỗi mô hình đang dùng, đo tỷ lệ chấp thuận và tỷ lệ sai riêng cho từng nhóm khách hàng chính.",
+      action: "Với mỗi mô hình đang dùng, đo tỷ lệ chấp thuận và tỷ lệ sai riêng cho từng nhóm người dùng chính.",
     },
     application: {
       title: "Việc cần làm",
       message:
-        "Chọn một quy trình ra quyết định tự động trong tổ chức bạn và trả lời bốn câu: dữ liệu huấn luyện đến từ những quyết định nào trong quá khứ, biến nào có thể đang thay thế cho một đặc điểm nhạy cảm, kết quả khác nhau thế nào giữa các nhóm, và một khách hàng bị từ chối sẽ được giải thích ra sao.",
+        "Chọn một quy trình ra quyết định tự động trong tổ chức bạn và trả lời bốn câu: dữ liệu huấn luyện đến từ những quyết định nào trong quá khứ, biến nào có thể đang thay thế cho một đặc điểm nhạy cảm, kết quả khác nhau thế nào giữa các nhóm, và một người bị từ chối sẽ được giải thích ra sao.",
       secondary: "Nếu câu cuối không có câu trả lời, ba câu đầu chưa quan trọng bằng.",
     },
     sections: [
       {
         type: "lead",
-        text: "Chặng này kết thúc ở phần ít được dạy nhất và có hậu quả thật nhất. Trong tài chính, mô hình dữ liệu không dừng ở việc mô tả thế giới - nó quyết định ai được vay tiền và ai không.",
+        text: "Chặng này kết thúc ở phần ít được dạy nhất và có hậu quả thật nhất. Trong các hệ thống tự động, mô hình dữ liệu không dừng ở việc mô tả thế giới - nó quyết định ai được gọi phỏng vấn, ai bị khoá tài khoản, và ai không.",
       },
       {
         type: "heading",
@@ -1029,7 +1029,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       {
         type: "conceptTable",
         title: "Những gì phải kiểm tra trước khi một mô hình được dùng thật",
-        subtitle: "Ba nhóm này bao phủ phần lớn rủi ro đạo đức trong ứng dụng dữ liệu ở tài chính",
+        subtitle: "Ba nhóm này bao phủ phần lớn rủi ro đạo đức khi dùng dữ liệu để ra quyết định tự động",
         concepts: [
           { vi: "Quyền riêng tư", en: "Privacy", def: "Nguyên tắc thu thập tối thiểu: chỉ lấy dữ liệu thực sự cần cho mục đích đã nêu. Dữ liệu không thu thập là dữ liệu không thể bị rò rỉ." },
           { vi: "Thiên lệch", en: "Fairness", def: "Đo kết quả theo từng nhóm, không chỉ đo độ chính xác tổng thể. Một mô hình tốt lên ở nhóm đa số có thể đang xấu đi ở nhóm thiểu số." },
@@ -1039,7 +1039,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
       {
         type: "callout",
         label: "Vì sao bỏ biến nhạy cảm là chưa đủ",
-        text: "Một mô hình không dùng giới tính vẫn có thể học được ranh giới giới tính thông qua ngành nghề, thời gian gián đoạn công việc hoặc thói quen chi tiêu. Một mô hình không dùng dân tộc vẫn có thể học được nó qua mã bưu chính. Đây không phải lỗi lập trình mà là hệ quả tự nhiên của việc dữ liệu xã hội vốn đan xen nhau. Kiểm tra danh sách biến đầu vào cho cảm giác an toàn nhưng không phát hiện được gì; chỉ có đo kết quả theo nhóm mới phát hiện được.",
+        text: "Một mô hình không dùng giới tính vẫn có thể học được ranh giới giới tính thông qua ngành học, thời gian gián đoạn công việc hoặc cách dùng từ trong hồ sơ. Một mô hình không dùng dân tộc vẫn có thể học được nó qua mã bưu chính. Đây không phải lỗi lập trình mà là hệ quả tự nhiên của việc dữ liệu xã hội vốn đan xen nhau. Kiểm tra danh sách biến đầu vào cho cảm giác an toàn nhưng không phát hiện được gì; chỉ có đo kết quả theo nhóm mới phát hiện được.",
       },
       {
         type: "closing",

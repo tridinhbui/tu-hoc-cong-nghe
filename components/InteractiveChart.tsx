@@ -52,12 +52,12 @@ export default function InteractiveChart() {
   const gap = compoundEnd - simpleEnd;
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6 dark:bg-stone-900 dark:border-stone-800">
+    <div className="space-y-6 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1 dark:text-stone-100">
+        <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">
           {t.chartDemo.title}
         </h3>
-        <p className="text-stone-500 text-sm dark:text-stone-400">
+        <p className="text-sm text-ink-soft">
           {t.chartDemo.subtitle}
         </p>
       </div>
@@ -75,12 +75,12 @@ export default function InteractiveChart() {
       >
         <line x1={0} y1={HEIGHT} x2={WIDTH} y2={HEIGHT} className="stroke-stone-200 dark:stroke-stone-700" strokeWidth={1} />
         <path d={simplePath} fill="none" className="stroke-stone-400" strokeWidth={2} strokeDasharray="4 3" />
-        <path d={compoundPath} fill="none" className="stroke-brand-500" strokeWidth={2.5} />
+        <path d={compoundPath} fill="none" className="stroke-brand-600 dark:stroke-brand-400" strokeWidth={2.5} />
       </svg>
 
       <div className="flex flex-wrap gap-x-5 gap-y-1 text-[11px]">
         <span className="flex items-center gap-1.5 text-ink-soft">
-          <span className="inline-block h-0.5 w-4 bg-brand-500" /> {t.chartDemo.compoundLegend}
+          <span className="inline-block h-0.5 w-4 bg-brand-600 dark:bg-brand-500" /> {t.chartDemo.compoundLegend}
         </span>
         <span className="flex items-center gap-1.5 text-ink-soft">
           <span className="inline-block h-0.5 w-4 border-t-2 border-dashed border-stone-400" /> {t.chartDemo.simpleLegend}
@@ -91,7 +91,7 @@ export default function InteractiveChart() {
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.chartDemo.rateLabel}</span>
-            <span className="font-bold text-accent">{rate}%</span>
+            <span className="font-mono font-medium tabular-nums text-accent-strong">{rate}%</span>
           </div>
           <input
             type="range"
@@ -106,7 +106,7 @@ export default function InteractiveChart() {
         <div>
           <div className="flex justify-between text-sm mb-2">
             <span className="font-medium text-ink-body">{t.chartDemo.yearsLabel}</span>
-            <span className="font-bold text-ink-heading">{format(t.chartDemo.yearsValueSuffix, { years })}</span>
+            <span className="font-bold tabular-nums text-ink-max">{format(t.chartDemo.yearsValueSuffix, { years })}</span>
           </div>
           <input
             type="range"
@@ -120,7 +120,7 @@ export default function InteractiveChart() {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-brand-50 p-4 dark:bg-brand-950/30">
+      <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200">
         <p className="text-sm text-ink-body">
           {format(t.chartDemo.summaryPart1, { years })}{" "}
           <b>{format(t.chartDemo.summaryCompound, { compound: (compoundEnd * 100).toFixed(0) })}</b>

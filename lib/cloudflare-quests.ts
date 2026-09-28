@@ -222,7 +222,7 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
     {
       id: "daily_game",
       title: "Khám phá Vương Quốc Game",
-      description: "Tiến vào thế giới Game Tài Chính hôm nay",
+      description: "Tiến vào thế giới Game Công nghệ hôm nay",
       target: 1,
       current: 1,
       xpReward: QUEST_XP_REWARDS.daily_game,

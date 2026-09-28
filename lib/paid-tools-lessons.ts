@@ -87,7 +87,7 @@ export const PAID_TOOLS_LESSONS: Lesson[] = [
         question: "Điều khoản đơn phương thay đổi giá nên được hiểu ra sao?",
         options: [
           "Là chuyện bình thường; điều đáng xem là bạn được báo trước bao lâu",
-          "Là dấu hiệu nhà cung cấp không ổn định về mặt tài chính nên cần cân nhắc lại lựa chọn",
+          "Là dấu hiệu nhà cung cấp đang gặp khó và có thể sớm ngừng dịch vụ nên cần cân nhắc lại",
           "Là điều khoản chỉ áp dụng cho khách hàng mới còn hợp đồng đang chạy thì giữ nguyên giá",
           "Là thứ thương lượng bỏ được nếu cam kết dài",
         ],

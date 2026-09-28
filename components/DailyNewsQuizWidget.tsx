@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import Image from "next/image";
 import { toast } from "sonner";
 import { Newspaper, Calculator, BookOpen, Scale, BarChart3, HelpCircle, CheckCircle2, XCircle, Award, Flame, ChevronDown, Maximize2, X, ArrowRight } from "lucide-react";
 import { claimQuestReward } from "@/lib/cloudflare-quests";
 import { shuffleOptionOrder } from "@/lib/shuffle-options";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { StatusDot, btnPrimary, panel } from "@/components/ui/system";
 
 interface DailyNewsQuizWidgetProps {
   userId: string;
@@ -37,35 +37,35 @@ interface NewsQuiz {
  * lâu để khối này chiếm chỗ cột phải cho một việc đã xong. */
 const AUTO_COLLAPSE_MS = 4000;
 
-/** Mỗi dạng có biểu tượng và màu riêng, để người học nhận ra ngay hôm nay
-* phải làm gì trước khi đọc chữ. Màu chỉ nằm ở biểu tượng và nhãn dạng -
-* phần thân, nút bấm và trạng thái đúng/sai giữ nguyên bộ màu cũ, nếu không
-* thì năm dạng thành năm giao diện khác nhau. */
+/** Mỗi dạng có biểu tượng riêng, để người học nhận ra ngay hôm nay phải làm
+* gì trước khi đọc chữ. Màu thì KHÔNG riêng: theo luật 3 của hệ thiết kế
+* (components/ui/system.tsx), xanh chỉ dành cho chức năng, nên năm dạng
+* cùng một bộ màu trung tính và phân biệt nhau bằng biểu tượng + nhãn. */
 const KIND_STYLES: Record<QuizKind, { Icon: typeof Newspaper; tint: string; badge: string }> = {
   news: {
     Icon: Newspaper,
-    tint: "bg-sky-50 dark:bg-sky-950/30 text-info",
-    badge: "bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300",
+    tint: "text-ink-muted",
+    badge: "border-stone-300 text-ink-soft dark:border-stone-700",
   },
   calc: {
     Icon: Calculator,
-    tint: "bg-brand-50 dark:bg-brand-950/30 text-accent",
-    badge: "bg-brand-100 dark:bg-brand-950/60 text-brand-800 dark:text-brand-400",
+    tint: "text-ink-muted",
+    badge: "border-stone-300 text-ink-soft dark:border-stone-700",
   },
   term: {
     Icon: BookOpen,
-    tint: "bg-violet-50 dark:bg-violet-950/30 text-violet-600 dark:text-violet-400",
-    badge: "bg-violet-100 dark:bg-violet-950/60 text-violet-800 dark:text-violet-400",
+    tint: "text-ink-muted",
+    badge: "border-stone-300 text-ink-soft dark:border-stone-700",
   },
   decision: {
     Icon: Scale,
-    tint: "bg-amber-50 dark:bg-amber-950/30 text-warn",
-    badge: "bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-400",
+    tint: "text-ink-muted",
+    badge: "border-stone-300 text-ink-soft dark:border-stone-700",
   },
   data: {
     Icon: BarChart3,
-    tint: "bg-surface-raised text-ink-soft",
-    badge: "bg-surface-sunken text-ink-body",
+    tint: "text-ink-muted",
+    badge: "border-stone-300 text-ink-soft dark:border-stone-700",
   },
 };
 
@@ -339,10 +339,11 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
    * `big` chứ không phải hai khối JSX chép đôi, thứ sẽ lệch nhau ở lần sửa
    * tiếp theo. */
   const renderQuiz = (big: boolean) => (
-    <div className={big ? "space-y-5" : "mt-4 space-y-4 pt-3.5 border-t border-stone-200/60 dark:border-stone-800 relative z-10"}>
+    <div className={big ? "space-y-5" : "mt-4 space-y-4 pt-3.5 border-t border-line relative z-10"}>
       {/* Tag / Category Badge */}
       <div className="flex items-center gap-2">
-        <span className="text-[10px] font-black px-3 py-1 rounded-full uppercase bg-brand-50 dark:bg-brand-950/80 text-accent-ink border border-brand-200/80 dark:border-brand-800 tracking-wider">
+        <span className={`eyebrow inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm border ${kindStyle.badge}`}>
+          <KindIcon className="w-3 h-3" aria-hidden />
           {practiceMode ? t.newsQuiz.badgePractice : kindLabel}
         </span>
         {activeQuiz.kind === "news" && (
@@ -380,28 +381,28 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
               key={idx}
               disabled={activeIsAnswered}
               onClick={() => (practiceMode ? setPracticeSelectedOpt(idx) : setSelectedOpt(idx))}
-              className={`w-full text-left rounded-2xl border leading-relaxed transition-all flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900 cursor-pointer ${
+              className={`w-full text-left rounded-sm border leading-relaxed transition-colors flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900 cursor-pointer ${
                 big ? "p-4 text-sm" : "p-3.5 text-xs sm:text-[13px]"
               } ${
                 showSuccess
-                  ? "border-brand-600 bg-brand-50/90 dark:bg-brand-950/50 text-brand-950 dark:text-brand-100 font-bold ring-2 ring-brand-500/20"
+                  ? "border-brand-600 bg-brand-50 dark:bg-brand-950/40 text-brand-950 dark:text-brand-100 font-bold"
                   : showFailure
-                  ? "border-rose-500 bg-rose-50/90 dark:bg-rose-950/50 text-rose-950 dark:text-rose-100"
+                  ? "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-950 dark:text-rose-100"
                   : isSelected
-                  ? "border-brand-600 bg-white dark:bg-stone-800 text-ink-max font-bold shadow-xs ring-2 ring-brand-500/20"
-                  : "border-stone-200/90 dark:border-stone-800 hover:border-brand-300 bg-white dark:bg-stone-800/90 text-ink-heading shadow-2xs"
+                  ? "border-brand-600 bg-brand-50 dark:bg-brand-950/30 text-ink-max font-bold"
+                  : "border-line-strong hover:border-stone-950 dark:hover:border-stone-300 bg-white dark:bg-stone-900 text-ink-heading"
               }`}
             >
               <span className="shrink-0">
                 {showSuccess ? (
-                  <CheckCircle2 className="w-6 h-6 text-brand-600" />
+                  <CheckCircle2 className="w-6 h-6 text-accent" />
                 ) : showFailure ? (
                   <XCircle className="w-6 h-6 text-rose-500" />
                 ) : (
-                  <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black transition-colors ${
+                  <span className={`w-7 h-7 rounded-sm border flex items-center justify-center font-mono text-xs font-medium transition-colors ${
                     isSelected
-                      ? "bg-brand-700 text-white"
-                      : "bg-brand-50 dark:bg-stone-700 text-brand-900 dark:text-brand-200"
+                      ? "border-brand-600 bg-brand-600 text-white"
+                      : "border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950"
                   }`}>
                     {String.fromCharCode(65 + idx)}
                   </span>
@@ -418,17 +419,15 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
         <button
           onClick={practiceMode ? submitPractice : handleSubmit}
           disabled={activeSelectedOpt === null}
-          className={`w-full bg-brand-900 hover:bg-brand-700 disabled:bg-stone-200 dark:disabled:bg-stone-800 text-white disabled:text-stone-400 rounded-full font-black uppercase tracking-wider transition-all cursor-pointer shadow-md shadow-brand-950/15 flex items-center justify-center gap-2 ${
-            big ? "py-3.5 text-sm" : "py-3 text-xs"
-          }`}
+          className={`${btnPrimary} w-full cursor-pointer ${big ? "py-3" : ""}`}
         >
           <span>✈</span>
           <span>{t.newsQuiz.submitAnswer}</span>
         </button>
       ) : (
-        <div className={`rounded-2xl bg-surface border border-stone-200/60 dark:border-stone-800/80 animate-[fadeIn_0.35s_ease-out] ${big ? "p-4" : "p-3.5"}`}>
-          <h5 className="text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 text-ink-body mb-1.5">
-            <Award className={`w-4 h-4 ${activeIsCorrect ? "text-brand-500" : "text-stone-400"}`} />
+        <div className={`rounded-sm bg-[#fbfaf7] dark:bg-stone-950 border border-line-strong animate-[fadeIn_0.35s_ease-out] ${big ? "p-4" : "p-3.5"}`}>
+          <h5 className="eyebrow flex items-center gap-1.5 text-ink-body mb-1.5">
+            <Award className={`w-4 h-4 ${activeIsCorrect ? "text-accent" : "text-ink-faint"}`} />
             <span>{activeIsCorrect ? t.newsQuiz.correctAnswerLabel : format(t.newsQuiz.wrongAnswerLabel, { letter: String.fromCharCode(65 + activeQuiz.correctIndex) })}</span>
           </h5>
           <p className={`text-ink-soft leading-relaxed ${big ? "text-sm" : "text-[11px]"}`}>
@@ -441,7 +440,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
       {practiceMode && (
         <div className="flex items-center gap-2 pt-2">
           {practiceStreak > 1 && (
-            <span className="text-[10px] font-extrabold text-accent flex items-center gap-1 shrink-0">
+            <span className="text-[10px] font-extrabold text-warn flex items-center gap-1 shrink-0">
               <Flame className="w-3.5 h-3.5" />
               {format(t.newsQuiz.streakLabel, { count: practiceStreak })}
             </span>
@@ -449,9 +448,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           {practiceAnswered && (
             <button
               onClick={pickNextPracticeQuiz}
-              className={`flex-1 bg-brand-700 hover:bg-brand-600 text-white rounded-xl font-extrabold tracking-wider uppercase transition-colors cursor-pointer ${
-                big ? "py-3 text-sm" : "py-2 text-xs"
-              }`}
+              className={`${btnPrimary} flex-1 cursor-pointer ${big ? "" : "py-2 text-xs"}`}
             >
               {t.newsQuiz.nextQuestion}
             </button>
@@ -461,7 +458,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
               setPracticeMode(false);
               setExpanded(false);
             }}
-            className="text-ink-muted hover:text-ink-heading font-bold shrink-0 text-xs"
+            className="text-ink-muted hover:text-ink-heading font-bold shrink-0 text-xs underline-offset-4 hover:underline"
           >
             {t.newsQuiz.exitPractice}
           </button>
@@ -472,20 +469,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
 
   return (
     <>
-      <div className="rounded-3xl border border-line bg-white dark:bg-stone-900 p-5 sm:p-6 shadow-xs relative overflow-hidden font-sans">
-        {/* Bottom-Right Watercolor Green Mountain Peak with Green Flag Art */}
-        <div className="absolute -bottom-1 -right-1 w-32 h-28 opacity-85 pointer-events-none select-none z-0">
-          <svg viewBox="0 0 120 100" fill="none" className="w-full h-full">
-            <path d="M20 100 Q60 50 90 60 T120 35 L120 100 Z" fill="#e4edf9" opacity="0.6" />
-            <path d="M40 100 Q75 60 100 45 L120 100 Z" fill="#c9dbf3" />
-            <line x1="100" y1="45" x2="100" y2="24" stroke="#214e96" strokeWidth="2.5" />
-            <polygon points="100,24 116,30 100,38" fill="#214e96" />
-            <polygon points="30,100 20,76 40,76" fill="#1f427a" opacity="0.8" />
-            <polygon points="58,100 50,70 66,70" fill="#214e96" opacity="0.9" />
-            <polygon points="112,100 106,78 118,78" fill="#214e96" opacity="0.9" />
-          </svg>
-        </div>
-
+      <div className={`${panel} p-5 sm:p-6 relative overflow-hidden font-sans`}>
         {/* Header */}
         <div className="w-full flex items-center justify-between gap-2 relative z-10">
           <button
@@ -493,13 +477,13 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
             onClick={() => setCollapsed(!collapsed)}
             className="flex items-center gap-3 min-w-0 flex-1 cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
           >
-            <div className="w-10 h-10 rounded-2xl bg-brand-50 dark:bg-brand-950/60 border border-brand-200/80 dark:border-brand-800 text-accent-ink flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
               <BookOpen className="w-5 h-5" />
             </div>
-            <h3 className="font-black text-ink-max flex items-center gap-2 text-sm sm:text-base min-w-0">
+            <h3 className="font-black tracking-tight text-ink-max flex items-center gap-2 text-sm sm:text-base min-w-0">
               <span>{t.newsQuiz.titleFull}</span>
               {!activeIsAnswered ? (
-                <span className="w-2 h-2 rounded-full bg-brand-600 animate-pulse shrink-0" />
+                <StatusDot />
               ) : (
                 <span
                   className={`text-xs font-black shrink-0 ${
@@ -521,16 +505,15 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
               onClick={() => setExpanded(true)}
               title={t.newsQuiz.expand}
               aria-label={t.newsQuiz.expand}
-              className="p-1.5 rounded-xl text-ink-muted hover:text-ink hover:bg-surface-raised transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
+              className="p-1.5 rounded-sm text-ink-muted hover:text-ink hover:bg-[#f3f1ec] dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
             >
               <Maximize2 className="w-3.5 h-3.5" />
             </button>
             <button
               type="button"
               onClick={() => setCollapsed(!collapsed)}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold text-ink-soft hover:bg-surface-raised transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
+              className="inline-flex items-center gap-1.5 px-2 py-1 rounded-sm text-xs font-bold text-ink-soft hover:bg-[#f3f1ec] dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
             >
-              <span className="w-2 h-2 rounded-full bg-brand-600 shrink-0" />
               <span>{collapsed ? t.newsQuiz.collapseOpen.replace(/[▾▴]/g, "").trim() : t.newsQuiz.collapseClose.replace(/[▾▴]/g, "").trim()}</span>
               <ChevronDown className={`w-3.5 h-3.5 transition-transform ${collapsed ? "" : "rotate-180"}`} />
             </button>
@@ -541,33 +524,20 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
         {!collapsed && renderQuiz(false)}
       </div>
 
-      {/* Unlimited Practice Bottom Card (Panoramic Mountains Theme) */}
+      {/* Unlimited Practice Bottom Card */}
       {!practiceMode && (
         <button
           type="button"
           onClick={startPractice}
-          className="w-full mt-4 rounded-3xl border border-line bg-white dark:bg-stone-900 p-3 sm:p-4 shadow-xs relative overflow-hidden flex items-center justify-between group cursor-pointer hover:shadow-md transition-all text-left"
+          className={`${panel} w-full mt-4 p-3 sm:p-4 flex items-center justify-between gap-3 group cursor-pointer transition-colors hover:border-stone-950 dark:hover:border-stone-300 text-left`}
         >
-          {/* Panoramic Mountains Artwork on Left */}
-          <div className="absolute left-0 top-0 bottom-0 w-36 sm:w-48 overflow-hidden pointer-events-none select-none opacity-90 dark:opacity-25 z-0">
-            <div className="relative w-full h-full">
-              <Image
-                src="/images/dashboard/mountains_panorama_banner.jpg"
-                alt={t.dashCards.practiceUnlimitedAlt}
-                fill
-                className="object-cover object-left"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-white dark:via-stone-900/60 dark:to-stone-900" />
-            </div>
-          </div>
-
-          <div className="flex-1 min-w-0 pl-24 sm:pl-36 z-10">
-            <span className="text-xs sm:text-sm font-black text-ink group-hover:text-brand-800 dark:group-hover:text-brand-400 transition-colors">
+          <div className="flex-1 min-w-0">
+            <span className="text-xs sm:text-sm font-black text-ink">
               {t.dashCards.practiceUnlimited}
             </span>
           </div>
 
-          <div className="shrink-0 z-10 pr-1 text-brand-800 dark:text-brand-400 group-hover:translate-x-1 transition-transform">
+          <div className="shrink-0 pr-1 text-accent-strong group-hover:translate-x-0.5 transition-transform">
             <ArrowRight className="w-4 h-4" />
           </div>
         </button>
@@ -575,23 +545,23 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
 
       {expanded && (
         <div
-          className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-3 sm:p-6 bg-stone-950/50 backdrop-blur-xs animate-[fadeIn_0.15s_ease-out]"
+          className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-3 sm:p-6 bg-stone-950/60 animate-[fadeIn_0.15s_ease-out]"
           role="dialog"
           aria-modal="true"
           aria-label={practiceMode ? t.newsQuiz.expandedTitle : t.newsQuiz.titleFull}
           onClick={() => setExpanded(false)}
         >
           <div
-            className="w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 sm:p-7 shadow-2xl font-sans"
+            className="w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-md border border-line-strong bg-white dark:bg-stone-900 p-5 sm:p-7 font-sans"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-3 mb-5">
+            <div className="flex items-start justify-between gap-3 mb-5 border-b border-line-strong pb-4">
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="font-black text-ink-max text-lg leading-tight">
+                  <h3 className="font-black tracking-tight text-ink-max text-lg leading-tight">
                     {practiceMode ? t.newsQuiz.expandedTitle : t.newsQuiz.titleFull}
                   </h3>
                   <p className="text-[11px] font-bold text-ink-muted mt-0.5">
@@ -609,7 +579,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                   onClick={() => setExpanded(false)}
                   title={t.newsQuiz.minimize}
                   aria-label={t.newsQuiz.closeDialog}
-                  className="p-2 rounded-xl text-ink-muted hover:text-ink hover:bg-surface-raised transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
+                  className="p-2 rounded-sm text-ink-muted hover:text-ink hover:bg-[#f3f1ec] dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
                 >
                   <X className="w-4.5 h-4.5" />
                 </button>

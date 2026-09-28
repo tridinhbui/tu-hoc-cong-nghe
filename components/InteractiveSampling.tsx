@@ -41,8 +41,8 @@ export default function InteractiveSampling() {
   const hiddenCount = Math.round(bound * population);
 
   return (
-    <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-ink">
+    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+      <h3 className="text-base font-black tracking-tight text-ink-max">
         {t.samplingCalc.title}
       </h3>
 
@@ -87,7 +87,7 @@ export default function InteractiveSampling() {
         />
       </div>
 
-      <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
+      <p className="mt-4 border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
         {format(t.samplingCalc.explainPart1, { sampleSize })}
         <span className="font-bold">{(bound * 100).toFixed(1)}%</span>
         {t.samplingCalc.explainPart2}
@@ -99,7 +99,7 @@ export default function InteractiveSampling() {
 
       {/* Tầng thứ ba: mẫu chỉ là tuyến cuối. Đặt nó cạnh hai tuyến kia mới ra
           được con số mà người quản trị rủi ro thực sự phải trả lời. */}
-      <div className="mt-4 rounded-2xl border border-stone-200 p-4 dark:border-stone-800">
+      <div className="mt-4 rounded-sm border border-stone-200 p-4 dark:border-stone-800">
         <Row label={t.samplingCalc.controlEffLabel} value={`${controlEff}%`}>
           <input
             type="range" min={0} max={95} step={5} value={controlEff}
@@ -136,16 +136,16 @@ function Row({ label, value, children }: { label: string; value: string; childre
 function Card({ label, value, tone }: { label: string; value: string; tone: "good" | "bad" | "neutral" }) {
   const color =
     tone === "good"
-      ? "text-accent"
+      ? "text-accent-strong"
       : tone === "bad"
         ? "text-alert"
         : "text-ink-heading";
   return (
-    <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
+    <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
       <p className="text-[11px] font-bold uppercase tracking-wide text-ink-muted">
         {label}
       </p>
-      <p className={`mt-0.5 text-lg font-extrabold tabular-nums ${color}`}>{value}</p>
+      <p className={`mt-0.5 text-lg font-black tabular-nums ${color}`}>{value}</p>
     </div>
   );
 }

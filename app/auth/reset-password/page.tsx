@@ -5,8 +5,16 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/cloudflare";
 import { useI18n } from "@/lib/i18n/context";
+import { Frame, Sys, btnPrimary } from "@/components/ui/system";
 
 // Reads Cloudflare env vars at render time - never prerender statically.
+
+/* i18n-ignore-start: định danh hệ thống, cùng một chuỗi ở mọi ngôn ngữ. */
+const SYS_CODE = "THCN://AUTH/RESET-PASSWORD";
+/* i18n-ignore-end */
+
+const inputClass =
+  "w-full rounded-sm border border-stone-300 bg-white px-3.5 py-2.5 text-base text-ink-max transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-900 dark:placeholder:text-stone-500";
 
 export default function ResetPasswordPage() {
   const { t } = useI18n();
@@ -58,7 +66,7 @@ export default function ResetPasswordPage() {
       }
 
       router.push("/dashboard");
-    } catch (err) {
+    } catch {
       setError(t.resetPassword.genericError);
       setLoading(false);
     }
@@ -66,24 +74,22 @@ export default function ResetPasswordPage() {
 
   if (checkingSession) {
     return (
-      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
-        <p className="text-ink-muted">{t.resetPassword.loading}</p>
+      <div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] dark:bg-stone-950">
+        <p className="text-sm text-ink-muted">{t.resetPassword.loading}</p>
       </div>
     );
   }
 
   if (!hasRecoverySession) {
     return (
-      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center px-6">
-        <div className="text-center space-y-4 max-w-sm">
-          <p className="text-lg font-bold text-ink">{t.resetPassword.invalidLinkTitle}</p>
-          <p className="text-sm text-ink-muted">
-            {t.resetPassword.invalidLinkDescription}
-          </p>
-          <a
-            href="/login"
-            className="inline-block bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert px-6 py-3 rounded-xl font-bold text-sm transition-colors"
-          >
+      <div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] px-4 dark:bg-stone-950">
+        <div className="w-full max-w-sm">
+          <div className="border-b border-line-strong pb-2">
+            <Sys className="text-ink-muted">{SYS_CODE}</Sys>
+          </div>
+          <h1 className="mt-4 text-xl font-black tracking-tight text-ink-max">{t.resetPassword.invalidLinkTitle}</h1>
+          <p className="mt-2 text-sm leading-6 text-ink-soft">{t.resetPassword.invalidLinkDescription}</p>
+          <a href="/login" className={`${btnPrimary} mt-6`}>
             {t.resetPassword.backToLogin}
           </a>
         </div>
@@ -92,55 +98,47 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-stone-900/50 flex items-center justify-center px-6">
-      <div className="w-full max-w-sm bg-white dark:bg-stone-900 border border-line rounded-2xl p-8 space-y-6">
+    <div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] px-4 dark:bg-stone-950">
+      <Frame title={SYS_CODE} className="w-full max-w-sm" bodyClassName="space-y-6 p-6 sm:p-7">
         <div>
-          <h1 className="text-2xl font-bold text-ink mb-2">{t.resetPassword.title}</h1>
-          <p className="text-sm text-ink-muted">{t.resetPassword.subtitle}</p>
+          <h1 className="mb-2 text-2xl font-black tracking-tight text-ink-max">{t.resetPassword.title}</h1>
+          <p className="text-sm leading-6 text-ink-soft">{t.resetPassword.subtitle}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">
-              {t.resetPassword.newPasswordLabel}
-            </label>
+          <div className="space-y-1.5">
+            <label className="eyebrow block text-ink-muted">{t.resetPassword.newPasswordLabel}</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder={t.resetPassword.passwordPlaceholder}
-              className="w-full px-4 py-3 rounded-xl border border-line-mid bg-white dark:bg-stone-800 focus:border-line-firm focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-ink text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
+              className={inputClass}
             />
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs font-bold text-ink-soft uppercase tracking-wider block">
-              {t.resetPassword.confirmPasswordLabel}
-            </label>
+          <div className="space-y-1.5">
+            <label className="eyebrow block text-ink-muted">{t.resetPassword.confirmPasswordLabel}</label>
             <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder={t.resetPassword.passwordPlaceholder}
-              className="w-full px-4 py-3 rounded-xl border border-line-mid bg-white dark:bg-stone-800 focus:border-line-firm focus:ring-1 focus:ring-stone-900/5 focus:outline-none text-ink text-base placeholder:text-stone-300 dark:placeholder:text-stone-600"
+              className={inputClass}
             />
           </div>
 
           {error && (
-            <div className="bg-red-50 dark:bg-red-950/50 border border-danger-line text-danger text-xs font-semibold rounded-xl px-4 py-3">
+            <div role="alert" className="rounded-sm border border-danger-line bg-red-50 px-3 py-2 text-[13px] font-semibold text-danger dark:bg-red-950/50">
               {error}
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-ink-invert py-4 rounded-xl font-bold text-base transition-colors disabled:opacity-60 mt-2"
-          >
+          <button type="submit" disabled={loading} className={`${btnPrimary} mt-2 w-full`}>
             {loading ? t.resetPassword.submitting : t.resetPassword.submitButton}
           </button>
         </form>
-      </div>
+      </Frame>
     </div>
   );
 }

@@ -125,7 +125,7 @@
     {
       "type": "callout",
       "label": "A scenario has to be internally consistent",
-      "text": "The most common mistake is calling something a downside scenario while only cutting revenue by 20%, leaving margins, days sales outstanding and the cost of capital untouched. In reality those move together: falling revenue usually brings discounting, slower payment, and a stricter bank. A scenario is only useful when it describes a world that could actually exist."
+      "text": "The most common mistake is calling something a downside scenario while only cutting revenue by 20%, leaving margins, days sales outstanding and the cancellation rate untouched. In reality those move together: falling revenue usually brings discounting, slower payment, and more customers cancelling their plans. A scenario is only useful when it describes a world that could actually exist."
     },
     { "type": "heading", "text": "Why a 20% fall in revenue cuts profit by 80%" },
     {

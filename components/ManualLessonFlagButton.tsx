@@ -90,7 +90,7 @@ export default function ManualLessonFlagButton({
   };
 
   if (loading) {
-    return <div className="w-10 h-10 rounded-full bg-surface-raised animate-pulse" />;
+    return <div className="w-10 h-10 rounded-sm bg-surface-raised animate-pulse" />;
   }
 
   return (
@@ -104,13 +104,12 @@ export default function ManualLessonFlagButton({
             ? t.manualLessonFlag.unflagTitle
             : t.manualLessonFlag.flagTitle
       }
-      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-        completed
-          ? "bg-brand-100 dark:bg-brand-900/30 text-accent"
-          : flagged
-            ? "bg-sky-100 dark:bg-sky-900/30 text-info"
-            : "bg-surface-raised text-ink-muted hover:bg-surface-sunken"
-      } ${toggling ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}`}
+      aria-pressed={flagged || completed}
+      className={`w-10 h-10 rounded-sm border flex items-center justify-center transition-colors ${
+        completed || flagged
+          ? "border-brand-600 bg-accent-soft text-accent dark:border-brand-400"
+          : "border-line-strong text-ink-muted hover:border-stone-950 hover:text-ink dark:hover:border-stone-200"
+      } ${toggling ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
       aria-label={t.manualLessonFlag.ariaLabel}
     >
       {completed ? <CheckCircle2 className="w-5 h-5" /> : <CheckCheck className="w-5 h-5" />}

@@ -196,7 +196,7 @@ export default function AppealsClient({ initialAppeals }: { initialAppeals: Admi
       />
 
       {rejectTarget !== null && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-stone-950/60">
           <div className="bg-white dark:bg-stone-900 rounded-2xl border border-line w-full max-w-sm p-5 space-y-3">
             <h3 className="font-bold text-ink">{ta.rejectDialogTitle}</h3>
             <textarea

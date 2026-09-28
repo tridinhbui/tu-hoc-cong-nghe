@@ -107,6 +107,11 @@
     { "type": "heading", "text": "The basic structure" },
     { "type": "paragraph", "text": "A conditional takes a boolean expression - exactly what you learned last lesson - and runs one of two blocks. Exactly one block runs: never both and never neither. Afterwards the two roads meet and the program carries on as normal." },
     { "type": "callout", "label": "A condition should always be boolean", "text": "Some languages have rules that treat a few other values as false inside a conditional - zero, the empty string, null. Convenient, but a source of surprises, so while you are learning write the comparison out explicitly rather than leaning on implicit conversion." },
+    {
+      "type": "code",
+      "caption": "Python uses indentation to know which lines belong to which branch - misaligned indentation is a syntax error. Change score and run again to walk through each branch.",
+      "code": "score = 7.5\n\nif score >= 8:\n    print(\"Excellent\")\nelif score >= 6.5:\n    print(\"Good\")\nelse:\n    print(\"Needs work\")"
+    },
     { "type": "heading", "text": "Why deep nesting is a bad sign" },
     { "type": "paragraph", "text": "Each level of nesting doubles the path count. Two levels give four paths, three give eight, four give sixteen. The number grows faster than anyone's ability to hold them all in mind, so in practice the author tries one or two - and the rest are where the bugs sit waiting." },
     { "type": "comparison",
@@ -122,6 +127,18 @@
       "Negative numbers and zero, wherever you quietly assumed the value is always positive."
     ]},
     { "type": "paragraph", "text": "A habit worth forming in your first week: every time you write a comparison with a threshold, ask yourself where the value exactly at that threshold should go. The question costs five seconds and it blocks the class of bug that takes the most hours to track down." },
+    {
+      "type": "exercise",
+      "title": "Two boundary cases",
+      "task": "Delivery fee rules: orders under 200 pay 30, from 200 up to under 500 pay 15, 500 and above ship free. The code below is wrong at exactly two boundaries - run it to find them.",
+      "starter": "# The for line runs the indented block below once per value.\n# Lesson 7 covers it properly - here you only need to fix the if block.\nfor order_total in [150, 200, 499, 500]:\n    if order_total > 500:\n        fee = 0\n    elif order_total > 200:\n        fee = 15\n    else:\n        fee = 30\n    print(order_total, \"->\", fee)",
+      "solution": "for order_total in [150, 200, 499, 500]:\n    if order_total >= 500:\n        fee = 0\n    elif order_total >= 200:\n        fee = 15\n    else:\n        fee = 30\n    print(order_total, \"->\", fee)",
+      "expectedOutput": "150 -> 30\n200 -> 15\n499 -> 15\n500 -> 0",
+      "hints": [
+        "\"From 200\" includes 200 itself.",
+        "> means strictly greater; >= means greater than or equal."
+      ]
+    },
     { "type": "closing", "lines": [
       "A branching program means a program with many roads, and every road you did not try is a road nobody has checked.",
       "Next is the other half of control flow: loops, and how one never ends if you forget a single line."

@@ -63,34 +63,34 @@ export const SKIN_TONES: { id: string; hex: string; label: string }[] = [
 export const HAIR_COLORS: { id: string; hex: string; label: string }[] = [
   { id: "black", hex: "#1A1A1A", label: "Đen Tuyền" },
   { id: "dark-brown", hex: "#4A2E2B", label: "Nâu Gỗ" },
-  { id: "golden-blonde", hex: "#D4AF37", label: "Vàng Vàng Wall St" },
+  { id: "golden-blonde", hex: "#D4AF37", label: "Vàng Óng" },
   { id: "platinum", hex: "#E6E6FA", label: "Bạch Kim" },
   { id: "chestnut", hex: "#8B4513", label: "Nâu Hạt Dẻ" },
   { id: "burgundy", hex: "#8B0000", label: "Đỏ Rượu Burgundy" },
-  { id: "silver-fox", hex: "#708090", label: "Xám Bạc Executive" },
-  { id: "neon-cyan", hex: "#00F0FF", label: "Xanh Cyber Trader" },
+  { id: "silver-fox", hex: "#708090", label: "Xám Bạc Senior" },
+  { id: "neon-cyan", hex: "#00F0FF", label: "Xanh Cyber Hacker" },
 ];
 
 export const OUTFIT_COLORS: { id: string; hex: string; label: string }[] = [
-  { id: "navy-suit", hex: "#1E293B", label: "Navy Wall Street" },
-  { id: "midnight-black", hex: "#0F172A", label: "Đen Đêm Phố Wall" },
-  { id: "emerald-wealth", hex: "#214e96", label: "Xanh Ngọc Bảo Vốn" },
+  { id: "navy-suit", hex: "#1E293B", label: "Navy Silicon Valley" },
+  { id: "midnight-black", hex: "#0F172A", label: "Đen Chế Độ Tối" },
+  { id: "emerald-wealth", hex: "#214e96", label: "Xanh Ngọc Terminal" },
   { id: "royal-blue", hex: "#1E3A8A", label: "Xanh Hoàng Gia" },
-  { id: "deep-purple", hex: "#7C3AED", label: "Tím Huyền Thoại M&A" },
-  { id: "crimson-red", hex: "#991B1B", label: "Đỏ Bùng Nổ VN30" },
-  { id: "amber-gold", hex: "#D97706", label: "Vàng Kim Bò Tăng Trưởng" },
+  { id: "deep-purple", hex: "#7C3AED", label: "Tím Huyền Thoại Kiến Trúc" },
+  { id: "crimson-red", hex: "#991B1B", label: "Đỏ Cảnh Báo Build" },
+  { id: "amber-gold", hex: "#D97706", label: "Vàng Kim Bản Phát Hành" },
 ];
 
 export const HAIR_STYLES: AvatarOptionItem[] = [
-  { id: "business-slick", label: "Slick Back Doanh Nhân", iconEmoji: "💇‍♂️" },
+  { id: "business-slick", label: "Slick Back Tech Lead", iconEmoji: "💇‍♂️" },
   { id: "fade-cut", label: "Fade Cut Hiện Đại", iconEmoji: "✂️" },
   { id: "wavy-medium", label: "Bồng Bềnh Wavy", iconEmoji: "🌊" },
   { id: "bob-cut", label: "Bob Cut Quyền Lực", iconEmoji: "👩" },
   { id: "long-curly", label: "Tóc Dài Uốn Lọn", iconEmoji: "👩‍🦱" },
-  { id: "ponytail", label: "Cột Đuôi Ngựa CEO", iconEmoji: "👱‍♀️" },
+  { id: "ponytail", label: "Cột Đuôi Ngựa CTO", iconEmoji: "👱‍♀️" },
   { id: "buzz-cut", label: "Buzz Cut Mạnh Mẽ", iconEmoji: "👨‍🦲" },
   { id: "afro", label: "Afro Độc Đáo", iconEmoji: "👨‍🦱" },
-  { id: "short-classic", label: "Cổ Điển Wall St", iconEmoji: "👨" },
+  { id: "short-classic", label: "Cổ Điển Kỹ Sư", iconEmoji: "👨" },
 ];
 
 export const FACE_SHAPES: AvatarOptionItem[] = [
@@ -102,60 +102,60 @@ export const FACE_SHAPES: AvatarOptionItem[] = [
 
 export const EYE_EXPRESSIONS: AvatarOptionItem[] = [
   { id: "confident", label: "Tự Tin Sắc Sảo", iconEmoji: "😎" },
-  { id: "sharp", label: "Phân Tích Sắc Lạnh", iconEmoji: "👁️" },
+  { id: "sharp", label: "Soi Lỗi Sắc Lạnh", iconEmoji: "👁️" },
   { id: "focused", label: "Tập Trung Cao Độ", iconEmoji: "🧐" },
-  { id: "cheerful", label: "Tươi Cười Đón Lãi", iconEmoji: "😊" },
+  { id: "cheerful", label: "Tươi Cười Build Xanh", iconEmoji: "😊" },
   { id: "cool", label: "Điềm Tĩnh Ngầu", iconEmoji: "😏" },
 ];
 
 export const GLASSES_OPTIONS: AvatarOptionItem[] = [
   { id: "none", label: "Không Dùng Kính", iconEmoji: "🚫" },
-  { id: "classic-black", label: "Kính Phân Tích BCTC", iconEmoji: "👓" },
+  { id: "classic-black", label: "Kính Đọc Mã Nguồn", iconEmoji: "👓" },
   { id: "gold-aviator", label: "Kính Phi Công Mạ Vàng", iconEmoji: "🕶️", requiredLevel: 3 },
   { id: "analyst-round", label: "Kính Tròn Chuyên Gia", iconEmoji: "🤓" },
   { id: "tech-blue", label: "Kính Lọc Ánh Sáng Xanh", iconEmoji: "💻", requiredLevel: 5 },
-  { id: "cyber-hud", label: "Kính HUD Algo Trader", iconEmoji: "🥽", requiredLevel: 8 },
+  { id: "cyber-hud", label: "Kính HUD Hacker", iconEmoji: "🥽", requiredLevel: 8 },
 ];
 
 export const BEARD_OPTIONS: AvatarOptionItem[] = [
   { id: "none", label: "Không Râu", iconEmoji: "🚫" },
   { id: "stubble", label: "Râu Quai Nón Lịch Lãm", iconEmoji: "🧔" },
-  { id: "gentleman-mustache", label: "Râu Mép Phố Wall", iconEmoji: "👨‍🦰" },
+  { id: "gentleman-mustache", label: "Râu Mép Silicon Valley", iconEmoji: "👨‍🦰" },
   { id: "full-beard", label: "Râu Quai Nón Rậm", iconEmoji: "🧔‍♂️" },
   { id: "goatee", label: "Râu Dê Chuyên Gia", iconEmoji: "🐐" },
 ];
 
 export const OUTFIT_STYLES: AvatarOptionItem[] = [
-  { id: "wall-st-suit", label: "Bộ Suit Wall Street Premium", iconEmoji: "👔" },
-  { id: "executive-vest", label: "Áo Ghê-lê Executive CFO", iconEmoji: "🎽" },
-  { id: "trader-hoodie", label: "Hoodie Silicon Valley Trader", iconEmoji: "🧥" },
+  { id: "wall-st-suit", label: "Bộ Suit Silicon Valley Premium", iconEmoji: "👔" },
+  { id: "executive-vest", label: "Áo Ghê-lê Executive CTO", iconEmoji: "🎽" },
+  { id: "trader-hoodie", label: "Hoodie Hacker Silicon Valley", iconEmoji: "🧥" },
   { id: "cfo-blazer", label: "Áo Vest Blazer Quyền Lực", iconEmoji: "💼" },
   { id: "casual-shirt", label: "Sơ Mi Thanh Lịch", iconEmoji: "👔" },
-  { id: "cyber-trader", label: "Giáp Kim Loại Quant Trader", iconEmoji: "🛡️", requiredLevel: 10 },
+  { id: "cyber-trader", label: "Giáp Kim Loại Cyber Hacker", iconEmoji: "🛡️", requiredLevel: 10 },
 ];
 
 export const ACCESSORIES_OPTIONS: AvatarOptionItem[] = [
   { id: "none", label: "Không Phụ Kiện", iconEmoji: "🚫" },
-  { id: "cfo-crown", label: "Vương Miện CFO Vàng", iconEmoji: "👑", requiredLevel: 5 },
-  { id: "rolex-watch", label: "Đồng Hồ Rolex Executive", iconEmoji: "⌚", requiredLevel: 3 },
-  { id: "valuation-pen", label: "Bút Định Giá Thần Kỳ", iconEmoji: "🖊️" },
-  { id: "gold-necklace", label: "Dây Chuyền Vàng Bò Tăng Trưởng", iconEmoji: "📿" },
-  { id: "trophy-cup", label: "Cúp Vô Địch NYSE", iconEmoji: "🏆", requiredLevel: 7 },
-  { id: "coffee-cup", label: "Tách Cà Phê Bloomberg", iconEmoji: "☕" },
+  { id: "cfo-crown", label: "Vương Miện CTO Vàng", iconEmoji: "👑", requiredLevel: 5 },
+  { id: "rolex-watch", label: "Đồng Hồ Thông Minh Executive", iconEmoji: "⌚", requiredLevel: 3 },
+  { id: "valuation-pen", label: "Bút Vẽ Kiến Trúc Thần Kỳ", iconEmoji: "🖊️" },
+  { id: "gold-necklace", label: "Dây Chuyền Vàng Commit Xanh", iconEmoji: "📿" },
+  { id: "trophy-cup", label: "Cúp Vô Địch Hackathon", iconEmoji: "🏆", requiredLevel: 7 },
+  { id: "coffee-cup", label: "Tách Cà Phê Deploy Đêm", iconEmoji: "☕" },
 ];
 
 export const BACKGROUND_OPTIONS: AvatarOptionItem[] = [
-  { id: "wallstreet-trading-floor", label: "Sàn Giao Dịch NYSE Wall Street", iconEmoji: "🏙️" },
+  { id: "wallstreet-trading-floor", label: "Phòng Máy Chủ Silicon Valley", iconEmoji: "🏙️" },
   { id: "penthouse-office", label: "Văn Phòng Penthouse Tầng 88", iconEmoji: "🏢" },
-  { id: "gold-vault", label: "Bể Vàng Kim Kho Báu", iconEmoji: "💰", requiredLevel: 5 },
+  { id: "gold-vault", label: "Kho Dữ Liệu Vàng Kim", iconEmoji: "💰", requiredLevel: 5 },
   { id: "neon-broadway", label: "Quảng Trường Times Square Neon", iconEmoji: "🌆" },
-  { id: "zen-garden", label: "Khu Vườn Zen Cân Bằng Tài Chính", iconEmoji: "🌿" },
+  { id: "zen-garden", label: "Khu Vườn Zen Cân Bằng Công Việc", iconEmoji: "🌿" },
   { id: "minimal-gradient", label: "Nền Gradient Tối Giản", iconEmoji: "🎨" },
 ];
 
 export const AVATAR_PRESETS: { name: string; icon: string; config: AvatarConfig }[] = [
   {
-    name: "Wall Street Shark",
+    name: "Silicon Valley Shark",
     icon: "🦈",
     config: {
       gender: "male",
@@ -173,7 +173,7 @@ export const AVATAR_PRESETS: { name: string; icon: string; config: AvatarConfig 
     },
   },
   {
-    name: "Nữ Giám Đốc CFO",
+    name: "Nữ Giám Đốc CTO",
     icon: "👑",
     config: {
       gender: "female",
@@ -191,7 +191,7 @@ export const AVATAR_PRESETS: { name: string; icon: string; config: AvatarConfig 
     },
   },
   {
-    name: "Quant Trader Algo",
+    name: "Hacker Thuật Toán",
     icon: "🤖",
     config: {
       gender: "male",

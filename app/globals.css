@@ -44,27 +44,36 @@
   --color-brand-900: #1c3862;
   --color-brand-950: #0f1f3a;
 
-  /* Thang bo góc và đổ bóng, đặt tên THEO VAI TRÒ chứ không theo cỡ.
+  /* Thang bo góc và đổ bóng - HỆ THIẾT KẾ CỦA TRANG GIỚI THIỆU áp cho cả app
+   * (2026-09-28). Luật 1-2 trong components/ui/system.tsx: bo góc 2-6px, viền
+   * 1px làm cấu trúc, không đổ bóng.
    *
-   * Cố tình KHÔNG định nghĩa `--radius-xl` / `--radius-2xl`. Làm thế là ghi đè
-   * thang mặc định của Tailwind, và vì repo đang có 872 chỗ `rounded-xl` cùng
-   * 649 chỗ `rounded-2xl`, một dòng như vậy sẽ đổi giao diện mọi trang cùng
-   * lúc - một cuộc redesign giấu trong một biến.
-   *
-   * Hai giá trị dưới đây bằng ĐÚNG `rounded-xl` (0.75rem) và `rounded-2xl`
-   * (1rem) hiện hành, nên khi một trang chuyển sang `rounded-control` /
-   * `rounded-card` thì trông y hệt lúc trước. Cái đổi là ý định: đọc class là
-   * biết "đây là control" hay "đây là thẻ", thay vì phải nhớ cỡ nào đi với
-   * thứ gì. Đó cũng là thứ khiến năm bán kính hiện tại (full/3xl/2xl/xl/lg)
-   * hội tụ được về hai, dần dần, mà không cần một lượt sửa lớn.
-   *
-   * Bóng lấy mức thấp, gần `shadow-sm` mà phần lớn thẻ đang dùng, và trung
-   * tính - không ám xanh như `.premium-card`/`.glass-card` cũ. */
-  --radius-control: 0.75rem;
-  --radius-card: 1rem;
+   * Ghi chú cũ ở đây cố ý KHÔNG ghi đè `--radius-xl`/`--radius-2xl` vì "một
+   * dòng như vậy sẽ đổi giao diện mọi trang cùng lúc - một cuộc redesign giấu
+   * trong một biến". Lần này đổi giao diện mọi trang CHÍNH LÀ yêu cầu, nên đòn
+   * bẩy ấy được dùng có chủ ý: 1.180 chỗ `rounded-xl/2xl/3xl` về 6px trong một
+   * lần, thay vì sửa tay 185 tệp. `rounded-full` KHÔNG đổi ở đây - nó còn là
+   * ảnh đại diện, chấm trạng thái và thanh tiến độ; viên thuốc được gỡ tay. */
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.375rem;
+  --radius-2xl: 0.375rem;
+  --radius-3xl: 0.375rem;
+  --radius-control: 0.25rem;
+  --radius-card: 0.375rem;
 
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
-  --shadow-card-hover: 0 6px 16px -6px rgba(0, 0, 0, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.04);
+  /* Không đổ bóng: chiều sâu đến từ sắc độ nền và viền 1px. Chỉ `shadow-2xl`
+   * (hộp thoại, menu nổi) còn một bóng rất nhạt - thứ nổi trên trang phải tách
+   * khỏi trang, và viền thôi không đủ khi nó đè lên nội dung cùng màu. */
+  --shadow-2xs: 0 0 #0000;
+  --shadow-xs: 0 0 #0000;
+  --shadow-sm: 0 0 #0000;
+  --shadow: 0 0 #0000;
+  --shadow-md: 0 0 #0000;
+  --shadow-lg: 0 0 #0000;
+  --shadow-xl: 0 0 #0000;
+  --shadow-2xl: 0 16px 40px -24px rgba(15, 23, 42, 0.28);
+  --shadow-card: 0 0 #0000;
+  --shadow-card-hover: 0 0 #0000;
 
   /* ─────────────────────────────────────────────────────────────────────
      THANG MÀU THEO VAI TRÒ - một class cho CẢ HAI chế độ sáng/tối.
@@ -225,7 +234,7 @@
   --surface-deep: #d6d3d1;
   --line-invert: #1c1917;
   --ink-max: #0c0a09;
-  --page: #FAFAFC;                             /* nền gốc <body>          */
+  --page: #fbfaf7;                             /* nền gốc <body> - giấy ngà của trang giới thiệu */
   --page-ink: #1A1A1E;                         /* chữ gốc <body>          */
   --ink: oklch(21.6% 0.006 56.043);            /* stone-900 */
   --ink-body: oklch(37.4% 0.01 67.558);        /* stone-700 */

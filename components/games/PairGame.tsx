@@ -8,6 +8,7 @@ import { getPairConfig, pickPairRoundFrom, getDifficultyTimeLimitSeconds, record
 import { soundManager } from "@/lib/sounds";
 import { useI18n } from "@/lib/i18n/context";
 import { localizePairConfig } from "@/lib/games-i18n";
+import { panel } from "@/components/ui/system";
 import { format } from "@/lib/i18n";
 
 interface Props {
@@ -264,20 +265,18 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
   }
 
   function cardClass(kind: "left" | "right", index: number, cs: CardState | undefined, selected: boolean) {
-    const base = "w-full text-left px-3.5 py-3 rounded-xl border font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer select-none";
+    const base = "w-full cursor-pointer select-none rounded-sm border px-3.5 py-3 text-left text-xs font-bold transition-colors sm:text-sm";
     if (!cs) return base;
-    if (cs.matched) return `${base} border-brand-500 bg-brand-50/50 text-brand-600 opacity-75 cursor-default flex items-center justify-between shadow-sm scale-[0.98]`;
+    if (cs.matched) return `${base} flex cursor-default items-center justify-between border-stone-200 bg-stone-100 text-ink-muted dark:border-stone-800 dark:bg-stone-950`;
     const shaking = kind === "left" ? shakePair.left === index : shakePair.right === index;
-    if (shaking) return `${base} border-red-500 bg-red-50/60 text-red-700 shadow-[0_0_12px_rgba(239,68,68,0.25)] animate-[pg-wiggle_0.4s_ease-in-out]`;
-    if (selected) return `${base} border-brand-500 bg-brand-50/40 ring-2 ring-brand-500 text-brand-700 shadow-md scale-[1.03]`;
-    return `${base} border-stone-200 bg-white text-stone-900 hover:border-brand-500 hover:shadow-md hover:-translate-y-0.5 active:scale-95`;
+    // Rung khi ghép sai là cơ chế của trò chơi, không phải trang trí - giữ lại.
+    if (shaking) return `${base} animate-[pg-wiggle_0.4s_ease-in-out] border-red-500 bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300`;
+    if (selected) return `${base} border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950 dark:text-brand-200`;
+    return `${base} border-stone-300 bg-white text-ink hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300`;
   }
 
   return (
-    <div className="bg-white border border-stone-200 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm relative overflow-hidden">
-      {/* Decorative subtle background glows */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+    <div className={`${panel} relative overflow-hidden p-4 sm:p-5 lg:p-6`}>
 
       <style>{`
         @keyframes pg-wiggle { 
@@ -289,22 +288,22 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
         }
       `}</style>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-5 relative z-10 pb-4 border-b border-stone-200/50">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-5 relative z-10 pb-4 border-b border-line">
         <div className="min-w-0">
-          <p className="text-xs sm:text-sm font-black text-stone-800 flex items-center gap-2">
-            <span>{format(pg.matchedCount, { matched: matchedCount, total: round.length })}</span>
+          <p className="flex items-center gap-2 text-xs font-black text-ink sm:text-sm">
+            <span className="tabular-nums">{format(pg.matchedCount, { matched: matchedCount, total: round.length })}</span>
             {combo >= 2 && (
               <motion.span
                 initial={{ scale: 0.8 }}
                 animate={{ scale: [1, 1.15, 1] }}
-                className="inline-block text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full shadow-sm animate-pulse border border-amber-200/40"
+                className="inline-block rounded-xs border border-brand-300 px-1.5 py-0.5 font-mono text-[10px] font-medium tabular-nums text-brand-700 dark:border-brand-700 dark:text-brand-300"
               >
                 {format(pg.comboLabel, { combo })}
               </motion.span>
             )}
           </p>
-          <div className="w-36 sm:w-44 lg:w-60 h-2 bg-stone-100 rounded-full mt-1.5 overflow-hidden shadow-inner">
-            <div className="h-full bg-gradient-to-r from-brand-500 to-brand-500 transition-all duration-300" style={{ width: `${round.length ? (matchedCount / round.length) * 100 : 0}%` }} />
+          <div className="mt-1.5 h-1.5 w-36 overflow-hidden rounded-xs bg-stone-200 sm:w-44 lg:w-60 dark:bg-stone-800">
+            <div className="h-full bg-brand-600 transition-all duration-300 dark:bg-brand-500" style={{ width: `${round.length ? (matchedCount / round.length) * 100 : 0}%` }} />
           </div>
         </div>
         
@@ -314,12 +313,12 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
             <button
               onClick={activateFreezeTime}
               disabled={freezeUsed}
-              className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
+              className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border transition-colors ${
                 freezeActive
-                  ? "bg-sky-500 border-sky-400 text-white animate-pulse"
+                  ? "border-brand-600 bg-brand-600 text-white"
                   : freezeUsed
-                    ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
-                    : "bg-sky-50 border-sky-200 text-sky-600 hover:bg-sky-100/50"
+                    ? "cursor-not-allowed border-stone-200 text-ink-faint opacity-40 dark:border-stone-800"
+                    : "border-stone-300 text-ink-body hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
               }`}
               title={pg.freezeTitle}
             >
@@ -332,10 +331,10 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
             <button
               onClick={activate5050Helper}
               disabled={helper5050Used}
-              className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
+              className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border transition-colors ${
                 helper5050Used
-                  ? "opacity-40 bg-stone-100 border-stone-200 text-stone-400 cursor-not-allowed"
-                  : "bg-indigo-50 border-indigo-200 text-indigo-600 hover:bg-indigo-100/50"
+                  ? "cursor-not-allowed border-stone-200 text-ink-faint opacity-40 dark:border-stone-800"
+                  : "border-stone-300 text-ink-body hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
               }`}
               title={pg.helperTitle}
             >
@@ -345,11 +344,11 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
 
           {/* SVG countdown timer */}
           {timeLimit && !finished && (
-            <div className="flex items-center gap-1.5 bg-stone-50 p-1.5 rounded-xl border border-stone-200/50">
+            <div className="flex items-center gap-1.5 rounded-sm border border-stone-300 p-0.5 dark:border-stone-700">
               <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
                 <svg className="w-8 h-8 transform -rotate-90 overflow-visible" viewBox="0 0 36 36">
                   <circle
-                    className="text-stone-200"
+                    className="text-stone-200 dark:text-stone-800"
                     strokeWidth="3.5"
                     stroke="currentColor"
                     fill="none"
@@ -360,12 +359,10 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                   <motion.circle
                     className={
                       freezeActive
-                        ? "text-sky-500"
+                        ? "text-stone-400"
                         : timeLeft <= 5
                           ? "text-rose-500"
-                          : timeLeft <= 10
-                            ? "text-amber-500"
-                            : "text-brand-500"
+                          : "text-brand-500"
                     }
                     strokeWidth="3.5"
                     strokeDasharray="100"
@@ -379,8 +376,8 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                     r="16"
                   />
                 </svg>
-                <span className="absolute text-[9px] font-black text-stone-700">
-                  {freezeActive ? <Snowflake className="w-3 h-3 text-sky-500" strokeWidth={2} aria-hidden /> : `${timeLeft}s`}
+                <span className="absolute font-mono text-[9px] font-medium tabular-nums text-ink">
+                  {freezeActive ? <Snowflake className="h-3 w-3 text-brand-600" strokeWidth={2} aria-hidden /> : `${timeLeft}s`}
                 </span>
               </div>
             </div>
@@ -388,7 +385,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
 
           <button
             onClick={startNewRound}
-            className="w-9 h-9 rounded-xl border border-stone-200 flex items-center justify-center hover:bg-stone-50 text-stone-500 transition-colors cursor-pointer"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border border-stone-300 text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
             title={pg.restartTitle}
           >
             <RefreshCw className="w-4 h-4" />
@@ -396,19 +393,19 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 text-[10px] font-extrabold text-stone-400 uppercase tracking-widest mb-1 relative z-10">
+      <div className="eyebrow relative z-10 mb-1 grid grid-cols-2 gap-2 text-ink-soft">
         <span>{config.leftLabel}</span>
         <span>{config.rightLabel}</span>
       </div>
-      <p className="text-xs text-stone-500 mb-4 relative z-10">{config.hint}</p>
+      <p className="relative z-10 mb-4 text-xs text-ink-muted">{config.hint}</p>
 
       {finished ? (
         <div className="text-center py-10 relative z-10 flex flex-col items-center">
-          <span className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 ring-1 ring-amber-200"><Trophy className="h-8 w-8" strokeWidth={1.5} aria-hidden /></span>
-          <p className="text-lg font-extrabold text-stone-900">
+          <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"><Trophy className="h-6 w-6" strokeWidth={1.5} aria-hidden /></span>
+          <p className="text-lg font-black text-ink-max">
             {submitting ? pg.savingResult : pg.finishedRound}
           </p>
-          <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-xs">
+          <p className="mt-1 max-w-xs text-xs text-ink-soft sm:text-sm">
             {format(pg.finishedDesc, { score, total: round.length })}
           </p>
         </div>
@@ -426,7 +423,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                 className={cardClass("left", idx, leftCards[idx], selectedLeft === idx)}
               >
                 <span className="truncate">{round[idx]?.left}</span>
-                {leftCards[idx]?.matched && <span className="text-brand-500 ml-1.5 shrink-0">✓</span>}
+                {leftCards[idx]?.matched && <span className="ml-1.5 shrink-0 text-accent">✓</span>}
               </div>
             ))}
           </div>
@@ -442,7 +439,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
                 className={cardClass("right", idx, rightCards[idx], selectedRight === idx)}
               >
                 <span className="line-clamp-2">{round[idx]?.right}</span>
-                {rightCards[idx]?.matched && <span className="text-brand-500 ml-1.5 shrink-0">✓</span>}
+                {rightCards[idx]?.matched && <span className="ml-1.5 shrink-0 text-accent">✓</span>}
               </div>
             ))}
           </div>

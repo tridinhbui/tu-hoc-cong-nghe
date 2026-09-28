@@ -14,6 +14,13 @@ import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 import { useI18n } from "@/lib/i18n/context";
 import { mergeCaseStudies } from "@/lib/case-studies-i18n";
 import { format } from "@/lib/i18n";
+import { btnPrimary, btnSecondary, tabClass, Sys } from "@/components/ui/system";
+
+/* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị */
+const SYS = {
+  cases: "THCN://GAME/CASE-ARENA",
+};
+/* i18n-ignore-end */
 
 export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
   const { t, locale } = useI18n();
@@ -142,49 +149,45 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
   const totalCount = activeCase.questions.length;
   const correctRatio = totalCount > 0 ? correctCount / totalCount : 0;
 
-  let rankGrade = { label: t.caseArena.rankC, color: "text-stone-500 border-stone-300", badgeBg: "bg-stone-100" };
+  let rankGrade = { label: t.caseArena.rankC, color: "text-ink-muted border-line-strong", badgeBg: "" };
   if (correctRatio >= 0.9) {
-    rankGrade = { label: t.caseArena.rankS, color: "text-amber-700 border-amber-300", badgeBg: "bg-amber-50" };
+    rankGrade = { label: t.caseArena.rankS, color: "text-white border-stone-950 dark:text-stone-950 dark:border-stone-100", badgeBg: "bg-stone-950 dark:bg-stone-100" };
   } else if (correctRatio >= 0.75) {
-    rankGrade = { label: t.caseArena.rankA, color: "text-brand-600 border-brand-300", badgeBg: "bg-brand-50" };
+    rankGrade = { label: t.caseArena.rankA, color: "text-ink-max border-stone-950 dark:border-stone-300", badgeBg: "" };
   } else if (correctRatio >= 0.6) {
-    rankGrade = { label: t.caseArena.rankB, color: "text-sky-600 border-sky-300", badgeBg: "bg-sky-50" };
+    rankGrade = { label: t.caseArena.rankB, color: "text-ink border-line-firm", badgeBg: "" };
   }
 
   return (
-    <div className="h-full min-h-0 bg-white border-2 border-purple-200 rounded-3xl p-5 sm:p-7 shadow-xl text-stone-900 relative overflow-hidden flex flex-col">
-      {/* Background Decorative Neon Lights */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/8 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-rose-500/8 rounded-full blur-3xl pointer-events-none" />
+    <div className="h-full min-h-0 bg-white border border-stone-300 rounded-md p-5 sm:p-7 text-ink relative overflow-hidden flex flex-col dark:bg-stone-900 dark:border-stone-700">
 
       {/* Header Times Square Banner */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-purple-200 pb-5 mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b border-stone-300 pb-5 mb-6 dark:border-stone-700">
         <div>
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[10px] uppercase font-black tracking-widest text-purple-700 bg-purple-50 border border-purple-200 px-3 py-1 rounded-full shadow-xs">
-              {t.caseArena.hubTitle}
-            </span>
-            <span className="text-[10px] font-extrabold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full flex items-center gap-1">
-              <Zap className="w-3 h-3 text-amber-500" /> {t.caseArena.badge}
+          <div className="flex items-center gap-3 flex-wrap">
+            <Sys className="text-ink-muted">{SYS.cases}</Sys>
+            <span className="eyebrow text-ink-soft">{t.caseArena.hubTitle}</span>
+            <span className="text-[10px] font-extrabold text-ink-soft border border-stone-300 px-2 py-0.5 rounded-sm flex items-center gap-1 dark:border-stone-700">
+              <Zap className="w-3 h-3" /> {t.caseArena.badge}
             </span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-stone-900 mt-2 tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-black text-ink-max mt-2 tracking-tight">
             {t.caseArena.title}
           </h2>
         </div>
 
         {/* Game Stats Badge when playing */}
         {gameState === "playing" && (
-          <div className="flex items-center gap-3 bg-purple-50 border border-purple-200 px-4 py-2 rounded-2xl shadow-sm">
+          <div className="flex items-center gap-3 border border-stone-300 bg-[#fbfaf7] px-4 py-2 rounded-sm dark:border-stone-700 dark:bg-stone-950">
             <div>
-              <span className="text-[9px] font-black uppercase text-purple-600 block">{t.caseArena.totalScore}</span>
-              <span className="text-base font-black text-amber-600">{score.toLocaleString()} pts</span>
+              <span className="text-[9px] font-black uppercase text-ink-muted block">{t.caseArena.totalScore}</span>
+              <span className="font-mono text-base font-medium tabular-nums text-ink-max">{score.toLocaleString()} pts</span>
             </div>
             {streakCombo > 1 && (
-              <div className="border-l border-purple-200 pl-3">
-                <span className="text-[9px] font-black uppercase text-rose-500 block">{t.caseArena.combo}</span>
-                <span className="text-xs font-black text-rose-500 flex items-center gap-0.5">
-                  <Flame className="w-3.5 h-3.5 fill-rose-500" /> x{(1 + Math.min(streakCombo - 1, 4) * 0.25).toFixed(1)}
+              <div className="border-l border-stone-300 pl-3 dark:border-stone-700">
+                <span className="text-[9px] font-black uppercase text-ink-muted block">{t.caseArena.combo}</span>
+                <span className="font-mono text-xs font-medium tabular-nums text-ink-max flex items-center gap-0.5">
+                  <Flame className="w-3.5 h-3.5" /> x{(1 + Math.min(streakCombo - 1, 4) * 0.25).toFixed(1)}
                 </span>
               </div>
             )}
@@ -193,21 +196,17 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
       </div>
 
       {/* Case Study Selection Carousel */}
-      <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-2 mb-6">
+      <div className="flex items-center gap-5 overflow-x-auto scrollbar-none border-b border-stone-300 mb-6 dark:border-stone-700">
         {cases.map((c) => {
           const isCurrent = c.id === activeCaseId;
           return (
             <button
               key={c.id}
               onClick={() => startCaseStudyGame(c.id)}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold shrink-0 border transition-all ${
-                isCurrent
-                  ? "bg-purple-500 text-white border-purple-300 shadow-md shadow-purple-500/20 scale-105"
-                  : "bg-white text-stone-600 border-stone-200 hover:border-purple-300 hover:text-purple-700"
-              }`}
+              className={`flex shrink-0 items-center gap-2 pt-1 ${tabClass(isCurrent)}`}
             >
               <Building2 className="w-3.5 h-3.5" />
-              <span>{c.company} ({c.ticker})</span>
+              <span>{c.company} <span className="font-mono font-medium">({c.ticker})</span></span>
             </button>
           );
         })}
@@ -225,59 +224,59 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
       {gameState !== "summary" && (
         <div className="mb-6 grid gap-3 md:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)]">
-          <div className="rounded-2xl border border-purple-200 bg-gradient-to-r from-purple-50/90 via-white to-rose-50/70 px-4 py-3.5">
+          <div className="rounded-md border border-stone-300 bg-[#fbfaf7] px-4 py-3.5 dark:border-stone-700 dark:bg-stone-950">
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="inline-flex items-center gap-1 rounded-full border border-purple-200 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-purple-700">
+              <span className="inline-flex items-center gap-1 rounded-sm border border-stone-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft dark:border-stone-700">
                 <Building2 className="w-3 h-3" />
                 {activeCase.company} ({activeCase.ticker})
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-amber-700">
+              <span className="inline-flex items-center gap-1 rounded-sm border border-stone-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft dark:border-stone-700">
                 <Target className="w-3 h-3" />
                 {activeCase.sector}
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-stone-600">
+              <span className="inline-flex items-center gap-1 rounded-sm border border-stone-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft dark:border-stone-700">
                 <BarChart3 className="w-3 h-3" />
                 {activeCase.difficulty.toUpperCase()}
               </span>
             </div>
-            <h3 className="text-sm sm:text-base font-black text-stone-900 tracking-tight">
+            <h3 className="text-sm sm:text-base font-black text-ink-max tracking-tight">
               {activeCase.title}
             </h3>
-            <p className="mt-1 text-xs leading-relaxed text-stone-600 line-clamp-2">
+            <p className="mt-1 text-xs leading-relaxed text-ink-soft line-clamp-2">
               {activeCase.description}
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-2xl border border-brand-200 bg-brand-50/70 px-3 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-brand-700 block">
+            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+              <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">
                 {t.caseArena.xpReward}
               </span>
-              <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-brand-700">
+              <span className="mt-1 inline-flex items-center gap-1 font-mono text-sm font-medium tabular-nums text-ink-max">
                 <Sparkles className="w-3.5 h-3.5" /> +{Math.min(50, activeCase.xpReward)}
               </span>
             </div>
-            <div className="rounded-2xl border border-amber-200 bg-amber-50/70 px-3 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-amber-700 block">
+            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+              <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">
                 {t.caseArena.coins}
               </span>
-              <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-amber-700">
+              <span className="mt-1 inline-flex items-center gap-1 font-mono text-sm font-medium tabular-nums text-warn-strong">
                 <GoldCoinIcon className="w-3.5 h-3.5" /> +{activeCase.coinReward}
               </span>
             </div>
-            <div className="rounded-2xl border border-sky-200 bg-sky-50/70 px-3 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-sky-700 block">
+            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+              <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">
                 {t.caseArena.questions}
               </span>
-              <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-sky-700">
+              <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-ink-max">
                 <BookOpen className="w-3.5 h-3.5" /> {format(t.caseArena.questionCount, { count: activeCase.questions.length })}
               </span>
             </div>
-            <div className="rounded-2xl border border-rose-200 bg-rose-50/70 px-3 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-rose-700 block">
+            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+              <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">
                 {t.caseArena.status}
               </span>
-              <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-rose-700">
+              <span className="mt-1 inline-flex items-center gap-1 text-sm font-black text-ink-max">
                 <Timer className="w-3.5 h-3.5" /> {gameState === "briefing" ? t.caseArena.ready : format(t.caseArena.remaining, { count: remainingQuestions })}
               </span>
             </div>
@@ -289,23 +288,23 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
       <div className="flex-1 min-h-0 overflow-y-auto pr-1">
       {gameState === "briefing" && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
-          <div className="bg-purple-50/60 border border-purple-200 rounded-2xl p-5 relative overflow-hidden">
+          <div className="bg-[#fbfaf7] border border-stone-300 rounded-md p-5 relative overflow-hidden dark:bg-stone-950 dark:border-stone-700">
             <div className="flex items-center justify-between gap-2 mb-2">
-              <span className="text-xs font-black uppercase tracking-wider text-purple-600">
+              <span className="text-xs font-black uppercase tracking-wider text-ink-muted">
                 {activeCase.sector}
               </span>
-              <span className="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+              <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-sm text-ink-soft border border-line-strong">
                 {format(t.caseArena.difficulty, { level: activeCase.difficulty.toUpperCase() })}
               </span>
             </div>
-            <h3 className="text-lg font-black text-stone-900 mb-2">{activeCase.title}</h3>
-            <p className="text-xs text-stone-600 leading-relaxed mb-4">{activeCase.description}</p>
+            <h3 className="text-lg font-black text-ink-max mb-2">{activeCase.title}</h3>
+            <p className="text-xs text-ink-soft leading-relaxed mb-4">{activeCase.description}</p>
 
-            <div className="flex items-center gap-4 text-xs font-bold text-stone-500 pt-3 border-t border-purple-200">
-              <span className="flex items-center gap-1 text-brand-600">
+            <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-ink-muted pt-3 border-t border-line-strong">
+              <span className="flex items-center gap-1 text-ink-body">
                 <Sparkles className="w-4 h-4" /> {format(t.caseArena.maxReward, { xp: Math.min(50, activeCase.xpReward) })}
               </span>
-              <span className="flex items-center gap-1 text-amber-600">
+              <span className="flex items-center gap-1 text-warn-strong">
                 <GoldCoinIcon className="w-4 h-4" /> {format(t.caseArena.coinReward, { coins: activeCase.coinReward })}
               </span>
               <span>{format(t.caseArena.analysisQuestions, { count: activeCase.questions.length })}</span>
@@ -314,10 +313,10 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
           <button
             onClick={() => startCaseStudyGame(activeCase.id)}
-            className="w-full bg-gradient-to-r from-purple-600 via-rose-600 to-amber-500 text-white font-black py-4 rounded-2xl shadow-xl hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2 text-base"
+            className={`${btnPrimary} w-full`}
           >
             <span>{t.caseArena.start}</span>
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </button>
         </motion.div>
       )}
@@ -326,46 +325,46 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
       {gameState === "playing" && currentQ && (
         <motion.div key={currentQIndex} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-5">
           {/* Progress Indicator */}
-          <div className="flex items-center justify-between text-xs font-bold text-stone-500">
-            <span>{format(t.caseArena.questionCounter, { current: currentQIndex + 1, total: activeCase.questions.length })}</span>
-            <span className="text-purple-600">{activeCase.company} ({activeCase.ticker})</span>
+          <div className="flex items-center justify-between text-xs font-bold text-ink-muted">
+            <span className="font-mono font-medium tabular-nums">{format(t.caseArena.questionCounter, { current: currentQIndex + 1, total: activeCase.questions.length })}</span>
+            <span className="text-ink-body">{activeCase.company} <span className="font-mono font-medium">({activeCase.ticker})</span></span>
           </div>
 
-          <div className="w-full bg-stone-100 h-2 rounded-full overflow-hidden">
+          <div className="w-full bg-stone-100 h-2 rounded-xs border border-stone-300 overflow-hidden dark:bg-stone-950 dark:border-stone-700">
             <div
-              className="bg-gradient-to-r from-purple-500 to-rose-500 h-full transition-all duration-300"
+              className="bg-brand-600 dark:bg-brand-500 h-full transition-all duration-300"
               style={{ width: `${progressPct}%` }}
             />
           </div>
 
           <div className="grid gap-2 sm:grid-cols-3">
-            <div className="rounded-2xl border border-purple-200 bg-purple-50/70 px-3.5 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-purple-700 block">{t.caseArena.currentScore}</span>
-              <span className="mt-1 text-lg font-black text-stone-900">{score.toLocaleString()} pts</span>
+            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+              <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">{t.caseArena.currentScore}</span>
+              <span className="mt-1 block font-mono text-lg font-medium tabular-nums text-ink-max">{score.toLocaleString()} pts</span>
             </div>
-            <div className="rounded-2xl border border-rose-200 bg-rose-50/70 px-3.5 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-rose-700 block">{t.caseArena.currentCombo}</span>
-              <span className="mt-1 inline-flex items-center gap-1 text-lg font-black text-rose-600">
-                <Flame className="w-4 h-4 fill-rose-500" /> x{(1 + Math.min(streakCombo, 4) * 0.25).toFixed(1)}
+            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+              <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">{t.caseArena.currentCombo}</span>
+              <span className="mt-1 inline-flex items-center gap-1 font-mono text-lg font-medium tabular-nums text-ink-max">
+                <Flame className="w-4 h-4" /> x{(1 + Math.min(streakCombo, 4) * 0.25).toFixed(1)}
               </span>
             </div>
-            <div className="rounded-2xl border border-brand-200 bg-brand-50/70 px-3.5 py-3">
-              <span className="text-[10px] font-black uppercase tracking-wider text-brand-700 block">{t.caseArena.currentCorrect}</span>
-              <span className="mt-1 text-lg font-black text-brand-700">{correctCount}/{Math.max(currentQIndex, 0) + (selectedOpt !== null ? 1 : 0)}</span>
+            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+              <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">{t.caseArena.currentCorrect}</span>
+              <span className="mt-1 block font-mono text-lg font-medium tabular-nums text-ink-max">{correctCount}/{Math.max(currentQIndex, 0) + (selectedOpt !== null ? 1 : 0)}</span>
             </div>
           </div>
 
           {/* Prompt */}
-          <div className="bg-gradient-to-r from-white via-purple-50/35 to-white border border-purple-200 p-5 rounded-2xl shadow-sm">
+          <div className="bg-[#fbfaf7] border border-stone-300 p-5 rounded-md dark:bg-stone-950 dark:border-stone-700">
             <div className="mb-3 flex items-center justify-between gap-2">
-              <span className="inline-flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-purple-700 border border-purple-200">
+              <span className="inline-flex items-center gap-1 rounded-sm px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft border border-line-strong">
                 <Zap className="w-3 h-3" /> {t.caseArena.analysisAngle}
               </span>
-              <span className="text-[10px] font-bold text-stone-500">
+              <span className="text-[10px] font-bold text-ink-muted">
                 {format(t.caseArena.questionsAfterThis, { count: remainingQuestions })}
               </span>
             </div>
-            <h3 className="text-sm sm:text-base font-bold leading-snug text-stone-900">
+            <h3 className="text-sm sm:text-base font-bold leading-snug text-ink-max">
               {currentQ.prompt}
             </h3>
           </div>
@@ -376,14 +375,14 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
               const isSelected = selectedOpt === oIdx;
               const isCorrect = oIdx === currentQ.correct;
 
-              let btnStyle = "bg-white border-stone-200 hover:border-purple-300 text-stone-700";
+              let btnStyle = "bg-white border-stone-300 hover:border-brand-500 text-ink dark:bg-stone-900 dark:border-stone-700 dark:hover:border-brand-400";
               if (selectedOpt !== null) {
                 if (isCorrect) {
-                  btnStyle = "bg-brand-50 border-brand-300 text-brand-700 font-bold shadow-sm";
+                  btnStyle = "bg-brand-50 border-brand-500 text-brand-800 font-bold dark:bg-brand-950/40 dark:text-brand-300";
                 } else if (isSelected) {
-                  btnStyle = "bg-rose-50 border-rose-300 text-rose-700 font-bold shadow-sm";
+                  btnStyle = "bg-rose-50 border-rose-500 text-rose-800 font-bold dark:bg-rose-950/40 dark:text-rose-300";
                 } else {
-                  btnStyle = "bg-stone-50 border-stone-200 opacity-50 text-stone-400";
+                  btnStyle = "bg-white border-stone-200 opacity-60 text-ink-faint dark:bg-stone-900 dark:border-stone-800";
                 }
               }
 
@@ -392,10 +391,10 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                   key={oIdx}
                   disabled={selectedOpt !== null}
                   onClick={() => handleSelectOption(oIdx)}
-                  className={`w-full text-left p-4 rounded-2xl border-2 transition-all flex items-start justify-between gap-3 text-xs sm:text-sm font-medium ${btnStyle}`}
+                  className={`w-full text-left p-4 rounded-sm border transition-colors flex items-start justify-between gap-3 text-xs sm:text-sm font-medium ${btnStyle}`}
                 >
                   <span className="flex-1">{optText}</span>
-                  {selectedOpt !== null && isCorrect && <CheckCircle2 className="w-5 h-5 text-brand-600 shrink-0" />}
+                  {selectedOpt !== null && isCorrect && <CheckCircle2 className="w-5 h-5 text-brand-600 shrink-0 dark:text-brand-400" />}
                   {selectedOpt !== null && isSelected && !isCorrect && <XCircle className="w-5 h-5 text-rose-500 shrink-0" />}
                 </button>
               );
@@ -404,15 +403,15 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
           {/* Explanation Box on Answer */}
           {selectedOpt !== null && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-purple-50 border border-purple-200 p-4 rounded-2xl space-y-2">
-              <span className="text-[10px] font-black uppercase text-purple-700 flex items-center gap-1">
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-[#fbfaf7] border border-stone-300 p-4 rounded-md space-y-2 dark:bg-stone-950 dark:border-stone-700">
+              <span className="text-[10px] font-black uppercase text-ink-muted flex items-center gap-1">
                 <BookOpen className="w-3.5 h-3.5" /> {t.caseArena.expertExplanation}
               </span>
-              <p className="text-xs text-stone-700 leading-relaxed">{currentQ.explanation}</p>
+              <p className="text-xs text-ink-body leading-relaxed">{currentQ.explanation}</p>
 
               <button
                 onClick={handleNextQuestion}
-                className="w-full bg-gradient-to-r from-purple-600 to-rose-600 hover:from-purple-500 hover:to-rose-500 text-white font-black py-3 rounded-xl transition-all mt-3 flex items-center justify-center gap-2 text-xs"
+                className={`${btnPrimary} mt-3 w-full`}
               >
                 <span>{currentQIndex + 1 < activeCase.questions.length ? t.caseArena.nextQuestion : t.caseArena.seeSummary}</span>
                 <ChevronRight className="w-4 h-4" />
@@ -426,41 +425,41 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
       {gameState === "summary" && (
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-6 text-center py-2">
             <div className="space-y-2">
-              <Trophy className="w-16 h-16 text-amber-400 mx-auto animate-bounce" />
-              <span className={`inline-block text-xs font-black uppercase px-4 py-1.5 rounded-full border ${rankGrade.badgeBg} ${rankGrade.color}`}>
+              <Trophy className="w-14 h-14 text-ink-muted mx-auto" strokeWidth={1.5} />
+              <span className={`inline-block text-xs font-black uppercase px-3 py-1 rounded-sm border ${rankGrade.badgeBg} ${rankGrade.color}`}>
                 {rankGrade.label}
               </span>
-            <h3 className="text-2xl font-black text-stone-900">{t.caseArena.doneTitle}</h3>
+            <h3 className="text-2xl font-black text-ink-max">{t.caseArena.doneTitle}</h3>
           </div>
 
           {/* Score breakdown card */}
-          <div className="bg-white border border-purple-200 p-5 rounded-2xl max-w-md mx-auto grid grid-cols-2 gap-4 text-left shadow-sm">
+          <div className="bg-white border border-stone-300 p-5 rounded-md max-w-md mx-auto grid grid-cols-2 gap-4 text-left dark:bg-stone-900 dark:border-stone-700">
             <div>
               <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.correctCount}</span>
-              <span className="text-lg font-black text-brand-600">{format(t.caseArena.correctOf, { correct: correctCount, total: totalCount })}</span>
+              <span className="font-mono text-lg font-medium tabular-nums text-ink-max">{format(t.caseArena.correctOf, { correct: correctCount, total: totalCount })}</span>
             </div>
             <div>
               <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.totalGameScore}</span>
-              <span className="text-lg font-black text-amber-600">{score.toLocaleString()} pts</span>
+              <span className="font-mono text-lg font-medium tabular-nums text-ink-max">{score.toLocaleString()} pts</span>
             </div>
             <div>
               <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.maxCombo}</span>
-              <span className="text-sm font-bold text-rose-500">{format(t.caseArena.maxComboValue, { combo: maxCombo })}</span>
+              <span className="font-mono text-sm font-medium tabular-nums text-ink-max">{format(t.caseArena.maxComboValue, { combo: maxCombo })}</span>
             </div>
             <div>
               <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.reward}</span>
-              <span className="text-xs font-bold text-brand-600 flex items-center gap-1">
+              <span className="font-mono text-xs font-medium tabular-nums text-ink-max flex items-center gap-1">
                 {format(t.caseArena.rewardXp, { xp: rewardEarned?.xp ?? 0 })} | <GoldCoinIcon className="w-3.5 h-3.5" /> +{rewardEarned?.coins ?? 0}
               </span>
             </div>
           </div>
 
           {/* Theory Lesson Recommendations */}
-          <div className="bg-amber-50 border border-amber-200 p-4 rounded-2xl text-left space-y-2">
-            <span className="text-[11px] font-black uppercase tracking-wider text-amber-700 flex items-center gap-1.5">
+          <div className="bg-[#fbfaf7] border border-stone-300 p-4 rounded-md text-left space-y-2 dark:bg-stone-950 dark:border-stone-700">
+            <span className="text-[11px] font-black uppercase tracking-wider text-ink-muted flex items-center gap-1.5">
               {t.caseArena.lessonHintTitle}
             </span>
-            <p className="text-xs text-stone-600 leading-relaxed mb-2">
+            <p className="text-xs text-ink-soft leading-relaxed mb-2">
               {t.caseArena.lessonHintBody}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -468,7 +467,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                 <Link
                   key={l.slug}
                   href={`/bai-hoc/${l.slug}`}
-                  className="flex items-center justify-between p-2.5 rounded-xl bg-white hover:bg-amber-50 border border-amber-200 hover:border-amber-300 text-xs font-bold text-amber-700 transition-all"
+                  className="flex items-center justify-between p-2.5 rounded-sm bg-white border border-stone-300 hover:border-brand-500 text-xs font-bold text-accent-strong transition-colors dark:bg-stone-900 dark:border-stone-700 dark:hover:border-brand-400"
                 >
                   <span className="flex items-center gap-1.5"><BookOpen className="w-3.5 h-3.5 shrink-0" aria-hidden /> {l.title}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -481,13 +480,13 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           <div className="flex gap-3">
             <button
               onClick={() => startCaseStudyGame(activeCase.id)}
-              className="flex-1 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold py-3.5 rounded-2xl transition-all text-xs"
+              className={`${btnSecondary} flex-1`}
             >
               {t.caseArena.replayCase}
             </button>
             <button
               onClick={() => setGameState("briefing")}
-              className="flex-1 bg-gradient-to-r from-purple-600 to-rose-600 text-white font-black py-3.5 rounded-2xl hover:brightness-110 transition-all text-xs"
+              className={`${btnPrimary} flex-1`}
             >
               {t.caseArena.pickAnotherCase}
             </button>

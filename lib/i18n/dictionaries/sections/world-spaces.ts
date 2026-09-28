@@ -1,6 +1,5 @@
-/** Chuỗi hiển thị cho ba module dữ liệu không gian 3D:
- *  components/career-district/district-space.ts,
- *  components/lobby/stations.ts, và app/api/world-boss/route.ts.
+/** Chuỗi hiển thị cho các module dữ liệu không gian 3D:
+ *  components/lobby/stations.ts và app/api/world-boss/route.ts.
  *
  *  Cấu trúc (id, toạ độ, kích thước, HP, phần thưởng) vẫn nằm nguyên ở ba nơi
  *  đó; file này chỉ mang chữ. Xem AGENTS.md, mục "Translating the UI".
@@ -12,81 +11,6 @@
 
 export const worldSpacesVi = {
   worldSpaces: {
-    district: {
-      exitToStreet: "Ra phố",
-      towerLobby: "Tháp Tự Học",
-      stageFloor: "Sảnh chặng học",
-      towerStopStreet: "Sảnh · ra phố",
-      towerStopStage: "Chặng học công nghệ",
-      gameSquare: "Quảng trường Game Công nghệ",
-      gameSquareShort: "Quảng trường Game",
-      park: "Công viên Bến Nghé",
-      parkShort: "Công viên",
-      center: "Quảng trường Trung tâm",
-      cafe: "Cà phê Số & Sách",
-      street: "Phố nghề Sài Gòn",
-      /** format({ level }) - nối sau subtitle của một địa điểm trong Quảng
-       *  trường Game, ví dụ "Định giá & Câu hỏi mưu lược · cần cấp 5". */
-      levelRequirement: "cần cấp {level}",
-      library: {
-        label: "Thư viện Sài Gòn",
-        blurb: "Phòng đọc chung, gặp người khác đang học",
-      },
-      studyGroup: {
-        label: "Phòng học nhóm",
-        blurb: "Bàn tám ghế, phiên học 25 phút cùng nhóm",
-      },
-      civic: {
-        baBaoCao: {
-          label: "Phòng Ba Báo Cáo",
-          blurb: "Chạm một khoản, nhìn nó chạy qua cả ba bảng",
-        },
-        thapLaiKep: {
-          label: "Tháp Lãi Kép",
-          blurb: "Mỗi tầng một năm - leo để thấy lãi kép",
-        },
-        phongLbo: {
-          label: "Phòng Tầng Vốn",
-          blurb: "Nợ ưu tiên dưới, vốn chủ trên - ai mất trước",
-        },
-        cuaHang: {
-          label: "Cửa hàng & Gương thử đồ",
-          blurb: "Thử đồ lên người trước khi mua",
-        },
-        bangVang: {
-          label: "Sảnh Bảng vàng",
-          blurb: "Ai đang dẫn đầu từng năng lực",
-        },
-        phongThi: {
-          label: "Phòng thi",
-          blurb: "Đề thi thử chứng chỉ và kiểm tra chặng",
-        },
-        canHo: {
-          label: "Căn hộ của bạn",
-          blurb: "Chuỗi ngày, cúp và mục tiêu nghề của riêng bạn",
-        },
-        baoTang: {
-          label: "Bảo tàng Công nghệ",
-          blurb: "Y2K, Morris Worm, sự cố hạ tầng - và bài học đằng sau",
-        },
-        nhaBanBe: {
-          label: "Khu nhà bạn bè",
-          blurb: "Ghé thăm chuỗi ngày và tủ cúp của bạn bè",
-        },
-        vongQuayTien: {
-          label: "Phòng Vòng Quay Tiền",
-          blurb: "Tiền về trước hay tiền đi trước - và ai đang tài trợ cho ai",
-        },
-        phanBoRuiRo: {
-          label: "Phòng Rủi Ro & Phân Bổ",
-          blurb: "Vì sao trộn hai thứ lại ít rủi ro hơn trung bình của chúng",
-        },
-        banTron: {
-          label: "Bàn Tròn Giảng Lại",
-          blurb: "Giải thích bằng lời của bạn - chỗ duy nhất biết bạn có thật sự hiểu",
-        },
-      },
-    },
     lobbyStations: {
       hocBai: {
         room: "Phòng học hôm nay",
@@ -127,14 +51,14 @@ export const worldSpacesVi = {
       phongVan: {
         room: "Phòng phỏng vấn",
         blurb: "Câu hỏi kỹ thuật, trả lời có chấm",
-        formula: "EV = Vốn hoá + Nợ − Tiền mặt",
-        note: "Giá trị doanh nghiệp - câu hỏi mở màn của mọi buổi phỏng vấn IB",
+        formula: "Tìm nhị phân: O(log n)",
+        note: "Câu mở màn quen thuộc của vòng phỏng vấn thuật toán: chia đôi mỗi bước",
       },
       suNghiep: {
         room: "Phòng nghề nghiệp",
         blurb: "Bạn đang cách nghề mình muốn bao xa",
-        formula: "ROE = Biên LN × Vòng quay TS × Đòn bẩy",
-        note: "Phân rã DuPont: ba nguồn duy nhất tạo ra ROE",
+        formula: "Kỹ năng = Nền tảng × Dự án thật × Phản hồi",
+        note: "Thiếu một thừa số thì tích bằng không, dù hai cái kia lớn đến đâu",
       },
     },
     worldBoss: {
@@ -286,79 +210,6 @@ export const worldSpacesVi = {
 
 export const worldSpacesEn: typeof worldSpacesVi = {
   worldSpaces: {
-    district: {
-      exitToStreet: "Back to the street",
-      towerLobby: "Self-Study Tower",
-      stageFloor: "Stage lobby",
-      towerStopStreet: "Lobby · back to the street",
-      towerStopStage: "Technology learning stages",
-      gameSquare: "Technology Game Square",
-      gameSquareShort: "Game Square",
-      park: "Ben Nghe Park",
-      parkShort: "Park",
-      center: "Central Plaza",
-      cafe: "Digits & Books Cafe",
-      street: "Saigon Career Street",
-      levelRequirement: "requires level {level}",
-      library: {
-        label: "Saigon Library",
-        blurb: "A shared reading room - meet others who are studying",
-      },
-      studyGroup: {
-        label: "Group study room",
-        blurb: "An eight-seat table, 25-minute sessions with your group",
-      },
-      civic: {
-        baBaoCao: {
-          label: "Three Statements Room",
-          blurb: "Touch one line item and watch it flow through all three statements",
-        },
-        thapLaiKep: {
-          label: "Compound Interest Tower",
-          blurb: "One floor per year - climb it to see compounding at work",
-        },
-        phongLbo: {
-          label: "Capital Stack Room",
-          blurb: "Senior debt at the bottom, equity on top - who loses first",
-        },
-        cuaHang: {
-          label: "Shop & Fitting Mirror",
-          blurb: "Try gear on before you buy it",
-        },
-        bangVang: {
-          label: "Hall of Fame",
-          blurb: "Who's leading in each competency",
-        },
-        phongThi: {
-          label: "Exam room",
-          blurb: "Certification mock exams, plus stage checkpoints",
-        },
-        canHo: {
-          label: "Your apartment",
-          blurb: "Your streak, trophies, and career goals",
-        },
-        baoTang: {
-          label: "Museum of Technology",
-          blurb: "Y2K, the Morris worm, the big outages - and the lesson behind each one",
-        },
-        nhaBanBe: {
-          label: "Friends' block",
-          blurb: "Visit your friends' streaks and trophy cases",
-        },
-        vongQuayTien: {
-          label: "Cash Cycle Room",
-          blurb: "Does cash arrive before it goes out - and who depends on whom",
-        },
-        phanBoRuiRo: {
-          label: "Risk & Allocation Room",
-          blurb: "Why mixing two assets can be less risky than either one's average",
-        },
-        banTron: {
-          label: "Teach-Back Round Table",
-          blurb: "Explain it in your own words - the only place that knows if you truly understood",
-        },
-      },
-    },
     lobbyStations: {
       hocBai: {
         room: "Today's lesson room",
@@ -399,14 +250,14 @@ export const worldSpacesEn: typeof worldSpacesVi = {
       phongVan: {
         room: "Interview room",
         blurb: "Technical questions, scored as you answer",
-        formula: "EV = Market cap + Debt − Cash",
-        note: "Enterprise value - the opening question of every IB interview",
+        formula: "Binary search: O(log n)",
+        note: "A classic opener of the algorithms round: halve the search space each step",
       },
       suNghiep: {
         room: "Career room",
         blurb: "How far you are from the career you want",
-        formula: "ROE = Net margin × Asset turnover × Leverage",
-        note: "The DuPont breakdown: the only three sources of ROE",
+        formula: "Skill = Foundations × Real projects × Feedback",
+        note: "Drop one factor and the product is zero, however large the other two are",
       },
     },
     worldBoss: {

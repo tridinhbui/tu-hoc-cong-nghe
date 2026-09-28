@@ -19,8 +19,8 @@
     { "label": "Filters so viewers can dig in themselves" }
   ],
   "realWorldExample": {
-    "company": "A finance team's receivables dashboard",
-    "description": "The first version had fourteen charts, showing every possible slice of the receivables data, and almost nobody opened it after the first month. The second version had only three blocks: the list of customers more than 90 days overdue, the trend in average days to collect, and the invoices falling due in the next two weeks. Those three blocks tie directly to the three things the collections team has to do every week, and it became the first thing opened every Monday morning."
+    "company": "An operations team's on-call dashboard",
+    "description": "The first version had fourteen charts, showing every possible slice of the alert data, and almost nobody opened it after the first month. The second version had only three blocks: the list of incidents open for more than seven days, the trend in average time to resolve, and the security certificates expiring in the next two weeks. Those three blocks tie directly to the three things the on-call team has to do every week, and it became the first thing opened every Monday morning."
   },
   "quiz": [
     {

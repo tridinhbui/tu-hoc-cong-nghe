@@ -71,8 +71,8 @@ export default function InteractivePromptCraft() {
     .join("\n");
 
   return (
-    <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-ink">
+    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+      <h3 className="text-base font-black tracking-tight text-ink-max">
         {tr.title}
       </h3>
 
@@ -81,9 +81,9 @@ export default function InteractivePromptCraft() {
           <div key={slot.key}>
             <div className="flex items-center gap-2">
               <span
-                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded text-[10px] font-black ${
+                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-xs font-mono text-[10px] font-medium ${
                   picked[slot.key]
-                    ? "bg-brand-500 text-white"
+                    ? "bg-brand-600 text-white dark:bg-brand-500"
                     : "bg-stone-200 text-stone-500 dark:bg-stone-700 dark:text-stone-400"
                 }`}
               >
@@ -103,9 +103,9 @@ export default function InteractivePromptCraft() {
                     }))
                   }
                   aria-pressed={picked[slot.key] === option}
-                  className={`block w-full cursor-pointer rounded-xl border px-3 py-1.5 text-left text-[11px] leading-snug ${
+                  className={`block w-full cursor-pointer rounded-sm border px-3 py-1.5 text-left text-[11px] leading-snug ${
                     picked[slot.key] === option
-                      ? "border-stone-900 bg-stone-900 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900"
+                      ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
                       : "border-stone-200 text-stone-600 hover:border-stone-400 dark:border-stone-700 dark:text-stone-300"
                   }`}
                 >
@@ -117,7 +117,7 @@ export default function InteractivePromptCraft() {
         ))}
       </div>
 
-      <div className="mt-5 rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
+      <div className="mt-5 border-l-2 border-stone-950 pl-4 dark:border-stone-200">
         <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">
           {tr.assembledLabel}
         </p>
@@ -137,7 +137,7 @@ export default function InteractivePromptCraft() {
           {missing.map((slot) => (
             <p
               key={slot.key}
-              className="rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] leading-relaxed text-amber-900 dark:border-amber-900/60 dark:bg-amber-950/30 dark:text-amber-200"
+              className="border-l-2 border-amber-500 pl-3 text-[11px] leading-relaxed text-ink-body"
             >
               <span className="font-bold">{format(tr.missingPrefix, { letter: slot.letter })}</span>
               {slot.cost}
@@ -145,7 +145,7 @@ export default function InteractivePromptCraft() {
           ))}
         </div>
       ) : (
-        <p className="mt-3 rounded-2xl border border-brand-200 bg-brand-50 px-3 py-2 text-[11px] leading-relaxed text-brand-900 dark:border-brand-900/60 dark:bg-brand-950/30 dark:text-brand-200">
+        <p className="mt-3 border-l-2 border-brand-600 pl-3 text-[11px] leading-relaxed text-ink-body dark:border-brand-400">
           {tr.allSlotsFilled}
         </p>
       )}

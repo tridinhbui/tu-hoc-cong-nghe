@@ -65,7 +65,35 @@ export type LessonSectionBlock =
   // Cùng hình dạng với thẻ trên /hoc-theo-nhu-cau (components/learning-flows/
   // FeynmanCard.tsx), để một cách giải thích viết một lần dùng được ở cả hai.
   // `rows[i]` có đúng `columns.length` phần tử, theo thứ tự cột.
-  | { type: "feynman"; title?: string; intro: string; columns: string[]; rows: string[][]; oneLiner: string };
+  | { type: "feynman"; title?: string; intro: string; columns: string[]; rows: string[][]; oneLiner: string }
+  // Đoạn mã minh hoạ. `runnable` thêm nút "Chạy thử" cho javascript/python -
+  // người học thấy đầu ra thật thay vì phải tin lời bài viết. Mã giữ nguyên
+  // xuống dòng và thụt lề; nó không đi qua renderFormattedText.
+  | { type: "code"; language: CodeLanguage; code: string; caption?: string; runnable?: boolean }
+  // Bài tập viết mã, chấm theo ĐẦU RA chứ không theo câu lệnh (cùng triết lý
+  // với SQL Console ở /cong-cu/sql): có nhiều cách viết đúng, và người học chỉ
+  // cần in ra đúng `expectedOutput`. So từng dòng sau khi bỏ khoảng trắng cuối
+  // dòng và dòng trống ở cuối - xem lib/code-runner/grade.ts.
+  //
+  // `solution` không bao giờ hiện trước khi người học đã chạy thử ít nhất một
+  // lần; nó tồn tại chủ yếu để bộ kiểm (lib/__tests__/lesson-exercises.test.ts
+  // và scripts/verify-exercises.mjs) chạy nó và chứng minh `expectedOutput`
+  // đúng - cùng lý do AGENTS.md bắt đáp án số trần phải khớp lời giải.
+  | {
+      type: "exercise";
+      language: RunnableLanguage;
+      title: string;
+      task: string;
+      starter: string;
+      solution: string;
+      expectedOutput: string;
+      hints?: string[];
+    };
+
+/** Ngôn ngữ tô màu được. */
+export type CodeLanguage = "python" | "javascript" | "html" | "css" | "sql" | "bash" | "json" | "text";
+/** Ngôn ngữ chạy được ngay trong trình duyệt (Web Worker; Python qua Pyodide). */
+export type RunnableLanguage = "python" | "javascript";
 
 export interface Lesson {
   id: number;
@@ -274,7 +302,20 @@ export type TranslatedSectionBlock =
       example?: { title?: string; calculation?: string; result?: string; explanation?: string };
     }
   | { type: "closing"; lines?: string[] }
-  | { type: "feynman"; title?: string; intro?: string; columns?: string[]; rows?: string[][]; oneLiner?: string };
+  | { type: "feynman"; title?: string; intro?: string; columns?: string[]; rows?: string[][]; oneLiner?: string }
+  // `code` dịch được vì chú thích và chuỗi trong mã là chữ cho người đọc.
+  | { type: "code"; caption?: string; code?: string }
+  // `solution` và `expectedOutput` chỉ được nhận THEO CẶP: dịch chuỗi in ra ở
+  // lời giải mà không dịch đầu ra mong đợi là một bài tập không ai qua được.
+  | {
+      type: "exercise";
+      title?: string;
+      task?: string;
+      starter?: string;
+      solution?: string;
+      expectedOutput?: string;
+      hints?: string[];
+    };
 
 /** A lesson plus the provenance of the text it carries. */
 export interface LocalizedLesson extends Lesson {

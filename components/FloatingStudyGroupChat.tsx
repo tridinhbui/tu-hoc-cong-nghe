@@ -487,12 +487,12 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           }}
           aria-label={t.groupChat.openAria}
           title={room ? format(t.groupChat.dragTitle, { topic: topicLabel(room.topic, t) }) : t.groupChat.joinTitle}
-          className="fixed bottom-21 right-4 sm:bottom-23 sm:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-brand-600 to-brand-600 hover:from-brand-500 hover:to-brand-500 text-white shadow-xl hover:scale-108 transition-all duration-200 flex items-center justify-center border-2 border-white dark:border-stone-800 cursor-grab active:cursor-grabbing select-none touch-none group"
+          className="fixed bottom-21 right-4 sm:bottom-23 sm:right-6 z-50 w-14 h-14 rounded-md bg-stone-950 hover:bg-brand-700 text-white transition-colors flex items-center justify-center border border-stone-950 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 dark:border-stone-100 cursor-grab active:cursor-grabbing select-none touch-none group"
         >
-          <Users className="w-6 h-6 text-white transition-transform group-hover:scale-110 pointer-events-none" />
+          <Users className="w-6 h-6 pointer-events-none" aria-hidden />
 
           {unreadCount > 0 && !open && (
-            <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1.5 rounded-full bg-rose-600 text-white text-[10px] font-black flex items-center justify-center border-2 border-white shadow-md z-10 pointer-events-none">
+            <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-sm bg-brand-600 text-white font-mono text-[10px] font-medium tabular-nums flex items-center justify-center border border-white dark:border-stone-900 z-10 pointer-events-none">
               {unreadCount > 9 ? "9+" : unreadCount}
             </span>
           )}
@@ -500,7 +500,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
       )}
 
       {open && (
-        <div className="fixed inset-0 bg-black/20 z-40 sm:hidden" onClick={() => setOpen(false)} />
+        <div className="fixed inset-0 bg-stone-950/30 z-40 sm:hidden" onClick={() => setOpen(false)} />
       )}
 
       <div
@@ -516,7 +516,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
         // localStorage.
         style={panelWidth !== null ? ({ "--group-chat-w": `${panelWidth}px` } as React.CSSProperties) : undefined}
       >
-        <div className="relative bg-white dark:bg-stone-900 sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[72dvh] sm:h-[480px]">
+        <div className="relative bg-white dark:bg-stone-900 border border-line-strong flex flex-col overflow-hidden rounded-t-md sm:rounded-md h-[72dvh] sm:h-[480px]">
           {/* Cạnh kéo, cùng hook với panel Góp ý. Chỉ hiện từ sm trở lên: dưới
               đó panel đã chiếm trọn bề ngang, và một cạnh 6px trên cảm ứng là
               bẫy chứ không phải điều khiển. */}
@@ -531,18 +531,18 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           </div>
 
           {/* Header */}
-          <div className="bg-gradient-to-r from-brand-700 via-brand-600 to-brand-700 px-4.5 py-4 flex items-center gap-3 shrink-0 shadow-sm">
-            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 shadow-inner">
-              <Users className="w-4.5 h-4.5 text-white" />
+          <div className="bg-stone-950 border-b border-stone-800 px-4 py-3 flex items-center gap-3 shrink-0">
+            <div className="w-8 h-8 rounded-sm border border-white/15 flex items-center justify-center flex-shrink-0">
+              <Users className="w-4 h-4 text-stone-300" aria-hidden />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-bold text-[13px] tracking-tight truncate">{format(t.groupChat.roomTitle, { topic: room ? topicLabel(room.topic, t) : t.groupChat.roomFallback })}</p>
-              <p className="text-brand-100/90 text-[10px] font-medium mt-0.5">{format(t.groupChat.memberCount, { count: room?.member_count ?? 1, max: room?.max_members ?? 5 })}</p>
+              <p className="text-white font-black text-[13px] tracking-tight truncate">{format(t.groupChat.roomTitle, { topic: room ? topicLabel(room.topic, t) : t.groupChat.roomFallback })}</p>
+              <p className="text-stone-400 font-mono tabular-nums text-[10.5px] mt-0.5">{format(t.groupChat.memberCount, { count: room?.member_count ?? 1, max: room?.max_members ?? 5 })}</p>
             </div>
             <button
               onClick={() => setOpen(false)}
               aria-label={t.groupChat.closeAria}
-              className="w-7 h-7 rounded-xl flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 transition-all cursor-pointer active:scale-90"
+              className="w-7 h-7 rounded-sm flex items-center justify-center text-stone-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -550,10 +550,10 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
           {/* Pinned Message */}
           {pinnedMessage && (
-            <div className="shrink-0 px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 border-b border-amber-100 dark:border-amber-900/30">
+            <div className="shrink-0 px-3.5 py-2.5 bg-[#f3f1ec] dark:bg-stone-950 border-b border-line">
               <div className="flex items-center gap-1.5 mb-1">
                 <TaiTaiAvatar size={16} />
-                <span className="text-[10px] font-extrabold text-warn-strong">{t.groupChat.pinnedByAdmin}</span>
+                <span className="text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{t.groupChat.pinnedByAdmin}</span>
               </div>
               <p className="text-[11px] text-ink-heading leading-relaxed font-medium">{pinnedMessage.content}</p>
             </div>
@@ -576,11 +576,11 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             }`}
           >
             {isDraggingImage && (
-              <p className="text-xs font-bold text-accent text-center animate-pulse">{t.groupChat.dropImage}</p>
+              <p className="text-xs font-bold text-accent text-center">{t.groupChat.dropImage}</p>
             )}
             {scrollMessages.length === 0 ? (
               <div className="text-center py-12 px-4">
-                <div className="w-12 h-12 rounded-full bg-surface-raised flex items-center justify-center mx-auto mb-3 shadow-inner text-stone-400">
+                <div className="w-12 h-12 rounded-md border border-line bg-surface-raised flex items-center justify-center mx-auto mb-3 text-stone-400">
                   <Users className="w-5 h-5 opacity-60" />
                 </div>
                 <p className="text-xs text-ink-faint font-medium">
@@ -594,10 +594,10 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 if (msg.is_bot) {
                   return (
                     <div key={msg.id} className="flex justify-start">
-                      <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 bg-amber-50/80 dark:bg-amber-950/20 shadow-xs">
+                      <div className="max-w-[85%] rounded-md px-3 py-2.5 border border-line bg-[#f3f1ec] dark:bg-stone-950">
                         <div className="flex items-center gap-1.5 mb-1.5">
                           <TaiTaiAvatar size={16} />
-                          <span className="text-[10px] font-extrabold text-warn-strong">{t.groupChat.byAdmin}</span>
+                          <span className="text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{t.groupChat.byAdmin}</span>
                         </div>
                         <p className="text-[12px] text-ink-heading leading-relaxed whitespace-pre-wrap">{renderBotMessage(msg.content, t.groupChat, format)}</p>
                       </div>
@@ -650,15 +650,15 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           </p>
                         )}
                         <div
-                          className={`relative rounded-2xl px-3.5 py-2 text-[12px] leading-relaxed shadow-xs w-fit ${
+                          className={`relative rounded-md px-3 py-2 text-[12px] leading-relaxed w-fit ${
                             isMine
-                              ? "bg-brand-700 dark:bg-brand-600 text-white rounded-tr-xs"
-                              : "bg-white dark:bg-stone-800/90 text-ink-heading rounded-tl-xs border border-line-soft"
+                              ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
+                              : "bg-white dark:bg-stone-800/90 text-ink-heading border border-line"
                           }`}
                         >
                           {/* Quoted message, read live from the original */}
                           {msg.reply_to_id !== null && (
-                            <div className="mb-1.5 p-1.5 rounded-lg border-l-2 border-brand-400 bg-black/10 dark:bg-white/10 text-[11px] font-medium leading-snug">
+                            <div className="mb-1.5 p-1.5 rounded-xs border-l-2 border-brand-400 bg-black/10 dark:bg-white/10 text-[11px] font-medium leading-snug">
                               {repliedTo ? (
                                 <>
                                   <span className="flex items-center gap-1 font-bold opacity-90"><CornerUpLeft className="h-3 w-3 shrink-0" strokeWidth={2} aria-hidden />{repliedToName}</span>
@@ -687,7 +687,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                               height={240}
                               sizes="320px"
                               style={{ width: "auto", height: "auto" }}
-                              className="max-w-full max-h-40 rounded-lg mb-2 object-contain cursor-pointer hover:opacity-95 transition-opacity"
+                              className="max-w-full max-h-40 rounded-sm mb-2 object-contain cursor-pointer hover:opacity-95 transition-opacity"
                               onClick={() => window.open(msg.image_url!, "_blank")}
                             />
                           )}
@@ -702,7 +702,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                 // không có trang nào để mở, chỉ là một tab trắng
                                 // bật lên rồi tự đóng.
                                 href={toDownloadUrl(msg.file_url, msg.file_name)}
-                                className={`mb-2 flex items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] font-medium transition-colors ${
+                                className={`mb-2 flex items-center gap-2 rounded-sm px-2.5 py-2 text-[11px] font-medium transition-colors ${
                                   isMine
                                     ? "bg-white/15 hover:bg-white/25"
                                     : "bg-surface-raised hover:bg-surface-sunken"
@@ -713,8 +713,8 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                 <Download className="w-3.5 h-3.5 flex-shrink-0 opacity-70" />
                               </a>
                             ) : (
-                              <div className="mb-2 flex items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] font-medium opacity-70 bg-black/10 dark:bg-white/10">
-                                <FileText className="w-4 h-4 flex-shrink-0 animate-pulse" />
+                              <div className="mb-2 flex items-center gap-2 rounded-sm px-2.5 py-2 text-[11px] font-medium opacity-70 bg-black/10 dark:bg-white/10">
+                                <FileText className="w-4 h-4 flex-shrink-0" aria-hidden />
                                 <span className="truncate flex-1">{format(t.groupChat.uploading, { name: msg.file_name })}</span>
                               </div>
                             )
@@ -727,7 +727,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                         <div className={`${isPending ? "hidden" : ""} ${isMine ? "absolute right-full top-1/2 mr-1 -translate-y-1/2" : "relative"}`}>
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
-                            className={`${isMine ? "opacity-70" : "opacity-0 mt-1"} group-hover:opacity-100 transition-all duration-200 p-1 rounded-full hover:bg-surface-sunken text-ink-muted cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
+                            className={`${isMine ? "opacity-70" : "opacity-0 mt-1"} group-hover:opacity-100 focus:opacity-100 transition-opacity p-1 rounded-sm hover:bg-surface-sunken text-ink-muted cursor-pointer bg-white dark:bg-stone-800 border border-line`}
                             title={t.chat.optionsTitle}
                           >
                             <MoreVertical className="w-3 h-3" />
@@ -735,9 +735,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
 
                           {/* 3-Dots Dropdown Popup Menu */}
                           {activeMenuMsgId === msg.id && (
-                            <div className={`absolute bottom-full mb-1 z-50 min-w-[155px] bg-white dark:bg-stone-900 rounded-2xl p-1.5 shadow-xl border border-line backdrop-blur-md text-xs space-y-1 ${isMine ? "right-0" : "left-0"}`}>
+                            <div className={`absolute bottom-full mb-1 z-50 min-w-[155px] bg-white dark:bg-stone-900 rounded-sm p-1 border border-line-strong text-xs space-y-0.5 ${isMine ? "right-0" : "left-0"}`}>
                               {/* Quick Emoji Reaction Row */}
-                              <div className="flex items-center justify-between px-1.5 py-1 bg-stone-50 dark:bg-stone-800/60 rounded-xl mb-1 border border-stone-100 dark:border-stone-700/50">
+                              <div className="flex items-center justify-between px-1.5 py-1 bg-[#f3f1ec] dark:bg-stone-800/60 rounded-xs mb-1 border border-line">
                                 {REACTION_EMOJIS.map((emoji) => (
                                   <button
                                     key={emoji}
@@ -745,7 +745,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                       toggleReaction(msg.id, emoji);
                                       setActiveMenuMsgId(null);
                                     }}
-                                    className="hover:scale-130 transition-transform p-0.5 text-[11px]"
+                                    className="rounded-xs p-0.5 text-[11px] hover:bg-white dark:hover:bg-stone-700"
                                     title={format(t.chat.reactionTitle, { emoji })}
                                   >
                                     {emoji}
@@ -758,9 +758,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                   setReplyingTo({ id: msg.id, senderName: isMine ? t.groupChat.you : senderName, content: msg.content });
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-brand-50 dark:hover:bg-brand-950/40 text-ink-heading font-bold transition-colors text-left text-[11px]"
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-[#f3f1ec] dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px]"
                               >
-                                <CornerUpLeft className="w-3 h-3 text-accent" />
+                                <CornerUpLeft className="w-3 h-3 text-ink-muted" aria-hidden />
                                 <span>{t.chat.reply}</span>
                               </button>
 
@@ -769,9 +769,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                   void togglePinMessage(msg);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-ink-heading font-bold transition-colors text-left text-[11px]"
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-[#f3f1ec] dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px]"
                               >
-                                {msg.is_pinned ? <PinOff className="w-3 h-3 text-warn" /> : <Pin className="w-3 h-3 text-warn" />}
+                                {msg.is_pinned ? <PinOff className="w-3 h-3 text-ink-muted" aria-hidden /> : <Pin className="w-3 h-3 text-ink-muted" aria-hidden />}
                                 <span>{msg.is_pinned ? t.chat.unpin : t.chat.pin}</span>
                               </button>
 
@@ -780,9 +780,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                   void copyMessageText(mainText || msg.content);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left text-[11px]"
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-[#f3f1ec] dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px]"
                               >
-                                <Copy className="w-3 h-3 text-info" />
+                                <Copy className="w-3 h-3 text-ink-muted" aria-hidden />
                                 <span>{t.chat.copy}</span>
                               </button>
 
@@ -795,9 +795,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                     setReplyingTo(null);
                                     setActiveMenuMsgId(null);
                                   }}
-                                  className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left text-[11px]"
+                                  className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-[#f3f1ec] dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px]"
                                 >
-                                  <Pencil className="w-3 h-3 text-info" />
+                                  <Pencil className="w-3 h-3 text-ink-muted" aria-hidden />
                                   <span>{t.chat.edit}</span>
                                 </button>
 
@@ -812,9 +812,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                       toast.error(t.chat.recallFailed);
                                     }
                                   }}
-                                  className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-alert font-bold transition-colors text-left text-[11px]"
+                                  className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-red-50 dark:hover:bg-red-950/40 text-danger font-semibold transition-colors text-left text-[11px]"
                                 >
-                                  <Trash2 className="w-3 h-3 text-rose-500" />
+                                  <Trash2 className="w-3 h-3" aria-hidden />
                                   <span>{t.chat.recall}</span>
                                 </button>
                                 </>
@@ -834,9 +834,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                                 <button
                                   key={emoji}
                                   onClick={() => toggleReaction(msg.id, emoji)}
-                                  className={`inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.2 rounded-full border transition-all ${
+                                  className={`inline-flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded-xs border transition-colors ${
                                     hasMyReaction
-                                      ? "bg-accent-soft border-brand-300 text-accent-strong shadow-2xs"
+                                      ? "bg-brand-50 border-accent-line text-accent-strong dark:bg-brand-950/40"
                                       : "bg-white dark:bg-stone-900 border-line text-ink-body"
                                   }`}
                                 >
@@ -852,7 +852,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           <div className="mt-1 flex items-center justify-end gap-1 text-[9px] font-bold text-ink-faint whitespace-nowrap">
                             {isPending ? (
                               <>
-                                <Clock className="h-3 w-3 text-stone-400 shrink-0 animate-pulse" />
+                                <Clock className="h-3 w-3 text-stone-400 shrink-0" aria-hidden />
                                 <span className="whitespace-nowrap">{t.chat.sending}</span>
                               </>
                             ) : (
@@ -877,14 +877,14 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           <div className="p-3 bg-white dark:bg-stone-900 border-t border-stone-100 dark:border-stone-800/40 shrink-0">
             {/* Replying Banner Preview */}
             {replyingTo && (
-              <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-brand-50 dark:bg-brand-950/40 border border-accent-line text-xs text-ink-heading mb-2">
+              <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-sm bg-brand-50 dark:bg-brand-950/40 border border-accent-line text-xs text-ink-heading mb-2">
                 <div className="min-w-0 flex-1">
                   <span className="font-bold text-accent">{format(t.chat.replyingTo, { name: replyingTo.senderName })}</span>
                   <p className="truncate text-[10px] text-ink-soft mt-0.2">{replyingTo.content}</p>
                 </div>
                 <button
                   onClick={() => setReplyingTo(null)}
-                  className="text-stone-400 hover:text-ink-body p-0.5 rounded-full cursor-pointer"
+                  className="text-stone-400 hover:text-ink-body p-0.5 rounded-sm cursor-pointer"
                   title={t.chat.cancelReply}
                 >
                   <X className="w-3.5 h-3.5" />
@@ -892,9 +892,9 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               </div>
             )}
             {editingMessage && (
-              <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-ink-heading mb-2">
+              <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-sm bg-[#f3f1ec] dark:bg-stone-950 border border-line text-xs text-ink-heading mb-2">
                 <div className="min-w-0 flex-1">
-                  <span className="font-bold text-info">{t.chat.editing}</span>
+                  <span className="font-bold text-ink-max">{t.chat.editing}</span>
                   <p className="truncate text-[10px] text-ink-soft mt-0.2">{editingMessage.content}</p>
                 </div>
                 <button
@@ -902,7 +902,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                     setEditingMessage(null);
                     setInput("");
                   }}
-                  className="text-stone-400 hover:text-ink-body p-0.5 rounded-full cursor-pointer"
+                  className="text-stone-400 hover:text-ink-body p-0.5 rounded-sm cursor-pointer"
                   title={t.chat.cancelEdit}
                 >
                   <X className="w-3.5 h-3.5" />
@@ -912,22 +912,22 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
             {pendingImagePreview && (
               <div className="relative inline-block mb-2 group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={pendingImagePreview} alt={t.chat.previewAlt} className="w-14 h-14 rounded-lg border border-line-strong object-cover shadow-md" />
+                <img src={pendingImagePreview} alt={t.chat.previewAlt} className="w-14 h-14 rounded-sm border border-line-strong object-cover" />
                 <button
                   onClick={() => clearPendingImage()}
-                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow transition-all border border-white dark:border-stone-950 active:scale-90"
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-stone-950 hover:bg-red-600 text-white rounded-sm flex items-center justify-center transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
               </div>
             )}
             {pendingFile && (
-              <div className="relative inline-flex items-center gap-1.5 mb-2 max-w-full pl-2 pr-6 py-1.5 rounded-lg border border-line-strong bg-surface text-[11px] font-medium text-ink-body">
+              <div className="relative inline-flex items-center gap-1.5 mb-2 max-w-full pl-2 pr-6 py-1.5 rounded-sm border border-line-strong bg-surface text-[11px] font-medium text-ink-body">
                 <FileText className="w-3.5 h-3.5 flex-shrink-0" />
                 <span className="truncate max-w-[180px]">{pendingFile.name}</span>
                 <button
                   onClick={() => clearPendingFile()}
-                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow transition-all border border-white dark:border-stone-950 active:scale-90"
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-stone-950 hover:bg-red-600 text-white rounded-sm flex items-center justify-center transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -952,7 +952,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               <button
                 onClick={() => fileInputRef.current?.click()}
                 title={t.chat.attachImage}
-                className="p-2 border border-stone-100 dark:border-stone-800/50 text-ink-muted hover:text-ink-heading hover:bg-surface rounded-xl transition flex-shrink-0 active:scale-95"
+                className="p-2 border border-line text-ink-muted hover:text-ink-heading hover:border-stone-500 rounded-sm transition-colors flex-shrink-0"
               >
                 <ImagePlus className="w-4.5 h-4.5" />
               </button>
@@ -960,7 +960,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               <button
                 onClick={() => docInputRef.current?.click()}
                 title={t.chat.attachFile}
-                className="p-2 border border-stone-100 dark:border-stone-800/50 text-ink-muted hover:text-ink-heading hover:bg-surface rounded-xl transition flex-shrink-0 active:scale-95"
+                className="p-2 border border-line text-ink-muted hover:text-ink-heading hover:border-stone-500 rounded-sm transition-colors flex-shrink-0"
               >
                 <Paperclip className="w-4.5 h-4.5" />
               </button>
@@ -980,13 +980,13 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 onPaste={handlePaste}
                 placeholder={editingMessage ? t.chat.editPlaceholder : t.groupChat.inputPlaceholder}
                 maxLength={2000}
-                className="flex-1 min-w-0 px-3 py-2 border border-stone-100 dark:border-stone-800/40 bg-stone-50/50 dark:bg-stone-950/60 text-ink rounded-xl text-xs focus:outline-none focus:border-brand-400 dark:focus:border-brand-700 focus:bg-white dark:focus:bg-stone-950 transition-all placeholder:text-stone-400"
+                className="flex-1 min-w-0 px-3 py-2 border border-line bg-[#fbfaf7] dark:bg-stone-950/60 text-ink rounded-sm text-xs focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-stone-950 transition-colors placeholder:text-stone-400"
               />
               
               <button
                 onClick={() => void handleSend()}
                 disabled={sending || (!input.trim() && !pendingImage && !pendingFile)}
-                className="p-2 bg-gradient-to-br from-brand-700 to-brand-600 hover:from-brand-600 hover:to-brand-500 text-white rounded-xl hover:shadow disabled:opacity-30 disabled:pointer-events-none transition flex-shrink-0 active:scale-95"
+                className="p-2 bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 rounded-sm disabled:opacity-30 disabled:pointer-events-none transition-colors flex-shrink-0"
                 aria-label={t.chat.sendAria}
               >
                 <Send className="w-4.5 h-4.5" />

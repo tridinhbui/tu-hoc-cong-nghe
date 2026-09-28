@@ -90,7 +90,7 @@ export const TRACK_PERSONAL = {
       label: "Chặng 3",
       name: "Lập trình đơn giản hơn bạn nghĩ: tư duy và ngôn ngữ đầu tiên",
       days: [1, 20] as [number, number],
-      // 1048 (tu-duy-tai-chinh) là trang viết tay được kéo về corpus. Nội dung
+      // 1048 (cong-suc-tieu-di-va-tich-lai) là trang viết tay được kéo về corpus. Nội dung
       // của nó đúng là chủ đề chặng này, nhưng id nằm ngoài dải 1-20.
       extraLessonIds: [1048],
       available: true,
@@ -383,6 +383,78 @@ export const TRACK_PERSONAL = {
       parts: [
         { name: "Vòng lặp và công cụ", days: [1780, 1781] as [number, number] },
         { name: "Dựng agent và đặt chốt an toàn", days: [1782, 1783] as [number, number] },
+      ],
+    },
+    // Chặng 24-29: "Công nghệ cho người đi làm" - cho người KHÔNG học CS, cần
+    // hiểu công nghệ đủ để làm việc tốt hơn. Mỗi bài đi theo một khuôn: vấn đề
+    // kinh doanh → công cụ → dựng thế nào → rủi ro → tự làm. Nằm trong track
+    // cá nhân chứ không thành track riêng để tiến độ, điểm và mở khoá vẫn tính
+    // ở một chỗ; lối vào riêng của nhóm người học này là các hành trình ở
+    // /hoc-theo-nhu-cau. Mỗi chặng giữ dải 10 id, còn trống bốn.
+    {
+      label: "Chặng 24",
+      name: "Công nghệ trong công việc đơn giản hơn bạn nghĩ",
+      days: [1800, 1809] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Bản đồ: phần mềm, đám mây và API", days: [1800, 1802] as [number, number] },
+        { name: "Dữ liệu, chọn công cụ và bản đồ của phòng bạn", days: [1803, 1805] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 25",
+      name: "Dùng AI mỗi ngày ở chỗ làm",
+      days: [1810, 1819] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Hiểu AI và giao việc cho nó", days: [1810, 1812] as [number, number] },
+        { name: "Nghiên cứu, kiểm chứng và dùng chung", days: [1813, 1815] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 26",
+      name: "Phân tích dữ liệu với AI đơn giản hơn bạn nghĩ",
+      days: [1820, 1829] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Dữ liệu sạch, câu hỏi đúng, công thức đúng", days: [1820, 1822] as [number, number] },
+        { name: "Phân tích biến động và kể chuyện bằng số", days: [1823, 1825] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 27",
+      name: "Tự động hoá công việc đơn giản hơn bạn nghĩ",
+      days: [1830, 1839] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Workflow đầu tiên và khi nó hỏng", days: [1830, 1833] as [number, number] },
+        { name: "Dự án: báo cáo tháng và dashboard tự làm mới", days: [1834, 1835] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 28",
+      name: "AI theo phòng ban: bán hàng, chăm sóc khách hàng, vận hành",
+      days: [1840, 1849] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Bán hàng và chăm sóc khách hàng", days: [1840, 1842] as [number, number] },
+        { name: "Vận hành, tài liệu nội bộ và đo giá trị", days: [1843, 1845] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 29",
+      name: "Dùng AI an toàn ở nơi làm việc",
+      days: [1850, 1859] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Dữ liệu, deepfake và câu lệnh ẩn", days: [1850, 1852] as [number, number] },
+        { name: "Người duyệt, chính sách và tài khoản", days: [1853, 1855] as [number, number] },
       ],
     },
   ] satisfies Stage[],
@@ -937,7 +1009,7 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 32",
       name: "Cơ chế phát hành và di trú hệ thống",
       days: [1521, 1526] as [number, number],
-      // 1049 (danh-gia-deal-dau-tu) là trang viết tay được kéo về corpus:
+      // 1049 (tu-xay-hay-mua-san) là trang viết tay được kéo về corpus:
       // khung đọc một thương vụ mua lại, đúng chủ đề chặng này.
       extraLessonIds: [1049, 1052],
       available: true,
@@ -1150,6 +1222,76 @@ export const TRACK_PROFESSIONAL = {
         { name: "Bất cân xứng thông tin và biên lợi nhuận nhà cung cấp đám mây", days: [1744, 1745] as [number, number] },
       ],
     },
+    // Chặng 44-49: AI ứng dụng trong doanh nghiệp cho người XÂY hệ thống -
+    // LLM API, RAG, agent/MCP, evals, bảo mật, vận hành. Chặng 13 dạy DÙNG AI
+    // để viết mã; mấy chặng này dạy đặt LLM vào bên trong sản phẩm. Thuộc nhánh
+    // "ai" (PROFESSIONAL_BRANCHES), trước đây chỉ có đúng Chặng 13.
+    {
+      label: "Chặng 44",
+      name: "Gọi LLM qua API: token, chi phí và độ tin cậy",
+      days: [1860, 1869] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Token, lời gọi và đầu ra có cấu trúc", days: [1860, 1862] as [number, number] },
+        { name: "Chi phí, độ tin cậy và chọn mô hình", days: [1863, 1865] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 45",
+      name: "RAG: cho mô hình đọc tài liệu của bạn",
+      days: [1870, 1879] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Chia nhỏ, embedding và truy xuất", days: [1870, 1872] as [number, number] },
+        { name: "Truy xuất tốt hơn, trả lời bám nguồn và đánh giá", days: [1873, 1875] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 46",
+      name: "Tool use, agent và MCP trong hệ thống thật",
+      days: [1880, 1889] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Gọi công cụ, vòng lặp agent và MCP", days: [1880, 1882] as [number, number] },
+        { name: "Quyền tối thiểu, workflow hay agent, quan sát", days: [1883, 1885] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 47",
+      name: "Đánh giá hệ thống LLM (evals)",
+      days: [1890, 1899] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Bộ dữ liệu vàng và kiểm tất định", days: [1890, 1892] as [number, number] },
+        { name: "LLM làm giám khảo, eval trong CI và sau ra mắt", days: [1893, 1895] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 48",
+      name: "Bảo mật và quản trị hệ thống LLM",
+      days: [1900, 1909] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Mô hình đe doạ, prompt injection và rò rỉ dữ liệu", days: [1900, 1902] as [number, number] },
+        { name: "Đầu ra không tin cậy, phân quyền và quản trị", days: [1903, 1905] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 49",
+      name: "Pipeline dữ liệu và vận hành LLM",
+      days: [1910, 1919] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Pipeline, phiên bản, chi phí và giám sát", days: [1910, 1913] as [number, number] },
+        { name: "Dự án: bot tài liệu nội bộ và agent CSKH lên production", days: [1914, 1915] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 /* i18n-ignore-end */
@@ -1231,9 +1373,9 @@ export const PROFESSIONAL_BRANCHES = [
   {
     id: "ai",
     label: "AI trong sản phẩm",
-    subtitle: "Dùng ChatGPT/Claude để đọc mã, rà lỗi và viết tài liệu",
+    subtitle: "Dùng AI để viết mã, rồi xây hệ thống có LLM bên trong: API, RAG, agent, evals, bảo mật, vận hành",
     emoji: "🤖",
-    stageLabels: ["Chặng 13"],
+    stageLabels: ["Chặng 13", "Chặng 44", "Chặng 45", "Chặng 46", "Chặng 47", "Chặng 48", "Chặng 49"],
   },
 ] as const;
 

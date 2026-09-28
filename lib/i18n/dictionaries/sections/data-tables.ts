@@ -131,12 +131,12 @@ export const dataTablesVi = {
     rpgInventory: {
       items: {
         suit_armani: {
-          name: "Vest Armani Executive",
+          name: "Áo Vest Thuyết Trình Executive",
           description: "Vest doanh nhân xa xỉ tăng +45 Sức mạnh thuyết trình và phong thái Silicon Valley.",
         },
         watch_rolex: {
-          name: "Rolex Submariner Gold",
-          description: "Đồng hồ mạ vàng Thụy Sĩ giúp tăng tốc độ đọc mã nguồn lên +40%.",
+          name: "Đồng Hồ Thông Minh Executive",
+          description: "Đồng hồ thông minh nhắc lịch deploy, tăng tốc độ đọc mã nguồn lên +40%.",
         },
         glasses_bloomberg: {
           name: "Kính Terminal Đa Màn",
@@ -203,21 +203,6 @@ export const dataTablesVi = {
       },
     },
 
-    toolsIndex: {
-      eyebrow: "Công cụ đo lường & Ước lượng",
-      title: "Áp dụng số liệu vào thực tế",
-      subtitle: "Mô phỏng dung lượng hệ thống & ước lượng chi phí hạ tầng.",
-      loading: "Đang tải...",
-      tabs: {
-        netWorth: "Tài sản ròng",
-        budget: "Chia dung lượng",
-        emergencyFund: "Quỹ khẩn cấp",
-        compoundInterest: "Giả lập Lãi kép",
-        firePlanner: "Kế hoạch FIRE",
-        valuationDcf: "Định giá DCF & WACC",
-        valuationModel: "Mô hình Excel",
-      },
-    },
   },
 };
 
@@ -346,12 +331,12 @@ export const dataTablesEn: typeof dataTablesVi = {
     rpgInventory: {
       items: {
         suit_armani: {
-          name: "Armani Executive Suit",
+          name: "Executive Presentation Suit",
           description: "A luxury business suit that adds +45 Presenting Power and Silicon Valley poise.",
         },
         watch_rolex: {
-          name: "Rolex Submariner Gold",
-          description: "A gold-plated Swiss watch that boosts code-reading speed by +40%.",
+          name: "Executive Smartwatch",
+          description: "A smartwatch that reminds you of deploys and boosts code-reading speed by +40%.",
         },
         glasses_bloomberg: {
           name: "Multi-Monitor Terminal Glasses",
@@ -418,20 +403,5 @@ export const dataTablesEn: typeof dataTablesVi = {
       },
     },
 
-    toolsIndex: {
-      eyebrow: "Measurement & Estimation Tools",
-      title: "Put the numbers to work",
-      subtitle: "System capacity simulations and infrastructure cost estimation.",
-      loading: "Loading...",
-      tabs: {
-        netWorth: "Net Worth",
-        budget: "Capacity split",
-        emergencyFund: "Emergency Fund",
-        compoundInterest: "Compound Interest",
-        firePlanner: "FIRE Planner",
-        valuationDcf: "DCF & WACC Valuation",
-        valuationModel: "Excel model",
-      },
-    },
   },
 };

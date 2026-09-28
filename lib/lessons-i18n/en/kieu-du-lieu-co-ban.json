@@ -97,7 +97,7 @@
       "Switch to strings for prices, which have no rounding error",
       "Add from the largest number down so the error cannot accumulate"
     ],
-    "explanation": "This is what real financial systems do: store 12500 rather than 125.00 and only divide at display time. The error disappears entirely because integers are exact. Rounding at the end only hides the symptom, and strings cannot be added."
+    "explanation": "This is what real payment systems do: store 12500 rather than 125.00 and only divide at display time. The error disappears entirely because integers are exact. Rounding at the end only hides the symptom, and strings cannot be added."
   },
   "summary": {
     "keyIdea": "The type decides how the machine reads a value and what an operation on it means.",
@@ -160,6 +160,11 @@
       "text": "Do not let the language guess what you meant, because it guesses wrong in silence. Call the conversion from string to number yourself. There is a second benefit: if the string is not a valid number - and users typing letters into a number field is routine - you find out right there rather than letting a strange value spread through the program."
     },
     {
+      "type": "code",
+      "caption": "The same + gives two completely different results - and neither line raises an error. That is why you convert types yourself instead of letting the language guess.",
+      "code": "age_input = \"25\"           # typed input or file data is always a string\nprint(age_input + \"1\")     # joins text: 251\nprint(int(age_input) + 1)  # convert to a number first: 26\nprint(type(age_input))"
+    },
+    {
       "type": "heading",
       "text": "The second trap: floats are not exact"
     },
@@ -185,6 +190,18 @@
         "label": "Dynamically typed language",
         "text": "Types are worked out while running. Quicker and shorter to write, but a type error only shows itself when execution reaches that line, sometimes on a user's machine."
       }
+    },
+    {
+      "type": "exercise",
+      "title": "A string that looks like a number",
+      "task": "Both values below were read from a file, so they are strings. The program prints a nonsense number. Fix the line that computes the total.",
+      "starter": "shirt_price = \"200\"\ntrousers_price = \"150\"\n\ntotal = shirt_price + trousers_price\nprint(\"Total:\", total)",
+      "solution": "shirt_price = \"200\"\ntrousers_price = \"150\"\n\ntotal = int(shirt_price) + int(trousers_price)\nprint(\"Total:\", total)",
+      "expectedOutput": "Total: 350",
+      "hints": [
+        "+ between two strings joins text, it does not add numbers.",
+        "int() turns the string \"200\" into the number 200."
+      ]
     },
     {
       "type": "closing",

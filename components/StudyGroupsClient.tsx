@@ -63,6 +63,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { renderBotMessage } from "@/lib/study-room-bot-messages";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { btnPrimary, panel, SectionHead, StatusDot, tabClass } from "@/components/ui/system";
 
 interface SessionUser {
   id: string;
@@ -80,6 +81,13 @@ interface GroupQuizQuestion {
 }
 
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
+
+/* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị */
+const SYS = {
+  match: "THCN://GROUPS/MATCH",
+  rooms: "THCN://GROUPS/ROOMS",
+};
+/* i18n-ignore-end */
 
 function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUrl?: string | null; size?: number }) {
   // Sub-component, nên có useI18n() riêng thay vì luồn `t` qua prop.
@@ -1274,7 +1282,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       {!embedded && (
       <div className="border-b border-line bg-white dark:bg-stone-950">
         <div className="max-w-4xl mx-auto px-6 py-4">
-          <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink hover:bg-surface-raised rounded-lg px-3 py-2 -ml-3 transition-colors">
+          <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-bold text-ink-soft hover:text-ink hover:bg-surface-raised rounded-sm px-3 py-2 -ml-3 transition-colors">
             <ArrowLeft className="w-4 h-4" />
             {t.studyGroups.back}
           </Link>
@@ -1290,9 +1298,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         {myRoom ? (
           <div className="h-full flex flex-col min-h-0 space-y-3">
             {/* Top Room Info, Lofi Audio & Mobile Segmented Tab Bar */}
-            <div className="bg-white dark:bg-stone-900 border border-line rounded-2xl px-3 sm:px-4 py-2 shrink-0 flex items-center justify-between gap-2 sm:gap-3 shadow-xs">
+            <div className="bg-white dark:bg-stone-900 border border-line-strong rounded-md px-3 sm:px-4 py-2 shrink-0 flex items-center justify-between gap-2 sm:gap-3">
               <div className="flex items-center gap-2.5 min-w-0">
-                <span className="w-8 h-8 rounded-xl bg-brand-600 text-white font-black flex items-center justify-center text-xs shrink-0 shadow-xs">
+                <span className="w-8 h-8 rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 text-ink-body font-black flex items-center justify-center text-xs shrink-0">
                   <Users className="w-4 h-4" strokeWidth={1.75} aria-hidden />
                 </span>
                 <div className="min-w-0">
@@ -1300,13 +1308,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     {format(t.studyGroups.roomHeader, { topic: topicLabel(myRoom.topic, t.studyRoomTopics), count: myRoom.member_count, max: myRoom.max_members })}
                   </h2>
                   <div className="flex items-center gap-2 mt-0.5">
-                    <div className="w-20 sm:w-32 h-2 rounded-full bg-surface-raised overflow-hidden">
+                    <div className="w-20 sm:w-32 h-2 rounded-xs bg-surface-raised overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-brand-500 transition-all duration-500"
+                        className="h-full rounded-xs bg-brand-500 transition-all duration-500"
                         style={{ width: `${Math.min(100, (myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)}%` }}
                       />
                     </div>
-                    <span className="text-[10px] font-extrabold text-accent shrink-0">
+                    <span className="text-[10px] font-extrabold tabular-nums text-accent shrink-0">
                       {format(t.studyGroups.xpProgress, { current: myRoom.weekly_xp_progress, goal: myRoom.weekly_xp_goal })}
                     </span>
                   </div>
@@ -1316,11 +1324,11 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               {/* Center/Right Action Bar: Group Co-Pomodoro + Lofi Focus Sound + Mic Toggle + Mobile Segmented Tab Toggle */}
               <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 {/* Group Co-Pomodoro Timer Widget */}
-                <div className="flex items-center gap-1.5 bg-surface-raised px-2.5 py-1 rounded-xl border border-line-mid text-[10px] font-mono font-black">
-                  <span className={pomoRunning ? "animate-pulse text-brand-500" : "text-amber-500"}>
+                <div className="flex items-center gap-1.5 bg-surface-raised px-2.5 py-1 rounded-sm border border-line-mid text-[10px] font-black">
+                  <span className={pomoRunning ? "text-accent" : "text-ink-muted"}>
                     {pomoMode === "focus" ? t.studyGroups.pomodoroFocus : t.studyGroups.pomodoroBreak}
                   </span>
-                  <span className="text-ink font-extrabold">{formatPomoTime(pomoSeconds)}</span>
+                  <span className="font-mono tabular-nums text-ink font-extrabold">{formatPomoTime(pomoSeconds)}</span>
                   <button
                     type="button"
                     onClick={() => void handleTogglePomodoro()}
@@ -1333,10 +1341,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <button
                   type="button"
                   onClick={toggleLofiMusic}
-                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
+                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[10px] font-extrabold border transition-colors cursor-pointer ${
                     lofiPlaying
-                      ? "bg-brand-500 text-white border-brand-400 animate-pulse shadow-xs"
-                      : "bg-surface-raised text-ink-body border-line-mid hover:bg-stone-200"
+                      ? "bg-brand-600 text-white border-brand-600"
+                      : "bg-surface-raised text-ink-body border-line-mid hover:border-stone-500"
                   }`}
                   title={t.studyGroups.lofiToggleTitle}
                 >
@@ -1353,7 +1361,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     <button
                       type="button"
                       onClick={() => void voice.toggleMic()}
-                      className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
+                      className={`inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[10px] font-extrabold border transition-colors cursor-pointer ${
                         voice.micEnabled
                           ? "bg-brand-600 text-white border-brand-500"
                           : "bg-surface-raised text-ink-muted border-line-mid"
@@ -1366,7 +1374,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     <button
                       type="button"
                       onClick={() => void voice.leave()}
-                      className="inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border bg-rose-500 text-white border-rose-400 transition-all cursor-pointer"
+                      className="inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[10px] font-extrabold border bg-rose-600 text-white border-rose-600 transition-colors cursor-pointer"
                       title={t.studyGroups.leaveVoiceTitle}
                     >
                       <PhoneOff className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden />
@@ -1376,7 +1384,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       <button
                         type="button"
                         onClick={() => void voice.unlockAudio()}
-                        className="inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border bg-amber-500 text-stone-950 border-amber-400 animate-pulse cursor-pointer"
+                        className="inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[10px] font-extrabold border bg-brand-600 text-white border-brand-600 cursor-pointer"
                         title={t.studyGroups.autoplayBlockedTitle}
                       >
                         {t.studyGroups.autoplayBlocked}
@@ -1388,10 +1396,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     type="button"
                     onClick={() => void voice.join()}
                     disabled={voice.status === "connecting" || voice.status === "unavailable"}
-                    className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${
+                    className={`inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[10px] font-extrabold border transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${
                       voice.status === "unavailable"
                         ? "bg-surface-raised text-stone-400 border-line-mid"
-                        : "bg-surface-raised text-ink-body border-line-mid hover:bg-stone-200"
+                        : "bg-surface-raised text-ink-body border-line-mid hover:border-stone-500"
                     }`}
                     title={
                       voice.status === "unavailable"
@@ -1411,12 +1419,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 )}
 
                 {/* Mobile Segmented Tab Control (< lg screens) */}
-                <div className="lg:hidden flex bg-surface-raised p-0.5 rounded-xl border border-line-mid text-[10px] font-extrabold">
+                <div className="lg:hidden flex bg-surface-raised p-0.5 rounded-sm border border-line-mid text-[10px] font-extrabold">
                   <button
                     type="button"
                     onClick={() => setMobileTab("3d")}
-                    className={`px-2 py-0.5 rounded-lg transition-all ${
-                      mobileTab === "3d" ? "bg-white dark:bg-stone-900 text-accent shadow-xs" : "text-stone-500"
+                    className={`px-2 py-0.5 rounded-xs transition-colors ${
+                      mobileTab === "3d" ? "bg-white dark:bg-stone-900 text-accent-strong" : "text-ink-muted"
                     }`}
                   >
                     {t.studyGroups.tab3d}
@@ -1424,8 +1432,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   <button
                     type="button"
                     onClick={() => setMobileTab("chat")}
-                    className={`px-2 py-0.5 rounded-lg transition-all ${
-                      mobileTab === "chat" ? "bg-white dark:bg-stone-900 text-accent shadow-xs" : "text-stone-500"
+                    className={`px-2 py-0.5 rounded-xs transition-colors ${
+                      mobileTab === "chat" ? "bg-white dark:bg-stone-900 text-accent-strong" : "text-ink-muted"
                     }`}
                   >
                     {t.studyGroups.tabChat}
@@ -1435,7 +1443,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 <button
                   onClick={handleLeave}
                   disabled={busy}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl border border-line text-xs font-bold text-ink-soft hover:bg-surface-raised transition-colors disabled:opacity-60 cursor-pointer"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-sm border border-line text-xs font-bold text-ink-soft hover:bg-surface-raised transition-colors disabled:opacity-60 cursor-pointer"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">{t.studyGroups.leaveRoom}</span>
@@ -1444,15 +1452,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             </div>
 
             {/* Group Attendance & Daily Quest Guidance Banner */}
-            <div className="mb-3 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-brand-500/15 to-brand-500/15 border border-amber-500/40 text-xs font-medium text-ink-heading flex flex-wrap items-center justify-between gap-2 shadow-xs">
+            <div className="mb-3 px-3.5 py-2.5 rounded-md bg-[#f3f1ec] dark:bg-stone-900 border border-line-strong text-xs font-medium text-ink-heading flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
-                <span className="w-7 h-7 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-sm shrink-0 shadow-xs">
+                <span className="w-7 h-7 rounded-sm border border-line-strong bg-white dark:bg-stone-950 text-ink-body flex items-center justify-center font-black text-sm shrink-0">
                   <MapPin className="w-4 h-4" strokeWidth={2} aria-hidden />
                 </span>
                 <div>
                   <p className="flex flex-wrap items-center gap-1.5 font-extrabold text-ink">
                     <span>{t.studyGroups.questsTitle}</span>
-                    <span className="text-[10px] font-black text-warn-strong bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-warn-line-mid">
+                    <span className="text-[10px] font-black text-ink-body bg-white dark:bg-stone-950 px-2 py-0.5 rounded-sm border border-line-strong">
                       {isPermanentRoom
                         ? t.studyGroups.permanentGroup
                         : format(t.studyGroups.streakWeeks, { weeks: groupStreakWeeks })}
@@ -1466,7 +1474,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               <button
                 type="button"
                 onClick={() => void handleManualCheckin()}
-                className="px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-black transition-all shadow-xs cursor-pointer shrink-0 active:scale-95 flex items-center gap-1"
+                className="px-3 py-1.5 rounded-sm bg-stone-950 hover:bg-brand-700 text-white dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 text-xs font-black transition-colors cursor-pointer shrink-0 flex items-center gap-1"
               >
                 <span>{t.studyGroups.checkInNow}</span>
               </button>
@@ -1474,14 +1482,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
               {missions.length === 0 ? (
-                <div className="md:col-span-3 rounded-2xl border border-dashed border-line-strong bg-surface px-4 py-3 text-xs font-bold text-ink-muted">
+                <div className="md:col-span-3 rounded-md border border-dashed border-line-strong bg-surface px-4 py-3 text-xs font-bold text-ink-muted">
                   {t.studyGroups.questsEmpty}
                 </div>
               ) : (
                 missions.map((mission) => {
                   const pct = Math.min(100, Math.round((mission.current_value / Math.max(1, mission.target_value)) * 100));
                   return (
-                    <div key={mission.mission_key} className="rounded-2xl border border-line bg-white dark:bg-stone-900 px-3.5 py-3 shadow-xs">
+                    <div key={mission.mission_key} className="rounded-md border border-line-strong bg-white dark:bg-stone-900 px-3.5 py-3">
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
                           <p className="text-xs font-black text-ink truncate">
@@ -1489,16 +1497,16 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           </p>
                           <p className="text-[10px] text-ink-muted mt-0.5 line-clamp-2">{mission.description}</p>
                         </div>
-                        <span className={`text-[10px] font-black px-2 py-0.5 rounded-full border shrink-0 ${
+                        <span className={`font-mono tabular-nums text-[10px] font-black px-2 py-0.5 rounded-sm border shrink-0 ${
                           mission.completed
                             ? "bg-accent-soft text-accent-strong border-accent-line"
-                            : "bg-warn-soft text-warn-strong border-warn-line"
+                            : "bg-surface-raised text-ink-body border-line-mid"
                         }`}>
                           {mission.current_value}/{mission.target_value}
                         </span>
                       </div>
-                      <div className="mt-2 h-2 rounded-full bg-surface-raised overflow-hidden">
-                        <div className="h-full rounded-full bg-brand-500 transition-all duration-500" style={{ width: `${pct}%` }} />
+                      <div className="mt-2 h-2 rounded-xs bg-surface-raised overflow-hidden">
+                        <div className="h-full rounded-xs bg-brand-500 transition-all duration-500" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
                   );
@@ -1532,7 +1540,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 }
                 className={`lg:col-span-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 ${
                   mobileTab === "3d" ? "flex" : "hidden lg:flex"
-                } flex-col h-[64vh] min-h-[440px] sm:h-[74vh] sm:min-h-[600px] lg:h-[78vh] lg:min-h-[640px] flex-1 rounded-2xl border border-stone-800 bg-stone-950 p-3 sm:p-4 shadow-2xl relative overflow-hidden text-white justify-between select-none transition-colors ${
+                } flex-col h-[64vh] min-h-[440px] sm:h-[74vh] sm:min-h-[600px] lg:h-[78vh] lg:min-h-[640px] flex-1 rounded-md border border-stone-800 bg-stone-950 p-3 sm:p-4 relative overflow-hidden text-white justify-between select-none transition-colors ${
                   walkMode ? "" : isDragging3D ? "cursor-grabbing border-brand-500/70" : "cursor-grab"
                 }`}
                 // touchAction "pan-y" is the other half of the scroll fix in
@@ -1551,7 +1559,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     cụm trái được co, và giấu bớt phần nhãn ở màn hẹp. */}
                 <div className="relative z-30 mb-1 flex shrink-0 flex-wrap items-center justify-between gap-1.5">
                   <div className="flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2">
-                    <span className="max-w-full truncate text-[10px] font-black uppercase tracking-widest text-brand-300 bg-brand-950/80 px-2.5 py-0.5 rounded-full border border-brand-500/40 backdrop-blur-md">
+                    <span className="max-w-full truncate text-[10px] font-black uppercase tracking-widest text-stone-300 bg-stone-950 px-2.5 py-0.5 rounded-sm border border-white/15">
                       {walkMode ? t.studyGroups.modeWalk : t.studyGroups.modeDesk}
                       {/* Chủ đề và buổi trong ngày là thông tin phụ: trên màn
                           hẹp chúng đẩy cả hàng vỡ ra, và cả hai đều đã hiện ở
@@ -1567,7 +1575,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         e.stopPropagation();
                         setWalkMode((prev) => !prev);
                       }}
-                      className="text-[9px] font-bold text-brand-200 bg-brand-950/80 hover:bg-brand-900 px-2 py-0.5 rounded-full border border-brand-500/40 transition-all cursor-pointer"
+                      className="text-[9px] font-bold text-stone-200 bg-stone-950 hover:border-white/40 px-2 py-0.5 rounded-sm border border-white/15 transition-colors cursor-pointer"
                       title={walkMode ? t.studyGroups.viewDeskTitle : t.studyGroups.viewWalkTitle}
                     >
                       {walkMode ? t.studyGroups.viewDesk : t.studyGroups.viewWalk}
@@ -1579,7 +1587,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           e.stopPropagation();
                           resetCamera();
                         }}
-                        className="text-[9px] font-bold text-stone-300 bg-stone-900/90 hover:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-700 transition-all cursor-pointer"
+                        className="text-[9px] font-bold text-stone-300 bg-stone-950 hover:border-white/40 px-2 py-0.5 rounded-sm border border-white/15 transition-colors cursor-pointer"
                         title={t.studyGroups.resetViewTitle}
                         aria-label={format(t.studyGroups.resetViewAria, { zoom: Math.round(zoom3D * 100) })}
                       >
@@ -1589,7 +1597,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   </div>
 
                   {/* Quick Cheer Actions Bar */}
-                  <div className="flex shrink-0 items-center gap-0.5 rounded-xl border border-stone-800 bg-stone-900/90 px-1.5 py-0.5 shadow-xs backdrop-blur-md sm:gap-1 sm:px-2">
+                  <div className="flex shrink-0 items-center gap-0.5 rounded-sm border border-white/15 bg-stone-950 px-1.5 py-0.5 sm:gap-1 sm:px-2">
                     <span className="text-[9px] font-bold text-stone-400 mr-1 hidden sm:inline">{t.studyGroups.cheerLabel}</span>
                     {quickCheers.map((cheer) => (
                       <button
@@ -1663,16 +1671,16 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       XP figure covered by their nameplates in turn. Out here it
                       also escapes the 3D rasterizer, so the text stays crisp
                       instead of shimmering as the room turns. */}
-                  <div className="absolute left-0 bottom-0 z-30 w-40 rounded-2xl border border-brand-400/40 bg-stone-950/85 backdrop-blur-md px-3 py-2.5 text-center shadow-[0_0_28px_rgba(65, 122, 205,0.25)]">
-                    <p className="text-[9px] font-black uppercase tracking-[0.18em] text-brand-300">
+                  <div className="absolute left-0 bottom-0 z-30 w-40 rounded-md border border-white/15 bg-stone-950 px-3 py-2.5 text-center">
+                    <p className="text-[9px] font-black uppercase tracking-[0.18em] text-stone-400">
                       {t.studyGroups.weeklyGoalTitle}
                     </p>
                     <p className="text-sm font-black text-white mt-0.5 tabular-nums">
                       {format(t.studyGroups.weeklyGoalXp, { current: myRoom.weekly_xp_progress, goal: myRoom.weekly_xp_goal })}
                     </p>
-                    <div className="mt-1.5 h-1.5 rounded-full bg-stone-800 overflow-hidden">
+                    <div className="mt-1.5 h-1.5 rounded-xs bg-stone-800 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-brand-400 transition-all duration-500"
+                        className="h-full rounded-xs bg-brand-400 transition-all duration-500"
                         style={{
                           width: `${Math.min(
                             100,
@@ -1688,12 +1696,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         void handleClaimGroupReward();
                       }}
                       disabled={!allMissionsDone || rewardClaimed || claimingReward}
-                      className={`mt-2 w-full inline-flex items-center justify-center gap-1 text-[10px] font-extrabold px-2 py-1 rounded-full border transition-all cursor-pointer ${
+                      className={`mt-2 w-full inline-flex items-center justify-center gap-1 text-[10px] font-extrabold px-2 py-1 rounded-sm border transition-colors cursor-pointer ${
                         rewardClaimed || isChestUnlocked
-                          ? "bg-amber-500 text-stone-950 border-amber-300 shadow-md"
+                          ? "bg-brand-600 text-white border-brand-500"
                           : !allMissionsDone
-                          ? "bg-stone-900/90 text-stone-500 border-stone-700 cursor-not-allowed"
-                          : "bg-brand-950/90 text-brand-300 border-brand-400/40 hover:bg-brand-800"
+                          ? "bg-stone-950 text-stone-500 border-stone-800 cursor-not-allowed"
+                          : "bg-white text-stone-950 border-white hover:bg-brand-300"
                       }`}
                     >
                       {rewardClaimed || isChestUnlocked
@@ -1850,7 +1858,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 }
                           }
                           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                          className="w-16 h-7 mx-auto rounded-b-[32px] bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-600 shadow-[0_10px_60px_rgba(65, 122, 205,0.36)]"
+                          className="w-16 h-7 mx-auto rounded-b-[32px] bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-600"
                         />
                         <div className="w-7 h-2.5 mx-auto -mt-1 rounded-full bg-brand-200/90 blur-[5px]" />
                       </div>
@@ -1915,12 +1923,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 ? format(t.studyGroups.pylonAriaLit, { name: node.name })
                                 : format(t.studyGroups.pylonAriaUnlit, { name: node.name })
                             }
-                            className={`flex flex-col items-center gap-1 px-2.5 py-1.5 rounded-xl border backdrop-blur-md text-[9px] font-black shadow-lg cursor-pointer transition-all hover:scale-110 ${
+                            className={`flex flex-col items-center gap-1 px-2.5 py-1.5 rounded-sm border text-[9px] font-black cursor-pointer transition-all hover:scale-110 ${
                               isActive
-                                ? "border-brand-300 bg-brand-900/90 text-brand-200 shadow-[0_0_24px_rgba(65, 122, 205,0.6)]"
+                                ? "border-brand-300 bg-brand-900 text-brand-100"
                                 : isLit
-                                ? "border-brand-400/70 bg-brand-950/90 text-brand-300 shadow-[0_0_14px_rgba(65, 122, 205,0.35)]"
-                                : "border-brand-500/40 bg-stone-900/90 text-brand-300"
+                                ? "border-brand-400 bg-stone-950 text-brand-300"
+                                : "border-white/15 bg-stone-950 text-stone-300"
                             }`}
                           >
                             <node.icon className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden />
@@ -2006,7 +2014,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                         chair legs through the floor for as
                                         long as it was shown, then snap back. */}
                                     {isArriving && (
-                                      <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-1.5 py-px rounded-full bg-amber-400 text-stone-950 text-[8px] font-black whitespace-nowrap shadow-md">
+                                      <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-1.5 py-px rounded-xs bg-white text-stone-950 text-[8px] font-black whitespace-nowrap">
                                         {t.studyGroups.justJoined}
                                       </span>
                                     )}
@@ -2020,14 +2028,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                         pushed them off the bottom of the stage.
                                         Up here they have empty air to live in. */}
                                     <div className="mb-0.5 flex items-center gap-1">
-                                      <span className="px-1.5 py-0.5 rounded-full bg-brand-600 text-[9px] font-black text-white">
+                                      <span className="px-1.5 py-0.5 rounded-xs border border-white/15 bg-stone-950 text-[9px] font-black tabular-nums text-stone-100">
                                         {format(t.studyGroups.levelShort, { level: member.current_level })}
                                       </span>
-                                      <span className="inline-flex items-center gap-0.5 text-[9px] font-black text-brand-300 whitespace-nowrap">
+                                      <span className="inline-flex items-center gap-0.5 text-[9px] font-black tabular-nums text-stone-300 whitespace-nowrap">
                                         <Flame className="w-2.5 h-2.5" strokeWidth={2} aria-hidden /> {member.weekly_lessons}
                                       </span>
                                     </div>
-                                    <span className="mb-1 text-[9px] font-black text-amber-300 truncate max-w-[100px]">
+                                    <span className="mb-1 text-[9px] font-black text-stone-400 truncate max-w-[100px]">
                                       {memberRole(member)}
                                     </span>
 
@@ -2037,12 +2045,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                         one unreadable pile at any camera angle.
                                         The full name is still in the title. */}
                                     <div
-                                      className={`mb-1 max-w-[104px] px-2 py-0.5 rounded-full border shadow-md ${
+                                      className={`mb-1 max-w-[104px] px-2 py-0.5 rounded-sm border ${
                                         isArriving
-                                          ? "bg-amber-400 border-amber-200 text-stone-950"
+                                          ? "bg-white border-white text-stone-950"
                                           : isMe
                                           ? "bg-brand-500 border-brand-300 text-stone-950"
-                                          : "bg-stone-900/95 border-stone-700 text-white"
+                                          : "bg-stone-950 border-stone-700 text-white"
                                       }`}
                                       title={member.full_name || t.studyGroups.memberRole}
                                     >
@@ -2056,7 +2064,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                     <div className="relative">
                                       {idx === 0 && (
                                         <span
-                                          className="absolute -top-4 left-1/2 -translate-x-1/2 text-amber-400 animate-bounce"
+                                          className="absolute -top-4 left-1/2 -translate-x-1/2 text-amber-400"
                                           title={t.studyGroups.topLessonTitle}
                                         >
                                           <Crown className="w-4 h-4" strokeWidth={2} aria-hidden />
@@ -2070,7 +2078,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                         <span className="absolute -inset-2 rounded-full bg-brand-400/40 blur-md animate-pulse pointer-events-none" />
                                       )}
                                       <div
-                                        className={`relative rounded-full p-0.5 bg-stone-900 shadow-[0_8px_18px_rgba(0,0,0,0.7)] ${
+                                        className={`relative rounded-full p-0.5 bg-stone-900 ${
                                           isSpeaking
                                             ? "ring-[3px] ring-brand-300"
                                             : isMe
@@ -2082,7 +2090,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       </div>
                                       {inVoice && (
                                         <span
-                                          className="absolute -right-1 -bottom-1 w-4 h-4 rounded-full bg-brand-600 border border-brand-300 text-white flex items-center justify-center shadow-md"
+                                          className="absolute -right-1 -bottom-1 w-4 h-4 rounded-full bg-brand-600 border border-brand-300 text-white flex items-center justify-center"
                                           title={t.studyGroups.inVoiceTitle}
                                         >
                                           <Mic className="w-2.5 h-2.5" strokeWidth={2.25} aria-hidden />
@@ -2092,7 +2100,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                                     {/* Shoulders / torso */}
                                     <div
-                                      className={`-mt-2 w-[56px] h-[44px] rounded-t-[28px] rounded-b-sm border-t border-x shadow-[0_10px_20px_rgba(0,0,0,0.6)] ${
+                                      className={`-mt-2 w-[56px] h-[44px] rounded-t-[28px] rounded-b-sm border-t border-x ${
                                         isMe
                                           ? "bg-gradient-to-b from-brand-500 to-brand-700 border-brand-300"
                                           : "bg-gradient-to-b from-stone-600 to-stone-800 border-stone-500"
@@ -2150,52 +2158,47 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               <div
                 className={`lg:col-span-5 ${
                   mobileTab === "chat" ? "flex" : "hidden lg:flex"
-                } flex-col h-[78vh] min-h-[560px] sm:min-h-[640px] flex-1 bg-white dark:bg-stone-900 border border-line rounded-2xl overflow-hidden shadow-xl p-3 sm:p-3.5`}
+                } flex-col h-[78vh] min-h-[560px] sm:min-h-[640px] flex-1 bg-white dark:bg-stone-900 border border-line-strong rounded-md overflow-hidden p-3 sm:p-3.5`}
               >
                 {/* Sub-tab Navigation Header */}
-                <div className="flex items-center justify-between border-b border-line pb-2 mb-2 shrink-0">
-                  <div className="flex items-center gap-1 bg-surface-raised p-0.5 rounded-xl border border-line-mid text-[10px] font-black">
+                <div className="flex items-end justify-between border-b border-line-strong mb-2 shrink-0">
+                  <div className="flex items-center gap-4">
                     <button
                       type="button"
                       onClick={() => setChatSubTab("chat")}
-                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                        chatSubTab === "chat" ? "bg-white dark:bg-stone-900 text-accent shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
-                      }`}
+                      className={`${tabClass(chatSubTab === "chat")} cursor-pointer`}
                     >
                       {t.studyGroups.chatTab}
                     </button>
                     <button
                       type="button"
                       onClick={() => setChatSubTab("notes")}
-                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                        chatSubTab === "notes" ? "bg-white dark:bg-stone-900 text-accent shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
-                      }`}
+                      className={`${tabClass(chatSubTab === "notes")} cursor-pointer`}
                     >
                       {format(t.studyGroups.notesTab, { count: stickyNotes.length })}
                     </button>
                     <button
                       type="button"
                       onClick={() => setChatSubTab("quiz")}
-                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                        chatSubTab === "quiz" ? "bg-white dark:bg-stone-900 text-accent shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
-                      }`}
+                      className={`${tabClass(chatSubTab === "quiz")} cursor-pointer`}
                     >
                       {t.studyGroups.quizTab}
                     </button>
                   </div>
-                  <span className="text-[10px] font-bold text-accent bg-brand-50 dark:bg-brand-950/60 px-2 py-0.5 rounded-full border border-accent-line">
+                  <span className="inline-flex items-center gap-1.5 pb-2 text-[10px] font-bold text-accent">
+                    <StatusDot />
                     {t.studyGroups.live}
                   </span>
                 </div>
                 {chatSubTab === "chat" && (
                   <div className="flex-1 flex flex-col min-h-0">
-                    <div className="mb-2 px-2.5 py-1 rounded-xl bg-brand-50 dark:bg-brand-950/30 border border-accent-line shrink-0 text-[10px] text-accent-ink font-semibold flex items-center gap-1">
+                    <div className="mb-2 px-2.5 py-1 rounded-sm bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong shrink-0 text-[10px] text-ink-soft font-semibold flex items-center gap-1">
                       <Lightbulb className="w-3 h-3 shrink-0" strokeWidth={2} aria-hidden />
                       <span>{t.studyGroups.chatCheckinHint}</span>
                     </div>
                     {pinnedMessage && (
-                      <div className="mb-2 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-warn-line shrink-0">
-                        <p className="text-[9px] font-extrabold text-warn-strong">{t.studyGroups.pinnedByAdmin}</p>
+                      <div className="mb-2 px-3 py-1.5 rounded-sm bg-white dark:bg-stone-950 border border-line-strong border-l-2 border-l-stone-950 dark:border-l-stone-200 shrink-0">
+                        <p className="text-[9px] font-extrabold text-ink-muted">{t.studyGroups.pinnedByAdmin}</p>
                         <p className="text-[11px] text-ink-heading leading-snug truncate">{pinnedMessage.content}</p>
                       </div>
                     )}
@@ -2203,14 +2206,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     <div
                       ref={scrollBoxRef}
                       onScroll={handleMessagesScroll}
-                      className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-line bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5"
+                      className="flex-1 min-h-0 overflow-y-auto rounded-md border border-line-strong bg-[#fbfaf7] dark:bg-stone-950 p-3 space-y-2.5"
                     >
               {hasOlderMessages && (
                 <div className="flex justify-center pb-1">
                   <button
                     onClick={() => void loadOlderMessages()}
                     disabled={loadingOlder}
-                    className="px-3 py-1 rounded-full bg-white dark:bg-stone-900 border border-line-mid text-[10px] font-black text-ink-muted hover:text-brand-600 disabled:opacity-60 cursor-pointer"
+                    className="px-3 py-1 rounded-sm bg-white dark:bg-stone-900 border border-line-mid text-[10px] font-black text-ink-muted hover:text-brand-600 disabled:opacity-60 cursor-pointer"
                   >
                     {loadingOlder ? t.studyGroups.loading : t.studyGroups.loadOlder}
                   </button>
@@ -2225,8 +2228,8 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   if (msg.is_bot) {
                     return (
                       <div key={msg.id} className="flex justify-start">
-                        <div className="max-w-[85%] rounded-xl px-3 py-2 bg-amber-50 dark:bg-amber-950/30 border border-warn-line">
-                          <p className="text-[10px] font-extrabold text-warn-strong mb-0.5">{t.studyGroups.byAdmin}</p>
+                        <div className="max-w-[85%] rounded-md px-3 py-2 bg-[#f3f1ec] dark:bg-stone-900 border border-line-strong">
+                          <p className="text-[10px] font-extrabold text-ink-muted mb-0.5">{t.studyGroups.byAdmin}</p>
                           <p className="text-sm break-words text-ink-heading">{renderBotMessage(msg.content, t.groupChat, format)}</p>
                         </div>
                       </div>
@@ -2260,19 +2263,19 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       id={`room-msg-${msg.id}`}
                       className={`group relative flex flex-col transition-colors duration-500 ${
                         isMine ? "items-end" : "items-start"
-                      } ${highlightedMsgId === msg.id ? "bg-brand-500/15 rounded-2xl -mx-1 px-1 py-0.5" : ""} ${
+                      } ${highlightedMsgId === msg.id ? "bg-brand-500/15 rounded-md -mx-1 px-1 py-0.5" : ""} ${
                         isPending && !hasFailed ? "opacity-60" : ""
                       }`}
                     >
                       <div className={`flex items-center gap-1.5 max-w-[85%] w-fit min-w-0 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
-                        <div className={`relative rounded-2xl px-3.5 py-2 shadow-2xs w-fit ${
+                        <div className={`relative rounded-md px-3.5 py-2 w-fit ${
                           isDragon
-                            ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-tr-xs border-2 border-amber-400 shadow-[0_0_12px_rgba(249,115,22,0.7)]"
+                            ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-tr-xs border-2 border-amber-400"
                             : isDiamond
-                            ? "bg-gradient-to-r from-cyan-600 via-brand-600 to-brand-600 text-white rounded-tr-xs border-2 border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.7)]"
+                            ? "bg-gradient-to-r from-cyan-600 via-brand-600 to-brand-600 text-white rounded-tr-xs border-2 border-cyan-300"
                             : isMine
                             ? "bg-surface-invert text-ink-invert rounded-tr-xs"
-                            : "bg-white dark:bg-stone-900 border border-line text-ink rounded-tl-xs"
+                            : "bg-white dark:bg-stone-900 border border-line-strong text-ink rounded-tl-xs"
                         }`}>
                           {!isMine && (
                             <p className="text-[10px] font-bold text-accent mb-0.5">
@@ -2292,7 +2295,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                 window.setTimeout(() => setHighlightedMsgId((cur) => (cur === repliedTo.id ? null : cur)), 1600);
                               }}
                               disabled={!repliedTo}
-                              className="mb-1.5 w-full text-left p-1.5 rounded-lg border-l-2 border-brand-400 bg-brand-500/10 text-[11px] font-medium leading-snug disabled:cursor-default"
+                              className="mb-1.5 w-full text-left p-1.5 rounded-sm border-l-2 border-brand-400 bg-brand-500/10 text-[11px] font-medium leading-snug disabled:cursor-default"
                             >
                               {repliedTo ? (
                                 <>
@@ -2320,7 +2323,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         <div className="relative">
                           <button
                             onClick={() => setActiveMenuMsgId(activeMenuMsgId === msg.id ? null : msg.id)}
-                            className={`${isMine ? "opacity-70" : "opacity-0"} group-hover:opacity-100 transition-all duration-200 p-1.5 rounded-full hover:bg-surface-sunken text-ink-muted cursor-pointer shadow-xs bg-white/90 dark:bg-stone-800/90 border border-stone-200/80 dark:border-stone-700 hover:scale-105`}
+                            className={`${isMine ? "opacity-70" : "opacity-0"} group-hover:opacity-100 transition-all duration-200 p-1.5 rounded-sm hover:bg-surface-sunken text-ink-muted cursor-pointer bg-white dark:bg-stone-800 border border-line-strong`}
                             title={t.chat.optionsTitle}
                           >
                             <MoreVertical className="w-3.5 h-3.5" />
@@ -2328,9 +2331,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
                           {/* 3-Dots Dropdown Popup Menu */}
                           {activeMenuMsgId === msg.id && (
-                            <div className={`absolute top-full mt-1 z-50 min-w-[165px] bg-white dark:bg-stone-900 rounded-2xl p-1.5 shadow-xl border border-line backdrop-blur-md text-xs space-y-1 ${isMine ? "right-0" : "left-0"}`}>
+                            <div className={`absolute top-full mt-1 z-50 min-w-[165px] bg-white dark:bg-stone-900 rounded-md p-1.5 border border-line-strong text-xs space-y-1 ${isMine ? "right-0" : "left-0"}`}>
                               {/* Quick Emoji Reaction Row */}
-                              <div className="flex items-center justify-between px-2 py-1 bg-stone-50 dark:bg-stone-800/60 rounded-xl mb-1 border border-stone-100 dark:border-stone-700/50">
+                              <div className="flex items-center justify-between px-2 py-1 bg-[#f3f1ec] dark:bg-stone-950 rounded-sm mb-1 border border-line">
                                 {REACTION_EMOJIS.map((emoji) => (
                                   <button
                                     key={emoji}
@@ -2351,9 +2354,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   setReplyingTo({ id: msg.id, senderName: isMine ? t.chat.you : senderName, content: msg.content });
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-brand-50 dark:hover:bg-brand-950/40 text-ink-heading font-bold transition-colors text-left"
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-sm hover:bg-surface-raised text-ink-heading font-bold transition-colors text-left"
                               >
-                                <CornerUpLeft className="w-3.5 h-3.5 text-accent" />
+                                <CornerUpLeft className="w-3.5 h-3.5 text-ink-muted" />
                                 <span>{t.chat.reply}</span>
                               </button>
 
@@ -2362,9 +2365,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   void togglePinMessage(msg);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/40 text-ink-heading font-bold transition-colors text-left"
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-sm hover:bg-surface-raised text-ink-heading font-bold transition-colors text-left"
                               >
-                                {msg.is_pinned ? <PinOff className="w-3.5 h-3.5 text-warn" /> : <Pin className="w-3.5 h-3.5 text-warn" />}
+                                {msg.is_pinned ? <PinOff className="w-3.5 h-3.5 text-ink-muted" /> : <Pin className="w-3.5 h-3.5 text-ink-muted" />}
                                 <span>{msg.is_pinned ? t.chat.unpin : t.chat.pin}</span>
                               </button>
 
@@ -2373,9 +2376,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                   void copyMessageText(mainText || msg.content);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left"
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-sm hover:bg-surface-raised text-ink-heading font-bold transition-colors text-left"
                               >
-                                <Copy className="w-3.5 h-3.5 text-info" />
+                                <Copy className="w-3.5 h-3.5 text-ink-muted" />
                                 <span>{t.chat.copy}</span>
                               </button>
 
@@ -2388,9 +2391,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                     setReplyingTo(null);
                                     setActiveMenuMsgId(null);
                                   }}
-                                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/40 text-ink-heading font-bold transition-colors text-left"
+                                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-sm hover:bg-surface-raised text-ink-heading font-bold transition-colors text-left"
                                 >
-                                  <Pencil className="w-3.5 h-3.5 text-info" />
+                                  <Pencil className="w-3.5 h-3.5 text-ink-muted" />
                                   <span>{t.chat.edit}</span>
                                 </button>
 
@@ -2405,7 +2408,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                       toast.error(translateApiError(t, err) ?? t.chat.recallFailed);
                                     }
                                   }}
-                                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/40 text-alert font-bold transition-colors text-left"
+                                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-sm hover:bg-rose-50 dark:hover:bg-rose-950/40 text-alert font-bold transition-colors text-left"
                                 >
                                   <Trash2 className="w-3.5 h-3.5 text-rose-500" />
                                   <span>{t.chat.recall}</span>
@@ -2455,14 +2458,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                               <button
                                 key={emoji}
                                 onClick={() => void toggleReaction(msg.id, emoji)}
-                                className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all ${
+                                className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-sm border transition-colors ${
                                   hasMyReaction
-                                    ? "bg-accent-soft border-brand-300 text-accent-strong shadow-2xs"
+                                    ? "bg-accent-soft border-brand-300 text-accent-strong"
                                     : "bg-white dark:bg-stone-900 border-line text-ink-body"
                                 }`}
                               >
                                 <span>{emoji}</span>
-                                <span>{count}</span>
+                                <span className="font-mono tabular-nums">{count}</span>
                               </button>
                             );
                           })}
@@ -2489,7 +2492,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
                   setHasUnseenBelow(false);
                 }}
-                className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3 py-1.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white text-[10px] font-black shadow-lg cursor-pointer"
+                className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3 py-1.5 rounded-sm bg-brand-600 hover:bg-brand-700 text-white text-[10px] font-black cursor-pointer"
               >
                 {t.studyGroups.newMessages}
               </button>
@@ -2498,14 +2501,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             {/* Replying Banner Preview */}
             {replyingTo && (
-              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-brand-50 dark:bg-brand-950/40 border border-accent-line text-xs text-ink-heading mt-2">
+              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-sm bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong border-l-2 border-l-brand-500 text-xs text-ink-heading mt-2">
                 <div className="min-w-0 flex-1">
                   <span className="font-bold text-accent">{format(t.chat.replyingTo, { name: replyingTo.senderName })}</span>
                   <p className="truncate text-[11px] text-ink-soft mt-0.5">{replyingTo.content}</p>
                 </div>
                 <button
                   onClick={() => setReplyingTo(null)}
-                  className="text-stone-400 hover:text-ink-body p-1 rounded-full cursor-pointer"
+                  className="text-stone-400 hover:text-ink-body p-1 rounded-sm cursor-pointer"
                   title={t.chat.cancelReply}
                 >
                   <X className="w-3.5 h-3.5" />
@@ -2513,9 +2516,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             )}
             {editingMessage && (
-              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-xs text-ink-heading mt-2">
+              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-sm bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong border-l-2 border-l-stone-950 dark:border-l-stone-200 text-xs text-ink-heading mt-2">
                 <div className="min-w-0 flex-1">
-                  <span className="font-bold text-info">{t.chat.editing}</span>
+                  <span className="font-bold text-ink">{t.chat.editing}</span>
                   <p className="truncate text-[11px] text-ink-soft mt-0.5">{editingMessage.content}</p>
                 </div>
                 <button
@@ -2523,7 +2526,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     setEditingMessage(null);
                     setMessageInput("");
                   }}
-                  className="text-stone-400 hover:text-ink-body p-1 rounded-full cursor-pointer"
+                  className="text-stone-400 hover:text-ink-body p-1 rounded-sm cursor-pointer"
                   title={t.chat.cancelEdit}
                 >
                   <X className="w-3.5 h-3.5" />
@@ -2550,12 +2553,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       : t.studyGroups.chatPlaceholder
                 }
                 maxLength={2000}
-                className="flex-1 px-3.5 py-2.5 rounded-xl border border-line bg-white dark:bg-stone-900 text-sm text-ink placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-400/50"
+                className="flex-1 px-3.5 py-2.5 rounded-sm border border-line-strong bg-white dark:bg-stone-900 text-sm text-ink placeholder:text-stone-400 focus:outline-none focus:border-brand-500"
               />
               <button
                 onClick={() => void handleSendMessage()}
                 disabled={sendingMessage || !messageInput.trim()}
-                className="shrink-0 w-10 h-10 rounded-xl bg-surface-invert text-ink-invert flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40"
+                className="shrink-0 w-10 h-10 rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 flex items-center justify-center hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors disabled:opacity-40"
                 aria-label={t.chat.sendAria}
               >
                 <Send className="w-4 h-4" />
@@ -2572,12 +2575,12 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 value={newNoteText}
                 onChange={(e) => setNewNoteText(e.target.value)}
                 placeholder={t.studyGroups.notePlaceholder}
-                className="flex-1 px-3 py-2 rounded-xl border border-line bg-surface text-xs text-ink placeholder:text-stone-400 focus:outline-none"
+                className="flex-1 px-3 py-2 rounded-sm border border-line-strong bg-surface text-xs text-ink placeholder:text-stone-400 focus:outline-none focus:border-brand-500"
               />
               <button
                 type="button"
                 onClick={() => void handleAddNote()}
-                className="px-3 py-2 rounded-xl bg-brand-600 text-white font-black text-xs hover:bg-brand-500 cursor-pointer shrink-0"
+                className="px-3 py-2 rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 font-black text-xs hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors cursor-pointer shrink-0"
               >
                 {t.studyGroups.noteAdd}
               </button>
@@ -2585,7 +2588,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             <div className="flex-1 overflow-y-auto space-y-2.5 pr-1">
               {stickyNotes.length === 0 ? (
-                <div className="h-full min-h-[180px] rounded-2xl border border-dashed border-line-strong bg-surface flex items-center justify-center text-center px-6">
+                <div className="h-full min-h-[180px] rounded-md border border-dashed border-line-strong bg-surface flex items-center justify-center text-center px-6">
                   <p className="text-xs font-bold text-ink-muted">
                     {t.studyGroups.notesEmpty}
                   </p>
@@ -2595,7 +2598,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   const author = memberById.get(note.author_id);
                   const isAuthor = note.author_id === user?.id;
                   return (
-                    <div key={note.id} className={`p-3 rounded-2xl border ${noteColorClass(note.color)} text-xs space-y-1 shadow-xs`}>
+                    <div key={note.id} className={`p-3 rounded-md border ${noteColorClass(note.color)} text-xs space-y-1`}>
                       <div className="flex items-center justify-between gap-2 font-black text-[10px] opacity-80">
                         <span className="truncate inline-flex items-center gap-1"><Pin className="w-3 h-3 shrink-0" strokeWidth={2} aria-hidden /> {isAuthor ? t.studyGroups.noteAuthorYou : author?.full_name || t.studyGroups.memberRole}</span>
                         <span className="shrink-0">{formatShortTime(note.created_at)}</span>
@@ -2621,10 +2624,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
         {chatSubTab === "quiz" && (
           <div className="flex-1 flex flex-col min-h-0 overflow-y-auto p-1 space-y-3">
-            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-brand-500/15 to-brand-500/15 border border-amber-500/40 text-xs space-y-1 shrink-0">
+            <div className="p-3.5 rounded-md bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong text-xs space-y-1 shrink-0">
               <p className="font-black text-ink flex items-center gap-1.5">
                 <span>{t.studyGroups.quizChallengeTitle}</span>
-                <span className="px-2 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[9px]">{t.studyGroups.quizReward}</span>
+                <span className="px-2 py-0.5 rounded-sm border border-line-strong bg-white dark:bg-stone-900 text-ink-body text-[9px]">{t.studyGroups.quizReward}</span>
               </p>
               <p className="text-ink-soft text-[11px]">
                 {t.studyGroups.quizHint}
@@ -2634,16 +2637,16 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {!groupQuizSubmitted ? (
               <div className="space-y-4">
                 {loadingGroupQuiz ? (
-                  <div className="rounded-2xl border border-line bg-surface p-6 text-center text-xs font-bold text-stone-500">
+                  <div className="rounded-md border border-line-strong bg-surface p-6 text-center text-xs font-bold text-ink-muted">
                     {t.studyGroups.quizLoading}
                   </div>
                 ) : groupQuizQuestions.length === 0 ? (
-                  <div className="rounded-2xl border border-dashed border-line-strong bg-surface p-6 text-center text-xs font-bold text-stone-500">
+                  <div className="rounded-md border border-dashed border-line-strong bg-surface p-6 text-center text-xs font-bold text-ink-muted">
                     {t.studyGroups.quizEmpty}
                   </div>
                 ) : (
                   groupQuizQuestions.map((q, qIdx) => (
-                    <div key={`${q.lessonId}-${qIdx}`} className="p-3 rounded-2xl border border-line bg-stone-50 dark:bg-stone-950/50 space-y-2 text-xs">
+                    <div key={`${q.lessonId}-${qIdx}`} className="p-3 rounded-md border border-line-strong bg-[#fbfaf7] dark:bg-stone-950 space-y-2 text-xs">
                       <p className="font-black text-ink">
                         {format(t.studyGroups.quizQuestion, { index: qIdx + 1, question: q.question })}
                       </p>
@@ -2653,10 +2656,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             key={optIdx}
                             type="button"
                             onClick={() => setGroupQuizAnswers((prev) => ({ ...prev, [qIdx]: optIdx }))}
-                            className={`w-full text-left p-2 rounded-xl text-[11px] font-bold border transition-all cursor-pointer ${
+                            className={`w-full text-left p-2 rounded-sm text-[11px] font-bold border transition-colors cursor-pointer ${
                               groupQuizAnswers[qIdx] === optIdx
-                                ? "bg-brand-500 text-stone-950 border-brand-400 font-black"
-                                : "bg-white dark:bg-stone-900 border-line text-ink-body"
+                                ? "bg-brand-600 text-white border-brand-600 font-black"
+                                : "bg-white dark:bg-stone-900 border-line-strong text-ink-body hover:border-stone-500"
                             }`}
                           >
                             {opt}
@@ -2671,14 +2674,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   type="button"
                   onClick={() => void handleSubmitGroupQuiz()}
                   disabled={loadingGroupQuiz || groupQuizQuestions.length === 0 || Object.keys(groupQuizAnswers).length < groupQuizQuestions.length}
-                  className="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 disabled:opacity-40 text-white font-black text-xs transition-all cursor-pointer shadow-md"
+                  className={`${btnPrimary} w-full cursor-pointer`}
                 >
                   {t.studyGroups.quizSubmit}
                 </button>
               </div>
             ) : (
               <div className="py-6 text-center space-y-3">
-                <div className="mx-auto w-fit rounded-xl bg-accent-soft text-accent p-2.5">
+                <div className="mx-auto w-fit rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 text-ink-body p-2.5">
                   {groupQuizScore && groupQuizScore >= 80 ? (
                     <Gift className="w-8 h-8" strokeWidth={1.5} aria-hidden />
                   ) : (
@@ -2697,14 +2700,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     setGroupQuizSubmitted(false);
                     setGroupQuizAnswers({});
                   }}
-                  className="px-4 py-2 rounded-xl bg-surface-invert text-ink-invert text-xs font-black cursor-pointer"
+                  className={`${btnPrimary} cursor-pointer`}
                 >
                   {t.studyGroups.quizRetry}
                 </button>
               </div>
             )}
             {quizAttempts.length > 0 && (
-              <div className="rounded-2xl border border-line bg-stone-50 dark:bg-stone-950/50 p-3 space-y-2">
+              <div className="rounded-md border border-line-strong bg-[#fbfaf7] dark:bg-stone-950 p-3 space-y-2">
                 <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">{t.studyGroups.quizWeeklyScores}</p>
                 {quizAttempts.slice(0, 5).map((attempt) => {
                   const member = memberById.get(attempt.user_id);
@@ -2713,7 +2716,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       <span className="font-bold text-ink-body truncate">
                         {attempt.user_id === user?.id ? t.studyGroups.noteAuthorYou : member?.full_name || t.studyGroups.memberRole}
                       </span>
-                      <span className="font-black text-accent shrink-0">
+                      <span className="font-mono font-black tabular-nums text-ink-max shrink-0">
                         {attempt.score}/{attempt.total} · {attempt.percent}%
                       </span>
                     </div>
@@ -2736,14 +2739,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
           Giờ nó đọc đúng thứ phòng thật sự có: nhiệm vụ tuần và chủ đề phòng.
           Không có khái niệm "bài học của phòng hôm nay" trong dữ liệu, nên
           không dựng ra một cái. */}
-            <div className="bg-gradient-to-r from-brand-950 via-stone-900 to-brand-950 border border-brand-500/30 rounded-2xl p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white shadow-lg">
+            <div className="bg-stone-950 border border-stone-800 rounded-md p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
               <div className="flex items-center gap-3 min-w-0">
-                <span className="w-9 h-9 rounded-xl bg-brand-500/20 text-brand-400 border border-brand-400/40 flex items-center justify-center shrink-0 shadow-xs">
+                <span className="w-9 h-9 rounded-sm text-stone-300 border border-white/15 flex items-center justify-center shrink-0">
                   <Target className="w-5 h-5" strokeWidth={1.75} aria-hidden />
                 </span>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-[9px] font-black uppercase tracking-widest text-brand-400 bg-brand-950 px-2 py-0.5 rounded-full border border-brand-500/40">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-stone-400">
                       {t.studyGroups.roomGoalTitle}
                     </span>
                   </div>
@@ -2769,7 +2772,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
               <Link
                 href="/hoc-bai"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-400 text-stone-950 font-black px-4 py-2 rounded-xl text-xs transition-all shadow-md active:scale-95 shrink-0 cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-brand-300 text-stone-950 font-black px-4 py-2 rounded-sm text-xs transition-colors shrink-0 cursor-pointer"
               >
                 <span>{t.studyGroups.studyNow}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -2778,20 +2781,21 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
           </div>
         ) : (
           <div className="space-y-6">
-            <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
-              <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest mb-1">
-                {t.studyGroups.matchRandom}
-              </h2>
-              <p className="text-xs text-ink-muted mb-4">
-                {t.studyGroups.matchRandomHint}
-              </p>
+            <div className={`${panel} p-6`}>
+              <SectionHead
+                code={SYS.match}
+                title={t.studyGroups.matchRandom}
+                sub={t.studyGroups.matchRandomHint}
+                size="sm"
+                className="mb-4"
+              />
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {STUDY_ROOM_TOPICS.map((t) => (
                   <button
                     key={t.id}
                     onClick={() => void handleRandomMatch(t.id)}
                     disabled={busy}
-                    className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-surface-invert text-ink-invert text-sm font-bold hover:opacity-90 transition-opacity disabled:opacity-60"
+                    className={btnPrimary}
                   >
                     <Shuffle className="w-4 h-4" />
                     {t.label}
@@ -2800,21 +2804,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             </div>
 
-            <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-2xl p-6">
-              <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
-                <h2 className="text-sm font-extrabold text-ink uppercase tracking-widest">
-                  {t.studyGroups.orPickRoom}
-                </h2>
-                <div className="flex gap-1 bg-surface-raised rounded-lg p-1">
+            <div className={`${panel} p-6`}>
+              <SectionHead code={SYS.rooms} title={t.studyGroups.orPickRoom} size="sm" />
+              <div className="mt-3 mb-4">
+                <div className="flex flex-wrap gap-x-4 gap-y-1 border-b border-line-strong">
                   {STUDY_ROOM_TOPICS.map((t) => (
                     <button
                       key={t.id}
                       onClick={() => setBrowseTopic(t.id)}
-                      className={`text-xs font-bold px-2.5 py-1.5 rounded-md transition-all ${
-                        browseTopic === t.id
-                          ? "bg-white dark:bg-stone-900 text-ink shadow-sm"
-                          : "text-ink-muted hover:text-ink-heading"
-                      }`}
+                      className={tabClass(browseTopic === t.id)}
                     >
                       {t.label}
                     </button>
@@ -2833,7 +2831,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   {rooms.map((room) => (
                     <div
                       key={room.room_id}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3"
+                      className="flex items-center justify-between gap-3 rounded-sm border border-line-strong px-4 py-3"
                     >
                       <div className="flex items-center gap-2 min-w-0">
                         <Users className="w-4 h-4 text-stone-400 shrink-0" />
@@ -2841,7 +2839,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           <p className="text-sm font-bold text-ink">
                             {format(t.studyGroups.roomCard, { id: room.room_id, count: room.member_count, max: room.max_members })}
                           </p>
-                          <p className="text-[11px] text-ink-faint">
+                          <p className="text-[11px] tabular-nums text-ink-faint">
                             {format(t.studyGroups.roomCardXp, { current: room.weekly_xp_progress, goal: room.weekly_xp_goal })}
                           </p>
                         </div>
@@ -2849,7 +2847,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       <button
                         onClick={() => void handleJoinRoom(room.room_id)}
                         disabled={busy}
-                        className="shrink-0 px-3.5 py-2 rounded-lg bg-surface-invert text-ink-invert text-xs font-bold hover:opacity-90 transition-opacity disabled:opacity-60"
+                        className="shrink-0 px-3.5 py-2 rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 text-xs font-bold hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors disabled:opacity-60"
                       >
                         {t.studyGroups.join}
                       </button>

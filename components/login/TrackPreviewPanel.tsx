@@ -2,11 +2,12 @@
 
 import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { PlayCircle, CheckCircle2, Flame } from "lucide-react";
+import { ArrowRight, PlayCircle } from "lucide-react";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { XP_PER_LESSON } from "@/lib/levels";
+import { Sys, StatusDot, btnPrimary, panel } from "@/components/ui/system";
 
 const TRACK_IDS = Object.keys(TRACKS) as TrackId[];
 
@@ -37,126 +38,113 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
     };
   }, [compact, setPreviewTrack]);
 
+  // Khuôn thanh tab của khung soạn thảo ở trang chủ: tab đang mở nền trắng
+  // liền với thân, tab khác nằm trên nền thanh tiêu đề #f3f1ec, gạch xanh 2px
+  // đánh dấu tab đang mở (xanh là chức năng). Không bóng, không viên thuốc.
   return (
-    <div className={`border border-stone-200/90 dark:border-stone-800 rounded-2xl overflow-hidden bg-white dark:bg-stone-900 shadow-md ${compact ? "mb-8" : ""}`}>
-      {/* Top Track Selection Tabs */}
-      <div className={`grid ${Object.keys(TRACKS).length === 3 ? "grid-cols-3" : "grid-cols-2"} border-b border-line-soft bg-stone-50/50 dark:bg-stone-950/40`}>
+    <div className={`${panel} overflow-hidden ${compact ? "mb-8" : ""}`}>
+      <div
+        className={`grid ${TRACK_IDS.length === 3 ? "grid-cols-3" : "grid-cols-2"} divide-x divide-stone-300 border-b border-stone-300 bg-[#f3f1ec] dark:divide-stone-700 dark:border-stone-700 dark:bg-stone-950`}
+      >
         {TRACK_IDS.map((id, index) => {
           const trackData = TRACKS[id];
           const isActive = previewTrack === id;
           return (
-            <motion.button
+            <button
               key={id}
+              type="button"
+              aria-pressed={isActive}
               onClick={() => setPreviewTrack(id)}
-              whileTap={{ scale: 0.98 }}
-              whileHover={{ y: -1 }}
-              className={`relative text-left transition-all cursor-pointer ${compact ? "px-3.5 py-2.5" : "px-5 py-3.5"} ${
+              className={`relative text-left transition-colors cursor-pointer ${compact ? "px-3.5 py-2.5" : "px-5 py-3.5"} ${
                 isActive
-                  ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-900 shadow-xs"
-                  : "bg-white/80 dark:bg-stone-900/60 text-ink-muted hover:bg-stone-100/60 dark:hover:bg-stone-800"
+                  ? "bg-white text-ink-max dark:bg-stone-900"
+                  : "text-ink-muted hover:text-ink"
               }`}
             >
               {id === "cfa" && (
-                <span className="absolute top-1.5 right-1.5 text-[9px] font-black text-white bg-indigo-500 px-1.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                <span className="absolute top-1.5 right-1.5 rounded-xs border border-stone-400 px-1 text-[9px] font-bold uppercase tracking-wider text-ink-soft dark:border-stone-600">
                   {t.trackPanel.isNew}
                 </span>
               )}
-              <div className={`font-black uppercase tracking-widest opacity-60 ${compact ? "text-[10px] mb-0.5" : "text-[11px] mb-1"}`}>
+              <div className={`font-bold uppercase tracking-[0.12em] text-ink-faint ${compact ? "text-[10px] mb-0.5" : "text-[11px] mb-1"}`}>
                 {t.trackPanel.trackPrefix} {index + 1}
               </div>
               <div className={`font-black ${compact ? "text-xs" : "text-sm"} leading-snug`}>{t.tracks[id].tab}</div>
               {trackData.estimatedHours > 0 && (
-                <div className={`opacity-70 font-semibold ${compact ? "text-[10px] mt-0.5" : "text-xs mt-0.5"}`}>{format(t.trackPanel.effortHours, { hours: trackData.estimatedHours })}</div>
+                <div className={`text-ink-muted font-semibold ${compact ? "text-[10px] mt-0.5" : "text-xs mt-0.5"}`}>{format(t.trackPanel.effortHours, { hours: trackData.estimatedHours })}</div>
               )}
               {isActive && (
                 <motion.div
-                  className="absolute inset-x-2 bottom-0 h-1 rounded-t-full bg-brand-400 dark:bg-brand-600"
+                  className="absolute inset-x-0 top-0 h-0.5 bg-brand-600 dark:bg-brand-500"
                   layoutId={compact ? "track-indicator-compact" : "track-indicator"}
                   transition={{ type: "spring", stiffness: 380, damping: 28 }}
                 />
               )}
-            </motion.button>
+            </button>
           );
         })}
       </div>
 
-      {/* Dynamic Content Panel */}
       <AnimatePresence mode="wait">
         <motion.div
           key={previewTrack}
-          initial={{ opacity: 0, y: compact ? 6 : 8, scale: 0.985 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: compact ? -6 : -8, scale: 0.985 }}
-          transition={{ duration: 0.28, ease: "easeOut" }}
+          initial={{ opacity: 0, y: compact ? 4 : 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: compact ? -4 : -6 }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
           className={compact ? "p-4 space-y-3" : "p-5 xl:p-6 space-y-4"}
         >
-          {/* Header Badge */}
-          <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-brand-700 dark:border-brand-900/50 dark:bg-brand-950/40 dark:text-brand-300">
+          <div className="flex items-center justify-between gap-3">
+            <span className="inline-flex items-center gap-1.5 rounded-sm border border-stone-300 px-1.5 py-0.5 text-[11px] font-bold text-ink-soft dark:border-stone-700">
+              <StatusDot />
               {t.trackPanel.standardised}
             </span>
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-warn bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900/50">
-              <Flame className="w-3 h-3 text-amber-500" />
+            <span className="text-[11px] font-bold tabular-nums text-ink-muted">
               {format(t.trackPanel.xpPerLesson, { xp: XP_PER_LESSON })}
             </span>
           </div>
 
-          <p className="text-xs sm:text-sm text-ink-soft leading-relaxed font-medium">
+          <p className="text-xs sm:text-sm text-ink-soft leading-relaxed">
             {track.description}
           </p>
 
-          {/* Animated Stage List with Checkmarks */}
           {!compact && t.tracks[previewTrack].stages.length > 0 && (
             <div className="space-y-1.5 pt-1">
-              <p className="text-[10px] font-black uppercase tracking-wider text-ink-faint">{t.trackPanel.stagesTitle}</p>
-              <div className="grid gap-1.5 sm:grid-cols-2">
+              <p className="eyebrow text-ink-muted">{t.trackPanel.stagesTitle}</p>
+              <ul className="grid gap-1.5 sm:grid-cols-2">
                 {t.tracks[previewTrack].stages.map((s, idx) => (
-                  <motion.div
+                  <li
                     key={s}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.25, delay: idx * 0.04 }}
-                    className="flex items-center gap-2 rounded-xl border border-line-soft bg-stone-50/70 dark:bg-stone-950/40 px-3 py-2 text-xs font-semibold text-ink-body"
+                    className="flex items-center gap-2 rounded-sm border border-stone-200 px-3 py-2 text-xs font-semibold text-ink-body dark:border-stone-800"
                   >
-                    <CheckCircle2 className="w-3.5 h-3.5 text-brand-500 shrink-0" />
+                    <Sys className="text-ink-faint">{String(idx + 1).padStart(2, "0")}</Sys>
                     <span className="truncate">{s}</span>
-                  </motion.div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           )}
 
-          {/* Action CTA Button */}
           <a
             href={track.previewSlug ? `/bai-hoc/${track.previewSlug}` : "/cfa"}
-            className={`cta-electric flex items-center justify-between gap-3 rounded-xl transition-all group bg-brand-600 hover:bg-brand-500 text-white shadow-md hover:shadow-lg active:scale-[0.99] ${
-              compact ? "px-4 py-3" : "px-5 py-3.5"
-            }`}
+            className={`${btnPrimary} w-full justify-between`}
           >
-            <div className="flex items-center gap-3 min-w-0">
-              <motion.div
-                animate={{ scale: [1, 1.12, 1] }}
-                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                className="flex-shrink-0"
-              >
-                <PlayCircle className={`text-white ${compact ? "w-5 h-5" : "w-6 h-6"}`} />
-              </motion.div>
-              <div className="min-w-0">
-                <div className={`font-black text-white/90 uppercase tracking-wider ${compact ? "text-[10px]" : "text-[11px]"}`}>
+            <span className="flex min-w-0 items-center gap-3">
+              <PlayCircle className={`shrink-0 ${compact ? "w-5 h-5" : "w-6 h-6"}`} />
+              <span className="min-w-0 text-left">
+                <span className={`block font-bold uppercase tracking-[0.12em] opacity-70 ${compact ? "text-[10px]" : "text-[11px]"}`}>
                   {track.previewSlug
                     ? compact
                       ? t.trackPanel.freeTryCompact
                       : t.trackPanel.freeTry
                     : t.trackPanel.previewOnly}
-                </div>
-                <div className={`font-black text-white truncate ${compact ? "text-xs" : "text-sm"}`}>
+                </span>
+                <span className={`block truncate font-black ${compact ? "text-xs" : "text-sm"}`}>
                   {t.tracks[previewTrack].previewLabel}
-                </div>
-              </div>
-            </div>
-            <span className="flex-shrink-0 text-white group-hover:translate-x-1 transition-transform text-lg font-black">
-              →
+                </span>
+              </span>
             </span>
+            <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
           </a>
         </motion.div>
       </AnimatePresence>

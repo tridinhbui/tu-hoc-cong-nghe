@@ -7,6 +7,7 @@ import { notifyLocalStorageChanged, useLocalStorageValue } from "@/lib/use-local
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { panel } from "@/components/ui/system";
 
 interface GoalSelectionBannerProps {
   userId: string;
@@ -22,24 +23,24 @@ export function goalsOf(t: Dictionary): { id: LearningGoal; name: string; desc: 
       name: d.personalFinance.name,
       desc: d.personalFinance.desc,
       icon: Wallet,
-      color: "text-blue-500",
-      bg: "bg-blue-50 dark:bg-blue-950/20"
+      color: "text-ink-soft",
+      bg: "border border-line-strong"
     },
     {
       id: "basic-investing",
       name: d.basicInvesting.name,
       desc: d.basicInvesting.desc,
       icon: TrendingUp,
-      color: "text-brand-500",
-      bg: "bg-brand-50 dark:bg-brand-950/20"
+      color: "text-ink-soft",
+      bg: "border border-line-strong"
     },
     {
       id: "corporate-finance",
       name: d.corporateFinance.name,
       desc: d.corporateFinance.desc,
       icon: Target,
-      color: "text-purple-500",
-      bg: "bg-purple-50 dark:bg-purple-950/20"
+      color: "text-ink-soft",
+      bg: "border border-line-strong"
     }
   ];
 }
@@ -77,20 +78,20 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
   const activeGoalInfo = GOALS.find((g) => g.id === selectedGoal);
 
   return (
-    <div className="bg-white dark:bg-stone-900 border border-line rounded-3xl overflow-hidden shadow-sm">
+    <div className={`${panel} overflow-hidden`}>
       {/* Active Goal Summary - Collapsible */}
       {!showSelector && activeGoalInfo ? (
         <>
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="w-full px-6 py-4.5 flex items-center justify-between flex-wrap gap-4 cursor-pointer hover:bg-stone-50 dark:hover:bg-stone-950/30 transition-colors"
+            className="w-full px-6 py-4.5 flex items-center justify-between flex-wrap gap-4 cursor-pointer hover:bg-surface transition-colors"
           >
             <div className="flex items-center gap-3">
-              <div className={`w-9 h-9 rounded-xl ${activeGoalInfo.bg} ${activeGoalInfo.color} flex items-center justify-center`}>
+              <div className={`w-9 h-9 rounded-sm ${activeGoalInfo.bg} ${activeGoalInfo.color} flex items-center justify-center`}>
                 <activeGoalInfo.icon className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[9px] font-extrabold uppercase tracking-widest text-ink-faint block">
+                <span className="eyebrow text-ink-faint block">
                   {t.dataRest.goalSelectionBanner.currentGoalLabel}
                 </span>
                 <h4 className="text-xs font-black text-ink mt-0.5">
@@ -104,7 +105,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                   e.stopPropagation();
                   setShowSelector(true);
                 }}
-                className="px-3.5 py-1.5 text-[10px] font-extrabold bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-800 text-ink-body rounded-lg transition-colors flex items-center gap-1 cursor-pointer focus:outline-none"
+                className="px-3 py-1.5 text-[11px] font-bold border border-line-strong hover:border-stone-950 dark:hover:border-stone-300 text-ink-body rounded-sm transition-colors flex items-center gap-1 cursor-pointer"
               >
                 <Shuffle className="w-3.5 h-3.5" />
                 <span>{t.dataRest.goalSelectionBanner.changeButton}</span>
@@ -139,18 +140,19 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                 <button
                   key={g.id}
                   onClick={() => handleSelectGoal(g.id)}
-                  className={`text-left p-4.5 rounded-2xl border transition-all flex flex-col justify-between space-y-3 cursor-pointer focus:outline-none ${
+                  aria-pressed={isSelected}
+                  className={`text-left p-4.5 rounded-sm border transition-colors flex flex-col justify-between space-y-3 cursor-pointer ${
                     isSelected
-                      ? "border-brand-500 bg-brand-500/[0.03] dark:bg-brand-950/20"
-                      : "border-line hover:border-line-strong bg-white dark:bg-stone-900"
+                      ? "border-brand-600 bg-accent-soft dark:border-brand-400"
+                      : "border-line-strong hover:border-stone-950 dark:hover:border-stone-300 bg-white dark:bg-stone-900"
                   }`}
                 >
                   <div className="flex items-center justify-between w-full">
-                    <div className={`w-9 h-9 rounded-xl ${g.bg} ${g.color} flex items-center justify-center`}>
+                    <div className={`w-9 h-9 rounded-sm ${g.bg} ${g.color} flex items-center justify-center`}>
                       <g.icon className="w-5 h-5" />
                     </div>
                     {isSelected && (
-                      <CheckCircle2 className="w-5 h-5 text-brand-500 shrink-0" />
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
                     )}
                   </div>
                   <div>

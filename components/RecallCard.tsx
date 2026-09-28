@@ -38,8 +38,8 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
   );
 
   return (
-    <div className="rounded-2xl border-2 border-warn-line bg-amber-50/60 dark:bg-amber-950/20 p-6 space-y-4">
-      <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-warn-strong">
+    <div className="rounded-md border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 p-6 space-y-4">
+      <div className="eyebrow flex items-center gap-2 border-b border-line-strong pb-2 text-ink-soft">
         <RotateCcw className="w-3.5 h-3.5" />
         {heading}
       </div>
@@ -48,10 +48,10 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
         const answered = picked[i] !== null;
         const isCorrect = (optIndex: number) => options[optIndex].correct;
         return (
-          <div key={i} className="bg-white dark:bg-stone-900 rounded-xl border border-amber-200 dark:border-amber-900/60 p-4 space-y-3">
+          <div key={i} className="bg-white dark:bg-stone-900 rounded-sm border border-line-strong p-4 space-y-3">
             <p className="text-sm font-semibold text-ink-heading">
               {t.recallCard.fromLabel}{" "}
-              <span className="text-warn-strong">
+              <span className="text-ink-max">
                 {format(t.recallCard.dayLabel, { day: item.fromDay })}
               </span>{" "}
               {format(t.recallCard.questionSuffix, { title: item.fromTitle })}
@@ -59,12 +59,12 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
             <div className="space-y-2">
               {options.map((opt, optIndex) => {
                 const chosen = picked[i] === optIndex;
-                let stateClass = "border-line-mid hover:border-warn-line-mid";
+                let stateClass = "border-line-strong hover:border-stone-950 dark:hover:border-stone-300";
                 if (answered) {
                   if (isCorrect(optIndex)) {
-                    stateClass = "border-accent-line-mid bg-brand-50 dark:bg-brand-950/40";
+                    stateClass = "border-brand-600 dark:border-brand-400 bg-accent-soft";
                   } else if (chosen) {
-                    stateClass = "border-rose-300 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/40";
+                    stateClass = "border-red-600 dark:border-red-400 bg-danger-soft";
                   } else {
                     stateClass = "border-line opacity-60";
                   }
@@ -76,11 +76,11 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
                     onClick={() =>
                       setPicked((prev) => prev.map((v, idx) => (idx === i ? optIndex : v)))
                     }
-                    className={`w-full text-left text-sm rounded-lg border px-3 py-2.5 transition-colors ${stateClass} disabled:cursor-default`}
+                    className={`w-full text-left text-sm rounded-sm border px-3 py-2.5 transition-colors cursor-pointer ${stateClass} disabled:cursor-default`}
                   >
                     <span className="flex items-start gap-2">
                       {answered && isCorrect(optIndex) && <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />}
-                      {answered && chosen && !isCorrect(optIndex) && <X className="w-4 h-4 text-alert flex-shrink-0 mt-0.5" />}
+                      {answered && chosen && !isCorrect(optIndex) && <X className="w-4 h-4 text-danger flex-shrink-0 mt-0.5" />}
                       <span className="text-ink-body">{opt.text}</span>
                     </span>
                   </button>
@@ -92,7 +92,7 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
                 className={`text-xs font-semibold ${
                   isCorrect(picked[i] as number)
                     ? "text-accent-strong"
-                    : "text-alert-strong"
+                    : "text-danger"
                 }`}
               >
                 {isCorrect(picked[i] as number)

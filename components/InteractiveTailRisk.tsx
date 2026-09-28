@@ -49,8 +49,8 @@ export default function InteractiveTailRisk() {
   }, [baseline, jitter, conf, df]);
 
   return (
-    <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-ink">
+    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+      <h3 className="text-base font-black tracking-tight text-ink-max">
         {t.tailRisk.title}
       </h3>
 
@@ -90,7 +90,7 @@ export default function InteractiveTailRisk() {
         <Card label={t.tailRisk.esNormalCard} value={numbers.esNorm} tone="warn" suffixTemplate={t.tailRisk.cardValueSuffix} />
       </div>
 
-      <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
+      <p className="mt-4 border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
         {df >= 25
           ? t.tailRisk.convergedHint
           : format(t.tailRisk.gapHint, { gap: numbers.gap.toFixed(1) })}
@@ -131,9 +131,9 @@ function Card({
         ? "text-warn"
         : "text-ink-heading";
   return (
-    <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
+    <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
       <p className="text-[11px] font-bold uppercase tracking-wide text-ink-muted">{label}</p>
-      <p className={`mt-0.5 text-lg font-extrabold tabular-nums ${color}`}>
+      <p className={`mt-0.5 text-lg font-black tabular-nums ${color}`}>
         {format(suffixTemplate, { value: value.toFixed(1) })}
       </p>
     </div>

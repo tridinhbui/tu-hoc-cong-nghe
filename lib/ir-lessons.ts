@@ -1,18 +1,13 @@
 import type { Lesson } from "./lesson-types";
 
-// Chặng "Quan hệ cổ đông (IR)" (ids 1711-1715, professional track).
+// Chặng "Quan hệ nhà phát triển (DevRel)" (ids 1711-1715, professional track).
+// Ba slug ir-* là di sản của phiên bản cũ; slug giữ nguyên để không gãy tiến độ.
 //
-// Vì sao chặng này tồn tại: quét toàn bộ kho theo từng kỹ năng mà nghề "Chuyên
-// viên Quan hệ Cổ đông" tự khai - soạn thông cáo, gặp nhà đầu tư, dựng bộ tài
-// liệu, xử lý câu hỏi khó - cho ra đúng 0 bài. Kho có một bài về earnings call
-// và guidance, và hết. Nghề này trước đó học ghép từ các bài tài chính doanh
-// nghiệp chung, tức là học được phần "hiểu số" mà không học được phần chính:
-// đứng trước người khác và chịu trách nhiệm về những con số đó.
-//
-// Chặng cố ý không dạy kỹ năng thuyết trình chung chung. Cái riêng của IR là
-// mọi câu nói đều có hệ quả pháp lý và hệ quả định giá: nói sớm một câu là vi
-// phạm công bố thông tin, nói muộn một câu là để tin đồn dẫn dắt giá, và nói
-// một con số mà quý sau không đạt thì mất thứ khó lấy lại nhất trong nghề.
+// Cái riêng của DevRel so với truyền thông chung là đối tượng KIỂM ĐƯỢC: mỗi
+// câu nói về sự cố, về lộ trình hay về giới hạn của sản phẩm đều bị người dùng
+// đối chiếu với thứ họ thấy trong hệ thống của chính họ. Nói muộn một câu là để
+// tin đồn dẫn dắt, và hứa một mốc mà lần phát hành sau không giữ được thì mất
+// thứ khó lấy lại nhất trong nghề.
 
 export const IR_LESSONS: Lesson[] = [
   {
@@ -193,47 +188,47 @@ export const IR_LESSONS: Lesson[] = [
     id: 1712,
     slug: "ir-cong-bo-thong-tin-va-thoi-diem",
     title: "DevRel, Bài 2: Trọng yếu và thời điểm - biết gì thì phải nói, và nói lúc nào",
-    subtitle: "Cách nhận ra một thông tin là trọng yếu, thời hạn công bố, và vì sao im lặng cũng là một lựa chọn có hậu quả",
+    subtitle: "Cách nhận ra một sự cố hay thay đổi là trọng yếu, thời hạn công bố, và vì sao im lặng cũng là một lựa chọn có hậu quả",
     duration: "11 phút",
     difficulty: "Khó",
     emoji: "⏱️",
     track: "professional",
     whyItMatters:
-      "Phần lớn án phạt trong lĩnh vực công bố thông tin không đến từ nói dối mà đến từ nói muộn. Phân biệt được cái gì trọng yếu và đếm đúng thời hạn là phần kỹ thuật của nghề IR, và là phần không thể ứng biến tại chỗ.",
-    openingQuestion: "Thông tin nào sau đây gần như chắc chắn là trọng yếu và phải công bố?",
+      "Phần lớn thiệt hại khi công bố sự cố không đến từ nói sai mà đến từ nói muộn. Phân biệt được cái gì trọng yếu và đếm đúng thời hạn là phần kỹ thuật của nghề DevRel, và là phần không thể ứng biến tại chỗ.",
+    openingQuestion: "Thông tin nào sau đây gần như chắc chắn là trọng yếu và phải báo cho nhà phát triển đang dùng API?",
     openingOptions: [
-      "Mất một khách hàng chiếm 30% doanh thu",
-      "Thay đổi nhà cung cấp văn phòng phẩm cho toàn hệ thống chi nhánh",
+      "Dữ liệu của một số tài khoản đã bị đọc trái phép qua API",
+      "Thay đổi nhà cung cấp dịch vụ email nội bộ cho toàn bộ nhân viên công ty",
       "Ra mắt nhận diện thương hiệu mới sau sáu tháng chuẩn bị",
       "Tuyển thêm 50 nhân sự cho bộ phận chăm sóc khách hàng ở miền Nam",
     ],
     correctOption: 0,
     explanation:
-      "Thước đo của tính trọng yếu là: một nhà đầu tư hợp lý có đổi quyết định mua bán khi biết tin này không. Mất khách hàng chiếm 30% doanh thu chắc chắn đổi, vì nó đổi luôn dự báo doanh thu của mọi mô hình đang định giá công ty. Ba tin còn lại không - chúng có thể quan trọng với nội bộ nhưng không dịch chuyển giá trị. Chú ý là thước đo này không phụ thuộc vào việc tin tốt hay xấu, cũng không phụ thuộc vào việc công ty đã có phương án xử lý hay chưa. Đợi tới khi có phương án rồi mới công bố là cách vi phạm thời hạn phổ biến nhất, và lý do nghe rất hợp lý từ bên trong.",
+      "Thước đo của tính trọng yếu là: một nhà phát triển đang tích hợp sản phẩm của bạn có phải đổi việc họ đang làm khi biết tin này không - đổi khoá, rà dữ liệu, hoãn triển khai, hay cân nhắc chuyển nhà cung cấp. Dữ liệu tài khoản bị đọc trái phép chắc chắn đổi, vì nó buộc họ kiểm tra ngay dữ liệu của chính khách hàng họ. Ba tin còn lại không - chúng có thể quan trọng với nội bộ nhưng không đổi dòng code nào ở phía người dùng. Chú ý là thước đo này không phụ thuộc vào việc tin tốt hay xấu, cũng không phụ thuộc vào việc đội đã có bản vá hay chưa. Đợi tới khi có bản vá rồi mới công bố là cách trễ hạn phổ biến nhất, và lý do nghe rất hợp lý từ bên trong.",
     diagram: [
       { label: "Sự kiện phát sinh", arrow: true },
-      { label: "Nhà đầu tư hợp lý có đổi quyết định không?", arrow: true },
+      { label: "Người đang tích hợp có phải đổi việc họ làm không?", arrow: true },
       { label: "Có → trọng yếu → chạy đồng hồ công bố", arrow: true },
-      { label: "Công bố theo thời hạn quy định, không đợi có phương án" },
+      { label: "Công bố trong thời hạn, không đợi có bản vá" },
     ],
     interactiveType: "ethics-case",
     realWorldExample: {
-      company: "Quy định công bố thông tin trên thị trường chứng khoán Việt Nam",
+      company: "Quy định thông báo sự cố lộ lọt dữ liệu cá nhân",
       description:
-        "Thông tư về công bố thông tin quy định thời hạn tính bằng giờ và ngày kể từ khi sự kiện phát sinh, cho từng nhóm sự kiện. Điều bộ phận IR hay bỏ sót không phải danh mục sự kiện - nó có sẵn - mà là mốc bắt đầu đếm: đồng hồ chạy từ lúc sự kiện xảy ra, không phải từ lúc ban điều hành họp xong.",
+        "GDPR ở châu Âu và Nghị định 13/2023 ở Việt Nam đều đặt thời hạn 72 giờ để thông báo sự cố lộ lọt dữ liệu cá nhân. Điều các đội hay bỏ sót không phải định nghĩa sự cố - nó có sẵn - mà là mốc bắt đầu đếm: đồng hồ chạy từ lúc tổ chức biết sự cố, không phải từ lúc lãnh đạo họp xong về nó.",
     },
     quiz: [
       {
         question: "Thước đo tính trọng yếu là gì?",
         options: [
-          "Nhà đầu tư hợp lý có đổi quyết định mua bán khi biết tin không",
-          "Lợi nhuận có thay đổi quá 10% không",
-          "Ban điều hành có coi là quan trọng không",
-          "Thông tin có trong danh mục báo cáo định kỳ không",
+          "Người đang tích hợp có phải đổi việc họ đang làm khi biết tin không",
+          "Sự cố có kéo dài quá 10 phút không",
+          "Ban lãnh đạo có coi là quan trọng không",
+          "Thay đổi có nằm trong mục ghi chú phát hành không",
         ],
         correct: 0,
         explanation:
-          "Ngưỡng phần trăm là công cụ hỗ trợ, không phải định nghĩa. Một sự kiện dưới ngưỡng vẫn có thể trọng yếu nếu nó đổi cách nhìn về tương lai công ty.",
+          "Ngưỡng thời lượng hay số tài khoản bị ảnh hưởng là công cụ hỗ trợ, không phải định nghĩa. Một thay đổi rất nhỏ vẫn có thể trọng yếu nếu nó làm vỡ code của người khác, như đổi kiểu một trường trong phản hồi từ số sang chuỗi.",
       },
       {
         question: "Đồng hồ công bố bắt đầu chạy từ lúc nào?",
@@ -241,102 +236,102 @@ export const IR_LESSONS: Lesson[] = [
           "Từ khi sự kiện phát sinh, không phải từ khi họp xong",
           "Từ khi cuộc họp kết thúc",
           "Từ khi bộ phận pháp chế hoàn tất rà soát nội dung công bố",
-          "Từ phiên giao dịch đầu tiên sau khi xác nhận xong",
+          "Từ khi bản vá đầu tiên được triển khai lên môi trường thật",
         ],
         correct: 0,
         explanation:
-          "Đây là chỗ vi phạm nhiều nhất, và luôn với một lý do nghe rất hợp lý từ bên trong: đợi có phương án rồi công bố cho trọn vẹn.",
+          "Đây là chỗ trễ hạn nhiều nhất, và luôn với một lý do nghe rất hợp lý từ bên trong: đợi có bản vá rồi công bố cho trọn vẹn.",
       },
       {
-        question: "Tin tốt bất thường có phải công bố không?",
+        question: "Một thay đổi có lợi cho người dùng, như nâng giới hạn gọi API lên gấp đôi, có phải thông báo không?",
         options: [
           "Có, tính trọng yếu không phân biệt tin tốt hay xấu",
-          "Không, nghĩa vụ công bố chỉ áp dụng với thông tin bất lợi",
-          "Chỉ khi muốn hỗ trợ giá",
-          "Chỉ khi có yêu cầu từ sở giao dịch hoặc cơ quan quản lý",
+          "Không, nghĩa vụ công bố chỉ áp dụng với thay đổi bất lợi",
+          "Chỉ khi muốn dùng nó để quảng bá sản phẩm",
+          "Chỉ khi có khách hàng lớn yêu cầu thông báo bằng văn bản",
         ],
         correct: 0,
         explanation:
-          "Một hợp đồng lớn bất ngờ cũng dịch chuyển giá trị, nên cũng phải công bố. Nghĩa vụ gắn với mức ảnh hưởng, không với dấu của ảnh hưởng.",
+          "Nâng giới hạn gọi API cũng khiến người ta thiết kế lại hệ thống của họ - bỏ bớt hàng đợi, bỏ bớt bộ đệm - nên cũng phải công bố. Nghĩa vụ gắn với mức ảnh hưởng, không với dấu của ảnh hưởng.",
       },
       {
-        question: "Giá cổ phiếu biến động mạnh bất thường mà công ty không có tin gì. IR nên làm gì?",
+        question: "Phiếu hỗ trợ và bài than phiền tăng vọt bất thường mà đội chưa công bố gì. DevRel nên làm gì?",
         options: [
-          "Rà soát nội bộ xem có thông tin nào bị rò rỉ, và sẵn sàng trả lời sở giao dịch",
-          "Ra thông cáo trấn an nhà đầu tư rằng hoạt động vẫn bình thường",
-          "Không làm gì vì công ty không có nghĩa vụ giải thích biến động giá",
-          "Mua cổ phiếu quỹ để phát tín hiệu rằng ban điều hành tin vào công ty",
+          "Rà soát nội bộ xem sự cố hay thay đổi nào đang gây ra, và sẵn sàng trả lời công khai",
+          "Đăng thông báo trấn an rằng hệ thống vẫn đang hoạt động bình thường",
+          "Không làm gì vì đội vận hành chưa đưa ra kết luận chính thức nào",
+          "Tặng thêm hạn mức miễn phí để giữ chân những người than phiền nhiều nhất",
         ],
         correct: 0,
         explanation:
-          "Biến động bất thường thường là dấu hiệu có thông tin đã ra ngoài. Việc đầu tiên là tìm xem nó là gì, vì nếu có thì nghĩa vụ công bố đã phát sinh từ trước đó.",
+          "Tín hiệu bất thường từ bên ngoài thường có nghĩa là sự cố đã xảy ra và người dùng thấy trước bạn. Việc đầu tiên là tìm xem nó là gì, vì nếu có thì nghĩa vụ công bố đã phát sinh từ trước đó.",
       },
       {
         question: "Vì sao im lặng cũng là một lựa chọn có hậu quả?",
         options: [
           "Vì khoảng trống thông tin luôn bị lấp bằng suy đoán và tin đồn",
           "Vì cơ quan quản lý coi im lặng là che giấu",
-          "Vì quỹ sẽ bán ra ngay",
+          "Vì khách hàng sẽ huỷ ngay",
           "Vì báo chí có quyền yêu cầu trả lời",
         ],
         correct: 0,
         explanation:
-          "Thị trường không đợi. Không nói gì không có nghĩa là không có gì được nói - chỉ là người khác nói thay, bằng dữ liệu kém hơn.",
+          "Người dùng không đợi. Không nói gì không có nghĩa là không có gì được nói - chỉ là người khác nói thay, bằng dữ liệu kém hơn.",
       },
     ],
     practicePrompt: {
       question:
-        "Sáng thứ ba, công ty biết một khách hàng chiếm 30% doanh thu vừa chấm dứt hợp đồng. Ban điều hành muốn chờ tới thứ sáu để có phương án ứng phó rồi công bố cùng lúc. Đúng hay sai?",
+        "Sáng thứ ba, đội phát hiện bản triển khai tuần trước làm webhook gửi trùng sự kiện cho mọi khách tích hợp. Lãnh đạo muốn chờ tới thứ sáu có bản vá rồi thông báo cùng lúc. Đúng hay sai?",
       options: [
-        "Sai: đồng hồ chạy từ khi sự kiện phát sinh, không từ khi có phương án",
-        "Đúng: công bố kèm phương án giúp thị trường phản ứng bình tĩnh hơn",
-        "Đúng: chỉ phải công bố sau khi hội đồng quản trị đã họp và thông qua",
-        "Sai: phải chờ tới hết quý rồi công bố trong báo cáo tài chính định kỳ",
+        "Sai: đồng hồ chạy từ khi sự kiện phát sinh, không từ khi có bản vá",
+        "Đúng: công bố kèm bản vá giúp người dùng phản ứng bình tĩnh hơn",
+        "Đúng: chỉ phải công bố sau khi lãnh đạo đã họp và duyệt nội dung",
+        "Sai: phải chờ tới cuối tháng rồi đưa vào ghi chú phát hành định kỳ",
       ],
       correct: 0,
       explanation:
-        "Trọng yếu nghĩa là một nhà đầu tư hợp lý sẽ đổi quyết định, và mất 30% doanh thu chắc chắn đạt ngưỡng đó. Đồng hồ bắt đầu chạy từ lúc công ty BIẾT, không từ lúc công ty sẵn sàng - nếu không thì mọi tin xấu đều hoãn được vô hạn với lý do đang chuẩn bị phương án. Ba ngày im lặng cũng tạo ra rủi ro thứ hai: trong khoảng đó thông tin thường rò rỉ, giá biến động bất thường, và một số người giao dịch trên thông tin mà phần còn lại chưa có. Phương án ứng phó vẫn công bố được sau, như một bản cập nhật.",
+        "Trọng yếu nghĩa là người đang tích hợp phải đổi việc họ làm, và webhook gửi trùng chắc chắn đạt ngưỡng đó: mỗi sự kiện trùng có thể là một đơn hàng bị xử lý hai lần ở phía họ. Đồng hồ bắt đầu chạy từ lúc đội BIẾT, không từ lúc đội sẵn sàng - nếu không thì mọi tin xấu đều hoãn được vô hạn với lý do đang chuẩn bị bản vá. Ba ngày im lặng còn tạo ra rủi ro thứ hai: trong khoảng đó người dùng tự phát hiện, tin lan trên diễn đàn, và mỗi ngày họ lại ghi thêm một lượt dữ liệu trùng mà lẽ ra đã chặn được bằng một dòng kiểm tra ở phía họ. Bản vá vẫn công bố được sau, như một bản cập nhật.",
     },
     keyTakeaways: [
-      "Trọng yếu = nhà đầu tư hợp lý đổi quyết định. Không phụ thuộc tin tốt hay xấu.",
-      "Đồng hồ chạy từ khi sự kiện phát sinh, không từ khi họp xong hay có phương án.",
-      "Giá biến động bất thường mà không có tin là dấu hiệu rò rỉ, phải rà soát ngay.",
+      "Trọng yếu = người đang tích hợp phải đổi việc họ làm. Không phụ thuộc tin tốt hay xấu.",
+      "Đồng hồ chạy từ khi sự kiện phát sinh, không từ khi họp xong hay có bản vá.",
+      "Phiếu hỗ trợ tăng vọt mà chưa có thông báo là dấu hiệu sự cố, phải rà soát ngay.",
       "Im lặng không phải trung lập: khoảng trống bị lấp bằng tin đồn.",
     ],
     summary: {
-      keyIdea: "Trọng yếu nghĩa là một nhà đầu tư hợp lý sẽ đổi quyết định - không phụ thuộc tin tốt hay xấu",
-      commonMistake: "Đếm thời hạn từ lúc bộ phận công bố được báo, trong khi đồng hồ chạy từ khi sự kiện phát sinh.",
-      action: "Rà lại quy trình nội bộ: từ lúc một sự kiện xảy ra tới lúc người chịu trách nhiệm công bố biết, mất mấy giờ.",
+      keyIdea: "Trọng yếu nghĩa là người đang tích hợp phải đổi việc họ làm - không phụ thuộc tin tốt hay xấu",
+      commonMistake: "Đếm thời hạn từ lúc người phụ trách công bố được báo, trong khi đồng hồ chạy từ khi sự kiện phát sinh.",
+      action: "Rà lại quy trình nội bộ: từ lúc một sự cố xảy ra tới lúc người chịu trách nhiệm công bố biết, mất mấy giờ.",
     },
     application: {
       title: "Đo độ trễ nội bộ của chính tổ chức",
-      message: "Chọn ba sự kiện đã công bố trong năm, tìm ngày chúng thực sự phát sinh và ngày thông cáo ra. Khoảng cách đó là rủi ro công bố muộn của tổ chức, đo bằng dữ liệu chứ không bằng cảm giác.",
-      secondary: "Rất ít án phạt đến từ việc nói sai; gần hết đến từ việc nói muộn.",
+      message: "Chọn ba sự cố đã công bố trong năm, tìm thời điểm chúng thực sự bắt đầu và thời điểm thông báo được đăng. Khoảng cách đó là rủi ro công bố muộn của tổ chức, đo bằng dữ liệu chứ không bằng cảm giác.",
+      secondary: "Rất ít thiệt hại đến từ việc nói sai; gần hết đến từ việc nói muộn.",
     },
     sections: [
       {
         type: "lead",
-        text: "Rất ít án phạt công bố thông tin đến từ việc nói sai. Gần hết đến từ việc nói muộn, và gần như lần nào lý do nội bộ cũng nghe hợp lý: đợi cho chắc, đợi có phương án, đợi qua kỳ nghỉ.",
+        text: "Rất ít thiệt hại khi công bố sự cố đến từ việc nói sai. Gần hết đến từ việc nói muộn, và gần như lần nào lý do nội bộ cũng nghe hợp lý: đợi cho chắc, đợi có bản vá, đợi qua kỳ nghỉ.",
       },
       { type: "heading", text: "Nhận ra tính trọng yếu" },
       {
         type: "paragraph",
-        text: "Câu hỏi duy nhất là: một nhà đầu tư hợp lý biết tin này có đổi quyết định mua bán không. Ngưỡng phần trăm lợi nhuận hay doanh thu chỉ là công cụ hỗ trợ - có sự kiện rất nhỏ về con số nhưng đổi hẳn cách nhìn về tương lai, như việc mất giấy phép ở một thị trường đang là kỳ vọng tăng trưởng chính.",
+        text: "Câu hỏi duy nhất là: một nhà phát triển đang tích hợp biết tin này có phải đổi việc họ đang làm không. Ngưỡng thời lượng sự cố hay số tài khoản bị ảnh hưởng chỉ là công cụ hỗ trợ - có thay đổi rất nhỏ về con số nhưng làm vỡ code của người khác, như đổi kiểu một trường trong phản hồi từ số sang chuỗi.",
       },
       { type: "heading", text: "Đếm đúng mốc bắt đầu" },
       {
         type: "list",
         items: [
-          "Đồng hồ chạy từ khi sự kiện phát sinh, không từ khi bộ phận IR được thông báo.",
-          "Không được đợi cho tới khi có phương án xử lý - phương án là nội dung công bố tiếp theo, không phải điều kiện của công bố đầu tiên.",
-          "Không được đợi tới phiên giao dịch thuận lợi.",
+          "Đồng hồ chạy từ khi sự kiện phát sinh, không từ khi đội DevRel được thông báo.",
+          "Không được đợi cho tới khi có bản vá - bản vá là nội dung công bố tiếp theo, không phải điều kiện của công bố đầu tiên.",
+          "Không được đợi tới lúc ít người trực tuyến.",
           "Nếu chưa có đủ thông tin, công bố phần đã chắc chắn và nói rõ phần đang xác minh.",
         ],
       },
       {
         type: "callout",
-        label: "Khi giá chạy mà công ty chưa nói gì",
-        text: "Biến động mạnh bất thường thường có nghĩa là thông tin đã ra ngoài qua đường nào đó. Việc đầu tiên không phải là ra thông cáo trấn an, mà là rà soát xem thông tin gì đã rò rỉ - vì nếu có, nghĩa vụ công bố đã phát sinh từ trước khi giá chạy.",
+        label: "Khi người dùng lên tiếng mà đội chưa nói gì",
+        text: "Phiếu hỗ trợ và bài than phiền tăng vọt bất thường thường có nghĩa là người dùng đã thấy sự cố trước bạn. Việc đầu tiên không phải là đăng thông báo trấn an, mà là rà soát xem chuyện gì đang xảy ra - vì nếu có, nghĩa vụ công bố đã phát sinh từ trước khi họ lên tiếng.",
       },
       {
         type: "heading",
@@ -344,28 +339,28 @@ export const IR_LESSONS: Lesson[] = [
       },
       {
         type: "paragraph",
-        text: "Đây là chỗ sai nhiều nhất, và nó không phải một sai lầm về đạo đức mà về cách đếm. Đồng hồ công bố chạy từ khi sự kiện PHÁT SINH, không phải từ khi bộ phận quan hệ nhà đầu tư được thông báo, và cũng không phải từ khi ban lãnh đạo họp xong để quyết định nói thế nào. Một hợp đồng lớn bị huỷ vào chiều thứ tư, kế toán biết thứ năm, ban điều hành họp thứ sáu, bộ phận công bố nhận tin thứ hai tuần sau - thời hạn đã trôi mất bốn ngày trước khi người chịu trách nhiệm công bố biết là có việc phải làm. Vì thế phần khó của công việc này nằm ở quy trình nội bộ, không nằm ở việc soạn thông cáo."
+        text: "Đây là chỗ sai nhiều nhất, và nó không phải một sai lầm về đạo đức mà về cách đếm. Đồng hồ công bố chạy từ khi sự kiện PHÁT SINH, không phải từ khi đội quan hệ nhà phát triển được thông báo, và cũng không phải từ khi lãnh đạo họp xong để quyết định nói thế nào. Một bản triển khai làm hỏng webhook vào chiều thứ tư, đội trực biết thứ năm, lãnh đạo kỹ thuật họp thứ sáu, người phụ trách công bố nhận tin thứ hai tuần sau - thời hạn đã trôi mất bốn ngày trước khi người chịu trách nhiệm công bố biết là có việc phải làm. Vì thế phần khó của công việc này nằm ở quy trình nội bộ, không nằm ở việc soạn thông báo."
       },
       {
         type: "callout",
         label: "Không được đợi cho tới khi thông tin đầy đủ",
-        text: "Một sự kiện trọng yếu mà chưa biết hết hậu quả vẫn phải công bố, kèm chính điều đó: đã xảy ra việc này, mức ảnh hưởng đang được đánh giá, sẽ cập nhật khi có thêm thông tin. Chờ cho tới khi có con số chính xác là lý do phổ biến nhất dẫn tới công bố muộn, và nó nghe rất có trách nhiệm - đó chính là điều làm nó nguy hiểm. Rất ít án phạt đến từ việc nói sai; gần hết đến từ việc nói muộn."
+        text: "Một sự kiện trọng yếu mà chưa biết hết hậu quả vẫn phải công bố, kèm chính điều đó: đã xảy ra việc này, mức ảnh hưởng đang được đánh giá, sẽ cập nhật khi có thêm thông tin. Chờ cho tới khi có con số chính xác là lý do phổ biến nhất dẫn tới công bố muộn, và nó nghe rất có trách nhiệm - đó chính là điều làm nó nguy hiểm. Rất ít thiệt hại đến từ việc nói sai; gần hết đến từ việc nói muộn."
       },
       {
         type: "comparison",
         left: {
-          label: "Khi giá chạy mà công ty chưa nói gì",
-          text: "Biến động mạnh bất thường thường có nghĩa thông tin đã ra ngoài qua đường nào đó. Việc đầu tiên không phải soạn thông cáo phủ nhận mà là rà soát nội bộ xem có rò rỉ thật không - vì nếu có, im lặng đang kéo dài một giai đoạn mà một nhóm người giao dịch với lợi thế thông tin."
+          label: "Khi người dùng lên tiếng mà đội chưa nói gì",
+          text: "Phiếu hỗ trợ tăng vọt bất thường thường có nghĩa sự cố đã xảy ra và người dùng thấy trước bạn. Việc đầu tiên không phải soạn thông báo phủ nhận mà là rà soát nội bộ xem có sự cố thật không - vì nếu có, im lặng đang kéo dài một giai đoạn mà người dùng tiếp tục ghi dữ liệu hỏng vào hệ thống của họ."
         },
         right: {
           label: "Vì sao im lặng cũng là một lời phát biểu",
-          text: "Khi thị trường đang hỏi và công ty không nói gì, người ta điền vào chỗ trống bằng giả định xấu nhất. Không bình luận là một lựa chọn hợp lệ, nhưng nó có giá - và cái giá đó tăng theo từng ngày im lặng."
+          text: "Khi cộng đồng đang hỏi và đội không nói gì, người ta điền vào chỗ trống bằng giả định xấu nhất. Không bình luận là một lựa chọn hợp lệ, nhưng nó có giá - và cái giá đó tăng theo từng ngày im lặng."
         }
       },
       {
         type: "closing",
         lines: [
-          "Nghề này có hai đồng hồ: đồng hồ pháp lý và đồng hồ của tin đồn.",
+          "Nghề này có hai đồng hồ: đồng hồ của thời hạn công bố và đồng hồ của tin đồn.",
           "Đồng hồ thứ hai luôn chạy nhanh hơn.",
         ],
       },
@@ -375,163 +370,163 @@ export const IR_LESSONS: Lesson[] = [
   {
     id: 1713,
     interactiveType: "ethics-case",
-    slug: "ir-guidance-va-ky-vong-thi-truong",
-    title: "DevRel, Bài 3: Lộ trình công bố - đưa ra con số rồi phải sống với nó",
-    subtitle: "Vì sao doanh nghiệp công bố kế hoạch, cái giá của việc hụt kế hoạch, và cách đặt khoảng thay vì đặt điểm",
+    slug: "lo-trinh-cong-bo-va-moc-thoi-gian",
+    title: "DevRel, Bài 3: Lộ trình công bố - đưa ra một mốc rồi phải sống với nó",
+    subtitle: "Vì sao đội sản phẩm công bố lộ trình, cái giá của việc trễ hẹn, và cách đặt khoảng thay vì đặt điểm",
     duration: "11 phút",
     difficulty: "Khó",
     emoji: "🎯",
     track: "professional",
     whyItMatters:
-      "Con số kế hoạch là lời hứa duy nhất của doanh nghiệp mà thị trường chấm điểm mỗi quý. Đặt cao thì mất niềm tin khi hụt, đặt thấp thì mất niềm tin theo kiểu khác - và cả hai đều rơi vào bộ phận IR trước khi rơi vào ai khác.",
+      "Mốc ra mắt công khai là lời hứa duy nhất của đội sản phẩm mà cộng đồng nhà phát triển chấm điểm ở mỗi lần phát hành. Đặt sớm thì mất niềm tin khi trễ, đặt quá xa thì mất niềm tin theo kiểu khác - và cả hai đều rơi vào đội DevRel trước khi rơi vào ai khác.",
     openingQuestion:
-      "Công ty đặt kế hoạch lợi nhuận 500 tỷ, đạt 495 tỷ. Cổ phiếu giảm 8%. Vì sao?",
+      "Đội hứa phát hành SDK mới ngày 1/10, ra mắt thật ngày 3/10. Diễn đàn đầy bình luận thất vọng. Vì sao?",
     openingOptions: [
-      "Vì hụt kế hoạch làm thị trường hạ niềm tin vào mọi con số tương lai khác nữa",
-      "Vì 5 tỷ chênh lệch là số tiền lớn với quy mô của doanh nghiệp",
-      "Vì nhà đầu tư luôn bán ra sau mỗi kỳ công bố kết quả kinh doanh",
-      "Vì các công ty chứng khoán buộc phải hạ khuyến nghị khi kế hoạch không đạt",
+      "Vì trễ hẹn làm người dùng hạ niềm tin vào mọi mốc mà đội hứa sau này",
+      "Vì hai ngày chậm trễ là quá dài với một bản phát hành SDK",
+      "Vì người dùng luôn phàn nàn sau mỗi lần có bản phát hành mới",
+      "Vì các trang tin công nghệ buộc phải đưa tin xấu khi trễ mốc",
     ],
     correctOption: 0,
     explanation:
-      "Chênh 5 tỷ trên 500 tỷ là 1%, không đủ để đổi giá trị doanh nghiệp. Thứ đổi là độ tin cậy của mọi con số kế hoạch sau này. Nhà đầu tư dựng mô hình dựa trên giả định ban điều hành biết rõ công ty mình; hụt kế hoạch, dù chỉ 1%, là bằng chứng ngược lại - và nó buộc họ phải chiết khấu mọi dự báo tương lai, không chỉ quý này. Đó là lý do một công ty hụt 1% có thể mất nhiều giá trị hơn một công ty giảm lợi nhuận 15% nhưng đã báo trước từ quý trước.",
+      "Hai ngày trên một lộ trình ba tháng là chưa tới 3%, không đủ để làm hỏng kế hoạch của ai. Thứ đổi là độ tin cậy của mọi mốc sau này. Người dùng lập kế hoạch của chính họ trên giả định đội sản phẩm biết rõ tiến độ của mình; trễ hẹn, dù chỉ hai ngày, là bằng chứng ngược lại - và nó buộc họ cộng thêm biên an toàn vào mọi mốc tương lai, không chỉ lần này. Đó là lý do một đội trễ hai ngày có thể mất nhiều niềm tin hơn một đội lùi hẳn một quý nhưng đã báo trước từ sớm.",
     diagram: [
-      { label: "Công bố kế hoạch", arrow: true },
-      { label: "Thị trường dựng mô hình quanh con số đó", arrow: true },
-      { label: "Kết quả thật so với kế hoạch", arrow: true },
-      { label: "Đạt → niềm tin tích luỹ · Hụt → chiết khấu mọi dự báo sau" },
+      { label: "Công bố mốc ra mắt", arrow: true },
+      { label: "Người dùng lập kế hoạch quanh mốc đó", arrow: true },
+      { label: "Ngày phát hành thật so với mốc đã hứa", arrow: true },
+      { label: "Đúng hẹn → niềm tin tích luỹ · Trễ → cộng biên an toàn vào mọi mốc sau" },
     ],
     realWorldExample: {
-      company: "Kế hoạch trình Đại hội đồng cổ đông của doanh nghiệp niêm yết Việt Nam",
+      company: "Lịch phát hành theo thời gian của các dự án mã nguồn mở lớn",
       description:
-        "Khác với nhiều thị trường nơi guidance là tự nguyện, doanh nghiệp niêm yết Việt Nam trình kế hoạch kinh doanh cho ĐHĐCĐ thông qua - nên con số đó vừa là cam kết với cổ đông vừa là mốc thị trường chấm điểm. Nhiều công ty vì thế đặt kế hoạch thận trọng có chủ đích, và nhà đầu tư quen dần với việc đọc kế hoạch của từng doanh nghiệp kèm hệ số điều chỉnh riêng.",
+        "Nhiều dự án lớn như Ubuntu hay Kubernetes phát hành theo lịch cố định: đến ngày thì phát hành những gì đã sẵn sàng, tính năng chưa xong thì chờ đợt sau. Mốc ngày trở thành lời hứa giữ được, còn phạm vi tính năng là thứ co giãn - và người dùng học được cách đọc hai thứ đó với hai mức tin cậy khác nhau.",
     },
     quiz: [
       {
-        question: "Vì sao hụt kế hoạch 1% có thể làm giá giảm mạnh?",
+        question: "Vì sao trễ hẹn hai ngày có thể làm mất nhiều niềm tin?",
         options: [
-          "Vì nó hạ độ tin cậy của mọi dự báo tương lai, không chỉ quý này",
-          "Vì quy định buộc giải trình khi không đạt",
-          "Vì các quỹ chỉ số phải bán ra khi doanh nghiệp không đạt kế hoạch",
-          "Vì phần chênh đó là lợi nhuận chất lượng nhất",
+          "Vì nó hạ độ tin cậy của mọi mốc tương lai, không chỉ lần này",
+          "Vì hợp đồng buộc phải bồi thường khi trễ",
+          "Vì các đối tác tích hợp phải huỷ toàn bộ kế hoạch ra mắt của họ",
+          "Vì phần bị trễ là tính năng quan trọng nhất",
         ],
         correct: 0,
         explanation:
-          "Thị trường không định giá 1% đó. Nó định giá lại xác suất những con số tiếp theo cũng sai - và xác suất ấy áp lên toàn bộ dòng tiền tương lai.",
+          "Người dùng không bận tâm tới hai ngày đó. Họ đánh giá lại xác suất những mốc tiếp theo cũng sai - và xác suất ấy áp lên mọi kế hoạch họ dựng quanh sản phẩm của bạn.",
       },
       {
-        question: "Đặt kế hoạch quá thận trọng gây hậu quả gì?",
+        question: "Đặt mốc quá thận trọng gây hậu quả gì?",
         options: [
-          "Thị trường tự trừ hao, nên con số mất dần tác dụng dẫn dắt",
-          "Cơ quan quản lý sẽ yêu cầu doanh nghiệp giải trình cơ sở lập kế hoạch",
-          "Cổ đông lớn sẽ phủ quyết kế hoạch",
-          "Công ty phải điều chỉnh tăng giữa năm",
+          "Người dùng tự trừ hao, nên mốc công bố mất dần tác dụng",
+          "Bộ phận kinh doanh sẽ yêu cầu đội giải trình lại cơ sở của từng mốc",
+          "Đối tác lớn sẽ phản đối lộ trình",
+          "Đội phải công bố lại giữa chừng",
         ],
         correct: 0,
         explanation:
-          "Nếu năm nào cũng vượt kế hoạch 40%, nhà đầu tư sẽ tự nhân hệ số và con số công bố không còn truyền tải được thông tin gì.",
+          "Nếu lần nào cũng ra mắt sớm hơn mốc hai tháng, người dùng sẽ tự trừ hao và mốc công bố không còn truyền tải được thông tin gì.",
       },
       {
-        question: "Vì sao nên đưa khoảng thay vì một con số đơn?",
+        question: "Vì sao nên đưa khoảng thay vì một ngày cụ thể?",
         options: [
-          "Vì khoảng phản ánh đúng mức bất định thật của việc dự báo",
-          "Vì khoảng giúp tránh giải trình",
-          "Vì nhà đầu tư tổ chức chỉ chấp nhận kế hoạch trình bày dưới dạng khoảng",
-          "Vì thông lệ quốc tế yêu cầu hai kịch bản",
+          "Vì khoảng phản ánh đúng mức bất định thật của việc ước lượng",
+          "Vì khoảng giúp tránh phải giải trình",
+          "Vì khách hàng doanh nghiệp chỉ chấp nhận lộ trình trình bày dạng khoảng",
+          "Vì quy trình Agile yêu cầu hai kịch bản",
         ],
         correct: 0,
         explanation:
-          "Một con số đơn ngụ ý độ chính xác mà không ai có. Khoảng nói thật về mức bất định, và mức bất định đó tự nó là thông tin.",
+          "Một ngày cụ thể ngụ ý độ chính xác mà không ai có. Khoảng nói thật về mức bất định, và mức bất định đó tự nó là thông tin.",
       },
       {
-        question: "Khi biết chắc sẽ hụt kế hoạch, IR nên làm gì?",
+        question: "Khi biết chắc sẽ trễ hẹn, DevRel nên làm gì?",
         options: [
-          "Điều chỉnh kế hoạch và công bố ngay khi đủ căn cứ",
-          "Đợi tới kỳ báo cáo chính thức",
-          "Giữ nguyên kế hoạch và nhấn mạnh các chỉ số vận hành tích cực khác",
-          "Trao đổi trước với các chuyên viên phân tích để họ hạ dự báo dần",
+          "Điều chỉnh mốc và công bố ngay khi đủ căn cứ",
+          "Đợi tới đúng ngày đã hứa rồi mới báo",
+          "Giữ nguyên mốc và nhấn mạnh các tính năng khác đã xong đúng hạn",
+          "Báo riêng trước cho vài khách hàng lớn để họ lùi kế hoạch dần",
         ],
         correct: 0,
         explanation:
-          "Điều chỉnh sớm là tin xấu; im lặng rồi hụt là tin xấu cộng với mất niềm tin. Riêng phương án cuối còn là cung cấp thông tin không công bằng.",
+          "Điều chỉnh sớm là tin xấu; im lặng rồi trễ là tin xấu cộng với mất niềm tin. Riêng phương án cuối còn là cung cấp thông tin không công bằng cho phần cộng đồng còn lại.",
       },
       {
-        question: "Điều gì làm thị trường tha thứ cho một quý xấu?",
+        question: "Điều gì làm cộng đồng tha thứ cho một lần trễ hẹn?",
         options: [
-          "Đã được báo trước và nguyên nhân khớp với những gì công ty từng cảnh báo",
-          "Mức giảm nhỏ hơn mức giảm bình quân của các doanh nghiệp cùng ngành",
-          "Ban điều hành cam kết sẽ bù lại toàn bộ phần hụt trong quý kế tiếp",
-          "Công ty đồng thời công bố kế hoạch mua cổ phiếu quỹ với quy mô lớn",
+          "Đã được báo trước và nguyên nhân khớp với những gì đội từng cảnh báo",
+          "Mức trễ ngắn hơn mức trễ bình quân của các sản phẩm cùng loại",
+          "Đội cam kết sẽ bù lại toàn bộ phần trễ trong đợt phát hành kế tiếp",
+          "Đội đồng thời công bố một loạt tính năng mới với quy mô lớn",
         ],
         correct: 0,
         explanation:
-          "Nhà đầu tư chấp nhận công ty gặp khó khăn. Thứ họ không chấp nhận là phát hiện ban điều hành không nhìn thấy khó khăn đó đang tới.",
+          "Người dùng chấp nhận đội gặp khó khăn. Thứ họ không chấp nhận là phát hiện đội không nhìn thấy khó khăn đó đang tới.",
       },
     ],
     practicePrompt: {
       question:
-        "Công ty đặt kế hoạch lợi nhuận 1.000 tỷ và báo cáo 990 tỷ - hụt 1%. Giá cổ phiếu giảm 14%. Cách giải thích hợp lý nhất là gì?",
+        "Đội hứa ra mắt API tìm kiếm mới trong quý 3, phát hành vào ngày cuối quý và cắt mất hai tính năng. Lượt đăng ký dùng thử giảm mạnh suốt quý sau. Cách giải thích hợp lý nhất là gì?",
       options: [
-        "Thị trường định giá lại độ tin cậy của mọi con số tương lai",
-        "Phản ứng quá mức, vì 1% chênh lệch là sai số bình thường",
-        "Do nhà đầu tư đã dùng đòn bẩy nên bị bán giải chấp hàng loạt",
-        "Vì 990 tỷ vẫn thấp hơn lợi nhuận cùng kỳ năm trước của công ty",
+        "Người dùng đánh giá lại độ tin cậy của mọi mốc tương lai",
+        "Phản ứng quá mức, vì cắt hai tính năng là chuyện bình thường",
+        "Do đối thủ vừa hạ giá nên người dùng chuyển sang dùng thử bên kia",
+        "Vì bản phát hành vẫn thiếu tính năng so với phiên bản trước đó",
       ],
       correct: 0,
       explanation:
-        "Mười tỷ đồng không đáng 14% giá trị doanh nghiệp - thứ bị định giá lại không phải quý này mà là mọi quý sau. Guidance là công ty tuyên bố mình nhìn thấy được tương lai gần của chính mình; hụt kế hoạch nghĩa là tuyên bố đó sai, nên mọi con số tương lai công ty đưa ra từ nay đều bị chiết khấu thêm một lớp bất định. Đó là lý do biết chắc sẽ hụt thì phải điều chỉnh SỚM và công khai: điều chỉnh sớm chỉ tốn một lần đau về con số, còn để tới ngày công bố mới lộ thì mất luôn phần độ tin cậy - thứ đắt hơn nhiều và mất nhiều năm mới lấy lại.",
+        "Hai tính năng bị cắt không đáng để mất cả một quý đăng ký - thứ bị đánh giá lại không phải bản phát hành này mà là mọi bản sau. Lộ trình là đội tuyên bố mình nhìn thấy được tương lai gần của chính sản phẩm; phát hành thiếu vào phút chót nghĩa là tuyên bố đó sai, nên mọi mốc đội đưa ra từ nay đều bị cộng thêm một lớp bất định. Đó là lý do biết chắc sẽ trễ hay phải cắt thì phải điều chỉnh SỚM và công khai: điều chỉnh sớm chỉ tốn một lần đau về tiến độ, còn để tới ngày phát hành mới lộ thì mất luôn phần độ tin cậy - thứ đắt hơn nhiều và mất nhiều năm mới lấy lại.",
     },
     keyTakeaways: [
-      "Hụt kế hoạch bị phạt vì mất niềm tin vào dự báo tương lai, không vì con số chênh lệch.",
-      "Thận trọng quá thì thị trường tự trừ hao và con số mất tác dụng.",
+      "Trễ hẹn bị phạt vì mất niềm tin vào các mốc tương lai, không vì số ngày chậm.",
+      "Thận trọng quá thì người dùng tự trừ hao và mốc mất tác dụng.",
       "Đưa khoảng thay vì điểm: mức bất định tự nó là thông tin.",
-      "Biết sẽ hụt thì điều chỉnh sớm; trao đổi riêng với vài chuyên viên phân tích là vi phạm.",
+      "Biết sẽ trễ thì điều chỉnh sớm; báo riêng cho vài khách hàng lớn là không công bằng.",
     ],
     summary: {
-      keyIdea: "Hụt kế hoạch bị phạt vì mất niềm tin vào dự báo, không vì con số chênh lệch",
-      commonMistake: "Đặt kế hoạch thật thận trọng để chắc chắn vượt - thị trường tự trừ hao và con số mất tác dụng.",
+      keyIdea: "Trễ hẹn bị phạt vì mất niềm tin vào lộ trình, không vì số ngày chậm",
+      commonMistake: "Đặt mốc thật xa để chắc chắn kịp - người dùng tự trừ hao và mốc mất tác dụng.",
       action: "Đưa khoảng thay vì một điểm, và nói rõ giả định nào quyết định đầu nào của khoảng.",
     },
     application: {
-      title: "So kế hoạch với kết quả trong ba năm",
-      message: "Lấy guidance và kết quả thực tế của một doanh nghiệp trong ba năm gần nhất. Nếu năm nào cũng vượt nhẹ, đó không phải năng lực dự báo tốt mà là kế hoạch được đặt thấp có chủ ý.",
-      secondary: "Biết sẽ hụt thì điều chỉnh sớm và công khai; nói riêng với vài chuyên viên phân tích là vi phạm.",
+      title: "So mốc đã hứa với ngày phát hành trong ba năm",
+      message: "Lấy lộ trình công khai và ngày phát hành thật của một sản phẩm bạn dùng trong ba năm gần nhất. Nếu lần nào cũng ra sớm hơn mốc một chút, đó không phải năng lực ước lượng tốt mà là mốc được đặt xa có chủ ý.",
+      secondary: "Biết sẽ trễ thì điều chỉnh sớm và công khai; báo riêng cho vài khách hàng lớn là không công bằng.",
     },
     sections: [
       {
         type: "lead",
-        text: "Guidance là lời hứa duy nhất doanh nghiệp đưa ra mà thị trường chấm điểm bốn lần một năm. Và giống mọi lời hứa, giá trị của nó không nằm ở lần hứa mà ở chuỗi lần giữ được.",
+        text: "Lộ trình công khai là lời hứa duy nhất đội sản phẩm đưa ra mà cộng đồng chấm điểm ở mỗi lần phát hành. Và giống mọi lời hứa, giá trị của nó không nằm ở lần hứa mà ở chuỗi lần giữ được.",
       },
-      { type: "heading", text: "Vì sao hụt một chút lại đắt" },
+      { type: "heading", text: "Vì sao trễ một chút lại đắt" },
       {
         type: "paragraph",
-        text: "Nhà đầu tư dựng mô hình trên giả định ban điều hành hiểu công ty mình hơn người ngoài. Hụt kế hoạch là bằng chứng ngược lại, nên nó không chỉ sửa con số quý này mà buộc phải chiết khấu mọi con số tương lai. Một công ty hụt 1% có thể mất nhiều giá trị hơn một công ty giảm lợi nhuận 15% đã báo trước.",
+        text: "Người dùng lập kế hoạch trên giả định đội sản phẩm hiểu tiến độ của mình hơn người ngoài. Trễ hẹn là bằng chứng ngược lại, nên nó không chỉ sửa mốc lần này mà buộc họ cộng biên an toàn vào mọi mốc tương lai. Một đội trễ hai ngày có thể mất nhiều niềm tin hơn một đội lùi hẳn một quý đã báo trước.",
       },
       {
         type: "comparison",
-        left: { label: "Đặt cao", text: "Được giá trong ngắn hạn, và mất nhiều hơn thế vào ngày hụt. Chi phí trả sau nhưng trả bằng thứ khó mua lại." },
-        right: { label: "Đặt thấp", text: "Vượt kế hoạch năm nào cũng đẹp, cho tới khi thị trường tự nhân hệ số và con số công bố không còn nói lên điều gì." },
+        left: { label: "Đặt sớm", text: "Được chú ý trong ngắn hạn, và mất nhiều hơn thế vào ngày trễ. Chi phí trả sau nhưng trả bằng thứ khó mua lại." },
+        right: { label: "Đặt xa", text: "Ra mắt sớm hơn hẹn lần nào cũng đẹp, cho tới khi người dùng tự trừ hao và mốc công bố không còn nói lên điều gì." },
       },
-      { type: "heading", text: "Khi biết sẽ hụt" },
+      { type: "heading", text: "Khi biết sẽ trễ" },
       {
         type: "list",
         items: [
-          "Điều chỉnh và công bố ngay khi có đủ căn cứ - đừng đợi kỳ báo cáo.",
-          "Nói nguyên nhân cụ thể, không nói 'điều kiện thị trường khó khăn'.",
-          "Nói rõ phần nào là tạm thời, phần nào là thay đổi cấu trúc.",
-          "Không bao giờ hé trước cho vài chuyên viên phân tích để họ hạ dự báo dần - đó là cung cấp thông tin không công bằng.",
+          "Điều chỉnh và công bố ngay khi có đủ căn cứ - đừng đợi tới ngày đã hứa.",
+          "Nói nguyên nhân cụ thể, không nói 'gặp một số khó khăn kỹ thuật'.",
+          "Nói rõ phần nào là tạm thời, phần nào là thay đổi phạm vi.",
+          "Không bao giờ báo riêng trước cho vài khách hàng lớn để họ lùi kế hoạch dần - phần cộng đồng còn lại sẽ biết, và họ nhớ.",
         ],
       },
       {
         type: "callout",
         label: "Thứ thực sự được tha thứ",
-        text: "Thị trường chấp nhận một quý xấu nếu nó đã được cảnh báo và nguyên nhân khớp với những gì công ty từng nói. Cái không được tha thứ là phát hiện ra ban điều hành đã không nhìn thấy nó đang tới - vì điều đó nói về mọi quý sau, chứ không riêng quý này.",
+        text: "Cộng đồng chấp nhận một lần trễ nếu nó đã được cảnh báo và nguyên nhân khớp với những gì đội từng nói. Cái không được tha thứ là phát hiện ra đội đã không nhìn thấy nó đang tới - vì điều đó nói về mọi lần phát hành sau, chứ không riêng lần này.",
       },
       {
         type: "closing",
         lines: [
-          "Một con số đưa ra là một con số phải sống chung với nó suốt bốn quý.",
-          "Nên chỗ khó của guidance không phải lúc công bố, mà là mọi ngày sau đó.",
+          "Một mốc đưa ra là một mốc phải sống chung với nó cho tới ngày phát hành.",
+          "Nên chỗ khó của lộ trình không phải lúc công bố, mà là mọi ngày sau đó.",
         ],
       },
     ],
@@ -711,81 +706,81 @@ export const IR_LESSONS: Lesson[] = [
     id: 1715,
     slug: "ir-khung-hoang-va-tin-xau",
     title: "DevRel, Bài 5: Tin xấu và khủng hoảng - nói trước khi bị hỏi",
-    subtitle: "Trình tự xử lý khi có sự cố, cách viết một thông cáo về tin xấu, và vì sao nhỏ giọt là cách tệ nhất",
+    subtitle: "Trình tự xử lý khi có sự cố, cách viết một thông báo về tin xấu, và vì sao nhỏ giọt là cách tệ nhất",
     duration: "11 phút",
     difficulty: "Khó",
     emoji: "🚨",
     track: "professional",
     whyItMatters:
-      "Mọi bộ phận IR đều làm tốt khi mọi thứ suôn sẻ. Giá trị của nghề này được chứng minh trong tuần có tin xấu, và những gì làm trong tuần đó quyết định công ty mất một quý hay mất niềm tin nhiều năm.",
+      "Mọi đội DevRel đều làm tốt khi mọi thứ suôn sẻ. Giá trị của nghề này được chứng minh trong tuần có sự cố, và những gì làm trong tuần đó quyết định sản phẩm mất một tuần hay mất niềm tin nhiều năm.",
     openingQuestion:
-      "Phát hiện sai sót kế toán làm lợi nhuận ba quý trước bị ghi nhận cao hơn thực tế. Bước đầu tiên?",
+      "Phát hiện một lỗi phân quyền đã để lộ dữ liệu của một số tài khoản qua API suốt ba tuần. Nên công bố theo cách nào?",
     openingOptions: [
-      "Xác định phạm vi sai sót rồi công bố toàn bộ một lần",
+      "Xác định phạm vi rồi công bố toàn bộ một lần",
       "Công bố ngay phần đã biết và cập nhật dần khi rà soát thêm",
-      "Điều chỉnh lặng lẽ trong báo cáo kỳ tới kèm thuyết minh giải thích",
-      "Đợi ý kiến kiểm toán độc lập rồi công bố cùng báo cáo đã kiểm toán",
+      "Vá lặng lẽ trong bản phát hành kế tiếp kèm một dòng ghi chú kỹ thuật",
+      "Đợi đơn vị kiểm thử bảo mật độc lập xác nhận rồi công bố cùng báo cáo",
     ],
     correctOption: 0,
     explanation:
-      "Cần một khoảng thời gian ngắn để biết sai sót lan tới đâu, rồi công bố trọn vẹn một lần. Đây là ngoại lệ hiếm hoi của nguyên tắc công bố càng sớm càng tốt, và lý do nằm ở cách thị trường phản ứng với tin nhỏ giọt: mỗi lần cập nhật thêm một phần sai sót, nhà đầu tư không cộng thêm phần mới mà đặt lại câu hỏi còn bao nhiêu chưa biết - nên ba lần công bố nhỏ gây thiệt hại lớn hơn hẳn một lần công bố đầy đủ cùng nội dung. Nhưng khoảng thời gian ấy phải tính bằng ngày, không phải bằng tuần, và trong lúc đó tuyệt đối không ai được giao dịch cổ phiếu.",
+      "Cần một khoảng thời gian ngắn để biết lỗi lan tới đâu - bao nhiêu tài khoản, loại dữ liệu nào, từ ngày nào - rồi công bố trọn vẹn một lần. Đây là ngoại lệ hiếm hoi của nguyên tắc công bố càng sớm càng tốt, và lý do nằm ở cách người dùng phản ứng với tin nhỏ giọt: mỗi lần cập nhật thêm một phần, họ không cộng thêm phần mới mà đặt lại câu hỏi còn bao nhiêu chưa biết - nên ba lần công bố nhỏ gây thiệt hại lớn hơn hẳn một lần công bố đầy đủ cùng nội dung. Nhưng khoảng thời gian ấy phải tính bằng giờ hoặc vài ngày, không phải bằng tuần - với dữ liệu cá nhân còn bị chặn bởi thời hạn 72 giờ của luật - và trước tất cả, lỗ hổng phải được chặn lại.",
     diagram: [
       { label: "Phát hiện sự cố", arrow: true },
-      { label: "Khoá giao dịch nội bộ ngay lập tức", arrow: true },
-      { label: "Xác định phạm vi - tính bằng ngày, không bằng tuần", arrow: true },
+      { label: "Chặn lỗ hổng và thu hồi khoá bị lộ ngay lập tức", arrow: true },
+      { label: "Xác định phạm vi - tính bằng giờ, không bằng tuần", arrow: true },
       { label: "Công bố trọn vẹn một lần: cái gì, bao nhiêu, vì sao, sửa thế nào", arrow: true },
       { label: "Theo dõi và trả lời, không đổi câu chuyện" },
     ],
     interactiveType: "ethics-case",
     realWorldExample: {
-      company: "Các đợt điều chỉnh hồi tố báo cáo tài chính trên thị trường Việt Nam",
+      company: "Các bản phân tích sau sự cố được công bố công khai",
       description:
-        "Khi báo cáo sau kiểm toán chênh lệch lớn so với báo cáo tự lập, phản ứng của giá thường mạnh hơn nhiều so với mức chênh lệch con số. Nguyên nhân là nhà đầu tư đọc chênh lệch đó như một tín hiệu về chất lượng kiểm soát nội bộ - và một khi đã nghi ngờ chỗ đó thì mọi con số khác cũng bị chiết khấu theo.",
+        "Khi một nhà cung cấp dịch vụ đám mây công bố bản phân tích sau sự cố mà phạm vi lớn hơn nhiều so với thông báo ban đầu, phản ứng của người dùng thường mạnh hơn nhiều so với mức chênh lệch con số. Nguyên nhân là họ đọc chênh lệch đó như một tín hiệu về khả năng giám sát của chính nhà cung cấp - và một khi đã nghi ngờ chỗ đó thì mọi con số khác trên trang trạng thái cũng bị nghi ngờ theo.",
     },
     quiz: [
       {
         question: "Vì sao công bố nhỏ giọt gây thiệt hại lớn hơn công bố một lần?",
         options: [
-          "Vì mỗi lần cập nhật khiến nhà đầu tư hỏi còn bao nhiêu chưa biết",
+          "Vì mỗi lần cập nhật khiến người dùng hỏi còn bao nhiêu chưa biết",
           "Vì quy định cấm công bố cùng một sự việc thành nhiều lần khác nhau",
           "Vì báo chí sẽ đưa tin nhiều lần và khuếch đại mức độ nghiêm trọng",
-          "Vì chi phí công bố tăng theo số lần",
+          "Vì chi phí gửi email tăng theo số lần",
         ],
         correct: 0,
         explanation:
-          "Thị trường không cộng dồn các phần tin xấu; nó định giá lại mức bất định. Nhỏ giọt làm mức bất định đó không bao giờ đóng lại.",
+          "Người dùng không cộng dồn các phần tin xấu; họ đánh giá lại mức bất định. Nhỏ giọt làm mức bất định đó không bao giờ đóng lại.",
       },
       {
-        question: "Việc đầu tiên phải làm khi phát hiện sự cố trọng yếu là gì?",
+        question: "Việc đầu tiên phải làm khi phát hiện sự cố bảo mật trọng yếu là gì?",
         options: [
-          "Khoá giao dịch cổ phiếu của người nội bộ",
+          "Chặn lỗ hổng và thu hồi các khoá bị lộ",
           "Soạn thông cáo báo chí để chủ động kiểm soát thông điệp",
-          "Báo cho cổ đông lớn trước",
-          "Rà soát lại toàn bộ quy trình kiểm soát nội bộ liên quan",
+          "Báo cho khách hàng lớn trước",
+          "Rà soát lại toàn bộ quy trình kiểm thử bảo mật liên quan",
         ],
         correct: 0,
         explanation:
-          "Từ giây phút biết tin, người nội bộ đang nắm thông tin chưa công bố. Một giao dịch trong khoảng này biến sự cố thành hai vụ việc.",
+          "Từ giây phút biết tin, lỗ hổng vẫn đang mở và có thể vẫn đang bị khai thác. Mỗi phút để ngỏ trong lúc soạn thông báo biến một sự cố thành hai.",
       },
       {
-        question: "Một thông cáo về tin xấu nên có gì mà thông cáo kém thường thiếu?",
+        question: "Một thông báo về tin xấu nên có gì mà thông báo kém thường thiếu?",
         options: [
           "Con số cụ thể và mốc thời gian đã biết, kể cả khi chưa đủ",
-          "Lời xin lỗi gửi tới cổ đông",
+          "Lời xin lỗi gửi tới người dùng",
           "Cam kết sự việc sẽ không bao giờ lặp lại trong tương lai",
-          "So sánh cho thấy doanh nghiệp cùng ngành cũng gặp vấn đề",
+          "So sánh cho thấy sản phẩm cùng loại cũng gặp vấn đề",
         ],
         correct: 0,
         explanation:
-          "Thông cáo kém đầy tính từ và cam kết. Nhà đầu tư cần biết ảnh hưởng bao nhiêu, tới kỳ nào, và ai đang xử lý - phần còn lại là chữ.",
+          "Thông báo kém đầy tính từ và cam kết. Người dùng cần biết ảnh hưởng bao nhiêu tài khoản, trong khoảng thời gian nào, và ai đang xử lý - phần còn lại là chữ.",
       },
       {
         question: "Vì sao không nên hứa 'sẽ không bao giờ lặp lại'?",
         options: [
           "Vì đó là lời hứa không kiểm soát được, và một lần tái diễn sẽ đắt gấp đôi",
           "Vì quy định không cho phép doanh nghiệp đưa ra cam kết về tương lai",
-          "Vì nhà đầu tư sẽ yêu cầu công ty bồi thường nếu sự việc tái diễn",
-          "Vì lời hứa này khiến kiểm toán viên phải mở rộng phạm vi soát xét",
+          "Vì người dùng sẽ yêu cầu công ty bồi thường nếu sự việc tái diễn",
+          "Vì lời hứa này khiến đơn vị kiểm thử phải mở rộng phạm vi rà soát",
         ],
         correct: 0,
         explanation:
@@ -795,9 +790,9 @@ export const IR_LESSONS: Lesson[] = [
         question: "Sau khi công bố, điều quan trọng nhất trong những tuần tiếp theo là gì?",
         options: [
           "Giữ nguyên câu chuyện và cập nhật đúng những mốc đã hứa",
-          "Đẩy truyền thông thành tích khác",
-          "Hạn chế phát ngôn để tránh sự việc tiếp tục được nhắc lại trên báo",
-          "Tổ chức gặp riêng từng cổ đông lớn để giải thích chi tiết bối cảnh",
+          "Đẩy truyền thông tính năng mới",
+          "Hạn chế phát ngôn để tránh sự việc tiếp tục được nhắc lại trên mạng",
+          "Tổ chức gặp riêng từng khách hàng lớn để giải thích chi tiết bối cảnh",
         ],
         correct: 0,
         explanation:
@@ -806,44 +801,44 @@ export const IR_LESSONS: Lesson[] = [
     ],
     practicePrompt: {
       question:
-        "Phát hiện một sự cố trọng yếu lúc 8 giờ sáng, phạm vi thiệt hại chưa xác định xong. Việc đầu tiên phải làm là gì?",
+        "Phát hiện một sự cố bảo mật trọng yếu lúc 8 giờ sáng, phạm vi thiệt hại chưa xác định xong. Việc đầu tiên phải làm là gì?",
       options: [
-        "Khoá giao dịch nội bộ, trước cả khi bắt đầu soạn thông cáo",
-        "Soạn ngay thông cáo và phát hành trong vòng một giờ đầu",
-        "Chờ xác định xong phạm vi rồi mới thông báo cho ban điều hành",
-        "Liên hệ trước với vài chuyên viên phân tích thân thiết để dò phản ứng",
+        "Chặn lỗ hổng và thu hồi khoá bị lộ, trước cả khi soạn thông báo",
+        "Soạn ngay thông báo và đăng lên trang trạng thái trong giờ đầu",
+        "Chờ xác định xong phạm vi rồi mới báo cho lãnh đạo kỹ thuật",
+        "Liên hệ trước với vài khách hàng thân thiết để dò phản ứng của họ",
       ],
       correct: 0,
       explanation:
-        "Từ lúc một người trong công ty biết, mọi giao dịch cổ phiếu của người nội bộ đều diễn ra trên thông tin thị trường chưa có - và khoá giao dịch là việc làm được ngay trong vài phút, không cần biết phạm vi thiệt hại. Soạn thông cáo cần thời gian, xác định phạm vi cần nhiều thời gian hơn, nhưng cả hai việc đó không được diễn ra trong lúc cửa giao dịch còn mở. Sau đó mới tới nguyên tắc thứ hai: xác định phạm vi rồi công bố TRỌN VẸN một lần, vì công bố nhỏ giọt khiến mức bất định không bao giờ đóng lại và mỗi bản cập nhật lại là một cú sốc mới.",
+        "Từ lúc một người trong công ty biết, mỗi phút lỗ hổng còn mở là thêm một phút dữ liệu có thể tiếp tục bị lấy ra - và chặn lỗ hổng, thu hồi khoá bị lộ là việc làm được trong vài phút, không cần biết phạm vi thiệt hại. Soạn thông báo cần thời gian, xác định phạm vi cần nhiều thời gian hơn, nhưng cả hai việc đó không được diễn ra trong lúc cửa vẫn mở. Sau đó mới tới nguyên tắc thứ hai: xác định phạm vi rồi công bố TRỌN VẸN một lần, vì công bố nhỏ giọt khiến mức bất định không bao giờ đóng lại và mỗi bản cập nhật lại là một cú sốc mới.",
     },
     keyTakeaways: [
-      "Khoá giao dịch nội bộ ngay khi biết - trước cả khi soạn thông cáo.",
+      "Chặn lỗ hổng và thu hồi khoá bị lộ ngay khi biết - trước cả khi soạn thông báo.",
       "Xác định phạm vi rồi công bố trọn vẹn một lần; nhỏ giọt khiến mức bất định không đóng lại.",
-      "Thông cáo tốt có con số và mốc thời gian, không có tính từ và cam kết tuyệt đối.",
+      "Thông báo tốt có con số và mốc thời gian, không có tính từ và cam kết tuyệt đối.",
       "Sau công bố, giữ nguyên câu chuyện và cập nhật đúng mốc đã hứa.",
     ],
     summary: {
       keyIdea: "Xác định phạm vi rồi công bố trọn vẹn một lần - nhỏ giọt khiến mức bất định không bao giờ đóng lại",
       commonMistake: "Công bố phần đã chắc chắn trước để trấn an, rồi mỗi tuần lộ thêm một phần. Mỗi lần lộ thêm là một lần niềm tin bị đặt lại từ đầu.",
-      action: "Khi có sự cố, việc đầu tiên là khoá giao dịch nội bộ - trước cả khi bắt đầu soạn thông cáo.",
+      action: "Khi có sự cố, việc đầu tiên là chặn lỗ hổng và thu hồi khoá bị lộ - trước cả khi bắt đầu soạn thông báo.",
     },
     application: {
-      title: "Viết thử một thông cáo tin xấu",
-      message: "Chọn một sự cố giả định và viết thông cáo cho nó: chuyện gì xảy ra, phạm vi bằng con số, đang làm gì, và khi nào sẽ cập nhật tiếp. Rồi xoá mọi tính từ và đọc lại.",
-      secondary: "Một thông cáo còn đứng vững sau khi xoá hết tính từ là một thông cáo có nội dung.",
+      title: "Viết thử một thông báo sự cố",
+      message: "Chọn một sự cố giả định và viết thông báo cho nó: chuyện gì xảy ra, phạm vi bằng con số, đang làm gì, và khi nào sẽ cập nhật tiếp. Rồi xoá mọi tính từ và đọc lại.",
+      secondary: "Một thông báo còn đứng vững sau khi xoá hết tính từ là một thông báo có nội dung.",
     },
     sections: [
       {
         type: "lead",
-        text: "Bộ phận IR nào cũng làm tốt trong quý thuận lợi. Nghề này được chứng minh trong tuần có tin xấu - và phần lớn thiệt hại trong tuần đó là do cách xử lý, không phải do bản thân tin.",
+        text: "Đội DevRel nào cũng làm tốt trong quý thuận lợi. Nghề này được chứng minh trong tuần có sự cố - và phần lớn thiệt hại trong tuần đó là do cách xử lý, không phải do bản thân sự cố.",
       },
       { type: "heading", text: "Trình tự" },
       {
         type: "list",
         items: [
-          "Khoá giao dịch cổ phiếu của người nội bộ ngay lập tức. Đây là việc đầu tiên, trước cả khi biết sự việc lớn tới đâu.",
-          "Xác định phạm vi: ảnh hưởng bao nhiêu, tới kỳ nào, còn chỗ nào chưa rà.",
+          "Chặn lỗ hổng, thu hồi khoá và phiên đăng nhập bị lộ ngay lập tức. Đây là việc đầu tiên, trước cả khi biết sự việc lớn tới đâu.",
+          "Xác định phạm vi: bao nhiêu tài khoản, dữ liệu gì, từ ngày nào, còn chỗ nào chưa rà.",
           "Công bố trọn vẹn một lần, kèm mốc thời gian cho những gì chưa xong.",
           "Sau đó chỉ cập nhật theo đúng những mốc đã hứa - không thêm, không đổi.",
         ],
@@ -851,12 +846,12 @@ export const IR_LESSONS: Lesson[] = [
       { type: "heading", text: "Vì sao nhỏ giọt là cách tệ nhất" },
       {
         type: "paragraph",
-        text: "Thị trường không cộng dồn các mảnh tin xấu. Mỗi lần có thêm một mảnh, nhà đầu tư đặt lại câu hỏi còn bao nhiêu chưa biết - và câu hỏi đó không có đáy. Ba lần công bố nhỏ với cùng nội dung gây thiệt hại lớn hơn hẳn một lần công bố đầy đủ, vì sau lần công bố đầy đủ thì mức bất định đóng lại.",
+        text: "Người dùng không cộng dồn các mảnh tin xấu. Mỗi lần có thêm một mảnh, họ đặt lại câu hỏi còn bao nhiêu chưa biết - và câu hỏi đó không có đáy. Ba lần công bố nhỏ với cùng nội dung gây thiệt hại lớn hơn hẳn một lần công bố đầy đủ, vì sau lần công bố đầy đủ thì mức bất định đóng lại.",
       },
       {
         type: "comparison",
-        left: { label: "Thông cáo kém", text: "Đầy tính từ, xin lỗi, cam kết không tái diễn. Không có con số, không có mốc thời gian, không nói ai đang xử lý." },
-        right: { label: "Thông cáo tốt", text: "Ảnh hưởng bao nhiêu, thuộc kỳ nào, nguyên nhân là gì, kiểm soát nào đã đổi, và khi nào có thông tin tiếp theo." },
+        left: { label: "Thông báo kém", text: "Đầy tính từ, xin lỗi, cam kết không tái diễn. Không có con số, không có mốc thời gian, không nói ai đang xử lý." },
+        right: { label: "Thông báo tốt", text: "Ảnh hưởng bao nhiêu tài khoản, trong khoảng thời gian nào, nguyên nhân là gì, kiểm soát nào đã đổi, và khi nào có thông tin tiếp theo." },
       },
       {
         type: "callout",
@@ -866,8 +861,8 @@ export const IR_LESSONS: Lesson[] = [
       {
         type: "closing",
         lines: [
-          "Tin xấu mất giá trị một lần. Cách xử lý tin xấu mất giá trị nhiều lần.",
-          "Và thứ mất trong lần thứ hai thì không mua lại bằng một quý tốt.",
+          "Sự cố làm mất niềm tin một lần. Cách xử lý sự cố làm mất niềm tin nhiều lần.",
+          "Và thứ mất trong lần thứ hai thì không mua lại bằng một quý suôn sẻ.",
         ],
       },
     ],

@@ -64,7 +64,7 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-stone-900 border-2 border-line rounded-xl shadow-lg z-50">
+        <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-stone-900 border border-line-strong rounded-md z-50">
           {/* User Info */}
           <div className="px-4 py-3 border-b border-line">
             <p className="text-sm font-bold text-ink">{displayName}</p>

@@ -171,6 +171,11 @@
       "text": "The machine compares character by character, so one stray trailing space makes two strings different - even though on screen they look identical. That is why every search box and every login form normalises first: trim both ends, fold to one case, sometimes strip accents as well."
     },
     {
+      "type": "code",
+      "caption": "To the machine, stray spaces and capital letters are different characters. Normalise both sides before comparing.",
+      "code": "name_typed = \"  Nguyen Van An \"\nname_stored = \"nguyen van an\"\n\nprint(name_typed == name_stored)                  # False\nprint(name_typed.strip().lower() == name_stored)  # True"
+    },
+    {
       "type": "comparison",
       "left": {
         "label": "Joining strings to display",
@@ -180,6 +185,18 @@
         "label": "Joining strings into a command",
         "text": "Dangerous. When user data is mixed into a query, they can write content the database reads as a command. Use parameterisation so data and commands never mix."
       }
+    },
+    {
+      "type": "exercise",
+      "title": "Normalise an email before comparing",
+      "task": "The user typed their email with stray spaces and mixed case, so the system says \"account not found\". Fix the line that assigns email.",
+      "starter": "email_typed = \"  An.Nguyen@Gmail.com  \"\nemail_stored = \"an.nguyen@gmail.com\"\n\nemail = email_typed   # fix this line\n\nprint(email)\nprint(\"Matches the account:\", email == email_stored)",
+      "solution": "email_typed = \"  An.Nguyen@Gmail.com  \"\nemail_stored = \"an.nguyen@gmail.com\"\n\nemail = email_typed.strip().lower()\n\nprint(email)\nprint(\"Matches the account:\", email == email_stored)",
+      "expectedOutput": "an.nguyen@gmail.com\nMatches the account: True",
+      "hints": [
+        ".strip() removes whitespace from both ends of a string.",
+        ".lower() makes every letter lowercase - and the two methods can be chained."
+      ]
     },
     {
       "type": "closing",

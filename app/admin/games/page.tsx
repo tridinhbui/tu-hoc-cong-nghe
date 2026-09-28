@@ -12,7 +12,7 @@ export default async function GamesAdminPage() {
   return (
     <div>
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-lg border border-line-strong text-ink-soft flex items-center justify-center">
           <Gamepad2 className="w-5 h-5" />
         </div>
         <div>

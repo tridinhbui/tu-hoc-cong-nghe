@@ -42,7 +42,6 @@ const GRANDFATHERED = new Set([
   // trò chơi, chưa có hằng số dùng chung để trỏ tới.
   "bossStudyWorld.toastSuccess",
   "bossStudyWorld.victoryRewardPart1",
-  "cosmeticsDuel.toastSoftLanding",
   "games.xpBadge",
   "gameKingdom.quizReward",
   // Bài thi chặng: 50 XP/chặng nằm trong recalculateUserStats (milestoneXp),
@@ -52,14 +51,12 @@ const GRANDFATHERED = new Set([
   "finalOne.milestoneBonusXp",
   // Ôn tập chủ động: 10 XP/chặng, nằm trong recalculateUserStats (recallXp).
   "recall.passedToast",
-  // Chia sẻ lên FinSocial.
+  // Chia sẻ lên bảng tin cộng đồng.
   "share.sharedToast",
   "share.shareCta",
   // Trang chủ và trang đăng nhập: con số MINH HOẠ trong bản demo tương tác,
   // không phải phần thưởng thật của tài khoản nào.
   "trackPanel.samplerXp",
-  // Nhãn theo lĩnh vực trong bài kiểm tra xếp lớp.
-  "placement.sectorXp30Cfa",
 ]);
 
 function dictionaryFiles(): string[] {

@@ -117,8 +117,8 @@ export default function MessagesTable({
               onClick={() => handleFilterChange(f)}
               className={`px-3 py-2 text-xs font-bold rounded-lg transition-colors ${
                 initialFilter === f
-                  ? "bg-surface-invert text-ink-invert"
-                  : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
+                  ? "border border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
+                  : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
               }`}
             >
               {f === "all" ? tm.filterAll : f === "unread" ? tm.filterUnread : tm.filterRead}
@@ -136,7 +136,7 @@ export default function MessagesTable({
       ) : (
         <div className="divide-y divide-stone-200 dark:divide-stone-800">
           {result.messages.map((msg) => (
-            <div key={msg.id} className={`p-4 ${!msg.is_read ? "bg-blue-50/50 dark:bg-blue-950/10" : ""}`}>
+            <div key={msg.id} className={`p-4 ${!msg.is_read ? "border-l-2 border-l-brand-600 dark:border-l-brand-400" : ""}`}>
               <div className="flex items-start justify-between gap-3">
                 <button
                   onClick={() => setExpanded(expanded === msg.id ? null : msg.id)}
@@ -146,7 +146,7 @@ export default function MessagesTable({
                     <span className="font-bold text-sm text-ink">{msg.name}</span>
                     {msg.email && <span className="text-xs text-ink-muted">{msg.email}</span>}
                     {!msg.is_read && (
-                      <span className="text-[10px] font-bold uppercase tracking-wide bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wide bg-accent-soft text-accent-strong px-2 py-0.5 rounded-xs">
                         {tm.newBadge}
                       </span>
                     )}

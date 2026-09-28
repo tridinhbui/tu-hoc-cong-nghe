@@ -41,8 +41,8 @@ export default function AppealsCombinedWrapper({
           onClick={() => setSection("appeals")}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "appeals"
-              ? "bg-surface-invert text-ink-invert shadow-sm"
-              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
+              ? "bg-accent-soft text-ink-max border border-brand-600 dark:border-brand-400"
+              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
           }`}
         >
           <ShieldQuestion className="w-4 h-4 text-brand-500" />
@@ -54,8 +54,8 @@ export default function AppealsCombinedWrapper({
           onClick={() => setSection("ai-reports")}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "ai-reports"
-              ? "bg-surface-invert text-ink-invert shadow-sm"
-              : "bg-surface-raised text-ink-soft hover:bg-surface-sunken"
+              ? "bg-accent-soft text-ink-max border border-brand-600 dark:border-brand-400"
+              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
           }`}
         >
           <AlertTriangle className="w-4 h-4 text-rose-500" />

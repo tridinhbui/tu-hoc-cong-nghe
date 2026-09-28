@@ -106,21 +106,11 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // (lib/study-room-bot-messages.ts), nên chuỗi này LÀ bản tiếng Anh - chỉ có
   // tên nhân vật giữ nguyên.
   "groupChat.botRules",
-  // Already English: the in-game clan's own name, not copy to translate.
-  "guild.clanTitle",
   // The FRM certification's own name and its awarding body. "Financial Risk
   // Manager - GARP Part I & Part II" is what it is called in Vietnamese too;
   // translating it would name a qualification that does not exist.
   "certPages.frmTitle",
   "certPages.frmSubtitle",
-  // Ticker symbols. FPT is FPT in every language.
-  "guild.step2Tickers",
-  // "Tài Tài" again, plus the illustrative learner names in the logged-out
-  // preview ("Hà Tường Vy", "Hà Hồng"). Personal names are proper nouns.
-  "ecosystem.adminByline",
-  "ecosystem.adminMessage",
-  // Already English.
-  "ecosystem.samplerLabel",
   // The IB drill is deliberately written in the industry's own English - these
   // four were already English in the Vietnamese source. "drillBookTitle" is the
   // title of a published guide and is never translated.
@@ -151,17 +141,12 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "characterCustomizer.livePreviewBadge",
   "cosmeticStore.storeAlt",
   "cosmeticStore.arsenalEyebrow",
-  "cosmeticStore.arsenalTitle",
   "pvpDuel.soloBossBadge",
   "pvpDuel.arenaEyebrow",
-  "fedVault.buildingAlt",
-  "fedVault.fedEyebrow",
-  // Already English in the Vietnamese source: the season pass's own name and
-  // the in-game titles it awards. A title is a proper noun the learner then
-  // wears on their profile, so it reads the same in both languages.
-  "seasonPass.badge",
-  "seasonPass.levelLabel",
-  "seasonPass.rewards",
+  "backboneSim.eyebrow",
+  // Tech card names are product names - "Amazon Web Services" is the same
+  // proper noun in both languages.
+  "libData.techCards.card-vhm.name",
   // The six illustrative learner nicknames on the logged-out leaderboard.
   // Personal names and a chosen handle are proper nouns; the same reason the
   // leaderboard nicknames in vi.ts are exempt.
@@ -209,8 +194,6 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // "Tài Tài" the coach and the product's own name, in English sentences.
   "smartRemediation.titlePart1",
   "motivationShare.downloadedFilenameCaption",
-  // A wheel prize's own name, already English in the Vietnamese source.
-  "fortuneWheel.sectorChampagne",
   // Already English in the Vietnamese source: both cheat sheets are titled in
   // the exam's own language, matching the CFA and FRM syllabus names.
   "cfaFormulas.title",
@@ -224,16 +207,8 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // Danh sách miễn trừ không tự kêu khi một mục trong nó hết đối tượng - nó chỉ
   // im lặng không miễn trừ gì cả. Đọc nó với giả định đó.
   "finalTwo.roadmap.title",
-  "finalTwo.cfaContentRenderer.youtubeTitle",
-  "finalTwo.financeCharacterAvatar.levelPrefix",
-  "finalTwo.phongVanKyThuatDifficulty",
+  "finalTwo.characterAvatar.levelPrefix",
   "finalTwo.uistatsPreview",
-  // Sector names and a guild's own name, already English in the Vietnamese
-  // source: "SaaS & AI Software", "Fintech & Digital Payments", "Private Equity
-  // Syndicate" are how the industry names itself in Vietnamese finance too.
-  "finalOne.dcfGame.industries.tech-titan",
-  "finalOne.dcfGame.industries.payments-platform",
-  "finalOne.guildsRoute.fallbackNames.guild-pe",
   // The comps table's column header: three multiple names and separators. They
   // are the multiples' own names in both languages.
   "valuationSim.rows.peerColumns",
@@ -242,8 +217,6 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // matching the lesson that teaches them.
   "games.millionaire.questions.6.explanation",
   "games.snowballRacer.quizBoosts.compoundFormula.options",
-  // A URL, not a sentence: the example YouTube link in the admin video field.
-  "adminTwo.cfaLibrary.videoLinkPlaceholder",
   // Already English in the Vietnamese source: the file-type fallback label the
   // admin preview shows for a spreadsheet.
   "adminOne.filePreview.excelSpreadsheetFallback",

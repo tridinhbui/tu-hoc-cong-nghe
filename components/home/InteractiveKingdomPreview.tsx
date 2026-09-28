@@ -53,9 +53,8 @@ const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
     id: "goldman",
     name: t.kingdomPreview.goldmanName,
     subtitle: t.kingdomPreview.goldmanSubtitle,
-    // Ảnh khu công nghệ, không phải toà Goldman Sachs: thẻ này giờ tên là
-    // "Trung tâm dữ liệu Silicon Valley". `goldman_sachs.png` vẫn nằm trong
-    // public/ vì lib/rpg-buildings.ts còn trỏ tới nó ở bản đồ đầy đủ.
+    // Ảnh khu công nghệ: thẻ này tên là "Trung tâm dữ liệu Silicon Valley".
+    // `id` và khoá từ điển `goldman*` là tên cũ, không hiển thị.
     image: "/rpg/silicon_valley.png",
     minLevel: 5,
     progress: "72%",
@@ -69,7 +68,7 @@ const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
     id: "fed",
     name: t.kingdomPreview.fedName,
     subtitle: t.kingdomPreview.fedSubtitle,
-    image: "/rpg/fed_reserve.jpg",
+    image: "/rpg/empire_state_building.jpg",
     minLevel: 3,
     progress: "48%",
     xpReward: 250,
@@ -168,9 +167,9 @@ export default function InteractiveKingdomPreview() {
     // việc của một cái khung, trong khi nó cần để dành cho trạng thái ĐÃ MỞ và
     // hành động chính - viền vàng bọc cả khối thì bên trong không còn gì vàng
     // mà nổi lên được nữa.
-    <div className="overflow-hidden rounded-3xl border border-stone-800 bg-stone-950 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)] text-white relative">
+    <div className="overflow-hidden rounded-md border border-stone-800 bg-stone-950 text-white relative">
       {/* Top Browser Bar & Mode Switcher */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-800 bg-stone-900/90 px-4 py-3 backdrop-blur-md">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-800 bg-stone-900/90 px-4 py-3">
         <div className="flex items-center gap-3 min-w-0">
           {/* Ba chấm cửa sổ về xám. Đỏ/vàng/xanh ở đây là quy ước của thanh tiêu
               đề macOS, không mang nghĩa gì trong trò chơi - nhưng mắt vẫn đọc
@@ -180,8 +179,8 @@ export default function InteractiveKingdomPreview() {
             <span className="h-2.5 w-2.5 rounded-full bg-stone-700" />
             <span className="h-2.5 w-2.5 rounded-full bg-stone-700" />
           </div>
-          <div className="hidden sm:block min-w-0 flex-1 truncate rounded-full border border-stone-800 bg-stone-950 px-4 py-1 text-center text-[11px] font-semibold text-stone-500">
-            tuhoccongnghe.org/game-kingdom
+          <div className="hidden sm:block min-w-0 flex-1 truncate rounded-sm border border-stone-800 bg-stone-950 px-4 py-1 text-center text-[11px] font-semibold text-stone-500">
+            tuhoccongnghe.vn/game-kingdom
           </div>
         </div>
 
@@ -193,9 +192,9 @@ export default function InteractiveKingdomPreview() {
         <div className="flex items-center gap-0.5 text-xs font-black">
           <button
             onClick={() => setActiveTab("map")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all cursor-pointer ${
               activeTab === "map"
-                ? "bg-amber-500 text-stone-950"
+                ? "bg-brand-600 text-white"
                 : "text-stone-400 hover:text-stone-200"
             }`}
           >
@@ -212,9 +211,9 @@ export default function InteractiveKingdomPreview() {
               thật sự mang nghĩa: ngọc cho đúng/sai của quiz, đỏ cho máu Boss. */}
           <button
             onClick={() => setActiveTab("minigame")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all cursor-pointer ${
               activeTab === "minigame"
-                ? "bg-amber-500 text-stone-950"
+                ? "bg-brand-600 text-white"
                 : "text-stone-400 hover:text-stone-200"
             }`}
           >
@@ -224,9 +223,9 @@ export default function InteractiveKingdomPreview() {
 
           <button
             onClick={() => setActiveTab("boss")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all cursor-pointer ${
               activeTab === "boss"
-                ? "bg-amber-500 text-stone-950"
+                ? "bg-brand-600 text-white"
                 : "text-stone-400 hover:text-stone-200"
             }`}
           >
@@ -247,7 +246,7 @@ export default function InteractiveKingdomPreview() {
             sizes="100vw"
             className="object-cover opacity-35 brightness-75 contrast-125"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/70 to-amber-950/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/70 to-stone-950/85" />
           {/* Lưới chấm giữ nguyên - nó là chiều sâu của cảnh. Bỏ `animate-pulse`:
               cả nền thở ra thở vào phía sau mọi thứ là chuyển động không báo
               điều gì, và nó làm mọi thành phần đứng trên trông như đang rung. */}
@@ -260,7 +259,7 @@ export default function InteractiveKingdomPreview() {
             {/* Nhãn mào bỏ viên thuốc: nền hổ phách + viền + shadow cho sáu chữ
                 là một cái khung nữa, ngay trên tiêu đề nó đang giới thiệu.
                 Vương miện và màu hổ phách ở lại - đó là phần nhận dạng. */}
-            <div className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-amber-400/90">
+            <div className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-brand-300">
               <Crown className="h-3 w-3" />
               <span>{t.kingdomPreview.eyebrow}</span>
             </div>
@@ -303,9 +302,9 @@ export default function InteractiveKingdomPreview() {
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setSelectedBuildingId(b.id)}
-                    className={`group relative h-32 cursor-pointer overflow-hidden rounded-xl transition-all duration-300 sm:h-36 ${
+                    className={`group relative h-32 cursor-pointer overflow-hidden rounded-md transition-all duration-300 sm:h-36 ${
                       isSelected
-                        ? "ring-2 ring-amber-400"
+                        ? "ring-2 ring-brand-400"
                         : "ring-1 ring-stone-800 hover:ring-stone-600"
                     }`}
                   >
@@ -323,7 +322,7 @@ export default function InteractiveKingdomPreview() {
 
                     {/* Nhãn phân loại: chữ trần trên ảnh, không còn viên thuốc
                         nền cam có viền. */}
-                    <span className="absolute left-2 top-2 inline-flex items-center gap-1 text-[8px] font-black uppercase tracking-widest text-amber-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+                    <span className="absolute left-2 top-2 inline-flex items-center gap-1 text-[8px] font-black uppercase tracking-widest text-brand-200 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
                       <b.icon className="h-2.5 w-2.5" strokeWidth={2} aria-hidden /> {b.badge}
                     </span>
 
@@ -345,7 +344,7 @@ export default function InteractiveKingdomPreview() {
                         không tách ô thành hai phần trên-dưới. */}
                     <div className="absolute inset-x-0 bottom-0 h-1 bg-stone-950/80">
                       <div
-                        className="h-full bg-amber-400 transition-all duration-500"
+                        className="h-full bg-brand-400 transition-all duration-500"
                         style={{ width: b.progress }}
                       />
                     </div>
@@ -364,7 +363,7 @@ export default function InteractiveKingdomPreview() {
                 // khi một địa điểm đang được chọn có nét hổ phách của riêng nó
                 // thì hai thứ hổ phách cạnh nhau không cho biết cái nào đang
                 // hoạt động. Nét stone mảnh, còn vàng để cho nút chính bên dưới.
-                className="h-full flex flex-col justify-between rounded-2xl border border-stone-800 bg-stone-900/90 p-3.5 sm:p-4 backdrop-blur-xl relative overflow-hidden"
+                className="h-full flex flex-col justify-between rounded-md border border-stone-800 bg-stone-900/90 p-3.5 sm:p-4 relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-6 pointer-events-none opacity-10 text-white">
                   <Landmark className="h-14 w-14" strokeWidth={1.25} aria-hidden />
@@ -373,7 +372,7 @@ export default function InteractiveKingdomPreview() {
                 <div>
                   {/* Ghim bản đồ thôi nảy: nó đánh dấu một chỗ, và một cái ghim
                       nhảy liên tục thì đọc như đang chờ được bấm. */}
-                  <div className="flex items-center gap-2 text-xs font-black text-amber-400 uppercase tracking-widest mb-1">
+                  <div className="flex items-center gap-2 text-xs font-black text-brand-300 uppercase tracking-widest mb-1">
                     <MapPin className="w-4 h-4" />
                     <span>{t.kingdomPreview.buildingDetail}</span>
                   </div>
@@ -383,7 +382,7 @@ export default function InteractiveKingdomPreview() {
                   {/* Mô tả bỏ viền: một hộp có viền nằm trong một thẻ có viền là
                       đúng cái lồng khung đang phải dọn. Nền tối hơn một bậc đủ
                       để tách nó ra khỏi phần chữ quanh nó. */}
-                  <p className="text-xs text-stone-300 leading-relaxed mt-3 bg-stone-950/60 p-3 rounded-xl">
+                  <p className="text-xs text-stone-300 leading-relaxed mt-3 bg-stone-950/60 p-3 rounded-md">
                     {selectedBuilding.description}
                   </p>
 
@@ -418,7 +417,7 @@ export default function InteractiveKingdomPreview() {
                     // Gradient rút từ ba chặng xuống hai. Màu chuyên đề của
                     // từng tab vẫn còn ở phần nội dung: thanh máu đỏ, phản hồi
                     // quiz màu ngọc.
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 px-5 py-3 text-sm font-black text-stone-950 hover:brightness-110 active:scale-98 transition-all cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-white hover:bg-brand-100 px-5 py-3 text-sm font-black text-stone-950 active:scale-98 transition-all cursor-pointer"
                   >
                     <Zap className="w-4 h-4 text-stone-950 fill-stone-950" />
                     <span>{t.kingdomPreview.unlockBuilding}</span>
@@ -439,13 +438,13 @@ export default function InteractiveKingdomPreview() {
               // Viền ngọc 2px xuống nét stone mảnh. Màu ngọc ở tab này để dành
               // cho phản hồi đúng/sai bên dưới - nơi nó mang nghĩa - chứ không
               // dùng để vẽ khung cho cả tấm.
-              className="rounded-3xl border border-stone-800 bg-stone-900/90 p-6 backdrop-blur-xl text-white"
+              className="rounded-md border border-stone-800 bg-stone-900/90 p-6 text-white"
             >
               <div className="flex items-center justify-between mb-3 text-xs font-black uppercase text-brand-400 tracking-wider">
                 <span className="flex items-center gap-1.5">
                   <Gamepad2 className="w-4 h-4" /> {format(t.kingdomPreview.samplerQuestion, { index: samplerIndex + 1 })}
                 </span>
-                <span className="text-amber-400">{t.kingdomPreview.samplerXp}</span>
+                <span className="text-brand-300">{t.kingdomPreview.samplerXp}</span>
               </div>
 
               <h4 className="text-base sm:text-lg font-black text-white mb-5 leading-snug">
@@ -459,7 +458,7 @@ export default function InteractiveKingdomPreview() {
 
                   if (answered) {
                     if (opt.correct) {
-                      btnStyle = "border-brand-400 bg-brand-950/90 text-brand-200 shadow-[0_0_20px_rgba(65,122,205,0.3)]";
+                      btnStyle = "border-brand-400 bg-brand-950/90 text-brand-200 ";
                     } else if (isSelected) {
                       btnStyle = "border-rose-500 bg-rose-950/90 text-rose-200";
                     }
@@ -470,7 +469,7 @@ export default function InteractiveKingdomPreview() {
                       key={opt.text}
                       disabled={answered}
                       onClick={() => handleSelectOption(idx)}
-                      className={`w-full text-left p-3.5 rounded-2xl border text-xs sm:text-sm font-bold transition-all duration-200 flex items-center justify-between cursor-pointer ${btnStyle}`}
+                      className={`w-full text-left p-3.5 rounded-md border text-xs sm:text-sm font-bold transition-all duration-200 flex items-center justify-between cursor-pointer ${btnStyle}`}
                     >
                       <span>{opt.text}</span>
                       {answered && opt.correct && <CheckCircle2 className="w-5 h-5 text-brand-400 shrink-0" />}
@@ -483,7 +482,7 @@ export default function InteractiveKingdomPreview() {
               {answered && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-5 space-y-3">
                   <div
-                    className={`p-3.5 rounded-2xl border text-xs leading-relaxed font-semibold ${
+                    className={`p-3.5 rounded-md border text-xs leading-relaxed font-semibold ${
                       isCorrect
                         ? "bg-brand-950/80 border-brand-400/50 text-brand-200"
                         : "bg-rose-950/80 border-rose-500/50 text-rose-200"
@@ -496,14 +495,14 @@ export default function InteractiveKingdomPreview() {
                   <div className="flex items-center gap-3">
                     <button
                       onClick={handleNextQuestion}
-                      className="flex-1 py-3 px-4 rounded-xl bg-stone-800 hover:bg-stone-700 font-bold text-xs text-white transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+                      className="flex-1 py-3 px-4 rounded-md bg-stone-800 hover:bg-stone-700 font-bold text-xs text-white transition-colors cursor-pointer flex items-center justify-center gap-1.5"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>{t.kingdomPreview.tryAnother}</span>
                     </button>
                     <Link
                       href="/login?mode=signup"
-                      className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 font-black text-xs text-stone-950 hover:brightness-110 transition-all cursor-pointer text-center"
+                      className="flex-1 py-3 px-4 rounded-md bg-white hover:bg-brand-100 font-black text-xs text-stone-950 transition-all cursor-pointer text-center"
                     >
                       {t.kingdomPreview.doAllQuizzes}
                     </Link>
@@ -519,16 +518,15 @@ export default function InteractiveKingdomPreview() {
           <div className="relative z-10 grid gap-6 lg:grid-cols-12 items-center flex-1 my-auto">
             <div className="lg:col-span-5 flex flex-col items-center text-center">
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 mb-2">
-                <div className="absolute inset-0 rounded-full bg-rose-600/30 blur-3xl animate-pulse" />
                 {/* Quầng đỏ mờ phía sau GIỮ - đó là không khí của trận đánh.
                     `animate-bounce` thì bỏ: con bò nảy đều đặn là chuyển động
                     trang trí, và nó kéo mắt khỏi thanh máu bên cạnh - thứ duy
                     nhất ở tab này thật sự đang thay đổi. */}
                 <Image
-                  src="/boss-wallstreet-bull.png"
+                  src="/boss-server-outage.svg"
                   alt={t.kingdomPreview.bossAlt}
                   fill
-                  className="object-contain drop-shadow-[0_10px_30px_rgba(225,29,72,0.5)]"
+                  className="object-contain "
                 />
               </div>
               <span className="text-[10px] font-black uppercase tracking-widest text-rose-400">
@@ -550,7 +548,7 @@ export default function InteractiveKingdomPreview() {
                   sau con Boss. */}
               <Link
                 href="/login?mode=signup"
-                className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 px-6 py-3.5 text-sm font-black text-stone-950 hover:brightness-110 active:scale-98 transition-all cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-white hover:bg-brand-100 px-6 py-3.5 text-sm font-black text-stone-950 active:scale-98 transition-all cursor-pointer"
               >
                 <Swords className="w-4 h-4" />
                 <span>{t.kingdomPreview.joinBoss}</span>
@@ -570,7 +568,7 @@ export default function InteractiveKingdomPreview() {
 
           <Link
             href="/login?mode=signup"
-            className="inline-flex items-center gap-1 text-amber-300 font-extrabold hover:text-amber-200 transition-colors"
+            className="inline-flex items-center gap-1 text-brand-300 font-extrabold hover:text-brand-200 transition-colors"
           >
             <span>{t.kingdomPreview.playFull}</span>
             <ChevronRight className="w-4 h-4" />

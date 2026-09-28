@@ -2,6 +2,7 @@
 
 import Modal from "./Modal";
 import { useI18n } from "@/lib/i18n/context";
+import { btnPrimary, btnSecondary } from "@/components/ui/system";
 
 interface ConfirmDialogProps {
   open: boolean;
@@ -37,16 +38,18 @@ export default function ConfirmDialog({
           <button
             onClick={onCancel}
             disabled={loading}
-            className="px-4 py-2 text-sm font-semibold rounded-lg border border-line-strong text-ink-body hover:bg-surface transition-colors disabled:opacity-50"
+            className={`${btnSecondary} cursor-pointer`}
           >
             {tc.cancel}
           </button>
           <button
             onClick={onConfirm}
             disabled={loading}
-            className={`px-4 py-2 text-sm font-bold rounded-lg text-white transition-colors disabled:opacity-50 ${
-              danger ? "bg-rose-600 hover:bg-rose-700" : "bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white dark:text-stone-900"
-            }`}
+            className={
+              danger
+                ? "inline-flex items-center justify-center gap-2 rounded-sm bg-red-600 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+                : `${btnPrimary} cursor-pointer`
+            }
           >
             {loading ? tc.processing : resolvedConfirmLabel}
           </button>

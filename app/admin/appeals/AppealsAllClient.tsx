@@ -16,21 +16,21 @@ function getStatusBadge(status: string, t: Dictionary) {
   switch (status) {
     case "approved":
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-brand-100 dark:bg-brand-950 text-accent-strong">
+        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-xs text-xs font-bold bg-accent-soft text-accent-strong">
           <CheckCircle2 className="w-3 h-3" />
           {ta.statusApproved}
         </span>
       );
     case "rejected":
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-rose-100 dark:bg-rose-950 text-alert-strong">
+        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-xs text-xs font-bold bg-danger-soft text-danger">
           <XCircle className="w-3 h-3" />
           {ta.statusRejected}
         </span>
       );
     case "pending":
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950 text-warn-strong">
+        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-xs text-xs font-bold bg-warn-soft text-warn-strong">
           <Clock className="w-3 h-3" />
           {ta.statusPending}
         </span>
@@ -63,7 +63,7 @@ export default function AppealsAllClient({ initialAppeals }: { initialAppeals: A
           </h2>
           <div className="space-y-3">
             {grouped.pending.map((a) => (
-              <div key={a.id} className="bg-white dark:bg-stone-900 border border-line rounded-xl p-4 hover:shadow-md transition-shadow">
+              <div key={a.id} className="bg-white dark:bg-stone-900 border border-line rounded-xl p-4 hover:border-line-firm transition-colors">
                 <div className="flex items-start justify-between gap-3 flex-wrap">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 mb-1">

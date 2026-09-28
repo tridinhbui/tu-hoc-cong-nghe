@@ -100,12 +100,12 @@ export const legalChatVi = {
     toastShareError: "Không thể chia sẻ lúc này.",
     shareCaption: "Mình vừa lên cấp {level} tại Tự Học Công Nghệ",
     shareCaptionWithName: "Mình vừa lên Level {level} - {name} trên Tự học Công nghệ!",
-    svgHeaderName: "TỰ HỌC TÀI CHÍNH MỖI NGÀY",
+    svgHeaderName: "TỰ HỌC CÔNG NGHỆ MỖI NGÀY",
     svgTitle: "THÀNH TÍCH LÊN CẤP",
     svgUserAchieved: "{userName} vừa đạt",
     svgLevel: "Level {level}",
     svgLevelWithName: "Level {level} · {name}",
-    svgFooter: "HỌC TÀI CHÍNH MỖI NGÀY · TUHOCTAICHINH.COM",
+    svgFooter: "HỌC CÔNG NGHỆ MỖI NGÀY · TUHOCCONGNGHE.VN",
   },
 };
 
@@ -209,6 +209,6 @@ export const legalChatEn: typeof legalChatVi = {
     svgUserAchieved: "{userName} just reached",
     svgLevel: "Level {level}",
     svgLevelWithName: "Level {level} · {name}",
-    svgFooter: "LEARN TECH EVERY DAY · TUHOCTAICHINH.COM",
+    svgFooter: "LEARN TECH EVERY DAY · TUHOCCONGNGHE.VN",
   },
 };

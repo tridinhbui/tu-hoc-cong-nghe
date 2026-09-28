@@ -6,246 +6,244 @@ import type { FlashcardAlbumTranslation } from "./index";
  * Luật cho `term`, và nó khác nhau theo từng dạng tên ở tệp gốc:
  *
  * - Tên đã kèm tiếng Anh trong ngoặc thì bản tiếng Anh CHÍNH LÀ phần trong
- *   ngoặc, bỏ ngoặc đi: "Tài sản (Assets)" -> "Assets". Dịch lại từ đầu sẽ ra
+ *   ngoặc, bỏ ngoặc đi: "Biến (Variable)" -> "Variable". Dịch lại từ đầu sẽ ra
  *   một cách gọi khác với chính chữ người học vừa thấy ở bản tiếng Việt.
- * - Tên vốn đã là tiếng Anh ("Sharpe Ratio", "EBITDA", "Current Ratio") thì
+ * - Tên vốn đã là tiếng Anh ("Primary Key", "JSON", "Runbook") thì
  *   KHÔNG ghi lại ở đây. Ghi lại là tạo ra một `alsoKnownAs` rỗng nghĩa đi qua
  *   cả đường nhập thẻ.
- * - Tên thuần tiếng Việt ("Vòng quay hàng tồn kho") thì dịch bằng thuật ngữ
+ * - Tên thuần tiếng Việt ("Mã trạng thái 4xx") thì dịch bằng thuật ngữ
  *   chuẩn của ngành, không dịch từng chữ.
  *
  * Công thức trong `definition` đã là tiếng Anh ở tệp gốc và phải giữ NGUYÊN ký
- * tự: "FCFF = NI + NCC + Int(1-T) - FCInv - WCInv" là thứ người học phải nhớ
+ * tự: "Availability = MTBF / (MTBF + MTTR)" là thứ người học phải nhớ
  * đúng từng chữ.
  */
 export const flashcardAlbumsEn: Record<string, FlashcardAlbumTranslation> = {
-  "cfa-level-1-terms": {
-    title: "CFA Level I - Terms & formulas",
-    description:
-      "The standard CFA Level 1 term set (FSA, Quant, Corporate, Ethics, Equity, Derivatives...)",
+  "sre-reliability-terms": {
+    title: "SRE & reliability - Terms & formulas",
+    description: "The core English-Vietnamese term set for running systems in production (SLI, SLO, MTTR, error budget, postmortem...)",
     cards: [
       {
         definition:
-          "Net Income / Average Equity - measures how efficiently shareholder capital produces net profit.",
+          "A measured value for one aspect of a service - for example the share of successful requests, or p99 latency.",
       },
       {
         definition:
-          "The free cash flow available to both creditors and shareholders after operating costs and CapEx (FCFF = NI + NCC + Int(1-T) - FCInv - WCInv).",
+          "An internal target for an SLI over a time window, e.g. 99.9% of requests succeeding over 30 days.",
       },
       {
         definition:
-          "ROE = Net Profit Margin × Asset Turnover × Financial Leverage - breaks ROE apart to find what drives it.",
+          "A commitment to customers with consequences (credits, penalties) when missed - usually set looser than the SLO.",
       },
       {
         definition:
-          "A dong today is always worth more than a dong in the future, because it can earn a return in the meantime.",
+          "Error budget = 1 − SLO - the failure you are allowed to spend before releases stop in favour of stability work.",
       },
       {
         definition:
-          "E(R) = Rf + Beta × [E(Rm) - Rf] - prices an asset's required return off its systematic risk.",
+          "Availability = MTBF / (MTBF + MTTR) - the share of time the system can actually serve its users.",
       },
       {
         definition:
-          "WACC = (Wd × Rd × (1-T)) + (Wp × Rp) + (We × Re) - the minimum blended return the business has to clear.",
-      },
-      {
-        term: "Ethical & Professional Standards (Code of Ethics)",
-        definition:
-          "The CFA code of professional ethics, binding on financial analysts worldwide.",
-      },
-      {
-        term: "Modigliani-Miller Theorem",
-        definition:
-          "In a perfect market - no taxes, no bankruptcy costs - the value of a firm does not depend on its capital structure.",
-      },
-      {
-        term: "Duration (Macaulay / Modified)",
-        definition:
-          "How sensitive a bond's price is to a change in interest rates - the higher the duration, the more the price moves.",
+          "MTTR = Total recovery time / Number of incidents - how quickly the system is brought back after a failure.",
       },
       {
         definition:
-          "(Rp - Rf) / StdDev(p) - return earned per unit of total risk taken.",
+          "A = A1 × A2 × ... × An - a chain of components in series is always less available than its weakest link.",
+      },
+      {
+        definition:
+          "The latency that 99% of requests beat - it exposes the tail that an average hides.",
+      },
+      {
+        definition:
+          "An incident write-up that focuses on systems and process rather than on blaming a person.",
+      },
+      {
+        definition:
+          "A step-by-step document for handling a known kind of incident or operational task.",
       },
     ],
   },
 
-  "ke-toan-co-ban": {
-    title: "Accounting basics",
-    description: "The foundational terms for reading the three financial statements",
+  "lap-trinh-co-ban": {
+    title: "Programming basics",
+    description: "The foundational terms for reading your first lines of code",
     cards: [
       {
-        term: "Assets",
+        term: "Variable",
         definition:
-          "What a business owns that carries economic value - cash, inventory, fixed assets and so on.",
+          "A name bound to a value in memory, so the program can read and change it later.",
       },
       {
-        term: "Liabilities",
-        definition: "Financial obligations the business must settle with someone else in future.",
-      },
-      {
-        term: "Equity",
-        definition: "The assets left over for the owners once every liability is subtracted.",
-      },
-      {
-        term: "Revenue",
+        term: "Function",
         definition:
-          "The value of goods or services delivered to customers, recognised when the obligation is met - not when the cash arrives.",
+          "A named block of code that takes inputs and returns a result - written once, called many times.",
       },
       {
-        term: "Cost of goods sold (COGS)",
-        definition: "The direct cost of producing or buying the goods sold during the period.",
-      },
-      {
-        term: "Gross profit",
+        term: "Loop",
         definition:
-          "Revenue less cost of goods sold - measures how well the core operation runs.",
+          "A construct that repeats a block of statements until a stopping condition is met.",
       },
       {
-        term: "Depreciation",
+        term: "Conditional",
         definition:
-          "Spreading the cost of a fixed asset across several periods to reflect wear over time.",
+          "Branches the program on a true/false condition (if/else).",
       },
       {
-        term: "Cash flow",
+        term: "Array",
         definition:
-          "The money that actually moves in and out of the business - different from accounting profit, because it owes nothing to accrual rules.",
+          "An ordered list of elements, accessed by an index that starts at 0.",
       },
       {
-        term: "Working capital",
+        term: "Object",
         definition:
-          "Current assets less current liabilities - measures the ability to meet near-term obligations.",
+          "A set of key-value pairs describing one thing, such as a user with a name and an email.",
       },
       {
+        term: "Data type",
         definition:
-          "Earnings before interest, taxes, depreciation and amortisation - used to compare operating performance across companies with different capital structures.",
+          "The kind of value a variable holds - number, string, boolean... - which decides which operations are valid.",
+      },
+      {
+        term: "Debugging",
+        definition:
+          "Finding and fixing the cause of a program behaving differently from what you expected.",
+      },
+      {
+        term: "Library",
+        definition:
+          "Code someone else has written and packaged, so you can call it instead of writing it from scratch.",
+      },
+      {
+        term: "Compiler",
+        definition:
+          "A program that translates source code into a form the machine can run, before it executes.",
       },
     ],
   },
 
-  "dinh-gia-dau-tu": {
-    title: "Valuation & investing",
-    description: "The toolkit every investor needs by heart",
+  "web-va-api": {
+    title: "Web & APIs",
+    description: "The concepts everyone who builds for the web needs by heart",
     cards: [
       {
         definition:
-          "Share price divided by earnings per share - how much the market pays for each unit of profit.",
+          "The request-response protocol between a browser (or any client) and a web server.",
       },
       {
         definition:
-          "Share price divided by book value per share - compares market price against net asset value.",
+          "An API design style built around resources with their own URLs and the GET, POST, PUT and DELETE methods.",
       },
       {
         definition:
-          "The present value of future cash flows less the upfront investment - positive means the investment creates value.",
+          "The most common key-value text format for exchanging data between client and server.",
+      },
+      {
+        term: "4xx status codes",
+        definition:
+          "A client-side error - a bad request, missing permission or a resource that does not exist (400, 401, 403, 404).",
+      },
+      {
+        term: "5xx status codes",
+        definition:
+          "A server-side error - the request was valid but the server could not handle it (500, 502, 503).",
       },
       {
         definition:
-          "The discount rate at which NPV equals zero - the investment's actual rate of return.",
+          "A small piece of data the server hands the browser, sent back with every later request - usually holding the login session.",
       },
       {
         definition:
-          "Weighted average cost of capital - the minimum return needed to satisfy both creditors and shareholders.",
-      },
-      {
-        term: "Free cash flow (FCF)",
-        definition:
-          "The cash left after capital expenditure - the part the business is genuinely free to use.",
+          "The browser mechanism that blocks requests to another origin unless the target server allows it with headers.",
       },
       {
         definition:
-          "Net profit over shareholders' equity - how much the business earns on the owners' money.",
+          "Calling an operation several times has the same effect as calling it once - the precondition for a safe retry.",
       },
       {
         definition:
-          "Return on invested capital - how efficiently all capital, debt and equity together, produces profit.",
-      },
-      {
-        term: "Diversification",
-        definition:
-          "Spreading capital across uncorrelated assets to reduce the total risk of a portfolio.",
+          "Capping how many requests a client may send in a time window, to protect the server.",
       },
       {
         definition:
-          "How much a stock moves relative to the market as a whole - a beta above 1 means it moves more than the market.",
+          "The other server calls your URL when an event happens, instead of you polling it over and over.",
       },
     ],
   },
 
-  "chi-so-tai-chinh-hot": {
-    title: "The ratios analysts live by",
-    description: "The ratios an analyst uses to score a business",
+  "co-so-du-lieu-hot": {
+    title: "Databases & SQL",
+    description: "The concepts data people use every day",
     cards: [
       {
         definition:
-          "Current assets / current liabilities - can short-term debts be covered by easily converted assets.",
+          "The column (or set of columns) that uniquely identifies each row in a table - never duplicated, never null.",
       },
       {
         definition:
-          "(Current assets - inventory) / current liabilities - a stricter liquidity measure than the current ratio.",
-      },
-      {
-        definition: "Total debt / equity - how heavily the business leans on financial leverage.",
+          "A column pointing at another table's primary key, keeping the relationship between the two tables valid.",
       },
       {
         definition:
-          "EBIT / interest expense - can the interest bill be paid out of operating profit.",
+          "An auxiliary structure that finds rows without scanning the whole table - faster reads, paid for with slower writes.",
       },
       {
-        term: "Inventory turnover",
         definition:
-          "Cost of goods sold / average inventory - how fast goods move through the business.",
+          "Combines rows from two tables on a condition, usually a foreign key equal to a primary key.",
       },
       {
-        term: "Receivables turnover",
-        definition: "Revenue / average receivables - how fast customers actually pay.",
-      },
-      {
-        term: "Net margin",
         definition:
-          "Net profit / revenue - the share of revenue that survives all the way to the bottom line.",
+          "A group of operations that is applied completely or not at all.",
       },
       {
-        term: "DuPont analysis",
         definition:
-          "Splits ROE into three parts - margin, asset turnover and leverage - to show where the ROE comes from.",
+          "Atomicity, Consistency, Isolation, Durability - the four guarantees of a trustworthy transaction.",
+      },
+      {
+        term: "Normalization",
+        definition:
+          "Splitting data across tables so each fact is stored in one place, avoiding updates that drift apart.",
+      },
+      {
+        definition:
+          "The performance bug of fetching a list and then running one extra query for each of its items.",
       },
     ],
   },
 
-  "tai-chinh-ca-nhan": {
-    title: "Personal finance",
-    description: "The groundwork for managing your own money before you invest",
+  "cong-cu-lap-trinh-vien": {
+    title: "Developer tools",
+    description: "The groundwork toolkit before you start on a real project",
     cards: [
       {
-        term: "Emergency fund",
+        term: "Repository",
         definition:
-          "Savings covering 3-6 months of living costs, kept for the unexpected - losing a job, falling ill.",
+          "Where a project's source code lives, together with the history of every change to it.",
       },
       {
-        term: "Compound interest",
+        term: "Branch",
         definition:
-          "Interest earned on the principal and on the interest already accumulated - the longer it runs, the faster it grows.",
+          "A separate line of development for working on a feature without touching the main code.",
       },
       {
-        term: "Good debt vs bad debt",
+        term: "Pull request",
         definition:
-          "Good debt builds a future asset or income - a mortgage, tuition. Bad debt only funds consumption and loses value immediately.",
+          "A proposal to merge changes from a branch into the main one, with a colleague review step.",
       },
       {
-        term: "The 50/30/20 rule",
+        term: "Continuous integration (CI)",
         definition:
-          "Split income three ways: 50% needs, 30% wants, 20% savings and debt repayment.",
+          "Automatically building and running the tests every time a change is pushed to the repository.",
       },
       {
-        term: "Inflation",
         definition:
-          "Prices rising over time, which reduces what the same amount of money can buy.",
+          "Packages an application with all its dependencies so it runs the same on every machine.",
       },
       {
-        term: "Diversifying your income",
+        term: "Environment variable",
         definition:
-          "Having several independent income sources instead of depending on one, which lowers personal financial risk.",
+          "A configuration value kept outside the code - API keys, database URLs - so the same code runs in several environments.",
       },
     ],
   },

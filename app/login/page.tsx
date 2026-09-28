@@ -4,7 +4,7 @@ import { MIN_PASSWORD_LENGTH } from "@/lib/auth/password-policy";
 import React, { Suspense, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { roundedLessonCount } from "@/lib/track-totals";
 import { translateAuthErrorCode } from "@/lib/auth-error-messages";
@@ -17,6 +17,26 @@ import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { Frame, Sys, btnPrimary, btnSecondary } from "@/components/ui/system";
+
+/* i18n-ignore-start: định danh hệ thống (đường dẫn THCN://) - cùng một chuỗi ở
+   mọi ngôn ngữ, như tên tệp; không phải chữ để dịch. */
+const SYS = {
+  root: "THCN://AUTH",
+  login: "THCN://AUTH/LOGIN",
+  signup: "THCN://AUTH/SIGNUP",
+  forgot: "THCN://AUTH/RESET",
+  id: (n: number) => String(n).padStart(2, "0"),
+};
+/* i18n-ignore-end */
+
+// Viết thẳng bằng Tailwind, KHÔNG dùng .input-premium: lớp đó trong globals.css
+// đặt cứng `background: rgba(255,255,255,.88)` không có bản `.dark` (ô nhập
+// sáng trắng với chữ sáng ở chế độ tối) và `border-radius: 18px`.
+const INPUT_CLASS =
+  "w-full rounded-sm border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100 dark:placeholder:text-stone-500";
+const ERROR_CLASS =
+  "rounded-sm border border-danger-line bg-red-50 px-3 py-2 text-[13px] font-semibold text-danger dark:bg-red-950/50";
 
 const MAX_ATTEMPTS = 5;
 const COOLDOWN_MS = 60_000;
@@ -265,16 +285,16 @@ function LoginForm() {
     window.location.href = "/api/auth/google/start";
   }
 
-  return (
-    /* Modern Editorial EdTech, khớp với components/home/HomePage.tsx: nền
-       #fbfaf7 phẳng, số chương + gạch mảnh thay cho thẻ nổi, và xanh lá chỉ
-       dùng ở chỗ mang nghĩa.
+  const modeCode = mode === "login" ? SYS.login : mode === "signup" ? SYS.signup : SYS.forgot;
 
-       Nền cũ là bốn lớp gradient chồng nhau có cả xanh dương (59,130,246) lẫn
-       tím (167,139,250), cộng ba quả cầu blur-3xl bay phía sau - đó là thứ tạo
-       ra cảm giác SaaS mà trang chủ đã bỏ. Không thay bằng gradient khác, thay
-       bằng KHÔNG gradient: trang chủ dùng đúng một màu nền và để chữ làm việc. */
-    <div className="relative min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden bg-[#fbfaf7] dark:bg-stone-950 px-4 sm:px-6 lg:px-8 py-3 lg:py-4 flex flex-col justify-between transition-colors duration-300">
+  return (
+    /* Cùng ngôn ngữ với components/home/HomePage.tsx (xem năm luật ở
+       components/ui/system.tsx): nền giấy #fbfaf7 phẳng, viền 1px làm cấu
+       trúc, không bóng, không gradient. Form là một Frame - cửa sổ ứng dụng
+       có thanh tiêu đề mono - vì nó là công cụ, không phải thẻ quảng cáo.
+       Con số "01"/"02" to nhạt và bóng số vàng phía sau đã gỡ: trang chủ đã
+       thay thủ pháp đó bằng mã định vị THCN://. */
+    <div className="relative min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden bg-[#fbfaf7] dark:bg-stone-950 px-4 sm:px-6 lg:px-8 py-3 lg:py-4 flex flex-col justify-between">
       <div className="mx-auto w-full max-w-7xl relative flex-1 flex flex-col justify-between my-auto">
         <div className="shrink-0 mb-2">
           <Link
@@ -293,66 +313,45 @@ function LoginForm() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
           >
-            {/* Con số vàng nhạt phía sau - mượn đúng thủ pháp của trang chủ.
-                Đây là phần "có chiều sâu, không vô trùng": nó là hoa văn chứ
-                không phải một hiệu ứng phát sáng. */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-4 -top-14 select-none text-[110px] font-black leading-none text-[#FFCD00]/10"
-            >
-              01
-            </div>
-
             <div className="relative max-w-xl">
-              <div className="flex items-baseline gap-3">
-                <span className="shrink-0 font-black tabular-nums leading-none text-[1.75rem] text-stone-300 dark:text-stone-700">
-                  01
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent-strong sm:text-[11px]">
-                  {t.login.freeForever}
-                </span>
+              <div className="flex items-center gap-3">
+                <Sys className="text-ink-muted">{SYS.root}</Sys>
+                <span aria-hidden className="h-px flex-1 bg-surface-deep" />
               </div>
+              <p className="eyebrow mt-3 text-ink-soft">{t.login.freeForever}</p>
 
-              <div className="mt-3 h-px w-full bg-stone-300/70 dark:bg-stone-700/70" />
-
-              <h1 className="mt-3.5 text-[1.9rem] xl:text-[2.25rem] font-black tracking-tight text-ink-max leading-[1.08] text-balance">
+              <h1 className="mt-2.5 text-[1.9rem] xl:text-[2.25rem] font-black tracking-tight text-ink-max leading-[1.08] text-balance">
                 {t.login.heroTitle}
               </h1>
               <p className="mt-2.5 max-w-lg text-[13px] leading-6 text-ink-soft">
                 {t.login.heroBody}
               </p>
 
-              {/* Ba lợi ích: cùng nội dung, bỏ ba cái thẻ. Chia bằng gạch dọc
-                  mảnh và bỏ ba màu icon xanh lá / xanh dương / tím vốn là thứ
-                  làm trang này trông như một bảng giá SaaS.
-                  Xếp NGANG chứ không dọc, và đó không phải chuyện thẩm mỹ: khối
-                  bọc ngoài là `lg:overflow-hidden`, nên một cột trái cao quá
-                  viewport bị CẮT chứ không cuộn được. Bản danh sách dọc đo được
-                  770px trong khung 720px và ăn mất đáy khối xem trước. */}
-              <dl className="mt-5 grid grid-cols-3 divide-x divide-stone-200 border-y border-stone-200 py-2.5 dark:divide-stone-800 dark:border-stone-800">
+              {/* Ba lợi ích xếp NGANG chứ không dọc, và đó không phải chuyện
+                  thẩm mỹ: khối bọc ngoài là `lg:overflow-hidden`, nên một cột
+                  trái cao quá viewport bị CẮT chứ không cuộn được. Bản danh
+                  sách dọc đo được 770px trong khung 720px và ăn mất đáy khối
+                  xem trước. Mã 01-03 thay cho vạch xanh: xanh để dành cho
+                  chức năng. */}
+              <dl className="mt-5 grid grid-cols-3 divide-x divide-stone-200 border-y border-stone-300 py-2.5 dark:divide-stone-800 dark:border-stone-700">
                 {[
                   { t: t.login.perk1Title, b: t.login.perk1Body },
                   { t: t.login.perk2Title, b: t.login.perk2Body },
                   { t: t.login.perk3Title, b: t.login.perk3Body },
                 ].map((perk, i) => (
                   <div key={perk.t} className={i === 0 ? "pr-4" : i === 2 ? "pl-4" : "px-4"}>
-                    <span aria-hidden="true" className="block h-1 w-5 bg-brand-600 dark:bg-brand-500" />
-                    <dt className="mt-1.5 text-[13px] font-black text-ink">{perk.t}</dt>
+                    <Sys className="text-ink-faint">{SYS.id(i + 1)}</Sys>
+                    <dt className="mt-1 text-[13px] font-black text-ink-max">{perk.t}</dt>
                     <dd className="mt-0.5 text-[12px] leading-5 text-ink-soft">{perk.b}</dd>
                   </div>
                 ))}
               </dl>
 
-              {/* Một khối xem trước duy nhất, đóng khung bằng nhãn + gạch mảnh
-                  thay vì một thẻ bo tròn có đổ bóng. */}
               <div className="mt-5">
-                <div className="flex items-baseline justify-between gap-4">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-ink-muted">
-                    {t.login.trackPickTitle}
-                  </span>
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-strong pb-1.5">
+                  <span className="eyebrow text-ink-soft">{t.login.trackPickTitle}</span>
                   <span className="text-[11px] text-ink-muted">{t.login.trackPickBody}</span>
                 </div>
-                <div className="mt-2 h-px w-full bg-stone-300/70 dark:bg-stone-700/70" />
                 <div className="mt-2.5">
                   <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
                 </div>
@@ -361,41 +360,28 @@ function LoginForm() {
           </motion.div>
 
           <div className="w-full max-w-md lg:max-w-none mx-auto">
-            <div className="flex items-center gap-2 mb-3 lg:hidden">
+            <div className="flex items-center gap-2.5 mb-3 lg:hidden">
               <Logo size={24} />
-              <span className="text-xs font-bold text-ink-muted uppercase tracking-widest">
+              <span className="text-[13px] font-black uppercase tracking-[0.04em] text-ink-heading">
                 {t.login.brand}
               </span>
             </div>
 
-            {/* Thẻ form: bo 16px thay vì 32, viền đặc thay vì trong mờ, bóng nhẹ
-                thay cho bóng 90px, và bỏ backdrop-blur cùng dải gradient ba màu
-                ở mép trên. Vẫn là thẻ nổi duy nhất trên trang - đó là thứ giữ
-                cho nó "premium" mà không cần thêm hiệu ứng nào. */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: "easeOut" }}
-              className="bg-white dark:bg-stone-900 border border-line rounded-2xl shadow-sm overflow-hidden"
             >
-              <div className="p-5 sm:p-6 xl:p-7 space-y-3.5 font-sans">
-                <div className="lg:hidden border-l-2 border-brand-600 dark:border-brand-500 pl-3">
+              <Frame title={modeCode} bodyClassName="p-5 sm:p-6 xl:p-7 space-y-3.5">
+                <div className="lg:hidden border-l-2 border-stone-950 pl-3 dark:border-stone-200">
                   <p className="text-[13px] font-bold text-ink">
                     {format(t.login.lessonCountLine, { count: lessonCountFloor })}
                   </p>
                 </div>
 
                 <div>
-                  <div className="flex items-baseline gap-3">
-                    <span className="shrink-0 font-black tabular-nums leading-none text-[1.4rem] text-stone-300 dark:text-stone-700">
-                      02
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent-strong">
-                      {t.login.brand}
-                    </span>
-                  </div>
-                  <div className="mt-2.5 mb-3 h-px w-full bg-surface-sunken" />
-                  <h1 className="text-[1.6rem] font-black leading-[1.15] tracking-tight text-ink-max mb-1.5">
+                  <p className="eyebrow text-ink-soft">{t.login.brand}</p>
+                  <h1 className="mt-1.5 mb-1.5 text-[1.6rem] font-black leading-[1.15] tracking-tight text-ink-max">
                     {mode === "login" ? t.login.modeLogin : mode === "signup" ? t.login.modeSignup : t.login.modeForgot}
                   </h1>
                   <p className="text-[13px] leading-6 text-ink-soft">
@@ -412,30 +398,28 @@ function LoginForm() {
                     <button
                       onClick={handleGoogleLogin}
                       disabled={loading}
-                      className="button-premium w-full border border-line-strong bg-white dark:bg-stone-950/40 hover:bg-surface text-ink py-2.5 rounded-lg font-bold text-[13px] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/30 cursor-pointer"
+                      className={`${btnSecondary} w-full bg-white dark:bg-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/30`}
                     >
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                      </svg>
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                  </svg>
                       {t.login.google}
                     </button>
 
                     <div className="relative flex items-center">
-                      <div className="flex-1 border-t border-line-soft" />
-                      <span className="px-3 text-[10px] text-ink-muted font-extrabold uppercase tracking-wider">
-                        {t.login.orEmail}
-                      </span>
-                      <div className="flex-1 border-t border-line-soft" />
+                      <div className="flex-1 border-t border-line" />
+                      <span className="eyebrow px-3 text-ink-muted">{t.login.orEmail}</span>
+                      <div className="flex-1 border-t border-line" />
                     </div>
                   </>
                 )}
 
                 {mode === "forgot" ? (
                   resetSent ? (
-                    <div className="bg-brand-50 dark:bg-brand-950/50 border border-accent-line text-accent-ink text-[13px] font-semibold rounded-lg px-3.5 py-3 text-center">
+                    <div role="status" className="rounded-sm border border-brand-600 bg-brand-50 px-3.5 py-3 text-center text-[13px] font-semibold text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200">
                       {t.login.resetSentPart1}
                       <strong>{email}</strong>
                       {t.login.resetSentPart2}
@@ -443,37 +427,22 @@ function LoginForm() {
                   ) : (
                     <form onSubmit={handleForgotPassword} className="space-y-3">
                       <div className="space-y-1">
-                        {/* KHÔNG dùng .input-premium ở đây nữa. Lớp đó trong
-                            globals.css đặt cứng `background: rgba(255,255,255,.88)`
-                            và KHÔNG có bản `.dark`, nên ở chế độ tối nó thắng
-                            `dark:bg-stone-800` - ô nhập sáng trắng trong khi chữ
-                            là `dark:text-stone-100`, tức gõ xong gần như không
-                            đọc được. Nó cũng đặt cứng `border-radius: 18px`, ghi
-                            đè luôn bo góc của trang này. Viết thẳng bằng Tailwind
-                            thì cả hai vấn đề biến mất và không đụng globals.css. */}
-                        <label className="text-[10px] font-bold text-ink-muted uppercase tracking-[0.18em] block">
-                          {t.login.emailLabel}
-                        </label>
+                        {/* KHÔNG dùng .input-premium: lớp đó trong globals.css đặt
+                            cứng nền trắng không có bản `.dark` và bo 18px. Xem
+                            INPUT_CLASS ở đầu file. */}
+                        <label className="eyebrow block text-ink-muted">{t.login.emailLabel}</label>
                         <input
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="email@vi-du.com"
-                          className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
+                          className={INPUT_CLASS}
                         />
                       </div>
 
-                      {error && (
-                        <div className="bg-red-50 dark:bg-red-950/50 border border-danger-line text-danger text-[13px] font-semibold rounded-lg px-3 py-2">
-                          {error}
-                        </div>
-                      )}
+                      {error && <div role="alert" className={ERROR_CLASS}>{error}</div>}
 
-                      <button
-                        type="submit"
-                        disabled={loading}
-                        className="button-premium w-full bg-stone-950 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-950 py-3 rounded-lg font-black text-[13px] uppercase tracking-[0.08em] transition-colors duration-200 disabled:opacity-60 mt-1 cursor-pointer"
-                      >
+                      <button type="submit" disabled={loading} className={`${btnPrimary} mt-1 w-full`}>
                         {loading ? t.login.sending : t.login.sendReset}
                       </button>
                     </form>
@@ -482,37 +451,31 @@ function LoginForm() {
                   <form onSubmit={handleSubmit} className="space-y-2.5">
                     {mode === "signup" && (
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold text-ink-muted uppercase tracking-[0.18em] block">
-                          {t.login.nameLabel}
-                        </label>
+                        <label className="eyebrow block text-ink-muted">{t.login.nameLabel}</label>
                         <input
                           type="text"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           placeholder={t.login.namePlaceholder}
-                          className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
+                          className={INPUT_CLASS}
                         />
                       </div>
                     )}
 
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-ink-muted uppercase tracking-[0.18em] block">
-                        {t.login.emailLabel}
-                      </label>
+                      <label className="eyebrow block text-ink-muted">{t.login.emailLabel}</label>
                       <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="email@vi-du.com"
-                        className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
+                        className={INPUT_CLASS}
                       />
                     </div>
 
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <label className="text-[10px] font-bold text-ink-muted uppercase tracking-[0.18em] block">
-                          {t.login.passwordLabel}
-                        </label>
+                        <label className="eyebrow block text-ink-muted">{t.login.passwordLabel}</label>
                         {mode === "login" && (
                           <button
                             type="button"
@@ -521,7 +484,7 @@ function LoginForm() {
                               setError("");
                               setResetSent(false);
                             }}
-                            className="text-[11px] font-bold text-ink-muted hover:text-ink hover:underline"
+                            className="text-[11px] font-bold text-accent-strong underline-offset-4 hover:underline"
                           >
                             {t.login.forgotLink}
                           </button>
@@ -532,18 +495,18 @@ function LoginForm() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••"
-                        className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
+                        className={INPUT_CLASS}
                       />
                     </div>
 
                     {error && (
-                      <div className="bg-red-50 dark:bg-red-950/50 border border-danger-line text-danger text-[13px] font-semibold rounded-lg px-3 py-2">
+                      <div role="alert" className={ERROR_CLASS}>
                         <p>{error}</p>
                       </div>
                     )}
 
                     {cooldownUntil && (
-                      <div className="bg-amber-50 dark:bg-amber-950/50 border border-warn-line text-warn-ink text-[13px] font-semibold rounded-lg px-3 py-2">
+                      <div className="rounded-sm border border-warn-line bg-amber-50 px-3 py-2 text-[13px] font-semibold text-warn-ink dark:bg-amber-950/50">
                         {format(t.login.tooManyAttempts, { seconds: cooldownLeft })}
                       </div>
                     )}
@@ -551,30 +514,29 @@ function LoginForm() {
                     <button
                       type="submit"
                       disabled={loading || !!cooldownUntil}
-                      className="button-premium w-full bg-stone-950 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-950 py-3 rounded-lg font-black text-[13px] uppercase tracking-[0.08em] transition-colors duration-200 disabled:opacity-60 mt-1 cursor-pointer"
+                      className={`${btnPrimary} mt-1 w-full`}
                     >
                       {loading ? t.login.processing : mode === "login" ? t.login.modeLogin : t.login.signUp}
                     </button>
                   </form>
                 )}
 
-                {/* Ba con số: cùng nội dung, bỏ ba cái thẻ có viền và ba màu
-                    icon. Chia bằng gạch dọc mảnh và dùng tabular-nums như dải
-                    thống kê ở hero trang chủ, nên giá trị thẳng cột với nhau. */}
+                {/* Ba con số: chỉ số nào ở đây cũng phải đếm được từ dữ liệu
+                    thật. Ô "4.9/5 học viên" và "Hỏi đáp 24/7" từng đứng đây đã
+                    gỡ: không có hệ thống đánh giá hay đội hỗ trợ trực nào đứng
+                    sau hai con số ấy. Giá trị đi sans vì chúng là câu đã dịch
+                    ("Miễn phí"), không phải số máy. */}
                 <dl className="grid grid-cols-3 divide-x divide-stone-200 border-t border-stone-200 pt-3 dark:divide-stone-800 dark:border-stone-800">
                   {[
-                    // Chỉ số nào ở đây cũng phải đếm được từ dữ liệu thật. Ô "4.9/5
-                    // học viên" và "Hỏi đáp 24/7" từng đứng đây đã gỡ: không có hệ
-                    // thống đánh giá hay đội hỗ trợ trực nào đứng sau hai con số ấy.
                     { k: t.login.statLessons, v: format(t.login.statLessonsValue, { count: lessonCountFloor }) },
                     { k: t.login.statTracks, v: format(t.login.statTracksValue, { count: Object.keys(TRACKS).length }) },
                     { k: t.login.statPrice, v: t.login.statPriceValue },
                   ].map((stat, i) => (
-                    <div key={stat.k} className={i === 0 ? "pr-3" : i === 2 ? "pl-3" : "px-3"}>
-                      <dd className="text-[13px] font-black tabular-nums text-ink">{stat.v}</dd>
-                      <dt className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-ink-muted">
+                    <div key={stat.k} className={`flex flex-col-reverse ${i === 0 ? "pr-3" : i === 2 ? "pl-3" : "px-3"}`}>
+                      <dt className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-ink-muted">
                         {stat.k}
                       </dt>
+                      <dd className="text-[13px] font-black tabular-nums text-ink-max">{stat.v}</dd>
                     </div>
                   ))}
                 </dl>
@@ -588,7 +550,7 @@ function LoginForm() {
                           setMode("signup");
                           setError("");
                         }}
-                        className="text-ink font-bold hover:underline cursor-pointer"
+                        className="font-bold text-accent-strong underline-offset-4 hover:underline cursor-pointer"
                       >
                         {t.login.signUp}
                       </button>
@@ -602,7 +564,7 @@ function LoginForm() {
                           setError("");
                           setResetSent(false);
                         }}
-                        className="text-ink font-bold hover:underline cursor-pointer"
+                        className="font-bold text-accent-strong underline-offset-4 hover:underline cursor-pointer"
                       >
                         {t.login.modeLogin}
                       </button>
@@ -610,7 +572,7 @@ function LoginForm() {
                   )}
                 </div>
 
-                <p className="text-center text-[10px] text-ink-faint pt-1">
+                <p className="text-center text-[11px] text-ink-faint pt-1">
                   {t.login.termsPart1}{" "}
                   <Link href="/dieu-khoan" className="underline underline-offset-2 hover:text-ink-soft">
                     {t.login.terms}
@@ -621,7 +583,7 @@ function LoginForm() {
                   </Link>
                   .
                 </p>
-              </div>
+              </Frame>
             </motion.div>
           </div>
         </div>

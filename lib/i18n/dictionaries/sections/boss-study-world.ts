@@ -38,7 +38,7 @@ export const bossStudyWorldVi = {
     boardTitle: "Phòng {topic}",
   },
   bossBattle: {
-    defaultBossName: "Bò tót 3D",
+    defaultBossName: "Boss Sập Hệ Thống 3D",
     defaultQ1Prompt: "Sự cố sập diện rộng khi một dịch vụ phụ thuộc chậm đi khởi nguồn chính từ đâu?",
     defaultQ1Opt1: "Các lệnh gọi chờ nhau dồn ứ tới khi cạn kết nối & lan sang dịch vụ khác",
     defaultQ1Opt2: "Ổ đĩa máy chủ đó đầy nên nó ngừng ghi được nhật ký",
@@ -130,7 +130,7 @@ export const bossStudyWorldEn: typeof bossStudyWorldVi = {
     boardTitle: "{topic} Room",
   },
   bossBattle: {
-    defaultBossName: "Silicon Valley Bull 3D",
+    defaultBossName: "Outage Boss 3D",
     defaultQ1Prompt: "Where does a wide outage mainly originate when one dependency slows down?",
     defaultQ1Opt1: "Calls piling up until connections run out & the failure spreads",
     defaultQ1Opt2: "That server's disk fills up so it stops writing logs",

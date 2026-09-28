@@ -104,9 +104,9 @@ export default function HighlightReview({ deck, lessonsById, onRestart, onExit }
         </button>
       </div>
 
-      <div className="h-1 rounded-full bg-surface-raised overflow-hidden">
+      <div className="h-1 rounded-xs bg-surface-raised overflow-hidden">
         <div
-          className="h-full bg-amber-500 transition-all duration-300"
+          className="h-full bg-brand-600 dark:bg-brand-500 transition-all duration-300"
           style={{ width: `${(index / deck.length) * 100}%` }}
         />
       </div>

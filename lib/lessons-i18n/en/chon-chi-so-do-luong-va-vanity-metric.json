@@ -27,8 +27,8 @@
     }
   ],
   "realWorldExample": {
-    "company": "A bank measuring new accounts opened",
-    "description": "A common branch-network target is the number of accounts opened in the period. It is easy to measure, it rises steadily, and it looks excellent on a report. The problem is how easily it is gamed: staff open accounts for relatives and for customers with no real need, the target is hit, and the number of accounts with actual transactions does not move at all. Switch to measuring accounts still active after 90 days and the target becomes far harder to hit - but it starts reflecting what the bank actually needs."
+    "company": "An app measuring new account sign-ups",
+    "description": "A common growth-team target is the number of new accounts registered in the period. It is easy to measure, it rises steadily, and it looks excellent on a report. The problem is how easily it is gamed: give a gift for every sign-up, pull in people with no real need, the target is hit, and the number of accounts that actually use the product does not move at all. Switch to measuring accounts still active after 90 days and the target becomes far harder to hit - but it starts reflecting what the product actually needs."
   },
   "quiz": [
     {
@@ -37,7 +37,7 @@
         "Because companies tend to report this number without much precision",
         "Because it can only rise, so it signals nothing that would change anyone's action",
         "Because collecting it demands a tracking system more complex and costly than others",
-        "Because professional investors these days have all stopped caring about this metric"
+        "Because professional product teams these days have all stopped caring about this metric"
       ],
       "explanation": "A metric that moves in only one direction carries no information. Precision is not the issue - the number is usually accurate, and it is one of the cheapest things a company can count, so cost is not the issue either. What is worth measuring is the part that can move both ways: how many people came back, how many left during the period."
     },

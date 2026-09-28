@@ -129,6 +129,11 @@
       "text": "Remember the lesson on data types: floats are only approximations. So do not use an equals sign on them - check instead whether the difference between the two numbers is smaller than a threshold you are willing to accept."
     },
     {
+      "type": "code",
+      "caption": "The first line is why the second prints False. Run it before you believe it.",
+      "code": "print(0.1 + 0.2)\nprint(0.1 + 0.2 == 0.3)                # never compare floats with ==\nprint(abs((0.1 + 0.2) - 0.3) < 1e-9)   # compare \"close enough\" instead\nprint(7 // 2, 7 % 2)                   # whole-number division, remainder"
+    },
+    {
       "type": "heading",
       "text": "The three combining operators"
     },
@@ -176,6 +181,18 @@
         "label": "Easy to read",
         "text": "Split into two variables called isOldEnough and hasIdentification, with the condition simply joining those two. It reads almost like a sentence, and performance is not affected at all."
       }
+    },
+    {
+      "type": "exercise",
+      "title": "Put learners into rooms",
+      "task": "There are 47 learners and each room holds at most 10. Work out how many rooms are full, how many people are in the last room, and how many rooms to open.",
+      "starter": "learners = 47\ncapacity = 10\n\nfull_rooms = learners / capacity   # fix: this is ordinary division\nleft_over = 0                      # fix\nrooms = 0                          # fix\n\nprint(\"Full rooms:\", full_rooms)\nprint(\"People in the last room:\", left_over)\nprint(\"Rooms to open:\", rooms)",
+      "solution": "learners = 47\ncapacity = 10\n\nfull_rooms = learners // capacity\nleft_over = learners % capacity\nrooms = full_rooms + (left_over > 0)\n\nprint(\"Full rooms:\", full_rooms)\nprint(\"People in the last room:\", left_over)\nprint(\"Rooms to open:\", rooms)",
+      "expectedOutput": "Full rooms: 4\nPeople in the last room: 7\nRooms to open: 5",
+      "hints": [
+        "// gives the whole part of a division, % gives the remainder.",
+        "Anyone left over needs one more room. In Python, True adds like 1 and False like 0."
+      ]
     },
     {
       "type": "closing",

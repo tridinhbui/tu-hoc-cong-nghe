@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Trophy } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import {
   getCompositeLeaderboard,
   getLeaderboardByMetric,
@@ -18,6 +18,7 @@ import RankBadge from "@/components/games/RankBadge";
 import MyRankRow from "@/components/leaderboard/MyRankRow";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
+import { Frame, tabClass } from "@/components/ui/system";
 
 type Metric = "composite" | "xp" | "streak" | "lessons" | "avg_score";
 type Period = "7d" | "30d" | "all";
@@ -37,6 +38,10 @@ const PERIODS: { id: Period; label: keyof Dictionary["rankWidget"]; days: number
 ];
 
 const TOP_N = 5;
+
+/* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị */
+const SYS_TITLE = "THCN://COMMUNITY/LEADERBOARD";
+/* i18n-ignore-end */
 
 type Mine = { rank: number; value: number } | null;
 
@@ -109,15 +114,13 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
   const meInTop = !!rows?.some((r) => r.user_id === userId);
 
   return (
-    <section className="rounded-2xl border border-stone-200/90 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
-      <header className="flex items-center gap-2">
-        <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-accent-soft text-accent">
-          <Trophy className="h-4 w-4" strokeWidth={2} />
-        </span>
-        <h2 className="text-xs font-black uppercase tracking-[0.16em] text-ink">{t.rankWidget.title}</h2>
+    <Frame title={SYS_TITLE} bodyClassName="p-4">
+    <section>
+      <header>
+        <h2 className="text-base font-black tracking-tight text-ink-max">{t.rankWidget.title}</h2>
       </header>
 
-      <div className="mt-3 -mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1 scrollbar-none" role="tablist">
+      <div className="mt-3 flex gap-5 overflow-x-auto border-b border-line-strong scrollbar-none" role="tablist">
         {METRICS.map((m) => (
           <button
             key={m.id}
@@ -125,9 +128,7 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
             role="tab"
             aria-selected={metric === m.id}
             onClick={() => setMetric(m.id)}
-            className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold transition-colors cursor-pointer ${
-              metric === m.id ? "bg-brand-600 text-white" : "bg-surface-sunken text-ink-soft hover:text-ink"
-            }`}
+            className={`shrink-0 cursor-pointer whitespace-nowrap ${tabClass(metric === m.id)}`}
           >
             {t.rankWidget[m.label]}
           </button>
@@ -135,15 +136,13 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
       </div>
 
       {metric === "xp" && (
-        <div className="mt-2 flex gap-4 border-b border-line text-xs font-semibold">
+        <div className="mt-2 flex gap-4 border-b border-line">
           {PERIODS.map((p) => (
             <button
               key={p.id}
               type="button"
               onClick={() => setPeriod(p.id)}
-              className={`-mb-px border-b-2 pb-1.5 transition-colors cursor-pointer ${
-                period === p.id ? "border-brand-600 text-accent-strong" : "border-transparent text-ink-muted hover:text-ink"
-              }`}
+              className={`cursor-pointer !text-xs !pb-1.5 ${tabClass(period === p.id)}`}
             >
               {t.rankWidget[p.label]}
             </button>
@@ -157,23 +156,23 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
         ) : rows.length === 0 ? (
           <p className="py-4 text-center text-xs text-ink-muted">{t.rankWidget.empty}</p>
         ) : (
-          <ol className="space-y-1">
+          <ol className="divide-y divide-stone-200 dark:divide-stone-800">
             {rows.map((row, i) => {
               const isMe = row.user_id === userId;
               return (
                 <li key={row.user_id}>
                   <Link
                     href={isMe ? "/profile" : `/nguoi-hoc/${row.user_id}`}
-                    className={`flex items-center gap-2.5 rounded-lg px-2 py-1.5 transition-colors ${
-                      isMe ? "bg-accent-soft" : "hover:bg-surface-sunken"
+                    className={`flex items-center gap-2.5 rounded-sm px-2 py-1.5 transition-colors ${
+                      isMe ? "bg-accent-soft" : "hover:bg-[#f3f1ec] dark:hover:bg-stone-950"
                     }`}
                   >
-                    <RankBadge rank={i + 1} className="w-6 shrink-0 text-center text-xs font-black text-ink-muted" />
+                    <RankBadge rank={i + 1} className="w-6 shrink-0 text-center font-mono text-xs font-medium tabular-nums text-ink-muted" />
                     <Avatar name={row.name} url={row.avatarUrl} size={28} />
-                    <span className={`min-w-0 flex-1 truncate text-sm ${isMe ? "font-black text-accent-strong" : "font-semibold text-ink"}`}>
+                    <span className={`min-w-0 flex-1 truncate text-sm ${isMe ? "font-bold text-accent-strong" : "font-semibold text-ink-body"}`}>
                       {isMe ? t.rankWidget.you : row.name}
                     </span>
-                    <span className="shrink-0 text-sm font-black tabular-nums text-ink">{format(row.value)}</span>
+                    <span className="shrink-0 font-mono text-sm font-medium tabular-nums text-ink-max">{format(row.value)}</span>
                   </Link>
                 </li>
               );
@@ -191,11 +190,12 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
 
       <Link
         href="/analytics"
-        className="mt-3 flex items-center justify-center gap-1 text-xs font-bold text-accent hover:text-accent-strong"
+        className="mt-3 flex items-center justify-center gap-1 text-xs font-bold text-accent-strong underline-offset-4 hover:underline"
       >
         {t.rankWidget.viewAll}
         <ArrowRight className="h-3.5 w-3.5" />
       </Link>
     </section>
+    </Frame>
   );
 }

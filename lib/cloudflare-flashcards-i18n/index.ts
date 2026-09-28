@@ -1,11 +1,11 @@
 import type { Locale } from "@/lib/i18n";
 import { overlayFor } from "@/lib/i18n/overlay";
-import { DEFAULT_FINANCIAL_GLOSSARY } from "@/lib/cloudflare-flashcards";
+import { DEFAULT_TECH_GLOSSARY } from "@/lib/cloudflare-flashcards";
 import type { ImportableCard } from "@/lib/flashcard-albums-i18n";
 import { defaultGlossaryEn } from "./en";
 
 /**
- * Bản dịch bộ thẻ mặc định (`DEFAULT_FINANCIAL_GLOSSARY`).
+ * Bản dịch bộ thẻ mặc định (`DEFAULT_TECH_GLOSSARY`).
  *
  * Cùng cái bẫy đã ghi ở lib/flashcard-albums-i18n, và ở đây nó đến từ một
  * đường khác: `saveFlashcard` upsert theo `(user_id, term)`, nên nạp lại cùng
@@ -27,7 +27,7 @@ const BY_LOCALE: Record<string, GlossaryTranslation> = { en: defaultGlossaryEn }
 
 export function localizedDefaultGlossary(locale: Locale): ImportableCard[] {
   const patch = overlayFor(BY_LOCALE, locale);
-  return DEFAULT_FINANCIAL_GLOSSARY.map((card) => {
+  return DEFAULT_TECH_GLOSSARY.map((card) => {
     const t = patch?.[card.term];
     if (!t) return { term: card.term, definition: card.definition };
     return {

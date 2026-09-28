@@ -168,14 +168,14 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
           : `translate(-50%, ${menu.place === "above" ? "-100%" : "0"})`,
         zIndex: 9999,
       }}
-      className="w-64 rounded-2xl border border-line-mid bg-white/95 dark:bg-stone-900/95 backdrop-blur-md shadow-2xl overflow-hidden p-1.5 animate-in fade-in zoom-in-95 duration-150 select-none"
+      className="w-64 rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 overflow-hidden p-1.5 animate-in fade-in zoom-in-95 duration-150 select-none"
     >
-      <div className="px-3 py-1.5 border-b border-line-soft flex items-center justify-between mb-1">
-        <span className="text-[10px] font-black uppercase tracking-wider text-warn flex items-center gap-1">
+      <div className="px-3 py-1.5 border-b border-line-strong flex items-center justify-between mb-1">
+        <span className="eyebrow text-ink-soft flex items-center gap-1">
           {t.textHighlight.title}
         </span>
-        <span className="text-[9px] text-stone-400 font-medium">
-          {menu.quote.length} {t.textHighlight.characters}
+        <span className="text-[10px] text-ink-faint font-medium">
+          <span className="font-mono tabular-nums">{menu.quote.length}</span> {t.textHighlight.characters}
         </span>
       </div>
 
@@ -183,30 +183,31 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
         type="button"
         disabled={saving}
         onClick={() => void handleChoose("important")}
-        className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold text-ink hover:bg-amber-50 dark:hover:bg-amber-950/40 disabled:opacity-50 transition-all cursor-pointer group"
+        className="w-full flex items-center justify-between px-3 py-2.5 rounded-sm text-xs font-bold text-ink hover:bg-surface-raised disabled:opacity-50 transition-colors cursor-pointer group"
       >
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg bg-amber-500 text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
+          <div className="w-6 h-6 rounded-sm border border-line-strong text-ink-soft flex items-center justify-center group-hover:border-stone-950 dark:group-hover:border-stone-300 transition-colors">
             <Highlighter className="w-3.5 h-3.5" />
           </div>
           <span>{t.textHighlight.highlight}</span>
         </div>
-        <span className="w-2 h-2 rounded-full bg-amber-400" />
+        {/* Mẫu màu: đúng màu đánh dấu sẽ được tô lên đoạn văn. */}
+        <span className="w-2 h-2 rounded-[1px] bg-amber-400" />
       </button>
 
       <button
         type="button"
         disabled={saving}
         onClick={() => void handleChoose("ai_flag")}
-        className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-ink-body hover:bg-rose-50 dark:hover:bg-rose-950/40 disabled:opacity-50 transition-all cursor-pointer group mt-0.5"
+        className="w-full flex items-center justify-between px-3 py-2 rounded-sm text-xs font-bold text-ink-body hover:bg-surface-raised disabled:opacity-50 transition-colors cursor-pointer group mt-0.5"
       >
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg bg-rose-500 text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
+          <div className="w-6 h-6 rounded-sm border border-line-strong text-ink-soft flex items-center justify-center group-hover:border-red-600 group-hover:text-danger transition-colors">
             <Flag className="w-3.5 h-3.5" />
           </div>
           <span>{t.textHighlight.reportAi}</span>
         </div>
-        <span className="w-2 h-2 rounded-full bg-rose-400" />
+        <span className="w-2 h-2 rounded-[1px] bg-red-500" />
       </button>
     </div>
   );

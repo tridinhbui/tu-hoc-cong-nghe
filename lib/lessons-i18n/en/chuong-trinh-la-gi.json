@@ -173,6 +173,11 @@
       "text": "This surprises many beginners: a .py or .js file opens in Notepad and contains nothing but letters. The extension only tells the tools how to treat it. Precisely because it is plain text, Git can compare it line by line and you could read the history of changes in the previous chapter."
     },
     {
+      "type": "code",
+      "caption": "Three lines of plain text. Press Run: Python reads top to bottom, skips the comment and carries out each remaining line.",
+      "code": "# A line starting with # is a comment - the machine skips it.\nprint(\"Hello!\")\nprint(2 + 3)"
+    },
+    {
       "type": "heading",
       "text": "Two kinds of error, and which one to fear"
     },
@@ -208,6 +213,18 @@
           "en": "Syntax",
           "def": "The rules for writing a language correctly. Correct syntax does not mean correct behaviour."
         }
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Fix your first syntax error",
+      "task": "The code below has one syntax error. Run it first, read which line the error message points at, then fix it so the program prints exactly one line.",
+      "starter": "# Run it first: Python will point at the broken line.\nprint(\"Hello world\"",
+      "solution": "print(\"Hello world\")",
+      "expectedOutput": "Hello world",
+      "hints": [
+        "The error points at line 2 - where print opens a parenthesis.",
+        "Every opening parenthesis needs a closing one."
       ]
     },
     {

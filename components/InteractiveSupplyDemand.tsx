@@ -7,16 +7,16 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 function getPriceLabels(t: Dictionary): Record<number, { label: string; color: string; icon: LucideIcon }> {
   return {
-    1: { label: t.supplyDemand.priceLevel1, color: "text-blue-600", icon: TrendingDown },
-    2: { label: t.supplyDemand.priceLevel2, color: "text-blue-500", icon: ArrowDownRight },
-    3: { label: t.supplyDemand.priceLevel3, color: "text-cyan-600", icon: ArrowDownRight },
-    4: { label: t.supplyDemand.priceLevel4, color: "text-brand-600", icon: ArrowDown },
-    5: { label: t.supplyDemand.priceLevel5, color: "text-brand-600", icon: Scale },
-    6: { label: t.supplyDemand.priceLevel6, color: "text-yellow-600", icon: ArrowUpRight },
-    7: { label: t.supplyDemand.priceLevel7, color: "text-amber-600", icon: ArrowUpRight },
-    8: { label: t.supplyDemand.priceLevel8, color: "text-orange-600", icon: TrendingUp },
-    9: { label: t.supplyDemand.priceLevel9, color: "text-rose-500", icon: Rocket },
-    10: { label: t.supplyDemand.priceLevel10, color: "text-rose-600", icon: Flame },
+    1: { label: t.supplyDemand.priceLevel1, color: "text-ink-max", icon: TrendingDown },
+    2: { label: t.supplyDemand.priceLevel2, color: "text-ink-max", icon: ArrowDownRight },
+    3: { label: t.supplyDemand.priceLevel3, color: "text-ink-max", icon: ArrowDownRight },
+    4: { label: t.supplyDemand.priceLevel4, color: "text-accent-strong", icon: ArrowDown },
+    5: { label: t.supplyDemand.priceLevel5, color: "text-accent-strong", icon: Scale },
+    6: { label: t.supplyDemand.priceLevel6, color: "text-warn-strong", icon: ArrowUpRight },
+    7: { label: t.supplyDemand.priceLevel7, color: "text-warn-strong", icon: ArrowUpRight },
+    8: { label: t.supplyDemand.priceLevel8, color: "text-warn-strong", icon: TrendingUp },
+    9: { label: t.supplyDemand.priceLevel9, color: "text-red-600 dark:text-red-400", icon: Rocket },
+    10: { label: t.supplyDemand.priceLevel10, color: "text-red-600 dark:text-red-400", icon: Flame },
   };
 }
 
@@ -32,27 +32,27 @@ export default function InteractiveSupplyDemand() {
   const price = priceLabels[priceLevel];
 
   const getScenario = () => {
-    if (balance > 30) return { text: t.supplyDemand.scenarioMuchHigherDemand, bg: "bg-rose-50 border-rose-200 text-rose-800" };
-    if (balance > 10) return { text: t.supplyDemand.scenarioHigherDemand, bg: "bg-orange-50 border-orange-200 text-orange-800" };
-    if (balance < -30) return { text: t.supplyDemand.scenarioMuchHigherSupply, bg: "bg-blue-50 border-blue-200 text-blue-800" };
-    if (balance < -10) return { text: t.supplyDemand.scenarioHigherSupply, bg: "bg-cyan-50 border-cyan-200 text-cyan-800" };
-    return { text: t.supplyDemand.scenarioBalanced, bg: "bg-brand-50 border-brand-200 text-brand-800" };
+    if (balance > 30) return { text: t.supplyDemand.scenarioMuchHigherDemand, bg: "border-red-600 dark:border-red-400" };
+    if (balance > 10) return { text: t.supplyDemand.scenarioHigherDemand, bg: "border-amber-500" };
+    if (balance < -30) return { text: t.supplyDemand.scenarioMuchHigherSupply, bg: "border-stone-950 dark:border-stone-300" };
+    if (balance < -10) return { text: t.supplyDemand.scenarioHigherSupply, bg: "border-stone-950 dark:border-stone-300" };
+    return { text: t.supplyDemand.scenarioBalanced, bg: "border-brand-600 dark:border-brand-400" };
   };
 
   const scenario = getScenario();
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-6 space-y-6">
+    <div className="space-y-6 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="font-bold text-stone-800 text-lg mb-1">{t.supplyDemand.title}</h3>
-        <p className="text-stone-500 text-sm">{t.supplyDemand.subtitle}</p>
+        <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">{t.supplyDemand.title}</h3>
+        <p className="text-sm text-ink-soft">{t.supplyDemand.subtitle}</p>
       </div>
 
       <div className="space-y-5">
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700">{t.supplyDemand.supplyLabel}</span>
-            <span className="font-bold text-blue-600">{supply}</span>
+            <span className="font-medium text-ink-body">{t.supplyDemand.supplyLabel}</span>
+            <span className="font-mono font-medium tabular-nums text-ink-max">{supply}</span>
           </div>
           <input
             type="range"
@@ -67,8 +67,8 @@ export default function InteractiveSupplyDemand() {
 
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="font-medium text-stone-700">{t.supplyDemand.demandLabel}</span>
-            <span className="font-bold text-rose-600">{demand}</span>
+            <span className="font-medium text-ink-body">{t.supplyDemand.demandLabel}</span>
+            <span className="font-mono font-medium tabular-nums text-ink-max">{demand}</span>
           </div>
           <input
             type="range"
@@ -83,60 +83,54 @@ export default function InteractiveSupplyDemand() {
       </div>
 
       {/* Visual Price Meter */}
-      <div className="bg-stone-50 rounded-2xl p-6 text-center">
-        <div className="text-stone-500 text-sm mb-2">{t.supplyDemand.priceMeterTitle}</div>
+      <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-6 text-center dark:border-stone-800 dark:bg-stone-950">
+        <div className="mb-2 text-sm text-ink-muted">{t.supplyDemand.priceMeterTitle}</div>
         <div className={`flex justify-center ${price.color} mb-1`}>
           {createElement(price.icon, { "aria-hidden": true, className: "h-12 w-12", strokeWidth: 1.5 })}
         </div>
-        <div className={`text-xl font-bold ${price.color}`}>{price.label}</div>
+        <div className={`text-xl font-black tracking-tight ${price.color}`}>{price.label}</div>
 
         {/* Bar indicator */}
         <div className="mt-4 flex items-center gap-1 justify-center">
           {Array.from({ length: 10 }, (_, i) => (
             <div
               key={i}
-              className={`h-3 flex-1 rounded-full transition-all duration-300 ${
+              className={`h-2 flex-1 rounded-xs transition-colors duration-300 ${
                 i < priceLevel
-                  ? i < 3
-                    ? "bg-blue-400"
-                    : i < 5
-                    ? "bg-brand-400"
-                    : i < 7
-                    ? "bg-amber-400"
-                    : "bg-rose-500"
-                  : "bg-stone-200"
+                  ? "bg-brand-600 dark:bg-brand-500"
+                  : "bg-surface-sunken"
               }`}
             />
           ))}
         </div>
-        <div className="flex justify-between text-xs text-stone-500 mt-1">
+        <div className="mt-1 flex justify-between text-xs text-ink-muted">
           <span>{t.supplyDemand.cheapestLabel}</span>
           <span>{t.supplyDemand.mostExpensiveLabel}</span>
         </div>
       </div>
 
-      <div className={`rounded-2xl p-4 border text-sm ${scenario.bg}`}>
+      <div className={`border-l-2 pl-4 text-sm text-ink-body ${scenario.bg}`}>
         {scenario.text}
       </div>
 
       <div className="grid grid-cols-3 gap-3 text-center text-sm">
         <button
           onClick={() => { setSupply(20); setDemand(80); }}
-          className="bg-rose-50 text-rose-700 rounded-xl py-2 px-3 font-medium hover:bg-rose-100 transition-colors"
+          className="rounded-sm border border-stone-300 px-3 py-2 font-bold text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
         >
-          {t.supplyDemand.presetHousingTitle}<br /><span className="text-xs font-normal">{t.supplyDemand.presetHousingSubtitle}</span>
+          {t.supplyDemand.presetHousingTitle}<br /><span className="text-xs font-normal text-ink-muted">{t.supplyDemand.presetHousingSubtitle}</span>
         </button>
         <button
           onClick={() => { setSupply(80); setDemand(20); }}
-          className="bg-blue-50 text-blue-700 rounded-xl py-2 px-3 font-medium hover:bg-blue-100 transition-colors"
+          className="rounded-sm border border-stone-300 px-3 py-2 font-bold text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
         >
-          {t.supplyDemand.presetFlightsTitle}<br /><span className="text-xs font-normal">{t.supplyDemand.presetFlightsSubtitle}</span>
+          {t.supplyDemand.presetFlightsTitle}<br /><span className="text-xs font-normal text-ink-muted">{t.supplyDemand.presetFlightsSubtitle}</span>
         </button>
         <button
           onClick={() => { setSupply(50); setDemand(50); }}
-          className="bg-brand-50 text-brand-700 rounded-xl py-2 px-3 font-medium hover:bg-brand-100 transition-colors"
+          className="rounded-sm border border-stone-300 px-3 py-2 font-bold text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
         >
-          {t.supplyDemand.presetBalancedTitle}<br /><span className="text-xs font-normal">{t.supplyDemand.presetBalancedSubtitle}</span>
+          {t.supplyDemand.presetBalancedTitle}<br /><span className="text-xs font-normal text-ink-muted">{t.supplyDemand.presetBalancedSubtitle}</span>
         </button>
       </div>
     </div>

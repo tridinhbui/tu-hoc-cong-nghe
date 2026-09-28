@@ -127,10 +127,10 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
   const allDone = solved.length === set.tasks.length;
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-4 sm:p-6 space-y-4 dark:bg-stone-900 dark:border-stone-800">
+    <div className="space-y-4 rounded-md border border-stone-300 bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="flex items-center gap-2 font-bold text-stone-800 text-lg mb-1 dark:text-stone-100"><Calculator aria-hidden className="h-5 w-5 flex-shrink-0 text-accent" strokeWidth={1.75} /> {set.title}</h3>
-        <p className="text-stone-500 text-sm leading-relaxed dark:text-stone-400">{set.intro}</p>
+        <h3 className="flex items-center gap-2 mb-1 text-lg font-black tracking-tight text-ink-max"><Calculator aria-hidden className="h-5 w-5 flex-shrink-0 text-ink-muted" strokeWidth={1.75} /> {set.title}</h3>
+        <p className="text-sm leading-relaxed text-ink-soft">{set.intro}</p>
       </div>
 
       {/* Lưới */}
@@ -138,11 +138,11 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
         <table className="border-collapse text-[11px] sm:text-xs tabular-nums">
           <thead>
             <tr>
-              <th className="w-7 bg-stone-100 border border-stone-200 dark:bg-stone-800 dark:border-stone-700" />
+              <th className="w-7 bg-[#f3f1ec] border border-stone-200 dark:bg-stone-950 dark:border-stone-700" />
               {set.columns.map((col) => (
                 <th
                   key={col}
-                  className="min-w-[74px] px-2 py-1 font-semibold text-stone-500 bg-stone-100 border border-stone-200 dark:bg-stone-800 dark:border-stone-700 dark:text-stone-400"
+                  className="min-w-[74px] px-2 py-1 font-mono font-medium text-ink-muted bg-[#f3f1ec] border border-stone-200 dark:bg-stone-950 dark:border-stone-700"
                 >
                   {col}
                 </th>
@@ -152,7 +152,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
           <tbody>
             {Array.from({ length: set.rows }, (_, r) => r + 1).map((row) => (
               <tr key={row}>
-                <th className="px-1 font-semibold text-stone-500 bg-stone-100 border border-stone-200 dark:bg-stone-800 dark:border-stone-700 dark:text-stone-400">
+                <th className="px-1 font-mono font-medium text-ink-muted bg-[#f3f1ec] border border-stone-200 dark:bg-stone-950 dark:border-stone-700">
                   {row}
                 </th>
                 {set.columns.map((col) => {
@@ -169,11 +169,11 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
                         className={[
                           "w-full h-7 px-1.5 text-left truncate transition-colors",
                           typeof value === "number" ? "text-right" : "",
-                          err ? "text-rose-600 font-semibold dark:text-rose-400" : "text-ink-body",
+                          err ? "text-red-600 font-semibold dark:text-red-400" : "text-ink-body",
                           isCurrent
-                            ? "bg-amber-100 ring-2 ring-inset ring-amber-400 dark:bg-amber-500/20 dark:ring-amber-500"
+                            ? "bg-brand-50 ring-2 ring-inset ring-brand-600 dark:bg-brand-950/40 dark:ring-brand-400"
                             : isTarget
-                              ? "bg-amber-50/70 dark:bg-amber-500/10"
+                              ? "bg-brand-50/50 dark:bg-brand-950/20"
                               : "",
                           selected === ref && !isCurrent ? "ring-2 ring-inset ring-stone-400 dark:ring-stone-500" : "",
                         ].join(" ")}
@@ -191,7 +191,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
 
       {/* Thanh công thức */}
       <div className="flex items-stretch gap-2">
-        <div className="flex items-center px-2.5 rounded-lg bg-stone-100 text-stone-600 font-mono text-xs font-bold dark:bg-stone-800 dark:text-stone-300">
+        <div className="flex items-center px-2.5 rounded-sm border border-stone-200 bg-[#f3f1ec] text-ink-muted font-mono text-xs font-medium dark:border-stone-700 dark:bg-stone-950">
           {selected}
         </div>
         <input
@@ -208,19 +208,19 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
           spellCheck={false}
           autoCapitalize="off"
           autoCorrect="off"
-          className="flex-1 min-w-0 px-3 py-2 rounded-lg border border-stone-200 font-mono text-xs bg-white text-stone-800 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-stone-950 dark:border-stone-700 dark:text-stone-100 dark:placeholder:text-stone-600"
+          className="flex-1 min-w-0 px-3 py-2 rounded-sm border border-stone-300 font-mono text-xs bg-white text-ink-max placeholder:text-stone-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 dark:bg-stone-950 dark:focus:border-brand-400 dark:focus:ring-brand-400 dark:border-stone-700 dark:text-stone-100 dark:placeholder:text-stone-600"
         />
         <button
           type="button"
           onClick={check}
-          className="px-4 rounded-lg bg-stone-800 text-white text-xs font-bold hover:bg-stone-700 dark:bg-amber-500 dark:text-stone-900 dark:hover:bg-amber-400"
+          className="px-4 rounded-sm bg-stone-950 text-white text-xs font-bold transition-colors hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
         >
           {t.excelPractice.check}
         </button>
       </div>
 
       {/* Nhiệm vụ */}
-      <div className="rounded-2xl border border-stone-200 p-4 space-y-3 dark:border-stone-700">
+      <div className="space-y-3 rounded-sm border border-stone-200 bg-[#fbfaf7] p-4 dark:border-stone-800 dark:bg-stone-950">
         <div className="flex flex-wrap items-center gap-1.5">
           {set.tasks.map((item, i) => (
             <button
@@ -228,35 +228,35 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
               type="button"
               onClick={() => goTo(i)}
               className={[
-                "w-7 h-7 rounded-lg text-[11px] font-bold transition-colors",
+                "w-7 h-7 rounded-sm border font-mono text-[11px] font-medium tabular-nums transition-colors",
                 solved.includes(i)
-                  ? "bg-brand-500 text-white"
+                  ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500"
                   : i === taskIndex
-                    ? "bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900"
-                    : "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400",
+                    ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                    : "border-stone-300 bg-white text-ink-muted hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200",
               ].join(" ")}
               aria-label={format(t.excelPractice.taskAriaLabel, { n: i + 1 })}
             >
               {solved.includes(i) ? "✓" : i + 1}
             </button>
           ))}
-          <span className="ml-auto text-[11px] text-ink-faint">
+          <span className="ml-auto font-mono text-[11px] tabular-nums text-ink-faint">
             {solved.length}/{set.tasks.length}
           </span>
         </div>
 
-        <p className="text-sm text-stone-700 leading-relaxed dark:text-stone-200">
-          <span className="font-mono font-bold text-warn">{normalizeRef(task.target)}</span>{" "}
+        <p className="text-sm leading-relaxed text-ink-body">
+          <span className="font-mono font-medium text-accent-strong">{normalizeRef(task.target)}</span>{" "}
           {task.prompt}
         </p>
 
         {grade && (
           <div
             className={[
-              "rounded-xl px-3 py-2.5 text-xs leading-relaxed",
+              "border-l-2 pl-3 text-xs leading-relaxed",
               grade.ok
-                ? "bg-brand-50 text-brand-800 dark:bg-brand-500/10 dark:text-brand-300"
-                : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200",
+                ? "border-brand-600 text-brand-800 dark:border-brand-400 dark:text-brand-300"
+                : "border-amber-500 text-warn-ink",
             ].join(" ")}
           >
             {grade.ok && <span className="font-bold">{t.excelPractice.correctPrefix}</span>}
@@ -268,7 +268,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
           <button
             type="button"
             onClick={() => setShowHint((v) => !v)}
-            className="text-stone-500 underline underline-offset-2 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
+            className="text-ink-muted underline underline-offset-2 hover:text-ink"
           >
             {showHint ? t.excelPractice.hideHint : t.excelPractice.showHint}
           </button>
@@ -276,7 +276,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
             <button
               type="button"
               onClick={() => goTo(taskIndex + 1)}
-              className="ml-auto font-bold text-stone-700 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-100"
+              className="ml-auto font-bold text-accent-strong underline-offset-4 hover:underline"
             >
               {t.excelPractice.nextTask}
             </button>
@@ -284,14 +284,14 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
         </div>
 
         {showHint && (
-          <p className="font-mono text-[11px] text-stone-500 bg-stone-50 rounded-lg px-3 py-2 dark:bg-stone-800/60 dark:text-stone-400">
+          <p className="font-mono text-[11px] text-ink-soft border border-stone-200 bg-white rounded-sm px-3 py-2 dark:border-stone-800 dark:bg-stone-900">
             {task.hint}
           </p>
         )}
       </div>
 
       {allDone && (
-        <p className="text-xs text-center text-brand-700 font-semibold dark:text-brand-400">
+        <p className="text-xs text-center font-semibold text-accent-strong">
           {format(t.excelPractice.allDone, { n: set.tasks.length })}
         </p>
       )}
@@ -336,16 +336,16 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
   }
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-4 sm:p-6 space-y-4 dark:bg-stone-900 dark:border-stone-800">
+    <div className="space-y-4 rounded-md border border-stone-300 bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="flex items-center gap-2 font-bold text-stone-800 text-lg mb-1 dark:text-stone-100"><Database aria-hidden className="h-5 w-5 flex-shrink-0 text-accent" strokeWidth={1.75} /> {set.title}</h3>
-        <p className="text-stone-500 text-sm leading-relaxed dark:text-stone-400">{set.intro}</p>
+        <h3 className="flex items-center gap-2 mb-1 text-lg font-black tracking-tight text-ink-max"><Database aria-hidden className="h-5 w-5 flex-shrink-0 text-ink-muted" strokeWidth={1.75} /> {set.title}</h3>
+        <p className="text-sm leading-relaxed text-ink-soft">{set.intro}</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">
         {Object.values(set.db).map((table) => (
-          <div key={table.name} className="rounded-2xl border border-stone-200 overflow-hidden dark:border-stone-700">
-            <div className="px-3 py-1.5 bg-stone-100 font-mono text-[11px] font-bold text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+          <div key={table.name} className="overflow-hidden rounded-sm border border-line">
+            <div className="border-b border-stone-200 px-3 py-1.5 bg-[#f3f1ec] font-mono text-[11px] font-medium text-ink-muted dark:border-stone-700 dark:bg-stone-950">
               {table.name}
             </div>
             <div className="overflow-x-auto">
@@ -376,7 +376,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
         ))}
       </div>
 
-      <div className="rounded-2xl border border-stone-200 p-4 space-y-3 dark:border-stone-700">
+      <div className="space-y-3 rounded-sm border border-stone-200 bg-[#fbfaf7] p-4 dark:border-stone-800 dark:bg-stone-950">
         <div className="flex flex-wrap items-center gap-1.5">
           {set.tasks.map((item, i) => (
             <button
@@ -384,24 +384,24 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
               type="button"
               onClick={() => goTo(i)}
               className={[
-                "w-7 h-7 rounded-lg text-[11px] font-bold transition-colors",
+                "w-7 h-7 rounded-sm border font-mono text-[11px] font-medium tabular-nums transition-colors",
                 solved.includes(i)
-                  ? "bg-brand-500 text-white"
+                  ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500"
                   : i === taskIndex
-                    ? "bg-stone-800 text-white dark:bg-stone-100 dark:text-stone-900"
-                    : "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400",
+                    ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                    : "border-stone-300 bg-white text-ink-muted hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200",
               ].join(" ")}
               aria-label={format(t.excelPractice.taskAriaLabel, { n: i + 1 })}
             >
               {solved.includes(i) ? "✓" : i + 1}
             </button>
           ))}
-          <span className="ml-auto text-[11px] text-ink-faint">
+          <span className="ml-auto font-mono text-[11px] tabular-nums text-ink-faint">
             {solved.length}/{set.tasks.length}
           </span>
         </div>
 
-        <p className="text-sm text-stone-700 leading-relaxed dark:text-stone-200">{task.prompt}</p>
+        <p className="text-sm leading-relaxed text-ink-body">{task.prompt}</p>
 
         <textarea
           value={sql}
@@ -411,19 +411,19 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
           autoCapitalize="off"
           autoCorrect="off"
           placeholder={t.excelPractice.sqlPlaceholder}
-          className="w-full px-3 py-2 rounded-lg border border-stone-200 font-mono text-xs bg-white text-stone-800 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-400 dark:bg-stone-950 dark:border-stone-700 dark:text-stone-100 dark:placeholder:text-stone-600"
+          className="w-full px-3 py-2 rounded-sm border border-stone-300 font-mono text-xs bg-white text-ink-max placeholder:text-stone-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 dark:bg-stone-950 dark:focus:border-brand-400 dark:focus:ring-brand-400 dark:border-stone-700 dark:text-stone-100 dark:placeholder:text-stone-600"
         />
 
         <button
           type="button"
           onClick={submit}
-          className="w-full py-2.5 rounded-xl bg-stone-800 text-white text-xs font-bold hover:bg-stone-700 dark:bg-amber-500 dark:text-stone-900 dark:hover:bg-amber-400"
+          className="w-full py-2.5 rounded-sm bg-stone-950 text-white text-xs font-bold transition-colors hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
         >
           {t.excelPractice.runQuery}
         </button>
 
         {result && (
-          <div className="overflow-x-auto rounded-xl border border-line-mid">
+          <div className="overflow-x-auto rounded-sm border border-line-mid">
             <table className="w-full text-[11px] tabular-nums">
               <thead>
                 <tr className="bg-surface">
@@ -459,10 +459,10 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
         {grade && (
           <div
             className={[
-              "rounded-xl px-3 py-2.5 text-xs leading-relaxed whitespace-pre-line",
+              "border-l-2 pl-3 text-xs leading-relaxed whitespace-pre-line",
               grade.ok
-                ? "bg-brand-50 text-brand-800 dark:bg-brand-500/10 dark:text-brand-300"
-                : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200",
+                ? "border-brand-600 text-brand-800 dark:border-brand-400 dark:text-brand-300"
+                : "border-amber-500 text-warn-ink",
             ].join(" ")}
           >
             {grade.ok && <span className="font-bold">{t.excelPractice.correctPrefix}</span>}
@@ -474,7 +474,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
           <button
             type="button"
             onClick={() => setShowHint((v) => !v)}
-            className="text-stone-500 underline underline-offset-2 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
+            className="text-ink-muted underline underline-offset-2 hover:text-ink"
           >
             {showHint ? t.excelPractice.hideHint : t.excelPractice.showHint}
           </button>
@@ -482,7 +482,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
             <button
               type="button"
               onClick={() => goTo(taskIndex + 1)}
-              className="ml-auto font-bold text-stone-700 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-100"
+              className="ml-auto font-bold text-accent-strong underline-offset-4 hover:underline"
             >
               {t.excelPractice.nextTask}
             </button>
@@ -490,7 +490,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
         </div>
 
         {showHint && (
-          <p className="font-mono text-[11px] text-stone-500 bg-stone-50 rounded-lg px-3 py-2 dark:bg-stone-800/60 dark:text-stone-400">
+          <p className="font-mono text-[11px] text-ink-soft border border-stone-200 bg-white rounded-sm px-3 py-2 dark:border-stone-800 dark:bg-stone-900">
             {task.hint}
           </p>
         )}
@@ -530,10 +530,10 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
   }
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 p-4 sm:p-6 space-y-4 dark:bg-stone-900 dark:border-stone-800">
+    <div className="space-y-4 rounded-md border border-stone-300 bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
-        <h3 className="flex items-center gap-2 font-bold text-stone-800 text-lg mb-1 dark:text-stone-100"><Eraser aria-hidden className="h-5 w-5 flex-shrink-0 text-accent" strokeWidth={1.75} /> {set.title}</h3>
-        <p className="text-stone-500 text-sm leading-relaxed dark:text-stone-400">{set.intro}</p>
+        <h3 className="flex items-center gap-2 mb-1 text-lg font-black tracking-tight text-ink-max"><Eraser aria-hidden className="h-5 w-5 flex-shrink-0 text-ink-muted" strokeWidth={1.75} /> {set.title}</h3>
+        <p className="text-sm leading-relaxed text-ink-soft">{set.intro}</p>
       </div>
 
       <ol className="space-y-2">
@@ -543,15 +543,15 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
             <li
               key={step}
               className={[
-                "flex items-center gap-2 rounded-xl border px-3 py-2",
+                "flex items-center gap-2 rounded-sm border px-3 py-2",
                 misplaced
-                  ? "border-amber-300 bg-amber-50 dark:border-amber-500/40 dark:bg-amber-500/10"
+                  ? "border-amber-500 bg-white dark:bg-stone-900"
                   : checked
-                    ? "border-brand-300 bg-brand-50 dark:border-brand-500/40 dark:bg-brand-500/10"
+                    ? "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40"
                     : "border-line-mid",
               ].join(" ")}
             >
-              <span className="w-5 shrink-0 text-xs font-bold text-ink-faint">{i + 1}</span>
+              <span className="w-5 shrink-0 font-mono text-xs font-medium tabular-nums text-ink-faint">{i + 1}</span>
               <span className="flex-1 text-xs leading-relaxed text-ink-body">{step}</span>
               <span className="flex flex-col shrink-0">
                 <button
@@ -581,7 +581,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
       <button
         type="button"
         onClick={() => setChecked(true)}
-        className="w-full py-2.5 rounded-xl bg-stone-800 text-white text-xs font-bold hover:bg-stone-700 dark:bg-amber-500 dark:text-stone-900 dark:hover:bg-amber-400"
+        className="w-full py-2.5 rounded-sm bg-stone-950 text-white text-xs font-bold transition-colors hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
       >
         {t.excelPractice.checkOrder}
       </button>
@@ -589,10 +589,10 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
       {checked && (
         <div
           className={[
-            "rounded-xl px-3 py-2.5 text-xs leading-relaxed whitespace-pre-line",
+            "border-l-2 pl-3 text-xs leading-relaxed whitespace-pre-line",
             correct
-              ? "bg-brand-50 text-brand-800 dark:bg-brand-500/10 dark:text-brand-300"
-              : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200",
+              ? "border-brand-600 text-brand-800 dark:border-brand-400 dark:text-brand-300"
+              : "border-amber-500 text-warn-ink",
           ].join(" ")}
         >
           {correct ? set.task.explain : t.excelPractice.stepsWrong}

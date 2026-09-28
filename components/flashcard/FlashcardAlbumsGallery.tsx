@@ -9,14 +9,15 @@ import { saveFlashcardsBulk } from "@/lib/cloudflare-flashcards";
 import { useI18n } from "@/lib/i18n/context";
 import { mergeFlashcardAlbums } from "@/lib/flashcard-albums-i18n";
 import { format } from "@/lib/i18n";
+import { Sys, btnPrimary, textLink } from "@/components/ui/system";
 
 interface FlashcardAlbumsGalleryProps {
   userId: string;
   onImported: () => void; // caller refetches its own card list
 }
 
-// Gallery of curated "hot" preset decks - browse a gradient+emoji cover
-// (see lib/flashcard-albums.ts for why there's no uploaded image), open one
+// Gallery of curated "hot" preset decks - browse an emoji cover (see
+// lib/flashcard-albums.ts for why there's no uploaded image), open one
 // to preview every card inside, then import the whole thing into your own
 // deck in one tap. Import reuses saveFlashcardsBulk's existing
 // insert-only-skip-existing behavior, so importing the same album twice (or
@@ -54,39 +55,42 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
 
   if (openAlbum) {
     return (
-      <div className="mb-6 rounded-2xl border border-line bg-white dark:bg-stone-900 shadow-sm overflow-hidden animate-[fadeIn_0.2s_ease-out]">
-        <div className={`bg-gradient-to-br ${openAlbum.gradient} p-5 text-white relative`}>
-          <button
-            onClick={() => setOpenAlbumId(null)}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-white/90 hover:text-white mb-3"
-          >
+      <div className="mb-6 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+        {/* Bìa album: trước là dải gradient + emoji. Giờ là thanh tiêu đề giấy
+            ngà như mọi khung khác - `album.gradient` vẫn nằm trong dữ liệu
+            nhưng không còn được tô ở đây (luật 2: không gradient trang trí). */}
+        <div className="border-b border-stone-300 bg-[#f3f1ec] p-5 dark:border-stone-700 dark:bg-stone-950">
+          <button onClick={() => setOpenAlbumId(null)} className={`${textLink} mb-3 text-xs`}>
             <ArrowLeft className="w-3.5 h-3.5" /> {t.flashcards.albumBack}
           </button>
           <div className="flex items-start gap-3">
-            <span className="flex-shrink-0 rounded-xl bg-white/15 p-2 text-white"><Glyph emoji={openAlbum.emoji} className="h-8 w-8" strokeWidth={1.5} /></span>
+            <span className="flex-shrink-0 rounded-sm border border-stone-300 bg-white p-2 text-ink-body dark:border-stone-700 dark:bg-stone-900">
+              <Glyph emoji={openAlbum.emoji} className="h-7 w-7" strokeWidth={1.5} />
+            </span>
             <div className="min-w-0">
-              <h3 className="text-lg font-extrabold">{openAlbum.title}</h3>
-              <p className="text-sm text-white/85 mt-0.5">{openAlbum.description}</p>
-              <p className="text-xs text-white/70 mt-1.5 font-bold uppercase tracking-wide">{openAlbum.cards.length} {t.flashcards.albumCards}</p>
+              <h3 className="text-lg font-black tracking-tight text-ink-max">{openAlbum.title}</h3>
+              <p className="mt-0.5 max-w-[68ch] text-sm leading-6 text-ink-soft">{openAlbum.description}</p>
+              <p className="mt-1.5 text-xs font-bold text-ink-muted">
+                <span className="font-mono tabular-nums">{openAlbum.cards.length}</span> {t.flashcards.albumCards}
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="max-h-72 overflow-y-auto divide-y divide-stone-100 dark:divide-stone-800">
+        <div className="max-h-72 overflow-y-auto divide-y divide-stone-200 dark:divide-stone-800">
           {openAlbum.cards.map((c, i) => (
-            <div key={i} className="px-5 py-3">
-              <p className="text-sm font-bold text-ink">{c.term}</p>
-              <p className="text-xs text-ink-muted mt-0.5 line-clamp-2">{c.definition}</p>
+            <div key={i} className="grid grid-cols-[2.25rem_minmax(0,1fr)] px-5 py-3">
+              <Sys className="pt-0.5 text-ink-faint tabular-nums">{String(i + 1).padStart(2, "0")}</Sys>
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-ink">{c.term}</p>
+                <p className="text-xs text-ink-muted mt-0.5 line-clamp-2">{c.definition}</p>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="p-4 border-t border-line-soft">
-          <button
-            onClick={() => handleImport(openAlbum)}
-            disabled={importing}
-            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-surface-invert text-ink-invert font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 cursor-pointer"
-          >
+        <div className="p-4 border-t border-line">
+          <button onClick={() => handleImport(openAlbum)} disabled={importing} className={`${btnPrimary} w-full`}>
             <Download className="w-4 h-4" />
             {importing
               ? t.flashcards.albumImporting
@@ -104,16 +108,18 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
           <button
             key={album.id}
             onClick={() => setOpenAlbumId(album.id)}
-            className="group text-left rounded-2xl border border-line bg-white dark:bg-stone-900 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+            className="group overflow-hidden rounded-md border border-stone-300 bg-white text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
           >
-            <div className={`bg-gradient-to-br ${album.gradient} h-20 flex items-center justify-center relative overflow-hidden`}>
-              <span className="text-white transition-transform duration-300 group-hover:scale-110"><Glyph emoji={album.emoji} className="h-9 w-9" strokeWidth={1.5} /></span>
-              <span className="absolute top-2 right-2 text-[10px] font-extrabold text-white/90 bg-black/20 rounded-full px-2 py-0.5">
-                {album.cards.length} {t.flashcards.albumCards}
+            <div className="flex h-9 items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+              <span className="text-ink-body">
+                <Glyph emoji={album.emoji} className="h-4 w-4" strokeWidth={1.75} />
+              </span>
+              <span className="text-[11px] font-semibold text-ink-muted">
+                <span className="font-mono tabular-nums">{album.cards.length}</span> {t.flashcards.albumCards}
               </span>
             </div>
             <div className="p-3.5">
-              <p className="text-sm font-bold text-ink">{album.title}</p>
+              <p className="text-sm font-bold text-ink group-hover:text-accent-strong">{album.title}</p>
               <p className="text-xs text-ink-muted mt-0.5 line-clamp-2">{album.description}</p>
             </div>
           </button>

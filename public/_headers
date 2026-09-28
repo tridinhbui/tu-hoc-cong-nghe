@@ -1,0 +1,6 @@
+# Cloudflare phục vụ tệp trong public/ thẳng từ assets, không qua headers() của
+# next.config.ts. Bộ chạy mã bài tập là Web Worker và lấy CSP từ chính phản hồi
+# này - giữ khớp với `runnerCsp` trong next.config.ts.
+/runners/*
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net/pyodide/; connect-src https://cdn.jsdelivr.net/pyodide/
+  X-Content-Type-Options: nosniff

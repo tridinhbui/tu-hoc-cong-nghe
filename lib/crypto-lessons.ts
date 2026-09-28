@@ -20,7 +20,7 @@ import type { Lesson } from "./lesson-types";
 export const CRYPTO_LESSONS: Lesson[] = [
   {
     id: 340,
-    slug: "crypto-la-gi-ve-mat-tai-chinh",
+    slug: "chuoi-khoi-la-gi-ve-mat-ky-thuat",
     title: "Chặng 15, Bài 1: Chuỗi khối là gì về mặt kỹ thuật",
     subtitle: "Một sổ cái chỉ ghi thêm, nhiều bản sao, và không ai sửa được quá khứ",
     duration: "7 phút",

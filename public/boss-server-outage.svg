@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Server outage boss">
+  <!-- Boss "sự cố máy chủ": tủ rack phẳng, viền 1px kiểu trang giới thiệu, một đèn đỏ báo lỗi. Thay cho ảnh bò tót Phố Wall của trang tài chính cũ. -->
+  <rect x="0" y="0" width="400" height="400" fill="#0c0a09"/>
+  <g stroke="#44403b" stroke-width="2" fill="none">
+    <path d="M40 360 H360"/>
+  </g>
+  <rect x="110" y="60" width="180" height="290" rx="6" fill="#1c1917" stroke="#57534d" stroke-width="3"/>
+  <g>
+    <rect x="128" y="82" width="144" height="46" rx="3" fill="#292524" stroke="#57534d" stroke-width="2"/>
+    <rect x="128" y="140" width="144" height="46" rx="3" fill="#292524" stroke="#57534d" stroke-width="2"/>
+    <rect x="128" y="198" width="144" height="46" rx="3" fill="#3b0a14" stroke="#e70044" stroke-width="3"/>
+    <rect x="128" y="256" width="144" height="46" rx="3" fill="#292524" stroke="#57534d" stroke-width="2"/>
+  </g>
+  <g fill="#44403b">
+    <rect x="142" y="100" width="70" height="8" rx="1"/>
+    <rect x="142" y="158" width="70" height="8" rx="1"/>
+    <rect x="142" y="274" width="70" height="8" rx="1"/>
+  </g>
+  <g fill="#417acd">
+    <rect x="244" y="98" width="12" height="12" rx="1"/>
+    <rect x="244" y="156" width="12" height="12" rx="1"/>
+    <rect x="244" y="272" width="12" height="12" rx="1"/>
+  </g>
+  <rect x="142" y="216" width="70" height="8" rx="1" fill="#ff667f"/>
+  <rect x="240" y="210" width="20" height="20" rx="2" fill="#e70044"/>
+  <g stroke="#ff667f" stroke-width="4" stroke-linecap="round">
+    <path d="M300 205 L330 190"/>
+    <path d="M300 221 L338 221"/>
+    <path d="M300 237 L330 252"/>
+  </g>
+  <g fill="#fbbf24">
+    <path d="M200 20 l14 26 h-28 z"/>
+  </g>
+  <rect x="198" y="28" width="4" height="10" fill="#0c0a09"/>
+  <rect x="198" y="40" width="4" height="4" fill="#0c0a09"/>
+</svg>

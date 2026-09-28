@@ -3,30 +3,20 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, Lightbulb } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 import { getWisdomCardForScore, selectWisdomTone } from "@/lib/wisdom-cards";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-/** Màu mặt úp đổi theo giọng, để người học biết mình sắp lật ra gì. Nhãn và
- *  lời mời chạm đổi theo ngôn ngữ nên lấy từ dictionary bằng toneStyle(t). */
+/** Mặt úp đổi theo giọng, để người học biết mình sắp lật ra gì. Bản trước
+ *  dùng ba dải gradient cam/hồng/xanh; giờ cả ba là cùng một mặt mực, và giọng
+ *  được nói bằng NHÃN ở trên thẻ (đã đổi theo giọng) thay vì bằng màu. Nhãn
+ *  và lời mời chạm đổi theo ngôn ngữ nên lấy từ dictionary bằng toneStyle(t). */
 const TONE_VISUAL = {
-  celebrate: {
-    face: "from-amber-400 to-orange-500 border-amber-300/50",
-    revealBorder: "border-warn-line",
-    icon: "text-amber-500",
-  },
-  encourage: {
-    face: "from-orange-500 to-rose-600 border-orange-400/50",
-    revealBorder: "border-orange-200 dark:border-orange-900",
-    icon: "text-orange-500",
-  },
-  steady: {
-    face: "from-brand-500 to-brand-600 border-brand-400/50",
-    revealBorder: "border-accent-line",
-    icon: "text-brand-500",
-  },
+  celebrate: { icon: "text-ink-soft" },
+  encourage: { icon: "text-ink-soft" },
+  steady: { icon: "text-ink-soft" },
 } as const;
 
 function toneStyle(t: Dictionary, tone: keyof typeof TONE_VISUAL) {
@@ -48,7 +38,7 @@ export default function WisdomCardFlip({
 
   return (
     <div className="py-2">
-      <p className="text-[10px] font-bold text-ink-muted uppercase tracking-wide mb-2 text-center">
+      <p className="eyebrow text-ink-muted mb-2 text-center">
         {style.label}
       </p>
       <div className="mx-auto max-w-xs" style={{ perspective: 1000 }}>
@@ -68,18 +58,18 @@ export default function WisdomCardFlip({
           >
             {/* Face-down side */}
             <div
-              className={`absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br ${style.face} flex flex-col items-center justify-center gap-2 shadow-md border`}
+              className="absolute inset-0 w-full h-full rounded-md border border-stone-800 bg-stone-950 flex flex-col items-center justify-center gap-2 dark:border-stone-700"
               style={{ backfaceVisibility: "hidden" }}
             >
-              <Sparkles className="w-7 h-7 text-white/90" />
-              <p className="text-xs font-bold text-white/95 px-6 text-center leading-relaxed">
+              <Lightbulb className="w-6 h-6 text-stone-400" />
+              <p className="text-xs font-bold text-white px-6 text-center leading-relaxed">
                 {style.prompt}
               </p>
             </div>
 
             {/* Revealed side */}
             <div
-              className={`absolute inset-0 w-full h-full rounded-2xl bg-white dark:bg-stone-900 border-2 ${style.revealBorder} flex flex-col items-center justify-center gap-2 shadow-md px-5`}
+              className="absolute inset-0 w-full h-full rounded-md border border-line-strong bg-white dark:bg-stone-900 flex flex-col items-center justify-center gap-2 px-5"
               style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
             >
               <Lightbulb className={`w-5 h-5 ${style.icon} flex-shrink-0`} />
@@ -97,7 +87,7 @@ export default function WisdomCardFlip({
         <p className="mt-3 text-center">
           <Link
             href="/loi-nhan"
-            className="text-[11px] font-bold text-orange-600 hover:underline dark:text-orange-400"
+            className="text-[11px] font-bold text-accent-strong underline-offset-4 hover:underline"
           >
             {t.miscUi.wisdomCardFlip.visitQuietCorner}
           </Link>

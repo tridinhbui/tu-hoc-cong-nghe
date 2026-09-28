@@ -150,35 +150,35 @@ export const CAREER_STAGE_LESSONS: Lesson[] = [
       {
         type: "feynman",
         title: "Những năm đầu trong nghề đơn giản hơn bạn nghĩ",
-        intro: "Những năm đầu giống gửi tiết kiệm lãi kép: số tiền ban đầu nhỏ, thứ quyết định là bạn gửi đều hay không.",
+        intro: "Những năm đầu giống một bộ kiểm thử tự động: lúc đầu chỉ có vài bài, thứ quyết định là bạn thêm vào đều đặn hay không.",
         columns: [
           "Thành phần",
-          "Gửi tiết kiệm",
+          "Bộ kiểm thử tự động",
           "Những năm đầu"
         ],
         rows: [
           [
-            "Vốn ban đầu",
-            "Số tiền nhỏ",
+            "Điểm xuất phát",
+            "Vài bài kiểm thử đầu tiên",
             "Kỹ năng lúc mới vào nghề"
           ],
           [
-            "Lãi suất",
-            "Phần trăm mỗi kỳ",
+            "Nhịp bổ sung",
+            "Thêm kiểm thử sau mỗi lần sửa",
             "Thói quen: viết rõ, hỏi đúng, học đều"
           ],
           [
-            "Lãi kép",
-            "Lãi sinh ra lãi",
+            "Cộng dồn",
+            "Kiểm thử cũ giữ an toàn cho thay đổi mới",
             "Thói quen tốt kéo theo việc tốt hơn, người giỏi hơn"
           ],
           [
-            "Rút sớm",
-            "Rút ra là mất lãi",
+            "Bỏ giữa chừng",
+            "Ngừng viết thì bộ kiểm thử mục dần",
             "Chạy theo chức danh mà bỏ nền tảng"
           ]
         ],
-        oneLiner: "Những năm đầu, chức danh là số tiền nhỏ - thói quen mới là lãi kép."
+        oneLiner: "Những năm đầu, chức danh chỉ là điểm xuất phát - thói quen mới là thứ cộng dồn."
       },
       {
         type: "heading",

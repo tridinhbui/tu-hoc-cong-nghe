@@ -42,7 +42,7 @@ function SceneFallbackLoader() {
 
 function SceneFallback({ label }: { label: string }) {
   return (
-    <div className="flex h-full w-full items-center justify-center rounded-2xl bg-stone-950">
+    <div className="flex h-full w-full items-center justify-center rounded-md bg-stone-950">
       <div className="text-center">
         <DoorOpen className="mx-auto mb-3 h-9 w-9 text-brand-300" strokeWidth={1.5} aria-hidden />
         <p className="text-sm font-medium text-stone-400">{label}</p>
@@ -283,7 +283,7 @@ export default function StudyRoomWorld({
   const focusGoalReached = focusMinutes >= DAILY_FOCUS_TARGET_MINUTES;
 
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-2xl bg-stone-950">
+    <div className="relative h-full w-full overflow-hidden rounded-md bg-stone-950">
       {lighting ? (
         <StudyRoomScene
           walkRef={walkRef}
@@ -311,7 +311,7 @@ export default function StudyRoomWorld({
           thành viên: một phòng 8 người mà đang chỉ có mình bạn là một thông tin
           khác hẳn, và là thông tin cần biết. */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-center gap-2 p-3">
-        <div className="rounded-2xl bg-stone-900/75 px-4 py-1.5 text-center shadow-lg backdrop-blur">
+        <div className="rounded-md border border-white/15 bg-stone-950 px-4 py-1.5 text-center">
           <p className="text-[11px] font-bold text-brand-300">
             {format(t.studyWorld.roomHeader, { topic: topicLabel })}
           </p>
@@ -322,7 +322,7 @@ export default function StudyRoomWorld({
               hiện diện của người khác, nên phân biệt hai điều đó là thông tin
               đáng hiện nhất ở đây. */}
           {seatedCount > 0 && (
-            <p className="mt-0.5 text-[10px] font-bold text-amber-300">
+            <p className="mt-0.5 text-[10px] font-bold text-stone-200">
               {format(t.studyWorld.seatedCount, { count: seatedCount })}
             </p>
           )}
@@ -341,7 +341,7 @@ export default function StudyRoomWorld({
           type="button"
           onClick={sound.toggle}
           aria-label={sound.enabled ? t.studyWorld.soundOnAria : t.studyWorld.soundOffAria}
-          className="pointer-events-auto cursor-pointer rounded-2xl bg-stone-900/75 px-3 py-2 text-[13px] shadow-lg backdrop-blur transition hover:bg-stone-800"
+          className="pointer-events-auto cursor-pointer rounded-sm border border-white/15 bg-stone-950 px-3 py-2 text-[13px] transition-colors hover:border-white/40"
         >
           {sound.enabled ? (
             <Volume2 className="h-4 w-4 text-stone-100" strokeWidth={1.75} aria-hidden />
@@ -366,14 +366,14 @@ export default function StudyRoomWorld({
                 // không cần rời mắt khỏi chỗ đang nhìn.
                 sound.play("sit");
               }}
-              className="pointer-events-auto cursor-pointer rounded-2xl bg-brand-500 px-5 py-2.5 text-xs font-bold text-white shadow-xl transition hover:bg-brand-400"
+              className="pointer-events-auto cursor-pointer rounded-sm bg-white px-5 py-2.5 text-xs font-bold text-stone-950 transition-colors hover:bg-brand-300"
             >
               {t.studyWorld.sitButton}
             </button>
           ) : (
             <div
-              className={`pointer-events-auto flex items-center gap-3 rounded-2xl px-4 py-2 shadow-xl backdrop-blur ${
-                sessionDone ? "bg-brand-600/90" : "bg-stone-900/85"
+              className={`pointer-events-auto flex items-center gap-3 rounded-md border px-4 py-2 ${
+                sessionDone ? "border-brand-500 bg-brand-700" : "border-white/15 bg-stone-950"
               }`}
             >
               <div className="flex flex-col items-start">
@@ -405,7 +405,7 @@ export default function StudyRoomWorld({
                   setSeated(null);
                   setSeatStartedAt(null);
                 }}
-                className="cursor-pointer rounded-xl bg-stone-700 px-3 py-1.5 text-[11px] font-bold text-stone-100 transition hover:bg-stone-600"
+                className="cursor-pointer rounded-sm border border-white/20 px-3 py-1.5 text-[11px] font-bold text-stone-100 transition-colors hover:border-white/50"
               >
                 {t.studyWorld.standButton}
               </button>
@@ -419,7 +419,7 @@ export default function StudyRoomWorld({
           số thời gian nữa. */}
       {endedAway && seated === null && (
         <div className="pointer-events-none absolute inset-x-0 bottom-24 z-10 flex justify-center px-4">
-          <div className="pointer-events-auto flex items-center gap-3 rounded-2xl bg-stone-900/90 px-4 py-2.5 shadow-xl backdrop-blur">
+          <div className="pointer-events-auto flex items-center gap-3 rounded-md border border-white/15 bg-stone-950 px-4 py-2.5">
             <p className="text-[11px] leading-snug text-stone-200">
               {t.studyWorld.endedAwayPart1}{Math.round(AWAY_MS / 60000)}{t.studyWorld.endedAwayPart2}
               <br />
@@ -428,7 +428,7 @@ export default function StudyRoomWorld({
             <button
               type="button"
               onClick={() => setEndedAway(false)}
-              className="shrink-0 cursor-pointer rounded-xl bg-stone-700 px-3 py-1.5 text-[11px] font-bold text-stone-100 hover:bg-stone-600"
+              className="shrink-0 cursor-pointer rounded-sm border border-white/20 px-3 py-1.5 text-[11px] font-bold text-stone-100 transition-colors hover:border-white/50"
             >
               {t.studyWorld.endedAwayAck}
             </button>
@@ -442,7 +442,7 @@ export default function StudyRoomWorld({
           <button
             type="button"
             onClick={onExit}
-            className="pointer-events-auto cursor-pointer rounded-2xl bg-sky-500/90 px-4 py-2 text-xs font-bold text-white shadow-xl backdrop-blur transition hover:bg-sky-400"
+            className="pointer-events-auto cursor-pointer rounded-sm bg-white px-4 py-2 text-xs font-bold text-stone-950 transition-colors hover:bg-brand-300"
           >
             {t.studyWorld.exitDoorButton}
           </button>
@@ -458,10 +458,10 @@ export default function StudyRoomWorld({
             .map((m) => (
               <div
                 key={m.id}
-                className="pointer-events-auto group flex items-start gap-1.5 rounded-xl bg-stone-900/70 px-2.5 py-1 text-[11px] text-stone-200 backdrop-blur"
+                className="pointer-events-auto group flex items-start gap-1.5 rounded-md border border-white/10 bg-stone-950 px-2.5 py-1 text-[11px] text-stone-200"
               >
                 <span className="min-w-0 flex-1">
-                  <span className="font-bold text-brand-300">{m.name}</span>{" "}
+                  <span className="font-bold text-white">{m.name}</span>{" "}
                   <span className="text-stone-300">{m.text}</span>
                 </span>
                 {m.userId !== userId && (
@@ -481,7 +481,7 @@ export default function StudyRoomWorld({
             <button
               type="button"
               onClick={() => setMutedIds(new Set())}
-              className="pointer-events-auto cursor-pointer self-start rounded-lg bg-stone-800/70 px-2 py-0.5 text-[10px] font-bold text-stone-400 hover:text-stone-200"
+              className="pointer-events-auto cursor-pointer self-start rounded-sm border border-white/10 bg-stone-950 px-2 py-0.5 text-[10px] font-bold text-stone-400 hover:text-stone-200"
             >
               {format(t.studyWorld.hiddenCount, { count: mutedIds.size })}
             </button>
@@ -499,19 +499,19 @@ export default function StudyRoomWorld({
               onChange={(e) => setDraft(e.target.value)}
               maxLength={CHAT_MAX_LENGTH}
               placeholder={t.studyWorld.speakPlaceholder}
-              className="min-w-0 flex-1 rounded-2xl border border-stone-700 bg-stone-900/85 px-3 py-2 text-xs text-stone-100 placeholder:text-stone-500 shadow-lg backdrop-blur outline-none focus:border-brand-500"
+              className="min-w-0 flex-1 rounded-sm border border-white/15 bg-stone-950 px-3 py-2 text-xs text-stone-100 placeholder:text-stone-500 outline-none focus:border-brand-500"
             />
             <button
               type="submit"
               disabled={!draft.trim()}
-              className="shrink-0 cursor-pointer rounded-2xl bg-brand-500 px-3 py-2 text-xs font-bold text-white shadow-lg transition hover:bg-brand-400 disabled:opacity-40"
+              className="shrink-0 cursor-pointer rounded-sm bg-white px-3 py-2 text-xs font-bold text-stone-950 transition-colors hover:bg-brand-300 disabled:opacity-40"
             >
               {t.studyWorld.speakButton}
             </button>
           </form>
           <p className="pointer-events-none hidden text-[10px] font-medium text-stone-400 sm:block">
             {t.studyWorld.controlsHintPart1}
-            <kbd className="rounded bg-stone-800 px-1 py-0.5">{t.studyWorld.controlsHintKeys}</kbd>
+            <kbd className="rounded-xs border border-white/15 bg-stone-950 px-1 py-0.5">{t.studyWorld.controlsHintKeys}</kbd>
             {t.studyWorld.controlsHintPart2}
           </p>
         </div>

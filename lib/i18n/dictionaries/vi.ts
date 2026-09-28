@@ -76,9 +76,10 @@ export const vi = {
     sectionCommunity: "Cộng đồng",
     certificates: "Chứng chỉ",
     quiz: "Kiểm tra",
+    stageSkipExam: "Thi vượt chặng",
+    toolSimulators: "Mô phỏng công cụ",
     notes: "Ghi chú",
     learningPath: "Lộ trình học",
-    learningByNeed: "Học theo nhu cầu",
     studyGroup: "Học nhóm",
     technicalInterview: "Phỏng vấn kỹ thuật",
     career: "Sự nghiệp",
@@ -88,6 +89,7 @@ export const vi = {
     signOut: "Đăng xuất",
     signingOut: "Đang đăng xuất...",
     coinBalanceTitle: "Số dư Coin tích lũy - Bấm để mở Cửa hàng Nhanh",
+    goldBag: "Túi vàng",
 
     brand: "Tự Học Công Nghệ",
     searchPlaceholder: "Tìm kiếm...",
@@ -295,7 +297,7 @@ export const vi = {
       noteLabel: "Ghi chú mẫu",
       noteTitle: "Đừng tối ưu khi chưa đo",
       noteBody: "Luôn hỏi: chỗ chậm thật nằm ở đâu, n có đủ lớn để đáng tối ưu không?",
-      bullAlt: "Bò tót 3D - boss trong Game Kingdom",
+      bullAlt: "Boss Sập Hệ Thống 3D - boss trong Game Kingdom",
     },
 
     preview: {
@@ -318,6 +320,15 @@ export const vi = {
       eyebrow: "Cộng đồng thật",
       title: "Học viên nổi bật đang học mỗi ngày",
       sub: "Đây không phải bảng số liệu trang trí. Người mới vào có thể nhìn ngay ai đang học thật, ai giữ được nhịp đều, và cảm giác tiến bộ trong hệ thống trông ra sao.",
+      activityTitle: "Hoạt động học gần đây",
+      activityNote: "Ẩn danh - chỉ hiện bài và thời điểm, không hiện người học.",
+      activityCompleted: "hoàn thành",
+      activityStreak: "chuỗi {n} ngày",
+      activityEmpty: "Chưa có lượt hoàn thành nào trong 7 ngày qua.",
+      chartTitle: "Bài hoàn thành mỗi ngày",
+      chartRange: "14 ngày gần nhất",
+      chartTotal: "{n} lượt",
+      chartDayAria: "{date}: {n} bài hoàn thành",
     },
 
     kingdom: {
@@ -561,8 +572,8 @@ export const vi = {
     heroHp: "{hp}/100 HP",
     vs: "VS",
     sessionDamage: "DMG: +{value}",
-    bossAlt: "Silicon Valley bull boss",
-    bossName: "Bò tót 3D",
+    bossAlt: "Boss sự cố Silicon Valley",
+    bossName: "Boss Sập Hệ Thống 3D",
     bossHpPercent: "{percent}% HP",
 
     doneTitle: "KẾT THÚC ĐỢT SĂN BOSS!",
@@ -704,7 +715,6 @@ export const vi = {
     cardsShort: "Bộ Thẻ",
     bgAlt: "Ảnh nền khu công nghệ",
 
-    zoneMiniGames: "TỔNG HỢP MINI GAME",
 
     fogTitle: "VÙNG ĐẤT CHƯA GIẢI MÃ",
     fogHint: "Click mở (+5 Coins)",
@@ -886,6 +896,101 @@ export const vi = {
 
   // app/(app)/phong-van-ky-thuat/page.tsx - the IB interview drill.
   interview: {
+    // Chép từ bản tài chính cùng trang /phong-van-ky-thuat, chữ đổi sang nghề công nghệ.
+    missedTitle: "Câu bạn hay sai",
+    missedRatio: "sai {wrong}/{attempted}",
+    missedLoading: "Đang xem lại bài đã làm...",
+    startPractice: "Bắt đầu luyện",
+    arenaBadge: "Đấu trường phỏng vấn kỹ thuật",
+    verdictWrong: "Chưa đúng",
+    pageTitle: "Luyện phỏng vấn",
+    heroEyebrow: "✦ LỘ TRÌNH PHỎNG VẤN",
+    heroTitle: "Luyện phỏng vấn theo nghề công nghệ",
+    heroSub: "Luyện tập có lộ trình – Bứt phá tự tin – Chinh phục nhà tuyển dụng",
+    heroDone: "Hoàn thành",
+    heroProgress: "{pct}% • {xp} điểm kinh nghiệm",
+    heroAlt: "Lộ trình phỏng vấn",
+    heroCta: "BẮT ĐẦU LUYỆN",
+    step1: "Chọn nghề",
+    step1Sub: "Định hướng đúng",
+    step2: "Độ khó",
+    step2Sub: "Chọn thử thách",
+    step3: "Chủ đề",
+    step3Sub: "Tập trung trọng tâm",
+    step4: "Bắt đầu",
+    step4Sub: "Tự tin chinh phục",
+    modeTechnical: "Phỏng vấn kỹ thuật",
+    modeTechnicalSub: "Có chấm điểm, tính vào mức sẵn sàng",
+    modeBehavioral: "Phỏng vấn hành vi",
+    modeBehavioralSub: "Thẻ luyện, không chấm điểm",
+    sectionCareer: "1. CHỌN NGHỀ NGHIỆP PHỎNG VẤN",
+    sectionDifficulty: "2. CHỌN ĐỘ KHÓ",
+    sectionCount: "3. CHỌN SỐ LƯỢNG CÂU",
+    sectionTopic: "4. CHỌN CHỦ ĐỀ TRỌNG ĐIỂM (TÙY CHỌN)",
+    questionsUnit: "câu",
+    allCareers: "Tất cả",
+    seeMore: "Xem thêm",
+    seeMoreCareers: "+ nghề khác",
+    seeMoreTopics: "chủ đề",
+    clearTopic: "Bỏ chọn chủ đề",
+    startNow: "BẮT ĐẦU LUYỆN NGAY",
+    startNote: "câu hỏi •",
+    diffAllSub: "Trọn bộ, trộn đều",
+    diffEasySub: "Nền tảng",
+    diffMediumSub: "Mức junior - mid",
+    diffHardSub: "Nâng cao",
+    progressTitle: "TIẾN ĐỘ CỦA BẠN",
+    streakLabel: "Chuỗi ngày",
+    streakDaysValue: "{n} ngày",
+    answeredLabel: "Tổng câu trả lời",
+    accuracyLabel: "Tỉ lệ đúng",
+    rewardsTitle: "PHẦN THƯỞNG",
+    rewardsAll: "Xem tất cả",
+    rewardsNote: "Hoàn thành mục tiêu để mở rương",
+    encourageTitle: "BẠN ĐANG LÀM RẤT TỐT!",
+    encourageBody: "Mỗi câu hỏi đúng là một bước gần hơn đến công việc mơ ước của bạn.",
+    encourageAlt: "Đỉnh núi mục tiêu",
+    pickerTitle: "Chọn vị trí phỏng vấn",
+    pickerPlaceholder: "Tìm kiếm nghề công nghệ...",
+    pickerSearchLabel: "Tìm nghề công nghệ",
+    pickerClose: "Đóng",
+    pickerEmpty: "Không tìm thấy nghề nào khớp với từ khoá này.",
+    topicPickerTitle: "Chọn chủ đề trọng điểm",
+    topicPickerPlaceholder: "Tìm chủ đề...",
+    topicPickerSearchLabel: "Tìm chủ đề",
+    topicPickerEmpty: "Không tìm thấy chủ đề nào khớp với từ khoá này.",
+    topicPickerAll: "Tất cả chủ đề",
+    questionLabel: "Câu hỏi",
+    loadError: "Không thể tải câu hỏi. Vui lòng thử lại.",
+    loadEmpty: "Chưa có câu hỏi nào trong mục này.",
+    backToSetup: "Quay lại thiết lập",
+    chipTime: "Thời gian",
+    chipCorrect: "Đã đúng",
+    chipScore: "Điểm",
+    verdictRight: "Chính xác! +{xp} XP",
+    prevQuestion: "Câu trước",
+    seeResult: "Xem kết quả",
+    donePass: "(Đạt yêu cầu)",
+    readinessLabel: "MỨC ĐỘ SẴN SÀNG",
+    roundLabel: "VÒNG PHỎNG VẤN",
+    nextStepLabel: "BƯỚC TIẾP THEO",
+    nextHarder: "Luyện mức khó hơn",
+    nextReview: "Ôn lại câu sai",
+    xpEarnedLabel: "XP NHẬN ĐƯỢC",
+    weakTopics: "Chủ đề cần ôn luyện thêm",
+    wrongCount: "câu sai",
+    practiceAgain: "Luyện bài mới",
+    roundScreen: "Vòng sàng lọc",
+    roundAnalyst: "Vòng kỹ thuật",
+    roundPressure: "Vòng áp lực",
+    roundMixed: "Hội đồng phỏng vấn",
+    dragHint: "Kéo để nhìn quanh",
+    weakAreasHeading: "Điểm yếu cần cải thiện",
+    drillWeakCta: "Luyện điểm yếu →",
+    reviewCount: "Ôn lại ({n})",
+    groupBuild: "Xây dựng sản phẩm",
+    groupDataAi: "Dữ liệu & AI",
+    groupOpsQuality: "Vận hành & chất lượng",
     backToDashboard: "Về Dashboard",
     title: "Technical Interview",
     subtitle: "Luyện technical + behavioral như một vòng phỏng vấn kỹ sư thật",
@@ -966,84 +1071,6 @@ export const vi = {
     newDrill: "Drill mới",
   },
 
-  // components/home/InteractiveEcosystemShowcase.tsx - the logged-out marketing
-  // preview of the three ecosystem surfaces. All of its content is illustrative:
-  // the learners, the posts and the quiz are a demo, not live data.
-  ecosystem: {
-    cheerAll: "{emoji} Cổ vũ cả nhóm học tốt!",
-    cheerYou: "Bạn",
-    livePreview: "● Đang xem Live Preview",
-    tapToTry: "Bấm để xem thử",
-
-    roadmapTab: "Lộ trình ôn cấp",
-    roadmapTitle: "Học công nghệ theo lộ trình chặng chuẩn hóa",
-    roadmapBody:
-      "Tích hợp Active Recall chủ động, theo dõi tiến độ từng chặng từ vỡ lòng đến chuyên sâu.",
-    groupTab: "Học Nhóm (3D)",
-    groupTitle: "Phòng học chung không để bạn tự học 1 mình",
-    groupBody:
-      "Bàn tròn 3D ảo, ghép nhóm theo chủ đề, check-in nhận XP và khung chat nhóm tương tác.",
-    feedTab: "Bảng tin",
-    feedTitle: "Mạng xã hội học công nghệ chia sẻ bài học",
-    feedBody:
-      "Feed tin tức bài viết ngắn, hỏi đáp thực tế, thảo luận rà soát mã và thả cảm xúc.",
-
-    roadmapPanelTitle: "Lộ trình học nền tảng công nghệ & chứng chỉ",
-    roadmapPanelSub: "Thực hành active recall đố nhanh ngay tại chỗ",
-    xpEarned: "Điểm tích lũy: +{xp} XP",
-    stage1: "Chặng 1",
-    stage1Title: "Vỡ lòng lập trình & dòng lệnh",
-    stage1Status: "Đã hoàn thành 100%",
-    stage2: "Chặng 2",
-    stage2Title: "Đọc mã nguồn & phân tích hiệu năng",
-    stage2Status: "Đang học (80%)",
-    stage3: "Chặng 3",
-    stage3Title: "Thiết kế hệ thống & kiến trúc dịch vụ",
-    stage3Status: "Khóa (Cần đỗ Chặng 2)",
-
-    samplerLabel: "ACTIVE RECALL SAMPLER",
-    samplerCounter: "Câu 1/1",
-    samplerQuestion:
-      "Một endpoint có p50 rất tốt nhưng p99 cao gấp ba mươi lần, đâu là nguyên nhân thường gặp nhất?",
-    samplerOptionA: "Một điểm nghẽn chỉ bão hoà ở phần đuôi tải, khiến hàng đợi dài ra với số ít request",
-    samplerOptionB: "Máy chủ vừa được nâng cấp nên chưa kịp làm nóng bộ nhớ đệm",
-    samplerOptionC: "Người dùng ở xa nên đường truyền của họ chậm hơn mức trung bình",
-    samplerCorrect: "Chính xác! p99 là phần người dùng nhớ, không phải p50.",
-    samplerWrong: "Chưa chính xác. Đáp án đúng là điểm nghẽn bão hoà ở phần đuôi!",
-
-    deskLabel: "BÀN HỌC 3D · NỀN TẢNG CÔNG NGHỆ",
-    cheerLabel: "Cổ Vũ:",
-    roomLabel: "BÀN HỌC PHÒNG #102",
-    roomXp: "480 / 500 XP",
-    xpBonus: "+15% XP BONUS",
-    // Demo learner names are left as they are - they are proper nouns. Only the
-    // "(you)" marker is translated.
-    youSuffix: "(Bạn)",
-    memberLessons: "{count} bài",
-    cheerHint: "Bấm thử các nút cổ vũ phía trên để gửi tin nhắn tương tác trực tiếp!",
-    chatLive: "Trò chuyện nhóm Live",
-    online: "Online",
-    adminByline: "Tài Tài · Quản lý nhóm",
-    adminMessage: "Cập nhật hôm nay: Hà tường vy, hà hồng đã học bài. Cùng cố gắng nhé!",
-    chatPlaceholder: "Gửi lời chúc, hỏi bài...",
-
-    feedPanelTitle: "Bảng tin feed trực tuyến",
-    feedPanelSub: "Bấm thử nút Thả tim tương tác với bài viết thực tế",
-    feedCta: "Vào Bảng tin Feed",
-    postStats: "{comments} bình luận · {shares} chia sẻ",
-
-    // The two demo posts. Author names and hashtags stay as they are.
-    post1Time: "2 giờ trước",
-    post1Topic: "Phân tích hiệu năng",
-    post1Title: "Bí quyết đọc nhanh một stack trace trong 5 phút",
-    post1Content:
-      "Nhiều bạn mới học lập trình thường bỏ qua stack trace mà chỉ nhìn dòng báo lỗi cuối cùng. Nhớ quy tắc: dòng cuối nói chỗ chương trình gục, còn khung phía trên mới nói vì sao nó tới được chỗ đó!",
-    post2Time: "4 giờ trước",
-    post2Topic: "Nền tảng công nghệ",
-    post2Title: "Quy tắc 20/60/20 cho quỹ thời gian của một kỹ sư có còn hợp lý?",
-    post2Content:
-      "20% đọc mã người khác - 60% viết và sửa - 20% học cái mới. Nếu việc gấp dồn tới, hãy giữ cố định 20% học trước rồi mới chia phần còn lại, vì đó là phần bị cắt đầu tiên và mất lâu nhất để lấy lại!",
-  },
 
   // components/LearningAnalytics.tsx - the /analytics dashboard.
   analytics: {
@@ -1213,7 +1240,7 @@ export const vi = {
     bulkExport: "Xuất {count} thẻ hiện có",
     bulkLabel: "Dán danh sách - mỗi dòng: thuật ngữ | định nghĩa",
     bulkPlaceholder:
-      "Lãi kép | Lãi tính trên cả gốc lẫn lãi tích luỹ trước đó\nWACC | Chi phí vốn bình quân gia quyền",
+      "Bộ nhớ đệm | Nơi giữ tạm kết quả đã tính để lần sau khỏi tính lại\nAPI | Giao diện để hai chương trình gọi nhau",
     bulkParsed: "Đọc được {count} thẻ hợp lệ.",
     exportShort: "Xuất",
     cancel: "Hủy",
@@ -1259,100 +1286,14 @@ export const vi = {
     deleteCardTitle: "Xoá thẻ",
   },
 
-  // components/TechGuildWidget.tsx - the VN30 fund simulator.
-  guild: {
-    stopLossTitle: "Bài học nguyên tắc cắt lỗ stop-loss ({ticker} {percent}%)",
-    stopLossDesc:
-      "Mã {ticker} đã vi phạm mốc cắt lỗ chuẩn -8%. Bài học: Kỷ luật cắt lỗ sớm giúp bảo vệ quy mô vốn Quỹ để tái cơ cấu vào các cơ hội mới tốt hơn!",
-    takeProfitTitle: "Bài học chốt lời take-profit ({ticker} +{percent}%)",
-    takeProfitDesc:
-      "Mã {ticker} đang đạt mức sinh lời ấn tượng! Bài học: Chốt lời từng phần (Scaling Out) giúp hiện thực hóa lợi nhuận thực tế thay vì chỉ nắm giữ lãi trên giấy.",
-    concentrationTitle: "Cảnh báo tập trung vốn (Concentration risk)",
-    concentrationDesc:
-      "Bạn đang dồn hơn 80% giá trị danh mục vào duy nhất 1 công ty. Bài học: Đa dạng hoá giúp giảm rủi ro riêng của một công ty - đúng như đặt hết hạ tầng vào một vùng của một nhà cung cấp!",
-    insufficientCash: "Không đủ sức mua tiền mặt khả dụng!",
-    insufficientShares: "Số lượng cổ phần trong danh mục không đủ để BÁN!",
-    rebalanced: "Đã tái cơ cấu đưa Quỹ về trạng thái vốn ban đầu 1 Tỷ VNĐ.",
-
-    clanTitle: "Silicon Valley Hedge Fund Clan",
-    universe: "Top 30 công ty công nghệ",
-    subtitle: "Mô phỏng quỹ đầu tư ngành công nghệ",
-    hideGuide: "Ẩn hướng dẫn",
-    showGuide: "Hướng dẫn cách chơi",
-    advance7: "Tua +7 Ngày",
-    advance30: "Tua +30 Ngày",
-    rebalanceTitle: "Tái cơ cấu về 1 Tỷ VNĐ",
-
-    guideTitle: "Hướng dẫn chi tiết cách chơi mô phỏng quỹ công nghệ",
-    close: "Đóng",
-    // Each step's body wraps inline <strong> emphasis, so it is split into
-    // segments rather than carrying markup through the dictionary.
-    step1Title: "1️⃣ vốn ban đầu 1 tỷ",
-    step1Part1: "Bạn được cấp ",
-    step1Amount: "1,000,000,000 VNĐ",
-    step1Part2: " tiền mặt ban đầu để đóng vai quản lý quỹ Hedge Fund chuyên nghiệp.",
-    step2Title: "2️⃣ Mua / Bán VN30",
-    step2Part1: "Chọn các công ty đầu ngành công nghệ (",
-    step2Tickers: "FPT, VNM, HPG, TCB...",
-    step2Part2: ") bấm ",
-    step2Part3: " giải ngân hoặc ",
-    step2Part4: " chốt lời.",
-    step3Title: "3️⃣ tua thời gian & tin tức",
-    step3Part1: "Bấm ",
-    step3Part2: " hoặc ",
-    step3Advance30Short: "+30 Ngày",
-    step3Part3: " để theo dõi biến động giá & phản ứng với tin tức ngành công nghệ.",
-    step4Title: "4️⃣ Đua Top BXH & Thưởng",
-    step4Part1: "Tăng trưởng giá trị tổng quỹ để leo Top trên ",
-    step4Board: "BXH Quỹ Server",
-    step4Part2: " + tích lũy XP & Coin thưởng.",
-
-    totalAssets: "Tổng tài sản quỹ",
-    currency: "VNĐ",
-    percentOfFund: "% Tổng Quỹ",
-    availableCash: "Tiền mặt khả dụng",
-    buyingPowerLeft: "Sức mua còn lại",
-    stockValue: "Giá trị cổ phần",
-    holdingsCount: "{count} mã đang nắm giữ",
-    simulatedTime: "Thời gian mô phỏng",
-    dayNumber: "Ngày thứ {day}",
-    leaderboardTitle: "BXH quỹ mô phỏng",
-    lessonFromPortfolio: "Bài học rút ra từ danh mục của bạn:",
-    allVn30: "Tất cả 30 Mã VN30",
-
-    colTicker: "Mã CK / Doanh Nghiệp",
-    colSector: "Ngành Nghề",
-    colPrice: "Giá thị trường (VnĐ)",
-    colChange: "Thay Đổi",
-    colHolding: "Nắm Giữ (Cổ phần)",
-    colPnl: "Lãi/Lỗ Tạm Tính",
-    colAction: "Hành Động",
-    costBasis: "Giá vốn:",
-    buy: "MUA",
-    sell: "BÁN",
-
-    buyOrderTitle: "Lệnh mua cổ phần",
-    sellOrderTitle: "Lệnh bán cổ phần",
-    currentPrice: "Giá hiện tại:",
-    shareCount: "Số lượng cổ phần:",
-    orderTotal: "Tổng giá trị giao dịch:",
-    cashAvailable: "Tiền mặt khả dụng:",
-    confirmPrefix: "Xác Nhận",
-    confirmSuffix: "Cổ Phần",
-  },
 
   // components/CommunityFeedClient.tsx - the Bảng tin feed (/bang-tin).
   feed: {
-    sentimentPost: "#PhanTich #MarketSentiment Hôm nay mình nhận định thị trường {view}. Khảo sát cộng đồng: {bull}% Bullish · {bear}% Bearish.",
-    voteBullish: "Biển Xanh (Bullish - Tăng trưởng)",
-    voteBearish: "Biển Đỏ (Bearish - Thận trọng)",
     spotlightQuestion: "Câu hỏi cần trả lời",
     spotlightDiscussed: "Đang được bàn nhiều",
     spotlightAnalysis: "Phân tích đáng đọc",
     anonMember: "Thành viên",
     anonYou: "Bạn",
-    sentimentBullish: "Đã ghi nhận nhận định biển xanh bullish của bạn!",
-    sentimentBearish: "Đã ghi nhận nhận định biển đỏ bearish của bạn!",
     postFailed: "Không đăng được bài. Vui lòng thử lại.",
     postEditFailed: "Không sửa được bài viết",
     commentFailed: "Không gửi được bình luận.",
@@ -1390,15 +1331,6 @@ export const vi = {
     badgeDiscussed: "Đang được bàn luận",
     badgeFeatured: "Bài viết nổi bật",
 
-    sentimentTitle: "THỊ TRƯỜNG & VĨ MÔ HÔM NAY",
-    sentimentQuestion: "Cộng đồng nhận định xu hướng VN-Index & Vĩ mô hôm nay thế nào?",
-    sentimentShare: "Đăng nhận định",
-    bullishTitle: "Biển Xanh (Bullish)",
-    bullishSub: "Tích cực & Khả quan",
-    bearishTitle: "Biển Đỏ (Bearish)",
-    bearishSub: "Thận trọng & Quan sát",
-    bullishVotes: "{count} phiếu ({percent}%)",
-    bearishVotes: "{count} phiếu ({percent}%)",
     totalVotes: "Tổng số lượt vote: {count}",
 
     // InteractivePollCard
@@ -1436,7 +1368,7 @@ export const vi = {
     eyebrow: "Mạng xã hội học công nghệ",
     title: "Bảng tin Feed",
     subtitle:
-      "Nơi cộng đồng chia sẻ bản tin ngắn, câu hỏi, phân tích BCTC thực tế và ăn mừng thành tựu học tập mỗi ngày.",
+      "Nơi cộng đồng chia sẻ bản tin ngắn, câu hỏi, phân tích kỹ thuật thực tế và ăn mừng thành tựu học tập mỗi ngày.",
 
     // Highlights + filters
     highlightsTitle: "Nổi bật hôm nay",
@@ -1498,7 +1430,7 @@ export const vi = {
     promptsTitle: "Gợi ý đăng bài",
     prompt1: "Hôm nay mình hiểu ra...",
     prompt2: "Mình đang kẹt ở câu hỏi...",
-    prompt3: "Một mẹo học BCTC của mình là...",
+    prompt3: "Một mẹo đọc mã của người khác của mình là...",
     prompt4: "Ảnh thành quả/streak hôm nay:",
   },
 
@@ -2153,10 +2085,6 @@ export const vi = {
     leaveFailed: "Không thể rời phòng lúc này",
   },
 
-  // components/JobSearchClient.tsx - the finance job map (/pho-nghe).
-  // Renders twice, desktop and mobile, so several labels appear in two places
-  // with different styling; they share one key.
-
   // components/DashboardClient.tsx
   dashboard: {
     // Trang Học bài chép từ bản tài chính.
@@ -2461,9 +2389,9 @@ export const vi = {
   },
 
   // components/Leaderboard.tsx. Scope note: the per-rank nicknames and badge
-  // names (LEADERBOARD_TITLES, the byMetric honor tables - "Sói Biển Đầu Tư",
-  // "Trùm Sàn Server", etc.) are deliberately NOT covered here. Those are
-  // Vietnamese wordplay/finance-meme flavor text, not UI strings - a literal
+  // names (LEADERBOARD_TITLES, the byMetric honor tables - "Trùm Sàn Server",
+  // etc.) are deliberately NOT covered here. Those are
+  // Vietnamese wordplay flavor text, not UI strings - a literal
   // translation would read as nonsense in English, and a good one is a
   // separate creative-writing pass, not a mechanical dictionary lookup.
   leaderboard: {
@@ -2653,7 +2581,15 @@ export const vi = {
     done: "Xong",
   },
   // components/BehavioralPrepPanel.tsx - the unscored behavioural question drill.
+  // components/IbWeakAreasPanel.tsx - điểm mạnh yếu theo chủ đề ở /phong-van-ky-thuat.
+  ibWeakAreas: {
+    computingLoading: "Đang tính điểm mạnh yếu...",
+  },
+
   behavioralPrep: {
+    // Chép từ bản tài chính cùng trang /phong-van-ky-thuat, chữ đổi sang nghề công nghệ.
+    heroBadge: "VÒNG FIT & BEHAVIORAL",
+    heroTitle: "Kể được câu chuyện của mình trước khi bị hỏi",
     loading: "Đang tải câu hỏi behavioral...",
     loadError: "Không tải được bộ câu hỏi behavioral.",
     retry: "Thử lại",

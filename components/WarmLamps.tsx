@@ -221,7 +221,7 @@ export default function WarmLamps() {
                       "radial-gradient(circle, rgba(255,214,166,0.8) 0%, rgba(255,182,104,0.22) 55%, transparent 72%)",
                   }}
                 >
-                  <span className="h-2 w-2 rounded-full bg-amber-200/90 shadow-[0_0_10px_3px_rgba(255,190,120,0.7)] transition group-hover:h-2.5 group-hover:w-2.5" />
+                  <span className="h-2 w-2 rounded-full bg-amber-200/90 transition group-hover:h-2.5 group-hover:w-2.5" />
                 </button>
               </div>
             ))}
@@ -301,7 +301,7 @@ export default function WarmLamps() {
           title={lit ? t.warmLamps.turnOff : t.warmLamps.turnOn}
           className={`grid h-11 w-11 place-items-center rounded-full border shadow-lg transition ${
             lit
-              ? "border-amber-400/40 bg-amber-500/20 text-amber-200 shadow-[0_0_20px_rgba(255,180,90,0.35)]"
+              ? "border-amber-400/40 bg-amber-500/20 text-amber-200"
               : "border-stone-800 bg-stone-950/90 text-stone-500 hover:text-stone-300"
           }`}
         >

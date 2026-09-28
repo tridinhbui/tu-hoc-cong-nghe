@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import Logo from "@/components/Logo";
+import { Sys, StatusDot, btnPrimary } from "@/components/ui/system";
 import type { Dictionary } from "@/lib/i18n";
 import type { LessonMeta } from "@/lib/lesson-types";
 import { flowLessonSlugs, type FlowStatus, type LearningFlow } from "@/lib/learning-flows";
@@ -16,29 +18,52 @@ export function flowStats(flow: LearningFlow, bySlug: Map<string, LessonMeta>) {
   return { count: metas.length, minutes };
 }
 
+/* i18n-ignore-start: định danh hệ thống (đường dẫn kiểu THCN://) - cùng một
+   chuỗi ở mọi ngôn ngữ, như tên tệp hay đường dẫn, không phải chữ để dịch. */
+export const FLOWS_SYS = {
+  root: "THCN://FLOWS",
+  flow: (id: string) => `THCN://FLOWS/${id.toUpperCase()}`,
+  stepCode: (flowId: string, n: number) => `THCN://FLOWS/${flowId.toUpperCase()}/${String(n).padStart(2, "0")}`,
+  stepPath: (flowId: string, stepId: string) => `~/${flowId}/${stepId}`,
+  branches: "THCN://FLOWS/NEXT",
+  journey: "THCN://FLOWS/RHYTHM",
+  id: (n: number) => String(n).padStart(2, "0"),
+};
+/* i18n-ignore-end */
+
+/**
+ * Nhãn trạng thái của một hành trình: ô vuông trạng thái + chữ, viền 1px, bo
+ * 2px. Không còn viên thuốc tô nền xanh/xanh trời: "sẵn sàng" là dữ liệu sống
+ * nên được chấm xanh, hai trạng thái kia chấm xám và phân biệt bằng chữ.
+ */
 export function StatusPill({ status, t }: { status: FlowStatus; t: FlowsCopy }) {
-  const map = {
-    ready: { label: t.statusReady, cls: "bg-brand-100 text-brand-800 dark:bg-brand-500/15 dark:text-brand-300" },
-    partial: { label: t.statusPartial, cls: "bg-sky-100 text-sky-800 dark:bg-sky-500/15 dark:text-sky-300" },
-    soon: { label: t.statusSoon, cls: "bg-stone-200 text-stone-700 dark:bg-stone-700 dark:text-stone-200" },
-  } as const;
-  const { label, cls } = map[status];
-  return <span className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-black uppercase tracking-wide ${cls}`}>{label}</span>;
+  const label = status === "ready" ? t.statusReady : status === "partial" ? t.statusPartial : t.statusSoon;
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-sm border border-stone-300 px-1.5 py-0.5 text-[11px] font-bold text-ink-soft dark:border-stone-700">
+      <StatusDot tone={status === "ready" ? "brand" : "muted"} />
+      {label}
+    </span>
+  );
 }
 
-export function FlowsHeader({ t }: { t: FlowsCopy }) {
+/** Thanh điều hướng - cùng khuôn với thanh trên cùng của trang chủ. */
+export function FlowsHeader({ t, code = FLOWS_SYS.root }: { t: FlowsCopy; code?: string }) {
   return (
-    <header className="border-b border-stone-200/80 dark:border-stone-800">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 font-black text-ink-max">
-          <Logo size={28} />
-          <span className="text-sm sm:text-base">{t.brand}</span>
-        </Link>
-        <Link
-          href="/dashboard"
-          className="rounded-lg bg-stone-950 px-4 py-2 text-sm font-black text-white transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
-        >
+    <header className="sticky top-0 z-40 border-b border-stone-300 bg-[#fbfaf7] dark:border-stone-800 dark:bg-stone-950">
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-4 sm:px-6">
+        <div className="flex min-w-0 items-center gap-3">
+          <Link href="/" className="flex min-w-0 items-center gap-2.5">
+            <Logo size={26} />
+            <span className="truncate text-[13px] font-black uppercase tracking-[0.04em] text-ink-heading sm:text-[15px] sm:tracking-[0.12em]">
+              {t.brand}
+            </span>
+          </Link>
+          <span aria-hidden className="hidden h-4 w-px bg-surface-deep md:block" />
+          <Sys className="hidden text-ink-muted md:inline">{code}</Sys>
+        </div>
+        <Link href="/dashboard" className={`${btnPrimary} shrink-0`}>
           {t.navLearn}
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
         </Link>
       </div>
     </header>

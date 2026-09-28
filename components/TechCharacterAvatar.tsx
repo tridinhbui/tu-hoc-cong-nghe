@@ -80,22 +80,23 @@ export default function TechCharacterAvatar({
   const activeAcc = equipments.accessory ? ITEM_DESCRIPTIONS[equipments.accessory] : null;
   const activePet = equipments.companion ? ITEM_DESCRIPTIONS[equipments.companion] : null;
 
-  // Ultra-clean Light Mode Tone palette
+  // Viền ảnh đại diện theo bậc cấp: một viền đặc, đậm dần theo cấp - không
+  // gradient, không vòng sáng (luật 2 của components/ui/system.tsx).
   const avatarRingBg =
     level >= 8
-      ? "from-amber-400 via-yellow-400 to-amber-500 ring-amber-300"
+      ? "border-stone-950 dark:border-stone-300"
       : level >= 5
-      ? "from-purple-500 via-indigo-500 to-purple-600 ring-purple-300"
-      : "from-brand-400 via-brand-400 to-brand-500 ring-brand-300";
+      ? "border-stone-500 dark:border-stone-400"
+      : "border-line-strong";
 
   if (isExtraSmall) {
     return (
       <div className="relative shrink-0 flex items-center justify-center">
         {/* Compact 44px Avatar Ring for UserStats Card */}
         <div
-          className={`w-11 h-11 rounded-full bg-gradient-to-tr ${avatarRingBg} p-[2px] shadow-sm relative flex items-center justify-center`}
+          className={`w-11 h-11 rounded-full border-2 ${avatarRingBg} bg-white dark:bg-stone-900 relative flex items-center justify-center`}
         >
-          <div className="w-full h-full rounded-full bg-brand-50 dark:bg-stone-900 flex items-center justify-center text-accent relative overflow-visible">
+          <div className="w-full h-full rounded-full bg-[#f3f1ec] dark:bg-stone-900 flex items-center justify-center text-ink-soft relative overflow-visible">
             <UserRound className="w-6 h-6" strokeWidth={1.75} aria-hidden />
             {/* Glasses overlay */}
             {equipments.accessory === "acc_glasses" && (
@@ -106,12 +107,12 @@ export default function TechCharacterAvatar({
 
         {/* Crown floating */}
         {activeAcc?.type === "accessory" && equipments.accessory === "acc_crown" && (
-          <Crown className="absolute -top-2 w-3.5 h-3.5 text-amber-500 animate-bounce" strokeWidth={2} aria-hidden />
+          <Crown className="absolute -top-2 w-3.5 h-3.5 text-ink-heading" strokeWidth={2} aria-hidden />
         )}
 
         {/* Mini Weapon Badge */}
         {activeWeapon && (
-          <span className="absolute -bottom-1 -right-1 bg-white dark:bg-stone-900 rounded-full shadow-sm p-0.5 border border-amber-300 text-amber-600">
+          <span className="absolute -bottom-1 -right-1 bg-white dark:bg-stone-900 rounded-xs p-0.5 border border-line-strong text-ink-soft">
             <Glyph emoji={activeWeapon.icon} className="w-3 h-3" strokeWidth={2} />
           </span>
         )}
@@ -121,29 +122,26 @@ export default function TechCharacterAvatar({
 
   return (
     <div
-      className={`relative flex items-center justify-center rounded-3xl border border-brand-200/80 dark:border-brand-800/60 bg-gradient-to-b from-white via-brand-50/40 to-amber-50/30 dark:from-stone-900 dark:via-stone-800 dark:to-stone-900 shadow-md ${containerSize} p-3 transition-all duration-300 group`}
+      className={`relative flex items-center justify-center rounded-md border border-line-strong bg-[#fbfaf7] dark:bg-stone-950 ${containerSize} p-3 group`}
     >
-      {/* Soft Ambient Light Glow */}
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-brand-400/10 via-amber-400/5 to-brand-400/10 blur-md pointer-events-none" />
-
       {/* Hero Character Frame */}
       <div className="relative flex flex-col items-center justify-center z-10">
         {/* Crown or Head Accessory Slot */}
         {activeAcc ? (
-          <div className="absolute -top-7 text-amber-500 animate-bounce">
+          <div className="absolute -top-7 text-ink-heading">
             <Glyph emoji={activeAcc.icon} className="w-6 h-6" />
           </div>
         ) : level >= 5 ? (
-          <Sparkles className="absolute -top-6 w-5 h-5 text-accent" strokeWidth={1.75} aria-hidden />
+          <Sparkles className="absolute -top-6 w-5 h-5 text-ink-muted" strokeWidth={1.75} aria-hidden />
         ) : null}
 
         {/* Character Face / Figure Circle */}
         <div
-          className={`rounded-full bg-gradient-to-tr ${avatarRingBg} p-[3px] shadow-md relative flex items-center justify-center ${
+          className={`rounded-full border-2 ${avatarRingBg} bg-white dark:bg-stone-900 relative flex items-center justify-center ${
             isLarge ? "w-28 h-28" : isSmall ? "w-14 h-14" : "w-20 h-20"
           }`}
         >
-          <div className="w-full h-full rounded-full bg-gradient-to-br from-brand-50 to-brand-50 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center relative text-accent">
+          <div className="w-full h-full rounded-full bg-[#f3f1ec] dark:bg-stone-800 flex items-center justify-center relative text-ink-soft">
             <UserRound className={isLarge ? "w-14 h-14" : isSmall ? "w-7 h-7" : "w-10 h-10"} strokeWidth={1.5} aria-hidden />
             {/* Glasses Overlay */}
             {equipments.accessory === "acc_glasses" && (
@@ -154,29 +152,29 @@ export default function TechCharacterAvatar({
 
         {/* Armor Badge */}
         {activeArmor && (
-          <div className="absolute -bottom-2 bg-white dark:bg-stone-900 text-ink-heading text-[10px] font-black px-2.5 py-0.5 rounded-full border border-accent-line-mid shadow-md flex items-center gap-1">
-            <Shield className="w-3 h-3 text-brand-500" /> <Glyph emoji={activeArmor.icon} className="w-3 h-3" strokeWidth={2} />
+          <div className="absolute -bottom-2 bg-white dark:bg-stone-900 text-ink-heading text-[10px] font-bold px-2 py-0.5 rounded-sm border border-line-strong flex items-center gap-1">
+            <Shield className="w-3 h-3 text-ink-muted" /> <Glyph emoji={activeArmor.icon} className="w-3 h-3" strokeWidth={2} />
           </div>
         )}
       </div>
 
       {/* Left Weapon Slot */}
       {activeWeapon && (
-        <div className="absolute -left-2 top-1/2 -translate-y-1/2 bg-white dark:bg-stone-900 border border-warn-line-mid p-1.5 rounded-2xl shadow-md text-amber-600">
+        <div className="absolute -left-2 top-1/2 -translate-y-1/2 bg-white dark:bg-stone-900 border border-line-strong p-1.5 rounded-sm text-ink-soft">
           <Glyph emoji={activeWeapon.icon} className="w-5 h-5" />
         </div>
       )}
 
       {/* Right Pet Slot */}
       {activePet && (
-        <div className="absolute -right-2 top-1/2 -translate-y-1/2 bg-white dark:bg-stone-900 border border-accent-line-mid p-1.5 rounded-2xl shadow-md text-accent">
+        <div className="absolute -right-2 top-1/2 -translate-y-1/2 bg-white dark:bg-stone-900 border border-line-strong p-1.5 rounded-sm text-ink-soft">
           <Glyph emoji={activePet.icon} className="w-5 h-5" />
         </div>
       )}
 
       {/* Level Tag */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white/90 dark:bg-stone-900/90 text-stone-800 dark:text-amber-300 border border-amber-300/80 text-[9px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1">
-        {t.finalTwo.financeCharacterAvatar.levelPrefix} {level}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white dark:bg-stone-900 text-ink border border-line-strong text-[9px] font-bold uppercase tracking-wider tabular-nums px-2 py-0.5 rounded-sm flex items-center gap-1">
+        {t.finalTwo.characterAvatar.levelPrefix} {level}
       </div>
     </div>
   );

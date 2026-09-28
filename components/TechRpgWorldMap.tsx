@@ -4,8 +4,9 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { organicBuildingsOf, type OrganicBuilding } from "@/lib/rpg-buildings";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, Coins, Zap, Trophy, Lock, Flame, Shield, ShoppingBag, Layers, Activity, Clock, Crown, Compass, Cloud, Construction } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, ChevronLeft, Coins, Lock, ShoppingBag, Layers, Compass, Cloud, Construction } from "lucide-react";
+import { btnPrimary, btnSecondary, Sys, StatusDot } from "@/components/ui/system";
 import Glyph from "@/components/Glyph";
 import { createClient } from "@/lib/cloudflare";
 import { getRequiredLevelForBuilding } from "@/lib/levels";
@@ -18,10 +19,9 @@ import CosmeticStore from "@/components/CosmeticStore";
 import TechCardCollection from "@/components/TechCardCollection";
 import WeeklyChallengeWidget from "@/components/WeeklyChallengeWidget";
 import WorldBossRaidWidget from "@/components/WorldBossRaidWidget";
-import TechGuildWidget from "@/components/TechGuildWidget";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import GameHubClient from "@/components/games/GameHubClient";
-import FedVaultWidget from "@/components/FedVaultWidget";
+import BackboneRoutingWidget from "@/components/BackboneRoutingWidget";
 import GoldmanSachsWidget from "@/components/GoldmanSachsWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -38,12 +38,20 @@ interface ProgressRow {
 }
 
 
+/* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị - cùng một
+   chuỗi ở mọi ngôn ngữ, như đường dẫn tệp. Số khu là độ dài danh sách thật. */
+const SYS = {
+  kingdom: "THCN://GAME/KINGDOM",
+  building: (id: string) => `THCN://GAME/${id.toUpperCase()}`,
+  zones: (n: number) => `ZONES ${n}`,
+};
+/* i18n-ignore-end */
+
 const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
   "world-boss": { x: 50, y: 8 },
   pvp: { x: 18, y: 18 },
   arcade: { x: 50, y: 28 },
   "weekly-challenge": { x: 18, y: 38 },
-  guilds: { x: 82, y: 38 },
   cards: { x: 18, y: 50 },
   shop: { x: 82, y: 50 },
   "fed-vault": { x: 50, y: 60 },
@@ -241,185 +249,168 @@ export default function TechRpgWorldMap() {
     }, 450);
   };
 
+  const selected = selectedBuilding ? buildings.find((b) => b.id === selectedBuilding) : undefined;
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/70 via-stone-50 to-brand-50/50 text-stone-900 p-3 sm:p-5 relative overflow-x-hidden transition-colors duration-500 font-sans">
-      {/* Top Gaming HUD Bar (Light Mode) */}
-      <div className="max-w-6xl mx-auto mb-4 bg-white/95 backdrop-blur-xl border border-amber-300/90 rounded-2xl p-2.5 sm:p-3.5 shadow-[0_10px_30px_-10px_rgba(245,158,11,0.2)] flex flex-wrap items-center justify-between gap-3 relative z-30">
-        {/* Left Player Level & Info */}
-        <div className="flex items-center gap-3">
-          <div className="relative">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 p-[2px] shadow-sm">
-              <div className="w-full h-full rounded-[10px] bg-amber-500 flex items-center justify-center font-black text-white text-sm shadow-xs">
-                {format(t.worldMap.levelShort, { level })}
-              </div>
-            </div>
-            <div className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-500 text-white shadow-xs">
-              <Crown className="h-2.5 w-2.5 fill-white text-white" />
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center gap-1.5">
-              <h2 className="text-xs font-black uppercase text-amber-900 tracking-wider">{t.worldMap.empireTitle}</h2>
-              <span className="text-[9px] font-black uppercase bg-brand-100 text-brand-800 px-2 py-0.5 rounded-full border border-brand-300">
-                {t.worldMap.online}
-              </span>
-            </div>
-            <p className="text-[10px] text-stone-600 font-semibold">{t.worldMap.empireSub}</p>
-          </div>
+    <div className="relative min-h-screen overflow-x-hidden bg-[#fbfaf7] p-3 font-sans text-ink sm:p-5 dark:bg-stone-950">
+      {/* HUD: một thanh tiêu đề kiểu cửa sổ ứng dụng - mã định vị mono, cấp độ và
+          ngân sách là số thật đọc từ user_profiles. Không gradient, không kính mờ. */}
+      <div className="relative z-30 mx-auto mb-4 max-w-6xl overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+        <div className="flex h-8 items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+          <Sys className="truncate text-ink-muted">{selected ? SYS.building(selected.id) : SYS.kingdom}</Sys>
+          <span className="inline-flex items-center gap-1.5">
+            <StatusDot />
+            <span className="text-[11px] font-semibold text-ink-muted">{t.worldMap.online}</span>
+          </span>
         </div>
-
-        {/* Center Currencies & Energy Bar */}
-        <div className="flex items-center gap-3 sm:gap-5 text-xs font-black">
-          {/* Coins / Capital */}
-          <div className="flex items-center gap-2 bg-amber-50/90 border border-amber-200/90 px-3 py-1.5 rounded-xl shadow-xs">
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-500 text-white shadow-xs">
-              <Coins className="h-3.5 w-3.5 fill-white" />
+        <div className="flex flex-wrap items-center justify-between gap-3 p-2.5 sm:p-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 min-w-10 items-center justify-center rounded-sm bg-stone-950 px-1.5 font-mono text-xs font-medium tabular-nums text-white dark:bg-stone-100 dark:text-stone-950">
+              {format(t.worldMap.levelShort, { level })}
             </div>
             <div>
-              <p className="text-[9px] font-extrabold uppercase text-amber-800/80 leading-none">{t.worldMap.capitalLabel}</p>
-              <p className="text-xs font-black text-amber-900 leading-tight">{format(t.worldMap.coinsValue, { count: coins.toLocaleString() })}</p>
+              <h2 className="text-sm font-black text-ink-max">{t.worldMap.empireTitle}</h2>
+              <p className="text-[11px] text-ink-muted">{t.worldMap.empireSub}</p>
             </div>
           </div>
 
-        </div>
+          <div className="flex items-center gap-3 sm:gap-5">
+            {/* Tiền tệ - chỗ duy nhất được giữ màu hổ phách. */}
+            <div className="flex items-center gap-2 border-l border-stone-300 pl-3 dark:border-stone-700">
+              <Coins className="h-4 w-4 text-warn" aria-hidden />
+              <div>
+                <p className="text-[10px] font-semibold text-ink-muted leading-none">{t.worldMap.capitalLabel}</p>
+                <p className="mt-0.5 font-mono text-sm font-medium tabular-nums leading-tight text-warn-ink">
+                  {format(t.worldMap.coinsValue, { count: coins.toLocaleString() })}
+                </p>
+              </div>
+            </div>
+          </div>
 
-        {/* Right Quick Nav Dock */}
-        <div className="flex items-center gap-1.5 shrink-0">
-          <button
-            onClick={() => handleBuildingClick("shop")}
-            className="flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-2.5 py-1.5 rounded-xl text-xs font-black shadow-md transition-all cursor-pointer active:scale-95"
-            title={t.worldMap.shopTitle}
-          >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{t.worldMap.shopShort}</span>
-          </button>
+          <div className="flex shrink-0 items-center gap-1.5">
+            <button
+              onClick={() => handleBuildingClick("shop")}
+              className={`${btnPrimary} px-3 py-1.5 text-xs`}
+              title={t.worldMap.shopTitle}
+            >
+              <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
+              <span className="hidden sm:inline">{t.worldMap.shopShort}</span>
+            </button>
 
-          <button
-            onClick={() => handleBuildingClick("cards")}
-            className="flex items-center gap-1 bg-white hover:bg-stone-50 text-stone-800 border border-stone-300 px-2.5 py-1.5 rounded-xl text-xs font-black shadow-xs transition-all cursor-pointer active:scale-95"
-            title={t.worldMap.cardsTitle}
-          >
-            <Layers className="w-3.5 h-3.5 text-sky-600" />
-            <span className="hidden sm:inline">{t.worldMap.cardsShort}</span>
-          </button>
+            <button
+              onClick={() => handleBuildingClick("cards")}
+              className={`${btnSecondary} px-3 py-1.5 text-xs`}
+              title={t.worldMap.cardsTitle}
+            >
+              <Layers className="h-3.5 w-3.5" aria-hidden />
+              <span className="hidden sm:inline">{t.worldMap.cardsShort}</span>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Dải tin chạy (uptime 99,95%, boss 850.000 HP, clan top #1) và thanh
           "Năng lượng 100%" đã gỡ: toàn là số viết cứng, không đọc từ đâu, nhưng
           trình bày như chỉ số trực tiếp. Số nào hiện trên màn hình phải là số thật. */}
-      {!selectedBuilding && (
-        <>
-          {/* Wall Street Photo Background (Ultra Vivid & High Clarity) */}
-          <div className="absolute inset-0 pointer-events-none opacity-70 z-0 overflow-hidden">
-            <Image
-              src="/saigon-skyline.jpg"
-              alt={t.worldMap.bgAlt}
-              fill
-              className="object-cover blur-0 contrast-[1.08] brightness-[1.02]"
-              priority
-            />
-          </div>
-
-          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20 pointer-events-none z-0" />
-          <div className="absolute inset-0 bg-[radial-gradient(#417acd_1.5px,transparent_1.5px)] [background-size:32px_32px] pointer-events-none opacity-[0.05] z-0" />
-        </>
-      )}
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto z-10 relative">
+      <div className="relative z-10 mx-auto max-w-6xl">
         {!selectedBuilding ? (
-          <div>
+          // Bản đồ đứng trên một dải mực stone-950 - đúng như khu Game Kingdom ở
+          // trang giới thiệu. Ảnh skyline là nội dung, nên nó ở lại, chỉ lùi về
+          // phía sau dải mực thay vì phủ lên cả HUD.
+          <div className="relative overflow-hidden rounded-md border border-stone-800 bg-stone-950">
+            <div className="pointer-events-none absolute inset-0 z-0 opacity-20">
+              <Image
+                src="/saigon-skyline.jpg"
+                alt={t.worldMap.bgAlt}
+                fill
+                className="object-cover grayscale"
+                priority
+              />
+            </div>
+
+            <div className="relative z-10 flex items-center justify-between gap-4 border-b border-white/15 px-4 py-2.5">
+              <span className="inline-flex min-w-0 items-center gap-2 text-xs font-semibold text-stone-300">
+                <Compass className="h-3.5 w-3.5 shrink-0 text-stone-500" aria-hidden />
+                <span className="hidden truncate md:inline">{t.worldMap.dragHint}</span>
+              </span>
+              <Sys className="shrink-0 text-stone-500">{SYS.zones(MAP_BUILDINGS.length)}</Sys>
+            </div>
+
             {/* Mobile / Tablet View: Categorized District Grids */}
-            <div className="md:hidden space-y-5">
-              {/* i18n-ignore-start: district names in the game world. Nine of the ten are
-                  place names that are already English and stay that way in any
-                  language - NYSE, Times Square, the Fed vault, Singapore Dock.
-                  The one Vietnamese label is the generic "all mini games" tile,
-                  which does go through the dictionary. */}
-              {["NYSE CENTRAL", t.worldMap.zoneMiniGames, "TIMES SQUARE", "HEDGE FUND QUARTER", "FED VAULT", "SILICON BAY", "CAPITOL HILL", "CME COMMODITY", "SWISS HAVEN", "SINGAPORE DOCK" /* i18n-ignore-end */].map((districtBadge) => {
-                const districtBuildings = MAP_BUILDINGS.filter((b) => b.badge.includes(districtBadge.split(" ")[1] || districtBadge.split(" ")[0] || ""));
+            <div className="relative z-10 space-y-5 p-3 md:hidden">
+              {/* Nhóm theo đúng `badge` của từng toà (đã đi qua từ điển), thay vì
+                  một danh sách tên khu gõ tay - danh sách cũ còn tên khu của thời
+                  kho bài tài chính và so khớp theo từ thứ hai, nên nửa số toà
+                  không rơi vào khu nào và biến mất khỏi bản đồ di động. */}
+              {[...new Set(MAP_BUILDINGS.map((b) => b.badge))].map((districtBadge) => {
+                const districtBuildings = MAP_BUILDINGS.filter((b) => b.badge === districtBadge);
                 if (districtBuildings.length === 0) return null;
                 return (
-                  <div key={districtBadge} className="space-y-2.5">
-                    <div className="flex items-center gap-2 px-1">
-                      <span className="text-[11px] font-black uppercase tracking-wider text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300 shadow-xs">
+                  <div key={districtBadge} className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.06em] text-stone-400">
                         {districtBadge}
                       </span>
-                      <div className="h-px bg-amber-300/40 flex-1" />
+                      <div className="h-px flex-1 bg-white/15" />
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                       {districtBuildings.map((b) => {
                         const isDiscovered = discoveredBuildings.includes(b.id);
                         const reqLevel = b.minLevel ?? getRequiredLevelForBuilding(b.id);
                         const isLocked = level < reqLevel;
 
                         return (
-                          <motion.div
+                          <div
                             key={b.id}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
                             onClick={() => handleBuildingClick(b.id)}
-                            className={`bg-white/95 border-2 border-amber-300/90 rounded-3xl p-4 shadow-md cursor-pointer flex items-center gap-3.5 group backdrop-blur-md transition-all relative overflow-hidden active:scale-95 touch-manipulation min-h-[90px]`}
+                            className="relative flex min-h-[80px] cursor-pointer touch-manipulation items-center gap-3 overflow-hidden rounded-md border border-stone-800 bg-stone-900 p-3 transition-colors hover:border-stone-500"
                           >
-                            {/* Fog Unveil Overlay */}
                             {!isDiscovered && (
-                              <div className="absolute inset-0 bg-white/95 backdrop-blur-md z-30 flex items-center justify-between px-4 border-2 border-dashed border-amber-400">
-                                <div className="flex items-center gap-2">
-                                  <Cloud className="w-5 h-5 text-amber-600 animate-bounce shrink-0" strokeWidth={1.75} aria-hidden />
-                                  <div>
-                                    <p className="text-[10px] font-black text-amber-900">{t.worldMap.fogTitle}</p>
-                                    <p className="text-[9px] font-extrabold text-amber-700">{t.worldMap.fogHint}</p>
-                                  </div>
+                              <div className="absolute inset-0 z-30 flex items-center gap-2 border border-dashed border-stone-600 bg-stone-950 px-3">
+                                <Cloud className="h-5 w-5 shrink-0 text-stone-500" strokeWidth={1.75} aria-hidden />
+                                <div>
+                                  <p className="text-[11px] font-bold text-stone-200">{t.worldMap.fogTitle}</p>
+                                  <p className="text-[10px] font-semibold text-amber-300">{t.worldMap.fogHint}</p>
                                 </div>
                               </div>
                             )}
 
-                            {/* Under Construction Overlay */}
                             {b.isUnderConstruction && isDiscovered && (
-                              <div className="absolute inset-0 bg-stone-900/85 backdrop-blur-xs z-25 flex items-center justify-between px-4 border-2 border-dashed border-amber-400 text-white">
-                                <div className="flex items-center gap-2">
-                                  <Construction className="w-5 h-5 text-amber-300 animate-pulse shrink-0" strokeWidth={1.75} aria-hidden />
-                                  <div>
-                                    <p className="text-xs font-black text-amber-300 uppercase">{t.worldMap.underConstruction}</p>
-                                    <p className="text-[9px] font-bold text-stone-300">{format(t.worldMap.lockedLevel, { level: reqLevel })}</p>
-                                  </div>
+                              <div className="absolute inset-0 z-25 flex items-center gap-2 border border-dashed border-stone-600 bg-stone-950 px-3">
+                                <Construction className="h-5 w-5 shrink-0 text-stone-500" strokeWidth={1.75} aria-hidden />
+                                <div>
+                                  <p className="text-[11px] font-bold uppercase text-stone-200">{t.worldMap.underConstruction}</p>
+                                  <p className="text-[10px] font-semibold text-stone-400">{format(t.worldMap.lockedLevel, { level: reqLevel })}</p>
                                 </div>
                               </div>
                             )}
 
-                            {/* Locked Chain Overlay */}
                             {isLocked && !b.isUnderConstruction && isDiscovered && (
-                              <div className="absolute inset-0 bg-stone-100/95 backdrop-blur-xs z-25 flex items-center justify-between px-4 border-2 border-dashed border-stone-300">
-                                <div className="flex items-center gap-2 text-stone-600">
-                                  <Lock className="w-5 h-5 text-amber-600 animate-pulse shrink-0" />
-                                  <div>
-                                    <p className="text-xs font-black text-amber-800 uppercase">{format(t.worldMap.lockedShort, { level: reqLevel })}</p>
-                                    <p className="text-[9px] font-bold text-stone-500">{t.worldMap.lockedNeedLessons}</p>
-                                  </div>
+                              <div className="absolute inset-0 z-25 flex items-center gap-2 border border-dashed border-stone-600 bg-stone-950 px-3">
+                                <Lock className="h-4 w-4 shrink-0 text-stone-500" aria-hidden />
+                                <div>
+                                  <p className="font-mono text-[11px] font-medium tabular-nums text-stone-200">{format(t.worldMap.lockedShort, { level: reqLevel })}</p>
+                                  <p className="text-[10px] font-semibold text-stone-400">{t.worldMap.lockedNeedLessons}</p>
                                 </div>
                               </div>
                             )}
 
-                            <div className="w-15 h-15 rounded-2xl bg-amber-50 border-2 border-amber-300 flex items-center justify-center text-amber-700 shadow-md shrink-0 group-hover:rotate-12 transition-transform overflow-hidden relative">
+                            <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-sm border border-stone-700 bg-stone-950 text-stone-300">
                               {b.imageSrc ? (
                                 <Image src={b.imageSrc} alt={b.name} fill className="object-cover" />
                               ) : (
-                                <Glyph emoji={b.emoji} className="w-7 h-7" strokeWidth={1.5} />
+                                <Glyph emoji={b.emoji} className="h-7 w-7" strokeWidth={1.5} />
                               )}
                             </div>
 
                             <div className="min-w-0 flex-1">
-                              <h3 className="text-sm font-black text-stone-900 truncate">
-                                {b.name}
-                              </h3>
-                              <p className="text-[10px] text-stone-600 truncate mt-0.5">
-                                {b.subtitle}
-                              </p>
+                              <h3 className="truncate text-sm font-black text-white">{b.name}</h3>
+                              <p className="mt-0.5 truncate text-[11px] text-stone-400">{b.subtitle}</p>
                             </div>
-                          </motion.div>
+                          </div>
                         );
                       })}
                     </div>
@@ -428,96 +419,59 @@ export default function TechRpgWorldMap() {
               })}
             </div>
 
-            {/* Pan & Drag Hint Banner for Desktop Map */}
-            <div className="hidden md:flex items-center justify-between mb-3 px-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/90 text-amber-900 border border-amber-300 text-xs font-black shadow-xs">
-                <Compass className="w-4 h-4 text-amber-700 animate-spin-slow" />
-                <span>{t.worldMap.dragHint}</span>
-              </div>
-              <span className="text-xs font-black text-brand-800 bg-brand-100 px-3 py-1 rounded-full border border-brand-300 shadow-2xs">
-                {t.worldMap.zoneCount}
-              </span>
-            </div>
-
-            {/* Desktop 3D Isometric RPG World Map Container (Fixed Viewport Canva Canvas) */}
-            <div className="hidden md:block relative max-w-6xl mx-auto rounded-[36px] border-2 border-amber-300 shadow-[0_20px_60px_-15px_rgba(245,158,11,0.25)] overflow-hidden bg-gradient-to-b from-white/95 via-amber-50/30 to-brand-50/40 backdrop-blur-2xl transition-all duration-300 h-[720px] sm:h-[780px]">
-              
-              {/* Canva Navigation Badge Overlay */}
-              <div className="absolute top-4 left-4 z-40 flex items-center gap-2 pointer-events-none">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900/90 text-amber-300 text-xs font-black shadow-lg backdrop-blur-md border border-amber-500/40">
-                  <span>{t.worldMap.dragHintLong}</span>
-                </span>
-              </div>
-
-              <motion.button
+            {/* Desktop map: vùng kéo thả, cố định khung nhìn. */}
+            <div className="relative z-10 hidden h-[720px] md:block sm:h-[780px]">
+              <button
                 type="button"
                 onClick={() => handleBuildingClick("shop")}
-                whileHover={{ y: -4, scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                className="absolute right-4 top-4 z-[45] w-[230px] rounded-[24px] border border-amber-300/90 bg-white/92 p-3 text-left shadow-[0_18px_42px_-24px_rgba(146,64,14,0.45)] backdrop-blur-xl transition-all"
+                className="absolute right-4 top-4 z-[45] w-[230px] rounded-md border border-stone-700 bg-stone-950 p-3 text-left transition-colors hover:border-stone-400"
                 title={t.worldMap.gearOpenTitle}
               >
                 <div className="flex items-center gap-3">
-                  <div className="relative flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 ring-1 ring-amber-300 shadow-inner">
-                    <ShoppingBag className="h-6 w-6 text-amber-700" />
-                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-500 text-[9px] font-black text-white ring-2 ring-white">
+                  <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-stone-700 bg-stone-900">
+                    <ShoppingBag className="h-5 w-5 text-stone-300" aria-hidden />
+                    <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-xs bg-brand-600 px-0.5 font-mono text-[9px] font-medium tabular-nums text-white">
                       {Object.keys(equippedGear).length}
                     </span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[9px] font-black uppercase tracking-[0.16em] text-amber-700">{t.worldMap.gearEyebrow}</p>
-                    <h3 className="truncate text-sm font-black text-stone-950">{t.worldMap.gearTitle}</h3>
-                    <p className="mt-0.5 truncate text-[10px] font-semibold text-stone-500">{t.worldMap.gearSub}</p>
+                    <p className="text-[10px] font-semibold text-stone-400">{t.worldMap.gearEyebrow}</p>
+                    <h3 className="truncate text-sm font-black text-white">{t.worldMap.gearTitle}</h3>
+                    <p className="mt-0.5 truncate text-[11px] text-stone-400">{t.worldMap.gearSub}</p>
                   </div>
                 </div>
-                <div className="mt-2 flex items-center justify-between rounded-2xl bg-amber-50/80 px-3 py-2 ring-1 ring-amber-200/80">
-                  <span className="text-[10px] font-extrabold text-amber-900">{t.worldMap.gearCta}</span>
-                  <span className="text-[10px] font-black text-amber-700">→</span>
+                <div className="mt-2.5 flex items-center justify-between border-t border-white/15 pt-2">
+                  <span className="text-[11px] font-bold text-white">{t.worldMap.gearCta}</span>
+                  <ArrowRight className="h-3.5 w-3.5 text-stone-400" aria-hidden />
                 </div>
-              </motion.button>
+              </button>
 
-              {/* Inner Draggable Canva Canvas Container */}
+              {/* Inner Draggable Canvas Container */}
               <motion.div
                 drag
                 dragConstraints={{ left: -550, right: 550, top: -1150, bottom: 550 }}
                 dragElastic={0.08}
                 whileTap={{ cursor: "grabbing" }}
-                className="w-full h-full cursor-grab active:cursor-grabbing relative p-6 sm:p-10 select-none"
+                className="relative h-full w-full cursor-grab select-none p-6 active:cursor-grabbing sm:p-10"
                 style={{ touchAction: "none" }}
               >
-                {/* Isometric Perspective Grid Layer */}
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#417acd_1.5px,transparent_1.5px)] [background-size:36px_36px] opacity-[0.12]" />
+                {/* Lưới toạ độ 1px - nền của bản đồ, không phải chấm sáng trang trí. */}
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:36px_36px]" />
 
-                {/* Dynamic Animated Laser Energy Flow Paths (SVG Laser Lines) */}
-                <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <defs>
-                    {/* Glowing Laser Color Gradients */}
-                    <linearGradient id="laser-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.9" />
-                      <stop offset="50%" stopColor="#d97706" stopOpacity="1" />
-                      <stop offset="100%" stopColor="#b45309" stopOpacity="0.9" />
-                    </linearGradient>
-                    <linearGradient id="laser-purple" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#a855f7" stopOpacity="0.9" />
-                      <stop offset="100%" stopColor="#7e22ce" stopOpacity="0.9" />
-                    </linearGradient>
-                    <linearGradient id="laser-sky" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.9" />
-                      <stop offset="100%" stopColor="#0284c7" stopOpacity="0.9" />
-                    </linearGradient>
-                  </defs>
-
-                  {/* Animated Base Dash Paths */}
-                  <path d="M50 18 C44 26 30 26 18 34" fill="none" stroke="url(#laser-sky)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" className="animate-[pulse_2s_infinite]" opacity="0.9" />
-                  <path d="M18 34 C28 45 38 47 50 50" fill="none" stroke="url(#laser-sky)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.85" />
-                  <path d="M50 18 C58 29 73 34 82 68" fill="none" stroke="url(#laser-purple)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.9" />
-                  <path d="M50 50 C36 59 26 62 18 68" fill="none" stroke="url(#laser-purple)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.9" />
-                  <path d="M50 50 C62 57 74 60 82 68" fill="none" stroke="url(#laser-gold)" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="5 5" className="animate-[pulse_1.5s_infinite]" opacity="0.95" />
-                  <path d="M18 68 C28 78 38 84 18 88" fill="none" stroke="url(#laser-sky)" strokeWidth="2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.8" />
-                  <path d="M82 68 C76 78 72 84 82 88" fill="none" stroke="url(#laser-gold)" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="4 4" opacity="0.85" />
+                {/* Đường nối giữa các khu: nét đứt một màu, không phát sáng. */}
+                <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full text-stone-600" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <g fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="3 4" vectorEffect="non-scaling-stroke">
+                    <path d="M50 18 C44 26 30 26 18 34" vectorEffect="non-scaling-stroke" />
+                    <path d="M18 34 C28 45 38 47 50 50" vectorEffect="non-scaling-stroke" />
+                    <path d="M50 18 C58 29 73 34 82 68" vectorEffect="non-scaling-stroke" />
+                    <path d="M50 50 C36 59 26 62 18 68" vectorEffect="non-scaling-stroke" />
+                    <path d="M50 50 C62 57 74 60 82 68" vectorEffect="non-scaling-stroke" />
+                    <path d="M18 68 C28 78 38 84 18 88" vectorEffect="non-scaling-stroke" />
+                    <path d="M82 68 C76 78 72 84 82 88" vectorEffect="non-scaling-stroke" />
+                  </g>
                 </svg>
 
-                {/* Smooth Interactive Hero Pathfinding Marker (Slightly Smaller) */}
+                {/* Nhân vật di chuyển giữa các khu (ảnh đại diện - được phép tròn). */}
                 <motion.div
                   className="pointer-events-none absolute z-50 -ml-5 -mt-5"
                   animate={{
@@ -527,21 +481,16 @@ export default function TechRpgWorldMap() {
                   transition={{ type: "spring", stiffness: 85, damping: 15 }}
                 >
                   <div className="relative">
-                    {/* Hero Pulsing Halo Glow */}
-                    <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 opacity-75 blur-xs animate-pulse" />
-                    
-                    <div className="relative rounded-full bg-white p-0.5 shadow-md ring-2 ring-amber-400">
+                    <div className={`relative rounded-full border bg-white p-0.5 ${isMoving ? "border-brand-400" : "border-stone-400"}`}>
                       <TechCharacterAvatar size="sm" level={level} equipments={equippedGear} />
                     </div>
-
-                    {/* Hero Level Badge Pill */}
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-yellow-500 text-white text-[8px] font-black uppercase px-1.5 py-0.5 rounded-full shadow ring-1 ring-white whitespace-nowrap">
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xs border border-stone-700 bg-stone-950 px-1 py-px font-mono text-[8px] font-medium tabular-nums text-white">
                       {format(t.worldMap.levelShort, { level })}
                     </div>
                   </div>
                 </motion.div>
 
-                {/* 3D Isometric Building Grid (Enlarged Images & Cards) */}
+                {/* Lưới khu vực */}
                 <div className="relative grid grid-cols-2 gap-x-6 gap-y-7 lg:grid-cols-3">
                   {MAP_BUILDINGS.map((b) => {
                     const isDiscovered = discoveredBuildings.includes(b.id);
@@ -550,85 +499,60 @@ export default function TechRpgWorldMap() {
                     const isCenter = b.id === "arcade";
 
                     return (
-                      <motion.div
+                      <div
                         key={b.id}
-                        whileHover={{ scale: 1.04, y: -6, rotate: 0.5 }}
-                        whileTap={{ scale: 0.95 }}
                         onClick={() => handleBuildingClick(b.id)}
                         onMouseEnter={() => setAvatarPos(BUILDING_AVATAR_POSITIONS[b.id] ?? { x: 50, y: 50 })}
-                        className={`relative ${b.desktopClass} ${isCenter ? "md:col-span-2 lg:col-span-1" : ""} min-h-[130px] bg-white/95 border-2 ${b.borderColor} rounded-[28px] p-5 shadow-lg hover:shadow-2xl cursor-pointer flex items-center gap-4 group w-full z-20 backdrop-blur-xl transition-all overflow-hidden`}
+                        className={`relative ${b.desktopClass} ${isCenter ? "md:col-span-2 lg:col-span-1" : ""} group z-20 flex min-h-[130px] w-full cursor-pointer items-center gap-4 overflow-hidden rounded-md border border-stone-700 bg-stone-900 p-5 transition-colors hover:border-stone-400`}
                       >
-                        {/* Special Effects & Flames */}
-                        {b.id === "arcade" && (
-                          <div className="absolute -top-1 -right-1 z-40 text-orange-500 animate-bounce pointer-events-none drop-shadow-md">
-                            <Flame className="w-5 h-5" strokeWidth={2} aria-hidden />
-                          </div>
-                        )}
-
-
                         {b.id === "weekly-challenge" && (
-                          <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1 rounded-full bg-purple-100 px-2.5 py-0.5 text-[9px] font-black text-purple-700 border border-purple-300 shadow-xs animate-pulse">
-                            <span>{t.worldMap.hotCase}</span>
-                          </div>
+                          <span className="absolute right-2.5 top-2 z-30 rounded-xs border border-stone-600 px-1.5 py-px text-[9px] font-bold text-stone-300">
+                            {t.worldMap.hotCase}
+                          </span>
                         )}
 
-                        {/* Fog Unveil Overlay */}
                         {!isDiscovered && (
-                          <div className="absolute inset-0 bg-white/95 backdrop-blur-md z-30 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-amber-400 group-hover:bg-white/90 transition-all">
-                            <Cloud className="w-6 h-6 mb-1 text-amber-600 animate-bounce" strokeWidth={1.75} aria-hidden />
-                            <span className="text-[10px] font-black text-amber-900 uppercase tracking-wider">
-                              {t.worldMap.fogTitle}
-                            </span>
-                            <span className="text-[9px] font-extrabold text-amber-700 mt-0.5">
-                              {t.worldMap.fogHintLong}
-                            </span>
+                          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center border border-dashed border-stone-600 bg-stone-950 p-2 text-center transition-colors group-hover:border-stone-400">
+                            <Cloud className="mb-1 h-6 w-6 text-stone-500" strokeWidth={1.75} aria-hidden />
+                            <span className="text-[11px] font-bold uppercase text-stone-200">{t.worldMap.fogTitle}</span>
+                            <span className="mt-0.5 text-[10px] font-semibold text-amber-300">{t.worldMap.fogHintLong}</span>
                           </div>
                         )}
 
-                        {/* Under Construction Overlay */}
                         {b.isUnderConstruction && isDiscovered && (
-                          <div className="absolute inset-0 bg-stone-900/85 backdrop-blur-xs z-25 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-amber-500/80 text-white">
-                            <Construction className="w-6 h-6 mb-1 text-amber-300 animate-pulse" strokeWidth={1.75} aria-hidden />
-                            <span className="text-xs font-black uppercase text-amber-300 tracking-wider">
-                              {t.worldMap.underConstruction}
-                            </span>
-                            <span className="text-[9px] font-extrabold text-stone-300 mt-0.5">
-                              {format(t.worldMap.lockedLevel, { level: reqLevel })}
-                            </span>
+                          <div className="absolute inset-0 z-25 flex flex-col items-center justify-center border border-dashed border-stone-600 bg-stone-950 p-2 text-center">
+                            <Construction className="mb-1 h-6 w-6 text-stone-500" strokeWidth={1.75} aria-hidden />
+                            <span className="text-xs font-bold uppercase text-stone-200">{t.worldMap.underConstruction}</span>
+                            <span className="mt-0.5 text-[10px] font-semibold text-stone-400">{format(t.worldMap.lockedLevel, { level: reqLevel })}</span>
                           </div>
                         )}
 
-                        {/* Locked Overlay */}
                         {isLocked && !b.isUnderConstruction && isDiscovered && (
-                          <div className="absolute inset-0 bg-stone-100/95 backdrop-blur-xs z-25 flex flex-col items-center justify-center p-2 text-center border-2 border-dashed border-stone-300">
-                            <div className="flex items-center gap-1.5 text-amber-700">
-                              <Lock className="w-4 h-4 text-amber-600 animate-pulse" />
-                              <span className="text-xs font-black uppercase">{format(t.worldMap.lockedShort, { level: reqLevel })}</span>
+                          <div className="absolute inset-0 z-25 flex flex-col items-center justify-center border border-dashed border-stone-600 bg-stone-950 p-2 text-center">
+                            <div className="flex items-center gap-1.5 text-stone-200">
+                              <Lock className="h-4 w-4 text-stone-500" aria-hidden />
+                              <span className="font-mono text-xs font-medium tabular-nums">{format(t.worldMap.lockedShort, { level: reqLevel })}</span>
                             </div>
-                            <span className="text-[9px] font-bold text-stone-500 mt-0.5">{t.worldMap.lockedNeedLessonsShort}</span>
+                            <span className="mt-0.5 text-[10px] font-semibold text-stone-400">{t.worldMap.lockedNeedLessonsShort}</span>
                           </div>
                         )}
 
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-50 border-2 border-amber-300 flex items-center justify-center text-amber-700 shadow-md shrink-0 group-hover:rotate-6 transition-transform overflow-hidden relative">
+                        <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-sm border border-stone-700 bg-stone-950 text-stone-300 sm:h-20 sm:w-20">
                           {b.imageSrc ? (
                             <Image src={b.imageSrc} alt={b.name} fill className="object-cover" />
                           ) : (
-                            <Glyph emoji={b.emoji} className="w-9 h-9" strokeWidth={1.5} />
+                            <Glyph emoji={b.emoji} className="h-9 w-9" strokeWidth={1.5} />
                           )}
                         </div>
 
                         <div className="min-w-0 flex-1">
-                          <span className={`max-w-full truncate text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${b.badgeBg} inline-block mb-1 shadow-sm`}>
+                          <span className="mb-1 block max-w-full truncate text-[10px] font-bold uppercase tracking-[0.06em] text-stone-400">
                             {b.badge}
                           </span>
-                          <h3 className={`text-sm sm:text-base font-black text-stone-900 truncate`}>
-                            {b.name}
-                          </h3>
-                          <p className="text-[10px] sm:text-xs text-stone-600 truncate mt-0.5">
-                            {b.subtitle}
-                          </p>
+                          <h3 className="truncate text-sm font-black text-white sm:text-base">{b.name}</h3>
+                          <p className="mt-0.5 truncate text-[11px] text-stone-400 sm:text-xs">{b.subtitle}</p>
                         </div>
-                      </motion.div>
+                      </div>
                     );
                   })}
                 </div>
@@ -636,18 +560,15 @@ export default function TechRpgWorldMap() {
             </div>
           </div>
         ) : (
-          /* Active Building Interactive Modal View (Light Mode) */
-          <div className="min-h-[calc(100vh-8.5rem)] sm:min-h-[calc(100vh-9rem)] flex flex-col">
-            <div className="mb-5 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <button
-                onClick={handleCloseBuilding}
-                className="inline-flex items-center gap-2 text-xs font-extrabold text-stone-800 bg-white border border-stone-300 hover:bg-stone-50 px-4 py-2 rounded-2xl transition-all cursor-pointer shadow-md"
-              >
-                <ChevronLeft className="w-4 h-4 text-amber-600" /> {t.worldMap.backToMap}
+          /* Khu đang mở */
+          <div className="flex min-h-[calc(100vh-8.5rem)] flex-col sm:min-h-[calc(100vh-9rem)]">
+            <div className="mb-5 flex flex-col items-start gap-3 border-b border-stone-300 pb-3 sm:flex-row sm:items-center sm:justify-between dark:border-stone-700">
+              <button onClick={handleCloseBuilding} className={`${btnSecondary} px-3 py-1.5 text-xs`}>
+                <ChevronLeft className="h-4 w-4" aria-hidden /> {t.worldMap.backToMap}
               </button>
-              
-              <span className="text-[11px] sm:text-xs font-black text-amber-800 uppercase tracking-widest leading-tight">
-                {format(t.worldMap.opening, { name: buildings.find((b) => b.id === selectedBuilding)?.name ?? "" })}
+
+              <span className="text-xs font-semibold leading-tight text-ink-muted">
+                {format(t.worldMap.opening, { name: selected?.name ?? "" })}
               </span>
             </div>
 
@@ -662,7 +583,7 @@ export default function TechRpgWorldMap() {
                 onClose={handleCloseBuilding}
               />
             ) : (
-              <div className="flex-1 min-h-0 w-full overflow-hidden text-stone-900">
+              <div className="min-h-0 w-full flex-1 overflow-hidden text-ink">
                 {selectedBuilding === "world-boss" && (
                   <WorldBossRaidWidget userId={user?.id || ""} userLevel={level} equipments={equippedGear} />
                 )}
@@ -670,10 +591,7 @@ export default function TechRpgWorldMap() {
                   <GoldmanSachsWidget userId={user?.id || ""} />
                 )}
                 {selectedBuilding === "fed-vault" && (
-                  <FedVaultWidget userId={user?.id || ""} />
-                )}
-                {selectedBuilding === "guilds" && (
-                  <TechGuildWidget userId={user?.id || ""} />
+                  <BackboneRoutingWidget userId={user?.id || ""} />
                 )}
                 {selectedBuilding === "shop" && (
                   <CosmeticStore userId={user?.id || ""} onBack={handleCloseBuilding} />

@@ -1,4 +1,5 @@
 import "server-only";
+import { getTokenSecret } from "@/lib/token-secret";
 import { createHmac, timingSafeEqual } from "crypto";
 
 // Answer tokens for the promotion exam (bài thi thăng cấp).
@@ -38,11 +39,7 @@ export interface ExamTokenBody {
 }
 
 function getSecret(): string {
-  const secret = process.env.CLOUDFLARE_SERVICE_ROLE_KEY;
-  if (!secret) {
-    throw new Error("Missing CLOUDFLARE_SERVICE_ROLE_KEY - required to sign level exam answer tokens");
-  }
-  return secret;
+  return getTokenSecret("level exam answer tokens");
 }
 
 function macFor(body: string, index: number): string {

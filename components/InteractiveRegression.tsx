@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { falsePositiveChance, fitLine, generateSample } from "@/lib/regression-demo";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { btnSecondary } from "@/components/ui/system";
 
 // Hồi quy trên dữ liệu biết trước sự thật, widget cho các bài khai
 // `interactiveType: "regression"`.
@@ -48,8 +49,8 @@ export default function InteractiveRegression() {
   const significant = fit.pValue < 0.05;
 
   return (
-    <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-ink">
+    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+      <h3 className="text-base font-black tracking-tight text-ink-max">
         {t.regressionCalc.title}
       </h3>
 
@@ -74,7 +75,7 @@ export default function InteractiveRegression() {
       <div className="mt-4 overflow-x-auto">
         <svg
           viewBox={`0 0 ${W} ${H}`}
-          className="h-auto w-full min-w-[280px] rounded-2xl bg-stone-50 dark:bg-stone-800/60"
+          className="h-auto w-full min-w-[280px] rounded-sm border border-stone-200 bg-[#fbfaf7] dark:border-stone-800 dark:bg-stone-950"
           role="img"
           aria-label={format(t.regressionCalc.chartAriaLabel, {
             n,
@@ -94,7 +95,7 @@ export default function InteractiveRegression() {
           <line
             x1={sx(xMin)} y1={sy(fit.slope * xMin + fit.intercept)}
             x2={sx(xMax)} y2={sy(fit.slope * xMax + fit.intercept)}
-            className="stroke-rose-500" strokeWidth={2.5}
+            className="stroke-brand-600 dark:stroke-brand-400" strokeWidth={2.5}
           />
         </svg>
       </div>
@@ -106,7 +107,7 @@ export default function InteractiveRegression() {
         <button
           type="button"
           onClick={() => setSeed((s) => s + 1)}
-          className="cursor-pointer rounded-full bg-stone-900 px-4 py-2 text-[11px] font-bold text-white hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900"
+          className={`cursor-pointer ${btnSecondary}`}
         >
           {t.regressionCalc.resampleButton}
         </button>
@@ -122,20 +123,20 @@ export default function InteractiveRegression() {
         <Card label={t.regressionCalc.pValueLabel} value={fit.pValue < 0.001 ? t.regressionCalc.pValueBelowThreshold : fit.pValue.toFixed(3)} tone={significant ? "good" : "bad"} />
       </div>
 
-      <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
+      <p className="mt-4 border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
         {n < 30
           ? format(t.regressionCalc.smallSampleNote, { n })
           : format(t.regressionCalc.r2ExplainerNote, { r2: fit.r2.toFixed(2) })}
       </p>
 
       {/* Cái bẫy thứ hai, tách riêng vì nó không phải chuyện ước lượng lệch. */}
-      <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-900/60 dark:bg-amber-950/30">
+      <div className="mt-4 border-l-2 border-amber-500 pl-4">
         <Row label={t.regressionCalc.testsTriedLabel} value={`${tests}`}>
           <input type="range" min={1} max={50} step={1} value={tests}
             onChange={(e) => setTests(Number(e.target.value))} aria-label={t.regressionCalc.testsTriedAriaLabel}
-            className="w-full cursor-pointer accent-amber-600" />
+            className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <p className="mt-3 text-xs leading-relaxed text-amber-900 dark:text-amber-300">
+        <p className="mt-3 text-xs leading-relaxed text-ink-body">
           {format(t.regressionCalc.pHackingText, { tests, chance: (falsePositiveChance(tests) * 100).toFixed(0) })}
         </p>
       </div>
@@ -158,14 +159,14 @@ function Row({ label, value, children }: { label: string; value: string; childre
 function Card({ label, value, tone }: { label: string; value: string; tone: "good" | "bad" | "neutral" }) {
   const color =
     tone === "good"
-      ? "text-accent"
+      ? "text-accent-strong"
       : tone === "bad"
         ? "text-warn"
         : "text-ink-heading";
   return (
-    <div className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
+    <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
       <p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">{label}</p>
-      <p className={`mt-0.5 text-base font-extrabold tabular-nums ${color}`}>{value}</p>
+      <p className={`mt-0.5 text-base font-black tabular-nums ${color}`}>{value}</p>
     </div>
   );
 }

@@ -810,7 +810,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Báo cáo lương của năm ngoái nên dùng thế nào?",
         options: [
           "Dùng để thấy khoảng và thứ bậc, không dùng làm mức đề nghị",
-          "Cộng lạm phát để quy về giá hiện tại",
+          "Cộng thêm mức tăng lương trung bình để quy về năm nay",
           "Không dùng được vì thị trường lao động ngành IT thay đổi quá nhanh trong vòng một năm",
           "Dùng nguyên vẹn vì các báo cáo lương thường có độ trễ và số liệu đã phản ánh xu hướng",
         ],
@@ -952,7 +952,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         ],
         correct: 0,
         explanation:
-          "Một người làm outsourcing ba năm có thể đã chạm vào y tế, bán lẻ và tài chính, mỗi thứ vài tháng. Đó là vốn thật khi phỏng vấn và khi chuyển ngành. Cái giá là ít khi ở lại đủ lâu để thấy một quyết định kiến trúc già đi, mà đó lại là chỗ hiểu biết sâu hình thành.",
+          "Một người làm outsourcing ba năm có thể đã chạm vào y tế, bán lẻ và logistics, mỗi thứ vài tháng. Đó là vốn thật khi phỏng vấn và khi chuyển ngành. Cái giá là ít khi ở lại đủ lâu để thấy một quyết định kiến trúc già đi, mà đó lại là chỗ hiểu biết sâu hình thành.",
       },
       {
         question: "Nợ kỹ thuật được nhìn nhận khác nhau thế nào giữa hai loại hình?",

@@ -609,7 +609,7 @@ export const FRAUD_SAFETY_LESSONS: Lesson[] = [
         question: "Yêu cầu nạp tiền để làm nhiệm vụ nên được hiểu thế nào?",
         options: [
           "Là ranh giới - công việc thật không bao giờ đòi người lao động ứng tiền",
-          "Là thủ tục bình thường để chứng minh năng lực tài chính của cộng tác viên",
+          "Là thủ tục bình thường để chứng minh khả năng chi trả của cộng tác viên",
           "Là khoản đặt cọc sẽ được hoàn lại sau khi hoàn thành đủ số nhiệm vụ",
           "Là cách hệ thống lọc ra những người tham gia thật sự nghiêm túc",
         ],
@@ -746,7 +746,7 @@ export const FRAUD_SAFETY_LESSONS: Lesson[] = [
     openingOptions: [
       "Kết quả giao dịch thật được cập nhật theo diễn biến của thị trường",
       "Một con số do chính họ nhập vào hệ thống, không tương ứng với tài sản nào",
-      "Giá trị ước tính dựa trên hiệu suất trung bình của những nhà đầu tư khác trên hệ thống",
+      "Giá trị ước tính dựa trên kết quả trung bình của những người dùng khác trên hệ thống",
       "Phần lợi nhuận đã được ghi nhận nhưng chưa hoàn tất thủ tục thanh toán",
     ],
     correctOption: 1,
@@ -798,7 +798,7 @@ export const FRAUD_SAFETY_LESSONS: Lesson[] = [
         ],
         correct: 0,
         explanation:
-          "Chặng 14 đã nói: thuế bán chứng khoán được khấu trừ ngay tại giao dịch, người đầu tư không phải nộp trước. Yêu cầu nộp tiền để được nhận tiền là cấu trúc không tồn tại ở bất kỳ tổ chức hợp pháp nào.",
+          "Nơi hợp pháp khấu trừ mọi khoản thuế, phí ngay trên khoản tiền rút ra, người dùng không phải nộp trước. Yêu cầu nộp tiền để được nhận tiền là cấu trúc không tồn tại ở bất kỳ tổ chức hợp pháp nào.",
       },
       {
         question: "Cách kiểm tra một nền tảng đầu tư trước khi nạp tiền là gì?",
@@ -817,7 +817,7 @@ export const FRAUD_SAFETY_LESSONS: Lesson[] = [
         options: [
           "Vì không ai bỏ nhiều giờ hướng dẫn miễn phí trừ khi họ thu lợi từ việc bạn nạp tiền",
           "Vì người hướng dẫn thật luôn thu phí",
-          "Vì họ thường không có chứng chỉ hành nghề tư vấn tài chính",
+          "Vì họ thường không dùng tài khoản đã xác minh chính chủ",
           "Vì hướng dẫn qua tin nhắn không đủ chi tiết để đầu tư an toàn",
         ],
         correct: 0,
@@ -896,7 +896,7 @@ export const FRAUD_SAFETY_LESSONS: Lesson[] = [
       {
         type: "callout",
         label: "Nộp tiền để được nhận tiền là cấu trúc không tồn tại",
-        text: "Phí thuế phải nộp trước khi rút, phí nâng cấp tài khoản để mở hạn mức, phí xác minh quốc tế - lý do đổi liên tục nhưng cấu trúc thì một. Không tổ chức tài chính hợp pháp nào bắt bạn chuyển tiền vào để được nhận tiền ra; mọi khoản phí đều được khấu trừ từ chính số tiền đó.",
+        text: "Phí thuế phải nộp trước khi rút, phí nâng cấp tài khoản để mở hạn mức, phí xác minh quốc tế - lý do đổi liên tục nhưng cấu trúc thì một. Không nền tảng hợp pháp nào bắt bạn chuyển tiền vào để được nhận tiền ra; mọi khoản phí đều được khấu trừ từ chính số tiền đó.",
       },
       {
         type: "closing",

@@ -13,6 +13,7 @@ import DailyQuestsWidget from "@/components/DailyQuestsWidget";
 import { useIsClient } from "@/lib/use-is-client";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { btnPrimary, panel, tabClass } from "@/components/ui/system";
 
 interface CombinedRewardsWidgetProps {
   userId: string;
@@ -259,61 +260,45 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
   };
 
   return (
-    <div className={`bg-white dark:bg-stone-900 rounded-2xl shadow-sm overflow-hidden ${compact ? "border border-stone-200 flex flex-col" : ""}`}>
+    <div className={`${panel} overflow-hidden ${compact ? "flex flex-col" : ""}`}>
       {/* Header - Always visible, permanently expanded */}
       <div className={`w-full flex items-center ${compact ? "px-4 py-3" : "px-3.5 py-2"}`}>
         <div className="flex items-center gap-2 min-w-0">
-          <Gift className="w-4.5 h-4.5 text-stone-500" />
-          <span className={`${compact ? "text-sm" : "text-[15px]"} font-bold text-ink`}>{t.rewards.title}</span>
+          <Gift className="w-4.5 h-4.5 text-ink-muted" />
+          <span className={`${compact ? "text-sm" : "text-[15px]"} font-black tracking-tight text-ink-max`}>{t.rewards.title}</span>
           {chestCount > 0 && (
-            <span className="text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-bold text-ink-soft border border-line-strong px-1.5 py-0.5 rounded-sm">
               {format(t.rewards.chestBadge, { count: chestCount })}
             </span>
           )}
         </div>
       </div>
 
-      <div className={`border-t border-line-soft ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
+      <div className={`border-t border-line-strong ${compact ? "flex-1 flex flex-col min-h-0" : ""}`}>
           {/* Tabs */}
-          <div className={`flex gap-1 bg-stone-50/50 dark:bg-stone-950/35 overflow-x-auto scrollbar-none ${compact ? "p-2" : "p-1.5"}`}>
+          <div className={`flex gap-5 border-b border-line-strong overflow-x-auto scrollbar-none ${compact ? "px-4 pt-2.5" : "px-3.5 pt-2"}`}>
             <button
               onClick={() => setActiveTab("daily")}
-              className={`flex-1 text-[10px] sm:text-[10.5px] px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1 ${
-                activeTab === "daily"
-                  ? "bg-white dark:bg-stone-900 text-ink shadow-sm font-black"
-                  : dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed)
-                  ? "bg-amber-50/70 dark:bg-amber-950/30 text-warn-strong border border-amber-200/60 dark:border-amber-900/50 font-black"
-                  : "text-ink-muted hover:text-ink-body font-bold"
-              }`}
+              className={`${tabClass(activeTab === "daily")} relative shrink-0 flex items-center gap-1.5 text-[11px] sm:text-xs`}
             >
               <span>{t.rewards.tabDaily}</span>
               {dailyQuests.length > 0 && dailyQuests.some((q) => !q.claimed) && (
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 absolute top-1 right-1.5" />
+                <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-[1px] bg-amber-500" />
               )}
             </button>
             <button
               onClick={() => setActiveTab("chests")}
-              className={`flex-1 text-[10px] sm:text-[10.5px] font-black px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1.5 ${
-                activeTab === "chests"
-                  ? "bg-white dark:bg-stone-900 text-ink shadow-sm border border-line"
-                  : chestCount > 0
-                  ? "bg-rose-50/70 dark:bg-rose-950/30 text-alert border border-rose-200 dark:border-rose-900/50 font-black"
-                  : "text-ink-muted hover:text-rose-500 dark:hover:text-rose-400 hover:bg-rose-500/5"
-              }`}
+              className={`${tabClass(activeTab === "chests")} relative shrink-0 flex items-center gap-1.5 text-[11px] sm:text-xs`}
             >
+              <Gift className="w-3.5 h-3.5" />
               <span>{t.rewards.tabChests}</span>
               {chestCount > 0 && (
-                <span className="w-1.5 h-1.5 rounded-full bg-rose-400 absolute top-1 right-1.5" />
+                <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-[1px] bg-brand-600 dark:bg-brand-500" />
               )}
-              <Gift className={`w-3.5 h-3.5 ${chestCount > 0 ? "text-rose-500" : ""}`} />
             </button>
             <button
               onClick={() => setActiveTab("weekly")}
-              className={`flex-1 text-[10px] sm:text-[10.5px] font-black px-1.5 sm:px-2 py-1.5 rounded-lg transition-all relative overflow-hidden shrink-0 flex items-center justify-center gap-1.5 ${
-                activeTab === "weekly"
-                  ? "bg-white dark:bg-stone-900 text-ink shadow-sm border border-line"
-                  : "text-ink-muted hover:text-ink-body font-bold"
-              }`}
+              className={`${tabClass(activeTab === "weekly")} relative shrink-0 flex items-center gap-1.5 text-[11px] sm:text-xs`}
             >
               <span>{t.rewards.tabWeekly}</span>
             </button>
@@ -352,11 +337,11 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 `}</style>
 
                 {chestCount > 0 ? (
-                  <div className="text-center py-4 bg-surface rounded-2xl border border-stone-100 dark:border-stone-800/80 space-y-3">
+                  <div className="text-center py-4 bg-[#fbfaf7] dark:bg-stone-950 rounded-sm border border-line-strong space-y-3">
                     <button
                       onClick={handleOpenChest}
                       disabled={opening}
-                      className={`mx-auto w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer focus:outline-none ${
+                      className={`mx-auto w-14 h-14 rounded-md border border-stone-300 bg-[#f3f1ec] text-ink-body flex items-center justify-center transition-colors hover:border-stone-950 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300 ${
                         shaking ? "chest-shake" : ""
                       }`}
                     >
@@ -374,10 +359,10 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 )}
 
                 {/* Rương tri thức tuần - Weekly Chest Tracker inside Chests Tab */}
-                <div className="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/80 flex items-center justify-between gap-3">
+                <div className="mt-4 pt-4 border-t border-line flex items-center justify-between gap-3">
                   <div className="min-w-0">
-                    <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent animate-pulse mb-1">
-                      <Gift className="w-3.5 h-3.5 text-rose-500" /> {t.rewards.weeklyChestTitle}
+                    <span className="eyebrow flex items-center gap-1.5 text-ink-soft mb-1">
+                      <Gift className="w-3.5 h-3.5" /> {t.rewards.weeklyChestTitle}
                     </span>
                     <p className="text-[11.5px] font-bold text-ink-soft">
                       {format(t.rewards.weeklyChestCompleted, { count: dailyQuests.filter((q) => q.current >= q.target).length })}
@@ -386,12 +371,12 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                   <button
                     onClick={() => void handleWeeklyClaim()}
                     disabled={weeklyClaimed || dailyQuests.filter((q) => q.current >= q.target).length < WEEKLY_CHEST_QUESTS_REQUIRED}
-                    className={`px-4 py-2 text-[10px] font-black rounded-xl transition-all duration-200 border shrink-0 flex items-center justify-center gap-1.5 ${
+                    className={`px-4 py-2 text-[10px] font-black rounded-sm transition-colors duration-200 border shrink-0 flex items-center justify-center gap-1.5 ${
                       weeklyClaimed
-                        ? "bg-surface-raised text-stone-400 border-line"
+                        ? "bg-[#f3f1ec] text-ink-faint border-stone-300 dark:bg-stone-950 dark:border-stone-700"
                         : dailyQuests.filter((q) => q.current >= q.target).length >= 3
-                        ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white border-rose-500 shadow-[0_4px_10px_-3px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 cursor-pointer animate-pulse"
-                        : "bg-surface text-stone-400 border-line cursor-not-allowed"
+                        ? "bg-stone-950 text-white border-stone-950 hover:bg-brand-700 hover:border-brand-700 cursor-pointer dark:bg-stone-100 dark:text-stone-950 dark:border-stone-100 dark:hover:bg-brand-300"
+                        : "text-ink-faint border-line-strong cursor-not-allowed"
                     }`}
                   >
                     {weeklyClaimed ? t.rewards.weeklyChestOpened : t.rewards.weeklyChestLocked}
@@ -405,51 +390,51 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 <div className="space-y-3">
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
-                      <span className="flex items-center gap-1"><Flame className="w-3 h-3 text-orange-500" /> {t.rewards.streakQuest}</span>
+                      <span className="flex items-center gap-1"><Flame className="w-3 h-3 text-warn" /> {t.rewards.streakQuest}</span>
                       <span>{streakProgress}/5</span>
                     </div>
-                    <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
-                      <div className={`h-full rounded-full transition-all duration-500 ${quest1Done ? "bg-orange-500" : "bg-orange-400"}`} style={{ width: `${(streakProgress / 5) * 100}%` }} />
+                    <div className="w-full h-1.5 bg-surface-sunken rounded-xs overflow-hidden">
+                      <div className={`h-full rounded-xs transition-all duration-500 ${quest1Done ? "bg-brand-600" : "bg-brand-500"}`} style={{ width: `${(streakProgress / 5) * 100}%` }} />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
-                      <span className="flex items-center gap-1"><BookOpen className="w-3 h-3 text-sky-500" /> {t.rewards.lessonsQuest}</span>
+                      <span className="flex items-center gap-1"><BookOpen className="w-3 h-3 text-ink-muted" /> {t.rewards.lessonsQuest}</span>
                       <span>{lessonsProgress}/10</span>
                     </div>
-                    <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
-                      <div className={`h-full rounded-full transition-all duration-500 ${quest2Done ? "bg-sky-500" : "bg-sky-400"}`} style={{ width: `${(lessonsProgress / 10) * 100}%` }} />
+                    <div className="w-full h-1.5 bg-surface-sunken rounded-xs overflow-hidden">
+                      <div className={`h-full rounded-xs transition-all duration-500 ${quest2Done ? "bg-brand-600" : "bg-brand-500"}`} style={{ width: `${(lessonsProgress / 10) * 100}%` }} />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
-                      <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-brand-500" /> {t.rewards.perfectQuizQuest}</span>
+                      <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-ink-muted" /> {t.rewards.perfectQuizQuest}</span>
                       <span>{quizProgress}/3</span>
                     </div>
-                    <div className="w-full h-1.5 bg-surface-raised rounded-full overflow-hidden">
-                      <div className={`h-full rounded-full transition-all duration-500 ${quest3Done ? "bg-brand-500" : "bg-brand-400"}`} style={{ width: `${(quizProgress / 3) * 100}%` }} />
+                    <div className="w-full h-1.5 bg-surface-sunken rounded-xs overflow-hidden">
+                      <div className={`h-full rounded-xs transition-all duration-500 ${quest3Done ? "bg-brand-600" : "bg-brand-500"}`} style={{ width: `${(quizProgress / 3) * 100}%` }} />
                     </div>
                   </div>
                 </div>
 
                 {allQuestsDone ? (
                   isEpicClaimed ? (
-                    <div className="mt-4 p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold flex items-center justify-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-brand-500" /> {t.rewards.epicClaimed}
+                    <div className="mt-4 p-3 bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong rounded-sm text-center text-[10px] text-ink-muted font-bold flex items-center justify-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4 text-accent" /> {t.rewards.epicClaimed}
                     </div>
                   ) : (
                     <button
                       onClick={handleClaimEpic}
                       disabled={claiming}
-                      className="mt-4 w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-[11px] font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-amber-500/20 active:scale-95 animate-pulse"
+                      className={`${btnPrimary} mt-4 w-full cursor-pointer`}
                     >
                       <Gift className="w-4 h-4" /> {claiming ? t.rewards.claimingEpic : t.rewards.openEpicChest}
                     </button>
                   )
                 ) : (
-                  <div className="mt-4 p-3 bg-surface border border-line-soft rounded-2xl text-center text-[10px] text-ink-faint font-bold">
+                  <div className="mt-4 p-3 bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong rounded-sm text-center text-[10px] text-ink-muted font-bold">
                     {t.rewards.epicLocked}
                   </div>
                 )}
@@ -460,15 +445,15 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
 
       {/* Reward Reveal Overlay */}
       {opening && rewardReveal && mounted && createPortal(
-        <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md flex items-center justify-center z-[9999] overflow-y-auto p-4 animate-[fadeIn_0.2s_ease-out]">
-          <div className="bg-white dark:bg-stone-900 border border-line rounded-3xl w-full max-w-sm my-auto p-6 text-center shadow-2xl relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
-            <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg animate-bounce">
-              {rewardReveal.type === "xp" ? <Zap className="w-8 h-8 text-white" /> : <Sparkles className="w-8 h-8 text-white" />}
+        <div className="fixed inset-0 bg-stone-950/60 flex items-center justify-center z-[9999] overflow-y-auto p-4 animate-[fadeIn_0.2s_ease-out]">
+          <div className="bg-white dark:bg-stone-900 border border-line-strong rounded-md w-full max-w-sm my-auto p-6 text-center relative space-y-5 animate-[scaleIn_0.3s_ease-out]">
+            <div className="w-14 h-14 mx-auto rounded-md border border-stone-300 bg-[#f3f1ec] text-ink-body flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
+              {rewardReveal.type === "xp" ? <Zap className="w-7 h-7" /> : <Sparkles className="w-7 h-7" />}
             </div>
             <div className="space-y-1">
-              <span className="text-[9px] font-extrabold uppercase tracking-widest text-warn">{t.rewards.youReceived}</span>
-              <h3 className="text-lg font-black text-ink flex items-center justify-center gap-1.5">
-                {rewardReveal.type === "title" && <Trophy className="w-5 h-5 text-amber-500" />}
+              <span className="eyebrow text-ink-soft">{t.rewards.youReceived}</span>
+              <h3 className="text-lg font-black tracking-tight text-ink-max flex items-center justify-center gap-1.5">
+                {rewardReveal.type === "title" && <Trophy className="w-5 h-5 text-ink-muted" />}
                 {t.chestTitles[rewardReveal.value] ?? rewardReveal.value}
                 {rewardReveal.type === "xp" && ` ${t.miscUi.combinedRewardsWidget.xpUnit}`}
               </h3>
@@ -476,9 +461,9 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
             </div>
             <button
               onClick={handleClaimReward}
-              className="w-full py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-xs font-extrabold tracking-wider uppercase transition-colors cursor-pointer"
+              className={`${btnPrimary} w-full cursor-pointer`}
             >
-              {t.rewards.collectReward} <CheckCircle2 className="w-4 h-4 inline-block ml-1" />
+              {t.rewards.collectReward} <CheckCircle2 className="w-4 h-4" />
             </button>
           </div>
         </div>,

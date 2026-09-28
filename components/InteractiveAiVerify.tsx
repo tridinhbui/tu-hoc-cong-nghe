@@ -61,11 +61,11 @@ export default function InteractiveAiVerify() {
   const correct = CLAIMS.filter((c, i) => picked[i] === c.answer).length;
 
   return (
-    <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-sm font-extrabold text-ink">
+    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+      <h3 className="text-base font-black tracking-tight text-ink-max">
         {tr.title}
       </h3>
-      <p className="mt-2 whitespace-pre-line rounded-2xl bg-stone-50 p-3 text-[11px] leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
+      <p className="mt-2 whitespace-pre-line rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 text-[11px] leading-relaxed text-ink-body dark:border-stone-800 dark:bg-stone-950">
         {tr.brief}
       </p>
 
@@ -74,7 +74,7 @@ export default function InteractiveAiVerify() {
           const choice = picked[i];
           const done = choice !== undefined;
           return (
-            <li key={claim.text} className="rounded-2xl border border-stone-200 p-3 dark:border-stone-800">
+            <li key={claim.text} className="rounded-sm border border-stone-200 p-3 dark:border-stone-800">
               <p className="text-xs font-semibold leading-snug text-ink-heading">
                 {i + 1}. {claim.text}
               </p>
@@ -85,13 +85,13 @@ export default function InteractiveAiVerify() {
                     type="button"
                     disabled={done}
                     onClick={() => setPicked((prev) => ({ ...prev, [i]: v }))}
-                    className={`cursor-pointer rounded-xl border px-2.5 py-1.5 text-[11px] font-bold disabled:cursor-default ${
+                    className={`cursor-pointer rounded-sm border px-2.5 py-1.5 text-[11px] font-bold disabled:cursor-default ${
                       !done
                         ? "border-stone-200 text-stone-600 hover:border-stone-400 dark:border-stone-700 dark:text-stone-300"
                         : v === claim.answer
-                          ? "border-brand-400 bg-brand-50 text-brand-800 dark:border-brand-700 dark:bg-brand-950/40 dark:text-brand-200"
+                          ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
                           : choice === v
-                            ? "border-rose-400 bg-rose-50 text-rose-800 dark:border-rose-800 dark:bg-rose-950/40 dark:text-rose-200"
+                            ? "border-red-500 bg-red-50 text-red-800 dark:border-red-700 dark:bg-red-950/40 dark:text-red-200"
                             : "border-stone-200 text-stone-400 dark:border-stone-800 dark:text-stone-600"
                     }`}
                   >
@@ -108,7 +108,7 @@ export default function InteractiveAiVerify() {
       </ol>
 
       {answered === CLAIMS.length && (
-        <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-xs leading-relaxed text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
+        <p className="mt-4 border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
           {format(tr.resultSummary, { correct, total: CLAIMS.length })}
         </p>
       )}

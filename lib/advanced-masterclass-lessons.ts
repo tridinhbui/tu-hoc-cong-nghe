@@ -557,7 +557,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       "secondary": "Câu thứ ba là câu quyết định, vì một cái gật đầu ở đó biến khoản vay một tuần thành một cuộc di trú."
     },
     "id": 803,
-    "slug": "tai-chinh-khoi-nghiep-cap-table-vc-valuation",
+    "slug": "ky-thuat-giai-doan-dau-khoi-nghiep",
     "track": "bonus"
   },
   {
@@ -913,10 +913,10 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       {
         "question": "Con số nào quan trọng nhất khi ước lượng điện của một cụm máy?",
         "options": [
-          "Mức tiêu thụ khi máy nhàn rỗi",
-          "Công suất đỉnh mà nhà sản xuất ghi trên thông số kỹ thuật của từng máy chủ",
-          "Số lõi xử lý và dung lượng bộ nhớ mà mỗi máy trong cụm đang được cấp phát",
-          "Lượng yêu cầu mỗi giây mà cụm máy phục vụ được vào giờ cao điểm trong ngày"
+          "Mức điện máy tiêu thụ khi đang nhàn rỗi",
+          "Công suất đỉnh ghi trên thông số của máy chủ",
+          "Số lõi và bộ nhớ cấp cho mỗi máy",
+          "Số yêu cầu mỗi giây vào giờ cao điểm"
         ],
         "correct": 0,
         "explanation": "Máy nhàn rỗi ăn khoảng một nửa mức đỉnh, nên một cụm chạy ở mười phần trăm tiêu thụ hơn một nửa lượng điện của cụm chạy hết công suất. Bỏ qua con số này là bỏ qua phần lớn hoá đơn."
@@ -936,9 +936,9 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
         "question": "Cụm máy chạy ở 10%. Đội định viết lại phần mã tốn nhất. Vấn đề là gì?",
         "options": [
           "Tối ưu mã không đổi được hoá đơn khi máy vẫn bật và vẫn rảnh",
-          "Phần mã tốn nhất thường khó viết lại nên công sức bỏ ra sẽ lớn hơn dự kiến nhiều",
-          "Cần đo lại sau khi viết xong mới biết được phần tiết kiệm thực tế là bao nhiêu",
-          "Viết lại mã có thể làm phát sinh lỗi mới trong khi phần tiết kiệm lại không lớn"
+          "Phần mã tốn nhất thường khó viết lại, công sức sẽ lớn hơn dự kiến",
+          "Phải đo lại sau khi viết mới biết tiết kiệm được bao nhiêu",
+          "Viết lại mã dễ sinh lỗi mới mà phần tiết kiệm không lớn"
         ],
         "correct": 0,
         "explanation": "Ở mức sử dụng thấp, điện đi vào việc giữ máy bật chứ không vào việc tính toán. Gộp mười máy chạy mười phần trăm thành hai máy chạy năm mươi phần trăm tiết kiệm nhiều hơn mọi lần viết lại mã cộng lại."
@@ -947,7 +947,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
         "question": "Vì sao hệ số hạ tầng phụ trợ khuếch đại mọi thừa số khác?",
         "options": [
           "Vì nó nhân vào toàn bộ lượng điện chứ không cộng thêm một khoản cố định",
-          "Vì chi phí làm mát tăng nhanh hơn mức tuyến tính khi mật độ máy trong phòng tăng",
+          "Vì chi phí làm mát tăng nhanh hơn tuyến tính khi máy xếp dày hơn",
           "Vì nó được tính lại theo mùa nên giá trị thay đổi nhiều lần trong cùng một năm",
           "Vì phần lớn các đội không đo được nó nên phải dùng giá trị trung bình của ngành"
         ],
@@ -958,9 +958,9 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
         "question": "Xoá một công việc định kỳ không còn ai đọc kết quả. Đây là loại hành động gì?",
         "options": [
           "Giảm thật, vì nó còn nguyên giá trị khi mọi vùng đều sạch",
-          "Chuyển chỗ, vì phần tài nguyên được giải phóng sẽ được các công việc khác dùng hết",
-          "Giảm thật, nhưng chỉ trong trường hợp công việc ấy chạy trên hạ tầng dùng riêng",
-          "Chuyển chỗ, vì kết quả của công việc ấy sẽ phải được tính lại khi có người cần"
+          "Chuyển chỗ, vì tài nguyên giải phóng sẽ bị các việc khác dùng hết",
+          "Giảm thật, nhưng chỉ khi công việc ấy chạy trên hạ tầng dùng riêng",
+          "Chuyển chỗ, vì kết quả sẽ phải tính lại khi có người cần tới"
         ],
         "correct": 0,
         "explanation": "Đây là phép thử tốt nhất để phân biệt hai loại: hỏi xem hành động này còn giá trị không vào ngày toàn bộ lưới điện đã sạch. Xoá việc thừa thì còn; đổi vùng thì hết."
@@ -994,7 +994,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
       "secondary": "Ba bước đầu giảm thật và kiểm chứng được bằng hoá đơn; bước cuối chỉ đổi chỗ, nên nó đứng cuối."
     },
     "id": 805,
-    "slug": "tai-chinh-xanh-tieu-chuan-esg-tin-chi-carbon",
+    "slug": "phan-mem-tiet-kiem-nang-luong",
     "track": "bonus"
   },
 ];

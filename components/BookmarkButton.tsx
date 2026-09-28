@@ -55,7 +55,7 @@ export default function BookmarkButton({ lessonId, lessonSlug, lessonTitle }: Bo
 
   if (loading) {
     return (
-      <div className="w-10 h-10 rounded-full bg-surface-raised animate-pulse" />
+      <div className="w-10 h-10 rounded-sm bg-surface-raised animate-pulse" />
     );
   }
 
@@ -63,11 +63,12 @@ export default function BookmarkButton({ lessonId, lessonSlug, lessonTitle }: Bo
     <button
       onClick={handleToggle}
       disabled={toggling}
-      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+      aria-pressed={bookmarked}
+      className={`w-10 h-10 rounded-sm border flex items-center justify-center transition-colors ${
         bookmarked
-          ? "bg-amber-100 dark:bg-amber-900/30 text-warn"
-          : "bg-surface-raised text-ink-muted hover:bg-surface-sunken"
-      } ${toggling ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}`}
+          ? "border-brand-600 bg-accent-soft text-accent dark:border-brand-400"
+          : "border-line-strong text-ink-muted hover:border-stone-950 hover:text-ink dark:hover:border-stone-200"
+      } ${toggling ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
       title={bookmarked ? t.miscUi.bookmarkButton.remove : t.miscUi.bookmarkButton.add}
     >
       {bookmarked ? (

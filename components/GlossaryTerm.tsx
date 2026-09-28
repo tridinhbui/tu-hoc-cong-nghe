@@ -160,7 +160,7 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
         type="button"
         onClick={() => setOpen((current) => !current)}
         onFocus={() => setOpen(true)}
-        className="border-b border-dotted border-amber-500 dark:border-amber-400 font-medium cursor-help focus:outline-none hover:text-warn-strong transition-colors"
+        className="border-b border-dotted border-brand-600 dark:border-brand-400 font-medium cursor-help focus:outline-none hover:text-accent-strong transition-colors"
       >
         {term}
       </button>
@@ -178,24 +178,24 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
         }`}
       >
         <span
-          className={`rounded-2xl bg-surface-invert text-white text-xs font-semibold p-3 transition-all duration-200 shadow-2xl flex flex-col items-center gap-2 border border-stone-700/80 min-w-[150px] origin-bottom ${
+          className={`rounded-sm bg-stone-950 text-white text-xs font-semibold p-3 transition-all duration-200 flex flex-col items-center gap-2 border border-stone-800 min-w-[150px] origin-bottom dark:border-stone-700 ${
             open
               ? "opacity-100 scale-100"
               : "opacity-0 scale-95 group-hover/term:opacity-100 group-hover/term:scale-100"
           }`}
         >
-          <span className="font-bold text-amber-300 text-sm tracking-wide whitespace-nowrap">{en}</span>
+          <span className="font-bold text-white text-sm whitespace-nowrap">{en}</span>
 
           <button
             type="button"
             onClick={handleSaveFlashcard}
             disabled={saveState === "saving" || isSaved}
-            className={`w-full text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-sm active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`w-full text-[11px] font-bold px-3 py-1.5 rounded-sm transition-colors flex items-center justify-center gap-1.5 cursor-pointer ${
               isSaved || saveState === "saved"
-                ? "bg-brand-600 text-white cursor-default"
+                ? "bg-brand-600 text-white cursor-default dark:bg-brand-500"
                 : saveState === "error"
-                  ? "bg-rose-600 hover:bg-rose-700 text-white"
-                  : "bg-brand-500 hover:bg-brand-400 text-white font-bold"
+                  ? "bg-red-600 hover:bg-red-700 text-white"
+                  : "bg-white text-stone-950 hover:bg-brand-300 font-bold"
             }`}
           >
             {saveState === "saving"

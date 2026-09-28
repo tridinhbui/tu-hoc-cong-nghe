@@ -213,7 +213,7 @@ export default function QuietForestScene({
             // hai lớp motion.div nền là ANH EM, không phải cha.
             (expanded
               ? "fixed inset-0 z-[70] overflow-hidden bg-[#080d0f]"
-              : "relative overflow-hidden rounded-[22px] bg-[#080d0f] h-[58svh] min-h-[380px] sm:h-[64svh]")
+              : "relative overflow-hidden rounded-md bg-[#080d0f] h-[58svh] min-h-[380px] sm:h-[64svh]")
       }
     >
       {/* Giảm chuyển động: ngọn lửa tĩnh giữ nguyên chiều cao cũ. Kéo nó lên

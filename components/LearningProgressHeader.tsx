@@ -92,9 +92,9 @@ export default function LearningProgressHeader({
           {/* Thanh cấp độ. Đây là thứ thay cho con số "1/20" ở mọi chỗ: một
               thanh nói được "còn bao xa" trong một cái liếc, con số thì phải
               đọc và chia. */}
-          <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-surface-sunken">
+          <div className="mt-3 h-1.5 w-full overflow-hidden rounded-xs bg-surface-sunken">
             <div
-              className="h-full rounded-full bg-brand-600 transition-[width] duration-500 ease-out dark:bg-brand-500"
+              className="h-full bg-brand-600 transition-[width] duration-500 ease-out dark:bg-brand-500"
               style={{ width: `${levelPct}%` }}
             />
           </div>
@@ -165,9 +165,9 @@ export default function LearningProgressHeader({
           {/* Thanh nhỏ của riêng chặng, đặt cạnh câu mốc chứ không đứng rời:
               nó đo đúng khoảng cách tới cái mốc mà câu vừa nhắc tới. */}
           <span className="ml-auto flex items-center gap-2">
-            <span className="h-1 w-24 overflow-hidden rounded-full bg-surface-sunken">
+            <span className="h-1 w-24 overflow-hidden rounded-xs bg-surface-sunken">
               <span
-                className="block h-full rounded-full bg-stone-900 transition-[width] duration-500 ease-out dark:bg-stone-300"
+                className="block h-full bg-stone-900 transition-[width] duration-500 ease-out dark:bg-stone-300"
                 style={{ width: `${stagePct}%` }}
               />
             </span>
