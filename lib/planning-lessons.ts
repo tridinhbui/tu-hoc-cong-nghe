@@ -11,7 +11,7 @@ import type { Lesson } from "./lesson-types";
 // vận hành, lập kế hoạch nhân sự, dự báo thanh khoản ngắn hạn, dựng kịch bản,
 // phân bổ chi phí giữa các phòng ban, và đóng sổ hằng tháng.
 
-export const FPA_PLANNING_LESSONS: Lesson[] = [
+export const PLANNING_LESSONS: Lesson[] = [
   {
     id: 1511,
     interactiveType: "chart",
@@ -34,7 +34,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
     ],
     correctOption: 1,
     explanation:
-      "Cả hai cách đều ra một con số, và con số từ cách nhân tỷ lệ đôi khi còn gần thực tế hơn. Khác biệt nằm ở chỗ khác: khi doanh thu hụt 12%, kế hoạch dạng một cục chỉ nói rằng bạn hụt 12%. Kế hoạch tách thành số khách nhân giá trị đơn hàng bình quân nhân tần suất mua cho biết hụt vì ít khách hơn, hay vì khách mua ít hơn - và hai nguyên nhân đó dẫn tới hai hành động hoàn toàn khác nhau.",
+      "Cả hai cách đều ra một con số, và con số từ cách nhân tỷ lệ đôi khi còn gần thực tế hơn. Khác biệt nằm ở chỗ khác: khi doanh thu hụt 12%, kế hoạch dạng một cục chỉ nói rằng bạn hụt 12%. Kế hoạch tách thành số người dùng trả phí nhân giá gói bình quân nhân tỷ lệ gia hạn cho biết hụt vì ít người đăng ký hơn, hay vì người dùng bỏ đi nhiều hơn - và hai nguyên nhân đó dẫn tới hai hành động hoàn toàn khác nhau.",
     diagram: [
       { label: "Chọn 2-4 yếu tố vận hành thật", arrow: true },
       { label: "Nối doanh thu và chi phí về chúng", arrow: true },
@@ -42,9 +42,9 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       { label: "Khi lệch: soi từng yếu tố" },
     ],
     realWorldExample: {
-      company: "Chuỗi bán lẻ lập kế hoạch doanh thu",
+      company: "Ứng dụng thuê bao lập kế hoạch doanh thu",
       description:
-        "Cách một cục: doanh thu năm nay 500 tỷ, kế hoạch năm sau 550 tỷ. Cách theo yếu tố: số cửa hàng nhân doanh thu bình quân mỗi cửa hàng mỗi tháng nhân 12, trong đó doanh thu mỗi cửa hàng lại tách thành lượt khách nhân tỷ lệ mua nhân giá trị hóa đơn bình quân. Cuối quý hai, doanh thu hụt kế hoạch 8%. Bản một cục chỉ nói con số. Bản theo yếu tố cho thấy lượt khách vượt kế hoạch nhưng giá trị hóa đơn giảm - vấn đề nằm ở cơ cấu hàng bán chứ không phải ở marketing, và ngân sách marketing suýt bị cắt nhầm.",
+        "Cách một cục: doanh thu năm nay 50 tỷ, kế hoạch năm sau 55 tỷ. Cách theo yếu tố: số người dùng trả phí nhân giá gói bình quân nhân tỷ lệ gia hạn hằng tháng, trong đó số người dùng trả phí lại tách thành lượt đăng ký dùng thử nhân tỷ lệ chuyển sang trả phí. Cuối quý hai, doanh thu hụt kế hoạch 8%. Bản một cục chỉ nói con số. Bản theo yếu tố cho thấy lượt đăng ký vượt kế hoạch nhưng tỷ lệ gia hạn giảm sau một bản cập nhật làm chậm ứng dụng - vấn đề nằm ở sản phẩm chứ không phải ở marketing, và ngân sách marketing suýt bị cắt nhầm.",
     },
     quiz: [
       {
@@ -97,7 +97,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       },
     
     {
-      "question": "Doanh thu tách thành số cửa hàng × lượt khách mỗi cửa hàng × giá trị đơn. Lượt khách giảm 5%, giá trị đơn tăng 4%, số cửa hàng giữ nguyên - doanh thu đổi bao nhiêu?",
+      "question": "Doanh thu tách thành số người dùng trả phí × giá gói × tỷ lệ gia hạn. Số người dùng trả phí giảm 5%, giá gói tăng 4%, tỷ lệ gia hạn giữ nguyên - doanh thu đổi bao nhiêu?",
       "options": [
         "Giảm 1,2% (= 0,95 × 1,04 − 1, nhân hai tỷ lệ)",
         "Giảm 1% (= 5% − 4%, trừ thẳng hai tỷ lệ)",
@@ -105,7 +105,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         "Tăng 1,2% (= 0,95 × 1,04 − 1, đảo dấu kết quả)"
       ],
       "correct": 0,
-      "explanation": "Các yếu tố dẫn dắt nhân với nhau chứ không cộng, nên phần trăm cũng phải nhân: 0,95 × 1,04 = 0,988, tức giảm 1,2%. Đây cũng là chỗ cách lập kế hoạch này trả công: biết doanh thu hụt 1,2% là vì lượt khách chứ không phải vì giá, nên biết phải sửa cái gì."
+      "explanation": "Các yếu tố dẫn dắt nhân với nhau chứ không cộng, nên phần trăm cũng phải nhân: 0,95 × 1,04 = 0,988, tức giảm 1,2%. Đây cũng là chỗ cách lập kế hoạch này trả công: biết doanh thu hụt 1,2% là vì số người dùng trả phí chứ không phải vì giá gói, nên biết phải sửa cái gì."
     }
     ],
     keyTakeaways: [
@@ -155,7 +155,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         },
         right: {
           label: "Kế hoạch theo yếu tố",
-          text: "Doanh thu = số khách × tần suất mua × giá trị đơn bình quân. Tốn công hơn, cần số liệu từ vận hành, và khi lệch thì chỉ thẳng vào yếu tố nào lệch.",
+          text: "Doanh thu = số người dùng trả phí × giá gói bình quân × tỷ lệ gia hạn. Tốn công hơn, cần số liệu từ vận hành, và khi lệch thì chỉ thẳng vào yếu tố nào lệch.",
         },
       },
       {
@@ -544,7 +544,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
     ],
     correctOption: 1,
     explanation:
-      "Độ nhạy trả lời câu hỏi biến nào quan trọng nhất: giữ nguyên mọi thứ, đẩy một biến lên xuống, xem kết quả nhúc nhích bao nhiêu. Kịch bản trả lời câu hỏi khác hẳn: nếu suy thoái xảy ra thì chuyện gì xảy ra - và trong suy thoái, doanh thu giảm đi cùng với biên lợi nhuận giảm và công nợ thu chậm hơn. Đẩy riêng doanh thu xuống 20% mà giữ nguyên các biến kia là mô tả một thế giới không tồn tại.",
+      "Độ nhạy trả lời câu hỏi biến nào quan trọng nhất: giữ nguyên mọi thứ, đẩy một biến lên xuống, xem kết quả nhúc nhích bao nhiêu. Kịch bản trả lời câu hỏi khác hẳn: nếu đợt khuyến mãi lớn xảy ra thì chuyện gì xảy ra - và trong đợt đó, lưu lượng tăng đi cùng với tỷ lệ trúng cache giảm và số lần gửi lại tăng. Đẩy riêng lưu lượng lên 20% mà giữ nguyên các biến kia là mô tả một thế giới không tồn tại.",
     diagram: [
       { label: "Độ nhạy: một biến, tìm biến quan trọng", arrow: true },
       { label: "Kịch bản: nhóm biến, kể một câu chuyện", arrow: true },
@@ -552,9 +552,9 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       { label: "Trình bày dải, không phải một điểm" },
     ],
     realWorldExample: {
-      company: "Kế hoạch mở rộng chuỗi cửa hàng",
+      company: "Kế hoạch dung lượng cho mùa khuyến mãi cuối năm",
       description:
-        "Kế hoạch mở 30 cửa hàng mới cho ra một con số lợi nhuận duy nhất, và cuộc họp biến thành tranh luận xem con số đó có tin được không. Bản làm lại trình bày ba kịch bản kèm điều kiện kích hoạt: ở kịch bản cơ sở, doanh thu bình quân mỗi cửa hàng đạt mức hiện tại; ở kịch bản thấp, doanh thu chỉ đạt 80% và thời gian hòa vốn kéo dài từ 14 lên 26 tháng. Điểm quyết định không phải con số lợi nhuận mà là phát hiện đi kèm: dưới mức 75%, việc mở rộng ngốn hết dòng tiền của các cửa hàng đang có. Cuộc họp chuyển từ tin hay không tin sang theo dõi chỉ số nào để biết mình đang ở kịch bản nào.",
+        "Bản kế hoạch dung lượng cho đợt khuyến mãi cuối năm đưa ra đúng một con số - cần 40 máy chủ - và cuộc họp biến thành tranh luận xem con số đó có tin được không. Bản làm lại trình bày ba kịch bản kèm điều kiện kích hoạt: ở kịch bản cơ sở, lưu lượng đỉnh gấp ba ngày thường; ở kịch bản cao, gấp năm lần và tỷ lệ trúng cache tụt từ 90% xuống 70% vì khách mới mở những trang chưa ai mở. Điểm quyết định không phải số máy mà là phát hiện đi kèm: khi tỷ lệ trúng cache xuống dưới 75%, cơ sở dữ liệu quá tải trước khi máy chủ ứng dụng kịp đầy, nên thêm máy chủ không cứu được. Cuộc họp chuyển từ tin hay không tin sang theo dõi chỉ số nào để biết mình đang ở kịch bản nào.",
     },
     quiz: [
       {
@@ -567,7 +567,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         ],
         correct: 0,
         explanation:
-          "Trong suy thoái, doanh thu không giảm một mình. Biên lợi nhuận co lại vì phải giảm giá, và khách hàng trả tiền chậm hơn - ba thứ này đi cùng nhau.",
+          "Trong đợt cao điểm, lưu lượng không tăng một mình. Tỷ lệ trúng cache giảm vì có nhiều người dùng mới, và máy khách gửi lại nhiều hơn khi hệ thống chậm - ba thứ này đi cùng nhau.",
       },
       {
         question: "Phân tích độ nhạy dùng để làm gì trước khi dựng kịch bản?",
@@ -639,7 +639,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
     },
     summary: {
       keyIdea: "Trình bày dải kết quả kèm ngưỡng đổi quyết định, thay vì một con số duy nhất",
-      commonMistake: "Gọi là kịch bản nhưng chỉ đổi mỗi doanh thu, giữ nguyên biên lợi nhuận và công nợ",
+      commonMistake: "Gọi là kịch bản nhưng chỉ đổi mỗi lưu lượng, giữ nguyên tỷ lệ trúng cache và số lần gửi lại",
       action: "Với kế hoạch hiện tại, tìm một biến mà khi nó xấu đi tới ngưỡng nào đó thì bạn sẽ khuyến nghị đổi hướng.",
     },
     application: {
@@ -663,37 +663,37 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         subtitle: "Ba thứ hay bị gọi lẫn tên nhau nhưng trả lời ba câu hỏi khác hẳn",
         concepts: [
           { vi: "Phân tích độ nhạy", en: "Sensitivity", def: "Đổi một biến, giữ nguyên phần còn lại. Trả lời: biến nào quan trọng nhất, kết quả nhạy với cái gì. Là bước sàng lọc trước." },
-          { vi: "Phân tích kịch bản", en: "Scenario", def: "Đổi cả nhóm biến theo một câu chuyện nhất quán. Trả lời: nếu suy thoái xảy ra thì chuyện gì xảy ra với chúng ta." },
+          { vi: "Phân tích kịch bản", en: "Scenario", def: "Đổi cả nhóm biến theo một câu chuyện nhất quán. Trả lời: nếu lưu lượng tăng gấp năm trong đợt khuyến mãi thì chuyện gì xảy ra với hệ thống." },
           { vi: "Điểm ngưỡng", en: "Break-point", def: "Giá trị mà tại đó quyết định phải đổi. Là sản phẩm hữu ích nhất, vì nó biến phân tích thành một chỉ số cần theo dõi." },
         ],
       },
       {
         type: "callout",
         label: "Kịch bản phải nhất quán bên trong",
-        text: "Lỗi phổ biến nhất là gọi một bản là kịch bản xấu nhưng chỉ hạ mỗi doanh thu xuống 20%, giữ nguyên biên lợi nhuận, số ngày thu tiền và tỷ lệ huỷ gói. Trong thực tế những đại lượng đó đi cùng nhau: doanh thu giảm thường kéo theo phải giảm giá, khách trả chậm hơn, và nhiều khách huỷ gói hơn. Một kịch bản chỉ hữu ích khi nó mô tả một thế giới có thể tồn tại.",
+        text: "Lỗi phổ biến nhất là gọi một bản là kịch bản xấu nhưng chỉ tăng mỗi lưu lượng lên 20%, giữ nguyên tỷ lệ trúng cache, số lần gửi lại và kích thước trung bình mỗi yêu cầu. Trong thực tế những đại lượng đó đi cùng nhau: lưu lượng tăng thường kéo theo nhiều người dùng mới làm cache kém hiệu quả, hệ thống chậm đi làm máy khách gửi lại nhiều hơn, và tác vụ nền bị dồn. Một kịch bản chỉ hữu ích khi nó mô tả một thế giới có thể tồn tại.",
       },
       {
         type: "heading",
-        text: "Vì sao doanh thu giảm 20% lại làm lợi nhuận giảm 80%"
+        text: "Vì sao tải tăng 20% lại làm thời gian chờ tăng gấp năm"
       },
       {
         type: "paragraph",
-        text: "Doanh thu 100, chi phí biến đổi 60, chi phí cố định 30, lợi nhuận 10. Kịch bản xấu hạ doanh thu xuống 80: chi phí biến đổi giảm theo còn 48, nhưng chi phí cố định vẫn là 30, nên lợi nhuận còn 2. Doanh thu giảm 20% và lợi nhuận giảm 80%. Đây là đòn bẩy hoạt động, và nó là lý do một bảng độ nhạy chỉ hiển thị phần trăm thay đổi doanh thu che mất phần quan trọng nhất - người đọc ngoại suy tuyến tính và kết luận sai về mức độ nguy hiểm."
+        text: "Một máy chủ đang bận 80% thời gian. Theo mô hình hàng đợi đơn giản, thời gian chờ tỉ lệ với 1 / (1 - mức bận), tức là 1 / 0,2 = 5 lần thời gian xử lý. Tải tăng 20% đẩy mức bận lên 96%, và thời gian chờ thành 1 / 0,04 = 25 lần. Tải tăng 20% mà thời gian chờ tăng gấp năm. Đây là tính phi tuyến của hàng đợi, và nó là lý do một bảng độ nhạy chỉ hiển thị phần trăm thay đổi lưu lượng che mất phần quan trọng nhất - người đọc ngoại suy tuyến tính và kết luận sai về mức độ nguy hiểm."
       },
       {
         type: "callout",
         label: "Kịch bản phải nhất quán bên trong",
-        text: "Lỗi phổ biến nhất là gọi một bản là kịch bản xấu nhưng chỉ hạ mỗi doanh thu 20% và giữ nguyên mọi giả định khác. Một kịch bản thật phải hỏi: nếu doanh thu giảm vì nhu cầu yếu, thì giá bán có giữ được không, kỳ thu tiền có dài ra không, hàng tồn có tăng không, và có phải hoãn tuyển không. Các biến này chuyển động cùng nhau vì chúng có chung nguyên nhân - và một kịch bản bỏ qua điều đó cho ra con số dễ chịu hơn thực tế đúng vào lúc cần sự thật nhất."
+        text: "Lỗi phổ biến nhất là gọi một bản là kịch bản xấu nhưng chỉ tăng mỗi lưu lượng 20% và giữ nguyên mọi giả định khác. Một kịch bản thật phải hỏi: nếu lưu lượng tăng vì một đợt khuyến mãi, thì cache có còn đỡ được không, máy khách có gửi lại nhiều hơn không, hàng đợi tác vụ nền có dồn lên không, và có phải hoãn một đợt phát hành không. Các biến này chuyển động cùng nhau vì chúng có chung nguyên nhân - và một kịch bản bỏ qua điều đó cho ra con số dễ chịu hơn thực tế đúng vào lúc cần sự thật nhất."
       },
       {
         type: "comparison",
         left: {
           label: "Độ nhạy - đổi một biến",
-          text: "Giữ nguyên mọi thứ, đổi một giả định, xem kết quả dịch bao nhiêu. Mục đích là XẾP HẠNG: biến nào đáng dành thời gian ước lượng cho kỹ. Nếu đổi giả định về tỷ lệ rời bỏ khách hàng làm kết quả xoay 40% còn đổi giả định chi phí văn phòng chỉ làm xoay 1%, bạn biết mình nên tranh luận về cái nào."
+          text: "Giữ nguyên mọi thứ, đổi một giả định, xem kết quả dịch bao nhiêu. Mục đích là XẾP HẠNG: biến nào đáng dành thời gian ước lượng cho kỹ. Nếu đổi giả định về tỷ lệ trúng cache làm kết quả xoay 40% còn đổi giả định về dung lượng nhật ký chỉ làm xoay 1%, bạn biết mình nên tranh luận về cái nào."
         },
         right: {
           label: "Kịch bản - đổi cả cụm biến cùng lúc",
-          text: "Dựng một câu chuyện nhất quán về thế giới rồi để mọi giả định dịch theo nó. Mục đích là CHUẨN BỊ: nếu điều này xảy ra, tiền mặt còn đủ mấy tháng, và ngưỡng nào thì phải hành động. Đầu ra hữu ích không phải một con số mà là một mốc kích hoạt."
+          text: "Dựng một câu chuyện nhất quán về thế giới rồi để mọi giả định dịch theo nó. Mục đích là CHUẨN BỊ: nếu điều này xảy ra, hệ thống còn chịu được bao lâu, và ngưỡng nào thì phải hành động. Đầu ra hữu ích không phải một con số mà là một mốc kích hoạt."
         }
       },
       {

@@ -6,9 +6,9 @@
    là số và khoá định tuyến. */
 import { trackHours } from "@/lib/track-totals";
 
-// `estimatedHours` KHÔNG còn là số gõ tay. Cả ba đều đã lệch khỏi kho bài -
+// `estimatedHours` KHÔNG còn là số gõ tay. Các con số cũ đều đã lệch khỏi kho bài -
 // cá nhân khai 10 giờ khi thật là 21,9, chuyên nghiệp khai 18 khi thật là
-// 48,8, CFA khai 27 khi thật là 38,6 - vì con số được gõ một lần rồi kho bài
+// 48,8 - vì con số được gõ một lần rồi kho bài
 // đi tiếp còn nó thì đứng yên. Xem lib/track-totals.ts.
 export const TRACKS = {
   personal: {
@@ -77,15 +77,12 @@ export const TRACKS = {
     previewSlug: "do-phuc-tap-va-ky-hieu-o-lon",
     previewLabel: "Bài mở đầu: Độ phức tạp là ngôn ngữ của hiệu năng",
   },
-  cfa: {
+  certification: {
     tab: "Chứng chỉ công nghệ",
     subtitle: "AWS Solutions Architect (Associate) · đang xây dựng",
-    // Sum of the ~258 mapped lessons' own durations (lib/cfa-track.ts),
-    // same "total lesson minutes / 60" method as the other two tracks -
-    // not an estimate of real CFA Level I study time (that's the 300h
-    // figure CFA Institute cites), just how long it'd take to read every
-    // lesson currently mapped into these 10 subjects.
-    estimatedHours: trackHours("cfa"),
+    // Same "total lesson minutes / 60" method as the other two tracks - not
+    // an estimate of real exam study time.
+    estimatedHours: trackHours("certification"),
     description: "Ánh xạ các bài học đã có sang đúng 4 miền thi của chứng chỉ AWS Solutions Architect (Associate) - không tạo bài mới, không đổi số ngày của 2 track kia. Miền nào chưa có bài phù hợp sẽ được xây dần.",
     stages: [
       "Thiết kế kiến trúc an toàn",

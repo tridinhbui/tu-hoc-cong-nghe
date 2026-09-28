@@ -1,8 +1,6 @@
 import { Flame, Star, CheckCircle2 } from "lucide-react";
 
-/**
- * Thanh đầu trang của /chung-chi/<certId>, chép từ /cfa và /frm của bản tài chính.
- */
+/** Thanh đầu trang của /chung-chi/<certId>. */
 export default function CertPageHeader({
   completedPct,
   eyebrow,

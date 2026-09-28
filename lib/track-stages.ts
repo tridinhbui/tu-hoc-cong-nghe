@@ -105,7 +105,6 @@ export const TRACK_PERSONAL = {
       days: [201, 220] as [number, number],
       available: true,
       // Display in numerical order to avoid lesson-number jumps on dashboard
-      // (was: psychology first [212-214], stocks [201-211], taxes [215-220])
       parts: [
         { name: "Thẻ HTML, bố cục CSS và trang tĩnh", days: [201, 211] as [number, number] },
         { name: "Lỗi hay gặp và kỳ vọng thực tế về giao diện", days: [212, 214] as [number, number] },
@@ -305,9 +304,6 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      // Chặng 18: thứ làm hỏng kế hoạch tài chính của phần lớn hộ gia đình
-      // không phải đầu tư sai, mà là vài khoản chi lớn đến theo lịch của đời
-      // người - và đều BIẾT TRƯỚC được.
       label: "Chặng 18",
       name: "Những dự án lớn trong nghề",
       days: [370, 376] as [number, number],
@@ -347,8 +343,6 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      // Chặng 21: thất bại phổ biến nhất trong tài chính cá nhân không phải
-      // hiểu sai, mà là hiểu đúng rồi không duy trì được.
       label: "Chặng 21",
       name: "Công cụ và vận hành",
       days: [400, 403] as [number, number],
@@ -473,11 +467,7 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 1",
       name: "Nền tảng dữ liệu",
       days: [21, 40] as [number, number],
-      // 1051 và 1244 là hai bài tài chính (khấu hao, kế toán dồn tích) từng bổ
-      // trợ cho chặng kế toán cũ ở dải 21-40. Nội dung dải này đã chuyển sang
-      // nền tảng dữ liệu, nên hai bài đó không còn liên quan - giữ tạm ở đây
-      // để chúng vẫn vào được từ giáo trình, tới khi chặng tài chính tương ứng
-      // được chuyển đổi.
+      // 1051 và 1244 là bài bổ trợ giữ tạm ở đây để vẫn vào được từ giáo trình.
       extraLessonIds: [1051, 1244],
       available: true,
       parts: [
@@ -493,10 +483,7 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 2",
       name: "Mạng và giao tiếp giữa các hệ thống",
       days: [41, 60] as [number, number],
-      // 1053, 1690, 1691 và 1692 là bốn bài tài chính từng bổ trợ cho chặng ba
-      // báo cáo cũ ở dải 41-60. Nội dung dải này đã chuyển sang mạng và dịch
-      // vụ, nên chúng không còn liên quan - giữ tạm để không rơi khỏi giáo
-      // trình, tới khi chặng tài chính tương ứng được chuyển đổi.
+      // 1053, 1690, 1691 và 1692 là bài bổ trợ giữ tạm để không rơi khỏi giáo trình.
       extraLessonIds: [1053, 1690, 1691, 1692],
       available: true,
       parts: [
@@ -523,9 +510,7 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 4",
       name: "Đo lường sản phẩm và chọn việc",
       days: [81, 100] as [number, number],
-      // 1047 (on-tap-npv) là bài tài chính từng bổ trợ cho chặng giá trị thời
-      // gian của tiền ở dải 81-100. Nội dung dải này đã chuyển sang đo lường
-      // sản phẩm, nên giữ tạm để bài đó không rơi khỏi giáo trình.
+      // 1047 là bài bổ trợ giữ tạm để không rơi khỏi giáo trình.
       extraLessonIds: [1047],
       available: true,
       parts: [
@@ -537,10 +522,7 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 5",
       name: "Quy mô và nhiều đội",
       days: [101, 120] as [number, number],
-      // Tám bài bổ trợ ở đây đều là bài tài chính từng gắn với chặng tài chính
-      // doanh nghiệp cũ ở dải 101-120. Nội dung dải này đã chuyển sang quy mô
-      // tổ chức, nên chúng không còn liên quan - giữ tạm để không rơi khỏi
-      // giáo trình, tới khi chặng tài chính tương ứng được chuyển đổi.
+      // Tám bài bổ trợ giữ tạm ở đây để không rơi khỏi giáo trình.
       extraLessonIds: [1247, 1257, 1337, 1338, 1339, 1751, 1752, 1753],
       available: true,
       parts: [
@@ -561,9 +543,7 @@ export const TRACK_PROFESSIONAL = {
       name: "Bảo mật ứng dụng",
       days: [121, 140] as [number, number],
       available: true,
-      // 1036 là bài định giá tài sản ròng, từng bổ trợ cho chặng định giá cũ ở
-      // dải 121-140. Giữ tạm để nó không rơi khỏi giáo trình, tới khi chặng
-      // tài chính tương ứng được chuyển đổi.
+      // 1036 là bài bổ trợ giữ tạm để không rơi khỏi giáo trình.
       extraLessonIds: [1036],
       parts: [
         { name: "Danh tính, quyền và dữ liệu nhạy cảm", days: [121, 130] as [number, number] },
@@ -667,98 +647,9 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
+      // 1401-1402 are new; the rest already existed but were reachable only
+      // through a career path.
       label: "Chặng 14",
-      name: "Masterclass chuyên đề: hạ tầng, mạng, startup công nghệ, bảo mật & phần mềm xanh",
-      days: [801, 805] as [number, number],
-      extraLessonIds: [801, 802, 803, 804, 805],
-      available: true,
-      isNew: true,
-      parts: [
-        { name: "Hạ tầng trung tâm dữ liệu, mạng doanh nghiệp, startup công nghệ, quản trị rủi ro bảo mật & phần mềm xanh", days: [801, 805] as [number, number], extraLessonIds: [801, 802, 803, 804, 805] },
-      ],
-    },
-    {
-      // Hands-on modelling is the core hard skill behind the analyst/IB path
-      // that Chặng 10 introduces, so it sits at the end as the applied
-      // capstone. Text lessons target structure, statement linkage and the
-      // judgment behind assumptions - the parts that transfer through prose.
-      label: "Chặng 15",
-      name: "Dựng hệ thống thực hành (System Building)",
-      days: [1311, 1320] as [number, number],
-      extraLessonIds: [1342],
-      available: true,
-      isNew: true,
-      parts: [
-        { name: "Cấu trúc dự án, luồng dữ liệu và ba lớp dịch vụ", days: [1311, 1313] as [number, number] },
-        { name: "Lớp phụ trợ, hàng đợi nền và đo hiệu năng", days: [1314, 1317] as [number, number] },
-        {
-          name: "Kiểm thử tải, rà soát thiết kế và project cuối chặng",
-          days: [1318, 1320] as [number, number],
-          extraLessonIds: [1342],
-        },
-      ],
-    },
-    {
-      // ESG had four lessons but no home in either track: 805 sat inside the
-      // Chặng 14 masterclass bundle, while 1229-1231 were reachable only by
-      // learners who happened to pick the "esg-analyst" career path. A learner
-      // working through Track 2 in order never met them. This stage gives the
-      // topic a proper sequence - the three existing foundation lessons first,
-      // then the four new ones covering what 805 doesn't: disclosure regimes,
-      // rủi ro khí hậu như rủi ro vận hành, ESG inside a valuation model, and the
-      // governance pillar in depth.
-      label: "Chặng 16",
-      name: "Phần mềm xanh (Green Software & hiệu quả năng lượng)",
-      days: [1327, 1330] as [number, number],
-      extraLessonIds: [1229, 1230, 1231],
-      available: true,
-      isNew: true,
-      parts: [
-        {
-          name: "Nền tảng: phần mềm xanh là gì, đo lường và tối ưu tiêu thụ",
-          days: [1229, 1231] as [number, number],
-          extraLessonIds: [1229, 1230, 1231],
-        },
-        { name: "Quy định, dấu chân carbon của hạ tầng và chi phí", days: [1327, 1329] as [number, number] },
-        { name: "Quản trị kỹ thuật chuyên sâu", days: [1330, 1330] as [number, number] },
-      ],
-    },
-    {
-      // Track 2 had no macro stage at all, yet eleven finished CFA Economics
-      // lessons existed - reachable only from the CFA cross-reference page,
-      // never from the curriculum itself. They carried track: "bonus", which
-      // DashboardClient filters out of professional stages, so putting them
-      // here also required flipping that field in lib/lessons.ts.
-      label: "Chặng 17",
-      name: "Hệ điều hành cho người làm công nghệ",
-      days: [1321, 1326] as [number, number],
-      extraLessonIds: [1224, 1225, 1226, 1227, 1228, 1258],
-      available: true,
-      isNew: true,
-      parts: [
-        {
-          name: "Tiến trình: lập lịch, bộ nhớ và cấu trúc tập tin",
-          days: [1321, 1322] as [number, number],
-          extraLessonIds: [1228],
-        },
-        {
-          name: "Hệ thống: tải, mở rộng, chu kỳ phát hành và chính sách vận hành",
-          days: [1323, 1325] as [number, number],
-          extraLessonIds: [1224, 1225],
-        },
-        {
-          name: "Hệ phân tán và đọc chỉ báo hệ thống",
-          days: [1326, 1326] as [number, number],
-          extraLessonIds: [1226, 1227, 1258],
-        },
-      ],
-    },
-    {
-      // The whole Track 2 spine assumes a doanh nghiệp không thuộc mảng tài chính, so it breaks
-      // silently on banks - the largest sector on the local market. 1401-1402
-      // are new; the rest already existed but were reachable only by learners
-      // who happened to pick the credit-analyst or compliance career path.
-      label: "Chặng 18",
       name: "Xác thực, phân quyền và tuân thủ",
       days: [1401, 1402] as [number, number],
       extraLessonIds: [1218, 1222, 1248, 1253, 1254, 1256, 1281, 1282, 1283],
@@ -783,7 +674,7 @@ export const TRACK_PROFESSIONAL = {
       // every practitioner hits next - where the price comes from and what the
       // position is sensitive to - and 1216/1217/1223 (previously career-path
       // only) are the risk-management half of the same subject.
-      label: "Chặng 19",
+      label: "Chặng 15",
       name: "Tối ưu hiệu năng và quản trị rủi ro vận hành",
       days: [1411, 1414] as [number, number],
       extraLessonIds: [1216, 1217, 1223],
@@ -800,10 +691,8 @@ export const TRACK_PROFESSIONAL = {
     },
     {
       // Nine finished lessons that no learner following Track 2 in order ever
-      // met. Grouped here by what a buy-side analyst actually does end to end:
-      // research process, market plumbing, then the asset classes where the
-      // standard DCF/multiples toolkit does not apply.
-      label: "Chặng 20",
+      // met, grouped here so they are reachable.
+      label: "Chặng 16",
       name: "Nền tảng: quy trình nghiên cứu và thiết kế chuyên sâu",
       days: [0, 0] as [number, number],
       extraLessonIds: [1215, 1219, 1220, 1221, 1245, 1246, 1286, 1288, 1289],
@@ -830,7 +719,7 @@ export const TRACK_PROFESSIONAL = {
     {
       // Same story: eight lessons covering the advisory/insurance side of the
       // industry, previously visible only through two career paths.
-      label: "Chặng 21",
+      label: "Chặng 17",
       name: "Quản trị dữ liệu và sao lưu",
       days: [0, 0] as [number, number],
       extraLessonIds: [1232, 1233, 1234, 1249, 1255, 1284, 1285, 1287],
@@ -850,9 +739,12 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      label: "Chặng 22",
+      label: "Chặng 18",
       name: "Phương pháp đo lường (Measurement & Benchmarking)",
       days: [1421, 1426] as [number, number],
+      // 1258 từng là bài duy nhất của Chặng 17 "Hệ điều hành" - lạc chủ đề ở
+      // đó, đúng chủ đề ở đây (chỉ báo dẫn dắt/trễ là chuyện đo lường).
+      extraLessonIds: [1258],
       available: true,
       isNew: true,
       parts: [
@@ -863,7 +755,7 @@ export const TRACK_PROFESSIONAL = {
     {
       // Chặng 15 deliberately teaches modelling judgment in prose and says so.
       // This is the execution half that recruiting actually tests.
-      label: "Chặng 23",
+      label: "Chặng 19",
       name: "SQL và dữ liệu cho phân tích hệ thống",
       days: [1431, 1436] as [number, number],
       available: true,
@@ -878,7 +770,7 @@ export const TRACK_PROFESSIONAL = {
       // cảnh: không bài nào nói VAS khác IFRS ở đâu (trong khi doanh nghiệp
       // niêm yết đang chuyển đổi), và tám bài thuế hiện có đều là thuế TNCN
       // của track cá nhân - không bài nào về thuế doanh nghiệp.
-      label: "Chặng 24",
+      label: "Chặng 20",
       name: "Chuẩn mực mã nguồn và quy định dữ liệu Việt Nam",
       // Dải dừng ở 1448, và nó TỪNG tới 1449.
       //
@@ -907,7 +799,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      label: "Chặng 25",
+      label: "Chặng 21",
       name: "Hệ sinh thái công nghệ Việt Nam",
       days: [1451, 1457] as [number, number],
       available: true,
@@ -919,24 +811,10 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // Chặng 19 dạy phòng hộ tỷ giá ở mức công cụ và Chặng 17 dạy dòng vốn
-      // quốc tế ở mức vĩ mô, nhưng phần nối hai thứ đó - quan hệ ngang giá và
-      // hệ quả của chúng lên mô hình định giá - thì chưa có bài nào.
-      label: "Chặng 26",
-      name: "Hệ thống đa vùng và quốc tế hoá",
-      days: [1461, 1464] as [number, number],
-      available: true,
-      isNew: true,
-      parts: [
-        { name: "Đồng bộ đa vùng: độ trễ và nhất quán", days: [1461, 1462] as [number, number] },
-        { name: "Bản địa hoá, múi giờ và rủi ro dữ liệu xuyên biên giới", days: [1463, 1464] as [number, number] },
-      ],
-    },
-    {
       // App đã có bài về phía thương vụ (PE là gì, VC là gì, cap table, LBO).
       // Chặng này bổ sung phía quỹ: tiền của ai, nhà quản lý được trả thế nào,
       // và vì sao hiệu suất quỹ đóng cần bộ chỉ số riêng.
-      label: "Chặng 27",
+      label: "Chặng 22",
       name: "Nội bộ runtime: cấu trúc và hiệu năng máy ảo",
       days: [1471, 1474] as [number, number],
       available: true,
@@ -949,7 +827,7 @@ export const TRACK_PROFESSIONAL = {
     {
       // Trang /phong-van-ky-thuat có ngân hàng câu hỏi nhưng không có bài học
       // nào dạy phần kỹ năng đứng sau nó.
-      label: "Chặng 28",
+      label: "Chặng 23",
       name: "Kỹ năng nghề kỹ sư phần mềm",
       days: [1481, 1484] as [number, number],
       available: true,
@@ -964,7 +842,7 @@ export const TRACK_PROFESSIONAL = {
       // là công cụ đúng. Hai chặng này là phần công việc còn lại - phần mà
       // bảng tính thành gánh nặng - và là nền cho ba nghề dữ liệu vừa thêm
       // vào lib/career-paths.ts (đã gỡ).
-      label: "Chặng 29",
+      label: "Chặng 24",
       name: "Công cụ phân tích dữ liệu",
       days: [1491, 1496] as [number, number],
       available: true,
@@ -978,7 +856,7 @@ export const TRACK_PROFESSIONAL = {
       // Phần khiến công cụ ở Chặng 29 có ích hay có hại: chọn đo cái gì, đọc
       // con số ra sao, và ở đâu thì một phân tích đúng kỹ thuật vẫn dẫn tới
       // kết luận sai.
-      label: "Chặng 30",
+      label: "Chặng 25",
       name: "Tư duy phân tích dữ liệu",
       days: [1501, 1506] as [number, number],
       available: true,
@@ -992,7 +870,7 @@ export const TRACK_PROFESSIONAL = {
       // Chặng 11 dạy ngân sách, rolling forecast và variance - tức là các sản
       // phẩm đầu ra của FP&A. Chặng này lo phần đứng trước: những con số ấy
       // từ đâu ra, và nó là phần chiếm gần hết thời gian thật của nghề.
-      label: "Chặng 31",
+      label: "Chặng 26",
       name: "Lập kế hoạch dung lượng và vận hành",
       days: [1511, 1516] as [number, number],
       available: true,
@@ -1006,7 +884,7 @@ export const TRACK_PROFESSIONAL = {
       // Chặng 10 dạy vì sao mua, mua ai, trả bằng gì và vì sao hậu sáp nhập
       // hay hỏng. Chặng này lo phần cơ khí ở giữa - và là phần mà bộ câu hỏi
       // phỏng vấn IB hỏi nhiều nhất trong khi chưa có bài học nào dạy nó.
-      label: "Chặng 32",
+      label: "Chặng 27",
       name: "Cơ chế phát hành và di trú hệ thống",
       days: [1521, 1526] as [number, number],
       // 1049 (tu-xay-hay-mua-san) là trang viết tay được kéo về corpus:
@@ -1024,7 +902,7 @@ export const TRACK_PROFESSIONAL = {
       // cả kho chỉ có đúng một bài liên quan (1254, khung COSO). Lộ trình của
       // nghề "Kiểm toán viên" gồm năm bài kế toán chung, không bài nào nói
       // kiểm toán làm gì.
-      label: "Chặng 33",
+      label: "Chặng 28",
       name: "Kiểm thử: cách một bản phát hành được xác nhận",
       days: [1531, 1536] as [number, number],
       available: true,
@@ -1035,133 +913,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // Lấp 3/10 môn FRM gần như trống trơn trên /frm (xem lib/frm-track.ts):
-      // Foundations of Risk Management, Operational Resilience, và Liquidity
-      // and Treasury Risk. Ids 1531-1536 đã bị lib/audit-lessons.ts (Chặng
-      // 33) chiếm trước trong cùng một đợt commit song song, nên chặng này
-      // nhảy cóc qua đoạn đó - xem extraLessonIds.
-      label: "Chặng 34",
-      name: "SRE: Nền tảng, rủi ro vận hành & rủi ro dung lượng",
-      days: [1527, 1530] as [number, number],
-      extraLessonIds: [1537, 1538, 1539, 1540, 1541],
-      available: true,
-      isNew: true,
-      parts: [
-        { name: "Foundations of Reliability: quản trị rủi ro, văn hoá không đổ lỗi, sự cố kinh điển", days: [1527, 1529] as [number, number] },
-        { name: "Operational Resilience: dữ liệu sự cố, BCP/DR, rủi ro mô hình & bên thứ ba", days: [1530, 1530] as [number, number], extraLessonIds: [1537, 1538] },
-        { name: "Capacity and Resource Risk: hạn mức, kế hoạch dung lượng, tự mở rộng", days: [1539, 1541] as [number, number] },
-      ],
-    },
-    {
-      // Market Risk chiếm 20% FRM Part II nhưng chỉ có 5 bài mượn từ nơi khác
-      // (VaR nhập môn, duration, Greeks, implied vol). Phần lõi định lượng mà
-      // GARP kiểm tra - so sánh phương pháp VaR, kiểm định hậu nghiệm, ES,
-      // mô hình biến động, copula, stress testing - không có bài nào.
-      label: "Chặng 35",
-      name: "SRE: Rủi ro hiệu năng",
-      days: [1551, 1556] as [number, number],
-      available: true,
-      isNew: true,
-      parts: [
-        { name: "Đo độ trễ đuôi, kiểm định hậu nghiệm và p99", days: [1551, 1553] as [number, number] },
-        { name: "Mô hình biến động tải, phụ thuộc dịch vụ và kiểm thử chịu tải", days: [1554, 1556] as [number, number] },
-      ],
-    },
-    {
-      // Lấp phần rủi ro tín dụng nâng cao (CDS, chứng khoán hoá/CDO, CVA,
-      // sovereign credit risk) và các chủ đề Current Issues còn thiếu của
-      // FRM Part II. Xem lib/frm-track.ts's credit-risk/current-issues
-      // subjects.
-      label: "Chặng 36",
-      name: "SRE: Bảo mật nâng cao & Vấn đề thời sự",
-      days: [1557, 1563] as [number, number],
-      available: true,
-      isNew: true,
-      parts: [
-        { name: "Chuỗi cung ứng phần mềm, ký số và rủi ro phụ thuộc bên thứ ba", days: [1557, 1559] as [number, number] },
-        { name: "Shadow IT, rủi ro liên kết hệ thống và tài sản số", days: [1560, 1561] as [number, number] },
-        { name: "Rủi ro nhà cung cấp độc quyền và khoá nền tảng", days: [1562, 1563] as [number, number] },
-      ],
-    },
-    {
-      // Bốn môn FRM mỏng nhất so với tỷ trọng đề thi sau các đợt trước (xem
-      // lib/frm-track.ts): Foundations và Operational Resilience mỗi môn 4
-      // bài trên tỷ trọng 20%, Liquidity and Treasury 4 bài trên 15%, và
-      // Quantitative Analysis 6 bài trên 20%.
-      label: "Chặng 37",
-      name: "SRE: Nền tảng, vận hành, dung lượng & đo lường nâng cao",
-      days: [1613, 1636] as [number, number],
-      // 1650-1654 nằm ngoài dải liên tục vì dải 1637-1648 đã thuộc Chặng 38.
-      // Không có chúng ở đây thì năm bài đó tồn tại, sinh ra file, lên trang
-      // FRM - và không chặng nào dẫn tới, đúng lỗi mà Chặng 12 từng mắc.
-      extraLessonIds: [1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1659, 1660, 1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670, 1671, 1672],
-      available: true,
-      isNew: true,
-      parts: [
-        { name: "Foundations: phân loại sự cố, ngưỡng & hạn mức, đo hiệu quả, SLO, đạo đức, quản trị dữ liệu", days: [1613, 1618] as [number, number] },
-        {
-          name: "Foundations nâng cao: chi phí trên mỗi request & ngân sách hạ tầng, quản trị cấp lãnh đạo, bốn lựa chọn với rủi ro, rủi ro hệ thống, uy tín & chiến lược",
-          days: [0, 0] as [number, number],
-          extraLessonIds: [1650, 1651, 1652, 1653, 1654],
-        },
-        {
-          name: "Operational nâng cao: phân tích kịch bản, dữ liệu sự cố bên ngoài, rủi ro thay đổi, dịch vụ trọng yếu, rủi ro con người",
-          days: [0, 0] as [number, number],
-          extraLessonIds: [1655, 1656, 1657, 1658, 1659],
-        },
-        {
-          name: "Hiệu năng nâng cao: đo tải chuẩn, độ nhạy theo tài nguyên, ánh xạ nhân tố nghẽn, phân rã chi phí giữa các dịch vụ",
-          days: [0, 0] as [number, number],
-          extraLessonIds: [1660, 1661, 1662, 1663],
-        },
-        {
-          name: "San nốt bốn phần: đo lường nâng cao, rủi ro phụ thuộc và tập trung, dung lượng theo giờ và bộ đệm, quy kết hiệu năng và rủi ro nền tảng",
-          days: [0, 0] as [number, number],
-          extraLessonIds: [1664, 1665, 1666, 1667, 1668, 1669, 1670, 1671, 1672],
-        },
-        { name: "Operational Resilience: phân loại sự cố, tự đánh giá & KRI, an ninh mạng, gian lận, dự phòng tài nguyên, rủi ro hành vi", days: [1619, 1624] as [number, number] },
-        { name: "Capacity and Resources: hai loại dung lượng, thang tải, phân bổ chi phí, kiểm thử chịu tải, tài nguyên dự trữ, tự mở rộng", days: [1625, 1630] as [number, number] },
-        { name: "Quantitative Analysis: Bayes, MLE, Monte Carlo, bootstrapping, EVT, PCA", days: [1631, 1636] as [number, number] },
-      ],
-    },
-    {
-      // Hai môn còn lại của FRM: Valuation and Risk Models (30% Part I, tỷ
-      // trọng lớn nhất của cả phần, trước đợt này không có bài viết riêng
-      // nào) và Current Issues.
-      label: "Chặng 38",
-      name: "SRE: Đo lường, mô hình rủi ro & vấn đề thời sự",
-      days: [1637, 1648] as [number, number],
-      available: true,
-      isNew: true,
-      parts: [
-        { name: "Measurement and Risk Models: đường cơ sở, cây quyết định, mô hình hàng đợi, độ nhạy, chi phí biên, xếp hạng dịch vụ", days: [1637, 1642] as [number, number] },
-        { name: "Current Issues: AI/ML, điện năng trung tâm dữ liệu, hậu monolith, hạ tầng chủ quyền, tập trung đám mây, các sự cố diện rộng gần đây", days: [1643, 1648] as [number, number] },
-      ],
-    },
-    {
-      // Nghề "Kỹ sư sản phẩm thanh toán" trong lib/career-paths.ts (đã gỡ)
-      // là nghề duy nhất trong 44 nghề mà kho bài học thực sự mỏng - quét cả
-      // 689 bài chỉ ra vài bài chung chung để nối vào, trong khi mọi nghề khác
-      // đều đã có bài đúng chủ đề nằm rải rác. Chặng này lấp chỗ đó, và cố ý
-      // không dạy công nghệ: người làm tài chính sản phẩm không viết code, họ
-      // trả lời câu sản phẩm này kiếm tiền ở đâu và mỗi khách lãi hay lỗ.
-      label: "Chặng 39",
-      name: "Sản phẩm thanh toán và ví điện tử",
-      days: [1701, 1706] as [number, number],
-      available: true,
-      isNew: true,
-      parts: [
-        { name: "Doanh thu và đơn vị kinh tế: take rate, CAC/LTV, số dư ví", days: [1701, 1703] as [number, number] },
-        { name: "Phần mất đi và đường tới hoà vốn: lỗi giao dịch, gian lận, chi phí hạ tầng", days: [1704, 1706] as [number, number] },
-      ],
-    },
-    {
-      // Quét kho theo từng kỹ năng mà nghề "Chuyên viên Quan hệ Cổ đông" tự
-      // khai - soạn thông cáo, gặp nhà đầu tư, xử lý câu hỏi khó - cho ra 0
-      // bài. Nghề này trước đó học ghép từ các bài tài chính doanh nghiệp
-      // chung, tức là học được phần hiểu số mà không học phần chính: đứng
-      // trước người khác và chịu trách nhiệm về những con số đó.
-      label: "Chặng 40",
+      label: "Chặng 29",
       name: "Quan hệ nhà phát triển (DevRel)",
       days: [1711, 1715] as [number, number],
       available: true,
@@ -1177,7 +929,7 @@ export const TRACK_PROFESSIONAL = {
       // chiếu ra 0 bài. Ảnh hưởng xa hơn nghề vận hành: người đọc dashboard mà
       // chưa từng thấy hai vế của một sự kiện sẽ không giải thích được vì sao
       // số lượt phục vụ tăng mà người dùng vẫn đang chờ.
-      label: "Chặng 41",
+      label: "Chặng 30",
       name: "Nhật ký hệ thống và sổ sự kiện",
       days: [1721, 1725] as [number, number],
       // 1050 (so-su-kien-thuc-chien) là trang viết tay được kéo về corpus. Nó
@@ -1197,7 +949,7 @@ export const TRACK_PROFESSIONAL = {
       // bài. Người học biết định giá một toà nhà đã xây xong và không biết gì
       // về quãng đường từ mảnh đất tới toà nhà đó, trong khi phần lớn tiền của
       // ngành được kiếm và mất ở chính quãng ấy.
-      label: "Chặng 42",
+      label: "Chặng 31",
       name: "Dự án hạ tầng và trung tâm dữ liệu",
       days: [1731, 1735] as [number, number],
       available: true,
@@ -1212,7 +964,7 @@ export const TRACK_PROFESSIONAL = {
       // phí, dự phòng. Kho có ba bài ở mức giới thiệu và 0 bài về bảng tỷ lệ
       // tử vong, dự phòng nghiệp vụ hay tái bảo hiểm - nghề này đọc được mô tả
       // công việc của mình mà không học được một phép tính nào của nó.
-      label: "Chặng 43",
+      label: "Chặng 32",
       name: "Định mức tài nguyên và chi phí đám mây",
       days: [1741, 1745] as [number, number],
       available: true,
@@ -1227,7 +979,7 @@ export const TRACK_PROFESSIONAL = {
     // để viết mã; mấy chặng này dạy đặt LLM vào bên trong sản phẩm. Thuộc nhánh
     // "ai" (PROFESSIONAL_BRANCHES), trước đây chỉ có đúng Chặng 13.
     {
-      label: "Chặng 44",
+      label: "Chặng 33",
       name: "Gọi LLM qua API: token, chi phí và độ tin cậy",
       days: [1860, 1869] as [number, number],
       available: true,
@@ -1238,7 +990,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      label: "Chặng 45",
+      label: "Chặng 34",
       name: "RAG: cho mô hình đọc tài liệu của bạn",
       days: [1870, 1879] as [number, number],
       available: true,
@@ -1249,7 +1001,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      label: "Chặng 46",
+      label: "Chặng 35",
       name: "Tool use, agent và MCP trong hệ thống thật",
       days: [1880, 1889] as [number, number],
       available: true,
@@ -1260,7 +1012,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      label: "Chặng 47",
+      label: "Chặng 36",
       name: "Đánh giá hệ thống LLM (evals)",
       days: [1890, 1899] as [number, number],
       available: true,
@@ -1271,7 +1023,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      label: "Chặng 48",
+      label: "Chặng 37",
       name: "Bảo mật và quản trị hệ thống LLM",
       days: [1900, 1909] as [number, number],
       available: true,
@@ -1282,7 +1034,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      label: "Chặng 49",
+      label: "Chặng 38",
       name: "Pipeline dữ liệu và vận hành LLM",
       days: [1910, 1919] as [number, number],
       available: true,
@@ -1309,17 +1061,17 @@ export const TRACK_PROFESSIONAL = {
    bản Anh không còn dấu, và mọi `stageLabels` trỏ tới chặng có thật. */
 export const PROFESSIONAL_BRANCHES = [
   {
-    id: "corporate",
+    id: "services",
     label: "Kiến trúc dịch vụ",
     subtitle: "Ngôn ngữ, kiến trúc dịch vụ, API, vận hành & dựng hệ thống",
     emoji: "🏢",
-    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 15", "Chặng 24", "Chặng 31", "Chặng 33", "Chặng 40", "Chặng 41", "Chặng 42"],
+    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 20", "Chặng 26", "Chặng 28", "Chặng 29", "Chặng 30", "Chặng 31"],
   },
   {
-    id: "investment",
+    id: "systems",
     label: "Hệ thống & hiệu năng",
     subtitle: "Mạng, độ tin cậy, hàng đợi, tối ưu, hệ điều hành & quy trình nghiên cứu",
-    emoji: "📈",
+    emoji: "⚙️",
     stageLabels: [
       "Chặng 6",
       "Chặng 7",
@@ -1327,55 +1079,50 @@ export const PROFESSIONAL_BRANCHES = [
       "Chặng 9",
       "Chặng 10",
       "Chặng 12",
-      "Chặng 14",
+      "Chặng 15",
       "Chặng 16",
-      "Chặng 17",
-      "Chặng 19",
-      "Chặng 20",
-      "Chặng 25",
-      "Chặng 26",
+      "Chặng 21",
+      "Chặng 22",
       "Chặng 27",
-      "Chặng 32",
     ],
   },
   {
-    id: "banking",
+    id: "security-data",
     label: "Bảo mật, dữ liệu & tư vấn",
     subtitle: "Xác thực, phân quyền, tuân thủ, quản trị dữ liệu & sao lưu",
-    emoji: "🏦",
-    stageLabels: ["Chặng 18", "Chặng 21", "Chặng 34", "Chặng 35", "Chặng 36", "Chặng 37", "Chặng 38", "Chặng 39", "Chặng 43"],
+    emoji: "🔐",
+    stageLabels: ["Chặng 14", "Chặng 17", "Chặng 32"],
   },
   {
     id: "quant",
     label: "Đo lường & dữ liệu",
     subtitle: "Thống kê, hồi quy, chuỗi thời gian, SQL và benchmark cho phân tích",
     emoji: "📊",
-    stageLabels: ["Chặng 22", "Chặng 23"],
+    stageLabels: ["Chặng 18", "Chặng 19"],
   },
   {
-    // Tách khỏi nhánh "quant" thay vì nối thêm vào đó: nhánh kia phục vụ
-    // người làm phân tích tài chính cần công cụ định lượng, còn nhánh này là
+    // Tách khỏi nhánh "quant" thay vì nối thêm vào đó: nhánh này là
     // lộ trình của ba nghề dữ liệu (data-analyst, bi-analyst, data-engineer)
     // trong lib/career-paths.ts (đã gỡ) - cùng dùng SQL nhưng đích đến khác nhau.
     id: "data",
     label: "Phân tích dữ liệu",
     subtitle: "Python, làm sạch dữ liệu, dashboard, chọn chỉ số, thử nghiệm A/B và đạo đức dữ liệu",
     emoji: "🧮",
-    stageLabels: ["Chặng 29", "Chặng 30"],
+    stageLabels: ["Chặng 24", "Chặng 25"],
   },
   {
     id: "craft",
     label: "Kỹ năng nghề",
     subtitle: "Viết tài liệu, bảo vệ thiết kế, bài kiểm tra dựng hệ thống và lộ trình nghề nghiệp",
     emoji: "💼",
-    stageLabels: ["Chặng 28"],
+    stageLabels: ["Chặng 23"],
   },
   {
     id: "ai",
     label: "AI trong sản phẩm",
     subtitle: "Dùng AI để viết mã, rồi xây hệ thống có LLM bên trong: API, RAG, agent, evals, bảo mật, vận hành",
     emoji: "🤖",
-    stageLabels: ["Chặng 13", "Chặng 44", "Chặng 45", "Chặng 46", "Chặng 47", "Chặng 48", "Chặng 49"],
+    stageLabels: ["Chặng 13", "Chặng 33", "Chặng 34", "Chặng 35", "Chặng 36", "Chặng 37", "Chặng 38"],
   },
 ] as const;
 

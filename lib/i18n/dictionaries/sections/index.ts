@@ -14,7 +14,7 @@ import { adminThreeVi, adminThreeEn } from "./admin-three";
 import { adminTwoVi, adminTwoEn } from "./admin-two";
 import { bossStudyWorldVi, bossStudyWorldEn } from "./boss-study-world";
 import { certificateQuestsVi, certificateQuestsEn } from "./certificate-quests";
-import { cfaCalculatorsVi, cfaCalculatorsEn } from "./cfa-calculators";
+import { techCalculatorsVi, techCalculatorsEn } from "./tech-calculators";
 import { communityLearningVi, communityLearningEn } from "./community-learning";
 import { cosmeticsDuelVi, cosmeticsDuelEn } from "./cosmetics-duel";
 import { dataRestVi, dataRestEn } from "./data-rest";
@@ -75,7 +75,7 @@ import { searchUploadVi, searchUploadEn } from "./search-upload";
 
 export const viSections = {
   ...toolsSectionVi,
-  ...cfaCalculatorsVi,
+  ...techCalculatorsVi,
   ...adminOneVi,
   ...adminThreeVi,
   ...adminTwoVi,
@@ -141,7 +141,7 @@ export const viSections = {
 
 export const enSections: typeof viSections = {
   ...toolsSectionEn,
-  ...cfaCalculatorsEn,
+  ...techCalculatorsEn,
   ...adminOneEn,
   ...adminThreeEn,
   ...adminTwoEn,

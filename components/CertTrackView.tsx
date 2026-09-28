@@ -35,9 +35,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
 /**
- * Trang một chứng chỉ - bản chép của CchnTrackView bên tài chính: hero bài kế
- * tiếp + vòng tiến độ, dải chặng, bốn ô giá trị, danh sách miền mở/gập, và
- * banner động viên. Khác bản gốc ở hai chỗ:
+ * Trang một chứng chỉ: hero bài kế tiếp + vòng tiến độ, dải chặng, bốn ô giá
+ * trị, danh sách miền mở/gập, và banner động viên. Hai điểm đáng chú ý:
  *
  * - Mỗi miền có TỈ TRỌNG trong đề thật, và đó là thông tin quan trọng nhất
  *   của trang: nó nói nên học miền nào trước. Nên nó đứng thành một nhãn cạnh

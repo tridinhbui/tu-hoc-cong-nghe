@@ -16,8 +16,8 @@ interface DailyNewsQuizWidgetProps {
 
 /** Khối này khởi đầu chỉ có tin tức, nên tên component và các khoá từ điển
 * vẫn mang chữ "news". Giờ nó mang năm dạng câu hỏi: một người học vào mỗi
-* ngày sẽ gặp lần lượt tin vĩ mô, một phép tính, một thuật ngữ, một quyết
-* định cá nhân và một mẩu báo cáo tài chính. */
+* ngày sẽ gặp lần lượt tin tức, một phép tính, một thuật ngữ, một quyết
+* định cá nhân và một mẩu dữ liệu. */
 type QuizKind = "news" | "calc" | "term" | "decision" | "data";
 
 interface NewsQuiz {
@@ -140,7 +140,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
   const [selectedOpt, setSelectedOpt] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
-  // On the dashboard sidebar this is now treated as a "today in finance"
+  // On the dashboard sidebar this is now treated as a "today in tech"
   // block rather than an optional challenge, so it starts open by default.
   const [collapsed, setCollapsed] = useState<boolean>(false);
 

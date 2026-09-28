@@ -99,10 +99,10 @@ const CANONICAL_LESSON_IDS_BY_SLUG: Record<string, number> = {
   "tai-nguyen-tinh-toan-khan-hiem": 1005,
   "mot-lan-toi-uu-lon": 1001,
   "slo-cam-ket-do-tin-cay": 1017,
-  "financial-risk": 1029,
+  "phan-loai-rui-ro-ky-thuat": 1029,
   "doi-co-20-phan-tram-nang-luc-du": 1023,
   "chia-chi-phi-dich-vu-dung-chung": 1011,
-  "interim-comprehensive-income": 1012,
+  "so-lieu-giua-ky-va-thay-doi-an": 1012,
   "ty-le-no-ky-thuat": 1014,
   "chi-phi-moi-request-co-hop-ly": 1006,
   "nhieu-dich-vu-nho-hay-mot-dich-vu-lon": 1032,
@@ -704,7 +704,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       if (cardDrop.dropped && cardDrop.card) {
         toast.success(format(t.miscUi.lessonPageLayout.cardDropped, { ticker: cardDrop.card.ticker, name: cardDrop.card.name }));
         if (typeof window !== "undefined") {
-          window.dispatchEvent(new CustomEvent("thtcdn:finance-card-dropped", { detail: cardDrop.card }));
+          window.dispatchEvent(new CustomEvent("thtcdn:tech-card-dropped", { detail: cardDrop.card }));
         }
       }
     } catch (error) {

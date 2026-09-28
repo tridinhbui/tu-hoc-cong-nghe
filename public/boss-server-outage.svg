@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Server outage boss">
-  <!-- Boss "sự cố máy chủ": tủ rack phẳng, viền 1px kiểu trang giới thiệu, một đèn đỏ báo lỗi. Thay cho ảnh bò tót Phố Wall của trang tài chính cũ. -->
+  <!-- Boss "sự cố máy chủ": tủ rack phẳng, viền 1px kiểu trang giới thiệu, một đèn đỏ báo lỗi. -->
   <rect x="0" y="0" width="400" height="400" fill="#0c0a09"/>
   <g stroke="#44403b" stroke-width="2" fill="none">
     <path d="M40 360 H360"/>

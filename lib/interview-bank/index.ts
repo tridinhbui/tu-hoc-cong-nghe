@@ -42,9 +42,7 @@ export function getInterviewQuestionById(id: number): InterviewQuestion | undefi
   return TECH_INTERVIEW_QUESTIONS.find((q) => q.id === id);
 }
 
-/** Nhãn hiển thị của một chủ đề. Chủ đề trong kho công nghệ đã viết sẵn ở
- *  dạng hiển thị; hàm này giữ đúng chữ ký của bản tài chính (nơi có nhãn mang
- *  dấu ngoặc kép cần gỡ) để các màn chép sang dùng được nguyên. */
+/** Nhãn hiển thị của một chủ đề: gỡ dấu ngoặc kép nếu có. */
 export function formatCategoryLabel(category: string): string {
   return category.replace(/["“”]/g, "").trim();
 }

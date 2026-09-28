@@ -130,14 +130,14 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
       setSaveState("saved");
       // The toast used to just say the card was added, without saying where
       // "bộ Flashcards của bạn" actually is - and the review page lives at
-      // /cfa/flashcards, which has no navbar entry, so a learner saving terms
+      // /ghi-chu, so a learner saving terms
       // from a lesson had no way to find them again. A reader asked exactly
       // that: "làm sao để ôn tập những từ đã lưu ạ". The action makes the
       // toast the answer instead of a dead end.
       toast.success(format(t.glossaryTerm.savedToast, { term }), {
         action: {
           label: t.glossaryTerm.reviewNowAction,
-          onClick: () => router.push("/cfa/flashcards"),
+          onClick: () => router.push("/ghi-chu"),
         },
       });
 

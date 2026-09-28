@@ -12,7 +12,7 @@
 // "Đạt level 2" - mới nằm ở đây, dưới dạng một mẫu có tham số.
 //
 // `label` là TUỲ CHỌN, và sáu trong bảy trục KHÔNG có nó: "Valuation",
-// "Interview readiness", "CFA/FRM/IB readiness", "Excel / Modeling" vốn đã là
+// "Interview readiness", "Certification readiness" vốn đã là
 // tiếng Anh trong dữ liệu gốc - đó là từ nghề nghiệp người học gặp trong tin
 // tuyển dụng thật. Chép chúng sang đây tạo ra một cặp giá trị giống hệt nhau
 // giữa hai ngôn ngữ, mà lib/__tests__/dictionary-parity.test.ts không phân

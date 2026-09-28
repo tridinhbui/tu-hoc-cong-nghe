@@ -6,7 +6,7 @@ const DIACRITICS =
   /[àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ]/i;
 
 // `SPECIAL_GAMES` có 8 id trong kiểu nhưng chỉ 3 mục có chữ; ba game còn lại
-// (world boss, PvP, VN30 sim) dựng chữ ở nơi khác. Bộ kiểm chỉ đòi những mục
+// (world boss, PvP, ...) dựng chữ ở nơi khác. Bộ kiểm chỉ đòi những mục
 // THỰC SỰ có trong mảng, nên thêm một game đặc biệt mới sẽ làm đỏ build.
 const WITH_COPY = [...GAMES, ...SPECIAL_GAMES];
 

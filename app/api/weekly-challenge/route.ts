@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Thử thách lấy từ Cloudflare thì KHÔNG có đường dịch nào. Nội dung nằm trong
-  // cơ sở dữ liệu, giống quiz module CFA mà AGENTS.md đã ghi: không script
+  // cơ sở dữ liệu: không script
   // tĩnh nào với tới được, và chỗ duy nhất chặn được là đường ghi. Hiện chưa
   // có đường ghi nào, nên chưa có gì để chặn - ghi lại để lần đầu ai đó thêm
   // một hàng vào bảng ấy thì biết là mình vừa tạo ra nội dung không dịch được.

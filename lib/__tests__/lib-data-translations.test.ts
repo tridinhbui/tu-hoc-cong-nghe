@@ -24,7 +24,7 @@ const en = libDataEn.libData as unknown as Record<string, any>;
 const vi = libDataVi.libData as unknown as Record<string, any>;
 
 describe("libData: module dữ liệu dịch qua từ điển", () => {
-  it("mọi thẻ tài chính đều có khoá trong cả hai ngôn ngữ", () => {
+  it("mọi thẻ công nghệ đều có khoá trong cả hai ngôn ngữ", () => {
     const ids = TECH_CARDS.map((c) => c.id);
     const missingEn = ids.filter((id) => !en.techCards?.[id]);
     const missingVi = ids.filter((id) => !vi.techCards?.[id]);

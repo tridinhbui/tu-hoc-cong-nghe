@@ -23,7 +23,7 @@ export const leaderboardHonorsVi = {
     badges: ["Bộ sưu tập huy hiệu","Thợ săn huy hiệu","Người mở khóa","Nhà sưu tầm vĩ đại","Danh hiệu đầy mình"],
     game: ["Huyền thoại trò chơi","Đại kiện tướng công nghệ","Cao thủ toàn năng","Thần bài công nghệ","Kỷ lục gia trò chơi"],
     career: ["Huyền thoại sự nghiệp","Lãnh đạo tương lai","Chuyên gia lộ trình","Kiến trúc sư sự nghiệp","Tiên phong ngành"],
-    cfa: ["Chiến thần chứng chỉ AWS","Bậc thầy Flashcard & Formula","Chuyên gia bảo mật & đo lường","Kiện tướng chứng chỉ","Tiên phong lộ trình chứng chỉ"],
+    certification: ["Chiến thần chứng chỉ AWS","Bậc thầy Flashcard & Formula","Chuyên gia bảo mật & đo lường","Kiện tướng chứng chỉ","Tiên phong lộ trình chứng chỉ"],
     community: ["Đại sứ Cộng đồng","Hỗ trợ viên tích cực","Người truyền cảm hứng","Chuyên gia chia sẻ","Thành viên sôi nổi"],
     },
     composite: {
@@ -203,7 +203,7 @@ export const leaderboardHonorsEn: typeof leaderboardHonorsVi = {
     badges: ["Badge Collection","Badge Hunter","The Unlocker","Great Collector","Covered In Titles"],
     game: ["Game Legend","Grand Champion Of Technology","All-Round Ace","God Of The Tech Deck","Game Record Holder"],
     career: ["Career Legend","Future Leader","Path Specialist","Career Architect","Industry Pioneer"],
-    cfa: ["AWS Certification Champion","Master Of Flashcards & Formulas","Security & Measurement Specialist","Certification Champion","Certification Path Pioneer"],
+    certification: ["AWS Certification Champion","Master Of Flashcards & Formulas","Security & Measurement Specialist","Certification Champion","Certification Path Pioneer"],
     community: ["Community Ambassador","Active Supporter","Source Of Inspiration","Sharing Specialist","Lively Member"],
     },
     composite: {

@@ -1,24 +1,5 @@
 import type { Lesson } from "./lesson-types";
 
-// Ba lỗ hổng của chặng "Đọc 3 báo cáo tài chính" (bài 41-60), tìm ra bằng cách
-// đếm chứ không bằng cách đọc lướt:
-//
-// 1. THUYẾT MINH. 43 bài trong kho có nhắc tới thuyết minh, nhưng không bài nào
-//    dạy cách đọc nó - trong khi đó mới là nơi chứa chính sách kế toán, nợ ngoài
-//    bảng, giao dịch bên liên quan và thuế hoãn lại. Người học xong chặng biết
-//    đọc ba bảng số và không biết phần chữ dài gấp ba đó dùng để làm gì.
-// 2. PHÂN TÍCH THEO TỶ TRỌNG. Không bài nào có "common-size" hay "tỷ trọng"
-//    trong tiêu đề. Bài 80 dạy dùng tỷ số để so sánh doanh nghiệp, nhưng bước
-//    chuẩn hoá báo cáo về cùng một mẫu số - việc phải làm TRƯỚC khi so - thì
-//    không có ở đâu.
-// 3. Ý KIẾN KIỂM TOÁN. Có tám bài nhắc tới nó trong tiêu đề, tất cả đều nằm ở
-//    chuyên đề kiểm toán (1531-1535). Người đi theo lộ trình ngày-qua-ngày của
-//    chặng 26-60 không gặp khái niệm "ý kiến ngoại trừ" ở bất kỳ đâu, dù nó là
-//    dòng đầu tiên đáng đọc của một bộ báo cáo.
-//
-// Đặt ở file riêng thay vì nhét vào lib/lessons.ts: file kia đang là 60 nghìn
-// dòng và có phiên khác làm việc trên đó cùng lúc.
-
 export const READING_STATEMENTS_LESSONS: Lesson[] = [
   {
     "id": 1690,

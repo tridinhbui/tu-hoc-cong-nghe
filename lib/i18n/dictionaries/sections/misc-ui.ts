@@ -38,7 +38,7 @@ export const miscUiVi = {
     emojiPicker: {
       selectEmoji: "Chọn emoji",
     },
-    financialRpgWorldMap: {
+    techRpgWorldMap: {
       levelLocked: "Công trình này yêu cầu Level {level}! Hãy hoàn thành thêm bài học để mở khóa.",
       regionDiscovered: "ĐÃ GIẢI MÃ VÙNG ĐẤT BÍ ẨN! Thưởng thám hiểm +5 Coins!",
       underConstruction: 'Vùng đất "{name}" đang trong quá trình mở rộng & thi công! Yêu cầu Level {level} để khám phá.',
@@ -197,7 +197,7 @@ export const miscUiEn: typeof miscUiVi = {
     emojiPicker: {
       selectEmoji: "Choose emoji",
     },
-    financialRpgWorldMap: {
+    techRpgWorldMap: {
       levelLocked: "This building requires Level {level}! Finish more lessons to unlock it.",
       regionDiscovered: "MYSTERY REGION UNCOVERED! Exploration bonus +5 Coins!",
       underConstruction: '"{name}" is still under expansion & construction! Requires Level {level} to explore.',

@@ -41,7 +41,7 @@ export const LEVELS = [
   { level: 6, name: "Kỹ sư cao cấp", minXp: 900, color: "emerald", emoji: "👑" },
   { level: 7, name: "Chuyên gia hệ thống", minXp: 1500, color: "emerald", emoji: "🔥" },
   { level: 8, name: "Kiến trúc sư phần mềm", minXp: 2400, color: "amber", emoji: "💎" },
-  { level: 9, name: "Ứng viên chứng chỉ AWS", minXp: 3600, minCfaCompleted: 5, color: "amber", emoji: "🎓" },
+  { level: 9, name: "Ứng viên chứng chỉ AWS", minXp: 3600, color: "amber", emoji: "🎓" },
   { level: 10, name: "Huyền thoại mã nguồn mở", minXp: 5200, color: "rose", emoji: "🦁" },
   { level: 11, name: "Giám đốc kỹ thuật", minXp: 7500, color: "purple", emoji: "🏛️" },
   { level: 12, name: "Kiến trúc sư trưởng nền tảng", minXp: 10500, color: "indigo", emoji: "🌐" },
@@ -62,91 +62,17 @@ export function getRequiredLevelForBuilding(buildingId: string): number {
   return 1; // Mở khóa trọn bộ 100% tính năng cho tất cả học viên
 }
 
-export const DOMAINS = [
-  "accounting",
-  "valuation",
-  "corporate_finance",
-  "economics",
-  "investment",
-  "risk_management",
-  "ai_for_finance"
-] as const;
-
-export type DomainType = typeof DOMAINS[number];
-
-export const DOMAIN_WEIGHTS: Record<DomainType, number> = {
-  accounting: 1.0,
-  corporate_finance: 1.0,
-  valuation: 1.2,
-  economics: 1.0,
-  investment: 1.0,
-  risk_management: 1.2,
-  ai_for_finance: 1.0
-};
-
-// DOMAIN_NAMES đã bị gỡ: nó là export chết (không nơi nào import) và
-// mang bảy tên lĩnh vực tài chính. Nhãn hiển thị thật đi qua từ điển
-// (t.domains[...]), nơi corporate_finance đã là "Backend & API".
-//
-// Bản thân các KHOÁ - corporate_finance, ai_for_finance - thì ở lại: chúng là
-// giá trị đã ghi xuống Cloudflare kèm ràng buộc check trong
-// 20260806_gamification_system.sql, nên đổi tên là mồ côi mọi hàng đã có.
-
-/** Công thức tính XP yêu cầu cho mỗi level của từng Domain: 200 * (L_d - 1)^1.5 + 100 */
-export function getDomainXpForLevel(level: number): number {
-  if (level <= 1) return 0;
-  return Math.floor(200 * Math.pow(level - 1, 1.5) + 100);
-}
-
-/** Tính level của Domain dựa trên XP */
-export function getDomainLevelByXp(xp: number): number {
-  let level = 1;
-  while (xp >= getDomainXpForLevel(level + 1)) {
-    level++;
-  }
-  return level;
-}
-
-/** Lấy tiến trình % của Domain level hiện tại */
-export function getDomainLevelProgress(xp: number): number {
-  const currentLevel = getDomainLevelByXp(xp);
-  const currentLevelMinXp = getDomainXpForLevel(currentLevel);
-  const nextLevelMinXp = getDomainXpForLevel(currentLevel + 1);
-  
-  const xpInCurrentLevel = xp - currentLevelMinXp;
-  const xpNeededForLevel = nextLevelMinXp - currentLevelMinXp;
-  
-  return Math.round((xpInCurrentLevel / xpNeededForLevel) * 100);
-}
-
-/** Tính toán Overall Finance Level từ danh sách Domain Levels */
-export function calculateOverallLevel(domainLevels: Record<DomainType, number>): number {
-  let weightedSum = 0;
-  for (const domain of DOMAINS) {
-    const lvl = domainLevels[domain] || 1;
-    weightedSum += (DOMAIN_WEIGHTS[domain] ?? 1.0) * lvl;
-  }
-  return Math.floor(weightedSum);
-}
-
-export function getLevelByXp(xp: number, cfaCompleted: number = 0) {
-  const level = [...LEVELS]
-    .reverse()
-    .find((l) => xp >= l.minXp && cfaCompleted >= (l.minCfaCompleted ?? 0));
+export function getLevelByXp(xp: number) {
+  const level = [...LEVELS].reverse().find((l) => xp >= l.minXp);
   return level || LEVELS[0];
-}
-
-/** For a level the user hasn't reached purely because of the CFA gate (XP is enough), how many more CFA items are needed. */
-export function getCfaGateRemaining(level: (typeof LEVELS)[number], cfaCompleted: number): number {
-  return Math.max(0, (level.minCfaCompleted ?? 0) - cfaCompleted);
 }
 
 export function getNextLevel(currentLevel: number) {
   return LEVELS.find((l) => l.level === currentLevel + 1);
 }
 
-export function getXpToNextLevel(currentXp: number, cfaCompleted: number = 0) {
-  const currentLevel = getLevelByXp(currentXp, cfaCompleted);
+export function getXpToNextLevel(currentXp: number) {
+  const currentLevel = getLevelByXp(currentXp);
   const nextLevel = getNextLevel(currentLevel.level);
 
   if (!nextLevel) return 0; // Already at max level
@@ -154,8 +80,8 @@ export function getXpToNextLevel(currentXp: number, cfaCompleted: number = 0) {
   return Math.max(0, nextLevel.minXp - currentXp);
 }
 
-export function getLevelProgress(currentXp: number, cfaCompleted: number = 0) {
-  const currentLevel = getLevelByXp(currentXp, cfaCompleted);
+export function getLevelProgress(currentXp: number) {
+  const currentLevel = getLevelByXp(currentXp);
   const nextLevel = getNextLevel(currentLevel.level);
 
   if (!nextLevel) return 100; // Max level reached

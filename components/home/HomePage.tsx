@@ -763,7 +763,7 @@ export default function HomePage() {
                   links: [
                     ["/dashboard", t.home.footer.trackPersonal],
                     ["/dashboard", t.home.footer.trackCorporate],
-                    ["/dashboard", t.home.footer.trackCfa],
+                    ["/dashboard", t.home.footer.trackCertification],
                     ["/game", t.home.footer.trackGame],
                   ],
                 },

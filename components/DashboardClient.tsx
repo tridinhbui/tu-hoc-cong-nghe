@@ -42,7 +42,7 @@ import ReferralPromptModal from "@/components/ReferralPromptModal";
 import DiagnosticPlacementModal from "@/components/DiagnosticPlacementModal";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
 import { hasCompletedOnboarding, completeOnboarding } from "@/lib/cloudflare-onboarding";
-import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/cloudflare-user";
+import { getUserProfile, recalculateUserStats, getLeaderboardByMetric } from "@/lib/cloudflare-user";
 import { syncLocalLevelExams } from "@/lib/cloudflare-level-exams";
 import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/cloudflare-dashboard-optimized";
 import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
@@ -195,8 +195,8 @@ function isDashboardTab(value: string | null): value is DashboardTab {
  * but they were persisted, so a learner whose last visit before that commit
  * ended on one still has it in localStorage, and restoring it opens the
  * dashboard on a widget with no lesson list below it and no track card
- * selected. That is the same stale-tab trap c3f7ec9 fixed for "career" and the
- * CFA/FRM commit fixed before it; these were just left in the union.
+ * selected. That is the same stale-tab trap c3f7ec9 fixed for "career"; these
+ * were just left in the union.
  */
 function isTrackTab(tab: DashboardTab): tab is "personal" | "professional" {
   return tab === "personal" || tab === "professional";
@@ -257,10 +257,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   // after merging server data forces a re-render, which makes useProgress()
   // pick up the freshly-merged localStorage snapshot (see mergeCompletedLessons).
   const [, forceProgressResync] = useState(0);
-  // CFA và FRM đã tách khỏi dashboard thành hai trang riêng có mục trong
-  // navbar, nên "cfa" không còn là một track ở đây. Giá trị cũ còn trong
-  // localStorage của người đang ở tab đó được quy về "personal" - nếu không họ
-  // mở dashboard ra và không thẻ nào được chọn, nội dung bên dưới thì trống.
+  // Giá trị track cũ không còn hợp lệ trong localStorage được quy về
+  // "personal" - nếu không người học mở dashboard ra và không thẻ nào được
+  // chọn, nội dung bên dưới thì trống.
   const [activeTrack, setActiveTrackState] = useState<"personal" | "professional">(() => {
     if (typeof window === "undefined") return "personal";
     const saved = window.localStorage.getItem("activeTrack");
@@ -280,16 +279,16 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       : "personal";
   });
   const [professionalBranch, setProfessionalBranch] = useState<ProfessionalBranchId>(() => {
-    if (typeof window === "undefined") return "corporate";
-    const saved = window.localStorage.getItem("professionalBranch");
+    if (typeof window === "undefined") return "services";
+    const raw = window.localStorage.getItem("professionalBranch");
+    // Id cũ đã lưu trước khi đổi tên nhánh.
+    const legacy: Record<string, ProfessionalBranchId> = { corporate: "services", investment: "systems", banking: "security-data" };
+    const saved = raw ? (legacy[raw] ?? raw) : raw;
     // Validated against PROFESSIONAL_BRANCHES rather than a hand-written list
-    // of ids. The hand-written version only ever recognised "investment", so
-    // the five branches added after it (banking, quant, data, craft, ai) were
-    // written to localStorage and then silently discarded on the next load -
-    // the learner picked a branch, came back, and was on "corporate" again.
+    // of ids, so every branch written to localStorage survives the next load.
     return PROFESSIONAL_BRANCHES.some((b) => b.id === saved)
       ? (saved as ProfessionalBranchId)
-      : "corporate";
+      : "services";
   });
 
   // Dải pill chỉ hiện mô tả của nhánh ĐANG CHỌN, nên sáu nhánh còn lại là sáu
@@ -327,8 +326,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   // while the highlighted card and the branch strip came from activeDashboardTab.
   // Any write that touched one and not the other therefore produced a screen
   // that contradicted itself - professional stages under a highlighted
-  // "Cá Nhân" card, with the branch pills ("Tài chính doanh nghiệp" first among
-  // them) not rendered at all. Onboarding was exactly such a write. Deriving
+  // "Cá Nhân" card, with the branch pills not rendered at all. Onboarding was exactly such a write. Deriving
   // from one value makes that class of bug unrepresentable rather than fixing
   // the one caller that happened to hit it.
   const isTrackView = isTrackTab(activeDashboardTab);
@@ -373,7 +371,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>>(new Map());
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
   const levelStripRef = useRef<HTMLDivElement>(null);
-  const [cfaCompletedForLevel, setCfaCompletedForLevel] = useState(0);
   const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
   const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
   const [showBossBattle, setShowBossBattle] = useState(false);
@@ -441,23 +438,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           grouped.set(lvl.level, []);
         }
         entries.forEach((entry) => {
-          // Bảng xếp hạng XP không trả về số mô-đun CFA của từng người, nên
-          // `cfaCompleted` ở đây luôn là 0 (giá trị mặc định của tham số).
-          //
-          // Chú thích cũ ở chỗ này nói rằng hệ quả là "một vài người XP cao mà
-          // chưa học CFA CÓ THỂ hiện dưới L9". Điều đó sai, và sai theo đúng
-          // chiều ngược lại: cfaCompleted = 0 không bao giờ vượt được cổng
-          // `minCfaCompleted: 5` của L9, nên KHÔNG AI lọt vào L9 - cả dải
-          // 3.600-5.199 XP bị dồn xuống L8, còn ai đủ 5.200 thì nhảy thẳng lên
-          // L10. Trên giao diện, L9 là một ô vĩnh viễn trống, và đó chính là
-          // thứ một người học báo lỗi: họ 5.036 XP, thấy mình ở nhóm L8, cạnh
-          // tấm thẻ L9 ghi mỗi ngưỡng XP thấp hơn số của họ.
-          //
-          // Xếp theo XP đơn thuần ở đây thì L9 đầy lên nhưng danh sách sẽ mâu
-          // thuẫn với cấp đã lưu của chính những người đó (recalculateUserStats
-          // có xét cổng CFA). Sửa đúng là để truy vấn trả kèm số mô-đun CFA;
-          // trong lúc chờ, thẻ L9 đã ghi rõ cổng CFA nên ô trống ấy tự giải
-          // thích được.
           const lvl = getLevelByXp(entry.value).level;
           if (grouped.has(lvl)) {
             grouped.get(lvl)?.push({ name: entry.name, xp: entry.value, avatarUrl: entry.avatarUrl, userId: entry.user_id });
@@ -470,19 +450,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       cancelled = true;
     };
   }, []);
-
-  useEffect(() => {
-    if (!user?.id) return;
-    let cancelled = false;
-    getCfaCompletedCount(user.id)
-      .then((count) => {
-        if (!cancelled) setCfaCompletedForLevel(count);
-      })
-      .catch((err) => console.error("Error loading certification completed count:", err));
-    return () => {
-      cancelled = true;
-    };
-  }, [user?.id, completed.length]);
 
   // Nudge learners toward the knowledge-review challenge automatically, at
   // most once per calendar day, once they've actually completed enough
@@ -580,7 +547,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     };
   }, [sorted, track, activeTrack, professionalBranch]);
 
-  // ── Port từ trang Học bài bản tài chính ──
   // Số người vừa học từng chặng (dòng "N người vừa học chặng này") và số người
   // đã học xong từng bài. Chỉ tải ở /hoc-bai - trang tổng quan không dựng
   // danh sách chặng.
@@ -649,8 +615,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     return null;
   }, [track, lessonsByStageLabel, completed]);
 
-  /** Bản tài chính tách phụ đề ra một tệp tải lười. Ở đây phụ đề đã nằm sẵn
-   *  trong lessonsMeta, nên chỉ cần tra. */
+  /** Phụ đề đã nằm sẵn trong lessonsMeta, nên chỉ cần tra. */
   const subtitleById = useMemo(() => new Map(lessonsMeta.map((l) => [l.id, l.subtitle])), [lessonsMeta]);
   const renderSubtitle = (lessonId: number) => subtitleById.get(lessonId) ?? null;
 
@@ -701,8 +666,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         // selected AND whether the professional branch strip is rendered at
         // all. Setting only the former left a learner who picked "chuyên
         // ngành" during onboarding on activeDashboardTab === "personal", so
-        // the branch pills - "Tài chính doanh nghiệp" first among them - never
-        // appeared, and no reload fixed it because the key was never written.
+        // the branch pills never appeared, and no reload fixed it because the key was never written.
         setActiveTrack(selectedTrack);
         localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
         setShowOnboarding(false);
@@ -1155,8 +1119,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           {/* Level map is progress/gamification, so it stays on the overview
               route and is not repeated above the learning path. */}
           {!isLessonsView && user?.id && (() => {
-            const currentUserLevel = getLevelByXp(userXp, cfaCompletedForLevel).level;
-            const levelProgress = getLevelProgress(userXp, cfaCompletedForLevel);
+            const currentUserLevel = getLevelByXp(userXp).level;
+            const levelProgress = getLevelProgress(userXp);
             const openLevel = activeTooltipLevel;
 
             // Mảng ACCENTS cầu vồng (xám/xanh trời/lục lam/tím/cam/đỏ/vàng
@@ -1261,8 +1225,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                       <button
                                         onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
                                         // Chiều cao là SÀN, không phải chiều cao cố định. `h-[88px]` được chọn cho
-                                        // tên cấp tiếng Việt; "Financial Advisor" và "Investing Legend"
-                                        // dài hơn, nên dòng XP và huy hiệu số người bị đẩy ra ngoài khung.
+                                        // tên cấp tiếng Việt ngắn; tên cấp dài
+                                        // hơn làm dòng XP và huy hiệu số người bị đẩy ra ngoài khung.
                                         // Hàng cha là `items-stretch`, nên thẻ cao nhất kéo cả hàng theo -
                                         // chúng vẫn bằng nhau, chỉ là bằng nhau ở chiều cao đủ chứa chữ.
                                         aria-expanded={isOpen}
@@ -1290,17 +1254,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                           {t.levelTitles[lvl.level] ?? lvl.name}
                                         </p>
                                         <p className="font-mono text-[9.5px] tabular-nums text-ink-muted mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
-                                        {/* Cấp có cổng CFA phải nói ra, nếu không thẻ đang nói dối
-                                            bằng cách nói thiếu. L9 đòi 3.600 XP VÀ 5 mô-đun CFA
-                                            (lib/levels.ts), nhưng thẻ chỉ ghi ngưỡng XP - nên người học
-                                            5.036 XP thấy mình đứng ở L8 cạnh một tấm thẻ ghi "3.600 XP"
-                                            và kết luận hệ thống xếp sai cấp. Họ suy luận đúng theo đúng
-                                            cái luật duy nhất được cho xem. */}
-                                        {lvl.minCfaCompleted ? (
-                                          <p className="text-[9px] text-warn leading-tight">
-                                            {format(t.finalOne.dashboardClient.levelCfaGate, { count: lvl.minCfaCompleted })}
-                                          </p>
-                                        ) : null}
                                         <div className={`inline-flex items-center gap-1 font-mono text-[9px] font-medium tabular-nums mt-1 px-1.5 py-px rounded-xs border w-fit ${isReached ? "border-stone-300 text-ink-body dark:border-stone-700" : "border-stone-200 text-ink-faint dark:border-stone-800"}`}>
                                           <Users className="w-2.5 h-2.5" aria-hidden /> {members.length}
                                         </div>
@@ -1518,8 +1471,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
           {/* Left Column: Learning Path (7 columns on desktop xl+) */}
           {/* min-h keeps this column's height roughly stable across track
-              switches (CFA's content is much shorter than the 10-stage
-              accordion) - without it, the sticky right sidebar (below)
+              switches (tracks differ a lot in length) - without it, the sticky right sidebar (below)
               visibly jumps/flashes as the browser recalculates its
               scrollable range every time this column's height changes. */}
           <div className={`space-y-5 min-w-0 ${isLessonsView ? "xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-0.5"}`}>
@@ -2540,7 +2492,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                 Vẫn chỉ hiện ở chế độ xem bài, y như trước khi dời: trang tổng
                 quan chưa từng dựng hai thẻ này. */}
-            {/* Cột phải của /hoc-bai, chép từ bản tài chính theo đúng thứ tự:
+            {/* Cột phải của /hoc-bai, theo thứ tự:
                 sổ tay và câu sai (việc làm TRONG lúc học) đứng đầu, rồi thử
                 thách mỗi ngày, thử thách tiếp theo, và cộng đồng hôm nay. Ôn
                 tập theo lịch và gợi ý bù lỗ hổng đã xuống cuối cột trái. */}
@@ -2561,7 +2513,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       {t.dashboard.nextChallenge}
                     </span>
                     <h4 className="text-sm font-black tracking-tight text-ink-max mt-0.5">
-                      {format(t.dashboard.rigorousExamTitle, { level: getLevelByXp(userXp, cfaCompletedForLevel).level + 1 })}
+                      {format(t.dashboard.rigorousExamTitle, { level: getLevelByXp(userXp).level + 1 })}
                     </h4>
                   </div>
                 </div>
@@ -2626,9 +2578,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                     KHÔNG dựng thẻ mới. Widget này đã tồn tại và đang chạy ở
                     /kiem-tra; chú thích trong chính nó còn nói nó được thiết
-                    kế cho thanh bên dashboard ("On the dashboard sidebar this
-                    is now treated as a 'today in finance' block"), tức là nó
-                    từng ở đây và bị gỡ ra. Viết một thẻ quiz thứ hai sẽ tách
+                    kế cho thanh bên dashboard, tức là nó từng ở đây và bị gỡ ra. Viết một thẻ quiz thứ hai sẽ tách
                     đôi cả kho câu hỏi lẫn đường ghi phần thưởng.
 
                     Hiện ở cả hai nơi KHÔNG cộng XP hai lần: `claimQuestReward`
@@ -2678,8 +2628,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         />
       )}
 
-      {/* Cổng thử thách kiến thức đã gỡ cùng /api/knowledge-challenge: bộ câu
-          hỏi của nó lấy từ các môn CFA/FRM, tức là chính nội dung tài chính.
+      {/* Cổng thử thách kiến thức chưa được dựng lại ở đây:
           `challengeGateLesson` giờ chỉ còn được đặt rồi xoá mà không mở gì -
           khi có bộ câu hỏi công nghệ thì dựng lại cổng ở đúng chỗ này. */}
 
@@ -2714,7 +2663,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         <BossBattleModal
           bossName={t.dashboard.boss.name}
           bossEmoji="🐉"
-          userLevel={getLevelByXp(userXp, cfaCompletedForLevel).level}
+          userLevel={getLevelByXp(userXp).level}
           equipments={equippedGear}
           questions={[
             // `correct: 0` is safe here: BossBattleModal shuffles via
@@ -2774,7 +2723,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
       {showPvpModal && (
         <BossBattleModal
-          userLevel={getLevelByXp(userXp, cfaCompletedForLevel).level}
+          userLevel={getLevelByXp(userXp).level}
           equipments={equippedGear}
           completedLessonCount={completed.length}
           onClose={() => setShowPvpModal(false)}

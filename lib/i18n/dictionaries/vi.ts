@@ -5,7 +5,7 @@
 // Scope note: this covers UI chrome. Lesson content is translated separately,
 // per lesson, under lib/lessons-i18n/<locale>/ - see lib/lesson-translations.js
 // and the "Translating lessons" section of AGENTS.md. It is a patch-per-lesson
-// rather than a dictionary because it is 715 lessons of finance pedagogy, not
+// rather than a dictionary because it is hundreds of lessons of prose, not
 // labels, and it lands in batches: `content.viOnlyBadge` is what an English
 // reader sees on a lesson whose turn has not come yet.
 
@@ -214,7 +214,7 @@ export const vi = {
       ],
       previewLabel: "Bài mở đầu: Độ phức tạp là ngôn ngữ của hiệu năng",
     },
-    cfa: {
+    certification: {
       tab: "Chứng chỉ công nghệ",
       subtitle: "AWS Solutions Architect (Associate) · đang xây dựng",
       description:
@@ -375,7 +375,7 @@ export const vi = {
       tracksTitle: "Lộ trình học",
       trackPersonal: "Nền tảng công nghệ",
       trackCorporate: "Công nghệ chuyên sâu",
-      trackCfa: "Chứng chỉ AWS Solutions Architect",
+      trackCertification: "Chứng chỉ AWS Solutions Architect",
       trackGame: "Game Kingdom RPG",
       ecoTitle: "Hệ sinh thái",
       ecoStudyRoom: "Phòng học nhóm (3D)",
@@ -679,7 +679,7 @@ export const vi = {
     explanationTitle: "Đáp án đúng & giải thích",
     flipBack: "Lật về mặt câu hỏi",
     correctAnswer: "Đáp án chính xác:",
-    financeExplanation: "Giải thích kỹ thuật:",
+    techExplanation: "Giải thích kỹ thuật:",
     noExplanation: "Không có giải thích chi tiết cho câu hỏi này.",
 
     ratePrompt: "Đánh giá mức độ nhớ để xếp lịch Spaced Repetition tiếp theo:",
@@ -698,7 +698,6 @@ export const vi = {
     rateSrs: "Đánh giá SRS:",
   },
 
-  // components/tools/ValuationDCFCalculator.tsx
 
   // components/TechRpgWorldMap.tsx - the Game Kingdom map.
   worldMap: {
@@ -896,7 +895,6 @@ export const vi = {
 
   // app/(app)/phong-van-ky-thuat/page.tsx - the IB interview drill.
   interview: {
-    // Chép từ bản tài chính cùng trang /phong-van-ky-thuat, chữ đổi sang nghề công nghệ.
     missedTitle: "Câu bạn hay sai",
     missedRatio: "sai {wrong}/{attempted}",
     missedLoading: "Đang xem lại bài đã làm...",
@@ -1307,23 +1305,6 @@ export const vi = {
     // bài cùng chữ đó lại đọc thành "đăng vào mục Tất cả", tức một mục có thật.
     topicNone: "Không phân loại",
 
-    // MarketSentimentWidget
-    // TOPICS labels. `id`, `tag`, `icon` and `tone` stay in the component: the
-    // hashtag is functional - getPostCategory classifies a post by looking for
-    // it in the stored content - so it must never be translated.
-    //
-    // Chủ đề Thành tựu đã bỏ khỏi bảng này: nó gần như toàn bộ là bài do hệ
-    // thống tự đăng, nên nó là một luồng máy sinh ra được cho một cái nhãn chứ
-    // không phải một chủ đề người ta viết vào.
-    topics: {
-      all: { label: "Tất cả", short: "Tất cả" },
-      "meo-tai-chinh": { label: "Mẹo công nghệ", short: "Mẹo" },
-      "phan-tich": { label: "Phân tích", short: "Phân tích" },
-      "thanh-tuu": { label: "Thành tựu", short: "Thành tựu" },
-      "hoi-dap": { label: "Hỏi đáp", short: "Hỏi đáp" },
-      "tin-nong": { label: "Tin nóng", short: "Tin nóng" },
-      "ai-tooling": { label: "AI & công cụ", short: "AI" },
-    },
 
 
     // getUserBadge - a plain function, so the dictionary is passed in.
@@ -1489,33 +1470,6 @@ export const vi = {
     recallTitle: "Ôn tập",
   },
 
-  // Chủ đề học, tra bằng StageTopicId (lib/stage-topics.ts). Server action trả
-  // id chứ không trả câu chữ, vì id còn là khóa cộng dồn topicCounts và khóa
-  // chọn câu khuyên - một khóa đổi theo ngôn ngữ thì hai người học cùng một
-  // điểm yếu sẽ cộng vào hai ô khác nhau.
-  // Tên và "còn thiếu gì" của 14 mảng kiến thức, tra bằng SkillDomainId.
-  //
-  // SKILL_DOMAINS trong lib/career-competency.ts giờ chỉ giữ id và lessonIds.
-  // Câu chữ ra đây vì nó đi qua một API route (app/api/career-profile) tới một
-  // client component: route trả id, client tra từ điển. Trả câu chữ từ route thì
-  // ngôn ngữ do server chọn chứ không do người đọc chọn.
-  skillDomains: {
-    personal_finance: { label: "Nền tảng lập trình", gapHint: "dòng lệnh, Git, cú pháp và cấu trúc chương trình" },
-    accounting: { label: "Web & giao diện", gapHint: "HTML, CSS, JavaScript, framework giao diện" },
-    valuation: { label: "Thiết kế hệ thống", gapHint: "phân tách dịch vụ, hàng đợi, cache, đánh đổi kiến trúc" },
-    corporate_finance: { label: "Backend & API", gapHint: "thiết kế API, xác thực, xử lý lỗi, phân trang" },
-    modeling_excel: { label: "Cơ sở dữ liệu & SQL", gapHint: "mô hình hoá bảng, chỉ mục, truy vấn, giao dịch" },
-    ma: { label: "DevOps & triển khai", gapHint: "CI/CD, container, giám sát, khôi phục sự cố" },
-    fixed_income: { label: "Mạng & giao thức", gapHint: "HTTP, DNS, TLS, độ trễ, gỡ lỗi đường truyền" },
-    equity_portfolio: { label: "Cấu trúc dữ liệu & thuật toán", gapHint: "mảng, cây, đồ thị, độ phức tạp, tối ưu vòng lặp" },
-    derivatives_risk: { label: "An toàn thông tin", gapHint: "OWASP, quản lý bí mật, phân quyền, mô hình hoá mối đe doạ" },
-    fpa_budgeting: { label: "Kiểm thử & chất lượng", gapHint: "unit test, integration test, độ phủ, kiểm thử hồi quy" },
-    ethics: { label: "Đạo đức nghề nghiệp", gapHint: "quyền riêng tư, giấy phép mã nguồn, đạo đức dữ liệu và AI" },
-    economics: { label: "Hệ điều hành & Linux", gapHint: "tiến trình, bộ nhớ, tập tin, quyền, shell script" },
-    quant: { label: "Dữ liệu & phân tích", gapHint: "pipeline, kho dữ liệu, chỉ số, thống kê cơ bản" },
-    ai_tools: { label: "AI trong sản phẩm", gapHint: "gọi LLM, RAG, đánh giá chất lượng đầu ra có kiểm chứng" },
-  },
-
   // Ba mức đọc ra chữ của TopicMasteryWidget. Trước nằm trong hàm band() nên
   // không script nào thấy: chúng là literal trong THÂN HÀM, không phải trong
   // data ở module scope, cũng không ở vị trí hiển thị.
@@ -1525,11 +1479,15 @@ export const vi = {
     low: "Mới bắt đầu",
   },
 
+  // Chủ đề học, tra bằng StageTopicId (lib/stage-topics.ts). Server action trả
+  // id chứ không trả câu chữ, vì id còn là khóa cộng dồn topicCounts và khóa
+  // chọn câu khuyên - một khóa đổi theo ngôn ngữ thì hai người học cùng một
+  // điểm yếu sẽ cộng vào hai ô khác nhau.
   topics: {
     "money-foundations": "Nền tảng máy tính & dòng lệnh",
     "tax-payroll": "Git & cộng tác trên kho mã",
     "personal-investing": "Lập trình cơ bản",
-    "bonds-rates": "Mạng & giao thức",
+    "networking-protocols": "Mạng & giao thức",
     "portfolio-retirement": "Kiến trúc & thiết kế hệ thống",
     "housing-protection": "Triển khai & vận hành",
     "banking-deposits": "Đám mây & dịch vụ thuê ngoài",
@@ -1545,14 +1503,11 @@ export const vi = {
     "investing-psychology": "Tâm lý người dùng & sản phẩm",
     "accounting-reporting": "Web & giao diện",
     "system-design-backend": "Thiết kế hệ thống & backend",
-    "bonds-credit": "Hàng đợi & giao tiếp dịch vụ",
+    "queues-messaging": "Hàng đợi & giao tiếp dịch vụ",
     "risk-portfolio-derivatives": "Độ tin cậy, giám sát & sự cố",
-    "risk-frm": "Bảo mật chuyên sâu",
     "banking-compliance": "Quyền riêng tư, giấy phép & tuân thủ",
     "quant-data": "Dữ liệu & phân tích",
     "career-application": "Ứng dụng nghề nghiệp",
-    esg: "Bền vững & hiệu quả năng lượng",
-    "economics-markets": "Hệ điều hành & Linux",
     "vn-product": "Thị trường Việt Nam",
     "private-markets": "Mã nguồn mở & hệ sinh thái",
     "wealth-insurance": "Quy mô lớn & chịu tải",
@@ -1567,10 +1522,10 @@ export const vi = {
   // nên phần lớn chủ đề nhận câu "generic" - bảng này giờ là mắt yếu hơn bảng
   // chủ đề, và đó là điều bản cũ khớp bằng substring che được.
   topicAdvice: {
-    accounting: "Ôn lại cách đọc báo cáo và làm lại 1-2 câu quiz ngay khi vừa đọc xong.",
+    accounting: "Ôn lại cách đọc mã giao diện và làm lại 1-2 câu quiz ngay khi vừa đọc xong.",
     valuation: "Xem lại giả định chính và thử tự giải thích công thức bằng lời của bạn.",
     risk: "Ôn lại ví dụ thực tế trong bài rồi tự trả lời lại câu hỏi sai không nhìn đáp án.",
-    bonds: "Tự viết lại mối quan hệ giữa độ trễ, kích thước gói tin và số vòng gọi mạng.",
+    networking: "Tự viết lại mối quan hệ giữa độ trễ, kích thước gói tin và số vòng gọi mạng.",
     investing: "Đọc lại bài và so sánh ngay với một đoạn mã thật bạn đang viết.",
     generic: "Học lại bài gốc rồi làm lại ngay câu quiz sai để khóa kiến thức.",
   },
@@ -1658,29 +1613,22 @@ export const vi = {
     playFull: "Vào chơi thử Game Kingdom đầy đủ",
 
     // KINGDOM_BUILDINGS: ids, images, levels and rewards stay in the component.
-    //
-    // Building NAMES used to stay there too, on the grounds that they were
-    // proper nouns. That reasoning held while they were "Goldman Sachs Tower"
-    // and "Fed Reserve Bank"; once they had to become technology landmarks they
-    // were plain copy again, rendered untranslated on an English homepage. The
-    // ids (`goldman`, `fed`, `singapore`) and the image paths keep their old
-    // names - they are lookup keys and files in public/, not text.
-    goldmanName: "Trung tâm dữ liệu Silicon Valley",
-    goldmanBadge: "TRUNG TÂM DỮ LIỆU",
-    goldmanSubtitle: "Đấu trường Thiết kế hệ thống",
-    goldmanDescription:
+    dataCenterName: "Trung tâm dữ liệu Silicon Valley",
+    dataCenterBadge: "TRUNG TÂM DỮ LIỆU",
+    dataCenterSubtitle: "Đấu trường Thiết kế hệ thống",
+    dataCenterDescription:
       "Thực hành tách dịch vụ, chọn nơi đặt cache và cân đối đánh đổi giữa tốc độ, chi phí và độ tin cậy.",
-    goldmanTag1: "Thiết kế hệ thống",
-    goldmanTag2: "Cache & hàng đợi",
-    goldmanTag3: "Đọc sơ đồ kiến trúc",
-    fedName: "Trung tâm xương sống Internet",
-    fedBadge: "XƯƠNG SỐNG INTERNET",
-    fedSubtitle: "Thử thách Mạng & Giao thức",
-    fedDescription:
+    dataCenterTag1: "Thiết kế hệ thống",
+    dataCenterTag2: "Cache & hàng đợi",
+    dataCenterTag3: "Đọc sơ đồ kiến trúc",
+    backboneName: "Trung tâm xương sống Internet",
+    backboneBadge: "XƯƠNG SỐNG INTERNET",
+    backboneSubtitle: "Thử thách Mạng & Giao thức",
+    backboneDescription:
       "Lần theo một request từ DNS tới TLS tới máy chủ, và đoán xem độ trễ thật sự nằm ở chặng nào.",
-    fedTag1: "HTTP & DNS",
-    fedTag2: "Độ trễ",
-    fedTag3: "Gỡ lỗi đường truyền",
+    backboneTag1: "HTTP & DNS",
+    backboneTag2: "Độ trễ",
+    backboneTag3: "Gỡ lỗi đường truyền",
     singaporeName: "Cảng dữ liệu Singapore",
     singaporeBadge: "PIPELINE DỮ LIỆU",
     singaporeSubtitle: "Cảng Dữ liệu & Luồng xử lý",
@@ -1873,7 +1821,7 @@ export const vi = {
     botRules: "Tài tài đây nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
     botTopicPersonal: "Nền tảng công nghệ",
     botTopicProfessional: "Công nghệ chuyên sâu",
-    botTopicCfa: "Chứng chỉ AWS",
+    botTopicCertification: "Chứng chỉ AWS",
     dropImage: "Thả ảnh vào đây để gửi",
     emptyPart1: "Chưa có tin nhắn nào.",
     emptyPart2: "Nhắn gì đó chào các bạn trong nhóm nhé!",
@@ -2087,7 +2035,6 @@ export const vi = {
 
   // components/DashboardClient.tsx
   dashboard: {
-    // Trang Học bài chép từ bản tài chính.
     sidebarResizeLabel: "Kéo ngang để đổi bề rộng cột phải",
     examCreditedHint: "Mở khoá nhờ thi vượt chặng - bạn chưa đọc bài này",
     examCreditedSubtitle: "Đã mở khoá nhờ thi vượt chặng · chưa đọc",
@@ -2401,7 +2348,7 @@ export const vi = {
     avgScore: "Điểm TB",
     streakDays: "Chuỗi ngày",
     career: "Sự nghiệp",
-    cfaArena: "Đấu trường chứng chỉ",
+    certificationArena: "Đấu trường chứng chỉ",
     contribution: "Đóng góp",
     gamer: "Game thủ",
 
@@ -2581,13 +2528,12 @@ export const vi = {
     done: "Xong",
   },
   // components/BehavioralPrepPanel.tsx - the unscored behavioural question drill.
-  // components/IbWeakAreasPanel.tsx - điểm mạnh yếu theo chủ đề ở /phong-van-ky-thuat.
+  // components/InterviewWeakAreasPanel.tsx - điểm mạnh yếu theo chủ đề ở /phong-van-ky-thuat.
   ibWeakAreas: {
     computingLoading: "Đang tính điểm mạnh yếu...",
   },
 
   behavioralPrep: {
-    // Chép từ bản tài chính cùng trang /phong-van-ky-thuat, chữ đổi sang nghề công nghệ.
     heroBadge: "VÒNG FIT & BEHAVIORAL",
     heroTitle: "Kể được câu chuyện của mình trước khi bị hỏi",
     loading: "Đang tải câu hỏi behavioral...",
@@ -2797,33 +2743,6 @@ export const vi = {
   },
 
 
-  // Bốn trang chứng chỉ: CFA thẻ thuật ngữ, CFA sổ tay công thức, FRM, và
-  // khối "chặng sau" dưới lộ trình CFA.
-
-
-  // lib/career-categories.ts - tên và mô tả năm nhóm ngành. Dùng ở phố nghề,
-  // mục lục phòng, và bộ lọc trang việc làm.
-  careerCategories: {
-    labels: {
-      investment: "Phát triển sản phẩm",
-      dealmaking: "Kiến trúc & Nền tảng",
-      accounting: "Chất lượng & Kiểm thử",
-      risk: "Bảo mật & Tuân thủ",
-      banking: "Hạ tầng & Vận hành",
-      advisory: "Tư vấn & Giải pháp",
-      data: "Dữ liệu & AI",
-    },
-    // Một dòng nói nhóm ngành này làm gì, cho biển hiệu ngoài cửa.
-    blurbs: {
-      investment: "Viết tính năng, dựng giao diện, đưa sản phẩm ra thị trường",
-      dealmaking: "Thiết kế hệ thống, dịch vụ dùng chung, nền tảng nội bộ",
-      banking: "Máy chủ, mạng, triển khai và trực sự cố",
-      risk: "Kiểm thử xâm nhập, quản lý bí mật, quyền riêng tư",
-      advisory: "Khảo sát nhu cầu, thiết kế giải pháp, triển khai cho khách",
-      accounting: "Kiểm thử tự động, độ phủ, kiểm soát chất lượng bản phát hành",
-      data: "Pipeline dữ liệu, mô hình học máy và ứng dụng AI",
-    },
-  },
 
 
   /* Khối đầu trang tiến độ (components/LearningProgressHeader.tsx).

@@ -18,7 +18,7 @@ export type MotivationTone =
   | "milestone"
   /** Đang giữ streak, hôm nay chưa học - nhắc trước khi nguội */
   | "keep"
-  /** Ngày bình thường, đã học rồi - châm ngôn tài chính */
+  /** Ngày bình thường, đã học rồi - châm ngôn học nghề */
   | "steady";
 
 export interface MotivationSignals {
@@ -112,16 +112,16 @@ export const MOTIVATION_MESSAGES: MotivationMessage[] = [
   { id: "mv-st-01", tone: "steady", text: "Đầu tư vào nền tảng của chính mình trả lãi cao nhất, và không framework nào làm nó lỗi thời." },
   { id: "mv-st-02", tone: "steady", text: "Thời gian ở trên thị trường thường quan trọng hơn việc canh đúng thời điểm vào thị trường." },
   { id: "mv-st-03", tone: "steady", text: "Giỏi nghề không phải là biết thật nhiều công nghệ - đó là có đủ lựa chọn." },
-  { id: "mv-st-04", tone: "steady", text: "Rủi ro lớn nhất không phải mất tiền ngắn hạn, mà là không bao giờ bắt đầu vì sợ mất tiền." },
+  { id: "mv-st-04", tone: "steady", text: "Rủi ro lớn nhất không phải một bản build hỏng, mà là không bao giờ đẩy dòng mã đầu tiên vì sợ hỏng." },
   { id: "mv-st-05", tone: "steady", text: "Một quyết định kỹ thuật tốt hôm nay là món quà bạn gửi cho chính mình mười năm sau." },
   { id: "mv-st-06", tone: "steady", text: "Đừng đợi đến khi có dự án lớn hơn mới học nền tảng - kiến thức nên đi trước quy mô." },
   { id: "mv-st-07", tone: "steady", text: "Kỷ luật đều đặn mỗi tháng thường thắng việc cố đoán đúng đỉnh và đáy." },
-  { id: "mv-st-08", tone: "steady", text: "Hiểu tiền của mình đi đâu là bước đầu tiên, và nó không cần thêm đồng thu nhập nào để bắt đầu." },
+  { id: "mv-st-08", tone: "steady", text: "Hiểu chương trình của mình chạy qua những bước nào là bước đầu tiên, và nó không cần thêm công cụ nào để bắt đầu." },
   { id: "mv-st-09", tone: "steady", text: "Phần lớn quyết định kỹ thuật tệ không đến từ thiếu kiến thức, mà từ việc quyết lúc đang gấp." },
   { id: "mv-st-10", tone: "steady", text: "Không có công nghệ nào tốt cho mọi bài toán. Có công nghệ phù hợp với ràng buộc của bạn." },
   { id: "mv-st-11", tone: "steady", text: "Người giỏi hệ thống không phải người đoán đúng điểm nghẽn. Họ là người biết mình đang đánh đổi gì." },
   { id: "mv-st-12", tone: "steady", text: "Một quỹ khẩn cấp không sinh lời cao, nhưng nó mua cho bạn quyền không phải bán tài sản lúc giá xấu." },
-  { id: "mv-st-13", tone: "steady", text: "Tiền không giải quyết được mọi thứ, nhưng thiếu tiền thì làm mọi vấn đề khác trở nên khó hơn." },
+  { id: "mv-st-13", tone: "steady", text: "Công cụ không giải quyết được mọi thứ, nhưng thiếu nền tảng thì mọi công cụ khác đều khó dùng hơn." },
   { id: "mv-st-14", tone: "steady", text: "Học nền tảng không làm bạn lên senior nhanh. Nó làm bạn ít mất thời gian vì những lỗi lẽ ra tránh được." },
   { id: "mv-st-15", tone: "steady", text: "Hệ thống tốt là hệ thống bạn ngủ ngon khi tới phiên trực, không phải hệ thống đẹp nhất trên sơ đồ." },
 ];

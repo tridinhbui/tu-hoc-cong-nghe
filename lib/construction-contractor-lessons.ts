@@ -1,26 +1,8 @@
 import type { Lesson } from "./lesson-types";
 
-// Cụm "Tài chính nhà thầu xây dựng" (ids 1751-1753, professional track,
-// gắn vào Chặng 5 phần "Vận hành vốn và tài chính khởi nghiệp").
-//
-// Vì sao cụm này tồn tại: quét cả 726 bài trong kho ra 0 bài về ghi nhận
-// doanh thu theo tiến độ, tiền giữ lại, bảo lãnh hợp đồng hay backlog. Kho đã
-// có `working-capital-management`, `cash-conversion-cycle-2` và
-// `cong-ty-lai-ma-het-tien` ở dạng TỔNG QUÁT - đủ cho một doanh nghiệp bán
-// hàng, không đủ cho một nhà thầu, vì ba thứ làm méo báo cáo của nhà thầu đều
-// không tồn tại ở doanh nghiệp bán hàng: doanh thu ghi theo tiến độ chứ không
-// theo hoá đơn, một phần tiền bị giữ lại tới tận sau bảo hành, và mỗi hợp
-// đồng mới đều ngốn tiền trước khi trả tiền.
-//
-// Cụm này KHÔNG dạy lại NPV/IRR - `npv-co-ban`, `irr-co-ban`,
-// `danh-gia-du-an-npv-irr` và `wacc-co-ban` đã làm việc đó. Bài 1753 giả định
-// người học đã qua chúng và chỉ nói phần khác đi khi dự án là một gói thầu.
-//
-// Cũng KHÔNG mâu thuẫn với `cau-truc-von-du-an-bat-dong-san` và cụm dự án BĐS
-// (1731-1735): cụm kia đứng ở phía CHỦ ĐẦU TƯ - người bỏ vốn, bán sản phẩm,
-// chịu rủi ro pháp lý và thị trường. Cụm này đứng ở phía NHÀ THẦU - người
-// nhận thi công, doanh thu đã chốt bằng hợp đồng, và rủi ro nằm ở chi phí
-// vượt dự toán cùng tiến độ thanh toán.
+// Cụm "Nhiều đội và quy mô" (ids 1751-1753, professional track): ghi nhận
+// tiến độ theo phần việc xong, chi phí phối hợp giữa các đội, và ước lượng
+// gói việc.
 
 export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
   {

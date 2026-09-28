@@ -41,14 +41,14 @@ import {
   getTechnicalQuestionsForCareer,
 } from "@/lib/interview-bank";
 import BehavioralPrepPanel from "@/components/BehavioralPrepPanel";
-import IbWeakAreasPanel from "@/components/IbWeakAreasPanel";
-import IbMissedQuestionsPanel from "@/components/IbMissedQuestionsPanel";
+import InterviewWeakAreasPanel from "@/components/InterviewWeakAreasPanel";
+import InterviewMissedQuestionsPanel from "@/components/InterviewMissedQuestionsPanel";
 import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale, type Dictionary } from "@/lib/i18n";
 import { matchesVietnamese } from "@/lib/vn-search";
 import { getCurrentUserId } from "@/lib/current-user";
-import { getIbCoverage, type IbCoverage } from "@/lib/ib-weak-areas";
+import { getInterviewCoverage, type InterviewCoverage } from "@/lib/interview-weak-areas";
 import InterviewerStage from "@/components/InterviewerStage";
 import { useQuizKeys } from "@/lib/use-quiz-keys";
 import { btnPrimary, btnSecondary, panel, SectionHead, StatTable, Sys, tabClass, textLink } from "@/components/ui/system";
@@ -98,8 +98,7 @@ function ibDifficultyCopy(t: Dictionary): Record<QuizDifficulty, string> {
  *  về nghề - đúng như bộ emoji nó thay thế. */
 const CAREER_ICONS: LucideIcon[] = [Gem, TrendingUp, Coins, BarChart3, Shield];
 
-/** Nhóm nghề cho bộ chọn vai trò. Bản tài chính nhóm 44 nghề theo bảy danh
- *  mục; bảy nghề công nghệ chỉ cần ba nhóm để người học dò bằng mắt. */
+/** Nhóm nghề cho bộ chọn vai trò: bảy nghề chỉ cần ba nhóm để dò bằng mắt. */
 type CareerCategory = "build" | "data-ai" | "ops-quality";
 const CAREER_GROUP_OF: Record<string, CareerCategory> = {
   frontend: "build",
@@ -145,9 +144,9 @@ export default function TechnicalInterviewPage() {
   const IB_DIFFICULTY_TITLE = ibDifficultyTitle(t);
   const [userId, setUserId] = useState<string | null>(null);
   /** Dòng "Hoàn thành x% - y XP" từng ghi cứng 21% và 1119 XP cho MỌI người
-   *  học, kèm thanh tiến độ width: "21%". Giờ đọc từ user_ib_question_attempts
-   *  và user_quiz_sessions - xem chú thích ở getIbCoverage. */
-  const [ibCoverage, setIbCoverage] = useState<IbCoverage | null>(null);
+   *  học, kèm thanh tiến độ width: "21%". Giờ đọc từ user_interview_question_attempts
+   *  và user_quiz_sessions - xem chú thích ở getInterviewCoverage. */
+  const [ibCoverage, setInterviewCoverage] = useState<InterviewCoverage | null>(null);
   const [ibXp, setIbXp] = useState<number>(0);
   /** Bảng "TIẾN ĐỘ CỦA BẠN" từng ghi cứng TOÀN BỘ: LV.2, 1.119/2.000 XP, thanh
    *  56%, chuỗi ngày lấy từ một chuỗi cố định trong từ điển, 86 câu đã trả lời
@@ -274,8 +273,8 @@ export default function TechnicalInterviewPage() {
   // thêm XP, nên dòng tiến độ phải phản ánh ngay chứ không đợi tải lại trang.
   useEffect(() => {
     if (!userId) return;
-    void getIbCoverage(userId).then(setIbCoverage).catch(() => {});
-    void getQuizStats(userId, "ib")
+    void getInterviewCoverage(userId).then(setInterviewCoverage).catch(() => {});
+    void getQuizStats(userId, "interview")
       .then((st) => {
         setIbXp(st.xp);
         setIbSolved(st.solved);
@@ -318,7 +317,7 @@ export default function TechnicalInterviewPage() {
       const sectionParam = overrideSection ? `&section=${encodeURIComponent(overrideSection)}` : "";
       const idsParam = onlyQuestionIds?.length ? `&ids=${onlyQuestionIds.join(",")}` : "";
       const res = await fetch(
-        `/api/knowledge-challenge?track=ib&difficulty=${effectiveDifficulty}&count=${onlyQuestionIds?.length ?? questionCount}&locale=${locale}${careerParam}${sectionParam}${idsParam}`
+        `/api/knowledge-challenge?track=interview&difficulty=${effectiveDifficulty}&count=${onlyQuestionIds?.length ?? questionCount}&locale=${locale}${careerParam}${sectionParam}${idsParam}`
       );
       if (!res.ok) throw new Error("failed");
       const data = await res.json();
@@ -346,9 +345,8 @@ export default function TechnicalInterviewPage() {
     [startQuiz]
   );
 
-  // Kho công nghệ mới có bản tiếng Việt, nên không có gì để dịch lại tại chỗ
-  // như bản tài chính (localizeIbQuestion + applyOptionOrder). Khi kho có bản
-  // dịch, chỗ này là nơi ghép lại - và phương án phải đi qua `optionOrder`.
+  // Kho mới có bản tiếng Việt, nên không có gì để dịch lại tại chỗ. Khi kho có
+  // bản dịch, chỗ này là nơi ghép lại - và phương án phải đi qua `optionOrder`.
   const localizedQuestions = questions;
 
   const missedSections = useMemo(() => {
@@ -374,7 +372,7 @@ export default function TechnicalInterviewPage() {
     if (!userId || recording || xpAwarded !== null) return;
     setRecording(true);
     try {
-      const result = await submitQuizSession("ib", difficulty, answers);
+      const result = await submitQuizSession("interview", difficulty, answers);
       await recalculateUserStats(userId);
       setXpAwarded(result.xpEarned);
       setWeakAreasKey((k) => k + 1);

@@ -7,9 +7,7 @@ import type { Lesson } from "./lesson-types";
 // were rewritten to the depth the rest of the 1200-block is written at.
 //
 // Each one is anchored in a Vietnamese situation rather than a textbook one,
-// because that is where these topics actually bite: cap rates below mortgage
-// rates in HCMC, the 2022 corporate-bond freeze, option pools coming out of
-// the founders' side of the table.
+// because that is where these topics actually bite.
 
 export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
   {

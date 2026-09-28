@@ -57,7 +57,7 @@ describe("khớp khi tìm", () => {
   });
 
   it("tìm được cả tên tiếng Anh trong danh sách", () => {
-    expect(matchesVietnamese("Private Equity / Venture Capital Analyst", "venture")).toBe(true);
-    expect(matchesVietnamese("FP&A (Kế hoạch & Phân tích Tài chính)", "fp&a")).toBe(true);
+    expect(matchesVietnamese("Site Reliability Engineer / Platform Engineer", "reliability")).toBe(true);
+    expect(matchesVietnamese("CI&CD (Tích hợp & Triển khai liên tục)", "ci&cd")).toBe(true);
   });
 });

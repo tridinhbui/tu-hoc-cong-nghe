@@ -33,10 +33,10 @@ const InterviewRoomScene = dynamic(() => import("@/components/interview/Intervie
 });
 
 const INTERVIEWERS: Record<InterviewRound, { src: string; nameKey: "roundScreen" | "roundAnalyst" | "roundPressure" | "roundMixed" }> = {
-  de: { src: "/careers/cat_accounting_3d.jpg", nameKey: "roundScreen" },
-  "trung-binh": { src: "/careers/cat_investment_3d.jpg", nameKey: "roundAnalyst" },
-  kho: { src: "/careers/cat_banking_3d.jpg", nameKey: "roundPressure" },
-  "tat-ca": { src: "/careers/cat_advisory_3d.jpg", nameKey: "roundMixed" },
+  de: { src: "/images/dashboard/interview_hero_mountain.jpg", nameKey: "roundScreen" },
+  "trung-binh": { src: "/images/dashboard/interview_hero_mountain.jpg", nameKey: "roundAnalyst" },
+  kho: { src: "/images/dashboard/interview_hero_mountain.jpg", nameKey: "roundPressure" },
+  "tat-ca": { src: "/images/dashboard/interview_hero_mountain.jpg", nameKey: "roundMixed" },
 };
 
 /** Chữ hiện ra từng ký tự, như người đối diện đang nói dở.

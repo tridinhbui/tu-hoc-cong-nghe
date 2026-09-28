@@ -29,11 +29,6 @@ interface ChallengeQuestion {
 
 // Ids and their order only; the label and description come from the dictionary
 // at render time, because module scope has no useI18n() to call.
-// Hai chặng "cfa" và "frm" đã rời khỏi danh sách cùng lib/cfa-track.ts và
-// lib/frm-track.ts: chúng vẫn hiện thành thẻ chọn được, và bấm vào thì bộ câu
-// hỏi rỗng. QuizTrack còn khai chúng vì bảng user_quiz_sessions trên Cloudflare
-// đã lưu phiên cũ mang hai giá trị đó - xoá khỏi union sẽ làm dữ liệu cũ
-// không đọc lại được, nên chúng ở lại kiểu mà rời khỏi giao diện.
 const TRACK_IDS: QuizTrack[] = ["personal", "professional"];
 const DIFFICULTY_IDS: QuizDifficulty[] = ["tat-ca", "de", "trung-binh", "kho"];
 
@@ -199,7 +194,7 @@ export default function KiemTraPage() {
       <div className="flex-1 min-h-0 overflow-y-auto max-w-6xl mx-auto w-full px-4 sm:px-6 py-3 sm:py-4">
         {stage === "setup" && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-stretch">
-            {/* LEFT COLUMN: Daily Financial News Quiz */}
+            {/* LEFT COLUMN */}
             <div className="lg:col-span-6 h-full flex flex-col">
               <div className={`${panel} p-3.5 sm:p-4 h-full flex flex-col justify-between`}>
                 <div>

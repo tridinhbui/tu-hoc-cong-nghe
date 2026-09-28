@@ -457,7 +457,7 @@ export default function OnTapCauSaiClient() {
                             </div>
 
                             <div className="p-3 rounded-sm bg-stone-900 border border-stone-800 text-stone-300 text-sm leading-7 max-h-48 overflow-y-auto">
-                              <p className="font-bold text-white mb-1">{t.mistakeReview.financeExplanation}</p>
+                              <p className="font-bold text-white mb-1">{t.mistakeReview.techExplanation}</p>
                               <p>{currentCardItem.explanation || t.mistakeReview.noExplanation}</p>
                             </div>
                           </div>

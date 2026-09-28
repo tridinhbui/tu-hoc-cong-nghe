@@ -17,7 +17,7 @@ export type StageTopicId =
   | "money-foundations"
   | "tax-payroll"
   | "personal-investing"
-  | "bonds-rates"
+  | "networking-protocols"
   | "portfolio-retirement"
   | "housing-protection"
   // Chặng 12: ngân hàng và tiền gửi. Tách khỏi "money-foundations" vì gộp vào
@@ -38,14 +38,11 @@ export type StageTopicId =
   // Track chuyên ngành
   | "accounting-reporting"
   | "system-design-backend"
-  | "bonds-credit"
+  | "queues-messaging"
   | "risk-portfolio-derivatives"
-  | "risk-frm"
   | "banking-compliance"
   | "quant-data"
   | "career-application"
-  | "esg"
-  | "economics-markets"
   | "vn-product"
   | "private-markets"
   | "wealth-insurance"
@@ -64,7 +61,7 @@ export type TopicAdviceId =
   | "accounting"
   | "valuation"
   | "risk"
-  | "bonds"
+  | "networking"
   | "investing"
   | "generic";
 
@@ -72,7 +69,7 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
   "money-foundations": "generic",
   "tax-payroll": "generic",
   "personal-investing": "investing",
-  "bonds-rates": "bonds",
+  "networking-protocols": "networking",
   "portfolio-retirement": "investing",
   "housing-protection": "generic",
   "banking-deposits": "generic",
@@ -88,14 +85,11 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
   "investing-psychology": "generic",
   "accounting-reporting": "accounting",
   "system-design-backend": "valuation",
-  "bonds-credit": "bonds",
+  "queues-messaging": "networking",
   "risk-portfolio-derivatives": "risk",
-  "risk-frm": "risk",
   "banking-compliance": "generic",
   "quant-data": "generic",
   "career-application": "generic",
-  esg: "generic",
-  "economics-markets": "generic",
   "vn-product": "generic",
   // "đầu tư thay thế" là đầu tư; substring cũ không bắt được vì chữ thường.
   "private-markets": "investing",
@@ -133,7 +127,7 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 2": "tax-payroll",
   "Chặng 3": "money-foundations",
   "Chặng 4": "personal-investing",
-  "Chặng 5": "bonds-rates",
+  "Chặng 5": "networking-protocols",
   "Chặng 6": "portfolio-retirement",
   "Chặng 7": "personal-investing",
   "Chặng 8": "portfolio-retirement",
@@ -167,8 +161,7 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
 /** Track chuyên ngành, 43 chặng, 16 chủ đề.
  *
  *  Chuỗi if cũ được viết khi track mới có 9 chặng, nên nhánh mặc định gánh
- *  toàn bộ Chặng 10-43: 34 chặng - Kiểm toán, M&A, năm chặng FRM, ESG,
- *  Sản phẩm thanh toán, Định mức tài nguyên, Bút toán, TTCK Việt Nam, Private markets - đổ
+ *  toàn bộ Chặng 10-43: 34 chặng đổ
  *  hết vào một ô "Ứng dụng nghề nghiệp". Chủ đề đó là thứ dashboard dùng để
  *  nói "bạn đang yếu phần nào", nên gộp 34 chặng lại thành một câu trả lời
  *  đúng nghĩa là không trả lời.
@@ -193,51 +186,40 @@ const PROFESSIONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 4": "system-design-backend",
   "Chặng 5": "system-design-backend",
   "Chặng 6": "system-design-backend",
-  "Chặng 7": "bonds-credit",
+  "Chặng 7": "queues-messaging",
   "Chặng 8": "risk-portfolio-derivatives",
   "Chặng 9": "risk-portfolio-derivatives",
   // Chặng 10-43. Nhóm theo tên chặng; tên chặng ghi ngay bên cạnh để lần dời
   // số sau đọc một dòng là biết nó có còn đúng hay không.
-  "Chặng 10": "career-application", // Ứng dụng nghề Phân tích & IB
-  "Chặng 11": "system-design-backend", // Vận hành tài chính DN hiện đại
+  "Chặng 10": "career-application", // Ứng dụng nghề Kỹ sư nền tảng & hệ thống lớn
+  "Chặng 11": "system-design-backend", // Vận hành sản phẩm công nghệ hiện đại
   "Chặng 12": "investing-psychology", // Tâm lý người dùng nâng cao
-  "Chặng 13": "career-application", // AI trong tài chính: đọc báo cáo, viết memo
-  "Chặng 14": "career-application", // Masterclass gộp: BĐS, trái phiếu, VC, VaR, ESG
-  "Chặng 15": "system-design-backend", // Financial Modeling
-  "Chặng 16": "esg", // ESG & Climate Finance
-  "Chặng 17": "economics-markets", // Kinh tế học cho người làm tài chính
-  "Chặng 18": "banking-compliance", // Ngân hàng, tín dụng và tuân thủ
-  "Chặng 19": "risk-portfolio-derivatives", // Định giá phái sinh & rủi ro thị trường
-  "Chặng 20": "system-design-backend", // Buy-side: nghiên cứu & định giá
-  "Chặng 21": "wealth-insurance", // Quản lý gia sản và bảo hiểm
-  "Chặng 22": "quant-data", // Quantitative Methods
-  "Chặng 23": "quant-data", // Excel và dữ liệu
-  "Chặng 24": "accounting-reporting", // Chuẩn mực kế toán & thuế DN Việt Nam
-  "Chặng 25": "vn-product", // Thị trường chứng khoán Việt Nam
-  "Chặng 26": "economics-markets", // Tài chính quốc tế
-  "Chặng 27": "private-markets", // Cấu trúc và hiệu suất quỹ PE/VC
-  "Chặng 28": "career-application", // Kỹ năng nghề phân tích tài chính
-  "Chặng 29": "quant-data", // Công cụ phân tích dữ liệu
-  "Chặng 30": "quant-data", // Tư duy phân tích dữ liệu
-  "Chặng 31": "system-design-backend", // Lập kế hoạch tài chính vận hành
-  "Chặng 32": "system-design-backend", // Cơ chế thương vụ M&A
-  "Chặng 33": "accounting-reporting", // Kiểm toán
-  "Chặng 34": "risk-frm", // FRM: nền tảng, vận hành, thanh khoản
-  "Chặng 35": "risk-frm", // FRM: rủi ro thị trường
-  "Chặng 36": "risk-frm", // FRM: tín dụng nâng cao
-  "Chặng 37": "risk-frm", // FRM: định lượng nâng cao
-  "Chặng 38": "risk-frm", // FRM: định giá & mô hình rủi ro
-  "Chặng 39": "ai-products", // Tài chính sản phẩm FinTech
-  "Chặng 40": "system-design-backend", // Quan hệ cổ đông (IR)
-  "Chặng 41": "accounting-reporting", // Bút toán và sổ sách
-  "Chặng 42": "infra-project", // Tài chính dự án bất động sản
-  "Chặng 43": "wealth-insurance", // Định phí bảo hiểm
-  "Chặng 44": "ai-products",
-  "Chặng 45": "ai-products",
-  "Chặng 46": "ai-products",
-  "Chặng 47": "ai-products",
-  "Chặng 48": "ai-products",
-  "Chặng 49": "ai-products",
+  "Chặng 13": "career-application", // AI trong sản phẩm: đọc mã, rà lỗi, viết tài liệu
+  "Chặng 14": "banking-compliance", // Ngân hàng, tín dụng và tuân thủ
+  "Chặng 15": "risk-portfolio-derivatives", // Định giá phái sinh & rủi ro thị trường
+  "Chặng 16": "system-design-backend", // Buy-side: nghiên cứu & định giá
+  "Chặng 17": "wealth-insurance", // Quản lý gia sản và bảo hiểm
+  "Chặng 18": "quant-data", // Quantitative Methods
+  "Chặng 19": "quant-data", // Excel và dữ liệu
+  "Chặng 20": "accounting-reporting", // Chuẩn mực kế toán & thuế DN Việt Nam
+  "Chặng 21": "vn-product", // Thị trường chứng khoán Việt Nam
+  "Chặng 22": "private-markets", // Cấu trúc và hiệu suất quỹ PE/VC
+  "Chặng 23": "career-application", // Kỹ năng nghề kỹ sư phần mềm
+  "Chặng 24": "quant-data", // Công cụ phân tích dữ liệu
+  "Chặng 25": "quant-data", // Tư duy phân tích dữ liệu
+  "Chặng 26": "system-design-backend", // Lập kế hoạch dung lượng và vận hành
+  "Chặng 27": "system-design-backend", // Cơ chế thương vụ M&A
+  "Chặng 28": "accounting-reporting", // Kiểm toán
+  "Chặng 29": "system-design-backend", // Quan hệ cổ đông (IR)
+  "Chặng 30": "accounting-reporting", // Bút toán và sổ sách
+  "Chặng 31": "infra-project", // Dự án hạ tầng và trung tâm dữ liệu
+  "Chặng 32": "wealth-insurance", // Định phí bảo hiểm
+  "Chặng 33": "ai-products",
+  "Chặng 34": "ai-products",
+  "Chặng 35": "ai-products",
+  "Chặng 36": "ai-products",
+  "Chặng 37": "ai-products",
+  "Chặng 38": "ai-products",
 };
 
 export const STAGE_TOPIC_TABLES = {

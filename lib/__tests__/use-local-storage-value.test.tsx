@@ -30,19 +30,19 @@ describe("đọc localStorage như nguồn ngoài", () => {
   it("cập nhật khi cùng tab ghi rồi báo", () => {
     render(<Reader />);
     act(() => {
-      window.localStorage.setItem("k", "cfa");
+      window.localStorage.setItem("k", "web");
       notifyLocalStorageChanged(EVENT);
     });
-    expect(screen.getByTestId("v").textContent).toBe("cfa");
+    expect(screen.getByTestId("v").textContent).toBe("web");
   });
 
   it("cập nhật khi tab khác ghi - sự kiện storage", () => {
     render(<Reader />);
     act(() => {
-      window.localStorage.setItem("k", "frm");
+      window.localStorage.setItem("k", "data");
       window.dispatchEvent(new Event("storage"));
     });
-    expect(screen.getByTestId("v").textContent).toBe("frm");
+    expect(screen.getByTestId("v").textContent).toBe("data");
   });
 
   it("hai nơi cùng đọc một khoá thấy cùng một giá trị sau một lần ghi", () => {

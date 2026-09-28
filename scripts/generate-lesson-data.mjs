@@ -15,7 +15,6 @@ import path from "path";
 import { createRequire } from "module";
 import { applyLessonOverrides } from "../lib/lesson-quiz-overrides.js";
 import { balanceLessonQuizzes, assertBalancePreservedAnswers } from "../lib/lesson-quiz-balance.js";
-import { stripLessonDayPrefixes, assertDayPrefixStripPreservedTitles } from "../lib/lesson-day-prefix.js";
 import { estimateReadingMinutes, estimateLessonMinutes, findCheckpointIndex } from "../lib/lesson-reading.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -139,11 +138,6 @@ const cleanedLessons = applyLessonOverrides(rawLessons)
 const balancedLessons = balanceLessonQuizzes(cleanedLessons);
 assertBalancePreservedAnswers(cleanedLessons, balancedLessons);
 
-// Move the legacy "Tự học Tài chính Day N:" out of titles and into `day`
-// (see lib/lesson-day-prefix.js) - the number is still needed to key
-// RECALL_SCHEDULE, it just has no business being displayed as part of a title.
-const strippedLessons = stripLessonDayPrefixes(balancedLessons);
-assertDayPrefixStripPreservedTitles(balancedLessons, strippedLessons);
 
 // Derive both word-count numbers here rather than per request: `duration` is
 // a hand-written string ("10 phút") that drifts from the body it describes,
@@ -168,7 +162,7 @@ function resolveTrack(lesson) {
   return "bonus";
 }
 
-const lessons = strippedLessons.map((lesson) => ({
+const lessons = balancedLessons.map((lesson) => ({
   ...lesson,
   resolvedTrack: resolveTrack(lesson),
   readingMinutes: estimateReadingMinutes(lesson),
@@ -215,9 +209,7 @@ writeFileSync(path.join(outDir, "_index.json"), JSON.stringify(index));
  * khi thật là 12,3 - tức là khai VỐNG hơn gấp đôi.
  *
  * Không phải ai nói dối: con số được gõ một lần lúc chặng còn vài chục bài,
- * rồi kho bài đi tiếp còn con số thì đứng yên. Đây đúng là lỗi mà chú thích
- * đầu components/CfaTrackView.tsx đã ghi cho banner flashcard ("500+ thuật
- * ngữ" khi bộ thẻ có 75), chỉ khác chỗ xảy ra.
+ * rồi kho bài đi tiếp còn con số thì đứng yên.
  *
  * Đọc từ nguồn thì nó không lệch được nữa. File này nhỏ (ba dòng số) nên nhập
  * thẳng vào bundle phía trình duyệt cũng không tốn gì - khác với _index.json
@@ -243,25 +235,23 @@ for (const l of lessons) {
   }
 }
 
-/* Lớp ánh xạ CFA đã được gỡ cùng lib/cfa-track.ts: nó gom bài của ba chặng
- * trên theo mười môn CFA, và cả mười môn lẫn hai route /cfa, /frm đều không
- * còn. Khoá `cfa` vẫn được ghi ra với số 0 chứ không bỏ hẳn, vì
- * lib/track-totals.ts khai nó trong `TrackTotalsId` và `trackHours("cfa")` vẫn
+/* Chưa có lớp ánh xạ bài sang track chứng chỉ. Khoá `certification` vẫn được
+ * ghi ra với số 0 chứ không bỏ hẳn, vì lib/track-totals.ts khai nó trong `TrackTotalsId` và `trackHours("certification")` vẫn
  * gọi được - trả 0 giờ thì đúng, còn thiếu khoá thì đọc ra `undefined`. */
 const minutesById = new Map(
   lessons.filter((l) => l.isVisible !== false).map((l) => [l.id, l.totalMinutes ?? 0])
 );
-const cfaLessons = 0;
-const cfaMinutes = 0;
+const certificationLessons = 0;
+const certificationMinutes = 0;
 
 writeFileSync(
   path.join(outDir, "_track-totals.json"),
   JSON.stringify({
     tracks: {
       ...trackTotals,
-      cfa: { lessons: cfaLessons, minutes: cfaMinutes, missingMinutes: 0 },
+      certification: { lessons: certificationLessons, minutes: certificationMinutes, missingMinutes: 0 },
     },
-    // Tổng KHÔNG cộng cfa vào: những bài ấy đã nằm trong ba chặng trên rồi.
+    // Tổng KHÔNG cộng certification vào: bài chứng chỉ sẽ là bài đã có ở các chặng trên.
     totalLessons: Object.values(trackTotals).reduce((n, e) => n + e.lessons, 0),
     totalMinutes: Object.values(trackTotals).reduce((n, e) => n + e.minutes, 0),
   })
@@ -276,5 +266,21 @@ if (lessonsWithoutMinutes > 0) {
 for (const lesson of lessons) {
   writeFileSync(path.join(outDir, `${lesson.slug}.json`), JSON.stringify(lesson));
 }
+
+// Chỉ mục bài tập viết mã (khối `exercise`), để /lo-trinh đếm "đã qua / tổng"
+// mà không phải nạp thân của mọi bài. Khoá (id bài, vị trí khối) trùng với khoá
+// của bảng user_exercise_passes (migrations-d1/0009).
+writeFileSync(
+  path.join(outDir, "_exercises.json"),
+  JSON.stringify(
+    lessons
+      .filter((l) => l.isVisible !== false)
+      .flatMap((l) =>
+        (l.sections ?? []).flatMap((b, i) =>
+          b.type === "exercise" ? [{ lessonId: l.id, slug: l.slug, title: l.title, block: i, track: l.resolvedTrack ?? l.track }] : []
+        )
+      )
+  )
+);
 
 console.log(`Generated ${lessons.length} lesson files + index in lib/lessons-data/`);

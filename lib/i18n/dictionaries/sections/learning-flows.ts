@@ -366,6 +366,108 @@ export const learningFlowsVi = {
           },
         },
       },
+      "ai-safety": {
+        need: "Tôi muốn dùng và xây AI mà không gây sự cố",
+        title: "An toàn và quản trị AI",
+        promise: "Biết dữ liệu nào không được đưa cho AI, AI bị lừa thế nào, và ai phải duyệt cái gì.",
+        steps: {
+          data: {
+            title: "An toàn dữ liệu đơn giản hơn bạn nghĩ",
+            intro: "Đưa dữ liệu cho AI giống nói chuyện ở quán cà phê: có chuyện nói được, có chuyện chỉ nói trong phòng họp đóng cửa.",
+            columns: ["Thành phần", "Ở quán cà phê", "Khi dùng AI"],
+            rows: [
+              ["Công khai", "Chuyện thời tiết", "Thông cáo báo chí, tài liệu đã đăng"],
+              ["Nội bộ", "Chuyện công ty, nói nhỏ", "Quy trình, số liệu chưa công bố"],
+              ["Mật và dữ liệu cá nhân", "Không nói ở chỗ đông người", "Chỉ dùng công cụ công ty cho phép, hoặc ẩn danh trước"],
+            ],
+            oneLiner: "Trước khi dán, hỏi: nếu đoạn này lộ ra ngoài thì ai bị thiệt?",
+          },
+          attacks: {
+            title: "AI cũng bị lừa như người",
+            intro: "Kẻ gian không cần hack máy nữa - chúng giả giọng sếp, hoặc giấu một câu lệnh trong tài liệu mà AI sẽ đọc.",
+            columns: ["Chiêu", "Với nhân viên", "Với AI"],
+            rows: [
+              ["Giả danh", "Cuộc gọi video giả lãnh đạo", "Email giả nhà cung cấp đưa cho AI xử lý"],
+              ["Lệnh giấu", "Tờ giấy nhét trong hồ sơ", "Câu lệnh ẩn trong trang web, CV, email"],
+              ["Cách chặn", "Xác minh qua kênh thứ hai", "AI đọc nội dung ngoài thì không được tự hành động"],
+            ],
+            oneLiner: "Nội dung đến từ bên ngoài là dữ liệu, không bao giờ là mệnh lệnh.",
+          },
+          people: {
+            title: "Ai duyệt cái gì",
+            intro: "AI làm nhanh, nhưng trách nhiệm vẫn là của người. Việc càng khó đảo ngược thì càng cần người duyệt.",
+            columns: ["Mức", "Ví dụ", "Ai quyết"],
+            rows: [
+              ["Sai sửa được, thiệt nhỏ", "Tóm tắt, nháp nội bộ", "AI làm, người xem lướt"],
+              ["Sai sửa được, thiệt lớn", "Email gửi khách, báo cáo sếp", "AI soạn, người duyệt"],
+              ["Không đảo ngược được", "Chuyển tiền, xoá dữ liệu, hứa với khách", "Người làm, AI chỉ gợi ý"],
+            ],
+            oneLiner: "Việc không đảo ngược được thì luôn có người bấm nút cuối.",
+          },
+          systems: {
+            title: "Khi bạn là người xây hệ thống",
+            intro: "Hệ thống có LLM giống một lễ tân làm theo mọi tờ giấy ai đưa. Bảo mật là quyết định lễ tân được phép làm gì, chứ không phải dạy nó đừng nghe lời.",
+            columns: ["Lớp", "Ở quầy lễ tân", "Trong hệ thống LLM"],
+            rows: [
+              ["Quyền tối thiểu", "Lễ tân không giữ chìa khoá két", "Công cụ chỉ đọc, ghi thì cần duyệt"],
+              ["Đầu ra không tin cậy", "Không làm theo mảnh giấy chưa kiểm", "Validate, escape, không eval đầu ra"],
+              ["Phân quyền", "Chỉ đưa hồ sơ của đúng khách", "Lọc tài liệu theo quyền trước khi truy xuất"],
+            ],
+            oneLiner: "Không chặn được mọi câu lệnh độc - hãy giới hạn thiệt hại nó gây ra được.",
+          },
+        },
+      },
+      "ai-builder": {
+        need: "Tôi muốn tự xây ứng dụng AI",
+        title: "Xây ứng dụng có AI bên trong",
+        promise: "Từ lời gọi API đầu tiên tới một bot tài liệu nội bộ chạy thật, có đánh giá và giám sát.",
+        steps: {
+          api: {
+            title: "Gọi LLM đơn giản hơn bạn nghĩ",
+            intro: "Gọi một mô hình ngôn ngữ giống gọi tổng đài không nhớ bạn: mỗi lần gọi phải kể lại từ đầu, và mỗi phút gọi đều tính tiền.",
+            columns: ["Thành phần", "Gọi tổng đài", "Gọi LLM qua API"],
+            rows: [
+              ["Lịch sử", "Kể lại câu chuyện mỗi lần gọi", "Gửi lại cả hội thoại mỗi lượt"],
+              ["Cước", "Tính theo phút", "Tính theo token vào và ra"],
+              ["Câu trả lời", "Có khi nói lan man", "Yêu cầu JSON theo schema rồi kiểm"],
+            ],
+            oneLiner: "LLM không nhớ gì giữa hai lời gọi - mọi thứ nó biết là thứ bạn gửi lần này.",
+          },
+          rag: {
+            title: "Cho mô hình đọc tài liệu của bạn",
+            intro: "RAG giống một thủ thư: tìm đúng mấy trang liên quan trước, rồi mới trả lời dựa trên đúng mấy trang đó.",
+            columns: ["Bước", "Thủ thư", "Hệ thống RAG"],
+            rows: [
+              ["Xếp sách", "Chia sách theo chủ đề", "Chia tài liệu thành đoạn, gắn nguồn và quyền"],
+              ["Tìm", "Tra mục lục", "Tìm đoạn gần nghĩa nhất bằng embedding"],
+              ["Trả lời", "Đọc đúng trang rồi mới nói", "Chỉ dùng đoạn tìm được, trích nguồn"],
+            ],
+            oneLiner: "Tìm đúng trước, trả lời sau - và nói không biết khi không tìm thấy.",
+          },
+          agents: {
+            title: "Agent và cách biết nó chạy đúng",
+            intro: "Agent là mô hình được cầm công cụ. Evals là bộ đề kiểm tra để biết sửa prompt hôm nay có làm hỏng thứ hôm qua không.",
+            columns: ["Thành phần", "Nhân viên mới", "Agent"],
+            rows: [
+              ["Công cụ", "Máy tính, điện thoại", "Hàm bạn khai báo bằng JSON Schema"],
+              ["Giới hạn", "Không tự ký hợp đồng", "Số bước tối đa, duyệt trước hành động ghi"],
+              ["Kiểm tra", "Đánh giá thử việc", "Bộ câu hỏi vàng chạy mỗi lần đổi prompt"],
+            ],
+            oneLiner: "Mô hình chỉ yêu cầu gọi công cụ - mã của bạn mới là người làm, và evals là người chấm.",
+          },
+          ship: {
+            title: "Đưa lên production",
+            intro: "Chạy được trên máy bạn mới là nửa đường. Nửa còn lại là phân quyền, giám sát chi phí, và kế hoạch khi nó trả lời sai.",
+            columns: ["Hạng mục", "Bản thử", "Bản chạy thật"],
+            rows: [
+              ["Dữ liệu", "Vài tài liệu mẫu", "Pipeline nạp và xoá theo nguồn"],
+              ["Chất lượng", "Thử vài câu", "Eval trong CI và lấy mẫu log"],
+              ["Sự cố", "Sửa tay", "Công tắc tắt, chuyển người, sổ tay sự cố"],
+            ],
+            oneLiner: "Sản phẩm AI tốt là thứ biết khi nào mình sai và dừng lại đúng lúc.",
+          },
+        },
+      },
       "ai-marketing": {
         need: "Tôi muốn làm marketing với AI",
         title: "Marketing với AI",
@@ -751,6 +853,108 @@ export const learningFlowsEn: typeof learningFlowsVi = {
               ["Checking", "The listener asks back", "Every number in the commentary traces to the source table"],
             ],
             oneLiner: "A good one-pager is one conclusion, one chart, and numbers you can trace back.",
+          },
+        },
+      },
+      "ai-safety": {
+        need: "I want to use and build AI without causing an incident",
+        title: "AI safety and governance",
+        promise: "Know which data never goes to an AI, how AI gets tricked, and who has to approve what.",
+        steps: {
+          data: {
+            title: "Data safety is simpler than you think",
+            intro: "Giving data to an AI is like talking in a coffee shop: some things are fine to say, some belong only in a closed meeting room.",
+            columns: ["Part", "In a coffee shop", "When using AI"],
+            rows: [
+              ["Public", "Talking about the weather", "Press releases, published docs"],
+              ["Internal", "Company matters, said quietly", "Processes, unpublished numbers"],
+              ["Confidential and personal data", "Never in a crowded place", "Only in company-approved tools, or anonymised first"],
+            ],
+            oneLiner: "Before you paste, ask: if this leaked, who would be harmed?",
+          },
+          attacks: {
+            title: "AI gets tricked just like people",
+            intro: "Attackers no longer need to hack a machine - they fake the boss's voice, or hide an instruction in a document the AI will read.",
+            columns: ["Trick", "On an employee", "On an AI"],
+            rows: [
+              ["Impersonation", "A fake video call from a director", "A fake supplier email handed to the AI"],
+              ["Hidden instruction", "A note slipped into a file", "A hidden prompt in a web page, CV or email"],
+              ["Defence", "Verify through a second channel", "If the AI reads outside content, it doesn't act on its own"],
+            ],
+            oneLiner: "Content from outside is data, never a command.",
+          },
+          people: {
+            title: "Who approves what",
+            intro: "AI is fast, but responsibility stays with people. The harder something is to undo, the more it needs a human reviewer.",
+            columns: ["Level", "Example", "Who decides"],
+            rows: [
+              ["Fixable, small harm", "Summaries, internal drafts", "AI does it, a person skims"],
+              ["Fixable, big harm", "Customer emails, reports to the boss", "AI drafts, a person approves"],
+              ["Can't be undone", "Payments, deleting data, promises to customers", "A person does it, AI only suggests"],
+            ],
+            oneLiner: "Anything irreversible always has a person pressing the last button.",
+          },
+          systems: {
+            title: "When you are the one building the system",
+            intro: "A system with an LLM inside is like a receptionist who follows every note anyone hands over. Security is deciding what the receptionist may do, not teaching them to stop listening.",
+            columns: ["Layer", "At the front desk", "In an LLM system"],
+            rows: [
+              ["Least privilege", "The receptionist doesn't hold the safe key", "Tools read-only, writes need approval"],
+              ["Untrusted output", "Don't act on an unchecked note", "Validate, escape, never eval the output"],
+              ["Access control", "Only hand over the right client's file", "Filter documents by permission before retrieval"],
+            ],
+            oneLiner: "You can't block every malicious instruction - limit the damage it can do.",
+          },
+        },
+      },
+      "ai-builder": {
+        need: "I want to build AI applications myself",
+        title: "Building apps with AI inside",
+        promise: "From your first API call to an internal docs bot running for real, with evaluation and monitoring.",
+        steps: {
+          api: {
+            title: "Calling an LLM is simpler than you think",
+            intro: "Calling a language model is like phoning a call centre that doesn't remember you: every call you retell the story, and every minute is billed.",
+            columns: ["Part", "Call centre", "LLM over an API"],
+            rows: [
+              ["History", "Retell the story every call", "Resend the whole conversation every turn"],
+              ["Billing", "Charged by the minute", "Charged by input and output tokens"],
+              ["The answer", "Sometimes rambles", "Ask for JSON against a schema, then check it"],
+            ],
+            oneLiner: "An LLM remembers nothing between calls - all it knows is what you send this time.",
+          },
+          rag: {
+            title: "Letting the model read your documents",
+            intro: "RAG is like a librarian: find the few relevant pages first, then answer from exactly those pages.",
+            columns: ["Step", "Librarian", "RAG system"],
+            rows: [
+              ["Shelving", "Sort books by topic", "Split documents into chunks with source and permissions"],
+              ["Finding", "Check the catalogue", "Find the closest chunks with embeddings"],
+              ["Answering", "Read the right page before speaking", "Use only retrieved chunks, cite the source"],
+            ],
+            oneLiner: "Find the right thing first, answer second - and say you don't know when nothing is found.",
+          },
+          agents: {
+            title: "Agents, and knowing they work",
+            intro: "An agent is a model holding tools. Evals are the test sheet that tells you whether today's prompt change broke yesterday's behaviour.",
+            columns: ["Part", "New hire", "Agent"],
+            rows: [
+              ["Tools", "Laptop, phone", "Functions you declare with JSON Schema"],
+              ["Limits", "Can't sign contracts alone", "Max steps, approval before any write"],
+              ["Checking", "Probation review", "A golden set run on every prompt change"],
+            ],
+            oneLiner: "The model only asks for a tool - your code does the work, and evals do the grading.",
+          },
+          ship: {
+            title: "Shipping to production",
+            intro: "Working on your laptop is halfway. The other half is permissions, cost monitoring, and a plan for when it answers wrong.",
+            columns: ["Area", "Prototype", "Production"],
+            rows: [
+              ["Data", "A few sample docs", "A pipeline that ingests and deletes by source"],
+              ["Quality", "Try a few questions", "Evals in CI and sampled logs"],
+              ["Incidents", "Fix by hand", "Kill switch, human handoff, incident runbook"],
+            ],
+            oneLiner: "A good AI product knows when it is wrong and stops at the right moment.",
           },
         },
       },

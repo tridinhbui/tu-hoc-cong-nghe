@@ -4,7 +4,7 @@
  * Tách khỏi component vì đây là toán thật, và toán sai trong một widget dạy về
  * rủi ro thì không có gì báo cho ta biết: giao diện vẫn hiện một con số gọn
  * gàng, chỉ là con số sai. Ở đây thì kiểm được bằng những giá trị tra bảng mà
- * ai học FRM cũng thuộc - z(99%) = 2,326 và t(99%, 4 bậc tự do) = 3,747.
+ * sách thống kê nào cũng in - z(99%) = 2,326 và t(99%, 4 bậc tự do) = 3,747.
  *
  * Không dùng thư viện thống kê nào: cả file này nhỏ hơn nhiều so với việc kéo
  * một gói vào bundle của trang bài học.

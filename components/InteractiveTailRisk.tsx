@@ -31,9 +31,8 @@ export default function InteractiveTailRisk() {
 
   const numbers = useMemo(() => {
     const p = conf / 100;
-    // Độ lệch chuẩn tính thẳng theo ms. Bản tài chính chia thêm √252 để quy lợi
-    // suất năm về một ngày giao dịch; độ trễ không có nhịp đó - mỗi request là
-    // một quan sát, nên không có gì để quy đổi.
+    // Độ lệch chuẩn tính thẳng theo ms: mỗi request là một quan sát, nên không
+    // có gì để quy đổi.
     const sigma = (baseline * jitter) / 100;
     const zNorm = normalQuantile(p);
     // Chuẩn hoá t về cùng độ lệch chuẩn, nếu không thì so hai thứ có phương sai

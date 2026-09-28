@@ -72,15 +72,15 @@ export const dataRestVi = {
     },
     goalSelectionBanner: {
       goals: {
-        personalFinance: {
+        foundations: {
           name: "Nền tảng & dòng lệnh",
           desc: "Cách máy tính chạy, dùng dòng lệnh, quản mã bằng Git.",
         },
-        basicInvesting: {
+        webProduct: {
           name: "Web và sản phẩm đầu tiên",
           desc: "HTML, CSS, JavaScript, gọi API và triển khai một trang chạy thật.",
         },
-        corporateFinance: {
+        systemsPerformance: {
           name: "Hệ thống & hiệu năng",
           desc: "Đọc mã người khác, thiết kế API, đo độ trễ và quản trị sự cố.",
         },
@@ -228,15 +228,15 @@ export const dataRestEn: typeof dataRestVi = {
     },
     goalSelectionBanner: {
       goals: {
-        personalFinance: {
+        foundations: {
           name: "Fundamentals & the command line",
           desc: "How a machine works, using the shell, managing code with Git.",
         },
-        basicInvesting: {
+        webProduct: {
           name: "The web and a first product",
           desc: "HTML, CSS, JavaScript, calling APIs and deploying something real.",
         },
-        corporateFinance: {
+        systemsPerformance: {
           name: "Systems & performance",
           desc: "Reading other people's code, API design, measuring latency and handling incidents.",
         },

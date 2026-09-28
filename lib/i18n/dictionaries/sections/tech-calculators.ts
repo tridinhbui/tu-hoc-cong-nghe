@@ -1,7 +1,7 @@
 // Copy for InteractiveMultiples (capacity estimate from a comparison factor).
-// The file name is historical; the bond calculator it once held is gone.
+// Also houses future calculator widgets for tech lessons.
 
-export const cfaCalculatorsVi = {
+export const techCalculatorsVi = {
   multiplesCalc: {
     title: "Từ hệ số so sánh ra số máy mỗi vùng",
     desc: "Tổng dung lượng = tải giờ cao điểm × hệ số so sánh. Dung lượng khả dụng = tổng − phần dự phòng. Số máy mỗi vùng = khả dụng ÷ số vùng.",
@@ -33,7 +33,7 @@ export const cfaCalculatorsVi = {
   },
 };
 
-export const cfaCalculatorsEn: typeof cfaCalculatorsVi = {
+export const techCalculatorsEn: typeof techCalculatorsVi = {
   multiplesCalc: {
     title: "From a comparison factor to machines per region",
     desc: "Total capacity = peak load × comparison factor. Usable capacity = total − headroom held back. Machines per region = usable ÷ regions.",

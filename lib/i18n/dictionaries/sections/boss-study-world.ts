@@ -1,4 +1,4 @@
-// Section for StudyRoomWorld, BossBattleModal, and GoldmanSachsWidget. See
+// Section for StudyRoomWorld, BossBattleModal, and CapacitySizingWidget. See
 // lib/i18n/dictionaries/sections/index.ts for why these screens live in their
 // own file instead of vi.ts / en.ts directly.
 
@@ -70,21 +70,21 @@ export const bossStudyWorldVi = {
     questionCounter: "Tấn công bằng câu hỏi {current}/{max}",
     damageLabel: "Gây sát thương: {dmg} HP",
   },
-  goldmanWidget: {
+  capacityPlanning: {
     hqAlt: "Trung tâm dữ liệu Silicon Valley",
     reviewAmount: "{count} node",
     orgBadge: "SILICON VALLEY DC",
     trackBadge: "HẠ TẦNG & DUNG LƯỢNG",
     orgTitle: "Trung Tâm Dữ Liệu Silicon Valley",
     orgSubtitle: "Đấu Trường Định Mức Dung Lượng, Thiết Kế Hệ Thống & Bảo Vệ Phương Án",
-    dealCase: "CASE DUNG LƯỢNG #{ticker}",
-    dealEbitda: "Mỗi node: {capacity}",
-    valuationTitle: "Định mức dung lượng: {name}",
-    valuationMultiple: "Hệ số dự phòng cho đỉnh tải: {multiple}×",
-    revenueBadge: "Đỉnh tải: {peak}",
-    pitchLabel: "Chọn số node bạn sẽ cấp phát:",
-    pitchValue: "{count} node",
-    submitPitchButton: "Nộp Phương Án Định Mức Dung Lượng",
+    capacityCase: "CASE DUNG LƯỢNG #{ticker}",
+    nodeCapacity: "Mỗi node: {capacity}",
+    sizingTitle: "Định mức dung lượng: {name}",
+    headroomFactor: "Hệ số dự phòng cho đỉnh tải: {multiple}×",
+    peakBadge: "Đỉnh tải: {peak}",
+    nodeCountLabel: "Chọn số node bạn sẽ cấp phát:",
+    nodeCountValue: "{count} node",
+    submitPlanButton: "Nộp Phương Án Định Mức Dung Lượng",
     reviewLabel: "Đánh Giá Hội Đồng Kiến Trúc:",
     reviewScore: "{score}/100 Điểm",
     reviewNotePart1:
@@ -92,8 +92,8 @@ export const bossStudyWorldVi = {
     reviewNotePart2: ".",
     toastSuccess: "PHƯƠNG ÁN ĐƯỢC DUYỆT! Bạn đạt {score}/100 điểm, nhận +50 XP!",
     toastPartial: "Phương án hoàn tất với {score}/100 điểm. Định mức còn lệch khá xa so với tải thật!",
-    synergyTechCorp: "Suy luận mô hình AI, tải dồn thành từng đợt",
-    synergyRetailChain: "Đợt khuyến mãi, tải tăng gấp bốn trong hai giờ",
+    loadAiInference: "Suy luận mô hình AI, tải dồn thành từng đợt",
+    loadFlashSale: "Đợt khuyến mãi, tải tăng gấp bốn trong hai giờ",
   },
 };
 
@@ -162,21 +162,21 @@ export const bossStudyWorldEn: typeof bossStudyWorldVi = {
     questionCounter: "Attack with question {current}/{max}",
     damageLabel: "Damage dealt: {dmg} HP",
   },
-  goldmanWidget: {
+  capacityPlanning: {
     hqAlt: "Silicon Valley data center",
     reviewAmount: "{count} nodes",
     orgBadge: "SILICON VALLEY DC",
     trackBadge: "INFRASTRUCTURE & CAPACITY",
     orgTitle: "Silicon Valley Data Center",
     orgSubtitle: "Capacity Sizing Arena, System Design & Defending Your Plan",
-    dealCase: "CAPACITY CASE #{ticker}",
-    dealEbitda: "Per node: {capacity}",
-    valuationTitle: "Capacity sizing: {name}",
-    valuationMultiple: "Headroom multiple for peak load: {multiple}×",
-    revenueBadge: "Peak load: {peak}",
-    pitchLabel: "Choose how many nodes you would provision:",
-    pitchValue: "{count} nodes",
-    submitPitchButton: "Submit Your Capacity Plan",
+    capacityCase: "CAPACITY CASE #{ticker}",
+    nodeCapacity: "Per node: {capacity}",
+    sizingTitle: "Capacity sizing: {name}",
+    headroomFactor: "Headroom multiple for peak load: {multiple}×",
+    peakBadge: "Peak load: {peak}",
+    nodeCountLabel: "Choose how many nodes you would provision:",
+    nodeCountValue: "{count} nodes",
+    submitPlanButton: "Submit Your Capacity Plan",
     reviewLabel: "Architecture Committee Review:",
     reviewScore: "{score}/100 Points",
     reviewNotePart1:
@@ -184,7 +184,7 @@ export const bossStudyWorldEn: typeof bossStudyWorldVi = {
     reviewNotePart2: ".",
     toastSuccess: "PLAN APPROVED! You scored {score}/100, earning +50 XP!",
     toastPartial: "Plan submitted with {score}/100 points. Your sizing was well off the real load!",
-    synergyTechCorp: "AI model inference, load arrives in bursts",
-    synergyRetailChain: "Flash sales, load quadruples within two hours",
+    loadAiInference: "AI model inference, load arrives in bursts",
+    loadFlashSale: "Flash sales, load quadruples within two hours",
   },
 };

@@ -393,7 +393,7 @@ export default function WorldBossRaidWidget({
 
               {!combatFinished ? (
                 <div className="flex-1 min-h-0 overflow-y-auto pr-1">
-                  {/* VS ARENA HEADER: HERO VS 3D WALL STREET BULL */}
+                  {/* VS ARENA HEADER: HERO VS BOSS */}
                   <div className="relative mb-4 overflow-hidden rounded-md border border-white/10 bg-stone-900 p-3 sm:p-4">
                     <div className="grid grid-cols-3 items-center gap-2">
                       {/* Left: Hero Warrior */}
@@ -434,7 +434,7 @@ export default function WorldBossRaidWidget({
                         <span className="mt-1 font-mono text-[9px] font-medium tabular-nums text-stone-400">{format(t.worldBoss.sessionDamage, { value: sessionDamage.toLocaleString() })}</span>
                       </div>
 
-                      {/* Right: 3D Wall Street Bull Boss */}
+                      {/* Right: 3D boss */}
                       <motion.div
                         animate={hitState === "hit_boss" ? { x: [0, 15, -15, 0], filter: ["brightness(1)", "brightness(2) saturate(2)", "brightness(1)"] } : hitState === "hit_hero" ? { x: [0, -30, 0] } : {}}
                         transition={{ duration: 0.4 }}

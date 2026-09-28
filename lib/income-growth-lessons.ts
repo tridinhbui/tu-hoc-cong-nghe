@@ -2,13 +2,6 @@ import type { Lesson } from "./lesson-types";
 
 // Chặng 11 của track cá nhân: tăng thu nhập.
 //
-// VÌ SAO CHẶNG NÀY TỒN TẠI. 138 bài của track cá nhân phủ rất kỹ phần phân bổ
-// và đầu tư số tiền đã có - ngân sách, quỹ khẩn cấp, cổ phiếu, trái phiếu,
-// danh mục - nhưng không có bài nào về vế còn lại của phương trình: số tiền
-// đi vào. Với người đi làm ở Việt Nam, khoảng cách giữa lương 15 triệu và
-// lương 25 triệu thay đổi kế hoạch tài chính nhiều hơn mọi kỹ thuật tối ưu
-// danh mục cộng lại, và nó là biến duy nhất trong chặng này.
-//
 // Ids 300-309 nằm ngay sau Chặng 9 (289-298). Dải 299-800 trống hoàn toàn ở
 // cả track-stages.ts lẫn career-competency.ts, nên chặng khai báo được bằng
 // `days: [300, 309]` mà không cần extraLessonIds - xem chú thích của Chặng 1

@@ -1084,7 +1084,7 @@ export const CRYPTO_LESSONS: Lesson[] = [
   },
   {
     id: 346,
-    slug: "ty-trong-va-bien-dong-crypto",
+    slug: "khi-nao-khong-nen-dung-chuoi-khoi",
     title: "Chặng 15, Bài 7: Giới hạn thật - khi nào KHÔNG nên dùng chuỗi khối",
     subtitle: "Chậm hơn, đắt hơn, khó sửa hơn - và ba điều đó không phải khuyết điểm tạm thời",
     duration: "7 phút",
@@ -1255,7 +1255,7 @@ export const CRYPTO_LESSONS: Lesson[] = [
   },
   {
     id: 347,
-    slug: "tham-gia-crypto-the-nao",
+    slug: "tong-ket-dung-ung-dung-phi-tap-trung-nho",
     title: "Chặng 15, Bài 8: Tổng kết - dựng một ứng dụng phi tập trung nhỏ",
     subtitle: "Bảy bài lý thuyết gộp lại thành một danh sách kiểm dùng được",
     duration: "7 phút",

@@ -8,9 +8,8 @@
 // Mười bài mới thêm trong một ngày đã dính đúng lỗi đó.
 //
 // Từ khoá cố ý viết rộng: mục tiêu là chặn bài NGƯỢC HẲN chủ đề, không phải
-// ép người viết dùng đúng một cách diễn đạt. Bài về NPV, WACC hay CAPM không
-// bao giờ chứa chữ "lãi suất" nhưng widget lãi suất là widget đúng của nó, nên
-// "chiết khấu", "npv", "wacc" đều nằm trong danh sách.
+// ép người viết dùng đúng một cách diễn đạt, nên mỗi widget nhận nhiều từ đồng
+// nghĩa chứ không chỉ một.
 
 /* i18n-ignore-start: đây KHÔNG phải chữ hiển thị. Đó là từ khoá được so khớp
    (`content.includes(term)`, xem `widgetMatchesTopic` ngay dưới) với tiêu đề và
@@ -22,12 +21,9 @@
    bằng lỗi mà chú thích đầu tệp mô tả: bài về GARCH hiện ra biểu đồ lãi kép,
    không lỗi, không cảnh báo. */
 export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
-  // Widget này vẽ một đường cong theo thời gian. Danh sách từ khoá ban đầu chỉ
-  // có từ vựng lãi kép vì kho bài khi đó thuần tài chính; đường cong giữ chân
-  // theo nhóm người dùng dùng đúng widget ấy nên các từ sản phẩm được thêm vào.
+  // Widget này vẽ một đường cong theo thời gian (tăng trưởng, tích luỹ, tải).
   chart: ["tăng trưởng", "nhân bội", "tuyến tính", "ngoại suy", "gấp đôi", "tích luỹ", "dài hạn", "dung lượng", "tải"],
   "profit-calc": ["dư địa", "công suất", "chỗ trống", "giờ cao điểm", "cấp phát", "chi phí cố định", "chi phí biến đổi", "hoà vốn", "đơn vị kinh tế"],
-  "interest-rate": ["chiết khấu", "giá trị hiện tại", "quy về hiện tại", "lợi ích tương lai", "hoàn vốn", "đánh giá dự án", "hiện tại", "dài hạn"],
   risk: ["rủi ro", "risk", "kết quả kỳ vọng", "biến động", "dải kết quả", "định mức", "kịch bản cực đoan"],
   multiples: ["dung lượng", "capacity", "ước lượng", "hệ số so sánh", "số máy", "mở rộng", "tải cao điểm"],
   // mục sơ đồ lãi lỗ quyền chọn đã gỡ cùng loại widget đó
@@ -45,13 +41,10 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   "ethics-case": ["đạo đức", "ethics", "chuẩn mực", "standard", "xung đột lợi ích", "tuân thủ", "xác minh danh tính", "lỗ hổng", "gian lận", "công bố", "trọng yếu", "khủng hoảng"],
   "tail-risk": ["p99", "độ trễ", "latency", "percentile", "phân vị", "đuôi", "tail", "tốc độ tải", "thời gian chờ", "biến động", "phân phối"],
   ratios: ["độ phủ", "tỷ trọng", "chỉ số", "tỷ lệ", "khẳng định", "kiểm thử", "nợ kỹ thuật", "phần rủi ro"],
-  "fee-drag": ["phí", "fee", "chi phí đều đặn", "hoá đơn", "bào mòn", "hiệu suất", "chi phí duy trì", "đám mây"],
-  "esg-score": ["điểm tổng hợp", "sức khoẻ dịch vụ", "trọng số", "trụ cột", "phi chức năng", "bền vững"],
   "prompt-craft": ["câu lệnh", "prompt", "ai", "chatgpt", "claude", "giao việc", "tài liệu"],
   "ai-verify": ["ai", "kiểm chứng", "bịa", "đối chiếu", "soát", "nguồn"],
   sampling: ["chọn mẫu", "mẫu", "kiểm toán", "kiểm soát", "bằng chứng", "rcsa", "kri", "ba tuyến", "gian lận", "tuân thủ", "phát hiện"],
   regression: ["hồi quy", "regression", "p-value", "giả thuyết", "tương quan", "thống kê", "ngoài mẫu", "backtest", "chuỗi thời gian", "hiệp phương sai", "monte carlo", "bootstrap", "bayes", "hợp lý cực đại", "mẫu"],
-  "journal-entry": ["sự kiện", "nhật ký", "log", "hai vế", "bất biến", "tài nguyên", "kết nối", "hàng đợi", "rò rỉ", "đối chiếu", "truy vết"],
   "excel-shortcuts": ["excel", "phím tắt", "bàn phím"],
   "excel-lookup": ["tra cứu", "index", "match", "xlookup", "vlookup", "sumifs"],
   "excel-three-statement": ["mô hình", "ba báo cáo", "vòng lặp", "liên kết"],

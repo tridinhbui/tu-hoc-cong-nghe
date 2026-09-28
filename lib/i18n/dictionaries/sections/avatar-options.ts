@@ -129,7 +129,7 @@ export const avatarOptionsVi = {
       "coffee-cup": "Tách Cà Phê Deploy Đêm",
     } as Record<string, string>,
     backgrounds: {
-      "wallstreet-trading-floor": "Phòng Máy Chủ Silicon Valley",
+      "server-room": "Phòng Máy Chủ Silicon Valley",
       "penthouse-office": "Văn Phòng Penthouse Tầng 88",
       "gold-vault": "Kho Dữ Liệu Vàng Kim",
       "neon-broadway": "Quảng Trường Times Square Neon",
@@ -242,7 +242,7 @@ export const avatarOptionsEn: typeof avatarOptionsVi = {
       "coffee-cup": "Late-Night Deploy Coffee",
     } as Record<string, string>,
     backgrounds: {
-      "wallstreet-trading-floor": "Silicon Valley Server Room",
+      "server-room": "Silicon Valley Server Room",
       "penthouse-office": "88th-Floor Penthouse Office",
       "gold-vault": "The Golden Data Vault",
       "neon-broadway": "Times Square Neon",

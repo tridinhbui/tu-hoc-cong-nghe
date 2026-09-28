@@ -50,32 +50,30 @@ interface KingdomBuilding {
 
 const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
   {
-    id: "goldman",
-    name: t.kingdomPreview.goldmanName,
-    subtitle: t.kingdomPreview.goldmanSubtitle,
-    // Ảnh khu công nghệ: thẻ này tên là "Trung tâm dữ liệu Silicon Valley".
-    // `id` và khoá từ điển `goldman*` là tên cũ, không hiển thị.
+    id: "data-center",
+    name: t.kingdomPreview.dataCenterName,
+    subtitle: t.kingdomPreview.dataCenterSubtitle,
     image: "/rpg/silicon_valley.png",
     minLevel: 5,
     progress: "72%",
     xpReward: 350,
     icon: Landmark,
-    badge: t.kingdomPreview.goldmanBadge,
-    description: t.kingdomPreview.goldmanDescription,
-    tags: [t.kingdomPreview.goldmanTag1, t.kingdomPreview.goldmanTag2, t.kingdomPreview.goldmanTag3],
+    badge: t.kingdomPreview.dataCenterBadge,
+    description: t.kingdomPreview.dataCenterDescription,
+    tags: [t.kingdomPreview.dataCenterTag1, t.kingdomPreview.dataCenterTag2, t.kingdomPreview.dataCenterTag3],
   },
   {
-    id: "fed",
-    name: t.kingdomPreview.fedName,
-    subtitle: t.kingdomPreview.fedSubtitle,
+    id: "backbone",
+    name: t.kingdomPreview.backboneName,
+    subtitle: t.kingdomPreview.backboneSubtitle,
     image: "/rpg/empire_state_building.jpg",
     minLevel: 3,
     progress: "48%",
     xpReward: 250,
     icon: Globe,
-    badge: t.kingdomPreview.fedBadge,
-    description: t.kingdomPreview.fedDescription,
-    tags: [t.kingdomPreview.fedTag1, t.kingdomPreview.fedTag2, t.kingdomPreview.fedTag3],
+    badge: t.kingdomPreview.backboneBadge,
+    description: t.kingdomPreview.backboneDescription,
+    tags: [t.kingdomPreview.backboneTag1, t.kingdomPreview.backboneTag2, t.kingdomPreview.backboneTag3],
   },
   {
     id: "singapore",
@@ -237,7 +235,7 @@ export default function InteractiveKingdomPreview() {
 
       {/* Main Interactive Stage Body */}
       <div className="relative min-h-[380px] lg:min-h-[420px] p-3 sm:p-4 lg:p-5 flex flex-col justify-between overflow-hidden">
-        {/* Ambient Wall Street & Particle Background */}
+        {/* Ambient city & particle background */}
         <div className="absolute inset-0 pointer-events-none">
           <Image
             src="/saigon-skyline.jpg"
@@ -513,7 +511,7 @@ export default function InteractiveKingdomPreview() {
           </div>
         )}
 
-        {/* TAB 3: NYSE WORLD BOSS RAID PREVIEW */}
+        {/* TAB 3: WORLD BOSS RAID PREVIEW */}
         {activeTab === "boss" && (
           <div className="relative z-10 grid gap-6 lg:grid-cols-12 items-center flex-1 my-auto">
             <div className="lg:col-span-5 flex flex-col items-center text-center">

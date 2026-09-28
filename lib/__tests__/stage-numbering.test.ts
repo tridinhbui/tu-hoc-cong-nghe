@@ -113,15 +113,11 @@ describe("hệ đếm 'ngày'", () => {
 });
 
 describe("số bài trong tiêu đề không vượt quá số bài thật", () => {
-  // Mỗi chuỗi bài có một tiền tố riêng ("Excel, Bài 1", "FRM Foundations,
+  // Mỗi chuỗi bài có một tiền tố riêng ("Excel, Bài 1", "Docker,
   // Bài 3"). Số đứng sau "Bài" phải là vị trí trong chuỗi đó, nên tập các số
   // của một chuỗi phải đúng bằng 1..N.
-  //
-  // Trước đây không phải vậy. "FRM Đầu tư" có 2 bài, đánh số 11 và 12; "FRM
-  // Quant" có 9 bài, đánh số 7 đến 15 - chúng được viết như phần tiếp của một
-  // chuỗi khác mang tiền tố khác. Và hai chuỗi bị tách đôi bởi chính tiền tố
-  // của mình: "FRM Liquidity Risk, Bài 1-3" rồi "FRM Liquidity, Bài 4-11",
-  // cùng một chuỗi, hai cái tên, nên nhóm nào cũng có lỗ hổng.
+  // Lỗi từng gặp: một chuỗi được đánh số như phần tiếp của chuỗi khác, hoặc
+  // một chuỗi bị tách đôi bởi hai tiền tố khác nhau.
   const groups = new Map<string, number[]>();
   for (const lesson of LESSONS) {
     const m = /^(.{2,32}?),\s*Bài\s+(\d+)\s*[:\-]/.exec(lesson.title);
@@ -137,8 +133,8 @@ describe("số bài trong tiêu đề không vượt quá số bài thật", () 
   it("số bài khớp vị trí trong thứ tự học, không phải thứ tự id", () => {
     // Thứ tự id không phải thứ tự học. Chặng 1 mở đầu bằng bài đo chi tiêu
     // (id 1351) đứng TRƯỚC phần audit (id 263-268) vì `parts` xếp nó lên đầu,
-    // nên đánh số theo id sẽ đẩy bài mở đầu xuống thứ bảy. Bốn chuỗi FRM cũng
-    // vậy: các bài đào sâu viết sau mang id lớn hơn nhưng học trước.
+    // nên đánh số theo id sẽ đẩy bài mở đầu xuống thứ bảy. Các bài đào sâu
+    // viết sau cũng mang id lớn hơn nhưng học trước.
     const order = new Map<number, number>();
     let n = 0;
     for (const track of [TRACK_PERSONAL, TRACK_PROFESSIONAL]) {
@@ -188,12 +184,7 @@ describe("số ngày nội bộ trong văn bài", () => {
     // niệm đó nên nhắc tới nó hàng chục lần một cách hợp lệ.
     const JARGON_LESSON_ID = 1260;
     const offenders = LESSONS.filter((l) => l.id !== JARGON_LESSON_ID).filter((l) => {
-      // Tiền tố "Tự học Tài chính Day 81:" trong tiêu đề nguồn bị
-      // lib/lesson-day-prefix.js cắt ra khi dựng dữ liệu, nên nó không bao
-      // giờ tới người đọc - bỏ qua đúng như bộ sinh dữ liệu làm.
-      const body = JSON.stringify(l)
-        .replace(/Tự học Tài chính Day \d+:/g, "")
-        .replace(/Day 1 Readiness/g, "");
+      const body = JSON.stringify(l).replace(/Day 1 Readiness/g, "");
       return /Day \d+/.test(body);
     }).map((l) => `${l.id} ${l.title.slice(0, 40)}`);
     expect(offenders).toEqual([]);

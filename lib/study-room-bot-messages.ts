@@ -38,7 +38,7 @@ export type StudyRoomBotEvent =
   /** Một phần đã học: kèm tên vài người và số người còn lại. */
   | { kind: "daily-partial"; names: string[]; extra: number; notYet: number }
   /** Lời chào và luật khi phòng vừa lập. */
-  | { kind: "rules"; topic: "personal" | "professional" | "cfa"; lessonCount: number };
+  | { kind: "rules"; topic: "personal" | "professional" | "certification"; lessonCount: number };
 
 const PREFIX = "thtcdn:bot:";
 
@@ -75,7 +75,7 @@ export interface BotMessageStrings {
   botRules: string;
   botTopicPersonal: string;
   botTopicProfessional: string;
-  botTopicCfa: string;
+  botTopicCertification: string;
 }
 
 export function renderBotMessage(
@@ -105,7 +105,7 @@ export function renderBotMessage(
           ? s.botTopicPersonal
           : event.topic === "professional"
             ? s.botTopicProfessional
-            : s.botTopicCfa;
+            : s.botTopicCertification;
       return format(s.botRules, { topic, count: event.lessonCount });
     }
     default:

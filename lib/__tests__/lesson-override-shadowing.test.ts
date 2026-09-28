@@ -93,7 +93,7 @@ describe("override che khuất nội dung trong lessons.ts", () => {
     //
     // Bản đầu của phép kiểm này đòi override PHẢI tồn tại (`toBeTruthy`) và chỉ
     // cấm nó mang `sections`. Khi bài được chuyển sang nội dung công nghệ thì
-    // override - vốn chỉ còn giữ mảng `quiz` tài chính cũ - bị gỡ hẳn, và phép
+    // override - vốn chỉ còn giữ mảng `quiz` cũ - bị gỡ hẳn, và phép
     // kiểm đỏ ở đúng cái nó lẽ ra phải coi là trạng thái tốt nhất. Không có
     // override thì không có gì che được, nên đó là mức mạnh hơn chứ không phải
     // một vi phạm. Giờ nó chấp nhận cả hai: không có override, hoặc có nhưng

@@ -13,11 +13,6 @@ import type { Lesson } from "./lesson-types";
 // im nhưng người học mở bài Tư thế ra lại thấy một máy tính lãi kép.
 //
 // Ids 380-384 nối tiếp Chặng 18 (370-376).
-//
-// Tệp này trước đây tên health-risk-lessons.ts và chứa năm bài về BHYT, bảo
-// hiểm bổ sung và rủi ro y tế như một bài toán tài chính. Đổi tên cùng lúc với
-// nội dung, vì tên cũ sống sót qua lần chuyển đổi là cái bẫy AGENTS.md ghi lại
-// nhiều lần.
 
 export const OCCUPATIONAL_HEALTH_LESSONS: Lesson[] = [
   {

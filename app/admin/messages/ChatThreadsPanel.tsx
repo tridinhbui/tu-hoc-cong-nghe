@@ -123,8 +123,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
       if (imageFile) {
         setUploadingImage(true);
         // Upload under the ADMIN's own uid, not the target user's - the
-        // storage policy (20260722_cfa_tables_rls_and_chat_images_hardening)
-        // only allows writing into your own auth.uid() folder; the folder is
+        // chat-images storage policy only allows writing into your own auth.uid() folder; the folder is
         // purely organizational, the message row still targets activeUserId.
         const adminUserId = await getCurrentUserId();
         if (!adminUserId) throw new Error(tc.sessionExpired);

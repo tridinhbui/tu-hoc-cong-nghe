@@ -23,15 +23,6 @@ const VIETNAMESE_DIACRITIC =
 /** The Standard-citation keys inside interactiveRest.ethicsCase: for each case,
  *  the keyed Standard plus its three distractors. Everything else in that block
  *  is translatable prose. */
-const ETHICS_STANDARD_CITATIONS = ["mnpi", "gift", "fair", "record"].flatMap(
-  (c) => [
-    `interactiveRest.ethicsCase.${c}Standard`,
-    `interactiveRest.ethicsCase.${c}Distractor1`,
-    `interactiveRest.ethicsCase.${c}Distractor2`,
-    `interactiveRest.ethicsCase.${c}Distractor3`,
-  ]
-);
-
 const INTENTIONALLY_UNTRANSLATED = new Set([
   // The difficulty table is keyed BY the Vietnamese value, because `difficulty`
   // is a Vietnamese string union used as a value across the app (see
@@ -39,20 +30,12 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "difficulty",
   // Nhánh "nghề nghiệp" của bảng xếp hạng đặt tên hạng theo CHỨC DANH THẬT
   // trong ngành, và bản tiếng Việt đã viết chúng bằng tiếng Anh sẵn:
-  // "Senior Financial Analyst", "Portfolio Manager", "Quant Researcher". Đó là
-  // tên gọi của chức danh ở thị trường Việt Nam, không phải một chỗ dịch bị bỏ
-  // quên - dịch ra "Chuyên viên phân tích tài chính cấp cao" sẽ là đổi dữ liệu
-  // chứ không phải dịch giao diện.
+  // đó là tên gọi của chức danh ở thị trường Việt Nam, không phải một chỗ dịch
+  // bị bỏ quên.
   "leaderboardHonors.career",
-  // "Quantitative Analyst" là tên chức danh mà bản tiếng Việt cũng viết bằng
-  // tiếng Anh - cùng lý do với nhánh nghề nghiệp ở trên. Chỉ miễn trừ đúng
-  // khoá này; các khoá khác trong `jobKeywords` đều đã dịch thật ("Kế toán" →
-  // "Accounting") nên chúng vẫn phải bị chấm.
-  "jobKeywords.quant",
   // `badge` của mỗi địa điểm RPG là tên KHU trên bản đồ, và bản tiếng Việt đã
-  // viết bằng tiếng Anh sẵn: "GOLDMAN SACHS WALL ST.", "HEDGE FUND QUARTER",
-  // "US FEDERAL RESERVE". Đó là tên riêng của những nơi có thật, không phải
-  // chỗ dịch bị bỏ quên. Chỉ miễn trừ `badge`; `name` và `subtitle` vẫn bị
+  // viết bằng tiếng Anh sẵn: "SILICON VALLEY DC", "INTERNET BACKBONE". Đó là
+  // tên riêng trên bản đồ, không phải chỗ dịch bị bỏ quên. Chỉ miễn trừ `badge`; `name` và `subtitle` vẫn bị
   // chấm như mọi chuỗi khác.
   // Bốn phương án của câu "thứ tự ưu tiên trong thác phân bổ công suất" là TÊN
   // HẠNG xếp bằng mũi tên: "System Critical → Guaranteed Reserved → Deferrable
@@ -71,14 +54,14 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "rpgBuildings.pvp.badge",
   "rpgBuildings.arcade.badge",
   "rpgBuildings.weekly-challenge.badge",
-  "rpgBuildings.goldman-sachs.badge",
+  "rpgBuildings.capacity-lab.badge",
   "rpgBuildings.cards.badge",
   "rpgBuildings.shop.badge",
-  "rpgBuildings.fed-vault.badge",
+  "rpgBuildings.backbone-hub.badge",
   "rpgBuildings.silicon-bay.badge",
-  "rpgBuildings.capitol-hill.badge",
-  "rpgBuildings.cme-commodities.badge",
-  "rpgBuildings.swiss-haven.badge",
+  "rpgBuildings.cloud-capital.badge",
+  "rpgBuildings.resource-floor.badge",
+  "rpgBuildings.data-haven.badge",
   "rpgBuildings.singapore-dock.badge",
   // "Tài Tài" is the name of the study-group admin character. A proper noun
   // stays as it is in every language - the same reason the leaderboard's
@@ -93,11 +76,6 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // mọi ngôn ngữ. Miễn trừ đúng khoá này chứ không nới ngưỡng dấu, vì ngưỡng
   // ấy là thứ bắt được bản dịch copy-paste.
   "groupChat.botRules",
-  // "DCF, comps, precedent transactions, terminal value" - bốn thuật ngữ định
-  // giá mà bản tiếng Việt cũng đã viết bằng tiếng Anh, vì đó là tên chúng được
-  // gọi trong nghề và là cái người học phải nhận ra trong một buổi phỏng vấn.
-  // Cùng lý do với interview.drillTitle và tracks.cfa.stages.
-  "skillDomains.valuation.gapHint",
   "adminChat.title",
   "groupChat.byAdmin",
   "groupChat.pinnedByAdmin",
@@ -106,25 +84,15 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // (lib/study-room-bot-messages.ts), nên chuỗi này LÀ bản tiếng Anh - chỉ có
   // tên nhân vật giữ nguyên.
   "groupChat.botRules",
-  // The FRM certification's own name and its awarding body. "Financial Risk
-  // Manager - GARP Part I & Part II" is what it is called in Vietnamese too;
-  // translating it would name a qualification that does not exist.
-  "certPages.frmTitle",
-  "certPages.frmSubtitle",
-  // The IB drill is deliberately written in the industry's own English - these
+  // The interview drill is deliberately written in the industry's own English - these
   // four were already English in the Vietnamese source. "drillBookTitle" is the
   // title of a published guide and is never translated.
   "interview.drillTitle",
   "interview.drillBookTitle",
   "interview.goodAnswer",
   "interview.readiness",
-  // Ticker lines on the game map. A ticker symbol and a figure, already English.
-  "worldMap.tickerIndex",
-  "worldMap.tickerClan",
-  // The official CFA Level I subject names, which is why they are already
-  // English in the Vietnamese dictionary. Translating them would stop them
-  // matching the exam.
-  "tracks.cfa.stages",
+  // The certification's official exam-domain names.
+  "tracks.certification.stages",
   // The name of the algorithm, already English.
   "mistakeReview.srsBadge",
   // Same drill name as interview.drillTitle, already English in the source.
@@ -146,7 +114,7 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "backboneSim.eyebrow",
   // Tech card names are product names - "Amazon Web Services" is the same
   // proper noun in both languages.
-  "libData.techCards.card-vhm.name",
+  "libData.techCards.card-aws.name",
   // The six illustrative learner nicknames on the logged-out leaderboard.
   // Personal names and a chosen handle are proper nouns; the same reason the
   // leaderboard nicknames in vi.ts are exempt.
@@ -156,26 +124,17 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "leaderboardPreview.name4",
   "leaderboardPreview.name5",
   "leaderboardPreview.name6",
-  // The CFA Standards of Professional Conduct, cited by official code and title
-  // - "II(A) Material Nonpublic Information". Already English in the Vietnamese
-  // source for the same reason the Level I subject names are: translating one
-  // stops it matching the Standard the learner is tested on. Listed key by key
-  // rather than exempting the whole ethicsCase block, which also holds the case
-  // scenarios and reasoning - prose that must be caught if left untranslated.
-  ...ETHICS_STANDARD_CITATIONS,
-  // "Tài Tài" the study coach again, and the IB track's own name, which is
-  // already English in the Vietnamese source.
+  // "Tài Tài" the study coach again.
   "quizSuggestion.greeting",
   "quizSuggestion.suggestionLabel",
-  "quizSuggestion.trackIb",
   // The formula carved above each lobby station's door. Algebra, in both
   // languages - and the notation is the point of showing it.
-  ...["hocBai", "kiemTra", "onTap", "congCu", "cfa", "frm"].map(
+  ...["hocBai", "kiemTra", "onTap", "congCu"].map(
     (station) => `worldSpaces.lobbyStations.${station}.formula`
   ),
-  // Finance terms whose English name IS the term - the glossary entry for DCF is
-  // titled "DCF (Discounted Cash Flow)" in both languages because that is what
-  // the learner has to recognise on a page or in an interview.
+  // Technical terms whose English name IS the term - "SLO (Service Level
+  // Objective)" is titled the same in both languages because that is what the
+  // learner has to recognise on a page or in an interview.
   "dataRest.globalSearchModal.sampleGlossary",
   // A watch. Rolex Submariner Gold is the product's name, not a description.
   "dataTables.rpgInventory.items.watch_rolex.name",
@@ -194,10 +153,6 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // "Tài Tài" the coach and the product's own name, in English sentences.
   "smartRemediation.titlePart1",
   "motivationShare.downloadedFilenameCaption",
-  // Already English in the Vietnamese source: both cheat sheets are titled in
-  // the exam's own language, matching the CFA and FRM syllabus names.
-  "cfaFormulas.title",
-  "frmFormulas.title",
   // Product names, an already-English word, and dev-tool debug labels.
   "finalTwo.logo.productName",
   // `finalTwo.bxhPage.finSocialTitle` đứng ở đây và đã trỏ vào hư không từ
@@ -209,25 +164,10 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "finalTwo.roadmap.title",
   "finalTwo.characterAvatar.levelPrefix",
   "finalTwo.uistatsPreview",
-  // The comps table's column header: three multiple names and separators. They
-  // are the multiples' own names in both languages.
-  "valuationSim.rows.peerColumns",
-  // Formulas: a DuPont decomposition and the compound-interest options, which
-  // are algebra in both languages. Translating "FV" or "PV" would stop them
-  // matching the lesson that teaches them.
-  "games.millionaire.questions.6.explanation",
-  "games.snowballRacer.quizBoosts.compoundFormula.options",
   // Already English in the Vietnamese source: the file-type fallback label the
   // admin preview shows for a spreadsheet.
   "adminOne.filePreview.excelSpreadsheetFallback",
-  // Formulas, not sentences. "Revenue - COGS - OpEx" is the same line of
-  // accounting in both languages; translating the terms would stop them
-  // matching the statements the lesson teaches.
-  "cashFlowSim.accountingProfitFormula",
-  "cashFlowSim.realCashFlowFormula",
-  "cashFlowSim.cashFlowLineFormula",
-  "roeCalc.formulaBreakdown",
-  // "Tự Học Tài Chính" is the product's own name and stays in an English
+  // "Tự Học Công Nghệ" is the product's own name and stays in an English
   // sentence, the same way the terms page names the project it governs.
   "terms.section1Body",
   "levelUp.shareCaption",
@@ -235,13 +175,11 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // The example name in a name field. The learners are Vietnamese, so a
   // Vietnamese placeholder name is the useful hint in either UI language.
   "chatbot.namePlaceholder",
-  // Already English in the Vietnamese source: two org badges on the Goldman
-  // widget, the boss arena's own name, and the glossary's title (it is a
-  // bilingual glossary, so its heading is English on both sides on purpose).
+  // Already English in the Vietnamese source: two org badges on the capacity
+  // widget and the boss arena's own name.
   "bossBattle.arenaBadge",
-  "goldmanWidget.orgBadge",
-  "goldmanWidget.trackBadge",
-  "cfaGlossary.heading",
+  "capacityPlanning.orgBadge",
+  "capacityPlanning.trackBadge",
   // Already English: the world-boss HP readout and its arena label, both of
   // which are the game's own English chrome in the Vietnamese source too.
   //

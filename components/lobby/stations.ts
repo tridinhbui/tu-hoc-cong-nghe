@@ -9,8 +9,8 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
  *  đi qua nó là đường vào chỗ học thật.
  *
  *  Mỗi cửa mang một CÔNG THỨC THẬT của phòng phía sau, không phải một câu khẩu
- *  hiệu. Người đi ngang đọc được `WACC = E/V × Re + D/V × Rd × (1 − t)` sẽ biết
- *  ngay phòng CFA dạy gì, và đó là thứ một cái tên phòng không nói được.
+ *  hiệu: người đi ngang đọc công thức là biết ngay phòng dạy gì, điều mà một
+ *  cái tên phòng không nói được.
  *
  *  Danh sách để ở đây, tách khỏi phần vẽ, vì nó vừa là hình học (vị trí cửa)
  *  vừa là điều hướng (đường dẫn) - cùng một lý do đã tách room-obstacles.
@@ -55,8 +55,6 @@ const STATION_COPY_KEY: Record<string, keyof Dictionary["worldSpaces"]["lobbySta
   "hoc-bai": "hocBai",
   "kiem-tra": "kiemTra",
   "on-tap": "onTap",
-  cfa: "cfa",
-  frm: "frm",
   "phong-van": "phongVan",
   "su-nghiep": "suNghiep",
 };
@@ -96,9 +94,8 @@ export function stationsOf(t: Dictionary): Station[] {
  *  danh sách ngay từ đầu: để không bao giờ có chuyện thư viện có tám cửa còn
  *  toà tháp có bảy tầng. */
 export function stationRoomHref(station: Station): string {
-  // Khu phố nghề (/pho-nghe) đã bị gỡ cùng phần nghề tài chính, nên không còn
-  // tầng 3D nào để dẫn vào. Trả thẳng đường của trạm: cánh cửa vẫn mở ra đúng
-  // màn hình mà trạm đó đại diện, chỉ là không đi vòng qua phòng dựng hình nữa.
+  // Không có tầng 3D nào để dẫn vào: cánh cửa mở thẳng ra màn hình mà trạm
+  // đó đại diện.
   return station.href;
 }
 
@@ -110,7 +107,7 @@ export const STATION_REACH = 2.7;
 /** Cửa gần nhất trong tầm, hoặc null.
  *
  *  Chỉ xét khi đang ở tầng hai. Dưới sảnh, cùng toạ độ x,z đó là chỗ đi dưới
- *  gầm ban công - hiện lời mời vào phòng CFA khi người ta đang đi ngang tủ
+ *  gầm ban công - hiện lời mời vào phòng học khi người ta đang đi ngang tủ
  *  mục lục thì vừa sai vừa gây nhiễu. */
 export function nearestStation(stations: Station[], x: number, z: number, floor: Floor): Station | null {
   if (floor !== 1) return null;

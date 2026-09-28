@@ -44,9 +44,8 @@ interface NavProfile {
 /** `activePrefixes`: những tiền tố đường dẫn cũng làm dòng này sáng.
  *
  *  Mặc định một dòng chỉ sáng khi `pathname === href`, và điều đó đúng cho gần
- *  hết. "Chứng chỉ" là ngoại lệ: một dòng menu dẫn tới HAI route (/cfa và /frm,
- *  cùng các trang con của chúng), nên nếu không khai báo thì đứng ở FRM sẽ
- *  không có dòng nào sáng cả. */
+ *  hết. Ngoại lệ là dòng có trang con hoặc dẫn tới nhiều route, như /lo-trinh
+ *  và /hoc-theo-nhu-cau. */
 type NavLinkBase = { href: string; icon: LucideIcon; activePrefixes?: readonly string[] };
 
 type NavLink =
@@ -99,7 +98,7 @@ const TOP_LEVEL_LINKS: NavLink[] = [
  *
  *  Bảng xếp hạng không có dòng riêng: trang /bxh đã bị xoá và nội dung của nó
  *  nằm trong /analytics. Xem chú thích ở app/(app)/analytics/page.tsx. */
-// Thống kê và Tài liệu đã vào nhóm Cộng đồng, theo đúng bố cục bản tài chính.
+// Thống kê và Tài liệu đã vào nhóm Cộng đồng.
 const BOTTOM_LEVEL_LINKS: NavLink[] = [];
 
 /** The nav is grouped by what the reader is trying to *do*, not by feature
@@ -123,7 +122,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     titleKey: "sectionLearn",
     links: [
-      // "Bắt đầu từ đâu" đứng đầu nhóm như bản tài chính: người mới mở app
+      // "Bắt đầu từ đâu" đứng đầu nhóm: người mới mở app
       // cần câu trả lời đó trước danh sách bài.
       //
       // "Học theo nhu cầu" từng là một dòng riêng ngay dưới Học bài, và đó là
@@ -137,15 +136,8 @@ const NAV_SECTIONS: NavSection[] = [
       // Chứng chỉ quay lại, lần này là chứng chỉ công nghệ (AWS, Security+).
       // Vẫn là một lối học song song với lộ trình theo ngày, nên đứng ở đây.
       { href: "/chung-chi", labelKey: "certificates", icon: Award },
-      // Tách khỏi dashboard cùng đợt với CFA và FRM. Cả ba trước đó là thẻ
-      // trong dãy chọn track nhưng không phải track trong lộ trình đánh số
-      // theo ngày - chúng là các lối học song song, nên thuộc navbar.
-      //
-      // Dòng "Chứng chỉ" (/cfa, kèm activePrefixes sang /frm) đã gỡ cùng hai
-      // route đó. Chú thích cũ ở đây kể rằng /cfa từng không có lối vào nào
-      // ngoài một modal chạy một lần rồi thôi - giữ lại ý đó ở đây vì nó là
-      // bài học về navbar chứ không về CFA: một khu vực lớn mà không có dòng
-      // menu nào dẫn tới thì coi như không tồn tại.
+      // Một khu vực lớn mà không có dòng menu nào dẫn tới thì coi như không
+      // tồn tại.
       // Kiểm tra đã xuống nhóm Thực hành, đứng đầu nhóm. Lý lẽ cũ ở đây nói
       // nó thuộc Học tập vì nó chấm đúng phần kiến thức của những lối học phía
       // trên; lý lẽ đó đúng về NỘI DUNG nhưng sai về VIỆC ĐANG LÀM. Cả ba mục
@@ -166,7 +158,7 @@ const NAV_SECTIONS: NavSection[] = [
       // thật (avg_quiz_score, cổng mở bài), nên nó là lý do người ta mở nhóm
       // này ra chứ không phải Game.
       { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
-      // Phòng thi riêng, tách khỏi /kiem-tra (bàn tập) như bản tài chính.
+      // Phòng thi riêng, tách khỏi /kiem-tra (bàn tập).
       { href: "/thi-vuot-chang", labelKey: "stageSkipExam", icon: Trophy },
       { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
       { href: "/cong-cu", labelKey: "toolSimulators", icon: TerminalSquare, activePrefixes: ["/cong-cu"] },
@@ -645,7 +637,7 @@ export default function AppNavbar() {
         collapsedSections.includes(section.titleKey) && !forcedOpenKeys.includes(section.titleKey);
       const panelId = `${idPrefix}-section-${section.titleKey}`;
       const holdsCurrentPage = section.links.some((l) => l.href === pathname);
-      // Mỗi nhóm có biểu tượng - bố cục chép từ bản tài chính. Khung nền riêng
+      // Mỗi nhóm có biểu tượng. Khung nền riêng
       // của nhóm Học tập đã gỡ: hệ thiết kế chung chỉ dùng đường kẻ 1px dưới
       // tiêu đề nhóm, không lồng hộp trong hộp.
       const SectionIcon = SECTION_ICONS[section.titleKey] ?? Sparkles;

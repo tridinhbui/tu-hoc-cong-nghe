@@ -9,9 +9,8 @@ import { TOOL_MISSION_COUNTS, type ToolId } from "@/components/tools/tool-regist
 /**
  * /cong-cu - trang tổng của bộ mô phỏng công cụ.
  *
- * Khuôn giữ đúng bản tài chính (một danh sách thẻ, mỗi thẻ mở một phần mềm
- * riêng; công cụ đầu tiên là thẻ tối vì nó là dòng lệnh), nhưng năm công cụ là
- * của nghề công nghệ. Mỗi công cụ chạy hoàn toàn trong trình duyệt.
+ * Một danh sách thẻ, mỗi thẻ mở một phần mềm riêng; công cụ đầu tiên là thẻ
+ * tối vì nó là dòng lệnh. Mỗi công cụ chạy hoàn toàn trong trình duyệt.
  */
 const TOOLS: { id: ToolId; href: string; icon: LucideIcon; dark?: boolean }[] = [
   { id: "terminal", href: "/cong-cu/terminal", icon: TerminalSquare, dark: true },

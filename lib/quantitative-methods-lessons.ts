@@ -8,7 +8,7 @@ import type { Lesson } from "./lesson-types";
 // phản biện kết quả người khác đưa cho mình, chứ không theo hướng chứng minh
 // định lý - vì đó mới là việc người làm nghề thực sự phải làm hằng ngày.
 
-export const QUANT_METHODS_LESSONS: Lesson[] = [
+export const QUANTITATIVE_METHODS_LESSONS: Lesson[] = [
   {
     id: 1421,
     slug: "phan-phoi-va-duoi-day-trong-so-lieu",

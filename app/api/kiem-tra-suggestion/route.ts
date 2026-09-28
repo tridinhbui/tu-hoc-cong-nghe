@@ -44,11 +44,6 @@ export async function GET() {
   let track: QuizTrack = "personal";
   if (picked.track === "professional" || isLessonIdInTrack(picked.id, "professional")) {
     track = "professional";
-  } else if (picked.track === "bonus") {
-    // Bonus/case-study lessons (incl. the cfa-ethics-*/cfa-economics-* ones)
-    // don't carry a personal/professional day-range - route those into the
-    // CFA track since that's where most bonus-tagged CFA content lives.
-    track = picked.slug.startsWith("cfa-") ? "cfa" : "personal";
   }
 
   const difficultyMap: Record<string, QuizDifficulty> = {

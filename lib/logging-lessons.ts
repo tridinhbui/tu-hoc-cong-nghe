@@ -189,7 +189,6 @@ export const LOGGING_LESSONS: Lesson[] = [
   },
   {
     "id": 1722,
-    "interactiveType": "tail-risk",
     "slug": "duong-di-tu-su-kien-toi-dashboard",
     "title": "Nhật ký, Bài 2: Từ một dòng log tới biểu đồ - đường đi và chỗ mất mát",
     "subtitle": "Giữa chỗ ghi và chỗ nhìn có bốn chặng, và mỗi chặng đều làm mất một ít.",
@@ -725,7 +724,6 @@ export const LOGGING_LESSONS: Lesson[] = [
   },
   {
     "id": 1725,
-    "interactiveType": "tail-risk",
     "slug": "chot-ky-so-lieu-va-du-lieu-den-muon",
     "title": "Nhật ký, Bài 5: Chốt kỳ số liệu - khi nào một khoảng thời gian được coi là xong",
     "subtitle": "Dữ liệu đến muộn làm con số của hôm qua đổi vào hôm nay, và không ai được báo.",

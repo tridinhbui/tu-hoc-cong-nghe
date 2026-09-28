@@ -678,8 +678,8 @@ export function skyTexture(top: string, mid: string, horizon: string): THREE.Tex
 /** Biển đá khắc công thức phía trên mỗi cửa phòng học.
  *
  *  Công thức được vẽ TO nhất trong ba dòng, hơn cả tên phòng. Người đi ngang
- *  liếc một cái sẽ chỉ đọc kịp một dòng, và `WACC = ...` nói cho họ biết phòng
- *  này dạy gì rõ hơn chữ "Phòng CFA".
+ *  liếc một cái sẽ chỉ đọc kịp một dòng, và một công thức nói cho họ biết phòng
+ *  này dạy gì rõ hơn tên phòng.
  *
  *  Co chữ theo bề rộng thay vì xuống dòng: công thức xuống dòng giữa chừng đọc
  *  ra thành hai phép tính khác nhau. */

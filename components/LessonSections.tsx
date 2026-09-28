@@ -7,6 +7,7 @@ import FormulaBlock from "@/components/FormulaBlock";
 import FeynmanCard from "@/components/learning-flows/FeynmanCard";
 import CodeBlock from "@/components/lesson-blocks/CodeBlock";
 import ExerciseBlock from "@/components/lesson-blocks/ExerciseBlock";
+import { recordExercisePass } from "@/lib/exercise-passes";
 import { useI18n } from "@/lib/i18n/context";
 import { Sys } from "@/components/ui/system";
 
@@ -54,12 +55,16 @@ interface LessonSectionsProps {
   // set below.
   checkpoint?: React.ReactNode;
   checkpointAfterIndex?: number;
+  /** Id bài - để lưu bài tập viết mã đã qua theo (bài, vị trí khối). Không có
+   *  thì bài tập vẫn chạy và chấm được, chỉ không lưu. */
+  lessonId?: number;
 }
 
 export default function LessonSections({
   sections,
   checkpoint,
   checkpointAfterIndex = -1,
+  lessonId,
 }: LessonSectionsProps) {
   const { t } = useI18n();
   // Shared across the whole lesson body so a term already highlighted once
@@ -206,6 +211,7 @@ export default function LessonSections({
             solution={block.solution}
             expectedOutput={block.expectedOutput}
             hints={block.hints}
+            onPass={lessonId ? () => void recordExercisePass(lessonId, i) : undefined}
           />
         );
 

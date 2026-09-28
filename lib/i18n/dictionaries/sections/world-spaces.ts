@@ -36,18 +36,6 @@ export const worldSpacesVi = {
         formula: "Little's Law: L = λ × W",
         note: "Số việc trong hệ thống = tốc độ đến × thời gian ở lại",
       },
-      cfa: {
-        room: "Phòng chứng chỉ",
-        blurb: "Bốn miền thi, theo đề cương chính thức",
-        formula: "Uptime = Thời gian hoạt động / Tổng thời gian",
-        note: "99,9% một tháng là được phép hỏng 43 phút",
-      },
-      frm: {
-        room: "Phòng độ tin cậy",
-        blurb: "Quản trị rủi ro vận hành",
-        formula: "Ngân sách lỗi = 1 − SLO",
-        note: "Phần được phép hỏng trước khi phải dừng phát hành",
-      },
       phongVan: {
         room: "Phòng phỏng vấn",
         blurb: "Câu hỏi kỹ thuật, trả lời có chấm",
@@ -234,18 +222,6 @@ export const worldSpacesEn: typeof worldSpacesVi = {
         blurb: "Latency, capacity and infrastructure-cost calculators",
         formula: "Little's Law: L = λ × W",
         note: "Work in the system = arrival rate × time spent in it",
-      },
-      cfa: {
-        room: "Certification room",
-        blurb: "All four domains, following the official syllabus",
-        formula: "Uptime = Time up / Total time",
-        note: "99.9% over a month allows 43 minutes of downtime",
-      },
-      frm: {
-        room: "Reliability room",
-        blurb: "Operational risk management",
-        formula: "Error budget = 1 − SLO",
-        note: "How much may break before releases have to stop",
       },
       phongVan: {
         room: "Interview room",

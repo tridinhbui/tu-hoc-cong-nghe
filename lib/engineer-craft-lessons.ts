@@ -8,7 +8,7 @@ import type { Lesson } from "./lesson-types";
 // trình có giờ. Đây là những thứ quyết định kết quả tuyển dụng và cả sự nghiệp về sau,
 // nhưng gần như không được dạy ở đâu ngoài việc làm sai vài lần rồi tự rút ra.
 
-export const ANALYST_CRAFT_LESSONS: Lesson[] = [
+export const ENGINEER_CRAFT_LESSONS: Lesson[] = [
   {
     "id": 1481,
     "slug": "viet-tai-lieu-thiet-ke-mot-trang",

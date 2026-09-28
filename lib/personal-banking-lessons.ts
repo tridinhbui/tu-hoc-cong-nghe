@@ -16,7 +16,7 @@ import type { Lesson } from "./lesson-types";
 export const PERSONAL_BANKING_LESSONS: Lesson[] = [
   {
     id: 310,
-    slug: "gui-tiet-kiem-hoat-dong-the-nao",
+    slug: "tien-trinh-chuong-trinh-dang-chay",
     title: "Chặng 12, Bài 1: Tiến trình - chương trình đang chạy là gì",
     subtitle: "Mã nằm trên đĩa là tệp; mã đang chạy là tiến trình, và hai thứ đó khác nhau",
     duration: "7 phút",
@@ -391,7 +391,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
   },
   {
     id: 312,
-    slug: "rut-tiet-kiem-truoc-han",
+    slug: "cong-va-dich-vu-dang-lang-nghe",
     title: "Chặng 12, Bài 3: Cổng và dịch vụ đang lắng nghe",
     subtitle: "Một máy chủ có 65.535 cửa, và bạn nên biết chính xác cửa nào đang mở",
     duration: "7 phút",
@@ -733,7 +733,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
   },
   {
     id: 314,
-    slug: "chung-chi-tien-gui-vs-so-tiet-kiem",
+    slug: "dns-tu-ten-mien-toi-dia-chi-ip",
     title: "Chặng 12, Bài 5: DNS - từ tên miền tới địa chỉ IP",
     subtitle: "Lớp tra cứu mà mọi thứ dựa vào, và cũng là chỗ hỏng bị đổ oan nhiều nhất",
     duration: "7 phút",
@@ -904,7 +904,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
   },
   {
     id: 315,
-    slug: "bao-hiem-tien-gui-viet-nam",
+    slug: "tls-chung-chi-va-lop-bao-ve-phia-truoc",
     title: "Chặng 12, Bài 6: TLS, chứng chỉ và lớp bảo vệ phía trước",
     subtitle: "Ổ khoá chứng minh bạn đang nói với đúng máy chủ, không chứng minh máy chủ đó tử tế",
     duration: "8 phút",

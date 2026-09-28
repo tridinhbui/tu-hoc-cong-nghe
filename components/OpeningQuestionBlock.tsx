@@ -12,10 +12,8 @@ interface OpeningQuestionBlockProps {
   explanation: React.ReactNode;
 }
 
-// Shared by regular lessons (LessonPageClient) and CFA modules
-// (CfaModulePageClient) - accepts ReactNode rather than plain strings so CFA
-// content (rendered through CfaContentRenderer for markdown/LaTeX) can reuse
-// the exact same opening-question UI instead of a second hand-rolled copy.
+// Accepts ReactNode rather than plain strings so rich content (markdown/LaTeX)
+// can reuse the same opening-question UI instead of a hand-rolled copy.
 export default function OpeningQuestionBlock({
   question,
   options,

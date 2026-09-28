@@ -23,11 +23,11 @@ export const BONUS_CATEGORIES: Record<string, string> = {
   "case-tach-do-tre-thanh-phan": "Đo lường & vận hành hệ thống",
   "case-lap-trinh-quy-ve-may-y-tuong": "Đo lường & vận hành hệ thống",
   "case-hai-cach-do-do-kha-dung": "Đo lường & vận hành hệ thống",
-  "danh-gia-du-an-npv-irr": "Ước lượng & quyết định kỹ thuật",
+  "danh-gia-mot-du-an-nen-tang-noi-bo": "Ước lượng & quyết định kỹ thuật",
 
   "mot-lan-toi-uu-lon": "Đọc số liệu hệ thống",
   "doc-dong-tai-nguyen-he-thong-lon": "Đọc số liệu hệ thống",
-  "interim-comprehensive-income": "Đọc số liệu hệ thống",
+  "so-lieu-giua-ky-va-thay-doi-an": "Đọc số liệu hệ thống",
   "dong-tai-nguyen-san-pham-tang-nhanh": "Đọc số liệu hệ thống",
   "case-dat-truoc-hay-tra-theo-dung": "Đo lường & vận hành hệ thống",
   "doi-co-20-phan-tram-nang-luc-du": "Đọc số liệu hệ thống",
@@ -37,7 +37,7 @@ export const BONUS_CATEGORIES: Record<string, string> = {
   "case-tinh-phi-ha-tang-noi-bo": "Đo lường & vận hành hệ thống",
   "ty-le-no-ky-thuat": "Đọc số liệu hệ thống",
   "case-doc-sau-nhat-ky": "Đo lường & vận hành hệ thống",
-  "financial-risk": "Đọc số liệu hệ thống",
+  "phan-loai-rui-ro-ky-thuat": "Đọc số liệu hệ thống",
   "case-doc-bao-cao-su-co": "Đo lường & vận hành hệ thống",
   "case-ghep-hai-he-thong": "Đo lường & vận hành hệ thống",
   "case-bon-mo-hinh-trien-khai": "Đo lường & vận hành hệ thống",
@@ -57,7 +57,7 @@ export const BONUS_CATEGORIES: Record<string, string> = {
 };
 
 // Render order - "Ước lượng & quyết định kỹ thuật" first since it's the cluster most
-// people look for (ROIC/EV/WACC/asset-based valuation).
+// people look for.
 /** Nhóm dành cho bài chưa được gán. Là KHOÁ, không phải nhãn hiển thị. */
 export const BONUS_CATEGORY_FALLBACK = "Khác";
 

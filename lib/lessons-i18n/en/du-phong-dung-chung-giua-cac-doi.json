@@ -168,5 +168,5 @@
     "message": "Measure each service's peak by hour. Move scheduled jobs off a shared clock. Write the priority order for when the pool runs dry.",
     "secondary": "The second one alone usually does more for the model than the other two together."
   },
-  "slug": "bao-hiem-la-gi-mo-hinh-kinh-doanh"
+  "slug": "du-phong-dung-chung-giua-cac-doi"
 }

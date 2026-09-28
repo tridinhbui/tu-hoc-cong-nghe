@@ -4,9 +4,8 @@ import { format } from "@/lib/i18n";
  *
  *  Extracted from components/CommunityFeedClient.tsx's local `timeAgo` so
  *  components/NotificationBell.tsx can use the exact same wording instead of
- *  writing a second copy. (Not the only copy in the codebase -
- *  LessonPageClient.tsx and CfaModulePageClient.tsx have their own local
- *  versions too, but consolidating those is a separate, unrelated cleanup.)
+ *  writing a second copy. (LessonPageClient.tsx still has its own
+ *  local version; consolidating it is a separate cleanup.)
  *
  *  NHẬN CHUỖI TỪ ĐIỂN CHỨ KHÔNG NHẬN CẢ `Dictionary`: hàm này gọi từ ba
  *  component, và truyền nguyên từ điển vào một hàm thuần chỉ để lấy bốn chuỗi

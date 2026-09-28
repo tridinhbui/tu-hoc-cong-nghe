@@ -23,15 +23,15 @@
 
 export const trackStagesVi = {
   professionalBranches: {
-    corporate: {
+    services: {
       label: "Kiến trúc dịch vụ",
       subtitle: "Ngôn ngữ, kiến trúc dịch vụ, API, vận hành & dựng hệ thống",
     },
-    investment: {
+    systems: {
       label: "Hệ thống & hiệu năng",
       subtitle: "Mạng, độ tin cậy, hàng đợi, tối ưu, hệ điều hành & quy trình nghiên cứu",
     },
-    banking: {
+    "security-data": {
       label: "Bảo mật, dữ liệu & tư vấn",
       subtitle: "Xác thực, phân quyền, tuân thủ, quản trị dữ liệu & sao lưu",
     },
@@ -362,40 +362,6 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 14",
-          name: "Masterclass chuyên đề: hạ tầng, mạng, startup công nghệ, bảo mật & phần mềm xanh",
-          parts: [
-            "Hạ tầng trung tâm dữ liệu, mạng doanh nghiệp, startup công nghệ, quản trị rủi ro bảo mật & phần mềm xanh",
-          ],
-        },
-        {
-          label: "Chặng 15",
-          name: "Dựng hệ thống thực hành (System Building)",
-          parts: [
-            "Cấu trúc dự án, luồng dữ liệu và ba lớp dịch vụ",
-            "Lớp phụ trợ, hàng đợi nền và đo hiệu năng",
-            "Kiểm thử tải, rà soát thiết kế và project cuối chặng",
-          ],
-        },
-        {
-          label: "Chặng 16",
-          name: "Phần mềm xanh (Green Software & hiệu quả năng lượng)",
-          parts: [
-            "Nền tảng: phần mềm xanh là gì, đo lường và tối ưu tiêu thụ",
-            "Quy định, dấu chân carbon của hạ tầng và chi phí",
-            "Quản trị kỹ thuật chuyên sâu",
-          ],
-        },
-        {
-          label: "Chặng 17",
-          name: "Hệ điều hành cho người làm công nghệ",
-          parts: [
-            "Tiến trình: lập lịch, bộ nhớ và cấu trúc tập tin",
-            "Hệ thống: tải, mở rộng, chu kỳ phát hành và chính sách vận hành",
-            "Hệ phân tán và đọc chỉ báo hệ thống",
-          ],
-        },
-        {
-          label: "Chặng 18",
           name: "Xác thực, phân quyền và tuân thủ",
           parts: [
             "Đọc và rà soát một hệ thống xác thực",
@@ -404,7 +370,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 19",
+          label: "Chặng 15",
           name: "Tối ưu hiệu năng và quản trị rủi ro vận hành",
           parts: [
             "Tối ưu sâu: từ hồ sơ CPU đến độ trễ đuôi",
@@ -412,7 +378,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 20",
+          label: "Chặng 16",
           name: "Nền tảng: quy trình nghiên cứu và thiết kế chuyên sâu",
           parts: [
             "Quy trình nhóm, luận điểm kỹ thuật và chiến lược đo lường",
@@ -421,7 +387,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 21",
+          label: "Chặng 17",
           name: "Quản trị dữ liệu và sao lưu",
           parts: [
             "Quy trình thiết kế giải pháp cho khách hàng",
@@ -429,7 +395,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 22",
+          label: "Chặng 18",
           name: "Phương pháp đo lường (Measurement & Benchmarking)",
           parts: [
             "Phân phối, lấy mẫu và suy diễn thống kê",
@@ -437,7 +403,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 23",
+          label: "Chặng 19",
           name: "SQL và dữ liệu cho phân tích hệ thống",
           parts: [
             "Truy vấn, phép nối và dựng báo cáo bằng SQL",
@@ -445,7 +411,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 24",
+          label: "Chặng 20",
           name: "Chuẩn mực mã nguồn và quy định dữ liệu Việt Nam",
           parts: [
             "Quy ước mã, linter và chuyển đổi chuẩn",
@@ -454,7 +420,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 25",
+          label: "Chặng 21",
           name: "Hệ sinh thái công nghệ Việt Nam",
           parts: [
             "Cơ chế thị trường và vốn đầu tư nước ngoài",
@@ -463,20 +429,12 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 26",
-          name: "Hệ thống đa vùng và quốc tế hoá",
-          parts: [
-            "Đồng bộ đa vùng: độ trễ và nhất quán",
-            "Bản địa hoá, múi giờ và rủi ro dữ liệu xuyên biên giới",
-          ],
-        },
-        {
-          label: "Chặng 27",
+          label: "Chặng 22",
           name: "Nội bộ runtime: cấu trúc và hiệu năng máy ảo",
           parts: ["Cấu trúc runtime và cơ chế cấp phát bộ nhớ", "Đo hiệu năng và gỡ bỏ điểm nghẽn"],
         },
         {
-          label: "Chặng 28",
+          label: "Chặng 23",
           name: "Kỹ năng nghề kỹ sư phần mềm",
           parts: [
             "Viết tài liệu thiết kế và bảo vệ phương án",
@@ -484,7 +442,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 29",
+          label: "Chặng 24",
           name: "Công cụ phân tích dữ liệu",
           parts: [
             "Chuyển từ bảng tính sang code, và làm sạch dữ liệu",
@@ -492,7 +450,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 30",
+          label: "Chặng 25",
           name: "Tư duy phân tích dữ liệu",
           parts: [
             "Chọn chỉ số, phân tích cohort và thử nghiệm A/B",
@@ -500,7 +458,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 31",
+          label: "Chặng 26",
           name: "Lập kế hoạch dung lượng và vận hành",
           parts: [
             "Yếu tố dẫn dắt tải, kế hoạch nhân sự và lịch phát hành 13 tuần",
@@ -508,7 +466,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 32",
+          label: "Chặng 27",
           name: "Cơ chế phát hành và di trú hệ thống",
           parts: [
             "Phát hành dần, cờ tính năng và phân bổ lưu lượng",
@@ -516,7 +474,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 33",
+          label: "Chặng 28",
           name: "Kiểm thử: cách một bản phát hành được xác nhận",
           parts: [
             "Kết luận kiểm thử, mức nghiêm trọng và bằng chứng",
@@ -524,63 +482,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 34",
-          name: "SRE: Nền tảng, rủi ro vận hành & rủi ro dung lượng",
-          parts: [
-            "Foundations of Reliability: quản trị rủi ro, văn hoá không đổ lỗi, sự cố kinh điển",
-            "Operational Resilience: dữ liệu sự cố, BCP/DR, rủi ro mô hình & bên thứ ba",
-            "Capacity and Resource Risk: hạn mức, kế hoạch dung lượng, tự mở rộng",
-          ],
-        },
-        {
-          label: "Chặng 35",
-          name: "SRE: Rủi ro hiệu năng",
-          parts: [
-            "Đo độ trễ đuôi, kiểm định hậu nghiệm và p99",
-            "Mô hình biến động tải, phụ thuộc dịch vụ và kiểm thử chịu tải",
-          ],
-        },
-        {
-          label: "Chặng 36",
-          name: "SRE: Bảo mật nâng cao & Vấn đề thời sự",
-          parts: [
-            "Chuỗi cung ứng phần mềm, ký số và rủi ro phụ thuộc bên thứ ba",
-            "Shadow IT, rủi ro liên kết hệ thống và tài sản số",
-            "Rủi ro nhà cung cấp độc quyền và khoá nền tảng",
-          ],
-        },
-        {
-          label: "Chặng 37",
-          name: "SRE: Nền tảng, vận hành, dung lượng & đo lường nâng cao",
-          parts: [
-            "Foundations: phân loại sự cố, ngưỡng & hạn mức, đo hiệu quả, SLO, đạo đức, quản trị dữ liệu",
-            "Foundations nâng cao: chi phí trên mỗi request & ngân sách hạ tầng, quản trị cấp lãnh đạo, bốn lựa chọn với rủi ro, rủi ro hệ thống, uy tín & chiến lược",
-            "Operational nâng cao: phân tích kịch bản, dữ liệu sự cố bên ngoài, rủi ro thay đổi, dịch vụ trọng yếu, rủi ro con người",
-            "Hiệu năng nâng cao: đo tải chuẩn, độ nhạy theo tài nguyên, ánh xạ nhân tố nghẽn, phân rã chi phí giữa các dịch vụ",
-            "San nốt bốn phần: đo lường nâng cao, rủi ro phụ thuộc và tập trung, dung lượng theo giờ và bộ đệm, quy kết hiệu năng và rủi ro nền tảng",
-            "Operational Resilience: phân loại sự cố, tự đánh giá & KRI, an ninh mạng, gian lận, dự phòng tài nguyên, rủi ro hành vi",
-            "Capacity and Resources: hai loại dung lượng, thang tải, phân bổ chi phí, kiểm thử chịu tải, tài nguyên dự trữ, tự mở rộng",
-            "Quantitative Analysis: Bayes, MLE, Monte Carlo, bootstrapping, EVT, PCA",
-          ],
-        },
-        {
-          label: "Chặng 38",
-          name: "SRE: Đo lường, mô hình rủi ro & vấn đề thời sự",
-          parts: [
-            "Measurement and Risk Models: đường cơ sở, cây quyết định, mô hình hàng đợi, độ nhạy, chi phí biên, xếp hạng dịch vụ",
-            "Current Issues: AI/ML, điện năng trung tâm dữ liệu, hậu monolith, hạ tầng chủ quyền, tập trung đám mây, các sự cố diện rộng gần đây",
-          ],
-        },
-        {
-          label: "Chặng 39",
-          name: "Sản phẩm thanh toán và ví điện tử",
-          parts: [
-            "Doanh thu và đơn vị kinh tế: take rate, CAC/LTV, số dư ví",
-            "Phần mất đi và đường tới hoà vốn: lỗi giao dịch, gian lận, chi phí hạ tầng",
-          ],
-        },
-        {
-          label: "Chặng 40",
+          label: "Chặng 29",
           name: "Quan hệ nhà phát triển (DevRel)",
           parts: [
             "Nghề DevRel và nghĩa vụ công bố thay đổi",
@@ -588,7 +490,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 41",
+          label: "Chặng 30",
           name: "Nhật ký hệ thống và sổ sự kiện",
           parts: [
             "Ghi log có cấu trúc và đường đi từ sự kiện tới dashboard",
@@ -596,7 +498,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 42",
+          label: "Chặng 31",
           name: "Dự án hạ tầng và trung tâm dữ liệu",
           parts: [
             "Pháp lý, chi phí đầu tư ban đầu và cấu trúc dự án hạ tầng",
@@ -604,7 +506,7 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 43",
+          label: "Chặng 32",
           name: "Định mức tài nguyên và chi phí đám mây",
           parts: [
             "Định mức, tài nguyên dự phòng và hạ tầng dự phòng chéo",
@@ -612,32 +514,32 @@ export const trackStagesVi = {
           ],
         },
         {
-          label: "Chặng 44",
+          label: "Chặng 33",
           name: "Gọi LLM qua API: token, chi phí và độ tin cậy",
           parts: ["Token, lời gọi và đầu ra có cấu trúc", "Chi phí, độ tin cậy và chọn mô hình"],
         },
         {
-          label: "Chặng 45",
+          label: "Chặng 34",
           name: "RAG: cho mô hình đọc tài liệu của bạn",
           parts: ["Chia nhỏ, embedding và truy xuất", "Truy xuất tốt hơn, trả lời bám nguồn và đánh giá"],
         },
         {
-          label: "Chặng 46",
+          label: "Chặng 35",
           name: "Tool use, agent và MCP trong hệ thống thật",
           parts: ["Gọi công cụ, vòng lặp agent và MCP", "Quyền tối thiểu, workflow hay agent, quan sát"],
         },
         {
-          label: "Chặng 47",
+          label: "Chặng 36",
           name: "Đánh giá hệ thống LLM (evals)",
           parts: ["Bộ dữ liệu vàng và kiểm tất định", "LLM làm giám khảo, eval trong CI và sau ra mắt"],
         },
         {
-          label: "Chặng 48",
+          label: "Chặng 37",
           name: "Bảo mật và quản trị hệ thống LLM",
           parts: ["Mô hình đe doạ, prompt injection và rò rỉ dữ liệu", "Đầu ra không tin cậy, phân quyền và quản trị"],
         },
         {
-          label: "Chặng 49",
+          label: "Chặng 38",
           name: "Pipeline dữ liệu và vận hành LLM",
           parts: ["Pipeline, phiên bản, chi phí và giám sát", "Dự án: bot tài liệu nội bộ và agent CSKH lên production"],
         },
@@ -648,16 +550,16 @@ export const trackStagesVi = {
 
 export const trackStagesEn: typeof trackStagesVi = {
   professionalBranches: {
-    corporate: {
+    services: {
       label: "Service architecture",
       subtitle: "Languages, service architecture, APIs, operations & system building",
     },
-    investment: {
+    systems: {
       label: "Systems & performance",
       subtitle:
         "Networking, reliability, queues, optimisation, operating systems & the research process",
     },
-    banking: {
+    "security-data": {
       label: "Security, data & consulting",
       subtitle: "Authentication, authorisation, compliance, data governance & backups",
     },
@@ -1008,40 +910,6 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 14",
-          name: "Topic masterclass: infrastructure, networking, tech startups, security & green software",
-          parts: [
-            "Data-centre infrastructure, enterprise networking, tech startups, security risk management & green software",
-          ],
-        },
-        {
-          label: "Stage 15",
-          name: "Hands-on system building",
-          parts: [
-            "Project structure, data flow and the three service layers",
-            "The supporting layer, background queues and performance measurement",
-            "Load testing, design review and the end-of-stage project",
-          ],
-        },
-        {
-          label: "Stage 16",
-          name: "Green software (energy efficiency)",
-          parts: [
-            "Foundations: what green software is, measuring and cutting consumption",
-            "Regulation, the carbon footprint of infrastructure, and cost",
-            "Advanced engineering governance",
-          ],
-        },
-        {
-          label: "Stage 17",
-          name: "Operating systems for working engineers",
-          parts: [
-            "Processes: scheduling, memory and the file system",
-            "Systems: load, scaling, release cycles and operating policy",
-            "Distributed systems and reading system indicators",
-          ],
-        },
-        {
-          label: "Stage 18",
           name: "Authentication, authorisation and compliance",
           parts: [
             "Reading and reviewing an authentication system",
@@ -1050,7 +918,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 19",
+          label: "Stage 15",
           name: "Performance tuning and operational risk management",
           parts: [
             "Deep optimisation: from CPU profiles to tail latency",
@@ -1058,7 +926,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 20",
+          label: "Stage 16",
           name: "Foundations: the research process and in-depth design",
           parts: [
             "Team process, the technical argument and a measurement strategy",
@@ -1067,7 +935,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 21",
+          label: "Stage 17",
           name: "Data governance and backups",
           parts: [
             "Designing a solution for a client, step by step",
@@ -1075,7 +943,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 22",
+          label: "Stage 18",
           name: "Measurement & benchmarking method",
           parts: [
             "Distributions, sampling and statistical inference",
@@ -1083,7 +951,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 23",
+          label: "Stage 19",
           name: "SQL and data for system analysis",
           parts: [
             "Queries, joins and building reports in SQL",
@@ -1091,7 +959,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 24",
+          label: "Stage 20",
           name: "Code standards and Vietnamese data regulation",
           parts: [
             "Code conventions, linters and moving to a new standard",
@@ -1100,7 +968,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 25",
+          label: "Stage 21",
           name: "The Vietnamese technology ecosystem",
           parts: [
             "How the market works and foreign investment",
@@ -1109,15 +977,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 26",
-          name: "Multi-region systems and internationalisation",
-          parts: [
-            "Multi-region sync: latency and consistency",
-            "Localisation, time zones and cross-border data risk",
-          ],
-        },
-        {
-          label: "Stage 27",
+          label: "Stage 22",
           name: "Runtime internals: VM structure and performance",
           parts: [
             "Runtime structure and how memory is allocated",
@@ -1125,7 +985,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 28",
+          label: "Stage 23",
           name: "The software engineer's professional craft",
           parts: [
             "Writing a design doc and defending the approach",
@@ -1133,7 +993,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 29",
+          label: "Stage 24",
           name: "Data analysis tooling",
           parts: [
             "Moving from spreadsheets to code, and cleaning data",
@@ -1141,7 +1001,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 30",
+          label: "Stage 25",
           name: "Thinking like a data analyst",
           parts: [
             "Picking metrics, cohort analysis and A/B testing",
@@ -1149,7 +1009,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 31",
+          label: "Stage 26",
           name: "Capacity planning and operations",
           parts: [
             "Load drivers, staffing plans and a 13-week release calendar",
@@ -1157,7 +1017,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 32",
+          label: "Stage 27",
           name: "Release mechanics and system migration",
           parts: [
             "Gradual rollout, feature flags and traffic splitting",
@@ -1165,7 +1025,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 33",
+          label: "Stage 28",
           name: "Testing: how a release gets signed off",
           parts: [
             "Test conclusions, severity levels and evidence",
@@ -1173,63 +1033,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 34",
-          name: "SRE: foundations, operational risk & capacity risk",
-          parts: [
-            "Foundations of Reliability: risk management, blameless culture, the classic incidents",
-            "Operational Resilience: incident data, BCP/DR, model risk & third parties",
-            "Capacity and Resource Risk: quotas, capacity plans, autoscaling",
-          ],
-        },
-        {
-          label: "Stage 35",
-          name: "SRE: performance risk",
-          parts: [
-            "Measuring tail latency, backtesting and p99",
-            "Modelling load volatility, service dependencies and stress testing",
-          ],
-        },
-        {
-          label: "Stage 36",
-          name: "SRE: advanced security & current issues",
-          parts: [
-            "The software supply chain, code signing and third-party dependency risk",
-            "Shadow IT, systemic interconnection risk and digital assets",
-            "Sole-supplier risk and platform lock-in",
-          ],
-        },
-        {
-          label: "Stage 37",
-          name: "SRE: advanced foundations, operations, capacity & measurement",
-          parts: [
-            "Foundations: incident taxonomy, thresholds & quotas, efficiency measures, SLOs, ethics, data governance",
-            "Advanced foundations: cost per request & infrastructure budget, board-level governance, the four responses to risk, systemic risk, reputation & strategy",
-            "Advanced operations: scenario analysis, external incident data, change risk, critical services, human risk",
-            "Advanced performance: standard load measurement, sensitivity by resource, mapping bottleneck factors, splitting cost across services",
-            "Levelling the last four: advanced measurement, dependency and concentration risk, hourly capacity and buffers, performance attribution and platform risk",
-            "Operational Resilience: incident taxonomy, self-assessment & KRIs, cyber security, fraud, resource redundancy, behavioural risk",
-            "Capacity and Resources: the two kinds of capacity, load ladders, cost allocation, stress testing, reserve resources, autoscaling",
-            "Quantitative Analysis: Bayes, MLE, Monte Carlo, bootstrapping, EVT, PCA",
-          ],
-        },
-        {
-          label: "Stage 38",
-          name: "SRE: measurement, risk models & current issues",
-          parts: [
-            "Measurement and Risk Models: baselines, decision trees, queueing models, sensitivity, marginal cost, service tiering",
-            "Current Issues: AI/ML, data-centre power, life after the monolith, sovereign infrastructure, cloud concentration, the recent large-scale outages",
-          ],
-        },
-        {
-          label: "Stage 39",
-          name: "Payment and wallet products",
-          parts: [
-            "Revenue and unit economics: take rate, CAC/LTV, wallet balances",
-            "The leakage and the road to break-even: failed transactions, fraud, infrastructure cost",
-          ],
-        },
-        {
-          label: "Stage 40",
+          label: "Stage 29",
           name: "Developer relations (DevRel)",
           parts: [
             "The DevRel job and the duty to announce changes",
@@ -1237,7 +1041,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 41",
+          label: "Stage 30",
           name: "System logs and the event record",
           parts: [
             "Structured logging and the path from event to dashboard",
@@ -1245,7 +1049,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 42",
+          label: "Stage 31",
           name: "Infrastructure and data-centre projects",
           parts: [
             "Legal work, up-front capital cost and how an infrastructure project is structured",
@@ -1253,7 +1057,7 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 43",
+          label: "Stage 32",
           name: "Resource quotas and cloud cost",
           parts: [
             "Quotas, standby resources and cross-region failover infrastructure",
@@ -1261,32 +1065,32 @@ export const trackStagesEn: typeof trackStagesVi = {
           ],
         },
         {
-          label: "Stage 44",
+          label: "Stage 33",
           name: "Calling LLMs over an API: tokens, cost and reliability",
           parts: ["Tokens, requests and structured output", "Cost, reliability and choosing a model"],
         },
         {
-          label: "Stage 45",
+          label: "Stage 34",
           name: "RAG: letting the model read your documents",
           parts: ["Chunking, embeddings and retrieval", "Better retrieval, grounded answers and evaluation"],
         },
         {
-          label: "Stage 46",
+          label: "Stage 35",
           name: "Tool use, agents and MCP in real systems",
           parts: ["Tool calling, the agent loop and MCP", "Least privilege, workflow vs agent, observability"],
         },
         {
-          label: "Stage 47",
+          label: "Stage 36",
           name: "Evaluating LLM systems (evals)",
           parts: ["Golden sets and deterministic checks", "LLM-as-judge, evals in CI and after launch"],
         },
         {
-          label: "Stage 48",
+          label: "Stage 37",
           name: "Securing and governing LLM systems",
           parts: ["Threat model, prompt injection and data leakage", "Untrusted output, access control and governance"],
         },
         {
-          label: "Stage 49",
+          label: "Stage 38",
           name: "Data pipelines and running LLMs in production",
           parts: ["Pipelines, versioning, cost and monitoring", "Projects: an internal docs bot and a support agent in production"],
         },

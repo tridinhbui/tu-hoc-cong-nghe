@@ -75,7 +75,7 @@ export const buildingGamesVi = {
           },
         ],
       },
-      "capitol-hill": {
+      "cloud-capital": {
         title: "Dự án chuyển lên đám mây",
         intro: "Công ty giao bạn dời hệ thống từ phòng máy lên cloud. Mỗi quyết định đều tốn tiền thật.",
         scenarios: [
@@ -131,7 +131,7 @@ export const buildingGamesVi = {
           },
         ],
       },
-      "cme-commodities": {
+      "resource-floor": {
         title: "Sàn điều phối GPU",
         intro: "Bạn quản lý ngân sách GPU và điện năng của đội AI. Tính nhanh, chọn đúng.",
         scenarios: [
@@ -187,7 +187,7 @@ export const buildingGamesVi = {
           },
         ],
       },
-      "swiss-haven": {
+      "data-haven": {
         title: "Kho dữ liệu an toàn",
         intro: "Bạn giữ chìa khoá kho dữ liệu khách hàng. Một sai sót là mất dữ liệu hoặc vi phạm luật.",
         scenarios: [
@@ -371,7 +371,7 @@ export const buildingGamesEn: typeof buildingGamesVi = {
           },
         ],
       },
-      "capitol-hill": {
+      "cloud-capital": {
         title: "Cloud Migration Project",
         intro: "Your company is moving its systems from a server room to the cloud. Every decision costs real money.",
         scenarios: [
@@ -427,7 +427,7 @@ export const buildingGamesEn: typeof buildingGamesVi = {
           },
         ],
       },
-      "cme-commodities": {
+      "resource-floor": {
         title: "GPU Dispatch Floor",
         intro: "You manage the AI team's GPU and power budget. Calculate fast, choose right.",
         scenarios: [
@@ -483,7 +483,7 @@ export const buildingGamesEn: typeof buildingGamesVi = {
           },
         ],
       },
-      "swiss-haven": {
+      "data-haven": {
         title: "Secure Data Vault",
         intro: "You hold the keys to the customer data vault. One slip means lost data or a broken law.",
         scenarios: [

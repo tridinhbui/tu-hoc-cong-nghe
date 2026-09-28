@@ -8,7 +8,7 @@
  *     thống không trao.
  *  2. Không giọng game hoá trẻ con. "Nhiệm vụ tiếp theo" chứ không "Nhiệm vụ
  *     của nhà vô địch"; "Mở khoá" chứ không "Chinh phục vinh quang". Người học
- *     ở đây để đọc báo cáo tài chính, không để nghe cổ vũ.
+ *     ở đây để học kỹ thuật, không để nghe cổ vũ.
  *  3. Câu mốc phải nói RA cái mở khoá được, không nói chung chung. "Xong Chặng
  *     3 → mở bài kiểm tra chặng" là một lời hứa kiểm chứng được; "học tiếp để
  *     nhận thưởng" thì không.

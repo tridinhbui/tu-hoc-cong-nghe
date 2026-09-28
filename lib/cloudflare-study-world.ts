@@ -54,7 +54,7 @@ interface World {
 }
 
 /** Khoá phòng. Phòng học nhóm dùng số (`room_id` trong database), còn các
- *  phòng của Phố nghề dùng chuỗi ("street", "tang-cfa", "nghe-quant"…) vì
+ *  phòng của Phố nghề dùng chuỗi ("street"…) vì
  *  chúng không có bản ghi nào trong database cả - chúng là hình học. Cả hai đi
  *  chung một kênh, chỉ cần khoá là chuỗi. */
 export type WorldKey = string | number;

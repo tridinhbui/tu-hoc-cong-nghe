@@ -162,7 +162,7 @@ export default function LobbyClient() {
         // họ tới đây để làm - học bài - thì bị chôn sau một quãng đi bộ.
         //
         // Thẻ này hiện tên bài THẬT tiếp theo trong lộ trình, không phải một
-        // nút "Vào học" chung chung: nhìn thấy "Day 47 · WACC là gì?" là đã
+        // nút "Vào học" chung chung: nhìn thấy "Day 47 · DNS là gì?" là đã
         // biết mình sắp làm gì, còn một cái nút thì vẫn phải bấm mới biết.
         //
         // Qua Server Action vì lib/resume-learning đọc cả tập bài học - gọi

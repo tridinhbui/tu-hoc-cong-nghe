@@ -125,7 +125,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
   // tập dùng. Bản trước tự dựng lấy hai con số và cả hai đều sai:
   //
   //   - số chặng bắt bằng `stageName.match(/\d+/)`, tức con số đầu tiên trong
-  //     TÊN chặng ("Nền tảng tài chính cá nhân" không có số nào) rồi rơi về "1";
+  //     TÊN chặng ("Nền tảng lập trình" không có số nào) rồi rơi về "1";
   //   - số bài lấy thẳng `nextLesson.id`, là số thứ tự trong dữ liệu.
   //
   // Người học báo đúng hậu quả: bài mang tiêu đề "Chặng 12, Bài 2" hiện ra

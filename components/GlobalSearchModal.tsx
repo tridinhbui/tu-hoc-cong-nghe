@@ -32,10 +32,9 @@ const SAMPLE_GLOSSARY_URLS: Record<string, string> = {
   "g-p99": "/tai-lieu",
   "g-cache-hit": "/tai-lieu",
 };
-// Cả bốn công cụ mẫu từng trỏ vào /cong-cu, route đã gỡ cùng tám máy tính tài
-// chính cá nhân của nó. Đây là dữ liệu MẪU cho ô tìm kiếm (xem chú thích đầu
-// tệp: sẽ thay bằng kho thật), nên chúng trỏ tạm về thư viện thay vì biến mất -
-// nhóm "công cụ" trống trơn trông như ô tìm kiếm hỏng.
+// Dữ liệu MẪU cho ô tìm kiếm (xem chú thích đầu tệp: sẽ thay bằng kho thật),
+// nên các công cụ mẫu trỏ tạm về thư viện - nhóm "công cụ" trống trơn trông
+// như ô tìm kiếm hỏng.
 const SAMPLE_TOOL_URLS: Record<string, string> = {
   "t-big-o": "/tai-lieu",
   "t-capacity": "/tai-lieu",
@@ -152,9 +151,8 @@ export default function GlobalSearchModal({
                 <p className="text-xs font-bold">{t.globalSearch.emptyPrompt}</p>
                 <div className="flex flex-wrap justify-center gap-2 pt-2 text-[11px]">
                   {/* i18n-ignore-start: these are search query seeds, not UI copy - they
-                      must match the Vietnamese-only sample data below, so they stay
-                      Vietnamese regardless of UI locale (search behaviour is not copy) */}
-                  {["DCF", "WACC", "LBO", "P/E", "ROE", "Nợ vay", "Tích sản"].map((kw) => (
+                      are technical terms that read the same in both locales */}
+                  {["Git", "API", "Big-O", "SLO", "p99", "Idempotency", "Cache"].map((kw) => (
                     <button
                       key={kw}
                       type="button"

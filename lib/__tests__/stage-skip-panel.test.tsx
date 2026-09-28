@@ -13,7 +13,7 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-// Panel chép từ bản tài chính, gắn vào /thi-vuot-chang. Bộ kiểm này giữ hai
+// Panel gắn vào /thi-vuot-chang. Bộ kiểm này giữ hai
 // điều: danh sách chặng đọc đúng hình dạng mà app/api/stage-exam trả về, và
 // chưa có người dùng thì panel không dựng gì (trang tự lấy id rồi mới truyền).
 describe("StageSkipExamPanel (toàn trang)", () => {

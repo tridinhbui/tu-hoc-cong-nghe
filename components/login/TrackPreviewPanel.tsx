@@ -61,7 +61,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
                   : "text-ink-muted hover:text-ink"
               }`}
             >
-              {id === "cfa" && (
+              {id === "certification" && (
                 <span className="absolute top-1.5 right-1.5 rounded-xs border border-stone-400 px-1 text-[9px] font-bold uppercase tracking-wider text-ink-soft dark:border-stone-600">
                   {t.trackPanel.isNew}
                 </span>
@@ -126,7 +126,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           )}
 
           <a
-            href={track.previewSlug ? `/bai-hoc/${track.previewSlug}` : "/cfa"}
+            href={track.previewSlug ? `/bai-hoc/${track.previewSlug}` : "/chung-chi"}
             className={`${btnPrimary} w-full justify-between`}
           >
             <span className="flex min-w-0 items-center gap-3">

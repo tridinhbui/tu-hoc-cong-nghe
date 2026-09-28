@@ -34,8 +34,7 @@ export async function GET(request: NextRequest) {
     level: u.current_level || 1,
     pvpScore: (u.current_level || 1) * 120 + 50,
   })) ?? [];
-  // Không còn danh sách ba "đối thủ" dựng sẵn khi truy vấn trả về rỗng: đó là
-  // người chơi bịa, lại mang tên từ thời kho bài tài chính. Rỗng thì hiện rỗng.
+  // Không dựng "đối thủ" bịa khi truy vấn trả về rỗng. Rỗng thì hiện rỗng.
 
   return NextResponse.json({ leaderboard });
 }

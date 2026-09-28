@@ -181,7 +181,7 @@ export const en: Dictionary = {
       ],
       previewLabel: "Opening lesson: complexity is the language of performance",
     },
-    cfa: {
+    certification: {
       tab: "Certification track",
       subtitle: "AWS Solutions Architect Associate · in progress",
       description:
@@ -335,7 +335,7 @@ export const en: Dictionary = {
       tracksTitle: "Learning tracks",
       trackPersonal: "Tech foundations",
       trackCorporate: "Advanced technology",
-      trackCfa: "AWS Solutions Architect",
+      trackCertification: "AWS Solutions Architect",
       trackGame: "Game Kingdom RPG",
       ecoTitle: "Ecosystem",
       ecoStudyRoom: "Study rooms (3D)",
@@ -626,7 +626,7 @@ export const en: Dictionary = {
     explanationTitle: "The correct answer & explanation",
     flipBack: "Flip back to the question",
     correctAnswer: "Correct answer:",
-    financeExplanation: "Technical explanation:",
+    techExplanation: "Technical explanation:",
     noExplanation: "No detailed explanation for this question.",
 
     ratePrompt: "Rate how well you remembered it, to schedule the next review:",
@@ -834,7 +834,6 @@ export const en: Dictionary = {
   },
 
   interview: {
-    // Chép từ bản tài chính cùng trang /phong-van-ky-thuat, chữ đổi sang nghề công nghệ.
     missedTitle: "Questions you keep missing",
     missedRatio: "{wrong} wrong of {attempted}",
     missedLoading: "Reviewing your past rounds...",
@@ -1238,15 +1237,6 @@ export const en: Dictionary = {
     // `topics.all` được: ở bộ lọc "Tất cả" nghĩa là xem mọi bài, còn ở ô soạn
     // bài cùng chữ đó lại đọc thành "đăng vào mục Tất cả", tức một mục có thật.
     topicNone: "No category",
-    topics: {
-      all: { label: "All", short: "All" },
-      "meo-tai-chinh": { label: "Tech tips", short: "Tips" },
-      "phan-tich": { label: "Analysis", short: "Analysis" },
-      "thanh-tuu": { label: "Achievements", short: "Wins" },
-      "hoi-dap": { label: "Q&A", short: "Q&A" },
-      "tin-nong": { label: "Breaking", short: "Breaking" },
-      "ai-tooling": { label: "AI & tooling", short: "AI" },
-    },
 
 
     badgeStreak: "Keeping a streak",
@@ -1399,29 +1389,6 @@ export const en: Dictionary = {
     recallTitle: "Review",
   },
 
-  // Tên và "còn thiếu gì" của 14 mảng kiến thức, tra bằng SkillDomainId.
-  //
-  // SKILL_DOMAINS trong lib/career-competency.ts giờ chỉ giữ id và lessonIds.
-  // Câu chữ ra đây vì nó đi qua một API route (app/api/career-profile) tới một
-  // client component: route trả id, client tra từ điển. Trả câu chữ từ route thì
-  // ngôn ngữ do server chọn chứ không do người đọc chọn.
-  skillDomains: {
-    personal_finance: { label: "Programming foundations", gapHint: "the command line, Git, syntax and program structure" },
-    accounting: { label: "Web & front end", gapHint: "HTML, CSS, JavaScript, UI frameworks" },
-    valuation: { label: "System design", gapHint: "splitting services, queues, caching, architectural trade-offs" },
-    corporate_finance: { label: "Back end & APIs", gapHint: "API design, authentication, error handling, pagination" },
-    modeling_excel: { label: "Databases & SQL", gapHint: "table modelling, indexes, queries, transactions" },
-    ma: { label: "DevOps & deployment", gapHint: "CI/CD, containers, monitoring, incident recovery" },
-    fixed_income: { label: "Networking & protocols", gapHint: "HTTP, DNS, TLS, latency, debugging the wire" },
-    equity_portfolio: { label: "Data structures & algorithms", gapHint: "arrays, trees, graphs, complexity, tightening loops" },
-    derivatives_risk: { label: "Security", gapHint: "OWASP, secret management, authorisation, threat modelling" },
-    fpa_budgeting: { label: "Testing & quality", gapHint: "unit tests, integration tests, coverage, regression testing" },
-    ethics: { label: "Professional ethics", gapHint: "privacy, open-source licensing, data and AI ethics" },
-    economics: { label: "Operating systems & Linux", gapHint: "processes, memory, files, permissions, shell scripting" },
-    quant: { label: "Data & analytics", gapHint: "pipelines, warehouses, metrics, basic statistics" },
-    ai_tools: { label: "AI in products", gapHint: "calling LLMs, RAG, evaluating output quality you can verify" },
-  },
-
   // Ba mức đọc ra chữ của TopicMasteryWidget. Trước nằm trong hàm band() nên
   // không script nào thấy: chúng là literal trong THÂN HÀM, không phải trong
   // data ở module scope, cũng không ở vị trí hiển thị.
@@ -1435,7 +1402,7 @@ export const en: Dictionary = {
     "money-foundations": "Computing foundations & the shell",
     "tax-payroll": "Git & collaborating on a repo",
     "personal-investing": "Programming basics",
-    "bonds-rates": "Networking & protocols",
+    "networking-protocols": "Networking & protocols",
     "portfolio-retirement": "Architecture & system design",
     "housing-protection": "Deployment & operations",
     "banking-deposits": "Cloud & managed services",
@@ -1451,14 +1418,11 @@ export const en: Dictionary = {
     "investing-psychology": "User psychology & product",
     "accounting-reporting": "Web & front end",
     "system-design-backend": "System design & back end",
-    "bonds-credit": "Queues & service communication",
+    "queues-messaging": "Queues & service communication",
     "risk-portfolio-derivatives": "Reliability, monitoring & incidents",
-    "risk-frm": "Security in depth",
     "banking-compliance": "Privacy, licensing & compliance",
     "quant-data": "Data & analytics",
     "career-application": "Applying it at work",
-    esg: "Sustainability & energy efficiency",
-    "economics-markets": "Operating systems & Linux",
     "vn-product": "The Vietnamese market",
     "private-markets": "Open source & the ecosystem",
     "wealth-insurance": "Scale & handling load",
@@ -1470,10 +1434,10 @@ export const en: Dictionary = {
   },
 
   topicAdvice: {
-    accounting: "Go back over how to read the statements, then redo 1-2 quiz questions right after.",
+    accounting: "Go back over how to read the front-end code, then redo 1-2 quiz questions right after.",
     valuation: "Revisit the key assumptions and try explaining the formula out loud in your own words.",
     risk: "Go back over the worked example, then answer the question you missed without looking.",
-    bonds: "Write out the relationship between latency, packet size and the number of round trips yourself.",
+    networking: "Write out the relationship between latency, packet size and the number of round trips yourself.",
     investing: "Reread the lesson and compare it against a piece of real code you are writing.",
     generic: "Relearn the original lesson, then redo the question you missed to lock it in.",
   },
@@ -1557,22 +1521,22 @@ export const en: Dictionary = {
     ongoing: "Under way: unlock the technology kingdom with real lessons",
     playFull: "Try the full Game Kingdom",
 
-    goldmanName: "Silicon Valley Data Center",
-    goldmanBadge: "DATA CENTER",
-    goldmanSubtitle: "The system design arena",
-    goldmanDescription:
+    dataCenterName: "Silicon Valley Data Center",
+    dataCenterBadge: "DATA CENTER",
+    dataCenterSubtitle: "The system design arena",
+    dataCenterDescription:
       "Practise splitting services, deciding where the cache belongs, and trading speed off against cost and reliability.",
-    goldmanTag1: "System design",
-    goldmanTag2: "Caches & queues",
-    goldmanTag3: "Reading architecture diagrams",
-    fedName: "Internet Backbone Center",
-    fedBadge: "INTERNET BACKBONE",
-    fedSubtitle: "The networking & protocols challenge",
-    fedDescription:
+    dataCenterTag1: "System design",
+    dataCenterTag2: "Caches & queues",
+    dataCenterTag3: "Reading architecture diagrams",
+    backboneName: "Internet Backbone Center",
+    backboneBadge: "INTERNET BACKBONE",
+    backboneSubtitle: "The networking & protocols challenge",
+    backboneDescription:
       "Trace a request from DNS through TLS to the server, and work out which hop the latency actually came from.",
-    fedTag1: "HTTP & DNS",
-    fedTag2: "Latency",
-    fedTag3: "Debugging the wire",
+    backboneTag1: "HTTP & DNS",
+    backboneTag2: "Latency",
+    backboneTag3: "Debugging the wire",
     singaporeName: "Port of Singapore Data Dock",
     singaporeBadge: "DATA PIPELINE",
     singaporeSubtitle: "The data & processing port",
@@ -1747,7 +1711,7 @@ export const en: Dictionary = {
     botRules: "Tài Tài here This group is studying {topic}, with around {count} lessons to work through together. The rules, briefly: keep to at least 3 lessons a week each, hit the target and the group carries on, and hold it for 3 weeks running to become a permanent group.",
     botTopicPersonal: "Tech foundations",
     botTopicProfessional: "Advanced technology",
-    botTopicCfa: "AWS certification",
+    botTopicCertification: "AWS certification",
     dropImage: "Drop an image here to send it",
     emptyPart1: "No messages yet.",
     emptyPart2: "Say hello to the group.",
@@ -1944,7 +1908,6 @@ export const en: Dictionary = {
 
 
   dashboard: {
-    // Trang Học bài chép từ bản tài chính.
     sidebarResizeLabel: "Drag to resize the right column",
     examCreditedHint: "Unlocked by the stage exam - you have not read this lesson",
     examCreditedSubtitle: "Unlocked by the stage exam · not read yet",
@@ -2230,7 +2193,7 @@ export const en: Dictionary = {
     avgScore: "Avg. score",
     streakDays: "Streak",
     career: "Career",
-    cfaArena: "Certification arena",
+    certificationArena: "Certification arena",
     contribution: "Contribution",
     gamer: "Gamer",
 
@@ -2402,13 +2365,12 @@ export const en: Dictionary = {
     done: "Done",
   },
   // components/BehavioralPrepPanel.tsx - the unscored behavioural question drill.
-  // components/IbWeakAreasPanel.tsx - điểm mạnh yếu theo chủ đề ở /phong-van-ky-thuat.
+  // components/InterviewWeakAreasPanel.tsx - điểm mạnh yếu theo chủ đề ở /phong-van-ky-thuat.
   ibWeakAreas: {
     computingLoading: "Working out your strong and weak areas...",
   },
 
   behavioralPrep: {
-    // Chép từ bản tài chính cùng trang /phong-van-ky-thuat, chữ đổi sang nghề công nghệ.
     heroBadge: "FIT & BEHAVIOURAL ROUND",
     heroTitle: "Have your story ready before they ask for it",
     loading: "Loading behavioural questions...",
@@ -2619,33 +2581,6 @@ export const en: Dictionary = {
   },
 
 
-  // Four certification screens: CFA glossary cards, CFA formula book, FRM, and
-  // the "what comes next" block under the CFA track.
-
-
-  // lib/career-categories.ts - the five career-category names and one-liners.
-  // Used on the career street, in the room directory, and in the jobs filter.
-  careerCategories: {
-    labels: {
-      investment: "Product Engineering",
-      dealmaking: "Architecture & Platform",
-      accounting: "Quality & Testing",
-      risk: "Security & Compliance",
-      banking: "Infrastructure & Operations",
-      advisory: "Consulting & Solutions",
-      data: "Data & AI",
-    },
-    // One line saying what the group actually does, for the shopfront sign.
-    blurbs: {
-      investment: "Building features, shipping interfaces, getting products out",
-      dealmaking: "System design, shared services, internal platforms",
-      banking: "Servers, networks, deployments and being on call",
-      risk: "Penetration testing, secret management, privacy",
-      advisory: "Scoping needs, designing solutions, delivering for clients",
-      accounting: "Automated tests, coverage, release quality control",
-      data: "Data pipelines, machine learning models and AI features",
-    },
-  },
 
 
   progressHeader: {

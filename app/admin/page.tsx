@@ -124,11 +124,11 @@ export default async function AdminOverviewPage() {
   const activeThisWeek = analytics?.activeUsersThisWeek || 0;
   const personalCount = analytics?.trackBreakdown.personal || 0;
   const professionalCount = analytics?.trackBreakdown.professional || 0;
-  const cfaCount = analytics?.trackBreakdown.cfa || 0;
+  const certificationCount = analytics?.trackBreakdown.certification || 0;
 
   const personalPct = totalUsers ? Math.round((personalCount / totalUsers) * 100) : 0;
   const professionalPct = totalUsers ? Math.round((professionalCount / totalUsers) * 100) : 0;
-  const cfaPct = totalUsers ? Math.round((cfaCount / totalUsers) * 100) : 0;
+  const certificationPct = totalUsers ? Math.round((certificationCount / totalUsers) * 100) : 0;
 
   const dauData = analytics?.dailyActiveUsers || [];
   const maxDau = Math.max(...dauData.map((d) => d.count), 5);
@@ -274,7 +274,7 @@ export default async function AdminOverviewPage() {
               <div className="h-4 w-full rounded-xs overflow-hidden flex bg-surface-raised">
                 <div style={{ width: `${personalPct}%` }} className="bg-brand-600 dark:bg-brand-500" title={format(ta.trackTitles.personal, { pct: personalPct })} />
                 <div style={{ width: `${professionalPct}%` }} className="bg-stone-500" title={format(ta.trackTitles.professional, { pct: professionalPct })} />
-                <div style={{ width: `${cfaPct}%` }} className="bg-stone-300 dark:bg-stone-600" title={format(ta.trackTitles.cfa, { pct: cfaPct })} />
+                <div style={{ width: `${certificationPct}%` }} className="bg-stone-300 dark:bg-stone-600" title={format(ta.trackTitles.certification, { pct: certificationPct })} />
               </div>
 
               <div className="space-y-2.5 pt-2">
@@ -295,9 +295,9 @@ export default async function AdminOverviewPage() {
                 <div className="flex justify-between items-center text-xs">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-[1px] bg-stone-300 dark:bg-stone-600 shrink-0" />
-                    <span className="text-ink-soft">{ta.trackNames.cfa}</span>
+                    <span className="text-ink-soft">{ta.trackNames.certification}</span>
                   </div>
-                  <span className="font-mono font-medium tabular-nums text-ink-max">{cfaCount} ({cfaPct}%)</span>
+                  <span className="font-mono font-medium tabular-nums text-ink-max">{certificationCount} ({certificationPct}%)</span>
                 </div>
               </div>
             </div>

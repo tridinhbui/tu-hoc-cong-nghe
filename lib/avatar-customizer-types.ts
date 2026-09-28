@@ -35,7 +35,7 @@ export const DEFAULT_AVATAR_CONFIG: AvatarConfig = {
   outfitStyle: "wall-st-suit",
   outfitColor: "#1E293B",
   accessory: "cfo-crown",
-  background: "wallstreet-trading-floor",
+  background: "server-room",
 };
 
 /* i18n-ignore-start: mọi `label` từ đây tới hết danh sách bộ dựng sẵn đã có
@@ -145,7 +145,7 @@ export const ACCESSORIES_OPTIONS: AvatarOptionItem[] = [
 ];
 
 export const BACKGROUND_OPTIONS: AvatarOptionItem[] = [
-  { id: "wallstreet-trading-floor", label: "Phòng Máy Chủ Silicon Valley", iconEmoji: "🏙️" },
+  { id: "server-room", label: "Phòng Máy Chủ Silicon Valley", iconEmoji: "🏙️" },
   { id: "penthouse-office", label: "Văn Phòng Penthouse Tầng 88", iconEmoji: "🏢" },
   { id: "gold-vault", label: "Kho Dữ Liệu Vàng Kim", iconEmoji: "💰", requiredLevel: 5 },
   { id: "neon-broadway", label: "Quảng Trường Times Square Neon", iconEmoji: "🌆" },
@@ -169,7 +169,7 @@ export const AVATAR_PRESETS: { name: string; icon: string; config: AvatarConfig 
       outfitStyle: "wall-st-suit",
       outfitColor: "#0F172A",
       accessory: "rolex-watch",
-      background: "wallstreet-trading-floor",
+      background: "server-room",
     },
   },
   {
@@ -211,3 +211,11 @@ export const AVATAR_PRESETS: { name: string; icon: string; config: AvatarConfig 
 ];
 
 /* i18n-ignore-end */
+
+/** Id nền cũ đã lưu trong cấu hình avatar của người dùng → id mới. */
+const LEGACY_BACKGROUND_IDS: Record<string, string> = { "wallstreet-trading-floor": "server-room" };
+
+export function normalizeAvatarConfig(config: AvatarConfig): AvatarConfig {
+  const bg = LEGACY_BACKGROUND_IDS[config.background];
+  return bg ? { ...config, background: bg } : config;
+}

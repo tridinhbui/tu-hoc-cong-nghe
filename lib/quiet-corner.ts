@@ -47,11 +47,11 @@ export const BREATH_CYCLES = 4;
 export const BREATH_CYCLE_SECONDS = BREATH_STEPS.reduce((sum, p) => sum + p.seconds, 0);
 
 /**
- * Lo lắng về tiền là chỗ giao nhau thật sự giữa một app tài chính và sức khoẻ
+ * Lo lắng khi học nghề là chỗ giao nhau thật sự giữa một app học công nghệ và sức khoẻ
  * tinh thần - và là thứ không phần nào khác của app này chạm tới. Mỗi mục là
  * một nỗi lo cụ thể người học hay mang, kèm một góc nhìn khác.
  *
- * Góc nhìn ở đây là cách nghĩ, KHÔNG phải lời khuyên đầu tư hay tài chính cá
+ * Góc nhìn ở đây là cách nghĩ, KHÔNG phải lời khuyên nghề nghiệp hay kỹ thuật cá
  * nhân. Không mục nào được bảo người đọc nên mua gì, bán gì, hay tiêu bao
  * nhiêu - đó là việc của người có chuyên môn và biết hoàn cảnh cụ thể của họ.
  */
@@ -111,7 +111,7 @@ export function getQuietGreeting(hour: number): string {
  *
  * Không phải vì lười đồng bộ: card đó chỉ có một nhãn, một câu và một nút, nên
  * thêm một dòng vào mọi khung giờ là biến nó thành bốn dòng chữ chen nhau để
- * đổi lấy gần như không gì. Riêng người mở app tài chính lúc hai giờ sáng thì
+ * đổi lấy gần như không gì. Riêng người mở app học lúc hai giờ sáng thì
  * dòng này đáng giá - đó là lúc duy nhất mà việc được nhìn thấy quan trọng hơn
  * việc card gọn.
  */
@@ -173,7 +173,7 @@ export const WORRY_REFRAMES: WorryReframe[] = [
   },
   // Bốn mục dưới đây là nhóm nỗi lo đặc thù nhất với người học Việt Nam -
   // tiền trong quan hệ gia đình - mà tám mục đầu chưa chạm tới. Vẫn đúng
-  // nguyên tắc cũ: thừa nhận trước, không chỉ dẫn hành động tài chính.
+  // nguyên tắc cũ: thừa nhận trước, không khuyên cách xử lý tiền bạc.
   {
     id: "wr-09",
     worry: "Mình đang giấu đội một chỗ trong hệ thống mà mình biết là hỏng.",

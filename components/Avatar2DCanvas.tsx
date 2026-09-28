@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { DEFAULT_AVATAR_CONFIG, type AvatarConfig } from "@/lib/avatar-customizer-types";
+import { DEFAULT_AVATAR_CONFIG, normalizeAvatarConfig, type AvatarConfig } from "@/lib/avatar-customizer-types";
 
 interface Avatar2DCanvasProps {
   config?: AvatarConfig;
@@ -19,7 +19,7 @@ export default function Avatar2DCanvas({
   animated = false,
   showBackground = true,
 }: Avatar2DCanvasProps) {
-  const mergedConfig: AvatarConfig = { ...DEFAULT_AVATAR_CONFIG, ...config };
+  const mergedConfig: AvatarConfig = normalizeAvatarConfig({ ...DEFAULT_AVATAR_CONFIG, ...config });
   const {
     gender,
     skinTone,
@@ -83,11 +83,11 @@ export default function Avatar2DCanvas({
         );
       case "minimal-gradient":
         return <rect width="200" height="200" fill="url(#minimalBg)" />;
-      case "wallstreet-trading-floor":
+      case "server-room":
       default:
         return (
           <g>
-            <rect width="200" height="200" fill="url(#wallstreetBg)" />
+            <rect width="200" height="200" fill="url(#serverRoomBg)" />
             {/* Ticker candlestick chart lines in background */}
             <path d="M10 160 L30 140 L50 150 L80 110 L110 120 L140 80 L170 90 L190 60" stroke="#417acd" strokeWidth="2.5" fill="none" opacity="0.4" />
             <path d="M10 170 L40 165 L70 175 L100 160 L130 168 L170 155 L190 145" stroke="#F59E0B" strokeWidth="1.5" fill="none" strokeDasharray="3 3" opacity="0.3" />
@@ -442,7 +442,7 @@ export default function Avatar2DCanvas({
       <svg viewBox="0 0 200 200" className="w-full h-full">
         <defs>
           {/* Gradients */}
-          <linearGradient id="wallstreetBg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+          <linearGradient id="serverRoomBg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#0F172A" />
             <stop offset="100%" stopColor="#1E293B" />
           </linearGradient>

@@ -40,10 +40,10 @@ import {
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
 
 // Takes the dictionary because it is a plain function. STUDY_ROOM_TOPICS uses the
-// same ids as t.tracks ("personal" | "professional" | "cfa"), so the track names
+// same ids as t.tracks ("personal" | "professional" | "certification"), so the track names
 // are reused rather than duplicated as a second set of keys.
 function topicLabel(topic: string, t: Dictionary) {
-  if (topic === "personal" || topic === "professional" || topic === "cfa") {
+  if (topic === "personal" || topic === "professional" || topic === "certification") {
     return t.tracks[topic].tab;
   }
   return STUDY_ROOM_TOPICS.find((entry) => entry.id === topic)?.label ?? topic;

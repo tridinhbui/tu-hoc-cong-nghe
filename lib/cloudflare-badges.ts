@@ -89,12 +89,6 @@ async function getEarnedCareerBadgeKeys(
   if (goalRow?.career_id) earned.push("career_goal_set");
   if (quizRow) earned.push("career_quiz_done");
 
-  // Huy hiệu "career_path_complete" đã gỡ cùng danh mục nghề tài chính
-  // (FINANCE_CAREERS) và /api/career-lesson-progress: nó đo xem người học đã
-  // xong hết các bài gắn với một nghề tài chính hay chưa, và không còn nghề nào
-  // để đo. Hai huy hiệu phía trên vẫn chạy vì chúng chỉ đọc bảng mục tiêu và
-  // bảng quiz, không cần biết nghề đó là nghề gì.
-
   return earned;
 }
 
@@ -102,9 +96,9 @@ async function getEarnedCareerBadgeKeys(
  *  mức nhận XP thì được `kingdom_explorer`. */
 const SCENARIO_GAME_TYPES = [
   "scenario-silicon-bay",
-  "scenario-capitol-hill",
-  "scenario-cme-commodities",
-  "scenario-swiss-haven",
+  "scenario-cloud-capital",
+  "scenario-resource-floor",
+  "scenario-data-haven",
   "scenario-singapore-dock",
 ];
 

@@ -133,7 +133,6 @@ export interface Lesson {
   summaryImage?: string;
   diagram: DiagramNode[];
   interactiveType?:
-    | "interest-rate"
     | "supply-demand"
     | "profit-calc"
     // Loai tinh lam phat tam rut cung luc voi WIDGET_TYPES trong
@@ -148,7 +147,6 @@ export interface Lesson {
     // sơ đồ lãi lỗ quyền chọn: gỡ cùng bài phái sinh cuối cùng
     | "prospect"
     | "ethics-case"
-    | "fee-drag"
     | "ratios"
     | "tail-risk"
     | "excel-shortcuts"
@@ -159,10 +157,8 @@ export interface Lesson {
     | "excel-sql"
     | "prompt-craft"
     | "ai-verify"
-    | "esg-score"
     | "sampling"
-    | "regression"
-    | "journal-entry";
+    | "regression";
   realWorldExample: {
     company: string;
     description: string;
@@ -251,9 +247,8 @@ export interface LessonTranslation {
  * grouping the two together. That reasoning only holds while `en` really is
  * the English term. It is not, in 112 of the corpus's concepts: a good number
  * of tables repurpose the column as a verdict or a category and fill it with
- * Vietnamese - `en: "Vi phạm ngay lúc chép"` in
- * `cfa-ethics-case-chuyen-viec-va-khach-hang`, `en: "An toàn thanh khoản"` in
- * `nvidia-cash-securities`. LessonSections renders `en` as a chip beside the
+ * Vietnamese - `en` holding a Vietnamese verdict or
+ * category label. LessonSections renders `en` as a chip beside the
  * term, so an English reader saw a Vietnamese term captioned in Vietnamese,
  * and no patch could reach it. Optional for the same reason the formula fields
  * are: omit it and a real English term passes through untouched, supply it and

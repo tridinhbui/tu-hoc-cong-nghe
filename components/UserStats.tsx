@@ -5,13 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { BookOpen, Target, Trophy, HeartCrack, GraduationCap, Crown, Hourglass, ShieldCheck, ArrowRight } from "lucide-react";
+import { BookOpen, Target, Trophy, HeartCrack, Crown, Hourglass, ShieldCheck, ArrowRight } from "lucide-react";
 import { btnPrimary, panel, Sys, StatTable } from "@/components/ui/system";
 import Glyph from "@/components/Glyph";
-import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, getCfaGateRemaining, LEVELS } from "@/lib/levels";
+import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, LEVELS } from "@/lib/levels";
 import { createClient } from "@/lib/cloudflare";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
-import { getLevelStats, getCfaCompletedCount, type LevelStats } from "@/lib/cloudflare-user";
+import { getLevelStats, type LevelStats } from "@/lib/cloudflare-user";
 import {
   getUserStreak,
   hasActivityToday as checkActivityToday,
@@ -71,12 +71,10 @@ export default function UserStats({
   compact = false,
 }: UserStatsProps) {
   const { t } = useI18n();
-  const [cfaCompleted, setCfaCompleted] = useState(0);
-  const currentLevel = getLevelByXp(xp, cfaCompleted);
+  const currentLevel = getLevelByXp(xp);
   const nextLevel = getNextLevel(currentLevel.level);
-  const xpToNext = getXpToNextLevel(xp, cfaCompleted);
-  const progress = getLevelProgress(xp, cfaCompleted);
-  const cfaGateRemaining = nextLevel ? getCfaGateRemaining(nextLevel, cfaCompleted) : 0;
+  const xpToNext = getXpToNextLevel(xp);
+  const progress = getLevelProgress(xp);
 
   const [showExamModal, setShowExamModal] = useState(false);
   const [selectedExamLevel, setSelectedExamLevel] = useState<number>(2);
@@ -156,13 +154,6 @@ export default function UserStats({
         if (!cancelled) setLevelStats(stats);
       })
       .catch((error) => console.error("Error loading level stats:", error));
-
-    // L9+ CFA gate - needs to match what recalculateUserStats persisted.
-    getCfaCompletedCount(userId)
-      .then((count) => {
-        if (!cancelled) setCfaCompleted(count);
-      })
-      .catch((error) => console.error("Error loading certification completed count:", error));
 
     // Fetch Streak
     getUserStreak(userId)
@@ -443,14 +434,6 @@ export default function UserStats({
                   {t.userStats.upcomingTitlePart1} <span className="font-extrabold text-ink-max">{t.levelTitles[nextLevel.level] ?? nextLevel.name}</span>
                 </span>
               </div>
-              {cfaGateRemaining > 0 && (
-                <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-warn-strong">
-                  <GraduationCap className="w-3.5 h-3.5 shrink-0" aria-hidden />
-                  <span>
-                    {format(t.userStats.cfaGateRemainingPart1, { level: nextLevel.level })} <span className="font-extrabold">{format(t.userStats.cfaGateRemainingCount, { count: cfaGateRemaining })}</span> {t.userStats.cfaGateRemainingPart2}
-                  </span>
-                </div>
-              )}
             </div>
           )}
         </div>

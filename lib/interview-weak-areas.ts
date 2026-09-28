@@ -1,12 +1,12 @@
 import { createClient } from "@/lib/cloudflare";
 import { TECH_INTERVIEW_QUESTIONS, formatCategoryLabel } from "@/lib/interview-bank";
 
-// "Which IB topic am I weakest in?" - derived from user_ib_question_attempts,
-// the per-question record the submit route writes (see
-// bảng user_ib_question_attempts - giữ tên cũ vì đã có sẵn trong migrations-d1/0001_schema.sql).
+// "Which interview topic am I weakest in?" - derived from
+// user_interview_question_attempts, the per-question record the submit route
+// writes.
 //
 // Before this existed the drill only stored an aggregate score per run, so a
-// learner who kept failing DCF questions and acing accounting looked
+// learner who kept failing networking questions and acing SQL looked
 // identical to one performing evenly. The point of a 276-question bank split
 // across 14 topics is knowing which of the 14 to go back to.
 
@@ -30,7 +30,7 @@ export function isReliable(perf: CategoryPerformance): boolean {
   return perf.attempted >= MIN_ATTEMPTS_FOR_SIGNAL;
 }
 
-/** Đã đi qua bao nhiêu phần của ngân hàng câu hỏi IB.
+/** Đã đi qua bao nhiêu phần của ngân hàng câu hỏi phỏng vấn.
  *
  *  DÒNG TIẾN ĐỘ Ở /phong-van-ky-thuat TỪNG LÀ SỐ BỊA: trang ghi cứng
  *  `{ pct: 21, xp: 1119 }` kèm thanh tiến độ `width: "21%"`, nên mọi người học
@@ -40,7 +40,7 @@ export function isReliable(perf: CategoryPerformance): boolean {
  *  Đếm theo câu KHÁC NHAU chứ không theo số lượt trả lời: làm lại một câu đã
  *  làm thì không đi thêm được phần nào của ngân hàng, mà bảng attempts thì ghi
  *  mỗi lần trả lời một dòng. */
-export interface IbCoverage {
+export interface InterviewCoverage {
   /** Số câu khác nhau đã trả lời ít nhất một lần. */
   attempted: number;
   /** Tổng số câu trong ngân hàng. */
@@ -49,11 +49,11 @@ export interface IbCoverage {
   pct: number;
 }
 
-export async function getIbCoverage(userId: string): Promise<IbCoverage> {
+export async function getInterviewCoverage(userId: string): Promise<InterviewCoverage> {
   const total = TECH_INTERVIEW_QUESTIONS.length;
   const cloudflare = createClient();
   const { data, error } = await cloudflare
-    .from("user_ib_question_attempts")
+    .from("user_interview_question_attempts")
     .select("question_id")
     .eq("user_id", userId);
 
@@ -69,11 +69,11 @@ export async function getIbCoverage(userId: string): Promise<IbCoverage> {
 
 /** Per-category accuracy for a user, weakest first among the categories with
  *  enough attempts to mean anything. Returns an empty array when the table
- *  isn't migrated yet or the learner has done no IB drills. */
+ *  isn't migrated yet or the learner has done no interview drills. */
 export async function getCategoryPerformance(userId: string): Promise<CategoryPerformance[]> {
   const cloudflare = createClient();
   const { data, error } = await cloudflare
-    .from("user_ib_question_attempts")
+    .from("user_interview_question_attempts")
     .select("category, correct")
     .eq("user_id", userId);
 
@@ -118,8 +118,8 @@ export function weakestCategory(performance: CategoryPerformance[]): CategoryPer
 /** Một câu người học trả lời sai nhiều lần.
  *
  *  Khác `getCategoryPerformance` ở mức chi tiết, và đó là điểm chính: biết
- *  "DCF của bạn yếu" giúp chọn chủ đề để ôn, nhưng không chỉ ra ĐÚNG câu đã
- *  làm sai hai lần. Bảng user_ib_question_attempts vốn đã ghi từng câu một -
+ *  "mạng máy tính của bạn yếu" giúp chọn chủ đề để ôn, nhưng không chỉ ra ĐÚNG câu đã
+ *  làm sai hai lần. Bảng user_interview_question_attempts vốn đã ghi từng câu một -
  *  cột question_id nằm sẵn ở đó từ migration đầu, chỉ chưa ai đọc tới. */
 export interface MissedQuestion {
   questionId: number;
@@ -148,7 +148,7 @@ export const MIN_WRONG_FOR_MISSED = 2;
 export async function getMostMissedQuestions(userId: string): Promise<MissedQuestion[]> {
   const cloudflare = createClient();
   const { data, error } = await cloudflare
-    .from("user_ib_question_attempts")
+    .from("user_interview_question_attempts")
     .select("question_id, category, correct")
     .eq("user_id", userId);
 

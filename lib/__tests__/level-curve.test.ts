@@ -39,8 +39,7 @@ describe("thang cấp không bao giờ tụt của ai", () => {
       return lv;
     };
     for (let xp = 0; xp <= 45000; xp += 25) {
-      // cfaCompleted đủ lớn để cổng CFA ở L9 không che mất phép so sánh.
-      expect(getLevelByXp(xp, 99).level, `${xp} XP`).toBeGreaterThanOrEqual(oldLevelAt(xp));
+      expect(getLevelByXp(xp).level, `${xp} XP`).toBeGreaterThanOrEqual(oldLevelAt(xp));
     }
   });
 });
@@ -56,7 +55,7 @@ describe("thang cấp khớp với thứ nội dung thực sự sinh ra", () => 
   it("học hết nội dung là chạm bậc cao nhất", () => {
     // Thang cũ đứng ở 40.000 với trần nội dung 30.100: bảy bậc trên cùng chỉ
     // tới được bằng nhiệm vụ lặp, tức là bằng thời gian chứ không bằng việc học.
-    expect(getLevelByXp(CONTENT_XP_CEILING, 99).level).toBe(LEVELS.length);
+    expect(getLevelByXp(CONTENT_XP_CEILING).level).toBe(LEVELS.length);
   });
 
   it("bậc cao nhất còn biên cho người bỏ qua vài chặng ôn", () => {

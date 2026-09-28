@@ -16,15 +16,14 @@ export type SpecialGameType =
   | "weekly-case-challenge"
   | "world-boss-raid"
   | "solo-knowledge-boss"
-  | "vn30-fund-sim"
   | "pvp-duel"
-  | "fed-vault-sim"
-  | "goldman-pitch"
+  | "backbone-routing"
+  | "capacity-sizing"
   // Game tình huống của năm toà nhà - components/BuildingScenarioGame.tsx.
   | "scenario-silicon-bay"
-  | "scenario-capitol-hill"
-  | "scenario-cme-commodities"
-  | "scenario-swiss-haven"
+  | "scenario-cloud-capital"
+  | "scenario-resource-floor"
+  | "scenario-data-haven"
   | "scenario-singapore-dock";
 
 // Special game metadata for non-bucket/pair games
@@ -203,7 +202,7 @@ export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
     { slug: "case-chi-phi-moi-request", title: "Case chuyên sâu: Chi phí mỗi request", subtitle: "Hoá đơn hạ tầng chia cho lưu lượng - con số nói lên nhiều hơn bạn tưởng" },
   ],
   "risk-category": [
-    { slug: "financial-risk", title: "Phân loại rủi ro kỹ thuật", subtitle: "Bốn nhóm, và vì sao gọi đúng tên quyết định ai xử lý được" },
+    { slug: "phan-loai-rui-ro-ky-thuat", title: "Phân loại rủi ro kỹ thuật", subtitle: "Bốn nhóm, và vì sao gọi đúng tên quyết định ai xử lý được" },
     { slug: "muc-nghiem-trong-va-rui-ro-trong-kiem-thu", title: "Kiểm thử, Bài 2: Mức nghiêm trọng và rủi ro - cách quyết định kiểm cái gì", subtitle: "Không kiểm hết được, nên câu hỏi thật là chọn mẫu thế nào - kiểm cái gì trước." },
   ],
   "ticker-match": [

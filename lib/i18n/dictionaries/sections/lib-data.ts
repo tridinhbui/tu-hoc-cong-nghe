@@ -73,70 +73,70 @@ export const libDataVi = {
       khac: "Khác",
     },
     techCards: {
-      "card-fpt": {
+      "card-python": {
         name: "Python",
         sector: "Ngôn ngữ lập trình",
         description: "Ngôn ngữ dễ đọc, dùng từ tự động hoá việc lặt vặt tới phân tích dữ liệu và huấn luyện mô hình AI.",
         advantage: "Hệ sinh thái thư viện khổng lồ cho dữ liệu và AI, cú pháp gần với ngôn ngữ tự nhiên.",
         metrics: ["Số thư viện trên PyPI", "Tốc độ thực thi", "Độ phủ chú thích kiểu"],
       },
-      "card-vnm": {
+      "card-postgresql": {
         name: "PostgreSQL",
         sector: "Cơ sở dữ liệu quan hệ",
         description: "Hệ quản trị cơ sở dữ liệu mã nguồn mở, giữ dữ liệu nhất quán bằng transaction ACID.",
         advantage: "Hỗ trợ SQL đầy đủ, mở rộng được bằng kiểu dữ liệu và chỉ mục riêng.",
         metrics: ["Truy vấn mỗi giây", "Độ trễ truy vấn", "Tỷ lệ trúng bộ đệm"],
       },
-      "card-vcb": {
+      "card-linux": {
         name: "Linux",
         sector: "Hệ điều hành",
         description: "Nhân hệ điều hành chạy phần lớn máy chủ, điện thoại Android và siêu máy tính trên thế giới.",
         advantage: "Mã nguồn mở, được hàng nghìn công ty cùng đóng góp và cùng soát lỗi.",
         metrics: ["Thời gian hoạt động", "Tải CPU", "Bộ nhớ đã dùng"],
       },
-      "card-hpg": {
+      "card-docker": {
         name: "Docker",
         sector: "Đóng gói ứng dụng",
         description: "Đóng gói ứng dụng cùng mọi phụ thuộc vào container để chạy giống nhau trên mọi máy.",
         advantage: "Xoá bỏ câu \"máy tôi chạy được mà\": môi trường phát triển và môi trường thật dùng chung một ảnh.",
         metrics: ["Kích thước ảnh", "Thời gian khởi động", "Số container"],
       },
-      "card-mwg": {
+      "card-react": {
         name: "React",
         sector: "Thư viện giao diện web",
         description: "Thư viện dựng giao diện từ những thành phần nhỏ, tự cập nhật khi dữ liệu thay đổi.",
         advantage: "Cộng đồng rất lớn, và cách nghĩ theo thành phần dùng lại được cả trên web lẫn di động.",
         metrics: ["Thời gian hiển thị đầu", "Kích thước gói JS", "Số lần render lại"],
       },
-      "card-msn": {
+      "card-kubernetes": {
         name: "Kubernetes",
         sector: "Điều phối container",
         description: "Hệ thống tự xếp container lên cụm máy chủ, tự khởi động lại khi hỏng và mở rộng theo tải.",
         advantage: "Mô tả trạng thái mong muốn một lần, hệ thống tự kéo thực tế về đúng như vậy.",
         metrics: ["Số pod", "Tỷ lệ khởi động lại", "Mức dùng tài nguyên cụm"],
       },
-      "card-vhm": {
+      "card-aws": {
         name: "Amazon Web Services",
         sector: "Điện toán đám mây",
         description: "Nền tảng đám mây cho thuê máy chủ, lưu trữ, cơ sở dữ liệu và hàng trăm dịch vụ khác theo giờ.",
         advantage: "Hạ tầng trải khắp nhiều vùng trên thế giới, bật một máy chủ mới chỉ mất vài phút.",
         metrics: ["Chi phí mỗi tháng", "Số vùng triển khai", "Độ khả dụng"],
       },
-      "card-ssi": {
+      "card-javascript": {
         name: "JavaScript",
         sector: "Ngôn ngữ của trình duyệt",
         description: "Ngôn ngữ duy nhất chạy sẵn trong mọi trình duyệt, giúp trang web phản ứng với người dùng.",
         advantage: "Viết được cả giao diện lẫn máy chủ (Node.js) bằng cùng một ngôn ngữ.",
         metrics: ["Thời gian tải trang", "Số lỗi JavaScript", "Kích thước gói"],
       },
-      "card-gas": {
+      "card-redis": {
         name: "Redis",
         sector: "Bộ nhớ đệm trong RAM",
         description: "Kho khoá - giá trị nằm trong bộ nhớ, trả lời trong vài phần nghìn giây.",
         advantage: "Giảm tải cho cơ sở dữ liệu chính bằng cách giữ sẵn những dữ liệu hay được đọc.",
         metrics: ["Tỷ lệ trúng cache", "Độ trễ đọc", "Bộ nhớ đã dùng"],
       },
-      "card-vic": {
+      "card-git": {
         name: "Git",
         sector: "Quản lý phiên bản",
         description: "Hệ thống ghi lại lịch sử mọi thay đổi của mã, cho phép nhiều người làm song song trên các nhánh.",
@@ -199,70 +199,70 @@ export const libDataEn: typeof libDataVi = {
       khac: "Other",
     },
     techCards: {
-      "card-fpt": {
+      "card-python": {
         name: "Python",
         sector: "Programming language",
         description: "A readable language used for everything from automating chores to data analysis and training AI models.",
         advantage: "A huge library ecosystem for data and AI, with syntax close to plain language.",
         metrics: ["Packages on PyPI", "Execution speed", "Type-hint coverage"],
       },
-      "card-vnm": {
+      "card-postgresql": {
         name: "PostgreSQL",
         sector: "Relational database",
         description: "An open-source database system that keeps data consistent with ACID transactions.",
         advantage: "Full SQL support, extensible with custom data types and indexes.",
         metrics: ["Queries per second", "Query latency", "Buffer cache hit rate"],
       },
-      "card-vcb": {
+      "card-linux": {
         name: "Linux",
         sector: "Operating system",
         description: "The operating system kernel behind most of the world's servers, Android phones and supercomputers.",
         advantage: "Open source, contributed to and reviewed by thousands of companies together.",
         metrics: ["Uptime", "CPU load", "Memory used"],
       },
-      "card-hpg": {
+      "card-docker": {
         name: "Docker",
         sector: "Application packaging",
         description: "Packages an application and all its dependencies into a container that runs the same on every machine.",
         advantage: "Ends \"it works on my machine\": development and production share one image.",
         metrics: ["Image size", "Start-up time", "Container count"],
       },
-      "card-mwg": {
+      "card-react": {
         name: "React",
         sector: "Web UI library",
         description: "A library that builds interfaces from small components that update themselves when data changes.",
         advantage: "A very large community, and a component mindset that carries over to both web and mobile.",
         metrics: ["First contentful paint", "JS bundle size", "Re-render count"],
       },
-      "card-msn": {
+      "card-kubernetes": {
         name: "Kubernetes",
         sector: "Container orchestration",
         description: "A system that places containers across a server cluster, restarts them when they fail and scales them with load.",
         advantage: "Describe the desired state once and the system keeps pulling reality back to it.",
         metrics: ["Pod count", "Restart rate", "Cluster resource usage"],
       },
-      "card-vhm": {
+      "card-aws": {
         name: "Amazon Web Services",
         sector: "Cloud computing",
         description: "A cloud platform renting servers, storage, databases and hundreds of other services by the hour.",
         advantage: "Infrastructure spread across many regions worldwide; a new server is minutes away.",
         metrics: ["Monthly cost", "Regions deployed", "Availability"],
       },
-      "card-ssi": {
+      "card-javascript": {
         name: "JavaScript",
         sector: "The browser's language",
         description: "The only language built into every browser, letting web pages respond to the user.",
         advantage: "One language for both the interface and the server (Node.js).",
         metrics: ["Page load time", "JavaScript errors", "Bundle size"],
       },
-      "card-gas": {
+      "card-redis": {
         name: "Redis",
         sector: "In-memory cache",
         description: "A key-value store held in memory that answers in fractions of a millisecond.",
         advantage: "Takes load off the main database by keeping frequently read data at hand.",
         metrics: ["Cache hit rate", "Read latency", "Memory used"],
       },
-      "card-vic": {
+      "card-git": {
         name: "Git",
         sector: "Version control",
         description: "A system that records every change to the code and lets many people work in parallel on branches.",

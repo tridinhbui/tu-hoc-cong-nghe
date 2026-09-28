@@ -1,9 +1,7 @@
-// Formula cheat sheets (CFA/FRM), the shared FormulaBlock card, the glossary
-// hover-term, lesson learning-recap cards, lesson feedback, and the highlight
-// notebook. See the "formula-glossary" wiring note in AGENTS.md: formulas
-// themselves (equations, tickers, standard codes) are data passed in as props
-// from lib/cfa-formulas-data.ts / lib/frm-formulas-data.ts and are not
-// translated here - only the UI chrome around them is.
+// The shared FormulaBlock card, the glossary hover-term, lesson learning-recap
+// cards, lesson feedback, and the highlight notebook. Formulas themselves are
+// data passed in as props and are not translated here - only the UI chrome
+// around them is.
 export const formulaGlossaryVi = {
   formulaBlock: {
     defaultLabel: "Công thức tính toán",

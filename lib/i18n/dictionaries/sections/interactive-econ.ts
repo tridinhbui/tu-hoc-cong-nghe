@@ -1,5 +1,5 @@
 // UI copy for InteractiveRisk, InteractivePayoff, InteractiveRatios,
-// InteractiveSupplyDemand, InteractiveFeeDrag and CompoundInterestSimulator.
+// InteractiveSupplyDemand and CompoundInterestSimulator.
 // See AGENTS.md "Translating the UI".
 
 export const interactiveEconVi = {
@@ -7,9 +7,9 @@ export const interactiveEconVi = {
     title: "Rủi ro cao hơn đổi lại được gì",
     subtitle: "100 đơn vị năng lực ban đầu. Kéo để đổi mức rủi ro và số kỳ theo đuổi.",
     profileSafeLabel: "Giữ nguyên hiện trạng",
-    profileBondLabel: "Nâng cấp từng phần",
+    profileIncrementalLabel: "Nâng cấp từng phần",
     profileMixedLabel: "Chạy song song hai bản",
-    profileStockLabel: "Viết lại toàn bộ",
+    profileRewriteLabel: "Viết lại toàn bộ",
     profileSingleLabel: "Đặt cược vào một dịch vụ đơn lẻ",
     riskLevelLabel: "Mức rủi ro",
     riskLevelAriaLabel: "Mức rủi ro",
@@ -105,25 +105,6 @@ export const interactiveEconVi = {
     presetBalancedSubtitle: "Reset",
   },
 
-  feeDrag: {
-    headerTitle: "Phụ phí lấy đi bao nhiêu, tính trên số năm hệ thống thực sự chạy",
-    billionValue: "{value} nghìn giờ",
-    millionValue: "{value} giờ",
-    monthlyLabel: "Cấp thêm mỗi tháng",
-    monthlyValue: "{value} giờ",
-    yearsLabel: "Số năm chạy",
-    yearsValue: "{value} năm",
-    returnLabel: "Tăng trưởng tải gộp/năm",
-    percentValue: "{value}%",
-    feeLabel: "Phụ phí nền tảng/năm",
-    entryFeeLabel: "Phí mỗi lần cấp thêm",
-    contributedLabel: "Bạn đã trả cho",
-    receivedLabel: "Năng lực thật nhận được",
-    feeLostLabel: "Phụ phí đã lấy",
-    explanationPart1: "Phụ phí lấy mất",
-    explanationLostShare: "{lostShare}%",
-    explanationPart2: "năng lực cuối cùng, trong khi con số ghi trên bảng giá chỉ là {fee}% một năm. Chênh lệch đến từ chỗ phần bị lấy mỗi năm cũng mất luôn toàn bộ phần tăng trưởng nó đáng lẽ gánh được trong những năm còn lại — nên kéo thanh \"số năm chạy\" lên là thấy tỷ lệ này lớn dần, dù mức phụ phí không đổi.",
-  },
 
 };
 
@@ -132,9 +113,9 @@ export const interactiveEconEn: typeof interactiveEconVi = {
     title: "What higher risk buys you",
     subtitle: "Starting with 100 units of capability. Drag to change the risk level and how many periods you stay with it.",
     profileSafeLabel: "Leave things as they are",
-    profileBondLabel: "Upgrade piece by piece",
+    profileIncrementalLabel: "Upgrade piece by piece",
     profileMixedLabel: "Run both versions in parallel",
-    profileStockLabel: "Rewrite the whole thing",
+    profileRewriteLabel: "Rewrite the whole thing",
     profileSingleLabel: "Bet everything on a single service",
     riskLevelLabel: "Risk level",
     riskLevelAriaLabel: "Risk level",
@@ -230,24 +211,5 @@ export const interactiveEconEn: typeof interactiveEconVi = {
     presetBalancedSubtitle: "Reset",
   },
 
-  feeDrag: {
-    headerTitle: "How much overhead takes, measured over the years the system actually runs",
-    billionValue: "{value}k hours",
-    millionValue: "{value} hours",
-    monthlyLabel: "Added per month",
-    monthlyValue: "{value} hours",
-    yearsLabel: "Years running",
-    yearsValue: "{value} years",
-    returnLabel: "Gross load growth/year",
-    percentValue: "{value}%",
-    feeLabel: "Annual platform overhead",
-    entryFeeLabel: "Fee per provisioning event",
-    contributedLabel: "You paid for",
-    receivedLabel: "Real capacity received",
-    feeLostLabel: "Overhead taken",
-    explanationPart1: "Overhead takes away",
-    explanationLostShare: "{lostShare}%",
-    explanationPart2: "of the final capacity, while the number printed on the price list is just {fee}% a year. The gap comes from the fact that the portion taken each year also loses all the growth it would otherwise have carried in the remaining years — so dragging \"years running\" up shows this share growing, even though the overhead rate never changes.",
-  },
 
 };

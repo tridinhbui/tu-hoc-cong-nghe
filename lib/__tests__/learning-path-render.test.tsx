@@ -98,7 +98,7 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
 
   it("lựa chọn lưu trên server thắng, không phải mặc định personal", async () => {
     const html = await markup("vi", { savedTrack: "professional" });
-    // Thẻ Nghề tài chính là thẻ đang chọn, nên nó đếm số còn lại (472 − 0).
+    // Thẻ hướng chuyên ngành là thẻ đang chọn, nên nó đếm số còn lại (472 − 0).
     expect(html).toContain("còn 472 bài");
     // Và ghi chú riêng của hướng chuyên ngành phải hiện ngay từ lần dựng đầu.
     expect(html).toContain("Nghề công nghệ");
@@ -118,15 +118,6 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
     // kiểm thật nằm ở chỗ thuộc tính có mặt khi khối dựng ra, nên chỉ cần
     // chắc rằng chuỗi aria đã vào từ điển và không lọt ra ngoài nó.
     expect(html).not.toContain("progressbar\"></div>");
-  });
-
-  it("không còn quảng cáo lối học song song nào đã bị gỡ", async () => {
-    // Khối "Hai lối học song song" từng trỏ sang /cfa và /frm. Cả hai route đã
-    // được gỡ, nên phép kiểm đảo chiều: cái sai bây giờ là chúng CÒN xuất hiện,
-    // vì một link tới route đã xoá dẫn thẳng vào trang 404.
-    const html = await markup("vi");
-    expect(html).not.toContain('href="/cfa"');
-    expect(html).not.toContain('href="/frm"');
   });
 
   it("mục lục trỏ tới đúng sáu khối có thật", async () => {

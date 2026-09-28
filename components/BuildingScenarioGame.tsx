@@ -8,13 +8,13 @@ import { btnPrimary } from "@/components/ui/system";
 
 /** Toà nhà có game tình huống. Nội dung ở lib/i18n/dictionaries/sections/building-games.ts,
  *  nơi phần tử đầu của mỗi `options` là đáp án đúng. */
-export type ScenarioBuildingId = "silicon-bay" | "capitol-hill" | "cme-commodities" | "swiss-haven" | "singapore-dock";
+export type ScenarioBuildingId = "silicon-bay" | "cloud-capital" | "resource-floor" | "data-haven" | "singapore-dock";
 
 export const SCENARIO_BUILDINGS: readonly ScenarioBuildingId[] = [
   "silicon-bay",
-  "capitol-hill",
-  "cme-commodities",
-  "swiss-haven",
+  "cloud-capital",
+  "resource-floor",
+  "data-haven",
   "singapore-dock",
 ];
 

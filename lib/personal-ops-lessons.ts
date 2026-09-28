@@ -4,7 +4,7 @@ import type { Lesson } from "./lesson-types";
 //
 // VÌ SAO CHẶNG NÀY TỒN TẠI, VÀ VÌ SAO NÓ ĐỨNG CUỐI. Hai mươi chặng trước là
 // kiến thức. Chặng này là thứ biến kiến thức thành một hệ thống chạy được mà
-// không cần nhớ - vì thất bại phổ biến nhất trong tài chính cá nhân không phải
+// không cần nhớ - vì thất bại phổ biến nhất không phải
 // hiểu sai, mà là hiểu đúng rồi không duy trì được.
 //
 // Ids 400-403 nối tiếp Chặng 20 (390-393).

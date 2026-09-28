@@ -12,7 +12,7 @@ export interface SystemAnalytics {
   trackBreakdown: {
     personal: number;
     professional: number;
-    cfa: number;
+    certification: number;
   };
   topLessons: {
     id: number;
@@ -75,17 +75,17 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
       .select("*", { count: "exact", head: true })
       .eq("preferred_track", "professional");
 
-    const { count: cfaCount } = await admin
+    const { count: certificationCount } = await admin
       .from("user_profiles")
       .select("*", { count: "exact", head: true })
-      .eq("preferred_track", "cfa");
+      .eq("preferred_track", "certification");
 
-    // Any users without preferred_track or preferred_track not matching professional/cfa default to personal
+    // Any users without preferred_track or preferred_track not matching professional/certification default to personal
     const professional = professionalCount || 0;
-    const cfa = cfaCount || 0;
-    const personal = totalUsers - professional - cfa;
+    const certification = certificationCount || 0;
+    const personal = totalUsers - professional - certification;
 
-    const trackBreakdown = { personal, professional, cfa };
+    const trackBreakdown = { personal, professional, certification };
 
     // 4. Fetch all completed user_progress rows with pagination to bypass 1000 limit
     let allProgress: { lesson_id: number; quiz_score: number | null; time_spent_seconds: number | null }[] = [];

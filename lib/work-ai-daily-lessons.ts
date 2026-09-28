@@ -62,13 +62,13 @@ export const WORK_AI_DAILY_LESSONS: Lesson[] = [
         question: "Việc nào AI tạo sinh làm tốt nhất trong ngày của một nhân viên kinh doanh?",
         options: [
           "Viết nháp email chào hàng từ vài ý gạch đầu dòng",
-          "Báo chính xác giá cổ phiếu của đối thủ sáng nay",
+          "Báo chính xác giá mới đối thủ vừa đổi sáng nay",
           "Cộng chính xác 300 dòng doanh số dán vào khung chat",
           "Nhắc lại điều khoản hợp đồng bạn ký tuần trước",
         ],
         correct: 0,
         explanation:
-          "Viết nháp từ ý có sẵn là đúng sở trường: diễn đạt trôi chảy, bạn kiểm được bằng mắt. Giá cổ phiếu sáng nay là sự kiện mới, nó không biết nếu không tìm web. Cộng 300 dòng là việc của bảng tính. Hợp đồng tuần trước thì nó chưa từng thấy, trừ khi bạn đưa vào.",
+          "Viết nháp từ ý có sẵn là đúng sở trường: diễn đạt trôi chảy, bạn kiểm được bằng mắt. Giá đối thủ vừa đổi sáng nay là sự kiện mới, nó không biết nếu không tìm web. Cộng 300 dòng là việc của bảng tính. Hợp đồng tuần trước thì nó chưa từng thấy, trừ khi bạn đưa vào.",
       },
       {
         question: "Vì sao AI có thể trả lời sai về một quy định mới ban hành tháng trước?",

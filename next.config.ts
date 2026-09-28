@@ -47,8 +47,25 @@ const nextConfig: NextConfig = {
       { source: "/bai-hoc/post-ipo-dividend", destination: "/bai-hoc/sau-khi-ra-mat-co-nen-cong-bo-slo", permanent: true },
       { source: "/bai-hoc/modern-portfolio-theory", destination: "/bai-hoc/nhieu-dich-vu-nho-hay-mot-dich-vu-lon", permanent: true },
       { source: "/bai-hoc/esg-investing-screening-den-portfolio", destination: "/bai-hoc/tu-sang-loc-toi-uu-tien-sua-dich-vu", permanent: true },
-      // 22 slug mang tên tài chính từ trang cũ (TuHocTaiChinh) đổi sang tên theo
-      // nội dung công nghệ hiện tại của bài; link cũ vẫn tới đúng bài.
+      // 16 slug còn sót sau lượt trên, cùng lý do.
+      { source: "/bai-hoc/danh-gia-du-an-npv-irr", destination: "/bai-hoc/danh-gia-mot-du-an-nen-tang-noi-bo", permanent: true },
+      { source: "/bai-hoc/financial-risk", destination: "/bai-hoc/phan-loai-rui-ro-ky-thuat", permanent: true },
+      { source: "/bai-hoc/interim-comprehensive-income", destination: "/bai-hoc/so-lieu-giua-ky-va-thay-doi-an", permanent: true },
+      { source: "/bai-hoc/on-tap-npv", destination: "/bai-hoc/on-tap-quy-loi-ich-tuong-lai-ve-hien-tai", permanent: true },
+      { source: "/bai-hoc/bao-hiem-la-gi-mo-hinh-kinh-doanh", destination: "/bai-hoc/du-phong-dung-chung-giua-cac-doi", permanent: true },
+      { source: "/bai-hoc/bao-hiem-tien-gui-viet-nam", destination: "/bai-hoc/tls-chung-chi-va-lop-bao-ve-phia-truoc", permanent: true },
+      { source: "/bai-hoc/cach-danh-gia-esg-cua-doanh-nghiep", destination: "/bai-hoc/danh-gia-ba-tru-cot-cua-mot-dich-vu", permanent: true },
+      { source: "/bai-hoc/chung-chi-tien-gui-vs-so-tiet-kiem", destination: "/bai-hoc/dns-tu-ten-mien-toi-dia-chi-ip", permanent: true },
+      { source: "/bai-hoc/esg-la-gi-va-tai-sao-quan-trong", destination: "/bai-hoc/chi-so-phi-chuc-nang-la-gi", permanent: true },
+      { source: "/bai-hoc/gui-tiet-kiem-hoat-dong-the-nao", destination: "/bai-hoc/tien-trinh-chuong-trinh-dang-chay", permanent: true },
+      { source: "/bai-hoc/khau-hao", destination: "/bai-hoc/phan-bo-chi-phi-tra-truoc", permanent: true },
+      { source: "/bai-hoc/khung-bao-cao-esg-csrd-sfdr-issb", destination: "/bai-hoc/chuan-bao-cao-chi-so-va-cach-chon", permanent: true },
+      { source: "/bai-hoc/quan-tri-doanh-nghiep-g-trong-esg", destination: "/bai-hoc/chat-luong-van-hanh-tru-cot-it-duoc-nhac", permanent: true },
+      { source: "/bai-hoc/rut-tiet-kiem-truoc-han", destination: "/bai-hoc/cong-va-dich-vu-dang-lang-nghe", permanent: true },
+      { source: "/bai-hoc/tham-gia-crypto-the-nao", destination: "/bai-hoc/tong-ket-dung-ung-dung-phi-tap-trung-nho", permanent: true },
+      { source: "/bai-hoc/ty-trong-va-bien-dong-crypto", destination: "/bai-hoc/khi-nao-khong-nen-dung-chuoi-khoi", permanent: true },
+      // 22 slug cũ đổi sang tên theo nội dung công nghệ hiện tại của bài; link
+      // cũ vẫn tới đúng bài.
       { source: "/bai-hoc/tai-chinh-khoi-nghiep-cap-table-vc-valuation", destination: "/bai-hoc/ky-thuat-giai-doan-dau-khoi-nghiep", permanent: true },
       { source: "/bai-hoc/tai-chinh-xanh-tieu-chuan-esg-tin-chi-carbon", destination: "/bai-hoc/phan-mem-tiet-kiem-nang-luong", permanent: true },
       { source: "/bai-hoc/vas-vs-ifrs-khac-biet-nen-tang", destination: "/bai-hoc/quy-uoc-ma-vi-sao-ca-doi-viet-giong-nhau", permanent: true },
@@ -169,8 +186,7 @@ const nextConfig: NextConfig = {
       "img-src 'self' data: blob: https://lh3.googleusercontent.com https://*.googleusercontent.com https://*.cloudflare.co",
       "font-src 'self' data:",
       "connect-src 'self' https://*.cloudflare.co wss://*.cloudflare.co",
-      // CFA module content (CfaContentRenderer) auto-embeds any YouTube link
-      // as a real <iframe> player - without this, "default-src 'self'"
+      // Embedded YouTube players need an explicit frame-src - without this, "default-src 'self'"
       // falls back to blocking frame-src too and every embed would be
       // silently blank.
       "frame-src https://www.youtube.com https://www.youtube-nocookie.com",

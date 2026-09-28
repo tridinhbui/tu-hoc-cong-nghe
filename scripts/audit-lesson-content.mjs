@@ -194,7 +194,7 @@ console.log(`Total failing at least one check: ${total}`);
 // which hid a corpus-wide defect: of 1,501 quiz questions, 1,378 (91%) had the
 // correct answer as the *longest* of the four options - median 115 characters
 // against 45 for a distractor. Picking the longest option scores 91% with no
-// finance knowledge at all, and lesson quizzes are not cosmetic: they feed
+// subject knowledge at all, and lesson quizzes are not cosmetic: they feed
 // avg_quiz_score, the /kiem-tra track quizzes, the lesson-unlock gate
 // challenge, XP, and the competency scores on /su-nghiep.
 //
@@ -531,8 +531,7 @@ const hollowCorrect = [];
 // không đọc lại bài đã hỏi gì.
 //
 // Vì sao đáng gác: quiz bài học phần lớn đúng 5 câu - bằng sàn. Một câu lặp
-// kéo số câu THẬT xuống 4, và ở frm-xep-hang-tin-nhiem-noi-bo-va-ben-ngoai là
-// xuống 3. Người học trả lời cùng một ý hai lần rồi nhận một điểm số nói rằng
+// kéo số câu THẬT xuống 4, có bài xuống 3. Người học trả lời cùng một ý hai lần rồi nhận một điểm số nói rằng
 // họ đã được kiểm tra năm lần.
 //
 // Hai phép đo, hai mức xử lý khác nhau, và sự khác nhau đó là có chủ ý:
@@ -648,12 +647,9 @@ function findOptionLetterRefs(question) {
 // tính ra đúng con số rồi chọn cái kia thì bị chấm sai - rồi đọc phần giải
 // thích nói ra đúng con số họ vừa chọn.
 //
-// Đã xảy ra hai lần, và hai cổng đang có đều không thấy:
-//   credit-spread openingOptions: "4%" đứng cạnh "4% - phần bù vì rủi ro tín
-//     dụng cao hơn T-bond", correctOption = 3. 8% − 4% = 4% là phép tính đúng
-//     duy nhất của câu này.
-//   nguon-va-su-dung-von-trong-thuong-vu practicePrompt: "125 tỷ" và "125 tỷ",
-//     giống nhau từng ký tự, correct = 1.
+// Hai hình dạng, và hai cổng đang có đều không thấy: "4%" đứng cạnh
+// "4% - kèm một mệnh đề giải thích" với khoá ở cái sau; hoặc hai phương án
+// giống nhau từng ký tự.
 // Cổng chữ cái tìm chữ cái, cổng độ dài thấy "4%" là phương án ngắn nhất -
 // hoàn toàn hợp lệ. Không có gì bắt được hình dạng này.
 //
@@ -697,12 +693,10 @@ function findDuplicateAnswers(options, correct) {
       return;
     }
     if (keyedValue === null) return;
-    // Đáp án đúng phải là một GIÁ TRỊ, không phải một biểu thức. discounting
-    // khoá "1 triệu / (1.08)^5 = ~680.000 đồng" và để "1 triệu" làm nhiễu -
-    // nhiễu hợp lệ, vì ngộ nhận ở đây đúng là "không chiết khấu gì cả". Con số
-    // mở đầu của đáp án đúng chỉ là tử số; đáp số thật là 680.000. Còn ở
-    // credit-spread thì "4% - phần bù vì rủi ro tín dụng cao hơn T-bond" không
-    // có con số nào khác, nên 4% chính là đáp số.
+    // Đáp án đúng phải là một GIÁ TRỊ, không phải một biểu thức: với
+    // "1000 / 4 = 250" và nhiễu "1000", con số mở đầu chỉ là tử số, còn đáp số
+    // thật là 250. Một đáp án "4% - kèm mệnh đề" không có con số nào khác, nên
+    // 4% chính là đáp số.
     if (/[0-9]/.test(keyed.slice(LEADING_NUMERIC_RE.exec(keyed)[0].length))) return;
     const bare = normaliseNumeric(BARE_NUMERIC_RE.exec(option));
     if (bare !== null && bare === keyedValue) {
@@ -742,11 +736,9 @@ function numericTokens(text) {
  *
  *  Toàn kho chỉ có 6 câu thuộc dạng này, nên nó rẻ và không ồn.
  *
- *  Ca thật đã có: wacc-co-ban khoá câu mở đầu vào "8.88%" trong khi lời giải
- *  của chính nó tính ra 9,12% - và 9,12% thậm chí không nằm trong bốn phương án.
- *  8,88% là kết quả khi thuế 30%, còn đề ghi 20%. Quiz câu 3 của ĐÚNG bài đó,
- *  cùng bộ số, lại khoá đúng 9,12%: bài tự mâu thuẫn với chính nó. Người học
- *  tính đúng bị chấm sai, rồi được đưa cho lời giải ghi ra con số họ vừa chọn. */
+ *  Ca thật đã có: một bài khoá câu mở đầu vào một con số trong khi lời giải
+ *  của chính nó tính ra số khác. Người học tính đúng bị chấm sai, rồi được đưa
+ *  cho lời giải ghi ra con số họ vừa chọn. */
 function findMiskeyedNumericAnswer(options, correct, explanation) {
   if (!Array.isArray(options) || typeof correct !== "number") return null;
   const keyed = options[correct];

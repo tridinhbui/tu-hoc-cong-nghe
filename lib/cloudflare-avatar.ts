@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/cloudflare";
-import { DEFAULT_AVATAR_CONFIG, type AvatarConfig } from "@/lib/avatar-customizer-types";
+import { DEFAULT_AVATAR_CONFIG, normalizeAvatarConfig, type AvatarConfig } from "@/lib/avatar-customizer-types";
 
 const LOCAL_STORAGE_AVATAR_KEY = "thtcdn_avatar_config";
 
@@ -9,7 +9,7 @@ export function getLocalAvatarConfig(): AvatarConfig {
     const saved = localStorage.getItem(LOCAL_STORAGE_AVATAR_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      return { ...DEFAULT_AVATAR_CONFIG, ...parsed };
+      return normalizeAvatarConfig({ ...DEFAULT_AVATAR_CONFIG, ...parsed });
     }
   } catch (e) {
     console.warn("Failed to load local avatar config:", e);
@@ -48,7 +48,7 @@ export async function fetchUserAvatarConfig(userId?: string): Promise<AvatarConf
       const dbConfig = typeof profile.avatar_config === "string" 
         ? JSON.parse(profile.avatar_config) 
         : profile.avatar_config;
-      const merged = { ...DEFAULT_AVATAR_CONFIG, ...dbConfig };
+      const merged = normalizeAvatarConfig({ ...DEFAULT_AVATAR_CONFIG, ...dbConfig });
       saveLocalAvatarConfig(merged);
       return merged;
     }

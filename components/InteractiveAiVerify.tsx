@@ -8,7 +8,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 // Soát một bản trả lời của AI, widget cho các bài khai `interactiveType:
 // "ai-verify"`.
 //
-// Cái bẫy của AI trong tài chính không phải là nó trả lời sai trông ra sai.
+// Cái bẫy của AI không phải là nó trả lời sai trông ra sai.
 // Bản trả lời sai trông y hệt bản trả lời đúng: cùng giọng chắc nịch, cùng số
 // lẻ tới hai chữ số thập phân, cùng cấu trúc gọn gàng. Nên dạy "hãy kiểm tra
 // lại" là dạy một câu khẩu hiệu; thứ dạy được là KIỂM CÁI GÌ.

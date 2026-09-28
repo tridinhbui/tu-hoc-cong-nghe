@@ -4,7 +4,7 @@ import { uniqueRealtimeTopic } from "@/lib/cloudflare-realtime-topic";
 import { ApiError, type ApiErrorCode } from "@/lib/api-error-code";
 
 
-export type StudyRoomTopic = "personal" | "professional" | "cfa";
+export type StudyRoomTopic = "personal" | "professional" | "certification";
 
 /* i18n-ignore-start: `label` đã có lớp phủ (`t.studyRoomTopics`), khoá theo
    `id` - vốn cũng là giá trị được ghi xuống cột `topic` của phòng học, nên nó
@@ -12,7 +12,7 @@ export type StudyRoomTopic = "personal" | "professional" | "cfa";
 export const STUDY_ROOM_TOPICS: { id: StudyRoomTopic; label: string }[] = [
   { id: "personal", label: "Nền tảng công nghệ" },
   { id: "professional", label: "Công nghệ chuyên sâu" },
-  { id: "cfa", label: "Chứng chỉ AWS" },
+  { id: "certification", label: "Chứng chỉ AWS" },
 ];
 
 export interface StudyRoomSummary {

@@ -15,8 +15,7 @@ export const PACE_KEY = "thtcdn_path_pace";
 /** Một bài mất khoảng bằng này phút, tính cả câu hỏi cuối bài.
  *
  *  Đây là trung vị THẬT của kho, đo bằng totalMinutes trong lib/lessons-data,
- *  và learning-path-claims.test.ts gác cho nó khớp. Đổi từ 6 xuống 5 khi kho
- *  chuyển từ nội dung tài chính sang công nghệ.
+ *  và learning-path-claims.test.ts gác cho nó khớp.
  *
  *  Con số này nằm sát ranh giới hơn vẻ ngoài của nó: phân bố hiện tại có 53
  *  bài ở mức 4 và 269 bài ở mức 5, nên vị trí trung vị (322/643) rơi đúng vào

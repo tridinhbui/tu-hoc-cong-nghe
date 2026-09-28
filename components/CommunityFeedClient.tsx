@@ -137,8 +137,7 @@ const REACTION_OPTIONS = ["💡 Hay", "🧠 Cần phản biện", "❓ Cùng th�
 // nhận diện chủ đề nằm ở lib/community-feed-visibility.ts cùng với hàm đọc
 // chúng - chúng từng được chép lại ở đây trong một trường `tag` mà không dòng
 // nào đọc tới, bên cạnh một hàm phân loại viết thẳng đúng những chuỗi đó.
-// KHÔNG CÒN BẢNG CHỦ ĐỀ. Sáu chip lọc ở đầu trang (Tất cả / Mẹo tài chính /
-// Phân tích / Hỏi đáp / Tin nóng / AI tài chính) và hộp chọn chủ đề trong ô
+// KHÔNG CÒN BẢNG CHỦ ĐỀ. Các chip lọc ở đầu trang và hộp chọn chủ đề trong ô
 // soạn bài đã bị gỡ theo yêu cầu của chủ dự án: ở quy mô cộng đồng này, bắt
 // người viết chọn ngăn trước khi được nói là rào cản, không phải tổ chức.
 //

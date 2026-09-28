@@ -26,7 +26,7 @@ export interface OrganicBuildingStruct {
 }
 
 const BUILDING_STRUCT: OrganicBuildingStruct[] = [
-  // KHU VỰC 1: SÀN GIAO DỊCH NYSE & TRADING PIT
+  // KHU VỰC 1: TRUNG TÂM DỮ LIỆU & TRIỂN KHAI
   {
     id: "world-boss",
     emoji: "🐂",
@@ -75,7 +75,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
 
   // KHU VỰC 3: QUỸ ĐẦU TƯ & NGÂN HÀNG ĐẦU TƯ
   {
-    id: "goldman-sachs",
+    id: "capacity-lab",
     emoji: "🏛️",
     bgLight: "bg-gradient-to-br from-slate-50 via-sky-50 to-indigo-50",
     borderColor: "border-sky-400 ring-2 ring-sky-400/40 shadow-lg shadow-sky-500/10",
@@ -108,9 +108,9 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     imageSrc: "/rpg/city_skyline.jpg",
   },
 
-  // 🏗️ KHU VỰC 4: VÙNG ĐẤT TÀI CHÍNH TOÀN CẦU
+  // 🏗️ KHU VỰC 4: HẠ TẦNG TOÀN CẦU
   {
-    id: "fed-vault",
+    id: "backbone-hub",
     emoji: "🏦",
     bgLight: "bg-gradient-to-br from-amber-50/80 via-yellow-50 to-stone-100",
     borderColor: "border-amber-400 ring-2 ring-amber-400/40 shadow-lg shadow-amber-500/10",
@@ -132,7 +132,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     imageSrc: "/rpg/silicon_valley.png",
   },
   {
-    id: "capitol-hill",
+    id: "cloud-capital",
     emoji: "🏬",
     bgLight: "bg-gradient-to-br from-stone-100 via-stone-50 to-stone-200",
     borderColor: "border-stone-400 ring-1 ring-stone-400/40",
@@ -143,7 +143,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     imageSrc: "/rpg/empire_state_building.jpg",
   },
   {
-    id: "cme-commodities",
+    id: "resource-floor",
     emoji: "🛢️",
     bgLight: "bg-gradient-to-br from-brand-50/80 via-brand-50 to-brand-50",
     borderColor: "border-brand-400 ring-1 ring-brand-400/40",
@@ -154,7 +154,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     imageSrc: "/rpg/silicon_valley.png",
   },
   {
-    id: "swiss-haven",
+    id: "data-haven",
     emoji: "💎",
     bgLight: "bg-gradient-to-br from-rose-50/80 via-pink-50 to-slate-50",
     borderColor: "border-rose-400 ring-1 ring-rose-400/40",

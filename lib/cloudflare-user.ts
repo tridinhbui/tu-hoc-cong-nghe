@@ -8,9 +8,6 @@ import { getTotalChestXp } from "@/lib/chests";
 import { getLevelByXp, getStreakMilestoneXp, XP_PER_LESSON } from "@/lib/levels";
 import { getDictionary, readLocaleCookie } from "@/lib/i18n";
 
-// Các môn CFA đã bị gỡ, nên không còn bài nào tính là "bài CFA".
-const CFA_LESSON_IDS = new Set<number>();
-
 /** Tên thay thế cho một người chưa đặt tên hiển thị, trên bảng xếp hạng.
  *
  *  Bảy hàm bên dưới đều rơi về đây, và cả bảy đều trả dữ liệu thẳng cho một
@@ -425,8 +422,8 @@ export async function getMyLeaderboardRank(
 }
 
 // Ranks by count of completed lessons within a track's day ranges (see
-// lib/track-stages.ts). Scoped to "personal"/"professional" only - CFA is
-// deliberately excluded (see cloudflare/migrations/20260719_leaderboard_expansion.sql).
+// lib/track-stages.ts). Scoped to "personal"/"professional" only
+// (see cloudflare/migrations/20260719_leaderboard_expansion.sql).
 export async function getTrackLeaderboard(track: "personal" | "professional", limit: number = 10): Promise<LeaderboardRow[]> {
   const cloudflare = createClient();
   const { data, error } = await cloudflare.rpc("get_track_leaderboard", { p_track: track, p_limit: limit });
@@ -597,21 +594,6 @@ export async function getLevelStats(userId?: string): Promise<LevelStats | null>
 }
 
 // Cập nhật stats từ progress
-// Shared with client components (UserStats, DashboardClient) so their
-// locally-computed getLevelByXp(xp, cfaCompleted) matches what
-// recalculateUserStats actually persisted as current_level, instead of
-// silently defaulting cfaCompleted to 0 and under-displaying the L9+ gate.
-export async function getCfaCompletedCount(userId: string): Promise<number> {
-  const cloudflare = createClient();
-  const [progressRes, cfaModuleRes] = await Promise.all([
-    cloudflare.from("user_progress").select("lesson_id").eq("user_id", userId).eq("completed", true),
-    cloudflare.from("cfa_module_progress").select("module_id").eq("user_id", userId).eq("completed", true),
-  ]);
-  const cfaLessonsDone = (progressRes.data ?? []).filter((p) => CFA_LESSON_IDS.has(p.lesson_id)).length;
-  const cfaModulesDone = cfaModuleRes.data?.length ?? 0;
-  return cfaLessonsDone + cfaModulesDone;
-}
-
 export async function recalculateUserStats(userId: string) {
   const cloudflare = createClient();
 
@@ -650,7 +632,6 @@ export async function recalculateUserStats(userId: string) {
     milestonesRes,
     recallsRes,
     chestXp,
-    cfaModuleProgressRes,
     userStatsRes,
     careerMissionXp,
     streakRes,
@@ -665,8 +646,6 @@ export async function recalculateUserStats(userId: string) {
     Promise.resolve(cloudflare.from("user_lesson_recalls").select("recall_stage").eq("user_id", userId)).catch(() => ({ data: null, error: null })),
     // "Rương quà" (chest) XP - see lib/chests.ts
     getTotalChestXp(userId).catch(() => 0),
-    // Completed CFA modules
-    Promise.resolve(cloudflare.from("cfa_module_progress").select("module_id").eq("user_id", userId).eq("completed", true)).catch(() => ({ data: null, error: null })),
     // XP permanently spent on streak restores
     Promise.resolve(cloudflare.from("user_stats").select("xp_spent").eq("user_id", userId).maybeSingle()).catch(() => ({ data: null, error: null })),
     // Nhiệm vụ nghề hằng tuần đã gỡ cùng /api/career-profile/claim.
@@ -741,11 +720,6 @@ export async function recalculateUserStats(userId: string) {
     console.error("Error reading recalls for XP:", err);
   }
 
-  const cfaLessonsDone = (progress ?? []).filter((p) => CFA_LESSON_IDS.has(p.lesson_id)).length;
-  const cfaModulesData = (cfaModuleProgressRes as { data: { module_id: string }[] | null })?.data;
-  const cfaModulesDone = cfaModulesData?.length ?? 0;
-  const cfaCompletedCount = cfaLessonsDone + cfaModulesDone;
-
   // Clamped at 0 because this value is *subtracted*: user_stats.xp_spent has
   // no CHECK and the client holds UPDATE on the table, so a negative value
   // would flip the minus into a bonus and mint XP without touching any
@@ -763,23 +737,23 @@ export async function recalculateUserStats(userId: string) {
     : 0;
   const totalXp = Math.max(
     0,
-    (lessonsCompleted + cfaModulesDone) * XP_PER_LESSON + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp + careerMissionXp + streakXp - xpSpent - recertPenaltyXp
+    lessonsCompleted * XP_PER_LESSON + quizXp + gameXp + referralXp + gameAcademicBonusXp + questXp + milestoneXp + recallXp + chestXp + careerMissionXp + streakXp - xpSpent - recertPenaltyXp
   );
   const quizScores = progress?.filter((p) => p.quiz_score !== null).map((p) => p.quiz_score) || [];
   const avgScore = quizScores.length > 0 ? quizScores.reduce((a, b) => a + b, 0) / quizScores.length : 0;
 
-  const currentLevel = getLevelByXp(totalXp, cfaCompletedCount).level;
+  const currentLevel = getLevelByXp(totalXp).level;
 
   // Cập nhật user_profiles + user_stats
   const [, stats] = await Promise.all([
     updateUserProfile(userId, {
-      lessons_completed: lessonsCompleted + cfaModulesDone,
+      lessons_completed: lessonsCompleted,
       total_xp: totalXp,
       current_level: currentLevel,
       avg_quiz_score: Math.round(avgScore * 100) / 100,
     }).catch(() => null),
     upsertUserStats(userId, {
-      total_lessons_completed: lessonsCompleted + cfaModulesDone,
+      total_lessons_completed: lessonsCompleted,
       total_xp: totalXp,
       current_level: currentLevel,
       avg_quiz_score: Math.round(avgScore * 100) / 100,

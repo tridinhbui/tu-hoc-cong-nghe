@@ -9,7 +9,7 @@ import type { Lesson } from "./lesson-types";
 // tin đồn dẫn dắt, và hứa một mốc mà lần phát hành sau không giữ được thì mất
 // thứ khó lấy lại nhất trong nghề.
 
-export const IR_LESSONS: Lesson[] = [
+export const DEVREL_LESSONS: Lesson[] = [
   {
     "id": 1711,
     "slug": "devrel-cong-viec-that-su-la-gi",

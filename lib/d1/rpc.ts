@@ -1095,8 +1095,8 @@ export async function getStudyRooms(
 
 /** `get_lesson_learner_counts()` - số người đã học xong từng bài.
  *
- *  Nuôi dòng "N người đã học" trên hàng bài ở /hoc-bai (port từ bản tài chính,
- *  nơi nó thay cho một con số băm từ slug). Đếm người, không đếm lượt: một
+ *  Nuôi dòng "N người đã học" trên hàng bài ở /hoc-bai (thay cho một con số
+ *  băm từ slug). Đếm người, không đếm lượt: một
  *  người học lại một bài vẫn là một người. Không lọc theo người gọi - đây là
  *  con số tổng, không lộ ai đã học gì. */
 export async function getLessonLearnerCounts(db: D1Like): Promise<Record<string, unknown>[]> {
@@ -1918,6 +1918,48 @@ export async function getMyXpMultiplier(
   return { multiplier: Math.min(MAX_XP_MULTIPLIER, Math.max(1, m)), expires_at: expires };
 }
 
+/** `record_exercise_pass(p_lesson_id, p_block_index)`: ghi lần đầu người học
+ *  qua một bài tập viết mã. Gọi lại là không đổi gì (giữ mốc lần đầu).
+ *
+ *  Chấm đầu ra chạy ở trình duyệt (Web Worker), nên máy chủ không tự kiểm lại
+ *  được lời giải - con số này đáng tin ngang điểm quiz, vốn cũng do client gửi
+ *  lên. Nó đo "đã tự làm tới lúc chạy đúng", không phải bằng chứng chống gian. */
+export async function recordExercisePass(
+  db: D1Like,
+  actor: string,
+  lessonId: number,
+  blockIndex: number
+): Promise<{ ok: true }> {
+  if (!actor) throw new NotAuthenticatedError();
+  const lesson = Number(lessonId);
+  const block = Number(blockIndex);
+  if (!Number.isInteger(lesson) || lesson <= 0 || !Number.isInteger(block) || block < 0 || block > 200) {
+    throw new Error("Bài tập không hợp lệ");
+  }
+  await exec(
+    db,
+    `insert into user_exercise_passes (user_id, lesson_id, block_index) values (?, ?, ?)
+     on conflict (user_id, lesson_id, block_index) do nothing`,
+    actor,
+    lesson,
+    block
+  );
+  return { ok: true };
+}
+
+/** `get_my_exercise_passes()`: mọi bài tập người đang đăng nhập đã qua. */
+export async function getMyExercisePasses(
+  db: D1Like,
+  actor: string
+): Promise<{ lesson_id: number; block_index: number; passed_at: string }[]> {
+  if (!actor) return [];
+  return rows<{ lesson_id: number; block_index: number; passed_at: string }>(
+    db,
+    `select lesson_id, block_index, passed_at from user_exercise_passes where user_id = ? order by passed_at`,
+    actor
+  );
+}
+
 /** `toggle_chat_message_reaction(p_message_id, p_emoji)`.
  *
  *  Bản gốc đọc `exists(...)` rồi mới chọn `delete` hay `insert`. Đó là khoảng
@@ -2107,7 +2149,7 @@ export async function joinOrCreateStudyRoom(
   topic: string
 ): Promise<number> {
   if (!actor) throw new NotAuthenticatedError();
-  if (!["personal", "professional", "cfa"].includes(topic)) throw new Error("Invalid topic");
+  if (!["personal", "professional", "certification"].includes(topic)) throw new Error("Invalid topic");
 
   await exec(
     db,
@@ -2352,11 +2394,9 @@ export async function claimStudyRoomWeeklyReward(
 /** Bậc level trong SQL, sinh từ chính bảng `LEVELS` để TS và SQL không thể lệch
  *  nhau nữa. Bản cũ dùng `floor(total_xp / 150) + 1` - 1.500 XP ra Lv 11 ở đây
  *  nhưng Lv 7 ở `getLevelByXp`, nên mỗi lần admin đồng bộ là level nhảy loạn.
- *  Bậc có `minCfaCompleted` bị bỏ qua: đợt đồng bộ không đếm module, tức là
- *  `getLevelByXp(xp, 0)` - đúng như cách TS xử lý người chưa làm module nào. */
+ */
 function levelSqlExpr(xpCol: string): string {
-  const tiers = LEVELS.filter((l) => !("minCfaCompleted" in l) || !l.minCfaCompleted)
-    .slice()
+  const tiers = LEVELS.slice()
     .sort((a, b) => b.minXp - a.minXp);
   return `(case ${tiers.map((l) => `when ${xpCol} >= ${l.minXp} then ${l.level}`).join(" ")} else 1 end)`;
 }

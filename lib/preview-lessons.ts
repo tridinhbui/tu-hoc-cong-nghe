@@ -31,8 +31,8 @@ export function isPreviewLessonSlug(slug: string): boolean {
 /** `/bai-hoc/<slug>` có phải một bài xem thử không.
  *
  *  Cắt chuỗi thủ công thay vì dùng regex: hàm này chạy trong proxy, trên mọi
- *  request, và nó phải từ chối cả `/bai-hoc/tai-chinh-la-gi/gi-do` lẫn
- *  `/bai-hoc/tai-chinh-la-gi/` - một regex `startsWith` lỏng tay ở đây là cách
+ *  request, và nó phải từ chối cả `/bai-hoc/<slug>/gi-do` lẫn
+ *  `/bai-hoc/<slug>/` - một regex `startsWith` lỏng tay ở đây là cách
  *  mở toang cả thư mục con mà không ai thấy. */
 export function isPreviewLessonPath(pathname: string): boolean {
   const prefix = "/bai-hoc/";

@@ -23,7 +23,6 @@ export const RARE_EVENT_LESSONS: Lesson[] = [
     "difficulty": "Khó",
     "track": "professional",
     "emoji": "📊",
-    "interactiveType": "risk",
     "whyItMatters": "Khoản chiết khấu cho cam kết dài hạn lớn tới mức khó từ chối, và cái giá của nó chỉ hiện ra khi nhu cầu đi khác dự báo.",
     "openingQuestion": "Nhà cung cấp giảm 40% nếu bạn cam kết mức dùng trong ba năm. Cân nhắc gì trước tiên?",
     "openingOptions": [

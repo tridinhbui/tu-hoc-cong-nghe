@@ -13,7 +13,7 @@ import { btnPrimary } from "@/components/ui/system";
 interface DiagnosticQuestion {
   id: number;
   question: string;
-  options: { text: string; scoreTrack: "personal" | "professional" | "cfa" | "ai" }[];
+  options: { text: string; scoreTrack: "personal" | "professional" | "certification" | "ai" }[];
 }
 
 // Scoring is purely by `scoreTrack` per option (question id + option order),
@@ -27,7 +27,7 @@ function buildDiagnosticQuestions(t: Dictionary): DiagnosticQuestion[] {
       options: [
         { text: t.diagnostic.q1Opt1, scoreTrack: "personal" },
         { text: t.diagnostic.q1Opt2, scoreTrack: "professional" },
-        { text: t.diagnostic.q1Opt3, scoreTrack: "cfa" },
+        { text: t.diagnostic.q1Opt3, scoreTrack: "certification" },
         { text: t.diagnostic.q1Opt4, scoreTrack: "ai" },
       ],
     },
@@ -37,7 +37,7 @@ function buildDiagnosticQuestions(t: Dictionary): DiagnosticQuestion[] {
       options: [
         { text: t.diagnostic.q2Opt1, scoreTrack: "personal" },
         { text: t.diagnostic.q2Opt2, scoreTrack: "professional" },
-        { text: t.diagnostic.q2Opt3, scoreTrack: "cfa" },
+        { text: t.diagnostic.q2Opt3, scoreTrack: "certification" },
         { text: t.diagnostic.q2Opt4, scoreTrack: "ai" },
       ],
     },
@@ -47,7 +47,7 @@ function buildDiagnosticQuestions(t: Dictionary): DiagnosticQuestion[] {
       options: [
         { text: t.diagnostic.q3Opt1, scoreTrack: "personal" },
         { text: t.diagnostic.q3Opt2, scoreTrack: "professional" },
-        { text: t.diagnostic.q3Opt3, scoreTrack: "cfa" },
+        { text: t.diagnostic.q3Opt3, scoreTrack: "certification" },
         { text: t.diagnostic.q3Opt4, scoreTrack: "ai" },
       ],
     },
@@ -70,13 +70,13 @@ export default function DiagnosticPlacementModal({
   const [scores, setScores] = useState<Record<string, number>>({
     personal: 0,
     professional: 0,
-    cfa: 0,
+    certification: 0,
     ai: 0,
   });
 
   const DIAGNOSTIC_QUESTIONS = useMemo(() => buildDiagnosticQuestions(t), [t]);
 
-  const handleSelectOption = (track: "personal" | "professional" | "cfa" | "ai") => {
+  const handleSelectOption = (track: "personal" | "professional" | "certification" | "ai") => {
     setScores((prev) => ({ ...prev, [track]: prev[track] + 1 }));
 
     if (currentIndex + 1 < DIAGNOSTIC_QUESTIONS.length) {
@@ -106,9 +106,9 @@ export default function DiagnosticPlacementModal({
       url: "/dashboard?track=professional",
       icon: Briefcase,
     },
-    cfa: {
-      title: t.diagnostic.trackCfaTitle,
-      desc: t.diagnostic.trackCfaDesc,
+    certification: {
+      title: t.diagnostic.trackCertificationTitle,
+      desc: t.diagnostic.trackCertificationDesc,
       url: "/chung-chi",
       icon: GraduationCap,
     },

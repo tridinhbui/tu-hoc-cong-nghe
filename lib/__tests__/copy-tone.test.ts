@@ -16,14 +16,14 @@ import path from "path";
  *     thật trên màn hình - "giải tỏa biểu tượng cảnh báo 🔴 trên Navbar",
  *     "Bấm nút Thả tim ❤️" - nên cấm luôn là làm câu mất nghĩa.
  *
- *  2. TITLE CASE TIẾNG ANH ÁP VÀO TIẾNG VIỆT. `"Bản Đồ Sự Nghiệp Tài Chính"`.
+ *  2. TITLE CASE TIẾNG ANH ÁP VÀO TIẾNG VIỆT. `"Bản Đồ Sự Nghiệp Công Nghệ"`.
  *     Tiếng Việt không viết hoa từng từ; đó là thói quen tiếng Anh đi thẳng
  *     vào bản dịch. Người Việt đọc thấy ngay dù không gọi tên được.
  *
  *     Ngưỡng là BA từ hoa liên tiếp, không phải hai: hai từ hoa cạnh nhau
- *     thường là danh từ riêng ("Phố Wall", "Times Square"), ba trở lên mới là
+ *     thường là danh từ riêng ("Hà Nội", "Times Square"), ba trở lên mới là
  *     Title Case. Và trần đặt ở mức kho HIỆN ĐẠT chứ không phải 0 - 43 chuỗi
- *     còn lại phần lớn là tên sản phẩm ("Tự Học Tài Chính") hoặc câu dài có
+ *     còn lại phần lớn là tên sản phẩm ("Tự Học Công Nghệ") hoặc câu dài có
  *     danh từ riêng nằm cạnh nhau, tức là dương tính giả. Một cổng kêu oan là
  *     một cổng người ta học cách phớt lờ.
  */

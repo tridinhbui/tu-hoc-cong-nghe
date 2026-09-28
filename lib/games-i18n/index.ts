@@ -14,14 +14,12 @@ import { gamesEn } from "./en";
 /**
  * Lớp phủ dịch cho phần vỏ của lib/games.ts.
  *
- * KHÁC lib/frm-formulas-i18n và lib/cfa-formulas-i18n ở một điểm, và đó là lý
- * do nó không chép lại được khuôn của hai file kia: hai kho công thức là MỘT
- * mảng, một hình dạng, khoá theo `id`. `games.ts` có bảy cấu trúc khác nhau -
+ * `games.ts` có bảy cấu trúc khác nhau -
  * danh sách trò, danh sách độ khó, cấu hình nhóm, cấu hình ghép cặp, nhãn báo
  * cáo, danh hiệu xếp hạng - mỗi cái khoá một kiểu. Nên lớp phủ này là một
  * object nhiều nhánh chứ không phải một Record phẳng.
  *
- * Giữ nguyên nguyên tắc quan trọng nhất của hai file kia: bản dịch là LỚP PHỦ,
+ * Giữ nguyên nguyên tắc quan trọng nhất của các lớp phủ dịch: bản dịch là LỚP PHỦ,
  * mọi thứ cấu trúc (`id`, `mechanic`, `accent`, `emoji`, `bucket` của từng
  * khoản mục) đọc từ phía tiếng Việt và không được ghi đè. Thiếu một khoá thì
  * rơi về tiếng Việt chứ không rơi về rỗng.

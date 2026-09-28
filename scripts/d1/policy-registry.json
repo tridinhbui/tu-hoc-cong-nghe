@@ -7,11 +7,6 @@
  "announcements": {
   "kind": "public"
  },
- "budget_plans": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": false
- },
  "bug_report_messages": {
   "kind": "manual",
   "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
@@ -19,31 +14,6 @@
  "bug_reports": {
   "kind": "manual",
   "reason": "EXISTS (quyen thua ke hoac kiem vai tro)"
- },
- "cfa_module_bookmarks": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": false
- },
- "cfa_module_highlights": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": false
- },
- "cfa_module_notes": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": false
- },
- "cfa_module_progress": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": false
- },
- "cfa_module_recalls": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": false
  },
  "chat_message_reactions": {
   "kind": "manual",
@@ -85,19 +55,9 @@
   "kind": "manual",
   "reason": "dieu kien khong quy ve mot cot"
  },
- "emergency_funds": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": false
- },
  "feature_click_events": {
   "kind": "manual",
   "reason": "dieu kien khong quy ve mot cot"
- },
- "financial_guilds": {
-  "kind": "owner",
-  "column": "leader_id",
-  "publicRead": true
  },
  "focus_sessions": {
   "kind": "owner",
@@ -111,11 +71,6 @@
  },
  "gamification_assets": {
   "kind": "public"
- },
- "guild_members": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": true
  },
  "lesson_bookmarks": {
   "kind": "owner",
@@ -154,11 +109,6 @@
  },
  "lessons": {
   "kind": "public"
- },
- "net_worth_snapshots": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": false
  },
  "notification_preferences": {
   "kind": "owner",
@@ -258,11 +208,6 @@
   "column": "user_id",
   "publicRead": false
  },
- "user_domain_mastery": {
-  "kind": "owner",
-  "column": "user_id",
-  "publicRead": false
- },
  "user_equipments": {
   "kind": "owner",
   "column": "user_id",
@@ -282,7 +227,7 @@
   "kind": "manual",
   "reason": "dieu kien khong quy ve mot cot"
  },
- "user_ib_question_attempts": {
+ "user_interview_question_attempts": {
   "kind": "owner",
   "column": "user_id",
   "publicRead": false
@@ -361,35 +306,11 @@
  "world_bosses": {
   "kind": "public"
  },
- "ModuleQuizHeader": {
-  "kind": "manual",
-  "reason": "khong co chinh sach RLS nao trong migration"
- },
  "chat_messages": {
   "kind": "manual",
   "reason": "khong co chinh sach RLS nao trong migration"
  },
  "leaderboard_cache": {
-  "kind": "manual",
-  "reason": "khong co chinh sach RLS nao trong migration"
- },
- "ModuleQuizQuestion": {
-  "kind": "manual",
-  "reason": "khong co chinh sach RLS nao trong migration"
- },
- "Reading": {
-  "kind": "manual",
-  "reason": "khong co chinh sach RLS nao trong migration"
- },
- "LessonContent": {
-  "kind": "manual",
-  "reason": "khong co chinh sach RLS nao trong migration"
- },
- "Module": {
-  "kind": "manual",
-  "reason": "khong co chinh sach RLS nao trong migration"
- },
- "Book": {
   "kind": "manual",
   "reason": "khong co chinh sach RLS nao trong migration"
  }

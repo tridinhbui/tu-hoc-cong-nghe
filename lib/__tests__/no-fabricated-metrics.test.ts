@@ -10,8 +10,8 @@ import path from "path";
  *  chú rất thành thật rằng đó là số dựng - nhưng ghi chú thì lập trình viên
  *  đọc, còn người dùng chỉ đọc "137 người đang học cùng lúc" rồi tin.
  *
- *  Cùng họ với `cfa-claims.test.ts`: cả hai chặn thứ không bao giờ tự lộ ra -
- *  không lỗi biên dịch, không test đỏ, chỉ có người dùng bị nói sai.
+ *  Nó chặn thứ không bao giờ tự lộ ra - không lỗi biên dịch, không test đỏ,
+ *  chỉ có người dùng bị nói sai.
  *
  *  Quét mã nguồn thay vì kiểm một hàm cụ thể, vì cái cần chặn là một CÁCH LÀM
  *  chứ không phải một hàm. */

@@ -1,5 +1,4 @@
 import InteractiveProfitCalc from "./InteractiveProfitCalc";
-import InteractiveInterestRate from "./InteractiveInterestRate";
 import InteractiveSupplyDemand from "./InteractiveSupplyDemand";
 import InteractiveMultiples from "./InteractiveMultiples";
 import InteractiveBudget from "./InteractiveBudget";
@@ -10,16 +9,12 @@ import InteractiveEthicsCase from "./InteractiveEthicsCase";
 import ExcelPractice from "./ExcelPractice";
 import InteractivePromptCraft from "./InteractivePromptCraft";
 import InteractiveAiVerify from "./InteractiveAiVerify";
-import InteractiveEsgScore from "./InteractiveEsgScore";
 import InteractiveSampling from "./InteractiveSampling";
 import InteractiveRegression from "./InteractiveRegression";
-import InteractiveJournalEntry from "./InteractiveJournalEntry";
-import InteractiveFeeDrag from "./InteractiveFeeDrag";
 import InteractiveRatios from "./InteractiveRatios";
 import InteractiveTailRisk from "./InteractiveTailRisk";
 
 export type WidgetType =
-  | "interest-rate"
   | "supply-demand"
   | "profit-calc"
   | "budget"
@@ -30,7 +25,6 @@ export type WidgetType =
   | "multiples"
   | "prospect"
   | "ethics-case"
-  | "fee-drag"
   | "ratios"
   | "tail-risk"
   // Chặng Excel: mỗi bài một bộ bài tập gõ được, dữ liệu ở
@@ -43,17 +37,13 @@ export type WidgetType =
   | "excel-sql"
   | "prompt-craft"
   | "ai-verify"
-  | "esg-score"
   | "sampling"
-  | "regression"
-  | "journal-entry";
+  | "regression";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
   switch (type) {
     case "profit-calc":
       return <InteractiveProfitCalc />;
-    case "interest-rate":
-      return <InteractiveInterestRate />;
     case "supply-demand":
       return <InteractiveSupplyDemand />;
     case "budget":
@@ -79,16 +69,10 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractivePromptCraft />;
     case "ai-verify":
       return <InteractiveAiVerify />;
-    case "esg-score":
-      return <InteractiveEsgScore />;
     case "sampling":
       return <InteractiveSampling />;
     case "regression":
       return <InteractiveRegression />;
-    case "journal-entry":
-      return <InteractiveJournalEntry />;
-    case "fee-drag":
-      return <InteractiveFeeDrag />;
     case "ratios":
       return <InteractiveRatios />;
     case "tail-risk":
@@ -101,7 +85,6 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
  *  nhận một tiêu đề mục với khoảng trống bên dưới. Xuất ra đây để trang bài
  *  học hỏi trước khi dựng khối, thay vì ép kiểu rồi hy vọng. */
 export const WIDGET_TYPES: readonly WidgetType[] = [
-  "interest-rate",
   "supply-demand",
   "profit-calc",
   // Loại tinh lam phat tam rut khoi danh sach khai bao, KHONG xoa.
@@ -124,7 +107,6 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "multiples",
   "prospect",
   "ethics-case",
-  "fee-drag",
   "ratios",
   "tail-risk",
   "excel-shortcuts",
@@ -135,10 +117,8 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "excel-sql",
   "prompt-craft",
   "ai-verify",
-  "esg-score",
   "sampling",
   "regression",
-  "journal-entry",
 ];
 
 export function hasInteractiveWidget(type: string | null | undefined): type is WidgetType {

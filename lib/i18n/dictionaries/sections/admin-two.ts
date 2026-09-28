@@ -115,12 +115,12 @@ export const adminTwoVi = {
       trackTitles: {
         personal: "Cá nhân: {pct}%",
         professional: "Chuyên ngành: {pct}%",
-        cfa: "Chứng chỉ: {pct}%",
+        certification: "Chứng chỉ: {pct}%",
       },
       trackNames: {
         personal: "Nền tảng công nghệ",
         professional: "Công nghệ chuyên sâu",
-        cfa: "Chứng chỉ AWS",
+        certification: "Chứng chỉ AWS",
       },
       totalAccountsFooter: "Tổng cộng: {total} tài khoản người học.",
       topLessonsHeading: "Top 5 bài học phổ biến nhất",
@@ -297,12 +297,12 @@ export const adminTwoEn: typeof adminTwoVi = {
       trackTitles: {
         personal: "Personal: {pct}%",
         professional: "Professional: {pct}%",
-        cfa: "Certification: {pct}%",
+        certification: "Certification: {pct}%",
       },
       trackNames: {
         personal: "Tech foundations",
         professional: "Advanced technology",
-        cfa: "AWS certification",
+        certification: "AWS certification",
       },
       totalAccountsFooter: "Total: {total} learner accounts.",
       topLessonsHeading: "Top 5 most popular lessons",

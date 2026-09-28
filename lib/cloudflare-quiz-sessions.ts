@@ -2,12 +2,21 @@ import { createClient } from "@/lib/cloudflare";
 import { handleCloudflareError } from "@/lib/errors";
 
 // "mock-interview" is a full timed interview run from
-// components/MockInterviewModal.tsx, kept distinct from the 5-question "ib"
+// components/MockInterviewModal.tsx, kept distinct from the 5-question "interview"
 // drill on /kiem-tra because Interview readiness weights the two very
 // differently (lib/career-competency.ts).
 // "cert" là luyện một miền thi trên /chung-chi/<certId> - câu lấy từ quiz của
 // đúng những bài thuộc miền đó (lib/cert-tracks.ts).
-export type QuizTrack = "personal" | "professional" | "cfa" | "frm" | "ib" | "mock-interview" | "cert";
+export type QuizTrack = "personal" | "professional" | "interview" | "mock-interview" | "cert";
+
+/** Giá trị `track` cũ đã lưu trong user_quiz_sessions trước khi đổi tên. */
+export const LEGACY_QUIZ_TRACK_ALIASES: Partial<Record<QuizTrack, string[]>> = { interview: ["ib"] };
+
+/** Nhận cả id cũ từ client/URL: "ib" → "interview". */
+export function normalizeQuizTrack(track: unknown): string | null {
+  if (typeof track !== "string") return null;
+  return track === "ib" ? "interview" : track;
+}
 export type QuizDifficulty = "de" | "trung-binh" | "kho" | "tat-ca";
 
 // "Table not found in schema cache" (PostgREST) or "relation does not
@@ -29,7 +38,7 @@ export const STANDALONE_QUIZ_DAILY_XP_CAP = 30;
 
 /** XP mỗi câu đúng theo độ khó, để giao diện hiện "+5 XP / câu". Bản công nghệ
  *  không phân XP theo độ khó (computeQuizXp bên dưới), nên cả bốn mức bằng
- *  nhau - khai thành bảng chỉ để các màn chép từ bản tài chính đọc được. */
+ *  nhau - khai thành bảng để giao diện tra theo độ khó. */
 export const QUIZ_XP_PER_CORRECT: Record<QuizDifficulty, number> = {
   de: XP_PER_CORRECT_ANSWER,
   "trung-binh": XP_PER_CORRECT_ANSWER,
@@ -108,7 +117,7 @@ export const EMPTY_QUIZ_STATS: QuizStats = { rounds: 0, solved: 0, correct: 0, a
 export async function getQuizStats(userId: string, track?: QuizTrack): Promise<QuizStats> {
   const cloudflare = createClient();
   let query = cloudflare.from("user_quiz_sessions").select("score, total, xp_earned").eq("user_id", userId);
-  if (track) query = query.eq("track", track);
+  if (track) query = query.in("track", [track, ...(LEGACY_QUIZ_TRACK_ALIASES[track] ?? [])]);
   const { data, error } = await query;
   if (error) {
     if (isMissingTableError(error)) return EMPTY_QUIZ_STATS;

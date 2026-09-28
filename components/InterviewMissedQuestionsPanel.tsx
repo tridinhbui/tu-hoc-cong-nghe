@@ -2,21 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { Loader2, RotateCcw } from "lucide-react";
-import { getMostMissedQuestions, MIN_WRONG_FOR_MISSED, type MissedQuestion } from "@/lib/ib-weak-areas";
+import { getMostMissedQuestions, MIN_WRONG_FOR_MISSED, type MissedQuestion } from "@/lib/interview-weak-areas";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { panel, textLink } from "@/components/ui/system";
 
-// "Những câu tôi hay sai" - mức CHI TIẾT TỪNG CÂU, khác IbWeakAreasPanel ngay
+// "Những câu tôi hay sai" - mức CHI TIẾT TỪNG CÂU, khác InterviewWeakAreasPanel ngay
 // bên cạnh vốn tổng hợp theo chủ đề.
 //
-// Hai panel không thừa nhau vì chúng trả lời hai câu hỏi khác nhau. "DCF của
+// Hai panel không thừa nhau vì chúng trả lời hai câu hỏi khác nhau. "Mạng của
 // bạn đang 40%" cho biết nên ôn chủ đề nào; nó không chỉ ra ĐÚNG bốn câu đã
-// làm sai hai lần liên tiếp. Bảng user_ib_question_attempts vốn ghi từng câu
+// làm sai hai lần liên tiếp. Bảng user_interview_question_attempts vốn ghi từng câu
 // một ngay từ migration đầu - cột question_id nằm sẵn ở đó, chỉ chưa ai đọc.
 //
 // Không hiện gì khi chưa có câu nào đạt ngưỡng, thay vì hiện một khung rỗng
-// ngụ ý tính năng hỏng - cùng cách IbWeakAreasPanel đang làm.
+// ngụ ý tính năng hỏng - cùng cách InterviewWeakAreasPanel đang làm.
 
 interface Props {
   userId: string | null;
@@ -27,7 +27,7 @@ interface Props {
   maxItems?: number;
 }
 
-export default function IbMissedQuestionsPanel({ userId, onDrillQuestions, refreshKey = 0, maxItems = 2 }: Props) {
+export default function InterviewMissedQuestionsPanel({ userId, onDrillQuestions, refreshKey = 0, maxItems = 2 }: Props) {
   const { t } = useI18n();
   const [missed, setMissed] = useState<MissedQuestion[]>([]);
   const [loading, setLoading] = useState(true);

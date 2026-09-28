@@ -38,9 +38,7 @@ export default function BehavioralPrepPanel({ career }: { career?: string | null
 
   /* Thẻ hành vi đọc thẳng từ lib/interview-bank/behavioral.ts ở client.
    *
-   *  Bản tài chính lấy chúng qua /api/ib-behavioral để lọc theo nhóm nghề và
-   *  dịch ở máy chủ. Bản công nghệ có 12 thẻ, dùng chung cho mọi nghề và mới có
-   *  tiếng Việt - một vòng gọi mạng ở đây chỉ thêm trạng thái tải và lỗi cho
+   *  Có 12 thẻ, dùng chung cho mọi nghề và mới có tiếng Việt - một vòng gọi mạng ở đây chỉ thêm trạng thái tải và lỗi cho
    *  dữ liệu đã nằm sẵn trong bundle. `career` vẫn nhận để giữ chữ ký. */
   const questions = useMemo<BehavioralPrepQuestion[]>(
     () =>

@@ -3,14 +3,12 @@ import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { createAdminClient } from "@/lib/cloudflare-admin";
 import { applyBooster, getXpMultiplier } from "@/lib/boosters";
 import { verifyQuestionToken } from "@/lib/quiz-tokens";
-import { STANDALONE_QUIZ_DAILY_XP_CAP, computeQuizXp } from "@/lib/cloudflare-quiz-sessions";
+import { STANDALONE_QUIZ_DAILY_XP_CAP, computeQuizXp, normalizeQuizTrack } from "@/lib/cloudflare-quiz-sessions";
 import { PILLAR_QUIZ_SOURCE } from "@/lib/study-session";
 
 /**
  * Nộp bài cho mọi trắc nghiệm đứng riêng (/kiem-tra, /phong-van-ky-thuat,
  * luyện miền thi ở /chung-chi).
- * Dựng lại theo bản tài chính - xem chú thích ở ../route.ts về vì sao nó từng
- * mất.
  *
  * Điểm tính lại từ token đã ký, không tin client. XP bị chặn theo trần mỗi
  * ngày (STANDALONE_QUIZ_DAILY_XP_CAP) để làm lại một đề dễ trăm lần không leo
@@ -19,7 +17,7 @@ import { PILLAR_QUIZ_SOURCE } from "@/lib/study-session";
 
 /** Trần số câu một lần nộp - chặn một request nhồi hàng nghìn token. */
 const MAX_ANSWERS = 50;
-const VALID_TRACKS = new Set(["personal", "professional", "ib", "mock-interview", "cert"]);
+const VALID_TRACKS = new Set(["personal", "professional", "interview", "mock-interview", "cert"]);
 const VALID_DIFFICULTIES = new Set(["de", "trung-binh", "kho", "tat-ca"]);
 /** Danh sách đóng cho cột `source`: một chuỗi tuỳ ý từ client không được đi
  *  thẳng xuống cơ sở dữ liệu. */
@@ -88,7 +86,7 @@ export async function POST(request: NextRequest) {
   const score = scoreAnswers(answers);
   const total = answers.length;
 
-  const track = body.track;
+  const track = normalizeQuizTrack(body.track) ?? "";
   const difficulty = body.difficulty;
   if (!VALID_TRACKS.has(track) || !VALID_DIFFICULTIES.has(difficulty)) {
     return NextResponse.json({ error: "Invalid track/difficulty" }, { status: 400 });
@@ -116,7 +114,7 @@ export async function POST(request: NextRequest) {
 
   const attempts = buildInterviewAttempts(user.id, answers);
   if (attempts.length > 0) {
-    const { error: attemptsError } = await admin.from("user_ib_question_attempts").insert(attempts);
+    const { error: attemptsError } = await admin.from("user_interview_question_attempts").insert(attempts);
     if (attemptsError) console.error("Error recording interview question attempts:", attemptsError.message);
   }
 

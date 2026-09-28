@@ -1,22 +1,21 @@
 /**
- * Kho câu hỏi phỏng vấn kỹ thuật cho nghề công nghệ - thay cho kho IB của bản
- * tài chính (lib/ib-question-bank.ts ở repo đó, đã gỡ khỏi repo này ở d092dd4).
+ * Kho câu hỏi phỏng vấn kỹ thuật cho nghề công nghệ.
  *
  * Câu hỏi KỸ THUẬT có chấm điểm: chúng đi qua /api/knowledge-challenge (track
- * "ib" / "mock-interview"), được ký token, và XP ghi vào user_quiz_sessions.
+ * "interview" / "mock-interview"), được ký token, và XP ghi vào user_quiz_sessions.
  * Vì vậy mọi quy tắc viết quiz trong AGENTS.md áp dụng nguyên - đặc biệt mẹo
  * độ dài, được đo bởi scripts/audit-interview-bank.mjs.
  *
  * Câu hỏi HÀNH VI ("kể về một lần bạn...") không có đáp án đúng duy nhất, nên
  * KHÔNG ép thành trắc nghiệm: chúng là thẻ chuẩn bị không chấm điểm, gồm câu
- * hỏi và khung trả lời. Lý do y hệt bản tài chính: bịa ra ba cách "sai" để kể
+ * hỏi và khung trả lời. Lý do: bịa ra ba cách "sai" để kể
  * về sự nghiệp của chính người học là làm bài tập không trung thực.
  */
 
 export type InterviewDifficulty = "de" | "trung-binh" | "kho";
 
 export interface InterviewQuestion {
-  /** Duy nhất trên toàn kho. Ghi xuống user_ib_question_attempts.question_id,
+  /** Duy nhất trên toàn kho. Ghi xuống user_interview_question_attempts.question_id,
    *  nên KHÔNG đổi id của câu đã phát hành - đổi là mất lịch sử của người học. */
   id: number;
   /** Id nghề trong TECH_CAREERS. */

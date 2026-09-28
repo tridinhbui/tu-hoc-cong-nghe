@@ -1,4 +1,4 @@
-// Chữ phụ của các thẻ trên trang Học bài chép từ bản tài chính:
+// Chữ phụ của các thẻ trên trang Học bài:
 // NotesShortcutCard, ResumeLearningButton, DailyNewsQuizWidget.
 // Chủ yếu là `alt` của ảnh minh hoạ - mỗi thẻ một hai chuỗi, nên gom một chỗ.
 

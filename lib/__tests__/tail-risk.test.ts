@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { normalQuantile, tQuantile } from "../tail-risk";
 
-// Đối chiếu với bảng tra mà mọi giáo trình FRM đều in. Nếu một trong hai hàm
+// Đối chiếu với bảng tra mà mọi giáo trình thống kê đều in. Nếu một trong hai hàm
 // sai, widget vẫn hiện một con số trông rất gọn - nên chỗ duy nhất bắt được là
 // ở đây.
 

@@ -17,9 +17,9 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 function getProfiles(t: Dictionary) {
   return [
     { key: "safe", label: t.riskCalc.profileSafeLabel, ret: 5, vol: 1 },
-    { key: "bond", label: t.riskCalc.profileBondLabel, ret: 7, vol: 6 },
+    { key: "incremental", label: t.riskCalc.profileIncrementalLabel, ret: 7, vol: 6 },
     { key: "mixed", label: t.riskCalc.profileMixedLabel, ret: 9, vol: 12 },
-    { key: "stock", label: t.riskCalc.profileStockLabel, ret: 11, vol: 20 },
+    { key: "rewrite", label: t.riskCalc.profileRewriteLabel, ret: 11, vol: 20 },
     { key: "single", label: t.riskCalc.profileSingleLabel, ret: 12, vol: 38 },
   ] as const;
 }

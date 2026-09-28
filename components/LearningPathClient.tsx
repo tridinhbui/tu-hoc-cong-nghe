@@ -1,6 +1,7 @@
 "use client";
 
 import LearningGoalCard from "@/components/learning-flows/LearningGoalCard";
+import ExercisePracticeCard from "@/components/ExercisePracticeCard";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, ListChecks } from "lucide-react";
@@ -62,7 +63,7 @@ export default function LearningPathClient({
 
   // Giá trị từ server là trạng thái ban đầu, không phải giá trị chờ effect.
   // Dựng bằng "personal" rồi để một effect sửa lại sau khi hydrate nghĩa là ai
-  // đã chọn Nghề tài chính vẫn thấy Tiền của tôi sáng lên trong một nhịp - và
+  // đã chọn chuyên ngành vẫn thấy lộ trình cá nhân sáng lên trong một nhịp - và
   // trên kết nối chậm thì nhịp ấy đủ dài để bấm nhầm.
   const [track, setTrack] = useState<Track>(savedTrack ?? "personal");
   const [pace, setPace] = useState<Pace>(savedPace ?? DEFAULT_PACE);
@@ -177,6 +178,9 @@ export default function LearningPathClient({
           non-tech biết mình muốn LÀM gì trước khi biết mình thuộc track nào.
           Xem lib/learning-flows.ts. */}
       <LearningGoalCard id="goal" />
+
+      {/* Cạnh các con số đọc hiểu (bài đã xong, quiz): bài tập tự viết mã. */}
+      <ExercisePracticeCard />
 
       {/* Mục lục. Sáu khối, và người quay lại lần thứ hai gần như luôn chỉ muốn
           sửa nhịp - trước đây họ phải cuộn qua bốn khối để tới đó.
@@ -311,12 +315,10 @@ export default function LearningPathClient({
           </p>
         )}
 
-        {/* Khối "hai lối học song song" (CFA và FRM) đã gỡ cùng hai route đó.
-            Chú thích cũ ở đây giải thích vì sao chúng là hai LINK chứ không
-            phải hai mục trong dãy chọn chặng: `pickTrack` ghi vào `activeTrack`,
-            khoá mà dashboard đọc để quyết định hiện chặng nào, nên nhét một giá
-            trị lạ vào đó là gài bẫy cho dashboard. Ý ấy vẫn đúng cho bất kỳ lối
-            học song song nào thêm sau này. */}
+        {/* Lối học song song nào thêm sau này phải là LINK, không phải mục
+            trong dãy chọn chặng: `pickTrack` ghi vào `activeTrack`, khoá mà
+            dashboard đọc để quyết định hiện chặng nào, nên nhét một giá trị lạ
+            vào đó là gài bẫy cho dashboard. */}
       </Card>
 
       <Card id="pace" icon={<CalendarDays className="h-4 w-4" />} title={p.stepPaceTitle} hint={p.stepPaceHint}>

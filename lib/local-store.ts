@@ -6,7 +6,7 @@
  * kéo cả chuỗi import đó thành lỗi build. Mọi hàm tự bảo vệ bằng
  * `typeof window === "undefined"` thay vì dựa vào chỉ thị.
  *
- * Dự án tài chính cũ đặt mọi thứ - danh tính, tiến độ, phiên chơi, bảng xếp
+ * Bản cũ đặt mọi thứ - danh tính, tiến độ, phiên chơi, bảng xếp
  * hạng - trên Cloudflare. Khi gỡ Cloudflare, thứ thay thế KHÔNG phải là một client
  * giả mạo lại `.from().select().eq()`: 39 module gọi nó theo 39 kiểu khác nhau,
  * và một bản giả đủ giống để cả 39 chạy được thì đã là một cơ sở dữ liệu.
@@ -19,6 +19,8 @@
  * có bảng xếp hạng nhiều người. Mọi con số ở đây là của riêng máy này, và mất
  * khi người dùng xoá dữ liệu trình duyệt.
  */
+
+import { normalizeGameType } from "@/lib/legacy-ids";
 
 const PREFIX = "thcn:";
 
@@ -117,7 +119,7 @@ const SESSIONS_KEY = "game_sessions";
 const MAX_SESSIONS = 200;
 
 export function listGameSessions(): LocalGameSession[] {
-  return readJson<LocalGameSession[]>(SESSIONS_KEY, []);
+  return readJson<LocalGameSession[]>(SESSIONS_KEY, []).map((s) => ({ ...s, game_type: normalizeGameType(s.game_type) }));
 }
 
 export function appendGameSession(

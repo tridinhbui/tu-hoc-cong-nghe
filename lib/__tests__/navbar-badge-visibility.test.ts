@@ -63,10 +63,9 @@ const forcedOpen = arrayLiteral("badgedHrefs");
 /** CHỈ lấy giá trị của `href:`, không lấy mọi chuỗi trông giống đường dẫn.
  *
  *  Bản cũ khớp bất kỳ `"/..."` nào trong khối, và điều đó đúng khi mỗi mục chỉ
- *  có một trường mang đường dẫn. Mục "Chứng chỉ" phá giả định ấy: nó dẫn tới
- *  /cfa và khai thêm `activePrefixes: ["/cfa", "/frm"]` để dòng vẫn sáng khi
- *  đang ở FRM. Đọc thô thì /cfa hiện hai lần và bộ kiểm báo trùng đích - trong
- *  khi vẫn chỉ có MỘT dòng dẫn tới đó.
+ *  có một trường mang đường dẫn. Một mục có thêm `activePrefixes` (để dòng
+ *  vẫn sáng ở trang con) phá giả định ấy: đọc thô thì đường dẫn hiện hai lần và
+ *  bộ kiểm báo trùng đích - trong khi vẫn chỉ có MỘT dòng dẫn tới đó.
  *
  *  Điều bộ kiểm này muốn nói là "không hai DÒNG cho một trang", nên nó phải
  *  đếm đúng cái quyết định dòng đi đâu. Sửa ở LUẬT chứ không thêm ngoại lệ. */

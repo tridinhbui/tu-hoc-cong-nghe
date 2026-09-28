@@ -17,10 +17,8 @@ export interface QuizMistakeReviewItem {
   explanation: string;
   wrongCount: number;
   lastAttemptAt: string;
-  /** Where "go read the source" should send the learner. Lesson questions
-   *  point at their lesson page; IB bank questions have no lesson page, so
-   *  they point back at the drill. Computed here rather than in the client,
-   *  which would otherwise have to know that a negative lessonId means IB. */
+  /** Where "go read the source" should send the learner: the lesson page.
+   *  Computed here rather than in the client. */
   href: string;
 }
 
@@ -46,12 +44,8 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
   }
   if (!data || data.length === 0) return [];
 
-  // IB interview questions are stored with a NEGATIVE lesson_id - the negated
-  // id of the question in lib/ib-question-bank.ts (see the IB branch of
-  // app/api/knowledge-challenge/route.ts). There is no lesson row to look up,
-  // so before this split every IB mistake was written to the table and then
-  // silently dropped here by the `!lesson` guard below, making the review
-  // flow look like it simply ignored interview practice.
+  // Rows with a NEGATIVE lesson_id came from a removed interview question
+  // bank; there is no lesson row to look them up in.
   const lessonRows = data.filter((row) => row.lesson_id > 0);
 
   const lessonIds = Array.from(new Set<number>(lessonRows.map((row) => Number(row.lesson_id)))).filter(
@@ -90,7 +84,7 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
     });
   }
 
-  // Ba ngân hàng câu hỏi phỏng vấn (IB, kỹ thuật theo nghề, câu hỏi nghề) đã
+  // Các ngân hàng câu hỏi phỏng vấn cũ đã
   // được gỡ cùng /phong-van-ky-thuat, nên nhánh giải mã các hàng lesson_id âm không
   // còn nguồn để tra. Các hàng ấy vẫn nằm trong quiz_mistakes dưới dạng
   // lesson_id ÂM và giờ rơi ra khỏi phần ôn tập - đúng như chú thích cũ ở đây

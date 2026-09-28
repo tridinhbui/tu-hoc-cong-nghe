@@ -5,8 +5,8 @@
  *   node scripts/generate-lesson-data.mjs && node scripts/d1/build-lessons-sync-sql.mjs
  *   npx wrangler d1 execute tu-hoc-cong-nghe --remote --file=backups/sync-lessons.sql
  *
- * Vì sao cần: bảng `lessons` trên D1 được nạp từ trang tài chính cũ (325 dòng,
- * tiêu đề tài chính), trong khi kho bài đã là 653 bài công nghệ. Trang Thống kê
+ * Vì sao cần: bảng `lessons` trên D1 được nạp từ trang cũ (325 dòng, tiêu đề
+ * cũ), trong khi kho bài đã là 653 bài công nghệ. Trang Thống kê
  * và trang quản trị đọc tiêu đề/slug từ bảng này, nên chúng hiện tên bài cũ.
  *
  * Cùng cách ánh xạ cột với app/api/admin/sync-lessons/route.ts - route đó cần

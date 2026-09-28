@@ -53,13 +53,12 @@ const SKIP_DIRS = new Set(["node_modules", ".next", "lessons-data", "__tests__"]
 /** Mọi thư mục lớp phủ dịch, khớp theo MẪU chứ không theo danh sách tên.
  *
  *  `lessons-i18n` từng được liệt kê thẳng trong SKIP_DIRS, và điều đó đúng cho
- *  tới khi có bộ thứ hai. `finance-careers-i18n/en.ts` ra đời và bị đếm là
- *  1.195 chuỗi "chưa dịch" - đứng thứ hai toàn kho - trong khi nó CHÍNH LÀ bản
- *  dịch. Tổng số đi từ 5.951 lên 6.985 sau một lượt dịch xong 44 nghề.
+ *  tới khi có bộ thứ hai: tệp `en.ts` của bộ đó bị đếm là hơn một nghìn chuỗi
+ *  "chưa dịch" trong khi nó CHÍNH LÀ bản dịch.
  *
  *  Một thước đo tăng lên khi người ta làm đúng việc thì tệ hơn là không có
  *  thước đo: nó dạy người đọc rằng con số không có nghĩa. Và lỗi này sẽ lặp
- *  lại ở mọi bộ sau (`cfa-glossary-i18n`, và cái kế tiếp), nên chữa bằng cách
+ *  lại ở mọi bộ sau, nên chữa bằng cách
  *  thêm tên thứ ba vào danh sách là chữa nhầm chỗ.
  *
  *  Quy ước đặt tên `<gì đó>-i18n/` giờ là hợp đồng: thư mục nào tên như vậy
@@ -96,9 +95,8 @@ const IS_LESSON_CONTENT = (rel) =>
  *  heuristic "có thư mục lib/<tên>-i18n/ nằm cạnh không", và nó sai hai chiều
  *  cùng lúc:
  *
- *    - `lib/cfa-glossary-terms.ts` KHÔNG được tách dù đã xong, vì thư mục của
- *      nó tên `cfa-glossary-i18n` - một thư mục phục vụ HAI tệp nguồn, và quy
- *      ước một-đổi-một không diễn đạt được điều đó.
+ *    - Một tệp đã xong KHÔNG được tách nếu thư mục dịch của nó phục vụ HAI tệp
+ *      nguồn - quy ước một-đổi-một không diễn đạt được điều đó.
  *    - Chiều ngược lại nguy hiểm hơn: chỉ cần tạo thư mục là tệp biến khỏi
  *      tổng, kể cả khi bên trong mới dịch một mục. Nghĩa là con số tụt xuống
  *      vì có người BẮT ĐẦU làm, không phải vì làm xong.
@@ -256,9 +254,7 @@ function isNotCopy(text) {
   if (!/\s/.test(t) && t === t.toLowerCase() && !/[à-ỹ]/i.test(t)) return true;
 
   // A single ALL-CAPS token with no diacritics: một từ viết tắt, không phải câu
-  // chữ. "CFA" và "FRM" là tên chứng chỉ - dịch chúng là gọi tên một bằng cấp
-  // không tồn tại, đúng lý do certPages.frmTitle nằm trong
-  // INTENTIONALLY_UNTRANSLATED của dictionary-parity.
+  // chữ. "AWS", "CCNA" là tên riêng - dịch chúng là gọi tên một thứ không tồn tại.
   if (!/\s/.test(t) && !/[à-ỹ]/i.test(t) && /^[A-Z][A-Z0-9&.]*$/.test(t)) return true;
 
   // Một hashtag: "#CashFlow", "#QuyTac503020". Không phải câu chữ mà là thứ có
@@ -333,8 +329,7 @@ function isNotCopy(text) {
   }
 
   // Một con số kèm MÃ TIỀN TỆ: "240M USD", "45M USD". Đây là số liệu, và nó chỉ
-  // lộ ra khi rule returned-data đọc tới bảng dữ liệu demo trong
-  // components/GoldmanSachsWidget.tsx.
+  // lộ ra khi rule returned-data đọc tới các bảng dữ liệu demo.
   //
   // CHỈ mã tiền tệ, KHÔNG gồm "tỷ"/"triệu"/"nghìn". Bản đầu của rule này gộp cả
   // hai và che mất 13 chuỗi trong các trang bài học - "100 tỷ", "600 triệu".
@@ -464,10 +459,9 @@ function calleeName(expr) {
  * Walks a data literal reporting copy-bearing strings.
  *
  * Tách ra khỏi rule module-scope để dùng lại cho object literal ĐƯỢC TRẢ VỀ từ
- * một hàm. components/CfaMockExamClient.tsx là ví dụ: nó gói cả cấu hình màn
- * hình vào useMemo(() => ({ title: "Thi thử CFA Level I", backLabel: "Về trang
- * CFA", ... })), nên không chuỗi nào nằm ở module scope và file báo 0 - trong
- * khi "Số ca", "Thời gian mỗi ca" và hai đoạn giải thích đều hiện trên màn hình.
+ * một hàm, ví dụ cấu hình màn hình gói trong useMemo(() => ({ title: "…", ... })):
+ * không chuỗi nào nằm ở module scope nên file báo 0, trong khi các chuỗi đó đều
+ * hiện trên màn hình.
  *
  * AGENTS.md đã đoán đúng chỗ này: "display strings that pass through a local
  * variable inside a component body".
@@ -710,7 +704,7 @@ function findingsIn(src, fileName) {
 
     // Thân arrow function dạng gọn trả thẳng một object literal:
     // useMemo(() => ({ … })). Không có ReturnStatement nào để bắt, nên phải
-    // nhận riêng - và đây chính là hình dạng của CfaMockExamClient.
+    // nhận riêng.
     if (
       ts.isArrowFunction(node) &&
       node.body &&

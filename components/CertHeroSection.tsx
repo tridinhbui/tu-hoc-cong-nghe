@@ -75,8 +75,7 @@ export default function CertHeroSection({
           </div>
         </div>
 
-        {/* Ảnh là ảnh chụp chứ không phải cảnh 3D nền trong như bản tài chính,
-            nên phủ kín khung (object-cover) thay vì đặt giữa trên nền màu. */}
+        {/* Ảnh là ảnh chụp, nên phủ kín khung (object-cover) thay vì đặt giữa trên nền màu. */}
         <div className="relative w-full xl:w-72 shrink-0 bg-brand-100 dark:bg-stone-800/80 overflow-hidden min-h-[180px]">
           <Image
             src={heroImageSrc}

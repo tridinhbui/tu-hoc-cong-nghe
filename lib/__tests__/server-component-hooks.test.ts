@@ -44,9 +44,7 @@ function walk(dir: string, out: string[] = []): string[] {
   return out;
 }
 
-/** Bỏ comment đi, để một hook được NHẮC TỚI trong comment không bị tính.
- *  CfaNextLevels.tsx có đúng trường hợp đó: nó dùng getServerLocale() cho
- *  đúng, và chỉ nhắc "useI18n" trong một câu giải thích. */
+/** Bỏ comment đi, để một hook được NHẮC TỚI trong comment không bị tính. */
 function stripComments(src: string): string {
   return src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "");
 }

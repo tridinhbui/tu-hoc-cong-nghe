@@ -20,9 +20,7 @@ function trackLabels(t: Dictionary): Record<QuizTrack, string> {
   return {
     personal: t.quizSuggestion.trackPersonal,
     professional: t.quizSuggestion.trackProfessional,
-    cfa: t.quizSuggestion.trackCfa,
-    frm: t.quizSuggestion.trackFrm,
-    ib: t.quizSuggestion.trackIb,
+    interview: t.quizSuggestion.trackInterview,
     "mock-interview": t.quizSuggestion.trackMockInterview,
     cert: t.nav.certificates,
   };

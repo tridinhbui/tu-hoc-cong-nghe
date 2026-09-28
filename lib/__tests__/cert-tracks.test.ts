@@ -43,7 +43,7 @@ describe("lib/cert-tracks", () => {
   });
 
   it("getCertTrack trả undefined cho id lạ", () => {
-    expect(getCertTrack("cfa")).toBeUndefined();
+    expect(getCertTrack("khong-ton-tai")).toBeUndefined();
     expect(getCertTrack("aws-cloud-practitioner")?.examCode).toBe("CLF-C02");
   });
 });

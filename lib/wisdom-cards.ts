@@ -15,7 +15,7 @@ export type WisdomTone =
   | "celebrate"
   /** Làm bài kém - gỡ mặc cảm, đóng khung cái sai là dữ liệu. */
   | "encourage"
-  /** Mặc định: châm ngôn tài chính, không nhắc gì tới điểm số. */
+  /** Mặc định: châm ngôn học nghề, không nhắc gì tới điểm số. */
   | "steady";
 
 export interface WisdomCard {

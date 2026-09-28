@@ -11,7 +11,7 @@
     "Because budgeting tools do not support that way of working",
     "Because it always produces a figure lower than the actual outcome"
   ],
-  "explanation": "Both methods produce a number, and the one from the growth-rate method is sometimes closer to reality. The difference lies elsewhere: when revenue comes in 12% short, a single-block plan only tells you that you are 12% short. A plan split into customers times average order value times purchase frequency tells you whether the shortfall came from fewer customers or from customers buying less - and those two causes call for completely different actions.",
+  "explanation": "Both methods produce a number, and the one from the growth-rate method is sometimes closer to reality. The difference lies elsewhere: when revenue comes in 12% short, a single-block plan only tells you that you are 12% short. A plan split into paying users times average plan price times renewal rate tells you whether the shortfall came from fewer sign-ups or from more users leaving - and those two causes call for completely different actions.",
   "diagram": [
     { "label": "Pick 2-4 real operating drivers" },
     { "label": "Tie revenue and cost back to them" },
@@ -19,8 +19,8 @@
     { "label": "When it misses: examine driver by driver" }
   ],
   "realWorldExample": {
-    "company": "A retail chain planning its revenue",
-    "description": "Single-block method: revenue this year 500bn, plan for next year 550bn. Driver-based method: number of stores times revenue per store per month times 12, where revenue per store splits further into footfall times conversion rate times average basket. At the end of the second quarter, revenue is 8% below plan. The single-block version only states the number. The driver-based version shows footfall running ahead of plan while basket size fell - the problem sits in the sales mix, not in marketing, and the marketing budget was nearly cut by mistake."
+    "company": "A subscription app planning its revenue",
+    "description": "Single-block method: revenue this year 50bn, plan for next year 55bn. Driver-based method: paying users times average plan price times monthly renewal rate, where paying users splits further into trial sign-ups times the trial-to-paid conversion rate. At the end of the second quarter, revenue is 8% below plan. The single-block version only states the number. The driver-based version shows sign-ups running ahead of plan while the renewal rate fell after an update that made the app slower - the problem sits in the product, not in marketing, and the marketing budget was nearly cut by mistake."
   },
   "quiz": [
     {
@@ -64,14 +64,14 @@
       "explanation": "A model only one person understands is an operational risk in itself. Capping the number of drivers and writing down the definition of each one is how you keep it checkable by somebody else. Driver-based planning has no built-in optimism, it does not hand budget authority anywhere, and unaudited operating data is used in planning everywhere - the audit requirement applies to published statements, not to internal levers."
     },
     {
-      "question": "Revenue splits into stores × footfall per store × order value. Footfall falls 5%, order value rises 4%, store count is unchanged - how much does revenue change?",
+      "question": "Revenue splits into paying users × plan price × renewal rate. Paying users fall 5%, plan price rises 4%, renewal rate is unchanged - how much does revenue change?",
       "options": [
         "Up 1.2% (= 0.95 × 1.04 − 1, with the sign flipped)",
         "Down 1% (= 5% − 4%, subtracting the two rates directly)",
         "Down 9% (= 5% + 4%, adding the two changes together)",
         "Down 1.2% (= 0.95 × 1.04 − 1, multiplying the two rates together)"
       ],
-      "explanation": "Drivers multiply rather than add, so the percentages have to be multiplied too: 0.95 × 1.04 = 0.988, that is a fall of 1.2%. This is also where the method pays for itself: knowing that revenue is 1.2% short because of footfall and not because of price tells you what to fix."
+      "explanation": "Drivers multiply rather than add, so the percentages have to be multiplied too: 0.95 × 1.04 = 0.988, that is a fall of 1.2%. This is also where the method pays for itself: knowing that revenue is 1.2% short because of paying users and not because of plan price tells you what to fix."
     }
   ],
   "keyTakeaways": [
@@ -114,7 +114,7 @@
       },
       "right": {
         "label": "Driver-based plan",
-        "text": "Revenue = customers × purchase frequency × average order value. More effort, needs figures from operations, and when it misses it points straight at the driver that moved."
+        "text": "Revenue = paying users × average plan price × renewal rate. More effort, needs figures from operations, and when it misses it points straight at the driver that moved."
       }
     },
     {

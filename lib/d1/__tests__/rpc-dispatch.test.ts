@@ -51,12 +51,12 @@ describe("bảng điều phối khớp chữ ký thật", () => {
   const sig = signatures();
   const tbl = table();
 
-  it("phủ đủ 56 hàm và khoá con số lại", () => {
+  it("phủ đủ 58 hàm và khoá con số lại", () => {
     // Khoá để một hàm bị rơi ra khỏi bảng là đỏ, chứ không phải im lặng
     // thành "không có hàm RPC đó" lúc chạy thật.
-    expect(RPC_COUNT).toBe(56);
-    expect(Object.keys(tbl)).toHaveLength(56);
-    expect(Object.keys(sig)).toHaveLength(56);
+    expect(RPC_COUNT).toBe(58);
+    expect(Object.keys(tbl)).toHaveLength(58);
+    expect(Object.keys(sig)).toHaveLength(58);
   });
 
   it("mọi hàm được trỏ tới đều tồn tại trong rpc.ts", () => {

@@ -16,8 +16,15 @@ import { WIDGET_TYPES } from "@/components/InteractiveWidget";
 const withWidget = lessons.filter((l) => l.interactiveType);
 
 describe("widget khớp chủ đề bài học", () => {
+  // Ngưỡng từng là 200. Nó hạ xuống 120 vì 65 widget bị GỠ có chủ đích, không
+  // phải vì ai đó xoá nhầm: phép kiểm bên dưới chỉ bắt cái ngược hẳn chủ đề
+  // (một từ khoá rộng ở bất kỳ đâu trong bài là qua), nên `tail-risk` - độ trễ
+  // p99 - vẫn qua trên bài "Áp lực ngược: nói không". Lần rà theo TIÊU ĐỀ bài
+  // gỡ widget ở những chỗ như vậy, cùng bốn widget vốn là phép tính không
+  // thuộc chủ đề công nghệ.
+  // Widget nói chuyện khác bài là tệ hơn không có widget.
   it("có đủ bài dùng widget để phép kiểm này có nghĩa", () => {
-    expect(withWidget.length).toBeGreaterThan(200);
+    expect(withWidget.length).toBeGreaterThan(120);
   });
 
   it("mọi bài đều nói về đúng chuyện widget của nó dạy", () => {

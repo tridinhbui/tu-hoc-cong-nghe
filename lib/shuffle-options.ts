@@ -1,7 +1,6 @@
 /** Xáo thứ tự phương án của một câu hỏi, trả về vị trí mới của đáp án đúng.
  *
- *  Chép từ bản tài chính (lib/millionaire-questions.ts ở repo đó), nơi nó
- *  sửa một lỗi đã đo: kho câu hỏi "thử thách mỗi ngày" để đáp án đúng ở ô
+ *  Sửa một lỗi đã đo: kho câu hỏi "thử thách mỗi ngày" để đáp án đúng ở ô
  *  đầu phần lớn các câu, nên bấm A mà không đọc là đúng. Xáo lúc chạy thay vì
  *  soạn lại chỉ số bằng tay, để câu viết thêm sau này cũng được xáo.
  *

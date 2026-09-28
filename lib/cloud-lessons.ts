@@ -437,7 +437,6 @@ export const CLOUD_LESSONS: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🧾",
     "track": "personal",
-    "interactiveType": "fee-drag",
     "isFundamental": true,
     "whyItMatters": "Hoá đơn đám mây tăng gấp đôi mà không ai đổi gì là chuyện xảy ra thường xuyên, và nguyên nhân gần như luôn nằm ở những khoản phí bạn không nghĩ tới lúc thiết kế. Biết chúng trước thì rẻ hơn nhiều so với phát hiện sau.",
     "openingQuestion": "Khoản phí nào hay làm hoá đơn đám mây phình ra nhất mà người ta không lường trước?",
@@ -1186,7 +1185,6 @@ export const CLOUD_LESSONS: Lesson[] = [
   },
   {
     "id": 326,
-    "interactiveType": "multiples",
     "slug": "chon-dich-vu-quan-ly-san-hay-tu-dung",
     "title": "Chặng 13, Bài 7: Dịch vụ quản lý sẵn hay tự dựng",
     "subtitle": "Câu hỏi không phải cái nào rẻ hơn, mà việc này có phải thứ bạn nên giỏi không.",

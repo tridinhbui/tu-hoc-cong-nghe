@@ -268,6 +268,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           sections={lesson.sections}
           checkpoint={hasInlineCheckpoint ? checkpointNode : undefined}
           checkpointAfterIndex={inlineCheckpointIndex}
+          lessonId={lesson.id}
         />
       ) : (
         lesson.explanation && (

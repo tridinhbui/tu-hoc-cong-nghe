@@ -17,9 +17,9 @@ import { BUILDER_LLM_SECURITY_LESSONS } from "./builder-llm-security-lessons";
 import { BUILDER_LLMOPS_LESSONS } from "./builder-llmops-lessons";
 import { AUTH_LESSONS } from "./auth-lessons";
 import { PERFORMANCE_TUNING_LESSONS } from "./performance-tuning-lessons";
-import { QUANT_METHODS_LESSONS } from "./quant-methods-lessons";
+import { QUANTITATIVE_METHODS_LESSONS } from "./quantitative-methods-lessons";
 import { EXCEL_DATA_LESSONS } from "./excel-data-lessons";
-import { IR_LESSONS } from "./ir-lessons";
+import { DEVREL_LESSONS } from "./devrel-lessons";
 import { LOGGING_LESSONS } from "./logging-lessons";
 import { INFRA_PROJECT_LESSONS } from "./infra-project-lessons";
 import { CONSTRUCTION_CONTRACTOR_LESSONS } from "./construction-contractor-lessons";
@@ -40,10 +40,10 @@ import { OCCUPATIONAL_HEALTH_LESSONS } from "./occupational-health-lessons";
 import { CAREER_STAGE_LESSONS } from "./career-stage-lessons";
 import { PERSONAL_OPS_LESSONS } from "./personal-ops-lessons";
 import { RUNTIME_INTERNALS_LESSONS } from "./runtime-internals-lessons";
-import { ANALYST_CRAFT_LESSONS } from "./analyst-craft-lessons";
+import { ENGINEER_CRAFT_LESSONS } from "./engineer-craft-lessons";
 import { DATA_TOOLS_LESSONS } from "./data-tools-lessons";
 import { DATA_THINKING_LESSONS } from "./data-thinking-lessons";
-import { FPA_PLANNING_LESSONS } from "./fpa-planning-lessons";
+import { PLANNING_LESSONS } from "./planning-lessons";
 import { RELEASE_MECHANICS_LESSONS } from "./release-mechanics-lessons";
 import { TESTING_LESSONS } from "./testing-lessons";
 import { READING_STATEMENTS_LESSONS } from "./reading-statements-lessons";
@@ -68,9 +68,9 @@ export const lessons: Lesson[] = [
   ...BUILDER_LLMOPS_LESSONS,
   ...AUTH_LESSONS,
   ...PERFORMANCE_TUNING_LESSONS,
-  ...QUANT_METHODS_LESSONS,
+  ...QUANTITATIVE_METHODS_LESSONS,
   ...EXCEL_DATA_LESSONS,
-  ...IR_LESSONS,
+  ...DEVREL_LESSONS,
   ...LOGGING_LESSONS,
   ...INFRA_PROJECT_LESSONS,
   ...CONSTRUCTION_CONTRACTOR_LESSONS,
@@ -91,10 +91,10 @@ export const lessons: Lesson[] = [
   ...CAREER_STAGE_LESSONS,
   ...PERSONAL_OPS_LESSONS,
   ...RUNTIME_INTERNALS_LESSONS,
-  ...ANALYST_CRAFT_LESSONS,
+  ...ENGINEER_CRAFT_LESSONS,
   ...DATA_TOOLS_LESSONS,
   ...DATA_THINKING_LESSONS,
-  ...FPA_PLANNING_LESSONS,
+  ...PLANNING_LESSONS,
   ...RELEASE_MECHANICS_LESSONS,
   ...TESTING_LESSONS,
   {
@@ -5234,7 +5234,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 25,
-    "interactiveType": "prospect",
     "slug": "gia-tri-rong-va-cai-bay-null",
     "title": "Giá trị rỗng: sai lầm tỉ đô",
     "subtitle": "Không có dữ liệu, chưa có dữ liệu và dữ liệu bằng không là ba chuyện khác nhau.",
@@ -5640,8 +5639,8 @@ export const lessons: Lesson[] = [
       }
     ],
     "realWorldExample": {
-      "company": "Sổ cái kế toán",
-      "description": "Sổ cái không cho tẩy xoá. Ghi sai thì ghi thêm một bút toán điều chỉnh, còn dòng cũ vẫn nằm đó. Nhờ vậy lịch sử luôn tra lại được và không ai sửa quá khứ. Dữ liệu bất biến trong phần mềm dùng đúng nguyên tắc ấy vì đúng lý do ấy."
+      "company": "Lịch sử commit của Git",
+      "description": "Git không sửa một commit đã có. Sửa sai thì tạo thêm một commit mới, kể cả lệnh revert cũng chỉ là một commit đảo ngược, còn commit cũ vẫn nằm đó. Nhờ vậy lịch sử luôn tra lại được và không ai sửa quá khứ. Dữ liệu bất biến trong mã dùng đúng nguyên tắc ấy vì đúng lý do ấy."
     },
     "keyTakeaways": [
       "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
@@ -7063,8 +7062,8 @@ export const lessons: Lesson[] = [
       }
     ],
     "realWorldExample": {
-      "company": "Bút toán kép trong kế toán",
-      "description": "Kế toán ghi sổ theo nguyên tắc mọi bút toán đều có hai vế cân nhau, và một vế không bao giờ được ghi riêng. Giao dịch trong cơ sở dữ liệu là cách thực thi đúng nguyên tắc ấy bằng máy: hai vế cùng vào sổ, hoặc không vế nào vào cả."
+      "company": "Đổi ghế trong hệ thống đặt vé",
+      "description": "Khách đổi từ ghế 12A sang ghế 14C gồm hai thao tác ghi: nhả ghế cũ và giữ ghế mới. Chỉ nhả mà không giữ được thì khách mất chỗ; chỉ giữ mà không nhả thì một người chiếm hai ghế. Giao dịch trong cơ sở dữ liệu bảo đảm hai thao tác cùng có hiệu lực, hoặc không thao tác nào có hiệu lực."
     },
     "keyTakeaways": [
       "Giao dịch biến nhiều thao tác ghi thành một đơn vị được ăn cả hoặc bỏ cả.",
@@ -7391,7 +7390,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 37,
-    "interactiveType": "regression",
     "slug": "nhat-ky-va-dau-vet-he-thong",
     "title": "Nhật ký: dữ liệu về chính hệ thống của bạn",
     "subtitle": "Lúc sự cố xảy ra thì đã quá muộn để bắt đầu ghi lại những gì đang diễn ra.",
@@ -7561,7 +7559,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 38,
-    "interactiveType": "sampling",
     "slug": "sao-luu-va-khoi-phuc",
     "title": "Sao lưu: bản chưa khôi phục thử thì chưa phải bản sao lưu",
     "subtitle": "Thứ bạn cần không phải bản sao, mà là khả năng quay lại hoạt động trong bao lâu.",
@@ -8511,7 +8508,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🚦",
     "track": "professional",
-    "interactiveType": "tail-risk",
 "whyItMatters": "Cuộc gọi video giật vài khung hình thì vẫn xem được, nhưng chờ gửi lại khung hình cũ thì hỏng cả cuộc gọi. Một lệnh chuyển tiền thì ngược lại: chậm cũng được, sai thì không. Chọn cách gửi là chọn cái nào chấp nhận đánh mất.",
     "openingQuestion": "Cuộc gọi video nên dùng cách gửi nào?",
     "openingOptions": [
@@ -10289,7 +10285,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 53,
-    "interactiveType": "tail-risk",
     "slug": "goi-hai-lan-va-tinh-bat-bien",
     "title": "Gọi hai lần: thao tác nào lặp lại được mà không hại",
     "subtitle": "Máy khách không phân biệt được yêu cầu thất bại với phản hồi bị mất trên đường về.",
@@ -10796,7 +10791,6 @@ export const lessons: Lesson[] = [
         ]
       }
     ],
-    "interactiveType": "tail-risk"
   },
   {
     "id": 56,
@@ -11481,7 +11475,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🎓",
     "track": "professional",
-    "interactiveType": "tail-risk",
 "whyItMatters": "Chặng này không dạy một khung làm việc cụ thể nào. Nó dạy những câu hỏi phải đặt ra mỗi khi hai hệ thống nói chuyện với nhau, và những câu hỏi đó không đổi khi công nghệ đổi.",
     "openingQuestion": "Sợi chỉ xuyên suốt cả chặng này là gì?",
     "openingOptions": [
@@ -12008,7 +12001,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 63,
-    "interactiveType": "prospect",
     "slug": "so-phien-ban-la-mot-loi-hua",
     "title": "Số phiên bản: một lời hứa, không phải một cái nhãn",
     "subtitle": "Ba con số nói cho người dùng biết nâng cấp này có làm hỏng gì của họ không.",
@@ -16931,7 +16923,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 92,
-    "interactiveType": "multiples",
     "slug": "chia-nho-va-giao-tung-phan",
     "title": "Chia nhỏ: giao từng phần thay vì giao một lần",
     "subtitle": "Ba tháng không có gì chạy được là ba tháng không ai biết mình đang đi đúng hay sai.",
@@ -17595,7 +17586,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 96,
-    "interactiveType": "sampling",
     "slug": "kiem-chung-truoc-khi-xay",
     "title": "Kiểm chứng trước khi xây: mua thông tin với giá rẻ",
     "subtitle": "Cách rẻ nhất để biết không ai cần thứ này là hỏi trước khi làm ba tháng.",
@@ -20307,7 +20297,6 @@ export const lessons: Lesson[] = [
         ]
       }
     ],
-    "interactiveType": "tail-risk"
   },
   {
     "id": 112,
@@ -20972,7 +20961,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 116,
-    "interactiveType": "prospect",
     "slug": "di-tru-lon-bop-nghet-dan",
     "title": "Thay hệ thống cũ: bóp nghẹt dần thay vì viết lại",
     "subtitle": "Viết lại từ đầu là đặt cược rằng bạn hiểu hết những gì hệ thống cũ đang làm.",
@@ -23965,7 +23953,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "track": "professional",
     "emoji": "📒",
-    "interactiveType": "sampling",
     "whyItMatters": "Khi có nghi ngờ về một hành động trong quá khứ, nhật ký truy vết là bằng chứng duy nhất - và nếu nó thiếu một trường thì cả cuộc điều tra dừng lại.",
     "openingQuestion": "Nhật ký truy vết khác nhật ký ứng dụng ở điểm nào quan trọng nhất?",
     "openingOptions": [
@@ -25319,7 +25306,6 @@ export const lessons: Lesson[] = [
   {
     "id": 142,
     "slug": "chi-so-hieu-nang-phan-anh-trai-nghiem",
-    "interactiveType": "sampling",
     "title": "Đo con số nào: thứ người dùng cảm nhận",
     "subtitle": "Thời gian máy chủ trả lời xong không phải thời gian người dùng thấy trang.",
     "duration": "8 phút",
@@ -25995,7 +25981,6 @@ export const lessons: Lesson[] = [
   {
     "id": 146,
     "slug": "bo-nho-va-thu-gom-rac",
-    "interactiveType": "tail-risk",
     "title": "Bộ nhớ: cấp phát rẻ, dọn dẹp thì không",
     "subtitle": "Thu gom rác giúp bạn khỏi nghĩ về bộ nhớ, cho tới lúc nó dừng chương trình lại để dọn.",
     "duration": "9 phút",
@@ -26838,7 +26823,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 151,
-    "interactiveType": "tail-risk",
     "slug": "xu-ly-theo-lo",
     "title": "Xử lý theo lô: trả chi phí cố định một lần",
     "subtitle": "Gộp một nghìn thao tác nhỏ thành một thao tác lớn, và chấp nhận cái giá của nó.",
@@ -27342,7 +27326,6 @@ export const lessons: Lesson[] = [
   {
     "id": 154,
     "slug": "ap-luc-nguoc",
-    "interactiveType": "tail-risk",
     "title": "Áp lực ngược: nói không thay vì gục ngã",
     "subtitle": "Khi nhu cầu vượt khả năng, hàng đợi không cứu bạn - nó chỉ giấu vấn đề rồi làm nó tệ hơn.",
     "duration": "9 phút",
@@ -30238,7 +30221,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 170,
-    "interactiveType": "regression",
     "slug": "chu-dong-gay-loi-de-hoc",
     "title": "Chủ động gây lỗi để học",
     "subtitle": "Cách duy nhất biết cơ chế dự phòng có chạy không là bắt nó chạy.",
@@ -30432,7 +30414,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "track": "professional",
     "emoji": "⏲️",
-    "interactiveType": "tail-risk",
     "isFundamental": true,
     "whyItMatters": "Đếm số sự cố dẫn tới hành vi sai: người ta gộp nhiều vấn đề thành một sự cố để con số đẹp hơn. Hai con số về thời gian thì không gian lận được theo cách đó.",
     "openingQuestion": "Vì sao đếm số lượng sự cố là chỉ số kém?",
@@ -30980,7 +30961,6 @@ export const lessons: Lesson[] = [
         ]
       }
     ],
-    "interactiveType": "tail-risk"
   },
   {
     "id": 174,
@@ -31729,7 +31709,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Khó",
     "track": "professional",
     "emoji": "🛰️",
-    "interactiveType": "tail-risk",
     "isFundamental": true,
     "whyItMatters": "Đội đầu tư sai loại tín hiệu sẽ trả rất nhiều tiền lưu trữ mà vẫn không trả lời được câu hỏi mình cần. Ba loại này bổ sung nhau chứ không thay thế nhau.",
     "openingQuestion": "Bạn cần biết có chuyện gì đang xảy ra không. Loại tín hiệu nào trả lời được?",
@@ -31924,7 +31903,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Khó",
     "track": "professional",
     "emoji": "📖",
-    "interactiveType": "tail-risk",
     "isFundamental": false,
     "whyItMatters": "Các nguyên tắc rời chỉ dùng được khi bạn nhận ra tình huống chúng áp dụng. Bài này ghép chín bài trước vào một chuỗi sự kiện cụ thể.",
     "openingQuestion": "Người dùng phản ánh chậm nhưng bảng theo dõi báo xanh. Bước đầu tiên là gì?",
@@ -32480,7 +32458,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 182,
-    "interactiveType": "tail-risk",
     "slug": "hang-doi-ba-phan-va-mot-hop-dong",
     "title": "Hàng đợi - ba phần và một hợp đồng",
     "subtitle": "Cái ở giữa không chỉ chứa tin nhắn; nó quyết định chuyện gì xảy ra khi có lỗi.",
@@ -33230,7 +33207,6 @@ export const lessons: Lesson[] = [
   {
     "id": 186,
     "slug": "nguoi-tieu-thu-cham-va-ton-dong",
-      "interactiveType": "tail-risk",
     "title": "Người tiêu thụ chậm và tồn đọng",
     "subtitle": "Hàng đợi hấp thụ được đợt tăng ngắn; nó không cứu được chênh lệch kéo dài.",
     "duration": "6 phút",
@@ -33959,7 +33935,6 @@ export const lessons: Lesson[] = [
   {
     "id": 190,
     "slug": "theo-doi-he-thong-bat-dong-bo",
-      "interactiveType": "tail-risk",
     "title": "Theo dõi một hệ thống bất đồng bộ",
     "subtitle": "Luồng bị cắt thành nhiều mảnh, và mã định danh là thứ duy nhất nối chúng lại.",
     "duration": "6 phút",
@@ -34148,7 +34123,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 191,
-    "interactiveType": "prospect",
     "slug": "bat-bien-khi-lap-lai-dieu-kien-bat-buoc",
     "title": "Bất biến khi lặp lại - điều kiện bắt buộc",
     "subtitle": "Không phải một cải tiến tuỳ chọn; nó là cái giá vào cửa của xử lý bất đồng bộ.",
@@ -34758,7 +34732,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì lịch sử là thứ bạn cần khi khách hàng hỏi vì sao tài khoản biến động hai lần",
           "Vì việc xoá bản ghi có thể vi phạm ràng buộc toàn vẹn của cơ sở dữ liệu",
-          "Vì các hệ thống kế toán về nguyên tắc không cho phép xoá một bản ghi đã được ghi nhận",
+          "Vì các cơ sở dữ liệu chỉ ghi thêm về nguyên tắc không cho phép xoá một bản ghi đã ghi",
           "Vì xoá bản ghi làm mất dữ liệu cần thiết cho việc phân tích về sau"
         ],
         "correct": 0,
@@ -35421,7 +35395,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 198,
-    "interactiveType": "tail-risk",
     "slug": "cong-viec-theo-lich-so-voi-su-kien",
     "title": "Công việc theo lịch so với sự kiện",
     "subtitle": "Hai cách kích hoạt, và cách cũ hơn vẫn đúng ở nhiều chỗ.",
@@ -35785,7 +35758,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 200,
-    "interactiveType": "tail-risk",
     "slug": "on-tap-xu-ly-bat-dong-bo",
     "title": "Ôn tập - xử lý bất đồng bộ",
     "subtitle": "Bốn quyết định của chặng, và bốn chỗ dễ nhầm.",
@@ -50767,7 +50739,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 275,
-    "interactiveType": "tail-risk",
     "slug": "gioi-han-tan-suat-va-thu-lai",
     "title": "Bài 275: Giới hạn tần suất và cách thử lại",
     "subtitle": "Thử lại ngay lập tức là cách biến một sự cố nhỏ thành một sự cố lớn.",
@@ -51152,7 +51123,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 277,
-    "interactiveType": "tail-risk",
     "slug": "webhook-khi-dich-vu-goi-nguoc-lai",
     "title": "Bài 277: Webhook - khi dịch vụ gọi ngược lại bạn",
     "subtitle": "Đảo chiều lượt gọi, và ba giả định quen thuộc không còn đúng nữa.",
@@ -53138,7 +53108,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 287,
-    "interactiveType": "regression",
     "slug": "truy-van-cham-va-ke-hoach-thuc-thi",
     "title": "Bài 287: Truy vấn chậm và kế hoạch thực thi",
     "subtitle": "Vấn đề hiệu năng phổ biến nhất không nằm trong cơ sở dữ liệu - nó nằm trong vòng lặp của bạn.",
@@ -56054,7 +56023,6 @@ export const lessons: Lesson[] = [
     "duration": "6 phút",
     "difficulty": "Trung bình",
     "emoji": "⏳",
-    "interactiveType": "interest-rate",
     "whyItMatters": "Mọi quyết định kỹ thuật lớn đều so một khoản trả ngay với một chuỗi lợi ích trải dài. Không quy về cùng thời điểm thì hai vế không so được, và bản năng luôn nghiêng về vế nghe hấp dẫn hơn.",
     "openingQuestion": "Hai phương án cùng tiết kiệm 12 giờ. A trả hết trong tháng tới, B trải đều 12 tháng. Chọn gì?",
     "openingOptions": [
@@ -56246,7 +56214,7 @@ export const lessons: Lesson[] = [
       "secondary": "Ba câu này thường đủ để tách một đề xuất đứng vững khỏi một đề xuất chỉ nghe hay."
     },
     "id": 1047,
-    "slug": "on-tap-npv",
+    "slug": "on-tap-quy-loi-ich-tuong-lai-ve-hien-tai",
     "track": "bonus"
   },
   {
@@ -56654,7 +56622,6 @@ export const lessons: Lesson[] = [
         "label": "Ghi vế Vào trước, vế Ra sau, tổng hai bên bằng nhau"
       }
     ],
-    "interactiveType": "journal-entry",
     "realWorldExample": {
       "company": "Một dịch vụ mới trong giờ đầu",
       "description": "Bốn sự kiện đầu tiên của một tiến trình vừa khởi động đã chạm đủ năm nhóm sổ: được cấp dung lượng ban đầu, mượn kết nối từ bể chung, dành một phần làm bộ đệm, và phục vụ xong một lô việc mà mới trả được một nửa kết quả. Đọc được bốn cặp vế đó là đọc được phần lớn nhật ký của một dịch vụ nhỏ."
@@ -56996,7 +56963,7 @@ export const lessons: Lesson[] = [
       "secondary": "Sau đó tính phần chưa phân bổ hết. Đó là con số duy nhất đáng đưa vào bàn khi cân nhắc có nên đổi nhà cung cấp giữa chừng."
     },
     "id": 1051,
-    "slug": "khau-hao",
+    "slug": "phan-bo-chi-phi-tra-truoc",
     "track": "bonus"
   },
   {
@@ -57186,7 +57153,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🪟",
     "track": "bonus",
-    "interactiveType": "tail-risk",
 "openingQuestion": "Mọi chỉ số đều bình thường nhưng người dùng báo chậm. Khả năng nào cao nhất?",
     "openingOptions": [
       "Chỉ số đang đo phần hệ thống, còn người dùng cảm nhận phần bạn chưa đo",
@@ -59006,7 +58972,7 @@ export const lessons: Lesson[] = [
       "secondary": "Việc thứ ba không cần công cụ nào và thường cho ra nhiều thứ hơn hai việc đầu."
     },
     "id": 1012,
-    "slug": "interim-comprehensive-income",
+    "slug": "so-lieu-giua-ky-va-thay-doi-an",
     "track": "bonus"
   },
   {
@@ -62087,7 +62053,7 @@ export const lessons: Lesson[] = [
       "secondary": "Câu thứ hai là câu phân biệt một đội sửa giỏi với một đội đang giảm số sự cố."
     },
     "id": 1029,
-    "slug": "financial-risk",
+    "slug": "phan-loai-rui-ro-ky-thuat",
     "track": "bonus"
   },
   {
@@ -62792,7 +62758,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🤖",
     "track": "bonus",
-    "interactiveType": "tail-risk",
 "openingQuestion": "Bản demo dùng mô hình ngôn ngữ chạy rất tốt. Phần khó nhất còn lại là gì?",
     "openingOptions": [
       "Xử lý khi mô hình trả lời sai hoặc chậm, và người dùng vẫn phải dùng được",
@@ -62953,7 +62918,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1035,
-    "interactiveType": "regression",
     "slug": "case-doc-sau-nhat-ky",
     "title": "Case chuyên sâu: Đọc sâu nhật ký hệ thống",
     "subtitle": "Con số tổng nói có chuyện; nhật ký nói chuyện gì - nếu bạn biết hỏi",
@@ -63298,7 +63262,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1054,
-    "interactiveType": "multiples",
     "slug": "10-cong-thuc-phong-van-ky-thuat",
     "title": "10 Công Thức Phỏng Vấn Kỹ Thuật",
     "subtitle": "Lưu lượng → tải tới gốc → số node → chi phí mỗi request - một dòng chảy liên thông",
@@ -63577,7 +63540,7 @@ export const lessons: Lesson[] = [
     "sections": [
       {
         "type": "lead",
-        "text": "Cách đọc dưới đây mượn hình dạng từ một bảng kế toán, và nó hữu ích vì cùng một lý do: nó buộc hai vế phải khớp nhau, nên thứ gì đó không khớp là thứ gì đó đang bị bỏ sót."
+        "text": "Cách đọc dưới đây mượn hình dạng từ một phép đối soát, và nó hữu ích vì cùng một lý do: nó buộc hai vế phải khớp nhau, nên thứ gì đó không khớp là thứ gì đó đang bị bỏ sót."
       },
       {
         "type": "formula",
@@ -63727,7 +63690,6 @@ export const lessons: Lesson[] = [
       "secondary": "Con số thứ ba thường thấp hơn nhiều so với cảm giác của cả đội, và đó là lý do nó đáng được viết ra."
     },
     "id": 1055,
-    "interactiveType": "multiples",
     "slug": "he-thong-dang-co-gi",
     "track": "bonus"
   },
@@ -64087,7 +64049,6 @@ export const lessons: Lesson[] = [
     "duration": "8 phút",
     "difficulty": "Khó",
     "emoji": "🏗️",
-    "interactiveType": "interest-rate",
     "whyItMatters": "Mọi dự án nền tảng đều là đánh đổi giữa công sức bỏ ra ngay và thời gian tiết kiệm được về sau. Không có cách nào so hai thứ ấy nếu không quy chúng về cùng một thời điểm, và đó là lý do phép chiết khấu tồn tại.",
     "openingQuestion": "Dự án nền tảng tốn 6 tháng công, tiết kiệm 1 tháng công mỗi quý. Bao lâu thì hoàn vốn?",
     "openingOptions": [
@@ -64288,7 +64249,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu hiệu số vẫn dương sau bốn nhát ấy thì dự án đứng vững. Nếu nó chỉ dương khi kéo chân trời dài ra, bạn vừa biết câu trả lời thật."
     },
     "id": 1038,
-    "slug": "danh-gia-du-an-npv-irr",
+    "slug": "danh-gia-mot-du-an-nen-tang-noi-bo",
     "track": "bonus"
   },
 
@@ -65034,7 +64995,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1105,
-    "interactiveType": "prospect",
     "slug": "danh-gia-suc-khoe-mot-kho-ma",
     "title": "Nền tảng nâng cao, Bài 5: Đánh giá sức khoẻ một kho mã",
     "subtitle": "Bốn thứ đọc được trong một buổi, và chúng nói nhiều hơn cả tuần đọc mã.",
@@ -65595,7 +65555,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1108,
-    "interactiveType": "prospect",
     "slug": "tham-dinh-truoc-khi-nhan-mot-he-thong",
     "title": "Nền tảng nâng cao, Bài 8: Thẩm định trước khi nhận một hệ thống",
     "subtitle": "Bốn câu hỏi mà câu trả lời khó chịu nhất lại là câu trả lời có giá trị nhất.",
@@ -69455,7 +69414,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1223,
-    "interactiveType": "tail-risk",
     "slug": "cong-cu-giam-thiet-hai-khi-phu-thuoc-ngoai-hong",
     "title": "Công cụ giảm thiệt hại khi một phụ thuộc bên ngoài hỏng",
     "subtitle": "Bốn cơ chế, và mỗi cơ chế bảo vệ bạn khỏi một kiểu hỏng khác nhau.",
@@ -69804,7 +69762,7 @@ export const lessons: Lesson[] = [
       "secondary": "Bốn câu này giải quyết phần lớn tranh cãi, và thường cho thấy cả hai bên đều đang đo đúng thứ họ định đo."
     },
     "id": 1327,
-    "slug": "khung-bao-cao-esg-csrd-sfdr-issb",
+    "slug": "chuan-bao-cao-chi-so-va-cach-chon",
     "track": "bonus"
   },
   {
@@ -69993,7 +69951,6 @@ export const lessons: Lesson[] = [
     "duration": "9 phút",
     "difficulty": "Khó",
     "emoji": "🧮",
-    "interactiveType": "esg-score",
     "whyItMatters": "Mọi bảng điều khiển sức khoẻ dịch vụ đều gộp nhiều thứ khác đơn vị vào một ô. Ô ấy trông như một phép đo nhưng là một quan điểm, và biết đọc nó là biết hỏi trọng số nằm ở đâu.",
     "openingQuestion": "Dịch vụ A đứng đầu bảng sức khoẻ ở đội hạ tầng nhưng đứng chót ở bảng của đội sản phẩm. Vì sao?",
     "openingOptions": [
@@ -70180,7 +70137,6 @@ export const lessons: Lesson[] = [
     "duration": "8 phút",
     "difficulty": "Trung bình",
     "emoji": "🔧",
-    "interactiveType": "esg-score",
     "whyItMatters": "Hiệu quả tài nguyên và độ trễ đều có biểu đồ riêng và được nhìn mỗi ngày. Chất lượng vận hành thì không có biểu đồ nào, nên nó xuống dần mà không ai thấy - cho tới lúc một sự cố bốn giờ nói hộ.",
     "openingQuestion": "Dịch vụ nào dễ gây sự cố kéo dài hơn: chậm nhưng có tài liệu và kiểm thử, hay nhanh nhưng không có gì cả?",
     "openingOptions": [
@@ -70347,7 +70303,7 @@ export const lessons: Lesson[] = [
       "secondary": "Bốn câu này không cần công cụ nào và thường chính xác hơn mọi biểu đồ đang có."
     },
     "id": 1330,
-    "slug": "quan-tri-doanh-nghiep-g-trong-esg",
+    "slug": "chat-luong-van-hanh-tru-cot-it-duoc-nhac",
     "track": "bonus"
   },
   {
@@ -70356,7 +70312,6 @@ export const lessons: Lesson[] = [
     "duration": "7 phút",
     "difficulty": "Dễ",
     "emoji": "🧭",
-    "interactiveType": "esg-score",
     "whyItMatters": "Một tính năng chạy đúng vẫn có thể là một tính năng tệ, nếu nó mất tám giây để mở, tốn gấp mười lần tiền hạ tầng, hoặc không ai sửa nổi khi hỏng. Đó là ba thứ chỉ số phi chức năng đo.",
     "openingQuestion": "Tính năng chạy đúng mọi trường hợp nhưng mất tám giây để hiện. Nó có lỗi không?",
     "openingOptions": [
@@ -70526,7 +70481,7 @@ export const lessons: Lesson[] = [
       "secondary": "Ba câu này thường không có trong phiếu công việc, và chúng là ba câu quyết định tính năng ấy sống được bao lâu."
     },
     "id": 1229,
-    "slug": "esg-la-gi-va-tai-sao-quan-trong",
+    "slug": "chi-so-phi-chuc-nang-la-gi",
     "track": "bonus"
   },
   {
@@ -70535,7 +70490,6 @@ export const lessons: Lesson[] = [
     "duration": "8 phút",
     "difficulty": "Trung bình",
     "emoji": "🔬",
-    "interactiveType": "esg-score",
     "whyItMatters": "Đánh giá sai một dịch vụ không chỉ tốn công. Nó dẫn cả đội đi tối ưu đúng thứ không quan trọng trong nhiều tháng, và mọi con số trên bảng suốt thời gian ấy đều xác nhận rằng họ đang đi đúng.",
     "openingQuestion": "Muốn biết một dịch vụ tốn bao nhiêu, nên đo ở đâu?",
     "openingOptions": [
@@ -70702,7 +70656,7 @@ export const lessons: Lesson[] = [
       "secondary": "Nếu mẫu số là thời gian thay vì lượng việc, biểu đồ ấy đang kể chuyện tăng trưởng chứ không kể chuyện hiệu quả."
     },
     "id": 1230,
-    "slug": "cach-danh-gia-esg-cua-doanh-nghiep",
+    "slug": "danh-gia-ba-tru-cot-cua-mot-dich-vu",
     "track": "bonus"
   },
   {
@@ -71066,7 +71020,7 @@ export const lessons: Lesson[] = [
       "secondary": "Việc thứ hai thường một mình nó đã đủ để mô hình gom chung đứng vững hơn hẳn."
     },
     "id": 1232,
-    "slug": "bao-hiem-la-gi-mo-hinh-kinh-doanh",
+    "slug": "du-phong-dung-chung-giua-cac-doi",
     "track": "professional"
   },
   {
@@ -72034,7 +71988,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🧪",
     "track": "personal",
-    "interactiveType": "prospect",
     "isFundamental": true,
     "whyItMatters": "Người ta bỏ rất nhiều công viết kiểm thử rồi vẫn để lọt lỗi, vì họ viết cho những chỗ dễ viết chứ không phải những chỗ dễ sai. Chọn đúng chỗ quan trọng hơn nhiều so với số lượng.",
     "openingQuestion": "Bộ kiểm thử đạt chín mươi phần trăm độ phủ. Nó nói lên điều gì?",
@@ -73224,7 +73177,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1245,
-    "interactiveType": "prospect",
     "slug": "tu-luan-diem-ky-thuat-toi-quyet-dinh-trien-khai",
     "title": "Từ luận điểm kỹ thuật tới quyết định triển khai",
     "subtitle": "Một đề xuất kỹ thuật tốt không phải là đề xuất đúng nhất mà là đề xuất nói rõ mình sai thì sai ở đâu.",
@@ -74612,7 +74564,6 @@ export const lessons: Lesson[] = [
     "difficulty": "Khó",
     "track": "professional",
     "emoji": "🔎",
-    "interactiveType": "sampling",
     "whyItMatters": "Phần lớn thiệt hại nội bộ không đến từ ý đồ xấu mà từ một người có quá nhiều quyền làm một thao tác sai trong lúc vội.",
     "openingQuestion": "Mục đích chính của kiểm soát nội bộ trong một hệ thống là gì?",
     "openingOptions": [
@@ -80501,7 +80452,6 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1286,
-    "interactiveType": "multiples",
     "slug": "du-lieu-lon-vi-sao-trung-binh-khong-dung-duoc",
     "title": "Dữ liệu lớn - vì sao ở quy mô đó các chỉ số quen thuộc ngừng dùng được",
     "subtitle": "Ở quy mô đủ lớn, mọi thứ hiếm đều xảy ra thường xuyên, và mọi phép tính toàn bộ đều quá đắt.",
@@ -81568,7 +81518,6 @@ export const lessons: Lesson[] = [
     "secondary": "Bốn mốc đầu đo đội mới; dòng cuối bảo vệ cả hai bên khỏi phiên bản mệt mỏi của chính mình."
   },
   "id": 1338,
-  "interactiveType": "sampling",
   "slug": "ma-cau-truc-earnout",
   "track": "bonus"
 },

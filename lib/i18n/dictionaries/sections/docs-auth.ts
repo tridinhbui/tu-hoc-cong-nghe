@@ -62,9 +62,7 @@ export const docsAuthVi = {
   quizSuggestion: {
     trackPersonal: "Nền tảng công nghệ",
     trackProfessional: "Công nghệ chuyên sâu",
-    trackCfa: "Chứng chỉ công nghệ",
-    trackFrm: "Chặng đã gỡ",
-    trackIb: "Phỏng vấn kỹ thuật",
+    trackInterview: "Phỏng vấn kỹ thuật",
     trackMockInterview: "Phỏng vấn thử",
     difficultyAll: "tất cả độ khó",
     difficultyEasy: "độ khó Dễ",
@@ -162,9 +160,7 @@ export const docsAuthEn: typeof docsAuthVi = {
   quizSuggestion: {
     trackPersonal: "Tech Foundations",
     trackProfessional: "Advanced Technology",
-    trackCfa: "Cloud certification",
-    trackFrm: "Retired track",
-    trackIb: "Technical interview",
+    trackInterview: "Technical interview",
     trackMockInterview: "Mock Interview",
     difficultyAll: "all difficulty levels",
     difficultyEasy: "Easy difficulty",

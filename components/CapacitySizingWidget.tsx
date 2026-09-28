@@ -10,7 +10,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
-interface GoldmanSachsWidgetProps {
+interface CapacitySizingWidgetProps {
   userId: string;
 }
 
@@ -46,7 +46,7 @@ function buildCapacityCases(t: Dictionary): CapacityCase[] {
       peakRps: 24000,
       nodeRps: 200,
       headroomMultiple: 1.5,
-      loadDriver: t.goldmanWidget.synergyTechCorp,
+      loadDriver: t.capacityPlanning.loadAiInference,
     },
     {
       id: "retail-chain",
@@ -57,12 +57,12 @@ function buildCapacityCases(t: Dictionary): CapacityCase[] {
       peakRps: 8000,
       nodeRps: 100,
       headroomMultiple: 1.25,
-      loadDriver: t.goldmanWidget.synergyRetailChain,
+      loadDriver: t.capacityPlanning.loadFlashSale,
     },
   ];
 }
 
-export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) {
+export default function CapacitySizingWidget({ userId }: CapacitySizingWidgetProps) {
   const { t, locale } = useI18n();
   // "24.000 req/s" với người đọc tiếng Việt, "24,000 req/s" với người đọc tiếng
   // Anh. Cùng lý do AGENTS.md bắt mọi ngày tháng đi qua intlLocale().
@@ -70,28 +70,28 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
   const capacityCases = useMemo(() => buildCapacityCases(t), [t]);
   const [selectedCase, setSelectedCase] = useState<CapacityCase>(capacityCases[0]);
   const [userNodes, setUserNodes] = useState<number>(recommendedNodes(capacityCases[0]));
-  const [pitchSubmitted, setPitchSubmitted] = useState<boolean>(false);
+  const [planSubmitted, setPlanSubmitted] = useState<boolean>(false);
   const [score, setScore] = useState<number | null>(null);
 
-  const handleSubmitPitch = () => {
+  const handleSubmitPlan = () => {
     const target = recommendedNodes(selectedCase);
     const diffPercent = Math.abs(userNodes - target) / target;
 
-    let dealScore = 100;
-    if (diffPercent > 0.2) dealScore = 60;
-    else if (diffPercent > 0.1) dealScore = 80;
-    else dealScore = 95;
+    let planScore = 100;
+    if (diffPercent > 0.2) planScore = 60;
+    else if (diffPercent > 0.1) planScore = 80;
+    else planScore = 95;
 
-    setScore(dealScore);
-    setPitchSubmitted(true);
+    setScore(planScore);
+    setPlanSubmitted(true);
 
-    if (dealScore >= 80) {
-      toast.success(format(t.goldmanWidget.toastSuccess, { score: dealScore }));
+    if (planScore >= 80) {
+      toast.success(format(t.capacityPlanning.toastSuccess, { score: planScore }));
       // Qua sổ ván game (ván tốt nhất, trần 50) - gọi thẳng addXpToUser thì XP
       // bị xoá ở lần recalculateUserStats kế tiếp.
-      if (userId) void recordCustomGameSession(userId, "goldman-pitch", dealScore, 100, MAX_GAME_XP_PER_TYPE);
+      if (userId) void recordCustomGameSession(userId, "capacity-sizing", planScore, 100, MAX_GAME_XP_PER_TYPE);
     } else {
-      toast.info(format(t.goldmanWidget.toastPartial, { score: dealScore }));
+      toast.info(format(t.capacityPlanning.toastPartial, { score: planScore }));
     }
   };
 
@@ -101,19 +101,19 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/15">
         <div className="flex items-center gap-3">
           <div className="w-14 h-14 rounded-sm overflow-hidden relative border border-white/15 shrink-0">
-            <Image src="/rpg/silicon_valley.png" alt={t.goldmanWidget.hqAlt} fill className="object-cover" />
+            <Image src="/rpg/silicon_valley.png" alt={t.capacityPlanning.hqAlt} fill className="object-cover" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm text-stone-300 border border-white/15">
-                {t.goldmanWidget.orgBadge}
+                {t.capacityPlanning.orgBadge}
               </span>
               <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm text-stone-300 border border-white/15">
-                {t.goldmanWidget.trackBadge}
+                {t.capacityPlanning.trackBadge}
               </span>
             </div>
-            <h3 className="text-xl font-extrabold text-white mt-1">{t.goldmanWidget.orgTitle}</h3>
-            <p className="text-xs text-stone-400">{t.goldmanWidget.orgSubtitle}</p>
+            <h3 className="text-xl font-extrabold text-white mt-1">{t.capacityPlanning.orgTitle}</h3>
+            <p className="text-xs text-stone-400">{t.capacityPlanning.orgSubtitle}</p>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
             onClick={() => {
               setSelectedCase(c);
               setUserNodes(recommendedNodes(c));
-              setPitchSubmitted(false);
+              setPlanSubmitted(false);
               setScore(null);
             }}
             className={`p-4 rounded-md border cursor-pointer transition-colors ${
@@ -136,8 +136,8 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400">{format(t.goldmanWidget.dealCase, { ticker: c.ticker })}</span>
-              <span className="text-xs tabular-nums text-stone-400">{format(t.goldmanWidget.dealEbitda, { capacity: rps(c.nodeRps) })}</span>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400">{format(t.capacityPlanning.capacityCase, { ticker: c.ticker })}</span>
+              <span className="text-xs tabular-nums text-stone-400">{format(t.capacityPlanning.nodeCapacity, { capacity: rps(c.nodeRps) })}</span>
             </div>
             <h4 className="text-base font-extrabold text-white mt-1">{c.name}</h4>
             <p className="text-xs text-stone-400 mt-1">{c.loadDriver}</p>
@@ -149,18 +149,18 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
       <div className="bg-stone-900 p-5 rounded-md border border-stone-800 space-y-4">
         <div className="flex items-center justify-between gap-3 border-b border-stone-800 pb-3">
           <div>
-            <h4 className="text-sm font-extrabold text-white">{format(t.goldmanWidget.valuationTitle, { name: selectedCase.name })}</h4>
-            <p className="text-xs text-stone-400 mt-0.5">{format(t.goldmanWidget.valuationMultiple, { multiple: selectedCase.headroomMultiple })}</p>
+            <h4 className="text-sm font-extrabold text-white">{format(t.capacityPlanning.sizingTitle, { name: selectedCase.name })}</h4>
+            <p className="text-xs text-stone-400 mt-0.5">{format(t.capacityPlanning.headroomFactor, { multiple: selectedCase.headroomMultiple })}</p>
           </div>
           <span className="shrink-0 text-xs font-semibold tabular-nums text-brand-300 px-2 py-1 rounded-sm border border-white/15">
-            {format(t.goldmanWidget.revenueBadge, { peak: rps(selectedCase.peakRps) })}
+            {format(t.capacityPlanning.peakBadge, { peak: rps(selectedCase.peakRps) })}
           </span>
         </div>
 
         <div className="space-y-3">
           <div className="flex items-center justify-between text-xs font-bold">
-            <span className="text-stone-300">{t.goldmanWidget.pitchLabel}</span>
-            <span className="text-brand-300 tabular-nums text-base font-bold">{format(t.goldmanWidget.pitchValue, { count: userNodes })}</span>
+            <span className="text-stone-300">{t.capacityPlanning.nodeCountLabel}</span>
+            <span className="text-brand-300 tabular-nums text-base font-bold">{format(t.capacityPlanning.nodeCountValue, { count: userNodes })}</span>
           </div>
 
           <input
@@ -176,21 +176,21 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
 
         <div className="flex items-center justify-between pt-2">
           <button
-            onClick={handleSubmitPitch}
+            onClick={handleSubmitPlan}
             className="w-full sm:w-auto rounded-sm bg-white px-4 py-2.5 text-sm font-bold text-stone-950 transition-colors hover:bg-brand-300 cursor-pointer flex items-center justify-center gap-2"
           >
-            <span>{t.goldmanWidget.submitPitchButton}</span>
+            <span>{t.capacityPlanning.submitPlanButton}</span>
           </button>
         </div>
 
-        {pitchSubmitted && score !== null && (
+        {planSubmitted && score !== null && (
           <div className="p-4 rounded-md bg-stone-950 border border-stone-700 text-xs space-y-2 mt-4">
             <div className="flex items-center justify-between">
-              <span className="font-bold text-stone-200 uppercase tracking-wider">{t.goldmanWidget.reviewLabel}</span>
-              <span className="tabular-nums font-bold text-brand-300 text-sm">{format(t.goldmanWidget.reviewScore, { score })}</span>
+              <span className="font-bold text-stone-200 uppercase tracking-wider">{t.capacityPlanning.reviewLabel}</span>
+              <span className="tabular-nums font-bold text-brand-300 text-sm">{format(t.capacityPlanning.reviewScore, { score })}</span>
             </div>
             <p className="text-stone-300 leading-relaxed">
-              {t.goldmanWidget.reviewNotePart1}<strong>{format(t.goldmanWidget.reviewAmount, { count: recommendedNodes(selectedCase) })}</strong>{t.goldmanWidget.reviewNotePart2}
+              {t.capacityPlanning.reviewNotePart1}<strong>{format(t.capacityPlanning.reviewAmount, { count: recommendedNodes(selectedCase) })}</strong>{t.capacityPlanning.reviewNotePart2}
             </p>
           </div>
         )}

@@ -2,9 +2,8 @@ import { format } from "@/lib/i18n";
 import type { Lesson } from "@/lib/lesson-types";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 
-// `day` used to be parsed out of the title. It is now a real field, moved
-// there by lib/lesson-day-prefix.js at build time; the title parse is kept
-// only as a fallback for any caller still passing a raw, unprocessed lesson.
+// `day` is a real field on the lesson; the title parse is kept only as a
+// fallback for any caller still passing a raw, unprocessed lesson.
 type LessonLike = Pick<Lesson, "id" | "title" | "track"> & { day?: number };
 
 /** The legacy curriculum day for a lesson, or undefined if it never had one. */
@@ -31,7 +30,7 @@ function resolveDay(lesson: Pick<Lesson, "title"> & { day?: number }): number | 
 //   "Chặng 7, Bài 3: ..."   - track cá nhân, số chặng là số người học thấy
 //   "Excel, Bài 1: ..."     - track chuyên ngành, tên chặng thay cho số vì
 //                             dashboard đánh lại số chặng theo nhánh nghề
-//   "CFA Ethics 15: ..."    - chuỗi bài chứng chỉ, số nằm ngay sau tên
+//   "AWS SAA 15: ..."       - chuỗi bài chứng chỉ, số nằm ngay sau tên
 const TITLE_PATTERNS: RegExp[] = [
   /^(Chặng\s+\d+),\s*Bài\s+(\d+)\s*[:\-]/i,
   /^([^,:]{2,32}),\s*Bài\s+(\d+)\s*[:\-]/i,
@@ -79,7 +78,6 @@ export function getLessonDisplayLabel(lesson: LessonLike, s: LessonLabelStrings 
 
 export function getLessonShortTitle(lesson: Pick<Lesson, "title">): string {
   return lesson.title
-    .replace(/^Tự học Tài chính Day\s+\d+:\s*/i, "")
     .replace(/^Chặng\s+\d+,\s*Bài\s+\d+:\s*/i, "")
     .trim();
 }

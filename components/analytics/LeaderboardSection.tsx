@@ -91,10 +91,6 @@ async function loadTab(tabId: TabId, userId?: string): Promise<{ top: Leaderboar
     return { top: top.slice(0, 10), mine };
   }
 
-  // Các tab xếp hạng theo "năng lực" đã gỡ cùng lib/career-competency.ts: mỗi
-  // tab là một nhóm kỹ năng tài chính (định giá, kế toán, rủi ro...) gom từ id
-  // bài học của nhóm đó. Bảng xếp hạng chung phía dưới không đụng tới chúng.
-
   // Every other TabId variant returns above; what's left is a plain
   // LeaderboardMetric ("xp" | "lessons" | "avg_score" | "streak").
   const metric = tabId as LeaderboardMetric;

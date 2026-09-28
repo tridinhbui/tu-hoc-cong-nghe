@@ -2,7 +2,7 @@ import * as R from "./rpc";
 import type { D1Like } from "./rpc";
 
 /**
- * Điều phối `.rpc(tên, {tham_số})` sang 53 hàm trong ./rpc.ts.
+ * Điều phối `.rpc(tên, {tham_số})` sang các hàm trong ./rpc.ts (số lượng khoá ở rpc-dispatch.test.ts).
  *
  * VÌ SAO CẦN LỚP NÀY. Bộ dựng truy vấn nhại được `.from()` vì PostgREST dịch
  * nó theo một quy tắc cố định. `.rpc()` thì không có quy tắc nào: Postgres
@@ -63,6 +63,8 @@ const RPC_TABLE: Record<string, Spec> = {
   "get_user_community_posts": { fn: "getUserCommunityPosts", args: ["__actor__", "p_user_id", "p_limit", "p_before_id"] },
   "get_xp_leaderboard_since": { fn: "getXpLeaderboardSince", args: ["p_since", "p_limit"] },
   "activate_booster": { fn: "activateBooster", args: ["__actor__", "p_asset_key"] },
+  "record_exercise_pass": { fn: "recordExercisePass", args: ["__actor__", "p_lesson_id", "p_block_index"] },
+  "get_my_exercise_passes": { fn: "getMyExercisePasses", args: ["__actor__"] },
   "grant_coins": { fn: "grantCoins", args: ["__actor__", "p_source", "p_ref", "p_amount"] },
   "increment_document_download": { fn: "incrementDocumentDownload", args: ["doc_id"] },
   "join_or_create_study_room": { fn: "joinOrCreateStudyRoom", args: ["__actor__", "p_topic"] },

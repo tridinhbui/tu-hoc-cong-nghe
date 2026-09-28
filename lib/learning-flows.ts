@@ -24,7 +24,7 @@
  * một chặng ở đây mà thiếu chữ ở đó là lỗi `tsc`.
  */
 
-export type FlowId = "website" | "ai-assistant" | "ai-agent" | "ai-marketing" | "automation" | "data-ai";
+export type FlowId = "website" | "ai-assistant" | "ai-agent" | "ai-marketing" | "automation" | "data-ai" | "ai-safety" | "ai-builder";
 
 /** `ready`: đủ bài để đi hết. `partial`: bài nền có, bài dựng hoàn chỉnh đang
  *  viết. `soon`: mới có khung và thẻ Feynman, bài chuyên đang viết. Ghi thật,
@@ -258,6 +258,75 @@ LEARNING_FLOWS.push(
   },
 );
 
+
+/** An toàn và quản trị AI - một hành trình cho cả người dùng lẫn người xây:
+ *  hai chặng đầu từ chặng 29 (người đi làm), chặng cuối từ chặng 48 (kỹ sư).
+ *  Xây hệ thống có LLM bên trong - hành trình của builder, chặng 44-49. */
+LEARNING_FLOWS.push(
+  {
+    id: "ai-safety",
+    emoji: "🛡️",
+    status: "ready",
+    firstWinSlug: "du-lieu-nao-khong-duoc-dan-vao-ai",
+    steps: [
+      {
+        id: "data",
+        lessonSlugs: ["du-lieu-nao-khong-duoc-dan-vao-ai", "bao-mat-tai-khoan-lam-viec", "ro-ri-du-lieu-trong-ung-dung-llm"],
+      },
+      {
+        id: "attacks",
+        lessonSlugs: [
+          "deepfake-va-lua-dao-nham-vao-doanh-nghiep",
+          "khi-tai-lieu-ra-lenh-cho-ai",
+          "prompt-injection-gian-tiep-va-phong-thu-nhieu-lop",
+        ],
+      },
+      {
+        id: "people",
+        lessonSlugs: ["con-nguoi-trong-vong-lap", "chinh-sach-dung-ai-mot-trang", "quan-tri-he-thong-llm"],
+      },
+      {
+        id: "systems",
+        lessonSlugs: [
+          "mo-hinh-de-doa-cho-ung-dung-llm",
+          "dau-ra-llm-la-du-lieu-khong-tin-cay",
+          "phan-quyen-trong-rag-va-da-nguoi-thue",
+        ],
+      },
+    ],
+    branches: { deepenSlug: "mo-hinh-de-doa-cho-ung-dung-llm", buildSlug: "chinh-sach-dung-ai-mot-trang" },
+  },
+  {
+    id: "ai-builder",
+    emoji: "🛠️",
+    status: "ready",
+    firstWinSlug: "llm-nhin-tu-phia-api",
+    steps: [
+      {
+        id: "api",
+        lessonSlugs: ["llm-nhin-tu-phia-api", "cau-truc-mot-loi-goi-llm", "dau-ra-co-cau-truc-tu-llm", "chi-phi-va-do-tre-llm"],
+      },
+      {
+        id: "rag",
+        lessonSlugs: [
+          "rag-vi-sao-va-luong-co-ban",
+          "rag-chia-nho-tai-lieu-chunking",
+          "rag-embedding-va-do-tuong-dong",
+          "rag-tra-loi-bam-nguon-va-phan-quyen",
+        ],
+      },
+      {
+        id: "agents",
+        lessonSlugs: ["giao-thuc-goi-cong-cu-tool-calling", "viet-vong-lap-agent-bang-ma", "eval-khong-phai-thu-vai-cau", "kiem-tat-dinh-cho-dau-ra-llm"],
+      },
+      {
+        id: "ship",
+        lessonSlugs: ["du-an-bot-tai-lieu-noi-bo-ban-ky-su", "du-an-agent-cskh-len-production"],
+      },
+    ],
+    branches: { deepenSlug: "prompt-injection-gian-tiep-va-phong-thu-nhieu-lop", buildSlug: "du-an-bot-tai-lieu-noi-bo-ban-ky-su" },
+  },
+);
 
 export function getLearningFlow(id: string): LearningFlow | undefined {
   return LEARNING_FLOWS.find((f) => f.id === id);

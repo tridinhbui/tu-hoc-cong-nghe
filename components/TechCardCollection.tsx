@@ -62,8 +62,8 @@ export default function TechCardCollection({ userId }: { userId: string }) {
     loadInventory();
 
     const handleCardDrop = () => loadInventory();
-    window.addEventListener("thtcdn:finance-card-dropped", handleCardDrop);
-    return () => window.removeEventListener("thtcdn:finance-card-dropped", handleCardDrop);
+    window.addEventListener("thtcdn:tech-card-dropped", handleCardDrop);
+    return () => window.removeEventListener("thtcdn:tech-card-dropped", handleCardDrop);
   }, [userId, cloudflare]);
 
   if (loading) return <div className="text-center p-4">{t.cardCollection.loading}</div>;

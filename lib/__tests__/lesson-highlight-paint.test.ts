@@ -29,10 +29,10 @@ describe("findQuoteRanges", () => {
   });
 
   it("finds a quote spanning a <strong>, which is three text nodes", () => {
-    const root = mount("<p>Chỉ số <strong>EBITDA</strong> không phải dòng tiền.</p>");
-    const ranges = findQuoteRanges(root, ["Chỉ số EBITDA không phải"]);
+    const root = mount("<p>Lệnh <strong>git</strong> không phải GitHub.</p>");
+    const ranges = findQuoteRanges(root, ["Lệnh git không phải"]);
     expect(ranges).toHaveLength(1);
-    expect(textOf(ranges[0])).toBe("Chỉ số EBITDA không phải");
+    expect(textOf(ranges[0])).toBe("Lệnh git không phải");
   });
 
   it("matches across the newlines and indentation that JSX leaves in the DOM", () => {

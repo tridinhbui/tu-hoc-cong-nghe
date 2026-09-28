@@ -13,12 +13,9 @@ import type { Lesson } from "./lesson-types";
 // Tám điểm nối phải cập nhật cùng lúc - xem chú thích đầu
 // lib/income-growth-lessons.ts.
 //
-// KHÔNG BÀI NÀO Ở ĐÂY KHAI interactiveType. Bản chứng khoán của chặng này gắn
-// "fee-drag" vào bài phí giao dịch; widget đó vẽ phí quỹ bào mòn lợi suất qua
-// nhiều năm, và bài thay thế nó nói về thuế thu nhập cá nhân một tháng - cùng
-// hình dạng "một khoản bị trừ" nhưng khác hẳn trục thời gian. Ép một widget
-// tài chính vào bài công nghệ để giữ cho ô không trống là cách nhanh nhất tạo
-// ra thứ trông như minh họa mà không minh họa gì. Trường này không bắt buộc.
+// KHÔNG BÀI NÀO Ở ĐÂY KHAI interactiveType: ép một widget không khớp vào bài
+// để giữ cho ô không trống là cách nhanh nhất tạo ra thứ trông như minh họa mà
+// không minh họa gì. Trường này không bắt buộc.
 
 export const VN_TECH_MARKET_LESSONS: Lesson[] = [
   {

@@ -9,10 +9,10 @@ self.addEventListener("push", (event) => {
   try {
     payload = event.data.json();
   } catch {
-    payload = { title: "Tự Học Tài Chính", body: event.data.text() };
+    payload = { title: "Tự Học Công Nghệ", body: event.data.text() };
   }
 
-  const title = payload.title || "Tự Học Tài Chính";
+  const title = payload.title || "Tự Học Công Nghệ";
   const options = {
     body: payload.body || "",
     icon: "/logo.png",

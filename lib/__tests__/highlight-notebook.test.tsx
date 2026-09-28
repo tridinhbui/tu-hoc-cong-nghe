@@ -38,14 +38,14 @@ function highlight(id: number, lessonId: number, quote: string): LessonHighlight
 }
 
 const HIGHLIGHTS = [
-  highlight(1, personalStage.days[0], "Quỹ khẩn cấp nên đủ sáu tháng chi tiêu"),
-  highlight(2, personalStage.days[0], "Trả nợ lãi cao trước"),
-  highlight(3, professionalStage.days[0], "Kế toán là ngôn ngữ của kinh doanh"),
+  highlight(1, personalStage.days[0], "Mỗi request HTTP có một phương thức"),
+  highlight(2, personalStage.days[0], "Mã 404 nghĩa là không tìm thấy"),
+  highlight(3, professionalStage.days[0], "Git lưu ảnh chụp, không lưu diff"),
 ];
 
 const LESSONS = {
-  [personalStage.days[0]]: { slug: "audit-tai-chinh", title: "Audit tài chính cá nhân" },
-  [professionalStage.days[0]]: { slug: "ke-toan-la-gi", title: "Kế toán là gì" },
+  [personalStage.days[0]]: { slug: "http-la-gi", title: "HTTP là gì" },
+  [professionalStage.days[0]]: { slug: "git-la-gi", title: "Git là gì" },
 };
 
 afterEach(cleanup);
@@ -70,9 +70,9 @@ describe("HighlightNotebook", () => {
   it("links each highlight back to its lesson, labelled with the lesson title", () => {
     renderWithI18n(<HighlightNotebook highlights={HIGHLIGHTS} lessonsById={LESSONS} />);
 
-    const link = screen.getByText("Quỹ khẩn cấp nên đủ sáu tháng chi tiêu").closest("a");
-    expect(link?.getAttribute("href")).toBe("/bai-hoc/audit-tai-chinh");
-    expect(within(link as HTMLElement).getByText("Audit tài chính cá nhân")).toBeDefined();
+    const link = screen.getByText("Mỗi request HTTP có một phương thức").closest("a");
+    expect(link?.getAttribute("href")).toBe("/bai-hoc/http-la-gi");
+    expect(within(link as HTMLElement).getByText("HTTP là gì")).toBeDefined();
   });
 
   it("falls back to the stored slug when the lesson is not in metadata", () => {
@@ -86,10 +86,10 @@ describe("HighlightNotebook", () => {
     const heading = screen.getAllByRole("button", { expanded: true })[0];
 
     fireEvent.click(heading);
-    expect(screen.queryByText("Quỹ khẩn cấp nên đủ sáu tháng chi tiêu")).toBeNull();
+    expect(screen.queryByText("Mỗi request HTTP có một phương thức")).toBeNull();
 
     fireEvent.click(heading);
-    expect(screen.getByText("Quỹ khẩn cấp nên đủ sáu tháng chi tiêu")).toBeDefined();
+    expect(screen.getByText("Mỗi request HTTP có một phương thức")).toBeDefined();
   });
 });
 
@@ -103,8 +103,8 @@ describe("review mode", () => {
     startReview();
     expect(screen.getByText(/Ôn tập · 1\/3/)).toBeDefined();
     // No lesson title on screen while the learner is still recalling.
-    expect(screen.queryByText("Audit tài chính cá nhân")).toBeNull();
-    expect(screen.queryByText("Kế toán là gì")).toBeNull();
+    expect(screen.queryByText("HTTP là gì")).toBeNull();
+    expect(screen.queryByText("Git là gì")).toBeNull();
 
     fireEvent.click(screen.getByRole("button", { name: /Đoạn này ở bài nào/ }));
 

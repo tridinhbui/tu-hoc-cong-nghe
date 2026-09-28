@@ -13,8 +13,8 @@ interface BackboneRoutingWidgetProps {
   userId: string;
 }
 
-// Mô phỏng của toà "Trung Tâm Xương Sống Internet" (id `fed-vault`, giữ nguyên
-// vì là khoá mở khoá đã lưu). Một cần gạt duy nhất - tỷ lệ lưu lượng chuyển
+// Mô phỏng của toà "Trung Tâm Xương Sống Internet" (id `backbone-hub`;
+// id cũ được ánh xạ ở lib/legacy-ids.ts). Một cần gạt duy nhất - tỷ lệ lưu lượng chuyển
 // sang tuyến dự phòng - kéo hai chỉ số theo hai hướng ngược nhau: chuyển nhiều
 // thì tuyến chính hết nghẽn (mất gói giảm) nhưng đường vòng dài hơn (độ trễ
 // tăng). Cửa sổ đạt cả hai mục tiêu hẹp, khoảng 38-44%, nên đẩy hết sang dự
@@ -59,9 +59,8 @@ export default function BackboneRoutingWidget({ userId }: BackboneRoutingWidgetP
       setCompleted(true);
       toast.success(format(tr.toastSuccess, { xp: MAX_GAME_XP_PER_TYPE }));
       // Qua sổ ván game (ván tốt nhất, trần 50) - gọi thẳng addXpToUser thì XP
-      // bị xoá ở lần recalculateUserStats kế tiếp. `fed-vault-sim` là game_type
-      // đã lưu trong bảng điểm, nên giữ nguyên.
-      if (userId) void recordCustomGameSession(userId, "fed-vault-sim", 1, 1, MAX_GAME_XP_PER_TYPE);
+      // bị xoá ở lần recalculateUserStats kế tiếp.
+      if (userId) void recordCustomGameSession(userId, "backbone-routing", 1, 1, MAX_GAME_XP_PER_TYPE);
     }
   };
 

@@ -253,7 +253,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
         </div>
       )}
 
-      {/* Wolf of Wall Street Hero Banner */}
+      {/* Hero banner */}
       <div className="relative w-full h-36 sm:h-44 rounded-md overflow-hidden mb-6 border border-line-strong">
         <Image
           src="/rpg/city_skyline.jpg"

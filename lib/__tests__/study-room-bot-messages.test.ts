@@ -19,7 +19,7 @@ describe("tin nhắn bot phòng học", () => {
       { kind: "daily-none" },
       { kind: "daily-all", count: 5 },
       { kind: "daily-partial", names: ["An", "Bình"], extra: 2, notYet: 3 },
-      { kind: "rules", topic: "cfa", lessonCount: 324 },
+      { kind: "rules", topic: "certification", lessonCount: 324 },
     ];
     for (const event of events) {
       expect(decodeBotEvent(encodeBotEvent(event))).toEqual(event);
@@ -36,7 +36,7 @@ describe("tin nhắn bot phòng học", () => {
   it("tin nhắn cũ dạng câu văn vẫn hiện nguyên văn", () => {
     const legacy = [
       "Cập nhật hôm nay: chưa ai trong nhóm học bài nào cả 👀 Ai học đầu tiên hôm nay nào?",
-      "Tài Tài đây 👋 Nhóm này đang học theo hướng CFA Level I, hiện có khoảng 324 bài.",
+      "Tài Tài đây 👋 Nhóm này đang học theo hướng AWS Solutions Architect, hiện có khoảng 324 bài.",
       "", // hàng rỗng cũng không được ném lỗi
       "thtcdn:bot:{hỏng", // JSON hỏng: rơi về nguyên văn thay vì vỡ
       "thtcdn:bot:null",
@@ -71,7 +71,7 @@ describe("tin nhắn bot phòng học", () => {
   });
 
   it("ba chủ đề phòng đều dựng được câu luật, không sót placeholder", () => {
-    for (const topic of ["personal", "professional", "cfa"] as const) {
+    for (const topic of ["personal", "professional", "certification"] as const) {
       const content = encodeBotEvent({ kind: "rules", topic, lessonCount: 120 });
       for (const dict of [vi, en]) {
         const text = renderBotMessage(content, dict.groupChat, format);

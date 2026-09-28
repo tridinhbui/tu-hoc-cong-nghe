@@ -1,8 +1,7 @@
 /**
  * Lộ trình ôn chứng chỉ công nghệ - /chung-chi.
  *
- * Cùng khuôn với các trang chứng chỉ của bản tài chính (lib/cchn-track.ts ở
- * repo đó): KHÔNG viết bài mới cho chứng chỉ, mà ánh xạ bài đã có trong kho
+ * KHÔNG viết bài mới cho chứng chỉ, mà ánh xạ bài đã có trong kho
  * vào từng miền thi. Người học thấy "miền này của đề thi, học những bài này",
  * và tiến độ vẫn tính ở đúng một chỗ (user_progress).
  *

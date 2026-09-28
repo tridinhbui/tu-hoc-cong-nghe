@@ -34,14 +34,11 @@ export const libStringsVi = {
   // Lần thứ hai tôi kết luận nhầm rằng bộ này không được vẽ ra. `reward.desc`
   // và `reward.value` đều hiện ở modal mở rương
   // (components/CombinedRewardsWidget.tsx, quanh dòng 472-475).
-  // Năm khoá ĐẦU là danh hiệu công nghệ hiện hành; năm khoá sau là danh hiệu
-  // cũ, GIỮ LẠI có chủ ý nhưng HIỂN THỊ bằng đúng danh hiệu công nghệ cùng vị
-  // trí - khoá là giá trị đã lưu, còn chữ người chơi thấy không còn gì của thời
-  // kho bài tài chính. `lib/chests.ts` ghi `reward_value` - chính
-  // chuỗi tiếng Việt này - vào Cloudflare, nên mọi danh hiệu đã trao trước lần
-  // đổi này còn nằm nguyên trong bảng. Xoá khoá cũ thì hồ sơ của họ hiện ra
-  // một chuỗi không tra được, và không có cách nào lấy lại. Chỉ được xoá sau
-  // khi có một migration đổi giá trị đã lưu.
+  // Năm khoá ĐẦU là danh hiệu hiện hành; năm khoá sau là tên cũ của cùng năm
+  // danh hiệu, HIỂN THỊ bằng tên mới. `lib/chests.ts` ghi `reward_value` -
+  // chính chuỗi tiếng Việt này - vào Cloudflare; migration 0008 đổi các giá trị
+  // đã lưu trên D1, còn danh hiệu đang đeo nằm trong localStorage
+  // (`thtcdn_active_title_*`) nên vẫn cần năm khoá cũ để tra.
   chestTitles: {
     "Chiến thần commit": "Chiến thần commit",
     "Kẻ hủy diệt nợ kỹ thuật": "Kẻ hủy diệt nợ kỹ thuật",
@@ -60,11 +57,6 @@ export const libStringsVi = {
     "Danh hiệu của bậc thầy thiết kế hệ thống": "Danh hiệu của bậc thầy thiết kế hệ thống",
     "Danh hiệu dành cho tín đồ tối ưu hiệu năng": "Danh hiệu dành cho tín đồ tối ưu hiệu năng",
     "Danh hiệu của chuyên gia đọc nhật ký hệ thống": "Danh hiệu của chuyên gia đọc nhật ký hệ thống",
-    "Danh hiệu tôn vinh kỷ luật tích sản": "Danh hiệu tôn vinh kỷ luật đẩy mã mỗi ngày",
-    "Danh hiệu dành cho người làm chủ tài chính": "Danh hiệu dành cho người dọn sạch mã cũ",
-    "Danh hiệu của bậc thầy phân tích thị trường": "Danh hiệu của bậc thầy thiết kế hệ thống",
-    "Danh hiệu dành cho tín đồ dòng tiền dài hạn": "Danh hiệu dành cho tín đồ tối ưu hiệu năng",
-    "Danh hiệu của chuyên gia đọc báo cáo tài chính": "Danh hiệu của chuyên gia đọc nhật ký hệ thống",
     "Cộng nhẹ +10 XP vào tổng điểm tích lũy": "Cộng nhẹ +10 XP vào tổng điểm tích lũy",
     "Cộng nhẹ +15 XP vào tổng điểm tích lũy": "Cộng nhẹ +15 XP vào tổng điểm tích lũy",
     "Mở khóa Giao diện Hoàng Kim quý tộc": "Mở khóa Giao diện Hoàng Kim quý tộc",
@@ -108,7 +100,7 @@ export const libStringsVi = {
   studyRoomTopics: {
     personal: "Nền tảng công nghệ",
     professional: "Công nghệ chuyên sâu",
-    cfa: "Chứng chỉ AWS",
+    certification: "Chứng chỉ AWS",
   } as Record<string, string>,
   lessonLabel: {
     /** "Chặng 3 · Bài 12" - phần sau dấu chấm giữa. */
@@ -140,11 +132,6 @@ export const libStringsEn: typeof libStringsVi = {
     "Danh hiệu của bậc thầy thiết kế hệ thống": "The title of a master system designer",
     "Danh hiệu dành cho tín đồ tối ưu hiệu năng": "A title for the devotee of performance tuning",
     "Danh hiệu của chuyên gia đọc nhật ký hệ thống": "The title of an expert reader of system logs",
-    "Danh hiệu tôn vinh kỷ luật tích sản": "A title honouring the discipline of shipping every day",
-    "Danh hiệu dành cho người làm chủ tài chính": "A title for whoever clears out the old code",
-    "Danh hiệu của bậc thầy phân tích thị trường": "The title of a master system designer",
-    "Danh hiệu dành cho tín đồ dòng tiền dài hạn": "A title for the devotee of performance tuning",
-    "Danh hiệu của chuyên gia đọc báo cáo tài chính": "The title of an expert reader of system logs",
     "Cộng nhẹ +10 XP vào tổng điểm tích lũy": "A small +10 XP added to your total",
     "Cộng nhẹ +15 XP vào tổng điểm tích lũy": "A small +15 XP added to your total",
     "Mở khóa Giao diện Hoàng Kim quý tộc": "Unlocks the noble Gold theme",
@@ -181,7 +168,7 @@ export const libStringsEn: typeof libStringsVi = {
   studyRoomTopics: {
     personal: "Tech Foundations",
     professional: "Advanced Technology",
-    cfa: "AWS certification",
+    certification: "AWS certification",
   },
   lessonLabel: {
     stageAndNumber: "{stage} · Lesson {number}",

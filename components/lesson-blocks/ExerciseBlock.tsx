@@ -17,6 +17,8 @@ interface Props {
   solution: string;
   expectedOutput: string;
   hints?: string[];
+  /** Gọi mỗi lần đầu ra khớp. Lưu là việc của nơi gọi (có id bài). */
+  onPass?: () => void;
 }
 
 const INDENT = "    ";
@@ -26,7 +28,7 @@ const INDENT = "    ";
 // chữ theo một luật. Cuộn ngang thì textarea cuộn một mình, lớp màu đứng yên.
 const EDITOR_TEXT = CODE_TEXT.replace("whitespace-pre", "whitespace-pre-wrap [overflow-wrap:anywhere]");
 
-export default function ExerciseBlock({ language, title, task, starter, solution, expectedOutput, hints = [] }: Props) {
+export default function ExerciseBlock({ language, title, task, starter, solution, expectedOutput, hints = [], onPass }: Props) {
   const { t } = useI18n();
   const c = t.lessonCode;
   const [code, setCode] = useState(starter);
@@ -42,7 +44,9 @@ export default function ExerciseBlock({ language, title, task, starter, solution
     setAttempted(true);
     // Chương trình lỗi hay quá giờ thì chưa có gì để chấm - khung đầu ra đã
     // nói lý do, thêm "chưa khớp" chỉ là nói lại một điều sai hướng.
-    setGrade(result.ok ? gradeOutput(result.stdout, expectedOutput) : null);
+    const g = result.ok ? gradeOutput(result.stdout, expectedOutput) : null;
+    setGrade(g);
+    if (g?.pass) onPass?.();
   };
 
   // Tab chèn bốn dấu cách thay vì nhảy ra khỏi ô: với Python, thụt lề LÀ cú

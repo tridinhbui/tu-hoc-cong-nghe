@@ -8,14 +8,14 @@ import {
   isReliable,
   MIN_ATTEMPTS_FOR_SIGNAL,
   type CategoryPerformance,
-} from "@/lib/ib-weak-areas";
+} from "@/lib/interview-weak-areas";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { panel, textLink } from "@/components/ui/system";
 
 // Reads the per-question record written by the submit route and turns it into
 // "which section should I go back to". Without this the drill could tell you
-// you scored 3/5 but not that every miss for the last month has been DCF.
+// you scored 3/5 but not that every miss for the last month has been networking.
 //
 // Two things it deliberately does NOT do. It won't name a weakest section
 // below MIN_ATTEMPTS_FOR_SIGNAL attempts - 0% over two questions is noise,
@@ -44,7 +44,7 @@ function barTone(accuracy: number): string {
   return "bg-red-600 dark:bg-red-500";
 }
 
-export default function IbWeakAreasPanel({ userId, onDrillSection, refreshKey = 0, maxItems = 2 }: Props) {
+export default function InterviewWeakAreasPanel({ userId, onDrillSection, refreshKey = 0, maxItems = 2 }: Props) {
   const { t } = useI18n();
   const [performance, setPerformance] = useState<CategoryPerformance[]>([]);
   const [loading, setLoading] = useState(true);
@@ -57,7 +57,7 @@ export default function IbWeakAreasPanel({ userId, onDrillSection, refreshKey = 
     try {
       setPerformance(await getCategoryPerformance(userId));
     } catch (error) {
-      console.error("Error loading IB weak areas:", error);
+      console.error("Error loading interview weak areas:", error);
     } finally {
       setLoading(false);
     }

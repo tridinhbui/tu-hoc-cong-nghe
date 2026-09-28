@@ -14,8 +14,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 // đọc cảm được điều đó là kéo thanh trượt rồi thấy đích đến gần lại - hoặc
 // lùi xa - ngay trước mắt.
 //
-// Phép tính không đổi khi chặng chuyển từ tài chính cá nhân sang dung lượng:
-// ba phần cộng lại bằng 100%, mốc bằng sáu lần phần đang dùng, số kỳ bằng mốc
+// Phép tính: ba phần cộng lại bằng 100%, mốc bằng sáu lần phần đang dùng, số kỳ bằng mốc
 // chia phần để trống. Chỉ chữ đổi.
 
 function getCategories(t: Dictionary) {

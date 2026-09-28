@@ -8,7 +8,7 @@
 // Only scans UI (components/, app/). lib/lessons-data is lesson *content*,
 // which is translated by a different mechanism entirely: a per-lesson patch
 // under lib/lessons-i18n/<locale>/, merged by lib/lesson-translations.js. A
-// dictionary is the wrong shape for it - these are 715 lessons of finance
+// dictionary is the wrong shape for it - these are hundreds of lessons of
 // pedagogy, not labels - so counting those strings here would mix two backlogs
 // with different units of work and no shared finish line.
 //
@@ -81,9 +81,9 @@ function normalizeJsxText(text) {
 // This exists because the count above was overstating the backlog by enough to
 // make it useless as a target. components/Leaderboard.tsx reported 303 strings
 // while being one of the three files already fully translated: 253 of them were
-// the per-rank nicknames and badge names ("Hiền giả Phố Wall", "Kẻ hủy diệt đáp
+// the per-rank nicknames and badge names ("Kẻ hủy diệt đáp
 // án"), which lib/i18n/dictionaries/vi.ts has always documented as deliberately
-// NOT translated - they are Vietnamese finance-meme wordplay, where a literal
+// NOT translated - they are Vietnamese meme wordplay, where a literal
 // translation reads as nonsense and a good one is a creative-writing pass rather
 // than a dictionary lookup.
 //

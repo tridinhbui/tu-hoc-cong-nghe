@@ -22,7 +22,7 @@ afterEach(() => {
   runCode.mockReset();
 });
 
-function renderBlock() {
+function renderBlock(onPass?: () => void) {
   return render(
     <I18nProvider initialLocale="vi">
       <ExerciseBlock
@@ -33,6 +33,7 @@ function renderBlock() {
         solution={"print('LOI-GIAI')"}
         expectedOutput={"2\n1"}
         hints={["GOI-Y-1"]}
+        onPass={onPass}
       />
     </I18nProvider>,
   );
@@ -46,6 +47,18 @@ describe("ExerciseBlock", () => {
     fireEvent.click(screen.getByRole("button", { name: /Chạy và kiểm tra/ }));
     expect(await screen.findByText(/Đúng rồi!/)).toBeTruthy();
     expect(runCode).toHaveBeenCalledWith("python", "print(2)\nprint(1)");
+  });
+
+  it("reports a pass so the lesson can save it - and only a pass", async () => {
+    const onPass = vi.fn();
+    runCode.mockResolvedValueOnce({ ok: true, stdout: "2\n3" }).mockResolvedValueOnce({ ok: true, stdout: "2\n1" });
+    renderBlock(onPass);
+    fireEvent.click(screen.getByRole("button", { name: /Chạy và kiểm tra/ }));
+    await screen.findByText(/Chưa khớp/);
+    expect(onPass).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: /Chạy và kiểm tra/ }));
+    await screen.findByText(/Đúng rồi!/);
+    expect(onPass).toHaveBeenCalledTimes(1);
   });
 
   it("names the first wrong line, and unlocks the solution only after a run", async () => {

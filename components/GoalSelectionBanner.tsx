@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Wallet, TrendingUp, Target, CheckCircle2, Shuffle, ChevronDown, ChevronUp, type LucideIcon } from "lucide-react";
+import { Terminal, Globe, Target, CheckCircle2, Shuffle, ChevronDown, ChevronUp, type LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 import { notifyLocalStorageChanged, useLocalStorageValue } from "@/lib/use-local-storage-value";
 import { useI18n } from "@/lib/i18n/context";
@@ -13,31 +13,37 @@ interface GoalSelectionBannerProps {
   userId: string;
 }
 
-export type LearningGoal = "tech-foundations" | "basic-investing" | "corporate-finance";
+export type LearningGoal = "tech-foundations" | "web-product" | "systems-performance";
+
+/** Id cũ đã lưu trong localStorage trước khi đổi tên. */
+const LEGACY_GOAL_IDS: Record<string, LearningGoal> = {
+  "basic-investing": "web-product",
+  "corporate-finance": "systems-performance",
+};
 
 export function goalsOf(t: Dictionary): { id: LearningGoal; name: string; desc: string; icon: LucideIcon; color: string; bg: string }[] {
   const d = t.dataRest.goalSelectionBanner.goals;
   return [
     {
       id: "tech-foundations",
-      name: d.personalFinance.name,
-      desc: d.personalFinance.desc,
-      icon: Wallet,
+      name: d.foundations.name,
+      desc: d.foundations.desc,
+      icon: Terminal,
       color: "text-ink-soft",
       bg: "border border-line-strong"
     },
     {
-      id: "basic-investing",
-      name: d.basicInvesting.name,
-      desc: d.basicInvesting.desc,
-      icon: TrendingUp,
+      id: "web-product",
+      name: d.webProduct.name,
+      desc: d.webProduct.desc,
+      icon: Globe,
       color: "text-ink-soft",
       bg: "border border-line-strong"
     },
     {
-      id: "corporate-finance",
-      name: d.corporateFinance.name,
-      desc: d.corporateFinance.desc,
+      id: "systems-performance",
+      name: d.systemsPerformance.name,
+      desc: d.systemsPerformance.desc,
       icon: Target,
       color: "text-ink-soft",
       bg: "border border-line-strong"
@@ -57,7 +63,8 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
   // Đọc thẳng từ localStorage ở mỗi lần render. Bản cũ chép sang state trong
   // một effect, nên lần tải nào cũng vẽ banner "chưa chọn lộ trình" một nhịp
   // rồi mới thay bằng lộ trình đã lưu.
-  const selectedGoal = useLocalStorageValue(goalKey, GOAL_UPDATED_EVENT) as LearningGoal | null;
+  const storedGoal = useLocalStorageValue(goalKey, GOAL_UPDATED_EVENT);
+  const selectedGoal = (storedGoal ? (LEGACY_GOAL_IDS[storedGoal] ?? storedGoal) : null) as LearningGoal | null;
 
   // Mở bảng chọn khi chưa có lộ trình, hoặc khi người dùng bấm đổi.
   const [selectorOpen, setSelectorOpen] = useState(false);

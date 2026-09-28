@@ -14,11 +14,8 @@ import type { Lesson } from "./lesson-types";
 // quyền truy cập vào hệ thống nguồn thì không chạy được dòng nào, bất kể đội
 // giỏi tới đâu và kiến trúc tốt tới đâu.
 //
-// KHÔNG KHAI interactiveType. Bản cũ của chặng này gắn "process", "ratios" và
-// "risk" - lần lượt vẽ ba báo cáo tài chính nối nhau, bảng cân đối kế toán, và
-// đánh đổi rủi ro với lợi nhuận đầu tư. Không widget nào trong số đó minh hoạ
-// được nội dung ở đây, và giữ chúng lại chỉ để số bài có widget không giảm là
-// đổi một con số lấy ba minh hoạ sai chỗ.
+// KHÔNG KHAI interactiveType: chưa widget nào minh hoạ được nội dung ở đây, và
+// gắn đại một widget chỉ để số bài có widget không giảm là minh hoạ sai chỗ.
 
 export const INFRA_PROJECT_LESSONS: Lesson[] = [
   {

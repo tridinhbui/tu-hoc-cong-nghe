@@ -27,33 +27,6 @@
   "file": "cloudflare/migrations/20260715_announcements.sql"
  },
  {
-  "table": "budget_plans",
-  "name": "Users can update their own budget plan",
-  "cmd": "update",
-  "roles": "authenticated",
-  "using": "auth.uid() = user_id",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260714_financial_tools.sql"
- },
- {
-  "table": "budget_plans",
-  "name": "Users can upsert their own budget plan",
-  "cmd": "insert",
-  "roles": "authenticated",
-  "using": "",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260714_financial_tools.sql"
- },
- {
-  "table": "budget_plans",
-  "name": "Users can view their own budget plan",
-  "cmd": "select",
-  "roles": "authenticated",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260714_financial_tools.sql"
- },
- {
   "table": "bug_report_messages",
   "name": "Users can create own bug report messages",
   "cmd": "insert",
@@ -97,150 +70,6 @@
   "using": "user_id = auth.uid()\n    or exists (\n      select 1 from public.user_profiles p\n      where p.id = auth.uid() and p.role = 'admin'\n    )",
   "check": "",
   "file": "cloudflare/migrations/20260713_bug_reports.sql"
- },
- {
-  "table": "cfa_module_bookmarks",
-  "name": "Users can delete own CFA bookmarks",
-  "cmd": "delete",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_bookmarks",
-  "name": "Users can insert own CFA bookmarks",
-  "cmd": "insert",
-  "roles": "",
-  "using": "",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_bookmarks",
-  "name": "Users can read own CFA bookmarks",
-  "cmd": "select",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_highlights",
-  "name": "Users can delete own CFA highlights",
-  "cmd": "delete",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_highlights",
-  "name": "Users can insert own CFA highlights",
-  "cmd": "insert",
-  "roles": "",
-  "using": "",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_highlights",
-  "name": "Users can read own CFA highlights",
-  "cmd": "select",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_notes",
-  "name": "Users can delete own CFA notes",
-  "cmd": "delete",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_notes",
-  "name": "Users can insert own CFA notes",
-  "cmd": "insert",
-  "roles": "",
-  "using": "",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_notes",
-  "name": "Users can read own CFA notes",
-  "cmd": "select",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_notes",
-  "name": "Users can update own CFA notes",
-  "cmd": "update",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_progress",
-  "name": "Users can insert their own CFA module progress",
-  "cmd": "insert",
-  "roles": "",
-  "using": "",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260716_cfa_module_progress.sql"
- },
- {
-  "table": "cfa_module_progress",
-  "name": "Users can update their own CFA module progress",
-  "cmd": "update",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260716_cfa_module_progress.sql"
- },
- {
-  "table": "cfa_module_progress",
-  "name": "Users can view their own CFA module progress",
-  "cmd": "select",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260716_cfa_module_progress.sql"
- },
- {
-  "table": "cfa_module_recalls",
-  "name": "Users can insert their own CFA recalls",
-  "cmd": "insert",
-  "roles": "",
-  "using": "",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_recalls",
-  "name": "Users can update their own CFA recalls",
-  "cmd": "update",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
- },
- {
-  "table": "cfa_module_recalls",
-  "name": "Users can view their own CFA recalls",
-  "cmd": "select",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260717_cfa_module_features.sql"
  },
  {
   "table": "chat_message_reactions",
@@ -486,33 +315,6 @@
   "file": "cloudflare/migrations/20260709_community_documents.sql"
  },
  {
-  "table": "emergency_funds",
-  "name": "Users can update their own emergency fund",
-  "cmd": "update",
-  "roles": "authenticated",
-  "using": "auth.uid() = user_id",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260714_financial_tools.sql"
- },
- {
-  "table": "emergency_funds",
-  "name": "Users can upsert their own emergency fund",
-  "cmd": "insert",
-  "roles": "authenticated",
-  "using": "",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260714_financial_tools.sql"
- },
- {
-  "table": "emergency_funds",
-  "name": "Users can view their own emergency fund",
-  "cmd": "select",
-  "roles": "authenticated",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260714_financial_tools.sql"
- },
- {
   "table": "feature_click_events",
   "name": "Anyone can log their own feature click events",
   "cmd": "insert",
@@ -520,24 +322,6 @@
   "using": "",
   "check": "user_id is null or user_id = auth.uid()",
   "file": "cloudflare/migrations/20260719_feature_click_events.sql"
- },
- {
-  "table": "financial_guilds",
-  "name": "Authenticated users can create guilds",
-  "cmd": "insert",
-  "roles": "",
-  "using": "",
-  "check": "auth.uid() = leader_id",
-  "file": "cloudflare/migrations/20260809_guilds_and_pvp.sql"
- },
- {
-  "table": "financial_guilds",
-  "name": "Guilds readable by everyone",
-  "cmd": "select",
-  "roles": "",
-  "using": "true",
-  "check": "",
-  "file": "cloudflare/migrations/20260809_guilds_and_pvp.sql"
  },
  {
   "table": "focus_sessions",
@@ -574,24 +358,6 @@
   "using": "true",
   "check": "",
   "file": "cloudflare/migrations/20260806_gamification_system.sql"
- },
- {
-  "table": "guild_members",
-  "name": "Guild members readable by everyone",
-  "cmd": "select",
-  "roles": "",
-  "using": "true",
-  "check": "",
-  "file": "cloudflare/migrations/20260809_guilds_and_pvp.sql"
- },
- {
-  "table": "guild_members",
-  "name": "Users can join guilds",
-  "cmd": "insert",
-  "roles": "",
-  "using": "",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260809_guilds_and_pvp.sql"
  },
  {
   "table": "lesson_bookmarks",
@@ -801,33 +567,6 @@
   "file": "cloudflare/migrations/00000000_base_schema_reconstructed.sql"
  },
  {
-  "table": "net_worth_snapshots",
-  "name": "Users can add their own net worth snapshots",
-  "cmd": "insert",
-  "roles": "authenticated",
-  "using": "",
-  "check": "auth.uid() = user_id",
-  "file": "cloudflare/migrations/20260714_financial_tools.sql"
- },
- {
-  "table": "net_worth_snapshots",
-  "name": "Users can delete their own net worth snapshots",
-  "cmd": "delete",
-  "roles": "authenticated",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260714_financial_tools.sql"
- },
- {
-  "table": "net_worth_snapshots",
-  "name": "Users can view their own net worth snapshots",
-  "cmd": "select",
-  "roles": "authenticated",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260714_financial_tools.sql"
- },
- {
   "table": "notification_preferences",
   "name": "Users can update their own notification preferences",
   "cmd": "update",
@@ -853,15 +592,6 @@
   "using": "auth.uid() = user_id",
   "check": "",
   "file": "cloudflare/migrations/20260714_notification_preferences.sql"
- },
- {
-  "table": "public",
-  "name": "CFA library is readable by signed-in users",
-  "cmd": "select",
-  "roles": "authenticated",
-  "using": "true)',\n        t",
-  "check": "",
-  "file": "cloudflare/migrations/20260722_cfa_tables_rls_and_chat_images_hardening.sql"
  },
  {
   "table": "push_subscriptions",
@@ -1287,24 +1017,6 @@
   "file": "cloudflare/migrations/20260814_career_profile.sql"
  },
  {
-  "table": "user_domain_mastery",
-  "name": "Users can update their own domain mastery",
-  "cmd": "all",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260806_gamification_system.sql"
- },
- {
-  "table": "user_domain_mastery",
-  "name": "Users can view their own domain mastery",
-  "cmd": "select",
-  "roles": "",
-  "using": "auth.uid() = user_id",
-  "check": "",
-  "file": "cloudflare/migrations/20260806_gamification_system.sql"
- },
- {
   "table": "user_equipments",
   "name": "Users can manage their own equipments",
   "cmd": "all",
@@ -1413,7 +1125,7 @@
   "file": "cloudflare/migrations/20260713_social_friends_and_messages.sql"
  },
  {
-  "table": "user_ib_question_attempts",
+  "table": "user_interview_question_attempts",
   "name": "ib_attempts_select_own",
   "cmd": "select",
   "roles": "",

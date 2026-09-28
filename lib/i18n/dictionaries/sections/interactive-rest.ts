@@ -1,29 +1,11 @@
 // UI copy for the remaining Interactive* widgets not yet covered by another
-// section file: InteractiveEsgScore, InteractiveProspect, InteractiveEthicsCase,
+// section file: InteractiveProspect, InteractiveEthicsCase,
 // InteractivePromptCraft, InteractiveAiVerify.
 // See AGENTS.md "Translating the UI".
 
 export const interactiveRestVi = {
   interactiveRest: {
 
-    esgScore: {
-      title: "Ai đứng đầu bảng sức khoẻ dịch vụ phụ thuộc vào ai chọn trọng số",
-      companyThepDongAName: "Dịch vụ thanh toán",
-      companyThepDongANote: "ngốn tài nguyên, vận hành kỷ luật",
-      companyMinhPhatName: "Dịch vụ tìm kiếm",
-      companyMinhPhatNote: "nhẹ và nhanh, gần như không có kiểm thử",
-      companyVietTinName: "Dịch vụ thông báo",
-      companyVietTinNote: "đều tay, không nổi bật ở đâu",
-      raterEHeavy: "Thiên về hiệu quả",
-      raterBalanced: "Cân bằng",
-      raterGHeavy: "Thiên về vận hành",
-      environmentLabel: "Hiệu quả tài nguyên (H)",
-      socialLabel: "Trải nghiệm người dùng (T)",
-      governanceLabel: "Chất lượng vận hành (V)",
-      remainderValue: "{value}% — phần còn lại",
-      rankNoteParts: "{note} · H {e} · T {s} · V {g}",
-      footerText: "Bấm lần lượt \"Thiên về hiệu quả\" rồi \"Thiên về vận hành\": thứ tự đảo hẳn, mà không có con số nào của dịch vụ thay đổi. Đó là cái bẫy của mọi điểm tổng hợp trong kỹ thuật — một ô duy nhất trên bảng điều khiển gộp ba thứ không cùng đơn vị lại theo một tỷ lệ do ai đó chọn, và tỷ lệ ấy thường nằm trong tệp cấu hình chứ không nằm trên bảng. Người đọc thấy thứ hạng và tưởng mình đang thấy một phép đo; thứ họ đang thấy là một quan điểm về việc điều gì đáng giá.",
-    },
 
     prospect: {
       title: "Hai câu hỏi, cùng một kết quả",
@@ -130,24 +112,6 @@ export const interactiveRestVi = {
 export const interactiveRestEn: typeof interactiveRestVi = {
   interactiveRest: {
 
-    esgScore: {
-      title: "Who tops the service health table depends on who picks the weights",
-      companyThepDongAName: "Payments service",
-      companyThepDongANote: "resource-hungry, disciplined operations",
-      companyMinhPhatName: "Search service",
-      companyMinhPhatNote: "light and fast, almost no tests",
-      companyVietTinName: "Notifications service",
-      companyVietTinNote: "even across the board, not standout anywhere",
-      raterEHeavy: "Efficiency-heavy",
-      raterBalanced: "Balanced",
-      raterGHeavy: "Operations-heavy",
-      environmentLabel: "Resource efficiency (R)",
-      socialLabel: "User experience (U)",
-      governanceLabel: "Operational quality (O)",
-      remainderValue: "{value}% — remainder",
-      rankNoteParts: "{note} · R {e} · U {s} · O {g}",
-      footerText: "Click \"Efficiency-heavy\" then \"Operations-heavy\": the ranking flips completely, and not a single service number changed. This is the trap in every composite score in engineering — one cell on a dashboard adds up three things that share no unit, in a proportion somebody chose, and that proportion usually lives in a config file rather than on the dashboard. The reader sees a ranking and assumes they are seeing a measurement; what they are seeing is an opinion about what counts.",
-    },
 
     prospect: {
       title: "Two questions, one outcome",

@@ -11,18 +11,14 @@ import {
 import { getServerLocale } from "@/lib/i18n/server";
 import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
 import { signQuestionToken } from "@/lib/quiz-tokens";
+import { normalizeQuizTrack } from "@/lib/cloudflare-quiz-sessions";
 import { getCertTrack } from "@/lib/cert-tracks";
 
 /**
  * Phát đề cho mọi bài trắc nghiệm đứng riêng: /kiem-tra (track personal /
- * professional, hoặc bài đã học), /phong-van-ky-thuat (track "ib" và
+ * professional, hoặc bài đã học), /phong-van-ky-thuat (track "interview" và
  * "mock-interview", đọc từ lib/interview-bank) và luyện miền thi ở /chung-chi
  * (track "cert", kèm `cert` và `domain`).
- *
- * Route này từng bị gỡ cùng "cổng thử thách kiến thức" (bộ câu hỏi CFA/FRM),
- * nhưng /kiem-tra vẫn gọi nó - nên trang Kiểm tra trả 404 cả lúc lấy đề lẫn
- * lúc nộp. Dựng lại theo bản tài chính, bỏ hai nhánh CFA/FRM vì bản công nghệ
- * không có nội dung đó.
  *
  * Mỗi câu ra kèm một token đã ký chứa chỉ số đáp án đúng SAU khi xáo; route
  * nộp bài (./submit) chỉ tin token, không tin điểm client gửi lên.
@@ -175,13 +171,13 @@ export async function GET(request: NextRequest) {
   }
 
   const { searchParams } = request.nextUrl;
-  const track = searchParams.get("track");
+  const track = normalizeQuizTrack(searchParams.get("track"));
   const difficulty = searchParams.get("difficulty");
   const lessonParam = searchParams.get("lesson");
   const requestedCount = Math.min(MAX_QUESTION_COUNT, Math.max(1, Number(searchParams.get("count")) || QUESTION_COUNT));
   const onlyLessonId = lessonParam ? Number(lessonParam) : null;
 
-  if (track === "ib" || track === "mock-interview") {
+  if (track === "interview" || track === "mock-interview") {
     let pool = interviewQuestionsFor(difficulty, searchParams.get("career"), searchParams.get("section"));
 
     // Làm lại đúng những câu đã sai: client gửi danh sách id.

@@ -10,6 +10,7 @@ import { btnPrimary, btnSecondary, Sys, StatusDot } from "@/components/ui/system
 import Glyph from "@/components/Glyph";
 import { createClient } from "@/lib/cloudflare";
 import { getRequiredLevelForBuilding } from "@/lib/levels";
+import { normalizeBuildingId } from "@/lib/legacy-ids";
 import BuildingScenarioGame, { SCENARIO_BUILDINGS, type ScenarioBuildingId } from "@/components/BuildingScenarioGame";
 import { toast } from "sonner";
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
@@ -22,7 +23,7 @@ import WorldBossRaidWidget from "@/components/WorldBossRaidWidget";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import GameHubClient from "@/components/games/GameHubClient";
 import BackboneRoutingWidget from "@/components/BackboneRoutingWidget";
-import GoldmanSachsWidget from "@/components/GoldmanSachsWidget";
+import CapacitySizingWidget from "@/components/CapacitySizingWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
@@ -54,11 +55,11 @@ const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
   "weekly-challenge": { x: 18, y: 38 },
   cards: { x: 18, y: 50 },
   shop: { x: 82, y: 50 },
-  "fed-vault": { x: 50, y: 60 },
+  "backbone-hub": { x: 50, y: 60 },
   "silicon-bay": { x: 18, y: 70 },
-  "capitol-hill": { x: 82, y: 70 },
-  "cme-commodities": { x: 18, y: 82 },
-  "swiss-haven": { x: 82, y: 82 },
+  "cloud-capital": { x: 82, y: 70 },
+  "resource-floor": { x: 18, y: 82 },
+  "data-haven": { x: 82, y: 82 },
   "singapore-dock": { x: 50, y: 92 },
 };
 
@@ -71,7 +72,7 @@ export default function TechRpgWorldMap() {
   const buildings = useMemo(() => organicBuildingsOf(t), [t]);
   const MAP_BUILDINGS = useMemo(() => buildings.filter((b) => b.id !== "shop"), [buildings]);
   const searchParams = useSearchParams();
-  const initialBuilding = searchParams.get("building");
+  const initialBuilding = normalizeBuildingId(searchParams.get("building"));
 
   const [selectedBuilding, setSelectedBuilding] = useState<string | null>(initialBuilding);
   const [user, setUser] = useState<{ id?: string; email?: string } | null>(null);
@@ -148,7 +149,7 @@ export default function TechRpgWorldMap() {
 
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      const bParam = params.get("building");
+      const bParam = normalizeBuildingId(params.get("building"));
       if (bParam) {
         setSelectedBuilding(bParam);
         if (BUILDING_AVATAR_POSITIONS[bParam]) {
@@ -193,7 +194,7 @@ export default function TechRpgWorldMap() {
       }
       const newCoins = coins + 5;
       setCoins(newCoins);
-      toast.success(t.miscUi.financialRpgWorldMap.regionDiscovered);
+      toast.success(t.miscUi.techRpgWorldMap.regionDiscovered);
       if (user?.id) {
         const client = createClient();
         // Hai lượt ghi tách đôi, vì chúng có mức tin cậy khác nhau.
@@ -231,12 +232,12 @@ export default function TechRpgWorldMap() {
       setIsMoving(false);
 
       if (targetBuilding?.isUnderConstruction) {
-        toast.info(format(t.miscUi.financialRpgWorldMap.underConstruction, { name: targetBuilding.name, level: reqLevel }));
+        toast.info(format(t.miscUi.techRpgWorldMap.underConstruction, { name: targetBuilding.name, level: reqLevel }));
         return;
       }
 
       if (level < reqLevel) {
-        toast.error(format(t.miscUi.financialRpgWorldMap.levelLocked, { level: reqLevel }));
+        toast.error(format(t.miscUi.techRpgWorldMap.levelLocked, { level: reqLevel }));
         return;
       }
 
@@ -341,8 +342,8 @@ export default function TechRpgWorldMap() {
             {/* Mobile / Tablet View: Categorized District Grids */}
             <div className="relative z-10 space-y-5 p-3 md:hidden">
               {/* Nhóm theo đúng `badge` của từng toà (đã đi qua từ điển), thay vì
-                  một danh sách tên khu gõ tay - danh sách cũ còn tên khu của thời
-                  kho bài tài chính và so khớp theo từ thứ hai, nên nửa số toà
+                  một danh sách tên khu gõ tay - danh sách cũ có tên khu lỗi thời và
+                  so khớp theo từ thứ hai, nên nửa số toà
                   không rơi vào khu nào và biến mất khỏi bản đồ di động. */}
               {[...new Set(MAP_BUILDINGS.map((b) => b.badge))].map((districtBadge) => {
                 const districtBuildings = MAP_BUILDINGS.filter((b) => b.badge === districtBadge);
@@ -587,10 +588,10 @@ export default function TechRpgWorldMap() {
                 {selectedBuilding === "world-boss" && (
                   <WorldBossRaidWidget userId={user?.id || ""} userLevel={level} equipments={equippedGear} />
                 )}
-                {selectedBuilding === "goldman-sachs" && (
-                  <GoldmanSachsWidget userId={user?.id || ""} />
+                {selectedBuilding === "capacity-lab" && (
+                  <CapacitySizingWidget userId={user?.id || ""} />
                 )}
-                {selectedBuilding === "fed-vault" && (
+                {selectedBuilding === "backbone-hub" && (
                   <BackboneRoutingWidget userId={user?.id || ""} />
                 )}
                 {selectedBuilding === "shop" && (

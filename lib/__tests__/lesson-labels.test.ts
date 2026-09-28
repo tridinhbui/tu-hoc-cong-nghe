@@ -32,8 +32,8 @@ describe("nhãn đọc được từ tiêu đề", () => {
   });
 
   it("đọc dạng số đứng ngay sau tên chuỗi bài", () => {
-    expect(getLessonDisplayLabel({ id: 1571, title: "CFA Ethics 15: Khung ra quyết định", track: undefined })).toBe(
-      "CFA Ethics · Bài 15",
+    expect(getLessonDisplayLabel({ id: 1571, title: "Git nâng cao 15: Rebase tương tác", track: undefined })).toBe(
+      "Git nâng cao · Bài 15",
     );
   });
 
@@ -81,8 +81,7 @@ describe("không nhãn nào rò số nội bộ", () => {
 });
 
 describe("tiêu đề rút gọn", () => {
-  it("cắt cả hai dạng tiền tố khỏi tiêu đề hiển thị", () => {
+  it("cắt tiền tố chặng khỏi tiêu đề hiển thị", () => {
     expect(getLessonShortTitle({ title: "Chặng 7, Bài 1: Vay mua nhà" })).toBe("Vay mua nhà");
-    expect(getLessonShortTitle({ title: "Tự học Tài chính Day 81: Present Value" })).toBe("Present Value");
   });
 });

@@ -9,12 +9,9 @@ import totals from "@/lib/lessons-data/_track-totals.json";
  *     chặng            khai      thật
  *     cá nhân          10 giờ    21,9 giờ
  *     chuyên nghiệp    18 giờ    48,8 giờ
- *     CFA              27 giờ    38,6 giờ
  *
  * Không ai nói dối: con số được gõ một lần lúc chặng còn vài chục bài, rồi kho
- * bài đi tiếp còn con số thì đứng yên. Cùng đúng cái lỗi mà chú thích đầu
- * components/CfaTrackView.tsx ghi lại cho banner flashcard ("500+ thuật ngữ"
- * khi bộ thẻ có 75).
+ * bài đi tiếp còn con số thì đứng yên.
  *
  * Bảng tổng do scripts/generate-lesson-data.mjs sinh cùng lúc với
  * lib/lessons-data/, tức là mỗi lần thêm hay sửa bài. Nhập JSON tĩnh nên dùng
@@ -22,11 +19,7 @@ import totals from "@/lib/lessons-data/_track-totals.json";
  * mục, thứ không nên đi xuống trình duyệt.
  */
 
-/** `cfa` KHÔNG phải chặng thứ tư - nó là một lớp ánh xạ trên chính bài của ba
- *  chặng kia, nên nó có mặt ở đây để tra số giờ nhưng không được cộng vào
- *  TOTAL_LESSONS. Xem chú thích cùng nội dung trong
- *  scripts/generate-lesson-data.mjs. */
-export type TrackTotalsId = "personal" | "professional" | "bonus" | "cfa";
+export type TrackTotalsId = "personal" | "professional" | "bonus" | "certification";
 
 interface TrackTotal {
   lessons: number;

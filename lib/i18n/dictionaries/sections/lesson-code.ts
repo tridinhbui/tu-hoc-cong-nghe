@@ -42,6 +42,13 @@ export const lessonCodeVi = {
     failActual: "Bạn in:",
     failMissing: "(thiếu dòng này)",
     failGeneric: "Chưa khớp. So lại từng dòng với kết quả cần in ra.",
+    practice: {
+      title: "Năng lực thực hành",
+      sub: "Điểm quiz đo việc đọc hiểu. Con số này đo việc bạn đã tự viết mã và chạy ra đúng kết quả.",
+      count: "{done}/{total} bài tập",
+      next: "Bài tập tiếp theo: {title}",
+      allDone: "Bạn đã làm hết bài tập của track này.",
+    },
   },
 };
 
@@ -88,5 +95,12 @@ export const lessonCodeEn: typeof lessonCodeVi = {
     failActual: "You printed:",
     failMissing: "(this line is missing)",
     failGeneric: "Doesn't match yet. Compare each line with the expected output.",
+    practice: {
+      title: "Hands-on skill",
+      sub: "Quiz scores measure understanding. This measures code you wrote yourself and ran to the right result.",
+      count: "{done}/{total} exercises",
+      next: "Next exercise: {title}",
+      allDone: "You have done every exercise in this track.",
+    },
   },
 };
