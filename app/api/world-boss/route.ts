@@ -31,7 +31,9 @@ function fallbackWorldBoss(t: Dictionary) {
     description: wb.fallbackDescription,
     boss_emoji: "🌋",
     max_hp: 1000000,
-    current_hp: 745000,
+    // Đầy máu: khi bảng world_bosses trống thì chưa ai đánh, và 745.000 cũ là
+    // một trận đánh chưa từng diễn ra.
+    current_hp: 1000000,
     start_date: new Date().toISOString().split("T")[0],
     end_date: new Date(Date.now() + 7 * 86400000).toISOString().split("T")[0],
     is_active: true,

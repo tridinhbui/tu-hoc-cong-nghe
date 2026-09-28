@@ -7,7 +7,10 @@ import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route, Users, Construction, Clock } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route, Users, Construction, Clock, LockOpen, ChevronDown, Play, Layers, HardHat, Flag, FileText, Compass, BookOpen, Award, ArrowRight, Trophy, GitBranch, Code2, Globe, Braces, Database, Server, Cloud, ShieldCheck, Smartphone, Cpu, type LucideIcon } from "lucide-react";
+import { getCommunityLearningNow, getLessonLearnerCounts, type CommunityLearner } from "@/lib/community-learning";
+import { stripStageLessonPrefix } from "@/lib/lesson-stage-prefix";
+import { useResizableSidebar, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from "@/lib/use-resizable-sidebar";
 import { useProgress } from "@/lib/client-hooks";
 import { DEFAULT_PRESET, getStoredPreset, storePreset, type DashboardPreset } from "@/lib/dashboard-preset";
 import { mergeCompletedLessons } from "@/lib/progress";
@@ -189,8 +192,16 @@ function isTrackTab(tab: DashboardTab): tab is "personal" | "professional" {
   return tab === "personal" || tab === "professional";
 }
 
+/** Hình trong ô biểu tượng của chặng 2 trở đi, xoay vòng. Thứ tự đi theo
+ *  lộ trình Nền tảng: Git, lập trình, web, JavaScript, dữ liệu, API, cơ sở dữ
+ *  liệu, triển khai... - để hình gần đúng chủ đề ở những chặng người học gặp
+ *  đầu tiên. */
+const STAGE_ICONS: LucideIcon[] = [GitBranch, Code2, Globe, Braces, Layers, Server, Database, Cloud, FileText, Compass, Cpu, Cloud, BookOpen, ShieldCheck, Smartphone, HardHat];
+
 export default function DashboardClient({ lessonsMeta, view = "overview" }: { lessonsMeta: LessonMeta[]; view?: DashboardView }) {
   const isLessonsView = view === "lessons";
+  // Cột phải của /hoc-bai kéo đổi bề rộng được - xem lib/use-resizable-sidebar.ts.
+  const sidebar = useResizableSidebar();
   // Mức dày đặc của trang tổng quan - xem lib/dashboard-preset.ts.
   //
   // Khởi tạo bằng DEFAULT_PRESET rồi mới đọc localStorage trong effect, thay
@@ -556,6 +567,84 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       lessonsByPartKey: byPart,
     };
   }, [sorted, track, activeTrack, professionalBranch]);
+
+  // ── Port từ trang Học bài bản tài chính ──
+  // Số người vừa học từng chặng (dòng "N người vừa học chặng này") và số người
+  // đã học xong từng bài. Chỉ tải ở /hoc-bai - trang tổng quan không dựng
+  // danh sách chặng.
+  const [communityLearners, setCommunityLearners] = useState<CommunityLearner[]>([]);
+  const [lessonLearnerCounts, setLessonLearnerCounts] = useState<Map<number, number> | null>(null);
+  useEffect(() => {
+    if (!isLessonsView) return;
+    let cancelled = false;
+    getLessonLearnerCounts()
+      .then((counts) => { if (!cancelled) setLessonLearnerCounts(counts); })
+      .catch(() => { if (!cancelled) setLessonLearnerCounts(null); });
+    getCommunityLearningNow(200, 7)
+      .then((list) => { if (!cancelled) setCommunityLearners(list); })
+      .catch(() => { if (!cancelled) setCommunityLearners([]); });
+    return () => { cancelled = true; };
+  }, [isLessonsView]);
+
+  /** Bao nhiêu người vừa học một bài trong chặng này, trong bảy ngày qua.
+   *  RPC trả về bài CUỐI CÙNG của mỗi người, nên đây là "vừa học", không phải
+   *  "đang mở trang". */
+  const learnersInStage = useCallback(
+    (stageLessons: LessonMeta[]) => {
+      if (communityLearners.length === 0) return 0;
+      const ids = new Set(stageLessons.map((l) => l.id));
+      return communityLearners.filter((l) => l.lessonId !== null && ids.has(l.lessonId)).length;
+    },
+    [communityLearners]
+  );
+
+  /** Số bài đã học / tổng của MỘT lộ trình, đếm theo đúng luật mà danh sách
+   *  bài bên dưới dùng (lessonsByStageLabel): nằm trong khoảng chặng, và không
+   *  khai rõ mình thuộc lộ trình khác. */
+  const trackCounts = useMemo(() => {
+    const count = (trackId: "personal" | "professional") => {
+      const stages = (trackId === "professional" ? TRACK_PROFESSIONAL : TRACK_PERSONAL).stages;
+      const lessons = sorted.filter(
+        (l) => (!l.track || l.track === trackId) && stages.some((stage) => isLessonInRange(l.id, stage))
+      );
+      return { done: lessons.filter((l) => completed.includes(l.id)).length, total: lessons.length };
+    };
+    return { personal: count("personal"), professional: count("professional") };
+  }, [sorted, completed]);
+
+  /** Tiến độ của từng nhánh chuyên sâu, hiện cạnh tên nhánh trên dải lọc. */
+  const branchProgress = useMemo(() => {
+    const out = new Map<string, { done: number; total: number }>();
+    for (const branch of PROFESSIONAL_BRANCHES) {
+      const stages = TRACK_PROFESSIONAL.stages.filter((stage) =>
+        (branch.stageLabels as readonly string[]).includes(stage.label)
+      );
+      const lessons = sorted.filter(
+        (l) => (!l.track || l.track === "professional") && stages.some((stage) => isLessonInRange(l.id, stage))
+      );
+      out.set(branch.id, { done: lessons.filter((l) => completed.includes(l.id)).length, total: lessons.length });
+    }
+    return out;
+  }, [sorted, completed]);
+
+  /** Bài đầu tiên chưa học của lộ trình đang xem - chặng chứa nó tự mở. */
+  const currentLessonId = useMemo(() => {
+    for (const stage of track.stages) {
+      for (const lesson of lessonsByStageLabel.get(stage.label) ?? []) {
+        if (!completed.includes(lesson.id)) return lesson.id;
+      }
+    }
+    return null;
+  }, [track, lessonsByStageLabel, completed]);
+
+  /** Bản tài chính tách phụ đề ra một tệp tải lười. Ở đây phụ đề đã nằm sẵn
+   *  trong lessonsMeta, nên chỉ cần tra. */
+  const subtitleById = useMemo(() => new Map(lessonsMeta.map((l) => [l.id, l.subtitle])), [lessonsMeta]);
+  const renderSubtitle = (lessonId: number) => subtitleById.get(lessonId) ?? null;
+
+  /** Bản công nghệ chưa có thi vượt chặng ghi điểm cho từng bài, nên tập này
+   *  luôn rỗng; giữ lại để hàng bài dựng đúng như bản gốc khi tính năng đó tới. */
+  const examCreditedIds = useMemo(() => new Set<number>(), []);
 
   const toggleStage = (key: string) => {
     setOpenStages((prev) => {
@@ -1389,7 +1478,36 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           </div>
         )}
 
-        <div className={`grid grid-cols-1 gap-4 sm:gap-5 min-w-0 ${isLessonsView ? "xl:flex-1 xl:min-h-0 xl:grid-cols-12 xl:gap-3.5" : "xl:col-span-12 xl:min-h-0 xl:grid-cols-12 xl:gap-3.5"}`}>
+        {/* Ở /hoc-bai hai cột là `minmax(0,1fr)` + bề rộng cột phải do người
+            học kéo. Bề ngang đi qua biến CSS chứ không phải gridTemplateColumns
+            nội tuyến: dưới `xl` bố cục là một cột, và biến thì vô hại ở mọi
+            khổ màn hình. */}
+        <div
+          style={{ "--sidebar-w": `${sidebar.width}px` } as React.CSSProperties}
+          className={`grid grid-cols-1 gap-4 sm:gap-5 min-w-0 ${isLessonsView ? "xl:relative xl:flex-1 xl:min-h-0 xl:gap-3.5 xl:[grid-template-columns:minmax(0,1fr)_var(--sidebar-w)]" : "xl:col-span-12 xl:min-h-0 xl:grid-cols-12 xl:gap-3.5"}`}
+        >
+          {/* Thanh kéo, chỉ từ `xl` trở lên. Đặt tuyệt đối trên lưới thay vì
+              làm một rãnh thứ ba, để không cộng thêm một `gap`. */}
+          {isLessonsView && (
+            <div
+              role="separator"
+              aria-orientation="vertical"
+              aria-label={t.dashboard.sidebarResizeLabel}
+              aria-valuenow={sidebar.width}
+              aria-valuemin={SIDEBAR_MIN_WIDTH}
+              aria-valuemax={SIDEBAR_MAX_WIDTH}
+              tabIndex={0}
+              onPointerDown={sidebar.onPointerDown}
+              onPointerMove={sidebar.onPointerMove}
+              onPointerUp={sidebar.endDrag}
+              onPointerCancel={sidebar.endDrag}
+              onKeyDown={sidebar.onKeyDown}
+              style={{ right: "calc(var(--sidebar-w) + 0.4375rem)" }}
+              className={`absolute inset-y-0 z-20 hidden w-1.5 -translate-x-1/2 cursor-col-resize rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 xl:block ${
+                sidebar.isDragging ? "bg-brand-500" : "bg-transparent hover:bg-surface-deep"
+              }`}
+            />
+          )}
 
           {/* Left Column: Learning Path (7 columns on desktop xl+) */}
           {/* min-h keeps this column's height roughly stable across track
@@ -1397,7 +1515,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               accordion) - without it, the sticky right sidebar (below)
               visibly jumps/flashes as the browser recalculates its
               scrollable range every time this column's height changes. */}
-          <div className={`space-y-5 min-w-0 ${isLessonsView ? "xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-0.5"}`}>
+          <div className={`space-y-5 min-w-0 ${isLessonsView ? "xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-0.5"}`}>
 
             {/* Thẻ "Vào Học bài" từng đứng ở đây. Nó chuyển thành tab thứ
                 hai của thẻ Bản đồ Cấp độ phía trên, nên cột này giờ bắt đầu
@@ -1541,873 +1659,836 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             )}
 
 
-          {/* Track selector - Compact. All 3 cards use h-full + flex-col
-              justify-between so they land on the same height regardless of
-              how many content lines each one has (personal/CFA got a fun
-              one-line subtitle added specifically to match professional's,
-              which was shortened to a single inline badge to compensate). */}
-          <div
-            id="lo-trinh"
-            data-tour="track-selector"
-            className={`grid grid-cols-1 sm:grid-cols-2 gap-3.5 items-stretch scroll-mt-24 ${
-              // The branch strip below belongs to the professional card, so it
-              // sits one grid-gap away rather than a full section break - the
-              // section's own margin then comes from the strip instead.
-              isTrackView && activeTrack === "professional" ? "mb-3.5" : "mb-8"
-            }`}
-          >
-            {/* Card 2: Tài chính Cá Nhân (Amber Gold Accent) */}
-            <div className="relative group h-full">
-              <button
-                type="button"
-                onClick={() => setActiveTrack("personal")}
-                className={`relative w-full h-full flex flex-col text-left rounded-xl border px-5 py-4 transition-colors duration-200 overflow-hidden ${
-                  isTrackView && activeTrack === "personal"
-                    ? "border-stone-300 bg-white text-stone-900 dark:border-stone-600 dark:bg-stone-900 dark:text-stone-100"
-                    : "border-stone-200/80 bg-white/70 text-stone-700 hover:border-stone-300 dark:border-stone-800/90 dark:bg-stone-900/60 dark:text-stone-300 dark:hover:border-stone-700"
-                }`}
-              >
-                {/* Nét chỉ dấu trên đầu thẻ mang toàn bộ việc phân biệt track,
-                    và đậm lên khi thẻ được chọn. Trước đây trạng thái chọn nói
-                    bằng border-2 màu CỘNG ring-2 màu CỘNG nét này - ba lớp cùng
-                    nói một điều, quanh một thẻ vốn đã nằm cạnh đúng một thẻ
-                    khác. Một nét là đủ để biết đang ở đâu. */}
-                <div className={`absolute top-0 left-0 right-0 h-0.5 transition-colors ${
-                  isTrackView && activeTrack === "personal" ? "bg-amber-500" : "bg-amber-500/30"
-                }`} />
-                <div className="flex items-center gap-2 flex-wrap mt-1">
-                  <div className="text-base font-extrabold tracking-tight text-ink">
-                    {t.trackStages.personal.title}
-                  </div>
-                </div>
-                <div className="text-xs mt-1.5 text-ink-muted font-normal">
-                  {format(t.dashboard.foundationHours, { hours: TRACK_PERSONAL.estimatedHours })}
-                </div>
-                <div className="sm:hidden text-xs mt-2 leading-snug text-ink-muted">
-                  {t.trackStages.personal.description}
-                </div>
-              </button>
+ {/* Dải nhịp cộng đồng ("N người đang học · N bài hoàn thành") ĐÃ GỠ
+ khỏi /hoc-bai theo yêu cầu. Nó từng dựng HAI lần trong cùng một
+ nhánh isLessonsView, nên trang học bài hiện nó hai lượt. Component
+ components/CommunityPulseStrip.tsx vẫn còn nguyên nếu cần dùng lại
+ ở trang khác. */}
 
-              {/* Hover Tooltip (pointer devices) */}
-              <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
-                <div className="bg-surface-invert text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
-                  <p className="text-sm font-bold mb-2">{t.trackStages.personal.description}</p>
-                  <div className="space-y-1 text-xs text-stone-300">
-                    {t.trackStages.personal.pillars.map((pillar) => (
-                      <div key={pillar} className="flex gap-2">
-                        <span>•</span>
-                        <span>{pillar}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-stone-900 dark:border-t-stone-800" />
-              </div>
-            </div>
+ <div
+ id="lo-trinh" data-tour="track-selector" className="scroll-mt-24 max-w-full overflow-hidden"
+ >
+ {/* Primary Track Segmented Pills - chia đôi đúng chiều ngang khung. Trước là sm:inline-flex nên khung co theo nội dung và dạt về trái. */}
+ <div className="flex w-full p-1 rounded-2xl gap-2 select-none">
+ {(["personal", "professional"] as const).map((trackId) => {
+ const isActive = isTrackView && activeTrack === trackId;
+ return (
+ <button
+ key={trackId}
+ type="button" onClick={() => setActiveTrack(trackId)}
+ className={`flex-1 min-w-0 cursor-pointer rounded-2xl px-3 sm:px-5 py-3 text-xs font-black transition-all flex items-center justify-center gap-2.5 border ${
+ isActive
+ ? "bg-brand-900 text-white border-brand-900 shadow-xs"
+ : "bg-white dark:bg-stone-900 text-ink-body border-stone-200/90 dark:border-stone-800 hover:bg-stone-100"
+ }`}
+ >
+ <span className="text-center leading-snug">{t.trackStages[trackId].title}</span>
+ <span className={`shrink-0 text-[11px] tabular-nums font-bold px-2 py-0.5 rounded-full ${
+ isActive ? "bg-white/20 text-white" : "bg-stone-200/80 text-stone-600 dark:bg-stone-800 dark:text-stone-400"
+ }`}>
+ {format(t.dashboard.trackDoneOfTotal, trackCounts[trackId])}
+ </span>
+ </button>
+ );
+ })}
+ </div>
+ </div>
 
-            {/* Card 3: Tài chính Chuyên Ngành (Emerald Green Accent) */}
-            <div className="relative group h-full">
-              <button
-                type="button"
-                onClick={() => setActiveTrack("professional")}
-                className={`relative w-full h-full flex flex-col text-left rounded-xl border px-5 py-4 transition-colors duration-200 overflow-hidden ${
-                  isTrackView && activeTrack === "professional"
-                    ? "border-stone-300 bg-white text-stone-900 dark:border-stone-600 dark:bg-stone-900 dark:text-stone-100"
-                    : "border-stone-200/80 bg-white/70 text-stone-700 hover:border-stone-300 dark:border-stone-800/90 dark:bg-stone-900/60 dark:text-stone-300 dark:hover:border-stone-700"
-                }`}
-              >
-                <div className={`absolute top-0 left-0 right-0 h-0.5 transition-colors ${
-                  isTrackView && activeTrack === "professional" ? "bg-brand-500" : "bg-brand-500/30"
-                }`} />
-                <div className="flex items-center gap-2 flex-wrap mt-1">
-                  <div className="text-base font-extrabold tracking-tight text-ink">
-                    {t.trackStages.professional.title}
-                  </div>
-                </div>
-                <div className="text-xs mt-1.5 text-ink-muted font-normal">
-                  {format(t.dashboard.advancedLessons, {
-                    count: trackTotals("professional").lessons,
-                  })}
-                </div>
-                <div className="sm:hidden text-xs mt-2 leading-snug text-ink-muted">
-                  {t.trackStages.professional.description}
-                </div>
-              </button>
+ {/* Secondary Domain Branch Filter Chips */}
+ {isTrackView && activeTrack === "professional" && (
+ <div className="mt-3.5 space-y-2.5">
+ <div className="flex gap-2 overflow-x-auto sm:flex-wrap pb-1 scrollbar-none">
+ {PROFESSIONAL_BRANCHES.map((branch) => {
+ const isActive = professionalBranch === branch.id;
+ return (
+ <button
+ key={branch.id}
+ onClick={() => handleSetProfessionalBranch(branch.id)}
+ className={`shrink-0 whitespace-nowrap px-4 py-2 text-xs font-black rounded-xl transition-all cursor-pointer border ${
+ isActive
+ ? "bg-surface-invert text-ink-invert border-line-invert shadow-md scale-[1.02]"
+ : "bg-white dark:bg-stone-900 text-ink-body border-stone-200/90 dark:border-stone-800 hover:border-brand-500 dark:hover:border-brand-500 hover:text-stone-900"
+ }`}
+ >
+ <span>{t.professionalBranches[branch.id]?.label ?? branch.label}</span>
+ {(branchProgress.get(branch.id)?.total ?? 0) > 0 && (
+ <span
+ className={`ml-2 text-[10px] tabular-nums font-semibold ${
+ isActive ? "text-white/70 dark:text-stone-900/70" : "text-ink-faint"
+ }`}
+ >
+ {branchProgress.get(branch.id)!.done}/{branchProgress.get(branch.id)!.total}
+ </span>
+ )}
+ </button>
+ );
+ })}
+ </div>
+ <div className="flex items-center justify-between gap-4 px-1">
+ <p className="text-[11px] leading-relaxed text-ink-muted font-medium">
+ {t.professionalBranches[professionalBranch]?.subtitle ??
+ PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)?.subtitle}
+ </p>
+ <button
+ type="button" onClick={() => setShowAllBranches((v) => !v)}
+ className="shrink-0 cursor-pointer text-[11px] font-bold text-stone-600 underline-offset-2 hover:underline dark:text-stone-400"
+ >
+ {showAllBranches ? t.dashboard.branchesCollapse : t.dashboard.branchesShowAll}
+ </button>
+ </div>
 
-              {/* Hover Tooltip (pointer devices) */}
-              <div className="absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-3 hidden sm:group-hover:block z-50 w-max max-w-xs">
-                <div className="bg-surface-invert text-white rounded-xl px-4 py-3 shadow-lg border border-stone-800 dark:border-stone-700">
-                  <p className="text-sm font-bold mb-2">{t.trackStages.professional.description}</p>
-                  <div className="space-y-1 text-xs text-stone-300">
-                    {t.trackStages.professional.pillars.map((pillar) => (
-                      <div key={pillar} className="flex gap-2">
-                        <span>•</span>
-                        <span>{pillar}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-stone-900 dark:border-t-stone-800" />
-              </div>
-            </div>
-          </div>
+ {/* Bảy nhánh kèm mô tả */}
+ {showAllBranches && (
+ <ul className="mt-2.5 divide-y divide-stone-100 overflow-hidden rounded-xl border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
+ {PROFESSIONAL_BRANCHES.map((branch) => (
+ <li key={branch.id}>
+ <button
+ type="button" onClick={() => {
+ handleSetProfessionalBranch(branch.id);
+ setShowAllBranches(false);
+ }}
+ className={`w-full cursor-pointer px-3.5 py-2.5 text-left transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/60 ${
+ professionalBranch === branch.id ? "bg-stone-50 dark:bg-stone-800/60" : ""
+ }`}
+ >
+ <span className="block text-xs font-bold text-ink">
+ {t.professionalBranches[branch.id]?.label ?? branch.label}
+ </span>
+ <span className="mt-0.5 block text-[11px] leading-relaxed text-ink-muted">
+ {t.professionalBranches[branch.id]?.subtitle ?? branch.subtitle}
+ </span>
+ </button>
+ </li>
+ ))}
+ </ul>
+ )}
+ </div>
+ )}
 
-          {/* "Tài chính chuyên ngành" split into focused branches -
-              purely filters which of TRACK_PROFESSIONAL's stages show,
-              same lessons/locking/XP either way.
+ <>
+ {/* ── Search Bar + Flag Mode Controls ── */}
+ <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+ {/* Left: Compact Search Input */}
+ <div className="relative flex-1 max-w-md">
+ <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+ <input
+ value={stageSearchQuery}
+ onChange={(e) => setStageSearchQuery(e.target.value)}
+ placeholder={t.dashboard.searchPlaceholder}
+ className="w-full pl-10 pr-9 py-2.5 rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 text-xs font-medium text-ink placeholder:text-stone-400 focus:outline-none focus:border-brand-600 shadow-2xs transition-all"
+ />
+ {stageSearchQuery && (
+ <button
+ onClick={() => setStageSearchQuery("")}
+ className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-ink-body cursor-pointer" title={t.dashboard.searchClear}
+ >
+ <X className="w-4 h-4" />
+ </button>
+ )}
+ </div>
 
-              A filter strip rather than a card grid: these are a sub-choice
-              of the professional track above, not a third peer group beside
-              the two track cards. Cards also read badly here - seven of them
-              in a three-column grid left one stranded on its own row, and
-              their column rhythm fought the two-column track selector right
-              above. Each branch's subtitle moves to a single line under the
-              strip, so only the selected one is spelled out. */}
-          {isTrackView && activeTrack === "professional" && (
-            <div className="mb-8">
-              {/* Wraps on desktop instead of scrolling: the seven pills need
-                  ~1180px and the content column is narrower than that, so a
-                  scroll strip would leave branches permanently off-screen with
-                  nothing to hint at them. Mobile keeps the swipeable strip,
-                  where a wrapped set would run five rows deep. */}
-              <div className="flex gap-2 overflow-x-auto sm:overflow-visible sm:flex-wrap scrollbar-none pb-1">
-                {PROFESSIONAL_BRANCHES.map((branch) => {
-                  const isActive = professionalBranch === branch.id;
-                  return (
-                    <button
-                      key={branch.id}
-                      onClick={() => handleSetProfessionalBranch(branch.id)}
-                      className={`shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
-                        isActive
-                          ? "border-line-invert bg-surface-invert text-ink-invert"
-                          : "border-line bg-white dark:bg-stone-900 text-ink-soft hover:border-line-firm hover:text-ink"
-                      }`}
-                    >
-                      {/* Không emoji. Bảy pill mỗi cái một biểu tượng khác nhau
-                          là bảy điểm nhìn cạnh tranh trên cùng một hàng, và
-                          không cái nào mang thông tin mà cái nhãn ngay cạnh nó
-                          chưa nói. Trạng thái đang chọn đã do nền đậm gánh. */}
-                      {t.professionalBranches[branch.id]?.label ?? branch.label}
-                    </button>
-                  );
-                })}
-              </div>
-              <div className="mt-2 flex items-start justify-between gap-4">
-                <p className="text-[11px] leading-relaxed text-ink-muted">
-                  {t.professionalBranches[professionalBranch]?.subtitle ??
-                    PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)?.subtitle}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setShowAllBranches((v) => !v)}
-                  className="shrink-0 cursor-pointer text-[11px] font-bold text-stone-600 underline-offset-2 hover:underline dark:text-stone-400"
-                >
-                  {showAllBranches ? t.dashboard.branchesCollapse : t.dashboard.branchesShowAll}
-                </button>
-              </div>
+ {/* Right: Flag Mode Controls */}
+ <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+ {flagSelectionMode && (
+ <>
+ <span className="text-xs font-bold text-info hidden lg:inline">
+ {format(t.dashboard.selectedCount, { count: selectedFlagLessonIds.size })}
+ </span>
+ <button
+ onClick={clearFlagSelection}
+ className="px-3 py-2 text-xs font-bold rounded-xl border border-line text-ink-soft hover:bg-surface transition-colors cursor-pointer"
+ >
+ {t.dashboard.cancel}
+ </button>
+ <button
+ onClick={applyManualFlags}
+ disabled={flagSaving || selectedFlagLessonIds.size === 0}
+ className="px-3 py-2 text-xs font-bold rounded-xl bg-brand-600 hover:bg-brand-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
+ >
+ {flagSaving ? t.dashboard.markLearned.saving : t.dashboard.markLearned.confirm}
+ </button>
+ </>
+ )}
 
-              {/* Bảy nhánh kèm mô tả, đọc một lượt. Bấm một dòng vừa chọn nhánh
-                  vừa đóng danh sách: mở ra để SO SÁNH, nên khi đã chọn xong thì
-                  đóng lại là bước tiếp theo, không phải một cú bấm nữa. */}
-              {showAllBranches && (
-                <ul className="mt-2.5 divide-y divide-stone-100 overflow-hidden rounded-xl border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
-                  {PROFESSIONAL_BRANCHES.map((branch) => (
-                    <li key={branch.id}>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          handleSetProfessionalBranch(branch.id);
-                          setShowAllBranches(false);
-                        }}
-                        className={`w-full cursor-pointer px-3.5 py-2.5 text-left transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/60 ${
-                          professionalBranch === branch.id ? "bg-stone-50 dark:bg-stone-800/60" : ""
-                        }`}
-                      >
-                        <span className="block text-xs font-bold text-ink">
-                          {t.professionalBranches[branch.id]?.label ?? branch.label}
-                        </span>
-                        <span className="mt-0.5 block text-[11px] leading-relaxed text-ink-muted">
-                          {t.professionalBranches[branch.id]?.subtitle ?? branch.subtitle}
-                        </span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          )}
+ <div data-manual-flag-info-root className="relative group">
+ <button
+ onClick={() => {
+ if (flagSelectionMode) clearFlagSelection();
+ else setFlagSelectionMode(true);
+ }}
+ className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition-colors cursor-pointer flex items-center gap-1.5 ${
+ flagSelectionMode
+ ? "border-info-line bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-400"
+ : "border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 text-ink-body hover:bg-stone-50 shadow-2xs"
+ }`}
+ >
+ <span>{t.dashboard.markLearned.button}</span>
+ <span
+ onClick={(e) => {
+ e.stopPropagation();
+ setManualFlagInfoOpen((current) => !current);
+ }}
+ className="inline-flex items-center justify-center rounded-full border border-line-strong w-4 h-4 text-[10px] font-black text-stone-500 transition-colors hover:bg-stone-100 dark:text-stone-400" aria-expanded={manualFlagInfoOpen}
+ aria-label={t.dashboard.markLearned.help}
+ >
+ ?
+ </span>
+ </button>
 
-          {/* Các nhánh render theo tab widget (weekly-challenge, cards,
-              cosmetics) đã bỏ: isTrackTab chặn những giá trị đó ngay ở chỗ đọc
-              localStorage, nên activeDashboardTab không thể mang chúng nữa. Ba
-              widget đó vẫn ở RPG hub. Đây là bước còn thiếu của c3f7ec9 -
-              commit đó gỡ dải tab nhưng để lại phần render mà dải tab từng mở. */}
-          <>
-          {/* ── Search Bar (Compact Left) + Flag Mode Controls (Right) ── */}
-          <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            {/* Left: Compact Search Input */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                value={stageSearchQuery}
-                onChange={(e) => setStageSearchQuery(e.target.value)}
-                placeholder={t.dashboard.searchPlaceholder}
-                className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-line bg-white dark:bg-stone-900 text-sm font-medium text-ink placeholder:text-stone-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
-              />
-              {stageSearchQuery && (
-                <button
-                  onClick={() => setStageSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-ink-body cursor-pointer"
-                  title={t.dashboard.searchClear}
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
+ <div className={`absolute right-0 top-full z-30 mt-2 w-80 max-w-[90vw] rounded-xl border border-line bg-white dark:bg-stone-900 p-4 text-xs text-ink-body leading-relaxed shadow-xl origin-top-right transition-all duration-150 space-y-2 ${
+ manualFlagInfoOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
+ }`}>
+ <p>
+ {t.dashboard.markLearned.autoPart1}
+ <strong>{t.dashboard.markLearned.autoAnd}</strong>
+ {t.dashboard.markLearned.autoPart2}
+ <span className="font-semibold text-accent">
+ {t.dashboard.markLearned.autoColour}
+ </span>
+ {t.dashboard.markLearned.autoPart3}
+ </p>
+ <p>
+ {t.dashboard.markLearned.manualPart1}
+ <span className="font-semibold text-info">
+ {t.dashboard.markLearned.manualColour}
+ </span>
+ {t.dashboard.markLearned.manualPart2}
+ </p>
+ </div>
+ </div>
+ </div>
+ </div>
 
-            {/* Right: Flag Mode Controls */}
-            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-              {flagSelectionMode && (
-                <>
-                  <span className="text-xs font-bold text-info hidden lg:inline">
-                    {format(t.dashboard.selectedCount, { count: selectedFlagLessonIds.size })}
-                  </span>
-                  <button
-                    onClick={clearFlagSelection}
-                    className="px-3 py-2 text-xs font-bold rounded-xl border border-line text-ink-soft hover:bg-surface transition-colors cursor-pointer"
-                  >
-                    {t.dashboard.cancel}
-                  </button>
-                  <button
-                    onClick={applyManualFlags}
-                    disabled={flagSaving || selectedFlagLessonIds.size === 0}
-                    className="px-3 py-2 text-xs font-bold rounded-xl bg-brand-600 hover:bg-brand-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
-                  >
-                    {flagSaving ? t.dashboard.markLearned.saving : t.dashboard.markLearned.confirm}
-                  </button>
-                </>
-              )}
+ {/* ── Stages + lessons ── */}
+ <div data-tour="stage-list" className="space-y-4 mt-6">
+ {(activeTrack === "professional"
+ ? track.stages.filter((s) => (PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)!.stageLabels as readonly string[]).includes(s.label))
+ : track.stages
+ ).map((stage) => {
+ const stageLessons = lessonsByStageLabel.get(stage.label) ?? [];
+ const stageHasSearchMatch = stageLessons.some(lessonMatchesSearch);
+ if (isSearchingStages && !stageHasSearchMatch) return null;
+ const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
+ // `stageLockedCount` từng nằm đây - một phép lọc qua cả chặng, không ai đọc.
+ const stageKey = `${activeTrack}-${stage.label}`;
+ const isCurrentStage = currentLessonId !== null && stageLessons.some((l) => l.id === currentLessonId);
+ const stageOpen = openStages.has(stageKey) || isCurrentStage || (isSearchingStages && stageHasSearchMatch);
 
-              <div data-manual-flag-info-root className="relative group">
-                <button
-                  onClick={() => {
-                    if (flagSelectionMode) clearFlagSelection();
-                    else setFlagSelectionMode(true);
-                  }}
-                  className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition-colors cursor-pointer flex items-center gap-1.5 ${
-                    flagSelectionMode
-                      ? "border-info-line bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-400"
-                      : "border-line bg-white dark:bg-stone-900 text-ink-body hover:bg-surface"
-                  }`}
-                >
-                  <span>{t.dashboard.markLearned.button}</span>
-                  <span
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setManualFlagInfoOpen((current) => !current);
-                    }}
-                    className="inline-flex items-center justify-center rounded-full border border-line-strong w-4 h-4 text-[10px] font-black text-stone-500 transition-colors hover:bg-stone-100 dark:text-stone-400"
-                    aria-expanded={manualFlagInfoOpen}
-                    aria-label={t.dashboard.markLearned.help}
-                  >
-                    ?
-                  </span>
-                </button>
+ const stageIdx = track.stages.findIndex((s) => s.label === stage.label);
+ const stageCopy = t.trackStages[activeTrack]?.stages[stageIdx];
+ const isStageLockedByMilestone = false;
+ const prevStageLabel = stageIdx > 0 ? track.stages[stageIdx - 1]?.label ?? "" : "";
+ 
+ const isCurrentMilestonePassed = passedMilestones.some((m) => m.stage_label === stage.label);
 
-                <div className={`absolute right-0 top-full z-30 mt-2 w-80 max-w-[90vw] rounded-xl border border-line bg-white dark:bg-stone-900 p-4 text-xs text-ink-body leading-relaxed shadow-xl origin-top-right transition-all duration-150 space-y-2 ${
-                  manualFlagInfoOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
-                }`}>
-                  {/* Split into segments rather than one string, so the <strong>
-                      and the coloured <span> stay in JSX. A dictionary value
-                      carrying markup would have to be dangerouslySetInnerHTML'd
-                      to render, and word order differs between the two
-                      languages anyway. */}
-                  <p>
-                    {t.dashboard.markLearned.autoPart1}
-                    <strong>{t.dashboard.markLearned.autoAnd}</strong>
-                    {t.dashboard.markLearned.autoPart2}
-                    <span className="font-semibold text-accent">
-                      {t.dashboard.markLearned.autoColour}
-                    </span>
-                    {t.dashboard.markLearned.autoPart3}
-                  </p>
-                  <p>
-                    {t.dashboard.markLearned.manualPart1}
-                    <span className="font-semibold text-info">
-                      {t.dashboard.markLearned.manualColour}
-                    </span>
-                    {t.dashboard.markLearned.manualPart2}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+ return (
+ <div
+ key={stage.label}
+ id={`stage-${stage.label}`}
+ className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 shadow-xs transition-all"
+ >
+ {/* Stage header - click to expand/collapse */}
+ {(() => {
+ const percent = stageLessons.length ? (stageDone / stageLessons.length) * 100 : 0;
+ return (
+ <div
+ role="button" tabIndex={0}
+ onClick={() => toggleStage(stageKey)}
+ onKeyDown={(e) => {
+ if (e.key === "Enter" || e.key === " ") {
+ e.preventDefault();
+ toggleStage(stageKey);
+ }
+ }}
+ className="w-full flex items-center justify-between gap-3 cursor-pointer text-left select-none"
+ >
+ <div className="flex items-center gap-3 min-w-0 flex-1">
+ {/* Biểu tượng chặng. Kiểu dáng giữ đúng bản tài chính (chặng 1 là lá cờ
+     trên nền vàng, còn lại là ô brand đậm); chỉ hình bên trong đổi theo
+     nội dung công nghệ, vì "%" hay thẻ tín dụng là của chặng thuế và nợ. */}
+ {stageIdx === 0 ? (
+ <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs tabular-nums font-black bg-[#fef08a] border border-amber-300">
+ <Flag className="w-5 h-5 text-rose-600 fill-rose-600" />
+ </div>
+ ) : (() => {
+   const StageIcon = STAGE_ICONS[(stageIdx - 1) % STAGE_ICONS.length];
+   return (
+     <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs tabular-nums font-black bg-brand-900 text-white border border-brand-900">
+       <StageIcon className="w-5 h-5 text-white" />
+     </div>
+   );
+ })()}
 
-          {/* ── Stages + lessons ── */}
-          <div data-tour="stage-list" className="space-y-6 mt-8">
-          {(activeTrack === "professional"
-            ? track.stages.filter((s) => (PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)!.stageLabels as readonly string[]).includes(s.label))
-            : track.stages
-          ).map((stage) => {
-            const stageLessons = lessonsByStageLabel.get(stage.label) ?? [];
-            const stageHasSearchMatch = stageLessons.some(lessonMatchesSearch);
-            if (isSearchingStages && !stageHasSearchMatch) return null;
-            const stageDone = stageLessons.filter((l) => completed.includes(l.id)).length;
-            const stageLockedCount = stageLessons.filter((l) => isLessonLocked(l)).length;
-            const stageKey = `${activeTrack}-${stage.label}`;
-            const stageOpen = openStages.has(stageKey) || (isSearchingStages && stageHasSearchMatch);
+ <div className="flex items-center gap-2 flex-wrap min-w-0">
+ <span className="text-[10px] tabular-nums font-black uppercase text-ink-body bg-surface-raised px-2 py-0.5 rounded-md border border-line-mid shrink-0">
+ {stageDisplayLabels.get(stage.label) || stageCopy?.label || stage.label}
+ </span>
+ {stage.isNew && (
+ <span className="text-[9px] tabular-nums font-black uppercase text-accent-ink bg-brand-100 dark:bg-brand-950/80 px-1.5 py-0.2 rounded border border-brand-300 shrink-0">
+ {t.dashboard.isNew}
+ </span>
+ )}
+ {/* KHÔNG `truncate`. Tên chặng là câu duy nhất nói người học sắp học
+     GÌ, và nó dài - "Biết mình trước khi học: audit, ngân sách, quỹ
+     khẩn cấp, nợ" cụt ở "Biết mình trước khi…" thì thẻ chặng chỉ còn
+     lại con số. Một người học báo đúng chuyện đó: "tựa đề bị ba chấm,
+     không biết nội dung mình đang học là bài gì". Cho xuống dòng, chặn
+     ở hai dòng để thẻ không cao vô hạn. */}
+ <h3 className="text-sm sm:text-base font-black text-ink-max leading-snug line-clamp-2">
+ {stageCopy?.name ?? stage.name}
+ </h3>
+ </div>
+ </div>
 
-            const stageIdx = track.stages.findIndex((s) => s.label === stage.label);
-            // Chữ hiển thị của chặng. Tra theo VỊ TRÍ trong `track.stages`, còn
-            // `stage.label` thì giữ nguyên tiếng Việt ở mọi chỗ nó là khoá:
-            // `lessonsByStageLabel`, `id={`stage-...`}` và cột `stage_label` đã
-            // ghi xuống Cloudflare cho mốc đã qua. Dịch khoá là mất tiến độ của
-            // người học, không phải mất một dòng chữ.
-            const stageCopy = t.trackStages[activeTrack]?.stages[stageIdx];
-            let isStageLockedByMilestone = false;
-            let prevStageLabel = "";
-            let prevStageLessonsCount = 0;
-            let prevStageDone = 0;
-            let prevMilestonePassed = false;
-            
-            if (stageIdx > 1) {
-              const prevStage = track.stages[stageIdx - 1];
-              prevStageLabel = prevStage.label;
-              const prevStageLessons = lessonsByStageLabel.get(prevStage.label) ?? [];
-              prevStageLessonsCount = prevStageLessons.length;
-              prevStageDone = prevStageLessons.filter((l) => completed.includes(l.id)).length;
-              
-              const isPrevStageCompleted = prevStageLessons.length > 0 && prevStageDone === prevStageLessons.length;
-              prevMilestonePassed = passedMilestones.some((m) => m.stage_label === prevStage.label);
-              isStageLockedByMilestone = false; // Gỡ khóa bài học theo yêu cầu người dùng, mở hoàn toàn
-            }
-            const isCurrentMilestonePassed = passedMilestones.some((m) => m.stage_label === stage.label);
+ {/* Right Stage Stats & Chevron */}
+ <div className="flex items-center gap-3 shrink-0">
+ {/* Huy hiệu "đã vượt ải" và nút NHẬN CHỨNG CHỈ.
+     Khối này từng bị gỡ mất trong một lượt dựng lại phần đầu chặng.
+     `CertificateModal` và state `selectedCertStage` vẫn còn nguyên bên
+     dưới, nhưng KHÔNG còn chỗ nào đặt state đó khác null - nên hộp
+     chứng chỉ thành mã chết và người học vượt ải xong không nhận được
+     gì. Không lỗi biên dịch: `setSelectedCertStage` vẫn được gọi ở
+     `onClose`, nên linter thấy nó "có dùng". */}
+ {isCurrentMilestonePassed && (
+   <div className="flex items-center gap-2 shrink-0">
+     <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-black text-accent-ink bg-brand-100 dark:bg-brand-950/60 px-2.5 py-1 rounded-lg">
+       {t.dashboard.milestone.passed}
+     </span>
+     <button
+       type="button"
+       onClick={(e) => {
+         e.stopPropagation();
+         setSelectedCertStage({ label: stage.label, name: stage.name });
+       }}
+       className="inline-flex items-center gap-1 text-[11px] font-black text-white bg-brand-600 hover:bg-brand-700 px-2.5 py-1 rounded-md transition-colors cursor-pointer"
+     >
+       <Award className="w-3.5 h-3.5" />
+       {t.dashboard.milestone.certificate}
+     </button>
+   </div>
+ )}
+ {stage.available && learnersInStage(stageLessons) > 0 && (
+ <span className="hidden md:inline-flex items-center gap-1.5 text-[11px] text-stone-500 font-medium">
+ <span className="flex -space-x-1.5 overflow-hidden">
+ <span className="inline-block h-4 w-4 rounded-full bg-brand-200 ring-1 ring-white" />
+ <span className="inline-block h-4 w-4 rounded-full bg-amber-200 ring-1 ring-white" />
+ </span>
+ <span>{format(t.dashboard.stageLearners, { count: learnersInStage(stageLessons) })}</span>
+ </span>
+ )}
 
-            return (
-              <div key={stage.label} id={`stage-${stage.label}`}>
-                {/* Stage header - click to expand/collapse */}
-                {(() => {
-                  const themeKey = `${activeTrack}-${stage.label}`;
-                  const theme = STAGE_THEMES[themeKey] || { emoji: "📖", bg: "bg-surface-raised", text: "text-ink", barColor: "bg-stone-500" };
-                  const percent = stageLessons.length ? (stageDone / stageLessons.length) * 100 : 0;
-                  return (
-                    // Hàng chặng là div-có-role chứ không phải <button>, vì nó
-                    // CHỨA một nút khác (nút chứng chỉ bên dưới). <button>
-                    // lồng trong <button> là HTML không hợp lệ, và trình duyệt
-                    // xử lý bằng cách bỏ nút bên trong ra khỏi luồng tiêu điểm
-                    // - nên bản cũ dùng <span role="button"> để lách, đổi lấy
-                    // việc người dùng bàn phím không bao giờ lấy được chứng
-                    // chỉ của chính mình.
-                    <div
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => toggleStage(stageKey)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          toggleStage(stageKey);
-                        }
-                      }}
-                      className={`w-full flex items-center gap-3 cursor-pointer text-left flex-wrap sm:flex-nowrap transition-all ${
-                        isCurrentMilestonePassed
-                          ? "bg-brand-500/[0.04] dark:bg-brand-500/[0.02] border border-brand-500/20 px-4 py-3 rounded-xl mb-4"
-                          : "border-b border-stone-100 dark:border-stone-800/40 pb-3 mb-4"
-                      }`}
-                    >
-                      <span className={`text-xs font-extrabold px-3 py-1.5 rounded-lg flex items-center ${
-                        isCurrentMilestonePassed
-                          ? "bg-brand-500 text-white"
-                          : `${theme.bg} ${theme.text}`
-                      }`}>
-                        {stageDisplayLabels.get(stage.label) || stageCopy?.label || stage.label}
-                      </span>
-                      {stage.isNew && (
-                        <span className="text-[10px] font-black text-white bg-gradient-to-r from-rose-500 to-orange-500 px-2 py-0.5 rounded-full shrink-0">
-                          {t.dashboard.isNew}
-                        </span>
-                      )}
-                      <span className="text-base sm:text-lg font-extrabold text-ink flex-1 leading-snug">{stageCopy?.name ?? stage.name}</span>
-                      {isCurrentMilestonePassed ? (
-                        <div className="flex items-center gap-2">
-                      <span className="flex items-center gap-1 text-xs font-bold text-ink-soft shrink-0 bg-surface-raised px-2.5 py-1 rounded-lg">
-                        {t.dashboard.milestone.passed}
-                      </span>
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedCertStage({ label: stage.label, name: stage.name });
-                            }}
-                            className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg active:scale-95 transition-all cursor-pointer"
-                          >
-                            {t.dashboard.milestone.certificate}
-                          </button>
-                        </div>
-                      ) : isStageLockedByMilestone ? (
-                        <span className="flex items-center gap-1 text-xs font-bold text-rose-500 dark:text-rose-400 shrink-0">
-                          <Lock className="w-3 h-3" /> {t.dashboard.milestone.awaiting}
-                        </span>
-                      ) : (
-                        stage.available && stageLockedCount > 0 && (
-                          <span className="flex items-center gap-1 text-xs font-bold text-ink-muted shrink-0">
-                            <Lock className="w-3 h-3" />
-                            {format(t.dashboard.lockedCount, { count: stageLockedCount })}
-                          </span>
-                        )
-                      )}
-                      {stage.available && stageLessons.length > 0 && (
-                        <div className="flex items-center gap-3 shrink-0 ml-auto sm:ml-0">
-                          <div className="w-16 h-1.5 bg-surface-raised rounded-full overflow-hidden hidden sm:block">
-                            <div className={`h-full ${isCurrentMilestonePassed ? "bg-brand-500" : theme.barColor}`} style={{ width: `${percent}%` }} />
-                          </div>
-                          <span className={`text-sm font-bold px-3 py-1 rounded-lg ${
-                            isCurrentMilestonePassed
-                              ? "text-accent-ink bg-brand-100 dark:bg-brand-950/60"
-                              : "text-ink-heading bg-surface-raised"
-                          }`}>
-                            {stageDone}/{stageLessons.length}
-                          </span>
-                        </div>
-                      )}
-                      <span className={`text-sm transition-transform shrink-0 ${
-                        isCurrentMilestonePassed
-                          ? "text-brand-500 dark:text-brand-400"
-                          : "text-ink-muted"
-                      } ${stageOpen ? "rotate-180" : ""}`}>
-                        {isStageLockedByMilestone ? <Lock className="w-3.5 h-3.5" aria-hidden /> : "▾"}
-                      </span>
-                    </div>
-                  );
-                })()}
+ {stage.available && stageLessons.length > 0 && (
+ <div className="flex items-center gap-2.5">
+ <div className="w-14 h-1.5 bg-surface-sunken rounded-full overflow-hidden hidden sm:block">
+ <div className="h-full bg-brand-600 dark:bg-brand-500 transition-all" style={{ width: `${percent}%` }} />
+ </div>
+ <span className="text-xs tabular-nums font-bold text-ink-body bg-white dark:bg-stone-800 px-2.5 py-1 rounded-xl border border-line-mid shadow-2xs">
+ {stageDone}/{stageLessons.length}
+ </span>
+ </div>
+ )}
 
-                {/* Not available yet - with lock and loading animation */}
-                {stageOpen && !stage.available && (
-                  <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-stone-50 dark:bg-stone-900/50 relative overflow-hidden">
-                    {/* Building background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 dark:via-stone-800 to-transparent opacity-30" />
+ <ChevronDown className={`w-4 h-4 text-stone-400 transition-transform ${stageOpen ? "rotate-180" : ""}`} />
+ </div>
+ </div>
+ );
+ })()}
 
-                    {/* Lock icon */}
-                    <div className="relative z-10 flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 rounded-lg bg-surface-sunken flex items-center justify-center animate-bounce">
-                        <svg className="w-6 h-6 text-ink-soft" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 1C6.48 1 2 5.48 2 11v10c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V11c0-5.52-4.48-10-10-10zm0 2c4.41 0 8 3.59 8 8v2H4v-2c0-4.41 3.59-8 8-8zm-3 13h6v2H9z"/>
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-ink-soft text-sm font-extrabold">{t.dashboard.stageLockedTitle}</p>
-                        <p className="text-ink-muted text-xs mt-1">{t.dashboard.stageLockedHint}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
+ {/* Not available yet - with lock and loading animation */}
+ {stageOpen && !stage.available && (
+ <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-stone-50 dark:bg-stone-900/50 relative overflow-hidden">
+ {/* Building background */}
+ <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 dark:via-stone-800 to-transparent opacity-30" />
 
-                {/* Available but no lessons in DB yet - with building animation */}
-                {stageOpen && stage.available && stageLessons.length === 0 && (
-                  <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-brand-50 dark:bg-brand-950/50 relative overflow-hidden">
-                    {/* Construction bars */}
-                    <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
-                      <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
-                      <div className="w-1 bg-stone-400 rounded-full" style={{ height: '28px' }} />
-                      <div className="w-1 bg-stone-400 rounded-full" style={{ height: '24px' }} />
-                      <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
-                    </div>
+ {/* Lock icon */}
+ <div className="relative z-10 flex flex-col items-center gap-3">
+ <div className="w-12 h-12 rounded-lg bg-surface-sunken flex items-center justify-center animate-bounce">
+ <svg className="w-6 h-6 text-ink-soft" fill="currentColor" viewBox="0 0 24 24">
+ <path d="M12 1C6.48 1 2 5.48 2 11v10c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V11c0-5.52-4.48-10-10-10zm0 2c4.41 0 8 3.59 8 8v2H4v-2c0-4.41 3.59-8 8-8zm-3 13h6v2H9z"/>
+ </svg>
+ </div>
+ <div>
+ <p className="text-ink-soft text-sm font-extrabold">{t.dashboard.stageLockedTitle}</p>
+ <p className="text-ink-muted text-xs mt-1">{t.dashboard.stageLockedHint}</p>
+ </div>
+ </div>
+ </div>
+ )}
 
-                    {/* Content */}
-                    <div className="relative z-10 flex flex-col items-center gap-2">
-                      <div className="animate-bounce rounded-xl bg-accent-soft text-accent p-2"><Construction className="w-7 h-7" strokeWidth={1.75} aria-hidden /></div>
-                      <p className="text-ink-soft text-sm font-extrabold">{t.dashboard.buildingTitle}</p>
-                      <p className="text-ink-muted text-xs">{t.dashboard.buildingSubtitle}</p>
-                    </div>
-                  </div>
-                )}
+ {/* Available but no lessons in DB yet - with building animation */}
+ {stageOpen && stage.available && stageLessons.length === 0 && (
+ <div className="border-2 border-dashed border-line rounded-xl px-5 py-6 text-center bg-brand-50 dark:bg-brand-950/50 relative overflow-hidden">
+ {/* Construction bars */}
+ <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
+ <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
+ <div className="w-1 bg-stone-400 rounded-full" style={{ height: '28px' }} />
+ <div className="w-1 bg-stone-400 rounded-full" style={{ height: '24px' }} />
+ <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
+ </div>
 
-                {/* Parts (sub-stages) - each its own collapsible accordion */}
-                {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && (
-                  <div className="space-y-3">
-                    {stage.parts.map((part, partIdx) => {
-                      const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
-                      if (partLessons.length === 0) return null;
-                      const partHasSearchMatch = partLessons.some(lessonMatchesSearch);
-                      if (isSearchingStages && !partHasSearchMatch) return null;
-                      const visiblePartLessons = isSearchingStages ? partLessons.filter(lessonMatchesSearch) : partLessons;
-                      const partDone = partLessons.filter((l) => completed.includes(l.id)).length;
-                      const partLockedCount = partLessons.filter((l) => isLessonLocked(l)).length;
-                      const partKey = `${stageKey}-${part.name}`;
-                      const partOpen = openParts.has(partKey) || (isSearchingStages && partHasSearchMatch);
+ {/* Content */}
+ <div className="relative z-10 flex flex-col items-center gap-2">
+ <HardHat className="h-8 w-8 text-ink-faint" strokeWidth={1.5} aria-hidden="true" />
+ <p className="text-ink-soft text-sm font-extrabold">{t.dashboard.buildingTitle}</p>
+ <p className="text-ink-muted text-xs">{t.dashboard.buildingSubtitle}</p>
+ </div>
+ </div>
+ )}
 
-                      return (
-                        <div key={part.name} className="border border-line rounded-xl overflow-hidden">
-                          <button
-                            onClick={() => togglePart(partKey)}
-                            className="w-full flex items-center gap-3 px-5 py-3.5 bg-stone-50 dark:bg-stone-900/50 hover:bg-surface-raised transition-colors cursor-pointer text-left"
-                          >
-                            <span className="font-bold text-ink-heading text-sm">{stageCopy?.parts[partIdx] ?? part.name}</span>
-                            <span className="text-xs text-ink-muted font-mono">
-                              {format(t.dashboard.lessonRange, { from: lessonOrdinal.get(partLessons[0].id) ?? "", to: lessonOrdinal.get(partLessons[partLessons.length - 1].id) ?? "" })}
-                            </span>
-                            {partLockedCount > 0 && (
-                              <span className="flex items-center gap-1 text-xs font-bold text-ink-muted">
-                                <Lock className="w-3 h-3" />
-                                {partLockedCount}
-                              </span>
-                            )}
-                            <span className="ml-auto text-sm font-bold text-ink-soft bg-white dark:bg-stone-900 px-3 py-0.5 rounded-lg border border-line">
-                              {partDone}/{partLessons.length}
-                            </span>
-                            <span className={`text-ink-muted text-sm transition-transform ${partOpen ? "rotate-180" : ""}`}>
-                              ▾
-                            </span>
-                          </button>
+ {/* Parts (sub-stages) - each its own collapsible accordion */}
+ {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && (
+ <div className="space-y-3">
+ {stage.parts.map((part, partIdx) => {
+ const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
+ if (partLessons.length === 0) return null;
+ const partHasSearchMatch = partLessons.some(lessonMatchesSearch);
+ if (isSearchingStages && !partHasSearchMatch) return null;
+ const visiblePartLessons = isSearchingStages ? partLessons.filter(lessonMatchesSearch) : partLessons;
+ const partDone = partLessons.filter((l) => completed.includes(l.id)).length;
+ // `partLockedCount` từng nằm đây - cùng phép lọc thừa như ở cấp chặng.
+ const partKey = `${stageKey}-${part.name}`;
+ const partOpen = openParts.has(partKey) || (isSearchingStages && partHasSearchMatch);
 
-                          {partOpen && (
-                            <div className="p-2 space-y-2">
-                              {visiblePartLessons.map((lesson) => {
-                                const isDone = completed.includes(lesson.id);
-                                const locked = isLessonLocked(lesson);
-                                const isFlagged = flaggedLessonIds.has(lesson.id);
-                                const isSelectedForFlag = selectedFlagLessonIds.has(lesson.id);
+ return (
+ <div key={part.name} className="rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900/80 overflow-hidden shadow-2xs">
+ <button
+ onClick={() => togglePart(partKey)}
+ className="w-full flex items-center gap-3 px-4 py-3 hover:bg-stone-50/80 dark:hover:bg-stone-800/50 transition-colors cursor-pointer text-left select-none"
+ >
+ <div className="shrink-0">
+ {partDone === partLessons.length && partLessons.length > 0 ? (
+ <div className="w-7 h-7 rounded-full bg-brand-100 dark:bg-brand-950/60 text-accent-strong flex items-center justify-center">
+ <CheckCircle2 className="w-4 h-4" />
+ </div>
+ ) : partIdx === 0 && stageIdx === 0 ? (
+ <div className="w-7 h-7 rounded-full bg-brand-900 text-white flex items-center justify-center shadow-xs">
+ <Play className="w-3.5 h-3.5 fill-white translate-x-0.5" />
+ </div>
+ ) : (
+ <div className="w-7 h-7 rounded-full bg-surface-raised text-stone-400 flex items-center justify-center">
+ <Lock className="w-3.5 h-3.5" />
+ </div>
+ )}
+ </div>
 
-                                if (locked) {
-                                  return (
-                                    <button
-                                      key={lesson.id}
-                                      onClick={() => handleLockedLessonClick(lesson)}
-                                      className="w-full text-left block rounded-lg border border-line bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
-                                    >
-                                      <div className="flex items-center gap-4 px-6 py-5">
-                                        <div className="w-12 flex-shrink-0 text-center">
-                                          <span className="font-mono text-sm font-extrabold text-ink-faint">
-                                            {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
-                                          </span>
-                                        </div>
-                                        <div className="flex-shrink-0">
-                                          <div className="w-6 h-6 rounded-full bg-surface-sunken flex items-center justify-center">
-                                            <Lock className="w-3.5 h-3.5 text-ink-muted" />
-                                          </div>
-                                        </div>
-                                        <div className="flex-1 min-w-0">
-                                          <div className="text-base font-bold leading-snug text-ink-muted">
-                                            {lesson.title}
-                                          </div>
-                                          <div className="text-sm mt-1 truncate text-ink-faint">
-                                            {isWaitingOnChallenge(lesson)
-                                              ? t.dashboard.unlockByChallenge
-                                              : t.dashboard.unlockByRequest}
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </button>
-                                  );
-                                }
+ {/* Cùng lý do với tên chặng ngay trên: đây là dòng nói phần này dạy
+     gì, cắt đi là mất. */}
+ <span className="font-bold text-ink text-xs sm:text-sm flex-1 min-w-0 line-clamp-2">
+ {stageCopy?.parts[partIdx] ?? part.name}
+ </span>
+ 
+ <span className="text-[10px] text-ink-muted tabular-nums bg-surface-raised px-2 py-0.5 rounded-md border border-stone-200/60 dark:border-stone-700">
+ {format(t.dashboard.lessonRange, { from: lessonOrdinal.get(partLessons[0].id) ?? "", to: lessonOrdinal.get(partLessons[partLessons.length - 1].id) ?? "" })}
+ </span>
 
-                                return (
-                                  <div
-                                    key={lesson.id}
-                                    onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
-                                    className={`block rounded-lg border transition-all ${
-                                      isDone
-                                        ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line hover:border-accent-line-mid hover:bg-brand-100 dark:hover:bg-brand-950"
-                                        : isSelectedForFlag
-                                          ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
-                                          : isFlagged
-                                            ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-info-line"
-                                            : "bg-white dark:bg-stone-900 border-line hover:border-line-firm hover:bg-surface"
-                                    }`}
-                                  >
-                                    <div className="flex items-center gap-4 px-6 py-5">
-                                      {/* Day number */}
-                                      <div className="w-12 flex-shrink-0 text-center">
-                                        <span className={`font-mono text-sm font-extrabold ${isDone ? "text-accent" : isFlagged ? "text-info" : "text-ink-muted"}`}>
-                                          {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
-                                        </span>
-                                      </div>
+ <span className="text-xs tabular-nums font-bold text-ink-soft bg-surface-raised px-2.5 py-0.5 rounded-lg border border-stone-200/60 dark:border-stone-700">
+ {partDone}/{partLessons.length}
+ </span>
+ 
+ <ChevronDown className={`w-3.5 h-3.5 text-stone-400 transition-transform ${partOpen ? "rotate-180" : ""}`} />
+ </button>
 
-                                      {/* Status circle */}
-                                      <div className="flex-shrink-0">
-                                        {isDone ? (
-                                          <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
-                                            <CheckCircle2 className="w-5 h-5 text-white" />
-                                          </div>
-                                        ) : isFlagged ? (
-                                          <div className="w-6 h-6 rounded-full bg-sky-500 flex items-center justify-center">
-                                            <CheckCheck className="w-4 h-4 text-white" />
-                                          </div>
-                                        ) : (
-                                          <div className="w-6 h-6 rounded-full border-3 border-line-strong" />
-                                        )}
-                                      </div>
+ {partOpen && (
+ <div className="p-2 space-y-2">
+ {visiblePartLessons.map((lesson) => {
+ const isDone = completed.includes(lesson.id);
+ const isExamCredited = isDone && examCreditedIds.has(lesson.id);
+ const locked = isLessonLocked(lesson);
+ const isFlagged = flaggedLessonIds.has(lesson.id);
+ const isSelectedForFlag = selectedFlagLessonIds.has(lesson.id);
 
-                                      {/* Title + subtitle */}
-                                      <Link
-                                        href={`/bai-hoc/${lesson.slug}`}
-                                        onClick={(event) => {
-                                          if (flagSelectionMode) {
-                                            event.stopPropagation();
-                                          }
-                                        }}
-                                        className="flex-1 min-w-0 block"
-                                      >
-                                        <div className={`text-base font-bold leading-snug ${isDone ? "text-accent-ink-strong" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
-                                          {lesson.title}
-                                        </div>
-                                        <div className={`text-sm mt-1 truncate ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
-                                          {isFlagged ? t.dashboard.markLearned.flaggedSubtitle : lesson.subtitle}
-                                        </div>
-                                        <div className="text-[11px] mt-0.5 text-ink-faint font-semibold">
-                                          {/* The time estimate also sits in the desktop meta
-                                              column to the right, which is `hidden sm:flex` -
-                                              so on mobile it would never be shown at all
-                                              without repeating it here. */}
-                                          <span className="sm:hidden"><Clock className="inline w-3 h-3 -mt-0.5" aria-hidden /> {formatLessonTime(lesson, t.dashboard.minutesShort)} · </span>
-                                          {format(t.dashboard.learnerCount, { count: getIllustrativeCount(lesson.slug, 60, 480) })}
-                                        </div>
-                                      </Link>
+ if (locked) {
+ return (
+ <button
+ key={lesson.id}
+ onClick={() => handleLockedLessonClick(lesson)}
+ className="w-full text-left block rounded-lg border border-line bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+ >
+ <div className="flex items-center gap-4 px-6 py-5">
+ <div className="w-12 flex-shrink-0 text-center">
+ <span className="tabular-nums text-sm font-extrabold text-ink-faint">
+ {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
+ </span>
+ </div>
+ <div className="flex-shrink-0">
+ <div className="w-6 h-6 rounded-full bg-surface-sunken flex items-center justify-center">
+ <Lock className="w-3.5 h-3.5 text-ink-muted" />
+ </div>
+ </div>
+ <div className="flex-1 min-w-0">
+ <div className="text-base font-bold leading-snug text-ink-muted">
+ {stripStageLessonPrefix(lesson.title)}
+ </div>
+ <div className="text-sm mt-1 line-clamp-2 text-ink-faint">
+ {isWaitingOnChallenge(lesson)
+ ? t.dashboard.unlockByChallenge
+ : t.dashboard.unlockByRequest}
+ </div>
+ </div>
+ </div>
+ </button>
+ );
+ }
 
-                                      {flagSelectionMode && !isDone && (
-                                        <button
-                                          type="button"
-                                          onClick={(event) => {
-                                            event.stopPropagation();
-                                            toggleFlagSelection(lesson.id);
-                                          }}
-                                          className={`flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center ${
-                                            isSelectedForFlag
-                                              ? "border-sky-500 bg-sky-500 text-white"
-                                              : "border-line-strong text-transparent"
-                                          }`}
-                                          aria-label={t.dashboard.markLearned.selectAria}
-                                        >
-                                          <CheckCheck className="w-3.5 h-3.5" />
-                                        </button>
-                                      )}
+ return (
+ <div
+ key={lesson.id}
+ onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
+ className={`relative block rounded-lg border transition-all ${
+ isDone
+ ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line hover:border-accent-line-mid hover:bg-brand-100 dark:hover:bg-brand-950"
+ : lesson.id === currentLessonId
+ ? "border-stone-900 bg-white dark:border-stone-100 dark:bg-stone-900"
+ : isSelectedForFlag
+ ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
+ : isFlagged
+ ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-info-line"
+ : "bg-white dark:bg-stone-900 border-line hover:border-line-firm hover:bg-surface"
+ }`}
+ >
+ <div className="flex items-center gap-4 px-6 py-5">
+ {/* Day number */}
+ <div className="w-12 flex-shrink-0 text-center">
+ <span className={`tabular-nums text-sm font-extrabold ${isDone ? "text-accent" : isFlagged ? "text-info" : "text-ink-muted"}`}>
+ {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
+ </span>
+ </div>
 
-                                      {/* Meta */}
-                                      <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
-                                        <span className={`text-sm font-semibold ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
-                                          {formatLessonTime(lesson, t.dashboard.minutesShort)}
-                                        </span>
-                                        <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
-                                          isDone
-                                            ? "bg-brand-200 dark:bg-brand-900 text-accent-ink-strong"
-                                            : isFlagged
-                                              ? "bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300"
-                                            : "bg-surface-raised text-ink-body"
-                                        }`}>
-                                          {isDone
-                                              ? t.dashboard.markLearned.doneBadge
-                                              : isFlagged
-                                                ? t.dashboard.markLearned.flaggedBadge
-                                                : t.difficulty[lesson.difficulty]}
-                                        </span>
-                                        {isFlagged && !isDone && (
-                                          <button
-                                            type="button"
-                                            onClick={(event) => {
-                                              event.stopPropagation();
-                                              event.preventDefault();
-                                              setAppealTarget({ id: lesson.id, slug: lesson.slug, title: lesson.title });
-                                            }}
-                                            className="text-xs font-bold text-ink-faint hover:text-info underline underline-offset-2"
-                                          >
-                                            {t.dashboard.appeal}
-                                          </button>
-                                        )}
-                                      </div>
+ {/* Status circle */}
+ <div className="flex-shrink-0">
+ {isExamCredited ? (
+ // Hổ phách chứ không xanh: đã mở khoá là đúng, nhưng ghi "xong" là
+ // ghi sai - người học chưa mở bài này ra lần nào.
+ <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center" title={t.dashboard.examCreditedHint}>
+ <LockOpen className="w-3.5 h-3.5 text-white" />
+ </div>
+ ) : isDone ? (
+ <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
+ <CheckCircle2 className="w-5 h-5 text-white" />
+ </div>
+ ) : isFlagged ? (
+ <div className="w-6 h-6 rounded-full bg-sky-500 flex items-center justify-center">
+ <CheckCheck className="w-4 h-4 text-white" />
+ </div>
+ ) : (
+ <div className="w-6 h-6 rounded-full border-3 border-line-strong" />
+ )}
+ </div>
 
-                                      <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-accent" : "text-ink-muted"}`}>
-                                        ›
-                                      </div>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
+ {/* Title + subtitle */}
+ <Link
+ href={`/bai-hoc/${lesson.slug}`}
+ onClick={(event) => {
+ if (flagSelectionMode) {
+ event.stopPropagation();
+ }
+ }}
+ className="flex-1 min-w-0 block"
+ >
+ <div className={`text-base font-bold leading-snug ${isDone ? "text-accent-ink-strong" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
+ {stripStageLessonPrefix(lesson.title)}
+ </div>
+ <div className={`text-sm mt-1 line-clamp-2 ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
+ {isExamCredited ? t.dashboard.examCreditedSubtitle : isFlagged ? t.dashboard.markLearned.flaggedSubtitle : renderSubtitle(lesson.id)}
+ </div>
+ <div className="text-[11px] mt-0.5 text-ink-faint font-semibold">
+ {/* The time estimate also sits in the desktop meta
+ column to the right, which is `hidden sm:flex` -
+ so on mobile it would never be shown at all
+ without repeating it here. */}
+ <span className="sm:hidden">⏱ {formatLessonTime(lesson, t.dashboard.minutesShort)} · </span>
+ {/* CHỈ hiện khi có người thật đã học xong bài này.
+  Trước đây đây là getIllustrativeCount(slug, 60, 480) - băm slug
+  ra một số trong khoảng 60-480 và gọi nó là "N người đã học". Bài
+  chưa ai học vẫn hiện "212 người đã học", và con số ấy không đổi
+  dù cả tháng không ai mở.
+  Không có số thì không dựng gì: "0 người đã học" là câu đúng
+  nhưng không ai muốn đọc trước khi bắt đầu một bài. */}
+ {(lessonLearnerCounts?.get(lesson.id) ?? 0) > 0 &&
+ format(t.dashboard.learnerCount, { count: lessonLearnerCounts!.get(lesson.id)! })}
+ </div>
+ </Link>
 
-                {/* Milestone Exam Banner (if current stage is completed but milestone is not passed) */}
-                {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && stageDone === stageLessons.length && !passedMilestones.some((m) => m.stage_label === stage.label) && (
-                  <div className="mt-4 p-5 rounded-xl border border-amber-300 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-xs font-bold text-warn-ink flex items-center gap-1.5">
-                        {format(t.dashboard.milestone.eligible, { stage: stage.label })}
-                      </h4>
-                      <p className="text-[10px] text-ink-muted mt-1 leading-relaxed">
-                        {t.dashboard.milestone.eligibleBodyPart1}<strong>{t.finalOne.dashboardClient.milestoneBonusXp}</strong>{t.dashboard.milestone.eligibleBodyPart2}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => setActiveMilestoneExam({
-                        label: stage.label,
-                        name: stage.name,
-                        lessonIds: stageLessons.map((l) => l.id)
-                      })}
-                      className="px-4 py-2 text-xs font-extrabold bg-amber-500 hover:bg-amber-600 text-white rounded-xl hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
-                    >
-                      {t.dashboard.milestone.start}
-                    </button>
-                  </div>
-                )}
+ {flagSelectionMode && !isDone && (
+ <button
+ type="button" onClick={(event) => {
+ event.stopPropagation();
+ toggleFlagSelection(lesson.id);
+ }}
+ className={`flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center ${
+ isSelectedForFlag
+ ? "border-sky-500 bg-sky-500 text-white"
+ : "border-line-strong text-transparent"
+ }`}
+ aria-label={t.dashboard.markLearned.selectAria}
+ >
+ <CheckCheck className="w-3.5 h-3.5" />
+ </button>
+ )}
 
-                {/* Locked Stage Banner (if stage is locked by previous stage milestone) */}
-                {stageOpen && stage.available && isStageLockedByMilestone && (
-                  <div className="border-2 border-dashed border-rose-200/60 dark:border-rose-950/40 rounded-xl px-5 py-8 text-center bg-rose-500/[0.02] relative overflow-hidden">
-                    <div className="flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center">
-                        <Lock className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <p className="text-ink text-sm font-extrabold">{t.dashboard.stageLockedBadge}</p>
-                        <p className="text-ink-muted text-xs mt-1 max-w-xs mx-auto leading-relaxed">
-                          {t.dashboard.milestone.lockedPart1}<strong>{format(t.dashboard.milestone.lockedExamName, { stage: prevStageLabel })}</strong>{t.dashboard.milestone.lockedPart2}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-          </div>
+ {/* Meta */}
+ <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
+ <span className={`text-sm font-semibold ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
+ {formatLessonTime(lesson, t.dashboard.minutesShort)}
+ </span>
+ {/* Ba trạng thái, ba cách đọc: đã học
+ (bạc hà), ĐANG HỌC (nền mực - chỉ
+ đúng một hàng trong cả danh sách
+ mang nó), chưa học (nhãn độ khó).
+ Trước đây chỉ có hai, nên một chặng
+ 21 bài chưa học là 21 hàng giống hệt
+ nhau. */}
+ <span className={`text-sm font-bold rounded-lg px-3 py-1 ${
+ isDone
+ ? "bg-brand-200 dark:bg-brand-900 text-brand-900 dark:text-brand-300"
+ : lesson.id === currentLessonId
+ ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900"
+ : isFlagged
+ ? "bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300"
+ : "bg-surface-raised text-ink-body"
+ }`}>
+ {isDone
+ ? t.dashboard.markLearned.doneBadge
+ : lesson.id === currentLessonId
+ ? t.dashboard.markLearned.inProgressBadge
+ : isFlagged
+ ? t.dashboard.markLearned.flaggedBadge
+ : t.difficulty[lesson.difficulty]}
+ </span>
+ {isFlagged && !isDone && (
+ <button
+ type="button" onClick={(event) => {
+ event.stopPropagation();
+ event.preventDefault();
+ setAppealTarget({ id: lesson.id, slug: lesson.slug, title: lesson.title });
+ }}
+ className="text-xs font-bold text-ink-faint hover:text-info underline underline-offset-2"
+ >
+ {t.dashboard.appeal}
+ </button>
+ )}
+ </div>
 
-          {/* Case chuyên sâu - real company/topic deep-dives outside the day curriculum */}
-          {bonusLessons.length > 0 && (
-            <div className="mt-6">
-              <button
-                onClick={() => toggleStage("bonus")}
-                className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
-              >
-                <span className="text-xs font-extrabold text-ink uppercase tracking-widest bg-surface-raised px-3 py-1 rounded-lg">
-                  {t.finalOne.dashboardClient.bonusLabel}
-                </span>
-                <span className="text-lg font-extrabold text-ink" role="heading" aria-level={2}>{t.dashboard.caseStudies}</span>
-                <span className="ml-auto text-base font-bold text-ink bg-surface-raised px-4 py-1 rounded-lg">
-                  {bonusDone}/{bonusLessons.length}
-                </span>
-                <span className={`text-ink-faint text-sm transition-transform ${bonusOpen ? "rotate-180" : ""}`}>
-                  ▾
-                </span>
-              </button>
+ <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-accent" : "text-ink-muted"}`}>
+ ›
+ </div>
+ </div>
+ </div>
+ );
+ })}
+ </div>
+ )}
+ </div>
+ );
+ })}
+ </div>
+ )}
 
-              {bonusOpen && (
-                <div className="space-y-5">
-                  {bonusGroups.map((group) => (
-                  <div key={group.category} className="space-y-2">
-                    <div className="text-xs font-extrabold text-ink-muted uppercase tracking-widest px-1">
-                      {group.label}
-                    </div>
-                  {group.lessons.map((lesson) => {
-                    const isDone = completed.includes(lesson.id);
-                    const locked = isLessonLocked(lesson);
-                    const isFlagged = flaggedLessonIds.has(lesson.id);
-                    const isSelectedForFlag = selectedFlagLessonIds.has(lesson.id);
+ {/* Milestone Exam Banner (if current stage is completed but milestone is not passed) */}
+ {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && stageDone === stageLessons.length && !passedMilestones.some((m) => m.stage_label === stage.label) && (
+ <div className="mt-4 p-5 rounded-xl border border-amber-300 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+ <div className="min-w-0 flex-1">
+ <h4 className="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1.5">
+ {format(t.dashboard.milestone.eligible, { stage: stage.label })}
+ </h4>
+ <p className="text-[10px] text-ink-muted mt-1 leading-relaxed">
+ {t.dashboard.milestone.eligibleBodyPart1}<strong>{t.finalOne.dashboardClient.milestoneBonusXp}</strong>{t.dashboard.milestone.eligibleBodyPart2}
+ </p>
+ </div>
+ <button
+ onClick={() => setActiveMilestoneExam({
+ label: stage.label,
+ name: stage.name,
+ lessonIds: stageLessons.map((l) => l.id)
+ })}
+ className="px-4 py-2 text-xs font-extrabold bg-amber-500 hover:bg-amber-600 text-white rounded-xl hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
+ >
+ {t.dashboard.milestone.start}
+ </button>
+ </div>
+ )}
 
-                    if (locked) {
-                      return (
-                        <button
-                          key={lesson.id}
-                          onClick={() => handleLockedLessonClick(lesson)}
-                          className="w-full text-left block rounded-lg border border-line bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
-                        >
-                          <div className="flex items-center gap-4 px-6 py-4">
-                            <div className="flex-shrink-0">
-                              <div className="w-6 h-6 rounded-full bg-surface-sunken flex items-center justify-center">
-                                <Lock className="w-3.5 h-3.5 text-ink-muted" />
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="text-base font-bold leading-snug text-ink-muted">
-                                {lesson.title}
-                              </div>
-                              <div className="text-sm mt-0.5 truncate text-ink-faint">
-                                {isWaitingOnChallenge(lesson)
-                                  ? t.dashboard.unlockByChallenge
-                                  : t.dashboard.unlockByRequest}
-                              </div>
-                            </div>
-                          </div>
-                        </button>
-                      );
-                    }
+ {/* Locked Stage Banner (if stage is locked by previous stage milestone) */}
+ {stageOpen && stage.available && isStageLockedByMilestone && (
+ <div className="border-2 border-dashed border-rose-200/60 dark:border-rose-950/40 rounded-xl px-5 py-8 text-center bg-rose-500/[0.02] relative overflow-hidden">
+ <div className="flex flex-col items-center gap-3">
+ <div className="w-12 h-12 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center">
+ <Lock className="w-6 h-6" />
+ </div>
+ <div>
+ <p className="text-ink text-sm font-extrabold">{t.dashboard.stageLockedBadge}</p>
+ <p className="text-ink-muted text-xs mt-1 max-w-xs mx-auto leading-relaxed">
+ {t.dashboard.milestone.lockedPart1}<strong>{format(t.dashboard.milestone.lockedExamName, { stage: prevStageLabel })}</strong>{t.dashboard.milestone.lockedPart2}
+ </p>
+ </div>
+ </div>
+ </div>
+ )}
+ </div>
+ );
+ })}
+ </div>
 
-                    return (
-                      <div
-                        key={lesson.id}
-                        onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
-                        className={`block rounded-lg border transition-all ${
-                          isDone
-                            ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line hover:border-accent-line-mid hover:bg-brand-100 dark:hover:bg-brand-950"
-                            : isSelectedForFlag
-                              ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
-                              : isFlagged
-                                ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-info-line"
-                            : "bg-white dark:bg-stone-900 border-line hover:border-line-firm hover:bg-surface"
-                        }`}
-                      >
-                        <div className="flex items-center gap-4 px-6 py-4">
-                          <div className="flex-shrink-0">
-                            {isDone ? (
-                              <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
-                                <CheckCircle2 className="w-5 h-5 text-white" />
-                              </div>
-                            ) : isFlagged ? (
-                              <div className="w-6 h-6 rounded-full bg-sky-500 flex items-center justify-center">
-                                <CheckCheck className="w-4 h-4 text-white" />
-                              </div>
-                            ) : (
-                              <div className="w-6 h-6 rounded-full border-2 border-line-strong" />
-                            )}
-                          </div>
-                          <Link
-                            href={`/bai-hoc/${lesson.slug}`}
-                            onClick={(event) => {
-                              if (flagSelectionMode) {
-                                event.stopPropagation();
-                              }
-                            }}
-                            className="flex-1 min-w-0 block"
-                          >
-                            <div className={`text-base font-bold leading-snug ${isDone ? "text-accent-ink-strong" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
-                              {lesson.title}
-                            </div>
-                            <div className={`text-sm mt-0.5 truncate ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
-                              {isFlagged ? t.dashboard.markLearned.flaggedSubtitle : lesson.subtitle}
-                            </div>
-                          </Link>
-                          {flagSelectionMode && !isDone && (
-                            <button
-                              type="button"
-                              onClick={(event) => {
-                                event.stopPropagation();
-                                toggleFlagSelection(lesson.id);
-                              }}
-                              className={`flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center ${
-                                isSelectedForFlag
-                                  ? "border-sky-500 bg-sky-500 text-white"
-                                  : "border-line-strong text-transparent"
-                              }`}
-                              aria-label={t.dashboard.markLearned.selectAria}
-                            >
-                              <CheckCheck className="w-3.5 h-3.5" />
-                            </button>
-                          )}
-                          <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-accent" : "text-ink-faint"}`}>
-                            ›
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                  </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+ {/* Case chuyên sâu - real company/topic deep-dives outside the day curriculum */}
+ {bonusLessons.length > 0 && (
+ <div className="mt-6">
+ <button
+ onClick={() => toggleStage("bonus")}
+ className="w-full flex items-baseline gap-4 mb-4 cursor-pointer text-left"
+ >
+ <span className="text-xs font-extrabold text-ink uppercase tracking-widest bg-surface-raised px-3 py-1 rounded-lg">
+ {t.finalOne.dashboardClient.bonusLabel}
+ </span>
+ <span className="text-lg font-extrabold text-ink" role="heading" aria-level={2}>{t.dashboard.caseStudies}</span>
+ <span className="ml-auto text-base font-bold text-ink bg-surface-raised px-4 py-1 rounded-lg">
+ {bonusDone}/{bonusLessons.length}
+ </span>
+ <span className={`text-ink-faint text-sm transition-transform ${bonusOpen ? "rotate-180" : ""}`}>
+ ▾
+ </span>
+ </button>
+
+ {bonusOpen && (
+ <div className="space-y-5">
+ {bonusGroups.map((group) => (
+ <div key={group.category} className="space-y-2">
+ <div className="text-xs font-extrabold text-ink-muted uppercase tracking-widest px-1">
+ {group.label}
+ </div>
+ {group.lessons.map((lesson) => {
+ const isDone = completed.includes(lesson.id);
+ const isExamCredited = isDone && examCreditedIds.has(lesson.id);
+ const locked = isLessonLocked(lesson);
+ const isFlagged = flaggedLessonIds.has(lesson.id);
+ const isSelectedForFlag = selectedFlagLessonIds.has(lesson.id);
+
+ if (locked) {
+ return (
+ <button
+ key={lesson.id}
+ onClick={() => handleLockedLessonClick(lesson)}
+ className="w-full text-left block rounded-lg border border-line bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+ >
+ <div className="flex items-center gap-4 px-6 py-4">
+ <div className="flex-shrink-0">
+ <div className="w-6 h-6 rounded-full bg-surface-sunken flex items-center justify-center">
+ <Lock className="w-3.5 h-3.5 text-ink-muted" />
+ </div>
+ </div>
+ <div className="flex-1 min-w-0">
+ <div className="text-base font-bold leading-snug text-ink-muted">
+ {stripStageLessonPrefix(lesson.title)}
+ </div>
+ <div className="text-sm mt-0.5 line-clamp-2 text-ink-faint">
+ {isWaitingOnChallenge(lesson)
+ ? t.dashboard.unlockByChallenge
+ : t.dashboard.unlockByRequest}
+ </div>
+ </div>
+ </div>
+ </button>
+ );
+ }
+
+ return (
+ <div
+ key={lesson.id}
+ onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
+ className={`block rounded-lg border transition-all ${
+ isDone
+ ? "bg-brand-50 dark:bg-brand-950/50 border-accent-line hover:border-accent-line-mid hover:bg-brand-100 dark:hover:bg-brand-950"
+ : isSelectedForFlag
+ ? "bg-sky-50 dark:bg-sky-950/40 border-info-line"
+ : isFlagged
+ ? "bg-sky-50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900 hover:border-info-line"
+ : "bg-white dark:bg-stone-900 border-line hover:border-line-firm hover:bg-surface"
+ }`}
+ >
+ <div className="flex items-center gap-4 px-6 py-4">
+ <div className="flex-shrink-0">
+ {isExamCredited ? (
+ // Hổ phách chứ không xanh: đã mở khoá là đúng, nhưng ghi "xong" là
+ // ghi sai - người học chưa mở bài này ra lần nào.
+ <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center" title={t.dashboard.examCreditedHint}>
+ <LockOpen className="w-3.5 h-3.5 text-white" />
+ </div>
+ ) : isDone ? (
+ <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
+ <CheckCircle2 className="w-5 h-5 text-white" />
+ </div>
+ ) : isFlagged ? (
+ <div className="w-6 h-6 rounded-full bg-sky-500 flex items-center justify-center">
+ <CheckCheck className="w-4 h-4 text-white" />
+ </div>
+ ) : (
+ <div className="w-6 h-6 rounded-full border-2 border-line-strong" />
+ )}
+ </div>
+ <Link
+ href={`/bai-hoc/${lesson.slug}`}
+ onClick={(event) => {
+ if (flagSelectionMode) {
+ event.stopPropagation();
+ }
+ }}
+ className="flex-1 min-w-0 block"
+ >
+ <div className={`text-base font-bold leading-snug ${isDone ? "text-accent-ink-strong" : isFlagged ? "text-sky-900 dark:text-sky-300" : "text-ink"}`}>
+ {stripStageLessonPrefix(lesson.title)}
+ </div>
+ <div className={`text-sm mt-0.5 line-clamp-2 ${isDone ? "text-accent-strong" : isFlagged ? "text-sky-700 dark:text-sky-400" : "text-ink-soft"}`}>
+ {isExamCredited ? t.dashboard.examCreditedSubtitle : isFlagged ? t.dashboard.markLearned.flaggedSubtitle : renderSubtitle(lesson.id)}
+ </div>
+ </Link>
+ {flagSelectionMode && !isDone && (
+ <button
+ type="button" onClick={(event) => {
+ event.stopPropagation();
+ toggleFlagSelection(lesson.id);
+ }}
+ className={`flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center ${
+ isSelectedForFlag
+ ? "border-sky-500 bg-sky-500 text-white"
+ : "border-line-strong text-transparent"
+ }`}
+ aria-label={t.dashboard.markLearned.selectAria}
+ >
+ <CheckCheck className="w-3.5 h-3.5" />
+ </button>
+ )}
+ <div className={`flex-shrink-0 text-lg font-bold ${isDone ? "text-accent" : "text-ink-faint"}`}>
+ ›
+ </div>
+ </div>
+ </div>
+ );
+ })}
+ </div>
+ ))}
+ </div>
+ )}
+ </div>
+ )}
+
+ {/* Khối "Cộng đồng học tập hôm nay" ĐÃ GỠ khỏi cuối cột trái.
+ Nó dựng CommunityLearningNow lần thứ hai trên cùng một màn hình:
+ cột phải đã có mục "Cộng đồng hôm nay" với đúng danh sách người
+ đang giữ chuỗi ngày, chỉ khác hình dạng - một băng chuyền ngang ở
+ đây, một danh sách dọc ở kia. Hai bản của cùng một dữ liệu, cách
+ nhau một lần cuộn.
+ Nếu sau này muốn dựng lại thì việc đúng là bỏ bản ở cột phải,
+ không phải thêm bản thứ ba. */}
+
+ {/* Ba công cụ ôn tập, chuyển từ thanh bên xuống đây - xem chú thích
+ ở chỗ thanh bên. Chúng là việc học thật, chỉ là việc SAU bài kế
+ tiếp chứ không phải việc cạnh nó. */}
+ {isLessonsView && user?.id && (
+ <div className="mt-6 space-y-4">
+ <LessonRecallWidget userId={user.id} />
+ <SmartRemediationWidget userId={user.id} lessonsMeta={lessonsMeta} />
+ </div>
+ )}
+
           </>
       </>
       )}
@@ -2437,7 +2518,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               nhạy tới mức thừa một khối là trình duyệt tự đẻ ra một hàng ngầm. */}
           <div className={`min-w-0 space-y-6 ${
             isLessonsView
-              ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5"
+              ? "xl:min-h-0 xl:overflow-y-auto xl:pr-1.5"
               : isFullPreset
                 ? "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto] xl:gap-3.5"
                 : "xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:pr-0.5"
@@ -2456,25 +2537,50 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                 Vẫn chỉ hiện ở chế độ xem bài, y như trước khi dời: trang tổng
                 quan chưa từng dựng hai thẻ này. */}
+            {/* Cột phải của /hoc-bai, chép từ bản tài chính theo đúng thứ tự:
+                sổ tay và câu sai (việc làm TRONG lúc học) đứng đầu, rồi thử
+                thách mỗi ngày, thử thách tiếp theo, và cộng đồng hôm nay. Ôn
+                tập theo lịch và gợi ý bù lỗ hổng đã xuống cuối cột trái. */}
+            {isLessonsView && <NotesShortcutCard />}
+
+            {isLessonsView && user?.id && <MistakeReviewWidget userId={user.id} />}
+
+            {isLessonsView && user?.id && <DailyNewsQuizWidget userId={user.id} compact />}
+
             {isLessonsView && (
-              <div className="divide-y divide-stone-200 overflow-hidden rounded-xl border border-stone-200 bg-white dark:divide-stone-800 dark:border-stone-800 dark:bg-stone-900">
-                <LearningPathSummary
-                  track={activeTrack}
-                  done={sorted.filter((l) => completed.includes(l.id)).length}
-                  total={sorted.length}
-                />
-                <NotesShortcutCard />
+              <div className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 shadow-xs flex items-center justify-between gap-3 select-none">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center shrink-0">
+                    <Trophy className="w-5 h-5 text-warn fill-amber-400" />
+                  </div>
+                  <div>
+                    <span className="text-[9.5px] tabular-nums font-black uppercase tracking-wider text-ink-faint block">
+                      {t.dashboard.nextChallenge}
+                    </span>
+                    <h4 className="text-xs font-black text-ink mt-0.5 uppercase">
+                      {format(t.dashboard.rigorousExamTitle, { level: getLevelByXp(userXp, cfaCompletedForLevel).level + 1 })}
+                    </h4>
+                  </div>
+                </div>
+                <Link
+                  href="/kiem-tra"
+                  className="shrink-0 px-3 py-1.5 rounded-xl bg-surface-raised hover:bg-surface-sunken text-ink-heading tabular-nums font-black text-[10.5px] transition-colors flex items-center gap-1 cursor-pointer"
+                >
+                  <span>{t.dashboard.takeExamNow}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             )}
 
-            {/* Study aids, beside the lesson list rather than stacked on top of
-                it - see the note in the left column. */}
-            {isLessonsView && user?.id && (
-              <>
-                <LessonRecallWidget userId={user.id} />
-                <MistakeReviewWidget userId={user.id} />
-                <SmartRemediationWidget userId={user.id} lessonsMeta={lessonsMeta} />
-              </>
+            {isLessonsView && (
+              <section className="rounded-xl border border-line bg-white p-3.5 dark:bg-stone-900">
+                <h3 className="mb-2.5 text-[11px] font-semibold uppercase tracking-wider text-ink-faint">
+                  {t.dashboard.communityTodayTitle}
+                </h3>
+                <div className="[&>*]:border-0 [&>*]:bg-transparent [&>*]:p-0 [&>*]:shadow-none">
+                  <CommunityLearningNow lessonsMeta={lessonsMeta} />
+                </div>
+              </section>
             )}
 
             {/* Rewards and the career goal picker are overview concerns; the
@@ -2490,7 +2596,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 <CombinedRewardsWidget userId={user.id} defaultExpanded={true} compact />
               </div>
             )}
-            {user?.id && (
+            {!isLessonsView && user?.id && (
               // `space-y-4`: hai khối bên dưới là hai thẻ riêng, mỗi cái có nền
               // và viền của mình, nhưng lớp bọc này trước đây không có khoảng
               // cách nào - nên chúng dính liền thành một thẻ trông như bị vỡ ở

@@ -57,3 +57,4 @@ pics/
 # hệ cũ; D1 giờ là nguồn duy nhất. Không có lý do gì để nó nằm trong git.
 scripts/d1/data/
 scripts/d1/sql/
+backups/

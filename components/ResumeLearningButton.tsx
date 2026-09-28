@@ -3,22 +3,31 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import TaiTaiAvatar from "@/components/TaiTaiAvatar";
-import { ArrowRight, BookOpen, Map } from "lucide-react";
+import { ArrowRight, BookOpen, Sparkles } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
-import { getQuizAnswers } from "@/lib/progress";
-import { XP_PER_LESSON } from "@/lib/levels";
-import RecallCard from "@/components/RecallCard";
+import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 import type { RecallItem } from "@/lib/recall-schedule";
 import type { StageTopicId, TopicAdviceId } from "@/lib/stage-topics";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
+import { XP_PER_LESSON } from "@/lib/levels";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
+  compact?: boolean;
+  /** Id của người học, do trang gọi truyền xuống.
+   *
+   *  Đo được trước khi thêm: câu trả lời quan trọng nhất của trang tổng quan
+   *  ("học gì tiếp") tới SAU CÙNG, vì nó nối thêm một chặng vào cuối một chuỗi
+   *  đã dài - chờ phiên → hai RPC → render → thẻ này gắn → `getCurrentUser()`
+   *  → server action lấy lời chúc. Chặng `getCurrentUser()` là chặng duy nhất
+   *  bỏ được mà không đổi dữ liệu: DashboardClient đã có `user.id` trong tay
+   *  từ lúc phiên resolve. Vẫn giữ nhánh tự đọc để thẻ còn dùng được ở chỗ
+   *  không có sẵn id. */
+  userId?: string | null;
 }
 
 interface Greeting {
@@ -47,28 +56,17 @@ interface Greeting {
   } | null;
 }
 
-// Replaces the old plain "Tiếp tục học" banner with a Tài Tài chat bubble
-// that actually summarizes where the learner is - which lesson, what it's
-// about in one line, and how many minutes they've put in so far - instead
-// of a generic label, plus a clear tap target to continue.
-// Thẻ này KHÔNG thu gọn được nữa, theo yêu cầu của chủ dự án 09/08/2026.
-// Trước đó nó nhớ trạng thái trong localStorage ("thtcdn_resume_card_collapsed")
-// và có ba nút chevron - một cho mỗi nhánh render. Nó là thứ đầu tiên trên
-// dashboard và là chỗ duy nhất nói "bạn đang dở bài nào", nên thu gọn được
-// nghĩa là người học có thể tự giấu mất lối quay lại bài đang học và không
-// có gì nhắc họ mở lại.
-
-export default function ResumeLearningButton({ activeTrack }: ResumeLearningButtonProps) {
+export default function ResumeLearningButton({ activeTrack, compact = false, userId }: ResumeLearningButtonProps) {
   const { t } = useI18n();
   const [greeting, setGreeting] = useState<Greeting | null>(null);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchGreeting = async () => {
       try {
-        const user = await getCurrentUser();
-
-        if (user) {
-          const result = await getDashboardGreetingAction(user.id, activeTrack);
+        const id = userId ?? (await getCurrentUser())?.id ?? null;
+        if (id) {
+          const result = await getDashboardGreetingAction(id, activeTrack);
           setGreeting(result);
         }
       } catch (error) {
@@ -79,67 +77,34 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
     };
 
     fetchGreeting();
-  }, [activeTrack]);
+  }, [activeTrack, userId]);
 
   if (loading) {
     return (
-      <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-3 flex items-center gap-3">
-        <div className="relative w-8 h-8 flex-shrink-0">
-          <span className="absolute inset-0 rounded-full bg-brand-400/30 animate-ping" />
-          <span className="absolute -inset-0.5 rounded-full border border-brand-400/60 border-t-transparent animate-spin" />
-          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-surface-raised">
-            <TaiTaiAvatar size={32} />
+      <div className="bg-white dark:bg-stone-900 border border-line rounded-3xl p-6 flex items-center gap-4 animate-pulse">
+      <div className="w-12 h-12 rounded-2xl bg-surface-sunken" />
+      <div className="flex-1 space-y-2">
+      <div className="h-4 bg-surface-sunken rounded w-1/3" />
+      <div className="h-5 bg-surface-sunken rounded w-3/4" />
           </div>
-        </div>
-        <div className="flex-1 space-y-2">
-          <div className="h-3.5 bg-surface-sunken rounded-full w-2/5 bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite]" />
-          <div className="h-3.5 bg-surface-sunken rounded-full w-4/5 bg-gradient-to-r from-stone-200 via-stone-100 to-stone-200 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800 bg-[length:200%_100%] animate-[shimmer_1.2s_ease-in-out_infinite]" style={{ animationDelay: "120ms" }} />
-        </div>
-        <style>{`
-          @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-          }
-        `}</style>
       </div>
     );
   }
 
   const nextLesson = greeting?.nextLesson ?? null;
   const completedCount = greeting?.completedCount ?? 0;
-  const totalMinutes = greeting?.totalMinutes ?? 0;
   const firstName = greeting?.firstName ?? null;
   const trackProgress = greeting?.trackProgress ?? null;
-  const nextLessonLabel = nextLesson ? getLessonDisplayLabel({ id: nextLesson.id, title: nextLesson.title, track: undefined }, t.lessonLabel) : null;
-  const nextLessonShortTitle = nextLesson ? getLessonShortTitle({ title: nextLesson.title }) : null;
-  const topicGapSummary = greeting?.topicGapSummary ?? [];
-  const criticalMistake = greeting?.criticalMistake ?? null;
-  const stageReviewInsight = greeting?.stageReviewInsight ?? null;
 
-  // What's left to finish the in-progress lesson, computed from the DB read
-  // percent (server) plus quiz-answers already saved locally (localStorage -
-  // only known client-side, see lib/progress.ts). Midpoint criterion isn't
-  // included here: it only applies to a subset of standalone case-study
-  // pages and isn't derivable from lesson content, so it's left off rather
-  // than guessed.
-  const criteria = greeting?.nextLessonCriteria;
-  const missingCriteria: string[] = [];
-  if (nextLesson && criteria) {
-    if (criteria.readPercent < 95) missingCriteria.push(t.resume.criteriaReadAll);
-    if (criteria.quizTotal > 0) {
-      const answers = getQuizAnswers(nextLesson.id);
-      const submittedCount = answers?.submitted.filter(Boolean).length ?? 0;
-      if (submittedCount < criteria.quizTotal) {
-        missingCriteria.push(format(t.resume.criteriaQuizLeft, { count: criteria.quizTotal - submittedCount }));
-      }
-    }
-  }
+  const trackStages = activeTrack === "personal" ? TRACK_PERSONAL.stages : TRACK_PROFESSIONAL.stages;
+  const stageIdx = nextLesson ? trackStages.findIndex((stage) => isLessonInRange(nextLesson.id, stage)) : -1;
+  const stageName = stageIdx >= 0 ? t.trackStages[activeTrack]?.stages[stageIdx]?.name ?? trackStages[stageIdx].name : null;
 
   if (!nextLesson) {
     return (
-      <div className="bg-gradient-to-r from-brand-500 to-brand-600 rounded-2xl p-6 text-white">
+      <div className="bg-gradient-to-r from-brand-600 to-brand-700 rounded-3xl p-6 text-white shadow-md">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+        <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center">
             <BookOpen className="w-6 h-6" />
           </div>
           <div className="flex-1">
@@ -151,268 +116,131 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
     );
   }
 
-  const getEnergeticGreeting = () => {
-    const nameStr = firstName ? ` ${firstName}` : "";
-    const messages = [
-      format(t.resume.greeting1, { name: nameStr }),
-      format(t.resume.greeting2, { name: nameStr, count: completedCount }),
-      format(t.resume.greeting3, { name: nameStr }),
-      format(t.resume.greeting4, { name: nameStr }),
-    ];
-    return messages[completedCount % messages.length];
-  };
+  const progressPercent = trackProgress && trackProgress.total > 0
+  ? Math.round((trackProgress.completed / trackProgress.total) * 100)
+  : 0;
 
-  const energeticGreeting = getEnergeticGreeting();
-  const todayRecallItems = greeting?.todayRecallItems ?? [];
-
-  // Người mới hoàn toàn (0 bài đã học): thay giọng "chào mừng quay lại"
-  // bằng hướng dẫn 3 bước cụ thể - chọn lộ trình, học bài đầu tiên (siêu
-  // ngắn để tạo momentum), rồi chỉ thẳng vào bảng xếp hạng/streak để tạo
-  // động lực quay lại. Đây là nhóm dễ bỏ cuộc nhất nên cần lối đi rõ ràng
-  // hơn là chỉ một CTA "học ngay".
-  if (completedCount === 0) {
-    return (
-      <div className="flex flex-col h-full justify-between">
-        <div className="relative bg-white dark:bg-stone-900 border border-line rounded-2xl p-4 sm:p-5">
-
-          <div className="flex items-start gap-3.5 pr-6">
-            <div className="relative w-11 h-11 flex-shrink-0 mt-0.5">
-              <span className="absolute inset-0 rounded-full bg-brand-400/20 dark:bg-brand-400/10 animate-ping [animation-duration:2.5s]" />
-              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-brand-100 dark:border-brand-900/50 shadow-sm bg-surface-raised">
-                <TaiTaiAvatar size={44} />
-              </div>
-              <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-brand-500 border-2 border-white dark:border-stone-900" />
-            </div>
-
-            <div className="flex-1 min-w-0">
-              <span className="text-[9px] font-extrabold text-accent-strong uppercase tracking-widest bg-brand-50 dark:bg-brand-950/40 px-2 py-0.5 rounded-md">
-                {t.resume.quickGuideTitle}
-              </span>
-              <p className="mt-1.5 text-ink-heading text-sm sm:text-[15px] font-bold leading-relaxed">
-                {format(t.resume.quickGuideIntro, { name: firstName ? ` ${firstName}` : "" })}
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-4 space-y-2">
-            <a
-              href="#lo-trinh"
-              onClick={() => trackFeatureClick("beginner_cta_click", { label: "step1_chon_lo_trinh" })}
-              className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-accent-line-mid rounded-xl p-3 transition-colors"
-            >
-              <span className="shrink-0 w-6 h-6 rounded-full bg-surface-invert text-ink-invert text-[11px] font-extrabold flex items-center justify-center">1</span>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-extrabold text-ink">{t.resume.step1Title}</p>
-                <p className="text-[10px] text-ink-faint font-bold mt-0.5">{t.resume.step1Body}</p>
-              </div>
-              <Map className="w-4 h-4 text-stone-400 group-hover:text-brand-500 shrink-0" />
-            </a>
-
-            <Link
-              href={`/bai-hoc/${nextLesson.slug}`}
-              onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-              className="group flex items-center gap-3 bg-brand-50/70 dark:bg-brand-950/20 border border-brand-200/60 dark:border-brand-900/50 hover:border-brand-400 dark:hover:border-brand-700 rounded-xl p-3 transition-colors"
-            >
-              <span className="shrink-0 w-6 h-6 rounded-full bg-brand-600 text-white text-[11px] font-extrabold flex items-center justify-center">2</span>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-extrabold text-ink truncate">{format(t.resume.step2Title, { lesson: nextLessonShortTitle ?? "" })}</p>
-                <p className="text-[10px] text-ink-faint font-bold mt-0.5">{format(t.resume.step2Body, { duration: nextLesson.duration })}</p>
-              </div>
-              <span className="shrink-0 text-[11px] font-extrabold bg-brand-600 group-hover:bg-brand-500 text-white px-3 py-1.5 rounded-xl transition-all">{t.resume.study}</span>
-            </Link>
-
-            <Link
-              href="/analytics?tab=leaderboard"
-              onClick={() => trackFeatureClick("beginner_cta_click", { label: "step3_bang_xep_hang" })}
-              className="group flex items-center gap-3 bg-stone-50/70 dark:bg-stone-950/40 border border-stone-200/60 dark:border-stone-800/80 hover:border-warn-line-mid rounded-xl p-3 transition-colors"
-            >
-              <span className="shrink-0 w-6 h-6 rounded-full bg-surface-invert text-ink-invert text-[11px] font-extrabold flex items-center justify-center">3</span>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-extrabold text-ink">{t.resume.step3Title}</p>
-                <p className="text-[10px] text-ink-faint font-bold mt-0.5">{t.resume.step3Body}</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-amber-500 shrink-0" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Nhãn chặng/bài đọc từ TIÊU ĐỀ, qua đúng hàm mà trang bài học và trang ôn
+  // tập dùng. Bản trước tự dựng lấy hai con số và cả hai đều sai:
+  //
+  //   - số chặng bắt bằng `stageName.match(/\d+/)`, tức con số đầu tiên trong
+  //     TÊN chặng ("Nền tảng tài chính cá nhân" không có số nào) rồi rơi về "1";
+  //   - số bài lấy thẳng `nextLesson.id`, là số thứ tự trong dữ liệu.
+  //
+  // Người học báo đúng hậu quả: bài mang tiêu đề "Chặng 12, Bài 2" hiện ra
+  // "Chặng 1 • Bài 301" ở thẻ Học tiếp, trong khi mọi màn hình khác gọi
+  // getLessonDisplayLabel nên vẫn ghi "Chặng 12 · Bài 2". Hai con số ấy không
+  // có cách nào khớp được, vì id không phải thứ tự học.
+  const lessonLabel = getLessonDisplayLabel(
+    { id: nextLesson.id, title: nextLesson.title, track: undefined },
+    t.lessonLabel
+  );
 
   return (
-    <div className="flex flex-col h-full justify-between">
+    <div className="flex flex-col h-full justify-between font-sans">
       <Link
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-        className="group relative block h-full bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 hover:border-line-strong rounded-3xl p-5 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col justify-between overflow-hidden"
+        className="group relative overflow-hidden block rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-xs transition-all duration-300 hover:border-brand-600/80 hover:shadow-md min-h-[175px]"
       >
-        {/* Top accent bar */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 via-brand-400 to-amber-400" />
+        {/* Floating Top-Left Dark Green Book Icon Badge */}
+        <div className="absolute top-5 left-5 z-20 hidden sm:flex items-center justify-center pointer-events-none">
+          <div className="w-12 h-12 rounded-2xl bg-brand-900 text-white flex items-center justify-center shadow-md border-2 border-white dark:border-stone-800">
+            <BookOpen className="w-6 h-6 text-brand-400" />
+          </div>
+        </div>
 
-
-        <div className="flex items-start gap-3 sm:gap-4 relative z-10">
-          {/* Avatar with soft energetic halo */}
-          <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 mt-0.5">
-            <span className="absolute inset-0 rounded-full bg-brand-400/20 dark:bg-brand-400/10 animate-ping [animation-duration:2.5s]" />
-            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-line-mid shadow-sm bg-surface-raised flex items-center justify-center">
-              <TaiTaiAvatar size={44} />
+        <div className="relative z-10 flex flex-col md:flex-row items-stretch justify-between p-5 sm:p-6 sm:pl-20 gap-4">
+          {/* Left Content */}
+          <div className="min-w-0 flex-1 space-y-2.5 flex flex-col justify-between">
+            {/* Top Badges */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="inline-flex items-center gap-1.5 text-[10.5px] font-mono font-black uppercase text-accent-ink bg-brand-100/90 dark:bg-brand-950/80 px-2.5 py-0.5 rounded-full border border-brand-300/80 dark:border-brand-800">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-600 animate-pulse" />
+                {t.resume.resumeBadge}
+              </span>
+              <span className="inline-flex items-center gap-1 text-[10.5px] font-mono font-bold text-amber-900 dark:text-amber-300 bg-amber-100/90 dark:bg-amber-950/80 px-2.5 py-0.5 rounded-full border border-amber-300/80 dark:border-amber-800">
+                <Sparkles className="w-3 h-3 text-amber-600 fill-amber-500" />
+                {format(t.resume.resumeXpBadge, { xp: XP_PER_LESSON })}
+              </span>
             </div>
-            {/* Online status indicator */}
-            <span className="absolute bottom-0 right-0 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-brand-500 border-2 border-white dark:border-stone-900 shadow-2xs" />
+
+            {/* Main Title (2 lines) */}
+            <div>
+              <span className="text-xs font-bold text-ink-muted block">
+                {lessonLabel}
+              </span>
+              <h2 className="text-lg sm:text-2xl font-black text-ink-max tracking-tight leading-snug group-hover:text-brand-800 dark:group-hover:text-brand-400 transition-colors mt-0.5">
+                {getLessonShortTitle({ title: nextLesson.title })}
+              </h2>
+            </div>
+
+            {/* Hành động chính của cả màn hình.
+                Thẻ này trước đây không có nút và không có động từ nào, nên nút
+                tô đậm mạnh nhất phía trên màn hình là nút "Làm ngay" của dòng
+                nhiệm vụ daily_1 - trang trả lời "nhận thưởng ở đâu" trước khi
+                trả lời "học gì tiếp". `pointer-events-none` vì cả thẻ đã là
+                một <Link>: một <a> lồng trong <a> là HTML không hợp lệ, nên
+                đây là một cái nút TRÔNG như nút, còn cú bấm vẫn do thẻ nhận. */}
+            <div className="pt-0.5">
+              <span className="inline-flex items-center gap-1.5 rounded-xl bg-brand-900 px-4 py-2 text-xs font-black text-white shadow-md shadow-brand-950/15 transition-colors group-hover:bg-brand-700 pointer-events-none">
+                {t.resume.resumeCta}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </span>
+            </div>
+
+            {/* Bottom Progress Bar & Lesson Count */}
+            <div className="pt-1 flex items-center gap-3">
+              {/* Tử số phải cùng phạm vi với mẫu số. `completedCount` đếm bài
+                  đã xong ở MỌI tuyến, còn `trackProgress.total` chỉ đếm bài
+                  của tuyến đang học, nên đặt cạnh nhau ra những dòng như
+                  "412/326 bài" ngay cạnh thanh 78%. Và khi chưa có
+                  trackProgress thì không in con số nào: mặc định 524 cũ là
+                  tổng số bài của nhiều tháng trước, giờ kho đã hơn 1.600. */}
+              {trackProgress && (
+                <span className="text-xs font-bold text-ink-muted whitespace-nowrap">
+                  {format(t.resume.resumeProgress, {
+                    done: trackProgress.completed,
+                    total: trackProgress.total,
+                  })}
+                </span>
+              )}
+              <div className="flex-1 max-w-xs h-2 rounded-full bg-stone-200/80 dark:bg-stone-800 overflow-hidden relative">
+                <div
+                  className="h-full rounded-full bg-brand-600 dark:bg-brand-500 transition-all duration-700"
+                  style={{ width: `${Math.max(2, progressPercent)}%` }}
+                />
+              </div>
+              <span className="text-xs font-mono font-black text-brand-800 dark:text-brand-400">
+                {progressPercent}%
+              </span>
+            </div>
           </div>
 
-          <div className="flex-1 min-w-0 pr-5 sm:pr-8">
-            {/* Header Labels */}
-            <div className="flex items-center gap-2 flex-wrap mb-2">
-              <span className="text-[10px] font-black text-ink-soft uppercase tracking-widest bg-surface-raised border border-line-mid px-2.5 py-0.5 rounded-lg shadow-2xs">
-                {t.resume.heroBanner}
-              </span>
-              <span className="text-[10px] font-black text-warn-strong uppercase tracking-widest bg-amber-50 dark:bg-amber-950/50 border border-amber-200/80 dark:border-amber-800/80 px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-2xs">
-                {format(t.resume.xpIfNow, { xp: XP_PER_LESSON })}
-              </span>
-            </div>
-
-            {/* Tai Tai speech text */}
-            <p className="text-ink text-sm sm:text-[15px] font-extrabold leading-relaxed">
-              "{energeticGreeting}"
-            </p>
-
-            {/* Live Track Progress Bar */}
-            {trackProgress && (
-              <div className="mt-3.5">
-                <div className="flex items-center justify-between text-[11px] font-bold text-ink-soft mb-1">
-                  <span>{format(t.resume.trackProgress, { done: trackProgress.completed, total: trackProgress.total })}</span>
-                  <span className="text-accent font-extrabold">{trackProgress.percent}%</span>
-                </div>
-                <div className="w-full h-2 bg-surface-raised rounded-full overflow-hidden shadow-inner">
-                  <div
-                    className="h-full bg-gradient-to-r from-brand-500 to-brand-400 rounded-full transition-all duration-500"
-                    style={{ width: `${Math.max(5, trackProgress.percent)}%` }}
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Lesson Target Sub-Card inside the hero banner */}
-            <div className="mt-3.5 bg-stone-50/80 dark:bg-stone-950/60 border border-stone-200/80 dark:border-stone-800 group-hover:border-line-strong rounded-2xl p-3 sm:p-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 transition-all duration-300">
-              <div className="min-w-0 flex-1">
-                <span className="text-[9px] font-black text-ink-muted uppercase tracking-wider block mb-0.5">
-                  {t.resume.continuingLesson}
-                </span>
-                <p className="text-stone-950 dark:text-white text-xs sm:text-sm font-extrabold truncate">
-                  {nextLessonLabel}: {nextLessonShortTitle}
-                </p>
-                <p className="text-[10px] text-ink-muted font-bold mt-0.5">
-                  {totalMinutes > 0 ? format(t.resume.minutesStudied, { minutes: totalMinutes }) : t.resume.readyToStart}
-                </p>
-              </div>
-
-              {/* Eye-Catching Clean Hero CTA button */}
-              <div className="flex items-center justify-center gap-1.5 text-xs font-black bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-xl transition-all duration-200 shadow-sm border border-brand-500/20 w-full sm:w-auto text-center shrink-0 active:scale-95">
-                {t.resume.continueNow}
-              </div>
-            </div>
+          {/* Right Side: High-fidelity Storybook Watercolor Mountain Scene */}
+          {/* Bề rộng ảnh ở khoảng 1024-1279px: PHÉP TÍNH CỦA CHÍNH THẺ NÀY
+              không đóng được. Cột trái là `lg:col-span-7` của khung 720px
+              (~412px), trừ `sm:pl-20` + `pr-6` còn ~308px chỗ cho nội dung,
+              trong khi khối ảnh là `md:w-88 shrink-0` = 352px. Cột chữ
+              (`flex-1 min-w-0`) co về gần 0 và tiêu đề bài bị `overflow-hidden`
+              của thẻ cắt mất. Không có bề rộng ảnh nào ở dải đó vừa đủ cho chữ
+              vừa đủ để ảnh còn ra hình, nên ảnh ẩn hẳn từ `lg` tới `xl` và
+              quay lại ở `xl`, nơi cột trái là `col-span-8` (~814px). */}
+          <div className="relative w-full md:w-88 lg:hidden xl:block xl:w-88 h-38 shrink-0 rounded-2xl overflow-hidden select-none border border-amber-900/10 dark:border-stone-800 bg-surface">
+            <Image
+              src="/images/dashboard/hero_mountain.jpg"
+              alt={t.dashCards.resumeHeroAlt}
+              fill
+              /* Không có `sizes` thì Next phục vụ biến thể rộng nhất - 1,03MB
+                 cho một hộp rộng nhất 352px. */
+              sizes="(min-width: 1280px) 352px, (min-width: 768px) 352px, 100vw"
+              className="object-cover object-right-top transition-transform duration-500 group-hover:scale-105"
+            />
+            {/* Subtle soft gradient blend on the left edge */}
+            <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white dark:from-stone-900 to-transparent pointer-events-none" />
           </div>
         </div>
       </Link>
-
-      {(stageReviewInsight || criticalMistake || topicGapSummary.length > 0) && (
-        <div className="mt-2 rounded-2xl border border-line bg-white dark:bg-stone-900 p-4 shadow-sm">
-          <div className="flex items-start gap-3">
-            <div className="relative w-9 h-9 flex-shrink-0 mt-0.5">
-              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-brand-100 dark:border-brand-900/50 bg-surface-raised">
-                <TaiTaiAvatar size={36} />
-              </div>
-              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-brand-500 border-2 border-white dark:border-stone-900" />
-            </div>
-
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-1.5 flex-wrap mb-2">
-                <span className="text-[9px] font-extrabold text-sky-700 dark:text-sky-400 uppercase tracking-widest bg-sky-50 dark:bg-sky-950/40 px-2 py-0.5 rounded-md">
-                  {t.resume.feedbackTitle}
-                </span>
-                {stageReviewInsight && (
-                  <span className="text-[9px] font-extrabold text-warn-strong uppercase tracking-widest bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-md">
-                    {t.resume.reviewOnTime}
-                  </span>
-                )}
-              </div>
-
-              {stageReviewInsight && (
-                <div className="rounded-xl border border-amber-200/80 dark:border-amber-900/40 bg-amber-50/70 dark:bg-amber-950/20 p-3 mb-3">
-                  <p className="text-xs font-bold text-ink leading-relaxed">
-                    {format(t.resume.coachReminder, {
-                      message: format(t.resume.stageReviewMessage, { stage: stageReviewInsight.stageLabel }),
-                    })}
-                  </p>
-                  <Link
-                    href={`/bai-hoc/${stageReviewInsight.lessonSlug}`}
-                    className="inline-flex items-center gap-1 mt-2 text-[11px] font-extrabold text-warn-ink hover:text-warn"
-                  >
-                    {format(t.resume.openStage, { stage: stageReviewInsight.stageLabel, lesson: getLessonShortTitle({ title: stageReviewInsight.lessonTitle }) })} <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              )}
-
-              {topicGapSummary.length > 0 && (
-                <div className="mb-3">
-                  <p className="text-[11px] font-bold text-ink-body mb-2">
-                    {t.resume.gapsLeaning}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {topicGapSummary.map((item) => (
-                      <span
-                        key={item.topicId}
-                        className="inline-flex items-center gap-1 rounded-full border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 px-2.5 py-1 text-[10px] font-extrabold text-alert-strong"
-                      >
-                        {t.topics[item.topicId]}
-                        <span className="rounded-full bg-rose-500 text-white px-1.5 py-0.5 text-[9px]">{item.count}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {criticalMistake && (
-                <div className="rounded-xl border border-stone-200/80 dark:border-stone-800/80 bg-stone-50/70 dark:bg-stone-950/40 p-3">
-                  <p className="text-[11px] font-extrabold text-ink">
-                    {format(t.resume.stumblingMost, { topic: t.topics[criticalMistake.topicId] })}
-                  </p>
-                  <p className="text-[11px] text-ink-soft mt-1 leading-relaxed">
-                    {format(t.resume.wrongCount, { count: criticalMistake.wrongCount, lesson: getLessonShortTitle({ title: criticalMistake.lessonTitle }) })}
-                  </p>
-                  <p className="text-[11px] text-ink-body mt-2 leading-relaxed">
-                    {criticalMistake.explanation ?? t.resume.explanationFallback}
-                  </p>
-                  <p className="text-[11px] font-bold text-accent-strong mt-2 leading-relaxed">
-                    {format(t.resume.coachSuggestion, { action: t.topicAdvice[criticalMistake.adviceId] })}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    <Link
-                      href={`/bai-hoc/${criticalMistake.lessonSlug}`}
-                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg bg-surface-invert text-ink-invert"
-                    >
-                      {t.resume.reviewThisLesson} <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                    <Link
-                      href="/ghi-chu"
-                      className="inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-extrabold rounded-lg border border-line bg-white dark:bg-stone-900 text-ink-body"
-                    >
-                      {t.resume.makeFlashcard}
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {todayRecallItems.length > 0 && (
-        <div className="mt-2">
-          <RecallCard items={todayRecallItems} title={t.resume.recallTitle} />
-        </div>
-      )}
     </div>
   );
 }

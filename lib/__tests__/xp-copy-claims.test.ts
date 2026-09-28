@@ -44,7 +44,6 @@ const GRANDFATHERED = new Set([
   "bossStudyWorld.victoryRewardPart1",
   "cosmeticsDuel.toastSoftLanding",
   "games.xpBadge",
-  "worldBoss.bossRewardValue",
   "gameKingdom.quizReward",
   // Bài thi chặng: 50 XP/chặng nằm trong recalculateUserStats (milestoneXp),
   // chưa tách thành hằng số.
@@ -58,9 +57,7 @@ const GRANDFATHERED = new Set([
   "share.shareCta",
   // Trang chủ và trang đăng nhập: con số MINH HOẠ trong bản demo tương tác,
   // không phải phần thưởng thật của tài khoản nào.
-  "home.samplerCorrect",
   "trackPanel.samplerXp",
-  "trackPanel.samplerCorrect",
   // Nhãn theo lĩnh vực trong bài kiểm tra xếp lớp.
   "placement.sectorXp30Cfa",
 ]);

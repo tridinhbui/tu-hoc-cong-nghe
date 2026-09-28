@@ -32,6 +32,7 @@ const RPC_TABLE: Record<string, Spec> = {
   "get_community_contribution_leaderboard": { fn: "getCommunityContributionLeaderboard", args: ["p_limit"] },
   "get_community_feed": { fn: "getCommunityFeed", args: ["__actor__", "p_limit", "p_before_id"] },
   "get_community_learning_now": { fn: "getCommunityLearningNow", args: ["p_limit", "p_days"] },
+  "get_lesson_learner_counts": { fn: "getLessonLearnerCounts", args: [] },
   "get_community_post_comments": { fn: "getCommunityPostComments", args: ["p_post_id", "p_limit"] },
   "get_competency_leaderboard": { fn: "getCompetencyLeaderboard", args: ["p_lesson_ids", "p_limit"] },
   "get_composite_leaderboard": { fn: "getCompositeLeaderboard", args: ["p_limit"] },

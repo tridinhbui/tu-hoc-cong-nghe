@@ -14,7 +14,7 @@ import { rememberOAuthNext } from "@/lib/oauth-next-cookie";
 import { resetCurrentUserCache } from "@/lib/current-user";
 import Logo from "@/components/Logo";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
-import { type TrackId } from "@/lib/tracks";
+import { TRACKS, type TrackId } from "@/lib/tracks";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -563,9 +563,12 @@ function LoginForm() {
                     thống kê ở hero trang chủ, nên giá trị thẳng cột với nhau. */}
                 <dl className="grid grid-cols-3 divide-x divide-stone-200 border-t border-stone-200 pt-3 dark:divide-stone-800 dark:border-stone-800">
                   {[
-                    { k: t.login.statRating, v: t.login.statRatingValue },
+                    // Chỉ số nào ở đây cũng phải đếm được từ dữ liệu thật. Ô "4.9/5
+                    // học viên" và "Hỏi đáp 24/7" từng đứng đây đã gỡ: không có hệ
+                    // thống đánh giá hay đội hỗ trợ trực nào đứng sau hai con số ấy.
                     { k: t.login.statLessons, v: format(t.login.statLessonsValue, { count: lessonCountFloor }) },
-                    { k: t.login.statSupport, v: t.login.statSupportValue },
+                    { k: t.login.statTracks, v: format(t.login.statTracksValue, { count: Object.keys(TRACKS).length }) },
+                    { k: t.login.statPrice, v: t.login.statPriceValue },
                   ].map((stat, i) => (
                     <div key={stat.k} className={i === 0 ? "pr-3" : i === 2 ? "pl-3" : "px-3"}>
                       <dd className="text-[13px] font-black tabular-nums text-ink">{stat.v}</dd>

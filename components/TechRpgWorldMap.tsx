@@ -69,7 +69,6 @@ export default function TechRpgWorldMap() {
   const [user, setUser] = useState<{ id?: string; email?: string } | null>(null);
   const [level, setLevel] = useState(1);
   const [coins, setCoins] = useState(0);
-  const [energy, setEnergy] = useState(100);
   const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
   const [avatarPos, setAvatarPos] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
   const [isMoving, setIsMoving] = useState(false);
@@ -283,21 +282,6 @@ export default function TechRpgWorldMap() {
             </div>
           </div>
 
-          {/* Energy Bar */}
-          <div className="flex items-center gap-2 bg-sky-50/90 border border-sky-200/90 px-3 py-1.5 rounded-xl shadow-xs">
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-500 text-white shadow-xs">
-              <Zap className="h-3.5 w-3.5 fill-white" />
-            </div>
-            <div>
-              <p className="text-[9px] font-extrabold uppercase text-sky-800/80 leading-none">{t.worldMap.energyLabel}</p>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <div className="w-16 h-2 bg-stone-200 rounded-full overflow-hidden border border-sky-300 p-[1px]">
-                  <div className="h-full bg-gradient-to-r from-sky-400 to-brand-400 rounded-full w-[100%] animate-pulse" />
-                </div>
-                <span className="text-[10px] font-black text-sky-900">100%</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Right Quick Nav Dock */}
@@ -322,19 +306,9 @@ export default function TechRpgWorldMap() {
         </div>
       </div>
 
-      {/* Wall Street Bloomberg Terminal LED Ticker Tape (Deep Black) */}
-      <div className="bg-stone-950 border-y border-brand-500/30 text-brand-400 py-2 px-4 -mx-3 -mt-2 sm:-mx-5 sm:-mt-3 mb-4 text-[11px] font-mono shadow-md overflow-hidden relative z-10 flex items-center justify-between">
-        <div className="flex items-center gap-6 whitespace-nowrap overflow-x-auto scrollbar-none">
-          <span className="font-black text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-500/40 flex items-center gap-1.5 shrink-0">
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping inline-block" /> {t.worldMap.tickerLabel}
-          </span>
-          <span className="shrink-0 font-bold text-brand-400">{t.worldMap.tickerIndex}</span>
-          <span className="shrink-0 font-bold text-amber-300">{t.worldMap.tickerBoss}</span>
-          <span className="shrink-0 font-bold text-cyan-300">{t.worldMap.tickerCase}</span>
-          <span className="shrink-0 font-bold text-purple-300">{t.worldMap.tickerClan}</span>
-        </div>
-      </div>
-
+      {/* Dải tin chạy (uptime 99,95%, boss 850.000 HP, clan top #1) và thanh
+          "Năng lượng 100%" đã gỡ: toàn là số viết cứng, không đọc từ đâu, nhưng
+          trình bày như chỉ số trực tiếp. Số nào hiện trên màn hình phải là số thật. */}
       {!selectedBuilding && (
         <>
           {/* Wall Street Photo Background (Ultra Vivid & High Clarity) */}
@@ -591,13 +565,6 @@ export default function TechRpgWorldMap() {
                           </div>
                         )}
 
-                        {/* Live Status & Boss HP Badge Overlays */}
-                        {b.id === "world-boss" && (
-                          <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1 rounded-full bg-red-100 px-2.5 py-0.5 text-[9px] font-black text-red-700 border border-red-300 shadow-xs">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping" />
-                            <span>{t.worldMap.bossHp}</span>
-                          </div>
-                        )}
 
                         {b.id === "weekly-challenge" && (
                           <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1 rounded-full bg-purple-100 px-2.5 py-0.5 text-[9px] font-black text-purple-700 border border-purple-300 shadow-xs animate-pulse">

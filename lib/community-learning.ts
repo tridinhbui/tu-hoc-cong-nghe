@@ -84,3 +84,18 @@ export function shortLearnerName(name: string | null, fallback: string): string 
   if (!first) return fallback;
   return first.length > 14 ? `${first.slice(0, 13)}…` : first;
 }
+
+/** Số người đã học xong từng bài, keyed theo `lesson_id`.
+ *
+ *  `null` khi hàm chưa có hoặc lỗi, để chỗ gọi không dựng dòng nào thay vì
+ *  dựng một con số 0. Xem getLessonLearnerCounts trong lib/d1/rpc.ts. */
+export async function getLessonLearnerCounts(): Promise<Map<number, number> | null> {
+  const cloudflare = createClient();
+  const { data, error } = await cloudflare.rpc("get_lesson_learner_counts");
+  if (error) {
+    if (!isMissingFunction(error)) console.error("get_lesson_learner_counts:", error.message);
+    return null;
+  }
+  const list = (data ?? []) as { lesson_id: number; learner_count: number }[];
+  return new Map(list.map((row) => [Number(row.lesson_id), Number(row.learner_count)]));
+}

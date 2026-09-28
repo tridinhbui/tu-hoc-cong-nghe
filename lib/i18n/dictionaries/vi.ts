@@ -302,6 +302,7 @@ export const vi = {
       eyebrow: "Xem trước giao diện thật",
       title: "Đây là những gì bạn sẽ dùng mỗi ngày",
       sub: "Không chỉ là bài đọc dài - dashboard theo dõi tiến độ thật, quiz sau mỗi bài, và cấp độ/XP để biết mình đang ở đâu.",
+      specLabel: "Trong chương này",
     },
 
     ticker: {
@@ -343,6 +344,13 @@ export const vi = {
       stat3Label: "Quy mô ngành",
       stat3Value: "1,2 triệu",
       stat3Note: "người đang làm trong 74.000 doanh nghiệp công nghệ.",
+      colMetric: "Chỉ số",
+      colValue: "Giá trị",
+      colNote: "Ý nghĩa",
+      colSource: "Nguồn",
+      stat1Source: "ManpowerGroup, chỉ số Total Workforce",
+      stat2Source: "VnEconomy",
+      stat3Source: "Bộ Khoa học và Công nghệ",
       missionLabel: "Tầm nhìn & Sứ mệnh",
       missionBody:
         "Xây dựng giáo trình công nghệ 100% miễn phí, rõ ràng và đủ sâu cho người học Việt Nam. Giúp việc tự học công nghệ trở nên gần gũi, thực tế và bền vững.",
@@ -689,19 +697,11 @@ export const vi = {
     empireSub: "Tập sự Silicon Valley • 3D RPG Kingdom",
     capitalLabel: "Ngân sách hạ tầng",
     coinsValue: "{count} Coins",
-    energyLabel: "Năng Lượng",
 
     shopTitle: "Tiệm đồ kỹ sư trưởng",
     shopShort: "Tiệm Đồ",
     cardsTitle: "Bảo tàng thẻ công nghệ",
     cardsShort: "Bộ Thẻ",
-
-    // Ticker strip. Illustrative figures for the game surface, not live metrics.
-    tickerLabel: "BẢNG TIN DEV SQUARE",
-    tickerIndex: "UPTIME TOÀN HỆ THỐNG: 99,95% (+0,03%)",
-    tickerBoss: "BOSS SÀN SERVER: 850,000 / 1,000,000 HP (85%)",
-    tickerCase: "DEV SQUARE: CASE STUDY HỆ THỐNG #12 HOẠT ĐỘNG",
-    tickerClan: "CLAN KỸ SƯ: TOP #1 SILICON VALLEY",
     bgAlt: "Ảnh nền khu công nghệ",
 
     zoneMiniGames: "TỔNG HỢP MINI GAME",
@@ -724,8 +724,6 @@ export const vi = {
     gearTitle: "Trang bị kỹ sư",
     gearSub: "Cố định ngoài bản đồ nhiệm vụ",
     gearCta: "Mở cửa hàng & tủ đồ",
-
-    bossHp: "BOSS 85% HP",
     hotCase: "HOT CASE STUDY",
     backToMap: "Quay lại bản đồ đấu trường",
     opening: "Đang mở: {name}",
@@ -798,13 +796,12 @@ export const vi = {
     enterEmail: "Vui lòng nhập email của bạn.",
     processing: "Đang xử lý...",
     signUp: "Đăng ký",
-
-    statRating: "Đánh giá",
-    statRatingValue: "4.9/5 học viên",
     statLessons: "Bài học",
     statLessonsValue: "{count}+ bài",
-    statSupport: "Hỗ trợ",
-    statSupportValue: "Hỏi đáp 24/7",
+    statTracks: "Lộ trình",
+    statTracksValue: "{count} lộ trình",
+    statPrice: "Học phí",
+    statPriceValue: "Miễn phí",
 
     noAccount: "Chưa có tài khoản?",
     haveAccount: "Đã có tài khoản?",
@@ -1011,7 +1008,7 @@ export const vi = {
     samplerOptionA: "Một điểm nghẽn chỉ bão hoà ở phần đuôi tải, khiến hàng đợi dài ra với số ít request",
     samplerOptionB: "Máy chủ vừa được nâng cấp nên chưa kịp làm nóng bộ nhớ đệm",
     samplerOptionC: "Người dùng ở xa nên đường truyền của họ chậm hơn mức trung bình",
-    samplerCorrect: "Chính xác! +45 XP. p99 là phần người dùng nhớ, không phải p50.",
+    samplerCorrect: "Chính xác! p99 là phần người dùng nhớ, không phải p50.",
     samplerWrong: "Chưa chính xác. Đáp án đúng là điểm nghẽn bão hoà ở phần đuôi!",
 
     deskLabel: "BÀN HỌC 3D · NỀN TẢNG CÔNG NGHỆ",
@@ -1508,6 +1505,10 @@ export const vi = {
 
   // components/ResumeLearningButton.tsx - the "continue learning" hero card.
   resume: {
+    resumeBadge: "Nhiệm vụ đang học",
+    resumeXpBadge: "+{xp} XP khi hoàn thành",
+    resumeProgress: "Tiến độ ({done}/{total} bài)",
+    resumeCta: "Học tiếp",
     greeting1: "Chào{name}! Sách đã mở, kiến thức đã sẵn sàng. Cùng chinh phục bài tiếp theo để nhận XP nào!",
     greeting2: "Tuyệt vời{name}! Bạn đã hoàn thành {count} bài học. Cùng duy trì đà tiến bộ này ngay nhé!",
     greeting3: "Chào{name}! Hôm nay mục tiêu là lên cấp tiếp theo. Học ngay bài học dưới đây thôi nào!",
@@ -1702,33 +1703,24 @@ export const vi = {
     headingMap: "Bản đồ nhiệm vụ & Công trình",
     headingMinigame: "Thử phản xạ active recall trực tiếp",
     headingBoss: "Đấu trường săn Boss Silicon Valley",
-    xpLabel: "XP Tích lũy",
-    xpValue: "+{xp} XP",
 
     unlockAtLevel: "Mở khóa ở Lv.{level}",
-    xpRewardValue: "+{xp} XP",
     buildingDetail: "Chi tiết công trình",
     skillsUnlocked: "Kỹ năng mở khóa:",
     unlockBuilding: "Mở khóa công trình này",
 
     samplerQuestion: "Câu hỏi thử nghiệm #{index}",
     samplerXp: "+50 XP nếu chọn đúng",
-    samplerCorrect: "Chính xác! Bạn nhận được +50 XP thưởng!",
+    samplerCorrect: "Chính xác!",
     samplerWrong: "Chưa chính xác rồi!",
     tryAnother: "Thử câu hỏi khác",
-    doAllQuizzes: "Vào làm trọn bộ 430+ Quiz →",
+    doAllQuizzes: "Vào làm quiz đầy đủ →",
 
     bossAlt: "Boss sự cố hệ thống Silicon Valley",
     bossRaidLabel: "WORLD BOSS RAID · 1,000,000 HP",
     bossName: "Boss sự cố diện rộng Silicon Valley",
     bossBody:
       "Toàn bộ người học trên hệ thống cùng tham gia đánh Boss mỗi ngày bằng cách trả lời đúng các câu hỏi công nghệ.",
-    bossHpLabel: "Máu Boss hiện tại",
-    bossHpValue: "742,500 / 1,000,000 HP",
-    damageToday: "Sát thương hôm nay",
-    damageValue: "1,250 DMG",
-    bossReward: "Phần thưởng hạ Boss",
-    bossRewardValue: "+500 XP & Vàng",
     joinBoss: "Tham gia săn boss máy chủ ngay",
     ongoing: "Đang diễn ra: Mở khóa vương quốc công nghệ bằng bài học thật",
     playFull: "Vào chơi thử Game Kingdom đầy đủ",
@@ -2167,6 +2159,16 @@ export const vi = {
 
   // components/DashboardClient.tsx
   dashboard: {
+    // Trang Học bài chép từ bản tài chính.
+    sidebarResizeLabel: "Kéo ngang để đổi bề rộng cột phải",
+    examCreditedHint: "Mở khoá nhờ thi vượt chặng - bạn chưa đọc bài này",
+    examCreditedSubtitle: "Đã mở khoá nhờ thi vượt chặng · chưa đọc",
+    stageLearners: "{count} người vừa học chặng này",
+    nextChallenge: "Thử thách tiếp theo",
+    rigorousExamTitle: "Bài thi thăng cấp khắt khe (cấp {level})",
+    takeExamNow: "Vào thi ngay",
+    communityTodayTitle: "Cộng đồng hôm nay",
+    trackDoneOfTotal: "{done}/{total} bài",
     branchesShowAll: "Xem tất cả chủ đề",
     branchesCollapse: "Thu gọn",
     stageLabel: "Chặng {n}",
@@ -2202,6 +2204,7 @@ export const vi = {
     unlockByRequest: "Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá",
 
     markLearned: {
+      inProgressBadge: "Đang học",
       button: "Đánh dấu đã học",
       help: "Giải thích cách đánh dấu đã học",
       confirm: "Xác nhận đánh dấu",

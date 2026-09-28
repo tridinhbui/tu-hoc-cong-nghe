@@ -423,7 +423,7 @@ export default function HomePage() {
                   {...heroReveal(0.06, 18)}
                   className="mb-8 max-w-xl text-[15px] leading-7 text-stone-600 [filter:none] dark:text-stone-300 sm:text-lg"
                 >
-                  {format(t.home.hero.sub, { count: lessonCountFloor ?? 360 })}
+                  {format(t.home.hero.sub, { count: lessonCountFloor ?? roundedLessonCount() })}
                 </motion.p>
 
                 <motion.div

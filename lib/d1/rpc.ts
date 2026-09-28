@@ -222,7 +222,7 @@ select b.user_id, b.name, b.avatar_url, b.learning_xp, b.exam_points,
   from base b`;
 
 export interface CompositeRow {
-  user_id: string; name: string; avatar_url: string | null;
+  user_id: string; name: string; avatar_url: string | null; value: number;
   learning_xp: number; exam_points: number; accuracy: number;
   streak_days: number; composite: number;
 }
@@ -234,7 +234,11 @@ export async function getCompositeLeaderboard(
 ): Promise<CompositeRow[]> {
   return rows<CompositeRow>(
     db,
-    `${COMPOSITE_COMPONENTS}
+    // `select *, composite as value`: client (getCompositeLeaderboard trong
+    // lib/cloudflare-user.ts) đọc `value` như mọi bảng xếp hạng khác, và chỉ
+    // có `composite` thì `row.value ?? 0` ra 0 - tab Tổng hợp hiện 0/1000 cho
+    // tất cả mọi người trong khi get_my_composite_rank vẫn ra số đúng.
+    `select *, composite as value from (${COMPOSITE_COMPONENTS})
       order by composite desc, exam_points desc, learning_xp desc
       limit ?`,
     clampLimit(limit, 10, 50)
@@ -1086,6 +1090,22 @@ export async function getStudyRooms(
       order by r.created_at desc
       limit 30`,
     topic ?? null
+  );
+}
+
+/** `get_lesson_learner_counts()` - số người đã học xong từng bài.
+ *
+ *  Nuôi dòng "N người đã học" trên hàng bài ở /hoc-bai (port từ bản tài chính,
+ *  nơi nó thay cho một con số băm từ slug). Đếm người, không đếm lượt: một
+ *  người học lại một bài vẫn là một người. Không lọc theo người gọi - đây là
+ *  con số tổng, không lộ ai đã học gì. */
+export async function getLessonLearnerCounts(db: D1Like): Promise<Record<string, unknown>[]> {
+  return rows(
+    db,
+    `select lesson_id, count(distinct user_id) as learner_count
+       from user_progress
+      where completed = 1
+      group by lesson_id`
   );
 }
 

@@ -139,7 +139,6 @@ export default function InteractiveKingdomPreview() {
   const questions = useMemo(() => samplerQuestions(t), [t]);
   const [activeTab, setActiveTab] = useState<PreviewTab>("map");
   const [selectedBuildingId, setSelectedBuildingId] = useState<string>(buildings[0].id);
-  const [userXp, setUserXp] = useState(240);
   const [samplerIndex, setSamplerIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [answered, setAnswered] = useState(false);
@@ -155,9 +154,6 @@ export default function InteractiveKingdomPreview() {
     setAnswered(true);
     const correct = currentQuestion.options[idx].correct;
     setIsCorrect(correct);
-    if (correct) {
-      setUserXp((prev) => prev + 50);
-    }
   }
 
   function handleNextQuestion() {
@@ -275,25 +271,9 @@ export default function InteractiveKingdomPreview() {
             </h3>
           </div>
 
-          {/* Ô XP: bỏ viền ngọc, bỏ nền, bỏ quầng sáng.
-              Con số vốn đã là thứ to nhất ở góc này; nó không cần một cái hộp
-              phát sáng để được nhìn thấy, và cái hộp ấy đang cạnh tranh với
-              chính tiêu đề bên trái. Hiệu ứng nảy khi XP tăng thì GIỮ - đó là
-              phản hồi cho một việc vừa xảy ra, không phải trang trí thường
-              trực - còn `animate-bounce` trên tia sét thì bỏ, vì nó nảy mãi kể
-              cả khi không có gì thay đổi. */}
-          <motion.div
-            key={userXp}
-            initial={{ scale: 1.12 }}
-            animate={{ scale: 1 }}
-            className="text-right shrink-0"
-          >
-            <p className="text-[9px] font-black uppercase tracking-widest text-stone-400">{t.kingdomPreview.xpLabel}</p>
-            <p className="text-lg sm:text-xl font-black tabular-nums text-white flex items-center gap-1 justify-end">
-              <Zap className="w-4 h-4 text-amber-400 fill-amber-400" />
-              {format(t.kingdomPreview.xpValue, { xp: userXp })}
-            </p>
-          </motion.div>
+          {/* Ô XP đã gỡ: bản xem trước này dành cho khách chưa đăng nhập, và con
+              số 240 XP (+50 mỗi câu đúng) là số bịa - khách không có XP nào cả,
+              và quiz thật không cho 50 XP một câu. */}
         </div>
 
         {/* TAB 1: INTERACTIVE KINGDOM MAP VIEW */}
@@ -357,7 +337,6 @@ export default function InteractiveKingdomPreview() {
                           thật sự được chọn. */}
                       <div className="mt-1 flex items-center justify-between text-[9px] font-bold text-stone-400">
                         <span>{format(t.kingdomPreview.unlockAtLevel, { level: b.minLevel })}</span>
-                        <span>{format(t.kingdomPreview.xpRewardValue, { xp: b.xpReward })}</span>
                       </div>
                     </div>
 
@@ -562,36 +541,9 @@ export default function InteractiveKingdomPreview() {
             </div>
 
             <div className="lg:col-span-7 space-y-3">
-              {/* Ba khối số liệu gộp vào MỘT tấm. Trước đây là một thẻ có viền
-                  cho thanh máu, cộng hai thẻ có viền nữa cho hai con số - ba
-                  cái khung cho ba dòng thông tin của cùng một trận đánh. Giờ
-                  một nền chung, một đường kẻ ngăn phần máu với phần số liệu. */}
-              <div className="rounded-2xl bg-stone-900/90 backdrop-blur-md">
-                <div className="p-4">
-                  <div className="flex justify-between text-xs font-black uppercase text-rose-400 mb-1.5">
-                    <span>{t.kingdomPreview.bossHpLabel}</span>
-                    <span>{t.kingdomPreview.bossHpValue}</span>
-                  </div>
-                  {/* Thanh máu về một màu đỏ đặc. Gradient đỏ→hổ phách khiến
-                      phần máu còn lại trông như đang chuyển sang màu của phần
-                      thưởng, mà hai thứ đó không liên quan gì nhau. */}
-                  <div className="h-3 rounded-full bg-stone-950 overflow-hidden">
-                    <div className="h-full rounded-full bg-rose-600 w-[74%]" />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 border-t border-stone-800 divide-x divide-stone-800">
-                  <div className="p-3.5 text-center">
-                    <p className="text-[10px] font-black uppercase text-stone-400">{t.kingdomPreview.damageToday}</p>
-                    <p className="text-lg font-black text-white mt-0.5">{t.kingdomPreview.damageValue}</p>
-                  </div>
-                  <div className="p-3.5 text-center">
-                    <p className="text-[10px] font-black uppercase text-stone-400">{t.kingdomPreview.bossReward}</p>
-                    <p className="text-lg font-black text-amber-400 mt-0.5">{t.kingdomPreview.bossRewardValue}</p>
-                  </div>
-                </div>
-              </div>
-
+              {/* Máu boss "742,500 / 1,000,000", sát thương "1,250 DMG" và phần
+                  thưởng "+500 XP & Vàng" đã gỡ: cả ba viết cứng, và boss thật cho
+                  tối đa 50 XP một lượt. Máu thật nằm trong trò chơi sau đăng nhập. */}
               {/* Cùng màu hành động chính với hai tab kia - xem chú thích ở nút
                   mở khoá của tab bản đồ. Đỏ vẫn giữ vai trò của nó ở tab này,
                   nhưng ở chỗ nó có nghĩa: thanh máu, nhãn trận đánh, quầng sáng

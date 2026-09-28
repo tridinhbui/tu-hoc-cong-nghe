@@ -31,6 +31,7 @@ import { interactiveEconVi, interactiveEconEn } from "./interactive-econ";
 import { interactiveRestVi, interactiveRestEn } from "./interactive-rest";
 import { learningPathVi, learningPathEn } from "./learning-path";
 import { learningFlowsVi, learningFlowsEn } from "./learning-flows";
+import { dashboardCardsVi, dashboardCardsEn } from "./dashboard-cards";
 import { buildingGamesVi, buildingGamesEn } from "./building-games";
 import { rankWidgetVi, rankWidgetEn } from "./rank-widget";
 import { leaderboardHonorsVi, leaderboardHonorsEn } from "./leaderboard-honors";
@@ -86,6 +87,7 @@ export const viSections = {
   ...interactiveRestVi,
   ...learningPathVi,
   ...learningFlowsVi,
+  ...dashboardCardsVi,
   ...buildingGamesVi,
   ...rankWidgetVi,
   ...leaderboardHonorsVi,
@@ -143,6 +145,7 @@ export const enSections: typeof viSections = {
   ...interactiveRestEn,
   ...learningPathEn,
   ...learningFlowsEn,
+  ...dashboardCardsEn,
   ...buildingGamesEn,
   ...rankWidgetEn,
   ...leaderboardHonorsEn,

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
@@ -13,6 +13,17 @@ import { DEFAULT_LOCALE, LOCALE_INIT_SCRIPT } from "@/lib/i18n/locales";
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["vietnamese", "latin"],
   variable: "--font-plus-jakarta",
+  display: "swap",
+});
+
+// Phông mono cho siêu dữ liệu hệ thống: đường dẫn (THCN://...), mã module,
+// trạng thái, XP, dấu thời gian, số trong bảng. KHÔNG dùng cho câu tiếng Việt -
+// phông mono dựng dấu tiếng Việt trong ô rộng cố định, trông vỡ nhịp; chữ có
+// dấu luôn đi bằng Plus Jakarta. Chỉ nạp hai độ đậm đang dùng.
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -68,7 +79,7 @@ export async function generateMetadata(): Promise<Metadata> {
 // correct. No init script, no flash, no hydration mismatch.
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={DEFAULT_LOCALE} className={`${plusJakartaSans.variable}`} suppressHydrationWarning>
+    <html lang={DEFAULT_LOCALE} className={`${plusJakartaSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         {/* Applies the saved/system theme before first paint to avoid a flash of the wrong theme. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />

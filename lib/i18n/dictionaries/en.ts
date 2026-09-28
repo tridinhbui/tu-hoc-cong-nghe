@@ -262,6 +262,7 @@ export const en: Dictionary = {
       eyebrow: "A look at the real interface",
       title: "This is what you'll use every day",
       sub: "Not just long reading - a dashboard tracking real progress, a quiz after every lesson, and levels/XP so you know where you stand.",
+      specLabel: "In this chapter",
     },
 
     ticker: {
@@ -303,6 +304,13 @@ export const en: Dictionary = {
       stat3Label: "Industry size",
       stat3Value: "1.2 million",
       stat3Note: "people working across 74,000 technology companies.",
+      colMetric: "Metric",
+      colValue: "Value",
+      colNote: "What it means",
+      colSource: "Source",
+      stat1Source: "ManpowerGroup Total Workforce Index",
+      stat2Source: "VnEconomy",
+      stat3Source: "Ministry of Science and Technology",
       missionLabel: "Vision & mission",
       missionBody:
         "To build a technology curriculum that is 100% free, clear, and deep enough for Vietnamese learners - and to make teaching yourself tech feel approachable, practical and sustainable.",
@@ -634,18 +642,11 @@ export const en: Dictionary = {
     empireSub: "Silicon Valley trainee • 3D RPG kingdom",
     capitalLabel: "Infrastructure budget",
     coinsValue: "{count} coins",
-    energyLabel: "Energy",
 
     shopTitle: "The principal engineer's outfitter",
     shopShort: "Shop",
     cardsTitle: "The technology card museum",
     cardsShort: "Cards",
-
-    tickerLabel: "DEV SQUARE TICKER",
-    tickerIndex: "FLEET-WIDE UPTIME: 99.95% (+0.03%)",
-    tickerBoss: "SERVER BOSS: 850,000 / 1,000,000 HP (85%)",
-    tickerCase: "DEV SQUARE: SYSTEM CASE STUDY #12 ACTIVE",
-    tickerClan: "ENGINEER CLAN: TOP #1 SILICON VALLEY",
     bgAlt: "Technology district background",
 
     zoneMiniGames: "ALL MINI GAMES",
@@ -668,8 +669,6 @@ export const en: Dictionary = {
     gearTitle: "Engineer gear",
     gearSub: "Fixed outside the quest map",
     gearCta: "Open the shop & locker",
-
-    bossHp: "BOSS 85% HP",
     hotCase: "HOT CASE STUDY",
     backToMap: "Back to the arena map",
     opening: "Opening: {name}",
@@ -738,13 +737,12 @@ export const en: Dictionary = {
     enterEmail: "Please enter your email address.",
     processing: "Working on it...",
     signUp: "Sign up",
-
-    statRating: "Rating",
-    statRatingValue: "4.9/5 from learners",
     statLessons: "Lessons",
     statLessonsValue: "{count}+ lessons",
-    statSupport: "Support",
-    statSupportValue: "Q&A 24/7",
+    statTracks: "Paths",
+    statTracksValue: "{count} paths",
+    statPrice: "Price",
+    statPriceValue: "Free",
 
     noAccount: "No account yet?",
     haveAccount: "Already have an account?",
@@ -942,7 +940,7 @@ export const en: Dictionary = {
     samplerOptionA: "A bottleneck saturates only in the tail of the load, so the queue grows for a small share of requests",
     samplerOptionB: "The server was just upgraded and its cache has not warmed up yet",
     samplerOptionC: "Distant users have slower connections than the average",
-    samplerCorrect: "Correct! +45 XP. p99 is what users remember, not p50.",
+    samplerCorrect: "Correct! p99 is what users remember, not p50.",
     samplerWrong: "Not quite. The answer is a bottleneck saturating in the tail.",
 
     deskLabel: "3D DESK · TECH FOUNDATIONS",
@@ -1411,6 +1409,10 @@ export const en: Dictionary = {
 
 
   resume: {
+    resumeBadge: "Mission in progress",
+    resumeXpBadge: "+{xp} XP on completion",
+    resumeProgress: "Progress ({done}/{total} lessons)",
+    resumeCta: "Keep learning",
     greeting1: "Hello{name}! The book is open and the knowledge is ready. Let's take the next lesson and earn some XP.",
     greeting2: "Excellent{name}! You have finished {count} lessons. Let's keep that momentum going.",
     greeting3: "Hello{name}! Today's goal is the next level. Start the lesson below.",
@@ -1592,33 +1594,24 @@ export const en: Dictionary = {
     headingMap: "The quest map & its buildings",
     headingMinigame: "Try your active-recall reflexes live",
     headingBoss: "The Silicon Valley boss arena",
-    xpLabel: "XP earned",
-    xpValue: "+{xp} XP",
 
     unlockAtLevel: "Unlocks at Lv.{level}",
-    xpRewardValue: "+{xp} XP",
     buildingDetail: "Building details",
     skillsUnlocked: "Skills unlocked:",
     unlockBuilding: "Unlock this building",
 
     samplerQuestion: "Sample question #{index}",
     samplerXp: "+50 XP for a correct answer",
-    samplerCorrect: "Correct! You've earned +50 XP.",
+    samplerCorrect: "Correct!",
     samplerWrong: "Not quite.",
     tryAnother: "Try another question",
-    doAllQuizzes: "Take all 430+ quizzes →",
+    doAllQuizzes: "Take the full quizzes →",
 
     bossAlt: "The Silicon Valley system-outage boss",
     bossRaidLabel: "WORLD BOSS RAID · 1,000,000 HP",
     bossName: "The Silicon Valley large-scale outage boss",
     bossBody:
       "Every learner on the platform joins the boss fight each day by answering tech questions correctly.",
-    bossHpLabel: "Boss HP right now",
-    bossHpValue: "742,500 / 1,000,000 HP",
-    damageToday: "Damage today",
-    damageValue: "1,250 DMG",
-    bossReward: "Reward for felling the boss",
-    bossRewardValue: "+500 XP & gold",
     joinBoss: "Join the Server boss hunt",
     ongoing: "Under way: unlock the technology kingdom with real lessons",
     playFull: "Try the full Game Kingdom",
@@ -2010,6 +2003,16 @@ export const en: Dictionary = {
 
 
   dashboard: {
+    // Trang Học bài chép từ bản tài chính.
+    sidebarResizeLabel: "Drag to resize the right column",
+    examCreditedHint: "Unlocked by the stage exam - you have not read this lesson",
+    examCreditedSubtitle: "Unlocked by the stage exam · not read yet",
+    stageLearners: "{count} learners just studied this stage",
+    nextChallenge: "Next challenge",
+    rigorousExamTitle: "Rigorous promotion exam (level {level})",
+    takeExamNow: "Take it now",
+    communityTodayTitle: "The community today",
+    trackDoneOfTotal: "{done}/{total} lessons",
     branchesShowAll: "See all topics",
     branchesCollapse: "Collapse",
     stageLabel: "Stage {n}",
@@ -2043,6 +2046,7 @@ export const en: Dictionary = {
     unlockByRequest: "Requires the earlier lessons - tap to ask an admin to unlock",
 
     markLearned: {
+      inProgressBadge: "In progress",
       button: "Mark as learned",
       help: "How marking as learned works",
       confirm: "Confirm",
