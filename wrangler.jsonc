@@ -38,6 +38,8 @@
 	// "kv_namespaces":[{ "binding": "SESSIONS", "id": "<điền sau>" }],
 	"vars": {
 		"NEXT_PUBLIC_SITE_URL": "https://tuhoccongnghe.vn"
+		// GOOGLE_CLIENT_ID và GOOGLE_CLIENT_SECRET là secret (`wrangler secret put`),
+		// không khai ở đây: một var trùng tên với secret làm deploy báo lỗi.
 	},
 	"d1_databases": [
 		{
