@@ -149,7 +149,9 @@ describe.skipIf(!hasLocalData)("chạy trên dữ liệu thật trong D1 local",
   });
 });
 
-describe("chính sách truy cập - thứ thay cho RLS", () => {
+// Cả khối cần D1 local (.wrangler/state) - CI không có, nên bỏ qua ở đó thay vì
+// để vài phép thử quên câu `if (!hasLocalData) return` nổ ENOENT.
+describe.skipIf(!hasLocalData)("chính sách truy cập - thứ thay cho RLS", () => {
   const c = (actor: string | null = ACTOR) =>
     createD1Client(openLocalD1() as never, types, registry, actor, predicates);
 
