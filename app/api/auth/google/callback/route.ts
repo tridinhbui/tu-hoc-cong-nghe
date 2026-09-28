@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 import { getDb } from "@/lib/d1/server";
 import { signInWithIdentity, AuthError } from "@/lib/auth/service";
 import { exchangeCode, GOOGLE_STATE_COOKIE, GOOGLE_VERIFIER_COOKIE } from "@/lib/auth/google";
@@ -12,7 +13,11 @@ function loi(req: Request, code: string, next: string) {
   const u = new URL("/login", new URL(req.url).origin);
   u.searchParams.set("error", code);
   u.searchParams.set("next", next);
-  const res = Response.redirect(u.toString(), 302);
+  // NextResponse.redirect, KHÔNG Response.redirect: Response.redirect trả về
+  // header BẤT BIẾN, và headers.append ngay dưới ném "TypeError: immutable" -
+  // lỗi nằm ngoài try nên mọi lượt quay về từ Google, thành công hay không,
+  // đều thành 500.
+  const res = NextResponse.redirect(u.toString(), 302);
   res.headers.append("Set-Cookie", clearOAuthNextCookie());
   return res;
 }
@@ -45,7 +50,7 @@ export async function GET(req: Request) {
     const id = await exchangeCode(code, verifier, redirectUri);
     const r = await signInWithIdentity(getDb(), "google", id.sub, id.email, id.emailVerified, { name: id.name, picture: id.picture });
     await setSessionCookie(r.token, r.expiresAt);
-    const done = Response.redirect(new URL(next, url.origin).toString(), 302);
+    const done = NextResponse.redirect(new URL(next, url.origin).toString(), 302);
     done.headers.append("Set-Cookie", clearOAuthNextCookie());
     return done;
   } catch (err) {
