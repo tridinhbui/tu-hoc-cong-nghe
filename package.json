@@ -11,6 +11,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "//pretypecheck": "lib/lessons-data/*.json được sinh ra và nằm trong .gitignore; tsc import chúng (track-totals, exercise-index) nên trên bản checkout sạch - tức CI - typecheck đỏ vì thiếu tệp, không phải vì lỗi kiểu.",
+    "pretypecheck": "node scripts/generate-lesson-data.mjs && node scripts/build-translation-index.mjs",
     "typecheck": "tsc --noEmit",
     "//prepare": "Trỏ git vào .githooks (xem .githooks/pre-push). Chạy tự động sau `npm install`; `|| true` để một bản checkout không phải kho git vẫn cài được.",
     "prepare": "git config core.hooksPath .githooks || true",
