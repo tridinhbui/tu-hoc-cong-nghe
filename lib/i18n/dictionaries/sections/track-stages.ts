@@ -543,6 +543,21 @@ export const trackStagesVi = {
           name: "Pipeline dữ liệu và vận hành LLM",
           parts: ["Pipeline, phiên bản, chi phí và giám sát", "Dự án: bot tài liệu nội bộ và agent CSKH lên production"],
         },
+        {
+          label: "Chặng 39",
+          name: "Docker và container",
+          parts: ["Container, Dockerfile và image an toàn", "Dữ liệu, nhiều dịch vụ và dự án đóng gói"],
+        },
+        {
+          label: "Chặng 40",
+          name: "CI/CD: kiểm tra và phát hành tự động",
+          parts: ["Pipeline, song song và cache", "Bí mật, canary và test chập chờn"],
+        },
+        {
+          label: "Chặng 41",
+          name: "Gỡ lỗi có phương pháp",
+          parts: ["Phương pháp, stack trace và bisect", "Log, tranh chấp và viết lại sự cố"],
+        },
       ],
     },
   },
@@ -1093,6 +1108,21 @@ export const trackStagesEn: typeof trackStagesVi = {
           label: "Stage 38",
           name: "Data pipelines and running LLMs in production",
           parts: ["Pipelines, versioning, cost and monitoring", "Projects: an internal docs bot and a support agent in production"],
+        },
+        {
+          label: "Stage 39",
+          name: "Docker and containers",
+          parts: ["Containers, Dockerfiles and safe images", "Data, multiple services and a packaging project"],
+        },
+        {
+          label: "Stage 40",
+          name: "CI/CD: automated checks and releases",
+          parts: ["Pipelines, parallelism and caching", "Secrets, canaries and flaky tests"],
+        },
+        {
+          label: "Stage 41",
+          name: "Debugging with a method",
+          parts: ["Method, stack traces and bisect", "Logs, race conditions and incident write-ups"],
         },
       ],
     },

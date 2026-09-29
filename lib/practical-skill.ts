@@ -223,6 +223,9 @@ export const STAGE_AREAS: Record<"personal" | "professional", Record<number, Ski
     36: "ai", // evals
     37: "security", // bảo mật hệ thống LLM
     38: "ai",
+    39: "cloud", // Docker và container
+    40: "cloud", // CI/CD
+    41: "code", // gỡ lỗi có phương pháp
   },
 };
 

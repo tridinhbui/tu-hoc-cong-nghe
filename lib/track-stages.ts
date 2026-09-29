@@ -1032,6 +1032,39 @@ export const TRACK_PROFESSIONAL = {
         { name: "Dự án: bot tài liệu nội bộ và agent CSKH lên production", days: [1914, 1915] as [number, number] },
       ],
     },
+    {
+      label: "Chặng 39",
+      name: "Docker và container",
+      days: [1920, 1929] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Container, Dockerfile và image an toàn", days: [1920, 1922] as [number, number] },
+        { name: "Dữ liệu, nhiều dịch vụ và dự án đóng gói", days: [1923, 1925] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 40",
+      name: "CI/CD: kiểm tra và phát hành tự động",
+      days: [1930, 1939] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Pipeline, song song và cache", days: [1930, 1932] as [number, number] },
+        { name: "Bí mật, canary và test chập chờn", days: [1933, 1935] as [number, number] },
+      ],
+    },
+    {
+      label: "Chặng 41",
+      name: "Gỡ lỗi có phương pháp",
+      days: [1940, 1949] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Phương pháp, stack trace và bisect", days: [1940, 1942] as [number, number] },
+        { name: "Log, tranh chấp và viết lại sự cố", days: [1943, 1945] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 /* i18n-ignore-end */
@@ -1053,7 +1086,7 @@ export const PROFESSIONAL_BRANCHES = [
     label: "Kiến trúc dịch vụ",
     subtitle: "Ngôn ngữ, kiến trúc dịch vụ, API, vận hành & dựng hệ thống",
     emoji: "🏢",
-    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 20", "Chặng 26", "Chặng 28", "Chặng 29", "Chặng 30", "Chặng 31"],
+    stageLabels: ["Chặng 1", "Chặng 2", "Chặng 3", "Chặng 4", "Chặng 5", "Chặng 11", "Chặng 20", "Chặng 26", "Chặng 28", "Chặng 29", "Chặng 30", "Chặng 31", "Chặng 39", "Chặng 40"],
   },
   {
     id: "systems",
@@ -1072,6 +1105,7 @@ export const PROFESSIONAL_BRANCHES = [
       "Chặng 21",
       "Chặng 22",
       "Chặng 27",
+      "Chặng 41",
     ],
   },
   {

@@ -15,6 +15,9 @@ import { BUILDER_AGENTS_LESSONS } from "./builder-agents-lessons";
 import { BUILDER_EVALS_LESSONS } from "./builder-evals-lessons";
 import { BUILDER_LLM_SECURITY_LESSONS } from "./builder-llm-security-lessons";
 import { BUILDER_LLMOPS_LESSONS } from "./builder-llmops-lessons";
+import { DOCKER_LESSONS } from "./docker-lessons";
+import { CICD_LESSONS } from "./cicd-lessons";
+import { DEBUGGING_LESSONS } from "./debugging-lessons";
 import { AUTH_LESSONS } from "./auth-lessons";
 import { PERFORMANCE_TUNING_LESSONS } from "./performance-tuning-lessons";
 import { QUANTITATIVE_METHODS_LESSONS } from "./quantitative-methods-lessons";
@@ -66,6 +69,9 @@ export const lessons: Lesson[] = [
   ...BUILDER_EVALS_LESSONS,
   ...BUILDER_LLM_SECURITY_LESSONS,
   ...BUILDER_LLMOPS_LESSONS,
+  ...DOCKER_LESSONS,
+  ...CICD_LESSONS,
+  ...DEBUGGING_LESSONS,
   ...AUTH_LESSONS,
   ...PERFORMANCE_TUNING_LESSONS,
   ...QUANTITATIVE_METHODS_LESSONS,

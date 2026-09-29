@@ -215,6 +215,9 @@ const PROFESSIONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 36": "ai-products",
   "Chặng 37": "ai-products",
   "Chặng 38": "ai-products",
+  "Chặng 39": "system-design-backend", // Docker và container
+  "Chặng 40": "system-design-backend", // CI/CD
+  "Chặng 41": "system-design-backend", // Gỡ lỗi có phương pháp
 };
 
 export const STAGE_TOPIC_TABLES = {
