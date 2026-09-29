@@ -134,3 +134,17 @@ export async function exchangeCode(
     picture: payload.picture,
   };
 }
+
+/** Địa chỉ quay về gửi cho Google - LUÔN https, trừ khi chạy ở máy dev.
+ *
+ *  Google so redirect_uri từng ký tự với danh sách đã đăng ký, và danh sách đó
+ *  chỉ có bản https. Mở trang bằng `http://…workers.dev` (điện thoại hay làm
+ *  thế khi gõ tay hoặc bấm link cũ) thì origin là http, và lượt đăng nhập bị
+ *  Google chặn bằng `redirect_uri_mismatch` trước khi kịp vào tới app. Bước
+ *  start và bước callback phải dựng CÙNG một chuỗi, nên cả hai gọi hàm này. */
+export function googleRedirectUri(reqUrl: string): string {
+  const u = new URL("/api/auth/google/callback", new URL(reqUrl).origin);
+  const local = u.hostname === "localhost" || u.hostname === "127.0.0.1" || u.hostname.endsWith(".localhost");
+  if (!local) u.protocol = "https:";
+  return u.toString();
+}

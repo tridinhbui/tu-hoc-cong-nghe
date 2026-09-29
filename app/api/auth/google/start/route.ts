@@ -1,12 +1,20 @@
 import { cookies } from "next/headers";
-import { buildAuthUrl, GOOGLE_STATE_COOKIE, GOOGLE_VERIFIER_COOKIE } from "@/lib/auth/google";
+import { buildAuthUrl, googleRedirectUri, GOOGLE_STATE_COOKIE, GOOGLE_VERIFIER_COOKIE } from "@/lib/auth/google";
 import { authErrorResponse } from "@/lib/auth/http";
 
 function redirectUri(req: Request) {
-  return new URL("/api/auth/google/callback", new URL(req.url).origin).toString();
+  return googleRedirectUri(req.url);
 }
 
 export async function GET(req: Request) {
+  // Mở bằng http thì chuyển sang https TRƯỚC khi đặt cookie: cookie state/
+  // verifier mang cờ `secure`, trình duyệt bỏ chúng khi response đến qua http,
+  // và bước callback (luôn https, xem googleRedirectUri) sẽ báo thiếu state.
+  const here = new URL(req.url);
+  if (here.protocol === "http:" && googleRedirectUri(req.url).startsWith("https:")) {
+    here.protocol = "https:";
+    return Response.redirect(here.toString(), 308);
+  }
   try {
     const { url, state, verifier } = await buildAuthUrl(redirectUri(req));
     const jar = await cookies();

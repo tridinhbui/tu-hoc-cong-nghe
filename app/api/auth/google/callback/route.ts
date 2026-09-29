@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { getDb } from "@/lib/d1/server";
 import { signInWithIdentity, AuthError } from "@/lib/auth/service";
-import { exchangeCode, GOOGLE_STATE_COOKIE, GOOGLE_VERIFIER_COOKIE } from "@/lib/auth/google";
+import { exchangeCode, googleRedirectUri, GOOGLE_STATE_COOKIE, GOOGLE_VERIFIER_COOKIE } from "@/lib/auth/google";
 import { setSessionCookie } from "@/lib/auth/http";
 import { OAUTH_NEXT_COOKIE, clearOAuthNextCookie } from "@/lib/oauth-next-cookie";
 import { safeNextPath } from "@/lib/safe-next-path";
@@ -46,7 +46,7 @@ export async function GET(req: Request) {
   if (returned !== state) return loi(req, "oauth_state_mismatch", next);
 
   try {
-    const redirectUri = new URL("/api/auth/google/callback", url.origin).toString();
+    const redirectUri = googleRedirectUri(req.url);
     const id = await exchangeCode(code, verifier, redirectUri);
     const r = await signInWithIdentity(getDb(), "google", id.sub, id.email, id.emailVerified, { name: id.name, picture: id.picture });
     await setSessionCookie(r.token, r.expiresAt);
