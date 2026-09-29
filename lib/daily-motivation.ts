@@ -120,7 +120,7 @@ export const MOTIVATION_MESSAGES: MotivationMessage[] = [
   { id: "mv-st-09", tone: "steady", text: "Phần lớn quyết định kỹ thuật tệ không đến từ thiếu kiến thức, mà từ việc quyết lúc đang gấp." },
   { id: "mv-st-10", tone: "steady", text: "Không có công nghệ nào tốt cho mọi bài toán. Có công nghệ phù hợp với ràng buộc của bạn." },
   { id: "mv-st-11", tone: "steady", text: "Người giỏi hệ thống không phải người đoán đúng điểm nghẽn. Họ là người biết mình đang đánh đổi gì." },
-  { id: "mv-st-12", tone: "steady", text: "Một quỹ khẩn cấp không sinh lời cao, nhưng nó mua cho bạn quyền không phải bán tài sản lúc giá xấu." },
+  { id: "mv-st-12", tone: "steady", text: "Bản sao lưu không làm hệ thống nhanh hơn, nhưng nó mua cho bạn quyền bình tĩnh vào đúng ngày mọi thứ hỏng." },
   { id: "mv-st-13", tone: "steady", text: "Công cụ không giải quyết được mọi thứ, nhưng thiếu nền tảng thì mọi công cụ khác đều khó dùng hơn." },
   { id: "mv-st-14", tone: "steady", text: "Học nền tảng không làm bạn lên senior nhanh. Nó làm bạn ít mất thời gian vì những lỗi lẽ ra tránh được." },
   { id: "mv-st-15", tone: "steady", text: "Hệ thống tốt là hệ thống bạn ngủ ngon khi tới phiên trực, không phải hệ thống đẹp nhất trên sơ đồ." },
